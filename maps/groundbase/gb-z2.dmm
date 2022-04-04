@@ -55,6 +55,16 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"am" = (
+/obj/item/toy/figure/mime,
+/obj/item/weapon/pen/crayon/marker/mime,
+/obj/item/weapon/pen/crayon/mime,
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "an" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/command/tcomms)
@@ -797,7 +807,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "cq" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/scienceslug{
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/scienceslug{
 	ghostjoin = 1
 	},
 /turf/simulated/floor/tiled,
@@ -1443,6 +1453,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/server)
+"ex" = (
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "ey" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -2180,7 +2199,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "gL" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/cargoslug{
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/cargoslug{
 	ghostjoin = 1
 	},
 /turf/simulated/floor/tiled,
@@ -2695,6 +2714,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot/storage)
+"il" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level2/nw)
 "im" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -2930,6 +2957,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
+"iW" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/civilian/mime)
 "iX" = (
 /obj/structure/bed/chair/comfy/blue{
 	dir = 8
@@ -2939,6 +2969,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/tcomms)
+"iY" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/civilian/mime)
 "iZ" = (
 /obj/structure/bed/chair/comfy/blue,
 /turf/simulated/floor/tiled/dark,
@@ -3351,6 +3393,7 @@
 "kn" = (
 /obj/structure/closet/l3closet/janitor,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/firealarm,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/janitor)
 "ko" = (
@@ -3683,6 +3726,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot/storage)
+"ln" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/civilian/mime)
 "lp" = (
 /obj/structure/bed/chair/office/dark,
 /obj/effect/landmark/start/chemist,
@@ -3906,6 +3955,23 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"lY" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Temple of Silence";
+	req_access = list(26)
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/bmarble,
+/area/groundbase/civilian/mime)
 "lZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
@@ -5353,6 +5419,12 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/groundbase/command/hop)
+"qD" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "qE" = (
 /obj/machinery/button/remote/airlock{
 	dir = 4;
@@ -5659,6 +5731,18 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/science/hall)
+"rG" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level2/nw)
 "rH" = (
 /obj/machinery/requests_console/preset/research{
 	pixel_y = 30
@@ -5717,8 +5801,12 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "rO" = (
-/turf/simulated/floor,
-/area/groundbase/level2/nw)
+/obj/structure/barricade/cutout/mime,
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "rP" = (
 /turf/simulated/wall,
 /area/groundbase/civilian/library)
@@ -5750,6 +5838,15 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
+"sb" = (
+/obj/structure/mopbucket,
+/obj/item/weapon/mop,
+/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/machinery/alarm{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/janitor)
 "sc" = (
 /obj/structure/bed/chair/comfy/blue{
 	dir = 4
@@ -7176,6 +7273,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
+"wK" = (
+/turf/simulated/wall,
+/area/groundbase/civilian/mime)
 "wL" = (
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled/white,
@@ -7900,6 +8000,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
+"yW" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level2/nw)
 "yX" = (
 /obj/structure/janitorialcart,
 /turf/simulated/floor/tiled,
@@ -8138,6 +8250,18 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/science/rnd)
+"zL" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level2/nw)
 "zO" = (
 /obj/structure/closet/l3closet/janitor,
 /obj/machinery/light{
@@ -10528,6 +10652,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"GQ" = (
+/obj/machinery/vending/wardrobe/mimedrobe,
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "GS" = (
 /obj/structure/railing/grey{
 	dir = 1
@@ -10580,11 +10708,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
@@ -10993,6 +11121,13 @@
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/level2/ne)
+"Il" = (
+/obj/item/weapon/bedsheet/mimedouble,
+/obj/structure/bed/double/padded,
+/obj/structure/curtain/black,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "Im" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/weapon/towel/random,
@@ -11094,6 +11229,15 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/nw)
+"IB" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/obj/machinery/firealarm{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "IC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -11952,6 +12096,18 @@
 /obj/effect/landmark/start/xenobot,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
+"Lb" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "Lc" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -12101,6 +12257,12 @@
 "LA" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/nw)
@@ -12792,7 +12954,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/triage)
 "Np" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/medislug{
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/medislug{
 	ghostjoin = 1
 	},
 /obj/structure/cable/yellow{
@@ -13343,6 +13505,15 @@
 "OZ" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/nw)
@@ -16736,8 +16907,17 @@
 /area/groundbase/civilian/library)
 "Zw" = (
 /obj/effect/landmark/start/mime,
-/turf/simulated/floor,
-/area/groundbase/level2/nw)
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/groundbase/civilian/mime)
 "Zx" = (
 /turf/simulated/mineral/cave/virgo3c,
 /area/groundbase/level2/sw)
@@ -18246,23 +18426,23 @@ xE
 bY
 bY
 bY
-bY
-bY
-bY
-bY
-bY
-bY
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
-Jc
-bY
-bY
-bY
-bY
+rG
+il
+il
+il
+il
+il
+il
+il
+il
+il
+il
+il
+il
+il
+il
+il
+zL
 bY
 bY
 bY
@@ -18387,9 +18567,9 @@ xE
 xE
 xE
 bY
-bY
-bY
-bY
+ln
+iY
+iW
 bY
 xE
 bY
@@ -18404,7 +18584,7 @@ Jc
 Jc
 Jc
 Jc
-Jc
+sN
 Jc
 bY
 bY
@@ -18528,11 +18708,11 @@ xE
 xE
 xE
 xE
-Gp
-Gp
-bY
-Gp
-Gp
+wK
+wK
+lY
+wK
+wK
 xE
 xE
 xE
@@ -18546,7 +18726,7 @@ bY
 bY
 Jc
 Jc
-Jc
+sN
 bY
 bY
 bY
@@ -18670,11 +18850,11 @@ xE
 xE
 xE
 xE
-Gp
+wK
 rO
-rO
-rO
-Gp
+Lb
+IB
+wK
 xE
 xE
 xE
@@ -18688,7 +18868,7 @@ bY
 bY
 bY
 bY
-bY
+sN
 pw
 Gp
 Gp
@@ -18812,11 +18992,11 @@ KW
 xE
 xE
 xE
-Gp
-rO
+wK
+Il
 Zw
-rO
-Gp
+am
+wK
 xE
 xE
 xE
@@ -18830,7 +19010,7 @@ xE
 xE
 bY
 bY
-Hn
+yW
 Ja
 tZ
 Pz
@@ -18954,11 +19134,11 @@ KW
 xE
 xE
 xE
-Gp
-rO
-rO
-rO
-Gp
+wK
+GQ
+ex
+qD
+wK
 xE
 xE
 xE
@@ -18972,7 +19152,7 @@ xE
 xE
 bY
 bY
-bX
+sN
 pw
 OU
 Gp
@@ -19096,11 +19276,11 @@ KW
 KW
 KW
 xE
-Gp
-Gp
-Gp
-Gp
-Gp
+wK
+wK
+wK
+wK
+wK
 xE
 xE
 Do
@@ -19114,7 +19294,7 @@ Do
 xE
 bY
 bY
-bX
+sN
 bY
 OU
 Gp
@@ -19250,13 +19430,13 @@ fZ
 yX
 Cy
 vS
-KO
+sb
 KO
 Do
 xE
 xE
 bY
-bX
+sN
 bY
 OU
 Gp
@@ -19398,7 +19578,7 @@ Do
 xE
 xE
 bY
-bX
+sN
 bY
 OU
 Gp
@@ -19540,7 +19720,7 @@ Do
 xE
 xE
 bY
-bX
+sN
 bY
 OU
 Gp
@@ -19682,7 +19862,7 @@ Do
 bY
 bY
 bY
-bX
+sN
 bY
 OU
 Gp
@@ -19824,7 +20004,7 @@ Do
 bY
 bY
 bY
-bX
+sN
 pw
 OU
 Gp
@@ -20108,7 +20288,7 @@ Do
 bY
 Jc
 bY
-Ad
+sN
 pw
 Gp
 Gp
@@ -20250,7 +20430,7 @@ bY
 bY
 bY
 bY
-Ad
+sN
 bY
 bY
 bY
@@ -20386,12 +20566,12 @@ bY
 Zg
 bY
 GZ
-Cw
-Cw
-Cw
-Cw
-Cw
-Cw
+il
+il
+il
+il
+il
+il
 LA
 bY
 Jc

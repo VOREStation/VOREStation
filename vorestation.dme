@@ -2364,6 +2364,7 @@
 #include "code\modules\ghosttrap\trap.dm"
 #include "code\modules\holodeck\HolodeckControl.dm"
 #include "code\modules\holodeck\HolodeckObjects.dm"
+#include "code\modules\holodeck\HolodeckObjects_vr.dm"
 #include "code\modules\holodeck\HolodeckPrograms.dm"
 #include "code\modules\holomap\generate_holomap.dm"
 #include "code\modules\holomap\holomap_area.dm"

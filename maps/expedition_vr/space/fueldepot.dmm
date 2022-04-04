@@ -1379,7 +1379,7 @@
 	dir = 1
 	},
 /obj/structure/catwalk,
-/mob/living/simple_mob/vore/alienanimals/catslug/spaceslug,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "Vy" = (
