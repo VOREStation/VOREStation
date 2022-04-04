@@ -54,9 +54,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
-"am" = (
-/turf/simulated/floor/virgo3c,
-/area/groundbase/level2/eastspur)
 "an" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/command/tcomms)
@@ -747,6 +744,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"ck" = (
+/obj/effect/floor_decal/industrial/outline,
+/obj/machinery/status_display/supply_display{
+	pixel_x = -32
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/cargo/bay)
 "cl" = (
 /obj/structure/table/bench/padded,
 /obj/structure/cable/yellow{
@@ -897,14 +901,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
-"cJ" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 8
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "cK" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -1196,14 +1192,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/hall)
-"dG" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 5
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "dH" = (
 /obj/machinery/status_display/supply_display,
 /turf/simulated/wall,
@@ -1258,7 +1246,9 @@
 	id = "rndshutters";
 	name = "Privacy Shutters"
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/rnd)
 "dS" = (
 /turf/simulated/wall/r_wall,
@@ -1695,14 +1685,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/command/hop)
-"fi" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 10
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "fj" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1739,7 +1721,9 @@
 /turf/simulated/floor/carpet/deco,
 /area/groundbase/civilian/kitchen/backroom)
 "fp" = (
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/level2/ne)
 "fq" = (
 /obj/machinery/camera/network/cargo{
@@ -3562,7 +3546,9 @@
 	name = "Circuitry Workshop";
 	req_access = list(7)
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/circuits)
 "la" = (
 /obj/structure/cable/yellow{
@@ -4200,7 +4186,9 @@
 	name = "Circuitry Workshop";
 	req_access = list(7)
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/circuits)
 "nd" = (
 /obj/effect/landmark/start{
@@ -4235,14 +4223,6 @@
 "ni" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level2/ne)
-"nj" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 9
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "nk" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -4392,18 +4372,6 @@
 "nF" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
-"nG" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/groundbase/level2/se;
-	base_turf = /turf/simulated/floor/reinforced/virgo3c;
-	docking_controller = "escape_dock";
-	landmark_tag = "escape_station";
-	name = "Ship Arrivals"
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "nH" = (
 /obj/structure/stairs/spawner/south,
 /obj/structure/railing/grey{
@@ -4761,15 +4729,6 @@
 "oO" = (
 /turf/simulated/floor/wood,
 /area/groundbase/command/captain)
-"oQ" = (
-/obj/machinery/embedded_controller/radio/docking_port_multi{
-	id_tag = "escape_dock";
-	pixel_y = 22
-	},
-/turf/simulated/floor/tiled/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "oS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -6363,12 +6322,6 @@
 /obj/machinery/chemical_dispenser/full,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
-"ub" = (
-/obj/effect/floor_decal/industrial/warning,
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "ue" = (
 /obj/machinery/button/remote/airlock{
 	dir = 8;
@@ -6694,14 +6647,6 @@
 /obj/structure/fence,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/cargo/bay)
-"vl" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 4
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "vm" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -7103,7 +7048,9 @@
 	req_access = list(47,55);
 	req_one_access = null
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/xenobot)
 "wy" = (
 /obj/structure/sign/department/virology,
@@ -8114,7 +8061,9 @@
 	id = "rndshutters";
 	name = "Privacy Shutters"
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/rnd)
 "zO" = (
 /obj/structure/closet/l3closet/janitor,
@@ -8255,7 +8204,9 @@
 /area/rnd/xenobiology)
 "Am" = (
 /obj/structure/railing/grey,
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/level2/ne)
 "An" = (
 /obj/structure/cable/yellow{
@@ -8525,7 +8476,9 @@
 /turf/simulated/wall,
 /area/groundbase/cargo/office)
 "AV" = (
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/level2/westspur)
 "AY" = (
 /obj/structure/table/woodentable,
@@ -9310,11 +9263,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "cargo_bay";
-	pixel_y = 23
-	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "Ds" = (
@@ -9401,7 +9349,9 @@
 	id = "robshutters";
 	name = "Privacy Shutters"
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/robotics)
 "DF" = (
 /obj/machinery/atmospherics/pipe/manifold/visible,
@@ -10371,6 +10321,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/status_display/supply_display{
+	pixel_x = 32
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "GE" = (
@@ -11297,7 +11250,9 @@
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/science/picnic)
 "Jr" = (
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/level2/sw)
 "Js" = (
 /obj/structure/railing/grey{
@@ -12005,14 +11960,6 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/ne)
-"Lx" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "Ly" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -14319,15 +14266,6 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/carpet,
 /area/groundbase/civilian/library)
-"Sd" = (
-/obj/structure/sign/directions/evac{
-	pixel_x = 32;
-	pixel_y = 32
-	},
-/turf/simulated/floor/tiled/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "Se" = (
 /obj/structure/table/woodentable,
 /obj/item/clothing/mask/gas/clown_hat{
@@ -15138,7 +15076,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "UD" = (
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/level2/southeastspur)
 "UE" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
@@ -15432,7 +15372,9 @@
 	id = "robshutters";
 	name = "Privacy Shutters"
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/robotics)
 "VC" = (
 /turf/simulated/floor/carpet/blue,
@@ -16096,7 +16038,9 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/xenobot)
 "XJ" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
@@ -16289,7 +16233,9 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/xenobot)
 "Yp" = (
 /turf/simulated/floor/tiled/dark,
@@ -16350,14 +16296,6 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
-"YC" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 6
-	},
-/turf/simulated/floor/reinforced/virgo3c{
-	edge_blending_priority = -1
-	},
-/area/groundbase/level2/se)
 "YF" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -16713,7 +16651,9 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/turf/simulated/floor/virgo3c,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
 /area/groundbase/science/xenobot)
 "ZO" = (
 /obj/structure/bed/chair/comfy/brown{
@@ -27070,10 +27010,10 @@ to
 to
 to
 VR
-am
-am
-am
-am
+QD
+QD
+QD
+QD
 VR
 oH
 oH
@@ -27211,12 +27151,12 @@ to
 to
 to
 to
-am
-am
-am
-am
-am
-am
+QD
+QD
+QD
+QD
+QD
+QD
 oH
 oH
 oH
@@ -27353,12 +27293,12 @@ iw
 iw
 to
 to
-am
-am
-am
-am
-am
-am
+QD
+QD
+QD
+QD
+QD
+QD
 oH
 oH
 oH
@@ -27497,10 +27437,10 @@ iw
 to
 to
 to
-am
-am
-am
-am
+QD
+QD
+QD
+QD
 oH
 oH
 oH
@@ -27640,9 +27580,9 @@ to
 to
 to
 to
-am
-am
-am
+QD
+QD
+QD
 oH
 oH
 oH
@@ -27782,9 +27722,9 @@ to
 to
 to
 to
-am
-am
-am
+QD
+QD
+QD
 oH
 oH
 oH
@@ -27925,8 +27865,8 @@ to
 to
 to
 to
-am
-am
+QD
+QD
 oH
 oH
 oH
@@ -28067,8 +28007,8 @@ to
 to
 to
 to
-am
-am
+QD
+QD
 oH
 oH
 oH
@@ -28209,8 +28149,8 @@ to
 to
 to
 to
-am
-am
+QD
+QD
 oH
 oH
 oH
@@ -28350,9 +28290,9 @@ to
 to
 to
 to
-am
-am
-am
+QD
+QD
+QD
 oH
 oH
 oH
@@ -28490,11 +28430,11 @@ yG
 yL
 to
 to
-am
-am
-am
-am
-am
+QD
+QD
+QD
+QD
+QD
 oH
 oH
 oH
@@ -28633,9 +28573,9 @@ yL
 to
 to
 to
-am
-am
-am
+QD
+QD
+QD
 oH
 oH
 oH
@@ -29164,7 +29104,7 @@ ks
 ks
 ks
 MH
-PI
+ck
 PI
 PI
 AM
@@ -29173,7 +29113,7 @@ KU
 fq
 PI
 ZI
-PI
+ck
 KU
 MH
 to
@@ -29236,15 +29176,15 @@ Bo
 Bo
 Bo
 Bo
-nj
-cJ
-cJ
-cJ
-cJ
-cJ
-cJ
-cJ
-fi
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
 gs
 gs
 Bo
@@ -29378,15 +29318,15 @@ At
 Bo
 Bo
 Bo
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+UE
+UE
+UE
+Bo
+Bo
+Bo
+Bo
+Bo
 Bo
 Bo
 Bo
@@ -29455,9 +29395,9 @@ KU
 KU
 KU
 KU
-KU
-KU
-KU
+PI
+PI
+PI
 KU
 MH
 to
@@ -29519,16 +29459,16 @@ CK
 kU
 kU
 kU
-Sd
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+kU
+Bo
+Bo
+UE
+UE
+UE
+Bo
+Bo
+Bo
+Bo
 Bo
 Bo
 Bo
@@ -29662,15 +29602,15 @@ GM
 GM
 GM
 kU
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+UE
+UE
+UE
+UE
+UE
+UE
+Bo
 Bo
 Bo
 Bo
@@ -29803,16 +29743,16 @@ KR
 NR
 la
 GM
-oQ
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+kU
+Bo
+Bo
+Bo
+UE
+UE
+UE
+UE
+UE
+UE
 UE
 UE
 UE
@@ -29946,15 +29886,15 @@ xF
 gN
 mQ
 kU
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+Bo
+Bo
+UE
+UE
+UE
+UE
+UE
 UE
 UE
 UE
@@ -30088,15 +30028,15 @@ jo
 qC
 UT
 kU
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+Bo
+Bo
+Bo
+UE
+UE
+UE
+UE
 UE
 UE
 UE
@@ -30230,15 +30170,15 @@ GC
 iC
 dK
 kU
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+Bo
+UE
+Bo
+Bo
+UE
+UE
+UE
 UE
 UE
 UE
@@ -30372,15 +30312,15 @@ GC
 Jl
 Bf
 kU
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+Bo
+UE
+UE
+Bo
+Bo
+UE
+UE
 UE
 UE
 UE
@@ -30514,15 +30454,15 @@ GC
 Jl
 Bf
 kU
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+Bo
+UE
+UE
+UE
+Bo
+Bo
+UE
 UE
 UE
 UE
@@ -30656,15 +30596,15 @@ GC
 Jl
 Bf
 kU
-Lx
-Nq
-Nq
-Nq
-nG
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+Bo
+Bo
+UE
+UE
+Bo
+Bo
+UE
 UE
 UE
 UE
@@ -30798,15 +30738,15 @@ GC
 Jl
 Bf
 kU
-Lx
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-Nq
-ub
+Bo
+Bo
+Bo
+Bo
+UE
+Bo
+Bo
+Bo
+Bo
 UE
 UE
 UE
@@ -30940,15 +30880,15 @@ GC
 Jl
 Bf
 kU
-dG
-vl
-vl
-vl
-vl
-vl
-vl
-vl
-YC
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
+Bo
 Bo
 Bo
 UE

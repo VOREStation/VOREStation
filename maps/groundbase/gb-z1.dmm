@@ -800,6 +800,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -972,6 +973,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -1243,6 +1245,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -1288,6 +1291,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -1539,6 +1543,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -1943,6 +1948,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -2299,6 +2305,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -2858,6 +2865,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -3001,6 +3009,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
@@ -3447,6 +3456,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/setunnel)
@@ -3545,6 +3555,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -3849,6 +3860,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -4101,6 +4113,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
@@ -4679,6 +4692,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -4851,6 +4865,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -4974,6 +4989,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -5358,6 +5374,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -5450,6 +5467,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -5458,6 +5476,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
@@ -6705,6 +6724,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -6745,6 +6765,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -7003,6 +7024,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -7125,6 +7147,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
@@ -7600,6 +7623,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
@@ -7797,6 +7821,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/setunnel)
@@ -8174,6 +8199,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
@@ -8399,6 +8425,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -8603,6 +8630,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -8808,6 +8836,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -9228,6 +9257,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/setunnel)
@@ -9442,6 +9472,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -9523,6 +9554,7 @@
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -10086,6 +10118,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -10383,6 +10416,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -10503,6 +10537,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/setunnel)
@@ -11113,6 +11148,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -11275,6 +11311,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -11440,6 +11477,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -11460,6 +11498,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
@@ -12087,6 +12126,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/status_display/supply_display{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "Hh" = (
@@ -12180,6 +12222,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -12455,6 +12498,7 @@
 /obj/item/stack/cable_coil/random,
 /obj/item/stack/cable_coil/random,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/groundbase/level1/eastspur)
@@ -12797,6 +12841,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -12960,6 +13005,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
@@ -13041,6 +13087,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -13246,6 +13293,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
@@ -13827,6 +13875,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/groundbase/command/ai/foyer)
@@ -14097,6 +14146,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -14462,6 +14512,7 @@
 	icon_state = "2-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -14477,6 +14528,7 @@
 	icon_state = "1-4"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -14553,6 +14605,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
@@ -14682,6 +14735,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -14747,6 +14801,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -15142,6 +15197,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -15308,6 +15364,7 @@
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -15614,6 +15671,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/setunnel)
@@ -15713,6 +15771,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
@@ -16112,6 +16171,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -16212,6 +16272,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
@@ -16338,6 +16399,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -17208,6 +17270,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -17248,6 +17311,7 @@
 	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/setunnel)
@@ -17299,6 +17363,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
@@ -17658,6 +17723,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/groundbase/level1/eastspur)
@@ -18041,6 +18107,7 @@
 	name = "maint_pred"
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
@@ -18235,6 +18302,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
@@ -18467,6 +18535,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)

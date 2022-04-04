@@ -21,7 +21,9 @@
 /datum/map/groundbase/New()
 	..()
 	var/choice = pickweight(list(
-		"endo"
+		"logo1" = 20,
+		"logo2" = 20,
+		"gateway" = 5
 	))
 	if(choice)
 		lobby_screens = list(choice)
@@ -40,7 +42,7 @@
 	zlevel_datum_type = /datum/map_z_level/groundbase
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("endo")
+	lobby_screens = list("logo1")
 	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 
@@ -244,7 +246,7 @@
 	initial_generic_waypoints = list()
 	initial_restricted_waypoints = list()
 
-	extra_z_levels = list()
+	extra_z_levels = list(Z_LEVEL_MINING)
 
 /obj/effect/overmap/visitable/sector/virgo3c
 	name = "Virgo 3C"
@@ -431,13 +433,68 @@
 	landmark_station = "escape_station"
 	landmark_transition = "escape_transit"
 	move_time = SHUTTLE_TRANSIT_DURATION_RETURN
-	move_direction = SOUTH
+	move_direction = EAST
 	docking_controller_tag = "escape_shuttle"
 	ceiling_type = /turf/simulated/floor/reinforced/virgo3c
 
 /obj/effect/shuttle_landmark/premade/groundbase
 	name = "Rascal's Pass"
 	landmark_tag = "groundbase"
+
+//////////////////////////////////////////////
+
+/////Virgo Flyer/////
+// The shuttle's 'shuttle' computer
+/obj/machinery/computer/shuttle_control/explore/ccboat
+	name = "Virgo Flyer control console"
+	shuttle_tag = "Virgo Flyer"
+	req_one_access = list(access_pilot)
+
+/obj/effect/overmap/visitable/ship/landable/ccboat
+	name = "NTV Virgo Flyer"
+	desc = "A small shuttle from Central Command."
+	vessel_mass = 1000
+	vessel_size = SHIP_SIZE_TINY
+	shuttle = "Virgo Flyer"
+	known = TRUE
+
+// A shuttle lateloader landmark
+/obj/effect/shuttle_landmark/shuttle_initializer/ccboat
+	name = "Central Command Shuttlepad"
+	base_area = /area/shuttle/centcom/ccbay
+	base_turf = /turf/simulated/floor/reinforced
+	landmark_tag = "cc_shuttlepad"
+	docking_controller = "cc_landing_pad"
+	shuttle_type = /datum/shuttle/autodock/overmap/ccboat
+
+/datum/shuttle/autodock/overmap/ccboat
+	name = "Virgo Flyer"
+	current_location = "cc_shuttlepad"
+	docking_controller_tag = "ccboat"
+	shuttle_area = /area/shuttle/ccboat
+	fuel_consumption = 0
+	defer_initialisation = TRUE
+
+/area/shuttle/ccboat
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "yelwhitri"
+	name = "Virgo Flyer"
+	requires_power = 0
+
+/area/shuttle/centcom/ccbay
+	icon = 'icons/turf/areas_vr.dmi'
+	icon_state = "bluwhisqu"
+	name = "Central Command Shuttle Bay"
+	requires_power = 0
+	dynamic_lighting = 0
+
+/////////////////////////////////////////////////////
+
+
+
+
+
+
 
 /obj/effect/step_trigger/teleporter/to_mining
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
@@ -560,3 +617,79 @@
  				</body>
 			</html>
 			"}
+
+/////////////////////////////////////////////////////////////////////////
+
+/turf/unsimulated/mineral/virgo3b
+	blocks_air = TRUE
+
+/turf/unsimulated/floor/steel
+	icon = 'icons/turf/flooring/tiles_vr.dmi'
+	icon_state = "steel"
+
+// Some turfs to make floors look better in centcom tram station.
+
+/turf/unsimulated/floor/techfloor_grid
+	name = "floor"
+	icon = 'icons/turf/flooring/techfloor.dmi'
+	icon_state = "techfloor_grid"
+
+/turf/unsimulated/floor/maglev
+	name = "maglev track"
+	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon_state = "maglevup"
+
+/turf/unsimulated/wall/transit
+	icon = 'icons/turf/transit_vr.dmi'
+
+/turf/unsimulated/floor/transit
+	icon = 'icons/turf/transit_vr.dmi'
+
+/obj/effect/floor_decal/transit/orange
+	icon = 'icons/turf/transit_vr.dmi'
+	icon_state = "transit_techfloororange_edges"
+
+/obj/effect/transit/light
+	icon = 'icons/turf/transit_128.dmi'
+	icon_state = "tube1-2"
+
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/grass/sif)
+/turf/simulated/floor/outdoors/grass/sif
+	turf_layers = list(
+		/turf/simulated/floor/outdoors/rocks/virgo3b,
+		/turf/simulated/floor/outdoors/dirt/virgo3b
+		)
+
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/dirt)
+/turf/simulated/floor/outdoors/dirt/virgo3b
+	icon = 'icons/turf/flooring/asteroid.dmi'
+	icon_state = "asteroid"
+
+VIRGO3B_TURF_CREATE(/turf/simulated/floor/outdoors/rocks)
+
+/turf/simulated/floor/maglev
+	name = "maglev track"
+	desc = "Magnetic levitation tram tracks. Caution! Electrified!"
+	icon = 'icons/turf/flooring/maglevs.dmi'
+	icon_state = "maglevup"
+
+	var/area/shock_area = /area/centcom/terminal/tramfluff
+
+/turf/simulated/floor/maglev/Initialize()
+	. = ..()
+	shock_area = locate(shock_area)
+
+// Walking on maglev tracks will shock you! Horray!
+/turf/simulated/floor/maglev/Entered(var/atom/movable/AM, var/atom/old_loc)
+	if(isliving(AM) && !(AM.is_incorporeal()) && prob(50))
+		track_zap(AM)
+/turf/simulated/floor/maglev/attack_hand(var/mob/user)
+	if(prob(75))
+		track_zap(user)
+/turf/simulated/floor/maglev/proc/track_zap(var/mob/living/user)
+	if (!istype(user)) return
+	if (electrocute_mob(user, shock_area, src))
+		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		s.set_up(5, 1, src)
+		s.start()
