@@ -1546,6 +1546,14 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient4)
+"CS" = (
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level3/escapepad)
 "CU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2278,6 +2286,12 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level3/nw)
+"Pd" = (
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/virgo3c,
+/area/groundbase/medical/patio)
 "Pf" = (
 /obj/machinery/mineral/equipment_vendor/survey,
 /turf/simulated/floor/tiled,
@@ -6074,7 +6088,7 @@ ow
 ow
 ow
 ow
-ow
+CS
 hl
 Kr
 Kr
@@ -15591,7 +15605,7 @@ xX
 xX
 xX
 OD
-xX
+Pd
 Vm
 Vm
 Vm
