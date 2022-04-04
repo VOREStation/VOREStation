@@ -342,3 +342,100 @@
 		<p>This all may seem daunting at a glance; so many recipes to learn, and a "lot" to keep in mind. But really it's not - tending the Bar is mostly about going with the flow of things and providing a good times, and drinks just provide liquid courage to make a good time easier. Take a deep breath if you ever feel overwhelmed, and handle one order at a time. You can do it! Don't feel the need to know every recipe, just learn your favorites and go from there; the rest is here or online if someone asks for it! If somebody asks you to give them anything without a specific request, don't panic: evalulate their likes and tolerance level, and try your best to give them something nice!</p>
                 </body>
             </html> "}
+
+/obj/item/weapon/book/manual/rotary_electric_generator
+	name = "Rotary Electric Generator Manual"
+	icon_state ="bookParticleAccelerator"
+	item_state = "book15"
+	author = "Engineering Encyclopedia"
+	title = "Rotary Electric Generator Manual"
+
+/obj/item/weapon/book/manual/rotary_electric_generator/New()
+	..()
+	dat = {"<html>
+				<head>
+				<style>
+				h1 {font-size: 18px; margin: 15px 0px 5px;}
+				h2 {font-size: 15px; margin: 15px 0px 5px;}
+				h3 {font-size: 13px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				body {font-size: 13px; font-family: Verdana;}
+				</style>
+				</head>
+				<body>
+
+				Technical Order (TO) 1-33-34-2 <br>
+				 <h1>Operator's Manual - Rotary Electric Generator, D-Type</h1><br><br>
+
+				 Supporting Data: <br>
+				 - TO 1-33-34-4-1    Illustrated Parts Breakdown - Rotary Electric Generator, D-Type <br>
+				 - TO 1-33-34-6        Inspection Work Cards - Rotary Electric Generator, D-Type <br><br>
+
+				 Support Equipment: <br>
+				 - Torque Wrench, 100-80,000 inch-pounds <br>
+				 - Composite Tool Kit, Standard <br>
+				 - Multitool with Lead Kit, Wire Kit <br> <br>
+
+				 Required Supplies: <br>
+				 - stainless steel, 10,000cm3 <br>
+				 - lubrication, petrolatum, 6000ml <br>
+				 - electrical wiring, 5m <br>
+				 - component set, capacitors (any grade) <br>
+				 - circuitry board, REG <br> <br> 
+
+
+ 				<h1>SETUP AND OPERATING PROCEDURES</h1> <br> <br>
+
+ 				Setup: <br> <br>
+
+					 CAUTION: Do not remove too much air from the work space or personnel may be exposed to hypoxia or similar effects. <br> <br>
+
+					1. Prepare setup area. Remove machinery, debris, foreign objects, people, and extra air. <br> <br>
+	
+					2. Lay out preliminary electrical wiring. <br>
+					 2a. Connect electrical wiring to existing facility power grid. <br>
+					 2b. Work wiring into shape as defined in TO 1-33-34-4-1 Figure 32 Index 6. <br>
+	
+					3. Prepare gathered steel supplies as defined in TO 1-33-34-4-1 Figure 2 Index 3. <br>
+	
+					4. Assemble prepared steel supplies into equipment framework by inserting rod A into slot B. Refer to TO 1-33-34-4-1 Figure 1 Index 1 for technical drawings. <br>
+					 4a. Secure assembled equipment framework to flooring by tightening lower frame bolts. <br> <br>
+	
+					5. Install and secure circuitry board, REG-D into marked receptacle. <br> <br>
+	
+					6. Install electrical wiring. Refer to TO 1-33-34-4-1 Figure 666 Index 6 thru Index 90 for routing. <br> <br>
+	
+					7. Install capacitors into marked circuitry board slots. Do not force components into place, use even pressure. Do not use a hammer. <br> <br>
+	
+							<b>WARNING</b>: Assembly will rapidly inflate when finalization is triggered. Ensure personnel and equipment are clear before initiating. <br> <br>
+	
+					8. Finalize construction by turning the Initialize Finalization screw on the outer housing. <br> <br>
+	
+					9. Wait for assembly to finish inflating, and the unit is ready for service. <br> <br>
+	
+
+ 				Operating Procedures: <br> <br>
+
+						NOTE: Operation of REG-D type generators requires significant physical effort. Ensure users are provided adequare nutrition and hydration throughout the working period. <br> <br>
+		
+						1. Designate the individual who will be operating the REG-D. <br> <br>
+	
+						2. Provide a safety briefing regarding nutritional preparedness and physical ability.  <br> <br>
+	
+							NOTE: Stretching is highly recommended before and after any operation session. <br> <br>
+
+						3. Operator shall board the REG-D track body and ensure there are no unsecured objects on the path. <br> <br>
+	
+						4. Once ready, Operator may begin running at own pace. Do not sprint. Maintain an even pace and proper running form for optimal energy generation. <br> <br>
+	
+						5. Continue to run on the REG-D track body until sufficient energy is stored in systems or Operator is no longer able or willing to continue. <br> <br>
+	
+						6. To end a session, carefully lower forward running speed until the track body comes to a complete stop, then disembark the REG-D. <br> <br>
+
+
+					 REFER TO TO 1-33-34-6 FOR MAINTENANCE AND INSPECTION PROCEDURES
+ 				</body>
+			</html>
+			"}

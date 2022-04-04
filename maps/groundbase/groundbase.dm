@@ -2,13 +2,11 @@
 
 	#include "groundbase_areas.dm"
 	#include "groundbase_defines.dm"
-//	#include "stellar_delight_shuttle_defs.dm"
+	#include "groundbase_shuttles.dm"
 	#include "groundbase_telecomms.dm"
-//	#include "stellar_delight_things.dm"
+	#include "groundbase_things.dm"
 	#include "..\offmap_vr\common_offmaps.dm"
 	#include "..\tether\tether_jobs.dm"
-//	#include "..\stellardelight\stellar_delight_areas.dm"
-//	#include "..\tether\tether_areas.dm"
 
 	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "gb-z1.dmm"
