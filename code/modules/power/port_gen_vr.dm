@@ -282,16 +282,17 @@
 		log_and_message_admins("[ADMIN_LOOKUPFLW(Proj.firer)] triggered a kugelblitz core explosion at [x],[y],[z] via projectile.")
 		asplod()
 
-/obj/machinery/power/rtg/d_type_reg
+/obj/machinery/power/rtg/reg
 	name = "d-type rotary electric generator"
 	desc = "It looks kind of like a large hamster wheel."
 	icon = 'icons/obj/power_vrx96.dmi'
 	icon_state = "reg"
-	circuit = /obj/item/weapon/circuitboard/machine/reg
+	circuit = /obj/item/weapon/circuitboard/machine/reg_d
 	irradiate = FALSE
 	power_gen = 0	
 	var/default_power_gen = 1000000	//It's big but it gets adjusted based on what you put into it!!!
 	var/part_mult = 0
+	var/nutrition_drain = 1
 	pixel_x = -32
 	plane = ABOVE_MOB_PLANE
 	layer = ABOVE_MOB_LAYER
@@ -299,29 +300,29 @@
 	interact_offline = TRUE
 	density = FALSE
 
-/obj/machinery/power/rtg/d_type_reg/Initialize()
+/obj/machinery/power/rtg/reg/Initialize()
 	pixel_x = -32
 	. = ..()
 	
-/obj/machinery/power/rtg/d_type_reg/Destroy()
+/obj/machinery/power/rtg/reg/Destroy()
 	. = ..()
 
-/obj/machinery/power/rtg/d_type_reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
+/obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
 	. = ..()
 	M.pixel_y = 8
 	M.visible_message("<span class='notice'>\The [M], hops up onto \the [src] and begins running!</span>")
 
-/obj/machinery/power/rtg/d_type_reg/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
+/obj/machinery/power/rtg/reg/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	. = ..()
 	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
 
-/obj/machinery/power/rtg/d_type_reg/RefreshParts()
+/obj/machinery/power/rtg/reg/RefreshParts()
 	var/n = 0
 	for(var/obj/item/weapon/stock_parts/SP in component_parts)
 		n += SP.rating
 	part_mult = n	
 
-/obj/machinery/power/rtg/d_type_reg/attackby(obj/item/I, mob/user, params)
+/obj/machinery/power/rtg/reg/attackby(obj/item/I, mob/user, params)
 	pixel_x = -32
 	if(default_deconstruction_screwdriver(user, I))
 		return
@@ -329,7 +330,7 @@
 		return
 	return ..()
 
-/obj/machinery/power/rtg/d_type_reg/update_icon()
+/obj/machinery/power/rtg/reg/update_icon()
 	pixel_x = -32
 	if(panel_open)
 		icon_state = "reg-o"
@@ -338,7 +339,7 @@
 	else
 		icon_state = "reg"
 
-/obj/machinery/power/rtg/d_type_reg/process()
+/obj/machinery/power/rtg/reg/process()
 	..()
 	if(buckled_mobs && buckled_mobs.len > 0)
 		for(var/mob/living/L in buckled_mobs)
@@ -347,7 +348,7 @@
 		power_gen = 0
 	update_icon()
 
-/obj/machinery/power/rtg/d_type_reg/proc/runner_process(var/mob/living/runner)
+/obj/machinery/power/rtg/reg/proc/runner_process(var/mob/living/runner)
 	if(runner.stat != CONSCIOUS)
 		unbuckle_mob(runner)
 		runner.visible_message("<span class='warning'>\The [runner], topples off of \the [src]!</span>")
@@ -381,16 +382,31 @@
 	if(part_mult > 1)
 		cool_rotations += (cool_rotations * (part_mult - 1)) / 4
 	power_gen = cool_rotations
-	runner.nutrition --
+	runner.nutrition -= nutrition_drain
 
-/obj/machinery/power/rtg/d_type_reg/emp_act(severity)
+/obj/machinery/power/rtg/reg/emp_act(severity)
 	return
 
-/obj/item/weapon/circuitboard/machine/reg
-	name = T_BOARD("REG")
-	build_path = /obj/machinery/power/rtg/d_type_reg
+/obj/item/weapon/circuitboard/machine/reg_d
+	name = T_BOARD("D-Type-REG")
+	build_path = /obj/machinery/power/rtg/reg
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
 		/obj/item/weapon/stock_parts/capacitor = 1)
+
+/obj/item/weapon/circuitboard/machine/reg_c
+	name = T_BOARD("C-Type-REG")
+	build_path = /obj/machinery/power/rtg/reg/c
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
+	req_components = list(
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/weapon/stock_parts/capacitor = 1)
+
+/obj/machinery/power/rtg/reg/c
+	name = "c-type rotary electric generator"
+	circuit = /obj/item/weapon/circuitboard/machine/reg_c
+	default_power_gen = 500000 //Half power
+	nutrition_drain = 0.5	//for half cost - EQUIVALENT EXCHANGE >:O
