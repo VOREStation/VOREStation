@@ -5600,7 +5600,9 @@
 	},
 /area/groundbase/command/tcomms)
 "pp" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/engislug,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/engislug{
+	ghostjoin = 1
+	},
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -17460,7 +17462,9 @@
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
 "VH" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/gatslug,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/gatslug{
+	ghostjoin = 1
+	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},

@@ -280,7 +280,22 @@
 	. = ..()
 	color = held.color
 
-/datum/category_item/catalogue/fauna/catslug/spaceslug
+//Custom Catslugs and the Rascal's Pass bunch
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom
+	desc = "A noodley bodied creature with thin arms and legs, and gloomy dark eyes. You shouldn't ever see this."
+	makes_dirt = 0
+	digestable = 0
+	humanoid_hands = 1	//These should all be ones requiring admin-intervention to play as, so they can get decent tool-usage, as a treat.
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/Initialize()
+	. = ..()
+	verbs += /mob/living/proc/ventcrawl
+	verbs += /mob/living/proc/hide
+	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//Most of these have custom sprites with colour already, so we'll not let them have this.
+
+
+/datum/category_item/catalogue/fauna/catslug/custom/spaceslug
 	name = "Alien Wildlife - Catslug - Miros"
 	desc = "This catslug serves as the Fuel Depots resident attendant,\
 	despite the facility being fully automated and self-serve. - \
@@ -295,7 +310,7 @@
 	tool users."
 	value = CATALOGUER_REWARD_MEDIUM	//Should offer a measure of incentive for people to visit the depot more often.
 
-/mob/living/simple_mob/vore/alienanimals/catslug/spaceslug
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug
 	name = "Miros"
 	desc = "Looks like catslugs can into space after all! This little chap seems to have gotten their mitts on a tiny spacesuit, there's a nametag on it that reads \"Miros\" alongside the Aether Atmospherics logo."
 	tt_desc = "Mollusca Felis Stellaris"
@@ -303,11 +318,9 @@
 	icon_living = "spaceslug"
 	icon_rest = "spaceslug_rest"
 	icon_dead = "spaceslug_dead"
-	digestable = 0
-	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/spaceslug)
-	holder_type = /obj/item/weapon/holder/catslug/spaceslug
-	makes_dirt = 0
-	say_list_type = /datum/say_list/catslug/spaceslug
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/spaceslug)
+	holder_type = /obj/item/weapon/holder/catslug/custom/spaceslug
+	say_list_type = /datum/say_list/catslug/custom/spaceslug
 
 	minbodytemp = 0				// Shamelessly stolen temp & atmos tolerances from the space cat.
 	maxbodytemp = 900
@@ -325,18 +338,10 @@
 
 	player_msg = "You are an intelligent creature capable of more than most think, clad in a spacesuit that protects you from the ravages of vacuum and hostile atmospheres alike. You can pick up and use many things, and even carry some of them with you into the vents, which you can use to move around quickly. You're quiet and capable, you speak with your hands and your deeds! <br>- - - - -<br> <span class='notice'>Keep in mind, your goal should generally be to survive. You're expected to follow the same rules as everyone else, so don't go self antagging without permission from the staff team, but you are able and capable of defending yourself from those who would attack you for no reason.</span>"
 
-	has_langs = list("Sign Language")
-
-/datum/say_list/catslug/spaceslug
+/datum/say_list/catslug/custom/spaceslug
 	speak = list("Have any porl?", "What is that?", "What kind of ship is that?", "What are you doing?", "How did you get here?", "Don't take off your helmet.", "SPAAAAAACE!", "WAOW!", "Nice weather we're having, isn't it?")
 
-/mob/living/simple_mob/vore/alienanimals/catslug/spaceslug/Initialize()
-	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
-
-/mob/living/simple_mob/vore/alienanimals/catslug/spaceslug/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/attack_hand(mob/living/carbon/human/M as mob)
 
 	if(stat == DEAD)
 		return ..()
@@ -386,14 +391,16 @@
 	else
 		return ..()
 
-/obj/item/weapon/holder/catslug/spaceslug
+/obj/item/weapon/holder/catslug/custom/spaceslug
 	item_state = "spaceslug"
 
 //Engineer catslug
-/datum/category_item/catalogue/fauna/catslug/engislug
+/datum/category_item/catalogue/fauna/catslug/custom/engislug
 	name = "Alien Wildlife - Catslug - Engineer O'Brimn"
 	desc = "A resident worker at the NSB Rascal's Pass, Engineer O'Brimn \
-	keeps the facilities pipework and machinery maintained between shifts. - \
+	keeps the facilities pipework and machinery maintained between shifts, as \
+	well as \"fixing\" the engine back to it's original configuration. \
+	Reportedly the cause for numerous phoron-based conflagrations. - \
 	The Catslug is an omnivorous terrestrial creature.\
 	Exhibiting properties of both a cat and a slug (hence its name)\
 	it moves somewhat awkwardly. However, the unique qualities of\
@@ -405,7 +412,7 @@
 	tool users."
 	value = CATALOGUER_REWARD_TRIVIAL	//Local catslugs worth less than rarer ones
 
-/mob/living/simple_mob/vore/alienanimals/catslug/engislug
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/engislug
 	name = "Engineer O'Brimn"
 	desc = "A yellow-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one seems to be wearing a too-big high visibility vest and a full-face hardhat."
 	tt_desc = "Mollusca Felis Munitor"
@@ -413,11 +420,10 @@
 	icon_living = "engislug"
 	icon_rest = "engislug_rest"
 	icon_dead = "engislug_dead"
-	digestable = 0
-	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/engislug)
-	holder_type = /obj/item/weapon/holder/catslug/engislug
-	makes_dirt = 0
-	say_list_type = /datum/say_list/catslug/engislug
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/engislug)
+	holder_type = /obj/item/weapon/holder/catslug/custom/engislug
+	say_list_type = /datum/say_list/catslug/custom/engislug
+	mobcard_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_construction, access_atmospherics)
 
 	minbodytemp = 200
 	maxbodytemp = 600		//engislug can survive a little heat, as a treat
@@ -433,18 +439,10 @@
 	min_n2 = 0
 	max_n2 = 0
 
-	has_langs = list("Sign Language")
-
-/datum/say_list/catslug/engislug
+/datum/say_list/catslug/custom/engislug
 	speak = list("Have any porl?", "What is that?", "Phoroncheck!", "Thump is mean work fine!", "What are you doing?", "How did you get here?", "Don't breathe in the spicy purple.", "Zap-zap ball bad.", "WAOW!", "The pipes make sense.")
 
-/mob/living/simple_mob/vore/alienanimals/catslug/engislug/Initialize()
-	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
-
-/mob/living/simple_mob/vore/alienanimals/catslug/engislug/attack_hand(mob/living/carbon/human/M as mob)
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/engislug/attack_hand(mob/living/carbon/human/M as mob)
 
 	if(stat == DEAD)
 		return ..()
@@ -494,11 +492,11 @@
 	else
 		return ..()
 
-/obj/item/weapon/holder/catslug/engislug
+/obj/item/weapon/holder/catslug/custom/engislug
 	item_state = "engislug"
 
 //Security catslug
-/datum/category_item/catalogue/fauna/catslug/gatslug
+/datum/category_item/catalogue/fauna/catslug/custom/gatslug
 	name = "Alien Wildlife - Catslug - Officer Gatslug"
 	desc = "A resident worker at the NSB Rascal's Pass, Officer Gatslug \
 	served with distinction during upheaval at the NSB Adephagia in 2321. \
@@ -516,7 +514,7 @@
 	tool users."
 	value = CATALOGUER_REWARD_TRIVIAL	//Local catslugs worth less than rarer ones
 
-/mob/living/simple_mob/vore/alienanimals/catslug/gatslug
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/gatslug
 	name = "Officer Gatslug"
 	desc = "A light red-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one seems to be wearing a security cap, bandolier and holobadge."
 	tt_desc = "Mollusca Felis Magistratus"
@@ -524,13 +522,12 @@
 	icon_living = "gatslug"
 	icon_rest = "gatslug_rest"
 	icon_dead = "gatslug_dead"
-	digestable = 0
-	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/gatslug)
-	holder_type = /obj/item/weapon/holder/catslug/gatslug
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/gatslug)
+	holder_type = /obj/item/weapon/holder/catslug/custom/gatslug
 	maxHealth = 75
 	health = 75
-	makes_dirt = 0
-	say_list_type = /datum/say_list/catslug/gatslug
+	say_list_type = /datum/say_list/catslug/custom/gatslug
+	melee_damage_lower = 5
 	melee_damage_upper = 10		//"Trained" security member, so they can hit that little bit harder
 	armor = list(
 		"melee" = 15,
@@ -541,24 +538,16 @@
 		"bio" = 0,
 		"rad" = 0
 		)		//Similarly, \some\ armour values for a smidge more survivability compared to other catslugs.
+	mobcard_access = list(access_security, access_sec_doors, access_forensics_lockers, access_maint_tunnels)
 
-	has_langs = list("Sign Language")
-
-
-/datum/say_list/catslug/gatslug
+/datum/say_list/catslug/custom/gatslug
 	speak = list("Have any flashbangs?", "Valids!", "Heard spiders?", "What is that?", "Freeze!", "What are you doing?", "How did you get here?", "Red alert means big bangsticks.", "No being naughty now.", "WAOW!", "Who ate all the donuts?")
 
-/mob/living/simple_mob/vore/alienanimals/catslug/gatslug/Initialize()
-	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
-
-/obj/item/weapon/holder/catslug/gatslug
+/obj/item/weapon/holder/catslug/custom/gatslug
 	item_state = "gatslug"
 
 //Medical catslug
-/datum/category_item/catalogue/fauna/catslug/medislug
+/datum/category_item/catalogue/fauna/catslug/custom/medislug
 	name = "Alien Wildlife - Catslug - Doctor Mlemulon"
 	desc = "A resident worker at the NSB Rascal's Pass, Doctor Mlemulon \
 	works hard to drink and eat all the remaining medicine stocks in \
@@ -575,7 +564,7 @@
 	tool users."
 	value = CATALOGUER_REWARD_TRIVIAL	//Local catslugs worth less than rarer ones
 
-/mob/living/simple_mob/vore/alienanimals/catslug/medislug
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/medislug
 	name = "Doctor Mlemulon"
 	desc = "A pale blue-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one appears to have a nurses hat perched upon it's head and a medi-hud."
 	tt_desc = "Mollusca Felis Medicus"
@@ -583,28 +572,19 @@
 	icon_living = "medislug"
 	icon_rest = "medislug_rest"
 	icon_dead = "medislug_dead"
-	digestable = 0
-	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/medislug)
-	holder_type = /obj/item/weapon/holder/catslug/medislug
-	makes_dirt = 0
-	say_list_type = /datum/say_list/catslug/medislug
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/medislug)
+	holder_type = /obj/item/weapon/holder/catslug/custom/medislug
+	say_list_type = /datum/say_list/catslug/custom/medislug
+	mobcard_access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics)
 
-	has_langs = list("Sign Language")
-
-/datum/say_list/catslug/medislug
+/datum/say_list/catslug/custom/medislug
 	speak = list("Have any osteodaxon?", "What is that?", "Suit sensors!", "What are you doing?", "How did you get here?", "Put a mask on!", "No smoking!", "WAOW!", "Stop getting blood everywhere!", "WHERE IN MAINT?")
 
-/mob/living/simple_mob/vore/alienanimals/catslug/medislug/Initialize()
-	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
-
-/obj/item/weapon/holder/catslug/medislug
+/obj/item/weapon/holder/catslug/custom/medislug
 	item_state = "medislug"
 
 //Science catslug
-/datum/category_item/catalogue/fauna/catslug/scienceslug
+/datum/category_item/catalogue/fauna/catslug/custom/scienceslug
 	name = "Alien Wildlife - Catslug - Professor Nubbins"
 	desc = "A resident worker at the NSB Rascal's Pass, Professor Nubbins \
 	is tasked with the periodic maintenance of the R&D servers. \
@@ -620,7 +600,7 @@
 	tool users."
 	value = CATALOGUER_REWARD_TRIVIAL	//Local catslugs worth less than rarer ones
 
-/mob/living/simple_mob/vore/alienanimals/catslug/scienceslug
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/scienceslug
 	name = "Professor Nubbins"
 	desc = "A purple-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one looks to be wearing a swanky white science beret, as well as a pair of goggles."
 	tt_desc = "Mollusca Felis Inquisitorem"
@@ -628,28 +608,20 @@
 	icon_living = "scienceslug"
 	icon_rest = "scienceslug_rest"
 	icon_dead = "scienceslug_dead"
-	digestable = 0
-	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/scienceslug)
-	holder_type = /obj/item/weapon/holder/catslug/scienceslug
-	makes_dirt = 0
-	say_list_type = /datum/say_list/catslug/scienceslug
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/scienceslug)
+	holder_type = /obj/item/weapon/holder/catslug/custom/scienceslug
+	say_list_type = /datum/say_list/catslug/custom/scienceslug
+	mobcard_access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch)
 
-	has_langs = list("Sign Language")
 
-/datum/say_list/catslug/scienceslug
+/datum/say_list/catslug/custom/scienceslug
 	speak = list("Slimes, squish!", "What is that?", "Smoking in Toxins is not advised.", "What are you doing?", "How did you get here?", "Do not deconstruct the cube!", "WAOW!", "Where are our materials?", "The acid dispenser is not full of juice. Must remember that.")
 
-/mob/living/simple_mob/vore/alienanimals/catslug/scienceslug/Initialize()
-	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
-
-/obj/item/weapon/holder/catslug/scienceslug
+/obj/item/weapon/holder/catslug/custom/scienceslug
 	item_state = "scienceslug"
 
 //Cargo catslug
-/datum/category_item/catalogue/fauna/catslug/cargoslug
+/datum/category_item/catalogue/fauna/catslug/custom/cargoslug
 	name = "Alien Wildlife - Catslug - Technician Nermley"
 	desc = "A resident worker at the NSB Rascal's Pass, Technician Nermley \
 	is something of a mystery. No one is sure where they came from, \
@@ -666,7 +638,7 @@
 	tool users."
 	value = CATALOGUER_REWARD_TRIVIAL	//Local catslugs worth less than rarer ones
 
-/mob/living/simple_mob/vore/alienanimals/catslug/cargoslug
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/cargoslug
 	name = "Technician Nermley"
 	desc = "A brown-furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one has a flipped-round baseball cap on their head and a pair of black mittens."
 	tt_desc = "Mollusca Felis Quisquiliae"
@@ -674,25 +646,18 @@
 	icon_living = "cargoslug"
 	icon_rest = "cargoslug_rest"
 	icon_dead = "cargoslug_dead"
-	digestable = 0
-	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/cargoslug)
-	holder_type = /obj/item/weapon/holder/catslug/cargoslug
-	makes_dirt = 0
-	say_list_type = /datum/say_list/catslug/cargoslug
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/cargoslug)
+	holder_type = /obj/item/weapon/holder/catslug/custom/cargoslug
+	say_list_type = /datum/say_list/catslug/custom/cargoslug
+	mobcard_access = list(access_maint_tunnels, access_mailsorting, access_cargo, access_cargo_bot, access_mining, access_mining_station)
 
-	has_langs = list("Sign Language")
-
-/datum/say_list/catslug/cargoslug
+/datum/say_list/catslug/custom/cargoslug
 	speak = list("Disposals is not for slip and slide.", "What is that?", "Stamp those manifests!", "What are you doing?", "How did you get here?", "Can order pizza crate?", "WAOW!", "Where are all of our materials?", "Got glubbs?")
 
-/mob/living/simple_mob/vore/alienanimals/catslug/cargoslug/Initialize()
-	. = ..()
-	verbs += /mob/living/proc/ventcrawl
-	verbs += /mob/living/proc/hide
-	verbs -= /mob/living/simple_mob/vore/alienanimals/catslug/proc/catslug_color	//I don't even want to imagine what the colour change proc would do to their sprite, not to mention ghosts would need to be forced into the catslug so this is more just a safety net than anything
-
-/obj/item/weapon/holder/catslug/cargoslug
+/obj/item/weapon/holder/catslug/custom/cargoslug
 	item_state = "cargoslug"
+
+//Suslug's below
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug
 	name = "suslug"

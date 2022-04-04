@@ -807,7 +807,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "cq" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/scienceslug{
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/scienceslug{
 	ghostjoin = 1
 	},
 /turf/simulated/floor/tiled,
@@ -2199,7 +2199,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "gL" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/cargoslug{
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/cargoslug{
 	ghostjoin = 1
 	},
 /turf/simulated/floor/tiled,
@@ -12954,7 +12954,7 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/triage)
 "Np" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/medislug{
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/medislug{
 	ghostjoin = 1
 	},
 /obj/structure/cable/yellow{
