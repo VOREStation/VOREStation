@@ -192,6 +192,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/light_switch{
+	pixel_x = 16;
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient2)
 "dQ" = (
@@ -239,6 +243,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
+"eo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/paramedic)
 "ey" = (
 /obj/structure/table/rack,
 /obj/item/device/suit_cooling_unit{
@@ -252,6 +264,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient4)
+"eC" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 4
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level3/escapepad)
 "eE" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -263,6 +286,15 @@
 /obj/effect/landmark/start/chemist,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
+"fy" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 4
+	},
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/level3/escapepad)
 "fz" = (
 /turf/simulated/wall,
 /area/groundbase/civilian/pilot)
@@ -783,6 +815,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/light_switch{
+	pixel_x = 16;
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient4)
 "oQ" = (
@@ -1244,6 +1280,10 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
 	},
+/obj/machinery/light_switch{
+	pixel_x = -16;
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient1)
 "xp" = (
@@ -1258,6 +1298,14 @@
 	},
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
+"xs" = (
+/obj/structure/railing/grey,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
+/turf/simulated/open,
+/area/groundbase/cargo/office)
 "xD" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1271,6 +1319,9 @@
 /area/groundbase/medical/uhallway)
 "xH" = (
 /obj/structure/closet/secure_closet/explorer,
+/obj/machinery/camera/network/exploration{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "xI" = (
@@ -1414,6 +1465,10 @@
 /obj/machinery/recharge_station,
 /obj/machinery/alarm{
 	pixel_y = 28
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
@@ -1589,18 +1644,13 @@
 	req_access = list(62,43,67)
 	},
 /obj/item/device/bluespaceradio/tether_prelinked,
+/obj/machinery/camera/network/exploration,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "Ev" = (
-/obj/machinery/hologram/holopad,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/carpet,
-/area/groundbase/medical/cmo)
+/obj/machinery/camera/network/cargo,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/cargo/office)
 "EA" = (
 /obj/machinery/button/remote/airlock{
 	dir = 4;
@@ -1643,6 +1693,10 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "0-2"
+	},
+/obj/machinery/light_switch{
+	pixel_x = -16;
+	pixel_y = 30
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient3)
@@ -1755,6 +1809,10 @@
 /obj/item/weapon/storage/backpack/parachute{
 	pixel_x = -4;
 	pixel_y = -6
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
@@ -1951,12 +2009,29 @@
 /obj/machinery/vending/fitness,
 /turf/simulated/floor/tiled/virgo3c,
 /area/groundbase/medical/patio)
+"Jf" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/virgo3c,
+/area/groundbase/medical/patio)
 "Jh" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
+"Jk" = (
+/obj/structure/table/rack/shelf,
+/obj/item/weapon/tank/oxygen,
+/obj/item/device/suit_cooling_unit,
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/suit/space/void/pilot,
+/obj/item/clothing/head/helmet/space/void/pilot,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/pilot)
 "Jl" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -2051,6 +2126,10 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
 /turf/simulated/floor,
+/area/groundbase/medical/uhallway)
+"LY" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
 /area/groundbase/medical/uhallway)
 "Mc" = (
 /obj/structure/bed/chair/office/light{
@@ -2291,6 +2370,12 @@
 "Qn" = (
 /obj/machinery/status_display,
 /turf/simulated/wall,
+/area/groundbase/level3/escapepad)
+"Qr" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
+	outdoors = 0
+	},
 /area/groundbase/level3/escapepad)
 "QC" = (
 /obj/machinery/door/airlock/multi_tile/glass/polarized{
@@ -5550,7 +5635,7 @@ qO
 qO
 fz
 Zp
-Zp
+Jk
 zK
 Zp
 Zp
@@ -5841,13 +5926,13 @@ qO
 qO
 qO
 hl
-Ii
+fy
 Ii
 Ii
 ow
 Ii
 Ii
-Ii
+eC
 hl
 qO
 qO
@@ -6412,7 +6497,7 @@ Qn
 Ii
 Ii
 Ii
-ow
+Qr
 ow
 ow
 ow
@@ -13778,7 +13863,7 @@ IS
 IS
 oK
 Px
-RY
+xs
 Sg
 gc
 Lf
@@ -14064,7 +14149,7 @@ Sg
 oK
 oK
 Sg
-Lf
+Ev
 Lf
 Lf
 Lf
@@ -14375,7 +14460,7 @@ HP
 WF
 aG
 Kl
-Ev
+Xl
 Kl
 wc
 nb
@@ -15220,7 +15305,7 @@ qT
 me
 Rh
 hN
-xX
+Jf
 OD
 xX
 Vl
@@ -15231,7 +15316,7 @@ DR
 VJ
 VJ
 eE
-yQ
+LY
 yQ
 LG
 IS
@@ -15652,7 +15737,7 @@ xX
 Vm
 kQ
 sJ
-lF
+eo
 ym
 Zn
 No

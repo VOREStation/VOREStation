@@ -63,6 +63,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/machinery/light,
 /turf/simulated/floor/carpet/bcarpet,
 /area/groundbase/civilian/mime)
 "an" = (
@@ -217,6 +218,10 @@
 /obj/machinery/disposal,
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/clowndouble,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
 "aO" = (
@@ -288,6 +293,10 @@
 	},
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/portable_atmospherics/canister/nitrogen,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/server)
 "aT" = (
@@ -324,6 +333,13 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)
+"aX" = (
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/rnd/xenobiology)
 "aY" = (
 /obj/machinery/papershredder,
 /obj/machinery/firealarm,
@@ -673,6 +689,13 @@
 /obj/structure/closet/l3closet/scientist,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
+"bW" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/level2/nw)
 "bX" = (
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level2/nw)
@@ -847,6 +870,10 @@
 "cx" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/light_switch{
+	pixel_x = 16;
+	pixel_y = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/kitchen/backroom)
@@ -1714,6 +1741,14 @@
 "fk" = (
 /turf/simulated/mineral/cave/virgo3c,
 /area/groundbase/level2/se)
+"fl" = (
+/obj/structure/closet/l3closet/scientist,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/xenobot)
 "fm" = (
 /obj/machinery/button/remote/airlock{
 	dir = 8;
@@ -1999,6 +2034,10 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room5)
 "fZ" = (
@@ -2155,6 +2194,9 @@
 "gF" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/light_switch{
+	pixel_y = 30
 	},
 /turf/simulated/floor/carpet/blue,
 /area/groundbase/medical/psych)
@@ -2441,6 +2483,11 @@
 	pixel_x = 27;
 	pixel_y = 6
 	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30;
+	pixel_y = -3
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
 "hx" = (
@@ -2473,6 +2520,11 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = 10
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/tcomms)
 "hA" = (
@@ -2955,6 +3007,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30;
+	pixel_y = 16
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "iW" = (
@@ -3057,6 +3114,13 @@
 /obj/effect/landmark/vermin,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
+"jl" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lobby)
 "jm" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/paper_bin{
@@ -3849,6 +3913,10 @@
 	},
 /obj/effect/landmark/start/chemist,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/vending/wallmed2{
+	dir = 4;
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "lI" = (
@@ -4212,6 +4280,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/random/coin/sometimes,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
 "mN" = (
@@ -5278,6 +5347,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
 "qn" = (
@@ -5606,6 +5679,10 @@
 /obj/machinery/firealarm,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/circuits)
+"rj" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/office)
 "rk" = (
 /turf/simulated/wall,
 /area/groundbase/civilian/kitchen/backroom)
@@ -5634,6 +5711,9 @@
 /obj/item/paint_brush,
 /obj/item/paint_brush{
 	pixel_x = 4
+	},
+/obj/machinery/camera/network/civilian{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/virgo3c{
 	edge_blending_priority = -1;
@@ -5792,6 +5872,10 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
 "rN" = (
@@ -5804,6 +5888,9 @@
 /obj/structure/barricade/cutout/mime,
 /obj/machinery/alarm{
 	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_y = 30
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/groundbase/civilian/mime)
@@ -5952,6 +6039,10 @@
 	icon_state = "2-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room1)
 "sx" = (
@@ -6136,6 +6227,16 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/kitchen/backroom)
+"sY" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/xenobot/storage)
 "sZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -6247,6 +6348,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/Chemistry)
+"tv" = (
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "tw" = (
@@ -6585,6 +6690,10 @@
 "uv" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/command/captain)
@@ -7135,6 +7244,12 @@
 /obj/effect/landmark/start/medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
+"wk" = (
+/obj/machinery/light_switch{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/chapel)
 "wm" = (
 /obj/machinery/computer/supplycomp/control{
 	dir = 8
@@ -7196,11 +7311,22 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
+"wv" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "ww" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/circuits)
 "wx" = (
@@ -7237,6 +7363,11 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"wE" = (
+/obj/structure/table/woodentable,
+/obj/machinery/camera/network/civilian,
+/turf/simulated/floor/carpet,
+/area/groundbase/civilian/library)
 "wF" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/floor/tiled,
@@ -7457,6 +7588,11 @@
 /obj/machinery/smartfridge/produce/persistent_lossy,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"xt" = (
+/obj/effect/landmark/vermin,
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/library)
 "xu" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 1
@@ -8018,6 +8154,10 @@
 /area/groundbase/civilian/janitor)
 "yY" = (
 /obj/structure/closet/l3closet/virology,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "za" = (
@@ -8176,6 +8316,7 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
 "zG" = (
@@ -8688,6 +8829,11 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/level2/westspur)
+"AX" = (
+/obj/structure/table/woodentable,
+/obj/random/coin/sometimes,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/library)
 "AY" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/box/donkpockets,
@@ -8763,6 +8909,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
@@ -9096,6 +9246,9 @@
 /area/groundbase/level2/nw)
 "Ck" = (
 /obj/structure/closet/secure_closet/hop2,
+/obj/machinery/light_switch{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/command/hop)
 "Cl" = (
@@ -9363,6 +9516,13 @@
 "Db" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/science/xenobot/storage)
+"Dc" = (
+/obj/machinery/light_switch{
+	pixel_x = 16;
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/freezer/cold,
+/area/groundbase/civilian/kitchen/freezer)
 "Dd" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
@@ -10030,6 +10190,10 @@
 "EX" = (
 /obj/structure/closet/secure_closet/quartermaster,
 /obj/item/weapon/storage/backpack/dufflebag,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "EY" = (
@@ -10301,6 +10465,7 @@
 /obj/effect/landmark{
 	name = "lightsout"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
 "FU" = (
@@ -11573,6 +11738,10 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)
 "JB" = (
@@ -11739,6 +11908,10 @@
 "JZ" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "Kc" = (
@@ -12960,6 +13133,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
 "Nq" = (
@@ -13268,6 +13442,9 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	pixel_y = 30
+	},
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
 "On" = (
@@ -13461,6 +13638,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
 "OR" = (
@@ -13651,6 +13832,10 @@
 	dir = 1
 	},
 /obj/machinery/disposal,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room6)
 "Pv" = (
@@ -14177,6 +14362,10 @@
 /obj/item/weapon/flame/candle/candelabra,
 /obj/item/weapon/flame/candle/candelabra,
 /obj/item/weapon/flame/candle/candelabra,
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/chapel/office)
 "QR" = (
@@ -14244,6 +14433,7 @@
 /area/groundbase/science/rd)
 "Rb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
 "Rc" = (
@@ -14497,11 +14687,16 @@
 /turf/simulated/floor/carpet/blue,
 /area/groundbase/medical/psych)
 "RP" = (
-/obj/machinery/camera/network/civilian{
-	dir = 4
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/library)
+/obj/structure/disposalpipe/junction{
+	dir = 2;
+	icon_state = "pipe-j2"
+	},
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "RQ" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -14838,7 +15033,9 @@
 	name = "Library Desk Door";
 	req_access = list(37)
 	},
-/obj/machinery/camera/network/civilian,
+/obj/machinery/light_switch{
+	pixel_y = 30
+	},
 /turf/simulated/floor/carpet,
 /area/groundbase/civilian/library)
 "SJ" = (
@@ -14928,6 +15125,11 @@
 /obj/structure/disposalpipe/trunk{
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 10;
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
 "SR" = (
@@ -15009,6 +15211,10 @@
 /area/groundbase/civilian/chapel)
 "Td" = (
 /obj/machinery/photocopier,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
 "Tf" = (
@@ -15381,6 +15587,10 @@
 /obj/effect/landmark/start/chef,
 /turf/simulated/floor/tiled/freezer/cold,
 /area/groundbase/civilian/kitchen/freezer)
+"Ux" = (
+/obj/machinery/hologram/holopad,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "Uy" = (
 /obj/machinery/light{
 	dir = 4
@@ -15504,6 +15714,10 @@
 /area/groundbase/civilian/library)
 "US" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/janitor)
 "UT" = (
@@ -16056,6 +16270,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rd)
 "Wz" = (
@@ -16512,6 +16730,10 @@
 /obj/machinery/camera/network/research{
 	dir = 1
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "Yc" = (
@@ -16568,6 +16790,13 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/command/bridge)
+"Yj" = (
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/command/captainq)
 "Yl" = (
 /obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -19584,7 +19813,7 @@ OU
 Gp
 aJ
 JH
-xA
+bW
 fD
 TZ
 bY
@@ -20051,7 +20280,7 @@ EA
 Sn
 qY
 JM
-vs
+sY
 bB
 vs
 vs
@@ -21048,10 +21277,10 @@ BF
 lV
 bV
 kq
-bV
+fl
 lV
 ur
-ls
+aX
 MV
 ic
 rW
@@ -21248,7 +21477,7 @@ rP
 mo
 uQ
 CW
-RP
+MY
 IR
 AG
 kt
@@ -21265,7 +21494,7 @@ Ny
 Ny
 Ny
 Ny
-Ny
+Ux
 Ny
 Ny
 Ny
@@ -21572,7 +21801,7 @@ qA
 Vf
 uh
 JJ
-AF
+Dc
 AF
 AF
 kd
@@ -21813,11 +22042,11 @@ Wz
 rb
 CC
 rP
-Ak
+wE
 Ak
 cX
 zi
-WA
+AX
 XR
 MY
 MY
@@ -21970,7 +22199,7 @@ xE
 FF
 Wi
 mM
-Ny
+Ux
 YO
 Gl
 Gl
@@ -21980,7 +22209,7 @@ Gl
 Gl
 Gl
 Fp
-yh
+wv
 xS
 TN
 FF
@@ -22527,7 +22756,7 @@ rn
 cX
 cX
 MY
-jk
+xt
 wg
 MY
 MY
@@ -23784,7 +24013,7 @@ bE
 As
 pA
 Wu
-bE
+RP
 XK
 As
 Mq
@@ -24935,7 +25164,7 @@ df
 zG
 lI
 ME
-eD
+wk
 eD
 YH
 VS
@@ -28508,7 +28737,7 @@ Vm
 Du
 jK
 gt
-DO
+jl
 DO
 qh
 mY
@@ -28634,7 +28863,7 @@ za
 za
 Vu
 qN
-Lc
+rj
 FR
 XU
 wm
@@ -30213,7 +30442,7 @@ vc
 XO
 Ur
 lL
-Ur
+tv
 uF
 sW
 Pn
@@ -31242,7 +31471,7 @@ Bo
 ia
 bP
 tL
-XW
+Yj
 ZO
 ia
 qK
