@@ -673,19 +673,14 @@
 /turf/simulated/floor/tiled,
 /area/centcom/command)
 "co" = (
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
+/obj/structure/bed/chair/shuttle{
+	dir = 4
 	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "centcom_dock";
-	name = "docking port controller";
-	pixel_y = 25;
-	req_one_access = list(13);
-	tag_door = "centcom_dock_airlock"
+/obj/machinery/status_display{
+	pixel_x = -31
 	},
-/turf/simulated/floor/reinforced,
-/area/centcom/terminal)
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/escape)
 "cq" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/reagent_containers/glass/beaker/large,
@@ -1047,19 +1042,11 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/medical)
 "dG" = (
-/obj/machinery/door/airlock/angled_bay/external/glass{
-	door_color = "#822a1e";
-	frequency = 1380;
-	id_tag = "supply_shuttle_hatch";
-	locked = 1;
-	name = "Shuttle Hatch"
-	},
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargounload"
+/obj/machinery/light/floortube{
+	pixel_y = -6
 	},
 /turf/simulated/shuttle/floor,
-/area/shuttle/supply)
+/area/shuttle/escape)
 "dI" = (
 /obj/effect/floor_decal/corner/grey/diagonal{
 	dir = 4
@@ -1776,15 +1763,12 @@
 /turf/simulated/floor/tiled,
 /area/centcom/terminal/tramfluff)
 "gg" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "supply_shuttle";
-	pixel_y = 24;
-	req_one_access = list(13,31);
-	tag_door = "supply_shuttle_hatch"
+/obj/machinery/light/floortube{
+	dir = 1;
+	pixel_y = 6
 	},
 /turf/simulated/shuttle/floor,
-/area/shuttle/supply)
+/area/shuttle/escape)
 "gi" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/book/manual/security_space_law,
@@ -2096,15 +2080,12 @@
 	},
 /area/centcom/specops)
 "hm" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/centcom;
-	base_turf = /turf/simulated/floor/reinforced;
-	docking_controller = "centcom_dock";
-	landmark_tag = "escape_cc";
-	name = "Escape Shuttle"
+/obj/structure/bed/chair/shuttle{
+	dir = 4
 	},
-/turf/simulated/shuttle/wall,
-/area/centcom/terminal)
+/obj/machinery/alarm,
+/turf/simulated/shuttle/floor/black,
+/area/shuttle/escape)
 "hn" = (
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 5
@@ -2560,13 +2541,13 @@
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/shuttle/ccboat)
 "iY" = (
-/obj/structure/shuttle/engine/heater{
-	dir = 4
+/obj/effect/shuttle_landmark{
+	base_area = /area/space;
+	base_turf = /turf/simulated/floor/reinforced/virgo3c;
+	landmark_tag = "supply_cc";
+	name = "Centcom Supply Depot"
 	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/turf/simulated/floor,
+/turf/simulated/shuttle/wall,
 /area/shuttle/supply)
 "jb" = (
 /obj/machinery/autolathe{
@@ -2787,13 +2768,10 @@
 /turf/simulated/floor/tiled,
 /area/centcom/terminal/tramfluff)
 "jN" = (
-/obj/effect/shuttle_landmark{
-	base_area = /area/space;
-	base_turf = /turf/unsimulated/floor;
-	landmark_tag = "supply_cc";
-	name = "Centcom Supply Depot"
+/obj/machinery/light{
+	dir = 1
 	},
-/turf/simulated/shuttle/wall,
+/turf/simulated/shuttle/floor,
 /area/shuttle/supply)
 "jP" = (
 /obj/machinery/telecomms/allinone/antag{
@@ -3140,9 +3118,8 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/centcom;
 	base_turf = /turf/simulated/floor/reinforced;
-	docking_controller = "centcom_dock";
 	landmark_tag = "escape_cc";
-	name = "Escape Shuttle"
+	name = "Escape Centcom"
 	},
 /turf/simulated/floor,
 /area/shuttle/escape)
@@ -5740,9 +5717,13 @@
 /turf/simulated/floor/tiled,
 /area/centcom/security)
 "tm" = (
-/obj/machinery/conveyor{
-	dir = 1;
-	id = "cargounload"
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#822a1e";
+	frequency = 1380;
+	id_tag = "supply_shuttle_hatch";
+	locked = 1;
+	name = "Shuttle Hatch"
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
@@ -5797,8 +5778,12 @@
 	name = "\improper CentCom Residential Security"
 	})
 "tz" = (
-/obj/machinery/conveyor{
-	id = "cargoload"
+/obj/machinery/embedded_controller/radio/simple_docking_controller{
+	frequency = 1380;
+	id_tag = "supply_shuttle";
+	pixel_y = 24;
+	req_one_access = list(13,31);
+	tag_door = "supply_shuttle_hatch"
 	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/supply)
@@ -5962,10 +5947,11 @@
 /turf/simulated/shuttle/floor/white,
 /area/centcom/terminal)
 "ug" = (
-/obj/machinery/light{
+/obj/structure/shuttle/engine/heater,
+/obj/structure/window/reinforced{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor,
 /area/shuttle/supply)
 "uj" = (
 /obj/structure/sink{
@@ -6983,14 +6969,10 @@
 /turf/simulated/floor/wood,
 /area/centcom/restaurant)
 "xt" = (
-/obj/machinery/door/airlock/angled_bay/external/glass{
-	door_color = "#822a1e";
-	frequency = 1380;
-	id_tag = "supply_shuttle_hatch";
-	locked = 1;
-	name = "Shuttle Hatch"
+/obj/structure/shuttle/engine/propulsion{
+	icon_state = "burst_r"
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/shuttle/plating/carry,
 /area/shuttle/supply)
 "xu" = (
 /obj/machinery/door/airlock/glass_security{
@@ -7376,17 +7358,6 @@
 	},
 /turf/unsimulated/floor/techfloor_grid,
 /area/tdome)
-"yB" = (
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	frequency = 1380;
-	id_tag = "centcom_dock";
-	name = "docking port controller";
-	pixel_y = 25;
-	req_one_access = list(13);
-	tag_door = "centcom_dock_airlock"
-	},
-/turf/simulated/floor/tiled,
-/area/centcom/main_hall)
 "yC" = (
 /obj/structure/table/woodentable{
 	dir = 5
@@ -7526,20 +7497,6 @@
 /obj/structure/closet/crate/bin,
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
-"zb" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/obj/machinery/embedded_controller/radio/simple_docking_controller{
-	dir = 4;
-	frequency = 1380;
-	id_tag = "escape_shuttle";
-	pixel_x = -19;
-	req_one_access = list(13);
-	tag_door = "escape_shuttle_hatch"
-	},
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/escape)
 "zf" = (
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security{
@@ -7795,8 +7752,8 @@
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
 "zM" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/ion_engine{
+	dir = 4
 	},
 /turf/simulated/shuttle/plating,
 /area/shuttle/escape)
@@ -9407,13 +9364,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/specops)
-"FE" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 4;
-	icon_state = "burst_r"
-	},
-/turf/simulated/shuttle/plating/carry,
-/area/shuttle/supply)
 "FF" = (
 /obj/structure/table/woodentable{
 	dir = 5
@@ -10853,7 +10803,7 @@
 /area/centcom/main_hall)
 "Kf" = (
 /turf/simulated/floor/maglev,
-/area/centcom/terminal)
+/area/centcom/terminal/tramfluff)
 "Ki" = (
 /obj/structure/flora/pottedplant{
 	icon_state = "plant-22"
@@ -12766,7 +12716,7 @@
 	frequency = 1380;
 	id_tag = "escape_shuttle_hatch";
 	locked = 1;
-	name = "Docking Port Airlock"
+	name = "Shuttle Airlock"
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/escape)
@@ -13526,6 +13476,10 @@
 /obj/machinery/computer/shuttle_control/emergency{
 	dir = 8
 	},
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 6
+	},
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape)
 "Sf" = (
@@ -14185,19 +14139,6 @@
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled,
 /area/shuttle/centcom/ccbay)
-"UC" = (
-/obj/machinery/door/airlock/angled_bay/external/glass{
-	door_color = "#822a1e";
-	frequency = 1380;
-	id_tag = "supply_shuttle_hatch";
-	locked = 1;
-	name = "Shuttle Hatch"
-	},
-/obj/machinery/conveyor{
-	id = "cargoload"
-	},
-/turf/simulated/shuttle/floor,
-/area/shuttle/supply)
 "UD" = (
 /obj/structure/table/rack,
 /obj/structure/window/reinforced,
@@ -15300,13 +15241,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/centcom/security)
-"Yk" = (
-/obj/structure/bed/chair/shuttle{
-	dir = 4
-	},
-/obj/machinery/alarm,
-/turf/simulated/shuttle/floor/black,
-/area/shuttle/escape)
 "Yn" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 1
@@ -20281,7 +20215,7 @@ VV
 tQ
 tQ
 tQ
-hm
+Wz
 kQ
 VP
 XP
@@ -20523,7 +20457,7 @@ Ll
 Sc
 Sc
 Sc
-zb
+Sc
 Sc
 Sc
 Sc
@@ -20561,7 +20495,7 @@ CM
 CM
 CM
 CM
-co
+VV
 tQ
 tQ
 tQ
@@ -20660,8 +20594,8 @@ tQ
 tQ
 ae
 Sc
+co
 Sc
-Sc
 jh
 jh
 jh
@@ -20670,7 +20604,7 @@ jh
 jh
 jh
 Sc
-Sc
+co
 Sc
 ae
 tQ
@@ -20804,13 +20738,13 @@ Ll
 Sc
 Sc
 Sc
-jh
+dG
 Sc
 Sc
 Sc
 Sc
 Sc
-jh
+gg
 Sc
 Sc
 Sc
@@ -21514,13 +21448,13 @@ tQ
 tQ
 Ll
 Ll
+gg
 jh
 jh
 jh
 jh
 jh
-jh
-jh
+dG
 Ll
 Ll
 tQ
@@ -21657,7 +21591,7 @@ tQ
 tQ
 Ll
 Ll
-Yk
+Sc
 Sc
 jh
 Sc
@@ -22083,7 +22017,7 @@ tQ
 tQ
 tQ
 Ll
-Sc
+hm
 Sc
 Sd
 Sc
@@ -22501,7 +22435,7 @@ bR
 bR
 bR
 bR
-fC
+CM
 CM
 dR
 dR
@@ -22645,7 +22579,7 @@ bR
 bR
 bR
 CM
-yB
+dR
 dR
 dR
 dR
@@ -22983,13 +22917,13 @@ ys
 Mn
 Mn
 Mn
-Jr
-Jr
-Jr
-jN
-Jr
-Jr
-Jr
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
 Mn
 Mn
 bd
@@ -23125,13 +23059,13 @@ ys
 Mn
 Mn
 Mn
-Jr
-ug
-Mb
-Mb
-Mb
-Mb
-Jr
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
 Mn
 Mn
 bd
@@ -23265,14 +23199,14 @@ fC
 Mn
 ys
 Mn
-Mn
-Mn
-dG
+Jr
+Jr
+Jr
 tm
 tm
-tm
-tm
-Mb
+Jr
+Jr
+Jr
 Jr
 Mn
 Mn
@@ -23407,9 +23341,9 @@ fC
 Mn
 ys
 Mn
-Mn
-Mn
-xt
+Jr
+jN
+Mb
 Mb
 Mb
 Mb
@@ -23549,14 +23483,14 @@ fC
 Mn
 ys
 Mn
-Mn
-Mn
 Jr
 Mb
 Mb
 Mb
 Mb
 Mb
+Mb
+Jr
 Jr
 Mn
 Mn
@@ -23691,15 +23625,15 @@ fC
 Mn
 ys
 Mn
-Mn
-Mn
-Jr
-gg
+iY
+tz
 Mb
 Mb
 Mb
 Mb
-Jr
+Mb
+ug
+xt
 Mn
 Mn
 bd
@@ -23833,14 +23767,14 @@ fC
 Mn
 ys
 Mn
-Mn
-Mn
-xt
+Jr
 Mb
 Mb
 Mb
 Mb
-iM
+Mb
+Mb
+Jr
 Jr
 Mn
 Mn
@@ -23975,14 +23909,14 @@ fC
 Mn
 ys
 Mn
-Mn
-Mn
-UC
-tz
-tz
-tz
-tz
+Jr
+jN
 Mb
+Mb
+Mb
+Mb
+Mb
+iM
 Jr
 Mn
 Mn
@@ -24117,14 +24051,14 @@ fC
 Mn
 ys
 Mn
-Mn
-Mn
 Jr
-ug
-Mb
-Mb
-Mb
-Mb
+Jr
+Jr
+Jr
+Jr
+Jr
+Jr
+Jr
 Jr
 Mn
 Mn
@@ -24261,13 +24195,13 @@ ys
 Mn
 Mn
 Mn
-Jr
-Jr
-iY
-iY
-iY
-Jr
-Jr
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
+Mn
 Mn
 Mn
 bd
@@ -24404,11 +24338,11 @@ Mn
 Mn
 Mn
 Mn
-Jr
-FE
-FE
-FE
-Jr
+Mn
+Mn
+Mn
+Mn
+Mn
 Mn
 Mn
 Mn

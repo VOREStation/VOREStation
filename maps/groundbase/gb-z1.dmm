@@ -222,18 +222,14 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/toolstorage)
 "aD" = (
-/obj/structure/sign/directions/evac{
-	dir = 4;
-	pixel_x = 32
-	},
 /obj/structure/sign/directions/stairs_up{
-	dir = 1;
+	dir = 4;
 	pixel_x = 32;
 	pixel_y = 6
 	},
 /obj/structure/sign/directions/bridge{
-	pixel_x = 32;
-	pixel_y = -6
+	dir = 4;
+	pixel_x = 32
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -2937,6 +2933,13 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"ii" = (
+/obj/structure/sign/directions/evac{
+	dir = 10;
+	pixel_y = 32
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/civilian/apparel)
 "ij" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/security/lobby)
@@ -3442,6 +3445,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/holodeck_control)
+"jD" = (
+/obj/structure/sign/directions/evac{
+	dir = 10;
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level1/centsquare)
 "jE" = (
 /obj/item/device/radio/intercom{
 	dir = 1;
@@ -6338,6 +6349,9 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/aiciv)
+"rs" = (
+/turf/simulated/wall/r_wall,
+/area/groundbase/level1/westspur)
 "rt" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /turf/simulated/floor/tiled/techmaint,
@@ -12374,6 +12388,10 @@
 	dir = 8;
 	icon_state = "pipe-c"
 	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = -26
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/westspur)
 "HR" = (
@@ -13124,6 +13142,25 @@
 /obj/item/weapon/shield/riot,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
+"JW" = (
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_y = 37
+	},
+/obj/structure/sign/directions/dorms{
+	dir = 1;
+	pixel_y = 25
+	},
+/obj/structure/sign/directions/bar{
+	dir = 1;
+	pixel_y = 31
+	},
+/obj/structure/sign/directions/stairs_up{
+	dir = 1;
+	pixel_y = 43
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level1/westspur)
 "JX" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13161,11 +13198,11 @@
 	pixel_y = 30
 	},
 /obj/structure/sign/directions/medical{
-	dir = 4;
+	dir = 5;
 	pixel_y = 42
 	},
 /obj/structure/sign/directions/evac{
-	dir = 4;
+	dir = 10;
 	pixel_y = 24
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -25728,8 +25765,8 @@ AZ
 AZ
 AZ
 AZ
-cB
-cB
+rs
+JW
 mk
 cB
 cB
@@ -28972,7 +29009,7 @@ Eb
 Eb
 Eb
 Eb
-Eb
+jD
 YC
 Vh
 YC
@@ -29825,7 +29862,7 @@ BS
 BS
 Pb
 dk
-eR
+ii
 wx
 Eb
 Eb

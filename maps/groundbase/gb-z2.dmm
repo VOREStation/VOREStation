@@ -3204,6 +3204,21 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room6)
+"jR" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/obj/structure/sign/directions/stairs_down{
+	dir = 8;
+	pixel_x = 32;
+	pixel_y = -26
+	},
+/turf/simulated/floor/tiled/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "jS" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -3250,6 +3265,23 @@
 "jY" = (
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/cargo/office)
+"ka" = (
+/obj/structure/sign/directions/stairs_up{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = 6
+	},
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = -32
+	},
+/obj/structure/sign/directions/science/exploration{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = -6
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level2/nw)
 "kb" = (
 /obj/machinery/disease2/diseaseanalyser,
 /turf/simulated/floor/tiled/white,
@@ -6066,6 +6098,10 @@
 	pixel_x = -32;
 	pixel_y = -6
 	},
+/obj/structure/sign/directions/evac{
+	dir = 1;
+	pixel_x = -32
+	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level2/nw)
 "to" = (
@@ -6778,7 +6814,8 @@
 "vL" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/window/southright{
-	dir = 8
+	dir = 8;
+	req_access = list(5)
 	},
 /obj/structure/table/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -6801,14 +6838,15 @@
 /area/groundbase/science/xenobot)
 "vP" = (
 /obj/machinery/door/firedoor,
-/obj/machinery/door/window/southright{
-	dir = 8
-	},
 /obj/structure/table/glass,
 /obj/item/weapon/backup_implanter,
 /obj/item/weapon/backup_implanter,
 /obj/item/weapon/backup_implanter,
 /obj/item/weapon/backup_implanter,
+/obj/machinery/door/window/southleft{
+	dir = 8;
+	req_access = list(5)
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/lobby)
 "vQ" = (
@@ -13023,6 +13061,14 @@
 "Or" = (
 /turf/simulated/floor/carpet,
 /area/groundbase/command/hop)
+"Ou" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/medical/lobby)
 "Ov" = (
 /obj/structure/closet/wardrobe/robotics_black,
 /turf/simulated/floor/tiled,
@@ -15333,6 +15379,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
+"Vv" = (
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = -32
+	},
+/obj/structure/sign/directions/science/exploration{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = -38
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/nw)
 "Vw" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/machinery/atmospherics/portables_connector,
@@ -22299,7 +22358,7 @@ UR
 rP
 Nd
 mk
-Hn
+ka
 FF
 PS
 LS
@@ -22867,7 +22926,7 @@ bY
 bY
 bY
 fI
-bY
+Vv
 bY
 bY
 bY
@@ -27559,7 +27618,7 @@ ZE
 Aw
 to
 to
-IK
+Ou
 IK
 IK
 Ro
@@ -28875,7 +28934,7 @@ oH
 Bo
 Bo
 Qc
-kU
+jR
 kU
 kU
 hP
