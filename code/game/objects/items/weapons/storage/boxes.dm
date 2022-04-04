@@ -115,6 +115,18 @@
 	icon_state = "sterile"
 	starts_with = list(/obj/item/clothing/mask/surgical = 7)
 
+/obj/item/weapon/storage/box/masks/white
+	name = "box of sterile masks"
+	desc = "This box contains masks of sterility."
+	icon_state = "sterile"
+	starts_with = list(/obj/item/clothing/mask/surgical/white = 7)
+
+/obj/item/weapon/storage/box/masks/dust
+	name = "box of dust masks"
+	desc = "This box contains dust masks. Breathe easy."
+	icon_state = "sterile"
+	starts_with = list(/obj/item/clothing/mask/surgical/dust = 7)
+
 /obj/item/weapon/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."

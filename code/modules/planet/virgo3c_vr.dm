@@ -581,17 +581,18 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor)
 
 	var/animal_chance = 0.5
 	var/animal_types = list(
-		/mob/living/simple_mob/vore/alienanimals/teppi = 5,
-		/mob/living/simple_mob/vore/redpanda = 20,
-		/mob/living/simple_mob/vore/redpanda/fae = 1,
-		/mob/living/simple_mob/vore/sheep = 10,
-		/mob/living/simple_mob/vore/rabbit/black = 10,
-		/mob/living/simple_mob/vore/rabbit/white = 10,
-		/mob/living/simple_mob/vore/rabbit/brown = 10,
-		/mob/living/simple_mob/vore/leopardmander = 1,
-		/mob/living/simple_mob/vore/horse/big = 5,
-		/mob/living/simple_mob/vore/bigdragon/friendly = 0.5,
-		/mob/living/simple_mob/vore/alienanimals/dustjumper = 10
+		/mob/living/simple_mob/vore/alienanimals/teppi = 10,
+		/mob/living/simple_mob/vore/alienanimals/teppi/mutant = 1,
+		/mob/living/simple_mob/vore/redpanda = 40,
+		/mob/living/simple_mob/vore/redpanda/fae = 2,
+		/mob/living/simple_mob/vore/sheep = 20,
+		/mob/living/simple_mob/vore/rabbit/black = 20,
+		/mob/living/simple_mob/vore/rabbit/white = 20,
+		/mob/living/simple_mob/vore/rabbit/brown = 20,
+		/mob/living/simple_mob/vore/leopardmander = 2,
+		/mob/living/simple_mob/vore/horse/big = 10,
+		/mob/living/simple_mob/vore/bigdragon/friendly = 1,
+		/mob/living/simple_mob/vore/alienanimals/dustjumper = 20
 		)
 	
 

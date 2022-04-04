@@ -22,6 +22,19 @@
 	path = /obj/item/clothing/mask/surgical
 	cost = 2
 
+/datum/gear/mask/sterile/white
+	display_name = "white sterile mask"
+	path = /obj/item/clothing/mask/surgical/white
+	cost = 2
+
+/datum/gear/mask/sterile/white/dust
+	display_name = "dust mask"
+	path = /obj/item/clothing/mask/surgical/dust
+
+/datum/gear/mask/sterile/white/cloth
+	display_name = "cloth face mask"
+	path = /obj/item/clothing/mask/surgical/cloth
+
 /datum/gear/mask/plaguedoctor
 	display_name = "plague doctor's mask"
 	path = /obj/item/clothing/mask/gas/plaguedoctor

@@ -93,6 +93,9 @@
 /area/groundbase/level3/sw/open
 	base_turf = /turf/simulated/open/virgo3c
 
+/area/groundbase/level3/escapepad
+	name = "Escape Shuttle Landing Pad"
+
 /area/groundbase/science
 	name = "Science"
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
@@ -412,4 +415,5 @@
 	excluded |= /area/groundbase/level3/nw/open
 	excluded |= /area/groundbase/level3/se/open
 	excluded |= /area/groundbase/level3/sw/open
+	excluded |= /area/groundbase/level3/escapepad
 	..()

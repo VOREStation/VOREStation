@@ -1242,6 +1242,7 @@
 		/obj/item/clothing/suit/chef = 5,
 		/obj/item/clothing/suit/chef/classic = 5,
 		/obj/item/clothing/head/chefhat = 5,
+		/obj/item/clothing/head/hairnet = 5,
 		/obj/item/clothing/under/waiter = 5,
 		/obj/item/clothing/under/sundress = 1
 	)
