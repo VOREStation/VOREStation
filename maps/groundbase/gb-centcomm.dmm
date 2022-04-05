@@ -1256,6 +1256,17 @@
 	icon_state = "white"
 	},
 /area/centcom/control)
+"eq" = (
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#822a1e";
+	frequency = 1380;
+	id_tag = "escape_shuttle_hatch";
+	locked = 1;
+	name = "Shuttle Airlock"
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/shuttle/escape)
 "et" = (
 /obj/structure/sign/department/armory,
 /turf/simulated/wall/r_wall,
@@ -20315,7 +20326,7 @@ Ll
 Ll
 ae
 ae
-Ll
+eq
 ae
 ae
 Ll
@@ -20457,7 +20468,7 @@ Ll
 Sc
 Sc
 Sc
-Sc
+jh
 Sc
 Sc
 Sc
