@@ -10583,6 +10583,9 @@
 	dir = 4;
 	pixel_x = -32
 	},
+/obj/machinery/atm{
+	pixel_y = -30
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "BC" = (
@@ -16158,6 +16161,9 @@
 /obj/machinery/item_bank{
 	dir = 4;
 	pixel_x = -25
+	},
+/obj/machinery/atm{
+	pixel_y = -30
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)

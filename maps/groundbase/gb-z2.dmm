@@ -176,6 +176,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
+"aF" = (
+/obj/machinery/atm{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "aH" = (
 /obj/structure/table/glass,
 /obj/item/device/antibody_scanner,
@@ -2688,6 +2694,9 @@
 /obj/machinery/newscaster{
 	layer = 3.3;
 	pixel_y = -32
+	},
+/obj/machinery/atm{
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
@@ -17009,6 +17018,15 @@
 /obj/item/weapon/soap/nanotrasen,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/janitor)
+"YZ" = (
+/obj/machinery/atm{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/groundbase/cargo/office)
 "Za" = (
 /obj/machinery/light,
 /turf/simulated/floor/wood,
@@ -23585,7 +23603,7 @@ eC
 Mm
 Yp
 Ie
-Yp
+aF
 Mm
 cd
 uO
@@ -28018,7 +28036,7 @@ AU
 Qi
 PJ
 nP
-nP
+YZ
 Kl
 Aw
 XJ
