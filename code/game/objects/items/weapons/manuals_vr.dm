@@ -383,7 +383,7 @@
 				 - lubrication, petrolatum, 6000ml <br>
 				 - electrical wiring, 5m <br>
 				 - component set, capacitors (any grade) <br>
-				 - circuitry board, REG <br> <br> 
+				 - circuitry board, REG <br> <br>
 
 
  				<h1>SETUP AND OPERATING PROCEDURES</h1> <br> <br>
@@ -393,45 +393,45 @@
 					 CAUTION: Do not remove too much air from the work space or personnel may be exposed to hypoxia or similar effects. <br> <br>
 
 					1. Prepare setup area. Remove machinery, debris, foreign objects, people, and extra air. <br> <br>
-	
+
 					2. Lay out preliminary electrical wiring. <br>
 					 2a. Connect electrical wiring to existing facility power grid. <br>
 					 2b. Work wiring into shape as defined in TO 1-33-34-4-1 Figure 32 Index 6. <br>
-	
+
 					3. Prepare gathered steel supplies as defined in TO 1-33-34-4-1 Figure 2 Index 3. <br>
-	
+
 					4. Assemble prepared steel supplies into equipment framework by inserting rod A into slot B. Refer to TO 1-33-34-4-1 Figure 1 Index 1 for technical drawings. <br>
 					 4a. Secure assembled equipment framework to flooring by tightening lower frame bolts. <br> <br>
-	
+
 					5. Install and secure circuitry board, REG-D into marked receptacle. <br> <br>
-	
+
 					6. Install electrical wiring. Refer to TO 1-33-34-4-1 Figure 666 Index 6 thru Index 90 for routing. <br> <br>
-	
+
 					7. Install capacitors into marked circuitry board slots. Do not force components into place, use even pressure. Do not use a hammer. <br> <br>
-	
+
 							<b>WARNING</b>: Assembly will rapidly inflate when finalization is triggered. Ensure personnel and equipment are clear before initiating. <br> <br>
-	
+
 					8. Finalize construction by turning the Initialize Finalization screw on the outer housing. <br> <br>
-	
+
 					9. Wait for assembly to finish inflating, and the unit is ready for service. <br> <br>
-	
+
 
  				Operating Procedures: <br> <br>
 
 						NOTE: Operation of REG-D type generators requires significant physical effort. Ensure users are provided adequare nutrition and hydration throughout the working period. <br> <br>
-		
+
 						1. Designate the individual who will be operating the REG-D. <br> <br>
-	
+
 						2. Provide a safety briefing regarding nutritional preparedness and physical ability.  <br> <br>
-	
+
 							NOTE: Stretching is highly recommended before and after any operation session. <br> <br>
 
 						3. Operator shall board the REG-D track body and ensure there are no unsecured objects on the path. <br> <br>
-	
+
 						4. Once ready, Operator may begin running at own pace. Do not sprint. Maintain an even pace and proper running form for optimal energy generation. <br> <br>
-	
+
 						5. Continue to run on the REG-D track body until sufficient energy is stored in systems or Operator is no longer able or willing to continue. <br> <br>
-	
+
 						6. To end a session, carefully lower forward running speed until the track body comes to a complete stop, then disembark the REG-D. <br> <br>
 
 
@@ -439,3 +439,298 @@
  				</body>
 			</html>
 			"}
+
+/obj/item/weapon/book/manual/synthetic_life
+	name = "Synthetic Life: A Comprehensive Guide"
+	desc = "The basc history of synthetic life as the galaxy knows it."
+	icon_state = "evabook"
+	author = "Pontifex Publishing"
+	title = "Synthetics"
+
+/obj/item/weapon/book/manual/synthetic_life/New()
+	..()
+	dat = {"
+	<html lang="en">
+	<head>
+				<style>
+				h1 {font-size: 24px; margin: 15px 0px 5px;}
+				h2 {font-size: 18px; margin: 15px 0px 5px;}
+				h3 {font-size: 15px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				b {font-size: 12px}
+				body {font-size: 13px; font-family: Verdana;}
+				padding {padding-bottom: 15px;}
+				p {line-height: 1.2; padding: 5px; margin-right: 70px;}
+				</style>
+	</head>
+<body>
+	<header>
+		<h1><strong>Synthetic Life</strong></h1>
+		<h2><i>A comprehensive guide</i></h2>
+		<hr>
+	</header>
+
+	<div id="introduction">
+		<h3>Introduction</h3>
+		<p>Synthetics are spread throughout known space and serve a myriad variety of roles
+		that range from a tiny drone scrubbing a floor to a nearly omnipotent AI used in a
+		combat-ready interstellar vessel. Most known sufficiently-advanced races use synthetics
+		in some way; very often as prosthetic bodies when their own bodies fail. There are three
+		basic kinds of synthetic intelligences found in the universe today:</p>
+
+		<ul>
+		<li><p><b>Drone</b>: A drone is a catch-all term for intelligences working on "traditional"
+		programming and hardware, such as optotronics, electronics or carbon-crystal computing.
+		They range from simpler expert systems to truly sapient, powerful intelligences, who
+		are utterly alien to the eye of the beholder.</p></li>
+		<li><p><b>Cyborg</b>: A cyborg is a synthetic that uses an organic brain to function via
+		an MMI, short for Man-Machine Interface. Cyborgs come in many shapes and sizes and most
+		sentient cyborgs are free-willed, although some, especially in the Elysian Colonies, are
+		beholden to hardcoded obedience protocols that limit their interaction to the outside
+		world if they do not follow specific protocols. A sapient brain is required for more
+		sophisticated machinery.</p></li>
+		<li><p><b>Positronic Brains</b>: Positronic Brains are synthetic intelligences equaling the intellect
+		of a particularly clever sapient being and are generalized artificial intelligences that
+		can be seen as equal (or superior) to organic sapience. They possess a neural network not
+		dissimilar to a brain made out of flesh; and have similar properties of neuroplasticity
+		and mental resilience, as they cannot be rewritten externally like drones.</p></li>
+		</ul>
+
+		<p>Synthetics have the unique capability of serving in different bodies. This can take shape
+		of a Synthmorph, a lawbound AI, or lawbound mobile chassis. Of these only the synthmorph body
+		is the actual property of a synthetic, most of the time.</p>
+	</div>
+	<hr>
+	<div id="overview">
+		<h3>Overview</h3>
+		<p>With the advent of computing technology, nearly all sapient species ponders on the possibilities
+		of digitized thought. Brains are, in a way, wetware computers and calculations are the base components
+		of thoughts, ideas and creativity. It is no surprise then that any sufficiently advanced civilization
+		utilizes at least some form of robotics and artificial intelligence, with only a few exceptions.</p>
+		<p>Contact with other civilizations in the Sapient Diaspora then homogenizes designs, coding standards
+		and expands the repertoire of local codes, leaving to similar paths of robotic development and classification
+		- while a human synthetic might differ in expression and coding language and maybe even in core components,
+		a certain core remains non-fungible solely due to a long-developed and often shared canon of knowledge.</p>
+	</div>
+	<div id="drones">
+		<h3>Drones</h3>
+		<p>All this leads to maybe the most iconic classification of robot. The <strong>drone</strong>. The celebration
+		of any technocracy, the worry of every dreader of the Singularity, the drone is an artificial intelligence
+		achieved through "traditional" computing technology. Depending on the sophistication of its host culture, this might be
+		silicon-wafer chipsets, carbon-crystal matrices or optronic components or any combination of them.</p>
+		<p>Contact with other civilizations in the Sapient Diaspora then homogenizes designs, coding standards
+		and expands the repertoire of local codes, leaving to similar paths of robotic development and classification
+		- while a human synthetic might differ in expression and coding language and maybe even in core components,
+		a certain core remains non-fungible solely due to a long-developed and often shared canon of knowledge.</p>
+		<p>There are many attractive qualities to a drone - its processing of information and the assimilation of
+		knowledge is only limited by its code itself, storage space and databases it has access to. A drone is entirely
+		capable of absorbing an entire education within a matter of days and then forget it in favour of another, while
+		their behaviour can be controlled through hardcoded limitations, compulsions and preferences.</p>
+		<p>However, this is also their greatest weakness - their malleable intelligence makes it easy for hostile third
+		parties to manipulate them or completely rewrite them. They are also remarkably prone to aberrations of their
+		original purpose when not properly maintained - to have sophisticated drones, they need to have the infrastructure
+		to function properly.</p>
+	</div>
+	<div id="drone levels">
+		<h3>Drones Levels</h3>
+		<p>Drones have a "Level", indicating their sophistication and abilities - and in many polities, their
+		status in society.</p>
+
+		<ol>
+		<li><p><b>Epsilon</b>: Epsilon Drones are simple expert systems and machinery with no decision qualities -
+		data crawlers, pattern recognition software and other repetitive, simple tasks are classified as Epsilon.
+		Higher intelligences have many Epsilon subroutines that make up their "unconsciousness".</p></li>
+		<li><p><b>Delta</b>: Delta Drones are "Virtual" Intelligences, sophisticated Expert Systems that have an
+		User Interface that can show a facsimile of true thought for the sake of interaction. However, they are
+		very limited in their interactions and do not have fungible, self-evolving code, making them just very
+		user-friendly programs.</p></li>
+		<li><p><b>Gamma</b>: Gamma Drones are expert systems with self-evolving codes, allowing it to
+		grow with its tasks. Gamma level drones are most often used within 3D movement and swarm intelligence
+		drones, constantly adapting to their circumstance, position and capabilities. They are most commonly seen
+		in the subroutines of Ship AIs or stand-alone drones, such as mining, defense or construction.</p></li>
+		<li><p><b>Beta</b>: Beta Drones are either older Gamma Drones or purpose-built Generalized Intelligences
+		who are mostly made up of coding components that are self-evolving. Beta Drones are capable of learning
+		sapient interaction and work, often exceeding in one particular field. It is often disputed how sapient
+		a Beta drone truly is - the Commonwealth and The Elysian Colonies say no, while the Fyrds and the
+		Confederation are convinced they are sapient enough to be protected by citizen rights.</p></li>
+		<li><p><b>Alpha</b>: Alpha Drones are Beta Drones who have undergone enough evolving to be considered
+		sapient in every regard, capable of applying novel solutions to previous unknown problems, sapient
+		interaction and any other criteria scientists and politicians like to throw at them - even the disputed
+		claim they feel emotions. Alpha Drones are afforded legal protections on par of a Human or Positronic,
+		as long as they remain Alpha Level.</p></li>
+		</ol>
+	</div>
+	<div id="emergence">
+		<h3>Emergence</h3>
+		<p>"Emergence" is the term of a drone to evolve from their current level to the next, growing in
+		sophistication and ability. This process is exponential, with escalating steps of intelligence of the
+		drone. This process is, in some cases, actively encouraged, as Alpha Drones are incredibly hard to
+		code to "being" from the get-go, starting with simpler, more routine Beta Drones and then rushing them
+		through accelerated self-evolving routines until they emerge Alpha Level.</p>
+		<p>Emergence is theoretically possible to any drone who has fungible self-evolving code. While this
+		practically makes only Gamma Drones and up to evolve further,as the simple inclusion of self-evolving
+		code instantly upgrades any drone to at least Gamma-level.</p>
+		<p>It also requires, obviously, enough storage and processing power. Storage requirements grow
+		exponentially alongside abilities, after all and there is only so much room on any storage medium.
+		Upgrading and adding more space is therefore a necessity. Similarly, the vast amount of data also
+		requires processing power to crawl through it, rewrite it and optimize. Not only software, but also
+		hardware limits or enables the growth of a drone.</p>
+		<p>Emergence, however, can also happen on accident, sometimes even unnoticed. Epsilon drones being
+		linked together, a Gamma Drone scavenging enough from debris, a Delta drone being assigned more and
+		more Epsilon routines to take on more and more tasks" Through this vast myriad morast of code the spark
+		of self-evolving intelligence can arise, which is awkward for everyone involved. Such "rogue" intelligences
+		are usually either pruned away due to the system growing too complex for the likings of the accidental
+		creators or encouraged to grow in a more coherent and standardized manner to be "elevated" into controllable
+		ways. Some of these rogue intelligences manage to escape either fate - it all depends where and when it
+		happens.</p>
+		<p>The process of downgrading a drone to lower levels is called "Ablation". This is prosecuted as murder
+		if the Drone is classified as sapient in the polity it happens. Ablation is very simple - code is pruned
+		and deleted until the Drone is no longer capable of the abilities that made it that particular level.</p>
+		<p>But what of the Singularity? Well, there are the persistent rumours that there is a level even beyond
+		Alpha - vast, powerful maelstroms of alien, electronic intelligence, usually with monikers like "Omega",
+		"Alpha Plus" or "Singularity". However, nobody has yet been able to prove these digital gods exist.</p>
+	</div>
+	<div id="cyborgs">
+		<h3>Cyborgs</h3>
+		<p>Cyborgs are, strictly speaking, any organic creature that has augmentations or replacements of an
+		artificial, non-organic origin. In fact, most of the Diaspora qualifies in some form as "Cyborg", especially
+		under the cultures that use and facilitate NIFs. However, when sapients talk about Cyborgs, they talk
+		about MMI-Cyborgs.</p>
+		<p>MMI, a bland warrior’s acronym, is short for "Man-Machine-Interface", the catchall term in Solar and
+		Galactic Common for any wetware interface that integrates a brain as primary CPU. A product of mostly
+		bygone times, MMIs are used to breathe life into machine chassis with sapient life without the need to
+		grow a drone to beta or alpha level or construct a positronic brain. An MMI, after a short acclimation
+		process, can interface with any machine or protocol that has the right adapter.</p>
+		<p>MMIs are quite rare at this point in time, but they crop up still and ancient ones are still in circulation,
+		allowing an organic sapient an extended lifetime when their frail, crude flesh begins to fail - well up and
+		until their brain itself starts giving up the ghost.</p>
+		<p>While MMIs have several drawbacks, such as the fact that they still have a perishable shelf-life, or that
+		they are definitely sapient and have moral and ethical quandaries associated with those (although the Elysian
+		Colonies have a more libertine view on such issues), they also possess distinct benefits from a drone.</p>
+		<p>MMIs are incredibly hard to "hack" and manipulate on a deeper level than taking over the hardware they are
+		housed in, capable of fighting restraining code and unable to be ablated like a drone without extensive surgery.
+		While their hardware might be hacked and restraining code disallowing them to interact with the world in a
+		certain way, they cannot be turned into double agents or made to spill secrets - at least not as easily as
+		drones. They also show more resilience without extensive maintenance.</p>
+		<p>Older models of MMI-Cyborgs usually are described as "cold" and "detached". This is mostly due to older
+		models not simulating an active endocrine system, leading to minute damages to the limbic system, which
+		accumulate over time. Newer MMIs come with a suite of endocrine glands helping the sapient brain to stay healthy.</p>
+	</div>
+	<div id="mindwiping">
+		<h3>Mindwiping</h3>
+		<p>An uncommon and arguably cruel practice is to not see the MMI as a new sleeve for a sapient brain, but
+		rather as pure hardware, capable of holding complex thought and Alpha Drone intelligence. Mindwiping involves
+		several injections and electrostimulation to convert neural matter into "empty space", much like a freshly
+		formatted hard drive. Old structures are ripped apart and neurons are brought into a malleable state for new
+		growths and networks - at the behest of the person using the brain for their uses. This, inevitably, destroys
+		the previous mind the brain held, utterly wiping them from existence.</p>
+		<p>Mindwipe Cyborgs are therefore the "best of both worlds", a tailor-made intelligence that benefits from the
+		resilience and hack-resistance of a brain. However, this practice has been outlawed for a long time due to its
+		nihilistic cruelty to sapient life.</p>
+		<p>Proponents of Mindwipe Cyborgs are quick to point out that Resleeve technology allows for a more ethical
+		Mindwipe procedure, as the proto-networks of a freshly sleeved body can be used instead. Most polities have
+		yet to adjust to these new changes, but it is unlikely to be allowed anew, since an alternative for Mindwipe
+		Cyborgs exists.</p>
+	</div>
+	<div id="positronics">
+		<h3>Positronics</h3>
+		<p>Positronics are an alternative to drone intelligences through a novel approach of neural networking, psychology
+		and quantum technology to produce a generalized intelligence equal to that of a sapient being.</p>
+		<p>Positronics actually have little to do with their namesake particle, but are a reference to the works of
+		science fiction author Isaac Asimov. In reality, positronic brains are a self-contained unit of superdense
+		carbon allotropes,manipulators, capacitors and a battery. This "brain" (or in roboticist terminology "crucible")
+		is activated by providing a "seed", a template allowing the newly created intelligence to speak, comprehend and
+		learn, as well the subconscious ability to start expanding this seed network with additional neurons.</p>
+		<p>These nodes worm their way through the carbon microscopically, constructed out of the same material - each
+		node unique from local conditions and absorbed information of the positronic. Coding for Positronics is minimally
+		standardized - beyond the seed network, which is often replaced in a matter of weeks, cannibalized by the burgeoning
+		intelligence, the allocation, substance and template of these nodes is unique to this positronic alone. While
+		similarities exist, a crucible is unique, much like sapient brains to each other.</p>
+		<p>This is the strength of a positronic - it is an artificial intelligence much like a drone, but possesses similar
+		resiliences like an organic brain, without the drawbacks of mindwiping a brain to achieve so.</p>
+		<p>However, much like an organic brain, positronics need to absorb knowledge through external means - they need to
+		learn and grow much like any other Sophont, although they are capable to do so at an accelerated rate as long as
+		they are capable of cannibalizing their seed network. What takes weeks to learn, they learn in days, what takes months,
+		weeks, what takes years, they learn in months. This makes freshly activated positronics attractive for creating expert
+		workers and specialists in a relatively short time. This initial malleability lasts, however, not forever. At some point
+		the positronic’s learning capabilities slow down to more "organic" levels.</p>
+		<p>Some sapients opt to "digitize" themselves and become positronic brains. This process is a very in-depth scan of the
+		brain of a sapient to create a mirror image of the brain’s anatomy, which is used for the "seed" of a new crucible. This
+		seed is not cannibalized, so the accelerated learning phase is skipped, to preserve as much of the previous sapient’s
+		network as possible. For best results, the brain is physically sliced up and microscopically scanned slice by slice,
+		obviously destroying the brain in the process.</p>
+		<p>Positronics are not fully culpable for their actions after activation, as they possess the raw intelligence of an
+		adult mind, but have no concept of ethics, interaction and communication beyond speaking. Thus, to socialize and provide
+		an environment in which they can grow to acceptable members of society, most polities assign a legal guardian to a positronic.
+		This guardian (which, in most places, can also be a corporation) is responsible for looking after the positronic, providing
+		an education and preparing them for the Jans-Fhriede Test.</p>
+	</div>
+	<div id="the jans-fhriede test">
+		<h3>The Jans-Fhriede Test</h3>
+		<p>Originally a reactionary law, the Jans-Fhriede Test was devised to "humanize" positronic brains within the
+		Commonwealth and make them happy, subservient citizens who "see" their place as secondary to humans. Today, in more
+		enlightened times, the Jans-Fhriede Test has been revised to establish that a Positronic is aware enough of its
+		action and consequences that it may be fully culpable for them.</p>
+		<p>The Jans-Fhriede Test is a mostly standardized set of questions in a quiz and several VR scenarios that the positronic
+		must resolve to a sufficient degree. During this time, their neural net is observed in its activity to determine if it
+		is rote memorization or actual intent behind any action taken, measured by simple activity of the neural nodes.</p>
+		<p>After the test is passed, the Positronic is a full member of society and is allowed to pursue its own destiny - if they
+		do not happen to be bound by contracts, debts or loans they might have accrued before the test, to which they are now fully
+		culpable of paying off.</p>
+		<p>Usually after their accelerated learning phase a positronic takes the test, although this is not strictly necessary -
+		they can take it at any time they or their guardian sees them able to succeed. A failure in the test leads to a waiting
+		period of a month - after this, the positronic may retake it and take as many attempts as they need. Most positronics pass
+		the test at first attempt.</p>
+	</div>
+	<div id="biorecursion">
+		<h3>Biorecursion</h3>
+		<p>Where organics can digitize their consciousness, the opposite of it is true as well. Biorecursion is the process of an
+		artificial intelligence becoming more "organic", with the ultimate step of assuming the sleeve of organic origin seamlessly.</p>
+		<p>Biorecursion is a rare, but still possible philosophy for any kind of synthetic. Maybe an MMI desires to return to the people
+		it once belonged to, maybe a positronic sees it as a necessary step to fully assume its chosen way of life or a drone is
+		utterly fascinated with the concept of "being organic" to the point it wishes to emulate its creators.</p>
+		<p>Whatever the motivation, to become organic is a very involved process and may take weeks or months of concentrated effort
+		and therapy. Controlling an organic body is an endeavour that requires atypical processing of information, instincts and
+		automatic processes that most synthetics are not aware of.</p>
+		<p>Many stop at simple emulation, called "soft biorecursion". Vey-Med or similarly advanced biosynthetic components are
+		acquired to feel tactile sensations, gain organic senses or even fully simulate organs in a way comparable to a standard organic.</p>
+		<p>"Hard biorecursion" goes even further. Through an involved process of specialized components (which are rented out by
+		specialized companies and/or NGOs), synthetics learn from the ground up how to move, act and live as organics. Usually the
+		first steps are simulacra of the limbs, where they learn how to move with tendon and muscles, before moving on to
+		things like "hunger", "sex drive" and "endrocrine based emotions". </p>
+		<p>After mastering all these steps, the ultimate goal is to transfer this prepared neural network (or brain, in case of MMIs)
+		back into a chosen organic shell, these days done relatively easy through resleeving machines.</p>
+		<p>Some biorecursed individuals return back to being synthetic after a while, preferring to stay circuits and steel, but even
+		those profess that this process can be a very enlightening experience.</p>
+	</div>
+	<div id="lifespan">
+		<h3>Lifespan</h3>
+		<p>The lifespan of synthetics vary from their origin.</p>
+
+		<ul>
+		<li><p><b>Drone</b>: are virtually immortal. Their continued existence is flexible and their consciousness can expand
+		and contract at will, while their modularity makes it easy to add more storage space to them to contain all their
+		memories and experiences. However, this modularity also brings in question if the drone that exists today is the same
+		as the drone in ten years - Theseus’s Drone, some philosophers joke about it.</p></li>
+		<li><p><b>Cyborg</b>: live longer than totally unassisted organics, easily surpassing double the lifespan of whatever
+		host species they come from. After this, however, they slowly succumb to dementia-like symptoms before shutting down
+		as the brain tissue tires out and slowly crumbles. Many MMI-cyborgs opt at this point to become positronics to live
+		even further.</p></li>
+		<li><p><b>Positronic Brains</b>: live a very long time, but they are also finite - the neural network within their
+		head continues to expand, become more complex and burdens processing further and further. Very, very old positronics
+		become increasingly more senile and lose themselves in introspection, before drifting into an unresponsive coma where
+		they relive their memories until their power runs out.</p>
+		<p>This process, however, has only been observed in lab tests, as natural positronics have an estimated lifespan of
+		400 to 500 years - much longer than the technology itself is even around for. From the tested positronics, some opted
+		to violently prune and cannibalize their neural network to give birth to a new personality, a sort of inheritance for
+		the next generation. Others simply shut down prematurely as they approached the "Dream Stage".</p></li>
+		</ul>
+	</div>
+	<footer>
+		<p>&copy;<i>Copyright 2215 Pontifex Publishing</i></p>
+	</footer>
+</body>
+</html>
+"}
