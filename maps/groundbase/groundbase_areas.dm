@@ -218,6 +218,7 @@
 	name = "Psychiatrist's Office"
 /area/groundbase/medical/Chemistry
 	name = "Chemistry"
+	lightswitch = 1
 /area/groundbase/medical/triage
 	name = "Medical Triage"
 	lightswitch = 1
@@ -228,6 +229,7 @@
 	name = "Resleeving"
 /area/groundbase/medical/autoresleeving
 	name = "Auto-Resleeving"
+	lightswitch = 1
 /area/groundbase/medical/or1
 	name = "Medical Operating Room 1"
 /area/groundbase/medical/or2
@@ -328,13 +330,15 @@
 /area/groundbase/civilian/cafe
 	name = "Cafe"
 	sound_env = SMALL_SOFTFLOOR
+	lightswitch = 1
 /area/groundbase/civilian/hydroponics
 	name = "Hydroponics"
+	lightswitch = 1
 /area/groundbase/civilian/hydroponics/out
 	name = "Hydroponics Animal Pen"
-	lightswitch = 1
 /area/groundbase/civilian/kitchen
 	name = "Kitchen"
+	lightswitch = 1
 /area/groundbase/civilian/kitchen/freezer
 	name = "Kitchen Freezer"
 /area/groundbase/civilian/kitchen/backroom
@@ -342,6 +346,7 @@
 /area/groundbase/civilian/chapel
 	name = "Chapel"
 	ambience = AMBIENCE_CHAPEL
+	lightswitch = 1
 /area/groundbase/civilian/chapel/office
 	name = "Chaplain's Office"
 /area/groundbase/civilian/library

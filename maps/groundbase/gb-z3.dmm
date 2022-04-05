@@ -68,6 +68,18 @@
 /obj/structure/closet/secure_closet/pilot,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/pilot)
+"bM" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/computer/guestpass{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/uhallway)
 "bS" = (
 /obj/structure/table/rack/shelf,
 /obj/item/weapon/tank/oxygen,
@@ -15469,7 +15481,7 @@ SJ
 VG
 EJ
 wB
-Ph
+bM
 HU
 DI
 qC

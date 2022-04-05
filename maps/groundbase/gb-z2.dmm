@@ -1100,6 +1100,14 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/chapel/office)
+"dg" = (
+/obj/structure/table/standard,
+/obj/machinery/computer/guestpass{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/groundbase/civilian/kitchen)
 "dh" = (
 /obj/structure/bed/chair/sofa/corp/left,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -5793,6 +5801,13 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"ry" = (
+/obj/machinery/computer/guestpass{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/triage)
 "rA" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -7855,6 +7870,13 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
+"ya" = (
+/obj/machinery/computer/guestpass{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/hall)
 "yb" = (
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled,
@@ -8841,6 +8863,10 @@
 "AX" = (
 /obj/structure/table/woodentable,
 /obj/random/coin/sometimes,
+/obj/item/device/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "AY" = (
@@ -9640,6 +9666,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/machinery/computer/guestpass{
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -12766,6 +12795,16 @@
 /obj/machinery/vending/hydronutrients,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
+"Mp" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/computer/guestpass{
+	dir = 8;
+	pixel_x = 25
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lobby)
 "Mq" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13165,6 +13204,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
 "Nw" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/medical/triage)
 "Nx" = (
@@ -13549,6 +13591,10 @@
 /area/groundbase/civilian/kitchen)
 "OA" = (
 /obj/structure/closet/secure_closet/hydroponics,
+/obj/machinery/computer/guestpass{
+	dir = 4;
+	pixel_x = -25
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/hydroponics)
 "OB" = (
@@ -15769,10 +15815,23 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/circuits)
 "UY" = (
-/obj/machinery/light/bigfloorlamp,
-/obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/medical/Chemistry)
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/computer/guestpass{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/dorms)
 "Vb" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/janitor)
@@ -16304,6 +16363,10 @@
 /area/groundbase/civilian/library)
 "WA" = (
 /obj/structure/table/woodentable,
+/obj/item/device/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "WB" = (
@@ -16313,6 +16376,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "WD" = (
+/obj/machinery/light/small,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/medical/virology)
 "WE" = (
@@ -16581,10 +16645,14 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/server)
 "XA" = (
-/obj/machinery/light/small,
-/obj/machinery/light/small,
-/turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/medical/Chemistry)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/computer/guestpass{
+	dir = 4;
+	pixel_x = -25
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "XB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -21231,7 +21299,7 @@ Yl
 DZ
 PU
 Ea
-AK
+XA
 AK
 cl
 ib
@@ -22811,7 +22879,7 @@ qz
 VV
 GL
 Vf
-qQ
+dg
 rk
 Zi
 bl
@@ -23569,7 +23637,7 @@ eS
 oC
 Xl
 QL
-Vr
+ya
 nK
 OG
 OE
@@ -24452,7 +24520,7 @@ EU
 ZT
 uy
 eC
-pK
+UY
 hr
 AO
 Yp
@@ -28758,7 +28826,7 @@ gt
 jl
 DO
 qh
-mY
+Mp
 mY
 hs
 bv
@@ -30186,7 +30254,7 @@ ol
 ID
 ol
 nR
-nR
+ry
 cR
 to
 to
@@ -31164,8 +31232,8 @@ to
 to
 NC
 to
-UY
-XA
+vb
+UI
 sW
 sW
 ki
