@@ -19,6 +19,7 @@
 /area/groundbase/level1
 	name = "Rascal's Pass Level 1"
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/groundbase/level1/ne
 	name = "Northeast Rascal's Pass Level 1"
@@ -47,6 +48,7 @@
 /area/groundbase/level2
 	name = "Rascal's Pass Level 2"
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/groundbase/level2/ne
 	name = "Northeast Rascal's Pass Level 2"
@@ -76,6 +78,8 @@
 /area/groundbase/level3
 	name = "Rascal's Pass Level 3"
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
+
 /area/groundbase/level3/ne
 	name = "Northeast Rascal's Pass Level 3"
 /area/groundbase/level3/ne/open
@@ -101,8 +105,10 @@
 	holomap_color = HOLOMAP_AREACOLOR_SCIENCE
 	icon_state = "purwhisqu"
 	ambience = AMBIENCE_GENERIC
+	lightswitch = 0
 /area/groundbase/science/hall
 	name = "Science Hallway"
+	lightswitch = 1
 /area/groundbase/science/rnd
 	name = "Research and Development"
 /area/groundbase/science/robotics
@@ -115,12 +121,14 @@
 	name = "Circuits Workshop"
 /area/groundbase/science/xenohall
 	name = "Xeno Studies Hallway"
+	lightswitch = 1
 /area/groundbase/science/xenobot
 	name = "Xenobotany"
 /area/groundbase/science/xenobot/storage
 	name = "Xenobotany Storage"
 /area/groundbase/science/picnic
 	name = "Science Break Room"
+	lightswitch = 1
 
 /area/groundbase/command
 	name = "Command"
@@ -131,14 +139,18 @@
 	name = "Bridge"
 /area/groundbase/command/captain
 	name = "Captain's Office"
+	lightswitch = 0
 /area/groundbase/command/captainq
 	name = "Captain's Quarters"
+	lightswitch = 0
 /area/groundbase/command/hop
 	name = "Head of Personnel"
+	lightswitch = 0
 /area/groundbase/command/hall
 	name = "Command Hallway"
 /area/groundbase/command/meeting
 	name = "Command Meeting Room"
+	lightswitch = 0
 /area/groundbase/command/ai
 	name = "AI Core"
 	ambience = AMBIENCE_AI
@@ -160,18 +172,23 @@
 	holomap_color = HOLOMAP_AREACOLOR_SECURITY
 	icon_state = "redwhisqu"
 	ambience = AMBIENCE_GENERIC
+	lightswitch = 0
 /area/groundbase/security/lobby
 	name = "Security Lobby"
+	lightswitch = 1
 /area/groundbase/security/processing
 	name = "Security Processing"
 /area/groundbase/security/halls
 	name = "Security South Hallway"
+	lightswitch = 1
 /area/groundbase/security/halle
 	name = "Security East Hallway"
+	lightswitch = 1
 /area/groundbase/security/warden
 	name = "Warden's Office"
 /area/groundbase/security/armory
 	name = "Security Armory"
+	lightswitch = 1
 	ambience = AMBIENCE_HIGHSEC
 /area/groundbase/security/briefing
 	name = "Security Briefing Room"
@@ -189,21 +206,24 @@
 /area/prison/cell_block/gb
 	name = "Brig"
 
-
 /area/groundbase/medical
 	name = "Medical"
 	holomap_color = HOLOMAP_AREACOLOR_MEDICAL
 	icon_state = "cyawhisqu"
+	lightswitch = 0
 /area/groundbase/medical/lobby
 	name = "Medical Lobby"
+	lightswitch = 1
 /area/groundbase/medical/psych
 	name = "Psychiatrist's Office"
 /area/groundbase/medical/Chemistry
 	name = "Chemistry"
 /area/groundbase/medical/triage
 	name = "Medical Triage"
+	lightswitch = 1
 /area/groundbase/medical/lhallway
 	name = "Medical Lower Hallway"
+	lightswitch = 1
 /area/groundbase/medical/resleeving
 	name = "Resleeving"
 /area/groundbase/medical/autoresleeving
@@ -218,12 +238,14 @@
 	name = "Medical Office"
 /area/groundbase/medical/uhallway
 	name = "Medical Upper Hallway"
+	lightswitch = 1
 /area/groundbase/medical/cmo
 	name = "Chief Medical Officer's Office"
 /area/groundbase/medical/paramedic
 	name = "Paramedic Equipment Room"
 /area/groundbase/medical/patio
 	name = "Medical Break Room"
+	lightswitch = 1
 /area/groundbase/medical/patient1
 	name = "Medical Patient Room 1"
 /area/groundbase/medical/patient2
@@ -240,16 +262,20 @@
 	holomap_color = HOLOMAP_AREACOLOR_ENGINEERING
 	icon_state = "yelwhisqu"
 	ambience = AMBIENCE_ENGINEERING
+	lightswitch = 0
 /area/groundbase/engineering/lobby
 	name = "Engineering Lobby"
+	lightswitch = 1
 /area/groundbase/engineering/ce
 	name = "Chief Engineer's Office"
 /area/groundbase/engineering/workshop
 	name = "Engineering Workshop"
+	lightswitch = 1
 /area/groundbase/engineering/eva
 	name = "Engineering EVA"
 /area/groundbase/engineering/storage
 	name = "Engineering Storage"
+	lightswitch = 1
 /area/groundbase/engineering/techstorage
 	name = "Engineering Tech Storage"
 /area/groundbase/engineering/engine
@@ -259,16 +285,20 @@
 	ambience = AMBIENCE_ATMOS
 /area/groundbase/engineering/atmos/monitoring
 	name = "Atmospherics Monitoring"
+	lightswitch = 1
 
 /area/groundbase/cargo
 	name = "Cargo"
 	holomap_color = HOLOMAP_AREACOLOR_CARGO
 	icon_state = "orawhisqu"
 	ambience = AMBIENCE_HANGAR
+	lightswitch = 0
 /area/groundbase/cargo/office
 	name = "Cargo Office"
+	lightswitch = 1
 /area/groundbase/cargo/bay
 	name = "Cargo Bay"
+	lightswitch = 1
 /area/groundbase/cargo/bay/above
 	base_turf = /turf/simulated/open/virgo3c
 /area/groundbase/cargo/qm
@@ -277,22 +307,32 @@
 	name = "Mining"
 /area/maintenance/groundbase/trashpit
 	name = "Trash Pit"
+	lightswitch = 1
 
 /area/groundbase/civilian
 	name = "Civilian"
 	holomap_color = HOLOMAP_AREACOLOR_CIV
 	icon_state = "grewhisqu"
 	ambience = AMBIENCE_FOREBODING
+	lightswitch = 0
 /area/groundbase/civilian/arrivals
 	name = "Arrivals"
+	lightswitch = 1
 /area/groundbase/civilian/toolstorage
 	name = "Tool Storage"
+	lightswitch = 1
 /area/groundbase/civilian/bar
 	name = "Bar"
+	sound_env = LARGE_ENCLOSED
+	lightswitch = 1
+/area/groundbase/civilian/cafe
+	name = "Cafe"
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/civilian/hydroponics
 	name = "Hydroponics"
 /area/groundbase/civilian/hydroponics/out
 	name = "Hydroponics Animal Pen"
+	lightswitch = 1
 /area/groundbase/civilian/kitchen
 	name = "Kitchen"
 /area/groundbase/civilian/kitchen/freezer
@@ -314,8 +354,10 @@
 	name = "Janitor's Closet"
 /area/groundbase/civilian/foodplace
 	name = "Uncle Grumslex's Snack Emporium"
+	lightswitch = 1
 /area/groundbase/civilian/apparel
 	name = "Crew Apparel Care"
+	lightswitch = 1
 /area/groundbase/civilian/clown
 	name = "Giggledome"
 /area/groundbase/civilian/mime
@@ -328,6 +370,7 @@
 	ambience = AMBIENCE_GENERIC
 /area/groundbase/exploration/equipment
 	name = "Exploration Equipment Room"
+	lightswitch = 0
 /area/groundbase/exploration/shuttlepad
 	name = "Exploration Shuttlepad"
 
@@ -341,25 +384,33 @@
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
 	forbid_events = TRUE
-
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
+	sound_env = SOUND_ENVIRONMENT_BATHROOM
 /area/groundbase/dorms/room1
 	name = "Dorm Room 1"
+	lightswitch = 0
 /area/groundbase/dorms/room2
 	name = "Dorm Room 2"
+	lightswitch = 0
 /area/groundbase/dorms/room3
 	name = "Dorm Room 3"
+	lightswitch = 0
 /area/groundbase/dorms/room4
 	name = "Dorm Room 4"
+	lightswitch = 0
 /area/groundbase/dorms/room5
 	name = "Dorm Room 5"
+	lightswitch = 0
 /area/groundbase/dorms/room6
 	name = "Dorm Room 6"
+	lightswitch = 0
 /area/groundbase/dorms/room7
 	name = "Dorm Room 7"
+	lightswitch = 0
 /area/groundbase/dorms/room8
 	name = "Dorm Room 8"
+	lightswitch = 0
 
 /area/maintenance/groundbase/substation
 	name = "Substation"
