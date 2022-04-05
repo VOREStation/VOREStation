@@ -377,7 +377,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/guncabinet/phase,
+/obj/structure/closet/secure_closet/guncabinet/excursion,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "gE" = (
