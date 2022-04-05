@@ -539,6 +539,7 @@
 	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
 	body_parts_covered = HEAD|FACE|EYES
 
+<<<<<<< HEAD
 //Laser Tag Helmets
 /obj/item/clothing/head/bluetag
 	name = "blue laser tag helmet"
@@ -553,3 +554,41 @@
 	icon_state = "redtag"
 	flags_inv = HIDEEARS|BLOCKHEADHAIR
 	body_parts_covered = HEAD|EYES
+=======
+/obj/item/clothing/head/ranger
+	var/hatcolor = "white"
+	name = "ranger helmet"
+	desc = "A special helmet designed for the Go Go ERT-Rangers, able to withstand a pressureless environment, filter gas and provide air. It has thermal vision and sometimes \
+	mesons to find breaches, as well as an integrated radio... well, only in the show, of course."
+	icon = 'icons/obj/clothing/ranger.dmi'
+	icon_state = "ranger_helmet"
+	light_overlay = "helmet_light"
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
+	drop_sound = 'sound/items/drop/helm.ogg'
+	pickup_sound = 'sound/items/pickup/helm.ogg'
+	w_class = ITEMSIZE_NORMAL
+
+/obj/item/clothing/head/ranger/Initialize()
+	. = ..()
+	if(icon_state == "ranger_helmet")
+		name = "[hatcolor] ranger helmet"
+		icon_state = "[hatcolor]_ranger_helmet"
+
+/obj/item/clothing/head/ranger/black
+	hatcolor = "black"
+
+/obj/item/clothing/head/ranger/pink
+	hatcolor = "pink"
+
+/obj/item/clothing/head/ranger/green
+	hatcolor = "green"
+
+/obj/item/clothing/head/ranger/cyan
+	hatcolor = "cyan"
+
+/obj/item/clothing/head/ranger/orange
+	hatcolor = "orange"
+
+/obj/item/clothing/head/ranger/yellow
+	hatcolor = "yellow"
+>>>>>>> 9a6fe9732a6... Merge pull request #8506 from Atermonera/ert_rangers

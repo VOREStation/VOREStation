@@ -195,35 +195,38 @@
 	drop_sound = 'sound/items/drop/clothing.ogg'
 	pickup_sound = 'sound/items/pickup/clothing.ogg'
 
-/obj/item/clothing/shoes/boots/ranger
+/obj/item/clothing/shoes/ranger
 	var/bootcolor = "white"
 	name = "ranger boots"
 	desc = "The Rangers special lightweight hybrid magboots-jetboots perfect for EVA. If only these functions were so easy to copy in reality.\
 	 These ones are just a well-made pair of boots in appropriate colours."
 	icon = 'icons/obj/clothing/ranger.dmi'
 	icon_state = "ranger_boots"
+	step_volume_mod = 1.2
+	drop_sound = 'sound/items/drop/boots.ogg'
 
-/obj/item/clothing/shoes/boots/ranger/Initialize()
+/obj/item/clothing/shoes/ranger/Initialize()
 	. = ..()
 	if(icon_state == "ranger_boots")
 		name = "[bootcolor] ranger boots"
 		icon_state = "[bootcolor]_ranger_boots"
 
-/obj/item/clothing/shoes/boots/ranger/black
+/obj/item/clothing/shoes/ranger/black
 	bootcolor = "black"
 
-/obj/item/clothing/shoes/boots/ranger/pink
+/obj/item/clothing/shoes/ranger/pink
 	bootcolor = "pink"
 
-/obj/item/clothing/shoes/boots/ranger/green
+/obj/item/clothing/shoes/ranger/green
 	bootcolor = "green"
 
-/obj/item/clothing/shoes/boots/ranger/cyan
+/obj/item/clothing/shoes/ranger/cyan
 	bootcolor = "cyan"
 
-/obj/item/clothing/shoes/boots/ranger/orange
+/obj/item/clothing/shoes/ranger/orange
 	bootcolor = "orange"
 
+<<<<<<< HEAD
 /obj/item/clothing/shoes/boots/ranger/yellow
 	bootcolor = "yellow"
 
@@ -248,3 +251,7 @@
 	desc = "A stylish, expensive pair of red sneakers."
 	icon_state = "sneakersred"
 	item_state = "sneakersred"
+=======
+/obj/item/clothing/shoes/ranger/yellow
+	bootcolor = "yellow"
+>>>>>>> 9a6fe9732a6... Merge pull request #8506 from Atermonera/ert_rangers

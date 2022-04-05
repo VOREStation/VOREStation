@@ -68,6 +68,7 @@
 		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi'
 		)
 
+<<<<<<< HEAD
 /obj/item/clothing/head/hardhat/firefighter/atmos
 	name = "atmospheric firefighter helmet"
 	desc = "An atmospheric firefighter's helmet, includes a face mask specially designed for firefighting. It's airtight and has a port for internals."
@@ -121,3 +122,8 @@
 /obj/item/clothing/head/hardhat/ranger/yellow
 	hatcolor = "yellow"
 */
+=======
+/obj/item/clothing/head/hardhat/dblue
+	name = "blue hard hat"
+	icon_state = "hardhat0_dblue"
+>>>>>>> 9a6fe9732a6... Merge pull request #8506 from Atermonera/ert_rangers
