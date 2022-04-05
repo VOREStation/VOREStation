@@ -18809,6 +18809,7 @@
 /obj/item/weapon/book/codex/lore/robutt,
 /obj/item/weapon/book/codex,
 /obj/item/weapon/book/custom_library/nonfiction/freesirisailightbulbs,
+/obj/item/weapon/book/manual/synthetic_life,
 /turf/simulated/floor/wood,
 /area/library)
 "aEJ" = (

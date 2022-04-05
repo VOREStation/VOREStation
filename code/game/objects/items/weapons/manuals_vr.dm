@@ -450,7 +450,7 @@
 /obj/item/weapon/book/manual/synthetic_life/New()
 	..()
 	dat = {"
-	<html lang="en">
+<html lang="en">
 	<head>
 				<style>
 				h1 {font-size: 24px; margin: 15px 0px 5px;}
