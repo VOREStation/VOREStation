@@ -86,7 +86,7 @@
 	buffer = locate(/obj/machinery/telecomms/hub/preset/groundbase)
 
 /obj/item/device/bluespaceradio/groundbase_prelinked
-	name = "bluespace radio (Stellar Delight)"
+	name = "bluespace radio (Groundbase)"
 	handset = /obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked
 
 /obj/item/device/radio/bluespacehandset/linked/groundbase_prelinked

@@ -19837,9 +19837,8 @@
 /area/groundbase/engineering/storage)
 "ZV" = (
 /obj/machinery/door/airlock/medical{
-	id_tag = "Resleeving";
+	id_tag = "Resleeving Shower";
 	name = "Resleeving Lab";
-	req_access = null;
 	req_one_access = null
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
