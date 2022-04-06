@@ -9966,6 +9966,7 @@
 /obj/item/weapon/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
 /obj/item/weapon/book/custom_library/nonfiction/freesirisailightbulbs,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/item/weapon/book/manual/synthetic_life,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "Ee" = (

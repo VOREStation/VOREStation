@@ -12570,6 +12570,7 @@
 /obj/item/weapon/book/bundle/custom_library/nonfiction/skrelliancastesystem,
 /obj/item/weapon/book/bundle/custom_library/nonfiction/viabilityofcorporategov,
 /obj/item/weapon/book/custom_library/nonfiction/freesirisailightbulbs,
+/obj/item/weapon/book/manual/synthetic_life,
 /turf/simulated/floor/wood,
 /area/library)
 "AI" = (
