@@ -4549,12 +4549,8 @@
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
 "nC" = (
-/mob/living/simple_mob/vore/alienanimals/catslug{
-	color = "#1b1b5c";
-	desc = "More porl than you.";
-	faction = "neutral";
-	ghostjoin = 1;
-	name = "Captain Crumsh"
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug{
+	ghostjoin = 1
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
