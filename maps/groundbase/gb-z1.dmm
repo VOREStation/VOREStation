@@ -13152,6 +13152,12 @@
 	temperature = 80
 	},
 /area/groundbase/command/tcomms)
+"HB" = (
+/obj/structure/sign/double/barsign{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "HC" = (
 /obj/structure/table/reinforced,
 /obj/item/device/radio{
@@ -25581,7 +25587,7 @@ UL
 ht
 nK
 qG
-ht
+HB
 pj
 MO
 MO
