@@ -27,6 +27,12 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/rd,
+/obj/machinery/button/windowtint{
+	id = "rd_office";
+	layer = 3.3;
+	pixel_x = 16;
+	pixel_y = 27
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rd)
 "af" = (
@@ -160,6 +166,10 @@
 /obj/structure/closet/secure_closet/scientist,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
+"aC" = (
+/obj/structure/railing/grey,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level2/northspur)
 "aD" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -1353,6 +1363,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"dY" = (
+/obj/structure/fence/door,
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/groundbase/civilian/hydroponics/out)
 "ea" = (
 /obj/structure/stairs/spawner/west,
 /turf/simulated/floor/tiled,
@@ -1802,12 +1816,6 @@
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/cargo/bay)
 "fr" = (
-/obj/machinery/button/windowtint{
-	id = "rd_office";
-	layer = 3.3;
-	pixel_x = 16;
-	pixel_y = -27
-	},
 /obj/structure/bed/chair,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rd)
@@ -3924,6 +3932,12 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/maintenance/groundbase/substation/command)
+"lG" = (
+/obj/structure/sign/nanotrasen{
+	pixel_y = 32
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/command/hop)
 "lH" = (
 /obj/structure/bed/chair/office/dark{
 	dir = 8
@@ -4288,6 +4302,15 @@
 /obj/effect/landmark/start/chaplain,
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/chapel/office)
+"mK" = (
+/obj/structure/sign/nanotrasen{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "mL" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
@@ -5309,6 +5332,13 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
+"qd" = (
+/obj/structure/sign/nanotrasen{
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/se)
 "qe" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -5474,6 +5504,7 @@
 /obj/item/weapon/book/manual/supermatter_engine,
 /obj/item/weapon/book/manual/tesla_engine,
 /obj/item/weapon/book/manual/virology,
+/obj/item/weapon/book/manual/rotary_electric_generator,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "qy" = (
@@ -6877,6 +6908,12 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
+"uT" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level2/northspur)
 "uU" = (
 /obj/item/weapon/storage/box/donkpockets{
 	pixel_x = 3;
@@ -7622,6 +7659,12 @@
 	dir = 1
 	},
 /obj/effect/landmark/start/psych,
+/obj/machinery/button/windowtint{
+	id = "psych_office";
+	layer = 3.3;
+	pixel_x = -17;
+	pixel_y = 31
+	},
 /turf/simulated/floor/carpet/blue,
 /area/groundbase/medical/psych)
 "xv" = (
@@ -7809,8 +7852,10 @@
 /area/groundbase/civilian/bar)
 "xU" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "chef_office"
+	},
 /turf/simulated/floor,
 /area/groundbase/civilian/kitchen/backroom)
 "xV" = (
@@ -8103,8 +8148,10 @@
 /area/groundbase/medical/lobby)
 "yL" = (
 /obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor,
+/obj/structure/window/reinforced/polarized/full{
+	id = "psych_office"
+	},
 /turf/simulated/floor,
 /area/groundbase/medical/psych)
 "yM" = (
@@ -13069,7 +13116,7 @@
 "Nc" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
-	name = "Largbrary"
+	name = "Library"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -13478,6 +13525,14 @@
 	},
 /turf/simulated/wall,
 /area/groundbase/cargo/office)
+"Oj" = (
+/obj/machinery/button/windowtint{
+	id = "chef_office";
+	layer = 3.3;
+	pixel_y = -27
+	},
+/turf/simulated/floor/carpet/deco,
+/area/groundbase/civilian/kitchen/backroom)
 "Ok" = (
 /obj/machinery/power/apc{
 	dir = 1
@@ -13928,7 +13983,7 @@
 "PA" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
-	name = "Largbrary"
+	name = "Library"
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/library)
@@ -22885,7 +22940,7 @@ rk
 Zi
 bl
 bl
-bl
+Oj
 rk
 bY
 bY
@@ -22993,7 +23048,7 @@ rP
 Nd
 mk
 ka
-FF
+rl
 PS
 LS
 Ny
@@ -23135,7 +23190,7 @@ rP
 bY
 fI
 bY
-FF
+rl
 Rm
 LS
 LS
@@ -25137,7 +25192,7 @@ Jc
 bY
 bY
 bY
-bp
+dY
 iI
 iI
 iI
@@ -25552,7 +25607,7 @@ eD
 hM
 bY
 HX
-bY
+pw
 Jc
 bY
 bY
@@ -25694,11 +25749,11 @@ eD
 hM
 bY
 HX
-bY
-bY
-Jc
-Jc
-bY
+Ja
+Ja
+Ja
+Ja
+Ja
 bY
 Jc
 Jc
@@ -25836,11 +25891,11 @@ zS
 zs
 bY
 HX
+pw
 bY
-bY
-bY
-bY
-bY
+pw
+Hn
+Hn
 bY
 Jc
 bY
@@ -25979,10 +26034,10 @@ zs
 bY
 HX
 bY
+Zg
 bY
-bY
-VR
-VR
+uT
+aC
 VR
 bY
 bY
@@ -29580,7 +29635,7 @@ hP
 hP
 hP
 kU
-kU
+mK
 Bo
 Bo
 Bo
@@ -30417,7 +30472,7 @@ Bo
 Bo
 Bo
 cV
-At
+qd
 Bo
 Bo
 Bo
@@ -32139,7 +32194,7 @@ an
 iC
 iC
 iC
-Bf
+lG
 Bo
 Bo
 fk

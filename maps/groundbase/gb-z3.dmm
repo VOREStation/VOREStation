@@ -212,6 +212,13 @@
 /area/groundbase/medical/patient2)
 "dQ" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32
+	},
+/obj/machinery/recharger/wallcharger{
+	pixel_x = 32;
+	pixel_y = -9
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "dR" = (
@@ -931,6 +938,10 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/exploration/shuttlepad)
+"pY" = (
+/obj/structure/sign/nanotrasen,
+/turf/simulated/wall,
+/area/groundbase/level3/escapepad)
 "qf" = (
 /obj/structure/closet/secure_closet/personal/patient,
 /obj/machinery/firealarm{
@@ -1031,6 +1042,9 @@
 /obj/structure/table/steel,
 /obj/item/weapon/pen,
 /obj/machinery/light,
+/obj/machinery/recharger{
+	pixel_y = 4
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "sb" = (
@@ -5809,7 +5823,7 @@ fz
 fz
 fz
 qO
-hl
+pY
 Ii
 Ii
 Ii
@@ -5817,7 +5831,7 @@ ow
 Ii
 Ii
 Ii
-hl
+pY
 qO
 qO
 qO
