@@ -164,15 +164,17 @@
 	var/limb_icon_key
 	var/understands_common = TRUE 		//VOREStation Edit - Makes it so that simplemobs can understand galcomm without being able to speak it.
 	var/heal_countdown = 5				//VOREStation Edit - A cooldown ticker for passive healing
-	var/obj/item/weapon/card/id/mobcard = null
-	var/list/mobcard_access = list()
+	var/obj/item/weapon/card/id/mobcard = null //VOREStation Edit
+	var/list/mobcard_access = list() //VOREStation Edit
+	var/mobcard_provided = FALSE //VOREStation Edit
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
 	health = maxHealth
 
-	mobcard = new /obj/item/weapon/card/id(src)
-	mobcard.access = mobcard_access.Copy()
+	if(mobcard_provided) //VOREStation Edit
+		mobcard = new /obj/item/weapon/card/id(src)
+		mobcard.access = mobcard_access.Copy()
 
 	for(var/L in has_langs)
 		languages |= GLOB.all_languages[L]
