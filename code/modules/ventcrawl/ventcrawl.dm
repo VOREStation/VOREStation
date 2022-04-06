@@ -58,7 +58,7 @@ var/list/ventcrawl_machinery = list(
 	if(carried_item == ability_master)
 		return 1
 	if(isanimal(src))
-		var/mob/living/simple_mob/S
+		var/mob/living/simple_mob/S = src
 		if(carried_item == S.mobcard)	//VOREStation Edit
 			return 1	//VOREStation Edit
 	//Try to find it in our allowed list (istype includes subtypes)
