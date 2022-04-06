@@ -14840,9 +14840,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos/monitoring)
 "LK" = (
-/turf/simulated/floor/outdoors/grass/forest/virgo3c{
-	outdoors = 0
-	},
+/turf/simulated/floor/outdoors/grass/forest/virgo3c/notrees,
 /area/groundbase/level1/eastspur)
 "LL" = (
 /obj/machinery/door/firedoor,
@@ -35941,9 +35939,9 @@ Ah
 MK
 Ah
 MK
-Ah
+LK
 sF
-Ah
+LK
 Ah
 Ah
 MK
@@ -36083,9 +36081,9 @@ Ah
 Ah
 Ah
 Ah
-Ah
 LK
-Ah
+LK
+LK
 Ah
 Ah
 Ah
@@ -36225,9 +36223,9 @@ Ah
 Ah
 Ah
 Ah
-Ah
 LK
-Ah
+LK
+LK
 Ah
 Ah
 Ah
@@ -36367,9 +36365,9 @@ Ah
 Ah
 MK
 MK
-Ah
 LK
-Ah
+LK
+LK
 Ah
 Ah
 Ah
@@ -36509,9 +36507,9 @@ MK
 MK
 MK
 Ah
-Ah
 LK
-Ah
+LK
+LK
 Ah
 MK
 MK
@@ -36653,7 +36651,7 @@ MK
 MK
 MK
 sF
-Ah
+LK
 Ah
 MK
 MK
