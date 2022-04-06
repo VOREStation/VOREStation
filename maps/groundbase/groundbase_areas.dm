@@ -367,6 +367,9 @@
 	name = "Giggledome"
 /area/groundbase/civilian/mime
 	name = "Temple of Silence"
+/area/groundbase/civilian/gameroom
+	name = "Gamatorium"
+	sound_env = SMALL_SOFTFLOOR
 
 /area/groundbase/exploration
 	name = "Exploration"
