@@ -4905,7 +4905,7 @@
 /area/groundbase/level2/nw)
 "oL" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
 "oM" = (
@@ -5561,7 +5561,7 @@
 /area/groundbase/dorms/room6)
 "qH" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
 "qJ" = (
@@ -5686,7 +5686,7 @@
 /area/groundbase/civilian/library)
 "rc" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room1)
 "re" = (
@@ -6915,10 +6915,6 @@
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/northspur)
 "uU" = (
-/obj/item/weapon/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/item/weapon/reagent_containers/food/condiment/flour,
 /obj/item/weapon/reagent_containers/food/condiment/flour,
 /obj/item/weapon/reagent_containers/food/condiment/flour,
@@ -6936,6 +6932,7 @@
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
 /obj/structure/closet,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
 "uX" = (
@@ -8918,7 +8915,7 @@
 /area/groundbase/civilian/library)
 "AY" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)
 "AZ" = (
@@ -12096,7 +12093,7 @@
 /area/groundbase/cargo/office)
 "Kj" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room5)
 "Kk" = (
@@ -12719,7 +12716,7 @@
 /area/medical/virology)
 "LZ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room6)
 "Mb" = (
@@ -16128,7 +16125,7 @@
 /area/groundbase/command/hall)
 "VN" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room7)
 "VO" = (
