@@ -11,6 +11,7 @@
 	var/debug = FALSE // If true, metal is infinite.
 
 	var/upgraded = FALSE		// When hit with an upgrade disk, will turn true, allowing it to print the higher tier circuits.
+	var/illegal_upgraded = FALSE // When hit with an illegal upgrade disk, will turn true, allowing it to print the illegal circuits.
 	var/can_clone = FALSE		// Same for above, but will allow the printer to duplicate a specific assembly. (Not implemented)
 //	var/static/list/recipe_list = list()
 	var/obj/item/device/electronic_assembly/assembly_to_clone = null // Not implemented x3
@@ -64,6 +65,16 @@
 			return TRUE
 		to_chat(user, span("notice", "You install \the [O] into  \the [src]."))
 		upgraded = TRUE
+		dirty_items = TRUE
+		attack_self(user)
+		return TRUE
+
+	if(istype(O,/obj/item/weapon/disk/integrated_circuit/upgrade/illegal))
+		if(illegal_upgraded)
+			to_chat(user, span("warning", "\The [src] already has this upgrade."))
+			return TRUE
+		to_chat(user, span("notice", "You install \the [O] into  \the [src]."))
+		illegal_upgraded = TRUE
 		dirty_items = TRUE
 		attack_self(user)
 		return TRUE
@@ -211,6 +222,10 @@
 /obj/item/weapon/disk/integrated_circuit/upgrade/advanced
 	name = "integrated circuit printer upgrade disk - advanced designs"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, advanced designs to the printer."
+
+/obj/item/weapon/disk/integrated_circuit/upgrade/illegal
+	name = "integrated circuit printer upgrade disk - illegal designs"
+	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, but illegal designs to the printer."
 
 // To be implemented later.
 /obj/item/weapon/disk/integrated_circuit/upgrade/clone
