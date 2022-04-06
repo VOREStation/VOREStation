@@ -606,4 +606,5 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor)
 
 	. = ..()
 
-//VIRGO3C_SET_ATMOS()
+/turf/simulated/floor/outdoors/grass/forest/virgo3c/notrees
+	tree_chance = 0
