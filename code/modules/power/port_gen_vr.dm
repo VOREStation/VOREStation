@@ -96,6 +96,8 @@
 		return
 	else if(default_deconstruction_crowbar(user, I))
 		return
+	else if(default_part_replacement(user, I))
+		return
 	return ..()
 
 /obj/machinery/power/rtg/update_icon()
@@ -191,7 +193,7 @@
 /obj/machinery/power/rtg/abductor/update_icon()
 	if(!state_change)
 		return //Stupid cells constantly update our icon so trying to be efficient
-	
+
 	if(cell)
 		if(panel_open)
 			icon_state = "[icon_base]-open"
@@ -289,7 +291,7 @@
 	icon_state = "reg"
 	circuit = /obj/item/weapon/circuitboard/machine/reg_d
 	irradiate = FALSE
-	power_gen = 0	
+	power_gen = 0
 	var/default_power_gen = 1000000	//It's big but it gets adjusted based on what you put into it!!!
 	var/part_mult = 0
 	var/nutrition_drain = 1
@@ -303,7 +305,7 @@
 /obj/machinery/power/rtg/reg/Initialize()
 	pixel_x = -32
 	. = ..()
-	
+
 /obj/machinery/power/rtg/reg/Destroy()
 	. = ..()
 
@@ -320,7 +322,7 @@
 	var/n = 0
 	for(var/obj/item/weapon/stock_parts/SP in component_parts)
 		n += SP.rating
-	part_mult = n	
+	part_mult = n
 
 /obj/machinery/power/rtg/reg/attackby(obj/item/I, mob/user, params)
 	pixel_x = -32
