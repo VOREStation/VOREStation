@@ -657,6 +657,189 @@
 /obj/item/weapon/holder/catslug/custom/cargoslug
 	item_state = "cargoslug"
 
+//Command catslug
+/datum/category_item/catalogue/fauna/catslug/custom/capslug
+	name = "Alien Wildlife - Catslug - Captain Crumsh"
+	desc = "A resident worker at the NSB Rascal's Pass, Captain Crumsh \
+	comes from a long line of catslug leaders, maintaining the family tradition \
+	for numerous years now. After a long tenure serving at Central Command, they \
+	requested transfer to a more \"front-facing\" facility, ending up shipped across \
+	to the facilty recently set up on Virgo 3C. - \
+	The Catslug is an omnivorous terrestrial creature.\
+	Exhibiting properties of both a cat and a slug (hence its name)\
+	it moves somewhat awkwardly. However, the unique qualities of\
+	its body make it exceedingly flexible and smooth, allowing it to\
+	wiggle into and move effectively in even extremely tight spaces.\
+	Additionally, it has surprisingly capable hands, and moves quite\
+	well on two legs or four. Caution is advised when interacting\
+	with these creatures, they are quite intelligent, and proficient\
+	tool users."
+	value = CATALOGUER_REWARD_TRIVIAL	//Local catslugs worth less than rarer ones
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug
+	name = "Captain Crumsh"
+	desc = "A regal-blue furred noodley bodied creature with thin arms and legs, and gloomy dark eyes. This one wears an impressive tower of hats upon it's head. Exudes a sense of superiority, clearly this 'slug has more porl than you."
+	tt_desc = "Mollusca Felis Praefectus"
+	icon_state = "capslug"
+	icon_living = "capslug"
+	icon_rest = "capslug_rest"
+	icon_dead = "capslug_dead"
+	faction = "neutral"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug/custom/capslug)
+	holder_type = /obj/item/weapon/holder/catslug/custom/capslug
+	say_list_type = /datum/say_list/catslug/custom/capslug
+	mobcard_access = list(access_maint_tunnels)		//The all_station_access part below adds onto this.
+
+/datum/say_list/catslug/custom/capslug
+	speak = list("How open big glass box with shiny inside?.", "What is that?", "Respect my authority!", "What are you doing?", "How did you get here?", "Fax for yellow-shirts!", "WAOW!", "Why is that console blinking and clicking?", "Do we need to call for ERT?", "Have been called comdom before, not sure why they thought I was a balloon.")
+
+/obj/item/weapon/holder/catslug/custom/capslug
+	item_state = "capslug"
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug/Initialize() 		//This is such an awful proc, but if someone wants it better they're welcome to have a go at it.
+	. = ..()
+	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio.frequency = PUB_FREQ
+	mob_radio.ks2type = /obj/item/device/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
+	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/heads/captain(mob_radio)
+	mob_radio.recalculateChannels(1)
+	mobcard.access |= get_all_station_access()
+
+//=============================================================================
+//Admin-spawn only catslugs below - Expect overpowered things & silliness below
+//=============================================================================
+
+//Deathsquad catslug 
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug
+	name = "Asset Purrtection"
+	desc = "What are you doing staring at this angry little fella? <b>Run.</b>"
+	tt_desc = "Mollusca Felis Eversor"
+	icon_state = "deathslug"
+	icon_living = "deathslug"
+	icon_rest = "deathslug_rest"
+	icon_dead = "deathslug_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug) 			//So they don't get the spaceslug's cataloguer entry
+	say_list_type = /datum/say_list/catslug 			//Similarly, so they don't get the spaceslug's speech lines.
+	mobcard_access = list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
+	maxHealth = 100		//Tough noodles
+	health = 100
+	taser_kill = 0
+	mob_size = MOB_MEDIUM		//As funny as picking up deathslugs & throwing them at people to be merked would be, I'm not willing to sprite their holders. Something something hardsuit heavy can be the "IC" reason for this.
+	siemens_coefficient = 0
+	armor = list(
+		"melee" = 60,
+		"bullet" = 50,
+		"laser" = 50,
+		"energy" = 40,
+		"bomb" = 40,
+		"bio" = 100,
+		"rad" = 100
+		)	
+
+	minbodytemp = 0
+	maxbodytemp = 5000
+
+	player_msg = "You work in the service of corporate Asset Protection, answering directly to the Board of Directors and Asset Protection Commandos."
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug/Initialize()
+	. = ..()
+	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
+	mobcard.access |= get_all_station_access()
+	
+//Syndicate catslug 
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug
+	name = "Mercenyary"
+	desc = "What are you doing staring at this crimson-hardsuit wearing angry little fella? <b>Run.</b>"
+	tt_desc = "Mollusca Felis Mors"
+	icon_state = "syndislug"
+	icon_living = "syndislug"
+	icon_rest = "syndislug_rest"
+	icon_dead = "syndislug_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
+	say_list_type = /datum/say_list/catslug
+	mobcard_access = list(access_maint_tunnels, access_syndicate, access_external_airlocks)
+	faction = "syndicate"
+	maxHealth = 100		//Tough noodles
+	health = 100
+	taser_kill = 0
+	melee_damage_lower = 15
+	melee_damage_upper = 20	
+	mob_size = MOB_MEDIUM		//Something something hardsuits are heavy.
+	siemens_coefficient = 0
+	armor = list(
+		"melee" = 80,
+		"bullet" = 65,
+		"laser" = 50,
+		"energy" = 15,
+		"bomb" = 80,
+		"bio" = 100,
+		"rad" = 60
+		)	
+
+	minbodytemp = 0
+	maxbodytemp = 5000
+
+	player_msg = "You are in the employ of a criminal syndicate hostile to corporate interests. Follow the Mercenary or Commando's orders and assist them in their goals by any means available."
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/Initialize()
+	. = ..()
+	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio.frequency = SYND_FREQ
+	mob_radio.syndie = 1
+	mob_radio.ks2type = /obj/item/device/encryptionkey/syndicate
+	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/syndicate(mob_radio)
+	mob_radio.recalculateChannels(1)
+	mobcard.access |= get_all_station_access()
+
+//ERT catslug 
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug
+	name = "Emeowgency Responder"
+	desc = "The cavalry has arrived."
+	tt_desc = "Mollusca Felis Salvator"
+	icon_state = "responseslug"
+	icon_living = "responseslug"
+	icon_rest = "responseslug_rest"
+	icon_dead = "responseslug_dead"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/catslug)
+	say_list_type = /datum/say_list/catslug
+	mobcard_access = list(access_cent_general, access_cent_specops, access_cent_living, access_cent_storage)
+	maxHealth = 100		//Tough noodles
+	health = 100
+	taser_kill = 0
+	mob_size = MOB_MEDIUM		//Something something hardsuits are heavy.
+	siemens_coefficient = 0
+	armor = list(
+		"melee" = 60,
+		"bullet" = 50,
+		"laser" = 30,
+		"energy" = 15,
+		"bomb" = 30,
+		"bio" = 100,
+		"rad" = 100
+		)	
+
+	minbodytemp = 0
+	maxbodytemp = 5000
+
+	player_msg = "You are an <b>anti</b> antagonist! Within the rules, try to save the station and its inhabitants from the ongoing crisis. Try to make sure other players have <i>fun</i>! \
+	If you are confused or at a loss, always adminhelp, and before taking extreme actions, please try to also contact the administration! \
+	Think through your actions and make the roleplay immersive! <b>Please remember all rules aside from those without explicit exceptions apply to the ERT.</b>"
+
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/Initialize()
+	. = ..()
+	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio.frequency = ERT_FREQ 
+	mob_radio.centComm = 1
+	mob_radio.ks2type = /obj/item/device/encryptionkey/ert
+	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/ert(mob_radio)
+	mob_radio.recalculateChannels(1)
+	mobcard.access |= get_all_station_access()
+
+//=============================
+//Admin-spawn only catslugs end
+//=============================
+
 //Suslug's below
 
 /mob/living/simple_mob/vore/alienanimals/catslug/suslug
