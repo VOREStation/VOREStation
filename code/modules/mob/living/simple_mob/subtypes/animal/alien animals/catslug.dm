@@ -287,6 +287,7 @@
 	makes_dirt = 0
 	digestable = 0
 	humanoid_hands = 1	//These should all be ones requiring admin-intervention to play as, so they can get decent tool-usage, as a treat.
+	var/siemens_coefficient = 1 		//Referenced later by others.
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/Initialize()
 	. = ..()
@@ -424,6 +425,7 @@
 	holder_type = /obj/item/weapon/holder/catslug/custom/engislug
 	say_list_type = /datum/say_list/catslug/custom/engislug
 	mobcard_access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_construction, access_atmospherics)
+	siemens_coefficient = 0 		//Noodly fella's gone and built up an immunity from many small shocks
 
 	minbodytemp = 200
 	maxbodytemp = 600		//engislug can survive a little heat, as a treat
@@ -529,6 +531,7 @@
 	say_list_type = /datum/say_list/catslug/custom/gatslug
 	melee_damage_lower = 5
 	melee_damage_upper = 10		//"Trained" security member, so they can hit that little bit harder
+	taser_kill = 0		//Shouldn't be weak to accidental friendly fire from other officers
 	armor = list(
 		"melee" = 15,
 		"bullet" = 0,
