@@ -459,6 +459,14 @@ I said no!
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meatball)
 	result = /obj/item/weapon/reagent_containers/food/snacks/validsalad
 
+/datum/recipe/dankpocket
+	fruit = list("ambrosia" = 2)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meatball,
+		/obj/item/weapon/reagent_containers/food/snacks/doughslice
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donkpocket/dankpocket
+
 /datum/recipe/validsalad/make_food(var/obj/container as obj)
 	. = ..(container)
 	for (var/obj/item/weapon/reagent_containers/food/snacks/validsalad/being_cooked in .)

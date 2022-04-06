@@ -8823,7 +8823,9 @@
 	pixel_x = 8;
 	pixel_y = 8
 	},
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox{
+	pixel_x = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "anK" = (
@@ -25545,10 +25547,10 @@
 /area/rnd/breakroom)
 "aTy" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/donkpockets,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/rnd/breakroom)
 "aTz" = (
@@ -29307,7 +29309,7 @@
 "bcD" = (
 /obj/structure/table/steel,
 /obj/machinery/microwave,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/maintenance/lower/atmos)
 "bcG" = (
