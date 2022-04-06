@@ -172,7 +172,7 @@
 	verbs -= /mob/verb/observe
 	health = maxHealth
 
-	if(mobcard_provided)
+	if(mobcard_provided) //VOREStation Edit
 		mobcard = new /obj/item/weapon/card/id(src)
 		mobcard.access = mobcard_access.Copy()
 
