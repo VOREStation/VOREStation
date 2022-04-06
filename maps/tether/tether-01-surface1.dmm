@@ -22835,8 +22835,8 @@
 /area/crew_quarters/sleep/Dorm_8)
 "aLU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_8)
 "aLV" = (
@@ -24134,8 +24134,8 @@
 /area/crew_quarters/sleep/Dorm_6)
 "aOs" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_6)
 "aOt" = (
@@ -25253,12 +25253,12 @@
 /area/crew_quarters/sleep/Dorm_4)
 "aQk" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/light_switch{
 	name = "light switch ";
 	pixel_y = 26
 	},
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_4)
 "aQl" = (
@@ -26391,12 +26391,12 @@
 /area/crew_quarters/sleep/Dorm_2)
 "aSs" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/light_switch{
 	name = "light switch ";
 	pixel_y = 26
 	},
+/obj/random/donkpocketbox,
 /turf/simulated/floor/wood,
 /area/crew_quarters/sleep/Dorm_2)
 "aSt" = (
@@ -32185,7 +32185,6 @@
 /area/tether/surfacebase/security/brig)
 "dlB" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/donkpockets,
 /obj/effect/floor_decal/corner/lightorange{
 	dir = 6
 	},
@@ -32195,6 +32194,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/random/donkpocketbox,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/brig)
 "doa" = (

@@ -709,7 +709,15 @@
 				/obj/random/snack,
 				/obj/random/snack,
 				/obj/random/snack,
-				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS/obj/item/weapon/storage/box/donkpockets
+			),
+			prob(10);list(
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI DONK-POCKETS
 			),
 			prob(10);list(
 				/obj/random/powercell,

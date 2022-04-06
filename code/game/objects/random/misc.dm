@@ -1022,3 +1022,18 @@
 			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/rainbow,
 			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/metal,
 			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/talon)
+
+/obj/random/donkpocketbox
+	name = "Random Donk-pocket Box"
+	desc = "This is a random Donk-pocket Box."
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "donkpocket_spawner"
+
+/obj/random/donkpocketbox/item_to_spawn()
+	return pick(/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets/spicy,
+				/obj/item/weapon/storage/box/donkpockets/teriyaki,
+				/obj/item/weapon/storage/box/donkpockets/pizza,
+				/obj/item/weapon/storage/box/donkpockets/honk,
+				/obj/item/weapon/storage/box/donkpockets/gondola,
+				/obj/item/weapon/storage/box/donkpockets/berry)

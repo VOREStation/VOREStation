@@ -1001,7 +1001,7 @@
 	reagents.add_reagent("protein", 6)
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket
-	name = "Donk-pocket"
+	name = "\improper Donk-pocket"
 	desc = "The food of choice for the seasoned traitor."
 	description_fluff = "DONKpockets were originally a Nanotrasen product, an attempt to break into the food market controlled by Centauri Provisions. Somehow, Centauri wound up with the rights to the DONK brand, ending Nanotrasen's ambitions. They taste pretty okay."
 	icon_state = "donkpocket"
@@ -1034,6 +1034,56 @@
 				src.reagents.del_reagent(reagent)
 			src.name = initial(name)
 	return
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/spicy
+	name = "\improper Spicy-pocket"
+	desc = "The classic snack food, now with a heat-activated spicy flair."
+	icon_state = "donkpocketspicy"
+	nutriment_amt = 2
+	nutriment_desc = list("heartiness" = 1, "dough" = 2, "spice" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/teriyaki
+	name = "\improper Teriyaki-pocket"
+	desc = "An east-asian take on the classic stationside snack."
+	icon_state = "donkpocketteriyaki"
+	nutriment_amt = 2
+	nutriment_desc = list("meat" = 1, "dough" = 2, "soy sauce" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/pizza
+	name = "\improper Pizza-pocket"
+	desc = "Delicious, cheesy and surprisingly filling."
+	icon_state = "donkpocketpizza"
+	nutriment_amt = 2
+	nutriment_desc = list("meat" = 1, "dough" = 2, "cheese"= 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/honk
+	name = "\improper Honk-pocket"
+	desc = "The award-winning donk-pocket that won the hearts of clowns and humans alike."
+	icon_state = "donkpocketbanana"
+	nutriment_amt = 2
+	nutriment_desc = list("banana" = 1, "dough" = 2, "children's antibiotics"= 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/berry
+	name = "\improper Berry-pocket"
+	desc = "A relentlessly sweet donk-pocket first created for use in Operation Dessert Storm."
+	icon_state = "donkpocketberry"
+	nutriment_amt = 2
+	nutriment_desc = list("dough" = 2, "jam" = 2)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/gondola
+	name = "\improper Gondola-pocket"
+	desc = "The choice to use real gondola meat in the recipe is controversial, to say the least." //Only a monster would craft this.
+	icon_state = "donkpocketberry"
+	nutriment_amt = 2
+	nutriment_desc = list("heartiness" = 1, "dough" = 2, "inner peace" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/donkpocket/dankpocket
+	name = "\improper Dank-pocket"
+	desc = "The food of choice for the seasoned botanist."
+	icon_state = "dankpocket"
+	nutriment_amt = 2
+	nutriment_desc = list("heartiness" = 1, "dough" = 2)
+	heated_reagents = list("space_drugs" = 5)
 
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket
 	name = "\improper Sin-pocket"

@@ -8891,6 +8891,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/shaker,
 /obj/item/weapon/reagent_containers/glass/rag,
 /obj/structure/table/rack,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarroomb)
 "GD" = (
