@@ -377,7 +377,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
-/obj/structure/closet/secure_closet/guncabinet/phase,
+/obj/structure/closet/secure_closet/guncabinet/excursion,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
 "gE" = (
@@ -1663,7 +1663,7 @@
 /obj/structure/closet/secure_closet/pathfinder{
 	req_access = list(62,43,67)
 	},
-/obj/item/device/bluespaceradio/tether_prelinked,
+/obj/item/device/bluespaceradio/groundbase_prelinked,
 /obj/machinery/camera/network/exploration,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
