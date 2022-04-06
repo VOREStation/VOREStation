@@ -709,7 +709,7 @@
 				/obj/random/snack,
 				/obj/random/snack,
 				/obj/random/snack,
-				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS/obj/item/weapon/storage/box/donkpockets
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
 			),
 			prob(10);list(
 				/obj/item/weapon/storage/box/donkpockets,
