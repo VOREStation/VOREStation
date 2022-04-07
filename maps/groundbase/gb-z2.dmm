@@ -4061,7 +4061,7 @@
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
 	name = "Temple of Silence";
-	req_access = list(26)
+	req_access = list(138)
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
