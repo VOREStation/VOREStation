@@ -17,7 +17,7 @@
 	text2file(map, "data/map.txt")
 	to_chat(usr, "<span class='filter_notice'>Map Rotation Overidden. New map: [map]</span>")
 
-	var/response = tgui_alert(usr, "Do you want to set the rotation as 'Due' after this round?","Override Map Rotation",list("Yes","No"))
+	var/response = tgui_alert(usr, "Do you want the map rotation to trigger after this roundend?","Override Map Rotation",list("Yes","No"))
 
 	if(response == "No")
 		return

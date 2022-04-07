@@ -594,3 +594,13 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 #SUGGESTED_BYOND_VERSION 514
 # Suggested BYOND client build (minor component, e.g. 1560)
 #SUGGESTED_BYOND_BUILD 1561
+
+## Map Rotation Specific ##
+# Enable/Disable Map Rotation
+ALLOW_MAP_ROTATION 1
+
+# 0 = Manual, 1 = Vote, 2 = Automatic
+MAP_ROTATION_MODE 1
+
+# How many rounds should pass until above mode will be triggered
+ROTATE_AFTER_ROUND 10

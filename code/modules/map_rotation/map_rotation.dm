@@ -33,7 +33,7 @@ var/map_round_count = 0
     else
         var/lines = splittext(text, "\n")
         for(var/line in lines)
-            map_round_count += line
+            map_round_count += text2num(line)
 
 /proc/update_rotation_data()
     fdel("data/rotation.txt")

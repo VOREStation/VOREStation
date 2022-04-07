@@ -12,6 +12,10 @@
 	var/static/ipqualityscore_apikey //API key for ipqualityscore.com
 	var/static/use_playtime_restriction_for_jobs = FALSE
 
+	var/static/allow_map_rotation = TRUE
+	var/static/map_rotation_mode = 1
+	var/static/rotate_after_round = 10
+
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
 	for(var/t in Lines)
@@ -61,4 +65,11 @@
 				config.ipqualityscore_apikey = value
 			if ("use_playtime_restriction_for_jobs")
 				config.use_playtime_restriction_for_jobs = TRUE
+			if("allow_map_rotation")
+				config.allow_map_rotation = text2num(value)
+			if("map_rotation_mode")
+				config.map_rotation_mode = text2num(value)
+			if("rotate_after_round")
+				config.rotate_after_round = text2num(value)
+
 	return 1

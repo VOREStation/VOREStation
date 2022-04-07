@@ -293,10 +293,6 @@ var/list/gamemode_cache = list()
 	var/static/vgs_access_identifier = null	// VOREStation Edit - VGS
 	var/static/vgs_server_port = null	// VOREStation Edit - VGS
 
-	var/static/allow_map_rotation = TRUE // VOREStation Edit
-	var/static/map_rotation_mode = 1 // VOREStation Edit
-	var/static/rotate_after_round = 10 // VOREStation Edit
-
 	var/disable_webhook_embeds = FALSE
 
 	var/static/list/jukebox_track_files
@@ -1041,23 +1037,6 @@ var/list/gamemode_cache = list()
 
 				else
 					log_misc("Unknown setting in configuration: '[name]'")
-
-		// VOREStation Edit Start - Can't be in _vr file because it is loaded too late.
-		else if(type == "map_rotation_options")
-			switch(name)
-				if("allow_map_rotation")
-					config.allow_map_rotation = 1
-
-				if("map_rotation_mode")
-					config.map_rotation_mode = 1
-
-				if("rotate_after_round")
-					config.rotate_after_round = 10
-
-				else
-					log_misc("Unknown setting in map rotation configuration: '[name]'")
-		// VOREStation Edit End
-
 
 /datum/configuration/proc/loadsql(filename)  // -- TLE
 	var/list/Lines = file2list(filename)
