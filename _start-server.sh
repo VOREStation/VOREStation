@@ -1,1 +1,1 @@
-python3 scripts/rotate_map.py
+python scripts/rotate_map.py
