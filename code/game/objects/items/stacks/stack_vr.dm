@@ -1,6 +1,9 @@
 // Porting stack dragging/auto stacking from TG.
 
 /obj/item/stack/proc/merge(obj/item/stack/S) //Merge src into S, as much as possible
+	if(uses_charge || S.uses_charge) // This should realistically never happen, but in case it does lets avoid breaking things.
+		return
+
 	var/transfer = get_amount()
 	transfer = min(transfer, S.max_amount - S.amount)
 	if(pulledby)
@@ -13,6 +16,5 @@
 
 /obj/item/stack/Crossed(var/atom/movable/AM)
 	if(AM != src && istype(AM, src.type) && !AM.throwing)
-		log_and_message_admins("AM is [AM] and source is [src] going ahead with merge.")
 		merge(AM)
 	return ..()
