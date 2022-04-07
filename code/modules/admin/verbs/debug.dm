@@ -673,3 +673,19 @@
 				var/log = "[key_name(src)] changed [planet.name]'s time to [planet.current_time.show_time("hh:mm")]."
 				message_admins(log)
 				log_admin(log)
+
+/datum/admins/proc/trigger_map_rotation()
+	set category = "Debug"
+	set name = "Trigger Map Rotation"
+	set desc = "Trigger the map rotation script instantly."
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	var/response = tgui_alert(usr, "Are you sure? This will instantly shut down and recompile the server!","Trigger Map Rotation",list("Yes","No"))
+
+	if(response == "No")
+		return
+
+	log_admin("[key_name(usr)] forcibly triggered the map rotation script.")
+	rotate_map()

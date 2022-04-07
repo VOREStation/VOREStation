@@ -247,6 +247,11 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(blackbox)
 				blackbox.save_all_data_to_sql()	// TODO - Blackbox or statistics subsystem
 
+			if (config.allow_map_rotation) // VOREStation Edit
+				map_round_count += 1
+				update_rotation_data()
+				check_due()
+
 			end_game_state = END_GAME_ENDING
 			return
 		if(END_GAME_ENDING)

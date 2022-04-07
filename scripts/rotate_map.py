@@ -6,7 +6,7 @@ maps = []
 # Terminate old server process
 print("INFO: Terminating old server instance...")
 try:
-    os.system("taskkill /t /im dreamdaemon.exe") # TODO: Check if any process called "dreamdaemon.exe" still exists.
+    os.system("taskkill /im dreamdaemon.exe") # TODO: Check if any process called "dreamdaemon.exe" still exists.
 except Exception as err:
     print("WARN: Unable to terminate server process! Server might not be running:\n" + err.with_traceback)
 
@@ -23,7 +23,7 @@ with open("config/map_rotation.txt", "r") as f:
 # Get map chosen by vote/automatic rotation/admin verb
 try:
     with open("data/map.txt", "r") as f:
-        new_map = f.readline()
+        new_map = f.readline().rstrip()
         f.close()
 except FileNotFoundError as err:
     print("WARN: data/map.txt does not exist yet. Defaulting to first config/map_rotation.txt entry...")

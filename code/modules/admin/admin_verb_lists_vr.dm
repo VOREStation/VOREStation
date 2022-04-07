@@ -204,7 +204,8 @@ var/list/admin_verbs_server = list(
 	/client/proc/recipe_dump,
 	/client/proc/panicbunker,
 	/client/proc/paranoia_logging,
-	/client/proc/ip_reputation
+	/client/proc/ip_reputation,
+	/datum/admins/proc/override_map_rotation
 	)
 
 var/list/admin_verbs_debug = list(
@@ -259,6 +260,7 @@ var/list/admin_verbs_debug = list(
 	/datum/admins/proc/set_uplink, //VOREStation Add,
 	/datum/admins/proc/change_weather,
 	/datum/admins/proc/change_time,
+	/datum/admins/proc/trigger_map_rotation,
 	/client/proc/admin_give_modifier,
 	/client/proc/simple_DPS,
 	/datum/admins/proc/view_feedback

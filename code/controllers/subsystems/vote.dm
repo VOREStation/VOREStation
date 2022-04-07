@@ -56,6 +56,10 @@ SUBSYSTEM_DEF(vote)
 	initiate_vote(VOTE_GAMEMODE, "the server", 1)
 	log_debug("The server has called a gamemode vote.")
 
+/datum/controller/subsystem/vote/proc/autorotation() //VOREStation Edit
+	initiate_vote(VOTE_MAP_ROTATION, "the server", 1) //VOREStation Edit
+	log_debug("The server has called a map rotation vote.") //VOREStation Edit
+
 /datum/controller/subsystem/vote/proc/reset()
 	initiator = null
 	started_time = null
@@ -129,6 +133,9 @@ SUBSYSTEM_DEF(vote)
 				round_voters += key // Keep track of who voted for the winning round.
 		if(mode != VOTE_GAMEMODE || . == "Extended" || ticker.hide_mode == 0) // Announce Extended gamemode, but not other gamemodes
 			text += "<b>Vote Result: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .]</b>"
+		else if(mode == VOTE_MAP_ROTATION) //VOREStation Edit
+			fdel("data/map.txt") //VOREStation Edit
+			text2file(., "data/map.txt") //VOREStation Edit
 		else
 			text += "<b>The vote has ended.</b>"
 
@@ -142,6 +149,7 @@ SUBSYSTEM_DEF(vote)
 /datum/controller/subsystem/vote/proc/result()
 	. = announce_result()
 	var/restart = 0
+	var/rotate_map = 0 //VOREStation Edit
 	if(.)
 		switch(mode)
 			if(VOTE_RESTART)
@@ -162,11 +170,21 @@ SUBSYSTEM_DEF(vote)
 					antag_add_failed = 1
 				else
 					additional_antag_types |= antag_names_to_ids[.]
+			if(VOTE_MAP_ROTATION) //VOREStation Edit
+				rotate_map = 1 //VOREStation Edit
 
 	if(mode == VOTE_GAMEMODE) //fire this even if the vote fails.
 		if(!round_progressing)
 			round_progressing = 1
 			to_world("<font color='red'><b>The round will start soon.</b></font>")
+
+	if(rotate_map) //VOREStation Edit
+		to_world("Rotating map due to vote...") //VOREStation Edit
+		feedback_set_details("end_error", "map rotation vote") //VOREStation Edit
+		if(blackbox) //VOREStation Edit
+			blackbox.save_all_data_to_sql() //VOREStation Edit
+		sleep(50) //VOREStation Edit
+		rotate_map() //VOREStation Edit
 
 	if(restart)
 		to_world("World restarting due to vote...")
@@ -230,6 +248,9 @@ SUBSYSTEM_DEF(vote)
 					if(!(antag.id in additional_antag_types) && antag.is_votable())
 						choices.Add(antag.role_text)
 				choices.Add("None")
+			if(VOTE_MAP_ROTATION) //VOREStation Edit
+				choices.Add(map_rotation) //VOREStation Edit
+
 			if(VOTE_CUSTOM)
 				question = sanitizeSafe(input(usr, "What is the vote for?") as text|null)
 				if(!question)
@@ -253,7 +274,7 @@ SUBSYSTEM_DEF(vote)
 		log_vote(text)
 
 		to_world("<font color='purple'><b>[text]</b>\nType <b>vote</b> or click <a href='?src=\ref[src]'>here</a> to place your votes.\nYou have [config.vote_period / 10] seconds to vote.</font>")
-		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_CUSTOM)
+		if(vote_type == VOTE_CREW_TRANSFER || vote_type == VOTE_GAMEMODE || vote_type == VOTE_MAP_ROTATION || vote_type == VOTE_CUSTOM) //VOREStation Edit
 			world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 3)
 
 		if(mode == VOTE_GAMEMODE && round_progressing)
@@ -333,7 +354,17 @@ SUBSYSTEM_DEF(vote)
 			. += "<a href='?src=\ref[src];vote=add_antagonist'>Add Antagonist Type</a>"
 		else
 			. += "<font color='grey'>Add Antagonist (Disallowed)</font>"
+		. += "</li><li>"
+
+		if(admin || config.allow_map_rotation)
+			. += "<a href='?src=\ref[src];vote=maprotation'>Map Rotation</a>"
+		else
+			. += "<font color='grey'>Map Rotation (Disallowed)</font>"
 		. += "</li>"
+
+		if(admin)
+			. += "\t(<a href='?src=\ref[src];vote=toggle_maprotation'>[config.allow_map_rotation ? "Allowed" : "Disallowed"]</a>)"
+		. += "</li><li>"
 
 		if(admin)
 			. += "<li><a href='?src=\ref[src];vote=custom'>Custom</a></li>"
@@ -359,6 +390,9 @@ SUBSYSTEM_DEF(vote)
 		if("toggle_gamemode")
 			if(usr.client.holder)
 				config.allow_vote_mode = !config.allow_vote_mode
+		if("toggle_maprotation") //VOREStation Edit
+			if(usr.client.holder) //VOREStation Edit
+				config.allow_map_rotation = !config.allow_map_rotation //VOREStation Edit
 
 		if(VOTE_RESTART)
 			if(config.allow_vote_restart || usr.client.holder)
@@ -372,6 +406,9 @@ SUBSYSTEM_DEF(vote)
 		if(VOTE_ADD_ANTAGONIST)
 			if(config.allow_extra_antags || usr.client.holder)
 				initiate_vote(VOTE_ADD_ANTAGONIST, usr.key)
+		if(VOTE_MAP_ROTATION) //VOREStation Edit
+			if(config.allow_map_rotation || usr.client.holder) //VOREStation Edit
+				initiate_vote(VOTE_MAP_ROTATION, usr.key) //VOREStation Edit
 		if(VOTE_CUSTOM)
 			if(usr.client.holder)
 				initiate_vote(VOTE_CUSTOM, usr.key)
