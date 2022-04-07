@@ -965,7 +965,7 @@
 			var/B = 0
 
 			for(var/C in colors_to_blend)
-				var/RGB = hex2rgb(C)
+				var/RGB = rgb2num(C)
 				R = between(0, R + RGB[1], 255)
 				G = between(0, G + RGB[2], 255)
 				B = between(0, B + RGB[3], 255)

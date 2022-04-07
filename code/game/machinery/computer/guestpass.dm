@@ -189,6 +189,7 @@
 				if(A in giver.access)	//Let's make sure the ID card actually has the access.
 					accesses.Add(A)
 				else
+<<<<<<< HEAD
 					to_chat(usr, "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>")
 					log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
 		if("id")
@@ -198,6 +199,41 @@
 					if(!usr.get_active_hand())
 						usr.put_in_hands(giver)
 					giver = null
+=======
+					var/obj/item/I = usr.get_active_hand()
+					if (istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+						I.loc = src
+						giver = I
+
+			if ("print")
+				var/dat = "<h3>Activity log of guest pass terminal #[uid]</h3><br>"
+				for (var/entry in internal_log)
+					dat += "[entry]<br><hr>"
+				//to_chat(usr, "Printing the log, standby...")
+				//sleep(50)
+				var/obj/item/weapon/paper/P = new/obj/item/weapon/paper( loc )
+				P.name = "activity log"
+				P.info = dat
+
+			if ("issue")
+				if (giver)
+					var/number = pad_left("[rand(1, 9999)]", 4, "0")
+					var/entry = "\[[stationtime2text()]\] Pass #[number] issued by [giver.registered_name] ([giver.assignment]) to [giv_name]. Reason: [reason]. Grants access to following areas: "
+					for (var/i=1 to accesses.len)
+						var/A = accesses[i]
+						if (A)
+							var/area = get_access_desc(A)
+							entry += "[i > 1 ? ", [area]" : "[area]"]"
+					entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
+					internal_log.Add(entry)
+
+					var/obj/item/weapon/card/id/guest/pass = new(src.loc)
+					pass.temp_access = accesses.Copy()
+					pass.registered_name = giv_name
+					pass.expiration_time = world.time + duration*10*60
+					pass.reason = reason
+					pass.name = "guest pass #[number]"
+>>>>>>> da2046da8d5... Merge pull request #8482 from Spookerton/spkrtn/cng/legacy-text-number-handling
 				else
 					giver.loc = src.loc
 					giver = null

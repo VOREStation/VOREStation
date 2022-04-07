@@ -152,7 +152,7 @@
 	if(emergency_shuttle.has_eta())
 		var/timeleft = emergency_shuttle.estimate_arrival_time()
 		data["esc_status"] = emergency_shuttle.online() ? "ETA:" : "RECALLING:"
-		data["esc_status"] += " [timeleft / 60 % 60]:[add_zero(num2text(timeleft % 60), 2)]"
+		data["esc_status"] += " [timeleft / 60 % 60]:[pad_left(num2text(timeleft % 60), 2, "0")]"
 	return data
 
 /datum/tgui_module/communications/proc/setCurrentMessage(mob/user, value)

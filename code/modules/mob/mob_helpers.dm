@@ -86,13 +86,6 @@
 	return check_rights(R_ADMIN|R_EVENT, 0, user) != 0
 
 
-/proc/hsl2rgb(h, s, l)
-	return //TODO: Implement
-
-/*
-	Miss Chance
-*/
-
 /proc/check_zone(zone)
 	if(!zone)	return BP_TORSO
 	switch(zone)

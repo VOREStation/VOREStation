@@ -40,7 +40,7 @@
 	var/new_color = input(usr, "Pick a new color for your eyes.","Eye Color", current_color) as null|color
 	if(new_color && owner)
 		// input() supplies us with a hex color, which we can't use, so we convert it to rbg values.
-		var/list/new_color_rgb_list = hex2rgb(new_color)
+		var/list/new_color_rgb_list = rgb2num(new_color)
 		// First, update mob vars.
 		owner.r_eyes = new_color_rgb_list[1]
 		owner.g_eyes = new_color_rgb_list[2]

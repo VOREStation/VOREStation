@@ -393,11 +393,11 @@
 		else
 			if (emergency_shuttle.wait_for_launch)
 				var/timeleft = emergency_shuttle.estimate_launch_time()
-				dat += "ETL: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
+				dat += "ETL: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[pad_left(num2text(timeleft % 60), 2, "0")]</a><BR>"
 
 			else if (emergency_shuttle.shuttle.has_arrive_time())
 				var/timeleft = emergency_shuttle.estimate_arrival_time()
-				dat += "ETA: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[add_zero(num2text(timeleft % 60), 2)]</a><BR>"
+				dat += "ETA: <a href='?src=\ref[src];edit_shuttle_time=1'>[(timeleft / 60) % 60]:[pad_left(num2text(timeleft % 60), 2, "0")]</a><BR>"
 				dat += "<a href='?src=\ref[src];call_shuttle=2'>Send Back</a><br>"
 
 			if (emergency_shuttle.shuttle.moving_status == SHUTTLE_WARMUP)

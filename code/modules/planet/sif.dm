@@ -78,12 +78,12 @@ var/datum/planet/sif/planet_sif = null
 	if(weather_holder && weather_holder.current_weather && weather_holder.current_weather.light_color)
 		new_color = weather_holder.current_weather.light_color
 	else
-		var/list/low_color_list = hex2rgb(low_color)
+		var/list/low_color_list = rgb2num(low_color)
 		var/low_r = low_color_list[1]
 		var/low_g = low_color_list[2]
 		var/low_b = low_color_list[3]
 
-		var/list/high_color_list = hex2rgb(high_color)
+		var/list/high_color_list = rgb2num(high_color)
 		var/high_r = high_color_list[1]
 		var/high_g = high_color_list[2]
 		var/high_b = high_color_list[3]

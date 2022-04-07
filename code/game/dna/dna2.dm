@@ -460,8 +460,13 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	SetSEBlock(block,newBlock,defer)
 
 
+<<<<<<< HEAD
 /proc/EncodeDNABlock(var/value)
 	return num2hex(value, 3)
+=======
+/proc/EncodeDNABlock(value)
+	return pad_left(num2hex(value), 3, "0")
+>>>>>>> da2046da8d5... Merge pull request #8482 from Spookerton/spkrtn/cng/legacy-text-number-handling
 
 /datum/dna/proc/UpdateUI()
 	src.uni_identity=""

@@ -34,11 +34,10 @@ var/global/datum/controller/xenobio/xenobio_controller // Set in New().
 	var/list/xenobio_traits = ALL_XENO_GENES
 	while(xenobio_traits && xenobio_traits.len)
 		var/gene_tag = pick(xenobio_traits)
-		var/gene_mask = "[uppertext(num2hex(rand(0,255), 2))]"
-
-		while(gene_mask in used_masks)
-			gene_mask = "[uppertext(num2hex(rand(0,255), 2))]"
-
+		var/gene_mask
+		do
+			gene_mask = random_hex_text(2, TRUE)
+		while (gene_mask in used_masks)
 		used_masks += gene_mask
 		xenobio_traits -= gene_tag
 		gene_tag_masks[gene_tag] = gene_mask

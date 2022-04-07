@@ -14,7 +14,7 @@
 	var/resistance = 10 // % chance a disease will resist cure, up to 100
 
 /datum/disease2/disease/New()
-	uniqueID = rand(0,10000)
+	uniqueID = rand(1, 9999)
 	..()
 
 /datum/disease2/disease/proc/makerandom(var/severity=1)
@@ -25,7 +25,7 @@
 		holder.getrandomeffect(severity, excludetypes)
 		excludetypes += holder.effect.type
 		effects += holder
-	uniqueID = rand(0,10000)
+	uniqueID = rand(1, 9999)
 	switch(severity)
 		if(1)
 			infectionchance = 1
@@ -142,13 +142,13 @@
 	BITSET(mob.hud_updateflag, STATUS_HUD)
 
 /datum/disease2/disease/proc/minormutate()
-	//uniqueID = rand(0,10000)
+	//uniqueID = rand(1, 9999)
 	var/datum/disease2/effectholder/holder = pick(effects)
 	holder.minormutate()
 	//infectionchance = min(50,infectionchance + rand(0,10))
 
 /datum/disease2/disease/proc/majormutate()
-	uniqueID = rand(0,10000)
+	uniqueID = rand(1, 9999)
 	var/datum/disease2/effectholder/holder = pick(effects)
 	var/list/exclude = list()
 	for(var/datum/disease2/effectholder/D in effects)
@@ -215,7 +215,7 @@
 var/global/list/virusDB = list()
 
 /datum/disease2/disease/proc/name()
-	.= "stamm #[add_zero("[uniqueID]", 4)]"
+	.= "stamm #[pad_left(uniqueID, 8, "0")]"
 	if ("[uniqueID]" in virusDB)
 		var/datum/data/record/V = virusDB["[uniqueID]"]
 		.= V.fields["name"]

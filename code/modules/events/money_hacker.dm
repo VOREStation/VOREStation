@@ -52,7 +52,7 @@ GLOBAL_VAR_INIT(account_hack_attempted, 0)
 		var/date2 = "[num2text(rand(1,31))] [pick("January","February","March","April","May","June","July","August","September","October","November","December")], [rand(1000,3000)]"
 		T.date = pick("", current_date_string, date1, date2)
 		var/time1 = rand(0, 99999999)
-		var/time2 = "[round(time1 / 36000)+12]:[(time1 / 600 % 60) < 10 ? add_zero(time1 / 600 % 60, 1) : time1 / 600 % 60]"
+		var/time2 = "[round(time1 / 36000)+12]:[(time1 / 600 % 60) < 10 ? pad_left("[time1 / 600 % 60]", 2, "0") : time1 / 600 % 60]"
 		T.time = pick("", stationtime2text(), time2)
 		T.source_terminal = pick("","[pick("Biesel","New Gibson")] GalaxyNet Terminal #[rand(111,999)]","your mums place","nantrasen high CommanD")
 

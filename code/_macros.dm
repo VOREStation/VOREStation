@@ -38,6 +38,15 @@
 
 #define random_id(key,min_id,max_id) uniqueness_repository.Generate(/datum/uniqueness_generator/id_random, key, min_id, max_id)
 
+
+/// Given a hexadeximal text, returns the corresponding integer
+#define hex2num(hex) (text2num(hex, 16) || 0)
+
+
+/// Given an integer number, returns a hexadecimal representation
+#define num2hex(num) num2text(num, 1, 16)
+
+
 #define ARGS_DEBUG log_debug("[__FILE__] - [__LINE__]") ; for(var/arg in args) { log_debug("\t[log_info_line(arg)]") }
 
 #define WORLD_ICON_SIZE 32 //Needed for the R-UST port
