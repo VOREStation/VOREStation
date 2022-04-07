@@ -445,6 +445,14 @@
 /area/maintenance/groundbase/level1/swtunnel
 	name = "\improper Level 1 Southwest Tunnel"
 
+/area/groundbase/unexplored/outdoors
+	name = "\improper Rascal's Pass"
+	icon_state = "orablatri"
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
+
+/area/groundbase/unexplored/rock
+	sound_env = SOUND_ENVIRONMENT_CAVE
+
 /area/groundbase/mining
 	name = "Mining"
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg', 'sound/ambience/old_foreboding/foreboding2.ogg', 'sound/ambience/old_foreboding/foreboding2.ogg')
