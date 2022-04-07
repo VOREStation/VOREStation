@@ -1,12 +1,21 @@
 import os
+import psutil
 import subprocess
+import sys
 
 maps = []
 
 # Terminate old server process
 print("INFO: Terminating old server instance...")
 try:
-    os.system("taskkill /im dreamdaemon.exe") # TODO: Check if any process called "dreamdaemon.exe" still exists.
+    if(sys.platform == "win32"):
+        process = "dreamdaemon.exe"
+    elif(sys.platform == "linux"):
+        process = "DreamDaemon"
+
+    for proc in psutil.process_iter():
+        if proc.name() == process:
+            proc.kill()
 except Exception as err:
     print("WARN: Unable to terminate server process! Server might not be running:\n" + err.with_traceback)
 
@@ -41,7 +50,10 @@ try:
         os.remove("vorestation.dme")
         os.rename("vorestation.dme.temp", "vorestation.dme")
 
-    subprocess.call(["C:\\Program Files (x86)\\BYOND\\bin\\dm.exe", "vorestation.dme"])
+    if(sys.platform == "win32"):
+        subprocess.call(["C:\\Program Files (x86)\\BYOND\\bin\\dm.exe", "vorestation.dme"])
+    elif(sys.platform == "linux"):
+        subprocess.call(["DreamMaker", "vorestation.dme"])
 except FileNotFoundError as err:
     print("ERR:" + err.filename + "could not be found!")
     exit()
@@ -50,6 +62,9 @@ except FileNotFoundError as err:
 try:
     print("INFO: Starting new server instance...")
     DETACHED_PROCESS = 8
-    subprocess.Popen("C:\\Program Files (x86)\\BYOND\\bin\\dreamdaemon.exe .\\vorestation.dmb -trusted", creationflags=DETACHED_PROCESS, close_fds=True)
+    if(sys.platform == "win32"):
+        subprocess.Popen("C:\\Program Files (x86)\\BYOND\\bin\\dreamdaemon.exe .\\vorestation.dmb -trusted", creationflags=DETACHED_PROCESS, close_fds=True)
+    elif(sys.platform == "linux"):
+        subprocess.Popen("DreamDaemon .\\vorestation.dmb -trusted", creationflags=DETACHED_PROCESS, close_fds=True)
 except Exception as err:
     print("ERR: Unable to start server process:\n" + err.with_traceback)
