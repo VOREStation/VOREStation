@@ -1,0 +1,1 @@
+python3 scripts/rotate_map.py

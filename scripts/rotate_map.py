@@ -36,7 +36,7 @@ try:
         f.close()
 except FileNotFoundError as err:
     print("WARN: data/map.txt does not exist yet. Defaulting to first config/map_rotation.txt entry...")
-    new_map = lines[0]
+    new_map = lines[0].rstrip()
 
 # Load environment file into memory and current map with new one
 # Warning, the map from rotation which is *currently* played on, might break this script
@@ -61,10 +61,10 @@ except FileNotFoundError as err:
 # Boot up the Server again
 try:
     print("INFO: Starting new server instance...")
-    DETACHED_PROCESS = 8
     if(sys.platform == "win32"):
+        DETACHED_PROCESS = 8
         subprocess.Popen("C:\\Program Files (x86)\\BYOND\\bin\\dreamdaemon.exe .\\vorestation.dmb -trusted", creationflags=DETACHED_PROCESS, close_fds=True)
     elif(sys.platform == "linux"):
-        subprocess.Popen("DreamDaemon .\\vorestation.dmb -trusted", creationflags=DETACHED_PROCESS, close_fds=True)
+        subprocess.Popen("DreamDaemon vorestation.dmb -trusted", close_fds=True)
 except Exception as err:
-    print("ERR: Unable to start server process:\n" + err.with_traceback)
+    print("ERR: Unable to start server process:\n" + err)
