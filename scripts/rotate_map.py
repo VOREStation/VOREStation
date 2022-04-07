@@ -65,6 +65,6 @@ try:
         DETACHED_PROCESS = 8
         subprocess.Popen("C:\\Program Files (x86)\\BYOND\\bin\\dreamdaemon.exe .\\vorestation.dmb -trusted", creationflags=DETACHED_PROCESS, close_fds=True)
     elif(sys.platform == "linux"):
-        subprocess.Popen("DreamDaemon vorestation.dmb -trusted", close_fds=True, shell=True) # shell=True should be replaced with something else in the future (if possible)
+        subprocess.Popen("DreamDaemon vorestation.dmb -trusted -port 2303", close_fds=True, shell=True) # shell=True should be replaced with something else in the future (if possible)
 except Exception as err:
     print("ERR: Unable to start server process:\n" + err)
