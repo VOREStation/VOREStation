@@ -7,13 +7,14 @@ var/list/ventcrawl_machinery = list(
 /mob/living/var/list/can_enter_vent_with = list(
 	/obj/item/weapon/implant,
 	/obj/item/device/radio/borg,
+	/obj/item/device/radio/headset/mob_headset,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
 	/obj/belly,
 	/obj/screen,
 	/atom/movable/emissive_blocker
 	)
-	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check
+	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check. Added mob_headset for those with radios so there's no weirdness.
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
 
 /mob/living/var/list/icon/pipes_shown = list()
