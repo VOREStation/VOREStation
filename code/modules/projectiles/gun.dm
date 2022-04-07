@@ -435,6 +435,7 @@
 		else
 			set_light(0)
 		//VOREStation Edit End
+	user.hud_used.update_ammo_hud(user, src)
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
 /obj/item/weapon/gun/proc/Fire_userless(atom/target)
@@ -527,6 +528,7 @@
 /obj/item/weapon/gun/proc/handle_click_empty(mob/user)
 	if (user)
 		user.visible_message("*click click*", "<span class='danger'>*click*</span>")
+		user.hud_used.update_ammo_hud(user, src)
 	else
 		src.visible_message("*click click*")
 	playsound(src, 'sound/weapons/empty.ogg', 100, 1)
@@ -758,8 +760,35 @@
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	to_chat(user, "<span class='notice'>\The [src] is now set to [new_mode.name].</span>")
+	user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD
 
 	return new_mode
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	switch_firemodes(user)
+
+/* TGMC Ammo HUD Port Begin */
+/obj/item/weapon/gun
+	var/hud_enabled = TRUE
+
+/obj/item/weapon/gun/proc/has_ammo_counter()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_type()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_count()
+	return FALSE
+
+/obj/item/weapon/gun/equipped(mob/living/user, slot) // When a gun is equipped to your hands, we'll add the HUD to the user. Pending porting over TGMC guncode where wielding is far more sensible.
+	if(slot == slot_l_hand || slot == slot_r_hand)
+		user.hud_used.add_ammo_hud(user, src)
+	else
+		user.hud_used.remove_ammo_hud(user, src)
+
+	return ..()
+
+/obj/item/weapon/gun/dropped(mob/living/user) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti. 
+	user.hud_used.remove_ammo_hud(user, src)
+
+	..()

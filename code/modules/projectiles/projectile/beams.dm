@@ -23,6 +23,9 @@
 	tracer_type = /obj/effect/projectile/tracer/laser
 	impact_type = /obj/effect/projectile/impact/laser
 
+	hud_state = "laser"
+	hud_state_empty = "battery_empty"
+
 /obj/item/projectile/beam/practice
 	name = "laser"
 	icon_state = "laser"
@@ -31,15 +34,18 @@
 	damage_type = BURN
 	check_armour = "laser"
 	eyeblur = 2
+	hud_state = "laser"
 
 /obj/item/projectile/beam/weaklaser
 	name = "weak laser"
 	icon_state = "laser"
 	damage = 15
+	hud_state = "laser"
 
 /obj/item/projectile/beam/weaklaser/blue
 	icon_state = "bluelaser"
 	light_color = "#0066FF"
+	hud_state = "laser_disabler"
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
@@ -47,14 +53,17 @@
 
 /obj/item/projectile/beam/smalllaser
 	damage = 25
+	hud_state = "laser"
 
 /obj/item/projectile/beam/burstlaser
 	damage = 30
 	armor_penetration = 10
+	hud_state = "laser"
 
 /obj/item/projectile/beam/midlaser
 	damage = 40
 	armor_penetration = 10
+	hud_state = "laser"
 
 /obj/item/projectile/beam/mininglaser
 	name = "pulsating laser"
@@ -81,6 +90,7 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser_heavy
 	tracer_type = /obj/effect/projectile/tracer/laser_heavy
 	impact_type = /obj/effect/projectile/impact/laser_heavy
+	hud_state = "laser_overcharge"
 
 /obj/item/projectile/beam/heavylaser/fakeemitter
 	name = "emitter beam"
@@ -88,6 +98,7 @@
 	fire_sound = 'sound/weapons/emitter.ogg'
 	light_color = "#00CC33"
 	excavation_amount = 140	// 2 shots to dig a standard rock turf. Superior due to being a mounted tool beam, to make it actually viable.
+	hud_state = "laser_overcharge"
 
 	muzzle_type = /obj/effect/projectile/muzzle/emitter
 	tracer_type = /obj/effect/projectile/tracer/emitter
@@ -97,6 +108,7 @@
 	damage = 80
 	armor_penetration = 50
 	light_color = "#FF0D00"
+	hud_state = "laser_overcharge"
 
 /obj/item/projectile/beam/xray
 	name = "xray beam"
@@ -105,6 +117,7 @@
 	damage = 25
 	armor_penetration = 50
 	light_color = "#00CC33"
+	hud_state = "laser_sniper"
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
@@ -118,6 +131,7 @@
 	armor_penetration = 90
 	irradiate = 20
 	light_color = "#00CC33"
+	hud_state = "laser_sniper"
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
@@ -129,6 +143,7 @@
 	fire_sound = 'sound/weapons/eluger.ogg'
 	damage = 40
 	light_color = "#00C6FF"
+	hud_state = "laser_disabler"
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
@@ -141,6 +156,7 @@
 	damage = 100	//Badmin toy, don't care
 	armor_penetration = 100
 	light_color = "#0066FF"
+	hud_state = "pulse"
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_pulse
 	tracer_type = /obj/effect/projectile/tracer/laser_pulse
@@ -158,6 +174,7 @@
 	damage = 0 // The actual damage is computed in /code/modules/power/singularity/emitter.dm
 	light_color = "#00CC33"
 	excavation_amount = 70 // 3 shots to mine a turf
+	hud_state = "laser_overcharge"
 
 	muzzle_type = /obj/effect/projectile/muzzle/emitter
 	tracer_type = /obj/effect/projectile/tracer/emitter
@@ -171,13 +188,14 @@
 	no_attack_log = 1
 	damage_type = BURN
 	check_armour = "laser"
+	hud_state = "monkey"
 
 	combustion = FALSE
 
 /obj/item/projectile/beam/lasertag/blue
 	icon_state = "bluelaser"
 	light_color = "#0066FF"
-
+	hud_state = "monkey"
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
@@ -192,6 +210,7 @@
 /obj/item/projectile/beam/lasertag/red
 	icon_state = "laser"
 	light_color = "#FF0D00"
+	hud_state = "monkey"
 
 /obj/item/projectile/beam/lasertag/red/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
@@ -203,6 +222,7 @@
 /obj/item/projectile/beam/lasertag/omni//A laser tag bolt that stuns EVERYONE
 	icon_state = "omnilaser"
 	light_color = "#00C6FF"
+	hud_state = "monkey"
 
 	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
@@ -222,6 +242,7 @@
 	damage = 50
 	armor_penetration = 10
 	light_color = "#00CC33"
+	hud_state = "laser_sniper"
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
@@ -238,11 +259,14 @@
 	light_color = "#FFFFFF"
 	hitsound = 'sound/weapons/zapbang.ogg'
 
+
 	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/muzzle/stun
 	tracer_type = /obj/effect/projectile/tracer/stun
 	impact_type = /obj/effect/projectile/impact/stun
+
+	hud_state = "taser" // TGMC Ammo HUD port
 
 /obj/item/projectile/beam/stun/weak
 	name = "weak stun beam"
@@ -278,6 +302,7 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
 	tracer_type = /obj/effect/projectile/tracer/laser_omni
 	impact_type = /obj/effect/projectile/impact/laser_omni
+	hud_state = "laser_disabler"
 
 /obj/item/projectile/beam/stun/blue
 	icon_state = "bluelaser"
@@ -285,6 +310,7 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
+	hud_state = "laser_disabler"
 
 /obj/item/projectile/beam/disable
     name = "disabler beam"
@@ -294,6 +320,7 @@
     agony = 100 //One shot stuns for the time being until adjustments are fully made.
     damage_type = HALLOSS
     light_color = "#00CECE"
+   	hud_state = "laser_disabler"
 
     muzzle_type = /obj/effect/projectile/muzzle/laser_omni
     tracer_type = /obj/effect/projectile/tracer/laser_omni
@@ -312,6 +339,7 @@
 	agony = 15
 	eyeblur = 2
 	hitsound = 'sound/weapons/zapbang.ogg'
+	hud_state = "taser"
 
 /obj/item/projectile/beam/shock/weak
 	damage = 5
@@ -324,6 +352,7 @@
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
 	impact_type = /obj/effect/projectile/impact/xray
+	hud_state = "laser"
 
 /obj/item/projectile/beam/imperial
 	name = "laser beam"
@@ -333,7 +362,7 @@
 	muzzle_type = /obj/effect/projectile/muzzle/darkmatter
 	tracer_type = /obj/effect/projectile/tracer/darkmatter
 	impact_type = /obj/effect/projectile/impact/darkmatter
-
+	hud_state = "plasma_rifle_blast"
 //
 // Projectile Beam Definitions
 //
@@ -344,7 +373,7 @@
 	damage_type = ELECTROCUTE //You should be safe inside a voidsuit
 	sharp = FALSE //"Wide" spectrum beam
 	light_color = COLOR_GOLD
-
+	hud_state = "monkey"
 	excavation_amount = 200 // Good at shooting rocks
 
 	muzzle_type = /obj/effect/projectile/muzzle/pointdefense
@@ -361,6 +390,8 @@
 	agony = 5
 	damage_type = HALLOSS
 	light_color = "#00CC33"
+	hud_state = "flame_green"
+	hud_state_empty = "flame_empty"
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
@@ -386,7 +417,7 @@
 	damage_type = BURN
 	check_armour = "laser"
 	light_color = "#80F5FF"
-
+	hud_state = "laser_disabler"
 	combustion = FALSE
 
 	muzzle_type = /obj/effect/projectile/muzzle/medigun

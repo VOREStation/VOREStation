@@ -1,6 +1,7 @@
 /*
  * Shotgun
  */
+
 /obj/item/weapon/gun/projectile/shotgun/pump
 	name = "shotgun"
 	desc = "The mass-produced MarsTech Meteor 29 shotgun is a favourite of police and security forces on many worlds. Uses 12g rounds."
@@ -43,12 +44,14 @@
 		else
 			chambered.loc = get_turf(src) // Eject casing
 		chambered = null
+		M.hud_used.update_ammo_hud(M, src) // TGMC Ammo HUD Port
 
 	// Load next shell
 	if(loaded.len)
 		var/obj/item/ammo_casing/AC = loaded[1] // Load next casing.
 		loaded -= AC // Remove casing from loaded list.
 		chambered = AC
+		M.hud_used.update_ammo_hud(M, src) // TGMC Ammo HUD Port
 
 	if(pump_animation) // This affects all bolt action and shotguns.
 		flick("[pump_animation]", src) // This plays any pumping
@@ -180,6 +183,7 @@
 			burst = 2
 			user.visible_message("<span class='danger'>The shotgun goes off!</span>", "<span class='danger'>The shotgun goes off in your face!</span>")
 			Fire_userless(user)
+			user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD Port
 			burst = burstsetting
 			return
 		if(do_after(user, 30)) // SHIT IS STEALTHY EYYYYY
