@@ -176,7 +176,8 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
 		)
 	w_class = ITEMSIZE_SMALL
-	var/datum/nifsoft/stored = null
+	var/datum/nifsoft/stored_organic = null
+	var/datum/nifsoft/stored_synthetic = null
 
 /obj/item/weapon/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
 	if(!in_range(user, A))
@@ -202,11 +203,19 @@
 	update_icon()
 
 	if(A == user && do_after(Hu,1 SECONDS,Ht))
-		new stored(Ht.nif,extra)
-		qdel(src)
+		if(Ht.isSynthetic())
+			new stored_synthetic(Ht.nif,extra)
+			qdel(src)
+		else
+			new stored_organic(Ht.nif,extra)
+			qdel(src)
 	else if(A != user && do_after(Hu,10 SECONDS,Ht))
-		new stored(Ht.nif,extra)
-		qdel(src)
+		if(Ht.isSynthetic())
+			new stored_synthetic(Ht.nif,extra)
+			qdel(src)
+		else
+			new stored_organic(Ht.nif,extra)
+			qdel(src)		
 	else
 		icon_state = "[initial(icon_state)]"	//If it fails to apply to a valid target and doesn't get deleted, reset its icon state
 		update_icon()
@@ -226,7 +235,8 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand.dmi',
 		)
-	stored = /datum/nifsoft/compliance
+	stored_organic = /datum/nifsoft/compliance
+	stored_synthetic = /datum/nifsoft/compliance
 	var/laws
 
 /obj/item/weapon/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
@@ -256,7 +266,8 @@
 	Align ocular port with eye socket and depress red plunger.\""
 
 	icon_state = "security"
-	stored = /datum/nifsoft/package/security
+	stored_organic = /datum/nifsoft/package/security
+	stored_synthetic = /datum/nifsoft/package/security
 
 /datum/nifsoft/package/security
 	software = list(/datum/nifsoft/ar_sec,/datum/nifsoft/flashprot)
@@ -281,7 +292,8 @@
 	Align ocular port with eye socket and depress red plunger.\""
 
 	icon_state = "engineering"
-	stored = /datum/nifsoft/package/engineering
+	stored_organic = /datum/nifsoft/package/engineering
+	stored_synthetic = /datum/nifsoft/package/engineering
 
 /datum/nifsoft/package/engineering
 	software = list(/datum/nifsoft/ar_eng,/datum/nifsoft/alarmmonitor,/datum/nifsoft/uvblocker)
@@ -305,7 +317,8 @@
 	\"Portable NIFSoft Installation Media. \n\
 	Align ocular port with eye socket and depress red plunger.\""
 
-	stored = /datum/nifsoft/package/medical
+	stored_organic = /datum/nifsoft/package/medical
+	stored_synthetic = /datum/nifsoft/package/medical
 
 /datum/nifsoft/package/medical
 	software = list(/datum/nifsoft/ar_med,/datum/nifsoft/crewmonitor)
@@ -330,10 +343,14 @@
 	Align ocular port with eye socket and depress red plunger.\""
 
 	icon_state = "mining"
-	stored = /datum/nifsoft/package/mining
+	stored_organic = /datum/nifsoft/package/mining
+	stored_synthetic = /datum/nifsoft/package/mining_synth
 
 /datum/nifsoft/package/mining
 	software = list(/datum/nifsoft/material,/datum/nifsoft/spare_breath)
+	
+/datum/nifsoft/package/mining_synth
+	software = list(/datum/nifsoft/material,/datum/nifsoft/pressure,/datum/nifsoft/heatsinks)
 
 /obj/item/weapon/storage/box/nifsofts_mining
 	name = "mining nifsoft uploaders"
