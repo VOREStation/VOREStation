@@ -383,17 +383,15 @@ const MaterialAmount = (props, context) => {
       direction="column"
       align="center">
       <Flex.Item>
-        <Box
-          className={classes([
-            'sheetmaterials32x32',
-            MATERIAL_KEYS[name],
-          ])}
-          position="relative"
-          style={style}>
-          <Tooltip
-            position="bottom"
-            content={toTitleCase(name)} />
-        </Box>
+        <Tooltip position="bottom" content={toTitleCase(name)}>
+          <Box
+            className={classes([
+              'sheetmaterials32x32',
+              MATERIAL_KEYS[name],
+            ])}
+            position="relative"
+            style={style} />
+        </Tooltip>
       </Flex.Item>
       <Flex.Item>
         <Box
