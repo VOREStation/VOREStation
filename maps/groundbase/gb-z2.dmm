@@ -74,7 +74,7 @@
 /area/groundbase/civilian/mime)
 "an" = (
 /turf/simulated/wall/r_wall,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "ao" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
@@ -411,7 +411,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "bf" = (
 /obj/structure/extinguisher_cabinet{
 	dir = 4;
@@ -1136,7 +1136,7 @@
 	name = "lightsout"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "dk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -1198,7 +1198,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "dt" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -2203,7 +2203,7 @@
 /area/groundbase/level2/se)
 "gE" = (
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "gF" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -2246,7 +2246,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "gK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2315,7 +2315,7 @@
 	},
 /obj/effect/landmark/start/commandsecretary,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "gV" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 4
@@ -2539,14 +2539,14 @@
 	pixel_y = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "hA" = (
 /obj/structure/table/woodentable,
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "hC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
@@ -3051,7 +3051,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "iY" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -3067,7 +3067,7 @@
 "iZ" = (
 /obj/structure/bed/chair/comfy/blue,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "ja" = (
 /obj/machinery/requests_console{
 	announcementConsole = 1;
@@ -3610,7 +3610,7 @@
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "kK" = (
 /obj/machinery/status_display{
 	pixel_x = -32;
@@ -3829,7 +3829,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "lr" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -4312,7 +4312,7 @@
 "mL" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "mM" = (
 /obj/structure/table/glass,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -5032,7 +5032,7 @@
 /obj/structure/table/fancyblack,
 /obj/item/weapon/pen,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "pk" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -5054,7 +5054,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "pn" = (
 /obj/structure/table/woodentable,
 /obj/machinery/photocopier/faxmachine{
@@ -5064,7 +5064,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "pp" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
@@ -5205,7 +5205,7 @@
 	},
 /obj/random/vendorall,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "pI" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -5964,7 +5964,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "sd" = (
 /obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -6115,7 +6115,7 @@
 	pixel_y = 28
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "sF" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
@@ -6462,7 +6462,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "tK" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -6925,7 +6925,7 @@
 	},
 /obj/effect/landmark/start/commandsecretary,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "vk" = (
 /obj/structure/fence,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -7252,7 +7252,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "wj" = (
 /obj/structure/bed/chair/office/light{
 	dir = 8
@@ -8461,7 +8461,7 @@
 	pixel_x = 30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Aa" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
@@ -8503,7 +8503,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Ag" = (
 /obj/structure/table/glass,
 /obj/item/weapon/book/manual/virology,
@@ -10049,7 +10049,7 @@
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/box/cups,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Eu" = (
 /obj/effect/floor_decal/corner_steel_grid{
 	dir = 10
@@ -10608,7 +10608,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Gs" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/research{
@@ -10865,7 +10865,7 @@
 	pixel_y = 30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "GX" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -10959,7 +10959,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Hl" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
@@ -12557,7 +12557,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "LR" = (
 /obj/effect/floor_decal/chapel{
 	dir = 8
@@ -13664,7 +13664,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "OU" = (
 /obj/structure/sign/painting/public{
 	pixel_y = -30
@@ -14812,7 +14812,7 @@
 	name = "The Clown Mask"
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Sf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -15011,7 +15011,7 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "SF" = (
 /obj/machinery/door/airlock{
 	id_tag = "dorm7";
@@ -15187,7 +15187,7 @@
 	pixel_x = -30
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "SY" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -15503,7 +15503,7 @@
 /obj/structure/filingcabinet/filingcabinet,
 /obj/machinery/camera/network/command,
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Ug" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -16179,7 +16179,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Wg" = (
 /obj/structure/disposalpipe/segment,
 /obj/structure/disposalpipe/segment{
@@ -17145,7 +17145,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
-/area/groundbase/command/tcomms)
+/area/groundbase/command/meeting)
 "Zr" = (
 /obj/structure/closet/secure_closet/hydroponics,
 /turf/simulated/floor/tiled,
