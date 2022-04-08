@@ -12,11 +12,11 @@
 	var/static/ipqualityscore_apikey //API key for ipqualityscore.com
 	var/static/use_playtime_restriction_for_jobs = FALSE
 
-	var/static/allow_map_rotation = TRUE
+	var/static/allow_map_rotation = 1
 	var/static/map_rotation_mode = 1
-	var/static/rotation_schedule_mode = 0
+	var/static/rotation_schedule_mode = 1
 	var/static/rotate_after_round = 10
-	var/static/rotate_after_day = "sunday"
+	var/static/rotate_after_day = "Sunday"
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")

@@ -603,11 +603,10 @@ ALLOW_MAP_ROTATION 1
 MAP_ROTATION_MODE 1
 
 # 0 = Round Based, 1 = Day Based
-# !Not Yet Implemented!
 ROTATION_SCHEDULE_MODE 0
 
 # How many rounds should pass until above mode will be triggered
 ROTATE_AFTER_ROUND 10
 
-# !Not Yet Implemented!
-ROTATE_AFTER_DAY sunday
+# On which day of the week should the above mode be triggered
+ROTATE_AFTER_DAY Sunday
