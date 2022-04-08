@@ -247,10 +247,10 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(blackbox)
 				blackbox.save_all_data_to_sql()	// TODO - Blackbox or statistics subsystem
 
-			if (config.allow_map_rotation) // VOREStation Edit
+			if (config.allow_map_rotation && !rotation_due) // VOREStation Edit
 				map_round_count += 1
 				update_rotation_data()
-				check_due()
+				rotation_due = check_due()
 
 			end_game_state = END_GAME_ENDING
 			return
@@ -260,11 +260,19 @@ var/global/datum/controller/subsystem/ticker/ticker
 				to_world("<span class='notice'><b>An admin has delayed the round end.</b></span>")
 				end_game_state = END_GAME_DELAYED
 			else if(restart_timeleft <= 0)
-				to_world("<span class='warning'><b>Restarting world!</b></span>")
-				sleep(5)
-				world.Reboot()
+				if(rotation_due) // VOREStation Edit
+					to_world("<span class='warning'><b>Rotating map!</b></span>")
+					sleep(5)
+					rotate_map()
+				else
+					to_world("<span class='warning'><b>Restarting world!</b></span>")
+					sleep(5)
+					world.Reboot()
 			else if (world.time - last_restart_notify >= 1 MINUTE)
-				to_world("<span class='notice'><b>Restarting in [round(restart_timeleft/600, 1)] minute\s.</b></span>")
+				if(rotation_due)
+					to_world("<span class='notice'><b>Rotating map in [round(restart_timeleft/600, 1)] minute\s.</b></span>")
+				else
+					to_world("<span class='notice'><b>Restarting in [round(restart_timeleft/600, 1)] minute\s.</b></span>")
 				last_restart_notify = world.time
 			return
 		if(END_GAME_DELAYED)

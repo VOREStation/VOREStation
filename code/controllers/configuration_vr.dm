@@ -14,7 +14,9 @@
 
 	var/static/allow_map_rotation = TRUE
 	var/static/map_rotation_mode = 1
+	var/static/rotation_schedule_mode = 0
 	var/static/rotate_after_round = 10
+	var/static/rotate_after_day = "sunday"
 
 /hook/startup/proc/read_vs_config()
 	var/list/Lines = file2list("config/config.txt")
@@ -69,7 +71,11 @@
 				config.allow_map_rotation = text2num(value)
 			if("map_rotation_mode")
 				config.map_rotation_mode = text2num(value)
+			if("rotation_schedule_mode")
+				config.rotation_schedule_mode = text2num(value)
 			if("rotate_after_round")
 				config.rotate_after_round = text2num(value)
+			if("rotate_after_day")
+				config.rotate_after_day = value
 
 	return 1

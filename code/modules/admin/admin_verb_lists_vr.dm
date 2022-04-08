@@ -205,7 +205,9 @@ var/list/admin_verbs_server = list(
 	/client/proc/panicbunker,
 	/client/proc/paranoia_logging,
 	/client/proc/ip_reputation,
-	/datum/admins/proc/override_map_rotation
+	/datum/admins/proc/cancel_map_rotation,
+	/datum/admins/proc/override_map_rotation,
+	/datum/admins/proc/disable_map_rotation_override
 	)
 
 var/list/admin_verbs_debug = list(

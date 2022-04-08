@@ -133,9 +133,8 @@ SUBSYSTEM_DEF(vote)
 				round_voters += key // Keep track of who voted for the winning round.
 		if(mode != VOTE_GAMEMODE || . == "Extended" || ticker.hide_mode == 0) // Announce Extended gamemode, but not other gamemodes
 			text += "<b>Vote Result: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .]</b>"
-		else if(mode == VOTE_MAP_ROTATION) //VOREStation Edit
-			fdel("data/map.txt") //VOREStation Edit
-			text2file(., "data/map.txt") //VOREStation Edit
+		else if(mode != VOTE_MAP_ROTATION) //VOREStation Edit
+			set_map(.) //VOREStation Edit
 		else
 			text += "<b>The vote has ended.</b>"
 
@@ -179,12 +178,8 @@ SUBSYSTEM_DEF(vote)
 			to_world("<font color='red'><b>The round will start soon.</b></font>")
 
 	if(rotate_map) //VOREStation Edit
-		to_world("Rotating map due to vote...") //VOREStation Edit
-		feedback_set_details("end_error", "map rotation vote") //VOREStation Edit
-		if(blackbox) //VOREStation Edit
-			blackbox.save_all_data_to_sql() //VOREStation Edit
-		sleep(50) //VOREStation Edit
-		rotate_map() //VOREStation Edit
+		rotation_due = TRUE //VOREStation Edit
+		to_world("The map will rotate once the round ends.") //VOREStation Edit
 
 	if(restart)
 		to_world("World restarting due to vote...")

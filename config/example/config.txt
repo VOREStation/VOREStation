@@ -602,5 +602,12 @@ ALLOW_MAP_ROTATION 1
 # 0 = Manual, 1 = Vote, 2 = Automatic
 MAP_ROTATION_MODE 1
 
+# 0 = Round Based, 1 = Day Based
+# !Not Yet Implemented!
+ROTATION_SCHEDULE_MODE 0
+
 # How many rounds should pass until above mode will be triggered
 ROTATE_AFTER_ROUND 10
+
+# !Not Yet Implemented!
+ROTATE_AFTER_DAY sunday
