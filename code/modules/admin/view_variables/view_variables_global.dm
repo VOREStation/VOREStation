@@ -1,40 +1,49 @@
-/proc/readglobal(which)
-	. = global.vars[which]
-		
-/proc/writeglobal(which, newval)
-	global.vars[which] = newval
+GLOBAL_DATUM(debug_real_globals, /debug_real_globals) // :3c
 
-/proc/getallglobals()
-	. = list()
-	for(var/some_global in global.vars)
-		. += some_global
 
-/var/decl/global_vars/global_vars_
+/debug_real_globals/vv_get_header()
+	return list("<b>Debug: Real Globals</b><br>")
 
-/decl/global_vars
-	var/name = "<b>Global Variables</b>"
 
-/decl/global_vars/get_view_variables_options()
-	return "" // Ensuring changes to the base proc never affect us
+/debug_real_globals/get_variables()
+	var/static/list/cache
+	if (!cache)
+		cache = list()
+		var/list/hidden = VV_hidden()
+		for (var/name in global.vars)
+			if (name in hidden)
+				continue
+			cache |= name
+		cache = sortList(cache)
+	if (!usr || !check_rights(R_ADMIN|R_DEBUG, FALSE))
+		var/static/list/locked
+		if (!locked)
+			locked = VV_locked()
+		return (cache - locked)
+	return cache.Copy()
 
-/decl/global_vars/get_variables()
-	. = getallglobals() - VV_hidden()
-	if(!usr || !check_rights(R_ADMIN|R_DEBUG, FALSE))
-		. -= VV_secluded()
 
-/decl/global_vars/get_variable_value(varname)
-	return readglobal(varname)
+/debug_real_globals/make_view_variables_variable_entry(name, value)
+	return {"(<a href="?_src_=vars;datumedit=\ref[src];varnameedit=[name]">E</a>) "}
 
-/decl/global_vars/set_variable_value(varname, value)
-	writeglobal(varname, value)
 
-/decl/global_vars/make_view_variables_variable_entry(varname, value)
-	return "(<a href='?_src_=vars;datumedit=\ref[src];varnameedit=[varname]'>E</a>) "
+/debug_real_globals/set_variable_value(name, value)
+	global.vars[name] = value
 
-/decl/global_vars/VV_locked()
+
+/debug_real_globals/get_variable_value(name)
+	return global.vars[name]
+
+
+/debug_real_globals/get_view_variables_options()
+	return ""
+
+
+/debug_real_globals/VV_locked()
 	return vars
 
-/decl/global_vars/VV_hidden()
+
+/debug_real_globals/VV_hidden()
 	return list(
 		"forumsqladdress",
 		"forumsqldb",
@@ -79,13 +88,14 @@
 		"adminlogs",
 		"cardinal",
 		"cardinalz",
-		"IClog"
+		"IClog",
+		"vchatdb"
 	)
+
 
 /client/proc/debug_global_variables()
 	set category = "Debug"
-	set name = "View Global Variables"
-
-	if(!global_vars_)
-		global_vars_ = new()
-	debug_variables(global_vars_)
+	set name = "View Real Globals"
+	if (!GLOB.debug_real_globals)
+		GLOB.debug_real_globals = new
+	debug_variables(GLOB.debug_real_globals)
