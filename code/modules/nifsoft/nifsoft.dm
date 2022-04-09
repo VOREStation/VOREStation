@@ -35,7 +35,12 @@
 	var/combat_flags = 0	// Otherwise use set_flag/clear_flag in one of your own procs for tricks
 	var/other_flags = 0
 
+	var/vision_flags_mob = 0
+	var/darkness_view = 0
+
 	var/list/planes_enabled = null	// List of vision planes this nifsoft enables when active
+
+	var/vision_exclusive = FALSE	//Whether or not this NIFSoft provides exclusive vision modifier
 
 	var/list/incompatible_with = null // List of NIFSofts that are disabled when this one is enabled
 
@@ -99,6 +104,11 @@
 		nif.set_flag(combat_flags,NIF_FLAGS_COMBAT)
 		nif.set_flag(other_flags,NIF_FLAGS_OTHER)
 
+		if(vision_exclusive)
+			var/mob/living/carbon/human/H = nif.human
+			if(H && istype(H))
+				H.recalculate_vis()
+
 	return nif_result
 
 //Called when attempting to deactivate an implant
@@ -121,6 +131,11 @@
 		nif.clear_flag(health_flags,NIF_FLAGS_HEALTH)
 		nif.clear_flag(combat_flags,NIF_FLAGS_COMBAT)
 		nif.clear_flag(other_flags,NIF_FLAGS_OTHER)
+
+		if(vision_exclusive)
+			var/mob/living/carbon/human/H = nif.human
+			if(H && istype(H))
+				H.recalculate_vis()
 
 	return nif_result
 
@@ -215,7 +230,7 @@
 			qdel(src)
 		else
 			new stored_organic(Ht.nif,extra)
-			qdel(src)		
+			qdel(src)
 	else
 		icon_state = "[initial(icon_state)]"	//If it fails to apply to a valid target and doesn't get deleted, reset its icon state
 		update_icon()
@@ -348,7 +363,7 @@
 
 /datum/nifsoft/package/mining
 	software = list(/datum/nifsoft/material,/datum/nifsoft/spare_breath)
-	
+
 /datum/nifsoft/package/mining_synth
 	software = list(/datum/nifsoft/material,/datum/nifsoft/pressure,/datum/nifsoft/heatsinks)
 

@@ -584,7 +584,7 @@
 				to_chat(src, "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>")
 
 		if(breath.temperature >= species.heat_discomfort_level)
-		
+
 			if(breath.temperature >= species.breath_heat_level_3)
 				apply_damage(HEAT_GAS_DAMAGE_LEVEL_3, BURN, BP_HEAD, used_weapon = "Excessive Heat")
 				throw_alert("temp", /obj/screen/alert/hot, HOT_ALERT_SEVERITY_MAX)
@@ -1408,12 +1408,10 @@
 		if(istype(rig) && rig.visor && !looking_elsewhere)
 			if(!rig.helmet || (head && rig.helmet == head))
 				if(rig.visor && rig.visor.vision && rig.visor.active && rig.visor.vision.glasses)
-					glasses_processed = 1
-					process_glasses(rig.visor.vision.glasses)
+					glasses_processed = process_glasses(rig.visor.vision.glasses)
 
 		if(glasses && !glasses_processed && !looking_elsewhere)
-			glasses_processed = 1
-			process_glasses(glasses)
+			glasses_processed = process_glasses(glasses)
 		if(XRAY in mutations)
 			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
 			see_in_dark = 8
@@ -1422,6 +1420,15 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.vision_flags))
 				sight |= M.vision_flags
+
+		if(!glasses_processed && nif)
+			var/datum/nifsoft/vision_soft
+			for(var/datum/nifsoft/NS in nif.nifsofts)
+				if(NS.vision_exclusive && NS.active)
+					vision_soft = NS
+					break
+			if(vision_soft)
+				glasses_processed = process_nifsoft_vision(vision_soft)		//not really glasses but equitable
 
 		if(!glasses_processed && (species.get_vision_flags(src) > 0))
 			sight |= species.get_vision_flags(src)
@@ -1451,19 +1458,34 @@
 	return 1
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
+	. = FALSE
 	if(G && G.active)
-		see_in_dark += G.darkness_view
+		if(G.darkness_view)
+			see_in_dark += G.darkness_view
+			. = TRUE
 		if(G.overlay && client)
 			client.screen |= G.overlay
 		if(G.vision_flags)
 			sight |= G.vision_flags
+			. = TRUE
 		if(istype(G,/obj/item/clothing/glasses/night) && !seer)
 			see_invisible = SEE_INVISIBLE_MINIMUM
 
 		if(G.see_invisible >= 0)
 			see_invisible = G.see_invisible
+			. = TRUE
 		else if(!druggy && !seer)
 			see_invisible = see_invisible_default
+
+/mob/living/carbon/human/proc/process_nifsoft_vision(var/datum/nifsoft/NS)
+	. = FALSE
+	if(NS && NS.active)
+		if(NS.darkness_view)
+			see_in_dark += NS.darkness_view
+			. = TRUE
+		if(NS.vision_flags_mob)
+			sight |= NS.vision_flags_mob
+			. = TRUE
 
 /mob/living/carbon/human/handle_random_events()
 	if(inStasisNow())
