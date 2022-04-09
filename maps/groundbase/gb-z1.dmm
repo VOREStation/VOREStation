@@ -241,7 +241,7 @@
 	pixel_x = 32
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/unexplored/outdoors)
+/area/groundbase/level1/se)
 "aE" = (
 /obj/machinery/shieldgen,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -427,6 +427,9 @@
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/level1/centsquare)
+"bg" = (
+/turf/simulated/wall,
+/area/groundbase/civilian/womensrestroom)
 "bh" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -454,6 +457,13 @@
 /obj/structure/cable/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/autoresleeving)
+"bm" = (
+/obj/machinery/door/airlock{
+	id_tag = "z1stall3";
+	name = "Women's Restroom Stall"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/groundbase/civilian/womensrestroom)
 "bn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
@@ -646,6 +656,21 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
+"bM" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "bO" = (
 /obj/structure/table/bench/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -859,6 +884,23 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
+"cp" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-8"
+	},
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/groundbase/civilian/mensrestroom)
 "cq" = (
 /obj/structure/table/standard,
 /obj/random/tech_supply,
@@ -1949,6 +1991,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/command/ai/hall)
+"fa" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/civilian/mensrestroom)
 "fb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
@@ -2019,6 +2067,18 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/aiciv)
+"fl" = (
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/structure/mirror{
+	pixel_y = 37
+	},
+/obj/effect/floor_decal/corner/pink{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "fm" = (
 /turf/simulated/floor/tiled/dark/virgo3c{
 	edge_blending_priority = -1;
@@ -2485,6 +2545,9 @@
 /obj/structure/railing/grey,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/northspur)
+"gu" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level1/se)
 "gv" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/security/hos)
@@ -2501,6 +2564,16 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
+"gy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/alarm{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "gz" = (
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/hos)
@@ -2758,6 +2831,16 @@
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level1/centsquare)
+"hh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/corner/pink{
+	dir = 9
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "hi" = (
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 4;
@@ -5420,6 +5503,18 @@
 	},
 /turf/simulated/wall,
 /area/groundbase/medical/autoresleeving)
+"nN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/se)
 "nO" = (
 /obj/machinery/suit_cycler,
 /turf/simulated/floor/tiled,
@@ -5431,6 +5526,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
+"nQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "nR" = (
 /obj/machinery/light{
 	dir = 4
@@ -5451,6 +5558,9 @@
 "nU" = (
 /obj/structure/table/reinforced,
 /obj/item/device/paicard,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
 "nV" = (
@@ -5774,6 +5884,13 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
+"oL" = (
+/obj/machinery/door/airlock{
+	id_tag = "z1stall1";
+	name = "Women's Restroom Stall"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/groundbase/civilian/womensrestroom)
 "oM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -5814,6 +5931,13 @@
 "oP" = (
 /turf/simulated/wall,
 /area/groundbase/level1/northspur)
+"oQ" = (
+/obj/structure/table/glass,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "oR" = (
 /obj/machinery/light{
 	dir = 8
@@ -5979,6 +6103,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halle)
+"po" = (
+/obj/structure/toilet,
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "z1stall3";
+	pixel_x = -27;
+	specialfunctions = 4
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "pp" = (
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/engislug{
 	ghostjoin = 1
@@ -6513,6 +6648,15 @@
 "qE" = (
 /turf/simulated/mineral/cave/virgo3c,
 /area/groundbase/level1/ne)
+"qF" = (
+/obj/structure/table/reinforced,
+/obj/machinery/cell_charger{
+	pixel_y = 7
+	},
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/high,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/mining)
 "qG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -6702,6 +6846,22 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/iaa1)
+"rg" = (
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/structure/mirror{
+	pixel_y = 37
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/pink/full{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "rh" = (
 /obj/machinery/recharge_station,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -7110,6 +7270,9 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
+"si" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/civilian/womensrestroom)
 "sj" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-4"
@@ -7123,6 +7286,27 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/engineering/storage)
+"sk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/mirror{
+	icon_state = "mirror_broke";
+	pixel_y = 37
+	},
+/obj/structure/sink/kitchen{
+	pixel_y = 16
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/groundbase/civilian/mensrestroom)
 "sl" = (
 /obj/machinery/camera/network/engineering{
 	dir = 4
@@ -7171,6 +7355,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"sr" = (
+/obj/structure/toilet,
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "z1stall1";
+	pixel_x = -27;
+	specialfunctions = 4
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "ss" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -7387,6 +7582,7 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
+/obj/structure/ore_box,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "sR" = (
@@ -7518,6 +7714,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
+"tj" = (
+/turf/simulated/wall,
+/area/groundbase/civilian/mensrestroom)
 "tk" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -7794,6 +7993,11 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
+"tT" = (
+/turf/simulated/floor/outdoors/grass/virgo3c{
+	outdoors = 0
+	},
+/area/groundbase/unexplored/outdoors)
 "tU" = (
 /obj/machinery/mineral/stacking_unit_console{
 	density = 0;
@@ -7856,6 +8060,22 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/detective)
+"ue" = (
+/obj/machinery/door/airlock{
+	name = "Men's Restroom"
+	},
+/obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/bmarble,
+/area/groundbase/civilian/mensrestroom)
 "uf" = (
 /obj/structure/table/standard,
 /obj/item/weapon/stock_parts/subspace/sub_filter,
@@ -8281,6 +8501,21 @@
 /obj/structure/stairs/spawner/east,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
+"vl" = (
+/obj/machinery/light/small,
+/obj/structure/toilet/prison{
+	dir = 4
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "z1stall4";
+	pixel_x = -27;
+	specialfunctions = 4
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/groundbase/civilian/mensrestroom)
 "vm" = (
 /obj/machinery/smartfridge/drinks,
 /turf/simulated/floor/lino,
@@ -8308,6 +8543,18 @@
 "vq" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/ce)
+"vr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/civilian/mensrestroom)
 "vs" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -8484,6 +8731,23 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/security/halls)
+"vI" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/alarm{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/groundbase/civilian/mensrestroom)
 "vJ" = (
 /obj/effect/landmark/arrivals,
 /turf/simulated/floor/tiled/techfloor,
@@ -8709,6 +8973,16 @@
 "wl" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/security/lobby)
+"wm" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "wn" = (
 /obj/structure/bed/chair/sofa/bench,
 /obj/effect/landmark/start/visitor,
@@ -9055,6 +9329,21 @@
 /obj/machinery/light,
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/storage)
+"xe" = (
+/obj/machinery/light/small,
+/obj/structure/toilet/prison{
+	dir = 8
+	},
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "z1stall4";
+	pixel_x = -27;
+	specialfunctions = 4
+	},
+/obj/effect/floor_decal/rust,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/asteroid_steel,
+/area/groundbase/civilian/mensrestroom)
 "xf" = (
 /obj/machinery/power/breakerbox/activated{
 	RCon_tag = "Engineering Substation Bypass"
@@ -9310,6 +9599,12 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"xF" = (
+/obj/effect/floor_decal/corner/pink{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "xG" = (
 /obj/machinery/telecomms/processor/preset_one,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -9527,6 +9822,19 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/upload)
+"yj" = (
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/bar)
+"yk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/corner/pink{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "yl" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/engineering{
@@ -9796,6 +10104,18 @@
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/groundbase/security/iaa2)
+"yU" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/civilian/womensrestroom)
 "yV" = (
 /obj/machinery/station_map{
 	pixel_y = 32
@@ -9862,6 +10182,17 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/toolstorage)
+"zc" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/power/apc{
+	dir = 4
+	},
+/obj/structure/cable/yellow,
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "zd" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -10288,6 +10619,9 @@
 /obj/item/weapon/storage/toolbox/electrical{
 	pixel_x = 1;
 	pixel_y = -1
+	},
+/obj/machinery/recharger{
+	pixel_y = 5
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
@@ -10735,6 +11069,15 @@
 "Bh" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level1/se)
+"Bj" = (
+/obj/machinery/door/airlock{
+	id_tag = "z1stall5";
+	name = "Men's Restroom Stall"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/groundbase/civilian/mensrestroom)
 "Bk" = (
 /turf/simulated/floor/outdoors/newdirt_nograss{
 	outdoors = 0
@@ -10829,6 +11172,14 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
+"Bv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level1/se)
 "Bw" = (
 /obj/item/weapon/stool/padded{
 	dir = 4
@@ -11672,6 +12023,15 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1/northspur)
+"DB" = (
+/obj/machinery/door/airlock{
+	id_tag = "z1stall4";
+	name = "Men's Restroom Stall"
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/groundbase/civilian/mensrestroom)
 "DC" = (
 /obj/structure/bookcase,
 /obj/item/weapon/book/manual/security_space_law,
@@ -12319,6 +12679,19 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
+"Fl" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/corner/pink{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "Fm" = (
 /obj/structure/cable{
 	icon_state = "2-4"
@@ -12750,6 +13123,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
+"Gt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "Gu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -12876,6 +13261,18 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/medcargo)
+"GM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/centsquare)
 "GN" = (
 /obj/machinery/mech_recharger,
 /turf/simulated/floor/tiled/dark,
@@ -13318,6 +13715,16 @@
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
+"HO" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "HP" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -13953,6 +14360,22 @@
 	outdoors = 0
 	},
 /area/groundbase/civilian/clown)
+"Jz" = (
+/obj/structure/sink{
+	pixel_y = 20
+	},
+/obj/structure/mirror{
+	pixel_y = 37
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/pink/full{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "JA" = (
 /obj/machinery/computer/secure_data{
 	dir = 4
@@ -14369,6 +14792,21 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/engineering/workshop)
+"Kt" = (
+/obj/machinery/door/airlock{
+	id_tag = "z1stall2";
+	name = "Women's Restroom Stall"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/groundbase/civilian/womensrestroom)
+"Ku" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/centsquare)
 "Kv" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -14452,6 +14890,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
+"KH" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/level1/se)
 "KI" = (
 /obj/random/vendorall,
 /turf/simulated/floor/tiled,
@@ -14564,11 +15014,10 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
 "KZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -15502,6 +15951,10 @@
 /area/groundbase/medical/or2)
 "Nj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/obj/structure/table/reinforced,
+/obj/machinery/recharger{
+	pixel_y = 5
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "Nk" = (
@@ -16636,6 +17089,22 @@
 	},
 /turf/simulated/wall,
 /area/groundbase/civilian/bar)
+"Qp" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Women's Restroom"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/bmarble,
+/area/groundbase/civilian/womensrestroom)
 "Qq" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/groundbase/level1/swtunnel)
@@ -16701,6 +17170,18 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/trashpit)
+"QB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/centsquare)
 "QC" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
@@ -16816,6 +17297,17 @@
 /obj/machinery/pipedispenser/disposal,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
+"QV" = (
+/obj/structure/toilet,
+/obj/machinery/button/remote/airlock{
+	dir = 4;
+	id = "z1stall2";
+	pixel_x = -27;
+	specialfunctions = 4
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "QW" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -17994,6 +18486,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"TK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/level1/centsquare)
 "TL" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/stock_parts/matter_bin,
@@ -18067,6 +18571,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
+"TV" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/pink/full,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "TW" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -18127,6 +18638,19 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
+"Ue" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/pink/full{
+	dir = 4
+	},
+/obj/structure/flora/pottedplant/orientaltree,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "Uf" = (
 /turf/simulated/wall,
 /area/groundbase/civilian/foodplace)
@@ -18142,6 +18666,14 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/command/ai/storage)
+"Uh" = (
+/obj/machinery/firealarm{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/pink/full,
+/obj/structure/flora/pottedplant/orientaltree,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "Ui" = (
 /obj/effect/landmark{
 	name = "JoinLateCyborg"
@@ -18960,6 +19492,12 @@
 	outdoors = 0
 	},
 /area/groundbase/level1/nw)
+"Wy" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/civilian/womensrestroom)
 "Wz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -19022,6 +19560,21 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/foyer)
+"WH" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/centsquare)
 "WI" = (
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/tiled,
@@ -19124,6 +19677,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
+"WT" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/floor_decal/corner/pink{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "WU" = (
 /obj/machinery/vending/fishing,
 /obj/machinery/light{
@@ -19912,6 +20472,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-4"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -24324,7 +24887,7 @@ ht
 KR
 GF
 GF
-GF
+oQ
 uF
 pj
 ce
@@ -26450,7 +27013,7 @@ pj
 pj
 pj
 pj
-MP
+yj
 kW
 ey
 LN
@@ -28684,12 +29247,12 @@ MO
 MO
 MO
 MO
-eR
+tT
 tG
-tG
-tG
-Rn
-Rn
+WL
+WL
+WB
+WB
 Rn
 WB
 WB
@@ -30305,14 +30868,14 @@ ay
 ay
 ay
 YW
-Oz
-Oz
-Oz
-Oz
-Oz
-Oz
-Oz
-Oz
+ay
+ay
+ay
+ay
+ay
+ay
+ay
+ay
 KZ
 Eb
 Eb
@@ -30455,7 +31018,7 @@ eR
 eR
 eR
 Eb
-Zh
+TK
 Eb
 Eb
 Nv
@@ -30597,7 +31160,7 @@ eR
 eR
 eR
 Eb
-Zh
+TK
 Eb
 Eb
 Nv
@@ -30739,7 +31302,7 @@ eR
 eR
 eR
 Io
-Zh
+TK
 Eb
 Nv
 Eb
@@ -30881,7 +31444,7 @@ pc
 eR
 eR
 US
-Zh
+TK
 Lk
 Eb
 Eb
@@ -31023,12 +31586,12 @@ pc
 eR
 eR
 Hx
-OA
-Vs
-Vs
-Vs
-Vs
-OA
+GM
+ay
+ay
+ay
+ay
+QB
 Vs
 Vs
 Vs
@@ -31170,7 +31733,7 @@ Gv
 Ge
 Eb
 Eb
-Zh
+TK
 Eb
 Eb
 qI
@@ -31252,7 +31815,7 @@ pF
 oN
 SB
 dH
-Mo
+qF
 pF
 Go
 Mo
@@ -31312,7 +31875,7 @@ eR
 eR
 eR
 eR
-Zh
+TK
 Eb
 Eb
 Eb
@@ -31454,7 +32017,7 @@ eR
 eR
 eR
 eR
-Zh
+TK
 Eb
 Nv
 Eb
@@ -31596,7 +32159,7 @@ pc
 pc
 pc
 eR
-Zh
+TK
 Eb
 Nv
 Nv
@@ -31738,7 +32301,7 @@ pc
 pc
 eR
 eR
-Zh
+TK
 Eb
 Nv
 Nv
@@ -31880,7 +32443,7 @@ pc
 eR
 eR
 eR
-Zh
+TK
 Eb
 Eb
 Nv
@@ -32018,15 +32581,15 @@ pc
 eR
 eR
 pc
-eR
-eR
-eR
-eR
-OA
-OA
-Eb
-Eb
-Eb
+nN
+Bv
+Bv
+Bv
+WH
+Ku
+ay
+ay
+QB
 Nv
 Eb
 Eb
@@ -32159,17 +32722,17 @@ pc
 pc
 pc
 eR
-eR
-eR
-eR
-eR
+gu
+KH
+gu
+gu
 aD
 GQ
 Mj
 Eb
-Eb
-Eb
-Eb
+si
+yU
+Wy
 Eb
 Lt
 Lt
@@ -32301,24 +32864,24 @@ eR
 eR
 eR
 eR
-eR
-Eb
+fa
+vr
 Lt
 Lt
 ua
 IS
 IS
-ua
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
+bg
+bg
+Qp
+bg
+bg
+bg
+bg
+bg
+bg
+bg
+bg
 Lt
 Lt
 Lt
@@ -32443,24 +33006,24 @@ eR
 eR
 eR
 eR
-eR
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
+tj
+ue
+tj
+tj
+tj
+ua
+ua
+bg
+Jz
+Fl
+Uh
+bg
+sr
+bg
+QV
+bg
+po
+bg
 Lt
 Lt
 Lt
@@ -32585,24 +33148,24 @@ eR
 eR
 eR
 eR
-eR
+tj
+vI
+DB
+vl
+tj
 Lt
 Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
+bg
+fl
+nQ
+xF
+bg
+oL
+bg
+Kt
+bg
+bm
+bg
 Lt
 Lt
 Lt
@@ -32727,24 +33290,24 @@ Eb
 Eb
 Eb
 Eb
+tj
+sk
+tj
+tj
+tj
 Lt
 Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
+bg
+fl
+Gt
+WT
+hh
+yk
+hh
+yk
+hh
+TV
+bg
 Lt
 Lt
 Lt
@@ -32869,24 +33432,24 @@ Eb
 FE
 lZ
 lZ
+tj
+cp
+Bj
+xe
+tj
 Lt
 Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
-Lt
+bg
+rg
+bM
+zc
+HO
+wm
+HO
+gy
+HO
+Ue
+bg
 Lt
 Lt
 Lt
