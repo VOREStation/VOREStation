@@ -9822,6 +9822,12 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/upload)
+"yj" = (
+/obj/machinery/vending/wallmed1/public{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/bar)
 "yk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/corner/pink{
@@ -27007,7 +27013,7 @@ pj
 pj
 pj
 pj
-MP
+yj
 kW
 ey
 LN
