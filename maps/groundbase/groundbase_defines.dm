@@ -149,7 +149,19 @@
 		/area/groundbase/science/picnic,
 		/area/groundbase/medical/patio,
 		/area/groundbase/civilian/hydroponics/out,
-		/area/groundbase/level3/escapepad
+		/area/groundbase/level3/escapepad,
+		/area/maintenance/groundbase/poi/caves,
+		/area/groundbase/poi,
+		/area/maintenance/groundbase/poi/caves,
+		/area/groundbase/poi/outdoor,
+		/area/groundbase/poi/outdoor/roofed,
+		/area/groundbase/poi/outdoor/cabin1,
+		/area/groundbase/poi/outdoor/cabin2,
+		/area/groundbase/poi/outdoor/cabin3,
+		/area/groundbase/poi/outdoor/cabin4,
+		/area/groundbase/poi/outdoor/cabin5,
+		/area/groundbase/unexplored/outdoors,
+		/area/groundbase/unexplored/rock
 		)
 
 	unit_test_exempt_from_atmos = list()
@@ -203,8 +215,8 @@
 
 /datum/map/groundbase/perform_map_generation()	//Z_LEVEL_GB_BOTTOM,Z_LEVEL_GB_MIDDLE,Z_LEVEL_GB_TOP
 
-	seed_submaps(list(Z_LEVEL_GB_BOTTOM), 60, /area/groundbase/unexplored/outdoors, /datum/map_template/groundbase/outdoor)	//Outdoor POIs
-
+	seed_submaps(list(Z_LEVEL_GB_BOTTOM,Z_LEVEL_GB_MIDDLE,Z_LEVEL_GB_TOP), 100, /area/groundbase/unexplored/outdoors, /datum/map_template/groundbase/outdoor)	//Outdoor POIs
+	seed_submaps(list(Z_LEVEL_GB_BOTTOM,Z_LEVEL_GB_MIDDLE), 200, /area/groundbase/unexplored/rock, /datum/map_template/groundbase/maintcaves)	//Cave POIs
 	new /datum/random_map/automata/cave_system/no_cracks(null, 1, 1, Z_LEVEL_MINING, world.maxx, world.maxy) // Create the mining Z-level.
 	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_MINING, 64, 64)         // Create the mining ore distribution map.
 	return 1

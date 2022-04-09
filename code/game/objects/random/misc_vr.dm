@@ -105,7 +105,7 @@
 	name = "random loot from maint"
 	desc = "A list of things that people can find in away missions."
 	icon = 'icons/mob/randomlandmarks.dmi'
-	icon_state = "awayloot"
+	icon_state = "fanc_trejur"
 	spawn_nothing_percentage = 50
 
 /obj/random/mainttoyloot/item_to_spawn()
@@ -129,5 +129,62 @@
 				prob(3);/obj/fiftyspawner/silver,
 				prob(1);/obj/fiftyspawner/diamond,
 				prob(5);/obj/fiftyspawner/phoron,
-				prob(1);/obj/item/capture_crystal/random
+				prob(1);/obj/item/capture_crystal/random,
+				prob(1);/obj/random/unidentified_medicine
 				)
+
+/obj/random/maintenance/misc //Clutter and loot for maintenance and away missions
+	name = "random maintenance item"
+	desc = "This is a random maintenance item."
+	icon = 'icons/mob/randomlandmarks.dmi'
+	icon_state = "trejur"
+	spawn_nothing_percentage = 25
+
+
+/obj/random/maintenance/misc/item_to_spawn()
+	return pick(prob(500);/obj/random/maintenance,
+				prob(300);/obj/random/maintenance/cargo,
+				prob(300);/obj/random/maintenance/engineering,
+				prob(300);/obj/random/maintenance/medical,
+				prob(300);/obj/random/maintenance/research,
+				prob(300);/obj/random/maintenance/security,
+				prob(300);/obj/random/maintenance/security,
+				prob(50);/obj/random/maintenance/morestuff,
+				prob(25);/obj/random/mainttoyloot,
+				prob(10);/obj/random/maintenance/foodstuff)
+
+/obj/random/maintenance/foodstuff
+	name = "random food or drink item"
+	desc = "This is a random maintenance item."
+	icon = 'icons/mob/randomlandmarks.dmi'
+	icon_state = "foodstuffs"
+	spawn_nothing_percentage = 0
+
+
+/obj/random/maintenance/foodstuff/item_to_spawn()
+	return pick(prob(100);/obj/random/snack,
+				prob(100);/obj/random/drinksoft,
+				prob(50);/obj/random/mre,
+				prob(10);/obj/random/donkpocketbox,
+				prob(1);/obj/random/meat)
+
+/obj/random/maintenance/morestuff
+	name = "random potentially useful things"
+	desc = "This is a random maintenance item."
+	icon = 'icons/mob/randomlandmarks.dmi'
+	icon_state = "trejur"
+	spawn_nothing_percentage = 0
+
+
+/obj/random/maintenance/misc/item_to_spawn()
+	return pick(prob(10);/obj/random/tool,
+				prob(1);/obj/random/toolbox,
+				prob(2);/obj/random/powercell,
+				prob(2);/obj/random/flashlight,
+				prob(1);/obj/random/pouch,
+				prob(1);/obj/random/thermalponcho,
+				prob(5);/obj/random/contraband,
+				prob(5);/obj/random/cargopod,
+				prob(1);/obj/item/weapon/flame/lighter/random,
+				prob(1);/obj/item/weapon/storage/wallet/random,
+				prob(1);/obj/random/cutout)
