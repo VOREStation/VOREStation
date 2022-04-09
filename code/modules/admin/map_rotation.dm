@@ -41,6 +41,7 @@
 
 		rotation_due = FALSE
 		to_chat(usr, "<span class='filter_notice'>Map Rotation Cancelled.</span>")	
+		log_admin("[usr] has cancelled the map rotation for this round.")
 
 /datum/admins/proc/override_map_rotation()
 	set category = "Server"
@@ -64,9 +65,12 @@
 		rotation_overridden = TRUE
 		update_rotation_data()
 		to_chat(usr, "<span class='filter_notice'>Map Rotation Overidden. New map: [map]. Map rotation will no longer start vote/choose automatically.</span>")
+		log_admin("[usr] has set a map override ([map]).")
 	else if(response == "Trigger at roundend")
 		rotation_due = TRUE
 		to_chat(usr, "<span class='filter_notice'>Map Rotation Overidden. New map: [map]. Map will rotate after this round.</span>")
+		log_admin("[usr] has cancelled the map rotation for this round.")
+		log_admin("[usr] has set a map override ([map]). Rotation will trigger at roundend.")
 	else
 
 
@@ -84,4 +88,11 @@
 
 	rotation_overridden = FALSE
 	update_rotation_data()
+	if(!rotation_due)
+		to_chat(usr, "<span class='filter_notice'>Map Rotation Override has been disabled. Automatic actions regarding the map rotation may appear again.</span>")
+		log_admin("[usr] has unset the map override.")
+		return
+
 	to_chat(usr, "<span class='filter_notice'>Map Rotation Override has been disabled. Automatic actions regarding the map rotation may appear again.</span>")
+	to_chat(usr, "<span class='filter_notice'>Note: Rotation will still occur at roundend.</span>")
+	log_admin("[usr] has unset the map override. Rotation will still occur at roundend.")

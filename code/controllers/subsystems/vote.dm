@@ -131,10 +131,11 @@ SUBSYSTEM_DEF(vote)
 		for(var/key in current_votes)
 			if(choices[current_votes[key]] == .)
 				round_voters += key // Keep track of who voted for the winning round.
-		if(mode != VOTE_GAMEMODE || . == "Extended" || ticker.hide_mode == 0) // Announce Extended gamemode, but not other gamemodes
-			text += "<b>Vote Result: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .]</b>"
-		else if(mode != VOTE_MAP_ROTATION) //VOREStation Edit
+		if(mode == VOTE_MAP_ROTATION) //VOREStation Edit
+			text += "<b>Map Vote Result: [.]</b>" //VOREStation Edit
 			set_map(.) //VOREStation Edit
+		else if(mode != VOTE_GAMEMODE || . == "Extended" || ticker.hide_mode == 0) // Announce Extended gamemode, but not other gamemodes //VOREStation Edit
+			text += "<b>Vote Result: [mode == VOTE_GAMEMODE ? gamemode_names[.] : .]</b>"
 		else
 			text += "<b>The vote has ended.</b>"
 
