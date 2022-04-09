@@ -112,7 +112,7 @@
 /area/groundbase/science/rnd
 	name = "Research and Development"
 /area/groundbase/science/robotics
-	name = "Rocotics"
+	name = "Robotics"
 /area/groundbase/science/server
 	name = "Science Server Room"
 /area/groundbase/science/rd
@@ -370,6 +370,12 @@
 /area/groundbase/civilian/gameroom
 	name = "Gamatorium"
 	sound_env = SMALL_SOFTFLOOR
+/area/groundbase/civilian/mensrestroom
+	name = "Men's Restroom"
+	sound_env = SOUND_ENVIRONMENT_BATHROOM
+/area/groundbase/civilian/womensrestroom
+	name = "Women's Restroom"
+	sound_env = SOUND_ENVIRONMENT_BATHROOM
 
 /area/groundbase/exploration
 	name = "Exploration"
