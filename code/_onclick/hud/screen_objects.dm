@@ -898,3 +898,80 @@
 	icon_state = null
 	plane = PLANE_HOLOMAP_ICONS
 	appearance_flags = KEEP_TOGETHER
+
+// Begin TGMC Ammo HUD Port
+/obj/screen/ammo
+	name = "ammo"
+	icon = 'icons/mob/screen_ammo.dmi'
+	icon_state = "ammo"
+	screen_loc = ui_ammo_hud1
+	var/warned = FALSE
+	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
+
+/obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
+	
+	if(!user?.client)
+		return
+	
+	if(!G)
+		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
+
+	if(!G.has_ammo_counter())
+		return
+
+	user.client.screen += src
+
+/obj/screen/ammo/proc/remove_hud(var/mob/living/user)
+	user?.client?.screen -= src
+
+/obj/screen/ammo/proc/update_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
+	if(!user?.client?.screen.Find(src))
+		return
+
+	if(!G || !istype(G) || !G.has_ammo_counter() || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+		remove_hud()
+		return
+
+	var/list/ammo_type = G.get_ammo_type()
+	var/rounds = G.get_ammo_count()
+
+	var/hud_state = ammo_type[1]
+	var/hud_state_empty = ammo_type[2]
+
+	overlays.Cut()
+
+	var/empty = image('icons/mob/screen_ammo.dmi', src, "[hud_state_empty]")
+
+	if(rounds == 0)
+		if(warned)
+			overlays += empty
+		else
+			warned = TRUE
+			var/obj/screen/ammo/F = new /obj/screen/ammo(src)
+			F.icon_state = "frame"
+			user.client.screen += F
+			flick("[hud_state_empty]_flash", F)
+			spawn(20)
+				user.client.screen -= F
+				qdel(F)
+				overlays += empty
+	else
+		warned = FALSE
+		overlays += image('icons/mob/screen_ammo.dmi', src, "[hud_state]")
+
+	rounds = num2text(rounds)
+	//Handle the amount of rounds
+	switch(length(rounds))
+		if(1)
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[1]]")
+		if(2)
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[2]]")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "t[rounds[1]]")
+		if(3)
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[3]]")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "t[rounds[2]]")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "h[rounds[1]]")
+		else //"0" is still length 1 so this means it's over 999
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o9")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "t9")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "h9")

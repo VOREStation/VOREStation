@@ -8,6 +8,8 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 	hitsound = 'sound/weapons/zapbang.ogg'
+	hud_state = "plasma"
+	hud_state_empty = "battery_empty"
 
 	var/flash_strength = 10
 
@@ -22,6 +24,7 @@
 	var/flash_range = 0
 	var/brightness = 7
 	var/light_colour = "#ffffff"
+	hud_state = "grenade_dummy"
 
 /obj/item/projectile/energy/flash/on_impact(var/atom/A)
 	var/turf/T = flash_range? src.loc : get_turf(A)
@@ -59,6 +62,7 @@
 	flash_range = 1
 	brightness = 15
 	flash_strength = 20
+	hud_state = "grenade_dummy"
 
 /obj/item/projectile/energy/flash/flare/on_impact(var/atom/A)
 	light_colour = pick("#e58775", "#ffffff", "#90ff90", "#a09030")
@@ -77,15 +81,18 @@
 	light_range = 2
 	light_power = 0.5
 	light_color = "#FFFFFF"
+	hud_state = "taser"
 	//Damage will be handled on the MOB side, to prevent window shattering.
 
 /obj/item/projectile/energy/electrode/strong
 	agony = 55
+	hud_state = "taser"
 
 /obj/item/projectile/energy/electrode/stunshot
 	name = "stunshot"
 	damage = 5
 	agony = 80
+	hud_state = "taser"
 
 /obj/item/projectile/energy/electrode/stunshot/strong
 	name = "stunshot"
@@ -93,6 +100,7 @@
 	damage = 10
 	taser_effect = 1
 	agony = 100
+	hud_state = "taser"
 
 /obj/item/projectile/energy/declone
 	name = "declone"
@@ -107,6 +115,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
 
 	combustion = FALSE
+	hud_state = "plasma_pistol"
 
 /obj/item/projectile/energy/excavate
 	name = "kinetic blast"
@@ -120,6 +129,7 @@
 
 	vacuum_traversal = 0
 	combustion = FALSE
+	hud_state = "plasma_blast"
 
 /obj/item/projectile/energy/dart
 	name = "dart"
@@ -128,6 +138,7 @@
 	damage_type = TOX
 	agony = 120
 	check_armour = "energy"
+	hud_state = "pistol_tranq"
 
 	combustion = FALSE
 
@@ -138,23 +149,28 @@
 	damage_type = TOX
 	agony = 40
 	stutter = 10
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/bolt/large
 	name = "largebolt"
 	damage = 20
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/bow
 	name = "engergy bolt"
 	icon_state = "cbbolt"
 	damage = 20
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/bow/heavy
 	damage = 30
 	icon_state = "cbbolt"
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/bow/stun
 	name = "stun bolt"
 	agony = 30
+	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/acid //Slightly up-gunned (Read: The thing does agony and checks bio resist) variant of the simple alien mob's projectile, for queens and sentinels.
 	name = "acidic spit"
@@ -166,6 +182,7 @@
 	armor_penetration = 25	// It's acid
 	hitsound_wall = 'sound/weapons/effects/alien_spit_wall.ogg'
 	hitsound = 'sound/weapons/effects/alien_spit_wall.ogg'
+	hud_state = "electrothermal"
 
 	combustion = FALSE
 
@@ -179,6 +196,7 @@
 	armor_penetration = 25	// It's acid-based
 	hitsound_wall = 'sound/weapons/effects/alien_spit_wall.ogg'
 	hitsound = 'sound/weapons/effects/alien_spit_wall.ogg'
+	hud_state = "electrothermal"
 
 	combustion = FALSE
 
@@ -188,6 +206,7 @@
 	damage = 20
 	damage_type = BIOACID
 	agony = 20
+	hud_state = "electrothermal"
 	check_armour = "bio"
 	armor_penetration = 25	// It's acid-based
 
@@ -202,6 +221,7 @@
 	light_power = 0.5
 	light_color = "#33CC00"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+	hud_state = "plasma_rifle"
 
 	combustion = FALSE
 
@@ -215,6 +235,7 @@
 	agony = 55
 	damage_type = BURN
 	vacuum_traversal = 0	//Projectile disappears in empty space
+	hud_state = "plasma_rifle_blast"
 
 /obj/item/projectile/energy/plasmastun/proc/bang(var/mob/living/carbon/M)
 
@@ -259,6 +280,7 @@
 	embed_chance = 0
 	muzzle_type = /obj/effect/projectile/muzzle/pulse
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+	hud_state = "plasma_sphere"
 
 /obj/item/projectile/energy/phase
 	name = "phase wave"
@@ -267,28 +289,35 @@
 	damage = 5
 	SA_bonus_damage = 45	// 50 total on animals
 	SA_vulnerability = SA_ANIMAL
+	hud_state = "laser_heat"
 
 /obj/item/projectile/energy/phase/light
 	range = 4
 	SA_bonus_damage = 35	// 40 total on animals
+	hud_state = "laser_heat"
 
 /obj/item/projectile/energy/phase/heavy
 	range = 8
 	SA_bonus_damage = 55	// 60 total on animals
+	hud_state = "laser_heat"
 
 /obj/item/projectile/energy/phase/heavy/cannon
 	range = 10
 	damage = 15
 	SA_bonus_damage = 60	// 75 total on animals
+	hud_state = "laser_heat"
 
 /obj/item/projectile/energy/electrode/strong
 	agony = 70
+	hud_state = "taser"
 
 /obj/item/projectile/energy
 	flash_strength = 10
+	hud_state = "taser"
 
 /obj/item/projectile/energy/flash
 	flash_range = 1
+	hud_state = "grenade_dummy"
 
 /obj/item/projectile/energy/flash/strong
 	name = "chemical shell"
@@ -297,6 +326,8 @@
 	range = 15 //if the shell hasn't hit anything after travelling this far it just explodes.
 	flash_strength = 15
 	brightness = 15
+	hud_state = "grenade_dummy"
 
 /obj/item/projectile/energy/flash/flare
 	flash_range = 2
+	hud_state = "grenade_dummy"
