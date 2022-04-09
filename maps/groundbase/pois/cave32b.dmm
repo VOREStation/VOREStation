@@ -1,0 +1,128 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"L" = (
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"S" = (
+/obj/random/trash_pile,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"Z" = (
+/obj/random/maintenance/misc,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+
+(1,1,1) = {"
+a
+a
+a
+L
+L
+L
+L
+L
+a
+"}
+(2,1,1) = {"
+a
+n
+L
+L
+L
+L
+L
+L
+n
+"}
+(3,1,1) = {"
+L
+L
+L
+a
+a
+a
+L
+L
+L
+"}
+(4,1,1) = {"
+L
+L
+a
+a
+a
+a
+Z
+L
+L
+"}
+(5,1,1) = {"
+L
+a
+a
+a
+a
+a
+a
+L
+L
+"}
+(6,1,1) = {"
+L
+a
+a
+a
+a
+a
+S
+L
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+L
+L
+L
+a
+"}
+(8,1,1) = {"
+a
+a
+L
+L
+L
+L
+L
+Z
+a
+"}
+(9,1,1) = {"
+a
+L
+L
+L
+L
+L
+a
+a
+a
+"}

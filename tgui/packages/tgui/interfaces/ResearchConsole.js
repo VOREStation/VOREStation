@@ -118,7 +118,7 @@ const TechDisk = (props, context) => {
 
   const {
     tech,
-  } = data.info;
+  } = data;
 
   const {
     disk,

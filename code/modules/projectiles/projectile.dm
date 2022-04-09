@@ -139,6 +139,10 @@
 	var/impact_effect_type = null
 
 	var/list/impacted_mobs = list()
+	
+	// TGMC Ammo HUD Port
+	var/hud_state = "unknown" // What HUD state we use when we have ammunition.
+	var/hud_state_empty = "unknown" // The empty state. DON'T USE _FLASH IN THE NAME OF THE EMPTY STATE STRING, THAT IS ADDED BY THE CODE.
 
 /obj/item/projectile/proc/Range()
 	range--

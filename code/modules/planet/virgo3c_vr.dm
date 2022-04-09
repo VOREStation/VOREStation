@@ -53,7 +53,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	var/min = 0
 
 	switch(sun_position)
-		if(0 to 0.475) // Night
+		if(0 to 0.3) // Night
 			low_brightness = 0.3
 			low_color = "#000066"
 
@@ -61,7 +61,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#66004D"
 			min = 0
 
-		if(0.475 to 0.50) // Twilight
+		if(0.3 to 0.35) // Twilight
 			low_brightness = 0.5
 			low_color = "#66004D"
 
@@ -69,7 +69,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#CC3300"
 			min = 0.40
 
-		if(0.50 to 0.525) // Sunrise/set
+		if(0.35 to 0.45) // Sunrise/set
 			low_brightness = 0.9
 			low_color = "#CC3300"
 
@@ -77,7 +77,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			high_color = "#FF9933"
 			min = 0.50
 
-		if(0.525 to 1.00) // Noon
+		if(0.45 to 1.00) // Noon
 			low_brightness = 3.0
 			low_color = "#DDDDDD"
 
@@ -166,7 +166,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	temp_low = 273.15  // 0c
 	light_modifier = 0.8
 	transition_chances = list(
-		WEATHER_CLEAR = 25,
+		WEATHER_CLEAR = 50,
 		WEATHER_OVERCAST = 50,
 		WEATHER_RAIN = 5,
 		WEATHER_LIGHT_SNOW = 5
@@ -185,7 +185,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	temp_low = 	263.15 // -10c
 	light_modifier = 0.7
 	transition_chances = list(
-		WEATHER_LIGHT_SNOW = 75,
+		WEATHER_LIGHT_SNOW = 25,
 		WEATHER_OVERCAST = 25,
 		WEATHER_SNOW = 10,
 		WEATHER_RAIN = 5
@@ -206,7 +206,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	light_modifier = 0.5
 	flight_failure_modifier = 5
 	transition_chances = list(
-		WEATHER_SNOW = 75,
+		WEATHER_SNOW = 25,
 		WEATHER_LIGHT_SNOW = 25,
 		WEATHER_BLIZZARD = 5
 		)
@@ -251,8 +251,8 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 	transition_chances = list(
 		WEATHER_OVERCAST = 25,
-		WEATHER_RAIN = 50,
-		WEATHER_STORM = 10,
+		WEATHER_RAIN = 25,
+		WEATHER_STORM = 5,
 		WEATHER_LIGHT_SNOW = 5
 		)
 	observed_message = "It is raining."
@@ -294,8 +294,8 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_message = "<span class='warning'>Rain falls on you, drenching you in water.</span>"
 
 	var/next_lightning_strike = 0 // world.time when lightning will strike.
-	var/min_lightning_cooldown = 5 SECONDS
-	var/max_lightning_cooldown = 1 MINUTE
+	var/min_lightning_cooldown = 1 SECONDS
+	var/max_lightning_cooldown = 5 MINUTE
 	observed_message = "An intense storm pours down over the region."
 	transition_messages = list(
 		"You feel intense winds hit you as the weather takes a turn for the worst.",
@@ -410,8 +410,8 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	temp_low = 273.15  // 0c
 	flight_failure_modifier = 25
 	transition_chances = list(
-		WEATHER_BLOODMOON = 75,
-		WEATHER_CLEAR = 25
+		WEATHER_BLOODMOON = 25,
+		WEATHER_CLEAR = 75
 		)
 	observed_message = "Everything is red. Something really ominous is going on."
 	transition_messages = list(
@@ -543,6 +543,8 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/glass/reinforced)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/dark)
 VIRGO3C_TURF_CREATE(/turf/simulated/mineral)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor)
+VIRGO3C_TURF_CREATE(/turf/simulated/floor/wood)
+VIRGO3C_TURF_CREATE(/turf/simulated/floor/wood/sif)
 
 /turf/simulated/open/virgo3c
 	VIRGO3C_SET_ATMOS

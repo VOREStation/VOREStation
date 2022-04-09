@@ -1,0 +1,153 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"d" = (
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"h" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/item/device/flashlight/lamp/green{
+	pixel_x = 1;
+	pixel_y = 5
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"i" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"k" = (
+/obj/random/crate,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"l" = (
+/obj/structure/bed/chair/sofa/right{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"n" = (
+/obj/structure/simple_door/wood,
+/turf/simulated/floor,
+/area/groundbase/poi/outdoor/cabin1)
+"u" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"B" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"G" = (
+/obj/structure/bed/chair/sofa/black,
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"K" = (
+/obj/structure/bed/chair/sofa/left,
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"O" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"U" = (
+/obj/structure/flora/tree/bigtree,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"V" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/groundbase/poi/outdoor/cabin1)
+"X" = (
+/turf/simulated/wall/wood,
+/area/groundbase/poi/outdoor/cabin1)
+"Z" = (
+/obj/structure/bed/chair/sofa/corner{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/poi/outdoor/cabin1)
+
+(1,1,1) = {"
+X
+X
+V
+V
+V
+X
+X
+a
+"}
+(2,1,1) = {"
+X
+Z
+l
+d
+d
+i
+V
+a
+"}
+(3,1,1) = {"
+V
+G
+h
+d
+d
+O
+V
+a
+"}
+(4,1,1) = {"
+V
+K
+d
+d
+X
+X
+X
+u
+"}
+(5,1,1) = {"
+X
+B
+d
+k
+X
+u
+u
+u
+"}
+(6,1,1) = {"
+X
+X
+n
+X
+X
+u
+u
+u
+"}
+(7,1,1) = {"
+a
+u
+u
+u
+u
+u
+U
+u
+"}
