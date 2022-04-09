@@ -3262,10 +3262,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/window/southleft{
+/obj/machinery/door/window/southright{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room2)
@@ -4866,6 +4865,7 @@
 /area/groundbase/cargo/office)
 "op" = (
 /obj/machinery/light,
+/obj/machinery/suspension_gen,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/hall)
 "oq" = (
@@ -5364,6 +5364,10 @@
 /obj/machinery/transhuman/synthprinter,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/robotics)
+"pT" = (
+/obj/machinery/suspension_gen,
+/turf/simulated/floor/tiled,
+/area/groundbase/science/hall)
 "pU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock{
@@ -6087,10 +6091,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/window/southleft{
+/obj/machinery/door/window/southright{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room6)
@@ -7207,8 +7210,18 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "vw" = (
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals10{
+	dir = 10
+	},
 /obj/machinery/alarm{
 	dir = 8
+	},
+/obj/machinery/door/window/southright{
+	dir = 1;
+	name = "shower door"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room8)
@@ -11278,6 +11291,12 @@
 "Ho" = (
 /obj/structure/table/woodentable,
 /obj/random/donkpocketbox,
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/power/apc{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room3)
 "Hp" = (
@@ -11633,6 +11652,9 @@
 /obj/machinery/power/apc{
 	dir = 8
 	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room5)
 "Ip" = (
@@ -11897,10 +11919,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/machinery/door/window/southleft{
+/obj/machinery/door/window/southright{
 	dir = 1;
-	name = "shower door";
-	req_access = null
+	name = "shower door"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room4)
@@ -13963,7 +13984,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/level2/nw)
+/area/groundbase/level2/northspur)
 "OJ" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -23292,7 +23313,7 @@ Ov
 PR
 lw
 Vr
-Vr
+pT
 XX
 XX
 aa

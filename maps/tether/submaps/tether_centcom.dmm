@@ -4652,8 +4652,8 @@
 /turf/simulated/floor/tiled,
 /area/centcom/main_hall)
 "qV" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/ion_engine{
+	dir = 4
 	},
 /turf/simulated/shuttle/plating,
 /area/centcom/terminal)
@@ -5769,7 +5769,7 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/bathroom)
 "xj" = (
-/obj/machinery/computer/shuttle_control/emergency{
+/obj/machinery/computer{
 	dir = 8
 	},
 /obj/machinery/light/floortube{
@@ -5955,6 +5955,16 @@
 /area/centcom/security{
 	name = "\improper CentCom Security Arrivals"
 	})
+"ya" = (
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#822a1e";
+	frequency = null;
+	id_tag = null;
+	locked = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
+/area/centcom/terminal)
 "yb" = (
 /obj/machinery/conveyor{
 	dir = 4;
@@ -20369,7 +20379,7 @@ XL
 XL
 Cg
 Cg
-XL
+ya
 Cg
 Cg
 XL

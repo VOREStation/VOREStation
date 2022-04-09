@@ -373,9 +373,11 @@
 /area/groundbase/civilian/mensrestroom
 	name = "Men's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
+	lightswitch = 1
 /area/groundbase/civilian/womensrestroom
 	name = "Women's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
+	lightswitch = 1
 
 /area/groundbase/exploration
 	name = "Exploration"
