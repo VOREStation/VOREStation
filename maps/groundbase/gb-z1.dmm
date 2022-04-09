@@ -17690,7 +17690,7 @@
 "RU" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
-	name = ""EVA Access"
+	name = "EVA Access"
 	},
 /obj/machinery/door/blast/shutters{
 	dir = 4;
