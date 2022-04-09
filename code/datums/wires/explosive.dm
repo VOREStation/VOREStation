@@ -31,4 +31,5 @@
 
 /datum/wires/explosive/c4/explode()
 	var/obj/item/weapon/plastique/P = holder
-	P.explode(get_turf(P))
+	P.set_target(get_turf(P))
+	P.detonate()

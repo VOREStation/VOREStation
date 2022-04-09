@@ -69,6 +69,7 @@
 		C4.visible_message("<span class='danger'>The current fries \the [C4]!</span>")
 
 		if(prob(10))
-			C4.explode(get_turf(src))
+			C4.set_target(src)
+			C4.detonate()
 		else
 			qdel(C4)
