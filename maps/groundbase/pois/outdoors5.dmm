@@ -50,11 +50,11 @@
 /turf/simulated/floor/wood,
 /area/groundbase/poi/outdoor/cabin2)
 "L" = (
-/obj/structure/bed/chair/sofa/right,
+/obj/structure/bed/chair/sofa/right/black,
 /turf/simulated/floor/wood,
 /area/groundbase/poi/outdoor/cabin2)
 "O" = (
-/obj/structure/bed/chair/sofa/left,
+/obj/structure/bed/chair/sofa/left/black,
 /turf/simulated/floor/wood,
 /area/groundbase/poi/outdoor/cabin2)
 "T" = (
