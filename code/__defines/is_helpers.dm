@@ -13,7 +13,7 @@
 
 #define isitem(D)		istype(D, /obj/item)
 
-#define isradio(A) istype(A, /obj/item/device/radio)
+#define isradio(A)		istype(A, /obj/item/device/radio)
 
 #define isairlock(A)	istype(A, /obj/machinery/door/airlock)
 
@@ -22,6 +22,8 @@
 #define isstorage(A)	istype(A, /obj/item/weapon/storage)
 
 #define ismecha(A)      istype(A, /obj/mecha)
+
+#define isstructure(A)	istype(A, /obj/structure)
 
 //---------------
 //#define isarea(D)		istype(D, /area)	//Built in

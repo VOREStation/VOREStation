@@ -21,6 +21,7 @@
 	var/vore_egg_type = "egg" 			// Default egg type.
 	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
 	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
+	var/revive_finished = 0				// Only used for xenochimera regen, allows us to find out when the regen will finish.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
 	var/vore_smell = null				// What the character smells like
@@ -38,6 +39,13 @@
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
+	var/regen_sounds = list(
+		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_4.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
+	)
 
 //
 // Hook for generic creation of stuff on new creatures

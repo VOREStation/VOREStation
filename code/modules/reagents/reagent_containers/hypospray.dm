@@ -6,8 +6,8 @@
 	name = "hypospray"
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "hypo"
 	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 5
 	unacidable = TRUE
 	volume = 30
@@ -88,13 +88,15 @@
 
 //A vial-loaded hypospray. Cartridge-based!
 /obj/item/weapon/reagent_containers/hypospray/vial
-	name = "hypospray mkII"
+	name = "advanced hypospray"
+	icon_state = "advhypo"
 	desc = "A new development from DeForest Medical, this new hypospray takes 30-unit vials as the drug supply for easy swapping."
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/loaded_vial //Wow, what a name.
 	volume = 0
 
 /obj/item/weapon/reagent_containers/hypospray/vial/Initialize()
 	. = ..()
+	icon_state = "[initial(icon_state)]"
 	loaded_vial = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src) //Comes with an empty vial
 	volume = loaded_vial.volume
 	reagents.maximum_volume = loaded_vial.reagents.maximum_volume
@@ -114,6 +116,13 @@
 		..()
 	else
 		return ..()
+
+/obj/item/weapon/reagent_containers/hypospray/vial/update_icon()
+	..()
+	if(loaded_vial)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]_empty"
 
 /obj/item/weapon/reagent_containers/hypospray/vial/attackby(obj/item/weapon/W, mob/user as mob)
 	if(istype(W, /obj/item/weapon/reagent_containers/glass/beaker/vial))

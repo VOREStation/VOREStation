@@ -2836,10 +2836,6 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 2
-	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
 	},
@@ -2851,6 +2847,10 @@
 	},
 /obj/effect/floor_decal/corner/yellow/bordercorner2{
 	dir = 6
+	},
+/obj/random/donkpocketbox{
+	pixel_x = 4;
+	pixel_y = -2
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_monitoring)
@@ -9396,15 +9396,15 @@
 /area/maintenance/station/eng_lower)
 "awT" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 2
-	},
 /obj/item/weapon/storage/box/glasses/square,
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 25
+	},
+/obj/random/donkpocketbox{
+	pixel_x = 3;
+	pixel_y = -3
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/break_room)

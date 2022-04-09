@@ -167,10 +167,43 @@
 	storage_slots = 6
 	drop_sound = 'sound/items/drop/box.ogg'
 	use_sound = 'sound/items/storage/box.ogg'
+	var/open = 0
+	var/open_state
+	var/closed_state
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/New()
+	if(!open_state)
+		open_state = "[initial(icon_state)]0"
+	if(!closed_state)
+		closed_state = "[initial(icon_state)]"
+	..()
 
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/update_icon()
+	cut_overlays()
+	if(open)
+		icon_state = open_state
+		if(contents.len >= 1)
+			add_overlay("chew_nico[contents.len]")
+	else
+		icon_state = closed_state
+
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/open(mob/user as mob)
+	if(open)
+		return
+	open = TRUE
+	if(contents.len == 0)
+		icon_state = "[initial(icon_state)]_empty"
+	else
+		update_icon()
+	..()
+
+/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/close(mob/user as mob)
+	open = FALSE
+	if(contents.len == 0)
+		icon_state = "[initial(icon_state)]_empty"
+	else
+		update_icon()
+	..()
 
 /obj/item/clothing/mask/chewable/candy
 	name = "wad"

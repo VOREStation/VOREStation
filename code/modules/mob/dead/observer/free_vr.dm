@@ -2,7 +2,7 @@ var/global/list/prevent_respawns = list()
 
 /hook/death/proc/quit_notify(mob/dead)
 	if(ishuman(dead))
-		to_chat(dead,"<span class='notice'>You're dead! If you don't intend to continue playing this round as this character, please use the <b>Quit This Round</b> verb in the OOC tab to free your job slot.</span>")
+		to_chat(dead,"<span class='notice'>You're dead! If you don't intend to continue playing this round as this character, please use the <b>Quit This Round</b> verb in the OOC tab to free your job slot. Otherwise, you can use the <b>Notify Transcore</b> verb to let medical know you need resleeving, or <b>Find Auto Resleever</b> verb to be taken to an auto resleever, which you can click on to be resleeved automatically after a time.</span>")
 
 	return TRUE
 

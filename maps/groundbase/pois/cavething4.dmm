@@ -1,0 +1,70 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/turf/simulated/wall,
+/area/maintenance/groundbase/poi/caves)
+"H" = (
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"Z" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+
+(1,1,1) = {"
+a
+n
+n
+H
+n
+n
+a
+"}
+(2,1,1) = {"
+n
+n
+Z
+H
+Z
+n
+n
+"}
+(3,1,1) = {"
+n
+Z
+H
+H
+H
+Z
+n
+"}
+(4,1,1) = {"
+n
+n
+Z
+H
+Z
+n
+n
+"}
+(5,1,1) = {"
+a
+n
+n
+H
+n
+n
+a
+"}

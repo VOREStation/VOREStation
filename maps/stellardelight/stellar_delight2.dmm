@@ -7883,10 +7883,6 @@
 	color = "#8da4a6";
 	pixel_x = -5
 	},
-/obj/item/weapon/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
-	},
 /obj/structure/table/standard,
 /obj/machinery/button/remote/blast_door{
 	dir = 1;
@@ -7923,6 +7919,7 @@
 	pixel_x = 9;
 	pixel_y = -36
 	},
+/obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
 "rs" = (
@@ -12729,6 +12726,10 @@
 /obj/structure/table/fancyblack,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
+	},
+/obj/item/weapon/toy/desk/stellardelight{
+	pixel_x = -11;
+	pixel_y = -8
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/stellardelight/deck2/briefingroom)

@@ -2,6 +2,10 @@
 	display_name = "nudity permit"
 	path = /obj/item/clothing/under/permit
 
+/datum/gear/uniform/suit/natureist_talisman
+	display_name = "naturist talisman"
+	path = /obj/item/clothing/under/permit/natureist_talisman
+
 //Polaris overrides
 /datum/gear/uniform/solgov/pt/sifguard
 	display_name = "pt uniform, planetside sec"

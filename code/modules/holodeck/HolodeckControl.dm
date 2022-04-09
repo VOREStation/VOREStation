@@ -72,7 +72,8 @@
 
 	var/list/restricted_programs = list(
 	"Burnoff Test Simulation"	= new/datum/holodeck_program(/area/holodeck/source_burntest, list()),
-	"Wildlife Simulation" 		= new/datum/holodeck_program(/area/holodeck/source_wildlife, list())
+	"Wildlife Simulation" 		= new/datum/holodeck_program(/area/holodeck/source_wildlife, list()),
+	"Inside"					= new/datum/holodeck_program(/area/holodeck/the_uwu_zone, list('sound/vore/sunesound/prey/loop.ogg')), //VOREStation add
 	)
 
 /obj/machinery/computer/HolodeckControl/attack_ai(var/mob/user as mob)
