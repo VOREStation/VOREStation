@@ -98,23 +98,30 @@
 		loaded_item = null
 		firable = FALSE
 		VARSET_IN(src, firable, TRUE, 5 SECONDS)
+
+/* Eh, cutting this. Not much reason for it.
 /obj/item/weapon/xenobio/potion_gun
 	name = "Ranged Potion Delivery Device"
 	desc = "This device is designed to deliver a potion to your target at range, it has a slot to attach a xenobio potion."
 	loadable_item = /obj/item/slimepotion
 	loadable_name = "Slime Potion"
-
-/* Doesn't work and am too lazy to make it work, lets make something better instead.
-/obj/item/weapon/xenobio/slime_grinder
+*/
+// Instead of bringing the slime to the grinder, lets bring the grinder to the slime! This will process slimes and monkies one at a time.
+/obj/item/weapon/slime_grinder
 	name = "portable slime processor"
 	desc = "An industrial grinder used to automate the process of slime core extraction.  It can also recycle biomatter. This one appears miniturized"
-	icon = 'icons/obj/kitchen.dmi'
-	icon_state = "processor1"
+	//icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "chainsaw0"
+	//icon_state = "slimegrinder"
+	//item_icons = list(
+	//		slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
+	//		slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
+	//		)
 	var/processing = FALSE // So I heard you like processing.
 	var/list/to_be_processed = list()
 	var/monkeys_recycled = 0
-	description_info = "Clickdrag dead slimes or monkeys to it to insert them.  It will make a new monkey cube for every four monkeys it processes."
-
+	description_info = "Click a monkey or slime to begin processing."
+/*
 /obj/machinery/processor/attack_hand(mob/living/user)
 	if(processing)
 		to_chat(user, "<span class='warning'>The processor is in the process of processing!</span>")
@@ -126,75 +133,38 @@
 		to_chat(user, "<span class='warning'>The processor is empty.</span>")
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
 		return
-
-// Verb to remove everything.
-/obj/item/weapon/xenobio/slime_grinder/verb/eject()
-	set category = "Object"
-	set name = "Eject Processor"
-	set src in oview(1)
-
-	if(usr.stat || !usr.canmove || usr.restrained())
-		return
-	empty()
-	add_fingerprint(usr)
-	return
-
-// Ejects all the things out of the machine.
-/obj/item/weapon/xenobio/slime_grinder/proc/empty()
-	for(var/atom/movable/AM in to_be_processed)
-		to_be_processed.Remove(AM)
-		AM.forceMove(get_turf(src))
-
-// Ejects all the things out of the machine.
-/obj/item/weapon/xenobio/slime_grinder/proc/insert(var/atom/movable/AM, var/mob/living/user)
-	if(!Adjacent(AM))
-		return
-	if(!can_insert(AM))
-		to_chat(user, "<span class='warning'>\The [src] cannot process \the [AM] at this time.</span>")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
-		return
-	to_be_processed.Add(AM)
-	AM.forceMove(src)
-	visible_message("<b>\The [user]</b> places [AM] inside \the [src].")
-
-/obj/item/weapon/xenobio/slime_grinder/proc/begin_processing()
-	if(processing)
-		return // Already doing it.
+*/
+/obj/item/weapon/slime_grinder/proc/extract(var/atom/movable/AM, var/mob/living/user)
 	processing = TRUE
-	playsound(src, 'sound/machines/juicer.ogg', 50, 1)
-	for(var/atom/movable/AM in to_be_processed)
-		extract(AM)
-		sleep(1 SECONDS)
-
-	while(monkeys_recycled >= 4)
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(src))
-		playsound(src, 'sound/effects/splat.ogg', 50, 1)
-		monkeys_recycled -= 4
-		sleep(1 SECOND)
-
-	processing = FALSE
-	playsound(src, 'sound/machines/ding.ogg', 50, 1)
-
-/obj/item/weapon/xenobio/slime_grinder/proc/extract(var/atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		while(S.cores)
-			new S.coretype(get_turf(src))
-			playsound(src, 'sound/effects/splat.ogg', 50, 1)
-			S.cores--
-			sleep(1 SECOND)
-		to_be_processed.Remove(S)
+			playsound(src, 'sound/machines/juicer.ogg', 25, 1)
+			if(do_after(user, 15))
+				new S.coretype(get_turf(AM))
+				playsound(src, 'sound/effects/splat.ogg', 50, 1)
+				S.cores--
+				//sleep(1 SECOND)
+		//to_be_processed.Remove(S)
 		qdel(S)
 
-	if(istype(AM, /mob/living/carbon/human))
-		var/mob/living/carbon/human/M = AM
-		playsound(src, 'sound/effects/splat.ogg', 50, 1)
-		to_be_processed.Remove(M)
-		qdel(M)
-		monkeys_recycled++
-		sleep(1 SECOND)
+	if(istype(AM, /mob/living/carbon/human/monkey))
+		playsound(src, 'sound/machines/juicer.ogg', 25, 1)
+		if(do_after(user, 15))
+			var/mob/living/carbon/human/M = AM
+			playsound(src, 'sound/effects/splat.ogg', 50, 1)
+		//to_be_processed.Remove(M)
+			qdel(M)
+			monkeys_recycled++
+			sleep(1 SECOND)
+		while(monkeys_recycled >= 4)
+			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(src))
+			playsound(src, 'sound/effects/splat.ogg', 50, 1)
+			monkeys_recycled -= 4
+			sleep(1 SECOND)
+	processing = FALSE
 
-/obj/item/weapon/xenobio/slime_grinder/proc/can_insert(var/atom/movable/AM)
+/obj/item/weapon/slime_grinder/proc/can_insert(var/atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		if(S.stat != DEAD)
@@ -209,12 +179,19 @@
 		return TRUE
 	return FALSE
 
-/obj/item/weapon/xenobio/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
-	if(user.stat || user.incapacitated(INCAPACITATION_DISABLED) || !istype(user))
+/obj/item/weapon/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
+	//if(user.stat || user.incapacitated(INCAPACITATION_DISABLED) || !istype(user))
+	//	return
+	//insert(M, user)
+	if(processing)
 		return
-	insert(M, user)
+	if(!can_insert(M))
+		to_chat(user, "<span class='warning'>\The [src] cannot process \the [M] at this time.</span>")
+		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
+		return
+
+	extract(M, user)
 	return ..()
-*/
 /* Cut for balance :)
 /obj/item/weapon/gun/energy/xenobio/extract_gun
 	name = "Ranged Extract Interaction Device"
