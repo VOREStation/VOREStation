@@ -103,6 +103,12 @@
 #define ui_alien_fire "EAST-1:28,NORTH-3:25"
 #define ui_alien_oxygen "EAST-1:28,NORTH-4:25"
 
+// Goes above HUD, mid-right
+#define ui_ammo_hud1 "EAST-1:28,CENTER+1:25"
+#define ui_ammo_hud2 "EAST-1:28,CENTER+2:27"
+#define ui_ammo_hud3 "EAST-1:28,CENTER+3:29"
+#define ui_ammo_hud4 "EAST-1:28,CENTER+4:31"
+
 //Middle right (status indicators)
 #define ui_temp "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"

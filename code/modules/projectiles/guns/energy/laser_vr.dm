@@ -184,11 +184,13 @@
 		if(!do_after(user, 10, src))
 			break
 		playsound(src,'sound/items/change_drill.ogg',25,1)
+		user.hud_used.update_ammo_hud(user, src)
 		if(power_supply.give(phase_power) < phase_power)
 			break
 
 	recharging = 0
 	update_icon()
+	user.hud_used.update_ammo_hud(user, src) // Update one last time once we're finished!
 
 /obj/item/weapon/gun/energy/locked/frontier/update_icon()
 	if(recharging)

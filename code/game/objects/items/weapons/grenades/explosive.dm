@@ -12,6 +12,7 @@
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
 	var/spread_range = 7
 	loadable = null
+	hud_state = "grenade_frag" // TGMC Ammo HUD Port
 
 /obj/item/weapon/grenade/explosive/detonate()
 	..()
