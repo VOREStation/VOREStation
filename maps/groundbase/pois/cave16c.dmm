@@ -1,0 +1,96 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"g" = (
+/turf/template_noop,
+/area/template_noop)
+"A" = (
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"B" = (
+/obj/random/crate,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"V" = (
+/obj/random/maintenance/misc,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+V
+a
+A
+a
+"}
+(3,1,1) = {"
+g
+a
+a
+a
+g
+"}
+(4,1,1) = {"
+g
+g
+a
+g
+g
+"}
+(5,1,1) = {"
+g
+g
+B
+g
+g
+"}
+(6,1,1) = {"
+g
+g
+a
+g
+g
+"}
+(7,1,1) = {"
+g
+a
+a
+V
+g
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+A
+a
+a
+a
+a
+"}
