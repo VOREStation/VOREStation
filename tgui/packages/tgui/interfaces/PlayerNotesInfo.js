@@ -1,32 +1,55 @@
 import { useBackend } from '../backend';
-import { Button, ColorBox, Section, Table } from '../components';
+import { Box, Button, Divider, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const PlayerNotesInfo = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     device_theme,
+    age,
+    ckey,
     entries = [],
   } = data;
   return (
     <Window
-      title={'Info on NAME_HERE'}
+      title={`Info on ${ckey}`}
       theme={device_theme}
       width={400}
       height={500}
       resizable>
       <Window.Content scrollable>
-        <Section title="Notes">
+        <Section title={`Player age: ${age}`}>
           <Table>
-            {entries.map(entry => (
-              <Table.Row key={entry.name}>
-                <Table.Cell>
-                  {entry.name}
+            This ckey has {entries.length} comments.
+            {entries.map((entry, index) => (
+              <Table.Row key={entry.comment}>
+                <Table.Cell
+                  collapsing={false}>
+                  <Divider />
+                  <Box>
+                    Written by <span color="darkgreen">{entry.author}</span> on <span color="blue">{entry.date}</span><br />
+                    &quot;{entry.comment}&quot;
+                  </Box>
+                  <Button
+                    icon="trash"
+                    onClick={() => act("remove_player_info", {
+                      ckey: ckey,
+                      index: index+1,
+                    })}>
+                    Remove
+                  </Button>
                 </Table.Cell>
               </Table.Row>
             ))}
           </Table>
         </Section>
+        <Button
+          icon="comment"
+          onClick={() => act("add_player_info", {
+            ckey: ckey,
+          })}>
+          Add Comment
+        </Button>
       </Window.Content>
     </Window>
   );

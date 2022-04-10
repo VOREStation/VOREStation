@@ -227,8 +227,6 @@ var/global/floorIsLava = 0
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/datum/tgui_module/player_notes/A = new(src)
-	A.tgui_interact(usr)
 	PlayerNotesPage(1)
 
 /datum/admins/proc/PlayerNotesFilter()
@@ -237,7 +235,7 @@ var/global/floorIsLava = 0
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/filter = input(usr, "Filter string (case-insensitive regex)", "Player notes filter") as text|null
+	var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
 	PlayerNotesPage(1, filter)
 
 /datum/admins/proc/PlayerNotesPage(page, filter)
@@ -245,10 +243,8 @@ var/global/floorIsLava = 0
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
-	if(!note_keys)
-		dat += "No notes found."
-	else
-		dat += "<table>"
+
+	if(note_keys)
 		note_keys = sortList(note_keys)
 
 		if(filter)
@@ -276,8 +272,6 @@ var/global/floorIsLava = 0
 				var/t = note_keys[index]
 				dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
 
-		dat += "</table><hr>"
-
 		// Display a footer to select different pages
 		for(var/index = 1, index <= number_pages, index++)
 			if(index == page)
@@ -286,7 +280,9 @@ var/global/floorIsLava = 0
 			if(index == page)
 				dat += "</b>"
 
-	usr << browse(dat, "window=player_notes;size=400x400")
+	var/datum/tgui_module/player_notes/A = new(src)
+	A.ckeys = note_keys
+	A.tgui_interact(usr)
 
 
 /datum/admins/proc/player_has_info(var/key as text)
@@ -305,44 +301,10 @@ var/global/floorIsLava = 0
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/dat = "<html><head><title>Info on [key]</title></head>"
-	dat += "<body>"
 
-	var/p_age = "unknown"
-	for(var/client/C in GLOB.clients)
-		if(C.ckey == key)
-			p_age = C.player_age
-			break
-	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
-
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-	var/list/infos
-	info >> infos
-	if(!infos)
-		dat += "No information found on the given key.<br>"
-	else
-		var/update_file = 0
-		var/i = 0
-		for(var/datum/player_info/I in infos)
-			i += 1
-			if(!I.timestamp)
-				I.timestamp = "Pre-4/3/2012"
-				update_file = 1
-			if(!I.rank)
-				I.rank = "N/A"
-				update_file = 1
-			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
-				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A>"
-			dat += "<br><br>"
-		if(update_file) info << infos
-
-	dat += "<br>"
-	dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
-
-	dat += "</body></html>"
-	usr << browse(dat, "window=adminplayerinfo;size=480x480")
-
+	var/datum/tgui_module/player_notes_info/A = new(src)
+	A.key = key
+	A.tgui_interact(usr)
 
 
 /datum/admins/proc/access_news_network() //MARKER

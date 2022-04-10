@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, ColorBox, Section, Table } from '../components';
+import { Button, Divider, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const PlayerNotes = (props, context) => {
@@ -16,7 +16,13 @@ export const PlayerNotes = (props, context) => {
       height={500}
       resizable>
       <Window.Content scrollable>
-        <Section title="Notes">
+        <Section title="Player notes">
+          <Button
+            icon="filter"
+            onClick={() => act("filter_player_notes")}>
+            Apply Filter
+          </Button>
+          <Divider />
           <Table>
             {ckeys.map(ckey => (
               <Table.Row key={ckey.name}>
@@ -24,15 +30,22 @@ export const PlayerNotes = (props, context) => {
                   <Button
                     fluid
                     color="transparent"
-                    icon={'window-maximize-o'}
+                    icon={'user'}
                     content={ckey.desc}
-                    onClick={() => act('CKEY_viewnotes', {
+                    onClick={() => act('show_player_info', {
                       name: ckey.name,
-                    })} />
+                    })}>
+                    {ckey.name}
+                  </Button>
                 </Table.Cell>
               </Table.Row>
             ))}
           </Table>
+          <Divider />
+          <Button
+            onClick={() => act("filter_player_notes")}>
+            1
+          </Button>
         </Section>
       </Window.Content>
     </Window>
