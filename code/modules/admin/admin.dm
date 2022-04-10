@@ -227,6 +227,8 @@ var/global/floorIsLava = 0
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
+	var/datum/tgui_module/player_notes/A = new(src)
+	A.tgui_interact(usr)
 	PlayerNotesPage(1)
 
 /datum/admins/proc/PlayerNotesFilter()
