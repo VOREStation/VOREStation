@@ -171,31 +171,7 @@
 	if(overdose && (volume > overdose * M?.species.chemOD_threshold) && (active_metab.metabolism_class != CHEM_TOUCH && !can_overdose_touch))
 		overdose(M, alien, removed)
 	if(M.species.allergens & allergen_type)	//uhoh, we can't handle this!
-<<<<<<< HEAD
-		var/damage_severity = M.species.allergen_damage_severity*allergen_factor
-		var/disable_severity = M.species.allergen_disable_severity*allergen_factor
-		if(M.species.allergen_reaction & AG_TOX_DMG)
-			M.adjustToxLoss(damage_severity)
-		if(M.species.allergen_reaction & AG_OXY_DMG)
-			M.adjustOxyLoss(damage_severity*1.5) //VOREStation Edit
-			if(prob(2.5*disable_severity))
-				M.emote(pick("cough","gasp","choke"))
-		if(M.species.allergen_reaction & AG_EMOTE)
-			if(prob(2.5*disable_severity))	//this has a higher base chance, but not *too* high
-				M.emote(pick("pale","shiver","twitch"))
-		if(M.species.allergen_reaction & AG_PAIN)
-			M.adjustHalLoss(disable_severity*2) //VOREStation Edit
-		if(M.species.allergen_reaction & AG_WEAKEN)
-			M.Weaken(disable_severity)
-		if(M.species.allergen_reaction & AG_BLURRY)
-			M.eye_blurry = max(M.eye_blurry, disable_severity)
-		if(M.species.allergen_reaction & AG_SLEEPY)
-			M.drowsyness = max(M.drowsyness, disable_severity)
-		if(M.species.allergen_reaction & AG_CONFUSE) //VOREStation Addition
-			M.Confuse(disable_severity/4) //VOREStation Addition
-=======
 		M.add_chemical_effect(CE_ALLERGEN,allergen_factor)
->>>>>>> e39f24b49e3... Allergen CE Conversion (#8431)
 	remove_self(removed)
 	return
 

@@ -40,16 +40,6 @@
 #define ALLERGEN_STIMULANT	0x1000	// Stimulants are what makes the Tajaran heart go ruh roh - not just coffee!
 
 // Allergen reactions
-<<<<<<< HEAD
-#define AG_TOX_DMG	0x1	// the classic
-#define AG_OXY_DMG	0x2	// intense airway reactions
-#define AG_EMOTE	0x4	// general emote reactions based on affect type
-#define AG_PAIN		0x8	// short-lived hurt
-#define AG_WEAKEN	0x10	// too weak to move, oof
-#define AG_BLURRY	0x20	// blurred vision!
-#define AG_SLEEPY	0x40	// fatigue/exhaustion
-#define AG_CONFUSE	0x80	// disorientation - VOREStation addition
-=======
 #define AG_PHYS_DMG	0x1	// brute
 #define AG_BURN_DMG	0x2	// burns
 #define AG_TOX_DMG	0x4	// the classic
@@ -60,7 +50,6 @@
 #define AG_BLURRY	0x80	// blurred vision!
 #define AG_SLEEPY	0x100	// fatigue/exhaustion
 #define AG_CONFUSE	0x200	// disorientation
->>>>>>> e39f24b49e3... Allergen CE Conversion (#8431)
 
 // Species spawn flags
 #define SPECIES_IS_WHITELISTED      0x1  // Must be whitelisted to play.
