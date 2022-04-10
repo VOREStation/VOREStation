@@ -97,7 +97,7 @@
 		cube.Expand()
 		loaded_item = null
 		firable = FALSE
-		VARSET_IN(src, firable, TRUE, 5 SECONDS)
+		VARSET_IN(src, firable, TRUE, 2 SECONDS)
 
 /* Eh, cutting this. Not much reason for it.
 /obj/item/weapon/xenobio/potion_gun

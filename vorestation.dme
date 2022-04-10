@@ -3722,6 +3722,7 @@
 #include "code\modules\research\designs\weapons_vr.dm"
 #include "code\modules\research\designs\xenoarch_toys.dm"
 #include "code\modules\research\designs\xenobio_toys.dm"
+#include "code\modules\research\designs\xenobio_toys_vr.dm"
 #include "code\modules\research\designs\circuits\ai_modules.dm"
 #include "code\modules\research\designs\circuits\ai_modules_vr.dm"
 #include "code\modules\research\designs\circuits\circuits.dm"
@@ -4103,6 +4104,7 @@
 #include "maps\expedition_vr\beach\submaps\mountains.dm"
 #include "maps\expedition_vr\beach\submaps\mountains_areas.dm"
 #include "maps\gateway_archive_vr\blackmarketpackers.dm"
+#include "maps\groundbase\groundbase.dm"
 #include "maps\offmap_vr\om_ships\abductor.dm"
 #include "maps\southern_cross\items\clothing\sc_accessory.dm"
 #include "maps\southern_cross\items\clothing\sc_suit.dm"
@@ -4119,6 +4121,5 @@
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\virgo_minitest\virgo_minitest.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE
