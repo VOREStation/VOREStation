@@ -3,10 +3,6 @@
 	desc = "You shouldn't see this!"
 	icon = 'icons/obj/gun_vr.dmi'
 	icon_state = "harpoon-2"
-	//fire_sound = 'sound/weapons/taser2.ogg'
-	//charge_cost = 120 // Twice as many shots.
-	//projectile_type = /obj/item/projectile/beam/xenobio // Place holder for now
-	//accuracy = 30 // Just use the same hit rate as xenotasers
 	var/loadable_item = null
 	var/loaded_item = null
 	var/loadable_name = null
@@ -99,41 +95,17 @@
 		firable = FALSE
 		VARSET_IN(src, firable, TRUE, 2 SECONDS)
 
-/* Eh, cutting this. Not much reason for it.
-/obj/item/weapon/xenobio/potion_gun
-	name = "Ranged Potion Delivery Device"
-	desc = "This device is designed to deliver a potion to your target at range, it has a slot to attach a xenobio potion."
-	loadable_item = /obj/item/slimepotion
-	loadable_name = "Slime Potion"
-*/
 // Instead of bringing the slime to the grinder, lets bring the grinder to the slime! This will process slimes and monkies one at a time.
 /obj/item/weapon/slime_grinder
 	name = "portable slime processor"
 	desc = "An industrial grinder used to automate the process of slime core extraction.  It can also recycle biomatter. This one appears miniturized"
 	//icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "chainsaw0"
-	//icon_state = "slimegrinder"
-	//item_icons = list(
-	//		slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
-	//		slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
-	//		)
 	var/processing = FALSE // So I heard you like processing.
 	var/list/to_be_processed = list()
 	var/monkeys_recycled = 0
 	description_info = "Click a monkey or slime to begin processing."
-/*
-/obj/machinery/processor/attack_hand(mob/living/user)
-	if(processing)
-		to_chat(user, "<span class='warning'>The processor is in the process of processing!</span>")
-		return
-	if(to_be_processed.len)
-		spawn(1)
-			begin_processing()
-	else
-		to_chat(user, "<span class='warning'>The processor is empty.</span>")
-		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 1)
-		return
-*/
+
 /obj/item/weapon/slime_grinder/proc/extract(var/atom/movable/AM, var/mob/living/user)
 	processing = TRUE
 	if(istype(AM, /mob/living/simple_mob/slime))
@@ -144,8 +116,6 @@
 				new S.coretype(get_turf(AM))
 				playsound(src, 'sound/effects/splat.ogg', 50, 1)
 				S.cores--
-				//sleep(1 SECOND)
-		//to_be_processed.Remove(S)
 		qdel(S)
 
 	if(istype(AM, /mob/living/carbon/human/monkey))
@@ -153,7 +123,6 @@
 		if(do_after(user, 15))
 			var/mob/living/carbon/human/M = AM
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
-		//to_be_processed.Remove(M)
 			qdel(M)
 			monkeys_recycled++
 			sleep(1 SECOND)
@@ -180,9 +149,6 @@
 	return FALSE
 
 /obj/item/weapon/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
-	//if(user.stat || user.incapacitated(INCAPACITATION_DISABLED) || !istype(user))
-	//	return
-	//insert(M, user)
 	if(processing)
 		return
 	if(!can_insert(M))
@@ -192,9 +158,3 @@
 
 	extract(M, user)
 	return ..()
-/* Cut for balance :)
-/obj/item/weapon/gun/energy/xenobio/extract_gun
-	name = "Ranged Extract Interaction Device"
-	desc = "This is the latest in extract interaction technology! No longer shall you stand in harms way when activating a gold slime."
-	loadable_item = /obj/item/slime_extract
-*/
