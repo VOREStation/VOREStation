@@ -93,6 +93,7 @@
 	damage = 5
 	agony = 80
 	hud_state = "taser"
+<<<<<<< HEAD
 
 /obj/item/projectile/energy/electrode/stunshot/strong
 	name = "stunshot"
@@ -101,6 +102,8 @@
 	taser_effect = 1
 	agony = 100
 	hud_state = "taser"
+=======
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 /obj/item/projectile/energy/declone
 	name = "declone"
@@ -155,6 +158,7 @@
 	name = "largebolt"
 	damage = 20
 	hud_state = "electrothermal"
+<<<<<<< HEAD
 
 /obj/item/projectile/energy/bow
 	name = "engergy bolt"
@@ -171,6 +175,8 @@
 	name = "stun bolt"
 	agony = 30
 	hud_state = "electrothermal"
+=======
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 /obj/item/projectile/energy/acid //Slightly up-gunned (Read: The thing does agony and checks bio resist) variant of the simple alien mob's projectile, for queens and sentinels.
 	name = "acidic spit"
@@ -194,8 +200,11 @@
 	agony = 80
 	check_armour = "bio"
 	armor_penetration = 25	// It's acid-based
+<<<<<<< HEAD
 	hitsound_wall = 'sound/weapons/effects/alien_spit_wall.ogg'
 	hitsound = 'sound/weapons/effects/alien_spit_wall.ogg'
+=======
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 	hud_state = "electrothermal"
 
 	combustion = FALSE
@@ -288,7 +297,10 @@
 	range = 6
 	damage = 5
 	SA_bonus_damage = 45	// 50 total on animals
+<<<<<<< HEAD
 	SA_vulnerability = SA_ANIMAL
+=======
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 	hud_state = "laser_heat"
 
 /obj/item/projectile/energy/phase/light
@@ -305,6 +317,7 @@
 	range = 10
 	damage = 15
 	SA_bonus_damage = 60	// 75 total on animals
+<<<<<<< HEAD
 	hud_state = "laser_heat"
 
 /obj/item/projectile/energy/electrode/strong
@@ -331,3 +344,6 @@
 /obj/item/projectile/energy/flash/flare
 	flash_range = 2
 	hud_state = "grenade_dummy"
+=======
+	hud_state = "laser_heat"
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD

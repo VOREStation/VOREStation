@@ -7,7 +7,11 @@
 	item_state = "flashbang"
 	slot_flags = SLOT_BELT
 	hud_state = "grenade_smoke"
+<<<<<<< HEAD
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
+=======
+	var/datum/effect_system/smoke_spread/bad/smoke
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 	var/smoke_color
 	var/smoke_strength = 8
 

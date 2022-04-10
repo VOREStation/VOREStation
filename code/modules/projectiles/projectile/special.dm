@@ -208,7 +208,10 @@
 	light_power = 0.5
 	light_color = "#FFFFFF"
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/monochrome_laser
+<<<<<<< HEAD
 	var/lasermod = 0
+=======
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 	hud_state = "electrothermal"
 
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)

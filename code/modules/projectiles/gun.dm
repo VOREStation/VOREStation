@@ -429,12 +429,17 @@
 	accuracy = initial(accuracy)	//Reset the gun's accuracy
 
 	if(muzzle_flash)
+<<<<<<< HEAD
 		//VOREStation Edit - Flashlights
 		if(gun_light)
 			set_light(light_brightness)
 		else
 			set_light(0)
 		//VOREStation Edit End
+=======
+		set_light(0)
+	
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 	user.hud_used.update_ammo_hud(user, src)
 
 // Similar to the above proc, but does not require a user, which is ideal for things like turrets.
@@ -760,7 +765,11 @@
 	var/datum/firemode/new_mode = firemodes[sel_mode]
 	new_mode.apply_to(src)
 	to_chat(user, "<span class='notice'>\The [src] is now set to [new_mode.name].</span>")
+<<<<<<< HEAD
 	user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD
+=======
+	user.hud_used.update_ammo_hud(user, src)
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 	return new_mode
 
@@ -779,16 +788,29 @@
 
 /obj/item/weapon/gun/proc/get_ammo_count()
 	return FALSE
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 /obj/item/weapon/gun/equipped(mob/living/user, slot) // When a gun is equipped to your hands, we'll add the HUD to the user. Pending porting over TGMC guncode where wielding is far more sensible.
 	if(slot == slot_l_hand || slot == slot_r_hand)
 		user.hud_used.add_ammo_hud(user, src)
 	else
 		user.hud_used.remove_ammo_hud(user, src)
+<<<<<<< HEAD
 
 	return ..()
 
 /obj/item/weapon/gun/dropped(mob/living/user) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti. 
 	user.hud_used.remove_ammo_hud(user, src)
 
+=======
+	
+	return ..()
+	
+/obj/item/weapon/gun/dropped(mob/living/user) // Ditto as above, we remove the HUD. Pending porting TGMC code to clean up this fucking nightmare of spaghetti. 
+	user.hud_used.remove_ammo_hud(user, src)
+	
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 	..()

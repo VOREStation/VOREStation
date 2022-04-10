@@ -32,6 +32,7 @@
 	damage = 12
 	armor_penetration = 100
 	hud_state = "alloy_spike"
+<<<<<<< HEAD
 
 /obj/item/projectile/bullet/magnetic/flechette/small/khi
 	name = "small carbyne flechette"
@@ -41,6 +42,8 @@
 	armor_penetration = 100
 	penetrating = 10
 	hud_state = "alloy_spike"
+=======
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 /obj/item/projectile/bullet/magnetic/flechette/hunting
 	name = "shredder slug"

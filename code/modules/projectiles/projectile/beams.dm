@@ -41,6 +41,7 @@
 	icon_state = "laser"
 	damage = 15
 	hud_state = "laser"
+<<<<<<< HEAD
 
 /obj/item/projectile/beam/weaklaser/blue
 	icon_state = "bluelaser"
@@ -50,6 +51,8 @@
 	muzzle_type = /obj/effect/projectile/muzzle/laser_blue
 	tracer_type = /obj/effect/projectile/tracer/laser_blue
 	impact_type = /obj/effect/projectile/impact/laser_blue
+=======
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 /obj/item/projectile/beam/smalllaser
 	damage = 25
@@ -59,6 +62,10 @@
 	damage = 30
 	armor_penetration = 10
 	hud_state = "laser"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 /obj/item/projectile/beam/midlaser
 	damage = 40

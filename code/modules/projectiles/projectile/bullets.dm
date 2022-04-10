@@ -262,6 +262,20 @@
 	fire_sound = 'sound/weapons/gunshot4.ogg'
 	damage = 50
 	hud_state = "revolver"
+<<<<<<< HEAD
+=======
+
+/* Mech rounds */
+
+/obj/item/projectile/bullet/mech/autocannon // Splitting it off from the original pistol/medium to give it its own sprite and potentially separate damage values later on.
+	icon_state = "mech_autocannon"
+	fire_sound = 'sound/weapons/mech_autocannon.ogg' // Doesn't actually work for the mech autocannon normally in my testing, putting it here in case anything else wants to use the sound.
+	light_range = 2
+	light_power = 0.5
+	light_color = "#FF7F01"
+	plane = PLANE_LIGHTING_ABOVE // I don't know if this actually does anything here but nothing breaks and the end result works soooo
+	damage = 25
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 /* Miscellaneous */
 
@@ -362,6 +376,13 @@
 	embed_chance = 0
 	sharp = FALSE
 	hud_state = "smg_light"
+<<<<<<< HEAD
+=======
+
+/obj/item/projectile/bullet/blank/cap/process()
+	loc = null
+	qdel(src)
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 
 /* BB Rounds */
 /obj/item/projectile/bullet/bb // Generic single BB

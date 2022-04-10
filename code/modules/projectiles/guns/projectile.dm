@@ -55,8 +55,13 @@
 		if(handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
 			
+<<<<<<< HEAD
 	var/mob/living/M = loc // TGMC Ammo HUD 
 	if(istype(M)) // TGMC Ammo HUD 
+=======
+	var/mob/living/M = loc 
+	if(istype(M)) 
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 		M?.hud_used.update_ammo_hud(M, src)
 
 	if (chambered)
@@ -103,8 +108,13 @@
 	if(handle_casings != HOLD_CASINGS)
 		chambered = null
 	
+<<<<<<< HEAD
 	var/mob/living/M = loc // TGMC Ammo HUD 
 	if(istype(M)) // TGMC Ammo HUD 
+=======
+	var/mob/living/M = loc 
+	if(istype(M)) 
+>>>>>>> 92d21dcc8c5... Merge pull request #8513 from Rykka-Stormheart/shep-dev-TGMC-ammo-HUD
 		M?.hud_used.update_ammo_hud(M, src)
 
 
