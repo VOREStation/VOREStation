@@ -32,7 +32,7 @@
 		user.drop_item()
 		I.loc = src
 		loaded_item = I
-		user.visible_message("<span class='notice'>[user] inserts [I] into [src].", "<font color='blue'>You slot [I] into [src].</span>")
+		user.visible_message("<span class='notice'>[user] inserts [I] into [src].", "<span class='notice'>You slot [I] into [src].</span>")
 		return 1
 	..()
 
