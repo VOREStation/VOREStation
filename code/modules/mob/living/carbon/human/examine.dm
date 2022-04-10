@@ -76,22 +76,12 @@
 		BP_L_LEG = skip_body & EXAMINE_SKIPLEGS,
 		BP_R_LEG = skip_body & EXAMINE_SKIPLEGS)
 
-	var/datum/gender/T = gender_datums[get_visible_gender()]
-
-	if((skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)) //big suits/masks/helmets make it hard to tell their gender
-		T = gender_datums[PLURAL]
-
-	else if(species && species.ambiguous_genders)
-		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
-			if(H.species && !istype(species, H.species))
-				T = gender_datums[PLURAL]// Species with ambiguous_genders will not show their true gender upon examine if the examiner is not also the same species.
-		if(!(issilicon(user) || isobserver(user))) // Ghosts and borgs are all knowing
-			T = gender_datums[PLURAL]
-
-	if(!T)
-		// Just in case someone VVs the gender to something strange. It'll runtime anyway when it hits usages, better to CRASH() now with a helpful message.
-		CRASH("Gender datum was null; key was '[((skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)) ? PLURAL : gender]'")
+	
+	var/gender_hidden = (skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)
+	var/gender_key = get_visible_gender(user, gender_hidden)
+	var/datum/gender/T = gender_datums[gender_key]
+	if (!T)
+		CRASH({"Null gender datum on examine: mob="[src]",hidden="[gender_hidden]",key="[gender_key]",bio="[gender]",id="[identifying_gender]""})
 
 	var/name_ender = ""
 	if(!((skip_gear & EXAMINE_SKIPJUMPSUIT) && (skip_body & EXAMINE_SKIPFACE)))

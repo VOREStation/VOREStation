@@ -447,3 +447,16 @@
 #define DEATHGASP_NO_MESSAGE "no message"
 
 #define RESIST_COOLDOWN		2 SECONDS
+<<<<<<< HEAD
+=======
+
+
+/// Used by human/get_visible_gender(user, force) to return PLURAL
+#define VISIBLE_GENDER_FORCE_PLURAL 1
+
+/// Used by human/get_visible_gender(user, force) to return the mob's identifying gender
+#define VISIBLE_GENDER_FORCE_IDENTIFYING 2
+
+/// Used by human/get_visible_gender(user, force) to return the mob's biological gender
+#define VISIBLE_GENDER_FORCE_BIOLOGICAL 3
+>>>>>>> 5e4961f986d... Merge pull request #8510 from Spookerton/spkrtn/fix/bird-genders

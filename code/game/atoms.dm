@@ -716,7 +716,7 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
 
-/atom/proc/get_visible_gender()
+/atom/proc/get_visible_gender(mob/user, force)
 	return gender
 
 /atom/proc/interact(mob/user)
