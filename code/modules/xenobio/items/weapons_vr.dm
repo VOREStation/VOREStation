@@ -17,7 +17,7 @@
 /obj/item/weapon/xenobio/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src && loaded_item)
 		user.put_in_hands(loaded_item)
-		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].", "<span class='notice'>You remove [loaded_item] from [src].</span>")
+		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
 		loaded_item = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 	else
@@ -26,20 +26,20 @@
 /obj/item/weapon/xenobio/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, loadable_item))
 		if(loaded_item)
-			to_chat(user, "<font color='blue'>[I] doesn't seem to fit into [src].</font>")
+			to_chat(user, "<span class = 'warning'>[I] doesn't seem to fit into [src].</span>")
 			return
 		//var/obj/item/weapon/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		I.loc = src
 		loaded_item = I
-		user.visible_message("<span class='notice'>[user] inserts [I] into [src].", "<span class='notice'>You slot [I] into [src].</span>")
+		user.visible_message("<span class='notice'>[user] inserts [I] into [src].</span>", "<span class='notice'>You slot [I] into [src].</span>")
 		return 1
 	..()
 
 /obj/item/weapon/xenobio/attack_self(mob/living/user as mob)
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
-		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].", "<span class='notice'>You remove [loaded_item] from [src].</span>")
+		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
 		loaded_item = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
