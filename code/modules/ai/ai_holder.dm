@@ -1,14 +1,6 @@
 // This is a datum-based artificial intelligence for simple mobs (and possibly others) to use.
 // The neat thing with having this here instead of on the mob is that it is independant of Life(), and that different mobs
 // can use a more or less complex AI by giving it a different datum.
-#define AI_NO_PROCESS			0
-#define AI_PROCESSING			(1<<0)
-#define AI_FASTPROCESSING		(1<<1)
-
-#define START_AIPROCESSING(Datum) if (!(Datum.process_flags & AI_PROCESSING)) {Datum.process_flags |= AI_PROCESSING;SSai.processing += Datum}
-#define STOP_AIPROCESSING(Datum) Datum.process_flags &= ~AI_PROCESSING;SSai.processing -= Datum
-#define START_AIFASTPROCESSING(Datum) if (!(Datum.process_flags & AI_FASTPROCESSING)) {Datum.process_flags |= AI_FASTPROCESSING;SSaifast.processing += Datum}
-#define STOP_AIFASTPROCESSING(Datum) Datum.process_flags &= ~AI_FASTPROCESSING;SSaifast.processing -= Datum
 
 /mob/living
 	var/datum/ai_holder/ai_holder = null
