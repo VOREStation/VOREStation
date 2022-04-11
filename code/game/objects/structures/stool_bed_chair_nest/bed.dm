@@ -13,8 +13,8 @@
 	icon = 'icons/obj/furniture.dmi'
 	icon_state = "bed"
 	pressure_resistance = 15
-	anchored = 1
-	can_buckle = 1
+	anchored = TRUE
+	can_buckle = TRUE
 	buckle_dir = SOUTH
 	buckle_lying = 1
 	var/datum/material/material
@@ -26,7 +26,7 @@
 	..(newloc)
 	color = null
 	if(!new_material)
-		new_material = DEFAULT_WALL_MATERIAL
+		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
 	if(!istype(material))
 		qdel(src)
@@ -127,6 +127,13 @@
 		playsound(src, W.usesound, 100, 1)
 		remove_padding()
 
+	else if(istype(W, /obj/item/weapon/disk) || (istype(W, /obj/item/toy/plushie)))
+		user.drop_from_inventory(W, get_turf(src))
+		W.pixel_x = 10 //make sure they reach the pillow
+		W.pixel_y = -6
+		if(istype(W, /obj/item/weapon/disk))
+			user.visible_message("<span class='notice'>[src] sleeps soundly. Sleep tight, disky.</span>")
+
 	else if(istype(W, /obj/item/weapon/grab))
 		var/obj/item/weapon/grab/G = W
 		var/mob/living/affecting = G.affecting
@@ -197,8 +204,8 @@
 	desc = "A portable bed-on-wheels made for transporting medical patients."
 	icon = 'icons/obj/rollerbed.dmi'
 	icon_state = "rollerbed"
-	anchored = 0
-	surgery_odds = 75
+	anchored = FALSE
+	surgery_odds = 50 //VOREStation Edit
 	var/bedtype = /obj/structure/bed/roller
 	var/rollertype = /obj/item/roller
 
@@ -290,19 +297,19 @@
 
 /obj/structure/bed/roller/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	
+
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
 /obj/structure/bed/roller/post_buckle_mob(mob/living/M as mob)
 	if(M.buckled == src)
 		M.pixel_y = 6
 		M.old_y = 6
-		density = 1
+		density = TRUE
 		icon_state = "[initial(icon_state)]_up"
 	else
 		M.pixel_y = 0
 		M.old_y = 0
-		density = 0
+		density = FALSE
 		icon_state = "[initial(icon_state)]"
 	update_icon()
 	return ..()
@@ -346,3 +353,35 @@
 
 /obj/structure/bed/alien/attackby(obj/item/weapon/W, mob/user)
 	return // No deconning.
+
+/*
+ * Dirty Mattress
+ */
+/obj/structure/dirtybed
+	name = "dirty mattress"
+	desc = "A stained matress. Guess it's better than sleeping on the floor."
+	icon = 'icons/obj/furniture.dmi'
+	icon_state = "dirtybed"
+	pressure_resistance = 15
+	anchored = TRUE
+	can_buckle = TRUE
+	buckle_dir = SOUTH
+	buckle_lying = 1
+
+/obj/structure/dirtybed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.is_wrench())
+		playsound(src, W.usesound, 100, 1)
+		if(anchored)
+			user.visible_message("[user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+		else
+			user.visible_message("[user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+
+		if(do_after(user, 20 * W.toolspeed))
+			if(!src) return
+			to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+			anchored = !anchored
+		return
+
+	if(!anchored)
+		to_chat(user,"<span class='notice'> The bed isn't secured.</span>")
+		return

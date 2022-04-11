@@ -6,8 +6,8 @@
 
 	var/base_state = "syndipod_"
 
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/vr_sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/mob/living/carbon/human/avatar = null
@@ -40,7 +40,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		if(occupant)
 			go_out()
-			visible_message("<span class='notice'>\The [src] emits a low droning sound, before the pod door clicks open.</span>")
+			visible_message("<b>\The [src]</b> emits a low droning sound, before the pod door clicks open.")
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD) // If someone dies somehow while inside, spit them out.
 		visible_message("<span class='warning'>\The [src] sounds an alarm, swinging its hatch open.</span>")
@@ -108,7 +108,7 @@
 			var/obj/item/organ/O = occupant.internal_organs_by_name[O_BRAIN]
 			O.take_damage(severity * 2)
 			visible_message("<span class='danger'>\The [src]'s internal lighting flashes rapidly, before the hatch swings open with a cloud of smoke.</span>")
-			smoke.set_up(n = severity, 0, src)
+			smoke.set_up(severity, 0, src)
 			smoke.start("#202020")
 		go_out()
 
@@ -182,10 +182,11 @@
 	if(!occupant)
 		return
 
-	if(!forced && avatar && alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", "Yes", "No") == "No")
+	if(!forced && avatar && tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) == "No")
 		return
 
-	avatar.exit_vr()
+	if(avatar)
+		avatar.exit_vr()
 	avatar = null
 
 	if(occupant.client)
@@ -218,7 +219,7 @@
 
 	avatar = occupant.vr_link
 	// If they've already enterred VR, and are reconnecting, prompt if they want a new body
-	if(avatar && alert(occupant, "You already have a [avatar.stat == DEAD ? "" : "deceased "]Virtual Reality avatar. Would you like to use it?", "New avatar", "Yes", "No") == "No")
+	if(avatar && tgui_alert(occupant, "You already have a [avatar.stat == DEAD ? "" : "deceased "]Virtual Reality avatar. Would you like to use it?", "New avatar", list("Yes", "No")) == "No")
 		// Delink the mob
 		occupant.vr_link = null
 		avatar = null
@@ -230,7 +231,7 @@
 		for(var/obj/effect/landmark/virtual_reality/sloc in landmarks_list)
 			vr_landmarks += sloc.name
 
-		S = input(occupant, "Please select a location to spawn your avatar at:", "Spawn location") as null|anything in vr_landmarks
+		S = tgui_input_list(occupant, "Please select a location to spawn your avatar at:", "Spawn location", vr_landmarks)
 		if(!S)
 			return 0
 

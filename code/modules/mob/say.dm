@@ -4,12 +4,22 @@
 /mob/verb/whisper(message as text)
 	set name = "Whisper"
 	set category = "IC"
+	//VOREStation Addition Start
+	if(forced_psay)
+		psay(message)
+		return
+	//VOREStation Addition End
 
 	usr.say(message,whispering=1)
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
+	//VOREStation Addition Start
+	if(forced_psay)
+		psay(message)
+		return
+	//VOREStation Addition End
 
 	set_typing_indicator(FALSE)
 	usr.say(message)
@@ -21,6 +31,11 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "<font color='red'>Speech is currently admin-disabled.</font>")
 		return
+	//VOREStation Addition Start
+	if(forced_psay)
+		pme(message)
+		return
+	//VOREStation Addition End
 
 	//VOREStation Edit Start
 	if(muffled)
@@ -63,6 +78,15 @@
 	else if(universal_speak || universal_understand)
 		return TRUE
 
+	//VOREStation Addition Start
+	if(isliving(src))
+		var/mob/living/L = src
+		if(isbelly(L.loc) && L.absorbed)
+			var/mob/living/P = L.loc.loc
+			if(P.say_understands(other, speaking))
+				return TRUE
+	//VOREStation Addition End
+
 	//Languages are handled after.
 	if(!speaking)
 		if(!other)
@@ -104,11 +128,6 @@
 		else if(ending == "?")
 			verb = "asks"
 	return verb
-
-
-/mob/proc/emote(var/act, var/type, var/message)
-	if(act == "me")
-		return custom_emote(type, message)
 
 /mob/proc/get_ear()
 	// returns an atom representing a location on the map from which this

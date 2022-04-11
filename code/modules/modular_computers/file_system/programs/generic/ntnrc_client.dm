@@ -83,8 +83,7 @@
 				return TRUE
 			var/mob/living/user = usr
 			if(can_run(user, TRUE, access_network))
-				for(var/C in ntnet_global.chat_channels)
-					var/datum/ntnet_conversation/chan = C
+				for(var/datum/ntnet_conversation/chan as anything in ntnet_global.chat_channels)
 					chan.remove_client(src)
 				netadmin_mode = TRUE
 				return TRUE
@@ -92,8 +91,7 @@
 			var/newname = sanitize(params["new_name"])
 			if(!newname)
 				return
-			for(var/C in ntnet_global.chat_channels)
-				var/datum/ntnet_conversation/chan = C
+			for(var/datum/ntnet_conversation/chan as anything in ntnet_global.chat_channels)
 				if(src in chan.clients)
 					chan.add_status_message("[username] is now known as [newname].")
 			username = newname
@@ -163,8 +161,7 @@
 		ui_header = "ntnrc_idle.gif"
 
 /datum/computer_file/program/chatclient/kill_program(forced = FALSE)
-	for(var/C in ntnet_global.chat_channels)
-		var/datum/ntnet_conversation/channel = C
+	for(var/datum/ntnet_conversation/channel as anything in ntnet_global.chat_channels)
 		channel.remove_client(src)
 	..()
 
@@ -180,8 +177,7 @@
 	var/list/data = get_header_data()
 
 	var/list/all_channels = list()
-	for(var/C in ntnet_global.chat_channels)
-		var/datum/ntnet_conversation/conv = C
+	for(var/datum/ntnet_conversation/conv as anything in ntnet_global.chat_channels)
 		if(conv && conv.title)
 			all_channels.Add(list(list(
 				"chan" = conv.title,

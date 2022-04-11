@@ -61,7 +61,7 @@ const DNAModifierOccupant = (props, context) => {
       title="Occupant"
       buttons={
         <Fragment>
-          <Box color="label" display="inline" mr="0.5rem">
+          <Box color="label" inline mr="0.5rem">
             Door Lock:
           </Box>
           <Button
@@ -327,7 +327,7 @@ const DNAModifierMainRadiationEmitter = (props, context) => {
         icon="radiation"
         content="Pulse Radiation"
         tooltip="Mutates a random block of either the occupant's UI or SE."
-        tooltipPosition="top-right"
+        tooltipPosition="top"
         mt="0.5rem"
         onClick={() => act('pulseRadiation')}
       />
@@ -399,7 +399,7 @@ const DNAModifierMainBuffersElement = (props, context) => {
               icon="save"
               content="Export"
               tooltip="Exports this buffer to the currently loaded data disk."
-              tooltipPosition="bottom-left"
+              tooltipPosition="bottom-end"
               onClick={() => act('bufferOption', {
                 option: 'saveDisk',
                 id: id,

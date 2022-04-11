@@ -64,7 +64,7 @@
 				usr = user
 				icon_state = "skel"
 				src.bstate = 1
-				src.density = 1
+				src.density = TRUE
 				src.name = "alien skeleton display"
 				if(src.contents.Find(/obj/item/weapon/fossil/skull/horned))
 					src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
@@ -76,7 +76,7 @@
 		else
 			..()
 	else if(istype(W,/obj/item/weapon/pen))
-		plaque_contents = sanitize(input("What would you like to write on the plaque:","Skeleton plaque",""))
+		plaque_contents = sanitize(input(usr, "What would you like to write on the plaque:","Skeleton plaque",""))
 		user.visible_message("[user] writes something on the base of [src].","You relabel the plaque on the base of [bicon(src)] [src].")
 		if(src.contents.Find(/obj/item/weapon/fossil/skull/horned))
 			src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."

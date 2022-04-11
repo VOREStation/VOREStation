@@ -7,7 +7,7 @@
 	var/named
 
 /obj/item/device/text_to_speech/attack_self(mob/user as mob)
-	if(user.incapacitated(INCAPACITATION_ALL)) //Are you in a state to actual use the device?
+	if(user.incapacitated(INCAPACITATION_KNOCKDOWN|INCAPACITATION_DISABLED)) // EDIT: We can use the device only if we are not in certain types of incapacitation. We don't want chairs stopping us from texting!!
 		to_chat(user, "You cannot activate the device in your state.")
 		return
 
@@ -24,5 +24,9 @@
 
 	var/message = sanitize(input(user,"Choose a message to relay to those around you.") as text|null)
 	if(message)
-		var/obj/item/device/text_to_speech/O = src
-		audible_message("[bicon(O)] \The [O.name] states, \"[message]\"")
+		audible_message("[bicon(src)] \The [src.name] states, \"[message]\"", runemessage = "synthesized speech")
+		if(ismob(loc))
+			loc.audible_message("", runemessage = "\[TTS Voice\] [message]")
+
+/obj/item/device/text_to_speech/AltClick(mob/user) // QOL Change
+	attack_self(user)

@@ -4,8 +4,8 @@
 	icon = 'icons/obj/structures.dmi'
 	icon_state = "borg_pod_opened"
 
-	density = 1 //thicc
-	anchored = 1
+	density = TRUE //thicc
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 
 	var/in_transit = 0
@@ -32,7 +32,7 @@
 			sleep(2)
 			go_out()
 			sleep(2)
-			del(src)
+			qdel(src)
 
 /obj/machinery/transportpod/relaymove(mob/user as mob)
 	if(user.stat)
@@ -62,7 +62,7 @@
 	O.forceMove(src)
 	occupant = O
 	update_icon()
-	if(alert(O, "Are you sure you're ready to launch?", , "Yes", "No") == "Yes")
+	if(tgui_alert(O, "Are you sure you're ready to launch?", "Transport Pod", list("Yes", "No")) == "Yes")
 		in_transit = 1
 		playsound(src, HYPERSPACE_WARMUP)
 	else

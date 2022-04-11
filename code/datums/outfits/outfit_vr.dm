@@ -116,21 +116,26 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/explorer
-	id_type = /obj/item/weapon/card/id/explorer
+	id_type = /obj/item/weapon/card/id/exploration
 	id_pda_assignment = "Explorer"
+	backpack = /obj/item/weapon/storage/backpack/explorer
+	satchel_one = /obj/item/weapon/storage/backpack/satchel/explorer
+	messenger_bag = /obj/item/weapon/storage/backpack/messenger/explorer
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/pilot
 	name = OUTFIT_JOB_NAME("Pilot")
 	shoes = /obj/item/clothing/shoes/black
-	uniform = /obj/item/clothing/under/rank/pilot1
+	uniform = /obj/item/clothing/under/rank/pilot1/no_webbing
 	suit = /obj/item/clothing/suit/storage/toggle/bomber/pilot
 	gloves = /obj/item/clothing/gloves/fingerless
 	glasses = /obj/item/clothing/glasses/fakesunglasses/aviator
 	l_ear = /obj/item/device/radio/headset/pilot/alt
+	uniform_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1 = 1)
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
-	pda_type = /obj/item/device/pda
+	pda_type = /obj/item/device/pda/pilot
+	id_type = /obj/item/weapon/card/id/civilian/pilot
 	id_pda_assignment = "Pilot"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
@@ -144,7 +149,11 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/sar
+	id_type = /obj/item/weapon/card/id/exploration/fm
 	id_pda_assignment = "Field Medic"
+	backpack = /obj/item/weapon/storage/backpack/explorer
+	satchel_one = /obj/item/weapon/storage/backpack/satchel/explorer
+	messenger_bag = /obj/item/weapon/storage/backpack/messenger/explorer
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/pathfinder
@@ -155,10 +164,10 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
 	pda_type = /obj/item/device/pda/pathfinder
-	id_type = /obj/item/weapon/card/id/explorer/head
+	id_type = /obj/item/weapon/card/id/exploration/head
 	id_pda_assignment = "Pathfinder"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/assistant/explorer
-	id_type = /obj/item/weapon/card/id/explorer
+	id_type = /obj/item/weapon/card/id/exploration
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL

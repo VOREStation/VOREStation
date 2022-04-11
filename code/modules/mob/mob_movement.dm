@@ -140,25 +140,36 @@
 	// Used many times below, faster reference.
 	var/atom/loc = my_mob.loc
 
-	// We're controlling an object which is SOMEHOW DIFFERENT FROM AN EYE??
+	// We're controlling an object which is when admins possess an object.
 	if(my_mob.control_object)
 		Move_object(direct)
 
 	// Ghosty mob movement
 	if(my_mob.incorporeal_move && isobserver(my_mob))
 		Process_Incorpmove(direct)
+		DEBUG_INPUT("--------")
+		next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+		next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
 		return
 
 	// We're in the middle of another move we've already decided to do
 	if(moving)
+		log_debug("Client [src] attempted to move while moving=[moving]")
 		return 0
 
 	// We're still cooling down from the last move
 	if(!my_mob.checkMoveCooldown())
 		return
+	DEBUG_INPUT("--------")
+	next_move_dir_add = 0	// This one I *think* exists so you can tap move and it will move even if delay isn't quite up.
+	next_move_dir_sub = 0 	// I'm not really sure why next_move_dir_sub even exists.
+
+	if(!n || !direct)
+		return
 
 	// If dead and we try to move in our mob, it leaves our body
 	if(my_mob.stat == DEAD && isliving(my_mob) && !my_mob.forbid_seeing_deadchat)
+		my_mob.setMoveCooldown(my_mob.movement_delay(n, direct))
 		my_mob.ghostize()
 		return
 
@@ -287,9 +298,13 @@
 	else
 		. = my_mob.SelfMove(n, direct, total_delay)
 
+	// If we ended up moving diagonally, increase delay.
+	if((direct & (direct - 1)) && mob.loc == n)
+		my_mob.setMoveCooldown(total_delay * 2)
+
 	// If we have a grab
 	var/list/grablist = my_mob.ret_grab()
-	if(grablist.len)
+	if(LAZYLEN(grablist))
 		grablist -= my_mob // Just in case we're in a circular grab chain
 
 		// It's just us and another person
@@ -460,8 +475,6 @@
 	return dense_object
 
 /mob/proc/Check_Shoegrip()
-	if(flying) //VOREStation Edit. Checks to see if they  and are flying.
-		return 1 //VOREStation Edit. Checks to see if they are flying. Mostly for this to be ported to Polaris.
 	return 0
 
 /mob/proc/Process_Spaceslipping(var/prob_slip = 5)
@@ -479,19 +492,26 @@
 /mob/proc/update_gravity()
 	return
 
+#define DO_MOVE(this_dir) var/final_dir = turn(this_dir, -dir2angle(dir)); Move(get_step(mob, final_dir), final_dir);
+
 /client/verb/moveup()
 	set name = ".moveup"
 	set instant = 1
-	Move(get_step(mob, NORTH), NORTH)
+	DO_MOVE(NORTH)
+
 /client/verb/movedown()
 	set name = ".movedown"
 	set instant = 1
-	Move(get_step(mob, SOUTH), SOUTH)
+	DO_MOVE(SOUTH)
+
 /client/verb/moveright()
 	set name = ".moveright"
 	set instant = 1
-	Move(get_step(mob, EAST), EAST)
+	DO_MOVE(EAST)
+
 /client/verb/moveleft()
 	set name = ".moveleft"
 	set instant = 1
-	Move(get_step(mob, WEST), WEST)
+	DO_MOVE(WEST)
+
+#undef DO_MOVE

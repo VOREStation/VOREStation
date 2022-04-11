@@ -3,7 +3,7 @@ import { round } from "common/math";
 import { Fragment } from "inferno";
 import { formatTime } from "../format";
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Tabs, Collapsible, AnimatedNumber } from "../components";
+import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Tabs, Collapsible, AnimatedNumber, Stack } from "../components";
 import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
 import { Window } from "../layouts";
 import { flow } from 'common/fp';
@@ -212,8 +212,8 @@ const SupplyConsoleMenuOrder = (props, context) => {
 
   return (
     <Section level={2}>
-      <Flex spacing={1}>
-        <Flex.Item basis="25%">
+      <Stack>
+        <Stack.Item basis="25%">
           <Section title="Categories" scrollable fill height="290px">
             {categories.map(category => (
               <Button
@@ -224,13 +224,13 @@ const SupplyConsoleMenuOrder = (props, context) => {
                 onClick={() => setActiveCategory(category)} />
             ))}
           </Section>
-        </Flex.Item>
-        <Flex.Item grow={1}>
+        </Stack.Item>
+        <Stack.Item grow={1} ml={2}>
           <Section title="Contents" scrollable fill height="290px">
             {viewingPacks.map(pack => (
               <Box key={pack.name}>
-                <Flex align="center" justify="flex-start" spacing={1}>
-                  <Flex.Item basis="70%">
+                <Stack align="center" justify="flex-start">
+                  <Stack.Item basis="70%">
                     <Button
                       fluid
                       icon="shopping-cart"
@@ -238,23 +238,23 @@ const SupplyConsoleMenuOrder = (props, context) => {
                       content={pack.name}
                       color={(pack.cost > supply_points) ? "red" : null}
                       onClick={() => act("request_crate", { ref: pack.ref })} />
-                  </Flex.Item>
-                  <Flex.Item>
+                  </Stack.Item>
+                  <Stack.Item>
                     <Button
                       content="#"
                       color={(pack.cost > supply_points) ? "red" : null}
                       onClick={() => act("request_crate_multi", { ref: pack.ref })} />
-                  </Flex.Item>
-                  <Flex.Item>
+                  </Stack.Item>
+                  <Stack.Item>
                     <Button
                       content="C"
                       color={(pack.cost > supply_points) ? "red" : null}
                       onClick={() => act("view_crate", { crate: pack.ref })} />
-                  </Flex.Item>
-                  <Flex.Item grow={1}>
+                  </Stack.Item>
+                  <Stack.Item grow={1}>
                     {pack.cost} points
-                  </Flex.Item>
-                </Flex>
+                  </Stack.Item>
+                </Stack>
               </Box>
             ))}
             {/* Alternative collapsible style folders */}
@@ -274,8 +274,8 @@ const SupplyConsoleMenuOrder = (props, context) => {
               </Collapsible>
             ))} */}
           </Section>
-        </Flex.Item>
-      </Flex>
+        </Stack.Item>
+      </Stack>
     </Section>
   );
 };

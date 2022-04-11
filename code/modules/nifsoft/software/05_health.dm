@@ -17,7 +17,7 @@
 	if((. = ..()))
 		mode = 1
 
-/datum/nifsoft/medichines_org/deactivate()
+/datum/nifsoft/medichines_org/deactivate(var/force = FALSE)
 	if((. = ..()))
 		a_drain = initial(a_drain)
 		mode = initial(mode)
@@ -90,7 +90,7 @@
 	if((. = ..()))
 		mode = 1
 
-/datum/nifsoft/medichines_syn/deactivate()
+/datum/nifsoft/medichines_syn/deactivate(var/force = FALSE)
 	if((. = ..()))
 		mode = 0
 
@@ -107,10 +107,8 @@
 			nif.notify("User Status: DAMAGED. Medichines performing minor repairs.",TRUE)
 			activate()
 
-		for(var/eo in nif.human.bad_external_organs)
-			var/obj/item/organ/external/EO = eo
-			for(var/w in EO.wounds)
-				var/datum/wound/W = w
+		for(var/obj/item/organ/external/EO as anything in nif.human.bad_external_organs)
+			for(var/datum/wound/W as anything in EO.wounds)
 				if(W.damage <= 5)
 					W.heal_damage(0.1)
 					EO.update_damages()
@@ -144,7 +142,7 @@
 	if((. = ..()))
 		nif.notify("Now taking air from reserves.")
 
-/datum/nifsoft/spare_breath/deactivate()
+/datum/nifsoft/spare_breath/deactivate(var/force = FALSE)
 	if((. = ..()))
 		nif.notify("Now taking air from environment and refilling reserves.")
 
@@ -195,7 +193,7 @@
 		deactivate()
 		return TRUE
 
-/datum/nifsoft/mindbackup/deactivate()
+/datum/nifsoft/mindbackup/deactivate(var/force = FALSE)
 	if((. = ..()))
 		return TRUE
 

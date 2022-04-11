@@ -24,12 +24,39 @@
 #define EMP_TOX_DMG	0x80	// EMPs inflict toxin damage
 #define EMP_OXY_DMG	0x100	// EMPs inflict oxy damage
 
+// Species allergens
+#define ALLERGEN_MEAT		0x1		// Skrell won't like this.
+#define ALLERGEN_FISH		0x2		// Seperate for completion's sake. Still bad for skrell.
+#define ALLERGEN_FRUIT		0x4		// An apple a day only keeps the doctor away if they're allergic.
+#define ALLERGEN_VEGETABLE	0x8		// Taters 'n' carrots. Potato allergy is a thing, apparently.
+#define ALLERGEN_GRAINS		0x10	// Wheat, oats, etc.
+#define ALLERGEN_BEANS		0x20	// The musical fruit! Includes soy.
+#define ALLERGEN_SEEDS		0x40	// Hope you don't have a nut allergy.
+#define ALLERGEN_DAIRY		0x80	// Lactose intolerance, ho! Also bad for skrell.
+#define ALLERGEN_FUNGI		0x100	// Delicious shrooms.
+#define ALLERGEN_COFFEE		0x200	// Mostly here for tajara.
+#define ALLERGEN_SUGARS		0x400	// For unathi-like reactions
+#define ALLERGEN_EGGS		0x800	// For Skrell eggs allergy
+#define ALLERGEN_STIMULANT	0x1000	// Stimulants are what makes the Tajaran heart go ruh roh - not just coffee!
+
+// Allergen reactions
+#define AG_TOX_DMG	0x1	// the classic
+#define AG_OXY_DMG	0x2	// intense airway reactions
+#define AG_EMOTE	0x4	// general emote reactions based on affect type
+#define AG_PAIN		0x8	// short-lived hurt
+#define AG_WEAKEN	0x10	// too weak to move, oof
+#define AG_BLURRY	0x20	// blurred vision!
+#define AG_SLEEPY	0x40	// fatigue/exhaustion
+#define AG_CONFUSE	0x80	// disorientation - VOREStation addition
+
 // Species spawn flags
-#define SPECIES_IS_WHITELISTED    0x1    // Must be whitelisted to play.
-#define SPECIES_IS_RESTRICTED     0x2    // Is not a core/normally playable species. (castes, mutantraces)
-#define SPECIES_CAN_JOIN                  0x4    // Species is selectable in chargen.
-#define SPECIES_NO_FBP_CONSTRUCTION 0x8    // FBP of this species can't be made in-game.
-#define SPECIES_NO_FBP_CHARGEN      0x10    // FBP of this species can't be selected at chargen.
+#define SPECIES_IS_WHITELISTED      0x1  // Must be whitelisted to play.
+#define SPECIES_IS_RESTRICTED       0x2  // Is not a core/normally playable species. (castes, mutantraces)
+#define SPECIES_CAN_JOIN            0x4  // Species is selectable in chargen.
+#define SPECIES_NO_FBP_CONSTRUCTION 0x8  // FBP of this species can't be made in-game.
+#define SPECIES_NO_FBP_CHARGEN      0x10 // FBP of this species can't be selected at chargen.
+#define SPECIES_NO_POSIBRAIN        0x20 // FBP of this species cannot have a positronic brain.
+#define SPECIES_NO_DRONEBRAIN       0x40 // FBP of this species cannot have a drone intelligence.
 
 // Species appearance flags
 #define HAS_SKIN_TONE     0x1    // Skin tone selectable in chargen. (0-255)
@@ -68,7 +95,7 @@
 #define LANGUAGE_ALAI "Alai"
 #define LANGUAGE_ZADDAT "Vedahq"
 #define LANGUAGE_PROMETHEAN "Promethean Biolinguistics"
-#define LANGUAGE_BLOB "Blob"
+#define LANGUAGE_BLOB "Chemosense Transmission"
 #define LANGUAGE_GIBBERISH "Babel"
 
 // Language flags.

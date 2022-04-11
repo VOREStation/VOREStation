@@ -26,21 +26,22 @@
 	data["network"] = network
 	data["temp"] = temp
 
-	data["servers"] = list()
+	var/list/servers = list()
 	for(var/obj/machinery/telecomms/T in servers)
-		data["servers"].Add(list(list(
+		servers.Add(list(list(
 			"id" = T.id,
 			"name" = T.name,
 		)))
+	data["servers"] = servers
 
 	data["selectedServer"] = null
 	if(SelectedServer)
 		data["selectedServer"] = list(
 			"id" = SelectedServer.id,
 			"totalTraffic" = SelectedServer.totaltraffic,
-			"logs" = list()
 		)
 
+		var/list/logs = list()
 		var/i = 0
 		for(var/c in SelectedServer.log_entries)
 			i++
@@ -52,12 +53,14 @@
 			for(var/log_param in acceptable_params)
 				parameters["[log_param]"] = C.parameters["[log_param]"]
 
-			data["selectedServer"]["logs"].Add(list(list(
+			logs.Add(list(list(
 				"name" = C.name,
 				"input_type" = C.input_type,
 				"id" = i,
 				"parameters" = parameters,
 			)))
+
+		data["selectedServer"]["logs"] = logs
 
 	return data
 

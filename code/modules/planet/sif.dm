@@ -2,9 +2,6 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/planet/sif
 	name = "Sif"
-
-/datum/planet/sif
-	name = "Sif"
 	desc = "Sif is a terrestrial planet in the Vir system. It is somewhat earth-like, in that it has oceans, a \
 	breathable atmosphere, a magnetic field, weather, and similar gravity to Earth. It is currently the capital planet of Vir. \
 	Its center of government is the equatorial city and site of first settlement, New Reykjavik." // Ripped straight from the wiki.
@@ -98,7 +95,7 @@ var/datum/planet/sif/planet_sif = null
 		new_color = rgb(new_r, new_g, new_b)
 
 	spawn(1)
-		update_sun_deferred(2, new_brightness, new_color)
+		update_sun_deferred(new_brightness, new_color)
 
 // We're gonna pretend there are 32 hours in a Sif day instead of 32.64 for the purposes of not losing sanity.  We lose 38m 24s but the alternative is a path to madness.
 /datum/time/sif
@@ -156,6 +153,9 @@ var/datum/planet/sif/planet_sif = null
 	sky_visible = TRUE
 	observed_message = "The sky is clear."
 
+	outdoor_sounds_type = /datum/looping_sound/weather/wind/gentle
+	indoor_sounds_type = /datum/looping_sound/weather/wind/gentle/indoors
+
 /datum/weather/sif/overcast
 	name = "overcast"
 	light_modifier = 0.8
@@ -174,6 +174,9 @@ var/datum/planet/sif/planet_sif = null
 		"It's very cloudy."
 		)
 
+	outdoor_sounds_type = /datum/looping_sound/weather/wind/gentle
+	indoor_sounds_type = /datum/looping_sound/weather/wind/gentle/indoors
+
 /datum/weather/sif/light_snow
 	name = "light snow"
 	icon_state = "snowfall_light"
@@ -191,6 +194,9 @@ var/datum/planet/sif/planet_sif = null
 		"Small snowflakes begin to fall from above.",
 		"It begins to snow lightly.",
 		)
+
+	outdoor_sounds_type = /datum/looping_sound/weather/wind/gentle
+	indoor_sounds_type = /datum/looping_sound/weather/wind/gentle/indoors
 
 /datum/weather/sif/snow
 	name = "moderate snow"
@@ -216,15 +222,17 @@ var/datum/planet/sif/planet_sif = null
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_snow
 	indoor_sounds_type = /datum/looping_sound/weather/inside_snow
 
+/*
 /datum/weather/sif/snow/process_effects()
 	..()
-	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
+	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)
 				if(istype(T))
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(33))
 						T.chill()
+*/
 
 /datum/weather/sif/blizzard
 	name = "blizzard"
@@ -249,15 +257,17 @@ var/datum/planet/sif/planet_sif = null
 	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
 	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
+/*
 /datum/weather/sif/blizzard/process_effects()
 	..()
-	for(var/turf/simulated/floor/outdoors/snow/S in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
+	for(var/turf/simulated/floor/outdoors/snow/S as anything in SSplanets.new_outdoor_turfs) //This didn't make any sense before SSplanets, either
 		if(S.z in holder.our_planet.expected_z_levels)
 			for(var/dir_checked in cardinal)
 				var/turf/simulated/floor/T = get_step(S, dir_checked)
 				if(istype(T))
 					if(istype(T, /turf/simulated/floor/outdoors) && prob(50))
 						T.chill()
+*/
 
 /datum/weather/sif/rain
 	name = "rain"
@@ -278,30 +288,26 @@ var/datum/planet/sif/planet_sif = null
 	transition_messages = list(
 		"The sky is dark, and rain falls down upon you."
 	)
-//	outdoor_sounds_type = /datum/looping_sound/weather/rain
-//	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
+	outdoor_sounds_type = /datum/looping_sound/weather/rain
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
 
 /datum/weather/sif/rain/process_effects()
 	..()
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to rain on them.
 
 			// If they have an open umbrella, it'll guard from rain
-			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
-					continue
-			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
-					continue
+			var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+			if(!istype(U) || !U.open)
+				U = L.get_inactive_hand()
+
+			if(istype(U) && U.open)
+				if(show_message)
+					to_chat(L, "<span class='notice'>Rain patters softly onto your umbrella.</span>")
+				continue
 
 			L.water_act(1)
 			if(show_message)
@@ -327,8 +333,8 @@ var/datum/planet/sif/planet_sif = null
 		"Loud thunder is heard in the distance.",
 		"A bright flash heralds the approach of a storm."
 	)
-//	outdoor_sounds_type = /datum/looping_sound/weather/rain
-//	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors
+	outdoor_sounds_type = /datum/looping_sound/weather/rain/heavy
+	indoor_sounds_type = /datum/looping_sound/weather/rain/indoors/heavy
 
 
 	transition_chances = list(
@@ -340,24 +346,21 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/weather/sif/storm/process_effects()
 	..()
-	for(var/mob/living/L in living_mob_list)
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to rain on them.
+
 			// If they have an open umbrella, it'll guard from rain
-			if(istype(L.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain showers loudly onto your umbrella!</span>")
-					continue
-			else if(istype(L.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
-				var/obj/item/weapon/melee/umbrella/U = L.get_inactive_hand()
-				if(U.open)
-					if(show_message)
-						to_chat(L, "<span class='notice'>Rain showers loudly onto your umbrella!</span>")
-					continue
+			var/obj/item/weapon/melee/umbrella/U = L.get_active_hand()
+			if(!istype(U) || !U.open)
+				U = L.get_inactive_hand()
+
+			if(istype(U) && U.open)
+				if(show_message)
+					to_chat(L, "<span class='notice'>Rain showers loudly onto your umbrella!</span>")
+				continue
 
 
 			L.water_act(2)
@@ -401,20 +404,18 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/weather/sif/hail/process_effects()
 	..()
-	for(var/humie in human_mob_list)
-		var/mob/living/carbon/human/H = humie
+	for(var/mob/living/carbon/H as anything in human_mob_list)
 		if(H.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(H)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to pelt them with ice.
 
 			// If they have an open umbrella, it'll guard from hail
-			var/obj/item/weapon/melee/umbrella/U
-			if(istype(H.get_active_hand(), /obj/item/weapon/melee/umbrella))
-				U = H.get_active_hand()
-			else if(istype(H.get_inactive_hand(), /obj/item/weapon/melee/umbrella))
+			var/obj/item/weapon/melee/umbrella/U = H.get_active_hand()
+			if(!istype(U) || !U.open)
 				U = H.get_inactive_hand()
-			if(U && U.open)
+
+			if(istype(U) && U.open)
 				if(show_message)
 					to_chat(H, "<span class='notice'>Hail patters onto your umbrella.</span>")
 				continue
@@ -498,11 +499,10 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/weather/sif/ash_storm/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to burn them with ash.
 
 			L.inflict_heat_damage(rand(1, 3))
@@ -535,12 +535,11 @@ var/datum/planet/sif/planet_sif = null
 
 /datum/weather/sif/fallout/process_effects()
 	..()
-	for(var/thing in living_mob_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in living_mob_list)
 		if(L.z in holder.our_planet.expected_z_levels)
 			irradiate_nearby_turf(L)
 			var/turf/T = get_turf(L)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue // They're indoors, so no need to irradiate them with fallout.
 
 			L.rad_act(rand(direct_rad_low, direct_rad_high))
@@ -554,5 +553,5 @@ var/datum/planet/sif/planet_sif = null
 	var/turf/T = pick(turfs) // We get one try per tick.
 	if(!istype(T))
 		return
-	if(T.outdoors)
+	if(T.is_outdoors())
 		SSradiation.radiate(T, rand(fallout_rad_low, fallout_rad_high))

@@ -5,12 +5,13 @@ import { formatSiUnit, formatMoney } from '../format';
 import { Flex, Section, Tabs, Box, Button, Fragment, ProgressBar, NumberInput, Icon, Input, Tooltip } from '../components';
 import { Window } from '../layouts';
 import { createSearch, toTitleCase } from 'common/string';
+import { toFixed } from 'common/math';
 
 const MATERIAL_KEYS = {
   "steel": "sheet-metal_3",
   "glass": "sheet-glass_3",
   "silver": "sheet-silver_3",
-  "graphite": "sheet-silver_3",
+  "graphite": "sheet-puck_3",
   "plasteel": "sheet-plasteel_3",
   "durasteel": "sheet-durasteel_3",
   "verdantium": "sheet-wavy_3",
@@ -24,6 +25,7 @@ const MATERIAL_KEYS = {
   "uranium": "sheet-uranium_3",
   "titanium": "sheet-titanium_3",
   "lead": "sheet-adamantine_3",
+  "platinum": "sheet-adamantine_3",
   "plastic": "sheet-plastic_3",
 };
 
@@ -41,7 +43,8 @@ const materialArrayToObj = materials => {
   let materialObj = {};
 
   materials.forEach(m => {
-    materialObj[m.name] = m.amount; });
+    materialObj[m.name] = m.amount;
+  });
 
   return materialObj;
 };
@@ -147,7 +150,7 @@ export const ExosuitFabricator = (props, context) => {
     displayMatCost,
     setDisplayMatCost,
   ] = useSharedState(context, "display_mats", false);
-  
+
   const [
     displayAllMat,
     setDisplayAllMat,
@@ -316,10 +319,22 @@ export const Materials = (props, context) => {
 
   const materials = data.materials || [];
 
+  let display_materials = materials.filter(mat => displayAllMat || mat.amount > 0);
+
+  if (display_materials.length === 0) {
+    return (
+      <Box textAlign="center">
+        <Icon textAlign="center" size={5} name="inbox" />
+        <br />
+        <b>No Materials Loaded.</b>
+      </Box>
+    );
+  }
+
   return (
     <Flex
       wrap="wrap">
-      {materials.map(material => (displayAllMat || material.amount > 0) && (
+      {display_materials.map(material => (
         <Flex.Item
           width="80px"
           key={material.name}>
@@ -351,30 +366,38 @@ const MaterialAmount = (props, context) => {
     style,
   } = props;
 
+  let amountDisplay = "0";
+  if (amount < 1 && amount > 0) {
+    amountDisplay = toFixed(amount, 2);
+  } else if (formatsi) {
+    amountDisplay = formatSiUnit(amount, 0);
+  } else if (formatmoney) {
+    amountDisplay = formatMoney(amount);
+  } else {
+    amountDisplay = amount;
+  }
+
+
   return (
     <Flex
       direction="column"
       align="center">
       <Flex.Item>
-        <Box
-          className={classes([
-            'sheetmaterials32x32',
-            MATERIAL_KEYS[name],
-          ])}
-          position="relative"
-          style={style}>
-          <Tooltip
-            position="bottom"
-            content={toTitleCase(name)} />
-        </Box>
+        <Tooltip position="bottom" content={toTitleCase(name)}>
+          <Box
+            className={classes([
+              'sheetmaterials32x32',
+              MATERIAL_KEYS[name],
+            ])}
+            position="relative"
+            style={style} />
+        </Tooltip>
       </Flex.Item>
       <Flex.Item>
         <Box
           textColor={color}
           style={{ "text-align": "center" }}>
-          {(formatsi && formatSiUnit(amount, 0))
-          || (formatmoney && formatMoney(amount))
-          || (amount)}
+          {amountDisplay}
         </Box>
       </Flex.Item>
     </Flex>
@@ -559,7 +582,7 @@ const PartCategory = (props, context) => {
               <Flex.Item>
                 <Button
                   disabled={buildingPart
-                  || (part.format.textColor === COLOR_BAD)}
+                    || (part.format.textColor === COLOR_BAD)}
                   color="good"
                   height="20px"
                   mr={1}
@@ -590,8 +613,8 @@ const PartCategory = (props, context) => {
                   height="20px"
                   tooltip={
                     "Build Time: "
-                  + part.printTime + "s. "
-                  + (part.desc || "")
+                    + part.printTime + "s. "
+                    + (part.desc || "")
                   }
                   tooltipPosition="left" />
               </Flex.Item>
@@ -760,7 +783,7 @@ const QueueList = (props, context) => {
               mr={1}
               icon="minus-circle"
               color="bad"
-              onClick={() => act("del_queue_part", { index: index+1 })} />
+              onClick={() => act("del_queue_part", { index: index + 1 })} />
           </Flex.Item>
           <Flex.Item>
             <Box
@@ -817,7 +840,7 @@ const BeingBuilt = (props, context) => {
       printTime,
     } = buildingPart;
 
-    const timeLeft = Math.ceil(duration/10);
+    const timeLeft = Math.ceil(duration / 10);
 
     return (
       <Box>

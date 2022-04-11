@@ -2,10 +2,10 @@
 	name = "outcrop"
 	desc = "A boring rocky outcrop."
 	icon = 'icons/obj/outcrop.dmi'
-	density = 1
+	density = TRUE
 	throwpass = 1
-	climbable = 1
-	anchored = 1
+	climbable = TRUE
+	anchored = TRUE
 	icon_state = "outcrop"
 	var/mindrop = 5
 	var/upperdrop = 10
@@ -14,7 +14,7 @@
 /obj/structure/outcrop/Initialize()
 	. = ..()
 	if(prob(1))
-		overlays += image(icon, "[initial(icon_state)]-egg")
+		add_overlay("[initial(icon_state)]-egg")
 
 /obj/structure/outcrop/diamond
 	name = "shiny outcrop"

@@ -155,7 +155,7 @@
 
 /obj/item/borg/upgrade/advhealth
 	name = "advanced health analyzer module"
-	desc = "A carbon dioxide jetpack suitable for low-gravity operations."
+	desc = "An Advanced Health Analyzer, optimized for borg mounting."
 	icon_state = "cyborg_upgrade3"
 	item_state = "cyborg_upgrade"
 	require_module = 1

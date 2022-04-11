@@ -59,23 +59,23 @@ var/global/list/additional_antag_types = list()
 		var/choice = ""
 		switch(href_list["set"])
 			if("shuttle_delay")
-				choice = input("Enter a new shuttle delay multiplier") as num
+				choice = input(usr, "Enter a new shuttle delay multiplier") as num
 				if(!choice || choice < 1 || choice > 20)
 					return
 				shuttle_delay = choice
 			if("antag_scaling")
-				choice = input("Enter a new antagonist cap scaling coefficient.") as num
+				choice = input(usr, "Enter a new antagonist cap scaling coefficient.") as num
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				antag_scaling_coeff = choice
 			if("event_modifier_moderate")
-				choice = input("Enter a new moderate event time modifier.") as num
+				choice = input(usr, "Enter a new moderate event time modifier.") as num
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_moderate = choice
 				refresh_event_modifiers()
 			if("event_modifier_severe")
-				choice = input("Enter a new moderate event time modifier.") as num
+				choice = input(usr, "Enter a new moderate event time modifier.") as num
 				if(isnull(choice) || choice < 0 || choice > 100)
 					return
 				event_delay_mod_major = choice
@@ -99,7 +99,7 @@ var/global/list/additional_antag_types = list()
 			additional_antag_types -= antag.id
 			message_admins("Admin [key_name_admin(usr)] removed [antag.role_text] template from game mode.")
 	else if(href_list["add_antag_type"])
-		var/choice = input("Which type do you wish to add?") as null|anything in all_antag_types
+		var/choice = tgui_input_list(usr, "Which type do you wish to add?", "Select Antag Type", all_antag_types)
 		if(!choice)
 			return
 		var/datum/antagonist/antag = all_antag_types[choice]
@@ -292,7 +292,6 @@ var/global/list/additional_antag_types = list()
 			antag.check_victory()
 			antag.print_player_summary()
 		sleep(10)
-		print_ownerless_uplinks()
 
 	var/clients = 0
 	var/surviving_humans = 0
@@ -311,26 +310,27 @@ var/global/list/additional_antag_types = list()
 	for(var/mob/M in player_list)
 		if(M.client)
 			clients++
+			var/M_area_type = (get_turf(M))?.loc?.type
 			if(ishuman(M))
 				if(M.stat != DEAD)
 					surviving_humans++
-					if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
+					if(M_area_type in escape_locations)
 						escaped_humans++
 			if(M.stat != DEAD)
 				surviving_total++
-				if(M.loc && M.loc.loc && M.loc.loc.type in escape_locations)
+				if(M_area_type in escape_locations)
 					escaped_total++
 
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape/centcom)
+				if(M_area_type == /area/shuttle/escape/centcom)
 					escaped_on_shuttle++
 
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod1/centcom)
+				if(M_area_type == /area/shuttle/escape_pod1/centcom)
 					escaped_on_pod_1++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod2/centcom)
+				if(M_area_type == /area/shuttle/escape_pod2/centcom)
 					escaped_on_pod_2++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod3/centcom)
+				if(M_area_type == /area/shuttle/escape_pod3/centcom)
 					escaped_on_pod_3++
-				if(M.loc && M.loc.loc && M.loc.loc.type == /area/shuttle/escape_pod5/centcom)
+				if(M_area_type == /area/shuttle/escape_pod5/centcom)
 					escaped_on_pod_5++
 
 			if(isobserver(M))
@@ -368,6 +368,15 @@ var/global/list/additional_antag_types = list()
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
+	SSwebhooks.send(
+		WEBHOOK_ROUNDEND, 
+		list(
+			"survivors" = surviving_total, 
+			"escaped" = escaped_total, 
+			"ghosts" = ghosts, 
+			"clients" = clients
+		)
+	)
 
 	return 0
 
@@ -460,7 +469,7 @@ var/global/list/additional_antag_types = list()
 //////////////////////////
 //Reports player logouts//
 //////////////////////////
-proc/display_roundstart_logout_report()
+/proc/display_roundstart_logout_report()
 	var/msg = "<span class='notice'><b>Roundstart logout report</b>\n\n"
 	for(var/mob/living/L in mob_list)
 
@@ -512,7 +521,7 @@ proc/display_roundstart_logout_report()
 		if(M.client && M.client.holder)
 			to_chat(M,msg)
 
-proc/get_nt_opposed()
+/proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)

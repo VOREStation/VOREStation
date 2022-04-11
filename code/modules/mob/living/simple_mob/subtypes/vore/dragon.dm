@@ -16,6 +16,9 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 30
 
+	meat_amount = 15
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	//Space dragons aren't affected by atmos.
 	min_oxy = 0
 	max_oxy = 0
@@ -62,8 +65,31 @@
 	vore_pounce_chance = 0 // Beat them into crit before eating.
 	vore_icons = SA_ICON_LIVING
 
+/datum/category_item/catalogue/fauna/phoron_dragon
+	name = "Virgo 3b Fauna - Phoron Dragon"
+	desc = "Classification: Phoron Draconinae\
+	<br><br>\
+	A cousin to the dragons of space, Phoron Dragons are a rare and rather unique sight to see in the wilds of Virgo 3b. \
+	Their terrifying appearance isn't just for looks, the black scales with mutated Phoron deposits in the skin are meant \
+	to intimidate and frighten potential prey. They are mainly carnivorous in nature but can survive off of a mixed diet \
+	of meats and plant based foods in certain circumstances - usually these circumstances are not ideal for the predator. \
+	It is unknown still how the Phoron Dragon came to be but scientists speculate that common Dragons such as Red Dragons \
+	somehow ended up on Virgo 3b and through a period of evolutionary mutation became the modern day Phoron Dragon.\
+	<br>\
+	Female dragons will often lay a clutch of eggs similar to that of other reptilian species after she is properly mated. \
+	Females will go through a heat cycle once every season and will actively seek a mate in order to copulate. Males during \
+	this time of season have been known to be increasingly hostile. Travellers are warned against traversing in the wilds \
+	during these seasons because of the increased hostility.\
+	<br>\
+	Unlike their more fiery cousins, these dragons do not breathe flames as it would ignite both the surrounding Phoron and \
+	the internal Phoron deposits of its body. Scientists still do not know how or when in the evolutionary chain they lost \
+	their signature fire breath but it was likely very early in the chain otherwise the entire species would be extinct."
+	value = CATALOGUER_REWARD_HARD
+
 /mob/living/simple_mob/vore/aggressive/dragon/virgo3b
 	name = "phoron dragon"
+	tt_desc = "Phoron Draconinae"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/phoron_dragon)
 	maxHealth = 300
 	health = 300
 	faction = "virgo3b"
@@ -73,6 +99,7 @@
 	mount_offset_y = 24
 	mount_offset_x = -9
 	has_eye_glow = TRUE
+	vore_eyes = TRUE
 
 /mob/living/simple_mob/vore/aggressive/dragon/Login()
 	. = ..()

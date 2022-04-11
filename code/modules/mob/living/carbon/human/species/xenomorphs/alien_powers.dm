@@ -67,7 +67,7 @@
 		to_chat(src, "<span class='alium'>Their plasma vessel is missing.</span>")
 		return
 
-	var/amount = input("Amount:", "Transfer Plasma to [M]") as num
+	var/amount = input(usr, "Amount:", "Transfer Plasma to [M]") as num
 	if (amount)
 		amount = abs(round(amount))
 		if(check_alien_ability(amount,0,O_PLASMA))
@@ -79,7 +79,7 @@
 // Queen verbs.
 /mob/living/carbon/human/proc/lay_egg()
 
-	set name = "Lay Egg (75)"
+	set name = "Lay Egg (200)"
 	set desc = "Lay an egg to produce huggers to impregnate prey with."
 	set category = "Abilities"
 
@@ -88,20 +88,20 @@
 		verbs -= /mob/living/carbon/human/proc/lay_egg
 		return
 
-	if(locate(/obj/effect/alien/egg) in get_turf(src))
+	if(locate(/obj/structure/alien/egg) in get_turf(src))
 		to_chat(src, "There's already an egg here.")
 		return
 
-	if(check_alien_ability(75,1,O_EGG))
+	if(check_alien_ability(200,1,O_EGG))
 		visible_message("<span class='alium'><B>[src] has laid an egg!</B></span>")
-		new /obj/effect/alien/egg(loc)
+		new /obj/structure/alien/egg(loc)
 
 	return
 
 // Drone verbs.
 /mob/living/carbon/human/proc/evolve()
 	set name = "Evolve (500)"
-	set desc = "Produce an interal egg sac capable of spawning children. Only one queen can exist at a time."
+	set desc = "Produce an internal egg sac capable of spawning children. Only one queen can exist at a time."
 	set category = "Abilities"
 
 	if(alien_queen_exists())
@@ -144,37 +144,34 @@
 		P.firer = src
 		P.old_style_target(A)
 		P.fire()
-		playsound(src, 'sound/weapons/pierce.ogg', 25, 0)
-	else
-		..()
+		playsound(src, 'sound/weapons/alien_spitacid.ogg', 25, 0)
 
 /mob/living/carbon/human/proc/corrosive_acid(O as obj|turf in oview(1)) //If they right click to corrode, an error will flash if its an invalid target./N
 	set name = "Corrosive Acid (200)"
 	set desc = "Drench an object in acid, destroying it over time."
 	set category = "Abilities"
 
-	if(!O in oview(1))
+	if(!(O in oview(1)))
 		to_chat(src, "<span class='alium'>[O] is too far away.</span>")
 		return
 
 	// OBJ CHECK
 	var/cannot_melt
 	if(isobj(O))
-		var/obj/I = O
+		var/obj/I = O //Gurgs : Melts pretty much any object that isn't considered unacidable = TRUE
 		if(I.unacidable)
 			cannot_melt = 1
 	else
 		if(istype(O, /turf/simulated/wall))
-			var/turf/simulated/wall/W = O
+			var/turf/simulated/wall/W = O //Gurgs : Walls are deconstructed into girders.
 			if(W.material.flags & MATERIAL_UNMELTABLE)
 				cannot_melt = 1
 		else if(istype(O, /turf/simulated/floor))
-/*			var/turf/simulated/floor/F = O							//Turfs are qdel'd to space (Even asteroid tiles), will need to be touched by someone smarter than myself. -Mech
+			var/turf/simulated/floor/F = O	//Gurgs : Floors are destroyed with ex_act(1), turning them into whatever tile it would be if empty. Z-Level Friendly, does not destroy pipes.
 			if(F.flooring && (F.flooring.flags & TURF_ACID_IMMUNE))
-*/
-			cannot_melt = 1
+				cannot_melt = 1
 		else
-			cannot_melt = 1
+			cannot_melt = 1 //Gurgs : Everything that isn't a object, simulated wall, or simulated floor is assumed to be acid immune. Includes weird things like unsimulated floors and space.
 
 	if(cannot_melt)
 		to_chat(src, "<span class='alium'>You cannot dissolve this object.</span>")
@@ -228,36 +225,53 @@
 		spit_name = "acid"
 		to_chat(src, "<span class='alium'>You prepare to spit acid.</span>")
 
-/mob/living/carbon/human/proc/resin() // -- TLE
+/mob/living/carbon/human/proc/resin() //Gurgs : Refactored resin ability, big thanks to Jon.
 	set name = "Secrete Resin (75)"
 	set desc = "Secrete tough malleable resin."
 	set category = "Abilities"
 
-	var/choice = input("Choose what you wish to shape.","Resin building") as null|anything in list("resin door","resin wall","resin membrane","resin nest","resin blob") //would do it through typesof but then the player choice would have the type path and we don't want the internal workings to be exposed ICly - Urist
-	if(!choice)
-		return
+	var/list/options = list("resin door","resin wall","resin membrane","nest","resin blob")
+	for(var/option in options)
+		LAZYSET(options, option, new /image('icons/mob/alien.dmi', option)) // based off 'icons/effects/thinktank_labels.dmi'
 
-	if(!check_alien_ability(75,1,O_RESIN))
-		return
+	var/choice = show_radial_menu(src, src, options, radius = 42, require_near = TRUE)
 
-	visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
+	if(!choice || QDELETED(src) || src.incapacitated())
+		return FALSE
 
+	var/targetLoc = get_step(src, dir)
+
+	if(iswall(targetLoc))
+		targetLoc = get_turf(src)
+	
 	var/obj/O
 
 	switch(choice)
 		if("resin door")
-			O = new /obj/structure/simple_door/resin(loc)
+			if(!check_alien_ability(75,1,O_RESIN))
+				return
+			else O = new /obj/structure/simple_door/resin(targetLoc)
 		if("resin wall")
-			O = new /obj/effect/alien/resin/wall(loc)
+			if(!check_alien_ability(75,1,O_RESIN))
+				return
+			else O = new /obj/structure/alien/wall(targetLoc)
 		if("resin membrane")
-			O = new /obj/effect/alien/resin/membrane(loc)
-		if("resin nest")
-			O = new /obj/structure/bed/nest(loc)
+			if(!check_alien_ability(75,1,O_RESIN))
+				return
+			else O = new /obj/structure/alien/membrane(targetLoc)
+		if("nest")
+			if(!check_alien_ability(75,1,O_RESIN))
+				return
+			else O = new /obj/structure/bed/nest(targetLoc)
 		if("resin blob")
-			O = new /obj/item/stack/material/resin(loc)
+			if(!check_alien_ability(75,1,O_RESIN))
+				return
+			else O = new /obj/item/stack/material/resin(targetLoc)
 
 	if(O)
+		visible_message("<span class='warning'><B>[src] vomits up a thick purple substance and begins to shape it!</B></span>", "<span class='alium'>You shape a [choice].</span>")
 		O.color = "#321D37"
+		playsound(src, 'sound/effects/blobattack.ogg', 40, 1)
 
 	return
 
@@ -279,7 +293,7 @@
 			choices += M
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
+	var/mob/living/T = tgui_input_list(src, "Who do you wish to leap at?", "Target Choice", choices)
 
 	if(!T || !src || src.stat) return
 
@@ -331,7 +345,7 @@
 
 /mob/living/carbon/human/proc/gut()
 	set category = "Abilities"
-	set name = "Gut"
+	set name = "Slaughter"
 	set desc = "While grabbing someone aggressively, rip their guts out or tear them apart."
 
 	if(last_special > world.time)
@@ -347,7 +361,7 @@
 		return
 
 	if(G.state < GRAB_AGGRESSIVE)
-		to_chat(src, "<span class='danger'>You must have an aggressive grab to gut your prey!</span>")
+		to_chat(src, "<span class='danger'>You must have an aggressive grab to slaughter your prey!</span>")
 		return
 
 	last_special = world.time + 50

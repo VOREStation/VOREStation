@@ -100,3 +100,66 @@
 	name = "Healing Nanite pill bottle"
 	item_cost = 30
 	path = /obj/item/weapon/storage/pill_bottle/healing_nanites
+
+/datum/uplink_item/item/medical/vermicetol
+	name = "Vermicetol Bottle"
+	item_cost = 30
+	path = /obj/item/weapon/reagent_containers/glass/bottle/vermicetol
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/dermaline
+	name = "Dermaline Bottle"
+	item_cost = 30
+	path = /obj/item/weapon/reagent_containers/glass/bottle/dermaline
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/carthatoline
+	name = "Carthatoline Bottle"
+	item_cost = 30
+	path = /obj/item/weapon/reagent_containers/glass/bottle/carthatoline
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/dexalinp
+	name = "Dexalin Plus Bottle"
+	item_cost = 30
+	path = /obj/item/weapon/reagent_containers/glass/bottle/dexalinp
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/tramadol
+	name = "Tramadol Bottle"
+	item_cost = 30
+	path = /obj/item/weapon/reagent_containers/glass/bottle/tramadol
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/arithrazine
+	name = "Arithrazine Bottle"
+	item_cost = 50
+	path = /obj/item/weapon/reagent_containers/glass/bottle/arithrazine
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/corophizine
+	name = "Corophizine Bottle"
+	item_cost = 50
+	path = /obj/item/weapon/reagent_containers/glass/bottle/corophizine
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/rezadone
+	name = "Rezadone Bottle"
+	item_cost = 50
+	path = /obj/item/weapon/reagent_containers/glass/bottle/rezadone
+	antag_roles = list("ert")
+	blacklisted = 1
+
+/datum/uplink_item/item/medical/defib
+	name = "Combat Defibrilator"
+	item_cost = 90
+	path = /obj/item/device/defib_kit/compact/combat
+	antag_roles = list("mercenary", "ert")
+	blacklisted = 1

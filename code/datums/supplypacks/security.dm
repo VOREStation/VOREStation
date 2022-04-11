@@ -256,7 +256,7 @@
 			/obj/item/weapon/shield/riot = 3,
 			/obj/item/weapon/handcuffs = 3,
 			/obj/item/weapon/storage/box/flashbangs,
-			/obj/item/weapon/storage/box/beanbags,
+			/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 			/obj/item/weapon/storage/box/handcuffs
 			)
 	cost = 40
@@ -281,14 +281,21 @@
 	name = "Armor - Riot plates"
 	contains = list(
 			/obj/item/clothing/head/helmet/riot,
-			/obj/item/clothing/suit/armor/pcarrier,
-			/obj/item/clothing/accessory/armor/armorplate/riot,
-			/obj/item/clothing/accessory/armor/armguards/riot,
-			/obj/item/clothing/accessory/armor/legguards/riot
+			/obj/item/clothing/suit/armor/pcarrier/riot/full
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Riot armor crate"
+	access = access_armory
+
+/datum/supply_pack/security/riot_sprayer
+	name = "Gear - Riot sprayer"
+	contains = list(
+			/obj/item/weapon/watertank/pepperspray
+			)
+	cost = 40
+	containertype = /obj/structure/closet/crate/secure/lawson
+	containername = "Riot sprayer crate"
 	access = access_armory
 
 /datum/supply_pack/security/ablative_armor
@@ -308,10 +315,7 @@
 	name = "Armor - Ablative plates"
 	contains = list(
 			/obj/item/clothing/head/helmet/laserproof,
-			/obj/item/clothing/suit/armor/pcarrier,
-			/obj/item/clothing/accessory/armor/armorplate/laserproof,
-			/obj/item/clothing/accessory/armor/armguards/laserproof,
-			/obj/item/clothing/accessory/armor/legguards/laserproof
+			/obj/item/clothing/suit/armor/pcarrier/laserproof/full
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/lawson
@@ -336,10 +340,7 @@
 	name = "Armor - Ballistic plates"
 	contains = list(
 			/obj/item/clothing/head/helmet/bulletproof,
-			/obj/item/clothing/suit/armor/pcarrier,
-			/obj/item/clothing/accessory/armor/armorplate/bulletproof,
-			/obj/item/clothing/accessory/armor/armguards/bulletproof,
-			/obj/item/clothing/accessory/armor/legguards/bulletproof
+			/obj/item/clothing/suit/armor/pcarrier/bulletproof/full
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/heph
@@ -430,7 +431,8 @@
 			/obj/item/clothing/accessory/holster,
 			/obj/item/clothing/accessory/holster/armpit,
 			/obj/item/clothing/accessory/holster/waist,
-			/obj/item/clothing/accessory/holster/hip
+			/obj/item/clothing/accessory/holster/hip,
+			/obj/item/clothing/accessory/holster/leg
 			)
 	cost = 15
 	containertype = /obj/structure/closet/crate/hedberg
@@ -676,9 +678,9 @@
 /datum/supply_pack/security/posters
 	name = "Gear - Morale Posters"
 	contains = list(
-			/obj/item/weapon/contraband/poster/nanotrasen = 6
+			/obj/item/poster/nanotrasen = 6
 			)
-	cost = 20
+	cost = 10
 	containertype = /obj/structure/closet/crate/secure/nanotrasen
 	containername = "Morale Posters"
 	access = access_maint_tunnels

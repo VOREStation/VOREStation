@@ -12,6 +12,15 @@
 	projectile_type = /obj/item/projectile/energy/phase
 	one_handed_penalty = 15
 
+/obj/item/weapon/gun/energy/phasegun/mounted
+	self_recharge = 1
+	use_external_power = 1
+	one_handed_penalty = 0
+
+/obj/item/weapon/gun/energy/phasegun/mounted/cyborg
+	charge_cost = 400
+	recharge_time = 7
+
 /obj/item/weapon/gun/energy/phasegun/pistol
 	name = "phase pistol"
 	desc = "The RayZar EW15 Apollo is an energy handgun, specifically designed for self-defense against aggressive wildlife."
@@ -32,7 +41,7 @@
 	charge_cost = 400
 	recharge_time = 7
 
-obj/item/weapon/gun/energy/phasegun/rifle
+/obj/item/weapon/gun/energy/phasegun/rifle
 	name = "phase rifle"
 	desc = "The RayZar EW31 Orion is a specialist energy weapon, intended for use against hostile wildlife."
 	icon_state = "phaserifle"

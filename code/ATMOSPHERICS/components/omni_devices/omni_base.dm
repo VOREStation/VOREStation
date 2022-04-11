@@ -91,19 +91,10 @@
 	playsound(src, W.usesound, 50, 1)
 	if(do_after(user, 40 * W.toolspeed))
 		user.visible_message( \
-			"<span class='notice'>\The [user] unfastens \the [src].</span>", \
+			"<b>\The [user]</b> unfastens \the [src].", \
 			"<span class='notice'>You have unfastened \the [src].</span>", \
 			"You hear a ratchet.")
 		deconstruct()
-
-/obj/machinery/atmospherics/omni/can_unwrench()
-	var/int_pressure = 0
-	for(var/datum/omni_port/P in ports)
-		int_pressure += P.air.return_pressure()
-	var/datum/gas_mixture/env_air = loc.return_air()
-	if((int_pressure - env_air.return_pressure()) > 2*ONE_ATMOSPHERE)
-		return 0
-	return 1
 
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())

@@ -1,12 +1,13 @@
 // -- Datums -- //
 
 /obj/effect/overmap/visitable/sector/alienship
-	name = "Unknown Vessel"
+	name = "precursor vessel"
+	icon_state = "unkn_o"
+	unknown_state = "ship"
 	desc = "An unknown vessel detected by sensors."
 	start_x = 12
 	start_y = 12
 	icon_state = "ship"
-	color = "#ff00ff" //Sandy
 	initial_generic_waypoints = list("tether_excursion_alienship")
 
 // -- Objs -- //

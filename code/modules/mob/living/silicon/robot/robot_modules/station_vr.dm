@@ -36,7 +36,8 @@
 					LANGUAGE_ECUREUILIAN= 1,
 					LANGUAGE_DAEMON		= 1,
 					LANGUAGE_ENOCHIAN	= 1,
-					LANGUAGE_DRUDAKAR	= 1
+					LANGUAGE_DRUDAKAR	= 1,
+					LANGUAGE_TAVAN		= 1
 					)
 
 /hook/startup/proc/robot_modules_vr()
@@ -47,7 +48,9 @@
 	robot_modules["Sci-borg"] = /obj/item/weapon/robot_module/robot/science
 	robot_modules["Pupdozer"] = /obj/item/weapon/robot_module/robot/engiedog
 	robot_modules["Service-Hound"] = /obj/item/weapon/robot_module/robot/clerical/brodog
+	robot_modules["BoozeHound"] = /obj/item/weapon/robot_module/robot/booze
 	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
+	robot_modules["Stray"] = /obj/item/weapon/robot_module/robot/stray
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -71,7 +74,8 @@
 	vr_sprites = list(
 						"Acheron" = "mechoid-Medical",
 						"Shellguard Noble" = "Noble-MED",
-						"ZOOM-BA" = "zoomba-medical"
+						"ZOOM-BA" = "zoomba-medical",
+						"Feminine Humanoid" = "uptall-medical"
 					 )
 
 /obj/item/weapon/robot_module/robot/medical/crisis
@@ -80,7 +84,8 @@
 						"Handy" = "handy-med",
 						"Acheron" = "mechoid-Medical",
 						"Shellguard Noble" = "Noble-MED",
-						"ZOOM-BA" = "zoomba-crisis"
+						"ZOOM-BA" = "zoomba-crisis",
+						"Feminine Humanoid" = "uptall-crisis"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/butler
@@ -90,7 +95,8 @@
 						"Handy - Hydro" = "handy-hydro",
 						"Acheron" = "mechoid-Service",
 						"Shellguard Noble" = "Noble-SRV",
-						"ZOOM-BA" = "zoomba-service"
+						"ZOOM-BA" = "zoomba-service",
+						"Feminine Humanoid" = "uptall-service"
 					 )
 
 /obj/item/weapon/robot_module/robot/clerical/general
@@ -99,7 +105,8 @@
 						"Handy" = "handy-clerk",
 						"Acheron" = "mechoid-Service",
 						"Shellguard Noble" = "Noble-SRV",
-						"ZOOM-BA" = "zoomba-clerical"
+						"ZOOM-BA" = "zoomba-clerical",
+						"Feminine Humanoid" = "uptall-service"
 					 )
 
 /obj/item/weapon/robot_module/robot/janitor
@@ -108,7 +115,8 @@
 						"Handy" = "handy-janitor",
 						"Acheron" = "mechoid-Janitor",
 						"Shellguard Noble" = "Noble-CLN",
-						"ZOOM-BA" = "zoomba-janitor"
+						"ZOOM-BA" = "zoomba-janitor",
+						"Feminine Humanoid" = "uptall-janitor"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/general
@@ -117,7 +125,8 @@
 						"Handy" = "handy-sec",
 						"Acheron" = "mechoid-Security",
 						"Shellguard Noble" = "Noble-SEC",
-						"ZOOM-BA" = "zoomba-security"
+						"ZOOM-BA" = "zoomba-security",
+						"Feminine Humanoid" = "uptall-security"
 					 )
 
 /obj/item/weapon/robot_module/robot/miner
@@ -126,7 +135,8 @@
 						"Handy" = "handy-miner",
 						"Acheron" = "mechoid-Miner",
 						"Shellguard Noble" = "Noble-DIG",
-						"ZOOM-BA" = "zoomba-miner"
+						"ZOOM-BA" = "zoomba-miner",
+						"Feminine Humanoid" = "uptall-miner"
 					 )
 
 /obj/item/weapon/robot_module/robot/standard
@@ -135,14 +145,17 @@
 						"Handy" = "handy-standard",
 						"Acheron" = "mechoid-Standard",
 						"Shellguard Noble" = "Noble-STD",
-						"ZOOM-BA" = "zoomba-standard"
+						"ZOOM-BA" = "zoomba-standard",
+						"Feminine Humanoid" = "uptall-standard",
+						"Feminine Humanoid, Variant 2" = "uptall-standard2"
 					 )
 /obj/item/weapon/robot_module/robot/engineering/general
 	pto_type = PTO_ENGINEERING
 	vr_sprites = list(
 						"Acheron" = "mechoid-Engineering",
 						"Shellguard Noble" = "Noble-ENG",
-						"ZOOM-BA" = "zoomba-engineering"
+						"ZOOM-BA" = "zoomba-engineering",
+						"Feminine Humanoid" = "uptall-engineering"
 					 )
 
 /obj/item/weapon/robot_module/robot/research
@@ -150,14 +163,16 @@
 	vr_sprites = list(
 						"Acheron" = "mechoid-Science",
 						"ZOOM-BA" = "zoomba-research",
-						"XI-GUS" = "spiderscience"
+						"XI-GUS" = "spiderscience",
+						"Feminine Humanoid" = "uptall-science"
 					 )
 
 /obj/item/weapon/robot_module/robot/security/combat
 	pto_type = PTO_SECURITY
 	vr_sprites = list(
 						"Acheron" = "mechoid-Combat",
-						"ZOOM-BA" = "zoomba-combat"
+						"ZOOM-BA" = "zoomba-combat",
+						"Feminine Humanoid" = "uptall-security"
 					 )
 
 /obj/item/weapon/robot_module/robot/knine
@@ -167,12 +182,14 @@
 					"K9 Alternative" = "k92",
 					"Secborg model V-2" = "secborg",
 					"Borgi" = "borgi-sec",
-					"Otieborg" = "oties"
+					"Otieborg" = "oties",
+					"Drake" = "drakesec"
 					)
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
 	pto_type = PTO_SECURITY
 	can_be_pushed = 0
+	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
 
 /obj/item/weapon/robot_module/robot/knine/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!
@@ -198,7 +215,8 @@
 	B.water = water
 	src.modules += B
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_sec_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_sec_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -243,7 +261,8 @@
 					"Medical Hound" = "medihound",
 					"Dark Medical Hound (Static)" = "medihounddark",
 					"Mediborg model V-2" = "vale",
-					"Borgi" = "borgi-medi"
+					"Borgi" = "borgi-medi",
+					"Drake" = "drakemed"
 					)
 
 /obj/item/weapon/robot_module/robot/medihound/New(var/mob/living/silicon/robot/R)
@@ -283,7 +302,8 @@
 	B.water = water
 	src.modules += B
 
-	R.icon = 'icons/mob/widerobot_vr.dmi'
+	R.icon = 'icons/mob/widerobot_med_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_med_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -306,13 +326,13 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Standard" = "ert",
+					"Classic" = "ertold",
 					"Borgi" = "borgi"
 					)
 
 /obj/item/weapon/robot_module/robot/ert/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
-	src.modules += new /obj/item/weapon/dogborg/jaws/big(src)
-	src.modules += new /obj/item/weapon/melee/baton/robot(src)
+	src.modules += new /obj/item/weapon/dogborg/jaws/ert(src)
 	src.modules += new /obj/item/taperoll/police(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
 	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
@@ -328,11 +348,12 @@
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9(src)
+	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9/ert(src)
 	B.water = water
 	src.modules += B
 
-	R.icon 		 = 'icons/mob/64x64robot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_ert_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_ert_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -351,8 +372,10 @@
 	name = "Custodial Hound module"
 	sprites = list(
 					"Custodial Hound" = "scrubpup",
+					"Janihound model V-2" = "J9",
 					"Borgi" = "borgi-jani",
-					"Otieborg" = "otiej"
+					"Otieborg" = "otiej",
+					"Drake" = "drakejanit"
 					)
 	channels = list("Service" = 1)
 	pto_type = PTO_CIVILIAN
@@ -416,7 +439,8 @@
 	G.recipes += new/datum/stack_recipe("glass sheet", /obj/item/stack/material/glass, 1, 1, 20)
 	src.modules += G
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_jan_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_jan_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -437,11 +461,13 @@
 					"Research Hound" = "science",
 					"Borgi" = "borgi-sci",
 					"SciHound" = "scihound",
-					"SciHoundDark" = "scihounddark"
+					"SciHoundDark" = "scihounddark",
+					"Drake" = "drakesci"
 					)
 	channels = list("Science" = 1)
 	pto_type = PTO_SCIENCE
 	can_be_pushed = 0
+	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
 
 /obj/item/weapon/robot_module/robot/science/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
@@ -457,6 +483,8 @@
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
 	src.modules += new /obj/item/device/robotanalyzer(src)
 	src.modules += new /obj/item/weapon/card/robot(src)
+	//Added a circuit gripper
+	src.modules += new /obj/item/weapon/gripper/circuit(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/organ/robotics(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/mech(src)
 	src.emag = new /obj/item/weapon/hand_tele(src)
@@ -490,7 +518,8 @@
 	C.synths = list(wire)
 	src.modules += C
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_sci_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_sci_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -512,7 +541,8 @@
 					"Borgi" = "borgi-eng",
 					"V2 Engidog" = "thottbot",
 					"EngiHound" = "engihound",
-					"EngiHoundDark" = "engihounddark"
+					"EngiHoundDark" = "engihounddark",
+					"Drake" = "drakeeng"
 					)
 	channels = list("Engineering" = 1)
 	networks = list(NETWORK_ENGINEERING)
@@ -538,9 +568,11 @@
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
-	src.modules += new /obj/item/device/pipe_painter(src)
+	// The RPD does the exact same thing, this just take space.
+	//src.modules += new /obj/item/device/pipe_painter(src)
 	src.modules += new /obj/item/device/floor_painter(src)
 	src.modules += new /obj/item/weapon/rms(src)
+	src.modules += new /obj/item/weapon/pipe_dispenser(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
 
 	//Painfully slow charger regen but high capacity. Also starts with low amount.
@@ -639,7 +671,8 @@
 	PS.synths = list(plasteel)
 	src.modules += PS
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_eng_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_eng_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -662,6 +695,7 @@
 					"Pinkhound" = "k69",
 					"ServicehoundV2" = "serve2",
 					"ServicehoundV2 Darkmode" = "servedark",
+					"Drake" = "drakemine"
 					)
 	channels = list("Service" = 1)
 	pto_type = PTO_CIVILIAN
@@ -715,7 +749,8 @@
 	src.modules += B
 */
 
-	R.icon 		 = 'icons/mob/widerobot_vr.dmi'
+	R.icon 		 = 'icons/mob/widerobot_ser_vr.dmi'
+	R.wideborg_dept  = 'icons/mob/widerobot_ser_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -725,6 +760,8 @@
 	R.wideborg = TRUE
 	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
 	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
+	R.verbs |= /mob/living/proc/toggle_rider_reins
+	R.verbs |= /mob/living/proc/shred_limb
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
@@ -733,11 +770,13 @@
 	sprites = list(
 					"KMine" = "kmine",
 					"CargoHound" = "cargohound",
-					"CargoHoundDark" = "cargohounddark"
+					"CargoHoundDark" = "cargohounddark",
+					"Drake" = "drakemine"
 					)
 	channels = list("Supply" = 1)
 	pto_type = PTO_CARGO
 	can_be_pushed = 0
+	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
 
 /obj/item/weapon/robot_module/robot/kmine/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/borg/sight/material(src)
@@ -749,8 +788,12 @@
 	src.modules += new /obj/item/weapon/gripper/miner(src)
 	src.modules += new /obj/item/weapon/mining_scanner(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
-	src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
+	// New Emag gear for the minebots!
+	src.emag = new /obj/item/weapon/kinetic_crusher/machete/dagger(src)
+
+	// No reason for these, upgrade modules replace them.
+	//src.emag = new /obj/item/weapon/pickaxe/plasmacutter(src)
+	//src.emag = new /obj/item/weapon/pickaxe/diamonddrill(src)
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"
@@ -766,7 +809,8 @@
 	B.water = water
 	src.modules += B
 
-	R.icon = 'icons/mob/widerobot_vr.dmi'
+	R.icon = 'icons/mob/widerobot_car_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_car_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
@@ -797,3 +841,75 @@
 	R.verbs -= /mob/living/proc/shred_limb
 	R.verbs -= /mob/living/silicon/robot/proc/rest_style
 	..()
+
+
+/obj/item/weapon/robot_module/robot/booze
+	name = "BoozeHound robot module"
+	channels = list("Service" = 1)
+	pto_type = PTO_CIVILIAN
+	can_be_pushed = 0
+	sprites = list(
+				"Beer Buddy" = "boozeborg",
+				"Brilliant Blue" = "boozeborg(blue)",
+				"Caffine Dispenser" = "boozeborg(coffee)",
+				"Gamer Juice Maker" = "boozeborg(green)",
+				"Liqour Licker" = "boozeborg(orange)",
+				"The Grapist" = "boozeborg(purple)",
+				"Vampire's Aid" = "boozeborg(red)"
+				)
+
+/obj/item/weapon/robot_module/robot/booze/New(var/mob/living/silicon/robot/R)
+	..()
+	src.modules += new /obj/item/weapon/gripper/service(src)
+	//src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
+	//src.modules += new /obj/item/weapon/material/minihoe(src)
+	//src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
+	//src.modules += new /obj/item/weapon/storage/bag/plants(src)
+	//src.modules += new /obj/item/weapon/robot_harvester(src)
+	src.modules += new /obj/item/weapon/material/knife(src)
+	src.modules += new /obj/item/weapon/material/kitchen/rollingpin(src)
+	src.modules += new /obj/item/device/multitool(src) //to freeze trays
+	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
+	src.modules += new /obj/item/weapon/tray/robotray
+	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/device/dogborg/sleeper/compactor/brewer(src)
+	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
+	R.verbs += /mob/living/silicon/robot/proc/reskin_booze
+
+	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
+	M.stored_matter = 30
+	src.modules += M
+
+	src.modules += new /obj/item/weapon/reagent_containers/dropper/industrial(src)
+
+	var/obj/item/weapon/flame/lighter/zippo/L = new /obj/item/weapon/flame/lighter/zippo(src)
+	L.lit = 1
+	src.modules += L
+
+	src.modules += new /obj/item/weapon/tray/robotray(src)
+	src.modules += new /obj/item/weapon/reagent_containers/borghypo/service(src)
+	src.emag = new /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer(src)
+
+	var/datum/reagents/N = new/datum/reagents(50)
+	src.emag.reagents = N
+	N.my_atom = src.emag
+	N.add_reagent("beer2", 50)
+	src.emag.name = "Mickey Finn's Special Brew"
+	R.icon 		 = 'icons/mob/widerobot_colors_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_colors_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
+	R.pixel_x 	 = -16
+	R.old_x 	 = -16
+	R.default_pixel_x = -16
+	R.dogborg = TRUE
+	R.wideborg = TRUE
+	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	..()
+
+/obj/item/weapon/robot_module/robot/booze/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	var/obj/item/weapon/reagent_containers/food/condiment/enzyme/E = locate() in src.modules
+	E.reagents.add_reagent("enzyme", 2 * amount)
+	if(src.emag)
+		var/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/B = src.emag
+		B.reagents.add_reagent("beer2", 2 * amount)

@@ -33,8 +33,9 @@ two tiles on initialization, and which way a cliff is facing may change during m
 	opacity = FALSE
 	climbable = TRUE
 	climb_delay = 10 SECONDS
+	unacidable = TRUE
 	block_turf_edges = TRUE // Don't want turf edges popping up from the cliff edge.
-	register_as_dangerous_object = TRUE
+	plane = TURF_PLANE
 
 	var/icon_variant = null // Used to make cliffs less repeative by having a selection of sprites to display.
 	var/corner = FALSE // Used for icon things.
@@ -43,6 +44,23 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 	var/is_double_cliff = FALSE // Set to true when making the two-tile cliffs, used for projectile checks.
 	var/uphill_penalty = 30 // Odds of a projectile not making it up the cliff.
+
+/obj/structure/cliff/Initialize()
+	. = ..()
+	register_dangerous_to_step()
+
+/obj/structure/cliff/Destroy()
+	unregister_dangerous_to_step()
+	. = ..()
+
+/obj/structure/cliff/Moved(atom/oldloc)
+	. = ..()
+	if(.)
+		var/turf/old_turf = get_turf(oldloc)
+		var/turf/new_turf = get_turf(src)
+		if(old_turf != new_turf)
+			old_turf.unregister_dangerous_object(src)
+			new_turf.register_dangerous_object(src)
 
 // These arrange their sprites at runtime, as opposed to being statically placed in the map file.
 /obj/structure/cliff/automatic
@@ -114,7 +132,7 @@ two tiles on initialization, and which way a cliff is facing may change during m
 
 	var/subtraction_icon_state = "[icon_state]-subtract"
 	var/cache_string = "[icon_state]_[T.icon]_[T.icon_state]"
-	if(T && subtraction_icon_state in cached_icon_states(icon))
+	if(T && (subtraction_icon_state in cached_icon_states(icon)))
 		cut_overlays()
 		// If we've made the same icon before, just recycle it.
 		if(cache_string in GLOB.cliff_icon_cache)
@@ -179,27 +197,45 @@ two tiles on initialization, and which way a cliff is facing may change during m
 			displaced = TRUE
 
 	if(istype(T))
-		visible_message(span("danger", "\The [L] falls off \the [src]!"))
+
+		var/safe_fall = FALSE
+		if(ishuman(L))
+			var/mob/living/carbon/human/H = L
+			safe_fall = H.species.handle_falling(H, T, silent = TRUE, planetary = FALSE)
+
+		if(safe_fall)
+			visible_message(span("notice", "\The [L] glides down from \the [src]."))
+		else
+			visible_message(span("danger", "\The [L] falls off \the [src]!"))
 		L.forceMove(T)
 
-		// Do the actual hurting. Double cliffs do halved damage due to them most likely hitting twice.
 		var/harm = !is_double_cliff ? 1 : 0.5
-		if(istype(L.buckled, /obj/vehicle)) // People falling off in vehicles will take less damage, but will damage the vehicle severely.
-			var/obj/vehicle/vehicle = L.buckled
-			vehicle.adjust_health(40 * harm)
-			to_chat(L, span("warning", "\The [vehicle] absorbs some of the impact, damaging it."))
-			harm /= 2
+		if(!safe_fall)
+			// Do the actual hurting. Double cliffs do halved damage due to them most likely hitting twice.
+			if(istype(L.buckled, /obj/vehicle)) // People falling off in vehicles will take less damage, but will damage the vehicle severely.
+				var/obj/vehicle/vehicle = L.buckled
+				vehicle.adjust_health(40 * harm)
+				to_chat(L, span("warning", "\The [vehicle] absorbs some of the impact, damaging it."))
+				harm /= 2
 
-		playsound(L, 'sound/effects/break_stone.ogg', 70, 1)
-		L.Weaken(5 * harm)
+			playsound(L, 'sound/effects/break_stone.ogg', 70, 1)
+			L.Weaken(5 * harm)
+
 		var/fall_time = 3
 		if(displaced) // Make the fall look more natural when falling sideways.
 			L.pixel_z = 32 * 2
 			animate(L, pixel_z = 0, time = fall_time)
 		sleep(fall_time) // A brief delay inbetween the two sounds helps sell the 'ouch' effect.
+
+		if(safe_fall)
+			visible_message(span("notice", "\The [L] lands on \the [T]."))
+			playsound(L, "rustle", 25, 1)
+			return
+
 		playsound(L, "punch", 70, 1)
 		shake_camera(L, 1, 1)
-		visible_message(span("danger", "\The [L] hits the ground!"))
+
+		visible_message(span("danger", "\The [L] hits \the [T]!"))
 
 		// The bigger they are, the harder they fall.
 		// They will take at least 20 damage at the minimum, and tries to scale up to 40% of their max health.

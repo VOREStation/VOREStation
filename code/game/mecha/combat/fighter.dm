@@ -16,6 +16,7 @@
 	dir_in = null //Don't reset direction when empty
 
 	step_in = 2 //Fast
+	step_energy_drain = 0 //These should use fuel instead of energy
 
 	health = 400
 	maxhealth = 400
@@ -37,6 +38,14 @@
 	max_utility_equip = 1
 	max_universal_equip = 1
 	max_special_equip = 1
+
+	starting_components = list(
+		/obj/item/mecha_parts/component/hull/lightweight,
+		/obj/item/mecha_parts/component/actuator,
+		/obj/item/mecha_parts/component/armor,
+		/obj/item/mecha_parts/component/gas,
+		/obj/item/mecha_parts/component/electrical
+		)
 
 /obj/mecha/combat/fighter/Initialize()
 	. = ..()
@@ -100,7 +109,7 @@
 	for(var/obj/effect/overmap/visitable/V in range(1, our_ship))
 		choices[V.name] = V
 
-	var/choice = input("Choose an overmap destination:", "Destination", null) as null|anything in choices
+	var/choice = tgui_input_list(usr, "Choose an overmap destination:", "Destination", choices)
 	if(!choice)
 		var/backwards = turn(what_edge, 180)
 		forceMove(get_step(src,backwards)) //Move them back a step, then.
@@ -261,9 +270,9 @@
 
 /obj/mecha/combat/fighter/gunpod/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool) && state == 1)
-		var/new_paint_location = input("Please select a target zone.", "Paint Zone", null) as null|anything in list("Fore Stripe", "Aft Stripe", "CANCEL")
+		var/new_paint_location = tgui_input_list(usr, "Please select a target zone.", "Paint Zone", list("Fore Stripe", "Aft Stripe", "CANCEL"))
 		if(new_paint_location && new_paint_location != "CANCEL")
-			var/new_paint_color = input("Please select a paint color.", "Paint Color", null) as color|null
+			var/new_paint_color = input(usr, "Please select a paint color.", "Paint Color", null) as color|null
 			if(new_paint_color)
 				switch(new_paint_location)
 					if("Fore Stripe")

@@ -1,8 +1,3 @@
-var/const/PATHFINDER 		=(1<<11)
-var/const/EXPLORER 			=(1<<12)
-var/const/PILOT 			=(1<<13)
-var/const/SAR 				=(1<<14)
-
 /obj/item/weapon/card/id/medical/sar
 	assignment = "Field Medic"
 	rank = "Field Medic"
@@ -48,8 +43,8 @@ var/const/SAR 				=(1<<14)
 	pto_type = PTO_EXPLORATION
 	dept_time_required = 20
 
-	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway)
-	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway)
+	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway, access_pathfinder, access_RC_announce)
+	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot, access_explorer, access_gateway, access_pathfinder, access_RC_announce)
 	outfit_type = /decl/hierarchy/outfit/job/pathfinder
 	job_description = "The Pathfinder's job is to lead and manage expeditions, and is the primary authority on all off-station expeditions."
 	alt_titles = list("Expedition Lead" = /datum/alt_title/expedition_lead, "Exploration Manager" = /datum/alt_title/exploration_manager)
@@ -59,34 +54,6 @@ var/const/SAR 				=(1<<14)
 
 /datum/alt_title/exploration_manager
 	title = "Exploration Manager"
-
-
-/datum/job/pilot
-	title = "Pilot"
-	flag = PILOT
-	departments = list(DEPARTMENT_PLANET)
-	department_flag = MEDSCI
-	faction = "Station"
-	total_positions = 4
-	spawn_positions = 4
-	supervisors = "the Pathfinder and the Head of Personnel"
-	selection_color = "#999440"
-	economic_modifier = 5
-	minimal_player_age = 3
-	pto_type = PTO_EXPLORATION
-	access = list(access_pilot)
-	minimal_access = list(access_pilot)
-	outfit_type = /decl/hierarchy/outfit/job/pilot
-	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
-	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator)
-
-/datum/alt_title/co_pilot
-	title = "Co-Pilot"
-	title_blurb = "A Co-Pilot is there primarily to assist main pilot as well as learn from them"
-
-/datum/alt_title/navigator
-	title = "Navigator"
-
 
 /datum/job/explorer
 	title = "Explorer"
@@ -130,7 +97,10 @@ var/const/SAR 				=(1<<14)
 	minimal_access = list(access_medical, access_medical_equip, access_morgue, access_pilot)
 	outfit_type = /decl/hierarchy/outfit/job/medical/sar
 	job_description = "A Field medic works as the field doctor of expedition teams."
-	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic)
+	alt_titles = list("Expedition Medic" = /datum/alt_title/expedition_medic, "Offsite Medic" = /datum/alt_title/offsite_medic)
 
 /datum/alt_title/expedition_medic
 	title = "Expedition Medic"
+
+/datum/alt_title/offsite_medic
+	title = "Offsite Medic"

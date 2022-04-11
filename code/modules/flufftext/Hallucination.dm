@@ -11,7 +11,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 */
 
-mob/living/carbon/var
+/mob/living/carbon/var
 	image/halimage
 	image/halbody
 	obj/halitem
@@ -19,7 +19,7 @@ mob/living/carbon/var
 	handling_hal = 0
 	hal_crit = 0
 
-mob/living/carbon/proc/handle_hallucinations()
+/mob/living/carbon/proc/handle_hallucinations()
 	if(handling_hal) return
 	handling_hal = 1
 	while(client && hallucination > 20)
@@ -211,7 +211,7 @@ mob/living/carbon/proc/handle_hallucinations()
 
 	return start_txt + mocktxt + end_txt + "</TT></BODY></HTML>"
 
-proc/check_panel(mob/M)
+/proc/check_panel(mob/M)
 	if (istype(M, /mob/living/carbon/human) || istype(M, /mob/living/silicon/ai))
 		if(M.hallucination < 15)
 			return 1
@@ -222,8 +222,8 @@ proc/check_panel(mob/M)
 	icon_state = null
 	name = ""
 	desc = ""
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	opacity = 0
 	var/mob/living/carbon/human/my_target = null
 	var/weapon_name = null
@@ -241,87 +241,89 @@ proc/check_panel(mob/M)
 
 	var/health = 100
 
-	attackby(var/obj/item/weapon/P as obj, mob/user as mob)
+/obj/effect/fake_attacker/attackby(var/obj/item/weapon/P as obj, mob/user as mob)
+	step_away(src,my_target,2)
+	for(var/mob/M in oviewers(world.view,my_target))
+		to_chat(M, "<font color='red'><B>[my_target] flails around wildly.</B></font>")
+	my_target.show_message("<font color='red'><B>[src] has been attacked by [my_target] </B></font>", 1) //Lazy.
+
+	src.health -= P.force
+
+
+	return
+
+/obj/effect/fake_attacker/Crossed(var/mob/M, somenumber)
+	if(M == my_target)
 		step_away(src,my_target,2)
-		for(var/mob/M in oviewers(world.view,my_target))
-			to_chat(M, "<font color='red'><B>[my_target] flails around wildly.</B></font>")
-		my_target.show_message("<font color='red'><B>[src] has been attacked by [my_target] </B></font>", 1) //Lazy.
+		if(prob(30))
+			for(var/mob/O in oviewers(world.view , my_target))
+				to_chat(O, "<font color='red'><B>[my_target] stumbles around.</B></font>")
 
-		src.health -= P.force
+/obj/effect/fake_attacker/New()
+	..()
+	QDEL_IN(src, 30 SECONDS)
+	step_away(src,my_target,2)
+	spawn attack_loop()
 
-
-		return
-
-	Crossed(var/mob/M, somenumber)
-		if(M == my_target)
-			step_away(src,my_target,2)
-			if(prob(30))
-				for(var/mob/O in oviewers(world.view , my_target))
-					to_chat(O, "<font color='red'><B>[my_target] stumbles around.</B></font>")
-
-	New()
-		..()
-		spawn(300)
-			if(my_target)
-				my_target.hallucinations -= src
-			qdel(src)
-		step_away(src,my_target,2)
-		spawn attack_loop()
+/obj/effect/fake_attacker/Destroy()
+	if(my_target)
+		my_target.hallucinations -= src
+	return ..()
 
 
-	proc/updateimage()
-	//	qdel(src.currentimage)
+/obj/effect/fake_attacker/proc/updateimage()
+//	qdel(src.currentimage)
 
 
-		if(src.dir == NORTH)
-			qdel(src.currentimage)
-			src.currentimage = new /image(up,src)
-		else if(src.dir == SOUTH)
-			qdel(src.currentimage)
-			src.currentimage = new /image(down,src)
-		else if(src.dir == EAST)
-			qdel(src.currentimage)
-			src.currentimage = new /image(right,src)
-		else if(src.dir == WEST)
-			qdel(src.currentimage)
-			src.currentimage = new /image(left,src)
-		my_target << currentimage
+	if(src.dir == NORTH)
+		qdel(src.currentimage)
+		src.currentimage = new /image(up,src)
+	else if(src.dir == SOUTH)
+		qdel(src.currentimage)
+		src.currentimage = new /image(down,src)
+	else if(src.dir == EAST)
+		qdel(src.currentimage)
+		src.currentimage = new /image(right,src)
+	else if(src.dir == WEST)
+		qdel(src.currentimage)
+		src.currentimage = new /image(left,src)
+	my_target << currentimage
 
 
-	proc/attack_loop()
-		while(1)
-			sleep(rand(5,10))
-			if(src.health < 0)
-				collapse()
-				continue
-			if(get_dist(src,my_target) > 1)
-				src.set_dir(get_dir(src,my_target))
-				step_towards(src,my_target)
-				updateimage()
-			else
-				if(prob(15))
-					if(weapon_name)
-						my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
-						my_target.show_message("<font color='red'><B>[my_target] has been attacked with [weapon_name] by [src.name] </B></font>", 1)
-						my_target.halloss += 8
-						if(prob(20)) my_target.eye_blurry += 3
-						if(prob(33))
-							if(!locate(/obj/effect/overlay) in my_target.loc)
-								fake_blood(my_target)
-					else
-						my_target << sound(pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'))
-						my_target.show_message("<font color='red'><B>[src.name] has punched [my_target]!</B></font>", 1)
-						my_target.halloss += 4
-						if(prob(33))
-							if(!locate(/obj/effect/overlay) in my_target.loc)
-								fake_blood(my_target)
-
+/obj/effect/fake_attacker/proc/attack_loop()
+	while(1)
+		sleep(rand(5,10))
+		if(src.health < 0)
+			collapse()
+			continue
+		if(get_dist(src,my_target) > 1)
+			src.set_dir(get_dir(src,my_target))
+			step_towards(src,my_target)
+			updateimage()
+		else
 			if(prob(15))
-				step_away(src,my_target,2)
+				if(weapon_name)
+					my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
+					my_target.show_message("<font color='red'><B>[my_target] has been attacked with [weapon_name] by [src.name] </B></font>", 1)
+					my_target.halloss += 8
+					if(prob(20)) my_target.eye_blurry += 3
+					if(prob(33))
+						if(!locate(/obj/effect/overlay) in my_target.loc)
+							fake_blood(my_target)
+				else
+					my_target << sound(pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'))
+					my_target.show_message("<font color='red'><B>[src.name] has punched [my_target]!</B></font>", 1)
+					my_target.halloss += 4
+					if(prob(33))
+						if(!locate(/obj/effect/overlay) in my_target.loc)
+							fake_blood(my_target)
 
-	proc/collapse()
-		collapse = 1
-		updateimage()
+		if(prob(15))
+			step_away(src,my_target,2)
+
+/obj/effect/fake_attacker/proc/collapse()
+	collapse = 1
+	updateimage()
 
 /proc/fake_blood(var/mob/target)
 	var/obj/effect/overlay/O = new/obj/effect/overlay(target.loc)

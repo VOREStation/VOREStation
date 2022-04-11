@@ -35,7 +35,7 @@
 	melee_damage_lower = 10
 	melee_damage_upper = 15
 	base_attack_cooldown = 1 SECOND
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attacktext = list("sliced", "snapped", "gnawed")
 
 	say_list_type = /datum/say_list/siffet

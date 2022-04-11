@@ -18,11 +18,13 @@
 	melee_damage_lower = 8
 	melee_damage_upper = 15
 	attack_armor_pen = 5	//It's a horror from beyond, I ain't gotta explain 5 AP
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 
 	attacktext = list("chomped")
 	attack_sound = 'sound/weapons/bite.ogg'
+
+	organ_names = /decl/mob_organ_names/abberation
 
 	speak_emote = list("gibbers")
 
@@ -66,3 +68,6 @@
 	harm_intent_damage = 5
 	melee_damage_lower = 13
 	melee_damage_upper = 25
+
+/decl/mob_organ_names/abberation
+	hit_zones = list("fleshy mass", "maw", "eye(?)", "orifice(?)")

@@ -26,6 +26,7 @@
 	var/datum/chatOutput/chatOutput
 	var/datum/volume_panel/volume_panel = null // Initialized by /client/verb/volume_panel()
 	var/chatOutputLoadedAt
+	var/seen_news = 0
 
 	var/adminhelped = 0
 
@@ -75,3 +76,35 @@
 	var/connection_realtime
  	///world.timeofday they connected
 	var/connection_timeofday
+
+	// Runechat messages
+	var/list/seen_messages
+
+		///////////
+		// INPUT //
+		///////////
+	
+	/// Bitfield of modifier keys (Shift, Ctrl, Alt) held currently.
+	var/mod_keys_held = 0
+	/// Bitfield of movement keys (WASD/Cursor Keys) held currently.
+	var/move_keys_held = 0
+
+	/// These next two vars are to apply movement for keypresses and releases made while move delayed.
+	/// Because discarding that input makes the game less responsive.
+
+	/// Bitfield of movement dirs that were pressed down *this* cycle (even if not currently held).
+	/// Note that only dirs that actually are first pressed down during this cycle are included, if it was still held from last cycle it won't be in here.
+	/// On next move, add this dir to the move that would otherwise be done
+	var/next_move_dir_add
+
+	/// Bitfield of movement dirs that were released *this* cycle (even if currently held).
+	/// Note that only dirs that were already held at the start of this cycle are included, if it pressed then released it won't be in here.
+ 	/// On next move, subtract this dir from the move that would otherwise be done
+	var/next_move_dir_sub
+
+	#ifdef CARDINAL_INPUT_ONLY
+
+	/// Movement dir of the most recently pressed movement key.  Used in cardinal-only movement mode.
+	var/last_move_dir_pressed = NONE
+
+	#endif

@@ -13,14 +13,15 @@
 
 	switch(a_intent)
 		if(I_HELP)
-			if(isliving(A))
+			var/mob/living/L = A
+			if(istype(L) && (!has_hands || !L.attempt_to_scoop(src)))
 				custom_emote(1,"[pick(friendly)] \the [A]!")
 
 		if(I_HURT)
 			if(can_special_attack(A) && special_attack_target(A))
 				return
 
-			else if(melee_damage_upper == 0 && istype(A,/mob/living))
+			else if(melee_damage_upper == 0 && isliving(A))
 				custom_emote(1,"[pick(friendly)] \the [A]!")
 
 			else
@@ -29,6 +30,8 @@
 		if(I_GRAB)
 			if(has_hands)
 				A.attack_hand(src)
+			else if(isliving(A) && src.client)
+				animal_nom(A)
 			else
 				attack_target(A)
 

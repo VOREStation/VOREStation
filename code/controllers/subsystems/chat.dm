@@ -5,7 +5,7 @@ SUBSYSTEM_DEF(chat)
 	priority = FIRE_PRIORITY_CHAT
 	init_order = INIT_ORDER_CHAT
 
-	var/list/msg_queue = list()
+	var/list/list/msg_queue = list() //List of lists
 
 /datum/controller/subsystem/chat/Initialize(timeofday)
 	init_vchat()
@@ -13,8 +13,7 @@ SUBSYSTEM_DEF(chat)
 
 /datum/controller/subsystem/chat/fire()
 	var/list/msg_queue = src.msg_queue // Local variable for sanic speed.
-	for(var/i in msg_queue)
-		var/client/C = i
+	for(var/client/C as anything in msg_queue)
 		var/list/messages = msg_queue[C]
 		msg_queue -= C
 		if (C)

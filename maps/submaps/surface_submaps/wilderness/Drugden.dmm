@@ -19,7 +19,7 @@
 "s" = (/obj/structure/bed/chair/comfy/beige{icon_state = "armchair_preview"; dir = 1},/turf/simulated/floor/carpet,/area/submap/Drugd)
 "t" = (/obj/item/weapon/reagent_containers/pill/citalopram{name = "pill"},/turf/simulated/floor/carpet,/area/submap/Drugd)
 "u" = (/obj/random/junk,/turf/simulated/floor,/area/submap/Drugd)
-"v" = (/obj/structure/closet/cabinet,/obj/item/weapon/contraband/poster,/turf/simulated/floor/carpet,/area/submap/Drugd)
+"v" = (/obj/structure/closet/cabinet,/obj/item/poster,/turf/simulated/floor/carpet,/area/submap/Drugd)
 "w" = (/obj/structure/bed/chair/comfy/beige,/turf/simulated/floor/carpet,/area/submap/Drugd)
 "x" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/obj/item/weapon/reagent_containers/syringe/drugs,/turf/simulated/floor/carpet,/area/submap/Drugd)
 "y" = (/obj/structure/bed/chair/comfy/beige,/obj/item/weapon/reagent_containers/pill/citalopram{name = "pill"},/turf/simulated/floor/carpet,/area/submap/Drugd)

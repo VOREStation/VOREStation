@@ -10,3 +10,8 @@
 
 /turf/unsimulated/floor/shuttle_ceiling
 	icon_state = "reinforced"
+
+/turf/unsimulated/elevator_shaft
+	name = "floor"
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "elevatorshaft"

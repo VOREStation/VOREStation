@@ -4,11 +4,12 @@
 	icon = 'icons/effects/writing.dmi'
 	desc = "It looks like someone has scratched something here."
 	plane = DIRTY_PLANE
+	layer = DIRTY_LAYER
 	gender = PLURAL
 	blend_mode = BLEND_MULTIPLY
 	color = "#000000"
 	alpha = 120
-	anchored = 1
+	anchored = TRUE
 
 	var/message
 	var/graffiti_age = 0
@@ -18,7 +19,8 @@
 	..(newloc)
 	if(!isnull(_age))
 		graffiti_age = _age
-	message = _message
+	if(!isnull(_message))
+		message = _message
 	if(!isnull(author))
 		author = _author
 
@@ -38,14 +40,14 @@
 
 /obj/effect/decal/writing/examine(mob/user)
 	. = ..()
-	to_chat(user,  "It reads \"[message]\".")
+	. += "\n It reads \"[message]\"."
 
 /obj/effect/decal/writing/attackby(var/obj/item/thing, var/mob/user)
 	if(istype(thing, /obj/item/weapon/weldingtool))
 		var/obj/item/weapon/weldingtool/welder = thing
 		if(welder.isOn() && welder.remove_fuel(0,user) && do_after(user, 5, src) && !QDELETED(src))
 			playsound(src.loc, welder.usesound, 50, 1)
-			user.visible_message("<span class='notice'>\The [user] clears away some graffiti.</span>")
+			user.visible_message("<b>\The [user]</b> clears away some graffiti.")
 			qdel(src)
 	else if(thing.sharp)
 
@@ -53,7 +55,7 @@
 			to_chat(user, SPAN_WARNING("You are banned from leaving persistent information across rounds."))
 			return
 
-		var/_message = sanitize(input("Enter an additional message to engrave.", "Graffiti") as null|text, trim = TRUE)
+		var/_message = sanitize(input(usr, "Enter an additional message to engrave.", "Graffiti") as null|text, trim = TRUE)
 		if(_message && loc && user && !user.incapacitated() && user.Adjacent(loc) && thing.loc == user)
 			user.visible_message("<span class='warning'>\The [user] begins carving something into \the [loc].</span>")
 			if(do_after(user, max(20, length(_message)), src) && loc)

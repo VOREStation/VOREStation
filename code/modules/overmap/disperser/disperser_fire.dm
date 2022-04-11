@@ -67,7 +67,7 @@
 		return TRUE
 
 	var/obj/effect/overmap/event/finaltarget = pick(candidates)
-	log_and_message_admins("A type [chargetype] disperser beam was launched at [finaltarget].", location=finaltarget)
+	log_and_message_admins("A type [chargetype] disperser beam was launched at [finaltarget].")
 
 	fire_at_event(finaltarget, chargetype)
 	return TRUE

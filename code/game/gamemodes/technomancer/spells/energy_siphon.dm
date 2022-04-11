@@ -57,7 +57,7 @@
 			return 0
 		siphoning = AM
 		update_icon()
-		log_and_message_admins("is siphoning energy from \a [AM].")
+		add_attack_logs(user,AM,"Siphoned energy from [src]")
 	else
 		stop_siphoning()
 
@@ -181,7 +181,7 @@
 	if(A == firer) // For this, you CAN shoot yourself.
 		on_impact(A)
 
-		density = 0
+		density = FALSE
 		invisibility = 101
 
 		qdel(src)

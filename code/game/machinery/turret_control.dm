@@ -13,6 +13,7 @@
 	icon_state = "control_standby"
 	anchored = TRUE
 	density = FALSE
+	unacidable = TRUE
 	var/enabled = FALSE
 	var/lethal = FALSE
 	var/lethal_is_configurable = TRUE
@@ -28,9 +29,12 @@
 	var/check_synth = FALSE 	//if active, will shoot at anything not an AI or cyborg
 	var/check_all = FALSE		//If active, will shoot at anything.
 	var/check_down = TRUE		//If active, won't shoot laying targets.
+	var/stay_up = FALSE			//If active, the turret will not pop-down unless it loses power or is disabled.
+	var/fire_at_movement = FALSE	//If active, the turret will prioritize objects or creatures that move in its range.
 	var/ailock = FALSE 	//Silicons cannot use this
 
 	var/syndicate = FALSE
+
 	req_access = list(access_ai_upload)
 
 /obj/machinery/turretid/stun
@@ -193,7 +197,6 @@
 	TC.check_weapons = check_weapons
 	TC.check_anomalies = check_anomalies
 	TC.check_all = check_all
-	TC.check_down = check_down
 	TC.ailock = ailock
 
 	if(istype(control_area))

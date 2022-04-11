@@ -89,6 +89,10 @@
 	name = "\improper NRV Von Braun - Commander's Room"
 	icon_state = "head_quarters"
 
+/area/ship/ert/gunnery
+	name = "\improper NRV Von Braun - Cannon Control Room"
+	icon_state = "security_sub"
+
 /area/shuttle/ert_ship_boat
 	name = "\improper NRB Robineau"
 	icon_state = "yellow"
@@ -106,12 +110,12 @@
 // The 'ship'
 /obj/effect/overmap/visitable/ship/ert_ship
 	name = "NRV Von Braun"
+	icon_state = "oberth_destroyer_g"
 	desc = "Spacefaring vessel. Broadcasting Corporate Emergency Responder IFF."
 	scanner_desc = @{"[i]Registration[/i]: Nanotrasen RRV Von Braun
 [i]Class[/i]: [i]Kepler[/i]-class Frigate
 [i]Transponder[/i]: Broadcasting (ER-CORP)
 [b]Notice[/b]: Impeding or interfering with emergency response vessels is a breach of numerous interstellar codes. Approach with caution."}
-	color = "#9999ff" //Blue
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_LARGE
 	fore_dir = EAST
@@ -154,7 +158,7 @@
 /obj/effect/shuttle_landmark/shuttle_initializer/ert_ship_boat
 	name = "NRV Von Braun's Bay"
 	base_area = /area/ship/ert/hangar
-	base_turf = /turf/simulated/floor/plating
+	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "omship_spawn_ert_lander"
 	docking_controller = "ert_boarding_shuttle_dock"
 	shuttle_type = /datum/shuttle/autodock/overmap/ert_ship_boat
@@ -205,6 +209,21 @@ Radius: 42<br>\
 The shield generator will tax the Von Braun's reserves greatly so try to use it sparingly. Do not be afraid to use it however, as the Von Braun represents the Company making a <i>significant</i> investment in this sector's future. I can bail you out if the occasional intern goes missing or you break something minor, but if you go flying this thing through an asteroid belt and get massive holes blown in it Central <b>will</b> make <u>everyone</u> involved disappear <b><u>permanently</b></u>.<br>\
 <br>\
 <i>Lt. Cmdr. Sykes</i>"}
+
+/obj/item/weapon/paper/vonbraun_cannon
+	name = "NRV Von Braun O.F.D. Console"
+	info = {"To All Current ERT Members,<br>\
+Given recent events, Central has finally cleared the paperwork that allowed us to install an Obstruction Field Disperser, or 'O.F.D.', on the Von Braun. Please note we had to get rid of the mech bay (that nobody was allowed to use anyway) so that's where you'll find it. Of course if you're reading this you already found it.<br>\
+<br>\
+They have thoughtfully provided a sensor console for aiming purposes. Check your targets before firing and for the love of all that is holy make sure the firing port is OPEN before you pull the trigger (that's the big button on the wall to your right) or the whole thing will blow up in your face.<br>\
+<br>\
+To aim the thing, input your aim direction, smack the 'PRECALIBRATE' button, and then fiddle the numbers up and down until you hit 100% accuracy. If the number is in the right spot it adds 25%, if you have a right number but it's in the wrong spot it adds 17%. A bit obtuse but you'll get the hang of it quickly.<br>\
+<br>\
+Loading it is simple. Just roll one of the big charges out of the racks and into the loading cradle, then give it a good shove. <u>Do not fall into the loading mechanism.</u> Make your shots count. Use the BLUE charges for electrical storms and ion clouds, and the RED charges for everything else (meteors, dust, critters). Don't bother trying to fire it at other ships, they have shields and maneuvering thrusters.<br>\
+<br>\
+<i>Lt. Cmdr. Sykes</i><br>\
+<br>\
+P.S. Before any of you ask, no, you cannot fire yourself or your teammates out of it for boarding purposes or 'hot drops', whatever those are. So please don't try."}
 
 /obj/machinery/computer/cryopod/ert
 	name = "responder oversight console"

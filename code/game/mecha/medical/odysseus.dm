@@ -17,6 +17,9 @@
 	step_energy_drain = 6
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
+	icon_scale_x = 1.2
+	icon_scale_y = 1.2
+
 /obj/mecha/medical/odysseus/New()
 	..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
@@ -46,7 +49,7 @@
 		set name = "Set client perspective."
 		set category = "Exosuit Interface"
 		set src = usr.loc
-		var/perspective = input("Select a perspective type.",
+		var/perspective = input(usr, "Select a perspective type.",
                       "Client perspective",
                       occupant.client.perspective) in list(MOB_PERSPECTIVE,EYE_PERSPECTIVE)
 		to_world("[perspective]")
@@ -124,7 +127,7 @@
 			C.images += holder
 */
 /obj/mecha/medical/odysseus/loaded/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/sleeper
 	ME.attach(src)
 	ME = new /obj/item/mecha_parts/mecha_equipment/tool/sleeper

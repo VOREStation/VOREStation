@@ -31,7 +31,9 @@ Protectiveness | Armor %
 	var/applies_material_color = TRUE
 	var/unbreakable = FALSE
 	var/default_material = null // Set this to something else if you want material attributes on init.
-	var/material_armor_modifer = 1 // Adjust if you want seperate types of armor made from the same material to have different protectiveness (e.g. makeshift vs real armor)
+	var/material_armor_modifier = 1 // Adjust if you want seperate types of armor made from the same material to have different protectiveness (e.g. makeshift vs real armor)
+	var/material_slowdown_modifier = 0
+	var/material_slowdown_multiplier = 0.5
 
 /obj/item/clothing/New(var/newloc, var/material_key)
 	..(newloc)
@@ -138,7 +140,7 @@ Protectiveness | Armor %
 				return ..()
 
 			var/reflectchance = (40 * material.reflectivity) - round(damage/3)
-			reflectchance *= material_armor_modifer
+			reflectchance *= material_armor_modifier
 			if(!(def_zone in list(BP_TORSO, BP_GROIN)))
 				reflectchance /= 2
 			if(P.starting && prob(reflectchance))
@@ -166,17 +168,17 @@ Protectiveness | Armor %
 	if(material)
 		var/melee_armor = 0, bullet_armor = 0, laser_armor = 0, energy_armor = 0, bomb_armor = 0
 
-		melee_armor = calculate_material_armor(material.protectiveness * material_armor_modifer)
+		melee_armor = calculate_material_armor(material.protectiveness * material_armor_modifier)
 
-		bullet_armor = calculate_material_armor((material.protectiveness * (material.hardness / 100) * material_armor_modifer) * 0.7)
+		bullet_armor = calculate_material_armor((material.protectiveness * (material.hardness / 100) * material_armor_modifier) * 0.7)
 
-		laser_armor = calculate_material_armor((material.protectiveness * (material.reflectivity + 1) * material_armor_modifer) * 0.7)
+		laser_armor = calculate_material_armor((material.protectiveness * (material.reflectivity + 1) * material_armor_modifier) * 0.7)
 		if(material.opacity != 1)
 			laser_armor *= max(material.opacity - 0.3, 0) // Glass and such has an opacity of 0.3, but lasers should go through glass armor entirely.
 
-		energy_armor = calculate_material_armor((material.protectiveness * material_armor_modifer) * 0.4)
+		energy_armor = calculate_material_armor((material.protectiveness * material_armor_modifier) * 0.4)
 
-		bomb_armor = calculate_material_armor((material.protectiveness * material_armor_modifer) * 0.5)
+		bomb_armor = calculate_material_armor((material.protectiveness * material_armor_modifier) * 0.5)
 
 		// Makes sure the numbers stay capped.
 		for(var/number in list(melee_armor, bullet_armor, laser_armor, energy_armor, bomb_armor))
@@ -190,16 +192,82 @@ Protectiveness | Armor %
 
 		if(!isnull(material.conductivity))
 			siemens_coefficient = between(0, material.conductivity / 10, 10)
-		slowdown = between(0, round(material.weight / 10, 0.1), 6)
+
+		var/slowdownModified = between(0, round(material.weight / 10, 0.1), 6)
+
+		var/slowdownUncapped = (material_slowdown_multiplier * slowdownModified) - material_slowdown_modifier
+
+		slowdown = max(slowdownUncapped, 0)
 
 /obj/item/clothing/suit/armor/material
 	name = "armor"
-	default_material = DEFAULT_WALL_MATERIAL
+	default_material = MAT_STEEL
 
 /obj/item/clothing/suit/armor/material/makeshift
 	name = "sheet armor"
 	desc = "This appears to be two 'sheets' of a material held together by cable.  If the sheets are strong, this could be rather protective."
 	icon_state = "material_armor_makeshift"
+
+/obj/item/clothing/accessory/material/makeshift/light //Craftable with 4 material sheets, less slowdown, less armour
+	name = "light armor plate"
+	desc = "A thin plate of padded material, designed to fit into a plate carrier. Attaches to a plate carrier."
+	icon = 'icons/obj/clothing/modular_armor.dmi'
+	icon_state = "armor_light"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	slot = ACCESSORY_SLOT_ARMOR_C
+	material_armor_modifier = 0.8
+	material_slowdown_modifier = 0.5 //Subtracted from total slowdown
+	material_slowdown_multiplier = 0.4 //Multiplied by total slowdown
+
+/obj/item/clothing/accessory/material/makeshift/heavy //Craftable with 8 material sheets, more slowdown, more armour
+	name = "heavy armor plate"
+	desc = "A thick plate of padded material, designed to fit into a plate carrier. Attaches to a plate carrier."
+	icon = 'icons/obj/clothing/modular_armor.dmi'
+	icon_state = "armor_medium"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	slot = ACCESSORY_SLOT_ARMOR_C
+	material_armor_modifier = 1.2
+	material_slowdown_modifier = 0
+	material_slowdown_multiplier = 0.5
+
+/obj/item/clothing/accessory/material/custom //Not yet craftable, advanced version made with science!
+	name = "custom armor plate"
+	desc = "A composite plate of custom machined material, designed to fit into a plate carrier. Attaches to a plate carrier."
+	icon = 'icons/obj/clothing/modular_armor.dmi'
+	icon_state = "armor_tactical"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	slot = ACCESSORY_SLOT_ARMOR_C
+	material_armor_modifier = 1.2
+	material_slowdown_modifier = 0.5
+	material_slowdown_multiplier = 0.4
+
+/obj/item/clothing/accessory/material/makeshift/armguards
+	name = "arm guards"
+	desc = "A pair of arm pads reinforced with material. Attaches to a plate carrier."
+//	accessory_icons = list(slot_tie_str = 'icons/mob/modular_armor.dmi', slot_wear_suit_str = 'icons/mob/modular_armor.dmi')
+	icon = 'icons/obj/clothing/modular_armor.dmi'
+	icon_override = 'icons/mob/modular_armor.dmi'
+	icon_state = "armguards_material"
+	gender = PLURAL
+	body_parts_covered = ARMS
+	slot = ACCESSORY_SLOT_ARMOR_A
+	material_armor_modifier = 0.8
+	material_slowdown_modifier = 0.8
+	material_slowdown_multiplier = 0.4
+
+/obj/item/clothing/accessory/material/makeshift/legguards
+	name = "leg guards"
+	desc = "A pair of leg guards reinforced with material. Attaches to a plate carrier."
+//	accessory_icons = list(slot_tie_str = 'icons/mob/modular_armor.dmi', slot_wear_suit_str = 'icons/mob/modular_armor.dmi')
+	icon = 'icons/obj/clothing/modular_armor.dmi'
+	icon_override = 'icons/mob/modular_armor.dmi'
+	icon_state = "legguards_material"
+	gender = PLURAL
+	body_parts_covered = LEGS
+	slot = ACCESSORY_SLOT_ARMOR_L
+	material_armor_modifier = 0.8
+	material_slowdown_modifier = 0.8
+	material_slowdown_multiplier = 0.4
 
 /obj/item/clothing/suit/armor/material/makeshift/durasteel
 	default_material = "durasteel"
@@ -218,6 +286,11 @@ Protectiveness | Armor %
 	thrown_force_divisor = 0.2
 	var/wired = FALSE
 
+/obj/item/weapon/material/armor_plating/insert
+	unbreakable = FALSE
+	name = "plate insert"
+	desc = "used to craft armor plates for a plate carrier. Trim with a welder for light armor or add a second for heavy armor"
+	
 /obj/item/weapon/material/armor_plating/attackby(var/obj/O, mob/user)
 	if(istype(O, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/S = O
@@ -249,6 +322,54 @@ Protectiveness | Armor %
 	else
 		..()
 
+//Make plating inserts for modular armour.
+/obj/item/weapon/material/armor_plating/insert/attackby(var/obj/O, mob/user)
+
+	. = ..()
+
+	if(istype(O, /obj/item/weapon/weldingtool))
+		var /obj/item/weapon/weldingtool/S = O
+		if(S.remove_fuel(0,user))
+			if(!src || !S.isOn()) return
+			to_chat(user, "<span class='notice'>You trim down the edges to size.</span>")
+			user.drop_from_inventory(src)
+			var/obj/item/clothing/accessory/material/makeshift/light/new_armor = new(null, src.material.name)
+			user.put_in_hands(new_armor)
+			qdel(src)
+			return
+
+	if(istype(O, /obj/item/weapon/material/armor_plating/insert))
+		var/obj/item/weapon/material/armor_plating/insert/second_plate = O
+		if(second_plate.material != src.material)
+			to_chat(user, "<span class='warning'>Both plates need to be the same type of material.</span>")
+			return
+		to_chat(user, "<span class='notice'>You bond the two plates together.</span>")
+		user.drop_from_inventory(src)
+		user.drop_from_inventory(second_plate)
+		var/obj/item/clothing/accessory/material/makeshift/heavy/new_armor = new(null, src.material.name)
+		user.put_in_hands(new_armor)
+		qdel(second_plate)
+		qdel(src)
+		return
+
+	if(istype(O, /obj/item/weapon/tool/wirecutters))
+		to_chat(user, "<span class='notice'>You split the plate down the middle, and joint it at the elbow.</span>")
+		user.drop_from_inventory(src)
+		var/obj/item/clothing/accessory/material/makeshift/armguards/new_armor = new(null, src.material.name)
+		user.put_in_hands(new_armor)
+		qdel(src)
+		return
+
+	if(istype(O, /obj/item/stack/material))
+		var/obj/item/stack/material/S = O
+		if(S.material == get_material_by_name("leather"))
+			if(S.use(2))
+				to_chat(user, "<span class='notice'>You curve the plate inwards, and add a strap for adjustment.</span>")
+				user.drop_from_inventory(src)
+				var/obj/item/clothing/accessory/material/makeshift/legguards/new_armor = new(null, src.material.name)
+				user.put_in_hands(new_armor)
+				qdel(src)
+				return
 
 // Used to craft the makeshift helmet
 /obj/item/clothing/head/helmet/bucket
@@ -280,7 +401,7 @@ Protectiveness | Armor %
 /obj/item/clothing/head/helmet/material
 	name = "helmet"
 	flags_inv = HIDEEARS|HIDEEYES|BLOCKHAIR
-	default_material = DEFAULT_WALL_MATERIAL
+	default_material = MAT_STEEL
 
 /obj/item/clothing/head/helmet/material/makeshift
 	name = "bucket"

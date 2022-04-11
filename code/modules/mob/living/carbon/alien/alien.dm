@@ -7,6 +7,7 @@
 	health = 100
 	maxHealth = 100
 	mob_size = 4
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 
 	inventory_panel_type = null // Disable inventory
 
@@ -41,10 +42,6 @@
 
 /mob/living/carbon/alien/u_equip(obj/item/W as obj)
 	return
-
-/mob/living/carbon/alien/Stat()
-	..()
-	stat(null, "Progress: [amount_grown]/[max_grown]")
 
 /mob/living/carbon/alien/restrained()
 	return 0

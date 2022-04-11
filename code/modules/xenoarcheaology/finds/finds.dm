@@ -21,7 +21,7 @@
 	icon_state = "strange"
 	var/datum/geosample/geologic_data
 	origin_tech = list(TECH_MATERIAL = 5)
-	w_class = ITEMSIZE_SMALL	//TFF 25/11/19 - fixes the strange rocks to be small size like before and not normal.
+	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/strangerock/New(loc, var/inside_item_type = 0)
 	pixel_x = rand(0,16)-8

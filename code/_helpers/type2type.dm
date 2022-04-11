@@ -2,11 +2,8 @@
  * Holds procs designed to change one type of value, into another.
  * Contains:
  *			hex2num & num2hex
- *			text2list & list2text
  *			file2list
  *			angle2dir
- *			angle2text
- *			worldtime2text
  */
 
 // Returns an integer given a hexadecimal number string as input.
@@ -96,6 +93,19 @@
 		if ("SOUTHEAST") return 6
 		if ("SOUTHWEST") return 10
 
+// Turns a direction into text showing all bits set
+/proc/dirs2text(direction)
+	if(!direction)
+		return ""
+	var/list/dirs = list()
+	if(direction & NORTH) dirs += "NORTH"
+	if(direction & SOUTH) dirs += "SOUTH"
+	if(direction & EAST) dirs += "EAST"
+	if(direction & WEST) dirs += "WEST"
+	if(direction & UP) dirs += "UP"
+	if(direction & DOWN) dirs += "DOWN"
+	return dirs.Join(" ")
+
 // Converts an angle (degrees) into an ss13 direction
 /proc/angle2dir(var/degree)
 	degree = (degree + 22.5) % 365 // 22.5 = 45 / 2
@@ -119,10 +129,6 @@
 		if (SOUTHEAST) return 135
 		if (NORTHWEST) return 315
 		if (SOUTHWEST) return 225
-
-// Returns the angle in english
-/proc/angle2text(var/degree)
-	return dir2text(angle2dir(degree))
 
 // Converts a blend_mode constant to one acceptable to icon.Blend()
 /proc/blendMode2iconMode(blend_mode)
@@ -281,107 +287,6 @@
 		return strtype
 	return copytext(strtype, delim_pos)
 
-// Concatenates a list of strings into a single string.  A seperator may optionally be provided.
-/proc/list2text(list/ls, sep)
-	if (ls.len <= 1) // Early-out code for empty or singleton lists.
-		return ls.len ? ls[1] : ""
-
-	var/l = ls.len // Made local for sanic speed.
-	var/i = 0      // Incremented every time a list index is accessed.
-
-	if (sep != null)
-		// Macros expand to long argument lists like so: sep, ls[++i], sep, ls[++i], sep, ls[++i], etc...
-		#define S1  sep, ls[++i]
-		#define S4  S1,  S1,  S1,  S1
-		#define S16 S4,  S4,  S4,  S4
-		#define S64 S16, S16, S16, S16
-
-		. = "[ls[++i]]" // Make sure the initial element is converted to text.
-
-		// Having the small concatenations come before the large ones boosted speed by an average of at least 5%.
-		if (l-1 & 0x01) // 'i' will always be 1 here.
-			. = text("[][][]", ., S1) // Append 1 element if the remaining elements are not a multiple of 2.
-		if (l-i & 0x02)
-			. = text("[][][][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
-		if (l-i & 0x04)
-			. = text("[][][][][][][][][]", ., S4) // And so on....
-		if (l-i & 0x08)
-			. = text("[][][][][][][][][][][][][][][][][]", ., S4, S4)
-		if (l-i & 0x10)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16)
-		if (l-i & 0x20)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16, S16)
-		if (l-i & 0x40)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64)
-		while (l > i) // Chomp through the rest of the list, 128 elements at a time.
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64, S64)
-
-		#undef S64
-		#undef S16
-		#undef S4
-		#undef S1
-	else
-		// Macros expand to long argument lists like so: ls[++i], ls[++i], ls[++i], etc...
-		#define S1  ls[++i]
-		#define S4  S1,  S1,  S1,  S1
-		#define S16 S4,  S4,  S4,  S4
-		#define S64 S16, S16, S16, S16
-
-		. = "[ls[++i]]" // Make sure the initial element is converted to text.
-
-		if (l-1 & 0x01) // 'i' will always be 1 here.
-			. += S1 // Append 1 element if the remaining elements are not a multiple of 2.
-		if (l-i & 0x02)
-			. = text("[][][]", ., S1, S1) // Append 2 elements if the remaining elements are not a multiple of 4.
-		if (l-i & 0x04)
-			. = text("[][][][][]", ., S4) // And so on...
-		if (l-i & 0x08)
-			. = text("[][][][][][][][][]", ., S4, S4)
-		if (l-i & 0x10)
-			. = text("[][][][][][][][][][][][][][][][][]", ., S16)
-		if (l-i & 0x20)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S16, S16)
-		if (l-i & 0x40)
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64)
-		while (l > i) // Chomp through the rest of the list, 128 elements at a time.
-			. = text("[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]\
-			          [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]", ., S64, S64)
-
-		#undef S64
-		#undef S16
-		#undef S4
-		#undef S1
-
-// Converts a string into a list by splitting the string at each delimiter found. (discarding the seperator)
-/proc/text2list(text, delimiter="\n")
-	var/delim_len = length(delimiter)
-	if (delim_len < 1)
-		return list(text)
-
-	. = list()
-	var/last_found = 1
-	var/found
-
-	do
-		found       = findtext(text, delimiter, last_found, 0)
-		.          += copytext(text, last_found, found)
-		last_found  = found + delim_len
-	while (found)
-
 /proc/type2parent(child)
 	var/string_type = "[child]"
 	var/last_slash = findlasttext(string_type, "/")
@@ -397,3 +302,17 @@
 				return /datum
 
 	return text2path(copytext(string_type, 1, last_slash))
+
+//checks if a file exists and contains text
+//returns text as a string if these conditions are met
+/proc/safe_file2text(filename, error_on_invalid_return = TRUE)
+	try
+		if(fexists(filename))
+			. = file2text(filename)
+			if(!. && error_on_invalid_return)
+				error("File empty ([filename])")
+		else if(error_on_invalid_return)
+			error("File not found ([filename])")
+	catch(var/exception/E)
+		if(error_on_invalid_return)
+			error("Exception when loading file as string: [E]")

@@ -1,7 +1,7 @@
 
 
 /atom/movable
-	var/can_buckle = 0
+	var/can_buckle = FALSE
 	var/buckle_movable = 0
 	var/buckle_dir = 0
 	var/buckle_lying = -1 //bed-like behavior, forces mob.lying = buckle_lying if != -1
@@ -18,7 +18,7 @@
 
 	if(can_buckle && has_buckled_mobs())
 		if(buckled_mobs.len > 1)
-			var/unbuckled = input(user, "Who do you wish to unbuckle?","Unbuckle Who?") as null|mob in buckled_mobs
+			var/unbuckled = tgui_input_list(user, "Who do you wish to unbuckle?","Unbuckle Who?", buckled_mobs)
 			if(user_unbuckle_mob(unbuckled, user))
 				return TRUE
 		else
@@ -40,10 +40,7 @@
 			return TRUE
 
 /atom/movable/proc/has_buckled_mobs()
-	if(!buckled_mobs)
-		return FALSE
-	if(buckled_mobs.len)
-		return TRUE
+	return LAZYLEN(buckled_mobs)
 
 /atom/movable/Destroy()
 	unbuckle_all_mobs()
@@ -56,6 +53,10 @@
 
 	if(!can_buckle_check(M, forced))
 		return FALSE
+
+	if(M == src)
+		stack_trace("Recursive buckle warning: [M] being buckled to self.")
+		return
 
 	M.buckled = src
 	M.facing_dir = null
@@ -179,8 +180,7 @@
 	return M
 
 /atom/movable/proc/handle_buckled_mob_movement(atom/old_loc, direct, movetime)
-	for(var/A in buckled_mobs)
-		var/mob/living/L = A
+	for(var/mob/living/L as anything in buckled_mobs)
 		if(!L.Move(loc, direct, movetime))
 			L.forceMove(loc, direct, movetime)
 			L.last_move = last_move

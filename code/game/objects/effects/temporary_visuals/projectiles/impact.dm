@@ -88,3 +88,5 @@
 	light_power = 0.5
 	light_color = "#80F5FF"
 //VOREStation edit ends
+/obj/effect/projectile/impact/pointdefense
+	icon_state = "impact_pointdef"

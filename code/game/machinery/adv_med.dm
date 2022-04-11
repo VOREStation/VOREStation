@@ -6,15 +6,15 @@
 	name = "Body Scanner"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/body_scanner
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
 	light_color = "#00FF00"
 	var/obj/machinery/body_scanconsole/console
-	var/known_implants = list(/obj/item/weapon/implant/health, /obj/item/weapon/implant/chem, /obj/item/weapon/implant/death_alarm, /obj/item/weapon/implant/loyalty, /obj/item/weapon/implant/tracking, /obj/item/weapon/implant/language, /obj/item/weapon/implant/language/eal, /obj/item/weapon/implant/backup, /obj/item/device/nif) //VOREStation Add - Backup Implant, NIF
 	var/printing_text = null
 
 /obj/machinery/bodyscanner/Initialize()
@@ -219,7 +219,7 @@
 		if(H.reagents.reagent_list.len >= 1)
 			for(var/datum/reagent/R in H.reagents.reagent_list)
 				reagentData[++reagentData.len] = list(
-					"name" = R.name, 
+					"name" = R.name,
 					"amount" = R.volume,
 					"overdose" = (R.overdose && R.volume > R.overdose) ? TRUE : FALSE,
 				)
@@ -255,13 +255,20 @@
 			organData["broken"] = E.min_broken_damage
 
 			var/implantData[0]
-			for(var/obj/I in E.implants)
+			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
-				implantSubData["name"] = I.name
-				if(is_type_in_list(I, known_implants))
-					implantSubData["known"] = 1
-
-				implantData.Add(list(implantSubData))
+				var/obj/item/weapon/implant/I = thing
+			//VOREStation Block Edit Start
+				var/obj/item/device/nif/N = thing
+				if(istype(I))
+					implantSubData["name"] =  I.name
+					implantSubData["known"] = istype(I) && I.known_implant
+					implantData.Add(list(implantSubData))
+				else
+					implantSubData["name"] =  N.name
+					implantSubData["known"] = istype(N) && N.known_implant
+					implantData.Add(list(implantSubData))
+			//VOREStation Block Edit End
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -284,7 +291,7 @@
 
 			if(istype(E, /obj/item/organ/external/chest) && H.is_lung_ruptured())
 				organData["lungRuptured"] = 1
-			
+
 			for(var/datum/wound/W in E.wounds)
 				if(W.internal)
 					organData["internalBleeding"] = 1
@@ -312,6 +319,10 @@
 			organData["robotic"] = (I.robotic >= ORGAN_ROBOT)
 			organData["dead"] = (I.status & ORGAN_DEAD)
 
+			if(istype(I, /obj/item/organ/internal/appendix))
+				var/obj/item/organ/internal/appendix/A = I
+				organData["inflamed"] = A.inflamed
+
 			intOrganData.Add(list(organData))
 
 		occupantData["intOrgan"] = intOrganData
@@ -338,10 +349,10 @@
 			var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(target))
 			var/name = occupant ? occupant.name : "Unknown"
 			P.info = "<CENTER><B>Body Scan - [name]</B></CENTER><BR>"
-			P.info += "<b>Time of scan:</b> [worldtime2stationtime(world.time)]<br><br>"
+			P.info += "<b>Time of scan:</b> [stationtime2text()]<br><br>"
 			P.info += "[generate_printing_text()]"
 			P.info += "<br><br><b>Notes:</b><br>"
-			P.name = "Body Scan - [name] ([worldtime2stationtime(world.time)]"
+			P.name = "Body Scan - [name] ([stationtime2text()]"
 		else
 			return FALSE
 
@@ -464,15 +475,18 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-			for(var/I in e.implants)
-				if(is_type_in_list(I,known_implants))
+			for(var/obj/item/weapon/implant/I as anything in e.implants)
+				var/obj/item/device/nif/N = I //VOREStation Add: NIFs
+				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
+				else if(istype(N) && N.known_implant) //VOREStation Add: NIFs
+					imp += "[N] implanted:"
 				else
 					unknown_body++
 
 			if(unknown_body)
 				imp += "Unknown body present:"
-			if(!AN && !open && !infected & !imp)
+			if(!AN && !open && !infected && !imp)
 				AN = "None:"
 			if(!(e.status & ORGAN_DESTROYED))
 				dat += "<td>[e.name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][imp][internal_bleeding][lung_ruptured][o_dead]</td>"
@@ -487,23 +501,28 @@
 			if(i.robotic >= ORGAN_ROBOT)
 				mech = "Mechanical:"
 			if(i.status & ORGAN_DEAD)
-				i_dead = "Necrotic:"
+				i_dead = "Necrotic"
 			var/infection = "None"
 			switch (i.germ_level)
 				if (INFECTION_LEVEL_ONE to INFECTION_LEVEL_ONE + 200)
-					infection = "Mild Infection:"
+					infection = "Mild Infection"
 				if (INFECTION_LEVEL_ONE + 200 to INFECTION_LEVEL_ONE + 300)
-					infection = "Mild Infection+:"
+					infection = "Mild Infection+"
 				if (INFECTION_LEVEL_ONE + 300 to INFECTION_LEVEL_ONE + 400)
-					infection = "Mild Infection++:"
+					infection = "Mild Infection++"
 				if (INFECTION_LEVEL_TWO to INFECTION_LEVEL_TWO + 200)
-					infection = "Acute Infection:"
+					infection = "Acute Infection"
 				if (INFECTION_LEVEL_TWO + 200 to INFECTION_LEVEL_TWO + 300)
-					infection = "Acute Infection+:"
+					infection = "Acute Infection+"
 				if (INFECTION_LEVEL_TWO + 300 to INFECTION_LEVEL_THREE - 50)
-					infection = "Acute Infection++:"
+					infection = "Acute Infection++"
 				if (INFECTION_LEVEL_THREE -49 to INFINITY)
-					infection = "Necrosis Detected:"
+					infection = "Necrosis Detected"
+
+			if(istype(i, /obj/item/organ/internal/appendix))
+				var/obj/item/organ/internal/appendix/A = i
+				if(A.inflamed)
+					infection = "Inflammation detected!"
 
 			dat += "<tr>"
 			dat += "<td>[i.name]</td><td>N/A</td><td>[i.damage]</td><td>[infection]:[mech][i_dead]</td><td></td>"
@@ -527,8 +546,9 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scannerconsole"
 	dir = 8
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/scanner_console
 	var/printing = null
 

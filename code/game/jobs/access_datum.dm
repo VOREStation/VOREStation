@@ -262,8 +262,8 @@
 	desc = "Station Network"
 	region = ACCESS_REGION_RESEARCH
 
-// /var/const/free_access_id = 43
-// /var/const/free_access_id = 44
+// /var/const/free_access_id = 43 // taken in VR
+// /var/const/free_access_id = 44 // taken in VR
 
 /var/const/access_surgery = 45
 /datum/access/surgery

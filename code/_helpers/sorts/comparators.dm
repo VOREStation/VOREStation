@@ -57,11 +57,44 @@
 	if (!.)
 		. = B[STAT_ENTRY_COUNT] - A[STAT_ENTRY_COUNT]
 
-// Compares complexity of recipes for use in cooking, etc. This is for telling which recipe to make, not for showing things to the player.
-/proc/cmp_recipe_complexity_dsc(datum/recipe/A, datum/recipe/B)
-	var/a_score = LAZYLEN(A.items) + LAZYLEN(A.reagents) + LAZYLEN(A.fruit)
-	var/b_score = LAZYLEN(B.items) + LAZYLEN(B.reagents) + LAZYLEN(B.fruit)
-	return b_score - a_score
-
 /proc/cmp_typepaths_asc(A, B)
 	return sorttext("[B]","[A]") 
+	
+/**
+ * Sorts crafting recipe requirements before the crafting recipe is inserted into GLOB.crafting_recipes
+ *
+ * Prioritises [/datum/reagent] to ensure reagent requirements are always processed first when crafting.
+ * This prevents any reagent_containers from being consumed before the reagents they contain, which can
+ * lead to runtimes and item duplication when it happens.
+ */
+/proc/cmp_crafting_req_priority(A, B)
+	var/lhs
+	var/rhs
+
+	lhs = ispath(A, /datum/reagent) ? 0 : 1
+	rhs = ispath(B, /datum/reagent) ? 0 : 1
+
+	return lhs - rhs
+
+/proc/cmp_text_asc(a,b)
+	return sorttext(b,a)
+
+///Tracks are sorted by genre then by title inside that.
+/proc/cmp_media_track_asc(datum/track/A, datum/track/B)
+	var/genre_sort = sorttext(B.genre || "Uncategorized", A.genre || "Uncategorized")
+	return genre_sort || sorttext(B.title, A.title)
+	
+///Filters have a numerical priority.
+/proc/cmp_filter_data_priority(list/A, list/B)
+	return A["priority"] - B["priority"]
+
+///Traits have sort they have defined on them to categorize themselves into groups. After that, alphabetical.
+/proc/cmp_trait_datums_name(datum/trait/A, datum/trait/B)
+	return A.sort == B.sort ? sorttext("[B.name]","[A.name]") : A.sort - B.sort
+
+///Species have sort_hint they self-generate to hint themselves into groups. After that, alphabetical.
+/proc/cmp_species(datum/species/A, datum/species/B)
+	return A.sort_hint == B.sort_hint ? sorttext("[B.name]","[A.name]") : A.sort_hint - B.sort_hint
+
+/proc/cmp_stored_item_name(datum/stored_item/A, datum/stored_item/B)
+	return sorttext(B.item_name, A.item_name)

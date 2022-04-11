@@ -5,11 +5,11 @@
 "f" = (
 /obj/structure/grille/broken,
 /obj/effect/alien/weeds,
-/obj/effect/alien/resin/membrane,
+/obj/structure/alien/membrane,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "h" = (
-/obj/effect/alien/resin/wall,
+/obj/structure/alien/wall,
 /obj/effect/alien/weeds,
 /turf/space,
 /area/submap/debrisfield/misc_debris)
@@ -24,7 +24,7 @@
 	dir = 4
 	},
 /obj/effect/alien/weeds,
-/obj/effect/alien/resin/membrane,
+/obj/structure/alien/membrane,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "t" = (
@@ -48,7 +48,7 @@
 /area/submap/debrisfield/misc_debris)
 "D" = (
 /obj/effect/alien/weeds,
-/obj/effect/alien/resin/wall,
+/obj/structure/alien/wall,
 /turf/simulated/wall/rshull,
 /area/submap/debrisfield/misc_debris)
 "T" = (
@@ -57,7 +57,7 @@
 	dir = 8
 	},
 /obj/effect/alien/weeds,
-/obj/effect/alien/resin/membrane,
+/obj/structure/alien/membrane,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "U" = (
@@ -66,7 +66,6 @@
 /area/submap/debrisfield/misc_debris)
 "W" = (
 /obj/effect/alien/weeds,
-/obj/effect/alien/egg,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "X" = (

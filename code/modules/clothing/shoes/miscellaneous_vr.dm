@@ -3,16 +3,16 @@
 	desc = "A pair of costume boots fashioned after bird talons."
 	icon_state = "griffinboots"
 	item_state = "griffinboots"
-	icon = 'icons/obj/clothing/shoes_vr.dmi'
-	icon_override = 'icons/mob/feet_vr.dmi'
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 
 /obj/item/clothing/shoes/bhop
 	name = "jump boots"
 	desc = "A specialized pair of combat boots with a built-in propulsion system for rapid foward movement."
 	icon_state = "jetboots"
 	item_state = "jetboots"
-	icon = 'icons/obj/clothing/shoes_vr.dmi'
-	icon_override = 'icons/mob/feet_vr.dmi'
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 	// resistance_flags = FIRE_PROOF
 	action_button_name = "Activate Jump Boots"
 	permeability_coefficient = 0.05
@@ -44,8 +44,8 @@
 /obj/item/clothing/shoes/magboots/adv
 	name = "advanced magboots"
 	desc = "Advanced magnetic boots for a trained user. They have a lower magnetic force, allowing the user to move more quickly."
-	icon = 'icons/obj/clothing/shoes_vr.dmi'
-	icon_override = 'icons/mob/feet_vr.dmi'
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/mob_vr.dmi'
 	
 	icon_state = "advmag0"
 	item_flags = PHORONGUARD
@@ -66,8 +66,8 @@
 	desc = "A pair of olde knight boots."
 	icon_state = "knight_boots1"
 	item_state = "knight_boots1"
-	icon = 'icons/obj/clothing/shoes_vr.dmi'
-	icon_override = 'icons/obj/clothing/shoes_vr.dmi'
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/item_vr.dmi'
 	armor = list(melee = 80, bullet = 50, laser = 10, energy = 0, bomb = 0, bio = 0, rad = 0)
 	
 /obj/item/clothing/shoes/knight/black
@@ -82,8 +82,8 @@
 	desc = "A pair of olde knight boots."
 	icon_state = "knight_boots1"
 	item_state = "knight_boots1"
-	icon = 'icons/obj/clothing/shoes_vr.dmi'
-	icon_override = 'icons/obj/clothing/shoes_vr.dmi'
+	icon = 'icons/inventory/feet/item_vr.dmi'
+	icon_override = 'icons/inventory/feet/item_vr.dmi'
 	
 /obj/item/clothing/shoes/knight_costume/black
 	name = "knight boots"

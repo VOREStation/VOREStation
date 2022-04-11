@@ -52,15 +52,23 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 // Subsystem init_order, from highest priority to lowest priority
 // Subsystems shutdown in the reverse of the order they initialize in
 // The numbers just define the ordering, they are meaningless otherwise.
+#define INIT_ORDER_WEBHOOKS		50
 #define INIT_ORDER_SQLITE		40
+#define INIT_ORDER_GARBAGE		39
+#define INIT_ORDER_MEDIA_TRACKS	38 // Gotta get that lobby music up, yo
+#define INIT_ORDER_INPUT		37
 #define INIT_ORDER_CHEMISTRY	35
-#define INIT_ORDER_SKYBOX		30
+#define INIT_ORDER_VIS			32
 #define INIT_ORDER_MAPPING		25
+#define INIT_ORDER_SOUNDS		23
+#define INIT_ORDER_INSTRUMENTS	22
 #define INIT_ORDER_DECALS		20
-#define INIT_ORDER_PLANTS		18 // Must initialize before atoms.
+#define INIT_ORDER_PLANTS		19 // Must initialize before atoms.
+#define INIT_ORDER_PLANETS		18
 #define INIT_ORDER_JOB			17
 #define INIT_ORDER_ALARM		16 // Must initialize before atoms.
-#define INIT_ORDER_ATOMS		15
+#define INIT_ORDER_TRANSCORE	15 // VOREStation Edit
+#define INIT_ORDER_ATOMS		14 // VOREStation Edit
 #define INIT_ORDER_MACHINES		10
 #define INIT_ORDER_SHUTTLES		3
 #define INIT_ORDER_TIMER		1
@@ -68,19 +76,19 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define INIT_ORDER_LIGHTING		0
 #define INIT_ORDER_AIR			-1
 #define INIT_ORDER_ASSETS		-3
-#define INIT_ORDER_PLANETS		-4
 #define INIT_ORDER_HOLOMAPS		-5
 #define INIT_ORDER_NIGHTSHIFT	-6
 #define INIT_ORDER_OVERLAY		-7
-#define INIT_ORDER_OPENSPACE	-10
 #define INIT_ORDER_XENOARCH		-20
 #define INIT_ORDER_CIRCUIT		-21
 #define INIT_ORDER_AI			-22
 #define INIT_ORDER_AI_FAST		-23
 #define INIT_ORDER_GAME_MASTER	-24
 #define INIT_ORDER_PERSISTENCE	-25
+#define INIT_ORDER_SKYBOX		-30 //Visual only, irrelevant to gameplay, but needs to be late enough to have overmap populated fully
 #define INIT_ORDER_TICKER		-50
 #define INIT_ORDER_CHAT			-100 //Should be last to ensure chat remains smooth during init.
+
 
 
 // Subsystem fire priority, from lowest to highest priority
@@ -89,8 +97,10 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_SUPPLY		5
 #define FIRE_PRIORITY_NIGHTSHIFT	5
 #define FIRE_PRIORITY_PLANTS		5
-#define FIRE_PRIORITY_ORBIT			8
-#define FIRE_PRIORITY_VOTE			9
+#define FIRE_PRIORITY_VIS			5
+#define FIRE_PRIORITY_ORBIT			7
+#define FIRE_PRIORITY_VOTE			8
+#define FIRE_PRIORITY_INSTRUMENTS	9
 #define FIRE_PRIORITY_AI			10
 #define FIRE_PRIORITY_GARBAGE		15
 #define FIRE_PRIORITY_ALARM			20
@@ -107,11 +117,12 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 #define FIRE_PRIORITY_PROJECTILES	150
 #define FIRE_PRIORITY_CHAT			400
 #define FIRE_PRIORITY_OVERLAYS		500
+#define FIRE_PRIORITY_INPUT			1000 // This must always always be the max highest priority. Player input must never be lost.
 
 // Macro defining the actual code applying our overlays lists to the BYOND overlays list. (I guess a macro for speed)
 // TODO - I don't really like the location of this macro define.  Consider it. ~Leshana
 #define COMPILE_OVERLAYS(A)\
-	if (TRUE) {\
+	do {\
 		var/list/oo = A.our_overlays;\
 		var/list/po = A.priority_overlays;\
 		if(LAZYLEN(po)){\
@@ -129,4 +140,4 @@ var/global/list/runlevel_flags = list(RUNLEVEL_LOBBY, RUNLEVEL_SETUP, RUNLEVEL_G
 			A.overlays.Cut();\
 		}\
 		A.flags &= ~OVERLAY_QUEUED;\
-	}
+	} while (FALSE)

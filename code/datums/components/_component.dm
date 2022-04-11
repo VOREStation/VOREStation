@@ -188,7 +188,11 @@
 	var/list/sig_types = islist(sig_type_or_types) ? sig_type_or_types : list(sig_type_or_types)
 	for(var/sig_type in sig_types)
 		if(!override && procs[target][sig_type])
-			stack_trace("[sig_type] overridden. Use override = TRUE to suppress this warning")
+			var/trace_msg = "[sig_type] overridden. Use override = TRUE to suppress this warning."
+			if(isatom(target))
+				var/atom/A = target
+				trace_msg += " [A.x],[A.y],[A.z]"
+			stack_trace(trace_msg)
 
 		procs[target][sig_type] = proctype
 
@@ -213,10 +217,10 @@
   *
   * Arguments:
   * * datum/target Datum to stop listening to signals from
-  * * sig_typeor_types Signal string key or list of signal keys to stop listening to specifically
+  * * sig_type_or_types Signal string key or list of signal keys to stop listening to specifically
   */
 /datum/proc/UnregisterSignal(datum/target, sig_type_or_types)
-	var/list/lookup = target.comp_lookup
+	var/list/lookup = target?.comp_lookup
 	if(!signal_procs || !signal_procs[target] || !lookup)
 		return
 	if(!islist(sig_type_or_types))
@@ -316,8 +320,7 @@
 		var/proctype = C.signal_procs[src][sigtype]
 		return NONE | CallAsync(C, proctype, arguments)
 	. = NONE
-	for(var/I in target)
-		var/datum/C = I
+	for(var/datum/C as anything in target)
 		if(!C.signal_enabled)
 			continue
 		var/proctype = C.signal_procs[src][sigtype]
@@ -333,7 +336,7 @@
   * * datum/component/c_type The typepath of the component you want to get a reference to
   */
 /datum/proc/GetComponent(datum/component/c_type)
-	// RETURN_TYPE(c_type)
+	RETURN_TYPE(c_type)
 	if(initial(c_type.dupe_mode) == COMPONENT_DUPE_ALLOWED || initial(c_type.dupe_mode) == COMPONENT_DUPE_SELECTIVE)
 		stack_trace("GetComponent was called to get a component of which multiple copies could be on an object. This can easily break and should be changed. Type: \[[c_type]\]")
 	var/list/dc = datum_components
@@ -353,7 +356,7 @@
   * * datum/component/c_type The typepath of the component you want to get a reference to
   */
 /datum/proc/GetExactComponent(datum/component/c_type)
-	// RETURN_TYPE(c_type)
+	RETURN_TYPE(c_type)
 	if(initial(c_type.dupe_mode) == COMPONENT_DUPE_ALLOWED || initial(c_type.dupe_mode) == COMPONENT_DUPE_SELECTIVE)
 		stack_trace("GetComponent was called to get a component of which multiple copies could be on an object. This can easily break and should be changed. Type: \[[c_type]\]")
 	var/list/dc = datum_components
@@ -440,8 +443,7 @@
 					var/list/arguments = raw_args.Copy()
 					arguments[1] = new_comp
 					var/make_new_component = TRUE
-					for(var/i in GetComponents(new_type))
-						var/datum/component/C = i
+					for(var/datum/component/C as anything in GetComponents(new_type))
 						if(C.CheckDupeComponent(arglist(arguments)))
 							make_new_component = FALSE
 							QDEL_NULL(new_comp)

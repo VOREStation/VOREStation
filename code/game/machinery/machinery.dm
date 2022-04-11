@@ -105,18 +105,25 @@ Class Procs:
 	var/power_init_complete = FALSE
 	var/list/component_parts = null //list of all the parts used to build it, if made from certain kinds of frames.
 	var/uid
-	var/panel_open = 0
+	var/panel_open = FALSE
 	var/global/gl_uid = 1
 	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
 	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
 	var/obj/item/weapon/circuitboard/circuit = null
+	
+	// 0.0 - 1.0 multipler for prob() based on bullet structure damage
+	// So if this is 1.0 then a 100 damage bullet will always break this structure
+	// If this is 0.5 then a 50 damage bullet will break this structure 25% of the time
+	var/bullet_vulnerability = 0.25
 
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+
 /obj/machinery/New(l, d=0)
-	..(l)
-	if(d)
+	..()
+	if(isnum(d))
 		set_dir(d)
 	if(ispath(circuit))
 		circuit = new circuit(src)
@@ -169,7 +176,7 @@ Class Procs:
 		pulse2.icon = 'icons/effects/effects.dmi'
 		pulse2.icon_state = "empdisable"
 		pulse2.name = "emp sparks"
-		pulse2.anchored = 1
+		pulse2.anchored = TRUE
 		pulse2.set_dir(pick(cardinal))
 
 		spawn(10)
@@ -179,15 +186,15 @@ Class Procs:
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			qdel(src)
+			fall_apart(severity)
 			return
 		if(2.0)
 			if(prob(50))
-				qdel(src)
+				fall_apart(severity)
 				return
 		if(3.0)
 			if(prob(25))
-				qdel(src)
+				fall_apart(severity)
 				return
 		else
 	return
@@ -319,10 +326,11 @@ Class Procs:
 		qdel(C)
 		C = new /obj/item/weapon/cell/high(src)
 		component_parts += C
-		return C
 		RefreshParts()
+		return C
 
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
+	var/parts_replaced = FALSE
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -333,23 +341,26 @@ Class Procs:
 	if(panel_open || !R.panel_req)
 		var/obj/item/weapon/circuitboard/CB = circuit
 		var/P
-		for(var/obj/item/weapon/stock_parts/A in component_parts)
+		for(var/obj/item/A in component_parts)
 			for(var/T in CB.req_components)
 				if(ispath(A.type, T))
 					P = T
 					break
-			for(var/obj/item/weapon/stock_parts/B in R.contents)
+			for(var/obj/item/B in R.contents)
 				if(istype(B, P) && istype(A, P))
-					if(B.rating > A.rating)
+					if(B.get_rating() > A.get_rating())
 						R.remove_from_storage(B, src)
 						R.handle_item_insertion(A, 1)
 						component_parts -= A
 						component_parts += B
 						B.loc = null
 						to_chat(user, "<span class='notice'>[A.name] replaced with [B.name].</span>")
+						parts_replaced = TRUE
 						break
 			update_icon()
 			RefreshParts()
+			if(parts_replaced)
+				R.play_rped_sound()
 	return 1
 
 // Default behavior for wrenching down machines.  Supports both delay and instant modes.
@@ -428,21 +439,21 @@ Class Procs:
 	for(var/obj/I in contents)
 		if(istype(I,/obj/item/weapon/card/id))
 			I.forceMove(src.loc)
-	//TFF 3/6/19 - port Cit RP fix of infinite frames. If it doesn't have a circuit board, don't create a frame. Return a smack instead. BONK!
+	
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
 	var/obj/item/weapon/circuitboard/M = circuit
 	A.circuit = M
-	A.anchored = 1
+	A.anchored = TRUE
 	A.frame_type = M.board_type
 	if(A.frame_type.circuit)
 		A.need_circuit = 0
 
 	if(A.frame_type.frame_class == FRAME_CLASS_ALARM || A.frame_type.frame_class == FRAME_CLASS_DISPLAY)
-		A.density = 0
+		A.density = FALSE
 	else
-		A.density = 1
+		A.density = TRUE
 
 	if(A.frame_type.frame_class == FRAME_CLASS_MACHINE)
 		for(var/obj/D in component_parts)
@@ -473,6 +484,84 @@ Class Procs:
 	M.deconstruct(src)
 	qdel(src)
 	return 1
+
+/obj/machinery/bullet_act(obj/item/projectile/P, def_zone)
+	. = ..()
+	if(prob(P.get_structure_damage() * bullet_vulnerability))
+		fall_apart()
+
+/**
+ * Like an angrier dismantle, where it destroys some of the parts and doesn't give you a frame
+ ** severity: Same severities as ex_act (so lower is more destructive)
+ ** scatter: If you want the parts to slide around 1 turf in random directions
+ */
+/obj/machinery/proc/fall_apart(var/severity = 3, var/scatter = TRUE)
+	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	
+	var/atom/droploc = drop_location()
+	if(!droploc || !contents.len) // not even a circuit?
+		playsound(src, 'sound/machines/machine_die_short.ogg')
+		spark_system.start()
+		qdel(spark_system)
+		qdel(src)
+		return
+
+	var/list/surviving_parts = list()
+	// Deleting IDs is lame, unless this is like nuclear severity
+	if(severity != 1)
+		for(var/obj/item/weapon/card/id/I in contents)
+			surviving_parts |= I
+	
+	// May populate some items to throw around
+	if(!LAZYLEN(component_parts) && circuit)
+		circuit.apply_default_parts(src)
+	
+	var/survivability
+	switch(severity)
+		// No survivors
+		if(1)
+			survivability = 0
+			
+		// 1 part survives
+		if(2)
+			survivability = 0
+			var/atom/movable/picked_part = pick(contents)
+			if(istype(picked_part))
+				surviving_parts |= picked_part
+
+		// 50% of parts destroyed on average
+		if(3)
+			survivability = 50
+		
+		// No parts destroyed, but you lose the frame
+		else
+			survivability = 100
+		
+	for(var/atom/movable/P in contents)
+		if(prob(survivability))
+			surviving_parts |= P
+	
+	if(circuit && severity >= 2)
+		var/datum/frame/frame_types/FT = circuit.board_type
+		if(istype(FT))
+			// Some steel from the frame, but about half
+			surviving_parts += new /obj/item/stack/material/steel(null, max(1,round(FT.frame_size/2)))
+			// Two bits of cable, but not the 5 required to rebuild
+			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
+			surviving_parts += new /obj/item/stack/cable_coil(null, 1)
+
+	for(var/atom/movable/A as anything in surviving_parts)
+		A.forceMove(droploc)
+		if(scatter && isturf(droploc))
+			var/turf/T = droploc
+			A.Move(get_step(T, pick(alldirs)))
+
+	playsound(src, 'sound/machines/machine_die_short.ogg')
+	spark_system.start()
+	qdel(spark_system)
+	qdel(src)
 
 /datum/proc/apply_visual(mob/M)
 	M.sight = 0 //Just reset their mesons and stuff so they can't use them, by default.

@@ -3,9 +3,9 @@
 /obj/item/clothing/under/nanotrasen
 	name = "NanoTrasen uniform"
 	desc = "A comfortable turtleneck and black trousers sporting nanotrasen symbols."
-	icon = 'icons/obj/clothing/uniforms_solgov.dmi'
-	icon_override = 'icons/mob/uniform_solgov.dmi'
-	item_icons = list(slot_w_uniform_str = 'icons/mob/uniform_solgov.dmi', slot_r_hand_str = "black", slot_l_hand_str = "black")
+	icon = 'icons/inventory/uniform/item.dmi'
+	icon_override = 'icons/inventory/uniform/mob.dmi'
+	item_icons = list(slot_w_uniform_str = 'icons/inventory/uniform/mob.dmi', slot_r_hand_str = "black", slot_l_hand_str = "black")
 	icon_state = "blackutility"
 	worn_state = "blackutility"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)

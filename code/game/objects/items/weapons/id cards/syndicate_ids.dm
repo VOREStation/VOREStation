@@ -1,6 +1,6 @@
 /obj/item/weapon/card/id/syndicate
 	name = "agent card"
-	icon_state = "syndicate"
+	icon_state = "generic-s"
 	assignment = "Agent"
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/electronic_warfare = 1
@@ -38,7 +38,7 @@
 	if(!registered_user && register_user(user))
 		to_chat(user, "<span class='notice'>The microscanner marks you as its owner, preventing others from accessing its internals.</span>")
 	if(registered_user == user)
-		switch(alert("Would you like edit the ID, or show it?","Show or Edit?", "Edit","Show"))
+		switch(tgui_alert(usr, "Would you like edit the ID, or show it?","Show or Edit?", list("Edit","Show")))
 			if("Edit")
 				agentcard_module.tgui_interact(user)
 			if("Show")
@@ -67,11 +67,12 @@
 	if(!id_card_states)
 		id_card_states = list()
 		for(var/path in typesof(/obj/item/weapon/card/id))
-			var/obj/item/weapon/card/id/ID = path
+			var/obj/item/weapon/card/id/ID = new path()
 			var/datum/card_state/CS = new()
 			CS.icon_state = initial(ID.icon_state)
 			CS.item_state = initial(ID.item_state)
-			CS.name = initial(ID.name) + " - " + initial(ID.icon_state)
+			CS.sprite_stack = ID.initial_sprite_stack
+			CS.name = initial(ID.name)
 			id_card_states += CS
 		id_card_states = dd_sortedObjectList(id_card_states)
 
@@ -81,6 +82,7 @@
 	var/name
 	var/icon_state
 	var/item_state
+	var/sprite_stack
 
 /datum/card_state/dd_SortValue()
 	return name
@@ -89,5 +91,6 @@
 	name = "syndicate ID card"
 	desc = "An ID straight from the Syndicate."
 	registered_name = "Syndicate"
-	assignment = "Syndicate Overlord"
+	assignment = "Syndicate Commander"
+	icon_state = "syndicate-id"
 	access = list(access_syndicate, access_external_airlocks)

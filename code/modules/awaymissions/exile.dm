@@ -15,12 +15,12 @@
 	name = "exile"
 	desc = "Prevents you from returning from away missions"
 
-	get_data()
-		var/dat = {"
+/obj/item/weapon/implant/exile/get_data()
+	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> [using_map.company_name] Employee Exile Implant<BR>
 <b>Implant Details:</b> The onboard gateway system has been modified to reject entry by individuals containing this implant<BR>"}
-		return dat
+	return dat
 
 /obj/item/weapon/implantcase/exile
 	name = "Glass Case- 'Exile'"
@@ -29,23 +29,13 @@
 	icon_state = "implantcase-r"
 
 
-	New()
-		src.imp = new /obj/item/weapon/implant/exile( src )
-		..()
-		return
+/obj/item/weapon/implantcase/exile/New()
+	src.imp = new /obj/item/weapon/implant/exile( src )
+	..()
+	return
 
 
 /obj/structure/closet/secure_closet/exile
 	name = "Exile Implants"
 	req_access = list(access_hos)
-
-	New()
-		..()
-		sleep(2)
-		new /obj/item/weapon/implanter/exile(src)
-		new /obj/item/weapon/implantcase/exile(src)
-		new /obj/item/weapon/implantcase/exile(src)
-		new /obj/item/weapon/implantcase/exile(src)
-		new /obj/item/weapon/implantcase/exile(src)
-		new /obj/item/weapon/implantcase/exile(src)
-		return
+	starts_with = list(/obj/item/weapon/implanter/exile = 1, /obj/item/weapon/implantcase/exile = 5)

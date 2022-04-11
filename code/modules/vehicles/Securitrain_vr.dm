@@ -23,7 +23,7 @@
 
 	var/car_limit = 0	//how many cars an engine can pull before performance degrades. This should be 0 to prevent trailers from unhitching.
 	active_engines = 1
-	var/obj/item/weapon/key/key	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
+	var/obj/item/weapon/key/key
 	var/key_type = /obj/item/weapon/key/security
 	var/siren = 0 //This is for eventually getting the siren sprite to work.
 
@@ -39,7 +39,7 @@
 	desc = "A trolly designed to transport security personnel or prisoners."
 	icon = 'icons/obj/vehicles_vr.dmi'
 	icon_state = "paddy_trailer"
-	anchored = 0
+	anchored = FALSE
 	passenger_allowed = 1
 	locked = 0
 
@@ -62,9 +62,9 @@
 /obj/vehicle/train/security/engine/New()
 	..()
 	cell = new /obj/item/weapon/cell/high(src)
-	key = new key_type(src)	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
+	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
-	overlays += I
+	add_overlay(I)
 	turn_off()	//so engine verbs are correctly set
 
 /obj/vehicle/train/security/engine/Move(var/turf/destination)
@@ -91,7 +91,7 @@
 		..()
 
 /obj/vehicle/train/security/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, key_type))	//TFF 19/1/20 - Bugfix for key being prevented from getting used again
+	if(istype(W, key_type))
 		if(!key)
 			user.drop_item()
 			W.forceMove(src)
@@ -319,7 +319,7 @@
 		C.pixel_y += load_offset_y
 		C.layer = layer
 
-		overlays += C
+		add_overlay(C)
 
 		//we can set these back now since we have already cloned the icon into the overlay
 		C.pixel_x = initial(C.pixel_x)
@@ -332,7 +332,7 @@
 		load = dummy_load.actual_load
 		dummy_load.actual_load = null
 		qdel(dummy_load)
-		overlays.Cut()
+		cut_overlays()
 	..()
 
 //-------------------------------------------
@@ -384,6 +384,6 @@
 	src.active_engines = active_engines
 
 	if(!lead && !tow)
-		anchored = 0
+		anchored = FALSE
 	else
-		anchored = 1
+		anchored = TRUE

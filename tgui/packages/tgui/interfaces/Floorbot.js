@@ -9,6 +9,7 @@ export const Floorbot = (props, context) => {
     on,
     open,
     locked,
+    vocal,
     amount,
     possible_bmode,
     improvefloors,
@@ -43,6 +44,14 @@ export const Floorbot = (props, context) => {
         {!locked && (
           <Section title="Behavior Controls">
             <LabeledList>
+              <LabeledList.Item label="Speaker">
+                <Button
+                  icon={vocal ? "toggle-on" : "toggle-off"}
+                  selected={vocal}
+                  onClick={() => act("vocal")}>
+                  {vocal ? "On" : "Off"}
+                </Button>
+              </LabeledList.Item>
               <LabeledList.Item label="Improves Floors">
                 <Button
                   icon={improvefloors ? "toggle-on" : "toggle-off"}

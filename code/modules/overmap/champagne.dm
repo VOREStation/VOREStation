@@ -27,7 +27,7 @@
 		return
 
 	user.visible_message("<span class='notice'>[user] lifts [src] bottle over [comp]!</span>")
-	var/shuttle_name = input("Choose a name for the shuttle", "New Shuttle Name") as null|text
+	var/shuttle_name = input(usr, "Choose a name for the shuttle", "New Shuttle Name") as null|text
 	if(!shuttle_name || QDELETED(src) || QDELETED(comp) || comp.shuttle_tag || user.incapacitated())
 		return // After input() safety re-checks
 

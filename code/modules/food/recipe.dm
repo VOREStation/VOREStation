@@ -192,6 +192,16 @@
 /datum/recipe/proc/make_food(var/obj/container as obj)
 	if(!result)
 		log_runtime(EXCEPTION("<span class='danger'>Recipe [type] is defined without a result, please bug report this.</span>"))
+		if(istype(container, /obj/machinery/microwave))
+			var/obj/machinery/microwave/M = container
+			M.dispose(FALSE)
+
+		else if(istype(container, /obj/item/weapon/reagent_containers/cooking_container))
+			var/obj/item/weapon/reagent_containers/cooking_container/CC = container
+			CC.clear()
+
+		container.visible_message(SPAN_WARNING("[container] inexplicably spills, and its contents are lost!"))
+
 		return
 
 
@@ -304,24 +314,21 @@
 
 // When exact is false, extraneous ingredients are ignored
 // When exact is true, extraneous ingredients will fail the recipe
-// In both cases, the full complement of required inredients is still needed
+// In both cases, the full set of required ingredients is still needed
 /proc/select_recipe(var/list/datum/recipe/available_recipes, var/obj/obj as obj, var/exact)
-	var/list/datum/recipe/possible_recipes = list()
+	var/highest_count = 0
+	var/count = 0
 	for (var/datum/recipe/recipe in available_recipes)
 		if(!recipe.check_reagents(obj.reagents, exact) || !recipe.check_items(obj, exact)  || !recipe.check_fruit(obj, exact))
 			continue
-		possible_recipes |= recipe
-	if (!possible_recipes.len)
-		return null
-	else if (possible_recipes.len == 1)
-		return possible_recipes[1]
-	else //okay, let's select the most complicated recipe
-		sortTim(possible_recipes, /proc/cmp_recipe_complexity_dsc)
-		return possible_recipes[1]
+		// Taken from cmp_recipe_complexity_dsc, but is way faster.
+		count = LAZYLEN(recipe.items) + LAZYLEN(recipe.reagents) + LAZYLEN(recipe.fruit)
+		if(count >= highest_count)
+			highest_count = count
+			. = recipe
 
 // Both of these are just placeholders to allow special behavior for mob holders, but you can do other things in here later if you feel like it.
 /datum/recipe/proc/before_cook(obj/container) // Called Before the Microwave starts delays and cooking stuff
 
 
 /datum/recipe/proc/after_cook(obj/container) // Called When the Microwave is finished.
-

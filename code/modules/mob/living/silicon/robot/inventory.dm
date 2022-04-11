@@ -95,7 +95,6 @@
 		return 1
 	else
 		return 0
-	updateicon()
 
 // This one takes an object's type instead of an instance, as above.
 /mob/living/silicon/robot/proc/has_active_type(var/type_to_compare)

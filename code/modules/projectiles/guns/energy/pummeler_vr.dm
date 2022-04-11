@@ -45,4 +45,14 @@
 			L.Confuse(1)
 		L.throw_at(get_edge_target_turf(L, throwdir), rand(3,6), 10)
 
+		//VOREStation Add Start
+		if(istype(L, /mob/living/simple_mob/vore/alienanimals/startreader))
+			var/mob/living/simple_mob/vore/alienanimals/startreader/S = L
+			if(!S.flipped)
+				S.adjustBruteLoss(100)
+				S.visible_message("<span class='notice'>\The [S] is flipped over!!!</span>")
+				S.flipped = TRUE
+				S.flip_cooldown = 10
+				S.handle_flip()
+		//VOREStation Add End
 		return 1

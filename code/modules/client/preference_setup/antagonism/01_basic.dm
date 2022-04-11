@@ -50,7 +50,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 			return TOPIC_REFRESH
 			
 	if(href_list["antagfaction"])
-		var/choice = input(user, "Please choose an antagonistic faction to work for.", "Character Preference", pref.antag_faction) as null|anything in antag_faction_choices + list("None","Other")
+		var/choice = tgui_input_list(user, "Please choose an antagonistic faction to work for.", "Character Preference", antag_faction_choices + list("None","Other"), pref.antag_faction)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		if(choice == "Other")
@@ -62,7 +62,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 		return TOPIC_REFRESH
 		
 	if(href_list["antagvis"])
-		var/choice = input(user, "Please choose an antagonistic visibility level.", "Character Preference", pref.antag_vis) as null|anything in antag_visiblity_choices
+		var/choice = tgui_input_list(user, "Please choose an antagonistic visibility level.", "Character Preference", antag_visiblity_choices, pref.antag_vis)
 		if(!choice || !CanUseTopic(user))
 			return TOPIC_NOACTION
 		else

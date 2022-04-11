@@ -108,6 +108,14 @@
 /area/ship/manta/recreation
 	name = "\improper Mercenary Cruiser - Recreation & Supplies"
 	icon_state = "recreation_area"
+	
+/area/ship/manta/gunnery
+	name = "\improper Mercenary Cruiser - Gunnery"
+	icon_state = "security_sub"
+	
+/area/ship/manta/magazine
+	name = "\improper Mercenary Cruiser - Cannon Magazine"
+	icon_state = "darkred"
 
 /area/shuttle/manta_ship_boat
 	name = "\improper SAARE Lander"
@@ -131,11 +139,10 @@
 [i]Class[/i]: [i]Manta[/i]-class Cruiser
 [i]Transponder[/i]: Broadcasting (PMC)
 [b]Notice[/b]: SAARE are unlikely to tolerate civilian or corporate personnel interfering with their affairs. Approach with caution."}
-	color = "#333333" //TACTICAL BLACK
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_LARGE
 	initial_generic_waypoints = list("manta_ship_near_fore", "manta_ship_near_aft", "manta_ship_near_port", "manta_ship_near_star", "manta_ship_port", "manta_ship_star", "manta_ship_base_dock", "omship_spawn_manta_lander")
-//	initial_restricted_waypoints = list("Mercenary Cruiser's Bay" = list("omship_spawn_manta_lander"))
+	initial_restricted_waypoints = list("Mercenary Cruiser's Bay" = list("omship_spawn_manta_lander"))
 
 /obj/effect/landmark/map_data/manta_ship
 	height = 1
@@ -173,7 +180,7 @@
 /obj/effect/shuttle_landmark/shuttle_initializer/manta_ship_boat
 	name = "Mercenary Cruiser's Bay"
 	base_area = /area/ship/manta/hangar
-	base_turf = /turf/simulated/floor/plating
+	base_turf = /turf/simulated/floor/reinforced
 	landmark_tag = "omship_spawn_manta_lander"
 	docking_controller = "manta_boarding_shuttle_dock"
 	shuttle_type = /datum/shuttle/autodock/overmap/manta_ship_boat
@@ -193,14 +200,12 @@
 	defer_initialisation = TRUE
 
 /obj/effect/overmap/visitable/ship/landable/manta_ship_boat
-	scanner_name = "SAARE Landing Craft"
+	name = "SAARE Landing Craft"
 	desc = "Spacefaring vessel. Broadcasting Private Military Contractor IFF."
 	scanner_desc = @{"[i]Registration[/i]: SAARE Mercenary Cruiser Typhon Four-Niner's Lander
 [i]Class[/i]: Unknown Shuttle-approximate
 [i]Transponder[/i]: Broadcasting (PMC)
 [b]Notice[/b]: SAARE are unlikely to tolerate civilian or corporate personnel interfering with their affairs. Approach with caution."}
-	color = "#3366FF"
-	color = "#333333" //TACTICAL BLACK
 	vessel_mass = 500
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Boarding Craft"
@@ -237,13 +242,15 @@ The shield generator's a hungry beast and will drain the cruiser's reserves fair
 	info = {"To All <i>New</i> Personnel,<br>\
 Welcome to your new home, the SAARE Typhon Four-Niner. This Manta-class Cruiser is equipped with everything you should ever need to conduct operations against any target we may encounter during our contracts. If you're reading this, you're probably in the Barracks right now; at the outer edge of the starboard wing are the Holding Cells. To the fore of the barracks is the Medbay, pray you don't end up there.<br>\
 <br>\
-Front and center is the Landing Craft Hangar, and just behind that is the Bridge. Off the Bridge, you'll find my quarters and the teleporter room. Aft of the Bridge is Engineering and the Engine Bay; I suggest steering clear unless you want to get an accidental dose of radiation. Engineering is flanked by the Radiator Arrays which are supposed to help keep our heat signature under control, as well as a pair of small airlocks.<br>\
+Front and center is the Landing Craft Hangar, and just behind that is the Bridge. Off the Bridge, you'll find my quarters and the teleporter room. Aft of the Bridge is Engineering and the Engine Bay; I suggest steering clear unless you want to get an accidental dose of radiation. There's a pair of small airlocks at the back side which are used for crew transfer shuttles, and are a likely entry point for hostile boarders.<br>\
 <br>\
 Finally, over in the port wing you'll find the recreation area and kitchen along with all of the armory and outfitting space for weapons, armor, and even our mech. If you <i>somehow</i> get authorization to take that out you better bring it back in one piece, by the way; it wasn't cheap. If it gets wrecked I'm taking the repair and replacement costs out of your paychecks until it's paid off.<br>\
 <br>\
 You don't want to know how long it's going to take to pay off.<br>\
 <br>\
-<i>Capt. Thorne</i>"}
+<i>Capt. Thorne</i><br>\
+<br>
+P.S. If you need to refuel the lander for some reason, there's a spare fuel canister in that closet space in the port fore wing edge, opposite the assault armory."}
 
 /obj/item/weapon/paper/manta_approach_tactics
 	name = "Installation Approach"
@@ -262,6 +269,25 @@ I don't care if they're 'not being cooperative', for the love of fuck if another
 <i>Capt. Thorne</i><br>\
 <br>\
 P.S. If you gotta cut 'em up or whatever try not to make too much of a mess, and clean up when you're done. Don't trail blood all over my damn ship, and don't get them killed by infections either."}
+
+/obj/item/weapon/paper/manta_cannon_usage
+	name = "Cannon Operation Instructions"
+	info = {"To All Personnel,<br>\
+Heads up people, we've got a new toy.<br>\
+<br>\
+According to the suits, that toy is an Obstruction Field Disperser. If you are reading this, you already found it, good job on not needing two hands and a map to find your own arse. Operation of the OFD is simple:<br>\
+1. Load a charge from the magazine (located in the starboard aft section). You want an EM2-QUASAR for electrical storms or ion clouds, and an XP4-INDARRA for asteroids, dust clouds, and carp schools. Get someone else to handle loading if you need multiple consecutive shots. You have four of each.<br>\
+2. Set strength and range/radius.<br>\
+3. Aim and calibrate the ignition chamber. You need to get the right sequence of four numbers. A correct number ups the accuracy value by 25%. A correct number in the wrong slot adds 17%.<br>\
+4. <b>OPEN THE FIRING PORT</b> with the big button to your right. Visually verify the port is open.<br>\
+5. Press the big red FIRE button, once you have verified the loaded charge, the target, and that the port is open.<br>\
+With any luck you hit and maybe blew some stupid space-fish into space-giblets. You're done!<br>\
+<br>\
+Do not fire the cannon whilst it's cooling down or whilst the port is closed, or it <b>will</b> explode. If you need to remove a loaded charge (for instance because your loader sent the wrong one) or clear a jam, use the airlock. No, the cannon cannot be used as a deployment system. Yes, I tried to get drop pods installed, but the suits are still waffling about the idea. Don't try to fire it at ships or stations, you'll probably miss.<br>\
+<br>\
+In the meantime, happy hunting. Go bag me some carp. The mech bay can be found in the port aft section opposite the magazine if you need to use the Gygax.<br>\
+<br>\
+<i>Capt. Thorne</i>"}
 
 /obj/machinery/computer/cryopod/merc
 	name = "mercenary oversight console"

@@ -8,7 +8,7 @@
 	icon_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	w_class = ITEMSIZE_NORMAL
-	matter = list(DEFAULT_WALL_MATERIAL = 1000)
+	matter = list(MAT_STEEL = 1000)
 	recoil = 1
 	projectile_type = /obj/item/projectile/bullet/pistol/strong	//Only used for chameleon guns
 
@@ -54,6 +54,10 @@
 		chambered = ammo_magazine.stored_ammo[ammo_magazine.stored_ammo.len]
 		if(handle_casings != HOLD_CASINGS)
 			ammo_magazine.stored_ammo -= chambered
+			
+	var/mob/living/M = loc // TGMC Ammo HUD 
+	if(istype(M)) // TGMC Ammo HUD 
+		M?.hud_used.update_ammo_hud(M, src)
 
 	if (chambered)
 		return chambered.BB
@@ -98,6 +102,10 @@
 
 	if(handle_casings != HOLD_CASINGS)
 		chambered = null
+	
+	var/mob/living/M = loc // TGMC Ammo HUD 
+	if(istype(M)) // TGMC Ammo HUD 
+		M?.hud_used.update_ammo_hud(M, src)
 
 
 //Attempts to load A into src, depending on the type of thing being loaded and the load_method
@@ -117,6 +125,7 @@
 				AM.loc = src
 				ammo_magazine = AM
 				user.visible_message("[user] inserts [AM] into [src].", "<span class='notice'>You insert [AM] into [src].</span>")
+				user.hud_used.update_ammo_hud(user, src)
 				playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 			if(SPEEDLOADER)
 				if(loaded.len >= max_shells)
@@ -131,8 +140,10 @@
 						loaded += C
 						AM.stored_ammo -= C //should probably go inside an ammo_magazine proc, but I guess less proc calls this way...
 						count++
+						user.hud_used.update_ammo_hud(user, src) 
 				if(count)
 					user.visible_message("[user] reloads [src].", "<span class='notice'>You load [count] round\s into [src].</span>")
+					user.hud_used.update_ammo_hud(user, src) 
 					playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		AM.update_icon()
 	else if(istype(A, /obj/item/ammo_casing))
@@ -168,6 +179,7 @@
 			sleep(1 SECOND)
 
 	update_icon()
+	user.hud_used.update_ammo_hud(user, src) 
 
 //attempts to unload src. If allow_dump is set to 0, the speedloader unloading method will be disabled
 /obj/item/weapon/gun/projectile/proc/unload_ammo(mob/user, var/allow_dump=1)
@@ -177,6 +189,7 @@
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		ammo_magazine.update_icon()
 		ammo_magazine = null
+		user.hud_used.update_ammo_hud(user, src) 
 	else if(loaded.len)
 		//presumably, if it can be speed-loaded, it can be speed-unloaded.
 		if(allow_dump && (load_method & SPEEDLOADER))
@@ -195,9 +208,11 @@
 			user.put_in_hands(C)
 			user.visible_message("[user] removes \a [C] from [src].", "<span class='notice'>You remove \a [C] from [src].</span>")
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+		user.hud_used.update_ammo_hud(user, src) 
 	else
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 	update_icon()
+	user.hud_used.update_ammo_hud(user, src) 
 
 /obj/item/weapon/gun/projectile/attackby(var/obj/item/A as obj, mob/user as mob)
 	..()
@@ -228,6 +243,7 @@
 		ammo_magazine.update_icon()
 		ammo_magazine = null
 		update_icon() //make sure to do this after unsetting ammo_magazine
+		user.hud_used.update_ammo_hud(user, src) 
 
 /obj/item/weapon/gun/projectile/examine(mob/user)
 	. = ..()
@@ -256,3 +272,72 @@
 
 	unload_ammo(usr)
 */
+
+// TGMC Ammo HUD Insertion
+/obj/item/weapon/gun/projectile/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/projectile/get_ammo_type()
+	if(load_method & MAGAZINE)
+		if(chambered) // Do we have an ammo casing chambered
+			var/obj/item/ammo_casing/A = chambered
+			var/obj/item/projectile/P = A.projectile_type
+			return list(initial(P.hud_state), initial(P.hud_state_empty))
+		else if(ammo_magazine && ammo_magazine.stored_ammo.len) // Do we have a mag, and have ammo in the mag, but nothing chambered?
+			var/obj/item/ammo_casing/A = ammo_magazine.stored_ammo[1]
+			var/obj/item/projectile/P = A.projectile_type
+			return list(initial(P.hud_state), initial(P.hud_state_empty))
+		else if(src.projectile_type) // Else, we're entirely empty, and irregardless of the mag we have loaded (as it's empty, or it would've passed the length check above), return the DEFAULT projectile_type on the gun, if set.
+			var/obj/item/projectile/P = src.projectile_type
+			return list(initial(P.hud_state), initial(P.hud_state_empty))
+		else
+			return list("unknown", "unknown") // Safety, this shouldn't happen, but just in case
+	else if(load_method & (SINGLE_CASING|SPEEDLOADER)) // Do we load with single casings OR speedloaders?
+		if(chambered) // Do we have an ammo casing loaded in the chamber? All casings still have a projectile_type var.
+			var/obj/item/ammo_casing/A = chambered
+			var/obj/item/projectile/P = A.projectile_type
+			return list(initial(P.hud_state), initial(P.hud_state_empty)) // Return the casing's projectile_type ammo hud state
+		else if(loaded.len) // Else, is the gun loaded, but no ammo casings in chamber currently?
+			var/obj/item/ammo_casing/A = loaded[1]
+			var/obj/item/projectile/P = A.projectile_type
+			return list(initial(P.hud_state), initial(P.hud_state_empty)) // Return the ammunition loaded in the gun's hud_state
+		else if(src.projectile_type) // Else, we're entirely empty, and have nothing loaded in the gun, and nothing in the chamber. Return the DEFAULT projectile_type on the gun, if set.
+			var/obj/item/projectile/P = src.projectile_type
+			return list(initial(P.hud_state), initial(P.hud_state_empty))
+		else
+			return list("unknown", "unknown") // Safety, this shouldn't happen, but just in case
+	else if(src.projectile_type) // Failsafe if we somehow don't pass the above. Return the DEFAULT projectile_type on the gun, if set.
+		var/obj/item/projectile/P = src.projectile_type
+		return list(initial(P.hud_state), initial(P.hud_state_empty))
+	else  // Failsafe if we somehow fail all three methods
+		return list("unknown", "unknown")
+
+/obj/item/weapon/gun/projectile/get_ammo_count()
+	if(ammo_magazine) // Do we have a magazine loaded?
+		var/shots_left
+		if(chambered && chambered.BB) // Do we have a bullet in the currently-chambered casing, if any?
+			shots_left++
+		for(var/obj/item/ammo_casing/bullet in ammo_magazine.stored_ammo)
+			if(bullet.BB)
+				shots_left++
+		
+		if(shots_left > 0)
+			return shots_left
+		else
+			return 0 // No ammo left or failsafe.
+	else if(loaded) // Do we use internal ammunition
+		var/shots_left
+		if(chambered && chambered.BB) // Do we have a bullet in the currently-chambered casing, if any?
+			shots_left++
+		for(var/obj/item/ammo_casing/bullet in loaded)
+			if(bullet.BB) // Only increment how many shots we have left if we're loaded.
+				shots_left++
+		
+		if(shots_left > 0)
+			return shots_left
+		else
+			return 0 // No ammo left or failsafe.
+	else if(chambered) // If we don't have a magazine or internal ammunition loaded, but we have a casing in chamber, return the amount.
+		return chambered.BB ? 1 : 0
+	else // Failsafe, or completely unloaded
+		return 0

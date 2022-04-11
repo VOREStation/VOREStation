@@ -45,7 +45,6 @@
 	if( findtext(href,"<script",1,0) )
 		to_world_log("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
-		//del(usr)
 		return
 
 	// Tgui Topic middleware
@@ -75,13 +74,12 @@
 	if(href_list["discord_reg"])
 		var/their_id = html_decode(href_list["discord_reg"])
 		var/sane = FALSE
-		for(var/item in GLOB.pending_discord_registrations)
-			var/list/L = item
+		for(var/list/L as anything in GLOB.pending_discord_registrations)
 			if(!islist(L))
-				GLOB.pending_discord_registrations -= item
+				GLOB.pending_discord_registrations -= L
 				continue
 			if(L["ckey"] == ckey && L["id"] == their_id)
-				GLOB.pending_discord_registrations -= list(item)
+				GLOB.pending_discord_registrations -= list(L)
 				var/time = L["time"]
 				if((world.realtime - time) > 10 MINUTES)
 					to_chat(src, "<span class='warning'>Sorry, that link has expired. Please request another on Discord.</span>")
@@ -161,7 +159,7 @@
 		return null
 
 	if(!config.guests_allowed && IsGuestKey(key))
-		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
+		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest") // Not tgui_alert
 		del(src)
 		return
 
@@ -192,6 +190,7 @@
 		preferences_datums[ckey] = prefs
 	prefs.last_ip = address				//these are gonna be used for banning
 	prefs.last_id = computer_id			//these are gonna be used for banning
+	prefs.client = src // Only relevant if we reloaded it from the global list, otherwise prefs/New sets it
 
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
@@ -227,7 +226,6 @@
 
 	if(!void)
 		void = new()
-		void.MakeGreed()
 	screen += void
 
 	if((prefs.lastchangelog != changelog_hash) && isnewplayer(src.mob)) //bolds the changelog button on the interface so we know there are updates.
@@ -386,8 +384,7 @@
 	else
 		var/error_message = query_hours.ErrorMsg() // Need this out here since the spawn below will split the stack and who knows what'll happen by the time it runs
 		log_debug("Error loading play hours for [ckey]: [error_message]")
-		spawn(0)
-			alert(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
+		tgui_alert_async(src, "The query to load your existing playtime failed. Screenshot this, give the screenshot to a developer, and reconnect, otherwise you may lose any recorded play hours (which may limit access to jobs). ERROR: [error_message]", "PROBLEMS!!")
 	// VOREStation Edit End - Department Hours
 
 	if(sql_id)
@@ -404,7 +401,6 @@
 	var/DBQuery/query_accesslog = dbcon.NewQuery("INSERT INTO `erro_connection_log`(`id`,`datetime`,`serverip`,`ckey`,`ip`,`computerid`) VALUES(null,Now(),'[serverip]','[sql_ckey]','[sql_ip]','[sql_computerid]');")
 	query_accesslog.Execute()
 
-#undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
 
@@ -434,17 +430,17 @@
 		//Precache the client with all other assets slowly, so as to not block other browse() calls
 		addtimer(CALLBACK(GLOBAL_PROC, /proc/getFilesSlow, src, SSassets.preload, FALSE), 5 SECONDS)
 
-mob/proc/MayRespawn()
+/mob/proc/MayRespawn()
 	return 0
 
-client/proc/MayRespawn()
+/client/proc/MayRespawn()
 	if(mob)
 		return mob.MayRespawn()
 
 	// Something went wrong, client is usually kicked or transfered to a new mob at this point
 	return 0
 
-client/verb/character_setup()
+/client/verb/character_setup()
 	set name = "Character Setup"
 	set category = "Preferences"
 	if(prefs)
@@ -474,7 +470,7 @@ client/verb/character_setup()
 
 	//Timing
 	if(src.chatOutputLoadedAt > (world.time - 10 SECONDS))
-		alert(src, "You can only try to reload VChat every 10 seconds at most.")
+		tgui_alert_async(src, "You can only try to reload VChat every 10 seconds at most.")
 		return
 
 	verbs -= /client/proc/vchat_export_log
@@ -556,3 +552,15 @@ client/verb/character_setup()
 	window_flash(src)
 	src << browse(message,"window=dropmessage;size=480x360;can_close=1")
 	qdel(src)
+
+/// Keydown event in a tgui window this client has open. Has keycode passed to it.
+/client/verb/TguiKeyDown(keycode as text)
+	set name = "TguiKeyDown"
+	set hidden = TRUE
+	return // stub
+
+/// Keyup event in a tgui window this client has open. Has keycode passed to it.
+/client/verb/TguiKeyUp(keycode as text) // Doesn't seem to currently fire?
+	set name = "TguiKeyUp"
+	set hidden = TRUE
+	return // stub

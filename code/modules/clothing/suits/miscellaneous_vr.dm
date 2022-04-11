@@ -4,9 +4,16 @@
 /obj/item/clothing/suit/chiton
 	name = "chiton"
 	desc = "A traditional piece of clothing from Greece."
-	icon = 'icons/mob/suit_vr.dmi'
+	icon = 'icons/inventory/suit/item_vr.dmi'
 	icon_state = "chiton"
-	icon_override = 'icons/obj/clothing/suits_vr.dmi' //why won't it work without this WHY GOD PLEASE
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+
+/obj/item/clothing/suit/oversize
+	name = "oversized t-shirt"
+	desc = "This ain't your daddy's shirt! Well, it might be..."
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_state = "oversize"
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
 
 //HERE BE TAUR RELATED CLOTHES
 
@@ -81,15 +88,49 @@
 /obj/item/clothing/suit/storage/det_trench/alt
 	name = "sleek modern coat"
 	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
-	icon = 'icons/obj/clothing/suits_vr.dmi'
-	icon_override = 'icons/mob/suit_vr.dmi'
+
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "cyberpunksleek"
-	item_state = "cyberpunksleek"
 
 /obj/item/clothing/suit/storage/det_trench/alt2
 	name = "sleek modern coat (long)"
 	desc = "A sleek long overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
-	icon = 'icons/obj/clothing/suits_vr.dmi'
-	icon_override = 'icons/mob/suit_vr.dmi'
+
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "cyberpunksleek_long"
-	item_state = "cyberpunksleek_long"
+
+/obj/item/clothing/suit/storage/det_trench/alt/black
+	icon_state = "cyberpunksleek_black"
+
+/obj/item/clothing/suit/storage/det_trench/alt2/black
+	icon_state = "cyberpunksleek_long_black"
+
+//Talon Hoodie
+/obj/item/clothing/suit/storage/toggle/hoodie/talon
+	name = "Talon hoodie"
+	desc = "A warm, blue sweatshirt bearing ITV Talon markings."
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "talonhoodie"
+	item_state_slots = list(slot_r_hand_str = "suit_blue", slot_l_hand_str = "suit_blue")
+
+// Bladerunner coat
+/obj/item/clothing/suit/storage/bladerunner
+	name = "leather coat"
+	desc = "An old leather coat. Has probably seen things you wouldn't believe."
+
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "bladerunner_coat"
+
+// Cyberpunk 'orange' vest
+/obj/item/clothing/suit/cyberpunk
+	name = "cyberpunk vest"
+	desc = "A red vest with golden streaks. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
+
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "cyberpunk"
+	armor = list("melee" = 10, "bullet" = 20, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)

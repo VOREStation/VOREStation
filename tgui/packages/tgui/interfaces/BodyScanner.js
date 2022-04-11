@@ -387,9 +387,9 @@ const BodyScannerMainOrgansExternal = props => {
                 mt={i > 0 && "0.5rem"}
                 value={o.totalLoss / 100}
                 ranges={damageRange}>
-                <Box float="left" display="inline">
+                <Box float="left" inline>
                   {!!o.bruteLoss && (
-                    <Box display="inline" position="relative">
+                    <Box inline position="relative">
                       <Icon name="bone" />
                       {round(o.bruteLoss, 0)}&nbsp;
                       <Tooltip
@@ -398,7 +398,7 @@ const BodyScannerMainOrgansExternal = props => {
                       />
                     </Box>)}
                   {!!o.fireLoss && (
-                    <Box display="inline" position="relative">
+                    <Box inline position="relative">
                       <Icon name="fire" />
                       {round(o.fireLoss, 0)}
                       <Tooltip
@@ -407,7 +407,7 @@ const BodyScannerMainOrgansExternal = props => {
                       />
                     </Box>)}
                 </Box>
-                <Box display="inline">
+                <Box inline>
                   {round(o.totalLoss, 0)}
                 </Box>
               </ProgressBar>
@@ -415,7 +415,7 @@ const BodyScannerMainOrgansExternal = props => {
             <Table.Cell
               textAlign="right"
               width="33%">
-              <Box color="average" display="inline">
+              <Box color="average" inline>
                 {reduceOrganStatus([
                   o.internalBleeding && "Internal bleeding",
                   !!o.status.bleeding && "External bleeding",
@@ -426,7 +426,7 @@ const BodyScannerMainOrgansExternal = props => {
                   !!o.open && "Open incision",
                 ])}
               </Box>
-              <Box display="inline">
+              <Box inline>
                 {reduceOrganStatus([
                   !!o.status.splinted && "Splinted",
                   !!o.status.robotic && "Robotic",
@@ -493,12 +493,13 @@ const BodyScannerMainOrgansInternal = props => {
             <Table.Cell
               textAlign="right"
               width="33%">
-              <Box color="average" display="inline">
+              <Box color="average" inline>
                 {reduceOrganStatus([
                   germStatus(o.germ_level),
+                  !!o.inflamed && "Appendicitis detected.",
                 ])}
               </Box>
-              <Box display="inline">
+              <Box inline>
                 {reduceOrganStatus([
                   (o.robotic === 1) && "Robotic",
                   (o.robotic === 2) && "Assisted",

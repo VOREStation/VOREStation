@@ -157,7 +157,6 @@
 
 	if(!(letter in morse_alphabet))
 		CRASH("Encountered invalid character in morse sequence \"[letter]\".")
-		return
 
 	// So I heard you like sequences...
 	// Play a sequence of sounds while inside the current iteration of the outer sequence.

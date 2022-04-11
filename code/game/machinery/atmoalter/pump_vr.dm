@@ -2,7 +2,7 @@
 	name = "Huge Air Pump"
 	icon = 'icons/obj/atmos.dmi'
 	icon_state = "siphon:0"
-	anchored = 1
+	anchored = TRUE
 	volume = 500000
 
 	use_power = USE_POWER_IDLE
@@ -26,7 +26,7 @@
 	to_chat(user, "<span class='notice'>You can't directly interact with this machine. Use the pump control console.</span>")
 
 /obj/machinery/portable_atmospherics/powered/pump/huge/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	if(on && !(stat & (NOPOWER|BROKEN)))
 		icon_state = "siphon:1"

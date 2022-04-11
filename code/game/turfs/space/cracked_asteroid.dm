@@ -11,9 +11,3 @@
 
 /turf/space/cracked_asteroid/is_space() // So people don't start floating when standing on it.
 	return FALSE
-
-// u wot m8? ~Leshana
-// /turf/space/cracked_asteroid/New()
-// 	..()
-// 	spawn(2 SECONDS)
-// 		overlays.Cut()

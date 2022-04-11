@@ -47,7 +47,9 @@
 	modifystate = "floramut"
 	cell_type = /obj/item/weapon/cell/device/weapon/recharge
 	battery_lock = 1
+
 	var/decl/plantgene/gene = null
+	var/obj/item/weapon/stock_parts/micro_laser/emitter
 
 	firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut"),
@@ -55,8 +57,42 @@
 		list(mode_name="induce specific mutations", projectile_type=/obj/item/projectile/energy/floramut/gene, modifystate="floramut"),
 		)
 
+/obj/item/weapon/gun/energy/floragun/Initialize()
+	. = ..()
+	emitter = new(src)
+
+/obj/item/weapon/gun/energy/floragun/examine(var/mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "It has [emitter ? emitter : "no micro laser"] installed."
+
+/obj/item/weapon/gun/energy/floragun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/weapon/stock_parts/micro_laser))
+		if(!emitter)
+			user.drop_item()
+			W.loc = src
+			emitter = W
+			to_chat(user, "<span class='notice'>You install a [emitter.name] in [src].</span>")
+		else
+			to_chat(user, "<span class='notice'>[src] already has a laser.</span>")
+
+	else if(W.is_screwdriver())
+		if(emitter)
+			to_chat(user, "<span class='notice'>You remove the [emitter.name] from the [src].</span>")
+			emitter.loc = get_turf(src.loc)
+			playsound(src, W.usesound, 50, 1)
+			emitter = null
+			return
+		else
+			to_chat(user, "<span class='notice'>There is no micro laser in this [src].</span>")
+			return
+
 /obj/item/weapon/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
 	//allow shooting into adjacent hydrotrays regardless of intent
+	if(!emitter)
+		to_chat(user, "<span class='notice'>The [src] has no laser! </span>")
+		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
+		return
 	if(adjacent_flag && istype(target,/obj/machinery/portable_atmospherics/hydroponics))
 		user.visible_message("<span class='danger'>\The [user] fires \the [src] into \the [target]!</span>")
 		Fire(target,user)
@@ -68,7 +104,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/genemask = input("Choose a gene to modify.") as null|anything in SSplants.plant_gene_datums
+	var/genemask = tgui_input_list(usr, "Choose a gene to modify.", "Gene Choice", SSplants.plant_gene_datums)
 
 	if(!genemask)
 		return
@@ -82,8 +118,16 @@
 /obj/item/weapon/gun/energy/floragun/consume_next_projectile()
 	. = ..()
 	var/obj/item/projectile/energy/floramut/gene/G = .
+	var/obj/item/projectile/energy/florayield/GY = .
+	var/obj/item/projectile/energy/floramut/GM = .
+	// Inserting the upgrade level of the gun to the projectile as there isn't a better way to do this.
 	if(istype(G))
 		G.gene = gene
+		G.lasermod = emitter.rating
+	else if(istype(GY))
+		GY.lasermod = emitter.rating
+	else if(istype(GM))
+		GM.lasermod = emitter.rating
 
 /obj/item/weapon/gun/energy/meteorgun
 	name = "meteor gun"
@@ -160,7 +204,7 @@
 	projectile_type = /obj/item/projectile/animate
 	charge_cost = 240
 */
-obj/item/weapon/gun/energy/staff/focus
+/obj/item/weapon/gun/energy/staff/focus
 	name = "mental focus"
 	desc = "An artifact that channels the will of the user into destructive bolts of force. If you aren't careful with it, you might poke someone's brain out."
 	icon = 'icons/obj/wizard.dmi'

@@ -1,34 +1,77 @@
 /obj/effect/mine
 	name = "land mine"	//The name and description are deliberately NOT modified, so you can't game the mines you find.
 	desc = "A small explosive land mine."
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "uglymine"
 	var/triggered = 0
 	var/smoke_strength = 3
-	var/mineitemtype = /obj/item/weapon/mine
-	var/panel_open = 0
+	var/obj/item/weapon/mine/mineitemtype = /obj/item/weapon/mine
+	var/panel_open = FALSE
 	var/datum/wires/mines/wires = null
-	register_as_dangerous_object = TRUE
+	var/camo_net = FALSE	// Will the mine 'cloak' on deployment?
 
-/obj/effect/mine/New()
+	// The trap item will be triggered in some manner when detonating. Default only checks for grenades.
+	var/obj/item/trap = null
+
+/obj/effect/mine/Initialize()
 	icon_state = "uglyminearmed"
 	wires = new(src)
+	. = ..()
+	if(ispath(trap))
+		trap = new trap(src)
+	register_dangerous_to_step()
+	if(camo_net)
+		alpha = 50
 
 /obj/effect/mine/Destroy()
+	unregister_dangerous_to_step()
+	if(trap)
+		QDEL_NULL(trap)
 	qdel_null(wires)
 	return ..()
+
+/obj/effect/mine/Moved(atom/oldloc)
+	. = ..()
+	if(.)
+		var/turf/old_turf = get_turf(oldloc)
+		var/turf/new_turf = get_turf(src)
+		if(old_turf != new_turf)
+			old_turf.unregister_dangerous_object(src)
+			new_turf.register_dangerous_object(src)
 
 /obj/effect/mine/proc/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
-	explosion(loc, 0, 2, 3, 4) //land mines are dangerous, folks.
-	visible_message("\The [src.name] detonates!")
+
+	if(trap)
+		trigger_trap(M)
+		visible_message("\The [src.name] flashes as it is triggered!")
+
+	else
+		explosion(loc, 0, 2, 3, 4) //land mines are dangerous, folks.
+		visible_message("\The [src.name] detonates!")
+
 	qdel(s)
 	qdel(src)
+
+/obj/effect/mine/proc/trigger_trap(var/mob/living/victim)
+	if(istype(trap, /obj/item/weapon/grenade))
+		var/obj/item/weapon/grenade/G = trap
+		trap = null
+		G.forceMove(get_turf(src))
+		if(victim.ckey)
+			msg_admin_attack("[key_name_admin(victim)] stepped on \a [src.name], triggering [trap]")
+		G.activate()
+
+	if(istype(trap, /obj/item/device/transfer_valve))
+		var/obj/item/device/transfer_valve/TV = trap
+		trap = null
+		TV.forceMove(get_turf(src))
+		TV.toggle_valve()
 
 /obj/effect/mine/bullet_act()
 	if(prob(50))
@@ -63,6 +106,9 @@
 		"<span class='notice'>You very carefully screw the mine's panel [panel_open ? "open" : "closed"].</span>")
 		playsound(src, W.usesound, 50, 1)
 
+		// Panel open, stay uncloaked, or uncloak if already cloaked. If you don't cloak on place, ignore it and just be normal alpha.
+		alpha = camo_net ? (panel_open ? 255 : 50) : 255
+
 	else if((W.is_wirecutter() || istype(W, /obj/item/device/multitool)) && panel_open)
 		interact(user)
 	else
@@ -73,6 +119,9 @@
 		return
 	user.set_machine(src)
 	wires.Interact(user)
+
+/obj/effect/mine/camo
+	camo_net = TRUE
 
 /obj/effect/mine/dnascramble
 	mineitemtype = /obj/item/weapon/mine/dnascramble
@@ -193,6 +242,9 @@
 	spawn(0)
 		qdel(src)
 
+/obj/effect/mine/emp/camo
+	camo_net = TRUE
+
 /obj/effect/mine/incendiary
 	mineitemtype = /obj/item/weapon/mine/incendiary
 
@@ -208,6 +260,26 @@
 	spawn(0)
 		qdel(src)
 
+/obj/effect/mine/gadget
+	mineitemtype = /obj/item/weapon/mine/gadget
+
+/obj/effect/mine/gadget/explode(var/mob/living/M)
+	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	triggered = 1
+	s.set_up(3, 1, src)
+	s.start()
+
+	if(trap)
+		trigger_trap(M)
+		visible_message("\The [src.name] flashes as it is triggered!")
+
+	else
+		explosion(loc, 0, 0, 2, 2)
+		visible_message("\The [src.name] detonates!")
+
+	qdel(s)
+	qdel(src)
+
 /////////////////////////////////////////////
 // The held item version of the above mines
 /////////////////////////////////////////////
@@ -218,6 +290,10 @@
 	icon_state = "uglymine"
 	var/countdown = 10
 	var/minetype = /obj/effect/mine		//This MUST be an /obj/effect/mine type, or it'll runtime.
+
+	var/obj/item/trap = null
+
+	var/list/allowed_gadgets = null
 
 /obj/item/weapon/mine/attack_self(mob/user as mob)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
 	add_fingerprint(user)
@@ -231,11 +307,39 @@
 		prime(user, TRUE)
 	return
 
+/obj/item/weapon/mine/attackby(obj/item/W as obj, mob/living/user as mob)
+	if(W.is_screwdriver() && trap)
+		to_chat(user, "<span class='notice'>You begin removing \the [trap].</span>")
+		if(do_after(user, 10 SECONDS))
+			to_chat(user, "<span class='notice'>You finish disconnecting the mine's trigger.</span>")
+			trap.forceMove(get_turf(src))
+			trap = null
+		return
+
+	if(LAZYLEN(allowed_gadgets) && !trap)
+		var/allowed = FALSE
+
+		for(var/path in allowed_gadgets)
+			if(istype(W, path))
+				allowed = TRUE
+				break
+
+		if(allowed)
+			user.drop_from_inventory(W)
+			W.forceMove(src)
+			trap = W
+
+	..()
+
 /obj/item/weapon/mine/proc/prime(mob/user as mob, var/explode_now = FALSE)
 	visible_message("\The [src.name] beeps as the priming sequence completes.")
 	var/obj/effect/mine/R = new minetype(get_turf(src))
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
+	if(trap)
+		R.trap = trap
+		trap = null
+		R.trap.forceMove(R)
 	if(explode_now)
 		R.explode(user)
 	spawn(0)
@@ -285,6 +389,12 @@
 	name = "incendiary mine"
 	desc = "A small explosive mine with a fire symbol on the side."
 	minetype = /obj/effect/mine/incendiary
+
+/obj/item/weapon/mine/gadget
+	name = "gadget mine"
+	desc = "A small pressure-triggered device. If no component is added, the internal release bolts will detonate in unison when triggered."
+
+	allowed_gadgets = list(/obj/item/weapon/grenade, /obj/item/device/transfer_valve)
 
 // This tells AI mobs to not be dumb and step on mines willingly.
 /obj/item/weapon/mine/is_safe_to_step(mob/living/L)

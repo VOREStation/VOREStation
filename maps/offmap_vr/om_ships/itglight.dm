@@ -85,14 +85,13 @@
 
 // The 'Dauntless'
 /obj/effect/overmap/visitable/ship/itglight
-	name = "spacecraft"
+	name = "ITG Dauntless"
+	icon_state = "serb_destroyer_g"
 	desc = "Spacefaring vessel. Friendly IFF detected."
-	scanner_name = "ITG Dauntless"
 	scanner_desc = @{"[i]Registration[/i]: ITG Dauntless
 [i]Class[/i]: Small Cargo Frigate (Low Displacement)
 [i]Transponder[/i]: Transmitting (CIV), non-hostile"
 [b]Notice[/b]: May carry passengers"}
-	color = "#d98c1a" //orng
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	initial_generic_waypoints = list("itglight_fore", "itglight_aft", "itglight_port", "itglight_starboard", "itglight_port_dock", "itglight_starboard_dock")

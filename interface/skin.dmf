@@ -2,9 +2,24 @@ macro "borghotkeymode"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=borgmacro hotkey_toggle.is-checked=false input.focus=true input.background-color=#D3B5B5\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -24,8 +39,11 @@ macro "borghotkeymode"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".west"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -33,8 +51,11 @@ macro "borghotkeymode"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -42,27 +63,33 @@ macro "borghotkeymode"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
+	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+SOUTH"
 		command = "shiftsouth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+WEST"
 		command = "shiftwest"
-	elem
+	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
 	elem 
@@ -99,17 +126,20 @@ macro "borghotkeymode"
 		name = "5"
 		command = ".me"
 	elem 
-		name = "A+REP"
-		command = ".moveleft"
+		name = "6"
+		command = ".Subtle"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
+		name = "A"
+		command = "KeyDown A"
+	elem
+		name = "A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "D+REP"
-		command = ".moveright"
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "D"
+		command = "KeyDown D"
+	elem
+		name = "D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "F"
 		command = "a-intent left"
@@ -141,20 +171,20 @@ macro "borghotkeymode"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem "s_key"
-		name = "S+REP"
-		command = ".movedown"
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "S"
+		command = "KeyDown S"
+	elem
+		name = "S+UP"
+		command = "KeyUp S"
 	elem 
 		name = "T"
 		command = ".say"
 	elem "w_key"
-		name = "W+REP"
-		command = ".moveup"
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "W"
+		command = "KeyDown W"
+	elem
+		name = "W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "X"
 		command = ".northeast"
@@ -163,16 +193,19 @@ macro "borghotkeymode"
 		command = ".northeast"
 	elem 
 		name = "Y"
-		command = "Activate-Held-Object"
+		command = ".Whisper"
 	elem 
 		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		command = ".Whisper"
 	elem 
 		name = "Z"
 		command = "Activate-Held-Object"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem 
+		name = "U"
+		command = "Rest"
 	elem 
 		name = "NUMPAD1"
 		command = "body-r-leg"
@@ -235,9 +268,24 @@ macro "macro"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -257,8 +305,11 @@ macro "macro"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -266,8 +317,11 @@ macro "macro"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -275,27 +329,33 @@ macro "macro"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
+	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+SOUTH"
 		command = "shiftsouth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+WEST"
 		command = "shiftwest"
-	elem
+	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
 	elem 
@@ -317,11 +377,17 @@ macro "macro"
 		name = "CTRL+4"
 		command = "a-intent harm"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
+		name = "CTRL+A"
+		command = "KeyDown A"
+	elem
+		name = "CTRL+A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "CTRL+D"
+		command = "KeyDown D"
+	elem
+		name = "CTRL+D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
@@ -338,11 +404,17 @@ macro "macro"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "CTRL+S"
+		command = "KeyDown S"
+	elem
+		name = "CTRL+S+UP"
+		command = "KeyUp S"
 	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "CTRL+W"
+		command = "KeyDown W"
+	elem
+		name = "CTRL+W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "CTRL+X"
 		command = ".northeast"
@@ -352,6 +424,12 @@ macro "macro"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem 
+		name = "CTRL+U"
+		command = "Rest"
+	elem 
+		name = "CTRL+B"
+		command = "Resist"
 	elem 
 		name = "CTRL+NUMPAD1"
 		command = "body-r-leg"
@@ -414,9 +492,24 @@ macro "hotkeymode"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -436,8 +529,11 @@ macro "hotkeymode"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -445,8 +541,11 @@ macro "hotkeymode"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -454,27 +553,33 @@ macro "hotkeymode"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
+	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+SOUTH"
 		command = "shiftsouth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+WEST"
 		command = "shiftwest"
-	elem
+	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
 	elem 
@@ -512,19 +617,19 @@ macro "hotkeymode"
 		command = ".me"
 	elem 
 		name = "6"
-		command = "subtle"
+		command = ".Subtle"
 	elem 
-		name = "A+REP"
-		command = ".moveleft"
+		name = "A"
+		command = "KeyDown A"
+	elem
+		name = "A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-	elem 
-		name = "D+REP"
-		command = ".moveright"
-	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "D"
+		command = "KeyDown D"
+	elem
+		name = "D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "E"
 		command = "quick-equip"
@@ -568,20 +673,20 @@ macro "hotkeymode"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem "s_key"
-		name = "S+REP"
-		command = ".movedown"
-	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "S"
+		command = "KeyDown S"
+	elem
+		name = "S+UP"
+		command = "KeyUp S"
 	elem 
 		name = "T"
 		command = ".say"
 	elem "w_key"
-		name = "W+REP"
-		command = ".moveup"
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "W"
+		command = "KeyDown W"
+	elem
+		name = "W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "X"
 		command = ".northeast"
@@ -590,19 +695,22 @@ macro "hotkeymode"
 		command = ".northeast"
 	elem 
 		name = "Y"
-		command = "whisper"
+		command = ".Whisper"
 	elem 
 		name = "CTRL+Y"
-		command = "whisper"
+		command = ".Whisper"
 	elem 
 		name = "Z"
 		command = "Activate-Held-Object"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
-	elem
+	elem 
 		name = "U"
 		command = "Rest"
+	elem 
+		name = "B"
+		command = "Resist"
 	elem 
 		name = "NUMPAD1"
 		command = "body-r-leg"
@@ -665,9 +773,24 @@ macro "borgmacro"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=borghotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true input.background-color=#F0F0F0\""
-	elem 
-		name = "CENTER+REP"
-		command = ".center"
+	elem
+		name = "Shift"
+		command = "KeyDown Shift"
+	elem
+		name = "Shift+UP"
+		command = "KeyUp Shift"
+	elem
+		name = "Ctrl"
+		command = "KeyDown Ctrl"
+	elem
+		name = "Ctrl+UP"
+		command = "KeyUp Ctrl"
+	elem
+		name = "Alt"
+		command = "KeyDown Alt"
+	elem
+		name = "Alt+UP"
+		command = "KeyUp Alt"
 	elem 
 		name = "NORTHEAST"
 		command = ".northeast"
@@ -687,8 +810,11 @@ macro "borgmacro"
 		name = "CTRL+WEST"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
-		command = ".moveleft"
+		name = "West"
+		command = "KeyDown West"
+	elem
+		name = "West+UP"
+		command = "KeyUp West"
 	elem 
 		name = "ALT+NORTH"
 		command = "northfaceperm"
@@ -696,8 +822,11 @@ macro "borgmacro"
 		name = "CTRL+NORTH"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
-		command = ".moveup"
+		name = "North"
+		command = "KeyDown North"
+	elem
+		name = "North+UP"
+		command = "KeyUp North"
 	elem 
 		name = "ALT+EAST"
 		command = "eastfaceperm"
@@ -705,27 +834,33 @@ macro "borgmacro"
 		name = "CTRL+EAST"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
-		command = ".moveright"
+		name = "East"
+		command = "KeyDown East"
+	elem
+		name = "East+UP"
+		command = "KeyUp East"
 	elem 
 		name = "ALT+SOUTH"
 		command = "southfaceperm"
 	elem 
 		name = "CTRL+SOUTH"
 		command = "southface"
-	elem 
-		name = "SOUTH+REP"
-		command = ".movedown"
+	elem
+		name = "South"
+		command = "KeyDown South"
+	elem
+		name = "South+UP"
+		command = "KeyUp South"
 	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+SOUTH"
 		command = "shiftsouth"
-	elem
+	elem 
 		name = "CTRL+SHIFT+WEST"
 		command = "shiftwest"
-	elem
+	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
 	elem 
@@ -747,11 +882,17 @@ macro "borgmacro"
 		name = "CTRL+4"
 		command = "a-intent left"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
+		name = "CTRL+A"
+		command = "KeyDown A"
+	elem
+		name = "CTRL+A+UP"
+		command = "KeyUp A"
 	elem 
-		name = "CTRL+D+REP"
-		command = ".moveright"
+		name = "CTRL+D"
+		command = "KeyDown D"
+	elem
+		name = "CTRL+D+UP"
+		command = "KeyUp D"
 	elem 
 		name = "CTRL+F"
 		command = "a-intent left"
@@ -765,11 +906,17 @@ macro "borgmacro"
 		name = "CTRL+R"
 		command = ".southwest"
 	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
+		name = "CTRL+S"
+		command = "KeyDown S"
+	elem
+		name = "CTRL+S+UP"
+		command = "KeyUp S"
 	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
+		name = "CTRL+W"
+		command = "KeyDown W"
+	elem
+		name = "CTRL+W+UP"
+		command = "KeyUp W"
 	elem 
 		name = "CTRL+X"
 		command = ".northeast"
@@ -779,6 +926,9 @@ macro "borgmacro"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem 
+		name = "CTRL+U"
+		command = "Rest"
 	elem 
 		name = "CTRL+NUMPAD1"
 		command = "body-r-leg"
@@ -931,7 +1081,7 @@ menu "menu"
 		category = "&Icons"
 		can-check = true
 		saved-params = "is-checked"
-	elem
+	elem 
 		name = "&Scaling"
 		command = ""
 		saved-params = "is-checked"
@@ -971,217 +1121,13 @@ menu "menu"
 		category = "&Help"
 		saved-params = "is-checked"
 
-
-window "Telecomms IDE"
-	elem "Telecomms IDE"
-		type = MAIN
-		pos = 281,0
-		size = 569x582
-		anchor1 = none
-		anchor2 = none
-		background-color = #ffffff
-		is-visible = false
-		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "TCS IDE"
-		statusbar = false
-		on-close = "exittcs"
-	elem "button5"
-		type = BUTTON
-		pos = 209,464
-		size = 70x20
-		anchor1 = 37,80
-		anchor2 = 49,83
-		saved-params = "is-checked"
-		text = "Clear Memory"
-		command = "tcsclearmem"
-	elem "button4"
-		type = BUTTON
-		pos = 157,464
-		size = 52x20
-		anchor1 = 28,80
-		anchor2 = 37,83
-		saved-params = "is-checked"
-		text = "Revert"
-		command = "tcsrevert"
-	elem "button3"
-		type = BUTTON
-		pos = 105,464
-		size = 52x20
-		anchor1 = 18,80
-		anchor2 = 28,83
-		saved-params = "is-checked"
-		text = "Execute"
-		command = "tcsrun"
-	elem "tcserror"
-		type = OUTPUT
-		pos = 0,488
-		size = 566x94
-		anchor1 = 0,84
-		anchor2 = 99,100
-		font-family = "sans-serif"
-		font-size = 9
-		saved-params = "max-lines"
-	elem "button2"
-		type = BUTTON
-		pos = 53,464
-		size = 52x20
-		anchor1 = 9,80
-		anchor2 = 18,83
-		saved-params = "is-checked"
-		text = "Compile"
-		command = "tcscompile"
-	elem "button1"
-		type = BUTTON
-		pos = 0,464
-		size = 53x20
-		anchor1 = 0,80
-		anchor2 = 9,83
-		saved-params = "is-checked"
-		text = "Apply"
-		command = "tcssave"
-	elem "tcscode"
-		type = INPUT
-		pos = 0,0
-		size = 569x464
-		anchor1 = 0,0
-		anchor2 = 100,80
-		font-family = "Courier"
-		font-size = 10
-		saved-params = ""
-		command = "cancel"
-		multi-line = true
-		no-command = true
-
-window "chemdispenser"
-	elem "chemdispenser"
-		type = MAIN
-		pos = 281,0
-		size = 340x480
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
-		saved-params = "pos;size;is-minimized;is-maximized"
-		title = "Chem Dispenser"
-		statusbar = false
-	elem "energy"
-		type = LABEL
-		pos = 8,24
-		size = 56x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = ""
-		text = "Energy: 25"
-	elem "eject"
-		type = BUTTON
-		pos = 264,4
-		size = 72x20
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "[Insert beaker]"
-		command = "skincmd \"chemdispenser;eject\""
-	elem "amountc"
-		type = BUTTON
-		pos = 208,4
-		size = 48x20
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "[Other]"
-		command = "skincmd \"chemdispenser;amountc\""
-	elem "amount3"
-		type = BUTTON
-		pos = 176,4
-		size = 24x20
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "[30]"
-		command = "skincmd \"chemdispenser;amount30\""
-	elem "amount2"
-		type = BUTTON
-		pos = 144,4
-		size = 24x20
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "[20]"
-		command = "skincmd \"chemdispenser;amount20\""
-	elem "amount1"
-		type = BUTTON
-		pos = 112,4
-		size = 24x20
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "[10]"
-		command = "skincmd \"chemdispenser;amount10\""
-	elem "amount"
-		type = LABEL
-		pos = 4,4
-		size = 100x20
-		anchor1 = none
-		anchor2 = none
-		font-size = 12
-		saved-params = ""
-		text = "Amount: 30"
-	elem "child1"
-		type = CHILD
-		pos = 0,40
-		size = 340x440
-		anchor1 = none
-		anchor2 = none
-		saved-params = "splitter"
-		left = "chemdispenser_reagents"
-		is-vert = false
-
-window "chemdispenser_reagents"
-	elem "chemdispenser_reagents"
-		type = MAIN
-		pos = 281,0
-		size = 340x448
-		anchor1 = none
-		anchor2 = none
-		saved-params = "pos;size;is-minimized;is-maximized"
-		titlebar = false
-		statusbar = false
-		can-close = false
-		can-minimize = false
-		can-resize = false
-		is-pane = true
-		can-scroll = vertical
-	elem "template_dispense"
-		type = BUTTON
-		pos = 256,8
-		size = 64x32
-		anchor1 = none
-		anchor2 = none
-		is-visible = false
-		saved-params = "is-checked"
-		text = "Dispense"
-		image = 'icons\\dispensebutton_bg.png'
-		command = ""
-		is-flat = true
-	elem "template_name"
-		type = LABEL
-		pos = 18,8
-		size = 230x32
-		anchor1 = none
-		anchor2 = none
-		font-size = 15
-		is-visible = false
-		saved-params = ""
-		text = "Chloral Hydrate"
-		image = 'icons\\reagentname_bg.png'
-		image-mode = stretch
-
 window "mainwindow"
 	elem "mainwindow"
 		type = MAIN
 		pos = 281,0
 		size = 640x440
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		is-default = true
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "VOREStation"
@@ -1193,17 +1139,16 @@ window "mainwindow"
 		type = BROWSER
 		pos = 0,0
 		size = 200x200
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		is-visible = false
-		auto-format = false
 		saved-params = ""
 	elem "hotkey_toggle"
 		type = BUTTON
 		pos = 560,420
 		size = 80x20
 		anchor1 = 100,100
-		anchor2 = none
+		anchor2 = -1,-1
 		saved-params = ""
 		text = "Hotkey Toggle"
 		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
@@ -1232,7 +1177,7 @@ window "mainwindow"
 		pos = 520,420
 		size = 40x20
 		anchor1 = 100,100
-		anchor2 = none
+		anchor2 = -1,-1
 		saved-params = "is-checked"
 		text = "Chat"
 		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
@@ -1241,8 +1186,8 @@ window "mainwindow"
 		type = BROWSER
 		pos = 0,0
 		size = 999x999
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		is-visible = false
 		saved-params = ""
 
@@ -1251,8 +1196,8 @@ window "mapwindow"
 		type = MAIN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1273,16 +1218,15 @@ window "mapwindow"
 		saved-params = "icon-size"
 		on-show = ".winset\"mainwindow.mainvsplit.left=mapwindow\""
 		on-hide = ".winset\"mainwindow.mainvsplit.left=\""
-		style=".center { text-align: center; } .maptext { font-family: 'Small Fonts'; font-size: 7px; -dm-text-outline: 1px black; color: white; line-height: 1.1; } .small { font-size: 6px; } .big { font-size: 8px; } .reallybig { font-size: 8px; } .extremelybig { font-size: 8px; } .clown { color: #FF69Bf;} .tajaran {color: #803B56;} .skrell {color: #00CED1;} .solcom {color: #22228B;} .com_srus {color: #7c4848;} .zombie	{color: #ff0000;} .soghun {color: #228B22;} .vox {color: #AA00AA;} .diona {color: #804000; font-weight: bold;} .trinary {color: #727272;} .kidan {color: #664205;} .slime {color: #0077AA;} .drask {color: #a3d4eb;} .vulpkanin {color: #B97A57;} .abductor {color: #800080; font-style: italic;} .his_grace { color: #15D512; } .hypnophrase { color: #0d0d0d; font-weight: bold; } .yell { font-weight: bold; }"
+		style = ".center { text-align: center; } .runechatdiv {background-color: #20202070} .black_outline { -dm-text-outline: 1px black } .boldtext { font-weight: bold; } .maptext { font-family: 'Small Fonts'; font-size: 7px; color: white; line-height: 1.1; } .command_headset { font-weight: bold;\tfont-size: 8px; } .small { font-size: 6px; } .very_small { font-size: 5px;} .big { font-size: 8px; } .reallybig { font-size: 8px; } .extremelybig { font-size: 8px; } .greentext { color: #00FF00; font-size: 7px; } .redtext { color: #FF0000; font-size: 7px; } .clown { color: #FF69Bf; font-size: 7px;  font-weight: bold; } .his_grace { color: #15D512; } .hypnophrase { color: #0d0d0d; font-weight: bold; } .yell { font-weight: bold; } .italics { font-size: 7px; font-style: italic; }"
 
 window "outputwindow"
 	elem "outputwindow"
 		type = MAIN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
-		background-color = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		saved-params = "pos;size;is-minimized;is-maximized"
 		titlebar = false
 		statusbar = false
@@ -1290,7 +1234,6 @@ window "outputwindow"
 		can-minimize = false
 		can-resize = false
 		is-pane = true
-		outer-size = 654x494
 	elem "chatloadlabel"
 		type = LABEL
 		pos = 0,0
@@ -1302,7 +1245,6 @@ window "outputwindow"
 		font-style = "bold"
 		text-color = #ffffff
 		background-color = #222222
-		is-visible = true
 		saved-params = ""
 		text = "Chat is loading.\nIf nothing happens after 20s,\nuse OOC > \"Reload VChat\"."
 	elem "htmloutput"
@@ -1311,100 +1253,105 @@ window "outputwindow"
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
 		is-visible = false
 		saved-params = ""
-		auto-format = false
 	elem "oldoutput"
 		type = OUTPUT
 		pos = 0,0
 		size = 640x480
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
-		text-color = #000000
-		background-color = #ffffff
 		is-visible = false
 		is-default = true
-		style = ".system {color:#FF0000;}"
-		max-lines = 0
 		saved-params = ""
+		style = ".system {color:#FF0000;}"
 		enable-http-images = true
+		max-lines = 0
 
 window "rpane"
 	elem "rpane"
 		type = MAIN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
+		outer-size = 656x538
+		inner-size = 640x499
 	elem "rpanewindow"
 		type = CHILD
 		pos = 0,-3
 		size = 640x499
 		anchor1 = 0,0
 		anchor2 = 100,100
+		background-color = none
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
+	elem "discord"
+		type = BUTTON
+		pos = 428,0
+		size = 60x16
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
+		saved-params = "is-checked"
+		text = "Discord"
+		command = "discord"
+		group = "rpanemode"
 	elem "github"
 		type = BUTTON
-		pos = 392,0
+		pos = 368,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "is-checked"
 		text = "GitHub"
 		command = "github"
 		group = "rpanemode"
 	elem "mapb"
 		type = BUTTON
-		pos = 332,0
+		pos = 308,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "is-checked"
 		text = "Map"
 		command = "map"
 		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
-		pos = 272,0
+		pos = 248,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
 		group = "rpanemode"
-	elem "changelog"
-		type = BUTTON
-		pos = 488,0
-		size = 67x16
-		anchor1 = none
-		anchor2 = none
-		saved-params = "is-checked"
-		text = "Changelog"
-		command = "Changelog"
-		group = "rpanemode"
 	elem "forumb"
 		type = BUTTON
-		pos = 212,0
+		pos = 188,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
 		group = "rpanemode"
 	elem "wikib"
 		type = BUTTON
-		pos = 152,0
+		pos = 128,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -1413,8 +1360,9 @@ window "rpane"
 		type = BUTTON
 		pos = 0,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Text"
@@ -1424,10 +1372,11 @@ window "rpane"
 		button-type = pushbox
 	elem "browseb"
 		type = BUTTON
-		pos = 560,0
+		pos = 580,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = 100,0
+		anchor2 = 100,0
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Browser"
@@ -1436,10 +1385,11 @@ window "rpane"
 		button-type = pushbox
 	elem "infob"
 		type = BUTTON
-		pos = 64,0
+		pos = 60,0
 		size = 60x16
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Info"
@@ -1450,8 +1400,9 @@ window "rpane"
 		type = BROWSER
 		pos = 392,25
 		size = 1x1
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		background-color = none
 		is-visible = false
 		saved-params = ""
 
@@ -1460,8 +1411,8 @@ window "browserwindow"
 		type = MAIN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Browser"
 		is-pane = true
@@ -1482,8 +1433,8 @@ window "preferences_window"
 		type = MAIN
 		pos = 281,0
 		size = 1000x800
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		is-visible = false
 		saved-params = "pos;size;is-minimized;is-maximized"
 		statusbar = false
@@ -1501,14 +1452,15 @@ window "preferences_window"
 		anchor1 = 80,0
 		anchor2 = 100,100
 		right-click = true
+		saved-params = "zoom;letterbox;zoom-mode"
 
 window "infowindow"
 	elem "infowindow"
 		type = MAIN
 		pos = 281,0
 		size = 640x480
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		saved-params = "pos;size;is-minimized;is-maximized"
 		title = "Info"
 		is-pane = true
@@ -1529,8 +1481,8 @@ window "text_editor"
 		type = MAIN
 		pos = 281,0
 		size = 360x488
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		is-visible = false
 		border = sunken
 		saved-params = "pos;size;is-minimized;is-maximized"
@@ -1541,8 +1493,8 @@ window "text_editor"
 		type = BUTTON
 		pos = 248,456
 		size = 104x24
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		saved-params = "is-checked"
 		text = "Exit without saving"
 		command = ""
@@ -1550,8 +1502,8 @@ window "text_editor"
 		type = BUTTON
 		pos = 128,456
 		size = 104x24
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		saved-params = "is-checked"
 		text = "Save"
 		command = ""
@@ -1559,8 +1511,8 @@ window "text_editor"
 		type = BUTTON
 		pos = 8,456
 		size = 104x24
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		saved-params = "is-checked"
 		text = "Save + Exit"
 		command = ""
@@ -1568,8 +1520,8 @@ window "text_editor"
 		type = INPUT
 		pos = 0,0
 		size = 360x448
-		anchor1 = none
-		anchor2 = none
+		anchor1 = -1,-1
+		anchor2 = -1,-1
 		border = line
 		saved-params = ""
 		multi-line = true

@@ -6,15 +6,15 @@
 	name = "plain choker"
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
 	desc = "A simple, plain choker. Or maybe it's a collar? Use in-hand to customize it."
-	icon = 'icons/obj/clothing/ties_vr.dmi'
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "choker_cst"
 	item_state = "choker_cst"
 	overlay_state = "choker_cst"
 	var/customized = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
+		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
 		)
 
 //Forces different sprite sheet on equip
@@ -46,9 +46,9 @@
 
 /obj/item/clothing/accessory/choker/attack_self(mob/user as mob)
 	if(!customized)
-		var/design = input(user,"Descriptor?","Pick descriptor","") in list("plain","simple","ornate","elegant","opulent")
-		var/material = input(user,"Material?","Pick material","") in list("leather","velvet","lace","fabric","latex","plastic","metal","chain","silver","gold","platinum","steel","bead","ruby","sapphire","emerald","diamond")
-		var/type = input(user,"Type?","Pick type","") in list("choker","collar","necklace")
+		var/design = tgui_input_list(user,"Descriptor?","Pick descriptor","Descriptor", list("plain","simple","ornate","elegant","opulent"))
+		var/material = tgui_input_list(user,"Material?","Pick material","Material", list("leather","velvet","lace","fabric","latex","plastic","metal","chain","silver","gold","platinum","steel","bead","ruby","sapphire","emerald","diamond"))
+		var/type = tgui_input_list(user,"Type?","Pick type","Type", list("choker","collar","necklace"))
 		name = "[design] [material] [type]"
 		desc = "A [type], made of [material]. It's rather [design]."
 		customized = 1
@@ -58,14 +58,14 @@
 
 /obj/item/clothing/accessory/collar
 	slot_flags = SLOT_TIE | SLOT_OCLOTHING
-	icon = 'icons/obj/clothing/ties_vr.dmi'
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "collar_blk"
 	var/writtenon = 0
 	var/icon_previous_override
 	sprite_sheets = list(
-		SPECIES_TESHARI = 'icons/mob/species/seromi/ties_vr.dmi'
-		)
+		SPECIES_TESHARI = 'icons/inventory/accessory/mob_vr_teshari.dmi'
+	)
 
 //Forces different sprite sheet on equip
 /obj/item/clothing/accessory/collar/New()
@@ -124,7 +124,7 @@
 	if(usr.stat) return
 
 	if(!jingled)
-		usr.audible_message("[usr] jingles the [src]'s bell.")
+		usr.audible_message("[usr] jingles the [src]'s bell.", runemessage = "jingle")
 		playsound(src, 'sound/items/pickup/ring.ogg', 50, 1)
 		jingled = 1
 		addtimer(CALLBACK(src, .proc/jingledreset), 50)
@@ -145,7 +145,7 @@
 	var/datum/radio_frequency/radio_connection
 
 /obj/item/clothing/accessory/collar/shock/Initialize()
-	..()
+	. = ..()
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT) // Makes it so you don't need to change the frequency off of default for it to work.
 
 /obj/item/clothing/accessory/collar/shock/Destroy() //Clean up your toys when you're done.
@@ -262,13 +262,21 @@
 	item_state = "collar_pnk"
 	overlay_state = "collar_pnk"
 
+/obj/item/clothing/accessory/collar/cowbell
+	name = "cowbell collar"
+	desc = "A collar for your little pets... or the big ones."
+	icon_state = "collar_cowbell"
+	item_state = "collar_cowbell_overlay"
+	overlay_state = "collar_cowbell_overlay"
+
+
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
 	desc = "An expensive holo-collar for the modern day pet."
 	icon_state = "collar_holo"
 	item_state = "collar_holo"
 	overlay_state = "collar_holo"
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	matter = list(MAT_STEEL = 50)
 
 /obj/item/clothing/accessory/collar/holo/indigestible
 	desc = "A special variety of the holo-collar that seems to be made of a very durable fabric that fits around the neck."
@@ -349,7 +357,7 @@
 	icon_state = "holster_machete"
 	slot = ACCESSORY_SLOT_WEAPON
 	concealed_holster = 0
-	can_hold = list(/obj/item/weapon/material/knife/machete)
+	can_hold = list(/obj/item/weapon/material/knife/machete, /obj/item/weapon/kinetic_crusher/machete)
 	//sound_in = 'sound/effects/holster/sheathin.ogg'
 	//sound_out = 'sound/effects/holster/sheathout.ogg'
 
@@ -360,9 +368,45 @@
 	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat."
 
 /obj/item/clothing/accessory/medal/silver/unity/tabiranth
-	icon = 'icons/obj/clothing/ties_vr.dmi'
-	icon_override = 'icons/mob/ties_vr.dmi'
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
 	icon_state = "silverthree"
 	item_state = "silverthree"
 	overlay_state = "silverthree"
-	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has two bronze service stars, denoting that it has been awarded three times."
+	desc = "A silver medal awarded to a group which has demonstrated exceptional teamwork to achieve a notable feat. This one has three bronze service stars, denoting that it has been awarded four times."
+
+/obj/item/clothing/accessory/talon
+	name = "Talon pin"
+	desc = "A collectable enamel pin that resembles ITV Talon's ship logo."
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/mob_vr.dmi'
+	icon_state = "talon_pin"
+	item_state = "talonpin"
+	overlay_state = "talonpin"
+
+//Casino Slave Collar
+
+/obj/item/clothing/accessory/collar/casinoslave
+	name = "a disabled Sentient Prize Collar"
+	desc = "A collar worn by sentient prizes registered to a SPASM. Although the red text on it shows its disconnected and nonfunctional."
+
+	icon_state = "casinoslave"
+	item_state = "casinoslave"
+	overlay_state = "casinoslave"
+
+	var/slavename = null	//Name for system to put on collar description
+	var/ownername = null	//Name for system to put on collar description
+	var/slaveckey = null	//Ckey for system to check who is the person and ensure no abuse of system or errors
+	var/slaveflavor = null	//Description to show on the SPASM
+	var/slaveooc = null		//OOC text to show on the SPASM
+
+/obj/item/clothing/accessory/collar/casinoslave/attack_self(mob/user as mob)
+	//keeping it blank so people don't tag and reset collar status
+
+/obj/item/clothing/accessory/collar/casinoslave_fake
+	name = "a Sentient Prize Collar"
+	desc = "A collar worn by sentient prizes registered to a SPASM. This one has been disconnected from the system and is now an accessory!"
+
+	icon_state = "casinoslave_owned"
+	item_state = "casinoslave_owned"
+	overlay_state = "casinoslave_owned"

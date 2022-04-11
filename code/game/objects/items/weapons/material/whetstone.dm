@@ -13,7 +13,7 @@
 /obj/item/weapon/whetstone/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/material))
 		var/obj/item/stack/material/M = I
-		if(M.amount >= 5)
+		if(M.get_amount() >= 5)
 			to_chat(user, "You begin to refine the [src] with [M]...")
 			if(do_after(user, 70))
 				M.use(5)
@@ -63,7 +63,7 @@
 
 	if(istype(W, /obj/item/weapon/material))
 		if(istype(W, /obj/item/weapon/material/sharpeningkit))
-			to_chat(user, "Really? Sharpening a [W] with [src]? You goofball.")
+			to_chat(user, "As much as you'd like to sharpen [W] with [src], the logistics just don't work out.")
 			return
 		var/obj/item/weapon/material/M = W
 		if(uses >= M.w_class*2)
@@ -71,7 +71,7 @@
 				uses -= M.w_class*2
 				return
 		else
-			to_chat(user, "Not enough material to sharpen [M]. You need [M.w_class*2] [M.material.sheet_plural_name].")
+			to_chat(user, "There's not enough spare sheets to sharpen [M]. You need [M.w_class*2] [M.material.sheet_plural_name].")
 			return
 	else
 		to_chat(user, "You can't sharpen [W] with [src]!") 

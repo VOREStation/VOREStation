@@ -2,13 +2,16 @@
  * Contains the particle smasher and its recipes.
  */
 
+#define PS_RESULT_STACK		"stack"
+#define PS_RESULT_ITEM		"item"
+
 /obj/machinery/particle_smasher
 	name = "Particle Focus"
 	desc = "A strange device used to create exotic matter."
 	icon = 'icons/obj/machines/particle_smasher.dmi'
 	icon_state = "smasher"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = USE_POWER_OFF
 
 	var/successful_craft = FALSE	// Are we waiting to be emptied?
@@ -25,7 +28,7 @@
 	var/list/recipes	// The list containing the Particle Smasher's recipes.
 
 /obj/machinery/particle_smasher/Initialize()
-	..()
+	. = ..()
 	storage = list()
 	update_icon()
 	prepare_recipes()
@@ -174,7 +177,7 @@
 		recipes = typesof(/datum/particle_smasher_recipe)
 
 	if(!target)	// You are just blasting an empty machine.
-		visible_message("<span class='notice'>\The [src] shudders.</span>")
+		visible_message("<b>\The [src]</b> shudders.")
 		update_icon()
 		return
 
@@ -190,7 +193,7 @@
 	var/max_prob = 0
 	for(var/datum/particle_smasher_recipe/R in recipes)	// Only things for the smasher. Don't get things like the chef's cake recipes.
 		if(R.probability)	// It's actually a recipe you're supposed to be able to make.
-			if(istype(target, R.required_material))
+			if(!(R.required_material) || istype(target, R.required_material))
 				if(energy >= R.required_energy_min && energy <= R.required_energy_max)	// The machine has enough Vaguely Defined 'Energy'.
 					var/turf/T = get_turf(src)
 					var/datum/gas_mixture/environment = T.return_air()
@@ -234,8 +237,11 @@
 					break
 
 	var/result = recipe.result
-	var/obj/item/stack/material/M = new result(src)
-	target = M
+	if(recipe.recipe_type == PS_RESULT_STACK)
+		var/obj/item/stack/material/M = new result(src)
+		target = M
+	else if(recipe.recipe_type == PS_RESULT_ITEM)
+		new result(get_turf(src))
 	update_icon()
 
 /obj/machinery/particle_smasher/verb/eject_contents()
@@ -266,6 +272,7 @@
 /datum/particle_smasher_recipe
 	var/list/reagents	// example: = list("pacid" = 5)
 	var/list/items		// example: = list(/obj/item/weapon/tool/crowbar, /obj/item/weapon/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
+	var/recipe_type = PS_RESULT_STACK			// Are we producing a stack or an item?
 
 	var/result = /obj/item/stack/material/iron		// The sheet this will produce.
 	var/required_material = /obj/item/stack/material/iron	// The required material sheet.
@@ -379,3 +386,34 @@
 	required_atmos_temp_min = 3000
 	required_atmos_temp_max = 10000
 	probability = 1
+
+/datum/particle_smasher_recipe/donkpockets_coal
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket)
+
+	recipe_type = PS_RESULT_ITEM
+
+	result = /obj/item/weapon/ore/coal
+	required_material = null
+
+	required_energy_min = 1
+	required_energy_max = 500
+
+	required_atmos_temp_min = 400
+	required_atmos_temp_max = 20000
+	probability = 90
+
+/datum/particle_smasher_recipe/donkpockets_ascend
+	items = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket)
+	reagents = list("phoron" = 120)
+
+	recipe_type = PS_RESULT_ITEM
+
+	result = /obj/item/weapon/reagent_containers/food/snacks/donkpocket/ascended
+	required_material = /obj/item/stack/material/uranium
+
+	required_energy_min = 501
+	required_energy_max = 700
+
+	required_atmos_temp_min = 400
+	required_atmos_temp_max = 20000
+	probability = 20

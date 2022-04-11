@@ -44,7 +44,7 @@
 	base_spread = 90	//lower means the pellets spread more across body parts. If zero then this is considered a shrapnel explosion instead of a shrapnel cone
 	spread_step = 10
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 	check_armour = "melee"
 
 /obj/item/ammo_casing/microbattery/combat/ion
@@ -64,7 +64,7 @@
 	nodamage = 1
 	agony = 5
 	embed_chance = 0
-	sharp = 0
+	sharp = FALSE
 	check_armour = "melee"
 
 /obj/item/projectile/bullet/stripper/on_hit(var/atom/stripped)

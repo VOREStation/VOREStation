@@ -88,6 +88,14 @@
 	if(get_dist(user, src) == 0)
 		. += "It has a tiny camera inside. Needs to be both configured and brought in contact with monitor device to be fully functional."
 
+/obj/item/device/camerabug/update_icon()
+	..()
+
+	if(anchored)	// Standard versions are relatively obvious if not hidden in a container. Anchoring them is advised, to disguise them.
+		alpha = 50
+	else
+		alpha = 255
+
 /obj/item/device/camerabug/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(istype(W, /obj/item/device/bug_monitor))
 		var/obj/item/device/bug_monitor/SM = W
@@ -101,6 +109,15 @@
 			linkedmonitor = null
 		else
 			to_chat(user, "Error: The device is linked to another monitor.")
+
+	else if(W.is_wrench() && user.a_intent != I_HURT)
+		if(isturf(loc))
+			anchored = !anchored
+
+			to_chat(user, "<span class='notice'>You [anchored ? "" : "un"]secure \the [src].</span>")
+
+			update_icon()
+			return
 	else
 		if(W.force >= 5)
 			visible_message("\The [src] lens shatters!")
@@ -174,7 +191,7 @@
 
 	operating = 1
 	while(selected_camera && Adjacent(user))
-		selected_camera = input("Select camera to view.") as null|anything in cameras
+		selected_camera = tgui_input_list(usr, "Select camera to view.", "Camera Choice", cameras)
 	selected_camera = null
 	operating = 0
 

@@ -5,7 +5,6 @@
 	icon_state = "redshorts" // Hackyfix for icon states until someone wants to come do a recolor later.
 	gender = PLURAL
 	body_parts_covered = LOWER_TORSO
-	index = 1
 
 /obj/item/clothing/under/shorts/red
 	name = "red athletic shorts"
@@ -101,7 +100,6 @@
 	icon_state = "skirt_short_black"
 	body_parts_covered = LOWER_TORSO
 	rolled_sleeves = -1
-	index = 1
 
 /obj/item/clothing/under/skirt/khaki
 	name = "khaki skirt"
@@ -168,14 +166,12 @@
 	desc = "It's a jumpskirt worn by the quartermaster. It's specially designed to prevent back injuries caused by pushing paper."
 	icon_state = "qmf"
 	item_state_slots = list(slot_r_hand_str = "qm", slot_l_hand_str = "qm")
-	index = 1
 
 /obj/item/clothing/under/rank/cargotech/skirt
 	name = "cargo technician's jumpskirt"
 	desc = "Skirrrrrts! They're comfy and easy to wear!"
 	icon_state = "cargof"
 	item_state_slots = list(slot_r_hand_str = "cargo", slot_l_hand_str = "cargo")
-	index = 1
 
 /obj/item/clothing/under/rank/engineer/skirt
 	desc = "It's an orange high visibility jumpskirt worn by engineers. It has minor radiation shielding."
@@ -183,61 +179,51 @@
 	icon_state = "enginef"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
 	item_state_slots = list(slot_r_hand_str = "engine", slot_l_hand_str = "engine")
-	index = 1
 
 /obj/item/clothing/under/rank/chief_engineer/skirt
 	desc = "It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of \"Chief engineer\". It has minor radiation shielding."
 	name = "chief engineer's jumpskirt"
 	icon_state = "chieff"
 	item_state_slots = list(slot_r_hand_str = "chiefengineer", slot_l_hand_str = "chiefengineer")
-	index = 1
 
 /obj/item/clothing/under/rank/atmospheric_technician/skirt
 	desc = "It's a jumpskirt worn by atmospheric technicians."
 	name = "atmospheric technician's jumpskirt"
 	icon_state = "atmosf"
 	item_state_slots = list(slot_r_hand_str = "atmos", slot_l_hand_str = "atmos")
-	index = 1
 
 /obj/item/clothing/under/rank/roboticist/skirt
 	desc = "It's a slimming black jumpskirt with reinforced seams; great for industrial work."
 	name = "roboticist's jumpskirt"
 	icon_state = "roboticsf"
 	item_state_slots = list(slot_r_hand_str = "robotics", slot_l_hand_str = "robotics")
-	index = 1
 
 /obj/item/clothing/under/rank/scientist/skirt
 	name = "scientist's jumpskirt"
 	icon_state = "sciencef"
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 10, bio = 0, rad = 0)
-	index = 1
 
 /obj/item/clothing/under/rank/medical/skirt
 	name = "medical doctor's jumpskirt"
 	icon_state = "medicalf"
-	index = 1
 
 /obj/item/clothing/under/rank/chemist/skirt
 	name = "chemist's jumpskirt"
 	icon_state = "chemistryf"
-	index = 1
 
 /obj/item/clothing/under/rank/chief_medical_officer/skirt
 	desc = "It's a jumpskirt worn by those with the experience to be \"Chief Medical Officer\". It provides minor biological protection."
 	name = "chief medical officer's jumpskirt"
 	icon_state = "cmof"
-	index = 1
 
 /obj/item/clothing/under/rank/geneticist/skirt
 	name = "geneticist's jumpskirt"
 	icon_state = "geneticsf"
-	index = 1
 
 /obj/item/clothing/under/rank/virologist/skirt
 	name = "virologist's jumpskirt"
 	icon_state = "virologyf"
-	index = 1
 
 /obj/item/clothing/under/rank/security/skirt
 	name = "security officer's jumpskirt"
@@ -245,16 +231,13 @@
 	icon_state = "securityf"
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
-	index = 1
 
 /obj/item/clothing/under/rank/warden/skirt
 	desc = "Standard feminine fashion for a Warden. It is made of sturdier material than standard jumpskirts. It has the word \"Warden\" written on the shoulders."
 	name = "warden's jumpskirt"
 	icon_state = "wardenf"
-	index = 1
 
 /obj/item/clothing/under/rank/head_of_security/skirt
 	desc = "It's a fashionable jumpskirt worn by those few with the dedication to achieve the position of \"Head of Security\". It has additional armor to protect the wearer."
 	name = "head of security's jumpskirt"
 	icon_state = "hosf"
-	index = 1

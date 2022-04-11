@@ -4,8 +4,10 @@
 /obj/item/weapon/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "cutters"
+	item_state = "cutters"
 	center_of_mass = list("x" = 18,"y" = 10)
 	slot_flags = SLOT_BELT
 	force = 6
@@ -13,21 +15,33 @@
 	throw_range = 9
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MATERIAL = 1, TECH_ENGINEERING = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 80)
+	matter = list(MAT_STEEL = 80)
 	attack_verb = list("pinched", "nipped")
 	hitsound = 'sound/items/wirecutter.ogg'
 	usesound = 'sound/items/wirecutter.ogg'
 	drop_sound = 'sound/items/drop/wirecutter.ogg'
 	pickup_sound = 'sound/items/pickup/wirecutter.ogg'
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	toolspeed = 1
+	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
 /obj/item/weapon/tool/wirecutters/New()
-	if(random_color && prob(50))
-		icon_state = "cutters-y"
-		item_state = "cutters_yellow"
+	if(random_color)
+		switch(pick("red","blue","yellow"))
+			if ("red")
+				icon_state = "cutters"
+				item_state = "cutters"
+			if ("blue")
+				icon_state = "cutters-b"
+				item_state = "cutters_blue"
+			if ("yellow")
+				icon_state = "cutters-y"
+				item_state = "cutters_yellow"
+
+	if (prob(75))
+		src.pixel_y = rand(0, 16)
 	..()
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
@@ -42,10 +56,6 @@
 		return
 	else
 		..()
-
-/obj/item/weapon/tool/wirecutters/is_wirecutter()
-	return TRUE
-
 
 /datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters
 	name = "Precursor Alpha Object - Wire Seperator"
@@ -81,7 +91,6 @@
 	desc = "This cuts wires.  With <span class='alien'>Science!</span>"
 	icon_state = "hybcutters"
 	w_class = ITEMSIZE_NORMAL
-	slowdown = 0.1
 	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_PHORON = 2)
 	attack_verb = list("pinched", "nipped", "warped", "blasted")
 	usesound = 'sound/effects/stealthoff.ogg'

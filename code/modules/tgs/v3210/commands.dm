@@ -8,7 +8,7 @@
 	var/list/command_name_types = list()
 	var/list/warned_command_names = warnings_only ? list() : null
 	var/warned_about_the_dangers_of_robutussin = !warnings_only
-	for(var/I in typesof(/datum/tgs_chat_command) - /datum/tgs_chat_command)
+	for(var/I in subtypesof(/datum/tgs_chat_command))
 		if(!warned_about_the_dangers_of_robutussin)
 			TGS_ERROR_LOG("Custom chat commands in [ApiVersion()] lacks the /datum/tgs_chat_user/sender.channel field!")
 			warned_about_the_dangers_of_robutussin = TRUE
@@ -32,8 +32,7 @@
 /datum/tgs_api/v3210/proc/HandleServiceCustomCommand(command, sender, params)
 	if(!cached_custom_tgs_chat_commands)
 		cached_custom_tgs_chat_commands = list()
-		for(var/I in typesof(/datum/tgs_chat_command) - /datum/tgs_chat_command)
-			var/datum/tgs_chat_command/stc = I
+		for(var/datum/tgs_chat_command/stc as anything in subtypesof(/datum/tgs_chat_command))
 			cached_custom_tgs_chat_commands[lowertext(initial(stc.name))] = stc
 
 	var/command_type = cached_custom_tgs_chat_commands[command]

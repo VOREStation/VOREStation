@@ -305,21 +305,21 @@
 		if(auth)
 			var/t1 = href_list["assign"]
 			if(t1 == "Custom")
-				var/temp_t = sanitize(input("Enter a custom job assignment.","Assignment"))
+				var/temp_t = sanitize(input(usr, "Enter a custom job assignment.","Assignment"))
 				if(temp_t)
 					t1 = temp_t
 			set_default_access(t1)
 
 			writer.assignment = t1
 			writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
-			data_core.manifest_modify(writer.registered_name, writer.assignment)
+			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
 			callHook("reassign_employee", list(writer))
 
 	if("reg" in href_list)
 		if(auth)
 			writer.registered_name = href_list["reg"]
 			writer.name = text("[writer.registered_name]'s ID Card ([writer.assignment])")
-			data_core.manifest_modify(writer.registered_name, writer.assignment)
+			data_core.manifest_modify(writer.registered_name, writer.assignment, writer.rank)
 			callHook("reassign_employee", list(writer))
 
 	computer.updateUsrDialog()

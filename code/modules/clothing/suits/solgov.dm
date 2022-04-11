@@ -1,8 +1,8 @@
 //SolGov Uniform Suits
 /obj/item/clothing/suit/storage/solgov
 	name = "master solgov jacket"
-	icon = 'icons/obj/clothing/suits_solgov.dmi'
-	icon_override = 'icons/mob/suit_solgov.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 
 //Service
 
@@ -23,19 +23,19 @@
 /obj/item/clothing/suit/storage/solgov/service/sifguard
 	name = "\improper SifGuard jacket"
 	desc = "A uniform service jacket belonging to the Sif Defense Force."
-	icon_state = "ecservice_crew"
+	icon_state = "sgservice_crew"
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/medical
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/medical/service)
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/medical/command
-	icon_state = "ecservice_officer"
+	icon_state = "sgservice_officer"
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/engineering
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/engineering/service)
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/engineering/command
-	icon_state = "ecservice_officer"
+	icon_state = "sgservice_officer"
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/supply
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/supply/service)
@@ -44,28 +44,28 @@
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/security/service)
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/security/command
-	icon_state = "ecservice_officer"
+	icon_state = "sgservice_officer"
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/service
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/service/service)
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/service/command
-	icon_state = "ecservice_officer"
+	icon_state = "sgservice_officer"
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/exploration
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/exploration/service)
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/exploration/command
-	icon_state = "ecservice_officer"
+	icon_state = "sgservice_officer"
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/research
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/research/service)
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/research/command
-	icon_state = "ecservice_officer"
+	icon_state = "sgservice_officer"
 
 /obj/item/clothing/suit/storage/solgov/service/sifguard/command
-	icon_state = "ecservice_officer"
+	icon_state = "sgservice_officer"
 	starting_accessories = list(/obj/item/clothing/accessory/solgov/department/command/service)
 
 /obj/item/clothing/suit/storage/solgov/service/fleet
@@ -181,8 +181,8 @@
 /obj/item/clothing/suit/storage/solgov/dress
 	name = "dress jacket"
 	desc = "A uniform dress jacket, fancy."
-	icon_state = "ecdress_xpl"
-	item_state = "ecdress_xpl"
+	icon_state = "sgdress_xpl"
+	item_state = "sgdress_xpl"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -193,39 +193,39 @@
 /obj/item/clothing/suit/storage/solgov/dress/sifguard
 	name = "\improper SifGuard dress jacket"
 	desc = "A silver and grey dress jacket belonging to the Sif Defense Force. Fashionable, for the 25th century at least."
-	icon_state = "ecdress_xpl"
-	item_state = "ecdress_xpl"
+	icon_state = "sgdress_xpl"
+	item_state = "sgdress_xpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/senior
 	name = "\improper SifGuard senior's dress coat"
-	icon_state = "ecdress_sxpl"
-	item_state = "ecdress_sxpl"
+	icon_state = "sgdress_sxpl"
+	item_state = "sgdress_sxpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/chief
 	name = "\improper SifGuard chief's dress coat"
 	icon_state = "ecdress_cxpl"
-	item_state = "ecdress_cxpl"
+	item_state = "sgdress_cxpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command
 	name = "\improper SifGuard officer's dress coat"
 	desc = "A gold and black dress peacoat belonging to the Sif Defense Force. The height of fashion."
 	icon_state = "ecdress_ofcr"
-	item_state = "ecdress_ofcr"
+	item_state = "sgdress_ofcr"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/cdr
 	name = "\improper SifGuard commander's dress coat"
-	icon_state = "ecdress_cdr"
-	item_state = "ecdress_cdr"
+	icon_state = "sgdress_cdr"
+	item_state = "sgdress_cdr"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/capt
 	name = "\improper SifGuard captain's dress coat"
-	icon_state = "ecdress_capt"
-	item_state = "ecdress_capt"
+	icon_state = "sgdress_capt"
+	item_state = "sgdress_capt"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/adm
 	name = "\improper SifGuard admiral's dress coat"
-	icon_state = "ecdress_adm"
-	item_state = "ecdress_adm"
+	icon_state = "sgdress_adm"
+	item_state = "sgdress_adm"
 
 /obj/item/clothing/suit/storage/solgov/dress/fleet
 	name = "fleet dress jacket"
@@ -262,8 +262,8 @@
 	desc = "A uniform dress jacket, fancy."
 	icon_state = "blackdress"
 	item_state = "blackdress"
-	icon = 'icons/obj/clothing/suits_solgov.dmi'
-	icon_override = 'icons/mob/suit_solgov.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -293,8 +293,8 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/solgov
 	name = "\improper SifGuard winter coat"
 	icon_state = "coatec"
-	icon = 'icons/obj/clothing/suits_solgov.dmi'
-	icon_override = 'icons/mob/suit_solgov.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	armor = list(melee = 25, bullet = 10, laser = 5, energy = 10, bomb = 20, bio = 0, rad = 10)
 	valid_accessory_slots = (ACCESSORY_SLOT_INSIGNIA|ACCESSORY_SLOT_RANK)
 
@@ -328,40 +328,40 @@
 	item_state = "labcoat"
 	blood_overlay_type = "coat"
 
-/obj/item/clothing/suit/storage/marshal_jacket
-	name = "colonial marshal jacket"
-	desc = "A black synthleather jacket. The word 'MARSHAL' is stenciled onto the back in gold lettering."
+/obj/item/clothing/suit/storage/eio_jacket
+	name = "EIO jacket"
+	desc = "A black synthleather jacket. The acronym 'EIO' of the Emergent Intelligence Oversight is stenciled onto the back in gold lettering."
 	icon_state = "marshal_jacket"
 	item_state_slots = list(slot_r_hand_str = "suit_black", slot_l_hand_str = "suit_black")
 	body_parts_covered = UPPER_TORSO|ARMS
 
-//Terrans
+//SAARE Mercenaries
 
 //Service
 
-/obj/item/clothing/suit/storage/terran/service/navy
-	name = "ICCGN coat"
-	desc = "A ICCG Navy service coat. Black and undecorated."
+/obj/item/clothing/suit/storage/saare/service/
+	name = "SAARE coat"
+	desc = "An Stealth Assault Enterprises . Black and undecorated."
 	icon_state = "terranservice"
 	item_state = "terranservice"
-	icon = 'icons/obj/clothing/suits_solgov.dmi'
-	icon_override = 'icons/mob/suit_solgov.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 
-/obj/item/clothing/suit/storage/terran/service/navy/command
-	name = "indie command coat"
-	desc = "An ICCG Navy service command coat. White and undecorated."
+/obj/item/clothing/suit/storage/saare/service/command
+	name = "SAARE command coat"
+	desc = "An Stealth Assault Enterprises command coat. White and undecorated."
 	icon_state = "terranservice_comm"
 	item_state = "terranservice_comm"
 
 //Dress
 
-/obj/item/clothing/suit/dress/terran
+/obj/item/clothing/suit/dress/saare
 	name = "dress jacket"
-	desc = "A uniform dress jacket, fancy."
+	desc = "A Stealth Assault Enterprises uniform dress jacket, fancy."
 	icon_state = "terrandress"
 	item_state = "terrandress"
-	icon = 'icons/obj/clothing/suits_solgov.dmi'
-	icon_override = 'icons/mob/suit_solgov.dmi'
+	icon = 'icons/inventory/suit/item.dmi'
+	icon_override = 'icons/inventory/suit/mob.dmi'
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -369,19 +369,19 @@
 	valid_accessory_slots = (ACCESSORY_SLOT_MEDAL|ACCESSORY_SLOT_RANK)
 
 /obj/item/clothing/suit/dress/terran/navy
-	name = "ICCGN dress cloak"
-	desc = "A black ICCG Navy dress cloak with red detailing. So sexy it hurts."
+	name = "SAARE dress cloak"
+	desc = "A Stealth Assault Enterprises dress cloak with red detailing. So sexy it hurts."
 	icon_state = "terrandress"
 	item_state = "terrandress"
 
 /obj/item/clothing/suit/dress/terran/navy/officer
-	name = "ICCGN officer's dress cloak"
-	desc = "A black ICCG Navy dress cloak with gold detailing. Smells like ceremony."
+	name = "SAARE officer's dress cloak"
+	desc = "A black Stealth Assault Enterprises dress cloak with gold detailing. Smells like ceremony."
 	icon_state = "terrandress_off"
 	item_state = "terrandress_off"
 
 /obj/item/clothing/suit/dress/terran/navy/command
-	name = "ICCGN command dress cloak"
-	desc = "A black ICCG Navy dress cloak with royal detailing. Smells like ceremony."
+	name = "SAARE command dress cloak"
+	desc = "A black Stealth Assault Enterprises dress cloak with royal detailing. Smells like ceremony."
 	icon_state = "terrandress_comm"
 	item_state = "terrandress_comm"

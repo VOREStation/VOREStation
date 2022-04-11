@@ -68,11 +68,12 @@ emp_act
 				msg_admin_attack("[key_name(src)] was disarmed by a stun effect")
 
 				drop_from_inventory(c_hand)
-				if (affected.robotic >= ORGAN_ROBOT)
-					emote("me", 1, "drops what they were holding, their [affected.name] malfunctioning!")
-				else
-					var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-					emote("me", 1, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!")
+				if(!isbelly(loc)) //VOREStation Add
+					if (affected.robotic >= ORGAN_ROBOT)
+						custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [affected.name] malfunctioning!")
+					else
+						var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+						custom_emote(VISIBLE_MESSAGE, "[affected.organ_can_feel_pain() ? "" : emote_scream] drops what they were holding in their [affected.name]!")
 
 	..(stun_amount, agony_amount, def_zone)
 
@@ -134,8 +135,7 @@ emp_act
 			siemens_coefficient *= C.siemens_coefficient
 
 	// Modifiers.
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		if(!isnull(M.siemens_coefficient))
 			siemens_coefficient *= M.siemens_coefficient
 
@@ -180,8 +180,7 @@ emp_act
 	for(var/obj/item/clothing/gear in protective_gear)
 		protection += gear.armor[type]
 
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		var/modifier_armor = LAZYACCESS(M.armor_percent, type)
 		if(modifier_armor)
 			protection += modifier_armor
@@ -196,8 +195,7 @@ emp_act
 	for(var/obj/item/clothing/gear in protective_gear)
 		soaked += gear.armorsoak[type]
 
-	for(var/thing in modifiers)
-		var/datum/modifier/M = thing
+	for(var/datum/modifier/M as anything in modifiers)
 		var/modifier_armor = LAZYACCESS(M.armor_flat, type)
 		if(modifier_armor)
 			soaked += modifier_armor
@@ -266,7 +264,7 @@ emp_act
 	if(!affecting)
 		return //should be prevented by attacked_with_item() but for sanity.
 
-	visible_message("<span class='danger'>[src] has been [I.attack_verb.len? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
+	visible_message("<span class='danger'>[src] has been [LAZYLEN(I.attack_verb) ? pick(I.attack_verb) : "attacked"] in the [affecting.name] with [I.name] by [user]!</span>")
 
 	var/soaked = get_armor_soak(hit_zone, "melee", I.armor_penetration)
 
@@ -420,7 +418,7 @@ emp_act
 				return
 
 		if(!zone)
-			visible_message("<span class='notice'>\The [O] misses [src] narrowly!</span>")
+			visible_message("<b>\The [O]</b> misses [src] narrowly!")
 			return
 
 		O.throwing = 0		//it hit, so stop moving
@@ -471,7 +469,7 @@ emp_act
 			mass = I.w_class/THROWNOBJ_KNOCKBACK_DIVISOR
 		var/momentum = speed*mass
 
-		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED)
+		if(O.throw_source && momentum >= THROWNOBJ_KNOCKBACK_SPEED && !buckled)
 			var/dir = get_dir(O.throw_source, src)
 
 			visible_message("<font color='red'>[src] staggers under the impact!</font>","<font color='red'>You stagger under the impact!</font>")
@@ -485,7 +483,7 @@ emp_act
 				if(T)
 					src.loc = T
 					visible_message("<span class='warning'>[src] is pinned to the wall by [O]!</span>","<span class='warning'>You are pinned to the wall by [O]!</span>")
-					src.anchored = 1
+					src.anchored = TRUE
 					src.pinned += O
 
 // This does a prob check to catch the thing flying at you, with a minimum of 1%

@@ -17,8 +17,8 @@
 	desc = "Converts plants into biomass, which can be used for fertilizer and sort-of-synthetic products."
 	icon = 'icons/obj/biogenerator_vr.dmi' //VOREStation Edit
 	icon_state = "biogen-stand"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/biogenerator
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
@@ -183,8 +183,7 @@
 
 			points -= cost
 			if(ispath(bi.equipment_path, /obj/item/stack))
-				var/obj/item/stack/S = new bi.equipment_path(loc)
-				S.amount = bi.equipment_amt
+				new bi.equipment_path(loc, bi.equipment_amt)
 				playsound(src, 'sound/machines/vending/vending_drop.ogg', 100, 1)
 				return TRUE
 
@@ -305,5 +304,3 @@
 
 	build_eff = man_rating
 	eat_eff = bin_rating
-
-#undef BIOGENITEM

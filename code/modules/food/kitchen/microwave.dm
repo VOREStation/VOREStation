@@ -4,8 +4,9 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "mw"
 	layer = 2.9
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5
 	active_power_usage = 2000
@@ -27,7 +28,7 @@
 	var/datum/looping_sound/microwave/soundloop
 
 
-// see code/modules/food/recipes_microwave.dm for recipes
+//see code/modules/food/recipes_microwave.dm for recipes
 
 /*******************
 *   Initialising
@@ -43,10 +44,9 @@
 
 	if(!available_recipes)
 		available_recipes = new
-		for(var/T in (typesof(/datum/recipe)-/datum/recipe))
-			var/datum/recipe/type = T
-			if((initial(type.appliance) & appliancetype))
-				available_recipes += new type
+		for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
+			if((initial(typepath.appliance) & appliancetype))
+				available_recipes += new typepath
 		
 		acceptable_items = new
 		acceptable_reagents = new
@@ -77,24 +77,24 @@
 	if(src.broken > 0)
 		if(src.broken == 2 && O.is_screwdriver()) // If it's broken and they're using a screwdriver
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
+				"<b>\The [user]</b> starts to fix part of the microwave.", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
 			)
 			playsound(src, O.usesound, 50, 1)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
-					"<span class='notice'>\The [user] fixes part of the microwave.</span>", \
+					"<b>\The [user]</b> fixes part of the microwave.", \
 					"<span class='notice'>You have fixed part of the microwave.</span>" \
 				)
 				src.broken = 1 // Fix it a bit
 		else if(src.broken == 1 && O.is_wrench()) // If it's broken and they're doing the wrench
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to fix part of the microwave.</span>", \
+				"<b>\The [user]</b> starts to fix part of the microwave.", \
 				"<span class='notice'>You start to fix part of the microwave.</span>" \
 			)
 			if (do_after(user,20 * O.toolspeed))
 				user.visible_message( \
-					"<span class='notice'>\The [user] fixes the microwave.</span>", \
+					"<b>\The [user]</b> fixes the microwave.", \
 					"<span class='notice'>You have fixed the microwave.</span>" \
 				)
 				src.icon_state = "mw"
@@ -108,7 +108,7 @@
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner) || istype(O, /obj/item/weapon/soap)) // If they're trying to clean it then let them
 			user.visible_message( \
-				"<span class='notice'>\The [user] starts to clean the microwave.</span>", \
+				"<b>\The [user]</b> starts to clean the microwave.", \
 				"<span class='notice'>You start to clean the microwave.</span>" \
 			)
 			if (do_after(user,20))
@@ -283,68 +283,69 @@
 		if("dispose")
 			dispose()
 			return TRUE
-	
-// /obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
-// 	var/dat = ""
-// 	if(src.broken > 0)
-// 		dat = {"<TT>Bzzzzttttt</TT>"}
-// 	else if(src.operating)
-// 		dat = {"<TT>Microwaving in progress!<BR>Please wait...!</TT>"}
-// 	else if(src.dirty==100)
-// 		dat = {"<TT>This microwave is dirty!<BR>Please clean it before use!</TT>"}
-// 	else
-// 		var/list/items_counts = new
-// 		var/list/items_measures = new
-// 		var/list/items_measures_p = new
-// 		for (var/obj/O in ((contents - component_parts) - circuit))
-// 			var/display_name = O.name
-// 			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
-// 				items_measures[display_name] = "egg"
-// 				items_measures_p[display_name] = "eggs"
-// 			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/tofu))
-// 				items_measures[display_name] = "tofu chunk"
-// 				items_measures_p[display_name] = "tofu chunks"
-// 			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/meat)) //any meat
-// 				items_measures[display_name] = "slab of meat"
-// 				items_measures_p[display_name] = "slabs of meat"
-// 			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
-// 				display_name = "Turnovers"
-// 				items_measures[display_name] = "turnover"
-// 				items_measures_p[display_name] = "turnovers"
-// 			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/carpmeat))
-// 				items_measures[display_name] = "fillet of meat"
-// 				items_measures_p[display_name] = "fillets of meat"
-// 			items_counts[display_name]++
-// 		for (var/O in items_counts)
-// 			var/N = items_counts[O]
-// 			if (!(O in items_measures))
-// 				dat += {"<B>[capitalize(O)]:</B> [N] [lowertext(O)]\s<BR>"}
-// 			else
-// 				if (N==1)
-// 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures[O]]<BR>"}
-// 				else
-// 					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures_p[O]]<BR>"}
+/*	
+/obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
+	var/dat = ""
+	if(src.broken > 0)
+		dat = {"<TT>Bzzzzttttt</TT>"}
+	else if(src.operating)
+		dat = {"<TT>Microwaving in progress!<BR>Please wait...!</TT>"}
+	else if(src.dirty==100)
+		dat = {"<TT>This microwave is dirty!<BR>Please clean it before use!</TT>"}
+	else
+		var/list/items_counts = new
+		var/list/items_measures = new
+		var/list/items_measures_p = new
+		for (var/obj/O in ((contents - component_parts) - circuit))
+			var/display_name = O.name
+			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
+				items_measures[display_name] = "egg"
+				items_measures_p[display_name] = "eggs"
+			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/tofu))
+				items_measures[display_name] = "tofu chunk"
+				items_measures_p[display_name] = "tofu chunks"
+			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/meat)) //any meat
+				items_measures[display_name] = "slab of meat"
+				items_measures_p[display_name] = "slabs of meat"
+			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
+				display_name = "Turnovers"
+				items_measures[display_name] = "turnover"
+				items_measures_p[display_name] = "turnovers"
+			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/carpmeat))
+				items_measures[display_name] = "fillet of meat"
+				items_measures_p[display_name] = "fillets of meat"
+			items_counts[display_name]++
+		for (var/O in items_counts)
+			var/N = items_counts[O]
+			if (!(O in items_measures))
+				dat += {"<B>[capitalize(O)]:</B> [N] [lowertext(O)]\s<BR>"}
+			else
+				if (N==1)
+					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures[O]]<BR>"}
+				else
+					dat += {"<B>[capitalize(O)]:</B> [N] [items_measures_p[O]]<BR>"}
 
-// 		for (var/datum/reagent/R in reagents.reagent_list)
-// 			var/display_name = R.name
-// 			if (R.id == "capsaicin")
-// 				display_name = "Hotsauce"
-// 			if (R.id == "frostoil")
-// 				display_name = "Coldsauce"
-// 			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
+		for (var/datum/reagent/R in reagents.reagent_list)
+			var/display_name = R.name
+			if (R.id == "capsaicin")
+				display_name = "Hotsauce"
+			if (R.id == "frostoil")
+				display_name = "Coldsauce"
+			dat += {"<B>[display_name]:</B> [R.volume] unit\s<BR>"}
 
-// 		if (items_counts.len==0 && reagents.reagent_list.len==0)
-// 			dat = {"<B>The microwave is empty</B><BR>"}
-// 		else
-// 			dat = {"<b>Ingredients:</b><br>[dat]"}
-// 		dat += {"<HR><BR>\
-// <A href='?src=\ref[src];action=cook'>Turn on!<BR>\
-// <A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
-// "}
+		if (items_counts.len==0 && reagents.reagent_list.len==0)
+			dat = {"<B>The microwave is empty</B><BR>"}
+		else
+			dat = {"<b>Ingredients:</b><br>[dat]"}
+		dat += {"<HR><BR>\
+<A href='?src=\ref[src];action=cook'>Turn on!<BR>\
+<A href='?src=\ref[src];action=dispose'>Eject ingredients!<BR>\
+"}
 
-// 	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
-// 	onclose(user, "microwave")
-// 	return
+	user << browse("<HEAD><TITLE>Microwave Controls</TITLE></HEAD><TT>[dat]</TT>", "window=microwave")
+	onclose(user, "microwave")
+	return
+*/
 
 /***********************************
 *   Microwave Menu Handling/Cooking
@@ -422,8 +423,7 @@
 			valid = 1
 			sleep(2)
 
-	for(var/r in cooked_items)
-		var/atom/movable/R = r
+	for(var/atom/movable/R as anything in cooked_items)
 		R.forceMove(src) //Move everything from the buffer back to the container
 
 	QDEL_NULL(temp)//Delete buffer object
@@ -510,7 +510,7 @@
 	src.visible_message("<span class='warning'>The microwave gets covered in muck!</span>")
 	src.dirty = 100 // Make it dirty so it can't be used util cleaned
 	src.flags = null //So you can't add condiments
-	src.icon_state = "mwbloody" // Make it look dirty too
+	src.icon_state = "mwbloody0" // Make it look dirty too
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
@@ -586,7 +586,7 @@
 	item_level = 1
 
 /obj/machinery/microwave/advanced/Initialize()
-	..()
+	. = ..()
 	reagents.maximum_volume = 1000
 
 /datum/recipe/splat // We use this to handle cooking micros (or mice, etc) in a microwave. Janky but it works better than snowflake code to handle the same thing.

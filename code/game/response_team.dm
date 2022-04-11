@@ -24,12 +24,12 @@ var/silent_ert = 0
 	if(send_emergency_team)
 		to_chat(usr, "<span class='danger'>[using_map.boss_name] has already dispatched an emergency response team!</span>")
 		return
-	if(alert("Do you want to dispatch an Emergency Response Team?",,"Yes","No") != "Yes")
+	if(tgui_alert(usr, "Do you want to dispatch an Emergency Response Team?","ERT",list("Yes","No")) != "Yes")
 		return
-	if(alert("Do you want this Response Team to be announced?",,"Yes","No") != "Yes")
+	if(tgui_alert(usr, "Do you want this Response Team to be announced?","ERT",list("Yes","No")) != "Yes")
 		silent_ert = 1
 	if(get_security_level() != "red") // Allow admins to reconsider if the alert level isn't Red
-		switch(alert("The station is not in red alert. Do you still want to dispatch a response team?",,"Yes","No"))
+		switch(tgui_alert(usr, "The station is not in red alert. Do you still want to dispatch a response team?","ERT",list("Yes","No")))
 			if("No")
 				return
 	if(send_emergency_team)
@@ -37,10 +37,11 @@ var/silent_ert = 0
 		return
 
 	message_admins("[key_name_admin(usr)] is dispatching an Emergency Response Team.", 1)
+	admin_chat_message(message = "[key_name(usr)] is dispatching an Emergency Response Team", color = "#CC2222") //VOREStation Add
 	log_admin("[key_name(usr)] used Dispatch Response Team.")
 	trigger_armed_response_team(1)
 
-client/verb/JoinResponseTeam()
+/client/verb/JoinResponseTeam()
 
 	set name = "Join Response Team"
 	set category = "IC"
@@ -64,7 +65,7 @@ client/verb/JoinResponseTeam()
 		to_chat(usr, "You need to be an observer or new player to use this.")
 
 // returns a number of dead players in %
-proc/percentage_dead()
+/proc/percentage_dead()
 	var/total = 0
 	var/deadcount = 0
 	for(var/mob/living/carbon/human/H in mob_list)
@@ -76,7 +77,7 @@ proc/percentage_dead()
 	else return round(100 * deadcount / total)
 
 // counts the number of antagonists in %
-proc/percentage_antagonists()
+/proc/percentage_antagonists()
 	var/total = 0
 	var/antagonists = 0
 	for(var/mob/living/carbon/human/H in mob_list)
@@ -89,7 +90,7 @@ proc/percentage_antagonists()
 
 // Increments the ERT chance automatically, so that the later it is in the round,
 // the more likely an ERT is to be able to be called.
-proc/increment_ert_chance()
+/proc/increment_ert_chance()
 	while(send_emergency_team == 0) // There is no ERT at the time.
 		if(get_security_level() == "green")
 			ert_base_chance += 1
@@ -108,7 +109,7 @@ proc/increment_ert_chance()
 		sleep(600 * 3) // Minute * Number of Minutes
 
 
-proc/trigger_armed_response_team(var/force = 0)
+/proc/trigger_armed_response_team(var/force = 0)
 	if(!can_call_ert && !force)
 		return
 	if(send_emergency_team)

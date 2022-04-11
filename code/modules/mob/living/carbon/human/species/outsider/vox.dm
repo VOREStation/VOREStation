@@ -25,7 +25,8 @@
 	speech_sounds = list('sound/voice/shriek1.ogg')
 	speech_chance = 20
 
-	scream_verb = "shrieks"
+	scream_verb_1p = "shriek"
+	scream_verb_3p = "shrieks"
 	male_scream_sound = 'sound/voice/shriek1.ogg'
 	female_scream_sound = 'sound/voice/shriek1.ogg'
 	male_cough_sounds = list('sound/voice/shriekcough.ogg')
@@ -86,7 +87,11 @@
 		/datum/mob_descriptor/height = -1,
 		/datum/mob_descriptor/build = 1,
 		/datum/mob_descriptor/vox_markings = 0
-		)
+	)
+
+	default_emotes = list(
+		/decl/emote/audible/vox_shriek
+	)
 
 /datum/species/vox/get_random_name(var/gender)
 	var/datum/language/species_language = GLOB.all_languages[default_language]
@@ -105,3 +110,6 @@
 	H.internal = locate(/obj/item/weapon/tank) in H.contents
 	if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
 		H.internals.icon_state = "internal1"
+
+/datum/species/vox/get_perfect_belly_air_type()
+	return /datum/gas_mixture/belly_air/vox

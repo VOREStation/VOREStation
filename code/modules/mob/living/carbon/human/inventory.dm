@@ -16,13 +16,40 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(!I)
 			to_chat(H, "<span class='notice'>You are not holding anything to equip.</span>")
 			return
+		
+		var/moved = FALSE
+		
+		// Try an equipment slot
 		if(H.equip_to_appropriate_slot(I))
+			moved = TRUE
+		
+		// No? Try a storage item.
+		else if(H.equip_to_storage(I, TRUE))
+			moved = TRUE
+		
+		// No?! Well, give up.
+		if(!moved)
+			to_chat(H, "<span class='warning'>You are unable to equip that.</span>")
+
+		// Update hand icons
+		else
 			if(hand)
 				update_inv_l_hand(0)
 			else
 				update_inv_r_hand(0)
-		else
-			to_chat(H, "<font color='red'>You are unable to equip that.</font>")
+
+/mob/living/carbon/human/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
+	// Try put it in their belt first
+	if(istype(src.belt,/obj/item/weapon/storage))
+		var/obj/item/weapon/storage/wornbelt = src.belt
+		if(wornbelt.can_be_inserted(newitem, 1))
+			if(user_initiated)
+				wornbelt.handle_item_insertion(newitem)
+			else
+				newitem.forceMove(wornbelt)
+			return wornbelt
+
+	return ..()
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -146,7 +173,8 @@ This saves us from having to call add_fingerprint() any time something is put in
 			if(I.flags_inv & (BLOCKHAIR|BLOCKHEADHAIR))
 				update_hair(0)	//rebuild hair
 				update_inv_ears(0)
-		if(internal)
+		// If this is how the internals are connected, disable them
+		if(internal && !(head?.item_flags & AIRTIGHT))
 			if(internals)
 				internals.icon_state = "internal0"
 			internal = null
@@ -166,6 +194,7 @@ This saves us from having to call add_fingerprint() any time something is put in
 		s_store = null
 		update_inv_s_store()
 	else if (W == back)
+		worn_clothing -= back
 		back = null
 		update_inv_back()
 	else if (W == handcuffed)
@@ -272,11 +301,12 @@ This saves us from having to call add_fingerprint() any time something is put in
 		if(slot_glasses)
 			src.glasses = W
 			W.equipped(src, slot)
+			worn_clothing += glasses
 			update_inv_glasses()
 		if(slot_gloves)
 			src.gloves = W
 			W.equipped(src, slot)
-			worn_clothing += glasses
+			worn_clothing += gloves
 			update_inv_gloves()
 		if(slot_head)
 			src.head = W

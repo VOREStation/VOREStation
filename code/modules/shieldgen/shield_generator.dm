@@ -4,10 +4,10 @@
 /obj/machinery/power/shield_generator
 	name = "advanced shield generator"
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
-	icon = 'icons/obj/machines/shielding.dmi'
+	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "generator0"
 	circuit = /obj/item/weapon/circuitboard/shield_generator
-	density = 1
+	density = TRUE
 	var/datum/wires/shield_generator/wires = null
 	var/list/field_segments = list()    // List of all shield segments owned by this generator.
 	var/list/damaged_segments = list()  // List of shield segments that have failed and are currently regenerating.
@@ -105,7 +105,7 @@
 // Generates the field objects. Deletes existing field, if applicable.
 /obj/machinery/power/shield_generator/proc/regenerate_field()
 	for(var/obj/effect/shield/S in field_segments)
-		qdel(S)	
+		qdel(S)
 	var/list/shielded_turfs
 
 	if(check_flag(MODEFLAG_HULL))
@@ -458,7 +458,7 @@
 		if("begin_shutdown")
 			if(running < SHIELD_RUNNING) // Discharging or off
 				return
-			var/alert = alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", "Yes", "No")
+			var/alert = tgui_alert(usr, "Are you sure you wish to do this? It will drain the power inside the internal storage rapidly.", "Are you sure?", list("Yes", "No"))
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 				return
 			if(running < SHIELD_RUNNING)
@@ -485,7 +485,7 @@
 			if(!running)
 				return TRUE
 
-			var/choice = input(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.") in list("Yes", "No")
+			var/choice = tgui_alert(usr, "Are you sure that you want to initiate an emergency shield shutdown? This will instantly drop the shield, and may result in unstable release of stored electromagnetic energy. Proceed at your own risk.", "Confirmation", list("No", "Yes"))
 			if((choice != "Yes") || !running)
 				return TRUE
 
@@ -710,7 +710,7 @@
 		component_parts -= cap
 		qdel(cap)
 
-	component_parts += new /obj/item/weapon/stock_parts/capacitor/omni(src)
+	component_parts += new /obj/item/weapon/stock_parts/capacitor/hyper(src)
 	component_parts += new /obj/item/weapon/smes_coil/super_capacity(src)
 	RefreshParts()
 	current_energy = max_energy

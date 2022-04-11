@@ -144,7 +144,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 			var/maxx = xcrdStart
 
 			// Assemble the grid of keys
-			var/list/key_list = list()
+			var/list/list/key_list = list()
 			for(var/line in gridLines)
 				var/list/line_keys = list()
 				xcrd = 1
@@ -152,14 +152,13 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 					if(xcrd > world.maxx)
 						if(cropMap)
 							break
-						else
+						else if(!measureOnly)
 							world.maxx = xcrd
 
 					if(xcrd >= 1)
 						var/model_key = copytext(line, tpos, tpos + key_len)
 						line_keys[++line_keys.len] = model_key
 						#ifdef TESTING
-						else
 							++turfsSkipped
 						#endif
 						CHECK_TICK
@@ -170,7 +169,7 @@ GLOBAL_DATUM_INIT(_preloader, /dmm_suite/preloader, new)
 			if(orientation != 0)
 				var/num_cols = key_list[1].len
 				var/num_rows = key_list.len
-				var/list/new_key_list = list()
+				var/list/list/new_key_list = list()
 				// If it's rotated 180 degrees, the dimensions are the same
 				if(orientation == 180)
 					new_key_list.len = num_rows

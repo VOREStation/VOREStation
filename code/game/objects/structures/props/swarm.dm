@@ -23,7 +23,7 @@
 	return ..()
 
 /obj/structure/cult/pylon/swarm/Initialize()
-	..()
+	. = ..()
 	active_beams = list()
 
 /obj/structure/cult/pylon/swarm/Destroy()
@@ -39,7 +39,7 @@
 			STOP_PROCESSING(SSobj, src)
 			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
@@ -55,7 +55,7 @@
 			user.do_attack_animation(src)
 			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 		else
@@ -119,7 +119,7 @@
 			STOP_PROCESSING(SSobj, src)
 			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
@@ -135,7 +135,7 @@
 			user.do_attack_animation(src)
 			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 		else

@@ -3,8 +3,9 @@
 	desc = "A tray usually full of fluid for growing plants."
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "hydrotray3"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	flags = OPENCONTAINER
 	volume = 100
 
@@ -148,7 +149,7 @@
 	var/datum/ghosttrap/plant/G = get_ghost_trap("living plant")
 	if(!G.assess_candidate(user))
 		return
-	var/response = alert(user, "Are you sure you want to harvest this [seed.display_name]?", "Living plant request", "Yes", "No")
+	var/response = tgui_alert(user, "Are you sure you want to harvest this [seed.display_name]?", "Living plant request", list("Yes", "No"))
 	if(response == "Yes")
 		harvest()
 	return
@@ -175,9 +176,9 @@
 		return
 
 /obj/machinery/portable_atmospherics/hydroponics/Initialize()
-	. = ..()
-	if(!ov_lowhealth)
-		setup_overlays()
+	..()
+	if(!ov_lowhealth)	 //VOREStation Add
+		setup_overlays() //VOREStation Add
 	temp_chem_holder = new()
 	temp_chem_holder.create_reagents(10)
 	create_reagents(200)
@@ -204,6 +205,8 @@
 
 	qdel(S)
 
+	GLOB.seed_planted_shift_roundstat++
+
 	check_health()
 	update_icon()
 
@@ -213,18 +216,26 @@
 	if(seed && seed.get_trait(TRAIT_IMMUTABLE) > 0)
 		return
 
-	//Override for somatoray projectiles.
-	if(istype(Proj ,/obj/item/projectile/energy/floramut)&& prob(20))
-		if(istype(Proj, /obj/item/projectile/energy/floramut/gene))
-			var/obj/item/projectile/energy/floramut/gene/G = Proj
-			if(seed)
-				seed = seed.diverge_mutate_gene(G.gene, get_turf(loc))	//get_turf just in case it's not in a turf.
-		else
-			mutate(1)
+	// Override for somatoray projectiles.
+	// Change the mutchance var to buff or nerf somatorays, it will be multiplied by the tier of the laser.
+	var/mutchance = 15
+	if(istype(Proj ,/obj/item/projectile/energy/floramut))
+		var/obj/item/projectile/energy/floramut/GM = Proj
+		mutchance *= GM.lasermod
+		if(prob(mutchance))
+			if(istype(Proj, /obj/item/projectile/energy/floramut/gene))
+				var/obj/item/projectile/energy/floramut/gene/G = Proj
+				if(seed)
+					seed = seed.diverge_mutate_gene(G.gene, get_turf(loc))	//get_turf just in case it's not in a turf.
+			else
+				mutate(1)
+				return
+	else if(istype(Proj ,/obj/item/projectile/energy/florayield))
+		var/obj/item/projectile/energy/floramut/GY = Proj
+		mutchance *= GY.lasermod
+		if(prob(mutchance))
+			yield_mod = min(10,yield_mod+rand(1,2))
 			return
-	else if(istype(Proj ,/obj/item/projectile/energy/florayield) && prob(20))
-		yield_mod = min(10,yield_mod+rand(1,2))
-		return
 
 	..()
 
@@ -427,7 +438,7 @@
 	if(usr.incapacitated())
 		return
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		var/new_light = input("Specify a light level.") as null|anything in list(0,1,2,3,4,5,6,7,8,9,10)
+		var/new_light = tgui_input_list(usr, "Specify a light level.", "Light Level", list(0,1,2,3,4,5,6,7,8,9,10))
 		if(new_light)
 			tray_light = new_light
 			to_chat(usr, "You set the tray to a light level of [tray_light] lumens.")

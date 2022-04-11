@@ -10,7 +10,7 @@
 
 	var/list/smite_types = list(SMITE_SHADEKIN_ATTACK,SMITE_SHADEKIN_NOMF,SMITE_REDSPACE_ABDUCT,SMITE_AUTOSAVE,SMITE_AUTOSAVE_WIDE)
 
-	var/smite_choice = input("Select the type of SMITE for [target]","SMITE Type Choice") as null|anything in smite_types
+	var/smite_choice = tgui_input_list(usr, "Select the type of SMITE for [target]","SMITE Type Choice", smite_types)
 	if(!smite_choice)
 		return
 
@@ -34,7 +34,7 @@
 			if(!Ts)
 				return //Didn't find shadekin spawn turf
 
-			var/mob/living/simple_mob/shadekin/red/ai/shadekin = new(Ts)
+			var/mob/living/simple_mob/shadekin/red/shadekin = new(Ts)
 			//Abuse of shadekin
 			shadekin.real_name = shadekin.name
 			shadekin.init_vore()
@@ -70,14 +70,14 @@
 				"Orange Eyes (Light)" = /mob/living/simple_mob/shadekin/orange/white,
 				"Orange Eyes (Brown)" = /mob/living/simple_mob/shadekin/orange/brown,
 				"Rivyr (Unique)" = /mob/living/simple_mob/shadekin/blue/rivyr)
-			var/kin_type = input("Select the type of shadekin for [target] nomf","Shadekin Type Choice") as null|anything in kin_types
+			var/kin_type = tgui_input_list(usr, "Select the type of shadekin for [target] nomf","Shadekin Type Choice", kin_types)
 			if(!kin_type || !target)
 				return
 
 
 			kin_type = kin_types[kin_type]
 
-			var/myself = alert("Control the shadekin yourself or delete pred and prey after?","Control Shadekin?","Control","Cancel","Delete")
+			var/myself = tgui_alert(usr, "Control the shadekin yourself or delete pred and prey after?","Control Shadekin?",list("Control","Cancel","Delete"))
 			if(myself == "Cancel" || !target)
 				return
 
@@ -104,7 +104,7 @@
 			sleep(1 SECOND)
 			shadekin.dir = SOUTH
 			sleep(1 SECOND)
-			shadekin.audible_message("<b>[shadekin]</b> belches loudly!")
+			shadekin.audible_message("<b>[shadekin]</b> belches loudly!", runemessage = "URRRRRP")
 			sleep(2 SECONDS)
 			shadekin.phase_shift()
 			target.transforming = FALSE //Undo cheap hack

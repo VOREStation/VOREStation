@@ -6,6 +6,14 @@
 		else if (nutrition <= MAX_NUTRITION_TO_LOSE && stat != 2 && weight > MIN_MOB_WEIGHT && weight_loss)
 			weight -= species.metabolism*(0.01*weight_loss) // starvation weight loss
 
+/mob/living/carbon/human/proc/process_weaver_silk()
+	if(!species || !(species.is_weaver))
+		return
+
+	if(species.silk_reserve < species.silk_max_reserve && species.silk_production == TRUE && nutrition > 100)
+		species.silk_reserve = min(species.silk_reserve + 2, species.silk_max_reserve)
+		adjust_nutrition(-0.4)
+
 /mob/living/carbon/human/proc/handle_hud_list_vr()
 
 	//Right-side status hud updates with left side one.
@@ -30,14 +38,14 @@
 
 		for(var/obj/item/organ/external/E in organs)
 			for(var/obj/item/weapon/implant/I in E.implants)
-				if(I.implanted)
-					if(istype(I,/obj/item/weapon/implant/backup))
-						if(!mind)
-							holder.icon_state = "hud_backup_nomind"
-						else if(!(mind.name in SStranscore.body_scans))
-							holder.icon_state = "hud_backup_nobody"
-						else
-							holder.icon_state = "hud_backup_norm"
+				if(I.implanted && istype(I,/obj/item/weapon/implant/backup))
+					var/obj/item/weapon/implant/backup/B = I
+					if(!mind)
+						holder.icon_state = "hud_backup_nomind"
+					else if(!(mind.name in B.our_db.body_scans))
+						holder.icon_state = "hud_backup_nobody"
+					else
+						holder.icon_state = "hud_backup_norm"
 
 		apply_hud(BACKUP_HUD, holder)
 
@@ -60,13 +68,13 @@
 //Overriding carbon move proc that forces default hunger factor
 /mob/living/carbon/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	
+
 	// Technically this does mean being dragged takes nutrition
 	if(stat != DEAD)
 		adjust_nutrition(hunger_rate/-10)
 		if(m_intent == "run")
 			adjust_nutrition(hunger_rate/-10)
-	
+
 	// Moving around increases germ_level faster
 	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
 		germ_level++

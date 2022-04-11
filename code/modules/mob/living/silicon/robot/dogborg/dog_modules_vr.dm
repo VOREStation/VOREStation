@@ -47,6 +47,58 @@
 			w_class = ITEMSIZE_NORMAL
 		update_icon()
 
+// Baton chompers
+/obj/item/weapon/dogborg/jaws/ert
+	name = "ert jaws"
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "ertjaws"
+	desc = "Shockingly chompy!"
+	force = 15
+	throwforce = 0
+	hitsound = 'sound/weapons/bite.ogg'
+	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
+	w_class = ITEMSIZE_NORMAL
+	var/charge_cost = 15
+
+/obj/item/weapon/dogborg/jaws/ert/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+	if(isrobot(target))
+		return ..()
+
+	var/agony = 60 // Copied from stun batons
+	var/stun = 0 // ... same
+	
+	var/obj/item/organ/external/affecting = null
+	if(ishuman(target))
+		var/mob/living/carbon/human/H = target
+		affecting = H.get_organ(hit_zone)
+	
+	if(user.a_intent == I_HURT)
+		// Parent handles messages
+		. = ..()
+		//whacking someone causes a much poorer electrical contact than deliberately prodding them.
+		agony *= 0.5
+		stun *= 0.5
+	else
+		if(affecting)
+			target.visible_message("<span class='danger'>[target] has been zap-chomped in the [affecting.name] with [src] by [user]!</span>")
+		else
+			target.visible_message("<span class='danger'>[target] has been zap-chomped with [src] by [user]!</span>")
+		playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
+
+	// Try to use power
+	var/stunning = FALSE
+	if(isrobot(loc))
+		var/mob/living/silicon/robot/R = loc
+		if(R.cell?.use(charge_cost) == charge_cost)
+			stunning = TRUE
+	
+	if(stunning)
+		target.stun_effect_act(stun, agony, hit_zone, src)
+		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
+		if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			H.forcesay(hit_appends)
+
 //Boop //New and improved, now a simple reagent sniffer.
 /obj/item/device/dogborg/boop_module
 	name = "boop module"
@@ -269,7 +321,7 @@
 			playsound(src, 'sound/weapons/Egloves.ogg', 50, 1, -1)
 			R.cell.charge -= 666
 		else
-			user.visible_message("<span class='notice'>\the [user] affectionately licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionately lick all over \the [target]'s face!</span>")
+			user.visible_message("<span class='notice'>\The [user] affectionately licks all over \the [target]'s face!</span>", "<span class='notice'>You affectionately lick all over \the [target]'s face!</span>")
 			playsound(src, 'sound/effects/attackblob.ogg', 50, 1)
 			water.use_charge(5)
 			var/mob/living/carbon/human/H = target
@@ -314,7 +366,7 @@
 	name = "disabler"
 	desc = "A small and nonlethal gun produced by NT.."
 	icon = 'icons/mob/dogborg_vr.dmi'
-	icon_state = "projgun"
+	icon_state = "ertgunstun"
 	fire_sound = 'sound/weapons/eLuger.ogg'
 	projectile_type = /obj/item/projectile/beam/disable
 	charge_cost = 240 //Normal cost of a taser. It used to be 1000, but after some testing it was found that it would sap a borg's battery to quick
@@ -327,8 +379,8 @@
 	icon_state = "swordtail"
 	desc = "A glowing pink dagger normally attached to the end of a cyborg's tail. It appears to be extremely sharp."
 	force = 20 //Takes 5 hits to 100-0
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	throwforce = 0 //This shouldn't be thrown in the first place.
 	hitsound = 'sound/weapons/blade1.ogg'
 	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
@@ -398,7 +450,7 @@
 			choices += M
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to leap at?") as null|anything in choices
+	var/mob/living/T = tgui_input_list(src,"Who do you wish to leap at?","Target Choice", choices)
 
 	if(!T || !src || src.stat) return
 
@@ -439,3 +491,27 @@
 	T.apply_damage(20, HALLOSS,, armor_block, armor_soak)
 	if(prob(75)) //75% chance to stun for 5 seconds, really only going to be 4 bcus click cooldown+animation.
 		T.apply_effect(5, WEAKEN, armor_block)
+
+
+/mob/living/silicon/robot/proc/reskin_booze()
+	set name = "Change Drink Color"
+	set category = "Robot Commands"
+	set desc = "Choose the color of drink displayed inside you."
+
+	var/mob/M = usr
+	var/list/options = list()
+	options["Beer"] = "Beer Buddy"
+	options["Curacao"] = "Brilliant Blue"
+	options["Coffee"] = "Caffine Dispenser"
+	options["Space Mountain Wind"] = "Gamer Juice Maker"
+	options["Whiskey Soda"] = "Liqour Licker"
+	options["Grape Soda"] = "The Grapist"
+	options["Demon's Blood"] = "Vampire's Aid"
+	var/choice = tgui_input_list(M, "Choose your drink!", "Drink Choice", options)
+	if(src && choice && !M.stat && in_range(M,src))
+		icontype = options[choice]
+		var/active_sound = 'sound/effects/bubbles.ogg'
+		playsound(src.loc, "[active_sound]", 100, 0, 4)
+		M << "Your Tank now displays [choice]. Drink up and enjoy!"
+		updateicon()
+		return 1

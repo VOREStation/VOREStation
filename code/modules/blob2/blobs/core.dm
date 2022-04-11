@@ -119,14 +119,14 @@ var/list/blob_cores = list()
 	return ..()
 
 /obj/structure/blob/core/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	color = null
 	var/mutable_appearance/blob_overlay = mutable_appearance('icons/mob/blob.dmi', "blob")
 	if(overmind)
 		blob_overlay.color = overmind.blob_type.color
 		name = "[overmind.blob_type.name] [base_name]"
-	overlays += blob_overlay
-	overlays += mutable_appearance('icons/mob/blob.dmi', "blob_core_overlay")
+	add_overlay(blob_overlay)
+	add_overlay("blob_core_overlay")
 
 /obj/structure/blob/core/process()
 	set waitfor = FALSE
@@ -197,8 +197,7 @@ var/list/blob_cores = list()
 	if(!difficulty_threshold)
 		return
 	var/list/valid_types = list()
-	for(var/thing in subtypesof(/datum/blob_type))
-		var/datum/blob_type/BT = thing
+	for(var/datum/blob_type/BT as anything in subtypesof(/datum/blob_type))
 		if(initial(BT.difficulty) > difficulty_threshold) // Too hard.
 			continue
 		if(initial(BT.difficulty) < difficulty_floor) // Too easy.

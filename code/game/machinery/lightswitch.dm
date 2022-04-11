@@ -7,10 +7,12 @@
 	icon = 'icons/obj/power_vr.dmi' // VOREStation Edit
 	icon_state = "light1"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1.0
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	power_channel = LIGHT
+	blocks_emissive = FALSE
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/on = 1
 	var/area/area = null
 	var/otherarea = null
@@ -36,19 +38,18 @@
 	return ..()
 
 /obj/machinery/light_switch/proc/updateicon()
-	if(!overlay)
-		overlay = image(icon, "light1-overlay")
-		overlay.plane = PLANE_LIGHTING_ABOVE
-
-	overlays.Cut()
+	cut_overlays()
 	if(stat & NOPOWER)
 		icon_state = "light-p"
 		set_light(0)
 	else
 		icon_state = "light[on]"
-		overlay.icon_state = "light[on]-overlay"
-		overlays += overlay
 		set_light(2, 0.1, on ? "#82FF4C" : "#F86060")
+		. = list()
+		. += emissive_appearance(icon, "light[on]-overlay")
+	
+	return add_overlay(.)
+		
 
 /obj/machinery/light_switch/examine(mob/user)
 	. = ..()
@@ -68,6 +69,7 @@
 		L.updateicon()
 
 	area.power_change()
+	GLOB.lights_switched_on_roundstat++
 
 /obj/machinery/light_switch/power_change()
 

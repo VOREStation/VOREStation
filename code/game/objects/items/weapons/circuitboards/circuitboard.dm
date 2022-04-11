@@ -9,13 +9,14 @@
 	icon = 'icons/obj/module.dmi'
 	icon_state = "id_mod"
 	origin_tech = list(TECH_DATA = 2)
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	w_class = ITEMSIZE_SMALL
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 3
 	throw_range = 15
+	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/build_path = null
 	var/board_type = new /datum/frame/frame_types/computer
 	var/list/req_components = null

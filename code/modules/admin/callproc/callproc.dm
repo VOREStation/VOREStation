@@ -10,7 +10,7 @@
 	var/targetselected = 0
 	var/returnval = null
 
-	switch(alert("Proc owned by something?",,"Yes","No"))
+	switch(tgui_alert(usr, "Proc owned by something?","Call Proc",list("Yes","No")))
 		if("Yes")
 			targetselected = 1
 			var/list/value = vv_get_value(default_class = VV_ATOM_REFERENCE, classes = list(VV_ATOM_REFERENCE, VV_DATUM_REFERENCE, VV_MOB_REFERENCE, VV_CLIENT))
@@ -21,7 +21,7 @@
 			target = null
 			targetselected = 0
 
-	var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
+	var/procname = input(usr, "Proc path, eg: /proc/fake_blood","Path:", null) as text|null
 	if(!procname)
 		return
 
@@ -136,7 +136,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/procname = input("Proc name, eg: fake_blood","Proc:", null) as text|null
+	var/procname = input(usr, "Proc name, eg: fake_blood","Proc:", null) as text|null
 	if(!procname)
 		return
 	if(!hascall(A,procname))
@@ -161,7 +161,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		to_chat(usr, .)
 
 /client/proc/get_callproc_args()
-	var/argnum = input("Number of arguments","Number:",0) as num|null
+	var/argnum = input(usr, "Number of arguments","Number:",0) as num|null
 	if(isnull(argnum))
 		return null					//Cancel
 
@@ -169,7 +169,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	//var/list/named_args = list()			//Named arguments are removed, due to them making proccalling take too long.
 	while(argnum--)
 		/*						//Named arguments are removed, due to them making proccalling take too long.
-		var/named_arg = input("Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument") as text|null
+		var/named_arg = input(usr,"Leave blank for positional argument. Positional arguments will be considered as if they were added first.", "Named argument") as text|null
 		if(isnull(named_arg))
 			return null				//Cancel
 		*/

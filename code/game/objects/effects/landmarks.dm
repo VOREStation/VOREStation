@@ -2,9 +2,9 @@
 	name = "landmark"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x2"
-	anchored = 1.0
-	unacidable = 1
-	simulated = 0
+	anchored = TRUE
+	unacidable = TRUE
+	simulated = FALSE
 	invisibility = 100
 	var/delete_me = 0
 
@@ -24,11 +24,12 @@
 			return
 		if("JoinLate") // Bit difference, since we need the spawn point to move.
 			latejoin += src
-			simulated = 1
+			simulated = TRUE
 		//	delete_me = 1
 			return
 		if("JoinLateGateway")
 			latejoin_gateway += loc
+			latejoin += src				//VOREStation Addition
 			delete_me = 1
 			return
 		if("JoinLateElevator")
@@ -77,6 +78,12 @@
 			endgame_exits += loc
 			delete_me = 1
 			return
+		//VOREStation Add Start
+		if("vinestart")
+			vinestart += loc
+			delete_me = 1
+			return
+		//VORE Station Add End
 
 	landmarks_list += src
 	return 1
@@ -99,7 +106,7 @@
 	name = "start"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/landmark/start/New()
 	..()
@@ -108,17 +115,37 @@
 
 	return 1
 
+/obj/effect/landmark/forbidden_level
+	delete_me = 1
+/obj/effect/landmark/forbidden_level/Initialize()
+	. = ..()
+	if(using_map)
+		using_map.secret_levels |= z
+	else
+		log_error("[type] mapped in but no using_map")
+
+/obj/effect/landmark/hidden_level
+	delete_me = 1
+/obj/effect/landmark/hidden_level/Initialize()
+	. = ..()
+	if(using_map)
+		using_map.hidden_levels |= z
+	else
+		log_error("[type] mapped in but no using_map")
+
+
 /obj/effect/landmark/virtual_reality
 	name = "virtual_reality"
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "x"
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/landmark/virtual_reality/New()
 	..()
 	tag = "virtual_reality*[name]"
 	invisibility = 101
 	return 1
+
 
 //Costume spawner landmarks
 /obj/effect/landmark/costume/New() //costume spawner, selects a random subclass and disappears
@@ -141,14 +168,14 @@
 	qdel(src)
 
 /obj/effect/landmark/costume/madscientist/New()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
+	new /obj/item/clothing/under/suit_jacket/green(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/suit/storage/toggle/labcoat/mad(src.loc)
 	new /obj/item/clothing/glasses/gglasses(src.loc)
 	delete_me = 1
 
 /obj/effect/landmark/costume/elpresidente/New()
-	new /obj/item/clothing/under/gimmick/rank/captain/suit(src.loc)
+	new /obj/item/clothing/under/suit_jacket/green(src.loc)
 	new /obj/item/clothing/head/flatcap(src.loc)
 	new /obj/item/clothing/mask/smokable/cigarette/cigar/havana(src.loc)
 	new /obj/item/clothing/shoes/boots/jackboots(src.loc)

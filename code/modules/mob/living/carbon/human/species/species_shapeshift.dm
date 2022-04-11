@@ -111,13 +111,13 @@ var/list/wrapped_species_by_ref = list()
 
 	visible_message("<span class='notice'>\The [src]'s form contorts subtly.</span>")
 	if(valid_hairstyles.len)
-		var/new_hair = input("Select a hairstyle.", "Shapeshifter Hair") as null|anything in valid_hairstyles
+		var/new_hair = tgui_input_list(usr, "Select a hairstyle.", "Shapeshifter Hair", valid_hairstyles)
 		change_hair(new_hair ? new_hair : "Bald")
 	if(valid_gradstyles.len)
-		var/new_hair = input("Select a hair gradient style.", "Shapeshifter Hair") as null|anything in valid_gradstyles
+		var/new_hair = tgui_input_list(usr, "Select a hair gradient style.", "Shapeshifter Hair", valid_gradstyles)
 		change_hair_gradient(new_hair ? new_hair : "None")
 	if(valid_facialhairstyles.len)
-		var/new_hair = input("Select a facial hair style.", "Shapeshifter Hair") as null|anything in valid_facialhairstyles
+		var/new_hair = tgui_input_list(usr, "Select a facial hair style.", "Shapeshifter Hair", valid_facialhairstyles)
 		change_facial_hair(new_hair ? new_hair : "Shaved")
 
 /mob/living/carbon/human/proc/shapeshifter_select_gender()
@@ -130,11 +130,11 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_gender = input("Please select a gender.", "Shapeshifter Gender") as null|anything in list(FEMALE, MALE, NEUTER, PLURAL)
+	var/new_gender = tgui_input_list(usr, "Please select a gender.", "Shapeshifter Gender", list(FEMALE, MALE, NEUTER, PLURAL))
 	if(!new_gender)
 		return
 
-	var/new_gender_identity = input("Please select a gender Identity.", "Shapeshifter Gender Identity") as null|anything in list(FEMALE, MALE, NEUTER, PLURAL, HERM) //VOREStation Edit
+	var/new_gender_identity = tgui_input_list(usr, "Please select a gender Identity.", "Shapeshifter Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM)) //VOREStation Edit
 	if(!new_gender_identity)
 		return
 
@@ -153,7 +153,7 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 50
 
 	var/new_species = null
-	new_species = input("Please select a species to emulate.", "Shapeshifter Body") as null|anything in species.get_valid_shapeshifter_forms(src)
+	new_species = tgui_input_list(usr, "Please select a species to emulate.", "Shapeshifter Body", species.get_valid_shapeshifter_forms(src))
 
 	if(!new_species || !GLOB.all_species[new_species] || wrapped_species_by_ref["\ref[src]"] == new_species)
 		return
@@ -164,7 +164,7 @@ var/list/wrapped_species_by_ref = list()
 		return
 
 	wrapped_species_by_ref["\ref[src]"] = new_species
-	visible_message("<span class='notice'>\The [src] shifts and contorts, taking the form of \a [new_species]!</span>")
+	visible_message("<b>\The [src]</b> shifts and contorts, taking the form of \a [new_species]!")
 	regenerate_icons()
 
 /mob/living/carbon/human/proc/shapeshifter_select_colour()
@@ -177,8 +177,7 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/current = RGBdec2hex(list(r_skin, g_skin, b_skin))
-	var/new_skin = input("Please select a new body color.", "Shapeshifter Colour", current) as null|color
+	var/new_skin = input(usr, "Please select a new body color.", "Shapeshifter Colour", rgb(r_skin, g_skin, b_skin)) as null|color
 	if(!new_skin)
 		return
 	shapeshifter_set_colour(new_skin)
@@ -216,15 +215,15 @@ var/list/wrapped_species_by_ref = list()
 
 	last_special = world.time + 50
 
-	var/new_hair = input("Please select a new hair color.", "Hair Colour") as color
+	var/new_hair = input(usr, "Please select a new hair color.", "Hair Colour") as color
 	if(!new_hair)
 		return
 	shapeshifter_set_hair_color(new_hair)
-	var/new_grad = input("Please select a new hair gradient color.", "Hair Gradient Colour") as color
+	var/new_grad = input(usr, "Please select a new hair gradient color.", "Hair Gradient Colour") as color
 	if(!new_grad)
 		return
 	shapeshifter_set_grad_color(new_grad)
-	var/new_fhair = input("Please select a new facial hair color.", "Facial Hair Color") as color
+	var/new_fhair = input(usr, "Please select a new facial hair color.", "Facial Hair Color") as color
 	if(!new_fhair)
 		return
 	shapeshifter_set_facial_color(new_fhair)
@@ -316,7 +315,7 @@ var/list/wrapped_species_by_ref = list()
 	last_special = world.time + 50
 
 	var/current_color = rgb(r_eyes,g_eyes,b_eyes)
-	var/new_eyes = input("Pick a new color for your eyes.","Eye Color", current_color) as null|color
+	var/new_eyes = input(usr, "Pick a new color for your eyes.","Eye Color", current_color) as null|color
 	if(!new_eyes)
 		return
 	

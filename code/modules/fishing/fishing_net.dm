@@ -14,7 +14,7 @@
 	w_class = ITEMSIZE_SMALL
 	flags = NOBLUDGEON
 
-	slowdown = 0.25
+	slowdown = 0.5
 
 	reach = 2
 
@@ -23,7 +23,7 @@
 	var/list/accepted_mobs = list(/mob/living/simple_mob/animal/passive/fish)
 
 /obj/item/weapon/material/fishing_net/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/material/fishing_net/afterattack(var/atom/A, var/mob/user, var/proximity)
@@ -78,7 +78,7 @@
 
 /obj/item/weapon/material/fishing_net/update_icon() // Also updates name and desc
 	underlays.Cut()
-	overlays.Cut()
+	cut_overlays()
 
 	..()
 

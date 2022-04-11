@@ -24,6 +24,22 @@
 		/obj/item/mecha_parts/component/electrical
 		)
 
+	icon_scale_x = 1.2
+	icon_scale_y = 1.2
+
+/obj/mecha/working/ripley/Move()
+	. = ..()
+	if(.)
+		collect_ore()
+
+/obj/mecha/working/ripley/proc/collect_ore()
+	if(locate(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp) in equipment)
+		var/obj/structure/ore_box/ore_box = locate(/obj/structure/ore_box) in cargo
+		if(ore_box)
+			for(var/obj/item/weapon/ore/ore in range(1, src))
+				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
+					ore.forceMove(ore_box)
+
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)
 		A.loc = loc
@@ -67,7 +83,7 @@
 	max_special_equip = 1
 
 /obj/mecha/working/ripley/deathripley/Initialize()
-	..()
+	. = ..()
 	var/obj/item/mecha_parts/mecha_equipment/ME = new /obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp/safety
 	ME.attach(src)
 	return
@@ -77,7 +93,7 @@
 	name = "APLU \"Miner\""
 
 /obj/mecha/working/ripley/mining/Initialize()
-	..()
+	. = ..()
 	//Attach drill
 	if(prob(25)) //Possible diamond drill... Feeling lucky?
 		var/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill/D = new /obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill
@@ -92,6 +108,20 @@
 	for(var/obj/item/mecha_parts/mecha_tracking/B in src.contents)//Deletes the beacon so it can't be found easily
 		qdel (B)
 
+/obj/mecha/working/ripley/antique
+	name = "APLU \"Geiger\""
+	desc = "You can't beat the classics."
+	icon_state = "ripley-old"
+	initial_icon = "ripley-old"
+
+	show_pilot = TRUE
+	pilot_lift = 5
+
+	max_utility_equip = 1
+	max_universal_equip = 3
+
+	icon_scale_x = 1
+	icon_scale_y = 1
 
 //Vorestation Edit Start
 

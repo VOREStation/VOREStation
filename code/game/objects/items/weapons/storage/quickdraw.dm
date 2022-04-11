@@ -93,7 +93,16 @@
 	desc = "A small case for safely carrying sharps around. This one is deluxe!"
 	max_w_class = ITEMSIZE_SMALL
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+	)
+
+/obj/item/weapon/storage/quickdraw/syringe_case/clonemed
+	desc = "A small case for safely carrying sharps around. This one is deluxe!"
+	max_w_class = ITEMSIZE_SMALL
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed
 	)

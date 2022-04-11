@@ -33,7 +33,7 @@
 	appearance = thing_to_copy.appearance
 	copying = thing_to_copy
 	density = thing_to_copy.density // So you can't bump into objects that aren't supposed to be dense.
-	catalogue_data = thing_to_copy.catalogue_data.Copy()
+	catalogue_data = thing_to_copy.get_catalogue_data()
 	catalogue_delay = thing_to_copy.catalogue_delay
 	return TRUE
 

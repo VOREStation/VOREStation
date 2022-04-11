@@ -71,7 +71,7 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/action = input("Select required action: ") in list("Reset", "Add X-Ray", "Add Motion Sensor", "Add EMP Shielding")
+	var/action = tgui_input_list(user, "Select required action:", "Hack Camera", list("Reset", "Add X-Ray", "Add Motion Sensor", "Add EMP Shielding"))
 	if(!action || !target)
 		return
 

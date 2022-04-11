@@ -9,12 +9,12 @@
  */
 
 
-obj/structure/windoor_assembly
+/obj/structure/windoor_assembly
 	name = "windoor assembly"
 	icon = 'icons/obj/doors/windoor.dmi'
 	icon_state = "l_windoor_assembly01"
-	anchored = 0
-	density = 0
+	anchored = FALSE
+	density = FALSE
 	dir = NORTH
 	w_class = ITEMSIZE_NORMAL
 
@@ -27,16 +27,16 @@ obj/structure/windoor_assembly
 	var/state = "01"	//How far the door assembly has progressed in terms of sprites
 	var/step = null		//How far the door assembly has progressed in terms of steps
 
-obj/structure/windoor_assembly/secure
+/obj/structure/windoor_assembly/secure
 	name = "secure windoor assembly"
 	secure = "secure_"
 	icon_state = "l_secure_windoor_assembly01"
 
-obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
+/obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 	..()
 	if(constructed)
 		state = "01"
-		anchored = 0
+		anchored = FALSE
 	switch(start_dir)
 		if(NORTH, SOUTH, EAST, WEST)
 			set_dir(start_dir)
@@ -46,8 +46,8 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 
 	update_nearby_tiles(need_rebuild=1)
 
-obj/structure/windoor_assembly/Destroy()
-	density = 0
+/obj/structure/windoor_assembly/Destroy()
+	density = FALSE
 	update_nearby_tiles()
 	..()
 
@@ -57,17 +57,17 @@ obj/structure/windoor_assembly/Destroy()
 /obj/structure/windoor_assembly/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
 		return TRUE
-	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
 		return !density
 	return TRUE
 
-/obj/structure/windoor_assembly/CheckExit(atom/movable/mover as mob|obj, turf/target as turf)
+/obj/structure/windoor_assembly/Uncross(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
-	if(get_dir(loc, target) == dir)
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
 		return !density
 	else
-		return 1
+		return TRUE
 
 /obj/structure/windoor_assembly/proc/rename_door(mob/living/user)
 	var/t = sanitizeSafe(input(user, "Enter the name for the windoor.", src.name, src.created_name), MAX_NAME_LEN)
@@ -113,7 +113,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've secured the windoor assembly!</span>")
-					src.anchored = 1
+					src.anchored = TRUE
 					step = 0
 
 			//Unwrenching an unsecure assembly un-anchors it. Step 4 undone
@@ -124,7 +124,7 @@ obj/structure/windoor_assembly/Destroy()
 				if(do_after(user, 40 * W.toolspeed))
 					if(!src) return
 					to_chat(user,"<span class='notice'>You've unsecured the windoor assembly!</span>")
-					src.anchored = 0
+					src.anchored = FALSE
 					step = null
 
 			//Adding cable to the assembly. Step 5 complete.
@@ -200,7 +200,7 @@ obj/structure/windoor_assembly/Destroy()
 
 					if(!src) return
 
-					density = 1 //Shouldn't matter but just incase
+					density = TRUE //Shouldn't matter but just incase
 					to_chat(user,"<span class='notice'>You finish the windoor!</span>")
 
 					if(secure)
@@ -212,7 +212,7 @@ obj/structure/windoor_assembly/Destroy()
 							windoor.icon_state = "rightsecureopen"
 							windoor.base_state = "rightsecure"
 						windoor.set_dir(src.dir)
-						windoor.density = 0
+						windoor.density = FALSE
 						if(created_name)
 							windoor.name = created_name
 						spawn(0)
@@ -234,7 +234,7 @@ obj/structure/windoor_assembly/Destroy()
 							windoor.icon_state = "rightopen"
 							windoor.base_state = "right"
 						windoor.set_dir(src.dir)
-						windoor.density = 0
+						windoor.density = FALSE
 						if(created_name)
 							windoor.name = created_name
 						spawn(0)

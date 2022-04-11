@@ -52,7 +52,7 @@
 	return say(message)
 
 /mob/living/proc/IIsAlly(mob/living/L)
-	return src.faction == L.faction
+	return istype(L) && src.faction == L.faction
 
 /mob/living/simple_mob/IIsAlly(mob/living/L)
 	. = ..()

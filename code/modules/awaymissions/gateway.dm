@@ -3,15 +3,16 @@
 	desc = "A mysterious gateway built by unknown hands.  It allows for faster than light travel to far-flung locations and even alternate realities."  //VOREStation Edit
 	icon = 'icons/obj/machines/gateway.dmi'
 	icon_state = "off"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	var/active = 0
 
 
 /obj/machinery/gateway/Initialize()
 	update_icon()
 	if(dir == SOUTH)
-		density = 0
+		density = FALSE
 	. = ..()
 
 /obj/machinery/gateway/update_icon()
@@ -23,8 +24,9 @@
 
 
 //this is da important part wot makes things go
+GLOBAL_DATUM(gateway_station, /obj/machinery/gateway/centerstation)
 /obj/machinery/gateway/centerstation
-	density = 1
+	density = TRUE
 	icon_state = "offcenter"
 	use_power = USE_POWER_IDLE
 
@@ -35,11 +37,28 @@
 	var/obj/machinery/gateway/centeraway/awaygate = null
 
 /obj/machinery/gateway/centerstation/Initialize()
+	if(GLOB.gateway_station)
+		warning("[src] at [x],[y],[z] appears to be an additional station-gateway")
+	else
+		GLOB.gateway_station = src
+
 	update_icon()
 	wait = world.time + config.gateway_delay	//+ thirty minutes default
-	awaygate = locate(/obj/machinery/gateway/centeraway)
+	
+	if(GLOB.gateway_away)
+		awaygate = GLOB.gateway_away
+	else
+		awaygate = locate(/obj/machinery/gateway/centeraway)
+	
 	. = ..()
-	density = 1 //VOREStation Add
+	density = TRUE //VOREStation Add
+
+/obj/machinery/gateway/centerstation/Destroy()
+	if(awaygate?.stationgate == src)
+		awaygate.stationgate = null
+	if(GLOB.gateway_station == src)
+		GLOB.gateway_station = null
+	return ..()
 
 /obj/machinery/gateway/centerstation/update_icon()
 	if(active)
@@ -48,10 +67,10 @@
 	icon_state = "offcenter"
 /* VOREStation Removal - Doesn't do anything
 /obj/machinery/gateway/centerstation/New()
-	density = 1
+	density = TRUE
 */ //VOREStation Removal End
 
-obj/machinery/gateway/centerstation/process()
+/obj/machinery/gateway/centerstation/process()
 	if(stat & (NOPOWER))
 		if(active) toggleoff()
 		return
@@ -133,21 +152,33 @@ obj/machinery/gateway/centerstation/process()
 		M.set_dir(SOUTH)
 		return
 	else
-		//VOREStation Addition Start: Prevent taurriding abuse
+		//VOREStation Addition Start: Prevent abuse
+		if(istype(M, /obj/item/device/uav))
+			var/obj/item/device/uav/L = M
+			L.power_down()
 		if(istype(M, /mob/living))
 			var/mob/living/L = M
 			if(LAZYLEN(L.buckled_mobs))
 				var/datum/riding/R = L.riding_datum
 				for(var/rider in L.buckled_mobs)
 					R.force_dismount(rider)
-		//VOREStation Addition End: Prevent taurriding abuse
+		//VOREStation Addition End: Prevent abuse
 		var/obj/effect/landmark/dest = pick(awaydestinations)
 		if(dest)
 			M.forceMove(dest.loc)
 			M.set_dir(SOUTH)
+			//VOREStation Addition Start: Mcguffin time!			
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(H.client)
+					awaygate.entrydetect()
+			//VOREStation Addition End: Mcguffin time!
+
 			//VOREStation Addition Start: Abduction!
 			if(istype(M, /mob/living) && dest.abductor)
 				var/mob/living/L = M
+				if(L.nutrition > 500) 
+					L.nutrition = 500 //If the aim is to negate people overpreparing, then they shouldn't be able to stuff themselves full of food either.
 				//Situations to get the mob out of
 				if(L.buckled)
 					L.buckled.unbuckle_mob()
@@ -194,8 +225,11 @@ obj/machinery/gateway/centerstation/process()
 
 /obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
-		if(!awaygate)
-			awaygate = locate(/obj/machinery/gateway/centeraway)
+		if(!awaygate)	
+			if(GLOB.gateway_away)
+				awaygate = GLOB.gateway_away
+			else
+				awaygate = locate(/obj/machinery/gateway/centeraway)
 			if(!awaygate) // We still can't find the damn thing because there is no destination.
 				to_chat(user, "<span class='notice'>Error: Programming failed. No destination found.</span>")
 				return
@@ -205,34 +239,46 @@ obj/machinery/gateway/centerstation/process()
 			return
 
 /////////////////////////////////////Away////////////////////////
-
-
+GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 /obj/machinery/gateway/centeraway
-	density = 1
+	density = TRUE
 	icon_state = "offcenter"
 	use_power = USE_POWER_OFF
 	var/calibrated = 1
 	var/list/linked = list()	//a list of the connected gateway chunks
 	var/ready = 0
-	var/obj/machinery/gateway/centeraway/stationgate = null
+	var/obj/machinery/gateway/centerstation/stationgate = null
 
+/obj/machinery/gateway/centeraway/New()
+	density = TRUE
 
 /obj/machinery/gateway/centeraway/Initialize()
+	if(GLOB.gateway_away)
+		warning("[src] at [x],[y],[z] appears to be an additional away-gateway")
+	else
+		GLOB.gateway_away = src
+	
 	update_icon()
-	stationgate = locate(/obj/machinery/gateway/centerstation)
+	
+	if(GLOB.gateway_station)
+		stationgate = GLOB.gateway_station
+	else
+		stationgate = locate(/obj/machinery/gateway/centerstation)
 	. = ..()
-	density = 1 //VOREStation Add
+	density = TRUE //VOREStation Add
 
+/obj/machinery/gateway/centeraway/Destroy()
+	if(stationgate?.awaygate == src)
+		stationgate.awaygate = null
+	if(GLOB.gateway_away == src)
+		GLOB.gateway_away = null
+	return ..()
 
 /obj/machinery/gateway/centeraway/update_icon()
 	if(active)
 		icon_state = "oncenter"
 		return
 	icon_state = "offcenter"
-
-/obj/machinery/gateway/centeraway/New()
-	density = 1
-
 
 /obj/machinery/gateway/centeraway/proc/detect()
 	linked = list()	//clear the list
@@ -307,7 +353,10 @@ obj/machinery/gateway/centerstation/process()
 			return
 		else
 			// VOREStation Add
-			stationgate = locate(/obj/machinery/gateway/centerstation)
+			if(GLOB.gateway_station)
+				stationgate = GLOB.gateway_station
+			else
+				stationgate = locate(/obj/machinery/gateway/centerstation)
 			if(!stationgate)
 				to_chat(user, "<span class='notice'>Error: Recalibration failed. No destination found... That can't be good.</span>")
 				return

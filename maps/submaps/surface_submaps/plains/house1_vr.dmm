@@ -13,7 +13,7 @@
 /turf/template_noop,
 /area/submap/house1)
 "ad" = (
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/house1)
 "ae" = (
 /obj/structure/railing{
@@ -25,32 +25,32 @@
 /obj/structure/railing{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/house1)
 "ag" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/house1)
 "ah" = (
 /obj/structure/table/bench/wooden,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/house1)
 "ai" = (
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/house1)
 "aj" = (
 /obj/structure/target_stake,
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/house1)
 "ak" = (
 /obj/item/target,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/house1)
 "al" = (
 /obj/item/target/syndicate,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/house1)
 "am" = (
 /turf/simulated/wall/wood,
@@ -131,15 +131,13 @@
 /area/submap/house1)
 "aB" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
 /obj/structure/mirror{
 	dir = 4;
-	pixel_x = -28;
-	pixel_y = 0
+	pixel_x = -28
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/submap/house1)
@@ -168,8 +166,7 @@
 /area/submap/house1)
 "aI" = (
 /obj/structure/window/reinforced/tinted{
-	dir = 8;
-	icon_state = "twindow"
+	dir = 8
 	},
 /obj/machinery/shower{
 	dir = 1
@@ -271,11 +268,11 @@
 /area/submap/house1)
 "bc" = (
 /obj/structure/loot_pile/maint/trash,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/house1)
 "bd" = (
 /obj/structure/loot_pile/maint/junk,
-/turf/simulated/floor/outdoors/grass/sif,
+/turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/submap/house1)
 "be" = (
 /obj/structure/sign/kiddieplaque{

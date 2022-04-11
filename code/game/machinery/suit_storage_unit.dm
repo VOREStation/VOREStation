@@ -7,15 +7,15 @@
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	var/mob/living/carbon/human/OCCUPANT = null
 	var/obj/item/clothing/suit/space/SUIT = null
-	var/SUIT_TYPE = null
+	var/suit_type = null
 	var/obj/item/clothing/head/helmet/space/HELMET = null
-	var/HELMET_TYPE = null
+	var/helmet_type = null
 	var/obj/item/clothing/mask/MASK = null  //All the stuff that's gonna be stored insiiiiiiiiiiiiiiiiiiide, nyoro~n
-	var/MASK_TYPE = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
+	var/mask_type = null //Erro's idea on standarising SSUs whle keeping creation of other SSU types easy: Make a child SSU, name it something then set the TYPE vars to your desired suit output. New() should take it from there by itself.
 	var/isopen = 0
 	var/islocked = 0
 	var/isUV = 0
@@ -29,18 +29,19 @@
 //The units themselves/////////////////
 
 /obj/machinery/suit_storage_unit/standard_unit
-	SUIT_TYPE = /obj/item/clothing/suit/space
-	HELMET_TYPE = /obj/item/clothing/head/helmet/space
-	MASK_TYPE = /obj/item/clothing/mask/breath
+	suit_type = /obj/item/clothing/suit/space
+	helmet_type = /obj/item/clothing/head/helmet/space
+	mask_type = /obj/item/clothing/mask/breath
 
-/obj/machinery/suit_storage_unit/New()
+/obj/machinery/suit_storage_unit/Initialize()
+	. = ..()
+	if(suit_type)
+		SUIT = new suit_type(src)
+	if(helmet_type)
+		HELMET = new helmet_type(src)
+	if(mask_type)
+		MASK = new mask_type(src)
 	update_icon()
-	if(SUIT_TYPE)
-		SUIT = new SUIT_TYPE(src)
-	if(HELMET_TYPE)
-		HELMET = new HELMET_TYPE(src)
-	if(MASK_TYPE)
-		MASK = new MASK_TYPE(src)
 
 /obj/machinery/suit_storage_unit/update_icon()
 	var/hashelmet = 0
@@ -73,15 +74,10 @@
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
 			qdel(src)
-			return
 		if(2.0)
 			if(prob(50))
 				dump_everything()
 				qdel(src)
-			return
-		else
-			return
-	return
 
 /obj/machinery/suit_storage_unit/attack_hand(mob/user)
 	if(..())
@@ -173,21 +169,9 @@
 
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
-//	var/protected = 0
-//	var/mob/living/carbon/human/H = user
 	if(!panelopen)
 		return
 
-	/*if(istype(H)) //Let's check if the guy's wearing electrically insulated gloves
-		if(H.gloves)
-			var/obj/item/clothing/gloves/G = H.gloves
-			if(istype(G,/obj/item/clothing/gloves/yellow))
-				protected = 1
-
-	if(!protected)
-		playsound(src, "sparks", 75, 1, -1)
-		to_chat(user, "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>")
-		return*/
 	else  //welp, the guy is protected, we can continue
 		if(issuperUV)
 			to_chat(user, "You slide the dial back towards \"185nm\".")
@@ -199,21 +183,9 @@
 
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
-//	var/protected = 0
-//	var/mob/living/carbon/human/H = user
 	if(!panelopen) //Needed check due to bugs
 		return
 
-	/*if(istype(H)) //Let's check if the guy's wearing electrically insulated gloves
-		if(H.gloves)
-			var/obj/item/clothing/gloves/G = H.gloves
-			if(istype(G,/obj/item/clothing/gloves/yellow))
-				protected = 1
-
-	if(!protected)
-		playsound(src, "sparks", 75, 1, -1)
-		to_chat(user, "<font color='red'>You try to touch the controls but you get zapped. There must be a short circuit somewhere.</font>")
-		return*/
 	else
 		to_chat(user, "You push the button. The coloured LED next to it changes.")
 		safetieson = !safetieson
@@ -340,30 +312,6 @@
 	updateUsrDialog()
 	return
 
-/*	spawn(200) //Let's clean dat shit after 20 secs  //Eh, this doesn't work
-		if(HELMET)
-			HELMET.clean_blood()
-		if(SUIT)
-			SUIT.clean_blood()
-		if(MASK)
-			MASK.clean_blood()
-		isUV = 0 //Cycle ends
-		update_icon()
-		updateUsrDialog()
-
-	var/i
-	for(i=0,i<4,i++) //Gradually give the guy inside some damaged based on the intensity
-		spawn(50)
-			if(OCCUPANT)
-				if(issuperUV)
-					OCCUPANT.take_organ_damage(0,40)
-					to_chat(user, "Test. You gave him 40 damage")
-				else
-					OCCUPANT.take_organ_damage(0,8)
-					to_chat(user, "Test. You gave him 8 damage")
-	return*/
-
-
 /obj/machinery/suit_storage_unit/proc/cycletimeleft()
 	if(cycletime_left >= 1)
 		cycletime_left--
@@ -376,8 +324,6 @@
 
 	if(!OCCUPANT)
 		return
-//	for(var/obj/O in src)
-//		O.loc = src.loc
 
 	if(OCCUPANT.client)
 		if(user != OCCUPANT)
@@ -431,13 +377,9 @@
 		usr.client.perspective = EYE_PERSPECTIVE
 		usr.client.eye = src
 		usr.loc = src
-//		usr.metabslow = 1
 		OCCUPANT = usr
 		isopen = 0 //Close the thing after the guy gets inside
 		update_icon()
-
-//		for(var/obj/O in src)
-//			qdel(O)
 
 		add_fingerprint(usr)
 		updateUsrDialog()
@@ -480,8 +422,6 @@
 			OCCUPANT = M
 			isopen = 0 //close ittt
 
-			//for(var/obj/O in src)
-			//	O.loc = src.loc
 			add_fingerprint(user)
 			qdel(G)
 			updateUsrDialog()
@@ -540,15 +480,16 @@
 
 //////////////////////////////REMINDER: Make it lock once you place some fucker inside.
 
-//God this entire file is fucking awful
+//God this entire file is fucking awful //Yes
 //Suit painter for Bay's special snowflake aliums.
 
+GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler
 
 	name = "suit cycler"
 	desc = "An industrial machine for painting and refitting voidsuits."
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100"
@@ -564,13 +505,31 @@
 	var/can_repair          // If set, the cycler can repair voidsuits.
 	var/electrified = 0
 
-	//Departments that the cycler can paint suits to look like.
-	var/list/departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Emergency Medical Response","Crowd Control","Security EVA")
-	//Species that the suits can be configured to fit.
-	var/list/species = list(SPECIES_HUMAN,SPECIES_SKRELL,SPECIES_UNATHI,SPECIES_TAJ, SPECIES_TESHARI)
+	/// Departments that the cycler can paint suits to look like. Null assumes all except specially excluded ones.
+	/// No idea why these particular suits are the default cycler's options.
+	var/list/limit_departments = list(
+		/datum/suit_cycler_choice/department/eng/standard,
+		/datum/suit_cycler_choice/department/crg/mining,
+		/datum/suit_cycler_choice/department/med/standard,
+		/datum/suit_cycler_choice/department/sec/standard,
+		/datum/suit_cycler_choice/department/eng/atmospherics,
+		/datum/suit_cycler_choice/department/eng/hazmat,
+		/datum/suit_cycler_choice/department/eng/construction,
+		/datum/suit_cycler_choice/department/med/biohazard,
+		/datum/suit_cycler_choice/department/med/emt,
+		/datum/suit_cycler_choice/department/sec/riot,
+		/datum/suit_cycler_choice/department/sec/eva
+	)
+	
+	/// Species that the cycler can refit suits for. Null assumes all except specially excluded ones.
+	var/list/limit_species
 
-	var/target_department
-	var/target_species
+	var/list/departments
+	var/list/species
+	var/list/emagged_departments
+
+	var/datum/suit_cycler_choice/department/target_department
+	var/datum/suit_cycler_choice/species/target_species
 
 	var/mob/living/carbon/human/occupant = null
 	var/obj/item/clothing/suit/space/void/suit = null
@@ -578,100 +537,187 @@
 
 	var/datum/wires/suit_storage_unit/wires = null
 
-/obj/machinery/suit_cycler/New()
-	..()
+/obj/machinery/suit_cycler/Initialize()
+	. = ..()
 
+	departments = load_departments()
+	species = load_species()
+	emagged_departments = load_emagged()
+	limit_departments = null // just for mem
+	
+	target_department = departments["No Change"]
+	target_species = species["No Change"]
+
+	if(!target_department || !target_species)
+		stat |= BROKEN
+	
 	wires = new(src)
-	target_department = departments[1]
-	target_species = species[1]
-	if(!target_department || !target_species) qdel(src)
 
 /obj/machinery/suit_cycler/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
+/obj/machinery/suit_cycler/proc/load_departments()
+	var/list/typecache = GLOB.suit_cycler_typecache[type]
+	// First of our type
+	if(!typecache)
+		typecache = list()
+		GLOB.suit_cycler_typecache[type] = typecache
+	var/list/loaded = typecache["departments"]
+	// No departments loaded
+	if(!loaded)
+		loaded = list()
+		typecache["departments"] = loaded
+		for(var/datum/suit_cycler_choice/department/thing as anything in GLOB.suit_cycler_departments)
+			if(istype(thing, /datum/suit_cycler_choice/department/noop))
+				loaded[thing.name] = thing
+				continue
+			if(limit_departments && !is_type_in_list(thing, limit_departments))
+				continue
+			loaded[thing.name] = thing
+
+	return loaded
+
+/obj/machinery/suit_cycler/proc/load_species()
+	var/list/typecache = GLOB.suit_cycler_typecache[type]
+	// First of our type
+	if(!typecache)
+		typecache = list()
+		GLOB.suit_cycler_typecache[type] = typecache
+	var/list/loaded = typecache["species"]
+	// No species loaded
+	if(!loaded)
+		loaded = list()
+		typecache["species"] = loaded
+		for(var/datum/suit_cycler_choice/species/thing as anything in GLOB.suit_cycler_species)
+			if(istype(thing, /datum/suit_cycler_choice/species/noop))
+				loaded[thing.name] = thing
+				continue
+			if(limit_species && !is_type_in_list(thing, limit_species))
+				continue
+			loaded[thing.name] = thing
+
+	return loaded
+
+/obj/machinery/suit_cycler/proc/load_emagged()
+	var/list/typecache = GLOB.suit_cycler_typecache[type]
+	// First of our type
+	if(!typecache)
+		typecache = list()
+		GLOB.suit_cycler_typecache[type] = typecache
+	var/list/loaded = typecache["emagged"]
+	// No emagged loaded
+	if(!loaded)
+		loaded = list()
+		typecache["emagged"] = loaded
+		for(var/datum/suit_cycler_choice/department/thing as anything in GLOB.suit_cycler_emagged)
+			loaded[thing.name] = thing
+
+	return loaded
+
 /obj/machinery/suit_cycler/refit_only
 	name = "Suit cycler"
 	desc = "A dedicated industrial machine that can refit voidsuits for different species, but not change the suit's overall appearance or departmental scheme."
 	model_text = "General Access"
 	req_access = null
-	departments = list("No Change")
+	limit_departments = list()
 
 /obj/machinery/suit_cycler/engineering
 	name = "Engineering suit cycler"
 	model_text = "Engineering"
 	req_access = list(access_construction)
-	departments = list("Engineering","Atmospherics","HAZMAT","Construction","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/eng
+	)
 
 /obj/machinery/suit_cycler/mining
 	name = "Mining suit cycler"
 	model_text = "Mining"
 	req_access = list(access_mining)
-	departments = list("Mining","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/crg
+	)
 
 /obj/machinery/suit_cycler/security
 	name = "Security suit cycler"
 	model_text = "Security"
 	req_access = list(access_security)
-	departments = list("Security","Crowd Control","Security EVA","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/sec
+	)
 
 /obj/machinery/suit_cycler/medical
 	name = "Medical suit cycler"
 	model_text = "Medical"
 	req_access = list(access_medical)
-	departments = list("Medical","Biohazard","Emergency Medical Response","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/med
+	)
 
 /obj/machinery/suit_cycler/syndicate
 	name = "Nonstandard suit cycler"
 	model_text = "Nonstandard"
 	req_access = list(access_syndicate)
-	departments = list("Mercenary", "Charring","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/emag
+	)
 	can_repair = 1
 
 /obj/machinery/suit_cycler/exploration
 	name = "Explorer suit cycler"
 	model_text = "Exploration"
-	departments = list("Exploration","Old Exploration","No Change")
-
-/obj/machinery/suit_cycler/exploration/Initialize()
-	species -= SPECIES_TESHARI
-	return ..()
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/exp
+	)
 
 /obj/machinery/suit_cycler/pilot
 	name = "Pilot suit cycler"
 	model_text = "Pilot"
-	departments = list("Pilot Blue","Pilot","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/pil
+	)
 
 /obj/machinery/suit_cycler/vintage
 	name = "Vintage Crew suit cycler"
 	model_text = "Vintage"
-	departments = list("Vintage Crew","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/vintage/crew
+	)
 	req_access = null
 
 /obj/machinery/suit_cycler/vintage/pilot
 	name = "Vintage Pilot suit cycler"
 	model_text = "Vintage Pilot"
-	departments = list("Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/vintage/pilot
+	)
 
 /obj/machinery/suit_cycler/vintage/medsci
 	name = "Vintage MedSci suit cycler"
 	model_text = "Vintage MedSci"
-	departments = list("Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","No Change")
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/vintage/research,
+		/datum/suit_cycler_choice/department/vintage/med
+	)
 
 /obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
-	departments = list("Vintage Engineering","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
+	
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/vintage/eng,
+		/datum/suit_cycler_choice/department/vintage/marine,
+		/datum/suit_cycler_choice/department/vintage/officer,
+		/datum/suit_cycler_choice/department/vintage/merc
+	)
 
 /obj/machinery/suit_cycler/vintage/omni
 	name = "Vintage Master suit cycler"
 	model_text = "Vintage Master"
-	departments = list("Vintage Crew","Vintage Engineering","Vintage Pilot (Bubble Helm)","Vintage Pilot (Closed Helm)","Vintage Medical (Bubble Helm)","Vintage Medical (Closed Helm)","Vintage Research (Bubble Helm)","Vintage Research (Closed Helm)","Vintage Marine","Vintage Officer","Vintage Mercenary","No Change")
-
-/obj/machinery/suit_cycler/vintage/Initialize()
-	species -= SPECIES_TESHARI
-	return ..()
+	limit_departments = list(
+		/datum/suit_cycler_choice/department/vintage
+	)
 
 /obj/machinery/suit_cycler/attack_ai(mob/user as mob)
 	return attack_hand(user)
@@ -816,8 +862,6 @@
 
 	//Clear the access reqs, disable the safeties, and open up all paintjobs.
 	to_chat(user, "<span class='danger'>You run the sequencer across the interface, corrupting the operating protocols.</span>")
-	departments = list("Engineering","Mining","Medical","Security","Atmospherics","HAZMAT","Construction","Biohazard","Crowd Control","Security EVA","Emergency Medical Response","^%###^%$", "Charring","No Change")
-	species = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_VULPKANIN) //VORESTATION EDIT
 
 	emagged = 1
 	safeties = 0
@@ -851,8 +895,6 @@
 /obj/machinery/suit_cycler/tgui_data(mob/user)
 	var/list/data = list()
 
-	data["departments"] = departments
-	data["species"] = species
 	data["model_text"] = model_text
 	data["can_repair"] = can_repair
 	data["userHasAccess"] = allowed(user)
@@ -881,6 +923,28 @@
 
 	return data
 
+/obj/machinery/suit_cycler/tgui_static_data(mob/user)
+	var/list/data = list()
+	
+	// tgui gets angy if you pass values too
+	var/list/department_keys = list()
+	for(var/key in departments)
+		department_keys += key
+	
+	// emagged at the bottom
+	if(emagged)
+		for(var/key in emagged_departments)
+			department_keys += key
+	
+	var/list/species_keys = list()
+	for(var/key in species)
+		species_keys += key
+
+	data["departments"] = department_keys
+	data["species"] = species_keys
+
+	return data	
+
 /obj/machinery/suit_cycler/tgui_act(action, params)
 	if(..())
 		return TRUE
@@ -899,13 +963,15 @@
 		if("department")
 			var/choice = params["department"]
 			if(choice in departments)
-				target_department = choice
+				target_department = departments[choice]
+			else if(emagged && (choice in emagged_departments))
+				target_department = emagged_departments[choice]
 				. = TRUE
 
 		if("species")
 			var/choice = params["species"]
 			if(choice in species)
-				target_species = choice
+				target_species = species[choice]
 				. = TRUE
 
 		if("radlevel")
@@ -1044,224 +1110,25 @@
 
 	return
 
-//There HAS to be a less bloated way to do this. TODO: some kind of table/icon name coding? ~Z
-//hold onto your hat, this sumbitch just got streamlined -KK
+// "Streamlined" before? Ok. -Aro
 /obj/machinery/suit_cycler/proc/apply_paintjob()
-	var/obj/item/clothing/head/helmet/parent_helmet
-	var/obj/item/clothing/suit/space/parent_suit
-	var/turf/T = get_turf(src)
 	if(!target_species || !target_department)
 		return
-	//Now "Complete" with most departmental and variant suits, and sorted by department. These aren't available in the standard or emagged cycler lists because they're incomplete for most species.
-	switch(target_department)
-		if("No Change")
-			parent_helmet = helmet
-			parent_suit = suit
-		//Engineering and Engineering Variants
-		if("Engineering")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering
-			parent_suit = /obj/item/clothing/suit/space/void/engineering
-		if("HAZMAT")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/hazmat
-			parent_suit = /obj/item/clothing/suit/space/void/engineering/hazmat
-		if("Construction")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/construction
-			parent_suit = /obj/item/clothing/suit/space/void/engineering/construction
-		if("Reinforced")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/alt
-			parent_suit = /obj/item/clothing/suit/space/void/engineering/alt
-		if("Salvager")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/engineering/salvage
-			parent_suit = /obj/item/clothing/suit/space/void/engineering/salvage
-		if("Atmospherics")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos
-			parent_suit = /obj/item/clothing/suit/space/void/atmos
-		if("Heavy Duty Atmospherics")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/atmos/alt
-			parent_suit = /obj/item/clothing/suit/space/void/atmos/alt
-		//Mining and Mining Variants
-		if("Mining")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining
-			parent_suit = /obj/item/clothing/suit/space/void/mining
-		if("Frontier Miner")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/mining/alt
-			parent_suit = /obj/item/clothing/suit/space/void/mining/alt
-		//Medical and Medical Variants
-		if("Medical")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical
-			parent_suit = /obj/item/clothing/suit/space/void/medical
-		if("Biohazard")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/bio
-			parent_suit = /obj/item/clothing/suit/space/void/medical/bio
-		if("Emergency Medical Response")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/emt
-			parent_suit = /obj/item/clothing/suit/space/void/medical/emt
-		if("Vey-Medical Streamlined")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/medical/alt
-			parent_suit = /obj/item/clothing/suit/space/void/medical/alt
-		//Security and Security Variants
-		if("Security")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/security
-			parent_suit = /obj/item/clothing/suit/space/void/security
-		if("Crowd Control")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/riot
-			parent_suit = /obj/item/clothing/suit/space/void/security/riot
-		if("Security EVA")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/alt
-			parent_suit = /obj/item/clothing/suit/space/void/security/alt
-		//Exploration Department
-		if("Exploration")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration
-			parent_suit = /obj/item/clothing/suit/space/void/exploration
-		if("Old Exploration")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/exploration/alt
-			parent_suit = /obj/item/clothing/suit/space/void/exploration/alt
-		if("Pilot")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot
-			parent_suit = /obj/item/clothing/suit/space/void/pilot
-		if("Pilot Blue")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/pilot/alt
-			parent_suit = /obj/item/clothing/suit/space/void/pilot/alt
-		//Antag Suits
-		if("^%###^%$" || "Mercenary")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc
-			parent_suit = /obj/item/clothing/suit/space/void/merc
-		if("Charring")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/merc/fire
-			parent_suit = /obj/item/clothing/suit/space/void/merc/fire
-		if("Gem-Encrusted" || "Wizard")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/wizard
-			parent_suit = /obj/item/clothing/suit/space/void/wizard
-		//Special or Event suits
-		if("Vintage Crew")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb
-			parent_suit = /obj/item/clothing/suit/space/void/refurb
-		if("Vintage Engineering")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/engineering
-		if("Vintage Medical (Bubble Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/alt
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical
-		if("Vintage Medical (Closed Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical
-		if("Vintage Marine")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/marine
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/marine
-		if("Vintage Officer")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/officer
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/officer
-		if("Vintage Pilot (Bubble Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot
-		if("Vintage Pilot (Closed Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot/alt
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot
-		if("Vintage Research (Bubble Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research/alt
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/research
-		if("Vintage Research (Closed Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/research
-		if("Vintage Mercenary")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary
-		//BEGIN: Space for additional downstream variants
-		//VOREStation Addition Start
-		if("Manager")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/captain
-			parent_suit = /obj/item/clothing/suit/space/void/captain
-		if("Prototype")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/security/prototype
-			parent_suit = /obj/item/clothing/suit/space/void/security/prototype
-		if("Talon Crew")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/talon
-		if("Talon Engineering")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/engineering/talon
-		if("Talon Medical (Bubble Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/alt/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical/talon
-		if("Talon Medical (Closed Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/medical/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/medical/talon
-		if("Talon Marine")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/marine/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/marine/talon
-		if("Talon Officer")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/officer/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/officer/talon
-		if("Talon Pilot (Bubble Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot/talon
-		if("Talon Pilot (Closed Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot/alt/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/pilot/talon
-		if("Talon Research (Bubble Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research/alt/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/research/talon
-		if("Talon Research (Closed Helm)")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/research/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/research/talon
-		if("Talon Mercenary")
-			parent_helmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary/talon
-			parent_suit = /obj/item/clothing/suit/space/void/refurb/mercenary/talon
-		//VOREStation Addition End
-		//END: downstream variant space
-	if(target_species)
-		//Only run these checks if they have a sprite sheet defined, otherwise they use human's anyways, and there is almost definitely a sprite.
-		if((helmet!=null&&(target_species in helmet.sprite_sheets_obj))||(suit!=null&&(target_species in suit.sprite_sheets_obj)))
-			//Making sure all of our items have the sprites to be refitted.
-			var/helmet_check = ((helmet!=null && (initial(parent_helmet.icon_state) in icon_states(helmet.sprite_sheets_obj[target_species],1))) || helmet==null)
-			//If the helmet exists, only return true if there's also sprites for it. If the helmet doesn't exist, return true.
-			var/suit_check = ((suit!=null && (initial(parent_suit.icon_state) in icon_states(suit.sprite_sheets_obj[target_species],1))) || suit==null)
-			var/suit_helmet_check = ((suit!=null && suit.helmet!=null && (initial(parent_helmet.icon_state) in icon_states(suit.helmet.sprite_sheets_obj[target_species],1))) || suit==null || suit.helmet==null)
-			if(helmet_check && suit_check && suit_helmet_check)
-				if(helmet) 
-					helmet.refit_for_species(target_species)
-				if(suit) 
-					suit.refit_for_species(target_species)
-					if(suit.helmet)
-						suit.helmet.refit_for_species(target_species)
-			else
-				//If they don't, alert the user and stop here.
-				T.visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
-				return
-		else
-			if(helmet) 
-				helmet.refit_for_species(target_species)
-			if(suit) 
-				suit.refit_for_species(target_species)
-				if(suit.helmet)
-					suit.helmet.refit_for_species(target_species)
-	//look at this! isn't it beautiful? -KK (well ok not beautiful but it's a lot cleaner)
-	if(helmet && target_department != "No Change")
-		var/obj/item/clothing/H = new parent_helmet
-		helmet.name = "refitted [initial(parent_helmet.name)]"
-		helmet.desc = initial(parent_helmet.desc)
-		helmet.icon_state = initial(parent_helmet.icon_state)
-		helmet.item_state = initial(parent_helmet.item_state)
-		helmet.light_overlay = initial(parent_helmet.light_overlay)
-		helmet.item_state_slots = H.item_state_slots
-		qdel(H)
+	
+	// Helmet to new paint
+	if(target_department.can_refit_helmet(helmet))
+		target_department.do_refit_helmet(helmet)
+	// Suit to new paint
+	if(target_department.can_refit_suit(suit))
+		target_department.do_refit_suit(suit)
+	// Attached voidsuit helmet to new paint
+	if(target_department.can_refit_helmet(suit?.helmet))
+		target_department.do_refit_helmet(suit.helmet)
 
-	if(suit && target_department != "No Change")
-		var/obj/item/clothing/S = new parent_suit
-		suit.name = "refitted [initial(parent_suit.name)]"
-		suit.desc = initial(parent_suit.desc)
-		suit.icon_state = initial(parent_suit.icon_state)
-		suit.item_state = initial(parent_suit.item_state)
-		suit.item_state_slots = S.item_state_slots
-		qdel(S)
-
-		//can't believe I forgot to fix this- now helmets will properly cycle if they're attached to a suit -KK
-		if(suit.helmet && target_department != "No Change")
-			var/obj/item/clothing/AH = new parent_helmet
-			suit.helmet.name = "refitted [initial(parent_helmet.name)]"
-			suit.helmet.desc = initial(parent_helmet.desc)
-			suit.helmet.icon_state = initial(parent_helmet.icon_state)
-			suit.helmet.item_state = initial(parent_helmet.item_state)
-			suit.helmet.light_overlay = initial(parent_helmet.light_overlay)
-			suit.helmet.item_state_slots = AH.item_state_slots
-			qdel(AH)
+	// Species fitting for all 3 potential changes
+	if(target_species.can_refit_to(helmet, suit, suit?.helmet))
+		target_species.do_refit_to(helmet, suit, suit?.helmet)
+	else
+		visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
+		return
+	

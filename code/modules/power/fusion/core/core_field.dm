@@ -117,8 +117,6 @@
 	catcher.SetSize(7)
 	particle_catchers.Add(catcher)
 
-	START_PROCESSING(SSobj, src)
-
 /obj/effect/fusion_em_field/process()
 	//make sure the field generator is still intact
 	if(!owned_core || QDELETED(owned_core))
@@ -160,6 +158,13 @@
 			var/radiate = rand(3 * amount / 4, amount / 4)
 			dormant_reactant_quantities[reactant] -= radiate
 			radiation += radiate
+
+		if(owned_core.reactant_dump)
+			var/datum/material/Mat = get_material_by_name(reactant)
+
+			// If the reactor won't be able to produce a sheet during shutdown with the material, it can syphon it from the field into internal storage.
+			if(!Mat && amount > 1000 && owned_core.reagents.add_reagent(reactant, 0.1))	// If you want to get ingots / sheets from the tokomak, you have to shut it down, hopefully safely. Reactor reactants are either gas with a corresponding reagent IE Oxygen, Phoron, a Material which condenses uniquely on its own, or just a reagent.
+				dormant_reactant_quantities[reactant] -= 1000
 
 	var/use_range
 	var/use_power
@@ -309,6 +314,21 @@
 	// Radiate all our unspent fuel and energy.
 	for(var/particle in dormant_reactant_quantities)
 		radiation += dormant_reactant_quantities[particle]
+
+		var/datum/material/Mat = get_material_by_name(particle)
+
+		if(Mat)
+			while(dormant_reactant_quantities[particle] > 0)
+				var/present_amount = dormant_reactant_quantities[particle] / 10000	// Reset this to the amount of the reagent present.
+
+				if(present_amount >= 20 && Mat.stack_type)
+					var/obj/S = new Mat.stack_type
+					dormant_reactant_quantities[particle] -= 20
+					S.throw_at_random(FALSE, 7, 3)
+				
+				else
+					dormant_reactant_quantities[particle] = 0
+
 		dormant_reactant_quantities.Remove(particle)
 	radiation += plasma_temperature/2
 	plasma_temperature = 0
@@ -496,7 +516,6 @@
 	if(owned_core)
 		owned_core.owned_field = null
 		owned_core = null
-	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/effect/fusion_em_field/bullet_act(var/obj/item/projectile/Proj)
@@ -512,12 +531,10 @@
 
 	if(percent_unstable >= warnpoint) //we're unstable, start warning engineering
 		global_announcer.autosay(warnmessage, "Field Stability Monitor", "Engineering")
-		stable = 0 //we know we're not stable, so let's not state the safe message.
-		sleep(20)
-	return
-	if(percent_unstable < warnpoint && stable == 0) //The field is stable again. Let's set our safe variable and state the safe message.
+		stable = FALSE //we know we're not stable, so let's not state the safe message.
+	else if(percent_unstable < warnpoint && stable == 0) //The field is stable again. Let's set our safe variable and state the safe message.
 		global_announcer.autosay(stablemessage, "Field Stability Monitor", "Engineering")
-		stable = 1
+		stable = TRUE
 	return
 
 //Reaction radiation is fairly buggy and there's at least three procs dealing with radiation here, this is to ensure constant radiation output.
@@ -579,8 +596,7 @@
 	RadiateAll()
 	var/list/things_in_range = range(10, owned_core)
 	var/list/turfs_in_range = list()
-	var/turf/T
-	for (T in things_in_range)
+	for (var/turf/T in things_in_range)
 		turfs_in_range.Add(T)
 
 	explosion(pick(things_in_range), -1, 5, 5, 5)
@@ -605,8 +621,7 @@
 	set_light(15, 15, "#ff00d8")
 	var/list/things_in_range = range(15, owned_core)
 	var/list/turfs_in_range = list()
-	var/turf/T
-	for (T in things_in_range)
+	for (var/turf/T in things_in_range)
 		turfs_in_range.Add(T)
 	for(var/loopcount = 1 to 10)
 		spawn(200)
@@ -618,8 +633,7 @@
 	global_announcer.autosay("Warning! Quantum fluxuation detected! Flammable gas release expected.", "Field Stability Monitor")
 	var/list/things_in_range = range(15, owned_core)
 	var/list/turfs_in_range = list()
-	var/turf/T
-	for (T in things_in_range)
+	for (var/turf/T in things_in_range)
 		turfs_in_range.Add(T)
 	for(var/loopcount = 1 to 10)
 		var/turf/TT = get_turf(pick(turfs_in_range))
@@ -660,8 +674,7 @@
 	RadiateAll()
 	var/list/things_in_range = range(10, owned_core)
 	var/list/turfs_in_range = list()
-	var/turf/T
-	for (T in things_in_range)
+	for (var/turf/T in things_in_range)
 		turfs_in_range.Add(T)
 	for(var/loopcount = 1 to 10)
 		explosion(pick(things_in_range), -1, 5, 5, 5)

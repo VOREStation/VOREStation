@@ -18,7 +18,7 @@
 	w_class = ITEMSIZE_SMALL
 	force = 15
 	armor_penetration = 25
-	sharp = 1
+	sharp = TRUE
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	defend_chance = 10
 	projectile_parry_chance = 5
@@ -31,7 +31,7 @@
 	w_class = ITEMSIZE_HUGE
 	force = 30
 	armor_penetration = 15
-	edge = 1
+	edge = TRUE
 	pry = 1
 	defend_chance = 40
 	projectile_parry_chance = 20

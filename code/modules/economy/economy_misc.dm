@@ -3,7 +3,6 @@
 #define WILD_ANIMAL_ATTACK 2
 #define INDUSTRIAL_ACCIDENT 3
 #define BIOHAZARD_OUTBREAK 4
-#define WARSHIPS_ARRIVE 5
 #define PIRATES 6
 #define CORPORATE_ATTACK 7
 #define ALIEN_RAIDERS 8
@@ -14,37 +13,15 @@
 #define ANIMAL_RIGHTS_RAID 13
 #define FESTIVAL 14
 
-#define RESEARCH_BREAKTHROUGH 15
-#define BARGAINS 16
-#define SONG_DEBUT 17
-#define MOVIE_RELEASE 18
-#define BIG_GAME_HUNTERS 19
-#define ELECTION 20
-#define GOSSIP 21
-#define TOURISM 22
-#define CELEBRITY_DEATH 23
-#define RESIGNATION 24
-
-#define DEFAULT 1
-
-#define ADMINISTRATIVE 2
-#define CLOTHING 3
-#define SECURITY 4
-#define SPECIAL_SECURITY 5
-
-#define FOOD 6
-#define ANIMALS 7
-
-#define MINERALS 8
-
-#define EMERGENCY 9
-#define GAS 10
-#define MAINTENANCE 11
-#define ELECTRICAL 12
-#define ROBOTICS 13
-#define BIOMEDICAL 14
-
-#define GEAR_EVA 15
+#define SECURITY 1
+#define FOOD 2
+#define ANIMALS 3
+#define MINERALS 4
+#define EMERGENCY 5
+#define GASEOUS 6
+#define MAINTENANCE 7
+#define ROBOTICS 8
+#define BIOMEDICAL 9
 
 
 //---- The following corporations are friendly with NanoTrasen and loosely enable trade and travel:
@@ -83,10 +60,10 @@ var/global/economy_init = 0
 	news_network.CreateFeedChannel("The Gibson Gazette", "Editor Mike Hammers", 1, 1)
 	news_network.CreateFeedChannel("Oculum Content Aggregator", "Oculus v6rev7", 1, 1)
 
-	for(var/loc_type in typesof(/datum/trade_destination) - /datum/trade_destination)
+	for(var/loc_type in subtypesof(/datum/trade_destination))
 		var/datum/trade_destination/D = new loc_type
 		weighted_randomevent_locations[D] = D.viable_random_events.len
-		weighted_mundaneevent_locations[D] = D.viable_mundane_events.len
+		weighted_mundaneevent_locations[D] = D.mundane_probability
 
 	create_station_account()
 

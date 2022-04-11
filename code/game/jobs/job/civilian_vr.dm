@@ -49,10 +49,13 @@
 /datum/job/qm
 	pto_type = PTO_CARGO
 	dept_time_required = 20
-	alt_titles = list("Supply Chief" = /datum/alt_title/supply_chief, "Logistics Manager" = /datum/alt_title/logistics_manager)
+	alt_titles = list("Supply Chief" = /datum/alt_title/supply_chief, "Logistics Manager" = /datum/alt_title/logistics_manager, "Cargo Supervisor" = /datum/alt_title/cargo_supervisor)
 
 /datum/alt_title/logistics_manager
 	title = "Logistics Manager"
+
+/datum/alt_title/cargo_supervisor
+	title = "Cargo Supervisor"
 
 
 /datum/job/cargo_tech
@@ -83,7 +86,8 @@
 	total_positions = 4
 	spawn_positions = 4
 	pto_type = PTO_CARGO
-	alt_titles = list("Deep Space Miner" = /datum/alt_title/deep_space_miner, "Drill Technician" = /datum/alt_title/drill_tech, "Prospector" = /datum/alt_title/prospector)
+	alt_titles = list("Deep Space Miner" = /datum/alt_title/deep_space_miner, "Drill Technician" = /datum/alt_title/drill_tech, "Prospector" = /datum/alt_title/prospector,
+						"Excavator" = /datum/alt_title/excavator)
 
 /datum/alt_title/deep_space_miner
 	title = "Deep Space Miner"
@@ -91,6 +95,9 @@
 
 /datum/alt_title/prospector
 	title = "Prospector"
+
+/datum/alt_title/excavator
+	title = "Excavator"
 
 
 /datum/job/janitor //Lots of janitor substations on station.
@@ -116,7 +123,7 @@
 	spawn_positions = 2
 	alt_titles = list("Journalist" = /datum/alt_title/journalist, "Reporter" =  /datum/alt_title/reporter, "Writer" = /datum/alt_title/writer,
 					"Historian" = /datum/alt_title/historian, "Archivist" = /datum/alt_title/archivist, "Professor" = /datum/alt_title/professor,
-					"Academic" = /datum/alt_title/academic, "Philosopher" = /datum/alt_title/philosopher)
+					"Academic" = /datum/alt_title/academic, "Philosopher" = /datum/alt_title/philosopher, "Curator" = /datum/alt_title/curator)
 	pto_type = PTO_CIVILIAN
 
 /datum/alt_title/reporter
@@ -143,6 +150,9 @@
 	title = "Philosopher"
 	title_blurb = "The Philosopher uses the Library as a base of operation to ruminate on nature of life and other great questions, and share their opinions with the crew."
 
+/datum/alt_title/curator
+	title = "Curator"
+	title_blurb = "The Curator uses the Library as a base of operation to gather the finest of art for display and preservation."
 
 /datum/job/lawyer
 	disallow_jobhop = TRUE
@@ -162,7 +172,9 @@
 
 /datum/job/chaplain
 	pto_type = PTO_CIVILIAN
-	alt_titles = list("Missionary" = /datum/alt_title/missionary, "Preacher" = /datum/alt_title/preacher, "Counselor" = /datum/alt_title/counselor, "Guru" = /datum/alt_title/guru)
+	alt_titles = list("Missionary" = /datum/alt_title/missionary, "Preacher" = /datum/alt_title/preacher, "Priest" = /datum/alt_title/priest,
+						"Nun" = /datum/alt_title/nun, "Monk" = /datum/alt_title/monk, "Counselor" = /datum/alt_title/counselor,
+						"Guru" = /datum/alt_title/guru)
 
 /datum/alt_title/guru
 	title = "Guru"
@@ -174,7 +186,48 @@
 /datum/alt_title/preacher
 	title = "Preacher"
 
+/datum/alt_title/priest
+	title = "Priest"
 
+/datum/alt_title/nun
+	title = "Nun"
+
+/datum/alt_title/monk
+	title = "Monk"
+
+
+//////////////////////////////////
+//		      	Pilot
+//////////////////////////////////
+
+/datum/job/pilot
+	title = "Pilot"
+	flag = PILOT
+	departments = list(DEPARTMENT_CIVILIAN)
+	department_flag = CIVILIAN
+	faction = "Station"
+	total_positions = 5
+	spawn_positions = 5
+	supervisors = "the Head of Personnel"
+	selection_color = "#515151"
+	economic_modifier = 5
+	minimal_player_age = 3
+	pto_type = PTO_CIVILIAN
+	access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
+	minimal_access = list(access_eva, access_maint_tunnels, access_external_airlocks, access_pilot)
+	outfit_type = /decl/hierarchy/outfit/job/pilot
+	job_description = "A Pilot flies the various shuttles in the Virgo-Erigone System."
+	alt_titles = list("Co-Pilot" = /datum/alt_title/co_pilot, "Navigator" = /datum/alt_title/navigator, "Helmsman" = /datum/alt_title/helmsman)
+
+/datum/alt_title/co_pilot
+	title = "Co-Pilot"
+	title_blurb = "A Co-Pilot is there primarily to assist main pilot as well as learn from them"
+
+/datum/alt_title/navigator
+	title = "Navigator"
+
+/datum/alt_title/helmsman
+	title = "Helmsman"
 
 //////////////////////////////////
 //			Entertainer
@@ -194,11 +247,12 @@
 	minimal_access = list(access_entertainment)
 	pto_type = PTO_CIVILIAN
 
-	outfit_type = /decl/hierarchy/outfit/job/assistant
+	outfit_type = /decl/hierarchy/outfit/job/assistant/entertainer
 	job_description = "An entertainer does just that, entertains! Put on plays, play music, sing songs, tell stories, or read your favorite fanfic."
 	alt_titles = list("Performer" = /datum/alt_title/performer, "Musician" = /datum/alt_title/musician, "Stagehand" = /datum/alt_title/stagehand,
 						"Actor" = /datum/alt_title/actor, "Dancer" = /datum/alt_title/dancer, "Singer" = /datum/alt_title/singer,
-						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian)
+						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian,
+						"Artist" = /datum/alt_title/artist)
 
 // Entertainer Alt Titles
 /datum/alt_title/actor
@@ -236,3 +290,7 @@
 /datum/alt_title/tragedian
 	title = "Tragedian"
 	title_blurb = "A Tragedian will focus on making people think about life and world around them! Life is a tragedy, and who's better to convey its emotions than you?"
+
+/datum/alt_title/artist
+	title = "Artist"
+	title_blurb = "An Artist's calling is to create beautiful arts! Whatever form may they take, create and have people astonished with your creativity."

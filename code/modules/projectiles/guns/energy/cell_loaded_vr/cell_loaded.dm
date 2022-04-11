@@ -33,12 +33,10 @@
 		if(batt.shots_left)
 			return new chambered.projectile_type()
 		else
-			for(var/B in ammo_magazine.stored_ammo)
-				var/obj/item/ammo_casing/microbattery/other_batt = B
+			for(var/obj/item/ammo_casing/microbattery/other_batt as anything in ammo_magazine.stored_ammo)
 				if(istype(other_batt,chambered.type) && other_batt.shots_left)
 					switch_to(other_batt)
 					return new chambered.projectile_type()
-					break
 
 	return null
 
@@ -51,11 +49,8 @@
 
 	var/obj/item/ammo_casing/microbattery/batt = chambered
 
-	charge_left = batt.shots_left
-	max_charge = initial(batt.shots_left)
 	if(ammo_magazine) //Crawl to find more
-		for(var/B in ammo_magazine.stored_ammo)
-			var/obj/item/ammo_casing/microbattery/bullet = B
+		for(var/obj/item/ammo_casing/microbattery/bullet as anything in ammo_magazine.stored_ammo)
 			if(istype(bullet,batt.type))
 				charge_left += bullet.shots_left
 				max_charge += initial(bullet.shots_left)
@@ -70,6 +65,9 @@
 	chambered = new_batt
 	update_charge()
 	update_icon()
+	var/mob/living/M = loc // TGMC Ammo HUD 
+	if(istype(M)) // TGMC Ammo HUD 
+		M?.hud_used.update_ammo_hud(M, src)
 
 /obj/item/weapon/gun/projectile/cell_loaded/attack_self(mob/user)
 	if(!chambered)
@@ -172,6 +170,11 @@
 		update_icon()
 	playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 	update_icon()
+	if(istype(loc, /obj/item/weapon/gun/projectile/cell_loaded)) // Update the HUD if we're in a gun + have a user. Not that one should be able to reload the mag while it's in a gun, but just in caaaaase.
+		var/obj/item/weapon/gun/projectile/cell_loaded/cell_load = loc
+		var/mob/living/M = cell_load.loc
+		if(istype(M))
+			M?.hud_used.update_ammo_hud(M, cell_load)
 
 /obj/item/ammo_magazine/cell_mag/update_icon()
 	cut_overlays()
@@ -179,8 +182,7 @@
 		return //Why bother
 
 	var/current = 0
-	for(var/B in stored_ammo)
-		var/obj/item/ammo_casing/microbattery/batt = B
+	for(var/obj/item/ammo_casing/microbattery/batt as anything in stored_ammo)
 		var/image/cap = image(icon, icon_state = "[capname]_cap")
 		cap.color = batt.type_color
 		cap.pixel_x = current * x_offset //Caps don't need a pixel_y offset
@@ -244,6 +246,7 @@
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid/New()
 	..()
@@ -265,6 +268,7 @@
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
 /obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat/New()
 	..()
@@ -280,3 +284,30 @@
 	new /obj/item/ammo_casing/microbattery/medical/stabilize2(src)
 	new /obj/item/ammo_casing/microbattery/medical/haste(src)
 	new /obj/item/ammo_casing/microbattery/medical/resist(src)
+	
+// TGMC Ammo HUD: Custom handling for cell-loaded weaponry.
+/*
+/obj/item/weapon/gun/projectile/cell_loaded/get_ammo_type()
+	if(!projectile_type)
+		return list("unknown", "unknown")
+	else
+		var/obj/item/projectile/P = projectile_type
+		return list(initial(P.hud_state), initial(P.hud_state_empty))
+*/
+/obj/item/weapon/gun/projectile/cell_loaded/get_ammo_count()
+	if(!chambered)
+		return 0 // We're not chambered, so we have 0 rounds loaded.
+
+	var/obj/item/ammo_casing/microbattery/batt = chambered
+	
+	var/shots
+	if(ammo_magazine) // Check how much ammo we have
+		for(var/obj/item/ammo_casing/microbattery/bullet as anything in ammo_magazine.stored_ammo)
+			if(istype(bullet,batt.type))
+				shots += bullet.shots_left
+		if(shots > 0) // We have shots ready to fire.
+			return shots
+		else // We're out of shots.
+			return 0
+	else // Else, we're unloaded/don't have a magazine.
+		return 0

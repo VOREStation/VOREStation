@@ -68,6 +68,11 @@
 	icon_state = "chef"
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/rank/chef/alt
+	desc = "It's an apron which is given only to the chefs that swear the most."
+	name = "souschef's uniform"
+	icon_state = "souschef"
+
 /obj/item/clothing/under/rank/clown
 	name = "clown suit"
 	desc = "<i><font face='comic sans ms'>Honk!</i></font>"
@@ -95,6 +100,9 @@
 	permeability_coefficient = 0.50
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/rank/hydroponics/alt
+	icon_state = "hydro"
+
 /obj/item/clothing/under/rank/internalaffairs
 	desc = "The plain, professional attire of an Internal Affairs Agent. The collar is <i>immaculately</i> starched."
 	name = "Internal Affairs uniform"
@@ -114,6 +122,10 @@
 	icon_state = "janitor"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
+
+/obj/item/clothing/under/rank/janitor/alt
+	name = "janitor's overalls"
+	icon_state = "janitor_alt"
 
 /obj/item/clothing/under/lawyer
 	desc = "Slick threads."

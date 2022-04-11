@@ -103,6 +103,12 @@
 #define ui_alien_fire "EAST-1:28,NORTH-3:25"
 #define ui_alien_oxygen "EAST-1:28,NORTH-4:25"
 
+// Goes above HUD, mid-right
+#define ui_ammo_hud1 "EAST-1:28,CENTER+1:25"
+#define ui_ammo_hud2 "EAST-1:28,CENTER+2:27"
+#define ui_ammo_hud3 "EAST-1:28,CENTER+3:29"
+#define ui_ammo_hud4 "EAST-1:28,CENTER+4:31"
+
 //Middle right (status indicators)
 #define ui_temp "EAST-1:28,CENTER-2:13"
 #define ui_health "EAST-1:28,CENTER-1:15"
@@ -161,6 +167,13 @@
 #define ui_ghost_pai "SOUTH: 6,CENTER+2:24"
 #define ui_ghost_updown "SOUTH: 6,CENTER+3:24"
 
+// NIF Soulcatcher guest ones
+#define ui_nifsc_reenter "SOUTH:6,CENTER-3:24"
+#define ui_nifsc_arproj "SOUTH:6,CENTER-2:24"
+#define ui_nifsc_jumptoowner "SOUTH:6,CENTER-1:24"
+#define ui_nifsc_nme "SOUTH:6,CENTER:24"
+#define ui_nifsc_nsay "SOUTH:6,CENTER+1:24"
+
 // Rig panel
 #define ui_rig_deco1 "WEST:-7, SOUTH+5"
 #define ui_rig_deco2 "WEST:-7, SOUTH+6"
@@ -180,3 +193,5 @@
 #define ui_mech_airtoggle "WEST+1:-7, SOUTH+8"
 #define ui_mech_deco1_f "WEST+2:-7, SOUTH+8"
 #define ui_mech_deco2_f "WEST+2:-7, SOUTH+9"
+
+#define ui_smallquad "EAST-4:22,SOUTH:5"

@@ -1,8 +1,18 @@
-/datum/category_item/catalogue/fauna/mimic		//TODO: VIRGO_LORE_WRITING_WIP
+/datum/category_item/catalogue/fauna/mimic
 	name = "Aberration - Mimic"
-	desc = "A being that seems to take the form of a crate, for whatever reason. \
-	It seems to lie in wait for it's prey, and then pounce once the unsuspecting person attempts to open it. \
-	For whatever reason, they seem native to underground areas, and they're very tough, and hard to kill, able to pounce fast."
+	desc = "Classification: Mimus vorare\
+	<br><br>\
+	Mimics are morph creatures that share properties with the likes of Prometheans. They could assume any shape, \
+	provided that they retained the same volume. In order to most effectively lure prey, they most commonly \
+	take the shape of chests and other objects likely to be touched by someone - though the latter is rarer \
+	than the former. \
+	<br>\
+	Mimics prefer consuming large prey such as humans or humanoid species, however, for means of survival they \
+	might resort to eating smaller prey. A meal of one or two humanoids could sustain a mimic for several \
+	months at a time - the main reason that they prey on humanoids to begin with. They reproduced asexually \
+	by splitting their mass, the young growing to adulthood within a few years time.\
+	<br>\
+	Mimics have no concerns beyond surviving and acquiring food."
 	value = CATALOGUER_REWARD_HARD
 
 /obj/structure/closet/crate/mimic
@@ -63,9 +73,11 @@
 /mob/living/simple_mob/vore/aggressive/mimic
 	name = "crate"
 	desc = "A rectangular steel crate."
+
+
 	icon_state = "crate"
 	icon_living = "crate"
-	icon = 'icons/obj/storage_vr.dmi'
+	icon = 'icons/obj/storage.dmi'
 
 	faction = "mimic"
 
@@ -101,6 +113,8 @@
 	showvoreprefs = 0 //Hides mechanical vore prefs for mimics. You can't see their gaping maws when they're just sitting idle.
 
 /mob/living/simple_mob/vore/aggressive/mimic
+	tt_desc = "Mimus vorare"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/mimic)
 	vore_active = 1
 	vore_pounce_chance = 10
 	swallowTime = 3 SECONDS

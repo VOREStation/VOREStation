@@ -106,6 +106,12 @@
 "ka" = (
 /turf/simulated/wall/shull,
 /area/shuttle/mackerel_lc_wreck)
+"kf" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_lc_wreck)
 "kU" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /obj/machinery/light/small{
@@ -732,6 +738,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/mackerel_lc_wreck)
+"Qq" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/mackerel_lc_wreck)
 "Qu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/random/empty_or_lootable_crate,
@@ -957,13 +969,13 @@ WP
 WP
 WP
 WP
-BB
+TC
 oG
 oe
 ka
 ka
 ka
-WP
+Qq
 WP
 "}
 (3,1,1) = {"
@@ -982,7 +994,7 @@ WP
 WP
 BB
 WP
-WP
+oG
 oe
 Zb
 bI
@@ -1007,13 +1019,13 @@ ka
 WP
 WP
 BB
-WP
+oG
 NI
 oq
 tV
 ka
 ka
-WP
+kf
 WP
 "}
 (5,1,1) = {"
@@ -1114,7 +1126,7 @@ tV
 ka
 ka
 ka
-WP
+Qq
 "}
 (9,1,1) = {"
 WP
@@ -1214,7 +1226,7 @@ tV
 ka
 ka
 ka
-WP
+kf
 "}
 (13,1,1) = {"
 WP
@@ -1307,13 +1319,13 @@ ka
 WP
 BB
 WP
-WP
+oG
 NI
 Zb
 ca
 NI
 oq
-WP
+oG
 BB
 "}
 (17,1,1) = {"
@@ -1332,7 +1344,7 @@ WP
 WP
 WP
 WP
-BB
+TC
 oe
 oq
 oq
@@ -1357,13 +1369,13 @@ WP
 WP
 WP
 WP
-WP
+oG
 oG
 oe
 oe
 oe
 oe
-BB
+TC
 WP
 "}
 (19,1,1) = {"

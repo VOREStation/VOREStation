@@ -4,10 +4,14 @@
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "intercom"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1
+	anchored = TRUE
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
+	light_color = "#00ff00"
+	light_power = 0.25
+	blocks_emissive = NONE
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/circuit = /obj/item/weapon/circuitboard/intercom
 	var/number = 0
 	var/wiresexposed = 0
@@ -16,12 +20,13 @@
 	. = ..()
 	var/area/A = get_area(src)
 	if(A)
-		GLOB.apc_event.register(A, src, /obj/update_icon)
+		GLOB.apc_event.register(A, src, /atom/proc/update_icon)
+	update_icon()
 
 /obj/item/device/radio/intercom/Destroy()
 	var/area/A = get_area(src)
 	if(A)
-		GLOB.apc_event.unregister(A, src, /obj/update_icon)
+		GLOB.apc_event.unregister(A, src, /atom/proc/update_icon)
 	return ..()
 
 /obj/item/device/radio/intercom/custom
@@ -51,11 +56,13 @@
 /obj/item/device/radio/intercom/department/medbay
 	name = "station intercom (Medbay)"
 	icon_state = "medintercom"
+	light_color = "#00aaff"
 	frequency = MED_I_FREQ
 
 /obj/item/device/radio/intercom/department/security
 	name = "station intercom (Security)"
 	icon_state = "secintercom"
+	light_color = "#ff0000"
 	frequency = SEC_I_FREQ
 
 /obj/item/device/radio/intercom/entertainment
@@ -140,7 +147,7 @@
 		A.pixel_y = pixel_y
 		A.circuit = M
 		A.set_dir(dir)
-		A.anchored = 1
+		A.anchored = TRUE
 		A.state = 2
 		A.update_icon()
 		M.deconstruct(src)
@@ -166,8 +173,12 @@
 /obj/item/device/radio/intercom/update_icon()
 	var/area/A = get_area(src)
 	on = A?.powered(EQUIP)
+	
+	cut_overlays()
 
 	if(!on)
+		set_light(0)
+		set_light_on(FALSE)
 		if(wiresexposed)
 			icon_state = "intercom-p_open"
 		else
@@ -175,8 +186,14 @@
 	else
 		if(wiresexposed)
 			icon_state = "intercom_open"
+			set_light(0)
+			set_light_on(FALSE)
 		else
 			icon_state = initial(icon_state)
+			add_overlay(mutable_appearance(icon, "[icon_state]_ov"))
+			add_overlay(emissive_appearance(icon, "[icon_state]_ov"))
+			set_light(2)
+			set_light_on(TRUE)
 
 //VOREStation Add Start
 /obj/item/device/radio/intercom/AICtrlClick(var/mob/user)

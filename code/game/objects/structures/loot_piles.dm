@@ -21,6 +21,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	icon_state = "randompile"
 	density = FALSE
 	anchored = TRUE
+	unacidable = TRUE
 
 	var/list/icon_states_to_use = list() // List of icon states the pile can choose from on initialization. If empty or null, it will stay the initial icon_state.
 
@@ -247,15 +248,14 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/trash/waffles,
 		/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
 		/obj/item/weapon/reagent_containers/food/snacks/mysterysoup,
-		/obj/item/weapon/reagent_containers/food/snacks/hotdog/old,
+		/obj/item/weapon/reagent_containers/food/snacks/old/hotdog,
 		/obj/item/pizzabox/old,
 		/obj/item/ammo_casing/spent,
 		/obj/item/stack/rods{amount = 5},
 		/obj/item/stack/material/steel{amount = 5},
 		/obj/item/stack/material/cardboard{amount = 5},
-		/obj/item/weapon/contraband/poster,
-		/obj/item/weapon/material/wirerod,
-		/obj/item/weapon/contraband/poster,
+		/obj/item/poster,
+		/obj/item/poster/custom,
 		/obj/item/weapon/newspaper,
 		/obj/item/weapon/paper/crumpled,
 		/obj/item/weapon/paper/crumpled/bloody
@@ -300,8 +300,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 
 	uncommon_loot = list(
 		/obj/item/weapon/storage/box/sinpockets,
-		/obj/item/weapon/storage/box/practiceshells,
-		/obj/item/weapon/storage/box/blanks,
+		/obj/item/ammo_magazine/ammo_box/b12g/practice,
+		/obj/item/ammo_magazine/ammo_box/b12g/blank,
 		/obj/item/weapon/storage/box/smokes,
 		/obj/item/weapon/storage/box/metalfoam,
 		/obj/item/weapon/storage/box/handcuffs,
@@ -311,8 +311,8 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	rare_loot = list(
 		/obj/item/weapon/storage/box/flashbangs,
 		/obj/item/weapon/storage/box/empslite,
-		/obj/item/weapon/storage/box/flashshells,
-		/obj/item/weapon/storage/box/stunshells,
+		/obj/item/ammo_magazine/ammo_box/b12g/flash,
+		/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 		/obj/item/weapon/storage/box/teargas
 	)
 
@@ -376,6 +376,7 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 		/obj/item/weapon/tool/wrench,
 		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/mining_scanner/advanced,
 		/obj/item/device/multitool,
 		/obj/item/mecha_parts/mecha_equipment/generator,
 		/obj/item/mecha_parts/mecha_equipment/tool/cable_layer,

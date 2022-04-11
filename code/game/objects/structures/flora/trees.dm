@@ -1,8 +1,8 @@
 //trees
 /obj/structure/flora/tree
 	name = "tree"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	pixel_x = -16
 	plane = MOB_PLANE // You know what, let's play it safe.
 	layer = ABOVE_MOB_LAYER
@@ -47,7 +47,7 @@
 	if(is_stump)
 		if(istype(W,/obj/item/weapon/shovel))
 			if(do_after(user, 5 SECONDS))
-				visible_message("<span class='notice'>\The [user] digs up \the [src] stump with \the [W].</span>")
+				visible_message("<b>\The [user]</b> digs up \the [src] stump with \the [W].")
 				qdel(src)
 		return
 
@@ -101,8 +101,7 @@
 		return
 
 	if(product && product_amount) // Make wooden logs.
-		var/obj/item/stack/material/M = new product(get_turf(src))
-		M.amount = product_amount
+		var/obj/item/stack/material/M = new product(get_turf(src), product_amount)
 		M.update_icon()
 	visible_message("<span class='danger'>\The [src] is felled!</span>")
 	stump()
@@ -115,7 +114,7 @@
 	is_stump = TRUE
 	density = FALSE
 	icon_state = "[base_state]_stump"
-	overlays.Cut() // For the Sif tree and other future glowy trees.
+	cut_overlays() // For the Sif tree and other future glowy trees.
 	set_light(0)
 
 /obj/structure/flora/tree/ex_act(var/severity)
@@ -265,18 +264,19 @@
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_sif"
 	base_state = "tree_sif"
+	blocks_emissive = FALSE
 	product = /obj/item/stack/material/log/sif
 	catalogue_data = list(/datum/category_item/catalogue/flora/sif_tree)
 	randomize_size = TRUE
 
 	harvest_tool = /obj/item/weapon/material/knife
 	max_harvests = 2
-	min_harvests = -4
+	min_harvests = 0
 	harvest_loot = list(
 		/obj/item/weapon/reagent_containers/food/snacks/siffruit = 20,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/sifpod = 5,
+		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/sifpod = 5,
 		/obj/item/seeds/sifbulb = 1
-		)
+	)
 
 	var/light_shift = 0
 
@@ -289,7 +289,10 @@
 	update_icon()
 
 /obj/structure/flora/tree/sif/update_icon()
-	set_light(5 - light_shift, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
-	var/image/glow = image(icon = icon, icon_state = "[base_state][light_shift]_glow")
-	glow.plane = PLANE_LIGHTING_ABOVE
-	overlays = list(glow)
+	cut_overlays()
+	var/bulbs = (5 - light_shift)
+	if(bulbs > 0)
+		set_light(bulbs, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
+		add_overlay(mutable_appearance(icon, "[base_state][bulbs]_glow"))
+		add_overlay(emissive_appearance(icon, "[base_state][bulbs]_glow"))
+	

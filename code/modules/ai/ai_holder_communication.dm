@@ -84,8 +84,7 @@
 	if(rand(0,200) < speak_chance)
 		// Check if anyone is around to 'appreciate' what we say.
 		var/alone = TRUE
-		for(var/m in viewers(holder))
-			var/mob/M = m
+		for(var/mob/M as anything in viewers(holder))
 			if(M.client)
 				alone = FALSE
 				break

@@ -22,7 +22,7 @@
 /obj/item/weapon/gun/energy/hooklauncher/ring
 	name = "ominous ring"
 	desc = "A small ring with strange symbols engraved upon it."
-	icon = 'icons/obj/clothing/rings.dmi'
+	icon = 'icons/inventory/hands/item.dmi'
 	icon_state = "seal-signet"
 	item_state = "concealed"
 

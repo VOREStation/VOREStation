@@ -9,6 +9,7 @@
 	known = FALSE
 	color = "#ee3333" //Redish, so it stands out against the other debris-like icons
 	initial_generic_waypoints = list("debrisfield_se", "debrisfield_nw")
+	icon_state = "spacehulk_g"
 
 // -- Objs -- //
 
@@ -70,8 +71,6 @@
 /area/submap/debrisfield/derelict
 	icon_state = "debrisexplored"
 	forced_ambience = list('sound/ambience/tension/tension.ogg', 'sound/ambience/tension/horror.ogg')
-
-//TFF 26/12/19 - Sub-areas for the APCs.
 
 /area/submap/debrisfield/derelict/ai_access_port
 	name = "POI - Abandoned Derelict AI Acess Port"
@@ -148,7 +147,7 @@
 	. = ..()
 
 /obj/effect/overmap/visitable/ship/landable/tinycarrier
-	scanner_name = "TBD"
+	name = "TBD"
 	scanner_desc = "TBD"
 	vessel_mass = 12000
 	vessel_size = SHIP_SIZE_SMALL
@@ -158,7 +157,7 @@
 	. = ..()
 	var/datum/lore/organization/O = loremaster.organizations[/datum/lore/organization/other/sysdef]
 	var/newname = "SDV [pick(O.ship_names)]"
-	scanner_name = newname
+	name = newname
 	scanner_desc = {"\[i\]Registration\[/i\]: [newname]
 \[i\]Class\[/i\]: Light Escort Carrier
 \[i\]Transponder\[/i\]: Transmitting (MIL), Weak Signal
@@ -186,10 +185,10 @@
 	shuttle_tag = "Debris Carrier"
 	req_one_access = list()
 
-/obj/mecha/combat/fighter/baron/loaded/busted
+/obj/mecha/combat/fighter/baron/busted
 	starting_components = list(/obj/item/mecha_parts/component/hull/lightweight,/obj/item/mecha_parts/component/actuator/hispeed,/obj/item/mecha_parts/component/armor,/obj/item/mecha_parts/component/gas,/obj/item/mecha_parts/component/electrical/high_current)
 
-/obj/mecha/combat/fighter/baron/loaded/busted/Initialize()
+/obj/mecha/combat/fighter/baron/busted/Initialize()
 	. = ..()
 	health = round(rand(50,120))
 	cell?.charge = 0

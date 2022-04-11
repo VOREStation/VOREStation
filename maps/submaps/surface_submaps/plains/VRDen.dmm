@@ -1,72 +1,712 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/template_noop,/area/submap/VRDen)
-"c" = (/turf/simulated/wall,/area/submap/VRDen)
-"d" = (/obj/structure/extinguisher_cabinet{pixel_y = 28},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"e" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; operating = 0; pixel_x = 0; pixel_y = 24},/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor,/area/submap/VRDen)
-"f" = (/obj/effect/decal/cleanable/dirt,/obj/structure/cable/green{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"g" = (/obj/machinery/power/port_gen/pacman,/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/submap/VRDen)
-"h" = (/obj/effect/decal/cleanable/dirt,/obj/fiftyspawner/phoron,/turf/simulated/floor,/area/submap/VRDen)
-"i" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/item/integrated_circuit/memory,/obj/item/weapon/paper{info = "To: Whoever reads it\[br]From: Simulant\[br]Went away to grab some spare parts, won't return for couple weeks. Can't support larger scale sims without machines I lost yesterday. Please don't touch my stuff, while I'm gone."; name = "note"},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"j" = (/turf/simulated/floor,/area/submap/VRDen)
-"k" = (/obj/effect/decal/cleanable/blood/oil,/obj/structure/cable/green{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"l" = (/obj/machinery/power/terminal{dir = 4},/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/obj/structure/cable/green,/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"m" = (/obj/machinery/power/smes/buildable/point_of_interest,/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"n" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/greengrid,/area/submap/VRDen)
-"o" = (/obj/machinery/vr_sleeper,/turf/simulated/floor/greengrid,/area/submap/VRDen)
-"p" = (/obj/structure/cryofeed,/turf/simulated/floor/greengrid,/area/submap/VRDen)
-"q" = (/obj/effect/decal/cleanable/dirt,/obj/structure/bed/chair{dir = 4},/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5; dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"r" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/item/weapon/paper{info = "your maps suck"; name = "dissatisfied letter"},/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"s" = (/obj/effect/decal/cleanable/dirt,/obj/item/integrated_circuit/logic/binary,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"t" = (/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"u" = (/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"v" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"w" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/greengrid,/area/submap/VRDen)
-"x" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"y" = (/obj/structure/table/standard{name = "plastic table frame"},/obj/item/broken_device/random,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"z" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"A" = (/turf/simulated/floor/greengrid,/area/submap/VRDen)
-"B" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/greengrid,/area/submap/VRDen)
-"C" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/VRDen)
-"D" = (/obj/effect/decal/cleanable/dirt,/obj/item/frame,/obj/item/integrated_circuit/logic/unary/not,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"E" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/telecomms/server{name = "Server"},/obj/item/device/gps/internal/poi,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"F" = (/obj/item/integrated_circuit/logic/binary,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"G" = (/obj/machinery/light/small/flicker,/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"H" = (/obj/machinery/telecomms/processor,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"I" = (/obj/effect/decal/cleanable/blood/oil/streak,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"J" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"K" = (/obj/effect/decal/remains/posi,/obj/item/weapon/paper{info = "pain sim on your hardware is top-notch, 10/10, would be burned alive again"; name = "satisfied letter"},/obj/machinery/light/small,/turf/simulated/floor,/area/submap/VRDen)
-"L" = (/obj/structure/closet/toolcloset,/turf/simulated/floor,/area/submap/VRDen)
-"M" = (/obj/item/integrated_circuit/smart/basic_pathfinder,/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"N" = (/obj/structure/girder/displaced,/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"O" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor,/area/submap/VRDen)
-"P" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/tiled/steel,/area/submap/VRDen)
-"Q" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"R" = (/obj/structure/loot_pile/maint/junk,/turf/template_noop,/area/submap/VRDen)
-"S" = (/obj/machinery/door/airlock,/turf/simulated/floor,/area/submap/VRDen)
-"T" = (/obj/structure/toilet{dir = 8},/obj/item/device/integrated_electronics/debugger,/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/simulated/floor,/area/submap/VRDen)
-"U" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/steel_dirty,/area/submap/VRDen)
-"V" = (/obj/effect/decal/remains/robot,/turf/template_noop,/area/submap/VRDen)
-"W" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/template_noop,/area/submap/VRDen)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/VRDen)
+"c" = (
+/turf/simulated/wall,
+/area/submap/VRDen)
+"d" = (
+/obj/structure/extinguisher_cabinet{
+	pixel_y = 28
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"e" = (
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	operating = 0;
+	pixel_y = 24
+	},
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"f" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"g" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"h" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/fiftyspawner/phoron,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"i" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/integrated_circuit/memory,
+/obj/item/weapon/paper{
+	info = "To: Whoever reads it\[br]From: Simulant\[br]Went away to grab some spare parts, won't return for couple weeks. Can't support larger scale sims without machines I lost yesterday. Please don't touch my stuff, while I'm gone.";
+	name = "note"
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"k" = (
+/obj/effect/decal/cleanable/blood/oil,
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"l" = (
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"m" = (
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable/green{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"n" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/greengrid/virgo3b,
+/area/submap/VRDen)
+"o" = (
+/obj/machinery/vr_sleeper,
+/turf/simulated/floor/greengrid/virgo3b,
+/area/submap/VRDen)
+"p" = (
+/obj/structure/cryofeed,
+/turf/simulated/floor/greengrid/virgo3b,
+/area/submap/VRDen)
+"q" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/bed/chair{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	brightness_color = "#DA0205";
+	brightness_power = 1;
+	brightness_range = 5;
+	dir = 8
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"r" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/weapon/paper{
+	info = "your maps suck";
+	name = "dissatisfied letter"
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"s" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/integrated_circuit/logic/binary,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"t" = (
+/turf/simulated/floor/tiled/steel,
+/area/submap/VRDen)
+"u" = (
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"w" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/greengrid/virgo3b,
+/area/submap/VRDen)
+"y" = (
+/obj/structure/table/standard{
+	name = "plastic table frame"
+	},
+/obj/item/broken_device/random,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"z" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/steel,
+/area/submap/VRDen)
+"A" = (
+/turf/simulated/floor/greengrid/virgo3b,
+/area/submap/VRDen)
+"B" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/greengrid/virgo3b,
+/area/submap/VRDen)
+"C" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"D" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/item/frame,
+/obj/item/integrated_circuit/logic/unary/not,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"E" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/machinery/telecomms/server{
+	name = "Server"
+	},
+/obj/item/device/gps/internal/poi,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"F" = (
+/obj/item/integrated_circuit/logic/binary,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"G" = (
+/obj/machinery/light/small/flicker,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"H" = (
+/obj/machinery/telecomms/processor,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"I" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"J" = (
+/obj/machinery/door/airlock/glass,
+/turf/simulated/floor/tiled/steel,
+/area/submap/VRDen)
+"K" = (
+/obj/effect/decal/remains/posi,
+/obj/item/weapon/paper{
+	info = "pain sim on your hardware is top-notch, 10/10, would be burned alive again";
+	name = "satisfied letter"
+	},
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"L" = (
+/obj/structure/closet/toolcloset,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"M" = (
+/obj/item/integrated_circuit/smart/basic_pathfinder,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/VRDen)
+"N" = (
+/obj/structure/girder/displaced,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"O" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"P" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"Q" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"R" = (
+/obj/structure/loot_pile/maint/junk,
+/turf/template_noop,
+/area/submap/VRDen)
+"T" = (
+/obj/structure/toilet{
+	dir = 8
+	},
+/obj/item/device/integrated_electronics/debugger,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"U" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/virgo3b,
+/area/submap/VRDen)
+"V" = (
+/obj/effect/decal/remains/robot,
+/turf/template_noop,
+/area/submap/VRDen)
+"W" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/template_noop,
+/area/submap/VRDen)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaa
-abbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbba
-abbbbbccccccccbbbbba
-abbbcccdefgcccccbbba
-abbbchijklmcnopcbbba
-abbbcqrstuvcwopcbbba
-abbbcxyzutuzAopcbbba
-abbbczxtuxttBopcbbba
-abbbcCuDuuEcAopcbbba
-abbbcjFtGuHcAopcbbba
-abbbcIcccJccwopcbbba
-abbbcKcLttMNBopcbbba
-abbbcccOPQccccccbbba
-abbbbRccjCSTccbbbbba
-abbbbbbccUcccbbVbbba
-abbbbbbbWbWbbbbbbbba
-abbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbba
-aaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+b
+c
+h
+q
+C
+C
+C
+u
+I
+K
+c
+R
+b
+b
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+c
+c
+i
+r
+y
+C
+u
+F
+c
+c
+c
+c
+b
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+c
+d
+u
+s
+C
+u
+D
+u
+c
+L
+O
+c
+c
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+c
+e
+k
+u
+u
+u
+u
+G
+c
+u
+P
+u
+c
+W
+b
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+c
+f
+l
+u
+u
+C
+u
+u
+J
+u
+Q
+C
+U
+b
+b
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+b
+c
+g
+m
+O
+u
+u
+E
+H
+c
+M
+c
+U
+c
+W
+b
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+c
+c
+c
+c
+z
+t
+c
+c
+c
+N
+c
+T
+c
+b
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+b
+c
+c
+n
+w
+A
+B
+A
+A
+w
+B
+c
+c
+c
+b
+b
+b
+a
+"}
+(14,1,1) = {"
+a
+b
+b
+c
+c
+o
+o
+o
+o
+o
+o
+o
+o
+c
+c
+b
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+b
+b
+b
+c
+p
+p
+p
+p
+p
+p
+p
+p
+c
+b
+b
+b
+b
+b
+a
+"}
+(16,1,1) = {"
+a
+b
+b
+b
+c
+c
+c
+c
+c
+c
+c
+c
+c
+c
+b
+V
+b
+b
+b
+a
+"}
+(17,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(18,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(19,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

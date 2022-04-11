@@ -4,8 +4,8 @@
 	desc = "A high tech machine that is designed to read DNA samples properly."
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "dnaopen"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	circuit = /obj/item/weapon/circuitboard/dna_analyzer
 
 	var/obj/item/weapon/forensics/swab/bloodsamp = null
@@ -111,7 +111,8 @@
 		var/obj/item/weapon/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [bloodsamp.name]"
 		P.stamped = list(/obj/item/weapon/stamp)
-		P.overlays = list("paper_stamped")
+		P.cut_overlays()
+		P.add_overlay("paper_stamped")
 		//dna data itself
 		var/data = "No scan information available."
 		if(bloodsamp.dna != null)

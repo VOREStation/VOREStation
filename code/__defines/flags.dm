@@ -13,6 +13,10 @@
 
 GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768))
 
+/* Directions */
+///All the cardinal direction bitflags.
+#define ALL_CARDINALS (NORTH|SOUTH|EAST|WEST)
+
 // datum_flags
 #define DF_VAR_EDITED			(1<<0)
 #define DF_ISPROCESSING			(1<<1)
@@ -30,6 +34,7 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PHORONGUARD				(1<<5)	// Does not get contaminated by phoron.
 #define	NOREACT					(1<<6)	// Reagents don't react inside this container.
 #define OVERLAY_QUEUED			(1<<7)// Atom queued to SSoverlay for COMPILE_OVERLAYS
+#define IS_BUSY					(1<<8)	// Atom has a TASK_TARGET_EXCLUSIVE do_after with it as the target.
 
 //Flags for items (equipment) - Used in /obj/item/var/item_flags
 #define THICKMATERIAL			(1<<0)	// Prevents syringes, parapens and hyposprays if equipped to slot_suit or slot_head.
@@ -45,3 +50,8 @@ GLOBAL_LIST_INIT(bitflags, list(1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 204
 #define PASSGRILLE				(1<<2)
 #define PASSBLOB				(1<<3)
 #define PASSMOB					(1<<4)
+
+// Flags for do_after/do_mob exclusivity.
+#define TASK_TARGET_EXCLUSIVE	(1<<1)
+#define TASK_USER_EXCLUSIVE		(1<<2)
+#define TASK_ALL_EXCLUSIVE		TASK_TARGET_EXCLUSIVE | TASK_USER_EXCLUSIVE

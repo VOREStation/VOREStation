@@ -3,7 +3,7 @@
 	desc = "It's an immobile card-locked storage unit."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "secure1"
-	density = 1
+	density = TRUE
 	opened = 0
 	var/locked = 1
 	var/broken = 0
@@ -54,7 +54,20 @@
 		to_chat(user, "<span class='notice'>Access Denied</span>")
 
 /obj/structure/closet/secure_closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
+	if(W.is_wrench())
+		if(opened)
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			if(do_after(user, 20 * W.toolspeed))
+				if(!src) return
+				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+				anchored = !anchored
+				return
+		else
+			to_chat(user, "<span class='notice'>You can't reach the anchoring bolts when the door is closed!</span>")
+	else if(opened)
 		if(istype(W, /obj/item/weapon/storage/laundry_basket))
 			return ..(W,user)
 		if(istype(W, /obj/item/weapon/grab))
@@ -77,17 +90,6 @@
 			spark_system.start()
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
 			playsound(src, "sparks", 50, 1)
-	else if(W.is_wrench())
-		if(sealed)
-			if(anchored)
-				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
-			else
-				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			if(do_after(user, 20 * W.toolspeed))
-				if(!src) return
-				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
-				anchored = !anchored
-				return
 	else if(istype(W,/obj/item/weapon/packageWrap) || istype(W,/obj/item/weapon/weldingtool))
 		return ..(W,user)
 	else

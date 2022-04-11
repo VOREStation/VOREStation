@@ -73,14 +73,43 @@
 	access = access_rd
 
 /datum/supply_pack/misc/ce_rig
-	name = "advanced voidsuit (empty)"
+	name = "advanced hardsuit (empty)"
 	contains = list(
 			/obj/item/weapon/rig/ce = 1
 			)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
-	containername = "advanced voidsuit crate"
+	containername = "advanced hardsuit crate"
 	access = access_ce
+
+/datum/supply_pack/misc/com_medical_rig
+	name = "commonwealth medical hardsuit (loaded)"
+	contains = list(
+			/obj/item/weapon/rig/baymed/equipped = 1
+			)
+	cost = 250
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Commonwealth medical hardsuit crate"
+	access = access_medical
+
+/datum/supply_pack/misc/com_engineering_rig
+	name = "commonwealth engineering hardsuit (loaded)"
+	contains = list(
+			/obj/item/weapon/rig/bayeng/equipped = 1
+			)
+	cost = 250
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "Commonwealth engineering hardsuit crate"
+	access = access_engine
+
+/datum/supply_pack/misc/zero_rig
+	name = "null hardsuit (jets)"
+	contains = list(
+			/obj/item/weapon/rig/zero = 1
+			)
+	cost = 75
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "null hardsuit crate"
 
 /datum/supply_pack/misc/jetpack
 	name = "jetpack (empty)"
@@ -111,3 +140,21 @@
 				  access_eva,
 				  access_pilot)
 	one_access = TRUE
+
+/datum/supply_pack/misc/music_players
+	name = "music players (3)"
+	contains = list(
+		/obj/item/device/walkpod = 3
+	)
+	cost = 150
+	containertype = /obj/structure/closet/crate
+	containername = "portable music players crate"
+
+/datum/supply_pack/misc/juke_remotes
+	name = "jukebox remote speakers (2)"
+	contains = list(
+		/obj/item/device/juke_remote = 2
+	)
+	cost = 300
+	containertype = /obj/structure/closet/crate
+	containername = "cordless jukebox speakers crate"

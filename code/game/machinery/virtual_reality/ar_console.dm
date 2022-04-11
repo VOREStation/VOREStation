@@ -25,7 +25,7 @@
 	if(stat & (BROKEN))
 		if(occupant)
 			go_out()
-			visible_message("<span class='notice'>\The [src] emits a low droning sound, before the pod door clicks open.</span>")
+			visible_message("<b>\The [src]</b> emits a low droning sound, before the pod door clicks open.")
 		return
 	else if(eject_dead && occupant && occupant.stat == DEAD)
 		visible_message("<span class='warning'>\The [src] sounds an alarm, swinging its hatch open.</span>")
@@ -57,7 +57,7 @@
 	if(!occupant)
 		return
 
-	if(!forced && avatar && avatar.stat != DEAD && alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", "Yes", "No") == "No")
+	if(!forced && avatar && avatar.stat != DEAD && tgui_alert(avatar, "Someone wants to remove you from virtual reality. Do you want to leave?", "Leave VR?", list("Yes", "No")) == "No")
 		return
 
 	avatar.exit_vr()
@@ -89,7 +89,7 @@
 
 	if(avatar && !occupant.stat)
 		to_chat(occupant,"<span class='alien'>\The [src] begins to [pick("whir","hum","pulse")] as a screen appears in front of you.</span>")
-		if(alert(occupant, "This pod is already linked. Are you certain you wish to engage?", "Commmit?", "Yes", "No") == "No")
+		if(tgui_alert(occupant, "This pod is already linked. Are you certain you wish to engage?", "Commmit?", list("Yes", "No")) == "No")
 			visible_message("<span class='alien'>\The [src] pulses!</span>")
 
 	to_chat(occupant,"<span class='alien'>Your mind blurs as information bombards you.</span>")

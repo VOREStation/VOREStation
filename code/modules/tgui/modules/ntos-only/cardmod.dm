@@ -49,8 +49,7 @@
 		data["target_name"] = id_card ? id_card.name : "-----"
 
 	var/list/departments = list()
-	for(var/D in SSjob.get_all_department_datums())
-		var/datum/department/dept = D
+	for(var/datum/department/dept as anything in SSjob.get_all_department_datums())
 		if(!dept.assignable) // No AI ID cards for you.
 			continue
 		if(dept.centcom_only && !is_centcom)
@@ -152,7 +151,7 @@
 							to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
 							return
 						else
-							computer.visible_message("<span class='notice'>\The [computer] prints out paper.</span>")
+							computer.visible_message("<b>\The [computer]</b> prints out paper.")
 				else
 					var/contents = {"<h4>Crew Manifest</h4>
 									<br>
@@ -162,12 +161,12 @@
 						to_chat(usr, "<span class='notice'>Hardware error: Printer was unable to print the file. It may be out of paper.</span>")
 						return
 					else
-						computer.visible_message("<span class='notice'>\The [computer] prints out paper.</span>")
+						computer.visible_message("<b>\The [computer]</b> prints out paper.")
 			. = TRUE
 		if("modify")
 			if(computer && computer.card_slot)
 				if(id_card)
-					data_core.manifest_modify(id_card.registered_name, id_card.assignment)
+					data_core.manifest_modify(id_card.registered_name, id_card.assignment, id_card.rank)
 				computer.proc_eject_id(usr)
 			. = TRUE
 		if("terminate")
@@ -193,7 +192,7 @@
 			if(computer && program.can_run(usr, 1) && id_card)
 				var/t1 = params["assign_target"]
 				if(t1 == "Custom")
-					var/temp_t = sanitize(input("Enter a custom job assignment.","Assignment", id_card.assignment), 45)
+					var/temp_t = sanitize(input(usr, "Enter a custom job assignment.","Assignment", id_card.assignment), 45)
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t)
 						id_card.assignment = temp_t

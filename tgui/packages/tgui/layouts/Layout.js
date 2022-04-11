@@ -5,7 +5,8 @@
  */
 
 import { classes } from 'common/react';
-import { computeBoxProps, computeBoxClassName } from '../components/Box';
+import { computeBoxClassName, computeBoxProps } from '../components/Box';
+import { addScrollableNode, removeScrollableNode } from '../events';
 
 /**
  * Brings Layout__content DOM element back to focus.
@@ -28,6 +29,7 @@ export const Layout = props => {
     className,
     theme = 'nanotrasen',
     children,
+    ...rest
   } = props;
   return (
     <div className={'theme-' + theme}>
@@ -35,7 +37,9 @@ export const Layout = props => {
         className={classes([
           'Layout',
           className,
-        ])}>
+          ...computeBoxClassName(rest),
+        ])}
+        {...computeBoxProps(rest)}>
         {children}
       </div>
     </div>
@@ -51,7 +55,6 @@ const LayoutContent = props => {
   } = props;
   return (
     <div
-      id="Layout__content"
       className={classes([
         'Layout__content',
         scrollable && 'Layout__content--scrollable',
@@ -62,6 +65,11 @@ const LayoutContent = props => {
       {children}
     </div>
   );
+};
+
+LayoutContent.defaultHooks = {
+  onComponentDidMount: node => addScrollableNode(node),
+  onComponentWillUnmount: node => removeScrollableNode(node),
 };
 
 Layout.Content = LayoutContent;

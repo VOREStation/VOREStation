@@ -1,3 +1,4 @@
+/// Multiz support override for CanZPass
 /turf/proc/CanZPass(atom/A, direction)
 	if(z == A.z) //moving FROM this turf
 		return direction == UP //can't go below
@@ -7,82 +8,80 @@
 		if(direction == DOWN) //on a turf above, trying to enter
 			return !density && isopenspace(GetAbove(src)) // VOREStation Edit
 
+/// Multiz support override for CanZPass
 /turf/simulated/open/CanZPass(atom, direction)
 	return 1
 
+/// Multiz support override for CanZPass
 /turf/space/CanZPass(atom, direction)
 	return 1
+
+/// WARNING WARNING
+/// Turfs DO NOT lose their signals when they get replaced, REMEMBER THIS
+/// It's possible because turfs are fucked, and if you have one in a list and it's replaced with another one, the list ref points to the new turf
+/// We do it because moving signals over was needlessly expensive, and bloated a very commonly used bit of code
+/turf/proc/multiz_turf_del(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_DEL, T, dir)
+
+/turf/proc/multiz_turf_new(turf/T, dir)
+	SEND_SIGNAL(src, COMSIG_TURF_MULTIZ_NEW, T, dir)
 
 //
 // Open Space - "empty" turf that lets stuff fall thru it to the layer below
 //
 
+GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdrop, new)
+
+/atom/movable/openspace_backdrop
+	name = "openspace_backdrop"
+
+	anchored = TRUE
+
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "grey"
+	plane = OPENSPACE_BACKDROP_PLANE
+	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
+	vis_flags = VIS_INHERIT_ID
+
 /turf/simulated/open
 	name = "open space"
-	icon = 'icons/turf/space.dmi'
-	icon_state = ""
-	desc = "\..."
-	density = 0
-	plane = OPENSPACE_PLANE_START
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "invisible"
+	desc = "Watch your step!"
+	density = FALSE
+	plane = OPENSPACE_PLANE
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	dynamic_lighting = 0 // Someday lets do proper lighting z-transfer.  Until then we are leaving this off so it looks nicer.
 	can_build_into_floor = TRUE
-
-	var/turf/below
 
 /turf/simulated/open/vacuum
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
 
-/turf/simulated/open/post_change()
-	..()
-	update()
-
-/turf/simulated/open/ChangeTurf()
-	var/turf/T = GetBelow(src)
-	if(T)
-		GLOB.turf_entered_event.unregister(T, src, .proc/BelowOpenUpdated)
-		GLOB.turf_exited_event.unregister(T, src, .proc/BelowOpenUpdated)
-	. = ..()
-
 /turf/simulated/open/Initialize()
 	. = ..()
 	ASSERT(HasBelow(z))
-	update()
-	var/turf/T = GetBelow(src)
-	if(T)
-		GLOB.turf_entered_event.register(T, src, .proc/BelowOpenUpdated)
-		GLOB.turf_exited_event.register(T, src, .proc/BelowOpenUpdated)
+	add_overlay(GLOB.openspace_backdrop_one_for_all, TRUE) //Special grey square for projecting backdrop darkness filter on it.
+	return INITIALIZE_HINT_LATELOAD
 
-/turf/simulated/open/Entered(var/atom/movable/mover)
+/turf/simulated/open/LateInitialize()
 	. = ..()
+	AddElement(/datum/element/turf_z_transparency, FALSE)
+	update_icon()
+
+/turf/simulated/open/Entered(var/atom/movable/mover, var/atom/oldloc)
+	..()
 	mover.fall()
 
-/turf/simulated/open/proc/BelowOpenUpdated(turf/T, atom/movable/AM, old_loc)
-	if(isobj(AM) && GLOB.open_space_initialised && !AM.invisibility)
-		SSopen_space.add_turf(src, 1)
+/turf/simulated/open/proc/update()
+	for(var/atom/movable/A in src)
+		A.fall()
 
 // Called when thrown object lands on this turf.
 /turf/simulated/open/hitby(var/atom/movable/AM, var/speed)
 	. = ..()
 	AM.fall()
-
-/turf/simulated/open/proc/update()
-	plane = OPENSPACE_PLANE + src.z
-	below = GetBelow(src)
-	turf_changed_event.register(below, src, /turf/simulated/open/update_icon)
-	levelupdate()
-	below.update_icon() // So the 'ceiling-less' overlay gets added.
-	for(var/atom/movable/A in src)
-		A.fall()
-	if(GLOB.open_space_initialised)
-		SSopen_space.add_turf(src, TRUE)
-
-// override to make sure nothing is hidden
-/turf/simulated/open/levelupdate()
-	for(var/obj/O in src)
-		O.hide(0)
 
 /turf/simulated/open/examine(mob/user, distance, infix, suffix)
 	. = ..()
@@ -92,50 +91,9 @@
 			depth += 1
 		. += "It is about [depth] levels deep."
 
-/**
-* Update icon and overlays of open space to be that of the turf below, plus any visible objects on that turf.
-*/
 /turf/simulated/open/update_icon()
-	cut_overlays() // Edit - Overlays are being crashy when modified.
-	update_icon_edge()// Add - Get grass into open spaces and whatnot.
-	if(below)
-		// Skybox lives on its own plane, if we don't set it to see that, then open space tiles over true space tiles see white nothingness below
-		if(is_space())
-			plane = SPACE_PLANE
-		else
-			plane = OPENSPACE_PLANE + src.z
-
-		var/below_is_open = isopenspace(below)
-
-		if(below_is_open)
-			underlays = below.underlays
-		else
-			var/image/bottom_turf = image(icon = below.icon, icon_state = below.icon_state, dir=below.dir, layer=below.layer)
-			bottom_turf.plane = src.plane
-			bottom_turf.color = below.color
-			underlays = list(bottom_turf)
-		copy_overlays(below)
-
-		// get objects (not mobs, they are handled by /obj/zshadow)
-		var/list/o_img = list()
-		for(var/obj/O in below)
-			if(O.invisibility) continue // Ignore objects that have any form of invisibility
-			if(O.loc != below) continue // Ignore multi-turf objects not directly below
-			var/image/temp2 = image(O, dir = O.dir, layer = O.layer)
-			if(temp2.icon == null)
-				temp2.icon_state = null
-			temp2.plane = src.plane
-			temp2.color = O.color
-			temp2.overlays += O.overlays
-			// TODO Is pixelx/y needed?
-			o_img += temp2
-		add_overlay(o_img)
-
-		if(!below_is_open)
-			add_overlay(SSopen_space.over_OS_darkness)
-
-		return 0
-	return PROCESS_KILL
+	cut_overlays()
+	update_icon_edge()
 
 // Straight copy from space.
 /turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)
@@ -187,6 +145,85 @@
 		for(var/obj/O in contents)
 			if(!O.CanFallThru(L, GetBelow(src)))
 				return TRUE // Can't fall through this, like lattice or catwalk.
-		if(!locate(/obj/structure/stairs) in GetBelow(src))
-			return FALSE // Falling on stairs is safe.
 	return ..()
+
+
+/turf/simulated/floor/glass
+	name = "glass floor"
+	desc = "Dont jump on it, or do, I'm not your mom."
+	icon = 'icons/turf/flooring/glass.dmi'
+	icon_state = "glass-0"
+	base_icon_state = "glass"
+	/*
+	baseturfs = /turf/simulated/openspace
+	intact = FALSE //this means wires go on top
+	smoothing_flags = SMOOTH_BITMASK
+	smoothing_groups = list(SMOOTH_GROUP_TURF_OPEN, SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
+	canSmoothWith = list(SMOOTH_GROUP_FLOOR_TRANSPARENT_GLASS)
+	footstep = FOOTSTEP_PLATING
+	barefootstep = FOOTSTEP_HARD_BAREFOOT
+	clawfootstep = FOOTSTEP_HARD_CLAW
+	heavyfootstep = FOOTSTEP_GENERIC_HEAVY
+	*/
+
+// /turf/simulated/floor/glass/setup_broken_states()
+//	return list("glass-damaged1", "glass-damaged2", "glass-damaged3")
+
+/turf/simulated/floor/glass/Initialize()
+	icon_state = "" //Prevent the normal icon from appearing behind the smooth overlays
+	..()
+	return INITIALIZE_HINT_LATELOAD
+
+/turf/simulated/floor/glass/LateInitialize()
+	. = ..()
+	AddElement(/datum/element/turf_z_transparency, TRUE)
+	blend_icons()
+
+// TG's icon blending method because I don't want to redo all the icon states AAA
+
+//Redefinitions of the diagonal directions so they can be stored in one var without conflicts
+/turf/simulated/floor/glass/proc/blend_icons()
+	var/new_junction = NONE
+
+	for(var/direction in cardinal) //Cardinal case first.
+		var/turf/T = get_step(src, direction)
+		if(istype(T, type))
+			new_junction |= direction
+
+	if(!(new_junction & (NORTH|SOUTH)) || !(new_junction & (EAST|WEST)))
+		icon_state = "[base_icon_state]-[new_junction]"
+		return
+
+	if(new_junction & NORTH)
+		if(new_junction & WEST)
+			var/turf/T = get_step(src, NORTHWEST)
+			if(istype(T, type))
+				new_junction |= (1<<7)
+
+		if(new_junction & EAST)
+			var/turf/T = get_step(src, NORTHEAST)
+			if(istype(T, type))
+				new_junction |= (1<<4)
+
+	if(new_junction & SOUTH)
+		if(new_junction & WEST)
+			var/turf/T = get_step(src, SOUTHWEST)
+			if(istype(T, type))
+				new_junction |= (1<<6)
+
+		if(new_junction & EAST)
+			var/turf/T = get_step(src, SOUTHEAST)
+			if(istype(T, type))
+				new_junction |= (1<<5)
+
+	icon_state = "[base_icon_state]-[new_junction]"
+
+/turf/simulated/floor/glass/reinforced
+	name = "reinforced glass floor"
+	desc = "Do jump on it, it can take it."
+	icon = 'icons/turf/flooring/reinf_glass.dmi'
+	icon_state = "reinf_glass-0"
+	base_icon_state = "reinf_glass"
+
+// /turf/simulated/floor/glass/reinforced/setup_broken_states()
+//	return list("reinf_glass-damaged1", "reinf_glass-damaged2", "reinf_glass-damaged3")

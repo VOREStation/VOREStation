@@ -62,8 +62,8 @@
 			/obj/item/clothing/suit/nun,
 			/obj/item/clothing/suit/imperium_monk,
 			/obj/item/clothing/suit/ianshirt,
-			/obj/item/clothing/under/gimmick/rank/captain/suit,
-			/obj/item/clothing/under/gimmick/rank/head_of_personnel/suit,
+			/obj/item/clothing/under/suit_jacket/green,
+			/obj/item/clothing/under/suit_jacket/teal,
 			/obj/item/clothing/under/lawyer/purpsuit,
 			/obj/item/clothing/under/rank/mailman,
 			/obj/item/clothing/under/dress/dress_saloon,
@@ -109,7 +109,7 @@
 	containertype = /obj/structure/closet/crate/gilthari
 	containername = "Formal suit crate"
 
-datum/supply_pack/costumes/witch
+/datum/supply_pack/costumes/witch
 	name = "Witch costume"
 	containername = "Witch costume"
 	containertype = /obj/structure/closet/crate/nanothreads

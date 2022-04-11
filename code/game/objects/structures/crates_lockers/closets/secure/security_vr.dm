@@ -21,6 +21,7 @@
 		/obj/item/clothing/accessory/holster/waist,
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/security/hos,
 		/obj/item/clothing/mask/gas/half)
 
 /obj/structure/closet/secure_closet/hos2
@@ -178,3 +179,19 @@
 	if(prob(75))
 		new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
 	return ..()
+
+/obj/structure/closet/secure_closet/captains
+	starts_with = list(
+		/obj/item/weapon/storage/backpack/dufflebag/captain,
+		/obj/item/clothing/head/helmet,
+		/obj/item/clothing/suit/storage/vest,
+		/obj/item/weapon/cartridge/captain,
+		/obj/item/weapon/storage/lockbox/medal,
+		/obj/item/device/radio/headset/heads/captain,
+		/obj/item/device/radio/headset/heads/captain/alt,
+		/obj/item/weapon/gun/energy/gun,
+		/obj/item/weapon/melee/telebaton,
+		/obj/item/device/flash,
+		/obj/item/weapon/storage/box/ids,
+		/obj/item/weapon/melee/rapier,
+		/obj/item/clothing/accessory/holster/machete/rapier)

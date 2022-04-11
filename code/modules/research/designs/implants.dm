@@ -1,7 +1,7 @@
 // Implants
 
 /datum/design/item/implant
-	materials = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /datum/design/item/implant/AssembleDesignName()
 	..()

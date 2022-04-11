@@ -13,7 +13,7 @@
 	if(!action_checks(target) || src.loc.z == 2) return
 	var/turf/T = get_turf(target)
 	if(T)
-		set_ready_state(0)
+		set_ready_state(FALSE)
 		chassis.use_power(energy_drain)
 		do_teleport(chassis, T, 4)
 		do_after_cooldown()

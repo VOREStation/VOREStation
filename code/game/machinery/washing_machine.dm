@@ -3,8 +3,8 @@
 	desc = "Not a hiding place. Unfit for pets."
 	icon = 'icons/obj/machines/washing_machine_vr.dmi' //VOREStation Edit
 	icon_state = "wm_1" //VOREStation Edit
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	clicksound = "button"
 	clickvol = 40
 
@@ -67,12 +67,10 @@
 
 	//Tanning!
 	for(var/obj/item/stack/hairlesshide/HH in washing)
-		var/obj/item/stack/WL = new HH.wet_type(src)
-		if(istype(WL))
-			WL.amount = HH.amount
+		var/obj/item/stack/wetleather/WL = new(src, HH.get_amount())
 		washing -= HH
 		HH.forceMove(get_turf(src))
-		HH.use(HH.amount)
+		HH.use(HH.get_amount())
 
 		washing += WL
 

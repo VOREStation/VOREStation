@@ -57,7 +57,7 @@
 
 /mob/living/simple_mob/animal/giant_spider/nurse/inject_poison(mob/living/L, target_zone)
 	..() // Inject the stoxin here.
-	if(ishuman(L) && prob(egg_inject_chance))
+	if(ishuman(L) && prob(egg_inject_chance) && can_lay_eggs)			//VOREStation Edit
 		var/mob/living/carbon/human/H = L
 		var/obj/item/organ/external/O = H.get_organ(target_zone)
 		if(O)
@@ -65,14 +65,15 @@
 			for(var/obj/effect/spider/eggcluster/E in O.implants)
 				eggcount++
 			if(!eggcount)
-				var/eggs = new egg_type(O, src)
+				var/obj/effect/spider/eggcluster/eggs = new egg_type(O, src)
 				O.implants += eggs
+				eggs.faction = faction
 				to_chat(H, span("critical", "\The [src] injects something into your [O.name]!") ) // Oh god its laying eggs in me!
 
 // Webs target in a web if able to.
 /mob/living/simple_mob/animal/giant_spider/nurse/attack_target(atom/A)
 	if(isturf(A))
-		if(fed)
+		if(fed && can_lay_eggs)
 			if(!laying_eggs)
 				return lay_eggs(A)
 		return web_tile(A)
@@ -140,14 +141,14 @@
 	if(large_cocoon)
 		C.icon_state = pick("cocoon_large1","cocoon_large2","cocoon_large3")
 
-	ai_holder.target = null
+	ai_holder.remove_target()
 
 	return TRUE
 
 /mob/living/simple_mob/animal/giant_spider/nurse/handle_special()
 	set waitfor = FALSE
 	if(get_AI_stance() == STANCE_IDLE && !is_AI_busy() && isturf(loc))
-		if(fed)
+		if(fed && can_lay_eggs)			//VOREStation Edit
 			lay_eggs(loc)
 		else
 			web_tile(loc)
@@ -185,6 +186,9 @@
 	if(!fed)
 		return FALSE
 
+	if(!can_lay_eggs)
+		return FALSE
+
 	var/obj/effect/spider/eggcluster/E = locate() in T
 	if(E)
 		return FALSE // Already got eggs here.
@@ -205,7 +209,8 @@
 		return FALSE // Spamclick protection.
 
 	set_AI_busy(FALSE)
-	new egg_type(T)
+	var/obj/effect/spider/eggcluster/eggs = new egg_type(T)
+	eggs.faction = faction
 	fed--
 	laying_eggs = FALSE
 	return TRUE
@@ -240,8 +245,7 @@
 
 	var/static/alternative_targets = typecacheof(list(/obj/item, /obj/structure))
 
-	for(var/AT in typecache_filter_list(range(vision_range, holder), alternative_targets))
-		var/obj/O = AT
+	for(var/obj/O as anything in typecache_filter_list(range(vision_range, holder), alternative_targets))
 		if(can_see(holder, O, vision_range) && !O.anchored)
 			. += O
 

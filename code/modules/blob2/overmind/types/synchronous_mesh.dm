@@ -34,8 +34,7 @@
 		if(!istype(C, /obj/structure/blob/core) && !istype(C, /obj/structure/blob/node) && C.overmind && (C.overmind == B.overmind) ) //if it doesn't have the same 'ownership' or is a core or node, don't split damage to it
 			blobs_to_hurt += C
 
-	for(var/thing in blobs_to_hurt)
-		var/obj/structure/blob/C = thing
+	for(var/obj/structure/blob/C as anything in blobs_to_hurt)
 		if(C == B)
 			continue // We'll damage this later.
 

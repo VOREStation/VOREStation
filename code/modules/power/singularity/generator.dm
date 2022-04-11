@@ -4,8 +4,8 @@
 	desc = "An Odd Device which produces a Gravitational Singularity when set up."
 	icon = 'icons/obj/singularity.dmi'
 	icon_state = "TheSingGen"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	use_power = USE_POWER_OFF
 	var/energy = 0
 	var/creation_type = /obj/singularity
@@ -32,7 +32,7 @@
 	if(W.is_screwdriver())
 		panel_open = !panel_open
 		playsound(src, W.usesound, 50, 1)
-		visible_message("<span class='notice'>\The [user] adjusts \the [src]'s mechanisms.</span>")
+		visible_message("<b>\The [user]</b> adjusts \the [src]'s mechanisms.")
 		if(panel_open && do_after(user, 30))
 			to_chat(user, "<span class='notice'>\The [src] looks like it could be modified.</span>")
 			if(panel_open && do_after(user, 80 * W.toolspeed))	// We don't have skills, so a delayed hint for engineers will have to do for now. (Panel open check for sanity)
@@ -41,10 +41,10 @@
 		else
 			to_chat(user, "<span class='notice'>\The [src]'s mechanisms look secure.</span>")
 	if(istype(W, /obj/item/weapon/smes_coil/super_io) && panel_open)
-		visible_message("<span class='notice'>\The [user] begins to modify \the [src] with \the [W].</span>")
+		visible_message("<b>\The [user]</b> begins to modify \the [src] with \the [W].")
 		if(do_after(user, 300))
 			user.drop_from_inventory(W)
-			visible_message("<span class='notice'>\The [user] installs \the [W] onto \the [src].</span>")
+			visible_message("<b>\The [user]</b> installs \the [W] onto \the [src].")
 			qdel(W)
 			var/turf/T = get_turf(src)
 			var/new_machine = /obj/machinery/particle_smasher

@@ -4,7 +4,7 @@
 
 	// Sanity is mostly handled in chimera_regenerate()
 
-	var/confirm = alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 		chimera_regenerate()
 
@@ -33,17 +33,24 @@
 
 			//Scary spawnerization.
 			revive_ready = REVIVING_NOW
+			revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+			throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 			spawn(time SECONDS)
 				// Was dead, now not dead.
 				if(stat != DEAD)
 					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
 					revive_ready = REVIVING_READY //reset their cooldown
+					clear_alert("regen")
+					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 				// Was dead, still dead.
 				else
 					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
 					verbs |= /mob/living/carbon/human/proc/hatch
 					revive_ready = REVIVING_DONE
+					src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+					clear_alert("regen")
+					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 		//Dead until nutrition injected.
 		else
@@ -55,6 +62,8 @@
 
 		//Waiting for regen after being alive
 		revive_ready = REVIVING_NOW
+		revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		spawn(time SECONDS)
 
 			//If they're still alive after regenning.
@@ -62,17 +71,24 @@
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
 				revive_ready = REVIVING_DONE
+				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 			//Was alive, now dead
 			else if(hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
 				verbs |= /mob/living/carbon/human/proc/hatch
 				revive_ready = REVIVING_DONE
+				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
 			//Dead until nutrition injected.
 			else
 				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
 				revive_ready = REVIVING_READY //reset their cooldown
+				clear_alert("regen")
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
@@ -91,7 +107,7 @@
 		verbs -= /mob/living/carbon/human/proc/hatch
 		return
 
-	var/confirm = alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", "Yes", "No")
+	var/confirm = tgui_alert(usr, "Are you sure you want to hatch right now? This will be very obvious to anyone in view.", "Confirm Regeneration", list("Yes", "No"))
 	if(confirm == "Yes")
 
 		//Dead when hatching
@@ -101,6 +117,7 @@
 				chimera_hatch()
 				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
 				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+				clear_alert("hatch")
 				return
 
 			//Don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
@@ -108,11 +125,13 @@
 				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
 				verbs -= /mob/living/carbon/human/proc/hatch
 				revive_ready = REVIVING_READY //reset their cooldown they can try again when they're given a kickstart
+				clear_alert("hatch")
 
 		//Alive when hatching
 		else
 			chimera_hatch()
 			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+			clear_alert("hatch")
 
 /mob/living/carbon/human/proc/chimera_hatch()
 	verbs -= /mob/living/carbon/human/proc/hatch
@@ -139,9 +158,13 @@
 
 	//Visual effects
 	var/T = get_turf(src)
-	new /obj/effect/gibspawner/human/xenochimera(T)
+	var/blood_color = species.blood_color
+	var/flesh_color = species.flesh_color
+	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
+	
+	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
-	revive_ready = world.time + 1 HOUR //set the cooldown
+	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
@@ -367,7 +390,7 @@
 			choices += M
 	choices -= src
 
-	var/mob/living/carbon/human/B = input(src,"Who do you wish to bite?") as null|anything in choices
+	var/mob/living/carbon/human/B = tgui_input_list(src, "Who do you wish to bite?", "Suck Blood", choices)
 
 	if(!B || !src || src.stat) return
 
@@ -566,7 +589,7 @@
 		return
 
 	var/mob/living/carbon/human/T = G.affecting // I must say, this is a quite ingenious way of doing it. Props to the original coders.
-	if(!istype(T) || T.isSynthetic())
+	if(!istype(T))
 		to_chat(src, "<span class='warning'>\The [T] is not able to be fed.</span>")
 		return
 
@@ -670,7 +693,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -685,7 +708,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -700,7 +723,7 @@
 		if(!choices.len)
 			to_chat(src,"<span class='warning'>There's nobody nearby to use this on.</span>")
 
-		target = input(src,"Who do you wish to target?","Damage/Remove Prey's Organ") as null|anything in choices
+		target = tgui_input_list(src,"Who do you wish to target?","Damage/Remove Prey's Organ", choices)
 	if(!istype(target))
 		return FALSE
 
@@ -717,21 +740,21 @@
 		return //Silent, because can_shred does messages.
 
 	//Let them pick any of the target's external organs
-	var/obj/item/organ/external/T_ext = input(src,"What do you wish to severely damage?") as null|anything in T.organs //D for destroy.
+	var/obj/item/organ/external/T_ext = tgui_input_list(src, "What do you wish to severely damage?", "Organ Choice", T.organs) //D for destroy.
 	if(!T_ext) //Picking something here is critical.
 		return
 	if(T_ext.vital)
-		if(alert("Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...",,"Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_ext]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//Any internal organ, if there are any
-	var/obj/item/organ/internal/T_int = input(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'") as null|anything in T_ext.internal_organs
+	var/obj/item/organ/internal/T_int = tgui_input_list(src,"Do you wish to severely damage an internal organ, as well? If not, click 'cancel'", "Organ Choice", T_ext.internal_organs)
 	if(T_int && T_int.vital)
-		if(alert("Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...",,"Yes", "No") != "Yes")
+		if(tgui_alert(usr, "Are you sure you wish to severely damage their [T_int]? It will likely kill [T]...","Shred Limb",list("Yes", "No")) != "Yes")
 			return //If they reconsider, don't continue.
 
 	//And a belly, if they want
-	var/obj/belly/B = input(src,"Do you wish to swallow the organ if you tear if out? If not, click 'cancel'") as null|anything in vore_organs
+	var/obj/belly/B = tgui_input_list(src,"To where do you wish to swallow the organ if you tear if out? If not at all, click 'cancel'", "Organ Choice", vore_organs)
 
 	if(can_shred(T) != T)
 		to_chat(src,"<span class='warning'>Looks like you lost your chance...</span>")
@@ -835,12 +858,12 @@
 		return
 
 	if(!C.anchored && !C.pulledby) //Not currently anchored, and not pulled by anyone.
-		C.anchored = 1 //This is the only way to stop the inertial_drift.
+		C.anchored = TRUE //This is the only way to stop the inertial_drift.
 		C.adjust_nutrition(-25)
 		update_floating()
 		to_chat(C, "<span class='notice'>You hover in place.</span>")
 		spawn(6) //.6 seconds.
-			C.anchored = 0
+			C.anchored = FALSE
 	else
 		return
 
@@ -850,3 +873,156 @@
 	set category = "Abilities"
 	pass_flags ^= PASSTABLE //I dunno what this fancy ^= is but Aronai gave it to me.
 	to_chat(src, "You [pass_flags&PASSTABLE ? "will" : "will NOT"] move over tables/railings/trays!")
+
+/mob/living/carbon/human/proc/check_silk_amount()
+	set name = "Check Silk Amount"
+	set category = "Abilities"
+
+	if(species.is_weaver)
+		to_chat(src, "Your silk reserves are at [species.silk_reserve]/[species.silk_max_reserve].")
+	else
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+
+/mob/living/carbon/human/proc/toggle_silk_production()
+	set name = "Toggle Silk Production"
+	set category = "Abilities"
+
+	if(species.is_weaver)
+		species.silk_production = !(species.silk_production)
+		to_chat(src, "You are [species.silk_production ? "now" : "no longer"] producing silk.")
+	else
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+
+/mob/living/carbon/human/proc/weave_structure()
+	set name = "Weave Structure"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	var/choice
+	var/datum/weaver_recipe/structure/desired_result
+	var/finalized = "No"
+
+	while(finalized == "No" && src.client)
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_structures)
+		desired_result  = weavable_structures[choice]
+		if(!desired_result || !istype(desired_result))
+			return
+
+		if(choice)
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
+
+	if(!desired_result || !istype(desired_result))
+		return
+
+	if(desired_result.cost > species.silk_reserve)
+		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		return
+
+	if(stat)
+		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		return
+
+	if(locate(desired_result.result_type) in src.loc)
+		to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+		return
+
+	if(!isturf(src.loc))
+		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		return
+
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
+		if(desired_result.cost > species.silk_reserve)
+			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			return
+
+		if(locate(desired_result.result_type) in src.loc)
+			to_chat(src, "<span class='warning'>You can't create another weaversilk [desired_result.title] here!</span>")
+			return
+
+		if(!isturf(src.loc))
+			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			return
+
+		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
+
+		//new desired_result.result_type(src.loc)
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = species.silk_color
+
+
+/mob/living/carbon/human/proc/weave_item()
+	set name = "Weave Item"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		return
+
+	var/choice
+	var/datum/weaver_recipe/item/desired_result
+	var/finalized = "No"
+
+	while(finalized == "No" && src.client)
+		choice = tgui_input_list(src,"What would you like to weave?", "Weave Choice", weavable_items)
+		desired_result  = weavable_items[choice]
+		if(!desired_result || !istype(desired_result))
+			return
+
+		if(choice)
+			finalized = tgui_alert(src, "Are you sure you want to weave [desired_result.title]? It will cost you [desired_result.cost] silk.","Confirmation",list("Yes","No"))
+
+	if(!desired_result || !istype(desired_result))
+		return
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	if(desired_result.cost > species.silk_reserve)
+		to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+		return
+
+	if(stat)
+		to_chat(src, "<span class='warning'>You can't do that in your current state!</span>")
+		return
+
+	if(!isturf(src.loc))
+		to_chat(src, "<span class='warning'>You can't weave here!</span>")
+		return
+
+	if(do_after(src, desired_result.time, exclusive = TASK_USER_EXCLUSIVE))
+		if(desired_result.cost > species.silk_reserve)
+			to_chat(src, "<span class='warning'>You don't have enough silk to weave that!</span>")
+			return
+
+		if(!isturf(src.loc))
+			to_chat(src, "<span class='warning'>You can't weave here!</span>")
+			return
+
+		species.silk_reserve = max(species.silk_reserve - desired_result.cost, 0)
+
+		//new desired_result.result_type(src.loc)
+		var/atom/O = new desired_result.result_type(src.loc)
+		O.color = species.silk_color
+
+/mob/living/carbon/human/proc/set_silk_color()
+	set name = "Set Silk Color"
+	set category = "Abilities"
+
+	if(!(species.is_weaver))
+		to_chat(src, "<span class='warning'>You are not a weaver! How are you doing this? Tell a developer!</span>")
+		return
+
+	var/new_silk_color = input(usr, "Pick a color for your woven products:","Silk Color", species.silk_color) as null|color
+	if(new_silk_color)
+		species.silk_color = new_silk_color
+
+/mob/living/carbon/human/proc/toggle_eye_glow()
+	set name = "Toggle Eye Glowing"
+	set category = "Abilities"
+
+	species.has_glowing_eyes = !species.has_glowing_eyes
+	update_eyes()
+	to_chat(src, "Your eyes [species.has_glowing_eyes ? "are now" : "are no longer"] glowing.")

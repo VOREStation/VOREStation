@@ -8,8 +8,8 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = ITEMSIZE_NORMAL
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
@@ -23,7 +23,7 @@
 	var/force_divisor = 0.5
 	var/thrown_force_divisor = 0.5
 	var/dulled_divisor = 0.5	//Just drops the damage by half
-	var/default_material = DEFAULT_WALL_MATERIAL
+	var/default_material = MAT_STEEL
 	var/datum/material/material
 	var/drops_debris = 1
 
@@ -97,6 +97,8 @@
 
 /obj/item/weapon/material/proc/check_health(var/consumed)
 	if(health<=0)
+		health = 0
+
 		if(fragile)
 			shatter(consumed)
 		else if(!dulled && can_dull)
@@ -118,8 +120,8 @@
 	playsound(src, "shatter", 70, 1)
 	dulled = 1
 	if(is_sharp() || has_edge())
-		sharp = 0
-		edge = 0
+		sharp = FALSE
+		edge = FALSE
 
 /obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
 	if(!fragile)

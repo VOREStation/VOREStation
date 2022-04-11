@@ -9,7 +9,7 @@ var/global/list/limb_icon_cache = list()
 	for(var/obj/item/organ/external/organ in contents)
 		if(organ.children && organ.children.len)
 			for(var/obj/item/organ/external/child in organ.children)
-				overlays += child.mob_icon
+				add_overlay(child.mob_icon)
 		add_overlay(organ.mob_icon)
 
 /obj/item/organ/external/proc/sync_colour_to_human(var/mob/living/carbon/human/human)
@@ -51,69 +51,6 @@ var/global/list/limb_icon_cache = list()
 		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
 		if(eyes) eyes.update_colour()
 
-/obj/item/organ/external/head/get_icon()
-	..()
-
-	//The overlays are not drawn on the mob, they are used for if the head is removed and becomes an item
-	cut_overlays()
-
-	//Every 'addon' below requires information from species
-	if(!iscarbon(owner) || !owner.species)
-		return
-
-	var/icon/eyecon //VOREStation Edit -- holds eye icon to render over markings later.
-
-	//Eye color/icon
-	var/should_have_eyes = owner.should_have_organ(O_EYES)
-	var/has_eye_color = owner.species.appearance_flags & HAS_EYE_COLOR
-	if((should_have_eyes || has_eye_color) && eye_icon)
-		var/obj/item/organ/internal/eyes/eyes = owner.internal_organs_by_name[O_EYES]
-		var/icon/eyes_icon = new/icon(eye_icon_location, eye_icon)
-		//Should have eyes
-		if(should_have_eyes)
-			//And we have them
-			if(eyes)
-				if(has_eye_color)
-					eyes_icon.Blend(rgb(eyes.eye_colour[1], eyes.eye_colour[2], eyes.eye_colour[3]), ICON_ADD)
-			//They're gone!
-			else
-				eyes_icon.Blend(rgb(128,0,0), ICON_ADD)
-		//We have weird other-sorts of eyes (as we're not supposed to have eye organ, but we have HAS_EYE_COLOR species)
-		else
-			eyes_icon.Blend(rgb(owner.r_eyes, owner.g_eyes, owner.b_eyes), ICON_ADD)
-
-		//VOREStation edit -- allow rendering of eyes over markings.
-		if(eyes_over_markings)
-			eyecon = eyes_icon
-		else
-			add_overlay(eyes_icon)
-			mob_icon.Blend(eyes_icon, ICON_OVERLAY)
-			icon_cache_key += "[eye_icon]"
-
-	//Lip color/icon
-	if(owner.lip_style && (species && (species.appearance_flags & HAS_LIPS)))
-		var/icon/lip_icon = new/icon('icons/mob/human_face.dmi', "lips_[owner.lip_style]_s")
-		add_overlay(lip_icon)
-		mob_icon.Blend(lip_icon, ICON_OVERLAY)
-
-	//Head markings
-	for(var/M in markings)
-		var/datum/sprite_accessory/marking/mark_style = markings[M]["datum"]
-		var/icon/mark_s = new/icon("icon" = mark_style.icon, "icon_state" = "[mark_style.icon_state]-[organ_tag]")
-		mark_s.Blend(markings[M]["color"], mark_style.color_blend_mode) // VOREStation edit
-		add_overlay(mark_s) //So when it's not on your body, it has icons
-		mob_icon.Blend(mark_s, ICON_OVERLAY) //So when it's on your body, it has icons
-		icon_cache_key += "[M][markings[M]["color"]]"
-
-	if(eyes_over_markings && eyecon) //VOREStation edit -- toggle to render eyes above markings.
-		add_overlay(eyecon)
-		mob_icon.Blend(eyecon, ICON_OVERLAY)
-		icon_cache_key += "[eye_icon]"
-
-	add_overlay(get_hair_icon())
-
-	return mob_icon
-
 /obj/item/organ/external/head/proc/get_hair_icon()
 	var/image/res = image('icons/mob/human_face.dmi',"bald_s")
 	//Facial hair
@@ -122,7 +59,7 @@ var/global/list/limb_icon_cache = list()
 		if(facial_hair_style && facial_hair_style.species_allowed && (species.get_bodytype(owner) in facial_hair_style.species_allowed))
 			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)
-				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), ICON_MULTIPLY) // VOREStation edit
+				facial_s.Blend(rgb(owner.r_facial, owner.g_facial, owner.b_facial), facial_hair_style.color_blend_mode)
 			res.add_overlay(facial_s)
 
 	//Head hair
@@ -194,6 +131,15 @@ var/global/list/limb_icon_cache = list()
 					I.Blend(rgb(h_col[1],h_col[2],h_col[3]), ICON_MULTIPLY) //VOREStation edit
 					limb_icon_cache[cache_key] = I
 				mob_icon.Blend(limb_icon_cache[cache_key], ICON_OVERLAY)
+			
+			// VOREStation edit start
+			if(nail_polish)
+				var/icon/I = new(nail_polish.icon, nail_polish.icon_state)
+				I.Blend(nail_polish.color, ICON_MULTIPLY)
+				add_overlay(I)
+				mob_icon.Blend(I, ICON_OVERLAY)
+				icon_cache_key += "_[nail_polish.icon]_[nail_polish.icon_state]_[nail_polish.color]"
+			// VOREStation edit end
 
 	if(model)
 		icon_cache_key += "_model_[model]"

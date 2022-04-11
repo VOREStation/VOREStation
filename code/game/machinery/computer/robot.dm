@@ -220,8 +220,8 @@
 			var/mob/living/silicon/robot/R = locate(params["ref"])
 			if(!can_hack(usr, R))
 				return
-			var/choice = input("Really hack [R.name]? This cannot be undone.") in list("Yes", "No")
-			if(choice != "Yes")
+			var/choice = tgui_alert(usr, "Really hack [R.name]? This cannot be undone.", "Hack?", list("Yes", "No"))
+			if(choice == "No")
 				return
 			log_game("[key_name(usr)] emagged [key_name(R)] using robotic console!")
 			message_admins("<span class='notice'>[key_name_admin(usr)] emagged [key_name_admin(R)] using robotic console!</span>")

@@ -10,7 +10,7 @@
 	var/list/keys = list()
 	for(var/mob/playerMob in player_list)
 		keys += playerMob.client
-	var/client/selection = input("Please, select a player!", "Set CKey", null, null) as null|anything in sortKey(keys)
+	var/client/selection = tgui_input_list(usr, "Please, select a player!", "Set CKey", sortKey(keys))
 	if(!selection || !istype(selection))
 		return
 

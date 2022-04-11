@@ -69,11 +69,9 @@ var/list/civilian_cartridges = list(
 	return ..()
 
 /obj/item/weapon/cartridge/proc/update_programs(obj/item/device/pda/pda)
-	for(var/A in programs)
-		var/datum/data/pda/P = A
+	for(var/datum/data/pda/P as anything in programs)
 		P.pda = pda
-	for(var/A in messenger_plugins)
-		var/datum/data/pda/messenger_plugin/P = A
+	for(var/datum/data/pda/messenger_plugin/P as anything in messenger_plugins)
 		P.pda = pda
 
 /obj/item/weapon/cartridge/engineering
@@ -154,7 +152,7 @@ var/list/civilian_cartridges = list(
 
 /obj/item/weapon/cartridge/signal/Initialize()
 	radio = new /obj/item/radio/integrated/signal(src)
-	..()
+	. = ..()
 
 /obj/item/weapon/cartridge/signal/science
 	name = "\improper Signal Ace 2 cartridge"
@@ -307,5 +305,4 @@ var/list/civilian_cartridges = list(
 	name = "F.R.A.M.E. cartridge"
 	icon_state = "cart"
 	charges = 5
-	var/telecrystals = 0
 	messenger_plugins = list(new/datum/data/pda/messenger_plugin/virus/frame)

@@ -4,7 +4,7 @@
 	icon_state = "pill10"
 
 /obj/item/weapon/reagent_containers/pill/nutriment/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("nutriment", 30)
 
 /obj/item/weapon/reagent_containers/pill/protein
@@ -13,7 +13,7 @@
 	icon_state = "pill24"
 
 /obj/item/weapon/reagent_containers/pill/protein/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("protein", 30)
 
 /obj/item/weapon/reagent_containers/pill/rezadone
@@ -22,7 +22,7 @@
 	icon_state = "pill2"
 
 /obj/item/weapon/reagent_containers/pill/rezadone/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("rezadone", 5)
 	color = reagents.get_color()
 
@@ -32,7 +32,7 @@
 	icon_state = "pill10"
 
 /obj/item/weapon/reagent_containers/pill/peridaxon/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("peridaxon", 10)
 
 /obj/item/weapon/reagent_containers/pill/carthatoline
@@ -41,7 +41,7 @@
 	icon_state = "pill4"
 
 /obj/item/weapon/reagent_containers/pill/carthatoline/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("carthatoline", 15)
 	color = reagents.get_color()
 
@@ -51,7 +51,7 @@
 	icon_state = "pill3"
 
 /obj/item/weapon/reagent_containers/pill/alkysine/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("alkysine", 10)
 	color = reagents.get_color()
 
@@ -61,7 +61,7 @@
 	icon_state = "pill3"
 
 /obj/item/weapon/reagent_containers/pill/imidazoline/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("imidazoline", 15)
 	color = reagents.get_color()
 
@@ -71,7 +71,7 @@
 	icon_state = "pill2"
 
 /obj/item/weapon/reagent_containers/pill/osteodaxon/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("osteodaxon", 15)
 	reagents.add_reagent("inaprovaline", 10)
 	color = reagents.get_color()
@@ -82,7 +82,7 @@
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/myelamine/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("myelamine", 15)
 	reagents.add_reagent("inaprovaline", 10)
 	color = reagents.get_color()
@@ -93,7 +93,7 @@
 	icon_state = "pill4"
 
 /obj/item/weapon/reagent_containers/pill/hyronalin/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("hyronalin", 15)
 	color = reagents.get_color()
 
@@ -103,7 +103,7 @@
 	icon_state = "pill2"
 
 /obj/item/weapon/reagent_containers/pill/arithrazine/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("arithrazine", 5)
 	color = reagents.get_color()
 
@@ -113,7 +113,7 @@
 	icon_state = "pill2"
 
 /obj/item/weapon/reagent_containers/pill/corophizine/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("corophizine", 5)
 	color = reagents.get_color()
 
@@ -123,7 +123,7 @@
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/vermicetol/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("vermicetol", 15)
 	color = reagents.get_color()
 
@@ -133,7 +133,7 @@
 	icon_state = "pill1"
 
 /obj/item/weapon/reagent_containers/pill/healing_nanites/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("healing_nanites", 30)
 	color = reagents.get_color()
 
@@ -143,6 +143,16 @@
 	icon_state = "pill3"
 
 /obj/item/weapon/reagent_containers/pill/sleevingcure/Initialize()
-	..()
+	. = ..()
 	reagents.add_reagent("sleevingcure", 1)
 	color = reagents.get_color()
+
+/obj/item/weapon/reagent_containers/pill/airlock
+	name = "\'Airlock\' Pill"
+	desc = "Neutralizes toxins and provides a mild analgesic effect."
+	icon_state = "pill2"
+
+/obj/item/weapon/reagent_containers/pill/airlock/New()
+	..()
+	reagents.add_reagent("anti_toxin", 15)
+	reagents.add_reagent("paracetamol", 5)

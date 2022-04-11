@@ -6,16 +6,16 @@
 
 #define FIELD(N, V, E) list(field = N, value = V, edit = E)
 
-/obj/machinery/computer/skills//TODO:SANITY
-	name = "employment records console"
-	desc = "Used to view, edit and maintain employment records."
-	icon_state = "laptop"
-	icon_keyboard = "laptop_key"
-	icon_screen = "medlaptop"
-	light_color = "#00b000"
+/obj/machinery/computer/skills//TODO:SANITY //[TO DO] Change name to PCU and update mapdata to include replacement computers
+	name = "\improper Employment Records PCU"
+	desc = "A personal computer unit that's used to view, edit and maintain employment records."
+	icon_screen = "pcu_generic"
+	icon_state = "pcu"
+	icon_keyboard = "pcu_key"
+	light_color = "#5284e7"
 	req_one_access = list(access_heads)
-	circuit = /obj/item/weapon/circuitboard/skills
-	density = 0
+	circuit = /obj/item/weapon/circuitboard/skills/pcu
+	density = FALSE
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
@@ -30,7 +30,7 @@
 	var/static/list/field_edit_choices
 
 /obj/machinery/computer/skills/Initialize()
-	..()
+	. = ..()
 	field_edit_questions = list(
 		// General
 		"name" = "Please input new name:",
@@ -175,7 +175,7 @@
 				screen = GENERAL_RECORD_LIST
 		else
 			. = FALSE
-	
+
 	if(.)
 		return
 

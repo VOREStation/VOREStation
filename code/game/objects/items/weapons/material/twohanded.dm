@@ -90,8 +90,8 @@
 	unwielded_force_divisor = 0.25
 	force_divisor = 0.7 // 10/42 with hardness 60 (steel) and 0.25 unwielded divisor
 	dulled_divisor = 0.75	//Still metal on a stick
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BACK
 	force_wielded = 30
@@ -153,8 +153,8 @@
 	unwielded_force_divisor = 0.375
 	thrown_force_divisor = 1.5 		// 22.5 when thrown with weight 15 (glass)
 	throw_speed = 3
-	edge = 0
-	sharp = 1
+	edge = FALSE
+	sharp = TRUE
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	mob_throw_hit_sound =  'sound/weapons/pierce.ogg'
 	attack_verb = list("attacked", "poked", "jabbed", "torn", "gored")
@@ -174,7 +174,21 @@
 	force_divisor = 0.3
 	force = 10
 	thrown_force_divisor = 1
-	default_material = "DEFAULT_WALL_MATERIAL"
+	default_material = "MAT_STEEL"
 	fragile = 0
-	sharp = 1
-	edge = 0
+	sharp = TRUE
+	edge = FALSE
+
+/obj/item/weapon/material/twohanded/riding_crop
+	name = "riding crop"
+	desc = "A rod, a little over a foot long with a widened grip and a thick, leather patch at the end. Used since the dawn of the West to control animals."
+	force_divisor = 0.05 //Required in order for the X attacks Y message to pop up.
+	unwielded_force_divisor = 1 // One here, too.
+	applies_material_colour = 1
+	unbreakable = 1
+	base_icon = "riding_crop"
+	icon_state = "riding_crop0"
+	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
+
+/obj/item/weapon/material/twohanded/spear/flint
+	default_material = MAT_FLINT

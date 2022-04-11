@@ -4,13 +4,14 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/closets/bases/closet.dmi'
 	icon_state = "base"
-	density = 1
+	density = TRUE
 	w_class = ITEMSIZE_HUGE
 	layer = UNDER_JUNK_LAYER
-	
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC
+
 	var/opened = 0
 	var/sealed = 0
-	
+
 	var/seal_tool = /obj/item/weapon/weldingtool	//Tool used to seal the closet, defaults to welder
 	var/wall_mounted = 0 //never solid (You can always pass over it)
 	var/health = 100
@@ -23,8 +24,8 @@
 							  //then open it in a populated area to crash clients.
 	var/storage_cost = 40	//How much space this closet takes up if it's stuffed in another closet
 
-	var/open_sound = 'sound/machines/click.ogg'
-	var/close_sound = 'sound/machines/click.ogg'
+	var/open_sound = 'sound/effects/closet_open.ogg'
+	var/close_sound = 'sound/effects/closet_close.ogg'
 
 	var/store_misc = 1		//Chameleon item check
 	var/store_items = 1		//Will the closet store items?
@@ -33,11 +34,15 @@
 
 	var/list/starts_with // List of type = count (or just type for 1)
 
-	var/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
+	var/decl/closet_appearance/closet_appearance = /decl/closet_appearance // The /decl that defines what decals we end up with, that makes our look unique
+
+	/// Currently animating the door transform
+	var/is_animating_door = FALSE
+	/// Our visual object for the closet door, if we're animating
+	var/obj/effect/overlay/closet_door/door_obj
 
 /obj/structure/closet/Initialize()
 	..()
-	// Closets need to come later because of spawners potentially creating objects during init.
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/structure/closet/LateInitialize()
@@ -47,7 +52,7 @@
 		starts_with = null
 
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
-		if(istype(loc, /mob/living)) return //VOREStation Edit - No collecting mob organs if spawned inside mob
+		if(istype(loc, /mob/living)) return
 		var/obj/item/I
 		for(I in loc)
 			if(I.density || I.anchored || I == src) continue
@@ -60,11 +65,16 @@
 			storage_capacity = content_size + 5
 
 	if(ispath(closet_appearance))
-		var/decl/closet_appearance/app = GLOB.closet_appearances[closet_appearance]
-		if(app)
-			icon = app.icon
+		closet_appearance = GLOB.closet_appearances[closet_appearance]
+		if(istype(closet_appearance))
+			icon = closet_appearance.icon
 			color = null
 	update_icon()
+
+/obj/structure/closet/Destroy()
+	qdel_null(door_obj)
+	closet_appearance = null
+	return ..()
 
 /obj/structure/closet/examine(mob/user)
 	. = ..()
@@ -131,10 +141,10 @@
 	dump_contents()
 
 	opened = 1
-	playsound(src, open_sound, 15, 1, -3)
+	playsound(src, open_sound, 50, 1, -3)
 	if(initial(density))
 		density = !density
-	update_icon()
+	animate_door()
 	return 1
 
 /obj/structure/closet/proc/close()
@@ -156,10 +166,10 @@
 
 	opened = 0
 
-	playsound(src, close_sound, 15, 1, -3)
+	playsound(src, close_sound, 50, 1, -3)
 	if(initial(density))
 		density = !density
-	update_icon()
+	animate_door(TRUE)
 	return 1
 
 //Cham Projector Exception
@@ -214,10 +224,11 @@
 
 
 /obj/structure/closet/proc/toggle(mob/user as mob)
+	if(is_animating_door)
+		return
 	if(!(opened ? close() : open()))
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		return
-	update_icon()
 
 // this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
@@ -260,7 +271,20 @@
 	return
 
 /obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
+	if(W.is_wrench())
+		if(opened)
+			if(anchored)
+				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
+			else
+				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
+			if(do_after(user, 20 * W.toolspeed))
+				if(!src) return
+				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
+				anchored = !anchored
+				return
+		else
+			to_chat(user, "<span class='notice'>You can't reach the anchoring bolts when the door is closed!</span>")
+	else if(opened)
 		if(istype(W, /obj/item/weapon/grab))
 			var/obj/item/weapon/grab/G = W
 			MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
@@ -316,17 +340,6 @@
 				update_icon()
 				for(var/mob/M in viewers(src))
 					M.show_message("<span class='warning'>[src] has been [sealed?"sealed":"unsealed"] by [user.name].</span>", 3)
-	else if(W.is_wrench())
-		if(sealed)
-			if(anchored)
-				user.visible_message("\The [user] begins unsecuring \the [src] from the floor.", "You start unsecuring \the [src] from the floor.")
-			else
-				user.visible_message("\The [user] begins securing \the [src] to the floor.", "You start securing \the [src] to the floor.")
-			playsound(src, W.usesound, 50)
-			if(do_after(user, 20 * W.toolspeed))
-				if(!src) return
-				to_chat(user, "<span class='notice'>You [anchored? "un" : ""]secured \the [src]!</span>")
-				anchored = !anchored
 	else
 		attack_hand(user)
 	return
@@ -433,17 +446,17 @@
 			breakout = 0
 			return
 
-			playsound(src, breakout_sound, 100, 1)
-			animate_shake()
-			add_fingerprint(escapee)
-
-		//Well then break it!
-		breakout = 0
-		to_chat(escapee, "<span class='warning'>You successfully break out!</span>")
-		visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
 		playsound(src, breakout_sound, 100, 1)
-		break_open()
 		animate_shake()
+		add_fingerprint(escapee)
+
+	//Well then break it!
+	breakout = 0
+	to_chat(escapee, "<span class='warning'>You successfully break out!</span>")
+	visible_message("<span class='danger'>\The [escapee] successfully broke out of \the [src]!</span>")
+	playsound(src, breakout_sound, 100, 1)
+	break_open()
+	animate_shake()
 
 /obj/structure/closet/proc/break_open()
 	sealed = 0
@@ -479,8 +492,47 @@
 	spawn(1) qdel(src)
 	return 1
 
-// Just a generic cabinet for mappers to use
-/obj/structure/closet/cabinet
-	name = "cabinet"
-	icon = 'icons/obj/closets/bases/cabinet.dmi'
-	closet_appearance = /decl/closet_appearance/cabinet
+/obj/structure/closet/proc/animate_door(closing = FALSE)
+	if(!closet_appearance?.door_anim_time)
+		update_icon()
+		return
+	if(!door_obj)
+		door_obj = new
+	vis_contents |= door_obj
+	door_obj.icon = icon
+	door_obj.icon_state = "door_front"
+	is_animating_door = TRUE
+	if(!closing)
+		update_icon()
+	var/num_steps = closet_appearance.door_anim_time / world.tick_lag
+	for(var/I in 0 to num_steps)
+		var/angle = closet_appearance.door_anim_angle * (closing ? 1 - (I/num_steps) : (I/num_steps))
+		var/matrix/M = get_door_transform(angle)
+		var/door_state = angle >= 90 ? "door_back" : "door_front"
+		var/door_layer = angle >= 90 ? FLOAT_LAYER : ABOVE_MOB_LAYER
+
+		if(I == 0)
+			door_obj.transform = M
+			door_obj.icon_state = door_state
+			door_obj.layer = door_layer
+		else if(I == 1)
+			animate(door_obj, transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag, flags = ANIMATION_END_NOW)
+		else
+			animate(transform = M, icon_state = door_state, layer = door_layer, time = world.tick_lag)
+	addtimer(CALLBACK(src, .proc/end_door_animation,closing), closet_appearance.door_anim_time, TIMER_UNIQUE|TIMER_OVERRIDE)
+
+/obj/structure/closet/proc/end_door_animation(closing = FALSE)
+	is_animating_door = FALSE
+	if(closing)
+		// There's not really harm in leaving it on, but, one less atom to send to clients to render when lockers are closed
+		vis_contents -= door_obj
+		update_icon()
+
+/obj/structure/closet/proc/get_door_transform(angle)
+	var/matrix/M = matrix()
+	if(!closet_appearance)
+		return M
+	M.Translate(-closet_appearance.door_hinge, 0)
+	M.Multiply(matrix(cos(angle), 0, 0, -sin(angle) * closet_appearance.door_anim_squish, 1, 0))
+	M.Translate(closet_appearance.door_hinge, 0)
+	return M

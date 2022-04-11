@@ -5,6 +5,26 @@
 	slot = slot_shoes
 	sort_category = "Shoes and Footwear"
 
+/datum/gear/shoes/tourist_1
+	display_name = "tourist, black"
+	path = /obj/item/clothing/shoes/tourist_1
+
+/datum/gear/shoes/tourist_2
+	display_name = "tourist, green"
+	path = /obj/item/clothing/shoes/tourist_2
+
+/datum/gear/shoes/sneakerspurple
+	display_name = "sneakers, purple"
+	path = /obj/item/clothing/shoes/sneakerspurple
+
+/datum/gear/shoes/sneakersblue
+	display_name = "sneakers, blue"
+	path = /obj/item/clothing/shoes/sneakersblue
+
+/datum/gear/shoes/sneakersred
+	display_name = "sneakers, red"
+	path = /obj/item/clothing/shoes/sneakersred
+
 /datum/gear/shoes/jackboots
 	display_name = "jackboots"
 	path = /obj/item/clothing/shoes/boots/jackboots
@@ -126,12 +146,36 @@
 	path = /obj/item/clothing/shoes/boots/cowboy
 
 /datum/gear/shoes/cowboy/classic
-	display_name = "classic cowboy boots"
+	display_name = "cowboy boots, classic"
 	path = /obj/item/clothing/shoes/boots/cowboy/classic
 
+/datum/gear/shoes/cowboy/brown
+	display_name = "cowboy boots, brown"
+	path = /obj/item/clothing/shoes/boots/cowboy/brown
+
+/datum/gear/shoes/cowboy/black
+	display_name = "cowboy boots, black"
+	path = /obj/item/clothing/shoes/boots/cowboy/black
+
+/datum/gear/shoes/cowboy/white
+	display_name = "cowboy boots, white"
+	path = /obj/item/clothing/shoes/boots/cowboy/white
+
+/datum/gear/shoes/cowboy/fancy
+	display_name = "cowboy boots, fancy"
+	path = /obj/item/clothing/shoes/boots/cowboy/fancy
+
 /datum/gear/shoes/cowboy/snakeskin
-	display_name = "snakeskin cowboy boots"
+	display_name = "cowboy boots, snake skin"
 	path = /obj/item/clothing/shoes/boots/cowboy/snakeskin
+
+/datum/gear/shoes/cowboy/lizard
+	display_name = "cowboy boots, lizard skin"
+	path = /obj/item/clothing/shoes/boots/cowboy/lizard
+
+/datum/gear/shoes/cowboy/lizard/masterwork
+	display_name = "cowboy boots, lizard skin (masterwork)"
+	path = /obj/item/clothing/shoes/boots/cowboy/lizard/masterwork
 
 /datum/gear/shoes/jungle
 	display_name = "jungle boots"

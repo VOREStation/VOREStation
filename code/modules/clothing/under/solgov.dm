@@ -4,8 +4,8 @@
 /obj/item/clothing/under/solgov
 	name = "master solgov uniform"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/obj/clothing/uniforms_solgov.dmi'
-	item_icons = list(slot_w_uniform_str = 'icons/mob/uniform_solgov.dmi')
+	icon = 'icons/inventory/uniform/item.dmi'
+	item_icons = list(slot_w_uniform_str = 'icons/inventory/uniform/mob.dmi')
 	rolled_down = 0
 	rolled_sleeves = 0
 	armor = list(melee = 5, bullet = 0, laser = 5, energy = 5, bomb = 0, bio = 5, rad = 5)
@@ -70,6 +70,14 @@
 	icon_state = "blackutility_crew"
 	worn_state = "blackutility_crew"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 10)
+
+/obj/item/clothing/under/sifcop
+	name = "\improper SifGuard law enforcement uniform"
+	desc = "A sturdy law enforcement uniform typical of Vir's civilian law enforcement officers."
+	icon_state = "sifcop"
+	worn_state = "sifcop"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //Equivalent to security officer's jumpsuit
+	rolled_sleeves = 0
 
 /obj/item/clothing/under/solgov/utility/sifguard_skirt
 	name = "\improper SifGuard skirt"
@@ -469,32 +477,49 @@
 	permeability_coefficient = 0.50
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 30, rad = 0)
 
-//Terrans
+//SAARE
 
-/obj/item/clothing/under/terran
-	name = "master ICCGN uniform"
+/obj/item/clothing/under/saare
+	name = "master SAARE uniform"
 	desc = "You shouldn't be seeing this."
-	icon = 'icons/obj/clothing/uniforms_solgov.dmi'
-	item_icons = list(slot_w_uniform_str = 'icons/mob/uniform_solgov.dmi')
+	icon = 'icons/inventory/uniform/item.dmi'
+	item_icons = list(slot_w_uniform_str = 'icons/inventory/uniform/mob.dmi')
 	armor = list(melee = 5, bullet = 0, laser = 5, energy = 5, bomb = 0, bio = 5, rad = 5)
 	siemens_coefficient = 0.8
 
-/obj/item/clothing/under/terran/navy/utility
-	name = "ICCGN utility uniform"
-	desc = "A comfortable black utility jumpsuit. Worn by the ICCG Navy."
+/obj/item/clothing/under/saare/utility
+	name = "SAARE utility uniform"
+	desc = "A comfortable black utility jumpsuit. Worn by Stealth Assault Enterprises mercenaries."
 	icon_state = "terranutility"
 	worn_state = "terranutility"
 
-/obj/item/clothing/under/terran/navy/service
-	name = "ICCGN service uniform"
-	desc = "The service uniform of the ICCG Navy, for low-ranking crew."
+/obj/item/clothing/under/saare/service
+	name = "SAARE service uniform"
+	desc = "The service uniform of Stealth Assault Enterprises, for low-ranking mercenaries."
 	icon_state = "terranservice"
 	worn_state = "terranservice"
 	armor = list(melee = 5, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 5, rad = 0)
 	siemens_coefficient = 0.9
 
-/obj/item/clothing/under/terran/navy/service/command
-	name = "ICCGN command service uniform"
-	desc = "The service uniform of the ICCG Navy, for high-ranking crew."
+/obj/item/clothing/under/saare/service/command
+	name = "SAARE command service uniform"
+	desc = "The service uniform of Stealth Assault Enterprises, for high-ranking mercenaries."
 	icon_state = "terranservice_comm"
 	worn_state = "terranservice_comm"
+
+//Galactic Survey
+
+/obj/item/clothing/under/gsa
+	name = "\improper Galactic Survey utility uniform"
+	desc = "A jumpsuit belonging to the Galactic Survey Administration, SolGov's scientific exploration division."
+	icon_state = "gsa"
+	worn_state = "gsa"
+	rolled_sleeves = 0
+
+/obj/item/clothing/under/gsa_work
+	name = "\improper Galactic Survey worksuit"
+	desc = "A padded work suit belonging to the Galactic Survey Administration, SolGov's scientific exploration division. It has minor radiation shielding."
+	icon_state = "gsa_work"
+	worn_state = "gsa_work"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10)
+	rolled_sleeves = 0

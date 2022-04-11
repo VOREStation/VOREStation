@@ -6,11 +6,11 @@
 /mob/living/bot/farmbot
 	name = "Farmbot"
 	desc = "The botanist's best friend."
-	icon = 'icons/obj/aibots.dmi'
+	icon = 'icons/obj/chemical_tanks.dmi'
 	icon_state = "farmbot0"
 	health = 50
 	maxHealth = 50
-	req_one_access = list(access_robotics, access_hydroponics, access_xenobiology)	//TFF 11/7/19 - adds Xenobio access on behalf of Nalarac
+	req_one_access = list(access_robotics, access_hydroponics, access_xenobiology)
 
 	var/action = "" // Used to update icon
 	var/waters_trays = 1
@@ -38,7 +38,7 @@
 
 /mob/living/bot/farmbot/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["on"] = on
 	data["tank"] = !!tank
 	if(tank)

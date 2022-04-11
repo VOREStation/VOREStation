@@ -5,7 +5,7 @@
 
 	if(!holder)	return
 
-	var/choice = input("Choose a map to display.") as null|anything in random_maps
+	var/choice = tgui_input_list(usr, "Choose a map to display.", "Map Choice", random_maps)
 	if(!choice)
 		return
 	var/datum/random_map/M = random_maps[choice]
@@ -19,7 +19,7 @@
 
 	if(!holder)	return
 
-	var/choice = input("Choose a map to delete.") as null|anything in random_maps
+	var/choice = tgui_input_list(usr, "Choose a map to delete.", "Map Choice", random_maps)
 	if(!choice)
 		return
 	var/datum/random_map/M = random_maps[choice]
@@ -36,15 +36,15 @@
 
 	if(!holder)	return
 
-	var/map_datum = input("Choose a map to create.") as null|anything in typesof(/datum/random_map)-/datum/random_map
+	var/map_datum = tgui_input_list(usr, "Choose a map to create.", "Map Choice", subtypesof(/datum/random_map))
 	if(!map_datum)
 		return
 
 	var/datum/random_map/M
-	if(alert("Do you wish to customise the map?",,"Yes","No") == "Yes")
-		var/seed = input("Seed? (blank for none)")       as text|null
-		var/lx =   input("X-size? (blank for default)")  as num|null
-		var/ly =   input("Y-size? (blank for default)")  as num|null
+	if(tgui_alert(usr, "Do you wish to customise the map?","Customize",list("Yes","No")) == "Yes")
+		var/seed = input(usr, "Seed? (blank for none)")       as text|null
+		var/lx =   input(usr, "X-size? (blank for default)")  as num|null
+		var/ly =   input(usr, "Y-size? (blank for default)")  as num|null
 		M = new map_datum(seed,null,null,null,lx,ly,1)
 	else
 		M = new map_datum(null,null,null,null,null,null,1)
@@ -60,14 +60,14 @@
 
 	if(!holder)	return
 
-	var/choice = input("Choose a map to apply.") as null|anything in random_maps
+	var/choice = tgui_input_list(usr, "Choose a map to apply.", "Map Choice", random_maps)
 	if(!choice)
 		return
 	var/datum/random_map/M = random_maps[choice]
 	if(istype(M))
-		var/tx = input("X? (default to current turf)") as num|null
-		var/ty = input("Y? (default to current turf)") as num|null
-		var/tz = input("Z? (default to current turf)") as num|null
+		var/tx = input(usr, "X? (default to current turf)") as num|null
+		var/ty = input(usr, "Y? (default to current turf)") as num|null
+		var/tz = input(usr, "Z? (default to current turf)") as num|null
 		if(isnull(tx) || isnull(ty) || isnull(tz))
 			var/turf/T = get_turf(usr)
 			tx = !isnull(tx) ? tx : T.x
@@ -85,21 +85,21 @@
 
 	if(!holder)	return
 
-	var/choice = input("Choose a map as base.") as null|anything in random_maps
+	var/choice = tgui_input_list(usr, "Choose a map as base.", "Map Choice", random_maps)
 	if(!choice)
 		return
 	var/datum/random_map/base_map = random_maps[choice]
 
 	choice = null
-	choice = input("Choose a map to overlay.") as null|anything in random_maps
+	choice = tgui_input_list(usr, "Choose a map to overlay.", "Map Choice", random_maps)
 	if(!choice)
 		return
 
 	var/datum/random_map/overlay_map = random_maps[choice]
 
 	if(istype(base_map) && istype(overlay_map))
-		var/tx = input("X? (default to 1)") as num|null
-		var/ty = input("Y? (default to 1)") as num|null
+		var/tx = input(usr, "X? (default to 1)") as num|null
+		var/ty = input(usr, "Y? (default to 1)") as num|null
 		if(!tx) tx = 1
 		if(!ty) ty = 1
 		message_admins("[key_name_admin(usr)] has applied [overlay_map.name] to [base_map.name] at x[tx],y[ty].")

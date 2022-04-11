@@ -6,11 +6,13 @@
 	w_class = ITEMSIZE_SMALL
 	force = 2.0
 	det_time = null
-	unacidable = 1
+	unacidable = TRUE
 
 	var/stage = 0
 	var/state = 0
 	var/path = 0
+	/// If TRUE, grenade is permanently sealed when fully assembled, useful for things like off-the-shelf grenades.
+	var/sealed = FALSE
 	var/obj/item/device/assembly_holder/detonator = null
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/weapon/reagent_containers/glass/beaker, /obj/item/weapon/reagent_containers/glass/bottle)
@@ -53,7 +55,7 @@
 			C.throw_mode_on()
 
 /obj/item/weapon/grenade/chem_grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
+	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && !detonator && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
 			to_chat(user, "<span class='warning'>Assembly must contain one igniter.</span>")
@@ -93,7 +95,8 @@
 			if(active && prob(95))
 				to_chat(user, "<span class='warning'>You trigger the assembly!</span>")
 				detonate()
-				return
+			else if(sealed)
+				to_chat(user, "<span class='warning'>This grenade lacks a way to disassemble it.</span>")
 			else
 				to_chat(user, "<span class='notice'>You unlock the assembly.</span>")
 				playsound(src, W.usesound, 50, -3)
@@ -200,8 +203,10 @@
 /obj/item/weapon/grenade/chem_grenade/metalfoam
 	name = "metal-foam grenade"
 	desc = "Used for emergency sealing of air breaches."
+	icon_state = "foam"
 	path = 1
 	stage = 2
+	sealed = TRUE
 
 /obj/item/weapon/grenade/chem_grenade/metalfoam/Initialize()
 	. = ..()
@@ -216,13 +221,14 @@
 
 	beakers += B1
 	beakers += B2
-	icon_state = initial(icon_state) +"_locked"
 
 /obj/item/weapon/grenade/chem_grenade/incendiary
 	name = "incendiary grenade"
 	desc = "Used for clearing rooms of living things."
+	icon_state = "incendiary"
 	path = 1
 	stage = 2
+	sealed = TRUE
 
 /obj/item/weapon/grenade/chem_grenade/incendiary/Initialize()
 	. = ..()
@@ -239,13 +245,13 @@
 
 	beakers += B1
 	beakers += B2
-	icon_state = initial(icon_state) +"_locked"
 
 /obj/item/weapon/grenade/chem_grenade/antiweed
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
 	path = 1
 	stage = 2
+	sealed = TRUE
 
 /obj/item/weapon/grenade/chem_grenade/antiweed/Initialize()
 	. = ..()
@@ -266,8 +272,10 @@
 /obj/item/weapon/grenade/chem_grenade/cleaner
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	icon_state = "cleaner"
 	stage = 2
 	path = 1
+	sealed = TRUE
 
 /obj/item/weapon/grenade/chem_grenade/cleaner/Initialize()
 	. = ..()
@@ -282,13 +290,14 @@
 
 	beakers += B1
 	beakers += B2
-	icon_state = initial(icon_state) +"_locked"
 
 /obj/item/weapon/grenade/chem_grenade/teargas
 	name = "tear gas grenade"
 	desc = "Concentrated Capsaicin. Contents under pressure. Use with caution."
+	icon_state = "teargas"
 	stage = 2
 	path = 1
+	sealed = TRUE
 
 /obj/item/weapon/grenade/chem_grenade/teargas/Initialize()
 	. = ..()
@@ -305,4 +314,3 @@
 
 	beakers += B1
 	beakers += B2
-	icon_state = initial(icon_state) +"_locked"

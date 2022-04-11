@@ -31,7 +31,7 @@
 				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
 		else
 			targets["(No Mob) - [T]"] = T
-	var/target = input(src,"To whom shall we send a message?","Admin PM",null) as null|anything in sortList(targets)
+	var/target = tgui_input_list(src,"To whom shall we send a message?","Admin PM", sortList(targets))
 	if(!target) //Admin canceled
 		return
 	cmd_admin_pm(targets[target],null)
@@ -264,7 +264,7 @@
 
 	admin_ticket_log(C, "<span class='pm notice'>PM From [irc_tagged]: [msg]</span>")
 
-	window_flash(C, ignorepref = TRUE)
+	window_flash(C)
 	//always play non-admin recipients the adminhelp sound
 	C << 'sound/effects/adminhelp.ogg'
 

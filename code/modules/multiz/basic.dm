@@ -43,7 +43,7 @@ var/list/z_levels = list()// Each bit re... haha just kidding this is a list of 
 	for(var/level = z, HasAbove(level), level++)
 		. |= level+1
 
-proc/AreConnectedZLevels(var/zA, var/zB)
+/proc/AreConnectedZLevels(var/zA, var/zB)
 	return zA == zB || (zB in GetConnectedZlevels(zA))
 
 /proc/get_zstep(ref, dir)

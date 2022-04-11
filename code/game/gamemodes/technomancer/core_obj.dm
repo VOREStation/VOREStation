@@ -7,13 +7,13 @@
 	item_state = "technomancer_core"
 	w_class = ITEMSIZE_HUGE
 	slot_flags = SLOT_BACK
-	unacidable = 1
+	unacidable = TRUE
 	origin_tech = list(
 		TECH_MATERIAL = 8, TECH_ENGINEERING = 8, TECH_POWER = 8, TECH_BLUESPACE = 10,
 		TECH_COMBAT = 7, TECH_MAGNET = 9, TECH_DATA = 5
 		)
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/back.dmi'
+		SPECIES_TESHARI = 'icons/inventory/back/mob_teshari.dmi'
 		)
 	var/energy = 10000
 	var/max_energy = 10000
@@ -30,7 +30,7 @@
 		"wizard's cloak"	= "wizard_cloak"
 		)
 
-	// Some spell-specific variables go here, since spells themselves are temporary.  Cores are more long term and more accessable than \
+	// Some spell-specific variables go here, since spells themselves are temporary.  Cores are more long term and more accessable than
 	// mind datums.  It may also allow creative players to try to pull off a 'soul jar' scenario.
 	var/list/summoned_mobs = list()	// Maintained horribly with maintain_summon_list().
 	var/list/wards_in_use = list()	// Wards don't count against the cap for other summons.
@@ -121,7 +121,7 @@
 			if(L.stat == DEAD)
 				summoned_mobs -= L
 				spawn(1)
-					L.visible_message("<span class='notice'>\The [L] begins to fade away...</span>")
+					L.visible_message("<b>\The [L]</b> begins to fade away...")
 					animate(L, alpha = 255, alpha = 0, time = 30) // Makes them fade into nothingness.
 					sleep(30)
 					qdel(L)
@@ -253,7 +253,7 @@
 	energy = 7000
 	max_energy = 7000
 	regen_rate = 70 //100 seconds to full
-	slowdown = -1
+	slowdown = -0.5
 	instability_modifier = 0.9
 	cooldown_modifier = 0.9
 
@@ -267,7 +267,7 @@
 	energy = 20000
 	max_energy = 20000
 	regen_rate = 25 //800 seconds to full
-	slowdown = 1
+	slowdown = 0.5
 	instability_modifier = 1.0
 	spell_power_modifier = 1.4
 

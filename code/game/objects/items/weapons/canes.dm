@@ -10,7 +10,7 @@
 	force = 5.0
 	throwforce = 7.0
 	w_class = ITEMSIZE_NORMAL
-	matter = list(DEFAULT_WALL_MATERIAL = 50)
+	matter = list(MAT_STEEL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
 /obj/item/weapon/cane/crutch
@@ -22,11 +22,12 @@
 /obj/item/weapon/cane/concealed
 	var/concealed_blade
 
-/obj/item/weapon/cane/concealed/New()
-	..()
+/obj/item/weapon/cane/concealed/Initialize()
+	. = ..()
 	var/obj/item/weapon/material/butterfly/switchblade/temp_blade = new(src)
 	concealed_blade = temp_blade
-	temp_blade.attack_self()
+	temp_blade.active = TRUE
+	temp_blade.update_force()
 
 /obj/item/weapon/cane/concealed/attack_self(var/mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
@@ -96,7 +97,7 @@
 /obj/item/weapon/cane/white/collapsible/attack_self(mob/user as mob)
 	on = !on
 	if(on)
-		user.visible_message("<span class='notice'>\The [user] extends the white cane.</span>",\
+		user.visible_message("<b>\The [user]</b> extends the white cane.",\
 				"<span class='warning'>You extend the white cane.</span>",\
 				"You hear an ominous click.")
 		icon_state = "whitecane1out"
@@ -105,7 +106,7 @@
 		force = 5
 		attack_verb = list("smacked", "struck", "cracked", "beaten")
 	else
-		user.visible_message("<span class='notice'>\The [user] collapses the white cane.</span>",\
+		user.visible_message("<b>\The [user]</b> collapses the white cane.",\
 		"<span class='notice'>You collapse the white cane.</span>",\
 		"You hear a click.")
 		icon_state = "whitecane1in"

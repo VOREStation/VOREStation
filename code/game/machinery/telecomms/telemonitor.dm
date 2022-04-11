@@ -26,28 +26,28 @@
 	data["network"] = network
 	data["temp"] = temp
 
-	data["machinelist"] = list()
+	var/list/machinelist = list()
 	for(var/obj/machinery/telecomms/T in machinelist)
-		data["machinelist"].Add(list(list(
+		machinelist.Add(list(list(
 			"id" = T.id,
 			"name" = T.name,
 		)))
+	data["machinelist"] = machinelist
 
 	data["selectedMachine"] = null
 	if(SelectedMachine)
 		data["selectedMachine"] = list(
 			"id" = SelectedMachine.id,
 			"name" = SelectedMachine.name,
-			"links" = list(),
 		)
-
+		var/list/links = list()
 		for(var/obj/machinery/telecomms/T in SelectedMachine.links)
 			if(!T.hide)
-				data["selectedMachine"]["links"].Add(list(list(
+				links.Add(list(list(
 					"id" = T.id,
 					"name" = T.name
 				)))
-
+		data["selectedMachine"]["links"] = links
 	return data
 
 /obj/machinery/computer/telecomms/monitor/attack_hand(mob/user)

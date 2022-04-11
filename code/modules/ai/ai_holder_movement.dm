@@ -27,19 +27,19 @@
 		ai_log("walk_to_destination() : Exiting.", AI_LOG_TRACE)
 		return
 
-	var/get_to = min_distance_to_destination
 	var/distance = get_dist(holder, destination)
-	ai_log("walk_to_destination() : get_to is [get_to].", AI_LOG_TRACE)
+	ai_log("walk_to_destination() : get_to is [min_distance_to_destination].", AI_LOG_TRACE)
 
-	// We're here!
-	if(distance <= get_to)
+	// We're here! Or we're horribly lost
+	if(distance <= min_distance_to_destination || holder.z != destination.z)
+		check_use_ladder()
 		give_up_movement()
 		set_stance(stance == STANCE_REPOSITION ? STANCE_APPROACH : STANCE_IDLE)
 		ai_log("walk_to_destination() : Destination reached. Exiting.", AI_LOG_INFO)
 		return
 
 	ai_log("walk_to_destination() : Walking.", AI_LOG_TRACE)
-	walk_path(destination, get_to)
+	walk_path(destination, min_distance_to_destination)
 	ai_log("walk_to_destination() : Exiting.",AI_LOG_TRACE)
 
 /datum/ai_holder/proc/should_go_home()
@@ -126,7 +126,7 @@
 
 	if(path_display)
 		var/turf/T = src.path[1]
-		T.overlays -= path_overlay
+		T.cut_overlay(path_overlay)
 
 //	step_towards(holder, src.path[1])
 	if(holder.IMove(get_step_towards(holder, src.path[1])) != MOVEMENT_ON_COOLDOWN)
@@ -159,3 +159,34 @@
 			holder.IMove(get_step(holder,moving_to))
 			wander_delay = base_wander_delay
 	ai_log("handle_wander_movement() : Exited.", AI_LOG_TRACE)
+
+/datum/ai_holder/proc/check_use_ladder()
+	// No target, don't use the ladder
+	// Target is visible, don't use the ladder
+	if(!target || can_see_target(target))
+		return 
+
+	var/has_hands = TRUE
+	if(istype(holder, /mob/living/simple_mob))
+		var/mob/living/simple_mob/S = holder
+		has_hands = S.has_hands
+	
+	// Don't have means to use a ladder or the space around it, don't use the ladder
+	if(!has_hands && !holder.hovering)
+		return
+
+	var/obj/structure/ladder/L = locate() in get_turf(holder)
+	if(!istype(L))
+		return // No ladder, can't use it
+	
+	if(!holder.may_climb_ladders(L))
+		return // Can't climb the ladder for other reasons (Probably inconsequential?)
+
+	var/list/directions = list()
+	if(L.allowed_directions & DOWN)
+		directions += L.target_down
+	if(L.allowed_directions & UP)
+		directions += L.target_up
+	
+	if(directions.len)
+		L.climbLadder(holder, pick(directions))

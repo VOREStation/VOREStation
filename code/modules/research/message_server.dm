@@ -52,8 +52,9 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	icon_state = "server"
 	name = "Messaging Server"
 	desc = "Facilitates both PDA messages and request console functions."
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
@@ -130,12 +131,12 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 				if(2)
 					if(!Console.silent)
 						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5)
+						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5, runemessage = "beep! beep!")
 					Console.message_log += list(list("High Priority message from [sender]", "[authmsg]"))
 				else
 					if(!Console.silent)
 						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4)
+						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4, runemessage = "beep beep")
 					Console.message_log += list(list("Message from [sender]", "[authmsg]"))
 			Console.set_light(2)
 
@@ -237,8 +238,9 @@ var/obj/machinery/blackbox_recorder/blackbox
 	icon_state = "blackbox"
 	name = "Blackbox Recorder"
 	desc = "Records all radio communications, as well as various other information in case of the worst."
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
@@ -364,13 +366,13 @@ var/obj/machinery/blackbox_recorder/blackbox
 		query_insert.Execute()
 
 // Sanitize inputs to avoid SQL injection attacks
-proc/sql_sanitize_text(var/text)
+/proc/sql_sanitize_text(var/text)
 	text = replacetext(text, "'", "''")
 	text = replacetext(text, ";", "")
 	text = replacetext(text, "&", "")
 	return text
 
-proc/feedback_set(var/variable,var/value)
+/proc/feedback_set(var/variable,var/value)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -381,7 +383,7 @@ proc/feedback_set(var/variable,var/value)
 
 	FV.set_value(value)
 
-proc/feedback_inc(var/variable,var/value)
+/proc/feedback_inc(var/variable,var/value)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -392,7 +394,7 @@ proc/feedback_inc(var/variable,var/value)
 
 	FV.inc(value)
 
-proc/feedback_dec(var/variable,var/value)
+/proc/feedback_dec(var/variable,var/value)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -403,7 +405,7 @@ proc/feedback_dec(var/variable,var/value)
 
 	FV.dec(value)
 
-proc/feedback_set_details(var/variable,var/details)
+/proc/feedback_set_details(var/variable,var/details)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)
@@ -415,7 +417,7 @@ proc/feedback_set_details(var/variable,var/details)
 
 	FV.set_details(details)
 
-proc/feedback_add_details(var/variable,var/details)
+/proc/feedback_add_details(var/variable,var/details)
 	if(!blackbox) return
 
 	variable = sql_sanitize_text(variable)

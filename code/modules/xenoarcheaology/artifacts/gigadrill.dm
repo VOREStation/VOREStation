@@ -6,7 +6,7 @@
 	var/active = 0
 	var/drill_time = 10
 	var/turf/drilling_turf
-	density = 1
+	density = TRUE
 	layer = ABOVE_JUNK_LAYER
 
 /obj/machinery/giga_drill/attack_hand(mob/user as mob)
@@ -24,11 +24,11 @@
 		if(istype(A,/turf/simulated/mineral))
 			var/turf/simulated/mineral/M = A
 			drilling_turf = get_turf(src)
-			src.visible_message("<span class='notice'>\The [src] begins to drill into \the [M].</span>")
-			anchored = 1
+			src.visible_message("<b>\The [src]</b> begins to drill into \the [M].")
+			anchored = TRUE
 			spawn(drill_time)
 				if(get_turf(src) == drilling_turf && active)
 					M.GetDrilled()
 					src.loc = M
 				drilling_turf = null
-				anchored = 0
+				anchored = FALSE

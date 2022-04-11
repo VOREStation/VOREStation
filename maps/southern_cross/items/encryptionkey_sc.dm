@@ -6,7 +6,7 @@
 /obj/item/device/encryptionkey/explorer
 	name = "explorer radio encryption key"
 	icon_state = "com_cypherkey"
-	channels = list("Explorer" = 1)
+	channels = list("Explorer" = 1, "Science" = 1)
 
 /obj/item/device/encryptionkey/sar
 	name = "sar's encryption key"

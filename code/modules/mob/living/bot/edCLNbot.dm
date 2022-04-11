@@ -12,8 +12,8 @@
 	patrol_speed = 3
 	target_speed = 6
 
+	vocal = 1
 	cleaning = 0
-	blood = 0
 	var/red_switch = 0
 	var/blue_switch = 0
 	var/green_switch = 0
@@ -25,7 +25,7 @@
 		icon_state = "edCLN[on]"
 
 /mob/living/bot/cleanbot/edCLN/handleIdle()
-	if(prob(10))
+	if(vocal && prob(10))
 		custom_emote(2, "makes a less than thrilled beeping sound.")
 		playsound(src, 'sound/machines/synth_yes.ogg', 50, 0)
 
@@ -37,7 +37,7 @@
 	if(!red_switch && blue_switch && !green_switch && prob(50) || src.emagged)
 		if(istype(loc, /turf/simulated))
 			var/turf/simulated/T = loc
-			visible_message("<span class='notice'>\The [src] squirts a puddle of water on the floor!</span>")
+			visible_message("<b>\The [src]</b> squirts a puddle of water on the floor!")
 			T.wet_floor()
 
 	if(!red_switch && !blue_switch && green_switch && prob(10) || src.emagged)

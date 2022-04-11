@@ -1,0 +1,339 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"j" = (
+/obj/machinery/door/airlock/angled_bay/standard/glass,
+/turf/simulated/floor/plating/eris/under,
+/area/om_adventure/poi/medicalcenter)
+"k" = (
+/obj/random/pottedplant,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"m" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/medical,
+/obj/structure/curtain/medical,
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"p" = (
+/obj/move_trader_landmark{
+	dir = 4;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"q" = (
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"r" = (
+/obj/structure/salvageable/machine,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"t" = (
+/obj/effect/low_wall_spawner/eris/reinforced/rphoron,
+/turf/simulated/floor/plating/eris/under,
+/area/om_adventure/poi/medicalcenter)
+"v" = (
+/obj/structure/table/glass,
+/obj/structure/salvageable/personal,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"y" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"z" = (
+/obj/structure/bed/chair/sofa/left/blue{
+	dir = 8
+	},
+/obj/move_trader_landmark{
+	dir = 8;
+	trader_type = /obj/trader/general
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"A" = (
+/turf/simulated/wall/eris/r_wall,
+/area/om_adventure/poi/medicalcenter)
+"C" = (
+/obj/structure/bed/chair/sofa/right/blue,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"D" = (
+/obj/structure/table/glass,
+/obj/random/medical,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"E" = (
+/obj/structure/salvageable/computer,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"G" = (
+/obj/trader/capture_crystal,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"H" = (
+/obj/structure/table/glass,
+/obj/random/awayloot/looseloot,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"I" = (
+/obj/structure/bed/padded,
+/obj/item/weapon/bedsheet/medical,
+/obj/structure/curtain/medical,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"P" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"Q" = (
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	dir = 4
+	},
+/turf/simulated/floor/plating/eris/under,
+/area/om_adventure/poi/medicalcenter)
+"T" = (
+/obj/structure/table/glass,
+/obj/random/medical,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"W" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"X" = (
+/obj/structure/table/glass,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+"Z" = (
+/obj/structure/bed/chair/sofa/corner/blue,
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/floor/tiled/eris/white/orangecorner,
+/area/om_adventure/poi/medicalcenter)
+
+(1,1,1) = {"
+a
+a
+a
+A
+a
+A
+a
+a
+A
+a
+A
+a
+"}
+(2,1,1) = {"
+a
+a
+A
+A
+A
+A
+t
+t
+A
+A
+A
+A
+"}
+(3,1,1) = {"
+a
+a
+a
+A
+C
+q
+q
+q
+q
+H
+A
+a
+"}
+(4,1,1) = {"
+a
+A
+a
+A
+Z
+z
+q
+q
+q
+T
+A
+a
+"}
+(5,1,1) = {"
+A
+A
+A
+A
+A
+A
+k
+y
+q
+X
+A
+a
+"}
+(6,1,1) = {"
+a
+A
+E
+G
+q
+A
+A
+A
+Q
+A
+A
+A
+"}
+(7,1,1) = {"
+a
+t
+q
+H
+q
+A
+p
+W
+q
+k
+A
+a
+"}
+(8,1,1) = {"
+a
+A
+q
+P
+q
+j
+q
+q
+P
+q
+j
+a
+"}
+(9,1,1) = {"
+a
+t
+q
+T
+q
+A
+q
+y
+q
+k
+A
+a
+"}
+(10,1,1) = {"
+a
+A
+r
+v
+q
+A
+A
+A
+Q
+A
+A
+A
+"}
+(11,1,1) = {"
+A
+A
+A
+A
+A
+A
+m
+D
+q
+I
+A
+a
+"}
+(12,1,1) = {"
+a
+A
+a
+A
+k
+q
+q
+q
+q
+k
+A
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+A
+H
+I
+H
+I
+T
+I
+A
+a
+"}
+(14,1,1) = {"
+a
+a
+A
+A
+A
+A
+t
+t
+A
+A
+A
+A
+"}
+(15,1,1) = {"
+a
+a
+a
+A
+a
+A
+a
+a
+A
+a
+A
+a
+"}

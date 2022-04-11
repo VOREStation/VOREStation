@@ -203,7 +203,7 @@
 /area/submap/debrisfield/mining_drone_ship)
 "ay" = (
 /obj/machinery/door/airlock/maintenance_hatch,
-/turf/simulated/wall/rthull,
+/turf/simulated/floor/airless,
 /area/submap/debrisfield/mining_drone_ship)
 "az" = (
 /obj/machinery/door/blast/regular/open{

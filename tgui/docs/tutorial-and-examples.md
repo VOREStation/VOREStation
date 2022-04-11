@@ -5,7 +5,7 @@
 Basic tgui backend code consists of the following vars and procs:
 
 ```
-tgui_interact(mob/user, ui_key)
+tgui_interact(mob/user, datum/tgui/ui)
 tgui_data(mob/user)
 tgui_act(action, params)
 tgui_state()
@@ -37,10 +37,10 @@ powerful interactions for embedded objects or remote access.
 Let's start with a very basic hello world.
 
 ```dm
-/obj/machinery/my_machine/tgui_interact(mob/user, datum/tgui/ui = null)
+/obj/machinery/my_machine/tgui_interact(mob/user, datum/tgui/ui)
   ui = SStgui.try_update_ui(user, src, ui)
   if(!ui)
-    ui = new(user, src, "MyMachine", name)
+    ui = new(user, src, "MyMachine")
     ui.open()
 ```
 
@@ -53,7 +53,7 @@ the `try_update_ui`), so we accept an existing UI to update.
 Inside the `if(!ui)` block (which means we are creating a new UI), we choose our
 template, title, and size; we can also set various options like `style` (for
 themes), or autoupdate. These options will be elaborated on later (as will
-`ui_state`s).
+`tgui_state`s).
 
 After `tgui_interact`, we need to define `tgui_data`. This just returns a list of
 data for our object to use. Let's imagine our object has a few vars:
@@ -76,8 +76,9 @@ input. The input's `action` and `params` are passed to the proc.
 
 ```dm
 /obj/machinery/my_machine/tgui_act(action, params)
-  if(..())
-    return TRUE
+  . = ..()
+  if(.)
+    return
   if(action == "change_color")
     var/new_color = params["color"]
     if(!(color in allowed_coors))
@@ -88,13 +89,20 @@ input. The input's `action` and `params` are passed to the proc.
 ```
 
 The `..()` (parent call) is very important here, as it is how we check that the
-user is allowed to use this interface (to avoid so-called href exploits). It is
-also very important to clamp and sanitize all input here. Always assume the user
-is attempting to exploit the game.
+user is allowed to use this interface (to avoid so-called href exploits). When
+any event has been handled `..()` will return `TRUE`. It is important to clamp
+and sanitize all input here. Always assume the user is attempting to exploit the
+game.
+
+When `..()` has returned `TRUE` your interface can safely assume that the user's
+action has been handled already by some parent proc and you should not continue
+to handle this, instead preserving and returning the parent proc's return value.
 
 Also note the use of `. = TRUE` (or `FALSE`), which is used to notify the UI
-that this input caused an update. This is especially important for UIs that do
-not auto-update, as otherwise the user will never see their change.
+that this input has been handled. When `tgui_act` eventually returns, a value of
+`TRUE` indicates that the input has been handled and that the UI should update.
+This is important for UIs that do not auto-update, as otherwise the user will
+not be able to see the interface update based on thier actions.
 
 ### Frontend
 
@@ -156,7 +164,7 @@ Here are the key variables you get from a `useBackend(context)` function:
 interface and who uses it, BYOND refs to various objects, and so forth.
 You are rarely going to use it, but sometimes it can be used to your
 advantage when doing complex UIs.
-- `data` is the data returned from `tgui_data` and `tgui_static_data` procs in
+- `data` is the data returned from `tgui_data` and `ui_static_data` procs in
 your DM code. Pretty straight forward.
   - Note, that javascript doesn't have associative arrays, so when you
   return an associative list from DM, it will be available in `data` as a
@@ -166,7 +174,7 @@ your DM code. Pretty straight forward.
   are not available on it. Always prefer returning clean arrays from your
   code, since arrays are easier to work with in javascript!
 - `act(name, params)` is a function, which you can call to dispatch an action
-to your DM code. It will be processed in `ui_act` proc. Action name will be
+to your DM code. It will be processed in `tgui_act` proc. Action name will be
 available in `params["action"]`, mixed together with the rest of parameters
 you have passed in `params` object.
 
@@ -292,10 +300,10 @@ here's what you need (note that you'll probably be forced to clean your shit up
 upon code review):
 
 ```dm
-/obj/copypasta/tgui_interact(mob/user, datum/tgui/ui = null)
+/obj/copypasta/tgui_interact(mob/user, datum/tgui/ui)
   ui = SStgui.try_update_ui(user, src, ui)
   if(!ui)
-    ui = new(user, src, "CopyPasta")
+    ui = new(user, src, "copypasta")
     ui.open()
 
 /obj/copypasta/tgui_data(mob/user)
@@ -305,7 +313,7 @@ upon code review):
 
 /obj/copypasta/tgui_act(action, params)
   if(..())
-    return TRUE
+    return
   switch(action)
     if("copypasta")
       var/newvar = params["var"]

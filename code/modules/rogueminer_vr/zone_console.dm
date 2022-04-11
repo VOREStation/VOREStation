@@ -148,11 +148,6 @@
 	build_path = /obj/machinery/computer/roguezones
 	origin_tech = list(TECH_DATA = 3, TECH_BLUESPACE = 1)
 
-// Undefine our constants to not pollute namespace
-#undef OUTPOST_Z
-#undef TRANSIT_Z
-#undef BELT_Z
-
 /obj/item/weapon/paper/rogueminer
 	name = "R-38 Scanner Console Guide"
 	info = {"<h4>Getting Started</h4>

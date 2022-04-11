@@ -143,10 +143,19 @@ var/list/flooring_types
 /decl/flooring/grass/sif // Subtype for Sif's grass.
 	name = "growth"
 	desc = "A natural moss that has adapted to the sheer cold climate."
-	flags = TURF_REMOVE_SHOVEL
+	flags = 0
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "grass_sif"
 	build_type = /obj/item/stack/tile/grass/sif
+	has_base_range = 1
+
+/decl/flooring/grass/sif/forest
+	name = "thick growth"
+	desc = "A natural moss that has adapted to the sheer cold climate."
+	flags = 0
+	icon = 'icons/turf/outdoors.dmi'
+	icon_base = "grass_sif_dark"
+	build_type = /obj/item/stack/tile/grass/sif/forest
 	has_base_range = 1
 
 /decl/flooring/water
@@ -193,7 +202,7 @@ var/list/flooring_types
 	desc = "Gritty and unpleasant."
 	icon = 'icons/turf/flooring/asteroid.dmi'
 	icon_base = "asteroid"
-	flags = TURF_REMOVE_SHOVEL
+	flags = TURF_REMOVE_SHOVEL | TURF_ACID_IMMUNE
 	build_type = null
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/asteroid1.ogg',
@@ -223,7 +232,7 @@ var/list/flooring_types
 /decl/flooring/snow
 	name = "snow"
 	desc = "A layer of many tiny bits of frozen water. It's hard to tell how deep it is."
-	icon = 'icons/turf/snow_new.dmi'
+	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "snow"
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/snow1.ogg',
@@ -312,6 +321,18 @@ var/list/flooring_types
 	icon_base = "tealcarpet"
 	build_type = /obj/item/stack/tile/carpet/teal
 
+/decl/flooring/carpet/deco
+	name = "deco carpet"
+	icon_base = "decocarpet"
+	build_type = /obj/item/stack/tile/carpet/deco
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+
+/decl/flooring/carpet/retro
+	name = "retro carpet"
+	icon_base = "retrocarpet"
+	build_type = /obj/item/stack/tile/carpet/retro
+	flags = TURF_REMOVE_CROWBAR | TURF_CAN_BURN
+
 /decl/flooring/tiling
 	name = "floor"
 	desc = "Scuffed from the passage of countless greyshirts."
@@ -370,7 +391,7 @@ var/list/flooring_types
 
 /decl/flooring/linoleum
 	name = "linoleum"
-	desc = "It's like the 2390's all over again."
+	desc = "It's like the 2090's all over again."		// VOREStation Lore Edit - we're not past 2390's yet
 	icon = 'icons/turf/flooring/linoleum.dmi'
 	icon_base = "lino"
 	can_paint = 1
@@ -522,7 +543,7 @@ var/list/flooring_types
 	icon = 'icons/turf/outdoors.dmi'
 	icon_base = "lava"
 	is_plating = TRUE
-	flags = 0
+	flags = TURF_ACID_IMMUNE
 	footstep_sounds = list("human" = list(
 		'sound/effects/footstep/lava1.ogg',
 		'sound/effects/footstep/lava2.ogg',

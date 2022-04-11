@@ -5,7 +5,7 @@
 	icon_state = "potato"
 	time_per_sheet = 1152 //same power output, but a 50 sheet stack will last 4 hours at max safe power
 	power_gen = 50000 //watts
-	anchored = 1
+	anchored = TRUE
 
 // Circuits for the RTGs below
 /obj/item/weapon/circuitboard/machine/rtg
@@ -36,7 +36,7 @@
 	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor/omni = 1)
+		/obj/item/weapon/stock_parts/capacitor/hyper = 1)
 
 /obj/item/weapon/circuitboard/machine/abductor/core/hybrid
 	name = T_BOARD("void generator (hybrid)")
@@ -45,8 +45,8 @@
 	origin_tech = list(TECH_DATA = 8, TECH_POWER = 8, TECH_PHORON = 8, TECH_ENGINEERING = 8)
 	req_components = list(
 		/obj/item/stack/cable_coil = 5,
-		/obj/item/weapon/stock_parts/capacitor/omni = 1,
-		/obj/item/weapon/stock_parts/micro_laser/omni = 1)
+		/obj/item/weapon/stock_parts/capacitor/hyper = 1,
+		/obj/item/weapon/stock_parts/micro_laser/hyper = 1)
 
 // Radioisotope Thermoelectric Generator (RTG)
 // Simple power generator that would replace "magic SMES" on various derelicts.
@@ -95,6 +95,8 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 	else if(default_deconstruction_crowbar(user, I))
+		return
+	else if(default_part_replacement(user, I))
 		return
 	return ..()
 
@@ -191,7 +193,7 @@
 /obj/machinery/power/rtg/abductor/update_icon()
 	if(!state_change)
 		return //Stupid cells constantly update our icon so trying to be efficient
-	
+
 	if(cell)
 		if(panel_open)
 			icon_state = "[icon_base]-open"
@@ -240,3 +242,173 @@
 	. = ..()
 	cell = new /obj/item/weapon/cell/void/hybrid(src)
 	RefreshParts()
+
+
+// Kugelblitz generator, confined black hole like a singulo but smoller and higher tech
+// Presumably whoever made these has better tech than most
+/obj/machinery/power/rtg/kugelblitz
+	name = "kugelblitz generator"
+	desc = "A power source harnessing a small black hole."
+	icon = 'icons/obj/props/decor64x64.dmi'
+	icon_state = "bigdice"
+	bound_width = 64
+	bound_height = 64
+	power_gen = 30000
+	irradiate = FALSE // Green energy!
+	can_buckle = FALSE
+
+/obj/machinery/power/rtg/kugelblitz/proc/asplod()
+	visible_message("<span class='danger'>\The [src] lets out an shower of sparks as it starts to lose stability!</span>",\
+		"<span class='italics'>You hear a loud electrical crack!</span>")
+	playsound(src, 'sound/effects/lightningshock.ogg', 100, 1, extrarange = 5)
+	var/turf/T = get_turf(src)
+	qdel(src)
+	new /obj/singularity(T)
+
+/obj/machinery/power/rtg/kugelblitz/blob_act(obj/structure/blob/B)
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/ex_act()
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/fire_act(exposed_temperature, exposed_volume)
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/tesla_act()
+	..() //extend the zap
+	asplod()
+
+/obj/machinery/power/rtg/kugelblitz/bullet_act(obj/item/projectile/Proj)
+	. = ..()
+	if(istype(Proj) && !Proj.nodamage && ((Proj.damage_type == BURN) || (Proj.damage_type == BRUTE)) && Proj.damage >= 20)
+		log_and_message_admins("[ADMIN_LOOKUPFLW(Proj.firer)] triggered a kugelblitz core explosion at [x],[y],[z] via projectile.")
+		asplod()
+
+/obj/machinery/power/rtg/reg
+	name = "d-type rotary electric generator"
+	desc = "It looks kind of like a large hamster wheel."
+	icon = 'icons/obj/power_vrx96.dmi'
+	icon_state = "reg"
+	circuit = /obj/item/weapon/circuitboard/machine/reg_d
+	irradiate = FALSE
+	power_gen = 0
+	var/default_power_gen = 1000000	//It's big but it gets adjusted based on what you put into it!!!
+	var/part_mult = 0
+	var/nutrition_drain = 1
+	pixel_x = -32
+	plane = ABOVE_MOB_PLANE
+	layer = ABOVE_MOB_LAYER
+	buckle_dir = EAST
+	interact_offline = TRUE
+	density = FALSE
+
+/obj/machinery/power/rtg/reg/Initialize()
+	pixel_x = -32
+	. = ..()
+
+/obj/machinery/power/rtg/reg/Destroy()
+	. = ..()
+
+/obj/machinery/power/rtg/reg/user_buckle_mob(mob/living/M, mob/user, var/forced = FALSE, var/silent = TRUE)
+	. = ..()
+	M.pixel_y = 8
+	M.visible_message("<span class='notice'>\The [M], hops up onto \the [src] and begins running!</span>")
+
+/obj/machinery/power/rtg/reg/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
+	. = ..()
+	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+
+/obj/machinery/power/rtg/reg/RefreshParts()
+	var/n = 0
+	for(var/obj/item/weapon/stock_parts/SP in component_parts)
+		n += SP.rating
+	part_mult = n
+
+/obj/machinery/power/rtg/reg/attackby(obj/item/I, mob/user, params)
+	pixel_x = -32
+	if(default_deconstruction_screwdriver(user, I))
+		return
+	else if(default_deconstruction_crowbar(user, I))
+		return
+	return ..()
+
+/obj/machinery/power/rtg/reg/update_icon()
+	pixel_x = -32
+	if(panel_open)
+		icon_state = "reg-o"
+	else if(buckled_mobs && buckled_mobs.len > 0)
+		icon_state = "reg-a"
+	else
+		icon_state = "reg"
+
+/obj/machinery/power/rtg/reg/process()
+	..()
+	if(buckled_mobs && buckled_mobs.len > 0)
+		for(var/mob/living/L in buckled_mobs)
+			runner_process(L)
+	else
+		power_gen = 0
+	update_icon()
+
+/obj/machinery/power/rtg/reg/proc/runner_process(var/mob/living/runner)
+	if(runner.stat != CONSCIOUS)
+		unbuckle_mob(runner)
+		runner.visible_message("<span class='warning'>\The [runner], topples off of \the [src]!</span>")
+		return
+	var/cool_rotations
+	if(ishuman(runner))
+		var/mob/living/carbon/human/R = runner
+		cool_rotations = R.movement_delay()
+	else if (isanimal(runner))
+		var/mob/living/simple_mob/R = runner
+		cool_rotations = R.movement_delay()
+	if(cool_rotations <= 0)
+		cool_rotations = 0.5
+	cool_rotations = default_power_gen / cool_rotations
+	switch(runner.nutrition)
+		if(1000 to INFINITY)	//VERY WELL FED, ZOOM!!!!
+			cool_rotations *= (runner.nutrition * 0.001)
+		if(500 to 1000)	//Well fed!
+			cool_rotations = cool_rotations
+		if(400 to 500)
+			cool_rotations *= 0.9
+		if(300 to 400)
+			cool_rotations *= 0.75
+		if(200 to 300)
+			cool_rotations *= 0.5
+		if(100 to 200)
+			cool_rotations *= 0.25
+		else	//TOO HUNGY IT TIME TO STOP!!!
+			unbuckle_mob(runner)
+			runner.visible_message("<span class='notice'>\The [runner], panting and exhausted hops off of \the [src]!</span>")
+	if(part_mult > 1)
+		cool_rotations += (cool_rotations * (part_mult - 1)) / 4
+	power_gen = cool_rotations
+	runner.nutrition -= nutrition_drain
+
+/obj/machinery/power/rtg/reg/emp_act(severity)
+	return
+
+/obj/item/weapon/circuitboard/machine/reg_d
+	name = T_BOARD("D-Type-REG")
+	build_path = /obj/machinery/power/rtg/reg
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
+	req_components = list(
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/weapon/stock_parts/capacitor = 1)
+
+/obj/item/weapon/circuitboard/machine/reg_c
+	name = T_BOARD("C-Type-REG")
+	build_path = /obj/machinery/power/rtg/reg/c
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_DATA = 2, TECH_POWER = 4, TECH_ENGINEERING = 4)
+	req_components = list(
+		/obj/item/stack/cable_coil = 5,
+		/obj/item/weapon/stock_parts/capacitor = 1)
+
+/obj/machinery/power/rtg/reg/c
+	name = "c-type rotary electric generator"
+	circuit = /obj/item/weapon/circuitboard/machine/reg_c
+	default_power_gen = 500000 //Half power
+	nutrition_drain = 0.5	//for half cost - EQUIVALENT EXCHANGE >:O

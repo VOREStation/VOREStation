@@ -45,7 +45,6 @@
 /obj/effect/overmap/visitable/ship/aro
 	name = "Aronai Sieyes"
 	desc = "It's Aronai. Did you know he's actually a spaceship? Yeah it's weird."
-	color = "#00aaff" //Bluey
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	initial_generic_waypoints = list("aronai_fore", "aronai_aft", "aronai_port", "aronai_starboard")

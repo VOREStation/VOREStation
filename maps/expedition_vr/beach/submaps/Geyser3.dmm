@@ -1,0 +1,174 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"c" = (
+/obj/structure/cliff/automatic,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"d" = (
+/obj/random/turf/lava,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"e" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 5
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"f" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 9
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"g" = (
+/turf/simulated/floor/lava,
+/area/submap/geyser_3)
+"h" = (
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"i" = (
+/obj/structure/cliff/automatic/corner,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"j" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"k" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"l" = (
+/obj/effect/map_effect/interval/effect_emitter/steam,
+/obj/effect/map_effect/interval/effect_emitter/smoke/bad{
+	interval_lower_bound = 100;
+	interval_upper_bound = 3000
+	},
+/obj/effect/map_effect/interval/screen_shaker{
+	interval_upper_bound = 600
+	},
+/obj/effect/map_effect/interval/effect_emitter/smoke/fire{
+	interval_upper_bound = 1200
+	},
+/turf/simulated/floor/lava,
+/area/submap/geyser_3)
+"m" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 10
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"n" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 10
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"o" = (
+/obj/structure/cliff/automatic/corner{
+	icon_state = "cliffbuilder-corner";
+	dir = 6
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"p" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 6
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"q" = (
+/obj/structure/cliff/automatic{
+	icon_state = "cliffbuilder";
+	dir = 2
+	},
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+"r" = (
+/obj/random/multiple/minevault,
+/turf/simulated/floor/outdoors/rocks/caves,
+/area/submap/geyser_3)
+
+(1,1,1) = {"
+a
+b
+j
+j
+j
+m
+a
+"}
+(2,1,1) = {"
+b
+f
+g
+g
+g
+n
+m
+"}
+(3,1,1) = {"
+c
+g
+g
+g
+g
+g
+q
+"}
+(4,1,1) = {"
+d
+h
+r
+l
+g
+g
+q
+"}
+(5,1,1) = {"
+c
+g
+g
+g
+g
+g
+q
+"}
+(6,1,1) = {"
+e
+i
+g
+g
+g
+o
+p
+"}
+(7,1,1) = {"
+a
+e
+k
+k
+k
+p
+a
+"}

@@ -3104,7 +3104,7 @@
 /obj/structure/closet,
 /obj/item/weapon/reagent_containers/food/drinks/beer,
 /obj/item/clothing/under/purple,
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
 /turf/simulated/floor,
 /area/awaymission/academy/academyaft)
 "hV" = (

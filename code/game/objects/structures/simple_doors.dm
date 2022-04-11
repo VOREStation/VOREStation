@@ -1,7 +1,7 @@
 /obj/structure/simple_door
 	name = "door"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	can_atmos_pass = ATMOS_PASS_DENSITY
 
 	icon = 'icons/obj/doors/material_doors.dmi'
@@ -12,7 +12,9 @@
 	var/isSwitchingStates = 0
 	var/hardness = 1
 	var/oreAmount = 7
-
+	var/knock_sound = 'sound/machines/door/knock_glass.ogg'
+	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
+	
 /obj/structure/simple_door/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
 
@@ -20,13 +22,22 @@
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-/obj/structure/simple_door/New(var/newloc, var/material_name)
-	..()
+/obj/structure/simple_door/Initialize(mapload, var/material_name)
+	. = ..()
+	set_material(material_name)
+	if(!material)
+		return INITIALIZE_HINT_QDEL
+
+/obj/structure/simple_door/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	update_nearby_tiles()
+	return ..()
+
+/obj/structure/simple_door/proc/set_material(var/material_name)
 	if(!material_name)
-		material_name = DEFAULT_WALL_MATERIAL
+		material_name = MAT_STEEL
 	material = get_material_by_name(material_name)
 	if(!material)
-		qdel(src)
 		return
 	hardness = max(1,round(material.integrity/10))
 	icon_state = material.door_icon_base
@@ -39,11 +50,6 @@
 	if(material.products_need_process())
 		START_PROCESSING(SSobj, src)
 	update_nearby_tiles(need_rebuild=1)
-
-/obj/structure/simple_door/Destroy()
-	STOP_PROCESSING(SSobj, src)
-	update_nearby_tiles()
-	return ..()
 
 /obj/structure/simple_door/get_material()
 	return material
@@ -63,6 +69,21 @@
 
 /obj/structure/simple_door/attack_hand(mob/user as mob)
 	return TryToSwitchState(user)
+
+/obj/structure/simple_door/AltClick(mob/user as mob)
+	. = ..()
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!Adjacent(user))
+		return
+	else if(user.a_intent == I_HURT)
+		src.visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
+		src.add_fingerprint(user)
+		playsound(src, knock_hammer_sound, 50, 0, 3)
+	else if(user.a_intent == I_HELP)
+		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		src.add_fingerprint(user)
+		playsound(src, knock_sound, 50, 0, 3)
+	return
 
 /obj/structure/simple_door/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/effect/beam))
@@ -98,7 +119,7 @@
 	playsound(src, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]opening",src)
 	sleep(10)
-	density = 0
+	density = FALSE
 	set_opacity(0)
 	state = 1
 	update_icon()
@@ -110,7 +131,7 @@
 	playsound(src, material.dooropen_noise, 100, 1)
 	flick("[material.door_icon_base]closing",src)
 	sleep(10)
-	density = 1
+	density = TRUE
 	set_opacity(1)
 	state = 0
 	update_icon()
@@ -136,7 +157,7 @@
 		visible_message("<span class='danger'>[user] hits [src] with [W]!</span>")
 		if(material == get_material_by_name("resin"))
 			playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
-		else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+		else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD) || get_material_by_name(MAT_HARDWOOD)))
 			playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
 		else
 			playsound(src, 'sound/weapons/smash.ogg', 50, 1)
@@ -161,7 +182,7 @@
 	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
 	if(material == get_material_by_name("resin"))
 		playsound(src, 'sound/effects/attackblob.ogg', 100, 1)
-	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD)))
+	else if(material == (get_material_by_name(MAT_WOOD) || get_material_by_name(MAT_SIFWOOD) || get_material_by_name(MAT_HARDWOOD)))
 		playsound(src, 'sound/effects/woodcutting.ogg', 100, 1)
 	else
 		playsound(src, 'sound/weapons/smash.ogg', 50, 1)
@@ -198,38 +219,42 @@
 		return
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
-/obj/structure/simple_door/iron/New(var/newloc,var/material_name)
-	..(newloc, "iron")
+/obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "iron")
 
-/obj/structure/simple_door/silver/New(var/newloc,var/material_name)
-	..(newloc, "silver")
+/obj/structure/simple_door/silver/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "silver")
 
-/obj/structure/simple_door/gold/New(var/newloc,var/material_name)
-	..(newloc, "gold")
+/obj/structure/simple_door/gold/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "gold")
 
-/obj/structure/simple_door/uranium/New(var/newloc,var/material_name)
-	..(newloc, "uranium")
+/obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "uranium")
 
-/obj/structure/simple_door/sandstone/New(var/newloc,var/material_name)
-	..(newloc, "sandstone")
+/obj/structure/simple_door/sandstone/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "sandstone")
 
-/obj/structure/simple_door/phoron/New(var/newloc,var/material_name)
-	..(newloc, "phoron")
+/obj/structure/simple_door/phoron/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "phoron")
 
-/obj/structure/simple_door/diamond/New(var/newloc,var/material_name)
-	..(newloc, "diamond")
+/obj/structure/simple_door/diamond/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "diamond")
 
-/obj/structure/simple_door/wood/New(var/newloc,var/material_name)
-	..(newloc, MAT_WOOD)
+/obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
+	..(mapload, material_name || MAT_WOOD)
+	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/sifwood/New(var/newloc,var/material_name)
-	..(newloc, MAT_SIFWOOD)
+/obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
+	..(mapload, material_name || MAT_HARDWOOD)
 
-/obj/structure/simple_door/resin/New(var/newloc,var/material_name)
-	..(newloc, "resin")
+/obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
+	..(mapload, material_name || MAT_SIFWOOD)
 
-/obj/structure/simple_door/cult/New(var/newloc,var/material_name)
-	..(newloc, "cult")
+/obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "resin")
+
+/obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "cult")
 
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))

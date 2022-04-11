@@ -95,7 +95,7 @@
 
 	if(stored_mmi)
 		. = stored_mmi //VOREStation Code
-		stored_mmi.loc = get_turf(src)
+		stored_mmi.forceMove(drop_location())
 		if(owner.mind)
 			owner.mind.transfer_to(stored_mmi.brainmob)
 	..()

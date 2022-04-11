@@ -23,6 +23,7 @@ var/global/datum/global_init/init = new ()
 	debug_log = file("[log_path]-debug.log")
 	debug_log << "[log_end]\n[log_end]\nStarting up. [time_stamp()][log_end]\n---------------------[log_end]"
 */ //VOREStation Removal End
+	decls_repository = new()	
 	load_configuration()
 	makeDatumRefLists()
 

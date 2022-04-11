@@ -15,9 +15,8 @@
 
 /datum/disease2/effectholder/proc/getrandomeffect(var/badness = 1, exclude_types=list())
 	var/list/datum/disease2/effect/list = list()
-	for(var/e in (typesof(/datum/disease2/effect) - /datum/disease2/effect))
-		var/datum/disease2/effect/f = e
-		if(e in exclude_types)
+	for(var/datum/disease2/effect/f as anything in subtypesof(/datum/disease2/effect))
+		if(f in exclude_types)
 			continue
 		if(initial(f.badness) > badness)	//we don't want such strong effects
 			continue
@@ -51,9 +50,9 @@
 	var/badness = 1
 	var/data = null // For semi-procedural effects; this should be generated in generate() if used
 
-	proc/activate(var/mob/living/carbon/mob,var/multiplier)
-	proc/deactivate(var/mob/living/carbon/mob)
-	proc/generate(copy_data) // copy_data will be non-null if this is a copy; it should be used to initialise the data for this effect if present
+/datum/disease2/effect/proc/activate(var/mob/living/carbon/mob,var/multiplier)
+/datum/disease2/effect/proc/deactivate(var/mob/living/carbon/mob)
+/datum/disease2/effect/proc/generate(copy_data) // copy_data will be non-null if this is a copy; it should be used to initialise the data for this effect if present
 
 /datum/disease2/effect/invisible
 	name = "Waiting Syndrome"
@@ -121,19 +120,6 @@
 	if(istype(mob,/mob/living/carbon/human))
 		var/mob/living/carbon/human/h = mob
 		h.monkeyize()
-
-/datum/disease2/effect/suicide
-	name = "Windpipe Contraction"
-	stage = 4
-	badness = 3
-
-/datum/disease2/effect/suicide/activate(var/mob/living/carbon/mob,var/multiplier)
-	var/datum/gender/TM = gender_datums[mob.get_visible_gender()]
-	mob.suiciding = 30
-	//instead of killing them instantly, just put them at -175 health and let 'em gasp for a while
-	to_chat(viewers(mob),"<font color='red'><b>[mob.name] is holding [TM.his] breath. It looks like [TM.he] [TM.is] trying to commit suicide.</b></font>")
-	mob.adjustOxyLoss(175 - mob.getToxLoss() - mob.getFireLoss() - mob.getBruteLoss() - mob.getOxyLoss())
-	mob.updatehealth()
 
 /datum/disease2/effect/killertoxins
 	name = "Autoimmune Response"

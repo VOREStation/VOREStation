@@ -1,9 +1,9 @@
 //var/global/list/event_viruses = list() // so that event viruses are kept around for admin logs, rather than being GCed
 
-datum/event/viral_infection
+/datum/event/viral_infection
 	var/list/viruses = list()
 
-datum/event/viral_infection/setup()
+/datum/event/viral_infection/setup()
 	announceWhen = rand(0, 3000)
 	endWhen = announceWhen + 1
 
@@ -18,7 +18,7 @@ datum/event/viral_infection/setup()
 		D.makerandom(strength)
 		viruses += D
 
-datum/event/viral_infection/announce()
+/datum/event/viral_infection/announce()
 	var/level
 	if (severity == EVENT_LEVEL_MUNDANE)
 		return
@@ -30,7 +30,7 @@ datum/event/viral_infection/announce()
 	if (severity == EVENT_LEVEL_MAJOR || prob(60))
 		command_announcement.Announce("Confirmed outbreak of level [level] biohazard aboard \the [station_name()]. All personnel must contain the outbreak.", "Biohazard Alert", new_sound = 'sound/AI/outbreak5.ogg')
 
-datum/event/viral_infection/start()
+/datum/event/viral_infection/start()
 	if(!viruses.len) return
 
 	var/list/candidates = list()	//list of candidate keys

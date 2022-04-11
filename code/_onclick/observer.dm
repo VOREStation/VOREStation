@@ -66,11 +66,20 @@
 	if(target)
 		user.loc = get_turf(target)
 
-/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob)
-	if(awaygate)
-		user.loc = awaygate.loc
+// VOREStation Edit Begin
+
+/obj/machinery/gateway/centerstation/attack_ghost(mob/user as mob) 
+	if(awaygate) 
+		if(user.client.holder) 
+			user.loc = awaygate.loc
+		else if(active)
+			user.loc = awaygate.loc
+		else
+			return
 	else
 		to_chat(user, "[src] has no destination.")
+
+// VOREStation Edit End
 
 /obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
 	if(stationgate)

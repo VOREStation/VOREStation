@@ -1,7 +1,7 @@
-/obj/effect/overmap/visitable/sector/tether_gateway/snowoutpost
+/obj/effect/overmap/visitable/sector/common_gateway/snowoutpost
 	initial_generic_waypoints = list("tether_excursion_snow_outpost")
 	in_space = 0
-	scanner_name = "Snowy Outpost"
+	name = "Snowy Outpost"
 	scanner_desc = @{"[i]Stellar Body[/i]>: UNKNOWN
 [i]Class[/i]>: M-Class Planetoid
 [i]Habitability[/i]>: Moderate (Low Temperature)

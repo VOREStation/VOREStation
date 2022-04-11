@@ -14,8 +14,7 @@ SUBSYSTEM_DEF(event_ticker)
 
 // Process active events.
 /datum/controller/subsystem/event_ticker/fire(resumed)
-	for(var/E in active_events)
-		var/datum/event2/event/event = E
+	for(var/datum/event2/event/event as anything in active_events)
 		event.process()
 		if(event.finished)
 			event_finished(event)

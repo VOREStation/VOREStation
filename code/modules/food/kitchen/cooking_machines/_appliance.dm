@@ -10,8 +10,8 @@
 	desc = "You shouldn't be seeing this!"
 	icon = 'icons/obj/cooking_machines.dmi'
 	var/appliancetype = 0
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 5			// Power used when turned on, but not processing anything
@@ -53,14 +53,12 @@
 	if (!available_recipes)
 		available_recipes = new
 
-	for(var/type in subtypesof(/datum/recipe))
-		var/datum/recipe/test = type
+	for(var/datum/recipe/test as anything in subtypesof(/datum/recipe))
 		if((appliancetype & initial(test.appliance)))
 			available_recipes += new test
 
 /obj/machinery/appliance/Destroy()
-	for (var/a in cooking_objs)
-		var/datum/cooking_item/CI = a
+	for(var/datum/cooking_item/CI as anything in cooking_objs)
 		qdel(CI.container)//Food is fragile, it probably doesnt survive the destruction of the machine
 		cooking_objs -= CI
 		qdel(CI)
@@ -74,8 +72,7 @@
 /obj/machinery/appliance/proc/list_contents(var/mob/user)
 	if (cooking_objs.len)
 		var/string = "Contains..."
-		for (var/a in cooking_objs)
-			var/datum/cooking_item/CI = a
+		for(var/datum/cooking_item/CI as anything in cooking_objs)
 			string += "-\a [CI.container.label(null, CI.combine_target)], [report_progress(CI)]</br>"
 		return string
 	else
@@ -194,7 +191,7 @@
 		return
 
 	if(output_options.len)
-		var/choice = input("What specific food do you wish to make with \the [src]?") as null|anything in output_options+"Default"
+		var/choice = tgui_input_list(usr, "What specific food do you wish to make with \the [src]?", "Food Output Choice", output_options+"Default")
 		if(!choice)
 			return
 		if(choice == "Default")
@@ -319,7 +316,7 @@
 		CI = new /datum/cooking_item/(CC)
 		I.forceMove(src)
 		cooking_objs.Add(CI)
-		user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
 		if (CC.check_contents() == 0)//If we're just putting an empty container in, then dont start any processing.
 			return TRUE
 	else
@@ -333,7 +330,7 @@
 		CI.combine_target = selected_option
 
 	// We can actually start cooking now.
-	user.visible_message("<span class='notice'>\The [user] puts \the [I] into \the [src].</span>")
+	user.visible_message("<b>\The [user]</b> puts \the [I] into \the [src].")
 
 	get_cooking_work(CI)
 	cooking = TRUE
@@ -343,8 +340,7 @@
 	for (var/obj/item/J in CI.container)
 		cookwork_by_item(J, CI)
 
-	for (var/r in CI.container.reagents.reagent_list)
-		var/datum/reagent/R = r
+	for(var/datum/reagent/R as anything in CI.container.reagents.reagent_list)
 		if (istype(R, /datum/reagent/nutriment))
 			CI.max_cookwork += R.volume *2//Added reagents contribute less than those in food items due to granular form
 
@@ -373,8 +369,7 @@
 	var/work = 0
 	if (istype(S))
 		if (S.reagents)
-			for (var/r in S.reagents.reagent_list)
-				var/datum/reagent/R = r
+			for(var/datum/reagent/R as anything in S.reagents.reagent_list)
 				if (istype(R, /datum/reagent/nutriment))
 					work += R.volume *3//Core nutrients contribute much more than peripheral chemicals
 
@@ -433,7 +428,7 @@
 
 /obj/machinery/appliance/proc/finish_cooking(var/datum/cooking_item/CI)
 
-	src.visible_message("<span class='notice'>\The [src] pings!</span>")
+	src.visible_message("<b>\The [src]</b> pings!")
 	if(cooked_sound)
 		playsound(get_turf(src), cooked_sound, 50, 1)
 	//Check recipes first, a valid recipe overrides other options
@@ -463,8 +458,7 @@
 			results += TR
 
 
-		for (var/r in results)
-			var/obj/item/weapon/reagent_containers/food/snacks/R = r
+		for(var/obj/item/weapon/reagent_containers/food/snacks/R as anything in results)
 			R.forceMove(C) //Move everything from the buffer back to the container
 			R.cooked |= cook_type
 
@@ -506,7 +500,7 @@
 		if (!S)
 			continue
 
-		words |= text2list(S.name," ")
+		words |= splittext(S.name," ")
 		cooktypes |= S.cooked
 
 		if (S.reagents && S.reagents.total_volume > 0)
@@ -608,12 +602,11 @@
 /obj/machinery/appliance/proc/removal_menu(var/mob/user)
 	if (can_remove_items(user))
 		var/list/menuoptions = list()
-		for (var/a in cooking_objs)
-			var/datum/cooking_item/CI = a
+		for(var/datum/cooking_item/CI as anything in cooking_objs)
 			if (CI.container)
 				menuoptions[CI.container.label(menuoptions.len)] = CI
 
-		var/selection = input(user, "Which item would you like to remove?", "Remove ingredients") as null|anything in menuoptions
+		var/selection = tgui_input_list(user, "Which item would you like to remove?", "Remove ingredients", menuoptions)
 		if (selection)
 			var/datum/cooking_item/CI = menuoptions[selection]
 			eject(CI, user)

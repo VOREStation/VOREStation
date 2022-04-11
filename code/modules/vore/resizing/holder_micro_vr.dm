@@ -4,11 +4,11 @@
 	name = "micro"
 	desc = "Another crewmember, small enough to fit in your hand."
 	icon_state = "micro"
-	icon_override = 'icons/mob/head_vr.dmi'
-	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	slot_flags = SLOT_FEET | SLOT_HEAD | SLOT_ID | SLOT_HOLSTER
 	w_class = ITEMSIZE_SMALL
-	item_icons = list() // No in-hand sprites (for now, anyway, we could totally add some)
-	pixel_y = 0			// Override value from parent.
+	item_icons = null // No in-hand sprites (for now, anyway, we could totally add some)
+	pixel_y = 0		  // Override value from parent.
 
 /obj/item/weapon/holder/micro/examine(mob/user)
 	. = list()
@@ -34,17 +34,22 @@
 			var/mob/living/simple_mob/S = L
 			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
 
-/obj/item/weapon/holder/micro/update_state()
-	if(isturf(loc) || !held_mob || held_mob.loc != src)
-		qdel(src)
-
-/obj/item/weapon/holder/micro/Destroy()
-	var/turf/here = get_turf(src)
-	for(var/atom/movable/A in src)
-		A.forceMove(here)
-	return ..()
-
-/obj/item/weapon/holder/micro/sync(var/mob/living/M)
+//Egg features.
+/obj/item/weapon/holder/attack_hand(mob/living/user as mob)
+	if(istype(src.loc, /obj/item/weapon/storage/vore_egg)) //Don't scoop up the egged mob
+		src.pickup(user)
+		user.drop_from_inventory(src)
+		return
 	..()
-	for(var/mob/living/carbon/human/I in contents)
-		item_state = lowertext(I.species.name)
+
+/obj/item/weapon/holder/container_resist(mob/living/held)
+	if(!istype(src.loc, /obj/item/weapon/storage/vore_egg))
+		..()
+	else
+		var/obj/item/weapon/storage/vore_egg/E = src.loc
+		if(isbelly(E.loc))
+			var/obj/belly/B = E.loc
+			B.relay_resist(held, E)
+			return
+		E.hatch(held)
+		return

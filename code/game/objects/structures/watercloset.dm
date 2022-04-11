@@ -4,9 +4,9 @@
 	name = "toilet"
 	desc = "The HT-451, a torque rotation-based, waste disposal unit for small matter. This one seems remarkably clean."
 	icon = 'icons/obj/watercloset.dmi'
-	icon_state = "toilet00"
-	density = 0
-	anchored = 1
+	icon_state = "toilet"
+	density = FALSE
+	anchored = TRUE
 	var/open = 0			//if the lid is up
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
@@ -41,7 +41,7 @@
 	update_icon()
 
 /obj/structure/toilet/update_icon()
-	icon_state = "toilet[open][cistern]"
+	icon_state = "[initial(icon_state)][open][cistern]"
 
 /obj/structure/toilet/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(I.is_crowbar())
@@ -91,15 +91,47 @@
 		to_chat(user, "You carefully place \the [I] into the cistern.")
 		return
 
+/obj/structure/toilet/prison
+	name = "prison toilet"
+	icon_state = "toilet2"
 
+/obj/structure/toilet/prison/attack_hand(mob/living/user)
+	return
+
+/obj/structure/toilet/prison/attackby(obj/item/I, mob/living/user)
+	if(istype(I, /obj/item/weapon/grab))
+		user.setClickCooldown(user.get_attack_speed(I))
+		var/obj/item/weapon/grab/G = I
+
+		if(isliving(G.affecting))
+			var/mob/living/GM = G.affecting
+
+			if(G.state>1)
+				if(!GM.loc == get_turf(src))
+					to_chat(user, "<span class='notice'>[GM.name] needs to be on the toilet.</span>")
+					return
+				if(open && !swirlie)
+					user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+					swirlie = GM
+					if(do_after(user, 30, GM))
+						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+						if(!GM.internal)
+							GM.adjustOxyLoss(5)
+					swirlie = null
+				else
+					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+					GM.adjustBruteLoss(5)
+			else
+				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
+	
 
 /obj/structure/urinal
 	name = "urinal"
 	desc = "The HU-452, an experimental urinal."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "urinal"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/weapon/grab))
@@ -122,8 +154,8 @@
 	desc = "The HS-451. Installed in the 2550s by the Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 	var/on = 0
 	var/obj/effect/mist/mymist = null
@@ -150,7 +182,7 @@
 	icon_state = "mist"
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 
 /obj/machinery/shower/attack_hand(mob/M as mob)
@@ -170,7 +202,7 @@
 	if(I.type == /obj/item/device/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
 	if(I.is_wrench())
-		var/newtemp = input(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve") in temperature_settings
+		var/newtemp = tgui_input_list(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", temperature_settings)
 		to_chat(user, "<span class='notice'>You begin to adjust the temperature valve with \the [I].</span>")
 		playsound(src, I.usesound, 50, 1)
 		if(do_after(user, 50 * I.toolspeed))
@@ -179,13 +211,13 @@
 			add_fingerprint(user)
 
 /obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
-	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
+	cut_overlays()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
 		qdel(mymist)
 		mymist = null
 
 	if(on)
-		overlays += image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir)
+		add_overlay(image('icons/obj/watercloset.dmi', src, "water", MOB_LAYER + 1, dir))
 		if(temperature_settings[watertemp] < T20C)
 			return //no mist for cold water
 		if(!ismist)
@@ -215,81 +247,13 @@
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 
 	if(iscarbon(O))
-		var/mob/living/carbon/M = O
-		if(M.r_hand)
-			M.r_hand.clean_blood()
-		if(M.l_hand)
-			M.l_hand.clean_blood()
-		if(M.back)
-			if(M.back.clean_blood())
-				M.update_inv_back(0)
-
 		//flush away reagents on the skin
+		var/mob/living/carbon/M = O
 		if(M.touching)
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
 			M.touching.remove_any(remove_amount)
 
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/washgloves = 1
-			var/washshoes = 1
-			var/washmask = 1
-			var/washears = 1
-			var/washglasses = 1
-
-			if(H.wear_suit)
-				washgloves = !(H.wear_suit.flags_inv & HIDEGLOVES)
-				washshoes = !(H.wear_suit.flags_inv & HIDESHOES)
-
-			if(H.head)
-				washmask = !(H.head.flags_inv & HIDEMASK)
-				washglasses = !(H.head.flags_inv & HIDEEYES)
-				washears = !(H.head.flags_inv & HIDEEARS)
-
-			if(H.wear_mask)
-				if (washears)
-					washears = !(H.wear_mask.flags_inv & HIDEEARS)
-				if (washglasses)
-					washglasses = !(H.wear_mask.flags_inv & HIDEEYES)
-
-			if(H.head)
-				if(H.head.clean_blood())
-					H.update_inv_head(0)
-			if(H.wear_suit)
-				if(H.wear_suit.clean_blood())
-					H.update_inv_wear_suit(0)
-			else if(H.w_uniform)
-				if(H.w_uniform.clean_blood())
-					H.update_inv_w_uniform(0)
-			if(H.gloves && washgloves)
-				if(H.gloves.clean_blood())
-					H.update_inv_gloves(0)
-			if(H.shoes && washshoes)
-				if(H.shoes.clean_blood())
-					H.update_inv_shoes(0)
-			if(H.wear_mask && washmask)
-				if(H.wear_mask.clean_blood())
-					H.update_inv_wear_mask(0)
-			if(H.glasses && washglasses)
-				if(H.glasses.clean_blood())
-					H.update_inv_glasses(0)
-			if(H.l_ear && washears)
-				if(H.l_ear.clean_blood())
-					H.update_inv_ears(0)
-			if(H.r_ear && washears)
-				if(H.r_ear.clean_blood())
-					H.update_inv_ears(0)
-			if(H.belt)
-				if(H.belt.clean_blood())
-					H.update_inv_belt(0)
-			H.clean_blood(washshoes)
-		else
-			if(M.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
-				if(M.wear_mask.clean_blood())
-					M.update_inv_wear_mask(0)
-			M.clean_blood()
-	else
-		O.clean_blood()
+		M.clean_blood()
 
 	if(isturf(loc))
 		var/turf/tile = loc
@@ -301,12 +265,11 @@
 
 /obj/machinery/shower/process()
 	if(!on) return
-	for(var/thing in loc)
-		var/atom/movable/AM = thing
-		var/mob/living/L = thing
-		if(istype(AM) && AM.simulated)
+	for(var/atom/movable/AM in loc)
+		if(AM.simulated)
 			wash(AM)
-			if(istype(L))
+			if(isliving(AM))
+				var/mob/living/L = AM
 				process_heat(L)
 	wash_floor()
 	reagents.add_reagent("water", reagents.get_free_space())
@@ -340,13 +303,14 @@
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "rubberducky"
+	honk_sound = 'sound/voice/quack.ogg' //VOREStation edit
 
 /obj/structure/sink
 	name = "sink"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "sink"
 	desc = "A sink used for washing one's hands and face."
-	anchored = 1
+	anchored = TRUE
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/MouseDrop_T(var/obj/item/thing, var/mob/user)
@@ -359,7 +323,7 @@
 		to_chat(usr, "<span class='warning'>\The [thing] is empty.</span>")
 		return
 	// Clear the vessel.
-	visible_message("<span class='notice'>\The [usr] tips the contents of \the [thing] into \the [src].</span>")
+	visible_message("<b>\The [usr]</b> tips the contents of \the [thing] into \the [src].")
 	thing.reagents.clear_reagents()
 	thing.update_icon()
 
@@ -458,7 +422,11 @@
 
 /obj/structure/sink/kitchen
 	name = "kitchen sink"
-	icon_state = "sink_alt"
+	icon_state = "sink2"
+
+/obj/structure/sink/countertop
+	name = "countertop sink"
+	icon_state = "sink3"
 
 /obj/structure/sink/puddle	//splishy splashy ^_^
 	name = "puddle"

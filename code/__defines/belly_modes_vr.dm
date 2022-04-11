@@ -1,5 +1,6 @@
 // Normal digestion modes
 #define DM_HOLD									"Hold"
+#define DM_HOLD_ABSORBED						"Hold Absorbed"			// Not a real bellymode, used for handling different idle messages for absorbed prey.
 #define DM_DIGEST								"Digest"
 #define DM_ABSORB								"Absorb"
 #define DM_UNABSORB								"Unabsorb"
@@ -9,30 +10,15 @@
 #define DM_SIZE_STEAL							"Size Steal"
 #define DM_HEAL									"Heal"
 #define DM_EGG 									"Encase In Egg"
-#define DM_TRANSFORM							"Transform"
-
-//#define DM_ITEMWEAK							"Digest (Item Friendly)"
-//#define DM_STRIPDIGEST						"Strip Digest (Items Only)"
-//#define DM_DIGEST_NUMB						"Digest (Numbing)"
-
-//TF modes
-#define DM_TRANSFORM_HAIR_AND_EYES					"Transform (Hair and eyes)"
-#define DM_TRANSFORM_MALE							"Transform (Male)"
-#define DM_TRANSFORM_FEMALE							"Transform (Female)"
-#define DM_TRANSFORM_KEEP_GENDER					"Transform (Keep Gender)"
-#define DM_TRANSFORM_REPLICA						"Transform (Replica Of Self)"
-#define DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR		"Transform (Change Species and Taur)"
-#define DM_TRANSFORM_CHANGE_SPECIES_AND_TAUR_EGG	"Transform (Change Species and Taur) (EGG)"
-#define DM_TRANSFORM_REPLICA_EGG					"Transform (Replica Of Self) (EGG)"
-#define DM_TRANSFORM_KEEP_GENDER_EGG				"Transform (Keep Gender) (EGG)"
-#define DM_TRANSFORM_MALE_EGG						"Transform (Male) (EGG)"
-#define DM_TRANSFORM_FEMALE_EGG						"Transform (Female) (EGG)"
 
 //Addon mode flags
 #define DM_FLAG_NUMBING			0x1
 #define DM_FLAG_STRIPPING		0x2
 #define DM_FLAG_LEAVEREMAINS	0x4
 #define DM_FLAG_THICKBELLY		0x8
+#define DM_FLAG_AFFECTWORN		0x10
+#define DM_FLAG_JAMSENSORS		0x20
+#define DM_FLAG_FORCEPSAY		0x40
 
 //Item related modes
 #define IM_HOLD									"Hold"

@@ -2168,7 +2168,7 @@
 /area/awaymission/snow_outpost/dark)
 "hm" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hn" = (
@@ -2868,7 +2868,7 @@
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "Uy" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/snowoutpost,
+/obj/effect/overmap/visitable/sector/common_gateway/snowoutpost,
 /turf/simulated/mineral/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
 "Vk" = (

@@ -26,9 +26,14 @@
 /// Generates all the holo minimaps, initializing it all nicely, probably.
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimaps()
 	var/start_time = world.timeofday
+	
+	// Starting over if we're running midround (it runs real fast, so that's possible)
+	holoMiniMaps.Cut()
+	extraMiniMaps.Cut()
+
 	// Build the base map for each z level
 	for (var/z = 1 to world.maxz)
-		holoMiniMaps |= z // hack, todo fix
+		holoMiniMaps |= z
 		holoMiniMaps[z] = generateHoloMinimap(z)
 
 	// Generate the area overlays, small maps, etc for the station levels.
@@ -48,27 +53,23 @@
 
 // Generates the "base" holomap for one z-level, showing only the physical structure of walls and paths.
 /datum/controller/subsystem/holomaps/proc/generateHoloMinimap(var/zLevel = 1)
-	// Save these values now to avoid a bazillion array lookups
-	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
-	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
-
 	// Sanity checks - Better to generate a helpful error message now than have DrawBox() runtime
 	var/icon/canvas = icon(HOLOMAP_ICON, "blank")
-	if(world.maxx + offset_x > canvas.Width())
-		crash_with("Minimap for z=[zLevel] : world.maxx ([world.maxx]) + holomap_offset_x ([offset_x]) must be <= [canvas.Width()]")
-	if(world.maxy + offset_y > canvas.Height())
-		crash_with("Minimap for z=[zLevel] : world.maxy ([world.maxy]) + holomap_offset_y ([offset_y]) must be <= [canvas.Height()]")
+	if(world.maxx > canvas.Width())
+		stack_trace("Minimap for z=[zLevel] : world.maxx ([world.maxx]) must be <= [canvas.Width()]")
+	if(world.maxy > canvas.Height())
+		stack_trace("Minimap for z=[zLevel] : world.maxy ([world.maxy]) must be <= [canvas.Height()]")
 
 	for(var/x = 1 to world.maxx)
 		for(var/y = 1 to world.maxy)
 			var/turf/tile = locate(x, y, zLevel)
 			if(tile && tile.loc:holomapAlwaysDraw())
 				if(IS_ROCK(tile))
-					canvas.DrawBox(HOLOMAP_ROCK, x + offset_x, y + offset_y)
+					canvas.DrawBox(HOLOMAP_ROCK, x, y)
 				if(IS_OBSTACLE(tile))
-					canvas.DrawBox(HOLOMAP_OBSTACLE, x + offset_x, y + offset_y)
+					canvas.DrawBox(HOLOMAP_OBSTACLE, x, y)
 				else if(IS_PATH(tile))
-					canvas.DrawBox(HOLOMAP_PATH, x + offset_x, y + offset_y)
+					canvas.DrawBox(HOLOMAP_PATH, x, y)
 		// Check sleeping after each row to avoid *completely* destroying the server
 		CHECK_TICK
 	return canvas
@@ -78,16 +79,12 @@
 // Leshana: I'm guessing this map will get overlayed on top of the base map at runtime? We'll see.
 // Wait, seems we actually blend the area map on top of it right now! Huh.
 /datum/controller/subsystem/holomaps/proc/generateStationMinimap(var/zLevel)
-	// Save these values now to avoid a bazillion array lookups
-	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
-	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
-
 	// Sanity checks - Better to generate a helpful error message now than have DrawBox() runtime
 	var/icon/canvas = icon(HOLOMAP_ICON, "blank")
-	if(world.maxx + offset_x > canvas.Width())
-		crash_with("Minimap for z=[zLevel] : world.maxx ([world.maxx]) + holomap_offset_x ([offset_x]) must be <= [canvas.Width()]")
-	if(world.maxy + offset_y > canvas.Height())
-		crash_with("Minimap for z=[zLevel] : world.maxy ([world.maxy]) + holomap_offset_y ([offset_y]) must be <= [canvas.Height()]")
+	if(world.maxx > canvas.Width())
+		stack_trace("Minimap for z=[zLevel] : world.maxx ([world.maxx]) must be <= [canvas.Width()]")
+	if(world.maxy > canvas.Height())
+		stack_trace("Minimap for z=[zLevel] : world.maxy ([world.maxy]) must be <= [canvas.Height()]")
 
 	for(var/x = 1 to world.maxx)
 		for(var/y = 1 to world.maxy)
@@ -95,7 +92,7 @@
 			if(tile && tile.loc)
 				var/area/areaToPaint = tile.loc
 				if(areaToPaint.holomap_color)
-					canvas.DrawBox(areaToPaint.holomap_color, x + offset_x, y + offset_y)
+					canvas.DrawBox(areaToPaint.holomap_color, x, y)
 
 	// Save this nice area-colored canvas in case we want to layer it or something I guess
 	extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPAREAS]_[zLevel]"] = canvas
@@ -129,13 +126,17 @@
 	var/icon/small_map = icon(HOLOMAP_ICON, "blank")
 	// For each zlevel in turn, overlay them on top of each other
 	for(var/zLevel in zlevels)
+		var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel) || 1
+		var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel) || 1
+
 		var/icon/z_terrain = icon(holoMiniMaps[zLevel])
-		z_terrain.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY)
-		big_map.Blend(z_terrain, ICON_OVERLAY)
-		small_map.Blend(z_terrain, ICON_OVERLAY)
+		z_terrain.Blend(HOLOMAP_HOLOFIER, ICON_MULTIPLY, offset_x, offset_y)
+		big_map.Blend(z_terrain, ICON_OVERLAY, offset_x, offset_y)
+		small_map.Blend(z_terrain, ICON_OVERLAY, offset_x, offset_y)
+		
 		var/icon/z_areas = extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPAREAS]_[zLevel]"]
-		big_map.Blend(z_areas, ICON_OVERLAY)
-		small_map.Blend(z_areas, ICON_OVERLAY)
+		big_map.Blend(z_areas, ICON_OVERLAY, offset_x, offset_y)
+		small_map.Blend(z_areas, ICON_OVERLAY, offset_x, offset_y)
 
 	// Then scale and rotate to make the actual small map we will use
 	small_map.Scale(WORLD_ICON_SIZE, WORLD_ICON_SIZE)
@@ -149,28 +150,6 @@
 	for(var/zLevel in zlevels)
 		extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAP]_[zLevel]"] = big_map
 		extraMiniMaps["[HOLOMAP_EXTRA_STATIONMAPSMALL]_[zLevel]"] = actual_small_map
-
-// TODO - Holomap Markers!
-// /proc/generateMinimapMarkers(var/zLevel)
-// 	// Save these values now to avoid a bazillion array lookups
-// 	var/offset_x = HOLOMAP_PIXEL_OFFSET_X(zLevel)
-// 	var/offset_y = HOLOMAP_PIXEL_OFFSET_Y(zLevel)
-
-// 	// TODO - Holomap markers
-// 	for(var/filter in list(HOLOMAP_FILTER_STATIONMAP))
-// 		var/icon/canvas = icon(HOLOMAP_ICON, "blank")
-// 		for(/datum/holomap_marker/holomarker in holomap_markers)
-// 			if(holomarker.z == zLevel && holomarker.filter & filter)
-// 				canvas.Blend(icon(holomarker.icon, holomarker.icon_state), ICON_OVERLAY, holomarker.x + offset_x, holomarker.y + offset_y)
-// 		extraMiniMaps["[HOLOMAP_EXTRA_MARKERS]_[filter]_[zLevel]"] = canvas
-
-// /datum/holomap_marker
-// 	var/x
-// 	var/y
-// 	var/z
-// 	var/filter
-// 	var/icon = 'icons/holomap_markers.dmi'
-// 	var/icon_state
 
 #undef IS_ROCK
 #undef IS_OBSTACLE

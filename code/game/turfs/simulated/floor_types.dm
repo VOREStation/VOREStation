@@ -14,9 +14,9 @@
 	var/image/turf_image
 	var/list/decals
 
-	New(var/location = null, var/turf/simulated/shuttle/turf)
-		..(null)
-		my_turf = turf
+/obj/landed_holder/New(var/location = null, var/turf/simulated/shuttle/turf)
+	..(null)
+	my_turf = turf
 
 /obj/landed_holder/proc/land_on(var/turf/T)
 	//Gather destination information
@@ -30,7 +30,6 @@
 	new_holder.decals = T.decals ? T.decals.Copy() : null
 
 	//Set the destination to be like us
-	T.Destroy()
 	var/turf/simulated/shuttle/new_dest = T.ChangeTurf(my_turf.type,,1)
 	new_dest.set_dir(my_turf.dir)
 	new_dest.icon_state = my_turf.icon_state
@@ -76,6 +75,7 @@
 	icon = 'icons/turf/shuttle_white.dmi'
 	thermal_conductivity = 0.05
 	heat_capacity = 0
+	flags = TURF_ACID_IMMUNE
 
 	var/obj/landed_holder/landed_holder
 	var/interior_corner = 0
@@ -86,7 +86,7 @@
 	var/static/list/antilight_cache
 
 /turf/simulated/shuttle/Initialize(mapload)
-	..()
+	. = ..()
 	if(!antilight_cache)
 		antilight_cache = list()
 		for(var/diag in cornerdirs)
@@ -96,7 +96,7 @@
 
 /turf/simulated/shuttle/Destroy()
 	landed_holder = null
-	..()
+	return ..()
 
 // For joined corners touching static lighting turfs, add an overlay to cancel out that part of our lighting overlay.
 /turf/simulated/shuttle/proc/update_breaklights()
@@ -214,11 +214,13 @@
 	light_range = 3
 	light_power = 0.6
 	light_color = "#66ffff" // Bright cyan.
+	light_on = TRUE
 	block_tele = TRUE
 
 /turf/simulated/shuttle/floor/alien/Initialize()
 	. = ..()
 	icon_state = "alienpod[rand(1, 9)]"
+	update_light()
 
 /turf/simulated/shuttle/floor/alienplating
 	icon_state = "alienplating"

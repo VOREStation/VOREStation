@@ -10,10 +10,17 @@
 
 	var/skip_act = FALSE
 	var/tgui_subtemplate = "ShuttleControlConsoleDefault"
+	var/ai_control = FALSE	//VOREStation Edit - AI/Borgs shouldn't really be flying off in ships without crew help
 
 /obj/machinery/computer/shuttle_control/attack_hand(user as mob)
 	if(..(user))
 		return
+	//VOREStation Addition Start
+	if(!ai_control && issilicon(user))
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
+		return TRUE
+	//VOREStation Addition End
+
 	//src.add_fingerprint(user)	//shouldn't need fingerprints just for looking at it.
 	if(!allowed(user))
 		to_chat(user, "<span class='warning'>Access Denied.</span>")
@@ -104,7 +111,7 @@
 			return TRUE
 
 		if("set_codes")
-			var/newcode = input("Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
+			var/newcode = input(usr, "Input new docking codes", "Docking codes", shuttle.docking_codes) as text|null
 			if(newcode && !..())
 				shuttle.set_docking_codes(uppertext(newcode))
 			return TRUE
@@ -151,8 +158,7 @@
 
 GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
 /hook/roundstart/proc/populate_dockingcodes()
-	for(var/paper in global.papers_dockingcode)
-		var/obj/item/weapon/paper/dockingcodes/dcp = paper
+	for(var/obj/item/weapon/paper/dockingcodes/dcp as anything in global.papers_dockingcode)
 		dcp.populate_info()
 	return TRUE
 
@@ -162,7 +168,11 @@ GLOBAL_LIST_BOILERPLATE(papers_dockingcode, /obj/item/weapon/paper/dockingcodes)
 
 /obj/item/weapon/paper/dockingcodes/proc/populate_info()
 	var/dockingcodes = null
-	var/z_to_check = codes_from_z ? codes_from_z : z
+	var/turf/T = get_turf(src)
+	var/our_z
+	if(T)
+		our_z = T.z
+	var/z_to_check = codes_from_z ? codes_from_z : our_z
 	if(using_map.use_overmap)
 		var/obj/effect/overmap/visitable/location = get_overmap_sector(z_to_check)
 		if(location && location.docking_codes)

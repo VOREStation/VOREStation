@@ -1,6 +1,3 @@
-#define TANK_MAX_RELEASE_PRESSURE (3*ONE_ATMOSPHERE)
-#define TANK_DEFAULT_RELEASE_PRESSURE ONE_ATMOSPHERE
-
 /obj/machinery/oxygen_pump
 	name = "emergency oxygen pump"
 	icon = 'icons/obj/walllocker.dmi'
@@ -58,7 +55,7 @@
 
 /obj/machinery/oxygen_pump/attack_hand(mob/user as mob)
 	if((stat & MAINT) && tank)
-		user.visible_message("<span class='notice'>\The [user] removes \the [tank] from \the [src].</span>", "<span class='notice'>You remove \the [tank] from \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> removes \the [tank] from \the [src].", "<span class='notice'>You remove \the [tank] from \the [src].</span>")
 		user.put_in_hands(tank)
 		src.add_fingerprint(user)
 		tank.add_fingerprint(user)
@@ -72,7 +69,7 @@
 			tank.forceMove(src)
 		breather.remove_from_mob(contained)
 		contained.forceMove(src)
-		src.visible_message("<span class='notice'>\The [user] makes \the [contained] rapidly retract back into \the [src]!</span>")
+		src.visible_message("<b>\The [user]</b> makes \the [contained] rapidly retract back into \the [src]!")
 		if(breather.internals)
 			breather.internals.icon_state = "internal0"
 		breather = null
@@ -143,7 +140,7 @@
 			user.drop_item()
 			W.forceMove(src)
 			tank = W
-			user.visible_message("<span class='notice'>\The [user] installs \the [tank] into \the [src].</span>", "<span class='notice'>You install \the [tank] into \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> installs \the [tank] into \the [src].", "<span class='notice'>You install \the [tank] into \the [src].</span>")
 			src.add_fingerprint(user)
 	if(istype(W, /obj/item/weapon/tank) && !stat)
 		to_chat(user, "<span class='warning'>Please open the maintenance hatch first.</span>")

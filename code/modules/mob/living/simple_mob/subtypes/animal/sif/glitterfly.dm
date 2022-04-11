@@ -52,9 +52,11 @@
 
 	attacktext = list("bit", "buffeted", "slashed")
 
+	organ_names = /decl/mob_organ_names/smallflying
+
 	tame_items = list(
 	/obj/item/weapon/reagent_containers/food/snacks/grown = 90,
-	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 10,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 10,
 	/obj/item/weapon/reagent_containers/food/snacks/meat = 5
 	)
 
@@ -62,7 +64,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive/glitterfly
 
 /mob/living/simple_mob/animal/sif/glitterfly/Initialize()
-	..()
+	. = ..()
 	var/colorlist = list(rgb(rand(100,255), rand(100,255), rand(100,255)) =  10, rgb(rand(5,100), rand(5,100), rand(5,100)) = 2, "#222222" = 1)
 	color = pickweight(colorlist)
 
@@ -85,7 +87,7 @@
 	plane = PLANE_LIGHTING_ABOVE
 
 /mob/living/simple_mob/animal/sif/glitterfly/rare/Initialize()
-	..()
+	. = ..()
 
 /mob/living/simple_mob/animal/sif/glitterfly/unique_tame_check(var/obj/O, var/mob/user)
 	. = ..()
@@ -123,3 +125,6 @@
 			return
 	else if(prob(1))
 		hostile = initial(hostile)
+
+/decl/mob_organ_names/smallflying
+	hit_zones = list("body", "left wing", "right wing") //For flying things too tiny to be granular

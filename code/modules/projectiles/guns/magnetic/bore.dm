@@ -6,7 +6,14 @@
 	var/mat_cost = 500			// How much material is used per-shot?
 	var/ammo_material
 	var/obj/item/weapon/stock_parts/manipulator/manipulator    // Installed manipulator. Mostly for Phoron Bore, higher rating == less mats consumed upon firing. Set to a path to spawn with one of that type.
+	var/rating_modifier = 0 // rating of installed capacitor + manipulator
 	var/loading = FALSE
+
+/obj/item/weapon/gun/magnetic/matfed/proc/update_rating_mod()
+	if(capacitor && manipulator)
+		rating_modifier = capacitor.get_rating() + manipulator.get_rating()
+	else
+		rating_modifier = FALSE
 
 /obj/item/weapon/gun/magnetic/matfed/Initialize()
 	. = ..()
@@ -14,6 +21,7 @@
 		manipulator = new manipulator(src)
 	if(manipulator)
 		mat_cost = initial(mat_cost) / (2*manipulator.rating)
+	update_rating_mod()
 
 /obj/item/weapon/gun/magnetic/matfed/Destroy()
 	QDEL_NULL(manipulator)
@@ -21,9 +29,10 @@
 
 /obj/item/weapon/gun/magnetic/matfed/examine(mob/user)
 	. = ..()
-	var/ammotext = show_ammo()
-	if(ammotext)
-		. += ammotext
+	if(manipulator)
+		. += "<span class='notice'>The installed [manipulator.name] consumes [mat_cost] units of [ammo_material] per shot.</span>"
+	else
+		. += "<span class='notice'>The \"manipulator missing\" indicator is lit. [src] consumes [mat_cost] units of [ammo_material] per shot.</span>"
 
 /obj/item/weapon/gun/magnetic/matfed/update_icon()
 	var/list/overlays_to_add = list()
@@ -54,7 +63,7 @@
 
 		if(removing)
 			user.put_in_hands(removing)
-			user.visible_message("<span class='notice'>\The [user] removes \the [removing] from \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> removes \the [removing] from \the [src].")
 			playsound(src, 'sound/machines/click.ogg', 10, 1)
 			update_icon()
 			return
@@ -70,20 +79,26 @@
 
 /obj/item/weapon/gun/magnetic/matfed/show_ammo()
 	if(mat_storage)
-		return list("<span class='notice'>It has [mat_storage] out of [max_mat_storage] units of [ammo_material] loaded.</span>")
+		return "<span class='notice'>It has [mat_storage] out of [max_mat_storage] units of [ammo_material] loaded.</span>"
+	else
+		return "<span class='warning'>It\'s out of [ammo_material]!</span>"
+
 
 /obj/item/weapon/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
+	. = ..()
+	update_rating_mod()
 	if(removable_components)
 		if(thing.is_crowbar())
 			if(!manipulator)
 				to_chat(user, "<span class='warning'>\The [src] has no manipulator installed.</span>")
 				return
 			user.put_in_hands(manipulator)
-			user.visible_message("<span class='notice'>\The [user] levers \the [manipulator] from \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> levers \the [manipulator] from \the [src].")
 			playsound(src, thing.usesound, 50, 1)
 			mat_cost = initial(mat_cost)
 			manipulator = null
 			update_icon()
+			update_rating_mod()
 			return
 
 		if(istype(thing, /obj/item/weapon/stock_parts/manipulator))
@@ -94,14 +109,14 @@
 			user.drop_from_inventory(manipulator, src)
 			playsound(src, 'sound/machines/click.ogg', 10,1)
 			mat_cost = initial(mat_cost) / (2*manipulator.rating)
-			user.visible_message("<span class='notice'>\The [user] slots \the [manipulator] into \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> slots \the [manipulator] into \the [src].")
 			update_icon()
+			update_rating_mod()
 			return
-
 
 	if(is_type_in_list(thing, load_type))
 		var/obj/item/stack/material/M = thing
-
+		var/success = FALSE
 		if(istype(M)) //stack
 			if(!M.material || M.material.name != ammo_material || loading)
 				return
@@ -109,14 +124,12 @@
 			if(mat_storage + SHEET_MATERIAL_AMOUNT > max_mat_storage)
 				to_chat(user, "<span class='warning'>\The [src] cannot hold more [ammo_material].</span>")
 				return
-
-			var/can_hold_val = 0
 			loading = TRUE
 			while(mat_storage + SHEET_MATERIAL_AMOUNT <= max_mat_storage && do_after(user,1.5 SECONDS))
-				can_hold_val ++
 				mat_storage += SHEET_MATERIAL_AMOUNT
 				playsound(src, 'sound/effects/phasein.ogg', 15, 1)
-			M.use(can_hold_val)
+				M.use(1)
+				success = TRUE
 			loading = FALSE
 
 		else //ore
@@ -129,14 +142,12 @@
 
 			qdel(M)
 			mat_storage += (SHEET_MATERIAL_AMOUNT/2*0.8) //two plasma ores needed per sheet, some inefficiency for not using refined product
-
-
-		user.visible_message("<span class='notice'>\The [user] loads \the [src] with \the [M].</span>")
-		playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
+			success = TRUE
+		if(success)
+			user.visible_message("<b>\The [user]</b> loads \the [src] with \the [M].")
+			playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 		update_icon()
 		return
-
-	. = ..()
 
 #define GEN_STARTING -1
 #define GEN_OFF 0
@@ -154,6 +165,7 @@
 	item_state = "bore"
 	wielded_item_state = "bore-wielded"
 	one_handed_penalty = 5
+	fire_delay = 20
 
 	projectile_type = /obj/item/projectile/bullet/magnetic/bore
 
@@ -166,6 +178,23 @@
 	var/generator_state = GEN_OFF
 	var/datum/looping_sound/small_motor/soundloop
 	var/time_started //to keep the soundloop from being "stopped" too soon and playing indefinitely
+
+/obj/item/weapon/gun/magnetic/matfed/phoronbore/consume_next_projectile()
+	if(!check_ammo() || !capacitor || capacitor.charge < power_cost)
+		return
+
+	use_ammo()
+	capacitor.use(power_cost)
+	update_icon()
+
+	return new projectile_type(src, rating_modifier)
+
+/obj/item/weapon/gun/magnetic/matfed/phoronbore/examine(mob/user)
+	. = ..()
+	if(rating_modifier)
+		. += "<span class='notice'>A display on the side slowly scrolls the text \"BLAST EFFICIENCY [rating_modifier]\".</span>"
+	else // rating_mod 0 = something's not right
+		. += "<span class='warning'>A display on the side slowly scrolls the text \"ERR: MISSING COMPONENT - EFFICIENCY MODIFICATION INCOMPLETE\".</span>"
 
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/Initialize()
 	. = ..()
@@ -180,7 +209,7 @@
 
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/process()
 	if(generator_state && !mat_storage)
-		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."))
+		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."), runemessage = "goes quiet")
 		soundloop.stop()
 		generator_state = GEN_OFF
 
@@ -230,12 +259,12 @@
 		soundloop.start()
 		time_started = world.time
 		cell?.use(100)
-		audible_message(SPAN_NOTICE("\The [src] starts chugging."),SPAN_NOTICE("A motor noise starts up."))
+		audible_message(SPAN_NOTICE("\The [src] starts chugging."),SPAN_NOTICE("A motor noise starts up."), runemessage = "whirr")
 		generator_state = GEN_IDLE
 
 	else if(generator_state > GEN_OFF && time_started + 3 SECONDS < world.time)
 		soundloop.stop()
-		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."))
+		audible_message(SPAN_NOTICE("\The [src] goes quiet."),SPAN_NOTICE("A motor noise cuts out."), runemessage = "goes quiet")
 		generator_state = GEN_OFF
 
 /obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded

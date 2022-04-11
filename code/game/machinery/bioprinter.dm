@@ -7,8 +7,8 @@
 	icon = 'icons/obj/surgery_vr.dmi' //VOREStation Edit
 	icon_state = "bioprinter"
 
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	active_power_usage = 300
@@ -34,6 +34,7 @@
 		"Eyes"    = list(/obj/item/organ/internal/eyes,   20),
 		"Liver"   = list(/obj/item/organ/internal/liver,  20),
 		"Spleen"  = list(/obj/item/organ/internal/spleen, 20),
+		"Stomach"  = list(/obj/item/organ/internal/stomach, 20),
 		"Arm, Left"   = list(/obj/item/organ/external/arm,  40),
 		"Arm, Right"   = list(/obj/item/organ/external/arm/right,  40),
 		"Leg, Left"   = list(/obj/item/organ/external/leg,  40),
@@ -80,7 +81,7 @@
 /obj/machinery/organ_printer/Initialize()
 	. = ..()
 	default_apply_parts()
-	
+
 /obj/machinery/organ_printer/examine(var/mob/user)
 	. = ..()
 	var/biomass = get_biomass_volume()
@@ -132,7 +133,7 @@
 		return
 
 	if(container)
-		var/response = alert(user, "What do you want to do?", "Bioprinter Menu", "Print Limbs", "Cancel")
+		var/response = tgui_alert(user, "What do you want to do?", "Bioprinter Menu", list("Print Limbs", "Cancel"))
 		if(response == "Print Limbs")
 			printing_menu(user)
 	else
@@ -149,7 +150,7 @@
 	if(anomalous_organs)
 		possible_list |= anomalous_products
 
-	var/choice = input("What would you like to print?") as null|anything in possible_list
+	var/choice = tgui_input_list(usr, "What would you like to print?", "Print Choice", possible_list)
 
 	if(!choice || printing || (stat & (BROKEN|NOPOWER)))
 		return
@@ -163,7 +164,7 @@
 	printing = 1
 	update_icon()
 
-	visible_message("<span class='notice'>\The [src] begins churning.</span>")
+	visible_message("<b>\The [src]</b> begins churning.")
 
 	sleep(print_delay)
 
@@ -211,7 +212,7 @@
 /obj/machinery/organ_printer/proc/can_print(var/choice, var/masscount = 0)
 	var/biomass = get_biomass_volume()
 	if(biomass < masscount)
-		visible_message("<span class='notice'>\The [src] displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'</span>")
+		visible_message("<b>\The [src]</b> displays a warning: 'Not enough biomass. [biomass] stored and [masscount] needed.'")
 		return 0
 
 	if(!loaded_dna || !loaded_dna["donor"])
@@ -335,7 +336,7 @@
 	circuit = /obj/item/weapon/circuitboard/roboprinter
 
 	var/matter_amount_per_sheet = 10
-	var/matter_type = DEFAULT_WALL_MATERIAL
+	var/matter_type = MAT_STEEL
 
 /obj/machinery/organ_printer/robot/full/New()
 	. = ..()

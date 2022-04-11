@@ -2,6 +2,9 @@
 	name = "berserk"
 	effect_type = EFFECT_PSIONIC
 
+	effect_state = "summoning"
+	effect_color = "#5f0000"
+
 /datum/artifact_effect/berserk/proc/apply_berserk(var/mob/living/L)
 	if(!istype(L))
 		return FALSE
@@ -28,6 +31,7 @@
 		return TRUE
 
 /datum/artifact_effect/berserk/DoEffectAura()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/L in range(src.effectrange,T))
@@ -36,6 +40,7 @@
 		return TRUE
 
 /datum/artifact_effect/berserk/DoEffectPulse()
+	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for(var/mob/living/L in range(src.effectrange,T))

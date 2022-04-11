@@ -41,12 +41,13 @@
 		/obj/item/device/radio/headset/headset_qm/alt, //VOREStation Edit,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/gloves/fingerless,
-		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/weapon/tank/emergency/oxygen,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/head/soft,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo/qm,
+		/obj/item/clothing/head/beret/qm,
 		/obj/item/clothing/shoes/boots/winter/supply)
 
 /obj/structure/closet/secure_closet/quartermaster/Initialize()
@@ -70,9 +71,10 @@
 		/obj/item/clothing/shoes/black,
 		/obj/item/device/analyzer,
 		/obj/item/weapon/storage/bag/ore,
+		/obj/item/weapon/storage/belt/miner,
 		/obj/item/device/flashlight/lantern,
 		/obj/item/weapon/shovel,
-		/obj/item/weapon/pickaxe,
+		/obj/item/weapon/pickaxe/drill,
 		/obj/item/clothing/glasses/material,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
 		/obj/item/clothing/shoes/boots/winter/mining,

@@ -3,7 +3,7 @@
 	desc = "A robust hardsuit-integrated sprint module."
 	icon_state = "sprinter"
 
-	var/sprint_speed = 1
+	var/sprint_speed = 0.5
 
 	toggleable = 1
 	disruptable = 1

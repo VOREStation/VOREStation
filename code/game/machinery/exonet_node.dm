@@ -4,7 +4,7 @@
 	icon = 'icons/obj/stationobjs_vr.dmi' //VOREStation Edit
 	icon_state = "exonet" //VOREStation Edit
 	idle_power_usage = 2500
-	density = 1
+	density = TRUE
 	var/on = 1
 	var/toggle = 1
 
@@ -16,7 +16,6 @@
 
 	var/list/logs = list() // Gets written to by exonet's send_message() function.
 
-//TFF 3/6/19 - Port Cit RP fix for infinite frames
 	circuit = /obj/item/weapon/circuitboard/telecomms/exonet_node
 // Proc: New()
 // Parameters: None

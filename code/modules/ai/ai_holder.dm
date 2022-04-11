@@ -46,6 +46,7 @@
 										// mob to stay still (e.g. delayed attacking). If you need the mob to be inactive for an extended period of time,
 										// consider sleeping the AI instead.
 	var/process_flags = 0				// Where we're processing, see flag defines.
+	var/list/snapshot = null			// A list used in mass-editing of AI datums, holding a snapshot of the 'before' state
 	var/list/static/fastprocess_stances = list(
 		STANCE_ALERT,
 		STANCE_APPROACH,
@@ -68,6 +69,141 @@
 /datum/ai_holder/retaliate
 	hostile = TRUE
 	retaliate = TRUE
+
+/datum/ai_holder/vv_get_dropdown()
+	. = ..()
+	if(snapshot)
+		VV_DROPDOWN_OPTION("mass_edit_finish", "End Mass Edit")
+	else
+		VV_DROPDOWN_OPTION("mass_edit_start", "Begin Mass Edit")
+
+/datum/ai_holder/vv_do_topic(list/href_list)
+	. = ..()
+	IF_VV_OPTION("mass_edit_start")
+		if(!check_rights(R_ADMIN))
+			return
+		if(snapshot)
+			to_chat(usr, "<span class='error'>Someone (or you) may have started a mass edit on this AI datum already. Refresh the VV window to get the option to end the mass edit instead.</span>")
+			href_list["datumrefresh"] = "\ref[src]"
+			return
+		snapshot = vars.Copy() //'vars' appears to be special in that vars.Copy produces a flat list of keys with no values. It seems that 'vars[key]' is handled somewhere in the byond engine differently than normal lists.
+
+		// Remove things that may change without admin input during editing. If they aren't present in the snapshot, they aren't eligible for the diff.
+		snapshot -= list(
+			//other
+			"datum_flags",
+			"active_timers",
+			//main
+			"snapshot",
+			"stance",
+			"process_flags",
+			//targeting
+			"target",
+			"preferred_target",
+			"target_last_seen_turf",
+			"attackers",
+			"lose_target_time",
+			//pathfinding
+			"path",
+			"obstacles",
+			"failed_steps",
+			//movement
+			"destination",
+			"failed_breakthroughs",
+			"faction_friends",
+			//communication
+			"threatening",
+			"last_conflict_time",
+			"last_threaten_time",
+			"last_target_time"
+		)
+
+		for(var/key in snapshot)
+			var/thing = vars[key]
+			if(islist(thing)) // This is just too dangerous to do. Maybe in the future we can have a whitelist of lists that are fine to edit.
+				thing = null
+			snapshot[key] = thing
+
+		VARSET_IN(src, snapshot, null, 2 MINUTES) // Safety
+		to_chat(usr, "<span class='notice'>Variable snapshot saved. Begin editing the datum, and end the mass edit from the dropdown menu within 2 minutes. Note that editing the contents of lists is not supported.</span>")
+		href_list["datumrefresh"] = "\ref[src]"
+
+	IF_VV_OPTION("mass_edit_finish")
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/list/before = snapshot //This PROBABLY works, right?
+		snapshot = null
+		var/list/after = vars.Copy() //'vars' appears to be special in that vars.Copy produces a flat list of keys with no values. It seems that 'vars[key]' is handled somewhere in the byond engine differently than normal lists.
+		after &= before //Ignore any dangerous keys. Not a big deal, because just 'before' being safe is enough to exclude the dangerous ones from the diff, but why not
+		for(var/key in after)
+			var/thing = vars[key]
+			if(islist(thing)) // This is just too dangerous to do. Maybe in the future we can have a whitelist of lists that are fine to edit.
+				thing = null
+			after[key] = thing
+
+		var/list/diff = list()
+		for(var/key in before)
+			if(before[key] == after[key])
+				continue
+			diff += key
+
+		if(!diff.len)
+			to_chat(usr, "<span class='warning'>You don't appear to have changed anything on the AI datum you were editing.</span>")
+			href_list["datumrefresh"] = "\ref[src]"
+		else
+			var/message = "<span class='notice'>These differences were detected in your varedit. If you notice any that you didn't change, please redo your edit:<br>"
+			for(var/key in diff)
+				message += "<b>- [key]:</b> [before[key]] => [after[key]]<br>"
+			message += "</span>"
+			to_chat(usr,message)
+
+		var/original_type = holder.type
+		var/list/levels_working = GetConnectedZlevels(holder.z)
+
+		var/list/types = list()
+		var/list/split = splittext("[original_type]", "/")
+		split -= "" // The first / creates an empty string at the start as it tries to split on [nothing]/mob/living etc
+		var/typestring = "/"
+		for(var/el in split)
+			typestring += el
+
+			types += text2path(typestring)
+			typestring += "/"
+
+		var/list/searching = living_mob_list // Started/seeded with this
+		var/list/choices = list()
+		for(var/typechoice in types)
+			var/list/found = list()
+			for(var/atom/M as anything in searching) // Isnt't there a helper for this, maybe? I forget.
+				if(!(M.z in levels_working))
+					continue
+				if(!istype(M,typechoice))
+					continue
+				found += M
+			choices["[typechoice] ([found.len])"] = found // Prettified name for the user input below)
+			searching = found // Now we only search the list we just made, because of the order of our types list, each subsequent list will be a subset of the one we just finished
+
+		var/choice = tgui_input_list(usr,"Based on your AI holder's mob location, we'll edit mobs on Z [levels_working.Join(",")]. What types do you want to alter?", "Types", choices)
+		if(!choice)
+			href_list["datumrefresh"] = "\ref[src]"
+			return
+		var/list/selected = choices[choice]
+		for(var/mob/living/L as anything in selected)
+			if(!istype(L))
+				to_chat(usr,"<span class='warning'>Skipping incompatible mob: [L] [ADMIN_COORDJMP(L)]</span>")
+				continue
+			if(!L.ai_holder)
+				to_chat(usr,"<span class='warning'>Skipping due to no AI: [L] [ADMIN_COORDJMP(L)]</span>")
+				continue
+			for(var/newvar in diff)
+				if(newvar in L.ai_holder.vars)
+					L.ai_holder.vars[newvar] = after[newvar]
+				else
+					to_chat(usr,"<span class='warning'>Skipping unavailable var '[newvar]' on: [L] [ADMIN_COORDJMP(L)]</span>")
+
+		to_chat(usr,"<span class='notice'>Mass AI edit done.</span>")
+		href_list["datumrefresh"] = "\ref[src]"
 
 /datum/ai_holder/New(var/new_holder)
 	ASSERT(new_holder)
@@ -155,6 +291,9 @@
 
 // 'Tactical' processes such as moving a step, meleeing an enemy, firing a projectile, and other fairly cheap actions that need to happen quickly.
 /datum/ai_holder/proc/handle_tactics()
+	if(!istype(holder) || QDELETED(holder))
+		qdel(src)
+		return
 	if(holder.key && !autopilot)
 		return
 	handle_special_tactic()
@@ -162,6 +301,9 @@
 
 // 'Strategical' processes that are more expensive on the CPU and so don't get run as often as the above proc, such as A* pathfinding or robust targeting.
 /datum/ai_holder/proc/handle_strategicals()
+	if(!istype(holder) || QDELETED(holder))
+		qdel(src)
+		return
 	if(holder.key && !autopilot)
 		return
 	handle_special_strategical()
@@ -217,13 +359,24 @@
 			ai_log("handle_stance_tactical() : Going to handle_resist().", AI_LOG_TRACE)
 			handle_resist()
 
-		else if(istype(holder.loc, /obj/structure/closet))
+		var/atom/holder_loc = holder.loc
+		if(istype(holder_loc, /obj/structure/closet))
 			var/obj/structure/closet/C = holder.loc
 			ai_log("handle_stance_tactical() : Inside a closet. Going to attempt escape.", AI_LOG_TRACE)
 			if(C.sealed)
 				holder.resist()
 			else
 				C.open()
+		else if(isbelly(holder_loc))
+			ai_log("handle_stance_tactical() : Inside a belly, will move out to turf if owner is stat.", AI_LOG_TRACE)
+			var/obj/belly/B = holder_loc
+			var/mob/living/L = B.owner
+			if(B.owner?.stat)
+				var/mob/living/holder = src.holder
+				ai_log("handle_stance_tactical() : Owner was stat, moving.", AI_LOG_TRACE)
+				holder.forceMove(get_turf(L))
+				holder.visible_message("<span class='danger'>[src] climbs out of [L], ready to continue fighting!</span>")
+				playsound(holder, 'sound/effects/splat.ogg')
 
 		// Should we flee?
 		if(should_flee())

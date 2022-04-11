@@ -88,8 +88,7 @@ This allows for events that have their announcement happen after the end itself.
 	if(!LAZYLEN(grand_list_of_areas))
 		return list()
 
-	for(var/thing in grand_list_of_areas)
-		var/list/A = thing
+	for(var/list/A as anything in grand_list_of_areas)
 		var/list/turfs = list()
 		for(var/turf/T in A)
 			if(!T.check_density())
@@ -107,8 +106,7 @@ This allows for events that have their announcement happen after the end itself.
 
 	var/list/area/grand_list_of_areas = get_all_existing_areas_of_types(specific_areas)
 	. = list()
-	for(var/thing in shuffle(grand_list_of_areas))
-		var/area/A = thing
+	for(var/area/A as anything in shuffle(grand_list_of_areas))
 		if(A.forbid_events)
 			continue
 		if(!(A.z in get_location_z_levels()))

@@ -6,13 +6,13 @@
 /turf/template_noop,
 /area/submap/Boathouse)
 "ac" = (
-/turf/simulated/floor/outdoors/rocks,
+/turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/submap/Boathouse)
 "ad" = (
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/Boathouse)
 "ae" = (
-/turf/simulated/floor/water/deep,
+/turf/simulated/floor/water/deep/virgo3b,
 /area/submap/Boathouse)
 "af" = (
 /obj/structure/flora/tree/sif,
@@ -42,7 +42,7 @@
 "al" = (
 /obj/structure/closet/cabinet,
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-/obj/item/weapon/storage/box/beanbags,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /turf/simulated/floor/wood,
 /area/submap/Boathouse)
 "am" = (
@@ -51,18 +51,18 @@
 "an" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/storage/toolbox/mechanical,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/virgo3b,
 /area/submap/Boathouse)
 "ao" = (
 /obj/structure/railing{
 	dir = 8
 	},
 /obj/structure/railing,
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/Boathouse)
 "ap" = (
 /obj/structure/railing,
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/Boathouse)
 "aq" = (
 /obj/item/weapon/stool/padded,
@@ -81,22 +81,17 @@
 "at" = (
 /obj/structure/table/woodentable,
 /obj/item/trash/candle,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/virgo3b,
 /area/submap/Boathouse)
 "au" = (
 /obj/item/weapon/stool,
-/turf/simulated/floor/wood,
-/area/submap/Boathouse)
-"av" = (
-/turf/simulated/floor/wood{
-	icon_state = "wood_broken6"
-	},
+/turf/simulated/floor/wood/virgo3b,
 /area/submap/Boathouse)
 "aw" = (
 /obj/structure/railing{
 	dir = 8
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/Boathouse)
 "ax" = (
 /obj/structure/table/woodentable,
@@ -112,7 +107,7 @@
 /obj/structure/table/woodentable,
 /obj/item/weapon/tape_roll,
 /obj/random/firstaid,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/virgo3b,
 /area/submap/Boathouse)
 "aA" = (
 /obj/structure/table/woodentable,
@@ -121,31 +116,15 @@
 /obj/item/weapon/reagent_containers/food/drinks/glass2/shot,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Boathouse)
-"aB" = (
-/turf/simulated/floor/wood{
-	icon_state = "wood_broken2"
-	},
-/area/submap/Boathouse)
-"aC" = (
-/obj/structure/railing{
-	dir = 8
-	},
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 1
-	},
-/turf/simulated/floor/water,
-/area/submap/Boathouse)
 "aD" = (
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 1
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/Boathouse)
 "aE" = (
 /obj/vehicle/boat/sifwood,
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/Boathouse)
 "aF" = (
 /obj/structure/window/reinforced/full,
@@ -155,35 +134,24 @@
 /obj/structure/table/woodentable,
 /obj/item/weapon/oar,
 /obj/item/weapon/oar,
-/turf/simulated/floor/wood,
-/area/submap/Boathouse)
-"aH" = (
-/obj/structure/railing{
-	icon_state = "railing0";
-	dir = 8
-	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/wood/virgo3b,
 /area/submap/Boathouse)
 "aI" = (
 /obj/structure/table/woodentable,
 /obj/random/powercell,
-/turf/simulated/floor/wood,
+/turf/simulated/floor/wood/virgo3b,
 /area/submap/Boathouse)
 "aJ" = (
-/turf/simulated/floor/wood{
-	icon_state = "wood_broken4"
-	},
+/turf/simulated/floor/wood/virgo3b,
 /area/submap/Boathouse)
 "aK" = (
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 8
 	},
 /obj/structure/railing{
-	icon_state = "railing0";
 	dir = 1
 	},
-/turf/simulated/floor/water,
+/turf/simulated/floor/water/virgo3b,
 /area/submap/Boathouse)
 "aL" = (
 /obj/structure/simple_door/wood,
@@ -268,7 +236,7 @@
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/Boathouse)
 "bb" = (
-/turf/simulated/floor/outdoors/dirt,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Boathouse)
 "LX" = (
 /obj/machinery/portable_atmospherics/canister/air,
@@ -809,16 +777,16 @@ ab
 ab
 ai
 ai
-ak
+aJ
 an
 at
 az
-ak
-ak
+aJ
+aJ
 aG
 at
 aI
-ak
+aJ
 ai
 aM
 ai
@@ -871,16 +839,16 @@ ac
 ab
 ai
 ai
-ak
-ak
+aJ
+aJ
 au
-ak
-ak
-ak
-ak
+aJ
+aJ
+aJ
+aJ
 au
-ak
-ak
+aJ
+aJ
 aL
 ak
 aL
@@ -933,16 +901,16 @@ ac
 ac
 ac
 ai
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
 ai
 ai
 ai
@@ -995,18 +963,18 @@ ad
 ad
 ac
 ai
-ak
-ak
-ak
-ak
-aB
-ak
-ak
-ak
-ak
-ak
-ak
-ak
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
+aJ
 ai
 ak
 ak
@@ -1059,16 +1027,16 @@ ad
 ai
 ai
 ao
-ak
-ak
-aC
+aJ
+aJ
+aK
 aw
 ao
-ak
-ak
+aJ
+aJ
 aK
-aH
-aH
+aw
+aw
 ai
 aL
 ai
@@ -1121,13 +1089,13 @@ ad
 ai
 ai
 ap
-av
-ak
+aJ
+aJ
 aD
 ad
 ap
-ak
-ak
+aJ
+aJ
 aD
 ad
 ad
@@ -1183,12 +1151,12 @@ ad
 ai
 ai
 ap
-ak
-ak
+aJ
+aJ
 aE
 ad
 ad
-ak
+aJ
 aJ
 aD
 ad
@@ -1245,13 +1213,13 @@ ad
 ai
 ai
 ap
-ak
-ak
+aJ
+aJ
 aD
 ad
 ap
-ak
-ak
+aJ
+aJ
 aD
 ad
 ad
@@ -1312,8 +1280,8 @@ aw
 ad
 ad
 ad
-aH
-aH
+aw
+aw
 ad
 ad
 ad

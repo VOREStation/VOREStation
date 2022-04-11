@@ -39,6 +39,7 @@
 		alert.icon_state = "itembased"
 		var/image/I = image(icon = new_master.icon, icon_state = new_master.icon_state, dir = SOUTH)
 		I.plane = PLANE_PLAYER_HUD_ABOVE
+		I.color = new_master.color
 		alert.add_overlay(I)
 		alert.master = new_master
 	else
@@ -191,6 +192,11 @@ The box in your backpack has an oxygen tank and gas mask in it."
 	desc = "Your battery is about to die! Charge it ASAP!"
 	icon_state = "c_starving"
 
+/obj/screen/alert/warm
+	name = "Too Warm"
+	desc = "You're uncomfortably warm. Take off some clothes or tweak the thermostat a few degrees cooler."
+	icon_state = "mildhot"
+
 /obj/screen/alert/hot
 	name = "Too Hot"
 	desc = "You're flaming hot! Get somewhere cooler and take off any insulating clothing like a fire suit."
@@ -198,6 +204,11 @@ The box in your backpack has an oxygen tank and gas mask in it."
 
 /obj/screen/alert/hot/robot
 	desc = "The air around you is too hot for a humanoid. Be careful to avoid exposing them to this enviroment."
+
+/obj/screen/alert/chilly
+	name = "Too Chilly"
+	desc = "You're uncomfortably cold. Rug up or tweak the thermostat a few degrees higher."
+	icon_state = "mildcold"
 
 /obj/screen/alert/cold
 	name = "Too Cold"
@@ -461,6 +472,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
+	..() // VOREStation Edit: Pass through to click_vr
 
 /obj/screen/alert/Destroy()
 	..()

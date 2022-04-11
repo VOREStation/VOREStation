@@ -3,7 +3,7 @@
 	desc = "Used for scanning and alerting when someone enters a certain proximity."
 	icon_state = "prox"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 800, "glass" = 200, "waste" = 50)
+	matter = list(MAT_STEEL = 800, MAT_GLASS = 200)
 	wires = WIRE_PULSE
 
 	secured = 0
@@ -90,9 +90,9 @@
 /obj/item/device/assembly/prox_sensor/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(isturf(old_loc))
-		unsense_proximity(range = range, callback = .HasProximity, center = old_loc)
+		unsense_proximity(range = range, callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
-		sense_proximity(range = range, callback = .HasProximity)
+		sense_proximity(range = range, callback = /atom/proc/HasProximity)
 	sense()
 
 /obj/item/device/assembly/prox_sensor/tgui_interact(mob/user, datum/tgui/ui)

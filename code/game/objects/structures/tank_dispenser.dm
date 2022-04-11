@@ -5,8 +5,8 @@
 	desc = "A simple yet bulky storage device for gas tanks. Has room for up to ten oxygen tanks, and ten phoron tanks."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "dispenser"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 	w_class = ITEMSIZE_HUGE
 	var/oxygentanks = TANK_DISPENSER_CAPACITY
 	var/phorontanks = TANK_DISPENSER_CAPACITY
@@ -28,13 +28,13 @@
 	update_icon()
 
 /obj/structure/dispenser/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	switch(oxygentanks)
-		if(1 to 3)	overlays += "oxygen-[oxygentanks]"
-		if(4 to INFINITY) overlays += "oxygen-4"
+		if(1 to 3)	add_overlay("oxygen-[oxygentanks]")
+		if(4 to INFINITY) add_overlay("oxygen-4")
 	switch(phorontanks)
-		if(1 to 4)	overlays += "phoron-[phorontanks]"
-		if(5 to INFINITY) overlays += "phoron-5"
+		if(1 to 4)	add_overlay("phoron-[phorontanks]")
+		if(5 to INFINITY) add_overlay("phoron-5")
 
 /obj/structure/dispenser/attack_ai(mob/user)
 	// This looks silly, but robots also call attack_ai, and they're allowed physical state stuff.
@@ -76,10 +76,10 @@
 	else if(I.is_wrench())
 		if(anchored)
 			to_chat(user, "<span class='notice'>You lean down and unwrench [src].</span>")
-			anchored = 0
+			anchored = FALSE
 		else
 			to_chat(user, "<span class='notice'>You wrench [src] into place.</span>")
-			anchored = 1
+			anchored = TRUE
 		return
 	else if(user.a_intent != I_HURT)
 		to_chat(user, "<span class='notice'>[I] does not fit into [src].</span>")

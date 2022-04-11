@@ -49,9 +49,28 @@
 /datum/gear/utility/dufflebag/eng
 	display_name = "engineering dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/eng
-	allowed_roles = list("Chief Engineer","Atmospheric Technician","Station Engineer")
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Engineer")
 
 /datum/gear/utility/dufflebag/sci
 	display_name = "science dufflebag"
 	path = /obj/item/weapon/storage/backpack/dufflebag/sci
-	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist","Explorer","Pathfinder")
+	allowed_roles = list("Research Director","Scientist","Roboticist","Xenobiologist","Xenobotanist")
+
+/datum/gear/utility/dufflebag/explorer
+	display_name = "explorer dufflebag"
+	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
+	allowed_roles = list("Pathfinder","Explorer")
+
+/datum/gear/utility/dufflebag/talon
+	display_name = "Talon dufflebag"
+	path = /obj/item/weapon/storage/backpack/dufflebag/explorer
+
+/datum/gear/utility/ID
+	display_name = "contractor identification card"
+	path = /obj/item/weapon/card/id/event/polymorphic/altcard
+	cost = 1
+
+/datum/gear/utility/bs_bracelet
+	display_name = "bluespace bracelet"
+	path = /obj/item/clothing/gloves/bluespace
+	cost = 5

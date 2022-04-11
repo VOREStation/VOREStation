@@ -5,66 +5,77 @@
 	max_damage = 50 // <-- This is different from the rest
 	min_broken_damage = 1000
 	vital = TRUE // <-- This is different from the rest
+	model = "protean"
 /obj/item/organ/external/groin/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 30 // <-- This is different from the rest
 	min_broken_damage = 1000 //Multiple
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/head/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 30
 	min_broken_damage = 1000 //Inheritance
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/arm/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000 //Please
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/arm/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/leg/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/leg/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/hand/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/hand/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/foot/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
+	model = "protean"
 /obj/item/organ/external/foot/right/unbreakable/nano
 	robotic = ORGAN_NANOFORM
 	encased = FALSE
 	max_damage = 20
 	min_broken_damage = 1000
 	vital = FALSE
+	model = "protean"
 
 // // // Internal Organs
 /obj/item/organ/internal/nano
@@ -78,6 +89,9 @@
 	organ_tag = O_ORCH
 	parent_organ = BP_TORSO
 	vital = TRUE
+	organ_verbs = list(
+		/mob/living/carbon/human/proc/self_diagnostics
+	)
 
 /obj/item/organ/internal/nano/refactory
 	name = "refactory module"
@@ -87,8 +101,11 @@
 	organ_tag = O_FACT
 	parent_organ = BP_TORSO
 
-	var/list/materials = list(DEFAULT_WALL_MATERIAL = 0)
+	var/list/materials = list(MAT_STEEL = 0)
 	var/max_storage = 10000
+	organ_verbs = list(
+		/mob/living/carbon/human/proc/reagent_purge
+	)
 
 /obj/item/organ/internal/nano/refactory/proc/get_stored_material(var/material)
 	if(status & ORGAN_DEAD)

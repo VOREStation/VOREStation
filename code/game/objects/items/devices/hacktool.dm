@@ -15,8 +15,7 @@
 	hack_state = new(src)
 
 /obj/item/device/multitool/hacktool/Destroy()
-	for(var/T in known_targets)
-		var/atom/target = T
+	for(var/atom/target as anything in known_targets)
 		target.unregister(OBSERVER_EVENT_DESTROY, src)
 	known_targets.Cut()
 	qdel(hack_state)

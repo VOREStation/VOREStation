@@ -34,6 +34,7 @@
 	name = "belter control console"
 	req_one_access = list(access_mining, access_medical_equip) //Allows xenoarch, miners AND doctors to use it.
 	shuttle_tag = "Belter" //The scanning console needs to enable/disable this at will.
+	ai_control = TRUE
 
 /obj/machinery/computer/shuttle_control/mining
 	name = "mining elevator control console"

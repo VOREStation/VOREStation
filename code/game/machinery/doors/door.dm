@@ -6,11 +6,12 @@
 	desc = "It opens and closes."
 	icon = 'icons/obj/doors/Doorint.dmi'
 	icon_state = "door1"
-	anchored = 1
+	anchored = TRUE
 	opacity = 1
-	density = 1
+	density = TRUE
 	can_atmos_pass = ATMOS_PASS_PROC
 	layer = DOOR_OPEN_LAYER
+	blocks_emissive = EMISSIVE_BLOCK_UNIQUE
 	var/open_layer = DOOR_OPEN_LAYER
 	var/closed_layer = DOOR_CLOSED_LAYER
 
@@ -31,6 +32,9 @@
 	var/block_air_zones = 1 //If set, air zones cannot merge across the door even when it is opened.
 	var/close_door_at = 0 //When to automatically close the door, if possible
 
+	var/anim_length_before_density = 3
+	var/anim_length_before_finalize = 7
+
 	//Multi-tile doors
 	dir = EAST
 	var/width = 1
@@ -46,7 +50,7 @@
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
 		else
-			visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
+			visible_message("<b>\The [user]</b> bonks \the [src] harmlessly.")
 	user.do_attack_animation(src)
 
 /obj/machinery/door/New()
@@ -75,7 +79,7 @@
 	return
 
 /obj/machinery/door/Destroy()
-	density = 0
+	density = FALSE
 	update_nearby_tiles()
 	. = ..()
 
@@ -156,7 +160,7 @@
 /obj/machinery/door/CanZASPass(turf/T, is_zone)
 	if(is_zone)
 		return !block_air_zones // Block merging unless block_air_zones = 0
-	return !density // Block airflow unless density = 0
+	return !density // Block airflow unless density = FALSE
 
 /obj/machinery/door/proc/bumpopen(mob/user as mob)
 	if(operating)	return
@@ -272,8 +276,8 @@
 			return
 
 		if(repairing && I.is_crowbar())
-			var/obj/item/stack/material/repairing_sheet = get_material().place_sheet(loc)
-			repairing_sheet.amount += repairing-1
+			var/datum/material/mat = get_material()
+			var/obj/item/stack/material/repairing_sheet = mat.place_sheet(loc, repairing)
 			repairing = 0
 			to_chat(user, "<span class='notice'>You remove \the [repairing_sheet].</span>")
 			playsound(src, I.usesound, 100, 1)
@@ -426,10 +430,10 @@
 	do_animate("opening")
 	icon_state = "door0"
 	set_opacity(0)
-	sleep(3)
-	src.density = 0
+	sleep(anim_length_before_density)
+	src.density = FALSE
 	update_nearby_tiles()
-	sleep(7)
+	sleep(anim_length_before_finalize)
 	src.layer = open_layer
 	explosion_resistance = 0
 	update_icon()
@@ -451,12 +455,12 @@
 
 	close_door_at = 0
 	do_animate("closing")
-	sleep(3)
-	src.density = 1
+	sleep(anim_length_before_density)
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 	src.layer = closed_layer
 	update_nearby_tiles()
-	sleep(7)
+	sleep(anim_length_before_finalize)
 	update_icon()
 	if(visible && !glass)
 		set_opacity(1)	//caaaaarn!

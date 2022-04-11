@@ -129,6 +129,14 @@
 			message_data[2] = pick(M.say_verbs)
 			. = 1
 
+	if(CE_SPEEDBOOST in chem_effects || is_jittery) // motor mouth
+		// Despite trying to url/html decode these, byond is just being bad and I dunno.
+		var/static/regex/speedboost_initial = new (@"&[a-z]{2,5};|&#\d{2};","g")
+		// Not herestring because bad vs code syntax highlight panics at apostrophe
+		var/static/regex/speedboost_main = new ("\[ ',!?.;\]","g")
+		for(var/datum/multilingual_say_piece/S in message_data[1])
+			S.message = speedboost_initial.Replace(S.message, "")
+			S.message = speedboost_main.Replace(S.message, "")
 	else
 		. = ..(message_data)
 
@@ -184,7 +192,7 @@
 
 /mob/living/carbon/human/handle_speech_sound()
 	var/list/returns[2]
-	if(species.speech_sounds && prob(species.speech_chance))
+	if(species.speech_sounds && species.speech_sounds.len && prob(species.speech_chance))		//VOREStation Edit: Sanity Check
 		returns[1] = sound(pick(species.speech_sounds))
 		returns[2] = 50
 	return returns

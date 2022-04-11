@@ -427,7 +427,7 @@
 				if(CF.unsendable)
 					continue
 				filenames.Add(CF.filename)
-			var/picked_file = input(user, "Please pick a file to send as attachment (max 32GQ)") as null|anything in filenames
+			var/picked_file = tgui_input_list(user, "Please pick a file to send as attachment (max 32GQ)", "Select Attachment", filenames)
 
 			if(!picked_file)
 				return 1

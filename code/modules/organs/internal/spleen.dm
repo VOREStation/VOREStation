@@ -66,16 +66,6 @@
 		owner.adjustToxLoss(15 * spleen_efficiency)
 		Target.wounds += W
 
-/obj/item/organ/internal/spleen/skrell
-	name = "lymphatic hub"
-	icon_state = "spleen"
-	parent_organ = BP_HEAD
-	spleen_efficiency = 0.5
-
-/obj/item/organ/internal/spleen/skrell/Initialize()
-	..()
-	adjust_scale(0.8,0.7)
-
 /obj/item/organ/internal/spleen/minor
 	name = "vestigial spleen"
 	parent_organ = BP_GROIN
@@ -83,5 +73,5 @@
 	spleen_tick = 15
 
 /obj/item/organ/internal/spleen/minor/Initialize()
-	..()
+	. = ..()
 	adjust_scale(0.7)

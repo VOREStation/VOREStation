@@ -42,7 +42,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	desc = "The flesh all around us has grown a new layer of cells that can shift appearance and create a biological fabric that cannot be distinguished from \
 	ordinary cloth, allowing us to make ourselves appear to wear almost anything."
 	origin_tech = list() //The base chameleon items have origin technology, which we will inherit if we don't null out this variable.
-	canremove = 0 //Since this is essentially flesh impersonating clothes, tearing someone's skin off as if it were clothing isn't possible.
+	canremove = FALSE //Since this is essentially flesh impersonating clothes, tearing someone's skin off as if it were clothing isn't possible.
 
 /obj/item/clothing/under/chameleon/changeling/emp_act(severity) //As these are purely organic, EMP does nothing to them.
 	return
@@ -63,7 +63,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	desc = "Our head is swelled with a large quanity of rapidly shifting skin cells.  We can reform our head to resemble various hats and \
 	helmets that biologicals are so fond of wearing."
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/clothing/head/chameleon/changeling/emp_act(severity)
 	return
@@ -88,7 +88,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	item_state = "armor"
 	desc = "The cells in our chest are rapidly shifting, ready to reform into material that can resemble most pieces of clothing."
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/clothing/suit/chameleon/changeling/emp_act(severity)
 	return
@@ -113,7 +113,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	item_state = "black"
 	desc = "Our feet are overlayed with another layer of flesh and bone on top.  We can reform our feet to resemble various boots and shoes."
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/clothing/shoes/chameleon/changeling/emp_act()
 	return
@@ -138,7 +138,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	item_state = "backpack"
 	desc = "A large pouch imbedded in our back, it can shift form to resemble many common backpacks that other biologicals are fond of using."
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/weapon/storage/backpack/chameleon/changeling/emp_act()
 	return
@@ -166,7 +166,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	desc = "Our hands have a second layer of flesh on top.  We can reform our hands to resemble a large variety of fabrics and materials that biologicals \
 	tend to wear on their hands.  Remember that these won't protect your hands from harm."
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/clothing/gloves/chameleon/changeling/emp_act()
 	return
@@ -192,7 +192,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	desc = "A transparent visor of brittle chitin covers our face.  We can reform it to resemble various masks that biologicals use.  It can also utilize internal \
 	tanks.."
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/clothing/mask/chameleon/changeling/emp_act()
 	return
@@ -213,7 +213,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	item_state = "glasses"
 	desc = "A transparent piece of eyewear made out of brittle chitin.  We can reform it to resemble various glasses and goggles."
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/clothing/glasses/chameleon/changeling/emp_act()
 	return
@@ -238,7 +238,7 @@ var/global/list/changeling_fabricated_clothing = list(
 			)
 	item_state = "utility"
 	origin_tech = list()
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/weapon/storage/belt/chameleon/changeling/emp_act()
 	return
@@ -262,7 +262,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	electronic_warfare = 1 //The lack of RFID stuff makes it hard for AIs to track, I guess. *handwaves*
 	registered_user = null
 	access = null
-	canremove = 0
+	canremove = FALSE
 
 /obj/item/weapon/card/id/syndicate/changeling/New(mob/user as mob)
 	..()

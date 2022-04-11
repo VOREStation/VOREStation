@@ -1,7 +1,7 @@
 //The perfect adminboos device?
 /obj/item/device/perfect_tele
 	name = "personal translocator"
-	desc = "Seems absurd, doesn't it? Yet, here we are. Generally considered dangerous contraband unless the user has permission from Central Command."
+	desc = "Seems absurd, doesn't it? Yet, here we are. Allows the user to teleport themselves and others to a pre-set beacon."
 	icon = 'icons/obj/device_alt.dmi'
 	icon_state = "hand_tele"
 	w_class = ITEMSIZE_SMALL
@@ -73,9 +73,9 @@
 
 		var/obj/item/device/perfect_tele_beacon/beacon = beacons[bcn]
 		if(destination == beacon)
-			I.overlays += radial_seton
+			I.add_overlay(radial_seton)
 		else
-			I.overlays += radial_set
+			I.add_overlay(radial_set)
 
 		radial_images[bcn] = I
 
@@ -83,7 +83,7 @@
 
 	if(beacons_left)
 		var/image/I = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "tl_[index]")
-		I.overlays += radial_plus
+		I.add_overlay(radial_plus)
 		radial_images["New Beacon"] = I
 
 /obj/item/device/perfect_tele/attack_hand(mob/user)
@@ -120,10 +120,11 @@
 
 	if(!(user.ckey in warned_users))
 		warned_users |= user.ckey
-		alert(user,"This device can be easily used to break ERP preferences due to the nature of teleporting \
-		and tele-vore. Make sure you carefully examine someone's OOC prefs before teleporting them if you are \
-		going to use this device for ERP purposes. This device records all warnings given and teleport events for \
-		admin review in case of pref-breaking, so just don't do it.","OOC WARNING")
+		tgui_alert_async(user,{"
+This device can be easily used to break ERP preferences due to the nature of teleporting and tele-vore.
+Make sure you carefully examine someone's OOC prefs before teleporting them if you are going to use this device for ERP purposes.
+This device records all warnings given and teleport events for admin review in case of pref-breaking, so just don't do it.
+"},"OOC Warning")
 	var/choice = show_radial_menu(user, radial_menu_anchor, radial_images, custom_check = CALLBACK(src, .proc/check_menu, user), require_near = TRUE, tooltips = TRUE)
 
 	if(!choice)
@@ -160,45 +161,6 @@
 	else
 		destination = beacons[choice]
 		rebuild_radial_images()
-
-	/* Ye olde text-based way
-	var/choice = alert(user,"What do you want to do?","[src]","Create Beacon","Cancel","Target Beacon")
-	switch(choice)
-		if("Create Beacon")
-			if(beacons_left <= 0)
-				alert("The translocator can't support any more beacons!","Error")
-				return
-
-			var/new_name = html_encode(input(user,"New beacon's name (2-20 char):","[src]") as text|null)
-
-			if(length(new_name) > 20 || length(new_name) < 2)
-				alert("Entered name length invalid (must be longer than 2, no more than than 20).","Error")
-				return
-			if(new_name in beacons)
-				alert("No duplicate names, please. '[new_name]' exists already.","Error")
-				return
-
-			var/obj/item/device/perfect_tele_beacon/nb = new(get_turf(src))
-			nb.tele_name = new_name
-			nb.tele_hand = src
-			nb.creator = user.ckey
-			beacons[new_name] = nb
-			beacons_left--
-			if(isliving(user))
-				var/mob/living/L = user
-				L.put_in_any_hand_if_possible(nb)
-
-		if("Target Beacon")
-			if(!beacons.len)
-				to_chat(user,"<span class='warning'>\The [src] doesn't have any beacons!</span>")
-			else
-				var/target = input("Which beacon do you target?","[src]") in beacons|null
-				if(target && (target in beacons))
-					destination = beacons[target]
-					to_chat(user,"<span class='notice'>Destination set to '[target]'.</span>")
-		else
-			return
-	*/
 
 /obj/item/device/perfect_tele/attackby(obj/W, mob/user)
 	if(istype(W,cell_type) && !power_source)
@@ -421,21 +383,21 @@
 /obj/item/device/perfect_tele_beacon/attack_hand(mob/user)
 	if((user.ckey != creator) && !(user.ckey in warned_users))
 		warned_users |= user.ckey
-		var/choice = alert(user,"This device is a translocator beacon. Having it on your person may mean that anyone \
-		who teleports to this beacon gets teleported into your selected vore-belly. If you are prey-only \
-		or don't wish to potentially have a random person teleported into you, it's suggested that you \
-		not carry this around.","OOC WARNING","Take It","Leave It")
+		var/choice = tgui_alert(user, {"
+This device is a translocator beacon. Having it on your person may mean that anyone
+who teleports to this beacon gets teleported into your selected vore-belly. If you are prey-only
+or don't wish to potentially have a random person teleported into you, it's suggested that you
+not carry this around."}, "OOC Warning", list("Take It","Leave It"))
 		if(choice == "Leave It")
 			return
-
-	..()
+	return ..()
 
 /obj/item/device/perfect_tele_beacon/stationary
 	name = "stationary translocator beacon"
 	icon = 'icons/obj/radio_vr.dmi'
 	icon_state = "floor_beacon"
 	w_class = ITEMSIZE_HUGE
-	anchored = 1
+	anchored = TRUE
 
 GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beacon/stationary)
 
@@ -443,11 +405,11 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	if(!isliving(user))
 		return
 	var/mob/living/L = user
-	var/confirm = alert(user, "You COULD eat the beacon...", "Eat beacon?", "Eat it!", "No, thanks.")
+	var/confirm = tgui_alert(user, "You COULD eat the beacon...", "Eat beacon?", list("Eat it!", "No, thanks."))
 	if(confirm == "Eat it!")
-		var/obj/belly/bellychoice = input("Which belly?","Select A Belly") as null|anything in L.vore_organs
+		var/obj/belly/bellychoice = tgui_input_list(usr, "Which belly?","Select A Belly", L.vore_organs)
 		if(bellychoice)
-			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice]!</span>")
+			user.visible_message("<span class='warning'>[user] is trying to stuff \the [src] into [user.gender == MALE ? "his" : user.gender == FEMALE ? "her" : "their"] [bellychoice.name]!</span>","<span class='notice'>You begin putting \the [src] into your [bellychoice.name]!</span>")
 			if(do_after(user,5 SECONDS,src))
 				user.unEquip(src)
 				forceMove(bellychoice)
@@ -456,7 +418,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 // A single-beacon variant for use by miners (or whatever)
 /obj/item/device/perfect_tele/one_beacon
 	name = "mini-translocator"
-	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally. Legal for use in the pursuit of NanoTrasen interests, namely mining and exploration."
+	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally."
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
 	cell_type = /obj/item/weapon/cell/device
@@ -500,13 +462,13 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	icon_state = "frontiertrans"
 	beacons_left = 1 //Just one
 	battery_lock = 1
-	unacidable = 1
+	unacidable = TRUE
 	failure_chance = 0 //Percent
 
 	var/phase_power = 75
 	var/recharging = 0
 
-/obj/item/device/perfect_tele/frontier/unload_ammo(var/mob/user)
+/obj/item/device/perfect_tele/frontier/unload_ammo(mob/user, var/ignore_inactive_hand_check = 0)
 	if(recharging)
 		return
 	recharging = 1
@@ -552,3 +514,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/device/perfect_tele_beac
 	loc_network = "unkthree"
 /obj/item/device/perfect_tele/frontier/unknown/four
 	loc_network = "unkfour"
+/obj/item/device/perfect_tele/frontier/unknown/five
+	loc_network = "unkfive"
+/obj/item/device/perfect_tele/frontier/unknown/six
+	loc_network = "unksix"

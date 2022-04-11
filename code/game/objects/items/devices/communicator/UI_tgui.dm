@@ -1,3 +1,102 @@
+// Etc UI-only vars
+/obj/item/device/communicator
+	// Stuff for moving cameras
+	var/turf/last_camera_turf
+	// Stuff needed to render the map
+	var/map_name
+	var/obj/screen/map_view/cam_screen
+	var/list/cam_plane_masters
+	var/obj/screen/background/cam_background
+	var/obj/screen/skybox/local_skybox
+
+// Proc: setup_tgui_camera()
+// Parameters: None
+// Description: This sets up all of the variables above to handle in-UI map windows.
+/obj/item/device/communicator/proc/setup_tgui_camera()
+	map_name = "communicator_[REF(src)]_map"
+
+	// Initialize map objects
+	cam_screen = new
+	cam_screen.name = "screen"
+	cam_screen.assigned_map = map_name
+	cam_screen.del_on_map_removal = FALSE
+	cam_screen.screen_loc = "[map_name]:1,1"
+
+	cam_plane_masters = get_tgui_plane_masters()
+
+	for(var/obj/screen/instance as anything in cam_plane_masters)
+		instance.assigned_map = map_name
+		instance.del_on_map_removal = FALSE
+		instance.screen_loc = "[map_name]:CENTER"
+
+	local_skybox = new()
+	local_skybox.assigned_map = map_name
+	local_skybox.del_on_map_removal = FALSE
+	local_skybox.screen_loc = "[map_name]:CENTER,CENTER"
+	cam_plane_masters += local_skybox
+
+	cam_background = new
+	cam_background.assigned_map = map_name
+	cam_background.del_on_map_removal = FALSE
+
+// Proc: update_active_camera_screen()
+// Parameters: None
+// Description: This refreshes the camera location
+/obj/item/device/communicator/proc/update_active_camera_screen()
+	if(!video_source?.can_use())
+		show_static()
+		return
+
+	var/newturf = get_turf(video_source)
+	if(!is_on_same_plane_or_station(get_z(newturf), get_z(src)))
+		show_static()
+		return
+
+	var/obj/item/device/communicator/communicator = video_source.loc
+	if(istype(communicator))
+		if(communicator.selfie_mode)
+			var/mob/target = get(communicator, /mob)
+			if(istype(target))
+				cam_screen.vis_contents = list(target)
+			else
+				cam_screen.vis_contents = list(communicator)
+			cam_background.fill_rect(1, 1, 1, 1)
+			cam_background.icon_state = "clear"
+			local_skybox.cut_overlays()
+			return
+
+	// If we're not forcing an update for some reason and the cameras are in the same location,
+	// we don't need to update anything.
+	if(last_camera_turf == newturf)
+		return
+
+	// We get a new turf in case they've moved in the last half decisecond (it's BYOND, it might happen)
+	last_camera_turf = get_turf(video_source)
+
+	if(!is_on_same_plane_or_station(get_z(last_camera_turf), get_z(src)))
+		show_static()
+		return
+
+	var/list/visible_turfs = list()
+	var/list/visible_things = view(video_range, last_camera_turf)
+	for(var/turf/visible_turf in visible_things)
+		visible_turfs += visible_turf
+
+	cam_screen.vis_contents = visible_turfs
+	cam_background.icon_state = "clear"
+	cam_background.fill_rect(1, 1, (video_range * 2), (video_range * 2))
+	
+	local_skybox.cut_overlays()
+	local_skybox.add_overlay(SSskybox.get_skybox(get_z(last_camera_turf)))
+	local_skybox.scale_to_view(video_range * 2)
+	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - last_camera_turf.x, (world.maxy>>1) - last_camera_turf.y)
+
+/obj/item/device/communicator/proc/show_static()
+	cam_screen.vis_contents.Cut()
+	cam_background.icon_state = "scanline2"
+	cam_background.fill_rect(1, 1, (video_range * 2), (video_range * 2))
+	local_skybox.cut_overlays()
+
 // Proc: tgui_state()
 // Parameters: User
 // Description: This tells TGUI to only allow us to be interacted with while in a mob inventory.
@@ -9,7 +108,15 @@
 // Description: This proc handles opening the UI. It's basically just a standard stub.
 /obj/item/device/communicator/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/tgui_state/custom_state)
 	ui = SStgui.try_update_ui(user, src, ui)
+	// Update the camera every SStgui tick in case it moves
+	update_active_camera_screen()
 	if(!ui)
+		// Register map objects
+		user.client.register_map_obj(cam_screen)
+		for(var/plane in cam_plane_masters)
+			user.client.register_map_obj(plane)
+		user.client.register_map_obj(cam_background)
+		// Setup UI
 		ui = new(user, src, "Communicator", name)
 		if(custom_state)
 			ui.set_state(custom_state)
@@ -188,6 +295,7 @@
 		data["target_feed"] = data["feeds"][newsfeed_channel]
 	else
 		data["target_feed"] = null
+	data["selfie_mode"] = selfie_mode
 
 	return data
 
@@ -200,6 +308,7 @@
 	if(data_core)
 		data_core.get_manifest_list()
 	data["manifest"] = PDA_Manifest
+	data["mapRef"] = map_name
 	return data
 
 // Proc: tgui-act()
@@ -230,6 +339,9 @@
 
 		if("toggle_ringer")
 			ringer = !ringer
+
+		if("selfie_mode")
+			selfie_mode = !selfie_mode
 
 		if("add_hex")
 			var/hex = params["add_hex"]
@@ -323,4 +435,3 @@
 
 		if("newsfeed")
 			newsfeed_channel = text2num(params["newsfeed"])
-

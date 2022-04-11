@@ -3,8 +3,9 @@
 	icon_state = "prosfab"
 	name = "Prosthetics Fabricator"
 	desc = "A machine used for construction of prosthetics."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
 	active_power_usage = 5000
@@ -19,19 +20,19 @@
 	loading_icon_state = "prosfab_loading"
 
 	materials = list(
-		DEFAULT_WALL_MATERIAL = 0,
-		"glass" = 0,
-		"plastic" = 0,
+		MAT_STEEL = 0,
+		MAT_GLASS = 0,
+		MAT_PLASTIC = 0,
 		MAT_GRAPHITE = 0,
 		MAT_PLASTEEL = 0,
-		"gold" = 0,
-		"silver" = 0,
+		MAT_GLASS = 0,
+		MAT_SILVER = 0,
 		MAT_LEAD = 0,
-		"osmium" = 0,
-		"diamond" = 0,
+		MAT_OSMIUM = 0,
+		MAT_DIAMOND = 0,
 		MAT_DURASTEEL = 0,
-		"phoron" = 0,
-		"uranium" = 0,
+		MAT_PHORON = 0,
+		MAT_URANIUM = 0,
 		MAT_VERDANTIUM = 0,
 		MAT_MORPHIUM = 0)
 	res_max_amount = 200000
@@ -108,7 +109,7 @@
 
 	switch(action)
 		if("species")
-			var/new_species = input(usr, "Select a new species", "Prosfab Species Selection", "Human") as null|anything in species_types
+			var/new_species = tgui_input_list(usr, "Select a new species", "Prosfab Species Selection", species_types)
 			if(new_species && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				species = new_species
 			return
@@ -122,7 +123,7 @@
 					continue
 				new_manufacturers += A
 
-			var/new_manufacturer = input(usr, "Select a new manufacturer", "Prosfab Species Selection", "Unbranded") as null|anything in new_manufacturers
+			var/new_manufacturer = tgui_input_list(usr, "Select a new manufacturer", "Prosfab Species Selection", new_manufacturers)
 			if(new_manufacturer && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				manufacturer = new_manufacturer
 			return

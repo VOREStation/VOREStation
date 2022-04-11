@@ -111,11 +111,20 @@
 	icon_state = "flexitac"
 	armor = list(melee = 40, bullet = 40, laser = 60, energy = 35, bomb = 30, bio = 0, rad = 0)
 	siemens_coefficient = 0.6
-	brightness_on = 6
+	light_range = 6
 	light_overlay = "helmet_light_dual_green"
 	action_button_name = "Toggle Head-light"
 	min_cold_protection_temperature = T0C - 20
 	cold_protection = HEAD
+
+/obj/item/clothing/head/helmet/explorer
+	name = "explorer hood"
+	desc = "An armoured hood for exploring harsh environments."
+	icon_state = "explorer"
+	flags = THICKMATERIAL
+	min_cold_protection_temperature = SPACE_SUIT_MIN_COLD_PROTECTION_TEMPERATURE
+	siemens_coefficient = 0.9
+	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35)
 
 /obj/item/clothing/head/helmet/swat
 	name = "\improper SWAT helmet"
@@ -163,8 +172,8 @@
 	icon_state = "swathelm"
 	item_state_slots = list(slot_r_hand_str = "swat", slot_l_hand_str = "swat")
 	sprite_sheets = list(
-		SPECIES_TAJ = 'icons/mob/species/tajaran/helmet.dmi',
-		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi',
+		SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',
+		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
 		)
 
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)

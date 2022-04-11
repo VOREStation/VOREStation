@@ -7,6 +7,7 @@ generic_filth = TRUE means when the decal is saved, it will be switched out for 
 
 /obj/effect/decal/cleanable
 	plane = DIRTY_PLANE
+	layer = DIRTY_LAYER
 	var/persistent = FALSE
 	var/generic_filth = FALSE
 	var/age = 0

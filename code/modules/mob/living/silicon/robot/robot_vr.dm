@@ -15,6 +15,7 @@
 	var/sitting = FALSE
 	var/bellyup = FALSE
 	does_spin = FALSE
+	var/wideborg_dept = 'icons/mob/widerobot_vr.dmi'
 	var/vr_icons = list(
 					   "handy-hydro",
 					   "handy-service",
@@ -54,7 +55,17 @@
 					   "zoomba-combat",
 					   "zoomba-combat-roll",
 					   "zoomba-combat-shield",
-					   "spiderscience"
+					   "spiderscience",
+					   "uptall-standard",
+					   "uptall-standard2",
+					   "uptall-medical",
+					   "uptall-janitor",
+					   "uptall-crisis",
+					   "uptall-service",
+					   "uptall-engineering",
+					   "uptall-miner",
+					   "uptall-security",
+					   "uptall-science"
 					   )					//List of all used sprites that are in robots_vr.dmi
 
 
@@ -73,7 +84,7 @@
 	set desc = "Select your resting pose."
 	sitting = FALSE
 	bellyup = FALSE
-	var/choice = alert(src, "Select resting pose", "", "Resting", "Sitting", "Belly up")
+	var/choice = tgui_alert(src, "Select resting pose", "Resting Pose", list("Resting", "Sitting", "Belly up"))
 	switch(choice)
 		if("Resting")
 			return 0
@@ -141,7 +152,13 @@
 					to_chat(cleaned_human, "<span class='warning'>[src] cleans your face!</span>")
 
 /mob/living/silicon/robot/proc/vr_sprite_check()
+	if(custom_sprite == TRUE)
+		return
 	if(wideborg == TRUE)
+		if(icontype == "Drake") // Why, Why can't we have normal nice things
+			icon = 'icons/mob/drakeborg/drakeborg_vr.dmi'
+		else
+			icon = wideborg_dept
 		return
 	if((!(original_icon == icon)) && (!(icon == 'icons/mob/robots_vr.dmi')))
 		original_icon = icon
@@ -168,7 +185,7 @@
 
 //RIDING
 /datum/riding/dogborg
-	keytype = /obj/item/weapon/material/twohanded/fluff/riding_crop // Crack!
+	keytype = /obj/item/weapon/material/twohanded/riding_crop // Crack!
 	nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
 	key_name = "a riding crop"		// What the 'keys' for the thing being rided on would be called.
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.
@@ -191,12 +208,13 @@
 /datum/riding/dogborg/get_offsets(pass_index) // list(dir = x, y, layer)
 	var/mob/living/L = ridden
 	var/scale = L.size_multiplier
+	var/scale_difference = (L.size_multiplier - rider_size) * 10
 
 	var/list/values = list(
-		"[NORTH]" = list(0, 10*scale, ABOVE_MOB_LAYER),
-		"[SOUTH]" = list(0, 10*scale, BELOW_MOB_LAYER),
-		"[EAST]" = list(-5*scale, 10*scale, ABOVE_MOB_LAYER),
-		"[WEST]" = list(5*scale, 10*scale, ABOVE_MOB_LAYER))
+		"[NORTH]" = list(0, 10*scale + scale_difference, ABOVE_MOB_LAYER),
+		"[SOUTH]" = list(0, 10*scale + scale_difference, BELOW_MOB_LAYER),
+		"[EAST]" = list(-5*scale, 10*scale + scale_difference, ABOVE_MOB_LAYER),
+		"[WEST]" = list(5*scale, 10*scale + scale_difference, ABOVE_MOB_LAYER))
 
 	return values
 
@@ -228,7 +246,7 @@
 
 	var/mob/living/carbon/human/H = M
 
-	if(isTaurTail(H.tail_style))
+	if(istaurtail(H.tail_style))
 		to_chat(src, "<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
 		return FALSE
 	if(M.loc != src.loc)
@@ -237,6 +255,7 @@
 
 	. = ..()
 	if(.)
+		riding_datum.rider_size = M.size_multiplier
 		buckled_mobs[M] = "riding"
 
 /mob/living/silicon/robot/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.

@@ -356,7 +356,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/item/weapon/storage/box/beanbags/large,
+/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/item/weapon/gun/projectile/shotgun/pump/combat{
 	desc = "When words don't strike hard enough.";
 	name = "Solid Argument"
@@ -383,6 +383,9 @@
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 4;
 	icon_state = "apc0"
+	},
+/obj/structure/panic_button{
+	pixel_x = 32
 	},
 /turf/simulated/floor/wood,
 /area/shuttle/bearcat/command_captain)

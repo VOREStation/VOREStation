@@ -9,7 +9,7 @@
 /obj/item/weapon/circuitboard/rdconsole/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_screwdriver())
 		playsound(src, I.usesound, 50, 1)
-		user.visible_message("<span class='notice'>\The [user] adjusts the jumper on \the [src]'s access protocol pins.</span>", "<span class='notice'>You adjust the jumper on the access protocol pins.</span>")
+		user.visible_message("<b>\The [user]</b> adjusts the jumper on \the [src]'s access protocol pins.", "<span class='notice'>You adjust the jumper on the access protocol pins.</span>")
 		if(build_path == /obj/machinery/computer/rdconsole/core)
 			name = T_BOARD("RD Console - Robotics")
 			build_path = /obj/machinery/computer/rdconsole/robotics

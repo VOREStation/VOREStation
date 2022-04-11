@@ -26,7 +26,7 @@
 					turfstocapture.Add(T)
 				else
 					if(!hasasked)
-						var/answer = alert("Capture includes non existant turf, Continue capture?","Continue capture?", "No", "Yes")
+						var/answer = tgui_alert(usr, "Capture includes non existant turf, Continue capture?","Continue capture?", list("No", "Yes"))
 						hasasked = 1
 						if(answer == "No")
 							return

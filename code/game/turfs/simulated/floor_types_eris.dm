@@ -260,6 +260,51 @@
 	floor_smooth = SMOOTH_NONE
 	smooth_movable_atom = SMOOTH_NONE
 
+/decl/flooring/tiling/eris/bcircuit
+	name = "circuit substrate"
+	icon_base = "bcircuit"
+	icon = 'icons/turf/flooring/eris/circuit.dmi'
+	build_type = /obj/item/stack/tile/floor/eris/bcircuit
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
+	flags = TURF_HAS_EDGES | TURF_HAS_CORNERS | TURF_CAN_BREAK
+
+/decl/flooring/tiling/eris/derelict1
+	name = "derelict floor"
+	icon_base = "derelict1"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	build_type = /obj/item/stack/tile/floor/eris/derelict1
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
+	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
+
+/decl/flooring/tiling/eris/derelict2
+	name = "derelict floor"
+	icon_base = "derelict2"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	build_type = /obj/item/stack/tile/floor/eris/derelict2
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
+	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
+
+/decl/flooring/tiling/eris/derelict3
+	name = "derelict floor"
+	icon_base = "derelict3"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	build_type = /obj/item/stack/tile/floor/eris/derelict3
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
+	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
+
+/decl/flooring/tiling/eris/derelict4
+	name = "derelict floor"
+	icon_base = "derelict4"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	build_type = /obj/item/stack/tile/floor/eris/derelict4
+	floor_smooth = SMOOTH_NONE
+	smooth_movable_atom = SMOOTH_NONE
+	flags = TURF_HAS_EDGES | TURF_REMOVE_CROWBAR | TURF_CAN_BREAK
+
 /decl/flooring/tiling/eris/techmaint
 	name = "techmaint floor"
 	icon_base = "techmaint"
@@ -305,6 +350,38 @@
 	desc = "A chekered pattern, an ancient style for a familiar feeling."
 	icon_state = "tile_cafe"
 	matter = list(MAT_PLASTIC = 1)
+
+// Circuit
+/obj/item/stack/tile/floor/eris/bcircuit
+	name = "circuit floor tile"
+	singular_name = "circuit floor tile"
+	icon_state = "tile_techmaint" // No sprite for this...
+	matter = list(MAT_STEEL = 1)
+
+// Derelict
+/obj/item/stack/tile/floor/eris/derelict1
+	name = "derelict floor tile"
+	singular_name = "derelict floor tile"
+	icon_state = "tile_techmaint" // No sprite for this...
+	matter = list(MAT_STEEL = 1)
+
+/obj/item/stack/tile/floor/eris/derelict2
+	name = "derelict floor tile"
+	singular_name = "derelict floor tile"
+	icon_state = "tile_techmaint" // No sprite for this...
+	matter = list(MAT_STEEL = 1)
+
+/obj/item/stack/tile/floor/eris/derelict3
+	name = "derelict floor tile"
+	singular_name = "derelict floor tile"
+	icon_state = "tile_techmaint" // No sprite for this...
+	matter = list(MAT_STEEL = 1)
+
+/obj/item/stack/tile/floor/eris/derelict4
+	name = "derelict floor tile"
+	singular_name = "derelict floor tile"
+	icon_state = "tile_techmaint" // No sprite for this...
+	matter = list(MAT_STEEL = 1)
 
 // Techmaint
 /obj/item/stack/tile/floor/eris/techmaint
@@ -838,6 +915,36 @@
 	icon_state = "cafe"
 	initial_flooring = /decl/flooring/tiling/eris/cafe
 
+/turf/simulated/floor/tiled/eris/bcircuit
+	name = "substrate"
+	icon = 'icons/turf/flooring/eris/circuit.dmi'
+	icon_state = "bcircuit"
+	initial_flooring = /decl/flooring/tiling/eris/bcircuit
+
+/turf/simulated/floor/tiled/eris/derelict1
+	name = "floor"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	icon_state = "derelict1"
+	initial_flooring = /decl/flooring/tiling/eris/derelict1
+
+/turf/simulated/floor/tiled/eris/derelict2
+	name = "floor"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	icon_state = "derelict2"
+	initial_flooring = /decl/flooring/tiling/eris/derelict2
+
+/turf/simulated/floor/tiled/eris/derelict3
+	name = "floor"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	icon_state = "derelict3"
+	initial_flooring = /decl/flooring/tiling/eris/derelict3
+
+/turf/simulated/floor/tiled/eris/derelict4
+	name = "floor"
+	icon = 'icons/turf/flooring/eris/derelict.dmi'
+	icon_state = "derelict4"
+	initial_flooring = /decl/flooring/tiling/eris/derelict4
+
 /turf/simulated/floor/tiled/eris/techmaint
 	name = "floor"
 	icon = 'icons/turf/flooring/eris/tiles_maint.dmi'
@@ -1014,10 +1121,3 @@
 	oxygen = 0
 	nitrogen = 0
 	temperature = TCMB
-
-/*
-/turf/simulated/floor/hull/New()
-	if(icon_state != "hullcenter0")
-		overrided_icon_state = icon_state
-	..()
-*/

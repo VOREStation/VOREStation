@@ -7,8 +7,8 @@
 	icon_state = "security_rig"
 	suit_type = "combat hardsuit"
 	armor = list(melee = 80, bullet = 65, laser = 50, energy = 15, bomb = 80, bio = 100, rad = 60)
-	slowdown = 1
-	offline_slowdown = 3
+	slowdown = 0.5
+	offline_slowdown = 1.5
 	offline_vision_restriction = 1
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/combat
@@ -46,8 +46,8 @@
 	icon_state = "military_rig"
 	suit_type = "military hardsuit"
 	armor = list(melee = 80, bullet = 70, laser = 55, energy = 15, bomb = 80, bio = 100, rad = 30)
-	slowdown = 1
-	offline_slowdown = 3
+	slowdown = 0.5
+	offline_slowdown = 1.5
 	offline_vision_restriction = 1
 	allowed = list(
 		/obj/item/device/flashlight,

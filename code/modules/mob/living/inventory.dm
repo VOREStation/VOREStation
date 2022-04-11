@@ -6,19 +6,25 @@
 	var/obj/item/weapon/tank/internal = null//Human/Monkey
 	var/obj/item/clothing/mask/wear_mask = null//Carbon
 
-/mob/living/equip_to_storage(obj/item/newitem)
+/mob/living/equip_to_storage(obj/item/newitem, user_initiated = FALSE)
 	// Try put it in their backpack
 	if(istype(src.back,/obj/item/weapon/storage))
 		var/obj/item/weapon/storage/backpack = src.back
 		if(backpack.can_be_inserted(newitem, 1))
-			newitem.forceMove(src.back)
-			return 1
+			if(user_initiated)
+				backpack.handle_item_insertion(newitem)
+			else
+				newitem.forceMove(src.back)
+			return src.back
 
 	// Try to place it in any item that can store stuff, on the mob.
 	for(var/obj/item/weapon/storage/S in src.contents)
 		if (S.can_be_inserted(newitem, 1))
-			newitem.forceMove(S)
-			return 1
+			if(user_initiated)
+				S.handle_item_insertion(newitem)
+			else
+				newitem.forceMove(S)
+			return S
 	return 0
 
 //Returns the thing in our active hand
@@ -229,32 +235,33 @@
 /datum/inventory_panel/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
-	data["slots"] = list()
-	data["slots"].Add(list(list(
+	var/list/slots = list()
+	slots.Add(list(list(
 		"name" = "Head (Mask)",
 		"item" = host.wear_mask,
 		"act" = "mask",
 	)))
-	data["slots"].Add(list(list(
+	slots.Add(list(list(
 		"name" = "Left Hand",
 		"item" = host.l_hand,
 		"act" = "l_hand",
 	)))
-	data["slots"].Add(list(list(
+	slots.Add(list(list(
 		"name" = "Right Hand",
 		"item" = host.r_hand,
 		"act" = "r_hand",
 	)))
-	data["slots"].Add(list(list(
+	slots.Add(list(list(
 		"name" = "Back",
 		"item" = host.back,
 		"act" = "back",
 	)))
-	data["slots"].Add(list(list(
+	slots.Add(list(list(
 		"name" = "Pockets",
 		"item" = "Empty Pockets",
 		"act" = "pockets",
 	)))
+	data["slots"] = slots
 
 	data["internals"] = host.internals
 	data["internalsValid"] = istype(host.wear_mask, /obj/item/clothing/mask) && istype(host.back, /obj/item/weapon/tank)
@@ -300,33 +307,37 @@
 	if(istype(H.w_uniform, /obj/item/clothing/under))
 		suit = H.w_uniform
 
-	data["slots"] = list()
+
+	var/list/slots = list()
 	for(var/entry in H.species.hud.gear)
 		var/list/slot_ref = H.species.hud.gear[entry]
 		if((slot_ref["slot"] in list(slot_l_store, slot_r_store)))
 			continue
 		var/obj/item/thing_in_slot = H.get_equipped_item(slot_ref["slot"])
-		data["slots"].Add(list(list(
+		slots.Add(list(list(
 			"name" = slot_ref["name"],
 			"item" = thing_in_slot,
 			"act" = "targetSlot",
 			"params" = list("slot" = slot_ref["slot"]),
 		)))
+	data["slots"] = slots
 
-	data["specialSlots"] = list()
+
+	var/list/specialSlots = list()
 	if(H.species.hud.has_hands)
-		data["specialSlots"].Add(list(list(
+		specialSlots.Add(list(list(
 			"name" = "Left Hand",
 			"item" = H.l_hand,
 			"act" = "targetSlot",
 			"params" = list("slot" = slot_l_hand),
 		)))
-		data["specialSlots"].Add(list(list(
+		specialSlots.Add(list(list(
 			"name" = "Right Hand",
 			"item" = H.r_hand,
 			"act" = "targetSlot",
 			"params" = list("slot" = slot_r_hand),
 		)))
+	data["specialSlots"] = specialSlots
 
 	data["internals"] = H.internals
 	data["internalsValid"] = (istype(H.wear_mask, /obj/item/clothing/mask) || istype(H.head, /obj/item/clothing/head/helmet/space)) && (istype(H.back, /obj/item/weapon/tank) || istype(H.belt, /obj/item/weapon/tank) || istype(H.s_store, /obj/item/weapon/tank))

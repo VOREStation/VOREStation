@@ -3,7 +3,7 @@
 	desc = "It has stubby legs bolted up against it's body for stabilising."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "suspension2"
-	density = 1
+	density = TRUE
 	req_access = list(access_research)
 	var/obj/item/weapon/cell/cell
 	var/locked = TRUE
@@ -13,6 +13,15 @@
 /obj/machinery/suspension_gen/Initialize()
 	. = ..()
 	cell = new /obj/item/weapon/cell/high(src)
+	power_change()
+
+/obj/machinery/suspension_gen/power_change()
+	var/oldstat = stat
+	if(cell)
+		stat &= ~NOPOWER
+	else
+		stat |= NOPOWER
+	return (stat != oldstat)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -29,7 +38,7 @@
 			for(var/obj/item/I in T)
 				if(!suspension_field.contents.len)
 					suspension_field.icon_state = "energynet"
-					suspension_field.overlays += "shield2"
+					suspension_field.add_overlay("shield2")
 				I.forceMove(suspension_field)
 		else
 			deactivate()
@@ -56,7 +65,7 @@
 
 /obj/machinery/suspension_gen/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["cell"] = cell
 	data["cellCharge"] = cell?.charge
 	data["cellMaxCharge"] = cell?.maxcharge
@@ -95,9 +104,9 @@
 	else if(W.is_wrench())
 		if(!suspension_field)
 			if(anchored)
-				anchored = 0
+				anchored = FALSE
 			else
-				anchored = 1
+				anchored = TRUE
 			playsound(src, W.usesound, 50, 1)
 			to_chat(user, "<span class='notice'>You wrench the stabilising legs [anchored ? "into place" : "up against the body"].</span>")
 			if(anchored)
@@ -150,7 +159,7 @@
 
 	if(collected)
 		suspension_field.icon_state = "energynet"
-		suspension_field.overlays += "shield2"
+		suspension_field.add_overlay("shield2")
 		visible_message("<span class='notice'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</span>")
 	else
 		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
@@ -198,8 +207,8 @@
 /obj/effect/suspension_field
 	name = "energy field"
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
 /obj/effect/suspension_field/Destroy()
 	for(var/atom/movable/I in src)

@@ -1,13 +1,19 @@
-import { classes, isFalsy } from 'common/react';
+/**
+ * @file
+ * @copyright 2020 Aleksej Komarov
+ * @license MIT
+ */
+
+import { classes } from 'common/react';
 import { Component, createRef } from 'inferno';
 import { Box } from './Box';
+import { KEY_ESCAPE, KEY_ENTER } from 'common/keycodes';
 
-const toInputValue = value => {
-  if (isFalsy(value)) {
-    return '';
-  }
-  return value;
-};
+export const toInputValue = value => (
+  typeof value !== 'number' && typeof value !== 'string'
+    ? ''
+    : String(value)
+);
 
 export class Input extends Component {
   constructor() {
@@ -28,8 +34,12 @@ export class Input extends Component {
     };
     this.handleFocus = e => {
       const { editing } = this.state;
+      const { autoSelect } = this.props;
       if (!editing) {
         this.setEditing(true);
+      }
+      if (autoSelect) {
+        e.target.select();
       }
     };
     this.handleBlur = e => {
@@ -44,7 +54,7 @@ export class Input extends Component {
     };
     this.handleKeyDown = e => {
       const { onInput, onChange, onEnter } = this.props;
-      if (e.keyCode === 13) {
+      if (e.keyCode === KEY_ENTER) {
         this.setEditing(false);
         if (onChange) {
           onChange(e, e.target.value);
@@ -62,7 +72,7 @@ export class Input extends Component {
         }
         return;
       }
-      if (e.keyCode === 27) {
+      if (e.keyCode === KEY_ESCAPE) {
         this.setEditing(false);
         e.target.value = toInputValue(this.props.value);
         e.target.blur();
@@ -76,11 +86,9 @@ export class Input extends Component {
     const input = this.inputRef.current;
     if (input) {
       input.value = toInputValue(nextValue);
-      if (this.props.autofocus) {
-        input.focus();
-        input.selectionStart = 0;
-        input.selectionEnd = input.value.length;
-      }
+    }
+    if (this.props.autoFocus) {
+      setTimeout(() => input.focus(), 1);
     }
   }
 
@@ -109,13 +117,13 @@ export class Input extends Component {
       value,
       maxLength,
       placeholder,
-      autofocus,
       ...boxProps
     } = props;
     // Box props
     const {
       className,
       fluid,
+      monospace,
       ...rest
     } = boxProps;
     return (
@@ -123,6 +131,7 @@ export class Input extends Component {
         className={classes([
           'Input',
           fluid && 'Input--fluid',
+          monospace && 'Input--monospace',
           className,
         ])}
         {...rest}>

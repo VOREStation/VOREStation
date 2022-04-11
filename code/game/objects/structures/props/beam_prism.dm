@@ -50,7 +50,7 @@
 		to_chat(user, "<span class='warning'>\The [src]'s motors resist your efforts to rotate it. You may need to find some form of controller.</span>")
 		return
 
-	var/confirm = input("Do you want to try to rotate \the [src]?", "[name]") in list("Yes", "No")
+	var/confirm = tgui_alert(usr, "Do you want to try to rotate \the [src]?", "[name]", list("Yes", "No"))
 	if(confirm == "No")
 		visible_message(\
 			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
@@ -59,13 +59,13 @@
 
 	var/new_bearing
 	if(free_rotate)
-		new_bearing = input("What bearing do you want to rotate \the [src] to?", "[name]") as num
+		new_bearing = input(usr, "What bearing do you want to rotate \the [src] to?", "[name]") as num
 		new_bearing = round(new_bearing)
 		if(new_bearing <= -1 || new_bearing > 360)
 			to_chat(user, "<span class='warning'>Rotating \the [src] [new_bearing] degrees would be a waste of time.</span>")
 			return
 	else
-		var/choice = input("What point do you want to set \the [src] to?", "[name]") as null|anything in compass_directions
+		var/choice = tgui_input_list(usr, "What point do you want to set \the [src] to?", "[name]", compass_directions)
 		new_bearing = round(compass_directions[choice])
 
 	var/rotate_degrees = new_bearing - degrees_from_north
@@ -90,11 +90,11 @@
 
 /obj/structure/prop/prism/proc/rotate_auto(var/new_bearing)
 	if(rotation_lock)
-		visible_message("<span class='notice'>\The [src] shudders.</span>")
+		visible_message("<b>\The [src]</b> shudders.")
 		playsound(src, 'sound/effects/clang.ogg', 50, 1)
 		return
 
-	visible_message("<span class='notice'>\The [src] rotates to a bearing of [new_bearing].</span>")
+	visible_message("<b>\The [src]</b> rotates to a bearing of [new_bearing].")
 
 	var/rotate_degrees = new_bearing - degrees_from_north
 
@@ -156,7 +156,7 @@
 /obj/structure/prop/prismcontrol/attack_hand(mob/living/user)
 	..()
 
-	var/confirm = input("Do you want to try to rotate \the [src]?", "[name]") in list("Yes", "No")
+	var/confirm = tgui_alert(usr, "Do you want to try to rotate \the [src]?", "[name]", list("Yes", "No"))
 	if(confirm == "No")
 		visible_message(\
 			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\
@@ -176,16 +176,16 @@
 
 	var/new_bearing
 	if(free_rotate)
-		new_bearing = input("What bearing do you want to rotate \the [src] to?", "[name]") as num
+		new_bearing = input(usr, "What bearing do you want to rotate \the [src] to?", "[name]") as num
 		new_bearing = round(new_bearing)
 		if(new_bearing <= -1 || new_bearing > 360)
 			to_chat(user, "<span class='warning'>Rotating \the [src] [new_bearing] degrees would be a waste of time.</span>")
 			return
 	else
-		var/choice = input("What point do you want to set \the [src] to?", "[name]") as null|anything in compass_directions
+		var/choice = tgui_input_list(usr, "What point do you want to set \the [src] to?", "[name]", compass_directions)
 		new_bearing = round(compass_directions[choice])
 
-	confirm = input("Are you certain you want to rotate \the [src]?", "[name]") in list("Yes", "No")
+	confirm = tgui_alert(usr, "Are you certain you want to rotate \the [src]?", "[name]", list("Yes", "No"))
 	if(confirm == "No")
 		visible_message(\
 			"<span class='notice'>[user.name] decides not to try turning \the [src].</span>",\

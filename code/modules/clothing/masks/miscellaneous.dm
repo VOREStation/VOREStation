@@ -63,6 +63,24 @@
 
 	adjust_mask(usr)
 
+/obj/item/clothing/mask/surgical/white
+	icon_state = "sterilew"
+	item_state_slots = list(slot_r_hand_str = "sterilew", slot_l_hand_str = "sterilew")
+
+/obj/item/clothing/mask/surgical/dust
+	name = "dust mask"
+	desc = "A dust mask designed to protect the wearer against construction and/or custodial particulate."
+	icon_state = "dust"
+	item_state_slots = list(slot_r_hand_str = "dust", slot_l_hand_str = "dust")
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 30, rad = 0)
+
+/obj/item/clothing/mask/surgical/cloth
+	name = "cloth mask"
+	desc = "A cloth mask designed to protect the wearer against allergens, illnesses, and social interaction."
+	icon_state = "cloth"
+	item_state_slots = list(slot_r_hand_str = "cloth", slot_l_hand_str = "cloth")
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 20, rad = 0)
+
 /obj/item/clothing/mask/fakemoustache
 	name = "fake moustache"
 	desc = "Warning: moustache is fake."
@@ -295,3 +313,96 @@
 	w_class = ITEMSIZE_TINY
 	body_parts_covered = FACE
 	icon_state = "veil"
+
+/obj/item/clothing/mask/paper
+	name = "paper mask"
+	desc = "A neat, circular mask made out of paper. Perhaps you could try drawing on it with a pen!"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = FACE
+	icon_state = "papermask"
+	action_button_name = "Redraw Design"
+	action_button_is_hands_free = TRUE
+	var/list/papermask_designs = list()
+
+/obj/item/clothing/mask/paper/Initialize(mapload)
+	. = ..()
+	papermask_designs = list(
+		"Blank" = image(icon = src.icon, icon_state = "papermask"),
+		"Neutral" = image(icon = src.icon, icon_state = "neutralmask"),
+		"Eyes" = image(icon = src.icon, icon_state = "eyemask"),
+		"Sleeping" = image(icon = src.icon, icon_state = "sleepingmask"),
+		"Heart" = image(icon = src.icon, icon_state = "heartmask"),
+		"Core" = image(icon = src.icon, icon_state = "coremask"),
+		"Plus" = image(icon = src.icon, icon_state = "plusmask"),
+		"Square" = image(icon = src.icon, icon_state = "squaremask"),
+		"Bullseye" = image(icon = src.icon, icon_state = "bullseyemask"),
+		"Vertical" = image(icon = src.icon, icon_state = "verticalmask"),
+		"Horizontal" = image(icon = src.icon, icon_state = "horizontalmask"),
+		"X" = image(icon = src.icon, icon_state = "xmask"),
+		"Bugeyes" = image(icon = src.icon, icon_state = "bugmask"),
+		"Double" = image(icon = src.icon, icon_state = "doublemask"),
+		"Mark" = image(icon = src.icon, icon_state = "markmask")
+		)
+
+/obj/item/clothing/mask/paper/attack_self(mob/user)
+	. = ..()
+	if(!istype(user) || user.incapacitated())
+		return
+
+	var/static/list/options = list("Blank" = "papermask", "Neutral" = "neutralmask", "Eyes" = "eyemask",
+							"Sleeping" ="sleepingmask", "Heart" = "heartmask", "Core" = "coremask",
+							"Plus" = "plusmask", "Square" ="squaremask", "Bullseye" = "bullseyemask",
+							"Vertical" = "verticalmask", "Horizontal" = "horizontalmask", "X" ="xmask",
+							"Bugeyes" = "bugmask", "Double" = "doublemask", "Mark" = "markmask")
+
+	var/choice = show_radial_menu(user, src, papermask_designs, custom_check = FALSE, radius = 36, require_near = TRUE)
+
+	if(src && choice && !user.incapacitated() && in_range(user,src))
+		icon_state = options[choice]
+		user.update_inv_wear_mask()
+		user.update_action_buttons()
+		to_chat(user, "<span class='notice'>Your paper mask now is now [choice].</span>")
+		return 1
+
+/obj/item/clothing/mask/emotions
+	name = "emotional mask"
+	desc = "Express your happiness or hide your sorrows with this modular cutout. Draw your current emotions onto it with a pen!"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = FACE
+	icon_state = "joy"
+	action_button_name = "Redraw Design"
+	action_button_is_hands_free = TRUE
+	var/static/list/joymask_designs = list()
+
+
+/obj/item/clothing/mask/emotions/Initialize(mapload)
+	. = ..()
+	joymask_designs = list(
+		"Joy" = image(icon = src.icon, icon_state = "joy"),
+		"Flushed" = image(icon = src.icon, icon_state = "flushed"),
+		"Pensive" = image(icon = src.icon, icon_state = "pensive"),
+		"Angry" = image(icon = src.icon, icon_state = "angry"),
+		)
+
+/obj/item/clothing/mask/emotions/attack_self(mob/user)
+	. = ..()
+	if(!istype(user) || user.incapacitated())
+		return
+
+	var/static/list/options = list("Joy" = "joy", "Flushed" = "flushed", "Pensive" = "pensive","Angry" ="angry")
+
+	var/choice = show_radial_menu(user, src, joymask_designs, custom_check = FALSE, radius = 36, require_near = TRUE)
+
+	if(src && choice && !user.incapacitated() && in_range(user,src))
+		icon_state = options[choice]
+		user.update_inv_wear_mask()
+		user.update_action_buttons()
+		to_chat(user, "<span class='notice'>Your [src] now displays a [choice] emotion.</span>")
+		return 1
+
+/obj/item/clothing/mask/mouthwheat
+	name = "mouth wheat"
+	desc = "100% synthetic \"Country Girls LLC.\" brand mouth wheat. Warning: not for actual consumption."
+	icon_state = "mouthwheat"
+	w_class = ITEMSIZE_SMALL
+	body_parts_covered = 0

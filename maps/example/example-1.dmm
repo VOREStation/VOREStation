@@ -1,78 +1,1399 @@
-"a" = (/turf/space,/area/space)
-"b" = (/turf/simulated/wall,/area/aisat)
-"c" = (/obj/machinery/atmospherics/pipe/zpipe/up{ icon_state = "up"; dir = 4},/obj/structure/disposalpipe/up,/turf/simulated/floor/plating,/area/aisat)
-"d" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"e" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 1},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"f" = (/obj/machinery/atmospherics/binary/pump/high_power{dir = 8},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"g" = (/obj/machinery/atmospherics/pipe/simple/visible{ icon_state = "intact"; dir = 10},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"h" = (/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"i" = (/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled/dark,/area/aisat)
-"j" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/plating,/area/aisat)
-"k" = (/obj/machinery/atmospherics/pipe/simple/visible,/obj/effect/floor_decal/corner/white/diagonal,/obj/machinery/meter,/turf/simulated/floor/tiled/dark,/area/aisat)
-"l" = (/obj/machinery/atmospherics/portables_connector{dir = 4},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"m" = (/obj/machinery/atmospherics/pipe/manifold/visible{ icon_state = "map"; dir = 4},/obj/effect/floor_decal/corner/white/diagonal,/obj/machinery/meter,/turf/simulated/floor/tiled/dark,/area/aisat)
-"n" = (/turf/simulated/floor/tiled/dark,/area/aisat)
-"o" = (/obj/effect/floor_decal/industrial/hatch/yellow,/turf/simulated/floor/tiled/dark,/area/aisat)
-"p" = (/obj/machinery/portable_atmospherics/canister/empty,/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/dark,/area/aisat)
-"q" = (/obj/machinery/atmospherics/pipe/simple/visible{ icon_state = "intact"; dir = 5},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"r" = (/obj/machinery/atmospherics/binary/pump/high_power{ icon_state = "map_off"; dir = 4},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"s" = (/obj/machinery/atmospherics/pipe/simple/visible{ icon_state = "intact"; dir = 9},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"t" = (/obj/structure/ladder/up,/turf/simulated/floor/tiled/dark,/area/aisat)
-"u" = (/obj/machinery/portable_atmospherics/canister/air,/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled/dark,/area/aisat)
-"v" = (/obj/machinery/light,/turf/simulated/floor/tiled/dark,/area/aisat)
-"w" = (/obj/machinery/alarm{dir = 4; icon_state = "alarm0"; pixel_x = -22},/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{ icon_state = "pipe-t"; dir = 1},/turf/simulated/floor/tiled/dark,/area/aisat)
-"x" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/simulated/floor/tiled/dark,/area/aisat)
-"y" = (/obj/machinery/light_switch,/turf/simulated/wall,/area/aisat)
-"z" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/simulated/floor/tiled/dark,/area/aisat)
-"A" = (/obj/machinery/light{icon_state = "tube1"; dir = 4},/obj/machinery/power/apc{dir = 4; name = "east bump"; pixel_x = 24},/obj/structure/cable/yellow{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/tiled/dark,/area/aisat)
-"B" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/standard,/obj/item/device/multitool,/turf/simulated/floor/tiled/dark,/area/aisat)
-"C" = (/obj/machinery/light{dir = 1},/obj/structure/table/standard,/obj/item/weapon/storage/belt/utility/full,/turf/simulated/floor/tiled/dark,/area/aisat)
-"D" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/standard,/obj/item/clothing/gloves/yellow,/turf/simulated/floor/tiled/dark,/area/aisat)
-"E" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"F" = (/obj/effect/landmark{name = "JoinLate"},/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"G" = (/obj/effect/landmark/start,/turf/simulated/floor/tiled/dark,/area/aisat)
-"H" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/corner/white/diagonal,/obj/machinery/shield_gen,/turf/simulated/floor/tiled/dark,/area/aisat)
-"I" = (/obj/structure/stairs/south,/turf/simulated/floor/tiled/dark,/area/aisat)
-"J" = (/obj/effect/floor_decal/sign/a,/turf/simulated/floor/tiled/dark,/area/aisat)
-"K" = (/obj/machinery/light,/obj/effect/floor_decal/corner/white/diagonal,/turf/simulated/floor/tiled/dark,/area/aisat)
-"L" = (/obj/machinery/light,/obj/machinery/shield_capacitor{anchored = 1; dir = 4; icon_state = "capacitor"},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/plating,/area/aisat)
-"M" = (/obj/machinery/shield_gen/external{anchored = 1},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/aisat)
-"N" = (/obj/machinery/shield_capacitor{anchored = 1; dir = 8; icon_state = "capacitor"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/plating,/area/aisat)
-"O" = (/obj/structure/cable/yellow,/obj/structure/cable/yellow{d1 = 16; d2 = 0; icon_state = "16-0"},/obj/structure/cable/yellow{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/plating,/area/aisat)
-"P" = (/turf/simulated/floor/tiled/red,/area/aisat)
-"Q" = (/obj/turbolift_map_holder/example{dir = 1; icon = 'icons/obj/turbolift_preview_5x5.dmi'},/turf/simulated/floor/tiled/red,/area/aisat)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/space,
+/area/space)
+"b" = (
+/turf/simulated/wall,
+/area/aisat)
+"c" = (
+/obj/machinery/atmospherics/pipe/zpipe/up{
+	dir = 4;
+	icon_state = "up"
+	},
+/obj/structure/disposalpipe/up,
+/turf/simulated/floor/plating,
+/area/aisat)
+"d" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"e" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"f" = (
+/obj/machinery/atmospherics/binary/pump/high_power{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"g" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 10;
+	icon_state = "intact"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"h" = (
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"i" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"j" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/plating,
+/area/aisat)
+"k" = (
+/obj/machinery/atmospherics/pipe/simple/visible,
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/machinery/meter,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"l" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"m" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4;
+	icon_state = "map"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/machinery/meter,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"n" = (
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"o" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"p" = (
+/obj/machinery/portable_atmospherics/canister/empty,
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"q" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5;
+	icon_state = "intact"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"r" = (
+/obj/machinery/atmospherics/binary/pump/high_power{
+	dir = 4;
+	icon_state = "map_off"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"s" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 9;
+	icon_state = "intact"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"t" = (
+/obj/structure/ladder/up,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"u" = (
+/obj/machinery/portable_atmospherics/canister/air,
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"v" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"w" = (
+/obj/machinery/alarm{
+	dir = 4;
+	icon_state = "alarm0";
+	pixel_x = -22
+	},
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1;
+	icon_state = "pipe-t"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"x" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"y" = (
+/obj/machinery/light_switch,
+/turf/simulated/wall,
+/area/aisat)
+"z" = (
+/obj/machinery/light{
+	dir = 8;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"A" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable/yellow{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"B" = (
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/structure/table/standard,
+/obj/item/device/multitool,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"C" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/belt/utility/full,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"D" = (
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/structure/table/standard,
+/obj/item/clothing/gloves/yellow,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"E" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"F" = (
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"G" = (
+/obj/effect/landmark/start,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"H" = (
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/machinery/shield_gen,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"I" = (
+/obj/structure/stairs/spawner/south,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"J" = (
+/obj/effect/floor_decal/sign/a,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"K" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/corner/white/diagonal,
+/turf/simulated/floor/tiled/dark,
+/area/aisat)
+"L" = (
+/obj/machinery/light,
+/obj/machinery/shield_capacitor{
+	anchored = 1;
+	dir = 4;
+	icon_state = "capacitor"
+	},
+/obj/structure/cable/yellow{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/plating,
+/area/aisat)
+"M" = (
+/obj/machinery/shield_gen/external{
+	anchored = 1
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/plating,
+/area/aisat)
+"N" = (
+/obj/machinery/shield_capacitor{
+	anchored = 1;
+	dir = 8;
+	icon_state = "capacitor"
+	},
+/obj/structure/cable/yellow{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable/yellow{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/plating,
+/area/aisat)
+"O" = (
+/obj/structure/cable/yellow,
+/obj/structure/cable/yellow{
+	d1 = 16;
+	d2 = 0;
+	icon_state = "16-0"
+	},
+/obj/structure/cable/yellow{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/plating,
+/area/aisat)
+"P" = (
+/turf/simulated/floor/tiled/red,
+/area/aisat)
+"Q" = (
+/obj/turbolift_map_holder/example{
+	dir = 1;
+	icon = 'icons/obj/turbolift_preview_5x5.dmi'
+	},
+/turf/simulated/floor/tiled/red,
+/area/aisat)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaabbbbbbbbbbbbbbbaaaaaaaaa
-aaaaaaaabcdefghihhhhhhbaaaaaaaaa
-aaaaaaaabjhklmhnhhooohbaaaaaaaaa
-aaaaaaaabphqrshthhooohbaaaaaaaaa
-aaaaaaaabphhhhhnhhooohbaaaaaaaaa
-aaaaaaaabuhhhhhnhhhhhhbaaaaaaaaa
-aaaaaaaabuhhhhhvhhhhhhbaaaaaaaaa
-aaaaaaaabwnnnnxyznnnnAbaaaaaaaaa
-aaaaaaaabhhhhhBCDhhhhEbaaaaaaaaa
-aaaaaaaabhhFFFhnhhhhhEbaaaaaaaaa
-aaaaaaaabhhFFFhGhhhhhHbaaaaaaaaa
-aaaaaaaabnbFFFhnhhhhhEbaaaaaaaaa
-aaaaaaaabIbhhhhJhhhhhEbaaaaaaaaa
-aaaaaaaabbbhKhhnhhLMNObaaaaaaaaa
-aaaaaaaabbbbbbnnnbbbbbbaaaaaaaaa
-aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
-aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
-aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
-aaaaaaaaaaaabPPPPPbaaaaaaaaaaaaa
-aaaaaaaaaaaabQPPPPbaaaaaaaaaaaaa
-aaaaaaaaaaaabbbbbbbaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(6,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(7,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+c
+j
+p
+p
+u
+u
+w
+h
+h
+h
+n
+I
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(11,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+d
+h
+h
+h
+h
+h
+n
+h
+h
+h
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+e
+k
+q
+h
+h
+h
+n
+h
+F
+F
+F
+h
+h
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(13,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+f
+l
+r
+h
+h
+h
+n
+h
+F
+F
+F
+h
+K
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+g
+m
+s
+h
+h
+h
+n
+h
+F
+F
+F
+h
+h
+b
+P
+P
+P
+P
+Q
+b
+a
+a
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+h
+h
+h
+h
+h
+h
+x
+B
+h
+h
+h
+h
+h
+n
+P
+P
+P
+P
+P
+b
+a
+a
+"}
+(16,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+i
+n
+t
+n
+n
+v
+y
+C
+n
+G
+n
+J
+n
+n
+P
+P
+P
+P
+P
+b
+a
+a
+"}
+(17,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+h
+h
+h
+h
+h
+h
+z
+D
+h
+h
+h
+h
+h
+n
+P
+P
+P
+P
+P
+b
+a
+a
+"}
+(18,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+h
+h
+h
+h
+h
+h
+n
+h
+h
+h
+h
+h
+h
+b
+P
+P
+P
+P
+P
+b
+a
+a
+"}
+(19,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+h
+o
+o
+o
+h
+h
+n
+h
+h
+h
+h
+h
+L
+b
+b
+b
+b
+b
+b
+b
+a
+a
+"}
+(20,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+h
+o
+o
+o
+h
+h
+n
+h
+h
+h
+h
+h
+M
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(21,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+h
+o
+o
+o
+h
+h
+n
+h
+h
+h
+h
+h
+N
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(22,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+h
+h
+h
+h
+h
+h
+A
+E
+E
+H
+E
+E
+O
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(23,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(24,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(25,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(26,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(27,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(28,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(29,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(30,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(31,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(32,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

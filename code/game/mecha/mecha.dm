@@ -4,6 +4,10 @@
 #define MECHA_INT_TANK_BREACH 8
 #define MECHA_INT_CONTROL_LOST 16
 
+#define MECHA_PROC_MOVEMENT 1
+#define MECHA_PROC_DAMAGE   2
+#define MECHA_PROC_INT_TEMP 4
+
 #define MELEE 1
 #define RANGED 2
 
@@ -22,10 +26,10 @@
 	desc = "Exosuit"
 	description_info = "Alt click to strafe."
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1							//Dense. To raise the heat.
+	density = TRUE							//Dense. To raise the heat.
 	opacity = 1							//Opaque. Menacing.
-	anchored = 1						//No pulling around.
-	unacidable = 1						//And no deleting hoomans inside
+	anchored = TRUE						//No pulling around.
+	unacidable = TRUE						//And no deleting hoomans inside
 	layer = MOB_LAYER					//Icon draw layer
 	infra_luminosity = 15				//Byond implementation is bugged.
 	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
@@ -92,18 +96,18 @@
 	var/list/operation_req_access = list()								//Required access level for mecha operation
 	var/list/internals_req_access = list(access_engine,access_robotics)	//Required access level to open cell compartment
 
-	var/datum/global_iterator/pr_int_temp_processor 	//Normalizes internal air mixture temperature
-	var/datum/global_iterator/pr_inertial_movement 		//Controls intertial movement in spesss
-	var/datum/global_iterator/pr_give_air 				//Moves air from tank to cabin
-	var/datum/global_iterator/pr_internal_damage		//Processes internal damage
-
-
 	var/wreckage
 
 	var/list/equipment = new		//This lists holds what stuff you bolted onto your baby ride
 	var/obj/item/mecha_parts/mecha_equipment/selected
 	var/max_equip = 2
-	var/datum/events/events
+
+	// What direction to float in, if inertial movement is active.
+	var/float_direction = 0
+	// Process() iterator count.
+	var/process_ticks = 0
+	// These control what toggleable processes are executed within process().
+	var/current_processes = MECHA_PROC_INT_TEMP
 
 //mechaequipt2 stuffs
 	var/list/hull_equipment = new
@@ -198,7 +202,7 @@
 	var/weapons_only_cycle = FALSE	//So combat mechs don't switch to their equipment at times.
 
 /obj/mecha/Initialize()
-	..()
+	. = ..()
 
 	for(var/path in starting_components)
 		var/obj/item/mecha_parts/component/C = new path(src)
@@ -208,6 +212,10 @@
 		for(var/path in starting_equipment)
 			var/obj/item/mecha_parts/mecha_equipment/ME = new path(src)
 			ME.attach(src)
+
+	START_PROCESSING(SSobj, src)
+
+	update_transform()
 
 /obj/mecha/drain_power(var/drain_check)
 
@@ -221,8 +229,6 @@
 
 /obj/mecha/New()
 	..()
-	events = new
-
 	icon_state += "-open"
 	add_radio()
 	add_cabin()
@@ -238,7 +244,6 @@
 		src.smoke_system.attach(src)
 
 	add_cell()
-	add_iterators()
 	removeVerb(/obj/mecha/verb/disconnect_from_port)
 	log_message("[src.name] created.")
 	loc.Entered(src)
@@ -281,7 +286,7 @@
 			if(E.salvageable && prob(30))
 				WR.crowbar_salvage += E
 				E.forceMove(WR)
-				E.equip_ready = 1
+				E.equip_ready = TRUE
 			else
 				E.forceMove(loc)
 				E.destroy()
@@ -321,15 +326,125 @@
 	if(smoke_possible)	//Just making sure nothing is running.
 		qdel(smoke_system)
 
-	QDEL_NULL(pr_int_temp_processor)
-	QDEL_NULL(pr_inertial_movement)
-	QDEL_NULL(pr_give_air)
-	QDEL_NULL(pr_internal_damage)
+	GLOB.mech_destroyed_roundstat++
+
 	QDEL_NULL(spark_system)
 	QDEL_NULL(minihud)
 
+	STOP_PROCESSING(SSobj, src)
+
 	mechas_list -= src //global mech list
 	. = ..()
+
+// The main process loop to replace the ancient global iterators.
+// It's a bit hardcoded but I don't see anyone else adding stuff to
+// mechas, and it's easy enough to modify.
+/obj/mecha/process()
+	var/static/max_ticks = 16
+
+	if (current_processes & MECHA_PROC_MOVEMENT)
+		process_inertial_movement()
+
+	if ((current_processes & MECHA_PROC_DAMAGE) && !(process_ticks % 2))
+		process_internal_damage()
+
+	if ((current_processes & MECHA_PROC_INT_TEMP) && !(process_ticks % 4))
+		process_preserve_temp()
+
+	if (!(process_ticks % 3))
+		process_tank_give_air()
+
+	// Max value is 16. So we let it run between [0, 16] with this.
+	process_ticks = (process_ticks + 1) % 17
+
+// Normalizing cabin air temperature to 20 degrees celsius.
+// Called every fourth process() tick (20 deciseconds).
+/obj/mecha/proc/process_preserve_temp()
+	if (cabin_air && cabin_air.volume > 0)
+		var/delta = cabin_air.temperature - T20C
+		cabin_air.temperature -= max(-10, min(10, round(delta/4,0.1)))
+
+// Handles internal air tank action.
+// Called every third process() tick (15 deciseconds).
+/obj/mecha/proc/process_tank_give_air()
+	if(internal_tank)
+		var/datum/gas_mixture/tank_air = internal_tank.return_air()
+
+		var/release_pressure = internal_tank_valve
+		var/cabin_pressure = cabin_air.return_pressure()
+		var/pressure_delta = min(release_pressure - cabin_pressure, (tank_air.return_pressure() - cabin_pressure)/2)
+		var/transfer_moles = 0
+
+		if(pressure_delta > 0) //cabin pressure lower than release pressure
+			if(tank_air.temperature > 0)
+				transfer_moles = pressure_delta*cabin_air.volume/(cabin_air.temperature * R_IDEAL_GAS_EQUATION)
+				var/datum/gas_mixture/removed = tank_air.remove(transfer_moles)
+				cabin_air.merge(removed)
+
+		else if(pressure_delta < 0) //cabin pressure higher than release pressure
+			var/datum/gas_mixture/t_air = get_turf_air()
+			pressure_delta = cabin_pressure - release_pressure
+
+			if(t_air)
+				pressure_delta = min(cabin_pressure - t_air.return_pressure(), pressure_delta)
+			if(pressure_delta > 0) //if location pressure is lower than cabin pressure
+				transfer_moles = pressure_delta*cabin_air.volume/(cabin_air.temperature * R_IDEAL_GAS_EQUATION)
+
+				var/datum/gas_mixture/removed = cabin_air.remove(transfer_moles)
+				if(t_air)
+					t_air.merge(removed)
+				else //just delete the cabin gas, we're in space or some shit
+					qdel(removed)
+
+// Inertial movement in space.
+// Called every process() tick (5 deciseconds).
+/obj/mecha/proc/process_inertial_movement()
+	if(float_direction)
+		if(!step(src, float_direction) || check_for_support())
+			stop_process(MECHA_PROC_MOVEMENT)
+	else
+		stop_process(MECHA_PROC_MOVEMENT)
+	return
+
+// Processes internal damage.
+// Called every other process() tick (10 deciseconds).
+/obj/mecha/proc/process_internal_damage()
+	if(!hasInternalDamage())
+		stop_process(MECHA_PROC_DAMAGE)
+		return
+
+	if(hasInternalDamage(MECHA_INT_FIRE))
+		if(!hasInternalDamage(MECHA_INT_TEMP_CONTROL) && prob(5))
+			clearInternalDamage(MECHA_INT_FIRE)
+		if(internal_tank)
+			if(internal_tank.return_pressure()>internal_tank.maximum_pressure && !(hasInternalDamage(MECHA_INT_TANK_BREACH)))
+				setInternalDamage(MECHA_INT_TANK_BREACH)
+			var/datum/gas_mixture/int_tank_air = internal_tank.return_air()
+			if(int_tank_air && int_tank_air.volume>0) //heat the air_contents
+				int_tank_air.temperature = min(6000+T0C, int_tank_air.temperature+rand(10,15))
+		if(cabin_air && cabin_air.volume>0)
+			cabin_air.temperature = min(6000+T0C, cabin_air.temperature+rand(10,15))
+			if(cabin_air.temperature>max_temperature/2)
+				take_damage(4/round(max_temperature/cabin_air.temperature,0.1),"fire")
+
+	if(hasInternalDamage(MECHA_INT_TEMP_CONTROL))
+		stop_process(MECHA_PROC_INT_TEMP)
+
+	if(hasInternalDamage(MECHA_INT_TANK_BREACH)) //remove some air from internal tank
+		if(internal_tank)
+			var/datum/gas_mixture/int_tank_air = internal_tank.return_air()
+			var/datum/gas_mixture/leaked_gas = int_tank_air.remove_ratio(0.10)
+			if(istype(loc, /turf/simulated))
+				loc.assume_air(leaked_gas)
+			else
+				qdel(leaked_gas)
+
+	if(hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+		if(get_charge())
+			spark_system.start()
+			cell.charge -= min(20,cell.charge)
+			cell.maxcharge -= min(20,cell.maxcharge)
+	return
 
 ////////////////////////
 ////// Helpers /////////
@@ -350,10 +465,10 @@
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new(src)
-	cell.name = "mecha power cell"
-	cell.charge = 15000
-	cell.maxcharge = 15000
+	cell = new /obj/item/weapon/cell/mech(src)
+
+/obj/mecha/get_cell()
+	return cell
 
 /obj/mecha/proc/add_cabin()
 	cabin_air = new
@@ -368,12 +483,6 @@
 	radio.icon = icon
 	radio.icon_state = icon_state
 	radio.subspace_transmission = 1
-
-/obj/mecha/proc/add_iterators()
-	pr_int_temp_processor = new /datum/global_iterator/mecha_preserve_temp(list(src))
-	pr_inertial_movement = new /datum/global_iterator/mecha_intertial_movement(null,0)
-	pr_give_air = new /datum/global_iterator/mecha_tank_give_air(list(src))
-	pr_internal_damage = new /datum/global_iterator/mecha_internal_damage(list(src),0)
 
 /obj/mecha/proc/do_after(delay as num)
 	sleep(delay)
@@ -689,7 +798,7 @@
 /obj/mecha/proc/dyndomove(direction)
 	if(!can_move)
 		return 0
-	if(src.pr_inertial_movement.active())
+	if(current_processes & MECHA_PROC_MOVEMENT)
 		return 0
 	if(!has_charge(step_energy_drain))
 		return 0
@@ -708,16 +817,7 @@
 			last_message = world.time
 		return 0
 
-
-/*
-//A first draft of a check to stop mechs from moving fully. TBD when all thrusters modules are unified.
-	if(!thrusters && !src.pr_inertial_movement.active() && isspace(src.loc))//No thrsters, not drifting, in space
-		src.occupant_message("Error 543")//debug
-		return 0
-*/
-
-
-	if(!thrusters && src.pr_inertial_movement.active()) //I think this mean 'if you try to move in space without thruster, u no move'
+	if(!thrusters && (current_processes & MECHA_PROC_MOVEMENT)) //I think this mean 'if you try to move in space without thruster, u no move'
 		return 0
 
 	if(overload)//Check if you have leg overload
@@ -733,7 +833,7 @@
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
 	//Up/down zmove
-	else if(direction & UP || direction & DOWN)
+	else if(direction == UP || direction == DOWN)
 		if(!can_ztravel())
 			occupant_message("<span class='warning'>Your vehicle lacks the capacity to move in that direction!</span>")
 			return FALSE
@@ -746,7 +846,7 @@
 				occupant_message("<span class='warning'>You can't move that direction from here!</span>")
 				result = FALSE
 				break
-			var/turf/dest = direction & UP ? GetAbove(T) : GetBelow(T)
+			var/turf/dest = (direction == UP) ? GetAbove(src) : GetBelow(src)
 			if(!dest)
 				occupant_message("<span class='notice'>There is nothing of interest in this direction.</span>")
 				result = FALSE
@@ -777,7 +877,8 @@
 		use_power(step_energy_drain)
 		if(istype(src.loc, /turf/space))
 			if(!src.check_for_support())
-				src.pr_inertial_movement.start(list(src,direction))
+				float_direction = direction
+				start_process(MECHA_PROC_MOVEMENT)
 				src.log_message("<span class='warning'>Movement control lost. Inertial movement started.</span>")
 		if(do_after(get_step_delay()))
 			can_move = 1
@@ -821,27 +922,19 @@
 	if(istype(obstacle, /mob))//First we check if it is a mob. Mechs mostly shouln't go through them, even while phasing.
 		var/mob/M = obstacle
 		M.Move(get_step(obstacle,src.dir))
+	else if(phasing && get_charge()>=phasing_energy_drain)//Phazon check. This could use an improvement elsewhere.
+		src.use_power(phasing_energy_drain)
+		phase()
+		. = ..(obstacle)
+		return
 	else if(istype(obstacle, /obj))//Then we check for regular obstacles.
 		var/obj/O = obstacle
-
-		if(phasing && get_charge()>=phasing_energy_drain)//Phazon check. This could use an improvement elsewhere.
-			spawn()
-				if(can_phase)
-					can_phase = FALSE
-					flick("[initial_icon]-phase", src)
-					src.loc = get_step(src,src.dir)
-					src.use_power(phasing_energy_drain)
-					sleep(get_step_delay() * 3)
-					can_phase = TRUE
-					occupant_message("Phazed.")
-			. = ..(obstacle)
-			return
 		if(istype(O, /obj/effect/portal))	//derpfix
-			src.anchored = 0				//I have no idea what this really fix.
+			src.anchored = 0				// Portals can only move unanchored objects.
 			O.Crossed(src)
 			spawn(0)//countering portal teleport spawn(0), hurr
 				src.anchored = 1
-		else if(O.anchored)
+		if(O.anchored)
 			obstacle.Bumped(src)
 		else
 			step(obstacle,src.dir)
@@ -849,6 +942,18 @@
 	else//No idea when this triggers, so i won't touch it.
 		. = ..(obstacle)
 	return
+
+/obj/mecha/proc/phase()	// Force the mecha to move forward by phasing.
+	set waitfor = FALSE
+	if(can_phase)
+		can_phase = FALSE
+		flick("[initial_icon]-phase", src)
+		forceMove(get_step(src,src.dir))
+		sleep(get_step_delay() * 3)
+		can_phase = TRUE
+		occupant_message("Phazed.")
+		return TRUE	// In the event this is sequenced
+	return FALSE
 
 ///////////////////////////////////
 ////////  Internal damage  ////////
@@ -879,10 +984,8 @@
 
 
 /obj/mecha/proc/setInternalDamage(int_dam_flag)
-	if(!pr_internal_damage) return
-
 	internal_damage |= int_dam_flag
-	pr_internal_damage.start()
+	start_process(MECHA_PROC_DAMAGE)
 	log_append_to_last("Internal damage of type [int_dam_flag].",1)
 	occupant << sound('sound/mecha/internaldmgalarm.ogg',volume=50) //Better sounding.
 	return
@@ -892,7 +995,7 @@
 	switch(int_dam_flag)
 		if(MECHA_INT_TEMP_CONTROL)
 			occupant_message("<font color='blue'><b>Life support system reactivated.</b></font>")
-			pr_int_temp_processor.start()
+			start_process(MECHA_PROC_INT_TEMP)
 		if(MECHA_INT_FIRE)
 			occupant_message("<font color='blue'><b>Internal fire extinquished.</b></font>")
 		if(MECHA_INT_TANK_BREACH)
@@ -1389,7 +1492,7 @@
 				else
 					to_chat(user, "<span class='notice'>\The [src] appears to be missing \the [slot].</span>")
 
-			var/remove = input(user, "Which component do you want to pry out?", "Remove Component") as null|anything in removable_components
+			var/remove = tgui_input_list(user, "Which component do you want to pry out?", "Remove Component", removable_components)
 			if(!remove)
 				return
 
@@ -1447,16 +1550,28 @@
 
 	else if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
 		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/mecha_parts/component/hull/HC = internal_components[MECH_HULL]
+		var/obj/item/mecha_parts/component/armor/AC = internal_components[MECH_ARMOR]
 		if (WT.remove_fuel(0,user))
 			if (hasInternalDamage(MECHA_INT_TANK_BREACH))
 				clearInternalDamage(MECHA_INT_TANK_BREACH)
 				to_chat(user, "<span class='notice'>You repair the damaged gas tank.</span>")
 		else
 			return
-		if(src.health<initial(src.health))
-			to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
-			src.health += min(10, initial(src.health)-src.health)
-			update_damage_alerts()
+		if((src.health<initial(src.health)) || (HC.integrity<HC.max_integrity) || (AC.integrity<AC.max_integrity))
+			if(src.health<initial(src.health))
+				to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
+				src.health += min(10, initial(src.health)-src.health)
+				update_damage_alerts()
+			else	if(HC.integrity<HC.max_integrity)
+				to_chat(user, "<span class='notice'>You repair some damage to [HC.name].</span>")
+				HC.integrity += min(10, HC.max_integrity-HC.integrity)
+				update_damage_alerts()
+			else	if(AC.integrity<AC.max_integrity)
+				to_chat(user, "<span class='notice'>You repair some damage to [AC.name].</span>")
+				AC.integrity += min(10, AC.max_integrity-AC.integrity)
+				update_damage_alerts()
+
 		else
 			to_chat(user, "The [src.name] is at full integrity")
 		return
@@ -1554,7 +1669,7 @@
 	return 0
 
 /obj/mecha/proc/mmi_moved_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
-	if(mmi_as_oc && user in range(1))
+	if(mmi_as_oc && (user in range(1)))
 		if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
 			to_chat(user, "Consciousness matrix not detected.")
 			return 0
@@ -1576,11 +1691,12 @@
 		src.verbs += /obj/mecha/verb/eject
 		src.Entered(mmi_as_oc)
 		src.Move(src.loc)
-		src.icon_state = src.reset_icon()
+		update_icon()
 		set_dir(dir_in)
 		src.log_message("[mmi_as_oc] moved in as pilot.")
 		if(!hasInternalDamage())
 			src.occupant << sound('sound/mecha/nominal.ogg',volume=50)
+		update_icon()
 		return 1
 	else
 		return 0
@@ -1597,8 +1713,7 @@
 	return
 
 /obj/mecha/remove_air(amount)
-	var/obj/item/mecha_parts/component/gas/GC = internal_components[MECH_GAS]
-	if(use_internal_tank && (GC && prob(GC.get_efficiency() * 100)))
+	if(use_internal_tank)
 		return cabin_air.remove(amount)
 	else
 		var/turf/T = get_turf(src)
@@ -1607,7 +1722,8 @@
 	return
 
 /obj/mecha/return_air()
-	if(use_internal_tank)
+	var/obj/item/mecha_parts/component/gas/GC = internal_components[MECH_GAS]
+	if(use_internal_tank && (GC && prob(GC.get_efficiency() * 100)))
 		return cabin_air
 	return get_turf_air()
 
@@ -1857,7 +1973,7 @@
 		if(ishuman(occupant))
 			GrantActions(occupant, 1)
 	else
-		visible_message("<span class='notice'>\The [usr] starts to climb into [src.name]</span>")
+		visible_message("<b>\The [usr]</b> starts to climb into [src.name]")
 		if(enter_after(40,usr))
 			if(!src.occupant)
 				moved_inside(usr)
@@ -1870,7 +1986,7 @@
 	return
 
 /obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
-	if(H && H.client && H in range(1))
+	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
 		H.client.perspective = EYE_PERSPECTIVE
@@ -1883,7 +1999,7 @@
 		src.forceMove(src.loc)
 		src.verbs += /obj/mecha/verb/eject
 		src.log_append_to_last("[H] moved in as pilot.")
-		src.icon_state = src.reset_icon()
+		update_icon()
 		//VOREStation Edit Add
 		if(occupant.hud_used)
 			minihud = new (occupant.hud_used, src)
@@ -2003,7 +2119,7 @@
 		occupant.clear_alert("mech damage")
 		occupant.in_enclosed_vehicle = 0
 		occupant = null
-		icon_state = src.reset_icon()+"-open"
+		update_icon()
 		set_dir(dir_in)
 		verbs -= /obj/mecha/verb/eject
 
@@ -2367,8 +2483,8 @@
 		var/obj/item/mecha_parts/mecha_equipment/equip = top_filter.getObj("select_equip")
 		if(equip)
 			src.selected = equip
-			src.occupant_message("You switch to [equip]")
-			src.visible_message("[src] raises [equip]")
+			src.occupant_message("You switch to [equip].")
+			src.visible_message("[src] raises [equip].")
 			send_byjax(src.occupant,"exosuit.browser","eq_list",src.get_equipment_list())
 		return
 	if(href_list["eject"])
@@ -2439,7 +2555,7 @@
 		if(newname)
 			name = newname
 		else
-			alert(occupant, "nope.avi")
+			tgui_alert_async(occupant, "nope.avi")
 		return
 	if (href_list["toggle_id_upload"])
 		if(usr != src.occupant)	return
@@ -2489,7 +2605,7 @@
 			to_chat(user, "<span class='warning'>There are no passengers to remove.</span>")
 			return
 
-		var/pname = input(user, "Choose a passenger to forcibly remove.", "Forcibly Remove Passenger") as null|anything in passengers
+		var/pname = tgui_input_list(user, "Choose a passenger to forcibly remove.", "Forcibly Remove Passenger", passengers)
 
 		if (!pname)
 			return
@@ -2497,11 +2613,11 @@
 		var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P = passengers[pname]
 		var/mob/occupant = P.occupant
 
-		user.visible_message("<span class='notice'>\The [user] begins opening the hatch on \the [P]...</span>", "<span class='notice'>You begin opening the hatch on \the [P]...</span>")
-		if (!do_after(user, 40, needhand=0))
+		user.visible_message("<b>\The [user]</b> begins opening the hatch on \the [P]...", "<span class='notice'>You begin opening the hatch on \the [P]...</span>")
+		if (!do_after(user, 40))
 			return
 
-		user.visible_message("<span class='notice'>\The [user] opens the hatch on \the [P] and removes [occupant]!</span>", "<span class='notice'>You open the hatch on \the [P] and remove [occupant]!</span>")
+		user.visible_message("<b>\The [user]</b> opens the hatch on \the [P] and removes [occupant]!", "<span class='notice'>You open the hatch on \the [P] and remove [occupant]!</span>")
 		P.go_out()
 		P.log_message("[occupant] was removed.")
 		return
@@ -2548,7 +2664,7 @@
 				src.log_message("Recalibration of coordination system failed with 1 error.",1)
 	if(href_list["drop_from_cargo"])
 		var/obj/O = locate(href_list["drop_from_cargo"])
-		if(O && O in src.cargo)
+		if(O && (O in src.cargo))
 			src.occupant_message("<span class='notice'>You unload [O].</span>")
 			O.forceMove(get_turf(src))
 			src.cargo -= O
@@ -2581,7 +2697,7 @@
 		O.canmove = 1
 		O.name = AI.name
 		O.real_name = AI.real_name
-		O.anchored = 1
+		O.anchored = TRUE
 		O.aiRestorePowerRoutine = 0
 		O.control_disabled = 1 // Can't control things remotely if you're stuck in a card!
 		O.laws = AI.laws
@@ -2616,7 +2732,6 @@
 				AI.icon_state = "ai-crash"
 			src.occupant = cur_occupant
 */
-	return
 
 ///////////////////////
 ///// Power stuff /////
@@ -2663,13 +2778,6 @@
 		return 1
 	return 0
 
-/obj/mecha/proc/reset_icon()
-	if (initial_icon)
-		icon_state = initial_icon
-	else
-		icon_state = initial(icon_state)
-	return icon_state
-
 //This is for mobs mostly.
 /obj/mecha/attack_generic(var/mob/user, var/damage, var/attack_message)
 
@@ -2696,7 +2804,7 @@
 	if(prob(temp_deflect_chance))//Deflected
 		src.log_append_to_last("Armor saved.")
 		src.occupant_message("<span class='notice'>\The [user]'s attack is stopped by the armor.</span>")
-		visible_message("<span class='notice'>\The [user] rebounds off [src.name]'s armor!</span>")
+		visible_message("<b>\The [user]</b> rebounds off [src.name]'s armor!")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
 		playsound(src, 'sound/weapons/slash.ogg', 50, 1, -1)
 
@@ -2717,103 +2825,17 @@
 	return 1
 
 
-//////////////////////////////////////////
-////////  Mecha global iterators  ////////
-//////////////////////////////////////////
+/////////////////////////////////////////
+//////// Mecha process() helpers ////////
+/////////////////////////////////////////
+/obj/mecha/proc/stop_process(process)
+	current_processes &= ~process
 
-
-/datum/global_iterator/mecha_preserve_temp  //normalizing cabin air temperature to 20 degrees celsium
-	delay = 20
-
-	process(var/obj/mecha/mecha)
-		if(mecha.cabin_air && mecha.cabin_air.volume > 0)
-			var/delta = mecha.cabin_air.temperature - T20C
-			mecha.cabin_air.temperature -= max(-10, min(10, round(delta/4,0.1)))
-		return
-
-/datum/global_iterator/mecha_tank_give_air
-	delay = 15
-
-/datum/global_iterator/mecha_tank_give_air/process(var/obj/mecha/mecha)
-	if(mecha.internal_tank)
-		var/datum/gas_mixture/tank_air = mecha.internal_tank.return_air()
-		var/datum/gas_mixture/cabin_air = mecha.cabin_air
-
-		var/release_pressure = mecha.internal_tank_valve
-		var/cabin_pressure = cabin_air.return_pressure()
-		var/pressure_delta = min(release_pressure - cabin_pressure, (tank_air.return_pressure() - cabin_pressure)/2)
-		var/transfer_moles = 0
-		if(pressure_delta > 0) //cabin pressure lower than release pressure
-			if(tank_air.temperature > 0)
-				transfer_moles = pressure_delta*cabin_air.volume/(cabin_air.temperature * R_IDEAL_GAS_EQUATION)
-				var/datum/gas_mixture/removed = tank_air.remove(transfer_moles)
-				cabin_air.merge(removed)
-		else if(pressure_delta < 0) //cabin pressure higher than release pressure
-			var/datum/gas_mixture/t_air = mecha.get_turf_air()
-			pressure_delta = cabin_pressure - release_pressure
-			if(t_air)
-				pressure_delta = min(cabin_pressure - t_air.return_pressure(), pressure_delta)
-			if(pressure_delta > 0) //if location pressure is lower than cabin pressure
-				transfer_moles = pressure_delta*cabin_air.volume/(cabin_air.temperature * R_IDEAL_GAS_EQUATION)
-				var/datum/gas_mixture/removed = cabin_air.remove(transfer_moles)
-				if(t_air)
-					t_air.merge(removed)
-				else //just delete the cabin gas, we're in space or some shit
-					qdel(removed)
-	else
-		return stop()
-	return
-
-/datum/global_iterator/mecha_intertial_movement //inertial movement in space
-	delay = 7
-
-/datum/global_iterator/mecha_intertial_movement/process(var/obj/mecha/mecha as obj,direction)
-	if(direction)
-		if(!step(mecha, direction)||mecha.check_for_support())
-			src.stop()
-		mecha.handle_equipment_movement()
-	else
-		src.stop()
-	return
-
-/datum/global_iterator/mecha_internal_damage // processing internal damage
-
-/datum/global_iterator/mecha_internal_damage/process(var/obj/mecha/mecha)
-	if(!mecha.hasInternalDamage())
-		return stop()
-	if(mecha.hasInternalDamage(MECHA_INT_FIRE))
-		if(!mecha.hasInternalDamage(MECHA_INT_TEMP_CONTROL) && prob(5))
-			mecha.clearInternalDamage(MECHA_INT_FIRE)
-		if(mecha.internal_tank)
-			if(mecha.internal_tank.return_pressure()>mecha.internal_tank.maximum_pressure && !(mecha.hasInternalDamage(MECHA_INT_TANK_BREACH)))
-				mecha.setInternalDamage(MECHA_INT_TANK_BREACH)
-			var/datum/gas_mixture/int_tank_air = mecha.internal_tank.return_air()
-			if(int_tank_air && int_tank_air.volume>0) //heat the air_contents
-				int_tank_air.temperature = min(6000+T0C, int_tank_air.temperature+rand(10,15))
-		if(mecha.cabin_air && mecha.cabin_air.volume>0)
-			mecha.cabin_air.temperature = min(6000+T0C, mecha.cabin_air.temperature+rand(10,15))
-			if(mecha.cabin_air.temperature>mecha.max_temperature/2)
-				mecha.take_damage(4/round(mecha.max_temperature/mecha.cabin_air.temperature,0.1),"fire")	//The take_damage() proc handles armor values
-	if(mecha.hasInternalDamage(MECHA_INT_TEMP_CONTROL)) //stop the mecha_preserve_temp loop datum
-		mecha.pr_int_temp_processor.stop()
-	if(mecha.hasInternalDamage(MECHA_INT_TANK_BREACH)) //remove some air from internal tank
-		if(mecha.internal_tank)
-			var/datum/gas_mixture/int_tank_air = mecha.internal_tank.return_air()
-			var/datum/gas_mixture/leaked_gas = int_tank_air.remove_ratio(0.10)
-			if(mecha.loc && hascall(mecha.loc,"assume_air"))
-				mecha.loc.assume_air(leaked_gas)
-			else
-				qdel(leaked_gas)
-	if(mecha.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
-		if(mecha.get_charge())
-			mecha.spark_system.start()
-			mecha.cell.charge -= min(20,mecha.cell.charge)
-			mecha.cell.maxcharge -= min(20,mecha.cell.maxcharge)
-	return
+/obj/mecha/proc/start_process(process)
+	current_processes |= process
 
 
 /////////////
-
 /obj/mecha/cloak()
 	. = ..()
 	if(occupant && occupant.client && cloaked_selfimage)

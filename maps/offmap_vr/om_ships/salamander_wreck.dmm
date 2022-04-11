@@ -40,6 +40,12 @@
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck_q2)
+"bq" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/salamander_wreck)
 "br" = (
 /obj/structure/window/reinforced/tinted,
 /obj/structure/toilet{
@@ -207,7 +213,7 @@
 	nitrogen = 0;
 	oxygen = 0
 	},
-/area/shuttle/salamander_wreck_q2)
+/area/shuttle/salamander_wreck_q1)
 "dm" = (
 /obj/machinery/light{
 	dir = 1
@@ -264,6 +270,9 @@
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck_engineering)
+"el" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_wreck_q1)
 "ey" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
@@ -286,7 +295,7 @@
 	nitrogen = 0;
 	oxygen = 0
 	},
-/area/shuttle/salamander_wreck_q2)
+/area/shuttle/salamander_wreck_q1)
 "eJ" = (
 /obj/effect/map_helper/airlock/sensor/int_sensor,
 /obj/machinery/airlock_sensor{
@@ -421,7 +430,7 @@
 	nitrogen = 0;
 	oxygen = 0
 	},
-/area/shuttle/salamander_wreck_q2)
+/area/shuttle/salamander_wreck_q1)
 "gv" = (
 /obj/structure/cable{
 	d2 = 2;
@@ -1307,6 +1316,18 @@
 	oxygen = 0
 	},
 /area/shuttle/salamander_wreck_galley)
+"vt" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/salamander_wreck_q1)
 "vI" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1355,6 +1376,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/salamander_wreck)
+"zx" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/salamander_wreck_head)
 "zO" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -1386,6 +1413,18 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck_engineering)
+"AK" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/techfloor{
+	nitrogen = 0;
+	oxygen = 0
+	},
+/area/shuttle/salamander_wreck_q1)
 "AN" = (
 /obj/structure/handrail{
 	dir = 1
@@ -1410,7 +1449,7 @@
 	nitrogen = 0;
 	oxygen = 0
 	},
-/area/shuttle/salamander_wreck_q2)
+/area/shuttle/salamander_wreck_q1)
 "Bf" = (
 /obj/machinery/light{
 	dir = 1
@@ -1473,6 +1512,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/salamander_wreck_galley)
+"EE" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/salamander_wreck_engineering)
 "Fu" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
@@ -1504,6 +1549,23 @@
 /obj/structure/window/reinforced,
 /turf/simulated/floor/plating,
 /area/shuttle/salamander_wreck_cockpit)
+"Gr" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	density = 0;
+	icon_state = "door_open"
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/shuttle/salamander_wreck_q1)
 "HG" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -1609,6 +1671,10 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/salamander_wreck)
+"KB" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/salamander_wreck_engineering)
 "KX" = (
 /obj/structure/handrail,
 /obj/random/empty_or_lootable_crate,
@@ -1704,10 +1770,22 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/salamander_wreck)
+"Pr" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "salamander_wreck_pd"
+	},
+/turf/simulated/floor/airless,
+/area/shuttle/salamander_wreck_q1)
 "Ps" = (
 /obj/structure/girder,
 /turf/simulated/floor/airless,
 /area/shuttle/salamander_wreck)
+"PF" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/salamander_wreck_galley)
 "PN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
@@ -1871,6 +1949,16 @@
 	},
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/shuttle/salamander_wreck)
+"UB" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_wreck_q1)
 "UT" = (
 /obj/machinery/door/airlock/glass_external/public{
 	density = 0;
@@ -1982,6 +2070,10 @@
 	oxygen = 0
 	},
 /area/shuttle/salamander_wreck)
+"Xj" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/salamander_wreck)
 "Xn" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -2082,7 +2174,7 @@ WP
 WP
 WP
 WP
-WP
+KB
 Wj
 nP
 fn
@@ -2091,7 +2183,7 @@ Wj
 nP
 fn
 Wj
-WP
+EE
 WP
 WP
 WP
@@ -2206,7 +2298,7 @@ WP
 "}
 (9,1,1) = {"
 WP
-WP
+Xj
 VT
 VT
 Wj
@@ -2219,7 +2311,7 @@ lV
 Wj
 VT
 VT
-WP
+bq
 WP
 "}
 (10,1,1) = {"
@@ -2440,7 +2532,7 @@ WP
 "}
 (22,1,1) = {"
 WP
-WP
+zx
 Tg
 br
 cq
@@ -2453,7 +2545,7 @@ mR
 bI
 qu
 mR
-WP
+PF
 WP
 "}
 (23,1,1) = {"
@@ -2513,11 +2605,11 @@ WP
 (26,1,1) = {"
 WP
 WP
-bk
-Vz
+Pr
+el
 cY
 AN
-Vz
+el
 hn
 yv
 Vz
@@ -2532,10 +2624,10 @@ WP
 WP
 WP
 WP
-ci
+UB
 eG
 gl
-ld
+Gr
 hp
 jT
 ld
@@ -2550,10 +2642,10 @@ WP
 WP
 WP
 WP
-Vz
-oF
-RO
-Vz
+el
+AK
+vt
+el
 fh
 xL
 Vz
@@ -2568,10 +2660,10 @@ WP
 WP
 WP
 WP
-Vz
-Vz
-Vz
-Vz
+el
+el
+el
+el
 DB
 jV
 Vz

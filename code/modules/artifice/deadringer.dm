@@ -104,60 +104,60 @@
 		temp = corpse.get_equipped_item(slot_w_uniform)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_w_uniform)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_wear_suit))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/suit/chameleon/changeling(corpse), slot_wear_suit)
 		temp = corpse.get_equipped_item(slot_wear_suit)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_wear_suit)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_shoes))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/shoes/chameleon/changeling(corpse), slot_shoes)
 		temp = corpse.get_equipped_item(slot_shoes)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_shoes)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_gloves))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/gloves/chameleon/changeling(corpse), slot_gloves)
 		temp = corpse.get_equipped_item(slot_gloves)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_gloves)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_l_ear))
 		temp = H.get_equipped_item(slot_l_ear)
 		corpse.equip_to_slot_or_del(new temp.type(corpse), slot_l_ear)
 		temp = corpse.get_equipped_item(slot_l_ear)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_glasses))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/glasses/chameleon/changeling(corpse), slot_glasses)
 		temp = corpse.get_equipped_item(slot_glasses)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_glasses)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_wear_mask))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/mask/chameleon/changeling(corpse), slot_wear_mask)
 		temp = corpse.get_equipped_item(slot_wear_mask)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_wear_mask)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_head))
 		corpse.equip_to_slot_or_del(new /obj/item/clothing/head/chameleon/changeling(corpse), slot_head)
 		temp = corpse.get_equipped_item(slot_head)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_head)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_belt))
 		corpse.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/chameleon/changeling(corpse), slot_belt)
 		temp = corpse.get_equipped_item(slot_belt)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_belt)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_back))
 		corpse.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/chameleon/changeling(corpse), slot_back)
 		temp = corpse.get_equipped_item(slot_back)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_back)
 		temp.disguise(c_type.type)
-		temp.canremove = 0
+		temp.canremove = FALSE
 	corpse.identifying_gender = H.identifying_gender
 	corpse.flavor_texts = H.flavor_texts.Copy()
 	corpse.real_name = H.real_name
@@ -172,7 +172,4 @@
 	corpse.adjustBruteLoss(H.getBruteLoss())
 	corpse.UpdateAppearance()
 	corpse.regenerate_icons()
-	for(var/obj/item/organ/internal/I in corpse.internal_organs)
-		var/obj/item/organ/internal/G = I
-		G.Destroy()
-	return
+	QDEL_NULL_LIST(corpse.internal_organs)

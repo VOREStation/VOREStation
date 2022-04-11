@@ -15,8 +15,8 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//icon = 'icons/obj/stationobjs.dmi' //VOREStation Removal - use parent icon
 	icon_state = "broadcaster"
 	desc = "A dish-shaped machine used to broadcast processed subspace signals."
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 25
 	machinetype = 5
@@ -135,10 +135,10 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "allinone"
 	desc = "A compact machine used for portable subspace telecommuniations processing."
-	density = 1
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 20
-	anchored = 1
+	anchored = TRUE
 	machinetype = 6
 	produces_heat = 0
 	var/intercept = 0 // if nonzero, broadcasts all messages to syndicate channel
@@ -511,27 +511,37 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 		if(length(heard_masked))
 			for (var/mob/R in heard_masked)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, M, 0, name)
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
+					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Process all the mobs that heard the voice normally (understood) --- */
 		if(length(heard_normal))
 			for (var/mob/R in heard_normal)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, M, 0, realname)
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
+					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Process all the mobs that heard the voice normally (did not understand) --- */
 		if(length(heard_voice))
 			for (var/mob/R in heard_voice)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, M,0, vname)
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
+					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Process all the mobs that heard a garbled voice (did not understand) --- */
 			// Displays garbled message (ie "f*c* **u, **i*er!")
 		if(length(heard_garbled))
 			for (var/mob/R in heard_garbled)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, M, 1, vname)
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
+					R << 'sound/effects/radio_common_quieter.ogg'
 
 		/* --- Complete gibberish. Usually happens when there's a compressed message --- */
 		if(length(heard_gibberish))
 			for (var/mob/R in heard_gibberish)
 				R.hear_radio(message_pieces, verbage, part_a, part_b, part_c, M, 1)
+				if(R.is_preference_enabled(/datum/client_preference/radio_sounds))
+					R << 'sound/effects/radio_common_quieter.ogg'
 
 	return 1
 

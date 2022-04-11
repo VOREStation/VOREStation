@@ -11,7 +11,7 @@
 	This type comes with a directional shield projector, a supressive fire energy weapon, \
 	a stunbaton, handcuffs, an agent ID, energy sword, pinpointer, and a jetpack."
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
-	antag_roles = list("mercenary")
+	antag_roles = list("mercenary", "ert") //VOREStation Edit
 	path = /obj/item/weapon/antag_spawner/syndicate_drone/protector
 
 /datum/uplink_item/item/backup/syndicate_drone_combat_medic
@@ -21,7 +21,7 @@
 	a powerful hypospray that can create many potent chemicals, an agent ID, energy \
 	sword, pinpointer, and a jetpack."
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
-	antag_roles = list("mercenary")
+	antag_roles = list("mercenary", "ert") //VOREStation Edit
 	path = /obj/item/weapon/antag_spawner/syndicate_drone/combat_medic
 
 /datum/uplink_item/item/backup/syndicate_drone_mechanist
@@ -31,5 +31,5 @@
 	a cryptographic sequencer, an AI detector, the ability to analyze and repair full-body prosthetics, \
 	a set of construction materials, an ionic rapier, an agent ID, energy sword, pinpointer, and a jetpack."
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 1.5
-	antag_roles = list("mercenary")
+	antag_roles = list("mercenary", "ert") //VOREStation Edit
 	path = /obj/item/weapon/antag_spawner/syndicate_drone/mechanist

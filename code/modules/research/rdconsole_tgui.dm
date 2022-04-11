@@ -58,7 +58,7 @@
 				"loaded_item" = linked_destroy.loaded_item,
 				"origin_tech" = tgui_GetOriginTechForItem(linked_destroy.loaded_item),
 			)
-		
+
 		data["info"]["linked_lathe"] = list("present" = FALSE)
 		if(linked_lathe)
 			data["info"]["linked_lathe"] = list(
@@ -165,7 +165,7 @@
 				data["info"]["t_disk"]["name"] = t_disk.stored.name
 				data["info"]["t_disk"]["level"] = t_disk.stored.level
 				data["info"]["t_disk"]["desc"] = t_disk.stored.desc
-		
+
 		data["info"]["d_disk"] = list("present" = FALSE)
 		if(d_disk)
 			data["info"]["d_disk"] = list(
@@ -410,7 +410,7 @@
 				to_chat(usr, "<span class='notice'>The destructive analyzer is busy at the moment.</span>")
 				return
 
-			if(alert("Proceeding will destroy loaded item. Continue?", "Destructive analyzer confirmation", "Yes", "No") == "No" || !linked_destroy)
+			if(tgui_alert(usr, "Proceeding will destroy loaded item. Continue?", "Destructive analyzer confirmation", list("Yes", "No")) == "No" || !linked_destroy)
 				return
 			linked_destroy.busy = 1
 			busy_msg = "Processing and Updating Database..."
@@ -422,6 +422,14 @@
 					if(!linked_destroy.loaded_item)
 						to_chat(usr, "<span class='notice'>The destructive analyzer appears to be empty.</span>")
 						return
+
+					if(istype(linked_destroy.loaded_item,/obj/item/stack))//Only deconsturcts one sheet at a time instead of the entire stack
+						var/obj/item/stack/ST = linked_destroy.loaded_item
+						if(ST.get_amount() < 1)
+							playsound(linked_destroy, 'sound/machines/destructive_analyzer.ogg', 50, 1)
+							qdel(ST)
+							linked_destroy.icon_state = "d_analyzer"
+							return
 
 					for(var/T in linked_destroy.loaded_item.origin_tech)
 						files.UpdateTech(T, linked_destroy.loaded_item.origin_tech[T])
@@ -491,7 +499,7 @@
 						if(!istype(S, /obj/machinery/r_n_d/server/centcom) && server_processed)
 							S.produce_heat()
 					busy_msg = null
-					files.RefreshResearch()				
+					files.RefreshResearch()
 					update_tgui_static_data(usr, ui)
 			return TRUE
 
@@ -583,7 +591,7 @@
 
 		if("find_device") //The R&D console looks for devices nearby to link up with.
 			busy_msg = "Updating Database..."
-			
+
 			spawn(10)
 				busy_msg = null
 				SyncRDevices()
@@ -605,7 +613,7 @@
 
 		if("reset") //Reset the R&D console's database.
 			griefProtection()
-			var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
+			var/choice = tgui_alert(usr, "R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				busy_msg = "Updating Database..."
 				qdel(files)

@@ -12,7 +12,7 @@
 	appearance_flags = TILE_BOUND|PIXEL_SCALE|NO_CLIENT_COLOR
 	layer = LAYER_HUD_BASE
 	plane = PLANE_PLAYER_HUD
-	unacidable = 1
+	unacidable = TRUE
 	var/obj/master = null	//A reference to the object in the slot. Grabs or items, generally.
 	var/datum/hud/hud = null // A reference to the owner HUD, if any.
 
@@ -246,6 +246,7 @@
 	add_overlay(selecting_appearance)
 
 /obj/screen/Click(location, control, params)
+	..() // why the FUCK was this not called before
 	if(!usr)	return 1
 	switch(name)
 		if("toggle")
@@ -493,13 +494,13 @@
 		if("Show Camera List")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
-				var/camera = input(AI) in AI.get_camera_list()
+				var/camera = tgui_input_list(AI, "Pick Camera:", "Camera Choice", AI.get_camera_list())
 				AI.ai_camera_list(camera)
 
 		if("Track With Camera")
 			if(isAI(usr))
 				var/mob/living/silicon/ai/AI = usr
-				var/target_name = input(AI) in AI.trackable_mobs()
+				var/target_name = tgui_input_list(AI, "Pick Mob:", "Mob Choice", AI.trackable_mobs())
 				AI.ai_camera_track(target_name)
 
 		if("Toggle Camera Light")
@@ -601,11 +602,11 @@
 	if(!handcuff_overlay)
 		var/state = (hud.l_hand_hud_object == src) ? "l_hand_hud_handcuffs" : "r_hand_hud_handcuffs"
 		handcuff_overlay = image("icon"='icons/mob/screen_gen.dmi', "icon_state"=state)
-	overlays.Cut()
+	cut_overlays()
 	if(hud.mymob && iscarbon(hud.mymob))
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
-			overlays |= handcuff_overlay
+			add_overlay(handcuff_overlay)
 			
 // PIP stuff
 /obj/screen/component_button
@@ -629,6 +630,13 @@
 	return ..()
 
 // Background 'floor'
+/obj/screen/setup_preview/pm_helper
+	icon = null
+	icon_state = null
+	appearance_flags = PLANE_MASTER
+	plane = PLANE_EMISSIVE
+	alpha = 0
+
 /obj/screen/setup_preview/bg
 	mouse_over_pointer = MOUSE_HAND_POINTER
 
@@ -675,3 +683,295 @@
 		holder.screen -= src
 		holder = null
 	return ..()
+
+
+/**
+ * This object holds all the on-screen elements of the mapping unit.
+ * It has a decorative frame and onscreen buttons. The map itself is drawn
+ * using a white mask and multiplying the mask against it to crop it to the
+ * size of the screen. This is not ideal, as filter() is faster, and has
+ * alpha masks, but the alpha masks it has can't be animated, so the 'ping'
+ * mode of this device isn't possible using that technique.
+ * 
+ * The markers use that technique, though, so at least there's that.
+ */
+/obj/screen/movable/mapper_holder
+	name = "gps unit"
+	icon = null
+	icon_state = ""
+	screen_loc = "CENTER,CENTER"
+	alpha = 255
+	appearance_flags = KEEP_TOGETHER
+	mouse_opacity = 1
+	plane = PLANE_HOLOMAP
+
+	var/running = FALSE
+
+	var/obj/screen/mapper/mask_full/mask_full
+	var/obj/screen/mapper/mask_ping/mask_ping
+	var/obj/screen/mapper/bg/bg
+	
+	var/obj/screen/mapper/frame/frame
+	var/obj/screen/mapper/powbutton/powbutton
+	var/obj/screen/mapper/mapbutton/mapbutton
+
+	var/obj/item/device/mapping_unit/owner
+	var/obj/screen/mapper/extras_holder/extras_holder
+
+/obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
+	owner = newowner
+	
+	mask_full = new(src) // Full white square mask
+	mask_ping = new(src) // Animated 'pinging' mask
+	bg = new(src) // Background color, holds map in vis_contents, uses mult against masks
+
+	frame = new(src) // Decorative frame
+	powbutton = new(src) // Clickable button
+	mapbutton = new(src) // Clickable button
+	
+	frame.icon_state = initial(frame.icon_state)+owner.hud_frame_hint
+
+	/**
+	 * The vis_contents layout is: this(frame,extras_holder,mask(bg(map)))
+	 * bg is set to BLEND_MULTIPLY against the mask to crop it.
+	 */
+	
+	mask_full.vis_contents.Add(bg)
+	mask_ping.vis_contents.Add(bg)
+	frame.vis_contents.Add(powbutton,mapbutton)
+	vis_contents.Add(frame)
+	
+
+/obj/screen/movable/mapper_holder/Destroy()
+	qdel_null(mask_full)
+	qdel_null(mask_ping)
+	qdel_null(bg)
+
+	qdel_null(frame)
+	qdel_null(powbutton)
+	qdel_null(mapbutton)
+
+	extras_holder = null
+	owner = null
+	return ..()
+
+/obj/screen/movable/mapper_holder/proc/update(var/obj/screen/mapper/map, var/obj/screen/mapper/extras_holder/extras, ping = FALSE)
+	if(!running)
+		running = TRUE
+		if(ping)
+			vis_contents.Add(mask_ping)
+		else	
+			vis_contents.Add(mask_full)
+
+	bg.vis_contents.Cut()
+	bg.vis_contents.Add(map)
+	
+	if(extras && !extras_holder)
+		extras_holder = extras
+		vis_contents += extras_holder
+	if(!extras && extras_holder)
+		vis_contents -= extras_holder
+		extras_holder = null
+
+/obj/screen/movable/mapper_holder/proc/powerClick()
+	if(running)
+		off()
+	else
+		on()
+	
+/obj/screen/movable/mapper_holder/proc/mapClick()
+	if(owner)
+		if(running)
+			off()
+		owner.pinging = !owner.pinging
+		on()
+
+/obj/screen/movable/mapper_holder/proc/off(var/inform = TRUE)
+	frame.cut_overlay("powlight")
+	bg.vis_contents.Cut()
+	vis_contents.Remove(mask_ping, mask_full, extras_holder)
+	extras_holder = null
+	running = FALSE
+	if(inform)
+		owner.stop_updates()
+
+/obj/screen/movable/mapper_holder/proc/on(var/inform = TRUE)
+	frame.add_overlay("powlight")
+	if(inform)
+		owner.start_updates()
+
+// Prototype
+/obj/screen/mapper
+	plane = PLANE_HOLOMAP
+	mouse_opacity = 0
+	var/obj/screen/movable/mapper_holder/parent
+
+/obj/screen/mapper/New()	
+	..()
+	parent = loc
+
+/obj/screen/mapper/Destroy()
+	parent = null
+	return ..()
+
+// Holds the actual map image
+/obj/screen/mapper/map
+	var/offset_x = 32
+	var/offset_y = 32
+
+// I really wish I could use filters for this instead of this multiplication-masking technique
+// but alpha filters can't be animated, which means I can't use them for the 'sonar ping' mode.
+// If filters start supporting animated icons in the future (for the alpha mask filter),
+// you should definitely replace these with that technique instead.
+/obj/screen/mapper/mask_full
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "mapper_mask"
+
+/obj/screen/mapper/mask_ping
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "mapper_ping"
+
+/obj/screen/mapper/bg
+	icon = 'icons/effects/64x64.dmi'
+	icon_state = "mapper_bg"
+
+	blend_mode = BLEND_MULTIPLY
+	appearance_flags = KEEP_TOGETHER
+
+// Frame/deco components
+/obj/screen/mapper/frame
+	icon = 'icons/effects/gpshud.dmi'
+	icon_state = "frame"
+	plane = PLANE_HOLOMAP_FRAME
+	pixel_x = -18
+	pixel_y = -29
+	mouse_opacity = 1
+	vis_flags = VIS_INHERIT_ID
+
+/obj/screen/mapper/powbutton
+	icon = 'icons/effects/gpshud.dmi'
+	icon_state = "powbutton"
+	plane = PLANE_HOLOMAP_FRAME
+	mouse_opacity = 1
+
+/obj/screen/mapper/powbutton/Click()
+	if(!usr.checkClickCooldown())
+		return TRUE
+	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+		return TRUE
+	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
+		return TRUE
+	parent.powerClick()
+	flick("powClick",src)
+	usr << get_sfx("button")
+	return TRUE
+
+/obj/screen/mapper/mapbutton
+	icon = 'icons/effects/gpshud.dmi'
+	icon_state = "mapbutton"
+	plane = PLANE_HOLOMAP_FRAME
+	mouse_opacity = 1
+
+/obj/screen/mapper/mapbutton/Click()
+	if(!usr.checkClickCooldown())
+		return TRUE
+	if(usr.stat || usr.paralysis || usr.stunned || usr.weakened)
+		return TRUE
+	if(istype(usr.loc,/obj/mecha)) // stops inventory actions in a mech
+		return TRUE
+	parent.mapClick()
+	flick("mapClick",src)
+	usr << get_sfx("button")
+	return TRUE
+
+// Markers are 16x16, people have apparently settled on centering them on the 8,8 pixel
+/obj/screen/mapper/marker
+	icon = 'icons/holomap_markers.dmi'
+	plane = PLANE_HOLOMAP_ICONS
+
+	var/offset_x = -8
+	var/offset_y = -8
+
+// Holds markers in its vis_contents. It uses an alpha filter to crop them to the HUD screen size
+/obj/screen/mapper/extras_holder
+	icon = null
+	icon_state = null
+	plane = PLANE_HOLOMAP_ICONS
+	appearance_flags = KEEP_TOGETHER
+
+// Begin TGMC Ammo HUD Port
+/obj/screen/ammo
+	name = "ammo"
+	icon = 'icons/mob/screen_ammo.dmi'
+	icon_state = "ammo"
+	screen_loc = ui_ammo_hud1
+	var/warned = FALSE
+	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
+
+/obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
+	
+	if(!user?.client)
+		return
+	
+	if(!G)
+		CRASH("/obj/screen/ammo/proc/add_hud() has been called from [src] without the required param of G")
+
+	if(!G.has_ammo_counter())
+		return
+
+	user.client.screen += src
+
+/obj/screen/ammo/proc/remove_hud(var/mob/living/user)
+	user?.client?.screen -= src
+
+/obj/screen/ammo/proc/update_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
+	if(!user?.client?.screen.Find(src))
+		return
+
+	if(!G || !istype(G) || !G.has_ammo_counter() || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+		remove_hud()
+		return
+
+	var/list/ammo_type = G.get_ammo_type()
+	var/rounds = G.get_ammo_count()
+
+	var/hud_state = ammo_type[1]
+	var/hud_state_empty = ammo_type[2]
+
+	overlays.Cut()
+
+	var/empty = image('icons/mob/screen_ammo.dmi', src, "[hud_state_empty]")
+
+	if(rounds == 0)
+		if(warned)
+			overlays += empty
+		else
+			warned = TRUE
+			var/obj/screen/ammo/F = new /obj/screen/ammo(src)
+			F.icon_state = "frame"
+			user.client.screen += F
+			flick("[hud_state_empty]_flash", F)
+			spawn(20)
+				user.client.screen -= F
+				qdel(F)
+				overlays += empty
+	else
+		warned = FALSE
+		overlays += image('icons/mob/screen_ammo.dmi', src, "[hud_state]")
+
+	rounds = num2text(rounds)
+	//Handle the amount of rounds
+	switch(length(rounds))
+		if(1)
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[1]]")
+		if(2)
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[2]]")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "t[rounds[1]]")
+		if(3)
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[3]]")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "t[rounds[2]]")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "h[rounds[1]]")
+		else //"0" is still length 1 so this means it's over 999
+			overlays += image('icons/mob/screen_ammo.dmi', src, "o9")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "t9")
+			overlays += image('icons/mob/screen_ammo.dmi', src, "h9")

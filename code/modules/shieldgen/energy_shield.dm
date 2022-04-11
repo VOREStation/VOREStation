@@ -4,12 +4,12 @@
 /obj/effect/shield
 	name = "energy shield"
 	desc = "An impenetrable field of energy, capable of blocking anything as long as it's active."
-	icon = 'icons/obj/machines/shielding.dmi'
+	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "shield"
-	anchored = 1
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	density = 1
+	density = TRUE
 	invisibility = 0
 	var/obj/machinery/power/shield_generator/gen = null // Owning generator
 	var/disabled_for = 0
@@ -29,7 +29,7 @@
 
 	if(disabled_for || diffused_for)
 		icon_state = "shield_broken"
-		overlays.Cut() //NOT ssoverlays
+		overlays.Cut() // Snowflake handling, avoiding SSoverlays
 	else
 		icon_state = enabled_icon_state
 		flags |= OVERLAY_QUEUED //Trick SSoverlays
@@ -110,7 +110,7 @@
 
 	diffused_for = max(duration, 0)
 	gen?.damaged_segments |= src
-	
+
 	set_density(0)
 	update_visuals()
 	update_nearby_tiles() //Force ZAS update
@@ -165,7 +165,7 @@
 		return
 
 	if(!damtype)
-		crash_with("CANARY: shield.take_damage() callled without damtype.")
+		stack_trace("CANARY: shield.take_damage() callled without damtype.")
 
 	if(!damage)
 		return
@@ -299,7 +299,7 @@
 //
 /obj/effect/temp_visual/shield_impact_effect
 	name = "shield impact"
-	icon = 'icons/obj/machines/shielding.dmi'
+	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "shield_impact"
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER

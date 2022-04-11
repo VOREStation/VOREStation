@@ -55,6 +55,15 @@
 /obj/item/clothing/suit/space/void/refurb/pilot/talon
 	name = "talon pilot voidsuit"
 
+/obj/item/clothing/head/helmet/space/void/refurb/mining/talon
+	name = "talon miner voidsuit helmet"
+	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum. \"ITV TALON\" has been stamped onto the sides of the helmet."
+	camera_networks = list(NETWORK_TALON_HELMETS)
+
+/obj/item/clothing/suit/space/void/refurb/mining/talon
+	name = "talon miner voidsuit"
+	desc = "A refurbished early contact era voidsuit of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. Many old-timer spacers swear by these old things, even if new powered hardsuits have more features and better armor. \"ITV TALON\" is stamped across the left side of the breastplate in faded faux-gold."
+
 /obj/item/clothing/head/helmet/space/void/refurb/research/talon
 	name = "talon scientific voidsuit helmet"
 	camera_networks = list(NETWORK_TALON_HELMETS)
@@ -74,3 +83,150 @@
 /obj/item/clothing/suit/space/void/refurb/mercenary/talon
 	name = "talon mercenary's voidsuit"
 	desc = "A refurbished early contact era voidsuit of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. Many old-timer mercs swear by these old things, even if new powered hardsuits have more features and better armor. The red markings indicate this as the mercenary variant. \"ITV TALON\" has been stamped onto each pauldron and the right side of the breastplate."
+
+// HEV Suits
+/obj/item/clothing/suit/space/void/hev
+	name = "hazardous environment suit"
+	desc = "Has a strange smell to it, but you feel like it might be an old friend."
+	
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "hev_orange"
+	
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+
+/obj/item/clothing/suit/space/void/hev/violet
+	icon_state = "hev_violet"
+	desc = "Has a strange smell to it, but you feel like it might be an old friend. This one has 'Dr. Coomer' engraved on the collar."
+
+/obj/item/clothing/head/helmet/space/void/hev
+	name = "hazardous environment helmet"
+	desc = "Has a strange smell to it, but you feel like it might be an old friend."
+	
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "hev_orange"
+	
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
+
+/obj/item/clothing/head/helmet/space/void/hev/violet
+	icon_state = "hev_violet"
+	desc = "Has a strange smell to it, but you feel like it might be an old friend. This one has 'Dr. Coomer' engraved on the collar."
+
+// Makeshift void suit
+/obj/item/clothing/suit/space/void/makeshift
+	name = "makeshift voidsuit"
+	desc = "This is not something you should use if you have other options, but it's better than nothing!"
+	
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "makeshift_void"
+	
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
+
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+
+/obj/item/clothing/head/helmet/space/void/makeshift
+	name = "makeshift voidsuit helmet"
+	desc = "This is not something you should use if you have other options, but it's better than nothing!"
+	
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "makeshift_void"
+
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 100, "rad" = 0)
+
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
+
+// 'Custodian' armor
+/obj/item/clothing/suit/space/void/custodian
+	name = "custodian suit"
+	desc = "Vacuum-capable armor for a Custodian to do their duty."
+	
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "custodian"
+
+	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
+	
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+
+/obj/item/clothing/head/helmet/space/void/custodian
+	name = "custodian helmet"
+	desc = "Vacuum-capable helmet for a Custodian to do their duty."
+	
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "custodian"
+
+	armor = list("melee" = 70, "bullet" = 70, "laser" = 70, "energy" = 50, "bomb" = 40, "bio" = 0, "rad" = 20)
+	
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
+
+// 'Moebius' armor
+/obj/item/clothing/suit/space/void/aether
+	name = "\improper Aether voidsuit"
+	desc = "This suit seems rather high-end for a standard voidsuit. The air in it has a hint of 'new car smell', courtesy of Aether Atmospherics."
+	
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "moebiussuit"
+
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
+
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+
+/obj/item/clothing/head/helmet/space/void/aether
+	name = "\improper Aether voidsuit helmet"
+	desc = "Aether Atmospherics thought that giving this helmet selectable colored lighting would improve market penetration. Very comfortable, regardless."
+	
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "moebiushelm_White"
+
+	armor = list("melee" = 30, "bullet" = 30, "laser" = 30, "energy" = 20, "bomb" = 20, "bio" = 100, "rad" = 20)
+
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM
+
+/obj/item/clothing/head/helmet/space/void/aether/verb/select_color()
+	set name = "Helmet Color"
+	set desc = "Change the color of [src]"
+	set category = "Object"
+
+	var/choice = tgui_input_list(usr, "Select a new color:", "[src] Color", list("White", "Blue", "Purple", "Yellow", "Red", "Green"))
+	if(!choice)
+		return
+	icon_state = "moebiushelm_[choice]"
+	update_clothing_icon()
+	to_chat(usr, "<span class='notice'>[src] color changed to: [choice]</span>")
+
+// Excelsior suit
+/obj/item/clothing/suit/space/void/excelsior
+	name = "\improper Excelsior voidsuit"
+	desc = "A space suit from a particular spaceship: Excelsior."
+	
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "excelsior"
+	
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_SUIT_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_SUIT_ITEM
+
+/obj/item/clothing/head/helmet/space/void/excelsior
+	name = "\improper Excelsior voidsuit helmet"
+	desc = "A space helmet from a particular spaceship: Excelsior."
+	
+	icon = 'icons/inventory/head/item_vr.dmi'
+	default_worn_icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "excelsior"
+	
+	sprite_sheets = ALL_VR_SPRITE_SHEETS_HEAD_MOB
+	sprite_sheets_obj = ALL_VR_SPRITE_SHEETS_HEAD_ITEM

@@ -415,7 +415,10 @@
 		if(istype(thing, /obj/structure/blob)) // blobs are uncomfortable things
 			fear_amount += 3
 
-		if(istype(thing, /obj/effect/alien/resin)) // Resin's a bit slimy according to its own description.
+		if(istype(thing, /obj/structure/alien)) // Pretty much anything made by xenos are slimey in some way.
+			fear_amount += 1
+
+		if(istype(thing, /obj/effect/alien/weeds)) // Disgusting slimey carpet.
 			fear_amount += 1
 
 		if(istype(thing, /obj/item/weed_extract))

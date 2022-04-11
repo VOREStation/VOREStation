@@ -13,7 +13,7 @@
 	var/global/list/starting_legal_nifsoft
 	var/global/list/starting_illegal_nifsoft
 
-	density = 0
+	density = FALSE
 	opacity = 0
 	var/datum/entopic/entopic
 
@@ -60,8 +60,7 @@
 	if(!starting_legal_nifsoft)
 		starting_legal_nifsoft = list()
 		starting_illegal_nifsoft = list()
-		for(var/P in (subtypesof(/datum/nifsoft) - typesof(/datum/nifsoft/package)))
-			var/datum/nifsoft/NS = P
+		for(var/datum/nifsoft/NS as anything in (subtypesof(/datum/nifsoft) - typesof(/datum/nifsoft/package)))
 			if(initial(NS.vended))
 				switch(initial(NS.illegal))
 					if(TRUE)
@@ -80,8 +79,7 @@
 	for(var/current_list in all_products)
 		var/category = current_list[CAT_HIDDEN]
 
-		for(var/entry in current_list[CAT_NORMAL])
-			var/datum/nifsoft/NS = entry
+		for(var/datum/nifsoft/NS as anything in current_list[CAT_NORMAL])
 			var/applies_to = initial(NS.applies_to)
 			var/context = ""
 			if(!(applies_to & NIF_SYNTHETIC))
@@ -89,11 +87,12 @@
 			else if(!(applies_to & NIF_ORGANIC))
 				context = " (Syn Only)"
 			var/name = "[initial(NS.name)][context]"
-			var/datum/stored_item/vending_product/product = new/datum/stored_item/vending_product(src, entry, name)
+			var/datum/stored_item/vending_product/product = new/datum/stored_item/vending_product(src, NS, name)
 
 			product.price = initial(NS.cost)
 			product.amount = 10
 			product.category = category
+			product.item_desc = initial(NS.desc)
 
 			product_records.Add(product)
 

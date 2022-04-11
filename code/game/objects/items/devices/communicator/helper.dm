@@ -40,7 +40,7 @@
 	var/list/feeds = list()
 	for(var/datum/feed_channel/channel in news_network.network_channels)
 		var/list/messages = list()
-		if(!channel.censored)
+		if(!channel.censored && channel.channel_name != "Vir News Network") //Do not load the 'IC news' channel as it is simply too long.
 			var/index = 0
 			for(var/datum/feed_message/FM in channel.messages)
 				index++

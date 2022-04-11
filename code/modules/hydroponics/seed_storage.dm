@@ -22,8 +22,8 @@
 	desc = "It stores, sorts, and dispenses seeds."
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "seeds"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100
 
@@ -43,41 +43,46 @@
 	..()
 	wires = new(src)
 	if(!contraband_seeds.len)
-		contraband_seeds = pick(list(
-			list(
-					/obj/item/seeds/ambrosiavulgarisseed = 3,
-					/obj/item/seeds/greengrapeseed = 3,
-					/obj/item/seeds/reishimycelium = 2,
-					/obj/item/seeds/bloodtomatoseed = 1
-					),
-			list(
-					/obj/item/seeds/ambrosiavulgarisseed = 3,
-					/obj/item/seeds/plastiseed = 3,
-					/obj/item/seeds/kudzuseed = 2,
-					/obj/item/seeds/rose/blood = 1
-					),
-			list(
-					/obj/item/seeds/ambrosiavulgarisseed = 3,
-					/obj/item/seeds/amanitamycelium = 3,
-					/obj/item/seeds/libertymycelium = 2,
-					/obj/item/seeds/glowshroom = 1
-					),
-			list(
-					/obj/item/seeds/ambrosiavulgarisseed = 3,
-					/obj/item/seeds/glowberryseed = 3,
-					/obj/item/seeds/icepepperseed = 2,
-					/obj/item/seeds/bluetomatoseed = 1
-					),
-			list(
-					/obj/item/seeds/durian = 2,
-					/obj/item/seeds/ambrosiadeusseed = 1,
-					/obj/item/seeds/killertomatoseed = 1
-					),
-			list(
-					/obj/item/seeds/ambrosiavulgarisseed = 3,
-					/obj/item/seeds/random = 6
-					)
-			))
+		contraband_seeds = pick( 	/// Some form of ambrosia in all lists.
+			prob(30);list( /// General produce
+				/obj/item/seeds/ambrosiavulgarisseed = 3,
+				/obj/item/seeds/greengrapeseed = 3,
+				/obj/item/seeds/icepepperseed = 2,
+				/obj/item/seeds/kudzuseed = 1
+			),
+			prob(30);list( ///Mushroom batch
+				/obj/item/seeds/ambrosiavulgarisseed = 1,
+				/obj/item/seeds/glowberryseed = 2,
+				/obj/item/seeds/libertymycelium = 1,
+				/obj/item/seeds/reishimycelium = 2,
+				/obj/item/seeds/sporemycelium = 1
+			),
+			prob(15);list( /// Survivalist
+				/obj/item/seeds/ambrosiadeusseed = 2,
+				/obj/item/seeds/redtowermycelium = 2,
+				/obj/item/seeds/vale = 2,
+				/obj/item/seeds/siflettuce = 2
+			),
+			prob(20);list( /// Cold plants
+				/obj/item/seeds/ambrosiavulgarisseed = 2,
+				/obj/item/seeds/thaadra = 2,
+				/obj/item/seeds/icepepperseed = 2,
+				/obj/item/seeds/siflettuce = 1
+			),
+			prob(10);list( ///Poison party
+				/obj/item/seeds/ambrosiavulgarisseed = 3,
+				/obj/item/seeds/surik = 1,
+				/obj/item/seeds/telriis = 1,
+				/obj/item/seeds/nettleseed = 2,
+				/obj/item/seeds/poisonberryseed = 1
+			),
+			prob(5);list( /// Extra poison party!
+				/obj/item/seeds/ambrosiainfernusseed = 1,
+				/obj/item/seeds/amauri = 1,
+				/obj/item/seeds/surik = 1,
+				/obj/item/seeds/deathberryseed = 1 /// Very ow.
+			)
+		)
 	return
 
 /obj/machinery/seed_storage/process()
@@ -127,7 +132,7 @@
 		/obj/item/seeds/riceseed = 3,
 		/obj/item/seeds/rose = 3,
 		/obj/item/seeds/soyaseed = 3,
-		/obj/item/seeds/spineapple = 3,
+		/obj/item/seeds/pineapple = 3,
 		/obj/item/seeds/sugarcaneseed = 3,
 		/obj/item/seeds/sunflowerseed = 3,
 		/obj/item/seeds/shandseed = 2,
@@ -185,7 +190,7 @@
 		/obj/item/seeds/riceseed = 3,
 		/obj/item/seeds/rose = 3,
 		/obj/item/seeds/soyaseed = 3,
-		/obj/item/seeds/spineapple = 3,
+		/obj/item/seeds/pineapple = 3,
 		/obj/item/seeds/sugarcaneseed = 3,
 		/obj/item/seeds/sunflowerseed = 3,
 		/obj/item/seeds/shandseed = 2,
@@ -405,9 +410,9 @@
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		playsound(src, O.usesound, 50, 1)
-		overlays.Cut()
+		cut_overlays()
 		if(panel_open)
-			overlays += image(icon, "[initial(icon_state)]-panel")
+			add_overlay("[initial(icon_state)]-panel")
 	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
 		wires.Interact(user)
 
@@ -417,7 +422,7 @@
 		if(lockdown)
 			to_chat(user, "<span class='notice'>\The [src]'s control panel thunks, as its cover retracts.</span>")
 			lockdown = 0
-		if(req_access || req_one_access)
+		if(LAZYLEN(req_access) || LAZYLEN(req_one_access))
 			req_access = list()
 			req_one_access = list()
 			to_chat(user, "<span class='warning'>\The [src]'s access mechanism shorts out.</span>")

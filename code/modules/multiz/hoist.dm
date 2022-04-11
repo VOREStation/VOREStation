@@ -21,8 +21,8 @@
 	icon = 'icons/obj/hoists.dmi'
 	icon_state = "hoist_hook"
 	var/obj/structure/hoist/source_hoist
-	can_buckle = 1
-	anchored = 1
+	can_buckle = TRUE
+	anchored = TRUE
 	description_info = "Click and drag someone (or any object) to this to attach them to the clamp. If you are within reach, when you click and drag this to a turf adjacent to you, it will move the attached object there and release it."
 
 /obj/effect/hoist_hook/attack_hand(mob/living/user)
@@ -47,7 +47,7 @@
 	hoistee = AM
 	if(ismob(AM))
 		source_hook.buckle_mob(AM)
-	AM.anchored = 1 // why isn't this being set by buckle_mob for silicons?
+	AM.anchored = TRUE // why isn't this being set by buckle_mob for silicons?
 	source_hook.layer = AM.layer + 0.1
 
 /obj/effect/hoist_hook/MouseDrop(atom/dest)
@@ -91,8 +91,8 @@
 	icon = 'icons/obj/hoists.dmi'
 	icon_state = "hoist_base"
 	var/broken = 0
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	name = "hoist"
 	desc = "A manual hoist, uses a clamp and pulley to hoist things."
 	var/atom/movable/hoistee
@@ -128,7 +128,7 @@
 	if(ismob(hoistee))
 		source_hook.unbuckle_mob(hoistee)
 	else
-		hoistee.anchored = 0
+		hoistee.anchored = FALSE
 	hoistee = null
 	layer = NORMAL_LAYER
 
@@ -211,7 +211,7 @@
 		size = O.w_class
 
 	user.visible_message(span("notice", "[user] begins to [movtext] \the [hoistee]!"), span("notice", "You begin to [movtext] \the [hoistee]!"), span("notice", "You hear the sound of a crank."))
-	if (do_after(user, (1 SECONDS) * size / 4, act_target = src))
+	if (do_after(user, (1 SECONDS) * size / 4, target = src))
 		move_dir(movedir, 1)
 
 /obj/structure/hoist/proc/collapse_kit()

@@ -33,7 +33,7 @@
 	var/cell_type = /obj/item/weapon/cell/device
 
 /obj/item/device/flash/Initialize()
-	..()
+	. = ..()
 	power_supply = new cell_type(src)
 
 /obj/item/device/flash/attackby(var/obj/item/W, var/mob/user)
@@ -41,7 +41,7 @@
 		if(repairing)
 			to_chat(user, "<span class='notice'>\The [src] is already being repaired!</span>")
 			return
-		user.visible_message("<span class='notice'>\The [user] starts trying to repair \the [src]'s bulb.</span>")
+		user.visible_message("<b>\The [user]</b> starts trying to repair \the [src]'s bulb.")
 		repairing = TRUE
 		if(do_after(user, (40 SECONDS + rand(0, 20 SECONDS)) * W.toolspeed) && can_repair)
 			if(prob(30))
@@ -50,7 +50,7 @@
 				update_icon()
 			playsound(src, W.usesound, 50, 1)
 		else
-			user.visible_message("<span class='notice'>\The [user] fails to repair \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> fails to repair \the [src].")
 		repairing = FALSE
 	else
 		..()

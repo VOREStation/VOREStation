@@ -1,15 +1,16 @@
 /obj
 	layer = OBJ_LAYER
 	plane = OBJ_PLANE
+	vis_flags = VIS_INHERIT_PLANE //when this be added to vis_contents of something it inherit something.plane, important for visualisation of obj in openspace.
 	//Used to store information about the contents of the object.
 	var/list/matter
 	var/w_class // Size of the object.
-	var/unacidable = 0 //universal "unacidabliness" var, here so you can use it in any obj.
+	var/unacidable = FALSE //universal "unacidabliness" var, here so you can use it in any obj.
 	animate_movement = 2
 	var/throwforce = 1
 	var/catchable = 1	// can it be caught on throws/flying?
-	var/sharp = 0		// whether this object cuts
-	var/edge = 0		// whether this object is more likely to dismember
+	var/sharp = FALSE		// whether this object cuts
+	var/edge = FALSE		// whether this object is more likely to dismember
 	var/pry = 0			//Used in attackby() to open doors
 	var/in_use = 0 // If we have a user using us, this will be set on. We will check if the user has stopped using us, and thus stop updating and LAGGING EVERYTHING!
 	var/damtype = "brute"
@@ -19,28 +20,10 @@
 	var/can_speak = 0 //For MMIs and admin trickery. If an object has a brainmob in its contents, set this to 1 to allow it to speak.
 
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
-	var/register_as_dangerous_object = FALSE // Should this tell its turf that it is dangerous automatically?
-
-/obj/Initialize()
-	if(register_as_dangerous_object)
-		register_dangerous_to_step()
-	return ..()
 
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	if(register_as_dangerous_object)
-		unregister_dangerous_to_step()
 	return ..()
-
-/obj/Moved(atom/oldloc)
-	. = ..()
-	if(register_as_dangerous_object)
-		var/turf/old_turf = get_turf(oldloc)
-		var/turf/new_turf = get_turf(src)
-
-		if(old_turf != new_turf)
-			old_turf.unregister_dangerous_object(src)
-			new_turf.register_dangerous_object(src)
 
 /obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(usr && ..())
@@ -138,9 +121,6 @@
 	tgui_interact(user)
 	..()
 
-/obj/proc/interact(mob/user)
-	return
-
 /mob/proc/unset_machine()
 	machine?.remove_visual(src)
 	src.machine = null
@@ -181,9 +161,6 @@
 	return
 
 /obj/proc/show_message(msg, type, alt, alt_type)//Message, type of message (1 or 2), alternative message, alt message type (1 or 2)
-	return
-
-/obj/proc/get_cell()
 	return
 
 // Used to mark a turf as containing objects that are dangerous to step onto.

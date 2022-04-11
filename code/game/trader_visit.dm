@@ -20,10 +20,10 @@ var/can_call_traders = 1
 	if(send_beruang)
 		to_chat(usr, "<span class='danger'>The Beruang has already been sent this round!</span>")
 		return
-	if(alert("Do you want to dispatch the Beruang trade ship?",,"Yes","No") != "Yes")
+	if(tgui_alert(usr, "Do you want to dispatch the Beruang trade ship?","Trade Ship",list("Yes","No")) != "Yes")
 		return
 	if(get_security_level() == "red") // Allow admins to reconsider if the alert level is Red
-		switch(alert("The station is in red alert. Do you still want to send traders?",,"Yes","No"))
+		switch(tgui_alert(usr, "The station is in red alert. Do you still want to send traders?","Trade Ship",list("Yes","No")))
 			if("No")
 				return
 	if(send_beruang)
@@ -34,7 +34,7 @@ var/can_call_traders = 1
 	log_admin("[key_name(usr)] used Dispatch Beruang Trader Ship.")
 	trigger_trader_visit()
 
-client/verb/JoinTraders()
+/client/verb/JoinTraders()
 
 	set name = "Join Trader Visit"
 	set category = "IC"
@@ -54,7 +54,7 @@ client/verb/JoinTraders()
 	else
 		to_chat(usr, "You need to be an observer or new player to use this.")
 
-proc/trigger_trader_visit()
+/proc/trigger_trader_visit()
 	if(!can_call_traders)
 		return
 	if(send_beruang)

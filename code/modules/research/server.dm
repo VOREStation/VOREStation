@@ -178,22 +178,24 @@
 	for(var/obj/machinery/r_n_d/server/S in machines)
 		if(istype(S, /obj/machinery/r_n_d/server/centcom) && !badmin)
 			continue
+		var/list/tech = list()
+		var/list/designs = list()
 		var/list/server_data = list(
 			"name" = S.name,
 			"ref" = REF(S),
 			"id" = S.server_id,
 			"id_with_upload" = S.id_with_upload,
 			"id_with_download" = S.id_with_download,
-			"tech" = list(),
-			"designs" = list(),
+			"tech" = tech,
+			"designs" = designs,
 		)
 		for(var/datum/tech/T in S.files.known_tech)
-			server_data["tech"].Add(list(list(
+			tech.Add(list(list(
 				"name" = T.name,
 				"id" = T.id,
 			)))
 		for(var/datum/design/D in S.files.known_designs)
-			server_data["designs"].Add(list(list(
+			designs.Add(list(list(
 				"name" = D.name,
 				"id" = D.id,
 			)))
@@ -246,7 +248,7 @@
 			var/obj/machinery/r_n_d/server/target = locate(params["server"])
 			if(!istype(target))
 				return FALSE
-			var/choice = alert("Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", "Continue", "Cancel")
+			var/choice = tgui_alert(usr, "Technology Data Rest", "Are you sure you want to reset this technology to its default data? Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				for(var/datum/tech/T in target.files.known_tech)
 					if(T.id == params["tech"])
@@ -259,7 +261,7 @@
 			var/obj/machinery/r_n_d/server/target = locate(params["server"])
 			if(!istype(target))
 				return FALSE
-			var/choice = alert("Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", "Continue", "Cancel")
+			var/choice = tgui_alert(usr, "Design Data Deletion", "Are you sure you want to delete this design? If you still have the prerequisites for the design, it'll reset to its base reliability. Data lost cannot be recovered.", list("Continue", "Cancel"))
 			if(choice == "Continue")
 				for(var/datum/design/D in target.files.known_designs)
 					if(D.id == params["design"])

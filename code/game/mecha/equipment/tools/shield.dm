@@ -28,7 +28,7 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/combat_shield/Destroy()
-	chassis.overlays -= drone_overlay
+	chassis.cut_overlay(drone_overlay)
 	my_shield.forceMove(src)
 	my_shield.destroy_shields()
 	my_shield.my_tool = null
@@ -37,19 +37,23 @@
 	my_shield = null
 	..()
 
+/obj/item/mecha_parts/mecha_equipment/combat_shield/add_equip_overlay(obj/mecha/M as obj)
+	..()
+	if(!drone_overlay)
+		drone_overlay = new(src.icon, icon_state = "shield_droid")
+	M.add_overlay(drone_overlay)
+	return
+
 /obj/item/mecha_parts/mecha_equipment/combat_shield/attach(obj/mecha/M as obj)
 	..()
 	if(chassis)
 		my_shield.shield_health = 0
 		my_shield.my_mecha = chassis
 		my_shield.forceMove(chassis)
-
-		drone_overlay = new(src.icon, icon_state = "shield_droid")
-		M.overlays += drone_overlay
 	return
 
 /obj/item/mecha_parts/mecha_equipment/combat_shield/detach()
-	chassis.overlays -= drone_overlay
+	chassis.cut_overlay(drone_overlay)
 	..()
 	my_shield.destroy_shields()
 	my_shield.my_mecha = null
@@ -63,15 +67,14 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/combat_shield/proc/toggle_shield()
-	..()
 	if(chassis)
 		my_shield.attack_self(chassis.occupant)
 		if(my_shield.active)
-			set_ready_state(0)
+			set_ready_state(FALSE)
 			step_delay = 4
 			log_message("Activated.")
 		else
-			set_ready_state(1)
+			set_ready_state(TRUE)
 			step_delay = 1
 			log_message("Deactivated.")
 

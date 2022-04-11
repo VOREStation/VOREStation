@@ -32,7 +32,7 @@ var/list/gurgled_overlays = list(
 	if(!gurgled)
 		gurgled = TRUE
 		gurgled_color = contamination_color
-		overlays += gurgled_overlays[gurgled_color]
+		add_overlay(gurgled_overlays[gurgled_color])
 		var/list/pickfrom = contamination_flavors[contamination_flavor]
 		var/gurgleflavor = pick(pickfrom)
 		cleanname = src.name
@@ -54,7 +54,7 @@ var/list/gurgled_overlays = list(
 /obj/item/decontaminate() //Decontaminate the sogginess as well.
 	..()
 	gurgled = FALSE
-	overlays -= gurgled_overlays[gurgled_color]
+	cut_overlay(gurgled_overlays[gurgled_color])
 	if(cleanname)
 		name = cleanname
 	if(cleandesc)
@@ -96,13 +96,16 @@ var/list/gurgled_overlays = list(
 // Special handling of gurgle_contaminate
 //////////////
 /obj/item/weapon/card/id/gurgle_contaminate(var/atom/movable/item_storage = null)
-	digest_act(item_storage) //Digesting these anyway
+	digest_act(item_storage) //Contamination and digestion does same thing to these
 	return TRUE
 
 /obj/item/device/pda/gurgle_contaminate(var/atom/movable/item_storage = null)
 	return FALSE
 
 /obj/item/weapon/reagent_containers/food/gurgle_contaminate(var/atom/movable/item_storage = null)
+	return FALSE
+
+/obj/item/weapon/storage/vore_egg/gurgle_contaminate(var/atom/movable/item_storage = null)
 	return FALSE
 
 /obj/item/weapon/holder/gurgle_contaminate(var/atom/movable/item_storage = null)

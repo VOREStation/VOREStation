@@ -124,7 +124,7 @@
 	vore_icons = 0
 /mob/living/simple_mob/animal/space/carp/large/huge
 	vore_icons = 0
-/mob/living/simple_mob/animal/space/carp/holographic
+/mob/living/simple_mob/animal/space/carp/holodeck
 	vore_icons = 0
 
 /* //VOREStation AI Temporary removal
@@ -200,44 +200,12 @@
 	// NO VORE SPRITES
 	vore_max_size = RESIZE_TINY
 
-/* //VOREStation AI Temporary Removal
-/mob/living/simple_mob/fox/PunchTarget()
-	if(istype(target_mob,/mob/living/simple_mob/animal/passive/mouse))
-		return EatTarget()
-	else ..()
-
-/mob/living/simple_mob/fox/Found(var/atom/found_atom)
-	if(!SA_attackable(found_atom))
-		return null
-	if(istype(found_atom,/mob/living/simple_mob/animal/passive/mouse))
-		return found_atom
-	if(found_atom in friends)
-		return null
-	if(will_eat(found_atom))
-		return found_atom
-
-/mob/living/simple_mob/fox/fluff/Found(var/atom/found_atom)
-	if (friend == found_atom)
-		return null
-	return ..()
-*/
-
-/mob/living/simple_mob/fox/fluff
+/mob/living/simple_mob/animal/passive/fox/renault
 	vore_ignores_undigestable = 0
 	vore_pounce_chance = 100
 	vore_digest_chance = 0 // just use the toggle
 	vore_default_mode = DM_HOLD //can use the toggle if you wanna be foxfood
 	vore_standing_too = TRUE // gonna get pounced
-
-/* //VOREStation AI Temporary Removal
-/mob/living/simple_mob/fox/fluff/EatTarget()
-	var/mob/living/TM = target_mob
-	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
-	spawn(3600) // but if they hang around and get comfortable, they might get ate again
-		if(src && TM)
-			prey_excludes -= TM
-	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
-*/
 
 /mob/living/simple_mob/animal/space/goose
 	vore_active = 1
@@ -269,14 +237,12 @@
 /mob/living/simple_mob/animal/space/carp/holographic/init_vore()
 	. = ..()
 	var/safe = (faction == "neutral")
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
 /mob/living/simple_mob/animal/space/carp/holographic/set_safety(var/safe)
 	. = ..()
-	for(var/belly in vore_organs)
-		var/obj/belly/B = belly
+	for(var/obj/belly/B as anything in vore_organs)
 		B.digest_mode = safe ? DM_HOLD : vore_default_mode
 
 /mob/living/simple_mob/animal/passive/mouse

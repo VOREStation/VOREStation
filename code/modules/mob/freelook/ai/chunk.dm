@@ -7,8 +7,7 @@
 	var/list/cameras = list()
 
 /datum/chunk/camera/acquireVisibleTurfs(var/list/visible)
-	for(var/camera in cameras)
-		var/obj/machinery/camera/c = camera
+	for(var/obj/machinery/camera/c as anything in cameras)
 
 		if(!istype(c))
 			cameras -= c

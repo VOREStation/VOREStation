@@ -1,33 +1,30 @@
 /obj/structure/signpost
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "signpost"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 
-	attackby(obj/item/weapon/W as obj, mob/user as mob)
-		return attack_hand(user)
+/obj/structure/signpost/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return attack_hand(user)
 
-	attack_hand(mob/user as mob)
-		switch(alert("Travel back to ss13?",,"Yes","No"))
-			if("Yes")
-				if(user.z != src.z)	return
-				user.forceMove(pick(latejoin))
-			if("No")
-				return
+/obj/structure/signpost/attack_hand(mob/user as mob)
+	if(tgui_alert(user, "Travel back to ss13?","Return?",list("Yes","No")) == "Yes")
+		if(user.z != src.z)	return
+		user.forceMove(pick(latejoin))
 
 /obj/effect/mark
 		var/mark = ""
 		icon = 'icons/misc/mark.dmi'
 		icon_state = "blank"
-		anchored = 1
+		anchored = TRUE
 		layer = 99
 		mouse_opacity = 0
-		unacidable = 1//Just to be sure.
+		unacidable = TRUE//Just to be sure.
 
 /obj/effect/beam
 	name = "beam"
-	density = 0
-	unacidable = 1//Just to be sure.
+	density = FALSE
+	unacidable = TRUE//Just to be sure.
 	var/def_zone
 	pass_flags = PASSTABLE
 
@@ -36,8 +33,8 @@
 	name = "begin"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "begin"
-	anchored = 1.0
-	unacidable = 1
+	anchored = TRUE
+	unacidable = TRUE
 
 /*
  * This item is completely unused, but removing it will break something in R&D and Radio code causing PDA and Ninja code to fail on compile
@@ -61,7 +58,7 @@
 /obj/effect/projection
 	name = "Projection"
 	desc = "This looks like a projection of something."
-	anchored = 1.0
+	anchored = TRUE
 
 /obj/effect/shut_controller
 	name = "shut controller"
@@ -73,9 +70,9 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "showcase_1"
 	desc = "A stand with the empty body of a cyborg bolted to it."
-	density = 1
-	anchored = 1
-	unacidable = 1//temporary until I decide whether the borg can be removed. -veyveyr
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE//temporary until I decide whether the borg can be removed. -veyveyr
 
 /obj/structure/showcase/sign
 	name = "WARNING: WILDERNESS"
@@ -89,8 +86,8 @@
 	icon = 'icons/misc/beach.dmi'
 	icon_state = "beachball"
 	name = "beach ball"
-	density = 0
-	anchored = 0
+	density = FALSE
+	anchored = FALSE
 	w_class = ITEMSIZE_LARGE
 	force = 0.0
 	throwforce = 0.0
@@ -99,9 +96,25 @@
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'
 
-	afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
-		user.drop_item()
-		src.throw_at(target, throw_range, throw_speed, user)
+/obj/item/weapon/beach_ball/afterattack(atom/target as mob|obj|turf|area, mob/user as mob)
+	user.drop_item()
+	src.throw_at(target, throw_range, throw_speed, user)
+
+/obj/item/weapon/beach_ball/dodgeball
+	icon = 'icons/obj/balls_vr.dmi'
+	icon_state = "dodgeball"
+	item_state = "dodgeball"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_balls_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_balls_vr.dmi')
+	name = "dodgeball"
+	desc = "Think fast, chucklenuts!"
+	w_class = ITEMSIZE_LARGE //Stops people from hiding it in their bags/pockets
+	force = 0.1
+	throwforce = 0.1
+	throw_speed = 5
+	throw_range = 15
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
+	hitsound = 'sound/weapons/dodgeball.ogg'
 
 /obj/effect/spawner
 	name = "object spawner"

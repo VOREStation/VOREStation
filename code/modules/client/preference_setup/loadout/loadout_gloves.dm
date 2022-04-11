@@ -92,14 +92,17 @@
 	ringtype["engagement ring"] = /obj/item/clothing/gloves/ring/engagement
 	ringtype["signet ring"] = /obj/item/clothing/gloves/ring/seal/signet
 	ringtype["masonic ring"] = /obj/item/clothing/gloves/ring/seal/mason
-	ringtype["ring, steel"] = /obj/item/clothing/gloves/ring/material/steel
-	ringtype["ring, iron"] = /obj/item/clothing/gloves/ring/material/iron
-	ringtype["ring, silver"] = /obj/item/clothing/gloves/ring/material/silver
-	ringtype["ring, gold"] = /obj/item/clothing/gloves/ring/material/gold
-	ringtype["ring, platinum"] = /obj/item/clothing/gloves/ring/material/platinum
 	ringtype["ring, glass"] = /obj/item/clothing/gloves/ring/material/glass
 	ringtype["ring, wood"] = /obj/item/clothing/gloves/ring/material/wood
 	ringtype["ring, plastic"] = /obj/item/clothing/gloves/ring/material/plastic
+	ringtype["ring, iron"] = /obj/item/clothing/gloves/ring/material/iron
+	ringtype["ring, bronze"] = /obj/item/clothing/gloves/ring/material/bronze
+	ringtype["ring, steel"] = /obj/item/clothing/gloves/ring/material/steel
+	ringtype["ring, copper"] = /obj/item/clothing/gloves/ring/material/copper
+	ringtype["ring, silver"] = /obj/item/clothing/gloves/ring/material/silver
+	ringtype["ring, gold"] = /obj/item/clothing/gloves/ring/material/gold
+	ringtype["ring, platinum"] = /obj/item/clothing/gloves/ring/material/platinum
+
 	gear_tweaks += new/datum/gear_tweak/path(ringtype)
 
 /datum/gear/gloves/circuitry

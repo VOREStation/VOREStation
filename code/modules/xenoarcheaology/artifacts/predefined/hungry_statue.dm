@@ -2,14 +2,12 @@
 	name = "alien artifact"
 	desc = "A large alien device."
 
-	predefined_effects = TRUE
-
-	predefined_primary = /datum/artifact_effect/animate_anomaly
-	predefined_secondary = /datum/artifact_effect/vampire
+	artifact_master = /datum/component/artifact_master/hungry_statue
 
 	predefined_icon_num = 14
 
-	predefined_triggers = TRUE
-
-	predefined_trig_primary = TRIGGER_OXY
-	predefined_trig_secondary = TRIGGER_OXY
+/datum/component/artifact_master/hungry_statue
+	make_effects = list(
+		/datum/artifact_effect/animate_anomaly,
+		/datum/artifact_effect/vampire
+	)

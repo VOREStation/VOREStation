@@ -7,7 +7,7 @@
 		return
 
 	if(!pai_key)
-		var/client/C = input("Select client") as null|anything in GLOB.clients
+		var/client/C = tgui_input_list(usr, "Select client:", "Client Choice", GLOB.clients)
 		if(!C) return
 		pai_key = C.key
 

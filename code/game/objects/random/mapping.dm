@@ -24,7 +24,7 @@
 				/obj/effect/decal/cleanable/blood/gibs/robot,
 				/obj/effect/decal/cleanable/blood/oil,
 				/obj/effect/decal/cleanable/blood/oil/streak,
-				/obj/effect/decal/cleanable/spiderling_remains,
+				/obj/effect/decal/cleanable/bug_remains,
 				/obj/effect/decal/remains/mouse,
 				/obj/effect/decal/cleanable/vomit,
 				/obj/effect/decal/cleanable/blood/splatter,
@@ -64,6 +64,56 @@
 				/obj/structure/closet/crate/engineering,
 				/obj/structure/closet/crate)
 
+/obj/random/vendorall //Fully random selection of consumer vendors
+	name = "random vending machine"
+	desc = "This is a random vending machine"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "radren-off"
+
+/obj/random/vendorall/item_to_spawn()
+	return pick (prob(5);/obj/machinery/vending/coffee,	//VOREStation Edit Start - Let's weight this a little bit
+				prob(5);/obj/machinery/vending/snack,
+				prob(5);/obj/machinery/vending/cola,
+				prob(3);/obj/machinery/vending/fitness,
+				prob(4);/obj/machinery/vending/cigarette,
+				prob(3);/obj/machinery/vending/giftvendor,
+				prob(1);/obj/machinery/vending/hotfood,
+				prob(5);/obj/machinery/vending/weeb,
+				prob(5);/obj/machinery/vending/sol,
+				prob(5);/obj/machinery/vending/snix,
+				prob(5);/obj/machinery/vending/snlvend,
+				prob(5);/obj/machinery/vending/sovietsoda,
+				prob(5);/obj/machinery/vending/sovietvend,
+				prob(5);/obj/machinery/vending/radren) //VOREStation Edit End
+
+/obj/random/vendorfood //Random food vendors for station use
+	name = "random snack vending machine"
+	desc = "This is a random food vending machine"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "snack"
+
+/obj/random/vendorfood/item_to_spawn()
+	return pick (/obj/machinery/vending/snack,
+				/obj/machinery/vending/weeb,
+				/obj/machinery/vending/sol,
+				/obj/machinery/vending/snix,
+				/obj/machinery/vending/snlvend)
+
+/obj/random/vendordrink //Random drink vendors for station use
+	name = "random drink vending machine"
+	desc = "This is a random drink vending machine"
+	icon = 'icons/obj/vending.dmi'
+	icon_state = "Cola_Machine"
+
+//VOREStation Edit Start
+/obj/random/vendordrink/item_to_spawn() //Not including coffee as it's more specific in usage.
+	return pick (/obj/machinery/vending/cola,
+				/obj/machinery/vending/cola/soft,
+				/obj/machinery/vending/bepis,
+				/obj/machinery/vending/sovietsoda,
+				/obj/machinery/vending/radren)
+//VOREStation Edit End
+
 /obj/random/obstruction //Large objects to block things off in maintenance
 	name = "random obstruction"
 	desc = "This is a random obstruction."
@@ -92,6 +142,8 @@
 	return pick(prob(30);/obj/effect/mine,
 				prob(25);/obj/effect/mine/frag,
 				prob(25);/obj/effect/mine/emp,
+				prob(15);/obj/effect/mine/camo,
+				prob(15);/obj/effect/mine/emp/camo,
 				prob(10);/obj/effect/mine/stun,
 				prob(10);/obj/effect/mine/incendiary,)
 
@@ -156,13 +208,19 @@
 				/obj/structure/closet/crate/hydroponics
 			),
 			prob(5);list(
+				/obj/item/weapon/pickaxe,
+				/obj/item/clothing/under/rank/miner,
+				/obj/item/clothing/head/hardhat,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(5);list(
 				/obj/item/weapon/pickaxe/drill,
 				/obj/item/clothing/suit/space/void/mining,
 				/obj/item/clothing/head/helmet/space/void/mining,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/clothing/suit/space/void/mining/alt,
 				/obj/item/clothing/head/helmet/space/void/mining/alt,
 				/obj/structure/closet/crate/engineering
@@ -197,7 +255,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/ore_box,
 				/obj/structure/closet/crate
@@ -299,8 +357,8 @@
 				/obj/item/clothing/suit/armor/vest,
 				/obj/item/weapon/gun/projectile/garand,
 				/obj/item/weapon/gun/projectile/garand,
-				/obj/item/ammo_magazine/m762garand,
-				/obj/item/ammo_magazine/m762garand,
+				/obj/item/ammo_magazine/m762enbloc,
+				/obj/item/ammo_magazine/m762enbloc,
 				/obj/structure/closet/crate/plastic
 			),
 			prob(2);list(
@@ -316,7 +374,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/weapon/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
@@ -462,6 +520,18 @@
 
 /obj/random/multiple/ore_pile/item_to_spawn()
 	return pick(
+			/*prob(10);list(
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite,
+				/obj/item/weapon/ore/bauxite
+			),*/
 			prob(10);list(
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal,
@@ -474,6 +544,18 @@
 				/obj/item/weapon/ore/coal,
 				/obj/item/weapon/ore/coal
 			),
+			/*prob(10);list(
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper,
+				/obj/item/weapon/ore/copper
+			),*/
 			prob(3);list(
 				/obj/item/weapon/ore/diamond,
 				/obj/item/weapon/ore/diamond,
@@ -551,6 +633,13 @@
 				/obj/item/weapon/ore/phoron
 			),
 			prob(5);list(
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile,
+				/obj/item/weapon/ore/rutile
+			),
+			prob(5);list(
 				/obj/item/weapon/ore/silver,
 				/obj/item/weapon/ore/silver,
 				/obj/item/weapon/ore/silver,
@@ -565,7 +654,11 @@
 			prob(2);list(
 				/obj/item/weapon/ore/verdantium,
 				/obj/item/weapon/ore/verdantium
-			),
+			),/*
+			prob(2);list(
+				/obj/item/weapon/ore/void_opal,
+				/obj/item/weapon/ore/void_opal
+			),*/
 		)
 
 /obj/random/multiple/corp_crate
@@ -617,6 +710,14 @@
 				/obj/random/snack,
 				/obj/random/snack,
 				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
+			),
+			prob(10);list(
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI DONK-POCKETS
 			),
 			prob(10);list(
 				/obj/random/powercell,
@@ -846,6 +947,13 @@
 				/obj/random/grenade,
 				/obj/random/grenade,
 				/obj/structure/closet/crate/secure/saare //SAARE GRENADES
+			),
+			prob(1);list(
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/structure/closet/crate/secure/saare //SAARE BULLION CRATE
 			),
 			prob(1);list(
 				/obj/random/cash/big,
@@ -1092,6 +1200,13 @@
 				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
 			),
 			prob(1);list(
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/random/material/precious,
+				/obj/structure/closet/crate/secure/saare //SAARE BULLION CRATE
+			),
+			prob(1);list(
 				/obj/random/cash/big,
 				/obj/random/cash/big,
 				/obj/random/cash/big,
@@ -1294,6 +1409,28 @@
 				/obj/random/multiple/large_corp_crate
 			)
 		)
+//VOREStation Add - Random good, no guns gooder
+/obj/random/multiple/random_size_crate/no_weapons
+	name = "random size corporate crate (no weapons)"
+	desc = "A random size corporate crate with thematic contents: prefers small crates."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "largermetal"
+	spawn_nothing_percentage = 50
+
+/obj/random/multiple/random_size_crate/no_weapons/item_to_spawn()
+	return pick(
+			prob(85);list(
+				/obj/random/multiple/corp_crate/no_weapons
+			),
+			prob(15);list(
+				/obj/random/multiple/large_corp_crate/no_weapons
+			)
+		)
+
+/obj/random/multiple/random_size_crate/no_weapons/nofail
+	spawn_nothing_percentage = 0
+
+//VOREStation Add End
 /*
  * Turf swappers.
  */
@@ -1305,7 +1442,7 @@
 	spawn_nothing_percentage = 20
 
 	var/override_outdoors = FALSE	// Do we override our chosen turf's outdoors?
-	var/turf_outdoors = TRUE	// Will our turf be outdoors?
+	var/turf_outdoors = OUTDOORS_AREA	// Will our turf be outdoors?
 
 /obj/random/turf/spawn_item()
 	var/build_path = item_to_spawn()
@@ -1327,9 +1464,200 @@
 	desc = "This is a random lava spawn."
 
 	override_outdoors = TRUE
-	turf_outdoors = FALSE
+	turf_outdoors = OUTDOORS_NO
 
 /obj/random/turf/lava/item_to_spawn()
 	return pick(prob(5);/turf/simulated/floor/lava,
 				prob(3);/turf/simulated/floor/outdoors/rocks/caves,
-				prob(1);/turf/simulated/mineral)
+				prob(1);/turf/simulated/mineral/ignore_mapgen/cave)
+
+//VOREStation Add Start - Underdark stuff that would be cool if existed if the underdark doesn't.
+
+/obj/random/underdark
+	name = "random underdark loot"
+	desc = "Random loot for Underdark."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "spickaxe"
+
+/obj/random/underdark/item_to_spawn()
+	return pick(prob(3);/obj/random/multiple/underdark/miningdrills,
+				prob(3);/obj/random/multiple/underdark/ores,
+				prob(2);/obj/random/multiple/underdark/treasure,
+				prob(1);/obj/random/multiple/underdark/mechtool)
+
+/obj/random/underdark/uncertain
+	icon_state = "upickaxe"
+	spawn_nothing_percentage = 65	//only 33% to spawn loot
+
+/obj/random/multiple/underdark/miningdrills
+	name = "random underdark mining tool loot"
+	desc = "Random mining tool loot for Underdark."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "spickaxe"
+
+/obj/random/multiple/underdark/miningdrills/item_to_spawn()
+	return pick(
+				prob(10);list(/obj/item/weapon/pickaxe/silver),
+				prob(8);list(/obj/item/weapon/pickaxe/drill),
+				prob(6);list(/obj/item/weapon/pickaxe/advdrill),
+				prob(6);list(/obj/item/weapon/pickaxe/jackhammer),
+				prob(5);list(/obj/item/weapon/pickaxe/gold),
+				prob(4);list(/obj/item/weapon/pickaxe/plasmacutter),
+				prob(2);list(/obj/item/weapon/pickaxe/diamond),
+				prob(1);list(/obj/item/weapon/pickaxe/diamonddrill)
+				)
+
+/obj/random/multiple/underdark/ores
+	name = "random underdark mining ore loot"
+	desc = "Random mining utility loot for Underdark."
+	icon = 'icons/obj/mining.dmi'
+	icon_state = "satchel"
+
+/obj/random/multiple/underdark/ores/item_to_spawn()
+	return pick(
+				prob(9);list(
+							/obj/item/weapon/storage/bag/ore,
+							/obj/item/weapon/shovel,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/glass,
+							/obj/item/weapon/ore/hydrogen,
+							/obj/item/weapon/ore/hydrogen,
+							/obj/item/weapon/ore/hydrogen,
+							/obj/item/weapon/ore/hydrogen,
+							/obj/item/weapon/ore/hydrogen,
+							/obj/item/weapon/ore/hydrogen
+							),
+				prob(7);list(
+							/obj/item/weapon/storage/bag/ore,
+							/obj/item/weapon/pickaxe,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium,
+							/obj/item/weapon/ore/osmium
+							),
+				prob(4);list(
+							/obj/item/clothing/suit/radiation,
+							/obj/item/clothing/head/radiation,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium,
+							/obj/item/weapon/ore/uranium),
+				prob(2);list(
+							/obj/item/device/flashlight/lantern,
+							/obj/item/clothing/glasses/material,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond,
+							/obj/item/weapon/ore/diamond
+							),
+				prob(1);list(
+							/obj/item/weapon/mining_scanner,
+							/obj/item/weapon/shovel/spade,
+							/obj/item/weapon/ore/verdantium,
+							/obj/item/weapon/ore/verdantium,
+							/obj/item/weapon/ore/verdantium,
+							/obj/item/weapon/ore/verdantium,
+							/obj/item/weapon/ore/verdantium
+							)
+				)
+
+/obj/random/multiple/underdark/treasure
+	name = "random underdark treasure"
+	desc = "Random treasure loot for Underdark."
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "cashbag"
+
+/obj/random/multiple/underdark/treasure/item_to_spawn()
+	return pick(
+				prob(5);list(
+							/obj/random/coin,
+							/obj/random/coin,
+							/obj/random/coin,
+							/obj/random/coin,
+							/obj/random/coin,
+							/obj/item/clothing/head/pirate
+							),
+				prob(4);list(
+							/obj/item/weapon/storage/bag/cash,
+							/obj/item/weapon/spacecash/c500,
+							/obj/item/weapon/spacecash/c100,
+							/obj/item/weapon/spacecash/c50
+							),
+				prob(3);list(
+							/obj/item/clothing/head/hardhat/orange,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold,
+							/obj/item/stack/material/gold),
+				prob(1);list(
+							/obj/item/stack/material/phoron,
+							/obj/item/stack/material/phoron,
+							/obj/item/stack/material/phoron,
+							/obj/item/stack/material/phoron,
+							/obj/item/stack/material/diamond,
+							/obj/item/stack/material/diamond,
+							/obj/item/stack/material/diamond
+							)
+				)
+
+/obj/random/multiple/underdark/mechtool
+	name = "random underdark mech equipment"
+	desc = "Random mech equipment loot for Underdark."
+	icon = 'icons/mecha/mecha_equipment.dmi'
+	icon_state = "mecha_clamp"
+
+/obj/random/multiple/underdark/mechtool/item_to_spawn()
+	return pick(
+				prob(12);list(/obj/item/mecha_parts/mecha_equipment/tool/drill),
+				prob(10);list(/obj/item/mecha_parts/mecha_equipment/tool/hydraulic_clamp),
+				prob(8);list(/obj/item/mecha_parts/mecha_equipment/generator),
+				prob(7);list(/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot/rigged),
+				prob(6);list(/obj/item/mecha_parts/mecha_equipment/repair_droid),
+				prob(3);list(/obj/item/mecha_parts/mecha_equipment/gravcatapult),
+				prob(2);list(/obj/item/mecha_parts/mecha_equipment/weapon/energy/riggedlaser),
+				prob(2);list(/obj/item/mecha_parts/mecha_equipment/weapon/energy/flamer/rigged),
+				prob(1);list(/obj/item/mecha_parts/mecha_equipment/tool/drill/diamonddrill),
+				)
+//VOREStation Add End

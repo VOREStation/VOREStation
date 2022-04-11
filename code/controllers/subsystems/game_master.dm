@@ -74,8 +74,7 @@ SUBSYSTEM_DEF(game_master)
 		chosen_event.enabled = FALSE
 		if(chosen_event.event_class)
 			// Disable similar events, too.
-			for(var/M in available_events)
-				var/datum/event2/meta/meta = M
+			for(var/datum/event2/meta/meta as anything in available_events)
 				if(meta.event_class == chosen_event.event_class)
 					meta.enabled = FALSE
 
@@ -125,7 +124,7 @@ SUBSYSTEM_DEF(game_master)
 
 /datum/controller/subsystem/game_master/proc/choose_game_master(mob/user)
 	var/list/subtypes = subtypesof(/datum/game_master)
-	var/new_gm_path = input(user, "What kind of Game Master do you want?", "New Game Master", /datum/game_master/default) as null|anything in subtypes
+	var/new_gm_path = tgui_input_list(user, "What kind of Game Master do you want?", "New Game Master", subtypes)
 	if(new_gm_path)
 		log_and_message_admins("has swapped the current GM ([GM.type]) for a new GM ([new_gm_path]).")
 		GM = new new_gm_path(src)
@@ -235,8 +234,7 @@ SUBSYSTEM_DEF(game_master)
 	dat += "<th colspan='2'>Players</td>"
 	dat += "</tr>"
 
-	for(var/P in player_list)
-		var/mob/M = P
+	for(var/mob/M as anything in player_list)
 		dat += "<tr>"
 		dat += "<td>[M] ([M.ckey])</td>"
 		dat += "<td>[metric.assess_player_activity(M)]%</td>"
@@ -255,8 +253,7 @@ SUBSYSTEM_DEF(game_master)
 	dat += "<th>Buttons</th>"
 	dat += "</tr>"
 
-	for(var/E in available_events)
-		var/datum/event2/meta/event = E
+	for(var/datum/event2/meta/event as anything in available_events)
 		dat += "<tr>"
 		if(!event.enabled)
 			dat += "<td><strike>[event.name]</strike></td>"
@@ -285,8 +282,7 @@ SUBSYSTEM_DEF(game_master)
 	dat += "<th>Buttons</th>"
 	dat += "</tr>"
 
-	for(var/E in SSevent_ticker.active_events)
-		var/datum/event2/event/event = E
+	for(var/datum/event2/event/event as anything in SSevent_ticker.active_events)
 		dat += "<tr>"
 		dat += "<td>[event.type]</td>"
 		dat += "<td>[event.time_started]</td>"
@@ -309,8 +305,7 @@ SUBSYSTEM_DEF(game_master)
 	dat += "<th>Finish Time</th>"
 	dat += "</tr>"
 
-	for(var/E in SSevent_ticker.finished_events)
-		var/datum/event2/event/event = E
+	for(var/datum/event2/event/event as anything in SSevent_ticker.finished_events)
 		dat += "<tr>"
 		dat += "<td>[event.type]</td>"
 		dat += "<td>[event.time_started]</td>"

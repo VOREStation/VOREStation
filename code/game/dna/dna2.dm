@@ -89,10 +89,6 @@ var/global/list/datum/dna/gene/dna_genes[0]
 // Used for genes that check for value rather than a binary on/off.
 #define GENE_ALWAYS_ACTIVATE 1
 
-// Skip checking if it's already active.
-// Used for genes that check for value rather than a binary on/off.
-#define GENE_ALWAYS_ACTIVATE 1
-
 /datum/dna
 	// READ-ONLY, GETS OVERWRITTEN
 	// DO NOT FUCK WITH THESE OR BYOND WILL EAT YOUR FACE
@@ -118,11 +114,16 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	var/base_species = "Human"
 	var/list/species_traits = list()
 	var/blood_color = "#A10808"
+	var/custom_say
+	var/custom_ask
+	var/custom_whisper
+	var/custom_exclaim
 	// VOREStation
 
 	// New stuff
 	var/species = SPECIES_HUMAN
 	var/list/body_markings = list()
+	var/list/body_markings_genetic = list()
 	var/list/body_descriptors = null
 	var/list/genetic_modifiers = list() // Modifiers with the MODIFIER_GENETIC flag are saved.  Note that only the type is saved, not an instance.
 
@@ -139,6 +140,12 @@ var/global/list/datum/dna/gene/dna_genes[0]
 	new_dna.custom_species=custom_species //VOREStaton Edit
 	new_dna.species_traits=species_traits.Copy() //VOREStation Edit
 	new_dna.blood_color=blood_color //VOREStation Edit
+	new_dna.custom_say=custom_say //VOREStaton Edit
+	new_dna.custom_ask=custom_ask //VOREStaton Edit
+	new_dna.custom_whisper=custom_whisper //VOREStaton Edit
+	new_dna.custom_exclaim=custom_exclaim //VOREStaton Edit
+	var/list/body_markings_genetic = (body_markings - body_marking_nopersist_list)
+	new_dna.body_markings=body_markings_genetic.Copy()
 	for(var/b=1;b<=DNA_SE_LENGTH;b++)
 		new_dna.SE[b]=SE[b]
 		if(b<=DNA_UI_LENGTH)
@@ -202,23 +209,13 @@ var/global/list/datum/dna/gene/dna_genes[0]
 
 	// Technically custom_species is not part of the UI, but this place avoids merge problems.
 	src.custom_species = character.custom_species
-	if(istype(character.species,/datum/species/custom))
-		var/datum/species/custom/CS = character.species
-		src.species_traits = CS.traits.Copy()
-		src.base_species = CS.base_species
-		src.blood_color = CS.blood_color
-
-	if(istype(character.species,/datum/species/xenochimera))
-		var/datum/species/xenochimera/CS = character.species
-		//src.species_traits = CS.traits.Copy() //No traits
-		src.base_species = CS.base_species
-		src.blood_color = CS.blood_color
-
-	if(istype(character.species,/datum/species/alraune))
-		var/datum/species/alraune/CS = character.species
-		//src.species_traits = CS.traits.Copy() //No traits
-		src.base_species = CS.base_species
-		src.blood_color = CS.blood_color
+	src.base_species = character.species.base_species
+	src.blood_color = character.species.blood_color
+	src.species_traits = character.species.traits.Copy()
+	src.custom_say = character.custom_say
+	src.custom_ask = character.custom_ask
+	src.custom_whisper = character.custom_whisper
+	src.custom_exclaim = character.custom_exclaim
 
 	// +1 to account for the none-of-the-above possibility
 	SetUIValueRange(DNA_UI_EAR_STYLE,	ear_style + 1,     ear_styles_list.len  + 1,  1)

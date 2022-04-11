@@ -8,7 +8,7 @@ import { Window } from "../layouts";
 import { Materials } from "./ExosuitFabricator";
 import { createSearch, toTitleCase } from 'common/string';
 
-const canBeMade = (recipe, materials) => {
+const canBeMade = (recipe, materials, mult = 1) => {
   if (recipe.requirements === null) {
     return true;
   }
@@ -20,7 +20,7 @@ const canBeMade = (recipe, materials) => {
     if (!material) {
       continue; // yes, if we cannot find the material, we just ignore it :V
     }
-    if (material.amount < recipe.requirements[mat_id]) {
+    if (material.amount < (recipe.requirements[mat_id] * mult)) {
       return false;
     }
   }
@@ -56,7 +56,7 @@ export const Autolathe = (props, context) => {
     <Window width={550} height={700}>
       <Window.Content scrollable>
         <Section title="Materials">
-          <Materials displayAllMat disableEject />
+          <Materials disableEject />
         </Section>
         <Section title="Recipes" buttons={
           <Dropdown
@@ -77,10 +77,26 @@ export const Autolathe = (props, context) => {
                   color={recipe.hidden && "red" || null}
                   icon="hammer"
                   iconSpin={busy === recipe.name}
-                  disabled={!canBeMade(recipe, materials)}
+                  disabled={!canBeMade(recipe, materials, 1)}
                   onClick={() => act("make", { make: recipe.ref })}>
                   {toTitleCase(recipe.name)}
                 </Button>
+                {!recipe.is_stack && (
+                  <Box as="span">
+                    <Button
+                      color={recipe.hidden && "red" || null}
+                      disabled={!canBeMade(recipe, materials, 5)}
+                      onClick={() => act("make", { make: recipe.ref, multiplier: 5 })}>
+                      x5
+                    </Button>
+                    <Button
+                      color={recipe.hidden && "red" || null}
+                      disabled={!canBeMade(recipe, materials, 10)}
+                      onClick={() => act("make", { make: recipe.ref, multiplier: 10 })}>
+                      x10
+                    </Button>
+                  </Box>
+                ) || null}
               </Flex.Item>
               <Flex.Item>
                 {recipe.requirements && (

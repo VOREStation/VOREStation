@@ -7,7 +7,7 @@
 	item_state = "electronic"
 	throw_speed = 4
 	throw_range = 20
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 	preserve_item = 1
 	var/obj/item/weapon/disk/nuclear/the_disk = null
 	var/active = 0
@@ -120,7 +120,7 @@
 	target=null
 	location = null
 
-	switch(alert("Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", "Location", "Disk Recovery", "Other Signature"))
+	switch(tgui_alert(usr, "Please select the mode you want to put the pinpointer in.", "Pinpointer Mode Select", list("Location", "Disk Recovery", "Other Signature")))
 		if("Location")
 			mode = 1
 
@@ -145,12 +145,12 @@
 
 		if("Other Signature")
 			mode = 2
-			switch(alert("Search for item signature or DNA fragment?" , "Signature Mode Select" , "" , "Item" , "DNA"))
+			switch(tgui_alert(usr, "Search for item signature or DNA fragment?", "Signature Mode Select", list("Item", "DNA")))
 
 				if("Item")
 					var/datum/objective/steal/itemlist
 					itemlist = itemlist
-					var/targetitem = input("Select item to search for.", "Item Mode Select","") as null|anything in itemlist.possible_items
+					var/targetitem = tgui_input_list(usr, "Select item to search for.", "Item Mode Select", itemlist.possible_items)
 					if(!targetitem)
 						return
 					target=locate(itemlist.possible_items[targetitem])
@@ -160,7 +160,7 @@
 					to_chat(usr, "You set the pinpointer to locate [targetitem]")
 
 				if("DNA")
-					var/DNAstring = input("Input DNA string to search for." , "Please Enter String." , "")
+					var/DNAstring = input(usr, "Input DNA string to search for." , "Please Enter String." , "")
 					if(!DNAstring)
 						return
 					for(var/mob/living/carbon/M in mob_list)

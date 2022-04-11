@@ -24,6 +24,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 	icon = 'icons/obj/machines/gravity_generator.dmi'
 	anchored = TRUE
 	density = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	var/sprite_number = 0
 
@@ -210,7 +211,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 				update_icon()
 				return
 		if(GRAV_NEEDS_WELDING)
-			if(I.is_welder())
+			if(I.has_tool_quality(TOOL_WELDER))
 				var/obj/item/weapon/weldingtool/W = I
 				if(W.remove_fuel(0,user))
 					to_chat(user, "<span class='notice'>You mend the damaged framework.</span>")
@@ -389,8 +390,7 @@ GLOBAL_LIST_EMPTY(gravity_generators)
 // Shake everyone on the z level to let them know that gravity was enagaged/disenagaged.
 /obj/machinery/gravity_generator/main/proc/shake_everyone()
 	var/sound/alert_sound = sound('sound/effects/alert.ogg')
-	for(var/i in player_list)
-		var/mob/M = i
+	for(var/mob/M as anything in player_list)
 		if(!(M.z in levels))
 			continue
 		M.update_gravity(M.mob_has_gravity())

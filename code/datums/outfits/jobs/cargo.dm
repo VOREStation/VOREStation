@@ -24,7 +24,7 @@
 	l_ear = /obj/item/device/radio/headset/headset_mine
 	backpack = /obj/item/weapon/storage/backpack/industrial
 	satchel_one  = /obj/item/weapon/storage/backpack/satchel/eng
-	id_type = /obj/item/weapon/card/id/cargo
+	id_type = /obj/item/weapon/card/id/cargo/miner
 	pda_type = /obj/item/device/pda/shaftminer
 	backpack_contents = list(/obj/item/weapon/tool/crowbar = 1, /obj/item/weapon/storage/bag/ore = 1)
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL

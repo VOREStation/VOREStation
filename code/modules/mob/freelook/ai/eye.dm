@@ -12,11 +12,11 @@
 	visualnet = cameranet
 	
 /mob/observer/eye/aiEye/Destroy()
-    if(owner)
-        var/mob/living/silicon/ai/ai = owner
-        ai.all_eyes -= src
-        owner = null
-    . = ..()
+	if(owner)
+		var/mob/living/silicon/ai/ai = owner
+		ai.all_eyes -= src
+		owner = null
+	. = ..()
 
 /mob/observer/eye/aiEye/setLoc(var/T, var/cancel_tracking = 1)
 	if(owner)

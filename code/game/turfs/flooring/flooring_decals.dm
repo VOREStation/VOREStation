@@ -7,14 +7,18 @@ var/list/floor_decals = list()
 	name = "floor decal"
 	icon = 'icons/turf/flooring/decals_vr.dmi' // VOREStation Edit
 	plane = DECAL_PLANE
-	layer = MAPPER_DECAL_LAYER
+	layer = DECAL_LAYER
 	var/supplied_dir
 
 /obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
 	supplied_dir = newdir
-	if(newcolour) color = newcolour
+	if(newcolour)
+		color = newcolour
 	..(newloc)
 
+// TODO: identify what is causing these atoms to be qdeleted in New()/Initialize()
+// somewhere in this chain. Alternatively repath to /obj/floor_decal or some other
+// abstract handler that explicitly doesn't invoke any obj behavior.
 /obj/effect/floor_decal/Initialize()
 	add_to_turf_decals()
 	initialized = TRUE
@@ -26,27 +30,34 @@ var/list/floor_decals = list()
 		set_dir(supplied_dir) // TODO - Why can't this line be done in initialize/New()?
 	var/turf/T = get_turf(src)
 	if(istype(T, /turf/simulated/floor) || istype(T, /turf/unsimulated/floor) || istype(T, /turf/simulated/shuttle/floor))
-		var/cache_key = "[alpha]-[color]-[dir]-[icon_state]-[T.layer]"
+		var/cache_key = get_cache_key(T)
 		var/image/I = floor_decals[cache_key]
 		if(!I)
-			I = image(icon = icon, icon_state = icon_state, dir = dir)
-			I.layer = MAPPER_DECAL_LAYER
-			I.color = color
-			I.alpha = alpha
+			I = make_decal_image()
 			floor_decals[cache_key] = I
 		LAZYADD(T.decals, I) // Add to its decals list (so it remembers to re-apply after it cuts overlays)
 		T.add_overlay(I) // Add to its current overlays too.
 		return T
 
+/obj/effect/floor_decal/proc/make_decal_image()
+	var/image/I = image(icon = icon, icon_state = icon_state, dir = dir)
+	I.layer = MAPPER_DECAL_LAYER
+	I.color = color
+	I.alpha = alpha
+	return I
+
+/obj/effect/floor_decal/proc/get_cache_key(var/turf/T)
+	return "[alpha]-[color]-[dir]-[icon_state]-[T.layer]"
+
 /obj/effect/floor_decal/reset
 	name = "reset marker"
 
 /obj/effect/floor_decal/reset/Initialize()
+	..()
 	var/turf/T = get_turf(src)
 	if(T.decals && T.decals.len)
 		T.decals.Cut()
 		T.update_icon()
-	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/floor_decal/corner
@@ -1176,6 +1187,8 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/steeldecal/steel_decals_central7
 	icon_state = "steel_decals_central7"
 
+/obj/effect/floor_decal/steeldecal/monofloor //VOREStation Add
+	icon_state = "monofloor" //VOREStation Add
 
 /obj/effect/floor_decal/techfloor
 	name = "techfloor edges"
@@ -1211,3 +1224,28 @@ var/list/floor_decals = list()
 /obj/effect/floor_decal/grass_edge/corner
 	name = "grass edge"
 	icon_state = "grass_edge_corner"
+
+//Multi-part Floor Signs
+
+/obj/effect/floor_decal/arrivals
+	name = "arrivals sign"
+	icon_state = "arrivals_1"
+
+/obj/effect/floor_decal/arrivals/right
+	icon_state = "arrivals_2"
+
+/obj/effect/floor_decal/shuttles
+	name = "departures sign"
+	icon_state = "shuttle_1"
+
+/obj/effect/floor_decal/shuttles/right
+	icon_state = "shuttle_2"
+
+/obj/effect/floor_decal/arrow
+	name = "floor arrow"
+	icon_state = "arrow_single"
+
+/obj/effect/floor_decal/arrows
+	name = "floor arrows"
+	icon_state = "arrows"
+

@@ -9,7 +9,7 @@
 	var/violent_breakthrough = TRUE			// If false, the AI is not allowed to destroy things like windows or other structures in the way. Requires above var to be true.
 
 	var/stand_ground = FALSE				// If true, the AI won't try to get closer to an enemy if out of range.
-	
+
 // This does the actual attacking.
 /datum/ai_holder/proc/engage_target()
 	ai_log("engage_target() : Entering.", AI_LOG_DEBUG)
@@ -68,6 +68,7 @@
 
 // We're not entirely sure how holder will do melee attacks since any /mob/living could be holder, but we don't have to care because Interfaces.
 /datum/ai_holder/proc/melee_attack(atom/A)
+	ai_log("melee_attack() : Entering.", AI_LOG_TRACE)
 	pre_melee_attack(A)
 	. = holder.IAttack(A)
 	if(. == ATTACK_SUCCESSFUL)
@@ -75,6 +76,7 @@
 
 // Ditto.
 /datum/ai_holder/proc/ranged_attack(atom/A)
+	ai_log("ranged_attack() : Entering.", AI_LOG_TRACE)
 	pre_ranged_attack(A)
 	. = holder.IRangedAttack(A)
 	if(. == ATTACK_SUCCESSFUL)
@@ -82,10 +84,26 @@
 
 // Most mobs probably won't have this defined but we don't care.
 /datum/ai_holder/proc/special_attack(atom/movable/AM)
+	ai_log("special_attack() : Entering.", AI_LOG_TRACE)
 	pre_special_attack(AM)
 	. = holder.ISpecialAttack(AM)
 	if(. == ATTACK_SUCCESSFUL)
 		post_special_attack(AM)
+
+// Almost entirely combat considerations so in this file.
+/datum/ai_holder/proc/handle_eaten()
+	ai_log("handle_eaten() : Entering.", AI_LOG_TRACE)
+	forget_everything() // All of that is probably invalid now
+	if(!isbelly(holder.loc))
+		// Strange...!
+		stack_trace("AI tried to handle being eaten but didn't end up in a belly somehow.")
+		return
+	var/obj/belly/B = holder.loc
+	var/mob/living/L = B.owner
+	// Will return false if we decide to not do anything about it.
+	if(!react_to_attack(L, ignore_timers = TRUE))
+		ai_log("handle_eaten() : Deciding to sleep AI.", AI_LOG_TRACE)
+		go_sleep()
 
 // Called when within striking/shooting distance, however cooldown is not considered.
 // Override to do things like move in a random step for evasiveness.
@@ -132,8 +150,7 @@
 	ai_log("test_projectile_safety() : Test projectile did[!would_hit_primary_target ? " NOT " : " "]hit \the [AM]", AI_LOG_DEBUG)
 
 	// Make sure we don't have a chance to shoot our friends.
-	for(var/a in hit_things)
-		var/atom/A = a
+	for(var/atom/A as anything in hit_things)
 		ai_log("test_projectile_safety() : Evaluating \the [A] ([A.type]).", AI_LOG_TRACE)
 		if(isliving(A)) // Don't shoot at our friends, even if they're behind the target, as RNG can make them get hit.
 			var/mob/living/L = A
@@ -297,10 +314,20 @@
 			ai_log("destroy_surroundings() : Attacking generic structure.", AI_LOG_INFO)
 			return melee_attack(obstacle)
 
+		var/obj/effect/weaversilk/web = locate(/obj/effect/weaversilk, problem_turf)
+		if(istype(web, /obj/effect/weaversilk/wall))	//VOREStation Edit: spdr
+			ai_log("destroy_surroundings() : Attacking weaversilk effect.", AI_LOG_INFO)
+			return melee_attack(web)
+
 		for(var/obj/machinery/door/D in problem_turf) // Required since firelocks take up the same turf.
 			if(D.density)
 				ai_log("destroy_surroundings() : Attacking closed door.", AI_LOG_INFO)
 				return melee_attack(D)
+
+		// Should always be last thing attempted
+		if(!problem_turf.opacity)
+			ai_log("destroy_surroundings() : Attacking a transparent (window?) turf.", AI_LOG_INFO)
+			return melee_attack(problem_turf)
 
 	ai_log("destroy_surroundings() : Exiting due to nothing to attack.", AI_LOG_INFO)
 	return ATTACK_FAILED // Nothing to attack.

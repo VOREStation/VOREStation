@@ -10,6 +10,7 @@
 	limit_x = 3
 	limit_y = 3
 	preserve_map = 0
+	max_attempts = 1
 
 	wall_type = /turf/simulated/wall/titanium
 	floor_type = /turf/simulated/floor/reinforced
@@ -158,12 +159,12 @@
 	var/mob/living/spawned_mob
 	var/list/spawned_mobs = list()
 
-	var/spawn_path = input("Select a mob type.", "Drop Pod Selection", null) as null|anything in typesof(/mob/living)-/mob/living
+	var/spawn_path = tgui_input_list(usr, "Select a mob type.", "Drop Pod Selection", subtypesof(/mob/living))
 	if(!spawn_path)
 		return
 
-	if(alert("Do you wish the mob to have a player?",,"No","Yes") == "No")
-		var/spawn_count = input("How many mobs do you wish the pod to contain?", "Drop Pod Selection", null) as num
+	if(tgui_alert(usr, "Do you wish the mob to have a player?","Assign Player?",list("No","Yes")) == "No")
+		var/spawn_count = input(usr, "How many mobs do you wish the pod to contain?", "Drop Pod Selection", null) as num
 		if(spawn_count <= 0)
 			return
 		for(var/i=0;i<spawn_count;i++)
@@ -181,7 +182,7 @@
 			return
 
 		// Get a player and a mob type.
-		selected_player = input("Select a player.", "Drop Pod Selection", null) as null|anything in candidates
+		selected_player = tgui_input_list(usr, "Select a player.", "Drop Pod Selection", candidates)
 		if(!selected_player)
 			return
 
@@ -191,12 +192,12 @@
 
 		// Equip them, if they are human and it is desirable.
 		if(istype(spawned_mob, /mob/living/carbon/human))
-			var/antag_type = input("Select an equipment template to use or cancel for nude.", null) as null|anything in all_antag_types
+			var/antag_type = tgui_input_list(usr, "Select an equipment template to use or cancel for nude.", all_antag_types)
 			if(antag_type)
 				var/datum/antagonist/A = all_antag_types[antag_type]
 				A.equip(spawned_mob)
 
-	if(alert("Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.",,"No","Yes") == "No")
+	if(tgui_alert(usr, "Are you SURE you wish to deploy this drop pod? It will cause a sizable explosion and gib anyone underneath it.","Danger!",list("No","Yes")) == "No")
 		if(spawned_mob)
 			qdel(spawned_mob)
 		if(spawned_mobs.len)

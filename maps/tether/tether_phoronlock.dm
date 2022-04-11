@@ -13,13 +13,13 @@
 // Pumps: (obj/machinery/atmospherics/unary/vent_pump/high_volume), frequency = 1379 id_tag = "[base]_pump"
 //
 
-obj/machinery/airlock_sensor/phoron
+/obj/machinery/airlock_sensor/phoron
 	icon = 'icons/obj/airlock_machines.dmi'
 	icon_state = "airlock_sensor_off"
 	name = "phoronlock sensor"
 	var/previousPhoron
 
-obj/machinery/airlock_sensor/phoron/process()
+/obj/machinery/airlock_sensor/phoron/process()
 	if(on)
 		var/datum/gas_mixture/air_sample = return_air()
 		var/pressure = round(air_sample.return_pressure(), 0.1)
@@ -38,10 +38,10 @@ obj/machinery/airlock_sensor/phoron/process()
 			alert = (pressure < ONE_ATMOSPHERE*0.8) || (phoron > 0.5)
 			update_icon()
 
-obj/machinery/airlock_sensor/phoron/airlock_interior
+/obj/machinery/airlock_sensor/phoron/airlock_interior
 	command = "cycle_interior"
 
-obj/machinery/airlock_sensor/phoron/airlock_exterior
+/obj/machinery/airlock_sensor/phoron/airlock_exterior
 	command = "cycle_exterior"
 
 
@@ -121,7 +121,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 
 /obj/machinery/embedded_controller/radio/airlock/phoron/Initialize()
 	. = ..()
-	program = new/datum/computer/file/embedded_program/airlock/phoron(src)
+	program = new/datum/embedded_program/airlock/phoron(src)
 
 //Advanced airlock controller for when you want a more versatile airlock controller - useful for turning simple access control rooms into airlocks
 /obj/machinery/embedded_controller/radio/airlock/phoron
@@ -143,7 +143,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 //
 
 //Handles the control of airlocks
-
+// Airlocks
 #define STATE_IDLE			0
 #define STATE_PREPARE		1
 #define STATE_CLEAN			16
@@ -153,10 +153,10 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 #define TARGET_INOPEN		-1
 #define TARGET_OUTOPEN		-2
 
-/datum/computer/file/embedded_program/airlock/phoron
+/datum/embedded_program/airlock/phoron
 	var/tag_scrubber
 
-/datum/computer/file/embedded_program/airlock/phoron/New(var/obj/machinery/embedded_controller/M)
+/datum/embedded_program/airlock/phoron/New(var/obj/machinery/embedded_controller/M)
 	..(M)
 	memory["chamber_sensor_phoron"] = 0
 	memory["external_sensor_pressure"] = VIRGO3B_ONE_ATMOSPHERE
@@ -170,7 +170,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		var/obj/machinery/embedded_controller/radio/airlock/phoron/controller = M
 		tag_scrubber = controller.tag_scrubber ? controller.tag_scrubber : "[id_tag]_scrubber"
 
-/datum/computer/file/embedded_program/airlock/phoron/receive_signal(datum/signal/signal, receive_method, receive_param)
+/datum/embedded_program/airlock/phoron/receive_signal(datum/signal/signal, receive_method, receive_param)
 	var/receive_tag = signal.data["tag"]
 	if(!receive_tag) return
 	if(..()) return 1
@@ -194,7 +194,7 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 // Note: This code doesn't wait for pumps and scrubbers to be offline like other code does
 // The idea is to make the doors open and close faster, since there isn't much harm really.
 // But lets evaluate how it actually works in the game.
-/datum/computer/file/embedded_program/airlock/phoron/process()
+/datum/embedded_program/airlock/phoron/process()
 	switch(state)
 		if(STATE_IDLE)
 			if(target_state == TARGET_INOPEN)
@@ -257,13 +257,13 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 	memory["processing"] = (state != target_state)
 	return 1
 
-/datum/computer/file/embedded_program/airlock/phoron/stop_cycling()
+/datum/embedded_program/airlock/phoron/stop_cycling()
 	state = STATE_IDLE
 	target_state = TARGET_NONE
 	signalPump(tag_airpump, 0)
 	signalScrubber(tag_scrubber, 0)
 
-/datum/computer/file/embedded_program/airlock/phoron/proc/signalScrubber(var/tag, var/power)
+/datum/embedded_program/airlock/phoron/proc/signalScrubber(var/tag, var/power)
 	var/datum/signal/signal = new
 	signal.data = list(
 		"tag" = tag,
@@ -271,13 +271,3 @@ obj/machinery/airlock_sensor/phoron/airlock_exterior
 		"power" = "[power]",
 	)
 	post_signal(signal)
-
-
-#undef STATE_IDLE
-#undef STATE_PREPARE
-#undef STATE_CLEAN
-#undef STATE_PRESSURIZE
-
-#undef TARGET_NONE
-#undef TARGET_INOPEN
-#undef TARGET_OUTOPEN

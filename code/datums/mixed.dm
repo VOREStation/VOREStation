@@ -28,7 +28,7 @@
 /datum/data/record/Destroy(var/force)
 	if(data_core.locked.Find(src))
 		if(!force)
-			crash_with("Someone tried to qdel a record that was in data_core.locked [log_info_line(src)]")
+			stack_trace("Someone tried to qdel a record that was in data_core.locked [log_info_line(src)]")
 			return QDEL_HINT_LETMELIVE
 		data_core.locked -= src
 	data_core.medical -= src

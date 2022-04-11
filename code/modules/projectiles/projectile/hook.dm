@@ -42,7 +42,7 @@
 			if(I_HURT)
 				check_armour = "bullet"
 				damage *= 3
-				sharp = 1
+				sharp = TRUE
 				agony = 20
 			if(I_GRAB)
 				check_armour = "melee"
@@ -127,7 +127,7 @@
 				if(!target_mob)
 					return
 
-				if(Bump(target_mob, forced=1))	//If we hit a turf, try to force an interaction with a mob on the turf.
+				if(Bump(target_mob))	//If we hit a turf, try to force an interaction with a mob on the turf.
 					done_mob_unique = TRUE
 				success = TRUE
 			else if(firer)

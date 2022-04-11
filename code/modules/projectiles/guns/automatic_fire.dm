@@ -8,8 +8,8 @@
 /obj/screen/auto_target
 	name = "targeter"
 	icon = null//We dont want people to see this guy
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/obj/item/weapon/gun/gun
 	var/active = 0//Just tells us that it was clicked on so we should start shooting
 	var/delay_del = 0//Delays the del if we retarget without shooting

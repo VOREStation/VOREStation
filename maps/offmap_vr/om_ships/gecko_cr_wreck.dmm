@@ -172,6 +172,9 @@
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_wreck)
+"eu" = (
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit_wreck)
 "eA" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/reinforced/airless,
@@ -851,6 +854,12 @@
 /obj/machinery/computer/shuttle_control/explore/gecko_cr_wreck,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
+"qD" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_engineering_wreck)
 "qL" = (
 /turf/simulated/wall/rshull,
 /area/shuttle/gecko_cr_cockpit_wreck)
@@ -1195,6 +1204,10 @@
 	},
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_wreck)
+"xo" = (
+/obj/item/weapon/material/shard/shrapnel,
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit_wreck)
 "xT" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/structure/fuel_port/empty{
@@ -1208,6 +1221,12 @@
 "xU" = (
 /turf/template_noop,
 /area/shuttle/gecko_cr_wreck)
+"xW" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit_wreck)
 "ye" = (
 /obj/structure/handrail{
 	dir = 8
@@ -1446,6 +1465,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit_wreck)
+"CM" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_engineering_wreck)
 "CW" = (
 /turf/simulated/wall/rshull,
 /area/shuttle/gecko_cr_engineering_wreck)
@@ -1584,6 +1609,12 @@
 /obj/item/weapon/material/shard,
 /turf/template_noop,
 /area/shuttle/gecko_cr_engineering_wreck)
+"Fq" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit_wreck)
 "Fx" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -1820,6 +1851,10 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techmaint,
+/area/shuttle/gecko_cr_cockpit_wreck)
+"Jo" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "JE" = (
 /obj/machinery/computer/ship/helm{
@@ -3226,9 +3261,9 @@ WP
 WP
 WP
 WP
-WP
-WP
-WP
+eu
+xW
+eP
 eP
 eP
 eP
@@ -3267,12 +3302,12 @@ WP
 "}
 (7,1,1) = {"
 WP
-WP
-WP
+eu
+xW
 eP
 eP
 eP
-eP
+uw
 Nr
 GF
 Nr
@@ -3348,7 +3383,7 @@ aL
 Su
 Su
 Su
-WP
+qD
 WP
 "}
 (9,1,1) = {"
@@ -3439,7 +3474,7 @@ WP
 "}
 (11,1,1) = {"
 WP
-WP
+Fq
 qL
 wG
 aF
@@ -3478,7 +3513,7 @@ Su
 Su
 Su
 Su
-WP
+qD
 "}
 (12,1,1) = {"
 WP
@@ -3611,7 +3646,7 @@ WP
 "}
 (15,1,1) = {"
 WP
-WP
+Jo
 qL
 wG
 ic
@@ -3650,7 +3685,7 @@ Su
 Su
 Su
 Su
-WP
+CM
 "}
 (16,1,1) = {"
 WP
@@ -3778,7 +3813,7 @@ pG
 Su
 Su
 Su
-WP
+CM
 WP
 "}
 (19,1,1) = {"
@@ -3788,7 +3823,7 @@ WP
 OX
 NK
 jg
-eP
+uw
 uw
 NK
 uw
@@ -3828,9 +3863,9 @@ WP
 WP
 WP
 FV
-WP
-FV
-WP
+eu
+xo
+eu
 OX
 NK
 NK

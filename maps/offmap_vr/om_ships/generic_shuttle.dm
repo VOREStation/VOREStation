@@ -45,7 +45,7 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/generic_shuttle
-	scanner_name = "Private Vessel"
+	name = "Private Vessel"
 	scanner_desc = @{"[i]Registration[/i]: PRIVATE
 [i]Class[/i]: Small Shuttle
 [i]Transponder[/i]: Transmitting (CIV), non-hostile

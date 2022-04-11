@@ -49,19 +49,18 @@
 	desc = "A pool of inky-black fluid that shimmers oddly in the light if hit just right."
 	description_info = "Surfluid is KHI's main method of production, using swarms of nanites to process raw materials into finished products at the cost of immense amounts of energy."
 	color = "#222222"
-	outdoors = FALSE
+	outdoors = OUTDOORS_NO
 	reagent_type = "liquid_protean"
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/aro2
 	name = "spacecraft"
 	desc = "Spacefaring vessel. Friendly IFF detected."
-	scanner_name = "Aronai Sieyes"
+	name = "Aronai Sieyes"
 	scanner_desc = @{"[i]Registration[/i]: Aronai Sieyes
 [i]Class[/i]: Small Frigate (Low Displacement)
 [i]Transponder[/i]: Transmitting (CIV), non-hostile
 [b]Notice[/b]: Automated vessel"}
-	color = "#00aaff" //Bluey
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	initial_generic_waypoints = list("aronai2_fore", "aronai2_aft", "aronai2_port", "aronai2_starboard")

@@ -1,17 +1,23 @@
 /* Pens!
  * Contains:
  *		Pens
+ *		Coloured Pens
+ *		Fountain Pens
+ *		Multi Pen
+ *		Reagent Pens
+ *		Blade Pens
  *		Sleepy Pens
  *		Parapens
+ *		Chameleon Pen
+ *		Crayons
  */
-
 
 /*
  * Pens
  */
 /obj/item/weapon/pen
-	desc = "It's a normal black ink pen."
 	name = "pen"
+	desc = "It's a normal black ink pen."
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "pen"
 	item_state = "pen"
@@ -20,7 +26,7 @@
 	w_class = ITEMSIZE_TINY
 	throw_speed = 7
 	throw_range = 15
-	matter = list(DEFAULT_WALL_MATERIAL = 10)
+	matter = list(MAT_STEEL = 10)
 	var/colour = "black"	//what colour the ink is!
 	pressure_resistance = 2
 	drop_sound = 'sound/items/drop/accessory.ogg'
@@ -33,6 +39,9 @@
 	to_chat(user, "<span class='notice'>Click.</span>")
 	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 
+/*
+ * Coloured Pens
+ */
 /obj/item/weapon/pen/blue
 	desc = "It's a normal blue ink pen."
 	icon_state = "pen_blue"
@@ -43,10 +52,49 @@
 	icon_state = "pen_red"
 	colour = "red"
 
+/*
+ * Fountain Pens
+ */
 /obj/item/weapon/pen/fountain
-	desc = "A well made fountain pen."
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
 
+/obj/item/weapon/pen/fountain2
+	desc = "A well made fountain pen, with a faux wood body. This one has golden accents."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain3
+	desc = "A well made expesive rosewood pen with golden accents. Very pretty."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain4
+	desc = "A well made and expensive fountain pen. This one has silver accents."
+	icon_state = "blues_fountain"
+
+/obj/item/weapon/pen/fountain5
+	desc = "A well made and expensive fountain pen. This one has gold accents."
+	icon_state = "blueg_fountain"
+
+/obj/item/weapon/pen/fountain6
+	desc = "A well made and expensive fountain pen. The nib is quite sharp."
+	icon_state = "command_fountain"
+
+/obj/item/weapon/pen/fountain7
+	desc = "A well made and expensive fountain pen made from gold."
+	icon_state = "gold_fountain"
+
+/obj/item/weapon/pen/fountain8
+	desc = "A well made and expensive fountain pen."
+	icon_state = "black_fountain"
+
+/obj/item/weapon/pen/fountain9
+	desc = "A well made and expensive fountain pen made for gesturing."
+	icon_state = "mime_fountain"
+
+
+/*
+ * Multi Pen
+ */
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
 	var/selectedColor = 1
@@ -76,7 +124,7 @@
 	colour = "white"
 
 /*
- * Reagent pens
+ * Reagent Pens
  */
 
 /obj/item/weapon/pen/reagent
@@ -102,9 +150,8 @@
 				add_attack_logs(user,M,"Injected with [src.name] containing [contained], trasferred [trans] units")
 
 /*
- * Blade pens.
+ * Blade Pens
  */
-
 /obj/item/weapon/pen/blade
 	desc = "It's a normal black ink pen."
 	description_antag = "This pen can be transformed into a dangerous melee and thrown assassination weapon with an Alt-Click.\
@@ -129,7 +176,7 @@
 	var/default_icon_state
 
 /obj/item/weapon/pen/blade/Initialize()
-	..()
+	. = ..()
 	active_icon_state = "[icon_state]-x"
 	default_icon_state = icon_state
 
@@ -150,8 +197,8 @@
 	embed_chance = active_embed_chance
 	force = active_force
 	throwforce = active_throwforce
-	sharp = 1
-	edge = 1
+	sharp = TRUE
+	edge = TRUE
 	w_class = active_w_class
 	playsound(src, 'sound/weapons/saberon.ogg', 15, 1)
 	damtype = SEARING
@@ -190,7 +237,7 @@
 	colour = "red"
 
 /obj/item/weapon/pen/blade/fountain
-	desc = "A well made fountain pen."
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
 
 /*
@@ -218,7 +265,7 @@
 	reagents.add_reagent("cryptobiolin", 10)
 
 /*
- * Chameleon pen
+ * Chameleon Pen
  */
 /obj/item/weapon/pen/chameleon
 	var/signature = ""
@@ -231,11 +278,11 @@
 		personnel_list.Add(t.fields["name"])
 	personnel_list.Add("Anonymous")
 
-	var/new_signature = input("Enter new signature pattern.", "New Signature") as null|anything in personnel_list
+	var/new_signature = tgui_input_list(usr, "Enter new signature pattern.", "New Signature", personnel_list)
 	if(new_signature)
 		signature = new_signature
 	*/
-	signature = sanitize(input("Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
+	signature = sanitize(input(usr, "Enter new signature. Leave blank for 'Anonymous'", "New Signature", signature))
 
 /obj/item/weapon/pen/proc/get_signature(var/mob/user)
 	return (user && user.real_name) ? user.real_name : "Anonymous"
@@ -248,7 +295,7 @@
 	set category = "Object"
 
 	var/list/possible_colours = list ("Yellow", "Green", "Pink", "Blue", "Orange", "Cyan", "Red", "Invisible", "Black")
-	var/selected_type = input("Pick new colour.", "Pen Colour", null, null) as null|anything in possible_colours
+	var/selected_type = tgui_input_list(usr, "Pick new colour.", "Pen Colour", possible_colours)
 
 	if(selected_type)
 		switch(selected_type)
@@ -276,7 +323,6 @@
 /*
  * Crayons
  */
-
 /obj/item/weapon/pen/crayon
 	name = "crayon"
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."
@@ -291,11 +337,6 @@
 	var/colourName = "red" //for updateIcon purposes
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
-
-/obj/item/weapon/pen/crayon/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<font color='red'><b>[user] is jamming the [src.name] up [TU.his] nose and into [TU.his] brain. It looks like [TU.he] [TU.is] trying to commit suicide.</b></font>")
-	return (BRUTELOSS|OXYLOSS)
 
 /obj/item/weapon/pen/crayon/New()
 	name = "[colourName] crayon"

@@ -10,19 +10,19 @@
 		if("toggle_enable")
 			var/obj/machinery/atmospherics/valve/shutoff/S = locate(params["valve"])
 			if(!istype(S))
-				return 0
+				return FALSE
 			S.close_on_leaks = !S.close_on_leaks
-			return 1
+			return TRUE
 
 		if("toggle_open")
 			var/obj/machinery/atmospherics/valve/shutoff/S = locate(params["valve"])
 			if(!istype(S))
-				return 0
+				return FALSE
 			if(S.open)
 				S.close()
 			else
 				S.open()
-			return 1
+			return TRUE
 
 /datum/tgui_module/shutoff_monitor/tgui_data(mob/user)
 	var/list/data = list()

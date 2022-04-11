@@ -1,6 +1,29 @@
+/datum/category_item/catalogue/fauna/giant_snake
+	name = "Creature - Giant Snake"
+	desc = "Classification: Serpentes gigantus\
+	<br><br>\
+	Snakes are elongated, limbless, carnivorous reptiles of the suborder Serpentes \
+	Like all other squamates, snakes are ectothermic, amniote vertebrates covered in overlapping scales. \
+	Many species of snakes have skulls with several more joints than their lizard ancestors, \
+	enabling them to swallow prey much larger than their heads with their highly mobile jaws. \
+	This particular species of snake has likely been mutated by deliberate gene manipulation of some sort and as a \
+	result has grown to unnatural size. Biologically this snake is no different than that of the common snake, \
+	but this species has been known to have increased hostility towards wildlife. Scientists are still studying \
+	this new species for any differences in behavior or biology beyond the increase in size. \
+	<br>\
+	This species of snake is nonvenomous and use their large bodies to primarily subdue their prey. \
+	Nonvenomous snakes either swallow prey alive or kill them by constriction - this is dependant on the prey. \
+	<br>\
+	This snake is extremely hostile to all wildlife and living beings and should be avoided at all costs. \
+	People who spot these creatures are urged to inform the nearest militant entity so that they can be \
+	dealt with in a professional manner."
+	value = CATALOGUER_REWARD_HARD
+
 /mob/living/simple_mob/vore/aggressive/giant_snake
 	name = "giant snake"
 	desc = "Snakes. Why did it have to be snakes?"
+	tt_desc = "Serpentes gigantus"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/giant_snake)
 
 	icon_dead = "snake-dead"
 	icon_living = "snake"
@@ -14,6 +37,9 @@
 
 	melee_damage_lower = 5
 	melee_damage_upper = 12
+
+	meat_amount = 6
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	response_help = "pats"
 	response_disarm = "tries to shove"

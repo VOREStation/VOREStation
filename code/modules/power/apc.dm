@@ -75,16 +75,29 @@ GLOBAL_LIST_EMPTY(apcs)
 /obj/machinery/power/apc/alarms_hidden
 	alarms_hidden = TRUE
 
+/obj/machinery/power/apc/angled
+	icon = 'icons/obj/wall_machines_angled.dmi'
+
+/obj/machinery/power/apc/angled/hidden
+	alarms_hidden = TRUE
+
+/obj/machinery/power/apc/angled/offset_apc()
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 24 : -24)
+	pixel_y = (dir & 3) ? (dir == 1 ? 20 : -20) : 0
+
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
 	icon = 'icons/obj/power.dmi'
 	icon_state = "apc0"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1
+	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_OFF
 	clicksound = "switch"
 	req_access = list(access_engine_equip)
+	blocks_emissive = FALSE
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	var/area/area
 	var/areastring = null
 	var/obj/item/weapon/cell/cell
@@ -128,10 +141,6 @@ GLOBAL_LIST_EMPTY(apcs)
 	var/failure_timer = 0
 	var/force_update = 0
 	var/updating_icon = 0
-	var/global/list/status_overlays_lock
-	var/global/list/status_overlays_charging
-	var/global/list/status_overlays_equipment
-	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
 	var/alarms_hidden = FALSE //If power alarms from this APC are visible on consoles
 	
@@ -187,11 +196,10 @@ GLOBAL_LIST_EMPTY(apcs)
 	if(building)
 		set_dir(ndir)
 
-	pixel_x = (dir & 3)? 0 : (dir == 4 ? 26 : -26) //VOREStation Edit -> 24 to 26
-	pixel_y = (dir & 3)? (dir ==1 ? 26 : -26) : 0 //VOREStation Edit -> 24 to 26
-	if(building==0)
-		init()
-	else
+	if(!pixel_x && !pixel_y)
+		offset_apc()
+	
+	if(building)
 		area = get_area(src)
 		area.apc = src
 		opened = 1
@@ -199,6 +207,16 @@ GLOBAL_LIST_EMPTY(apcs)
 		name = "[area.name] APC"
 		stat |= MAINT
 		update_icon()
+
+/obj/machinery/power/apc/Initialize(mapload, ndir, building)
+	. = ..()
+	if(!building)
+		init()
+		return INITIALIZE_HINT_LATELOAD
+
+/obj/machinery/power/apc/LateInitialize()
+	. = ..()
+	update()
 
 /obj/machinery/power/apc/Destroy()
 	GLOB.apcs -= src
@@ -222,11 +240,14 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	return ..()
 
+/obj/machinery/power/apc/proc/offset_apc()
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? 26 : -26)
+	pixel_y = (dir & 3) ? (dir == 1 ? 26 : -26) : 0
+
 // APCs are pixel-shifted, so they need to be updated.
 /obj/machinery/power/apc/set_dir(new_dir)
 	..()
-	pixel_x = (dir & 3)? 0 : (dir == 4 ? 24 : -24)
-	pixel_y = (dir & 3)? (dir ==1 ? 24 : -24) : 0
+	offset_apc()
 	if(terminal)
 		terminal.disconnect_from_network()
 		terminal.set_dir(dir) // Terminal has same dir as master
@@ -268,9 +289,6 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	make_terminal()
 
-	spawn(5)
-		update()
-
 /obj/machinery/power/apc/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
@@ -301,42 +319,6 @@ GLOBAL_LIST_EMPTY(apcs)
 // update the APC icon to show the three base states
 // also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
-	if(!status_overlays)
-		status_overlays = 1
-		status_overlays_lock = new
-		status_overlays_charging = new
-		status_overlays_equipment = new
-		status_overlays_lighting = new
-		status_overlays_environ = new
-
-		status_overlays_lock.len = 2
-		status_overlays_charging.len = 3
-		status_overlays_equipment.len = 4
-		status_overlays_lighting.len = 4
-		status_overlays_environ.len = 4
-
-		status_overlays_lock[1] = image(icon, "apcox-0")    // 0=blue 1=red
-		status_overlays_lock[2] = image(icon, "apcox-1")
-
-		status_overlays_charging[1] = image(icon, "apco3-0")
-		status_overlays_charging[2] = image(icon, "apco3-1")
-		status_overlays_charging[3] = image(icon, "apco3-2")
-
-		status_overlays_equipment[1] = image(icon, "apco0-0")
-		status_overlays_equipment[2] = image(icon, "apco0-1")
-		status_overlays_equipment[3] = image(icon, "apco0-2")
-		status_overlays_equipment[4] = image(icon, "apco0-3")
-
-		status_overlays_lighting[1] = image(icon, "apco1-0")
-		status_overlays_lighting[2] = image(icon, "apco1-1")
-		status_overlays_lighting[3] = image(icon, "apco1-2")
-		status_overlays_lighting[4] = image(icon, "apco1-3")
-
-		status_overlays_environ[1] = image(icon, "apco2-0")
-		status_overlays_environ[2] = image(icon, "apco2-1")
-		status_overlays_environ[3] = image(icon, "apco2-2")
-		status_overlays_environ[4] = image(icon, "apco2-3")
-
 	var/update = check_updates() 		//returns 0 if no need to update icons.
 						// 1 if we need to update the icon_state
 						// 2 if we need to update the overlays
@@ -363,20 +345,25 @@ GLOBAL_LIST_EMPTY(apcs)
 			icon_state = "apcemag"
 
 	if(!(update_state & UPDATE_ALLGOOD))
-		if(overlays.len)
-			overlays = 0
-			return
+		cut_overlays()
+		return
 
 	if(update & 2)
-		if(overlays.len)
-			overlays.len = 0
+		cut_overlays()
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
-			overlays += status_overlays_lock[locked+1]
-			overlays += status_overlays_charging[charging+1]
+			var/list/new_overlays = list()
+			new_overlays += mutable_appearance(icon, "apcox-[locked]")
+			new_overlays += emissive_appearance(icon, "apcox-[locked]")
+			new_overlays += mutable_appearance(icon, "apco3-[charging]")
+			new_overlays += emissive_appearance(icon, "apco3-[charging]")
 			if(operating)
-				overlays += status_overlays_equipment[equipment+1]
-				overlays += status_overlays_lighting[lighting+1]
-				overlays += status_overlays_environ[environ+1]
+				new_overlays += mutable_appearance(icon, "apco0-[equipment]")
+				new_overlays += emissive_appearance(icon, "apco0-[equipment]")
+				new_overlays += mutable_appearance(icon, "apco1-[lighting]")
+				new_overlays += emissive_appearance(icon, "apco1-[lighting]")
+				new_overlays += mutable_appearance(icon, "apco2-[environ]")
+				new_overlays += emissive_appearance(icon, "apco2-[environ]")
+			add_overlay(new_overlays)
 
 	if(update & 3)
 		if(update_state & UPDATE_BLUESCREEN)
@@ -572,7 +559,7 @@ GLOBAL_LIST_EMPTY(apcs)
 							"You start adding cables to the APC frame...")
 		playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 		if(do_after(user, 20))
-			if(C.amount >= 10 && !terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
+			if(C.get_amount() >= 10 && !terminal && opened && has_electronics != APC_HAS_ELECTRONICS_SECURED)
 				var/obj/structure/cable/N = T.get_cable_node()
 				if(prob(50) && electrocute_mob(usr, N, N))
 					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread

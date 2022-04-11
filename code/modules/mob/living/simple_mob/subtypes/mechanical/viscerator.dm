@@ -40,10 +40,12 @@
 	melee_damage_lower = 4 // Approx 8 DPS.
 	melee_damage_upper = 4
 	base_attack_cooldown = 5 // Two attacks a second or so.
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 	attack_sound = 'sound/weapons/bladeslice.ogg'
 	attacktext = list("cut", "sliced")
+
+	organ_names = /decl/mob_organ_names/viscerator
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
@@ -55,14 +57,14 @@
 // Used for a special grenade, to ensure they don't attack the wrong thing.
 /mob/living/simple_mob/mechanical/viscerator/mercenary/IIsAlly(mob/living/L)
 	. = ..()
-	if(!.) // Not friendly, see if they're a baddie first.
+	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
 		if(L.mind && mercs.is_antagonist(L.mind))
 			return TRUE
 
 // Similar to above but for raiders.
 /mob/living/simple_mob/mechanical/viscerator/raider/IIsAlly(mob/living/L)
 	. = ..()
-	if(!.) // Not friendly, see if they're a baddie first.
+	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
 		if(L.mind && raiders.is_antagonist(L.mind))
 			return TRUE
 
@@ -81,7 +83,7 @@
 
 /mob/living/simple_mob/mechanical/viscerator/station/IIsAlly(mob/living/L)
 	. = ..()
-	if(!.)
+	if(!. && isliving(L))
 		if(isrobot(L)) // They ignore synths.
 			return TRUE
 		if(istype(L, /mob/living/simple_mob/mechanical/ward/monitor/crew))	// Also ignore friendly monitor wards
@@ -93,3 +95,6 @@
 	attack_armor_pen = 20
 	base_attack_cooldown = 10 // One attack a second or so.
 	movement_cooldown = 0.5
+
+/decl/mob_organ_names/viscerator
+	hit_zones = list("chassis", "rotor blades", "sensor array")

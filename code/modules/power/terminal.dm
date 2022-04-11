@@ -9,7 +9,7 @@
 	desc = "It's an underfloor wiring terminal for power equipment."
 	level = 1
 	var/obj/machinery/power/master = null
-	anchored = 1
+	anchored = TRUE
 	plane = PLATING_PLANE
 	layer = WIRES_LAYER+0.01
 

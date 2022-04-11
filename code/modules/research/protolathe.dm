@@ -17,18 +17,18 @@
 
 	//VOREStation Edit - Broke this into lines
 	materials = list(
-		DEFAULT_WALL_MATERIAL = 0,
-		"glass" = 0,
+		MAT_STEEL = 0,
+		MAT_GLASS = 0,
 		MAT_PLASTEEL = 0,
-		"plastic" = 0,
+		MAT_PLASTIC = 0,
 		MAT_GRAPHITE = 0,
-		"gold" = 0,
-		"silver" = 0,
-		"osmium" = 0,
+		MAT_GOLD = 0,
+		MAT_SILVER = 0,
+		MAT_OSMIUM = 0,
 		MAT_LEAD = 0,
-		"phoron" = 0,
-		"uranium" = 0,
-		"diamond" = 0,
+		MAT_PHORON = 0,
+		MAT_URANIUM = 0,
+		MAT_DIAMOND = 0,
 		MAT_DURASTEEL = 0,
 		MAT_VERDANTIUM = 0,
 		MAT_MORPHIUM = 0,
@@ -40,6 +40,16 @@
 
 /obj/machinery/r_n_d/protolathe/Initialize()
 	. = ..()
+
+// Go through all materials, and add them to the possible storage, but hide them unless we contain them.
+	for(var/Name in name_to_material)
+		if(Name in materials)
+			continue
+
+		hidden_materials |= Name
+
+		materials[Name] = 0
+
 	default_apply_parts()
 
 /obj/machinery/r_n_d/protolathe/process()
@@ -96,7 +106,7 @@
 
 
 /obj/machinery/r_n_d/protolathe/update_icon()
-	overlays.Cut()
+	cut_overlays()
 
 	icon_state = initial(icon_state)
 
@@ -165,9 +175,9 @@
 
 	var/stacktype = S.type
 	var/t = getMaterialName(stacktype)
-	overlays += "protolathe_[t]"
+	add_overlay("protolathe_[t]")
 	spawn(10)
-		overlays -= "protolathe_[t]"
+		cut_overlay("protolathe_[t]")
 
 	updateUsrDialog()
 	return
@@ -223,27 +233,44 @@
 					new_item.matter[i] = new_item.matter[i] * mat_efficiency
 
 /obj/machinery/r_n_d/protolathe/proc/eject_materials(var/material, var/amount) // 0 amount = 0 means ejecting a full stack; -1 means eject everything
-	var/recursive = amount == -1 ? 1 : 0
-	material = lowertext(material)
-	var/obj/item/stack/material/mattype
-	var/datum/material/MAT = get_material_by_name(material)
+	var/recursive = amount == -1 ? TRUE : FALSE
+	var/matstring = lowertext(material)
 
-	if(!MAT)
+	// 0 or null, nothing to eject
+	if(!materials[matstring])
+		return
+	// Problem, fix problem and abort
+	if(materials[matstring] < 0)
+		warning("[src] tried to eject material '[material]', which it has 'materials[matstring]' of!")
+		materials[matstring] = 0
 		return
 
-	mattype = MAT.stack_type
-
-	if(!mattype)
+	// Find the material datum for our material
+	var/datum/material/M = get_material_by_name(matstring)
+	if(!M)
+		warning("[src] tried to eject material '[matstring]', which didn't match any known material datum!")
+		return
+	// Find what type of sheets it makes
+	var/obj/item/stack/material/S = M.stack_type
+	if(!S)
+		warning("[src] tried to eject material '[matstring]', which didn't have a stack_type!")
 		return
 
-	var/obj/item/stack/material/S = new mattype(loc)
+	// If we were passed -1, then it's recursive ejection and we should eject all we can
 	if(amount <= 0)
-		amount = S.max_amount
-	var/ejected = min(round(materials[material] / S.perunit), amount)
-	S.amount = min(ejected, amount)
-	if(S.amount <= 0)
-		qdel(S)
+		amount = initial(S.max_amount)
+	// Smaller of what we have left, or the desired amount (note the amount is in sheets, but the array stores perunit values)
+	var/ejected = min(round(materials[matstring] / initial(S.perunit)), amount)
+
+	// Place a sheet
+	S = M.place_sheet(get_turf(src), ejected)
+	if(!istype(S))
+		warning("[src] tried to eject material '[material]', which didn't generate a proper stack when asked!")
 		return
-	materials[material] -= ejected * S.perunit
-	if(recursive && materials[material] >= S.perunit)
-		eject_materials(material, -1)
+
+	// Reduce our amount stored
+	materials[matstring] -= ejected * S.perunit
+	
+	// Recurse if we have enough left for more sheets
+	if(recursive && materials[matstring] >= S.perunit)
+		eject_materials(matstring, -1)

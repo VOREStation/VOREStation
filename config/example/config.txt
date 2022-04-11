@@ -16,7 +16,7 @@ ADMIN_LEGACY_SYSTEM
 BAN_LEGACY_SYSTEM
 
 ## Add a # here if you wish to use the setup where jobs have more access. This is intended for servers with low populations - where there are not enough players to fill all roles, so players need to do more than just one job. Also for servers where they don't want people to hide in their own departments.
-JOBS_HAVE_MINIMAL_ACCESS
+# JOBS_HAVE_MINIMAL_ACCESS
 
 ## Unhash this entry to have certain jobs require your account to be at least a certain number of days old to select. You can configure the exact age requirement for different jobs by editing
 ## the minimal_player_age variable in the files in folder /code/game/jobs/job/.. for the job you want to edit. Set minimal_player_age to 0 to disable age requirement for that job.
@@ -28,7 +28,6 @@ JOBS_HAVE_MINIMAL_ACCESS
 ## Unhash this entry to have certain antag roles require your account to be at least a certain number of days old for round start and auto-spawn selection.
 ## Non-automatic antagonist recruitment, such as being converted to cultism is not affected. Has the same database requirements and notes as USE_AGE_RESTRICTION_FOR_JOBS.
 #USE_AGE_RESTRICTION_FOR_ANTAGS
-
 
 ## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
 #USE_RECURSIVE_EXPLOSIONS
@@ -79,24 +78,28 @@ LOG_GRAFFITI
 # LOG_HREFS
 
 ## log world.log and runtime errors to a file
-# LOG_RUNTIME
+LOG_RUNTIME
 
 ## log admin warning messages
-##LOG_ADMINWARN  ## Also duplicates a bunch of other messages.
+LOG_ADMINWARN
 
 ## Enable/disable SQL connection (comment out to disable)
 SQL_ENABLED
 
 ## disconnect players who did nothing during the set amount of minutes
-# KICK_INACTIVE 10
+KICK_INACTIVE 30
 
 ##Show developers on staffwho
 SHOW_DEVS
+
 ##Show mods on staffwho
 SHOW_MODS
 
 ##Show mentors on staffwho
-SHOW_EVENT
+SHOW_EVENT_MANAGERS
+
+##Show mentors on staffwho
+SHOW_MENTORS
 
 ## Chooses whether mods have the ability to tempban or not
 MODS_CAN_TEMPBAN
@@ -108,30 +111,22 @@ MODS_CAN_JOB_TEMPBAN
 MOD_TEMPBAN_MAX 1440
 
 ## Maximum mod job tempban duration (in minutes)
-MOD_JOB_TEMPBAN_MAX 1440
-
+MOD_JOB_TEMPBAN_MAX 4320
 
 ## probablities for game modes chosen in "secret" and "random" modes
 ## 
 ## default probablity is 1, increase to make that mode more likely to be picked
 ## set to 0 to disable that mode
 PROBABILITY EXTENDED 1
-PROBABILITY MALFUNCTION 1
-PROBABILITY MERCENARY 1
-PROBABILITY WIZARD 1
-PROBABILITY TECHNOMANCER 1
-PROBABILITY CHANGELING 1
-PROBABILITY CULT 1
-PROBABILITY EXTEND-A-TRAITORMONGOUS 6
-PROBABILITY LIZARD 1
-PROBABILITY INTRIGUE 1
-PROBABILITY VISITORS 1
-
-## Overrides for required number of readied up players for a gamemode to be able to start can be defined here.
-## If it is unset, it will default to the requirement set by the gamemode datum.
-## Note that this does not control the required amount of antags for a gamemode, and so a lower number may still fail to start if not enough people want to be antags.
-## By default, this overrides the voted gamemode requirement. To override the requirement for Secret, append '_SECRET' to the end of the first word.
-## The format to use is REQUIRED_PLAYERS[_SECRET] [gamemode tag] [number of readies needed], for example, "REQUIRED_PLAYERS TRAITOR 1", or "REQUIRED_PLAYERS_SECRET MERCENARY 10".
+PROBABILITY MALFUNCTION 0
+PROBABILITY MERCENARY 0
+PROBABILITY WIZARD 0
+PROBABILITY CHANGELING 0
+PROBABILITY CULT 0
+PROBABILITY EXTEND-A-TRAITORMONGOUS 0
+PROBABILITY LIZARD 0
+PROBABILITY INTRIGUE 0
+PROBABILITY VISITORS 0
 
 ## Hash out to disable random events during the round.
 ALLOW_RANDOM_EVENTS
@@ -149,7 +144,7 @@ TRAITOR_SCALING
 #ALLOW_EXTRA_ANTAGS
 
 ## If security is prohibited from being most antagonists
-#PROTECT_ROLES_FROM_ANTAGONIST
+PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Uncomment this to DISABLE persistence
 #PERSISTENCE_DISABLED
@@ -161,15 +156,15 @@ TRAITOR_SCALING
 ALLOW_ADMIN_OOCCOLOR
 
 ## If metadata is supported
-# ALLOW_METADATA
+ALLOW_METADATA
 
 ## allow players to initiate a restart vote
 ALLOW_VOTE_RESTART
 
 ## allow players to initate a mode-change start
-ALLOW_VOTE_MODE
+# ALLOW_VOTE_MODE
 
-## time in pregame lobby in seconds
+# Pregame time
 PREGAME_TIME 180
 
 ## min delay (deciseconds) between voting sessions (default 10 minutes)
@@ -179,13 +174,13 @@ VOTE_DELAY 6000
 VOTE_PERIOD 600
 
 ## autovote initial delay (deciseconds) before first automatic transfer vote call (default 180 minutes)
-VOTE_AUTOTRANSFER_INITIAL 108000
+VOTE_AUTOTRANSFER_INITIAL 216000
 
 ##autovote delay (deciseconds) before sequential automatic transfer votes are called (default 60 minutes)
-VOTE_AUTOTRANSFER_INTERVAL 36000
+VOTE_AUTOTRANSFER_INTERVAL 36000 
 
 ## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
-VOTE_AUTOGAMEMODE_TIMELEFT 100
+VOTE_AUTOGAMEMODE_TIMELEFT -1
 
 ## prevents dead players from voting or starting votes
 #NO_DEAD_VOTE
@@ -197,7 +192,7 @@ DEFAULT_NO_VOTE
 ALLOW_ANTAG_HUD
 
 ## If ghosts use antagHUD they are no longer allowed to join the round.
-ANTAG_HUD_RESTRICTED
+# ANTAG_HUD_RESTRICTED
 
 ## allow AI job
 ALLOW_AI
@@ -228,27 +223,39 @@ GUEST_BAN
 # USEWHITELIST
 
 ## set a server location for world reboot. Don't include the byond://, just give the address and port.
-#SERVER server.net:port
+SERVER your.domain:6000
 
 ## set a server URL for the IRC bot to use; like SERVER, don't include the byond://
 ## Unlike SERVER, this one shouldn't break auto-reconnect
-#SERVERURL server.net:port
+# SERVERURL your.domain:port
 
 ## forum address
-# FORUMURL http://example.com
-
-## Wiki address
-# WIKIURL http://example.com
+#FORUMURL https://forum.your.domain/
 
 ## Wiki search path
-## Set this to whatever path your wiki uses to search for articles
-## Use %s to mark where the search query should be inserted
-# WIKISEARCHURL http://example.com/index.php?title=Special%3ASearch&search=%s
+## Use %s to indicate where search query goes.
+#WIKISEARCHURL https://wiki.your.domain/index.php?search=%s
+
+## Wiki address
+#WIKIURL https://wiki.your.domain/index.php?title=
+
+## Chat address, VORE Station edit
+#CHATURL http://discord.gg/some_tag
 
 ## GitHub address
-# GITHUBURL https://github.com/example-user/example-repository
+#GITHUBURL https://github.com/owner/repo
+
+## Discord address
+#DISCORDURL https://discord.gg/someinvite
+
+## Rules URL
+#RULESURL https://rules.your.domain/
+
+## Map URL
+#MAPURL https://map.your.domain/
+
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-# BANAPPEALS http://example.com
+#BANAPPEALS http://bans.your.domain/
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
@@ -266,11 +273,12 @@ GUEST_BAN
 
 ## Remove the # to allow special 'Easter-egg' events on special holidays such as seasonal holidays and stuff like 'Talk Like a Pirate Day' :3 YAARRR
 ALLOW_HOLIDAYS
-##Defines the ticklag for the world.  0.6 is the normal one, 0.5 is smoother
-TICKLAG 0.6
+
+##Defines the ticklag for the world.  0.9 is the normal one, 0.5 is smoother.
+TICKLAG 0.5
 
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
-TICKCOMP 0
+TICKCOMP 1
 
 ## Whether the server will talk to other processes through socket_talk
 SOCKET_TALK 0
@@ -282,25 +290,26 @@ SOCKET_TALK 0
 #AUTOMUTE_ON
 
 ## How long the delay is before the Away Mission gate opens. Default is half an hour.
-GATEWAY_DELAY 18000
+GATEWAY_DELAY 9000
 
 ## Remove the # to give assistants maint access.
-#ASSISTANT_MAINT
+ASSISTANT_MAINT
 
 ## Remove the # to make rounds which end instantly (Rev, Wizard, Malf) to continue until the shuttle is called or the station is nuked.
 ## Malf and Rev will let the shuttle be called when the antags/protags are dead.
-#CONTINUOUS_ROUNDS
+CONTINUOUS_ROUNDS
 
 ## Uncomment to restrict non-admins from using humanoid alien races
 USEALIENWHITELIST
 
 ## Comment this to unrestrict the number of alien players allowed in the round. The number represents the number of alien players for every human player.
 #ALIEN_PLAYER_RATIO 0.2
+
 ##Remove the # to let ghosts spin chairs
 #GHOST_INTERACTION
 
 ## Password used for authorizing ircbot and other external tools.
-#COMMS_PASSWORD
+# COMMS_PASSWORD some_password_here
 
 ## Uncomment to enable sending data to the IRC bot.
 #USE_IRC_BOT
@@ -332,42 +341,29 @@ ALLOW_CULT_GHOSTWRITER
 REQ_CULT_GHOSTWRITER 6
 
 ## Sets the number of available character slots
-CHARACTER_SLOTS 10
-
+CHARACTER_SLOTS 50
 ## Sets the number of loadout slots per character
-LOADOUT_SLOTS 3
+#LOADOUT_SLOTS 3
 
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP
 
-## Defines which Z-levels the station exists on. 
-STATION_LEVELS 1
-
-## Defines which Z-levels are used for admin functionality, such as Central Command and the Syndicate Shuttle
-ADMIN_LEVELS 2
-
-## Defines which Z-levels which, for example, a Code Red announcement may affect
-CONTACT_LEVELS 1;5
-
-## Defines all Z-levels a character can typically reach
-PLAYER_LEVELS 1;3;4;5;6
-
 ## Expected round length in minutes
-EXPECTED_ROUND_LENGTH 180
+EXPECTED_ROUND_LENGTH 360
 
 ## The lower delay between events in minutes.
 ## Affect mundane, moderate, and major events respectively
-EVENT_DELAY_LOWER 10;30;50
+EVENT_DELAY_LOWER 30;45;60
 
 ## The upper delay between events in minutes.
 ## Affect mundane, moderate, and major events respectively
-EVENT_DELAY_UPPER 15;45;70
+EVENT_DELAY_UPPER 45;60;120
 
 ## The delay until the first time an event of the given severity runs in minutes.
 ## Unset setting use the EVENT_DELAY_LOWER and EVENT_DELAY_UPPER values instead.
-# EVENT_CUSTOM_START_MINOR 10;15
-# EVENT_CUSTOM_START_MODERATE 30;45
-EVENT_CUSTOM_START_MAJOR 80;100
+EVENT_CUSTOM_START_MINOR 30;30
+EVENT_CUSTOM_START_MODERATE 30;30
+EVENT_CUSTOM_START_MAJOR 100;100
 
 ## Uncomment to make proccall require R_ADMIN instead of R_DEBUG
 ## designed for environments where you have testers but don't want them
@@ -398,6 +394,9 @@ EVENT_CUSTOM_START_MAJOR 80;100
 ## Uncomment to disable respawning by default.
 #DISABLE_RESPAWN
 
+## set a message to give to players when they respawn
+RESPAWN_MESSAGE If you're respawning as the same character or job hopping (changing jobs without an HoP), make sure you've waited at least 30 minutes. Don't abuse this function for non-vore related deaths & avoid using metaknowledge.
+
 ## Strength of ambient star light. Set to 0 or less to turn off. A value of 1 is unlikely to have a noticeable effect in most lightning systems.
 STARLIGHT 0
 
@@ -410,10 +409,10 @@ STARLIGHT 0
 
 ## Enables specific procedural map generation, generally for mining, however it is specific to the loaded map.  Uncomment to enable it, however it can
 ## worth it to keep it disabled if you are not hosting an actual server, to speed up start-up time for testing code.
-# GENERATE_MAP
+GENERATE_MAP
 
 ## Uncomment to enable organ decay outside of a body or storage item.
-#ORGANS_CAN_DECAY
+ORGANS_CAN_DECAY
 
 ## Uncomment to have the changelog file automatically open when a user connects and hasn't seen the latest changelog
 #AGGRESSIVE_CHANGELOG
@@ -421,30 +420,46 @@ STARLIGHT 0
 ## Uncomment to override default brain health.
 #DEFAULT_BRAIN_HEALTH 400
 
-## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , and # 
+## Default language prefix keys, separated with spaces. Only single character keys are supported. If unset, defaults to , and #
 # DEFAULT_LANGUAGE_PREFIXES , #
+
+## Uncomment to enable items surviving digestion (specific ones, important_items global list)
+ITEMS_SURVIVE_DIGESTION
+
+## Configuration for the discord chat integration for announcements and faxes
+# URL for the webhook that BYOND should call
+#CHAT_WEBHOOK_URL http://localhost/discord/webhook.php
+
+# The secret API key to authenticate to the webhook.
+#CHAT_WEBHOOK_KEY some_password_here
+
+# Path to the folder that BYOND should export faxes into so they are readable on the web.
+#FAX_EXPORT_DIR data/faxes
+
+# TCP port on which to connect to the VGS instance.
+#VGS_SERVER_PORT 8888
+# Secret pre-shared-key to authenticate to VGS.
+#VGS_ACCESS_IDENTIFIER some_password_here
+
+MULTI_Z_EXPLOSION_SCALAR 0.35
 
 # Control which submaps are loaded for the Dynamic Engine system
 ENGINE_MAP Supermatter Engine,Edison's Bane
 
 # Controls if the 'time off' system is used for determining if players can play 'Off-Duty' jobs (requires SQL)
-# TIME_OFF
-
+#TIME_OFF
 # If 'time off' system is on, controls whether or not players can switch on/off duty midround using timeclocks
-# PTO_JOB_CHANGE
-
-# Forbids players from joining if they have no set General flavor text
-# REQUIRE_FLAVOR
+PTO_JOB_CHANGE
 
 # Applies a limit to the number of assistants and visitors respectively
-# LIMIT_INTERNS 6
-# LIMIT_VISITORS 6
+LIMIT_INTERNS 15
+LIMIT_VISITORS 15
 
-## Uncomment to enable the Panic Bunker by default. This will prevent all unseen-before players from connecting. Requires SQL.
-# PANIC_BUNKER
+# PTO Cap in hours per department
+PTO_CAP 50
 
-## Uncomment to enable Paranoia Logging. This will notify admins and write to a file any time a new player (byond or your server) connects.
-# PARANOIA_LOGGING
+# Forbids players from joining if they have no set General flavor text
+REQUIRE_FLAVOR
 
 ## Uncomment to enable submaps to have their orientation rotated randomly during map generation.
 ## Submap rotation is an experimental feature and can cause bugs and weirdness if certain objects inside the submap are coded poorly.
@@ -453,13 +468,13 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 
 ## Uncomment to allow the AI job to use 'AI Shells', a new type of borg that lets the AI hop into and out of them at will.
 ## This has some balance implications, and so it might not be desirable for all servers.
-# ALLOW_AI_SHELLS
+ALLOW_AI_SHELLS
 
 ## Uncomment to provide the AI with one free AI Shell at roundstart. Requires ALLOW_AI_SHELLS to also be uncommented.
 ## This is intended for low-pop servers, where robotics might rarely be staffed.
 ## Note that this will make it possible for the AI to 'bootstrap' more AI Shells on their own by using the science module. If this is not acceptable for your server, you should not uncomment this.
 ## The landmark object that spawns the shell will also need to be mapped in for this to work.
-# GIVE_FREE_AI_SHELL
+GIVE_FREE_AI_SHELL
 
 ## Uncomment to allow specific solar control computers to set themselves up.
 ## This requires solar controller computers in the map to be set up to use it, with the auto_start variable.
@@ -469,28 +484,28 @@ ENGINE_MAP Supermatter Engine,Edison's Bane
 RADIATION_DECAY_RATE 1
 
 ## Lower limit on radiation for actually irradiating things on a turf
-RADIATION_LOWER_LIMIT 0.01
+RADIATION_LOWER_LIMIT 0.35
 
 ## Multiplier for radiation resistances when tracing a ray from source to destination to compute radiation on a turf
-RADIATION_RESISTANCE_MULTIPLIER 2.1
+RADIATION_RESISTANCE_MULTIPLIER 8.5
 
 ## Divisor for material weights when computing radiation resistance of a material object (walls)
-RADIATION_MATERIAL_RESISTANCE_DIVISOR 16
+RADIATION_MATERIAL_RESISTANCE_DIVISOR 1
 
 ## Mode of computing radiation resistance into effective radiation on a turf
 ## One and only one of the following options must be uncommented
-RADIATION_RESISTANCE_CALC_DIVIDE
-# RADIATION_RESISTANCE_CALC_SUBTRACT
+# RADIATION_RESISTANCE_CALC_DIVIDE
+RADIATION_RESISTANCE_CALC_SUBTRACT
 
 ## IP Reputation Checking
 # Enable/disable IP reputation checking (present/nonpresent)
 #IP_REPUTATION
 
 # Set the e-mail address problems can go to for IPR checks (e-mail address)
-IPR_EMAIL whatever@whatever.com
+IPR_EMAIL your-email@domain.com
 
 # Above this value, reputation scores are considered 'bad' (number)
-IPR_BAD_SCORE 1
+IPR_BAD_SCORE 0.89
 
 # If you want the people disconnected. Otherwise it just logs. (present/nonpresent)
 IPR_BLOCK_BAD_IPS
@@ -501,6 +516,11 @@ IPR_ALLOW_EXISTING
 # And what that age is (number)
 IPR_MINIMUM_AGE 5
 
+## Uncomment to enable the Panic Bunker by default. This will prevent all unseen-before players from connecting. Requires SQL.
+# PANIC_BUNKER
+
+# Paranoia logging starts on
+PARANOIA_LOGGING
 
 ## -SQLite Options-
 ## Uncomment to enable the use of SQLite. This does nothing by itself but other features that require SQLite will need this to be on.
@@ -541,11 +561,14 @@ SQLITE_FEEDBACK_MIN_AGE 7
 ## Uncomment this if you want to disable the popup alert for people on the same CID (Don't do this on a live server if you ban multikeying)
 #DISABLE_CID_WARN_POPUP
 
+# IPQualityscore.com API Key (string) - this is secret!
+IPQUALITYSCORE_APIKEY some_password_here
+
 ## Comment this out if you don't want to use the 'nightshift lighting' subsystem to adjust lights based on ingame time
 ENABLE_NIGHT_SHIFTS
 
 ## Comment this out to enable playtime restrictions for jobs in their respective departments (mostly for heads)
-# USE_PLAYTIME_RESTRICTION_FOR_JOBS
+#USE_PLAYTIME_RESTRICTION_FOR_JOBS
 
 ## OOC/LOOC control ##
 # Uncomment to allow links of the following kinds. #
@@ -553,5 +576,21 @@ ENABLE_NIGHT_SHIFTS
 # ALLOW_DISCORD_LINKS
 ALLOW_URL_LINKS
 
-# Control which submaps are loaded for the Dynamic Engine system
-ENGINE_MAP Supermatter Engine,Edison's Bane
+# Controls how strictly the species whitelists on loadout entries are enforced
+# Possible values: 0 (Off), 1 (Lax, user must be whitelisted for the species), 2 (Strict, user must be the species)
+LOADOUT_WHITELIST 1
+
+# Allowed time from death to defib in minutes
+DEFIB_TIMER 60
+
+# Jukebox track files to load, JSON format. Keys include: 
+# REQUIRED: url (str), title (str), duration (num, in DS)
+# SUGGESTED: artist (str), genre (str)
+# OPTIONAL: secret (bool), lobby (bool)
+#JUKEBOX_TRACK_FILES config/jukebox.json;config/jukebox_private.json
+JUKEBOX_TRACK_FILES config/jukebox.json
+
+# Suggested BYOND client version (major component, e.g. 514)
+#SUGGESTED_BYOND_VERSION 514
+# Suggested BYOND client build (minor component, e.g. 1560)
+#SUGGESTED_BYOND_BUILD 1561

@@ -16,7 +16,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2,
 			)
-	cost = 40
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/aether
 	containername = "Atmospheric voidsuit crate"
 	access = access_atmospherics
@@ -30,7 +30,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2,
 			)
-	cost = 50
+	cost = 60
 	containertype = /obj/structure/closet/crate/secure/aether
 	containername = "Heavy Duty Atmospheric voidsuit crate"
 	access = access_atmospherics
@@ -44,7 +44,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 40
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Engineering voidsuit crate"
 	access = access_engine_equip
@@ -58,7 +58,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 40
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Engineering Construction voidsuit crate"
 	access = access_engine_equip
@@ -72,7 +72,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 45
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Engineering Hazmat voidsuit crate"
 	access = access_engine_equip
@@ -86,7 +86,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 50
+	cost = 60
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Reinforced Engineering voidsuit crate"
 	access = access_engine_equip
@@ -100,7 +100,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 40
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Medical voidsuit crate"
 	access = access_medical_equip
@@ -114,7 +114,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 40
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/veymed
 	containername = "Medical EMT voidsuit crate"
 	access = access_medical_equip
@@ -128,7 +128,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 45
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/nanomed
 	containername = "Medical Biohazard voidsuit crate"
 	access = access_medical_equip
@@ -167,7 +167,7 @@
 			/obj/item/clothing/shoes/magboots = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 40
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Security voidsuit crate"
 
@@ -207,7 +207,7 @@
 			/obj/item/clothing/mask/breath = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 40
+	cost = 35
 	containertype = /obj/structure/closet/crate/secure/xion
 	containername = "Mining voidsuit crate"
 	access = access_mining
@@ -220,7 +220,7 @@
 			/obj/item/clothing/mask/breath = 2,
 			/obj/item/weapon/tank/oxygen = 2
 			)
-	cost = 50
+	cost = 60
 	containertype = /obj/structure/closet/crate/secure/grayson
 	containername = "Frontier Mining voidsuit crate"
 	access = access_mining

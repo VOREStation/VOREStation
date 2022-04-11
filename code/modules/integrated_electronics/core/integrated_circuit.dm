@@ -68,7 +68,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(input("What do you want to name the circuit?", "Rename", src.name) as null|text, MAX_NAME_LEN)
+	var/input = sanitizeSafe(input(usr, "What do you want to name the circuit?", "Rename", src.name) as null|text, MAX_NAME_LEN)
 	if(src && input && assembly.check_interactivity(M))
 		to_chat(M, "<span class='notice'>The circuit '[src.name]' is now labeled '[input]'.</span>")
 		displayed_name = input
@@ -100,17 +100,17 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	data["power_draw_per_use"] = power_draw_per_use
 	data["extended_desc"] = extended_desc
 
-	data["inputs"] = list()
+	var/list/inputs_list = list()
+	var/list/outputs_list = list()
+	var/list/activators_list = list()
 	for(var/datum/integrated_io/io in inputs)
-		data["inputs"].Add(list(tgui_pin_data(io)))
+		inputs_list.Add(list(tgui_pin_data(io)))
 
-	data["outputs"] = list()
 	for(var/datum/integrated_io/io in outputs)
-		data["outputs"].Add(list(tgui_pin_data(io)))
+		outputs_list.Add(list(tgui_pin_data(io)))
 
-	data["activators"] = list()
 	for(var/datum/integrated_io/io in activators)
-		var/list/activator = list(
+		var/list/list/activator = list(
 			"ref" = REF(io),
 			"name" = io.name,
 			"pulse_out" = io.data,
@@ -124,7 +124,11 @@ a creative player the means to solve many problems.  Circuits are held inside an
 				"holder_name" = linked.holder.displayed_name,
 			)))
 
-		data["activators"].Add(list(activator))
+		activators_list.Add(list(activator))
+
+	data["inputs"] = inputs_list
+	data["outputs"] = outputs_list
+	data["activators"] = activators_list
 
 	return data
 
@@ -136,14 +140,15 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	pindata["name"] = io.name
 	pindata["data"] = io.display_data(io.data)
 	pindata["ref"] = REF(io)
-	pindata["linked"] = list()
+	var/list/linked_list = list()
 	for(var/datum/integrated_io/linked in io.linked)
-		pindata["linked"].Add(list(list(
+		linked_list.Add(list(list(
 			"ref" = REF(linked),
 			"name" = linked.name,
 			"holder_ref" = REF(linked.holder),
 			"holder_name" = linked.holder.displayed_name,
 		)))
+	pindata["linked"] = linked_list
 	return pindata
 
 /obj/item/integrated_circuit/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)

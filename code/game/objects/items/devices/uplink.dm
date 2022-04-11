@@ -1,5 +1,3 @@
-GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
-
 // I placed this here because of how relevant it is.
 // You place this in your uplinkable item to check if an uplink is active or not.
 // If it is, it will display the uplink menu and return 1, else it'll return false.
@@ -14,29 +12,19 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 
 /obj/item/device/uplink
 	var/welcome = "Welcome, Operative"	// Welcoming menu message
-	var/uses 							// Numbers of crystals
 	var/list/ItemsCategory				// List of categories with lists of items
 	var/list/ItemsReference				// List of references with an associated item
 	var/list/nanoui_items				// List of items for NanoUI use
 	var/faction = ""					//Antag faction holder.
 
-	var/list/purchase_log = new
-	var/datum/mind/uplink_owner = null
-	var/used_TC = 0
 	var/offer_time = 10 MINUTES			//The time increment per discount offered
 	var/next_offer_time
 	var/datum/uplink_item/discount_item	//The item to be discounted
 	var/discount_amount					//The amount as a percent the item will be discounted by
 	var/compact_mode = FALSE
 
-/obj/item/device/uplink/Initialize(var/mapload, var/datum/mind/owner = null, var/telecrystals = DEFAULT_TELECRYSTAL_AMOUNT)
+/obj/item/device/uplink/Initialize(var/mapload)
 	. = ..()
-	uplink_owner = owner
-	purchase_log = list()
-	if(owner)
-		uses = owner.tcrystals
-	else
-		uses = telecrystals
 	addtimer(CALLBACK(src, .proc/next_offer), offer_time) //It seems like only the /hidden type actually makes use of this...
 
 /obj/item/device/uplink/get_item_cost(var/item_type, var/item_cost)
@@ -85,7 +73,7 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 /obj/item/device/uplink/hidden/proc/trigger(mob/user as mob)
 	if(!active)
 		toggle()
-	interact(user)
+	tgui_interact(user)
 
 // Checks to see if the value meets the target. Like a frequency being a traitor_frequency, in order to unlock a headset.
 // If true, it accesses trigger() and returns 1. If it fails, it returns false. Use this to see if you need to close the
@@ -93,8 +81,8 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 /obj/item/device/uplink/hidden/proc/check_trigger(mob/user as mob, var/value, var/target)
 	if(value == target)
 		trigger(user)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 // Legacy
 /obj/item/device/uplink/hidden/interact(mob/user)
@@ -107,12 +95,11 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 	return loc
 
 /obj/item/device/uplink/hidden/tgui_state(mob/user)
-	return GLOB.tgui_inventory_state
+	return GLOB.tgui_deep_inventory_state
 
 /obj/item/device/uplink/hidden/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	if(!active)
 		toggle()
-	uses = user.mind.tcrystals
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Uplink", "Remote Uplink")
@@ -127,7 +114,7 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 
 	var/list/data = ..()
 
-	data["telecrystals"] = uses
+	data["telecrystals"] = user.mind.tcrystals
 	data["lockable"] = TRUE
 	data["compactMode"] = compact_mode
 
@@ -177,22 +164,19 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 
 	data["categories"] = list()
 	for(var/datum/uplink_category/category in uplink.categories)
-		if(category.can_view(src))
-			var/list/cat = list(
+		var/list/cat = list(
 				"name" = category.name,
 				"items" = (category == selected_cat ? list() : null)
 			)
-			for(var/datum/uplink_item/item in category.items)
-				if(!item.can_view(src))
-					continue
-				var/cost = item.cost(uses, src) || "???"
-				cat["items"] += list(list(
-					"name" = item.name,
-					"cost" = cost,
-					"desc" = item.description(),
-					"ref" = REF(item),
-				))
-			data["categories"] += list(cat)
+		for(var/datum/uplink_item/item in category.items)
+			var/cost = item.cost(src, user) || "???"
+			cat["items"] += list(list(
+				"name" = item.name,
+				"cost" = cost,
+				"desc" = item.description(),
+				"ref" = REF(item),
+			))
+		data["categories"] += list(cat)
 
 	return data
 
@@ -228,9 +212,9 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 //
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
-/obj/item/device/radio/uplink/New(atom/loc, datum/mind/target_mind, telecrystals)
-	..(loc)
-	hidden_uplink = new(src, target_mind, telecrystals)
+/obj/item/device/radio/uplink/New()
+	..()
+	hidden_uplink = new(src)
 	icon_state = "radio"
 
 /obj/item/device/radio/uplink/attack_self(mob/user as mob)
@@ -238,6 +222,7 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 		hidden_uplink.trigger(user)
 
 /obj/item/device/multitool/uplink/New()
+	..()
 	hidden_uplink = new(src)
 
 /obj/item/device/multitool/uplink/attack_self(mob/user as mob)
@@ -250,4 +235,3 @@ GLOBAL_LIST_BOILERPLATE(world_uplinks, /obj/item/device/uplink)
 /obj/item/device/radio/headset/uplink/New()
 	..()
 	hidden_uplink = new(src)
-	hidden_uplink.uses = DEFAULT_TELECRYSTAL_AMOUNT

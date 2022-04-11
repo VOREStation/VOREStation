@@ -3,7 +3,13 @@
 /turf/space/internal_edge
 	icon_state = "arrow"
 	opacity = 1
+	density = 1
 	blocks_air = TRUE
+
+/turf/space/internal_edge/Initialize()
+	. = ..()
+	opacity = 1 // This will get reset due to using appearances that are precreated in SSskybox, and apps have opacity = 0
+	density = 1
 
 /turf/space/internal_edge/top
 	dir = NORTH
@@ -34,7 +40,8 @@
 //  their 'connected' friend! Try to use the appropriate top/bottom ones for good looks.
 /obj/structure/fake_stairs
 	name = "use a subtype! - stairs"
-	icon = 'icons/obj/stairs.dmi'
+	icon = 'icons/obj/structures/multiz.dmi'
+	icon_state = "stair"
 	density = 1
 	opacity = 0
 	anchored = 1

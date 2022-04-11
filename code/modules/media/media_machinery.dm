@@ -22,7 +22,7 @@
 			M.update_music()
 
 /obj/machinery/media/proc/update_media_source()
-	var/area/A = get_area_master(src)
+	var/area/A = get_area(src)
 	if(!A)
 		return
 	// Check if there's a media source already.
@@ -36,7 +36,7 @@
 	master_area = A
 
 /obj/machinery/media/proc/disconnect_media_source()
-	var/area/A = get_area_master(src)
+	var/area/A = get_area(src)
 	// Sanity
 	if(!A)
 		master_area = null
@@ -48,9 +48,8 @@
 	// Update Media Source.
 	A.media_source = null
 	// Clients
-	for(var/mob/M in mobs_in_area(A))
-		if(M && M.client)
-			M.update_music()
+	for(var/mob/M as anything in mobs_in_area(A))
+		M.update_music()
 	master_area = null
 
 /obj/machinery/media/Move()

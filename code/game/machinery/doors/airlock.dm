@@ -13,6 +13,12 @@
 	power_channel = ENVIRON
 
 	explosion_resistance = 10
+	
+	// Doors do their own stuff
+	bullet_vulnerability = 0
+	
+	blocks_emissive = EMISSIVE_BLOCK_GENERIC // Not quite as nice as /tg/'s custom masks. We should make those sometime
+
 	var/aiControlDisabled = 0 //If 1, AI control is disabled until the AI hacks back in and disables the lock. If 2, the AI has bypassed the lock. If -1, the control is enabled but the AI had bypassed it earlier, so if it is disabled again the AI would have no trouble getting back in.
 	var/hackProof = 0 // if 1, this door can't be hacked by the AI
 	var/electrified_until = 0			//World time when the door is no longer electrified. -1 if it is permanently electrified until someone fixes it.
@@ -49,6 +55,9 @@
 	var/denied_sound = 'sound/machines/deniedbeep.ogg'
 	var/bolt_up_sound = 'sound/machines/door/boltsup.ogg'
 	var/bolt_down_sound = 'sound/machines/door/boltsdown.ogg'
+	var/knock_sound = 'sound/machines/2beeplow.ogg'
+	var/knock_hammer_sound = 'sound/weapons/sonic_jackhammer.ogg'
+	var/knock_unpowered_sound = 'sound/machines/door/knock_glass.ogg'
 
 /obj/machinery/door/airlock/attack_generic(var/mob/living/user, var/damage)
 	if(stat & (BROKEN|NOPOWER))
@@ -80,17 +89,17 @@
 		var/mob/living/carbon/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			if(src.locked || src.welded)
-				visible_message("<span class='alium'>\The [user] begins digging into \the [src] internals!</span>")
+				visible_message("<span class='alium'>\The [user] begins tearing into \the [src] internals!</span>")
 				src.do_animate("deny")
-				if(do_after(user,5 SECONDS,src))
-					visible_message("<span class='danger'>\The [user] forces \the [src] open, sparks flying from its electronics!</span>")
+				if(do_after(user,15 SECONDS,src))
+					visible_message("<span class='danger'>\The [user] tears \the [src] open, sparks flying from its electronics!</span>")
 					src.do_animate("spark")
-					playsound(src, 'sound/machines/door/airlock_creaking.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
+					playsound(src, 'sound/machines/door/airlock_tear_apart.ogg', 100, 1, volume_channel = VOLUME_CHANNEL_DOORS)
 					src.locked = 0
 					src.welded = 0
 					update_icon()
 					open(1)
-					src.emag_act()
+					src.set_broken() //These aren't emags, these be CLAWS
 			else if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")
 				if(do_after(user, 5 SECONDS,src))
@@ -109,7 +118,7 @@
 /obj/machinery/door/airlock/get_material()
 	if(mineral)
 		return get_material_by_name(mineral)
-	return get_material_by_name(DEFAULT_WALL_MATERIAL)
+	return get_material_by_name(MAT_STEEL)
 
 /obj/machinery/door/airlock/command
 	name = "Command Airlock"
@@ -212,12 +221,12 @@
 	open_sound_powered = 'sound/machines/door/space1o.ogg'
 	close_sound_powered = 'sound/machines/door/space1c.ogg'
 
-/obj/machinery/door/airlock/external/glass/bolted
+/obj/machinery/door/airlock/external/bolted
 	icon_state = "door_locked" // So it looks visibly bolted in map editor
 	locked = 1
 
 // For convenience in making docking ports: one that is pre-bolted with frequency set!
-/obj/machinery/door/airlock/external/glass/bolted/cycling
+/obj/machinery/door/airlock/external/bolted/cycling
 	frequency = 1379
 
 /obj/machinery/door/airlock/glass_external
@@ -791,48 +800,45 @@ About the new airlock wires panel:
 
 
 /obj/machinery/door/airlock/update_icon()
-	if(overlays) overlays.Cut()
+	cut_overlays()
 	if(density)
 		if(locked && lights && src.arePowerSystemsOn())
 			icon_state = "door_locked"
 		else
 			icon_state = "door_closed"
 		if(p_open || welded)
-			overlays = list()
 			if(p_open)
-				overlays += image(icon, "panel_open")
+				add_overlay("panel_open")
 			if (!(stat & NOPOWER))
 				if(stat & BROKEN)
-					overlays += image(icon, "sparks_broken")
+					add_overlay("sparks_broken")
 				else if (health < maxhealth * 3/4)
-					overlays += image(icon, "sparks_damaged")
+					add_overlay("sparks_damaged")
 			if(welded)
-				overlays += image(icon, "welded")
+				add_overlay("welded")
 		else if (health < maxhealth * 3/4 && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_damaged")
+			add_overlay("sparks_damaged")
 	else
 		icon_state = "door_open"
 		if((stat & BROKEN) && !(stat & NOPOWER))
-			overlays += image(icon, "sparks_open")
+			add_overlay("sparks_open")
 	return
 
 /obj/machinery/door/airlock/do_animate(animation)
 	switch(animation)
 		if("opening")
-			if(overlays) overlays.Cut()
+			cut_overlay()
 			if(p_open)
-				spawn(2) // The only work around that works. Downside is that the door will be gone for a millisecond.
-					flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
-					update_icon()
+				flick("o_door_opening", src)  //can not use flick due to BYOND bug updating overlays right before flicking
+				update_icon()
 			else
 				flick("door_opening", src)//[stat ? "_stat":]
 				update_icon()
 		if("closing")
-			if(overlays) overlays.Cut()
+			cut_overlay()
 			if(p_open)
-				spawn(2)
-					flick("o_door_closing", src)
-					update_icon()
+				flick("o_door_closing", src)
+				update_icon()
 			else
 				flick("door_closing", src)
 				update_icon()
@@ -862,14 +868,14 @@ About the new airlock wires panel:
 
 /obj/machinery/door/airlock/tgui_data(mob/user)
 	var/list/data = list()
-	
+
 	var/list/power = list()
 	power["main"] = main_power_lost_until > 0 ? 0 : 2
 	power["main_timeleft"] = round(main_power_lost_until > 0 ? max(main_power_lost_until - world.time,	0) / 10 : main_power_lost_until, 1)
 	power["backup"] = backup_power_lost_until > 0 ? 0 : 2
 	power["backup_timeleft"] = round(backup_power_lost_until > 0 ? max(backup_power_lost_until - world.time, 0) / 10 : backup_power_lost_until, 1)
 	data["power"] = power
-	
+
 	data["shock"] = (electrified_until == 0) ? 2 : 0
 	data["shock_timeleft"] = round(electrified_until > 0 ? max(electrified_until - world.time, 	0) / 10 : electrified_until, 1)
 	data["id_scanner"] = !aiDisabledIdScanner
@@ -947,7 +953,7 @@ About the new airlock wires panel:
 	if (src.isElectrified())
 		if (istype(mover, /obj/item))
 			var/obj/item/i = mover
-			if (i.matter && (DEFAULT_WALL_MATERIAL in i.matter) && i.matter[DEFAULT_WALL_MATERIAL] > 0)
+			if (i.matter && (MAT_STEEL in i.matter) && i.matter[MAT_STEEL] > 0)
 				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 				s.set_up(5, 1, src)
 				s.start()
@@ -970,6 +976,29 @@ About the new airlock wires panel:
 		wires.Interact(user)
 	else
 		..(user)
+	return
+
+/obj/machinery/door/airlock/AltClick(mob/user as mob)
+	. = ..()
+	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
+	if(!Adjacent(user))
+		return
+	else if(user.a_intent == I_HURT)
+		src.visible_message("<span class='warning'>[user] hammers on \the [src]!</span>", "<span class='warning'>Someone hammers loudly on \the [src]!</span>")
+		src.add_fingerprint(user)
+		if(icon_state == "door_closed" && arePowerSystemsOn())
+			flick("door_deny", src)
+		playsound(src, knock_hammer_sound, 50, 0, 3)
+	else if(arePowerSystemsOn() && user.a_intent == I_HELP)
+		src.visible_message("[user] presses the door bell on \the [src].", "\The [src]'s bell rings.")
+		src.add_fingerprint(user)
+		if(icon_state == "door_closed")
+			flick("door_deny", src)
+		playsound(src, knock_sound, 50, 0, 3)
+	else if(user.a_intent == I_HELP)
+		src.visible_message("[user] knocks on \the [src].", "Someone knocks on \the [src].")
+		src.add_fingerprint(user)
+		playsound(src, knock_unpowered_sound, 50, 0, 3)
 	return
 
 /obj/machinery/door/airlock/tgui_act(action, params)
@@ -1132,7 +1161,7 @@ About the new airlock wires panel:
 				if (istype(da, /obj/structure/door_assembly/multi_tile))
 					da.set_dir(src.dir)
 
-				da.anchored = 1
+				da.anchored = TRUE
 				if(mineral)
 					da.glass = mineral
 				//else if(glass)
@@ -1215,8 +1244,7 @@ About the new airlock wires panel:
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 
 	//if the door is unpowered then it doesn't make sense to hear the woosh of a pneumatic actuator
-	for(var/P in player_list)
-		var/mob/M = P
+	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
 		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
@@ -1344,8 +1372,7 @@ About the new airlock wires panel:
 
 	use_power(360)	//360 W seems much more appropriate for an actuator moving an industrial door capable of crushing people
 	has_beeped = 0
-	for(var/P in player_list)
-		var/mob/M = P
+	for(var/mob/M as anything in player_list)
 		if(!M || !M.client)
 			continue
 		var/old_sounds = M.client.is_preference_enabled(/datum/client_preference/old_door_sounds)
@@ -1430,10 +1457,10 @@ About the new airlock wires panel:
 		//update the door's access to match the electronics'
 		secured_wires = electronics.secure
 		if(electronics.one_access)
-			req_access.Cut()
+			LAZYCLEARLIST(req_access)
 			req_one_access = src.electronics.conf_access
 		else
-			req_one_access.Cut()
+			LAZYCLEARLIST(req_one_access)
 			req_access = src.electronics.conf_access
 
 		//get the name from the assembly
@@ -1479,12 +1506,10 @@ About the new airlock wires panel:
 		src.electronics = new/obj/item/weapon/airlock_electronics( src.loc )
 
 	//update the electronics to match the door's access
-	if(!src.req_access)
-		src.check_access()
-	if(src.req_access.len)
-		electronics.conf_access = src.req_access
-	else if (src.req_one_access.len)
-		electronics.conf_access = src.req_one_access
+	if(LAZYLEN(req_access))
+		electronics.conf_access = req_access
+	else if (LAZYLEN(req_one_access))
+		electronics.conf_access = req_one_access
 		electronics.one_access = 1
 
 /obj/machinery/door/airlock/emp_act(var/severity)

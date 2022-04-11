@@ -29,7 +29,7 @@
 "C" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "D" = (/obj/structure/coatrack,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "E" = (/obj/structure/closet/secure_closet/miner,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
-"F" = (/obj/item/weapon/storage/box/shotgunammo,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
+"F" = (/obj/item/ammo_magazine/ammo_box/b12g,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "G" = (/obj/structure/table/steel,/obj/item/robot_parts/l_leg,/obj/item/robot_parts/head,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "H" = (/obj/effect/decal/cleanable/blood/gibs/robot,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "I" = (/obj/machinery/power/port_gen/pacman,/turf/simulated/shuttle/plating,/area/submap/CaveTrench)

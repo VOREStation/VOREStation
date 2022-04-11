@@ -1,0 +1,261 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"i" = (
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber2)
+"q" = (
+/obj/tether_away_spawner/spookyland,
+/turf/simulated/shuttle/floor/alien/blue,
+/area/om_adventure/poi/alienchamber2)
+"u" = (
+/turf/simulated/shuttle/floor/alien/blue,
+/area/om_adventure/poi/alienchamber2)
+"x" = (
+/obj/random/awayloot/looseloot,
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber2)
+"H" = (
+/obj/structure/loot_pile/surface/alien/security,
+/turf/simulated/shuttle/floor/alien/blue,
+/area/om_adventure/poi/alienchamber2)
+"M" = (
+/obj/structure/table/alien,
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber2)
+"P" = (
+/turf/simulated/wall/eris/r_wall,
+/area/om_adventure/poi/alienchamber2)
+"Q" = (
+/obj/machinery/door/airlock/alien/public,
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber2)
+"W" = (
+/obj/structure/table/alien,
+/obj/random/awayloot/looseloot,
+/turf/simulated/shuttle/floor/alienplating/vacuum,
+/area/om_adventure/poi/alienchamber2)
+
+(1,1,1) = {"
+a
+a
+a
+a
+P
+P
+P
+P
+P
+P
+a
+"}
+(2,1,1) = {"
+a
+a
+a
+a
+P
+M
+M
+M
+x
+P
+P
+"}
+(3,1,1) = {"
+a
+a
+a
+a
+P
+x
+i
+q
+i
+i
+P
+"}
+(4,1,1) = {"
+a
+a
+a
+a
+P
+M
+i
+i
+u
+i
+P
+"}
+(5,1,1) = {"
+a
+P
+P
+P
+P
+P
+P
+i
+i
+i
+P
+"}
+(6,1,1) = {"
+P
+P
+W
+M
+M
+i
+P
+i
+i
+i
+P
+"}
+(7,1,1) = {"
+P
+i
+i
+i
+i
+i
+P
+P
+Q
+P
+P
+"}
+(8,1,1) = {"
+P
+i
+i
+u
+i
+i
+P
+i
+i
+i
+P
+"}
+(9,1,1) = {"
+P
+i
+q
+H
+u
+i
+Q
+i
+q
+i
+P
+"}
+(10,1,1) = {"
+P
+i
+i
+u
+i
+i
+P
+i
+i
+i
+P
+"}
+(11,1,1) = {"
+P
+i
+i
+i
+i
+i
+P
+P
+Q
+P
+P
+"}
+(12,1,1) = {"
+P
+P
+M
+x
+M
+i
+P
+i
+i
+i
+P
+"}
+(13,1,1) = {"
+a
+P
+P
+P
+P
+P
+P
+i
+i
+i
+P
+"}
+(14,1,1) = {"
+a
+a
+a
+a
+P
+M
+i
+i
+u
+i
+P
+"}
+(15,1,1) = {"
+a
+a
+a
+a
+P
+x
+i
+q
+i
+i
+P
+"}
+(16,1,1) = {"
+a
+a
+a
+a
+P
+M
+i
+i
+x
+P
+P
+"}
+(17,1,1) = {"
+a
+a
+a
+a
+P
+P
+P
+P
+P
+P
+a
+"}

@@ -31,6 +31,9 @@
 
 	overload_possible = 1
 
+	icon_scale_x = 1.35
+	icon_scale_y = 1.35
+
 //Not quite sure how to move those yet.
 /obj/mecha/combat/gygax/get_commands()
 	var/output = {"<div class='wr'>
@@ -78,9 +81,7 @@
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new(src)
-	cell.charge = 30000
-	cell.maxcharge = 30000
+	cell = new /obj/item/weapon/cell/hyper(src)
 
 /obj/mecha/combat/gygax/serenity
 	desc = "A lightweight exosuit made from a modified Gygax chassis combined with proprietary VeyMed medical tech. It's faster and sturdier than most medical mechs, but much of the armor plating has been stripped out, leaving it more vulnerable than a regular Gygax."

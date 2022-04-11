@@ -5,12 +5,12 @@ var/list/table_icon_cache = list()
 	icon = 'icons/obj/tables.dmi'
 	icon_state = "frame"
 	desc = "It's a table, for putting things on. Or standing on, if you really want to."
-	density = 1
-	anchored = 1
-	climbable = 1
+	density = TRUE
+	anchored = TRUE
+	climbable = TRUE
 	layer = TABLE_LAYER
 	throwpass = 1
-	surgery_odds = 66
+	surgery_odds = 50 //VOREStation Edit
 	var/flipped = 0
 	var/maxhealth = 10
 	var/health = 10
@@ -27,8 +27,6 @@ var/list/table_icon_cache = list()
 	// Convert if/when you can easily get stacks of these.
 	var/carpeted = 0
 	var/carpeted_type = /obj/item/stack/tile/carpet
-
-	var/item_place = 1 //allows items to be placed on the table, but not on benches.
 
 /obj/structure/table/examine_icon()
 	return icon(icon=initial(icon), icon_state=initial(icon_state)) //Basically the map preview version
@@ -110,7 +108,7 @@ var/list/table_icon_cache = list()
 		return 1
 
 	if(carpeted && W.is_crowbar())
-		user.visible_message("<span class='notice'>\The [user] removes the carpet from \the [src].</span>",
+		user.visible_message("<b>\The [user]</b> removes the carpet from \the [src].",
 		                              "<span class='notice'>You remove the carpet from \the [src].</span>")
 		new carpeted_type(loc)
 		carpeted = 0
@@ -120,7 +118,7 @@ var/list/table_icon_cache = list()
 	if(!carpeted && material && istype(W, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
-			user.visible_message("<span class='notice'>\The [user] adds \the [C] to \the [src].</span>",
+			user.visible_message("<b>\The [user]</b> adds \the [C] to \the [src].",
 			                              "<span class='notice'>You add \the [C] to \the [src].</span>")
 			carpeted = 1
 			carpeted_type = W.type
@@ -151,7 +149,7 @@ var/list/table_icon_cache = list()
 			playsound(src, F.usesound, 50, 1)
 			if(!do_after(user, 20 * F.toolspeed) || !F.remove_fuel(1, user))
 				return
-			user.visible_message("<span class='notice'>\The [user] repairs some damage to \the [src].</span>",
+			user.visible_message("<b>\The [user]</b> repairs some damage to \the [src].",
 			                              "<span class='notice'>You repair some damage to \the [src].</span>")
 			health = max(health+(maxhealth/5), maxhealth) // 20% repair per application
 			return 1
@@ -191,7 +189,7 @@ var/list/table_icon_cache = list()
 			src.break_to_parts()
 			user.do_attack_animation(src)
 			return 1
-	visible_message("<span class='notice'>\The [user] scratches at \the [src]!</span>")
+	visible_message("<b>\The [user]</b> scratches at \the [src]!")
 	return ..()
 
 /obj/structure/table/MouseDrop_T(obj/item/stack/material/what)
@@ -260,14 +258,14 @@ var/list/table_icon_cache = list()
 
 	if(manipulating) return M
 	manipulating = 1
-	user.visible_message("<span class='notice'>\The [user] begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.</span>",
+	user.visible_message("<b>\The [user]</b> begins removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.",
 	                              "<span class='notice'>You begin removing the [type_holding] holding \the [src]'s [M.display_name] [what] in place.</span>")
 	if(sound)
 		playsound(src, sound, 50, 1)
 	if(!do_after(user, delay))
 		manipulating = 0
 		return M
-	user.visible_message("<span class='notice'>\The [user] removes the [M.display_name] [what] from \the [src].</span>",
+	user.visible_message("<b>\The [user]</b> removes the [M.display_name] [what] from \the [src].",
 	                              "<span class='notice'>You remove the [M.display_name] [what] from \the [src].</span>")
 	new M.stack_type(src.loc)
 	manipulating = 0
@@ -282,13 +280,13 @@ var/list/table_icon_cache = list()
 /obj/structure/table/proc/dismantle(obj/item/W, mob/user)
 	if(manipulating) return
 	manipulating = 1
-	user.visible_message("<span class='notice'>\The [user] begins dismantling \the [src].</span>",
+	user.visible_message("<b>\The [user]</b> begins dismantling \the [src].",
 	                              "<span class='notice'>You begin dismantling \the [src].</span>")
 	playsound(src, W.usesound, 50, 1)
 	if(!do_after(user, 20 * W.toolspeed))
 		manipulating = 0
 		return
-	user.visible_message("<span class='notice'>\The [user] dismantles \the [src].</span>",
+	user.visible_message("<b>\The [user]</b> dismantles \the [src].",
 	                              "<span class='notice'>You dismantle \the [src].</span>")
 	new /obj/item/stack/material/steel(src.loc)
 	qdel(src)
@@ -322,7 +320,7 @@ var/list/table_icon_cache = list()
 	if(full_return || prob(20))
 		new /obj/item/stack/material/steel(src.loc)
 	else
-		var/datum/material/M = get_material_by_name(DEFAULT_WALL_MATERIAL)
+		var/datum/material/M = get_material_by_name(MAT_STEEL)
 		S = M.place_shard(loc)
 		if(S) shards += S
 	qdel(src)
@@ -332,6 +330,10 @@ var/list/table_icon_cache = list()
 	if(istype(S,/obj/structure/table/bench) && !istype(src,/obj/structure/table/bench))
 		return FALSE
 	if(istype(src,/obj/structure/table/bench) && !istype(S,/obj/structure/table/bench))
+		return FALSE
+	if(istype(S,/obj/structure/table/rack) && !istype(src,/obj/structure/table/rack))
+		return FALSE
+	if(istype(src,/obj/structure/table/rack) && !istype(S,/obj/structure/table/rack))
 		return FALSE
 	if(istype(S,/obj/structure/table))
 		return TRUE
@@ -353,31 +355,34 @@ var/list/table_icon_cache = list()
 /obj/structure/table/update_icon()
 	if(flipped != 1)
 		icon_state = "blank"
-		overlays.Cut()
+		cut_overlays()
 
 		// Base frame shape. Mostly done for glass/diamond tables, where this is visible.
 		for(var/i = 1 to 4)
-			var/image/I = get_table_image(icon, connections[i], 1<<(i-1))
-			overlays += I
+			var/image/I = get_table_image(icon, connections?[i] || 0, 1<<(i-1))
+			add_overlay(I)
 
 		// Standard table image
 		if(material)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "[material.icon_base]_[connections[i]]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
-				overlays += I
+				var/connect = connections?[i] || 0
+				var/image/I = get_table_image(icon, "[material.icon_base]_[connect]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
+				add_overlay(I)
 
 		// Reinforcements
 		if(reinforced)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connections[i]]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
-				overlays += I
+				var/connect = connections?[i] || 0
+				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connect]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
+				add_overlay(I)
 
 		if(carpeted)
 			for(var/i = 1 to 4)
-				var/image/I = get_table_image(icon, "carpet_[connections[i]]", 1<<(i-1))
-				overlays += I
+				var/connect = connections?[i] || 0
+				var/image/I = get_table_image(icon, "carpet_[connect]", 1<<(i-1))
+				add_overlay(I)
 	else
-		overlays.Cut()
+		cut_overlays()
 		var/type = 0
 		var/tabledirs = 0
 		for(var/direction in list(turn(dir,90), turn(dir,-90)) )
@@ -398,7 +403,7 @@ var/list/table_icon_cache = list()
 			var/image/I = image(icon, "[material.icon_base]_flip[type]")
 			I.color = material.icon_colour
 			I.alpha = 255 * material.opacity
-			overlays += I
+			add_overlay(I)
 			name = "[material.display_name] table"
 		else
 			name = "table frame"
@@ -407,10 +412,10 @@ var/list/table_icon_cache = list()
 			var/image/I = image(icon, "[reinforced.icon_reinf]_flip[type]")
 			I.color = reinforced.icon_colour
 			I.alpha = 255 * reinforced.opacity
-			overlays += I
+			add_overlay(I)
 
 		if(carpeted)
-			overlays += "carpet_flip[type]"
+			add_overlay("carpet_flip[type]")
 
 
 #define CORNER_NONE 0

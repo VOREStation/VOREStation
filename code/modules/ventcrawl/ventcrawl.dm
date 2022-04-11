@@ -7,12 +7,14 @@ var/list/ventcrawl_machinery = list(
 /mob/living/var/list/can_enter_vent_with = list(
 	/obj/item/weapon/implant,
 	/obj/item/device/radio/borg,
+	/obj/item/device/radio/headset/mob_headset,
 	/obj/item/weapon/holder,
 	/obj/machinery/camera,
 	/obj/belly,
-	/obj/screen
+	/obj/screen,
+	/atom/movable/emissive_blocker
 	)
-	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check
+	//VOREStation Edit : added /obj/belly, to this list, CI is complaining about this in his indentation check. Added mob_headset for those with radios so there's no weirdness.
 	//mob/living/simple_mob/borer, //VORESTATION AI TEMPORARY REMOVAL REPLACE BACK IN LIST WHEN RESOLVED //VOREStation Edit
 
 /mob/living/var/list/icon/pipes_shown = list()
@@ -56,7 +58,10 @@ var/list/ventcrawl_machinery = list(
 	//Ability master easy test for allowed (cheaper than istype)
 	if(carried_item == ability_master)
 		return 1
-
+	if(isanimal(src))
+		var/mob/living/simple_mob/S = src
+		if(carried_item == S.mobcard)	//VOREStation Edit
+			return 1	//VOREStation Edit
 	//Try to find it in our allowed list (istype includes subtypes)
 	var/listed = FALSE
 	for(var/test_type in can_enter_vent_with)
@@ -103,7 +108,7 @@ var/list/ventcrawl_machinery = list(
 	if(pipes.len == 1)
 		pipe = pipes[1]
 	else
-		pipe = input("Crawl Through Vent", "Pick a pipe") as null|anything in pipes
+		pipe = tgui_input_list(usr, "Crawl Through Vent", "Pick a pipe", pipes)
 	if(canmove && pipe)
 		return pipe
 

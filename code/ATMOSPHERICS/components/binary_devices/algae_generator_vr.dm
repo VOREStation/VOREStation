@@ -6,8 +6,8 @@
 	icon = 'icons/obj/machines/algae_vr.dmi'
 	icon_state = "algae-off"
 	circuit = /obj/item/weapon/circuitboard/algae_farm
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	power_channel = EQUIP
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 100		// Minimal lights to keep algae alive
@@ -44,10 +44,10 @@
 	// TODO - Make these in actual icon states so its not silly like this
 	var/image/I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = dir)
 	I.color = PIPE_COLOR_BLUE
-	overlays += I
+	add_overlay(I)
 	I = image(icon = icon, icon_state = "algae-pipe-overlay", dir = reverse_dir[dir])
 	I.color = PIPE_COLOR_BLACK
-	overlays += I
+	add_overlay(I)
 
 /obj/machinery/atmospherics/binary/algae_farm/Destroy()
 	. = ..()
@@ -238,9 +238,7 @@
 	if(amount <= 0)
 		amount = S.max_amount
 	var/ejected = min(round(stored_material[material_name] / S.perunit), amount)
-	S.amount = min(ejected, amount)
-	if(S.amount <= 0)
-		qdel(S)
+	if(!S.set_amount(min(ejected, amount)))
 		return
 	stored_material[material_name] -= ejected * S.perunit
 	if(recursive && stored_material[material_name] >= S.perunit)
@@ -256,7 +254,7 @@
 	var/max_res_amount = storage_capacity[S.material.name]
 	if(stored_material[S.material.name] + S.perunit <= max_res_amount)
 		var/count = 0
-		while(stored_material[S.material.name] + S.perunit <= max_res_amount && S.amount >= 1)
+		while(stored_material[S.material.name] + S.perunit <= max_res_amount && S.get_amount() >= 1)
 			stored_material[S.material.name] += S.perunit
 			S.use(1)
 			count++

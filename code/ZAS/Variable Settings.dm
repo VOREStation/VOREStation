@@ -96,7 +96,6 @@ var/global/vs_control/vsc = new
 	settings -= "plc"
 
 /vs_control/proc/ChangeSettingsDialog(mob/user,list/L)
-	//var/which = input(user,"Choose a setting:") in L
 	var/dat = ""
 	for(var/ch in L)
 		if(findtextEx(ch,"_RANDOM") || findtextEx(ch,"_DESC") || findtextEx(ch,"_METHOD") || findtextEx(ch,"_NAME")) continue
@@ -150,7 +149,7 @@ var/global/vs_control/vsc = new
 		if("Numeric")
 			newvar = input(user,"Enter a number:","Settings",newvar) as num
 		if("Bit Flag")
-			var/flag = input(user,"Toggle which bit?","Settings") in bitflags
+			var/flag = tgui_input_list(user,"Toggle which bit?","Settings", bitflags)
 			flag = text2num(flag)
 			if(newvar & flag)
 				newvar &= ~flag
@@ -194,7 +193,7 @@ var/global/vs_control/vsc = new
 /vs_control/proc/SetDefault(var/mob/user)
 	var/list/setting_choices = list("Phoron - Standard", "Phoron - Low Hazard", "Phoron - High Hazard", "Phoron - Oh Shit!",\
 	"ZAS - Normal", "ZAS - Forgiving", "ZAS - Dangerous", "ZAS - Hellish", "ZAS/Phoron - Initial")
-	var/def = input(user, "Which of these presets should be used?") as null|anything in setting_choices
+	var/def = tgui_input_list(user, "Which of these presets should be used?", "Setting Choice", setting_choices)
 	if(!def)
 		return
 	switch(def)

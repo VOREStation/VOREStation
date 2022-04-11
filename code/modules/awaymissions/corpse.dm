@@ -23,7 +23,11 @@
 	var/corpseidjob = null // Needs to be in quotes, such as "Clown" or "Chef." This just determines what the ID reads as, not their access
 	var/corpseidaccess = null //This is for access. See access.dm for which jobs give what access. Again, put in quotes. Use "Captain" if you want it to be all access.
 	var/corpseidicon = null //For setting it to be a gold, silver, CentCom etc ID
-	var/species = SPECIES_HUMAN
+	var/species = SPECIES_HUMAN	//defaults to generic-ass humans
+	var/random_species = FALSE	//flip to TRUE to randomize species from the list below
+	var/list/random_species_list = list(SPECIES_HUMAN,SPECIES_TAJ,SPECIES_UNATHI,SPECIES_SKRELL)	//preset list that can be overriden downstream. only includes common humanoids for voidsuit compatibility's sake.
+//	var/random_appearance = FALSE	//TODO: make this work
+//	var/cause_of_death = null //TODO: set up a cause-of-death system. needs to support both damage types and actual wound types, so a body can have been bitten/stabbed/clawed/shot/burned/lasered/etc. to death
 	delete_me = TRUE
 
 /obj/effect/landmark/corpse/Initialize()
@@ -33,13 +37,18 @@
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
-	M.set_species(species)
+	if(random_species)
+		var/random_pick = pick(random_species_list)
+		M.set_species(random_pick)
+		src.species = random_pick
+	else
+		M.set_species(species)
+	//TODO: insert appearance randomization, needs to be species-based
 	M.real_name = src.name
 	M.death(1) //Kills the new mob
+	//TODO: insert cause of death handling/wound simulation here
 	if(src.corpseuniform)
 		M.equip_to_slot_or_del(new src.corpseuniform(M), slot_w_uniform)
-	if(src.corpsesuit)
-		M.equip_to_slot_or_del(new src.corpsesuit(M), slot_wear_suit)
 	if(src.corpseshoes)
 		M.equip_to_slot_or_del(new src.corpseshoes(M), slot_shoes)
 	if(src.corpsegloves)
@@ -50,8 +59,6 @@
 		M.equip_to_slot_or_del(new src.corpseglasses(M), slot_glasses)
 	if(src.corpsemask)
 		M.equip_to_slot_or_del(new src.corpsemask(M), slot_wear_mask)
-	if(src.corpsehelmet)
-		M.equip_to_slot_or_del(new src.corpsehelmet(M), slot_head)
 	if(src.corpsebelt)
 		M.equip_to_slot_or_del(new src.corpsebelt(M), slot_belt)
 	if(src.corpsepocket1)
@@ -79,14 +86,15 @@
 			W.assignment = corpseidjob
 		M.set_id_info(W)
 		M.equip_to_slot_or_del(W, slot_wear_id)
+	// Do suit last to avoid equipping issues
+	if(src.corpsehelmet)
+		M.equip_voidhelm_to_slot_or_del_with_refit(new src.corpsehelmet(M), slot_head, src.species)
+	if(src.corpsesuit)
+		M.equip_voidsuit_to_slot_or_del_with_refit(new src.corpsesuit(M), slot_wear_suit, src.species)
 
 
 
 // I'll work on making a list of corpses people request for maps, or that I think will be commonly used. Syndicate operatives for example.
-
-
-
-
 
 /obj/effect/landmark/corpse/syndicatesoldier
 	name = "Mercenary"
@@ -101,8 +109,6 @@
 	corpseid = 1
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
-
-
 
 /obj/effect/landmark/corpse/syndicatecommando
 	name = "Syndicate Commando"
@@ -119,9 +125,15 @@
 	corpseidjob = "Operative"
 	corpseidaccess = "Syndicate"
 
-
-
 ///////////Civilians//////////////////////
+
+/obj/effect/landmark/corpse/random_civ
+	name = "Civilian"
+	corpseuniform = /obj/item/clothing/under/color/grey
+	corpseshoes = /obj/item/clothing/shoes/black
+	random_species = TRUE
+
+
 
 /obj/effect/landmark/corpse/chef
 	name = "Chef"
@@ -158,13 +170,14 @@
 	corpsegloves = /obj/item/clothing/gloves/yellow
 	corpsehelmet = /obj/item/clothing/head/hardhat
 	corpseid = 1
-	corpseidjob = "Station Engineer"
-	corpseidaccess = "Station Engineer"
+	corpseidjob = "Engineer"
+	corpseidaccess = "Engineer"
 
 /obj/effect/landmark/corpse/engineer/rig
 	corpsesuit = /obj/item/clothing/suit/space/void/engineering
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/engineering
+	corpseback = /obj/item/weapon/tank/oxygen
 
 /obj/effect/landmark/corpse/clown
 	name = "Clown"
@@ -189,6 +202,39 @@
 	corpseidjob = "Scientist"
 	corpseidaccess = "Scientist"
 
+/obj/effect/landmark/corpse/security
+	name = "Security Officer"
+	corpseradio = /obj/item/device/radio/headset/headset_sec
+	corpseuniform = /obj/item/clothing/under/rank/security
+	corpsesuit = /obj/item/clothing/suit/armor/vest
+	corpseback = /obj/item/weapon/storage/backpack/security
+	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsegloves = /obj/item/clothing/gloves/black
+	corpsehelmet = /obj/item/clothing/head/helmet
+	corpseid = 1
+	corpseidjob = "Security Officer"
+	corpseidaccess = "Security Officer"
+
+/obj/effect/landmark/corpse/security/rig
+	corpsesuit = /obj/item/clothing/suit/space/void/security
+	corpsemask = /obj/item/clothing/mask/breath
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/security
+	corpseback = /obj/item/weapon/tank/jetpack/oxygen
+
+/obj/effect/landmark/corpse/security/rig/eva
+	corpsesuit = /obj/item/clothing/suit/space/void/security/alt
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/security/alt
+	corpseidjob = "Starship Security Officer"
+
+/obj/effect/landmark/corpse/prisoner
+	name = "Unknown Prisoner"
+	corpseuniform = /obj/item/clothing/under/color/prison
+	corpseshoes = /obj/item/clothing/shoes/orange
+	corpseid = 1
+	corpseidjob = "Prisoner"
+	random_species = TRUE
+
 /obj/effect/landmark/corpse/miner
 	corpseradio = /obj/item/device/radio/headset/headset_cargo
 	corpseuniform = /obj/item/clothing/under/rank/miner
@@ -203,17 +249,69 @@
 	corpsesuit = /obj/item/clothing/suit/space/void/mining
 	corpsemask = /obj/item/clothing/mask/breath
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/mining
-	
-//VORESTATION ADD START
+	corpseback = /obj/item/weapon/tank/oxygen
+
+/////////////////Vintage//////////////////////
+
+//define the basic props at this level and only change specifics for variants, e.z.
+/obj/effect/landmark/corpse/vintage
+	name = "Unknown Crewmate"
+	corpseuniform = /obj/item/clothing/under/utility
+	corpsesuit = /obj/item/clothing/suit/space/void/refurb
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb
+	corpsemask = /obj/item/clothing/mask/breath
+	corpseback = /obj/item/weapon/tank/oxygen
+	corpseid = 1
+	corpseidjob = "Crewmate"
+
+/obj/effect/landmark/corpse/vintage/engineering
+	name = "Unknown Engineer"
+	corpsesuit = /obj/item/clothing/suit/space/void/refurb/engineering
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/engineering
+	corpsebelt = /obj/item/weapon/storage/belt/utility/full
+	corpseback = /obj/item/weapon/tank/oxygen/yellow
+	corpseidjob = "Engineer"
+
+/obj/effect/landmark/corpse/vintage/marine
+	name = "Unknown Marine"
+	corpsesuit = /obj/item/clothing/suit/space/void/refurb/marine
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/marine
+	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpseidjob = "Marine"
+
+/obj/effect/landmark/corpse/vintage/medical
+	name = "Unknown Medic"
+	corpsesuit = /obj/item/clothing/suit/space/void/refurb/medical
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/medical
+	corpsebelt = /obj/item/weapon/storage/belt/medical
+	corpseidjob = "Medic"
+
+/obj/effect/landmark/corpse/vintage/mercenary
+	name = "Unknown Mercenary"
+	corpsesuit = /obj/item/clothing/suit/space/void/refurb/mercenary
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/mercenary
+	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpseback = /obj/item/weapon/tank/oxygen/red
+	corpseidjob = "Mercenary"
+
+/obj/effect/landmark/corpse/vintage/officer
+	name = "Unknown Captain"
+	corpsesuit = /obj/item/clothing/suit/space/void/refurb/officer
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/officer
+	corpseback = /obj/item/weapon/tank/oxygen/yellow
+	corpseidjob = "Captain"
+
 /obj/effect/landmark/corpse/vintage/pilot
-	name = "Pilot"
-	corpseuniform = /obj/item/clothing/under/color/grey
+	name = "Unknown Pilot"
 	corpsesuit = /obj/item/clothing/suit/space/void/refurb/pilot
 	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/pilot
-	corpseshoes = /obj/item/clothing/shoes/black
-	corpseback = /obj/item/weapon/tank/oxygen
-//VORESTATION ADD END
+	corpseidjob = "Pilot"
 
+/obj/effect/landmark/corpse/vintage/research
+	name = "Unknown Researcher"
+	corpsesuit = /obj/item/clothing/suit/space/void/refurb/research
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/refurb/research
+	corpseidjob = "Researcher"
 
 /////////////////Officers//////////////////////
 
@@ -242,3 +340,41 @@
 	corpseid = 1
 	corpseidjob = "Commander"
 	corpseidaccess = "Captain"
+
+/////////////////Lore Factions//////////////////////
+
+/obj/effect/landmark/corpse/sifguard
+	name = "Patrolman"
+	corpseuniform = /obj/item/clothing/under/solgov/utility/sifguard
+	corpsesuit = /obj/item/clothing/suit/storage/hooded/wintercoat/solgov
+	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsemask = /obj/item/clothing/mask/balaclava
+	corpsehelmet = /obj/item/clothing/head/beret/solgov/sifguard
+	corpsegloves = /obj/item/clothing/gloves/duty
+	corpseshoes = /obj/item/clothing/shoes/boots/tactical
+	corpsepocket1 = /obj/item/clothing/accessory/armor/tag/sifguard
+	corpseid = 1
+	corpseidjob = "Sif Defense Force Patrolman"
+
+/obj/effect/landmark/corpse/hedberg
+	name = "Hedberg-Hammarstrom Mercenary"
+	corpseuniform = /obj/item/clothing/under/solgov/utility/sifguard
+	corpsesuit = /obj/item/clothing/suit/storage/vest/solgov/hedberg
+	corpsebelt = /obj/item/weapon/storage/belt/security
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsehelmet = /obj/item/clothing/head/beret/corp/hedberg
+	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
+	corpseid = 1
+	corpseidjob = "Hedberg-Hammarstrom Officer"
+
+/obj/effect/landmark/corpse/hedberg/merc
+	name = "Hedberg-Hammarstrom Mercenary"
+	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsehelmet = /obj/item/clothing/head/helmet/flexitac
+	corpsegloves = /obj/item/clothing/gloves/combat
+	corpseshoes = /obj/item/clothing/shoes/boots/tactical
+	corpseid = 1
+	corpseidjob = "Hedberg-Hammarstrom Enforcer"
+

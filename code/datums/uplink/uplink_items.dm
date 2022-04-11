@@ -31,7 +31,7 @@ var/datum/uplink/uplink = new()
 	var/item_cost = 0
 	var/datum/uplink_category/category		// Item category
 	var/list/datum/antagonist/antag_roles	// Antag roles this item is displayed to. If empty, display to all.
-	var/blacklisted = 0
+	var/blacklisted = FALSE
 
 /datum/uplink_item/item
 	var/path = null
@@ -48,50 +48,34 @@ var/datum/uplink/uplink = new()
 	if(!extra_args)
 		return
 
-	if(!can_buy(U))
+	if(!can_buy(U, user.mind.tcrystals))
 		return
 
-	if(U.CanUseTopic(user, GLOB.tgui_inventory_state) != STATUS_INTERACTIVE)
+	if(U.tgui_status(user, GLOB.tgui_deep_inventory_state) != STATUS_INTERACTIVE)
 		return
 
-	var/cost = cost(U.uses, U)
+	var/cost = cost(U, user.mind.tcrystals)
 
 	var/goods = get_goods(U, get_turf(user), user, extra_args)
 	if(!goods)
 		return
 
-	purchase_log(U)
+	purchase_log(user)
 	user.mind.tcrystals -= cost
-	U.used_TC += cost
+	user.mind.used_TC += cost
 	return goods
 
 // Any additional arguments you wish to send to the get_goods
 /datum/uplink_item/proc/extra_args(var/mob/user)
-	return 1
+	return TRUE
 
-/datum/uplink_item/proc/can_buy(obj/item/device/uplink/U)
-	if(cost(U.uses, U) > U.uses)
-		return 0
+/datum/uplink_item/proc/can_buy(var/obj/item/device/uplink/U, var/telecrystals)
+	if(cost(U, telecrystals) > telecrystals)
+		return FALSE
 
-	return can_view(U)
+	return TRUE
 
-/datum/uplink_item/proc/can_view(obj/item/device/uplink/U)
-	// Making the assumption that if no uplink was supplied, then we don't care about antag roles
-	if(!U || !antag_roles.len)
-		return 1
-
-	// With no owner, there's no need to check antag status.
-	if(!U.uplink_owner)
-		return 0
-
-	for(var/antag_role in antag_roles)
-		var/datum/antagonist/antag = all_antag_types[antag_role]
-		if(!isnull(antag))
-			if(antag.is_antagonist(U.uplink_owner))
-				return 1
-	return 0
-
-/datum/uplink_item/proc/cost(var/telecrystals, obj/item/device/uplink/U)
+/datum/uplink_item/proc/cost(obj/item/device/uplink/U, mob/M)
 	. = item_cost
 	if(U)
 		. = U.get_item_cost(src, .)
@@ -100,19 +84,19 @@ var/datum/uplink/uplink = new()
 	return desc
 
 // get_goods does not necessarily return physical objects, it is simply a way to acquire the uplink item without paying
-/datum/uplink_item/proc/get_goods(var/obj/item/device/uplink/U, var/loc)
-	return 0
+/datum/uplink_item/proc/get_goods(var/obj/item/device/uplink/U, var/loc, mob/user)
+	return FALSE
 
 /datum/uplink_item/proc/log_icon()
 	return
 
-/datum/uplink_item/proc/purchase_log(obj/item/device/uplink/U)
+/datum/uplink_item/proc/purchase_log(mob/M)
 	feedback_add_details("traitor_uplink_items_bought", "[src]")
-	log_and_message_admins("used \the [U.loc] to buy \a [src]")
-	U.purchase_log[src] = U.purchase_log[src] + 1
+	log_and_message_admins("\the [M] bought \a [src] through the uplink")
+	M.mind.purchase_log[src] += 1
 
-datum/uplink_item/dd_SortValue()
-	return cost(INFINITY)
+/datum/uplink_item/dd_SortValue()
+	return item_cost
 
 /********************************
 *                           	*
@@ -133,7 +117,7 @@ datum/uplink_item/dd_SortValue()
 		A.put_in_any_hand_if_possible(I)
 	return I
 
-/datum/uplink_item/item/get_goods(var/obj/item/device/uplink/U, var/loc)
+/datum/uplink_item/item/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user)
 	var/obj/item/I = new path(loc)
 	return I
 
@@ -208,7 +192,7 @@ datum/uplink_item/dd_SortValue()
 
 /proc/get_surplus_items(var/obj/item/device/uplink/U, var/remaining_TC, var/loc)
 	var/list/bought_items = list()
-	var/override = 1
+	var/override = TRUE
 	while(remaining_TC)
 		var/datum/uplink_item/I = all_uplink_selection.get_random_item(remaining_TC, U, bought_items, override)
 		if(!I)

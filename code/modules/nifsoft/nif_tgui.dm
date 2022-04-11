@@ -15,15 +15,76 @@
 		"retro",
 		"syndicate"
 	)
-	var/tmp/obj/effect/statclick/nif_open/our_statclick
 	var/tmp/last_notification
+	var/tmp/datum/component/nif_menu/menu
 
 /**
- * Special stat button for the interface
+ * Small helper component to manage the HUD icon
  */
-/obj/effect/statclick/nif_open
-/obj/effect/statclick/nif_open/Click(location, control, params)
-	var/obj/item/device/nif/N = target
+/datum/component/nif_menu
+	var/obj/screen/nif/screen_icon
+
+/datum/component/nif_menu/Initialize()
+	if(!ismob(parent))
+		return COMPONENT_INCOMPATIBLE
+	. = ..()
+
+/datum/component/nif_menu/RegisterWithParent()
+	. = ..()
+	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
+	var/mob/owner = parent
+	if(owner.client)
+		create_mob_button(parent)
+
+/datum/component/nif_menu/UnregisterFromParent()
+	. = ..()
+	UnregisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN)
+	if(ismob(parent))
+		var/mob/owner = parent
+		if(screen_icon)
+			owner?.client?.screen -= screen_icon
+			UnregisterSignal(screen_icon, COMSIG_CLICK)
+			qdel_null(screen_icon)
+		if(ishuman(parent))
+			owner.verbs -= /mob/living/carbon/human/proc/nif_menu
+
+
+/datum/component/nif_menu/proc/create_mob_button(mob/user)
+	var/datum/hud/HUD = user.hud_used
+	if(!screen_icon)
+		screen_icon = new()
+		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/nif_menu_click)
+	screen_icon.icon = HUD.ui_style
+	screen_icon.color = HUD.ui_color
+	screen_icon.alpha = HUD.ui_alpha
+	LAZYADD(HUD.other_important, screen_icon)
+	user.client?.screen += screen_icon
+
+	user.verbs |= /mob/living/carbon/human/proc/nif_menu
+
+/datum/component/nif_menu/proc/nif_menu_click(source, location, control, params, user)
+	var/mob/living/carbon/human/H = user
+	if(istype(H) && H.nif)
+		INVOKE_ASYNC(H.nif, .proc/tgui_interact, user)
+
+/**
+ * Screen object for NIF menu access
+ */
+/obj/screen/nif
+	name = "nif menu"
+	icon = 'icons/mob/screen/midnight.dmi'
+	icon_state = "nif"
+	screen_loc = ui_smallquad
+
+/**
+ * Verb to open the interface
+ */
+/mob/living/carbon/human/proc/nif_menu()
+	set name = "NIF Menu"
+	set category = "IC"
+	set desc = "Open the NIF user interface."
+
+	var/obj/item/device/nif/N = nif
 	if(istype(N))
 		N.tgui_interact(usr)
 
@@ -59,13 +120,14 @@
 	data["nif_percent"] = round((durability/initial(durability))*100)
 	data["nif_stat"] = stat
 
-	data["modules"] = list()
+
+	var/list/modules = list()
 	if(stat == NIF_WORKING)
 		for(var/nifsoft in nifsofts)
 			if(!nifsoft)
 				continue
 			var/datum/nifsoft/NS = nifsoft
-			data["modules"].Add(list(list(
+			modules.Add(list(list(
 				"name" = NS.name,
 				"desc" = NS.desc,
 				"p_drain" = NS.p_drain,
@@ -78,6 +140,7 @@
 				"stat_text" = NS.stat_text(),
 				"ref" = REF(NS),
 			)))
+	data["modules"] = modules
 
 	return data
 

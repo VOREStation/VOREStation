@@ -3,9 +3,9 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "glassbox1"
 	desc = "A display case for prized possessions. It taunts you to kick it."
-	density = 1
-	anchored = 1
-	unacidable = 1//Dissolving the case would also delete the gun.
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE//Dissolving the case would also delete the gun.
 	var/health = 30
 	var/occupied = 1
 	var/destroyed = 0
@@ -37,7 +37,7 @@
 /obj/structure/displaycase/proc/healthcheck()
 	if (src.health <= 0)
 		if (!( src.destroyed ))
-			src.density = 0
+			src.density = FALSE
 			src.destroyed = 1
 			new /obj/item/weapon/material/shard( src.loc )
 			playsound(src, "shatter", 70, 1)

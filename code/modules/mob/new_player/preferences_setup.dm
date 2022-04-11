@@ -29,8 +29,8 @@
 			all_underwear[WRC.name] = WRI.name
 
 
-	backbag = rand(1,5)
-	pdachoice = rand(1,5)
+	backbag = rand(1,6)
+	pdachoice = rand(1,7)
 	age = rand(current_species.min_age, current_species.max_age)
 	b_type = RANDOM_BLOOD_TYPE
 	if(H)
@@ -252,8 +252,13 @@
 
 /datum/preferences/proc/update_preview_icon()
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
+		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)
 	dress_preview_mob(mannequin)
+	mannequin.update_transform() //VOREStation Edit to update size/shape stuff.
+	mannequin.toggle_tail(setting = TRUE)
+	mannequin.toggle_wing(setting = TRUE)
 	COMPILE_OVERLAYS(mannequin)
 
 	update_character_previews(new /mutable_appearance(mannequin))

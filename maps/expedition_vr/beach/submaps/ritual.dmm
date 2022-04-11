@@ -1,0 +1,70 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/CorgiRitual)
+"b" = (
+/obj/structure/plushie/ian,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/CorgiRitual)
+"c" = (
+/obj/item/weapon/flame/candle/everburn,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/CorgiRitual)
+"d" = (
+/obj/structure/plushie/ian{
+	dir = 8
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/CorgiRitual)
+"e" = (
+/obj/structure/plushie/ian{
+	dir = 4
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/CorgiRitual)
+"f" = (
+/obj/structure/ghost_pod/manual/corgi,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/CorgiRitual)
+"g" = (
+/obj/structure/plushie/ian{
+	dir = 1
+	},
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/CorgiRitual)
+
+(1,1,1) = {"
+a
+a
+e
+e
+a
+"}
+(2,1,1) = {"
+a
+c
+a
+c
+a
+"}
+(3,1,1) = {"
+b
+a
+f
+a
+g
+"}
+(4,1,1) = {"
+a
+c
+a
+c
+a
+"}
+(5,1,1) = {"
+a
+d
+d
+a
+a
+"}

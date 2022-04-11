@@ -15,7 +15,7 @@
  * optional parent_ui datum/tgui A parent UI that, when closed, closes this UI as well.
  */
 
-/datum/proc/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null)
+/datum/proc/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, custom_state = null)
 	return FALSE // Not implemented.
 
 /**
@@ -76,6 +76,8 @@
  * return bool If the UI should be updated or not.
  */
 /datum/proc/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_UI_ACT, usr, action)
 	// If UI is not interactive or usr calling Topic is not the UI user, bail.
 	if(!ui || ui.status != STATUS_INTERACTIVE)
 		return TRUE
@@ -134,6 +136,13 @@
 /client/var/list/tgui_windows = list()
 
 /**
+ * global
+ *
+ * TRUE if cache was reloaded by tgui dev server at least once.
+ */
+/client/var/tgui_cache_reloaded = FALSE
+
+/**
  * public
  *
  * Called on a UI's object when the UI is closed, not to be confused with
@@ -153,13 +162,13 @@
 	set name = "Fix TGUI"
 	set category = "OOC"
 
-	if(alert(src, "Only use this verb if you have a white TGUI window stuck on your screen.", "Fix TGUI", "Continue", "Nevermind") != "Continue")
+	if(alert(src, "Only use this verb if you have a white TGUI window stuck on your screen.", "Fix TGUI", "Continue", "Nevermind") != "Continue") // Not tgui_alert since we're fixing tgui
 		return
 
 	SStgui.close_user_uis(mob)
-	if(alert(src, "Did that fix the problem?", "Fix TGUI", "Yes", "No") == "No")
+	if(alert(src, "Did that fix the problem?", "Fix TGUI", "Yes", "No") == "No") // Not tgui_alert since we're fixing tgui
 		SStgui.force_close_all_windows(mob)
-		alert(src, "UIs should be fixed now. If not, please cry to your nearest coder.", "Fix TGUI")
+		alert(src, "UIs should be fixed now. If not, please cry to your nearest coder.", "Fix TGUI") // Not tgui_alert since we're fixing tgui
 
 /**
  * verb
@@ -193,13 +202,31 @@
 	// Unconditionally collect tgui logs
 	if(type == "log")
 		log_tgui(usr, href_list["message"])
+	// Reload all tgui windows
+	if(type == "cacheReloaded")
+		// Note: Find a solution for the below causing asset CDN to stop working
+		// which doesn't prevent players from using the dev server on prod
+		// whenever the asset CDN is actually used (currently using rsc only)
+		if(/* !check_rights(R_ADMIN) || */ usr.client.tgui_cache_reloaded)
+			return TRUE
+		// Mark as reloaded
+		usr.client.tgui_cache_reloaded = TRUE
+		// Notify windows
+		var/list/windows = usr.client.tgui_windows
+		for(var/window_id in windows)
+			var/datum/tgui_window/window = windows[window_id]
+			if (window.status == TGUI_WINDOW_READY)
+				window.on_message(type, null, href_list)
+		return TRUE
 	// Locate window
 	var/window_id = href_list["window_id"]
 	var/datum/tgui_window/window
 	if(window_id)
 		window = usr.client.tgui_windows[window_id]
 		if(!window)
+			// #ifdef TGUI_DEBUGGING // Always going to log these
 			log_tgui(usr, "Error: Couldn't find the window datum, force closing.")
+			// #endif
 			SStgui.force_close_window(usr, window_id)
 			return FALSE
 	// Decode payload

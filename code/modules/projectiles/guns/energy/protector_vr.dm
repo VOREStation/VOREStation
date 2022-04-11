@@ -55,7 +55,7 @@
 
 //Update icons from /tg/, so fancy! Use this more!
 /obj/item/weapon/gun/energy/gun/protector/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	var/ratio = 0
 
 	/* Don't have one for this gun
@@ -66,7 +66,7 @@
 
 	var/iconState = "[icon_state]_charge"
 	if (modifystate)
-		overlays += "[icon_state]_[modifystate]"
+		add_overlay("[icon_state]_[modifystate]")
 		iconState += "_[modifystate]"
 		/* Don't have one for this gun
 		if(itemState)
@@ -76,21 +76,21 @@
 		ratio = CEILING(((power_supply.charge / power_supply.maxcharge) * charge_sections), 1)
 
 		if(power_supply.charge < charge_cost)
-			overlays += "[icon_state]_empty"
+			add_overlay("[icon_state]_empty")
 		else
 			if(!shaded_charge)
 				var/mutable_appearance/charge_overlay = mutable_appearance(icon, iconState)
 				for(var/i = ratio, i >= 1, i--)
 					charge_overlay.pixel_x = ammo_x_offset * (i - 1)
-					overlays += charge_overlay
+					add_overlay(charge_overlay)
 			else
-				overlays += "[icon_state]_[modifystate][ratio]"
+				add_overlay("[icon_state]_[modifystate][ratio]")
 
 	if(can_flashlight & gun_light)
 		var/mutable_appearance/flashlight_overlay = mutable_appearance(icon, light_state)
 		flashlight_overlay.pixel_x = flight_x_offset
 		flashlight_overlay.pixel_y = flight_y_offset
-		overlays += flashlight_overlay
+		add_overlay(flashlight_overlay)
 
 	/* Don't have one for this gun
 	if(itemState)

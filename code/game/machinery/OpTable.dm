@@ -3,8 +3,9 @@
 	desc = "Used for advanced medical procedures."
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 1
 	active_power_usage = 5
@@ -37,14 +38,14 @@
 				return
 		if(3.0)
 			if(prob(25))
-				density = 0
+				density = FALSE
 		else
 	return
 
 /obj/machinery/optable/attack_hand(mob/user as mob)
 	if(HULK in usr.mutations)
 		visible_message("<span class='danger'>\The [usr] destroys \the [src]!</span>")
-		density = 0
+		density = FALSE
 		qdel(src)
 	return
 

@@ -4,8 +4,10 @@
 	var/list/cardinal_neighbors = list()
 	for(var/check_dir in cardinal)
 		var/turf/simulated/T = get_step(get_turf(src), check_dir)
-		if(istype(T))
+		//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
+		if(istype(T) && !istype(check_dir, /turf/simulated/open)) //Let's not have them go on open space where you can't really get to them.
 			cardinal_neighbors |= T
+		//VOREStation Edit End
 	return cardinal_neighbors
 
 /obj/effect/plant/proc/update_neighbors()
@@ -74,8 +76,7 @@
 			plant.layer = layer + 0.1
 
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			seed.do_sting(L,src)
 			if(seed.get_trait(TRAIT_CARNIVOROUS))
 				seed.do_thorns(L,src)
@@ -115,6 +116,10 @@
 //spreading vines aren't created on their final turf.
 //Instead, they are created at their parent and then move to their destination.
 /obj/effect/plant/proc/spread_to(turf/target_turf)
+	//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
+	if(istype(target_turf, /turf/simulated/open))
+		return			
+	//VOREStation Edit End
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 
 	spawn(1) // This should do a little bit of animation.
@@ -122,9 +127,9 @@
 			return
 
 		//move out to the destination
-		child.anchored = 0
+		child.anchored = FALSE
 		step_to(child, target_turf)
-		child.anchored = 1
+		child.anchored = TRUE
 		child.update_icon()
 
 		//see if anything is there

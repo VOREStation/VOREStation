@@ -6,9 +6,13 @@
 	name = "Wall Locker"
 	icon = 'icons/obj/closets/bases/wall.dmi'
 	closet_appearance = /decl/closet_appearance/wall
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	store_mobs = 0
+	wall_mounted = 1
+
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 
 //spawns 2 sets of breathmask, emergency oxy tank and crowbar
 
@@ -58,7 +62,7 @@
 //VOREStation Add Start
 /obj/structure/closet/walllocker/medical
 	name = "first-aid closet"
-	desc = "It's wall-mounted storage unit for first aid supplies."
+	desc = "It's a wall-mounted storage unit for first aid supplies."
 	closet_appearance = /decl/closet_appearance/wall/medical
 
 /obj/structure/closet/walllocker/medical/north
@@ -84,10 +88,15 @@
 	name = "Wall Cabinet"
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
 	closet_appearance = /decl/closet_appearance/wall_double
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
+	store_mobs = 0
+	wall_mounted = 1
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+
+	open_sound = 'sound/machines/click.ogg'
+	close_sound = 'sound/machines/click.ogg'
 
 /obj/structure/closet/walllocker_double/north
 	pixel_y = 32
@@ -110,8 +119,8 @@
 	name = "Kitchen Cabinet"
 	icon = 'icons/obj/closets/bases/wall_double.dmi'
 	closet_appearance = /decl/closet_appearance/wall_double/kitchen
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 
 /obj/structure/closet/walllocker_double/kitchen/north
 	pixel_y = 32
@@ -128,7 +137,7 @@
 /obj/structure/closet/walllocker_double/kitchen/east
 	pixel_x = 32
 	dir = EAST
-	
+
 /obj/structure/closet/walllocker_double/medical
 	name = "Medical Cabinet"
 	desc = "A wall mounted medical supply cabinet. Probably full of drugs!"	//not actually full of drugs, sorry!
@@ -149,17 +158,16 @@
 /obj/structure/closet/walllocker_double/medical/east
 	pixel_x = 32
 	dir = EAST
-	
+
 /obj/structure/closet/walllocker_double/hydrant
 	name = "fire-safety closet"
 	desc = "It's a storage cabinet packed with fire-fighting supplies."
 	closet_appearance = /decl/closet_appearance/wall_double/fire_safety
-	anchored = 1
-	density = 0
-	wall_mounted = 1
+	anchored = TRUE
+	density = FALSE
 
 	starts_with = list(
-		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/oxygen/red,
@@ -179,5 +187,46 @@
 	dir = WEST
 
 /obj/structure/closet/walllocker_double/hydrant/east
+	pixel_x = 32
+	dir = EAST
+
+/obj/structure/closet/walllocker_double/survival
+	desc = "A wall mounted storage cabinet. It contains a small amount of emergency supplies for wilderness survival, but they probably won't last very long."
+	name = "Emergency Survival Wall Cabinet"
+	icon = 'icons/obj/closets/bases/wall_double.dmi'
+	closet_appearance = /decl/closet_appearance/wall_double/survival
+	density = FALSE
+	anchored = TRUE
+	store_mobs = 0
+	wall_mounted = 1
+	plane = TURF_PLANE
+	layer = ABOVE_TURF_LAYER
+
+	starts_with = list(
+		/obj/item/clothing/suit/space/emergency,
+		/obj/item/clothing/head/helmet/space/emergency,
+		/obj/item/clothing/mask/breath,
+		/obj/item/weapon/tank/oxygen,
+		/obj/item/device/suit_cooling_unit/emergency,
+		/obj/item/device/gps,
+		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/random/mre,
+		/obj/item/device/flashlight/color/yellow,
+		/obj/item/device/flashlight/flare,
+		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle)
+
+/obj/structure/closet/walllocker_double/survival/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker_double/survival/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker_double/survival/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker_double/survival/east
 	pixel_x = 32
 	dir = EAST

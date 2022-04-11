@@ -78,8 +78,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 	if(isturf(target) && (!target.can_catalogue()))
 		var/turf/T = target
-		for(var/a in T) // If we can't scan the turf, see if we can scan anything on it, to help with aiming.
-			var/atom/A = a
+		for(var/atom/A as anything in T) // If we can't scan the turf, see if we can scan anything on it, to help with aiming.
 			if(A.can_catalogue())
 				target = A
 				break
@@ -149,8 +148,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	// Figure out who may have helped out.
 	var/list/contributers = list()
 	var/list/contributer_names = list()
-	for(var/thing in player_list)
-		var/mob/living/L = thing
+	for(var/mob/living/L as anything in player_list)
 		if(L == user)
 			continue
 		if(!istype(L))
@@ -169,8 +167,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 			if(istype(I))
 				var/list/discoveries = I.discover(user, list(user.name) + contributer_names) // If one discovery leads to another, the list returned will have all of them.
 				if(LAZYLEN(discoveries))
-					for(var/D in discoveries)
-						var/datum/category_item/catalogue/data = D
+					for(var/datum/category_item/catalogue/data as anything in discoveries)
 						points_gained += data.value
 
 	// Give out points.
@@ -208,23 +205,20 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 	// First, get everything able to be scanned.
 	var/list/scannable_atoms = list()
-	for(var/a in view(world.view, user))
-		var/atom/A = a
+	for(var/atom/A as anything in view(world.view, user))
 		if(A.can_catalogue()) // Not passing the user is intentional, so they don't get spammed.
 			scannable_atoms += A
 
 	// Highlight things able to be scanned.
 	var/filter = filter(type = "outline", size = 1, color = "#00FF00")
-	for(var/a in scannable_atoms)
-		var/atom/A = a
+	for(var/atom/A as anything in scannable_atoms)
 		A.filters += filter
 	to_chat(user, span("notice", "\The [src] is highlighting scannable objects in green, if any exist."))
 
 	sleep(2 SECONDS)
 
 	// Remove the highlights.
-	for(var/a in scannable_atoms)
-		var/atom/A = a
+	for(var/atom/A as anything in scannable_atoms)
 		if(QDELETED(A))
 			continue
 		A.filters -= filter
@@ -271,14 +265,12 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 	else
 		dat += "<hr>"
-		for(var/G in GLOB.catalogue_data.categories)
-			var/datum/category_group/group = G
+		for(var/datum/category_group/group as anything in GLOB.catalogue_data.categories)
 			var/list/group_dat = list()
 			var/show_group = FALSE
 
 			group_dat += "<b>[group.name]</b>"
-			for(var/I in group.items)
-				var/datum/category_item/catalogue/item = I
+			for(var/datum/category_item/catalogue/item as anything in group.items)
 				if(item.visible || debug)
 					group_dat += "<a href='?src=\ref[src];show_data=\ref[item]'>[item.name]</a>"
 					show_group = TRUE

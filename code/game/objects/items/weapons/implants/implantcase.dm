@@ -299,3 +299,13 @@
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist/blade( src )
 	..()
 	return
+
+/obj/item/weapon/implantcase/restrainingbolt
+	name = "glass case - 'Restraining Bolt'"
+	desc = "A case containing a restraining bolt."
+	icon_state = "implantcase-b"
+
+/obj/item/weapon/implantcase/restrainingbolt/New()
+	src.imp = new /obj/item/weapon/implant/restrainingbolt( src )
+	..()
+	return

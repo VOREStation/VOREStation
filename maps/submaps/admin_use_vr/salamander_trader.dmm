@@ -1,0 +1,2728 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"ab" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"aK" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	dir = 1;
+	pixel_x = 24;
+	pixel_y = 11
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"aL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 6
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	dir = 4;
+	id_tag = "salamander_trader_docking_port";
+	name = "Port Airlock Control";
+	pixel_x = -22;
+	req_one_access = list(160)
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/obj/effect/shuttle_landmark/shuttle_initializer/salamander_trader,
+/obj/effect/overmap/visitable/ship/landable/salamander_trader,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"aO" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "salamander_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_q2)
+"bk" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "salamander_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_q1)
+"br" = (
+/obj/structure/window/reinforced/tinted,
+/obj/structure/toilet{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_head)
+"bu" = (
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/pipe/manifold/hidden,
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -21;
+	req_one_access = list(160)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"bA" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"bH" = (
+/obj/structure/closet/crate,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"bI" = (
+/obj/structure/bed/chair/bay/chair,
+/obj/structure/handrail,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_galley)
+"bK" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/effect/floor_decal/industrial/outline/blue,
+/obj/machinery/portable_atmospherics/canister/air,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"bL" = (
+/obj/machinery/door/firedoor/glass,
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"bN" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_head)
+"bP" = (
+/obj/structure/sink{
+	dir = 4;
+	pixel_x = 11
+	},
+/obj/structure/mirror{
+	dir = 4;
+	pixel_x = 28
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_head)
+"bY" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_engineering)
+"ci" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_q1)
+"cq" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_head)
+"cC" = (
+/obj/machinery/shower{
+	dir = 1
+	},
+/obj/structure/curtain/open/shower,
+/obj/structure/window/reinforced/tinted{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_head)
+"cX" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/int_door,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"cY" = (
+/obj/structure/fitness/weightlifter,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q1)
+"de" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader_q2)
+"dj" = (
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"dm" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"dn" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"dO" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_head)
+"dT" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"ee" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"eg" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"ey" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"eB" = (
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"eG" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q1)
+"eJ" = (
+/obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/machinery/airlock_sensor{
+	dir = 8;
+	pixel_x = 21;
+	req_one_access = list(160)
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"eP" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_head)
+"fh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/north{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"fn" = (
+/obj/machinery/atmospherics/unary/engine/bigger{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"fB" = (
+/obj/machinery/light,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"fC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"fD" = (
+/obj/machinery/atmospherics/binary/pump/fuel{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"fE" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"fG" = (
+/obj/structure/handrail{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"fP" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 10
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/railing/grey,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"fR" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 6
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"fX" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"fZ" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/handrail,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/closet/walllocker_double/north{
+	name = "Voidsuit Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"gl" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q1)
+"gv" = (
+/obj/machinery/power/apc{
+	dir = 8;
+	name = "west bump";
+	pixel_x = -28
+	},
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/structure/handrail,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/bed/chair/bay/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"gC" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_cockpit)
+"gD" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
+	},
+/obj/machinery/portable_atmospherics/canister/phoron{
+	start_pressure = 8000.25
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"gL" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"gM" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_cockpit)
+"hh" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"hn" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/north{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"hp" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"hr" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"hC" = (
+/obj/effect/floor_decal/industrial/outline/yellow,
+/obj/structure/railing/grey,
+/obj/machinery/atmospherics/pipe/tank/phoron{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"hO" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/door/window/brigdoor/westleft{
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"if" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey,
+/obj/machinery/computer/ship/engines{
+	dir = 4;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"ii" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"im" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"iq" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_q2)
+"is" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_engineering)
+"iC" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"iJ" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"iK" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"iL" = (
+/obj/machinery/door/window/brigdoor/eastleft{
+	req_access = list();
+	req_one_access = list(160)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"iS" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"iW" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"jl" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_cockpit)
+"jq" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"jT" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/effect/catwalk_plated,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"jV" = (
+/obj/machinery/door/airlock/multi_tile/glass{
+	dir = 2;
+	req_one_access = list(160)
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"ks" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"kx" = (
+/obj/machinery/atmospherics/binary/pump/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"kK" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"kL" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 4;
+	pixel_x = 32
+	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"kU" = (
+/obj/machinery/suit_cycler/vintage/omni,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"kZ" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 9
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"lc" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 5
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"ld" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_q1)
+"ll" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/alarm/alarms_hidden{
+	dir = 4;
+	pixel_x = -26
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/obj/structure/railing/grey{
+	dir = 4
+	},
+/obj/structure/bed/chair/bay/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"lo" = (
+/obj/machinery/computer/ship/engines{
+	dir = 1;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_cockpit)
+"lt" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"lw" = (
+/obj/machinery/atmospherics/portables_connector,
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"lC" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"lK" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"lV" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/weapon/tank/phoron/pressurized,
+/obj/structure/closet/walllocker{
+	dir = 1;
+	name = "Spare Fuel";
+	pixel_y = -32
+	},
+/obj/item/weapon/tool/crowbar/red,
+/obj/item/stack/material/tritium{
+	amount = 25
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"ma" = (
+/obj/structure/cable,
+/obj/machinery/power/smes/buildable/point_of_interest,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"mg" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/obj/effect/map_helper/airlock/sensor/ext_sensor,
+/obj/machinery/airlock_sensor/airlock_exterior/shuttle{
+	pixel_x = 24;
+	pixel_y = -11
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"mm" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"mE" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"mJ" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"mO" = (
+/obj/machinery/light,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/firstaid,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/cigarettes,
+/obj/random/drinkbottle,
+/obj/random/drinkbottle,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/south{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"mR" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader_galley)
+"mY" = (
+/obj/machinery/computer/ship/sensors{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_cockpit)
+"nB" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q2)
+"nE" = (
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"nH" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader_cockpit)
+"nP" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"nX" = (
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"oa" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/effect/floor_decal/industrial/outline/red,
+/obj/machinery/portable_atmospherics/canister/empty,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"oc" = (
+/obj/machinery/door/airlock/hatch{
+	req_one_access = list(160)
+	},
+/obj/machinery/door/firedoor/glass,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"oe" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/int_door,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"oi" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/obj/item/weapon/storage/box/donkpockets,
+/obj/item/weapon/storage/box/donkpockets,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/obj/random/snack,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_galley)
+"ot" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_cockpit)
+"oC" = (
+/obj/machinery/pointdefense_control{
+	id_tag = "salamander_pd";
+	name = "salamander defense control";
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_cockpit)
+"oF" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/obj/effect/landmark/late_antag/trader,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q1)
+"oI" = (
+/obj/structure/closet/autolok_wall{
+	pixel_y = 32
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"oL" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"pf" = (
+/obj/structure/handrail,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/light_switch{
+	pixel_y = 23
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"px" = (
+/obj/machinery/atmospherics/pipe/manifold/visible{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"pG" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	id = "trade";
+	name = "Shop Shutters";
+	opacity = 0
+	},
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/window/brigdoor/eastleft{
+	layer = 2.9;
+	open_layer = 2.9;
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"pH" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/obj/effect/map_helper/airlock/atmos/chamber_pump,
+/obj/structure/closet/walllocker/emerglocker/east,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"qg" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"qh" = (
+/obj/machinery/computer/shuttle_control/explore/salamander_trader{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_cockpit)
+"qn" = (
+/obj/structure/bed/chair/bay/chair,
+/obj/structure/handrail,
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	pixel_y = 24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q2)
+"qu" = (
+/obj/structure/table/steel,
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = -22
+	},
+/obj/random/pizzabox,
+/obj/structure/closet/walllocker_double/kitchen/south,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_galley)
+"qx" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"qE" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"qM" = (
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/obj/random/multiple/voidsuit/vintage,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"qQ" = (
+/obj/structure/closet/crate{
+	dir = 8
+	},
+/obj/random/material/refined,
+/obj/random/material/refined,
+/obj/random/toolbox,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"ri" = (
+/obj/machinery/atmospherics/portables_connector{
+	dir = 1
+	},
+/obj/machinery/portable_atmospherics/canister/air/airlock,
+/obj/effect/floor_decal/industrial/outline,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"rj" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_cockpit)
+"rt" = (
+/obj/structure/bed/chair/bay/chair{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	id = "trade";
+	name = "Shop Shutters";
+	pixel_y = -26;
+	req_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"rw" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"ry" = (
+/obj/machinery/door/window/brigdoor/eastright{
+	req_access = list();
+	req_one_access = list(160)
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"rP" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/salamander_trader_head)
+"sb" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_engineering)
+"tn" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_q2)
+"ts" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/salamander_trader)
+"tA" = (
+/obj/machinery/power/pointdefense{
+	id_tag = "salamander_pd"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"uf" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/salamander_trader_galley)
+"ur" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_cockpit)
+"vi" = (
+/obj/structure/table/steel,
+/obj/machinery/microwave/advanced,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_galley)
+"vI" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"wq" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/salamander_trader_engineering)
+"wF" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 6
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"xL" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/south{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"yv" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/light,
+/obj/item/clothing/shoes/boots/workboots,
+/obj/item/clothing/gloves/duty,
+/obj/item/clothing/under/utility,
+/obj/item/clothing/ears/earmuffs,
+/obj/item/clothing/head/soft/black,
+/obj/structure/closet/walllocker_double/south{
+	name = "Uniform Locker"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"zO" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"zQ" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q2)
+"AD" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/fuel,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"AN" = (
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/power/apc{
+	name = "south bump";
+	pixel_y = -24
+	},
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/obj/structure/closet/autolok_wall{
+	dir = 8;
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q1)
+"Bf" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"Bu" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/salamander_trader_engineering)
+"BW" = (
+/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Df" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 4
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"DB" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"DK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader)
+"DM" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_galley)
+"ES" = (
+/obj/structure/closet/crate,
+/obj/random/material/refined,
+/obj/random/material/refined,
+/obj/random/toolbox,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"Fu" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 5
+	},
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi{
+	dir = 4;
+	id_tag = "salamander_trader_docking_star";
+	name = "Starboard Airlock Control";
+	pixel_x = -22;
+	req_one_access = list(160)
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"FL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Gj" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_cockpit)
+"HG" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"HR" = (
+/obj/machinery/shipsensors{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_cockpit)
+"IL" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/closet/walllocker_double/south{
+	name = "Voidsuit Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"IQ" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"IR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Jq" = (
+/obj/machinery/computer/ship/helm{
+	dir = 8;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_cockpit)
+"Kn" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	id = "trade";
+	name = "Shop Shutters";
+	opacity = 0
+	},
+/obj/structure/railing/grey,
+/obj/structure/window/reinforced,
+/obj/machinery/door/window/brigdoor/eastright{
+	layer = 2.9;
+	open_layer = 2.9;
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Kw" = (
+/obj/effect/map_helper/airlock/sensor/chamber_sensor,
+/obj/machinery/atmospherics/pipe/manifold/hidden{
+	dir = 1
+	},
+/obj/machinery/airlock_sensor{
+	dir = 4;
+	pixel_x = -21;
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"KX" = (
+/obj/structure/handrail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"Lf" = (
+/obj/effect/floor_decal/industrial/warning,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"LU" = (
+/obj/structure/closet/crate,
+/obj/random/multiple/voidsuit/vintage,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"No" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_galley)
+"Ns" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/obj/effect/landmark/late_antag/trader,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q2)
+"NR" = (
+/obj/structure/bed/chair/bay/chair{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "trade";
+	name = "Shop Shutters";
+	pixel_y = 26;
+	req_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"OI" = (
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	id = "trade";
+	name = "Shop Shutters";
+	opacity = 0
+	},
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/window/brigdoor/eastright{
+	layer = 2.9;
+	open_layer = 2.9;
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"ON" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"OU" = (
+/obj/structure/bed/chair/bay/comfy{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_cockpit)
+"Pc" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"Pk" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"PN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Qn" = (
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Qq" = (
+/obj/machinery/door/firedoor/glass,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/airlock/voidcraft{
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_galley)
+"Rd" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 4
+	},
+/obj/structure/handrail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/tech_supply/component/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"RO" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/landmark/late_antag/trader,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q1)
+"RU" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_galley)
+"Sb" = (
+/obj/structure/table/steel_reinforced,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 4;
+	icon_state = "shutter0";
+	id = "trade";
+	name = "Shop Shutters";
+	opacity = 0
+	},
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/machinery/door/window/brigdoor/eastleft{
+	layer = 2.9;
+	open_layer = 2.9;
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Sp" = (
+/obj/structure/table/steel,
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q2)
+"Td" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/fuel_port/heavy{
+	pixel_y = 28
+	},
+/obj/structure/table/steel,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"Tg" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader_head)
+"Tl" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/handrail{
+	dir = 1
+	},
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/south{
+	name = "Voidsuit Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"TG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/door/window/brigdoor/westright{
+	req_access = list();
+	req_one_access = list(160)
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"UT" = (
+/obj/machinery/door/airlock/glass_external/public,
+/obj/effect/map_helper/airlock/door/ext_door,
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader)
+"Vh" = (
+/obj/structure/cable{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/handrail{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"Vs" = (
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"Vz" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader_q1)
+"VK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"VT" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader)
+"VW" = (
+/obj/machinery/atmospherics/pipe/simple/visible{
+	dir = 5
+	},
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"Wj" = (
+/turf/simulated/wall/shull,
+/area/shuttle/salamander_trader_engineering)
+"Wv" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader_engineering)
+"WI" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/salamander_trader)
+"WN" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/multi_tile/metal{
+	dir = 2;
+	name = "Salamander Engineering Bay";
+	req_one_access = list(160)
+	},
+/obj/machinery/door/firedoor/multi_tile{
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/shuttle/salamander_trader_engineering)
+"WP" = (
+/turf/template_noop,
+/area/template_noop)
+"WW" = (
+/obj/structure/closet/crate{
+	dir = 1
+	},
+/obj/random/multiple/voidsuit/vintage,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"Xc" = (
+/obj/item/device/suit_cooling_unit,
+/obj/item/weapon/tank/air,
+/obj/item/clothing/suit/space/void/refurb,
+/obj/item/clothing/head/helmet/space/void/refurb,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/obj/structure/handrail,
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/closet/walllocker_double/north{
+	name = "Voidsuit Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"Xn" = (
+/obj/effect/floor_decal/industrial/warning{
+	dir = 8
+	},
+/obj/structure/handrail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/tech_supply/nofail,
+/obj/random/contraband/nofail,
+/obj/random/contraband/nofail,
+/obj/random/powercell,
+/obj/random/powercell,
+/obj/random/drinksoft,
+/obj/random/drinksoft,
+/obj/random/snack,
+/obj/structure/closet/walllocker_double/north{
+	name = "Storage Locker"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+"Xr" = (
+/obj/machinery/atmospherics/pipe/manifold/visible,
+/obj/structure/catwalk,
+/obj/machinery/light/small,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"Xs" = (
+/obj/machinery/power/port_gen/pacman/mrs{
+	anchored = 1
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/alarm/alarms_hidden{
+	pixel_y = 26
+	},
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = 22
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_engineering)
+"Xu" = (
+/obj/structure/bed/pod,
+/obj/item/weapon/bedsheet/blue,
+/obj/machinery/alarm/alarms_hidden{
+	dir = 8;
+	pixel_x = 26
+	},
+/obj/effect/landmark/late_antag/trader,
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader_q2)
+"XJ" = (
+/obj/structure/handrail,
+/obj/structure/catwalk,
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"ZK" = (
+/obj/structure/closet/autolok_wall{
+	dir = 1;
+	pixel_y = -32
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/salamander_trader)
+"ZU" = (
+/obj/machinery/embedded_controller/radio/docking_port_multi{
+	child_names_txt = "Port Airlock Control;Starboard Airlock Control";
+	child_tags_txt = "salamander_trader_docking_port;salamander_trader_docking_star";
+	dir = 1;
+	id_tag = "salamander_trader_docking";
+	name = "Salamander Trader Master Docking Controller";
+	pixel_y = -22
+	},
+/obj/machinery/power/apc{
+	dir = 4;
+	name = "east bump";
+	pixel_x = 24
+	},
+/obj/structure/cable,
+/obj/machinery/light,
+/obj/structure/railing/grey{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/salamander_trader)
+
+(1,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}
+(2,1,1) = {"
+WP
+WP
+WP
+wq
+Wj
+dj
+fn
+Wj
+Wj
+dj
+fn
+Wj
+Bu
+WP
+WP
+WP
+"}
+(3,1,1) = {"
+WP
+WP
+WP
+Wj
+Wj
+dm
+fB
+Wj
+Wj
+dm
+fB
+Wj
+Wj
+WP
+WP
+WP
+"}
+(4,1,1) = {"
+WP
+WP
+WP
+Wj
+Wj
+dn
+dn
+Wj
+Wj
+dn
+lt
+Wj
+Wj
+WP
+WP
+WP
+"}
+(5,1,1) = {"
+WP
+WP
+WP
+Wj
+bA
+dT
+fC
+gD
+hC
+ee
+lC
+nP
+Wj
+WP
+WP
+WP
+"}
+(6,1,1) = {"
+WP
+WP
+WP
+Wj
+bH
+ee
+fD
+AD
+Df
+kx
+fC
+nX
+Wj
+WP
+WP
+WP
+"}
+(7,1,1) = {"
+WP
+WP
+WP
+Wj
+bK
+eg
+nE
+VK
+if
+kK
+lK
+oa
+Wj
+WP
+WP
+WP
+"}
+(8,1,1) = {"
+WP
+WP
+tA
+Wj
+bK
+ey
+Wv
+gL
+ii
+Wv
+ey
+oa
+Wj
+tA
+WP
+WP
+"}
+(9,1,1) = {"
+WP
+ts
+VT
+VT
+Wj
+Td
+fE
+zO
+im
+fE
+lV
+Wj
+VT
+VT
+WI
+WP
+"}
+(10,1,1) = {"
+WP
+VT
+VT
+WW
+Wj
+Xs
+Vh
+bY
+is
+kL
+ma
+Wj
+WW
+VT
+VT
+WP
+"}
+(11,1,1) = {"
+WP
+VT
+Pc
+ZK
+Wj
+Wj
+Wj
+sb
+WN
+Wj
+Wj
+Wj
+oI
+qx
+VT
+WP
+"}
+(12,1,1) = {"
+WP
+VT
+XJ
+Vs
+bL
+eB
+fG
+FL
+iC
+fG
+mm
+oc
+Vs
+qE
+VT
+WP
+"}
+(13,1,1) = {"
+WP
+VT
+LU
+Vs
+VT
+Xn
+fP
+BW
+iJ
+kZ
+mE
+VT
+Vs
+qM
+VT
+WP
+"}
+(14,1,1) = {"
+WP
+VT
+ES
+Vs
+VT
+KX
+Lf
+FL
+iC
+ON
+mJ
+VT
+Vs
+qQ
+VT
+WP
+"}
+(15,1,1) = {"
+WP
+VT
+ES
+Vs
+VT
+Bf
+Lf
+FL
+iC
+ON
+mO
+VT
+Vs
+qQ
+VT
+WP
+"}
+(16,1,1) = {"
+WP
+VT
+lw
+VW
+VT
+Rd
+fR
+FL
+iC
+lc
+jq
+VT
+wF
+ri
+VT
+WP
+"}
+(17,1,1) = {"
+WP
+VT
+lw
+Xr
+VT
+NR
+iK
+PN
+rw
+Pk
+rt
+VT
+px
+ri
+VT
+WP
+"}
+(18,1,1) = {"
+WP
+VT
+VT
+DK
+VT
+pG
+Kn
+iL
+ry
+Sb
+OI
+VT
+DK
+VT
+VT
+WP
+"}
+(19,1,1) = {"
+WP
+ab
+aL
+bu
+cX
+fX
+fX
+hh
+iC
+Qn
+Qn
+oe
+Kw
+Fu
+UT
+WP
+"}
+(20,1,1) = {"
+WP
+aK
+pH
+pH
+oe
+eJ
+Qn
+IR
+iC
+Qn
+eJ
+oe
+pH
+pH
+mg
+WP
+"}
+(21,1,1) = {"
+WP
+VT
+VT
+VT
+VT
+VT
+Xc
+TG
+hO
+Tl
+VT
+VT
+VT
+VT
+VT
+WP
+"}
+(22,1,1) = {"
+WP
+rP
+Tg
+br
+cq
+Tg
+fZ
+oL
+iW
+IL
+mR
+bI
+qu
+mR
+uf
+WP
+"}
+(23,1,1) = {"
+WP
+WP
+Tg
+bN
+dO
+eP
+iS
+hp
+jT
+iS
+Qq
+No
+RU
+DM
+WP
+WP
+"}
+(24,1,1) = {"
+WP
+WP
+Tg
+bP
+cC
+Tg
+kU
+IR
+qg
+ZU
+mR
+oi
+vi
+mR
+WP
+WP
+"}
+(25,1,1) = {"
+WP
+WP
+Tg
+Tg
+Tg
+Tg
+VT
+pf
+HG
+VT
+mR
+mR
+mR
+mR
+WP
+WP
+"}
+(26,1,1) = {"
+WP
+WP
+bk
+Vz
+cY
+AN
+Vz
+hn
+yv
+de
+qn
+Sp
+de
+aO
+WP
+WP
+"}
+(27,1,1) = {"
+WP
+WP
+WP
+ci
+eG
+gl
+ld
+hp
+jT
+iq
+nB
+zQ
+tn
+WP
+WP
+WP
+"}
+(28,1,1) = {"
+WP
+WP
+WP
+Vz
+oF
+RO
+Vz
+fh
+xL
+de
+Xu
+Ns
+de
+WP
+WP
+WP
+"}
+(29,1,1) = {"
+WP
+WP
+WP
+Vz
+Vz
+Vz
+Vz
+DB
+jV
+de
+de
+de
+de
+WP
+WP
+WP
+"}
+(30,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+nH
+gv
+vI
+IQ
+ll
+nH
+HR
+WP
+WP
+WP
+WP
+"}
+(31,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+jl
+gC
+hr
+ks
+oC
+Gj
+WP
+WP
+WP
+WP
+WP
+"}
+(32,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+jl
+mY
+OU
+OU
+lo
+Gj
+WP
+WP
+WP
+WP
+WP
+"}
+(33,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+gM
+ot
+qh
+Jq
+ot
+ur
+WP
+WP
+WP
+WP
+WP
+"}
+(34,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+gM
+rj
+rj
+ur
+WP
+WP
+WP
+WP
+WP
+WP
+"}
+(35,1,1) = {"
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+WP
+"}

@@ -1,0 +1,74 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"b" = (
+/obj/item/device/geiger,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"c" = (
+/obj/item/clothing/mask/gas/explorer,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"d" = (
+/obj/item/weapon/material/knife/tacknife/survival,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"e" = (
+/obj/item/clothing/shoes/boots/winter/explorer,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"f" = (
+/obj/item/clothing/under/explorer,
+/obj/effect/decal/remains,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"g" = (
+/obj/item/clothing/suit/storage/hooded/explorer,
+/obj/item/weapon/cell/device,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"h" = (
+/obj/item/device/gps/explorer,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+"i" = (
+/obj/item/device/flashlight/lantern,
+/turf/simulated/mineral/floor/ignore_mapgen/cave,
+/area/submap/cave/lost_explorer)
+
+(1,1,1) = {"
+a
+a
+a
+a
+i
+"}
+(2,1,1) = {"
+a
+c
+e
+a
+a
+"}
+(3,1,1) = {"
+b
+a
+f
+g
+a
+"}
+(4,1,1) = {"
+a
+d
+a
+a
+a
+"}
+(5,1,1) = {"
+a
+a
+a
+h
+a
+"}

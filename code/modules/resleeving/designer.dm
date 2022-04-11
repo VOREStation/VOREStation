@@ -29,6 +29,11 @@
 	var/mob/living/carbon/human/dummy/mannequin/mannequin = null
 	var/obj/item/weapon/disk/body_record/disk = null
 
+	// Resleeving database this machine interacts with. Blank for default database
+	// Needs a matching /datum/transcore_db with key defined in code
+	var/db_key
+	var/datum/transcore_db/our_db // These persist all round and are never destroyed, just keep a hard ref
+
 /obj/machinery/computer/transhuman/designer/Initialize()
 	. = ..()
 	map_name = "transhuman_designer_[REF(src)]_map"
@@ -50,6 +55,8 @@
 	west_preview.assigned_map = map_name
 	west_preview.del_on_map_removal = FALSE
 	west_preview.screen_loc = "[map_name]:0,1"
+
+	our_db = SStranscore.db_by_key(db_key)
 
 /obj/machinery/computer/transhuman/designer/Destroy()
 	active_br = null
@@ -100,8 +107,8 @@
 
 	if(menu == MENU_BODYRECORDS)
 		var/bodyrecords_list_ui[0]
-		for(var/N in SStranscore.body_scans)
-			var/datum/transhuman/body_record/BR = SStranscore.body_scans[N]
+		for(var/N in our_db.body_scans)
+			var/datum/transhuman/body_record/BR = our_db.body_scans[N]
 			bodyrecords_list_ui[++bodyrecords_list_ui.len] = list("name" = N, "recref" = "\ref[BR]")
 		if(bodyrecords_list_ui.len)
 			data["bodyrecords"] = bodyrecords_list_ui
@@ -224,6 +231,7 @@
 				mannequin.real_name = "Stock [S.name] Body"
 				mannequin.name = mannequin.real_name
 				mannequin.dna.real_name = mannequin.real_name
+				mannequin.dna.base_species = mannequin.species
 				active_br = new(mannequin, FALSE, FALSE)
 				active_br.speciesname = "Custom Sleeve"
 				update_preview_icon()
@@ -384,12 +392,9 @@
 	ASSERT(istype(B))
 	var/datum/category_item/player_setup_item/general/basic/G = CG.items_by_name["Basic"]
 	ASSERT(istype(G))
-	CG = CC.categories_by_name["VORE"]
-	var/datum/category_item/player_setup_item/vore/ears/E = CG.items_by_name["Appearance"]
-	ASSERT(istype(E))
 
 	if(params["target_href"] == "bio_gender")
-		var/new_gender = input(user, "Choose your character's biological gender:", "Character Preference", active_br.bodygender) as null|anything in G.get_genders()
+		var/new_gender = tgui_input_list(user, "Choose your character's biological gender:", "Character Preference", G.get_genders())
 		if(new_gender)
 			active_br.bodygender = new_gender
 			active_br.mydna.dna.SetUIState(DNA_UI_GENDER, new_gender!=MALE, 1)
@@ -404,12 +409,6 @@
 	action = B.OnTopic(list2params(href_list), href_list, user)
 	if(action & TOPIC_UPDATE_PREVIEW && mannequin && active_br)
 		B.copy_to_mob(mannequin)
-		active_br.mydna.dna.ResetUIFrom(mannequin)
-		update_preview_icon()
-		return 1
-	action = E.OnTopic(list2params(href_list), href_list, user)
-	if(action & TOPIC_UPDATE_PREVIEW && mannequin && active_br)
-		E.copy_to_mob(mannequin)
 		active_br.mydna.dna.ResetUIFrom(mannequin)
 		update_preview_icon()
 		return 1

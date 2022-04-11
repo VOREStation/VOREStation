@@ -21,8 +21,8 @@
 
 	pto_type = PTO_CIVILIAN
 
-	get_access()
-		return get_all_accesses().Copy()
+/datum/job/centcom_officer/get_access()
+	return get_all_accesses().Copy()
 
 /datum/job/emergency_responder //For staff managing/leading ERTs
 	title = "Emergency Responder"
@@ -47,23 +47,23 @@
 
 	pto_type = PTO_CIVILIAN
 
-	get_access()
-		return get_all_accesses().Copy()
+/datum/job/emergency_responder/get_access()
+	return get_all_accesses().Copy()
 
 /datum/job/clown
 	title = "Clown"
 	flag = CLOWN
 	departments = list(DEPARTMENT_CIVILIAN)
-	department_flag = CIVILIAN
+	department_flag = ENGSEC
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the spirit of laughter"
 	selection_color = "#515151"
 	economic_modifier = 1
 	job_description = "A Clown is there to entertain the crew and keep high morale using various harmless pranks and ridiculous jokes!"
 	whitelist_only = 1
-	latejoin_only = 1
+	latejoin_only = 0
 	outfit_type = /decl/hierarchy/outfit/job/clown
 	pto_type = PTO_CIVILIAN
 	alt_titles = list("Jester" = /datum/alt_title/jester, "Fool" = /datum/alt_title/fool)
@@ -76,25 +76,25 @@
 
 /datum/job/clown/get_access()
 	if(config.assistant_maint)
-		return list(access_maint_tunnels, access_entertainment)
+		return list(access_maint_tunnels, access_entertainment, access_clown, access_tomfoolery)
 	else
-		return list(access_entertainment)
+		return list(access_entertainment, access_clown, access_tomfoolery)
 
 /datum/job/mime
 	title = "Mime"
 	flag = MIME
 	departments = list(DEPARTMENT_CIVILIAN)
-	department_flag = CIVILIAN
+	department_flag = ENGSEC
 	faction = "Station"
-	total_positions = -1
-	spawn_positions = -1
+	total_positions = 1
+	spawn_positions = 1
 	supervisors = "the spirit of performance"
 	selection_color = "#515151"
 	economic_modifier = 1
 	job_description = "A Mime is there to entertain the crew and keep high morale using unbelievable performances and acting skills!"
 	alt_titles = list("Poseur" = /datum/alt_title/poseur)
 	whitelist_only = 1
-	latejoin_only = 1
+	latejoin_only = 0
 	outfit_type = /decl/hierarchy/outfit/job/mime
 	pto_type = PTO_CIVILIAN
 
@@ -103,6 +103,6 @@
 
 /datum/job/mime/get_access()
 	if(config.assistant_maint)
-		return list(access_maint_tunnels, access_entertainment)
+		return list(access_maint_tunnels, access_entertainment, access_tomfoolery, access_mime)
 	else
-		return list(access_entertainment)
+		return list(access_entertainment, access_tomfoolery, access_mime)

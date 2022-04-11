@@ -15,7 +15,7 @@
 					if(matches)	matches += " and "
 					matches += "ID ([client.computer_id])"
 					if(!config.disable_cid_warn_popup)
-						spawn() alert("You appear to have logged in with another key this round, which is not permitted. Please contact an administrator if you believe this message to be in error.")
+						tgui_alert_async(usr, "You appear to have logged in with another key this round, which is not permitted. Please contact an administrator if you believe this message to be in error.")
 				if(matches)
 					if(M.client)
 						message_admins("<font color='red'><B>Notice: </B></font><font color='blue'>[key_name_admin(src)] has the same [matches] as [key_name_admin(M)].</font>", 1)
@@ -44,6 +44,7 @@
 	disconnect_time = null				//VOREStation Addition: clear the disconnect time
 	sight |= SEE_SELF
 	..()
+	SEND_SIGNAL(src, COMSIG_MOB_LOGIN)
 
 	if(loc && !isturf(loc))
 		client.eye = loc
@@ -82,3 +83,4 @@
 
 	if(cloaked && cloaked_selfimage)
 		client.images += cloaked_selfimage
+	SEND_SIGNAL(src, COMSIG_MOB_CLIENT_LOGIN, client)

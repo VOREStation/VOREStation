@@ -16,7 +16,10 @@
 	response_harm   = "stomps"
 	friendly = "pinches"
 
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/crab
+	organ_names = /decl/mob_organ_names/crab
+
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/crabmeat
+	meat_amount = 3
 
 	say_list_type = /datum/say_list/crab
 
@@ -46,12 +49,8 @@
 	catalogue_data = list(/datum/category_item/catalogue/fauna/sif_crab)
 
 /mob/living/simple_mob/animal/passive/crab/sif/Initialize()
-	..()
+	. = ..()
 	adjust_scale(rand(5,12) / 10)
 
-// Meat!
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/crab
-	name = "meat"
-	desc = "A chunk of meat."
-	icon_state = "crustacean-meat"
+/decl/mob_organ_names/crab
+	hit_zones = list("cephalothorax", "abdomen", "left walking legs", "right walking legs", "left swimming legs", "right swimming legs", "left pincer", "right pincer")

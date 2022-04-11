@@ -45,17 +45,24 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	//Actual preferences
 	var/digestable = TRUE
 	var/devourable = TRUE
+	var/absorbable = TRUE
 	var/feeding = TRUE
-	var/absorbable = TRUE	//TFF 14/12/19 - choose whether allowing absorbing
+	var/can_be_drop_prey = FALSE
+	var/can_be_drop_pred = FALSE
+	var/allow_inbelly_spawning = FALSE
+	var/allow_spontaneous_tf = FALSE
 	var/digest_leave_remains = FALSE
 	var/allowmobvore = TRUE
+	var/permit_healbelly = TRUE
+
+	var/resizable = TRUE
+	var/show_vore_fx = TRUE
+	var/step_mechanics_pref = FALSE
+	var/pickup_pref = TRUE
+
 	var/list/belly_prefs = list()
 	var/vore_taste = "nothing in particular"
 	var/vore_smell = "nothing in particular"
-	var/permit_healbelly = TRUE
-	var/show_vore_fx = TRUE
-	var/can_be_drop_prey = FALSE
-	var/can_be_drop_pred = FALSE
 
 	//Mechanically required
 	var/path
@@ -120,8 +127,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 
 	digestable = json_from_file["digestable"]
 	devourable = json_from_file["devourable"]
+	resizable = json_from_file["resizable"]
 	feeding = json_from_file["feeding"]
-	absorbable = json_from_file["absorbable"]	//TFF 14/12/19 - choose whether allowing absorbing
+	absorbable = json_from_file["absorbable"]
 	digest_leave_remains = json_from_file["digest_leave_remains"]
 	allowmobvore = json_from_file["allowmobvore"]
 	vore_taste = json_from_file["vore_taste"]
@@ -130,6 +138,10 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
+	allow_inbelly_spawning = json_from_file["allow_inbelly_spawning"]
+	allow_spontaneous_tf = json_from_file["allow_spontaneous_tf"]
+	step_mechanics_pref = json_from_file["step_mechanics_pref"]
+	pickup_pref = json_from_file["pickup_pref"]
 	belly_prefs = json_from_file["belly_prefs"]
 
 	//Quick sanitize
@@ -137,6 +149,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		digestable = TRUE
 	if(isnull(devourable))
 		devourable = TRUE
+	if(isnull(resizable))
+		resizable = TRUE
 	if(isnull(feeding))
 		feeding = TRUE
 	if(isnull(absorbable))
@@ -153,6 +167,14 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		can_be_drop_prey = FALSE
 	if(isnull(can_be_drop_pred))
 		can_be_drop_pred = FALSE
+	if(isnull(allow_inbelly_spawning))
+		allow_inbelly_spawning = FALSE
+	if(isnull(allow_spontaneous_tf))
+		allow_spontaneous_tf = FALSE
+	if(isnull(step_mechanics_pref))
+		step_mechanics_pref = TRUE
+	if(isnull(pickup_pref))
+		pickup_pref = TRUE
 	if(isnull(belly_prefs))
 		belly_prefs = list()
 
@@ -167,6 +189,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"version"				= version,
 			"digestable"			= digestable,
 			"devourable"			= devourable,
+			"resizable"				= resizable,
 			"absorbable"			= absorbable,
 			"feeding"				= feeding,
 			"digest_leave_remains"	= digest_leave_remains,
@@ -174,9 +197,13 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"vore_taste"			= vore_taste,
 			"vore_smell"			= vore_smell,
 			"permit_healbelly"		= permit_healbelly,
-			"show_vore_fx"		= show_vore_fx,
+			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,
+			"allow_inbelly_spawning"= allow_inbelly_spawning,
+			"allow_spontaneous_tf"	= allow_spontaneous_tf,
+			"step_mechanics_pref"	= step_mechanics_pref,
+			"pickup_pref"			= pickup_pref,
 			"belly_prefs"			= belly_prefs,
 		)
 

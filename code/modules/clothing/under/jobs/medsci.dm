@@ -122,6 +122,15 @@
 	rolled_sleeves = -1
 
 /obj/item/clothing/under/rank/medical/paramedic
+	name = "paramedic uniform"
+	desc = "It's made of a special fiber that provides minor protection against biohazards. This one is the color scheme that designates a rapid first responder."
+	icon_state = "paramedic"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS
+	rolled_down = -1
+	rolled_sleeves = -1
+
+/obj/item/clothing/under/rank/medical/paramedic_alt
 	name = "short sleeve medical jumpsuit"
 	desc = "It's made of a special fiber that provides minor protection against biohazards. This one has a cross on the chest denoting that the wearer is trained medical personnel."
 	icon_state = "medical_short"
@@ -165,6 +174,34 @@
 	icon_state = "scrubs"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
 
+/obj/item/clothing/under/rank/paramedunidark
+	name = "dark paramedic uniform"
+	desc = "A dark jumpsuit for those brave souls who have to deal with a CMO who thinks they're the do everything person."
+	icon_state = "paramedicdark"
+	rolled_down = -1
+	rolled_sleeves = -1
+
+/obj/item/clothing/under/rank/parameduniskirtdark
+	name = "dark paramedic uniskirt"
+	desc = "A dark jumpskirt for those brave souls who have to deal with a CMO who thinks they're the do everything person."
+	icon_state = "paramedicdark_skirt"
+	rolled_down = -1
+	rolled_sleeves = -1
+
+/obj/item/clothing/under/rank/paramedunilight
+	name = "light paramedic uniform"
+	desc = "A light jumpsuit for those brave souls who have to deal with a CMO who thinks they're the do everything person."
+	icon_state = "paramediclight"
+	rolled_down = -1
+	rolled_sleeves = -1
+
+/obj/item/clothing/under/rank/parameduniskirtlight
+	name = "light paramedic uniskirt"
+	desc = "A light jumpskirt for those brave souls who have to deal with a CMO who thinks they're the do everything person."
+	icon_state = "paramediclight_skirt"
+	rolled_down = -1
+	rolled_sleeves = -1
+
 /obj/item/clothing/under/rank/psych
 	desc = "A basic white jumpsuit. It has turqouise markings that denote the wearer as a psychiatrist."
 	name = "psychiatrist's jumpsuit"
@@ -177,7 +214,6 @@
 	icon_state = "psychturtle"
 	item_state_slots = list(slot_r_hand_str = "psyche", slot_l_hand_str = "psyche")
 	rolled_sleeves = 0
-
 /*
  * Medsci, unused (i think) stuff
  */

@@ -68,28 +68,30 @@
 /obj/item/weapon/pen/crayon/afterattack(atom/target, mob/user as mob, proximity)
 	if(!proximity) return
 	if(istype(target,/turf/simulated/floor))
-		var/drawtype = input("Choose what you'd like to draw.", "Crayon scribbles") in list("graffiti","rune","letter","arrow")
+		var/drawtype = tgui_input_list(user, "Choose what you'd like to draw.", "Crayon scribbles", list("graffiti","rune","letter","arrow"))
+		if(!drawtype)
+			return
 		if(get_dist(target, user) > 1 || !(user.z == target.z))
 			return
 		switch(drawtype)
 			if("letter")
-				drawtype = input("Choose the letter.", "Crayon scribbles") in list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z")
-				if(get_dist(target, user) > 1 || !(user.z == target.z) || !drawtype)
+				drawtype = tgui_input_list(user, "Choose the letter.", "Crayon scribbles", list("a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"))
+				if(!drawtype || get_dist(target, user) > 1 || !(user.z == target.z))
 					return
 				to_chat(user, "You start drawing a letter on the [target.name].")
 			if("graffiti")
-				drawtype = input("Choose the graffiti.", "Crayon scribbles") in list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa")
-				if(get_dist(target, user) > 1 || !(user.z == target.z) || !drawtype)
+				drawtype = tgui_input_list(user, "Choose the graffiti.", "Crayon scribbles", list("amyjon","face","matt","revolution","engie","guy","end","dwarf","uboa"))
+				if(!drawtype || get_dist(target, user) > 1 || !(user.z == target.z))
 					return
 				to_chat(user, "You start drawing graffiti on the [target.name].")
 			if("rune")
-				drawtype = input("Choose the rune.", "Crayon scribbles") in list("rune1", "rune2", "rune3", "rune4", "rune5", "rune6")
-				if(get_dist(target, user) > 1 || !(user.z == target.z) || !drawtype)
+				drawtype = tgui_input_list(user, "Choose the rune.", "Crayon scribbles", list("rune1", "rune2", "rune3", "rune4", "rune5", "rune6"))
+				if(!drawtype || get_dist(target, user) > 1 || !(user.z == target.z))
 					return
 				to_chat(user, "You start drawing a rune on the [target.name].")
 			if("arrow")
-				drawtype = input("Choose the arrow.", "Crayon scribbles") in list("left", "right", "up", "down")
-				if(get_dist(target, user) > 1 || !(user.z == target.z) || !drawtype)
+				drawtype = tgui_input_list(user, "Choose the arrow.", "Crayon scribbles", list("left", "right", "up", "down"))
+				if(!drawtype || get_dist(target, user) > 1 || !(user.z == target.z))
 					return
 				to_chat(user, "You start drawing an arrow on the [target.name].")
 		if(instant || do_after(user, 50))

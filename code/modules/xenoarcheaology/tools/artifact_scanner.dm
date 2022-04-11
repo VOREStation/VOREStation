@@ -3,5 +3,5 @@
 	desc = "Place things here for scanning."
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "tele0"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE

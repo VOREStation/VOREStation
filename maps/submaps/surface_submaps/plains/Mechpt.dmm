@@ -1,45 +1,779 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/template_noop,/area/submap/Mechpt)
-"c" = (/obj/item/trash/chips,/turf/template_noop,/area/submap/Mechpt)
-"d" = (/obj/structure/railing,/turf/template_noop,/area/submap/Mechpt)
-"e" = (/obj/structure/railing,/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/snacks/chips,/turf/template_noop,/area/submap/Mechpt)
-"f" = (/obj/structure/railing,/obj/structure/table/woodentable,/obj/item/weapon/cell/high,/obj/item/weapon/cell/high,/turf/template_noop,/area/submap/Mechpt)
-"g" = (/obj/structure/railing,/obj/structure/table/woodentable,/turf/template_noop,/area/submap/Mechpt)
-"h" = (/obj/structure/railing,/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c10,/obj/item/weapon/spacecash/c10,/turf/template_noop,/area/submap/Mechpt)
-"i" = (/obj/structure/railing{ icon_state = "railing0"; dir = 4},/turf/template_noop,/area/submap/Mechpt)
-"j" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
-"k" = (/obj/structure/railing{ icon_state = "railing0"; dir = 8},/turf/template_noop,/area/submap/Mechpt)
-"l" = (/obj/item/stack/rods,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
-"m" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
-"n" = (/obj/effect/decal/cleanable/blood/oil/streak,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
-"o" = (/obj/effect/decal/mecha_wreckage/ripley/deathripley,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
-"p" = (/obj/effect/decal/mecha_wreckage/ripley/firefighter,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
-"q" = (/obj/item/stack/cable_coil,/turf/simulated/floor/outdoors/dirt,/area/submap/Mechpt)
-"r" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/turf/template_noop,/area/submap/Mechpt)
-"s" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/structure/reagent_dispensers/beerkeg,/turf/template_noop,/area/submap/Mechpt)
-"t" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/spacecash/c50,/turf/template_noop,/area/submap/Mechpt)
-"u" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/cell/high,/obj/item/weapon/cell/device/weapon,/turf/template_noop,/area/submap/Mechpt)
-"v" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,/turf/template_noop,/area/submap/Mechpt)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/template_noop,
+/area/submap/Mechpt)
+"c" = (
+/obj/item/trash/chips,
+/turf/template_noop,
+/area/submap/Mechpt)
+"d" = (
+/obj/structure/railing,
+/turf/template_noop,
+/area/submap/Mechpt)
+"e" = (
+/obj/structure/railing,
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/snacks/chips,
+/turf/template_noop,
+/area/submap/Mechpt)
+"f" = (
+/obj/structure/railing,
+/obj/structure/table/woodentable,
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/high,
+/turf/template_noop,
+/area/submap/Mechpt)
+"g" = (
+/obj/structure/railing,
+/obj/structure/table/woodentable,
+/turf/template_noop,
+/area/submap/Mechpt)
+"h" = (
+/obj/structure/railing,
+/obj/structure/table/woodentable,
+/obj/item/weapon/spacecash/c10,
+/obj/item/weapon/spacecash/c10,
+/turf/template_noop,
+/area/submap/Mechpt)
+"i" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/template_noop,
+/area/submap/Mechpt)
+"j" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/Mechpt)
+"k" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/template_noop,
+/area/submap/Mechpt)
+"l" = (
+/obj/item/stack/rods,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/Mechpt)
+"m" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/Mechpt)
+"n" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/Mechpt)
+"o" = (
+/obj/effect/decal/mecha_wreckage/ripley/deathripley,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/Mechpt)
+"p" = (
+/obj/effect/decal/mecha_wreckage/ripley/firefighter,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/Mechpt)
+"q" = (
+/obj/item/stack/cable_coil,
+/turf/simulated/floor/outdoors/dirt/virgo3b,
+/area/submap/Mechpt)
+"r" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/template_noop,
+/area/submap/Mechpt)
+"s" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/structure/reagent_dispensers/beerkeg,
+/turf/template_noop,
+/area/submap/Mechpt)
+"t" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/item/weapon/spacecash/c50,
+/turf/template_noop,
+/area/submap/Mechpt)
+"u" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/item/weapon/cell/high,
+/obj/item/weapon/cell/device/weapon,
+/turf/template_noop,
+/area/submap/Mechpt)
+"v" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/obj/structure/table/woodentable,
+/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
+/turf/template_noop,
+/area/submap/Mechpt)
 
 (1,1,1) = {"
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-abbbbbbbbbbbbbbbbbbbbbbbbbbbba
-abbbbbbbbbcbbbbbbbbbbbbbbbbbba
-abbdddddddddefghgdddddddddddba
-abijjjjjjjjjjjjjjjjjjjjjjjjjka
-abijjjjjjjjjjjjjjjjjjjjjjjjjka
-abijjjljjjjjjjjjjjjmjjjnjjjjka
-abijjjjjmjjjjjjjjjjjjjjjjjjjka
-ajjjjjjjjjjojjjjjjjjjjjjjjjjja
-abjjjjjjjjjjjjjjjjjjjjjjjjjjja
-abijjjjjjjjjjjpjjjmjjjjjjjjjka
-abijjjjjjjjjjjjjjjjjjjjjjjjjka
-abijjjjjjjmjjqjjjjjjjjjjjjjjka
-abijnjjjjjjjjjjjjjjjjjjjjjjjka
-abijjjjjjjjjjjjjjjjjjjjjjjjjka
-abbrrrrrrrrrstutvrrrrrrrrrrrba
-abbbbbbbbbbbbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbbbbbbbbbbbba
-abbbbbbbbbbbbbbbbbbbbbbbbbbbba
-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+b
+j
+b
+b
+b
+b
+b
+b
+b
+b
+b
+b
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+b
+i
+i
+i
+i
+j
+j
+i
+i
+i
+i
+i
+b
+b
+b
+b
+a
+"}
+(4,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(5,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+n
+j
+r
+b
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+b
+d
+j
+j
+l
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+m
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(10,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(11,1,1) = {"
+a
+b
+c
+d
+j
+j
+j
+j
+j
+j
+j
+j
+m
+j
+j
+r
+b
+b
+b
+a
+"}
+(12,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+o
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(13,1,1) = {"
+a
+b
+b
+e
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+s
+b
+b
+b
+a
+"}
+(14,1,1) = {"
+a
+b
+b
+f
+j
+j
+j
+j
+j
+j
+j
+j
+q
+j
+j
+t
+b
+b
+b
+a
+"}
+(15,1,1) = {"
+a
+b
+b
+g
+j
+j
+j
+j
+j
+j
+p
+j
+j
+j
+j
+u
+b
+b
+b
+a
+"}
+(16,1,1) = {"
+a
+b
+b
+h
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+t
+b
+b
+b
+a
+"}
+(17,1,1) = {"
+a
+b
+b
+g
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+v
+b
+b
+b
+a
+"}
+(18,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(19,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+m
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(20,1,1) = {"
+a
+b
+b
+d
+j
+j
+m
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(21,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(22,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(23,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(24,1,1) = {"
+a
+b
+b
+d
+j
+j
+n
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(25,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(26,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(27,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(28,1,1) = {"
+a
+b
+b
+d
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+j
+r
+b
+b
+b
+a
+"}
+(29,1,1) = {"
+a
+b
+b
+b
+k
+k
+k
+k
+j
+j
+k
+k
+k
+k
+k
+b
+b
+b
+b
+a
+"}
+(30,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

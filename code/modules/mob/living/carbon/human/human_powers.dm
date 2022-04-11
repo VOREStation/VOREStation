@@ -19,10 +19,10 @@
 		else
 			var/list/datum/sprite_accessory/hair/valid_hairstyles = list()
 			for(var/hair_string in hair_styles_list)
-				var/list/datum/sprite_accessory/hair/test = hair_styles_list[hair_string]
+				var/datum/sprite_accessory/hair/test = hair_styles_list[hair_string]
 				if(test.flags & HAIR_TIEABLE)
 					valid_hairstyles.Add(hair_string)
-			selected_string = input("Select a new hairstyle", "Your hairstyle", hair_style) as null|anything in valid_hairstyles
+			selected_string = tgui_input_list(usr, "Select a new hairstyle", "Your hairstyle", valid_hairstyles)
 		if(incapacitated())
 			to_chat(src, "<span class='warning'>You can't mess with your hair right now!</span>")
 			return
@@ -51,7 +51,7 @@
 			choices += M
 	choices -= src
 
-	var/mob/living/T = input(src,"Who do you wish to tackle?") as null|anything in choices
+	var/mob/living/T = tgui_input_list(src, "Who do you wish to tackle?", "Target Choice", choices)
 
 	if(!T || !src || src.stat) return
 
@@ -90,11 +90,11 @@
 	var/text = null
 
 	targets += getmobs() //Fill list, prompt user with list
-	target = input("Select a creature!", "Speak to creature", null, null) as null|anything in targets
+	target = tgui_input_list(usr, "Select a creature!", "Speak to creature", targets)
 
 	if(!target) return
 
-	text = input("What would you like to say?", "Speak to creature", null, null)
+	text = input(usr, "What would you like to say?", "Speak to creature", null, null)
 
 	text = sanitize(text)
 
@@ -134,7 +134,7 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities"
 
-	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
+	var/msg = sanitize(input(usr, "Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
 		to_chat(M, "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>")
@@ -217,8 +217,7 @@
 
 		if(isSynthetic())
 			output += "Current Battery Charge: [nutrition]\n"
-
-		if(isSynthetic())
+			
 			var/toxDam = getToxLoss()
 			if(toxDam)
 				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
@@ -366,12 +365,12 @@
 		return
 	var/datum/robolimb/robohead = all_robolimbs[E.model]
 	if(!robohead.monitor_styles || !robohead.monitor_icon)
-		to_chat(src,"<span class='warning'>Your head doesn't have a monitor or it doens't support to be changed!</span>")
+		to_chat(src,"<span class='warning'>Your head doesn't have a monitor, or it doesn't support being changed!</span>")
 		return
 	var/list/states
 	if(!states)
 		states = params2list(robohead.monitor_styles)
-	var/choice = input("Select a screen icon.") as null|anything in states
+	var/choice = tgui_input_list(usr, "Select a screen icon:", "Screen Icon Choice", states)
 	if(choice)
 		E.eye_icon_location = robohead.monitor_icon
 		E.eye_icon = states[choice]

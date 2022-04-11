@@ -77,6 +77,20 @@
 	containertype = /obj/structure/closet/crate/focalpoint
 	containername = "advanced hull shield generator crate"
 
+/datum/supply_pack/eng/point_defense_cannon_circuit
+	name = "Point Defense Turret Circuit"
+	contains = list(/obj/item/weapon/circuitboard/pointdefense = 2)
+	cost = 20
+	containertype = /obj/structure/closet/crate/heph
+	containername = "point defense turret circuit crate"
+
+/datum/supply_pack/eng/point_defense_control_circuit
+	name = "Point Defense Controller Circuit"
+	contains = list(/obj/item/weapon/circuitboard/pointdefense_control = 1)
+	cost = 30
+	containertype = /obj/structure/closet/crate/heph
+	containername = "point defense mainframe circuit crate"
+
 /datum/supply_pack/eng/electrical
 	name = "Electrical maintenance crate"
 	contains = list(
@@ -233,10 +247,20 @@
 			/obj/item/clothing/suit/radiation = 3,
 			/obj/item/clothing/head/radiation = 3
 			)
-	name = "Radiation suits package"
+	name = "Radiation suits package (Humanoid)"
 	cost = 20
 	containertype = /obj/structure/closet/radiation
 	containername = "Radiation suit locker"
+
+/datum/supply_pack/eng/radsuitteshari
+	contains = list(
+			/obj/item/clothing/suit/radiation/teshari = 3,
+			/obj/item/clothing/head/radiation/teshari = 3
+			)
+	name = "Radiation suits package (Teshari)"
+	cost = 40
+	containertype = /obj/structure/closet/crate/aether
+	containername = "Teshari radiation suit locker"
 
 /datum/supply_pack/eng/pacman_parts
 	name = "P.A.C.M.A.N. portable generator parts"

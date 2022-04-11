@@ -1,26 +1,189 @@
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/PlainsKururak)
-"c" = (/obj/random/trash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"d" = (/obj/random/firstaid,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"e" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"f" = (/obj/random/projectile/sec,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"g" = (/obj/random/tech_supply,/obj/random/tech_supply,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"h" = (/mob/living/simple_mob/animal/sif/kururak,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"i" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"j" = (/obj/random/contraband,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"k" = (/mob/living/simple_mob/animal/sif/diyaab,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
-"l" = (/obj/random/trash,/turf/template_noop,/area/submap/PlainsKururak)
-"m" = (/turf/template_noop,/area/submap/PlainsKururak)
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/PlainsKururak)
+"c" = (
+/obj/random/trash,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"d" = (
+/obj/random/firstaid,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"e" = (
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"f" = (
+/obj/random/projectile/sec,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"g" = (
+/obj/random/tech_supply,
+/obj/random/tech_supply,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"h" = (
+/mob/living/simple_mob/animal/sif/kururak,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"i" = (
+/obj/random/outcrop,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"j" = (
+/obj/random/contraband,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"k" = (
+/mob/living/simple_mob/animal/sif/diyaab,
+/turf/simulated/floor/outdoors/dirt/virgo3b{
+	outdoors = 0
+	},
+/area/submap/PlainsKururak)
+"l" = (
+/obj/random/trash,
+/turf/template_noop,
+/area/submap/PlainsKururak)
+"m" = (
+/turf/template_noop,
+/area/submap/PlainsKururak)
 
 (1,1,1) = {"
-aaaaaaaaaa
-abbbbbbbaa
-bbbcdefbaa
-bbgeehibba
-bbieebbbba
-bbbjebklma
-abbbckkbba
-aabbbbibba
-aaaabbbbaa
-aaaaaaaaaa
+a
+a
+b
+b
+b
+b
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+b
+b
+b
+b
+b
+b
+a
+a
+a
+"}
+(3,1,1) = {"
+a
+b
+b
+g
+i
+b
+b
+b
+a
+a
+"}
+(4,1,1) = {"
+a
+b
+c
+e
+e
+j
+b
+b
+a
+a
+"}
+(5,1,1) = {"
+a
+b
+d
+e
+e
+e
+c
+b
+b
+a
+"}
+(6,1,1) = {"
+a
+b
+e
+h
+b
+b
+k
+b
+b
+a
+"}
+(7,1,1) = {"
+a
+b
+f
+i
+b
+k
+k
+i
+b
+a
+"}
+(8,1,1) = {"
+a
+b
+b
+b
+b
+l
+b
+b
+b
+a
+"}
+(9,1,1) = {"
+a
+a
+a
+b
+b
+m
+b
+b
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
 "}

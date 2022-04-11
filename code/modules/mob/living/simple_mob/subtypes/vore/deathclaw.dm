@@ -1,13 +1,28 @@
-/datum/category_item/catalogue/fauna/deathclaw		//TODO: VIRGO_LORE_WRITING_WIP
+/datum/category_item/catalogue/fauna/deathclaw
 	name = "Creature - Deathclaw"
-	desc = "A massive beast, tall as three standard-size humans, with massive, terrifying claws, \
-	and dark, black fangs. It's entire body is yellowish, like sand, and it's skin is leathery and tough. \
-	It seems to have adapted to the harsh desert environment on Virgo 4, and makes it's home inside the caves."
+	desc = "Classification: Trioceros dominus\
+	<br><br>\
+	Originally the Deathclaw was a top secret genetics project that was run by ancestral Zorren which was \
+	lost to time. While it is not immediately evident in their body structure, these creatures bare a \
+	subtle genetic connection to Zorren, however, this connection is marred by the other genes that \
+	have been grafted onto the DNA strucutre of the Deathclaw. The creatures are known to attack humans \
+	and other animals regularly to protect their territory or to hunt for food. It is speculated that \
+	they escaped roughly around the time as whatever calamity befell the Zorren many centuries ago \
+	as sighting of these beasts in the wild began around that time according to recovered Zorren texts. \
+	<br>\
+	Deathclaws are a large, carnivorous, bipedal reptile species, designed for maximum lethality. \
+	Deathclaws are made even more dangerous by their reproductive instincts. deathclaws are an oviparous species, \
+	female deathclaws will lay eggs in clusters, sired by the strongest male deathclaws in the pack, typically the alpha male.\
+	<br>\
+	These creatures are considered an invasive species, and thus hunters are encouraged to hunt them \
+	although they are cautioned when doing so due to the danger that the creature poses."
 	value = CATALOGUER_REWARD_HARD
 
 /mob/living/simple_mob/vore/aggressive/deathclaw
 	name = "deathclaw"
 	desc = "Big! Big! The size of three men! Claws as long as my forearm! Ripped apart! Ripped apart!"
+	tt_desc = "Trioceros dominus"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/deathclaw)
 
 	icon_dead = "deathclaw-dead"
 	icon_living = "deathclaw"
@@ -25,6 +40,9 @@
 
 	melee_damage_lower = 5
 	melee_damage_upper = 30
+
+	meat_amount = 8
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	old_x = -16
 	old_y = 0

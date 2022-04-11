@@ -23,6 +23,20 @@
 	visuals = new()
 	special_visuals = new()
 
+/datum/weather_holder/proc/apply_to_turf(turf/T)
+	if(visuals in T.vis_contents)
+		warning("Was asked to add weather to [T.x], [T.y], [T.z] despite already having us in it's vis contents")
+		return
+	T.vis_contents += visuals
+	T.vis_contents += special_visuals
+
+/datum/weather_holder/proc/remove_from_turf(turf/T)
+	if(!(visuals in T.vis_contents))
+		warning("Was asked to remove weather from [T.x], [T.y], [T.z] despite it not having us in it's vis contents")
+		return
+	T.vis_contents -= visuals
+	T.vis_contents -= special_visuals
+
 /datum/weather_holder/proc/change_weather(var/new_weather)
 	var/old_light_modifier = null
 	var/datum/weather/old_weather = null
@@ -123,7 +137,7 @@
 	for(var/mob/M in player_list) // Don't need to care about clientless mobs.
 		if(M.z in our_planet.expected_z_levels)
 			var/turf/T = get_turf(M)
-			if(!T.outdoors)
+			if(!T.is_outdoors())
 				continue
 			to_chat(M, message)
 
@@ -188,8 +202,7 @@
 		return
 
 	for(var/z_level in 1 to world.maxz)
-		for(var/a in GLOB.players_by_zlevel[z_level])
-			var/mob/M = a
+		for(var/mob/M as anything in GLOB.players_by_zlevel[z_level])
 
 			// Check if the mob left the z-levels we control. If so, make the sounds stop for them.
 			if(!(z_level in holder.our_planet.expected_z_levels))
@@ -200,7 +213,7 @@
 			// Otherwise they should hear some sounds, depending on if they're inside or not.
 			var/turf/T = get_turf(M)
 			if(istype(T))
-				if(T.outdoors) // Mob is currently outdoors.
+				if(T.is_outdoors()) // Mob is currently outdoors.
 					hear_outdoor_sounds(M, TRUE)
 					hear_indoor_sounds(M, FALSE)
 

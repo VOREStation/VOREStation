@@ -5,8 +5,8 @@
 /obj/item/weapon/cell
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
-	icon = 'icons/obj/power.dmi'
-	icon_state = "cell"
+	icon = 'icons/obj/power_cells.dmi'
+	icon_state = "b_st"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
 	force = 5.0
@@ -14,6 +14,8 @@
 	throw_speed = 3
 	throw_range = 5
 	w_class = ITEMSIZE_NORMAL
+	/// Are we EMP immune?
+	var/emp_proof = FALSE
 	var/static/cell_uid = 1		// Unique ID of this power cell. Used to reduce bunch of uglier code in nanoUI.
 	var/c_uid
 	var/charge = 0	// note %age conveted to actual charge in New
@@ -24,13 +26,12 @@
 	var/charge_amount = 25 // How much power to give, if self_recharge is true.  The number is in absolute cell charge, as it gets divided by CELLRATE later.
 	var/last_use = 0 // A tracker for use in self-charging
 	var/charge_delay = 0 // How long it takes for the cell to start recharging after last use
-	matter = list(DEFAULT_WALL_MATERIAL = 700, "glass" = 50)
+	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
 	// Overlay stuff.
-	var/overlay_half_state = "cell-o1" // Overlay used when not fully charged but not empty.
-	var/overlay_full_state = "cell-o2" // Overlay used when fully charged.
+	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
 /obj/item/weapon/cell/New()
@@ -53,6 +54,12 @@
 	if(self_recharge)
 		if(world.time >= last_use + charge_delay)
 			give(charge_amount)
+			// TGMC Ammo HUD - Update the HUD every time we're called to recharge.
+			if(istype(loc, /obj/item/weapon/gun/energy)) // Are we in a gun currently?
+				var/obj/item/weapon/gun/energy/gun = loc
+				var/mob/living/user = gun.loc
+				if(istype(user))
+					user?.hud_used.update_ammo_hud(user, gun) // Update the HUD
 	else
 		return PROCESS_KILL
 
@@ -73,29 +80,14 @@
 #define OVERLAY_EMPTY	0
 
 /obj/item/weapon/cell/update_icon()
-	var/new_overlay = null // The overlay that is needed.
-	// If it's different than the current overlay, then it'll get changed.
-	// Otherwise nothing happens, to save on CPU.
-
-	if(charge < 0.01) // Empty.
-		new_overlay = OVERLAY_EMPTY
-		if(last_overlay_state != new_overlay)
-			cut_overlays()
-
-	else if(charge/maxcharge >= 0.995) // Full
-		new_overlay = OVERLAY_FULL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_half_state)
-			add_overlay(overlay_full_state)
-
-
-	else // Inbetween.
-		new_overlay = OVERLAY_PARTIAL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_full_state)
-			add_overlay(overlay_half_state)
-
-	last_overlay_state = new_overlay
+	if(!standard_overlays)
+		return
+	var/ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
+	var/new_state = "[icon_state]_[ratio]"
+	if(new_state != last_overlay_state)
+		cut_overlay(last_overlay_state)
+		add_overlay(new_state)
+		last_overlay_state = new_state
 
 #undef OVERLAY_FULL
 #undef OVERLAY_PARTIAL
@@ -205,6 +197,8 @@
 		rigged = 1 //broken batterys are dangerous
 
 /obj/item/weapon/cell/emp_act(severity)
+	if(emp_proof)
+		return
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
@@ -265,8 +259,3 @@
 			return min(rand(10,20),rand(10,20))
 		else
 			return 0
-
-/obj/item/weapon/cell/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user),"<span class='danger'>\The [user] is licking the electrodes of \the [src]! It looks like [TU.he] [TU.is] trying to commit suicide.</span>")
-	return (FIRELOSS)

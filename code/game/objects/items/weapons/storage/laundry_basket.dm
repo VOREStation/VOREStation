@@ -14,7 +14,7 @@
 	max_w_class = ITEMSIZE_LARGE
 	max_storage_space = ITEMSIZE_COST_NORMAL * 8
 	storage_slots = 20
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 	allow_quick_empty = 1
 	allow_quick_gather = 1
 	collection_mode = 1
@@ -79,7 +79,7 @@
 	icon = 'icons/obj/weapons.dmi'
 	icon_state = "offhand"
 	name = "second hand"
-	use_to_pickup = 0
+	use_to_pickup = FALSE
 
 /obj/item/weapon/storage/laundry_basket/offhand/dropped(mob/user as mob)
 	user.drop_from_inventory(linked)

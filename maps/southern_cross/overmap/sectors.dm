@@ -11,6 +11,7 @@
 	mountain_color = "#735555"
 	ice_color = "FFFFFF"
 	icecaps = "icecaps"
+	icon_state = "frozen"
 
 /obj/effect/overmap/visitable/planet/Sif/Initialize()
 	atmosphere = new(CELL_VOLUME)
@@ -24,9 +25,10 @@
 	docking_codes = null
 
 /obj/effect/overmap/visitable/planet/Sif/get_skybox_representation()
-	. = ..()
-	(.).pixel_x = skybox_offset_x
-	(.).pixel_y = skybox_offset_y
+	var/image/tmp = ..()
+	tmp.pixel_x = skybox_offset_x
+	tmp.pixel_y = skybox_offset_y
+	return tmp
 
 /obj/effect/overmap/visitable/Southern_Cross
 	name = "Southern Cross"

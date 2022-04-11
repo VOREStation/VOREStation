@@ -59,7 +59,7 @@
 						/obj/item/weapon/card/emag,
 						/obj/item/weapon/card/emag_broken,
 						/obj/item/weapon/card/id/syndicate,
-						/obj/item/weapon/contraband/poster,
+						/obj/item/poster,
 						/obj/item/weapon/disposable_teleporter,
 						/obj/item/weapon/grenade/flashbang/clusterbang,
 						/obj/item/weapon/grenade/flashbang/clusterbang,

@@ -7,7 +7,7 @@ var/list/dreams = list(
 	"a blue light","an abandoned laboratory","NanoTrasen","mercenaries","blood","healing","power","respect",
 	"riches","space","a crash","happiness","pride","a fall","water","flames","ice","melons","flying","the eggs","money",
 	"the Head of Personnel","the Head of Security","the Chief Engineer","the Research Director","the Chief Medical Officer",
-	"the Detective","the Warden","an Internal Affairs Agent","a Station Engineer","the Janitor","the Atmospheric Technician",
+	"the Detective","the Warden","an Internal Affairs Agent","an Engineer","the Janitor","the Atmospheric Technician",
 	"the Quartermaster","a Cargo Technician","the Botanist","a Shaft Miner","the Psychologist","the Chemist","a Geneticist",
 	"the Virologist","the Roboticist","the Chef","the Bartender","the Chaplain","the Librarian","a mouse","an ERT member",
 	"a beach","the holodeck","a smoky room","a voice","the cold","a mouse","an operating table","the bar","the rain","a Skrell",
@@ -22,7 +22,7 @@ var/list/dreams = list(
 	"swallowed whole","a fox","a wolf","a cat","a tiger","a dog","a taur","a xenochimera"
 	)
 
-mob/living/carbon/proc/dream()
+/mob/living/carbon/proc/dream()
 	dreaming = 1
 
 	spawn(0)
@@ -31,12 +31,12 @@ mob/living/carbon/proc/dream()
 			sleep(rand(40,70))
 			if(paralysis <= 0)
 				dreaming = 0
-				return 0
+				return
 		dreaming = 0
-		return 1
+		return
 
-mob/living/carbon/proc/handle_dreams()
+/mob/living/carbon/proc/handle_dreams()
 	if(client && !dreaming && prob(5))
 		dream()
 
-mob/living/carbon/var/dreaming = 0
+/mob/living/carbon/var/dreaming = 0

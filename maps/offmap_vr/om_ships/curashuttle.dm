@@ -56,12 +56,11 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/curashuttle
-	scanner_name = "CRV Doom Delay"
+	name = "CRV Doom Delay"
 	scanner_desc = @{"[i]Registration[/i]: Curabitur Scimed
 [i]Class[/i]: Small Shuttle
 [i]Transponder[/i]: Transmitting (CIV), non-hostile
 [b]Notice[/b]: Small private vessel"}
-	color = "#01A9DB"
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_TINY
 	shuttle = "Cura"

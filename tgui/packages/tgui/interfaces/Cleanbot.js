@@ -12,6 +12,7 @@ export const Cleanbot = (props, context) => {
     version,
     blood,
     patrol,
+    vocal,
     wet_floors,
     spray_blood,
     rgbpanel,
@@ -42,13 +43,37 @@ export const Cleanbot = (props, context) => {
         </Section>
         {!locked && (
           <Section title="Behavior Controls">
-            <Button
-              fluid
-              icon={blood ? "toggle-on" : "toggle-off"}
-              selected={blood}
-              onClick={() => act("blood")}>
-              {blood ? "Cleans Blood" : "Ignores Blood"}
-            </Button>
+            <LabeledList>
+              <LabeledList.Item label="Blood">
+                <Button
+                  fluid
+                  icon={blood ? "toggle-on" : "toggle-off"}
+                  selected={blood}
+                  onClick={() => act("blood")}>
+                  {blood ? "Clean" : "Ignore"}
+                </Button>
+              </LabeledList.Item>
+              <LabeledList.Item label="Speaker">
+                <Button
+                  fluid
+                  icon={vocal ? "toggle-on" : "toggle-off"}
+                  selected={vocal}
+                  onClick={() => act("vocal")}>
+                  {vocal ? "On" : "Off"}
+                </Button>
+              </LabeledList.Item>
+              {/* VOREStation Edit: Not really used on Vore.*/}
+              {/* <LabeledList.Item label="Patrol">
+                <Button
+                  fluid
+                  icon={patrol ? "toggle-on" : "toggle-off"}
+                  selected={patrol}
+                  onClick={() => act("patrol")}>
+                  {patrol ? "On" : "Off"}
+                </Button>
+              </LabeledList.Item> */}
+              {/* VOREStation Edit End */}
+            </LabeledList>
           </Section>
         ) || null}
         {(!locked && open) && (

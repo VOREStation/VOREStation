@@ -36,9 +36,9 @@
 								var/turf/simulated/frozen = desired_turf
 								frozen.freeze_floor()
 			if(check_for_scepter())
-				log_and_message_admins("has iced the floor with [src] at [T.x],[T.y],[T.z].")
+				add_attack_logs(user,hit_atom,"Iced the floor with [src] at [T.x],[T.y],[T.z]")
 			else
-				log_and_message_admins("has wetted the floor with [src] at [T.x],[T.y],[T.z].")
+				add_attack_logs(user,hit_atom,"Wetted the floor with [src] at [T.x],[T.y],[T.z]")
 		else if(hit_atom.reagents && !ismob(hit_atom))		//TODO: Something for the scepter
 			hit_atom.reagents.add_reagent(id = "water", amount = 60, data = null, safety = 0)
 		adjust_instability(5)

@@ -47,7 +47,7 @@
 		..()
 
 /obj/item/weapon/material/fishing_rod/Initialize()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/weapon/material/fishing_rod/attackby(obj/item/I as obj, mob/user as mob)
@@ -58,7 +58,7 @@
 		return
 	else if(istype(I, /obj/item/stack/cable_coil) && !strung)
 		var/obj/item/stack/cable_coil/C = I
-		if(C.amount < 5)
+		if(C.get_amount() < 5)
 			to_chat(user, "<span class='warning'>You do not have enough length in \the [C] to string this!</span>")
 			return
 		if(do_after(user, rand(10 SECONDS, 20 SECONDS)))
@@ -78,10 +78,10 @@
 	return ..()
 
 /obj/item/weapon/material/fishing_rod/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	..()
 	if(strung)
-		overlays += image(icon, "[icon_state]_string")
+		add_overlay("[icon_state]_string")
 
 /obj/item/weapon/material/fishing_rod/proc/update_bait()
 	if(istype(Bait, bait_type))

@@ -22,6 +22,7 @@
 /obj/item/weapon/storage/box
 	name = "box"
 	desc = "It's just an ordinary box."
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "box"
 	item_state = "syringe_kit"
 	center_of_mass = list("x" = 13,"y" = 10)
@@ -72,21 +73,29 @@
 /obj/item/weapon/storage/box/survival
 	name = "emergency supply box"
 	desc = "A survival box issued to crew members for use in emergency situations."
+	icon_state = "survival"
 	starts_with = list(
+		/obj/item/weapon/tool/prybar/red,
+		/obj/item/clothing/glasses/goggles,
 		/obj/item/clothing/mask/breath
 	)
 
 /obj/item/weapon/storage/box/survival/synth
 	name = "synthetic supply box"
 	desc = "A survival box issued to synthetic crew members for use in emergency situations."
+	icon_state = "survival_synth"
 	starts_with = list(
+		/obj/item/weapon/tool/prybar/red,
+		/obj/item/clothing/glasses/goggles
 	)
 
 /obj/item/weapon/storage/box/survival/comp
 	name = "emergency supply box"
 	desc = "A comprehensive survival box issued to crew members for use in emergency situations. Contains additional supplies."
-	icon_state = "survival"
+	icon_state = "survival_comp"
 	starts_with = list(
+		/obj/item/weapon/tool/prybar/red,
+		/obj/item/clothing/glasses/goggles,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/device/flashlight/glowstick,
@@ -106,6 +115,18 @@
 	icon_state = "sterile"
 	starts_with = list(/obj/item/clothing/mask/surgical = 7)
 
+/obj/item/weapon/storage/box/masks/white
+	name = "box of sterile masks"
+	desc = "This box contains masks of sterility."
+	icon_state = "sterile"
+	starts_with = list(/obj/item/clothing/mask/surgical/white = 7)
+
+/obj/item/weapon/storage/box/masks/dust
+	name = "box of dust masks"
+	desc = "This box contains dust masks. Breathe easy."
+	icon_state = "sterile"
+	starts_with = list(/obj/item/clothing/mask/surgical/dust = 7)
+
 /obj/item/weapon/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
@@ -115,7 +136,7 @@
 /obj/item/weapon/storage/box/syringegun
 	name = "box of syringe gun cartridges"
 	desc = "A box full of compressed gas cartridges."
-	icon_state = "syringe"
+	icon_state = "syringe2"
 	starts_with = list(/obj/item/weapon/syringe_cartridge = 7)
 
 /obj/item/weapon/storage/box/beakers
@@ -127,130 +148,11 @@
 /obj/item/weapon/storage/box/injectors
 	name = "box of DNA injectors"
 	desc = "This box contains injectors it seems."
+	icon_state = "dna"
 	starts_with = list(
 		/obj/item/weapon/dnainjector/h2m = 3,
 		/obj/item/weapon/dnainjector/m2h = 3
 	)
-
-/obj/item/weapon/storage/box/blanks
-	name = "box of blank shells"
-	desc = "It has a picture of a gun and several warning symbols on the front."
-	icon_state = "blankshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/blank = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/blanks/large
-	starts_with = list(/obj/item/ammo_casing/a12g/blank = 16)
-
-/obj/item/weapon/storage/box/beanbags
-	name = "box of beanbag shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "beanshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/beanbags/large/New()
-	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 16)
-
-/obj/item/weapon/storage/box/shotgunammo
-	name = "box of shotgun slugs"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalshellshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/shotgunammo/large
-	starts_with = list(/obj/item/ammo_casing/a12g = 16)
-
-/obj/item/weapon/storage/box/shotgunshells
-	name = "box of shotgun shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalslug_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/shotgunshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 16)
-
-/obj/item/weapon/storage/box/flashshells
-	name = "box of illumination shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "illumshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/flash = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/flashshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/flash = 16)
-
-/obj/item/weapon/storage/box/stunshells
-	name = "box of stun shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "stunshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/stunshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 16)
-
-/obj/item/weapon/storage/box/practiceshells
-	name = "box of practice shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "blankshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/practice = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/practiceshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/practice = 16)
-
-/obj/item/weapon/storage/box/empshells
-	name = "box of emp shells"
-	desc = "It has a picture of a gun and several warning symbols on the front."
-	icon_state = "empshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/emp = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/empshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/emp = 16)
-
-/obj/item/weapon/storage/box/flechetteshells
-	name = "box of shotgun flechettes"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalslug_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/flechetteshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 16)
-
-/obj/item/weapon/storage/box/sniperammo
-	name = "box of 14.5mm shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145 = 7)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/weapon/storage/box/sniperammo/highvel
-	name = "box of 14.5mm sabot shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145/highvel = 7)
 
 /obj/item/weapon/storage/box/flashbangs
 	name = "box of flashbangs (WARNING)"
@@ -374,24 +276,14 @@
 /obj/item/weapon/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
+	icon_state = "condiment"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/condiment = 7)
 
 /obj/item/weapon/storage/box/cups
 	name = "box of paper cups"
 	desc = "It has pictures of paper cups on the front."
+	icon_state = "cups"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/sillycup = 7)
-
-/obj/item/weapon/storage/box/donkpockets
-	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 7)
-
-/obj/item/weapon/storage/box/sinpockets
-	name = "box of sin-pockets"
-	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
 
 /obj/item/weapon/storage/box/buns
 	name = "box of bread buns"
@@ -450,6 +342,7 @@
 /obj/item/weapon/storage/box/pillbottles
 	name = "box of pill bottles"
 	desc = "It has pictures of pill bottles on its front."
+	icon_state = "pillbox"
 	starts_with = list(/obj/item/weapon/storage/pill_bottle = 7)
 
 /obj/item/weapon/storage/box/snappops
@@ -485,19 +378,19 @@
 /obj/item/weapon/storage/box/autoinjectors
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
-	icon_state = "syringe"
+	icon_state = "auto"
 	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 7)
 
 /obj/item/weapon/storage/box/lights
 	name = "box of replacement bulbs"
-	icon = 'icons/obj/storage.dmi'
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "light"
 	desc = "This box is shaped on the inside so that only light tubes and bulbs fit."
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	storage_slots = 24
 	can_hold = list(/obj/item/weapon/light/tube, /obj/item/weapon/light/bulb)
 	max_storage_space = ITEMSIZE_COST_SMALL * 24 //holds 24 items of w_class 2
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
 /obj/item/weapon/storage/box/lights/bulbs
 	starts_with = list(/obj/item/weapon/light/bulb = 24)
@@ -525,7 +418,10 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/organ)
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5 // Formally 21.  Odd numbers are bad.
-	use_to_pickup = 1 // for picking up broken bulbs, not that most people will try
+	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
+
+/obj/item/weapon/storage/box/freezer/red
+	icon_state = "portafreezer_red"
 
 /obj/item/weapon/storage/box/freezer/Entered(var/atom/movable/AM)
 	if(istype(AM, /obj/item/organ))
@@ -552,3 +448,60 @@
 	name = "ambrosia deus seeds box"
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)
+
+/obj/item/weapon/storage/box/capguntoy
+	name = "\improper AlliCo \"Zipper\" Cap Gun"
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "cap_gun_box"
+	desc = "This box is shaped on the inside so that only the \"Zipper\" Capgun and extra caps can fit."
+	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
+	storage_slots = 2
+	max_w_class = ITEMSIZE_NORMAL
+	can_hold = list(/obj/item/weapon/gun/projectile/revolver/capgun, /obj/item/ammo_magazine/ammo_box/cap)
+	starts_with = list(
+		/obj/item/weapon/gun/projectile/revolver/capgun = 1,
+		/obj/item/ammo_magazine/ammo_box/cap = 1
+	)
+
+//Donk-pockets
+/obj/item/weapon/storage/box/donkpockets
+	name = "box of donk-pockets"
+	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	icon_state = "donkpocketbox"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 7)
+
+/obj/item/weapon/storage/box/donkpockets/spicy
+	name = "box of spicy-flavoured donk-pockets"
+	icon_state = "donkpocketboxspicy"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/spicy = 7)
+
+/obj/item/weapon/storage/box/donkpockets/teriyaki
+	name = "box of teriyaki-flavoured donk-pockets"
+	icon_state = "donkpocketboxteriyaki"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/teriyaki = 7)
+
+/obj/item/weapon/storage/box/donkpockets/pizza
+	name = "box of pizza-flavoured donk-pockets"
+	icon_state = "donkpocketboxpizza"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/pizza = 7)
+
+/obj/item/weapon/storage/box/donkpockets/honk
+	name = "box of banana-flavoured donk-pockets"
+	icon_state = "donkpocketboxbanana"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/honk = 7)
+
+/obj/item/weapon/storage/box/donkpockets/gondola
+	name = "box of gondola-flavoured donk-pockets"
+	icon_state = "donkpocketboxgondola"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/gondola = 7)
+
+/obj/item/weapon/storage/box/donkpockets/berry
+	name = "box of berry-flavoured donk-pockets"
+	icon_state = "donkpocketboxberry"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/berry = 7)
+
+/obj/item/weapon/storage/box/sinpockets
+	name = "box of sin-pockets"
+	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
+	icon_state = "donk_kit"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 7)

@@ -16,8 +16,9 @@ var/global/list/grub_machine_overlays = list()
 	melee_damage_lower = 1	// This is a tiny worm. It will nibble and thats about it.
 	melee_damage_upper = 1
 
-	meat_amount = 2
+	meat_amount = 1
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/grubmeat
+	butchery_loot = list()		// No hides
 
 	faction = "grubs"
 
@@ -30,7 +31,7 @@ var/global/list/grub_machine_overlays = list()
 	pass_flags = PASSTABLE
 	can_pull_size = ITEMSIZE_TINY
 	can_pull_mobs = MOB_PULL_NONE
-	density = 0
+	density = FALSE
 
 	//stop_when_pulled = 0
 
@@ -205,8 +206,7 @@ var/global/list/grub_machine_overlays = list()
 	var/static/potential_targets = typecacheof(list(/obj/machinery))
 	var/list/actual_targets = list()
 
-	for(var/AT in typecache_filter_list(range(vision_range, holder), potential_targets))
-		var/obj/machinery/M = AT
+	for(var/obj/machinery/M as anything in typecache_filter_list(range(vision_range, holder), potential_targets))
 		if(istype(M, /obj/machinery/atmospherics/unary/vent_pump))
 			var/obj/machinery/atmospherics/unary/vent_pump/V = M
 			if(!V.welded && prob(50))

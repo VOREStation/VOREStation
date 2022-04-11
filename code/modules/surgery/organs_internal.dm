@@ -14,48 +14,8 @@
 		return 0
 	return affected && affected.open == (affected.encased ? 3 : 2)
 
+//Removed unused Embryo Surgery, derelict and broken.
 
-//////////////////////////////////////////////////////////////////
-//					ALIEN EMBRYO SURGERY						//
-////////////////////////////////////////////////////////////////// // Here for future reference incase it's needed. See: Alien_embryo.dm and Alien_facehugger.dm
-/*
-/datum/surgery_step/internal/remove_embryo
-	allowed_tools = list(
-	/obj/item/weapon/surgical/hemostat = 100,	\
-	/obj/item/weapon/material/kitchen/utensil/fork = 20
-	)
-
-	allowed_procs = list(IS_WIRECUTTER = 75)
-	blood_level = 2
-
-	min_duration = 80
-	max_duration = 100
-
-	can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/embryo = 0
-		for(var/obj/item/alien_embryo/A in target)
-			embryo = 1
-			break
-
-		if (!hasorgans(target))
-			return
-		var/obj/item/organ/external/affected = target.get_organ(target_zone)
-		return ..() && affected && embryo && affected.open == 3 && target_zone == BP_TORSO
-
-	begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		var/msg = "[user] starts to pull something out from [target]'s ribcage with \the [tool]."
-		var/self_msg = "You start to pull something out from [target]'s ribcage with \the [tool]."
-		user.visible_message(msg, self_msg)
-		target.custom_pain("Something hurts horribly in your chest!",1)
-		..()
-
-	end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-		user.visible_message("<span class='warning'>[user] rips the larva out of [target]'s ribcage!</span>",
-							 "You rip the larva out of [target]'s ribcage!")
-
-		for(var/obj/item/alien_embryo/A in target)
-			A.loc = A.loc.loc
-*/
 //////////////////////////////////////////////////////////////////
 //				CHEST INTERNAL ORGAN SURGERY					//
 //////////////////////////////////////////////////////////////////
@@ -180,7 +140,7 @@
 		if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 			attached_organs |= organ
 
-	var/organ_to_remove = input(user, "Which organ do you want to prepare for removal?") as null|anything in attached_organs
+	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to prepare for removal?", "Organ Choice", attached_organs)
 	if(!organ_to_remove)
 		return 0
 
@@ -241,7 +201,7 @@
 		if(istype(I) && (I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 			removable_organs |= organ
 
-	var/organ_to_remove = input(user, "Which organ do you want to remove?") as null|anything in removable_organs
+	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to remove?", "Organ Choice", removable_organs)
 	if(!organ_to_remove)
 		return 0
 
@@ -378,7 +338,7 @@
 		if(istype(I) && (I.status & ORGAN_CUT_AWAY) && !(I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
 			removable_organs |= organ
 
-	var/organ_to_replace = input(user, "Which organ do you want to reattach?") as null|anything in removable_organs
+	var/organ_to_replace = tgui_input_list(user, "Which organ do you want to reattach?", "Organ Choice", removable_organs)
 	if(!organ_to_replace)
 		return 0
 
@@ -437,7 +397,7 @@
 		if(istype(I) && I.parent_organ == target_zone)
 			removable_organs |= organ
 
-	var/organ_to_remove = input(user, "Which organ do you want to remove?") as null|anything in removable_organs
+	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to remove?", "Organ Choice", removable_organs)
 	if(!organ_to_remove)
 		return 0
 
@@ -466,20 +426,3 @@
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging [target]'s [affected.name] with \the [tool]!</span>", \
 	"<span class='warning'>Your hand slips, damaging [target]'s [affected.name] with \the [tool]!</span>")
 	affected.createwound(BRUISE, 20)
-
-//////////////////////////////////////////////////////////////////
-//						HEART SURGERY							//
-//////////////////////////////////////////////////////////////////
-// To be finished after some tests.
-// /datum/surgery_step/ribcage/heart/cut
-//	allowed_tools = list(
-//	/obj/item/weapon/surgical/scalpel = 100,		\
-//	/obj/item/weapon/material/knife = 75,	\
-//	/obj/item/weapon/material/shard = 50, 		\
-//	)
-
-//	min_duration = 30
-//	max_duration = 40
-
-//	/datum/surgery_step/ribcage/heart/cut/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-//		return ..() && target.op_stage.ribcage == 2

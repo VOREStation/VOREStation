@@ -63,6 +63,9 @@
 
 /////////////////////////////////////////
 //Seals and Signet Rings
+
+/obj/item/clothing/gloves/ring/seal
+	var/stamptext = null
 /obj/item/clothing/gloves/ring/seal/secgen
 	name = "Secretary-General's official seal"
 	desc = "The official seal of the Secretary-General of the Sol Central Government, featured prominently on a silver ring."

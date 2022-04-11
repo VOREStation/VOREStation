@@ -25,7 +25,7 @@
 		to_chat(usr, "<span class='danger'>Error: You cannot request spice (muted from adminhelps).</span>")
 		return
 
-	if(alert(usr, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.",,"Yes","No") != "No")
+	if(tgui_alert(usr, "Are you sure you want to request the admins spice things up for you? You accept the consequences if you do.","Spicy!",list("Yes","No")) != "No")
 		message_admins("[ADMIN_FULLMONTY(usr)] has requested the round be spiced up a little.")
 		to_chat(usr, "<span class='notice'>You have requested some more spice in your round.</span>")
 	else

@@ -291,8 +291,7 @@
 		channels = ChatChannelInfo()
 
 	var/list/ids = list()
-	for(var/I in channels)
-		var/datum/tgs_chat_channel/channel = I
+	for(var/datum/tgs_chat_channel/channel as anything in channels)
 		ids += channel.id
 
 	message = list(DMAPI5_CHAT_MESSAGE_TEXT = message, DMAPI5_CHAT_MESSAGE_CHANNEL_IDS = ids)
@@ -303,8 +302,7 @@
 
 /datum/tgs_api/v5/ChatTargetedBroadcast(message, admin_only)
 	var/list/channels = list()
-	for(var/I in ChatChannelInfo())
-		var/datum/tgs_chat_channel/channel = I
+	for(var/datum/tgs_chat_channel/channel as anything in ChatChannelInfo())
 		if (!channel.is_private_channel && ((channel.is_admin_channel && admin_only) || (!channel.is_admin_channel && !admin_only)))
 			channels += channel.id
 	message = list(DMAPI5_CHAT_MESSAGE_TEXT = message, DMAPI5_CHAT_MESSAGE_CHANNEL_IDS = channels)

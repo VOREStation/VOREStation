@@ -69,6 +69,8 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 	if(linked)
 		apply_visual(user)
 		user.reset_view(linked)
+		if(linked.real_appearance)
+			user.client?.images += linked.real_appearance
 	user.set_machine(src)
 	if(isliving(user))
 		var/mob/living/L = user
@@ -81,6 +83,8 @@ somewhere on that shuttle. Subtypes of these can be then used to perform ship ov
 
 /obj/machinery/computer/ship/proc/unlook(var/mob/user)
 	user.reset_view()
+	if(linked?.real_appearance)
+		user.client?.images -= linked.real_appearance
 	if(isliving(user))
 		var/mob/living/L = user
 		L.looking_elsewhere = 0

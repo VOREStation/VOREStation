@@ -33,6 +33,8 @@
 		/obj/item/clothing/under/rank/research_director/rdalt,
 		/obj/item/clothing/under/rank/research_director/dress_rd,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
+		/obj/item/clothing/suit/storage/toggle/labcoat/rd,
 		/obj/item/weapon/cartridge/rd,
 		/obj/item/clothing/shoes/white,
 		/obj/item/clothing/shoes/laceup/brown,
@@ -43,7 +45,9 @@
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flash,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/science/rd,
 		/obj/item/clothing/shoes/boots/winter/science,
+		/obj/item/clothing/head/beret/science/rd,
 		/obj/item/weapon/bluespace_harpoon) //VOREStation Add
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
@@ -54,6 +58,7 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/scientist,
 		/obj/item/clothing/suit/storage/toggle/labcoat,
+		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/shoes/white,
 		/obj/item/weapon/melee/umbrella, // vorestation addition,
 		/obj/item/clothing/glasses/science,

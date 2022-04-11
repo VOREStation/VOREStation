@@ -141,7 +141,7 @@
 	set category = "Fun"
 	set name = "OOC Text Color"
 	if(!holder)	return
-	var/response = alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", "Pick new color", "Reset to default", "Cancel")
+	var/response = tgui_alert(src, "Please choose a distinct color that is easy to read and doesn't mix with all the other chat and radio frequency colors.", "Change own OOC color", list("Pick new color", "Reset to default", "Cancel"))
 	if(response == "Pick new color")
 		prefs.ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color
 	else if(response == "Reset to default")
@@ -179,7 +179,7 @@
 			if(istype(src.mob, /mob/new_player))
 				mob.name = capitalize(ckey)
 		else
-			var/new_key = ckeyEx(input("Enter your desired display name.", "Fake Key", key) as text|null)
+			var/new_key = ckeyEx(input(usr, "Enter your desired display name.", "Fake Key", key) as text|null)
 			if(!new_key)
 				return
 			if(length(new_key) >= 26)
@@ -240,7 +240,7 @@
 
 	var/turf/epicenter = mob.loc
 	var/list/choices = list("Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb", "Cancel")
-	var/choice = input("What size explosion would you like to produce?") in choices
+	var/choice = tgui_input_list(usr, "What size explosion would you like to produce?", "Explosion Choice", choices)
 	switch(choice)
 		if(null)
 			return 0
@@ -253,10 +253,10 @@
 		if("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
 		if("Custom Bomb")
-			var/devastation_range = input("Devastation range (in tiles):") as num
-			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
-			var/light_impact_range = input("Light impact range (in tiles):") as num
-			var/flash_range = input("Flash range (in tiles):") as num
+			var/devastation_range = input(usr, "Devastation range (in tiles):") as num
+			var/heavy_impact_range = input(usr, "Heavy impact range (in tiles):") as num
+			var/light_impact_range = input(usr, "Light impact range (in tiles):") as num
+			var/flash_range = input(usr, "Flash range (in tiles):") as num
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("<font color='blue'>[ckey] creating an admin explosion at [epicenter.loc].</font>")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -269,14 +269,14 @@
 	var/datum/disease2/disease/D = new /datum/disease2/disease()
 
 	var/severity = 1
-	var/greater = input("Is this a lesser, greater, or badmin disease?", "Give Disease") in list("Lesser", "Greater", "Badmin")
+	var/greater = tgui_input_list(usr, "Is this a lesser, greater, or badmin disease?", "Give Disease", list("Lesser", "Greater", "Badmin"))
 	switch(greater)
 		if ("Lesser") severity = 1
 		if ("Greater") severity = 2
 		if ("Badmin") severity = 99
 
 	D.makerandom(severity)
-	D.infectionchance = input("How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
+	D.infectionchance = input(usr, "How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
 
 	if(istype(T,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = T
@@ -302,12 +302,12 @@
 		to_chat(usr, "<span class='warning'>Looks like you didn't select a mob.</span>")
 		return
 
-	var/list/possible_modifiers = typesof(/datum/modifier) - /datum/modifier
+	var/list/possible_modifiers = subtypesof(/datum/modifier)
 
-	var/new_modifier_type = input("What modifier should we add to [L]?", "Modifier Type") as null|anything in possible_modifiers
+	var/new_modifier_type = tgui_input_list(usr, "What modifier should we add to [L]?", "Modifier Type", possible_modifiers)
 	if(!new_modifier_type)
 		return
-	var/duration = input("How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration") as num
+	var/duration = input(usr, "How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration") as num
 	if(duration == 0)
 		duration = null
 	else
@@ -321,11 +321,10 @@
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
-		var/message = sanitize(input("What do you want the message to be?", "Make Sound") as text|null)
+		var/message = sanitize(input(usr, "What do you want the message to be?", "Make Sound") as text|null)
 		if(!message)
 			return
-		for (var/mob/V in hearers(O))
-			V.show_message(message, 2)
+		O.audible_message(message)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
 		message_admins("<font color='blue'>[key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound.</font>", 1)
 		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -375,7 +374,7 @@
 	set category = "Admin"
 
 	if(holder)
-		if(alert("Confirm self-deadmin for the round? You can't re-admin yourself without someone promoting you.",,"Yes","No") == "Yes")
+		if(tgui_alert(usr, "Confirm self-deadmin for the round? You can't re-admin yourself without someone promoting you.","Deadmin",list("Yes","No")) == "Yes")
 			log_admin("[src] deadmined themself.")
 			message_admins("[src] deadmined themself.", 1)
 			deadmin()
@@ -403,7 +402,7 @@
 
 	if(!check_rights(R_ADMIN|R_FUN|R_EVENT)) return
 
-	var/mob/living/silicon/S = input("Select silicon.", "Rename Silicon.") as null|anything in silicon_mob_list
+	var/mob/living/silicon/S = tgui_input_list(usr, "Select silicon.", "Rename Silicon.", silicon_mob_list)
 	if(!S) return
 
 	var/new_name = sanitizeSafe(input(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
@@ -418,7 +417,7 @@
 
 	if(!check_rights(R_ADMIN|R_EVENT)) return
 
-	var/mob/living/silicon/S = input("Select silicon.", "Manage Silicon Laws") as null|anything in silicon_mob_list
+	var/mob/living/silicon/S = tgui_input_list(usr, "Select silicon.", "Manage Silicon Laws", silicon_mob_list)
 	if(!S) return
 
 	var/datum/tgui_module/law_manager/admin/L = new(S)
@@ -432,11 +431,24 @@
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN|R_EVENT))	return
-	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","yellow","violet","orange","blue","red","delta")-get_security_level())
-	if(alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
+	var/sec_level = tgui_input_list(usr, "It's currently code [get_security_level()].", "Select Security Level", (list("green","yellow","violet","orange","blue","red","delta")-get_security_level()))
+	if(!sec_level)
+		return
+	if(tgui_alert(usr, "Switch from code [get_security_level()] to code [sec_level]?","Change security level?",list("Yes","No")) == "Yes")
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 
+/client/proc/shuttle_panel()
+	set name = "Shuttle Control Panel"
+	set category = "Admin"
+
+	if(!check_rights(R_ADMIN | R_EVENT))
+		return
+
+	var/datum/tgui_module/admin_shuttle_controller/A = new(src)
+	A.tgui_interact(usr)
+	log_and_message_admins("has opened the shuttle panel.")
+	feedback_add_details("admin_verb","SHCP")
 
 //---- bs12 verbs ----
 
@@ -466,7 +478,7 @@
 		if (!jobs.len)
 			to_chat(usr, "There are no fully staffed jobs.")
 			return
-		var/job = input("Please select job slot to free", "Free job slot")  as null|anything in jobs
+		var/job = tgui_input_list(usr, "Please select job slot to free", "Free job slot", jobs)
 		if (job)
 			job_master.FreeRole(job)
 			message_admins("A job slot for [job] has been opened by [key_name_admin(usr)]")
@@ -494,7 +506,7 @@
 	set desc = "Tells mob to man up and deal with it."
 	set popup_menu = FALSE //VOREStation Edit - Declutter.
 
-	if(alert("Are you sure you want to tell them to man up?","Confirmation","Deal with it","No")=="No") return
+	if(tgui_alert(usr, "Are you sure you want to tell them to man up?","Confirmation",list("Deal with it","No"))=="No") return
 
 	to_chat(T, "<span class='filter_system notice'><b><font size=3>Man up and deal with it.</font></b></span>")
 	to_chat(T, "<span class='filter_system notice'>Move along.</span>")
@@ -507,7 +519,7 @@
 	set name = "Man Up Global"
 	set desc = "Tells everyone to man up and deal with it."
 
-	if(alert("Are you sure you want to tell the whole server up?","Confirmation","Deal with it","No")=="No") return
+	if(tgui_alert(usr, "Are you sure you want to tell the whole server up?","Confirmation",list("Deal with it","No"))=="No") return
 
 	for (var/mob/T as mob in mob_list)
 		to_chat(T, "<br><center><span class='filter_system notice'><b><font size=4>Man up.<br> Deal with it.</font></b><br>Move along.</span></center><br>")
@@ -520,7 +532,7 @@
 	set category = "Fun"
 	set name = "Give Spell"
 	set desc = "Gives a spell to a mob."
-	var/spell/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spells
+	var/spell/S = tgui_input_list(usr, "Choose the spell to give to that guy", "ABRAKADABRA", spells)
 	if(!S) return
 	T.spell_list += new S
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

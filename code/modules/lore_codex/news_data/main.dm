@@ -1,9 +1,24 @@
 /datum/lore/codex/category/main_news // The top-level categories for the news thing
 	name = "Index"
-	data = "Below you'll find a list of articles relevant to the current (as of 2564) political climate, especially concerning the Almach Rim \
+	data = "Below you'll find a list of articles relevant to the current (as of 2565) political climate, especially concerning the local \
 	region. Each is labeled by date of publication and title. This list is self-updating, and from time to time the publisher will push new \
 	articles. You are encouraged to check back frequently."
 	children = list(
+		/datum/lore/codex/page/article103,
+		/datum/lore/codex/page/article102,
+		/datum/lore/codex/page/article101,
+		/datum/lore/codex/page/article100,
+		/datum/lore/codex/page/article99,
+		/datum/lore/codex/page/article98,
+		/datum/lore/codex/page/article97,
+		/datum/lore/codex/page/article96,
+		/datum/lore/codex/page/article95,
+		/datum/lore/codex/page/article94,
+		/datum/lore/codex/page/article93,
+		/datum/lore/codex/page/article92,
+		/datum/lore/codex/page/article91,
+		/datum/lore/codex/page/article90,
+		/datum/lore/codex/page/article89,
 		/datum/lore/codex/page/article88,
 		/datum/lore/codex/page/article87,
 		/datum/lore/codex/page/article86,
@@ -96,6 +111,12 @@
 		/datum/lore/codex/page/article1,
 		/datum/lore/codex/page/about_news,
 		)
+
+	var/newsindex
+
+/datum/lore/codex/category/main_news/New()
+	..()
+	newsindex = LAZYLEN(children)
 
 /datum/lore/codex/page/about_news
 	name = "About the Publisher"
@@ -321,7 +342,7 @@
 	<br><br>\
 	Sources within the Vir Governmental Authority have reported that a full scale recall of remote drone craft under their operation has been initiated in order to improve security measures and prevent future exploitation of government systems, statements that eerily echo those of Occulum Broadcast following emergent drone attacks earlier this year. Investigations are reportedly \"well underway\" to determine the whereabouts of those responsible for the apparent manual modification of these short-range remote craft.\
 	<br><br>\
-	Erkki Laukkanen, Chief of Fleet Staff for the Vir Defense Force has commended all patrol crews involved, and has promised \"swift retribution\" for the attempted bombings."
+	Erkki Laukkanen, Chief of Fleet Staff for the Sif Defense Force has commended all patrol crews involved, and has promised \"swift retribution\" for the attempted bombings."
 /datum/lore/codex/page/article26
 	name = "11/24/62 - Boiling Point Stronghold Seized in Vir"
 	data = "Combined forces from the SCG Fleet and Almach Militia have today struck a powerful blow to Boiling Point terrorist operations in the Vir system. With close cooperation from the crew of NanoTrasen facilities in the region, special forces were able to infiltrate what is believed to have been a major stronghold for the radical Mercurial group, located deep in the remote Ullran Expanse region of Sif. The raid closely follows the thwarted Boiling Point attack on the Radiance Energy Chain, a major energy collection array in the system which is now known to have been masterminded from the concealed bunker complex on Sif.\
@@ -354,7 +375,7 @@
 	<br><br>\
 	No more! Shall the people of this great nation have to fear the machinations of radicals! No more! Shall these twisted minds impose their perversion of humanity through violence! No more!\
 	<br><br>\
-	This Assembly... Nay, this nation expresses its thanks the noble members of our military who joined together to make this outcome possible. We thank the Fleet, of course for their tireless action hunting down these killers, and their heroic action over this past weekend. We thank the Vir Defense Force, without whom we could never have located the intelligence that led to these decisive victories... The Almach Militia, for their cooperation in the apprehension of these so-called \"revolutionaries\". \[West clears their throat\] And of course, we thank the local forces - the police and reserves who dealt firsthand with the chaos sewn by Boiling Point in their vicious crusade.\
+	This Assembly... Nay, this nation expresses its thanks the noble members of our military who joined together to make this outcome possible. We thank the Fleet, of course for their tireless action hunting down these killers, and their heroic action over this past weekend. We thank the Sif Defense Force, without whom we could never have located the intelligence that led to these decisive victories... The Almach Militia, for their cooperation in the apprehension of these so-called \"revolutionaries\". \[West clears their throat\] And of course, we thank the local forces - the police and reserves who dealt firsthand with the chaos sewn by Boiling Point in their vicious crusade.\
 	<br><br>\
 	\[Mackenzie West shifts at the podium, setting down the List of Dissidents.\]\
 	<br><br>\
@@ -1006,3 +1027,137 @@
 	Make no mistake, that is what our agreement today symbolizes. A new era of peace for us, where we no longer have to worry about the threat of piracy or invasion. We can return to our homes, rebuild our stations, and forge a new future for ourselves and our children'\
 	<br><br>\
 	It was also announced that though the work of restoring order to the system is ongoing, they expect elections will be held for a new Assembly and President within the next few months, with the exact date announced once violence on the major stations has ceased and cooperation from the insubordinate stations is secured. Yong will head an interim government in the meantime."
+
+/datum/lore/codex/page/article89
+	name = "08/15/64 - Almach Permits First Solar Inspection"
+	data = "Almost four months since its establishment as a Skrellian territory, the Almach Protectorate Government has extended its first formal invitation to Solar Confederate Government inspectors to ensure the fledgling state is complying with restrictions imposed by the Treaty of Whythe.\
+	<br><br>\
+	The composition of the official Solar Inspection Group has been a matter of much deliberation over the past several months, and owing to the ground to be covered now includes over 3,500 experts from a wide variety of fields. The bulk of the Group is comprised of Transgressive Technologies Commission agents, including the EIO, but also includes military officials, independent observers, and corporate representatives. The inclusion of the latter group spurred heated debate in the Colonial Assembly, but ultimately 'thought-leaders' from Ward-Takahashi, NanoTrasen, and Hephaestus Industries were admitted, while other interests will have to be satisfied to be represented by Sol Economic Organization liaisons.\
+	<br><br>\
+	The APG, currently based out of what is to be a neutral embassy on Carter in Relan pending the completion of the new government centre of Vigilance Station in Whythe, is not legally required to fully comply with Five Points regulation, though the Whythe terms ensure that any transgressive research is undertaken under the strictest guidelines. The Skrell have amiably agreed to ensure that any innovation by the protectorate is safe, controlled, and does not enter Solar territory. These terms are similar to those applied to such technologies developed by and for the Skrell themselves, whose expertise is considered unrivalled in the field, but has been widely criticised by certain human bioconservative groups.\
+	<br><br>\
+	The inspection is expected to take several weeks, and will begin tomorrow."
+
+/datum/lore/codex/page/article90
+	name = "08/29/64 - Kaleidoscope Cosmetics Goes Trans-Stellar After Genix Merger"
+	data = "Personal care giant Kaleidoscope Cosmetics has been officially recognised by the Solar Galactic Exchange as a true Trans-stellar Corporation today, following a controversial merger with Genix Therapeutic Systems and expanding its corporate assets to over 20 key systems.\
+	<br><br>\
+	Genix, which will now be operating under the Kaleidoscope name while retaining some corporate autonomy, has come under some scrutiny from the Transgressive Technologies Commission in recent months following its aggressive acquisition of liquidated Almachi assets in the aftermath of the Association's dissolution in April. The company was cleared of suspected Five Points violations without fanfare just two weeks ago, and allowed to resume work on the development a variety of previously approved commercial genetic modification products.\
+	<br><br>\
+	Many cosmetic gene-modification products have been available for some time - primarily in the Almach Rim - but have remained targeted at a relatively niche market. These treatments, ranging from cosmetic anti-aging to 'fantasy' body features are now set to be marketed and available in 'hundreds' of Kaleidoscope clinics galaxy-wide in the coming months. The TTC has reported that they are 'Confident that no transgressive modification is being provided and that these modifications are strictly superficial'. They have officially wished Kaleidoscope's directors well in their ascent to the galactic stage."
+
+/datum/lore/codex/page/article91
+	name = "09/21/64 - Almach Passes Inspection - Concerns Raised"
+	data = "The Solar Inspection Group has granted the Almach Protectorate a passing grade in the first official inspection of the territory under Skrellian rule, though ethical concerns have been raised by a number of independent observers involved in the process.\
+	<br><br>\
+	During the course of the month-long inspection, Skrell facilitators were cooperative in ensuring the SIG were given 'unlimited' access to all research and development facilities requested by Sol, as well as informing the group of numerous previously unidentified locations that had been flagged by the Almach Protectorate Government since assuming control of the region in April. Critics of protectorate have suggested that the 'official list' may not be as comprehensive as stated, but the SIG has stated that they are 'confident that no deception has been undertaken by the APG. We have observed no evidence of research being concealed from our teams, and to the best of our knowledge the only locations left undisturbed are those few still occupied by Association holdouts, beyond the control of either inspecting government.'\
+	<br><br>\
+	Also as a result of the inspection, concerns have been raised regarding the treatment of ex-Association citizens, particularly the often genetically modified residents of Angessa's Pearl. While Angessa Martei's location is still unknown, her legacy - a society described by some as a cult of personality with emphasis on the cult - poses a significant threat to Skrellian control of the Exalt's Light system, and the clash of 'strong ideologies' has allegedly resulted in mistreatment of detainees that, according to the official report 'would not be permitted in Solar jurisdictions'.\
+	<br><br>\
+	The Protectorate's passing grade opens the door for interstellar trade to resume between the two nations for the first time in several years. Manufacturing giant Ward-Takahashi has already released a public statement on its intent to deal with the APG, and several other trans-stellars are expected to follow suit."
+
+/datum/lore/codex/page/article92
+	name = "09/24/64 - Kaleidoscope Announce Exclusive Almach Deal"
+	data = "Mere days after the announcement of the reopening of Almachi-Solar trade, the Kaleidoscope Cosmetics corporation has confirmed that they have secured 'exclusive rights' to genetic products produced by several major manufacturers in the Angessa's Pearl system formerly owned by The Exalt - the insular mercurial theocracy of Exalt's Light - and recently handed over to the Almach Protectorate Government.\
+	<br><br>\
+	The details of the company's trade agreement have not been made public, but have reportedly already been approved by both the APG and SCG. The promptness of the agreement suggests to some that negotitations had been underway well before the announcement of the Protectorate's passing grade. Though cooperation between trans-stellar interests and government entities is far from unusual, such dealings with foreign governments - such as those widely made as 'open secrets' with Eutopia - are considered distasteful by many within the Icarus Front.\
+	<br><br>\
+	The Angessan products Kaleidoscope intends to offer have also not been made public, but are all to be thoroughly screened by the Transgressive Technologies Commission before being made available, though 'failing' proposals may be approved for use exclusively within Protectorate territory."
+
+/datum/lore/codex/page/article93
+	name = "10/04/64 - Yong Wins Relani Elections"
+	data = "Despite concerns about domestic unrest and potential Skrellian interference, elections in Relan have gone ahead, selecting a new President and System Assembly. Francis Harp Yong, leader of the interim government and previous governor of the city-station Ithaca, known for his leading role in negotiating the end of Skrellian occupation and calming riots and rebellions earlier this year, has won the Presidency in a landslide, receiving nearly seventy percent of the vote. His party, the Spacer Union, has secured a narrow majority in the Assembly. The New Federalists, led by former member of the Harper government Odoacer Mieville, are the largest opposition party.\
+	<br><br>\
+	Yong has promised to reinforce Relani neutrality and rebuild the pre-war social system, forming a coalition of labor, technoprogressives, and anti-war activists. His victory likely means an end to the unrest that has plagued Relan since the end of the war with Almach."
+
+/datum/lore/codex/page/article94
+	name = "12/23/64 - Two Vessels Feared Lost In Isavau's Gamble"
+	data = "Two Solar salvage vessels have been declared missing this week while undertaking operations in the remote Isavau's Gamble system. Locals also report that several smaller craft from the Eutopia system have 'vanished' under similar circumstances. Authorities are treating the disappearances as potential pirate attacks.\
+	<br><br>\
+	The XIV Sri Chamarajendra with crew of 32, and IIV Reimarus with 9 are both reported to have lost contact with the system's spaceport while undertaking far-orbit salvage operations on decommissioned and abandoned facilities, including the ILS Harvest Moon which detonated with all hands earlier this year. The disappearances have spurred the system government to request greater anti-piracy support from the SCG, which has been much reduced since the Almach War and increased tensions on the Hegemony border.\
+	<br><br>\
+	While Proximal to the independent and often 'lawless' Eutopia system, as well as the Rarkajar Rift, infamous prowl of the human-tajaran Jaguar Gang, the Isavau's System has rarely been a direct target for such large-scale apparent hijackings, and no group has yet claimed credit or demanded ransom."
+
+/datum/lore/codex/page/article95
+	name = "12/27/64 - NanoTrasen Accused In Satisfaction Poll Fixing"
+	data = "The results of an annual system-wide corporate employee satisfaction poll in Vir have been called into question after a leak of internal employee contracts by an anonymous whistle blower. According to verified documents provided to the Vir News Network, NanoTrasen employees on annual employment contracts up for renewal are instructed to fill out an appended form expressing 'Extremely High' satisfaction with their employment at the company, or the contract will be deemed 'incomplete' and thus invalid.\
+	<br><br>\
+	NanoTrasen have been winners of the Vir Happy Employee Award for the 7 years running as of this year, and as such the legitimacy of the award, which has been run in major systems by the Sol Economic Organization since 2503, has been called seriously into question. The SEO has expressed regrets regarding the alleged fixing, but has stated that participating corporations are within their right to encourage employees to vote in a particular way.\
+	<br><br>\
+	According to NanoTrasen, the so-called 'Satisfaction Clause' in their contract renewal process is entirely permissible from a legal standpoint, and the company has no plans to make any changes at this time. When approached for comment, one anonymous employee stated that they 'had never even heard of' the award."
+
+/datum/lore/codex/page/article96
+	name = "01/03/65 - VirGov Seals Security Deal With Local Firm"
+	data = "Governor Lusia Hainirsdottir has announced sweeping changes to government law enforcement in Vir, lynchpinned by the signing of a five-year contract with home-grown independent security and arms firm, Hedberg-Hammarstrom. The private enterprise will be assuming 'key duties' in local law enforcement and system security, in a move that Hainirsdottir says 'will save millions in taxpayer money, and encourages local, Virite businesses that we trust them every step of the way'.\
+	<br><br>\
+	While many colonies and facilities in Vir rely wholly on in-house security forces and will continue to do so, Hedberg-Hammarstrom is set to take over government patrol duties throughout the system, as well as administrating a large portion of previously government-run local law enforcement agencies including policing and wilderness garrisons.\
+	<br><br>\
+	CEO Gunnar Hammarstrom has reassured current SifGuard members at all levels that they need not fear for their jobs, and that for many the changes will be as simple as a slight change in uniform and a different name on their paychecks, but that H-H agents will be assuming managerial roles in most locations."
+
+/datum/lore/codex/page/article97
+	name = "01/05/65 - Top NanoTrasen Executive Injured In Sif Bombing"
+	data = "Calvert Moravec, Chief Operations Officer for NanoTrasen Vir remains in a critical condition following a suspected assassination attempt on Saturday. The former gubernatorial candidate had been making a speech at a small NanoTrasen facility known for a prior terrorist attack by Boiling Point forces two years ago, when a small explosive device detonated close to the executive's leg, rendering him unconcious.\
+	<br><br>\
+	NanoTrasen security have elected to investigate the bombing internally, refusing to cooperate with SifGuard authorities on the grounds of disagreements with newly established Hedberg-Hammarstrom management. Mr. Moravec, nephew of NanoTrasen CEO Albary Moravec had reportedly been speaking out against H-H's involvement in national policing when the blast occurred.\
+	<br><br>\
+	Commander Spradling of NanoTrasen Internal Security has issued a company-wide active search order for one member of the audience who remains unaccounted for named 'Lae Vu', who is believed to be a journalist or posing as such, accompanied by images from communicator footage taken at the event.\
+	<br><br>\
+	This amateur footage also shows one member of the audience shouting an anti-corporate slogan and throwing a small electronic device at Moravec before being escorted from the room, just moments prior to the explosion. Spradling has stated that this individual, who is believed to be a disgruntled veteran of the Sif Defense Force, remains one of several persons of interest, but that the thrown item does not appear to be connected directly with the explosive device.\
+	<br><br>\
+	Reports from witnesses suggest that Mr. Moravec made a temporary recovery thanks to the fast action of medical staff aboard the NLS Southern Cross, but that a few hours later he appeared to suffer from a seizure, after which he was placed into a medically induced coma that he is yet to recover from. Unverified images from the Cross appear to show a disoriented individual resembling Moravec self-medicating with a cocktail of prescribed painkillers and alcoholic beverages, though the company strongly denies their veracity."
+
+/datum/lore/codex/page/article98
+	name = "02/02/65 - NanoTrasen Announces Employee-Led Advisement Scheme"
+	data = "Trans-stellar giant NanoTrasen has today announced the launch of their brand-new 'NanoTrasen Employee Representation Committee' scheme, which will allow employee-selected representatives to have a say in company policy on a local basis. Initially launching as a pilot in 'a few key regions', the NERC is intended to provide an in-house method for those working for NanoTrasen to 'address grievances and provide valuable input without resorting to radical means'.\
+	<br><br>\
+	Vir is one of three size regions of varying scale but similar company presence selected for the pilot program, alongside the 'Deep Bowl' - including Stove, Viola and New Singapore, and 'South America', on Earth. Elections are expected to take place over the coming weeks, with each region electing representatives from core facilities in their locale. The Vir Branch will be expected to select five employees, one from each of; their New Reykjavik Head Office (Colloquially know as 'CentComm'), Karan colony the NCS Northern Star, Kalmar-based NMB Gullstrand medical research center, Sivian way-station NLS Southern Cross, and the company's sprawling Ekmanshalvo Fabrication Plant.\
+	<br><br>\
+	The Representation Committee is set to have quite significant powers over their region's day-to-day operations, ranging from Standard Operation Procedure, to security enforcement, to interior design."
+
+/datum/lore/codex/page/article99
+	name = "02/06/65 - Calvert Moravec Dead At 58, Announces Withdrawal From Public Life"
+	data = "Just over a month since his injury in a brazen assassination attempt, NanoTrasen Vir's Chief Operations Officer Calvert Moravec has announced his 'temporary withdrawal' from public and corporate matters, in an inspiring speech given from his post-cloning recovery ward. The noted corporate executive passed away on Friday, following a long comatose period, but is expected to make a full recovery.\
+	<br><br>\
+	Mr. Moravec has stated that he believes a spell 'away from the public eye' will do wonders for his recovery, and 'expects to make a return some time in the coming years'. However, Moravec has reaffirmed that his stance on corporate policing, which is believed to have been the reason for the January bombing, remains unchanged; 'The refusal of Hedberg-Hammarstrom to allow our security teams to access government criminal records has been a significant hindrance to the investigation into my death. Allowing just one corporation exclusive access to this data is unequivocally wrong.'"
+
+/datum/lore/codex/page/article100
+	name = "02/08/65 - NERC Campaigning Begins in Vir"
+	data = "NanoTrasen's latest employee initiative, the NanoTrasen Employee Representation Committee is set to hold their first in-house election this coming weekend, after 'respectable' signup rates for the positions across all participating Vir-based facilities.\
+	<br><br>\
+	According to those interviewed at a few sites, campaigning may be mixed. One potential committee member for the Gullstrand Medical Center described the competition as 'cut-throat' with staff looking to be split between the selection of already respected chief medical experts, and 'more represenative' service staff. Conversely, one worker at the Ekmanshalvo Fabrication Plant complex stated that he 'would probably just vote for whoever I've heard of.'\
+	<br><br>\
+	Final voting will take place on Saturday the 13th of February, with results announced by the following Monday."
+
+/datum/lore/codex/page/article101
+	name = "02/11/65 - Top Astronomers Announce 'Alarming' Tachyon Downtick"
+	data = "The Galactic Survey Administration has today released a 'high priority' report on what is being described as a 'significant decline in core tachyon density' throughout the known galaxy. According to recent findings tachyon deterioration, which had previously been 'negligible' has undergone a 'rapid acceleration' which could begin to seriously affect interstellar transit in as soon as 30 to 50 years.\
+	<br><br>\
+	Tachyons are a naturally occurring particle present in varying density which form the primary mechanism for bluespace drive operation. In simple terms, the higher the density of tachyons, the more efficiently starship engines are capable of operating. Low-density regions such as the Rarkajar Rift have long posed a challenge to interstellar trade, and the expansion of such regions could prove devastating to galactic unity.\
+	<br><br>\
+	FTL industry leaders Focal Point Energistics have already announced 'immediate investigation' into the GSA's findings after taking a blow on the stock exchange, and have guaranteed a 'commitment to future-proofing' in all forthcoming products."
+
+/datum/lore/codex/page/article102
+	name = "02/15/65 - NanoTrasen Announces First NERC Members"
+	data = "Following Saturday's internal election, NanoTrasen Vir has elected the first five members for its new Employee Representation Committee. These individuals are expected to hold the position for one month:\
+	<br><br>\
+	For the New Reykjavik Head Office Iraluq James, a remote personnel operative, won the position on a platform of employee morale, team-building and employee-employer conflict resolution.\
+	<br><br>\
+	On the NCS Northern Star, NanoTrasen's main colony station in Vir Victoria Bell, a cybernetic chef and hardshell operator won her place with promises of increased regulatory transparency and clarity, including the publication of an in-house magazine.\
+	<br><br>\
+	At the NMB Gullstrand medical science center in Kalmar, a close race between top doctors was upset by the election of a station security commander, Wish Elara-Voight who promises 'improvements to the safety and security of NanoTrasen facilities with a focus on enforcing current SoP and CorpReg policies and placing new procedure in the handbooks.'\
+	<br><br>\
+	The waypoint station NLS Southern Cross selected a cybernetic Unathi candidate, researcher Dr. Haven Rasikl to represent them on the basis of encouraging interdepartmental cooperation and communication.\
+	<br><br>\
+	Finally, the Ekmanshalvo Fabrication Plant has selected fabrication programmer Terazon Norddahl, who promises to push for overhauls and modernization of the company's internal transport and support systems, including shuttle scheduling."
+
+/datum/lore/codex/page/article103
+	name = "03/10/65 - GSA Confirms Presence Of 'New' Deep-Space Threat"
+	data = "This morning the Galactic Survey Administration released confirmation that a previously unknown deep-space dwelling species was indeed responsible for the disappearance of five Extraplanar Discovery Division vessels early last year, three of which have returned adrift over the past several days. The species, colloquially dubbed the 'Bluespace Bugs' after initial reports from the recovered EDD ships, are believed to be capable of manipulating matter in a manner reminicent of experimental bluespace technology.\
+	<br><br>\
+	The three 'returning' vessels are said to have been 'significantly off-course', with their points of galactic re-entry differing vastly from their initial points of egress, and final programmed return routes. Each ship having departed on routes from Sol, the SCG-E Bungaree was reported adrift by Almach Protectorate officials close to the Vounna system, the SCG-E Ketumati severely damaged on a collision course with the Erebus star, in the Nyx system, and the SCG-E Mag Mell collided with the garden world of Sif, in Vir. The Gagarin and Xu Fu remain unaccounted for, but due to the proximity of final contact, their disappearance has also been ascribed to the 'bugs'.\
+	<br><br>\
+	Investigation of the recovered vessels each indicated signs of a brief struggle, always following reports of unexplained equipment disappearances and equipment failure. No crew, or crew remains have been found, with the exception of a single unidentified human thumb aboard the Bungaree.\
+	<br><br>\
+	Additionally, each ship has been identified as having undergone some degree of material alteration, with elements ranging from hull plating to crew belongings having taken on a crystaline form dubbed 'Magmellite' after the ship most thoroughly 'reconstructed'. It is unclear whether the mineral is somehow secreted by the alien species, or merely a product of the same environment.\
+	<br><br>\
+	GSA sources have stated that there is no current evidence that the insectoid creatures - identified only from scattered descriptions left from missing EDD personnel - are in any way sapient or malicious, and the lost vessels are thought to have merely disturbed a scattered array of endemic populations far from the galactic plane. Precisely why the species has only been encountered in the past year, and now all at once, is not yet known."

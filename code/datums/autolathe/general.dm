@@ -85,45 +85,6 @@
 	name = "welding mask"
 	path =/obj/item/clothing/head/welding
 
-/datum/category_item/autolathe/general/metal
-	name = "steel sheets"
-	path =/obj/item/stack/material/steel
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-
-/datum/category_item/autolathe/general/glass
-	name = "glass sheets"
-	path =/obj/item/stack/material/glass
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-
-/datum/category_item/autolathe/general/rglass
-	name = "reinforced glass sheets"
-	path =/obj/item/stack/material/glass/reinforced
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-
-/datum/category_item/autolathe/general/rods
-	name = "metal rods"
-	path =/obj/item/stack/rods
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-
-/datum/category_item/autolathe/general/plasteel
-	name = "plasteel sheets"
-	path =/obj/item/stack/material/plasteel
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-	resources = list(MAT_PLASTEEL = 2000)
-
-/datum/category_item/autolathe/general/plastic
-	name = "plastic sheets"
-	path =/obj/item/stack/material/plastic
-	is_stack = TRUE
-	no_scale = TRUE //prevents material duplication exploits
-	resources = list(MAT_PLASTIC = 2000)
-
-//TFF 24/12/19 - Let people print more spray bottles if needed.
 /datum/category_item/autolathe/general/spraybottle
 	name = "spray bottle"
 	path = /obj/item/weapon/reagent_containers/spray
@@ -161,7 +122,7 @@
 /datum/category_item/autolathe/general/idcard
 	name = "ID Card"
 	path = /obj/item/weapon/card/id
-	resources = list(DEFAULT_WALL_MATERIAL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
+	resources = list(MAT_STEEL = 100, MAT_GLASS = 100, MAT_PLASTIC = 300)
 	man_rating = 2
 
 /datum/category_item/autolathe/general/handcuffs

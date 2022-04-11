@@ -62,7 +62,7 @@
 		return TRUE
 	switch(action)
 		if("Edit")
-			var/n = input("Please enter message", name, notehtml) as message
+			var/n = input(usr, "Please enter message", name, notehtml) as message
 			if(pda.loc == usr)
 				note = adminscrub(n)
 				notehtml = html_decode(note)

@@ -80,8 +80,8 @@
 			potential_blobs -= temp // Don't take up the core's shield spot.
 		else if(!istype(temp, /obj/structure/blob/normal))
 			potential_blobs -= temp // Not a normal blob.
-		else if(temp.overmind != src)
-			potential_blobs -= temp // Not our blob.
+		else if(temp.overmind != src || temp.overmind.blob_type.faction != blob_type.faction)
+			potential_blobs -= temp // Not our blob, or even an ally.
 		else
 			B = temp
 			break
@@ -123,8 +123,8 @@
 			potential_blobs -= temp // Don't take up the core's shield spot.
 		else if(!istype(temp, /obj/structure/blob/normal))
 			potential_blobs -= temp // Not a normal blob.
-		else if(temp.overmind != src)
-			potential_blobs -= temp // Not our blob.
+		else if(temp.overmind != src || temp.overmind.blob_type.faction != blob_type.faction)
+			potential_blobs -= temp // Not our blob, or even an ally
 		else
 			B = temp
 			break
@@ -165,8 +165,8 @@
 			potential_blobs -= temp
 		else if(!istype(temp, /obj/structure/blob/normal))
 			potential_blobs -= temp
-		else if(temp.overmind != src)
-			potential_blobs -= temp // Not our blob.
+		else if(temp.overmind != src || temp.overmind.blob_type.faction != blob_type.faction)
+			potential_blobs -= temp // Not our blob, or even our ally.
 		else
 			B = temp
 			break
@@ -216,7 +216,7 @@
 	for(var/mob/living/L in view(src))
 		if(L.stat == DEAD)
 			continue // Already dying or dead.
-		if(L.faction == "blob")
+		if(L.faction == blob_type.faction)
 			continue // No friendly fire.
 		if(locate(/obj/structure/blob) in L.loc)
 			continue // Already has a blob over them.

@@ -78,26 +78,26 @@
 		if (extra_classes)
 			classes += extra_classes
 
-		.["class"] = input(src, "What kind of data?", "Variable Type", default_class) as null|anything in classes
+		.["class"] = tgui_input_list(src, "What kind of data?", "Variable Type", classes, default_class)
 		if (holder && holder.marked_datum && .["class"] == "[VV_MARKED_DATUM] ([holder.marked_datum.type])")
 			.["class"] = VV_MARKED_DATUM
 
 
 	switch(.["class"])
 		if (VV_TEXT)
-			.["value"] = input("Enter new text:", "Text", current_value) as null|text
+			.["value"] = input(usr, "Enter new text:", "Text", current_value) as null|text
 			if (.["value"] == null)
 				.["class"] = null
 				return
 		if (VV_MESSAGE)
-			.["value"] = input("Enter new text:", "Text", current_value) as null|message
+			.["value"] = input(usr, "Enter new text:", "Text", current_value) as null|message
 			if (.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if (VV_NUM)
-			.["value"] = input("Enter new number:", "Num", current_value) as null|num
+			.["value"] = input(usr, "Enter new number:", "Num", current_value) as null|num
 			if (.["value"] == null)
 				.["class"] = null
 				return
@@ -124,7 +124,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input(usr, "Enter type:[error]", "Type", type) as null|text
 				if (!type)
 					break
 				type = text2path(type)
@@ -143,7 +143,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = tgui_input_list(usr, "Select reference:", "Reference", things, current_value)
 			if (!value)
 				.["class"] = null
 				return
@@ -156,7 +156,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = tgui_input_list(usr, "Select reference:", "Reference", things, current_value)
 			if (!value)
 				.["class"] = null
 				return
@@ -169,7 +169,7 @@
 				.["class"] = null
 				return
 			var/list/things = vv_reference_list(type, subtypes)
-			var/value = input("Select reference:", "Reference", current_value) as null|anything in things
+			var/value = tgui_input_list(usr, "Select reference:", "Reference", things, current_value)
 			if (!value)
 				.["class"] = null
 				return
@@ -178,21 +178,21 @@
 
 
 		if (VV_CLIENT)
-			.["value"] = input("Select reference:", "Reference", current_value) as null|anything in GLOB.clients
+			.["value"] = tgui_input_list(usr, "Select reference:", "Reference", GLOB.clients, current_value)
 			if (.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if (VV_FILE)
-			.["value"] = input("Pick file:", "File") as null|file
+			.["value"] = input(usr, "Pick file:", "File") as null|file
 			if (.["value"] == null)
 				.["class"] = null
 				return
 
 
 		if (VV_ICON)
-			.["value"] = input("Pick icon:", "Icon") as null|icon
+			.["value"] = input(usr, "Pick icon:", "Icon") as null|icon
 			if (.["value"] == null)
 				.["class"] = null
 				return
@@ -229,7 +229,7 @@
 			var/type = current_value
 			var/error = ""
 			do
-				type = input("Enter type:[error]", "Type", type) as null|text
+				type = input(usr, "Enter type:[error]", "Type", type) as null|text
 				if (!type)
 					break
 				type = text2path(type)

@@ -82,10 +82,8 @@
 		player_setup.load_character(S)
 		S.cd = "/character[default_slot]"
 		player_setup.save_character(S)
-		sanitize_preferences()
 
-	player_setup.load_character(S)
-	clear_character_previews() // Recalculate them on next show
+	clear_character_previews() // VOREStation Edit
 	return 1
 
 /datum/preferences/proc/save_character()

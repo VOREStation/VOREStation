@@ -52,7 +52,7 @@
 
 		//determine icon state to use
 		var/t_state
-		if(r_hand.item_state_slots && r_hand.item_state_slots[slot_r_hand_str])
+		if(LAZYACCESS(r_hand.item_state_slots, slot_r_hand_str))
 			t_state = r_hand.item_state_slots[slot_r_hand_str]
 		else if(r_hand.item_state)
 			t_state = r_hand.item_state
@@ -61,7 +61,7 @@
 
 		//determine icon to use
 		var/icon/t_icon
-		if(r_hand.item_icons && (slot_r_hand_str in r_hand.item_icons))
+		if(LAZYACCESS(r_hand.item_icons, slot_r_hand_str))
 			t_icon = r_hand.item_icons[slot_r_hand_str]
 		else if(r_hand.icon_override)
 			t_state += "_r"
@@ -89,7 +89,7 @@
 
 		//determine icon state to use
 		var/t_state
-		if(l_hand.item_state_slots && l_hand.item_state_slots[slot_l_hand_str])
+		if(LAZYACCESS(l_hand.item_state_slots, slot_l_hand_str))
 			t_state = l_hand.item_state_slots[slot_l_hand_str]
 		else if(l_hand.item_state)
 			t_state = l_hand.item_state
@@ -98,7 +98,7 @@
 
 		//determine icon to use
 		var/icon/t_icon
-		if(l_hand.item_icons && (slot_l_hand_str in l_hand.item_icons))
+		if(LAZYACCESS(l_hand.item_icons, slot_l_hand_str))
 			t_icon = l_hand.item_icons[slot_l_hand_str]
 		else if(l_hand.icon_override)
 			t_state += "_l"
@@ -134,13 +134,6 @@
 			display_name = "object"
 		to_chat(src, "<span class='danger'>Your [hand_form] are not fit for use of \the [display_name].</span>")
 	return humanoid_hands
-
-/mob/living/simple_mob/drop_from_inventory(var/obj/item/W, var/atom/target = null)
-	. = ..(W, target)
-	if(!target)
-		target = src.loc
-	if(.)
-		W.forceMove(src.loc)
 
 /mob/living/simple_mob/is_holding_item_of_type(typepath)
 	for(var/obj/item/I in list(l_hand, r_hand))

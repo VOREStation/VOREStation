@@ -22,8 +22,7 @@
 		if(cartridge)
 			prog_list |= cartridge.programs
 
-		for(var/A in prog_list)
-			var/datum/data/pda/P = A
+		for(var/datum/data/pda/P as anything in prog_list)
 
 			if(P.hidden)
 				continue

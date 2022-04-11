@@ -1,7 +1,7 @@
 var/list/mob_hat_cache = list()
 /proc/get_hat_icon(var/obj/item/hat, var/offset_x = 0, var/offset_y = 0)
 	var/t_state = hat.icon_state
-	if(hat.item_state_slots && hat.item_state_slots[slot_head_str])
+	if(LAZYACCESS(hat.item_state_slots, slot_head_str))
 		t_state = hat.item_state_slots[slot_head_str]
 	else if(hat.item_state)
 		t_state = hat.item_state
@@ -10,7 +10,7 @@ var/list/mob_hat_cache = list()
 		var/t_icon = INV_HEAD_DEF_ICON // are unique across multiple dmis, but whatever.
 		if(hat.icon_override)
 			t_icon = hat.icon_override
-		else if(hat.item_icons && (slot_head_str in hat.item_icons))
+		else if(LAZYACCESS(hat.item_icons, slot_head_str))
 			t_icon = hat.item_icons[slot_head_str]
 		var/image/I = image(icon = t_icon, icon_state = t_state)
 		I.pixel_x = offset_x
@@ -32,7 +32,7 @@ var/list/mob_hat_cache = list()
 	pass_flags = PASSTABLE
 	braintype = "Drone"
 	lawupdate = 0
-	density = 1
+	density = TRUE
 	req_access = list(access_engine, access_robotics)
 	integrated_light_power = 3
 	local_transmit = 1
@@ -40,7 +40,8 @@ var/list/mob_hat_cache = list()
 	can_pull_size = ITEMSIZE_NO_CONTAINER
 	can_pull_mobs = MOB_PULL_SMALLER
 	can_enter_vent_with = list(
-		/obj)
+		/obj,
+		/atom/movable/emissive_blocker)
 
 	mob_bump_flag = SIMPLE_ANIMAL
 	mob_swap_flags = SIMPLE_ANIMAL
@@ -66,6 +67,11 @@ var/list/mob_hat_cache = list()
 
 	can_be_antagged = FALSE
 
+	var/static/list/shell_types = list("Classic" = "repairbot", "Eris" = "maintbot")
+	var/can_pick_shell = TRUE
+	var/list/shell_accessories
+	var/can_blitz = FALSE
+
 /mob/living/silicon/robot/drone/Destroy()
 	if(hat)
 		hat.loc = get_turf(src)
@@ -82,6 +88,8 @@ var/list/mob_hat_cache = list()
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
+	can_pick_shell = FALSE
+	shell_accessories = list("eyes-constructiondrone")
 
 /mob/living/silicon/robot/drone/mining
 	icon_state = "miningdrone"
@@ -91,9 +99,10 @@ var/list/mob_hat_cache = list()
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
+	can_pick_shell = FALSE
+	shell_accessories = list("eyes-miningdrone")
 
 /mob/living/silicon/robot/drone/New()
-
 	..()
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -115,6 +124,12 @@ var/list/mob_hat_cache = list()
 		C.max_damage = 10
 
 	verbs -= /mob/living/silicon/robot/verb/Namepick
+	
+	if(can_pick_shell)
+		var/random = pick(shell_types)
+		icon_state = shell_types[random]
+		shell_accessories = list("[icon_state]-eyes-blue")
+	
 	updateicon()
 	updatename()
 
@@ -127,6 +142,11 @@ var/list/mob_hat_cache = list()
 
 	flavor_text = "It's a tiny little repair drone. The casing is stamped with an corporate logo and the subscript: '[using_map.company_name] Recursive Repair Systems: Fixing Tomorrow's Problem, Today!'"
 	playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
+
+/mob/living/silicon/robot/drone/Login()
+	. = ..()
+	if(can_pick_shell)
+		to_chat(src, "<b>You can select a shell using the 'Robot Commands' > 'Customize Appearance'</b>")
 
 //Redefining some robot procs...
 /mob/living/silicon/robot/drone/SetName(pickedName as text)
@@ -142,14 +162,46 @@ var/list/mob_hat_cache = list()
 	name = real_name
 
 /mob/living/silicon/robot/drone/updateicon()
+	cut_overlays()
 
-	overlays.Cut()
-	if(stat == 0)
-		overlays += "eyes-[icon_state]"
-	else
-		overlays -= "eyes"
+	if(islist(shell_accessories))
+		add_overlay(shell_accessories)
+
 	if(hat) // Let the drones wear hats.
-		overlays |= get_hat_icon(hat, hat_x_offset, hat_y_offset)
+		add_overlay(get_hat_icon(hat, hat_x_offset, hat_y_offset))
+
+/mob/living/silicon/robot/drone/verb/pick_shell()
+	set name = "Customize Appearance"
+	set category = "Robot Commands"
+
+	if(!can_pick_shell)
+		to_chat(src, "<span class='warning'>You already selected a shell or this drone type isn't customizable.</span>")
+		return
+	
+	var/list/choices = shell_types.Copy()
+	
+	if(can_blitz)
+		choices["Blitz"] = "blitzshell"
+
+	var/shell_choice = tgui_input_list(src, "Select a shell. NOTE: You can only do this once during this drone-lifetime.", "Customize Shell", choices)
+	if(!shell_choice)
+		return
+
+	icon_state = choices[shell_choice]
+
+	// If you add more, datumize these. Having 'basically two' is not enough to make me bother though.
+	shell_accessories = null
+	if(icon_state in list("repairbot", "maintbot"))
+		var/eye_color = tgui_input_list(src, "Select eye color:", "Eye Color", list("blue", "red", "orange", "green", "violet"))
+		if(eye_color)
+			LAZYADD(shell_accessories, "[icon_state]-eyes-[eye_color]")
+		if(icon_state == "maintbot")
+			var/armor_color = tgui_input_list(src, "Select plating color:", "Eye Color", list("blue", "red", "orange", "green", "brown"))
+			if(armor_color)
+				LAZYADD(shell_accessories, "[icon_state]-shell-[armor_color]")
+	
+	can_pick_shell = FALSE
+	updateicon()
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return
@@ -173,7 +225,7 @@ var/list/mob_hat_cache = list()
 			return
 		user.unEquip(W)
 		wear_hat(W)
-		user.visible_message("<span class='notice'>\The [user] puts \the [W] on \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> puts \the [W] on \the [src].")
 		return
 	else if(istype(W, /obj/item/borg/upgrade/))
 		to_chat(user, "<span class='danger'>\The [src] is not compatible with \the [W].</span>")
@@ -314,7 +366,7 @@ var/list/mob_hat_cache = list()
 /mob/living/silicon/robot/drone/proc/question(var/client/C)
 	spawn(0)
 		if(!C || jobban_isbanned(C,"Cyborg"))	return
-		var/response = alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", "Yes", "No", "Never for this round")
+		var/response = tgui_alert(C, "Someone is attempting to reboot a maintenance drone. Would you like to play as one?", "Maintenance drone reboot", list("Yes", "No", "Never for this round"))
 		if(!C || ckey)
 			return
 		if(response == "Yes")

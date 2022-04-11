@@ -10,7 +10,7 @@ var/list/sounds_cache = list()
 
 	sounds_cache += S
 
-	if(alert("Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request" ,"Play", "Cancel") == "Cancel")
+	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) == "Cancel")
 		return
 
 	log_admin("[key_name(src)] played sound [S]")
@@ -31,6 +31,27 @@ var/list/sounds_cache = list()
 	playsound(src.mob, S, 50, 0, 0)
 	feedback_add_details("admin_verb","PLS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/proc/play_z_sound(S as sound)
+	set category = "Fun"
+	set name = "Play Z Sound"
+	if(!check_rights(R_SOUNDS))	return
+	var/target_z = mob.z
+	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
+	uploaded_sound.priority = 250
+
+	sounds_cache += S
+
+	if(tgui_alert(usr, "Do you ready?\nSong: [S]\nNow you can also play this sound using \"Play Server Sound\".", "Confirmation request", list("Play","Cancel")) == "Cancel")
+		return
+
+	log_admin("[key_name(src)] played sound [S] on Z[target_z]")
+	message_admins("[key_name_admin(src)] played sound [S] on Z[target_z]", 1)
+	for(var/mob/M in player_list)
+		if(M.is_preference_enabled(/datum/client_preference/play_admin_midis) && M.z == target_z)
+			M << uploaded_sound
+
+	feedback_add_details("admin_verb","PZS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /client/proc/play_server_sound()
 	set category = "Fun"
@@ -41,7 +62,7 @@ var/list/sounds_cache = list()
 	sounds += "--CANCEL--"
 	sounds += sounds_cache
 
-	var/melody = input("Select a sound from the server to play", "Server sound list", "--CANCEL--") in sounds
+	var/melody = tgui_input_list(usr, "Select a sound from the server to play", "Server sound list", sounds, "--CANCEL--")
 
 	if(melody == "--CANCEL--")	return
 
@@ -76,7 +97,7 @@ var/list/sounds_cache = list()
 				M << 'bananaphone.ogg'
 
 
-client/proc/space_asshole()
+/client/proc/space_asshole()
 	set category = "Fun"
 	set name = "Space Asshole"
 
@@ -87,7 +108,7 @@ client/proc/space_asshole()
 				M << 'sound/music/space_asshole.ogg'
 
 
-client/proc/honk_theme()
+/client/proc/honk_theme()
 	set category = "Fun"
 	set name = "Honk"
 

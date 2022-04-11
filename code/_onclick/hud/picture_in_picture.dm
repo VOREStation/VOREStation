@@ -139,7 +139,7 @@
 
 	y_off = -height * world.icon_size - 16
 
-	overlays.Cut()
+	cut_overlays()
 	add_background()
 	add_buttons()
 	if(do_refresh)

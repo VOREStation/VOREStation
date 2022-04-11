@@ -14,6 +14,7 @@
 	attack_message = "The tide tries to swallow you"
 	attack_message_living = ", and you feel your skin dissolve"
 	attack_message_synth = ", and your external plating dissolves"
+	faction = "nanomachines"
 
 /datum/blob_type/grey_goo/on_emp(obj/structure/blob/B, severity)
 	B.adjust_integrity(-(20 / severity))

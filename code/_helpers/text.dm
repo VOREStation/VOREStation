@@ -319,7 +319,7 @@
 
 //Used in preferences' SetFlavorText and human's set_flavor verb
 //Previews a string of len or less length
-proc/TextPreview(var/string,var/len=40)
+/proc/TextPreview(var/string,var/len=40)
 	if(length(string) <= len)
 		if(!length(string))
 			return "\[...\]"
@@ -507,3 +507,23 @@ proc/TextPreview(var/string,var/len=40)
 	var/charcount = count - length_char(text)
 	var/list/chars_to_add[max(charcount + 1, 0)]
 	return text + jointext(chars_to_add, char)
+
+//Readds quotes and apostrophes to HTML-encoded strings
+/proc/readd_quotes(var/t)
+	var/list/repl_chars = list("&#34;" = "\"","&#39;" = "'")
+	for(var/char in repl_chars)
+		var/index = findtext(t, char)
+		while(index)
+			t = copytext(t, 1, index) + repl_chars[char] + copytext(t, index+5)
+			index = findtext(t, char)
+	return t
+
+// Rips out paper HTML but tries to keep it semi-readable.
+/proc/paper_html_to_plaintext(paper_text)
+	paper_text = replacetext(paper_text, "<hr>", "-----")
+	paper_text = replacetext(paper_text, "<li>", "- ") // This makes ordered lists turn into unordered but fixing that is too much effort.
+	paper_text = replacetext(paper_text, "</li>", "\n")
+	paper_text = replacetext(paper_text, "<p>", "\n")
+	paper_text = replacetext(paper_text, "<br>", "\n")
+	paper_text = strip_html_properly(paper_text) // Get rid of everything else entirely.
+	return paper_text

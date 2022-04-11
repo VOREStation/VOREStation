@@ -101,8 +101,8 @@
 "o" = (
 /obj/structure/bed/chair/comfy/black,
 /obj/structure/window/reinforced/survival_pod{
-	icon_state = "pwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "pwindow"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
@@ -144,8 +144,8 @@
 	pixel_y = -2
 	},
 /obj/structure/window/reinforced/survival_pod{
-	icon_state = "pwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "pwindow"
 	},
 /obj/structure/table/steel{
 	pixel_y = -9
@@ -154,15 +154,15 @@
 /area/survivalpod)
 "u" = (
 /obj/machinery/door/window/survival_pod{
-	icon_state = "windoor";
-	dir = 1
+	dir = 1;
+	icon_state = "windoor"
 	},
 /turf/simulated/floor/carpet/bcarpet,
 /area/survivalpod)
 "v" = (
 /obj/structure/window/reinforced/survival_pod{
-	icon_state = "pwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "pwindow"
 	},
 /obj/machinery/holoplant,
 /turf/simulated/floor/carpet/bcarpet,
@@ -177,8 +177,7 @@
 /area/survivalpod)
 "y" = (
 /obj/structure/sink/kitchen{
-	icon_state = "sink_alt";
-	dir = 4;
+	dir = 8;
 	pixel_x = -13
 	},
 /turf/simulated/floor/carpet/bcarpet,

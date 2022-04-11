@@ -34,6 +34,7 @@
 	abstract = 1
 	item_state = "nothing"
 	w_class = ITEMSIZE_HUGE
+	destroy_on_drop = TRUE	//VOREStation Edit
 
 
 /obj/item/weapon/grab/New(mob/user, mob/victim)
@@ -177,8 +178,9 @@
 		//VOREStation Edit
 		if(BP_HEAD)
 			if(force_down)
-				if(announce)
-					assailant.visible_message("<span class='warning'>[assailant] sits on [target]'s face!</span>")
+				if(user.a_intent == I_HELP)
+					if(announce)
+						assailant.visible_message("<span class='warning'>[assailant] sits on [target]'s face!</span>")
 		//VOREStation Edit End
 
 /obj/item/weapon/grab/attack_self()

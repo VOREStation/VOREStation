@@ -62,7 +62,7 @@
 
 //TODO: Make inflating gloves a thing
 /*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/carbon/human/user)
-	user.visible_message("<span class='notice'>\The [src] expands!</span>")
+	user.visible_message("<b>\The [src]</b> expands!")
 	qdel(src)*/
 
 /obj/item/clothing/gloves/sterile/latex
@@ -125,7 +125,7 @@
 	name = "knuckle dusters"
 	desc = "A pair of brass knuckles. Generally used to enhance the user's punches."
 	icon_state = "knuckledusters"
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 	attack_verb = list("punched", "beaten", "struck")
 	flags = THICKMATERIAL	// Stops rings from increasing hit strength
 	siemens_coefficient = 1
@@ -167,3 +167,10 @@
 
 /obj/item/clothing/gloves/ranger/yellow
 	glovecolor = "yellow"
+
+/obj/item/clothing/gloves/waterwings
+	name = "water wings"
+	desc = "Swim aids designed to help a wearer float in water and learn to swim."
+	icon_state = "waterwings"
+
+

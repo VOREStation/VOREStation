@@ -7,14 +7,14 @@
 	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency. It comes in a variety of configurations - collect them all!"
 	icon = 'icons/obj/tools_vr.dmi'
 	icon_state = "prybar"
+	item_state = "crowbar"
 	slot_flags = SLOT_BELT
 	force = 4
 	throwforce = 5
 	pry = 1
-	item_state = "crowbar"
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 30)
+	matter = list(MAT_STEEL = 30)
 	attack_verb = list("whapped", "smacked", "swatted", "thwacked", "hit")
 	usesound = 'sound/items/crowbar.ogg'
 	toolspeed = 1

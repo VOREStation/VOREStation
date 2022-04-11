@@ -3,7 +3,7 @@
 	set name = "Show Air Report"
 
 	if(!master_controller || !air_master)
-		alert(usr,"Master_controller or air_master not found.","Air Report")
+		tgui_alert_async(usr,"Master_controller or air_master not found.","Air Report")
 		return
 
 	var/active_groups = air_master.active_zones
@@ -17,7 +17,7 @@
 	var/inactive_on_main_station = 0
 	for(var/zone/zone in air_master.zones)
 		var/turf/simulated/turf = locate() in zone.contents
-		if(turf && turf.z in using_map.station_levels)
+		if(turf?.z in using_map.station_levels)
 			if(zone.needs_update)
 				active_on_main_station++
 			else
@@ -79,7 +79,7 @@
 	var/output = "<b>Radio Report</b><hr>"
 	for (var/fq in radio_controller.frequencies)
 		output += "<b>Freq: [fq]</b><br>"
-		var/list/datum/radio_frequency/fqs = radio_controller.frequencies[fq]
+		var/datum/radio_frequency/fqs = radio_controller.frequencies[fq]
 		if (!fqs)
 			output += "&nbsp;&nbsp;<b>ERROR</b><br>"
 			continue
@@ -177,7 +177,7 @@
 	set desc = "This searches all the active jobban entries for the current round and outputs the results to standard output."
 	set category = "Debug"
 
-	var/job_filter = input("Contains what?","Job Filter") as text|null
+	var/job_filter = input(usr, "Contains what?","Job Filter") as text|null
 	if(!job_filter)
 		return
 

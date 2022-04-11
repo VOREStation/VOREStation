@@ -22,6 +22,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 /obj/structure/blob/Initialize(newloc, new_overmind)
 	if(new_overmind)
 		overmind = new_overmind
+		faction = overmind.blob_type.faction
 	update_icon()
 	if(!integrity)
 		integrity = max_integrity
@@ -47,19 +48,24 @@ GLOBAL_LIST_EMPTY(all_blobs)
 		color = null
 		set_light(0)
 
+/obj/structure/blob/update_transform()
+	var/matrix/M = matrix()
+	M.Scale(icon_scale_x, icon_scale_y)
+	animate(src, transform = M, time = 10)
+
 // Blob tiles are not actually dense so we need Special Code(tm).
 /obj/structure/blob/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSBLOB))
 		return TRUE
 	else if(istype(mover, /mob/living))
 		var/mob/living/L = mover
-		if(L.faction == "blob")
+		if(L.faction == faction)
 			return TRUE
 	else if(istype(mover, /obj/item/projectile))
 		var/obj/item/projectile/P = mover
 		if(istype(P.firer, /obj/structure/blob))
 			return TRUE
-		if(istype(P.firer) && P.firer.faction == "blob")
+		if(istype(P.firer) && P.firer.faction == faction)
 			return TRUE
 	return FALSE
 
@@ -88,6 +94,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 		update_icon()
 		pulse_timestamp = world.time + 1 SECOND
 		if(overmind)
+			faction = overmind.blob_type.faction
 			overmind.blob_type.on_pulse(src)
 		return TRUE //we did it, we were pulsed!
 	return FALSE //oh no we failed
@@ -104,8 +111,10 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 	shuffle_inplace(blobs_to_affect)
 
-	for(var/L in blobs_to_affect)
-		var/obj/structure/blob/B = L
+	for(var/obj/structure/blob/B as anything in blobs_to_affect)
+		if(B.faction != faction)
+			continue
+
 		if(!B.overmind && !istype(B, /obj/structure/blob/core) && prob(30))
 			B.overmind = pulsing_overmind //reclaim unclaimed, non-core blobs.
 			B.update_icon()
@@ -138,7 +147,8 @@ GLOBAL_LIST_EMPTY(all_blobs)
 			var/dirn = pick(dirs)
 			dirs.Remove(dirn)
 			T = get_step(src, dirn)
-			if(!(locate(/obj/structure/blob) in T))
+			var/obj/structure/blob/B = locate(/obj/structure/blob) in T
+			if(!B || B.faction != faction)	// Allow opposing blobs to fight.
 				break
 			else
 				T = null
@@ -164,6 +174,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 	if(make_blob) //well, can we?
 		var/obj/structure/blob/B = new /obj/structure/blob/normal(src.loc)
+		B.faction = faction
 		if(controller)
 			B.overmind = controller
 		else
@@ -340,7 +351,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 	if(!P)
 		return
 
-	if(istype(P.firer) && P.firer.faction == "blob")
+	if(istype(P.firer) && P.firer.faction == faction)
 		return
 
 	var/damage = P.get_structure_damage() // So tasers don't hurt the blob.
@@ -365,6 +376,31 @@ GLOBAL_LIST_EMPTY(all_blobs)
 /obj/structure/blob/water_act(amount)
 	if(overmind)
 		overmind.blob_type.on_water(src, amount)
+
+/obj/structure/blob/blob_act(var/obj/structure/blob/B)
+	. = ..()
+
+	if(B)
+
+		if(!B.overmind)
+			return
+
+		if(B.faction != faction)
+			var/damage = rand(B.overmind.blob_type.damage_lower, B.overmind.blob_type.damage_upper)
+			var/inc_damage_type = B.overmind.blob_type.damage_type
+
+			if(overmind)
+				damage = overmind.blob_type.on_received_damage(src, damage, inc_damage_type, B)
+
+			else
+				faction = B.faction
+				overmind = B.overmind
+				update_icon()
+				return
+
+			adjust_integrity(-1 * damage)
+
+	return
 
 /obj/structure/blob/proc/adjust_integrity(amount)
 	integrity = between(0, integrity + amount, max_integrity)

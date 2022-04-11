@@ -1,26 +1,58 @@
 /obj/structure/bed/chair/wheelchair
 	name = "wheelchair"
 	desc = "You sit in this. Either by will or force."
+	icon = 'icons/obj/wheelchair.dmi'
 	icon_state = "wheelchair"
-	anchored = 0
+	anchored = FALSE
 	buckle_movable = 1
 
+	var/folded_type = /obj/item/wheelchair
 	var/driving = 0
 	var/mob/living/pulling = null
 	var/bloodiness
+	var/min_mob_buckle_size = MOB_SMALL
+	var/max_mob_buckle_size = MOB_LARGE
+
+/obj/structure/bed/chair/wheelchair/Initialize()
+	. = ..()
+	update_icon()
+
+/obj/structure/bed/chair/wheelchair/motor
+	name = "electric wheelchair"
+	desc = "A motorized wheelchair controlled with a joystick on one armrest"
+	icon_state = "motorchair"
+	folded_type = /obj/item/wheelchair/motor
+
+/obj/structure/bed/chair/wheelchair/smallmotor
+	name = "small electric wheelchair"
+	desc = "A small motorized wheelchair, it looks around the right size for a Teshari"
+	icon_state = "teshchair"
+	min_mob_buckle_size = MOB_SMALL
+	max_mob_buckle_size = MOB_MEDIUM
+	folded_type = /obj/item/wheelchair/motor/small
+
+/obj/structure/bed/chair/wheelchair/can_buckle_check(mob/living/M, forced = FALSE)
+	. = ..()
+	if(.)
+		if(M.mob_size < min_mob_buckle_size)
+			to_chat(M, SPAN_WARNING("You are too small to use \the [src]."))
+			. = FALSE
+		else if(M.mob_size >= max_mob_buckle_size)
+			to_chat(M, SPAN_WARNING("You are too large to use \the [src]."))
+			. = FALSE
 
 /obj/structure/bed/chair/wheelchair/update_icon()
-	return
+	cut_overlays()
+	var/image/O = image(icon = icon, icon_state = "[icon_state]_overlay", layer = ABOVE_MOB_LAYER)
+	O.plane = MOB_PLANE
+	add_overlay(O)
 
 /obj/structure/bed/chair/wheelchair/set_dir()
-	..()
-	cut_overlays()
-	var/image/O = image(icon = 'icons/obj/furniture.dmi', icon_state = "w_overlay", layer = FLY_LAYER, dir = src.dir)
-	add_overlay(O)
-	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
-			L.set_dir(dir)
+	. = ..()
+	if(.)
+		if(has_buckled_mobs())
+			for(var/mob/living/L as anything in buckled_mobs)
+				L.set_dir(dir)
 
 /obj/structure/bed/chair/wheelchair/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.is_wrench() || W.is_wirecutter() || istype(W,/obj/item/stack))
@@ -35,7 +67,7 @@
 			user.pulledby = null
 			to_chat(user, "<span class='warning'>You lost your grip!</span>")
 		return
-	if(has_buckled_mobs() && pulling && user in buckled_mobs)
+	if(has_buckled_mobs() && pulling && (user in buckled_mobs))
 		if(pulling.stat || pulling.stunned || pulling.weakened || pulling.paralysis || pulling.lying || pulling.restrained())
 			pulling.pulledby = null
 			pulling = null
@@ -62,8 +94,7 @@
 	var/turf/T = null
 	//--1---Move occupant---1--//
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/L = A
+		for(var/mob/living/L as anything in buckled_mobs)
 			L.buckled = null
 			step(L, direction)
 			L.buckled = src
@@ -93,12 +124,9 @@
 
 /obj/structure/bed/chair/wheelchair/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-	
-	cut_overlays()
 	playsound(src, 'sound/effects/roll.ogg', 75, 1)
 	if(has_buckled_mobs())
-		for(var/A in buckled_mobs)
-			var/mob/living/occupant = A
+		for(var/mob/living/occupant as anything in buckled_mobs)
 			if(!driving)
 				occupant.buckled = null
 				occupant.Move(src.loc)
@@ -130,7 +158,7 @@
 /obj/structure/bed/chair/wheelchair/CtrlClick(var/mob/user)
 	if(in_range(src, user))
 		if(!ishuman(user))	return
-		if(has_buckled_mobs() && user in buckled_mobs)
+		if(has_buckled_mobs() && (user in buckled_mobs))
 			to_chat(user, "<span class='warning'>You realize you are unable to push the wheelchair you sit in.</span>")
 			return
 		if(!pulling)
@@ -203,28 +231,13 @@
 		usr.pulledby = null
 	..()
 
-/obj/item/wheelchair
-	name = "wheelchair"
-	desc = "A folded wheelchair that can be carried around."
-	icon = 'icons/obj/furniture.dmi'
-	icon_state = "wheelchair_folded"
-	item_state = "wheelchair"
-	w_class = ITEMSIZE_HUGE // Can't be put in backpacks. Oh well.
-
-/obj/item/wheelchair/attack_self(mob/user)
-		var/obj/structure/bed/chair/wheelchair/R = new /obj/structure/bed/chair/wheelchair(user.loc)
-		R.add_fingerprint(user)
-		R.name = src.name
-		R.color = src.color
-		qdel(src)
-
 /obj/structure/bed/chair/wheelchair/MouseDrop(over_object, src_location, over_location)
 	..()
 	if((over_object == usr && (in_range(src, usr) || usr.contents.Find(src))))
 		if(!ishuman(usr))	return
 		if(has_buckled_mobs())	return 0
 		visible_message("[usr] collapses \the [src.name].")
-		var/obj/item/wheelchair/R = new/obj/item/wheelchair(get_turf(src))
+		var/obj/item/wheelchair/R = new folded_type(get_turf(src))
 		R.name = src.name
 		R.color = src.color
 		spawn(0)

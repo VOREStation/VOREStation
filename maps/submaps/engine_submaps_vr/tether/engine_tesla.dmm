@@ -122,6 +122,7 @@
 /obj/structure/cable/cyan,
 /obj/machinery/power/emitter{
 	anchored = 1;
+	icon_state = "emitter1";
 	state = 1
 	},
 /turf/simulated/floor/airless,
@@ -454,6 +455,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/structure/cable/cyan{
@@ -816,6 +818,7 @@
 /obj/machinery/power/apc{
 	dir = 4;
 	name = "east bump";
+	nightshift_setting = 2;
 	pixel_x = 28
 	},
 /obj/machinery/light_switch{
@@ -1630,6 +1633,7 @@
 /obj/machinery/power/emitter{
 	anchored = 1;
 	dir = 1;
+	icon_state = "emitter1";
 	state = 1
 	},
 /turf/simulated/floor/airless,

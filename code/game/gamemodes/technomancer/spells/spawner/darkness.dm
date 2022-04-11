@@ -28,3 +28,4 @@
 	invisibility = 101
 	light_range = 6
 	light_power = -20
+	light_on = TRUE

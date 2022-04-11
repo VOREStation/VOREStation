@@ -11,9 +11,9 @@
 
 	log_adminsay(msg,src)
 
-	//VOREStation Edit Start - Adds R_EVENT
+	//VOREStation Edit Start - Adds R_STEALTH
 	for(var/client/C in GLOB.admins)
-		if(check_rights(R_ADMIN|R_EVENT))
+		if(check_rights(R_ADMIN|R_STEALTH))
 			to_chat(C, "<span class='admin_channel'>" + create_text_tag("admin", "ADMIN:", C) + " <span class='name'>[key_name(usr, 1)]</span>([admin_jump_link(mob, src)]): <span class='message'>[msg]</span></span>")
 	//VOREStation Edit End
 
@@ -24,7 +24,7 @@
 	set name = "Msay"
 	set hidden = 1
 
-	if(!check_rights(R_ADMIN|R_MOD|R_SERVER|R_EVENT)) //VOREStation Edit
+	if(!check_rights(R_ADMIN|R_MOD|R_SERVER|R_STEALTH)) //VOREStation Edit
 		return
 
 	msg = sanitize(msg)
@@ -47,7 +47,7 @@
 	set name = "Esay"
 	set hidden = 1
 
-	if(!check_rights(R_ADMIN|R_MOD|R_EVENT|R_SERVER|R_EVENT))
+	if(!check_rights(R_ADMIN|R_MOD|R_EVENT|R_SERVER|R_STEALTH)) //VOREStation Edit
 		return
 
 	msg = sanitize(msg)

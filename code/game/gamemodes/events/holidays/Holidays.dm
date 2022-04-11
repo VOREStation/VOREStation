@@ -127,7 +127,7 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 		if(8)	//Aug
 			switch(DD)
 //				if(10)
-//					Holiday["S'randarr's Day"] = "A Tajaran holiday that occurs on the longest day of the year in summer, \
+//					Holiday["S'randarr's Day"] = "A Tajaran holiday that occurs on the longest day of the year in summer,
 //					on Ahdomai. It is named after the Tajaran deity of Light, and huge celebrations are common."
 //VOREStation Add - Of course we need this.
 				if(8)
@@ -167,8 +167,8 @@ var/global/list/Holiday = list() //Holidays are lists now, so we can have more t
 					Holiday["Kindness Day"] = "Kindness Day is an unofficial holiday to highlight good deeds in the \
 					community, focusing on the positive power and the common thread of kindness which binds humanity and \
 					friends together."
-//				if(28) //Space thanksgiving.
-//					Holiday["Appreciation Day"] = "Originally an old holiday from Earth, Appreciation Day follows many of the \
+				if(28) //Space thanksgiving.
+					Holiday["Appreciation Day"] = "Originally an old holiday from Earth, Appreciation Day follows many of the \
 					traditions that its predecessor did, such as having a large feast (turkey often included), gathering with family, and being thankful \
 					for what one has in life."
 			if(28 > DD > 20)

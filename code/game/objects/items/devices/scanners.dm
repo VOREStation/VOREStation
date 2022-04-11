@@ -21,7 +21,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	w_class = ITEMSIZE_SMALL
 	throw_speed = 5
 	throw_range = 10
-	matter = list(DEFAULT_WALL_MATERIAL = 200)
+	matter = list(MAT_STEEL = 200)
 	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 1)
 	var/mode = 1;
 	var/advscan = 0
@@ -133,8 +133,7 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/unknown = 0
 			var/reagentdata[0]
 			var/unknownreagents[0]
-			for(var/A in C.reagents.reagent_list)
-				var/datum/reagent/R = A
+			for(var/datum/reagent/R as anything in C.reagents.reagent_list)
 				if(R.scannable)
 					reagentdata["[R.id]"] = "<span class='notice'>\t[round(C.reagents.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 				else
@@ -155,8 +154,7 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/unknown = 0
 			var/stomachreagentdata[0]
 			var/stomachunknownreagents[0]
-			for(var/B in C.ingested.reagent_list)
-				var/datum/reagent/R = B
+			for(var/datum/reagent/R as anything in C.ingested.reagent_list)
 				if(R.scannable)
 					stomachreagentdata["[R.id]"] = "<span class='notice'>\t[round(C.ingested.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 					if (advscan == 0 || showadvscan == 0)
@@ -179,8 +177,7 @@ HALOGEN COUNTER	- Radcount on mobs
 			var/unknown = 0
 			var/touchreagentdata[0]
 			var/touchunknownreagents[0]
-			for(var/B in C.touching.reagent_list)
-				var/datum/reagent/R = B
+			for(var/datum/reagent/R as anything in C.touching.reagent_list)
 				if(R.scannable)
 					touchreagentdata["[R.id]"] = "<span class='notice'>\t[round(C.touching.get_reagent_amount(R.id), 1)]u [R.name][(R.overdose && R.can_overdose_touch && R.volume > R.overdose) ? " - <span class='danger'>Overdose</span>" : ""]</span><br>"
 					if (advscan == 0 || showadvscan == 0)
@@ -281,6 +278,18 @@ HALOGEN COUNTER	- Radcount on mobs
 			else
 				dat += "<span class='notice'>Blood Level Normal: [blood_percent]% [blood_volume]cl. Type: [blood_type]</span><br>"
 		dat += "<span class='notice'>Subject's pulse: <font color='[H.pulse == PULSE_THREADY || H.pulse == PULSE_NONE ? "red" : "blue"]'>[H.get_pulse(GETPULSE_TOOL)] bpm.</font></span>"
+		if(istype(H.species, /datum/species/xenochimera)) // VOREStation Edit Start: Visible feedback for medmains on Xenochimera.
+			if(H.stat == DEAD && H.revive_ready == REVIVING_READY && !H.hasnutriment())
+				dat += "<span class='danger'>WARNING: Protein levels low. Subject incapable of reconstitution.</span>"
+			else if(H.revive_ready == REVIVING_NOW)
+				dat += "<span class='warning'>Subject is undergoing form reconstruction. Estimated time to finish is in: [round((H.revive_finished - world.time) / 10)] seconds.</span>"
+			else if(H.revive_ready == REVIVING_DONE)
+				dat += "<span class='notice'>Subject is ready to hatch. Transfer to dark room for holding with food available.</span>"
+			else if(H.stat == DEAD)
+				dat+= "<span class='danger'>WARNING: Defib will cause extreme pain and set subject feral. Sedation recommended prior to defibrillation.</span>"
+			else // If they bop them and they're not dead or reviving, give 'em a little notice.
+				dat += "<span class='notice'>Subject is a Xenochimera. Treat accordingly.</span>"
+		// VOREStation Edit End
 	user.show_message(dat, 1)
 
 /obj/item/device/healthanalyzer/verb/toggle_mode()
@@ -337,7 +346,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
@@ -375,7 +384,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	throw_speed = 4
 	throw_range = 20
 
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
 
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	var/details = 0
@@ -435,7 +444,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
 
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	var/details = 0
@@ -481,7 +490,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	throwforce = 0
 	throw_speed = 3
 	throw_range = 7
-	matter = list(DEFAULT_WALL_MATERIAL = 30,"glass" = 20)
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
 
 /obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!istype(M, /mob/living/simple_mob/slime/xenobio))

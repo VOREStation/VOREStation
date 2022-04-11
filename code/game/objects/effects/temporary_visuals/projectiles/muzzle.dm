@@ -100,3 +100,5 @@
 	light_power = 0.5
 	light_color = "#80F5FF"
 //VOREStation edit ends
+/obj/effect/projectile/muzzle/pointdefense
+	icon_state = "muzzle_pointdef"

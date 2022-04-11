@@ -29,9 +29,16 @@
 
 /datum/recipe/bellefritter
 	appliance = FRYER
-	reagents = list("sugar" = 5, "batter" = 10)
+	coating = /datum/reagent/nutriment/coating/batter
+	reagents = list("sugar" = 5)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/frostbelle)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bellefritter
+
+/datum/recipe/onionrings
+	appliance = FRYER
+	coating = /datum/reagent/nutriment/coating/batter
+	fruit = list("onion" = 1)
+	result = /obj/item/weapon/reagent_containers/food/snacks/onionrings
 
 //Meaty Recipes
 //====================
@@ -86,6 +93,31 @@
 	reagent_mix = RECIPE_REAGENT_REPLACE //Simplify end product
 	result = /obj/item/weapon/reagent_containers/food/snacks/friedmushroom
 
+/datum/recipe/fishfingers
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
+	)
+	coating = /datum/reagent/nutriment/coating/batter
+	result = /obj/item/weapon/reagent_containers/food/snacks/fishfingers
+	reagent_mix = RECIPE_REAGENT_REPLACE
+
+/datum/recipe/corn_dog
+	appliance = FRYER
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/sausage
+	)
+	fruit = list("corn" = 1)
+	coating = /datum/reagent/nutriment/coating/batter
+	result = /obj/item/weapon/reagent_containers/food/snacks/corn_dog
+
+/datum/recipe/sweet_and_sour
+	appliance = FRYER
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/bacon,
+		/obj/item/weapon/reagent_containers/food/snacks/cutlet
+	)
+	reagents = list("soysauce" = 5, "batter" = 10)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sweet_and_sour
 
 //Sweet Recipes.
 //==================
@@ -96,7 +128,7 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/jelly
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly
 	result_quantity = 2
 
 /datum/recipe/jellydonut/poisonberry
@@ -104,15 +136,15 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/dough
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/poisonberry
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/poisonberry
 
 /datum/recipe/jellydonut/slime // Subtypes of jellydonut, appliance inheritance applies.
 	reagents = list("slimejelly" = 5, "sugar" = 5)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/slimejelly
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/slimejelly
 
 /datum/recipe/jellydonut/cherry // Subtypes of jellydonut, appliance inheritance applies.
 	reagents = list("cherryjelly" = 5, "sugar" = 5)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/cherryjelly
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
 
 /datum/recipe/donut
 	appliance = FRYER
@@ -120,7 +152,7 @@
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
-	result = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
+	result = /obj/item/weapon/reagent_containers/food/snacks/donut/plain
 	result_quantity = 2
 
 /datum/recipe/chaosdonut
@@ -145,24 +177,7 @@
 	result = /obj/item/weapon/reagent_containers/food/snacks/pisanggoreng
 	coating = /datum/reagent/nutriment/coating/batter
 
-/datum/recipe/corn_dog
-	appliance = FRYER
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/sausage
-	)
-	fruit = list("corn" = 1)
-	coating = /datum/reagent/nutriment/coating/batter
-	result = /obj/item/weapon/reagent_containers/food/snacks/corn_dog
-
-/datum/recipe/sweet_and_sour
-	appliance = FRYER
-	items = list(
-		/obj/item/weapon/reagent_containers/food/snacks/bacon,
-		/obj/item/weapon/reagent_containers/food/snacks/cutlet
-	)
-	reagents = list("soysauce" = 5, "batter" = 10)
-	result = /obj/item/weapon/reagent_containers/food/snacks/sweet_and_sour
-
+//VOREStation Add Start
 /datum/recipe/generalschicken
 	appliance = FRYER
 	reagents = list("capsaicin" = 2, "sugar" = 2, "batter" = 10)
@@ -182,3 +197,4 @@
 		/obj/item/weapon/reagent_containers/food/snacks/meat
 	)
 	result = /obj/item/weapon/storage/box/wings //This is kinda like the donut box.
+//VOREStation Add End

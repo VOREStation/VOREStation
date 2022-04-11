@@ -1,0 +1,8 @@
+author: Atermonera
+delete-after: True
+changes: 
+  - tweak: "Stairs have been completely reworked, and now consist of multi-tile constructs built from lower, middle, and upper stair pieces, and an openspace in the floor."
+  - rscadd: "To go up and down stairs, simply step upon the lower/upper stair pieces, and you'll be moved automatically if the stairs are in working condition. Any grabbed or dragged items will be brought with you."
+  - rscadd: "If the lower stair piece is missing (or even if it's not), but the middle and upper sections are present, you can climb up the middle section by click-dragging from your character to the middle stair."
+  - rscadd: "If you step onto the open space, you will fall down the stairs. Teshari players, consider yourselves warned."
+  - rscadd: "Stairs remain unconstructable in-round (Doing so would also require a way to make openspaces), but there are spawners rooted on the middle stair (as with old stairs) that will create a completed stair and can be spawned in by admins/mappers."

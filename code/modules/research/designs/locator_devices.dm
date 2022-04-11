@@ -2,7 +2,7 @@
 
 /datum/design/item/gps
 	req_tech = list(TECH_MATERIAL = 2, TECH_DATA = 2, TECH_BLUESPACE = 2)
-	materials = list(DEFAULT_WALL_MATERIAL = 500)
+	materials = list(MAT_STEEL = 500)
 
 /datum/design/item/gps/AssembleDesignName()
 	..()
@@ -67,7 +67,7 @@
 	desc = "Used to scan and locate signals on a particular frequency."
 	id = "beacon_locator"
 	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 2, TECH_BLUESPACE = 3)
-	materials = list(DEFAULT_WALL_MATERIAL = 1000,"glass" = 500)
+	materials = list(MAT_STEEL = 1000,MAT_GLASS = 500)
 	build_path = /obj/item/device/beacon_locator
 	sort_string = "DBAAA"
 
@@ -75,6 +75,6 @@
 	name = "Bluespace tracking beacon"
 	id = "beacon"
 	req_tech = list(TECH_BLUESPACE = 1)
-	materials = list (DEFAULT_WALL_MATERIAL = 20, "glass" = 10)
+	materials = list (MAT_STEEL = 20, MAT_GLASS = 10)
 	build_path = /obj/item/device/radio/beacon
 	sort_string = "DBABA"

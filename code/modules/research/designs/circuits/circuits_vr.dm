@@ -168,3 +168,17 @@
 	req_tech = list(TECH_DATA = 3, TECH_BIO = 4, TECH_ENGINEERING = 2)
 	build_path = /obj/item/weapon/circuitboard/machine/vitals_monitor
 	sort_string = "HAAF"
+
+/datum/design/circuit/pointdefense
+	name = "point defense battery"
+	id = "pointdefense"
+	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 3, TECH_COMBAT = 4)
+	build_path = /obj/item/weapon/circuitboard/pointdefense
+	sort_string = "OAABA"
+
+/datum/design/circuit/pointdefense_control
+	name = "point defense control"
+	id = "pointdefense_control"
+	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
+	build_path = /obj/item/weapon/circuitboard/pointdefense_control
+	sort_string = "OAABB"

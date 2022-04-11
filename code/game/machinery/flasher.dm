@@ -11,7 +11,7 @@
 	var/last_flash = 0 //Don't want it getting spammed like regular flashes
 	var/strength = 10 //How weakened targets are when flashed.
 	var/base_state = "mflash"
-	anchored = 1
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 
@@ -20,9 +20,9 @@
 	desc = "A portable flashing device. Wrench to activate and deactivate. Cannot detect slow movements."
 	icon_state = "pflash1"
 	strength = 8
-	anchored = 0
+	anchored = FALSE
 	base_state = "pflash"
-	density = 1
+	density = TRUE
 
 /obj/machinery/flasher/power_change()
 	..()
@@ -114,12 +114,12 @@
 		if(!anchored)
 			user.show_message(text("<span class='warning'>[src] can now be moved.</span>"))
 			cut_overlays()
-			unsense_proximity(callback = .HasProximity)
+			unsense_proximity(callback = /atom/proc/HasProximity)
 			
 		else if(anchored)
 			user.show_message(text("<span class='warning'>[src] is now secured.</span>"))
 			add_overlay("[base_state]-s")
-			sense_proximity(callback = .HasProximity)
+			sense_proximity(callback = /atom/proc/HasProximity)
 
 /obj/machinery/button/flasher
 	name = "flasher button"

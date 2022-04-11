@@ -24,8 +24,7 @@
 /datum/alternate_appearance/proc/display_to(list/displayTo)
 	if(!displayTo || !displayTo.len)
 		return
-	for(var/m in displayTo)
-		var/mob/M = m
+	for(var/mob/M as anything in displayTo)
 		if(!M.viewing_alternate_appearances)
 			M.viewing_alternate_appearances = list()
 		viewers |= M
@@ -42,8 +41,7 @@
 	if(hideFrom)
 		hiding = hideFrom
 
-	for(var/m in hiding)
-		var/mob/M = m
+	for(var/mob/M as anything in hiding)
 		if(M.client)
 			M.client.images -= img
 		if(M.viewing_alternate_appearances && M.viewing_alternate_appearances.len)

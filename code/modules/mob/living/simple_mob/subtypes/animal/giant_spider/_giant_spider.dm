@@ -83,9 +83,12 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "punches"
 
+	organ_names = /decl/mob_organ_names/spider
+
+
 	melee_damage_lower = 18
 	melee_damage_upper = 30
-	attack_sharp = 1
+	attack_sharp = TRUE
 	attack_edge = 1
 	attack_sound = 'sound/weapons/bite.ogg'
 
@@ -95,14 +98,14 @@
 
 	speak_emote = list("chitters")
 
-	meat_amount = 1
+	meat_amount = 5
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
 
 	say_list_type = /datum/say_list/spider
 
 	tame_items = list(
 	/obj/item/weapon/reagent_containers/food/snacks/xenomeat = 10,
-	/obj/item/weapon/reagent_containers/food/snacks/meat/crab = 40,
+	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 40,
 	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
 	)
 
@@ -141,3 +144,6 @@
 
 	if(poison_per_bite)
 		poison_per_bite *= 1.3
+
+/decl/mob_organ_names/spider
+	hit_zones = list("cephalothorax", "abdomen", "left forelegs", "right forelegs", "left hind legs", "right hind legs", "pedipalp", "mouthparts")

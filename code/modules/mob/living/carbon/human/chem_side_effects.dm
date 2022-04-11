@@ -56,7 +56,7 @@
 	if(life_tick % 15 != 0)
 		return 0
 
-	var/list/L = typesof(/datum/medical_effect)-/datum/medical_effect
+	var/list/L = subtypesof(/datum/medical_effect)
 	for(var/T in L)
 		var/datum/medical_effect/M = new T
 		if (M.manifest(src))
@@ -127,7 +127,7 @@
 		if(11 to 30)
 			H.custom_pain("The muscles in your body cramp up painfully.",0)
 		if(31 to INFINITY)
-			H.emote("me",1,"flinches as all the muscles in their body cramp up.")
+			H.custom_emote(VISIBLE_MESSAGE, "flinches as all the muscles in their body cramp up.")
 			H.custom_pain("There's pain all over your body.",1)
 
 // ITCH
@@ -145,5 +145,5 @@
 		if(11 to 30)
 			H.custom_pain("You want to scratch your itch badly.",0)
 		if(31 to INFINITY)
-			H.emote("me",1,"shivers slightly.")
+			H.custom_emote(VISIBLE_MESSAGE, "shivers slightly.")
 			H.custom_pain("This itch makes it really hard to concentrate.",1)

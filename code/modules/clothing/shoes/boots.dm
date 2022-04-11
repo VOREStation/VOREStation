@@ -19,9 +19,39 @@
 	icon_state = "cowboy_classic"
 
 /obj/item/clothing/shoes/boots/cowboy/snakeskin
-	name = "snakeskin cowboy boots"
+	name = "snake skin boots"
 	desc = "A pair of cowboy boots made from python skin."
 	icon_state = "cowboy_snakeskin"
+
+/obj/item/clothing/shoes/boots/cowboy/lizard
+	name = "lizard skin boots"
+	desc = "You can hear a faint hissing from inside the boots; you hope it is just a mournful ghost."
+	icon_state = "lizardboots_green"
+
+/obj/item/clothing/shoes/boots/cowboy/lizard/masterwork
+	name = "\improper Hugs-The-Feet lizard skin boots"
+	desc = "A pair of masterfully crafted lizard skin boots. Finally a good application for the station's most bothersome inhabitants."
+	icon_state = "lizardboots_blue"
+
+/obj/item/clothing/shoes/boots/cowboy/brown
+	name = "brown cowboy boots"
+	desc = "A small sticker lets you know they've been inspected for snakes, It is unclear how long ago the inspection took place..."
+	icon_state = "cowboy_brown"
+
+/obj/item/clothing/shoes/boots/cowboy/black
+	name = "black cowboy boots"
+	desc = "You get the feeling that these were red at one point."
+	icon_state = "cowboy_black"
+
+/obj/item/clothing/shoes/boots/cowboy/white
+	name = "white cowboy boots"
+	desc = "Perfect for those that like style while remaining rugged as ever."
+	icon_state = "cowboy_white"
+
+/obj/item/clothing/shoes/boots/cowboy/fancy
+	name = "fancy cowboy boots"
+	desc = "A gambler was 100% wearing these when he died."
+	icon_state = "cowboy_fancy"
 
 /obj/item/clothing/shoes/boots/jackboots
 	name = "jackboots"
@@ -143,6 +173,16 @@
 	desc = "Steel-toed winter boots for mining or exploration in hazardous environments. Very good at keeping toes warm and uncrushed."
 	icon_state = "explorer"
 	armor = list(melee = 30, bullet = 10, laser = 10, energy = 15, bomb = 20, bio = 0, rad = 0)
+
+/obj/item/clothing/shoes/boots/winter/christmasred
+	name = "red christmas boots"
+	desc = "A pair of fluffy red christmas boots!"
+	icon_state = "winterboots_christmasr"
+
+/obj/item/clothing/shoes/boots/winter/christmasgreen
+	name = "green christmas boots"
+	desc = "A pair of fluffy green christmas boots!"
+	icon_state = "winterboots_christmasg"
 
 // Allows the wearer to climb cliffs, which could allow for shortcuts or sequence-breaking.
 /obj/item/clothing/shoes/boots/winter/climbing

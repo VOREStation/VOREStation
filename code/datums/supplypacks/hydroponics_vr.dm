@@ -49,3 +49,25 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Fish crate"
+
+/datum/supply_pack/hydro/fennec_food
+	name = "Fennec treats crate"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/snacks/locust = 6,
+			/obj/item/weapon/storage/box/wings/bucket = 2,
+			/obj/item/weapon/reagent_containers/food/snacks/grub_pink = 2,
+			/obj/item/weapon/reagent_containers/food/snacks/grub_blue = 2,
+			/obj/item/weapon/reagent_containers/food/snacks/grub_purple = 2,
+			/obj/item/weapon/reagent_containers/food/snacks/honey_candy = 4,
+			/obj/item/weapon/reagent_containers/food/snacks/scorpion = 4,
+			/obj/item/weapon/reagent_containers/food/snacks/ant = 4
+			)
+	cost = 20
+	containertype = /obj/structure/closet/crate/fennec
+	containername = "Fennec treats crate"
+
+/datum/supply_pack/hydro/jerboa
+	name = "Jerboa crate"
+	cost = 10
+	containertype = /obj/structure/largecrate/animal/jerboa
+	containername = "Jerboa crate"

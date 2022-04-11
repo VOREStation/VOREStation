@@ -3,7 +3,7 @@
 	desc = "A hefty wooden crate."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "densecrate"
-	density = 1
+	density = TRUE
 	var/list/starts_with
 
 /obj/structure/largecrate/Initialize()
@@ -31,7 +31,14 @@
 		for(var/atom/movable/AM in contents)
 			if(AM.simulated)
 				AM.forceMove(T)
-
+			//VOREStation Add Start
+			if(isanimal(AM))
+				var/mob/living/simple_mob/AMBLINAL = AM
+				if(!AMBLINAL.mind)
+					AMBLINAL.ghostjoin = 1
+					AMBLINAL.ghostjoin_icon()
+					active_ghost_pods |= AMBLINAL
+			//VOREStation Add End
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
@@ -57,6 +64,11 @@
 		ME = new /obj/item/mecha_parts/mecha_equipment/tool/passenger
 		ME.attach(H)
 	..()
+
+/obj/structure/largecrate/donksoftvendor
+	name = "\improper Donk-Soft vendor crate"
+	desc = "A hefty wooden crate displaying the logo of Donk-Soft. It's rather heavy."
+	starts_with = list(/obj/machinery/vending/donksoft)
 
 /obj/structure/largecrate/vehicle
 	name = "vehicle crate"
@@ -114,3 +126,7 @@
 /obj/structure/largecrate/animal/chick
 	name = "chicken crate"
 	starts_with = list(/mob/living/simple_mob/animal/passive/chick = 5)
+
+/obj/structure/largecrate/animal/catslug
+	name = "catslug carrier"
+	starts_with = list(/mob/living/simple_mob/vore/alienanimals/catslug)

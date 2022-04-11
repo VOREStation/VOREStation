@@ -1,6 +1,6 @@
 /obj/structure/cult
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	icon = 'icons/obj/cult.dmi'
 
 /obj/structure/cult/cultify()
@@ -34,7 +34,7 @@
 	var/last_activation = 0
 
 /obj/structure/cult/pylon/Initialize()
-	..()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/structure/cult/pylon/attack_hand(mob/M as mob)
@@ -59,7 +59,7 @@
 			STOP_PROCESSING(SSobj, src)
 			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 
@@ -75,7 +75,7 @@
 			user.do_attack_animation(src)
 			playsound(src,shatter_sound, 75, 1)
 			isbroken = 1
-			density = 0
+			density = FALSE
 			icon_state = "[initial(icon_state)]-broken"
 			set_light(0)
 		else
@@ -94,7 +94,7 @@
 		START_PROCESSING(SSobj, src)
 		to_chat(user, "You repair \the [src].")
 		isbroken = 0
-		density = 1
+		density = TRUE
 		icon_state = initial(icon_state)
 		set_light(5)
 
@@ -127,9 +127,9 @@
 	desc = "You're pretty sure that abyss is staring back."
 	icon = 'icons/obj/cult.dmi'
 	icon_state = "hole"
-	density = 1
-	unacidable = 1
-	anchored = 1.0
+	density = TRUE
+	unacidable = TRUE
+	anchored = TRUE
 	var/spawnable = null
 
 /obj/effect/gateway/active

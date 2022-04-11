@@ -43,20 +43,21 @@
 	var/no_air = null
 //	var/list/lights				// list of all lights on this area
 	var/list/all_doors = null		//Added by Strumpetplaya - Alarm Change - Contains a list of doors adjacent to this area
+	var/list/all_arfgs = null		//Similar, but a list of all arfgs adjacent to this area
 	var/firedoors_closed = 0
+	var/arfgs_active = 0
 	var/list/ambience = list()
 	var/list/forced_ambience = null
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/forbid_events = FALSE // If true, random events will not start inside this area.
 	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
+	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
 
 /area/Initialize()
 	. = ..()
-
 	luminosity = !(dynamic_lighting)
 	icon_state = ""
-
 	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
 
 /area/LateInitialize()
@@ -67,7 +68,6 @@
 	power_change()		// all machines set to current power level, also updates lighting icon
 	if(no_spoilers)
 		set_spoiler_obfuscation(TRUE)
-	return INITIALIZE_HINT_LATELOAD
 
 // Changes the area of T to A. Do not do this manually.
 // Area is expected to be a non-null instance.
@@ -82,7 +82,7 @@
 	A.contents.Add(T)
 	if(old_area)
 		// Handle dynamic lighting update if
-		if(T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
+		if(SSlighting.subsystem_initialized && T.dynamic_lighting && old_area.dynamic_lighting != A.dynamic_lighting)
 			if(A.dynamic_lighting)
 				T.lighting_build_overlay()
 			else
@@ -130,10 +130,11 @@
 		return 1
 	return 0
 
-// Either close or open firedoors depending on current alert statuses
+// Either close or open firedoors and arfgs depending on current alert statuses
 /area/proc/firedoors_update()
 	if(fire || party || atmosalm)
 		firedoors_close()
+		arfgs_activate()
 		// VOREStation Edit - Make the lights colored!
 		if(fire)
 			for(var/obj/machinery/light/L in src)
@@ -144,6 +145,7 @@
 		// VOREStation Edit End
 	else
 		firedoors_open()
+		arfgs_deactivate()
 		// VOREStation Edit - Put the lights back!
 		for(var/obj/machinery/light/L in src)
 			L.reset_alert()
@@ -177,6 +179,25 @@
 					spawn(0)
 						E.open()
 
+// Activate all retention fields!
+/area/proc/arfgs_activate()
+	if(!arfgs_active)
+		arfgs_active = TRUE
+		if(!all_arfgs)
+			return
+		for(var/obj/machinery/atmospheric_field_generator/E in all_arfgs)
+			E.generate_field() //don't need to check powered state like doors, the arfgs handles it on its end
+			E.wasactive = TRUE
+
+// Deactivate retention fields!
+/area/proc/arfgs_deactivate()
+	if(arfgs_active)
+		arfgs_active = FALSE
+		if(!all_arfgs)
+			return
+		for(var/obj/machinery/atmospheric_field_generator/E in all_arfgs)
+			E.disable_field()
+			E.wasactive = FALSE
 
 /area/proc/fire_alert()
 	if(!fire)
@@ -355,21 +376,23 @@
 
 var/list/mob/living/forced_ambiance_list = new
 
-/area/Entered(A)
-	if(!istype(A,/mob/living))	return
+/area/Entered(mob/M)
+	if(!istype(M) || !M.ckey)
+		return
+	
+	if(!isliving(M))
+		M.lastarea = src
+		return
 
-	var/mob/living/L = A
-	if(!L.ckey)	return
-
+	var/mob/living/L = M
 	if(!L.lastarea)
-		L.lastarea = get_area(L.loc)
-	var/area/newarea = get_area(L.loc)
+		L.lastarea = src
 	var/area/oldarea = L.lastarea
-	if((oldarea.has_gravity == 0) && (newarea.has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
+	if((oldarea.has_gravity == 0) && (has_gravity == 1) && (L.m_intent == "run")) // Being ready when you change areas gives you a chance to avoid falling all together.
 		thunk(L)
 		L.update_floating( L.Check_Dense_Object() )
 
-	L.lastarea = newarea
+	L.lastarea = src
 	L.lastareachange = world.time
 	play_ambience(L, initial = TRUE)
 	if(no_spoilers)
@@ -379,9 +402,9 @@ var/list/mob/living/forced_ambiance_list = new
 	// Ambience goes down here -- make sure to list each area seperately for ease of adding things in later, thanks! Note: areas adjacent to each other should have the same sounds to prevent cutoff when possible.- LastyScratch
 	if(!(L && L.is_preference_enabled(/datum/client_preference/play_ambiance)))
 		return
-	
+
 	var/volume_mod = L.get_preference_volume_channel(VOLUME_CHANNEL_AMBIENCE)
-	
+
 	// If we previously were in an area with force-played ambiance, stop it.
 	if((L in forced_ambiance_list) && initial)
 		L << sound(null, channel = CHANNEL_AMBIENCE_FORCED)

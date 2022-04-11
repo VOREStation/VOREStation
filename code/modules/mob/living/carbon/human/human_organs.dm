@@ -104,7 +104,8 @@
 		else if (E.is_dislocated())
 			stance_damage += 0.5
 
-		if(E) limb_pain = E.organ_can_feel_pain()
+		if(E && (!E.is_usable() || E.is_broken() || E.is_dislocated())) //VOREStation Edit
+			limb_pain = E.organ_can_feel_pain()
 
 	// Canes and crutches help you stand (if the latter is ever added)
 	// One cane mitigates a broken leg+foot, or a missing foot.
@@ -162,8 +163,9 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
-			emote("me", 1, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
+			if(!isbelly(loc)) //VOREStation Add
+				var/emote_scream = pick("screams in pain and ", "lets out a sharp cry and ", "cries out and ")
+				custom_emote(VISIBLE_MESSAGE, "[(can_feel_pain()) ? "" : emote_scream ]drops what they were holding in their [E.name]!")
 
 		else if(E.is_malfunctioning())
 			switch(E.body_part)
@@ -176,14 +178,15 @@
 						continue
 					drop_from_inventory(r_hand)
 
-			emote("me", 1, "drops what they were holding, their [E.name] malfunctioning!")
+			if(!isbelly(loc)) //VOREStation Add
+				custom_emote(VISIBLE_MESSAGE, "drops what they were holding, their [E.name] malfunctioning!")
 
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-			spark_system.set_up(5, 0, src)
-			spark_system.attach(src)
-			spark_system.start()
-			spawn(10)
-				qdel(spark_system)
+				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
+				spark_system.set_up(5, 0, src)
+				spark_system.attach(src)
+				spark_system.start()
+				spawn(10)
+					qdel(spark_system)
 
 //Handles chem traces
 /mob/living/carbon/human/proc/handle_trace_chems()
@@ -196,3 +199,11 @@
 	var/list/all_bits = internal_organs|organs
 	for(var/obj/item/organ/O in all_bits)
 		O.set_dna(dna)
+
+/mob/living/carbon/human/proc/set_gender(var/g)
+	if(g != gender)
+		gender = g
+	
+	if(dna.GetUIState(DNA_UI_GENDER) ^ gender == FEMALE) // XOR will catch both cases where they do not match
+		dna.SetUIState(DNA_UI_GENDER, gender == FEMALE)
+		sync_organ_dna(dna)

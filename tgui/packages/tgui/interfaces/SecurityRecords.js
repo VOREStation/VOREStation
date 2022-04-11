@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Collapsible, Icon, Input, LabeledList, Section, Tabs } from "../components";
+import { Box, Button, Collapsible, Flex, Icon, Input, LabeledList, Section, Tabs } from "../components";
 import { ComplexModal, modalOpen, modalRegisterBodyOverride } from "../interfaces/common/ComplexModal";
 import { Window } from "../layouts";
 import { LoginInfo } from './common/LoginInfo';
@@ -49,11 +49,11 @@ export const SecurityRecords = (_properties, context) => {
       height={680}
       resizable>
       <ComplexModal maxHeight="100%" maxWidth="400px" />
-      <Window.Content className="Layout__content--flexColumn">
+      <Window.Content scrollable>
         <LoginInfo />
         <TemporaryNotice />
         <SecurityRecordsNavigation />
-        <Section height="89%" flexGrow="1">
+        <Section flexGrow>
           {body}
         </Section>
       </Window.Content>
@@ -121,13 +121,13 @@ const SecurityRecordsView = (_properties, context) => {
   } = data;
   return (
     <Fragment>
-      <Section title="General Data" level={2} mt="-6px">
+      <Section title="General Data" mt="-6px">
         <SecurityRecordsViewGeneral />
       </Section>
-      <Section title="Security Data" level={2}>
+      <Section title="Security Data">
         <SecurityRecordsViewSecurity />
       </Section>
-      <Section title="Actions" level={2}>
+      <Section title="Actions">
         <Button.Confirm
           icon="trash"
           disabled={!!security.empty}
@@ -174,13 +174,13 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
     );
   }
   return (
-    <Fragment>
-      <Box width="50%" float="left">
+    <Flex>
+      <Flex.Item>
         <LabeledList>
           {general.fields.map((field, i) => (
             <LabeledList.Item key={i} label={field.field}>
-              <Box height="20px" display="inline-block">
-                {field.value.split("\n").map(m => <Box key={m}>{m}</Box>)}
+              <Box height="20px" inline preserveWhitespace>
+                {field.value}
               </Box>
               {!!field.edit && (
                 <Button
@@ -192,8 +192,8 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
             </LabeledList.Item>
           ))}
         </LabeledList>
-      </Box>
-      <Box width="50%" float="right" textAlign="right">
+      </Flex.Item>
+      <Flex.Item textAlign="right">
         {!!general.has_photos && (
           general.photos.map((p, i) => (
             <Box
@@ -221,8 +221,8 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
             Update Side Photo
           </Button>
         </Box>
-      </Box>
-    </Fragment>
+      </Flex.Item>
+    </Flex>
   );
 };
 
@@ -250,8 +250,9 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
         {security.fields.map((field, i) => (
           <LabeledList.Item
             key={i}
-            label={field.field}>
-            {field.value.split("\n").map(m => <Box key={m}>{m}</Box>)}
+            label={field.field}
+            preserveWhitespace>
+            {field.value}
             <Button
               icon="pen"
               ml="0.5rem"
@@ -261,7 +262,7 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
           </LabeledList.Item>
         ))}
       </LabeledList>
-      <Section title="Comments/Log" level={2}>
+      <Section title="Comments/Log">
         {security.comments.length === 0 ? (
           <Box color="label">
             No comments found.
@@ -269,7 +270,7 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
         )
           : security.comments.map((comment, i) => (
             <Box key={i}>
-              <Box color="label" display="inline">
+              <Box color="label" inline>
                 {comment.header}
               </Box><br />
               {comment.text}
@@ -304,14 +305,14 @@ const SecurityRecordsNavigation = (_properties, context) => {
     <Tabs>
       <Tabs.Tab
         selected={screen === 2}
+        icon="list"
         onClick={() => act('screen', { screen: 2 })}>
-        <Icon name="list" />
         List Records
       </Tabs.Tab>
       <Tabs.Tab
+        icon="wrench"
         selected={screen === 3}
         onClick={() => act('screen', { screen: 3 })}>
-        <Icon name="wrench" />
         Record Maintenance
       </Tabs.Tab>
     </Tabs>

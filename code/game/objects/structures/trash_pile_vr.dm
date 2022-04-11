@@ -3,8 +3,8 @@
 	desc = "A heap of garbage, but maybe there's something interesting inside?"
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	density = 1
-	anchored = 1.0
+	density = TRUE
+	anchored = TRUE
 
 	var/list/searchedby	= list()// Characters that have searched this trashpile, with values of searched time.
 	var/mob/living/hider		// A simple animal that might be hiding in the pile
@@ -24,7 +24,8 @@
 		/obj/item/weapon/gun/energy/netgun,
 		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/clothing/accessory/permit/gun,
-		/obj/item/weapon/gun/projectile/dartgun
+		/obj/item/weapon/gun/projectile/dartgun,
+		/obj/item/clothing/gloves/black/bloodletter
 		)
 
 	var/global/list/allocated_gamma = list()
@@ -69,13 +70,13 @@
 		var/mob/living/L = user
 		//They're in it, and want to get out.
 		if(L.loc == src)
-			var/choice = alert("Do you want to exit \the [src]?","Un-Hide?","Exit","Stay")
+			var/choice = tgui_alert(user, "Do you want to exit \the [src]?","Un-Hide?",list("Exit","Stay"))
 			if(choice == "Exit")
 				if(L == hider)
 					hider = null
 				L.forceMove(get_turf(src))
 		else if(!hider)
-			var/choice = alert("Do you want to hide in \the [src]?","Un-Hide?","Hide","Stay")
+			var/choice = tgui_alert(user, "Do you want to hide in \the [src]?","Un-Hide?",list("Hide","Stay"))
 			if(choice == "Hide" && !hider) //Check again because PROMPT
 				L.forceMove(src)
 				hider = L
@@ -180,13 +181,14 @@
 					prob(2);/obj/item/clothing/shoes/galoshes,
 					prob(2);/obj/item/clothing/under/pants/camo,
 					prob(2);/obj/item/clothing/under/syndicate/tacticool,
+					prob(2);/obj/item/clothing/under/hyperfiber,
 					prob(2);/obj/item/device/camera,
 					prob(2);/obj/item/device/flashlight/flare,
 					prob(2);/obj/item/device/flashlight/glowstick,
 					prob(2);/obj/item/device/flashlight/glowstick/blue,
 					prob(2);/obj/item/weapon/card/emag_broken,
 					prob(2);/obj/item/weapon/cell/super,
-					prob(2);/obj/item/weapon/contraband/poster,
+					prob(2);/obj/item/poster,
 					prob(2);/obj/item/weapon/reagent_containers/glass/rag,
 					prob(2);/obj/item/weapon/storage/box/sinpockets,
 					prob(2);/obj/item/weapon/storage/secure/briefcase,
@@ -199,6 +201,7 @@
 					prob(2);/obj/item/toy/tennis/blue,
 					prob(2);/obj/item/toy/tennis/purple,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
+					prob(1);/obj/item/clothing/glasses/sunglasses/bigshot,
 					prob(1);/obj/item/clothing/glasses/welding,
 					prob(1);/obj/item/clothing/gloves/yellow,
 					prob(1);/obj/item/clothing/head/bio_hood/general,
@@ -230,16 +233,19 @@
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
 					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
-					prob(4);/obj/item/weapon/gun/energy/sizegun,
+					prob(4);/obj/item/weapon/gun/energy/sizegun/old,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,
+					prob(3);/obj/item/clothing/gloves/heavy_engineer,
 					prob(3);/obj/item/weapon/reagent_containers/syringe/drugs,
 					prob(2);/obj/item/weapon/implanter/sizecontrol,
 					prob(2);/obj/item/weapon/handcuffs/fuzzy,
 					prob(2);/obj/item/weapon/handcuffs/legcuffs/fuzzy,
 					prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 					prob(2);/obj/item/weapon/grenade/anti_photon,
+					prob(2);/obj/item/clothing/under/hyperfiber/bluespace,
+					prob(2);/obj/item/weapon/reagent_containers/glass/beaker/vial/amorphorovir,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(1);/obj/item/device/nif/bad,
 					prob(1);/obj/item/device/radio_jammer,
@@ -252,7 +258,8 @@
 					prob(1);/obj/item/weapon/storage/box/survival/space,
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
 					prob(1);/obj/item/device/survivalcapsule/popcabin,
-					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid)
+					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
+					prob(1);/obj/item/capture_crystal)
 
 	var/obj/item/I = new path()
 	return I
@@ -276,10 +283,12 @@
 
 /obj/structure/mob_spawner/mouse_nest
 	name = "trash"
-	desc = "A small heap of trash, perfect for mice to nest in."
+	desc = "A small heap of trash, perfect for mice and other pests to nest in."
 	icon = 'icons/obj/trash_piles.dmi'
 	icon_state = "randompile"
-	spawn_types = list(/mob/living/simple_mob/animal/passive/mouse)
+	spawn_types = list(
+    /mob/living/simple_mob/animal/passive/mouse= 100,
+    /mob/living/simple_mob/animal/passive/cockroach = 25)
 	simultaneous_spawns = 1
 	destructible = 1
 	spawn_delay = 1 HOUR

@@ -21,7 +21,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/shadekin, /datum/unarmed_attack/bite/sharp/shadekin)
 	rarity_value = 15	//INTERDIMENSIONAL FLUFFERS
 
-	siemens_coefficient = 0
+	siemens_coefficient = 1
 	darksight = 10
 
 	slowdown = -0.5
@@ -54,9 +54,7 @@
 	base_color = "#f0f0f0"
 	color_mult = 1
 
-	inherent_verbs = list(/mob/living/proc/shred_limb)
-
-	has_glowing_eyes = TRUE
+	// has_glowing_eyes = TRUE			//Applicable through neutral taits.
 
 	death_message = "phases to somewhere far away!"
 	male_cough_sounds = null
@@ -66,13 +64,13 @@
 
 	speech_bubble_appearance = "ghost"
 
-	genders = list(PLURAL, NEUTER)		//no sexual dymorphism
-	ambiguous_genders = TRUE	//but just in case
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	virus_immune = 1
 
 	breath_type = null
 	poison_type = null
+	water_breather = TRUE	//They don't quite breathe
 
 	vision_flags = SEE_SELF|SEE_MOBS
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_SKIN_COLOR | HAS_EYE_COLOR | HAS_UNDERWEAR
@@ -93,7 +91,7 @@
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/shadekin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/shadekin),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
 		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
 		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
@@ -109,6 +107,9 @@
 									   /datum/power/shadekin/regenerate_other,
 									   /datum/power/shadekin/create_shade)
 	var/list/shadekin_ability_datums = list()
+	var/kin_type
+	var/energy_light = 0.25
+	var/energy_dark = 0.75
 
 /datum/species/shadekin/New()
 	..()
@@ -130,9 +131,6 @@
 
 /datum/species/shadekin/handle_environment_special(var/mob/living/carbon/human/H)
 	handle_shade(H)
-
-/datum/species/shadekin/can_breathe_water()
-	return TRUE	//they dont quite breathe
 
 /datum/species/shadekin/add_inherent_verbs(var/mob/living/carbon/human/H)
 	..()
@@ -165,18 +163,21 @@
 
 	var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
 	darkness = 1-brightness //Invert
+	var/is_dark = (darkness >= 0.5)
 
 	if(H.ability_flags & AB_PHASE_SHIFTED)
 		dark_gains = 0
 	else
 		//Heal (very) slowly in good darkness
-		if(darkness >= 0.75)
-			H.adjustFireLoss(-0.05)
-			H.adjustBruteLoss(-0.05)
-			H.adjustToxLoss(-0.05)
-			dark_gains = 0.75
+		if(is_dark)
+			H.adjustFireLoss((-0.10)*darkness)
+			H.adjustBruteLoss((-0.10)*darkness)
+			H.adjustToxLoss((-0.10)*darkness)
+			//energy_dark and energy_light are set by the shadekin eye traits.
+			//These are balanced around their playstyles and 2 planned new aggressive abilities
+			dark_gains = energy_dark
 		else
-			dark_gains = 0.25
+			dark_gains = energy_light
 
 	set_energy(H, get_energy(H) + dark_gains)
 
@@ -219,34 +220,123 @@
 
 /datum/species/shadekin/proc/update_shadekin_hud(var/mob/living/carbon/human/H)
 	var/turf/T = get_turf(H)
-	if(!T)
-		return
-	if(H.shadekin_energy_display)
-		H.shadekin_energy_display.invisibility = 0
+	if(H.shadekin_display)
+		var/l_icon = 0
+		var/e_icon = 0
+
+		H.shadekin_display.invisibility = 0
+		if(T)
+			var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
+			var/darkness = 1-brightness //Invert
+			switch(darkness)
+				if(0.80 to 1.00)
+					l_icon = 0
+				if(0.60 to 0.80)
+					l_icon = 1
+				if(0.40 to 0.60)
+					l_icon = 2
+				if(0.20 to 0.40)
+					l_icon = 3
+				if(0.00 to 0.20)
+					l_icon = 4
+
 		switch(get_energy(H))
+			if(0 to 24)
+				e_icon = 0
+			if(25 to 49)
+				e_icon = 1
+			if(50 to 74)
+				e_icon = 2
+			if(75 to 99)
+				e_icon = 3
 			if(100 to INFINITY)
-				H.shadekin_energy_display.icon_state = "energy0"
-			if(75 to 100)
-				H.shadekin_energy_display.icon_state = "energy1"
-			if(50 to 75)
-				H.shadekin_energy_display.icon_state = "energy2"
-			if(25 to 50)
-				H.shadekin_energy_display.icon_state = "energy3"
-			if(0 to 25)
-				H.shadekin_energy_display.icon_state = "energy4"
-	if(H.shadekin_dark_display)
-		H.shadekin_dark_display.invisibility = 0
-		var/brightness = T.get_lumcount() //Brightness in 0.0 to 1.0
-		var/darkness = 1-brightness //Invert
-		switch(darkness)
-			if(0.80 to 1.00)
-				H.shadekin_dark_display.icon_state = "dark2"
-			if(0.60 to 0.80)
-				H.shadekin_dark_display.icon_state = "dark1"
-			if(0.40 to 0.60)
-				H.shadekin_dark_display.icon_state = "dark"
-			if(0.20 to 0.40)
-				H.shadekin_dark_display.icon_state = "dark-1"
-			if(0.00 to 0.20)
-				H.shadekin_dark_display.icon_state = "dark-2"
+				e_icon = 4
+
+		H.shadekin_display.icon_state = "shadekin-[l_icon]-[e_icon]"
 	return
+
+/datum/species/shadekin/proc/get_shadekin_eyecolor(var/mob/living/carbon/human/H)
+	var/eyecolor_rgb = rgb(H.r_eyes, H.g_eyes, H.b_eyes)
+
+	var/eyecolor_hue = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[1]
+	var/eyecolor_sat = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[2]
+	var/eyecolor_val = rgb2num(eyecolor_rgb, COLORSPACE_HSV)[3]
+
+	//First, clamp the saturation/value to prevent black/grey/white eyes
+	if(eyecolor_sat < 10)
+		eyecolor_sat = 10
+	if(eyecolor_val < 40)
+		eyecolor_val = 40
+
+	eyecolor_rgb = rgb(eyecolor_hue, eyecolor_sat, eyecolor_val, space=COLORSPACE_HSV)
+
+	H.r_eyes = rgb2num(eyecolor_rgb)[1]
+	H.g_eyes = rgb2num(eyecolor_rgb)[2]
+	H.b_eyes = rgb2num(eyecolor_rgb)[3]
+
+	//Now determine what color we fall into.
+	var/eyecolor_type = BLUE_EYES
+	switch(eyecolor_hue)
+		if(0 to 20)
+			eyecolor_type = RED_EYES
+		if(21 to 50)
+			eyecolor_type = ORANGE_EYES
+		if(51 to 70)
+			eyecolor_type = YELLOW_EYES
+		if(71 to 160)
+			eyecolor_type = GREEN_EYES
+		if(161 to 260)
+			eyecolor_type = BLUE_EYES
+		if(261 to 340)
+			eyecolor_type = PURPLE_EYES
+		if(341 to 360)
+			eyecolor_type = RED_EYES
+
+	return eyecolor_type
+
+/datum/species/shadekin/post_spawn_special(var/mob/living/carbon/human/H)
+	.=..()
+
+	var/eyecolor_type = get_shadekin_eyecolor(H)
+
+	switch(eyecolor_type)
+		if(BLUE_EYES)
+			total_health = 100
+			energy_light = 0.5
+			energy_dark = 0.5
+		if(RED_EYES)
+			total_health = 200
+			energy_light = -1
+			energy_dark = 0.1
+		if(PURPLE_EYES)
+			total_health = 150
+			energy_light = -0.5
+			energy_dark = 1
+		if(YELLOW_EYES)
+			total_health = 100
+			energy_light = -2
+			energy_dark = 3
+		if(GREEN_EYES)
+			total_health = 100
+			energy_light = 0.125
+			energy_dark = 2
+		if(ORANGE_EYES)
+			total_health = 175
+			energy_light = -0.5
+			energy_dark = 0.25
+
+	H.maxHealth = total_health
+
+	H.health = H.maxHealth
+
+/datum/species/shadekin/produceCopy(var/list/traits, var/mob/living/carbon/human/H, var/custom_base)
+
+	var/datum/species/shadekin/new_copy = ..()
+
+	new_copy.total_health = total_health
+
+	new_copy.energy_light = energy_light
+
+	new_copy.energy_dark = energy_dark
+
+	return new_copy

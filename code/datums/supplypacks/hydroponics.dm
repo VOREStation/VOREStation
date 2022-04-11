@@ -49,6 +49,13 @@
 	containertype = /obj/structure/largecrate/animal/cat
 	containername = "Cat Crate"
 
+/datum/supply_pack/hydro/catslug
+	name = "Catslug Crate"
+	contains = list()
+	cost = 200
+	containertype = /obj/structure/largecrate/animal/catslug
+	containername = "Catslug Crate"
+
 /datum/supply_pack/hydro/hydroponics
 	name = "Hydroponics Supply Crate"
 	contains = list(
@@ -153,6 +160,6 @@
 	cost = 50
 	containertype = /obj/structure/closet/crate/aether
 	containername = "Hydroponics tray crate"
-	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = 0} = 3)
+	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = FALSE} = 3)
 	access = access_hydroponics
 

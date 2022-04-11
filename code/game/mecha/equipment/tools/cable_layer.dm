@@ -8,8 +8,7 @@
 	required_type = list(/obj/mecha/working)
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/New()
-	cable = new(src)
-	cable.amount = 0
+	cable = new(src, 0)
 	..()
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/MoveAction()
@@ -38,13 +37,12 @@
 		log_message("[equip_ready?"Dea":"A"]ctivated.")
 		return
 	if(href_list["cut"])
-		if(cable && cable.amount)
-			var/m = round(input(chassis.occupant,"Please specify the length of cable to cut","Cut cable",min(cable.amount,30)) as num, 1)
-			m = min(m, cable.amount)
+		if(cable && cable.get_amount())
+			var/m = round(input(chassis.occupant, "Please specify the length of cable to cut", "Cut cable", min(cable.get_amount(), 30)) as num, 1)
+			m = min(m, cable.get_amount())
 			if(m)
 				use_cable(m)
-				var/obj/item/stack/cable_coil/CC = new (get_turf(chassis))
-				CC.amount = m
+				new /obj/item/stack/cable_coil(get_turf(chassis), m)
 		else
 			occupant_message("There's no more cable on the reel.")
 	return
@@ -52,19 +50,19 @@
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[Cable: [cable ? cable.amount : 0] m\][(cable && cable.amount) ? "- <a href='?src=\ref[src];toggle=1'>[!equip_ready?"Dea":"A"]ctivate</a>|<a href='?src=\ref[src];cut=1'>Cut</a>" : null]"
+		return "[output] \[Cable: [cable ? cable.get_amount() : 0] m\][(cable && cable.get_amount()) ? "- <a href='?src=\ref[src];toggle=1'>[!equip_ready?"Dea":"A"]ctivate</a>|<a href='?src=\ref[src];cut=1'>Cut</a>" : null]"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/load_cable(var/obj/item/stack/cable_coil/CC)
-	if(istype(CC) && CC.amount)
-		var/cur_amount = cable? cable.amount : 0
+	if(istype(CC) && CC.get_amount())
+		var/cur_amount = cable? cable.get_amount() : 0
 		var/to_load = max(max_cable - cur_amount,0)
 		if(to_load)
-			to_load = min(CC.amount, to_load)
+			to_load = min(CC.get_amount(), to_load)
 			if(!cable)
-				cable = new(src)
-				cable.amount = 0
-			cable.amount += to_load
+				cable = new(src, to_load)
+			else
+				cable.add(to_load)
 			CC.use(to_load)
 			return to_load
 		else
@@ -72,12 +70,12 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tool/cable_layer/proc/use_cable(amount)
-	if(!cable || cable.amount<1)
-		set_ready_state(1)
+	if(!cable || cable.get_amount() < 1)
+		set_ready_state(TRUE)
 		occupant_message("Cable depleted, [src] deactivated.")
 		log_message("Cable depleted, [src] deactivated.")
 		return
-	if(cable.amount < amount)
+	if(cable.get_amount() < amount)
 		occupant_message("No enough cable to finish the task.")
 		return
 	cable.use(amount)

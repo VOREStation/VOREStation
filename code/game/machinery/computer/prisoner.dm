@@ -15,6 +15,9 @@
 	var/stop = 0.0
 	var/screen = 0 // 0 - No Access Denied, 1 - Access allowed
 
+/obj/machinery/computer/prisoner/attack_ai(var/mob/user as mob)
+	return src.attack_hand(user)
+
 /obj/machinery/computer/prisoner/attack_hand(mob/user)
 	if(..())
 		return
@@ -27,11 +30,8 @@
 		ui.open()
 
 /obj/machinery/computer/prisoner/tgui_data(mob/user)
-	var/list/data = list()
-	
-	data["locked"] = !screen
-	data["chemImplants"] = list()
-	data["trackImplants"] = list()
+	var/list/chemImplants = list()
+	var/list/trackImplants = list()
 	if(screen)
 		for(var/obj/item/weapon/implant/chem/C in all_chem_implants)
 			var/turf/T = get_turf(C)
@@ -39,7 +39,7 @@
 				continue
 			if(!C.implanted)
 				continue
-			data["chemImplants"].Add(list(list(
+			chemImplants.Add(list(list(
 				"host" = C.imp_in,
 				"units" = C.reagents.total_volume,
 				"ref" = "\ref[C]"
@@ -56,33 +56,31 @@
 				loc_display = T.loc
 			if(track.malfunction)
 				loc_display = pick(teleportlocs)
-			data["trackImplants"].Add(list(list(
+			trackImplants.Add(list(list(
 				"host" = L,
 				"ref" = "\ref[track]",
 				"id" = "[track.id]",
 				"loc" = "[loc_display]",
 			)))
 
-	return data
+	return list("locked" = !screen, "chemImplants" = chemImplants, "trackImplants" = trackImplants)
+
 
 /obj/machinery/computer/prisoner/tgui_act(action, list/params)
 	if(..())
 		return TRUE
-
 	switch(action)
 		if("inject")
 			var/obj/item/weapon/implant/I = locate(params["imp"])
 			if(I)
 				I.activate(clamp(params["val"], 0, 10))
 			. = TRUE
-
 		if("lock")
 			if(allowed(usr))
 				screen = !screen
 			else
 				to_chat(usr, "Unauthorized Access.")
 			. = TRUE
-
 		if("warn")
 			var/warning = sanitize(input(usr, "Message:", "Enter your message here!", ""))
 			if(!warning)
@@ -91,5 +89,4 @@
 			if(I && I.imp_in)
 				to_chat(I.imp_in, "<span class='notice'>You hear a voice in your head saying: '[warning]'</span>")
 			. = TRUE
-
 	add_fingerprint(usr)

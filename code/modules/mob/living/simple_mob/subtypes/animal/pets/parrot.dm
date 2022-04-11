@@ -41,11 +41,11 @@
 	return say(message)
 
 // Ugly saycode so parrots can use their headsets.
-/mob/living/simple_mob/animal/passive/bird/parrot/handle_message_mode(message_mode, message, verb, speaking, used_radios)
+/mob/living/simple_mob/animal/passive/bird/parrot/handle_message_mode(message_mode, message, verb, used_radios, whispering)
 	..()
 	if(message_mode)
 		if(my_headset && istype(my_headset, /obj/item/device/radio))
-			my_headset.talk_into(src, message, message_mode, verb, speaking)
+			my_headset.talk_into(src, message, message_mode, verb, whispering)
 			used_radios += my_headset
 
 // Clicked on while holding an object.

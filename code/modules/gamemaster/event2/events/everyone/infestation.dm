@@ -17,6 +17,10 @@
 	name = "infestation - spiders"
 	event_type = /datum/event2/event/infestation/spiderlings
 
+/datum/event2/event/infestation/cockroaches
+	vermin_string = "cockroaches"
+	max_vermin = 6
+	things_to_spawn = list(/mob/living/simple_mob/animal/passive/cockroach)
 
 /datum/event2/event/infestation
 	var/vermin_string = null
@@ -31,6 +35,7 @@
 	things_to_spawn = list(
 		/mob/living/simple_mob/animal/passive/mouse/gray,
 		/mob/living/simple_mob/animal/passive/mouse/brown,
+		/mob/living/simple_mob/animal/passive/mouse/black,
 		/mob/living/simple_mob/animal/passive/mouse/white,
 		/mob/living/simple_mob/animal/passive/mouse/rat
 	)

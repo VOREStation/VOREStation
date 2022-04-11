@@ -55,8 +55,7 @@
 	var/mob/living/silicon/ai/O = ..(move)
 	if(O)
 		O.flavor_text = O.client?.prefs?.flavor_texts["general"]
-	
-	return O
+		return O
 	//VOREStation Edit End
 
 	return ..(move)
@@ -192,7 +191,7 @@
 		var/datum/preferences/B = O.client.prefs
 		for(var/language in B.alternate_languages)
 			O.add_language(language)
-		O.resize(B.size_multiplier, animate = TRUE)		//VOREStation Addition: add size prefs to borgs
+		O.resize(B.size_multiplier, animate = TRUE, ignore_prefs = TRUE)		//VOREStation Addition: add size prefs to borgs
 		O.fuzzy = B.fuzzy								//VOREStation Addition: add size prefs to borgs
 
 	callHook("borgify", list(O))
@@ -251,7 +250,7 @@
 /mob/living/carbon/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, "<font color='red'>Sorry but this mob type is currently unavailable.</font>")
@@ -285,7 +284,7 @@
 /mob/proc/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
-	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
+	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)
 
 	if(!safe_animal(mobpath))
 		to_chat(usr, "<font color='red'>Sorry but this mob type is currently unavailable.</font>")

@@ -4,8 +4,9 @@
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icon.
 	icon_state = "sleeperconsole"
 	var/obj/machinery/sleeper/sleeper
-	anchored = 1 //About time someone fixed this.
-	density = 1 //VOREStation Edit - Big console
+	anchored = TRUE //About time someone fixed this.
+	density = TRUE //VOREStation Edit - Big console
+	unacidable = TRUE
 	dir = 8
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
@@ -80,15 +81,16 @@
 /obj/machinery/sleep_console/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
 	if(sleeper)
 		return sleeper.tgui_act(action, params, ui, state)
-	return FALSE
+	return ..()
 
 /obj/machinery/sleeper
 	name = "sleeper"
 	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
 	icon_state = "sleeper_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
+	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()
@@ -326,7 +328,7 @@
 		if("ejectify")
 			go_out()
 		if("changestasis")
-			var/new_stasis = input("Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level") as null|anything in stasis_choices
+			var/new_stasis = tgui_input_list(usr, "Levels deeper than 50% stasis level will render the patient unconscious.","Stasis Level", stasis_choices)
 			if(new_stasis)
 				stasis_level = stasis_choices[new_stasis]
 		if("auto_eject_dead_on")
@@ -382,7 +384,7 @@
 			beaker = I
 			user.drop_item()
 			I.loc = src
-			user.visible_message("<span class='notice'>\The [user] adds \a [I] to \the [src].</span>", "<span class='notice'>You add \a [I] to \the [src].</span>")
+			user.visible_message("<b>\The [user]</b> adds \a [I] to \the [src].", "<span class='notice'>You add \a [I] to \the [src].</span>")
 		else
 			to_chat(user, "<span class='warning'>\The [src] has a beaker already.</span>")
 		return
@@ -529,5 +531,5 @@
 	stasis_level = 100 //Just one setting
 
 /obj/machinery/sleeper/survival_pod/Initialize()
-	..()
+	. = ..()
 	RefreshParts(1)

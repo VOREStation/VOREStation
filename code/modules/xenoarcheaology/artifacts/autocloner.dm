@@ -7,7 +7,7 @@
 	var/time_spent_spawning = 0
 	var/time_per_spawn = 0
 	var/last_process= 0
-	density = 1
+	density = TRUE
 	var/previous_power_state = 0
 
 	use_power = USE_POWER_IDLE

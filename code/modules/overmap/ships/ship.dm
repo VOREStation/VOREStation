@@ -14,9 +14,13 @@
 	desc = "This marker represents a spaceship. Scan it for more information."
 	scanner_desc = "Unknown spacefaring vessel."
 	dir = NORTH
-	icon_state = "ship"
+	icon_state = "ship_nosprite"
 	appearance_flags = TILE_BOUND|KEEP_TOGETHER|LONG_GLIDE //VOREStation Edit
-	var/moving_state = "ship_moving"
+	light_power = 4
+
+	unknown_name = "unknown ship"
+	unknown_state = "ship"
+	known = FALSE // Ships start 'unknown' on the map and require scanning
 
 	var/vessel_mass = 10000             //tonnes, arbitrary number, affects acceleration provided by engines
 	var/vessel_size = SHIP_SIZE_LARGE	//arbitrary number, affects how likely are we to evade meteors
@@ -36,6 +40,12 @@
 	var/halted = 0        //admin halt or other stop.
 	var/skill_needed = SKILL_ADEPT  //piloting skill needed to steer it without going in random dir
 	var/operator_skill
+	//VOREStation add
+	var/last_sound = 0 //The last time a ship sound was played		//VOREStation add
+	var/sound_cooldown = 10 SECONDS		//VOREStation add
+
+	/// Vis contents overlay holding the ship's vector when in motion	
+	var/obj/effect/overlay/vis/vector
 
 /obj/effect/overmap/visitable/ship/Initialize()
 	. = ..()
@@ -44,11 +54,14 @@
 	SSshuttles.ships += src
 	position_x = ((loc.x - 1) * WORLD_ICON_SIZE) + (WORLD_ICON_SIZE/2) + pixel_x + 1
 	position_y = ((loc.y - 1) * WORLD_ICON_SIZE) + (WORLD_ICON_SIZE/2) + pixel_y + 1
+	vector = add_vis_overlay("vector", dir = SOUTH, layer = 10, unique = TRUE)
+	vector.vis_flags = (VIS_INHERIT_PLANE|VIS_INHERIT_ID)
 
 /obj/effect/overmap/visitable/ship/Destroy()
 	STOP_PROCESSING(SSprocessing, src)
+	remove_vis_overlay(vector)
 	SSshuttles.ships -= src
-	. = ..()
+	return ..()
 
 /obj/effect/overmap/visitable/ship/relaymove(mob/user, direction, accel_limit)
 	accelerate(direction, accel_limit)
@@ -114,17 +127,37 @@
 	CHANGE_SPEED_BY(speed[2], n_y)
 	update_icon()
 	var/still = is_still()
+	// If nothing changed
 	if(still == old_still)
 		return
+	// If it is now still, stopped moving
 	else if(still)
 		STOP_PROCESSING(SSprocessing, src)
 		for(var/zz in map_z)
 			toggle_move_stars(zz)
+		if(last_sound + sound_cooldown >= world.time)
+			return
+		//VOREStation Add Start
+		last_sound = world.time
+		for(var/mob/potential_mob as anything in player_list)
+			if(potential_mob.z in map_z)
+				SEND_SOUND(potential_mob, 'sound/ambience/shutdown.ogg')
+		//VOREStation Add End
+
+	// If it started moving
 	else
 		START_PROCESSING(SSprocessing, src)
 		glide_size = WORLD_ICON_SIZE/max(DS2TICKS(SSprocessing.wait), 1) //Down to whatever decimal
 		for(var/zz in map_z)
 			toggle_move_stars(zz, fore_dir)
+		if(last_sound + sound_cooldown >= world.time)
+			return
+		//VOREStation Add Start
+		last_sound = world.time
+		for(var/mob/potential_mob as anything in player_list)
+			if(potential_mob.z in map_z)
+				SEND_SOUND(potential_mob, 'sound/ambience/startup.ogg')
+		//VOREStation Add End
 
 /obj/effect/overmap/visitable/ship/proc/get_brake_path()
 	if(!get_acceleration())
@@ -199,11 +232,13 @@
 
 /obj/effect/overmap/visitable/ship/update_icon()
 	if(!is_still())
-		icon_state = moving_state
-		transform = matrix().Turn(get_heading_degrees())
+		var/heading = get_heading_degrees()
+		dir = angle2dir(round(heading, 90))
+		vector.dir = NORTH
+		vector.transform = matrix().Turn(heading)
 	else
-		icon_state = initial(icon_state)
-		transform = null
+		dir = NORTH
+		vector.dir = SOUTH
 	..()
 
 /obj/effect/overmap/visitable/ship/set_dir(new_dir)
@@ -259,6 +294,12 @@
 
 /obj/effect/overmap/visitable/ship/proc/get_landed_info()
 	return "This ship cannot land."
+
+/obj/effect/overmap/visitable/ship/get_distress_info()
+	var/turf/T = get_turf(src) // Usually we're on the turf, but sometimes we might be landed or something.
+	var/x_to_use = T?.x || "UNK"
+	var/y_to_use = T?.y || "UNK"
+	return "\[X:[x_to_use], Y:[y_to_use], VEL:[get_speed() * 1000], HDG:[get_heading_degrees()]\]"
 
 #undef MOVING
 #undef SANITIZE_SPEED

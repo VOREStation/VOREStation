@@ -1,5 +1,21 @@
-// The top-level slime defines. Xenobio slimes and feral slimes will inherit from this.
+var/list/_slime_default_emotes = list(
+	/decl/emote/audible/moan,
+	/decl/emote/visible/twitch,
+	/decl/emote/visible/sway,
+	/decl/emote/visible/shiver,
+	/decl/emote/visible/bounce,
+	/decl/emote/visible/jiggle,
+	/decl/emote/visible/lightup,
+	/decl/emote/visible/vibrate,
+	/decl/emote/slime,
+	/decl/emote/slime/pout,
+	/decl/emote/slime/sad,
+	/decl/emote/slime/angry,
+	/decl/emote/slime/frown,
+	/decl/emote/slime/smile
+)
 
+// The top-level slime defines. Xenobio slimes and feral slimes will inherit from this.
 /mob/living/simple_mob/slime
 	name = "slime"
 	desc = "It's a slime."
@@ -23,6 +39,8 @@
 	mob_class = MOB_CLASS_SLIME
 
 	response_help = "pets"
+
+	organ_names = /decl/mob_organ_names/slime
 
 	// Atmos stuff.
 	minbodytemp = T0C-30
@@ -63,6 +81,9 @@
 	var/mood = ":3" // Icon to use to display 'mood', as an overlay.
 
 	can_enter_vent_with = list(/obj/item/clothing/head)
+
+/mob/living/simple_mob/slime/get_available_emotes()
+	return global._slime_default_emotes
 
 /datum/say_list/slime
 	speak = list("Blorp...", "Blop...")
@@ -117,9 +138,10 @@
 	// Hat simulator.
 	if(hat)
 		var/hat_state = hat.item_state ? hat.item_state : hat.icon_state
-		var/image/I = image('icons/mob/head.dmi', src, hat_state)
+		var/image/I = image('icons/inventory/head/mob.dmi', src, hat_state)
 		I.pixel_y = -7 // Slimes are small.
-		I.appearance_flags = RESET_COLOR
+		I.appearance_flags = RESET_COLOR | KEEP_APART
+		I.blend_mode = BLEND_OVERLAY
 		add_overlay(I)
 
 // Controls the 'mood' overlay. Overrided in subtypes for specific behaviour.
@@ -140,6 +162,10 @@
 		if(S.slime_color == src.slime_color)
 			return TRUE
 		else
+			return FALSE
+	if(ishuman(L))
+		var/mob/living/carbon/human/H = L
+		if(istype(H.species, /datum/species/monkey))	// Monke always food
 			return FALSE
 	// The other stuff was already checked in parent proc, and the . variable will implicitly return the correct value.
 
@@ -223,3 +249,6 @@
 /mob/living/simple_mob/slime/proc/squish()
 	playsound(src, 'sound/effects/slime_squish.ogg', 50, 0)
 	visible_message("<b>\The [src]</b> squishes!")
+
+/decl/mob_organ_names/slime
+	hit_zones = list("cytoplasmic membrane")

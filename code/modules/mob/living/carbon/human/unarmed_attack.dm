@@ -9,8 +9,8 @@ var/global/list/sparring_attack_cache = list()
 	var/attack_sound = "punch"
 	var/miss_sound = 'sound/weapons/punchmiss.ogg'
 	var/shredding = 0 // Calls the old attack_alien() behavior on objects/mobs when on harm intent.
-	var/sharp = 0
-	var/edge = 0
+	var/sharp = FALSE
+	var/edge = FALSE
 
 	var/damage_type = BRUTE
 	var/sparring_variant_type = /datum/unarmed_attack/light_strike
@@ -115,8 +115,8 @@ var/global/list/sparring_attack_cache = list()
 	attack_sound = 'sound/weapons/bite.ogg'
 	shredding = 0
 	damage = 0
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE
 
 /datum/unarmed_attack/bite/event1
 
@@ -281,5 +281,5 @@ var/global/list/sparring_attack_cache = list()
 	damage_type = AGONY
 	shredding = 0
 	damage = 0
-	sharp = 0
-	edge = 0
+	sharp = FALSE
+	edge = FALSE

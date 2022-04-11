@@ -126,6 +126,11 @@
 	if(!buckled && shoes) // Shoes can make you go faster.
 		. += shoes.slowdown
 
+	//VOREStation Addition Start
+	if(buckled && istype(buckled, /obj/machinery/power/rtg/reg))
+		. += shoes.slowdown
+	//VOREStation Addition End
+
 	// Loop through some slots, and add up their slowdowns.
 	// Includes slots which can provide armor, the back slot, and suit storage.
 	for(var/obj/item/I in list(wear_suit, w_uniform, back, gloves, head, s_store))
@@ -167,7 +172,7 @@
 	// I don't like that so I'm commenting it out :)
 	// VOREstation Edit Start 
 /*
-	if(T.outdoors && (T.z <= SSplanets.z_to_planet.len))
+	if((T.is_outdoors()) && (T.z <= SSplanets.z_to_planet.len))
 		var/datum/planet/P = SSplanets.z_to_planet[z]
 		if(P)
 			var/datum/weather_holder/WH = P.weather_holder
@@ -189,7 +194,7 @@
 		if(istype(back, /obj/item/weapon/tank/jetpack))
 			return back
 		else if(istype(rig))
-			for(var/obj/item/rig_module/maneuvering_jets.module in rig.installed_modules)
+			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
 				return module.jets
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
@@ -252,6 +257,7 @@
 		return
 
 	var/S = pick(footstep_sounds)
+	GLOB.step_taken_shift_roundstat++
 	if(!S) return
 
 	// Play every 20 steps while walking, for the sneak

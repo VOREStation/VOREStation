@@ -2,8 +2,8 @@
 /obj/structure/lift
 	name = "turbolift control component"
 	icon = 'icons/obj/turbolift.dmi'
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	plane = MOB_PLANE
 
 	var/datum/turbolift/lift
@@ -26,7 +26,7 @@
 		if(user.a_intent == I_HURT)
 			user.visible_message("<span class='danger'>\The [user] hammers on the lift button!</span>")
 		else
-			user.visible_message("<span class='notice'>\The [user] presses the lift button.</span>")
+			user.visible_message("<b>\The [user]</b> presses the lift button.")
 
 
 /obj/structure/lift/New(var/newloc, var/datum/turbolift/_lift)
@@ -130,10 +130,10 @@
 			return
 		lift.update_fire_mode(!lift.fire_mode)
 		if(lift.fire_mode)
-			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>")
+			audible_message("<span class='danger'>Firefighter Mode Activated.  Door safeties disabled.  Manual control engaged.</span>", runemessage = "SCREECH")
 			playsound(src, 'sound/machines/airalarm.ogg', 25, 0, 4, volume_channel = VOLUME_CHANNEL_ALARMS)
 		else
-			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>")
+			audible_message("<span class='warning'>Firefighter Mode Deactivated. Door safeties enabled.  Automatic control engaged.</span>", runemessage = "ding")
 		return
 	. = ..()
 
@@ -158,10 +158,10 @@
 	data["doors_open"] = lift.doors_are_open()
 	data["fire_mode"] = lift.fire_mode
 
-	data["floors"] = list()
+	var/list/floors = list()
 	for(var/i in lift.floors.len to 1 step -1)
 		var/datum/turbolift_floor/floor = lift.floors[i]
-		data["floors"].Add(list(list(
+		floors.Add(list(list(
 			"id" = i,
 			"ref" = "\ref[floor]",
 			"queued" = (floor in lift.queued_floors),
@@ -170,6 +170,7 @@
 			"label" = floor.label,
 			"name" = floor.name,
 		)))
+	data["floors"] = floors
 	
 	return data
 

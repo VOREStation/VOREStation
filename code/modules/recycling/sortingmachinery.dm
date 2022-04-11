@@ -4,7 +4,7 @@
 	icon = 'icons/obj/storage_vr.dmi'	//VOREStation Edit
 	icon_state = "deliverycloset"
 	var/obj/wrapped = null
-	density = 1
+	density = TRUE
 	var/sortTag = null
 	flags = NOBLUDGEON
 	mouse_drag_pointer = MOUSE_ACTIVE_POINTER
@@ -40,7 +40,7 @@
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
 	else if(istype(W, /obj/item/weapon/pen))
-		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
+		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))
@@ -73,7 +73,7 @@
 	return
 
 /obj/structure/bigDelivery/update_icon()
-	overlays = new()
+	cut_overlays()
 	if(nameset || examtext)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycloset")
@@ -86,7 +86,7 @@
 				label_x = rand(-8, 6)
 			I.pixel_x = label_x
 			I.pixel_y = -3
-		overlays += I
+		add_overlay(I)
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
 		if(icon_state == "deliverycloset")
@@ -99,7 +99,7 @@
 				tag_x = rand(-8, 6)
 			I.pixel_x = tag_x
 			I.pixel_y = -3
-		overlays += I
+		add_overlay(I)
 
 /obj/structure/bigDelivery/examine(mob/user)
 	. = ..()
@@ -151,7 +151,7 @@
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
 	else if(istype(W, /obj/item/weapon/pen))
-		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
+		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
 				if(!str || !length(str))
@@ -185,12 +185,12 @@
 	return
 
 /obj/item/smallDelivery/update_icon()
-	overlays = new()
+	cut_overlays()
 	if((nameset || examtext) && icon_state != "deliverycrate1")
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_label")
 		if(icon_state == "deliverycrate5")
 			I.pixel_y = -1
-		overlays += I
+		add_overlay(I)
 	if(src.sortTag)
 		var/image/I = new/image('icons/obj/storage.dmi',"delivery_tag")
 		switch(icon_state)
@@ -207,7 +207,7 @@
 				I.pixel_y = 3
 			if("deliverycrate5")
 				I.pixel_y = -3
-		overlays += I
+		add_overlay(I)
 
 /obj/item/smallDelivery/examine(mob/user)
 	. = ..()
@@ -374,17 +374,16 @@
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"
 	desc = "A chute for big and small packages alike!"
-	density = 1
+	density = TRUE
 	icon_state = "intake"
 
 	var/c_mode = 0
 
-/obj/machinery/disposal/deliveryChute/New()
-	..()
-	spawn(5)
-		trunk = locate() in src.loc
-		if(trunk)
-			trunk.linked = src	// link the pipe trunk to self
+/obj/machinery/disposal/deliveryChute/Initialize()
+	. = ..()
+	trunk = locate() in src.loc
+	if(trunk)
+		trunk.linked = src	// link the pipe trunk to self
 
 /obj/machinery/disposal/deliveryChute/interact()
 	return
@@ -439,34 +438,27 @@
 		return
 
 	if(I.is_screwdriver())
-		if(c_mode==0)
-			c_mode=1
-			playsound(src, I.usesound, 50, 1)
-			to_chat(user, "You remove the screws around the power connection.")
-			return
-		else if(c_mode==1)
-			c_mode=0
-			playsound(src, I.usesound, 50, 1)
-			to_chat(user, "You attach the screws around the power connection.")
-			return
-	else if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
+		c_mode = !c_mode
+		playsound(src, I.usesound, 50, 1)
+		to_chat(user, "You [c_mode ? "remove" : "attach"] the screws around the power connection.")
+		return
+	if(istype(I, /obj/item/weapon/weldingtool) && c_mode==1)
 		var/obj/item/weapon/weldingtool/W = I
-		if(W.remove_fuel(0,user))
-			playsound(src, W.usesound, 50, 1)
-			to_chat(user, "You start slicing the floorweld off the delivery chute.")
-			if(do_after(user,20 * W.toolspeed))
-				if(!src || !W.isOn()) return
-				to_chat(user, "You sliced the floorweld off the delivery chute.")
-				var/obj/structure/disposalconstruct/C = new (src.loc)
-				C.ptype = 8 // 8 =  Delivery chute
-				C.update()
-				C.anchored = 1
-				C.density = 1
-				qdel(src)
-			return
-		else
+		if(!W.remove_fuel(0,user))
 			to_chat(user, "You need more welding fuel to complete this task.")
 			return
+		playsound(src, W.usesound, 50, 1)
+		to_chat(user, "You start slicing the floorweld off the delivery chute.")
+		if(do_after(user,20 * W.toolspeed))
+			if(!src || !W.isOn()) return
+			to_chat(user, "You sliced the floorweld off the delivery chute.")
+			var/obj/structure/disposalconstruct/C = new (src.loc)
+			C.ptype = 8 // 8 =  Delivery chute
+			C.update()
+			C.anchored = TRUE
+			C.density = TRUE
+			qdel(src)
+		return
 
 /obj/machinery/disposal/deliveryChute/Destroy()
 	if(trunk)

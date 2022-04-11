@@ -11,7 +11,7 @@
 	var/can_use = 1
 	var/obj/effect/dummy/chameleon/active_dummy = null
 	var/saved_item = /obj/item/trash/cigbutt
-	var/saved_icon = 'icons/obj/clothing/masks.dmi'
+	var/saved_icon = 'icons/inventory/face/item.dmi'
 	var/saved_icon_state = "cigbutt"
 	var/saved_overlays
 
@@ -86,8 +86,8 @@
 /obj/effect/dummy/chameleon
 	name = ""
 	desc = ""
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	var/can_move = 1
 	var/obj/item/device/chameleon/master = null
 

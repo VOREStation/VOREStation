@@ -115,8 +115,7 @@ var/list/organ_cache = list()
 	handle_organ_mod_special()
 
 /obj/item/organ/Initialize()
-	..()
-
+	. = ..()
 	if(owner)
 		if(!meat_type)
 			if(owner.isSynthetic())
@@ -178,7 +177,7 @@ var/list/organ_cache = list()
 
 	if(!owner && reagents)
 		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
-		if(B && prob(40))
+		if(B && prob(40) && !isbelly(loc)) //VOREStation Edit
 			reagents.remove_reagent("blood",0.1)
 			blood_splatter(src,B,1)
 		if(config.organs_decay && decays) damage += rand(1,3)

@@ -56,7 +56,7 @@
 	var/feeding_delay = 30 SECONDS	// How long do we have to wait to bite our host's organs?
 	var/last_feeding = 0
 
-	intent = I_HELP
+	a_intent = I_HELP
 
 	holder_type = /obj/item/weapon/holder/leech
 
@@ -68,6 +68,8 @@
 	attack_armor_pen = 15
 	attack_sharp = TRUE
 	attacktext = list("nipped", "bit", "pinched")
+
+	organ_names = /decl/mob_organ_names/leech
 
 	armor = list(
 		"melee" = 10,
@@ -115,7 +117,7 @@
 	emote_hear = list("chitters", "clicks", "gurgles")
 
 /mob/living/simple_mob/animal/sif/leech/Initialize()
-	..()
+	. = ..()
 
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -192,7 +194,7 @@
 				chemicals -= 30
 
 			if(host.getToxLoss() >= 30 && chemicals > 50)
-				var/randomchem = pickweight("tramadol" = 7, "anti_toxin" = 15, "frostoil" = 3)
+				var/randomchem = pickweight(list("tramadol" = 7, "anti_toxin" = 15, "frostoil" = 3))
 				host.reagents.add_reagent(randomchem, 5)
 				chemicals -= 50
 
@@ -260,7 +262,7 @@
 			to_chat(user, span("warning","There are no viable hosts within range..."))
 			return
 
-		M = input(src,"Who do we wish to infest?") in null|choices
+		M = tgui_input_list(src, "Who do we wish to infest?", "Target Choice", choices)
 
 	if(!M || !src) return
 
@@ -330,10 +332,6 @@
 	if(!host)
 		return
 
-		if(ai_holder)
-			ai_holder.hostile = initial(ai_holder.hostile)
-			ai_holder.lose_target()
-
 	host_bodypart.implants -= src
 	host_bodypart = null
 
@@ -363,7 +361,7 @@
 			to_chat(src, span("warning","There are no viable hosts within range..."))
 			return
 
-		M = input(src,"Who do we wish to inject?") in null|choices
+		M = tgui_input_list(src, "Who do we wish to inject?", "Target Choice", choices)
 
 	if(!M || stat)
 		return
@@ -405,7 +403,7 @@
 		return
 
 	if(host)
-		var/chem = input("Select a chemical to produce.", "Chemicals") as null|anything in produceable_chemicals
+		var/chem = tgui_input_list(usr, "Select a chemical to produce.", "Chemicals", produceable_chemicals)
 		inject_meds(chem)
 
 /mob/living/simple_mob/animal/sif/leech/proc/inject_meds(var/chem)
@@ -432,7 +430,7 @@
 
 		var/target
 		if(client)
-			target = input("Select an organ to feed on.", "Organs") as null|anything in host_internal_organs
+			target = tgui_input_list(usr, "Select an organ to feed on.", "Organs", host_internal_organs)
 			if(!target)
 				to_chat(src, span("alien","We decide not to feed."))
 				return
@@ -501,3 +499,6 @@
 			holder.a_intent = I_HURT
 	else
 		holder.a_intent = I_HURT
+
+/decl/mob_organ_names/leech
+	hit_zones = list("mouthparts", "central segment", "tail segment")

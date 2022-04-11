@@ -74,13 +74,13 @@
 	name = "pistol magazine (.45 armor piercing)"
 	path =/obj/item/ammo_magazine/m45/ap
 	hidden = 1
-	resources = list(DEFAULT_WALL_MATERIAL = 500, MAT_PLASTEEL = 300)
+	resources = list(MAT_STEEL = 500, MAT_PLASTEEL = 300)
 
 /datum/category_item/autolathe/arms/pistol_45hp
 	name = "pistol magazine (.45 hollowpoint)"
 	path =/obj/item/ammo_magazine/m45/hp
 	hidden = 1
-	resources = list(DEFAULT_WALL_MATERIAL = 500, MAT_PLASTIC = 200)
+	resources = list(MAT_STEEL = 500, MAT_PLASTIC = 200)
 
 /datum/category_item/autolathe/arms/pistol_45uzi
 	name = "uzi magazine (.45)"
@@ -326,6 +326,15 @@
 	category = list("Arms and Ammunition")
 	hidden = 1*/
 
+/*
+ * High Caliber
+ */
+
+/datum/category_item/autolathe/arms/rifle_145
+	name = "14.5mm round (sabot)"
+	path = /obj/item/ammo_casing/a145/highvel
+	hidden = 1
+
 ///////////////////////////////
 /*Ammo clips and Speedloaders*/
 ///////////////////////////////
@@ -399,12 +408,6 @@
 /datum/category_item/autolathe/arms/pistol_clip_5mm
 	name = "ammo clip (5mm)"
 	path =/obj/item/ammo_magazine/clip/c5mm
-	category = list("Arms and Ammunition")
-	hidden = 1
-
-/datum/category_item/autolathe/arms/pistol_clip_10mm
-	name = "ammo clip (10mm)"
-	path =/obj/item/ammo_magazine/clip/c10mm
 	category = list("Arms and Ammunition")
 	hidden = 1
 

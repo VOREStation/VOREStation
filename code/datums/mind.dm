@@ -55,6 +55,10 @@
 
 	var/rev_cooldown = 0
 	var/tcrystals = 0
+	var/list/purchase_log = new
+	var/used_TC = 0
+
+	var/list/learned_recipes //List of learned recipe TYPES.
 
 	// the world.time since the mob has been brigged, or -1 if not at all
 	var/brigged_since = -1
@@ -73,7 +77,7 @@
 
 /datum/mind/New(var/key)
 	src.key = key
-
+	purchase_log = list()
 	..()
 
 /datum/mind/proc/transfer_to(mob/living/new_character)
@@ -118,7 +122,7 @@
 
 /datum/mind/proc/edit_memory()
 	if(!ticker || !ticker.mode)
-		alert("Not before round-start!", "Alert")
+		tgui_alert_async(usr, "Not before round-start!", "Alert")
 		return
 
 	var/out = "<B>[name]</B>[(current&&(current.real_name!=name))?" (as [current.real_name])":""]<br>"
@@ -216,7 +220,8 @@
 			if(!def_value)//If it's a custom objective, it will be an empty string.
 				def_value = "custom"
 
-		var/new_obj_type = input("Select objective type:", "Objective type", def_value) as null|anything in list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/list/choices = list("assassinate", "debrain", "protect", "prevent", "harm", "brig", "hijack", "escape", "survive", "steal", "download", "mercenary", "capture", "absorb", "custom")
+		var/new_obj_type = tgui_input_list(usr, "Select objective type:", "Objective type", choices, def_value)
 		if (!new_obj_type) return
 
 		var/datum/objective/new_objective = null
@@ -235,10 +240,10 @@
 
 				var/mob/def_target = null
 				var/objective_list[] = list(/datum/objective/assassinate, /datum/objective/protect, /datum/objective/debrain)
-				if (objective&&(objective.type in objective_list) && objective:target)
-					def_target = objective:target.current
+				if (objective&&(objective.type in objective_list) && objective.target)
+					def_target = objective.target.current
 
-				var/new_target = input("Select target:", "Objective target", def_target) as null|anything in possible_targets
+				var/new_target = tgui_input_list(usr, "Select target:", "Objective target", possible_targets, def_target)
 				if (!new_target) return
 
 				var/objective_path = text2path("/datum/objective/[new_obj_type]")
@@ -510,8 +515,9 @@
 
 //HUMAN
 /mob/living/carbon/human/mind_initialize()
-	..()
-	if(!mind.assigned_role)	mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
+	. = ..()
+	if(!mind.assigned_role)
+		mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
 
 //slime
 /mob/living/simple_mob/slime/mind_initialize()

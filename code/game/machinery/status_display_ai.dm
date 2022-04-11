@@ -41,7 +41,9 @@ var/list/ai_status_emotions = list(
 
 /proc/set_ai_status_displays(mob/user as mob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
-	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
+	var/emote = tgui_input_list(user, "Please, select a status:", "AI Status", ai_emotions)
+	if(!emote)
+		return
 	for (var/obj/machinery/M in machines) //change status
 		if(istype(M, /obj/machinery/ai_status_display))
 			var/obj/machinery/ai_status_display/AISD = M
@@ -61,8 +63,8 @@ var/list/ai_status_emotions = list(
 	icon_state = "frame"
 	layer = ABOVE_WINDOW_LAYER
 	name = "AI display"
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	circuit =  /obj/item/weapon/circuitboard/ai_status_display
 
 	var/mode = 0	// 0 = Blank
@@ -80,9 +82,11 @@ var/list/ai_status_emotions = list(
 		attack_hand(user)
 	return
 
-/obj/machinery/ai_status_display/attack_ai/(mob/user as mob)
+/obj/machinery/ai_status_display/attack_ai(mob/user as mob)
 	var/list/ai_emotions = get_ai_emotions(user.ckey)
-	var/emote = input("Please, select a status!", "AI Status", null, null) in ai_emotions
+	var/emote = tgui_input_list(user, "Please, select a status:", "AI Status", ai_emotions)
+	if(!emote)
+		return
 	emotion = emote
 
 /obj/machinery/ai_status_display/process()
@@ -90,7 +94,7 @@ var/list/ai_status_emotions = list(
 
 /obj/machinery/ai_status_display/proc/update()
 	if(mode==0) //Blank
-		overlays.Cut()
+		cut_overlays()
 		return
 
 	if(mode==1)	// AI emoticon
@@ -104,14 +108,12 @@ var/list/ai_status_emotions = list(
 
 /obj/machinery/ai_status_display/proc/set_picture(var/state)
 	picture_state = state
-	if(overlays.len)
-		overlays.Cut()
-	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
+	cut_overlays()
+	add_overlay(picture_state)
 
 /obj/machinery/ai_status_display/power_change()
 	..()
 	if(stat & NOPOWER)
-		if(overlays.len)
-			overlays.Cut()
+		cut_overlays()
 	else
 		update()

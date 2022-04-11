@@ -3,28 +3,36 @@
 	desc = "A mech recharger, built into the floor."
 	icon = 'icons/mecha/mech_bay.dmi'
 	icon_state = "recharge_floor"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	layer = TURF_LAYER + 0.1
 	circuit = /obj/item/weapon/circuitboard/mech_recharger
 
-	var/obj/mecha/charging = null
+	var/atom/movable/charging
 	var/charge = 45
 	var/repair = 0
+	var/list/chargable_types = list(
+		/obj/mecha,
+		/mob/living/silicon/robot/platform
+	)
 
 /obj/machinery/mech_recharger/Initialize()
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/mech_recharger/Crossed(var/obj/mecha/M)
+/obj/machinery/mech_recharger/Crossed(var/atom/movable/M)
 	. = ..()
-	if(istype(M) && charging != M)
-		start_charging(M)
+	if(charging == M)
+		return
+	for(var/mtype in chargable_types)
+		if(istype(M, mtype))
+			start_charging(M)
+			return
 
-/obj/machinery/mech_recharger/Uncrossed(var/obj/mecha/M)
+/obj/machinery/mech_recharger/Uncrossed(var/atom/movable/M)
 	. = ..()
 	if(M == charging)
-		stop_charging()
+		charging = null
 
 /obj/machinery/mech_recharger/RefreshParts()
 	..()
@@ -44,26 +52,33 @@
 	if(!charging)
 		return
 	if(charging.loc != src.loc) // Could be qdel or teleport or something
-		stop_charging()
+		charging = null
 		return
+
 	var/done = FALSE
-	if(charging.cell)	
-		var/t = min(charge, charging.cell.maxcharge - charging.cell.charge)
+	var/obj/mecha/mech = charging
+	var/obj/item/weapon/cell/cell = charging.get_cell()
+	if(cell)	
+		var/t = min(charge, cell.maxcharge - cell.charge)
 		if(t > 0)
-			charging.give_power(t)
+			if(istype(mech))
+				mech.give_power(t)
+			else
+				cell.give(t)
 			use_power(t * 150)
 		else
-			charging.occupant_message("<span class='notice'>Fully charged.</span>")
+			if(istype(mech))
+				mech.occupant_message(SPAN_NOTICE("Fully charged."))
 			done = TRUE
-	if(repair && charging.health < initial(charging.health))
-		charging.health = min(charging.health + repair, initial(charging.health))
-		if(charging.health == initial(charging.health))
-			charging.occupant_message("<span class='notice'>Fully repaired.</span>")
+
+	if(repair && istype(mech) && mech.health < initial(mech.health))
+		mech.health = min(mech.health + repair, initial(mech.health))
+		if(mech.health == initial(mech.health))
+			mech.occupant_message(SPAN_NOTICE("Fully repaired."))
 		else
 			done = FALSE
 	if(done)
-		stop_charging()
-	return
+		charging = null
 
 /obj/machinery/mech_recharger/attackby(var/obj/item/I, var/mob/user)
 	if(default_deconstruction_screwdriver(user, I))
@@ -73,18 +88,19 @@
 	if(default_part_replacement(user, I))
 		return
 
-/obj/machinery/mech_recharger/proc/start_charging(var/obj/mecha/M)
-	if(stat & (NOPOWER | BROKEN))
-		M.occupant_message("<span class='warning'>Power port not responding. Terminating.</span>")
+/obj/machinery/mech_recharger/proc/start_charging(var/atom/movable/M)
 
+	var/obj/mecha/mech = M
+	if(stat & (NOPOWER | BROKEN))
+		if(istype(mech))
+			mech.occupant_message(SPAN_WARNING("Power port not responding. Terminating."))
+		else
+			to_chat(M, SPAN_WARNING("Power port not responding. Terminating."))
 		return
-	if(M.cell)
-		M.occupant_message("<span class='notice'>Now charging...</span>")
+	if(M.get_cell())
+		if(istype(mech))
+			mech.occupant_message(SPAN_NOTICE("Now charging..."))
+		else
+			to_chat(M, SPAN_NOTICE("Now charging..."))
 		charging = M
 	return
-
-/obj/machinery/mech_recharger/proc/stop_charging()
-	if(!charging)
-
-		return
-	charging = null

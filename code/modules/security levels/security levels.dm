@@ -76,8 +76,7 @@
 			if(FA.z in using_map.contact_levels)
 				FA.on_alert_changed(newlevel)
 		//VOREStation Add
-		for(var/hp in GLOB.holoposters)
-			var/obj/machinery/holoposter/HP = hp
+		for(var/obj/machinery/holoposter/HP as anything in GLOB.holoposters)
 			HP.update_icon()
 		//VOREStation Add End
 

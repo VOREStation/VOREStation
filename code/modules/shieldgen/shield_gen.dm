@@ -7,7 +7,7 @@
 	var/field_radius = 3
 	var/max_field_radius = 150
 	var/list/field = list()
-	density = 1
+	density = TRUE
 	var/locked = 0
 	var/average_field_strength = 0
 	var/strengthen_rate = 0.2
@@ -60,7 +60,7 @@
 /obj/machinery/shield_gen/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = W
-		if(access_captain in C.access || access_security in C.access || access_engine in C.access)
+		if((access_captain in C.access) || (access_security in C.access) || (access_engine in C.access))
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
@@ -110,36 +110,35 @@
 	return ..()
 
 /obj/machinery/shield_gen/tgui_data(mob/user)
-	var/list/data = list()
+	var/list/lockedData = list()
 
-	data["locked"] = locked
-	data["lockedData"] = list()
 	if(!locked)
-		data["lockedData"]["capacitors"] = list()
+		var/list/caps = list()
 		for(var/obj/machinery/shield_capacitor/C in capacitors)
-			data["lockedData"]["capacitors"].Add(list(list(
+			caps.Add(list(list(
 				"active" = C.active,
 				"stored_charge" = C.stored_charge,
 				"max_charge" = C.max_charge,
 				"failing" = (C.time_since_fail <= 2),
 			)))
+		lockedData["capacitors"] = caps
 		
-		data["lockedData"]["active"] = active
-		data["lockedData"]["failing"] = (time_since_fail <= 2)
-		data["lockedData"]["radius"] = field_radius
-		data["lockedData"]["max_radius"] = max_field_radius
-		data["lockedData"]["z_range"] = z_range
-		data["lockedData"]["max_z_range"] = 10
-		data["lockedData"]["average_field_strength"] = average_field_strength
-		data["lockedData"]["target_field_strength"] = target_field_strength
-		data["lockedData"]["max_field_strength"] = max_field_strength
-		data["lockedData"]["shields"] = LAZYLEN(field)
-		data["lockedData"]["upkeep"] = round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate)
-		data["lockedData"]["strengthen_rate"] = strengthen_rate
-		data["lockedData"]["max_strengthen_rate"] = max_strengthen_rate
-		data["lockedData"]["gen_power"] = round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)
+		lockedData["active"] = active
+		lockedData["failing"] = (time_since_fail <= 2)
+		lockedData["radius"] = field_radius
+		lockedData["max_radius"] = max_field_radius
+		lockedData["z_range"] = z_range
+		lockedData["max_z_range"] = 10
+		lockedData["average_field_strength"] = average_field_strength
+		lockedData["target_field_strength"] = target_field_strength
+		lockedData["max_field_strength"] = max_field_strength
+		lockedData["shields"] = LAZYLEN(field)
+		lockedData["upkeep"] = round(field.len * max(average_field_strength * dissipation_rate, min_dissipation) / energy_conversion_rate)
+		lockedData["strengthen_rate"] = strengthen_rate
+		lockedData["max_strengthen_rate"] = max_strengthen_rate
+		lockedData["gen_power"] = round(field.len * min(strengthen_rate, target_field_strength - average_field_strength) / energy_conversion_rate)
 
-	return data
+	return list("locked" = locked, "lockedData" = lockedData)
 
 /obj/machinery/shield_gen/process()
 	if (!anchored && active)
@@ -201,7 +200,7 @@
 /obj/machinery/shield_gen/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("toggle")
 			if (!active && !anchored)

@@ -9,6 +9,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 /obj/machinery/pointdefense_control
 	name = "fire assist mainframe"
 	desc = "A specialized computer designed to synchronize a variety of weapon systems and a vessel's astronav data."
+	description_info = "To connect the mainframe to turrets, use a multitool to set the ident tag to that of the turrets."
 	icon = 'icons/obj/pointdefense.dmi'
 	icon_state = "control"
 	density = TRUE
@@ -21,8 +22,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	. = ..()
 	if(id_tag)
 		//No more than 1 controller please.
-		for(var/thing in pointdefense_controllers)
-			var/obj/machinery/pointdefense_control/PC = thing
+		for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
 			if(PC != src && PC.id_tag == id_tag)
 				warning("Two [src] with the same id_tag of [id_tag]")
 				id_tag = null
@@ -77,7 +77,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
 		for(var/i = 1 to LAZYLEN(pointdefense_turrets))
 			var/obj/machinery/power/pointdefense/PD = pointdefense_turrets[i]
-			if(!(PD.id_tag == id_tag && get_z(PD) in connected_z_levels))
+			if(!(PD.id_tag == id_tag && (get_z(PD) in connected_z_levels)))
 				continue
 			var/list/turret = list()
 			turret["id"] =          "#[i]"
@@ -97,8 +97,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			// Check for duplicate controllers with this ID
-			for(var/thing in pointdefense_controllers)
-				var/obj/machinery/pointdefense_control/PC = thing
+			for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
 				if(PC != src && PC.id_tag == id_tag)
 					to_chat(user, "<span class='warning'>The [new_ident] network already has a controller.</span>")
 					return
@@ -122,7 +121,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	icon = 'icons/obj/pointdefense.dmi'
 	icon_state = "pointdefense2"
 	desc = "A Kuiper pattern anti-meteor battery. Capable of destroying most threats in a single salvo."
-	description_info = "Must have the same ident tag as a fire assist mainframe on the same facility."
+	description_info = "Must have the same ident tag as a fire assist mainframe on the same facility. Use a multitool to set the ident tag."
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/pointdefense
@@ -134,7 +133,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/last_shot = 0
 	var/kill_range = 18
 	var/rotation_speed = 0.25 SECONDS  //How quickly we turn to face threats
-	var/engaging = FALSE
+	var/weakref/engaging = null // The meteor we're shooting at
 	var/id_tag = null
 
 /obj/machinery/power/pointdefense/Initialize()
@@ -190,21 +189,23 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 		update_icon()
 
 // Decide where to get the power to fire from
-/obj/machinery/power/pointdefense/use_power_oneoff(var/amount, var/chan = -1)
+/obj/machinery/power/pointdefense/use_power_oneoff(var/amount, var/chan = CURRENT_CHANNEL)
 	if(powernet)
 		return draw_power(amount)
-	else if(powered(chan))
-		use_power(amount, chan)
-		return amount
-	return 0
+	// We are not connected to a powernet, so we want APC power.  Reproduce that code here since this is weird.
+	if(chan == CURRENT_CHANNEL)
+		chan = power_channel
+	var/area/A = get_area(src)	// make sure it's in an area
+	if(!A || !A.powered(chan))	// and that the area is powered
+		return 0				// if not, then not powered
+	return A.use_power_oneoff(amount, chan)
 
 // Find controller with the same tag on connected z levels (if any)
 /obj/machinery/power/pointdefense/proc/get_controller()
 	if(!id_tag)
 		return null
 	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
-	for(var/thing in pointdefense_controllers)
-		var/obj/machinery/pointdefense_control/PDC = thing
+	for(var/obj/machinery/pointdefense_control/PDC as anything in pointdefense_controllers)
 		if(PDC.id_tag == id_tag && (get_z(PDC) in connected_z_levels))
 			return PDC
 
@@ -235,8 +236,9 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 /obj/machinery/power/pointdefense/proc/Shoot(var/weakref/target)
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
+		engaging = null
 		return
-	engaging = TRUE
+	engaging = target
 	var/Angle = round(Get_Angle(src,M))
 	var/matrix/rot_matrix = matrix()
 	rot_matrix.Turn(Angle)
@@ -246,12 +248,11 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	set_dir(ATAN2(transform.b, transform.a) > 0 ? NORTH : SOUTH)
 
 /obj/machinery/power/pointdefense/proc/finish_shot(var/weakref/target)
-	//Cleanup from list
-	var/obj/machinery/pointdefense_control/PC = get_controller()
-	if(istype(PC))
-		PC.targets -= target
 
-	engaging = FALSE
+	var/obj/machinery/pointdefense_control/PC = get_controller()
+	engaging = null
+	PC.targets -= target
+
 	last_shot = world.time
 	var/obj/effect/meteor/M = target.resolve()
 	if(!istype(M))
@@ -267,8 +268,6 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/obj/item/projectile/beam/pointdefense/beam = new(get_turf(src))
 	playsound(src, 'sound/weapons/mandalorian.ogg', 75, 1)
 	beam.launch_projectile(target = M.loc, user = src)
-	M.make_debris()
-	qdel(M)
 
 /obj/machinery/power/pointdefense/process()
 	..()
@@ -281,42 +280,58 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	if(dir != desiredir)
 		set_dir(desiredir)
 	*/
+
 	if(LAZYLEN(GLOB.meteor_list) > 0)
 		find_and_shoot()
 
 /obj/machinery/power/pointdefense/proc/find_and_shoot()
+	// There ARE meteors to shoot
 	if(LAZYLEN(GLOB.meteor_list) == 0)
 		return
+	// We can shoot
 	if(engaging || ((world.time - last_shot) < charge_cooldown))
 		return
 
 	var/obj/machinery/pointdefense_control/PC = get_controller()
 	if(!istype(PC))
 		return
+	
+	// Compile list of known targets
+	var/list/existing_targets = list()
+	for(var/weakref/WR in PC.targets)
+		var/obj/effect/meteor/M = WR.resolve()
+		existing_targets += M
 
-	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
-	for(var/obj/effect/meteor/M in GLOB.meteor_list)
-		var/already_targeted = FALSE
-		for(var/weakref/WR in PC.targets)
-			var/obj/effect/meteor/m = WR.resolve()
-			if(m == M)
-				already_targeted = TRUE
-				break
-			if(!istype(m))
-				PC.targets -= WR
-
-		if(already_targeted)
-			continue
-
-		if(!(M.z in connected_z_levels))
-			continue
-		if(get_dist(M, src) > kill_range)
-			continue
-		if(!emagged && space_los(M))
+	// First, try and acquire new targets
+	var/list/potential_targets = GLOB.meteor_list.Copy() - existing_targets
+	for(var/obj/effect/meteor/M in potential_targets)
+		if(targeting_check(M))
 			var/weakref/target = weakref(M)
 			PC.targets += target
+			engaging = target
 			Shoot(target)
 			return
+
+	// Then, focus fire on existing targets
+	for(var/obj/effect/meteor/M in existing_targets)
+		if(targeting_check(M))
+			var/weakref/target = weakref(M)
+			engaging = target
+			Shoot(target)
+			return
+		
+/obj/machinery/power/pointdefense/proc/targeting_check(var/obj/effect/meteor/M)
+	// Target in range
+	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
+	if(!(M.z in connected_z_levels))
+		return FALSE
+	if(get_dist(M, src) > kill_range)
+		return FALSE
+	// If we can shoot it, then shoot
+	if(emagged || !space_los(M))
+		return FALSE
+	
+	return TRUE
 
 /obj/machinery/power/pointdefense/RefreshParts()
 	. = ..()
@@ -352,29 +367,3 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	active = FALSE
 	update_icon()
 	return TRUE
-
-//
-// Projectile Beam Definitions
-//
-
-/obj/item/projectile/beam/pointdefense
-	name = "point defense salvo"
-	icon_state = "laser"
-	damage = 15
-	damage_type = ELECTROCUTE //You should be safe inside a voidsuit
-	sharp = FALSE //"Wide" spectrum beam
-	light_color = COLOR_GOLD
-
-	muzzle_type = /obj/effect/projectile/muzzle/pointdefense
-	tracer_type = /obj/effect/projectile/tracer/pointdefense
-	impact_type = /obj/effect/projectile/impact/pointdefense
-
-
-/obj/effect/projectile/tracer/pointdefense
-	icon_state = "beam_pointdef"
-
-/obj/effect/projectile/muzzle/pointdefense
-	icon_state = "muzzle_pointdef"
-
-/obj/effect/projectile/impact/pointdefense
-	icon_state = "impact_pointdef"

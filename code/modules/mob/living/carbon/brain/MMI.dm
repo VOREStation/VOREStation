@@ -58,7 +58,7 @@
 				to_chat(user, "<span class='warning'>\The [src] appears to reject this brain.  It is incompatable.</span>")
 				return
 
-		user.visible_message("<span class='notice'>\The [user] sticks \a [O] into \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> sticks \a [O] into \the [src].")
 		B.preserved = TRUE
 
 		brainmob = B.brainmob

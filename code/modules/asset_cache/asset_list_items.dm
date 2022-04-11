@@ -1,10 +1,17 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
+/datum/asset/simple/tgui_common
+	// keep_local_name = TRUE
+	assets = list(
+		"tgui-common.bundle.js" = file("tgui/public/tgui-common.bundle.js"),
+	)
 
 /datum/asset/simple/tgui
+	// keep_local_name = TRUE
 	assets = list(
-		"tgui.bundle.js" = 'tgui/packages/tgui/public/tgui.bundle.js',
-		"tgui.bundle.css" = 'tgui/packages/tgui/public/tgui.bundle.css',
+		"tgui.bundle.js" = file("tgui/public/tgui.bundle.js"),
+		"tgui.bundle.css" = file("tgui/public/tgui.bundle.css"),
 	)
+
 
 /datum/asset/simple/headers
 	assets = list(
@@ -174,6 +181,14 @@
 		"font-awesome.css"    = 'html/font-awesome/css/all.min.css',
 		"v4shim.css"          = 'html/font-awesome/css/v4-shims.min.css'
 	)
+
+/datum/asset/simple/tgfont
+	assets = list(
+		"tgfont.eot" = file("tgui/packages/tgfont/dist/tgfont.eot"),
+		"tgfont.woff2" = file("tgui/packages/tgfont/dist/tgfont.woff2"),
+		"tgfont.css" = file("tgui/packages/tgfont/dist/tgfont.css"),
+	)
+
 
 // /datum/asset/spritesheet/goonchat
 // 	name = "chat"
@@ -359,8 +374,8 @@
 	name = "vending"
 
 /datum/asset/spritesheet/vending/register()
-	for(var/k in GLOB.vending_products)
-		var/atom/item = k
+	populate_vending_products()
+	for(var/atom/item as anything in GLOB.vending_products)
 		if(!ispath(item, /atom))
 			continue
 
@@ -372,14 +387,6 @@
 		if(ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask))
 			var/obj/item/weapon/reagent_containers/food/drinks/glass2/G = item
 			icon_state = initial(G.base_icon)
-		if(ispath(item, /obj/item/clothing/suit))
-			var/obj/item/clothing/suit/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/suits_[initial(U.index)].dmi"
-		if(ispath(item, /obj/item/clothing/under))
-			var/obj/item/clothing/under/U = item
-			if(initial(U.index))
-				icon_file = "icons/obj/clothing/uniforms_[initial(U.index)].dmi"
 		if(ispath(item, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
 			icon_state += "0"
 
@@ -405,6 +412,22 @@
 
 		Insert(imgid, I)
 	return ..()
+
+// this is cursed but necessary or else vending product icons can be missing
+// basically, if there's any vending machines that aren't already mapped in, our register() will not know
+// that they exist, and therefore can't generate the entries in the spritesheet for them
+// and since assets are unique and can't be reloaded later, we have to make sure that GLOB.vending_products
+// is populated with every single type of vending machine
+// As this is only done at runtime, we have to create all the vending machines in existence and force them
+// to register their products when this asset initializes.
+/datum/asset/spritesheet/vending/proc/populate_vending_products()
+	SSatoms.map_loader_begin()
+	for(var/path in subtypesof(/obj/machinery/vending))
+		var/obj/machinery/vending/x = new path(null)
+		// force an inventory build; with map_loader_begin active, init isn't called
+		x.build_inventory()
+		qdel(x)
+	SSatoms.map_loader_stop()
 
 // /datum/asset/simple/genetics
 // 	assets = list(
@@ -509,5 +532,9 @@
 		"tether_nanomap_z10.png"			= 'icons/_nanomaps/tether_nanomap_z10.png',
 		"tether_nanomap_z13.png"			= 'icons/_nanomaps/tether_nanomap_z13.png',
 		"tether_nanomap_z14.png"			= 'icons/_nanomaps/tether_nanomap_z14.png',
+		"stellardelight_nanomap_z1.png"		= 'icons/_nanomaps/sd_deck1.png',
+		"stellardelight_nanomap_z2.png"		= 'icons/_nanomaps/sd_deck2.png',
+		"stellardelight_nanomap_z3.png"		= 'icons/_nanomaps/sd_deck3.png',
+
 		// VOREStation Edit End
 	)

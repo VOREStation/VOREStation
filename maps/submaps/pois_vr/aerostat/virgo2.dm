@@ -9,7 +9,7 @@
 #include "Mudpit.dmm"
 #include "Snowrock1.dmm"
 #include "Boombase.dmm"
-#include "Blackshuttledown.dmm"
+//include "Blackshuttledown.dmm"
 #include "Lab1.dmm"
 #include "Rocky4.dmm"
 #include "DJOutpost1.dmm"
@@ -18,7 +18,7 @@
 #include "MHR.dmm"
 #include "GovPatrol.dmm"
 #include "DecoupledEngine.dmm"
-#include "DoomP.dmm"
+//include "DoomP.dmm"
 #include "CaveS.dmm"
 #include "Drugden.dmm"
 #include "Musk.dmm"
@@ -108,11 +108,13 @@
 	mappath = 'Boombase.dmm'
 	cost = 5
 
+/*
 /datum/map_template/virgo2/BSD
 	name = "Black Shuttle Down"
 	desc = "You REALLY shouldn't be near this."
 	mappath = 'Blackshuttledown.dmm'
 	cost = 30
+*/
 
 /datum/map_template/virgo2/Rockybase
 	name = "Rocky Base"
@@ -138,11 +140,13 @@
 	mappath = 'DecoupledEngine.dmm'
 	cost = 15
 
+/*
 /datum/map_template/virgo2/DoomP
 	name = "DoomP"
 	desc = "Witty description here."
 	mappath = 'DoomP.dmm'
 	cost = 30
+*/
 
 /datum/map_template/virgo2/Cave
 	name = "CaveS"

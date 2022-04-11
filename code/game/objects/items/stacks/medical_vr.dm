@@ -43,16 +43,14 @@
 	var/clotted = 0
 	var/too_far_gone = 0
 
-	for(var/org in H.organs) //'organs' is just external organs, as opposed to 'internal_organs'
-		var/obj/item/organ/external/affecting = org
+	for(var/obj/item/organ/external/affecting as anything in H.organs) //'organs' is just external organs, as opposed to 'internal_organs'
 
 		// No amount of clotting is going to help you here.
 		if(affecting.open)
 			too_far_gone++
 			continue
 		
-		for(var/wnd in affecting.wounds)
-			var/datum/wound/W = wnd
+		for(var/datum/wound/W as anything in affecting.wounds)
 			// No need
 			if(W.bandaged)
 				continue

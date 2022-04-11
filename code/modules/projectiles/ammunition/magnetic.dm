@@ -4,7 +4,7 @@
 	icon = 'icons/obj/ammo.dmi'
 	icon_state = "caseless-mag"
 	w_class = ITEMSIZE_SMALL
-	matter = list(DEFAULT_WALL_MATERIAL = 1800)
+	matter = list(MAT_STEEL = 1800)
 	origin_tech = list(TECH_COMBAT = 1)
 	var/remaining = 9
 	preserve_item = 1
@@ -17,3 +17,9 @@
 	name = "flechette magazine (small)"
 	desc = "A magazine containing smaller steel flechettes, intended for a pistol."
 	icon_state = "caseless-mag-short"
+
+/obj/item/weapon/magnetic_ammo/pistol/khi
+	name = "flechette magazine (small, khi)"
+	desc = "A magazine containing smaller carbyne flechettes, intended for a pistol."
+	icon_state = "caseless-mag-short-alt"
+	remaining = 12

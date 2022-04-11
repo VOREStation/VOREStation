@@ -1,0 +1,145 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"p" = (
+/obj/tether_away_spawner/asteroidbaddies,
+/turf/simulated/mineral/floor/vacuum{
+	ignore_cavegen = 1
+	},
+/area/submap/space_rocks/bittynest3)
+"N" = (
+/obj/random/underdark/uncertain,
+/turf/simulated/mineral/floor/vacuum{
+	ignore_cavegen = 1
+	},
+/area/submap/space_rocks/bittynest3)
+"Q" = (
+/turf/simulated/mineral/floor/vacuum{
+	ignore_cavegen = 1
+	},
+/area/submap/space_rocks/bittynest3)
+"Z" = (
+/turf/simulated/mineral/vacuum/sdmine,
+/area/submap/space_rocks/bittynest3)
+
+(1,1,1) = {"
+a
+a
+Q
+a
+Z
+Z
+Z
+Z
+a
+a
+"}
+(2,1,1) = {"
+a
+Z
+Q
+Q
+Q
+Z
+Z
+Z
+Z
+a
+"}
+(3,1,1) = {"
+a
+Z
+Z
+Q
+Q
+p
+Q
+Z
+Z
+Z
+"}
+(4,1,1) = {"
+Z
+Z
+Z
+Z
+Z
+Q
+Q
+Q
+Z
+Z
+"}
+(5,1,1) = {"
+Z
+Z
+Z
+p
+Q
+Z
+Q
+Q
+Z
+a
+"}
+(6,1,1) = {"
+Z
+Z
+Q
+Q
+Q
+Q
+Q
+Z
+Z
+a
+"}
+(7,1,1) = {"
+Z
+Z
+Q
+N
+Q
+Q
+Q
+Z
+Z
+a
+"}
+(8,1,1) = {"
+a
+Z
+Z
+Q
+Q
+Z
+Z
+Z
+Z
+a
+"}
+(9,1,1) = {"
+a
+a
+Z
+Z
+Z
+Z
+Z
+Z
+a
+a
+"}
+(10,1,1) = {"
+a
+a
+a
+Z
+Z
+Z
+a
+a
+a
+a
+"}

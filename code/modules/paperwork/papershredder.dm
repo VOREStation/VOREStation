@@ -7,8 +7,8 @@
 	icon = 'icons/obj/papershredder.dmi'
 	icon_state = "shredder-off"
 	var/shred_anim = "shredder-shredding"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 200
@@ -126,15 +126,15 @@
 		update_icon()
 
 /obj/machinery/papershredder/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(operable())
 		icon_state = "shredder-on"
 	else
 		icon_state = "shredder-off"
 	// Fullness overlay
-	overlays += "shredder-[max(0,min(5,FLOOR(paperamount/max_paper*5, 1)))]"
+	add_overlay("shredder-[max(0,min(5,FLOOR(paperamount/max_paper*5, 1)))]")
 	if (panel_open)
-		overlays += "panel_open"
+		add_overlay("panel_open")
 
 //
 // Shredded Paper Item

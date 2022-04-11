@@ -65,7 +65,7 @@
 		if(shuttle.has_arrive_time())
 			shuttle_status["location"] = "In transit"
 			shuttle_status["mode"] = SUP_SHUTTLE_TRANSIT
-			shuttle_status["time"] = shuttle.eta_seconds()
+			shuttle_status["time"] = shuttle.eta_deciseconds() // tgui expects time for it's formatTime() in DS
 
 		else
 			shuttle_status["time"] = 0
@@ -169,7 +169,7 @@
 				"cost" = P.cost,
 				"group" = P.group,
 				"contraband" = P.contraband,
-				"manifest" = uniquelist(P.manifest),
+				"manifest" = uniqueList(P.manifest),
 				"random" = P.num_contained,
 				"ref" = "\ref[P]"
 			)
@@ -201,7 +201,7 @@
 			var/list/payload = list(
 				"name" = P.name,
 				"cost" = P.cost,
-				"manifest" = uniquelist(P.manifest),
+				"manifest" = uniqueList(P.manifest),
 				"ref" = "\ref[P]",
 				"random" = P.num_contained,
 			)
@@ -394,7 +394,7 @@
 			if(!(authorization & SUP_ACCEPT_ORDERS))
 				return FALSE
 			var/list/L = E.contents[params["index"]]
-			var/field = alert(usr, "Select which field to edit", , "Name", "Quantity", "Value")
+			var/field = tgui_alert(usr, "Select which field to edit", "Field Choice", list("Name", "Quantity", "Value"))
 
 			var/new_val = sanitize(input(usr, field, "Enter the new value for this field:", L[lowertext(field)]) as null|text)
 			if(!new_val)

@@ -112,14 +112,13 @@
 				web_master.process_autopath()
 
 /datum/shuttle/autodock/web_shuttle/proc/update_helmets()
-	for(var/helm in helmets)
-		var/obj/item/clothing/head/pilot/H = helm
+	for(var/obj/item/clothing/head/pilot/H as anything in helmets)
 		if(QDELETED(H))
 			helmets -= H
 			continue
 		if(!H.shuttle_comp || !(get_area(H) in shuttle_area))
 			H.shuttle_comp = null
-			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>")
+			H.audible_message("<span class='warning'>\The [H] pings as it loses it's connection with the ship.</span>", runemessage = "ping")
 			H.update_hud("discon")
 			helmets -= H
 		else
@@ -131,14 +130,14 @@
 			return
 		autopilot = TRUE
 		autopilot_delay = initial(autopilot_delay)
-		shuttle_controller.process_shuttles |= src
+		SSshuttles.process_shuttles |= src
 		if(process_state == IDLE_STATE)
 			process_state = DO_AUTOPILOT
 	else
 		if(!autopilot)
 			return
 		autopilot = FALSE
-		shuttle_controller.process_shuttles -= src
+		SSshuttles.process_shuttles -= src
 		if (process_state == DO_AUTOPILOT)
 			process_state = initial(process_state)
 
@@ -196,7 +195,7 @@
 			log_shuttle("[my_area] shuttle computer couldn't find [lost] sensor!")
 
 /obj/machinery/computer/shuttle_control/web/attackby(obj/I, mob/user)
-	var/datum/shuttle/autodock/web_shuttle/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	var/datum/shuttle/autodock/web_shuttle/shuttle = SSshuttles.shuttles[shuttle_tag]
 	if(shuttle && istype(I,/obj/item/clothing/head/pilot))
 		var/obj/item/clothing/head/pilot/H = I
 		H.shuttle_comp = src
@@ -375,11 +374,11 @@
 	if(MS.skip_docking_checks() || MS.check_undocked())
 		return 1
 
-	var/choice = alert("The shuttle is currently docked! Please undock before continuing.","Error","Cancel","Force Launch")
+	var/choice = tgui_alert(usr, "The shuttle is currently docked! Please undock before continuing.","Error",list("Cancel","Force Launch"))
 	if(choice == "Cancel")
 		return 0
 
-	choice = alert("Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", "Force Launch", "Cancel")
+	choice = tgui_alert(usr, "Forcing a shuttle launch while docked may result in severe injury, death and/or damage to property. Are you sure you wish to continue?", "Force Launch", list("Force Launch", "Cancel"))
 	if(choice == "Cancel")
 		return 0
 
@@ -418,7 +417,7 @@
 
 // This is called whenever a shuttle is initialized.  If its our shuttle, do our thing!
 /obj/shuttle_connector/proc/setup_routes(var/new_shuttle)
-	var/datum/shuttle/autodock/web_shuttle/ES = shuttle_controller.shuttles[shuttle_name]
+	var/datum/shuttle/autodock/web_shuttle/ES = SSshuttles.shuttles[shuttle_name]
 	if(ES != new_shuttle)
 		return // Its not our shuttle! Ignore!
 	if(destinations && istype(ES))

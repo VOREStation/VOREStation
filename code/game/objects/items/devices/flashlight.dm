@@ -1,3 +1,16 @@
+/*
+ * Contains:
+ *		Flashlights
+ *		Lamps
+ *		Flares
+ *		Chemlights
+ *		Slime Extract
+ */
+
+/*
+ * Flashlights
+ */
+
 /obj/item/device/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."
@@ -5,17 +18,20 @@
 	icon_state = "flashlight"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_BELT
-	matter = list(DEFAULT_WALL_MATERIAL = 50,"glass" = 20)
+	matter = list(MAT_STEEL = 50,MAT_GLASS = 20)
 	action_button_name = "Toggle Flashlight"
+
+	light_system = MOVABLE_LIGHT_DIRECTIONAL
+	light_range = 4 //luminosity when on
+	light_power = 0.8	//lighting power when on
+	light_color = "#FFFFFF" //LIGHT_COLOR_INCANDESCENT_FLASHLIGHT	//lighting colour when on
+	light_cone_y_offset = -7
+
 	var/on = 0
-	var/brightness_on = 4 //luminosity when on
-	var/flashlight_power = 0.8	//lighting power when on
-	var/flashlight_colour = LIGHT_COLOR_INCANDESCENT_FLASHLIGHT	//lighting colour when on
+
 	var/obj/item/weapon/cell/cell
 	var/cell_type = /obj/item/weapon/cell/device
-	var/list/brightness_levels
-	var/brightness_level = "medium"
-	var/power_usage
+	var/power_usage = 1
 	var/power_use = 1
 
 /obj/item/device/flashlight/Initialize()
@@ -23,12 +39,8 @@
 
 	if(power_use && cell_type)
 		cell = new cell_type(src)
-		brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
-		power_usage = brightness_levels[brightness_level]
-	else
-		verbs -= /obj/item/device/flashlight/verb/toggle
-	
-	update_icon()
+
+	update_brightness()
 
 /obj/item/device/flashlight/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -38,63 +50,40 @@
 /obj/item/device/flashlight/get_cell()
 	return cell
 
-/obj/item/device/flashlight/verb/toggle()
-	set name = "Toggle Flashlight Brightness"
-	set category = "Object"
-	set src in usr
-	set_brightness(usr)
-
-/obj/item/device/flashlight/proc/set_brightness(mob/user as mob)
-	var/choice = input("Choose a brightness level.") as null|anything in brightness_levels
-	if(choice)
-		brightness_level = choice
-		power_usage = brightness_levels[choice]
-		to_chat(user, "<span class='notice'>You set the brightness level on \the [src] to [brightness_level].</span>")
-		update_icon()
-
 /obj/item/device/flashlight/process()
 	if(!on || !cell)
 		return PROCESS_KILL
 
-	if(brightness_level && power_usage)
+	if(power_usage)
 		if(cell.use(power_usage) != power_usage) // we weren't able to use our full power_usage amount!
 			visible_message("<span class='warning'>\The [src] flickers before going dull.</span>")
-			set_light(0)
-			playsound(src, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket.
+			playsound(src, 'sound/effects/sparks3.ogg', 10, 1, -3) //Small cue that your light went dull in your pocket. //VOREStation Edit
 			on = 0
-			update_icon()
+			update_brightness()
 			return PROCESS_KILL
 
-/obj/item/device/flashlight/update_icon()
+/obj/item/device/flashlight/proc/update_brightness()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
-
-		if(brightness_level == "low")
-			set_light(brightness_on/2, flashlight_power*0.75, flashlight_colour)
-		else if(brightness_level == "high")
-			set_light(brightness_on*1.5, flashlight_power*1.1, flashlight_colour)
-		else
-			set_light(brightness_on, flashlight_power, flashlight_colour)
-
 	else
-		icon_state = "[initial(icon_state)]"
-		set_light(0)
+		icon_state = initial(icon_state)
+	set_light_on(on)
+	if(light_system == STATIC_LIGHT)
+		update_light()
 
 /obj/item/device/flashlight/examine(mob/user)
 	. = ..()
-	if(power_use && brightness_level)
-		. += "\The [src] is set to [brightness_level]."
-		if(cell)
-			. += "\The [src] has a \the [cell] attached."
+	if(power_use && cell)
+		. += "\The [src] has a \the [cell] attached."
 
-			if(cell.charge <= cell.maxcharge*0.25)
-				. += "It appears to have a low amount of power remaining."
-			else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
-				. += "It appears to have an average amount of power remaining."
-			else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
-				. += "It appears to have an above average amount of power remaining."
-			else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
-				. += "It appears to have a high amount of power remaining."
+		if(cell.charge <= cell.maxcharge*0.25)
+			. += "It appears to have a low amount of power remaining."
+		else if(cell.charge > cell.maxcharge*0.25 && cell.charge <= cell.maxcharge*0.5)
+			. += "It appears to have an average amount of power remaining."
+		else if(cell.charge > cell.maxcharge*0.5 && cell.charge <= cell.maxcharge*0.75)
+			. += "It appears to have an above average amount of power remaining."
+		else if(cell.charge > cell.maxcharge*0.75 && cell.charge <= cell.maxcharge)
+			. += "It appears to have a high amount of power remaining."
 
 /obj/item/device/flashlight/attack_self(mob/user)
 	if(power_use)
@@ -109,8 +98,8 @@
 		START_PROCESSING(SSobj, src)
 	else if(power_use)
 		STOP_PROCESSING(SSobj, src)
-	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3)
-	update_icon()
+	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3) // VOREStation Edit
+	update_brightness()
 	user.update_action_buttons()
 	return 1
 
@@ -139,7 +128,7 @@
 			if(!vision)
 				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>")
 
-			user.visible_message("<span class='notice'>\The [user] directs [src] to [M]'s eyes.</span>", \
+			user.visible_message("<b>\The [user]</b> directs [src] to [M]'s eyes.", \
 							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")
 			if(H != user)	//can't look into your own eyes buster
 				if(M.stat == DEAD || M.blinded)	//mob is dead or fully blind
@@ -177,7 +166,7 @@
 			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 			playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
 			on = 0
-			update_icon()
+			update_brightness()
 			return
 		..()
 	else
@@ -225,7 +214,7 @@
 					cell = W
 					to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
 					playsound(src, 'sound/machines/button.ogg', 30, 1, 0)
-					update_icon()
+					update_brightness()
 				else
 					to_chat(user, "<span class='notice'>\The [src] already has a cell.</span>")
 			else
@@ -233,6 +222,16 @@
 
 	else
 		..()
+
+/obj/item/device/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	. = ..()
+	if(!on)
+		return
+	var/datum/component/overlay_lighting/OL = GetComponent(/datum/component/overlay_lighting)
+	if(!OL)
+		return
+	var/turf/T = get_turf(target)
+	OL.place_directional_light(T)
 
 /obj/item/device/flashlight/pen
 	name = "penlight"
@@ -242,40 +241,50 @@
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	slot_flags = SLOT_EARS
-	brightness_on = 2
+	light_range = 2
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 
-/obj/item/device/flashlight/color	//Default color is blue, just roll with it.
+/obj/item/device/flashlight/color	//Default color is blue
 	name = "blue flashlight"
-	desc = "A hand-held emergency light. This one is blue."
+	desc = "A small flashlight. This one is blue."
 	icon_state = "flashlight_blue"
+
+/obj/item/device/flashlight/color/green
+	name = "green flashlight"
+	desc = "A small flashlight. This one is green."
+	icon_state = "flashlight_green"
+
+/obj/item/device/flashlight/color/purple
+	name = "purple flashlight"
+	desc = "A small flashlight. This one is purple."
+	icon_state = "flashlight_purple"
 
 /obj/item/device/flashlight/color/red
 	name = "red flashlight"
-	desc = "A hand-held emergency light. This one is red."
+	desc = "A small flashlight. This one is red."
 	icon_state = "flashlight_red"
 
 /obj/item/device/flashlight/color/orange
 	name = "orange flashlight"
-	desc = "A hand-held emergency light. This one is orange."
+	desc = "A small flashlight. This one is orange."
 	icon_state = "flashlight_orange"
 
 /obj/item/device/flashlight/color/yellow
 	name = "yellow flashlight"
-	desc = "A hand-held emergency light. This one is yellow."
+	desc = "A small flashlight. This one is yellow."
 	icon_state = "flashlight_yellow"
 
 /obj/item/device/flashlight/maglight
 	name = "maglight"
 	desc = "A very, very heavy duty flashlight."
 	icon_state = "maglight"
-	flashlight_colour = LIGHT_COLOR_FLUORESCENT_FLASHLIGHT
+	light_color = LIGHT_COLOR_FLUORESCENT_FLASHLIGHT
 	force = 10
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list ("smacked", "thwacked", "thunked")
-	matter = list(DEFAULT_WALL_MATERIAL = 200,"glass" = 50)
+	matter = list(MAT_STEEL = 200,MAT_GLASS = 50)
 	hitsound = "swing_hit"
 
 /obj/item/device/flashlight/drone
@@ -283,30 +292,26 @@
 	desc = "A miniature lamp, that might be used by small robots."
 	icon_state = "penlight"
 	item_state = null
-	brightness_on = 2
+	light_range = 2
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 
-// the desk lamps are a bit special
+/*
+ * Lamps
+ */
+
+// pixar desk lamp
 /obj/item/device/flashlight/lamp
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
 	force = 10
 	center_of_mass = list("x" = 13,"y" = 11)
-	brightness_on = 10	//TFF 27/11/19 - post refactor fix for intensity levels.
+	light_range = 5
 	w_class = ITEMSIZE_LARGE
 	power_use = 0
 	on = 1
-
-
-// green-shaded desk lamp
-/obj/item/device/flashlight/lamp/green
-	desc = "A classic green-shaded desk lamp."
-	icon_state = "lampgreen"
-	center_of_mass = list("x" = 15,"y" = 11)
-	brightness_on = 5
-	flashlight_colour = "#FFC58F"
+	light_system = STATIC_LIGHT
 
 /obj/item/device/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
@@ -316,15 +321,31 @@
 	if(!usr.stat)
 		attack_self(usr)
 
-// FLARES
+// green-shaded desk lamp
+/obj/item/device/flashlight/lamp/green
+	desc = "A classic green-shaded desk lamp."
+	icon_state = "lampgreen"
+	center_of_mass = list("x" = 15,"y" = 11)
+	light_color = "#FFC58F"
+
+// clown lamp
+/obj/item/device/flashlight/lamp/clown
+	desc = "A whacky banana peel shaped lamp."
+	icon_state = "bananalamp"
+	center_of_mass = list("x" = 15,"y" = 11)
+
+
+/*
+ * Flares
+ */
 
 /obj/item/device/flashlight/flare
 	name = "flare"
 	desc = "A red standard-issue flare. There are instructions on the side reading 'pull cord, make light'."
 	w_class = ITEMSIZE_SMALL
-	brightness_on = 8 // Pretty bright.
-	flashlight_power = 0.8
-	flashlight_colour = LIGHT_COLOR_FLARE
+	light_range = 8 // Pretty bright.
+	light_power = 0.8
+	light_color = LIGHT_COLOR_FLARE
 	icon_state = "flare"
 	item_state = "flare"
 	action_button_name = null //just pull it manually, neckbeard.
@@ -334,6 +355,7 @@
 	power_use = 0
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
+	light_system = MOVABLE_LIGHT
 
 /obj/item/device/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
@@ -354,7 +376,7 @@
 	on = 0
 	src.force = initial(src.force)
 	src.damtype = initial(src.damtype)
-	update_icon()
+	update_brightness()
 
 /obj/item/device/flashlight/flare/attack_self(mob/user)
 
@@ -375,23 +397,26 @@
 
 /obj/item/device/flashlight/flare/proc/ignite() //Used for flare launchers.
 	on = !on
-	update_icon()
+	update_brightness()
 	force = on_damage
 	damtype = "fire"
 	START_PROCESSING(SSobj, src)
 	return 1
 
-//Glowsticks
+/*
+ * Chemlights
+ */
 
 /obj/item/device/flashlight/glowstick
 	name = "green glowstick"
-	desc = "A green military-grade glowstick."
+	desc = "A green military-grade chemical light."
 	w_class = ITEMSIZE_SMALL
-	brightness_on = 4
-	flashlight_power = 0.9
-	flashlight_colour = "#49F37C"
-	icon_state = "glowstick"
-	item_state = "glowstick"
+	light_system = MOVABLE_LIGHT
+	light_range = 4
+	light_power = 0.9
+	light_color = "#49F37C"
+	icon_state = "glowstick_green"
+	item_state = "glowstick_green"
 	var/fuel = 0
 	power_use = 0
 
@@ -409,7 +434,7 @@
 
 /obj/item/device/flashlight/glowstick/proc/turn_off()
 	on = 0
-	update_icon()
+	update_brightness()
 
 /obj/item/device/flashlight/glowstick/attack_self(mob/user)
 
@@ -426,51 +451,38 @@
 
 /obj/item/device/flashlight/glowstick/red
 	name = "red glowstick"
-	desc = "A red military-grade glowstick."
-	flashlight_colour = "#FC0F29"
+	desc = "A red military-grade chemical light."
+	light_color = "#FC0F29"
 	icon_state = "glowstick_red"
 	item_state = "glowstick_red"
 
 /obj/item/device/flashlight/glowstick/blue
 	name = "blue glowstick"
-	desc = "A blue military-grade glowstick."
-	flashlight_colour = "#599DFF"
+	desc = "A blue military-grade chemical light."
+	light_color = "#599DFF"
 	icon_state = "glowstick_blue"
 	item_state = "glowstick_blue"
 
 /obj/item/device/flashlight/glowstick/orange
 	name = "orange glowstick"
-	desc = "A orange military-grade glowstick."
-	flashlight_colour = "#FA7C0B"
+	desc = "A orange military-grade chemical light."
+	light_color = "#FA7C0B"
 	icon_state = "glowstick_orange"
 	item_state = "glowstick_orange"
 
 /obj/item/device/flashlight/glowstick/yellow
 	name = "yellow glowstick"
-	desc = "A yellow military-grade glowstick."
-	flashlight_colour = "#FEF923"
+	desc = "A yellow military-grade chemical light."
+	light_color = "#FEF923"
 	icon_state = "glowstick_yellow"
 	item_state = "glowstick_yellow"
 
-/obj/item/device/flashlight/slime
-	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "A slimy ball that appears to be glowing from bioluminesence."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor1" //not a slime extract sprite but... something close enough!
-	item_state = "slime"
-	flashlight_colour = "#FFF423"
-	w_class = ITEMSIZE_TINY
-	brightness_on = 6
-	on = 1 //Bio-luminesence has one setting, on.
-	power_use = 0
+/obj/item/device/flashlight/glowstick/radioisotope
+	name = "radioisotope glowstick"
+	desc = "A radioisotope powered chemical light. Escaping particles light up the area far brighter on similar levels to flares and for longer"
+	icon_state = "glowstick_isotope"
+	item_state = "glowstick_isotope"
 
-/obj/item/device/flashlight/slime/New()
-	..()
-	set_light(brightness_on, flashlight_power, flashlight_colour)
-
-/obj/item/device/flashlight/slime/update_icon()
-	return
-
-/obj/item/device/flashlight/slime/attack_self(mob/user)
-	return //Bio-luminescence does not toggle.
+	light_range = 8
+	light_power = 0.1
+	light_color = "#49F37C"

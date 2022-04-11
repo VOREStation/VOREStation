@@ -34,6 +34,12 @@
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_inv = HIDEHOLSTER
 
+//Command
+/obj/item/clothing/suit/storage/cmddressjacket
+	name = "command dress jacket"
+	desc = "A fancy dress jacket made for command staff. Makes you feel in charge."
+	icon_state = "cmddressjacket"
+
 //Chaplain
 /obj/item/clothing/suit/storage/hooded/chaplain_hoodie
 	name = "chaplain hoodie"
@@ -167,7 +173,7 @@
 	blood_overlay_type = "armor"
 	allowed = list (/obj/item/device/analyzer, /obj/item/device/flashlight, /obj/item/device/multitool, /obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
 	/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency/oxygen,
-	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering)
+	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering, /obj/item/taperoll/atmos, /obj/item/device/analyzer, /obj/item/weapon/extinguisher/mini) //VOREStation edit. Few more tools that can be put on vests
 	body_parts_covered = UPPER_TORSO
 
 /obj/item/clothing/suit/storage/hazardvest/blue
@@ -177,12 +183,12 @@
 
 /obj/item/clothing/suit/storage/hazardvest/green
 	name = "green hazard vest"
-	desc = "A high-visibility vest used by emergency responders. This one is green!"
+	desc = "A high-visibility vest used by emergency responders."
 	icon_state = "hazard_g"
 
 /obj/item/clothing/suit/storage/hazardvest/white
 	name = "white hazard vest"
-	desc = "A high-visibility vest used in work zones. This one has a red cross!"
+	desc = "A high-visibility vest used in work zones. This one bears the symbol of a disaster relief team!"
 	icon_state = "hazard_w"
 
 //Lawyer
@@ -240,9 +246,17 @@
 
 //Mime
 /obj/item/clothing/suit/suspenders
-	name = "suspenders"
+	name = "red suspenders"
 	desc = "They suspend the illusion of the mime's play."
-	icon = 'icons/obj/clothing/belts.dmi'
+	icon = 'icons/inventory/belt/item.dmi'
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 	body_parts_covered = 0
+
+/obj/item/clothing/suit/suspenders/blue
+	name = "blue suspenders"
+	icon_state = "suspenders_blue"
+
+/obj/item/clothing/suit/suspenders/grey
+	name = "grey suspenders"
+	icon_state = "suspenders_grey"

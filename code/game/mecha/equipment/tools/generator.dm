@@ -6,9 +6,9 @@
 	equip_cooldown = 10
 	energy_drain = 0
 	range = MELEE
-	var/datum/global_iterator/pr_mech_generator
 	var/coeff = 100
 	var/obj/item/stack/material/fuel
+	var/fuel_type = /obj/item/stack/material/phoron
 	var/max_fuel = 150000
 	var/fuel_per_cycle_idle = 100
 	var/fuel_per_cycle_active = 500
@@ -16,25 +16,37 @@
 
 	equip_type = EQUIP_UTILITY
 
-/obj/item/mecha_parts/mecha_equipment/generator/New()
-	..()
-	init()
-	return
+/obj/item/mecha_parts/mecha_equipment/generator/Initialize()
+	. = ..()
+	fuel = new fuel_type(src, 0)
 
 /obj/item/mecha_parts/mecha_equipment/generator/Destroy()
-	qdel(pr_mech_generator)
-	pr_mech_generator = null
-	..()
+	qdel(fuel)
+	return ..()
 
-/obj/item/mecha_parts/mecha_equipment/generator/proc/init()
-	fuel = new /obj/item/stack/material/phoron(src)
-	fuel.amount = 0
-	pr_mech_generator = new /datum/global_iterator/mecha_generator(list(src),0)
-	pr_mech_generator.set_delay(equip_cooldown)
-	return
+/obj/item/mecha_parts/mecha_equipment/generator/process()
+	if(!chassis)
+		set_ready_state(TRUE)
+		return PROCESS_KILL
+	if(fuel.get_amount() <= 0)
+		log_message("Deactivated - no fuel.")
+		set_ready_state(TRUE)
+		return PROCESS_KILL
+	var/cur_charge = chassis.get_charge()
+	if(isnull(cur_charge))
+		set_ready_state(TRUE)
+		occupant_message("No powercell detected.")
+		log_message("Deactivated.")
+		return PROCESS_KILL
+	var/use_fuel = fuel_per_cycle_idle
+	if(cur_charge<chassis.cell.maxcharge)
+		use_fuel = fuel_per_cycle_active
+		chassis.give_power(power_per_cycle)
+	fuel.set_amount(min(use_fuel/fuel.perunit, fuel.get_amount()), TRUE) // allows fuel to get to 0
+	update_equip_info()
 
 /obj/item/mecha_parts/mecha_equipment/generator/detach()
-	pr_mech_generator.stop()
+	STOP_PROCESSING(SSfastprocess, src)
 	..()
 	return
 
@@ -42,18 +54,20 @@
 /obj/item/mecha_parts/mecha_equipment/generator/Topic(href, href_list)
 	..()
 	if(href_list["toggle"])
-		if(pr_mech_generator.toggle())
-			set_ready_state(0)
-			log_message("Activated.")
-		else
-			set_ready_state(1)
+		if(datum_flags & DF_ISPROCESSING)
+			STOP_PROCESSING(SSfastprocess, src)
+			set_ready_state(TRUE)
 			log_message("Deactivated.")
+		else
+			START_PROCESSING(SSfastprocess, src)
+			set_ready_state(FALSE)
+			log_message("Activated.")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/get_equip_info()
 	var/output = ..()
 	if(output)
-		return "[output] \[[fuel]: [round(fuel.amount*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='?src=\ref[src];toggle=1'>[pr_mech_generator.active()?"Dea":"A"]ctivate</a>"
+		return "[output] \[[fuel]: [round(fuel.get_amount()*fuel.perunit,0.1)] cm<sup>3</sup>\] - <a href='?src=\ref[src];toggle=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/action(target)
@@ -71,12 +85,12 @@
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/proc/load_fuel(var/obj/item/stack/material/P)
-	if(P.type == fuel.type && P.amount)
-		var/to_load = max(max_fuel - fuel.amount*fuel.perunit,0)
+	if(P.type == fuel.type && P.get_amount())
+		var/to_load = max(max_fuel - fuel.get_amount()*fuel.perunit,0)
 		if(to_load)
-			var/units = min(max(round(to_load / P.perunit),1),P.amount)
+			var/units = min(max(round(to_load / P.perunit),1),P.get_amount())
 			if(units)
-				fuel.amount += units
+				fuel.add(units)
 				P.use(units)
 				return units
 		else
@@ -109,33 +123,6 @@
 	T.assume_air(GM)
 	return
 
-/datum/global_iterator/mecha_generator
-
-/datum/global_iterator/mecha_generator/process(var/obj/item/mecha_parts/mecha_equipment/generator/EG)
-	if(!EG.chassis)
-		stop()
-		EG.set_ready_state(1)
-		return 0
-	if(EG.fuel.amount<=0)
-		stop()
-		EG.log_message("Deactivated - no fuel.")
-		EG.set_ready_state(1)
-		return 0
-	var/cur_charge = EG.chassis.get_charge()
-	if(isnull(cur_charge))
-		EG.set_ready_state(1)
-		EG.occupant_message("No powercell detected.")
-		EG.log_message("Deactivated.")
-		stop()
-		return 0
-	var/use_fuel = EG.fuel_per_cycle_idle
-	if(cur_charge<EG.chassis.cell.maxcharge)
-		use_fuel = EG.fuel_per_cycle_active
-		EG.chassis.give_power(EG.power_per_cycle)
-	EG.fuel.amount -= min(use_fuel/EG.fuel.perunit,EG.fuel.amount)
-	EG.update_equip_info()
-	return 1
-
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear
 	name = "\improper ExoNuclear reactor"
@@ -146,21 +133,13 @@
 	fuel_per_cycle_idle = 10
 	fuel_per_cycle_active = 30
 	power_per_cycle = 50
+	fuel_type = /obj/item/stack/material/uranium
 	var/rad_per_cycle = 0.3
 
-/obj/item/mecha_parts/mecha_equipment/generator/nuclear/init()
-	fuel = new /obj/item/stack/material/uranium(src)
-	fuel.amount = 0
-	pr_mech_generator = new /datum/global_iterator/mecha_generator/nuclear(list(src),0)
-	pr_mech_generator.set_delay(equip_cooldown)
+/obj/item/mecha_parts/mecha_equipment/generator/nuclear/process()
+	if(..())
+		SSradiation.radiate(src, (rad_per_cycle * 3))
 	return
 
 /obj/item/mecha_parts/mecha_equipment/generator/nuclear/critfail()
 	return
-
-/datum/global_iterator/mecha_generator/nuclear
-
-/datum/global_iterator/mecha_generator/nuclear/process(var/obj/item/mecha_parts/mecha_equipment/generator/nuclear/EG)
-	if(..())
-		SSradiation.radiate(EG, (EG.rad_per_cycle * 3))
-	return 1

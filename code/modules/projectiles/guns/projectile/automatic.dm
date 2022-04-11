@@ -289,13 +289,18 @@
 		return
 	..()
 
+/*
+ * Automatic Shotgun
+ */
 /obj/item/weapon/gun/projectile/automatic/as24
 	name = "automatic shotgun"
-	desc = "The AS-24 is a rugged looking automatic shotgun produced exclusively for the SCG Fleet by Hephaestus Industries. For very obvious reasons, it's illegal to own in many juristictions. Uses 12g rounds."
-	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by professional armed forces across human space."
+	desc = "The AS-24 is a rugged looking automatic shotgun produced exclusively for the SCG Fleet by Hephaestus \
+	Industries. For very obvious reasons, it's illegal to own in many juristictions. Uses 12g rounds."
+	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' \
+	branding for its military-grade equipment used by professional armed forces across human space."
 	icon_state = "ashot"
-	item_state = null
-	wielded_item_state = "woodarifle-wielded" //Placeholder
+	item_state = "ashot"
+	wielded_item_state = "ashot-wielded"
 	w_class = ITEMSIZE_LARGE
 	force = 10
 	caliber = "12g"
@@ -311,7 +316,6 @@
 	firemodes = list(
 		list(mode_name="semiauto", burst=1, fire_delay=0),
 		list(mode_name="3-round bursts", burst=3, move_delay=6, burst_accuracy = list(0,-15,-15,-30,-30), dispersion = list(0.0, 0.6, 0.6))
-//		list(mode_name="6-round bursts", burst=6, move_delay=6, burst_accuracy = list(0,-15,-15,-30,-30, -30), dispersion = list(0.6, 1.0, 1.0, 1.0, 1.2, 1.2)),
 		)
 
 /obj/item/weapon/gun/projectile/automatic/as24/update_icon()
@@ -389,9 +393,18 @@
 		)
 
 /obj/item/weapon/gun/projectile/automatic/tommygun/update_icon()
-	..()
-	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
-//	update_held_icon()
+	//VOREStation Edit Start - vr sprite
+	if(istype(ammo_magazine,/obj/item/ammo_magazine/m45tommy))
+		icon_state = "tommygun-mag"
+		item_state = icon_state
+	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m45tommydrum))
+		icon_state = "tommygun-drum"
+		item_state = icon_state
+	else
+		icon_state = "tommygun-empty"
+		item_state = icon_state
+	update_held_icon()
+	//VOREStation Edit End
 
 /obj/item/weapon/gun/projectile/automatic/bullpup // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
 	name = "bullpup rifle"
@@ -406,7 +419,7 @@
 	slot_flags = SLOT_BACK
 	load_method = MAGAZINE
 	magazine_type = /obj/item/ammo_magazine/m762
-	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762m)
+	allowed_magazines = list(/obj/item/ammo_magazine/m762, /obj/item/ammo_magazine/m762/ext)
 	projectile_type = /obj/item/projectile/bullet/rifle/a762
 
 	one_handed_penalty = 45
@@ -420,7 +433,7 @@
 	..()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/m762))
 		icon_state = "bullpup-small"
-	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m762m))
+	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m762/ext))
 		icon_state = "bullpup"
 	else
 		item_state = "bullpup-empty"

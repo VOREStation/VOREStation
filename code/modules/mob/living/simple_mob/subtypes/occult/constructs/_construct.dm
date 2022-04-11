@@ -126,7 +126,7 @@
 			var/repair_upper_bound = A.melee_damage_upper * -1
 			adjustBruteLoss(rand(repair_lower_bound, repair_upper_bound))
 			adjustFireLoss(rand(repair_lower_bound, repair_upper_bound))
-			user.visible_message("<span class='notice'>\The [user] mends some of \the [src]'s wounds.</span>")
+			user.visible_message("<b>\The [user]</b> mends some of \the [src]'s wounds.")
 		else
 			to_chat(user, "<span class='notice'>\The [src] is undamaged.</span>")
 		return
@@ -150,9 +150,9 @@
 /mob/living/simple_mob/construct/proc/add_glow()
 	var/image/eye_glow = image(icon,"glow-[icon_state]")
 	eye_glow.plane = PLANE_LIGHTING_ABOVE
-	overlays += eye_glow
+	add_overlay(eye_glow)
 	set_light(2, -2, l_color = "#FFFFFF")
 
 /mob/living/simple_mob/construct/proc/remove_glow()
-	overlays.Cut()
+	cut_overlays()
 */

@@ -1,6 +1,12 @@
 /obj/effect/landmark
 	var/abductor = 0
 
+/obj/effect/landmark/vines
+	name = "vinestart"
+
+/obj/effect/landmark/vermin
+	name = "verminstart"
+
 /obj/effect/landmark/late_antag
 	name = "Antag Latespawn"
 	var/antag_id

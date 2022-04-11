@@ -6,9 +6,7 @@
 	Class: n_Interpreter
 	Procedures allowing for interaction with the script that is being run by the interpreter object.
 */
-
 /n_Interpreter
-	proc
 
 /*
 	Proc: Load
@@ -17,22 +15,22 @@
 	Parameters:
 	program - A <GlobalBlock> object which represents the script's global scope.
 */
-		Load(node/BlockDefinition/GlobalBlock/program)
-			ASSERT(program)
-			src.program 	= program
-			CreateGlobalScope()
+/n_Interpreter/proc/Load(node/BlockDefinition/GlobalBlock/program)
+	ASSERT(program)
+	src.program 	= program
+	CreateGlobalScope()
 
 /*
 	Proc: Run
 	Runs the script.
 */
-		Run()
-			cur_recursion = 0 // reset recursion
-			cur_statements = 0 // reset CPU tracking
-			alertadmins = 0
+/n_Interpreter/proc/Run()
+	cur_recursion = 0 // reset recursion
+	cur_statements = 0 // reset CPU tracking
+	alertadmins = 0
 
-			ASSERT(src.program)
-			RunBlock(src.program)
+	ASSERT(src.program)
+	RunBlock(src.program)
 
 /*
 	Proc: SetVar
@@ -45,11 +43,11 @@
 	See Also:
 	- <Block.SetVar()>
 */
-		SetVar(name, value)
-			if(!istext(name))
-				//CRASH("Invalid variable name")
-				return
-			AssignVariable(name, value)
+/n_Interpreter/proc/SetVar(name, value)
+	if(!istext(name))
+		//CRASH("Invalid variable name")
+		return
+	AssignVariable(name, value)
 
 /*
 	Proc: SetProc
@@ -61,40 +59,40 @@
 	object	- (Optional) An object which will the be target of a function call.
 	params 	- Only required if object is not null, a list of the names of parameters the proc takes.
 */
-		SetProc(name, path, object=null, list/params=null)
-			if(!istext(name))
-				//CRASH("Invalid function name")
-				return
-			if(!object)
-				globalScope.functions[name] = path
-			else
-				var/node/statement/FunctionDefinition/S = new()
-				S.func_name		= name
-				S.parameters	= params
-				S.block			= new()
-				S.block.SetVar("src", object)
-				var/node/expression/FunctionCall/C = new()
-				C.func_name	= path
-				C.object		= new("src")
-				for(var/p in params)
-					C.parameters += new/node/expression/value/variable(p)
-				var/node/statement/ReturnStatement/R=new()
-				R.value=C
-				S.block.statements += R
-				globalScope.functions[name] = S
+/n_Interpreter/proc/SetProc(name, path, object=null, list/params=null)
+	if(!istext(name))
+		//CRASH("Invalid function name")
+		return
+	if(!object)
+		globalScope.functions[name] = path
+		return
+	var/node/statement/FunctionDefinition/S = new()
+	S.func_name		= name
+	S.parameters	= params
+	S.block			= new()
+	S.block.SetVar("src", object)
+	var/node/expression/FunctionCall/C = new()
+	C.func_name	= path
+	C.object		= new("src")
+	for(var/p in params)
+		C.parameters += new/node/expression/value/variable(p)
+	var/node/statement/ReturnStatement/R=new()
+	R.value=C
+	S.block.statements += R
+	globalScope.functions[name] = S
 /*
 	Proc: VarExists
 	Checks whether a global variable with the specified name exists.
 */
-		VarExists(name)
-			return globalScope.variables.Find(name) //convert to 1/0 first?
+/n_Interpreter/proc/VarExists(name)
+	return globalScope.variables.Find(name) //convert to 1/0 first?
 
 /*
 	Proc: ProcExists
 	Checks whether a global function with the specified name exists.
 */
-		ProcExists(name)
-			return globalScope.functions.Find(name)
+/n_Interpreter/proc/ProcExists(name)
+	return globalScope.functions.Find(name)
 
 /*
 	Proc: GetVar
@@ -103,12 +101,12 @@
 	See Also:
 	- <VarExists()>
 */
-		GetVar(name)
-			if(!VarExists(name))
-				//CRASH("No variable named '[name]'.")
-				return
-			var/x = globalScope.variables[name]
-			return Eval(x)
+/n_Interpreter/proc/GetVar(name)
+	if(!VarExists(name))
+		//CRASH("No variable named '[name]'.")
+		return
+	var/x = globalScope.variables[name]
+	return Eval(x)
 
 /*
 	Proc: CallProc
@@ -118,19 +116,19 @@
 	See Also:
 	- <ProcExists()>
 */
-		CallProc(name, params[]=null)
-			if(!ProcExists(name))
-				//CRASH("No function named '[name]'.")
-				return
-			var/node/statement/FunctionDefinition/func = globalScope.functions[name]
-			if(istype(func))
-				var/node/statement/FunctionCall/stmt = new
-				stmt.func_name  = func.func_name
-				stmt.parameters = params
-				return RunFunction(stmt)
-			else
-				return call(func)(arglist(params))
-			//CRASH("Unknown function type '[name]'.")
+/n_Interpreter/proc/CallProc(name, params[]=null)
+	if(!ProcExists(name))
+		//CRASH("No function named '[name]'.")
+		return
+	var/node/statement/FunctionDefinition/func = globalScope.functions[name]
+	if(istype(func))
+		var/node/statement/FunctionCall/stmt = new
+		stmt.func_name  = func.func_name
+		stmt.parameters = params
+		return RunFunction(stmt)
+	else
+		return call(func)(arglist(params))
+	//CRASH("Unknown function type '[name]'.")
 
 /*
 	Event: HandleError
@@ -139,4 +137,4 @@
 	See Also:
 	- <runtimeError>
 */
-		HandleError(runtimeError/e)
+/n_Interpreter/proc/HandleError(runtimeError/e)

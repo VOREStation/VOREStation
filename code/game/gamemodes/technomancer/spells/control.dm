@@ -88,8 +88,7 @@
 
 /obj/item/weapon/spell/control/on_use_cast(mob/living/user)
 	if(controlled_mobs.len != 0)
-		var/choice = alert(user,"Would you like to release control of the entities you are controlling?  They won't be friendly \
-		to you anymore if you do this, so be careful.","Release Control?","No","Yes")
+		var/choice = tgui_alert(user,"Would you like to release control of the entities you are controlling? They won't be friendly to you anymore if you do this, so be careful.","Release Control?",list("No","Yes"))
 		if(choice == "Yes")
 			for(var/mob/living/L in controlled_mobs)
 				deselect(L)
@@ -125,7 +124,7 @@
 				return 0
 			if(pay_energy(25 * controlled_mobs.len))
 				attack_all(L)
-				log_and_message_admins("has commanded their army of [controlled_mobs.len] to attack [L].")
+				add_attack_logs(user,L,"Commanded their army of [controlled_mobs.len]")
 				to_chat(user, "<span class='notice'>You command your [controlled_mobs.len > 1 ? "entities" : "[controlled_mobs[1]]"] to \
 				attack \the [L].</span>")
 				//This is to stop someone from controlling beepsky and getting him to stun someone 5 times a second.

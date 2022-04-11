@@ -1,7 +1,7 @@
 import { classes } from 'common/react';
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Box, Button, Section, Table, LabeledList } from '../components';
+import { Box, Button, Section, Table, Tooltip, LabeledList } from '../components';
 import { Window } from '../layouts';
 
 const VendingRow = (props, context) => {
@@ -28,7 +28,12 @@ const VendingRow = (props, context) => {
         ) || null}
       </Table.Cell>
       <Table.Cell bold color={product.color}>
-        {product.name}
+        <Box inline position="relative">
+          {product.name}
+          {product.desc
+            ? <Tooltip content={product.desc} position="right" />
+            : null}
+        </Box>
       </Table.Cell>
       <Table.Cell collapsing textAlign="center">
         <Box

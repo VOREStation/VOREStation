@@ -14,8 +14,7 @@ GLOBAL_DATUM_INIT(overmap_event_handler, /decl/overmap_event_handler, new)
 	// Acquire the list of not-yet utilized overmap turfs on this Z-level
 	var/list/overmap_turfs = block(locate(OVERMAP_EDGE, OVERMAP_EDGE, z_level), locate(overmap_size - OVERMAP_EDGE, overmap_size - OVERMAP_EDGE, z_level))
 	var/list/candidate_turfs = list()
-	for(var/Trf in overmap_turfs)
-		var/turf/T = Trf
+	for(var/turf/T as anything in overmap_turfs)
 		if(!(locate(/obj/effect/overmap/visitable) in T))
 			candidate_turfs += T
 

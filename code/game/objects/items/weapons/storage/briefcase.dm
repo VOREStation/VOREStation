@@ -21,3 +21,12 @@
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_SMALL
 	max_storage_space = ITEMSIZE_COST_SMALL * 4
+
+/obj/item/weapon/storage/briefcase/bookbag
+	name = "bookbag"
+	desc = "A small bookbag for holding... things other than books?"
+	icon_state = "bookbag"
+	force = 4.0
+	w_class = ITEMSIZE_LARGE
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 4

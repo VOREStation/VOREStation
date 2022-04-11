@@ -13,6 +13,7 @@
 	var/brightness_on = 1
 	chem_volume = 0 //ecig has no storage on its own but has reagent container created by parent obj
 	item_state = "ecigoff"
+	is_pipe = TRUE //to avoid a runtime in examine()
 	var/icon_off
 	var/icon_empty
 	var/ecig_colors = list(null, COLOR_DARK_GRAY, COLOR_RED_GRAY, COLOR_BLUE_GRAY, COLOR_GREEN_GRAY, COLOR_PURPLE_GRAY)
@@ -20,6 +21,28 @@
 /obj/item/clothing/mask/smokable/ecig/New()
 	..()
 	ec_cartridge = new cartridge_type(src)
+
+/obj/item/clothing/mask/smokable/ecig/examine(mob/user)
+	. = ..()
+	
+	if(active)
+		. += "<span class='notice'>It is turned on.</span>"
+	else
+		. += "<span class='notice'>It is turned off.</span>"
+	if(Adjacent(user))
+		if(ec_cartridge)
+			if(!ec_cartridge.reagents?.total_volume)
+				. += "<span class='notice'>Its cartridge is empty!</span>"
+			else if (ec_cartridge.reagents.total_volume <= ec_cartridge.volume * 0.25)
+				. += "<span class='notice'>Its cartridge is almost empty!</span>"
+			else if (ec_cartridge.reagents.total_volume <= ec_cartridge.volume * 0.66)
+				. += "<span class='notice'>Its cartridge is half full!</span>"
+			else if (ec_cartridge.reagents.total_volume <= ec_cartridge.volume * 0.90)
+				. += "<span class='notice'>Its cartridge is almost full!</span>"
+			else
+				. += "<span class='notice'>Its cartridge is full!</span>"
+		else
+			. += "<span class='notice'>It has no cartridge.</span>"
 
 /obj/item/clothing/mask/smokable/ecig/simple
 	name = "simple electronic cigarette"
@@ -56,6 +79,7 @@
 		var/mob/living/carbon/human/C = loc
 		if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 			if (!active || !ec_cartridge || !ec_cartridge.reagents.total_volume)//no cartridge
+				to_chat(C, "<span class='notice'>[src] turns off.</span> ")
 				active=0//autodisable the cigarette
 				STOP_PROCESSING(SSobj, src)
 				update_icon()
@@ -125,7 +149,7 @@
 	w_class = ITEMSIZE_TINY
 	icon = 'icons/obj/ecig.dmi'
 	icon_state = "ecartridge"
-	matter = list("metal" = 50, "glass" = 10)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 10)
 	volume = 20
 	flags = OPENCONTAINER
 

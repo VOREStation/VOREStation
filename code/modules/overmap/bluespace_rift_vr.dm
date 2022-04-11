@@ -4,8 +4,6 @@
 	icon = 'icons/obj/overmap_vr.dmi'
 	icon_state = "portal"
 	color = "#2288FF"
-
-	known = 0			//shows up on nav computers automatically
 	scannable = TRUE       //if set to TRUE will show up on ship sensors for detailed scans
 
 	var/obj/effect/overmap/bluespace_rift/partner
@@ -34,7 +32,7 @@
 
 /obj/effect/overmap/bluespace_rift/attack_ghost(var/mob/observer/dead/user)
 	if(!partner && user?.client?.holder)
-		var/response = alert(user, "You appear to be staff. This rift has no exit point. If you want to make one, move to where you want it to go, and click 'Make Here', otherwise click 'Cancel'","Rift Exit","Cancel","Make Here")
+		var/response = tgui_alert(user, "You appear to be staff. This rift has no exit point. If you want to make one, move to where you want it to go, and click 'Make Here', otherwise click 'Cancel'", "Bluespace Rift", list("Cancel","Make Here"))
 		if(response == "Make Here")
 			new type(get_turf(user), src)
 	else if(partner)

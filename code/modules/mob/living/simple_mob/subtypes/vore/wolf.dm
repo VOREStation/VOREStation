@@ -3,7 +3,7 @@
 	desc = "Some sort of wolf, a descendent or otherwise of regular Earth canidae. They look almost exactly like their \
 	Earth counterparts, except for the fact that their fur is a uniform grey. Some do show signs of unique coloration, and they \
 	love to nip and bite at things, as well as sniffing around. They seem to mark their territory by way of scent-marking/urinating on things."
-	value = CATALOGUER_REWARD_MEDIUM
+	value = CATALOGUER_REWARD_EASY
 
 /mob/living/simple_mob/animal/wolf
 	name = "grey wolf"
@@ -25,9 +25,13 @@
 	melee_damage_lower = 5
 	melee_damage_upper = 12
 
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_amount = 5
+
 	minbodytemp = 200
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
+	catalogue_data = list(/datum/category_item/catalogue/fauna/wolf)
 
 // Activate Noms!
 /mob/living/simple_mob/animal/wolf
@@ -66,7 +70,6 @@
 	name = "dire wolf"
 	desc = "The biggest and baddest wolf around."
 	tt_desc = "Canis maxdirus"
-
 	icon = 'icons/mob/vore64x32.dmi'
 	icon_dead = "direwolf-dead"
 	icon_living = "direwolf"
@@ -108,11 +111,26 @@
 	name = "large dog"
 	desc = "The biggest and goodest dog around."
 	tt_desc = "Canis maxdirus familiaris"
-
 	icon_dead = "diredog-dead"
 	icon_living = "diredog"
 	icon_state = "diredog"
 	icon_rest = "diredog_rest"
+
+/mob/living/simple_mob/animal/wolf/direwolf/dog/sec
+	name = "large guard dog"
+	desc = "The biggest and goodest guard dog around."
+	icon_dead = "diredogs-dead"
+	icon_living = "diredogs"
+	icon_state = "diredogs"
+	icon_rest = "diredogs_rest"
+
+/mob/living/simple_mob/animal/wolf/direwolf/sec
+	name = "dire guard wolf"
+	desc = "The biggest and baddest guard wolf around."
+	icon_dead = "direwolfs-dead"
+	icon_living = "direwolfs"
+	icon_state = "direwolfs"
+	icon_rest = "direwolfs_rest"
 
 /mob/living/simple_mob/animal/wolf/direwolf/rykka
 	name = "Rykka"

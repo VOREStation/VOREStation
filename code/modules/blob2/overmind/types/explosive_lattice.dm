@@ -30,7 +30,7 @@
 	for(var/mob/living/L in range(get_turf(victim), 1)) // We don't use orange(), in case there is more than one mob on the target tile.
 		if(L == victim) // Already hit.
 			continue
-		if(L.faction == "blob") // No friendly fire
+		if(L.faction == faction) // No friendly fire
 			continue
 		L.blob_act()
 

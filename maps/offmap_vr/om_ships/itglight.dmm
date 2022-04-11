@@ -12,9 +12,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mining{
-	name = "Captain's Quarters";
-	req_one_access = list(778)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/captain)
@@ -22,18 +24,22 @@
 /obj/structure/bed/chair/bay/chair/padded/red/bignest{
 	name = "large dog bed"
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 4;
 	pixel_x = -26
 	},
 /mob/living/simple_mob/vore/woof/cass,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/pink{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "ac" = (
 /obj/machinery/smartfridge,
-/obj/machinery/light{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "ad" = (
@@ -55,8 +61,7 @@
 /area/itglight/readyroom)
 "af" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/paper/dockingcodes,
-/obj/item/weapon/card/id/itg/event/captain,
+/obj/item/weapon/card/id/event/accessset/itg/crew/captain,
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = -32
 	},
@@ -88,7 +93,7 @@
 /obj/item/clothing/suit/chef/classic,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/suit/storage/solgov/service/army/service,
-/obj/item/weapon/card/id/itg/event/service,
+/obj/item/weapon/card/id/event/accessset/itg/crew/service,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "ah" = (
@@ -115,7 +120,7 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
 /obj/item/taperoll/engineering,
 /obj/item/clothing/suit/storage/solgov/service/army/engineering,
-/obj/item/weapon/card/id/itg/event/engineer,
+/obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "ai" = (
@@ -141,7 +146,7 @@
 	},
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical,
 /obj/item/clothing/suit/storage/solgov/service/army/medical,
-/obj/item/weapon/card/id/itg/event/medical,
+/obj/item/weapon/card/id/event/accessset/itg/crew/medical,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "aj" = (
@@ -168,7 +173,7 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/security,
 /obj/item/clothing/suit/storage/trench,
 /obj/item/clothing/suit/storage/solgov/service/army/security,
-/obj/item/weapon/card/id/itg/event/security,
+/obj/item/weapon/card/id/event/accessset/itg/crew/security,
 /obj/item/clothing/accessory/holster/hip,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
@@ -202,19 +207,15 @@
 /turf/simulated/floor/carpet,
 /area/itglight/readyroom)
 "aw" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/captain)
 "ay" = (
@@ -229,16 +230,15 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "aK" = (
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "itglightshuttle_docker_hatch";
-	name = "Shuttle Hatch"
-	},
 /obj/effect/map_helper/airlock/door/simple,
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/itglightshuttle)
@@ -280,11 +280,14 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
 "aY" = (
-/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/cockpit)
 "bd" = (
 /obj/structure/handrail{
 	dir = 8
+	},
+/obj/structure/panic_button{
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
@@ -378,8 +381,7 @@
 /area/itglight/captain)
 "bC" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -499,15 +501,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock{
-	id_tag = "dauntlesspq4";
-	name = "Room 4"
+/obj/machinery/door/airlock/angled_bay/standard{
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/crew4)
 "cp" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -527,9 +529,6 @@
 /area/itglight/captain)
 "cw" = (
 /obj/machinery/telecomms/allinone,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
 "cx" = (
@@ -566,8 +565,9 @@
 /obj/structure/bed/chair/bay/chair/padded/brown{
 	dir = 8
 	},
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	pixel_y = -25
 	},
 /obj/structure/cable/pink,
@@ -646,26 +646,18 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "ds" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/cockpit)
-"dv" = (
-/obj/machinery/door/airlock{
-	name = "Unit 1"
-	},
-/turf/simulated/floor/tiled/white,
-/area/itglight/restrooms)
 "dB" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -731,17 +723,6 @@
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/forehall)
-"eb" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/turf/simulated/floor/plating,
-/area/shuttle/itglightshuttle)
 "ec" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -755,8 +736,9 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew1)
 "ed" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	pixel_y = -25
 	},
 /obj/structure/cable/pink,
@@ -764,12 +746,10 @@
 /area/itglight/readyroom)
 "ei" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
@@ -781,20 +761,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock/glass_mining{
-	name = "Bridge";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/cockpit)
 "em" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/cable/pink{
 	d1 = 1;
 	d2 = 2;
@@ -805,6 +780,10 @@
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/captain)
 "eo" = (
@@ -989,7 +968,9 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "fC" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/shuttlebay)
 "fE" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -1147,7 +1128,9 @@
 /turf/simulated/floor,
 /area/itglight/starboardengi)
 "gK" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/portcargo)
 "gL" = (
 /obj/structure/cable/pink{
@@ -1165,7 +1148,7 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/itglight/captain)
 "gS" = (
-/obj/structure/bed/chair/sofa/brown/right,
+/obj/structure/bed/chair/sofa/right/brown,
 /obj/item/device/radio/intercom{
 	dir = 1;
 	pixel_y = 25
@@ -1194,9 +1177,9 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "gX" = (
-/obj/structure/bed/chair/sofa/brown/left,
+/obj/structure/bed/chair/sofa/left/brown,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 8;
 	pixel_x = 26
 	},
@@ -1219,7 +1202,7 @@
 	pixel_x = 4;
 	pixel_y = 65
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/cockpit)
 "hi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1279,7 +1262,7 @@
 /obj/structure/bed/chair/bay/chair/padded/brown{
 	dir = 8
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 8;
 	pixel_x = 26
 	},
@@ -1319,7 +1302,9 @@
 /turf/simulated/floor/tiled/eris/dark/gray_platform,
 /area/itglight/cockpit)
 "hF" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/cockpit)
 "hG" = (
 /obj/machinery/bodyscanner,
@@ -1344,7 +1329,7 @@
 /obj/structure/bed/chair/bay/chair/padded/blue{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/eris/dark/gray_platform,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/cockpit)
 "hT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -1357,7 +1342,9 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/itglight/captain)
 "hY" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardcargo)
 "ic" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -1384,19 +1371,15 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew4)
 "ie" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/medbay)
 "ih" = (
@@ -1478,9 +1461,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/door/airlock/mining{
-	name = "Starboard Engineering";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/starboardengi)
@@ -1563,26 +1548,24 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mining{
-	name = "Ready Room";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/readyroom)
 "iR" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/readyroom)
 "iT" = (
@@ -1674,8 +1657,7 @@
 "jB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/item/weapon/tank/jetpack/oxygen,
 /obj/item/weapon/tank/jetpack/oxygen,
@@ -1684,11 +1666,15 @@
 /area/itglight/starboardhighsec)
 "jE" = (
 /obj/structure/table/steel_reinforced,
-/obj/machinery/alarm/alarms_hidden{
-	dir = 1;
-	pixel_y = -26
-	},
 /obj/machinery/photocopier/faxmachine/itglight,
+/obj/machinery/power/apc/angled{
+	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
+	dir = 8;
+	nightshift_setting = 3;
+	pixel_x = -25
+	},
+/obj/structure/cable/pink,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "jF" = (
@@ -1740,12 +1726,12 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_external{
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000";
 	icon_state = "door_locked";
 	id_tag = "itglight_shuttle_port";
-	locked = 1;
-	name = "Shuttle Hatch";
-	req_one_access = list()
+	locked = 1
 	},
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/itglightshuttle)
@@ -1789,36 +1775,27 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "ky" = (
-/obj/machinery/power/apc/hyper{
-	alarms_hidden = 1;
-	nightshift_setting = 3;
-	pixel_y = -25
-	},
-/obj/structure/cable/pink,
 /obj/item/device/radio,
-/obj/structure/closet/autolok_wall{
-	pixel_x = 32
-	},
 /obj/item/device/flash,
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
 	},
+/obj/machinery/alarm/angled/hidden{
+	dir = 8;
+	pixel_x = 26
+	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "kH" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/kitchen)
 "kJ" = (
@@ -1843,8 +1820,7 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
@@ -1865,8 +1841,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardcargo)
 "kU" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -1897,8 +1874,9 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "lh" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -1910,7 +1888,9 @@
 /area/itglight/afthall)
 "li" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardengi)
 "lo" = (
 /turf/simulated/floor/airless,
@@ -1929,9 +1909,10 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/glass_mining{
-	name = "Bridge";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/cockpit)
@@ -1962,9 +1943,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
@@ -1985,7 +1964,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "lH" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/cockpit)
 "lK" = (
 /obj/structure/cable/yellow{
@@ -2106,9 +2087,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
@@ -2150,7 +2129,7 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "mL" = (
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 8;
 	pixel_x = 26
 	},
@@ -2169,8 +2148,9 @@
 /turf/simulated/floor/carpet,
 /area/itglight/readyroom)
 "mZ" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 8;
 	nightshift_setting = 3;
 	pixel_x = -25
@@ -2206,7 +2186,9 @@
 /turf/simulated/floor,
 /area/itglight/portengi)
 "nh" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/forehall)
 "nl" = (
 /obj/structure/closet/walllocker_double{
@@ -2248,9 +2230,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/mining{
-	name = "Crew Access";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/forehall)
@@ -2341,6 +2324,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/cable/pink{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "of" = (
@@ -2406,8 +2394,7 @@
 	icon_state = "1-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
@@ -2416,11 +2403,6 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "oA" = (
-/obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
@@ -2517,8 +2499,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 6
 	},
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 8;
 	nightshift_setting = 3;
 	pixel_x = -25
@@ -2570,8 +2553,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/structure/cable/pink{
 	d1 = 1;
@@ -2602,8 +2584,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardcargo)
 "pL" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -2620,8 +2603,7 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -2744,7 +2726,6 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "qU" = (
-/obj/item/weapon/stool/baystool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -2755,6 +2736,9 @@
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/item/weapon/stool/baystool/padded{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
@@ -2813,7 +2797,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "qZ" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/restrooms)
 "rf" = (
 /obj/structure/cable{
@@ -2833,7 +2819,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 4;
 	pixel_x = -26
 	},
@@ -2931,19 +2917,15 @@
 /turf/simulated/floor,
 /area/itglight/starboardengi)
 "su" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/starboardengi)
 "sx" = (
@@ -2959,8 +2941,9 @@
 /obj/structure/bed/chair/bay/chair{
 	dir = 1
 	},
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -3101,7 +3084,9 @@
 	req_access = list(777);
 	specialfunctions = 4
 	},
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardcargo)
 "tC" = (
 /obj/structure/cable/yellow{
@@ -3248,7 +3233,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/portcargo)
 "uq" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboarddocking)
 "uv" = (
 /obj/structure/cable{
@@ -3323,7 +3310,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "vy" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/portengi)
 "vI" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -3358,6 +3347,19 @@
 /obj/machinery/smartfridge/chemistry,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
+"wc" = (
+/obj/structure/bed/chair/comfy/brown{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/pink{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
+/area/itglight/common)
 "wg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3419,6 +3421,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -25
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "wz" = (
@@ -3471,9 +3477,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock{
-	id_tag = "dauntlesspq2";
-	name = "Room 2"
+/obj/machinery/door/airlock/angled_bay/standard{
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/crew2)
@@ -3496,9 +3501,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mining{
-	name = "Equipment Access";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/starboardhighsec)
@@ -3511,10 +3518,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/mining{
-	id_tag = "dauntlesspassengeraccessbolts";
-	name = "Cargo Access";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/common)
@@ -3534,12 +3541,12 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "wS" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 1;
-	pixel_y = -26
+/obj/machinery/alarm/angled/hidden{
+	dir = 4;
+	pixel_x = -26
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
-/area/itglight/starboardcargo)
+/area/itglight/portcargo)
 "wV" = (
 /obj/machinery/transhuman/resleever,
 /turf/simulated/floor/tiled/eris/white/cargo,
@@ -3548,10 +3555,7 @@
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/sblucarpet,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/common)
 "wX" = (
 /obj/structure/cable/pink{
@@ -3590,8 +3594,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock{
-	name = "Locker Room"
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	dir = 4;
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/lockers)
@@ -3615,8 +3620,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
@@ -3654,21 +3658,21 @@
 	},
 /obj/item/clothing/suit/space/void/captain,
 /obj/item/clothing/head/helmet/space/void/captain,
-/obj/item/weapon/card/id/itg/event,
-/obj/item/weapon/card/id/itg/event,
-/obj/item/weapon/card/id/itg/event,
-/obj/item/weapon/card/id/itg/event,
-/obj/item/weapon/card/id/itg/event,
-/obj/item/weapon/card/id/itg/event/passengerliason,
-/obj/item/weapon/card/id/itg/event/pilot,
-/obj/item/weapon/card/id/itg/event/research,
-/obj/item/weapon/card/id/itg/event/research,
-/obj/item/weapon/card/id/itg/event/security,
-/obj/item/weapon/card/id/itg/event/service,
-/obj/item/weapon/card/id/itg/event/engineer,
-/obj/item/weapon/card/id/itg/event/engineer,
-/obj/item/weapon/card/id/itg/event/medical,
-/obj/item/weapon/card/id/itg/event/medical,
+/obj/item/weapon/card/id/event/accessset/itg/crew,
+/obj/item/weapon/card/id/event/accessset/itg/crew,
+/obj/item/weapon/card/id/event/accessset/itg/crew,
+/obj/item/weapon/card/id/event/accessset/itg/crew,
+/obj/item/weapon/card/id/event/accessset/itg/crew,
+/obj/item/weapon/card/id/event/accessset/itg/crew/passengerliason,
+/obj/item/weapon/card/id/event/accessset/itg/crew/pilot,
+/obj/item/weapon/card/id/event/accessset/itg/crew/research,
+/obj/item/weapon/card/id/event/accessset/itg/crew/research,
+/obj/item/weapon/card/id/event/accessset/itg/crew/security,
+/obj/item/weapon/card/id/event/accessset/itg/crew/service,
+/obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
+/obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
+/obj/item/weapon/card/id/event/accessset/itg/crew/medical,
+/obj/item/weapon/card/id/event/accessset/itg/crew/medical,
 /obj/item/clothing/suit/storage/hooded/wintercoat/cargo{
 	name = "dauntless winter coat"
 	},
@@ -3685,15 +3689,18 @@
 /turf/simulated/floor/carpet/sblucarpet,
 /area/itglight/captain)
 "xx" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/medbay)
 "xy" = (
 /obj/structure/closet/firecloset/full,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "xE" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -3758,8 +3765,7 @@
 /area/itglight/portcargo)
 "ym" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8;
-	icon_state = "map-supply"
+	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/pink{
@@ -3770,7 +3776,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/porthighsec)
 "yn" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/lockers)
 "yw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -3788,10 +3796,6 @@
 /area/itglight/porthighsec)
 "yy" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "itglight_port_inner"
-	},
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
 	},
@@ -3805,6 +3809,10 @@
 	master_tag = "itglight_port";
 	name = "interior access button";
 	pixel_y = 26
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/portengi)
@@ -3845,21 +3853,21 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/mining{
-	name = "High Security Cargo";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/porthighsec)
 "yK" = (
-/obj/structure/table/wooden_reinforced,
-/obj/machinery/computer/security/telescreen/entertainment{
-	desc = "Looks like it's set to Free-Anur-Entertanment, I wonder what else is on?";
-	icon_state = "frame";
-	pixel_y = 62
+/obj/machinery/alarm/angled/hidden{
+	dir = 8;
+	pixel_x = 26
 	},
-/turf/simulated/floor/carpet/sblucarpet,
-/area/itglight/common)
+/turf/simulated/floor/tiled/eris/steel/gray_platform,
+/area/itglight/starboardcargo)
 "yN" = (
 /obj/machinery/seed_extractor,
 /turf/simulated/floor/tiled/eris/cafe,
@@ -3908,8 +3916,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/itglight/starboarddocking)
 "yY" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -3936,9 +3945,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
-"zg" = (
-/turf/simulated/shuttle/wall/voidcraft,
-/area/shuttle/itglightshuttle)
 "zj" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -3946,7 +3952,9 @@
 /turf/simulated/floor/airless,
 /area/itglight/portsolars)
 "zm" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardengi)
 "zn" = (
 /obj/structure/cable{
@@ -3973,8 +3981,7 @@
 	},
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/itglight/starboardengi)
@@ -3997,11 +4004,17 @@
 /area/itglight/crew3)
 "zt" = (
 /obj/structure/sign/itg,
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/portdocking)
 "zv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
+	},
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
@@ -4035,8 +4048,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/itglight/portdocking)
 "zL" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	nightshift_setting = 3;
 	pixel_x = 25
@@ -4077,7 +4091,7 @@
 /turf/simulated/floor/airless,
 /area/itglight/portengi)
 "Aa" = (
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/monotile,
@@ -4140,7 +4154,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 4;
 	pixel_x = -26
 	},
@@ -4167,8 +4181,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock{
-	name = "Passenger Common Sleeping"
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	dir = 4;
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/passengersleeping)
@@ -4190,8 +4205,9 @@
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/itglight/medbay)
 "AJ" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -4259,8 +4275,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -4303,7 +4320,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 4;
 	pixel_x = -26
 	},
@@ -4377,8 +4394,9 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew4)
 "BU" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -4404,17 +4422,14 @@
 "Ca" = (
 /obj/machinery/door/firedoor/glass,
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/door/airlock/external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "itglight_dock_1_outer";
-	locked = 1;
-	name = "Port External Airlock"
-	},
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/portdocking)
@@ -4443,7 +4458,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 4;
 	pixel_x = -26
 	},
@@ -4498,7 +4513,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "CH" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardhighsec)
 "CI" = (
 /obj/machinery/power/terminal,
@@ -4526,7 +4543,9 @@
 /area/itglight/portdocking)
 "CM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/portdocking)
 "CO" = (
 /obj/structure/cable/pink{
@@ -4576,21 +4595,8 @@
 	},
 /turf/simulated/floor/airless,
 /area/itglight/starboardsolars)
-"CY" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
-/turf/simulated/floor/plating,
-/area/shuttle/itglightshuttle)
 "Db" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "itglight_dock_1_inner"
-	},
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
@@ -4603,6 +4609,10 @@
 	master_tag = "itglight_dock_1";
 	name = "interior access button";
 	pixel_y = 26
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/portdocking)
@@ -4694,11 +4704,10 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/floor,
 /area/itglight/portcargo)
-"Dz" = (
-/turf/simulated/wall/shull,
-/area/itglight/lockers)
 "DB" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/portdocking)
 "DF" = (
 /obj/machinery/door/firedoor/glass,
@@ -4713,10 +4722,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_mining{
-	id_tag = "dauntlessportcargobolts";
-	name = "Port Cargo Access";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/portcargo)
@@ -4730,15 +4740,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/portcargo)
-"DI" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/item/device/radio/intercom{
-	pixel_y = -25
-	},
-/turf/simulated/floor/tiled/eris/steel/brown_platform,
-/area/itglight/metingroom)
 "DJ" = (
 /obj/structure/cable/pink{
 	d1 = 4;
@@ -4812,10 +4813,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_mining{
-	id_tag = "dauntlessstarboardcargobolts";
-	name = "Starboard Cargo Access";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/starboardcargo)
@@ -4827,13 +4829,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/itglight/shuttlebay)
-"Eg" = (
-/obj/machinery/alarm/alarms_hidden{
-	dir = 1;
-	pixel_y = -26
-	},
-/turf/simulated/floor/tiled/eris/steel/gray_platform,
-/area/itglight/portcargo)
 "Ej" = (
 /obj/structure/cable/pink{
 	d1 = 4;
@@ -4872,21 +4867,23 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 4;
 	pixel_x = -26
 	},
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew1)
 "Ep" = (
-/obj/machinery/light{
-	dir = 8
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/forehall)
 "Ev" = (
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/light/floortube{
+	dir = 4;
+	pixel_x = 6
 	},
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/forehall)
@@ -4898,16 +4895,16 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "itglight_dock_2_inner"
-	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
 	frequency = 1380;
 	master_tag = "itglight_dock_2";
 	name = "interior access button";
 	pixel_y = 26
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/starboarddocking)
@@ -4937,13 +4934,7 @@
 /turf/simulated/floor,
 /area/itglight/starboarddocking)
 "EI" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
 /obj/structure/cable/pink{
 	d1 = 1;
 	d2 = 2;
@@ -4954,6 +4945,10 @@
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/shuttlebay)
 "EL" = (
@@ -4976,18 +4971,6 @@
 	},
 /turf/simulated/floor,
 /area/itglight/starboarddocking)
-"EN" = (
-/obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/sblucarpet,
-/area/itglight/common)
 "EP" = (
 /obj/structure/cable/pink{
 	d1 = 4;
@@ -5007,8 +4990,7 @@
 /area/itglight/starboarddocking)
 "EQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9;
-	icon_state = "intact-scrubbers"
+	dir = 9
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -5076,7 +5058,7 @@
 "Fc" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/effect/floor_decal/industrial/outline,
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor,
@@ -5084,17 +5066,14 @@
 "Fe" = (
 /obj/machinery/door/firedoor/glass,
 /obj/effect/map_helper/airlock/door/ext_door,
-/obj/machinery/door/airlock/external{
-	frequency = 1380;
-	icon_state = "door_locked";
-	id_tag = "itglight_dock_2_outer";
-	locked = 1;
-	name = "Starboard External Airlock"
-	},
 /obj/structure/cable/pink{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/starboarddocking)
@@ -5161,12 +5140,10 @@
 /turf/space,
 /area/space)
 "FB" = (
-/obj/item/weapon/stool/baystool/padded,
-/obj/structure/window/reinforced{
-	pixel_y = -3
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
 	},
-/turf/simulated/floor/tiled/eris/cafe,
-/area/itglight/kitchen)
+/area/itglight/lockers)
 "FH" = (
 /obj/structure/cable{
 	d2 = 4;
@@ -5208,7 +5185,9 @@
 /area/itglight/portengi)
 "FR" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboarddocking)
 "FT" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
@@ -5249,10 +5228,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "itglight_starboard_inner"
-	},
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/access_button{
 	command = "cycle_interior";
@@ -5260,6 +5235,10 @@
 	master_tag = "itglight_starboard";
 	name = "interior access button";
 	pixel_y = 26
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/starboardengi)
@@ -5329,7 +5308,9 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
 "Gq" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboarddocking)
 "Gt" = (
 /obj/structure/closet/walllocker_double/medical{
@@ -5364,16 +5345,16 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
 "Gv" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/passengersleeping)
 "GA" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden,
@@ -5480,25 +5461,23 @@
 	req_access = list(777);
 	specialfunctions = 4
 	},
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/portcargo)
 "Hj" = (
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/itglight/medbay)
 "Hy" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/portengi)
 "HA" = (
@@ -5507,13 +5486,7 @@
 /turf/simulated/floor,
 /area/itglight/starboarddocking)
 "HB" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/structure/cable/pink{
 	d1 = 1;
 	d2 = 2;
@@ -5524,6 +5497,10 @@
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/readyroom)
 "HD" = (
@@ -5633,7 +5610,9 @@
 /area/itglight/starboarddocking)
 "HX" = (
 /obj/structure/sign/itg,
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboarddocking)
 "Ia" = (
 /obj/structure/cable/pink{
@@ -5708,7 +5687,9 @@
 /area/itglight/starboardcargo)
 "IA" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel,
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/portengi)
 "IF" = (
 /obj/structure/cable{
@@ -5723,11 +5704,14 @@
 /turf/simulated/floor/airless,
 /area/itglight/portsolars)
 "IH" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/crew1)
 "IM" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -5739,6 +5723,17 @@
 /area/itglight/shuttlebay)
 "IN" = (
 /obj/structure/coatrack,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "IQ" = (
@@ -5765,8 +5760,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardcargo)
 "Jc" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 1;
 	nightshift_setting = 3;
 	pixel_y = 25
@@ -5782,11 +5778,6 @@
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "itglight_starboard_outer";
-	name = "Starboard Solars External Airlock"
-	},
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/access_button{
 	command = "cycle_exterior";
@@ -5796,9 +5787,20 @@
 	pixel_y = -27;
 	req_one_access = list(777)
 	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/starboardengi)
 "Ji" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/pink{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Jk" = (
@@ -5815,14 +5817,16 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/itglight/starboarddocking)
 "Jm" = (
-/obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
+	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable/pink{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
@@ -5912,8 +5916,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/portcargo)
 "JR" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -5966,8 +5971,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardcargo)
 "Kh" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 1;
 	nightshift_setting = 3;
 	pixel_y = 25
@@ -5978,12 +5984,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardcargo)
-"Kj" = (
-/obj/machinery/door/airlock{
-	name = "Unit 2"
-	},
-/turf/simulated/floor/tiled/white,
-/area/itglight/restrooms)
 "Kn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6027,9 +6027,6 @@
 /obj/machinery/vending/dinnerware{
 	dir = 8
 	},
-/obj/structure/window/reinforced{
-	pixel_y = -3
-	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "KA" = (
@@ -6038,8 +6035,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/portcargo)
 "KB" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	nightshift_setting = 3;
 	pixel_x = 25
@@ -6051,15 +6049,17 @@
 /turf/simulated/floor,
 /area/itglight/portengi)
 "KG" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/crew2)
 "KJ" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/medical{
-	name = "Surgery and Resleeving";
-	req_one_access = list()
+/obj/machinery/door/airlock/angled_bay/standard{
+	door_color = "#FFFFFF";
+	stripe_color = "#0000AA"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/medbay)
@@ -6072,8 +6072,7 @@
 /area/space)
 "KM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5;
-	icon_state = "intact-scrubbers"
+	dir = 5
 	},
 /obj/structure/catwalk,
 /turf/simulated/floor,
@@ -6119,7 +6118,9 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardcargo)
 "Lr" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/captain)
 "Ly" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -6141,7 +6142,9 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "LF" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/portdocking)
 "LG" = (
 /obj/structure/cable/pink{
@@ -6155,8 +6158,7 @@
 /area/itglight/forehall)
 "LI" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_x = 0
+	dir = 8
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/monotile,
@@ -6166,15 +6168,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	pixel_y = -3
-	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "LO" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/low_wall/bay,
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/starboardcargo)
 "LQ" = (
@@ -6206,13 +6205,18 @@
 /turf/simulated/floor/tiled/dark,
 /area/itglight/passengersleeping)
 "LZ" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/structure/cable/pink{
 	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
+	d2 = 4;
+	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/pink{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Mg" = (
@@ -6220,17 +6224,29 @@
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = 30
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Mh" = (
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/carpet,
 /area/itglight/readyroom)
 "Mk" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -6246,6 +6262,17 @@
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/obj/structure/cable/pink{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Mm" = (
@@ -6260,19 +6287,15 @@
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
 "Mo" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/passengersleeping)
 "Mu" = (
@@ -6288,7 +6311,7 @@
 	dir = 8
 	},
 /obj/effect/floor_decal/industrial/warning,
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
@@ -6319,27 +6342,19 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/floor/tiled/eris/steel/brown_platform,
-/area/itglight/common)
-"ME" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/pink{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/sblucarpet,
+/turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "MF" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/device/paicard,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 8
-	},
-/turf/simulated/floor/carpet/sblucarpet,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/common)
 "MG" = (
 /obj/structure/cable{
@@ -6375,29 +6390,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
-"MU" = (
+"MY" = (
+/obj/structure/bed/chair/sofa/right/brown{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/pink{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
-/obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
-/obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/carpet/sblucarpet,
-/area/itglight/common)
-"MY" = (
-/obj/structure/bed/chair/sofa/brown/right{
-	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
@@ -6415,9 +6417,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock{
-	id_tag = "dauntlesspq3";
-	name = "Room 3"
+/obj/machinery/door/airlock/angled_bay/standard{
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/crew3)
@@ -6446,15 +6447,14 @@
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/forehall)
 "Nm" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardcargo)
 "Nn" = (
 /obj/structure/table/wooden_reinforced,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
 /obj/random/coin,
-/turf/simulated/floor/carpet/sblucarpet,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/common)
 "No" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -6467,27 +6467,14 @@
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/itglight/medbay)
 "Np" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/kitchen)
 "Nq" = (
 /obj/machinery/ntnet_relay,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/shuttlebay)
-"Ns" = (
-/obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/sblucarpet,
-/area/itglight/common)
 "Nv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -6579,8 +6566,9 @@
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
 "NY" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -6595,8 +6583,9 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -6634,19 +6623,27 @@
 /turf/simulated/floor/airless,
 /area/itglight/portsolars)
 "Ol" = (
-/obj/structure/bed/chair/sofa/brown/corner{
+/obj/structure/bed/chair/sofa/corner/brown{
 	dir = 1
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/pink{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/obj/machinery/computer/security/telescreen/entertainment{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Om" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
 /obj/structure/cable/pink{
 	d1 = 1;
 	d2 = 2;
@@ -6657,15 +6654,44 @@
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/kitchen)
 "Or" = (
 /obj/structure/bed/chair/sofa/brown,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/newscaster{
+	pixel_y = 28
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Ot" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
@@ -6682,16 +6708,21 @@
 /turf/simulated/floor/tiled/dark,
 /area/itglight/passengersleeping)
 "Ow" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
 	},
 /obj/structure/cable/pink{
-	d1 = 4;
+	d1 = 1;
 	d2 = 8;
-	icon_state = "4-8"
+	icon_state = "1-8"
+	},
+/obj/structure/cable/pink{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
@@ -6720,17 +6751,15 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/mining{
-	id_tag = "dauntlessshuttlbaybolts";
-	name = "Shuttle Bay";
-	req_one_access = list(777)
-	},
 /obj/machinery/button/remote/airlock{
 	id = "dauntlessshuttlbaybolts";
 	name = "Door Bolts";
 	pixel_x = 32;
 	req_access = list(777);
 	specialfunctions = 4
+	},
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/shuttlebay)
@@ -6768,22 +6797,20 @@
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
 "OT" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/window/reinforced,
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/kitchen)
 "OX" = (
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor,
@@ -6801,8 +6828,8 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass{
-	name = "Kitchen"
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/kitchen)
@@ -6820,7 +6847,9 @@
 /turf/simulated/floor,
 /area/itglight/starboardengi)
 "Pr" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/showers)
 "Py" = (
 /obj/machinery/vending/loadout/uniform{
@@ -6861,17 +6890,14 @@
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
 "PE" = (
-/obj/structure/window/reinforced{
-	dir = 1
-	},
-/obj/structure/shuttle/engine/heater,
+/obj/effect/low_wall_spawner/bay/reinforced/rglass,
 /turf/simulated/shuttle/plating/airless,
 /area/shuttle/itglightshuttle)
 "PJ" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
@@ -6892,7 +6918,7 @@
 /obj/item/weapon/bedsheet/brown,
 /obj/structure/curtain/black,
 /obj/structure/bed/padded,
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 4;
 	pixel_x = -26
 	},
@@ -6913,14 +6939,22 @@
 /obj/structure/handrail{
 	dir = 4
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/pink{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Qh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -6931,36 +6965,24 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "Qi" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/showers)
 "Qo" = (
 /obj/machinery/atmospherics/pipe/tank/phoron/full,
 /turf/simulated/floor,
 /area/itglight/portengi)
-"Qp" = (
-/obj/structure/cable/pink{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/carpet/sblucarpet,
-/area/itglight/common)
 "Qq" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/structure/window/reinforced{
-	dir = 4
-	},
 /obj/machinery/door/blast/regular/open{
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/lockers)
 "Qs" = (
@@ -7006,14 +7028,16 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock/glass{
-	name = "Medical"
+/obj/machinery/door/airlock/angled_bay/standard/glass{
+	dir = 4;
+	door_color = "#FFFFFF";
+	stripe_color = "#0000AA"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/medbay)
 "QI" = (
 /obj/structure/table/wooden_reinforced,
-/turf/simulated/floor/carpet/sblucarpet,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/common)
 "QN" = (
 /obj/structure/handrail{
@@ -7024,6 +7048,7 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "QO" = (
@@ -7063,18 +7088,16 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "QY" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 1
-	},
 /obj/machinery/door/blast/regular/open{
 	dir = 4;
 	id = "dauntless_blastdoors";
 	name = "blast door"
 	},
+/obj/structure/low_wall/bay/reinforced{
+	stripe_color = "#785134"
+	},
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/medbay)
 "Ra" = (
@@ -7089,7 +7112,7 @@
 /area/itglight/medbay)
 "Rb" = (
 /obj/structure/flora/pottedplant/orientaltree,
-/turf/simulated/floor/carpet/sblucarpet,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/common)
 "Rd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -7127,9 +7150,6 @@
 /area/itglight/portengi)
 "Rp" = (
 /obj/structure/table/wooden_reinforced,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
 /obj/structure/cable/pink{
 	d1 = 1;
 	d2 = 2;
@@ -7137,6 +7157,9 @@
 	},
 /obj/machinery/light{
 	dir = 4
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
@@ -7209,7 +7232,9 @@
 /turf/simulated/floor,
 /area/itglight/portengi)
 "RU" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/readyroom)
 "RY" = (
 /obj/machinery/power/port_gen/pacman{
@@ -7230,49 +7255,29 @@
 	},
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
-"Sh" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/turf/simulated/floor/carpet/sblucarpet,
-/area/itglight/common)
 "Sw" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 8
-	},
-/obj/structure/cable/pink{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/structure/cable/pink{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/structure/cable/pink{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/structure/cable/pink{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Sz" = (
 /obj/machinery/light/small,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9;
-	pixel_y = 0
+	dir = 9
 	},
 /turf/simulated/floor/tiled/dark,
 /area/itglight/passengersleeping)
@@ -7299,9 +7304,8 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
-/obj/machinery/door/airlock{
-	id_tag = "dauntlesspq1";
-	name = "Room 1"
+/obj/machinery/door/airlock/angled_bay/standard{
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/crew1)
@@ -7378,9 +7382,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/itglight/passengersleeping)
 "SM" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
+/obj/structure/low_wall/bay,
+/obj/structure/window/bay/reinforced,
 /turf/simulated/floor,
 /area/itglight/portcargo)
 "SN" = (
@@ -7398,9 +7402,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock/glass{
-	name = "Passenger Access"
-	},
+/obj/machinery/door/airlock/angled_bay/standard/glass,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/common)
 "SV" = (
@@ -7409,7 +7411,7 @@
 	dir = 1
 	},
 /obj/item/device/radio,
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	dir = 8;
 	pixel_x = 26
 	},
@@ -7459,7 +7461,9 @@
 /turf/simulated/floor/carpet,
 /area/itglight/readyroom)
 "Tt" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/crew3)
 "Tw" = (
 /turf/simulated/floor/tiled/white,
@@ -7484,7 +7488,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/white,
@@ -7529,7 +7533,9 @@
 /turf/simulated/floor,
 /area/itglight/shuttlebay)
 "TU" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardhighsec)
 "Ub" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -7547,21 +7553,16 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/afthall)
 "Uj" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 4
-	},
-/obj/structure/window/reinforced{
-	dir = 8
-	},
+/obj/effect/low_wall_spawner/bay/reinforced/rglass,
 /turf/simulated/floor/plating,
 /area/shuttle/itglightshuttle)
 "Um" = (
 /turf/space,
 /area/space)
 "Ut" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/porthighsec)
 "Uv" = (
 /obj/structure/table/standard,
@@ -7570,11 +7571,10 @@
 /turf/simulated/floor/tiled/white,
 /area/itglight/showers)
 "Uw" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/medbay)
-"UF" = (
-/turf/simulated/floor/carpet/sblucarpet,
-/area/itglight/common)
 "UH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -7652,10 +7652,7 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "UZ" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/sblucarpet,
+/turf/simulated/floor/glass/reinforced,
 /area/itglight/common)
 "Vd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -7682,7 +7679,7 @@
 /obj/random/soap,
 /obj/random/soap,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/white,
@@ -7701,9 +7698,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 8
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 2
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "Vs" = (
@@ -7712,10 +7707,27 @@
 	},
 /turf/simulated/floor,
 /area/itglight/starboardengi)
+"Vt" = (
+/obj/item/weapon/stool/baystool/padded{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/itglight/kitchen)
 "Vz" = (
 /obj/machinery/newscaster{
 	pixel_x = -12;
 	pixel_y = -26
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
@@ -7794,7 +7806,9 @@
 /turf/simulated/floor/airless,
 /area/itglight/starboardsolars)
 "VU" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/readyroom)
 "VV" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -7861,7 +7875,9 @@
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "Wq" = (
-/turf/simulated/wall/rshull,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/itglight/porthighsec)
 "Wv" = (
 /obj/machinery/appliance/cooker/fryer,
@@ -7893,13 +7909,25 @@
 /area/itglight/portsolars)
 "WE" = (
 /obj/structure/flora/pottedplant/minitree,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/pink{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "WG" = (
 /obj/structure/table/wooden_reinforced,
 /obj/random/plushie,
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	pixel_y = -25
 	},
 /obj/structure/cable/pink,
@@ -7919,11 +7947,6 @@
 /area/itglight/lockers)
 "WP" = (
 /obj/machinery/door/firedoor/glass,
-/obj/machinery/door/airlock/glass_external{
-	frequency = 1380;
-	id_tag = "itglight_port_outer";
-	name = "Port Solars External Airlock"
-	},
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
 	},
@@ -7935,6 +7958,10 @@
 	name = "exterior access button";
 	pixel_y = -27;
 	req_one_access = list(777)
+	},
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#AA0000"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/portengi)
@@ -7973,8 +8000,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock{
-	name = "Restroom"
+/obj/machinery/door/airlock/angled_bay/standard{
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/itglight/passengersleeping)
@@ -7986,8 +8013,9 @@
 /turf/space,
 /area/space)
 "Xl" = (
-/obj/machinery/power/apc/hyper{
+/obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
+	cell_type = /obj/item/weapon/cell/hyper;
 	dir = 8;
 	pixel_x = -25
 	},
@@ -8010,10 +8038,14 @@
 /turf/simulated/floor/tiled/white,
 /area/itglight/restrooms)
 "Xq" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/passengersleeping)
 "Xu" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/common)
 "Xv" = (
 /obj/structure/cable/pink{
@@ -8027,8 +8059,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/airlock{
-	name = "Showers"
+/obj/machinery/door/airlock/angled_bay/standard{
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/lockers)
@@ -8133,7 +8165,9 @@
 /turf/simulated/floor/airless,
 /area/itglight/starboardsolars)
 "XQ" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/captain)
 "XT" = (
 /obj/structure/cable/pink{
@@ -8149,7 +8183,9 @@
 /turf/simulated/floor/airless,
 /area/itglight/portsolars)
 "XX" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/starboardengi)
 "Yb" = (
 /obj/machinery/atmospherics/portables_connector,
@@ -8170,12 +8206,6 @@
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/afthall)
-"Yh" = (
-/obj/structure/window/reinforced{
-	pixel_y = -3
-	},
-/turf/simulated/floor/tiled/eris/cafe,
-/area/itglight/kitchen)
 "Yk" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -8211,7 +8241,9 @@
 /turf/simulated/floor/airless,
 /area/itglight/starboardsolars)
 "Yt" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/crew4)
 "Yu" = (
 /turf/simulated/floor/airless,
@@ -8250,6 +8282,10 @@
 /area/itglight/afthall)
 "YC" = (
 /obj/machinery/appliance/cooker/oven,
+/obj/machinery/light/floortube{
+	dir = 8;
+	pixel_x = -6
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "YD" = (
@@ -8259,7 +8295,9 @@
 /turf/simulated/floor,
 /area/itglight/portengi)
 "YG" = (
-/turf/simulated/shuttle/wall/voidcraft/hard_corner,
+/turf/simulated/wall/bay/r_wall{
+	stripe_color = "#785134"
+	},
 /area/shuttle/itglightshuttle)
 "YL" = (
 /obj/structure/sink{
@@ -8276,8 +8314,7 @@
 "YM" = (
 /obj/structure/curtain/open/shower,
 /obj/machinery/shower{
-	dir = 1;
-	icon_state = "shower"
+	dir = 1
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -8309,8 +8346,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock{
-	name = "Restroom"
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/restrooms)
@@ -8357,7 +8395,9 @@
 /turf/simulated/floor,
 /area/itglight/starboardengi)
 "Za" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/portengi)
 "Zc" = (
 /obj/machinery/door/firedoor/glass,
@@ -8366,8 +8406,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/door/airlock{
-	name = "Showers"
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/showers)
@@ -8404,8 +8445,7 @@
 /area/itglight/starboardsolars)
 "Zi" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5;
-	icon_state = "intact-supply"
+	dir = 5
 	},
 /obj/structure/cable/pink{
 	d1 = 4;
@@ -8427,20 +8467,24 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/machinery/door/airlock/mining{
-	name = "Port Engineering";
-	req_one_access = list(777)
+/obj/machinery/door/airlock/angled_bay/standard{
+	dir = 4;
+	door_color = "#a39342";
+	req_one_access = list(777);
+	stripe_color = "#785134"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/itglight/portengi)
 "Zm" = (
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "Zp" = (
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/weapon/stool/baystool/padded{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "Zq" = (
@@ -8452,23 +8496,34 @@
 /turf/simulated/floor/airless,
 /area/itglight/portsolars)
 "Zr" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/shuttlebay)
 "Zs" = (
-/obj/structure/bed/chair/sofa/brown/left,
+/obj/structure/bed/chair/sofa/left/brown,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/cable/pink{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "Zw" = (
-/turf/simulated/wall/shull,
-/area/itglight/kitchen)
-"Zz" = (
-/obj/machinery/door/airlock{
-	name = "Unit 3"
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
 	},
-/turf/simulated/floor/tiled/white,
-/area/itglight/restrooms)
+/area/itglight/kitchen)
 "ZG" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/restrooms)
 "ZI" = (
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
@@ -8518,10 +8573,12 @@
 /turf/simulated/floor/airless,
 /area/itglight/starboardengi)
 "ZN" = (
-/turf/simulated/wall/shull,
+/turf/simulated/wall/bay{
+	stripe_color = "#785134"
+	},
 /area/itglight/portcargo)
 "ZO" = (
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /obj/structure/closet/crate/bin{
@@ -8560,7 +8617,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/alarm/alarms_hidden{
+/obj/machinery/alarm/angled/hidden{
 	pixel_y = 26
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
@@ -16891,7 +16948,7 @@ Ae
 Pg
 Zp
 qU
-FB
+Zp
 AK
 Pg
 Pg
@@ -17033,7 +17090,7 @@ Zm
 Pg
 Pg
 QO
-Yh
+Pg
 AK
 Pg
 Pg
@@ -17173,7 +17230,7 @@ WN
 Np
 Ct
 cx
-Zp
+Vt
 fE
 Kx
 cA
@@ -17432,7 +17489,7 @@ rh
 sx
 sx
 um
-sx
+wS
 yf
 sx
 Do
@@ -17455,7 +17512,7 @@ SL
 Xq
 Tw
 Xl
-Zz
+Tw
 oK
 ZG
 uf
@@ -17739,7 +17796,7 @@ WC
 Xq
 Tz
 Xv
-Kj
+Tw
 Tb
 ZG
 VG
@@ -17851,7 +17908,7 @@ ms
 ul
 ul
 ul
-DI
+wD
 ZN
 yD
 AU
@@ -18000,7 +18057,7 @@ sx
 sx
 sx
 sx
-Eg
+sx
 ZN
 Hi
 DF
@@ -18023,7 +18080,7 @@ WE
 Xu
 TE
 XM
-dv
+Tw
 Tb
 ZG
 ZY
@@ -18156,11 +18213,11 @@ SM
 ZN
 Xu
 Or
-yK
 QI
-Sh
-UF
-UF
+QI
+UZ
+UZ
+UZ
 IN
 Xu
 ZG
@@ -18178,14 +18235,14 @@ Zr
 tq
 dE
 dE
-zg
-eb
-zg
+YG
+Uj
+YG
 jV
-zg
-zg
-zg
-zg
+YG
+YG
+YG
+YG
 dE
 fC
 tj
@@ -18300,9 +18357,9 @@ Xu
 Zs
 QI
 Nn
-Sh
-UF
-UF
+UZ
+UZ
+UZ
 Vz
 Xu
 Ud
@@ -18319,7 +18376,7 @@ XH
 XH
 tq
 dE
-zg
+YG
 YG
 rC
 LI
@@ -18440,11 +18497,11 @@ LG
 bk
 wL
 LZ
-ME
-Ns
-MU
-Qp
-EN
+UZ
+UZ
+UZ
+UZ
+UZ
 Jm
 SO
 Oe
@@ -18461,7 +18518,7 @@ GD
 bs
 TS
 dE
-CY
+Uj
 Jz
 nb
 NS
@@ -18583,9 +18640,9 @@ Ng
 Xu
 Ot
 wW
-UF
-Sh
-UF
+UZ
+UZ
+UZ
 UZ
 Jt
 Xu
@@ -18603,7 +18660,7 @@ XH
 XH
 tq
 dE
-zg
+YG
 YG
 rC
 aQ
@@ -18726,8 +18783,8 @@ Xu
 Mg
 MF
 Rb
-Sh
-UF
+UZ
+UZ
 UZ
 SH
 Xu
@@ -18746,14 +18803,14 @@ Zr
 tq
 dE
 dE
-zg
+YG
 Uj
-zg
+YG
 aK
-zg
-zg
-zg
-zg
+YG
+YG
+YG
+YG
 dE
 fC
 tj
@@ -18852,7 +18909,7 @@ kR
 kR
 kR
 kR
-wS
+kR
 Nm
 tz
 DQ
@@ -18866,7 +18923,7 @@ kR
 Ek
 Xu
 Ml
-Ml
+wc
 Ji
 Sw
 QN
@@ -19006,15 +19063,15 @@ Kc
 LQ
 LQ
 qG
-Dz
-Dz
-Dz
-Dz
+FB
+FB
+FB
+FB
 xi
-Dz
-Dz
-Dz
-Dz
+FB
+FB
+FB
+FB
 Yp
 Zi
 yc
@@ -19148,7 +19205,7 @@ Ff
 Ff
 Ff
 Lk
-Dz
+FB
 OA
 ML
 NG
@@ -19156,7 +19213,7 @@ PD
 Ve
 Ve
 WO
-Dz
+FB
 Vi
 Nd
 yc
@@ -19290,7 +19347,7 @@ Kf
 eV
 Kc
 wI
-Dz
+FB
 OF
 ZX
 ZX
@@ -19420,7 +19477,7 @@ kR
 kR
 kR
 wu
-kR
+yK
 yS
 kR
 IS
@@ -19432,7 +19489,7 @@ kR
 kR
 kR
 LX
-Dz
+FB
 OH
 ZX
 ZX
@@ -19440,7 +19497,7 @@ SG
 ZX
 ZX
 Xb
-Dz
+FB
 VK
 kU
 Rw

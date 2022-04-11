@@ -2,10 +2,10 @@
 	name = "photocopier"
 	desc = "Copy all your important papers here!"
 	icon = 'icons/obj/library.dmi'
-	icon_state = "bigscanner"
-	var/insert_anim = "bigscanner1"
-	anchored = 1
-	density = 1
+	icon_state = "photocopier"
+	var/insert_anim = "photocopier_scan"
+	anchored = TRUE
+	density = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 200
@@ -111,28 +111,28 @@
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			copy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/photo))
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			photocopy(copyitem)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/paper_bundle))
 			sleep(11)
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
 			sleep(11*B.pages.len)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (has_buckled_mobs()) // VOREStation EDIT: For ass-copying.
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
-			audible_message("<span class='notice'>You can hear [src] whirring as it attempts to scan.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it attempts to scan.</span>", runemessage = "whirr")
 			sleep(rand(20,45)) // Sit with your bare ass on the copier for a random time, feel like a fool, get stared at.
 			copyass(user)
 			sleep(15)
-			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>")
+			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else
 			to_chat(user, "<span class='warning'>\The [copyitem] can't be copied by [src].</span>")
@@ -157,11 +157,15 @@
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
 			to_chat(user, "<span class='notice'>You insert the toner cartridge into \the [src].</span>")
+			flick("photocopier_toner", src)
+			playsound(loc, 'sound/machines/click.ogg', 50, 1)
 			var/obj/item/device/toner/T = O
 			toner += T.toner_amount
 			qdel(O)
 		else
 			to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
+			flick("photocopier_notoner", src)
+			playsound(loc, 'sound/machines/buzz-two.ogg', 75, 1)
 	else if(O.is_wrench())
 		playsound(src, O.usesound, 50, 1)
 		anchored = !anchored
@@ -220,7 +224,7 @@
 			img = image('icons/obj/bureaucracy.dmi', "paper_stamp-dots")
 		img.pixel_x = copy.offset_x[j]
 		img.pixel_y = copy.offset_y[j]
-		c.overlays += img
+		c.add_overlay(img)
 	c.updateinfolinks()
 	if(need_toner)
 		toner--
@@ -298,7 +302,7 @@
 			if(SPECIES_TESHARI)
 				temp_img = icon('icons/obj/butts_vr.dmi', "tesh")
 			if(SPECIES_SHADEKIN || SPECIES_SHADEKIN_CREW)
-				temp_img = icon('icons/obj/butts_vr.dmi', "shadekin") 
+				temp_img = icon('icons/obj/butts_vr.dmi', "shadekin")
 			if(SPECIES_ALRAUNE)
 				temp_img = icon('icons/obj/butts_vr.dmi', "alraune")
 			if(SPECIES_NEVREAN)
@@ -316,7 +320,7 @@
 		temp_img = icon('icons/obj/butts_vr.dmi', "drone")
 	else if(istype(sitter,/mob/living/carbon/alien/diona)) // Are we a nymph, instead of a full-grown Diona?
 		temp_img = icon('icons/obj/butts_vr.dmi', "nymph")
-	else 
+	else
 		return
 	var/obj/item/weapon/photo/p = new /obj/item/weapon/photo (loc)
 	p.desc = "You see [sitter]'s ass on the photo."
@@ -366,7 +370,7 @@
 // VOREStation Edit Start - Rykka
 
 /obj/machinery/photocopier/can_buckle_check(mob/living/M, forced = FALSE)
-	if(!..()) 
+	if(!..())
 		return FALSE
 	for(var/obj/item/clothing/C in M)
 		if(M.item_is_in_hands(C))

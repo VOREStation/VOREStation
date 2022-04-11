@@ -39,6 +39,6 @@
 		if(candymaker_loop)
 			candymaker_loop.stop(src)
 
-/obj/machinery/appliance/mixer/candy/change_product_appearance(var/obj/item/weapon/reagent_containers/food/snacks/cooked/product)
+/obj/machinery/appliance/mixer/candy/change_product_appearance(var/obj/item/weapon/reagent_containers/food/snacks/product)
 	food_color = get_random_colour(1)
 	. = ..()

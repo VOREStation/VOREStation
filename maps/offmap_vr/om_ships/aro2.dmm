@@ -403,7 +403,7 @@
 /obj/structure/sign/poster{
 	dir = 1;
 	icon_state = "";
-	poster_type = "/datum/poster/vore_2"
+	poster_decl = "/decl/poster/vore_2"
 	},
 /turf/simulated/wall,
 /area/aro2/cockpit)

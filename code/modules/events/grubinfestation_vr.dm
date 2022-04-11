@@ -13,7 +13,7 @@
 	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
 		if(istype(get_area(temp_vent), /area/crew_quarters/sleep))
 			continue
-		if(!temp_vent.welded && temp_vent.network && temp_vent.loc.z in using_map.station_levels)
+		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in using_map.station_levels))
 			if(temp_vent.network.normal_members.len > 50)
 				vents += temp_vent
 
@@ -30,8 +30,7 @@
 
 /datum/event/grub_infestation/end()
 	var/list/area_names = list()
-	for(var/grub in existing_solargrubs)
-		var/mob/living/G = grub
+	for(var/mob/living/G as anything in existing_solargrubs)
 		if(!G || G.stat == DEAD)
 			continue
 		var/area/grub_area = get_area(G)
@@ -42,4 +41,4 @@
 		area_names |= grub_area.name
 	if(area_names.len)
 		var/english_list = english_list(area_names)
-		command_announcement.Announce("Sensors have narrowed down remaining active solargrubs to the followng areas: [english_list]", "Lifesign Alert")
+		command_announcement.Announce("Sensors have narrowed down remaining active solargrubs to the following areas: [english_list]", "Lifesign Alert")

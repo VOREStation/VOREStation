@@ -1,6 +1,7 @@
 /obj/item/weapon/material/butterfly
 	name = "butterfly knife"
 	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
@@ -14,8 +15,8 @@
 
 /obj/item/weapon/material/butterfly/update_force()
 	if(active)
-		edge = 1
-		sharp = 1
+		edge = TRUE
+		sharp = TRUE
 		..() //Updates force.
 		throwforce = max(3,force-3)
 		hitsound = 'sound/weapons/bladeslice.ogg'
@@ -24,8 +25,8 @@
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
 		force = 3
-		edge = 0
-		sharp = 0
+		edge = FALSE
+		sharp = FALSE
 		hitsound = initial(hitsound)
 		icon_state = initial(icon_state)
 		w_class = initial(w_class)
@@ -45,13 +46,15 @@
 
 /obj/item/weapon/material/butterfly/attack_self(mob/user)
 	active = !active
-	if(active)
-		to_chat(user, "<span class='notice'>You flip out \the [src].</span>")
-		playsound(src, 'sound/weapons/flipblade.ogg', 15, 1)
-	else
-		to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
 	update_force()
-	add_fingerprint(user)
+
+	if(user)
+		if(active)
+			to_chat(user, "<span class='notice'>You flip out \the [src].</span>")
+			playsound(src, 'sound/weapons/flipblade.ogg', 15, 1)
+		else
+			to_chat(user, "<span class='notice'>\The [src] can now be concealed.</span>")
+		add_fingerprint(user)
 
 /*
  * Kitchen knives
@@ -61,20 +64,14 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
-	sharp = 1
-	edge = 1
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
+	sharp = TRUE
+	edge = TRUE
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
-	matter = list(DEFAULT_WALL_MATERIAL = 12000)
+	matter = list(MAT_STEEL = 12000)
 	origin_tech = list(TECH_MATERIAL = 1)
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	drop_sound = 'sound/items/drop/knife.ogg'
-
-/obj/item/weapon/material/knife/suicide_act(mob/user)
-	var/datum/gender/TU = gender_datums[user.get_visible_gender()]
-	to_chat(viewers(user), pick("<span class='danger'>\The [user] is slitting [TU.his] wrists with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
-	                      "<span class='danger'>\The [user] is slitting [TU.his] throat with \the [src]! It looks like [TU.hes] trying to commit suicide.</span>", \
-	                      "<span class='danger'>\The [user] is slitting [TU.his] stomach open with \the [src]! It looks like [TU.hes] trying to commit seppuku.</span>"))
-	return (BRUTELOSS)
 
 // These no longer inherit from hatchets.
 /obj/item/weapon/material/knife/tacknife
@@ -121,6 +118,16 @@
 	icon_state = "render"
 	applies_material_colour = 0
 
+/obj/item/weapon/material/knife/table
+	name = "table knife"
+	icon = 'icons/obj/kitchen.dmi'
+	icon_state = "knife_table"
+	sharp = FALSE // blunted tip
+	force_divisor = 0.1
+
+/obj/item/weapon/material/knife/table/plastic
+	default_material = "plastic"
+
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
 	icon_state = "butch"
@@ -138,6 +145,11 @@
 	slot_flags = SLOT_BELT
 	default_material = "plasteel" //VOREStation Edit
 
+/obj/item/weapon/material/knife/machete/cyborg
+	name = "integrated machete"
+	desc = "A sharp machete often found attached to robots."
+	unbreakable = TRUE
+
 /obj/item/weapon/material/knife/tacknife/survival
 	name = "survival knife"
 	desc = "A hunting grade survival knife."
@@ -147,3 +159,29 @@
 	applies_material_colour = FALSE
 	default_material = "plasteel" //VOREStation Edit
 	toolspeed = 2 // Use a real axe if you want to chop logs.
+
+/obj/item/weapon/material/knife/stone
+	name = "stone blade"
+	desc = "A crude blade made by chipping away at a piece of flint."
+	icon = 'icons/obj/weapons_vr.dmi'
+	icon_state = "stone_blade"
+	applies_material_colour = FALSE
+	fragile = TRUE
+	dulled = TRUE
+	edge = TRUE
+	sharp = TRUE
+	default_material = MAT_FLINT
+
+/obj/item/weapon/material/knife/stone/wood
+	name = "stone knife"
+	desc = "A crude blade of flint with a wooden handle, secured with plant fibers twined into sturdy ropes. Useful for cutting, stabbing, slicing, and even shearing."
+	icon_state = "stone_wood_knife"
+	dulled = FALSE
+	fragile = FALSE
+
+/obj/item/weapon/material/knife/stone/bone
+	name = "stone knife"
+	desc = "A crude blade of flint with a bone handle, secured with plant fibers twined into sturdy ropes. Useful for cutting, stabbing, slicing, and even shearing."
+	icon_state = "stone_bone_knife"
+	dulled = FALSE
+	fragile = FALSE

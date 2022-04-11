@@ -187,9 +187,9 @@
 	update_icons()
 
 /mob/living/bot/medbot/update_icons()
-	overlays.Cut()
+	cut_overlays()
 	if(skin)
-		overlays += image('icons/obj/aibots.dmi', "medskin_[skin]")
+		add_overlay("medskin_[skin]")
 	if(busy)
 		icon_state = "medibots"
 	else
@@ -311,7 +311,6 @@
 		if("declaretreatment")
 			declare_treatment = !declare_treatment
 			. = TRUE
-
 
 /mob/living/bot/medbot/emag_act(var/remaining_uses, var/mob/user)
 	. = ..()
@@ -452,7 +451,7 @@
 		return treatment_emag
 
 	// If they're injured, we're using a beaker, and they don't have on of the chems in the beaker
-	if(reagent_glass && use_beaker && ((H.getBruteLoss() >= heal_threshold) || (H.getToxLoss() >= heal_threshold) || (H.getToxLoss() >= heal_threshold) || (H.getOxyLoss() >= (heal_threshold + 15))))
+	if(reagent_glass && use_beaker && ((H.getBruteLoss() >= heal_threshold) || (H.getToxLoss() >= heal_threshold) || (H.getFireLoss() >= heal_threshold) || (H.getOxyLoss() >= (heal_threshold + 15))))
 		for(var/datum/reagent/R in reagent_glass.reagents.reagent_list)
 			if(!H.reagents.has_reagent(R))
 				return 1
@@ -531,7 +530,7 @@
 /obj/item/weapon/firstaid_arm_assembly/Initialize()
 	. = ..()
 	if(skin)
-		overlays += image('icons/obj/aibots.dmi', "kit_skin_[src.skin]")
+		add_overlay("kit_skin_[src.skin]")
 
 /obj/item/weapon/firstaid_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
@@ -551,7 +550,7 @@
 					build_step++
 					to_chat(user, "<span class='notice'>You add the health sensor to [src].</span>")
 					name = "First aid/robot arm/health analyzer assembly"
-					overlays += image('icons/obj/aibots.dmi', "na_scanner")
+					add_overlay("na_scanner")
 
 			if(1)
 				if(isprox(W))

@@ -15,7 +15,7 @@
 	switch(var_name)
 		if ("vars")
 			return debug_variable(var_name, list(), 0, src)
-	return debug_variable(var_name, vars[var_name], 0, src)
+	return debug_variable(var_name, get_variable_value(var_name), 0, src)
 
 //please call . = ..() first and append to the result, that way parent items are always at the top and child items are further down
 //add separaters by doing . += "---"
@@ -42,7 +42,7 @@
 		var/client/C = value["value"]
 		if (!C)
 			return
-		var/prompt = alert("Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anysrc nor open nested vv windows unless they themselves are an admin)", "Confirm", "Yes", "No")
+		var/prompt = tgui_alert(usr, "Do you want to grant [C] access to view this VV window? (they will not be able to edit or change anysrc nor open nested vv windows unless they themselves are an admin)", "Confirm", list("Yes", "No"))
 		if (prompt != "Yes" || !usr.client)
 			return
 		message_admins("[key_name_admin(usr)] Showed [key_name_admin(C)] a <a href='?_src_=vars;datumrefresh=\ref[src]'>VV window</a>")
@@ -68,11 +68,11 @@
 		names += componentsubtypes
 		names += "---Elements---"
 		names += sortTim(subtypesof(/datum/element), /proc/cmp_typepaths_asc)
-		var/result = input(usr, "Choose a component/element to add","better know what ur fuckin doin pal") as null|anything in names
+		var/result = input(usr, "Choose a component/element to add:", "Add Component/Element", names)
 		if(!usr || !result || result == "---Components---" || result == "---Elements---")
 			return
 		if(QDELETED(src))
-			to_chat(usr, "That thing doesn't exist anymore!", confidential = TRUE)
+			to_chat(usr, "That thing doesn't exist anymore!")
 			return
 		var/list/lst = usr.client.get_callproc_args()
 		if(!lst)

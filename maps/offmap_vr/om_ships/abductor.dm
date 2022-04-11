@@ -26,20 +26,18 @@
 
 // The 'Abductor Ship'
 /obj/effect/overmap/visitable/ship/abductor
-	name = "spacecraft"
+	name = "strange spacecraft"
 	desc = "Spacefaring vessel."
-	icon_state = "shuttle"
-	moving_state = "shuttle"
-	scanner_name = "unknown vessel"
+	icon_state = "unkn_r"
 	scanner_desc = @{"[i]Registration[/i]: Unknown
 [i]Class[/i]: Corvette
 [i]Transponder[/i]: No transponder detected."
 [b]Notice[/b]: Deep scans detect unknown power signatures, and onboard transporter technology."}
-	color = "#11414c" //STEALTH
 	vessel_mass = 8000
 	vessel_size = SHIP_SIZE_SMALL
 	initial_generic_waypoints = list("abductor_port", "abductor_starboard")
 	fore_dir = NORTH
+	known = FALSE
 
 /obj/item/weapon/paper/alien/abductor
 	name = "Read Me"

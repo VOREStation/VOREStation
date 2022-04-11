@@ -28,7 +28,7 @@
 	priority_mode = TRUE
 	cancel_pending_floors()
 	update_ext_panel_icons()
-	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>")
+	control_panel_interior.audible_message("<span class='info'>This turbolift is responding to a priority call.  Please exit the lift when it stops and make way.</span>", runemessage = "BUZZ")
 	spawn(time)
 		priority_mode = FALSE
 		update_ext_panel_icons()
@@ -158,11 +158,13 @@
 			doors_closing = 0
 			if(!fire_mode)
 				open_doors()
-			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.")
+			control_panel_interior.audible_message("\The [current_floor.ext_panel] buzzes loudly.", runemessage = "BUZZ")
 			playsound(control_panel_interior, "sound/machines/buzz-two.ogg", 50, 1)
 			return 0
 
 	doors_closing = 0 // The doors weren't open, so they are done closing
+
+	GLOB.turbo_lift_floors_moved_roundstat++
 
 	var/area/turbolift/origin = locate(current_floor.area_ref)
 
@@ -190,12 +192,10 @@
 
 	for(var/turf/T in destination)
 		for(var/atom/movable/AM in T)
-			if(istype(AM, /mob/living))
+			if(istype(AM, /mob/living) && !(AM.is_incorporeal()))
 				var/mob/living/M = AM
 				M.gib()
-			else if(istype(AM, /mob/zshadow))
-				AM.Destroy()		//prevent deleting shadow without deleting shadow's shadows
-			else if(AM.simulated && !(istype(AM, /mob/observer)))
+			else if(AM.simulated && !(istype(AM, /mob/observer)) && !(AM.is_incorporeal()))
 				qdel(AM)
 
 	origin.move_contents_to(destination)

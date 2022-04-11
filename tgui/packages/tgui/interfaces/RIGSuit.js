@@ -25,7 +25,7 @@ export const RIGSuit = (props, context) => {
     // Non-AI trying to control the hardsuit while it's AI control overridden
     override = <Box color="bad">-- HARDSUIT CONTROL OVERRIDDEN BY AI --</Box>;
   }
-  
+
   return (
     <Window
       height={480}
@@ -46,7 +46,7 @@ export const RIGSuit = (props, context) => {
 
 const RIGSuitStatus = (props, context) => {
   const { act, data } = useBackend(context);
-  
+
   const {
     // Power Bar
     chargestatus,
@@ -57,6 +57,7 @@ const RIGSuitStatus = (props, context) => {
     // Suit Status
     sealing,
     sealed,
+    cooling,
     // Cover Locks
     emagged,
     securitycheck,
@@ -77,6 +78,14 @@ const RIGSuitStatus = (props, context) => {
       onClick={() => act("toggle_seals")} />
   );
 
+  const CoolingButton = (
+    <Button
+      content={"Suit Cooling " + (cooling ? "is Active": "is Inactive")}
+      icon={"power-off"}
+      selected={cooling}
+      onClick={() => act("toggle_cooling")} />
+  );
+
   const AIButton = (
     <Button
       content={"AI Control " + (aioverride ? "Enabled" : "Disabled")}
@@ -92,6 +101,7 @@ const RIGSuitStatus = (props, context) => {
         <Fragment>
           {SealButton}
           {AIButton}
+          {CoolingButton}
         </Fragment>
       )}>
       <LabeledList>
@@ -125,7 +135,7 @@ const RIGSuitStatus = (props, context) => {
 
 const RIGSuitHardware = (props, context) => {
   const { act, data } = useBackend(context);
-  
+
   const {
     // Disables buttons while the suit is busy
     sealing,
@@ -198,7 +208,7 @@ const RIGSuitHardware = (props, context) => {
 
 const RIGSuitModules = (props, context) => {
   const { act, data } = useBackend(context);
-  
+
   const {
     // Seals disable Modules
     sealed,

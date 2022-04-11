@@ -10,11 +10,11 @@
 	name = "mining equipment vendor"
 	desc = "An equipment vendor for miners, points collected at an ore redemption machine can be spent here."
 	icon = 'icons/obj/vending.dmi'
-	icon_state = "adh-tool"
+	icon_state = "minevend"
 	density = TRUE
 	anchored = TRUE
-	var/icon_deny = "adh-tool-deny"
-	var/icon_vend = "adh-tool-vend"
+	var/icon_deny = "minevend-deny"
+	var/icon_vend = "minevend-vend"
 	circuit = /obj/item/weapon/circuitboard/mining_equipment_vendor
 	var/obj/item/weapon/card/id/inserted_id
 	var/list/prize_list = list(
@@ -46,7 +46,8 @@
 		new /datum/data/mining_equipment("Hardsuit - Intelligence Storage",	/obj/item/rig_module/ai_container,								2500),
 		new /datum/data/mining_equipment("Hardsuit - Smoke Bomb Deployer",	/obj/item/rig_module/grenade_launcher/smoke,					2000),
 		new /datum/data/mining_equipment("Industrial Equipment - Phoron Bore",	/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,		3000),
-		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,					500),		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
+		new /datum/data/mining_equipment("Industrial Equipment - Sheet-Snatcher",/obj/item/weapon/storage/bag/sheetsnatcher,				500),
+		new /datum/data/mining_equipment("Digital Tablet - Standard",	/obj/item/modular_computer/tablet/preset/custom_loadout/standard,	500),
 		new /datum/data/mining_equipment("Digital Tablet - Advanced",	/obj/item/modular_computer/tablet/preset/custom_loadout/advanced,	1000),
 		new /datum/data/mining_equipment("Fine Excavation Kit - Chisels",/obj/item/weapon/storage/excavation,								500),
 		new /datum/data/mining_equipment("Fine Excavation Kit - Measuring Tape",/obj/item/device/measuring_tape,							125),
@@ -85,6 +86,8 @@
 		EQUIPMENT("Defense Equipment - Razor Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/manhacks/station/locked,	1000),
 		EQUIPMENT("Defense Equipment - Sentry Drone Deployer",	/obj/item/weapon/grenade/spawnergrenade/ward,						1500),
 		EQUIPMENT("Defense Equipment - Smoke Bomb",				/obj/item/weapon/grenade/smokebomb,									100),
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Dagger",	/obj/item/weapon/kinetic_crusher/machete/dagger,					500),
+		EQUIPMENT("Hybrid Equipment - Proto-Kinetic Machete",	/obj/item/weapon/kinetic_crusher/machete,							1000),
 		EQUIPMENT("Durasteel Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern/strong,				7500),
 		EQUIPMENT("Titanium Fishing Rod",						/obj/item/weapon/material/fishing_rod/modern,						1000),
 		EQUIPMENT("Fishing Net",								/obj/item/weapon/material/fishing_net,								500),
@@ -95,7 +98,7 @@
 		EQUIPMENT("Jump Boots",									/obj/item/clothing/shoes/bhop,										2500),
 		EQUIPMENT("Mini-Translocator",							/obj/item/device/perfect_tele/one_beacon,							1200),
 		EQUIPMENT("Survival Equipment - Insulated Poncho",		/obj/random/thermalponcho,											750),
-
+		EQUIPMENT("Mining Satchel of Holding",					/obj/item/weapon/storage/bag/ore/holding,							1500),
 	)
 	prize_list["Consumables"] = list(
 		EQUIPMENT("1 Marker Beacon",		/obj/item/stack/marker_beacon,													1),
@@ -117,13 +120,16 @@
 		EQUIPMENT("Kinetic Accelerator",		/obj/item/weapon/gun/energy/kinetic_accelerator,				900),
 		EQUIPMENT("KA AoE Damage",				/obj/item/borg/upgrade/modkit/aoe/mobs,							2000),
 		EQUIPMENT("KA Damage Increase",			/obj/item/borg/upgrade/modkit/damage,							1000),
-		EQUIPMENT("KA Efficiency Increase",		/obj/item/borg/upgrade/modkit/efficiency,						1200),
+		EQUIPMENT("KA Cooldown Decrease",		/obj/item/borg/upgrade/modkit/cooldown,							1200),
 		EQUIPMENT("KA Range Increase",			/obj/item/borg/upgrade/modkit/range,							1000),
+		EQUIPMENT("KA Temperature Modulator",	/obj/item/borg/upgrade/modkit/heater,							1000),
+		EQUIPMENT("KA Off-Station Modulator",	/obj/item/borg/upgrade/modkit/offsite, 							1750),
 		EQUIPMENT("KA Holster",					/obj/item/clothing/accessory/holster/waist/kinetic_accelerator,	350),
 		EQUIPMENT("KA Super Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod,						250),
 		EQUIPMENT("KA Hyper Chassis",			/obj/item/borg/upgrade/modkit/chassis_mod/orange,				300),
 		EQUIPMENT("KA Adjustable Tracer Rounds",/obj/item/borg/upgrade/modkit/tracer/adjustable,				175),
 		EQUIPMENT("KA White Tracer Rounds",		/obj/item/borg/upgrade/modkit/tracer,							125),
+		EQUIPMENT("Premium Kinetic Accelerator",/obj/item/weapon/gun/energy/kinetic_accelerator/premiumka,		12000),
 	)
 	prize_list["Digging Tools"] = list(
 		// EQUIPMENT("Diamond Pickaxe",	/obj/item/weapon/pickaxe/diamond,				2000),
@@ -136,18 +142,19 @@
 		EQUIPMENT("Fine Excavation Kit - Hand Pick",		/obj/item/weapon/pickaxe/hand,					375),
 		EQUIPMENT("Explosive Excavation Kit - Plastic Charge",/obj/item/weapon/plastique/seismic/locked,	1500),
 		EQUIPMENT("Industrial Equipment - Phoron Bore",		/obj/item/weapon/gun/magnetic/matfed/phoronbore/loaded,			3000),
-		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,						900),
+		EQUIPMENT("Industrial Equipment - Inducer",			/obj/item/weapon/inducer,						3500),
 		EQUIPMENT("Industrial Equipment - Sheet-Snatcher",	/obj/item/weapon/storage/bag/sheetsnatcher,		500),
 	)
 	prize_list["Hardsuit"] = list(
-		EQUIPMENT("Hardsuit - Control Module",		/obj/item/weapon/rig/industrial/vendor,		2000),
-		EQUIPMENT("Hardsuit - Drill",				/obj/item/rig_module/device/drill,			5000),
-		EQUIPMENT("Hardsuit - Intelligence Storage",/obj/item/rig_module/ai_container,			2500),
-		EQUIPMENT("Hardsuit - Maneuvering Jets",	/obj/item/rig_module/maneuvering_jets,		1250),
-		EQUIPMENT("Hardsuit - Material Scanner",	/obj/item/rig_module/vision/material,		500),
-		EQUIPMENT("Hardsuit - Ore Scanner",			/obj/item/rig_module/device/orescanner,		1000),
-		EQUIPMENT("Hardsuit - Plasma Cutter",		/obj/item/rig_module/device/plasmacutter,	800),
-		EQUIPMENT("Hardsuit - Smoke Bomb Deployer",	/obj/item/rig_module/grenade_launcher/smoke,2000),
+		EQUIPMENT("Hardsuit - Control Module",				/obj/item/weapon/rig/industrial/vendor,			2000),
+		EQUIPMENT("Hardsuit - Drill",						/obj/item/rig_module/device/drill,				5000),
+		EQUIPMENT("Hardsuit - Intelligence Storage",		/obj/item/rig_module/ai_container,				2500),
+		EQUIPMENT("Hardsuit - Maneuvering Jets",			/obj/item/rig_module/maneuvering_jets,			1250),
+		EQUIPMENT("Hardsuit - Material Scanner",			/obj/item/rig_module/vision/material,			500),
+		EQUIPMENT("Hardsuit - Ore Scanner",					/obj/item/rig_module/device/orescanner,			1000),
+		EQUIPMENT("Hardsuit - Plasma Cutter",				/obj/item/rig_module/device/plasmacutter,		800),
+		EQUIPMENT("Hardsuit - Smoke Bomb Deployer",			/obj/item/rig_module/grenade_launcher/smoke,	2000),
+		EQUIPMENT("Hardsuit - Proto-Kinetic Gauntlets",		/obj/item/rig_module/gauntlets,					2000),
 	)
 	prize_list["Miscellaneous"] = list(
 		EQUIPMENT("Absinthe",					/obj/item/weapon/reagent_containers/food/drinks/bottle/absinthe,	125),
@@ -160,6 +167,7 @@
 		EQUIPMENT("Plush Toy",					/obj/random/plushie,												300),
 		EQUIPMENT("Soap",						/obj/item/weapon/soap/nanotrasen,									200),
 		EQUIPMENT("Thalers - 100",				/obj/item/weapon/spacecash/c100,									1000),
+		EQUIPMENT("Thalers - 1000",				/obj/item/weapon/spacecash/c1000,									10000),
 		EQUIPMENT("Umbrella",					/obj/item/weapon/melee/umbrella/random,								200),
 		EQUIPMENT("Whiskey",					/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,		125),
 	)
@@ -279,7 +287,10 @@
 				return
 
 			remove_points(inserted_id, prize.cost)
-			new prize.equipment_path(loc)
+			//VOREStation Edit Start
+			var/obj/I = new prize.equipment_path(loc)
+			I.persist_storable = FALSE
+			//VOREStation Edit End
 			flick(icon_vend, src) //VOREStation Add
 		else
 			flick(icon_deny, src) //VOREStation Add
@@ -322,7 +333,7 @@
   * * redeemer - The person holding it
   */
 /obj/machinery/mineral/equipment_vendor/proc/redeem_voucher(obj/item/mining_voucher/voucher, mob/redeemer)
-	var/selection = input(redeemer, "Pick your equipment", "Mining Voucher Redemption") as null|anything in list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher")
+	var/selection = tgui_input_list(redeemer, "Pick your equipment", "Mining Voucher Redemption", list("Kinetic Accelerator", "Resonator", "Mining Drone", "Advanced Scanner", "Crusher"))
 	if(!selection || !Adjacent(redeemer) || voucher.loc != redeemer)
 		return
 	//VOREStation Edit Start - Uncommented these

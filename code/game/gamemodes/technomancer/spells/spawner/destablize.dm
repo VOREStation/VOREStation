@@ -31,6 +31,7 @@
 	light_range = 6
 	light_power = 20
 	light_color = "#C26DDE"
+	light_on = TRUE
 	var/pulses_remaining = 40 // Lasts 20 seconds.
 	var/instability_power = 5
 	var/instability_range = 6

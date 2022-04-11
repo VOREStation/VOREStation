@@ -38,12 +38,12 @@
 		"Cookie" = /obj/item/weapon/reagent_containers/food/snacks/variable/cookie,
 		"Donut" = /obj/item/weapon/reagent_containers/food/snacks/variable/donut,
 		)
-		
+
 /obj/machinery/appliance/cooker/oven/Initialize()
 	. = ..()
-	
+
 	oven_loop = new(list(src), FALSE)
-	
+
 /obj/machinery/appliance/cooker/oven/Destroy()
 	QDEL_NULL(oven_loop)
 	return ..()
@@ -104,9 +104,9 @@
 		cooking = FALSE
 
 	playsound(src, 'sound/machines/hatch_open.ogg', 20, 1)
-	to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the oven door.</span>")
+	to_chat(user, "<span class='notice'>You [open? "open":"close"] the oven door</span>")
 	update_icon()
-	
+
 /obj/machinery/appliance/cooker/oven/proc/manip(var/obj/item/I)
 	// check if someone's trying to manipulate the machine
 
@@ -148,7 +148,7 @@
 /obj/machinery/appliance/cooker/oven/finish_cooking(var/datum/cooking_item/CI)
 	if(CI.combine_target)
 		CI.result_type = 3//Combination type. We're making something out of our ingredients
-		visible_message("<span class='notice'>\The [src] pings!</span>")
+		visible_message("<b>\The [src]</b> pings!")
 		combination_cook(CI)
 		return
 	else

@@ -67,7 +67,6 @@
 /mob/living/carbon/human/proc/can_break_straight_jacket()
 	if((HULK in mutations) || species.can_shred(src,1))
 		return 1
-	return ..()
 
 /mob/living/carbon/human/proc/break_straight_jacket()
 	visible_message(

@@ -21,7 +21,7 @@
 	allow_quick_gather = 1
 	allow_quick_empty = 1
 	display_contents_with_number = 0 // UNStABLE AS FuCK, turn on when it stops crashing clients
-	use_to_pickup = 1
+	use_to_pickup = TRUE
 	slot_flags = SLOT_BELT
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
@@ -53,6 +53,16 @@
 		icon_state = "trashbag2"
 	else icon_state = "trashbag3"
 
+/obj/item/weapon/storage/bag/trash/holding
+	name = "trash bag of holding"
+	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
+	icon_state = "bluetrashbag"
+	origin_tech = list(TECH_BLUESPACE = 3)
+	max_w_class = ITEMSIZE_NORMAL
+	max_storage_space = ITEMSIZE_COST_NORMAL * 10 // Slightly less than BoH
+
+/obj/item/weapon/storage/bag/trash/holding/update_icon()
+	return
 
 // -----------------------------
 //        Plastic Bag
@@ -90,6 +100,12 @@
 	can_hold = list(/obj/item/weapon/ore)
 	var/stored_ore = list()
 	var/last_update = 0
+
+/obj/item/weapon/storage/bag/ore/holding
+	name = "mining satchel of holding"
+	desc = "Like a mining satchel, but when you put your hand in, you're pretty sure you can feel time itself."
+	icon_state = "satchel_bspace"
+	max_storage_space = ITEMSIZE_COST_NORMAL * 75 // 3x
 
 /obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
@@ -229,7 +245,7 @@
 		return 0
 	var/current = 0
 	for(var/obj/item/stack/material/S in contents)
-		current += S.amount
+		current += S.get_amount()
 	if(capacity == current)//If it's full, you're done
 		if(!stop_messages)
 			to_chat(usr, "<span class='warning'>The snatcher is full.</span>")
@@ -246,29 +262,27 @@
 	var/inserted = 0
 	var/current = 0
 	for(var/obj/item/stack/material/S2 in contents)
-		current += S2.amount
-	if(capacity < current + S.amount)//If the stack will fill it up
+		current += S2.get_amount()
+	if(capacity < current + S.get_amount())//If the stack will fill it up
 		amount = capacity - current
 	else
-		amount = S.amount
+		amount = S.get_amount()
 
 	for(var/obj/item/stack/material/sheet in contents)
-		if(S.type == sheet.type) // we are violating the amount limitation because these are not sane objects
-			sheet.amount += amount	// they should only be removed through procs in this file, which split them up.
-			S.amount -= amount
+		if(S.type == sheet.type)
+			// we are violating the amount limitation because these are not sane objects
+			sheet.set_amount(sheet.get_amount() + amount, TRUE)
+			S.use(amount) // will qdel() if we use it all
 			inserted = 1
 			break
 
-	if(!inserted || !S.amount)
+	if(!inserted)
 		usr.remove_from_mob(S)
 		usr.update_icons()	//update our overlays
 		if (usr.client && usr.s_active != src)
 			usr.client.screen -= S
 		S.dropped(usr)
-		if(!S.amount)
-			qdel(S)
-		else
-			S.loc = src
+		S.loc = src
 
 	orient2hud(usr)
 	if(usr.s_active)
@@ -289,7 +303,7 @@
 		for(var/obj/item/stack/material/I in contents)
 			adjusted_contents++
 			var/datum/numbered_display/D = new/datum/numbered_display(I)
-			D.number = I.amount
+			D.number = I.get_amount()
 			numbered_contents.Add( D )
 
 	var/row_num = 0
@@ -303,14 +317,14 @@
 /obj/item/weapon/storage/bag/sheetsnatcher/quick_empty()
 	var/location = get_turf(src)
 	for(var/obj/item/stack/material/S in contents)
-		while(S.amount)
-			var/obj/item/stack/material/N = new S.type(location)
-			var/stacksize = min(S.amount,N.max_amount)
-			N.amount = stacksize
-			S.amount -= stacksize
-			N.update_icon()
-		if(!S.amount)
-			qdel(S) // todo: there's probably something missing here
+		var/cur_amount = S.get_amount()
+		var/full_stacks = round(cur_amount / S.max_amount) // Floor of current/max is amount of full stacks we make
+		var/remainder = cur_amount % S.max_amount // Current mod max is remainder after full sheets removed
+		for(var/i = 1 to full_stacks)
+			new S.type(location, S.max_amount)
+		if(remainder)
+			new S.type(location, remainder)
+		S.set_amount(0)
 	orient2hud(usr)
 	if(usr.s_active)
 		usr.s_active.show_to(usr)
@@ -326,10 +340,10 @@
 	//Therefore, make a new stack internally that has the remainder.
 	// -Sayu
 
-	if(S.amount > S.max_amount)
-		var/obj/item/stack/material/temp = new S.type(src)
-		temp.amount = S.amount - S.max_amount
-		S.amount = S.max_amount
+	if(S.get_amount() > S.max_amount)
+		var/newstack_amt = S.get_amount() - S.max_amount
+		new S.type(src, newstack_amt) // The one we'll keep to replace the one we give
+		S.set_amount(S.max_amount) // The one we hand to the clicker
 
 	return ..(S,new_location)
 
@@ -381,7 +395,7 @@
 	desc = "A bag for storing pills, patches, and bottles."
 	max_storage_space = 200
 	w_class = ITEMSIZE_LARGE
-	slowdown = 1
+	slowdown = 3
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
 
 	// -----------------------------

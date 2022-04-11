@@ -21,7 +21,7 @@
 /mob/living/simple_mob/mechanical/infectionbot
 	name = "Strange robot"
 	desc = "You get the feeling you should run."
-	icon = 'icons/mob/vagrant_vr.dmi'
+	icon = 'icons/mob/vore.dmi'
 	icon_state = "vagrant"
 	icon_living = "vagrant"
 	icon_dead = "vagrant"

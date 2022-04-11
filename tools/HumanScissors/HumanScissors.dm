@@ -19,7 +19,7 @@ obj
 
 
 
-client/verb/split_sprites()
+/client/verb/split_sprites()
 	set name = "Begin The Decimation"
 	set desc = "Loads SpritesToSnip.dmi and cuts them with CookieCutter.dmi"
 	set category = "Here"

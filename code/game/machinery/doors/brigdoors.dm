@@ -8,8 +8,6 @@
 #define PRESET_MEDIUM 5 MINUTES
 #define PRESET_LONG 10 MINUTES
 
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // Brig Door control displays.
 //  Description: This is a controls the timer for the brig doors, displays the timer on itself and
@@ -25,22 +23,21 @@
 	layer = ABOVE_WINDOW_LAYER
 	desc = "A remote control for a door."
 	req_access = list(access_brig)
-	anchored = 1.0		// can't pick it up
-	density = 0			// can walk through it.
-	var/id = null		// id of door it controls.
-
+	anchored = TRUE    		// can't pick it up
+	density = FALSE       		// can walk through it.
+	var/id = null     		// id of door it controls.
 	var/activation_time = 0
 	var/timer_duration = 0
 
 	var/timing = FALSE		// boolean, true/1 timer is on, false/0 means it's not timing
 	var/list/obj/machinery/targets = list()
 
+
 	maptext_height = 26
 	maptext_width = 32
 
 /obj/machinery/door_timer/Initialize()
 	..()
-	//Doors need to go first, and can't rely on init order, so come back to me.
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/door_timer/LateInitialize()
@@ -72,11 +69,11 @@
 /obj/machinery/door_timer/process()
 	if(stat & (NOPOWER|BROKEN))
 		return
-
 	if(timing)
 		if(world.time - activation_time >= timer_duration)
 			timer_end() // open doors, reset timer, clear status screen
 		update_icon()
+
 
 // has the door power situation changed, if so update icon.
 /obj/machinery/door_timer/power_change()
@@ -108,7 +105,7 @@
 		C.icon_state = "closed_locked"
 	return 1
 
-// Opens and unlocks doors, power check
+/// Opens and unlocks doors, power check
 /obj/machinery/door_timer/proc/timer_end(forced = FALSE)
 	if(stat & (NOPOWER|BROKEN))
 		return 0
@@ -144,6 +141,9 @@
 	timer_duration = new_time
 	if(timer_duration && activation_time && timing) // Setting it while active will reset the activation time
 		activation_time = world.time
+
+/obj/machinery/door_timer/attack_ai(mob/user)
+	return src.attack_hand(user)
 
 /obj/machinery/door_timer/attack_hand(mob/user)
 	if(..())

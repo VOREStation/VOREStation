@@ -66,9 +66,9 @@
 /obj/item/device/assembly_holder/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
 	if(isturf(old_loc))
-		unsense_proximity(callback = .HasProximity, center = old_loc)
+		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
-		sense_proximity(callback = .HasProximity)
+		sense_proximity(callback = /atom/proc/HasProximity)
 
 /obj/item/device/assembly_holder/HasProximity(turf/T, atom/movable/AM, old_loc)
 	if(a_left)
@@ -126,7 +126,7 @@
 			to_chat(user, "<span class='warning'> BUG:Assembly part missing, please report this!</span>")
 			return
 		if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
-			switch(alert("Which side would you like to use?",,"Left","Right"))
+			switch(tgui_alert(usr, "Which side would you like to use?","Side",list("Left","Right")))
 				if("Left")	a_left.attack_self(user)
 				if("Right")	a_right.attack_self(user)
 			return
@@ -214,7 +214,7 @@
 		if(tmr.timing)
 			to_chat(usr, "<span class='notice'>Clock is ticking already.</span>")
 		else
-			var/ntime = input("Enter desired time in seconds", "Time", "5") as num
+			var/ntime = input(usr, "Enter desired time in seconds", "Time", "5") as num
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"

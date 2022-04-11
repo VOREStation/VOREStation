@@ -6,25 +6,39 @@
 	equip_cooldown = 10
 	energy_drain = 0
 	range = 0
-	var/datum/global_iterator/pr_energy_relay
 	var/coeff = 100
 	var/list/use_channels = list(EQUIP,ENVIRON,LIGHT)
-
 	equip_type = EQUIP_UTILITY
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/New()
+/obj/item/mecha_parts/mecha_equipment/repair_droid/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
 	..()
-	pr_energy_relay = new /datum/global_iterator/mecha_energy_relay(list(src),0)
-	pr_energy_relay.set_delay(equip_cooldown)
+
+/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/process()
+	if(!chassis || chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
+		set_ready_state(TRUE)
+		return PROCESS_KILL
+	var/cur_charge = chassis.get_charge()
+	if(isnull(cur_charge) || !chassis.cell)
+		set_ready_state(TRUE)
+		occupant_message("No powercell detected.")
+		return PROCESS_KILL
+	if(cur_charge<chassis.cell.maxcharge)
+		var/area/A = get_area(chassis)
+		if(A)
+			var/pow_chan
+			for(var/c in list(EQUIP,ENVIRON,LIGHT))
+				if(A.powered(c))
+					pow_chan = c
+					break
+			if(pow_chan)
+				var/delta = min(12, chassis.cell.maxcharge-cur_charge)
+				chassis.give_power(delta)
+				A.use_power_oneoff(delta*coeff, pow_chan)
 	return
 
-/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Destroy()
-	qdel(pr_energy_relay)
-	pr_energy_relay = null
-	..()
-
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/detach()
-	pr_energy_relay.stop()
+	STOP_PROCESSING(SSfastprocess, src)
 //	chassis.proc_res["dynusepower"] = null
 	chassis.proc_res["dyngetcharge"] = null
 	..()
@@ -66,50 +80,16 @@
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/Topic(href, href_list)
 	..()
 	if(href_list["toggle_relay"])
-		if(pr_energy_relay.toggle())
-			set_ready_state(0)
-			log_message("Activated.")
-		else
-			set_ready_state(1)
+		if(datum_flags & DF_ISPROCESSING)
+			STOP_PROCESSING(SSfastprocess, src)
+			set_ready_state(TRUE)
 			log_message("Deactivated.")
+		else
+			START_PROCESSING(SSfastprocess, src)
+			set_ready_state(FALSE)
+			log_message("Activated.")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/get_equip_info()
 	if(!chassis) return
-	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_relay=1'>[pr_energy_relay.active()?"Dea":"A"]ctivate</a>"
-
-/*	proc/dynusepower(amount)
-		if(!equip_ready) //enabled
-			var/area/A = get_area(chassis)
-			var/pow_chan = get_power_channel(A)
-			if(pow_chan)
-				A.master.use_power(amount*coeff, pow_chan)
-				return 1
-		return chassis.dynusepower(amount)*/
-
-/datum/global_iterator/mecha_energy_relay
-
-/datum/global_iterator/mecha_energy_relay/process(var/obj/item/mecha_parts/mecha_equipment/tesla_energy_relay/ER)
-	if(!ER.chassis || ER.chassis.hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
-		stop()
-		ER.set_ready_state(1)
-		return
-	var/cur_charge = ER.chassis.get_charge()
-	if(isnull(cur_charge) || !ER.chassis.cell)
-		stop()
-		ER.set_ready_state(1)
-		ER.occupant_message("No powercell detected.")
-		return
-	if(cur_charge<ER.chassis.cell.maxcharge)
-		var/area/A = get_area(ER.chassis)
-		if(A)
-			var/pow_chan
-			for(var/c in list(EQUIP,ENVIRON,LIGHT))
-				if(A.powered(c))
-					pow_chan = c
-					break
-			if(pow_chan)
-				var/delta = min(12, ER.chassis.cell.maxcharge-cur_charge)
-				ER.chassis.give_power(delta)
-				A.use_power_oneoff(delta*ER.coeff, pow_chan)
-	return
+	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name] - <a href='?src=\ref[src];toggle_relay=1'>[(datum_flags & DF_ISPROCESSING)?"Dea":"A"]ctivate</a>"

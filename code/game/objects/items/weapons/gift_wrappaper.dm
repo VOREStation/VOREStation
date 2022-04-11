@@ -77,7 +77,7 @@
 		/obj/item/weapon/lipstick/random,
 		/obj/item/weapon/grenade/smokebomb,
 		/obj/item/weapon/corncob,
-		/obj/item/weapon/contraband/poster,
+		/obj/item/poster/custom,
 		/obj/item/weapon/book/manual/barman_recipes,
 		/obj/item/weapon/book/manual/chef_recipes,
 		/obj/item/weapon/bikehorn,
@@ -85,8 +85,8 @@
 		/obj/item/weapon/beach_ball/holoball,
 		/obj/item/toy/balloon,
 		/obj/item/toy/blink,
-		/obj/item/toy/crossbow,
-		/obj/item/weapon/gun/projectile/revolver/capgun,
+		/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
+		/obj/item/weapon/storage/box/capguntoy,
 		/obj/item/toy/katana,
 		/obj/item/toy/mecha/deathripley,
 		/obj/item/toy/mecha/durand,
@@ -104,7 +104,7 @@
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/device/paicard,
-		/obj/item/device/instrument/violin,
+		/obj/item/instrument/violin,
 		/obj/item/weapon/storage/belt/utility/full,
 		/obj/item/clothing/accessory/tie/horrible)
 

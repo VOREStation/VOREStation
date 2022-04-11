@@ -51,8 +51,7 @@
 	animate(bar, pixel_y = shiftheight, time = 5, easing = SINE_EASING)
 
 /datum/progressbar/Destroy()
-	for(var/I in user.progressbars[bar.loc])
-		var/datum/progressbar/P = I
+	for(var/datum/progressbar/P as anything in user.progressbars[bar.loc])
 		if(P != src && P.listindex > listindex)
 			P.shiftDown()
 

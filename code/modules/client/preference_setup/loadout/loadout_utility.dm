@@ -21,8 +21,7 @@
 /datum/gear/utility/communicator/New()
 	..()
 	var/list/communicators = list()
-	for(var/communicator in typesof(/obj/item/device/communicator) - list(/obj/item/device/communicator/integrated,/obj/item/device/communicator/commlink)) //VOREStation Edit - Remove Commlink
-		var/obj/item/device/communicator_type = communicator
+	for(var/obj/item/device/communicator_type as anything in typesof(/obj/item/device/communicator) - list(/obj/item/device/communicator/integrated,/obj/item/device/communicator/commlink)) //VOREStation Edit - Remove Commlink
 		communicators[initial(communicator_type.name)] = communicator_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(communicators))
 
@@ -90,93 +89,57 @@
 	display_name = "flashlight"
 	path = /obj/item/device/flashlight
 
-/datum/gear/utility/flashlight_blue
-	display_name = "flashlight, blue"
-	path = /obj/item/device/flashlight/color
-
-/datum/gear/utility/flashlight_orange
-	display_name = "flashlight, orange"
-	path = /obj/item/device/flashlight/color/orange
-
-/datum/gear/utility/flashlight_red
-	display_name = "flashlight, red"
-	path = /obj/item/device/flashlight/color/red
-
-/datum/gear/utility/flashlight_yellow
-	display_name = "flashlight, yellow"
-	path = /obj/item/device/flashlight/color/yellow
-
 /datum/gear/utility/maglight
 	display_name = "flashlight, maglight"
 	path = /obj/item/device/flashlight/maglight
 	cost = 2
 
+/datum/gear/utility/flashlight/color
+	display_name = "flashlight, small (selection)"
+	path = /obj/item/device/flashlight/color
+
+/datum/gear/utility/flashlight/color/New()
+	..()
+	var/list/flashlights = list(
+	"Blue Flashlight" = /obj/item/device/flashlight/color,
+	"Red Flashlight" = /obj/item/device/flashlight/color/red,
+	"Green Flashlight" = /obj/item/device/flashlight/color/green,
+	"Yellow Flashlight" = /obj/item/device/flashlight/color/yellow,
+	"Purple Flashlight" = /obj/item/device/flashlight/color/purple,
+	"Orange Flashlight" = /obj/item/device/flashlight/color/orange
+	)
+	gear_tweaks += new/datum/gear_tweak/path(flashlights)
+
 /datum/gear/utility/battery
 	display_name = "cell, device"
 	path = /obj/item/weapon/cell/device
 
-/datum/gear/utility/implant
-	slot = "implant"
-	exploitable = 1
-
-/datum/gear/utility/implant/tracking
-	display_name = "implant, tracking"
-	path = /obj/item/weapon/implant/tracking/weak
-	cost = 0 //VOREStation Edit. Changed cost to 0
-
-/datum/gear/utility/implant/neural
-	display_name = "implant, neural assistance web"
-	description = "A complex web implanted into the subject, medically in order to compensate for neurological disease."
-	path = /obj/item/weapon/implant/neural
-	cost = 6
-
-/datum/gear/utility/implant/dud1
-	display_name = "implant, head"
-	description = "An implant with no obvious purpose."
-	path = /obj/item/weapon/implant/dud
-	cost = 1
-
-/datum/gear/utility/implant/dud2
-	display_name = "implant, torso"
-	description = "An implant with no obvious purpose."
-	path = /obj/item/weapon/implant/dud/torso
-	cost = 1
-
-/datum/gear/utility/implant/language
-	cost = 2
-	exploitable = 0
-
-/datum/gear/utility/implant/language/eal
-	display_name = "vocal synthesizer, EAL"
-	description = "A surgically implanted vocal synthesizer which allows the owner to speak EAL, if they know it."
-	path = /obj/item/weapon/implant/language/eal
-
-/datum/gear/utility/implant/language/skrellian
-	display_name = "vocal synthesizer, Skrellian"
-	description = "A surgically implanted vocal synthesizer which allows the owner to speak Common Skrellian, if they know it."
-	path = /obj/item/weapon/implant/language/skrellian
-
 /datum/gear/utility/pen
-	display_name = "Fountain Pen"
+	display_name = "fountain pen"
 	path = /obj/item/weapon/pen/fountain
 
-/datum/gear/utility/wheelchair/color
-	display_name = "wheelchair"
-	path = /obj/item/wheelchair
-	cost = 4
-
-/datum/gear/utility/wheelchair/color/New()
-	..()
-	gear_tweaks += gear_tweak_free_color_choice
-
 /datum/gear/utility/umbrella
-	display_name = "Umbrella"
+	display_name = "umbrella"
 	path = /obj/item/weapon/melee/umbrella
 	cost = 3
 
 /datum/gear/utility/umbrella/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/utility/wheelchair
+	display_name = "wheelchair selection"
+	path = /obj/item/wheelchair
+	cost = 4
+
+/datum/gear/utility/wheelchair/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+	var/list/wheelchairs = list(
+		"wheelchair" = /obj/item/wheelchair,
+		"motorized wheelchair" = /obj/item/wheelchair/motor
+	)
+	gear_tweaks += new/datum/gear_tweak/path(wheelchairs)
 
 /****************
 modular computers

@@ -43,7 +43,7 @@
 			var/list/possible_d = shuttle.get_possible_destinations()
 			var/D
 			if(possible_d.len)
-				D = input("Choose shuttle destination", "Shuttle Destination") as null|anything in possible_d
+				D = tgui_input_list(usr, "Choose shuttle destination", "Shuttle Destination", possible_d)
 			else
 				to_chat(usr,"<span class='warning'>No valid landing sites in range.</span>")
 			possible_d = shuttle.get_possible_destinations()

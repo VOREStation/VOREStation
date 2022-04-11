@@ -2,6 +2,7 @@
 	name = "Elevator Door"
 	desc = "Ding."
 	req_access = list(access_maint_tunnels)
+	unacidable = TRUE
 	opacity = 0
 	autoclose = 0
 	glass = 1
@@ -40,7 +41,7 @@
 				if(!moved) // nowhere to go....
 					LM.gib()
 			else // the mob is too big to just move, so we need to give up what we're doing
-				audible_message("\The [src]'s motors grind as they quickly reverse direction, unable to safely close.")
+				audible_message("\The [src]'s motors grind as they quickly reverse direction, unable to safely close.", runemessage = "WRRRRR")
 				cur_command = null // the door will just keep trying otherwise
 				return 0
 	return ..()

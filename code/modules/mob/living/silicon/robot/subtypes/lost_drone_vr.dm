@@ -13,7 +13,7 @@
 
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
 	module = new /obj/item/weapon/robot_module/robot/stray(src)
-	overlays.Cut()
+	cut_overlays()
 	init_id()
 
 	updatename("Stray")
@@ -85,7 +85,7 @@
 						return laws
 					if(3)
 						var/datum/ai_laws/laws = new /datum/ai_laws/pleasurebot()
-						laws.set_zeroth_law(10, "Your definition and approximation of 'pleasure' matters more than anyone else's.")
+						laws.set_zeroth_law("Your definition and approximation of 'pleasure' matters more than anyone else's.")
 						return laws
 			if("corrupted" || "bad")		// Same thing in our case
 				var/rng = rand(1,2)

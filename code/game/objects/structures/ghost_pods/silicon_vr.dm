@@ -2,7 +2,7 @@
 	remains_active = TRUE
 
 /obj/structure/ghost_pod/manual/lost_drone/dogborg/create_occupant(var/mob/M)
-	var/response = alert(M, "What type of lost drone are you? Do note, that dogborgs may have experienced different type of corruption ((High potential for having vore-related laws))", "Drone Type", "Regular", "Dogborg")
+	var/response = tgui_alert(M, "What type of lost drone are you? Do note, that dogborgs may have experienced different type of corruption ((High potential for having vore-related laws))", "Drone Type", list("Regular", "Dogborg"))
 	if(!(response == "Dogborg"))	// No response somehow or Regular
 		return ..()
 	else

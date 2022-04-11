@@ -58,7 +58,7 @@
 		return
 	to_be_processed.Add(AM)
 	AM.forceMove(src)
-	visible_message("<span class='notice'>\the [user] places [AM] inside \the [src].</span>")
+	visible_message("<b>\The [user]</b> places [AM] inside \the [src].")
 
 /obj/machinery/processor/proc/begin_processing()
 	if(processing)

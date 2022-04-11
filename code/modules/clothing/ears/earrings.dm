@@ -2,7 +2,7 @@
 /obj/item/clothing/ears/earring
 	name = "earring"
 	desc = "An earring of some kind."
-	icon = 'icons/obj/clothing/ears.dmi'
+	icon = 'icons/inventory/ears/item.dmi'
 
 /obj/item/clothing/ears/earring/stud
 	name = "pearl stud earrings"

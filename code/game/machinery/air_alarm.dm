@@ -1,3 +1,7 @@
+#define DECLARE_TLV_VALUES var/red_min; var/yel_min; var/yel_max; var/red_max; var/tlv_comparitor;
+#define LOAD_TLV_VALUES(x, y) red_min = x[1]; yel_min = x[2]; yel_max = x[3]; red_max = x[4]; tlv_comparitor = y;
+#define TEST_TLV_VALUES (((tlv_comparitor >= red_max && red_max > 0) || tlv_comparitor <= red_min) ? 2 : ((tlv_comparitor >= yel_max && yel_max > 0) || tlv_comparitor <= yel_min) ? 1 : 0)
+
 #define AALARM_MODE_SCRUBBING	1
 #define AALARM_MODE_REPLACEMENT	2 //like scrubbing, but faster.
 #define AALARM_MODE_PANIC		3 //constantly sucks all air
@@ -28,9 +32,11 @@
 	name = "alarm"
 	desc = "Used to control various station atmospheric systems. The light indicates the current air status of the area."
 	icon = 'icons/obj/monitors_vr.dmi' //VOREStation Edit - Other icons
-	icon_state = "alarm0"
+	icon_state = "alarm_0"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
+	anchored = TRUE
+	unacidable = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 80
 	active_power_usage = 1000 //For heating/cooling rooms. 1000 joules equates to about 1 degree every 2 seconds for a single tile of air.
@@ -38,6 +44,8 @@
 	req_one_access = list(access_atmospherics, access_engine_equip)
 	clicksound = "button"
 	clickvol = 30
+	blocks_emissive = NONE
+	light_power = 0.25
 	var/alarm_id = null
 	var/breach_detection = 1 // Whether to use automatic breach detection or not
 	var/frequency = 1439
@@ -47,7 +55,7 @@
 	var/rcon_setting = 2
 	var/rcon_time = 0
 	var/locked = 1
-	panel_open = 0 // If it's been screwdrivered open.
+	panel_open = FALSE // If it's been screwdrivered open.
 	var/aidisabled = 0
 	var/shorted = 0
 	circuit = /obj/item/weapon/circuitboard/airalarm
@@ -64,16 +72,13 @@
 
 	var/datum/radio_frequency/radio_connection
 
+	/// Keys are things like temperature and certain gasses. Values are lists, which contain, in order:
+	/// red warning minimum value, yellow warning minimum value, yellow warning maximum value, red warning maximum value
 	var/list/TLV = list()
 	var/list/trace_gas = list("nitrous_oxide", "volatile_fuel") //list of other gases that this air alarm is able to detect
 
 	var/danger_level = 0
 	var/pressure_dangerlevel = 0
-	var/oxygen_dangerlevel = 0
-	var/co2_dangerlevel = 0
-	var/phoron_dangerlevel = 0
-	var/temperature_dangerlevel = 0
-	var/other_dangerlevel = 0
 
 	var/report_danger_level = 1
 
@@ -89,6 +94,16 @@
 /obj/machinery/alarm/alarms_hidden
 	alarms_hidden = TRUE
 
+/obj/machinery/alarm/angled
+	icon = 'icons/obj/wall_machines_angled.dmi'
+
+/obj/machinery/alarm/angled/hidden
+	alarms_hidden = TRUE
+
+/obj/machinery/alarm/angled/offset_airalarm()
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? -21 : 21)
+	pixel_y = (dir & 3) ? (dir == 1 ? -18 : 20) : 0
+
 /obj/machinery/alarm/server/Initialize(mapload)
 	. = ..()
 	req_access = list(access_rd, access_atmospherics, access_engine_equip)
@@ -102,6 +117,8 @@
 
 /obj/machinery/alarm/Initialize(mapload)
 	. = ..()
+	if(!pixel_x && !pixel_y)
+		offset_airalarm()
 	first_run()
 
 /obj/machinery/alarm/Destroy()
@@ -112,6 +129,10 @@
 		alarm_area.master_air_alarm = null
 		elect_master(exclude_self = TRUE)
 	return ..()
+
+/obj/machinery/alarm/proc/offset_airalarm()
+	pixel_x = (dir & 3) ? 0 : (dir == 4 ? -26 : 26)
+	pixel_y = (dir & 3) ? (dir == 1 ? -26 : 26) : 0
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -124,17 +145,14 @@
 
 	// breathable air according to human/Life()
 	TLV["oxygen"] =			list(16, 19, 135, 140) // Partial pressure, kpa
-	TLV["nitrogen"] =		list(0, 0,135,140) // Partial pressure, kpa
+	TLV["nitrogen"] =		list(0, 0, 135, 140) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0, 5, 10) // Partial pressure, kpa
 	TLV["phoron"] =			list(-1.0, -1.0, 0, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(ONE_ATMOSPHERE * 0.80, ONE_ATMOSPHERE * 0.90, ONE_ATMOSPHERE * 1.10, ONE_ATMOSPHERE * 1.20) /* kpa */
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
-	//VOREStation Add
-	pixel_x = (src.dir & 3)? 0 : (src.dir == 4 ? -28 : 28)
-	pixel_y = (src.dir & 3)? (src.dir ==1 ? -28 : 28) : 0
-	//VOREStation Add End
+	update_icon()
 
 /obj/machinery/alarm/Initialize()
 	. = ..()
@@ -185,21 +203,23 @@
 	return
 
 /obj/machinery/alarm/proc/handle_heating_cooling(var/datum/gas_mixture/environment)
+	DECLARE_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["temperature"], target_temperature)
 	if(!regulating_temperature)
 		//check for when we should start adjusting temperature
-		if(!get_danger_level(target_temperature, TLV["temperature"]) && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
+		if(!TEST_TLV_VALUES && abs(environment.temperature - target_temperature) > 2.0 && environment.return_pressure() >= 1)
 			update_use_power(USE_POWER_ACTIVE)
 			regulating_temperature = 1
 			audible_message("\The [src] clicks as it starts [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click and a faint electronic hum.")
+			"You hear a click and a faint electronic hum.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 	else
 		//check for when we should stop adjusting temperature
-		if(get_danger_level(target_temperature, TLV["temperature"]) || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
+		if(TEST_TLV_VALUES || abs(environment.temperature - target_temperature) <= 0.5 || environment.return_pressure() < 1)
 			update_use_power(USE_POWER_IDLE)
 			regulating_temperature = 0
 			audible_message("\The [src] clicks quietly as it stops [environment.temperature > target_temperature ? "cooling" : "heating"] the room.",\
-			"You hear a click as a faint electronic humming stops.")
+			"You hear a click as a faint electronic humming stops.", runemessage = "* click *")
 			playsound(src, 'sound/machines/click.ogg', 50, 1)
 
 	if(regulating_temperature)
@@ -242,12 +262,19 @@
 	for(var/g in trace_gas)
 		other_moles += environment.gas[g] //this is only going to be used in a partial pressure calc, so we don't need to worry about group_multiplier here.
 
-	pressure_dangerlevel = get_danger_level(environment_pressure, TLV["pressure"])
-	oxygen_dangerlevel = get_danger_level(environment.gas["oxygen"]*partial_pressure, TLV["oxygen"])
-	co2_dangerlevel = get_danger_level(environment.gas["carbon_dioxide"]*partial_pressure, TLV["carbon dioxide"])
-	phoron_dangerlevel = get_danger_level(environment.gas["phoron"]*partial_pressure, TLV["phoron"])
-	temperature_dangerlevel = get_danger_level(environment.temperature, TLV["temperature"])
-	other_dangerlevel = get_danger_level(other_moles*partial_pressure, TLV["other"])
+	DECLARE_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["pressure"], environment_pressure)
+	pressure_dangerlevel = TEST_TLV_VALUES // not local because it's used in process()
+	LOAD_TLV_VALUES(TLV["oxygen"], environment.gas["oxygen"]*partial_pressure)
+	var/oxygen_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["carbon dioxide"], environment.gas["carbon_dioxide"]*partial_pressure)
+	var/co2_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["phoron"], environment.gas["phoron"]*partial_pressure)
+	var/phoron_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["temperature"], environment.temperature)
+	var/temperature_dangerlevel = TEST_TLV_VALUES
+	LOAD_TLV_VALUES(TLV["other"], other_moles*partial_pressure)
+	var/other_dangerlevel = TEST_TLV_VALUES
 
 	return max(
 		pressure_dangerlevel,
@@ -290,21 +317,18 @@
 			return 1
 	return 0
 
-/obj/machinery/alarm/proc/get_danger_level(var/current_value, var/list/danger_levels)
-	if((current_value >= danger_levels[4] && danger_levels[4] > 0) || current_value <= danger_levels[1])
-		return 2
-	if((current_value >= danger_levels[3] && danger_levels[3] > 0) || current_value <= danger_levels[2])
-		return 1
-	return 0
-
 /obj/machinery/alarm/update_icon()
+	cut_overlays()
+
 	if(panel_open)
 		icon_state = "alarmx"
 		set_light(0)
+		set_light_on(FALSE)
 		return
 	if((stat & (NOPOWER|BROKEN)) || shorted)
 		icon_state = "alarmp"
 		set_light(0)
+		set_light_on(FALSE)
 		return
 
 	var/icon_level = danger_level
@@ -314,16 +338,23 @@
 	var/new_color = null
 	switch(icon_level)
 		if(0)
-			icon_state = "alarm0"
+			icon_state = "alarm_0"
+			add_overlay(mutable_appearance(icon, "alarm_ov0"))
+			add_overlay(emissive_appearance(icon, "alarm_ov0"))
 			new_color = "#03A728"
 		if(1)
-			icon_state = "alarm2" //yes, alarm2 is yellow alarm
+			icon_state = "alarm_2" //yes, alarm2 is yellow alarm
+			add_overlay(mutable_appearance(icon, "alarm_ov2"))
+			add_overlay(emissive_appearance(icon, "alarm_ov2"))
 			new_color = "#EC8B2F"
 		if(2)
-			icon_state = "alarm1"
+			icon_state = "alarm_1"
+			add_overlay(mutable_appearance(icon, "alarm_ov1"))
+			add_overlay(emissive_appearance(icon, "alarm_ov1"))
 			new_color = "#DA0205"
 
 	set_light(l_range = 2, l_power = 0.25, l_color = new_color)
+	set_light_on(TRUE)
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
@@ -507,42 +538,51 @@
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/environment = T.return_air()
 
-	data["environment_data"] = list()
+	var/list/list/environment_data = list()
+	data["environment_data"] = environment_data
+	
+	DECLARE_TLV_VALUES
+	
 	var/pressure = environment.return_pressure()
-	data["environment_data"] += list(list(
+	LOAD_TLV_VALUES(TLV["pressure"], pressure)
+	environment_data.Add(list(list(
 		"name" = "Pressure",
 		"value" = pressure,
 		"unit" = "kPa",
-		"danger_level" = get_danger_level(pressure, TLV["pressure"])
-	))
+		"danger_level" = TEST_TLV_VALUES
+	)))
+	
 	var/temperature = environment.temperature
-	data["environment_data"] += list(list(
+	LOAD_TLV_VALUES(TLV["temperature"], temperature)
+	environment_data.Add(list(list(
 		"name" = "Temperature",
 		"value" = temperature,
 		"unit" = "K ([round(temperature - T0C, 0.1)]C)",
-		"danger_level" = get_danger_level(temperature, TLV["temperature"])
-	))
+		"danger_level" = TEST_TLV_VALUES
+	)))
 
 	var/total_moles = environment.total_moles
 	var/partial_pressure = R_IDEAL_GAS_EQUATION * environment.temperature / environment.volume
 	for(var/gas_id in environment.gas)
 		if(!(gas_id in TLV))
 			continue
-		data["environment_data"] += list(list(
+		LOAD_TLV_VALUES(TLV[gas_id], environment.gas[gas_id] * partial_pressure)
+		environment_data.Add(list(list(
 			"name" = gas_id,
 			"value" = environment.gas[gas_id] / total_moles * 100,
 			"unit" = "%",
-			"danger_level" = get_danger_level(environment.gas[gas_id] * partial_pressure, TLV[gas_id])
-		))
+			"danger_level" = TEST_TLV_VALUES
+		)))
 	
 	if(!locked || issilicon(user) || data["remoteUser"])
-		data["vents"] = list()
+		var/list/list/vents = list()
+		data["vents"] = vents
 		for(var/id_tag in A.air_vent_names)
 			var/long_name = A.air_vent_names[id_tag]
 			var/list/info = A.air_vent_info[id_tag]
 			if(!info)
 				continue
-			data["vents"] += list(list(
+			vents.Add(list(list(
 				"id_tag"	= id_tag,
 				"long_name" = sanitize(long_name),
 				"power"		= info["power"],
@@ -554,38 +594,43 @@
 				"internal"	= info["internal"],
 				"extdefault"= (info["external"] == ONE_ATMOSPHERE),
 				"intdefault"= (info["internal"] == 0),
-			))
+			)))
+		
 
-		data["scrubbers"] = list()
+		var/list/list/scrubbers = list()
+		data["scrubbers"] = scrubbers
 		for(var/id_tag in alarm_area.air_scrub_names)
 			var/long_name = alarm_area.air_scrub_names[id_tag]
 			var/list/info = alarm_area.air_scrub_info[id_tag]
 			if(!info)
 				continue
-			data["scrubbers"] += list(list(
+			scrubbers += list(list(
 				"id_tag"	= id_tag,
 				"long_name" = sanitize(long_name),
 				"power"		= info["power"],
 				"scrubbing"	= info["scrubbing"],
 				"panic"		= info["panic"],
-				"filters"	= list()
+				"filters"   = list(
+					list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]),
+					list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]),
+					list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]),
+					list("name" = "Toxin"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]),
+					list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]),
+					list("name" = "Fuel",			"command" = "fuel_scrub","val" = info["filter_fuel"])
+				)
 			))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Oxygen",			"command" = "o2_scrub",	"val" = info["filter_o2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Nitrogen",		"command" = "n2_scrub",	"val" = info["filter_n2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Carbon Dioxide", "command" = "co2_scrub","val" = info["filter_co2"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Toxin"	, 		"command" = "tox_scrub","val" = info["filter_phoron"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Nitrous Oxide",	"command" = "n2o_scrub","val" = info["filter_n2o"]))
-			data["scrubbers"][data["scrubbers"].len]["filters"] += list(list("name" = "Fuel",			"command" = "fuel_scrub","val" = info["filter_fuel"]))
+		data["scrubbers"] = scrubbers
 
-		var/list/modes = list()
 		data["mode"] = mode
+		
+		var/list/list/modes = list()
+		data["modes"] = modes
 		modes[++modes.len] = list("name" = "Filtering - Scrubs out contaminants", 			"mode" = AALARM_MODE_SCRUBBING,		"selected" = mode == AALARM_MODE_SCRUBBING, 	"danger" = 0)
 		modes[++modes.len] = list("name" = "Replace Air - Siphons out air while replacing", "mode" = AALARM_MODE_REPLACEMENT,	"selected" = mode == AALARM_MODE_REPLACEMENT,	"danger" = 0)
 		modes[++modes.len] = list("name" = "Panic - Siphons air out of the room", 			"mode" = AALARM_MODE_PANIC,			"selected" = mode == AALARM_MODE_PANIC, 		"danger" = 1)
 		modes[++modes.len] = list("name" = "Cycle - Siphons air before replacing", 			"mode" = AALARM_MODE_CYCLE,			"selected" = mode == AALARM_MODE_CYCLE, 		"danger" = 1)
 		modes[++modes.len] = list("name" = "Fill - Shuts off scrubbers and opens vents", 	"mode" = AALARM_MODE_FILL,			"selected" = mode == AALARM_MODE_FILL, 			"danger" = 0)
 		modes[++modes.len] = list("name" = "Off - Shuts off vents and scrubbers", 			"mode" = AALARM_MODE_OFF,			"selected" = mode == AALARM_MODE_OFF, 			"danger" = 0)
-		data["modes"] = modes
 
 		var/list/selected
 		var/list/thresholds = list()
@@ -630,7 +675,7 @@
 		var/list/selected = TLV["temperature"]
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
-		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C) as num|null
+		var/input_temperature = input(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C) as num|null
 		if(isnum(input_temperature))
 			if(input_temperature > max_temperature || input_temperature < min_temperature)
 				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
@@ -684,7 +729,7 @@
 			var/env = params["env"]
 
 			var/name = params["var"]
-			var/value = input("New [name] for [env]:", name, TLV[env][name]) as num|null
+			var/value = input(usr, "New [name] for [env]:", name, TLV[env][name]) as num|null
 			if(!isnull(value) && !..())
 				if(value < 0)
 					TLV[env][name] = -1
@@ -791,3 +836,6 @@
 	TLV["temperature"] =	list(T0C - 40, T0C - 20, T0C + 40, T0C + 66) // K, Lower Temperature for Freezer Air Alarms (This is because TLV is hardcoded to be generated on first_run, and therefore the only way to modify this without changing TLV generation)
 
 // VOREStation Edit End
+#undef LOAD_TLV_VALUES
+#undef TEST_TLV_VALUES
+#undef DECLARE_TLV_VALUES

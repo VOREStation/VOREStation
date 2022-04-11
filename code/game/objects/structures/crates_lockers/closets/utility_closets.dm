@@ -65,7 +65,7 @@
 	closet_appearance = /decl/closet_appearance/oxygen/fire
 
 	starts_with = list(
-		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
 		/obj/item/weapon/tank/oxygen/red,
 		/obj/item/weapon/extinguisher,
@@ -73,7 +73,7 @@
 
 /obj/structure/closet/firecloset/full
 	starts_with = list(
-		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/oxygen/red,
@@ -82,12 +82,24 @@
 
 /obj/structure/closet/firecloset/full/double
 	starts_with = list(
-		/obj/item/clothing/suit/fire/firefighter = 2,
+		/obj/item/clothing/suit/fire = 2,
 		/obj/item/clothing/mask/gas = 2,
 		/obj/item/device/flashlight = 2,
 		/obj/item/weapon/tank/oxygen/red = 2,
 		/obj/item/weapon/extinguisher = 2,
 		/obj/item/clothing/head/hardhat/red = 2)
+
+/obj/structure/closet/firecloset/full/atmos
+	name = "atmos fire-safety closet"
+	desc = "It's a storage unit for atmospheric fire-fighting supplies."
+	closet_appearance = /decl/closet_appearance/oxygen/fire/atmos
+
+	starts_with = list(
+		/obj/item/clothing/suit/fire/heavy,
+		/obj/item/weapon/tank/oxygen/red,
+		/obj/item/weapon/watertank/atmos,
+		/obj/item/device/flashlight,
+		/obj/item/clothing/head/hardhat/firefighter/atmos)
 
 /*
  * Tool Closet
@@ -187,8 +199,8 @@
 	closet_appearance = /decl/closet_appearance/wall/hydrant
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	wall_mounted = 1
 	store_mobs = 0
 
@@ -207,7 +219,7 @@
 	name = "first-aid closet"
 	desc = "It's wall-mounted storage unit for first aid supplies."
 	closet_appearance = /decl/closet_appearance/wall/medical
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	wall_mounted = 1
 	store_mobs = 0

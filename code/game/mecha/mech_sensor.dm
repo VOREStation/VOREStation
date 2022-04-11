@@ -3,8 +3,8 @@
 	icon_state = "airlock_sensor_off"
 	name = "mechatronic sensor"
 	desc = "Regulates mech movement."
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	throwpass = 1
 	use_power = USE_POWER_IDLE
 	layer = ON_WINDOW_LAYER

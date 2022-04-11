@@ -28,7 +28,10 @@ SUBSYSTEM_DEF(character_setup)
 		var/datum/preferences/prefs = save_queue[save_queue.len]
 		save_queue.len--
 
-		if(!QDELETED(prefs))
+		// Can't save prefs without client, because the sanitize functions will be
+		// unable to validate their whitelist status due to being unable to check
+		// 'holder' admin status, etc. Will result in Bad Times.
+		if(!QDELETED(prefs) && prefs.client)
 			prefs.save_preferences()
 
 		if(MC_TICK_CHECK)

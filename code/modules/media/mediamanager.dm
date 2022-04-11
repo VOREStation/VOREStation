@@ -35,14 +35,14 @@
 
 // Update when moving between areas.
 // TODO - While this direct override might technically be faster, probably better code to use observer or hooks ~Leshana
-/area/Entered(var/mob/living/M)
+/area/Entered(var/mob/M)
 	// Note, we cannot call ..() first, because it would update lastarea.
-	if(!istype(M))
+	if(!istype(M) || isEye(M))
 		return ..()
 	// Optimization, no need to call update_music() if both are null (or same instance, strange as that would be)
 	if(M.lastarea?.media_source == src.media_source)
 		return ..()
-	if(M.client && M.client.media && !M.client.media.forced)
+	if(M.client?.media && !M.client.media.forced)
 		M.update_music()
 	return ..()
 
@@ -62,7 +62,7 @@
 	if(!QDELETED(src.media) || !istype(src.media))
 		to_chat(user, "<span class='warning'>You have no media datum to change, if you're not in the lobby tell an admin.</span>")
 		return
-	var/value = input("Choose your Jukebox volume.", "Jukebox volume", media.volume)
+	var/value = input(usr, "Choose your Jukebox volume.", "Jukebox volume", media.volume)
 	value = round(max(0, min(100, value)))
 	media.update_volume(value)
 
@@ -73,15 +73,14 @@
 //
 
 /mob/proc/update_music()
-	if (client && client.media && !client.media.forced)
+	if (client?.media && !client.media.forced)
 		client.media.update_music()
 
 /mob/proc/stop_all_music()
-	if (client && client.media)
-		client.media.stop_music()
+	client?.media.stop_music()
 
 /mob/proc/force_music(var/url, var/start, var/volume=1)
-	if (client && client.media)
+	if (client?.media)
 		if(url == "")
 			client.media.forced = 0
 			client.media.update_music()
@@ -168,7 +167,7 @@
 	if (forced || !owner || !owner.mob)
 		return
 
-	var/area/A = get_area_master(owner.mob)
+	var/area/A = get_area(owner.mob)
 	if(!A)
 		MP_DEBUG("client=[owner], mob=[owner.mob] not in an area! loc=[owner.mob.loc].  Aborting.")
 		stop_music()

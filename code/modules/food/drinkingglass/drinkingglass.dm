@@ -25,7 +25,7 @@
 	possible_transfer_amounts = list(5,10,15,30)
 	flags = OPENCONTAINER
 
-	matter = list("glass" = 60)
+	matter = list(MAT_GLASS = 60)
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/examine(mob/M as mob)
 	. = ..()
@@ -66,7 +66,7 @@
 	return 0
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/Initialize()
-	..()
+	. = ..()
 	icon_state = base_icon
 
 /obj/item/weapon/reagent_containers/food/drinks/glass2/on_reagent_change()

@@ -25,14 +25,9 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/reconstitute_form,
 		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/succubus_drain,
-		/mob/living/carbon/human/proc/succubus_drain_finalize,
-		/mob/living/carbon/human/proc/succubus_drain_lethal,
-		/mob/living/carbon/human/proc/bloodsuck,
 		/mob/living/carbon/human/proc/tie_hair,
-		/mob/living/proc/shred_limb,
 		/mob/living/proc/flying_toggle,
-		/mob/living/proc/start_wings_hovering) //Xenochimera get all the special verbs since they can't select traits.
+		/mob/living/proc/start_wings_hovering)		//Xenochimera get all the special verbs since they can't select traits.
 
 	virus_immune = 1 // They practically ARE one.
 	min_age = 18
@@ -54,8 +49,10 @@
 	//primitive_form = "Farwa"
 
 	spawn_flags = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE//Whitelisted as restricted is broken.
-	flags = NO_SCAN | NO_INFECT //Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is.
+	flags = NO_SCAN | NO_INFECT // | NO_DEFIB // Dying as a chimera is, quite literally, a death sentence. Well, if it wasn't for their revive, that is. Leaving NO_DEFIB there for the future/in case reversion to old 'chimera no-defib.
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	has_organ = list(    //Same organ list as tajarans.
 		O_HEART =    /obj/item/organ/internal/heart,
@@ -76,8 +73,8 @@
 	reagent_tag = IS_CHIMERA
 
 /datum/species/xenochimera/handle_environment_special(var/mob/living/carbon/human/H)
-	//If they're KO'd/dead, they're probably not thinking a lot about much of anything.
-	if(!H.stat)
+	//If they're KO'd/dead, or reviving, they're probably not thinking a lot about much of anything.
+	if(!H.stat || !(H.revive_ready == REVIVING_NOW || H.revive_ready == REVIVING_DONE))
 		handle_feralness(H)
 
 	//While regenerating
@@ -85,6 +82,10 @@
 		H.weakened = 5
 		H.canmove = 0
 		H.does_not_breathe = TRUE
+		var/regen_sounds = H.regen_sounds
+		if(prob(2)) // 2% chance of playing squelchy noise while reviving, which is run roughly every 2 seconds/tick while regenerating.
+			playsound(H, pick(regen_sounds), 30)
+			H.visible_message("<span class='danger'><p><font size=4>[H.name]'s motionless form shudders grotesquely, rippling unnaturally.</font></p></span>")
 
 	//Cold/pressure effects when not regenerating
 	else
@@ -204,6 +205,11 @@
 			feral++
 		else
 			feral = max(0,--feral)
+			
+		// Being in a belly or in the darkness decreases stress further. Helps mechanically reward players for staying in darkness + RP'ing appropriately. :9
+		var/turf/T = get_turf(H)
+		if(feral && (isbelly(H.loc) || T.get_lumcount() <= 0.1))
+			feral = max(0,--feral)
 
 		//Set our real mob's var to our temp var
 		H.feral = feral
@@ -220,7 +226,7 @@
 		H.shock_stage = max(H.shock_stage-(feral/20), 0)
 
 		//Handle light/dark areas
-		var/turf/T = get_turf(H)
+		// var/turf/T = get_turf(H) // Moved up to before the in-belly/dark combined check, should still safely reach here just fine.
 		if(!T)
 			update_xenochimera_hud(H, danger, feral_state)
 			return //Nullspace
@@ -232,8 +238,8 @@
 			//This is basically the 'lite' version of the below block.
 			var/list/nearby = H.living_mobs(world.view)
 
-			//Not in the dark and out in the open.
-			if(!darkish && isturf(H.loc))
+			//Not in the dark, or a belly, and out in the open.
+			if(!darkish && isturf(H.loc) && !isbelly(H.loc)) // Added specific check for if in belly
 
 				//Always handle feral if nobody's around and not in the dark.
 				if(!nearby.len)
@@ -247,8 +253,8 @@
 			update_xenochimera_hud(H, danger, feral_state)
 			return
 
-		// In the darkness or "hidden". No need for custom scene-protection checks as it's just an occational infomessage.
-		if(darkish || !isturf(H.loc))
+		// In the darkness, or "hidden", or in a belly. No need for custom scene-protection checks as it's just an occational infomessage.
+		if(darkish || !isturf(H.loc) || isbelly(H.loc)) // Specific check for if in belly. !isturf should do this, but JUST in case.
 			// If hurt, tell 'em to heal up
 			if (shock)
 				to_chat(H,"<span class='info'>This place seems safe, secure, hidden, a place to lick your wounds and recover...</span>")
@@ -294,49 +300,6 @@
 	// HUD update time
 	update_xenochimera_hud(H, danger, feral_state)
 
-
-/datum/species/xenochimera/proc/produceCopy(var/datum/species/to_copy,var/list/traits,var/mob/living/carbon/human/H)
-	ASSERT(to_copy)
-	ASSERT(istype(H))
-
-	if(ispath(to_copy))
-		to_copy = "[initial(to_copy.name)]"
-	if(istext(to_copy))
-		to_copy = GLOB.all_species[to_copy]
-
-	var/datum/species/xenochimera/new_copy = new()
-
-	//Initials so it works with a simple path passed, or an instance
-	new_copy.base_species = to_copy.name
-	new_copy.icobase = to_copy.icobase
-	new_copy.deform = to_copy.deform
-	new_copy.tail = to_copy.tail
-	new_copy.tail_animation = to_copy.tail_animation
-	new_copy.icobase_tail = to_copy.icobase_tail
-	new_copy.color_mult = to_copy.color_mult
-	new_copy.primitive_form = to_copy.primitive_form
-	new_copy.appearance_flags = to_copy.appearance_flags
-	new_copy.flesh_color = to_copy.flesh_color
-	new_copy.base_color = to_copy.base_color
-	new_copy.blood_mask = to_copy.blood_mask
-	new_copy.damage_mask = to_copy.damage_mask
-	new_copy.damage_overlays = to_copy.damage_overlays
-
-	//Set up a mob
-	H.species = new_copy
-	H.icon_state = lowertext(new_copy.get_bodytype())
-
-	if(new_copy.holder_type)
-		H.holder_type = new_copy.holder_type
-
-	if(H.dna)
-		H.dna.ready_dna(H)
-
-	return new_copy
-
-/datum/species/xenochimera/get_bodytype()
-	return base_species
-
 /datum/species/xenochimera/get_race_key()
 	var/datum/species/real = GLOB.all_species[base_species]
 	return real.race_key
@@ -376,7 +339,12 @@
 	icobase_tail = 1
 
 	inherent_verbs = list(
-		/mob/living/proc/weaveWebBindings)
+		/mob/living/carbon/human/proc/check_silk_amount,
+		/mob/living/carbon/human/proc/toggle_silk_production,
+		/mob/living/carbon/human/proc/weave_structure,
+		/mob/living/carbon/human/proc/weave_item,
+		/mob/living/carbon/human/proc/set_silk_color,
+		/mob/living/carbon/human/proc/tie_hair)
 
 	min_age = 18
 	max_age = 80
@@ -402,9 +370,15 @@
 	spawn_flags = SPECIES_CAN_JOIN
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
 	flesh_color = "#AFA59E" //Gray-ish. Not sure if this is really needed, but eh.
 	base_color 	= "#333333" //Blackish-gray
 	blood_color = "#0952EF" //Spiders have blue blood.
+
+	is_weaver = TRUE
+	silk_reserve = 500
+	silk_max_reserve = 1000
 
 /datum/species/spider/handle_environment_special(var/mob/living/carbon/human/H)
 	if(H.stat == DEAD) // If they're dead they won't need anything.
@@ -458,12 +432,11 @@
 
 	spawn_flags		 = SPECIES_CAN_JOIN | SPECIES_IS_WHITELISTED | SPECIES_WHITELIST_SELECTABLE
 	appearance_flags = HAS_HAIR_COLOR | HAS_SKIN_COLOR | HAS_EYE_COLOR
-	inherent_verbs = list(
-		/mob/living/proc/shred_limb,
-		/mob/living/proc/eat_trash)
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
+
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
 	heat_discomfort_strings = list(
 		"Your fur prickles in the heat.",
@@ -474,7 +447,7 @@
 	has_limbs = list(
 		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
 		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
-		BP_HEAD =   list("path" = /obj/item/organ/external/head/vr/werebeast),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head/werebeast),
 		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
 		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
 		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),

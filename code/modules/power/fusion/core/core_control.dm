@@ -1,26 +1,47 @@
 /obj/machinery/computer/fusion_core_control
 	name = "\improper R-UST Mk. 8 core control"
-	icon = 'icons/obj/machines/power/fusion.dmi'
-	icon_state = "core_control"
 	light_color = COLOR_ORANGE
 	circuit = /obj/item/weapon/circuitboard/fusion_core_control
-	var/id_tag
+
+	icon_keyboard = "tech_key"
+	icon_screen = "core_control"
+
+	var/id_tag = ""
 	var/scan_range = 25
 	var/list/connected_devices = list()
 	var/obj/machinery/power/fusion_core/cur_viewed_device
+	var/datum/tgui_module/rustcore_monitor/monitor
+
+/obj/machinery/computer/fusion_core_control/New()
+	..()
+	monitor = new(src)
+	monitor.core_tag = id_tag
+
+/obj/machinery/computer/fusion_core_control/Destroy()
+	QDEL_NULL(monitor)
+	..()
 
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	..()
 	if(istype(thing, /obj/item/device/multitool))
-		var/new_ident = input("Enter a new ident tag.", "Core Control", id_tag) as null|text
+		var/new_ident = sanitize_text(input(usr, "Enter a new ident tag.", "Core Control", monitor.core_tag) as null|text)
 		if(new_ident && user.Adjacent(src))
-			id_tag = new_ident
-			cur_viewed_device = null
+			monitor.core_tag = new_ident
+//			id_tag = new_ident
+//			cur_viewed_device = null
 		return
 
 /obj/machinery/computer/fusion_core_control/attack_ai(mob/user)
 	attack_hand(user)
 
+/obj/machinery/computer/fusion_core_control/attack_hand(var/mob/user as mob)
+	..()
+	if(stat & (BROKEN|NOPOWER))
+		return
+
+	monitor.tgui_interact(user)
+
+/*
 /obj/machinery/computer/fusion_core_control/attack_hand(mob/user)
 	add_fingerprint(user)
 	interact(user)
@@ -47,10 +68,11 @@
 	if(cur_viewed_device)
 		dat += {"
 			<a href='?src=\ref[src];goto_scanlist=1'>Back to overview</a><hr>
-			Device ident '[cur_viewed_device.id_tag]' <span style='color: [cur_viewed_device.owned_field ? "green" : "red"]'>[cur_viewed_device.owned_field ? "active" : "inactive"].</span><br>
+			Device ident '[cur_viewed_device.id_tag]' <span style='color: [cur_viewed_device.owned_field ? "green" : "red"]'>[cur_viewed_device.owned_field ? "Active" : "Inactive"].</span><br>
 			<b>Power status:</b> [cur_viewed_device.avail()]/[cur_viewed_device.active_power_usage] W<br>
 			<hr>
-			<a href='?src=\ref[src];toggle_active=1'>Bring field [cur_viewed_device.owned_field ? "offline" : "online"].</a><br>
+			<b>Field Status:</b> <span style='color: [cur_viewed_device.owned_field ? "red" : "green"]'><a href='?src=\ref[src];toggle_active=1'>[cur_viewed_device.owned_field ? "Online" : "Offline"].</a></span><br>
+			<b>Reactant Dump:</b> <a href='?src=\ref[src];syphon=1'><span style='color: [cur_viewed_device.owned_field ? "red" : "green"]'>[cur_viewed_device.reactant_dump ? "Active" : "Inactive"].</span></a><br>
 			<hr>
 			<b>Field power density (W.m<sup>-3</sup>):</b><br>
 			<a href='?src=\ref[src];str=-1000'>----</a>
@@ -163,22 +185,22 @@
 	if(href_list["str"])
 		var/val = text2num(href_list["str"])
 		if(!val) //Value is 0, which is manual entering.
-			cur_viewed_device.set_strength(input("Enter the new field power density (W.m^-3)", "Fusion Control", cur_viewed_device.field_strength) as num)
+			cur_viewed_device.set_strength(input(usr, "Enter the new field power density (W.m^-3)", "Fusion Control", cur_viewed_device.field_strength) as num)
 		else
 			cur_viewed_device.set_strength(cur_viewed_device.field_strength + val)
 		updateUsrDialog()
 		return 1
 
+	if(href_list["syphon"])
+		cur_viewed_device.reactant_dump = !cur_viewed_device.reactant_dump
+		updateUsrDialog()
+*/
+
 //Returns 1 if the machine can be interacted with via this console.
 /obj/machinery/computer/fusion_core_control/proc/check_core_status(var/obj/machinery/power/fusion_core/C)
-	if(isnull(C))
-		return
-	if(C.stat & BROKEN)
-		return
-	if(C.idle_power_usage > C.avail())
-		return
-	. = 1
+	return istype(C) ? C.check_core_status() : FALSE
 
+/*
 /obj/machinery/computer/fusion_core_control/update_icon()
 	if(stat & (BROKEN))
 		icon = 'icons/obj/computer.dmi'
@@ -194,3 +216,4 @@
 		icon = initial(icon)
 		icon_state = initial(icon_state)
 		set_light(light_range_on, light_power_on)
+*/

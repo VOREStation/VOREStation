@@ -12,8 +12,7 @@
 	var/deadly_hold = TRUE	// Does the stomach do damage to mobs eaten by its owner? Xenos should probably have this FALSE.
 
 /obj/item/organ/internal/stomach/Initialize()
-	..()
-
+	. = ..()
 	if(reagents)
 		reagents.maximum_volume = 30
 	else
@@ -59,15 +58,18 @@
 
 	acidtype = "sacid"
 
+	organ_verbs = list(/mob/living/carbon/human/proc/reagent_purge) //VOREStation Add
+
 /obj/item/organ/internal/stomach/machine/handle_organ_proc_special()
 	..()
 	if(owner && owner.stat != DEAD)
 		owner.bodytemperature += round(owner.robobody_count * 0.25, 0.1)
 
+/*			//VOREStation Removal - normal chem processing
 		if(ishuman(owner))
 			var/mob/living/carbon/human/H = owner
 
 			if(H.ingested?.total_volume && H.bloodstr)
 				H.ingested.trans_to_holder(H.bloodstr, rand(2,5))
-
+*/
 	return

@@ -23,14 +23,11 @@
 	desc = "Contains emergency autoinjectors."
 	icon_state = "syringe"
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // 14
-
-/obj/item/weapon/storage/box/traumainjectors/Initialize()
-	..()
-	for (var/i = 1 to 4)
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/trauma(src)
-	for (var/i = 1 to 2)
-		new /obj/item/weapon/reagent_containers/hypospray/autoinjector/detox(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/burn(src)
+	starts_with = list(
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/trauma = 4,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox = 2,
+		/obj/item/weapon/reagent_containers/hypospray/autoinjector/burn = 1
+	)
 
 /obj/item/weapon/reagent_containers/hypospray
 	var/prototype = 0

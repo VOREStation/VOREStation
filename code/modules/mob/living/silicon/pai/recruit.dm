@@ -55,19 +55,19 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 		switch(option)
 			if("name")
-				t = sanitizeSafe(input("Enter a name for your pAI", "pAI Name", candidate.name) as text, MAX_NAME_LEN)
+				t = sanitizeSafe(input(usr, "Enter a name for your pAI", "pAI Name", candidate.name) as text, MAX_NAME_LEN)
 				if(t)
 					candidate.name = t
 			if("desc")
-				t = input("Enter a description for your pAI", "pAI Description", candidate.description) as message
+				t = input(usr, "Enter a description for your pAI", "pAI Description", candidate.description) as message
 				if(t)
 					candidate.description = sanitize(t)
 			if("role")
-				t = input("Enter a role for your pAI", "pAI Role", candidate.role) as text
+				t = input(usr, "Enter a role for your pAI", "pAI Role", candidate.role) as text
 				if(t)
 					candidate.role = sanitize(t)
 			if("ooc")
-				t = input("Enter any OOC comments", "pAI OOC Comments", candidate.comments) as message
+				t = input(usr, "Enter any OOC comments", "pAI OOC Comments", candidate.comments) as message
 				if(t)
 					candidate.comments = sanitize(t)
 			if("save")
@@ -365,7 +365,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 		if(!C)	return
 		asked.Add(C.key)
 		asked[C.key] = world.time
-		var/response = alert(C, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", "Yes", "No", "Never for this round")
+		var/response = tgui_alert(C, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", list("Yes", "No", "Never for this round"))
 		if(!C)	return		//handle logouts that happen whilst the alert is waiting for a response.
 		if(response == "Yes")
 			recruitWindow(C.mob)

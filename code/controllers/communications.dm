@@ -194,9 +194,6 @@ var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC
 
 var/list/OFFMAP_FREQS = list(TALON_FREQ) //VOREStation Add
 
-#define TRANSMISSION_WIRE	0
-#define TRANSMISSION_RADIO	1
-
 /proc/frequency_span_class(var/frequency)
 	// Antags!
 	if (frequency in ANTAG_FREQS)

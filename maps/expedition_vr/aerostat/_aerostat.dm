@@ -8,10 +8,16 @@
 [i]Habitability[/i]: Low (High Temperature, Toxic Atmosphere)
 [b]Notice[/b]: Planetary environment not suitable for life. Landing may be hazardous."}
 	icon_state = "globe"
-	color = "#dfff3f" //Bright yellow
 	in_space = 0
 	initial_generic_waypoints = list("aerostat_west","aerostat_east","aerostat_south","aerostat_northwest","aerostat_northeast")
 	extra_z_levels = list(Z_LEVEL_AEROSTAT_SURFACE)
+	known = TRUE
+	icon_state = "chlorine"
+
+	skybox_icon = 'icons/skybox/virgo2.dmi'
+	skybox_icon_state = "v2"
+	skybox_pixel_x = 0
+	skybox_pixel_y = 0
 
 // -- Datums -- //
 
@@ -136,8 +142,8 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral)
 
 	var/mineral_name = pickweight(list("marble" = 5, "uranium" = 5, "platinum" = 5, "hematite" = 5, "carbon" = 5, "diamond" = 5, "gold" = 5, "silver" = 5, "lead" = 5, "verdantium" = 5, "rutile" = 20))
 
-	if(mineral_name && (mineral_name in ore_data))
-		mineral = ore_data[mineral_name]
+	if(mineral_name && (mineral_name in GLOB.ore_data))
+		mineral = GLOB.ore_data[mineral_name]
 		UpdateMineral()
 	update_icon()
 
@@ -173,15 +179,50 @@ VIRGO2_TURF_CREATE(/turf/simulated/mineral/floor/ignore_mapgen)
 	base_turf = /turf/simulated/floor/plating/virgo2
 	dynamic_lighting = TRUE
 
-/area/tether_away/aerostat/surface
+/area/offmap/aerostat/surface
 	flags = RAD_SHIELDED
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 	base_turf = /turf/simulated/mineral/floor/ignore_mapgen/virgo2
 
-/area/tether_away/aerostat/surface/explored
+/area/offmap/aerostat/surface/explored
 	name = "Away Mission - Aerostat Surface (E)"
 	icon_state = "explored"
+	dynamic_lighting = FALSE
 
-/area/tether_away/aerostat/surface/unexplored
+/area/offmap/aerostat/surface/shuttleconsole
+	name = "Away Mission - Aerostat Surface Console"
+	icon_state = "explored"
+	dynamic_lighting = FALSE
+	requires_power = FALSE
+
+/area/offmap/aerostat/surface/unexplored
 	name = "Away Mission - Aerostat Surface (UE)"
 	icon_state = "unexplored"
+	dynamic_lighting = FALSE
+
+VIRGO2_TURF_CREATE(/turf/simulated/floor/hull)
+/area/offmap/aerostat/surface/outpost
+	requires_power = TRUE
+	dynamic_lighting = TRUE
+	ambience = null
+
+/area/offmap/aerostat/surface/outpost/backroom
+	name = "V4 Outpost - Research Area"
+/area/offmap/aerostat/surface/outpost/hallway
+	name = "V4 Outpost - Hallway"
+/area/offmap/aerostat/surface/outpost/cafe
+	name = "V4 Outpost - Cafe"
+/area/offmap/aerostat/surface/outpost/park
+	name = "V4 Outpost - Park"
+/area/offmap/aerostat/surface/outpost/officerone
+	name = "V4 Outpost - Officer's Quarters 1"
+/area/offmap/aerostat/surface/outpost/officertwo
+	name = "V4 Outpost - Officer's Quarters 2"
+/area/offmap/aerostat/surface/outpost/barracks
+	name = "V4 Outpost - Barracks"
+/area/offmap/aerostat/surface/outpost/airlock
+	name = "V4 Outpost - Airlock"
+/area/offmap/aerostat/surface/outpost/powerroom
+	name = "V4 Outpost - Power Room"
+/area/offmap/aerostat/surface/outpost/guardpost
+	name = "V4 Outpost - Guard Post"

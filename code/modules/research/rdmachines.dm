@@ -5,8 +5,8 @@
 /obj/machinery/r_n_d
 	name = "R&D Device"
 	icon = 'icons/obj/machines/research.dmi'
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	var/busy = 0
 	var/obj/machinery/computer/rdconsole/linked_console
@@ -38,6 +38,5 @@
 	eject = amount == -1 ? eject : min(eject, amount)
 	if(eject < 1)
 		return
-	var/obj/item/stack/material/S = new sheetType(loc)
-	S.amount = eject
+	new sheetType(loc, eject)
 	materials[material] -= eject * perUnit

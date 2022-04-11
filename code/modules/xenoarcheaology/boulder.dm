@@ -3,9 +3,9 @@
 	desc = "Leftover rock from an excavation, it's been partially dug out already but there's still a lot to go."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "boulder1"
-	density = 1
+	density = TRUE
 	opacity = 1
-	anchored = 1
+	anchored = TRUE
 	var/excavation_level = 0
 	var/datum/geosample/geological_data
 	var/datum/artifact_find/artifact_find
@@ -35,14 +35,14 @@
 			C.depth_scanner.scan_atom(user, src)
 			return
 		else
-			user.visible_message("<span class='notice'>\The [user] extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>", "<span class='notice'>You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>")
+			user.visible_message("<b>\The [user]</b> extends \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!", "<span class='notice'>You extend \the [C] over \the [src], a flurry of red beams scanning \the [src]'s surface!</span>")
 			if(do_after(user, 15))
 				to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [2 * src.excavation_level]cm.</span>")
 			return
 
 	if(istype(I, /obj/item/device/measuring_tape))
 		var/obj/item/device/measuring_tape/P = I
-		user.visible_message("<span class='notice'>\The [user] extends \the [P] towards \the [src].</span>", "<span class='notice'>You extend \the [P] towards \the [src].</span>")
+		user.visible_message("<b>\The [user]</b> extends \the [P] towards \the [src].", "<span class='notice'>You extend \the [P] towards \the [src].</span>")
 		if(do_after(user, 15))
 			to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [2 * src.excavation_level]cm.</span>")
 		return
@@ -75,8 +75,8 @@
 				var/obj/O = new spawn_type(get_turf(src))
 				if(istype(O, /obj/machinery/artifact))
 					var/obj/machinery/artifact/X = O
-					if(X.my_effect)
-						X.my_effect.artifact_id = artifact_find.artifact_id
+					if(X.artifact_master)
+						X.artifact_master.artifact_id = artifact_find.artifact_id
 				O.anchored = FALSE	// Anchored finds are lame.
 				src.visible_message("<span class='warning'>\The [src] suddenly crumbles away.</span>")
 			else

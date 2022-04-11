@@ -5,6 +5,13 @@
 	desc = "It's a hat used by chefs to keep hair out of your food. Judging by the food in the mess, they don't work."
 	icon_state = "chefhat"
 
+/obj/item/clothing/head/hairnet
+	name = "hairnet"
+	desc = "A hairnet used to keep the hair out of the way and out of the food."
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/inventory/head/mob_tajaran.dmi'
+		)
+
 //Captain
 /obj/item/clothing/head/caphat
 	name = "site manager's hat"
@@ -22,11 +29,26 @@
 	desc = "No one in a commanding position should be without a perfect, white hat of ultimate authority."
 	icon_state = "officercap"
 
+/obj/item/clothing/head/caphat/beret
+	name = "captain's beret"
+	desc = "A beret fit for a leader."
+	icon_state = "beretcap"
+
 //HOP
 /obj/item/clothing/head/caphat/hop
 	name = "crew resource's hat"
 	desc = "A stylish hat that both protects you from enraged former-crewmembers and gives you a false sense of authority."
 	icon_state = "hopcap"
+
+/obj/item/clothing/head/caphat/hop/beret
+	name = "head of personnel's beret"
+	desc = "The symbol of true bureaucratic micromanagement, although in a fancy form."
+	icon_state = "berethop"
+
+/obj/item/clothing/head/caphat/hop/beret/white
+	name = "head of personnel's white beret"
+	desc = "The symbol of true bureaucratic micromanagement, although in a fancy form."
+	icon_state = "berethopwhite"
 
 //Chaplain
 /obj/item/clothing/head/chaplain_hood
@@ -133,9 +155,10 @@
 	flags_inv = null
 
 /obj/item/clothing/head/det
-	name = "fedora"
-	desc = "A brown fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
-	icon_state = "detective"
+	name = "detective fedora"
+	desc = "A specially designed fedora that is woven with protective fibers. It also makes you look cool."
+	icon_state = "fedora_brown"
+	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
 	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
 	armor = list(melee = 10, bullet = 10, laser = 15, energy = 10, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -143,9 +166,7 @@
 	show_examine = FALSE
 
 /obj/item/clothing/head/det/grey
-	icon_state = "detective2"
-	item_state_slots = list(slot_r_hand_str = "detective", slot_l_hand_str = "detective")
-	desc = "A grey fedora - either the cornerstone of a detective's style or a poor attempt at looking cool, depending on the person wearing it."
+	icon_state = "fedora_grey"
 
 /obj/item/clothing/head/beret/engineering
 	name = "engineering beret"
@@ -174,6 +195,7 @@
 	desc = "A black beret with a gold emblem."
 	icon_state = "beret_corporate_hos"
 	item_state_slots = list(slot_r_hand_str = "beret_black", slot_l_hand_str = "beret_black")
+
 
 //Medical
 /obj/item/clothing/head/surgery
@@ -207,3 +229,62 @@
 	desc = "A cap surgeons wear during operations. Keeps their hair from tickling your internal organs. This one is navy blue."
 	icon_state = "surgcap_navyblue"
 	item_state_slots = list(slot_r_hand_str = "beret_navy", slot_l_hand_str = "beret_navy")
+
+/obj/item/clothing/head/beret/medical
+	name = "medical officer's beret"
+	desc = "A fancy beret with a blue cross, smells sterile."
+	icon_state = "beretmed"
+
+/obj/item/clothing/head/beret/medical/chem
+	name = "chemist's beret"
+	desc = "A fancy beret with an orange beaker. You're not sure if you should smell it."
+	icon_state = "beretchem"
+
+/obj/item/clothing/head/beret/medical/viro
+	name = "virologist's beret"
+	desc = "A fancy beret with a green cross. Hopefully it's virus free!"
+	icon_state = "beretviro"
+
+/obj/item/clothing/head/beret/medical/cmo
+	name = "chief medical officer's beret"
+	desc = "A fancy beret with a green cross, signifying your status in the station's medbay."
+	icon_state = "beretcmo"
+
+/obj/item/clothing/head/beret/medical/cmo/blue
+	name = "chief medical officer's beret"
+	desc = "A fancy beret with a blue and white cross. Try not to be the chief malpractice officer in it!"
+	icon_state = "beretcmoblue"
+
+//Science
+
+/obj/item/clothing/head/beret/science
+	name = "scientist's beret"
+	desc = "A scientist's beret. Looks like it's covered in slime."
+	icon_state = "beretsci"
+
+/obj/item/clothing/head/beret/science/robotics
+	name = "roboticist's beret"
+	desc = "A roboticist's beret. It strongly smells of oil."
+	icon_state = "beretrobo"
+
+/obj/item/clothing/head/beret/science/rd
+	name = "research director's beret"
+	desc = "A beret worn only by highly intelligent people. Or so its wearers say."
+	icon_state = "beretrd"
+
+//Chief Engineer
+/obj/item/clothing/head/beret/engineering/ce
+	name = "chief engineer's beret"
+	desc = "A beret that will surely make you look way cooler than a hard hat, although lack of protection is the price."
+	icon_state = "beretce"
+
+/obj/item/clothing/head/beret/engineering/ce/white
+	name = "chief engineer's white beret"
+	desc = "A beret that will surely make you look way cooler than a hard hat, although lack of protection is the price."
+	icon_state = "beretcewhite"
+
+//Quartermaster
+/obj/item/clothing/head/beret/qm
+	name = "quartermaster's beret"
+	desc = "This headwear shows off your Cargonian leadership."
+	icon_state = "beretqm"

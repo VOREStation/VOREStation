@@ -5,7 +5,7 @@ CIRCUITS BELOW
 /datum/design/circuit
 	build_type = IMPRINTER
 	req_tech = list(TECH_DATA = 2)
-	materials = list("glass" = 2000)
+	materials = list(MAT_GLASS = 2000)
 	chemicals = list("sacid" = 20)
 	time = 5
 
@@ -36,14 +36,21 @@ CIRCUITS BELOW
 	id = "oriontrail"
 	req_tech = list(TECH_DATA = 1)
 	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
-	sort_string = "MAAAZ"		// Duplicate string, really need to redo this whole thing
+	sort_string = "MAAAB"
+
+/datum/design/circuit/clawmachine
+	name = "grab-a-gift arcade machine"
+	id = "clawmachine"
+	req_tech = list(TECH_DATA = 1)
+	build_path = /obj/item/weapon/circuitboard/arcade/clawmachine
+	sort_string = "MAAAC"
 
 /datum/design/circuit/jukebox
 	name = "jukebox"
 	id = "jukebox"
 	req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
 	build_path = /obj/item/weapon/circuitboard/jukebox
-	sort_string = "MAAAB"
+	sort_string = "MAAAO"
 
 /datum/design/circuit/seccamera
 	name = "security camera monitor"
@@ -427,6 +434,13 @@ CIRCUITS BELOW
 	build_path = /obj/item/weapon/circuitboard/skills
 	sort_string = "LAAAC"
 
+/datum/design/circuit/arf_generator
+	name = "atmospheric field generator"
+	id = "arf_generator"
+	req_tech = list(TECH_MAGNET = 4, TECH_POWER = 4, TECH_BIO = 3)
+	build_path = /obj/item/weapon/circuitboard/arf_generator
+	sort_string = "LAAAD"
+
 /datum/design/circuit/mecha
 	req_tech = list(TECH_DATA = 3)
 
@@ -493,7 +507,7 @@ CIRCUITS BELOW
 	name = "'Durand' central control"
 	id = "durand_main"
 	req_tech = list(TECH_DATA = 4)
-	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
+	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/main
 	sort_string = "NAADA"
@@ -502,7 +516,7 @@ CIRCUITS BELOW
 	name = "'Durand' peripherals control"
 	id = "durand_peri"
 	req_tech = list(TECH_DATA = 4)
-	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
+	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/peripherals
 	sort_string = "NAADB"
@@ -511,7 +525,7 @@ CIRCUITS BELOW
 	name = "'Durand' weapon control and targeting"
 	id = "durand_targ"
 	req_tech = list(TECH_DATA = 4, TECH_COMBAT = 2)
-	materials = list("glass" = 2000, MAT_GRAPHITE = 1250)
+	materials = list(MAT_GLASS = 2000, MAT_GRAPHITE = 1250)
 	chemicals = list("sacid" = 20)
 	build_path = /obj/item/weapon/circuitboard/mecha/durand/targeting
 	sort_string = "NAADC"
@@ -575,6 +589,36 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
 	build_path = /obj/item/weapon/circuitboard/telecomms/exonet_node
 	sort_string = "PAAAH"
+
+/datum/design/circuit/shield
+	req_tech = list(TECH_BLUESPACE = 4, TECH_PHORON = 3)
+	materials = list(MAT_GLASS = 2000, MAT_GOLD = 1000)
+
+/datum/design/circuit/shield/AssembleDesignName()
+	name = "Shield generator circuit design ([name])"
+/datum/design/circuit/shield/AssembleDesignDesc()
+	if(!desc)
+		desc = "Allows for the construction of \a [name] shield generator."
+
+/datum/design/circuit/shield/bubble
+	name = "bubble (OBSOLETE)" //VOREStation Edit
+	id = "shield_gen"
+	build_path = /obj/item/weapon/circuitboard/shield_gen
+	sort_string = "VAAAZ"	// Duplicate string, really need to redo this whole thing
+
+/datum/design/circuit/shield/hull
+	name = "hull (OBSOLETE)" //VOREStation Edit
+	id = "shield_gen_ex"
+	build_path = /obj/item/weapon/circuitboard/shield_gen_ex
+	sort_string = "VAAAB"
+
+/datum/design/circuit/shield/capacitor
+	name = "capacitor (OBSOLETE)" //VOREStation Edit"
+	desc = "Allows for the construction of a shield capacitor circuit board."
+	id = "shield_cap"
+	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4)
+	build_path = /obj/item/weapon/circuitboard/shield_cap
+	sort_string = "VAAAC"
 
 /datum/design/circuit/ntnet_relay
 	name = "NTNet Quantum Relay"
@@ -660,3 +704,24 @@ CIRCUITS BELOW
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/pointdefense_control
 	sort_string = "OAABB"
+
+/datum/design/circuit/recycler_crusher
+	name = "recycler - crusher"
+	id = "recycler_crusher"
+	req_tech = list(TECH_MATERIAL = 2)
+	build_path = /obj/item/weapon/circuitboard/recycler_crusher
+	sort_string = "OAABC"
+
+/datum/design/circuit/recycler_sorter
+	name = "recycler - sorter"
+	id = "recycler_sorter"
+	req_tech = list(TECH_MATERIAL = 2)
+	build_path = /obj/item/weapon/circuitboard/recycler_sorter
+	sort_string = "OAABD"
+
+/datum/design/circuit/recycler_stamper
+	name = "recycler - stamper"
+	id = "recycler_stamper"
+	req_tech = list(TECH_MATERIAL = 2)
+	build_path = /obj/item/weapon/circuitboard/recycler_stamper
+	sort_string = "OAABE"

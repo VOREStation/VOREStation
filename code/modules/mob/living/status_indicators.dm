@@ -67,8 +67,7 @@
 	current_x_position -= (icon_expected_width / 2) * (get_icon_scale_y() - 1)
 
 	// Now the indicator row can actually be built.
-	for(var/thing in status_indicators)
-		var/image/I = thing
+	for(var/image/I as anything in status_indicators)
 
 		// This is a semi-HUD element, in a similar manner as medHUDs, in that they're 'above' everything else in the world,
 		// but don't pierce obfuscation layers such as blindness or darkness, unlike actual HUD elements like inventory slots.

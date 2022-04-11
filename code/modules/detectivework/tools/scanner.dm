@@ -190,7 +190,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	if (alert("Are you sure you want to wipe all data from [src]?",,"Yes","No") == "Yes")
+	if (tgui_alert(usr, "Are you sure you want to wipe all data from [src]?","Wipe Data",list("Yes","No")) == "Yes")
 		stored = list()
 		to_chat(usr, "<span class='notice'>Forensic data erase complete.</span>")
 

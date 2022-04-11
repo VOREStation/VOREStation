@@ -2,7 +2,7 @@ import { filter } from 'common/collections';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, Input, ProgressBar, Section, Table } from "../components";
+import { Box, ByondUi, Button, Flex, Icon, LabeledList, Input, ProgressBar, Section, Table } from "../components";
 import { Window } from "../layouts";
 import { CrewManifestContent } from './CrewManifest';
 
@@ -24,21 +24,149 @@ export const Communicator = (props, context) => {
 
   const {
     currentTab,
+    video_comm,
+    mapRef,
   } = data;
+
+  /* 0: Fullscreen Video
+   * 1: Popup Video
+   * 2: Minimized Video
+   */
+  const [videoSetting, setVideoSetting] = useLocalState(context, 'videoSetting', 0);
 
   return (
     <Window width={475} height={700} resizable>
       <Window.Content>
-        <CommunicatorHeader />
-        <Box height="88%" mb={1} style={{
-          "overflow-y": "auto",
-        }}>
-          {TabToTemplate[currentTab] || <TemplateError />}
-        </Box>
-        <CommunicatorFooter />
+        {video_comm && <VideoComm videoSetting={videoSetting} setVideoSetting={setVideoSetting} />}
+        {(!video_comm || videoSetting !== 0) && (
+          <Fragment>
+            <CommunicatorHeader />
+            <Box height="88%" mb={1} style={{
+              "overflow-y": "auto",
+            }}>
+              {TabToTemplate[currentTab] || <TemplateError />}
+            </Box>
+            <CommunicatorFooter
+              videoSetting={videoSetting}
+              setVideoSetting={setVideoSetting} />
+          </Fragment>
+        )}
       </Window.Content>
     </Window>
   );
+};
+
+const VideoComm = (props, context) => {
+  const { act, data } = useBackend(context);
+
+  const {
+    video_comm,
+    mapRef,
+  } = data;
+
+  const {
+    videoSetting,
+    setVideoSetting,
+  } = props;
+
+  if (videoSetting === 0) {
+    return (
+      <Box width="100%" height="100%">
+        <ByondUi
+          width="100%"
+          height="95%"
+          params={{
+            id: mapRef,
+            type: 'map',
+          }} />
+        <Flex justify="space-between" spacing={1} mt={0.5}>
+          <Flex.Item grow={1}>
+            <Button
+              textAlign="center"
+              fluid
+              fontSize={1.5}
+              icon="window-minimize"
+              onClick={() => setVideoSetting(1)} />
+          </Flex.Item>
+          <Flex.Item grow={1}>
+            <Button
+              textAlign="center"
+              fluid
+              fontSize={1.5}
+              color="bad"
+              icon="video-slash"
+              onClick={() => act("endvideo")} />
+          </Flex.Item>
+          <Flex.Item grow={1}>
+            <Button
+              textAlign="center"
+              fluid
+              fontSize={1.5}
+              color="bad"
+              icon="phone-slash"
+              onClick={() => act("hang_up")} />
+          </Flex.Item>
+        </Flex>
+      </Box>
+    );
+  } else if (videoSetting === 1) {
+    return (
+      <Box
+        style={{
+          "position": "absolute",
+          "right": "5px",
+          "bottom": "50px",
+          "z-index": 1,
+        }}>
+        <Section p={0} m={0}>
+          <Flex justify="space-between" spacing={1}>
+            <Flex.Item grow={1}>
+              <Button
+                textAlign="center"
+                fluid
+                fontSize={1.5}
+                icon="window-minimize"
+                onClick={() => setVideoSetting(2)} />
+            </Flex.Item>
+            <Flex.Item grow={1}>
+              <Button
+                textAlign="center"
+                fluid
+                fontSize={1.5}
+                icon="window-maximize"
+                onClick={() => setVideoSetting(0)} />
+            </Flex.Item>
+            <Flex.Item grow={1}>
+              <Button
+                textAlign="center"
+                fluid
+                fontSize={1.5}
+                color="bad"
+                icon="video-slash"
+                onClick={() => act("endvideo")} />
+            </Flex.Item>
+            <Flex.Item grow={1}>
+              <Button
+                textAlign="center"
+                fluid
+                fontSize={1.5}
+                color="bad"
+                icon="phone-slash"
+                onClick={() => act("hang_up")} />
+            </Flex.Item>
+          </Flex>
+        </Section>
+        <ByondUi
+          width="200px"
+          height="200px"
+          params={{
+            id: mapRef,
+            type: 'map',
+          }} />
+      </Box>
+    );
+  }
+  return null;
 };
 
 const TemplateError = (props, context) => {
@@ -95,9 +223,14 @@ const CommunicatorFooter = (props, context) => {
     flashlight,
   } = data;
 
+  const {
+    videoSetting,
+    setVideoSetting,
+  } = props;
+
   return (
     <Flex>
-      <Flex.Item basis="80%">
+      <Flex.Item basis={videoSetting === 2 ? "60%" : "80%"}>
         <Button
           p={1}
           fluid
@@ -118,8 +251,43 @@ const CommunicatorFooter = (props, context) => {
           tooltipPosition="top"
           onClick={() => act("Light")} />
       </Flex.Item>
+      {videoSetting === 2 && (
+        <Flex.Item basis="20%">
+          <Button
+            icon="video"
+            iconSize={2}
+            p={1}
+            fluid
+            textAlign="center"
+            tooltip="Open Video"
+            tooltipPosition="top"
+            onClick={() => setVideoSetting(1)} />
+        </Flex.Item>
+      )}
     </Flex>
   );
+};
+
+/* Helper for notifications (yes this is a mess, but whatever, it works) */
+const hasNotifications = (app, context) => {
+  const { data } = useBackend(context);
+
+  const {
+    /* Phone Notifications */
+    voice_mobs,
+    communicating,
+    requestsReceived,
+    invitesSent,
+    video_comm,
+  } = data;
+
+  if (app === "Phone") {
+    if (voice_mobs.length || communicating.length || requestsReceived.length || invitesSent.length || video_comm) {
+      return true;
+    }
+  }
+
+  return false;
 };
 
 /* Tabs Below this point */
@@ -146,6 +314,8 @@ const HomeTab = (props, context) => {
             position="relative"
             onClick={() => act("switch_tab", { switch_tab: app.number })}>
             <Icon
+              spin={hasNotifications(app.module, context)}
+              color={hasNotifications(app.module, context) ? "bad" : null}
               name={app.icon}
               position="absolute"
               size={3}
@@ -174,12 +344,13 @@ const PhoneTab = (props, context) => {
     requestsReceived,
     invitesSent,
     video_comm,
+    selfie_mode,
   } = data;
 
   return (
     <Section title="Phone">
       <LabeledList>
-        <LabeledList.Item label="Target EPv2 Address" verticalAlign="middle"> 
+        <LabeledList.Item label="Target EPv2 Address" verticalAlign="middle">
           <Flex align="center">
             <Flex.Item grow={1}>
               <Input
@@ -197,6 +368,18 @@ const PhoneTab = (props, context) => {
       </LabeledList>
       <NumberPad />
       <Section title="Connection Management" level={2} mt={2}>
+        <LabeledList>
+          <LabeledList.Item label="Camera Mode">
+            <Button
+              fluid
+              content={
+                selfie_mode
+                  ? "Front-facing Camera"
+                  : "Rear-facing Camera"
+              }
+              onClick={() => act("selfie_mode")} />
+          </LabeledList.Item>
+        </LabeledList>
         <Section title="External Connections" level={3}>
           {!!voice_mobs.length && (
             <LabeledList>
@@ -281,7 +464,7 @@ const PhoneTab = (props, context) => {
           {!!invitesSent.length && (
             <LabeledList>
               {invitesSent.map(invite => (
-                <LabeledList.Item label={decodeHtmlEntities(invite.name)} key={invite.address}> 
+                <LabeledList.Item label={decodeHtmlEntities(invite.name)} key={invite.address}>
                   <Box>{decodeHtmlEntities(invite.address)}</Box>
                   <Box>
                     <Button
@@ -581,7 +764,7 @@ const MessagingThreadTab = (props, context) => {
             icon="eye"
             selected={clipboardMode}
             tooltip="Exit Clipboard Mode"
-            tooltipPosition="bottom-left"
+            tooltipPosition="bottom-end"
             onClick={() => setClipboardMode(!clipboardMode)} />
         }
         height="100%"
@@ -624,7 +807,7 @@ const MessagingThreadTab = (props, context) => {
           icon="eye"
           selected={clipboardMode}
           tooltip="Enter Clipboard Mode"
-          tooltipPosition="bottom-left"
+          tooltipPosition="bottom-end"
           onClick={() => setClipboardMode(!clipboardMode)} />
       }
       height="100%"
@@ -660,7 +843,7 @@ TabToTemplate[MESSSUBTAB] = <MessagingThreadTab />;
 /* News */
 const NewsTab = (props, context) => {
   const { act, data } = useBackend(context);
-  
+
   const {
     feeds,
     target_feed,
@@ -838,7 +1021,7 @@ const WeatherTab = (props, context) => {
         {!!weather.length && (
           <LabeledList>
             {weather.map(wr => (
-              <LabeledList.Item label={wr.Planet} key={wr.Planet}> 
+              <LabeledList.Item label={wr.Planet} key={wr.Planet}>
                 <LabeledList>
                   <LabeledList.Item label="Time">
                     {wr.Time}
@@ -891,6 +1074,7 @@ const SettingsTab = (props, context) => {
     address,
     visible,
     ring,
+    selfie_mode,
   } = data;
 
   return (
@@ -902,6 +1086,16 @@ const SettingsTab = (props, context) => {
             fluid
             content={decodeHtmlEntities(owner)}
             onClick={() => act("rename")} />
+        </LabeledList.Item>
+        <LabeledList.Item label="Camera Mode">
+          <Button
+            fluid
+            content={
+              selfie_mode
+                ? "Front-facing Camera"
+                : "Rear-facing Camera"
+            }
+            onClick={() => act("selfie_mode")} />
         </LabeledList.Item>
         <LabeledList.Item label="Occupation">
           {decodeHtmlEntities(occupation)}

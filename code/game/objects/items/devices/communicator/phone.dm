@@ -246,7 +246,8 @@
 		//VOREStation Edit End
 
 		for(var/mob/mob in mobs_to_relay)
-			var/message = mob.combine_message(message_pieces, verb, M)
+			var/list/combined = mob.combine_message(message_pieces, verb, M)
+			var/message = combined["formatted"]
 			var/name_used = M.GetVoice()
 			var/rendered = null
 			rendered = "<span class='game say'>[bicon(src)] <span class='name'>[name_used]</span> [message]</span>"
@@ -285,8 +286,7 @@
 	if (usr != src)
 		return //something is terribly wrong
 
-	var/confirm = alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator?  \
-						This will reset your respawn timer, if someone answers.", "Join as Voice?", "Yes","No")
+	var/confirm = tgui_alert(src, "Would you like to talk as [src.client.prefs.real_name], over a communicator? This will reset your respawn timer, if someone answers.", "Join as Voice?", list("Yes","No"))
 	if(confirm == "No")
 		return
 
@@ -315,7 +315,7 @@
 		to_chat(src , "<span class='danger'>There are no available communicators, sorry.</span>")
 		return
 
-	var/choice = input(src,"Send a voice request to whom?") as null|anything in choices
+	var/choice = tgui_input_list(src,"Send a voice request to whom?", "Recipient Choice", choices)
 	if(choice)
 		var/obj/item/device/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src
@@ -332,12 +332,15 @@
 
 	if(video_source) //Already in a video
 		to_chat(user, "<span class='danger'>You are already connected to a video call!</span>")
+		return
 
 	if(user.blinded) //User is blinded
 		to_chat(user, "<span class='danger'>You cannot see well enough to do that!</span>")
+		return
 
 	if(!(src in comm.communicating) || !comm.camera) //You called someone with a broken communicator or one that's fake or yourself or something
 		to_chat(user, "<span class='danger'>[bicon(src)]ERROR: Video failed. Either bandwidth is too low, or the other communicator is malfunctioning.</span>")
+		return
 
 	to_chat(user, "<span class='notice'>[bicon(src)] Attempting to start video over existing call.</span>")
 	sleep(30)
@@ -345,42 +348,16 @@
 
 	video_source = comm.camera
 	comm.visible_message("<span class='danger'>[bicon(src)] New video connection from [comm].</span>")
-	watch_video(user)
+	update_active_camera_screen()
+	GLOB.moved_event.register(video_source, src, .proc/update_active_camera_screen)
 	update_icon()
-
-// Proc: watch_video()
-// Parameters: user - the mob doing the viewing of video
-// Description: Moves a mob's eye to the far end for the duration of viewing the far end
-/obj/item/device/communicator/proc/watch_video(mob/user)
-	if(!Adjacent(user) || !video_source) return
-	user.set_machine(video_source)
-	user.reset_view(video_source)
-	to_chat(user, "<span class='notice'>Now viewing video session. To leave camera view, close the communicator window OR: OOC -> Cancel Camera View</span>")
-	to_chat(user, "<span class='notice'>To return to an active video session, use the communicator in your hand.</span>")
-	spawn(0)
-		while(user.machine == video_source && Adjacent(user))
-			var/turf/T = get_turf(video_source)
-			if(!T || !is_on_same_plane_or_station(T.z, user.z) || !video_source.can_use())
-				to_chat(user, "<span class='warning'>The screen bursts into static, then goes black.</span>")
-				video_cleanup(user)
-				return
-			sleep(10)
-
-		video_cleanup(user)
-
-// Proc: video_cleanup()
-// Parameters: user - the mob who doesn't want to see video anymore
-// Description: Cleans up mob's client when they stop watching a video
-/obj/item/device/communicator/proc/video_cleanup(mob/user)
-	if(!user) return
-
-	user.reset_view(null)
-	user.unset_machine()
 
 // Proc: end_video()
 // Parameters: reason - the text reason to print for why it ended
 // Description: Ends the video call by clearing video_source
 /obj/item/device/communicator/proc/end_video(var/reason)
+	GLOB.moved_event.unregister(video_source, src, .proc/update_active_camera_screen)
+	show_static()
 	video_source = null
 
 	. = "<span class='danger'>[bicon(src)] [reason ? reason : "Video session ended"].</span>"

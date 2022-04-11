@@ -18,7 +18,7 @@
 /obj/structure/ghost_pod/manual/clegg/create_occupant(var/mob/M)
 	lightning_strike(get_turf(src), cosmetic = TRUE)
 	var/list/choices = list(/mob/living/simple_mob/mobs_monsters/clowns/normal, /mob/living/simple_mob/mobs_monsters/clowns/honkling, /mob/living/simple_mob/mobs_monsters/clowns/mayor, /mob/living/simple_mob/mobs_monsters/clowns/blob, /mob/living/simple_mob/mobs_monsters/clowns/mutant, /mob/living/simple_mob/mobs_monsters/clowns/clowns, /mob/living/simple_mob/mobs_monsters/clowns/flesh, /mob/living/simple_mob/mobs_monsters/clowns/scary, /mob/living/simple_mob/mobs_monsters/clowns/chlown, /mob/living/simple_mob/mobs_monsters/clowns/destroyer, /mob/living/simple_mob/mobs_monsters/clowns/giggles, /mob/living/simple_mob/mobs_monsters/clowns/longface, /mob/living/simple_mob/mobs_monsters/clowns/hulk, /mob/living/simple_mob/mobs_monsters/clowns/thin, /mob/living/simple_mob/mobs_monsters/clowns/wide, /mob/living/simple_mob/mobs_monsters/clowns/perm, /mob/living/simple_mob/mobs_monsters/clowns/thicc, /mob/living/simple_mob/mobs_monsters/clowns/punished, /mob/living/simple_mob/mobs_monsters/clowns/sentinel, /mob/living/simple_mob/mobs_monsters/clowns/tunnelclown, /mob/living/simple_mob/mobs_monsters/clowns/cluwne, /mob/living/simple_mob/mobs_monsters/clowns/honkmunculus)
-	var/chosen_clown = input(M, "Redspace clowns like themes, what's yours?") in choices
+	var/chosen_clown = tgui_input_list(M, "Redspace clowns like themes, what's yours?", "Theme Choice", choices)
 	density = FALSE
 	var/mob/living/simple_mob/R = new chosen_clown(get_turf(src))
 	if(M.mind)

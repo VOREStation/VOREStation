@@ -1,5 +1,3 @@
-#define PROCESS_ACCURACY 10
-
 /obj/item/organ/internal/appendix
 	name = "appendix"
 	icon_state = "appendix"
@@ -30,11 +28,11 @@
 	if(inflamed == 1)
 		if(prob(5))
 			to_chat(owner, "<span class='warning'>You feel a stinging pain in your abdomen!</span>")
-			owner.emote("me", 1, "winces slightly.")
+			owner.custom_emote(VISIBLE_MESSAGE, "winces slightly.")
 	if(inflamed > 1)
 		if(prob(3))
 			to_chat(owner, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
-			owner.emote("me", 1, "winces painfully.")
+			owner.custom_emote(VISIBLE_MESSAGE, "winces painfully.")
 			owner.adjustToxLoss(1)
 	if(inflamed > 2)
 		if(prob(1))
@@ -52,6 +50,6 @@
 
 /obj/item/organ/internal/appendix/removed()
 	if(inflamed)
-		icon_state = "appendixinflamed"
+		icon_state = "[initial(icon_state)]inflamed"
 		name = "inflamed appendix"
 	..()

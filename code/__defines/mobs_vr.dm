@@ -1,13 +1,13 @@
 #undef VIS_COUNT
 
-#define VIS_CH_STATUS_R		24
-#define VIS_CH_HEALTH_VR	25
-#define VIS_CH_BACKUP		26
-#define VIS_CH_VANTAG		27
+#define VIS_CH_STATUS_R		28
+#define VIS_CH_HEALTH_VR	29
+#define VIS_CH_BACKUP		30
+#define VIS_CH_VANTAG		31
 
-#define VIS_AUGMENTED		28
+#define VIS_AUGMENTED		32
 
-#define VIS_COUNT			28
+#define VIS_COUNT			32
 
 //Protean organs
 #define O_ORCH		"orchestrator"

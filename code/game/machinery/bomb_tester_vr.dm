@@ -7,8 +7,8 @@
 	desc = "A device that can calculate the potential explosive yield of provided gases."
 	icon = 'icons/obj/machines/bomb_tester_vr.dmi'
 	icon_state = "generic"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	idle_power_usage = 50
 	active_power_usage = 1.5 KILOWATTS
 
@@ -62,11 +62,11 @@
 		simulation_finish()
 
 /obj/machinery/bomb_tester/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(tank1)
-		overlays += image(icon, "[icon_name]-tank1")
+		add_overlay("[icon_name]-tank1")
 	if(tank2)
-		overlays += image(icon, "[icon_name]-tank2")
+		add_overlay("[icon_name]-tank2")
 	if(stat & NOPOWER)
 		icon_state = "[icon_name]-p"
 	else
@@ -309,7 +309,7 @@
 		simulation_results += "<hr>Final Result: No detonation."
 
 /obj/machinery/bomb_tester/proc/canister_sim()
-	test_canister.anchored = 1
+	test_canister.anchored = TRUE
 	faketank.volume = tank1.air_contents.volume
 	faketank.copy_from(tank1.air_contents)
 	faketank_integrity = tank1.integrity
@@ -346,7 +346,7 @@
 	update_use_power(USE_POWER_IDLE)
 	update_icon()
 	if(test_canister && test_canister.anchored && !test_canister.connected_port)
-		test_canister.anchored = 0
+		test_canister.anchored = FALSE
 	if(cancelled)
 		return
 	if(simulation_results == "Error")

@@ -133,6 +133,18 @@
 				if(accessories_visible.len)
 					tie_msg += " Attached to it is [english_list(accessories_visible)]."
 
+		var/list/pocket_msg
+		if(l_store)
+			var/l_store_message = l_store.pocket_description(src, user)
+			if(l_store_message)
+				LAZYADD(pocket_msg, l_store_message)
+		if(r_store)
+			var/r_store_message = r_store.pocket_description(src, user)
+			if(r_store_message)
+				LAZYADD(pocket_msg, r_store_message)
+		if(LAZYLEN(pocket_msg))
+			tie_msg += " Near the waist it has [english_list(pocket_msg)]."
+		
 		if(w_uniform.blood_DNA)
 			msg += "<span class='warning'>[T.He] [T.is] wearing [bicon(w_uniform)] [w_uniform.gender==PLURAL?"some":"a"] [(w_uniform.blood_color != SYNTH_BLOOD_COLOUR) ? "blood" : "oil"]-stained [w_uniform.name]![tie_msg]</span>"
 		else
@@ -363,9 +375,9 @@
 			else if(temp.wounds.len > 0 || temp.open)
 				if(temp.is_stump() && temp.parent_organ && organs_by_name[temp.parent_organ])
 					var/obj/item/organ/external/parent = organs_by_name[temp.parent_organ]
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.his] [parent.name].</span>"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [parent.name].</span>"
 				else
-					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] has [temp.get_wounds_desc()] on [T.his] [temp.name].</span>"
+					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [temp.name].</span>"
 			else
 				wound_flavor_text["[temp.name]"] = ""
 			if(temp.dislocated == 2)

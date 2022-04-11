@@ -1,15 +1,3 @@
-var/UNATHI_EGG 		= "Unathi"
-var/TAJARAN_EGG 		= "Tajaran"
-var/AKULA_EGG 		= "Akula"
-var/SKRELL_EGG		= "Skrell"
-var/SERGAL_EGG 		= "Sergal"
-var/HUMAN_EGG 		= "Human"
-var/NEVREAN_EGG		= "nevrean"
-var/SLIME_EGG 		= "Slime"
-var/EGG_EGG 			= "Egg"
-var/XENOCHIMERA_EGG 	= "Xenochimera"
-var/XENOMORPH_EGG 	= "Xenomorph"
-
 // Define a place to save appearance in character setup
 /datum/preferences
 	var/vore_egg_type = "Egg" //The egg type they have.
@@ -26,8 +14,7 @@ var/XENOMORPH_EGG 	= "Xenomorph"
 	S["vore_egg_type"]		<< pref.vore_egg_type
 
 /datum/category_item/player_setup_item/vore/egg/sanitize_character()
-	var/valid_vore_egg_types = global_vore_egg_types
-	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, valid_vore_egg_types, initial(pref.vore_egg_type))
+	pref.vore_egg_type	 = sanitize_inlist(pref.vore_egg_type, global_vore_egg_types, initial(pref.vore_egg_type))
 
 /datum/category_item/player_setup_item/vore/egg/copy_to_mob(var/mob/living/carbon/human/character)
 	character.vore_egg_type	= pref.vore_egg_type
@@ -42,9 +29,9 @@ var/XENOMORPH_EGG 	= "Xenomorph"
 
 	else if(href_list["vore_egg_type"])
 		var/list/vore_egg_types = global_vore_egg_types
-		var/selection = input(user, "Choose your character's egg type:", "Character Preference", pref.vore_egg_type) as null|anything in vore_egg_types
+		var/selection = tgui_input_list(user, "Choose your character's egg type:", "Character Preference", vore_egg_types, pref.vore_egg_type)
 		if(selection)
-			pref.vore_egg_type = vore_egg_types[selection]
+			pref.vore_egg_type = selection
 			return TOPIC_REFRESH
 	else
 		return

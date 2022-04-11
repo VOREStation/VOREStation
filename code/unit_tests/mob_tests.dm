@@ -7,7 +7,21 @@
 	async = 1
 
 /datum/unit_test/space_suffocation/start_test()
-	var/turf/space/T = locate()
+	// Get an empty space level instead of just picking a random space turf
+	var/empty_z = using_map.get_empty_zlevel()
+	if(!empty_z)
+		fail("Unable to get empty z-level for suffocation test!")
+		return 1
+
+	// Away from map edges so they don't transit while we're testing
+	var/mid_w = round(world.maxx*0.5)
+	var/mid_h = round(world.maxy*0.5)
+
+	var/turf/T = locate(mid_w, mid_h, empty_z)
+
+	if(!T)
+		fail("Unable to find middle turf for suffocation test!")
+		return 1
 
 	H = new(T)
 	startOxyloss = H.getOxyLoss()

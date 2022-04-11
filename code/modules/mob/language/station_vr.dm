@@ -110,6 +110,20 @@
 		"ver", "stv", "pro", "ski"
 	)
 
+/datum/language/clownish
+	name = LANGUAGE_CLOWNISH
+	desc = "A special elective language course for those studying at the Clown Planet Institute."
+	speech_verb = "honks"
+	ask_verb = "seins"
+	exclaim_verb = "crenks"
+	whisper_verb = "squeaks"
+	colour = "#F785F2" // Pink for the clown.
+	key = "<"
+	flags = WHITELISTED | CLOWN
+	syllables = list(
+		"honk", "knock", "salt", "slip", "lube", "banana", "flower", "pie", "did you hear", "🅱️", "haha", "bully", "going up",
+	)
+
 /datum/language/drudakar
 	name = LANGUAGE_DRUDAKAR
 	desc = "The native language of the D'Rudak'Ar, a loosely tied together community of dragons and demi-dragons based in the Diul system. Features include many hard consonants and rolling 'r's."
@@ -135,13 +149,24 @@
 	colour = "spacer"
 	machine_understands = TRUE
 
+/datum/language/tavan
+	name = LANGUAGE_TAVAN
+	desc = "A language native to the Altevians, it has been adopted by other rodent faring species over time."
+	key = "E"
+	speech_verb = "squeaks"
+	whisper_verb = "squiks"
+	exclaim_verb = "squeaks loudly"
+	syllables = list ("sque", "uik", "squeak", "squee", "eak", "eek", "uek", "squik",
+			"squeek", "sq", "squee", "ee", "ek", "ak", "ueak", "squea")
+	colour = "tavan" 
+
 /datum/language/unathi
 	flags = 0
 /datum/language/tajaran
 	flags = 0
 /datum/language/skrell
 	flags = 0
-/datum/language/seromi
+/datum/language/teshari
 	flags = 0
 /datum/language/zaddat
 	flags = 0

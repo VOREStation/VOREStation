@@ -110,8 +110,7 @@
 /atom/Destroy(force = FALSE)
 	. = ..()
 	if (orbiters)
-		for (var/thing in orbiters)
-			var/datum/orbit/O = thing
+		for(var/datum/orbit/O as anything in orbiters)
 			if (O.orbiter)
 				O.orbiter.stop_orbit()
 
@@ -123,8 +122,7 @@
 /*
 /atom/movable/proc/transfer_observers_to(atom/movable/target)
 	if(orbiters)
-		for(var/thing in orbiters)
-			var/datum/orbit/O = thing
+		for(var/datum/orbit/O as anything in orbiters)
 			if(O.orbiter && isobserver(O.orbiter))
 				var/mob/dead/observer/D = O.orbiter
 				D.ManualFollow(target)

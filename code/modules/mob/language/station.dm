@@ -7,7 +7,7 @@
 	colour = "soghun"
 	key = "q"
 	machine_understands = 0
-	flags = RESTRICTED
+	flags = WHITELISTED // RESTRICTED would make this completely unavailable from character select
 	syllables = list("hs","zt","kr","st","sh")
 
 /datum/language/diona_local/get_random_name()
@@ -20,7 +20,7 @@
 	desc = "A complex language known instinctively by Dionaea, 'spoken' by emitting modulated radio waves. This version uses low frequency waves for slow communication at long ranges."
 	key = "w"
 	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
+	flags = WHITELISTED | HIVEMIND // RESTRICTED would make this completely unavailable from character select
 
 /datum/language/unathi
 	name = LANGUAGE_UNATHI
@@ -187,7 +187,7 @@
 	else
 		return pick(ai_names)
 
-/datum/language/seromi
+/datum/language/teshari
 	name = LANGUAGE_SCHECHI
 	desc = "A trilling language spoken by the diminutive Teshari."
 	speech_verb = "chirps"
@@ -203,7 +203,7 @@
 			"ci", "ri", "mi", "si", "ni", "ti", "li", "shi", "schi", "i", "i"
 		)
 
-/datum/language/seromi/get_random_name(gender)
+/datum/language/teshari/get_random_name(gender)
 	return ..(gender, 2, 4, 1.5)
 
 

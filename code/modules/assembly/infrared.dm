@@ -5,7 +5,7 @@
 	desc = "Emits a visible or invisible beam and is triggered when the beam is interrupted."
 	icon_state = "infrared"
 	origin_tech = list(TECH_MAGNET = 2)
-	matter = list(DEFAULT_WALL_MATERIAL = 1000, "glass" = 500, "waste" = 100)
+	matter = list(MAT_STEEL = 1000, MAT_GLASS = 500)
 
 	wires = WIRE_PULSE
 
@@ -65,11 +65,11 @@
 	for(var/i = 1 to limit)
 		var/obj/effect/beam/i_beam/I = new /obj/effect/beam/i_beam(current_spot)
 		I.master = src
-		I.density = 1
+		I.density = TRUE
 		I.set_dir(dir)
 		if(!step(I, I.dir)) //Try to take a step in that direction
 			return //Couldn't, oh well, we hit a wall or something. Beam should qdel itself in it's Bump().
-		I.density = 0
+		I.density = FALSE
 		i_beams |= I
 		I.visible = visible
 
@@ -127,8 +127,7 @@
 			return TRUE
 		if("visible")
 			visible = !visible
-			for(var/ibeam in i_beams)
-				var/obj/effect/beam/i_beam/I = ibeam
+			for(var/obj/effect/beam/i_beam/I as anything in i_beams)
 				I.visible = visible
 				CHECK_TICK
 			return TRUE
@@ -148,7 +147,7 @@
 	icon_state = "ibeam"
 	var/obj/item/device/assembly/infra/master = null
 	var/visible = 0
-	anchored = 1
+	anchored = TRUE
 
 /obj/effect/beam/i_beam/Initialize()
 	. = ..()

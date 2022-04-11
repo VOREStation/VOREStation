@@ -57,11 +57,9 @@
 /area/shuttle/generic_shuttle/gen)
 "aj" = (
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 8
 	},
 /obj/machinery/button/remote/airlock{
@@ -75,11 +73,9 @@
 /area/shuttle/generic_shuttle/gen)
 "ak" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_y = 0
+	dir = 8
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 4
 	},
 /obj/machinery/button/remote/airlock{
@@ -96,7 +92,6 @@
 	dir = 10
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 6
 	},
 /turf/simulated/floor/wood,
@@ -105,7 +100,6 @@
 /obj/structure/table/standard,
 /obj/machinery/recharger,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 8
 	},
 /turf/simulated/floor/wood,
@@ -201,7 +195,6 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	icon_state = "intact-scrubbers";
 	dir = 9
 	},
 /turf/simulated/floor/tiled{
@@ -210,7 +203,6 @@
 /area/shuttle/generic_shuttle/gen)
 "av" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 8
 	},
 /obj/structure/closet/emcloset,
@@ -220,8 +212,7 @@
 /area/shuttle/generic_shuttle/gen)
 "aw" = (
 /obj/machinery/light{
-	dir = 8;
-	icon_state = "tube1"
+	dir = 8
 	},
 /turf/simulated/floor/tiled{
 	icon_state = "techmaint"
@@ -248,7 +239,6 @@
 	req_one_access = newlist()
 	},
 /obj/effect/floor_decal/techfloor/orange{
-	icon_state = "techfloororange_edges";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -264,7 +254,6 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals_central6{
-	icon_state = "steel_decals_central6";
 	dir = 4
 	},
 /turf/simulated/floor/tiled{
@@ -273,7 +262,6 @@
 /area/shuttle/generic_shuttle/gen)
 "aC" = (
 /obj/machinery/light{
-	icon_state = "tube1";
 	dir = 4
 	},
 /turf/simulated/floor/tiled{
@@ -300,7 +288,6 @@
 /area/shuttle/generic_shuttle/gen)
 "aF" = (
 /obj/machinery/computer/ship/sensors{
-	icon_state = "computer";
 	dir = 4
 	},
 /obj/effect/floor_decal/techfloor/orange{
@@ -310,14 +297,12 @@
 /area/shuttle/generic_shuttle/gen)
 "aG" = (
 /obj/structure/bed/chair/bay/comfy/green{
-	icon_state = "bay_comfychair_preview";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/generic_shuttle/gen)
 "aH" = (
 /obj/machinery/computer/ship/engines{
-	icon_state = "computer";
 	dir = 8
 	},
 /obj/effect/floor_decal/techfloor/orange{
@@ -411,7 +396,6 @@
 /area/shuttle/generic_shuttle/gen)
 "aT" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
 	dir = 1
 	},
 /turf/simulated/floor/tiled{
@@ -469,7 +453,6 @@
 /area/shuttle/generic_shuttle/gen)
 "aZ" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
 	dir = 1
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals10,
@@ -509,7 +492,6 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/power/apc{
-	dir = 2;
 	name = "south bump";
 	pixel_y = -28
 	},
@@ -527,7 +509,6 @@
 /area/shuttle/generic_shuttle/gen)
 "bf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 4
 	},
 /turf/simulated/floor/tiled{
@@ -559,7 +540,6 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 8
 	},
 /turf/simulated/floor/tiled{
@@ -571,7 +551,6 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
-	icon_state = "map_scrubber_on";
 	dir = 8
 	},
 /turf/simulated/floor/tiled{
@@ -586,8 +565,7 @@
 /area/shuttle/generic_shuttle/gen)
 "bk" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 4;
-	icon_state = "map"
+	dir = 4
 	},
 /turf/simulated/wall/shull,
 /area/shuttle/generic_shuttle/gen)
@@ -666,8 +644,7 @@
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
-	icon_state = "4-8";
-	pixel_x = 0
+	icon_state = "4-8"
 	},
 /obj/effect/map_helper/airlock/door/ext_door,
 /obj/machinery/access_button{
@@ -703,7 +680,6 @@
 /area/shuttle/generic_shuttle/eng)
 "bv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
-	icon_state = "intact";
 	dir = 6
 	},
 /obj/structure/table/standard,
@@ -730,20 +706,18 @@
 /area/shuttle/generic_shuttle/eng)
 "by" = (
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
-	icon_state = "intact-supply";
 	dir = 4
 	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
-	pixel_x = 0;
 	pixel_y = 28
 	},
 /turf/simulated/floor/plating,
@@ -753,7 +727,6 @@
 	pixel_y = 28
 	},
 /obj/machinery/atmospherics/pipe/simple/visible/supply{
-	icon_state = "intact-supply";
 	dir = 4
 	},
 /obj/structure/cable{
@@ -791,7 +764,6 @@
 /area/shuttle/generic_shuttle/eng)
 "bE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
-	icon_state = "map-scrubbers";
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -802,7 +774,6 @@
 /area/shuttle/generic_shuttle/eng)
 "bG" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
-	icon_state = "map_vent_out";
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -820,9 +791,10 @@
 	dir = 1
 	},
 /obj/machinery/portable_atmospherics/canister/air,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 1
 	},
+/turf/simulated/floor/tiled/monotile,
 /area/shuttle/generic_shuttle/eng)
 "bJ" = (
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -831,15 +803,13 @@
 "bK" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal,
 /obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
+	dir = 4
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/generic_shuttle/eng)
 "bL" = (
 /obj/machinery/light/small{
-	dir = 8;
-	pixel_y = 0
+	dir = 8
 	},
 /obj/structure/table/standard,
 /obj/item/weapon/storage/box/metalfoam,
@@ -859,9 +829,10 @@
 	pixel_x = 32
 	},
 /obj/machinery/portable_atmospherics/canister/phoron,
-/turf/simulated/floor/tiled/monofloor{
+/obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 1
 	},
+/turf/simulated/floor/tiled/monotile,
 /area/shuttle/generic_shuttle/eng)
 "bO" = (
 /obj/machinery/atmospherics/portables_connector{
@@ -871,7 +842,8 @@
 	pixel_x = -32
 	},
 /obj/machinery/portable_atmospherics/canister/empty,
-/turf/simulated/floor/tiled/monofloor,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/shuttle/generic_shuttle/eng)
 "bP" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -894,7 +866,8 @@
 	dir = 8
 	},
 /obj/machinery/portable_atmospherics/canister/phoron,
-/turf/simulated/floor/tiled/monofloor,
+/obj/effect/floor_decal/steeldecal/monofloor,
+/turf/simulated/floor/tiled/monotile,
 /area/shuttle/generic_shuttle/eng)
 "bT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
@@ -932,7 +905,6 @@
 "gZ" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
-	destroy_hits = 10;
 	dir = 4;
 	icon_state = "pdoor0";
 	id = "generic_dorm2_blast";
@@ -942,9 +914,7 @@
 /turf/template_noop,
 /area/shuttle/generic_shuttle/gen)
 "jV" = (
-/obj/machinery/shipsensors{
-	dir = 2
-	},
+/obj/machinery/shipsensors,
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 4
 	},
@@ -961,7 +931,6 @@
 "Ue" = (
 /obj/machinery/door/blast/regular{
 	density = 0;
-	destroy_hits = 10;
 	dir = 4;
 	icon_state = "pdoor0";
 	id = "generic_dorm1_blast";

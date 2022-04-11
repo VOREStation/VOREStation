@@ -17,6 +17,8 @@
 	response_disarm = "pushes aside"
 	response_harm   = "smacks"
 
+	organ_names = /decl/mob_organ_names/tomato
+
 	harm_intent_damage = 5
 	melee_damage_upper = 15
 	melee_damage_lower = 10
@@ -25,3 +27,7 @@
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/tomatomeat
+	meat_amount = 4
+
+/decl/mob_organ_names/tomato
+	hit_zones = list("flesh", "leaf", "mouth")

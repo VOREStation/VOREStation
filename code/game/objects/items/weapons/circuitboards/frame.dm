@@ -10,37 +10,37 @@
 	name = T_BOARD("guestpass console")
 	build_path = /obj/machinery/computer/guestpass
 	board_type = new /datum/frame/frame_types/guest_pass_console
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/status_display
 	name = T_BOARD("status display")
 	build_path = /obj/machinery/status_display
 	board_type = new /datum/frame/frame_types/display
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/ai_status_display
 	name = T_BOARD("ai status display")
 	build_path = /obj/machinery/ai_status_display
 	board_type = new /datum/frame/frame_types/display
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/newscaster
 	name = T_BOARD("newscaster")
 	build_path = /obj/machinery/newscaster
 	board_type = new /datum/frame/frame_types/newscaster
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/atm
 	name = T_BOARD("atm")
 	build_path = /obj/machinery/atm
 	board_type = new /datum/frame/frame_types/atm
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/request
 	name = T_BOARD("request console")
 	build_path = /obj/machinery/requests_console
 	board_type = new /datum/frame/frame_types/supply_request_console
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 //Alarm
 
@@ -48,25 +48,31 @@
 	name = T_BOARD("fire alarm")
 	build_path = /obj/machinery/firealarm
 	board_type = new /datum/frame/frame_types/fire_alarm
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/airalarm
 	name = T_BOARD("air alarm")
 	build_path = /obj/machinery/alarm
 	board_type = new /datum/frame/frame_types/air_alarm
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/intercom
 	name = T_BOARD("intercom")
 	build_path = /obj/item/device/radio/intercom
 	board_type = new /datum/frame/frame_types/intercom
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/keycard_auth
 	name = T_BOARD("keycard authenticator")
 	build_path = /obj/machinery/keycard_auth
 	board_type = new /datum/frame/frame_types/keycard_authenticator
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+
+/obj/item/weapon/circuitboard/geiger
+	name = T_BOARD("geiger counter")
+	build_path = /obj/item/device/geiger/wall
+	board_type = new /datum/frame/frame_types/geiger
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 //Computer
 
@@ -74,7 +80,7 @@
 	name = T_BOARD("holopad")
 	build_path = /obj/machinery/hologram/holopad
 	board_type = new /datum/frame/frame_types/holopad
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
 /obj/item/weapon/circuitboard/scanner_console
 	name = T_BOARD("body scanner console")
@@ -94,7 +100,7 @@
 	name = T_BOARD("photocopier")
 	build_path = /obj/machinery/photocopier
 	board_type = new /datum/frame/frame_types/photocopier
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	req_components = list(
 							/obj/item/weapon/stock_parts/scanning_module = 1,
 							/obj/item/weapon/stock_parts/motor = 1,
@@ -105,7 +111,7 @@
 	name = T_BOARD("fax")
 	build_path = /obj/machinery/photocopier/faxmachine
 	board_type = new /datum/frame/frame_types/fax
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	req_components = list(
 							/obj/item/weapon/stock_parts/scanning_module = 1,
 							/obj/item/weapon/stock_parts/motor = 1,
@@ -146,7 +152,7 @@
 	name = T_BOARD("washing machine")
 	build_path = /obj/machinery/washing_machine
 	board_type = new /datum/frame/frame_types/washing_machine
-	matter = list(DEFAULT_WALL_MATERIAL = 50, "glass" = 50)
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 	req_components = list(
 							/obj/item/weapon/stock_parts/motor = 1,
 							/obj/item/weapon/stock_parts/gear = 2)
@@ -198,6 +204,15 @@
 							/obj/item/weapon/stock_parts/scanning_module = 3,
 							/obj/item/stack/material/glass/reinforced = 2)
 
+/obj/item/weapon/circuitboard/medical_kiosk
+	name = T_BOARD("medical kiosk")
+	build_path = /obj/machinery/medical_kiosk
+	board_type = new /datum/frame/frame_types/machine
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	req_components = list(
+							/obj/item/weapon/stock_parts/scanning_module = 3,
+							/obj/item/stack/material/glass/reinforced = 2)
+
 /obj/item/weapon/circuitboard/sleeper
 	name = T_BOARD("sleeper")
 	build_path = /obj/machinery/sleeper
@@ -240,3 +255,13 @@
 							/obj/item/weapon/stock_parts/spring = 1,
 							/obj/item/stack/cable_coil = 5)
 
+/obj/item/weapon/circuitboard/arf_generator
+	name = T_BOARD("atmospheric field generator")
+	build_path = /obj/machinery/atmospheric_field_generator
+	board_type = new /datum/frame/frame_types/arfgs
+	origin_tech = list(TECH_MAGNET = 4, TECH_POWER = 4, TECH_BIO = 3)
+	req_components = list(
+							/obj/item/weapon/stock_parts/micro_laser/high = 2,	//field emitters
+							/obj/item/weapon/stock_parts/scanning_module = 1,	//atmosphere sensor
+							/obj/item/weapon/stock_parts/capacitor/adv = 1,		//for the JUICE
+							/obj/item/stack/cable_coil = 10)

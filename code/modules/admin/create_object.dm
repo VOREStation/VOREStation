@@ -14,7 +14,7 @@
 
 	var/quick_create_object_html = null
 	var/pathtext = null
-	pathtext = input("Select the path of the object you wish to create.", "Path", "/obj") as null|anything in list("/obj",
+	var/list/choices = list("/obj",
 	"/obj/structure",
 	"/obj/item",
 	"/obj/item/device",
@@ -28,6 +28,8 @@
 	"/obj/mecha",
 	"/obj/item/mecha_parts",
 	"/obj/item/mecha_parts/mecha_equipment")
+	
+	pathtext = tgui_input_list(usr, "Select the path of the object you wish to create.", "Path", choices, "/obj")
 
 	if(!pathtext)
 		return

@@ -52,8 +52,7 @@
 		return // Lucky!
 
 	// Hide people
-	for(var/living in victims)
-		var/mob/living/L = living
+	for(var/mob/living/L as anything in victims)
 		victims[L] = get_turf(L)
 		L.Sleeping(rand(10,20))
 		L.Life()
@@ -70,8 +69,7 @@
 	command_announcement.Announce("[crash_message]", "Shuttle Alert")
 
 	// Put people back
-	for(var/living in victims)
-		var/mob/living/L = living
+	for(var/mob/living/L as anything in victims)
 		L.loc = victims[L]
 		L.adjustBruteLoss(5)
 		L.adjustBruteLoss(10)

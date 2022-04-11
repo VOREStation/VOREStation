@@ -39,7 +39,7 @@
 					locked.throw_at(target, 14, 1.5, chassis)
 					locked = null
 					send_byjax(chassis.occupant,"exosuit.browser","\ref[src]",src.get_equip_info())
-					set_ready_state(0)
+					set_ready_state(FALSE)
 					chassis.use_power(energy_drain)
 					do_after_cooldown()
 				else
@@ -60,7 +60,7 @@
 					for(var/i=0 to iter)
 						step_away(A,target)
 						sleep(2)
-			set_ready_state(0)
+			set_ready_state(FALSE)
 			chassis.use_power(energy_drain)
 			do_after_cooldown()
 	return

@@ -1,11 +1,14 @@
-/obj/effect/overmap/visitable/sector/tether_gateway/snowfield
+/obj/effect/overmap/visitable/sector/common_gateway/snowfield
 	initial_generic_waypoints = list("tether_excursion_snowfield")
 	in_space = 0
-	scanner_name = "Snowy Field"
+	name = "Snowy Field"
 	scanner_desc = @{"[i]Stellar Body[/i]: UNKNOWN
 [i]Class[/i]: M-Class Planetoid
 [i]Habitability[/i]: Moderate (Low Temperature)
 [b]Notice[/b]: Very cold atmosphere, minimal life signs detected"}
+	unknown_state = "planet"
+	known = FALSE
+	icon_state = "frozen"
 
 // -- Areas -- //
 

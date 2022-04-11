@@ -25,7 +25,7 @@
 	var/static/list/field_edit_choices
 
 /obj/machinery/computer/secure_data/Initialize()
-	..()
+	. = ..()
 	field_edit_questions = list(
 		// General
 		"name" = "Please enter new name:",
@@ -317,16 +317,16 @@
 				if(!length(t1))
 					return
 
-				for(var/datum/data/record/R in data_core.security)
-					if(t1 == lowertext(R.fields["name"]) || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["b_dna"]))
-						active2 = R
+				for(var/datum/data/record/R in data_core.general)
+					if(t1 == lowertext(R.fields["name"]) || t1 == lowertext(R.fields["id"]) || t1 == lowertext(R.fields["fingerprint"]))
+						active1 = R
 						break
-				if(!active2)
-					set_temp("Security record not found. You must enter the person's exact name, ID or DNA.", "danger")
+				if(!active1)
+					set_temp("Security record not found. You must enter the person's exact name, ID, or fingerprint.", "danger")
 					return
-				for(var/datum/data/record/E in data_core.general)
-					if(E.fields["name"] == active2.fields["name"] && E.fields["id"] == active2.fields["id"])
-						active1 = E
+				for(var/datum/data/record/E in data_core.security)
+					if(E.fields["name"] == active1.fields["name"] && E.fields["id"] == active1.fields["id"])
+						active2 = E
 						break
 				screen = SEC_DATA_RECORD
 			if("print_p")
@@ -389,11 +389,11 @@
 
 					if(field == "age")
 						answer = text2num(answer)
-					
+
 					if(field == "rank")
 						if(answer in joblist)
 							active1.fields["real_rank"] = answer
-					
+
 					if(field == "criminal")
 						for(var/mob/living/carbon/human/H in player_list)
 							BITSET(H.hud_updateflag, WANTED_HUD)

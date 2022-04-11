@@ -5,18 +5,35 @@
 
 /datum/category_item/player_setup_item/general/language/load_character(var/savefile/S)
 	S["language"]			>> pref.alternate_languages
+	testing("LANGSANI: Loaded from [pref.client]'s character [pref.real_name || "-name not yet loaded-"] savefile: [english_list(pref.alternate_languages || list())]")
 	S["language_prefixes"]	>> pref.language_prefixes
 
 /datum/category_item/player_setup_item/general/language/save_character(var/savefile/S)
 	S["language"]			<< pref.alternate_languages
+	testing("LANGSANI: Saved to [pref.client]'s character [pref.real_name || "-name not yet loaded-"] savefile: [english_list(pref.alternate_languages || list())]")
 	S["language_prefixes"]	<< pref.language_prefixes
 
 /datum/category_item/player_setup_item/general/language/sanitize_character()
-	if(!islist(pref.alternate_languages))	pref.alternate_languages = list()
+	if(!islist(pref.alternate_languages))
+		testing("LANGSANI: Sanitizing languages on [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because their character has no languages list")
+		pref.alternate_languages = list()
 	if(pref.species)
 		var/datum/species/S = GLOB.all_species[pref.species]
-		if(S && pref.alternate_languages.len > S.num_alternate_languages)
+		if(!istype(S))
+			testing("LANGSANI: Failed sani on [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because their species ([pref.species]) isn't in the global list")
+			return
+			
+		if(pref.alternate_languages.len > S.num_alternate_languages)
+			testing("LANGSANI: Truncated [pref.client]'s character [pref.real_name || "-name not yet loaded-"] language list because it was too long (len: [pref.alternate_languages.len], allowed: [S.num_alternate_languages])")
 			pref.alternate_languages.len = S.num_alternate_languages // Truncate to allowed length
+
+		// Sanitize illegal languages
+		for(var/language in pref.alternate_languages)
+			var/datum/language/L = GLOB.all_languages[language]
+			if(!istype(L) || (L.flags & RESTRICTED) || (!(language in S.secondary_langs) && pref.client && !is_lang_whitelisted(pref.client, L)))
+				testing("LANGSANI: Removed [L?.name || "lang not found"] from [pref.client]'s character [pref.real_name || "-name not yet loaded-"] because it failed allowed checks")
+				pref.alternate_languages -= language
+
 	if(isnull(pref.language_prefixes) || !pref.language_prefixes.len)
 		pref.language_prefixes = config.language_prefixes.Copy()
 	for(var/prefix in pref.language_prefixes)
@@ -52,7 +69,7 @@
 	else if(href_list["add_language"])
 		var/datum/species/S = GLOB.all_species[pref.species]
 		if(pref.alternate_languages.len >= S.num_alternate_languages)
-			alert(user, "You have already selected the maximum number of alternate languages for this species!")
+			tgui_alert_async(user, "You have already selected the maximum number of alternate languages for this species!")
 		else
 			var/list/available_languages = S.secondary_langs.Copy()
 			for(var/L in GLOB.all_languages)
@@ -66,9 +83,9 @@
 			available_languages -= pref.alternate_languages
 
 			if(!available_languages.len)
-				alert(user, "There are no additional languages available to select.")
+				tgui_alert_async(user, "There are no additional languages available to select.")
 			else
-				var/new_lang = input(user, "Select an additional language", "Character Generation", null) as null|anything in available_languages
+				var/new_lang = tgui_input_list(user, "Select an additional language", "Character Generation", available_languages)
 				if(new_lang && pref.alternate_languages.len < S.num_alternate_languages)
 					pref.alternate_languages |= new_lang
 					return TOPIC_REFRESH
@@ -77,16 +94,16 @@
 		var/char
 		var/keys[0]
 		do
-			char = input("Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
+			char = input(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
 			if(char)
 				if(length(char) > 1)
-					alert(user, "Only single characters allowed.", "Error", "Ok")
+					tgui_alert_async(user, "Only single characters allowed.", "Error")
 				else if(char in list(";", ":", "."))
-					alert(user, "Radio character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Radio character. Rejected.", "Error")
 				else if(char in list("!","*","^","-"))
-					alert(user, "Say character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Say character. Rejected.", "Error")
 				else if(contains_az09(char))
-					alert(user, "Non-special character. Rejected.", "Error", "Ok")
+					tgui_alert_async(user, "Non-special character. Rejected.", "Error")
 				else
 					keys.Add(char)
 		while(char && keys.len < 3)

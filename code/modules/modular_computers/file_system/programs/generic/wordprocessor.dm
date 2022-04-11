@@ -118,7 +118,7 @@
 
 		if("PRG_openfile")
 			if(is_edited)
-				if(alert("Would you like to save your changes first?",,"Yes","No") == "Yes")
+				if(tgui_alert(usr, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
 					save_file(open_file)
 			browsing = 0
 			if(!open_file(params["PRG_openfile"]))
@@ -127,7 +127,7 @@
 
 		if("PRG_newfile")
 			if(is_edited)
-				if(alert("Would you like to save your changes first?",,"Yes","No") == "Yes")
+				if(tgui_alert(usr, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
 					save_file(open_file)
 
 			var/newname = sanitize(input(usr, "Enter file name:", "New File") as text|null)

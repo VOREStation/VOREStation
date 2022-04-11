@@ -8,7 +8,6 @@ var/global/ingredientLimit = 20
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable
 	icon = 'icons/obj/food_custom.dmi'
-	trash = /obj/item/trash/plate
 	bitesize = 2
 
 	var/ingMax = 100
@@ -55,14 +54,14 @@ var/global/ingredientLimit = 20
 		ingredients += S
 
 		if(src.addTop)
-			overlays -= topping //thank you Comic
-		if(!fullyCustom && !stackIngredients && overlays.len)
-			overlays -= filling //we can't directly modify the overlay, so we have to remove it and then add it again
+			cut_overlay(topping)
+		if(!fullyCustom && !stackIngredients && our_overlays.len)
+			cut_overlay(filling) //we can't directly modify the overlay, so we have to remove it and then add it again
 			var/newcolor = S.filling_color != "#FFFFFF" ? S.filling_color : AverageColor(getFlatIcon(S, S.dir, 0), 1, 1)
 			filling.color = BlendRGB(filling.color, newcolor, 1/ingredients.len)
-			overlays += filling
+			add_overlay(filling)
 		else
-			overlays += generateFilling(S)
+			add_overlay(generateFilling(S))
 		if(addTop)
 			drawTopping()
 
@@ -129,7 +128,7 @@ var/global/ingredientLimit = 20
 /obj/item/weapon/reagent_containers/food/snacks/customizable/proc/drawTopping()
 	var/image/I = topping
 	I.pixel_y = (ingredients.len+1)*2
-	overlays += I
+	add_overlay(I)
 
 
 // Sandwiches //////////////////////////////////////////////////

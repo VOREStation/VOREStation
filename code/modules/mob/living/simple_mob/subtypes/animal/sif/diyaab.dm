@@ -29,12 +29,15 @@
 	maxHealth = 25
 	health = 25
 
+	meat_amount = 2
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	movement_cooldown = 0
 
 	melee_damage_lower = 2
 	melee_damage_upper = 6
 	base_attack_cooldown = 1 SECOND
-	attack_sharp = 1 //Bleeds, but it shouldn't rip off a limb?
+	attack_sharp = TRUE //Bleeds, but it shouldn't rip off a limb?
 	attacktext = list("gouged")
 
 	say_list_type = /datum/say_list/diyaab

@@ -14,8 +14,8 @@
 /area/shuttle/screebarge/fore)
 "ae" = (
 /obj/structure/disposaloutlet{
-	icon_state = "outlet";
-	dir = 1
+	dir = 1;
+	icon_state = "outlet"
 	},
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/plating,
@@ -24,8 +24,8 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	icon_state = "rwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "rwindow"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/fore)
@@ -33,19 +33,19 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	icon_state = "rwindow";
-	dir = 1
+	dir = 1;
+	icon_state = "rwindow"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/fore)
 "ah" = (
 /obj/machinery/power/emitter{
-	icon_state = "emitter";
-	dir = 1
+	dir = 1;
+	icon_state = "emitter"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
@@ -58,8 +58,8 @@
 "ai" = (
 /obj/machinery/computer/ship/helm,
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
@@ -73,8 +73,8 @@
 /area/shuttle/screebarge/fore)
 "al" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /obj/machinery/computer/shuttle_control/explore/screebarge,
 /turf/simulated/floor/reinforced,
@@ -83,8 +83,8 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	icon_state = "rwindow";
-	dir = 8
+	dir = 8;
+	icon_state = "rwindow"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/fore)
@@ -99,12 +99,12 @@
 /area/shuttle/screebarge/fore)
 "ao" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 1
+	dir = 1;
+	icon_state = "bay_chair_preview"
 	},
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -113,8 +113,8 @@
 /area/shuttle/screebarge/fore)
 "ap" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 1
+	dir = 1;
+	icon_state = "bay_chair_preview"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -143,8 +143,8 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	icon_state = "rwindow";
-	dir = 4
+	dir = 4;
+	icon_state = "rwindow"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/fore)
@@ -156,8 +156,8 @@
 /area/shuttle/screebarge/fore)
 "au" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-s";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-s"
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
@@ -176,24 +176,24 @@
 /area/shuttle/screebarge/fore)
 "ax" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "pipe-c";
-	dir = 1
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
 "ay" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
-	dir = 8
+	dir = 8;
+	icon_state = "pipe-t"
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
 "az" = (
 /obj/structure/table/standard,
 /obj/machinery/power/terminal{
-	icon_state = "term";
-	dir = 1
+	dir = 1;
+	icon_state = "term"
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -203,22 +203,22 @@
 "aA" = (
 /obj/machinery/disposal,
 /obj/structure/disposalpipe/trunk{
-	icon_state = "pipe-t";
-	dir = 4
+	dir = 4;
+	icon_state = "pipe-t"
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
 "aB" = (
 /obj/structure/disposalpipe/segment{
-	icon_state = "conpipe-c";
-	dir = 8
+	dir = 8;
+	icon_state = "conpipe-c"
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
 "aC" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_chair_preview"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "1-2"
@@ -227,8 +227,8 @@
 /area/shuttle/screebarge/fore)
 "aD" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_chair_preview"
 	},
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
 	frequency = 1380;
@@ -245,8 +245,8 @@
 /area/shuttle/screebarge/fore)
 "aF" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 1
+	dir = 1;
+	icon_state = "bay_chair_preview"
 	},
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -274,8 +274,8 @@
 /area/shuttle/screebarge/fore)
 "aJ" = (
 /obj/machinery/power/emitter{
-	icon_state = "emitter";
-	dir = 1
+	dir = 1;
+	icon_state = "emitter"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-2"
@@ -308,15 +308,15 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	icon_state = "rwindow";
-	dir = 8
+	dir = 8;
+	icon_state = "rwindow"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/mid)
 "aP" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_chair_preview"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/screebarge/mid)
@@ -325,15 +325,15 @@
 /area/shuttle/screebarge/mid)
 "aR" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 8
+	dir = 8;
+	icon_state = "bay_chair_preview"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/screebarge/mid)
 "aS" = (
 /obj/machinery/sleeper{
-	icon_state = "sleeper_0";
-	dir = 8
+	dir = 8;
+	icon_state = "sleeper_0"
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/shuttle/screebarge/mid)
@@ -351,8 +351,8 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/structure/window/reinforced{
-	icon_state = "rwindow";
-	dir = 4
+	dir = 4;
+	icon_state = "rwindow"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/mid)
@@ -455,8 +455,8 @@
 /area/shuttle/screebarge/aft)
 "bk" = (
 /obj/machinery/atmospherics/portables_connector{
-	icon_state = "map_connector";
-	dir = 4
+	dir = 4;
+	icon_state = "map_connector"
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -464,8 +464,8 @@
 /area/shuttle/screebarge/aft)
 "bl" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	icon_state = "map";
-	dir = 1
+	dir = 1;
+	icon_state = "map"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "1-4"
@@ -474,8 +474,8 @@
 /area/shuttle/screebarge/aft)
 "bm" = (
 /obj/machinery/atmospherics/binary/pump{
-	icon_state = "map_off";
-	dir = 4
+	dir = 4;
+	icon_state = "map_off"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "4-8"
@@ -484,8 +484,8 @@
 /area/shuttle/screebarge/aft)
 "bn" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	icon_state = "map";
-	dir = 1
+	dir = 1;
+	icon_state = "map"
 	},
 /obj/structure/cable/cyan{
 	icon_state = "0-8"
@@ -498,22 +498,22 @@
 /area/shuttle/screebarge/aft)
 "bo" = (
 /obj/machinery/atmospherics/binary/pump{
-	icon_state = "map_off";
-	dir = 8
+	dir = 8;
+	icon_state = "map_off"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/aft)
 "bp" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	icon_state = "map";
-	dir = 1
+	dir = 1;
+	icon_state = "map"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/aft)
 "bq" = (
 /obj/machinery/atmospherics/portables_connector{
-	icon_state = "map_connector";
-	dir = 8
+	dir = 8;
+	icon_state = "map_connector"
 	},
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/portable_atmospherics/canister/phoron,
@@ -521,8 +521,8 @@
 /area/shuttle/screebarge/aft)
 "br" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	icon_state = "intact";
-	dir = 9
+	dir = 9;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/aft)
@@ -535,36 +535,36 @@
 /area/shuttle/screebarge/fore)
 "bt" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	icon_state = "intact";
-	dir = 1
+	dir = 1;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/aft)
 "bu" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	icon_state = "intact";
-	dir = 5
+	dir = 5;
+	icon_state = "intact"
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/aft)
 "bv" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	icon_state = "intact";
-	dir = 6
+	dir = 6;
+	icon_state = "intact"
 	},
 /turf/simulated/wall/shull,
 /area/shuttle/screebarge/aft)
 "bw" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
-	icon_state = "map";
-	dir = 1
+	dir = 1;
+	icon_state = "map"
 	},
 /turf/simulated/wall/shull,
 /area/shuttle/screebarge/aft)
 "bx" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	icon_state = "intact";
-	dir = 4
+	dir = 4;
+	icon_state = "intact"
 	},
 /turf/simulated/wall/shull,
 /area/shuttle/screebarge/aft)
@@ -574,8 +574,8 @@
 /area/shuttle/screebarge/aft)
 "bz" = (
 /obj/machinery/atmospherics/pipe/simple/visible/yellow{
-	icon_state = "intact";
-	dir = 10
+	dir = 10;
+	icon_state = "intact"
 	},
 /turf/simulated/wall/shull,
 /area/shuttle/screebarge/aft)
@@ -609,18 +609,18 @@
 /area/shuttle/screebarge/mid)
 "bD" = (
 /obj/machinery/button/remote/airlock{
+	desiredstate = 1;
+	id = "battlebarge_frontdoor";
 	pixel_x = 26;
 	pixel_y = 5;
-	id = "battlebarge_frontdoor";
-	desiredstate = 1;
 	specialfunctions = 4
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/screebarge/fore)
 "bE" = (
 /obj/structure/bed/chair/bay/chair{
-	icon_state = "bay_chair_preview";
-	dir = 4
+	dir = 4;
+	icon_state = "bay_chair_preview"
 	},
 /obj/machinery/light/small{
 	dir = 8
@@ -637,6 +637,20 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/shuttle/screebarge/aft)
+"YC" = (
+/obj/structure/bed/chair/bay/chair{
+	dir = 8;
+	icon_state = "bay_chair_preview"
+	},
+/obj/structure/cable/cyan{
+	icon_state = "1-2"
+	},
+/obj/structure/panic_button{
+	pixel_x = 32;
+	pixel_y = 32
+	},
+/turf/simulated/floor/reinforced,
+/area/shuttle/screebarge/fore)
 
 (1,1,1) = {"
 aa
@@ -973,7 +987,7 @@ aJ
 ar
 at
 aC
-aC
+YC
 at
 aN
 aU

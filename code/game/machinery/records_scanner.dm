@@ -1,14 +1,14 @@
 //not a computer
-obj/machinery/scanner
+/obj/machinery/scanner
 	name = "identity analyzer"
 	var/outputdir = 0
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "scanner_idle"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	var/lastuser = null
 
-obj/machinery/scanner/New()
+/obj/machinery/scanner/New()
 	if(!outputdir)
 		switch(dir)
 			if(1)
@@ -35,7 +35,7 @@ obj/machinery/scanner/New()
 	else
 		icon_state = "scanner_idle"
 
-obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
 	if(stat & NOPOWER)
 		return
 	if(!ishuman(user) || lastuser == user.real_name)

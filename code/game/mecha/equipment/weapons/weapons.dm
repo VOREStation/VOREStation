@@ -2,6 +2,7 @@
 	name = "mecha weapon"
 	range = RANGED
 	origin_tech = list(TECH_MATERIAL = 3, TECH_COMBAT = 3)
+	matter = list(MAT_STEEL = 6000, MAT_GLASS = 3000)
 	var/projectile //Type of projectile fired.
 	var/projectiles = 1 //Amount of projectiles loaded.
 	var/projectiles_per_shot = 1 //Amount of projectiles fired per single shot.
@@ -43,7 +44,7 @@
 		var/turf/aimloc = targloc
 		if(deviation)
 			aimloc = locate(targloc.x+GaussRandRound(deviation,1),targloc.y+GaussRandRound(deviation,1),targloc.z)
-		if(!aimloc || aimloc == curloc || (locs && aimloc in locs))
+		if(!aimloc || aimloc == curloc || (locs && (aimloc in locs)))
 			break
 		playsound(src, fire_sound, fire_volume, 1)
 		projectiles--
@@ -57,12 +58,12 @@
 		var/P = new projectile(projectile_turf)
 		Fire(P, target, params)
 		if(i == 1)
-			set_ready_state(0)
+			set_ready_state(FALSE)
 		if(fire_cooldown)
 			sleep(fire_cooldown)
 	if(auto_rearm)
 		projectiles = projectiles_per_shot
-//	set_ready_state(0)
+//	set_ready_state(FALSE)
 
 	do_after_cooldown()
 

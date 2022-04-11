@@ -29,11 +29,13 @@
 
 	attacktext = list("slammed")
 
+	organ_names = /decl/mob_organ_names
+
 	ai_holder_type = /datum/ai_holder/simple_mob/inert
 
 	mob_class = MOB_CLASS_ABERRATION	// It's a monster.
 
-	meat_amount = 2
+	meat_amount = 10
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/worm
 
 	var/mob/living/simple_mob/animal/space/space_worm/previous //next/previous segments, correspondingly
@@ -108,7 +110,7 @@
 		icon_state = "[icon_state]_dead"
 
 /mob/living/simple_mob/animal/space/space_worm/head/Initialize()
-	..()
+	. = ..()
 
 	var/mob/living/simple_mob/animal/space/space_worm/current = src
 
@@ -369,46 +371,3 @@
 		previous.update_body_faction()
 		return 1
 	return 0
-
-// Worm meat.
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/worm
-	name = "meat"
-	desc = "A chunk of pulsating meat."
-	icon_state = "wormmeat"
-	health = 180
-	filling_color = "#551A8B"
-	center_of_mass = list("x"=16, "y"=14)
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/worm/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 6)
-	reagents.add_reagent("phoron", 3)
-	reagents.add_reagent("myelamine", 3)
-	src.bitesize = 3
-
-/obj/item/weapon/reagent_containers/food/snacks/meat/worm/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/material/knife))
-		var/to_spawn = pickweight(/obj/random/junk = 30,
-		/obj/random/trash = 30,
-		/obj/random/maintenance/clean = 15,
-		/obj/random/tool = 15,
-		/obj/random/medical = 3,
-		/obj/random/bomb_supply = 7,
-		/obj/random/contraband = 3,
-		/obj/random/unidentified_medicine/old_medicine = 7,
-		/obj/item/weapon/strangerock = 3,
-		/obj/item/weapon/ore/phoron = 7,
-		/obj/random/handgun = 1,
-		/obj/random/toolbox = 4,
-		/obj/random/drinkbottle = 5
-		)
-
-		new to_spawn(get_turf(src))
-
-		if(prob(20))
-			user.visible_message("<span class='alien'>Something oozes out of \the [src] as it is cut.</span>")
-
-		to_chat(user, "<span class='alien'>You cut the tissue holding the chunks together.</span>")
-
-	..()

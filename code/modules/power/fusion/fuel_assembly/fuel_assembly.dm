@@ -10,7 +10,7 @@
 	var/fuel_type = "composite"
 	var/fuel_colour
 	var/radioactivity = 0
-	var/const/initial_amount = 300
+	var/const/initial_amount = 3000000
 
 /obj/item/weapon/fuel_assembly/New(var/newloc, var/_material, var/_colour)
 	fuel_type = _material
@@ -38,7 +38,7 @@
 	icon_state = "blank"
 	var/image/I = image(icon, "fuel_assembly")
 	I.color = fuel_colour
-	overlays += list(I, image(icon, "fuel_assembly_bracket"))
+	add_overlay(list(I, image(icon, "fuel_assembly_bracket")))
 	rod_quantities[fuel_type] = initial_amount
 
 /obj/item/weapon/fuel_assembly/process()

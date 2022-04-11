@@ -112,7 +112,6 @@ Variables you may want to make use of are:
 		)
 
 	var/use_bodyshape = SPECIES_HUMAN
-	var/waterbreathing = 0
 	var/overcome_gravity = 0
 	var/hover = 0
 
@@ -122,7 +121,7 @@ Variables you may want to make use of are:
 			has_limbs = list(
 				BP_TORSO =	list("path" = /obj/item/organ/external/chest),
 				BP_GROIN =	list("path" = /obj/item/organ/external/groin),
-				BP_HEAD =	 list("path" = /obj/item/organ/external/head),
+				BP_HEAD =	list("path" = /obj/item/organ/external/head),
 				BP_L_ARM =	list("path" = /obj/item/organ/external/arm),
 				BP_R_ARM =	list("path" = /obj/item/organ/external/arm/right),
 				BP_L_LEG =	list("path" = /obj/item/organ/external/leg),
@@ -178,7 +177,7 @@ Variables you may want to make use of are:
 
 /datum/species/event1/proc/choose_limbset()
 	var/list/limb_sets = list("Normal" = 1, "Unbreakable" = 2, "Unseverable" = 3, "Indestructible" = 4)
-	var/choice = input("Choose limb set to use for future spawns.", "Limb types.") as null|anything in limb_sets
+	var/choice = tgui_input_list(usr, "Choose limb set to use for future spawns.", "Limb types.", limb_sets)
 	set_limbset(limb_sets[choice])
 	return limb_sets[choice]
 
@@ -199,7 +198,7 @@ Variables you may want to make use of are:
 
 /datum/species/event1/proc/toggle_cloning()
 	flags ^= NO_SCAN
-	
+
 /datum/species/event1/proc/toggle_defibbing()
 	flags ^= NO_DEFIB
 
@@ -214,9 +213,6 @@ Variables you may want to make use of are:
 
 /datum/species/event1/get_bodytype(var/mob/living/carbon/human/H) //Default to human sprites, if they're based on another species, var edit use_bodyshape to the correct thing in _defines/mobs.dm of the species you want to use.
 	return use_bodyshape
-
-/datum/species/event1/can_breathe_water()
-	return waterbreathing
 
 /datum/species/event1/can_overcome_gravity(var/mob/living/carbon/human/H)
 	return overcome_gravity

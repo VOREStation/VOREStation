@@ -10,7 +10,7 @@
 	throw_speed = 2
 	throw_range = 5
 	origin_tech = list(TECH_MATERIAL = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500)
+	matter = list(MAT_STEEL = 500)
 	drop_sound = 'sound/items/drop/accessory.ogg'
 	pickup_sound = 'sound/items/pickup/accessory.ogg'
 	var/elastic
@@ -19,7 +19,7 @@
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
 	var/cuff_type = "handcuffs"
 	var/use_time = 30
-	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/seromi/handcuffs.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
 
 /obj/item/weapon/handcuffs/get_worn_icon_state(var/slot_name)
 	if(slot_name == slot_handcuffed_str)
@@ -141,6 +141,7 @@ var/last_chew = 0
 /obj/item/weapon/handcuffs/fuzzy
 	name = "fuzzy cuffs"
 	icon_state = "fuzzycuff"
+	breakouttime = 100 //VOREstation edit
 	desc = "Use this to keep... 'prisoners' in line."
 
 /obj/item/weapon/handcuffs/cable
@@ -176,17 +177,6 @@ var/last_chew = 0
 /obj/item/weapon/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/weapon/handcuffs/cable/attackby(var/obj/item/I, mob/user as mob)
-	..()
-	if(istype(I, /obj/item/stack/rods))
-		var/obj/item/stack/rods/R = I
-		if (R.use(1))
-			var/obj/item/weapon/material/wirerod/W = new(get_turf(user))
-			user.put_in_hands(W)
-			to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
-			qdel(src)
-			update_icon(user)
-
 /obj/item/weapon/handcuffs/cyborg
 	dispenser = 1
 
@@ -214,7 +204,7 @@ var/last_chew = 0
 	origin_tech = list(TECH_MATERIAL = 1)
 	breakouttime = 300	//Deciseconds = 30s = 0.5 minute
 	cuff_type = "legcuffs"
-	sprite_sheets = list("Teshari" = 'icons/mob/species/seromi/handcuffs.dmi')
+	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
 	elastic = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 
@@ -312,7 +302,7 @@ var/last_chew = 0
 		return 1
 
 /obj/item/weapon/handcuffs/legcuffs/bola/dropped()
-	visible_message("<span class='notice'>\The [src] falls apart!</span>")
+	visible_message("<b>\The [src]</b> falls apart!")
 	qdel(src)
 
 /obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
@@ -324,7 +314,7 @@ var/last_chew = 0
 		return 0
 
 	if(!H.has_organ_for_slot(slot_legcuffed))
-		H.visible_message("<span class='notice'>\The [src] slams into [H], but slides off!</span>")
+		H.visible_message("<b>\The [src]</b> slams into [H], but slides off!")
 		src.dropped()
 		return 0
 
@@ -340,3 +330,8 @@ var/last_chew = 0
 		if(target.hud_used && user.hud_used.move_intent)
 			target.hud_used.move_intent.icon_state = "walking"
 	return 1
+
+/obj/item/weapon/handcuffs/cable/plantfiber
+	name = "rope bindings"
+	desc = "A length of rope fashioned to hold someone's hands together."
+	color = "#7e6442"

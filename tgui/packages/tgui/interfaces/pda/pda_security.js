@@ -72,8 +72,8 @@ export const pda_security = (props, context) => {
               <LabeledList.Item label="Details">
                 {security.ma_crim_d}
               </LabeledList.Item>
-              <LabeledList.Item label="Important Notes:">
-                {security.notes}
+              <LabeledList.Item label="Important Notes:" preserveWhitespace>
+                {security.notes || "No data found."}
               </LabeledList.Item>
             </LabeledList>
           ) || (

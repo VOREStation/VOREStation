@@ -34,7 +34,7 @@
 		to_chat(user, "<span class=warning>There's nothing on the glass to remove!</span>")
 		return
 
-	var/choice = input(user, "What would you like to remove from the glass?") as null|anything in extras
+	var/choice = tgui_input_list(user, "What would you like to remove from the glass?", "Removal Choice", extras)
 	if(!choice || !(choice in extras))
 		return
 
@@ -68,5 +68,50 @@
 	glass_addition = "straw"
 	glass_desc = "There is a straw in the glass."
 	icon_state = "straw"
+
+// This isn't great code, so if you're doing something that happens many times or isn't user-initiated
+// like this is, where it'll likely happen 0-4 times a shift, then don't copy this pattern.
+/obj/item/weapon/glass_extra/straw/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(ismob(target) && proximity_flag)
+		// Clicked protean blob
+		if(istype(target, /mob/living/simple_mob/protean_blob))
+			sipp_mob(target, user, "liquid_protean")
+			return
+		// Clicked humanoid
+		else if(ishuman(target))
+			var/mob/living/carbon/human/H = target
+			var/speciesname = H.species?.name
+			switch(speciesname)
+				if(SPECIES_PROTEAN)
+					sipp_mob(target, user, "liquid_protean")
+					return
+				if(SPECIES_PROMETHEAN)
+					sipp_mob(target, user, "nutriment")
+					return
+	return ..()
+
+/obj/item/weapon/glass_extra/straw/proc/sipp_mob(mob/living/victim, mob/user, reagent_type = "nutriment")
+	if(victim.health <= 0)
+		to_chat(user, "<span class='warning'>There's not enough of [victim] left to sip on!</span>")
+		return
+	
+	user.visible_message("<b>[user]</b> starts sipping on [victim] with [src]!", "You start sipping on [victim] with [src].")
+	if(!do_after(user, 3 SECONDS, victim, exclusive = TASK_ALL_EXCLUSIVE))
+		return
+
+	user.visible_message("<b>[user]</b> sips some of [victim] with [src]!", "You take a sip of [victim] with [src]. Yum!")
+	if(victim.vore_taste)
+		to_chat(user, "<b>[victim]</b> tastes like... [victim.vore_taste]!")
+	
+	victim.apply_damage(5, used_weapon = "straw")
+	
+	// If you're human you get the reagent
+	if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		H.ingested.add_reagent(reagent_type, 2)
+	// Anything else just gets some nutrition
+	else if(isliving(user))
+		var/mob/living/L = user
+		L.adjust_nutrition(30)
 
 #undef DRINK_ICON_FILE

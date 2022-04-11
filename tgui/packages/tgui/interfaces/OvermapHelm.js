@@ -6,24 +6,31 @@ import { Window } from "../layouts";
 import { OvermapFlightData, OvermapPanControls } from './common/Overmap';
 
 export const OvermapHelm = (props, context) => {
-  const { act, data } = useBackend(context);
   return (
     <Window width={565} height={545} resizable>
       <Window.Content>
-        <Flex>
-          <Flex.Item basis="40%" height="180px">
-            <OvermapFlightDataWrap />
-          </Flex.Item>
-          <Flex.Item basis="25%" height="180px">
-            <OvermapManualControl />
-          </Flex.Item>
-          <Flex.Item basis="35%" height="180px">
-            <OvermapAutopilot />
-          </Flex.Item>
-        </Flex>
-        <OvermapNavComputer />
+        <OvermapHelmContent />
       </Window.Content>
     </Window>
+  );
+};
+
+export const OvermapHelmContent = (props, context) => {
+  return (
+    <Fragment>
+      <Flex>
+        <Flex.Item basis="40%" height="180px">
+          <OvermapFlightDataWrap />
+        </Flex.Item>
+        <Flex.Item basis="25%" height="180px">
+          <OvermapManualControl />
+        </Flex.Item>
+        <Flex.Item basis="35%" height="180px">
+          <OvermapAutopilot />
+        </Flex.Item>
+      </Flex>
+      <OvermapNavComputer />
+    </Fragment>
   );
 };
 

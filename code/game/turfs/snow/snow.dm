@@ -11,8 +11,6 @@
     temperature = TN60C
     var/list/crossed_dirs = list()
 
-#define FOOTSTEP_SPRITE_AMT 2
-
 /turf/snow/Entered(atom/A)
     if(ismob(A))
         var/mdir = "[A.dir]"

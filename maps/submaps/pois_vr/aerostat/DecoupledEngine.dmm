@@ -67,13 +67,13 @@
 /turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
 "ar" = (
-/obj/structure/sign/poi/engineright{
+/obj/structure/sign/scenery/engineright{
 	dir = 1
 	},
 /turf/simulated/wall/r_wall,
 /area/submap/virgo2/DecoupledEngine)
 "as" = (
-/obj/structure/sign/poi/engineleft{
+/obj/structure/sign/scenery/engineleft{
 	dir = 1
 	},
 /turf/simulated/wall/r_wall,
@@ -474,11 +474,11 @@
 /turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
 "bv" = (
-/obj/structure/sign/poi/engineleft,
+/obj/structure/sign/scenery/engineleft,
 /turf/simulated/wall/durasteel,
 /area/submap/virgo2/DecoupledEngine)
 "bw" = (
-/obj/structure/sign/poi/engineright,
+/obj/structure/sign/scenery/engineright,
 /turf/simulated/wall/r_wall,
 /area/submap/virgo2/DecoupledEngine)
 "bx" = (

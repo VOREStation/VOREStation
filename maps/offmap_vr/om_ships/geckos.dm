@@ -146,34 +146,31 @@
 
 // The 'ship'
 /obj/effect/overmap/visitable/ship/landable/gecko_sh
-	scanner_name = "Gecko-class Transport"
+	name = "Gecko-class Transport"
 	scanner_desc = @{"[i]Registration[/i]: ITV Sticky Fingers
 [i]Class[/i]: Medium Shuttle
 [i]Transponder[/i]: Transmitting (CIV), non-hostile
 [b]Notice[/b]: Medium personnel transport vessel"}
-	color = "#3366FF"
 	vessel_mass = 6500
 	vessel_size = SHIP_SIZE_LARGE
 	shuttle = "Gecko Stationhopper"
 
 /obj/effect/overmap/visitable/ship/landable/gecko_cr
-	scanner_name = "Gecko-class Transport"
+	name = "Gecko-class Transport"
 	scanner_desc = @{"[i]Registration[/i]: ITV Sticky Business
 [i]Class[/i]: Medium Shuttle
 [i]Transponder[/i]: Transmitting (CIV), non-hostile
 [b]Notice[/b]: Medium cargo transport vessel"}
-	color = "#3366FF"
 	vessel_mass = 6500
 	vessel_size = SHIP_SIZE_LARGE
 	shuttle = "Gecko Cargo Hauler"
 
 /obj/effect/overmap/visitable/ship/landable/gecko_cr_wreck
-	scanner_name = "Wrecked Gecko-class Transport"
+	name = "Wrecked Gecko-class Transport"
 	scanner_desc = @{"[i]Registration[/i]: ITV Sticky Situation
 [i]Class[/i]: Medium Shuttle
 [i]Transponder[/i]: Weakly transmitting (CIV), non-hostile
 [b]Notice[/b]: Medium cargo transport vessel, significant damage inflicted"}
-	color = "#3366FF"
 	vessel_mass = 6500
 	vessel_size = SHIP_SIZE_LARGE
 	shuttle = "Wrecked Gecko Cargo Hauler"

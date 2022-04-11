@@ -1,14 +1,28 @@
-/datum/category_item/catalogue/fauna/rat		//TODO: VIRGO_LORE_WRITING_WIP
+/datum/category_item/catalogue/fauna/rat
 	name = "Creature - Rat"
-	desc = "A massive rat, some sort of mutated descendant of normal Earth rats. These ones seem particularly hungry, \
-	and are able to pounce and stun their targets - presumably to eat them. Their bodies are long and greyfurred, \
-	with a pink nose and large teeth, just like their regular-sized counterparts."
+	desc = "Classification: Mus muscular\
+	<br><br>\
+	Rats are various medium-sized, long-tailed rodents. Species of rats are found throughout the order Rodentia, \
+	but stereotypical rats are found in the genus Rattus. This specific species of rat is a mutated descendant from lab rats. \
+	It is unclear what experiment caused this species to grow to such an unnatural size, however it hasn't affected the rat's \
+	general docile nature. When encountered by humans or other species it generally ignores them unless provoked.\
+	<br>\
+	Rats become sexually mature at age 6 weeks, but reach social maturity at about 5 to 6 months of age. \
+	The average lifespan of rats varies by species, but many only live about a year due to predation. \
+	However, due to the large nature of this particular species of rat, predation is usually not that much of an issue. \
+	This doesn't mean that there is an overpopulation, though, quite the opposite. Giant Rats are rare and this is usually \
+	due to small litter sizes and lack of proper food sources. Areas that one would typically see a Giant Rat is large garbage \
+	disposals or areas that have large amounts of live food (other rats, mice, etc.) such as maintenance tunnels. \
+	<br>\
+	Male rats are called bucks; unmated females, does, pregnant or parent females, dams; and infants, kittens or pups. \
+	A group of rats is referred to as a mischief."
 	value = CATALOGUER_REWARD_MEDIUM
 
 /mob/living/simple_mob/vore/aggressive/rat
 	name = "giant rat"
 	desc = "In what passes for a hierarchy among verminous rodents, this one is king."
 	tt_desc = "Mus muscular"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/rat)
 
 	icon_state = "rous"
 	icon_living = "rous"
@@ -30,6 +44,9 @@
 	response_harm = "hits"
 	attacktext = list("ravaged")
 	friendly = list("nuzzles", "licks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
+
+	meat_amount = 6
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 
 	old_x = -16
 	old_y = 0
@@ -146,7 +163,7 @@
 				hunger += 5
 		else
 			food.Weaken(5)
-			food.visible_message("<span class='danger'>\the [src] pounces on \the [food]!</span>!")
+			food.visible_message("<span class='danger'>\The [src] pounces on \the [food]!</span>!")
 			target_mob = food
 			EatTarget()
 			hunger = 0

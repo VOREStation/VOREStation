@@ -155,6 +155,7 @@
 		"milk",
 		"mint",
 		"orangejuice",
+		"redwine",
 		"rum",
 		"sake",
 		"sodawater",
@@ -172,8 +173,7 @@
 		"vodka",
 		"water",
 		"watermelonjuice",
-		"whiskey",
-		"wine")
+		"whiskey")
 
 /obj/item/weapon/reagent_containers/borghypo/service/attack(var/mob/M, var/mob/user)
 	return

@@ -1,3 +1,7 @@
+/*
+ * Formal
+ */
+
 /obj/item/clothing/accessory/vest
 	name = "black vest"
 	desc = "Slick black suit vest."
@@ -9,6 +13,21 @@
 	desc = "Cozy suit jacket."
 	icon_state = "tan_jacket"
 	slot = ACCESSORY_SLOT_OVER
+
+/obj/item/clothing/accessory/jacket/red
+	name = "red suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "red_jacket"
+
+/obj/item/clothing/accessory/jacket/teal
+	name = "teal suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "teal_jacket"
+
+/obj/item/clothing/accessory/jacket/green
+	name = "green suit jacket"
+	desc = "Relaxing suit jacket."
+	icon_state = "green_jacket"
 
 /obj/item/clothing/accessory/jacket/charcoal
 	name = "charcoal suit jacket"
@@ -30,6 +49,102 @@
 	desc = "Lucky suit jacket."
 	icon_state = "checkered_jacket"
 
+/obj/item/clothing/accessory/jacket/gambler
+	name = "gambler suit jacket"
+	desc = "Chairman suit jacket."
+	icon_state = "gambler_jacket"
+
+/obj/item/clothing/accessory/jacket/extravagant
+	name = "extravagant suit jacket"
+	desc = "Luxury suit jacket."
+	icon_state = "extravagant_jacket"
+
+/*
+ * Hawaiian
+ */
+
+/obj/item/clothing/accessory/hawaiian
+	name = "hawaiian shirt"
+	desc = "You probably need some welder googles to look at this."
+	icon_state = "hawaiian_cyan"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	siemens_coefficient = 0.9
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
+
+/obj/item/clothing/accessory/hawaiian/blue
+	name = "blue hawaiian shirt"
+	icon_state = "hawaiian_blue"
+
+/obj/item/clothing/accessory/hawaiian/pink
+	name = "pink hawaiian shirt"
+	icon_state = "hawaiian_pink"
+
+/obj/item/clothing/accessory/hawaiian/red
+	name = "red hawaiian shirt"
+	icon_state = "hawaiian_red"
+
+/obj/item/clothing/accessory/hawaiian/yellow
+	name = "yellow hawaiian shirt"
+	icon_state = "hawaiian_yellow"
+
+/obj/item/clothing/accessory/hawaiian_random
+	name = "random hawaiian shirt"
+	desc = "A random set of hawaiian shirts for style."
+
+/obj/item/clothing/accessory/hawaiian_random/New()
+	return pick(
+			prob(2);/obj/item/clothing/accessory/hawaiian,
+			prob(2);/obj/item/clothing/accessory/hawaiian/blue,
+			prob(2);/obj/item/clothing/accessory/hawaiian/pink,
+			prob(2);/obj/item/clothing/accessory/hawaiian/red,
+			prob(2);/obj/item/clothing/accessory/hawaiian/yellow
+			)
+
+/*
+ * 80s
+ */
+
+/obj/item/clothing/accessory/tropical
+	name = "black tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you feel like an animal."
+	icon_state = "animalstyle"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	siemens_coefficient = 0.9
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
+
+/obj/item/clothing/accessory/tropical/green
+	name = "puke-green tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you look like puke."
+	icon_state = "tropicopuke"
+
+/obj/item/clothing/accessory/tropical/pink
+	name = "pink tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you feel nostalgic."
+	icon_state = "3005vintage"
+
+/obj/item/clothing/accessory/tropical/blue
+	name = "blue tropical shirt"
+	desc = "A classic themed neosilk tropical shirt. This one makes you feel out of touch."
+	icon_state = "miamivice"
+
+/obj/item/clothing/accessory/tropical_random/New()
+	return pick(
+			prob(2);/obj/item/clothing/accessory/tropical,
+			prob(2);/obj/item/clothing/accessory/tropical/green,
+			prob(2);/obj/item/clothing/accessory/tropical/pink,
+			prob(2);/obj/item/clothing/accessory/tropical/blue
+			)
+
+/*
+ * Chaps
+ */
+
 /obj/item/clothing/accessory/chaps
 	name = "brown chaps"
 	desc = "A pair of loose, brown leather chaps."
@@ -43,12 +158,13 @@
 /*
  * Poncho
  */
+
 /obj/item/clothing/accessory/poncho
 	name = "poncho"
 	desc = "A simple, comfortable poncho."
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	var/fire_resist = T0C+100
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -57,19 +173,18 @@
 	siemens_coefficient = 0.9
 	w_class = ITEMSIZE_NORMAL
 	slot = ACCESSORY_SLOT_OVER
-
 	sprite_sheets = list(
-		"Teshari" = 'icons/mob/species/seromi/suit.dmi'
-		)
+		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
+	)
 
 /obj/item/clothing/accessory/poncho/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
 	..()
 	var/mob/living/carbon/human/H = loc
 	if(istype(H) && H.wear_suit == src)
-		if(H.species.name == "Teshari")
-			icon_override = 'icons/mob/species/seromi/suit.dmi'
+		if(H.species.name == SPECIES_TESHARI)
+			icon_override = 'icons/inventory/suit/mob_teshari.dmi'
 		else
-			icon_override = 'icons/mob/ties.dmi'
+			icon_override = 'icons/inventory/accessory/mob.dmi'
 		update_clothing_icon()
 
 /obj/item/clothing/accessory/poncho/dropped() //Resets the override to prevent the wrong .dmi from being used because equipped only triggers when wearing ponchos as suits.
@@ -132,6 +247,7 @@
 /*
  * Cloak
  */
+
 /obj/item/clothing/accessory/poncho/roles/cloak
 	name = "quartermaster's cloak"
 	desc = "An elaborate brown and gold cloak."
@@ -236,34 +352,12 @@
 	icon_state = "colorcloak"
 	item_state = "colorcloak"
 
-/obj/item/clothing/accessory/hawaii
-	name = "flower-pattern shirt"
-	desc = "You probably need some welder googles to look at this."
-	icon_state = "hawaii"
-	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	slot_flags = SLOT_OCLOTHING | SLOT_TIE
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	siemens_coefficient = 0.9
-	w_class = ITEMSIZE_NORMAL
-	slot = ACCESSORY_SLOT_OVER
-
-/obj/item/clothing/accessory/hawaii/red
-	icon_state = "hawaii2"
-
-/obj/item/clothing/accessory/hawaii/random
-	name = "flower-pattern shirt"
-
-/obj/item/clothing/accessory/hawaii/random/New()
-	if(prob(50))
-		icon_state = "hawaii2"
-	color = color_rotation(rand(-11,12)*15)
-
 /obj/item/clothing/accessory/wcoat
 	name = "waistcoat"
 	desc = "For some classy, murderous fun."
 	icon_state = "vest"
 	item_state = "vest"
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	item_state_slots = list(slot_r_hand_str = "wcoat", slot_l_hand_str = "wcoat")
 	allowed = list(/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -293,28 +387,39 @@
 	icon_state = "elegant_waistcoat"
 	item_state = "elegant_waistcoat"
 
+/*
+ * Sweatervests
+ */
+
 /obj/item/clothing/accessory/wcoat/swvest
-	name = "black sweatervest"
+	name = "black sweater vest"
 	desc = "A sleeveless sweater. Wear this if you don't want your arms to be warm, or if you're a nerd."
 	icon_state = "sweatervest"
 	item_state = "sweatervest"
 
 /obj/item/clothing/accessory/wcoat/swvest/blue
-	name = "blue sweatervest"
+	name = "blue sweater vest"
 	icon_state = "sweatervest_blue"
 	item_state = "sweatervest_blue"
 
 /obj/item/clothing/accessory/wcoat/swvest/red
-	name = "red sweatervest"
+	name = "red sweater vest"
 	icon_state = "sweatervest_red"
 	item_state = "sweatervest_red"
 
-//Sweaters.
+/obj/item/clothing/accessory/wcoat/swvest/green
+	name = "green sweater vest"
+	icon_state = "sweatervest_green"
+	item_state = "sweatervest_green"
+
+/*
+ * Sweaters
+ */
 
 /obj/item/clothing/accessory/sweater
 	name = "sweater"
 	desc = "A warm knit sweater."
-	icon_override = 'icons/mob/ties.dmi'
+	icon_override = 'icons/inventory/accessory/mob.dmi'
 	icon_state = "sweater"
 	slot_flags = SLOT_OCLOTHING | SLOT_TIE
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS
@@ -377,9 +482,15 @@
 	desc = "A comfortable turtleneck in a dark red."
 	icon_state = "turtleneck_red"
 
-//***
-// End of sweaters
-//***
+/obj/item/clothing/accessory/sweater/virgin
+	name = "virgin killer"
+	desc = "A knit sweater that leaves little to the imagination."
+	icon_state = "virginkiller"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/*
+ * Misc
+ */
 
 /obj/item/clothing/accessory/cowledvest
 	name = "cowled vest"
@@ -405,3 +516,20 @@
 	name = "orange asymmetrical overcoat"
 	desc = "An asymmetrical orange overcoat in a 2560's fashion."
 	icon_state = "asymovercoat"
+
+/*
+ * Cowboy Vests
+ */
+
+/obj/item/clothing/accessory/cowboy_vest
+	name = "ranger cowboy vest"
+	desc = "A rugged looking vest made from leather. For those that tame the wilds."
+	icon_state = "cowboyvest_ranger"
+
+/obj/item/clothing/accessory/cowboy_vest/brown
+	name = "brown cowboy vest"
+	icon_state = "cowboyvest_brown"
+
+/obj/item/clothing/accessory/cowboy_vest/grey
+	name = "grey cowboy vest"
+	icon_state = "cowboyvest_grey"

@@ -96,7 +96,7 @@
 //this has to mirror the way update_inv_*_hand() selects the state
 /datum/custom_item/proc/get_state(var/obj/item/item, var/slot_str, var/hand_str)
 	var/t_state
-	if(item.item_state_slots && item.item_state_slots[slot_str])
+	if(LAZYACCESS(item.item_state_slots, slot_str))
 		t_state = item.item_state_slots[slot_str]
 	else if(item.item_state)
 		t_state = item.item_state
@@ -111,7 +111,7 @@
 	var/icon/t_icon
 	if(item.icon_override)
 		t_icon = item.icon_override
-	else if(item.item_icons && (slot_str in item.item_icons))
+	else if(LAZYACCESS(item.item_icons, slot_str))
 		t_icon = item.item_icons[slot_str]
 	else
 		t_icon = hand_icon
@@ -190,7 +190,7 @@
 
 		// Check for required access.
 		var/obj/item/weapon/card/id/current_id = M.wear_id
-		if(citem.req_access && citem.req_access > 0)
+		if(citem.req_access && citem.req_access > 0) // These are numbers, not lists
 			if(!(istype(current_id) && (citem.req_access in current_id.access)))
 				log_debug("Custom Item: [key_name(M)] Does not have required access.")
 				continue

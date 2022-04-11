@@ -3,7 +3,7 @@
 	desc = "A large metal lattice that seems to exist solely to annoy consumers."
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "vehicle_cage"
-	density = 1
+	density = TRUE
 	var/obj/vehicle/my_vehicle
 	var/my_vehicle_type
 	var/paint_color = "#666666"
@@ -44,13 +44,13 @@
 
 /obj/structure/vehiclecage/update_icon()
 	..()
-	overlays.Cut()
+	cut_overlays()
 	underlays.Cut()
 
 	var/image/framepaint = new(icon = 'icons/obj/storage.dmi', icon_state = "[initial(icon_state)]_a", layer = MOB_LAYER + 1.1)
 	framepaint.plane = MOB_PLANE
 	framepaint.color = paint_color
-	overlays += framepaint
+	add_overlay(framepaint)
 
 	for(var/obj/vehicle/V in src.contents)
 		var/image/showcase = new(V)

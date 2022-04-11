@@ -13,13 +13,17 @@
 
 #define isitem(D)		istype(D, /obj/item)
 
-#define isradio(A) istype(A, /obj/item/device/radio)
+#define isradio(A)		istype(A, /obj/item/device/radio)
 
 #define isairlock(A)	istype(A, /obj/machinery/door/airlock)
 
 #define isorgan(A)		istype(A, /obj/item/organ/external)
 
 #define isstorage(A)	istype(A, /obj/item/weapon/storage)
+
+#define ismecha(A)      istype(A, /obj/mecha)
+
+#define isstructure(A)	istype(A, /obj/structure)
 
 //---------------
 //#define isarea(D)		istype(D, /area)	//Built in
@@ -57,3 +61,7 @@
 //#define isturf(D)		istype(D, /turf)	//Built in
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)		istype(A, /turf/space)
+#define ismineralturf(A) istype(A, /turf/simulated/mineral)
+
+#define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)
+#define islongtail(A)	istype(A, /datum/sprite_accessory/tail/longtail)

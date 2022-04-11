@@ -33,6 +33,7 @@
 			if(pay_energy(500))
 				illusion = new(T)
 				illusion.copy_appearance(copied)
+				illusion.copy_overlays(copied, TRUE)
 				to_chat(user, "<span class='notice'>An illusion of \the [copied] is made on \the [T].</span>")
 				user << 'sound/effects/pop.ogg'
 				return 1
@@ -43,7 +44,7 @@
 
 /obj/item/weapon/spell/illusion/on_use_cast(mob/user)
 	if(illusion)
-		var/choice = alert(user, "Would you like to have \the [illusion] speak, or do an emote?", "Illusion", "Speak","Emote","Cancel")
+		var/choice = tgui_alert(user, "Would you like to have \the [illusion] speak, or do an emote?", "Illusion", list("Speak","Emote","Cancel"))
 		switch(choice)
 			if("Cancel")
 				return
@@ -64,11 +65,11 @@
 
 // Makes a tiny overlay of the thing the player has copied, so they can easily tell what they currently have.
 /obj/item/weapon/spell/illusion/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	if(copied)
 		var/image/temp_image = image(copied)
 		var/matrix/M = matrix()
 		M.Scale(0.5, 0.5)
 		temp_image.transform = M
 //		temp_image.pixel_y = 8
-		src.overlays.Add(temp_image)
+		add_overlay(temp_image)

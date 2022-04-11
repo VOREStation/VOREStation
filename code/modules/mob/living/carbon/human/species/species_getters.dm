@@ -44,7 +44,7 @@
 	if(config.show_human_death_message)
 		return ((H && H.isSynthetic()) ? "gives one shrill beep before falling lifeless." : death_message)
 	else
-		return "no message"
+		return DEATHGASP_NO_MESSAGE
 
 /datum/species/proc/get_ssd(var/mob/living/carbon/human/H)
 	if(H)
@@ -79,9 +79,7 @@
 
 /datum/species/proc/get_environment_discomfort(var/mob/living/carbon/human/H, var/msg_type)
 
-	if(!prob(5))
-		return
-
+	/* // Commented out because clothes should not prevent you from feeling cold if your body temperature has already dropped. You can absolutely feel cold through clothing, and feel too warm without clothing. ???
 	var/covered = 0 // Basic coverage can help.
 	for(var/obj/item/clothing/clothes in H)
 		if(H.item_is_in_hands(clothes))
@@ -89,14 +87,17 @@
 		if((clothes.body_parts_covered & UPPER_TORSO) && (clothes.body_parts_covered & LOWER_TORSO))
 			covered = 1
 			break
+	*/
 
-	switch(msg_type)
-		if("cold")
-			if(!covered)
-				to_chat(H, "<span class='danger'>[pick(cold_discomfort_strings)]</span>")
-		if("heat")
-			if(covered)
-				to_chat(H, "<span class='danger'>[pick(heat_discomfort_strings)]</span>")
+	var/discomfort_message
+	if(msg_type == ENVIRONMENT_COMFORT_MARKER_COLD && length(cold_discomfort_strings) /*&& !covered*/)
+		discomfort_message = pick(cold_discomfort_strings)
+	else if(msg_type == ENVIRONMENT_COMFORT_MARKER_HOT && length(heat_discomfort_strings) /*&& covered*/)
+		discomfort_message = pick(heat_discomfort_strings)
+
+	if(discomfort_message && prob(5))
+		to_chat(H, SPAN_DANGER(discomfort_message))
+	return !!discomfort_message
 
 /datum/species/proc/get_random_name(var/gender)
 	if(!name_language)

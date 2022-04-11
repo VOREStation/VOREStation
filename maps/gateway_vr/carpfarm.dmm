@@ -33,8 +33,7 @@
 "an" = (
 /obj/structure/cable{
 	d2 = 2;
-	icon_state = "0-2";
-	pixel_y = 0
+	icon_state = "0-2"
 	},
 /obj/effect/floor_decal/industrial/outline/yellow,
 /obj/machinery/power/smes/buildable,
@@ -45,15 +44,14 @@
 	dir = 1
 	},
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
 	dir = 8
 	},
 /obj/machinery/power/terminal{
 	dir = 8
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/plating,
 /area/awaymission/carpfarm/base)
@@ -90,7 +88,6 @@
 "at" = (
 /obj/machinery/shower{
 	dir = 4;
-	icon_state = "shower";
 	pixel_x = 5
 	},
 /obj/machinery/door/window,
@@ -111,7 +108,6 @@
 	dir = 8
 	},
 /obj/machinery/light/small{
-	icon_state = "bulb1";
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
@@ -144,7 +140,6 @@
 /area/awaymission/carpfarm/base)
 "aA" = (
 /obj/effect/floor_decal/industrial/warning/corner{
-	icon_state = "warningcorner";
 	dir = 1
 	},
 /turf/simulated/floor/plating,
@@ -227,15 +222,13 @@
 /area/awaymission/carpfarm/base)
 "aP" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
 	pixel_x = -12;
 	pixel_y = 2
 	},
 /obj/structure/mirror{
 	dir = 4;
-	pixel_x = -32;
-	pixel_y = 0
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/white,
 /area/awaymission/carpfarm/base)
@@ -500,15 +493,13 @@
 /area/awaymission/carpfarm/base)
 "bI" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden{
-	dir = 1;
-	icon_state = "map"
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/awaymission/carpfarm/base)
 "bJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
-	dir = 10;
-	icon_state = "intact"
+	dir = 10
 	},
 /obj/machinery/access_button{
 	command = "cycle_interior";
@@ -553,9 +544,7 @@
 	desc = "A warning sign which reads 'EXTERNAL AIRLOCK'";
 	icon_state = "space";
 	layer = 4;
-	name = "EXTERNAL AIRLOCK";
-	pixel_x = 0;
-	pixel_y = 0
+	name = "EXTERNAL AIRLOCK"
 	},
 /turf/simulated/wall/iron,
 /area/awaymission/carpfarm/base)
@@ -607,7 +596,6 @@
 	frequency = 1375;
 	id_tag = "carp_airlock";
 	pixel_x = -28;
-	pixel_y = 0;
 	req_access = null;
 	tag_airpump = "carp_pump";
 	tag_chamber_sensor = "carp_sensor";
@@ -615,7 +603,6 @@
 	tag_interior_door = "carp_inner"
 	},
 /obj/effect/floor_decal/industrial/warning/cee{
-	icon_state = "warningcee";
 	dir = 8
 	},
 /turf/simulated/floor/plating,
@@ -627,7 +614,6 @@
 	id_tag = "carp_pump"
 	},
 /obj/effect/floor_decal/industrial/warning/cee{
-	icon_state = "warningcee";
 	dir = 4
 	},
 /turf/simulated/floor/plating,
@@ -726,7 +712,6 @@
 /area/space)
 "cl" = (
 /obj/effect/floor_decal/industrial/warning{
-	icon_state = "warning";
 	dir = 4
 	},
 /turf/simulated/floor/airless,
@@ -761,7 +746,11 @@
 /turf/space,
 /area/space)
 "Fi" = (
-/obj/effect/overmap/visitable/sector/tether_gateway/carpfarm,
+/obj/effect/overmap/visitable/sector/common_gateway/carpfarm,
+/turf/space,
+/area/space)
+"Ia" = (
+/obj/effect/landmark/hidden_level,
 /turf/space,
 /area/space)
 "Zb" = (
@@ -1197,7 +1186,7 @@ aa
 aa
 aa
 aa
-aa
+Ia
 aa
 "}
 (4,1,1) = {"

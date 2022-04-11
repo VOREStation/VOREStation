@@ -18,7 +18,7 @@
 		setup_repair_needs()
 
 /obj/item/weapon/broken_gun/Initialize()
-	..()
+	. = ..()
 	spawn(30 SECONDS)
 		if(!my_guntype && !QDELETED(src))
 			qdel(src)
@@ -31,20 +31,19 @@
 
 			if(do_after(user, 5 SECONDS))
 				to_chat(user, "<span class='notice'>\The [src] can possibly be restored with:</span>")
-				for(var/resource in material_needs)
-					var/obj/item/res = resource
-					if(material_needs[resource] > 0)
+				for(var/obj/item/res as anything in material_needs)
+					if(material_needs[res] > 0)
 						var/res_name = ""
 						if(ispath(res,/obj/item/stack/material))
 							var/obj/item/stack/material/mat_stack = res
 							var/datum/material/mat = get_material_by_name("[initial(mat_stack.default_type)]")
-							if(material_needs[resource]>1)
+							if(material_needs[res]>1)
 								res_name = "[mat.use_name] [mat.sheet_plural_name]"
 							else
 								res_name = "[mat.use_name] [mat.sheet_singular_name]"
 						else
 							res_name = initial(res.name)
-						to_chat(user, "<span class='notice'>- x [material_needs[resource]] [res_name]</span>")
+						to_chat(user, "<span class='notice'>- x [material_needs[res]] [res_name]</span>")
 
 /obj/item/weapon/broken_gun/proc/setup_gun(var/obj/item/weapon/gun/path)
 	if(ispath(path))
@@ -80,7 +79,7 @@
 		material_needs[component_needed] = rand(1,3)
 
 	if(ispath(my_guntype, /obj/item/weapon/gun/launcher) && prob(50))
-		var/component_needed = pick(/obj/item/weapon/tape_roll, /obj/item/weapon/material/wirerod)
+		var/component_needed = pick(/obj/item/weapon/tape_roll, /obj/item/stack/rods, /obj/item/weapon/handcuffs/cable)
 		material_needs[component_needed] = 1
 
 	if(ispath(my_guntype, /obj/item/weapon/gun/magnetic) && prob(70))

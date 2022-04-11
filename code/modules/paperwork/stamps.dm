@@ -9,11 +9,12 @@
 	slot_flags = SLOT_HOLSTER
 	throw_speed = 7
 	throw_range = 15
-	matter = list(DEFAULT_WALL_MATERIAL = 60)
+	matter = list(MAT_STEEL = 60)
 	pressure_resistance = 2
 	attack_verb = list("stamped")
 	drop_sound = 'sound/items/drop/device.ogg'
 	pickup_sound = 'sound/items/pickup/device.ogg'
+	var/stamptext = null
 
 /obj/item/weapon/stamp/captain
 	name = "site manager's rubber stamp"
@@ -48,6 +49,10 @@
 	icon_state = "stamp-deny"
 	attack_verb = list("DENIED")
 
+/obj/item/weapon/stamp/accepted
+	name = "\improper ACCEPTED rubber stamp"
+	icon_state = "stamp-ok"
+
 /obj/item/weapon/stamp/clown
 	name = "clown's rubber stamp"
 	icon_state = "stamp-clown"
@@ -72,6 +77,29 @@
 	name = "\improper Sol Government rubber stamp"
 	icon_state = "stamp-sg"
 
+/obj/item/weapon/stamp/solgov
+	name = "\improper Sol Government rubber stamp"
+	icon_state = "stamp-sg"
+
+/obj/item/weapon/stamp/solgovlogo
+	name = "\improper Sol Government logo stamp"
+	icon_state = "stamp-sol"
+
+/obj/item/weapon/stamp/solgovlogo
+	name = "\improper Sol Government logo stamp"
+	icon_state = "stamp-sol"
+
+/obj/item/stamp/einstein
+	name = "\improper Einstein Engines rubber stamp"
+	icon_state = "stamp-einstein"
+
+/obj/item/stamp/hephaestus
+	name = "\improper Hephaestus Industries rubber stamp"
+	icon_state = "stamp-heph"
+
+/obj/item/stamp/zeng_hu
+	name = "\improper Zeng-Hu Pharmaceuticals rubber stamp"
+	icon_state = "stamp-zenghu"
 
 // Syndicate stamp to forge documents.
 /obj/item/weapon/stamp/chameleon/attack_self(mob/user as mob)
@@ -86,9 +114,9 @@
 
 	var/list/show_stamps = list("EXIT" = null) + sortList(stamps) // the list that will be shown to the user to pick from
 
-	var/input_stamp = input(user, "Choose a stamp to disguise as.", "Choose a stamp.") in show_stamps
+	var/input_stamp = tgui_input_list(user, "Choose a stamp to disguise as:", "Stamp Choice", show_stamps)
 
-	if(user && src in user.contents)
+	if(user && (src in user.contents)) // Er, how necessary is this in attack_self?
 
 		var/obj/item/weapon/stamp/chosen_stamp = stamps[capitalize(input_stamp)]
 

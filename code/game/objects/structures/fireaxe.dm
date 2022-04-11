@@ -6,15 +6,15 @@
 	icon = 'icons/obj/closet.dmi'	//Not bothering to move icons out for now. But its dumb still.
 	icon_state = "fireaxe1000"
 	layer = ABOVE_WINDOW_LAYER
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	var/open = 0
 	var/hitstaken = 0
 	var/locked = 1
 	var/smashed = 0
 
 /obj/structure/fireaxecabinet/Initialize()
-	..()
+	. = ..()
 	fireaxe = new /obj/item/weapon/material/twohanded/fireaxe()
 
 /obj/structure/fireaxecabinet/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri

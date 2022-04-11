@@ -136,8 +136,7 @@
 		records["general"] = general_records.fields
 		return records
 	else
-		for(var/A in sortRecord(data_core.general))
-			var/datum/data/record/R = A
+		for(var/datum/data/record/R as anything in sortRecord(data_core.general))
 			if(R)
 				records += list(list(Name = R.fields["name"], "ref" = "\ref[R]"))
 		data["recordsList"] = records
@@ -182,8 +181,7 @@
 
 /datum/data/pda/app/crew_records/medical/load_records(datum/data/record/R)
 	..(R)
-	for(var/A in data_core.medical)
-		var/datum/data/record/E = A
+	for(var/datum/data/record/E as anything in data_core.medical)
 		if(E && (E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 			medical_records = E
 			break
@@ -208,8 +206,7 @@
 
 /datum/data/pda/app/crew_records/security/load_records(datum/data/record/R)
 	..(R)
-	for(var/A in data_core.security)
-		var/datum/data/record/E = A
+	for(var/datum/data/record/E as anything in data_core.security)
 		if(E && (E.fields["name"] == R.fields["name"] || E.fields["id"] == R.fields["id"]))
 			security_records = E
 			break
@@ -229,8 +226,7 @@
 		supplyData["shuttle_loc"] = shuttle.at_station() ? "Station" : "Dock"
 	var/supplyOrderCount = 0
 	var/supplyOrderData[0]
-	for(var/S in SSsupply.shoppinglist)
-		var/datum/supply_order/SO = S
+	for(var/datum/supply_order/SO as anything in SSsupply.shoppinglist)
 
 		supplyOrderCount++
 		supplyOrderData[++supplyOrderData.len] = list("Number" = SO.ordernum, "Name" = html_encode(SO.object.name), "ApprovedBy" = SO.ordered_by, "Comment" = html_encode(SO.comment))
@@ -240,8 +236,7 @@
 
 	var/requestCount = 0
 	var/requestData[0]
-	for(var/S in SSsupply.order_history)
-		var/datum/supply_order/SO = S
+	for(var/datum/supply_order/SO as anything in SSsupply.order_history)
 		if(SO.status != SUP_ORDER_REQUESTED)
 			continue
 
@@ -302,7 +297,7 @@
 			if(bl.z != cl.z)
 				continue
 			var/direction = get_dir(pda,B)
-			CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "volume" = B.reagents.total_volume, "max_volume" = B.reagents.maximum_volume)
+			CartData[++CartData.len] = list("x" = bl.x, "y" = bl.y, "dir" = uppertext(dir2text(direction)), "volume" = B.mybucket?.reagents.total_volume || 0, "max_volume" = B.mybucket?.reagents.maximum_volume || 0)
 
 	JaniData["mops"] = MopData.len ? MopData : null
 	JaniData["buckets"] = BucketData.len ? BucketData : null

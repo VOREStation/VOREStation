@@ -76,6 +76,8 @@
 	var/obj/screen/energyhud //Holder to update this icon
 
 	var/list/shadekin_abilities
+	var/check_for_observer = FALSE
+	var/check_timer = 0
 
 /mob/living/simple_mob/shadekin/Initialize()
 	//You spawned the prototype, and want a totally random one.
@@ -86,6 +88,7 @@
 			/mob/living/simple_mob/shadekin/red = 20,	//Actively seek people out to nom, so fairly common to see (relatively speaking),
 			/mob/living/simple_mob/shadekin/blue = 15,	//Explorers that like to interact with people, so still fairly common,
 			/mob/living/simple_mob/shadekin/purple = 15,	//Also explorers that may or may not homf people,
+			/mob/living/simple_mob/shadekin/green = 5,
 			/mob/living/simple_mob/shadekin/yellow = 1	//Very rare, usually never leaves their home
 		)
 		var/new_type = pickweight(sk_types)
@@ -198,7 +201,18 @@
 	if(. && nutrition > initial(nutrition) && energy < 100)
 		nutrition = max(0, nutrition-5)
 		energy = min(100,energy+1)
-
+	if(!client && check_for_observer && check_timer++ > 5)
+		check_timer = 0
+		var/non_kin_count = 0
+		for(var/mob/living/M in view(6,src))
+			if(!istype(M, /mob/living/simple_mob/shadekin))
+				non_kin_count ++
+		// Technically can be combined with ||, they call the same function, but readability is poor
+		if(!non_kin_count && (ability_flags & AB_PHASE_SHIFTED))
+			phase_shift() // shifting back in, nobody present
+		else if (non_kin_count && !(ability_flags & AB_PHASE_SHIFTED))
+			phase_shift() // shifting out, scaredy
+				
 /mob/living/simple_mob/shadekin/update_icon()
 	. = ..()
 
@@ -215,13 +229,12 @@
 		abilities_stat()
 
 /mob/living/simple_mob/shadekin/proc/abilities_stat()
-	for(var/A in shadekin_abilities)
-		var/obj/effect/shadekin_ability/ability = A
+	for(var/obj/effect/shadekin_ability/ability as anything in shadekin_abilities)
 		stat("[ability.ability_name]",ability.atom_button_text())
 
 //They phase back to the dark when killed
 /mob/living/simple_mob/shadekin/death(gibbed, deathmessage = "phases to somewhere far away!")
-	overlays = list()
+	cut_overlays()
 	icon_state = ""
 	flick("tp_out",src)
 	spawn(1 SECOND)

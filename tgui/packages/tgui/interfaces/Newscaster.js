@@ -193,6 +193,7 @@ const NewscasterNewStory = (props, context) => {
   const {
     channel_name,
     user,
+    title,
     msg,
     photo_data,
   } = data;
@@ -219,6 +220,23 @@ const NewscasterNewStory = (props, context) => {
         </LabeledList.Item>
         <LabeledList.Item label="Message Author" color="good">
           {user}
+        </LabeledList.Item>
+        <LabeledList.Item label="Message Title" verticalAlign="top">
+          <Flex>
+            <Flex.Item grow={1}>
+              <Section width="99%" inline>
+                {title || "(no title yet)"}
+              </Section>
+            </Flex.Item>
+            <Flex.Item>
+              <Button
+                verticalAlign="top"
+                onClick={() => act("set_new_title")}
+                icon="pen"
+                tooltip="Edit Title"
+                tooltipPosition="left" />
+            </Flex.Item>
+          </Flex>
         </LabeledList.Item>
         <LabeledList.Item label="Message Body" verticalAlign="top">
           <Flex>

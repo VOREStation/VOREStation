@@ -5,8 +5,7 @@
 /obj/random/mob
 	name = "Random Animal"
 	desc = "This is a random animal."
-	icon = 'icons/mob/animal.dmi'
-	icon_state = "chicken_white"
+	icon_state = "animal"
 
 	var/overwrite_hostility = 0
 
@@ -60,11 +59,15 @@
 		M.pixel_x = pixel_x
 		M.pixel_y = pixel_y
 
+	if(mob_faction)
+		M.faction = mob_faction
+
+
 
 /obj/random/mob/sif
 	name = "Random Sif Animal"
 	desc = "This is a random cold weather animal."
-	icon_state = "penguin"
+	icon_state = "animal"
 
 	mob_returns_home = 1
 	mob_wander_distance = 10
@@ -85,7 +88,7 @@
 /obj/random/mob/sif/peaceful
 	name = "Random Peaceful Sif Animal"
 	desc = "This is a random peaceful cold weather animal."
-	icon_state = "penguin"
+	icon_state = "animal_passive"
 
 	mob_returns_home = 1
 	mob_wander_distance = 12
@@ -102,7 +105,7 @@
 /obj/random/mob/sif/hostile
 	name = "Random Hostile Sif Animal"
 	desc = "This is a random hostile cold weather animal."
-	icon_state = "frost"
+	icon_state = "animal_hostile"
 
 /obj/random/mob/sif/hostile/item_to_spawn()
 	return pick(prob(22);/mob/living/simple_mob/animal/sif/savik,
@@ -165,7 +168,7 @@
 /obj/random/mob/robotic
 	name = "Random Robot Mob"
 	desc = "This is a random robot."
-	icon_state = "drone_dead"
+	icon_state = "robot"
 
 	overwrite_hostility = 1
 
@@ -213,7 +216,7 @@
 /obj/random/mob/robotic/hivebot
 	name = "Random Hivebot"
 	desc = "This is a random hivebot."
-	icon_state = "drone3"
+	icon_state = "robot"
 
 	mob_faction = "hivebot"
 
@@ -233,18 +236,59 @@
 	name = "Random Mouse"
 	desc = "This is a random boring maus."
 	icon_state = "mouse_gray"
+	spawn_nothing_percentage = 15
 
 /obj/random/mob/mouse/item_to_spawn()
 	return pick(prob(15);/mob/living/simple_mob/animal/passive/mouse/white,
+				prob(15);/mob/living/simple_mob/animal/passive/mouse/black,
 				prob(30);/mob/living/simple_mob/animal/passive/mouse/brown,
 				prob(30);/mob/living/simple_mob/animal/passive/mouse/gray,
-				prob(25);/obj/random/mouseremains) //because figuring out how to come up with it picking nothing is beyond my coding ability.
+				prob(30);/mob/living/simple_mob/animal/passive/mouse/rat)
+
+/obj/random/mob/fish
+	name = "Random Fish"
+	desc = "This is a random fish found on Sif."
+	icon_state = "fish"
+	mob_faction = "fish"
+	overwrite_hostility = 1
+	mob_hostile = 0
+	mob_retaliate = 0
+
+/obj/random/mob/fish/item_to_spawn()
+	return pick(prob(10);/mob/living/simple_mob/animal/passive/fish/bass,
+				prob(20);/mob/living/simple_mob/animal/passive/fish/icebass,
+				prob(20);/mob/living/simple_mob/animal/passive/fish/trout,
+				prob(20);/mob/living/simple_mob/animal/passive/fish/salmon,
+				prob(10);/mob/living/simple_mob/animal/passive/fish/pike,
+				prob(10);/mob/living/simple_mob/animal/passive/fish/perch,
+				prob(20);/mob/living/simple_mob/animal/passive/fish/murkin,
+				prob(15);/mob/living/simple_mob/animal/passive/fish/javelin,
+				prob(20);/mob/living/simple_mob/animal/passive/fish/rockfish,
+				prob(5);/mob/living/simple_mob/animal/passive/fish/solarfish,
+				prob(10);/mob/living/simple_mob/animal/passive/crab,
+				prob(1);/mob/living/simple_mob/animal/sif/hooligan_crab)
+
+/obj/random/mob/bird
+	name = "Random Bird"
+	desc = "This is a random wild/feral bird."
+	icon_state = "bird"
+	mob_faction = "bird"
+
+/obj/random/mob/bird/item_to_spawn()
+	return pick(prob(10);/mob/living/simple_mob/animal/passive/bird/black_bird,
+				prob(10);/mob/living/simple_mob/animal/passive/bird/azure_tit,
+				prob(20);/mob/living/simple_mob/animal/passive/bird/european_robin,
+				prob(10);/mob/living/simple_mob/animal/passive/bird/goldcrest,
+				prob(20);/mob/living/simple_mob/animal/passive/bird/ringneck_dove,
+				prob(10);/mob/living/simple_mob/animal/space/goose,
+				prob(5);/mob/living/simple_mob/animal/passive/chicken,
+				prob(1);/mob/living/simple_mob/animal/passive/penguin)
 
 // Mercs
 /obj/random/mob/merc
 	name = "Random Mercenary"
 	desc = "This is a random PoI mercenary."
-	icon_state = "syndicate"
+	icon_state = "humanoid"
 
 	mob_faction = "syndicate"
 	mob_returns_home = 1
@@ -266,7 +310,7 @@
 /obj/random/mob/merc/armored
 	name = "Random Armored Infantry Merc"
 	desc = "This is a random PoI exo or robot for mercs."
-	icon_state = "drone3"
+	icon_state = "mecha"
 
 /obj/random/mob/merc/armored/item_to_spawn()
 	return pick(prob(30);/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark,
@@ -323,6 +367,7 @@
 /obj/random/mob/multiple/sifmobs
 	name = "Random Sifmob Pack"
 	desc = "A pack of random neutral sif mobs."
+	icon_state = "animal_group"
 
 /obj/random/mob/multiple/sifmobs/item_to_spawn()
 	return pick(

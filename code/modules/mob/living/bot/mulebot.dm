@@ -11,8 +11,8 @@
 	name = "Mulebot"
 	desc = "A Multiple Utility Load Effector bot."
 	icon_state = "mulebot0"
-	anchored = 1
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	health = 150
 	maxHealth = 150
 	mob_bump_flag = HEAVY
@@ -70,17 +70,16 @@
 		ui.open()
 
 /mob/living/bot/mulebot/tgui_data(mob/user)
-	var/list/data = list(
-		"suffix" = suffix,
-		"power" = on,
-		"issilicon" = issilicon(user),
-		"load" = load,
-		"locked" = locked,
-		"auto_return" = auto_return,
-		"crates_only" = crates_only,
-		"hatch" = open,
-		"safety" = safety,
-	)
+	var/list/data = ..()
+	data["suffix"] = suffix
+	data["power"] = on
+	data["issillicon"] = issilicon(user)
+	data["load"] = load
+	data["locked"] = locked
+	data["auto_return"] = auto_return
+	data["crates_only"] = crates_only
+	data["hatch"] = open
+	data["safety"] = safety
 	return data
 
 /mob/living/bot/mulebot/tgui_act(action, params)
@@ -117,9 +116,9 @@
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = input("Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", null) in null|beaconlist
+				new_dest = tgui_input_list(usr, "Select new home tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
-				alert("No destination beacons available.")
+				tgui_alert_async(usr, "No destination beacons available.")
 			if(new_dest)
 				home = get_turf(beaconlist[new_dest])
 				homeName = new_dest
@@ -155,9 +154,9 @@
 			var/new_dest
 			var/list/beaconlist = GetBeaconList()
 			if(beaconlist.len)
-				new_dest = input("Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]") in null|beaconlist
+				new_dest = tgui_input_list(usr, "Select new destination tag", "Mulebot [suffix ? "([suffix])" : ""]", beaconlist)
 			else
-				alert("No destination beacons available.")
+				tgui_alert_async(usr, "No destination beacons available.")
 			if(new_dest)
 				resetTarget()
 				target = get_turf(beaconlist[new_dest])
@@ -243,7 +242,6 @@
 		M.apply_damage(0.5 * damage, BRUTE, BP_R_ARM)
 
 		blood_splatter(src, M, 1)
-	..()
 
 /mob/living/bot/mulebot/relaymove(var/mob/user, var/direction)
 	if(load == user)
@@ -305,7 +303,7 @@
 	C.pixel_y += 9
 	if(C.layer < layer)
 		C.layer = layer + 0.1
-	overlays += C
+	add_overlay(C)
 
 	busy = 0
 
@@ -314,7 +312,7 @@
 		return
 
 	busy = 1
-	overlays.Cut()
+	cut_overlays()
 
 	load.forceMove(loc)
 	load.pixel_y -= 9

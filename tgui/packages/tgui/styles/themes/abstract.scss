@@ -1,0 +1,19 @@
+/**
+ * Copyright (c) 2021 Aronai Sieyes
+ * SPDX-License-Identifier: MIT
+ */
+
+@use 'sass:color';
+@use 'sass:meta';
+
+.theme-abstract {
+  .TitleBar__statusIcon {
+      display: none;
+  }
+  .Layout__content {
+    background-image: none;
+  }
+  .TitleBar__title {
+    left: 12px;
+  }
+}

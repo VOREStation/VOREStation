@@ -10,7 +10,7 @@
 		else
 			jmp_coords = coords = "in nullspace"
 
-	if (alert(src, "Are you sure you want to delete:\n[D]\n[coords]?", "Confirmation", "Yes", "No") == "Yes")
+	if (tgui_alert(src, "Are you sure you want to delete:\n[D]\n[coords]?", "Confirmation", list("Yes", "No")) == "Yes")
 		log_admin("[key_name(usr)] deleted [D] [coords]")
 		message_admins("[key_name_admin(usr)] deleted [D] [jmp_coords]")
 		feedback_add_details("admin_verb","ADEL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -19,6 +19,13 @@
 			T.ScrapeAway()
 		else*/
 		vv_update_display(D, "deleted", VV_MSG_DELETED)
-		qdel(D)
+
+		// turfs are special snowflakes that'll explode if qdel'd outside ChangeTurf
+		if (isturf(D))
+			var/turf/T = D
+			T.ChangeTurf(world.turf)
+		else
+			qdel(D)
+
 		if(!QDELETED(D))
 			vv_update_display(D, "deleted", "")

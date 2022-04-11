@@ -14,8 +14,8 @@
 	siemens_coefficient = 0
 	gluttonous = 2
 
-	brute_mod = 0.5 // Hardened carapace.
-	burn_mod = 2    // Weak to fire.
+	brute_mod = 0.6 // Hardened carapace.
+	burn_mod = 1.75    // Weak to fire.
 
 	warning_low_pressure = 50
 	hazard_low_pressure = -1
@@ -33,18 +33,19 @@
 	flesh_color = "#282846"
 	gibbed_anim = "gibbed-a"
 	dusted_anim = "dust-a"
-	death_message = "lets out a waning guttural screech, green blood bubbling from its maw."
+	death_message = "lets out a guttural screech, green blood bubbling from its maw."
 	death_sound = 'sound/voice/hiss6.ogg'
 
 	speech_sounds = list('sound/voice/hiss1.ogg','sound/voice/hiss2.ogg','sound/voice/hiss3.ogg','sound/voice/hiss4.ogg')
-	speech_chance = 100
+	speech_chance = 75
 
 	virus_immune = 1
 
 	breath_type = null
 	poison_type = null
 
-	vision_flags = SEE_SELF|SEE_MOBS
+	vision_flags = SEE_SELF|SEE_MOBS|SEE_TURFS
+	darksight = 10
 
 	has_organ = list(
 		O_HEART =    /obj/item/organ/internal/heart,
@@ -83,7 +84,7 @@
 	return SPECIES_XENO
 
 /datum/species/xenos/get_random_name()
-	return "alien [caste_name] ([alien_number])"
+	return "xenomorph [caste_name] ([alien_number])"
 
 /datum/species/xenos/can_understand(var/mob/other)
 	if(istype(other, /mob/living/carbon/alien/larva))
@@ -101,7 +102,7 @@
 		H.mind.special_role = "Alien"
 
 	alien_number++ //Keep track of how many aliens we've had so far.
-	H.real_name = "alien [caste_name] ([alien_number])"
+	H.real_name = "xenomorph [caste_name] ([alien_number])"
 	H.name = H.real_name
 
 	..()
@@ -154,15 +155,6 @@
 			return 1
 
 	return 0
-/*
-/datum/species/xenos/handle_login_special(var/mob/living/carbon/human/H)
-	H.AddInfectionImages()
-	..()
-
-/datum/species/xenos/handle_logout_special(var/mob/living/carbon/human/H)
-	H.RemoveInfectionImages()
-	..()
-*/
 
 /datum/species/xenos/drone
 	name = SPECIES_XENO_DRONE
@@ -208,7 +200,7 @@
 	name = SPECIES_XENO_HUNTER
 	weeds_plasma_rate = 5
 	caste_name = "hunter"
-	slowdown = -2
+	slowdown = -1
 	total_health = 150
 	tail = "xenos_hunter_tail"
 
@@ -269,11 +261,11 @@
 /datum/species/xenos/queen
 
 	name = SPECIES_XENO_QUEEN
-	total_health = 250
+	total_health = 300
 	weeds_heal_rate = 5
 	weeds_plasma_rate = 20
 	caste_name = "queen"
-	slowdown = 4
+	slowdown = 3
 	tail = "xenos_queen_tail"
 	rarity_value = 10
 
@@ -312,10 +304,10 @@
 	..()
 	// Make sure only one official queen exists at any point.
 	if(!alien_queen_exists(1,H))
-		H.real_name = "alien queen ([alien_number])"
+		H.real_name = "xenomorph queen ([alien_number])"
 		H.name = H.real_name
 	else
-		H.real_name = "alien princess ([alien_number])"
+		H.real_name = "xenomorph princess ([alien_number])"
 		H.name = H.real_name
 
 /datum/hud_data/alien
@@ -334,8 +326,6 @@
 	has_internals = 0
 
 	gear = list(
-		"o_clothing" =   list("loc" = ui_belt,      "name" = "Suit",         "slot" = slot_wear_suit, "state" = "equip",  "dir" = SOUTH),
-		"head" =         list("loc" = ui_id,        "name" = "Hat",          "slot" = slot_head,      "state" = "hair"),
 		"storage1" =     list("loc" = ui_storage1,  "name" = "Left Pocket",  "slot" = slot_l_store,   "state" = "pocket"),
 		"storage2" =     list("loc" = ui_storage2,  "name" = "Right Pocket", "slot" = slot_r_store,   "state" = "pocket"),
-		)
+		) //Removed hat and outer slots, it caused too many problems that required admin intervention.

@@ -3,7 +3,7 @@
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
 	origin_tech = list(TECH_MAGNET = 1)
-	matter = list(DEFAULT_WALL_MATERIAL = 500, "glass" = 50, "waste" = 10)
+	matter = list(MAT_STEEL = 500, MAT_GLASS = 50)
 
 	wires = WIRE_PULSE
 
@@ -53,10 +53,10 @@
 		time = 10
 
 /obj/item/device/assembly/timer/update_icon()
-	overlays.Cut()
+	cut_overlays()
 	attached_overlays = list()
 	if(timing)
-		overlays += "timer_timing"
+		add_overlay("timer_timing")
 		attached_overlays += "timer_timing"
 	if(holder)
 		holder.update_icon()

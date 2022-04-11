@@ -1,5 +1,11 @@
 /datum/supply_pack/randomised/hospitality/pizza
 	cost = 50
+	contains = list(
+			/obj/random/pizzabox = 5,
+			/obj/item/weapon/material/knife/plastic,
+			/obj/item/clothing/under/pizzaguy,
+			/obj/item/clothing/head/pizzaguy
+			)
 
 /datum/supply_pack/randomised/hospitality/burgers_vr
 	num_contained = 5

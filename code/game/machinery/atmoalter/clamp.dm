@@ -7,7 +7,7 @@
 	description_info = "Click-dragging this to yourself while adjacent will attempt to remove it from the pipe."
 	icon = 'icons/atmos/clamp.dmi'
 	icon_state = "pclamp0"
-	anchored = 1.0
+	anchored = TRUE
 	var/obj/machinery/atmospherics/pipe/simple/target = null
 	var/open = 1
 

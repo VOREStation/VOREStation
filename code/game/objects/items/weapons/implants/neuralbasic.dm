@@ -16,7 +16,7 @@
 				my_brain.implant_assist(target_state)
 		if(H.isSynthetic() && H.get_FBP_type() != FBP_CYBORG)		//If this on an FBP, it's just an extra inefficient attachment to whatever their brain is.
 			robotic_brain = TRUE
-	if(my_brain && my_brain.can_assist())
+	if(istype(my_brain) && my_brain.can_assist())
 		START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/implant/neural/Destroy()

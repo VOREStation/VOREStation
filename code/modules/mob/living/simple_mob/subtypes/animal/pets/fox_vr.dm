@@ -7,7 +7,7 @@
 	icon_living = "fox2"
 	icon_dead = "fox2_dead"
 	icon_rest = "fox2_rest"
-	icon = 'icons/mob/fox_vr.dmi'
+	icon = 'icons/mob/pets.dmi'
 
 	movement_cooldown = 0.5
 	see_in_dark = 6
@@ -23,11 +23,12 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323		//Above 50 Degrees Celcius
 
-	meat_amount = 1
+	meat_amount = 2
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
 
 	say_list_type = /datum/say_list/fox
 	ai_holder_type = /datum/ai_holder/simple_mob/fox
+	holder_type = /obj/item/weapon/holder/fox
 
 	var/turns_since_scan = 0
 	var/mob/flee_target
@@ -183,9 +184,6 @@
 	set_dir(get_dir(src, friend))
 	say("Yap!")
 */
-/obj/item/weapon/reagent_containers/food/snacks/meat/fox
-	name = "Fox meat"
-	desc = "The fox doesn't say a goddamn thing, now."
 
 //Captain fox
 /mob/living/simple_mob/animal/passive/fox/renault
@@ -224,7 +222,7 @@
 	name = "syndi-fox"
 	desc = "It's a DASTARDLY fox! The horror! Call the shuttle!"
 	tt_desc = "Vulpes malus"
-	icon = 'icons/mob/fox_vr.dmi'
+	icon = 'icons/mob/pets.dmi'
 	icon_state = "syndifox"
 	icon_living = "syndifox"
 	icon_dead = "syndifox_dead"

@@ -13,6 +13,9 @@
 	maxHealth = 30
 	health = 30
 
+	meat_amount = 2
+	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+
 	response_help = "pats"
 	response_disarm = "gently pushes aside"
 	response_harm = "hits"
@@ -43,6 +46,16 @@
 	icon_living = "wah_fae"
 	icon_dead = "wah_fae_dead"
 	icon_rest = "wah_fae_rest"
+
+/mob/living/simple_mob/vore/redpanda/blue
+	name = "blue wah"
+	desc = "Blue, but still cute!"
+	tt_desc = "Ailurus tribotum"
+
+	icon_state = "wah_bloo"
+	icon_living = "wah_bloo"
+	icon_dead = "wah_bloo_dead"
+	icon_rest = "wah_bloo_rest"
 
 	vore_ignores_undigestable = 0	// wah don't care you're edible or not, you still go in
 	vore_digest_chance = 0			// instead of digesting if you struggle...

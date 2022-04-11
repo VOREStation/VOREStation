@@ -1,149 +1,139 @@
-/datum/trait/speed_slow
+/datum/trait/negative
+	category = -1
+
+/datum/trait/negative/speed_slow
 	name = "Slowdown"
 	desc = "Allows you to move slower on average than baseline."
 	cost = -2
 	var_changes = list("slowdown" = 0.5)
 
-/datum/trait/speed_slow_plus
-	name = "Major Slowdown"
+/datum/trait/negative/speed_slow_plus
+	name = "Slowdown, Major"
 	desc = "Allows you to move MUCH slower on average than baseline."
 	cost = -3
 	var_changes = list("slowdown" = 1.0)
 
-/datum/trait/weakling
+/datum/trait/negative/weakling
 	name = "Weakling"
 	desc = "Causes heavy equipment to slow you down more when carried."
 	cost = -1
 	var_changes = list("item_slowdown_mod" = 1.5)
 
-/datum/trait/weakling_plus
-	name = "Major Weakling"
+/datum/trait/negative/weakling_plus
+	name = "Weakling, Major"
 	desc = "Allows you to carry heavy equipment with much more slowdown."
 	cost = -2
 	var_changes = list("item_slowdown_mod" = 2.0)
 
-/datum/trait/endurance_low
+/datum/trait/negative/endurance_low
 	name = "Low Endurance"
 	desc = "Reduces your maximum total hitpoints to 75."
 	cost = -2
 	var_changes = list("total_health" = 75)
 
-	apply(var/datum/species/S,var/mob/living/carbon/human/H)
-		..(S,H)
-		H.setMaxHealth(S.total_health)
+/datum/trait/negative/endurance_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.setMaxHealth(S.total_health)
 
-/datum/trait/endurance_very_low
-	name = "Extremely Low Endurance"
+/datum/trait/negative/endurance_very_low
+	name = "Low Endurance, Major"
 	desc = "Reduces your maximum total hitpoints to 50."
 	cost = -3 //Teshari HP. This makes the person a lot more suseptable to getting stunned, killed, etc.
 	var_changes = list("total_health" = 50)
 
-	apply(var/datum/species/S,var/mob/living/carbon/human/H)
-		..(S,H)
-		H.setMaxHealth(S.total_health)
+/datum/trait/negative/endurance_very_low/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.setMaxHealth(S.total_health)
 
-/datum/trait/minor_brute_weak
-	name = "Minor Brute Weakness"
+/datum/trait/negative/minor_brute_weak
+	name = "Brute Weakness, Minor"
 	desc = "Increases damage from brute damage sources by 15%"
 	cost = -1
 	var_changes = list("brute_mod" = 1.15)
 
-/datum/trait/brute_weak
+/datum/trait/negative/brute_weak
 	name = "Brute Weakness"
 	desc = "Increases damage from brute damage sources by 25%"
 	cost = -2
 	var_changes = list("brute_mod" = 1.25)
 
-/datum/trait/brute_weak_plus
-	name = "Major Brute Weakness"
+/datum/trait/negative/brute_weak_plus
+	name = "Brute Weakness, Major"
 	desc = "Increases damage from brute damage sources by 50%"
 	cost = -3
 	var_changes = list("brute_mod" = 1.5)
 
-/datum/trait/minor_burn_weak
-	name = "Minor Burn Weakness"
+/datum/trait/negative/minor_burn_weak
+	name = "Burn Weakness, Minor"
 	desc = "Increases damage from burn damage sources by 15%"
 	cost = -1
 	var_changes = list("burn_mod" = 1.15)
 
-/datum/trait/burn_weak
+/datum/trait/negative/burn_weak
 	name = "Burn Weakness"
 	desc = "Increases damage from burn damage sources by 25%"
 	cost = -2
 	var_changes = list("burn_mod" = 1.25)
 
-/datum/trait/burn_weak_plus
-	name = "Major Burn Weakness"
+/datum/trait/negative/burn_weak_plus
+	name = "Burn Weakness, Major"
 	desc = "Increases damage from burn damage sources by 50%"
 	cost = -3
 	var_changes = list("burn_mod" = 1.5)
 
-/datum/trait/conductive
+/datum/trait/negative/conductive
 	name = "Conductive"
 	desc = "Increases your susceptibility to electric shocks by 50%"
 	cost = -1
 	var_changes = list("siemens_coefficient" = 1.5) //This makes you a lot weaker to tasers.
 
-/datum/trait/conductive_plus
-	name = "Major Conductive"
+/datum/trait/negative/conductive_plus
+	name = "Conductive, Major"
 	desc = "Increases your susceptibility to electric shocks by 100%"
-	cost = -2
+	cost = -1
 	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
 
-/datum/trait/haemophilia
+/datum/trait/negative/haemophilia
 	name = "Haemophilia - Organics only"
-	desc = "When you bleed, you bleed a LOT. This trait is only for organics, buggy with synths!"
+	desc = "When you bleed, you bleed a LOT."
 	cost = -2
 	var_changes = list("bloodloss_rate" = 2)
-	not_for_synths = 1
+	can_take = ORGANICS
 
-/datum/trait/hollow
+/datum/trait/negative/hollow
 	name = "Hollow Bones/Aluminum Alloy"
 	desc = "Your bones and robot limbs are much easier to break."
 	cost = -2 //I feel like this should be higher, but let's see where it goes
 
-/datum/trait/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+/datum/trait/negative/hollow/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	for(var/obj/item/organ/external/O in H.organs)
 		O.min_broken_damage *= 0.5
 		O.min_bruised_damage *= 0.5
 
-/datum/trait/lightweight
+/datum/trait/negative/lightweight
 	name = "Lightweight"
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
 	cost = -2
 	var_changes = list("lightweight" = 1)
 
-/datum/trait/colorblind/mono
-	name = "Colorblindness (Monochromancy)"
-	desc = "You simply can't see colors at all, period. You are 100% colorblind."
-	cost = -1
-
-/datum/trait/colorblind/mono/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
-	H.add_modifier(/datum/modifier/trait/colorblind_monochrome)
-
-/datum/trait/colorblind/para_vulp
-	name = "Colorblindness (Para Vulp)"
-	desc = "You have a severe issue with green colors and have difficulty recognizing them from red colors."
-	cost = -1
-
-/datum/trait/colorblind/para_vulp/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
-	H.add_modifier(/datum/modifier/trait/colorblind_vulp)
-
-/datum/trait/colorblind/para_taj
-	name = "Colorblindness (Para Taj)"
-	desc = "You have a minor issue with blue colors and have difficulty recognizing them from red colors."
-	cost = -1
-
-/datum/trait/colorblind/para_taj/apply(var/datum/species/S,var/mob/living/carbon/human/H)
-	..(S,H)
-	H.add_modifier(/datum/modifier/trait/colorblind_taj)
-	
-/datum/trait/neural_hypersensitivity
+/datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
 	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Doubles traumatic shock."
 	cost = -1
-	var_changes = list("traumatic_mod" = 2)
-	
+	var_changes = list("trauma_mod" = 2)
+	can_take = ORGANICS
+
+/datum/trait/negative/breathes
+	cost = -2
+	can_take = ORGANICS
+
+/datum/trait/negative/breathes/phoron
+	name = "Phoron Breather"
+	desc = "You breathe phoron instead of oxygen (which is poisonous to you), much like a Vox."
+	var_changes = list("breath_type" = "phoron", "poison_type" = "oxygen")
+
+/datum/trait/negative/breathes/nitrogen
+	name = "Nitrogen Breather"
+	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
+	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen")

@@ -25,8 +25,7 @@
 
 	var/list/possible = list()
 
-	for(var/borgie in GLOB.available_ai_shells)
-		var/mob/living/silicon/robot/R = borgie
+	for(var/mob/living/silicon/robot/R as anything in GLOB.available_ai_shells)
 		if(R.shell && !R.deployed && (R.stat != DEAD) && (!R.connected_ai || (R.connected_ai == src) )  && !(using_map.ai_shell_restricted && !(R.z in using_map.ai_shell_allowed_levels)) )	//VOREStation Edit: shell restrictions
 			possible += R
 
@@ -34,7 +33,7 @@
 		to_chat(src, span("warning", "No usable AI shell beacons detected."))
 
 	if(!target || !(target in possible)) //If the AI is looking for a new shell, or its pre-selected shell is no longer valid
-		target = input(src, "Which body to control?") as null|anything in possible
+		target = tgui_input_list(src, "Which body to control?", "Shell Choice", possible)
 
 	if(!target || target.stat == DEAD || target.deployed || !(!target.connected_ai || (target.connected_ai == src) ) )
 		if(target)

@@ -241,7 +241,7 @@
 	M.initial_icon = new_icon
 	if(new_icon_file)
 		M.icon = new_icon_file
-	M.reset_icon()
+	M.update_icon()
 	use(1, user)
 
 /obj/mecha/attackby(var/obj/item/weapon/W, var/mob/user)
@@ -259,6 +259,17 @@
 	new_desc = "A very retro APLU unit; didn't they retire these back in 2543?"
 	new_icon = "ripley-old"
 	allowed_types = list("ripley")
+	var/showpilot = TRUE
+	var/showpilot_lift = 5
+
+/obj/item/device/kit/paint/ripley/customize(obj/mecha/M, mob/user)
+	if(showpilot)
+		M.show_pilot = TRUE
+		M.pilot_lift = 5
+	else
+		M.show_pilot = FALSE
+		M.pilot_lift = 0
+	. = ..()
 
 /obj/item/device/kit/paint/ripley/death
 	name = "\"Reaper\" APLU customisation kit"
@@ -266,18 +277,21 @@
 	new_desc = "A terrifying, grim power loader. Why do those clamps have spikes?"
 	new_icon = "deathripley"
 	allowed_types = list("ripley","firefighter")
+	showpilot = FALSE
 
 /obj/item/device/kit/paint/ripley/flames_red
 	name = "\"Firestarter\" APLU customisation kit"
 	new_name = "APLU \"Firestarter\""
 	new_desc = "A standard APLU exosuit with stylish orange flame decals."
 	new_icon = "ripley_flames_red"
+	showpilot = FALSE
 
 /obj/item/device/kit/paint/ripley/flames_blue
 	name = "\"Burning Chrome\" APLU customisation kit"
 	new_name = "APLU \"Burning Chrome\""
 	new_desc = "A standard APLU exosuit with stylish blue flame decals."
 	new_icon = "ripley_flames_blue"
+	showpilot = FALSE
 
 // Durand kits.
 /obj/item/device/kit/paint/durand

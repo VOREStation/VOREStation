@@ -33,6 +33,9 @@
 
 	defence_mode_possible = 1
 
+	icon_scale_x = 1.5
+	icon_scale_y = 1.5
+
 /*
 /obj/mecha/combat/durand/New()
 	..()

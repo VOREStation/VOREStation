@@ -90,7 +90,7 @@
 /area/submap/virgo2/Drugd)
 "v" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/contraband/poster,
+/obj/item/poster,
 /turf/simulated/floor/carpet,
 /area/submap/virgo2/Drugd)
 "w" = (

@@ -14,10 +14,10 @@
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "shield"
 	alpha = 100
-	anchored = 1
+	anchored = TRUE
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
-	density = 0
+	density = FALSE
 	can_atmos_pass = ATMOS_PASS_DENSITY
 	var/obj/machinery/shield_gen/my_gen = null
 	var/strength = 0 // in Renwicks
@@ -101,20 +101,20 @@
 
 		ticks_recovering = min(ticks_recovering + 2, 10)
 		if(strength < 1) // We broke
-			density = 0
+			density = FALSE
 			ticks_recovering = 10
 			strength = 0
 
 	else if(amount > 0) // Healing damage.
 		if(strength >= 1)
-			density = 1
+			density = TRUE
 
 	if(density != old_density)
 		update_icon()
 		update_nearby_tiles()
 
 /obj/effect/energy_field/update_icon(var/update_neightbors = 0)
-	overlays.Cut()
+	cut_overlays()
 	var/list/adjacent_shields_dir = list()
 	for(var/direction in cardinal)
 		var/turf/T = get_step(src, direction)
@@ -134,7 +134,7 @@
 
 	// Edge overlays
 	for(var/found_dir in adjacent_shields_dir)
-		overlays += image(src.icon, src, icon_state = "shield_edge", dir = found_dir)
+		add_overlay(image(src.icon, src, icon_state = "shield_edge", dir = found_dir))
 
 
 // Small visual effect, makes the shield tiles brighten up by becoming more opaque for a moment, and spreads to nearby shields.

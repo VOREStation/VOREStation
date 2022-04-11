@@ -5,8 +5,8 @@
 	name = "machine frame"
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "box_0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	use_power = USE_POWER_OFF
 	var/obj/item/weapon/circuitboard/circuit = null
 	var/list/components = null
@@ -50,6 +50,11 @@
 				if(istype(P, /obj/item/weapon/circuitboard))
 					var/obj/item/weapon/circuitboard/B = P
 					if(B.board_type == "machine")
+					//VOREStation Addition End
+						if(istype(B, /obj/item/weapon/circuitboard/quantumpad) && istype(get_area(src), /area/shuttle))
+							to_chat(user, "<span class='warning'>This is too unstable a platform for a quantum pad to operate on!</span>")
+							return
+					//VOREStation Addition End
 						playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 						to_chat(user, "<span class='notice'>You add the circuit board to the frame.</span>")
 						circuit = P

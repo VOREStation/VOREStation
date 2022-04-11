@@ -15,6 +15,8 @@
 	response_harm   = "punches"
 	faction = "wards" // Needed as most human mobs are in neutral faction. The owner is generally except from any ward hostility regardless.
 
+	organ_names = /decl/mob_organ_names/ward
+
 	maxHealth = 15
 	health = 15
 	movement_cooldown = 0
@@ -40,3 +42,6 @@
 	if(owner == L)
 		return TRUE
 	return ..()
+
+/decl/mob_organ_names/ward
+	hit_zones = list("chassis", "sensor array", "hover thruster")

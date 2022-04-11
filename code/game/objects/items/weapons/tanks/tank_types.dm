@@ -174,7 +174,7 @@
 	gauge_icon = "indicator_emergency"
 
 /obj/item/weapon/tank/emergency/nitrogen/Initialize()
-	..()
+	. = ..()
 	src.air_contents.adjust_gas("nitrogen", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
 
 /obj/item/weapon/tank/emergency/nitrogen/double

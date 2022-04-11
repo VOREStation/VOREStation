@@ -202,12 +202,12 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	icon_state = "table"
 
 /obj/structure/table/survival_pod/New()
-	material = get_material_by_name(DEFAULT_WALL_MATERIAL)
+	material = get_material_by_name(MAT_STEEL)
 	verbs -= /obj/structure/table/verb/do_flip
 	verbs -= /obj/structure/table/proc/do_put
 	..()
 
-/obj/structure/table/survival_pod/dismantle(obj/item/weapon/wrench/W, mob/user)
+/obj/structure/table/survival_pod/dismantle(obj/item/weapon/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
 
@@ -253,7 +253,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	icon_state = "bed"
 
 /obj/structure/bed/pod/New(var/newloc)
-	..(newloc,DEFAULT_WALL_MATERIAL,"cotton")
+	..(newloc,MAT_STEEL,"cotton")
 
 //Survival Storage Unit
 /obj/machinery/smartfridge/survival_pod
@@ -266,6 +266,7 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_range = 5
 	light_power = 1.2
 	light_color = "#DDFFD3"
+	light_on = TRUE
 	pixel_y = -4
 	max_n_of_items = 100
 
@@ -330,6 +331,10 @@ GLOBAL_LIST_EMPTY(unique_deployable)
 	light_range = 3
 	light_power = 1
 	light_color = "#FFFFFF"
+	light_on = TRUE
+
+/obj/structure/fans/hardlight/ex_act()
+	return
 
 /obj/structure/fans/hardlight/colorable
 	name = "hardlight shield"

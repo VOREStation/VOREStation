@@ -17,7 +17,7 @@
 			to_chat(user, "<span class='danger'>It looks like the locking system has been shorted out.</span>")
 			return
 
-		if((!req_access || !req_access.len) && (!req_one_access || !req_one_access.len))
+		if(!LAZYLEN(req_access) && !LAZYLEN(req_one_access))
 			locked = 0
 			to_chat(user, "<span class='danger'>\The [src] doesn't seem to have a locking mechanism.</span>")
 			return
@@ -122,7 +122,7 @@
 			if(cell) current_mounts   += "cell"
 			if(installed_modules && installed_modules.len) current_mounts += "system module"
 
-			var/to_remove = input("Which would you like to modify?") as null|anything in current_mounts
+			var/to_remove = tgui_input_list(usr, "Which would you like to modify?", "Removal Choice", current_mounts)
 			if(!to_remove)
 				return
 
@@ -160,7 +160,7 @@
 						to_chat(user, "There are no installed modules to remove.")
 						return
 
-					var/removal_choice = input("Which module would you like to remove?") as null|anything in possible_removals
+					var/removal_choice = tgui_input_list(usr, "Which module would you like to remove?", "Removal Choice", possible_removals)
 					if(!removal_choice)
 						return
 
@@ -190,8 +190,8 @@
 
 /obj/item/weapon/rig/emag_act(var/remaining_charges, var/mob/user)
 	if(!subverted)
-		req_access.Cut()
-		req_one_access.Cut()
+		LAZYCLEARLIST(req_access)
+		LAZYCLEARLIST(req_one_access)
 		locked = 0
 		subverted = 1
 		to_chat(user, "<span class='danger'>You short out the access protocol for the suit.</span>")

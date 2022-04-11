@@ -10,6 +10,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_engineering)
+"aj" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_engineering)
 "aF" = (
 /obj/structure/table/steel,
 /obj/machinery/button/remote/blast_door{
@@ -134,6 +140,12 @@
 	},
 /turf/simulated/floor/reinforced,
 /area/shuttle/gecko_cr)
+"dy" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit)
 "dC" = (
 /obj/random/multiple/corp_crate,
 /turf/simulated/floor/reinforced,
@@ -382,6 +394,12 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr)
+"ir" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_engineering)
 "iL" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -463,6 +481,12 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit)
+"kg" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_engineering)
 "kn" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -502,6 +526,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_cockpit)
+"kT" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_engineering)
 "kU" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
@@ -730,6 +760,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit)
+"oZ" = (
+/turf/template_noop,
+/area/shuttle/gecko_cr_engineering)
 "pf" = (
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/firealarm{
@@ -938,6 +971,9 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering)
+"si" = (
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit)
 "sv" = (
 /obj/structure/railing/grey,
 /obj/structure/catwalk,
@@ -1617,6 +1653,12 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/gecko_cr_cockpit)
+"Eg" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit)
 "Ey" = (
 /obj/structure/sign/warning/airlock,
 /turf/simulated/wall/rshull,
@@ -2102,6 +2144,13 @@
 	},
 /turf/simulated/wall/rshull,
 /area/shuttle/gecko_cr)
+"Nl" = (
+/obj/structure/table/steel,
+/obj/structure/panic_button{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/shuttle/gecko_cr_cockpit)
 "Np" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
@@ -2127,6 +2176,10 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering)
+"NC" = (
+/obj/structure/hull_corner,
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit)
 "NE" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -2439,6 +2492,12 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering)
+"Re" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/turf/template_noop,
+/area/shuttle/gecko_cr_cockpit)
 "Rg" = (
 /obj/effect/floor_decal/industrial/outline/red,
 /obj/machinery/atmospherics/portables_connector{
@@ -3146,7 +3205,7 @@ WE
 WE
 WE
 WE
-WP
+kT
 "}
 (3,1,1) = {"
 WP
@@ -3261,8 +3320,8 @@ Or
 Or
 ZJ
 ZJ
-WP
-WP
+oZ
+kg
 WP
 WP
 WP
@@ -3275,15 +3334,15 @@ WE
 WE
 WE
 WE
-WP
+aj
 "}
 (6,1,1) = {"
 WP
 WP
 WP
-WP
-WP
-WP
+si
+dy
+eP
 eP
 eP
 eP
@@ -3322,12 +3381,12 @@ WP
 "}
 (7,1,1) = {"
 WP
-WP
-WP
+si
+dy
 eP
 eP
 eP
-eP
+Nr
 Nr
 GF
 Nr
@@ -3403,7 +3462,7 @@ aL
 WE
 WE
 WE
-WP
+kT
 WP
 "}
 (9,1,1) = {"
@@ -3494,7 +3553,7 @@ WP
 "}
 (11,1,1) = {"
 WP
-WP
+Eg
 qL
 wG
 aF
@@ -3533,7 +3592,7 @@ WE
 WE
 WE
 WE
-WP
+kT
 "}
 (12,1,1) = {"
 WP
@@ -3666,9 +3725,9 @@ WP
 "}
 (15,1,1) = {"
 WP
-WP
+NC
 qL
-wG
+Nl
 ic
 Id
 qL
@@ -3705,7 +3764,7 @@ WE
 WE
 WE
 WE
-WP
+aj
 "}
 (16,1,1) = {"
 WP
@@ -3833,17 +3892,17 @@ pG
 WE
 WE
 WE
-WP
+aj
 WP
 "}
 (19,1,1) = {"
 WP
-WP
-WP
+si
+Re
 eP
 eP
 eP
-eP
+Nr
 Nr
 uw
 Nr
@@ -3883,9 +3942,9 @@ WP
 WP
 WP
 WP
-WP
-WP
-WP
+si
+Re
+eP
 eP
 eP
 eP
@@ -3949,8 +4008,8 @@ xU
 xU
 ZJ
 ZJ
-WP
-WP
+oZ
+ir
 WP
 WP
 WP
@@ -3963,7 +4022,7 @@ WE
 WE
 WE
 WE
-WP
+kT
 "}
 (22,1,1) = {"
 WP
@@ -4092,7 +4151,7 @@ WE
 WE
 WE
 WE
-WP
+aj
 "}
 (25,1,1) = {"
 WP

@@ -6,10 +6,10 @@
 	name = "hypospray"
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients."
 	icon = 'icons/obj/syringe.dmi'
-	item_state = "hypo"
 	icon_state = "hypo"
+	item_state = "hypo"
 	amount_per_transfer_from_this = 5
-	unacidable = 1
+	unacidable = TRUE
 	volume = 30
 	possible_transfer_amounts = null
 	flags = OPENCONTAINER
@@ -88,13 +88,15 @@
 
 //A vial-loaded hypospray. Cartridge-based!
 /obj/item/weapon/reagent_containers/hypospray/vial
-	name = "hypospray mkII"
+	name = "advanced hypospray"
+	icon_state = "advhypo"
 	desc = "A new development from DeForest Medical, this new hypospray takes 30-unit vials as the drug supply for easy swapping."
 	var/obj/item/weapon/reagent_containers/glass/beaker/vial/loaded_vial //Wow, what a name.
 	volume = 0
 
 /obj/item/weapon/reagent_containers/hypospray/vial/Initialize()
 	. = ..()
+	icon_state = "[initial(icon_state)]"
 	loaded_vial = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src) //Comes with an empty vial
 	volume = loaded_vial.volume
 	reagents.maximum_volume = loaded_vial.reagents.maximum_volume
@@ -114,6 +116,13 @@
 		..()
 	else
 		return ..()
+
+/obj/item/weapon/reagent_containers/hypospray/vial/update_icon()
+	..()
+	if(loaded_vial)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]_empty"
 
 /obj/item/weapon/reagent_containers/hypospray/vial/attackby(obj/item/weapon/W, mob/user as mob)
 	if(istype(W, /obj/item/weapon/reagent_containers/glass/beaker/vial))
@@ -181,10 +190,22 @@
 	else
 		. += "<span class='notice'>It is spent.</span>"
 
+
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/detox
 	name = "autoinjector (antitox)"
 	icon_state = "green"
 	filled_reagents = list("anti_toxin" = 5)
+
+//Special autoinjectors, while having potent chems like the 15u ones, the chems are usually potent enough that 5u is enough
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/bonemed
+	name = "bone repair injector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating damage to bones."
+	filled_reagents = list("osteodaxon" = 5)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/clonemed
+	name = "clone injector"
+	desc = "A rapid and safe way to administer small amounts of drugs by untrained or trained personnel. This one excels at treating genetic damage."
+	filled_reagents = list("rezadone" = 5)
 
 // These have a 15u capacity, somewhat higher tech level, and generally more useful chems, but are otherwise the same as the regular autoinjectors.
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector
@@ -195,6 +216,11 @@
 	volume = 15
 	origin_tech = list(TECH_BIO = 4)
 	filled_reagents = list("inaprovaline" = 15)
+
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty //for the autolathe
+	name = "large autoinjector"
+	filled = 0
+	filled_reagents = list()
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute
 	name = "trauma hypo"
@@ -246,11 +272,6 @@
 	name = "clotting agent"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. This variant excels at treating bleeding wounds and internal bleeding."
 	filled_reagents = list("inaprovaline" = 5, "myelamine" = 10)
-
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bonemed
-	name = "bone repair injector"
-	desc = "A refined version of the standard autoinjector, allowing greater capacity. This one excels at treating damage to bones."
-	filled_reagents = list("inaprovaline" = 5, "osteodaxon" = 10)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/glucose
 	name = "glucose hypo"

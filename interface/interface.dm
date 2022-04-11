@@ -21,7 +21,7 @@
 	set desc = "Visit the forum."
 	set hidden = 1
 	if( config.forumurl )
-		if(alert("This will open the forum in your browser. Are you sure?",,"Yes","No")=="No")
+		if(tgui_alert(usr, "This will open the forum in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
 			return
 		src << link(config.forumurl)
 	else
@@ -34,7 +34,7 @@
 	set hidden = 1
 
 	if(config.rulesurl)
-		if(alert("This will open the rules in your browser. Are you sure?",,"Yes","No")=="No")
+		if(tgui_alert(usr, "This will open the rules in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
 			return
 		src << link(config.rulesurl)
 	else
@@ -47,7 +47,7 @@
 	set hidden = 1
 
 	if(config.mapurl)
-		if(alert("This will open the map in your browser. Are you sure?",,"Yes","No")=="No")
+		if(tgui_alert(usr, "This will open the map in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
 			return
 		src << link(config.mapurl)
 	else
@@ -60,11 +60,24 @@
 	set hidden = 1
 
 	if(config.githuburl)
-		if(alert("This will open the GitHub in your browser. Are you sure?",,"Yes","No")=="No")
+		if(tgui_alert(usr, "This will open the GitHub in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
 			return
 		src << link(config.githuburl)
 	else
 		to_chat(src, "<span class='danger'>The GitHub URL is not set in the server configuration.</span>")
+	return
+
+/client/verb/discord()
+	set name = "Discord"
+	set desc = "Visit the discord"
+	set hidden = 1
+
+	if(config.discordurl)
+		if(tgui_alert(usr, "This will open the Discord in your browser. Are you sure?","Visit Website",list("Yes","No"))=="No")
+			return
+		src << link(config.discordurl)
+	else
+		to_chat(src, "<span class='danger'>The Discord URL is not set in the server configuration.</span>")
 	return
 
 /client/verb/hotkeys_help()
@@ -93,6 +106,8 @@ Hotkey-Mode: (hotkey-mode must be on)
 \t5 = emote
 \tx = swap-hand
 \tz = activate held object (or y)
+\tu = Rest
+\tb = Resist
 \tj = toggle-aiming-mode
 \tf = cycle-intents-left
 \tg = cycle-intents-right
@@ -113,6 +128,8 @@ Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+q = drop
 \tCtrl+e = equip
 \tCtrl+r = throw
+\tCtrl+u = Rest
+\tCtrl+b = Resist
 \tCtrl+x = swap-hand
 \tCtrl+z = activate held object (or Ctrl+y)
 \tCtrl+f = cycle-intents-left

@@ -104,7 +104,7 @@
 	return battery
 
 /obj/item/clothing/gloves/ring/buzzer/Initialize()
-	..()
+	. = ..()
 	if(!battery)
 		battery = new battery_type(src)
 

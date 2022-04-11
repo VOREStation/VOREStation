@@ -60,7 +60,7 @@
 		to_chat(src, "There are no viable hosts within range...")
 		return
 
-	var/mob/living/carbon/M = input(src,"Who do you wish to infest?") in null|choices
+	var/mob/living/carbon/M = tgui_input_list(src, "Who do you wish to infest?", "Target Choice", choices)
 
 	if(!M || !src) return
 
@@ -169,7 +169,8 @@
 
 	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
 	H.verbs |= /mob/living/carbon/human/proc/tackle
-	H.verbs |= /mob/living/carbon/proc/spawn_larvae
+	if(antag)
+		H.verbs |= /mob/living/carbon/proc/spawn_larvae
 
 	if(H.client)
 		H.ghostize(0)
@@ -217,7 +218,7 @@
 	if(chemicals < 50)
 		to_chat(src, "You don't have enough chemicals!")
 
-	var/chem = input("Select a chemical to secrete.", "Chemicals") as null|anything in list("alkysine","bicaridine","hyperzine","tramadol")
+	var/chem = tgui_input_list(usr, "Select a chemical to secrete.", "Chemicals", list("alkysine","bicaridine","hyperzine","tramadol"))
 
 	if(!chem || chemicals < 50 || !host || controlling || !src || stat) //Sanity check.
 		return
@@ -252,7 +253,7 @@
 		to_chat(src, "You cannot use that ability again so soon.")
 		return
 
-	var/mob/living/carbon/M = input(src,"Who do you wish to dominate?") in null|choices
+	var/mob/living/carbon/M = tgui_input_list(src, "Who do you wish to dominate?", "Target Choice", choices)
 
 	if(!M || !src) return
 
@@ -332,7 +333,8 @@
 
 			host.verbs += /mob/living/carbon/proc/release_control
 			host.verbs += /mob/living/carbon/proc/punish_host
-			host.verbs += /mob/living/carbon/proc/spawn_larvae
+			if(antag)
+				host.verbs += /mob/living/carbon/proc/spawn_larvae
 
 			return
 
