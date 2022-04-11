@@ -15,15 +15,196 @@
 	. = ..()
 	logged_in = "SS13 Cargo Department"
 
+/obj/machinery/computer/stockexchange/attack_hand(mob/user)
+	if(..(user))
+		return
+
+	//if(!ai_control && issilicon(user))
+	//	to_chat(user, "<span class='warning'>Access Denied.</span>")
+	//	return TRUE
+	
+	tgui_interact(user)
+
 /obj/machinery/computer/stockexchange/proc/balance()
 	if (!logged_in)
 		return 0
 	return SSsupply.points
 
-/obj/machinery/computer/stockexchange/tgui_interact(mob/living/user)
-	. = ..()
-	var/css={"<style>
-.change {
+/obj/machinery/computer/stockexchange/tgui_act(action, params, datum/tgui/ui)
+	if(..())
+		return TRUE
+
+	add_fingerprint(usr)
+
+	switch(action)
+		if("stocks_buy")
+			var/datum/stock/S = locate(params["share"]) in GLOB.stockExchange.stocks
+			if (S)
+				buy_some_shares(S, usr)
+
+		if("stocks_sell")
+			var/datum/stock/S = locate(params["share"]) in GLOB.stockExchange.stocks
+			if (S)
+				sell_some_shares(S, usr)
+
+		if("stocks_check")
+			var/dat = "<html><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div><br>"
+			for(var/D in GLOB.stockExchange.logs)
+				var/datum/stock_log/L = D
+				if(istype(L, /datum/stock_log/buy))
+					dat += "[L.time] | <b>[L.user_name]</b> bought <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits in <b>[L.company_name]</b>.<br>"
+					continue
+				if(istype(L, /datum/stock_log/sell))
+					dat += "[L.time] | <b>[L.user_name]</b> sold <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits from <b>[L.company_name]</b>.<br>"
+					continue
+				if(istype(L, /datum/stock_log/borrow))
+					dat += "[L.time] | <b>[L.user_name]</b> borrowed <b>[L.stocks]</b> stocks with a deposit of <b>[L.money]</b> credits in <b>[L.company_name]</b>.<br>"
+					continue
+			var/datum/browser/popup = new(usr, "stock_logs", "Stock Transaction Logs", 600, 400)
+			popup.set_content(dat)
+			popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+			popup.open()
+
+		if("stocks_archive")
+			var/datum/stock/S = locate(params["archive"])
+			if (logged_in && logged_in != "")
+				var/list/LR = GLOB.stockExchange.last_read[S]
+				LR[logged_in] = world.time
+			var/dat = "<html><head><title>News feed for [S.name]</title></head><body><h2>News feed for [S.name]</h2><div><a href='?src=[REF(src)];archive=[REF(S)]'>Refresh</a></div>"
+			dat += "<div><h3>Events</h3>"
+			var/p = 0
+			for (var/datum/stockEvent/E in S.events)
+				if (E.hidden)
+					continue
+				if (p > 0)
+					dat += "<hr>"
+				dat += "<div><b style='font-size:1.25em'>[E.current_title]</b><br>[E.current_desc]</div>"
+				p++
+			dat += "</div><hr><div><h3>Articles</h3>"
+			p = 0
+			for (var/datum/article/A in S.articles)
+				if (p > 0)
+					dat += "<hr>"
+				dat += "<div><b style='font-size:1.25em'>[A.headline]</b><br><i>[A.subtitle]</i><br><br>[A.article]<br>- [A.author], [A.spacetime] (via <i>[A.outlet]</i>)</div>"
+				p++
+			dat += "</div></body></html>"
+			var/datum/browser/popup = new(usr, "archive_[S.name]", "Stock News", 600, 400)
+			popup.set_content(dat)
+			popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
+			popup.open()
+
+		if("stocks_history")
+			var/datum/stock/S = locate("history") in GLOB.stockExchange.stocks
+			if (S)
+				S.displayValues(usr)
+
+		if("stocks_cycle_view")
+			vmode++
+			if (vmode > 1)
+				vmode = 0
+
+/obj/machinery/computer/stockexchange/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["stationName"] = using_map.station_name
+	data["balance"] = balance()
+
+	if (vmode)
+		data["viewMode"] = "Full"
+	else
+		data["viewMode"] = "Compressed"
+
+	for (var/datum/stock/S in GLOB.stockExchange.last_read)
+		var/list/LR = GLOB.stockExchange.last_read[S]
+		if (!(logged_in in LR))
+			LR[logged_in] = 0
+
+	data["stocks"] = list()
+
+	if (vmode)
+		for (var/datum/stock/S in GLOB.stockExchange.stocks)
+			var/mystocks = 0
+			if (logged_in && (logged_in in S.shareholders))
+				mystocks = S.shareholders[logged_in]
+
+			var/value = 0
+			if (!S.bankrupt)
+				value = S.current_value
+
+			data["stocks"] += list(list(
+				"bankrupt" = S.bankrupt,
+				"ID" = S.short_name,
+				"Name" = S.name,
+				"Value" = value,
+				"Owned" = mystocks,
+				"Avail" = S.available_shares,
+			))
+
+			var/news = 0
+			if (logged_in)
+				var/list/LR = GLOB.stockExchange.last_read[S]
+				var/lrt = LR[logged_in]
+				for (var/datum/article/A in S.articles)
+					if (A.ticks > lrt)
+						news = 1
+						break
+				if (!news)
+					for (var/datum/stockEvent/E in S.events)
+						if (E.last_change > lrt && !E.hidden)
+							news = 1
+
+			/*
+			if(S.disp_value_change > 0)
+				dat += "<td class='change up'>+</td>"
+			else if(S.disp_value_change < 0)
+				dat += "<td class='change down'>-</td>"
+			else
+				dat += "<td class='change'>=</td>"
+
+			
+
+			if(mystocks)
+				dat += "<td><b>[]</b></td>"
+			else
+				dat += "<td>0</td>
+				*/
+
+
+	else
+		for (var/datum/stock/S in GLOB.stockExchange.stocks)
+			var/mystocks = 0
+			if (logged_in && (logged_in in S.shareholders))
+				mystocks = S.shareholders[logged_in]
+			//dat += "<hr /><div class='stock'><span class='company'>[S.name]</span> <span class='s_company'>([S.short_name])</span>[S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
+			//if (S.last_unification)
+			//	dat += "<b>Unified shares</b> [DisplayTimeText(world.time - S.last_unification)] ago.<br>"
+			//dat += "<b>Current value per share:</b> [S.current_value] | <a href='?src=[REF(src)];viewhistory=[REF(S)]'>View history</a><br><br>"
+			//dat += "You currently own <b>[mystocks]</b> shares in this company. There are [S.available_shares] purchasable shares on the market currently.<br>"
+			//if (S.bankrupt)
+			//	dat += "You cannot buy or sell shares in a bankrupt company!<br><br>"
+			//else
+			//	dat += "<a href='?src=[REF(src)];buyshares=[REF(S)]'>Buy shares</a> | <a href='?src=[REF(src)];sellshares=[REF(S)]'>Sell shares</a><br><br>"
+			//dat += "<b>Prominent products:</b><br>"
+			for (var/prod in S.products)
+				dat += "<i>[prod]</i><br>"
+			var/news = 0
+			if (logged_in)
+				var/list/LR = GLOB.stockExchange.last_read[S]
+				var/lrt = LR[logged_in]
+				for (var/datum/article/A in S.articles)
+					if (A.ticks > lrt)
+						news = 1
+						break
+				if (!news)
+					for (var/datum/stockEvent/E in S.events)
+						if (E.last_change > lrt && !E.hidden)
+							news = 1
+							break
+			//dat += "<a href='?src=[REF(src)];archive=[REF(S)]'>View news archives</a>[news ? " <span style='color:red'>(updated)</span>" : null]</div>"
+	
+	/*
+
+	.change {
 	font-weight: bold;
 	font-family: monospace;
 }
@@ -51,117 +232,16 @@
 a.updated {
 	color: red;
 }
-</style>"}
-	var/dat = "<html><head><title>[station_name()] Stock Exchange</title>[css]</head><body>"
 
-	dat += "<span class='user'>Welcome, <b>[station_name()] Cargo Department</b></span><br><span class='balance'><b>Credits:</b> [balance()] </span><br>"
-	for (var/datum/stock/S in GLOB.stockExchange.last_read)
-		var/list/LR = GLOB.stockExchange.last_read[S]
-		if (!(logged_in in LR))
-			LR[logged_in] = 0
-	dat += "<b>View mode:</b> <a href='?src=[REF(src)];cycleview=1'>[vmode ? "Compact" : "Full"]</a> "
-	dat += "<b>Stock Transaction Log:</b> <a href='?src=[REF(src)];show_logs=1'>Check</a><br>"
+	 */
 
-	dat += "<i>This is a work in progress. Certain features may not be available.</i>"
+	return data
 
-	dat += "<h3>Listed stocks</h3>"
-
-	if (vmode == 0)
-		for (var/datum/stock/S in GLOB.stockExchange.stocks)
-			var/mystocks = 0
-			if (logged_in && (logged_in in S.shareholders))
-				mystocks = S.shareholders[logged_in]
-			dat += "<hr /><div class='stock'><span class='company'>[S.name]</span> <span class='s_company'>([S.short_name])</span>[S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
-			if (S.last_unification)
-				dat += "<b>Unified shares</b> [DisplayTimeText(world.time - S.last_unification)] ago.<br>"
-			dat += "<b>Current value per share:</b> [S.current_value] | <a href='?src=[REF(src)];viewhistory=[REF(S)]'>View history</a><br><br>"
-			dat += "You currently own <b>[mystocks]</b> shares in this company. There are [S.available_shares] purchasable shares on the market currently.<br>"
-			if (S.bankrupt)
-				dat += "You cannot buy or sell shares in a bankrupt company!<br><br>"
-			else
-				dat += "<a href='?src=[REF(src)];buyshares=[REF(S)]'>Buy shares</a> | <a href='?src=[REF(src)];sellshares=[REF(S)]'>Sell shares</a><br><br>"
-			dat += "<b>Prominent products:</b><br>"
-			for (var/prod in S.products)
-				dat += "<i>[prod]</i><br>"
-			var/news = 0
-			if (logged_in)
-				var/list/LR = GLOB.stockExchange.last_read[S]
-				var/lrt = LR[logged_in]
-				for (var/datum/article/A in S.articles)
-					if (A.ticks > lrt)
-						news = 1
-						break
-				if (!news)
-					for (var/datum/stockEvent/E in S.events)
-						if (E.last_change > lrt && !E.hidden)
-							news = 1
-							break
-			dat += "<a href='?src=[REF(src)];archive=[REF(S)]'>View news archives</a>[news ? " <span style='color:red'>(updated)</span>" : null]</div>"
-	else if (vmode == 1)
-		dat += "<b>Actions:</b> + Buy, - Sell, (A)rchives, (H)istory<br><br>"
-		dat += "<table class='stable'>"
-		dat += "<tr><th>&nbsp;</th><th>ID</th><th>Name</th><th>Value</th><th>Owned</th><th>Avail</th><th>Actions</th></tr>"
-
-		for (var/datum/stock/S in GLOB.stockExchange.stocks)
-			var/mystocks = 0
-			if (logged_in && (logged_in in S.shareholders))
-				mystocks = S.shareholders[logged_in]
-
-			if(S.bankrupt)
-				dat += "<tr class='bankrupt'>"
-			else
-				dat += "<tr>"
-
-			if(S.disp_value_change > 0)
-				dat += "<td class='change up'>+</td>"
-			else if(S.disp_value_change < 0)
-				dat += "<td class='change down'>-</td>"
-			else
-				dat += "<td class='change'>=</td>"
-
-			dat += "<td><b>[S.short_name]</b></td>"
-			dat += "<td>[S.name]</td>"
-
-			if(!S.bankrupt)
-				dat += "<td>[S.current_value]</td>"
-			else
-				dat += "<td>0</td>"
-
-			if(mystocks)
-				dat += "<td><b>[mystocks]</b></td>"
-			else
-				dat += "<td>0</td>"
-
-			dat += "<td>[S.available_shares]</td>"
-			var/news = 0
-			if (logged_in)
-				var/list/LR = GLOB.stockExchange.last_read[S]
-				var/lrt = LR[logged_in]
-				for (var/datum/article/A in S.articles)
-					if (A.ticks > lrt)
-						news = 1
-						break
-				if (!news)
-					for (var/datum/stockEvent/E in S.events)
-						if (E.last_change > lrt && !E.hidden)
-							news = 1
-							break
-			dat += "<td>"
-			if (S.bankrupt)
-				dat += "<span class='linkOff'>+</span> <span class='linkOff'>-</span> "
-			else
-				dat += "<a href='?src=[REF(src)];buyshares=[REF(S)]'>+</a> <a href='?src=[REF(src)];sellshares=[REF(S)]'>-</a> "
-			dat += "<a href='?src=[REF(src)];archive=[REF(S)]' class='[news ? "updated" : "default"]'>(A)</a> <a href='?src=[REF(src)];viewhistory=[REF(S)]'>(H)</a></td>"
-
-			dat += "</tr>"
-
-		dat += "</table>"
-
-	dat += "</body></html>"
-	var/datum/browser/popup = new(user, "computer", "Stock Exchange", 600, 600)
-	popup.set_content(dat)
-	popup.set_title_image(user.browse_rsc_icon(src.icon, src.icon_state))
-	popup.open()
+/obj/machinery/computer/stockexchange/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StockExchange")
+		ui.open()
 
 /obj/machinery/computer/stockexchange/proc/sell_some_shares(var/datum/stock/S, var/mob/user)
 	if (!user || !S)
@@ -246,74 +326,8 @@ a.updated {
 	if (!usr || (!(usr in range(1, src)) && iscarbon(usr)))
 		usr.machine = src
 
-	if (href_list["viewhistory"])
-		var/datum/stock/S = locate(href_list["viewhistory"]) in GLOB.stockExchange.stocks
-		if (S)
-			S.displayValues(usr)
-
 	if (href_list["logout"])
 		logged_in = null
-
-	if (href_list["buyshares"])
-		var/datum/stock/S = locate(href_list["buyshares"]) in GLOB.stockExchange.stocks
-		if (S)
-			buy_some_shares(S, usr)
-
-	if (href_list["sellshares"])
-		var/datum/stock/S = locate(href_list["sellshares"]) in GLOB.stockExchange.stocks
-		if (S)
-			sell_some_shares(S, usr)
-
-	if (href_list["show_logs"])
-		var/dat = "<html><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div><br>"
-		for(var/D in GLOB.stockExchange.logs)
-			var/datum/stock_log/L = D
-			if(istype(L, /datum/stock_log/buy))
-				dat += "[L.time] | <b>[L.user_name]</b> bought <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits in <b>[L.company_name]</b>.<br>"
-				continue
-			if(istype(L, /datum/stock_log/sell))
-				dat += "[L.time] | <b>[L.user_name]</b> sold <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits from <b>[L.company_name]</b>.<br>"
-				continue
-			if(istype(L, /datum/stock_log/borrow))
-				dat += "[L.time] | <b>[L.user_name]</b> borrowed <b>[L.stocks]</b> stocks with a deposit of <b>[L.money]</b> credits in <b>[L.company_name]</b>.<br>"
-				continue
-		var/datum/browser/popup = new(usr, "stock_logs", "Stock Transaction Logs", 600, 400)
-		popup.set_content(dat)
-		popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
-		popup.open()
-
-	if (href_list["archive"])
-		var/datum/stock/S = locate(href_list["archive"])
-		if (logged_in && logged_in != "")
-			var/list/LR = GLOB.stockExchange.last_read[S]
-			LR[logged_in] = world.time
-		var/dat = "<html><head><title>News feed for [S.name]</title></head><body><h2>News feed for [S.name]</h2><div><a href='?src=[REF(src)];archive=[REF(S)]'>Refresh</a></div>"
-		dat += "<div><h3>Events</h3>"
-		var/p = 0
-		for (var/datum/stockEvent/E in S.events)
-			if (E.hidden)
-				continue
-			if (p > 0)
-				dat += "<hr>"
-			dat += "<div><b style='font-size:1.25em'>[E.current_title]</b><br>[E.current_desc]</div>"
-			p++
-		dat += "</div><hr><div><h3>Articles</h3>"
-		p = 0
-		for (var/datum/article/A in S.articles)
-			if (p > 0)
-				dat += "<hr>"
-			dat += "<div><b style='font-size:1.25em'>[A.headline]</b><br><i>[A.subtitle]</i><br><br>[A.article]<br>- [A.author], [A.spacetime] (via <i>[A.outlet]</i>)</div>"
-			p++
-		dat += "</div></body></html>"
-		var/datum/browser/popup = new(usr, "archive_[S.name]", "Stock News", 600, 400)
-		popup.set_content(dat)
-		popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
-		popup.open()
-
-	if (href_list["cycleview"])
-		vmode++
-		if (vmode > 1)
-			vmode = 0
 
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
