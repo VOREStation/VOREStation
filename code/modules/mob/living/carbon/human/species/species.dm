@@ -53,15 +53,9 @@
 
 	var/taste_sensitivity = TASTE_NORMAL							// How sensitive the species is to minute tastes.
 	var/allergens = null									// Things that will make this species very sick
-<<<<<<< HEAD
-	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_BLURRY|AG_CONFUSE	// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses. VOREStation Edit'd.
-	var/allergen_damage_severity = 4							// How bad are reactions to the allergen? Touch with extreme caution. VOREStation Edit'd.
-	var/allergen_disable_severity = 4							// Whilst this determines how long nonlethal effects last and how common emotes are. VOREStation Edit'd.
-=======
 	var/allergen_reaction = AG_TOX_DMG|AG_OXY_DMG|AG_EMOTE|AG_PAIN|AG_BLURRY|AG_CONFUSE	// What type of reactions will you have? These the 'main' options and are intended to approximate anaphylactic shock at high doses.
 	var/allergen_damage_severity = 2.5							// How bad are reactions to the allergen? Touch with extreme caution.
 	var/allergen_disable_severity = 10							// Whilst this determines how long nonlethal effects last and how common emotes are.
->>>>>>> e39f24b49e3... Allergen CE Conversion (#8431)
 
 	var/min_age = 17
 	var/max_age = 70
