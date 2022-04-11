@@ -168,8 +168,8 @@
 	pixel_x = 24
 	},
 /obj/structure/cable{
-	icon_state = "0-2";
-	d2 = 2
+	d2 = 2;
+	icon_state = "0-2"
 	},
 /turf/simulated/floor/tiled,
 /area/tcommsat/computer)
@@ -179,8 +179,8 @@
 /area/space)
 "aA" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
-	icon_state = "map";
-	dir = 4
+	dir = 4;
+	icon_state = "map"
 	},
 /turf/simulated/floor/plating,
 /area/engineering/engine_room)
@@ -353,8 +353,8 @@
 	dir = 8
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 6
@@ -368,8 +368,8 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -386,8 +386,8 @@
 	},
 /obj/structure/cable,
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -405,8 +405,8 @@
 	dir = 1
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -468,8 +468,8 @@
 /area/engineering/engine_room)
 "aY" = (
 /obj/machinery/atmospherics/pipe/simple/visible/cyan{
-	icon_state = "intact";
-	dir = 5
+	dir = 5;
+	icon_state = "intact"
 	},
 /obj/structure/cable{
 	d1 = 1;
@@ -495,8 +495,8 @@
 	dir = 4
 	},
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 9
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/plating,
 /area/engineering/engine_room)
@@ -541,8 +541,8 @@
 /area/tcommsat/chamber)
 "bg" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
 	dir = 1;
@@ -709,8 +709,8 @@
 	pixel_y = 0
 	},
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 4
+	dir = 4;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/plating,
 /area/engineering/engine_room)
@@ -747,8 +747,8 @@
 /area/tcommsat/chamber)
 "bw" = (
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
 	dir = 2;
@@ -798,8 +798,8 @@
 	name_tag = "MiniTest"
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /obj/structure/cable{
 	d2 = 8;
@@ -933,8 +933,8 @@
 	pixel_y = 0
 	},
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 8
+	dir = 8;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
@@ -1115,8 +1115,8 @@
 	pixel_x = -32
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/secondary/engineering_hallway)
@@ -1227,9 +1227,9 @@
 	external_pressure_bound = 140;
 	external_pressure_bound_default = 140;
 	icon_state = "map_vent_out";
-	use_power = 1;
 	pressure_checks = 0;
-	pressure_checks_default = 0
+	pressure_checks_default = 0;
+	use_power = 1
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
@@ -1260,10 +1260,10 @@
 	initialize_directions = 1;
 	internal_pressure_bound = 4000;
 	internal_pressure_bound_default = 4000;
-	use_power = 1;
 	pressure_checks = 2;
 	pressure_checks_default = 2;
-	pump_direction = 0
+	pump_direction = 0;
+	use_power = 1
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
@@ -2299,8 +2299,8 @@
 	icon_state = "0-8"
 	},
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 10
+	dir = 10;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
@@ -2682,8 +2682,8 @@
 	pixel_y = 32
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/cafeteria)
@@ -2874,8 +2874,8 @@
 	pixel_y = 32
 	},
 /obj/structure/cable{
-	icon_state = "0-4";
-	d2 = 4
+	d2 = 4;
+	icon_state = "0-4"
 	},
 /turf/simulated/floor/tiled,
 /area/bridge)
@@ -3312,17 +3312,21 @@
 /obj/structure/shuttle,
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/shuttle/overmapdemo)
+"lU" = (
+/obj/machinery/computer/stockexchange,
+/turf/simulated/floor/tiled,
+/area/bridge)
 "mj" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 10
+	dir = 10;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
 "nM" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 9
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/cafeteria)
@@ -3332,8 +3336,8 @@
 /area/bridge)
 "pG" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 9
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/bridge)
@@ -3363,8 +3367,8 @@
 /area/bridge)
 "rK" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 10
+	dir = 10;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/bluegrid{
 	name = "Mainframe Base";
@@ -3399,15 +3403,15 @@
 /area/shuttle/overmapdemo)
 "xM" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 5
+	dir = 5;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/cafeteria)
 "xX" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 4
+	dir = 4;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
@@ -3439,8 +3443,8 @@
 	icon_state = "1-2"
 	},
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 9
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/primary/fore)
@@ -3466,8 +3470,8 @@
 /area/shuttle/overmapdemo)
 "OA" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 10
+	dir = 10;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/medical/medbay)
@@ -3487,8 +3491,8 @@
 /area/bridge)
 "Ug" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 4
+	dir = 4;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/medical/medbay2)
@@ -3500,8 +3504,8 @@
 /area/shuttle/overmapdemo)
 "Vf" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 9
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/bar)
@@ -3521,8 +3525,8 @@
 /area/shuttle/overmapdemo)
 "Yb" = (
 /obj/machinery/camera/network/civilian{
-	icon_state = "camera";
-	dir = 9
+	dir = 9;
+	icon_state = "camera"
 	},
 /turf/simulated/floor/tiled,
 /area/medical/medbay2)
@@ -5545,7 +5549,7 @@ fY
 GC
 gf
 gr
-gf
+lU
 gf
 gz
 gf

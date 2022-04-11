@@ -22,7 +22,7 @@
 	//if(!ai_control && issilicon(user))
 	//	to_chat(user, "<span class='warning'>Access Denied.</span>")
 	//	return TRUE
-	
+
 	tgui_interact(user)
 
 /obj/machinery/computer/stockexchange/proc/balance()
@@ -37,6 +37,9 @@
 	add_fingerprint(usr)
 
 	switch(action)
+		if ("logout")
+			logged_in = null
+
 		if("stocks_buy")
 			var/datum/stock/S = locate(params["share"]) in GLOB.stockExchange.stocks
 			if (S)
@@ -66,7 +69,7 @@
 			popup.open()
 
 		if("stocks_archive")
-			var/datum/stock/S = locate(params["archive"])
+			var/datum/stock/S = locate(params["share"])
 			if (logged_in && logged_in != "")
 				var/list/LR = GLOB.stockExchange.last_read[S]
 				LR[logged_in] = world.time
@@ -94,7 +97,7 @@
 			popup.open()
 
 		if("stocks_history")
-			var/datum/stock/S = locate("history") in GLOB.stockExchange.stocks
+			var/datum/stock/S = locate(params["share"]) in GLOB.stockExchange.stocks
 			if (S)
 				S.displayValues(usr)
 
@@ -132,12 +135,15 @@
 				value = S.current_value
 
 			data["stocks"] += list(list(
+				"REF" = REF(S),
+				"valueChange" = S.disp_value_change, // > 0 is +, < 0 is -, else its =
 				"bankrupt" = S.bankrupt,
 				"ID" = S.short_name,
 				"Name" = S.name,
 				"Value" = value,
 				"Owned" = mystocks,
 				"Avail" = S.available_shares,
+				"Products" = S.products,
 			))
 
 			var/news = 0
@@ -152,41 +158,27 @@
 					for (var/datum/stockEvent/E in S.events)
 						if (E.last_change > lrt && !E.hidden)
 							news = 1
-
-			/*
-			if(S.disp_value_change > 0)
-				dat += "<td class='change up'>+</td>"
-			else if(S.disp_value_change < 0)
-				dat += "<td class='change down'>-</td>"
-			else
-				dat += "<td class='change'>=</td>"
-
-			
-
-			if(mystocks)
-				dat += "<td><b>[]</b></td>"
-			else
-				dat += "<td>0</td>
-				*/
-
-
 	else
 		for (var/datum/stock/S in GLOB.stockExchange.stocks)
 			var/mystocks = 0
 			if (logged_in && (logged_in in S.shareholders))
 				mystocks = S.shareholders[logged_in]
-			//dat += "<hr /><div class='stock'><span class='company'>[S.name]</span> <span class='s_company'>([S.short_name])</span>[S.bankrupt ? " <b style='color:red'>BANKRUPT</b>" : null]<br>"
-			//if (S.last_unification)
-			//	dat += "<b>Unified shares</b> [DisplayTimeText(world.time - S.last_unification)] ago.<br>"
-			//dat += "<b>Current value per share:</b> [S.current_value] | <a href='?src=[REF(src)];viewhistory=[REF(S)]'>View history</a><br><br>"
-			//dat += "You currently own <b>[mystocks]</b> shares in this company. There are [S.available_shares] purchasable shares on the market currently.<br>"
-			//if (S.bankrupt)
-			//	dat += "You cannot buy or sell shares in a bankrupt company!<br><br>"
-			//else
-			//	dat += "<a href='?src=[REF(src)];buyshares=[REF(S)]'>Buy shares</a> | <a href='?src=[REF(src)];sellshares=[REF(S)]'>Sell shares</a><br><br>"
-			//dat += "<b>Prominent products:</b><br>"
-			for (var/prod in S.products)
-				dat += "<i>[prod]</i><br>"
+
+			var/unification = 0
+			if (S.last_unification)
+				unification = DisplayTimeText(world.time - S.last_unification)
+
+			data["stocks"] += list(list(
+				"REF" = REF(S),
+				"bankrupt" = S.bankrupt,
+				"ID" = S.short_name,
+				"Name" = S.name,
+				"Owned" = mystocks,
+				"Avail" = S.available_shares,
+				"Unification" = unification,
+				"Products" = S.products,
+			))
+
 			var/news = 0
 			if (logged_in)
 				var/list/LR = GLOB.stockExchange.last_read[S]
@@ -200,40 +192,6 @@
 						if (E.last_change > lrt && !E.hidden)
 							news = 1
 							break
-			//dat += "<a href='?src=[REF(src)];archive=[REF(S)]'>View news archives</a>[news ? " <span style='color:red'>(updated)</span>" : null]</div>"
-	
-	/*
-
-	.change {
-	font-weight: bold;
-	font-family: monospace;
-}
-.up {
-	background: #00a000;
-}
-.down {
-	background: #a00000;
-}
-.stable {
-	width: 100%
-	border-collapse: collapse;
-	border: 1px solid #305260;
-	border-spacing: 4px 4px;
-}
-.stable td, .stable th {
-	border: 1px solid #305260;
-	padding: 0px 3px;
-}
-.bankrupt {
-	border: 1px solid #a00000;
-	background: #a00000;
-}
-
-a.updated {
-	color: red;
-}
-
-	 */
 
 	return data
 
@@ -325,9 +283,6 @@ a.updated {
 
 	if (!usr || (!(usr in range(1, src)) && iscarbon(usr)))
 		usr.machine = src
-
-	if (href_list["logout"])
-		logged_in = null
 
 	src.add_fingerprint(usr)
 	src.updateUsrDialog()
