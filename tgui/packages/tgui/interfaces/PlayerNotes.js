@@ -1,11 +1,12 @@
 import { useBackend } from '../backend';
-import { Button, Divider, Section, Table } from '../components';
+import { Button, Divider, Input, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const PlayerNotes = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     device_theme,
+    filter,
     ckeys = [],
   } = data;
   return (
@@ -22,6 +23,18 @@ export const PlayerNotes = (props, context) => {
             onClick={() => act("filter_player_notes")}>
             Apply Filter
           </Button>
+          <Input />
+          <Button
+            onClick={() => act("show_player_info_manual", {
+              name: ckey.name,
+            })}>
+            Open Notes
+          </Button>
+          <Divider vertical />
+          <Button
+            color="green"
+            content={filter}
+            onClick={() => act("clear_player_info_filter")} />
           <Divider />
           <Table>
             {ckeys.map(ckey => (

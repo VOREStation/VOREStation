@@ -1,10 +1,51 @@
-//#define PLAYER_NOTES_ENTRIES_PER_PAGE 50
+#define PLAYER_NOTES_ENTRIES_PER_PAGE 3
 
 /datum/tgui_module/player_notes
 	name = "Player Notes"
 	tgui_id = "PlayerNotes"
 
 	var/ckeys = list()
+
+/datum/tgui_module/player_notes/proc/filter_ckeys(var/filter)
+	var/savefile/S=new("data/player_notes.sav")
+	var/list/note_keys
+	var/page = 1
+
+	S >> note_keys
+
+	if(note_keys)
+		note_keys = sortList(note_keys)
+
+		if(filter)
+			var/list/results = list()
+			var/regex/needle = regex(filter, "i")
+			for(var/haystack in note_keys)
+				if(needle.Find(haystack))
+					results += haystack
+			note_keys = results
+
+		// Display the notes on the current page
+		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
+		// Emulate CEILING(why does BYOND not have ceil, 1)
+		if(number_pages != round(number_pages))
+			number_pages = round(number_pages) + 1
+		var/page_index = page - 1
+
+		if(page_index < 0 || page_index >= number_pages)
+			to_chat(usr, "No keys found.")
+		else
+			var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
+			var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
+			upper_bound = min(upper_bound, note_keys.len)
+			for(var/index = lower_bound, index <= upper_bound, index++)
+				var/t = note_keys[index]
+
+		// Display a footer to select different pages
+		for(var/index = 1, index <= number_pages, index++)
+			if(index == page)
+				to_chat(usr, "Index: [index]")
+
+	return note_keys
 
 /datum/tgui_module/player_notes/tgui_state(mob/user)
 	return GLOB.tgui_admin_state
@@ -20,49 +61,12 @@
 			A.tgui_interact(usr)
 
 		if("filter_player_notes")
-			var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
-			var/savefile/S=new("data/player_notes.sav")
-			var/list/note_keys
-			var/page = 1
+			var/input = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
+			ckeys = filter_ckeys(input)
 
-			S >> note_keys
+		if("clear_player_info_filter")
+			ckeys = filter_ckeys("")
 
-			if(note_keys)
-				note_keys = sortList(note_keys)
-
-				if(filter)
-					var/list/results = list()
-					var/regex/needle = regex(filter, "i")
-					for(var/haystack in note_keys)
-						if(needle.Find(haystack))
-							results += haystack
-					note_keys = results
-
-				// Display the notes on the current page
-				//var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
-				// Emulate CEILING(why does BYOND not have ceil, 1)
-				//if(number_pages != round(number_pages))
-				//	number_pages = round(number_pages) + 1
-				//var/page_index = page - 1
-
-				//if(page_index < 0 || page_index >= number_pages)
-				//	//dat += "<tr><td>No keys found.</td></tr>"
-				//else
-					//var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
-					//var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-					//upper_bound = min(upper_bound, note_keys.len)
-					//for(var/index = lower_bound, index <= upper_bound, index++)
-						//var/t = note_keys[index]
-
-				// Display a footer to select different pages
-				//for(var/index = 1, index <= number_pages, index++)
-				//	if(index == page)
-				//		dat += "<b>"
-				//	dat += "<a href='?src=\ref[src];notes=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
-				//	if(index == page)
-				//		dat += "</b>"
-			
-				ckeys = note_keys
 
 /datum/tgui_module/player_notes/tgui_data(mob/user)
 	var/list/data = list()
