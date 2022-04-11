@@ -27,8 +27,8 @@ export const PlayerNotesInfo = (props, context) => {
                   collapsing={false}>
                   <Divider />
                   <Box>
-                    Written by <span color="darkgreen">{entry.author}</span> on <span color="blue">{entry.date}</span><br />
-                    &quot;{entry.comment}&quot;
+                    Written by {entry.author} on <span color="blue">{entry.date}</span><br />
+                    <span color="green">&quot;{entry.comment}&quot;</span>
                   </Box>
                   <Button
                     icon="trash"
