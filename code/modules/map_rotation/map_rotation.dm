@@ -37,12 +37,14 @@ var/rotation_overridden = FALSE
         for(var/line in lines)
             map_round_count += text2num(lines[1])
             rotation_overridden += text2num(lines[2])
+            rotation_due += text2num(lines[3])
 
 // Update the persistent rotation data (How many rounds passed, if the current rotation cycle was overridden)
 /proc/update_rotation_data()
     fdel("data/rotation.txt")
     text2file(num2text(map_round_count), "data/rotation.txt")
     text2file(num2text(rotation_overridden), "data/rotation.txt")
+    text2file(num2text(rotation_due), "data/rotation.txt")
 
 // Check if we met the requirements, choose to automatically rotate or vote, depending on configuration
 /proc/check_due()
@@ -116,4 +118,4 @@ var/rotation_overridden = FALSE
     map_round_count = 0
     rotation_overridden = FALSE
     update_rotation_data()
-    shell("python ./scripts/rotate_map.py")
+    //shell("python ./scripts/rotate_map.py")
