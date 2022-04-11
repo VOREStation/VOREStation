@@ -42754,6 +42754,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
+"sJY" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
 "sLa" = (
 /obj/machinery/firealarm{
 	layer = 3.3;
@@ -55885,7 +55897,7 @@ aXa
 aXa
 kcC
 eGv
-aXa
+sJY
 fEX
 gCZ
 ykY
