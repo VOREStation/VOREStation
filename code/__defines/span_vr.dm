@@ -112,4 +112,10 @@
 #define span_userdanger(str) ("<span class='userdanger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
 #define span_yell(str) ("<span class='yell'>" + str + "</span>")
-#define span_yellowteamradio(str) ("<span class='yellowteamradio'>" + str + "</span>")
+#define span_yellowteamradio(str) ("<span class='yellowteamradio'>" + str + "</span>"
+
+// VORE Specific stuff after this point
+// Sorted by however I felt like it
+#define span_game_say(str) ("<span class='game_say'>" + str + "</span>"
+#define span_emote_subtle(str) ("<span class='emote_subtle'>" + str + "</span>"
+#define span_emote(str) ("<span class='emote'>" + str + "</span>"
