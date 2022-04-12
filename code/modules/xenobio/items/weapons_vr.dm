@@ -39,7 +39,7 @@
 /obj/item/weapon/xenobio/attack_self(mob/living/user as mob)
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
-		user.visible_message(span_notice("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
+		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
 		loaded_item = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
