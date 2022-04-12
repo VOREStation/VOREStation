@@ -10,7 +10,6 @@ SUBSYSTEM_DEF(mapping)
 	var/list/shelter_templates = list()
 
 /datum/controller/subsystem/mapping/Recover()
-	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 	shelter_templates = SSmapping.shelter_templates
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)

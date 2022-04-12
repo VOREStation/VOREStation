@@ -156,6 +156,7 @@ SUBSYSTEM_DEF(machines)
 		if(MC_TICK_CHECK)
 			return
 
+<<<<<<< HEAD
 /datum/controller/subsystem/machines/Recover()
 	for(var/datum/D as anything in global.pipe_networks)
 		if(!istype(D, /datum/pipe_network))
@@ -173,6 +174,8 @@ SUBSYSTEM_DEF(machines)
 		if(!istype(D, /obj/item))
 			error("Found wrong type during SSmachinery recovery: list=global.processing_power_items, item=[D], type=[D?.type]")
 			global.processing_power_items -= D
+=======
+>>>>>>> 4c9dbff7197... removed nonsense /Recover overrides
 
 #undef SSMACHINES_PIPENETS
 #undef SSMACHINES_MACHINERY

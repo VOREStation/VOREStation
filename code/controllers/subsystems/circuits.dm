@@ -14,9 +14,6 @@ SUBSYSTEM_DEF(circuit)
 	var/list/circuit_fabricator_recipe_list = list()				// Associative list of [category_name]:[list_of_circuit_paths] pairs
 //	var/cost_multiplier = MINERAL_MATERIAL_AMOUNT / 10 // Each circuit cost unit is 200cm3
 
-/datum/controller/subsystem/circuit/Recover()
-	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
-
 /datum/controller/subsystem/circuit/Initialize(timeofday)
 	circuits_init()
 	return ..()
