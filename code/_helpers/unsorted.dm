@@ -1166,18 +1166,16 @@ var/list/WALLITEMS = list(
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
 	return "<span style='font-face: fixedsys; font-size: 14px; background-color: [color]; color: [color]'>___</span>"
 
+
 var/mob/dview/dview_mob = new
 
 //Version of view() which ignores darkness, because BYOND doesn't have it.
 /proc/dview(var/range = world.view, var/center, var/invis_flags = 0)
 	if(!center)
 		return
-	if(!dview_mob) //VOREStation Add: Debugging
-		dview_mob = new
-		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
-	
+
 	dview_mob.see_invisible = invis_flags
 
 	. = view(range, dview_mob)
@@ -1185,10 +1183,10 @@ var/mob/dview/dview_mob = new
 
 /mob/dview
 	invisibility = 101
-	density = FALSE
+	density = 0
 
-	anchored = TRUE
-	simulated = FALSE
+	anchored = 1
+	simulated = 0
 
 	see_in_dark = 1e6
 
@@ -1197,7 +1195,6 @@ var/mob/dview/dview_mob = new
 		color = origin.color
 		set_light(origin.light_range, origin.light_power, origin.light_color)
 
-INITIALIZE_IMMEDIATE(/mob/dview)
 /mob/dview/Initialize()
 	. = ..()
 	// We don't want to be in any mob lists; we're a dummy not a mob.
@@ -1207,17 +1204,16 @@ INITIALIZE_IMMEDIATE(/mob/dview)
 	else
 		living_mob_list -= src
 
-/mob/dview/Life()
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
-
 /mob/dview/Destroy(var/force)
-	stack_trace("Attempt to delete the dview_mob: [log_info_line(src)]")
+	crash_with("Attempt to delete the dview_mob: [log_info_line(src)]")
 	if (!force)
 		return QDEL_HINT_LETMELIVE
 	global.dview_mob = new
 	return ..()
+
+// call to generate a stack trace and print to runtime logs
+/proc/crash_with(msg)
+	CRASH(msg)
 
 /proc/screen_loc2turf(scr_loc, turf/origin)
 	var/tX = splittext(scr_loc, ",")

@@ -70,8 +70,8 @@
 	center_of_mass = list("x"=16, "y"=8)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
-		..()
-		reagents.add_reagent("dr_gibb", 30)
+	. = ..()
+	reagents.add_reagent("dr_gibb", 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb_diet
 	name = "\improper Diet Dr. Gibb"

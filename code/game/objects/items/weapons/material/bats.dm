@@ -14,16 +14,16 @@
 
 //Predefined materials go here.
 /obj/item/weapon/material/twohanded/baseballbat/metal/Initialize(var/ml)
-	..(ml, MAT_STEEL)
+	. = ..(ml, MAT_STEEL)
 
 /obj/item/weapon/material/twohanded/baseballbat/uranium/Initialize(var/ml)
-	..(ml, MAT_URANIUM)
+	. = ..(ml, MAT_URANIUM)
 
 /obj/item/weapon/material/twohanded/baseballbat/gold/Initialize(var/ml)
-	..(ml, MAT_GOLD)
+	. = ..(ml, MAT_GOLD)
 
 /obj/item/weapon/material/twohanded/baseballbat/platinum/Initialize(var/ml)
-	..(ml, MAT_PLATINUM)
+	. = ..(ml, MAT_PLATINUM)
 
 /obj/item/weapon/material/twohanded/baseballbat/diamond/Initialize(var/ml)
-	..(ml, MAT_DIAMOND)
+	. = ..(ml, MAT_DIAMOND)
