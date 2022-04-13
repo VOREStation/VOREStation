@@ -584,3 +584,11 @@
 	extra_overlay = "rat_markings"
 	clip_mask_state = "taur_clip_mask_rat"
 	icon_sprite_tag = "rat"
+
+/datum/sprite_accessory/tail/taur/noodle
+	name = "Eastern Dragon (Taur)"
+	icon_state = "noodle_s"
+	extra_overlay = "noodle_markings"
+	extra_overlay2 = "noodle_markings_2"
+	clip_mask_state = "taur_clip_mask_noodle"
+	icon_sprite_tag = "noodle"
