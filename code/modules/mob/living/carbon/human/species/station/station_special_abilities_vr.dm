@@ -161,7 +161,7 @@
 	var/blood_color = species.blood_color
 	var/flesh_color = species.flesh_color
 	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-	
+
 	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
 	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
@@ -825,9 +825,6 @@
 		return
 	if(C.nutrition < 25 && !C.flying) //Don't have any food in you?" You can't fly.
 		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
-		return
-	if(C.nutrition > 1000 && !C.flying)
-		to_chat(C, "<span class='notice'>You have eaten too much to fly! You need to lose some nutrition.</span>")
 		return
 
 	C.flying = !C.flying
