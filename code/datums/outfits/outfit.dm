@@ -41,7 +41,7 @@ var/list/outfits_decls_by_type_
 	var/l_hand = null
 	// In the list(path=count,otherpath=count) format
 	var/list/uniform_accessories = list() // webbing, armbands etc - fits in slot_tie
-	var/list/backpack_contents = list() 
+	var/list/backpack_contents = list()
 
 	var/id_type
 	var/id_desc
@@ -57,7 +57,10 @@ var/list/outfits_decls_by_type_
 	var/satchel_two  = /obj/item/weapon/storage/backpack/satchel
 	var/messenger_bag = /obj/item/weapon/storage/backpack/messenger
 	var/sports_bag = /obj/item/weapon/storage/backpack/sport
+<<<<<<< HEAD
 	var/satchel_three = /obj/item/weapon/storage/backpack/satchel/strapless
+=======
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 	var/flags // Specific flags
 
@@ -79,7 +82,10 @@ var/list/outfits_decls_by_type_
 			if(4) back = satchel_two
 			if(5) back = messenger_bag
 			if(6) back = sports_bag
+<<<<<<< HEAD
 			if(7) back = satchel_three
+=======
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 			else back = null
 
 /decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H)

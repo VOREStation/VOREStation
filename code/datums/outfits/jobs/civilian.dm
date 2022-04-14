@@ -69,7 +69,11 @@
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/hyd
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/hyd
 	sports_bag = /obj/item/weapon/storage/backpack/sport/hyd
+<<<<<<< HEAD
 	id_type = /obj/item/weapon/card/id/civilian/service/botanist	//VOREStation Edit
+=======
+	id_type = /obj/item/weapon/card/id/civilian/botanist
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 	pda_type = /obj/item/device/pda/botanist
 
 /decl/hierarchy/outfit/job/service/janitor

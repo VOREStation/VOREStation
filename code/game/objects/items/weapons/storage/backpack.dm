@@ -138,6 +138,18 @@
 	desc = "It's an orange backpack which was designed to hold beakers, pill bottles and bottles."
 	icon_state = "backpack_orange"
 
+/obj/item/weapon/storage/backpack/white
+	name = "white backpack"
+	icon_state = "backpack_white"
+
+/obj/item/weapon/storage/backpack/fancy
+	name = "fancy backpack"
+	icon_state = "backpack_fancy"
+
+/obj/item/weapon/storage/backpack/military
+	name = "military backpack"
+	icon_state = "backpack_military"
+
 /*
  * Duffle Types
  */
@@ -205,6 +217,16 @@
 	desc = "That probably shouldn't be moving..."
 	icon_state = "duffle_cursed"
 
+/obj/item/weapon/storage/backpack/dufflebag/drone
+	name = "drone dufflebag"
+	desc = "A large dufflebag for holding small robots? Or maybe it's one used by robots!"
+	icon_state = "duffle_drone"
+
+/obj/item/weapon/storage/backpack/dufflebag/cursed
+	name = "cursed dufflebag"
+	desc = "That probably shouldn't be moving..."
+	icon_state = "duffle_cursed"
+
 /*
  * Satchel Types
  */
@@ -237,37 +259,65 @@
 /obj/item/weapon/storage/backpack/satchel/eng
 	name = "industrial satchel"
 	desc = "A tough satchel with extra pockets."
+<<<<<<< HEAD
 	icon_state = "satchel_industrial"
+=======
+	icon_state = "satchel-eng"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/satchel/med
 	name = "medical satchel"
 	desc = "A sterile satchel used in medical departments."
+<<<<<<< HEAD
 	icon_state = "satchel_medical"
+=======
+	icon_state = "satchel-med"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/satchel/vir
 	name = "virologist satchel"
 	desc = "A sterile satchel with virologist colours."
+<<<<<<< HEAD
 	icon_state = "satchel_green"
+=======
+	icon_state = "satchel-vir"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/satchel/chem
 	name = "chemist satchel"
 	desc = "A sterile satchel with chemist colours."
+<<<<<<< HEAD
 	icon_state = "satchel_orange"
+=======
+	icon_state = "satchel-chem"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/satchel/gen
 	name = "geneticist satchel"
 	desc = "A sterile satchel with geneticist colours."
+<<<<<<< HEAD
 	icon_state = "satchel_blue"
+=======
+	icon_state = "satchel-gen"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/satchel/tox
 	name = "scientist satchel"
 	desc = "Useful for holding research materials."
+<<<<<<< HEAD
 	icon_state = "satchel_purple"
+=======
+	icon_state = "satchel-tox"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/satchel/sec
 	name = "security satchel"
 	desc = "A robust satchel for security related needs."
+<<<<<<< HEAD
 	icon_state = "satchel_security"
+=======
+	icon_state = "satchel-sec"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/satchel/hyd
 	name = "hydroponics satchel"
@@ -277,7 +327,23 @@
 /obj/item/weapon/storage/backpack/satchel/cap
 	name = "site manager's satchel"
 	desc = "An exclusive satchel for officers."
+<<<<<<< HEAD
 	icon_state = "satchel_captain"
+=======
+	icon_state = "satchel-cap"
+
+/obj/item/weapon/storage/backpack/satchel/white
+	name = "white satchel"
+	icon_state = "satchel_white"
+
+/obj/item/weapon/storage/backpack/satchel/fancy
+	name = "fancy satchel"
+	icon_state = "satchel_fancy"
+
+/obj/item/weapon/storage/backpack/satchel/military
+	name = "military satchel"
+	icon_state = "satchel_military"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 //ERT backpacks.
 /obj/item/weapon/storage/backpack/ert
@@ -315,36 +381,62 @@
 /obj/item/weapon/storage/backpack/messenger
 	name = "messenger bag"
 	desc = "A sturdy backpack worn over one shoulder."
+<<<<<<< HEAD
 	icon_state = "courier"
 	item_state_slots = list(slot_r_hand_str = "satchel_grey", slot_l_hand_str = "satchel_grey")
+=======
+	icon_state = "courierbag"
+	item_state_slots = list(slot_r_hand_str = "satchel-norm", slot_l_hand_str = "satchel-norm")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/messenger/chem
 	name = "chemistry messenger bag"
 	desc = "A serile backpack worn over one shoulder.  This one is in Chemsitry colors."
+<<<<<<< HEAD
 	icon_state = "courier_chemistry"
 	item_state_slots = list(slot_r_hand_str = "satchel_orange", slot_l_hand_str = "satchel_orange")
+=======
+	icon_state = "courierbagchem"
+	item_state_slots = list(slot_r_hand_str = "satchel-chem", slot_l_hand_str = "satchel-chem")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/messenger/med
 	name = "medical messenger bag"
 	desc = "A sterile backpack worn over one shoulder used in medical departments."
+<<<<<<< HEAD
 	icon_state = "courier_medical"
 	item_state_slots = list(slot_r_hand_str = "satchel_medical", slot_l_hand_str = "satchel_medical")
+=======
+	icon_state = "courierbagmed"
+	item_state_slots = list(slot_r_hand_str = "satchel-med", slot_l_hand_str = "satchel-med")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/messenger/viro
 	name = "virology messenger bag"
 	desc = "A sterile backpack worn over one shoulder.  This one is in Virology colors."
+<<<<<<< HEAD
 	icon_state = "courier_virology"
 	item_state_slots = list(slot_r_hand_str = "satchel_green", slot_l_hand_str = "satchel_green")
+=======
+	icon_state = "courierbagviro"
+	item_state_slots = list(slot_r_hand_str = "satchel-vir", slot_l_hand_str = "satchel-vir")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/messenger/tox
 	name = "research messenger bag"
 	desc = "A backpack worn over one shoulder.  Useful for holding science materials."
+<<<<<<< HEAD
 	icon_state = "courier_toxins"
 	item_state_slots = list(slot_r_hand_str = "satchel_purple", slot_l_hand_str = "satchel_purple")
+=======
+	icon_state = "courierbagtox"
+	item_state_slots = list(slot_r_hand_str = "satchel-tox", slot_l_hand_str = "satchel-tox")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/messenger/com
 	name = "command messenger bag"
 	desc = "A special backpack worn over one shoulder.  This one is made specifically for officers."
+<<<<<<< HEAD
 	icon_state = "courier_captain"
 	item_state_slots = list(slot_r_hand_str = "satchel_captain", slot_l_hand_str = "satchel_captain")
 
@@ -352,22 +444,45 @@
 	name = "engineering messenger bag"
 	icon_state = "courier_industrial"
 	item_state_slots = list(slot_r_hand_str = "satchel_industrial", slot_l_hand_str = "satchel_industrial")
+=======
+	icon_state = "courierbagcom"
+	item_state_slots = list(slot_r_hand_str = "satchel-cap", slot_l_hand_str = "satchel-cap")
+
+/obj/item/weapon/storage/backpack/messenger/engi
+	name = "engineering messenger bag"
+	icon_state = "courierbagengi"
+	item_state_slots = list(slot_r_hand_str = "satchel-eng", slot_l_hand_str = "satchel-eng")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/messenger/hyd
 	name = "hydroponics messenger bag"
 	desc = "A backpack worn over one shoulder.  This one is designed for plant-related work."
+<<<<<<< HEAD
 	icon_state = "courier_hydro"
 	item_state_slots = list(slot_r_hand_str = "satchel_hydro", slot_l_hand_str = "satchel_hydro")
+=======
+	icon_state = "courierbaghyd"
+	item_state_slots = list(slot_r_hand_str = "satchel_hyd", slot_l_hand_str = "satchel_hyd")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/messenger/sec
 	name = "security messenger bag"
 	desc = "A tactical backpack worn over one shoulder. This one is in Security colors."
+<<<<<<< HEAD
 	icon_state = "courier_security"
 	item_state_slots = list(slot_r_hand_str = "satchel_security", slot_l_hand_str = "satchel_security")
 
 /obj/item/weapon/storage/backpack/messenger/black
 	icon_state = "courier_black"
 
+=======
+	icon_state = "courierbagsec"
+	item_state_slots = list(slot_r_hand_str = "satchel-sec", slot_l_hand_str = "satchel-sec")
+
+/obj/item/weapon/storage/backpack/messenger/black
+	icon_state = "courierbagblk"
+	item_state_slots = list(slot_r_hand_str = "satchel-sec", slot_l_hand_str = "satchel-sec")
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /*
  * Sport Bags
@@ -409,6 +524,14 @@
 	name = "security sports backpack"
 	desc = "A robust sports backpack for security related needs."
 	icon_state = "backsport_security"
+<<<<<<< HEAD
+=======
+
+/obj/item/weapon/storage/backpack/sport/hyd
+	name = "hydroponics sports backpack"
+	desc = "A green sports backpack for plant related work."
+	icon_state = "backsport_hydro"
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 
 /obj/item/weapon/storage/backpack/sport/hyd
 	name = "hydroponics sports backpack"

@@ -30,7 +30,11 @@
 
 
 	backbag = rand(1,6)
+<<<<<<< HEAD
 	pdachoice = rand(1,7)
+=======
+	pdachoice = rand(1,5)
+>>>>>>> c262c050506... Merge pull request #8525 from Cerebulon/BagsOfFun
 	age = rand(current_species.min_age, current_species.max_age)
 	b_type = RANDOM_BLOOD_TYPE
 	if(H)
