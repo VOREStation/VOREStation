@@ -4,8 +4,13 @@
 	icon = 'icons/obj/library.dmi'
 	icon_state = "photocopier"
 	var/insert_anim = "photocopier_scan"
+<<<<<<< HEAD
 	anchored = TRUE
 	density = TRUE
+=======
+	anchored = 1
+	density = 1
+>>>>>>> a3c4d73be85... Merge pull request #8523 from Cerebulon/bureasprites
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 200
@@ -112,12 +117,14 @@
 			sleep(11)
 			copy(copyitem)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
+			flick("photocopier_print", src)
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/photo))
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			sleep(11)
 			photocopy(copyitem)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
+			flick("photocopier_print", src)
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (istype(copyitem, /obj/item/weapon/paper_bundle))
 			sleep(11)
@@ -125,6 +132,7 @@
 			var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
 			sleep(11*B.pages.len)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
+			flick("photocopier_print", src)
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
 		else if (has_buckled_mobs()) // VOREStation EDIT: For ass-copying.
 			playsound(src, "sound/machines/copier.ogg", 100, 1)

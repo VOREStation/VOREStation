@@ -52,6 +52,7 @@
 	icon_state = "pen_red"
 	colour = "red"
 
+<<<<<<< HEAD
 /*
  * Fountain Pens
  */
@@ -95,6 +96,8 @@
 /*
  * Multi Pen
  */
+=======
+>>>>>>> a3c4d73be85... Merge pull request #8523 from Cerebulon/bureasprites
 /obj/item/weapon/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
 	var/selectedColor = 1
@@ -122,6 +125,46 @@
 	desc = "It's an invisble pen marker."
 	icon_state = "pen"
 	colour = "white"
+
+//Fountain Pens
+
+/obj/item/weapon/pen/fountain
+	desc = "A well made fountain pen with a faux-wood finish."
+	icon_state = "pen_fountain"
+
+/obj/item/weapon/pen/fountain2
+	desc = "A well made fountain pen, with a faux wood body. This one has golden accents."
+	icon_state = "pen_fountain2"
+
+/obj/item/weapon/pen/fountain3
+	desc = "A well made expensive rosewood pen with golden accents. Very pretty."
+	icon_state = "red_fountain"
+
+/obj/item/weapon/pen/fountain4
+	desc = "A well made and expensive fountain pen. This one has silver accents."
+	icon_state = "blues_fountain"
+
+/obj/item/weapon/pen/fountain5
+	desc = "A well made and expensive fountain pen. This one has gold accents."
+	icon_state = "blueg_fountain"
+
+/obj/item/weapon/pen/fountain6
+	desc = "A well made and expensive fountain pen. The nib is quite sharp."
+	icon_state = "command_fountain"
+
+/obj/item/weapon/pen/fountain7
+	desc = "A well made and expensive fountain pen made from gold."
+	icon_state = "gold_fountain"
+
+/obj/item/weapon/pen/fountain8
+	desc = "A well made and expensive fountain pen."
+	icon_state = "black_fountain"
+
+/obj/item/weapon/pen/fountain9
+	desc = "A well made and expensive fountain pen made for gesturing."
+	icon_state = "mime_fountain"
+
+
 
 /*
  * Reagent Pens

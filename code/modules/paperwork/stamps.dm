@@ -77,6 +77,7 @@
 	name = "\improper Sol Government rubber stamp"
 	icon_state = "stamp-sg"
 
+<<<<<<< HEAD
 /obj/item/weapon/stamp/solgov
 	name = "\improper Sol Government rubber stamp"
 	icon_state = "stamp-sg"
@@ -85,6 +86,8 @@
 	name = "\improper Sol Government logo stamp"
 	icon_state = "stamp-sol"
 
+=======
+>>>>>>> a3c4d73be85... Merge pull request #8523 from Cerebulon/bureasprites
 /obj/item/weapon/stamp/solgovlogo
 	name = "\improper Sol Government logo stamp"
 	icon_state = "stamp-sol"
