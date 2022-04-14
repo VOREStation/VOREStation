@@ -1482,6 +1482,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10) // Equivalent to engineer's jumpsuit.
 	rolled_sleeves = 0
 
+<<<<<<< HEAD
 //christmas stuff
 /obj/item/clothing/under/christmas/red
 	name = "red christmas suit"
@@ -1502,3 +1503,124 @@
 	name = "green crop-top christmas suit"
 	desc = "A simple green christmas suit that doesn't quite looks like Mrs Claus'. Smells minty!"
 	icon_state = "christmascroppedgreen"
+=======
+/obj/item/clothing/under/sifcop
+	name = "\improper SifGuard law enforcement uniform"
+	desc = "A sturdy law enforcement uniform typical of Vir's civilian law enforcement officers."
+	icon_state = "sifcop"
+	worn_state = "sifcop"
+	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //Equivalent to security officer's jumpsuit
+	rolled_sleeves = 0
+
+//Uniforms end above here.
+
+/obj/item/clothing/under/frontier
+	name = "frontier clothes"
+	desc = "A rugged flannel shirt and denim overalls. A popular style among frontier colonists."
+	icon_state = "frontier"
+	worn_state = "frontier"
+
+/obj/item/clothing/under/retrosweater
+	name = "retro sweater"
+	desc = "A rugged cableknit sweater and leather pants, fit for a dashing space adventurer."
+	icon_state = "retro_sweater"
+	worn_state = "retro_sweater"
+
+/obj/item/clothing/under/hightrousers
+	name = "high-waisted trousers"
+	desc = "A waistline this high is just made for ripping bodices, swashing buckles, or - just occasionally - sucking blood."
+	icon_state = "gayvampire"
+	worn_state = "gayvampire"
+	index = 1
+
+/obj/item/clothing/under/rank/psych/turtleneck/sweater
+	desc = "A warm looking sweater and a pair of dark blue slacks."
+	name = "sweater"
+	icon_state = "turtleneck"
+	worn_state = "turtleneck"
+
+/obj/item/clothing/under/medigown
+	name = "medical gown"
+	desc = "A flimsy examination gown, the back ties never close."
+	icon_state = "medicalgown"
+	worn_state = "medicalgown"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+
+/obj/item/clothing/under/bathrobe
+	name = "bathrobe"
+	desc = "A fluffy robe to keep you from showing off to the world."
+	icon_state = "bathrobe"
+	worn_state = "bathrobe"
+
+/obj/item/clothing/under/explorer
+	desc = "A green uniform for operating in hazardous environments."
+	name = "explorer's jumpsuit"
+	icon_state = "explorer"
+
+/obj/item/clothing/under/explorer/armored
+	desc = "A green uniform for operating in hazardous environments. This one looks like it's been modified."
+	armor = list(melee = 10, bullet = 10, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 30)
+	armorsoak = list(melee = 5, bullet = 5, laser = 5,energy = 5, bomb = 5, bio = 5, rad = 0)
+
+/obj/item/clothing/under/cohesion
+	name = "black cohesion suit"
+	desc = "A plain black cohesion suit intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit"
+	rolled_sleeves = -1 // defeats the purpose!!!
+
+/obj/item/clothing/under/cohesion/striped
+	name = "red striped cohesion suit"
+	desc = "A black cohesion suit with red stripes intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_striped"
+
+/obj/item/clothing/under/cohesion/decal
+	name = "purple decaled cohesion suit"
+	desc = "A white cohesion suit with purple decals intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_decal"
+
+/obj/item/clothing/under/cohesion/pattern
+	name = "blue patterned cohesion suit"
+	desc = "A white cohesion suit with blue patterns intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_pattern"
+
+/obj/item/clothing/under/cohesion/hazard
+	name = "hazard cohesion suit"
+	desc = "An orange cohesion suit with yellow hazard stripes intended to assist Prometheans in maintaining their form and prevent direct skin exposure."
+	icon_state = "cohesionsuit_hazard"
+
+//Ranger uniforms
+//On-mob sprites go in icons\mob\uniform.dmi with the format "white_ranger_uniform_s" - with 'white' replaced with green, cyan, etc... of course! Note the _s - this is not optional.
+//Item sprites go in icons\obj\clothing\ranger.dmi with the format "white_ranger_uniform"
+/obj/item/clothing/under/ranger
+	var/unicolor = "white"
+	name = "ranger uniform"
+	desc = "Made from a space-proof fibre and tight fitting, this uniform usually gives the agile Rangers all kinds of protection while not inhibiting their movement. \
+	This costume is instead made from genuine cotton fibre and is based on the season three uniform."
+	icon = 'icons/obj/clothing/ranger.dmi'
+	icon_state = "ranger_uniform"
+	rolled_sleeves = FALSE
+
+/obj/item/clothing/under/ranger/Initialize()
+	. = ..()
+	if(icon_state == "ranger_uniform") //allows for custom items
+		name = "[unicolor] ranger uniform"
+		icon_state = "[unicolor]_ranger_uniform"
+
+/obj/item/clothing/under/ranger/black
+	unicolor = "black"
+
+/obj/item/clothing/under/ranger/pink
+	unicolor = "pink"
+
+/obj/item/clothing/under/ranger/green
+	unicolor = "green"
+
+/obj/item/clothing/under/ranger/cyan
+	unicolor = "cyan"
+
+/obj/item/clothing/under/ranger/orange
+	unicolor = "orange"
+
+/obj/item/clothing/under/ranger/yellow
+	unicolor = "yellow"
+>>>>>>> d0c064a4374... Merge pull request #8532 from Sypsoti/clothingtweaks-4-22

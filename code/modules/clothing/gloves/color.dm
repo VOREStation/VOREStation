@@ -90,4 +90,5 @@
 	desc = "A pair of gloves that don't actually cover the fingers."
 	name = "fingerless gloves"
 	icon_state = "fingerlessgloves"
+	addblends = "fingerlessgloves_a"
 	fingerprint_chance = 100

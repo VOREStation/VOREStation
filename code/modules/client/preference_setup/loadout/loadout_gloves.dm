@@ -78,6 +78,10 @@
 	display_name = "fingerless gloves"
 	path = /obj/item/clothing/gloves/fingerless
 
+/datum/gear/gloves/fingerless/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /datum/gear/gloves/ring
 	display_name = "ring selection"
 	description = "Choose from a number of rings."

@@ -436,6 +436,15 @@
 	nutriment_factor = 5
 	color = "#302000"
 
+/datum/reagent/nutriment/chocolate
+	name = "Chocolate"
+	id = "chocolate"
+	description = "Great for cooking or on its own!"
+	taste_description = "chocolate"
+	color = "#582815"
+	nutriment_factor = 5
+	taste_mult = 1.3
+
 /datum/reagent/nutriment/instantjuice
 	name = "Juice Powder"
 	id = "instantjuice"

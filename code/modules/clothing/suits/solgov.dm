@@ -181,8 +181,8 @@
 /obj/item/clothing/suit/storage/solgov/dress
 	name = "dress jacket"
 	desc = "A uniform dress jacket, fancy."
-	icon_state = "sgdress_xpl"
-	item_state = "sgdress_xpl"
+	icon_state = "ecdress_xpl"
+	item_state = "ecdress_xpl"
 	body_parts_covered = UPPER_TORSO|ARMS
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	siemens_coefficient = 0.9
@@ -193,39 +193,37 @@
 /obj/item/clothing/suit/storage/solgov/dress/sifguard
 	name = "\improper SifGuard dress jacket"
 	desc = "A silver and grey dress jacket belonging to the Sif Defense Force. Fashionable, for the 25th century at least."
-	icon_state = "sgdress_xpl"
-	item_state = "sgdress_xpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/senior
 	name = "\improper SifGuard senior's dress coat"
-	icon_state = "sgdress_sxpl"
-	item_state = "sgdress_sxpl"
+	icon_state = "ecdress_sxpl"
+	item_state = "ecdress_sxpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/chief
 	name = "\improper SifGuard chief's dress coat"
 	icon_state = "ecdress_cxpl"
-	item_state = "sgdress_cxpl"
+	item_state = "ecdress_cxpl"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command
 	name = "\improper SifGuard officer's dress coat"
 	desc = "A gold and black dress peacoat belonging to the Sif Defense Force. The height of fashion."
 	icon_state = "ecdress_ofcr"
-	item_state = "sgdress_ofcr"
+	item_state = "ecdress_ofcr"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/cdr
 	name = "\improper SifGuard commander's dress coat"
-	icon_state = "sgdress_cdr"
-	item_state = "sgdress_cdr"
+	icon_state = "ecdress_cdr"
+	item_state = "ecdress_cdr"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/capt
 	name = "\improper SifGuard captain's dress coat"
-	icon_state = "sgdress_capt"
-	item_state = "sgdress_capt"
+	icon_state = "ecdress_capt"
+	item_state = "ecdress_capt"
 
 /obj/item/clothing/suit/storage/solgov/dress/sifguard/command/adm
 	name = "\improper SifGuard admiral's dress coat"
-	icon_state = "sgdress_adm"
-	item_state = "sgdress_adm"
+	icon_state = "ecdress_adm"
+	item_state = "ecdress_adm"
 
 /obj/item/clothing/suit/storage/solgov/dress/fleet
 	name = "fleet dress jacket"
@@ -274,7 +272,7 @@
 	name = "fleet dress overwear"
 	desc = "A navy blue SCG Fleet dress suit. Almost looks like a school-girl outfit."
 	icon_state = "sailordress"
-	item_state = "whitedress"
+	item_state = "sailordress"
 
 /obj/item/clothing/suit/dress/solgov/army
 	name = "marine dress jacket"
@@ -314,7 +312,7 @@
 	name = "clasped dress jacket"
 	desc = "A uniform dress jacket with gold toggles."
 	icon_state = "whitedress"
-	item_state = "labcoat"
+	item_state = "whitedress"
 	blood_overlay_type = "coat"
 
 /obj/item/clothing/suit/storage/toggle/dress/fleet
@@ -325,7 +323,7 @@
 	name = "fleet command dress jacket"
 	desc = "A crisp white SCG Fleet dress jacket dripping with gold accents. So bright it's blinding."
 	icon_state = "whitedress_com"
-	item_state = "labcoat"
+	item_state = "whitedress_com"
 	blood_overlay_type = "coat"
 
 /obj/item/clothing/suit/storage/eio_jacket
