@@ -1247,7 +1247,11 @@
 /obj/machinery/computer/arcade/clawmachine/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
+<<<<<<< HEAD
 		ui = new(user, src, "ClawMachine", name, ui_x = 300, ui_y = 400)
+=======
+		ui = new(user, src, "ClawMachine", name, ui_x = 400, ui_y = 300)
+>>>>>>> d4409c40316... Merge pull request #8534 from Sypsoti/clawmachinefix
 		ui.autoupdate = TRUE
 		ui.open()
 
