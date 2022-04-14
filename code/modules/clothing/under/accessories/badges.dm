@@ -6,7 +6,11 @@
 
 /obj/item/clothing/accessory/badge
 	name = "detective's badge"
+<<<<<<< HEAD
 	desc = "A corporate security badge, made from gold and set on false leather."
+=======
+	desc = "NanoTrasen Security Department detective's badge, made from gold."
+>>>>>>> 019b0e89f81... Merge pull request #8520 from Cerebulon/cop_crap
 	icon_state = "marshalbadge"
 	slot_flags = SLOT_BELT | SLOT_TIE
 	slot = ACCESSORY_SLOT_MEDAL
@@ -36,7 +40,18 @@
 	if(isliving(user))
 		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 		user.do_attack_animation(M)
+<<<<<<< HEAD
 		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //NO SPAM
+=======
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+
+// Sheriff Badge (toy)
+/obj/item/clothing/accessory/badge/sheriff
+	name = "sheriff badge"
+	desc = "This town ain't big enough for the two of us, pardner."
+	icon_state = "sheriff_toy"
+	item_state = "sheriff_toy"
+>>>>>>> 019b0e89f81... Merge pull request #8520 from Cerebulon/cop_crap
 
 // General Badges
 /obj/item/clothing/accessory/badge/old
@@ -44,6 +59,7 @@
 	desc = "A faded badge, backed with leather."
 	icon_state = "badge_round"
 
+<<<<<<< HEAD
 /obj/item/clothing/accessory/badge/idbadge/nt
 	name = "\improper NT ID badge"
 	desc = "A descriptive identification badge with the holder's credentials. This one has red marks with the NanoTrasen logo on it."
@@ -75,9 +91,12 @@
 	w_class = ITEMSIZE_SMALL
 
 // Holobadges
+=======
+//Security Holobadges
+>>>>>>> 019b0e89f81... Merge pull request #8520 from Cerebulon/cop_crap
 /obj/item/clothing/accessory/badge/holo
 	name = "holobadge"
-	desc = "This glowing blue badge marks the holder as THE LAW."
+	desc = "This glowing blue badge marks the holder as law enforcement."
 	icon_state = "holobadge"
 	var/emagged //Emagging removes Sec check.
 
@@ -123,8 +142,13 @@
 	name = "holobadge box"
 	desc = "A box claiming to contain holobadges."
 	starts_with = list(
+<<<<<<< HEAD
 		/obj/item/clothing/accessory/badge/holo/officer = 2,
 		/obj/item/clothing/accessory/badge/holo = 2,
+=======
+		/obj/item/clothing/accessory/badge/holo = 4,
+		/obj/item/clothing/accessory/badge/holo/officer = 2,
+>>>>>>> 019b0e89f81... Merge pull request #8520 from Cerebulon/cop_crap
 		/obj/item/clothing/accessory/badge/holo/cord = 2
 	)
 
@@ -174,6 +198,7 @@
 		/obj/item/clothing/accessory/badge/holo/detective = 2,
 		/obj/item/clothing/accessory/badge/holo/hos = 1,
 		/obj/item/clothing/accessory/badge/holo/cord = 1
+<<<<<<< HEAD
 	)
 
 // Sheriff Badge (toy)
@@ -186,6 +211,68 @@
 /obj/item/clothing/accessory/badge/sheriff/attack_self(mob/user as mob)
 	user.visible_message("[user] shows their sheriff badge. There's a new sheriff in town!",\
 		"You flash the sheriff badge to everyone around you!")
+=======
+
+	)
+
+/obj/item/clothing/accessory/badge/holo/investigator
+	name = "\improper Internal Investigations holobadge"
+	desc = "This badge marks the holder as an internal affairs investigator."
+	icon_state = "invbadge"
+	badge_string = "Internal Investigations"
+	slot_flags = SLOT_TIE | SLOT_BELT
+
+/obj/item/clothing/accessory/badge/holo/sheriff
+	name = "sheriff badge"
+	desc = "A star-shaped brass badge denoting who the law is around these parts."
+	icon_state = "sheriff"
+	slot_flags = SLOT_TIE | SLOT_BELT
+
+//Other badges
+
+/obj/item/clothing/accessory/badge/old
+	name = "faded badge"
+	desc = "A faded law enforcement badge in an older design."
+	icon_state = "badge_round"
+
+/obj/item/clothing/accessory/badge/solid
+	name = "\improper SolGov ID badge"
+	desc = "A descriptive identification badge with the holder's credentials. This one indicates the holder is representing the SCG."
+	icon_state = "solbadge"
+	badge_string = null
+
+/obj/item/clothing/accessory/badge/ntid
+	name = "\improper NT ID badge"
+	desc = "A descriptive identification badge with the holder's credentials. This one has red marks with the NanoTrasen logo on it."
+	icon_state = "ntbadge"
+	badge_string = null
+
+/obj/item/clothing/accessory/badge/press
+	name = "corporate press pass"
+	desc = "A corporate reporter's pass, emblazoned with the NanoTrasen logo."
+	icon_state = "pressbadge"
+	item_state = "pbadge"
+	badge_string = "Corporate Reporter"
+	w_class = ITEMSIZE_TINY
+
+	drop_sound = 'sound/items/drop/rubber.ogg'
+	pickup_sound = 'sound/items/pickup/rubber.ogg'
+
+/obj/item/clothing/accessory/badge/press/independent
+	name = "press pass"
+	desc = "A freelance journalist's pass, certified by Oculum Broadcast."
+	icon_state = "pressbadge-i"
+	badge_string = "Freelance Journalist"
+
+/obj/item/clothing/accessory/badge/press/plastic
+	name = "plastic press pass"
+	desc = "A journalist's 'pass' shaped, for whatever reason, like a security badge. It is made of plastic."
+	icon_state = "pbadge"
+	badge_string = "Sicurity Journelist"
+	w_class = ITEMSIZE_SMALL
+
+// Synthmorph bag / Corporation badges. Primarily used on the robobag, but can be worn. Default is NT.
+>>>>>>> 019b0e89f81... Merge pull request #8520 from Cerebulon/cop_crap
 
 /obj/item/clothing/accessory/badge/sheriff/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
