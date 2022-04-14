@@ -28,6 +28,18 @@
 			new /datum/stack_recipe("yellow comfy chair", /obj/structure/bed/chair/comfy/yellow, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 			new /datum/stack_recipe("orange comfy chair", /obj/structure/bed/chair/comfy/orange, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 		)),
+		new /datum/stack_recipe_list("rounded chairs", list(
+			new /datum/stack_recipe("beige rounded chair", /obj/structure/bed/chair/rounded/beige, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("black rounded chair", /obj/structure/bed/chair/rounded/black, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("brown rounded chair", /obj/structure/bed/chair/rounded/brown, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("lime rounded chair", /obj/structure/bed/chair/rounded/lime, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("teal rounded chair", /obj/structure/bed/chair/rounded/teal, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("red rounded chair", /obj/structure/bed/chair/rounded/red, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("blue rounded chair", /obj/structure/bed/chair/rounded/blue, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("purple rounded chair", /obj/structure/bed/chair/rounded/purple, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("green rounded chair", /obj/structure/bed/chair/rounded/green, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+			new /datum/stack_recipe("yellow rounded chair", /obj/structure/bed/chair/rounded/yellow, 2, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
+		)),
 		new /datum/stack_recipe_list("airlock assemblies", list(
 			new /datum/stack_recipe("standard airlock assembly", /obj/structure/door_assembly, 4, time = 50, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),
 			new /datum/stack_recipe("command airlock assembly", /obj/structure/door_assembly/door_assembly_com, 4, time = 50, one_per_turf = 1, on_floor = 1, recycle_material = "[name]"),

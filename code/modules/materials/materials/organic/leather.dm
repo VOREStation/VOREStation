@@ -1,6 +1,6 @@
 /datum/material/leather
 	name = MAT_LEATHER
-	display_name = "plainleather"
+	display_name = "plain leather"
 	icon_colour = "#5C4831"
 	stack_type = /obj/item/stack/material/leather
 	stack_origin_tech = list(TECH_MATERIAL = 2, TECH_BIO = 2)

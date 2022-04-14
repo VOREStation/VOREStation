@@ -132,6 +132,42 @@
 /obj/structure/bed/chair/comfy/orange/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","orange")
 
+/obj/structure/bed/chair/rounded
+	name = "rounded chair"
+	desc = "It's a rounded chair. It looks comfy."
+	icon_state = "roundedchair"
+	base_icon = "roundedchair"
+
+/obj/structure/bed/chair/rounded/brown/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, MAT_LEATHER)
+
+/obj/structure/bed/chair/rounded/red/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "carpet")
+
+/obj/structure/bed/chair/rounded/teal/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "teal")
+
+/obj/structure/bed/chair/rounded/black/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "black")
+
+/obj/structure/bed/chair/rounded/green/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "green")
+
+/obj/structure/bed/chair/rounded/purple/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "purple")
+
+/obj/structure/bed/chair/rounded/blue/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "blue")
+
+/obj/structure/bed/chair/rounded/beige/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "beige")
+
+/obj/structure/bed/chair/rounded/lime/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "lime")
+
+/obj/structure/bed/chair/rounded/yellow/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "yellow")
+
 /obj/structure/bed/chair/office
 	anchored = FALSE
 	buckle_movable = 1

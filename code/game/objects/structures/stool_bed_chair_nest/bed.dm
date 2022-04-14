@@ -115,6 +115,7 @@
 		if(!istype(src.loc, /turf))
 			user.drop_from_inventory(src)
 			src.loc = get_turf(src)
+		playsound(src.loc, 'sound/effects/rustle5.ogg', 50, 1)
 		to_chat(user, "You add padding to \the [src].")
 		add_padding(padding_type)
 		return
