@@ -121,6 +121,14 @@
 	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/oracarpet
 	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/brncarpet
+	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/blucarpet2
+	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/greencarpet
+	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/purplecarpet
+	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/deco
 	icon_state = "tile-carpet-deco"
 /obj/item/stack/tile/carpet/retro

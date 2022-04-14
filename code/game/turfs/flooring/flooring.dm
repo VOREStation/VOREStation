@@ -321,6 +321,26 @@ var/list/flooring_types
 	icon_base = "tealcarpet"
 	build_type = /obj/item/stack/tile/carpet/teal
 
+/decl/flooring/carpet/browncarpet
+	name = "brown carpet"
+	icon_base = "brncarpet"
+	build_type = /obj/item/stack/tile/carpet/brncarpet
+
+/decl/flooring/carpet/blucarpet2
+	name = "blue carpet"
+	icon_base = "blue1"
+	build_type = /obj/item/stack/tile/carpet/blucarpet2
+
+/decl/flooring/carpet/greencarpet
+	name = "green carpet"
+	icon_base = "green"
+	build_type = /obj/item/stack/tile/carpet/greencarpet
+
+/decl/flooring/carpet/purplecarpet
+	name = "purple carpet"
+	icon_base = "purple"
+	build_type = /obj/item/stack/tile/carpet/purplecarpet
+
 /decl/flooring/carpet/deco
 	name = "deco carpet"
 	icon_base = "decocarpet"
