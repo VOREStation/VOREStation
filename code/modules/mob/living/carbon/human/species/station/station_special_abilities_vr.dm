@@ -161,7 +161,7 @@
 	var/blood_color = species.blood_color
 	var/flesh_color = species.flesh_color
 	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-	
+
 	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
 	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
@@ -833,6 +833,20 @@
 	C.flying = !C.flying
 	update_floating()
 	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")
+
+/mob/living/
+	var/flight_vore = FALSE
+
+/mob/living/proc/flying_vore_toggle()
+	set name = "Toggle Flight Vore"
+	set desc = "Allows you to engage in voracious misadventures while flying."
+	set category = "Abilities"
+
+	flight_vore = !flight_vore
+	if(flight_vore)
+		to_chat(src, "You have allowed for flight vore! Bumping into characters while flying will now trigger dropnoms!")
+	else
+		to_chat(src, "Flight vore disabled! You will no longer engage dropnoms while in flight.")
 
 //Proc to stop inertial_drift. Exchange nutrition in order to stop gliding around.
 /mob/living/proc/start_wings_hovering()

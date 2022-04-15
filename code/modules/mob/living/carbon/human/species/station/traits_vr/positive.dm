@@ -111,6 +111,7 @@
 /datum/trait/positive/winged_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/proc/flying_toggle
+	H.verbs |= /mob/living/proc/flying_vore_toggle
 	H.verbs |= /mob/living/proc/start_wings_hovering
 
 /datum/trait/positive/soft_landing

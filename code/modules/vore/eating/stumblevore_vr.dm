@@ -1,20 +1,18 @@
 /mob/living/Bump(atom/movable/AM)
 	//. = ..()
 	if(istype(AM, /mob/living))
-		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
+		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying && flight_vore)
 			AM.stumble_into(src)
 	return ..()
 // Because flips toggle density
 /mob/living/Crossed(var/atom/movable/AM)
 	if(istype(AM, /mob/living) && isturf(loc) && AM != src)
 		var/mob/living/AMV = AM
-		if(((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent=="run") || AMV.flying)
+		if(((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent=="run") || AMV.flying && AMV.flight_vore)
 			stumble_into(AMV)
 
 mob/living/stumble_into(mob/living/M)
 	playsound(src, "punch", 25, 1, -1)
-	M.apply_damage(0.5, BRUTE)
-	apply_damage(0.5, BRUTE)
 	M.Weaken(4)
 	Weaken(4)
 	M.stop_flying()
@@ -28,4 +26,6 @@ mob/living/stumble_into(mob/living/M)
 	else
 		visible_message("<span class='warning'>[M] flops over onto [src]!</span>")
 		M.forceMove(get_turf(src))
+		M.apply_damage(0.5, BRUTE)
+		apply_damage(0.5, BRUTE)
 
