@@ -88,7 +88,7 @@
 	name = "combat knife"
 	desc = "If only you had a boot to put it in."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife"
+	icon_state = "tacknife2"
 	item_state = "knife"
 	force_divisor = 0.34 // 20 with hardness 60 (steel)
 	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
@@ -101,7 +101,7 @@
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife"
+	icon_state = "tacknife3"
 	item_state = "knife"
 	force_divisor = 0.15
 	applies_material_colour = 0
@@ -130,7 +130,7 @@
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
-	icon_state = "butch"
+	icon_state = "cleaver"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
