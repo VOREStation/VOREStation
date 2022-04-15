@@ -698,4 +698,39 @@
 		/obj/item/weapon/reagent_containers/food/snacks/doughslice
 	)
 	reagent_mix = RECIPE_REAGENT_REPLACE //Get that water outta here
+<<<<<<< HEAD
 	result = /obj/item/weapon/reagent_containers/food/snacks/veggiemomo
+=======
+	result = /obj/item/weapon/reagent_containers/food/snacks/veggiemomo
+
+/datum/recipe/lobster
+	appliance = OVEN
+	fruit = list("lemon" = 1, "lettuce" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/lobster
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/lobstercooked
+
+/datum/recipe/cuttlefish
+	appliance = OVEN
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/cuttlefish
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/cuttlefishcooked
+
+/datum/recipe/monkfish
+	appliance = OVEN
+	fruit = list("chili" = 1, "onion" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/monkfishfillet
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/monkfishcooked
+
+/datum/recipe/sharksteak
+	appliance = OVEN
+	reagents = list("blackpepper"= 1, "sodiumchloride" = 1)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish/sharkmeat
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/sharkmeatcooked
+>>>>>>> 3a14333c8f8... Merge pull request #8536 from Cerebulon/lettucefeast

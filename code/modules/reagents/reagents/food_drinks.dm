@@ -1092,11 +1092,21 @@
 	glass_desc = "Vitamins! Yay!"
 	allergen_type = ALLERGEN_FRUIT //Oranges are fruit
 
-/datum/reagent/drink/orangejuice/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drink/juice/orange/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	..()
 	if(alien == IS_DIONA)
 		return
 	M.adjustOxyLoss(-2 * removed)
+
+/datum/reagent/drink/juice/lettuce
+	name = "Lettuce Juice"
+	id = "lettucejuice"
+	description = "It's mostly water, just a bit more lettucy."
+	taste_description = "fresh greens"
+	color = "#29df4b"
+
+	glass_name = "lettuce juice"
+	glass_desc = "This is just lettuce water. Fresh but boring."
 
 /datum/reagent/toxin/poisonberryjuice // It has more in common with toxins than drinks... but it's a juice
 	name = "Poison Berry Juice"
