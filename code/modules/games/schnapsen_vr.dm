@@ -3,12 +3,11 @@
 //TODO: Implement functionality for "sub-decks": Create a over-schnapsen deck with nines, eights and sevens. 
 //TODO:Let players choose 2,3,4 player mode to get decks of ace/ten/jack/queen/king + seven for 3 player, nine+eight for 4 player modes. 
 
-
 /obj/item/weapon/deck/schnapsen
- 	name = "deck of schnapsen cards"
- 	desc = "An ancient trick-taking card game from a bygone-Earth country. For 2 players!"
+	name = "deck of schnapsen cards"
+	desc = "An ancient trick-taking card game from a bygone-Earth country. For 2 players!"
 	icon_state = "deck"
-
+	
 /obj/item/weapon/deck/schnapsen/New()
 	..()
 	//Stealing french card icons. 
