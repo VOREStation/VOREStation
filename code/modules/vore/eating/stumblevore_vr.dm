@@ -28,4 +28,3 @@
 		M.forceMove(get_turf(src))
 		M.apply_damage(0.5, BRUTE)
 		apply_damage(0.5, BRUTE)
-
