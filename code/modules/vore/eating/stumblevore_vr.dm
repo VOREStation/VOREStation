@@ -11,7 +11,7 @@
 		if(((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent=="run") || AMV.flying && AMV.flight_vore)
 			stumble_into(AMV)
 
-mob/living/stumble_into(mob/living/M)
+/mob/living/stumble_into(mob/living/M)
 	playsound(src, "punch", 25, 1, -1)
 	M.Weaken(4)
 	Weaken(4)
