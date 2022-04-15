@@ -1,0 +1,31 @@
+/mob/living/Bump(atom/movable/AM)
+	//. = ..()
+	if(istype(AM, /mob/living))
+		if(((confused || is_blind()) && stat == CONSCIOUS && prob(50) && m_intent=="run") || flying)
+			AM.stumble_into(src)
+	return ..()
+// Because flips toggle density
+/mob/living/Crossed(var/atom/movable/AM)
+	if(istype(AM, /mob/living) && isturf(loc) && AM != src)
+		var/mob/living/AMV = AM
+		if(((AMV.confused || AMV.is_blind()) && AMV.stat == CONSCIOUS && prob(50) && AMV.m_intent=="run") || AMV.flying)
+			stumble_into(AMV)
+
+mob/living/stumble_into(mob/living/M)
+	playsound(src, "punch", 25, 1, -1)
+	M.apply_damage(0.5, BRUTE)
+	apply_damage(0.5, BRUTE)
+	M.Weaken(4)
+	Weaken(4)
+	M.stop_flying()
+	stop_flying()
+	if(can_be_drop_pred && M.devourable && M.can_be_drop_prey)
+		visible_message("<span class='warning'>[M] flops carlessly into [src]!</span>")
+		perform_the_nom(src,M,src,src.vore_selected,1)
+	else if(M.can_be_drop_pred && src.devourable && src.can_be_drop_prey)
+		visible_message("<span class='warning'>[M] flops carlessly into [src]!</span>")
+		perform_the_nom(M,src,M,M.vore_selected,1)
+	else
+		visible_message("<span class='warning'>[M] flops over onto [src]!</span>")
+		M.forceMove(get_turf(src))
+
