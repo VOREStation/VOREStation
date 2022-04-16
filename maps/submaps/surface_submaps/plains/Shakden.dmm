@@ -9,13 +9,16 @@
 "i" = (/mob/living/simple_mob/animal/sif/shantak/retaliate,/turf/simulated/floor/outdoors/dirt,/area/submap/Shakden)
 "j" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
 "k" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/material/knife/hook,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"l" = (/obj/random/grenade/lethal,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"G" = (/obj/random/outcrop,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"N" = (/obj/random/ammo,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
 abbbccccccccccccbbba
 abccccccccccccccccba
-abccccdddedfccccccba
-abccceddgddddddcccca
+abccccGddedfccccccba
+abccceNdgddddddcccca
 abcchdddddddgddcccca
 acccdddddccdddddccca
 accddddcccccdddddcca
@@ -25,8 +28,8 @@ abccdddddddddccddcca
 abcedddddddddccdddba
 accddgddgdddcccdddba
 acccdddddddcccdddbba
-acccddgdddfcccdddbba
-accccdddijkcccddcbba
+acccGdgdddfcccdddbba
+acccclddijkcccddcbba
 abccccddddecccddccba
 abccccccccccccccccba
 abbccccccbbbbccccbba

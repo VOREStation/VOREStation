@@ -10,12 +10,12 @@
 "j" = (/obj/structure/bonfire/sifwood,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
 "k" = (/obj/random/mob/robotic,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
 "l" = (/obj/structure/bed/roller/adv,/obj/random/humanoidremains,/obj/random/cash,/obj/random/cigarettes,/obj/item/clothing/under/explorer,/obj/item/clothing/shoes/boots/winter/explorer,/obj/item/clothing/mask/gas/explorer,/obj/item/clothing/accessory/permit/gun/planetside,/obj/item/clothing/suit/armor/pcarrier/light/nt,/obj/random/projectile/scrapped_smg,/obj/random/projectile/scrapped_pistol,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"m" = (/obj/random/medical/lite,/obj/random/technology_scanner,/obj/random/toolbox,/obj/random/trash,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
-"n" = (/obj/structure/fence/corner{icon_state = "corner"; dir = 1},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"o" = (/obj/structure/fence/door/locked{icon_state = "door_closed"; dir = 1},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"p" = (/obj/structure/fence/post{icon_state = "post"; dir = 8},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"q" = (/obj/structure/fence{icon_state = "straight"; dir = 8},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
-"r" = (/obj/structure/fence/cut/large{icon_state = "straight_cut3"; dir = 8},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
+"m" = (/obj/random/medical/lite,/obj/random/toolbox,/obj/random/trash,/obj/random/technology_scanner/anom,/obj/random/tool/anom,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/Shelter1)
+"n" = (/obj/structure/fence/corner{dir = 1; icon_state = "corner"},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
+"o" = (/obj/structure/fence/door/locked{dir = 1; icon_state = "door_closed"},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
+"p" = (/obj/structure/fence/post{dir = 8; icon_state = "post"},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
+"q" = (/obj/structure/fence{dir = 8; icon_state = "straight"},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
+"r" = (/obj/structure/fence/cut/large{dir = 8; icon_state = "straight_cut3"},/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
 "s" = (/obj/structure/fence/corner,/turf/simulated/floor/outdoors/snow,/area/submap/Shelter1)
 
 (1,1,1) = {"

@@ -3,6 +3,8 @@
 "c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Cragzone1)
 "d" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Cragzone1)
 "e" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Cragzone1)
+"n" = (/obj/random/multiple/large_corp_crate,/obj/random/maintenance/clean/anom,/turf/simulated/floor/outdoors/dirt,/area/submap/Cragzone1)
+"t" = (/obj/random/mob/sif/hostile,/turf/simulated/floor/outdoors/dirt,/area/submap/Cragzone1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -22,9 +24,9 @@ abbbbbbbbcbbbbeeeebbbbbbddddba
 abbbddbbbbbbbbbbbbbbbbbbbdddba
 abbbdddebbbbbbbbdbbbbcbbbbbbba
 abbddddeeeebbbbdddbbbbddbbbbba
-abbddddddeeebbbbddbbbddddbbbba
+abbddddddetebbbbddbbbddddbbbba
 abbbbbddddeebbbbdbbbbddddbbbba
-abbbbbbdddeebbbbbbbbbbdddbbbba
+abbbbbbdddnebbbbbbbbbbdddbbbba
 abcbbbbbdddebbbbbbbbbbbddbbcba
 abbbbbbbbbdbbbbbbbbbbbbbbbbbba
 abbbcbbbbbbbbbbcbbbbbbbcbbbbba

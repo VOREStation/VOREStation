@@ -1,7 +1,7 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/mineral/ignore_mapgen/sif,/area/submap/FrostflyNest)
 "c" = (/obj/structure/boulder,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
-"d" = (/turf/simulated/wall/solidrock,/area/submap/FrostflyNest)
+"d" = (/obj/random/medical/lite/anom,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
 "e" = (/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
 "f" = (/obj/structure/outcrop/diamond,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
 "g" = (/obj/random/humanoidremains,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
@@ -10,16 +10,17 @@
 "j" = (/obj/random/humanoidremains,/obj/random/gun/random,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
 "k" = (/obj/random/medical/pillbottle,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
 "l" = (/obj/random/gun/random,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
+"x" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen/sif,/area/submap/FrostflyNest)
 
 (1,1,1) = {"
 aabbbcbbaa
-abbddedbba
-bbddfgddbb
-bddhieiddb
-bdfjefefdb
-bdkeegeddb
-ceefefldbb
-bdddgdddba
-bbbdddbbba
+abbbbebbba
+bbbbfgbbbb
+bbbhiedbbb
+bbfjefexbb
+bbkeegebbb
+ceexeflbbb
+bbbbgbbbba
+bbbbbbbbba
 abbbbbbaaa
 "}

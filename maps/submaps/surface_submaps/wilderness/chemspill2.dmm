@@ -14,7 +14,7 @@
 "n" = (/obj/effect/decal/remains/ribcage,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill2)
 "o" = (/obj/item/stack/rods,/turf/simulated/floor/water/contaminated,/area/submap/ChemSpill2)
 "p" = (/obj/random/firstaid,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
-"q" = (/obj/random/tech_supply,/obj/random/energy,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
+"q" = (/obj/random/tech_supply,/obj/random/energy/highend,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
 "r" = (/obj/random/humanoidremains,/obj/random/rigsuit,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
 "s" = (/obj/effect/decal/remains/lizard,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
 "t" = (/obj/item/weapon/storage/mre/random,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
@@ -22,6 +22,7 @@
 "v" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/outdoors/rocks,/area/submap/ChemSpill2)
 "w" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/outdoors/mud,/area/submap/ChemSpill2)
 "x" = (/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/outdoors/ice,/area/submap/ChemSpill2)
+"Z" = (/obj/random/powercell/anom,/turf/simulated/floor/outdoors/dirt/sif,/area/submap/ChemSpill2)
 
 (1,1,1) = {"
 aaaaaaaaaaabbaaaaaaaaaaaaaaaaa
@@ -41,7 +42,7 @@ abbbcdefffbbbbbbbbbbffddbbbbaa
 aabbcddfffecbbbbbbbfffdcbbbbaa
 aaaacddfffeecpbbbbbffddcbbaaaa
 aaaacdefffccbqrbbbbffsdcbaaaaa
-aaacbdffffbbbbbtbbeffddbaaaaaa
+aaacbdffffbbbbZtbbeffddbaaaaaa
 aaacjjjfffbbbbbbbbfffddbbbaaaa
 aaabujjfffibbebbbffffddbbbaaaa
 aaabbdjfffffffbffffffdsbbbaaaa

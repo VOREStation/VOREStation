@@ -31,25 +31,25 @@
 "aE" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable/green{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/plating,/area/submap/DoomP)
 "aF" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable/green{d2 = 4; icon_state = "0-4"},/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/submap/DoomP)
 "aG" = (/obj/machinery/power/apc{dir = 1; name = "PAPC"; pixel_x = 0; pixel_y = 24},/obj/structure/cable/green{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
-"aH" = (/obj/structure/cable{icon_state = "0-2"; d2 = 2},/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/DoomP)
+"aH" = (/obj/structure/cable{d2 = 2; icon_state = "0-2"},/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/DoomP)
 "aI" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
-"aJ" = (/obj/structure/table/standard,/obj/item/stack/material/phoron{amount = 25},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
+"aJ" = (/obj/structure/table/standard,/obj/item/stack/material/phoron{amount = 25},/obj/random/tool/power,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "aK" = (/obj/structure/closet/secure_closet/engineering_electrical,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "aL" = (/obj/structure/lattice,/turf/simulated/floor/outdoors/rocks,/area/submap/DoomP)
 "aM" = (/obj/structure/bed/chair{dir = 4},/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled,/area/submap/DoomP)
 "aN" = (/obj/structure/table/standard,/turf/simulated/floor/tiled,/area/submap/DoomP)
 "aO" = (/obj/structure/table/standard,/obj/random/pizzabox,/turf/simulated/floor/tiled,/area/submap/DoomP)
 "aP" = (/turf/simulated/floor/tiled,/area/submap/DoomP)
-"aQ" = (/obj/machinery/vending/snack,/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled,/area/submap/DoomP)
-"aR" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
-"aS" = (/obj/machinery/power/terminal{icon_state = "term"; dir = 1},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
+"aQ" = (/obj/random/vendorfood,/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aR" = (/obj/machinery/power/terminal{dir = 1; icon_state = "term"},/obj/structure/cable{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
+"aS" = (/obj/machinery/power/terminal{dir = 1; icon_state = "term"},/obj/structure/cable{d2 = 4; icon_state = "0-4"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "aT" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "aU" = (/obj/structure/cable{d1 = 1; d2 = 8; icon_state = "1-8"},/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "aV" = (/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "aW" = (/obj/machinery/light/small,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "aX" = (/obj/structure/lattice,/turf/simulated/floor/water,/area/submap/DoomP)
 "aY" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled,/area/submap/DoomP)
-"aZ" = (/obj/machinery/vending/cola,/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled,/area/submap/DoomP)
+"aZ" = (/obj/random/vendordrink,/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled,/area/submap/DoomP)
 "ba" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled,/area/submap/DoomP)
 "bb" = (/obj/machinery/door/airlock/engineering,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DoomP)
 "bc" = (/obj/structure/sign/electricshock,/turf/simulated/wall/r_wall,/area/submap/DoomP)
@@ -62,11 +62,11 @@
 "bj" = (/obj/machinery/door/airlock/highsecurity,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bk" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/white,/area/submap/DoomP)
 "bl" = (/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-"bm" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
+"bm" = (/obj/structure/table/standard,/obj/random/grenade/box,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bn" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/syndie_kit/spy,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bo" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/smokes,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bp" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/handcuffs,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-"bq" = (/obj/structure/table/rack,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
+"bq" = (/obj/structure/table/rack,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/obj/random/multiple/gun/projectile/handgun,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "br" = (/obj/structure/table/rack,/obj/random/energy,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bs" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/contender,/obj/item/ammo_magazine/s357,/obj/item/ammo_magazine/s357,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bt" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/toy/plushie/spider,/obj/effect/floor_decal/corner/lime/full{dir = 8},/turf/simulated/floor/tiled/white,/area/submap/DoomP)
@@ -93,6 +93,7 @@
 "bO" = (/obj/structure/table/standard,/obj/structure/bedsheetbin,/obj/effect/floor_decal/corner/lime{dir = 1},/obj/random/soap,/turf/simulated/floor/tiled/white,/area/submap/DoomP)
 "bP" = (/obj/random/junk,/turf/simulated/floor/outdoors/rocks,/area/submap/DoomP)
 "bQ" = (/obj/random/junk,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/DoomP)
+"DB" = (/obj/structure/table/standard,/obj/random/tech_supply,/turf/simulated/floor/tiled,/area/submap/DoomP)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -126,7 +127,7 @@ aaabababacafafafafafafafakakakakakafafafacadadasadadasadatauavavavauatadasadadas
 aaabababacafafafafafafafakakakakakakafafacatatatatatatatatatatawatatatatatatatatatatatafafafafafakakakakafafafafacacabaa
 aaabababacacafafafafafafakakakakakakafafacataxayaAayaBayazaCataDataEaFaFaFaGaHaIaJaKatafafafafafakakakakafafafafacacabaa
 aaabababacacacafafafafakakakakakakakafasaLataMaNaOaNaNaNaPaQataPataRaSaSaSaTaUaVaWaVataXasafafafakakakafafafafafafacabaa
-aaabababababacacafafafakakakakakakakafafafataYaNaNaNbgaNaPaZatbaatatatatatatbbbcatatatafafafafafakakakafafafafafafacabaa
+aaabababababacacafafafakakakakakakakafafafataYDBaNaNbgaNaPaZatbaatatatatatatbbbcatatatafafafafafakakakafafafafafafacabaa
 aaababababababacafafafakakakakakakakakafafatbdbebebfbebxbMaPbhaPbNbiaPaPaPaPaPbiaPaPatafafafafafakakakafafafafafafafacaa
 aaabababagabababacafafakakakakakakakakasaXatbjatatatatatatatatatatatatatatbkatatatatataXasafafafakakakafafafafafafafacaa
 aaababababababacacafafafakakakakakakakakafatblbmbnbobpbqbrbsatbtbubvbwbvbObybkbzbkbAatafafafafafakakakafafafafafafafacaa

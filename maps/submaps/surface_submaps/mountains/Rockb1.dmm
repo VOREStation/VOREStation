@@ -21,8 +21,7 @@
 /area/submap/Rockb1)
 "g" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/gun/projectile/pistol,
-/obj/item/ammo_magazine/m9mm/compact,
+/obj/random/multiple/gun/projectile/handgun,
 /turf/simulated/floor/lino,
 /area/submap/Rockb1)
 "h" = (
@@ -30,7 +29,7 @@
 /turf/simulated/floor/lino,
 /area/submap/Rockb1)
 "i" = (
-/obj/machinery/vending/snack,
+/obj/random/vendorfood,
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "j" = (
@@ -38,11 +37,11 @@
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "k" = (
-/obj/machinery/vending/cola,
+/obj/random/vendordrink,
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "l" = (
-/obj/item/seeds/ambrosiadeusseed,
+/obj/random/maintenance/anom,
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "m" = (
@@ -60,6 +59,7 @@
 /area/submap/Rockb1)
 "p" = (
 /obj/structure/bed,
+/obj/item/weapon/bedsheet/mime,
 /turf/simulated/floor/lino,
 /area/submap/Rockb1)
 "q" = (
@@ -113,6 +113,7 @@
 	brightness_range = 5
 	},
 /obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/industrial/hatch,
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "A" = (
@@ -206,12 +207,7 @@
 /area/submap/Rockb1)
 "M" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/electrical,
-/turf/simulated/floor/tiled,
-/area/submap/Rockb1)
-"N" = (
-/obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/random/toolbox,
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "O" = (
@@ -231,6 +227,7 @@
 /area/submap/Rockb1)
 "R" = (
 /obj/effect/decal/cleanable/greenglow,
+/obj/item/poster/custom,
 /turf/simulated/floor/plating,
 /area/submap/Rockb1)
 "S" = (
@@ -559,7 +556,11 @@ w
 t
 w
 t
+<<<<<<< HEAD
 N
+=======
+M
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 e
 S
 e

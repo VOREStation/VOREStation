@@ -94,6 +94,10 @@
 			to_chat(L, "<span class='warning'>You climb out of \the [src].</span>")
 	..()
 
+/turf/simulated/floor/water/indoor
+	outdoors = OUTDOORS_NO
+
+
 /turf/simulated/floor/water/deep
 	name = "deep water"
 	desc = "A body of water.  It seems quite deep."
@@ -102,6 +106,9 @@
 	edge_blending_priority = -2
 	movement_cost = 8
 	depth = 2
+
+/turf/simulated/floor/water/deep/indoor
+	outdoors = OUTDOORS_NO
 
 /turf/simulated/floor/water/pool
 	name = "pool"

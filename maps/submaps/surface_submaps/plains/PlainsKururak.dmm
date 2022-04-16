@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -66,6 +67,21 @@
 "m" = (
 /turf/template_noop,
 /area/submap/PlainsKururak)
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/PlainsKururak)
+"c" = (/obj/random/trash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"d" = (/obj/random/firstaid,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"e" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"f" = (/obj/random/projectile/shotgun,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"g" = (/obj/random/tech_supply,/obj/random/tech_supply,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"h" = (/mob/living/simple_mob/animal/sif/kururak,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"i" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"j" = (/obj/random/contraband,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"k" = (/mob/living/simple_mob/animal/sif/diyaab,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/PlainsKururak)
+"l" = (/obj/random/trash,/turf/template_noop,/area/submap/PlainsKururak)
+"m" = (/turf/template_noop,/area/submap/PlainsKururak)
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 
 (1,1,1) = {"
 a

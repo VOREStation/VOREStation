@@ -15,7 +15,7 @@
 "o" = (/obj/item/weapon/paper/crumpled{info = "Sampatti Relay Sif-833 <BR> Decryption Key for 12-04-2488: <BR> 849B0022FBA920C244 <BR> Eyes Only.  <BR> The insider who knows all the secrets can bring down Lanka."; name = "Dusty Note"},/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
 "p" = (/obj/structure/door_assembly/door_assembly_ext,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
 "q" = (/obj/item/stack/rods,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
-"r" = (/obj/machinery/telecomms/relay{active_power_usage = 1; broadcasting = 0; panel_open = 1},/obj/structure/cable{icon_state = "0-2"; pixel_y = 1; d2 = 2},/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
+"r" = (/obj/machinery/telecomms/relay{active_power_usage = 1; broadcasting = 0; panel_open = 1},/obj/structure/cable{d2 = 2; icon_state = "0-2"; pixel_y = 1},/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
 "s" = (/obj/machinery/telecomms/broadcaster{light_power = 0; on = 0},/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
 "t" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/plating,/area/submap/cave/deadBeacon)
 "u" = (/obj/machinery/telecomms/receiver{light_power = 0; on = 0},/obj/structure/cable,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/deadBeacon)
@@ -37,6 +37,7 @@
 "K" = (/obj/structure/girder,/turf/simulated/floor/plating,/area/submap/cave/deadBeacon)
 "L" = (/obj/structure/sign/warning/secure_area,/turf/simulated/wall/r_wall,/area/submap/cave/deadBeacon)
 "M" = (/obj/structure/sign/warning/high_voltage,/turf/simulated/wall/r_wall,/area/submap/cave/deadBeacon)
+"W" = (/obj/random/maintenance/anom,/turf/simulated/floor/plating,/area/submap/cave/deadBeacon)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
@@ -44,7 +45,7 @@ aaaaaaaaaabbaaaaaaaa
 aaaaaabbabbcbaaaaaaa
 aaaaaadefgghidaaaaaa
 aaaaaahjkgglhibaaaaa
-aaaaahdmnoggggbaaaaa
+aaaaahdmnoggWgbaaaaa
 aaaabnpqnrsgqtbaaaaa
 aaaabngnnuvwnxaaaaaa
 aaaabhdgynnzkxbaaaaa

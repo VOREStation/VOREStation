@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -992,4 +993,48 @@ a
 a
 a
 a
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Field1)
+"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Field1)
+"d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"e" = (/obj/structure/ore_box,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"f" = (/obj/item/device/radio,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"g" = (/obj/vehicle/train/trolley,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"h" = (/obj/vehicle/train/engine,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"i" = (/obj/item/device/flashlight,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+"B" = (/obj/random/tech_supply/anom,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaabbbbbbbbbbbbbbba
+abbaaaaaaaaaabbbbbbbbbbbbbbbaa
+abbaaaaaabbbbbbcbbbbbbbbbcbbaa
+abbbaaabbbbbbbbbbbbbbbbbbbbaaa
+abbbbbbbbbbbbbbbbbbcbbbbbbbaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbbaaa
+abbbbbbbbbbbbbbbbbbbbbbbbbaaaa
+abbbcbbbbbbbbbbbbbbbbbbbbbaaaa
+aabbbbbbbbbbbbbbbbbbbbbbbbaaaa
+aabbbbbbbbbbbbbbbbbbbbbbbbbaaa
+aaabbbbbbbbbbbdddbbbbbbbbbbaaa
+aaabbbbbbbbbddddddddddbbbbbbba
+aaaabbbbbbbddddddddddddbbbbbba
+aaaabbbbbbbddddddddddddbbbbcba
+aaaabbbbbbbdddedfddddbbbbbbbba
+aaabbbbbbbbbdegghdddbbbbbbbbba
+aaabbbbbbbbbbbBibdbbbbbbbbbbba
+aabbbbbbbbbbbbbbbbbbbbbbbcbbba
+abbbcbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbcbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbbbbbba
+abbbbbbbbbbbbbbbbbbbbbbbcbbbba
+aabbbbbbcbbbbaaaabaaabbbbbbcba
+aaaaaaabbbbbaaaaaaaaaabbbbbbba
+aaaaaaaaabbaaaaaaaaaaabbbbbbba
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "}

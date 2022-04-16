@@ -40,12 +40,21 @@
 "aN" = (/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aO" = (/obj/structure/table/standard,/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,/obj/effect/floor_decal/corner/red/border{dir = 9; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aP" = (/obj/structure/table/standard,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+<<<<<<< HEAD
 "aQ" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/pistol,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aR" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/gun/taser,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aS" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aT" = (/obj/machinery/vending/coffee,/obj/effect/floor_decal/corner/red/border{dir = 5; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aU" = (/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
 "aV" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
+=======
+"aQ" = (/obj/structure/table/rack,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/obj/random/multiple/gun/projectile/handgun,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aR" = (/obj/structure/table/rack,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/obj/random/energy/anom,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aS" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aT" = (/obj/machinery/vending/coffee,/obj/effect/floor_decal/corner/red/border{dir = 5; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aU" = (/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
+"aV" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/obj/random/multiple/gun/projectile/shotgun,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "aW" = (/obj/machinery/vending/hydronutrients,/obj/effect/floor_decal/corner/lime/border{dir = 9; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aX" = (/obj/structure/closet/crate/hydroponics,/obj/effect/floor_decal/corner/lime/border{dir = 5; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aY" = (/obj/machinery/shower{dir = 4; icon_state = "shower"; pixel_x = 5; pixel_y = 0},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
@@ -57,14 +66,18 @@
 "be" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bf" = (/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bg" = (/obj/machinery/vending/security,/obj/effect/floor_decal/corner/red/border{dir = 4; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+<<<<<<< HEAD
 "bh" = (/obj/structure/table/rack,/obj/item/weapon/cell/device/weapon,/obj/item/ammo_magazine/ammo_box/b12g/pellet,/obj/item/ammo_magazine/ammo_box/b12g/pellet,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
+=======
+"bh" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/shotgunshells,/obj/item/weapon/storage/box/shotgunshells,/obj/item/weapon/cell/device/weapon,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "bi" = (/obj/effect/floor_decal/corner/lime/border{dir = 8; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bj" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/effect/floor_decal/corner/lime/border{dir = 4; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bk" = (/obj/machinery/shower{dir = 8; icon_state = "shower"; pixel_x = -5; pixel_y = 0},/obj/structure/curtain/open/shower,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
 "bl" = (/obj/item/mecha_parts/part/gygax_left_leg,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
 "bm" = (/obj/machinery/light,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
 "bn" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/gun/projectile/pistol,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"bo" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bo" = (/obj/structure/closet/crate/trashcart,/obj/random/soap/anom,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bp" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bq" = (/obj/structure/table/standard,/obj/item/weapon/storage/bag/trash,/obj/item/weapon/storage/bag/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "br" = (/obj/structure/table/standard,/obj/item/weapon/paper_bin,/obj/effect/floor_decal/corner/red/border{dir = 10; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
@@ -79,7 +92,7 @@
 "bA" = (/obj/effect/floor_decal/corner/lime/border{dir = 8; icon_state = "bordercolor"},/mob/living/bot/farmbot{faction = "malf_drone"; name = "Mr. Weddleton"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bB" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/machinery/light{dir = 4; icon_state = "tube1"},/obj/effect/floor_decal/corner/lime/border{dir = 4; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bC" = (/obj/effect/decal/remains/posi,/turf/template_noop,/area/template_noop)
-"bD" = (/obj/machinery/vending/cola,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bD" = (/obj/random/vendordrink,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bE" = (/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bF" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bG" = (/obj/structure/door_assembly,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
@@ -91,7 +104,7 @@
 "bM" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bN" = (/obj/effect/decal/remains,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bO" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
-"bP" = (/obj/machinery/vending/snack,/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"bP" = (/obj/random/vendorfood,/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bQ" = (/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bR" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bS" = (/obj/item/stack/rods,/obj/structure/girder,/turf/simulated/floor/tiled,/area/submap/Rockybase)
@@ -109,13 +122,13 @@
 "ce" = (/obj/structure/table/standard,/obj/random/toolbox,/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cf" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cg" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "We've finally been able to get the Vicerator delivery grenades working, Took awhile to make sure the latching mechanism didn't fail but we're sure we've got it this time. Vel'Shem's worried about the miners having there own drone fab now but I say it's a small price to pay to keep the metal flowing, Especially since there telling us NT's starting to monopolize the metal rich parts."; name = "V-Grenade Notice 1"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ch" = (/obj/structure/table/standard,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"ch" = (/obj/structure/table/standard,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond{start_anomalous = 1},/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ci" = (/obj/structure/table/standard,/obj/item/weapon/grenade/spawnergrenade/manhacks,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cj" = (/obj/structure/table/standard,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ck" = (/obj/structure/table/standard,/obj/machinery/light{dir = 1},/obj/item/weapon/circuitboard/mecha/gygax/main,/obj/item/weapon/circuitboard/mecha/gygax/peripherals,/obj/item/weapon/circuitboard/mecha/gygax/targeting,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cl" = (/obj/structure/door_assembly,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cm" = (/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/Rockybase)
-"cn" = (/obj/structure/table/standard,/obj/fiftyspawner/rods,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"cn" = (/obj/structure/table/standard,/obj/fiftyspawner/rods,/obj/random/tech_supply/component,/obj/random/tech_supply/anom,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "co" = (/obj/machinery/vending/engivend,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cp" = (/obj/machinery/vending/tool,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cq" = (/obj/structure/table/standard,/obj/item/weapon/storage/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)
@@ -163,7 +176,11 @@
 "dh" = (/obj/machinery/light{dir = 4; icon_state = "tube1"},/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/structure/cable/green{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "di" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/blood,/turf/simulated/floor,/area/submap/Rockybase)
 "dj" = (/obj/item/mecha_parts/part/gygax_right_leg,/obj/effect/floor_decal/corner/lime/border{dir = 4; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+<<<<<<< HEAD
 "dk" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/item/mecha_parts/part/gygax_left_arm,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+=======
+"dk" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/item/mecha_parts/part/gygax_left_arm{start_anomalous = 1},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "dl" = (/obj/machinery/vending,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "dm" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "dn" = (/obj/machinery/power/smes/buildable/point_of_interest,/obj/structure/cable/green,/turf/simulated/floor,/area/submap/Rockybase)
@@ -184,8 +201,17 @@
 "dC" = (/obj/machinery/vending/hydroseeds,/obj/effect/floor_decal/corner/lime/border{dir = 10; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "dD" = (/obj/structure/closet/crate/secure/hydrosec,/obj/effect/floor_decal/corner/lime/border{dir = 6; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "dE" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/structure/gravemarker{dir = 1},/turf/template_noop,/area/template_noop)
+<<<<<<< HEAD
 "dF" = (/obj/effect/gibspawner/robot,/turf/template_noop,/area/template_noop)
 "dG" = (/obj/effect/gibspawner/human,/turf/template_noop,/area/template_noop)
+=======
+"dF" = (/obj/effect/spawner/gibs/robot,/turf/template_noop,/area/template_noop)
+"dG" = (/obj/effect/spawner/gibs/human,/turf/template_noop,/area/template_noop)
+"fp" = (/obj/random/tech_supply/component,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"kv" = (/obj/random/maintenance/anom,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"yB" = (/turf/simulated/floor/outdoors/newdirt,/area/submap/Rockybase)
+"QX" = (/obj/structure/table/woodentable,/obj/random/maintenance/anom,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -196,30 +222,30 @@ aaaaaaaaaeafafafagafafafafagafafafafafaeafafafafafafafafafafafafafagafafafafafaf
 aaaaaaaaafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafahafafafafafafafafafafafafafaaaaaaaa
 aaaaaaaaafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaaaaaaaa
 aaaaaaaaafafafafafafafafafafafafafafafagafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafagafaaaaaaaa
-abaaaaaaafafaiaiaiaiaiafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafagafafafafafafafafafafaaaaajaa
-aaaaaaaaafafaiaiaiaiaiaiakafafafaiaiaiaiaiafafafafafafafafalalamalalalafafafafafafafafafaiaiaiakafafafafaaaaaaaa
-aaaaaaaaafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafafafafafanalalaoalalalalalanafafafafafaiaiaiaiaiaiaiaiaiafaaaaaaaa
-aaaaaaapafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaqaqaraqaqaqaqaqasaraqaqaiaiaiaiaiaiaiaiaiaiaiaiaiafaaaaaaaa
-aaaaaaaaafaiaiatatatatatatatatatatatatatatatatatatatatatatatauavavauatatatatatatatatatatatatataiaiaiaiafaaawaaaa
-aaaaaaaaafaiatataxayazataAaBaCaDaEaEaBaFaGaHaBaIatataJaKaLaMataNaNataOaPaQaRaSaTataUaVataWaXatataiaiaiafaaaaaaaa
+abaaaaaaafafafafafaiaiafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafagafafafafafafafafafafaaaaajaa
+aaaaaaaaafafafafaiaiaiaiakafafafafafafafafafafafafafafafafalalamalalalafafafafafafafafafaiaiaiakafafafafaaaaaaaa
+aaaaaaaaafaiaiafaiaiaiaiaiaiafaiaiafafafaiaiafafafafafanalalaoalalalalalanafafafafafaiaiaiaiaiaiafafafafaaaaaaaa
+aaaaaaapafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaqaqaraqaqaqaqaqasaraqaqaiaiaiaiaiaiaiaiaiaiaiafafafaaaaaaaa
+aaaaaaaaafaiaiatatatatatatatatatatatatatatatatatatatatatatatauavavauatatatatatatatatatatatatataiaiaiyBafaaawaaaa
+aaaaaaaaafaiatataxayazataAQXaCaDaEaEaBaFaGaHaBaIatataJaKaLaMataNaNataOaPaQaRaSaTataUaVataWaXatataiaiyBafaaaaaaaa
 aaaaaaaaaiaiatataYayaZataEaEaEaEaEaEaEaEaEaEaEaEatatbaaNaNbbatbcaNatbdbebfaNaNbgataUbhatbibjatataiaiaiafaaaaaaaa
-aaaaaaaaaiaiatataYaybkataEblaEaEbmaEaBbnaBaHaBaFatatboaNbpbqataNaNatbrbsbtbtbubtbvbwbxatbibyatataiaiaiafaaaaaaaa
-aaaaaaabaiaiatatayayayatatatbzatatatatatatatatatatatatbzatatatavavatatatatatbzatatatatatbAbBatataiaiaiafaaaaaabC
-aaaaaaaaaiaiatatatbzatatbDbEbEbEbEbFbEbEbEbEbGbEbFbEbEbEbEbEbEbEbEbEbEbFbEbEbEbEbHbHbIatbibyatataiaiaiafaaaabJaa
-aaaaaaaaaiaiatatbcaNaNaNaNaNaNbKbLbLaNbMbNaNaNaNaNaNaNaNaNaNaNbLaNaNaNaNaNaNaNaNbKbLbLbzbibyatataiaiaiafaaaaaaaa
-aaaaaaaaafaiatatatbOatatbPbQbQbRbRbRbQbQbQbSaNalbTbUbQbVbQbRbRbRbQbQbQbQbQbUbQbQbQbQbWatbibBatataiaiaiafaaaaaaaa
-aaaaaaaaafaiatatbXaybYatatatatatatatatatatatalalatatatatbZatatatatcaatatatatatatatatatatbibyatataiaiaiafaaaaaaaa
-aaaaaaaaafaiatatcbcbayatcccdcecfcgchcicjckclalcmcnatcocpaNcqcratcscaaNctcucvbLaNaNaNcwatbibyatataiaiaiafaaaaaaaa
-aaaaaaaaafaiatatcxbOcyataNaNaNaNaNaNaNaNaNcacaalczataNaNcAcBcCatcDaNbLbLcEcFcGcHcIaNcJatbibBatataiaiaiagaaaaaaaa
-aaaaaaaaafaiatatcbcbcKataNcMaNaNcMaNaNcNaNcOcaalcPatcQbLcRcScTatcUaNbLcVcWcXcYcWcZalaNatbibyatataiaiafafaaaaaaaa
-aaaaaaaaafaiatatcxbOayatcQaNaNdaaNcLaNdcbLdccacaddatdedfdgdfdhataNaNbLdicYcYcWcHalcmaNatbidjatataiaiafafaaaaaaaa
+aaaaaaaaaiaiatataYaybkataEblaEaEbmaEaBbnaBaHaBaFatatboaNbpbqataNaNatbrbsbtbtbubtbvbwbxatbibyatataiaiafafaaaaaaaa
+aaaaaaabaiaiatatayayayatatatbzatatatatatatatatatatatatbzatatatavavatatatatatbzatatatatatbAbBatataiafafafaaaaaabC
+aaaaaaaayBaiatatatbzatatbDbEbEbEbEbFbEbEbEbEbGbEbFbEbEbEbEbEbEbEbEbEbEbFbEbEbEbEbHbHbIatbibyatataiafafafaaaabJaa
+aaaaaayByBaiatatbcaNaNaNaNaNaNbKbLbLaNbMbNaNaNaNaNaNaNaNaNaNaNbLaNaNaNaNaNaNaNaNbKbLbLbzbibyatataiafafafaaaaaaaa
+aaaaaayBaiaiatatatbOatatbPbQbQbRbRbRbQbQbQbSaNalbTbUbQbVbQbRbRbRbQbQbQbQbQbUbQbQbQbQbWatbibBatataiafafafaaaaaaaa
+aaaaaaaiaiaiatatbXaybYatatatatatatatatatatatalalatatatatbZatatatatcaatatatatatatatatatatbibyatataiaiaiafaaaaaaaa
+aaaaaaaiaiaiatatcbcbayatcccdcecfcgchcicjckclalcmcnatcocpaNcqcratcscaaNctcucvbLaNaNaNcwatbibyatataiaiaiafaaaaaaaa
+aaaaaaaiaiaiatatcxbOcyataNaNaNaNaNaNaNaNaNcacaalczataNaNcAcBcCatcDaNbLbLcEcFcGcHcIaNcJatbibBatataiaiaiagaaaaaaaa
+aaaaaaaiaiaiatatcbcbcKataNcMaNaNcMaNaNcNaNcOcaalcPatcQbLcRcScTatcUaNbLcVcWcXcYcWcZalaNatbibyatataiaiafafaaaaaaaa
+aaaaaaaaaiaiatatcxbOayatcQaNaNdaaNcLaNdcbLdccacaddatdedfdgdfdhataNaNbLdicYcYcWcHalcmaNatbidjatataiaiafafaaaaaaaa
 aaaaabaaafaiatatcbcbdkataNcMaNaNalalbLbLbLbLaNaNdlataNaNdmcSdnatdoaNaNdpcWcGcGcGcGalbLatbidqatataiakafafaaaadraa
-aaaaaaaaafaiatatcxbOayataNaNaNaNaNaNdsdtaNdtaNaNcpatdudvdwaNdxatdyaNdzaNaNdAcIdAbLbLdBatdCdDatataiaiafafaaaabCaa
+aaaaaaaaafaiatatcxbOayatfpaNaNaNaNaNdsdtaNdtaNaNcpatdudvdwaNdxatdyaNdzaNkvdAcIdAbLbLdBatdCdDatataiaiafafaaaabCaa
 aaaaaaaaafaiaiatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatatataiaiafafafaaaaaaaa
 aaaaaaaaafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafafafaaaaaaaa
-aaaaaaaaafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafaiaiaiafafafaiaiaiaiaiaiaiafafafafaaaaaaaa
-aaaaaaaaafafaiaiaiaiaiaiaiaiaiaiaiaiakafafafaiaiaiaiaiaiafafafafafafafafafafafafafafafafafafafafafafafafaaaadraa
-aaaaaaaaafagafafafafafafaiaiaiaiaiafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaaaaaaaa
+aaaaaaaaafaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiaiafaiaiafafafafaiaiaiaiaiaiaiafafafafaaaaaaaa
+aaaaaaaaafafaiaiafafaiaiaiafafaiaiaiakafafafaiaiaiafaiaiafafafafafafafafafafafafafafafafafafafafafafafafaaaadraa
+aaaaaaaaafagafafafafafafaiafafafaiafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafafaaaaaaaa
 aaaaaaadaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaapaaaaaaaaaaaaabaaapaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaadEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaadFaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaadFaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

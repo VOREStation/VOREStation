@@ -1,6 +1,6 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/wall/wood,/area/submap/DJOutpost1)
-"c" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard,/obj/item/weapon/material/shard{ icon_state = "shardmedium"},/obj/item/stack/rods,/turf/simulated/floor,/area/submap/DJOutpost1)
+"c" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard,/obj/item/weapon/material/shard{icon_state = "shardmedium"},/obj/item/stack/rods,/turf/simulated/floor,/area/submap/DJOutpost1)
 "d" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/DJOutpost1)
 "e" = (/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "f" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
@@ -13,18 +13,18 @@
 "n" = (/obj/item/stack/rods,/turf/template_noop,/area/template_noop)
 "o" = (/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
 "p" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
-"q" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio,/obj/structure/cable/yellow,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
+"q" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio{start_anomalous = 1},/obj/structure/cable/yellow,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "r" = (/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "s" = (/obj/effect/overlay/snow/floor,/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
 "u" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
-"w" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{ icon_state = "shardmedium"},/turf/simulated/floor,/area/submap/DJOutpost1)
+"w" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{icon_state = "shardmedium"},/turf/simulated/floor,/area/submap/DJOutpost1)
 "x" = (/obj/structure/girder,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "y" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio/intercom/syndicate{desc = "Talk through this."; name = "station intercom (General)"},/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
 "A" = (/obj/item/stack/rods,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
 "B" = (/obj/structure/door_assembly/door_assembly_ext,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "C" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{icon_state = "medium"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/submap/DJOutpost1)
-"D" = (/obj/item/weapon/material/shard{ icon_state = "shardmedium"},/turf/template_noop,/area/template_noop)
-"F" = (/obj/item/device/transfer_valve,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
+"D" = (/obj/item/weapon/material/shard{icon_state = "shardmedium"},/turf/template_noop,/area/template_noop)
+"F" = (/obj/item/device/transfer_valve{start_anomalous = 1},/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "G" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{icon_state = "medium"},/turf/simulated/floor,/area/submap/DJOutpost1)
 "H" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/template_noop,/area/template_noop)
 "I" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
@@ -36,11 +36,12 @@
 "O" = (/obj/structure/lattice,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
 "P" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "S" = (/obj/structure/girder,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
+"W" = (/obj/random/tech_supply/anom,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaa
 aaabcbbbbbdbaaaaaa
-aabbeekffefbbaaaaa
+aabbeWkffefbbaaaaa
 abbePOSoOeegbbaaaa
 nweeOooroOiPhCsoaa
 DbeporxrrooOlSruoa
@@ -48,7 +49,7 @@ abeOrrrrrLmyqxrroa
 abbkxrrFrrxbbkrAoa
 abPorrrrrroOfbouaa
 abeOorrrropeeboaaa
-ndeOokxBxkOPfMHaaa
+ndWOokxBxkOPfMHaaa
 abbeOkOoOkeKbbaaaa
 aabbObePebfbbaaaaa
 aaabNbbIbbGbaaaaaa

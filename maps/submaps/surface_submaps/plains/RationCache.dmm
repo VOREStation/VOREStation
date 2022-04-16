@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -149,4 +150,28 @@ b
 a
 a
 a
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/floor/outdoors/snow,/area/submap/RationCache)
+"c" = (/mob/living/simple_mob/animal/sif/diyaab,/turf/simulated/floor/outdoors/snow,/area/submap/RationCache)
+"d" = (/mob/living/simple_mob/animal/sif/diyaab,/turf/simulated/floor/outdoors/dirt,/area/submap/RationCache)
+"e" = (/turf/simulated/floor/outdoors/dirt,/area/submap/RationCache)
+"f" = (/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/item/trash/liquidfood,/obj/random/mre/dessert/vegan,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/RationCache)
+"g" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/turf/simulated/floor/outdoors/dirt,/area/submap/RationCache)
+"j" = (/obj/random/mre/drink,/turf/simulated/floor/outdoors/dirt,/area/submap/RationCache)
+"I" = (/obj/item/trash/liquidfood,/turf/simulated/floor/outdoors/snow,/area/submap/RationCache)
+"S" = (/obj/random/mre/spread/vegan,/turf/simulated/floor/outdoors/snow,/area/submap/RationCache)
+
+(1,1,1) = {"
+aaaabbbaaa
+aabbbbbbaa
+abbbbcbbbb
+abbbdbbcbb
+bbcefebbbb
+bbbjgeIbbb
+bbbbebcbbb
+bbSbbbbbaa
+aabbcbbaaa
+aabbbaaaaa
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "}

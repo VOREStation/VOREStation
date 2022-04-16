@@ -5,6 +5,7 @@
 	icon_state = "generic"
 	var/spawn_nothing_percentage = 0 // this variable determines the likelyhood that this random object will not spawn anything
 	var/drop_get_turf = TRUE
+	var/start_anomalous = FALSE
 
 // creates a new object and deletes itself
 /obj/random/Initialize()
@@ -31,6 +32,8 @@
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
 		A.set_dir(dir)
+		if(start_anomalous)
+			A.become_anomalous()
 
 /obj/random/drop_location()
 	return drop_get_turf ? get_turf(src) : ..()

@@ -11,12 +11,14 @@
 "k" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 "l" = (/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 "m" = (/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"n" = (/obj/effect/decal/cleanable/cobweb2,/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"n" = (/obj/effect/decal/cleanable/cobweb2,/mob/living/simple_mob/mechanical/viscerator,/obj/random/multiple/gun/projectile/smg,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 "o" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 "p" = (/obj/effect/decal/cleanable/spiderling_remains,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 "q" = (/obj/effect/decal/remains/robot,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"r" = (/obj/effect/decal/remains,/obj/item/clothing/mask/gas/explorer,/obj/item/weapon/material/twohanded/fireaxe,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
-"s" = (/obj/effect/decal/cleanable/spiderling_remains,/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"r" = (/obj/effect/decal/remains,/obj/item/clothing/mask/gas/explorer{start_anomalous = 1},/obj/item/weapon/material/twohanded/fireaxe,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"s" = (/obj/effect/decal/cleanable/spiderling_remains,/mob/living/simple_mob/mechanical/viscerator,/obj/random/bomb_supply,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"t" = (/mob/living/simple_mob/mechanical/viscerator,/obj/random/contraband/anom,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
+"C" = (/obj/random/maintenance/anom,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/MHR)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
@@ -32,7 +34,7 @@ abeeeeelmneeoddddeea
 abeeepllldqfdddddeea
 abeeeldldlddddddreea
 abeeedldfdddddddeeea
-abbeellllddmddqeeeea
+abbeetllldCmddqeeeea
 abbeeeseedldddeeeeba
 abbeeeeeeeeeeeeeebba
 abbbeeeeeeeeeeeeebba

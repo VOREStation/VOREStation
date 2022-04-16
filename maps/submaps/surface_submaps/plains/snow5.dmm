@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -224,4 +225,29 @@ a
 a
 a
 a
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/snow5)
+"c" = (/turf/simulated/floor/outdoors/snow,/area/submap/snow5)
+"j" = (/obj/structure/prop/rock/small,/turf/simulated/floor/outdoors/snow,/area/submap/snow5)
+"k" = (/obj/structure/prop/rock/small/alt,/turf/simulated/floor/outdoors/snow,/area/submap/snow5)
+
+(1,1,1) = {"
+aaaaaaaaaaaa
+abbcccccbbba
+abckcccccbba
+abcccccccbba
+abbcccccccba
+abbcccccccba
+abbbcccccbba
+abbbcccjccba
+abbbbcccccba
+abbbbcccccba
+abbbbccccbba
+abbbcccccbba
+abbbccccbbba
+abbbckcbbbba
+abbcccbbbbba
+aaaaaaaaaaaa
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "}

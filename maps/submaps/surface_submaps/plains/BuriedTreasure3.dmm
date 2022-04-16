@@ -1,5 +1,5 @@
 "a" = (/turf/template_noop,/area/submap/BuriedTreasure)
-"b" = (/obj/structure/closet/grave,/obj/random/energy,/obj/random/drinkbottle,/obj/random/contraband,/obj/random/ammo,/obj/random/ammo,/obj/random/mre,/obj/random/tool/power,/obj/random/unidentified_medicine/fresh_medicine,/obj/random/unidentified_medicine/combat_medicine,/obj/random/medical/pillbottle,/obj/random/soap,/turf/template_noop,/area/submap/BuriedTreasure)
+"b" = (/obj/structure/closet/grave,/obj/random/energy,/obj/random/drinkbottle,/obj/random/contraband,/obj/random/ammo,/obj/random/ammo,/obj/random/mre,/obj/random/unidentified_medicine/fresh_medicine,/obj/random/unidentified_medicine/combat_medicine,/obj/random/medical/pillbottle,/obj/random/soap,/obj/random/tool/power,/obj/random/maintenance/clean/anom,/turf/template_noop,/area/submap/BuriedTreasure)
 
 (1,1,1) = {"
 aaaaa

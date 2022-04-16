@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "aa" = (/turf/template_noop,/area/submap/Manor1)
 "ab" = (/turf/simulated/wall/wood,/area/submap/Manor1)
 "ac" = (/obj/structure/window/reinforced/full,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
@@ -186,3 +187,197 @@ cNaaaaaacOaaaaaaaaaaabababababababababababaaaaaaaaaaaaaaaaaaaaaaaaababababababab
 cNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacN
 cNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcN
 "}
+=======
+"aa" = (/turf/template_noop,/area/submap/Manor1)
+"ab" = (/turf/simulated/wall/wood,/area/submap/Manor1)
+"ac" = (/obj/structure/window/reinforced/full,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ad" = (/obj/structure/bed/chair/wood{dir = 4; icon_state = "wooden_chair"},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ae" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"af" = (/obj/structure/bed/chair/wood{dir = 8; icon_state = "wooden_chair"},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ag" = (/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ah" = (/obj/structure/flora/pottedplant/dead,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ai" = (/obj/structure/flora/pottedplant/drooping,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aj" = (/obj/structure/table/woodentable,/obj/item/clothing/mask/smokable/cigarette/cigar,/obj/item/weapon/material/ashtray/glass,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ak" = (/obj/structure/flora/pottedplant/dead,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"al" = (/obj/structure/table/woodentable,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"am" = (/obj/structure/table/woodentable,/obj/item/device/flashlight,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"an" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ao" = (/obj/structure/mopbucket,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ap" = (/obj/structure/sink,/turf/simulated/wall/wood,/area/submap/Manor1)
+"aq" = (/turf/simulated/floor/carpet/bcarpet,/area/submap/Manor1)
+"ar" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet/bcarpet,/area/submap/Manor1)
+"as" = (/obj/structure/simple_door/wood,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"at" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/obj/effect/decal/cleanable/blood/gibs/robot,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"au" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/effect/decal/cleanable/blood/oil,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"av" = (/obj/structure/janitorialcart,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aw" = (/obj/structure/table/woodentable,/obj/item/weapon/mop,/obj/item/weapon/reagent_containers/glass/bucket,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ax" = (/obj/structure/closet/cabinet,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ay" = (/obj/effect/decal/cleanable/blood/gibs/robot/limb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"az" = (/obj/structure/table/woodentable,/obj/item/trash/candle,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aA" = (/obj/effect/decal/cleanable/dirt,/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aB" = (/obj/effect/decal/cleanable/dirt,/obj/effect/spider/stickyweb,/mob/living/simple_mob/animal/giant_spider/lurker,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aC" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/maglight,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aD" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aE" = (/obj/structure/closet/cabinet,/obj/effect/decal/cleanable/cobweb2,/obj/item/clothing/head/hood/winter,/obj/item/clothing/shoes/boots/winter,/obj/item/clothing/suit/storage/hooded/wintercoat,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aF" = (/obj/structure/table/woodentable,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aG" = (/obj/structure/table/woodentable,/obj/item/weapon/paper,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aH" = (/obj/structure/table/woodentable,/obj/item/weapon/pen,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aI" = (/obj/structure/flora/pottedplant/dead,/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aJ" = (/obj/effect/spider/stickyweb,/mob/living/simple_mob/animal/giant_spider/lurker,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aK" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aL" = (/obj/structure/fireplace,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aM" = (/mob/living/simple_mob/animal/giant_spider/lurker,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aN" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aO" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aP" = (/obj/structure/bed/chair/wood,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aQ" = (/turf/simulated/floor/carpet/purcarpet,/area/submap/Manor1)
+"aR" = (/obj/structure/table/standard,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aS" = (/obj/structure/table/standard,/obj/machinery/microwave,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aT" = (/obj/structure/closet/cabinet,/obj/random/projectile/shotgun,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aU" = (/obj/structure/bookcase,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aV" = (/obj/structure/table/woodentable,/obj/item/weapon/material/kitchen/utensil/fork,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aW" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/condiment/small/peppershaker,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aX" = (/obj/structure/table/standard,/obj/item/weapon/material/knife,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aY" = (/obj/machinery/appliance/cooker/oven,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"aZ" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{start_anomalous = 1},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ba" = (/obj/machinery/appliance/cooker/grill,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bb" = (/obj/structure/table/standard,/obj/item/weapon/tray,/obj/item/weapon/tray,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bc" = (/obj/structure/table/standard,/obj/item/weapon/material/knife/butch,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bd" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"be" = (/obj/random/trash,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bf" = (/obj/structure/closet/cabinet,/obj/item/clothing/head/hood/winter,/obj/item/clothing/shoes/boots/winter,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/random/contraband,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bg" = (/obj/structure/table/woodentable,/obj/item/weapon/paper_bin,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bh" = (/obj/structure/bed/chair/wood{dir = 1; icon_state = "wooden_chair"},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bi" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken0"},/area/submap/Manor1)
+"bj" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bk" = (/obj/random/plushielarge,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bl" = (/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"bm" = (/obj/structure/loot_pile/surface/bones,/obj/item/clothing/accessory/sweater/blue,/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"bn" = (/obj/structure/window/reinforced/full,/turf/template_noop,/area/submap/Manor1)
+"bo" = (/obj/item/weapon/material/twohanded/baseballbat/metal{start_anomalous = 1},/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"bp" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"bq" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"br" = (/obj/structure/bed/chair/comfy/purp{dir = 4; icon_state = "comfychair_preview"},/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken5"},/area/submap/Manor1)
+"bs" = (/obj/structure/table,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bt" = (/obj/structure/bed/chair/wood{dir = 4; icon_state = "wooden_chair"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bu" = (/obj/structure/bed/chair/wood{dir = 8; icon_state = "wooden_chair"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bv" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/condiment/small/sugar,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bw" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"bx" = (/obj/structure/bed/chair/comfy/purp{dir = 4; icon_state = "comfychair_preview"},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"by" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/head/hood/winter,/obj/item/clothing/shoes/boots/winter,/obj/random/grenade/less_lethal,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bz" = (/obj/structure/table/woodentable,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bA" = (/obj/structure/table/standard,/obj/item/weapon/material/kitchen/utensil/fork,/obj/item/weapon/material/kitchen/utensil/fork,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bB" = (/obj/structure/closet/secure_closet/freezer/fridge,/obj/item/weapon/reagent_containers/food/snacks/stew,/obj/item/weapon/reagent_containers/food/snacks/stew,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bC" = (/obj/item/weapon/shovel,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bD" = (/obj/structure/bed/chair/wood{dir = 1; icon_state = "wooden_chair"},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bE" = (/obj/structure/table/standard,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/item/weapon/material/kitchen/utensil/spoon,/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bF" = (/obj/structure/table/standard,/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bG" = (/obj/structure/closet/secure_closet/freezer/fridge,/obj/item/weapon/reagent_containers/food/snacks/sausage,/obj/item/weapon/reagent_containers/food/snacks/sausage,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bH" = (/obj/effect/decal/cleanable/dirt,/obj/structure/flora/pottedplant/drooping,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bI" = (/obj/effect/decal/cleanable/dirt,/obj/structure/flora/pottedplant/dead,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bJ" = (/obj/structure/table/standard,/obj/item/weapon/material/kitchen/rollingpin,/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bK" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bL" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bM" = (/obj/machinery/papershredder,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bN" = (/obj/structure/simple_door/wood,/turf/simulated/floor/carpet/purcarpet,/area/submap/Manor1)
+"bO" = (/obj/machinery/icecream_vat,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bP" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"bQ" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bR" = (/obj/effect/decal/cleanable/cobweb,/obj/structure/table/woodentable,/obj/machinery/recharger,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bS" = (/obj/structure/flora/pottedplant/subterranean,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bT" = (/obj/item/weapon/material/minihoe,/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"bU" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet/purcarpet,/area/submap/Manor1)
+"bV" = (/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken6"},/area/submap/Manor1)
+"bW" = (/obj/machinery/washing_machine,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bX" = (/obj/structure/table/woodentable,/obj/structure/bedsheetbin,/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bY" = (/obj/structure/table/rack,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"bZ" = (/obj/structure/closet/crate,/obj/item/stack/cable_coil/random_belt,/obj/random/cash,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ca" = (/obj/structure/table/woodentable,/obj/item/weapon/melee/umbrella/random,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cb" = (/obj/structure/closet/cabinet,/obj/random/gun/random,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cc" = (/obj/structure/closet/cabinet,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/obj/random/medical,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cd" = (/obj/structure/table/woodentable,/obj/item/device/flashlight/lamp/green,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ce" = (/obj/structure/bed/double,/obj/item/weapon/bedsheet/rddouble,/obj/structure/curtain/open/bed,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cf" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/wallet/random,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cg" = (/obj/structure/flora/pottedplant/dead,/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ch" = (/obj/structure/loot_pile/surface/bones,/obj/item/clothing/accessory/sweater,/turf/simulated/floor/carpet/blucarpet,/area/submap/Manor1)
+"ci" = (/obj/structure/closet/crate,/obj/item/weapon/flame/lighter/random,/obj/random/powercell,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cj" = (/obj/structure/closet/cabinet,/obj/item/clothing/shoes/boots/winter,/obj/item/clothing/suit/storage/hooded/wintercoat,/obj/item/clothing/head/hood/winter,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ck" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cl" = (/turf/simulated/floor/carpet/turcarpet,/area/submap/Manor1)
+"cm" = (/obj/effect/decal/cleanable/blood,/obj/structure/bed/chair/comfy/purp{dir = 4; icon_state = "comfychair_preview"},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cn" = (/obj/structure/closet/crate,/obj/item/weapon/storage/wallet/random,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"co" = (/obj/structure/coatrack,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cp" = (/obj/structure/loot_pile/surface/bones,/obj/item/clothing/suit/storage/hooded/wintercoat,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cq" = (/obj/structure/loot_pile/surface/bones,/obj/item/clothing/under/suit_jacket,/obj/item/clothing/shoes/black,/obj/random/projectile/random,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cr" = (/obj/structure/simple_door/wood,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/carpet/purcarpet,/area/submap/Manor1)
+"cs" = (/obj/item/weapon/material/twohanded/spear,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"ct" = (/obj/structure/closet/cabinet{opened = 1},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cu" = (/obj/effect/decal/remains,/obj/item/weapon/material/knife/tacknife/combatknife,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cv" = (/obj/structure/sink{pixel_y = 30},/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cw" = (/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cx" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cy" = (/obj/structure/table/standard,/obj/item/weapon/towel/random,/obj/item/weapon/towel/random,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cz" = (/obj/effect/decal/cleanable/cobweb2,/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cA" = (/obj/item/weapon/paper/crumpled,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cB" = (/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken3"},/area/submap/Manor1)
+"cC" = (/obj/effect/decal/cleanable/spiderling_remains,/obj/effect/spider/stickyweb,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cD" = (/obj/structure/closet/crate,/obj/item/clothing/suit/armor/vest,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cE" = (/obj/structure/closet/crate,/obj/random/medical/lite/anom,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cF" = (/obj/structure/simple_door/wood,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cG" = (/obj/structure/toilet{dir = 8; icon_state = "toilet00"},/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cH" = (/obj/machinery/shower{dir = 8; icon_state = "shower"},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cI" = (/obj/item/stack/material/wood,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cJ" = (/obj/machinery/shower{dir = 8; icon_state = "shower"},/obj/structure/curtain/open/shower,/obj/random/soap,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cK" = (/obj/structure/table/standard,/obj/random/medical/pillbottle,/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cL" = (/obj/structure/toilet{dir = 1; icon_state = "toilet00"},/turf/simulated/floor/tiled/hydro,/area/submap/Manor1)
+"cM" = (/obj/structure/table/woodentable,/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"cN" = (/turf/template_noop,/area/template_noop)
+"cO" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Manor1)
+"Bh" = (/obj/structure/table/woodentable,/obj/random/action_figure/anom,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"CS" = (/obj/structure/table/woodentable,/obj/random/powercell/anom,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"VB" = (/obj/structure/table/woodentable,/obj/item/weapon/material/kitchen/utensil/fork{start_anomalous = 1},/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+"WJ" = (/obj/structure/table/woodentable,/obj/random/drinkbottle/anom,/turf/simulated/floor/holofloor/wood,/area/submap/Manor1)
+
+(1,1,1) = {"
+cNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcN
+cNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabacacacacababacacacacabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacN
+cNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaababadaeafagahaiagadajafababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacN
+cNaaaaaaaaaaaaaaaaababababababababababababagagagagagagagagagagagagababababababababababababababaaaaaaaaaaaacN
+cNaaaacOaaaaaaaaabababakagagagalamalagananagagagagananananagagagagagagagagalalalagagagaiabaoapabaaaacOaaaacN
+cNaaaaaaaaaaaaababalabagaqaqaqaqarararararararaqarararararararaqaqaqaqaqaqaqaqaqaqaqaqagasagagababaaaaaaaacN
+cNaaaaaaaaaaababatauabagaqaqaqaqaqaqaqarararararararararararararaqaqaqaqaqaqaqaqaqaqaqagabavagawababaaaaaacN
+cNaaaaaaaaaaabaxagayabagaqagagazalalaganananaAaBaAagananagagagagagagagagagalalaCagagaqagababababababaaaaaacN
+cNaaaaaaaaaaababasababagaqagabababababababababababababababababababababababababababagaqagabaDagagaEabaaaaaacN
+cNaaaaaacOaaabagagagasagaqagabaFaGagalaHabaIaJaKagagaLaLagagagagahabagaMagagagaNabagaqagabaOagagalabaaaaaacN
+cNaaaaaaaaaaabasabababagaqagabagagagagagabaKaKaPaPagaQaQagaPaPagagabaRagaRaRagaSabagaqagabababasababaaaaaacN
+cNaaaaaaaaaaabagagaTabagaqagabagaUagaUagabagadalVBafaQaQadaValafagabaRagaWaXagaYabalaqagasagagagagabaaaaaacN
+cNaaaaaaaaaaabagagaMabagaqagabagaUagaUagabagadalalafaQaQadalalafagabaRagaZaRagbaabagaqagabababasababaaaaaacN
+cNaaaaaaaaaaabaDalaOabagaqagabagaUagaUagabagadalalafaQaQadalalafagabbbagaRbcagbdabagaqagabaOagagalabaaaaaacN
+cNaaaaaaaaaaabababababagaqagabagagagaganabagadalalafaQaQadalalafagabagagagagagagabagaqagabaDbeagbfabaaaaaacN
+cNaaaaaaaaaaabaDalbgabalaqagabagaUagaUanabagadalalafaQaQadalalafagabagagagagagagabagaqagababababababaaaaaacN
+cNaaaaaaaaababagbhagabazaqagasagaUagaUanabagadaGalafaQaQadalalafagabagagagagagagabagaqagabbiagagagababaaaacN
+cNaaaaaaababbjagagbkabalaqagabagaUanaUanabagadalalafaQaQadalalafagabagagagagagagabagaqagabagblbmagagababaacN
+cNaaaaaabnagagagagaOabagaqanabanananananabanadalalafaQaQadalalafagasagagagagagagasagaqagasagbobpbqbrbsacaacN
+cNaaaaaabnagagagagalabagaranabagaUanaUagabanbtalalafaQaQadWJalbuanabagagaRbvagagabagaqagabagblbwagbxbsacaacN
+cNaaaaaaababagagagbyabanaranabagaUanaUagabanbtalalafaQaQadalbzbuanabagagbAaRagbBabagaqagabagblblagbCababaacN
+cNaaaaaaaaababagagagabanaragabagaUanaUagabananbhbhagaQaQagbhbDananabagagbEbFagbGabagaqagabalblblagababaaaacN
+cNaaaaaaaaaaabagagagabagaragabagaganagagabbHananagagaQaQaganananbIabagagbFbJagbKabagaqagabaDblblalabaaaaaacN
+cNaaaaaaaaaaabagagagasagaqagabaGbLbMagaiababababababbNbNababababababbOaKaKaKagagabagaqagabalblblalabaaaaaacN
+cNaaaaaaaaaaabazalagabagaqagababababasabababababalalaQaQalalabababababababababababagaqagabalbwbPalabaaaaaacN
+cNaaaaaaaaaaabababababbQaqagagananananananananasagagaQaQagagasagagagagagagagagagagagaqagabazblbPalabaaaaaacN
+cNaaaaaaaaababbRazbSabbqaqagagagagananananananasagagaQaQagagasagagagagagagagagagagagaqagabalblbTagababaaaacN
+cNaaaaaaababagagagagabagaqagababababasabababababalagbUaQagalabababababababababababagaqagabagblblbVagababaacN
+cNaaaaaaacagagagagbqasbqaqagabbWbXabagabbYagbZabalagbUbUagcaabcbccagcdcecfagagcgabagaqagasagbpchagbxbsacaacN
+cNaacOaaacagagagbqagabagaqagabagagasagabagagciabcjckbUbUagcjabagclclclclclclclaDabagaqagabbqbwblagcmagacaacN
+cNaaaaaaababagbQbQagabahaqagabbWazabagasagagcnababcobUbUcoababagclclclclclclclBhabahaqahabagbwblagcpababaacN
+cNaaaaaaaaababcqagagababasabababababagabagagagaKababcrcrababagagclclclclclclclalababasababcsblbwagababaaaacN
+cNaaaaaaaaaaabctagcuabcvcwcxabcycwasagabbYagaKaKczabbUbUabazafagclclclclclclclagagagagahabagcAcBagabaaaaaacN
+cNaaaaaaaaaaababalagabcwabababcwcwabagabbYcCaJcDcEabbUbUabalagagagagagclclclclclclclclagabcAbqagababaaaaaacN
+cNaaaaaaaaaaaaababalabcwcFcGabcwcHabasabababababababbNbNabababababahagclclclclclclclclagabagcIababaaaaaaaacN
+cNaaaaaaaaaaaaaaabababcwabababcwcHabcwcvababaaaaaaaaaaaaaaaaaaaaababalclclclclclclclclagabcIababaaaaaaaaaacN
+cNaaaaaaaaaaaaaaaaababcwcFcGabcwcJabcKcLabaaaaaaaaaaaaaaaaaaaaaaaaabcMCSalagagagagagaMahabababaaaaaacOaaaacN
+cNaaaaaacOaaaaaaaaaaabababababababababababaaaaaaaaaaaaaaaaaaaaaaaaabababababababababababababaaaaaaaaaaaaaacN
+cNaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacN
+cNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcNcN
+"}
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)

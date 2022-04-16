@@ -195,7 +195,7 @@
 
 /datum/map_template/surface/wilderness/deep/BluSD
 	name = "Blue Shuttle Down"
-	desc = "You REALLY shouldn't be near this. Mostly because they're Police."
+	desc = "You REALLY shouldn't be near this. Mostly because they're SolGov."
 	mappath = 'maps/submaps/surface_submaps/wilderness/Blueshuttledown.dmm'
 	cost = 50
 	template_group = "Shuttle Down"

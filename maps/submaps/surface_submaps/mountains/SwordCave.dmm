@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -1806,3 +1807,62 @@ a
 a
 a
 "}
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral,/area/submap/cave/swordcave)
+"c" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"d" = (/obj/machinery/crystal,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"e" = (/turf/simulated/floor/water,/area/submap/cave/swordcave)
+"f" = (/turf/simulated/floor/water/deep,/area/submap/cave/swordcave)
+"g" = (/obj/structure/ghost_pod/manual/cursedblade,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"h" = (/mob/living/simple_mob/faithless/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"i" = (/obj/item/device/gps/explorer/on,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"j" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"k" = (/mob/living/simple_mob/animal/space/bats,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"l" = (/mob/living/simple_mob/animal/space/bats/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+"T" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/swordcave)
+
+(1,1,1) = {"
+aaaaaaaabbbbbbbbbbbbbbbbbbbbbbbbbbbaaaaaa
+aaaaabbbbbbbbbbbcccdccccbbbbbbbbbbbbaaaaa
+aaaabbbbbbcccccccccccccccccccccbbbbbbaaaa
+aaabbbbbbcccccccccccccccccccccccdbbbbbaaa
+aabbbbccccccceeeeeeeeeeeeeccccccccbbbbbaa
+aabbbccccccceeeeeeeeeeeeeeeccccccccbbbbaa
+aabbbcTcccceeeffffffffffffeeecccTccbbbbaa
+aabbbccccceefeeeeeeefeeeeeeeeecccccbbbbaa
+aabbbccccceefeeccceeeeeeeefffeeccccbbbaaa
+aabbbcccceeffeecccccecccceefffeecccbbbaaa
+aabbbcccceeffeeeccgcccchcceeffeecccbbbaaa
+aabbbcccdeeffeeccijcdccccceefeeccdcbbbaaa
+abbbccccceefffeeeccccccceeefeeccccccbbaaa
+abbbcccccceefffeeeccccceeeffeeccccccbbbaa
+abbbcdccccceefffeeeeeeeeffffeeccccccbbbaa
+abbcccclcccceeffffeeeeefffffeeccccccbbbaa
+abbcccccccccceeffffffffffffeeccccTccbbbaa
+abbccccccccccceeffeeeeeefffeecccccccbbbaa
+abbbccccdcccccceefeeeeeeeeeeckccccccbbbaa
+abbbcccccccccccceeecccdceeecccccccccbbaaa
+abbbcccccccccccccecccccccceccccdclccbbaaa
+abbbcccccccccclcccccccccccccccccccccbbaaa
+abbbbcccccclccccccccccccccclccccccccbbaaa
+abbbbbTccccccccccccccclccccccccclcccbbaaa
+aabbbbbccccccccccccccccccccccccccccbbbaaa
+aabbbbbccccccccccccdccccccccccccccbbbbaaa
+aabbbbbcccccdccccccccccccccccccccbbbbbaaa
+aabbbbbccccccccccclccccccccTcccccbbbbaaaa
+aabbbbbbbccccccccccccccccccccccccbbbbaaaa
+aaabbbbbbbcccccccccccccccdccccccbbbbaaaaa
+aaaabbbbbbcclcccccdcccccccccccccbbbbaaaaa
+aaaaabbbbbccccccccccccccccccccTbbbbbaaaaa
+aaaaabbbbbcccccccccccccTccccccbbbbbaaaaaa
+aaaaaabbbbbcccdccccccccccccccbbbbbaaaaaaa
+aaaaaaabbbbbcccccccclccccclcbbbbbbaaaaaaa
+aaaaaaabbbbbbcccccccccccccccbbbbbaaaaaaaa
+aaaaaaabbbbbbbbbbbbccccccccccbbbaaaaaaaaa
+aaaaaaaaabbbbbbbbbbbccccccccccbaaaaaaaaaa
+aaaaaaaaaaabbbbbbbbbbccccccccccaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaacccdccccaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaccccccaaaaaaaaaaaa
+"}
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)

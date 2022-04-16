@@ -18,7 +18,9 @@
 /area/submap/DemonPool)
 "ay" = (
 /obj/structure/girder/cult,
-/obj/item/weapon/material/twohanded/fireaxe/scythe,
+/obj/item/weapon/material/twohanded/fireaxe/scythe{
+	start_anomalous = 1
+	},
 /turf/simulated/floor/cult,
 /area/submap/DemonPool)
 "bb" = (
@@ -539,7 +541,8 @@
 "Qq" = (
 /obj/item/weapon/beartrap/hunting{
 	anchored = 1;
-	deployed = 1
+	deployed = 1;
+	start_anomalous = 1
 	},
 /obj/effect/decal/cleanable/blood/gibs/limb,
 /obj/effect/decal/cleanable/blood/gibs/limb,

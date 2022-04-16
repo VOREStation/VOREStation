@@ -5,7 +5,7 @@
 "e" = (/obj/effect/alien/weeds,/mob/living/simple_mob/animal/space/alien/drone,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 "f" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 "g" = (/obj/effect/alien/weeds,/turf/simulated/floor/plating,/area/submap/cave/vault3)
-"h" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/effect/alien/weeds/node,/turf/simulated/floor/plating,/area/submap/cave/vault3)
+"h" = (/obj/effect/alien/weeds,/obj/effect/alien/weeds,/obj/effect/alien/weeds/node,/mob/living/simple_mob/animal/space/alien/queen/empress/mother,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 "i" = (/obj/structure/bed/nest,/turf/simulated/floor/plating,/area/submap/cave/vault3)
 
 (1,1,1) = {"
@@ -14,7 +14,7 @@ aabbbbbaa
 abbcdcbba
 abefffgba
 abgfhfgba
-abgfffeba
+abgfffgba
 abbigibba
 aabbbbbaa
 aaaaaaaaa

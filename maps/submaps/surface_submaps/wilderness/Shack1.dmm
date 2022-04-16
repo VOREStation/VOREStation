@@ -3,7 +3,7 @@
 "c" = (/turf/template_noop,/area/submap/Shack1)
 "d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Shack1)
 "e" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken1"},/area/submap/Shack1)
-"f" = (/obj/structure/table/wooden_reinforced,/obj/item/weapon/storage/fancy/candle_box,/obj/item/weapon/storage/box/matches,/turf/simulated/floor/wood,/area/submap/Shack1)
+"f" = (/obj/structure/table/wooden_reinforced,/obj/item/weapon/storage/fancy/candle_box,/obj/item/weapon/storage/box/matches{start_anomalous = 1},/turf/simulated/floor/wood,/area/submap/Shack1)
 "g" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/storage/apron/overalls,/obj/item/clothing/under/overalls,/obj/random/mre,/turf/simulated/floor/wood,/area/submap/Shack1)
 "h" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/wood,/area/submap/Shack1)
 "i" = (/turf/simulated/floor/wood,/area/submap/Shack1)
@@ -13,17 +13,18 @@
 "m" = (/obj/structure/simple_door/wood,/turf/simulated/floor/wood,/area/submap/Shack1)
 "n" = (/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken3"},/area/submap/Shack1)
 "o" = (/obj/structure/table/bench/wooden,/turf/simulated/floor/wood,/area/submap/Shack1)
-"p" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/weapon/storage/toolbox,/turf/simulated/floor/wood,/area/submap/Shack1)
+"p" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/random/toolbox/anom,/turf/simulated/floor/wood,/area/submap/Shack1)
 "q" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/weapon/material/twohanded/fireaxe/scythe,/turf/simulated/floor/wood,/area/submap/Shack1)
 "r" = (/obj/effect/decal/cleanable/spiderling_remains,/turf/simulated/floor/wood,/area/submap/Shack1)
 "s" = (/turf/simulated/floor/holofloor/wood{icon_state = "wood_broken6"},/area/submap/Shack1)
-"t" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/device/flashlight/lamp,/turf/simulated/floor/wood,/area/submap/Shack1)
+"t" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/wooden_reinforced,/obj/item/device/flashlight/lamp{start_anomalous = 1},/turf/simulated/floor/wood,/area/submap/Shack1)
 "u" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Shack1)
+"O" = (/obj/effect/decal/cleanable/dirt,/obj/random/maintenance/anom,/turf/simulated/floor/wood,/area/submap/Shack1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaa
 abbbbbbbccccdca
-abefghhbcccddca
+abefghObcccddca
 abhijhkbclcddca
 abiiiiimdddddla
 abniiiimdddddca

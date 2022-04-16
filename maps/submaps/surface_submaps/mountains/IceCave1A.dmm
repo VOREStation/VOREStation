@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/simulated/wall/solidrock{
@@ -1237,4 +1238,55 @@ b
 b
 b
 b
+=======
+"a" = (/turf/simulated/wall/solidrock{block_tele = 0},/area/submap/cave/IceCave1A)
+"b" = (/turf/template_noop,/area/submap/cave/IceCave1A)
+"c" = (/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/IceCave1A)
+"d" = (/obj/machinery/crystal/ice,/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/IceCave1A)
+"e" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"f" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"g" = (/obj/machinery/crystal/ice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"h" = (/obj/random/firstaid,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"i" = (/obj/random/ammo,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"j" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"r" = (/obj/random/medical/anom,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"x" = (/obj/random/multiple/corp_crate,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"B" = (/obj/structure/bonfire/sifwood,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"C" = (/obj/structure/loot_pile/surface/bones,/obj/item/clothing/suit/storage/hooded/wintercoat/science,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"E" = (/obj/random/material/precious,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"I" = (/obj/random/maintenance/anom,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"K" = (/obj/item/clothing/shoes/boots/winter,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"P" = (/obj/item/clothing/shoes/boots/jackboots/knee,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+"U" = (/obj/structure/loot_pile/surface/bones,/obj/item/clothing/suit/storage/hooded/wintercoat/cosmic,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/IceCave1A)
+
+(1,1,1) = {"
+bbbaaaaaaaaaaaaaabbbbbbbbbbbbbbbaaaabbbb
+baaaaaaaaaaaaaaaaaabbbbbbbbbbbbaaaaaaabb
+aacccccdccccccccddabbbbbbbbbbbaaaCEggaab
+aaccccccccccccccddabbbbbbbbbbaaagfffghaa
+aaccccccccccccccaaabbbbaaaaaaaaaIffffiaa
+aaccccccccccdcccaaaaaaaaaaaaaaaxffBffUaa
+aadccccccccccccdaaaaaaccccdccggfffffraaa
+aaccccccccccccccaaaaaacccccccffffgeKgaaa
+aaccccccccccccccffffffdccccccgggaaaaaaaa
+aacccccccccdccccffggffccdcccdgggaaaaaaab
+aaccdcccccccccccaaaaaaddaaaaaaaaaaabbbbb
+aaccccdccccccccdaaaaaaddajefffIaaaabbbbb
+aaccccccdcccccccaaggffgdagPffffaabbbbbbb
+aaccccccccccccccaafffffgaaafafgaabbbbbbb
+aaaaaadddddddddfffffgfffffffaffaabbbbbbb
+aaaaaajggfffgddddggggggffgffaffaabbbbbbb
+aagggfffffffffccaaaaaaaafffgagfaabbbbbbb
+aagfffffffjfffccaaaaaaaaggggaffaabbbbbbb
+aaaggfaaaaaaaaccaaaaaaagfffffffaabbbbbbb
+aaaaffaaaaaaaaccaaaaaaaffffffaaabbbbbbbb
+baaaffgaaaaaaaccccccddafffffgaaabbbbbbbb
+baaaaffgaaaaaaccccccddaagfaaaaabbbbbbbbb
+baaagfffaaaaaaaaddccffgfffaaaabbbbbbbbbb
+bbaggafffaaabaaaddccffffffaabbbbbbbbbbbb
+fbaaaafffgaabbaaaaaaaafffgaabbbbbbbbbbbb
+ffaaaagffaaabbbbbbbaaajjggaabbbbbbbbbbbb
+fffffffffaabbbbbbbbbbaaaaaaabbbbbbbbbbbb
+ffffffffaabbbbbbbbbbbaaaaaabbbbbbbbbbbbb
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "}

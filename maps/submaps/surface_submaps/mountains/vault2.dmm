@@ -1,7 +1,7 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/wall,/area/submap/cave/vault2)
 "c" = (/turf/simulated/floor/plating,/area/submap/cave/vault2)
-"d" = (/obj/random/multiple/minevault,/turf/simulated/floor/plating,/area/submap/cave/vault2)
+"d" = (/obj/random/multiple/minevault,/obj/random/maintenance/anom,/turf/simulated/floor/plating,/area/submap/cave/vault2)
 
 (1,1,1) = {"
 aaaaaaaaa

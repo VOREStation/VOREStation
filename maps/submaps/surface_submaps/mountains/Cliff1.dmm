@@ -3,23 +3,26 @@
 "c" = (/obj/item/weapon/ore,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "d" = (/obj/random/outcrop,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "e" = (/obj/structure/cliff/automatic/corner,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
-"f" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 5},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
-"g" = (/obj/structure/cliff/automatic{icon_state = "cliffbuilder"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"f" = (/obj/structure/cliff/automatic{dir = 5; icon_state = "cliffbuilder"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"g" = (/obj/structure/cliff/automatic{dir = 9; icon_state = "cliffbuilder"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "h" = (/obj/structure/cliff/automatic,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
-"i" = (/obj/structure/cliff/automatic/corner{icon_state = "cliffbuilder-corner"; dir = 9},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"i" = (/obj/structure/cliff/automatic/corner{dir = 9; icon_state = "cliffbuilder-corner"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "j" = (/obj/random/humanoidremains{spawn_nothing_percentage = 70},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 "k" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"p" = (/obj/effect/decal/remains/ribcage,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"x" = (/obj/effect/decal/remains/deer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"D" = (/obj/structure/prop/rock/small/alt,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
+"U" = (/obj/structure/prop/rock/small,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/ore_cliff)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 abbbbabbbbbbbaabbbbbbbbaaabbaa
 aakckkbdbcbbbbbbdbbcdbbkkckkaa
-aakefckkkbbdbbcbbbkkkcghhhikaa
-aakcehhfkkkkkkkkkcghhhikkkckaa
-aaajkkkehfkckghhhhikkkcjbbbaaa
-aaaaabkckehhhikkkkkkcbbbbaaaaa
-aaaaaaackkkjkkcbbcbbbaaaaaaaaa
+aakefcDkkbbdbbcbbbkkkcghhhikaa
+aakcehhfkkkkUkkkkcghhhikkUckaa
+aaajkkkehfkckghhhhikkkcxbbbaaa
+aaaaabUckehhhikkkkUkcbbbbaaaaa
+aaaaaaackkkpkkcbbcbbbaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

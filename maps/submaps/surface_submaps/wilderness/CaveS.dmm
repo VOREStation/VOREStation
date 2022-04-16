@@ -25,19 +25,24 @@
 "y" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
 "z" = (/obj/random/landmine,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
 "A" = (/turf/simulated/floor,/area/submap/CaveS)
-"B" = (/obj/structure/closet/crate,/obj/item/stack/cable_coil,/obj/item/stack/cable_coil,/obj/item/weapon/storage/toolbox,/obj/random/toolbox,/turf/simulated/floor,/area/submap/CaveS)
+"B" = (/obj/structure/closet/crate,/obj/item/stack/cable_coil,/obj/item/stack/cable_coil,/obj/random/toolbox,/obj/random/toolbox/anom,/turf/simulated/floor,/area/submap/CaveS)
 "C" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor,/area/submap/CaveS)
 "D" = (/obj/structure/table/woodentable,/turf/simulated/floor,/area/submap/CaveS)
-"E" = (/obj/machinery/power/port_gen/pacman,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor,/area/submap/CaveS)
+"E" = (/obj/machinery/power/port_gen/pacman,/obj/structure/cable{d2 = 2; icon_state = "0-2"},/turf/simulated/floor,/area/submap/CaveS)
 "F" = (/turf/simulated/wall,/area/submap/CaveS)
 "G" = (/obj/structure/closet/crate,/obj/item/weapon/reagent_containers/hypospray,/obj/item/weapon/reagent_containers/glass/bottle/stoxin,/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/antitox,/obj/item/weapon/reagent_containers/pill/paracetamol,/obj/random/firstaid,/turf/simulated/floor,/area/submap/CaveS)
 "H" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/turf/simulated/floor,/area/submap/CaveS)
-"I" = (/obj/structure/closet/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/contraband,/obj/random/energy,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/turf/simulated/floor,/area/submap/CaveS)
+"I" = (/obj/structure/closet/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/contraband,/obj/random/energy,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/random/energy/highend,/turf/simulated/floor,/area/submap/CaveS)
 "J" = (/obj/effect/spider/stickyweb,/mob/living/simple_mob/animal/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/CaveS)
 "K" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor,/area/submap/CaveS)
 "L" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor,/area/submap/CaveS)
 "M" = (/obj/machinery/computer/communications,/obj/structure/cable{d2 = 8; icon_state = "0-8"},/turf/simulated/floor,/area/submap/CaveS)
 "N" = (/obj/structure/loot_pile/maint/boxfort,/turf/simulated/floor,/area/submap/CaveS)
+"O" = (/obj/random/rigsuit,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/CaveS)
+"V" = (/obj/random/medical/pillbottle,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/CaveS)
+"W" = (/obj/random/multiple/corp_crate,/turf/simulated/floor,/area/submap/CaveS)
+"Y" = (/obj/random/powercell/anom,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/CaveS)
+"Z" = (/obj/random/multiple/gun/projectile/smg,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/CaveS)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -54,9 +59,9 @@ abbbbddddddddbbbbbjbbfbkkddddddddddddbba
 abbbddddddddddbbbbcblbdmkiidddddddddbbba
 abbbdddddddddddbbbbbbdddmkkkdddddddbbbba
 abbbddddddddddddbbbbddddddhkmddddddbbbba
-abbdddddndkkidddbbddddddddkkkkkkddddbbba
+abbdddddndYOidddbbddddddddkkkkkkddddbbba
 abbdddokkkkkkdddbbdddddddpkkkkkkqdddbbba
-abbdddikkkkkrddbbddddddddkkkkkkkdddddbba
+abbdddikkkkZrddbbddddddddkkkkkkkdddddbba
 abbddddkqkkkdddbdddddddddkkddddksddddbba
 abdddddddkkkkddddddddddddhkddddkkdddddba
 abdddddddkkkksdddddpkqkkkkddddpkddddddba
@@ -72,8 +77,8 @@ abddvvvvvvvkkkkidddikkkhkkkkAAACkdddbbba
 abddvvvvvvkkddddddddkhkkkkkADDAAkkddbbba
 abdddvvvvvkkxddddddkkkidkkAEFFGwkkdddbba
 abdddddyvkkddddddikkkkddkkAHFFIkkddddbba
-abdddddddviddddddJkkkkddkkAKLMAAddddbbba
-abbddddddddddddddkkkkkdddkkkAAAdddddbbba
+abdddddddviddddddJkkkkddkkAKLMWAddddbbba
+abbddddddddddddddVkkkkdddkkkAAAdddddbbba
 abbdddddddddddddddkidddddwkkANdddddbbbba
 abbdddddddddddddddddddddddrkkddddbbbbbba
 abbbdddddddddddddddddddddddddddbbbbbbbba

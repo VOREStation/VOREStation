@@ -1,9 +1,9 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
 "c" = (/obj/structure/railing,/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
-"d" = (/obj/structure/railing{ icon_state = "railing0"; dir = 4},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"d" = (/obj/structure/railing{dir = 4; icon_state = "railing0"},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
 "e" = (/turf/simulated/floor/outdoors/grass/sif,/area/submap/farm1)
-"f" = (/obj/structure/railing{ icon_state = "railing0"; dir = 8},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"f" = (/obj/structure/railing{dir = 8; icon_state = "railing0"},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
 "g" = (/turf/simulated/wall/wood,/area/submap/farm1)
 "h" = (/obj/structure/grille/rustic,/obj/structure/window/reinforced/full,/turf/simulated/floor/plating,/area/submap/farm1)
 "i" = (/obj/structure/window/reinforced/full,/obj/structure/grille/rustic,/turf/simulated/floor/plating,/area/submap/farm1)
@@ -25,7 +25,7 @@
 "y" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/box/matches,/obj/item/weapon/flame/match,/turf/simulated/floor/wood,/area/submap/farm1)
 "z" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/farm1)
 "A" = (/obj/item/clothing/shoes/boots/winter/hydro,/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,/turf/simulated/floor/wood,/area/submap/farm1)
-"B" = (/obj/structure/bed/chair/wood{ icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/wood,/area/submap/farm1)
+"B" = (/obj/structure/bed/chair/wood{dir = 8; icon_state = "wooden_chair"},/turf/simulated/floor/wood,/area/submap/farm1)
 "C" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/farm1)
 "D" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/wheatseed,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
 "E" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/wood,/area/submap/farm1)
@@ -40,8 +40,11 @@
 "N" = (/obj/machinery/power/port_gen/pacman,/turf/simulated/floor/plating,/area/submap/farm1)
 "O" = (/obj/structure/closet/crate/hydroponics/prespawned,/turf/simulated/floor/plating,/area/submap/farm1)
 "P" = (/obj/structure/table/steel,/obj/machinery/cell_charger,/turf/simulated/floor/plating,/area/submap/farm1)
-"Q" = (/obj/structure/table/steel,/turf/simulated/floor/plating,/area/submap/farm1)
-"R" = (/obj/structure/railing{ icon_state = "railing0"; dir = 1},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"Q" = (/obj/structure/table/steel,/obj/random/tool,/turf/simulated/floor/plating,/area/submap/farm1)
+"R" = (/obj/structure/railing{dir = 1; icon_state = "railing0"},/turf/simulated/floor/outdoors/dirt,/area/submap/farm1)
+"S" = (/obj/structure/table/marble,/obj/random/drinkbottle,/turf/simulated/floor/wood,/area/submap/farm1)
+"V" = (/obj/structure/closet/cabinet,/obj/random/multiple/gun/projectile/rifle,/turf/simulated/floor/wood,/area/submap/farm1)
+"X" = (/obj/item/clothing/shoes/galoshes,/turf/simulated/floor/plating,/area/submap/farm1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -50,7 +53,7 @@ abccccccccccccccccccccccccbaaaaa
 adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
 adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa
 adeegghhggeeeeiiiiiiiiiiiefaaaaa
-adeegjklmgeeeeinnnnnnnnniefaaaaa
+adeegjkSmgeeeeinnnnnnnnniefaaaaa
 adeegkkklheeeeioooooooooiefaaaaa
 adeegkkkpgebbeiqqqrrrsssiefaaaaa
 adegggtgggebbbuvoorwxoooiefaaaaa
@@ -60,7 +63,7 @@ adehCkkktktbbeiDDDDDDDDDiefaaaaa
 adegEkkFgggebeiiiiiiiiiiiefaaaaa
 adeggtgggeeebeeeeeeeeeeeeefaaaaa
 adegGkkHgeebbbeeeeebbbbbbbbbbbba
-adegFkkIgeebbbbbbbbbbbbbbbbbbbba
+adegVkFIgeebbbbbbbbbbbbbbbbbbbba
 adeggggggeebeeeeeeebbbbbbbbbbbba
 adeebbbbbbbbeeeeeeebbbeeeefaaaaa
 adebbJJJJJJbbeeegggKKKgggefaaaaa
@@ -68,7 +71,7 @@ adebJJLLLLJJbbeegMKKKKKMgefaaaaa
 adebJLLLLLLJJbbehNKKKKKKhefaaaaa
 adebJJLLLLLLJJbehMKKKKKMhefaaaaa
 adebbJJLLLLLLJbehOKKKKKKhefaaaaa
-adeebbJJLLLLJJbegMKPQQKMgefaaaaa
+adeebbJJLLLLJJbegMXPQQKMgefaaaaa
 adeeebbJJJJJJbbegggggggggefaaaaa
 adeeeebbbbbbbbeeeeeeeeeeeefaaaaa
 adeeeeeeeeeeeeeeeeeeeeeeeefaaaaa

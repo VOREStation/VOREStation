@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -883,4 +884,75 @@ a
 a
 a
 a
+=======
+"a" = (/turf/template_noop,/area/submap/AbandonedTemple)
+"b" = (/turf/simulated/mineral/floor,/area/submap/AbandonedTemple)
+"c" = (/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"d" = (/turf/simulated/wall/sandstone,/area/submap/AbandonedTemple)
+"e" = (/obj/effect/decal/cleanable/cobweb,/obj/random/maintenance/anom,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"f" = (/obj/effect/decal/remains/mummy1,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"g" = (/turf/simulated/wall/sandstonediamond,/area/submap/AbandonedTemple)
+"h" = (/obj/item/weapon/flame/candle/everburn,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"i" = (/obj/item/weapon/ectoplasm,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"j" = (/obj/structure/table/wooden_reinforced,/obj/item/weapon/coin/iron,/obj/item/weapon/coin/platinum,/obj/item/weapon/coin/uranium,/obj/item/weapon/coin/diamond,/obj/item/weapon/coin/iron,/obj/item/weapon/coin/uranium,/obj/item/weapon/coin/iron,/obj/item/weapon/coin/phoron,/obj/item/weapon/coin/platinum,/obj/effect/decal/cleanable/cobweb,/obj/random/coin/anom,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"k" = (/obj/structure/table/wooden_reinforced,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/silver,/obj/item/weapon/coin/silver,/obj/item/weapon/coin/silver,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/gold,/obj/item/weapon/coin/silver,/obj/item/weapon/coin/silver,/obj/item/weapon/coin/silver,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"l" = (/obj/effect/decal/remains/xeno,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"m" = (/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"n" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"o" = (/obj/structure/loot_pile/maint/technical,/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"p" = (/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"q" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/lighter/zippo/royal,/obj/item/clothing/mask/smokable/pipe,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"r" = (/obj/effect/rune,/obj/effect/decal/remains/human,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"s" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"t" = (/obj/machinery/artifact,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"u" = (/obj/structure/bed/chair/comfy/brown{dir = 4},/obj/effect/decal/cleanable/blood,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"v" = (/obj/structure/table/woodentable,/obj/item/weapon/paper,/obj/item/weapon/pen/fountain,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"w" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"x" = (/obj/effect/decal/cleanable/blood/xeno,/obj/effect/decal/remains/posi,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"y" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/candle/candelabra/everburn,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"z" = (/obj/structure/simple_door/gold,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"A" = (/obj/effect/decal/remains/posi,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"B" = (/obj/machinery/crystal{icon_state = "crystal3"; light_color = "#f44256"; light_power = 3},/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/cave/crystal1)
+"C" = (/obj/structure/flora/pottedplant/dead,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"D" = (/obj/machinery/crystal{icon_state = "crystal3"; light_color = "#f44256"; light_power = 3},/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"E" = (/obj/effect/decal/remains/human,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"F" = (/obj/effect/decal/cleanable/blood,/obj/effect/decal/remains/human,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"G" = (/obj/structure/table/woodentable,/obj/item/weapon/paper/alien{desc = ""; icon_state = "alienpaper_words"; info = "(On the screen of the tablet are several lines of characters written in a language you don't seem to recognize. At the end of each line is a set of numbers seperated by a colon. The screen flickers occasionally, as if damaged. Nothing about the tablet seems particularly interesting, but it does seem very, very old.)"},/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"H" = (/obj/effect/decal/cleanable/blood/xeno,/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+"I" = (/obj/structure/table/bench/wooden,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"J" = (/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"K" = (/obj/structure/table/bench/wooden,/obj/effect/decal/remains/xeno,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"L" = (/obj/structure/simple_door/sandstone,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"M" = (/obj/effect/decal/cleanable/cobweb,/obj/item/weapon/flame/candle/candelabra/everburn,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"N" = (/obj/effect/decal/cleanable/cobweb2,/obj/item/weapon/flame/candle/candelabra/everburn,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/AbandonedTemple)
+"O" = (/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor,/area/submap/AbandonedTemple)
+"U" = (/obj/structure/table/woodentable,/obj/item/weapon/flame/candle/candelabra/everburn{start_anomalous = 1},/turf/simulated/floor/carpet/turcarpet,/area/submap/AbandonedTemple)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aaabbbbbbbbbbbbbbbbbbaaaa
+aaccccccccccccccccccccaaa
+abcddddddddddddddddddcbaa
+abcdefghihgjkgclmgnodcbaa
+abcdpqgcrsgccgctcgccdcbaa
+abcduvghchgppgwccgcxdcbaa
+abcdpygzgggppgggzgncdcbaa
+abcdppgccccccccccgccdcbaa
+abcdppggggzggzggggcAdcbaa
+abcdwcgBCccccccCDgcndcbaa
+abcdcEgccwpFppcccgcldcbaa
+abcdcczcccpGUHlcczwndcbaa
+abcddsgccIIccIIccgnddcbaa
+abcmddgccccccccccgddJcbaa
+abbcmddccKIccIIcsddccbbaa
+abbbccddDccwsccDddccbbbaa
+abbbbccddddLLddddJcbbbbaa
+abbbbbccmdMccNdsccbbbbbaa
+abbbbbbbcdcwccdcbbbbbbbaa
+aabbbbbbcddLLddcbbbbbbaaa
+aaabbbbbsccccsccbbbbbaaaa
+aaaabbbbbbbbObbbbbbbaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaa
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "}

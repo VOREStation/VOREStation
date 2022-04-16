@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -245,4 +246,37 @@ a
 a
 a
 a
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/GovPatrol)
+"c" = (/turf/template_noop,/area/submap/Cragzone1)
+"d" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/GovPatrol)
+"e" = (/obj/item/device/radio/off,/turf/template_noop,/area/submap/GovPatrol)
+"f" = (/obj/item/weapon/storage/backpack/parachute,/turf/template_noop,/area/submap/GovPatrol)
+"g" = (/obj/item/weapon/storage/box/flare,/obj/random/medical/lite/anom,/turf/template_noop,/area/submap/GovPatrol)
+"h" = (/obj/item/ammo_casing,/turf/template_noop,/area/submap/GovPatrol)
+"i" = (/obj/item/clothing/under/solgov/utility/sifguard,/obj/item/clothing/shoes/boots/jackboots,/obj/effect/decal/remains,/turf/template_noop,/area/submap/GovPatrol)
+"j" = (/obj/item/stack/material/wood/sif,/turf/template_noop,/area/submap/GovPatrol)
+"k" = (/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,/turf/template_noop,/area/submap/GovPatrol)
+"l" = (/obj/structure/bonfire/sifwood,/turf/template_noop,/area/submap/GovPatrol)
+"m" = (/obj/effect/decal/remains,/turf/template_noop,/area/submap/GovPatrol)
+"u" = (/obj/random/projectile/scrapped_shotgun,/turf/template_noop,/area/submap/GovPatrol)
+"I" = (/obj/item/clothing/head/beret/solgov/sifguard/patrol,/turf/template_noop,/area/submap/GovPatrol)
+"X" = (/obj/item/clothing/suit/storage/solgov/service/sifguard,/turf/template_noop,/area/submap/GovPatrol)
+
+(1,1,1) = {"
+aaaaaaaaaaaaa
+abbbbbbbbbbba
+abbbbbbbbcbba
+abbdbbbbbbbba
+abbbbbbbbbbba
+abbbbbbbbbbba
+abbbbedfbbbba
+abbIbbbghbbba
+adbhbibbbbbba
+abbjbbbXbubba
+abbbkbblbbhba
+abbhbbbbbmhba
+aaaaaaaaaaaaa
+>>>>>>> 5f22d34b42e... Reviews all POIs for loot/balance + adds random universal anomalies [MDB_IGNORE] (#8464)
 "}

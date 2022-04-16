@@ -115,7 +115,7 @@
 	desc = "This is a random shotgun-type weapon."
 	icon_state = "gun_shotgun"
 
-/obj/random/projectile/item_to_spawn()
+/obj/random/projectile/shotgun/item_to_spawn()
 	return pick(prob(4);/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump,

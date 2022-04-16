@@ -39,7 +39,7 @@
 "aM" = (/obj/structure/frame,/obj/item/weapon/circuitboard/broken,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "aN" = (/obj/structure/table/steel_reinforced,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "aO" = (/obj/structure/closet/walllocker/emerglocker/north,/obj/structure/frame,/obj/item/weapon/circuitboard/broken,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
-"aP" = (/turf/simulated/floor/outdoors/rocks,/area/submap/crashedcontainmentshuttle)
+"aP" = (/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/crashedcontainmentshuttle)
 "aQ" = (/obj/structure/grille{density = 0; icon_state = "brokengrille"},/obj/structure/lattice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "aR" = (/obj/structure/shuttle/engine/heater{dir = 8},/obj/structure/window/reinforced{dir = 4; health = 1e+006},/turf/template_noop,/area/submap/crashedcontainmentshuttle)
 "aS" = (/obj/structure/door_assembly/door_assembly_highsecurity{anchored = 1},/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
@@ -54,11 +54,11 @@
 "bb" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bc" = (/obj/structure/door_assembly,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
 "bd" = (/obj/item/clothing/head/helmet/space/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
-"be" = (/obj/item/weapon/material/knife/ritual,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
+"be" = (/obj/item/weapon/material/knife/ritual{start_anomalous = 1},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "bf" = (/obj/structure/bed/chair/office/dark{dir = 8},/obj/effect/decal/remains/human,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "bg" = (/obj/effect/gibspawner/generic,/turf/template_noop,/area/submap/crashedcontainmentshuttle)
 "bh" = (/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor/yellow,/area/submap/crashedcontainmentshuttle)
-"bi" = (/obj/item/weapon/circuitboard/broken,/obj/effect/decal/remains/human,/obj/item/weapon/gun/energy/laser,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
+"bi" = (/obj/item/weapon/circuitboard/broken,/obj/effect/decal/remains/human,/obj/random/energy/highend,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bj" = (/obj/item/device/gps/internal/poi,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
 "bk" = (/obj/effect/decal/cleanable/vomit,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bl" = (/obj/effect/decal/remains/robot,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
@@ -77,7 +77,7 @@
 "by" = (/obj/random/landmine,/obj/random/landmine,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bz" = (/obj/effect/decal/remains/human,/obj/item/clothing/head/helmet/space/cult,/obj/effect/decal/cleanable/blood,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
 "bA" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
-"bB" = (/obj/structure/sink{icon_state = "sink"; dir = 8; pixel_x = -12; pixel_y = 2},/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
+"bB" = (/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -12; pixel_y = 2},/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
 "bC" = (/obj/effect/decal/cleanable/liquid_fuel,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bD" = (/obj/structure/shuttle/engine/propulsion{icon_state = "burst_r"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "bE" = (/obj/effect/decal/cleanable/blood/drip,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
@@ -91,6 +91,7 @@
 "bM" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "bN" = (/obj/structure/toilet{dir = 8},/obj/effect/gibspawner/generic,/obj/effect/decal/remains/human,/obj/item/weapon/card/id/syndicate{age = "\\42"; blood_type = "\\O+"; desc = "A strange ID card."; dna_hash = "\[REDACTED]"; fingerprint_hash = "\\------"; name = "Aaron Presley's ID Card(Delivery Service) "; registered_name = "Aaron Presley"; sex = "\\Male"},/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
 "bO" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/remains/human,/obj/item/weapon/flame/lighter/random,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
+"ML" = (/obj/structure/table/steel_reinforced,/obj/random/maintenance/anom,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
@@ -101,7 +102,7 @@ aaaaacaaaaadaaaaaaaaajapaPaPaPadaPaaaaaaataaaaaaaa
 aaaCaaaaauaDakaracacaGaQacacananacabaaaaaaaaaaaaaa
 aaaVaXaaadaoaaadadajaXbHbyayadadaWacabaaaaaaaaaaaa
 aaaYaaaRacaaadadaZapbIbybIazbbadaNacanbJaaaaaaaaaa
-aaaababdbeapapapadadadbIadadauadaNaAaeaTanaaaaataa
+aaaababdbeapapapadadadbIadadauadMLaAaeaTanaaaaataa
 acaaaaaaapadauadadadacacaSacanadavacbhaeaeahaaaaaa
 aPadaVaRacadadadbiadacbjafafacadadadbKbpaHaraaaaaa
 aaaPadaaacaMadbkadbbacbvaBbwacaLadaSbKbqaHaoapaaaa

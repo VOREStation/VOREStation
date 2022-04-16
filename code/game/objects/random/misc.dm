@@ -91,7 +91,6 @@
 				/obj/item/device/assembly/timer,
 				/obj/item/device/multitool)
 
-
 /obj/random/toolbox
 	name = "random toolbox"
 	desc = "This is a random toolbox."
@@ -317,7 +316,6 @@
 				prob(2);/obj/item/weapon/soap/nanotrasen,
 				prob(2);/obj/item/weapon/soap/deluxe,
 				prob(1);/obj/item/weapon/soap/syndie)
-
 
 /obj/random/drinkbottle
 	name = "random drink"

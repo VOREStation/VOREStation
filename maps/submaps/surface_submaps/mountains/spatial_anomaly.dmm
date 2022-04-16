@@ -5,8 +5,8 @@
 "e" = (/obj/structure/barricade,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "f" = (/turf/template_noop,/area/template_noop)
 "g" = (/obj/effect/map_effect/portal/master/side_b{portal_id = "spatial_anomaly_4"},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
-"h" = (/obj/effect/map_effect/portal/line/side_a{icon_state = "portal_line_side_a"; dir = 4},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
-"i" = (/obj/effect/map_effect/portal/line/side_b{icon_state = "portal_line_side_b"; dir = 8},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
+"h" = (/obj/effect/map_effect/portal/line/side_a{dir = 4; icon_state = "portal_line_side_a"},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
+"i" = (/obj/effect/map_effect/portal/line/side_b{dir = 8; icon_state = "portal_line_side_b"},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "j" = (/turf/simulated/floor/lava,/area/submap/spatial_anomaly)
 "k" = (/obj/item/weapon/disposable_teleporter/slime,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "l" = (/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
@@ -23,17 +23,17 @@
 "w" = (/obj/structure/table/steel_reinforced,/obj/item/device/xenoarch_multi_tool,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
 "x" = (/turf/simulated/wall/solidrock,/area/template_noop)
 "y" = (/obj/random/technology_scanner,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
-"z" = (/obj/structure/table/steel_reinforced,/obj/random/unidentified_medicine/scientific,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
+"z" = (/obj/structure/table/steel_reinforced,/obj/random/unidentified_medicine/scientific,/obj/random/medical/lite/anom,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
 "A" = (/obj/structure/table/steel_reinforced,/obj/random/tool/power,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
 "B" = (/obj/structure/table/steel_reinforced,/obj/item/weapon/ore/diamond,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
 "C" = (/obj/structure/sign/warning/lava,/turf/simulated/wall,/area/submap/spatial_anomaly)
 "D" = (/obj/effect/map_effect/portal/line/side_a,/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "E" = (/obj/structure/table/rack,/obj/item/weapon/pickaxe/jackhammer,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "F" = (/obj/effect/map_effect/portal/master/side_a{dir = 1; icon_state = "portal_side_a"; portal_id = "spatial_anomaly_2"},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
-"G" = (/obj/effect/map_effect/portal/line/side_a{icon_state = "portal_line_side_a"; dir = 1},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
+"G" = (/obj/effect/map_effect/portal/line/side_a{dir = 1; icon_state = "portal_line_side_a"},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "H" = (/turf/unsimulated/wall,/area/template_noop)
 "I" = (/obj/effect/map_effect/portal/master/side_b{dir = 1; icon_state = "portal_side_b"; portal_id = "spatial_anomaly_1"},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
-"J" = (/obj/effect/map_effect/portal/line/side_b{icon_state = "portal_line_side_b"; dir = 1},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
+"J" = (/obj/effect/map_effect/portal/line/side_b{dir = 1; icon_state = "portal_line_side_b"},/obj/effect/map_effect/perma_light/brighter{light_color = "#ff00ff"},/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "K" = (/obj/item/weapon/mining_scanner,/obj/structure/table/rack,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "L" = (/obj/item/weapon/storage/belt/archaeology,/obj/effect/decal/remains/human,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "M" = (/obj/structure/bookcase/manuals/xenoarchaeology,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
@@ -45,6 +45,8 @@
 "S" = (/obj/item/weapon/pickaxe/six_pick,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "T" = (/obj/item/weapon/pickaxe/two_pick,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "U" = (/obj/item/device/measuring_tape,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
+"V" = (/obj/random/maintenance/anom,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
+"W" = (/obj/random/coin/anom,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
 "X" = (/obj/item/weapon/pickaxe/three_pick,/turf/simulated/floor/outdoors/rocks/caves,/area/submap/spatial_anomaly)
 "Y" = (/obj/item/weapon/pickaxe/excavationdrill,/turf/simulated/floor/plating/external,/area/submap/spatial_anomaly)
 
@@ -59,7 +61,7 @@ fffaaabaaaaaabCbbsaaaaaaaaffff
 fffaaaObaaaabbNbbaaaaaaaaaxfff
 ffxaaabbblbbbybbaabPbbblaaafff
 ffaaaaaaaaabbbtmaabbaaabaaafff
-ffaaaaaaaaatttttaabaaaabaaafff
+ffaaaaaaaaaWttVtaabaaaabaaafff
 ffaalbbbbbaatvtQaalaaaabaaafff
 ffaabaaaabaaBwzAaabaaaabaaffff
 ffaabaaaabaaaaaaaabatnbbaaHHHf
@@ -71,7 +73,7 @@ fffaaaaaaaaabbbaablaabbbaeeaaf
 fffaaaalbbbabbbaabbaabbbblbaaf
 ffffaabbaabababbbbbaaUbbbEKaff
 ffffaaTbbabXbabbLbYaabbbaaaaff
-ffffaabbbabbbabbmttaaFGGaaafff
+ffffaabbbabbbabbmtVaaFGGaaafff
 ffffaaIJJablbabtttMaatttaaffff
 fffffatttaaaaaaaaaaaaaaaafffff
 fffffaaaaaaaaaaaaaaaaaaaffffff

@@ -32,9 +32,11 @@
 "F" = (/obj/machinery/door/airlock,/obj/effect/mine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "G" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/MilitaryCamp1)
 "H" = (/obj/random/landmine,/turf/template_noop,/area/template_noop)
-"I" = (/obj/structure/table/standard,/obj/random/cigarettes,/obj/item/weapon/flame/lighter/random,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"I" = (/obj/structure/table/standard,/obj/random/cigarettes,/obj/item/weapon/flame/lighter/random,/obj/random/maintenance/anom,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "J" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "K" = (/obj/effect/decal/cleanable/blood,/obj/random/landmine,/turf/template_noop,/area/submap/MilitaryCamp1)
+"P" = (/obj/item/weapon/cell/device/weapon/empty,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"Z" = (/mob/living/simple_mob/mechanical/viscerator,/obj/item/weapon/cell/device/weapon/empty,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa
@@ -43,11 +45,11 @@ aghcdbbbbbbfibcjbbba
 abccbbdbbklbbbccgkba
 adkbblmmnommnmpcbbba
 abbbbmmmonmmmmmbdbda
-abbdmmqoormstqmmbeba
+abbdmmqoormstZmmbeba
 abbbmmqruvmwxxmmbbda
 abbymmzmmAmmmzmrBdba
 abbbomqoovoqAvmmbbba
-afdbomqooCDqEvmmbida
+afdbomqPoCDqEvmmbida
 abbbrmzFmmmmzzmrbGba
 HbbBmmqorvEvqqmmbbba
 aGbbmmIJmooqqqmmpbKa
