@@ -844,7 +844,7 @@
 
 	flight_vore = !flight_vore
 	if(flight_vore)
-		to_chat(src, "You have allowed for flight vore! Bumping into characters while flying will now trigger dropnoms!")
+		to_chat(src, "You have allowed for flight vore! Bumping into characters while flying will now trigger dropnoms! Unless prefs don't match.. then you will take a tumble!")
 	else
 		to_chat(src, "Flight vore disabled! You will no longer engage dropnoms while in flight.")
 

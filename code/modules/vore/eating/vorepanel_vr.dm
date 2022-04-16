@@ -249,6 +249,9 @@
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
+		"drop_vore" = host.drop_vore,
+		"slip_vore" = host.slip_vore,
+		"stumble_vore" = host.stumble_vore,
 	)
 
 	return data
@@ -463,6 +466,18 @@
 			return TRUE
 		if("toggle_noisy")
 			host.noisy = !host.noisy
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_drop_vore")
+			host.drop_vore = !host.drop_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_slip_vore")
+			host.slip_vore = !host.slip_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_stumble_vore")
+			host.stumble_vore = !host.stumble_vore
 			unsaved_changes = TRUE
 			return TRUE
 
