@@ -406,6 +406,19 @@
 
 	feedback_add_details("admin_verb","TRadioSounds")
 
+/client/verb/toggle_graffiti_engraving()
+	set name = "Toggle Graffiti Engraving"
+	set category = "Preferences"
+	set desc = "Enable/Disable engraving messages on hard surfaces with sharp objects on help intent."
+
+	var/pref_path = /datum/client_preference/engrave_graffiti
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/engrave_graffiti)) ? "engrave" : "not engrave"] graffiti.")
+
+	feedback_add_details("admin_verb","TEngraveGraffiti")
+
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
 	set name = "Toggle Examine Mode"

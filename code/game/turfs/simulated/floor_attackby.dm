@@ -18,7 +18,16 @@
 					return
 */
 
+<<<<<<< HEAD
 	// Multi-z roof building
+=======
+	if(!(C.has_tool_quality(TOOL_SCREWDRIVER) && flooring && (flooring.flags & TURF_REMOVE_SCREWDRIVER)))
+		if(isliving(user))
+			var/mob/living/L = user
+			if(L.a_intent == I_HELP && L.is_preference_enabled(/datum/client_preference/engrave_graffiti))
+				try_graffiti(L, C)
+
+>>>>>>> 5ac0385f814... Merge pull request #8524 from Cerebulon/graffitipref
 	if(istype(C, /obj/item/stack/tile/roofing))
 		var/expended_tile = FALSE // To track the case. If a ceiling is built in a multiz zlevel, it also necessarily roofs it against weather
 		var/turf/T = GetAbove(src)
