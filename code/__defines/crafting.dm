@@ -24,5 +24,9 @@
 #define CAT_SPAGHETTI "Spaghettis"
 #define CAT_ICE "Frozen"
 #define CAT_DRINK "Drinks"
+<<<<<<< HEAD
 #define CAT_CHEMISTRY "Chemistry"
 #define CAT_TOOL "Tool"
+=======
+#define CAT_CHEMISTRY "Chemistry"
+>>>>>>> dd8234e8cd5... Merge pull request #8549 from PolarisSS13/revert-8502-swordsandbow

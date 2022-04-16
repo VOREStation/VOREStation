@@ -189,6 +189,9 @@
 	base_icon = "riding_crop"
 	icon_state = "riding_crop0"
 	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
+<<<<<<< HEAD
 
 /obj/item/weapon/material/twohanded/spear/flint
 	default_material = MAT_FLINT
+=======
+>>>>>>> dd8234e8cd5... Merge pull request #8549 from PolarisSS13/revert-8502-swordsandbow
