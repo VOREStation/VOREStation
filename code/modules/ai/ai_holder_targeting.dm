@@ -4,8 +4,13 @@
 	var/hostile = FALSE						// Do we try to hurt others?
 	var/retaliate = FALSE					// Attacks whatever struck it first. Mobs will still attack back if this is false but hostile is true.
 	var/mauling = FALSE						// Attacks unconscious mobs
+<<<<<<< HEAD
 	var/unconscious_vore = FALSE			//VOREStation Add - allows a mob to go for unconcious targets IF their vore prefs align
 	var/handle_corpse = FALSE				// Allows AI to acknowledge corpses (e.g. nurse spiders)
+=======
+	var/ignore_incapacitated = FALSE		// If it's interested in attacking targets that are STUNNED. 
+	var/handle_corpse = FALSE					// Allows AI to acknowledge corpses (e.g. nurse spiders)
+>>>>>>> 0e647789c7a... Merge pull request #8521 from Sypsoti/skathari_improvements
 
 	var/atom/movable/target = null			// The thing (mob or object) we're trying to kill.
 	var/atom/movable/preferred_target = null// If set, and if given the chance, we will always prefer to target this over other options.
@@ -140,6 +145,9 @@
 				//VOREStation Add End
 				else
 					return FALSE
+		if(L.incapacitated(INCAPACITATION_STUNNED)) // Are they stunned and do we care?
+			if(ignore_incapacitated)
+				return FALSE 
 		if(holder.IIsAlly(L))
 			return FALSE
 		return TRUE
@@ -172,6 +180,10 @@
 /datum/ai_holder/proc/lose_target()
 	ai_log("lose_target() : Entering.", AI_LOG_TRACE)
 	if(target)
+		ai_log("lose_target() : Had a target, checking if still valid.", AI_LOG_DEBUG)
+		if(!can_attack(target, FALSE)) /// If it's not valid to chase, don't keep looking. 
+			remove_target()
+			return find_target()
 		ai_log("lose_target() : Had a target, setting to null and LTT.", AI_LOG_DEBUG)
 		target = null
 		lose_target_time = world.time

@@ -113,6 +113,7 @@
 	pixel_x = -32
 	pixel_y = -32
 
+<<<<<<< HEAD
 /obj/effect/overlay/vis
 	mouse_opacity = MOUSE_OPACITY_TRANSPARENT
 	anchored = TRUE
@@ -182,6 +183,19 @@
 		stack_trace("Directional light cone deleted, but not by our component")
 		return QDEL_HINT_LETMELIVE
 	return ..()
+=======
+// For skathari empress' telegrab warning, could replace down the line. 
+/obj/effect/overlay/skathari_telegrab
+	name = "bluespace displacement"
+	desc = "An eerie field of bluespace energy, you might want to run!"
+	icon = 'icons/effects/96x96.dmi'
+	icon_state = "emfield_s3"
+	alpha = 100
+	pixel_x = -32
+	pixel_y = -16 /// Line up with the big sprite that spawns it! 
+	plane = MOB_PLANE
+	layer = BELOW_MOB_LAYER
+>>>>>>> 0e647789c7a... Merge pull request #8521 from Sypsoti/skathari_improvements
 
 /obj/effect/overlay/closet_door
 	anchored = TRUE
