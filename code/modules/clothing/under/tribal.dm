@@ -11,6 +11,7 @@
 	name = "primitive clothes"
 	desc = "Some patched together rags. Better than being naked."
 	force = 0
+	has_sensor = 0
 	icon_state = "rag"
 	worn_state = "rag"
 
@@ -36,6 +37,7 @@
 
 /obj/item/clothing/under/tribalwear
 	item_state_slots = list(slot_r_hand_str = "tribalwear", slot_l_hand_str = "tribalwear")
+	has_sensor = 0
 
 /obj/item/clothing/under/tribalwear/common1
 	name = "tribalwear"
