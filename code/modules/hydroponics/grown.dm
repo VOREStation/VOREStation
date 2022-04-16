@@ -88,7 +88,11 @@
 			descriptors |= "radioactive"
 		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
 			descriptors |= "poisonous"
+<<<<<<< HEAD
 		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("space_drugs") || reagents.has_reagent("earthsblood"))
+=======
+		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("bliss"))
+>>>>>>> ccb5dbe7717... Merge pull request #8527 from Sypsoti/big-pharma
 			descriptors |= "hallucinogenic"
 		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
 			descriptors |= "medicinal"

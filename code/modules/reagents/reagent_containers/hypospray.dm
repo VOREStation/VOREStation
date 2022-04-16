@@ -308,11 +308,11 @@
 	This one is filled with serotrotium, which causes concentrated production of the serotonin neurotransmitter in humans."
 	filled_reagents = list("serotrotium" = 15)
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/space_drugs
+/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/bliss
 	name = "illicit injector"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity. \
-	This one contains various illicit drugs, held inside a hypospray to make smuggling easier."
-	filled_reagents = list("space_drugs" = 15)
+	This one contains various drugs, held inside a hypospray to make smuggling easier."
+	filled_reagents = list("bliss" = 15)
 
 /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/cryptobiolin
 	name = "cryptobiolin injector"

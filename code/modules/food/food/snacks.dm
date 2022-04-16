@@ -3703,8 +3703,14 @@
 
 /obj/item/pizzabox/attack_hand( mob/user as mob )
 
+<<<<<<< HEAD
 	if( open && pizza )
 		user.put_in_hands( pizza )
+=======
+	reagents.add_reagent("oxycodone", 1)
+	reagents.add_reagent("sifsap", 5)
+	reagents.add_reagent("bliss", 5)
+>>>>>>> ccb5dbe7717... Merge pull request #8527 from Sypsoti/big-pharma
 
 		to_chat(user, "<span class='warning'>You take \the [src.pizza] out of \the [src].</span>")
 		src.pizza = null
@@ -5758,6 +5764,13 @@
 /obj/item/weapon/reagent_containers/food/snacks/friedmushroom/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 2)
+<<<<<<< HEAD
+=======
+	reagents.add_reagent("ambrosia_extract", 2)
+	reagents.add_reagent("bicaridine", 1)
+	reagents.add_reagent("kelotane", 1)
+	reagents.add_reagent("toxin", 1)
+>>>>>>> ccb5dbe7717... Merge pull request #8527 from Sypsoti/big-pharma
 
 /obj/item/weapon/reagent_containers/food/snacks/pisanggoreng
 	name = "pisang goreng"

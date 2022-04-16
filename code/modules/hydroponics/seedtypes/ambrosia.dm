@@ -5,7 +5,7 @@
 	display_name = "ambrosia vulgaris"
 	kitchen_tag = "ambrosia"
 	mutants = list("ambrosiadeus")
-	chems = list("nutriment" = list(1), "space_drugs" = list(1,8), "kelotane" = list(1,8,1), "bicaridine" = list(1,10,1), "toxin" = list(1,10))
+	chems = list("nutriment" = list(1), "ambrosia_extract" = list(1,8), "kelotane" = list(1,8,1), "bicaridine" = list(1,10,1))
 
 /datum/seed/ambrosia/New()
 	..()
@@ -24,8 +24,13 @@
 	seed_name = "ambrosia deus"
 	display_name = "ambrosia deus"
 	kitchen_tag = "ambrosiadeus"
+<<<<<<< HEAD
 	mutants = list("ambrosiainfernus", "ambrosiagaia")
 	chems = list("nutriment" = list(1), "bicaridine" = list(1,8), "synaptizine" = list(1,8,1), "hyperzine" = list(1,10,1), "space_drugs" = list(1,10))
+=======
+	mutants = list("ambrosiainfernus")
+	chems = list("nutriment" = list(1), "bicaridine" = list(1,8), "synaptizine" = list(1,8,1), "hyperzine" = list(1,10,1), "ambrosia_extract" = list(1,10))
+>>>>>>> ccb5dbe7717... Merge pull request #8527 from Sypsoti/big-pharma
 
 /datum/seed/ambrosia/deus/New()
 	..()
@@ -38,7 +43,7 @@
 	display_name = "ambrosia infernus"
 	kitchen_tag = "ambrosiainfernus"
 	mutants = null
-	chems = list("nutriment" = list(1,3), "oxycodone" = list(1,8), "impedrezene" = list(1,10), "mindbreaker" = list(1,10))
+	chems = list("nutriment" = list(1,3), "oxycodone" = list(1,8), "impedrezene" = list(1,10), "mindbreaker" = list(1,10), "ambrosia_extract" = list(1,10))
 
 /datum/seed/ambrosia/infernus/New()
 	..()

@@ -82,10 +82,10 @@
 	required_reagents = list("aluminum" = 1, "iron" = 1, "oxygen" = 1)
 	result_amount = 3
 
-/decl/chemical_reaction/instant/space_drugs
-	name = "Space Drugs"
-	id = "space_drugs"
-	result = "space_drugs"
+/decl/chemical_reaction/instant/bliss
+	name = "bliss"
+	id = "bliss"
+	result = "bliss"
 	required_reagents = list("mercury" = 1, "sugar" = 1, "lithium" = 1)
 	result_amount = 3
 
@@ -1185,7 +1185,7 @@
 	name = "Talum-quem"
 	id = "talum_quem"
 	result = "talum_quem"
-	required_reagents = list("space_drugs" = 2, "sugar" = 1, "amatoxin" = 1)
+	required_reagents = list("bliss" = 2, "sugar" = 1, "amatoxin" = 1)
 	result_amount = 4
 
 /decl/chemical_reaction/instant/qerr_quem
