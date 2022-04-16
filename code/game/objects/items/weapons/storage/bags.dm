@@ -25,6 +25,8 @@
 	slot_flags = SLOT_BELT
 	drop_sound = 'sound/items/drop/backpack.ogg'
 	pickup_sound = 'sound/items/pickup/backpack.ogg'
+	sprite_sheets = list(
+		SPECIES_TESHARI = 'icons/mob/species/teshari/back.dmi')
 
 // -----------------------------
 //          Trash bag
@@ -424,3 +426,17 @@
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/forensics/swab,/obj/item/weapon/sample/print,/obj/item/weapon/sample/fibers,/obj/item/weapon/evidencebag)
 
+
+	// -----------------------------
+	//           Quiver (arrow bag)
+	// -----------------------------
+/obj/item/weapon/storage/bag/quiver
+	name = "quiver"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "quiver"
+	desc = "A quiver for storing arrows."
+	max_storage_space = 100 //holds 25 arrows
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_LARGE
+	slot_flags = SLOT_BACK
+	can_hold = list(/obj/item/weapon/arrow/wood)

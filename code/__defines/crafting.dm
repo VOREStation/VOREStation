@@ -25,4 +25,8 @@
 #define CAT_ICE "Frozen"
 #define CAT_DRINK "Drinks"
 #define CAT_CHEMISTRY "Chemistry"
+<<<<<<< HEAD
 #define CAT_TOOL "Tool"
+=======
+#define CAT_STORAGE "Storage"
+>>>>>>> bdeaee79f64... Merge pull request #8502 from Greenjoe12345/swordsandbow
