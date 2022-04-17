@@ -10045,8 +10045,8 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
 "yO" = (
-/obj/random/vendorall,
 /obj/machinery/camera/network/civilian,
+/obj/machinery/gear_painter,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "yP" = (
