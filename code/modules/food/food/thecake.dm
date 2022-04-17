@@ -201,7 +201,7 @@
 			desc = "A mysterious slice, coated in purple frosting that smells like grapes."
 			nutriment_desc = list("The desire to show off an party" = 10)
 			reagents.add_reagent("stoxin", 2)
-			reagents.add_reagent("space_drugs", 10)
+			reagents.add_reagent("bliss", 10)
 			reagents.add_reagent("serotrotium", 4)
 			reagents.add_reagent("cryptobiolin", 8)
 			reagents.add_reagent("mindbreaker", 10)

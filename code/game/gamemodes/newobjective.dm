@@ -1081,8 +1081,8 @@ datum
 						return 0
 
 			drugs
-				steal_target = /datum/reagent/space_drugs
-				explanation_text = "Steal some space drugs."
+				steal_target = /datum/reagent/drugs/bliss
+				explanation_text = "Steal some bliss."
 				weight = 40
 
 				get_points(var/job)
