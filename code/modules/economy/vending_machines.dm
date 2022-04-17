@@ -530,6 +530,7 @@
 					/obj/item/seeds/cocoapodseed = 3,
 					/obj/item/seeds/plumpmycelium = 2,
 					/obj/item/seeds/cabbageseed = 3,
+					/obj/item/seeds/lettuce = 3,
 					/obj/item/seeds/grapeseed = 3,
 					/obj/item/seeds/pumpkinseed = 3,
 					/obj/item/seeds/cherryseed = 3,
