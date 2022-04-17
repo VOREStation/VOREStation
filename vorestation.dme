@@ -2360,6 +2360,7 @@
 #include "code\modules\games\dice.dm"
 #include "code\modules\games\spaceball_cards.dm"
 #include "code\modules\games\tarot.dm"
+#include "code\modules\games\schnapsen_vr.dm"
 #include "code\modules\games\wizoff.dm"
 #include "code\modules\genetics\side_effects.dm"
 #include "code\modules\ghosttrap\trap.dm"
