@@ -478,6 +478,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/dorms/bathroom)
 "bo" = (
@@ -6354,6 +6355,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)
 "sK" = (
@@ -9381,6 +9386,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/disposalpipe/tagger{
+	dir = 8;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)
 "BV" = (
@@ -9452,10 +9462,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
-	},
+/obj/structure/disposalpipe/junction,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
 "Cc" = (
@@ -11884,6 +11891,12 @@
 	},
 /obj/machinery/light/small{
 	dir = 1
+	},
+/obj/machinery/disposal/wall/cleaner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)

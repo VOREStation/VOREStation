@@ -11,6 +11,7 @@
 	name = "primitive clothes"
 	desc = "Some patched together rags. Better than being naked."
 	force = 0
+	has_sensor = 0
 	icon_state = "rag"
 	worn_state = "rag"
 
@@ -41,26 +42,31 @@
 	name = "tribalwear"
 	desc = "A traditionally woven robe made with locally sourced material."
 	icon_state = "tribal_common1"
+	has_sensor = 0
 
 /obj/item/clothing/under/tribalwear/common2
 	name = "tribalwear"
 	desc = "A traditionally woven outfit made with locally sourced material."
 	icon_state = "tribal_common2"
+	has_sensor = 0
 
 /obj/item/clothing/under/tribalwear/hunter
 	name = "hunting tribalwear"
 	desc = "Dusty rags decorated with strips of leather and small pieces of cyan colored stones."
 	icon_state = "tribal_hunter"
+	has_sensor = 0
 
 /obj/item/clothing/under/tribalwear/chief
 	name = "chief's tribalwear"
 	desc = "Well maintained robe adorned with fine leather and polished cyan stones."
 	icon_state = "tribal_chief"
+	has_sensor = 0
 
 /obj/item/clothing/under/tribalwear/shaman
 	name = "shaman robes"
 	desc = "Carefully hand wozen cloth robes with heavy colored stones jewelry drapped over top."
 	icon_state = "tribal_shaman"
+	has_sensor = 0
 
 /obj/item/clothing/shoes/tribalwear
 	name = "tribal sandals"

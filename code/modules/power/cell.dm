@@ -6,7 +6,7 @@
 	name = "power cell"
 	desc = "A rechargable electrochemical power cell."
 	icon = 'icons/obj/power_cells.dmi'
-	icon_state = "b_st"
+	icon_state = "standard"
 	item_state = "cell"
 	origin_tech = list(TECH_POWER = 1)
 	force = 5.0

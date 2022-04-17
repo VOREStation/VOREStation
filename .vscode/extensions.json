@@ -1,6 +1,14 @@
 {
     "recommendations": [
-        "gbasood.byond-dm-language-support",
-        "platymuus.dm-langclient"
-    ]
+		"gbasood.byond-dm-language-support",
+		"platymuus.dm-langclient",
+		"stylemistake.auto-comment-blocks",
+		"eamodio.gitlens",
+		"oderwat.indent-rainbow",
+		"rexebin.darkpurple-black",
+		"dbaeumer.vscode-eslint",
+		"editorconfig.editorconfig",
+		"donkie.vscode-tgstation-test-adapter",
+		"icrawl.discord-vscode"
+	]
 }

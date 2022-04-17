@@ -16,6 +16,8 @@
 		return FALSE
 	if(!src.vore_selected)	//Gotta have one selected as well.
 		return FALSE
+	if(!slip_vore || !target.slip_vore)
+		return FALSE
 	return TRUE
 
 /mob/living/proc/can_be_slip_vored_by(var/mob/living/target)
@@ -28,6 +30,9 @@
 	if(!is_vore_predator(target))	//Check their bellies and stuff
 		return FALSE
 	if(!target.vore_selected)	//Gotta have one selected as well.
+		return FALSE
+	if(!slip_vore || !target.slip_vore)
+		to_chat(src,"<span class='warning'>Pred slip_vore is [target.slip_vore] Prey slip_vore is [slip_vore]</span>")
 		return FALSE
 	return TRUE
 

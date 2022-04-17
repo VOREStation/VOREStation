@@ -530,6 +530,7 @@
 					/obj/item/seeds/cocoapodseed = 3,
 					/obj/item/seeds/plumpmycelium = 2,
 					/obj/item/seeds/cabbageseed = 3,
+					/obj/item/seeds/lettuce = 3,
 					/obj/item/seeds/grapeseed = 3,
 					/obj/item/seeds/pumpkinseed = 3,
 					/obj/item/seeds/cherryseed = 3,
@@ -1530,7 +1531,7 @@
 	has_logs = 1
 
 /obj/machinery/vending/wardrobe/lawdrobe
-	name = "lawyer wardrobe vendor"
+	name = "IAA wardrobe vendor"
 	desc = "All the things you need to perform your job! Why didn't you already have them?"
 	product_slogans = "Want to do your job? Sure you do!"
 	icon_state = "lawdrobe"

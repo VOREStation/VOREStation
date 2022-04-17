@@ -129,6 +129,7 @@
 	name_language = LANGUAGE_BIRDSONG
 	color_mult = 1
 	inherent_verbs = list(/mob/living/proc/flying_toggle,
+		/mob/living/proc/flying_vore_toggle,
 		/mob/living/proc/start_wings_hovering,
 		/mob/living/carbon/human/proc/tie_hair)
 	min_age = 18
@@ -356,7 +357,7 @@
 	name_language = null
 	color_mult = 1
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
-	inherent_verbs = list(/mob/living/proc/flying_toggle,/mob/living/proc/start_wings_hovering,/mob/living/carbon/human/proc/tie_hair)
+	inherent_verbs = list(/mob/living/proc/flying_toggle,/mob/living/proc/flying_vore_toggle,/mob/living/proc/start_wings_hovering,/mob/living/carbon/human/proc/tie_hair)
 
 	min_age = 18
 	max_age = 80
