@@ -701,7 +701,7 @@
 			host.vore_selected.item_digest_mode = new_mode
 			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
 			. = TRUE
-		if("b_contaminates")
+		if("b_contaminate")
 			host.vore_selected.contaminates = !host.vore_selected.contaminates
 			. = TRUE
 		if("b_contamination_flavor")
