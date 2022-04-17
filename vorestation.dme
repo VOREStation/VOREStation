@@ -3679,6 +3679,7 @@
 #include "code\modules\recycling\conveyor2.dm"
 #include "code\modules\recycling\disposal-construction.dm"
 #include "code\modules\recycling\disposal.dm"
+#include "code\modules\recycling\disposal_vr.dm"
 #include "code\modules\recycling\recycling.dm"
 #include "code\modules\recycling\sortingmachinery.dm"
 #include "code\modules\research\circuitprinter.dm"

@@ -84,6 +84,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "aah" = (
@@ -183,6 +186,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aap" = (
@@ -196,6 +202,10 @@
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
@@ -313,6 +323,7 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aaA" = (
@@ -375,6 +386,7 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aaF" = (
@@ -463,6 +475,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aaM" = (
@@ -878,6 +891,7 @@
 "abj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "abk" = (
@@ -1221,10 +1235,11 @@
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/medical/cmo)
 "abK" = (
-/obj/machinery/washing_machine,
 /obj/effect/floor_decal/techfloor{
 	dir = 9
 	},
+/obj/structure/disposaloutlet,
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "abL" = (
@@ -1372,6 +1387,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "abV" = (
@@ -1744,6 +1760,7 @@
 /obj/effect/floor_decal/techfloor{
 	dir = 10
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "acF" = (
@@ -1818,6 +1835,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acK" = (
@@ -1825,6 +1846,9 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -1994,6 +2018,9 @@
 /obj/structure/cable/green{
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "acY" = (
@@ -2011,6 +2038,9 @@
 	id_tag = "SurfMedicalResleeving";
 	name = "Resleeving Lab";
 	req_access = list(5)
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
@@ -2155,6 +2185,10 @@
 /obj/machinery/shower{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "adk" = (
@@ -2169,6 +2203,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/medical/resleeving)
 "adl" = (
@@ -2179,6 +2216,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
@@ -2263,12 +2303,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "ads" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
@@ -2414,6 +2461,7 @@
 /obj/structure/flora/skeleton{
 	name = "\proper Sheb"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "adK" = (
@@ -2850,6 +2898,7 @@
 "aes" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "aet" = (
@@ -3304,6 +3353,9 @@
 	dir = 4
 	},
 /obj/machinery/door/firedoor/glass,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/resleeving)
 "afh" = (
@@ -4502,6 +4554,7 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "agY" = (
@@ -4534,6 +4587,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/centralhall)
 "ahb" = (
@@ -14447,6 +14501,7 @@
 	pixel_x = 5;
 	pixel_y = 29
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "axw" = (
@@ -32800,6 +32855,7 @@
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "cMd" = (
@@ -33044,6 +33100,10 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"fDK" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/north)
 "fIS" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/structure/table/glass,
@@ -33532,6 +33592,21 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload_foyer)
+"kvN" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "kAa" = (
 /obj/machinery/porta_turret/ai_defense,
 /obj/effect/floor_decal/techfloor{
@@ -33844,6 +33919,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
+"nyJ" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/breakroom)
 "nAh" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/asimov,
@@ -33893,6 +33972,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/glass,
 /obj/item/weapon/deck/cah,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "nSl" = (
@@ -34184,6 +34264,16 @@
 "rlN" = (
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"rnx" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/green/border,
+/obj/structure/disposalpipe/sortjunction/flipped{
+	dir = 4;
+	name = "Resleeving";
+	sortType = "Resleeving"
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "roB" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -34448,6 +34538,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "tfK" = (
@@ -34605,6 +34696,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/glass,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
 "usS" = (
@@ -34645,6 +34737,10 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai)
+"uDI" = (
+/obj/structure/disposalpipe/segment,
+/turf/simulated/wall,
+/area/tether/surfacebase/medical/resleeving)
 "uFL" = (
 /obj/structure/railing{
 	dir = 1
@@ -35049,6 +35145,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/north)
 "xWd" = (
@@ -45874,7 +45971,7 @@ aab
 ahc
 abK
 abU
-abU
+uDI
 acE
 adj
 adX
@@ -47452,17 +47549,17 @@ unM
 nPO
 axv
 adJ
-ajG
-anC
+nyJ
+fDK
 sZp
-anC
-anC
+fDK
+fDK
 xSO
-anC
-anC
-axp
-ayd
-ayI
+fDK
+fDK
+kvN
+azC
+rnx
 azc
 azI
 aAk
