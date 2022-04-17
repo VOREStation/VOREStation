@@ -38,7 +38,7 @@
 	clothing_possibilities |= /obj/item/device/radio/headset
 
 /obj/structure/ghost_pod/ghost_activated/human/create_occupant(var/mob/M)
-	..()
+	. = ..()
 	var/turf/T = get_turf(src)
 	var/mob/living/carbon/human/H = new(src)
 
