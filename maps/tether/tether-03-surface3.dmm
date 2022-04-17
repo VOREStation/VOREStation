@@ -22194,6 +22194,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "aKj" = (
@@ -34476,6 +34479,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/techfloor,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
 "bhc" = (
@@ -34609,11 +34613,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery2)
 "bhp" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
+/obj/structure/disposalpipe/segment,
 /obj/machinery/light{
-	dir = 8
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
@@ -41397,6 +41399,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
+"ome" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "ooM" = (
 /obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 1
@@ -42132,6 +42140,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "qze" = (
@@ -57190,8 +57201,8 @@ qbo
 bhi
 bhm
 fsd
-bhp
-beU
+qbo
+ome
 beU
 gRG
 laB
@@ -57471,7 +57482,7 @@ qvs
 bgm
 aPM
 ely
-hId
+bhp
 jCE
 hId
 bhq

@@ -1530,7 +1530,7 @@
 	has_logs = 1
 
 /obj/machinery/vending/wardrobe/lawdrobe
-	name = "lawyer wardrobe vendor"
+	name = "IAA wardrobe vendor"
 	desc = "All the things you need to perform your job! Why didn't you already have them?"
 	product_slogans = "Want to do your job? Sure you do!"
 	icon_state = "lawdrobe"
