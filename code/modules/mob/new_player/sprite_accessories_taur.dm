@@ -338,5 +338,6 @@
 	name = "Eastern Dragon (Taur)"
 	icon_state = "noodle_s"
 	extra_overlay = "noodle_markings"
+	suit_sprites = 'icons/mob/taursuits_noodle.dmi'
 	clip_mask_state = "taur_clip_mask_noodle"
 	icon_sprite_tag = "noodle"
