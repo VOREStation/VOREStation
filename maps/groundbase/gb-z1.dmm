@@ -3356,6 +3356,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "iB" = (
@@ -6101,13 +6102,11 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 2;
 	icon_state = "pipe-c"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "ph" = (
@@ -8443,12 +8442,15 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	pressure_checks = 1;
+	pressure_checks_default = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
@@ -8909,6 +8911,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halle)
+"vY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/wall,
+/area/groundbase/medical/resleeving)
 "vZ" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -13596,10 +13602,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "Hl" = (
@@ -19217,6 +19221,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/engineering/lobby)
+"Vk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/wall,
+/area/groundbase/medical/resleeving)
 "Vl" = (
 /obj/item/weapon/book/manual/rotary_electric_generator,
 /obj/structure/table/reinforced,
@@ -21057,14 +21067,14 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/storage)
 "ZV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/medical{
 	id_tag = "Resleeving Shower";
 	name = "Resleeving Lab";
 	req_one_access = null
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/resleeving)
 "ZX" = (
@@ -31917,8 +31927,8 @@ qE
 jn
 jT
 uU
-jn
-jn
+vY
+Vk
 jn
 jn
 jn
