@@ -813,7 +813,7 @@
 
 /mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"
-	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
+	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall."
 	set category = "Abilities"
 
 	var/mob/living/carbon/human/C = src
@@ -825,9 +825,6 @@
 		return
 	if(C.nutrition < 25 && !C.flying) //Don't have any food in you?" You can't fly.
 		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
-		return
-	if(C.nutrition > 1000 && !C.flying)
-		to_chat(C, "<span class='notice'>You have eaten too much to fly! You need to lose some nutrition.</span>")
 		return
 
 	C.flying = !C.flying
