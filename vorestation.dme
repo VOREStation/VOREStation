@@ -3967,6 +3967,7 @@
 #include "code\modules\vore\eating\silicon_vr.dm"
 #include "code\modules\vore\eating\simple_animal_vr.dm"
 #include "code\modules\vore\eating\slipvore_vr.dm"
+#include "code\modules\vore\eating\stumblevore_vr.dm"
 #include "code\modules\vore\eating\transforming_vr.dm"
 #include "code\modules\vore\eating\vore_vr.dm"
 #include "code\modules\vore\eating\vorehooks_vr.dm"
