@@ -129,3 +129,78 @@
 		SPECIES_VOX = 'icons/inventory/eyes/mob_vox.dmi',
 		SPECIES_WEREBEAST = 'icons/inventory/eyes/mob_werebeast.dmi'
 		)
+
+/obj/item/clothing/glasses/meson/verb/toggle_overlay()
+	set category = "Object"
+	set name = "Toggle Overlay"
+	set desc = "This disables or enables the goggles colored overlay."
+
+	if(overlay)
+		overlay = null
+	else
+		overlay = global_hud.meson
+	if(isliving(src.loc))
+		src.loc << 'sound/effects/pop.ogg'
+
+
+/obj/item/clothing/glasses/science/verb/toggle_overlay()
+	set category = "Object"
+	set name = "Toggle Overlay"
+	set desc = "This disables or enables the goggles colored overlay."
+
+	if(overlay)
+		overlay = null
+	else
+		overlay = global_hud.science
+	if(isliving(src.loc))
+		src.loc << 'sound/effects/pop.ogg'
+
+
+/obj/item/clothing/glasses/night/verb/toggle_overlay()
+	set category = "Object"
+	set name = "Toggle Overlay"
+	set desc = "This disables or enables the goggles colored overlay."
+
+	if(overlay)
+		overlay = null
+	else
+		overlay = global_hud.nvg
+	if(isliving(src.loc))
+		src.loc << 'sound/effects/pop.ogg'
+
+
+/obj/item/clothing/glasses/material/verb/toggle_overlay()
+	set category = "Object"
+	set name = "Toggle Overlay"
+	set desc = "This disables or enables the goggles colored overlay."
+
+	if(overlay)
+		overlay = null
+	else
+		overlay = global_hud.material
+	if(isliving(src.loc))
+		src.loc << 'sound/effects/pop.ogg'
+
+/obj/item/clothing/glasses/graviton/verb/toggle_overlay()
+	set category = "Object"
+	set name = "Toggle Overlay"
+	set desc = "This disables or enables the goggles colored overlay."
+
+	if(overlay)
+		overlay = null
+	else
+		overlay = global_hud.material
+	if(isliving(src.loc))
+		src.loc << 'sound/effects/pop.ogg'
+
+/obj/item/clothing/glasses/thermal/verb/toggle_overlay()
+	set category = "Object"
+	set name = "Toggle Overlay"
+	set desc = "This disables or enables the goggles colored overlay."
+
+	if(overlay)
+		overlay = null
+	else
+		overlay = global_hud.thermal
+	if(isliving(src.loc))
+		src.loc << 'sound/effects/pop.ogg'
