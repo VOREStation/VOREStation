@@ -2,7 +2,7 @@
 	name = "\improper rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(TECH_POWER = 0)
-	icon_state = "s_st"
+	icon_state = "crap"
 	maxcharge = 500
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
@@ -13,7 +13,7 @@
 /obj/item/weapon/cell/secborg
 	name = "security borg rechargable D battery"
 	origin_tech = list(TECH_POWER = 0)
-	icon_state = "meb_s_st"
+	icon_state = "secborg"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
@@ -25,14 +25,14 @@
 /obj/item/weapon/cell/apc
 	name = "heavy-duty power cell"
 	origin_tech = list(TECH_POWER = 1)
-	icon_state = "meb_b_st"
+	icon_state = "apc"
 	maxcharge = 5000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 
 /obj/item/weapon/cell/high
 	name = "high-capacity power cell"
 	origin_tech = list(TECH_POWER = 2)
-	icon_state = "b_hi"
+	icon_state = "high"
 	maxcharge = 10000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 60)
 
@@ -44,7 +44,7 @@
 /obj/item/weapon/cell/super
 	name = "super-capacity power cell"
 	origin_tech = list(TECH_POWER = 5)
-	icon_state = "b_sup"
+	icon_state = "super"
 	maxcharge = 20000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 70)
 
@@ -56,7 +56,7 @@
 /obj/item/weapon/cell/hyper
 	name = "hyper-capacity power cell"
 	origin_tech = list(TECH_POWER = 6)
-	icon_state = "b_hy"
+	icon_state = "hyper"
 	maxcharge = 30000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 
@@ -67,13 +67,13 @@
 
 /obj/item/weapon/cell/mech
 	name = "mecha power cell"
-	icon_state = "exs_l"
+	icon_state = "mech"
 	charge = 15000
 	maxcharge = 15000
 
 /obj/item/weapon/cell/infinite
 	name = "infinite-capacity power cell!"
-	icon_state = "infinite_b"
+	icon_state = "infinite"
 	origin_tech =  null
 	maxcharge = 30000 //determines how badly mobs get shocked
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
@@ -112,7 +112,7 @@
 	name = "backup battery"
 	desc = "A small one-time-use chemical battery for synthetic crew when they are low on power in emergency situations."
 	icon = 'icons/obj/power_cells.dmi'
-	icon_state = "exs_s"
+	icon_state = "backup"
 	w_class = ITEMSIZE_SMALL
 	var/amount = 100
 	var/used = FALSE
@@ -150,7 +150,7 @@
 	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
 	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
 	matter = list(MAT_GLASS = 20)
-	icon_state = "meb_s_sup"
+	icon_state = "em_light"
 	w_class = ITEMSIZE_TINY
 
 /obj/item/weapon/cell/emergency_light/Initialize()
