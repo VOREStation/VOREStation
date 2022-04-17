@@ -46,7 +46,7 @@
 
 // Chemistry lists.
 var/list/tachycardics  = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine") // Increase heart rate.
-var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "stoxin")                 // Decrease heart rate.
+var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "bliss", "stoxin", "ambrosia_extract")   // Decrease heart rate.
 var/list/heartstopper  = list("potassium_chlorophoride", "zombie_powder") // This stops the heart.
 var/list/cheartstopper = list("potassium_chloride")                       // This stops the heart when overdose is met. -- c = conditional
 
