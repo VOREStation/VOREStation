@@ -813,7 +813,7 @@
 
 /mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"
-	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
+	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall."
 	set category = "Abilities"
 
 	var/mob/living/carbon/human/C = src
