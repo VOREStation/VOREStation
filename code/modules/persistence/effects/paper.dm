@@ -16,7 +16,7 @@
 		return
 	var/obj/item/weapon/paper/paper = new paper_type(creating)
 	paper.info = token["message"]
-	paper.name = token["title"]
+	paper.name = token["name"]
 	paper.last_modified_ckey = token["author"]
 	paper.age = token["age"]+1
 	if(requires_noticeboard)

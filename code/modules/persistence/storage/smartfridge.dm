@@ -16,9 +16,6 @@
 			qdel(A) // Should clean this up here, it couldn't be stocked
 
 
-
-
-
 /datum/persistent/storage/smartfridge/sheet_storage
 	name = "sheet storage"
 	max_storage = 50
@@ -29,7 +26,7 @@
 
 /datum/persistent/storage/smartfridge/sheet_storage/lossy
 	name = "sheet storage lossy"
-	max_storage = 250
+	max_storage = 150
 	stacks_go_missing = TRUE
 
 /datum/persistent/storage/smartfridge/sheet_storage/generate_items(var/list/L)
@@ -51,21 +48,31 @@
 
 		// Delete some stacks if we want
 		if(stacks_go_missing)
+<<<<<<< HEAD
 			var/fuzzy = rand(55,65)*0.01 // loss of 35-45% with rounding down
 			count = round(count*fuzzy)
+=======
+			var/fuzzy = rand(55,65)
+			count = round(count*0.01*fuzzy) // loss of 35-45% with rounding down
+>>>>>>> a2727a50b34... Merge pull request #8548 from Cerebulon/persistence-fixes
 			if(count <= 0)
 				continue
 
 		while(count > 0)
+<<<<<<< HEAD
 			inst = new real_path(null, min(count, max_amount))
+=======
+			inst = new real_path
+			inst.amount = min(count, max_amount)
+>>>>>>> a2727a50b34... Merge pull request #8548 from Cerebulon/persistence-fixes
 			count -= inst.get_amount()
 			. += inst
 
 
 /datum/persistent/storage/smartfridge/produce
 	name = "fruit storage"
-	max_storage = 50
-	store_per_type = FALSE
+	max_storage = 10
+	store_per_type = TRUE
 	target_type = /obj/machinery/smartfridge/produce
 
 /datum/persistent/storage/smartfridge/produce/lossy
