@@ -2358,6 +2358,7 @@
 #include "code\modules\games\cardemon.dm"
 #include "code\modules\games\cards.dm"
 #include "code\modules\games\dice.dm"
+#include "code\modules\games\schnapsen_vr.dm"
 #include "code\modules\games\spaceball_cards.dm"
 #include "code\modules\games\tarot.dm"
 #include "code\modules\games\wizoff.dm"
