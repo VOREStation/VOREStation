@@ -403,6 +403,12 @@
 /obj/item/ammo_casing/a145/highvel
 	desc = "A 14.5mm sabot shell."
 	projectile_type = /obj/item/projectile/bullet/rifle/a145
+	
+/obj/item/ammo_casing/a145/bb
+	desc = "A 14.5mm BB. That'll take someone's eye out."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
 
 /obj/item/ammo_casing/a145/spent/Initialize()
 	..()
@@ -464,6 +470,12 @@
 /obj/item/ammo_casing/a5mmcaseless/stun
 	desc = "A 5mm solid phoron caseless stun round."
 	projectile_type = /obj/item/projectile/energy/electrode // Maybe nerf this considering there's 30 rounds in a mag.
+
+/obj/item/ammo_casing/a5mmcaseless/bb
+	desc = "A 5mm caseless airsoft BB."
+	projectile_type = /obj/item/projectile/bullet/bb
+	matter = list(MAT_PLASTIC = 20)
+	caseless = TRUE
 
 /*
  * Misc
