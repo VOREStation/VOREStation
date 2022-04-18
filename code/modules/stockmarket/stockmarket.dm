@@ -1,5 +1,3 @@
-
-
 /datum/stockMarket
 	var/list/stocks = list()
 	var/list/balances = list()
