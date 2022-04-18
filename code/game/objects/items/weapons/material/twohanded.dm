@@ -190,5 +190,64 @@
 	icon_state = "riding_crop0"
 	attack_verb = list("cropped","spanked","swatted","smacked","peppered")
 
+<<<<<<< HEAD
 /obj/item/weapon/material/twohanded/spear/flint
 	default_material = MAT_FLINT
+=======
+/obj/item/weapon/material/twohanded/spear/pike
+	name = "pike"
+	icon_state = "pike0"
+	base_icon = "pike"
+	desc = "A long spear used by the infantry in ancient times."
+	edge = TRUE
+	attack_verb = list("attacked", "poked", "jabbed", "gored", "stabbed")
+	default_material = "steel"
+	applies_material_colour = 0
+	drop_sound = 'sound/items/drop/woodweapon.ogg'
+	pickup_sound = 'sound/items/pickup/woodweapon.ogg'
+
+/obj/item/weapon/material/twohanded/spear/halberd
+	icon_state = "halberd0"
+	base_icon = "halberd"
+	name = "halberd"
+	desc = "A sharp axe mounted on the top of a long spear."
+	applies_material_colour = 0
+	edge = 1
+	attack_verb = list("attacked", "poked", "jabbed","gored", "chopped", "cleaved", "torn", "cut", "stabbed")
+	drop_sound = 'sound/items/drop/woodweapon.ogg'
+	pickup_sound = 'sound/items/pickup/woodweapon.ogg'
+	can_cleave = TRUE
+
+
+/obj/item/weapon/material/twohanded/spear/pike/pitchfork
+	icon_state = "pitchfork0"
+	base_icon = "pitchfork"
+	name = "pitchfork"
+	desc = "An old farming tool, not something you would find at hydroponics."
+	applies_material_colour = 0
+
+/obj/item/weapon/material/twohanded/zweihander
+	icon_state = "zweihander0"
+	base_icon = "zweihander"
+	name = "zweihander"
+	desc = "A german upgrade to the einhander models of ancient times."
+	force = 20
+	w_class = ITEMSIZE_LARGE
+	slot_flags = SLOT_BACK
+	force_wielded = 30
+	unwielded_force_divisor = 1
+	thrown_force_divisor = 0.75
+	edge = TRUE
+	sharp = 1
+	edge = 1
+	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
+	default_material = "steel"
+	can_cleave = TRUE
+
+/obj/item/weapon/material/twohanded/zweihander/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+	if(unique_parry_check(user, attacker, damage_source) && prob(10))
+		user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")
+		playsound(src, 'sound/weapons/punchmiss.ogg', 50, 1)
+		return 1
+	return 0
+>>>>>>> f658968ec75... Merge pull request #8550 from Greenjoe12345/swordsandbow

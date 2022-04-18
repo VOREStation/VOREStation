@@ -48,7 +48,7 @@
 /datum/crafting_recipe/proc/on_craft_completion(mob/user, atom/result)
 	return
 
-// Computes the total reagents volume 
+// Computes the total reagents volume
 /datum/crafting_recipe/proc/get_parts_reagents_volume()
 	. = 0
 	for(var/list/L in parts)
@@ -72,3 +72,99 @@
 	var/obj/item/weapon/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
 	qdel(M)
+<<<<<<< HEAD
+=======
+
+/datum/crafting_recipe/shortbow
+	name = "Shortbow"
+	result = /obj/item/weapon/gun/launcher/crossbow/bow
+	reqs = list(list(/obj/item/stack/material/wood = 10),
+		list(/obj/item/stack/material/cloth = 5))
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/arrow_sandstone
+	name = "Wood arrow (sandstone tip)"
+	result = /obj/item/weapon/arrow/wood
+	reqs = list(list(/obj/item/stack/material/wood = 2),
+		list(/obj/item/stack/material/sandstone = 2))
+	time = 20
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/arrow_marble
+	name = "Wood arrow (marble tip)"
+	result = /obj/item/weapon/arrow/wood
+	reqs = list(list(/obj/item/stack/material/wood = 2),
+		list(/obj/item/stack/material/marble = 2))
+	time = 20
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/quiver
+	name = "Arrow quiver"
+	result = /obj/item/weapon/storage/bag/quiver
+	reqs = list(list(/obj/item/stack/material/leather = 8))
+	time = 60
+	category = CAT_STORAGE
+
+/datum/crafting_recipe/material_armor
+	name = "Material Armor Plate"
+	result = /obj/item/clothing/accessory/material/advanced
+	reqs = list(
+		list(/obj/item/weapon/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	parts = list(
+		/obj/item/weapon/material/armor_plating/insert = 1
+	)
+	machinery = list(
+		/obj/machinery/r_n_d/protolathe = CRAFTING_MACHINERY_USE
+	)
+	always_available = FALSE
+	time = 80
+	category = CAT_CLOTHING
+
+
+/datum/crafting_recipe/material_armor/chestplate
+	name = "Material armor plate"
+	result = /obj/item/clothing/accessory/material/advanced
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/legguards
+	name = "Material armor arm-guards"
+	result = /obj/item/clothing/accessory/material/advanced/armguards
+	reqs = list(
+		list(/obj/item/weapon/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/armguards
+	name = "Material armor leg-guards"
+	result = /obj/item/clothing/accessory/material/advanced/legguards
+	reqs = list(
+		list(/obj/item/weapon/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/on_craft_completion(mob/user, obj/item/clothing/result)
+	var/obj/item/weapon/material/armor_plating/insert/insert = locate() in result
+	var/material_name = insert?.material?.name
+	if (!material_name)
+		qdel(result)
+		return
+	result.set_material(material_name)
+	qdel(insert)
+>>>>>>> f658968ec75... Merge pull request #8550 from Greenjoe12345/swordsandbow
