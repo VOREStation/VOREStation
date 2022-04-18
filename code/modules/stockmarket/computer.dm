@@ -30,6 +30,8 @@
 		return 0
 	return SSsupply.points
 
+///// MAIN TGUI SCREEN \\\\\
+
 /obj/machinery/computer/stockexchange/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
@@ -51,17 +53,17 @@
 				sell_some_shares(S, usr)
 
 		if("stocks_check")
-			var/dat = "<html><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div><br>"
+			var/dat = "<html><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div></br>"
 			for(var/D in GLOB.stockExchange.logs)
 				var/datum/stock_log/L = D
 				if(istype(L, /datum/stock_log/buy))
-					dat += "[L.time] | <b>[L.user_name]</b> bought <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits in <b>[L.company_name]</b>.<br>"
+					dat += "[L.time] | <b>[L.user_name]</b> bought <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits in <b>[L.company_name]</b>.</br>"
 					continue
 				if(istype(L, /datum/stock_log/sell))
-					dat += "[L.time] | <b>[L.user_name]</b> sold <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits from <b>[L.company_name]</b>.<br>"
+					dat += "[L.time] | <b>[L.user_name]</b> sold <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits from <b>[L.company_name]</b>.</br>"
 					continue
 				if(istype(L, /datum/stock_log/borrow))
-					dat += "[L.time] | <b>[L.user_name]</b> borrowed <b>[L.stocks]</b> stocks with a deposit of <b>[L.money]</b> credits in <b>[L.company_name]</b>.<br>"
+					dat += "[L.time] | <b>[L.user_name]</b> borrowed <b>[L.stocks]</b> stocks with a deposit of <b>[L.money]</b> credits in <b>[L.company_name]</b>.</br>"
 					continue
 			var/datum/browser/popup = new(usr, "stock_logs", "Stock Transaction Logs", 600, 400)
 			popup.set_content(dat)
@@ -81,7 +83,7 @@
 					continue
 				if (p > 0)
 					dat += "<hr>"
-				dat += "<div><b style='font-size:1.25em'>[E.current_title]</b><br>[E.current_desc]</div>"
+				dat += "<div><b style='font-size:1.25em'>[E.current_title]</b></br>[E.current_desc]</div>"
 				p++
 			dat += "</div><hr><div><h3>Articles</h3>"
 			p = 0
@@ -200,6 +202,54 @@
 	if(!ui)
 		ui = new(user, src, "StockExchange")
 		ui.open()
+
+///// HISTORY SCREEN \\\\\
+
+/obj/machinery/computer/stockexchange/history/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StockExchangeHistory")
+		ui.open()
+
+/obj/machinery/computer/stockexchange/history/tgui_data(mob/user)
+	var/list/data = list()
+	//data["var"] = var
+	return data
+
+/obj/machinery/computer/stockexchange/history/tgui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("copypasta")
+			//var/newvar = params["var"]
+			// A demo of proper input sanitation.
+			//var = CLAMP(newvar, min_val, max_val)
+			. = TRUE
+
+///// ARCHIVE SCREEN \\\\\
+
+/obj/machinery/computer/stockexchange/archive/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "StockExchangeArchive")
+		ui.open()
+
+/obj/machinery/computer/stockexchange/archive/tgui_data(mob/user)
+	var/list/data = list()
+	//data["var"] = var
+	return data
+
+/obj/machinery/computer/stockexchange/archive/tgui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("copypasta")
+			//var/newvar = params["var"]
+			// A demo of proper input sanitation.
+			//var = CLAMP(newvar, min_val, max_val)
+			. = TRUE
+
+///// PROCS \\\\\
 
 /obj/machinery/computer/stockexchange/proc/sell_some_shares(var/datum/stock/S, var/mob/user)
 	if (!user || !S)
