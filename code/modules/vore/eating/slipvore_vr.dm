@@ -32,7 +32,6 @@
 	if(!target.vore_selected)	//Gotta have one selected as well.
 		return FALSE
 	if(!slip_vore || !target.slip_vore)
-		to_chat(src,"<span class='warning'>Pred slip_vore is [target.slip_vore] Prey slip_vore is [slip_vore]</span>")
 		return FALSE
 	return TRUE
 
