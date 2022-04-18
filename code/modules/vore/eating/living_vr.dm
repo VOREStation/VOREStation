@@ -31,11 +31,11 @@
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/permit_healbelly = TRUE
-	var/stumble_vore = FALSE
-	var/slip_vore = FALSE
-	var/drop_vore = FALSE
+	var/stumble_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/slip_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/drop_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/can_be_drop_prey = FALSE
-	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
+	var/can_be_drop_pred = FALSE
 	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
