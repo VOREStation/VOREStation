@@ -56,9 +56,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/permit_healbelly = TRUE
 
 	// These are 'modifier' prefs, do nothing on their own but pair with drop_prey/drop_pred settings.
-	var/drop_vore = FALSE
-	var/stumble_vore = FALSE
-	var/slip_vore = FALSE
+	var/drop_vore = TRUE
+	var/stumble_vore = TRUE
+	var/slip_vore = TRUE
 
 	var/resizable = TRUE
 	var/show_vore_fx = TRUE
@@ -186,11 +186,11 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	if(isnull(belly_prefs))
 		belly_prefs = list()
 	if(isnull(drop_vore))
-		drop_vore = FALSE
+		drop_vore = TRUE
 	if(isnull(slip_vore))
-		slip_vore = FALSE
+		slip_vore = TRUE
 	if(isnull(stumble_vore))
-		stumble_vore = FALSE
+		stumble_vore = TRUE
 
 	return TRUE
 
