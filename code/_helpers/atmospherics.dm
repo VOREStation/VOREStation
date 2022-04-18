@@ -35,7 +35,7 @@
 /atom/proc/atmosanalyze(var/mob/user)
 	return
 
-/obj/item/weapon/tank/atmosanalyze(var/mob/user)
+/obj/item/tank/atmosanalyze(var/mob/user)
 	return atmosanalyzer_scan(src, src.air_contents, user)
 
 /obj/machinery/portable_atmospherics/atmosanalyze(var/mob/user)
@@ -74,5 +74,5 @@
 /obj/machinery/power/rad_collector/atmosanalyze(var/mob/user)
 	if(P)	return atmosanalyzer_scan(src, src.P.air_contents, user)
 
-/obj/item/weapon/flamethrower/atmosanalyze(var/mob/user)
+/obj/item/flamethrower/atmosanalyze(var/mob/user)
 	if(ptank)	return atmosanalyzer_scan(src, ptank.air_contents, user)

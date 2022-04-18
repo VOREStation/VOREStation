@@ -143,8 +143,8 @@
 	notes = pda.find_program(/datum/data/pda/app/notekeeper)
 
 /datum/data/pda/utility/scanmode/notes/scan_atom(atom/A as mob|obj|turf|area, mob/user as mob)
-	if(notes && istype(A, /obj/item/weapon/paper))
-		var/obj/item/weapon/paper/P = A
+	if(notes && istype(A, /obj/item/paper))
+		var/obj/item/paper/P = A
 		var/list/brlist = list("p", "/p", "br", "hr", "h1", "h2", "h3", "h4", "/h1", "/h2", "/h3", "/h4")
 
 		// JMO 20140705: Makes scanned document show up properly in the notes. Not pretty for formatted documents,

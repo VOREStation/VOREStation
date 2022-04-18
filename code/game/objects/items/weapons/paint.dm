@@ -3,7 +3,7 @@
 
 var/global/list/cached_icons = list()
 
-/obj/item/weapon/reagent_containers/glass/paint
+/obj/item/reagent_containers/glass/paint
 	desc = "It's a paint bucket."
 	name = "paint bucket"
 	icon = 'icons/obj/items.dmi'
@@ -18,7 +18,7 @@ var/global/list/cached_icons = list()
 	flags = OPENCONTAINER
 	var/paint_type = "red"
 
-/obj/item/weapon/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
+/obj/item/reagent_containers/glass/paint/afterattack(turf/simulated/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target) && reagents.total_volume > 5)
 		user.visible_message("<span class='warning'>\The [target] has been splashed with something by [user]!</span>")
@@ -26,7 +26,11 @@ var/global/list/cached_icons = list()
 	else
 		return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/paint/New()
+=======
+/obj/item/reagent_containers/glass/paint/Initialize()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(paint_type && length(paint_type) > 0)
 		name = paint_type + " " + name
 	..()
@@ -40,31 +44,31 @@ var/global/list/cached_icons = list()
 		reagents.add_reagent("marker_ink_[paint_type]", volume/5)
 	reagents.handle_reactions()
 
-/obj/item/weapon/reagent_containers/glass/paint/red
+/obj/item/reagent_containers/glass/paint/red
 	icon_state = "paint_red"
 	paint_type = "red"
 
-/obj/item/weapon/reagent_containers/glass/paint/yellow
+/obj/item/reagent_containers/glass/paint/yellow
 	icon_state = "paint_yellow"
 	paint_type = "yellow"
 
-/obj/item/weapon/reagent_containers/glass/paint/green
+/obj/item/reagent_containers/glass/paint/green
 	icon_state = "paint_green"
 	paint_type = "green"
 
-/obj/item/weapon/reagent_containers/glass/paint/blue
+/obj/item/reagent_containers/glass/paint/blue
 	icon_state = "paint_blue"
 	paint_type = "blue"
 
-/obj/item/weapon/reagent_containers/glass/paint/purple
+/obj/item/reagent_containers/glass/paint/purple
 	icon_state = "paint_violet"
 	paint_type = "purple"
 
-/obj/item/weapon/reagent_containers/glass/paint/black
+/obj/item/reagent_containers/glass/paint/black
 	icon_state = "paint_black"
 	paint_type = "black"
 
-/obj/item/weapon/reagent_containers/glass/paint/white
+/obj/item/reagent_containers/glass/paint/white
 	icon_state = "paint_white"
 	paint_type = "white"
 

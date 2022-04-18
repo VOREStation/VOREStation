@@ -21,9 +21,15 @@
 /obj/machinery/portable_atmospherics/powered/pump/filled
 	start_pressure = 90 * ONE_ATMOSPHERE
 
+<<<<<<< HEAD
 /obj/machinery/portable_atmospherics/powered/pump/New()
 	..()
 	cell = new/obj/item/weapon/cell/apc(src)
+=======
+/obj/machinery/portable_atmospherics/powered/pump/Initialize()
+	. = ..()
+	cell = new/obj/item/cell/apc(src)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])

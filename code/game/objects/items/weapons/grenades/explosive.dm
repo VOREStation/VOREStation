@@ -1,5 +1,5 @@
 
-/obj/item/weapon/grenade/explosive
+/obj/item/grenade/explosive
 	name = "fragmentation grenade"
 	desc = "A fragmentation grenade, optimized for harming personnel without causing massive structural damage."
 	icon_state = "frggrenade"
@@ -14,7 +14,7 @@
 	loadable = null
 	hud_state = "grenade_frag" // TGMC Ammo HUD Port
 
-/obj/item/weapon/grenade/explosive/detonate()
+/obj/item/grenade/explosive/detonate()
 	..()
 
 	var/turf/O = get_turf(src)
@@ -25,12 +25,12 @@
 	src.fragmentate(O, num_fragments, spread_range, fragment_types)
 	qdel(src)
 
-/obj/item/weapon/grenade/explosive/proc/on_explosion(var/turf/O)
+/obj/item/grenade/explosive/proc/on_explosion(var/turf/O)
 	if(explosion_size)
 		explosion(O, -1, -1, explosion_size, round(explosion_size/2), 0)
 
 // Waaaaay more pellets
-/obj/item/weapon/grenade/explosive/frag
+/obj/item/grenade/explosive/frag
 	name = "fragmentation grenade"
 	desc = "A military fragmentation grenade, designed to explode in a deadly shower of fragments."
 	icon_state = "frag"
@@ -67,7 +67,7 @@
 			else
 				P.attack_mob(M, 0, 100) //otherwise, allow a decent amount of fragments to pass
 
-/obj/item/weapon/grenade/explosive/mini
+/obj/item/grenade/explosive/mini
 	name = "mini fragmentation grenade"
 	desc = "A miniaturized fragmentation grenade, this one poses relatively little threat on its own."
 	icon_state = "minifrag"

@@ -2,7 +2,7 @@
 //###################################### NEWSPAPER! ######################################################################
 //########################################################################################################################
 
-/obj/item/weapon/newspaper
+/obj/item/newspaper
 	name = "newspaper"
 	desc = "An issue of The Griffon, the newspaper circulating aboard most stations."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -18,6 +18,7 @@
 	var/scribble_page = null
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
+<<<<<<< HEAD
 
 obj/item/weapon/newspaper/attack_self(mob/user)
 	if(ishuman(user))
@@ -95,11 +96,43 @@ obj/item/weapon/newspaper/attack_self(mob/user)
 		dat+="<BR><HR><div align='center'>[curr_page+1]</div>"
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
+=======
+	drop_sound = 'sound/items/drop/paper.ogg'
+
+/obj/item/newspaper/Initialize()
+	. = ..()
+	if(!news_source && GLOB.news_data)
+		news_source = GLOB.news_data.station_newspaper
+
+	if(news_source)
+		name = "[news_source.channel_name] [name]"
+		desc = "This is a newspaper that contains the articles of the [news_source.channel_name]."
+
+
+/obj/item/newspaper/attack_self(mob/user)
+	var/dat
+
+	if(!current_news_page)
+		if(news_source.messages)
+			current_news_page = news_source.messages.len
+
+	if(!current_news_page || !news_source.messages)
+		dat += "No current available news on [news_source.channel_name]"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	else
 		to_chat(user, "The paper is full of intelligible symbols!")
 
+<<<<<<< HEAD
 obj/item/weapon/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr
+=======
+	var/datum/browser/popup = new(usr, "News", "Latest News", 640, 600, src)
+	popup.set_content(jointext(dat,null))
+	popup.open()
+
+
+/obj/item/newspaper/Topic(href, href_list[])
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	..()
 	if((src in U.contents) || (istype(loc, /turf) && in_range(src, U)))
 		U.set_machine(src)

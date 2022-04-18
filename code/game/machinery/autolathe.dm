@@ -10,9 +10,17 @@
 	clicksound = "keyboard"
 	clickvol = 30
 
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/autolathe
 
 	var/static/datum/category_collection/autolathe/autolathe_recipes
+=======
+	circuit = /obj/item/circuitboard/autolathe
+	var/datum/category_collection/autolathe/machine_recipes
+	var/list/stored_material =  list(MAT_STEEL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
+	var/list/storage_capacity = list(MAT_STEEL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
+	var/datum/category_group/autolathe/current_category
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/hacked = 0
 	var/disabled = 0
@@ -256,9 +264,9 @@
 	..()
 	mb_rating = 0
 	man_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/MB in component_parts)
 		mb_rating += MB.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		man_rating += M.rating
 
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)

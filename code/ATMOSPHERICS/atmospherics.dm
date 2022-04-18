@@ -82,7 +82,7 @@ Pipelines + Other Objects -> Pipe network
 	return (src.connect_types & target.connect_types)
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
-	if(istype(A, /obj/item/device/pipe_painter))
+	if(istype(A, /obj/item/pipe_painter))
 		return
 	..()
 

@@ -12,12 +12,12 @@
 /datum/supply_pack/munitions/weapons
 	name = "Weapons - Security basic equipment"
 	contains = list(
-			/obj/item/device/flash = 2,
-			/obj/item/weapon/reagent_containers/spray/pepper = 2,
-			/obj/item/weapon/melee/baton/loaded = 2,
-			/obj/item/weapon/gun/energy/taser = 2,
-			/obj/item/weapon/gun/projectile/colt/detective = 2,
-			/obj/item/weapon/storage/box/flashbangs = 2
+			/obj/item/flash = 2,
+			/obj/item/reagent_containers/spray/pepper = 2,
+			/obj/item/melee/baton/loaded = 2,
+			/obj/item/gun/energy/taser = 2,
+			/obj/item/gun/projectile/colt/detective = 2,
+			/obj/item/storage/box/flashbangs = 2
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
@@ -26,7 +26,7 @@
 
 /datum/supply_pack/munitions/egunpistol
 	name = "Weapons - Energy sidearms"
-	contains = list(/obj/item/weapon/gun/energy/gun = 2)
+	contains = list(/obj/item/gun/energy/gun = 2)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Energy sidearms crate"
@@ -35,10 +35,15 @@
 /datum/supply_pack/munitions/flareguns
 	name = "Weapons - Flare guns"
 	contains = list(
-			/obj/item/weapon/gun/projectile/sec/flash,
+			/obj/item/gun/projectile/sec/flash,
 			/obj/item/ammo_magazine/m45/flash,
+<<<<<<< HEAD
 			/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
 			/obj/item/ammo_magazine/ammo_box/b12g/flash
+=======
+			/obj/item/gun/projectile/shotgun/doublebarrel/flare,
+			/obj/item/storage/box/flashshells
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -48,8 +53,8 @@
 /datum/supply_pack/munitions/eweapons
 	name = "Weapons - Experimental weapons crate"
 	contains = list(
-			/obj/item/weapon/gun/energy/xray = 2,
-			/obj/item/weapon/shield/energy = 2)
+			/obj/item/gun/energy/xray = 2,
+			/obj/item/shield/energy = 2)
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/science
 	containername = "Experimental weapons crate"
@@ -57,7 +62,11 @@
 
 /datum/supply_pack/munitions/energyweapons
 	name = "Weapons - Laser rifle crate"
+<<<<<<< HEAD
 	contains = list(/obj/item/weapon/gun/energy/laser = 2) //VOREStation Edit - Made to be consistent with the energy guns crate.
+=======
+	contains = list(/obj/item/gun/energy/laser = 3)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Energy weapons crate"
@@ -66,9 +75,15 @@
 /datum/supply_pack/munitions/shotgun
 	name = "Weapons - Shotgun crate"
 	contains = list(
+<<<<<<< HEAD
 			/obj/item/ammo_magazine/ammo_box/b12g,
 			/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 			/obj/item/weapon/gun/projectile/shotgun/pump/combat = 2
+=======
+			/obj/item/storage/box/shotgunammo,
+			/obj/item/storage/box/shotgunshells,
+			/obj/item/gun/projectile/shotgun/pump/combat = 2
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -77,7 +92,7 @@
 /* VOREStation edit -- This is a bad idea. -- So is this.
 /datum/supply_pack/munitions/erifle
 	name = "Weapons - Energy marksman"
-	contains = list(/obj/item/weapon/gun/energy/sniperrifle = 2)
+	contains = list(/obj/item/gun/energy/sniperrifle = 2)
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Energy marksman crate"
@@ -85,7 +100,7 @@
 
 /datum/supply_pack/munitions/burstlaser
 	name = "Weapons - Burst laser"
-	contains = list(/obj/item/weapon/gun/energy/gun/burst = 2)
+	contains = list(/obj/item/gun/energy/gun/burst = 2)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Burst laser crate"
@@ -94,8 +109,8 @@
 /datum/supply_pack/munitions/ionweapons
 	name = "Weapons - Electromagnetic Rifles"
 	contains = list(
-			/obj/item/weapon/gun/energy/ionrifle = 2,
-			/obj/item/weapon/storage/box/empslite
+			/obj/item/gun/energy/ionrifle = 2,
+			/obj/item/storage/box/empslite
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/ward
@@ -105,8 +120,8 @@
 /datum/supply_pack/munitions/ionpistols
 	name = "Weapons - Electromagnetic pistols"
 	contains = list(
-			/obj/item/weapon/gun/energy/ionrifle/pistol = 2,
-			/obj/item/weapon/storage/box/empslite
+			/obj/item/gun/energy/ionrifle/pistol = 2,
+			/obj/item/storage/box/empslite
 			)
 	cost = 30
 	containertype = /obj/structure/closet/crate/secure/ward
@@ -115,7 +130,7 @@
 
 /datum/supply_pack/munitions/bsmg
 	name = "Weapons - Ballistic SMGs"
-	contains = list(/obj/item/weapon/gun/projectile/automatic/wt550 = 2)
+	contains = list(/obj/item/gun/projectile/automatic/wt550 = 2)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/ward
 	containername = "Ballistic weapon crate"
@@ -123,7 +138,7 @@
 
 /datum/supply_pack/munitions/brifle
 	name = "Weapons - Ballistic Rifles"
-	contains = list(/obj/item/weapon/gun/projectile/automatic/z8 = 2)
+	contains = list(/obj/item/gun/projectile/automatic/z8 = 2)
 	cost = 80
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Ballistic weapon crate"
@@ -143,8 +158,8 @@
 /datum/supply_pack/munitions/bolt_rifles_competitive
  	name = "Weapons - Competitive shooting rifles"
  	contains = list(
- 			/obj/item/device/assembly/timer,
- 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice = 2,
+ 			/obj/item/assembly/timer,
+ 			/obj/item/gun/projectile/shotgun/pump/rifle/practice = 2,
  			/obj/item/ammo_magazine/clip/c762/practice = 4,
  			/obj/item/target = 2,
  			/obj/item/target/alien = 2,
@@ -158,7 +173,7 @@
 /datum/supply_pack/munitions/caseless
 	name = "Weapons - Prototype Caseless Rifle"
 	contains = list(
-			/obj/item/weapon/gun/projectile/caseless/prototype,
+			/obj/item/gun/projectile/caseless/prototype,
 			/obj/item/ammo_magazine/m5mmcaseless = 3
 			)
 	cost = 60
@@ -168,7 +183,7 @@
 
 /datum/supply_pack/munitions/mrifle
 	name = "Weapons - Magnetic Rifles"
-	contains = list(/obj/item/weapon/gun/magnetic/railgun/heater = 2)
+	contains = list(/obj/item/gun/magnetic/railgun/heater = 2)
 	cost = 120
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Magnetic weapon crate"
@@ -176,7 +191,7 @@
 
 /datum/supply_pack/munitions/mpistol
 	name = "Weapons - Magnetic Pistols"
-	contains = list(/obj/item/weapon/gun/magnetic/railgun/heater/pistol = 2)
+	contains = list(/obj/item/gun/magnetic/railgun/heater/pistol = 2)
 	cost = 200
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Magnetic weapon crate"
@@ -184,7 +199,7 @@
 
 /datum/supply_pack/munitions/mcarbine
 	name = "Weapons - Magnetic Carbines"
-	contains = list(/obj/item/weapon/gun/magnetic/railgun/flechette/sif = 2)
+	contains = list(/obj/item/gun/magnetic/railgun/flechette/sif = 2)
 	cost = 130
 	containertype = /obj/structure/closet/crate/secure/lawson
 	containername = "Magnetic weapon crate"
@@ -192,7 +207,7 @@
 
 /datum/supply_pack/munitions/mshells
 	name = "Weapons - Magnetic Shells"
-	contains = list(/obj/item/weapon/magnetic_ammo = 3)
+	contains = list(/obj/item/magnetic_ammo = 3)
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Magnetic ammunition crate"
@@ -209,8 +224,13 @@
 /datum/supply_pack/munitions/shotgunammo
 	name = "Ammunition - Shotgun shells"
 	contains = list(
+<<<<<<< HEAD
 			/obj/item/ammo_magazine/ammo_box/b12g = 2,
 			/obj/item/ammo_magazine/ammo_box/b12g/pellet = 2
+=======
+			/obj/item/storage/box/shotgunammo = 2,
+			/obj/item/storage/box/shotgunshells = 2
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -219,7 +239,11 @@
 
 /datum/supply_pack/munitions/beanbagammo
 	name = "Ammunition - Beanbag shells"
+<<<<<<< HEAD
 	contains = list(/obj/item/ammo_magazine/ammo_box/b12g/beanbag = 3)
+=======
+	contains = list(/obj/item/storage/box/beanbags = 3)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Ballistic ammunition crate"
@@ -251,7 +275,7 @@
 
 /datum/supply_pack/munitions/pcellammo
 	name = "Ammunition - Power cell"
-	contains = list(/obj/item/weapon/cell/device/weapon = 3)
+	contains = list(/obj/item/cell/device/weapon = 3)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Energy ammunition crate"

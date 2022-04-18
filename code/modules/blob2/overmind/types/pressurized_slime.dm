@@ -47,10 +47,10 @@
 		for(var/atom/movable/AM in T)
 			AM.water_act(2)
 
-/datum/blob_type/pressurized_slime/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/pressurized_slime/on_chunk_tick(obj/item/blobcore_chunk/B)
 	wet_surroundings(B, 10)
 
-/datum/blob_type/pressurized_slime/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)	// Drenches you in water.
+/datum/blob_type/pressurized_slime/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)	// Drenches you in water.
 	if(user)
 		user.ExtinguishMob()
 		user.fire_stacks = CLAMP(user.fire_stacks - 1, -25, 25)

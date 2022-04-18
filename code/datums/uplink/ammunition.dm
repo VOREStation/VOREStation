@@ -63,11 +63,19 @@
 
 /datum/uplink_item/item/ammo/sniperammo
 	name = "Anti-Materiel Rifle ammo box (14.5mm)"
+<<<<<<< HEAD
 	path = /obj/item/ammo_magazine/ammo_box/b145
 
 /datum/uplink_item/item/ammo/sniperammo_highvel
 	name = "Anti-Materiel Rifle ammo box (14.5mm sabot)"
 	path = /obj/item/ammo_magazine/ammo_box/b145/highvel
+=======
+	path = /obj/item/storage/box/sniperammo
+
+/datum/uplink_item/item/ammo/sniperammo_highvel
+	name = "Anti-Materiel Rifle ammo box (14.5mm sabot)"
+	path = /obj/item/storage/box/sniperammo/highvel
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /datum/uplink_item/item/ammo/c545
 	name = "Rifle Magazine (5.45mm)"
@@ -107,27 +115,47 @@
 
 /datum/uplink_item/item/ammo/g12
 	name = "12g Shotgun Ammo Box (Slug)"
+<<<<<<< HEAD
 	path = /obj/item/ammo_magazine/ammo_box/b12g
 
 /datum/uplink_item/item/ammo/g12/beanbag
 	name = "12g Shotgun Ammo Box (Beanbag)"
 	path = /obj/item/ammo_magazine/ammo_box/b12g/beanbag
+=======
+	path = /obj/item/storage/box/shotgunammo
+
+/datum/uplink_item/item/ammo/g12/beanbag
+	name = "12g Shotgun Ammo Box (Beanbag)"
+	path = /obj/item/storage/box/beanbags
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/g12/pellet
 	name = "12g Shotgun Ammo Box (Pellet)"
+<<<<<<< HEAD
 	path =/obj/item/ammo_magazine/ammo_box/b12g/pellet
 
 /datum/uplink_item/item/ammo/g12/stun
 	name = "12g Shotgun Ammo Box (Stun)"
 	path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
+=======
+	path = /obj/item/storage/box/shotgunshells
+
+/datum/uplink_item/item/ammo/g12/stun
+	name = "12g Shotgun Ammo Box (Stun)"
+	path = /obj/item/storage/box/stunshells
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/g12/flash
 	name = "12g Shotgun Ammo Box (Flash)"
+<<<<<<< HEAD
 	path = /obj/item/ammo_magazine/ammo_box/b12g/flash
+=======
+	path = /obj/item/storage/box/flashshells
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	item_cost = 10 // Discount due to it being LTL.
 
 /datum/uplink_item/item/ammo/cell
 	name = "weapon cell"
-	path = /obj/item/weapon/cell/device/weapon
+	path = /obj/item/cell/device/weapon

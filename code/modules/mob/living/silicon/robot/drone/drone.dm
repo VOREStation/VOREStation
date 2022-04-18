@@ -54,7 +54,7 @@ var/list/mob_hat_cache = list()
 	var/mail_destination = ""
 	var/obj/machinery/drone_fabricator/master_fabricator
 	var/law_type = /datum/ai_laws/drone
-	var/module_type = /obj/item/weapon/robot_module/drone
+	var/module_type = /obj/item/robot_module/drone
 	var/obj/item/hat
 	var/hat_x_offset = 0
 	var/hat_y_offset = -13
@@ -63,7 +63,7 @@ var/list/mob_hat_cache = list()
 
 	var/foreign_droid = FALSE
 
-	holder_type = /obj/item/weapon/holder/drone
+	holder_type = /obj/item/holder/drone
 
 	can_be_antagged = FALSE
 
@@ -84,7 +84,7 @@ var/list/mob_hat_cache = list()
 	name = "construction drone"
 	icon_state = "constructiondrone"
 	law_type = /datum/ai_laws/construction_drone
-	module_type = /obj/item/weapon/robot_module/drone/construction
+	module_type = /obj/item/robot_module/drone/construction
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
@@ -95,7 +95,7 @@ var/list/mob_hat_cache = list()
 	icon_state = "miningdrone"
 	item_state = "constructiondrone"
 	law_type = /datum/ai_laws/mining_drone
-	module_type = /obj/item/weapon/robot_module/drone/mining
+	module_type = /obj/item/robot_module/drone/mining
 	hat_x_offset = 1
 	hat_y_offset = -12
 	can_pull_mobs = MOB_PULL_SAME
@@ -135,7 +135,7 @@ var/list/mob_hat_cache = list()
 
 /mob/living/silicon/robot/drone/init()
 	if(!scrambledcodes && !foreign_droid)
-		aiCamera = new/obj/item/device/camera/siliconcam/drone_camera(src)
+		aiCamera = new/obj/item/camera/siliconcam/drone_camera(src)
 	additional_law_channels["Drone"] = ":d"
 	if(!laws) laws = new law_type
 	if(!module) module = new module_type(src)
@@ -217,7 +217,7 @@ var/list/mob_hat_cache = list()
 	updateicon()
 
 //Drones cannot be upgraded with borg modules so we need to catch some items before they get used in ..().
-/mob/living/silicon/robot/drone/attackby(var/obj/item/weapon/W, var/mob/user)
+/mob/living/silicon/robot/drone/attackby(var/obj/item/W, var/mob/user)
 
 	if(user.a_intent == "help" && istype(W, /obj/item/clothing/head))
 		if(hat)
@@ -235,7 +235,7 @@ var/list/mob_hat_cache = list()
 		to_chat(user, "<span class='danger'>\The [src] is hermetically sealed. You can't open the case.</span>")
 		return
 
-	else if (istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	else if (istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		var/datum/gender/TU = gender_datums[user.get_visible_gender()]
 		if(stat == 2)
 

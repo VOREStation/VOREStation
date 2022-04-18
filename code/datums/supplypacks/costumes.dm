@@ -13,7 +13,7 @@
 /datum/supply_pack/costumes/wizard
 	name = "Wizard costume"
 	contains = list(
-			/obj/item/weapon/staff,
+			/obj/item/staff,
 			/obj/item/clothing/suit/wizrobe/fake,
 			/obj/item/clothing/shoes/sandal,
 			/obj/item/clothing/head/wizard/fake
@@ -118,7 +118,7 @@
 			/obj/item/clothing/suit/wizrobe/marisa/fake,
 			/obj/item/clothing/shoes/sandal,
 			/obj/item/clothing/head/wizard/marisa/fake,
-			/obj/item/weapon/staff/broom
+			/obj/item/staff/broom
 			)
 
 /datum/supply_pack/randomised/costumes/costume_hats

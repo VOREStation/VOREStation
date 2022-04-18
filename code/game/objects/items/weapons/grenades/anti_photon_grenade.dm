@@ -1,4 +1,4 @@
-/obj/item/weapon/grenade/anti_photon
+/obj/item/grenade/anti_photon
 	desc = "An experimental device for temporarily removing light in a limited area."
 	name = "photon disruption grenade"
 	icon = 'icons/obj/grenade.dmi'
@@ -6,7 +6,7 @@
 	det_time = 20
 	origin_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 4)
 
-/obj/item/weapon/grenade/anti_photon/detonate()
+/obj/item/grenade/anti_photon/detonate()
 	playsound(src, 'sound/effects/phasein.ogg', 50, 1, 5)
 	set_light(10, -10, "#FFFFFF")
 

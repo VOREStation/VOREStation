@@ -164,7 +164,7 @@
 
 	return ..()
 
-/obj/structure/sign/poster/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wirecutter())
 		playsound(src, W.usesound, 100, 1)
 		if(ruined)

@@ -9,13 +9,13 @@
 /datum/supply_pack/supply/food
 	name = "Kitchen supply crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/condiment/flour = 6,
-			/obj/item/weapon/reagent_containers/food/drinks/milk = 3,
-			/obj/item/weapon/reagent_containers/food/drinks/soymilk = 2,
-			/obj/item/weapon/storage/fancy/egg_box = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/tofu = 4,
-			/obj/item/weapon/reagent_containers/food/snacks/meat = 4,
-			/obj/item/weapon/reagent_containers/food/condiment/yeast = 3
+			/obj/item/reagent_containers/food/condiment/flour = 6,
+			/obj/item/reagent_containers/food/drinks/milk = 3,
+			/obj/item/reagent_containers/food/drinks/soymilk = 2,
+			/obj/item/storage/fancy/egg_box = 2,
+			/obj/item/reagent_containers/food/snacks/tofu = 4,
+			/obj/item/reagent_containers/food/snacks/meat = 4,
+			/obj/item/reagent_containers/food/condiment/yeast = 3
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer/centauri
@@ -23,7 +23,7 @@
 
 /datum/supply_pack/supply/toner
 	name = "Toner cartridges"
-	contains = list(/obj/item/device/toner = 6)
+	contains = list(/obj/item/toner = 6)
 	cost = 10
 	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "Toner cartridges"
@@ -31,20 +31,20 @@
 /datum/supply_pack/supply/janitor
 	name = "Janitorial supplies"
 	contains = list(
-			/obj/item/weapon/reagent_containers/glass/bucket,
-			/obj/item/weapon/mop,
+			/obj/item/reagent_containers/glass/bucket,
+			/obj/item/mop,
 			/obj/item/clothing/under/rank/janitor,
-			/obj/item/weapon/cartridge/janitor,
+			/obj/item/cartridge/janitor,
 			/obj/item/clothing/gloves/black,
 			/obj/item/clothing/head/soft/purple,
-			/obj/item/weapon/storage/belt/janitor,
+			/obj/item/storage/belt/janitor,
 			/obj/item/clothing/shoes/galoshes,
 			/obj/item/clothing/suit/caution = 4,
-			/obj/item/weapon/storage/bag/trash,
-			/obj/item/device/lightreplacer,
-			/obj/item/weapon/reagent_containers/spray/cleaner,
-			/obj/item/weapon/reagent_containers/glass/rag,
-			/obj/item/weapon/grenade/chem_grenade/cleaner = 3,
+			/obj/item/storage/bag/trash,
+			/obj/item/lightreplacer,
+			/obj/item/reagent_containers/spray/cleaner,
+			/obj/item/reagent_containers/glass/rag,
+			/obj/item/grenade/chem_grenade/cleaner = 3,
 			/obj/structure/mopbucket
 			)
 	cost = 10
@@ -55,18 +55,19 @@
 	name = "Shipping supplies"
 	contains = list(
 				/obj/fiftyspawner/cardboard,
-				/obj/item/weapon/packageWrap = 4,
-				/obj/item/weapon/wrapping_paper = 2,
-				/obj/item/device/destTagger,
-				/obj/item/weapon/hand_labeler,
-				/obj/item/weapon/tool/wirecutters,
-				/obj/item/weapon/tape_roll = 2)
+				/obj/item/packageWrap = 4,
+				/obj/item/wrapping_paper = 2,
+				/obj/item/destTagger,
+				/obj/item/hand_labeler,
+				/obj/item/tool/wirecutters,
+				/obj/item/tape_roll = 2)
 	cost = 10
 	containertype = /obj/structure/closet/crate/ummarcar
 	containername = "Shipping supplies crate"
 
 /datum/supply_pack/supply/bureaucracy
 	contains = list(
+<<<<<<< HEAD
 			/obj/item/weapon/clipboard = 2,
 			/obj/item/weapon/pen/red,
 			/obj/item/weapon/pen/blue,
@@ -79,6 +80,20 @@
 			/obj/item/weapon/tape_roll,
 			/obj/structure/filingcabinet/chestdrawer{anchored = FALSE},
 			/obj/item/weapon/paper_bin
+=======
+			/obj/item/clipboard = 2,
+			/obj/item/pen/red,
+			/obj/item/pen/blue,
+			/obj/item/pen/blue,
+			/obj/item/camera_film,
+			/obj/item/folder/blue,
+			/obj/item/folder/red,
+			/obj/item/folder/yellow,
+			/obj/item/hand_labeler,
+			/obj/item/tape_roll,
+			/obj/structure/filingcabinet/chestdrawer{anchored = 0},
+			/obj/item/paper_bin
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	name = "Office supplies"
 	cost = 15
@@ -97,24 +112,24 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/thinktronic
 	containername = "Spare PDA crate"
-	contains = list(/obj/item/device/pda = 3)
+	contains = list(/obj/item/pda = 3)
 
 /datum/supply_pack/supply/minergear
 	name = "Shaft miner equipment"
 	contains = list(
-			/obj/item/weapon/storage/backpack/industrial,
-			/obj/item/weapon/storage/backpack/satchel/eng,
+			/obj/item/storage/backpack/industrial,
+			/obj/item/storage/backpack/satchel/eng,
 			/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
-			/obj/item/device/radio/headset/headset_cargo,
+			/obj/item/radio/headset/headset_cargo,
 			/obj/item/clothing/under/rank/miner,
 			/obj/item/clothing/gloves/black,
 			/obj/item/clothing/shoes/black,
-			/obj/item/device/analyzer,
-			/obj/item/weapon/storage/bag/ore,
-			/obj/item/device/flashlight/lantern,
-			/obj/item/weapon/shovel,
-			/obj/item/weapon/pickaxe,
-			/obj/item/weapon/mining_scanner,
+			/obj/item/analyzer,
+			/obj/item/storage/bag/ore,
+			/obj/item/flashlight/lantern,
+			/obj/item/shovel,
+			/obj/item/pickaxe,
+			/obj/item/mining_scanner,
 			/obj/item/clothing/glasses/material,
 			/obj/item/clothing/glasses/meson
 			)

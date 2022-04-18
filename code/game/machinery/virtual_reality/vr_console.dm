@@ -6,9 +6,15 @@
 
 	var/base_state = "syndipod_"
 
+<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/vr_sleeper
+=======
+	density = 1
+	anchored = 1
+	circuit = /obj/item/circuitboard/vr_sleeper
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/mob/living/carbon/human/occupant = null
 	var/mob/living/carbon/human/avatar = null
 	var/datum/mind/vr_mind = null
@@ -67,7 +73,7 @@
 /obj/machinery/vr_sleeper/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
 
-	if(occupant && (istype(I, /obj/item/device/healthanalyzer) || istype(I, /obj/item/device/robotanalyzer)))
+	if(occupant && (istype(I, /obj/item/healthanalyzer) || istype(I, /obj/item/robotanalyzer)))
 		I.attack(occupant, user)
 		return
 

@@ -1,7 +1,7 @@
 //////////////////////////////
 //	Nanite Organ Implant
 //////////////////////////////
-/obj/item/weapon/implant/organ
+/obj/item/implant/organ
 	name = "nanite fabrication implant"
 	desc = "A buzzing implant covered in a writhing layer of metal insects."
 	icon_state = "implant_evil"
@@ -10,7 +10,7 @@
 	var/organ_to_implant = /obj/item/organ/internal/augment/bioaugment/thermalshades
 	var/organ_display_name = "unknown organ"
 
-/obj/item/weapon/implant/organ/get_data()
+/obj/item/implant/organ/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> \"GreyDoctor\" Class Nanite Hive<BR>
@@ -23,7 +23,7 @@
 <b>Integrity:</b> N/A"}
 	return dat
 
-/obj/item/weapon/implant/organ/post_implant(var/mob/M)
+/obj/item/implant/organ/post_implant(var/mob/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
@@ -52,14 +52,14 @@
 			qdel(NewOrgan)
 			to_chat(H, "<span class='warning'>You feel a pinching sensation in your [part]. The implant remains.</span>")
 
-/obj/item/weapon/implant/organ/islegal()
+/obj/item/implant/organ/islegal()
 	return 0
 
 /*
  * Arm / leg mounted augments.
  */
 
-/obj/item/weapon/implant/organ/limbaugment
+/obj/item/implant/organ/limbaugment
 	name = "nanite implant"
 
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/taser
@@ -67,7 +67,7 @@
 
 	var/list/possible_targets = list(O_AUG_L_FOREARM, O_AUG_R_FOREARM)
 
-/obj/item/weapon/implant/organ/limbaugment/post_implant(var/mob/M)
+/obj/item/implant/organ/limbaugment/post_implant(var/mob/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
@@ -96,7 +96,7 @@
 			qdel(NewOrgan)
 			to_chat(H, "<span class='warning'>You feel a pinching sensation in your [part]. The implant remains.</span>")
 
-/obj/item/weapon/implant/organ/limbaugment/proc/setup_augment_slots(var/mob/living/carbon/human/H, var/obj/item/organ/internal/augment/armmounted/I)
+/obj/item/implant/organ/limbaugment/proc/setup_augment_slots(var/mob/living/carbon/human/H, var/obj/item/organ/internal/augment/armmounted/I)
 	var/list/Choices = possible_targets.Copy()
 
 	for(var/targ in possible_targets)
@@ -148,13 +148,13 @@
  * Limb implant primary subtypes.
  */
 
-/obj/item/weapon/implant/organ/limbaugment/upperarm
+/obj/item/implant/organ/limbaugment/upperarm
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/shoulder/multiple
 	organ_display_name = "multi-use augment"
 
 	possible_targets = list(O_AUG_R_UPPERARM,O_AUG_L_UPPERARM)
 
-/obj/item/weapon/implant/organ/limbaugment/wrist
+/obj/item/implant/organ/limbaugment/wrist
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/hand
 	organ_display_name = "wrist augment"
 
@@ -165,31 +165,31 @@
  */
 
 // Wrist
-/obj/item/weapon/implant/organ/limbaugment/wrist/sword
+/obj/item/implant/organ/limbaugment/wrist/sword
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/hand/sword
 	organ_display_name = "weapon augment"
 
-/obj/item/weapon/implant/organ/limbaugment/wrist/blade
+/obj/item/implant/organ/limbaugment/wrist/blade
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/hand/blade
 	organ_display_name = "weapon augment"
 
 // Fore-arm
-/obj/item/weapon/implant/organ/limbaugment/laser
+/obj/item/implant/organ/limbaugment/laser
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted
 	organ_display_name = "weapon augment"
 
-/obj/item/weapon/implant/organ/limbaugment/dart
+/obj/item/implant/organ/limbaugment/dart
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/dartbow
 	organ_display_name = "weapon augment"
 
 // Upper-arm.
-/obj/item/weapon/implant/organ/limbaugment/upperarm/medkit
+/obj/item/implant/organ/limbaugment/upperarm/medkit
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/shoulder/multiple/medical
 
-/obj/item/weapon/implant/organ/limbaugment/upperarm/surge
+/obj/item/implant/organ/limbaugment/upperarm/surge
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/shoulder/surge
 
-/obj/item/weapon/implant/organ/limbaugment/upperarm/blade
+/obj/item/implant/organ/limbaugment/upperarm/blade
 	organ_to_implant = /obj/item/organ/internal/augment/armmounted/shoulder/blade
 	organ_display_name = "weapon augment"
 
@@ -197,7 +197,7 @@
  * Others
  */
 
-/obj/item/weapon/implant/organ/pelvic
+/obj/item/implant/organ/pelvic
 	name = "nanite fabrication implant"
 
 	organ_to_implant = /obj/item/organ/internal/augment/bioaugment/sprint_enhance

@@ -9,13 +9,14 @@
 	name = "mining drill head"
 	desc = "An enormous drill."
 	icon_state = "mining_drill"
-	circuit = /obj/item/weapon/circuitboard/miningdrill
+	circuit = /obj/item/circuitboard/miningdrill
 	var/braces_needed = 2
 	var/total_brace_tier = 0
 	var/list/obj/machinery/mining/brace/supports = list()
 	var/supported = 0
 	var/active = 0
 	var/list/resource_field = list()
+<<<<<<< HEAD
 	var/obj/item/device/radio/intercom/faultreporter
 	var/drill_range = 5
 	var/offset = 2
@@ -35,6 +36,25 @@
 	//	"tin" = /obj/item/weapon/ore/tin,
 	//	"bauxite" = /obj/item/weapon/ore/bauxite,
 		"rutile" = /obj/item/weapon/ore/rutile
+=======
+	var/obj/item/radio/intercom/faultreporter = new /obj/item/radio/intercom{channels=list("Supply")}(null)
+
+	var/list/ore_types = list(
+		"hematite" = /obj/item/ore/iron,
+		"uranium" = /obj/item/ore/uranium,
+		"gold" = /obj/item/ore/gold,
+		"silver" = /obj/item/ore/silver,
+		"diamond" = /obj/item/ore/diamond,
+		"phoron" = /obj/item/ore/phoron,
+		"osmium" = /obj/item/ore/osmium,
+		"hydrogen" = /obj/item/ore/hydrogen,
+		"silicates" = /obj/item/ore/glass,
+		"carbon" = /obj/item/ore/coal,
+		"copper" = /obj/item/ore/copper,
+	//	"tin" = /obj/item/ore/tin,
+		"bauxite" = /obj/item/ore/bauxite,
+		"rutile" = /obj/item/ore/rutile
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		)
 
 	//Upgrades
@@ -42,20 +62,32 @@
 	var/capacity
 	var/charge_use
 	var/exotic_drilling
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 
 	// Found with an advanced laser. exotic_drilling >= 1
 	var/list/ore_types_uncommon = list(
+<<<<<<< HEAD
 		MAT_MARBLE = /obj/item/weapon/ore/marble,
 		//"painite" = /obj/item/weapon/ore/painite,
 		//"quartz" = /obj/item/weapon/ore/quartz,
 		MAT_LEAD = /obj/item/weapon/ore/lead
+=======
+		MAT_MARBLE = /obj/item/ore/marble,
+		"painite" = /obj/item/ore/painite,
+		"quartz" = /obj/item/ore/quartz,
+		MAT_LEAD = /obj/item/ore/lead
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		)
 
 	// Found with an ultra laser. exotic_drilling >= 2
 	var/list/ore_types_rare = list(
+<<<<<<< HEAD
 		//"void opal" = /obj/item/weapon/ore/void_opal,
 		MAT_VERDANTIUM = /obj/item/weapon/ore/verdantium
+=======
+		"magmellite" = /obj/item/ore/magmellite,
+		MAT_VERDANTIUM = /obj/item/ore/verdantium
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		)
 
 	//Flags
@@ -79,7 +111,7 @@
 	return cell
 
 /obj/machinery/mining/drill/loaded
-	cell = /obj/item/weapon/cell/high
+	cell = /obj/item/cell/high
 
 /obj/machinery/mining/drill/process()
 
@@ -172,7 +204,7 @@
 
 /obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
 	if(!active)
-		if(istype(O, /obj/item/device/multitool))
+		if(istype(O, /obj/item/multitool))
 			var/newtag = text2num(sanitizeSafe(input(user, "Enter new ID number or leave empty to cancel.", "Assign ID number") as text, 4))
 			if(newtag)
 				name = "[initial(name)] #[newtag]"
@@ -189,7 +221,7 @@
 			return
 	if(!panel_open || active) return ..()
 
-	if(istype(O, /obj/item/weapon/cell))
+	if(istype(O, /obj/item/cell))
 		if(cell)
 			to_chat(user, "The drill already has a cell installed.")
 		else
@@ -254,9 +286,15 @@
 	drill_range = 5
 	offset = 2
 
+<<<<<<< HEAD
 	for(var/obj/item/weapon/stock_parts/P in component_parts)
 		if(istype(P, /obj/item/weapon/stock_parts/micro_laser))
 			harvest_speed = P.rating ** 2 // 1, 4, 9, 16, 25
+=======
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/micro_laser))
+			harvest_speed = P.rating
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			exotic_drilling = P.rating - 1
 			if(exotic_drilling >= 1)
 				ore_types |= ore_types_uncommon
@@ -265,6 +303,7 @@
 			else
 				ore_types -= ore_types_uncommon
 				ore_types -= ore_types_rare
+<<<<<<< HEAD
 			if(P.rating > 3) // are we t4+?
 				// default drill range 5, offset 2
 				if(P.rating >= 5) // t5
@@ -274,10 +313,17 @@
 					drill_range = 7
 					offset = 3
 		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+=======
+		if(istype(P, /obj/item/stock_parts/matter_bin))
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			capacity = 200 * P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			charge_use -= 10 * P.rating
+<<<<<<< HEAD
 	cell = locate(/obj/item/weapon/cell) in src
+=======
+	cell = locate(/obj/item/cell) in component_parts
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/mining/drill/proc/check_supports()
 
@@ -348,7 +394,7 @@
 
 	var/obj/structure/ore_box/B = locate() in orange(1)
 	if(B)
-		for(var/obj/item/weapon/ore/O in contents)
+		for(var/obj/item/ore/O in contents)
 			O.loc = B
 		to_chat(usr, "<span class='notice'>You unload the drill's storage cache into the ore box.</span>")
 	else
@@ -359,8 +405,12 @@
 	name = "mining drill brace"
 	desc = "A machinery brace for an industrial drill. It looks easily two feet thick."
 	icon_state = "mining_brace"
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/miningdrillbrace
 	var/brace_tier = 1
+=======
+	circuit = /obj/item/circuitboard/miningdrillbrace
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/obj/machinery/mining/drill/connected
 
 /obj/machinery/mining/brace/examine(mob/user)
@@ -378,7 +428,7 @@
 	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		brace_tier += M.rating
 
-/obj/machinery/mining/brace/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/mining/brace/attackby(obj/item/W as obj, mob/user as mob)
 	if(connected && connected.active)
 		to_chat(user, "<span class='notice'>You can't work with the brace of a running drill!</span>")
 		return

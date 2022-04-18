@@ -49,7 +49,7 @@
 
 	exploding = FALSE
 
-/datum/blob_type/explosive_lattice/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/explosive_lattice/on_chunk_tick(obj/item/blobcore_chunk/B)
 	var/turf/T = get_turf(B)
 	if(!T)
 		return

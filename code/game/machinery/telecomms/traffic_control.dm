@@ -15,7 +15,7 @@
 	var/mob/lasteditor
 	var/list/viewingcode = list()
 	var/obj/machinery/telecomms/server/SelectedServer
-	circuit = /obj/item/weapon/circuitboard/comm_traffic
+	circuit = /obj/item/circuitboard/comm_traffic
 	req_access = list(access_tcomsat)
 
 	var/network = "NULL"		// the network to probe

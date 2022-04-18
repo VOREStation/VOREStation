@@ -27,8 +27,12 @@
 
 	organ_names = /decl/mob_organ_names/tree
 
+<<<<<<< HEAD
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 	meat_amount = 2
+=======
+	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	pixel_x = -16
 

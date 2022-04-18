@@ -21,8 +21,8 @@
 	var/energy = 0				// How many 'energy' units does this have? Acquired by a Particle Accelerator like a Singularity.
 	var/max_energy = 600
 	var/obj/item/stack/material/target	// The material being bombarded.
-	var/obj/item/weapon/reagent_containers/reagent_container		// Holds the beaker. The process will consume ALL reagents inside it.
-	var/beaker_type = /obj/item/weapon/reagent_containers/glass/beaker
+	var/obj/item/reagent_containers/reagent_container		// Holds the beaker. The process will consume ALL reagents inside it.
+	var/beaker_type = /obj/item/reagent_containers/glass/beaker
 	var/list/storage		// Holds references to items allowed to be used in the fabrication phase.
 	var/max_storage = 3	// How many items can be jammed into it?
 	var/list/recipes	// The list containing the Particle Smasher's recipes.
@@ -50,7 +50,7 @@
 	return list("<span class='notice'>\The [src] reads an energy level of [energy].</span>")
 
 /obj/machinery/particle_smasher/attackby(obj/item/W as obj, mob/user as mob)
-	if(W.type == /obj/item/device/analyzer)
+	if(W.type == /obj/item/analyzer)
 		return
 	else if(istype(W, /obj/item/stack/material))
 		var/obj/item/stack/material/M = W
@@ -64,8 +64,8 @@
 		if(reagent_container)
 			to_chat(user, "<span class='notice'>\The [src] already has a container attached.</span>")
 			return
-		if(isrobot(user) && istype(W.loc, /obj/item/weapon/gripper))
-			var/obj/item/weapon/gripper/G = W.loc
+		if(isrobot(user) && istype(W.loc, /obj/item/gripper))
+			var/obj/item/gripper/G = W.loc
 			G.drop_item()
 		else
 			user.drop_from_inventory(W)
@@ -87,12 +87,12 @@
 				"You hear a ratchet.")
 		update_icon()
 		return
-	else if(istype(W, /obj/item/weapon/card/id))
+	else if(istype(W, /obj/item/card/id))
 		to_chat(user, "<span class='notice'>Swiping \the [W] on \the [src] doesn't seem to do anything...</span>")
 		return ..()
-	else if(((isrobot(user) && istype(W.loc, /obj/item/weapon/gripper)) || (!isrobot(user) && W.canremove)) && storage.len < max_storage)
-		if(isrobot(user) && istype(W.loc, /obj/item/weapon/gripper))
-			var/obj/item/weapon/gripper/G = W.loc
+	else if(((isrobot(user) && istype(W.loc, /obj/item/gripper)) || (!isrobot(user) && W.canremove)) && storage.len < max_storage)
+		if(isrobot(user) && istype(W.loc, /obj/item/gripper))
+			var/obj/item/gripper/G = W.loc
 			G.drop_item()
 		else
 			user.drop_from_inventory(W)
@@ -271,8 +271,12 @@
 
 /datum/particle_smasher_recipe
 	var/list/reagents	// example: = list("pacid" = 5)
+<<<<<<< HEAD
 	var/list/items		// example: = list(/obj/item/weapon/tool/crowbar, /obj/item/weapon/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
 	var/recipe_type = PS_RESULT_STACK			// Are we producing a stack or an item?
+=======
+	var/list/items		// example: = list(/obj/item/tool/crowbar, /obj/item/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/result = /obj/item/stack/material/iron		// The sheet this will produce.
 	var/required_material = /obj/item/stack/material/iron	// The required material sheet.
@@ -290,7 +294,7 @@
 		if(istype(container, /obj/machinery/particle_smasher))
 			var/obj/machinery/particle_smasher/machine = container
 			for(var/obj/O in machine.storage)
-				if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown))
+				if(istype(O,/obj/item/reagent_containers/food/snacks/grown))
 					continue // Fruit is handled in check_fruit().
 				var/found = 0
 				for(var/i = 1; i < checklist.len+1; i++)

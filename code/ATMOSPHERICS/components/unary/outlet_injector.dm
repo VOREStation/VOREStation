@@ -163,7 +163,7 @@
 	update_use_power(injecting ? USE_POWER_IDLE : USE_POWER_OFF)
 	update_icon()
 
-/obj/machinery/atmospherics/unary/outlet_injector/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/unary/outlet_injector/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if (!W.is_wrench())
 		return ..()
 

@@ -25,9 +25,9 @@
 /datum/surgery_step/brainstem/mend_vessels
 	priority = 1
 	allowed_tools = list(
-		/obj/item/weapon/surgical/FixOVein = 100,
+		/obj/item/surgical/FixOVein = 100,
 		/obj/item/stack/cable_coil = 40,
-		/obj/item/device/assembly/mousetrap = 5)
+		/obj/item/assembly/mousetrap = 5)
 
 	min_duration = 80
 	max_duration = 100
@@ -59,9 +59,9 @@
 /datum/surgery_step/brainstem/drill_vertebrae
 	priority = 3 //Do this instead of expanding the skull cavity
 	allowed_tools = list(
-		/obj/item/weapon/surgical/surgicaldrill = 100,
-		/obj/item/weapon/melee/changeling/arm_blade = 15,
-		/obj/item/weapon/pickaxe = 5
+		/obj/item/surgical/surgicaldrill = 100,
+		/obj/item/melee/changeling/arm_blade = 15,
+		/obj/item/pickaxe = 5
 	)
 
 	allowed_procs = list(IS_SCREWDRIVER = 75)
@@ -102,8 +102,8 @@
 /datum/surgery_step/brainstem/clean_chips
 	priority = 3 //Do this instead of picking around for implants.
 	allowed_tools = list(
-		/obj/item/weapon/surgical/hemostat = 100,
-		/obj/item/weapon/melee/changeling/claw = 40) //Surprisingly, claws are kind of okay at picking things out.
+		/obj/item/surgical/hemostat = 100,
+		/obj/item/melee/changeling/claw = 40) //Surprisingly, claws are kind of okay at picking things out.
 
 	allowed_procs = list(IS_WIRECUTTER = 60)
 
@@ -141,10 +141,10 @@
 /datum/surgery_step/brainstem/mend_cord
 	priority = 1 //Do this after IB.
 	allowed_tools = list(
-		/obj/item/weapon/surgical/FixOVein = 100,
+		/obj/item/surgical/FixOVein = 100,
 		/obj/item/stack/nanopaste = 50,
 		/obj/item/stack/cable_coil = 40,
-		/obj/item/device/assembly/mousetrap = 5)
+		/obj/item/assembly/mousetrap = 5)
 
 	min_duration = 100
 	max_duration = 200
@@ -181,9 +181,9 @@
 /datum/surgery_step/brainstem/mend_vertebrae
 	priority = 3 //Do this instead of fixing bones.
 	allowed_tools = list(
-		/obj/item/weapon/surgical/bonegel = 100,
+		/obj/item/surgical/bonegel = 100,
 		/obj/item/stack/nanopaste = 50,
-		/obj/item/weapon/tape_roll = 5)
+		/obj/item/tape_roll = 5)
 
 	min_duration = 100
 	max_duration = 160
@@ -219,8 +219,8 @@
 /datum/surgery_step/brainstem/realign_tissue
 	priority = 3 //Do this instead of searching for objects in the skull.
 	allowed_tools = list(
-		/obj/item/weapon/surgical/hemostat = 100,
-		/obj/item/weapon/melee/changeling/claw = 20) //Claws. Good for digging, not so much for moving.
+		/obj/item/surgical/hemostat = 100,
+		/obj/item/melee/changeling/claw = 20) //Claws. Good for digging, not so much for moving.
 
 	allowed_procs = list(IS_WIRECUTTER = 60)
 

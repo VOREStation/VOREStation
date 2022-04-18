@@ -11,12 +11,18 @@
 "ak" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/steel{ icon_state = "burned1"},/area/submap/BoomBase)
 "al" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/ash,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
 "am" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
-"an" = (/obj/effect/decal/cleanable/dirt,/obj/effect/spider,/obj/item/weapon/material/shard,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
+"an" = (/obj/effect/decal/cleanable/dirt,/obj/effect/spider,/obj/item/material/shard,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
 "ao" = (/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
 "ap" = (/mob/living/simple_mob/animal/giant_spider/phorogenic,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
+<<<<<<< HEAD
 "aq" = (/obj/machinery/portable_atmospherics/canister/empty/phoron,/turf/simulated/floor/tiled/steel{ icon_state = "steel_dirty"},/area/submap/BoomBase)
 "ar" = (/obj/machinery/portable_atmospherics/canister/empty/phoron,/obj/item/weapon/material/shard,/turf/simulated/floor/tiled/steel{ icon_state = "steel_dirty"},/area/submap/BoomBase)
 "as" = (/obj/item/weapon/material/shard,/turf/simulated/floor/plating,/area/submap/BoomBase)
+=======
+"aq" = (/obj/machinery/portable_atmospherics/canister/empty/phoron,/turf/simulated/floor/tiled/steel{icon_state = "steel_dirty"},/area/submap/BoomBase)
+"ar" = (/obj/machinery/portable_atmospherics/canister/empty/phoron,/obj/item/material/shard,/turf/simulated/floor/tiled/steel{icon_state = "steel_dirty"},/area/submap/BoomBase)
+"as" = (/obj/item/material/shard,/turf/simulated/floor/plating,/area/submap/BoomBase)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "at" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/plating,/area/submap/BoomBase)
 "au" = (/turf/simulated/floor/outdoors/dirt,/area/submap/BoomBase)
 "av" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/plating,/area/submap/BoomBase)
@@ -37,14 +43,22 @@
 "aK" = (/obj/effect/decal/cleanable/dirt,/mob/living/simple_mob/animal/giant_spider/phorogenic,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
 "aL" = (/turf/simulated/floor/tiled/steel{ icon_state = "burned2"},/area/submap/BoomBase)
 "aM" = (/turf/simulated/floor/outdoors/rocks,/area/submap/BoomBase)
+<<<<<<< HEAD
 "aN" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/weapon/tank/phoron,/obj/item/weapon/fuel_assembly/phoron,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
 "aO" = (/obj/effect/decal/remains/human,/obj/effect/decal/cleanable/ash,/turf/simulated/floor/tiled/steel{ icon_state = "steel_dirty"},/area/submap/BoomBase)
 "aP" = (/obj/item/weapon/material/shard,/turf/simulated/floor/tiled/steel{ icon_state = "steel_dirty"},/area/submap/BoomBase)
 "aQ" = (/obj/item/device/transfer_valve,/turf/simulated/floor/outdoors/rocks,/area/submap/BoomBase)
 "aR" = (/obj/item/weapon/material/shard,/turf/template_noop,/area/submap/BoomBase)
+=======
+"aN" = (/obj/effect/decal/cleanable/dirt,/obj/structure/table/standard,/obj/item/tank/phoron{start_anomalous = 1},/obj/item/fuel_assembly/phoron,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
+"aO" = (/obj/effect/decal/remains/human,/obj/effect/decal/cleanable/ash,/turf/simulated/floor/tiled/steel{icon_state = "steel_dirty"},/area/submap/BoomBase)
+"aP" = (/obj/item/material/shard,/turf/simulated/floor/tiled/steel{icon_state = "steel_dirty"},/area/submap/BoomBase)
+"aQ" = (/obj/item/transfer_valve,/turf/simulated/floor/outdoors/rocks,/area/submap/BoomBase)
+"aR" = (/obj/item/material/shard,/turf/template_noop,/area/submap/BoomBase)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "aS" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor/plating,/area/submap/BoomBase)
 "aT" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
-"aU" = (/obj/effect/spider/stickyweb,/obj/item/weapon/material/shard,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
+"aU" = (/obj/effect/spider/stickyweb,/obj/item/material/shard,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
 "aV" = (/obj/effect/spider/stickyweb,/obj/random/mob/spider/mutant,/turf/simulated/floor/tiled/steel,/area/submap/BoomBase)
 "aW" = (/obj/effect/spider/stickyweb,/obj/effect/decal/cleanable/ash,/turf/simulated/floor/tiled/steel{ icon_state = "burned1"},/area/submap/BoomBase)
 "aX" = (/obj/effect/decal/remains/human,/obj/effect/decal/cleanable/ash,/turf/template_noop,/area/submap/BoomBase)

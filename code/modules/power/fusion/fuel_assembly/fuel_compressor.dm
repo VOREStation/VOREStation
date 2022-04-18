@@ -6,7 +6,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	circuit = /obj/item/weapon/circuitboard/fusion_fuel_compressor
+	circuit = /obj/item/circuitboard/fusion_fuel_compressor
 
 /obj/machinery/fusion_fuel_compressor/Initialize()
 	. = ..()
@@ -26,14 +26,24 @@
 			to_chat(user, "<span class='warning'>You need at least three hundred units of material to form a fuel rod.</span>")
 			return 1
 		var/datum/reagent/R = thing.reagents.reagent_list[1]
+<<<<<<< HEAD
 		visible_message("<b>\The [src]</b> compresses the contents of \the [thing] into a new fuel assembly.")
 		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), R.id, R.color)
+=======
+		visible_message("<span class='notice'>\The [src] compresses the contents of \the [thing] into a new fuel assembly.</span>")
+		var/obj/item/fuel_assembly/F = new(get_turf(src), R.id, R.color)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		thing.reagents.remove_reagent(R.id, R.volume)
 		user.put_in_hands(F)
 
 	else if(istype(thing, /obj/machinery/power/supermatter))
+<<<<<<< HEAD
 		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), "supermatter")
 		visible_message("<b>\The [src]</b> compresses \the [thing] into a new fuel assembly.")
+=======
+		var/obj/item/fuel_assembly/F = new(get_turf(src), "supermatter")
+		visible_message("<span class='notice'>\The [src] compresses \the [thing] into a new fuel assembly.</span>")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		qdel(thing)
 		user.put_in_hands(F)
 		return 1
@@ -57,8 +67,13 @@
 		if(M.get_amount() < FUSION_ROD_SHEET_AMT)
 			to_chat(user, "<span class='warning'>You need at least 25 [mat.sheet_plural_name] to make a fuel rod.</span>")
 			return
+<<<<<<< HEAD
 		var/obj/item/weapon/fuel_assembly/F = new(get_turf(src), mat.name)
 		visible_message("<b>\The [src]</b> compresses the [mat.use_name] into a new fuel assembly.")
+=======
+		var/obj/item/fuel_assembly/F = new(get_turf(src), mat.name)
+		visible_message("<span class='notice'>\The [src] compresses the [mat.use_name] into a new fuel assembly.</span>")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		M.use(FUSION_ROD_SHEET_AMT)
 		user.put_in_hands(F)
 

@@ -1,4 +1,4 @@
-/obj/item/weapon/material/fishing_net
+/obj/item/material/fishing_net
 	name = "fishing net"
 	desc = "A crude fishing net."
 	icon = 'icons/obj/items.dmi'
@@ -22,11 +22,11 @@
 
 	var/list/accepted_mobs = list(/mob/living/simple_mob/animal/passive/fish)
 
-/obj/item/weapon/material/fishing_net/Initialize()
+/obj/item/material/fishing_net/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/material/fishing_net/afterattack(var/atom/A, var/mob/user, var/proximity)
+/obj/item/material/fishing_net/afterattack(var/atom/A, var/mob/user, var/proximity)
 	if(get_dist(get_turf(src), A) > reach)
 		return
 
@@ -58,7 +58,7 @@
 		return
 	return ..()
 
-/obj/item/weapon/material/fishing_net/attack_self(var/mob/user)
+/obj/item/material/fishing_net/attack_self(var/mob/user)
 	for(var/mob/M in src)
 		M.forceMove(get_turf(src))
 		user.visible_message("<span class='notice'>[user] releases [M] from \the [src].</span>", "<span class='notice'>You release [M] from \the [src].</span>")
@@ -69,14 +69,14 @@
 	update_weight()
 	return
 
-/obj/item/weapon/material/fishing_net/attackby(var/obj/item/W, var/mob/user)
+/obj/item/material/fishing_net/attackby(var/obj/item/W, var/mob/user)
 	if(contents)
 		for(var/mob/living/L in contents)
 			if(prob(25))
 				L.attackby(W, user)
 	..()
 
-/obj/item/weapon/material/fishing_net/update_icon() // Also updates name and desc
+/obj/item/material/fishing_net/update_icon() // Also updates name and desc
 	underlays.Cut()
 	cut_overlays()
 
@@ -100,7 +100,7 @@
 
 	return
 
-/obj/item/weapon/material/fishing_net/proc/update_weight()
+/obj/item/material/fishing_net/proc/update_weight()
 	if(icon_state == contain_state)	// Let's not do a for loop just to see if a mob is in here.
 		slowdown = initial(slowdown) * 2
 		reach = 1

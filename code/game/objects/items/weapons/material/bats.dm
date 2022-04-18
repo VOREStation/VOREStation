@@ -1,4 +1,4 @@
-/obj/item/weapon/material/twohanded/baseballbat
+/obj/item/material/twohanded/baseballbat
 	name = "bat"
 	desc = "HOME RUN!"
 	icon_state = "metalbat0"
@@ -13,6 +13,7 @@
 	slot_flags = SLOT_BACK
 
 //Predefined materials go here.
+<<<<<<< HEAD
 /obj/item/weapon/material/twohanded/baseballbat/metal/New(var/newloc)
 	..(newloc,"steel")
 
@@ -27,3 +28,19 @@
 
 /obj/item/weapon/material/twohanded/baseballbat/diamond/New(var/newloc)
 	..(newloc,"diamond")
+=======
+/obj/item/material/twohanded/baseballbat/metal/Initialize(var/ml)
+	. = ..(ml, MAT_STEEL)
+
+/obj/item/material/twohanded/baseballbat/uranium/Initialize(var/ml)
+	. = ..(ml, MAT_URANIUM)
+
+/obj/item/material/twohanded/baseballbat/gold/Initialize(var/ml)
+	. = ..(ml, MAT_GOLD)
+
+/obj/item/material/twohanded/baseballbat/platinum/Initialize(var/ml)
+	. = ..(ml, MAT_PLATINUM)
+
+/obj/item/material/twohanded/baseballbat/diamond/Initialize(var/ml)
+	. = ..(ml, MAT_DIAMOND)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

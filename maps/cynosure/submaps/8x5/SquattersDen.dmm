@@ -1,0 +1,23 @@
+"a" = (/turf/simulated/wall,/area/template_noop)
+"c" = (/turf/simulated/wall{can_open = 1},/area/template_noop)
+"e" = (/obj/structure/table/standard,/obj/machinery/microwave,/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 13},/turf/simulated/floor/plating,/area/template_noop)
+"f" = (/obj/structure/bed/padded,/obj/item/clothing/suit/ianshirt,/obj/item/bedsheet/ian,/obj/structure/sign/poster/custom{dir = 8; pixel_x = -32; poster_decl = /decl/poster/vore_69},/turf/simulated/floor/plating,/area/template_noop)
+"l" = (/obj/structure/barricade,/turf/simulated/floor/plating,/area/template_noop)
+"m" = (/obj/machinery/light_construct/small,/obj/item/reagent_containers/glass/bucket,/turf/simulated/floor/plating,/area/template_noop)
+"A" = (/obj/structure/closet,/obj/item/clothing/suit/storage/hooded/ian_costume,/obj/item/clothing/under/color/grey,/obj/random/maintenance/cargo,/obj/random/maintenance/engineering,/obj/item/clothing/mask/gas/half,/obj/random/maintenance/clean,/turf/simulated/floor/plating,/area/template_noop)
+"D" = (/obj/item/trash/ramen,/obj/structure/mirror{pixel_y = 25},/turf/simulated/floor/plating,/area/template_noop)
+"G" = (/turf/simulated/floor/plating,/area/template_noop)
+"K" = (/obj/structure/plushie/ian,/obj/effect/decal/cleanable/cobweb2,/turf/simulated/floor/plating,/area/template_noop)
+"L" = (/obj/structure/table/standard,/obj/item/reagent_containers/food/drinks/cans/waterbottle{pixel_x = 6; pixel_y = 12},/obj/item/flashlight/lamp/green{pixel_x = -6; pixel_y = 1},/obj/item/toy/plushie/girly_corgi,/turf/simulated/floor/plating,/area/template_noop)
+"Q" = (/obj/structure/table/standard,/obj/machinery/reagentgrinder,/turf/simulated/floor/plating,/area/template_noop)
+"V" = (/turf/simulated/wall/r_wall,/area/template_noop)
+"W" = (/obj/structure/table/rack,/obj/random/toy,/obj/random/contraband,/obj/random/contraband,/obj/random/tank,/obj/random/toolbox,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/template_noop)
+"Y" = (/obj/structure/table/standard,/obj/random/snack,/obj/item/reagent_containers/food/drinks/dry_ramen{pixel_x = -6; pixel_y = 6},/obj/random/drinkbottle,/turf/simulated/floor/plating,/area/template_noop)
+
+(1,1,1) = {"
+aaaaacaV
+afDAWGKV
+aLGGGGQV
+lGGGmYeV
+aaaaaaaV
+"}

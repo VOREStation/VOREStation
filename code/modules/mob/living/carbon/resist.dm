@@ -29,7 +29,7 @@
 /mob/living/carbon/proc/reduce_cuff_time()
 	return FALSE
 
-/mob/living/carbon/proc/cuff_resist(obj/item/weapon/handcuffs/I, breakouttime = 1200, cuff_break = 0)
+/mob/living/carbon/proc/cuff_resist(obj/item/handcuffs/I, breakouttime = 1200, cuff_break = 0)
 	
 	if(istype(I))
 		breakouttime = I.breakouttime

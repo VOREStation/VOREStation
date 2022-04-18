@@ -16,7 +16,7 @@
 	matter = list(MAT_STEEL = 20000, MAT_PLASTIC = 30000, MAT_GLASS = 5000)
 
 	var/damage = 0
-	var/obj/item/weapon/rig/holder
+	var/obj/item/rig/holder
 
 	var/module_cooldown = 10
 	var/next_use = 0
@@ -136,7 +136,7 @@
 	stat_modules +=	new/stat_rig_module/charge(src)
 
 // Called when the module is installed into a suit.
-/obj/item/rig_module/proc/installed(var/obj/item/weapon/rig/new_holder)
+/obj/item/rig_module/proc/installed(var/obj/item/rig/new_holder)
 	holder = new_holder
 	return
 
@@ -232,15 +232,15 @@
 /mob/living/carbon/human/Stat()
 	. = ..()
 
-	if(. && istype(back,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/R = back
+	if(. && istype(back,/obj/item/rig))
+		var/obj/item/rig/R = back
 		SetupStat(R)
 
-	else if(. && istype(belt,/obj/item/weapon/rig))
-		var/obj/item/weapon/rig/R = belt
+	else if(. && istype(belt,/obj/item/rig))
+		var/obj/item/rig/R = belt
 		SetupStat(R)
 
-/mob/proc/SetupStat(var/obj/item/weapon/rig/R)
+/mob/proc/SetupStat(var/obj/item/rig/R)
 	if(R && !R.canremove && R.installed_modules.len && statpanel("Hardsuit Modules"))
 		var/cell_status = R.cell ? "[R.cell.charge]/[R.cell.maxcharge]" : "ERROR"
 		stat("Suit charge", cell_status)

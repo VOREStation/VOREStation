@@ -5,8 +5,12 @@
 	icon_screen = "robot"
 	light_color = "#a97faa"
 	req_access = list(access_robotics)
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/robotics
 	var/safety = 1
+=======
+	circuit = /obj/item/circuitboard/robotics
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/robotics/attack_ai(var/mob/user as mob)
 	tgui_interact(user)

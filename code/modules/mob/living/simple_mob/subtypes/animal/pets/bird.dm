@@ -35,13 +35,27 @@
 	organ_names = /decl/mob_organ_names/bird
 
 	say_list_type = /datum/say_list/bird
-	holder_type = /obj/item/weapon/holder/bird
+	holder_type = /obj/item/holder/bird
 
 /datum/say_list/bird
 	speak = list("Chirp!","Caw!","Screech!","Squawk!")
 	emote_hear = list("chirps","caws")
 	emote_see = list("shakes their head", "ruffles their feathers")
 
+<<<<<<< HEAD
+=======
+/obj/item/holder/bird
+	name = "bird"
+	desc = "It's a bird!"
+	icon_state = null
+	item_icons = null
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/holder/bird/sync(var/mob/living/simple_mob/SM)
+	..()
+	icon_state = SM.icon_rest // Looks better if the bird isn't flapping constantly in the UI.
+
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 // Subtypes for birbs.
 /mob/living/simple_mob/animal/passive/bird/black_bird
 	name = "common blackbird"

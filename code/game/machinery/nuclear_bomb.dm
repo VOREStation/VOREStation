@@ -16,7 +16,7 @@ var/bomb_set
 	var/code = ""
 	var/yes_code = 0.0
 	var/safety = 1.0
-	var/obj/item/weapon/disk/nuclear/auth = null
+	var/obj/item/disk/nuclear/auth = null
 	var/list/wires = list()
 	var/light_wire
 	var/safety_wire
@@ -54,7 +54,7 @@ var/bomb_set
 				attack_hand(M)
 	return
 
-/obj/machinery/nuclearbomb/attackby(obj/item/weapon/O as obj, mob/user as mob)
+/obj/machinery/nuclearbomb/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.is_screwdriver())
 		playsound(src, O.usesound, 50, 1)
 		add_fingerprint(user)
@@ -78,13 +78,13 @@ var/bomb_set
 			flick("nuclearbombc", src)
 
 		return
-	if(O.is_wirecutter() || istype(O, /obj/item/device/multitool))
+	if(O.is_wirecutter() || istype(O, /obj/item/multitool))
 		if(opened == 1)
 			nukehack_win(user)
 		return
 
 	if(extended)
-		if(istype(O, /obj/item/weapon/disk/nuclear))
+		if(istype(O, /obj/item/disk/nuclear))
 			usr.drop_item()
 			O.loc = src
 			auth = O
@@ -94,9 +94,9 @@ var/bomb_set
 	if(anchored)
 		switch(removal_stage)
 			if(0)
-				if(istype(O,/obj/item/weapon/weldingtool))
+				if(istype(O,/obj/item/weldingtool))
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
 						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
@@ -122,9 +122,9 @@ var/bomb_set
 				return
 
 			if(2)
-				if(istype(O,/obj/item/weapon/weldingtool))
+				if(istype(O,/obj/item/weldingtool))
 
-					var/obj/item/weapon/weldingtool/WT = O
+					var/obj/item/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
 						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
@@ -238,7 +238,7 @@ var/bomb_set
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
-				if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if(!istype(usr.get_active_hand(), /obj/item/multitool))
 					to_chat(usr, "You need a multitool!")
 				else
 					if(wires[temp_wire])
@@ -285,7 +285,7 @@ var/bomb_set
 				auth = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/disk/nuclear))
+				if(istype(I, /obj/item/disk/nuclear))
 					usr.drop_item()
 					I.loc = src
 					auth = I
@@ -410,16 +410,21 @@ var/bomb_set
 				return
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/nuclear/New()
 	..()
+=======
+/obj/item/disk/nuclear/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	nuke_disks |= src
 
-/obj/item/weapon/disk/nuclear/Destroy()
+/obj/item/disk/nuclear/Destroy()
 	if(!nuke_disks.len && blobstart.len > 0)
-		var/obj/D = new /obj/item/weapon/disk/nuclear(pick(blobstart))
+		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
 		message_admins("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 		log_game("[src], the last authentication disk, has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
 	..()
 
-/obj/item/weapon/disk/nuclear/touch_map_edge()
+/obj/item/disk/nuclear/touch_map_edge()
 	qdel(src)

@@ -14,10 +14,10 @@
 /datum/supply_pack/recreation/foam_weapons
 	name = "Foam Weapon Crate"
 	contains = list(
-			/obj/item/weapon/material/sword/foam = 2,
-			/obj/item/weapon/material/twohanded/baseballbat/foam = 2,
-			/obj/item/weapon/material/twohanded/spear/foam = 2,
-			/obj/item/weapon/material/twohanded/fireaxe/foam = 2
+			/obj/item/material/sword/foam = 2,
+			/obj/item/material/twohanded/baseballbat/foam = 2,
+			/obj/item/material/twohanded/spear/foam = 2,
+			/obj/item/material/twohanded/fireaxe/foam = 2
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/allico
@@ -45,9 +45,9 @@
 /datum/supply_pack/recreation/lasertag
 	name = "Lasertag equipment"
 	contains = list(
-			/obj/item/weapon/gun/energy/lasertag/red,
+			/obj/item/gun/energy/lasertag/red,
 			/obj/item/clothing/suit/redtag,
-			/obj/item/weapon/gun/energy/lasertag/blue,
+			/obj/item/gun/energy/lasertag/blue,
 			/obj/item/clothing/suit/bluetag
 			)
 	containertype = /obj/structure/closet/crate/ward
@@ -57,21 +57,21 @@
 /datum/supply_pack/recreation/artscrafts
 	name = "Arts and Crafts supplies"
 	contains = list(
-			/obj/item/weapon/storage/fancy/crayons,
-			/obj/item/weapon/storage/fancy/markers,
-			/obj/item/device/camera,
-			/obj/item/device/camera_film = 2,
-			/obj/item/weapon/storage/photo_album,
-			/obj/item/weapon/packageWrap,
-			/obj/item/weapon/reagent_containers/glass/paint/red,
-			/obj/item/weapon/reagent_containers/glass/paint/green,
-			/obj/item/weapon/reagent_containers/glass/paint/blue,
-			/obj/item/weapon/reagent_containers/glass/paint/yellow,
-			/obj/item/weapon/reagent_containers/glass/paint/purple,
-			/obj/item/weapon/reagent_containers/glass/paint/black,
-			/obj/item/weapon/reagent_containers/glass/paint/white,
+			/obj/item/storage/fancy/crayons,
+			/obj/item/storage/fancy/markers,
+			/obj/item/camera,
+			/obj/item/camera_film = 2,
+			/obj/item/storage/photo_album,
+			/obj/item/packageWrap,
+			/obj/item/reagent_containers/glass/paint/red,
+			/obj/item/reagent_containers/glass/paint/green,
+			/obj/item/reagent_containers/glass/paint/blue,
+			/obj/item/reagent_containers/glass/paint/yellow,
+			/obj/item/reagent_containers/glass/paint/purple,
+			/obj/item/reagent_containers/glass/paint/black,
+			/obj/item/reagent_containers/glass/paint/white,
 			/obj/item/poster/custom,
-			/obj/item/weapon/wrapping_paper = 3
+			/obj/item/wrapping_paper = 3
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/allico
@@ -83,9 +83,9 @@
 	containername = "station painting supplies crate"
 	containertype = /obj/structure/closet/crate/grayson
 	contains = list(
-			/obj/item/device/pipe_painter = 2,
-			/obj/item/device/floor_painter = 2,
-			///obj/item/device/closet_painter = 2
+			/obj/item/pipe_painter = 2,
+			/obj/item/floor_painter = 2,
+			///obj/item/closet_painter = 2
 			)
 
 /datum/supply_pack/recreation/cheapbait
@@ -94,7 +94,7 @@
 	containername = "cheap bait crate"
 	containertype = /obj/structure/closet/crate/freezer
 	contains = list(
-			/obj/item/weapon/storage/box/wormcan/sickly = 5
+			/obj/item/storage/box/wormcan/sickly = 5
 			)
 
 /datum/supply_pack/randomised/recreation/cheapbait
@@ -104,8 +104,8 @@
 	containertype = /obj/structure/closet/crate/carp
 	num_contained = 8
 	contains = list(
-			/obj/item/weapon/storage/box/wormcan,
-			/obj/item/weapon/storage/box/wormcan/deluxe
+			/obj/item/storage/box/wormcan,
+			/obj/item/storage/box/wormcan/deluxe
 			)
 
 /datum/supply_pack/recreation/ltagturrets

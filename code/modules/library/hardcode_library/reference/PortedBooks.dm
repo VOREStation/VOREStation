@@ -7,7 +7,7 @@ Category: Reference
 
 /// Recycling Procedures by 'Astrid Morton'.
 
-/obj/item/weapon/book/bundle/custom_library/reference/recyclingprocedures
+/obj/item/book/bundle/custom_library/reference/recyclingprocedures
 	name = "Recycling Procedures"
 	desc = "A hardbound book titled \"Recycling Procedures\" by Astrid Morton."
 	description_info = "This book is titled \"Recycling Procedures\" by Astrid Morton. It appears to be about ways you can help recycle on your average space station."
@@ -104,7 +104,7 @@ Category: Reference
 
 ///A Guide to FBP and Prosthetic Maintenance by Yuki Matsuda. Was edited to be more accurate and fixed typos.
 
-/obj/item/weapon/book/bundle/custom_library/reference/fbpandprostheticmaintenance
+/obj/item/book/bundle/custom_library/reference/fbpandprostheticmaintenance
 	name = "A Guide to FBP and Prosthetic Maintenance"
 	desc = "A hardbound book titled \"A Guide to FBP and Prosthetic Maintenance\" by Yuki Matsuda."
 	description_info = "This book is titled \"A Guide to FBP and Prosthetic Maintenance\" by Yuki Matsuda. It appears to cover general steps for repairing prosthetics."
@@ -233,7 +233,7 @@ Category: Reference
 
 ///A Fistful of D6's: Player's Guide by Ray Rogers
 
-/obj/item/weapon/book/custom_library/reference/fistfulofd6splayersguide
+/obj/item/book/custom_library/reference/fistfulofd6splayersguide
 
 	name = "A Fistful of D6's: Player's Guide"
 	desc = "A hardbound book titled \"A Fistful of D6's: Player's Guide\" by Ray Rogers."
@@ -269,7 +269,7 @@ Category: Reference
 
 ///The Space Survival Guide: Depressurization by Lachina Green.
 
-/obj/item/weapon/book/custom_library/reference/spacesurvivalguidedespressurization
+/obj/item/book/custom_library/reference/spacesurvivalguidedespressurization
 
 	name = "The Space Survival Guide: Depressurization"
 	desc = "A hardbound book titled \"The Space Survival Guide: Depressurization\" by Lachina Green."
@@ -322,7 +322,7 @@ Category: Reference
 
 ///Security Guidelines by NanoTrasen.
 
-/obj/item/weapon/book/custom_library/reference/securityguidelines
+/obj/item/book/custom_library/reference/securityguidelines
 
 	name = "Security Guidelines"
 	desc = "A hardbound book titled \"Security Guidelines\" as provided by NanoTrasen."

@@ -1,0 +1,58 @@
+"a" = (/turf/simulated/wall/r_wall,/area/template_noop)
+"b" = (/obj/random/junk,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"d" = (/obj/effect/floor_decal/borderfloor/corner{dir = 1},/obj/effect/floor_decal/corner/brown/bordercorner{dir = 1},/obj/machinery/vending/snlvend,/obj/machinery/atmospherics/unary/vent_pump,/turf/simulated/floor/tiled,/area/template_noop)
+"e" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"f" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/brown/border{dir = 4},/obj/structure/closet/crate/unathi,/obj/item/reagent_containers/food/snacks/unajerky,/obj/item/reagent_containers/food/snacks/unajerky,/obj/item/reagent_containers/food/snacks/unajerky,/obj/item/reagent_containers/food/snacks/unajerky,/obj/item/reagent_containers/food/snacks/unajerky,/obj/item/reagent_containers/food/snacks/unajerky,/obj/item/reagent_containers/food/snacks/unajerky,/obj/item/reagent_containers/food/snacks/unajerky,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"g" = (/obj/structure/table/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/item/retail_scanner/cargo,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"h" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 1},/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 6},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 1},/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/turf/simulated/floor/tiled,/area/template_noop)
+"i" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/table/steel,/obj/random/maintenance/medical,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"j" = (/turf/template_noop,/area/template_noop)
+"k" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/table/steel,/obj/random/maintenance/clean,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"l" = (/obj/machinery/door/window/brigdoor/northleft,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled,/area/template_noop)
+"m" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled,/area/template_noop)
+"n" = (/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"o" = (/obj/structure/bed/chair/office/dark{dir = 1},/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"p" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"q" = (/obj/effect/floor_decal/corner_steel_grid{dir = 5},/obj/effect/floor_decal/steeldecal/steel_decals5,/obj/effect/floor_decal/steeldecal/steel_decals_central4,/obj/effect/floor_decal/spline/plain,/obj/structure/extinguisher_cabinet{dir = 4; pixel_x = 30},/turf/simulated/floor/tiled,/area/template_noop)
+"r" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/brown/border{dir = 4},/obj/machinery/light{dir = 4},/obj/effect/decal/remains/lizard,/obj/structure/closet/crate/large/critter,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"s" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/template_noop)
+"t" = (/turf/simulated/wall,/area/template_noop)
+"u" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/table/steel,/obj/random/maintenance/engineering,/obj/machinery/alarm{dir = 1; pixel_y = -22},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"v" = (/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc{dir = 1; name = "north bump"; operating = 0; pixel_y = 24},/obj/effect/floor_decal/borderfloor{dir = 1},/obj/effect/floor_decal/corner/brown/border{dir = 1},/obj/effect/floor_decal/steeldecal/steel_decals_central7{dir = 1},/obj/machinery/light_switch{pixel_x = 12; pixel_y = 24},/turf/simulated/floor/tiled,/area/template_noop)
+"x" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/table/steel,/obj/random/maintenance/research,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"y" = (/obj/machinery/atmospherics/pipe/cap/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/cap/hidden/supply{dir = 4},/turf/simulated/wall,/area/template_noop)
+"z" = (/obj/random/obstruction,/turf/simulated/floor/plating,/area/template_noop)
+"A" = (/obj/effect/floor_decal/borderfloor{dir = 6},/obj/effect/floor_decal/corner/brown/border{dir = 6},/obj/structure/closet/crate/nanomed,/obj/random/medical,/obj/random/medical/lite,/obj/random/medical/lite,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"B" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/table/steel,/obj/random/maintenance/cargo,/obj/structure/sign/poster/custom{pixel_y = -32; poster_decl = /decl/poster/vore_75},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"C" = (/obj/machinery/firealarm{pixel_y = 24},/turf/simulated/floor/tiled,/area/template_noop)
+"D" = (/obj/structure/table/reinforced,/obj/structure/windoor_assembly/secure,/obj/item/deskbell,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"E" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/brown/border{dir = 8},/obj/machinery/light{dir = 8},/obj/structure/closet/crate/allico,/obj/random/plushie,/obj/random/plushie,/obj/random/toy,/obj/random/toy,/obj/random/toy,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"H" = (/obj/effect/floor_decal/borderfloor{dir = 10},/obj/effect/floor_decal/corner/brown/border{dir = 10},/obj/structure/closet/crate/freezer/centauri,/obj/random/snack,/obj/random/snack,/obj/random/snack,/obj/random/drinksoft,/obj/random/drinksoft,/obj/random/drinksoft,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"I" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/brown/border{dir = 8},/obj/structure/loot_pile/maint/boxfort,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"J" = (/obj/structure/table/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/item/stamp,/obj/item/paper/sticky,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"K" = (/obj/structure/window/reinforced{dir = 1},/obj/structure/closet/wardrobe/black,/obj/random/contraband,/obj/random/cash/big,/obj/random/cash,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/template_noop)
+"M" = (/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 9},/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"N" = (/obj/effect/floor_decal/borderfloor/corner{dir = 1},/obj/effect/floor_decal/corner/brown/bordercorner{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"O" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/obj/effect/floor_decal/corner/brown/bordercorner{dir = 4},/obj/item/frame/light{dir = 1},/obj/structure/sign/poster/nanotrasen{dir = 1; pixel_y = 32; poster_decl = /decl/poster/pol_12},/turf/simulated/floor/tiled,/area/template_noop)
+"P" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/table/steel,/obj/random/maintenance/security,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"Q" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/turf/simulated/floor/tiled,/area/template_noop)
+"R" = (/obj/structure/table/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/item/paper_bin,/obj/item/pen/fountain,/obj/random/junk,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"S" = (/turf/simulated/floor/tiled,/area/template_noop)
+"T" = (/obj/machinery/atmospherics/unary/vent_scrubber,/turf/simulated/floor/tiled,/area/template_noop)
+"U" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/status_display/supply_display,/turf/simulated/floor/plating,/area/template_noop)
+"V" = (/obj/machinery/atmospherics/unary/vent_scrubber{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"W" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"X" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/brown/border{dir = 8},/obj/structure/closet/crate/gilthari,/obj/random/drinkbottle,/obj/random/drinkbottle,/obj/random/drinkbottle,/obj/random/cigarettes,/obj/random/cigarettes,/obj/random/cigarettes,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"Y" = (/turf/simulated/floor/tiled/monotile,/area/template_noop)
+
+(1,1,1) = {"
+tajjjaaaaa
+taataaICqa
+jadMOvNTza
+jyhppneQza
+aaKRDgJlUa
+aXsYoYbmfa
+aEVSSSSWra
+aHPkuBixAa
+aaaaaaaaaa
+"}

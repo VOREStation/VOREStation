@@ -1,6 +1,6 @@
 // Specific types
 /datum/mini_hud/mapper
-    var/obj/item/device/mapping_unit/owner
+    var/obj/item/mapping_unit/owner
 
 /datum/mini_hud/mapper/New(var/datum/hud/other, owner)
     src.owner = owner

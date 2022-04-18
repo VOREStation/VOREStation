@@ -1,4 +1,4 @@
-/obj/item/device/text_to_speech
+/obj/item/text_to_speech
 	name = "TTS device"
 	desc = "A device that speaks an inputted message. Given to crew which can not speak properly or at all."
 	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
@@ -6,8 +6,13 @@
 	w_class = ITEMSIZE_SMALL
 	var/named
 
+<<<<<<< HEAD
 /obj/item/device/text_to_speech/attack_self(mob/user as mob)
 	if(user.incapacitated(INCAPACITATION_KNOCKDOWN|INCAPACITATION_DISABLED)) // EDIT: We can use the device only if we are not in certain types of incapacitation. We don't want chairs stopping us from texting!!
+=======
+/obj/item/text_to_speech/attack_self(mob/user as mob)
+	if(user.incapacitated(INCAPACITATION_ALL)) //Are you in a state to actual use the device?
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		to_chat(user, "You cannot activate the device in your state.")
 		return
 

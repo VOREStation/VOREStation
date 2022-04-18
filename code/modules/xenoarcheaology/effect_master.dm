@@ -286,10 +286,10 @@
 
 
 /datum/component/artifact_master/proc/on_attackby()
-	var/obj/item/weapon/W = args[2]
+	var/obj/item/W = args[2]
 	for(var/datum/artifact_effect/my_effect in my_effects)
 
-		if (istype(W, /obj/item/weapon/reagent_containers))
+		if (istype(W, /obj/item/reagent_containers))
 			if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
 				if(my_effect.trigger == TRIGGER_WATER)
 					my_effect.ToggleActivate()
@@ -302,16 +302,16 @@
 			else if(W.reagents.has_reagent("toxin", 1) || W.reagents.has_reagent("cyanide", 1) || W.reagents.has_reagent("amatoxin", 1) || W.reagents.has_reagent("neurotoxin", 1))
 				if(my_effect.trigger == TRIGGER_TOXIN)
 					my_effect.ToggleActivate()
-		else if(istype(W,/obj/item/weapon/melee/baton) && W:status ||\
-				istype(W,/obj/item/weapon/melee/energy) ||\
-				istype(W,/obj/item/weapon/melee/cultblade) ||\
-				istype(W,/obj/item/weapon/card/emag) ||\
-				istype(W,/obj/item/device/multitool))
+		else if(istype(W,/obj/item/melee/baton) && W:status ||\
+				istype(W,/obj/item/melee/energy) ||\
+				istype(W,/obj/item/melee/cultblade) ||\
+				istype(W,/obj/item/card/emag) ||\
+				istype(W,/obj/item/multitool))
 			if (my_effect.trigger == TRIGGER_ENERGY)
 				my_effect.ToggleActivate()
 
-		else if (istype(W,/obj/item/weapon/flame) && W:lit ||\
-				istype(W,/obj/item/weapon/weldingtool) && W:welding)
+		else if (istype(W,/obj/item/flame) && W:lit ||\
+				istype(W,/obj/item/weldingtool) && W:welding)
 			if(my_effect.trigger == TRIGGER_HEAT)
 				my_effect.ToggleActivate()
 		else

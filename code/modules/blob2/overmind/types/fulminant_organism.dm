@@ -42,7 +42,7 @@
 			S.faction = faction
 		S.update_icons()
 
-/datum/blob_type/fulminant_organism/on_chunk_use(obj/item/weapon/blobcore_chunk/B, mob/living/user)
+/datum/blob_type/fulminant_organism/on_chunk_use(obj/item/blobcore_chunk/B, mob/living/user)
 	for(var/I = 1 to rand(3,4))
 		var/mob/living/simple_mob/blob/spore/S = new spore_type(get_turf(B))
 		S.faction = user.faction

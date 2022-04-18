@@ -1,7 +1,7 @@
 /*
  * Wirecutters
  */
-/obj/item/weapon/tool/wirecutters
+/obj/item/tool/wirecutters
 	name = "wirecutters"
 	desc = "This cuts wires."
 	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
@@ -27,6 +27,7 @@
 	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
+<<<<<<< HEAD
 /obj/item/weapon/tool/wirecutters/New()
 	if(random_color)
 		switch(pick("red","blue","yellow"))
@@ -43,9 +44,16 @@
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
 	..()
+=======
+/obj/item/tool/wirecutters/Initialize()
+	if(random_color && prob(50))
+		icon_state = "cutters-y"
+		item_state = "cutters_yellow"
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
-/obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
-	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
+/obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
+	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")
@@ -70,7 +78,7 @@
 	energy and signals, just as humans do."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/weapon/tool/wirecutters/alien
+/obj/item/tool/wirecutters/alien
 	name = "alien wirecutters"
 	desc = "Extremely sharp wirecutters, made out of a silvery-green metal."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_wirecutters)
@@ -80,13 +88,13 @@
 	origin_tech = list(TECH_MATERIAL = 5, TECH_ENGINEERING = 4)
 	random_color = FALSE
 
-/obj/item/weapon/tool/wirecutters/cyborg
+/obj/item/tool/wirecutters/cyborg
 	name = "wirecutters"
 	desc = "This cuts wires.  With science."
 	usesound = 'sound/items/jaws_cut.ogg'
 	toolspeed = 0.5
 
-/obj/item/weapon/tool/wirecutters/hybrid
+/obj/item/tool/wirecutters/hybrid
 	name = "strange wirecutters"
 	desc = "This cuts wires.  With <span class='alien'>Science!</span>"
 	icon_state = "hybcutters"
@@ -97,7 +105,7 @@
 	toolspeed = 0.4
 	reach = 2
 
-/obj/item/weapon/tool/wirecutters/power
+/obj/item/tool/wirecutters/power
 	name = "jaws of life"
 	desc = "A set of jaws of life, compressed through the magic of science. It's fitted with a cutting head."
 	icon_state = "jaws_cutter"
@@ -108,21 +116,26 @@
 	force = 15
 	toolspeed = 0.25
 	random_color = FALSE
-	var/obj/item/weapon/tool/crowbar/power/counterpart = null
+	var/obj/item/tool/crowbar/power/counterpart = null
 
+<<<<<<< HEAD
 /obj/item/weapon/tool/wirecutters/power/New(newloc, no_counterpart = TRUE)
 	..(newloc)
+=======
+/obj/item/tool/wirecutters/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..(ml)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src
 
-/obj/item/weapon/tool/wirecutters/power/Destroy()
+/obj/item/tool/wirecutters/power/Destroy()
 	if(counterpart)
 		counterpart.counterpart = null // So it can qdel cleanly.
 		QDEL_NULL(counterpart)
 	return ..()
 
-/obj/item/weapon/tool/wirecutters/power/attack_self(mob/user)
+/obj/item/tool/wirecutters/power/attack_self(mob/user)
 	playsound(src, 'sound/items/change_jaws.ogg', 50, 1)
 	user.drop_item(src)
 	counterpart.forceMove(get_turf(src))

@@ -16,21 +16,21 @@
 	var/to_wear_helmet = /obj/item/clothing/head/welding
 	var/to_wear_glasses = /obj/item/clothing/glasses/threedglasses
 	var/to_wear_mask = /obj/item/clothing/mask/gas
-	var/to_wear_l_radio = /obj/item/device/radio/headset
+	var/to_wear_l_radio = /obj/item/radio/headset
 	var/to_wear_r_radio = null
 	var/to_wear_uniform = /obj/item/clothing/under/color/grey
 	var/to_wear_suit = /obj/item/clothing/suit/armor/material/makeshift/glass
 	var/to_wear_gloves = /obj/item/clothing/gloves/ring/material/platinum
 	var/to_wear_shoes = /obj/item/clothing/shoes/galoshes
-	var/to_wear_belt = /obj/item/weapon/storage/belt/utility/full
-	var/to_wear_l_pocket = /obj/item/weapon/soap
-	var/to_wear_r_pocket = /obj/item/device/pda
-	var/to_wear_back = /obj/item/weapon/storage/backpack
-	var/to_wear_id_type = /obj/item/weapon/card/id
+	var/to_wear_belt = /obj/item/storage/belt/utility/full
+	var/to_wear_l_pocket = /obj/item/soap
+	var/to_wear_r_pocket = /obj/item/pda
+	var/to_wear_back = /obj/item/storage/backpack
+	var/to_wear_id_type = /obj/item/card/id
 	var/to_wear_id_job = "Assistant"
 
 	var/to_wear_l_hand = null
-	var/to_wear_r_hand = /obj/item/weapon/melee/baton
+	var/to_wear_r_hand = /obj/item/melee/baton
 
 /mob/living/carbon/human/ai_controlled/Initialize()
 	if(generate_gender)
@@ -89,7 +89,7 @@
 		equip_to_slot_or_del(new to_wear_r_hand(src), slot_r_hand)
 
 	if(to_wear_id_type)
-		var/obj/item/weapon/card/id/W = new to_wear_id_type(src)
+		var/obj/item/card/id/W = new to_wear_id_type(src)
 		W.name = "[real_name]'s ID Card"
 		var/datum/job/jobdatum
 		for(var/jobtype in typesof(/datum/job))
@@ -124,17 +124,17 @@
 	to_wear_helmet = /obj/item/clothing/head/helmet/dermal
 	to_wear_glasses = /obj/item/clothing/glasses/goggles
 	to_wear_mask = /obj/item/clothing/mask/gas/half
-	to_wear_l_radio = /obj/item/device/radio/headset/headset_rob
+	to_wear_l_radio = /obj/item/radio/headset/headset_rob
 	to_wear_r_radio = null
 	to_wear_uniform = /obj/item/clothing/under/color/grey
 	to_wear_suit = /obj/item/clothing/suit/armor/vest
 	to_wear_gloves = null
 	to_wear_shoes = /obj/item/clothing/shoes/boots/combat/changeling
-	to_wear_belt = /obj/item/weapon/storage/belt/utility/full
-	to_wear_l_pocket = /obj/item/weapon/grenade/explosive/mini
-	to_wear_r_pocket = /obj/item/weapon/grenade/explosive/mini
-	to_wear_back = /obj/item/device/radio/electropack
-	to_wear_id_type = /obj/item/weapon/card/id
+	to_wear_belt = /obj/item/storage/belt/utility/full
+	to_wear_l_pocket = /obj/item/grenade/explosive/mini
+	to_wear_r_pocket = /obj/item/grenade/explosive/mini
+	to_wear_back = /obj/item/radio/electropack
+	to_wear_id_type = /obj/item/card/id
 	to_wear_id_job = "Experiment"
 
 	to_wear_r_hand = null

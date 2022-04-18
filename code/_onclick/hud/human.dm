@@ -243,7 +243,7 @@
 		internals = new /obj/screen()
 		internals.icon = HUD.ui_style
 		internals.icon_state = "internal0"
-		if(istype(internal, /obj/item/weapon/tank)) //Internals on already? Iight, prove it
+		if(istype(internal, /obj/item/tank)) //Internals on already? Iight, prove it
 			internals.icon_state = "internal1"
 		internals.name = "internal"
 		internals.screen_loc = ui_internal

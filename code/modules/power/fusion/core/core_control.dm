@@ -1,7 +1,7 @@
 /obj/machinery/computer/fusion_core_control
 	name = "\improper R-UST Mk. 8 core control"
 	light_color = COLOR_ORANGE
-	circuit = /obj/item/weapon/circuitboard/fusion_core_control
+	circuit = /obj/item/circuitboard/fusion_core_control
 
 	icon_keyboard = "tech_key"
 	icon_screen = "core_control"
@@ -23,8 +23,13 @@
 
 /obj/machinery/computer/fusion_core_control/attackby(var/obj/item/thing, var/mob/user)
 	..()
+<<<<<<< HEAD
 	if(istype(thing, /obj/item/device/multitool))
 		var/new_ident = sanitize_text(input(usr, "Enter a new ident tag.", "Core Control", monitor.core_tag) as null|text)
+=======
+	if(istype(thing, /obj/item/multitool))
+		var/new_ident = sanitize_text(input("Enter a new ident tag.", "Core Control", monitor.core_tag) as null|text)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(new_ident && user.Adjacent(src))
 			monitor.core_tag = new_ident
 //			id_tag = new_ident

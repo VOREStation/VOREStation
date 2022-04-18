@@ -1,14 +1,14 @@
 // Self contained file for all things TGUI
-/obj/item/device/pda/tgui_state(mob/user)
+/obj/item/pda/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/pda/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/pda/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Pda", "Personal Data Assistant", parent_ui)
 		ui.open()
 
-/obj/item/device/pda/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/pda/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["owner"] = owner					// Who is your daddy...
@@ -59,7 +59,7 @@
 
 	return data
 
-/obj/item/device/pda/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/pda/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -85,7 +85,7 @@
 				var/turf/T = loc
 				if(ismob(T))
 					T = T.loc
-				var/obj/item/weapon/cartridge/C = cartridge
+				var/obj/item/cartridge/C = cartridge
 				C.forceMove(T)
 				if(scanmode in C.programs)
 					scanmode = null

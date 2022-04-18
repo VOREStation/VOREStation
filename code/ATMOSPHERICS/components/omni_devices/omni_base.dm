@@ -79,7 +79,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/omni/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/atmospherics/omni/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(!W.is_wrench())
 		return ..()
 

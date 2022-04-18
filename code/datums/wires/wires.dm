@@ -200,7 +200,7 @@
 					user.put_in_hands(O)
 					return TRUE
 
-			if(!istype(I, /obj/item/device/assembly/signaler))
+			if(!istype(I, /obj/item/assembly/signaler))
 				to_chat(user, "<span class='error'>You need a remote signaller!</span>")
 				return
 
@@ -223,7 +223,7 @@
 	// if(user.can_admin_interact())
 		// return TRUE
 	var/obj/item/I = user.get_active_hand()
-	if(istype(I, /obj/item/device/multitool/alien))
+	if(istype(I, /obj/item/multitool/alien))
 		return TRUE
 	return FALSE
 
@@ -399,7 +399,7 @@
  * Arugments:
  * * S - the attached signaler receiving the signal.
  */
-/datum/wires/proc/pulse_assembly(obj/item/device/assembly/signaler/S)
+/datum/wires/proc/pulse_assembly(obj/item/assembly/signaler/S)
 	for(var/color in assemblies)
 		if(S == assemblies[color])
 			pulse_color(color)
@@ -415,7 +415,7 @@
  * * color - the wire color.
  * * S - the signaler that a mob is trying to attach.
  */
-/datum/wires/proc/attach_assembly(color, obj/item/device/assembly/signaler/S)
+/datum/wires/proc/attach_assembly(color, obj/item/assembly/signaler/S)
 	if(S && istype(S) && !is_attached(color))
 		assemblies[color] = S
 		S.forceMove(holder)
@@ -431,7 +431,7 @@
  * * color - the wire color.
  */
 /datum/wires/proc/detach_assembly(color)
-	var/obj/item/device/assembly/signaler/S = get_attached(color)
+	var/obj/item/assembly/signaler/S = get_attached(color)
 	if(S && istype(S))
 		assemblies -= color
 		S.connected = null

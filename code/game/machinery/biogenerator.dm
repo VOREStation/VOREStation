@@ -17,13 +17,19 @@
 	desc = "Converts plants into biomass, which can be used for fertilizer and sort-of-synthetic products."
 	icon = 'icons/obj/biogenerator_vr.dmi' //VOREStation Edit
 	icon_state = "biogen-stand"
+<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/biogenerator
+=======
+	density = 1
+	anchored = 1
+	circuit = /obj/item/circuitboard/biogenerator
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	var/processing = 0
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/points = 0
 	var/build_eff = 1
 	var/eat_eff = 1
@@ -59,7 +65,7 @@
 	reagents = R
 	R.my_atom = src
 
-	beaker = new /obj/item/weapon/reagent_containers/glass/bottle(src)
+	beaker = new /obj/item/reagent_containers/glass/bottle(src)
 	default_apply_parts()
 
 	item_list = list()
@@ -216,7 +222,7 @@
 		return
 	if(default_unfasten_wrench(user, O, 40))
 		return
-	if(istype(O, /obj/item/weapon/reagent_containers/glass))
+	if(istype(O, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, "<span class='notice'>\The [src] is already loaded.</span>")
 		else
@@ -226,14 +232,14 @@
 			updateUsrDialog()
 	else if(processing)
 		to_chat(user, "<span class='notice'>\The [src] is currently processing.</span>")
-	else if(istype(O, /obj/item/weapon/storage/bag/plants))
+	else if(istype(O, /obj/item/storage/bag/plants))
 		var/i = 0
-		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			to_chat(user, "<span class='notice'>\The [src] is already full! Activate it.</span>")
 		else
-			for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in O.contents)
+			for(var/obj/item/reagent_containers/food/snacks/grown/G in O.contents)
 				G.loc = src
 				i++
 				if(i >= 10)
@@ -243,11 +249,11 @@
 				to_chat(user, "<span class='notice'>You empty \the [O] into \the [src].</span>")
 
 
-	else if(!istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown))
+	else if(!istype(O, /obj/item/reagent_containers/food/snacks/grown))
 		to_chat(user, "<span class='notice'>You cannot put this in \the [src].</span>")
 	else
 		var/i = 0
-		for(var/obj/item/weapon/reagent_containers/food/snacks/grown/G in contents)
+		for(var/obj/item/reagent_containers/food/snacks/grown/G in contents)
 			i++
 		if(i >= 10)
 			to_chat(user, "<span class='notice'>\The [src] is full! Activate it.</span>")
@@ -272,7 +278,7 @@
 		to_chat(usr, "<span class='notice'>The biogenerator is in the process of working.</span>")
 		return
 	var/S = 0
-	for(var/obj/item/weapon/reagent_containers/food/snacks/grown/I in contents)
+	for(var/obj/item/reagent_containers/food/snacks/grown/I in contents)
 		S += 5
 		if(I.reagents.get_reagent_amount("nutriment") < 0.1)
 			points += 1
@@ -292,15 +298,135 @@
 		to_chat(usr, "<span class='warning'>Error: No growns inside. Please insert growns.</span>")
 	return
 
+<<<<<<< HEAD
+=======
+/obj/machinery/biogenerator/proc/create_product(var/item, var/cost)
+	cost = round(cost/build_eff)
+	if(cost > points)
+		menustat = "nopoints"
+		return 0
+	processing = 1
+	update_icon()
+	updateUsrDialog()
+	points -= cost
+	sleep(30)
+	switch(item)
+		if("milk")
+			beaker.reagents.add_reagent("milk", 10)
+		if("milk5")
+			beaker.reagents.add_reagent("milk", 50)
+		if("cream")
+			beaker.reagents.add_reagent("cream", 10)
+		if("cream5")
+			beaker.reagents.add_reagent("cream", 50)
+		if("meat")
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+		if("meat5")
+			new/obj/item/reagent_containers/food/snacks/meat(loc) //This is ugly.
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+		if("unizyme")
+			beaker.reagents.add_reagent("enzyme", 10)
+		if("unizyme50")
+			beaker.reagents.add_reagent("enzyme", 50)
+		if("nutrispread")
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+		if("nutrispread5")
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+		if("ez")
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+		if("l4z")
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+		if("rh")
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+		if("ez5") //It's not an elegant method, but it's safe and easy. -Cheridan
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+		if("l4z5")
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+		if("rh5")
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+		if("wallet")
+			new/obj/item/storage/wallet(loc)
+		if("gloves")
+			new/obj/item/clothing/gloves/botanic_leather(loc)
+		if("plantbag")
+			new/obj/item/storage/bag/plants(loc)
+		if("plantbaglarge")
+			new/obj/item/storage/bag/plants/large(loc)
+		if("tbelt")
+			new/obj/item/storage/belt/utility(loc)
+		if("satchel")
+			new/obj/item/storage/backpack/satchel(loc)
+		if("cashbag")
+			new/obj/item/storage/bag/cash(loc)
+		if("chembag")
+			new/obj/item/storage/bag/chemistry(loc)
+		if("monkey")
+			new/mob/living/carbon/human/monkey(loc)
+		if("workboots")
+			new/obj/item/clothing/shoes/boots/workboots(loc)
+		if("leatherchaps")
+			new/obj/item/clothing/under/pants/chaps
+		if("leathercoat")
+			new/obj/item/clothing/suit/leathercoat(loc)
+		if("leatherjacket")
+			new/obj/item/clothing/suit/storage/toggle/brown_jacket(loc)
+		if("wintercoat")
+			new/obj/item/clothing/suit/storage/hooded/wintercoat(loc)
+	processing = 0
+	menustat = "complete"
+	update_icon()
+	return 1
+
+/obj/machinery/biogenerator/Topic(href, href_list)
+	if(stat & BROKEN) return
+	if(usr.stat || usr.restrained()) return
+	if(!in_range(src, usr)) return
+
+	usr.set_machine(src)
+
+	switch(href_list["action"])
+		if("activate")
+			activate()
+		if("detach")
+			if(beaker)
+				beaker.loc = src.loc
+				beaker = null
+				update_icon()
+		if("create")
+			create_product(href_list["item"], text2num(href_list["cost"]))
+		if("menu")
+			menustat = "menu"
+	updateUsrDialog()
+
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /obj/machinery/biogenerator/RefreshParts()
 	..()
 	var/man_rating = 0
 	var/bin_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/matter_bin))
 			bin_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/stock_parts/manipulator))
 			man_rating += P.rating
 
 	build_eff = man_rating

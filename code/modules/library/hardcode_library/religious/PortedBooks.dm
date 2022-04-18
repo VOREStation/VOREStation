@@ -7,7 +7,7 @@ Category: Religion
 
 ///A Basic Understanding of Zoroastrianism by Satrap
 
-/obj/item/weapon/book/bundle/custom_library/religious/zoroastrianism
+/obj/item/book/bundle/custom_library/religious/zoroastrianism
 	name = "A Basic Understanding of Zoroastrianism"
 	desc = "A hardbound book titled \"A Basic Understanding of Zoroastrianism\" by Satrap."
 	description_info = "This book is titled \"A Basic Understanding of Zoroastrianism\" by Satrap. It covers the basics of Zoroastrianism -- an old religion originating on Earth -- as well as its influence on other religions."
@@ -84,7 +84,7 @@ Category: Religion
 
 /// The Way of the Bleeding Swan by Shra'ziir Krin Enai-Rinrijar. I have no idea what this is about but it was in religion.
 
-/obj/item/weapon/book/custom_library/religious/wayofbleedingswan
+/obj/item/book/custom_library/religious/wayofbleedingswan
 	name = "The Way of the Bleeding Swan"
 	desc = "A hardbound book titled \"The Way of the Bleeding Swan\" by Shra'ziir Krin Enai-Rinrijar."
 	description_info = "This book is titled \"The Way of the Bleeding Swan\" by Shra'ziir Krin Enai-Rinrijar. It appears religious in nature."
@@ -171,7 +171,7 @@ Category: Religion
 
 /// The Sun Goddess of Korea by Korean Folklore
 
-/obj/item/weapon/book/custom_library/religious/sungoddessofkorea
+/obj/item/book/custom_library/religious/sungoddessofkorea
 
 	name = "The Sun Goddess of Korea"
 	desc = "A hardbound book titled \"The Sun Goddess of Korea\" as provided by the Earth Religion Preservation Team."
@@ -208,7 +208,7 @@ Category: Religion
 
 /// The Story of Lord Ganesha by Hindu Folklore
 
-/obj/item/weapon/book/custom_library/religious/storyoflordganesha
+/obj/item/book/custom_library/religious/storyoflordganesha
 
 	name = "The Story of Lord Ganesha"
 	desc = "A hardbound book titled \"The Story of Lord Ganesha\" as provided by the Earth Religion Preservation Team."
@@ -249,7 +249,7 @@ Category: Religion
 
 /// Feast of Kubera by Hindu Folklore
 
-/obj/item/weapon/book/custom_library/religious/feastofkubera
+/obj/item/book/custom_library/religious/feastofkubera
 
 	name = "Feast of Kubera"
 	desc = "A hardbound book titled \"The Story of Lord Ganesha\" as provided by the Earth Religion Preservation Team."

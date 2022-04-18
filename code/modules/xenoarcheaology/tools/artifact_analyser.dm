@@ -102,14 +102,24 @@
 		else
 			results = get_scan_info(scanned_object)
 
+<<<<<<< HEAD
 		atom_say("Scanning complete.")
 		var/obj/item/weapon/paper/P = new(src.loc)
+=======
+		src.visible_message("<b>[name]</b> states, \"Scanning complete.\"")
+		var/obj/item/paper/P = new(src.loc)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		P.name = "[src] report #[++report_num]"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
 		P.info += "<br>"
 		P.info += "[bicon(scanned_object)] [results]"
+<<<<<<< HEAD
 		P.stamped = list(/obj/item/weapon/stamp)
 		P.add_overlay("paper_stamped")
+=======
+		P.stamped = list(/obj/item/stamp)
+		P.overlays = list("paper_stamped")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		if(scanned_object && istype(scanned_object, /obj/machinery/artifact))
 			var/obj/machinery/artifact/A = scanned_object

@@ -2,7 +2,7 @@
 /obj/structure/fireaxecabinet
 	name = "fire axe cabinet"
 	desc = "There is small label that reads \"For Emergency use only\" along with details for safe use of the axe. As if."
-	var/obj/item/weapon/material/twohanded/fireaxe/fireaxe
+	var/obj/item/material/twohanded/fireaxe/fireaxe
 	icon = 'icons/obj/closet.dmi'	//Not bothering to move icons out for now. But its dumb still.
 	icon_state = "fireaxe1000"
 	layer = ABOVE_WINDOW_LAYER
@@ -15,7 +15,7 @@
 
 /obj/structure/fireaxecabinet/Initialize()
 	. = ..()
-	fireaxe = new /obj/item/weapon/material/twohanded/fireaxe()
+	fireaxe = new /obj/item/material/twohanded/fireaxe()
 
 /obj/structure/fireaxecabinet/attackby(var/obj/item/O as obj, var/mob/user as mob)  //Marker -Agouri
 	//..() //That's very useful, Erro
@@ -30,7 +30,7 @@
 	//	hasaxe = 1
 
 	if (isrobot(user) || locked)
-		if(istype(O, /obj/item/device/multitool))
+		if(istype(O, /obj/item/multitool))
 			to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 			playsound(src, 'sound/machines/lockreset.ogg', 50, 1)
 			if(do_after(user, 20 * O.toolspeed))
@@ -38,8 +38,8 @@
 				to_chat(user, "<span class = 'caution'> You disable the locking modules.</span>")
 				update_icon()
 			return
-		else if(istype(O, /obj/item/weapon))
-			var/obj/item/weapon/W = O
+		else if(istype(O))
+			var/obj/item/W = O
 			if(smashed || open)
 				if(open)
 					toggle_close_open()
@@ -57,7 +57,7 @@
 					open= 1
 			update_icon()
 		return
-	if (istype(O, /obj/item/weapon/material/twohanded/fireaxe) && open)
+	if (istype(O, /obj/item/material/twohanded/fireaxe) && open)
 		if(!fireaxe)
 			if(O:wielded)
 				O:wielded = 0
@@ -75,7 +75,7 @@
 	else
 		if(smashed)
 			return
-		if(istype(O, /obj/item/device/multitool))
+		if(istype(O, /obj/item/multitool))
 			if(open)
 				open = 0
 				update_icon()

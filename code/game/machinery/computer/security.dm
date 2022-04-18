@@ -11,8 +11,8 @@
 	icon_screen = "security"
 	light_color = "#a91515"
 	req_one_access = list(access_security, access_forensics_lockers, access_lawyer)
-	circuit = /obj/item/weapon/circuitboard/secure_data
-	var/obj/item/weapon/card/id/scan = null
+	circuit = /obj/item/circuitboard/secure_data
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -73,7 +73,7 @@
 	return
 
 /obj/machinery/computer/secure_data/attackby(var/obj/item/O, var/mob/user)
-	if(istype(O, /obj/item/weapon/card/id) && !scan && user.unEquip(O))
+	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
 		to_chat(user, "You insert \the [O].")
@@ -207,7 +207,7 @@
 				scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -419,7 +419,7 @@
   * Called when the print timer finishes
   */
 /obj/machinery/computer/secure_data/proc/print_finish()
-	var/obj/item/weapon/paper/P = new(loc)
+	var/obj/item/paper/P = new(loc)
 	P.info = "<center><b>Security Record</b></center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]
@@ -467,12 +467,12 @@
 	return !src.authenticated || user.stat || user.restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
-	if(istype(user.get_active_hand(), /obj/item/weapon/photo))
-		var/obj/item/weapon/photo/photo = user.get_active_hand()
+	if(istype(user.get_active_hand(), /obj/item/photo))
+		var/obj/item/photo/photo = user.get_active_hand()
 		return photo.img
 	if(istype(user, /mob/living/silicon))
 		var/mob/living/silicon/tempAI = usr
-		var/obj/item/weapon/photo/selection = tempAI.GetPicture()
+		var/obj/item/photo/selection = tempAI.GetPicture()
 		if (selection)
 			return selection.img
 

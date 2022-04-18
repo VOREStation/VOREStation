@@ -2,7 +2,7 @@
  *	UNATHI
  */
 
-/obj/item/weapon/rig/breacher
+/obj/item/rig/breacher
 	name = "\improper NT breacher chassis control module"
 	desc = "A cheap NT knock-off of an Unathi battle-rig. Looks like a fish, moves like a fish, steers like a cow."
 	suit_type = "\improper NT breacher"
@@ -18,7 +18,7 @@
 	helm_type = /obj/item/clothing/head/helmet/space/rig/breacher
 	boot_type = /obj/item/clothing/shoes/magboots/rig/breacher
 
-/obj/item/weapon/rig/breacher/fancy
+/obj/item/rig/breacher/fancy
 	name = "breacher chassis control module"
 	desc = "An authentic Unathi breacher chassis. Huge, bulky and absurdly heavy. It must be like wearing a tank."
 	suit_type = "breacher chassis"
@@ -41,7 +41,7 @@
  *	VOX
  */
 
-/obj/item/weapon/rig/vox	//Just to get the flags set up
+/obj/item/rig/vox	//Just to get the flags set up
 	name = "alien control module"
 	desc = "This metal box writhes and squirms as if it were alive..."
 	suit_type = "alien"
@@ -52,14 +52,14 @@
 	siemens_coefficient = 0.2
 	offline_slowdown = 2.5
 	allowed = list(
-		/obj/item/weapon/gun,
-		/obj/item/device/flashlight,
-		/obj/item/weapon/tank,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/weapon/storage
+		/obj/item/gun,
+		/obj/item/flashlight,
+		/obj/item/tank,
+		/obj/item/suit_cooling_unit,
+		/obj/item/storage
 		)
 
-	air_type = /obj/item/weapon/tank/vox
+	air_type = /obj/item/tank/vox
 
 	helm_type = /obj/item/clothing/head/helmet/space/rig/vox
 	boot_type = /obj/item/clothing/shoes/magboots/rig/vox
@@ -87,7 +87,7 @@
 		SPECIES_VOX = 'icons/inventory/hands/mob_vox.dmi'
 		)
 
-/obj/item/weapon/rig/vox/carapace
+/obj/item/rig/vox/carapace
 	name = "dense alien control module"
 	suit_type = "dense alien"
 	armor = list(melee = 60, bullet = 50, laser = 40, energy = 15, bomb = 30, bio = 100, rad = 50)
@@ -95,7 +95,7 @@
 
 	req_access = list(access_syndicate)
 
-	cell_type =  /obj/item/weapon/cell/hyper
+	cell_type =  /obj/item/cell/hyper
 
 	initial_modules = list(
 		/obj/item/rig_module/mounted/energy_blade,
@@ -106,7 +106,7 @@
 		/obj/item/rig_module/self_destruct
 		)
 
-/obj/item/weapon/rig/vox/stealth
+/obj/item/rig/vox/stealth
 	name = "sinister alien control module"
 	suit_type = "sinister alien"
 	icon_state = "voxstealth_rig"
@@ -115,7 +115,7 @@
 
 	req_access = list(access_syndicate)
 
-	cell_type =  /obj/item/weapon/cell/hyper
+	cell_type =  /obj/item/cell/hyper
 
 	initial_modules = list(
 		/obj/item/rig_module/stealth_field,

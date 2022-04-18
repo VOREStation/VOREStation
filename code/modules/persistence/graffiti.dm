@@ -43,8 +43,8 @@
 	. += "\n It reads \"[message]\"."
 
 /obj/effect/decal/writing/attackby(var/obj/item/thing, var/mob/user)
-	if(istype(thing, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/welder = thing
+	if(istype(thing, /obj/item/weldingtool))
+		var/obj/item/weldingtool/welder = thing
 		if(welder.isOn() && welder.remove_fuel(0,user) && do_after(user, 5, src) && !QDELETED(src))
 			playsound(src.loc, welder.usesound, 50, 1)
 			user.visible_message("<b>\The [user]</b> clears away some graffiti.")

@@ -16,7 +16,7 @@
 	//var/deflect_chance = 10 //chance to deflect the incoming projectiles, hits, or lesser the effect of ex_act.
 	//the values in this list show how much damage will pass through, not how much will be absorbed.
 	var/list/damage_absorption = list("brute"=0.8,"fire"=1.2,"bullet"=0.9,"laser"=1,"energy"=1,"bomb"=1)
-	var/obj/item/weapon/cell/cell //Our power source
+	var/obj/item/cell/cell //Our power source
 	var/state = 0
 	var/list/log = new
 	var/last_message = 0
@@ -35,7 +35,7 @@
 	//var/datum/gas_mixture/cabin_air
 	//var/obj/machinery/atmospherics/portables_connector/connected_port = null
 
-	var/obj/item/device/radio/radio = null
+	var/obj/item/radio/radio = null
 
 	var/max_temperature = 2500
 	//var/internal_damage_threshold = 50 //health percentage below which internal damage is possible
@@ -74,12 +74,12 @@
 /obj/vehicle/proc/addVerb(verb_path)
 	verbs += verb_path
 
-/obj/vehicle/proc/add_cell(var/obj/item/weapon/cell/C=null)
+/obj/vehicle/proc/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new /obj/item/weapon/cell/mech(src)
+	cell = new /obj/item/cell/mech(src)
 
 /obj/vehicle/proc/add_radio()
 	radio = new(src)

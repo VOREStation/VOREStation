@@ -6,7 +6,7 @@
 	mask = /obj/item/clothing/mask/surgical
 	head = /obj/item/clothing/head/welding
 	suit = /obj/item/clothing/suit/storage/apron
-	r_hand = /obj/item/weapon/material/twohanded/fireaxe/foam
+	r_hand = /obj/item/material/twohanded/fireaxe/foam
 
 /decl/hierarchy/outfit/costume/masked_killer/post_equip(var/mob/living/carbon/human/H)
 	var/victim = get_mannequin(H.ckey)
@@ -22,11 +22,15 @@
 	l_pocket = /obj/item/toy/sword
 
 /decl/hierarchy/outfit/costume/professional/post_equip(var/mob/living/carbon/human/H)
-	var/obj/item/weapon/storage/briefcase/new_briefcase = new(H)
+	var/obj/item/storage/briefcase/new_briefcase = new(H)
 	for(var/obj/item/briefcase_item in new_briefcase)
 		qdel(briefcase_item)
+<<<<<<< HEAD
 	new_briefcase.contents += new /obj/item/weapon/gun/projectile/pistol/toy
 	new_briefcase.contents += new /obj/item/ammo_magazine/mfoam_dart/pistol
+=======
+	new_briefcase.contents += new /obj/item/gun/projectile/pistol/toy
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	new_briefcase.contents += new /obj/item/clothing/mask/gas/clown_hat
 	H.equip_to_slot_or_del(new_briefcase, slot_l_hand)
 
@@ -38,7 +42,7 @@
 	glasses = /obj/item/clothing/glasses/fakesunglasses
 	mask = /obj/item/clothing/mask/fakemoustache
 	head = /obj/item/clothing/head/beret
-	r_hand = /obj/item/weapon/gun/projectile/revolver/capgun
+	r_hand = /obj/item/gun/projectile/revolver/capgun
 
 /decl/hierarchy/outfit/costume/horrorcop/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
@@ -55,7 +59,7 @@
 	head = /obj/item/clothing/head/cowboy
 	gloves = /obj/item/clothing/gloves/fingerless
 	suit = /obj/item/clothing/accessory/poncho
-	r_hand = /obj/item/weapon/gun/projectile/revolver/capgun
+	r_hand = /obj/item/gun/projectile/revolver/capgun
 
 /decl/hierarchy/outfit/costume/cowboy/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
@@ -72,7 +76,7 @@
 	head = /obj/item/clothing/head/beanie
 	gloves = /obj/item/clothing/gloves/fingerless
 	suit = /obj/item/clothing/suit/storage/flannel/red
-	r_hand = /obj/item/weapon/material/twohanded/fireaxe/foam
+	r_hand = /obj/item/material/twohanded/fireaxe/foam
 
 /decl/hierarchy/outfit/costume/firefighter
 	name = OUTFIT_COSTUME("Firefighter")
@@ -87,14 +91,14 @@
 	uniform = /obj/item/clothing/under/kilt
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	head = /obj/item/clothing/head/beret
-	r_hand = /obj/item/weapon/material/sword/foam
+	r_hand = /obj/item/material/sword/foam
 
 /decl/hierarchy/outfit/costume/vampire
 	name = OUTFIT_COSTUME("Vampire")
 	uniform = /obj/item/clothing/under/suit_jacket/really_black
 	shoes = /obj/item/clothing/shoes/dress
 	gloves = /obj/item/clothing/gloves/white
-	r_hand = /obj/item/weapon/bedsheet/red
+	r_hand = /obj/item/bedsheet/red
 
 /decl/hierarchy/outfit/costume/vampire_hunter
 	name = OUTFIT_COSTUME("Vampire Hunter")
@@ -102,8 +106,13 @@
 	suit = /obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	gloves = /obj/item/clothing/gloves/fingerless
+<<<<<<< HEAD
 	l_pocket = /obj/item/weapon/gun/projectile/revolver/toy/crossbow/halloween
 	r_pocket = /obj/item/device/flashlight/color/red
+=======
+	l_pocket = /obj/item/gun/projectile/revolver/toy/crossbow
+	r_pocket = /obj/item/flashlight/color/red
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /decl/hierarchy/outfit/costume/pirate
 	name = OUTFIT_COSTUME("Pirate")
@@ -127,4 +136,4 @@
 	shoes = /obj/item/clothing/shoes/brown
 	head = /obj/item/clothing/head/marine
 	suit = /obj/item/clothing/suit/marine
-	r_hand = /obj/item/weapon/gun/projectile/revolver/toy/sawnoff
+	r_hand = /obj/item/gun/projectile/revolver/toy/sawnoff

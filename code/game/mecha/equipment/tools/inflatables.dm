@@ -10,8 +10,8 @@
 	ready_sound = 'sound/effects/spray.ogg'
 	required_type = list(/obj/mecha/working/ripley)
 
-	tooltype = /obj/item/weapon/inflatable_dispenser/robot
-	var/obj/item/weapon/inflatable_dispenser/my_deployer = null
+	tooltype = /obj/item/inflatable_dispenser/robot
+	var/obj/item/inflatable_dispenser/my_deployer = null
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/inflatables/Initialize()
 	. = ..()

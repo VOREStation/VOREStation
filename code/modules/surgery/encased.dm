@@ -22,8 +22,8 @@
 
 /datum/surgery_step/open_encased/saw
 	allowed_tools = list(
-		/obj/item/weapon/surgical/circular_saw = 100, \
-		/obj/item/weapon/material/knife/machete/hatchet = 75
+		/obj/item/surgical/circular_saw = 100, \
+		/obj/item/material/knife/machete/hatchet = 75
 	)
 
 	min_duration = 50
@@ -71,7 +71,7 @@
 
 /datum/surgery_step/open_encased/retract
 	allowed_tools = list(
-		/obj/item/weapon/surgical/retractor = 100
+		/obj/item/surgical/retractor = 100
 	)
 
 	allowed_procs = list(IS_CROWBAR = 75)
@@ -124,7 +124,7 @@
 
 /datum/surgery_step/open_encased/close
 	allowed_tools = list(
-		/obj/item/weapon/surgical/retractor = 100,
+		/obj/item/surgical/retractor = 100,
 	)
 
 	allowed_procs = list(IS_CROWBAR = 75)
@@ -182,7 +182,7 @@
 
 /datum/surgery_step/open_encased/mend
 	allowed_tools = list(
-		/obj/item/weapon/surgical/bonegel = 100
+		/obj/item/surgical/bonegel = 100
 	)
 
 	allowed_procs = list(IS_SCREWDRIVER = 75)
@@ -223,7 +223,7 @@
 ///////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased/advancedsaw_open
 	allowed_tools = list(
-		/obj/item/weapon/surgical/circular_saw/manager = 100
+		/obj/item/surgical/circular_saw/manager = 100
 	)
 
 	priority = 3
@@ -272,7 +272,7 @@
 
 /datum/surgery_step/open_encased/advancedsaw_mend
 	allowed_tools = list(
-		/obj/item/weapon/surgical/circular_saw/manager = 100
+		/obj/item/surgical/circular_saw/manager = 100
 	)
 
 	priority = 3

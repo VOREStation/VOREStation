@@ -14,8 +14,13 @@
 	pass_flags = PASSTABLE
 	braintype = "Drone"
 	lawupdate = 0
+<<<<<<< HEAD
 	density = TRUE
 	idcard_type = /obj/item/weapon/card/id/syndicate
+=======
+	density = 1
+	idcard_type = /obj/item/card/id/syndicate
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	req_access = list(999)
 	integrated_light_power = 3
 	local_transmit = 0
@@ -35,7 +40,7 @@
 	mob_size = MOB_LARGE
 
 	law_type = /datum/ai_laws/swarm_drone
-	module_type = /obj/item/weapon/robot_module/drone/swarm
+	module_type = /obj/item/robot_module/drone/swarm
 
 	hat_x_offset = 0
 	hat_y_offset = -10
@@ -43,7 +48,7 @@
 	foreign_droid = TRUE
 	scrambledcodes = TRUE
 
-	holder_type = /obj/item/weapon/holder/drone
+	holder_type = /obj/item/holder/drone
 
 	can_be_antagged = TRUE
 
@@ -83,7 +88,7 @@
 	speed = 4
 
 	law_type = /datum/ai_laws/swarm_drone/soldier
-	module_type = /obj/item/weapon/robot_module/drone/swarm/ranged
+	module_type = /obj/item/robot_module/drone/swarm/ranged
 
 	spell_setup = list(
 		/spell/aoe_turf/conjure/swarmer,
@@ -104,7 +109,7 @@
 	speed = 2
 
 	law_type = /datum/ai_laws/swarm_drone/soldier
-	module_type = /obj/item/weapon/robot_module/drone/swarm/melee
+	module_type = /obj/item/robot_module/drone/swarm/melee
 
 	spell_setup = list(
 		/spell/aoe_turf/conjure/swarmer,

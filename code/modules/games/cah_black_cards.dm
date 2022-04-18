@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 /*
  * Black CAH cards
  */
 /obj/item/weapon/deck/cah/black/card_text_list = list(
+=======
+// Black cards.
+/obj/item/deck/cah/black/card_text_list = list(
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	"Why am I itchy?",
 	"Today, Security shot ____.",
 	"The Chaplain this shift is worshiping _____.",

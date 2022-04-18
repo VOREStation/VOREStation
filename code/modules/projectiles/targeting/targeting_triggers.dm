@@ -24,7 +24,7 @@
 		to_chat(owner, "<span class='warning'>You refrain from firing \the [aiming_with] as your intent is set to help.</span>")
 		return
 	owner.visible_message("<span class='danger'>\The [owner] pulls the trigger reflexively!</span>")
-	var/obj/item/weapon/gun/G = aiming_with
+	var/obj/item/gun/G = aiming_with
 	if(istype(G))
 		G.Fire(aiming_at, owner, reflex = 1)
 		locked = 0

@@ -1,7 +1,7 @@
 /*
  * Screwdriver
  */
-/obj/item/weapon/tool/screwdriver
+/obj/item/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
 	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
@@ -25,7 +25,11 @@
 	tool_qualities = list(TOOL_SCREWDRIVER)
 	var/random_color = TRUE
 
+<<<<<<< HEAD
 /obj/item/weapon/tool/screwdriver/New()
+=======
+/obj/item/tool/screwdriver/Initialize()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(random_color)
 		switch(pick("red","blue","purple","brown","green","cyan","yellow"))
 			if ("red")
@@ -54,7 +58,7 @@
 		src.pixel_y = rand(0, 16)
 	..()
 
-/obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	if(user.zone_sel.selecting != O_EYES && user.zone_sel.selecting != BP_HEAD)
@@ -76,7 +80,7 @@
 	fastener, which includes the screws."
 	value = CATALOGUER_REWARD_EASY
 
-/obj/item/weapon/tool/screwdriver/alien
+/obj/item/tool/screwdriver/alien
 	name = "alien screwdriver"
 	desc = "An ultrasonic screwdriver."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_screwdriver)
@@ -87,7 +91,7 @@
 	toolspeed = 0.1
 	random_color = FALSE
 
-/obj/item/weapon/tool/screwdriver/hybrid
+/obj/item/tool/screwdriver/hybrid
 	name = "strange screwdriver"
 	desc = "A strange conglomerate of a screwdriver."
 	icon_state = "hybscrewdriver"
@@ -99,13 +103,13 @@
 	random_color = FALSE
 	reach = 2
 
-/obj/item/weapon/tool/screwdriver/cyborg
+/obj/item/tool/screwdriver/cyborg
 	name = "powered screwdriver"
 	desc = "An electrical screwdriver, designed to be both precise and quick."
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
 
-/obj/item/weapon/tool/screwdriver/power
+/obj/item/tool/screwdriver/power
 	name = "hand drill"
 	desc = "A simple powered hand drill. It's fitted with a screw bit."
 	icon_state = "drill_screw"
@@ -123,21 +127,26 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.25
 	random_color = FALSE
-	var/obj/item/weapon/tool/wrench/power/counterpart = null
+	var/obj/item/tool/wrench/power/counterpart = null
 
+<<<<<<< HEAD
 /obj/item/weapon/tool/screwdriver/power/New(newloc, no_counterpart = TRUE)
 	..(newloc)
+=======
+/obj/item/tool/screwdriver/power/Initialize(var/ml, no_counterpart = TRUE)
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src
 
-/obj/item/weapon/tool/screwdriver/power/Destroy()
+/obj/item/tool/screwdriver/power/Destroy()
 	if(counterpart)
 		counterpart.counterpart = null // So it can qdel cleanly.
 		QDEL_NULL(counterpart)
 	return ..()
 
-/obj/item/weapon/tool/screwdriver/power/attack_self(mob/user)
+/obj/item/tool/screwdriver/power/attack_self(mob/user)
 	playsound(src,'sound/items/change_drill.ogg',50,1)
 	user.drop_item(src)
 	counterpart.forceMove(get_turf(src))

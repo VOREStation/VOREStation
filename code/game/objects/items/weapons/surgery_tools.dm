@@ -9,7 +9,7 @@
  *		Bio-Regenerator
  */
 
-/obj/item/weapon/surgical
+/obj/item/surgical
 	name = "Surgical tool"
 	desc = "This shouldn't be here, ahelp it."
 	icon = 'icons/obj/surgery.dmi'
@@ -18,7 +18,7 @@
 	pickup_sound = 'sound/items/pickup/weldingtool.ogg'
 	var/helpforce = 0	//For help intent things
 
-/obj/item/weapon/surgical/attack(mob/M, mob/user)
+/obj/item/surgical/attack(mob/M, mob/user)
 	if(user.a_intent == I_HELP)	//A tad messy, but this should stop people from smacking their patients in surgery
 		return 0
 	..()
@@ -37,7 +37,7 @@
  * Retractor
  */
 
-/obj/item/weapon/surgical/retractor
+/obj/item/surgical/retractor
 	name = "retractor"
 	desc = "Retracts stuff."
 	icon_state = "retractor"
@@ -48,7 +48,7 @@
 /*
  * Hemostat
  */
-/obj/item/weapon/surgical/hemostat
+/obj/item/surgical/hemostat
 	name = "hemostat"
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
@@ -60,7 +60,7 @@
 /*
  * Cautery
  */
-/obj/item/weapon/surgical/cautery
+/obj/item/surgical/cautery
 	name = "cautery"
 	desc = "This stops bleeding."
 	icon_state = "cautery"
@@ -72,7 +72,7 @@
 /*
  * Surgical Drill
  */
-/obj/item/weapon/surgical/surgicaldrill
+/obj/item/surgical/surgicaldrill
 	name = "surgical drill"
 	desc = "You can drill using this item. You dig?"
 	icon_state = "drill"
@@ -87,7 +87,7 @@
 /*
  * Scalpel
  */
-/obj/item/weapon/surgical/scalpel
+/obj/item/surgical/scalpel
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
@@ -107,33 +107,33 @@
 /*
  * Researchable Scalpels
  */
-/obj/item/weapon/surgical/scalpel/laser1
+/obj/item/surgical/scalpel/laser1
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks basic and could be improved."
 	icon_state = "scalpel_laser1_on"
 	damtype = "fire"
 
-/obj/item/weapon/surgical/scalpel/laser2
+/obj/item/surgical/scalpel/laser2
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks somewhat advanced."
 	icon_state = "scalpel_laser2_on"
 	damtype = "fire"
 	force = 12.0
 
-/obj/item/weapon/surgical/scalpel/laser3
+/obj/item/surgical/scalpel/laser3
 	name = "laser scalpel"
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field.  This one looks to be the pinnacle of precision energy cutlery!"
 	icon_state = "scalpel_laser3_on"
 	damtype = "fire"
 	force = 15.0
 
-/obj/item/weapon/surgical/scalpel/manager
+/obj/item/surgical/scalpel/manager
 	name = "incision management system"
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	icon_state = "scalpel_manager_on"
 	force = 7.5
 
-/obj/item/weapon/surgical/scalpel/ripper
+/obj/item/surgical/scalpel/ripper
 	name = "organ pincers"
 	desc = "A horrifying bladed tool with a large metal spike in its center. The tool is used for rapidly removing organs from hopefully willing patients."
 	icon_state = "organ_ripper"
@@ -145,7 +145,7 @@
 /*
  * Circular Saw
  */
-/obj/item/weapon/surgical/circular_saw
+/obj/item/surgical/circular_saw
 	name = "circular saw"
 	desc = "For heavy duty cutting."
 	icon_state = "saw3"
@@ -162,7 +162,7 @@
 	sharp = TRUE
 	edge = TRUE
 
-/obj/item/weapon/surgical/circular_saw/manager
+/obj/item/surgical/circular_saw/manager
 	name = "energetic bone diverter"
 	desc = "For heavy duty cutting (and sealing), with science!"
 	icon_state = "adv_saw"
@@ -176,7 +176,7 @@
 	toolspeed = 0.75
 
 //misc, formerly from code/defines/weapons.dm
-/obj/item/weapon/surgical/bonegel
+/obj/item/surgical/bonegel
 	name = "bone gel"
 	desc = "For fixing bones."
 	icon_state = "bone-gel"
@@ -184,7 +184,7 @@
 	throwforce = 1.0
 	drop_sound = 'sound/items/drop/bottle.ogg'
 
-/obj/item/weapon/surgical/FixOVein
+/obj/item/surgical/FixOVein
 	name = "FixOVein"
 	desc = "Like bone gel. For veins."
 	icon_state = "fixovein"
@@ -194,7 +194,7 @@
 	var/usage_amount = 10
 	drop_sound = 'sound/items/drop/accessory.ogg'
 
-/obj/item/weapon/surgical/bonesetter
+/obj/item/surgical/bonesetter
 	name = "bone setter"
 	desc = "Put them in their place."
 	icon_state = "bone_setter"
@@ -205,7 +205,7 @@
 	attack_verb = list("attacked", "hit", "bludgeoned")
 	drop_sound = 'sound/items/drop/scrap.ogg'
 
-/obj/item/weapon/surgical/bone_clamp
+/obj/item/surgical/bone_clamp
 	name = "bone clamp"
 	desc = "The best way to get a bone fixed fast."
 	icon_state = "bone_clamp"
@@ -217,63 +217,63 @@
 
 // Cyborg Tools
 
-/obj/item/weapon/surgical/retractor/cyborg
+/obj/item/surgical/retractor/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/hemostat/cyborg
+/obj/item/surgical/hemostat/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/cautery/cyborg
+/obj/item/surgical/cautery/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/surgicaldrill/cyborg
+/obj/item/surgical/surgicaldrill/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/scalpel/cyborg
+/obj/item/surgical/scalpel/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/circular_saw/cyborg
+/obj/item/surgical/circular_saw/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/bonegel/cyborg
+/obj/item/surgical/bonegel/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/FixOVein/cyborg
+/obj/item/surgical/FixOVein/cyborg
 	toolspeed = 0.5
 
-/obj/item/weapon/surgical/bonesetter/cyborg
+/obj/item/surgical/bonesetter/cyborg
 	toolspeed = 0.5
 
 
 // Alien Tools
-/obj/item/weapon/surgical/retractor/alien
+/obj/item/surgical/retractor/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
-/obj/item/weapon/surgical/hemostat/alien
+/obj/item/surgical/hemostat/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
-/obj/item/weapon/surgical/cautery/alien
+/obj/item/surgical/cautery/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
-/obj/item/weapon/surgical/surgicaldrill/alien
+/obj/item/surgical/surgicaldrill/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
-/obj/item/weapon/surgical/scalpel/alien
+/obj/item/surgical/scalpel/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
-/obj/item/weapon/surgical/circular_saw/alien
+/obj/item/surgical/circular_saw/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
-/obj/item/weapon/surgical/FixOVein/alien
+/obj/item/surgical/FixOVein/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.25
 
-/obj/item/weapon/surgical/bone_clamp/alien
+/obj/item/surgical/bone_clamp/alien
 	icon = 'icons/obj/abductor.dmi'
 	toolspeed = 0.75

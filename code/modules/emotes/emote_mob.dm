@@ -97,7 +97,7 @@
 
 	next_emote = world.time + use_emote.emote_delay
 	use_emote.do_emote(src, message)
-	for (var/obj/item/weapon/implant/I in src)
+	for (var/obj/item/implant/I in src)
 		if (I.implanted)
 			I.trigger(act, src)
 

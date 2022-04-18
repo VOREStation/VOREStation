@@ -1,6 +1,9 @@
-/obj/item/device/uv_light
+/obj/item/uv_light
 	name = "\improper UV light"
 	desc = "A small handheld black light."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "uv_off"
 	slot_flags = SLOT_BELT
 	w_class = ITEMSIZE_SMALL
@@ -17,7 +20,7 @@
 	var/on = 0
 	var/step_alpha = 50
 
-/obj/item/device/uv_light/attack_self(var/mob/user)
+/obj/item/uv_light/attack_self(var/mob/user)
 	on = !on
 	if(on)
 		set_light(range, 2, "#007fff")
@@ -29,7 +32,7 @@
 		STOP_PROCESSING(SSobj, src)
 		icon_state = "uv_off"
 
-/obj/item/device/uv_light/proc/clear_last_scan()
+/obj/item/uv_light/proc/clear_last_scan()
 	if(scanned.len)
 		for(var/atom/O in scanned)
 			O.invisibility = scanned[O]
@@ -46,7 +49,7 @@
 			if(I.fluorescent == 2) I.fluorescent = 1
 		reset_objects.Cut()
 
-/obj/item/device/uv_light/process()
+/obj/item/uv_light/process()
 	clear_last_scan()
 	if(on)
 		step_alpha = round(255/range)

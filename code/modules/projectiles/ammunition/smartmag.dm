@@ -20,9 +20,9 @@
 	var/production_modifier = 2			// Multiplier on the ammo_casing's matter cost
 	var/production_delay = 75			// If we're in a gun, how long since it last shot do we need to wait before making bullets?
 
-	var/obj/item/weapon/gun/holding_gun = null	// What gun are we in, if any?
+	var/obj/item/gun/holding_gun = null	// What gun are we in, if any?
 
-	var/obj/item/weapon/cell/device/attached_cell = null	// What cell are we using, if any?
+	var/obj/item/cell/device/attached_cell = null	// What cell are we using, if any?
 
 	var/emagged = 0		// If you emag the smart mag, you can get the bullets out by clicking it
 
@@ -36,7 +36,7 @@
 
 /obj/item/ammo_magazine/smart/process()
 	if(!holding_gun)	// Yes, this is awful, sorry. Don't know a better way to figure out if we've been moved into or out of a gun.
-		if(istype(src.loc, /obj/item/weapon/gun))
+		if(istype(src.loc, /obj/item/gun))
 			holding_gun = src.loc
 
 	if(caliber && ammo_type && attached_cell)
@@ -73,7 +73,7 @@
 	return FALSE
 
 /obj/item/ammo_magazine/smart/attackby(var/obj/item/I as obj, mob/user)
-	if(istype(I, /obj/item/weapon/cell/device))
+	if(istype(I, /obj/item/cell/device))
 		if(attached_cell)
 			to_chat(user, "<span class='notice'>\The [src] already has a [attached_cell.name] attached.</span>")
 			return

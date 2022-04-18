@@ -3,7 +3,7 @@
  *  Alien pinning weapon.
  */
 
-/obj/item/weapon/gun/launcher/spikethrower
+/obj/item/gun/launcher/spikethrower
 	name = "spike thrower"
 	desc = "A vicious alien projectile weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 
@@ -18,40 +18,45 @@
 	fire_sound = 'sound/weapons/bladeslice.ogg'
 	fire_sound_text = "a strange noise"
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/launcher/spikethrower/New()
 	..()
+=======
+/obj/item/gun/launcher/spikethrower/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 
-/obj/item/weapon/gun/launcher/spikethrower/Destroy()
+/obj/item/gun/launcher/spikethrower/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/weapon/gun/launcher/spikethrower/process()
+/obj/item/gun/launcher/spikethrower/process()
 	if(spikes < max_spikes && world.time > last_regen + spike_gen_time)
 		spikes++
 		last_regen = world.time
 		update_icon()
 
-/obj/item/weapon/gun/launcher/spikethrower/examine(mob/user)
+/obj/item/gun/launcher/spikethrower/examine(mob/user)
 	. = ..()
 	. += "It has [spikes] spike\s remaining."
 
-/obj/item/weapon/gun/launcher/spikethrower/update_icon()
+/obj/item/gun/launcher/spikethrower/update_icon()
 	icon_state = "spikethrower[spikes]"
 
-/obj/item/weapon/gun/launcher/spikethrower/update_release_force()
+/obj/item/gun/launcher/spikethrower/update_release_force()
 	return
 
-/obj/item/weapon/gun/launcher/spikethrower/consume_next_projectile()
+/obj/item/gun/launcher/spikethrower/consume_next_projectile()
 	if(spikes < 1) return null
 	spikes--
-	return new /obj/item/weapon/spike(src)
+	return new /obj/item/spike(src)
 
 /*
  * Vox Darkmatter Cannon
  */
-/obj/item/weapon/gun/energy/darkmatter
+/obj/item/gun/energy/darkmatter
 	name = "dark matter gun"
 	desc = "A vicious alien beam weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon_state = "darkcannon"
@@ -59,7 +64,7 @@
 	w_class = ITEMSIZE_HUGE
 	charge_cost = 300
 	projectile_type = /obj/item/projectile/beam/stun/darkmatter
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 	accuracy = 30
 
@@ -114,13 +119,13 @@
 /*
  * Vox Sonic Cannon
  */
-/obj/item/weapon/gun/energy/sonic
+/obj/item/gun/energy/sonic
 	name = "soundcannon"
 	desc = "A vicious alien sound weapon. Parts of it quiver gelatinously, as though the thing is insectile and alive."
 	icon_state = "noise"
 	item_state = "noise"
 	w_class = ITEMSIZE_HUGE
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 	charge_cost = 400
 

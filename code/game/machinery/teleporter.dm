@@ -6,7 +6,7 @@
 	desc = "Used to control a linked teleportation Hub and Station."
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
-	circuit = /obj/item/weapon/circuitboard/teleporter
+	circuit = /obj/item/circuitboard/teleporter
 	dir = 4
 	var/id = null
 	var/one_time_use = 0 //Used for one-time-use teleport cards (such as clown planet coordinates.)
@@ -48,8 +48,8 @@
 	return ..()
 
 /obj/machinery/computer/teleporter/attackby(I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/card/data/))
-		var/obj/item/weapon/card/data/C = I
+	if(istype(I, /obj/item/card/data/))
+		var/obj/item/card/data/C = I
 		if(stat & (NOPOWER|BROKEN) & (C.function != "teleporter"))
 			attack_hand()
 
@@ -102,7 +102,106 @@
 	add_fingerprint(user)
 	if(stat & (BROKEN|NOPOWER))
 		return
+<<<<<<< HEAD
 	teleport_control.tgui_interact(user)
+=======
+	ui_interact(user)
+
+/obj/machinery/computer/teleporter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	teleport_control.ui_interact(user, ui_key, ui, force_open)
+
+/obj/machinery/computer/teleporter/interact(mob/user)
+	teleport_control.ui_interact(user)
+
+//////
+//////  Nano-module for teleporter
+//////
+/datum/nano_module/program/teleport_control
+	name = "Teleporter Control"
+	var/locked_name = "Not Locked"
+	var/obj/item/locked = null
+	var/obj/machinery/teleport/station/station = null
+	var/obj/machinery/teleport/hub/hub = null
+
+/datum/nano_module/program/teleport_control/Topic(href, href_list)
+	if(..()) return 1
+	
+	if(href_list["select_target"])
+		var/list/L = list()
+		var/list/areaindex = list()
+
+		for(var/obj/item/radio/beacon/R in all_beacons)
+			var/turf/T = get_turf(R)
+			if(!T)
+				continue
+			if(!(T.z in using_map.player_levels))
+				continue
+			var/tmpname = T.loc.name
+			if(areaindex[tmpname])
+				tmpname = "[tmpname] ([++areaindex[tmpname]])"
+			else
+				areaindex[tmpname] = 1
+			L[tmpname] = R
+
+		for (var/obj/item/implant/tracking/I in all_tracking_implants)
+			if(!I.implanted || !ismob(I.loc))
+				continue
+			else
+				var/mob/M = I.loc
+				if(M.stat == 2)
+					if(M.timeofdeath + 6000 < world.time)
+						continue
+				var/turf/T = get_turf(M)
+				if(T)	continue
+				if(T.z == 2)	continue
+				var/tmpname = M.real_name
+				if(areaindex[tmpname])
+					tmpname = "[tmpname] ([++areaindex[tmpname]])"
+				else
+					areaindex[tmpname] = 1
+				L[tmpname] = I
+
+		var/desc = input("Please select a location to lock in.", "Locking Menu") in L|null
+		if(!desc)
+			return 0
+		if(get_dist(host, usr) > 1 && !issilicon(usr))
+			return 0
+
+		locked = L[desc]
+		locked_name = desc
+		return 1
+
+	if(href_list["test_fire"])
+		station?.testfire()
+		return 1
+
+	if(href_list["toggle_on"])
+		if(!station)
+			return 0
+		
+		if(station.engaged)
+			station.disengage()
+		else
+			station.engage()
+		
+		return 1
+
+/datum/nano_module/program/teleport_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
+	var/list/data = host.initial_data()
+
+	data["locked_name"] = locked_name ? locked_name : "No Target"
+	data["station_connected"] = station ? 1 : 0
+	data["hub_connected"] = hub ? 1 : 0
+	data["calibrated"] = hub ? hub.accurate : 0
+	data["teleporter_on"] = station ? station.engaged : 0
+
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if(!ui)
+		ui = new(user, src, ui_key, "teleport_control.tmpl", "Teleport Control Console", 400, 500, state = state)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
 	set category = "Object"
@@ -139,7 +238,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/teleporter_hub
+	circuit = /obj/item/circuitboard/teleporter_hub
 	var/obj/machinery/computer/teleporter/com
 
 /obj/machinery/teleport/hub/Initialize()
@@ -207,7 +306,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 2000
-	circuit = /obj/item/weapon/circuitboard/teleporter_station
+	circuit = /obj/item/circuitboard/teleporter_station
 	var/obj/machinery/teleport/hub/com
 
 /obj/machinery/teleport/station/Initialize()

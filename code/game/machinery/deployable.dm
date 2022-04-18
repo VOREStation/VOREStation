@@ -26,9 +26,9 @@ Deployable items
 
 	icon_state = "barrier[locked]"
 
-/obj/machinery/deployable/barrier/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/deployable/barrier/attackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN)
-	if(istype(W, /obj/item/weapon/card/id/))
+	if(istype(W, /obj/item/card/id/))
 		if(allowed(user))
 			if	(emagged < 2.0)
 				locked = !locked

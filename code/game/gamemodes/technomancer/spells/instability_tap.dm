@@ -4,21 +4,26 @@
 	enhancement_desc = "50% more energy gained, 20% less instability gained."
 	spell_power_desc = "Amount of energy gained scaled with spell power."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/instability_tap
+	obj_path = /obj/item/spell/instability_tap
 	ability_icon_state = "tech_instabilitytap"
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/instability_tap
+/obj/item/spell/instability_tap
 	name = "instability tap"
 	desc = "Short term gain for long term consequences never end bad, right?"
 	cast_methods = CAST_USE
 	aspect = ASPECT_UNSTABLE
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/instability_tap/New()
 	..()
+=======
+/obj/item/spell/instability_tap/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#FA58F4")
 
-/obj/item/weapon/spell/instability_tap/on_use_cast(mob/user)
+/obj/item/spell/instability_tap/on_use_cast(mob/user)
 	var/amount = calculate_spell_power(5000)
 	if(check_for_scepter())
 		core.give_energy(amount * 1.5)

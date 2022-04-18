@@ -10,7 +10,7 @@
 	persistent = /datum/persistent/storage/smartfridge/produce/lossy
 
 /obj/machinery/smartfridge/produce/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
+	if(istype(O,/obj/item/reagent_containers/food/snacks/grown/) || istype(O,/obj/item/seeds/))
 		return TRUE
 	return FALSE
 
@@ -25,7 +25,7 @@
 	icon_base = "showcase"
 
 /obj/machinery/smartfridge/drinks/accept_check(var/obj/item/O as obj)
-	if(istype(O,/obj/item/weapon/reagent_containers/glass) || istype(O,/obj/item/weapon/reagent_containers/food/drinks) || istype(O,/obj/item/weapon/reagent_containers/food/condiment))
+	if(istype(O,/obj/item/reagent_containers/glass) || istype(O,/obj/item/reagent_containers/food/drinks) || istype(O,/obj/item/reagent_containers/food/condiment))
 		return TRUE
 	return FALSE
 

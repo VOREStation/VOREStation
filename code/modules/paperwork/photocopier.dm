@@ -10,8 +10,12 @@
 	idle_power_usage = 30
 	active_power_usage = 200
 	power_channel = EQUIP
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/photocopier
 	can_buckle = TRUE
+=======
+	circuit = /obj/item/circuitboard/photocopier
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/obj/item/copyitem = null	//what's in the copier!
 	var/copies = 1	//how many copies to print!
 	var/toner = 30 //how much toner is left! woooooo~
@@ -107,22 +111,37 @@
 		if(toner <= 0)
 			break
 
+<<<<<<< HEAD
 		if (istype(copyitem, /obj/item/weapon/paper))
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
+=======
+		if (istype(copyitem, /obj/item/paper))
+			playsound(loc, "sound/machines/copier.ogg", 100, 1)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			sleep(11)
 			copy(copyitem)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
+<<<<<<< HEAD
 		else if (istype(copyitem, /obj/item/weapon/photo))
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
+=======
+		else if (istype(copyitem, /obj/item/photo))
+			playsound(loc, "sound/machines/copier.ogg", 100, 1)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			sleep(11)
 			photocopy(copyitem)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
-		else if (istype(copyitem, /obj/item/weapon/paper_bundle))
+		else if (istype(copyitem, /obj/item/paper_bundle))
 			sleep(11)
+<<<<<<< HEAD
 			playsound(src, "sound/machines/copier.ogg", 100, 1)
 			var/obj/item/weapon/paper_bundle/B = bundlecopy(copyitem)
+=======
+			playsound(loc, "sound/machines/copier.ogg", 100, 1)
+			var/obj/item/paper_bundle/B = bundlecopy(copyitem)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			sleep(11*B.pages.len)
 			audible_message("<span class='notice'>You can hear [src] whirring as it finishes printing.</span>", runemessage = "whirr")
 			playsound(src, "sound/machines/buzzbeep.ogg", 30)
@@ -142,8 +161,53 @@
 		use_power(active_power_usage)
 	copying = FALSE
 
+<<<<<<< HEAD
+=======
+/obj/machinery/photocopier/Topic(href, href_list)
+	if(href_list["copy"])
+		if(stat & (BROKEN|NOPOWER))
+			return
+		addtimer(CALLBACK(src, .proc/copy_operation, usr), 0)
+
+	else if(href_list["remove"])
+		if(copyitem)
+			copyitem.loc = usr.loc
+			usr.put_in_hands(copyitem)
+			to_chat(usr, "<span class='notice'>You take \the [copyitem] out of \the [src].</span>")
+			copyitem = null
+	else if(href_list["min"])
+		if(copies > 1)
+			copies--
+	else if(href_list["add"])
+		if(copies < maxcopies)
+			copies++
+	else if(href_list["aipic"])
+		if(!istype(usr,/mob/living/silicon)) return
+		if(stat & (BROKEN|NOPOWER)) return
+
+		if(toner >= 5)
+			var/mob/living/silicon/tempAI = usr
+			var/obj/item/camera/siliconcam/camera = tempAI.aiCamera
+
+			if(!camera)
+				return
+			var/obj/item/photo/selection = camera.selectpicture()
+			if (!selection)
+				return
+
+			var/obj/item/photo/p = photocopy(selection)
+			if (p.desc == "")
+				p.desc += "Copied by [tempAI.name]"
+			else
+				p.desc += " - Copied by [tempAI.name]"
+			toner -= 5
+			sleep(15)
+
+	SSnanoui.update_uis(src)
+
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /obj/machinery/photocopier/attackby(obj/item/O as obj, mob/user as mob)
-	if(istype(O, /obj/item/weapon/paper) || istype(O, /obj/item/weapon/photo) || istype(O, /obj/item/weapon/paper_bundle))
+	if(istype(O, /obj/item/paper) || istype(O, /obj/item/photo) || istype(O, /obj/item/paper_bundle))
 		if(!copyitem)
 			user.drop_item()
 			copyitem = O
@@ -153,13 +217,13 @@
 			flick(insert_anim, src)
 		else
 			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
-	else if(istype(O, /obj/item/device/toner))
+	else if(istype(O, /obj/item/toner))
 		if(toner <= 10) //allow replacing when low toner is affecting the print darkness
 			user.drop_item()
 			to_chat(user, "<span class='notice'>You insert the toner cartridge into \the [src].</span>")
 			flick("photocopier_toner", src)
 			playsound(loc, 'sound/machines/click.ogg', 50, 1)
-			var/obj/item/device/toner/T = O
+			var/obj/item/toner/T = O
 			toner += T.toner_amount
 			qdel(O)
 		else
@@ -195,8 +259,8 @@
 					toner = 0
 	return
 
-/obj/machinery/photocopier/proc/copy(var/obj/item/weapon/paper/copy, var/need_toner=1)
-	var/obj/item/weapon/paper/c = new /obj/item/weapon/paper (loc)
+/obj/machinery/photocopier/proc/copy(var/obj/item/paper/copy, var/need_toner=1)
+	var/obj/item/paper/c = new /obj/item/paper (loc)
 	if(toner > 10)	//lots of toner, make it dark
 		c.info = "<font color = #101010>"
 	else			//no toner? shitty copies for you!
@@ -234,8 +298,8 @@
 	return c
 
 
-/obj/machinery/photocopier/proc/photocopy(var/obj/item/weapon/photo/photocopy, var/need_toner=1)
-	var/obj/item/weapon/photo/p = photocopy.copy()
+/obj/machinery/photocopier/proc/photocopy(var/obj/item/photo/photocopy, var/need_toner=1)
+	var/obj/item/photo/p = photocopy.copy()
 	p.loc = src.loc
 
 	var/icon/I = icon(photocopy.icon, photocopy.icon_state)
@@ -343,18 +407,18 @@
 // VOREStation Edit Stop
 
 //If need_toner is 0, the copies will still be lightened when low on toner, however it will not be prevented from printing. TODO: Implement print queues for fax machines and get rid of need_toner
-/obj/machinery/photocopier/proc/bundlecopy(var/obj/item/weapon/paper_bundle/bundle, var/need_toner=1)
-	var/obj/item/weapon/paper_bundle/p = new /obj/item/weapon/paper_bundle (src)
-	for(var/obj/item/weapon/W in bundle.pages)
+/obj/machinery/photocopier/proc/bundlecopy(var/obj/item/paper_bundle/bundle, var/need_toner=1)
+	var/obj/item/paper_bundle/p = new /obj/item/paper_bundle (src)
+	for(var/obj/item/W in bundle.pages)
 		if(toner <= 0 && need_toner)
 			toner = 0
 			playsound(src, "sound/machines/buzz-sigh.ogg", 100)
 			visible_message("<span class='notice'>A red light on \the [src] flashes, indicating that it is out of toner.</span>")
 			break
 
-		if(istype(W, /obj/item/weapon/paper))
+		if(istype(W, /obj/item/paper))
 			W = copy(W)
-		else if(istype(W, /obj/item/weapon/photo))
+		else if(istype(W, /obj/item/photo))
 			W = photocopy(W)
 		W.loc = p
 		p.pages += W
@@ -367,6 +431,7 @@
 	p.pixel_x = rand(-9, 9)
 	return p
 
+<<<<<<< HEAD
 // VOREStation Edit Start - Rykka
 
 /obj/machinery/photocopier/can_buckle_check(mob/living/M, forced = FALSE)
@@ -383,6 +448,9 @@
 // VOREStation Edit Stop - Rykka
 
 /obj/item/device/toner
+=======
+/obj/item/toner
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "toner cartridge"
 	icon_state = "tonercartridge"
 	var/toner_amount = 30

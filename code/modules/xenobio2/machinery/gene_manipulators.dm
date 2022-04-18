@@ -10,7 +10,7 @@
 	Biological genetic bombarder:
 	Takes traits from a disk and replaces/adds to the genes in a xenobiological creature.
 */
-/obj/item/weapon/disk/xenobio
+/obj/item/disk/xenobio
 	name = "biological data disk"
 	desc = "A small disk used for carrying data on genetics."
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -20,7 +20,7 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/weapon/disk/xenobio/attack_self(var/mob/user as mob)
+/obj/item/disk/xenobio/attack_self(var/mob/user as mob)
 	if(genes.len)
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
@@ -30,21 +30,26 @@
 			genes = list()
 			genesource = "unknown"
 
-/obj/item/weapon/storage/box/xenobiodisk
+/obj/item/storage/box/xenobiodisk
 	name = "biological disk box"
 	desc = "A box of biological data disks, apparently."
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/box/xenobiodisk/New()
 	..()
+=======
+/obj/item/storage/box/xenobiodisk/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/i = 0 to 7)
-		new /obj/item/weapon/disk/xenobio(src)
+		new /obj/item/disk/xenobio(src)
 
 /obj/machinery/xenobio
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 
-	var/obj/item/weapon/disk/xenobio/loaded_disk //Currently loaded data disk.
+	var/obj/item/disk/xenobio/loaded_disk //Currently loaded data disk.
 
 	var/open = 0
 	var/active = 0
@@ -60,17 +65,17 @@
 /obj/machinery/xenobio/attack_hand(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/xenobio/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/xenobio/attackby(obj/item/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(istype(W,/obj/item/weapon/disk/xenobio))
+	if(istype(W,/obj/item/disk/xenobio))
 		if(loaded_disk)
 			to_chat(user, "There is already a data disk loaded.")
 			return
 		else
-			var/obj/item/weapon/disk/xenobio/B = W
+			var/obj/item/disk/xenobio/B = W
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)
@@ -117,7 +122,7 @@
 	name = "biological product destructive analyzer"
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "traitcopier"
-	circuit = /obj/item/weapon/circuitboard/bioproddestanalyzer
+	circuit = /obj/item/circuitboard/bioproddestanalyzer
 
 	var/obj/item/xenoproduct/product
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
@@ -127,7 +132,7 @@
 	. = ..()
 	default_apply_parts()
 	
-/obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/xenobio/extractor/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
 		if(product)
 			to_chat(user, "There is already a xenobiological product loaded.")
@@ -254,7 +259,7 @@
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "cellold0"
 	disk_needs_genes = 1
-	circuit = /obj/item/weapon/circuitboard/biobombarder
+	circuit = /obj/item/circuitboard/biobombarder
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 
@@ -262,9 +267,9 @@
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/xenobio/editor/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+/obj/machinery/xenobio/editor/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/grab))
+		var/obj/item/grab/G = W
 		if(occupant)
 			to_chat(user, "There is already an organism loaded.")
 			return
@@ -390,24 +395,24 @@
 		occupant.forceMove(loc)
 		occupant = null
 
-/obj/item/weapon/circuitboard/bioproddestanalyzer
+/obj/item/circuitboard/bioproddestanalyzer
 	name = T_BOARD("biological product destructive analyzer")
 	build_path = "/obj/machinery/xenobio/extractor"
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 2,
-							/obj/item/weapon/stock_parts/matter_bin = 1,
-							/obj/item/weapon/stock_parts/scanning_module = 3
+							/obj/item/stock_parts/manipulator = 2,
+							/obj/item/stock_parts/matter_bin = 1,
+							/obj/item/stock_parts/scanning_module = 3
 							)
 
-/obj/item/weapon/circuitboard/biobombarder
+/obj/item/circuitboard/biobombarder
 	name = T_BOARD("biological genetic bombarder")
 	build_path = "/obj/machinery/xenobio/editor"
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
 	req_components = list(
-							/obj/item/weapon/stock_parts/manipulator = 2,
-							/obj/item/weapon/stock_parts/matter_bin = 2,
-							/obj/item/weapon/stock_parts/scanning_module = 2
+							/obj/item/stock_parts/manipulator = 2,
+							/obj/item/stock_parts/matter_bin = 2,
+							/obj/item/stock_parts/scanning_module = 2
 							)

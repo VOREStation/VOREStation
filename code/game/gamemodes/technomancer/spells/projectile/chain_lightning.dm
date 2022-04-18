@@ -4,11 +4,11 @@
 	it does not bounce to you.  The lighting prefers to bounce to people with the least resistance to electricity.  It will \
 	strike up to four targets, including yourself if conditions allow it to occur.  Lightning functions cannot miss due to distance."
 	cost = 150
-	obj_path = /obj/item/weapon/spell/projectile/chain_lightning
+	obj_path = /obj/item/spell/projectile/chain_lightning
 	ability_icon_state = "tech_chain_lightning"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/projectile/chain_lightning
+/obj/item/spell/projectile/chain_lightning
 	name = "chain lightning"
 	icon_state = "chain_lightning"
 	desc = "Fun for the whole security team!  Just don't kill yourself in the process.."

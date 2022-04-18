@@ -1,0 +1,56 @@
+"a" = (/turf/simulated/wall/r_wall,/area/template_noop)
+"b" = (/turf/simulated/floor/tiled,/area/template_noop)
+"c" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/largecrate,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"d" = (/obj/machinery/firealarm{pixel_y = 24},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"f" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/brown/border{dir = 4},/obj/structure/closet/crate/freezer/centauri,/obj/random/snack,/obj/random/snack,/obj/random/snack,/obj/random/snack,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"g" = (/obj/random/crate{dir = 8},/obj/random/maintenance/clean,/obj/random/maintenance/clean,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"h" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 1},/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 6},/obj/machinery/atmospherics/pipe/manifold/hidden/supply,/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"i" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/closet/crate/ward{dir = 8},/obj/item/weldingtool/electric,/obj/item/weldingtool/electric,/obj/item/weldingtool/electric,/obj/machinery/alarm{dir = 1; pixel_y = -22},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"j" = (/turf/template_noop,/area/template_noop)
+"l" = (/obj/structure/largecrate,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled,/area/template_noop)
+"m" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"n" = (/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"o" = (/obj/random/crate,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"p" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/closet/crate/morpheus{dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"q" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/closet/crate/oculum{dir = 2},/obj/item/pack/cardemon,/obj/item/pack/cardemon,/obj/item/pack/spaceball,/obj/item/pack/spaceball,/obj/item/pack/cardemon,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"r" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"s" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/structure/ore_box,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"t" = (/turf/simulated/wall,/area/template_noop)
+"u" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/brown/border{dir = 8},/obj/machinery/light{dir = 8},/obj/structure/ore_box,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"v" = (/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/item/frame/apc,/turf/simulated/floor/plating,/area/template_noop)
+"x" = (/obj/machinery/power/port_gen/pacman,/obj/machinery/atmospherics/unary/vent_pump{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"y" = (/obj/effect/floor_decal/corner_steel_grid{dir = 5},/obj/effect/floor_decal/steeldecal/steel_decals5,/obj/effect/floor_decal/steeldecal/steel_decals_central4,/obj/effect/floor_decal/spline/plain,/obj/random/junk,/turf/simulated/floor/tiled,/area/template_noop)
+"z" = (/obj/random/obstruction,/turf/simulated/floor/plating,/area/template_noop)
+"A" = (/obj/effect/floor_decal/borderfloor{dir = 6},/obj/effect/floor_decal/corner/brown/border{dir = 6},/obj/structure/closet/crate/einstein,/obj/item/cell,/obj/item/cell,/obj/random/powercell,/obj/random/powercell,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"B" = (/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 9},/obj/effect/floor_decal/steeldecal/steel_decals4{dir = 4},/turf/simulated/floor/tiled,/area/template_noop)
+"D" = (/obj/structure/closet/crate/centauri,/obj/random/mre,/obj/random/mre,/obj/random/mre,/obj/random/mre,/obj/random/mre,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"E" = (/obj/effect/floor_decal/borderfloor/corner{dir = 1},/obj/effect/floor_decal/corner/brown/bordercorner{dir = 1},/obj/structure/loot_pile/maint/junk,/obj/machinery/atmospherics/unary/vent_pump,/turf/simulated/floor/tiled,/area/template_noop)
+"G" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/brown/border{dir = 8},/obj/structure/closet/crate/large/secure/heph,/obj/item/cell/device/weapon/empty,/obj/item/cell/device/weapon/empty,/obj/item/cell/device/weapon,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"H" = (/obj/effect/floor_decal/borderfloor{dir = 10},/obj/effect/floor_decal/corner/brown/border{dir = 10},/obj/structure/closet/crate/zenghu,/obj/item/storage/box/autoinjectors,/obj/random/medical/pillbottle,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"I" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/effect/floor_decal/corner/brown/border{dir = 8},/obj/effect/decal/cleanable/cobweb,/obj/structure/closet/crate/carp,/obj/item/seeds/random,/obj/item/seeds/random,/obj/item/seeds/random,/obj/item/seeds/libertymycelium,/obj/item/seeds/reishimycelium,/obj/item/seeds/ambrosiavulgarisseed,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"J" = (/obj/structure/reagent_dispensers/watertank,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/template_noop)
+"K" = (/obj/structure/closet/crate/solar,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/template_noop)
+"M" = (/obj/machinery/atmospherics/unary/vent_scrubber,/turf/simulated/floor/tiled,/area/template_noop)
+"N" = (/obj/effect/floor_decal/borderfloor/corner{dir = 1},/obj/effect/floor_decal/corner/brown/bordercorner{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"O" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/obj/effect/floor_decal/corner/brown/bordercorner{dir = 4},/obj/item/stack/tile/floor,/obj/machinery/light_construct{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"P" = (/obj/effect/floor_decal/borderfloor,/obj/effect/floor_decal/corner/brown/border,/obj/random/crate,/obj/random/maintenance/cargo,/obj/random/maintenance/cargo,/obj/random/maintenance/cargo,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"Q" = (/obj/structure/closet/crate/large/aether,/obj/random/tank,/obj/random/tank,/obj/random/tank,/obj/random/tank,/obj/item/clothing/mask/breath,/obj/item/clothing/mask/breath,/obj/item/clothing/mask/breath,/obj/item/clothing/mask/breath,/obj/machinery/atmospherics/unary/vent_scrubber{dir = 1},/turf/simulated/floor/tiled,/area/template_noop)
+"R" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled,/area/template_noop)
+"S" = (/obj/machinery/atmospherics/pipe/cap/hidden/scrubbers{dir = 4},/obj/machinery/atmospherics/pipe/cap/hidden/supply{dir = 4},/turf/simulated/wall,/area/template_noop)
+"T" = (/turf/simulated/floor/tiled/monotile,/area/template_noop)
+"U" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/status_display/supply_display,/turf/simulated/floor/plating,/area/template_noop)
+"V" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/turf/simulated/floor/tiled,/area/template_noop)
+"X" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/effect/floor_decal/corner/brown/border{dir = 4},/obj/machinery/light{dir = 4},/obj/structure/closet/crate/freezer/centauri,/obj/random/drinksoft,/obj/random/drinksoft,/obj/random/drinksoft,/obj/random/drinksoft,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"Y" = (/obj/structure/closet/crate/large/xion,/obj/random/tech_supply/nofail,/obj/random/tech_supply/nofail,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/turf/simulated/floor/tiled/monotile,/area/template_noop)
+
+(1,1,1) = {"
+tajjjaaaaa
+taataaGdya
+jaEBOvNMza
+jShrrnmVza
+aaKTDgTlUa
+aIJToYTRfa
+auQbbbbxXa
+aHPcipqsAa
+aaaaaaaaaa
+"}

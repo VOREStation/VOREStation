@@ -5,10 +5,10 @@
 	enhancement_desc = "Radiation will not affect the caster or their allies."
 	spell_power_desc = "Spell power increases the amount of radiation and heat radiated, as well as the radius."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/radiance
+	obj_path = /obj/item/spell/radiance
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/radiance
+/obj/item/spell/radiance
 	name = "radiance"
 	desc = "You will glow with a radiance similar to that of Supermatter."
 	icon_state = "radiance"
@@ -16,18 +16,23 @@
 	var/power = 250
 	toggled = 1
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/radiance/New()
 	..()
+=======
+/obj/item/spell/radiance/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(7, 4, l_color = "#D9D900")
 	START_PROCESSING(SSobj, src)
 	log_and_message_admins("has casted [src].")
 
-/obj/item/weapon/spell/radiance/Destroy()
+/obj/item/spell/radiance/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	log_and_message_admins("has stopped maintaining [src].")
 	return ..()
 
-/obj/item/weapon/spell/radiance/process()
+/obj/item/spell/radiance/process()
 	var/turf/T = get_turf(src)
 	var/datum/gas_mixture/removed = null
 	var/datum/gas_mixture/env = null

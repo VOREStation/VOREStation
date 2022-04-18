@@ -8,7 +8,7 @@
 	var/list/spawn_cartridges = null // Set to a list of types to spawn one of each on New()
 
 	var/list/cartridges = list() // Associative, label -> cartridge
-	var/obj/item/weapon/reagent_containers/container = null
+	var/obj/item/reagent_containers/container = null
 
 	var/ui_title = "Chemical Dispenser"
 
@@ -41,7 +41,7 @@
 	src.set_dir(turn(src.dir, 270))
 	return 1
 
-/obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/weapon/reagent_containers/chem_disp_cartridge/C, mob/user)
+/obj/machinery/chemical_dispenser/proc/add_cartridge(obj/item/reagent_containers/chem_disp_cartridge/C, mob/user)
 	if(!istype(C))
 		if(user)
 			to_chat(user, "<span class='warning'>\The [C] will not fit in \the [src]!</span>")
@@ -76,7 +76,7 @@
 	cartridges -= label
 	SStgui.update_uis(src)
 
-/obj/machinery/chemical_dispenser/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/chemical_dispenser/attackby(obj/item/W, mob/user)
 	if(W.is_wrench())
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You begin to [anchored ? "un" : ""]fasten \the [src].</span>")
@@ -89,26 +89,26 @@
 		else
 			to_chat(user, "<span class='notice'>You decide not to [anchored ? "un" : ""]fasten \the [src].</span>")
 
-	else if(istype(W, /obj/item/weapon/reagent_containers/chem_disp_cartridge))
+	else if(istype(W, /obj/item/reagent_containers/chem_disp_cartridge))
 		add_cartridge(W, user)
 
 	else if(W.is_screwdriver())
 		var/label = tgui_input_list(user, "Which cartridge would you like to remove?", "Chemical Dispenser", cartridges)
 		if(!label) return
-		var/obj/item/weapon/reagent_containers/chem_disp_cartridge/C = remove_cartridge(label)
+		var/obj/item/reagent_containers/chem_disp_cartridge/C = remove_cartridge(label)
 		if(C)
 			to_chat(user, "<span class='notice'>You remove \the [C] from \the [src].</span>")
 			C.loc = loc
 			playsound(src, W.usesound, 50, 1)
 
-	else if(istype(W, /obj/item/weapon/reagent_containers/glass) || istype(W, /obj/item/weapon/reagent_containers/food))
+	else if(istype(W, /obj/item/reagent_containers/glass) || istype(W, /obj/item/reagent_containers/food))
 		if(container)
 			to_chat(user, "<span class='warning'>There is already \a [container] on \the [src]!</span>")
 			return
 
-		var/obj/item/weapon/reagent_containers/RC = W
+		var/obj/item/reagent_containers/RC = W
 
-		if(!accept_drinking && istype(RC,/obj/item/weapon/reagent_containers/food))
+		if(!accept_drinking && istype(RC,/obj/item/reagent_containers/food))
 			to_chat(user, "<span class='warning'>This machine only accepts beakers!</span>")
 			return
 
@@ -150,7 +150,7 @@
 
 	var/chemicals[0]
 	for(var/label in cartridges)
-		var/obj/item/weapon/reagent_containers/chem_disp_cartridge/C = cartridges[label]
+		var/obj/item/reagent_containers/chem_disp_cartridge/C = cartridges[label]
 		chemicals.Add(list(list("title" = label, "id" = label, "amount" = C.reagents.total_volume))) // list in a list because Byond merges the first list...
 	data["chemicals"] = chemicals
 	return data
@@ -166,7 +166,7 @@
 		if("dispense")
 			var/label = params["reagent"]
 			if(cartridges[label] && container && container.is_open_container())
-				var/obj/item/weapon/reagent_containers/chem_disp_cartridge/C = cartridges[label]
+				var/obj/item/reagent_containers/chem_disp_cartridge/C = cartridges[label]
 				playsound(src, 'sound/machines/reagent_dispense.ogg', 25, 1)
 				C.reagents.trans_to(container, amount)
 		if("remove")

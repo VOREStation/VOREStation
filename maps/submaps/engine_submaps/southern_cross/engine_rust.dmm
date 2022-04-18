@@ -6,7 +6,7 @@
 /turf/space,
 /area/space)
 "ac" = (
-/obj/item/weapon/book/manual/rust_engine,
+/obj/item/book/manual/rust_engine,
 /turf/template_noop,
 /area/template_noop)
 "ad" = (
@@ -320,7 +320,7 @@
 /area/engineering/engine_room)
 "aV" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/book/manual/rust_engine,
+/obj/item/book/manual/rust_engine,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "aW" = (
@@ -1265,7 +1265,7 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "de" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 2;
 	pixel_y = -24
 	},

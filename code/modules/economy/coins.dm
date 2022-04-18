@@ -1,6 +1,6 @@
 /*****************************Coin********************************/
 
-/obj/item/weapon/coin
+/obj/item/coin
 	icon = 'icons/obj/items.dmi'
 	name = "Coin"
 	desc = "A simple coin you can flip."
@@ -15,60 +15,65 @@
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 
+<<<<<<< HEAD
 /obj/item/weapon/coin/New()
+=======
+/obj/item/coin/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	randpixel_xy()
 
-/obj/item/weapon/coin/gold
+/obj/item/coin/gold
 	name = "gold coin"
 	icon_state = "coin_gold"
 	matter = list(MAT_GOLD = 250)
 
-/obj/item/weapon/coin/silver
+/obj/item/coin/silver
 	name = "silver coin"
 	icon_state = "coin_silver"
 	matter = list(MAT_SILVER = 250)
 
-/obj/item/weapon/coin/diamond
+/obj/item/coin/diamond
 	name = "diamond coin"
 	icon_state = "coin_diamond"
 	matter = list(MAT_DIAMOND = 250)
 
-/obj/item/weapon/coin/iron
+/obj/item/coin/iron
 	name = "iron coin"
 	icon_state = "coin_iron"
 	matter = list(MAT_IRON = 250)
 
-/obj/item/weapon/coin/phoron
+/obj/item/coin/phoron
 	name = "solid phoron coin"
 	icon_state = "coin_phoron"
 	matter = list(MAT_PHORON = 250)
 
-/obj/item/weapon/coin/uranium
+/obj/item/coin/uranium
 	name = "uranium coin"
 	icon_state = "coin_uranium"
 	matter = list(MAT_URANIUM = 250)
 
-/obj/item/weapon/coin/platinum
+/obj/item/coin/platinum
 	name = "platinum coin"
 	icon_state = "coin_adamantine"
 	matter = list(MAT_GOLD = 250)
 
-/obj/item/weapon/coin/morphium
+/obj/item/coin/morphium
 	name = "morphium coin"
 	icon_state = "coin_morphium"
 	matter = list(MAT_MORPHIUM = 250)
 
-/obj/item/weapon/coin/aluminium
+/obj/item/coin/aluminium
 	name = "aluminium coin"
 	icon_state = "coin_aluminium"
 	matter = list(MAT_ALUMINIUM = 250)
 
-/obj/item/weapon/coin/verdantium
+/obj/item/coin/verdantium
 	name = "verdantium coin"
 	icon_state = "coin_verdantium"
 	matter = list(MAT_VERDANTIUM = 250)
 
-/obj/item/weapon/coin/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/coin/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/CC = W
 		if(string_attached)
@@ -93,7 +98,7 @@
 		to_chat(user, "<font color='blue'>You detach the string from the coin.</font>")
 	else ..()
 
-/obj/item/weapon/coin/attack_self(mob/user as mob)
+/obj/item/coin/attack_self(mob/user as mob)
 	var/result = rand(1, sides)
 	var/comment = ""
 	if(result == 1)

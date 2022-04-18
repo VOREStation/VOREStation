@@ -12,8 +12,8 @@
 	var/meat_type
 	var/victim_name = "corpse"
 
-/obj/structure/kitchenspike/attackby(obj/item/weapon/grab/G as obj, mob/user as mob)
-	if(!istype(G, /obj/item/weapon/grab) || !ismob(G.affecting))
+/obj/structure/kitchenspike/attackby(obj/item/grab/G as obj, mob/user as mob)
+	if(!istype(G, /obj/item/grab) || !ismob(G.affecting))
 		return
 	if(occupied)
 		to_chat(user, "<span class = 'danger'>The spike already has something on it, finish collecting its meat first!</span>")
@@ -40,7 +40,7 @@
 		else
 			return 0
 	else if(istype(victim, /mob/living/carbon/alien))
-		meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+		meat_type = /obj/item/reagent_containers/food/snacks/xenomeat
 		icon_state = "spikebloodygreen"
 	else
 		return 0

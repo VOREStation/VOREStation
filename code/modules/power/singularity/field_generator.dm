@@ -122,8 +122,8 @@ field_generator power level display
 			if(2)
 				to_chat(user, "<font color='red'>The [src.name] needs to be unwelded from the floor.</font>")
 				return
-	else if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		switch(state)
 			if(0)
 				to_chat(user, "<font color='red'>The [src.name] needs to be wrenched to the floor.</font>")

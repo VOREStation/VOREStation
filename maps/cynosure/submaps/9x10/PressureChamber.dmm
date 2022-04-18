@@ -1,0 +1,32 @@
+"a" = (/turf/simulated/wall,/area/template_noop)
+"d" = (/obj/random/crate,/obj/random/maintenance/engineering,/obj/random/maintenance/engineering,/obj/random/bomb_supply,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/template_noop)
+"e" = (/obj/item/storage/briefcase/inflatable{pixel_y = 8},/turf/simulated/floor/plating,/area/template_noop)
+"l" = (/obj/random/obstruction,/turf/simulated/floor/plating,/area/template_noop)
+"m" = (/obj/item/tape/atmos,/turf/simulated/floor/plating,/area/template_noop)
+"s" = (/obj/machinery/door/airlock{name = "Construction Area"},/obj/item/tape/atmos,/turf/simulated/floor/tiled/steel_grid,/area/template_noop)
+"t" = (/obj/item/frame/apc,/turf/simulated/floor/plating,/area/template_noop)
+"y" = (/turf/template_noop,/area/template_noop)
+"z" = (/obj/structure/table,/turf/simulated/floor/plating,/area/template_noop)
+"D" = (/obj/machinery/portable_atmospherics/powered/pump,/turf/simulated/floor/plating,/area/template_noop)
+"F" = (/obj/random/crate,/obj/random/maintenance/engineering,/obj/random/toolbox,/obj/random/tool/powermaint,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/template_noop)
+"G" = (/obj/machinery/button/windowtint{id = "PressureChamber"; pixel_x = 22; pixel_y = 24},/turf/simulated/floor/plating,/area/template_noop)
+"J" = (/obj/structure/window/reinforced/polarized/full{id = "PressureChamber"},/turf/simulated/floor/plating,/area/template_noop)
+"K" = (/obj/machinery/portable_atmospherics/powered/scrubber,/turf/simulated/floor/plating,/area/template_noop)
+"L" = (/obj/random/crate,/obj/random/tank,/obj/random/tank,/obj/random/tank,/obj/random/tank,/obj/item/clothing/mask/gas/zaddat,/obj/random/maintenance/clean,/turf/simulated/floor/plating,/area/template_noop)
+"N" = (/obj/item/inflatable/door,/turf/simulated/floor/plating,/area/template_noop)
+"O" = (/obj/item/book/manual/atmospipes,/obj/machinery/alarm{dir = 4; pixel_x = -22},/turf/simulated/floor/plating,/area/template_noop)
+"T" = (/obj/item/inflatable/door/torn,/turf/simulated/floor/plating,/area/template_noop)
+"Z" = (/turf/simulated/floor/plating,/area/template_noop)
+
+(1,1,1) = {"
+aaaaaaaaa
+aZZZZZlLa
+aZZZZZadl
+aZZZZzaaa
+aTlaaaaay
+aZGJDKZmy
+aNZaOZZay
+aZZeZZZay
+aFZZZZtay
+aaaasaaay
+"}

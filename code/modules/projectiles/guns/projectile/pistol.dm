@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 /*
  * M1911
  */
 /obj/item/weapon/gun/projectile/colt
+=======
+/obj/item/gun/projectile/colt
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/unique_reskin
 	name = ".45 pistol"
 	desc = "A typical modern handgun produced for law enforcement. Uses .45 rounds."
@@ -13,7 +17,7 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/colt/update_icon()
+/obj/item/gun/projectile/colt/update_icon()
 	if(ammo_magazine)
 		if(unique_reskin)
 			icon_state = unique_reskin
@@ -25,14 +29,18 @@
 		else
 			icon_state = "[initial(icon_state)]-e"
 
+<<<<<<< HEAD
 /*
  * Detective M1911
  */
 /obj/item/weapon/gun/projectile/colt/detective
+=======
+/obj/item/gun/projectile/colt/detective
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "A standard law enforcement issue pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
-/obj/item/weapon/gun/projectile/colt/detective/verb/rename_gun()
+/obj/item/gun/projectile/colt/detective/verb/rename_gun()
 	set name = "Name Gun"
 	set category = "Object"
 	set desc = "Rename your gun. If you're Security."
@@ -51,7 +59,7 @@
 		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
-/obj/item/weapon/gun/projectile/colt/detective/verb/reskin_gun()
+/obj/item/gun/projectile/colt/detective/verb/reskin_gun()
 	set name = "Resprite gun"
 	set category = "Object"
 	set desc = "Click to choose a sprite for your gun."
@@ -72,10 +80,22 @@
 		to_chat(M, "Your gun is now sprited as [choice]. Say hello to your new friend.")
 		return 1
 
+<<<<<<< HEAD
 /*
  * Security Sidearm
  */
 /obj/item/weapon/gun/projectile/sec
+=======
+/*//apart of reskins that have two sprites, touching may result in frustration and breaks
+/obj/item/gun/projectile/colt/detective/attack_hand(var/mob/living/user)
+	if(!unique_reskin && loc == user)
+		reskin_gun(user)
+		return
+	..()
+*/
+
+/obj/item/gun/projectile/sec
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = ".45 pistol"
 	desc = "The MT Mk58 is a cheap, ubiquitous sidearm, produced by MarsTech. Found pretty much everywhere humans are. Uses .45 rounds."
 	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, \
@@ -88,32 +108,44 @@
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	load_method = MAGAZINE
 
-/obj/item/weapon/gun/projectile/sec/update_icon()
+/obj/item/gun/projectile/sec/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "secgun"
 	else
 		icon_state = "secgun-e"
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/sec/flash
 	magazine_type = /obj/item/ammo_magazine/m45/flash
 
 /obj/item/weapon/gun/projectile/sec/wood
 	name = "custom .45 pistol"
+=======
+/obj/item/gun/projectile/sec/flash
+	name = ".45 signal pistol"
+	magazine_type = /obj/item/ammo_magazine/m45/flash
+
+/obj/item/gun/projectile/sec/wood
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "The MT Mk58 is a cheap, ubiquitous sidearm, produced by MarsTech. This one has a sweet wooden grip. Uses .45 rounds."
 	icon_state = "secgunb"
 
-/obj/item/weapon/gun/projectile/sec/wood/update_icon()
+/obj/item/gun/projectile/sec/wood/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "secgunb"
 	else
 		icon_state = "secgunb-e"
 
+<<<<<<< HEAD
 /*
  * Silenced Pistol
  */
 /obj/item/weapon/gun/projectile/silenced
+=======
+/obj/item/gun/projectile/silenced
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "silenced pistol"
 	desc = "A small, quiet, easily concealable gun with a built-in silencer. Uses .45 rounds."
 	icon_state = "silenced_pistol"
@@ -128,9 +160,10 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m45)
 	projectile_type = /obj/item/projectile/bullet/pistol/medium
 
-/obj/item/weapon/gun/projectile/silenced/empty
+/obj/item/gun/projectile/silenced/empty
 	magazine_type = null
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/silenced/update_icon()
 	..()
 	if(ammo_magazine)
@@ -142,6 +175,9 @@
  * Deagle
  */
 /obj/item/weapon/gun/projectile/deagle
+=======
+/obj/item/gun/projectile/deagle
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "hand cannon"
 	desc = "The PCA-55 Rarkajar perfect handgun for shooters with a need to hit targets through a wall and behind a fridge in your neighbor's house. Uses .44 rounds."
 	description_fluff = "Pearlshield Consolidated Armories are far from the most cutting edge firearm manufacturer, but the Tajaran’s long tradition of war is rivaled only by humanity, \
@@ -156,27 +192,31 @@
 	magazine_type = /obj/item/ammo_magazine/m44
 	allowed_magazines = list(/obj/item/ammo_magazine/m44)
 
-/obj/item/weapon/gun/projectile/deagle/update_icon()
+/obj/item/gun/projectile/deagle/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]-e"
 
-/obj/item/weapon/gun/projectile/deagle/gold
+/obj/item/gun/projectile/deagle/gold
 	desc = "A gold plated gun folded over a million times by superior Tajaran gunsmiths. Uses .44 rounds."
 	icon_state = "deagleg"
 	item_state = "deagleg"
 
-/obj/item/weapon/gun/projectile/deagle/camo
+/obj/item/gun/projectile/deagle/camo
 	desc = "An off-brand non-Deagle for operators not operating operationally. Uses .44 rounds."
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
+<<<<<<< HEAD
 /*
  * Gyro Pistol (Admin Abuse in gun form)
  */
 /obj/item/weapon/gun/projectile/gyropistol
+=======
+/obj/item/gun/projectile/gyropistol // Does this even appear anywhere outside of admin abuse?
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "gyrojet pistol"
 	desc = "Speak softly, and carry a big gun. Fires rare .75 caliber self-propelled exploding bolts--because fuck you and everything around you."
 	icon_state = "gyropistol"
@@ -191,13 +231,14 @@
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
-/obj/item/weapon/gun/projectile/gyropistol/update_icon()
+/obj/item/gun/projectile/gyropistol/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "gyropistolloaded"
 	else
 		icon_state = "gyropistol"
 
+<<<<<<< HEAD
 /*
  * Silencer
  */
@@ -212,6 +253,9 @@
  * Compact Pistol
  */
 /obj/item/weapon/gun/projectile/pistol
+=======
+/obj/item/gun/projectile/pistol
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "compact pistol"
 	desc = "The Lumoco Arms P3 \"Whisper\". A compact, easily concealable gun, though it's only compatible with compact magazines. Uses 9mm rounds."
 	icon_state = "pistol"
@@ -225,10 +269,15 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm/compact)
 	projectile_type = /obj/item/projectile/bullet/pistol
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/pistol/flash
+=======
+/obj/item/gun/projectile/pistol/flash
+	name = "compact signal pistol"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	magazine_type = /obj/item/ammo_magazine/m9mm/compact/flash
 
-/obj/item/weapon/gun/projectile/pistol/attack_hand(mob/living/user as mob)
+/obj/item/gun/projectile/pistol/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(silenced)
 			if(!user.item_is_in_hands(src))
@@ -242,8 +291,8 @@
 			return
 	..()
 
-/obj/item/weapon/gun/projectile/pistol/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/silencer))
+/obj/item/gun/projectile/pistol/attackby(obj/item/I as obj, mob/living/user as mob)
+	if(istype(I, /obj/item/silencer))
 		if(!user.item_is_in_hands(src))	//if we're not in his hands
 			to_chat(user, "<span class='notice'>You'll need [src] in your hands to do that.</span>")
 			return
@@ -256,12 +305,19 @@
 		return
 	..()
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/pistol/update_icon()
 	if(ammo_magazine)
 		if(silenced)
 			icon_state = "pistol-s"
 		else
 			icon_state = "pistol"
+=======
+/obj/item/gun/projectile/pistol/update_icon()
+	..()
+	if(silenced)
+		icon_state = "pistol-silencer"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	else
 		if(silenced)
 			icon_state = "pistol-s-e"
@@ -284,6 +340,7 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 	projectile_type = /obj/item/projectile/bullet/pistol
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/aps/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(silenced)
@@ -326,6 +383,16 @@
  * Zip Gun (yar har)
  */
 /obj/item/weapon/gun/projectile/pirate
+=======
+/obj/item/silencer
+	name = "silencer"
+	desc = "a silencer"
+	icon = 'icons/obj/gun.dmi'
+	icon_state = "silencer"
+	w_class = ITEMSIZE_SMALL
+
+/obj/item/gun/projectile/pirate
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "zip gun"
 	desc = "Little more than a barrel, handle, and firing mechanism, cheap makeshift firearms like this one are not uncommon in frontier systems."
 	icon_state = "zipgun"
@@ -351,7 +418,11 @@
 		/obj/item/ammo_casing/a545              = "5.45mm"
 		)
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/pirate/New()
+=======
+/obj/item/gun/projectile/pirate/Initialize()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	ammo_type = pick(ammo_types)
 	desc += " Uses [ammo_types[ammo_type]] rounds."
 
@@ -359,10 +430,14 @@
 	caliber = initial(ammo.caliber)
 	..()
 
+<<<<<<< HEAD
 /*
  * Derringer
  */
 /obj/item/weapon/gun/projectile/derringer
+=======
+/obj/item/gun/projectile/derringer
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "derringer"
 	desc = "It's not size of your gun that matters, just the size of your load. Uses .357 rounds." //OHHH MYYY~
 	icon_state = "derringer"
@@ -375,6 +450,7 @@
 	ammo_type = /obj/item/ammo_casing/a357
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
+<<<<<<< HEAD
 /*
  * Luger
  */
@@ -382,6 +458,11 @@
 	name = "\improper Jindal T15 \"Mäuse\""
 	desc = "Almost seventy percent guaranteed not to be a cheap rimworld knockoff! Accuracy, easy handling, and its distinctive appearance \
 	make it popular among gun collectors. Uses 9mm rounds."
+=======
+/obj/item/gun/projectile/luger
+	name = "\improper Jindal T15 Chooha"
+	desc = "Almost seventy percent guaranteed not to be a cheap rimworld knockoff! Accuracy, easy handling, and its distinctive appearance make it popular among gun collectors. Uses 9mm rounds."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	description_fluff = "While Jindal’s rugged, affordable weapons intended for the colonial sector are a major export of Tau Ceti, \
 	the Jindal Arms company is perhaps best known for its liberal sale of production licenses to just about any fledgling rimworld \
 	venture who asks, and has cash to spare. While Jindal’s 'authentic' Binma-built weapons are renowned for their reliability, the \
@@ -395,24 +476,33 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm/luger)
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-/obj/item/weapon/gun/projectile/luger/update_icon()
+/obj/item/gun/projectile/luger/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]-e"
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/luger/brown
 	name = "\improper Jindal T15b \"Mäuse\""
+=======
+/obj/item/gun/projectile/luger/brown
+	name = "\improper Jindal KP-45W"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	description_fluff = "While wholly owned by Hephaestus Industries, the Jindal Arms brand does not appear prominently in most company catalogues \
 	(Perhaps owing to its less than prestigious image), instead being sold almost exclusively through retailers and advertising platforms targeting \
 	the 'independent roughneck' demographic."
 	icon_state = "p08b"
 
+<<<<<<< HEAD
 /*
  * P92X (9mm Pistol)
  */
 /obj/item/weapon/gun/projectile/p92x
+=======
+/obj/item/gun/projectile/p92x
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "9mm pistol"
 	desc = "A widespread MarsTech sidearm called the P92X which is used by military, police, and security forces across the galaxy. Uses 9mm rounds."
 	icon_state = "p92x"
@@ -422,13 +512,14 @@
 	magazine_type = /obj/item/ammo_magazine/m9mm
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm) // Can accept illegal large capacity magazines, or compact magazines.
 
-/obj/item/weapon/gun/projectile/p92x/update_icon()
+/obj/item/gun/projectile/p92x/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]-e"
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/p92x/rubber
 	magazine_type = /obj/item/ammo_magazine/m9mm/rubber
 
@@ -606,3 +697,10 @@
 	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
 	ratio = round(ratio, 33)
 	add_overlay("lamia_[ratio]")
+=======
+/obj/item/gun/projectile/p92x/brown
+	icon_state = "p92x-brown"
+
+/obj/item/gun/projectile/p92x/large
+	magazine_type = /obj/item/ammo_magazine/m9mm/large // Spawns with illegal magazines.
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

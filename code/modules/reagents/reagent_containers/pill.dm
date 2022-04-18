@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// Pills.
 ////////////////////////////////////////////////////////////////////////////////
-/obj/item/weapon/reagent_containers/pill
+/obj/item/reagent_containers/pill
 	name = "pill"
 	desc = "A pill."
 	icon = 'icons/obj/chemical.dmi'
@@ -17,12 +17,12 @@
 	slot_flags = SLOT_EARS
 	volume = 60
 
-/obj/item/weapon/reagent_containers/pill/Initialize()
+/obj/item/reagent_containers/pill/Initialize()
 	. = ..()
 	if(!icon_state)
 		icon_state = "[base_state][rand(1, 4)]" //preset pills only use colour changing or unique icons
 
-/obj/item/weapon/reagent_containers/pill/attack(mob/M as mob, mob/user as mob)
+/obj/item/reagent_containers/pill/attack(mob/M as mob, mob/user as mob)
 	if(M == user)
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
@@ -72,7 +72,7 @@
 
 	return 0
 
-/obj/item/weapon/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_containers/pill/afterattack(obj/target, mob/user, proximity)
 	if(!proximity) return
 
 	if(target.is_open_container() && target.reagents)
@@ -91,9 +91,9 @@
 
 	return
 
-/obj/item/weapon/reagent_containers/pill/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/reagent_containers/pill/attackby(obj/item/W as obj, mob/user as mob)
 	if(is_sharp(W))
-		var/obj/item/weapon/reagent_containers/powder/J = new /obj/item/weapon/reagent_containers/powder(src.loc)
+		var/obj/item/reagent_containers/powder/J = new /obj/item/reagent_containers/powder(src.loc)
 		user.visible_message("<span class='warning'>[user] gently cuts up [src] with [W]!</span>")
 		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
 
@@ -102,8 +102,8 @@
 		J.get_appearance()
 		qdel(src)
 
-	if(istype(W, /obj/item/weapon/card/id))
-		var/obj/item/weapon/reagent_containers/powder/J = new /obj/item/weapon/reagent_containers/powder(src.loc)
+	if(istype(W, /obj/item/card/id))
+		var/obj/item/reagent_containers/powder/J = new /obj/item/reagent_containers/powder(src.loc)
 		user.visible_message("<span class='warning'>[user] clumsily chops up [src] with [W]!</span>")
 		playsound(src.loc, 'sound/effects/chop.ogg', 50, 1)
 
@@ -119,214 +119,244 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //Pills
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/antitox
 	name = "Dylovene (30u)" //VOREStation Edit
+=======
+/obj/item/reagent_containers/pill/antitox
+	name = "Dylovene (25u)"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill1"
 
-/obj/item/weapon/reagent_containers/pill/antitox/Initialize()
+/obj/item/reagent_containers/pill/antitox/Initialize()
 	. = ..()
 	reagents.add_reagent("anti_toxin", 30) //VOREStation Edit
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/tox
+/obj/item/reagent_containers/pill/tox
 	name = "Toxins pill"
 	desc = "Highly toxic."
 	icon_state = "pill4"
 
-/obj/item/weapon/reagent_containers/pill/tox/Initialize()
+/obj/item/reagent_containers/pill/tox/Initialize()
 	. = ..()
 	reagents.add_reagent("toxin", 50)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/cyanide
+/obj/item/reagent_containers/pill/cyanide
 	name = "Strange pill"
 	desc = "It's marked 'KCN'. Smells vaguely of almonds."
 	icon_state = "pill9"
 
-/obj/item/weapon/reagent_containers/pill/cyanide/Initialize()
+/obj/item/reagent_containers/pill/cyanide/Initialize()
 	. = ..()
 	reagents.add_reagent("cyanide", 50)
 
 
-/obj/item/weapon/reagent_containers/pill/adminordrazine
+/obj/item/reagent_containers/pill/adminordrazine
 	name = "Adminordrazine pill"
 	desc = "It's magic. We don't have to explain it."
 	icon_state = "pillA"
 
-/obj/item/weapon/reagent_containers/pill/adminordrazine/Initialize()
+/obj/item/reagent_containers/pill/adminordrazine/Initialize()
 	. = ..()
 	reagents.add_reagent("adminordrazine", 5)
 
 
-/obj/item/weapon/reagent_containers/pill/stox
+/obj/item/reagent_containers/pill/stox
 	name = "Soporific (15u)"
 	desc = "Commonly used to treat insomnia."
 	icon_state = "pill2"
 
-/obj/item/weapon/reagent_containers/pill/stox/Initialize()
+/obj/item/reagent_containers/pill/stox/Initialize()
 	. = ..()
 	reagents.add_reagent("stoxin", 15)
 	color = reagents.get_color()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/kelotane
 	name = "Kelotane (20u)" //VOREStation Edit
+=======
+/obj/item/reagent_containers/pill/kelotane
+	name = "Kelotane (15u)"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "Used to treat burns."
 	icon_state = "pill3"
 
-/obj/item/weapon/reagent_containers/pill/kelotane/Initialize()
+/obj/item/reagent_containers/pill/kelotane/Initialize()
 	. = ..()
 	reagents.add_reagent("kelotane", 20) //VOREStation Edit
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/paracetamol
+/obj/item/reagent_containers/pill/paracetamol
 	name = "Paracetamol (15u)"
 	desc = "Paracetamol! A painkiller for the ages. Chewables!"
 	icon_state = "pill3"
 
-/obj/item/weapon/reagent_containers/pill/paracetamol/Initialize()
+/obj/item/reagent_containers/pill/paracetamol/Initialize()
 	. = ..()
 	reagents.add_reagent("paracetamol", 15)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/tramadol
+/obj/item/reagent_containers/pill/tramadol
 	name = "Tramadol (15u)"
 	desc = "A simple painkiller."
 	icon_state = "pill3"
 
-/obj/item/weapon/reagent_containers/pill/tramadol/Initialize()
+/obj/item/reagent_containers/pill/tramadol/Initialize()
 	. = ..()
 	reagents.add_reagent("tramadol", 15)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/methylphenidate
+/obj/item/reagent_containers/pill/methylphenidate
 	name = "Methylphenidate (15u)"
 	desc = "Improves the ability to concentrate."
 	icon_state = "pill2"
 
-/obj/item/weapon/reagent_containers/pill/methylphenidate/Initialize()
+/obj/item/reagent_containers/pill/methylphenidate/Initialize()
 	. = ..()
 	reagents.add_reagent("methylphenidate", 15)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/citalopram
+/obj/item/reagent_containers/pill/citalopram
 	name = "Citalopram (15u)"
 	desc = "Mild anti-depressant."
 	icon_state = "pill4"
 
-/obj/item/weapon/reagent_containers/pill/citalopram/Initialize()
+/obj/item/reagent_containers/pill/citalopram/Initialize()
 	. = ..()
 	reagents.add_reagent("citalopram", 15)
 	color = reagents.get_color()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/dexalin
 	name = "Dexalin (7.5u)" //VOREstation Edit
+=======
+/obj/item/reagent_containers/pill/dexalin
+	name = "Dexalin (15u)"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill1"
 
-/obj/item/weapon/reagent_containers/pill/dexalin/Initialize()
+/obj/item/reagent_containers/pill/dexalin/Initialize()
 	. = ..()
 	reagents.add_reagent("dexalin", 7.5) //VOREStation Edit
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/dexalin_plus
+/obj/item/reagent_containers/pill/dexalin_plus
 	name = "Dexalin Plus (15u)"
 	desc = "Used to treat extreme oxygen deprivation."
 	icon_state = "pill2"
 
-/obj/item/weapon/reagent_containers/pill/dexalin_plus/Initialize()
+/obj/item/reagent_containers/pill/dexalin_plus/Initialize()
 	. = ..()
 	reagents.add_reagent("dexalinp", 15)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/dermaline
+/obj/item/reagent_containers/pill/dermaline
 	name = "Dermaline (15u)"
 	desc = "Used to treat burn wounds."
 	icon_state = "pill2"
 
-/obj/item/weapon/reagent_containers/pill/dermaline/Initialize()
+/obj/item/reagent_containers/pill/dermaline/Initialize()
 	. = ..()
 	reagents.add_reagent("dermaline", 15)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/dylovene
+/obj/item/reagent_containers/pill/dylovene
 	name = "Dylovene (15u)"
 	desc = "A broad-spectrum anti-toxin."
 	icon_state = "pill1"
 
-/obj/item/weapon/reagent_containers/pill/dylovene/Initialize()
+/obj/item/reagent_containers/pill/dylovene/Initialize()
 	. = ..()
 	reagents.add_reagent("anti_toxin", 15)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/inaprovaline
+/obj/item/reagent_containers/pill/inaprovaline
 	name = "Inaprovaline (30u)"
 	desc = "Used to stabilize patients."
 	icon_state = "pill2"
 
-/obj/item/weapon/reagent_containers/pill/inaprovaline/Initialize()
+/obj/item/reagent_containers/pill/inaprovaline/Initialize()
 	. = ..()
 	reagents.add_reagent("inaprovaline", 30)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/bicaridine
+/obj/item/reagent_containers/pill/bicaridine
 	name = "Bicaridine (20u)"
 	desc = "Used to treat physical injuries."
 	icon_state = "pill2"
 
-/obj/item/weapon/reagent_containers/pill/bicaridine/Initialize()
+/obj/item/reagent_containers/pill/bicaridine/Initialize()
 	. = ..()
 	reagents.add_reagent("bicaridine", 20)
 	color = reagents.get_color()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/spaceacillin
 	name = "Spaceacillin (15u)" //VOREStation Edit
+=======
+/obj/item/reagent_containers/pill/spaceacillin
+	name = "Spaceacillin (10u)"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 	icon_state = "pill3"
 
-/obj/item/weapon/reagent_containers/pill/spaceacillin/Initialize()
+/obj/item/reagent_containers/pill/spaceacillin/Initialize()
 	. = ..()
 	reagents.add_reagent("spaceacillin", 15)
 	color = reagents.get_color()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/carbon
 	name = "Carbon (30u)" //VOREStation Edit
+=======
+/obj/item/reagent_containers/pill/carbon
+	name = "Carbon (15u)"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "Used to neutralise chemicals in the stomach."
 	icon_state = "pill3"
 
-/obj/item/weapon/reagent_containers/pill/carbon/Initialize()
+/obj/item/reagent_containers/pill/carbon/Initialize()
 	. = ..()
 	reagents.add_reagent("carbon", 30) //VOREStation Edit
 	color = reagents.get_color()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/iron
 	name = "Iron (30u)" //VOREStation Edit
+=======
+/obj/item/reagent_containers/pill/iron
+	name = "Iron (15u)"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "Used to aid in blood regeneration after bleeding."
 	icon_state = "pill1"
 
-/obj/item/weapon/reagent_containers/pill/iron/Initialize()
+/obj/item/reagent_containers/pill/iron/Initialize()
 	. = ..()
 	reagents.add_reagent("iron", 30) //VOREStation Edit
 	color = reagents.get_color()
 
 //Not-quite-medicine
-/obj/item/weapon/reagent_containers/pill/happy
+/obj/item/reagent_containers/pill/happy
 	name = "Happy pill"
 	desc = "Happy happy joy joy!"
 	icon_state = "pill4"
 
-/obj/item/weapon/reagent_containers/pill/happy/Initialize()
+/obj/item/reagent_containers/pill/happy/Initialize()
 	. = ..()
 	reagents.add_reagent("bliss", 15)
 	reagents.add_reagent("sugar", 15)
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/zoom
+/obj/item/reagent_containers/pill/zoom
 	name = "Zoom pill"
 	desc = "Zoooom!"
 	icon_state = "pill4"
 
-/obj/item/weapon/reagent_containers/pill/zoom/Initialize()
+/obj/item/reagent_containers/pill/zoom/Initialize()
 	. = ..()
 	if(prob(50))						//VOREStation edit begin: Zoom pill adjustments
 		reagents.add_reagent("mold", 2)	//Chance to be more dangerous
@@ -334,12 +364,12 @@
 	reagents.add_reagent("stimm", 5)	//VOREStation edit end: Zoom pill adjustments
 	color = reagents.get_color()
 
-/obj/item/weapon/reagent_containers/pill/diet
+/obj/item/reagent_containers/pill/diet
 	name = "diet pill"
 	desc = "Guaranteed to get you slim!"
 	icon_state = "pill4"
 
-/obj/item/weapon/reagent_containers/pill/diet/Initialize()
+/obj/item/reagent_containers/pill/diet/Initialize()
 	. = ..()
 	reagents.add_reagent("lipozine", 15) //VOREStation Edit
 	color = reagents.get_color()

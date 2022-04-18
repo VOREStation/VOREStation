@@ -18,7 +18,7 @@
 
 /datum/material/snow/generate_recipes()
 	recipes = list(
-		new /datum/stack_recipe("snowball", /obj/item/weapon/material/snow/snowball, 1, time = 10, recycle_material = "[name]"),
+		new /datum/stack_recipe("snowball", /obj/item/material/snow/snowball, 1, time = 10, recycle_material = "[name]"),
 		new /datum/stack_recipe("snow brick", /obj/item/stack/material/snowbrick, 2, time = 10, recycle_material = "[name]"),
 		new /datum/stack_recipe("snowman", /obj/structure/snowman, 2, time = 15, recycle_material = "[name]"),
 		new /datum/stack_recipe("snow robot", /obj/structure/snowman/borg, 2, time = 10, recycle_material = "[name]"),
@@ -47,10 +47,10 @@
 	recipes = list(
 		new /datum/stack_recipe("[display_name] door", /obj/structure/simple_door, 10, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("[display_name] barricade", /obj/structure/barricade, 5, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
-		new /datum/stack_recipe("[display_name] stool", /obj/item/weapon/stool, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
+		new /datum/stack_recipe("[display_name] stool", /obj/item/stool, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("[display_name] chair", /obj/structure/bed/chair, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("[display_name] bed", /obj/structure/bed, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("[display_name] double bed", /obj/structure/bed/double, 4, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("[display_name] wall girders", /obj/structure/girder, 2, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]"),
-		new /datum/stack_recipe("[display_name] ashtray", /obj/item/weapon/material/ashtray, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
+		new /datum/stack_recipe("[display_name] ashtray", /obj/item/material/ashtray, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]")
 	)

@@ -1,6 +1,9 @@
-/obj/item/device/holowarrant
+/obj/item/holowarrant
 	name = "warrant projector"
 	desc = "The practical paperwork replacement for the officer on the go."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "holowarrant"
 	item_state = "flashtool"
 	throwforce = 5
@@ -10,7 +13,7 @@
 	var/datum/data/record/warrant/active
 
 //look at it
-/obj/item/device/holowarrant/examine(mob/user)
+/obj/item/holowarrant/examine(mob/user)
 	. = ..()
 	if(active)
 		. += "It's a holographic warrant for '[active.fields["namewarrant"]]'."
@@ -20,7 +23,7 @@
 		. += "<span class='notice'>You have to go closer if you want to read it.</span>"
 
 //hit yourself with it
-/obj/item/device/holowarrant/attack_self(mob/living/user as mob)
+/obj/item/holowarrant/attack_self(mob/living/user as mob)
 	active = null
 	var/list/warrants = list()
 	if(!isnull(data_core.general))
@@ -36,11 +39,17 @@
 			active = W
 	update_icon()
 
-/obj/item/device/holowarrant/attackby(obj/item/weapon/W, mob/user)
+/obj/item/holowarrant/attackby(obj/item/W, mob/user)
 	if(active)
+<<<<<<< HEAD
 		var/obj/item/weapon/card/id/I = W.GetIdCard()
 		if(access_hos in I.access) // VOREStation edit
 			var/choice = tgui_alert(user, "Would you like to authorize this warrant?","Warrant authorization",list("Yes","No"))
+=======
+		var/obj/item/card/id/I = W.GetIdCard()
+		if(I)
+			var/choice = alert(user, "Would you like to authorize this warrant?","Warrant authorization","Yes","No")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if(choice == "Yes")
 				active.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
 			user.visible_message("<span class='notice'>You swipe \the [I] through the [src].</span>", \
@@ -51,18 +60,18 @@
 	..()
 
 //hit other people with it
-/obj/item/device/holowarrant/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+/obj/item/holowarrant/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	user.visible_message("<span class='notice'>You show the warrant to [M].</span>", \
 			"<span class='notice'>[user] holds up a warrant projector and shows the contents to [M].</span>")
 	M.examinate(src)
 
-/obj/item/device/holowarrant/update_icon()
+/obj/item/holowarrant/update_icon()
 	if(active)
 		icon_state = "holowarrant_filled"
 	else
 		icon_state = "holowarrant"
 
-/obj/item/device/holowarrant/proc/show_content(mob/user, forceshow)
+/obj/item/holowarrant/proc/show_content(mob/user, forceshow)
 	if(!active)
 		return
 	if(active.fields["arrestsearch"] == "arrest")

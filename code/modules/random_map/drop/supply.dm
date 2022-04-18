@@ -59,6 +59,7 @@
 				if(!adding_loot_type)
 					break
 				chosen_loot_types |= adding_loot_type
+<<<<<<< HEAD
 		choice = tgui_alert(usr, "Do you wish to add any non-weapon items?","Supply Drop",list("No","Yes"))
 		if(choice == "Yes")
 			while(1)
@@ -71,6 +72,12 @@
 		if(choice == "Yes")
 			while(1)
 				var/adding_loot_type = tgui_input_list(usr, "Select a new loot path. Cancel to finish.", "Loot Selection", typesof(/obj/item/weapon))
+=======
+		choice = alert("Do you wish to add any items?",,"No","Yes")
+		if(choice == "Yes")
+			while(1)
+				var/adding_loot_type = input("Select a new loot path. Cancel to finish.", "Loot Selection", null) as null|anything in typesof(/obj/item)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				if(!adding_loot_type)
 					break
 				chosen_loot_types |= adding_loot_type

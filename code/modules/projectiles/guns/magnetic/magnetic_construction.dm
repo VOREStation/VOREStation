@@ -1,5 +1,5 @@
 // We really need some datums for this.
-/obj/item/weapon/coilgun_assembly
+/obj/item/coilgun_assembly
 	name = "coilgun stock"
 	desc = "It might be a coilgun, someday."
 	icon = 'icons/obj/coilgun.dmi'
@@ -7,7 +7,7 @@
 
 	var/construction_stage = 1
 
-/obj/item/weapon/coilgun_assembly/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/coilgun_assembly/attackby(var/obj/item/thing, var/mob/user)
 
 	if(istype(thing, /obj/item/stack/material) && construction_stage == 1)
 		var/obj/item/stack/material/reinforcing = thing
@@ -21,8 +21,13 @@
 			increment_construction_stage()
 			return
 
+<<<<<<< HEAD
 	if(istype(thing, /obj/item/weapon/tape_roll) && construction_stage == 2)
 		user.visible_message("<b>\The [user]</b> secures \the [src] together with \the [thing].")
+=======
+	if(istype(thing, /obj/item/tape_roll) && construction_stage == 2)
+		user.visible_message("<span class='notice'>\The [user] secures \the [src] together with \the [thing].</span>")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		increment_construction_stage()
 		return
 
@@ -33,8 +38,8 @@
 		increment_construction_stage()
 		return
 
-	if(istype(thing, /obj/item/weapon/weldingtool) && construction_stage == 4)
-		var/obj/item/weapon/weldingtool/welder = thing
+	if(istype(thing, /obj/item/weldingtool) && construction_stage == 4)
+		var/obj/item/weldingtool/welder = thing
 
 		if(!welder.isOn())
 			to_chat(user, "<span class='warning'>Turn it on first!</span>")
@@ -59,8 +64,13 @@
 		increment_construction_stage()
 		return
 
+<<<<<<< HEAD
 	if(istype(thing, /obj/item/weapon/smes_coil) && construction_stage >= 6 && construction_stage <= 8)
 		user.visible_message("<b>\The [user]</b> installs \a [thing] into \the [src].")
+=======
+	if(istype(thing, /obj/item/smes_coil) && construction_stage >= 6 && construction_stage <= 8)
+		user.visible_message("<span class='notice'>\The [user] installs \a [thing] into \the [src].</span>")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		user.drop_from_inventory(thing)
 		qdel(thing)
 		increment_construction_stage()
@@ -69,7 +79,7 @@
 	if(thing.is_screwdriver() && construction_stage >= 9)
 		user.visible_message("<b>\The [user]</b> secures \the [src] and finishes it off.")
 		playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
-		var/obj/item/weapon/gun/magnetic/coilgun = new(loc)
+		var/obj/item/gun/magnetic/coilgun = new(loc)
 		var/put_in_hands
 		var/mob/M = src.loc
 		if(istype(M))
@@ -82,12 +92,12 @@
 
 	return ..()
 
-/obj/item/weapon/coilgun_assembly/proc/increment_construction_stage()
+/obj/item/coilgun_assembly/proc/increment_construction_stage()
 	if(construction_stage < 9)
 		construction_stage++
 	icon_state = "coilgun_construction_[construction_stage]"
 
-/obj/item/weapon/coilgun_assembly/examine(var/mob/user)
+/obj/item/coilgun_assembly/examine(var/mob/user)
 	. = ..()
 	if(get_dist(user, src) <= 2)
 		switch(construction_stage)

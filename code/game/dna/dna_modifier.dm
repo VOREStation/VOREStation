@@ -71,10 +71,10 @@
 	idle_power_usage = 50
 	active_power_usage = 300
 	interact_offline = 1
-	circuit = /obj/item/weapon/circuitboard/clonescanner
+	circuit = /obj/item/circuitboard/clonescanner
 	var/locked = 0
 	var/mob/living/carbon/occupant = null
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/opened = 0
 	var/damage_coeff
 	var/scan_level
@@ -89,11 +89,11 @@
 	scan_level = 0
 	damage_coeff = 0
 	precision_coeff = 0
-	for(var/obj/item/weapon/stock_parts/scanning_module/P in component_parts)
+	for(var/obj/item/stock_parts/scanning_module/P in component_parts)
 		scan_level += P.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/P in component_parts)
+	for(var/obj/item/stock_parts/manipulator/P in component_parts)
 		precision_coeff = P.rating
-	for(var/obj/item/weapon/stock_parts/micro_laser/P in component_parts)
+	for(var/obj/item/stock_parts/micro_laser/P in component_parts)
 		damage_coeff = P.rating
 
 /obj/machinery/dna_scannernew/relaymove(mob/user as mob)
@@ -118,7 +118,7 @@
 /obj/machinery/dna_scannernew/proc/eject_occupant()
 	src.go_out()
 	for(var/obj/O in src)
-		if((!istype(O,/obj/item/weapon/reagent_containers)) && (!istype(O,/obj/item/weapon/circuitboard/clonescanner)) && (!istype(O,/obj/item/weapon/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
+		if((!istype(O,/obj/item/reagent_containers)) && (!istype(O,/obj/item/circuitboard/clonescanner)) && (!istype(O,/obj/item/stock_parts)) && (!istype(O,/obj/item/stack/cable_coil)))
 			O.loc = get_turf(src)//Ejects items that manage to get in there (exluding the components)
 	if(!occupant)
 		for(var/mob/M in src)//Failsafe so you can get mobs out
@@ -154,8 +154,8 @@
 	src.add_fingerprint(usr)
 	SStgui.update_uis(src)
 
-/obj/machinery/dna_scannernew/attackby(var/obj/item/weapon/item as obj, var/mob/user as mob)
-	if(istype(item, /obj/item/weapon/reagent_containers/glass))
+/obj/machinery/dna_scannernew/attackby(var/obj/item/item as obj, var/mob/user as mob)
+	if(istype(item, /obj/item/reagent_containers/glass))
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
@@ -183,9 +183,9 @@
 		else
 			to_chat(user, "\The [brain] is not acceptable for genetic sampling!")
 
-	else if(!istype(item, /obj/item/weapon/grab))
+	else if(!istype(item, /obj/item/grab))
 		return
-	var/obj/item/weapon/grab/G = item
+	var/obj/item/grab/G = item
 	if(!ismob(G.affecting))
 		return
 	if(src.occupant)
@@ -274,8 +274,13 @@
 	desc = "Scan DNA."
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
+<<<<<<< HEAD
 	density = TRUE
 	circuit = /obj/item/weapon/circuitboard/scan_consolenew
+=======
+	density = 1
+	circuit = /obj/item/circuitboard/scan_consolenew
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/selected_ui_block = 1.0
 	var/selected_ui_subblock = 1.0
 	var/selected_se_block = 1.0
@@ -288,7 +293,7 @@
 	var/irradiating = 0
 	var/injector_ready = 0	//Quick fix for issue 286 (screwdriver the screen twice to restore injector)	-Pete
 	var/obj/machinery/dna_scannernew/connected = null
-	var/obj/item/weapon/disk/data/disk = null
+	var/obj/item/disk/data/disk = null
 	var/selected_menu_key = PAGE_UI
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -296,7 +301,7 @@
 	active_power_usage = 400
 
 /obj/machinery/computer/scan_consolenew/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/disk/data)) //INSERT SOME diskS
+	if(istype(I, /obj/item/disk/data)) //INSERT SOME diskS
 		if(!src.disk)
 			user.drop_item()
 			I.loc = src
@@ -339,7 +344,7 @@
 		arr += "[i]:[EncodeDNABlock(buffer[i])]"
 	return arr
 
-/obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(var/obj/item/weapon/dnainjector/I, var/blk, var/datum/dna2/record/buffer)
+/obj/machinery/computer/scan_consolenew/proc/setInjectorBlock(var/obj/item/dnainjector/I, var/blk, var/datum/dna2/record/buffer)
 	var/pos = findtext(blk,":")
 	if(!pos) return 0
 	var/id = text2num(copytext(blk,1,pos))
@@ -610,7 +615,7 @@
 						connected.occupant.UpdateAppearance()
 		if("ejectBeaker")
 			if(connected.beaker)
-				var/obj/item/weapon/reagent_containers/glass/B = connected.beaker
+				var/obj/item/reagent_containers/glass/B = connected.beaker
 				B.loc = connected.loc
 				connected.beaker = null
 		if("ejectOccupant")
@@ -744,7 +749,7 @@
 
 	// Create it
 	var/datum/dna2/record/buf = buffers[buffer_id]
-	var/obj/item/weapon/dnainjector/I = new()
+	var/obj/item/dnainjector/I = new()
 	I.forceMove(loc)
 	I.name += " ([buf.name])"
 	if(copy_buffer)
@@ -777,7 +782,7 @@
 					if(buffer_id < 1 || buffer_id > length(buffers))
 						return
 					var/datum/dna2/record/buf = buffers[buffer_id]
-					var/obj/item/weapon/dnainjector/I = create_injector(buffer_id)
+					var/obj/item/dnainjector/I = create_injector(buffer_id)
 					setInjectorBlock(I, answer, buf.copy())
 				if("changeBufferLabel")
 					var/buffer_id = text2num(arguments["id"])

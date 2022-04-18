@@ -391,8 +391,8 @@
 		add(O)
 		user.visible_message("[user] puts \the [O.name] into \the [src].", "You put \the [O] into \the [src].")
 		return
-	else if (istype(O, /obj/item/weapon/storage/bag/plants) && !lockdown)
-		var/obj/item/weapon/storage/P = O
+	else if (istype(O, /obj/item/storage/bag/plants) && !lockdown)
+		var/obj/item/storage/P = O
 		var/loaded = 0
 		for(var/obj/item/seeds/G in P.contents)
 			++loaded
@@ -412,8 +412,13 @@
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
+<<<<<<< HEAD
 			add_overlay("[initial(icon_state)]-panel")
 	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
+=======
+			overlays += image(icon, "[initial(icon_state)]-panel")
+	else if((O.is_wirecutter() || istype(O, /obj/item/multitool)) && panel_open)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)
@@ -437,8 +442,8 @@
 	if (istype(O.loc, /mob))
 		var/mob/user = O.loc
 		user.remove_from_mob(O)
-	else if(istype(O.loc,/obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = O.loc
+	else if(istype(O.loc,/obj/item/storage))
+		var/obj/item/storage/S = O.loc
 		S.remove_from_storage(O, src)
 
 	O.loc = src

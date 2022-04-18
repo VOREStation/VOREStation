@@ -11,19 +11,19 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
 		/obj/item/clothing/shoes/boots/winter/supply,
 		/obj/item/clothing/shoes/black,
-		/obj/item/device/radio/headset/headset_cargo,
-		/obj/item/device/radio/headset/headset_cargo/alt,
+		/obj/item/radio/headset/headset_cargo,
+		/obj/item/radio/headset/headset_cargo/alt,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/clothing/head/soft)
 
 /obj/structure/closet/secure_closet/cargotech/Initialize()
 	if(prob(75))
-		starts_with += /obj/item/weapon/storage/backpack
+		starts_with += /obj/item/storage/backpack
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+		starts_with += /obj/item/storage/backpack/satchel/norm
 	if(prob(25))
-		starts_with += /obj/item/weapon/storage/backpack/dufflebag
+		starts_with += /obj/item/storage/backpack/dufflebag
 	return ..()
 
 /obj/structure/closet/secure_closet/quartermaster
@@ -37,11 +37,20 @@
 		/obj/item/clothing/under/rank/cargo/jeans,
 		/obj/item/clothing/under/rank/cargo/jeans/female,
 		/obj/item/clothing/shoes/brown,
+<<<<<<< HEAD
 		/obj/item/device/radio/headset/headset_qm, //VOREStation Edit,
 		/obj/item/device/radio/headset/headset_qm/alt, //VOREStation Edit,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/gloves/fingerless,
 		/obj/item/weapon/tank/emergency/oxygen,
+=======
+		/obj/item/radio/headset/headset_cargo,
+		/obj/item/radio/headset/headset_cargo/alt,
+		/obj/item/clothing/gloves/black,
+		/obj/item/clothing/gloves/fingerless,
+		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/tank/emergency/oxygen,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/head/soft,
@@ -52,11 +61,11 @@
 
 /obj/structure/closet/secure_closet/quartermaster/Initialize()
 	if(prob(75))
-		starts_with += /obj/item/weapon/storage/backpack
+		starts_with += /obj/item/storage/backpack
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
+		starts_with += /obj/item/storage/backpack/satchel/norm
 	if(prob(25))
-		starts_with += /obj/item/weapon/storage/backpack/dufflebag
+		starts_with += /obj/item/storage/backpack/dufflebag
 	return ..()
 
 /obj/structure/closet/secure_closet/miner
@@ -65,16 +74,24 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/mining
 
 	starts_with = list(
-		/obj/item/device/radio/headset/headset_mine,
+		/obj/item/radio/headset/headset_mine,
 		/obj/item/clothing/under/rank/miner,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/shoes/black,
+<<<<<<< HEAD
 		/obj/item/device/analyzer,
 		/obj/item/weapon/storage/bag/ore,
 		/obj/item/weapon/storage/belt/miner,
 		/obj/item/device/flashlight/lantern,
 		/obj/item/weapon/shovel,
 		/obj/item/weapon/pickaxe/drill,
+=======
+		/obj/item/analyzer,
+		/obj/item/storage/bag/ore,
+		/obj/item/flashlight/lantern,
+		/obj/item/shovel,
+		/obj/item/pickaxe,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/glasses/material,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/miner,
 		/obj/item/clothing/shoes/boots/winter/mining,
@@ -82,7 +99,7 @@
 
 /obj/structure/closet/secure_closet/miner/Initialize()
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack/industrial
+		starts_with += /obj/item/storage/backpack/industrial
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/eng
+		starts_with += /obj/item/storage/backpack/satchel/eng
 	return ..()

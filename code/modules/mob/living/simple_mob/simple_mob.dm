@@ -59,7 +59,7 @@
 	var/list/friends = list()		// Mobs on this list wont get attacked regardless of faction status.
 	var/harm_intent_damage = 3		// How much an unarmed harm click does to this mob.
 	var/list/loot_list = list()		// The list of lootable objects to drop, with "/path = prob%" structure
-	var/obj/item/weapon/card/id/myid// An ID card if they have one to give them access to stuff.
+	var/obj/item/card/id/myid// An ID card if they have one to give them access to stuff.
 	var/organ_names = /decl/mob_organ_names //'False' bodyparts that can be shown as hit by projectiles in place of the default humanoid bodyplan.
 
 	//Mob environment settings

@@ -216,7 +216,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 ****************************************************/
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/proc/take_blood(obj/item/reagent_containers/container, var/amount)
 
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B)
@@ -247,7 +247,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
-/mob/living/carbon/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+/mob/living/carbon/human/take_blood(obj/item/reagent_containers/container, var/amount)
 
 	if(!should_have_organ(O_HEART))
 		return null

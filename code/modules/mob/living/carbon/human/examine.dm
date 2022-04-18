@@ -209,7 +209,7 @@
 
 	//handcuffed?
 	if(handcuffed && handcuffed.show_examine)
-		if(istype(handcuffed, /obj/item/weapon/handcuffs/cable))
+		if(istype(handcuffed, /obj/item/handcuffs/cable))
 			msg += "<span class='warning'>[T.He] [T.is] [bicon(handcuffed)] restrained with cable!</span>"
 		else
 			msg += "<span class='warning'>[T.He] [T.is] [bicon(handcuffed)] handcuffed!</span>"
@@ -237,7 +237,7 @@
 	//mask
 	if(wear_mask && !(skip_gear & EXAMINE_SKIPMASK) && wear_mask.show_examine)
 		var/descriptor = "on [T.his] face"
-		if(istype(wear_mask, /obj/item/weapon/grenade) && check_has_mouth())
+		if(istype(wear_mask, /obj/item/grenade) && check_has_mouth())
 			descriptor = "in [T.his] mouth"
 
 		if(wear_mask.blood_DNA)
@@ -263,11 +263,11 @@
 	//ID
 	if(wear_id && wear_id.show_examine)
 		/*var/id
-		if(istype(wear_id, /obj/item/device/pda))
-			var/obj/item/device/pda/pda = wear_id
+		if(istype(wear_id, /obj/item/pda))
+			var/obj/item/pda/pda = wear_id
 			id = pda.owner
-		else if(istype(wear_id, /obj/item/weapon/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
-			var/obj/item/weapon/card/id/idcard = wear_id
+		else if(istype(wear_id, /obj/item/card/id)) //just in case something other than a PDA/ID card somehow gets in the ID slot :[
+			var/obj/item/card/id/idcard = wear_id
 			id = idcard.registered_name
 		if(id && (id != real_name) && (get_dist(src, usr) <= 1) && prob(10))
 			msg += "<span class='warning'>[T.He] [T.is] wearing [bicon(wear_id)] \a [wear_id] yet something doesn't seem right...</span>"
@@ -414,11 +414,11 @@
 		var/criminal = "None"
 
 		if(wear_id)
-			if(istype(wear_id, /obj/item/weapon/card/id))
-				var/obj/item/weapon/card/id/I = wear_id
+			if(istype(wear_id, /obj/item/card/id))
+				var/obj/item/card/id/I = wear_id
 				perpname = I.registered_name
-			else if(istype(wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/P = wear_id
+			else if(istype(wear_id, /obj/item/pda))
+				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
 		for (var/datum/data/record/R in data_core.security)
@@ -433,11 +433,11 @@
 		var/medical = "None"
 
 		if(wear_id)
-			if(istype(wear_id, /obj/item/weapon/card/id))
-				var/obj/item/weapon/card/id/I = wear_id
+			if(istype(wear_id, /obj/item/card/id))
+				var/obj/item/card/id/I = wear_id
 				perpname = I.registered_name
-			else if(istype(wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/P = wear_id
+			else if(istype(wear_id, /obj/item/pda))
+				var/obj/item/pda/P = wear_id
 				perpname = P.owner
 
 		for (var/datum/data/record/R in data_core.medical)

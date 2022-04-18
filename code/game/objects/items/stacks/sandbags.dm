@@ -99,7 +99,7 @@ var/global/list/datum/stack_recipe/sandbag_recipes = list( \
 			S.amount = produced
 			S.add_to_stacks(user)
 
-		if (istype(O, /obj/item/weapon/storage)) //BubbleWrap - so newly formed boxes are empty
+		if (istype(O, /obj/item/storage)) //BubbleWrap - so newly formed boxes are empty
 			for (var/obj/item/I in O)
 				qdel(I)
 

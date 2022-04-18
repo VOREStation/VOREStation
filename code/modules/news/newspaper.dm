@@ -2,7 +2,7 @@
 //###################################### NEWSPAPER! ######################################################################
 //########################################################################################################################
 
-/obj/item/weapon/newspaper
+/obj/item/newspaper
 	name = "newspaper"
 	desc = "An issue of The Griffon, the newspaper circulating aboard most stations."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -19,7 +19,7 @@
 	drop_sound = 'sound/items/drop/wrapper.ogg'
 	pickup_sound = 'sound/items/pickup/wrapper.ogg'
 
-/obj/item/weapon/newspaper/attack_self(mob/user as mob)
+/obj/item/newspaper/attack_self(mob/user as mob)
 	if(ishuman(user))
 		var/mob/living/carbon/human/human_user = user
 		var/dat
@@ -99,7 +99,7 @@
 	else
 		to_chat(user, "The paper is full of intelligible symbols!")
 
-/obj/item/weapon/newspaper/Topic(href, href_list)
+/obj/item/newspaper/Topic(href, href_list)
 	var/mob/living/U = usr
 	..()
 	if((src in U.contents) || (istype(loc, /turf) && in_range(src, U)))
@@ -130,8 +130,8 @@
 		if(istype(src.loc, /mob))
 			attack_self(src.loc)
 
-/obj/item/weapon/newspaper/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/pen))
+/obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/pen))
 		if(scribble_page == curr_page)
 			to_chat(user, "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>")
 		else

@@ -1,10 +1,10 @@
-/obj/item/device/analyzer/xeno_analyzer
+/obj/item/analyzer/xeno_analyzer
 	name = "exotic biological analyzer"
 	desc = "A device to investigate the genetic data of a biological target."
 	var/form_title
 	var/last_data
 
-/obj/item/device/analyzer/xeno_analyzer/proc/print_report_verb()
+/obj/item/analyzer/xeno_analyzer/proc/print_report_verb()
 	set name = "Print Plant Report"
 	set category = "Object"
 	set src = usr
@@ -13,17 +13,17 @@
 		return
 	print_report(usr)
 
-/obj/item/device/analyzer/xeno_analyzer/Topic(href, href_list)
+/obj/item/analyzer/xeno_analyzer/Topic(href, href_list)
 	if(..())
 		return
 	if(href_list["print"])
 		print_report(usr)
 
-/obj/item/device/analyzer/xeno_analyzer/proc/print_report(var/mob/living/user)
+/obj/item/analyzer/xeno_analyzer/proc/print_report(var/mob/living/user)
 	if(!last_data)
 		to_chat(user, "There is no scan data to print.")
 		return
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
+	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 	P.name = "paper - [form_title]"
 	P.info = "[last_data]"
 	if(istype(user,/mob/living/carbon/human))
@@ -31,11 +31,11 @@
 	user.visible_message("\The [src] spits out a piece of paper.")
 	return
 
-/obj/item/device/analyzer/xeno_analyzer/attack_self(mob/user as mob)
+/obj/item/analyzer/xeno_analyzer/attack_self(mob/user as mob)
 	print_report(user)
 	return 0
 
-/obj/item/device/analyzer/xeno_analyzer/afterattack(var/target, mob/user, flag)
+/obj/item/analyzer/xeno_analyzer/afterattack(var/target, mob/user, flag)
 	if(!flag) return
 
 	var/datum/xeno/traits/trait_info

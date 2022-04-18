@@ -77,8 +77,8 @@
 	if(!ally)
 		var/list/items = L.get_all_held_items()
 		for(var/obj/item/I in items)
-			if(istype(I, /obj/item/weapon/blobcore_chunk))
-				var/obj/item/weapon/blobcore_chunk/BC = I
+			if(istype(I, /obj/item/blobcore_chunk))
+				var/obj/item/blobcore_chunk/BC = I
 				if(!overmind || (BC.blob_type && overmind.blob_type.type == BC.blob_type.type) || BC.blob_type.faction == faction)
 					ally = TRUE
 				break

@@ -797,8 +797,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//Toggle for belt layering with uniform
 	var/belt_layer = BELT_LAYER
-	if(istype(belt, /obj/item/weapon/storage/belt))
-		var/obj/item/weapon/storage/belt/ubelt = belt
+	if(istype(belt, /obj/item/storage/belt))
+		var/obj/item/storage/belt/ubelt = belt
 		if(ubelt.show_above_suit)
 			belt_layer = BELT_LAYER_ALT
 

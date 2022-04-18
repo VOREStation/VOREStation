@@ -1,5 +1,5 @@
 //Adminpaper - it's like paper, but more adminny!
-/obj/item/weapon/paper/admin
+/obj/item/paper/admin
 	name = "administrative paper"
 	desc = "If you see this, something has gone horribly wrong."
 	var/datum/admins/admindatum = null
@@ -16,12 +16,17 @@
 	var/footer = null
 	var/footerOn = FALSE
 
+<<<<<<< HEAD
 /obj/item/weapon/paper/admin/New()
 	..()
+=======
+/obj/item/paper/admin/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	generateInteractions()
 
 
-/obj/item/weapon/paper/admin/proc/generateInteractions()
+/obj/item/paper/admin/proc/generateInteractions()
 	//clear first
 	interactions = null
 
@@ -36,7 +41,7 @@
 	interactions += "<A href='?src=\ref[src];clear=1'>Clear page</A> "
 	interactions += "</center>"
 
-/obj/item/weapon/paper/admin/proc/generateHeader()
+/obj/item/paper/admin/proc/generateHeader()
 	var/originhash = md5("[origin]")
 	var/timehash = copytext(md5("[world.time]"),1,10)
 	var/text = null
@@ -57,7 +62,7 @@
 
 	header = text
 
-/obj/item/weapon/paper/admin/proc/generateFooter()
+/obj/item/paper/admin/proc/generateFooter()
 	var/text = null
 
 	text = "<hr><font size= \"1\">"
@@ -69,18 +74,18 @@
 	footer = text
 
 
-/obj/item/weapon/paper/admin/proc/adminbrowse()
+/obj/item/paper/admin/proc/adminbrowse()
 	updateinfolinks()
 	generateHeader()
 	generateFooter()
 	updateDisplay()
 
-/obj/item/weapon/paper/admin/proc/updateDisplay()
+/obj/item/paper/admin/proc/updateDisplay()
 	usr << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[headerOn ? header : ""][info_links][stamps][footerOn ? footer : ""][interactions]</BODY></HTML>", "window=[name];can_close=0")
 
 
 
-/obj/item/weapon/paper/admin/Topic(href, href_list)
+/obj/item/paper/admin/Topic(href, href_list)
 	if(href_list["write"])
 		var/id = href_list["write"]
 		if(free_space <= 0)
@@ -157,5 +162,10 @@
 		updateDisplay()
 		return
 
+<<<<<<< HEAD
 /obj/item/weapon/paper/admin/get_signature()
 	return input(usr, "Enter the name you wish to sign the paper with (will prompt for multiple entries, in order of entry)", "Signature") as text|null
+=======
+/obj/item/paper/admin/get_signature()
+	return input(usr, "Enter the name you wish to sign the paper with (will prompt for multiple entries, in order of entry)", "Signature") as text|null
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

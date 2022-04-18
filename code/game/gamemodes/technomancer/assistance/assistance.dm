@@ -8,7 +8,7 @@
 	If you are unable to receive an apprentice, the teleporter can be refunded like most equipment by sliding it into the \
 	catalog.  Note that apprentices cannot purchase more apprentices."
 	cost = 300
-	obj_path = /obj/item/weapon/antag_spawner/technomancer_apprentice
+	obj_path = /obj/item/antag_spawner/technomancer_apprentice
 
 /*
 // For when no one wants to play support.

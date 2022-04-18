@@ -6,11 +6,11 @@
 
 	anchored = TRUE
 
-	var/obj/item/weapon/tank/tank
+	var/obj/item/tank/tank
 	var/mob/living/carbon/breather
 	var/obj/item/clothing/mask/breath/contained
 
-	var/spawn_type = /obj/item/weapon/tank/emergency/oxygen/engi
+	var/spawn_type = /obj/item/tank/emergency/oxygen/engi
 	var/mask_type = /obj/item/clothing/mask/breath/emergency
 	var/icon_state_open = "oxygen_tank_open"
 	var/icon_state_closed = "oxygen_tank"
@@ -127,13 +127,13 @@
 		return
 	return 1
 
-/obj/machinery/oxygen_pump/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/oxygen_pump/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_screwdriver())
 		stat ^= MAINT
 		user.visible_message("<span class='notice'>\The [user] [(stat & MAINT) ? "opens" : "closes"] \the [src].</span>", "<span class='notice'>You [(stat & MAINT) ? "open" : "close"] \the [src].</span>")
 		icon_state = (stat & MAINT) ? icon_state_open : icon_state_closed
 		//TO-DO: Open icon
-	if(istype(W, /obj/item/weapon/tank) && (stat & MAINT))
+	if(istype(W, /obj/item/tank) && (stat & MAINT))
 		if(tank)
 			to_chat(user, "<span class='warning'>\The [src] already has a tank installed!</span>")
 		else
@@ -142,7 +142,7 @@
 			tank = W
 			user.visible_message("<b>\The [user]</b> installs \the [tank] into \the [src].", "<span class='notice'>You install \the [tank] into \the [src].</span>")
 			src.add_fingerprint(user)
-	if(istype(W, /obj/item/weapon/tank) && !stat)
+	if(istype(W, /obj/item/tank) && !stat)
 		to_chat(user, "<span class='warning'>Please open the maintenance hatch first.</span>")
 
 /obj/machinery/oxygen_pump/examine(var/mob/user)
@@ -231,7 +231,7 @@
 /obj/machinery/oxygen_pump/anesthetic
 	name = "anesthetic pump"
 	desc = "A wall mounted anesthetic pump with a retractable mask that someone can pull over your face to knock you out."
-	spawn_type = /obj/item/weapon/tank/anesthetic
+	spawn_type = /obj/item/tank/anesthetic
 	icon_state = "anesthetic_tank"
 	icon_state_closed = "anesthetic_tank"
 	icon_state_open = "anesthetic_tank_open"
@@ -267,7 +267,7 @@
 /obj/machinery/oxygen_pump/mobile/anesthetic
 	name = "portable anesthetic pump"
 	desc = "A portable anesthetic pump with a retractable mask that someone can pull over your face to knock you out."
-	spawn_type = /obj/item/weapon/tank/anesthetic
+	spawn_type = /obj/item/tank/anesthetic
 	icon_state = "medpump_n2o"
 	icon_state_closed = "medpump_n2o"
 	icon_state_open = "medpump_n2o_open"

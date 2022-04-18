@@ -7,12 +7,12 @@
 	pass_flags = 1
 	mob_size = MOB_SMALL
 
-	holder_type = /obj/item/weapon/holder/pai
+	holder_type = /obj/item/holder/pai
 
 	can_pull_size = ITEMSIZE_SMALL
 	can_pull_mobs = MOB_PULL_SMALLER
 
-	idcard_type = /obj/item/weapon/card/id
+	idcard_type = /obj/item/card/id
 	var/idaccessible = 0
 
 	var/network = "SS13"
@@ -21,9 +21,9 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/device/paicard/card	// The card we inhabit
-	var/obj/item/device/radio/radio		// Our primary radio
-	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
+	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/radio/radio		// Our primary radio
+	var/obj/item/communicator/integrated/communicator	// Our integrated communicator.
 
 	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
@@ -61,7 +61,7 @@
 		"Rodent" = list("squeaks", "SQUEAKS", "sqiks")	//VOREStation Edit
 		)
 
-	var/obj/item/weapon/pai_cable/cable		// The cable we produce and use when door or camera jacking
+	var/obj/item/pai_cable/cable		// The cable we produce and use when door or camera jacking
 
 	var/master				// Name of the one who commands us
 	var/master_dna			// DNA string for owner verification
@@ -77,7 +77,7 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/pda/ai/pai/pda = null
+	var/obj/item/pda/ai/pai/pda = null
 
 	var/secHUD = 0			// Toggles whether the Security HUD is active or not
 	var/medHUD = 0			// Toggles whether the Medical  HUD is active or not
@@ -107,7 +107,7 @@
 	communicator = new(src)
 	if(card)
 		if(!card.radio)
-			card.radio = new /obj/item/device/radio(src.card)
+			card.radio = new /obj/item/radio(src.card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -159,7 +159,7 @@
 	return 0
 
 /mob/living/silicon/pai/restrained()
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		return 0
 	..()
 
@@ -228,6 +228,46 @@
 	src.unset_machine()
 	src.cameraFollow = null
 
+<<<<<<< HEAD
+=======
+//Addition by Mord_Sith to define AI's network change ability
+/*
+/mob/living/silicon/pai/proc/pai_network_change()
+	set category = "pAI Commands"
+	set name = "Change Camera Network"
+	src.reset_view(null)
+	src.unset_machine()
+	src.cameraFollow = null
+	var/cameralist[0]
+
+	if(usr.stat == 2)
+		to_chat(usr, "You can't change your camera network because you are dead!")
+		return
+
+	for (var/obj/machinery/camera/C in Cameras)
+		if(!C.status)
+			continue
+		else
+			if(C.network != "CREED" && C.network != "thunder" && C.network != "RD" && C.network != "phoron" && C.network != "Prison") COMPILE ERROR! This will have to be updated as camera.network is no longer a string, but a list instead
+				cameralist[C.network] = C.network
+
+	src.network = input(usr, "Which network would you like to view?") as null|anything in cameralist
+	to_chat(src, "<font color='blue'>Switched to [src.network] camera network.</font>")
+//End of code by Mord_Sith
+*/
+
+
+/*
+// Debug command - Maybe should be added to admin verbs later
+/mob/verb/makePAI(var/turf/t in view())
+	var/obj/item/paicard/card = new(t)
+	var/mob/living/silicon/pai/pai = new(card)
+	pai.key = src.key
+	card.setPersonality(pai)
+
+*/
+
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 // Procs/code after this point is used to convert the stationary pai item into a
 // mobile pai mob. This also includes handling some of the general shit that can occur
 // to it. Really this deserves its own file, but for the moment it can sit here. ~ Z
@@ -266,8 +306,8 @@
 					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!</span>")
 					break
 		holder.drop_from_inventory(card)
-	else if(istype(card.loc,/obj/item/device/pda))
-		var/obj/item/device/pda/holder = card.loc
+	else if(istype(card.loc,/obj/item/pda))
+		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 
 	src.client.perspective = EYE_PERSPECTIVE
@@ -335,9 +375,9 @@
 	set category = "IC"
 
 	// Pass lying down or getting up to our pet human, if we're in a rig.
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		resting = 0
-		var/obj/item/weapon/rig/rig = src.get_rig()
+		var/obj/item/rig/rig = src.get_rig()
 		if(istype(rig))
 			rig.force_rest(src)
 	else
@@ -349,7 +389,7 @@
 	canmove = !resting
 
 //Overriding this will stop a number of headaches down the track.
-/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.force)
 		visible_message("<span class='danger'>[user.name] attacks [src] with [W]!</span>")
 		src.adjustBruteLoss(W.force)
@@ -389,7 +429,7 @@
 	resting = 0
 
 	// If we are being held, handle removing our holder from their inv.
-	var/obj/item/weapon/holder/H = loc
+	var/obj/item/holder/H = loc
 	if(istype(H))
 		var/mob/living/M = H.loc
 		if(istype(M))
@@ -413,7 +453,7 @@
 
 // Handle being picked up.
 /mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
-	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
+	var/obj/item/holder/H = ..(grabber, self_drop)
 	if(!istype(H))
 		return
 
@@ -422,8 +462,8 @@
 	grabber.update_inv_r_hand()
 	return H
 
-/mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	var/obj/item/weapon/card/id/ID = W.GetID()
+/mob/living/silicon/pai/attackby(obj/item/W as obj, mob/user as mob)
+	var/obj/item/card/id/ID = W.GetID()
 	if(ID)
 		if (idaccessible == 1)
 			switch(tgui_alert(user, "Do you wish to add access to [src] or remove access from [src]?","Access Modify",list("Add Access","Remove Access", "Cancel")))
@@ -437,7 +477,7 @@
 					return
 				if("Cancel")
 					return
-		else if (istype(W, /obj/item/weapon/card/id) && idaccessible == 0)
+		else if (istype(W, /obj/item/card/id) && idaccessible == 0)
 			to_chat(user, "<span class='notice'>[src] is not accepting access modifcations at this time.</span>")
 			return
 

@@ -1,20 +1,25 @@
 /*********************MANUALS (BOOKS)***********************/
 
-/obj/item/weapon/book/manual
+/obj/item/book/manual
 	icon = 'icons/obj/library.dmi'
 	due_date = 0 // Game time in 1/10th seconds
 	unique = 1   // 0 - Normal book, 1 - Should not be treated as normal book, unable to be copied, unable to be modified
 
 
-/obj/item/weapon/book/manual/engineering_construction
+/obj/item/book/manual/engineering_construction
 	name = "Station Repairs and Construction"
 	icon_state ="bookEngineering"
 	item_state = "book3"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Station Repairs and Construction"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/engineering_construction/New()
 	..()
+=======
+/obj/item/book/manual/engineering_construction/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>
@@ -28,15 +33,20 @@
 
 		"}
 
-/obj/item/weapon/book/manual/engineering_particle_accelerator
+/obj/item/book/manual/engineering_particle_accelerator
 	name = "Particle Accelerator User's Guide"
 	icon_state ="bookParticleAccelerator"
 	item_state = "book15"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Particle Accelerator User's Guide"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/engineering_particle_accelerator/New()
 	..()
+=======
+/obj/item/book/manual/engineering_particle_accelerator/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -76,15 +86,20 @@
 			"}
 
 
-/obj/item/weapon/book/manual/supermatter_engine
+/obj/item/book/manual/supermatter_engine
 	name = "Supermatter Engine Operating Manual"
 	icon_state = "bookSupermatter"
 	item_state = "book15"
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/supermatter_engine/New()
 	..()
+=======
+/obj/item/book/manual/supermatter_engine/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -160,7 +175,7 @@
 
 // TESLA Engine
 
-/obj/item/weapon/book/manual/tesla_engine
+/obj/item/book/manual/tesla_engine
 	name = "Tesla Operating Manual"
 	icon_state ="bookTesla"
 	item_state = "book15"
@@ -230,15 +245,20 @@
 			</html>"}
 
 //R-UST port
-/obj/item/weapon/book/manual/rust_engine
+/obj/item/book/manual/rust_engine
 	name = "R-UST Operating Manual"
 	icon_state = "bookSupermatter"
 	item_state = "book15"
 	author = "Cindy Crawfish"
 	title = "R-UST Operating Manual"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/rust_engine/New()
 	..()
+=======
+/obj/item/book/manual/rust_engine/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -271,15 +291,20 @@
 				</body>
 			</html>"}
 
-/obj/item/weapon/book/manual/engineering_hacking
+/obj/item/book/manual/engineering_hacking
 	name = "Hacking"
 	icon_state ="bookHacking"
 	item_state = "book2"
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Hacking"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/engineering_hacking/New()
 	..()
+=======
+/obj/item/book/manual/engineering_hacking/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>
@@ -294,7 +319,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/engineering_singularity_safety
+/obj/item/book/manual/engineering_singularity_safety
 	name = "Singularity Safety in Special Circumstances"
 	icon_state ="bookEngineeringSingularitySafety"
 	item_state = "book15"
@@ -347,7 +372,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/hydroponics_pod_people
+/obj/item/book/manual/hydroponics_pod_people
 	name = "The Diona Harvest - From Seed to Market"
 	icon_state ="bookHydroponicsPodPeople"
 	item_state = "book5"
@@ -386,7 +411,7 @@
 				"}
 
 
-/obj/item/weapon/book/manual/medical_cloning
+/obj/item/book/manual/medical_cloning
 	name = "Cloning Techniques of the 26th Century"
 	icon_state ="bookCloning"
 	item_state = "book9"
@@ -480,7 +505,7 @@
 				"}
 
 
-/obj/item/weapon/book/manual/ripley_build_and_repair
+/obj/item/book/manual/ripley_build_and_repair
 	name = "APLU \"Ripley\" Construction and Operation Manual"
 	icon_state ="book"
 	item_state = "book"
@@ -558,7 +583,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/research_and_development
+/obj/item/book/manual/research_and_development
 	name = "Research and Development 101"
 	icon_state = "rdbook"
 	item_state = "book7"
@@ -628,7 +653,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/robotics_cyborgs
+/obj/item/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"
 	icon_state = "borgbook"
 	item_state = "book1"
@@ -834,7 +859,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/security_space_law
+/obj/item/book/manual/security_space_law
 	name = "Corporate Regulations"
 	desc = "A set of corporate guidelines for keeping law and order on privately-owned space stations."
 	icon_state = "bookSpaceLaw"
@@ -842,8 +867,13 @@
 	author = "The Company"
 	title = "Corporate Regulations"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/security_space_law/New()
 	..()
+=======
+/obj/item/book/manual/security_space_law/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>
@@ -859,7 +889,7 @@
 
 
 
-/obj/item/weapon/book/manual/medical_diagnostics_manual
+/obj/item/book/manual/medical_diagnostics_manual
 	name = "Medical Diagnostics Manual"
 	desc = "First, do no harm. A detailed medical practitioner's guide."
 	icon_state = "bookMedical"
@@ -867,8 +897,13 @@
 	author = "Medical Department"
 	title = "Medical Diagnostics Manual"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/medical_diagnostics_manual/New()
 	..()
+=======
+/obj/item/book/manual/medical_diagnostics_manual/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -908,15 +943,20 @@
 		"}
 
 
-/obj/item/weapon/book/manual/engineering_guide
+/obj/item/book/manual/engineering_guide
 	name = "Engineering Textbook"
 	icon_state ="bookEngineering2"
 	item_state = "book3"
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
 
+<<<<<<< HEAD
 /obj/item/weapon/book/manual/engineering_guide/New()
 	..()
+=======
+/obj/item/book/manual/engineering_guide/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>
@@ -930,7 +970,7 @@
 		"}
 
 
-/obj/item/weapon/book/manual/chef_recipes
+/obj/item/book/manual/chef_recipes
 	name = "Chef Recipes"
 	icon_state = "cooked_book"
 	item_state = "book16"
@@ -990,7 +1030,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/barman_recipes
+/obj/item/book/manual/barman_recipes
 	name = "Barman Recipes"
 	desc = "For the enterprising drink server."
 	icon_state = "barbook"
@@ -1047,7 +1087,7 @@
 			"}
 
 
-/obj/item/weapon/book/manual/detective
+/obj/item/book/manual/detective
 	name = "The Film Noir: Proper Procedures for Investigations"
 	icon_state ="bookDetective"
 	item_state = "book8"
@@ -1091,7 +1131,7 @@
 				</body>
 			</html>"}
 
-/obj/item/weapon/book/manual/nuclear
+/obj/item/book/manual/nuclear
 	name = "Fission Mailed: Nuclear Sabotage 101"
 	icon_state ="bookNuclear"
 	item_state = "book8"
@@ -1143,7 +1183,7 @@
 			</html>
 			"}
 
-/obj/item/weapon/book/manual/atmospipes
+/obj/item/book/manual/atmospipes
 	name = "Pipes and You: Getting To Know Your Scary Tools"
 	icon_state = "pipingbook"
 	item_state = "book3"
@@ -1252,7 +1292,7 @@
 			</html>
 			"}
 
-/obj/item/weapon/book/manual/evaguide
+/obj/item/book/manual/evaguide
 	name = "EVA Gear and You: Not Spending All Day Inside, 2nd Edition"
 	icon_state = "evabook"
 	item_state = "book14"

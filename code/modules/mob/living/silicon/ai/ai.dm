@@ -53,10 +53,10 @@ var/list/ai_verbs_default = list(
 	var/viewalerts = 0
 	var/icon/holo_icon//Default is assigned when AI is created.
 	var/list/connected_robots = list()
-	var/obj/item/device/pda/ai/aiPDA = null
-	var/obj/item/device/communicator/aiCommunicator = null
-	var/obj/item/device/multitool/aiMulti = null
-	var/obj/item/device/radio/headset/heads/ai_integrated/aiRadio = null
+	var/obj/item/pda/ai/aiPDA = null
+	var/obj/item/communicator/aiCommunicator = null
+	var/obj/item/multitool/aiMulti = null
+	var/obj/item/radio/headset/heads/ai_integrated/aiRadio = null
 	var/camera_light_on = 0	//Defines if the AI toggled the light on the camera it's looking through.
 	var/datum/trackable/track = null
 	var/last_announcement = ""
@@ -104,7 +104,12 @@ var/list/ai_verbs_default = list(
 	src.verbs -= ai_verbs_default
 	src.verbs -= silicon_subsystems
 
+<<<<<<< HEAD
 /mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
+=======
+/mob/living/silicon/ai/Initialize(var/ml, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)
+
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -121,7 +126,7 @@ var/list/ai_verbs_default = list(
 				pickedName = null
 
 	if(!is_dummy)
-		aiPDA = new/obj/item/device/pda/ai(src)
+		aiPDA = new/obj/item/pda/ai(src)
 	SetName(pickedName)
 	anchored = TRUE
 	canmove = 0
@@ -129,7 +134,7 @@ var/list/ai_verbs_default = list(
 	loc = loc
 
 	if(!is_dummy)
-		aiCommunicator = new /obj/item/device/communicator/integrated(src)
+		aiCommunicator = new /obj/item/communicator/integrated(src)
 
 	holo_icon = getHologramIcon(icon('icons/mob/AI.dmi',"holo1"))
 
@@ -148,7 +153,7 @@ var/list/ai_verbs_default = list(
 	additional_law_channels["Binary"] = "#b"
 	additional_law_channels["Holopad"] = ":h"
 
-	aiCamera = new/obj/item/device/camera/siliconcam/ai_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/ai_camera(src)
 
 	if (istype(loc, /turf))
 		add_ai_verbs(src)
@@ -743,10 +748,10 @@ var/list/ai_verbs_default = list(
 		camera_light_on = world.timeofday + 1 * 20 // Update the light every 2 seconds.
 
 
-/mob/living/silicon/ai/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/aicard))
+/mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/aicard))
 
-		var/obj/item/device/aicard/card = W
+		var/obj/item/aicard/card = W
 		card.grab_ai(src, user)
 
 	else if(W.is_wrench())
@@ -889,7 +894,7 @@ var/list/ai_verbs_default = list(
 	set category = "IC"
 
 	resting = 0
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(rig)
 		rig.force_rest(src)
 
@@ -924,7 +929,7 @@ var/list/ai_verbs_default = list(
 
 			// If I's display name is currently different from the voice name and using an agent ID then don't impersonate
 			// as this would allow the AI to track I and realize the mismatch.
-			if(I && !(I.name != speaker_name && I.wear_id && istype(I.wear_id,/obj/item/weapon/card/id/syndicate)))
+			if(I && !(I.name != speaker_name && I.wear_id && istype(I.wear_id,/obj/item/card/id/syndicate)))
 				impersonating = I
 				jobname = impersonating.get_assignment()
 			else

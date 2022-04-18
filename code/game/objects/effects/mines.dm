@@ -7,8 +7,13 @@
 	icon_state = "uglymine"
 	var/triggered = 0
 	var/smoke_strength = 3
+<<<<<<< HEAD
 	var/obj/item/weapon/mine/mineitemtype = /obj/item/weapon/mine
 	var/panel_open = FALSE
+=======
+	var/obj/item/mine/mineitemtype = /obj/item/mine
+	var/panel_open = 0
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/datum/wires/mines/wires = null
 	var/camo_net = FALSE	// Will the mine 'cloak' on deployment?
 
@@ -59,16 +64,16 @@
 	qdel(src)
 
 /obj/effect/mine/proc/trigger_trap(var/mob/living/victim)
-	if(istype(trap, /obj/item/weapon/grenade))
-		var/obj/item/weapon/grenade/G = trap
+	if(istype(trap, /obj/item/grenade))
+		var/obj/item/grenade/G = trap
 		trap = null
 		G.forceMove(get_turf(src))
 		if(victim.ckey)
 			msg_admin_attack("[key_name_admin(victim)] stepped on \a [src.name], triggering [trap]")
 		G.activate()
 
-	if(istype(trap, /obj/item/device/transfer_valve))
-		var/obj/item/device/transfer_valve/TV = trap
+	if(istype(trap, /obj/item/transfer_valve))
+		var/obj/item/transfer_valve/TV = trap
 		trap = null
 		TV.forceMove(get_turf(src))
 		TV.toggle_valve()
@@ -109,7 +114,7 @@
 		// Panel open, stay uncloaked, or uncloak if already cloaked. If you don't cloak on place, ignore it and just be normal alpha.
 		alpha = camo_net ? (panel_open ? 255 : 50) : 255
 
-	else if((W.is_wirecutter() || istype(W, /obj/item/device/multitool)) && panel_open)
+	else if((W.is_wirecutter() || istype(W, /obj/item/multitool)) && panel_open)
 		interact(user)
 	else
 		..()
@@ -124,7 +129,7 @@
 	camo_net = TRUE
 
 /obj/effect/mine/dnascramble
-	mineitemtype = /obj/item/weapon/mine/dnascramble
+	mineitemtype = /obj/item/mine/dnascramble
 
 /obj/effect/mine/dnascramble/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -141,7 +146,7 @@
 		qdel(src)
 
 /obj/effect/mine/stun
-	mineitemtype = /obj/item/weapon/mine/stun
+	mineitemtype = /obj/item/mine/stun
 
 /obj/effect/mine/stun/explode(var/mob/living/M)
 	triggered = 1
@@ -156,7 +161,7 @@
 		qdel(src)
 
 /obj/effect/mine/n2o
-	mineitemtype = /obj/item/weapon/mine/n2o
+	mineitemtype = /obj/item/mine/n2o
 
 /obj/effect/mine/n2o/explode(var/mob/living/M)
 	triggered = 1
@@ -168,7 +173,7 @@
 		qdel(src)
 
 /obj/effect/mine/phoron
-	mineitemtype = /obj/item/weapon/mine/phoron
+	mineitemtype = /obj/item/mine/phoron
 
 /obj/effect/mine/phoron/explode(var/mob/living/M)
 	triggered = 1
@@ -181,7 +186,7 @@
 		qdel(src)
 
 /obj/effect/mine/kick
-	mineitemtype = /obj/item/weapon/mine/kick
+	mineitemtype = /obj/item/mine/kick
 
 /obj/effect/mine/kick/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -198,7 +203,7 @@
 		qdel(src)
 
 /obj/effect/mine/frag
-	mineitemtype = /obj/item/weapon/mine/frag
+	mineitemtype = /obj/item/mine/frag
 	var/fragment_types = list(/obj/item/projectile/bullet/pellet/fragment)
 	var/num_fragments = 20  //total number of fragments produced by the grenade
 	//The radius of the circle used to launch projectiles. Lower values mean less projectiles are used but if set too low gaps may appear in the spread pattern
@@ -221,7 +226,7 @@
 /obj/effect/mine/training	//Name and Desc commented out so it's possible to trick people with the training mines
 //	name = "training mine"
 //	desc = "A mine with its payload removed, for EOD training and demonstrations."
-	mineitemtype = /obj/item/weapon/mine/training
+	mineitemtype = /obj/item/mine/training
 
 /obj/effect/mine/training/explode(var/mob/living/M)
 	triggered = 1
@@ -231,7 +236,7 @@
 		qdel(src)
 
 /obj/effect/mine/emp
-	mineitemtype = /obj/item/weapon/mine/emp
+	mineitemtype = /obj/item/mine/emp
 
 /obj/effect/mine/emp/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -246,7 +251,7 @@
 	camo_net = TRUE
 
 /obj/effect/mine/incendiary
-	mineitemtype = /obj/item/weapon/mine/incendiary
+	mineitemtype = /obj/item/mine/incendiary
 
 /obj/effect/mine/incendiary/explode(var/mob/living/M)
 	triggered = 1
@@ -261,7 +266,7 @@
 		qdel(src)
 
 /obj/effect/mine/gadget
-	mineitemtype = /obj/item/weapon/mine/gadget
+	mineitemtype = /obj/item/mine/gadget
 
 /obj/effect/mine/gadget/explode(var/mob/living/M)
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
@@ -283,7 +288,7 @@
 /////////////////////////////////////////////
 // The held item version of the above mines
 /////////////////////////////////////////////
-/obj/item/weapon/mine
+/obj/item/mine
 	name = "mine"
 	desc = "A small explosive mine with 'HE' and a grenade symbol on the side."
 	icon = 'icons/obj/weapons.dmi'
@@ -295,7 +300,7 @@
 
 	var/list/allowed_gadgets = null
 
-/obj/item/weapon/mine/attack_self(mob/user as mob)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
+/obj/item/mine/attack_self(mob/user as mob)	// You do not want to move or throw a land mine while priming it... Explosives + Sudden Movement = Bad Times
 	add_fingerprint(user)
 	msg_admin_attack("[key_name_admin(user)] primed \a [src]")
 	user.visible_message("[user] starts priming \the [src.name].", "You start priming \the [src.name]. Hold still!")
@@ -307,7 +312,7 @@
 		prime(user, TRUE)
 	return
 
-/obj/item/weapon/mine/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/mine/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(W.is_screwdriver() && trap)
 		to_chat(user, "<span class='notice'>You begin removing \the [trap].</span>")
 		if(do_after(user, 10 SECONDS))
@@ -331,7 +336,7 @@
 
 	..()
 
-/obj/item/weapon/mine/proc/prime(mob/user as mob, var/explode_now = FALSE)
+/obj/item/mine/proc/prime(mob/user as mob, var/explode_now = FALSE)
 	visible_message("\The [src.name] beeps as the priming sequence completes.")
 	var/obj/effect/mine/R = new minetype(get_turf(src))
 	src.transfer_fingerprints_to(R)
@@ -345,59 +350,59 @@
 	spawn(0)
 		qdel(src)
 
-/obj/item/weapon/mine/dnascramble
+/obj/item/mine/dnascramble
 	name = "radiation mine"
 	desc = "A small explosive mine with a radiation symbol on the side."
 	minetype = /obj/effect/mine/dnascramble
 
-/obj/item/weapon/mine/phoron
+/obj/item/mine/phoron
 	name = "incendiary mine"
 	desc = "A small explosive mine with a fire symbol on the side."
 	minetype = /obj/effect/mine/phoron
 
-/obj/item/weapon/mine/kick
+/obj/item/mine/kick
 	name = "kick mine"
 	desc = "Concentrated war crimes. Handle with care."
 	minetype = /obj/effect/mine/kick
 
-/obj/item/weapon/mine/n2o
+/obj/item/mine/n2o
 	name = "nitrous oxide mine"
 	desc = "A small explosive mine with three Z's on the side."
 	minetype = /obj/effect/mine/n2o
 
-/obj/item/weapon/mine/stun
+/obj/item/mine/stun
 	name = "stun mine"
 	desc = "A small explosive mine with a lightning bolt symbol on the side."
 	minetype = /obj/effect/mine/stun
 
-/obj/item/weapon/mine/frag
+/obj/item/mine/frag
 	name = "fragmentation mine"
 	desc = "A small explosive mine with 'FRAG' and a grenade symbol on the side."
 	minetype = /obj/effect/mine/frag
 
-/obj/item/weapon/mine/training
+/obj/item/mine/training
 	name = "training mine"
 	desc = "A mine with its payload removed, for EOD training and demonstrations."
 	minetype = /obj/effect/mine/training
 
-/obj/item/weapon/mine/emp
+/obj/item/mine/emp
 	name = "emp mine"
 	desc = "A small explosive mine with a lightning bolt symbol on the side."
 	minetype = /obj/effect/mine/emp
 
-/obj/item/weapon/mine/incendiary
+/obj/item/mine/incendiary
 	name = "incendiary mine"
 	desc = "A small explosive mine with a fire symbol on the side."
 	minetype = /obj/effect/mine/incendiary
 
-/obj/item/weapon/mine/gadget
+/obj/item/mine/gadget
 	name = "gadget mine"
 	desc = "A small pressure-triggered device. If no component is added, the internal release bolts will detonate in unison when triggered."
 
-	allowed_gadgets = list(/obj/item/weapon/grenade, /obj/item/device/transfer_valve)
+	allowed_gadgets = list(/obj/item/grenade, /obj/item/transfer_valve)
 
 // This tells AI mobs to not be dumb and step on mines willingly.
-/obj/item/weapon/mine/is_safe_to_step(mob/living/L)
+/obj/item/mine/is_safe_to_step(mob/living/L)
 	if(!L.hovering)
 		return FALSE
 	return ..()

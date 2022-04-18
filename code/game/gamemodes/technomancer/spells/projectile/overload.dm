@@ -5,11 +5,11 @@
 	enhancement_desc = "Will do damage equal to 0.4% of current energy."
 	spell_power_desc = "Increases damage dealt, up to a cap of 80 damage per shot."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/projectile/overload
+	obj_path = /obj/item/spell/projectile/overload
 	ability_icon_state = "tech_overload"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/projectile/overload
+/obj/item/spell/projectile/overload
 	name = "overload"
 	icon_state = "overload"
 	desc = "Hope your Core's full."
@@ -30,7 +30,7 @@
 	impact_effect_type = /obj/effect/temp_visual/impact_effect/blue_laser
 	hitsound_wall = 'sound/weapons/effects/searwall.ogg'
 
-/obj/item/weapon/spell/projectile/overload/make_projectile(obj/item/projectile/projectile_type, mob/living/user)
+/obj/item/spell/projectile/overload/make_projectile(obj/item/projectile/projectile_type, mob/living/user)
 	var/obj/item/projectile/overload/P = new projectile_type(get_turf(user))
 	var/energy_before_firing = core.energy
 	if(check_for_scepter())
@@ -40,7 +40,7 @@
 	P.damage = min(calculate_spell_power(P.damage), 80)
 	return P
 
-/obj/item/weapon/spell/projectile/overload/on_ranged_cast(atom/hit_atom, mob/living/user)
+/obj/item/spell/projectile/overload/on_ranged_cast(atom/hit_atom, mob/living/user)
 	energy_cost_per_shot = round(core.max_energy * 0.10)
 	..()
 /*	var/energy_before_firing = core.energy

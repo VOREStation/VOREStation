@@ -1,4 +1,4 @@
-/obj/item/device/mmi/digital/robot
+/obj/item/mmi/digital/robot
 	name = "robotic intelligence circuit"
 	desc = "The pinnacle of artifical intelligence which can be achieved using classical computer science."
 	icon = 'icons/obj/module.dmi'
@@ -6,18 +6,23 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 
+<<<<<<< HEAD
 /obj/item/device/mmi/digital/robot/New()
 	..()
+=======
+/obj/item/mmi/digital/robot/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN"))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 	src.name = "robotic intelligence circuit ([src.brainmob.name])"
 
-/obj/item/device/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
+/obj/item/mmi/digital/robot/transfer_identity(var/mob/living/carbon/H)
 	..()
 	if(brainmob.mind)
 		brainmob.mind.assigned_role = "Robotic Intelligence"
 	to_chat(brainmob, "<span class='notify'>You feel slightly disoriented. That's normal when you're little more than a complex circuit.</span>")
 	return
 
-/obj/item/device/mmi/digital/robot/attack_self(mob/user as mob)
+/obj/item/mmi/digital/robot/attack_self(mob/user as mob)
 	return //This object is technically a brain, and should not be dumping brains out of itself like its parent object does.

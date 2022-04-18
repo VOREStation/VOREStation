@@ -12,8 +12,8 @@
 	interface_name = "mounted laser cannon"
 	interface_desc = "A shoulder-mounted cell-powered laser cannon."
 
-	var/gun_type = /obj/item/weapon/gun/energy/lasercannon/mounted
-	var/obj/item/weapon/gun/gun
+	var/gun_type = /obj/item/gun/energy/lasercannon/mounted
+	var/obj/item/gun/gun
 
 /obj/item/rig_module/mounted/New()
 	..()
@@ -40,7 +40,7 @@
 	interface_name = "mounted energy gun"
 	interface_desc = "A forearm-mounted suit-powered energy gun."
 
-	gun_type = /obj/item/weapon/gun/energy/gun/mounted
+	gun_type = /obj/item/gun/energy/gun/mounted
 
 /obj/item/rig_module/mounted/taser
 
@@ -56,7 +56,7 @@
 	interface_name = "mounted taser"
 	interface_desc = "A shoulder-mounted cell-powered taser."
 
-	gun_type = /obj/item/weapon/gun/energy/taser/mounted
+	gun_type = /obj/item/gun/energy/taser/mounted
 
 /obj/item/rig_module/mounted/energy_blade
 
@@ -77,12 +77,12 @@
 	active_power_cost = 10
 	passive_power_cost = 0
 
-	gun_type = /obj/item/weapon/gun/energy/crossbow/ninja
+	gun_type = /obj/item/gun/energy/crossbow/ninja
 
 /obj/item/rig_module/mounted/energy_blade/process()
 
 	if(holder && holder.wearer)
-		if(!(locate(/obj/item/weapon/melee/energy/blade) in holder.wearer))
+		if(!(locate(/obj/item/melee/energy/blade) in holder.wearer))
 			deactivate()
 			return 0
 
@@ -99,7 +99,7 @@
 		deactivate()
 		return
 
-	var/obj/item/weapon/melee/energy/blade/blade = new(M)
+	var/obj/item/melee/energy/blade/blade = new(M)
 	blade.creator = M
 	M.put_in_hands(blade)
 
@@ -112,7 +112,7 @@
 	if(!M)
 		return
 
-	for(var/obj/item/weapon/melee/energy/blade/blade in M.contents)
+	for(var/obj/item/melee/energy/blade/blade in M.contents)
 		M.drop_from_inventory(blade)
 		qdel(blade)
 
@@ -135,12 +135,12 @@
 	active_power_cost = 0
 	passive_power_cost = 0
 
-	gun_type = /obj/item/weapon/gun/energy/temperature/mounted
+	gun_type = /obj/item/gun/energy/temperature/mounted
 
 /obj/item/rig_module/mounted/mop/process()
 
 	if(holder && holder.wearer)
-		if(!(locate(/obj/item/weapon/mop_deploy) in holder.wearer))
+		if(!(locate(/obj/item/mop_deploy) in holder.wearer))
 			deactivate()
 			return 0
 
@@ -157,7 +157,7 @@
 		deactivate()
 		return
 
-	var/obj/item/weapon/mop_deploy/blade = new(M)
+	var/obj/item/mop_deploy/blade = new(M)
 	blade.creator = M
 	M.put_in_hands(blade)
 
@@ -170,6 +170,6 @@
 	if(!M)
 		return
 
-	for(var/obj/item/weapon/mop_deploy/blade in M.contents)
+	for(var/obj/item/mop_deploy/blade in M.contents)
 		M.drop_from_inventory(blade)
 		qdel(blade)

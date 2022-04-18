@@ -133,7 +133,7 @@
 
 // I'm on a
 /datum/riding/boat
-	keytype = /obj/item/weapon/oar
+	keytype = /obj/item/oar
 	key_name = "an oar"
 	nonhuman_key_exemption = TRUE // Borgs can't hold oars.
 	only_one_driver = TRUE // Would be pretty crazy if five people try to move at the same time.

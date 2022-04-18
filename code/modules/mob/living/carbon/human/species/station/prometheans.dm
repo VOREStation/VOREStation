@@ -133,6 +133,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 	prometheans = src
 
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)
+<<<<<<< HEAD
 	var/boxtype = pick(list(/obj/item/weapon/storage/toolbox/lunchbox,
 							/obj/item/weapon/storage/toolbox/lunchbox/heart,
 							/obj/item/weapon/storage/toolbox/lunchbox/cat,
@@ -144,6 +145,18 @@ var/datum/species/shapeshifter/promethean/prometheans
 	var/obj/item/weapon/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
 	new /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar(L)
 	new /obj/item/weapon/tool/prybar/red(L) //VOREStation Add,
+=======
+	var/boxtype = pick(list(/obj/item/storage/toolbox/lunchbox,
+							/obj/item/storage/toolbox/lunchbox/heart,
+							/obj/item/storage/toolbox/lunchbox/cat,
+							/obj/item/storage/toolbox/lunchbox/nt,
+							/obj/item/storage/toolbox/lunchbox/mars,
+							/obj/item/storage/toolbox/lunchbox/cti,
+							/obj/item/storage/toolbox/lunchbox/nymph,
+							/obj/item/storage/toolbox/lunchbox/syndicate))	//Only pick the empty types
+	var/obj/item/storage/toolbox/lunchbox/L = new boxtype(get_turf(H))
+	new /obj/item/reagent_containers/food/snacks/candy/proteinbar(L)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(H.backbag == 1)
 		H.equip_to_slot_or_del(L, slot_r_hand)
 	else

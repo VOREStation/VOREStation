@@ -8,6 +8,7 @@
 /obj/screen/auto_target
 	name = "targeter"
 	icon = null//We dont want people to see this guy
+<<<<<<< HEAD
 	density = FALSE
 	anchored = TRUE
 	var/obj/item/weapon/gun/gun
@@ -22,6 +23,20 @@
 		usr << I
 		//autodel() //Currently doesn't really work right.
 		return
+=======
+	density = 0
+	anchored = 1
+	var/obj/item/gun/gun
+	var/active = 0//Just tells us that it was clicked on so we should start shooting
+	var/delay_del = 0//Delays the del if we retarget without shooting
+
+/obj/screen/auto_target/Initialize(var/ml, var/obj/item/gun/G)
+	. = ..()
+	gun = G
+	var/image/I = image('icons/effects/Targeted.dmi', src, "locked")
+	I.override = 1
+	usr << I
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/screen/auto_target/CanPass()//Everything should ignore this guy and just pass by
 		return 1

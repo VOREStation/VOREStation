@@ -50,7 +50,7 @@
 		return !density
 	return TRUE
 
-/obj/structure/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/structure/gravemarker/attackby(obj/item/W, mob/user as mob)
 	if(W.is_screwdriver())
 		var/carving_1 = sanitizeSafe(input(user, "Who is \the [src.name] for?", "Gravestone Naming", null)  as text, MAX_NAME_LEN)
 		if(carving_1)

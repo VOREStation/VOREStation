@@ -144,7 +144,7 @@
 		return
 
 /mob/observer/dead/attackby(obj/item/W, mob/user)
-	if(istype(W,/obj/item/weapon/book/tome))
+	if(istype(W,/obj/item/book/tome))
 		var/mob/observer/dead/M = src
 		M.manifest(user)
 
@@ -980,8 +980,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	
 	if(usr.client.prefs?.be_special & BE_PAI)
 		var/count = 0
-		for(var/obj/item/device/paicard/p in all_pai_cards)
-			var/obj/item/device/paicard/PP = p
+		for(var/obj/item/paicard/p in all_pai_cards)
+			var/obj/item/paicard/PP = p
 			if(PP.pai == null)
 				count++
 				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit

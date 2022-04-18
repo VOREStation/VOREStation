@@ -10,26 +10,26 @@
 /obj/effect/overlay/cultify()
 	return
 
-/obj/item/device/flashlight/lamp/cultify()
+/obj/item/flashlight/lamp/cultify()
 	new /obj/structure/cult/pylon(loc)
 	..()
 
 /obj/item/stack/material/wood/cultify()
 	return
 
-/obj/item/weapon/book/cultify()
-	new /obj/item/weapon/book/tome(loc)
+/obj/item/book/cultify()
+	new /obj/item/book/tome(loc)
 	..()
 
-/obj/item/weapon/material/sword/cultify()
-	new /obj/item/weapon/melee/cultblade(loc)
+/obj/item/material/sword/cultify()
+	new /obj/item/melee/cultblade(loc)
 	..()
 
-/obj/item/weapon/storage/backpack/cultify()
-	new /obj/item/weapon/storage/backpack/cultpack(loc)
+/obj/item/storage/backpack/cultify()
+	new /obj/item/storage/backpack/cultpack(loc)
 	..()
 
-/obj/item/weapon/storage/backpack/cultpack/cultify()
+/obj/item/storage/backpack/cultpack/cultify()
 	return
 
 /obj/machinery/cultify()

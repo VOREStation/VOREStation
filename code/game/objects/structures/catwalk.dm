@@ -85,8 +85,8 @@
 	qdel(src)
 
 /obj/structure/catwalk/attackby(obj/item/C as obj, mob/user as mob)
-	if(istype(C, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = C
+	if(istype(C, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = C
 		if(WT.isOn() && WT.remove_fuel(0, user))
 			deconstruct(user)
 			return

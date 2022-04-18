@@ -1,10 +1,14 @@
 "a" = (/turf/simulated/floor/outdoors/dirt,/area/submap/WolfDen)
 "b" = (/mob/living/simple_mob/animal/sif/shantak,/turf/template_noop,/area/submap/WolfDen)
+<<<<<<< HEAD
 "c" = (/obj/item/weapon/bone,/obj/effect/decal/cleanable/dirt,/obj/effect/gibspawner/human,/obj/random/maintenance/engineering,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
+=======
+"c" = (/obj/item/bone,/obj/effect/decal/cleanable/dirt,/obj/effect/spawner/gibs/human,/obj/random/maintenance/engineering,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "e" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/random/junk,/obj/random/maintenance/cargo,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "i" = (/obj/random/maintenance/security,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "j" = (/obj/random/gun/random,/obj/random/junk,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
-"m" = (/obj/item/weapon/bone/ribs,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
+"m" = (/obj/item/bone/ribs,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "o" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/WolfDen)
 "p" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "q" = (/obj/structure/loot_pile/surface/bones,/obj/random/maintenance/cargo,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
@@ -17,14 +21,18 @@
 "A" = (/obj/effect/decal/cleanable/dirt,/obj/random/maintenance/security,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "C" = (/mob/living/simple_mob/animal/sif/shantak,/turf/simulated/floor/outdoors/dirt,/area/submap/WolfDen)
 "D" = (/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
+<<<<<<< HEAD
 "G" = (/obj/item/weapon/bone/arm,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
+=======
+"G" = (/obj/item/bone/arm{start_anomalous = 1},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "I" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "J" = (/obj/effect/decal/cleanable/dirt,/obj/random/junk,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "K" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "M" = (/obj/random/maintenance/cargo,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
 "O" = (/obj/random/gun/random,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "R" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/dirt,/area/submap/WolfDen)
-"S" = (/obj/item/weapon/bone,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
+"S" = (/obj/item/bone,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
 "T" = (/obj/effect/decal/cleanable/dirt,/obj/random/maintenance/engineering,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
 "U" = (/obj/effect/decal/cleanable/dirt,/obj/random/maintenance/engineering,/obj/item/clothing/head/fedora,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)
 "V" = (/obj/random/outcrop,/turf/simulated/floor/outdoors/dirt,/area/submap/WolfDen)

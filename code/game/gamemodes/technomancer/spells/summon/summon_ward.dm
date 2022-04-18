@@ -4,10 +4,10 @@
 	moving around it, or when it is attacked.  They can see for up to five meters. It can also see invisible entities, and \
 	forcefully decloak them if close enough."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/summon/summon_ward
+	obj_path = /obj/item/spell/summon/summon_ward
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/summon/summon_ward
+/obj/item/spell/summon/summon_ward
 	name = "summon ward"
 	desc = "Finally, someone you can depend on to watch your back."
 	cast_methods = CAST_RANGED
@@ -16,5 +16,5 @@
 	instability_cost = 5
 	energy_cost = 500
 
-/obj/item/weapon/spell/summon/summon_ward/on_summon(var/mob/living/simple_mob/mechanical/ward/monitor/my_ward)
+/obj/item/spell/summon/summon_ward/on_summon(var/mob/living/simple_mob/mechanical/ward/monitor/my_ward)
 	my_ward.owner = owner

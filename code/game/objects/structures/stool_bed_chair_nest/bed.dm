@@ -87,7 +87,7 @@
 				qdel(src)
 				return
 
-/obj/structure/bed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src, W.usesound, 50, 1)
 		dismantle()
@@ -127,15 +127,15 @@
 		playsound(src, W.usesound, 100, 1)
 		remove_padding()
 
-	else if(istype(W, /obj/item/weapon/disk) || (istype(W, /obj/item/toy/plushie)))
+	else if(istype(W, /obj/item/disk) || (istype(W, /obj/item/toy/plushie)))
 		user.drop_from_inventory(W, get_turf(src))
 		W.pixel_x = 10 //make sure they reach the pillow
 		W.pixel_y = -6
-		if(istype(W, /obj/item/weapon/disk))
+		if(istype(W, /obj/item/disk))
 			user.visible_message("<span class='notice'>[src] sleeps soundly. Sleep tight, disky.</span>")
 
-	else if(istype(W, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = W
+	else if(istype(W, /obj/item/grab))
+		var/obj/item/grab/G = W
 		var/mob/living/affecting = G.affecting
 		if(has_buckled_mobs()) //Handles trying to buckle someone else to a chair when someone else is on it
 			to_chat(user, "<span class='notice'>\The [src] already has someone buckled to it.</span>")
@@ -218,7 +218,7 @@
 /obj/structure/bed/roller/update_icon()
 	return
 
-/obj/structure/bed/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/roller/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench() || istype(W,/obj/item/stack) || W.is_wirecutter())
 		return
 	else if(istype(W,/obj/item/roller_holder))
@@ -251,7 +251,7 @@
 	R.add_fingerprint(user)
 	qdel(src)
 
-/obj/item/roller/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/roller/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/roller_holder))
 		var/obj/item/roller_holder/RH = W
@@ -351,6 +351,7 @@
 /obj/structure/bed/alien/update_icon()
 	return // Doesn't care about material or anything else.
 
+<<<<<<< HEAD
 /obj/structure/bed/alien/attackby(obj/item/weapon/W, mob/user)
 	return // No deconning.
 
@@ -385,3 +386,7 @@
 	if(!anchored)
 		to_chat(user,"<span class='notice'> The bed isn't secured.</span>")
 		return
+=======
+/obj/structure/bed/alien/attackby(obj/item/W, mob/user)
+	return // No deconning.
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

@@ -92,8 +92,8 @@
 				.["tool_qualities"] |= item.tool_qualities
 				.["other"][item.type] += 1
 			else
-				if(istype(item, /obj/item/weapon/reagent_containers))
-					var/obj/item/weapon/reagent_containers/container = item
+				if(istype(item, /obj/item/reagent_containers))
+					var/obj/item/reagent_containers/container = item
 					// if(container.is_drainable())
 					if(container.is_open_container()) // this isn't exactly the same
 						for(var/datum/reagent/reagent in container.reagents.reagent_list)
@@ -157,7 +157,7 @@
 
 	for(var/obj/item/contained_item in source.contents)
 		// if(contained_item.GetComponent(/datum/component/storage))
-		if(istype(contained_item, /obj/item/weapon/storage)) // cursed
+		if(istype(contained_item, /obj/item/storage)) // cursed
 			for(var/obj/item/subcontained_item in contained_item.contents)
 				available_tools[subcontained_item.type] = TRUE
 				for(var/behavior in subcontained_item.tool_qualities)
@@ -290,7 +290,7 @@
 			var/datum/reagent/reagent = path_key
 			var/id = initial(reagent.id)
 
-			for(var/obj/item/weapon/reagent_containers/RC in surroundings)				
+			for(var/obj/item/reagent_containers/RC in surroundings)				
 				// Found everything we need
 				if(amt <= 0 && amt_to_transfer <= 0)
 					break	
@@ -338,8 +338,8 @@
 					continue
 				
 				// Special case: the reagents may be needed for other recipes
-				if(istype(I, /obj/item/weapon/reagent_containers))
-					var/obj/item/weapon/reagent_containers/RC = I
+				if(istype(I, /obj/item/reagent_containers))
+					var/obj/item/reagent_containers/RC = I
 					if(RC.reagents.total_volume > 0)
 						continue
 				
@@ -354,12 +354,12 @@
 					
 				// Snowflake handling of reagent containers and storage atoms.
 				// If we consumed them in our crafting, we should dump their contents out before qdeling them.
-				if(istype(I, /obj/item/weapon/reagent_containers))
-					var/obj/item/weapon/reagent_containers/container = I
+				if(istype(I, /obj/item/reagent_containers))
+					var/obj/item/reagent_containers/container = I
 					container.reagents.clear_reagents()
 					// container.reagents.expose(container.loc, TOUCH)
-				else if(istype(I, /obj/item/weapon/storage))
-					var/obj/item/weapon/storage/container = I
+				else if(istype(I, /obj/item/storage))
+					var/obj/item/storage/container = I
 					container.spill()
 					container.close_all()
 				qdel(I)

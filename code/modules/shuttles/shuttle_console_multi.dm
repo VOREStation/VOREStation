@@ -1,6 +1,11 @@
 /obj/machinery/computer/shuttle_control/multi
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/shuttle_console/multi
 	tgui_subtemplate = "ShuttleControlConsoleMulti"
+=======
+	circuit = /obj/item/circuitboard/shuttle_console/multi
+	ui_template = "shuttle_control_console_multi.tmpl"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/shuttle_control/multi/shuttlerich_tgui_data(var/datum/shuttle/autodock/multi/shuttle)
 	. = ..()

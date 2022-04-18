@@ -11,7 +11,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 40
 	interact_offline = 1
-	circuit = /obj/item/weapon/circuitboard/sleeper_console
+	circuit = /obj/item/circuitboard/sleeper_console
 	clicksound = 'sound/machines/buttonbeep.ogg'
 	clickvol = 30
 
@@ -88,15 +88,21 @@
 	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
 	icon_state = "sleeper_0"
+<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/sleeper
+=======
+	density = 1
+	anchored = 1
+	circuit = /obj/item/circuitboard/sleeper
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()
 	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/amounts = list(5, 10)
-	var/obj/item/weapon/reagent_containers/glass/beaker = null
+	var/obj/item/reagent_containers/glass/beaker = null
 	var/filtering = 0
 	var/pumping = 0
 	// Currently never changes. On Paradise, max_chem and min_health are based on the matter bins in the sleeper.
@@ -115,7 +121,7 @@
 
 /obj/machinery/sleeper/Initialize()
 	. = ..()
-	beaker = new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+	beaker = new /obj/item/reagent_containers/glass/beaker/large(src)
 	default_apply_parts()
 	update_icon()
 
@@ -131,8 +137,8 @@
 	available_chemicals.Cut()
 	available_chemicals = base_chemicals.Copy()
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating
 
 	cap_rating = max(1, round(cap_rating / 2))
@@ -141,8 +147,8 @@
 	update_active_power_usage(initial(active_power_usage) / cap_rating)
 
 	if(!limited)
-		for(var/obj/item/weapon/stock_parts/P in component_parts)
-			if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		for(var/obj/item/stock_parts/P in component_parts)
+			if(istype(P, /obj/item/stock_parts/manipulator))
 				man_rating += P.rating - 1
 
 		var/list/new_chemicals = list()
@@ -374,12 +380,12 @@
 
 /obj/machinery/sleeper/attackby(var/obj/item/I, var/mob/user)
 	add_fingerprint(user)
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		if(G.affecting)
 			go_in(G.affecting, user)
 		return
-	if(istype(I, /obj/item/weapon/reagent_containers/glass))
+	if(istype(I, /obj/item/reagent_containers/glass))
 		if(!beaker)
 			beaker = I
 			user.drop_item()

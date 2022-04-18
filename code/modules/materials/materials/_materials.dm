@@ -6,7 +6,7 @@
 
 	PATHS THAT USE DATUMS
 		turf/simulated/wall
-		obj/item/weapon/material
+		obj/item/material
 		obj/structure/barricade
 		obj/item/stack/material
 		obj/structure/table
@@ -319,7 +319,7 @@ var/list/name_to_material
 // As above.
 /datum/material/proc/place_shard(var/turf/target)
 	if(shard_type)
-		return new /obj/item/weapon/material/shard(target, src.name)
+		return new /obj/item/material/shard(target, src.name)
 
 // Used by walls and weapons to determine if they break or not.
 /datum/material/proc/is_brittle()
@@ -340,12 +340,12 @@ var/list/name_to_material
 /datum/material/proc/generate_recipes()
 	// If is_brittle() returns true, these are only good for a single strike.
 	recipes = list(
-		new /datum/stack_recipe("[display_name] baseball bat", /obj/item/weapon/material/twohanded/baseballbat, 10, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-		new /datum/stack_recipe("[display_name] ashtray", /obj/item/weapon/material/ashtray, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-		new /datum/stack_recipe("[display_name] spoon", /obj/item/weapon/material/kitchen/utensil/spoon/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-		new /datum/stack_recipe("[display_name] armor plate", /obj/item/weapon/material/armor_plating, 1, time = 20, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-		new /datum/stack_recipe("[display_name] armor plate insert", /obj/item/weapon/material/armor_plating/insert, 2, time = 40, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-		new /datum/stack_recipe("[display_name] grave marker", /obj/item/weapon/material/gravemarker, 5, time = 50, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] baseball bat", /obj/item/material/twohanded/baseballbat, 10, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] ashtray", /obj/item/material/ashtray, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] spoon", /obj/item/material/kitchen/utensil/spoon/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] armor plate", /obj/item/material/armor_plating, 1, time = 20, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] armor plate insert", /obj/item/material/armor_plating/insert, 2, time = 40, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+		new /datum/stack_recipe("[display_name] grave marker", /obj/item/material/gravemarker, 5, time = 50, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("[display_name] ring", /obj/item/clothing/gloves/ring/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 		new /datum/stack_recipe("[display_name] bracelet", /obj/item/clothing/accessory/bracelet/material, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 	)
@@ -354,7 +354,7 @@ var/list/name_to_material
 		recipes += list(
 			new /datum/stack_recipe("[display_name] door", /obj/structure/simple_door, 10, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] barricade", /obj/structure/barricade, 5, time = 50, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-			new /datum/stack_recipe("[display_name] stool", /obj/item/weapon/stool, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] stool", /obj/item/stool, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] chair", /obj/structure/bed/chair, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] bed", /obj/structure/bed, 2, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] double bed", /obj/structure/bed/double, 4, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
@@ -369,8 +369,8 @@ var/list/name_to_material
 		))
 	if(hardness>50)
 		recipes += list(
-			new /datum/stack_recipe("[display_name] fork", /obj/item/weapon/material/kitchen/utensil/fork/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-			new /datum/stack_recipe("[display_name] knife", /obj/item/weapon/material/knife/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-			new /datum/stack_recipe("[display_name] blade", /obj/item/weapon/material/butterflyblade, 6, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
-			new /datum/stack_recipe("[display_name] defense wire", /obj/item/weapon/material/barbedwire, 10, time = 1 MINUTE, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
+			new /datum/stack_recipe("[display_name] fork", /obj/item/material/kitchen/utensil/fork/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] knife", /obj/item/material/knife/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] blade", /obj/item/material/butterflyblade, 6, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] defense wire", /obj/item/material/barbedwire, 10, time = 1 MINUTE, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 		)

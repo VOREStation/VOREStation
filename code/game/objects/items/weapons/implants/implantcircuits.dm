@@ -1,24 +1,29 @@
-/obj/item/weapon/implant/integrated_circuit
+/obj/item/implant/integrated_circuit
 	name = "electronic implant"
 	desc = "It's a case, for building very tiny electronics with."
 	icon = 'icons/obj/integrated_electronics/electronic_setups.dmi'
 	icon_state = "setup_implant"
-	var/obj/item/device/electronic_assembly/implant/IC = null
+	var/obj/item/electronic_assembly/implant/IC = null
 
-/obj/item/weapon/implant/integrated_circuit/islegal()
+/obj/item/implant/integrated_circuit/islegal()
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/weapon/implant/integrated_circuit/New()
 	..()
+=======
+/obj/item/implant/integrated_circuit/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	IC = new(src)
 	IC.implant = src
 
-/obj/item/weapon/implant/integrated_circuit/Destroy()
+/obj/item/implant/integrated_circuit/Destroy()
 	IC.implant = null
 	qdel(IC)
 	..()
 
-/obj/item/weapon/implant/integrated_circuit/get_data()
+/obj/item/implant/integrated_circuit/get_data()
 	var/dat = {"
 	<b>Implant Specifications:</b><BR>
 	<b>Name:</b> Modular Implant<BR>
@@ -32,17 +37,17 @@
 	<b>Integrity:</b> Implant is not shielded from electromagnetic interference, otherwise it is independent of subject's status."}
 	return dat
 
-/obj/item/weapon/implant/integrated_circuit/emp_act(severity)
+/obj/item/implant/integrated_circuit/emp_act(severity)
 	IC.emp_act(severity)
 
-/obj/item/weapon/implant/integrated_circuit/examine(mob/user)
+/obj/item/implant/integrated_circuit/examine(mob/user)
 	return IC.examine(user)
 
-/obj/item/weapon/implant/integrated_circuit/attackby(var/obj/item/O, var/mob/user)
-	if(O.is_crowbar() || istype(O, /obj/item/device/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || O.is_screwdriver() || istype(O, /obj/item/weapon/cell/device) )
+/obj/item/implant/integrated_circuit/attackby(var/obj/item/O, var/mob/user)
+	if(O.is_crowbar() || istype(O, /obj/item/integrated_electronics) || istype(O, /obj/item/integrated_circuit) || O.is_screwdriver() || istype(O, /obj/item/cell/device) )
 		IC.attackby(O, user)
 	else
 		..()
 
-/obj/item/weapon/implant/integrated_circuit/attack_self(mob/user)
+/obj/item/implant/integrated_circuit/attack_self(mob/user)
 	IC.attack_self(user)

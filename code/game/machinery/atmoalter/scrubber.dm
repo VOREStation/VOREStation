@@ -20,9 +20,15 @@
 
 	var/list/scrubbing_gas = list("phoron", "carbon_dioxide", "nitrous_oxide", "volatile_fuel")
 
+<<<<<<< HEAD
 /obj/machinery/portable_atmospherics/powered/scrubber/New()
 	..()
 	cell = new/obj/item/weapon/cell/apc(src)
+=======
+/obj/machinery/portable_atmospherics/powered/scrubber/Initialize()
+	. = ..()
+	cell = new/obj/item/cell/apc(src)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -230,13 +236,13 @@
 		return
 
 	//doesn't use power cells
-	if(istype(I, /obj/item/weapon/cell))
+	if(istype(I, /obj/item/cell))
 		return
 	if(I.is_screwdriver())
 		return
 
 	//doesn't hold tanks
-	if(istype(I, /obj/item/weapon/tank))
+	if(istype(I, /obj/item/tank))
 		return
 
 	..()

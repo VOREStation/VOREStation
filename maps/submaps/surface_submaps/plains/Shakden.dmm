@@ -3,12 +3,20 @@
 "c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Shakden)
 "d" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
 "e" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"f" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"f" = (/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
 "g" = (/mob/living/simple_mob/animal/sif/shantak/retaliate,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
-"h" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"h" = (/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
 "i" = (/mob/living/simple_mob/animal/sif/shantak/retaliate,/turf/simulated/floor/outdoors/dirt,/area/submap/Shakden)
+<<<<<<< HEAD
 "j" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
 "k" = (/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/reagent_containers/food/snacks/meat,/obj/item/weapon/material/knife/hook,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+=======
+"j" = (/obj/item/reagent_containers/food/snacks/meat,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"k" = (/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/reagent_containers/food/snacks/meat,/obj/item/material/knife/hook,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"l" = (/obj/random/grenade/lethal,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"G" = (/obj/random/outcrop,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+"N" = (/obj/random/ammo,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Shakden)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa

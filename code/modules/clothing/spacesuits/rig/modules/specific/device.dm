@@ -33,10 +33,13 @@
 /obj/item/rig_module/device/flash
 	name = "mounted flash"
 	desc = "You are the law."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "flash"
 	interface_name = "mounted flash"
 	interface_desc = "Stuns your target by blinding them with a bright light."
-	device_type = /obj/item/device/flash/robot
+	device_type = /obj/item/flash/robot
 
 /obj/item/rig_module/device/plasmacutter
 	name = "hardsuit plasma cutter"
@@ -48,7 +51,7 @@
 	suit_overlay_inactive = "plasmacutter"
 	use_power_cost = 0.5
 
-	device_type = /obj/item/weapon/pickaxe/plasmacutter
+	device_type = /obj/item/pickaxe/plasmacutter
 
 /obj/item/rig_module/device/healthscanner
 	name = "health scanner module"
@@ -57,7 +60,7 @@
 	interface_name = "health scanner"
 	interface_desc = "Shows an informative health readout when used on a subject."
 
-	device_type = /obj/item/device/healthanalyzer
+	device_type = /obj/item/healthanalyzer
 
 /obj/item/rig_module/device/drill
 	name = "hardsuit drill mount"
@@ -69,7 +72,7 @@
 	suit_overlay_inactive = "mounted-drill"
 	use_power_cost = 0.1
 
-	device_type = /obj/item/weapon/pickaxe/diamonddrill
+	device_type = /obj/item/pickaxe/diamonddrill
 
 /obj/item/rig_module/device/anomaly_scanner
 	name = "hardsuit anomaly scanner"
@@ -80,7 +83,7 @@
 	engage_string = "Begin Scan"
 	usable = 1
 	selectable = 0
-	device_type = /obj/item/device/ano_scanner
+	device_type = /obj/item/ano_scanner
 
 /obj/item/rig_module/device/orescanner
 	name = "ore scanner module"
@@ -91,7 +94,7 @@
 	engage_string = "Begin Scan"
 	usable = 1
 	selectable = 0
-	device_type = /obj/item/weapon/mining_scanner
+	device_type = /obj/item/mining_scanner
 
 /obj/item/rig_module/device/rcd
 	name = "RCD mount"
@@ -102,7 +105,7 @@
 	usable = 1
 	engage_string = "Configure RCD"
 
-	device_type = /obj/item/weapon/rcd/electric/mounted/rig
+	device_type = /obj/item/rcd/electric/mounted/rig
 
 /obj/item/rig_module/device/arch_drill
 	name = "archaeology drill mount"
@@ -113,7 +116,7 @@
 	usable = 1
 	engage_string = "Configure Drill Depth"
 
-	device_type = /obj/item/weapon/pickaxe/excavationdrill
+	device_type = /obj/item/pickaxe/excavationdrill
 
 /obj/item/rig_module/device/paperdispenser
 	name = "hardsuit paper dispenser"
@@ -124,7 +127,7 @@
 	engage_string = "Dispense"
 	usable = 1
 	selectable = 0
-	device_type = /obj/item/weapon/paper_bin
+	device_type = /obj/item/paper_bin
 
 /obj/item/rig_module/device/paperdispenser/engage(atom/target)
 
@@ -143,7 +146,7 @@
 	interface_desc = "Signatures with style(tm)."
 	engage_string = "Change color"
 	usable = 1
-	device_type = /obj/item/weapon/pen/multi
+	device_type = /obj/item/pen/multi
 
 /obj/item/rig_module/device/stamp
 	name = "mounted internal affairs stamp"
@@ -156,10 +159,17 @@
 	var/iastamp
 	var/deniedstamp
 
+<<<<<<< HEAD
 /obj/item/rig_module/device/stamp/New()
 	..()
 	iastamp = new /obj/item/weapon/stamp/internalaffairs(src)
 	deniedstamp = new /obj/item/weapon/stamp/denied(src)
+=======
+/obj/item/rig_module/device/stamp/Initialize()
+	. = ..()
+	iastamp = new /obj/item/stamp/internalaffairs(src)
+	deniedstamp = new /obj/item/stamp/denied(src)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	device = iastamp
 
 /obj/item/rig_module/device/stamp/engage(atom/target)

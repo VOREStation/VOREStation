@@ -5,21 +5,27 @@
 	modtype = "Lost"
 	lawchannel = "State"
 	braintype = "Drone"
-	idcard_type = /obj/item/weapon/card/id
+	idcard_type = /obj/item/card/id
 	icon_selected = FALSE
 
 /mob/living/silicon/robot/lost/init()
-	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
+	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
+<<<<<<< HEAD
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
 	module = new /obj/item/weapon/robot_module/robot/lost(src)
 	cut_overlays()
+=======
+	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
+	module = new /obj/item/robot_module/robot/lost(src)
+	overlays.Cut()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	init_id()
 
 	updatename("Lost")
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
+		cell = new /obj/item/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
 	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 

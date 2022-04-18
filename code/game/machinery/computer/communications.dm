@@ -8,7 +8,7 @@
 	icon_screen = "comm"
 	light_color = "#0099ff"
 	req_access = list(access_heads)
-	circuit = /obj/item/weapon/circuitboard/communications
+	circuit = /obj/item/circuitboard/communications
 
 	var/datum/tgui_module/communications/communications
 

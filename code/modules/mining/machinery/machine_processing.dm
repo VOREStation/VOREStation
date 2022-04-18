@@ -12,7 +12,7 @@
 	density = TRUE
 	anchored = TRUE
 
-	var/obj/item/weapon/card/id/inserted_id	// Inserted ID card, for points
+	var/obj/item/card/id/inserted_id	// Inserted ID card, for points
 
 	var/obj/machinery/mineral/processing_unit/machine = null
 	var/show_all_ores = FALSE
@@ -40,7 +40,7 @@
 	tgui_interact(user)
 
 /obj/machinery/mineral/processing_unit_console/attackby(var/obj/item/I, var/mob/user)
-	if(istype(I, /obj/item/weapon/card/id))
+	if(istype(I, /obj/item/card/id))
 		if(!powered())
 			return
 		if(!inserted_id && user.unEquip(I))
@@ -129,9 +129,14 @@
 					machine.points = 0
 				else
 					to_chat(usr, "<span class='warning'>Required access not found.</span>")
+<<<<<<< HEAD
 			. = TRUE
 		if("insert")
 			var/obj/item/weapon/card/id/I = usr.get_active_hand()
+=======
+		else if(href_list["choice"] == "insert")
+			var/obj/item/card/id/I = usr.get_active_hand()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if(istype(I))
 				usr.drop_item()
 				I.forceMove(src)
@@ -236,7 +241,7 @@
 	var/list/tick_alloys = list()
 
 	//Grab some more ore to process this tick.
-	for(var/obj/item/weapon/ore/O in input.loc)
+	for(var/obj/item/ore/O in input.loc)
 		if(!isnull(ores_stored[O.material]))
 			ores_stored[O.material]++
 			points += (ore_values[O.material]*points_mult) // Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
@@ -320,7 +325,7 @@
 			else
 				ores_stored[metal]--
 				sheets++
-				new /obj/item/weapon/ore/slag(output.loc)
+				new /obj/item/ore/slag(output.loc)
 		else
 			continue
 

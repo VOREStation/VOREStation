@@ -4,7 +4,12 @@
 	name = "engine control console"
 	icon_keyboard = "tech_key"
 	icon_screen = "engines"
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/engine
+=======
+	circuit = /obj/item/circuitboard/engine
+	var/display_state = "status"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 // fancy sprite
 /obj/machinery/computer/ship/engines/adv

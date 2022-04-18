@@ -13,7 +13,7 @@
 	var/monkeys_recycled = 0
 	description_info = "Clickdrag dead slimes or monkeys to it to insert them.  It will make a new monkey cube for every four monkeys it processes."
 
-/obj/item/weapon/circuitboard/processor
+/obj/item/circuitboard/processor
 	name = T_BOARD("slime processor")
 	build_path = /obj/machinery/processor
 	origin_tech = list(TECH_DATA = 2, TECH_BIO = 2)
@@ -70,7 +70,11 @@
 		sleep(1 SECONDS)
 
 	while(monkeys_recycled >= 4)
+<<<<<<< HEAD
 		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(src))
+=======
+		new /obj/item/reagent_containers/food/snacks/cube/monkeycube(get_turf(src))
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		playsound(src, 'sound/effects/splat.ogg', 50, 1)
 		monkeys_recycled -= 4
 		sleep(1 SECOND)

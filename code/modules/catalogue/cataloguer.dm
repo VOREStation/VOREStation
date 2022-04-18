@@ -12,7 +12,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	the person with the scanner gets a visual box that shows where they are allowed to move to
 	without inturrupting the scan.
 */
-/obj/item/device/cataloguer
+/obj/item/cataloguer
 	name = "cataloguer"
 	desc = "A hand-held device, used for compiling information about an object by scanning it. Alt+click to highlight scannable objects around you."
 	description_info = "This is a special device used to obtain information about objects and entities in the environment. \
@@ -21,6 +21,8 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	scan is finished. If the scan is inturrupted, it can be resumed from where it was left off, if the same thing is \
 	scanned again."
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "cataloguer"
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_MATERIAL = 2, TECH_DATA = 3, TECH_MAGNET = 3)
@@ -35,7 +37,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/weakref/partial_scanned = null // Weakref of the thing that was last scanned if inturrupted. Used to allow for partial scans to be resumed.
 	var/partial_scan_time = 0 // How much to make the next scan shorter.
 
-/obj/item/device/cataloguer/advanced
+/obj/item/cataloguer/advanced
 	name = "advanced cataloguer"
 	icon_state = "adv_cataloguer"
 	desc = "A hand-held device, used for compiling information about an object by scanning it. This one is an upgraded model, \
@@ -44,7 +46,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	toolspeed = 0.8
 
 // Able to see all defined catalogue data regardless of if it was unlocked, intended for testing.
-/obj/item/device/cataloguer/debug
+/obj/item/cataloguer/debug
 	name = "omniscient cataloguer"
 	desc = "A hand-held cataloguer device that appears to be plated with gold. For some reason, it \
 	just seems to already know everything about narrowly defined pieces of knowledge one would find \
@@ -55,22 +57,22 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	debug = TRUE
 
 
-/obj/item/device/cataloguer/Initialize()
+/obj/item/cataloguer/Initialize()
 	GLOB.all_cataloguers += src
 	return ..()
 
-/obj/item/device/cataloguer/Destroy()
+/obj/item/cataloguer/Destroy()
 	GLOB.all_cataloguers -= src
 	displayed_data = null
 	return ..()
 
-/obj/item/device/cataloguer/update_icon()
+/obj/item/cataloguer/update_icon()
 	if(busy)
 		icon_state = "[initial(icon_state)]_active"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/cataloguer/afterattack(atom/target, mob/user, proximity_flag)
+/obj/item/cataloguer/afterattack(atom/target, mob/user, proximity_flag)
 	// Things that invalidate the scan immediately.
 	if(busy)
 		to_chat(user, span("warning", "\The [src] is already scanning something."))
@@ -144,7 +146,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		delete_box(box_segments, user.client)
 
 // Todo: Display scanned information, increment points, etc.
-/obj/item/device/cataloguer/proc/catalogue_object(atom/target, mob/living/user)
+/obj/item/cataloguer/proc/catalogue_object(atom/target, mob/living/user)
 	// Figure out who may have helped out.
 	var/list/contributers = list()
 	var/list/contributer_names = list()
@@ -180,7 +182,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 		if(contributers.len)
 			for(var/mob/M in contributers)
 				var/list/things = M.GetAllContents(3) // Depth of two should reach into bags but just in case lets make it three.
-				var/obj/item/device/cataloguer/other_cataloguer = locate() in things // If someone has two or more scanners this only adds points to one.
+				var/obj/item/cataloguer/other_cataloguer = locate() in things // If someone has two or more scanners this only adds points to one.
 				if(other_cataloguer)
 					to_chat(M, span("notice", "Gained [points_gained] points from \the [user]'s scan of \the [target]."))
 					other_cataloguer.adjust_points(points_gained)
@@ -189,12 +191,12 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 
 
-/obj/item/device/cataloguer/AltClick(mob/user)
+/obj/item/cataloguer/AltClick(mob/user)
 	pulse_scan(user)
 
 // Gives everything capable of being scanned an outline for a brief moment.
 // Helps to avoid having to click a hundred things in a room for things that have an entry.
-/obj/item/device/cataloguer/proc/pulse_scan(mob/user)
+/obj/item/cataloguer/proc/pulse_scan(mob/user)
 	if(busy)
 		to_chat(user, span("warning", "\The [src] is busy doing something else."))
 		return
@@ -233,13 +235,13 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 
 
 // Negative points are bad.
-/obj/item/device/cataloguer/proc/adjust_points(amount)
+/obj/item/cataloguer/proc/adjust_points(amount)
 	points_stored = max(0, points_stored += amount)
 
-/obj/item/device/cataloguer/attack_self(mob/living/user)
+/obj/item/cataloguer/attack_self(mob/living/user)
 	interact(user)
 
-/obj/item/device/cataloguer/interact(mob/user)
+/obj/item/cataloguer/interact(mob/user)
 	var/list/dat = list()
 	var/title = "Cataloguer Data Display"
 
@@ -283,7 +285,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	popup.open()
 	add_fingerprint(user)
 
-/obj/item/device/cataloguer/Topic(href, href_list)
+/obj/item/cataloguer/Topic(href, href_list)
 	if(..())
 		usr << browse(null, "window=cataloguer_display")
 		return 0
@@ -305,10 +307,10 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	interact(usr) // So it refreshes the window.
 	return 1
 
-/obj/item/device/cataloguer/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/card/id) && !busy)
+/obj/item/cataloguer/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/card/id) && !busy)
 		busy = TRUE
-		var/obj/item/weapon/card/id/ID = W
+		var/obj/item/card/id/ID = W
 		if(points_stored)
 			ID.survey_points += points_stored
 			points_stored = 0

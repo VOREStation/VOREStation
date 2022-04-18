@@ -1,6 +1,6 @@
 /******************************Lantern*******************************/
 
-/obj/item/device/flashlight/lantern
+/obj/item/flashlight/lantern
 	name = "lantern"
 	icon_state = "lantern"
 	desc = "A mining lantern."
@@ -9,9 +9,15 @@
 
 /*****************************Pickaxe********************************/
 
+<<<<<<< HEAD
 /obj/item/weapon/pickaxe
 	name = "pickaxe"
 	desc = "A miner's best friend."
+=======
+/obj/item/pickaxe
+	name = "mining drill"
+	desc = "The most basic of mining drills, for short excavations and small mineral extractions."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon = 'icons/obj/items.dmi'
 	slot_flags = SLOT_BELT
 	force = 15.0
@@ -31,7 +37,7 @@
 	var/excavation_amount = 200
 	var/destroy_artefacts = FALSE // some mining tools will destroy artefacts completely while avoiding side-effects.
 
-/obj/item/weapon/pickaxe/silver
+/obj/item/pickaxe/silver
 	name = "silver pickaxe"
 	icon_state = "spickaxe"
 	item_state = "spickaxe"
@@ -39,7 +45,30 @@
 	origin_tech = list(TECH_MATERIAL = 3)
 	desc = "This makes no metallurgic sense."
 
+<<<<<<< HEAD
 /obj/item/weapon/pickaxe/gold
+=======
+/obj/item/pickaxe/drill
+	name = "advanced mining drill" // Can dig sand as well!
+	icon_state = "handdrill"
+	item_state = "jackhammer"
+	digspeed = 30
+	sand_dig = TRUE
+	origin_tech = list(TECH_MATERIAL = 2, TECH_POWER = 3, TECH_ENGINEERING = 2)
+	desc = "Yours is the drill that will pierce through the rock walls."
+	drill_verb = "drilling"
+
+/obj/item/pickaxe/jackhammer
+	name = "sonic jackhammer"
+	icon_state = "jackhammer"
+	item_state = "jackhammer"
+	digspeed = 20 //faster than drill, but cannot dig
+	origin_tech = list(TECH_MATERIAL = 3, TECH_POWER = 2, TECH_ENGINEERING = 2)
+	desc = "Cracks rocks with sonic blasts, perfect for killing cave lizards."
+	drill_verb = "hammering"
+
+/obj/item/pickaxe/gold
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "golden pickaxe"
 	icon_state = "gpickaxe"
 	item_state = "gpickaxe"
@@ -48,7 +77,25 @@
 	desc = "This makes no metallurgic sense."
 	drill_verb = "picking"
 
+<<<<<<< HEAD
 /obj/item/weapon/pickaxe/diamond
+=======
+/obj/item/pickaxe/plasmacutter
+	name = "plasma cutter"
+	icon_state = "plasmacutter"
+	item_state = "gun"
+	w_class = ITEMSIZE_NORMAL //it is smaller than the pickaxe
+	damtype = "fire"
+	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
+	origin_tech = list(TECH_MATERIAL = 4, TECH_PHORON = 3, TECH_ENGINEERING = 3)
+	desc = "A rock cutter that uses bursts of hot plasma. You could use it to cut limbs off of xenos! Or, you know, mine stuff."
+	drill_verb = "cutting"
+	drill_sound = 'sound/items/Welder.ogg'
+	sharp = 1
+	edge = 1
+
+/obj/item/pickaxe/diamond
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "diamond pickaxe"
 	icon_state = "dpickaxe"
 	item_state = "dpickaxe"
@@ -57,6 +104,7 @@
 	desc = "A pickaxe with a diamond pick head."
 	drill_verb = "picking"
 
+<<<<<<< HEAD
 /*****************************Drill********************************/
 
 /obj/item/weapon/pickaxe/drill
@@ -82,6 +130,9 @@
 	drill_verb = "drilling"
 
 /obj/item/weapon/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+=======
+/obj/item/pickaxe/diamonddrill //When people ask about the badass leader of the mining tools, they are talking about ME!
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "diamond mining drill"
 	icon_state = "diamonddrill"
 	item_state = "jackhammer"
@@ -92,8 +143,13 @@
 	desc = "Yours is the drill that will pierce the heavens!"
 	drill_verb = "drilling"
 
+<<<<<<< HEAD
 /obj/item/weapon/pickaxe/jackhammer
 	name = "sonic jackhammer"
+=======
+/obj/item/pickaxe/borgdrill
+	name = "enhanced sonic jackhammer"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "jackhammer"
 	item_state = "jackhammer"
 	digspeed = 20 //faster than drill, but cannot dig
@@ -131,7 +187,7 @@
 
 /*****************************Shovel********************************/
 
-/obj/item/weapon/shovel
+/obj/item/shovel
 	name = "shovel"
 	desc = "A large tool for digging and moving dirt."
 	icon = 'icons/obj/items.dmi'
@@ -148,12 +204,12 @@
 	edge = TRUE
 	var/digspeed = 40
 
-/obj/item/weapon/shovel/wood
+/obj/item/shovel/wood
 	icon_state = "whiteshovel"
 	item_state = "whiteshovel"
 	var/datum/material/material
 
-/obj/item/weapon/shovel/wood/Initialize(var/ml, var/_mat)
+/obj/item/shovel/wood/Initialize(var/ml, var/_mat)
 	. = ..()
 	material = get_material_by_name(_mat)
 	if(!istype(material))
@@ -163,12 +219,12 @@
 		matter = list("[material.name]" = 50)
 		update_icon()
 
-/obj/item/weapon/shovel/wood/update_icon()
+/obj/item/shovel/wood/update_icon()
 	. = ..()
 	color = material ? material.icon_colour : initial(color)
 	alpha = min(max(255 * material.opacity, 80), 255)
 
-/obj/item/weapon/shovel/spade
+/obj/item/shovel/spade
 	name = "spade"
 	desc = "A small tool for digging and moving dirt."
 	icon_state = "spade"

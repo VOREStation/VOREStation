@@ -9,7 +9,7 @@
 
 	makes_dirt = FALSE	// No more dirt from Beepsky
 
-	var/obj/item/weapon/card/id/botcard = null
+	var/obj/item/card/id/botcard = null
 	var/list/botcard_access = list()
 	var/on = 1
 	var/open = 0
@@ -47,7 +47,7 @@
 
 	default_language = GLOB.all_languages[LANGUAGE_GALCOM]
 
-	botcard = new /obj/item/weapon/card/id(src)
+	botcard = new /obj/item/card/id(src)
 	botcard.access = botcard_access.Copy()
 
 	access_scanner = new /obj(src)
@@ -112,7 +112,7 @@
 		else
 			to_chat(user, "<span class='notice'>You need to unlock the controls first.</span>")
 		return
-	else if(istype(O, /obj/item/weapon/weldingtool))
+	else if(istype(O, /obj/item/weldingtool))
 		if(health < getMaxHealth())
 			if(open)
 				if(getBruteLoss() < 10)
@@ -131,7 +131,7 @@
 		else
 			to_chat(user, "<span class='notice'>[src] does not need a repair.</span>")
 		return
-	else if(istype(O, /obj/item/device/assembly/prox_sensor) && emagged)
+	else if(istype(O, /obj/item/assembly/prox_sensor) && emagged)
 		if(open)
 			to_chat(user, "<span class='notice'>You repair the bot's systems.</span>")
 			emagged = 0
@@ -363,7 +363,7 @@
 
 // Returns the surrounding cardinal turfs with open links
 // Including through doors openable with the ID
-/turf/proc/CardinalTurfsWithAccess(var/obj/item/weapon/card/id/ID)
+/turf/proc/CardinalTurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
 	//	for(var/turf/simulated/t in oview(src,1))
@@ -377,7 +377,7 @@
 
 
 // Similar to above but not restricted to just cardinal directions.
-/turf/proc/TurfsWithAccess(var/obj/item/weapon/card/id/ID)
+/turf/proc/TurfsWithAccess(var/obj/item/card/id/ID)
 	var/L[] = new()
 
 	for(var/d in alldirs)
@@ -390,7 +390,7 @@
 
 // Returns true if a link between A and B is blocked
 // Movement through doors allowed if ID has access
-/proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/weapon/card/id/ID)
+/proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/card/id/ID)
 
 	if(A == null || B == null) return 1
 	var/adir = get_dir(A,B)
@@ -419,7 +419,7 @@
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
-/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/weapon/card/id/ID)
+/proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
 		if(!D.density)			continue
 		if(D.dir == SOUTHWEST)	return 1

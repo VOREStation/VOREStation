@@ -15,12 +15,17 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 30
 	active_power_usage = 200
-	circuit = /obj/item/weapon/circuitboard/fax
+	circuit = /obj/item/circuitboard/fax
 
+<<<<<<< HEAD
 	var/obj/item/weapon/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 
+=======
+	var/obj/item/card/id/scan = null // identification
+	var/authenticated = 0
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/sendcooldown = 0 // to avoid spamming fax messages
 	var/department = "Unknown" // our department
 	var/destination = null // the department we're sending to
@@ -96,6 +101,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				if(ishuman(usr) && !usr.get_active_hand())
 					usr.put_in_hands(scan)
 				scan = null
+<<<<<<< HEAD
 			authenticated = null
 			return TRUE
 		if("remove")
@@ -130,6 +136,29 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				destination = lastdestination
 
 	return TRUE
+=======
+		else
+			var/obj/item/I = usr.get_active_hand()
+			if (istype(I, /obj/item/card/id) && usr.unEquip(I))
+				I.loc = src
+				scan = I
+		authenticated = 0
+
+	if(href_list["dept"])
+		var/lastdestination = destination
+		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
+		if(!destination) destination = lastdestination
+
+	if(href_list["auth"])
+		if ( (!( authenticated ) && (scan)) )
+			if (check_access(scan))
+				authenticated = 1
+
+	if(href_list["logout"])
+		authenticated = 0
+
+	SSnanoui.update_uis(src)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.is_multitool() && panel_open)
@@ -174,11 +203,11 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	// give the sprite some time to flick
 	sleep(20)
 
-	if (istype(incoming, /obj/item/weapon/paper))
+	if (istype(incoming, /obj/item/paper))
 		copy(incoming)
-	else if (istype(incoming, /obj/item/weapon/photo))
+	else if (istype(incoming, /obj/item/photo))
 		photocopy(incoming)
-	else if (istype(incoming, /obj/item/weapon/paper_bundle))
+	else if (istype(incoming, /obj/item/paper_bundle))
 		bundlecopy(incoming)
 	else
 		return 0
@@ -194,11 +223,11 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	//received copies should not use toner since it's being used by admins only.
 	var/obj/item/rcvdcopy
-	if (istype(copyitem, /obj/item/weapon/paper))
+	if (istype(copyitem, /obj/item/paper))
 		rcvdcopy = copy(copyitem, 0)
-	else if (istype(copyitem, /obj/item/weapon/photo))
+	else if (istype(copyitem, /obj/item/photo))
 		rcvdcopy = photocopy(copyitem, 0)
-	else if (istype(copyitem, /obj/item/weapon/paper_bundle))
+	else if (istype(copyitem, /obj/item/paper_bundle))
 		rcvdcopy = bundlecopy(copyitem, 0)
 	else
 		visible_message("[src] beeps, \"Error transmitting message.\"")
@@ -225,14 +254,14 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 // Turns objects into just text.
 /obj/machinery/photocopier/faxmachine/proc/make_summary(obj/item/sent)
-	if(istype(sent, /obj/item/weapon/paper))
-		var/obj/item/weapon/paper/P = sent
+	if(istype(sent, /obj/item/paper))
+		var/obj/item/paper/P = sent
 		return P.info
-	if(istype(sent, /obj/item/weapon/paper_bundle))
+	if(istype(sent, /obj/item/paper_bundle))
 		. = ""
-		var/obj/item/weapon/paper_bundle/B = sent
+		var/obj/item/paper_bundle/B = sent
 		for(var/i in 1 to B.pages.len)
-			var/obj/item/weapon/paper/P = B.pages[i]
+			var/obj/item/paper/P = B.pages[i]
 			if(istype(P)) // Photos can show up here too.
 				if(.) // Space out different pages.
 					. += "<br>"

@@ -11,7 +11,7 @@
 	required_type = list(/obj/mecha/working/ripley)
 
 	var/obj/item/my_tool = null
-	var/tooltype = /obj/item/weapon/tool/wrench/power
+	var/tooltype = /obj/item/tool/wrench/power
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/Initialize()
 	my_tool = new tooltype(src)
@@ -37,19 +37,19 @@
 	name = "pneumatic prybar"
 	desc = "An exosuit-mounted pneumatic prybar."
 	icon_state = "mecha_crowbar"
-	tooltype = /obj/item/weapon/tool/crowbar/power
+	tooltype = /obj/item/tool/crowbar/power
 	ready_sound = 'sound/mecha/gasdisconnected.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/cutter
 	name = "pneumatic cablecutter"
 	desc = "An exosuit-mounted pneumatic cablecutter."
 	icon_state = "mecha_cablecutter"
-	tooltype = /obj/item/weapon/tool/wirecutters/power
+	tooltype = /obj/item/tool/wirecutters/power
 	ready_sound = 'sound/mecha/gasdisconnected.ogg'
 
 /obj/item/mecha_parts/mecha_equipment/tool/powertool/screwdriver
 	name = "pneumatic screwdriver"
 	desc = "An exosuit-mounted pneumatic screwdriver."
 	icon_state = "mecha_screwdriver"
-	tooltype = /obj/item/weapon/tool/screwdriver/power
+	tooltype = /obj/item/tool/screwdriver/power
 	ready_sound = 'sound/mecha/gasdisconnected.ogg'

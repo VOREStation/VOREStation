@@ -60,7 +60,7 @@
 		if(!(istype(P, /obj/item/projectile/energy) || istype(P, /obj/item/projectile/beam)))
 			visible_message("<span class='danger'>The [P.name] bounces off of [src]'s shell!</span>", \
 						"<span class='userdanger'>The [P.name] bounces off of [src]'s shell!</span>")
-			new /obj/item/weapon/material/shard/shrapnel(src.loc)
+			new /obj/item/material/shard/shrapnel(src.loc)
 			if(!(P.damage_type == BRUTE || P.damage_type == BURN))
 				projectile_dam_type = BRUTE
 				incoming_damage = round(incoming_damage / 4) //Damage from strange sources is converted to brute for physical projectiles, though severely decreased.

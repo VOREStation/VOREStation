@@ -20,7 +20,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 100
-	circuit = /obj/item/weapon/circuitboard/jukebox
+	circuit = /obj/item/circuitboard/jukebox
 	clicksound = 'sound/machines/buttonbeep.ogg'
 
 	// Vars for hacking
@@ -110,7 +110,7 @@
 		return
 	if(W.is_wirecutter())
 		return wires.Interact(user)
-	if(istype(W, /obj/item/device/multitool))
+	if(istype(W, /obj/item/multitool))
 		return wires.Interact(user)
 	if(W.is_wrench())
 		if(playing)

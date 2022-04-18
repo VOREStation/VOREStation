@@ -58,10 +58,10 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/tdome/red = 3,
-		/obj/item/weapon/melee/energy/sword = 3,
-		/obj/item/weapon/gun/energy/laser = 3,
-		/obj/item/weapon/melee/baton = 3,
-		/obj/item/weapon/storage/box/flashbangs = 3,
+		/obj/item/melee/energy/sword = 3,
+		/obj/item/gun/energy/laser = 3,
+		/obj/item/melee/baton = 3,
+		/obj/item/storage/box/flashbangs = 3,
 		/obj/item/clothing/head/helmet/thunderdome = 3)
 
 /obj/structure/closet/thunderdome/tdgreen
@@ -70,10 +70,10 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/armor/tdome/green = 3,
-		/obj/item/weapon/melee/energy/sword = 3,
-		/obj/item/weapon/gun/energy/laser = 3,
-		/obj/item/weapon/melee/baton = 3,
-		/obj/item/weapon/storage/box/flashbangs = 3,
+		/obj/item/melee/energy/sword = 3,
+		/obj/item/gun/energy/laser = 3,
+		/obj/item/melee/baton = 3,
+		/obj/item/storage/box/flashbangs = 3,
 		/obj/item/clothing/head/helmet/thunderdome = 3)
 
 /obj/structure/closet/alien

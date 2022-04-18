@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 /*
  * Energy Gun
  */
 /obj/item/weapon/gun/energy/gun
+=======
+/obj/item/gun/energy/gun
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "energy gun"
 	desc = "Another bestseller of Lawson Arms, the LAEP80 Thor is a versatile energy based pistol, capable of switching between low and high \
 	capacity projectile settings. In other words: Stun or Kill."
@@ -35,15 +39,23 @@
 	fire_delay = 6
 	one_handed_penalty = 30
 
+<<<<<<< HEAD
 	projectile_type = /obj/item/projectile/beam/stun
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 	modifystate = "riflestun"
+=======
+/obj/item/gun/energy/gun/mounted
+	name = "mounted energy gun"
+	self_recharge = 1
+	use_external_power = 1
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="riflestun", fire_sound='sound/weapons/Taser.ogg', wielded_item_state="riflestun-wielded", charge_cost = 120),
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="riflekill", fire_sound='sound/weapons/Laser.ogg', wielded_item_state="riflekill-wielded", charge_cost = 240),
 		)
 
+<<<<<<< HEAD
 /*
  * Energy Carbine (Burst Laser)
  */
@@ -53,6 +65,15 @@
 	between stun or kill with a three round burst option for both settings."
 	icon_state = "energystun"
 	item_state = null //so the human update icon uses the icon_state instead.
+=======
+/obj/item/gun/energy/gun/burst
+	name = "burst laser"
+	desc = "The Lawson Arms FM-2t is a versatile energy based weapon, capable of switching between stun or kill with a three round burst option for both settings."
+	description_fluff = "Lawson Arms is Hephaestus Industries’ main personal-energy-weapon branding, often sold alongside MarsTech projectile weapons to security and law enforcement agencies."
+	icon_state = "fm-2tstun100"	//May resprite this to be more rifley
+	item_state = null	//so the human update icon uses the icon_state instead.
+	charge_cost = 100
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	force = 8
 	w_class = ITEMSIZE_LARGE
 	fire_delay = 6
@@ -93,6 +114,7 @@
 		list(mode_name="lethal burst", burst=4, fire_delay=null, move_delay=4, burst_accuracy=list(0,0,0), dispersion=list(0.0, 0.2, 0.5), projectile_type=/obj/item/projectile/beam/burstlaser),
 		)
 
+<<<<<<< HEAD
 /*
  * Energy PDW (Martin)
  */
@@ -147,6 +169,9 @@
  * Nuclear Energy Gun
  */
 /obj/item/weapon/gun/energy/gun/nuclear
+=======
+/obj/item/gun/energy/gun/nuclear
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "advanced energy gun"
 	desc = "An energy gun with an experimental miniaturized reactor, based on a Lawson Arms platform."
 	icon_state = "nucgunstun"
@@ -156,11 +181,30 @@
 	force = 8 //looks heavier than a pistol
 	w_class = ITEMSIZE_LARGE	//Looks bigger than a pistol, too.
 	fire_delay = 6	//This one's not a handgun, it should have the same fire delay as everything else
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	cell_type = /obj/item/cell/device/weapon/recharge
 	battery_lock = 1
 	modifystate = null
 
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun, modifystate="nucgunstun", charge_cost = 240),
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="nucgunkill", charge_cost = 480),
+<<<<<<< HEAD
+=======
+		)
+
+//Functionally a Perun, but flavoured.
+/obj/item/gun/energy/gun/compact
+	name = "personal energy weapon"
+	desc = "The RayZar EW20 Cygnus personal energy weapon - or PEW - is Ward-Takahasi's entry into the variable capacity energy gun market. New users are advised to 'set RayZars to stun'."
+	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist energy weapons of various types and quality primarily for the civilian market."
+	icon_state = "PDWstun100"
+
+	projectile_type = /obj/item/projectile/beam/stun/med
+	origin_tech = list(TECH_COMBAT = 2, TECH_MAGNET = 3)
+	modifystate = "PDWstun"
+
+	firemodes = list(
+		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/med, modifystate="PDWstun", charge_cost = 240),
+		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="PDWkill", charge_cost = 480),
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		)

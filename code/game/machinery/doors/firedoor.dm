@@ -243,16 +243,16 @@
 		return
 	..()
 
-/obj/machinery/door/firedoor/attackby(obj/item/weapon/C as obj, mob/user as mob)
+/obj/machinery/door/firedoor/attackby(obj/item/C as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(istype(C, /obj/item/taperoll))
 		return //Don't open the door if we're putting tape on it to tell people 'don't open the door'.
 	if(operating)
 		return//Already doing something.
-	if(istype(C, /obj/item/weapon/weldingtool) && !repairing)
+	if(istype(C, /obj/item/weldingtool) && !repairing)
 		if(prying)
 			to_chat(user, "<span class='notice'>Someone's busy prying that [density ? "open" : "closed"]!</span>")
-		var/obj/item/weapon/weldingtool/W = C
+		var/obj/item/weldingtool/W = C
 		if(W.remove_fuel(0, user))
 			blocked = !blocked
 			user.visible_message("<span class='danger'>\The [user] [blocked ? "welds" : "unwelds"] \the [src] with \a [W].</span>",\
@@ -283,9 +283,9 @@
 										"You have removed the electronics from [src].")
 
 					if (stat & BROKEN)
-						new /obj/item/weapon/circuitboard/broken(src.loc)
+						new /obj/item/circuitboard/broken(src.loc)
 					else
-						new/obj/item/weapon/circuitboard/airalarm(src.loc)
+						new/obj/item/circuitboard/airalarm(src.loc)
 
 					var/obj/structure/firedoor_assembly/FA = new/obj/structure/firedoor_assembly(src.loc)
 					FA.anchored = TRUE
@@ -310,8 +310,8 @@
 			"You hear someone struggle and metal straining.")
 			return
 
-		if(istype(C,/obj/item/weapon/material/twohanded/fireaxe))
-			var/obj/item/weapon/material/twohanded/fireaxe/F = C
+		if(istype(C,/obj/item/material/twohanded/fireaxe))
+			var/obj/item/material/twohanded/fireaxe/F = C
 			if(!F.wielded)
 				return
 

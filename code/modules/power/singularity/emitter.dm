@@ -173,8 +173,8 @@
 		update_icon() // VOREStation Add
 		return
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(active)
 			to_chat(user, "Turn off [src] first.")
 			return
@@ -229,7 +229,7 @@
 				to_chat(user, "<span class='warning'>You don't have enough sheets to repair this! You need at least [amt] sheets.</span>")
 				return
 
-	if(istype(W, /obj/item/weapon/card/id) || istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/pda))
 		if(emagged)
 			to_chat(user, "<span class='warning'>The lock seems to be broken.</span>")
 			return

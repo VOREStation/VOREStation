@@ -4,20 +4,20 @@
 	hits, which inhibits the delivery of oxygen.  The effectiveness of the toxin is heavily dependant on how healthy the target is, \
 	with the target taking more damage the more wounded they are.  The effect lasts for twelve seconds."
 	cost = 140
-	obj_path = /obj/item/weapon/spell/insert/asphyxiation
+	obj_path = /obj/item/spell/insert/asphyxiation
 
-/obj/item/weapon/spell/insert/asphyxiation
+/obj/item/spell/insert/asphyxiation
 	name = "asphyxiation"
 	desc = "Now you can cause suffication from afar!"
 	icon_state = "generic"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_BIOMED
 	light_color = "#FF5C5C"
-	inserting = /obj/item/weapon/inserted_spell/asphyxiation
+	inserting = /obj/item/inserted_spell/asphyxiation
 
 // maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
 
-/obj/item/weapon/inserted_spell/asphyxiation/on_insert()
+/obj/item/inserted_spell/asphyxiation/on_insert()
 	spawn(1)
 		if(ishuman(host))
 			var/mob/living/carbon/human/H = host
@@ -39,12 +39,12 @@
 			if(src) //We might've been dispelled at this point and deleted, better safe than sorry.
 				on_expire()
 
-/obj/item/weapon/inserted_spell/asphyxiation/on_expire()
+/obj/item/inserted_spell/asphyxiation/on_expire()
 	..()
 
 // if((getOxyLoss() > (species.total_health/2)) || (health <= config.health_threshold_crit))
 
-/obj/item/weapon/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
+/obj/item/inserted_spell/asphyxiation/proc/predict_crit(var/pulses_remaining, var/mob/living/carbon/human/victim, var/previous_damage = 0)
 	if(pulses_remaining <= 0) // Infinite loop protection
 		return 0
 	var/health_lost

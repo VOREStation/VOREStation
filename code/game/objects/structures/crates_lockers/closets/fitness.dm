@@ -80,7 +80,7 @@
 	closet_appearance = /decl/closet_appearance/wardrobe/red
 
 	starts_with = list(
-		/obj/item/weapon/gun/energy/lasertag/red = 5,
+		/obj/item/gun/energy/lasertag/red = 5,
 		/obj/item/clothing/suit/redtag = 5)
 
 
@@ -90,5 +90,5 @@
 	closet_appearance = /decl/closet_appearance/wardrobe/blue
 
 	starts_with = list(
-		/obj/item/weapon/gun/energy/lasertag/blue = 5,
+		/obj/item/gun/energy/lasertag/blue = 5,
 		/obj/item/clothing/suit/bluetag = 5)

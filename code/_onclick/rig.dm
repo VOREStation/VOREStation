@@ -54,7 +54,7 @@
 	return 1
 
 /mob/living/carbon/brain/can_use_rig()
-	return istype(loc, /obj/item/device/mmi)
+	return istype(loc, /obj/item/mmi)
 
 /mob/living/silicon/ai/can_use_rig()
 	return carded
@@ -65,7 +65,7 @@
 /mob/living/proc/HardsuitClickOn(var/atom/A, var/alert_ai = 0)
 	if(!can_use_rig())
 		return 0
-	var/obj/item/weapon/rig/rig = get_rig()
+	var/obj/item/rig/rig = get_rig()
 	if(istype(rig) && !rig.offline && rig.selected_module)
 		if(src != rig.wearer)
 			if(rig.ai_can_move_suit(src, check_user_module = 1))

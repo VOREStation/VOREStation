@@ -5,10 +5,16 @@ var/list/ventcrawl_machinery = list(
 
 // Vent crawling whitelisted items, whoo
 /mob/living/var/list/can_enter_vent_with = list(
+<<<<<<< HEAD
 	/obj/item/weapon/implant,
 	/obj/item/device/radio/borg,
 	/obj/item/device/radio/headset/mob_headset,
 	/obj/item/weapon/holder,
+=======
+	/obj/item/implant,
+	/obj/item/radio/borg,
+	/obj/item/holder,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	/obj/machinery/camera,
 	/obj/belly,
 	/obj/screen,

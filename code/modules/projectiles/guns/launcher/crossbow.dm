@@ -1,6 +1,6 @@
 //AMMUNITION
 
-/obj/item/weapon/arrow
+/obj/item/arrow
 	name = "bolt"
 	desc = "It's got a tip for you - get the point?"
 	icon = 'icons/obj/weapons.dmi'
@@ -13,10 +13,10 @@
 	sharp = TRUE
 	edge = FALSE
 
-/obj/item/weapon/arrow/proc/removed() //Helper for metal rods falling apart.
+/obj/item/arrow/proc/removed() //Helper for metal rods falling apart.
 	return
 
-/obj/item/weapon/spike
+/obj/item/spike
 	name = "alloy spike"
 	desc = "It's about a foot of weird silver metal with a wicked point."
 	sharp = TRUE
@@ -29,7 +29,7 @@
 	drop_sound = 'sound/items/drop/sword.ogg'
 	pickup_sound = 'sound/items/pickup/sword.ogg'
 
-/obj/item/weapon/arrow/quill
+/obj/item/arrow/quill
 	name = "alien quill"
 	desc = "A wickedly barbed quill from some bizarre animal."
 	icon = 'icons/obj/weapons.dmi'
@@ -37,19 +37,19 @@
 	item_state = "quill"
 	throwforce = 5
 
-/obj/item/weapon/arrow/rod
+/obj/item/arrow/rod
 	name = "metal rod"
 	desc = "Don't cry for me, Orithena."
 	icon_state = "metal-rod"
 
-/obj/item/weapon/arrow/rod/removed(mob/user)
+/obj/item/arrow/rod/removed(mob/user)
 	if(throwforce == 15) // The rod has been superheated - we don't want it to be useable when removed from the bow.
 		to_chat(user , "[src] shatters into a scattering of overstressed metal shards as it leaves the crossbow.")
-		var/obj/item/weapon/material/shard/shrapnel/S = new()
+		var/obj/item/material/shard/shrapnel/S = new()
 		S.loc = get_turf(src)
 		qdel(src)
 
-/obj/item/weapon/gun/launcher/crossbow
+/obj/item/gun/launcher/crossbow
 	name = "powered crossbow"
 	desc = "A 2320AD twist on an old classic. Pick up that can." //VOREStation Edit
 	icon = 'icons/obj/weapons.dmi'
@@ -64,30 +64,30 @@
 	var/tension = 0                         // Current draw on the bow.
 	var/max_tension = 5                     // Highest possible tension.
 	var/release_speed = 5                   // Speed per unit of tension.
-	var/obj/item/weapon/cell/cell = null    // Used for firing superheated rods.
+	var/obj/item/cell/cell = null    // Used for firing superheated rods.
 	var/current_user                        // Used to check if the crossbow has changed hands since being drawn.
 
-/obj/item/weapon/gun/launcher/crossbow/update_release_force()
+/obj/item/gun/launcher/crossbow/update_release_force()
 	release_force = tension*release_speed
 
-/obj/item/weapon/gun/launcher/crossbow/consume_next_projectile(mob/user=null)
+/obj/item/gun/launcher/crossbow/consume_next_projectile(mob/user=null)
 	if(tension <= 0)
 		to_chat(user, "<span class='warning'>\The [src] is not drawn back!</span>")
 		return null
 	return bolt
 
-/obj/item/weapon/gun/launcher/crossbow/handle_post_fire(mob/user, atom/target)
+/obj/item/gun/launcher/crossbow/handle_post_fire(mob/user, atom/target)
 	bolt = null
 	tension = 0
 	update_icon()
 	..()
 
-/obj/item/weapon/gun/launcher/crossbow/attack_self(mob/living/user as mob)
+/obj/item/gun/launcher/crossbow/attack_self(mob/living/user as mob)
 	if(tension)
 		if(bolt)
 			user.visible_message("[user] relaxes the tension on [src]'s string and removes [bolt].","You relax the tension on [src]'s string and remove [bolt].")
 			bolt.loc = get_turf(src)
-			var/obj/item/weapon/arrow/A = bolt
+			var/obj/item/arrow/A = bolt
 			bolt = null
 			A.removed(user)
 		else
@@ -97,7 +97,7 @@
 	else
 		draw(user)
 
-/obj/item/weapon/gun/launcher/crossbow/proc/draw(var/mob/user as mob)
+/obj/item/gun/launcher/crossbow/proc/draw(var/mob/user as mob)
 
 	if(!bolt)
 		to_chat(user, "You don't have anything nocked to [src].")
@@ -131,15 +131,15 @@
 
 		user.visible_message("[usr] draws back the string of [src]!","<span class='notice'>You continue drawing back the string of [src]!</span>")
 
-/obj/item/weapon/gun/launcher/crossbow/proc/increase_tension(var/mob/user as mob)
+/obj/item/gun/launcher/crossbow/proc/increase_tension(var/mob/user as mob)
 
 	if(!bolt || !tension || current_user != user) //Arrow has been fired, bow has been relaxed or user has changed.
 		return
 
 
-/obj/item/weapon/gun/launcher/crossbow/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/gun/launcher/crossbow/attackby(obj/item/W as obj, mob/user as mob)
 	if(!bolt)
-		if (istype(W,/obj/item/weapon/arrow))
+		if (istype(W,/obj/item/arrow))
 			user.drop_from_inventory(W, src)
 			bolt = W
 			user.visible_message("[user] slides [bolt] into [src].","You slide [bolt] into [src].")
@@ -148,7 +148,7 @@
 		else if(istype(W,/obj/item/stack/rods))
 			var/obj/item/stack/rods/R = W
 			if (R.use(1))
-				bolt = new /obj/item/weapon/arrow/rod(src)
+				bolt = new /obj/item/arrow/rod(src)
 				bolt.fingerprintslast = src.fingerprintslast
 				bolt.loc = src
 				update_icon()
@@ -156,7 +156,7 @@
 				superheat_rod(user)
 			return
 
-	if(istype(W, /obj/item/weapon/cell))
+	if(istype(W, /obj/item/cell))
 		if(!cell)
 			user.drop_item()
 			cell = W
@@ -179,18 +179,18 @@
 	else
 		..()
 
-/obj/item/weapon/gun/launcher/crossbow/proc/superheat_rod(var/mob/user)
+/obj/item/gun/launcher/crossbow/proc/superheat_rod(var/mob/user)
 	if(!user || !cell || !bolt) return
 	if(cell.charge < 500) return
 	if(bolt.throwforce >= 15) return
-	if(!istype(bolt,/obj/item/weapon/arrow/rod)) return
+	if(!istype(bolt,/obj/item/arrow/rod)) return
 
 	to_chat(user, "<span class='notice'>[bolt] plinks and crackles as it begins to glow red-hot.</span>")
 	bolt.throwforce = 15
 	bolt.icon_state = "metal-rod-superheated"
 	cell.use(500)
 
-/obj/item/weapon/gun/launcher/crossbow/update_icon()
+/obj/item/gun/launcher/crossbow/update_icon()
 	if(tension > 1)
 		icon_state = "crossbow-drawn"
 	else if(bolt)
@@ -200,7 +200,7 @@
 
 
 // Crossbow construction.
-/obj/item/weapon/crossbowframe
+/obj/item/crossbowframe
 	name = "crossbow frame"
 	desc = "A half-finished crossbow."
 	icon_state = "crossbowframe0"
@@ -208,10 +208,10 @@
 
 	var/buildstate = 0
 
-/obj/item/weapon/crossbowframe/update_icon()
+/obj/item/crossbowframe/update_icon()
 	icon_state = "crossbowframe[buildstate]"
 
-/obj/item/weapon/crossbowframe/examine(mob/user)
+/obj/item/crossbowframe/examine(mob/user)
 	. = ..()
 	switch(buildstate)
 		if(1)
@@ -225,7 +225,7 @@
 		if(5)
 			. += "It has a steel cable loosely strung across the lath."
 
-/obj/item/weapon/crossbowframe/attackby(obj/item/W as obj, mob/user as mob)
+/obj/item/crossbowframe/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack/rods))
 		if(buildstate == 0)
 			var/obj/item/stack/rods/R = W
@@ -236,9 +236,9 @@
 			else
 				to_chat(user, "<span class='notice'>You need at least three rods to complete this task.</span>")
 			return
-	else if(istype(W, /obj/item/weapon/weldingtool))
+	else if(istype(W, /obj/item/weldingtool))
 		if(buildstate == 1)
-			var/obj/item/weapon/weldingtool/T = W
+			var/obj/item/weldingtool/T = W
 			if(T.remove_fuel(0,user))
 				if(!src || !T.isOn()) return
 				playsound(src, W.usesound, 50, 1)
@@ -278,7 +278,7 @@
 		if(buildstate == 5)
 			to_chat(user, "<span class='notice'>You secure the crossbow's various parts.</span>")
 			playsound(src, W.usesound, 50, 1)
-			new /obj/item/weapon/gun/launcher/crossbow(get_turf(src))
+			new /obj/item/gun/launcher/crossbow(get_turf(src))
 			qdel(src)
 		return
 	else

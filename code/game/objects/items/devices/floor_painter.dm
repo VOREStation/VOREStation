@@ -1,4 +1,4 @@
-/obj/item/device/floor_painter
+/obj/item/floor_painter
 	name = "paint sprayer"
 	icon = 'icons/obj/bureaucracy.dmi'
 	icon_state = "labeler1"
@@ -39,7 +39,7 @@
 		"precise" = 0
 		)
 
-/obj/item/device/floor_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
+/obj/item/floor_painter/afterattack(var/atom/A, var/mob/user, proximity, params)
 	if(!proximity)
 		return
 
@@ -104,22 +104,28 @@
 
 	new painting_decal(F, painting_dir, painting_colour)
 
+<<<<<<< HEAD
 /obj/item/device/floor_painter/attack_self(var/mob/user)
 	var/choice = tgui_alert(usr, "Do you wish to change the decal type, paint direction, or paint colour?", "Modify What?", list("Decal","Direction","Colour","Cancel"))
 	if(choice == "Cancel")
 		return
 	else if(choice == "Decal")
+=======
+/obj/item/floor_painter/attack_self(var/mob/user)
+	var/choice = input("Do you wish to change the decal type, paint direction, or paint colour?") as null|anything in list("Decal","Direction", "Colour")
+	if(choice == "Decal")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		choose_decal()
 	else if(choice == "Direction")
 		choose_direction()
 	else if(choice == "Colour")
 		choose_colour()
 
-/obj/item/device/floor_painter/examine(mob/user)
+/obj/item/floor_painter/examine(mob/user)
 	. = ..()
 	. += "It is configured to produce the '[decal]' decal with a direction of '[paint_dir]' using [paint_colour] paint."
 
-/obj/item/device/floor_painter/verb/choose_colour()
+/obj/item/floor_painter/verb/choose_colour()
 	set name = "Choose Colour"
 	set desc = "Choose a paint colour."
 	set category = "Object"
@@ -132,7 +138,7 @@
 		paint_colour = new_colour
 		to_chat(usr, "<span class='notice'>You set \the [src] to paint with <font color='[paint_colour]'>a new colour</font>.</span>")
 
-/obj/item/device/floor_painter/verb/choose_decal()
+/obj/item/floor_painter/verb/choose_decal()
 	set name = "Choose Decal"
 	set desc = "Choose a painting decal."
 	set category = "Object"
@@ -146,7 +152,7 @@
 		decal = new_decal
 		to_chat(usr, "<span class='notice'>You set \the [src] decal to '[decal]'.</span>")
 
-/obj/item/device/floor_painter/verb/choose_direction()
+/obj/item/floor_painter/verb/choose_direction()
 	set name = "Choose Direction"
 	set desc = "Choose a painting direction."
 	set category = "Object"

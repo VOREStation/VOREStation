@@ -110,12 +110,16 @@ Class Procs:
 	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
 	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
+<<<<<<< HEAD
 	var/obj/item/weapon/circuitboard/circuit = null
 	
 	// 0.0 - 1.0 multipler for prob() based on bullet structure damage
 	// So if this is 1.0 then a 100 damage bullet will always break this structure
 	// If this is 0.5 then a 50 damage bullet will break this structure 25% of the time
 	var/bullet_vulnerability = 0.25
+=======
+	var/obj/item/circuitboard/circuit = null
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
@@ -313,24 +317,28 @@ Class Procs:
 	return 0
 
 /obj/machinery/proc/default_apply_parts()
-	var/obj/item/weapon/circuitboard/CB = circuit
+	var/obj/item/circuitboard/CB = circuit
 	if(!istype(CB))
 		return
 	CB.apply_default_parts(src)
 	RefreshParts()
 
 /obj/machinery/proc/default_use_hicell()
-	var/obj/item/weapon/cell/C = locate(/obj/item/weapon/cell) in component_parts
+	var/obj/item/cell/C = locate(/obj/item/cell) in component_parts
 	if(C)
 		component_parts -= C
 		qdel(C)
-		C = new /obj/item/weapon/cell/high(src)
+		C = new /obj/item/cell/high(src)
 		component_parts += C
 		RefreshParts()
 		return C
 
+<<<<<<< HEAD
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
 	var/parts_replaced = FALSE
+=======
+/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -339,14 +347,22 @@ Class Procs:
 	for(var/obj/item/C in component_parts)
 		to_chat(user, "<span class='notice'>    [C.name]</span>")
 	if(panel_open || !R.panel_req)
-		var/obj/item/weapon/circuitboard/CB = circuit
+		var/obj/item/circuitboard/CB = circuit
 		var/P
+<<<<<<< HEAD
 		for(var/obj/item/A in component_parts)
+=======
+		for(var/obj/item/stock_parts/A in component_parts)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			for(var/T in CB.req_components)
 				if(ispath(A.type, T))
 					P = T
 					break
+<<<<<<< HEAD
 			for(var/obj/item/B in R.contents)
+=======
+			for(var/obj/item/stock_parts/B in R.contents)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				if(istype(B, P) && istype(A, P))
 					if(B.get_rating() > A.get_rating())
 						R.remove_from_storage(B, src)
@@ -410,7 +426,7 @@ Class Procs:
 	if(do_after(user, 20 * S.toolspeed))
 		if(stat & BROKEN)
 			to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
-			new /obj/item/weapon/material/shard(src.loc)
+			new /obj/item/material/shard(src.loc)
 		else
 			to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 		. = dismantle()
@@ -437,13 +453,13 @@ Class Procs:
 /obj/machinery/proc/dismantle()
 	playsound(src, 'sound/items/Crowbar.ogg', 50, 1)
 	for(var/obj/I in contents)
-		if(istype(I,/obj/item/weapon/card/id))
+		if(istype(I,/obj/item/card/id))
 			I.forceMove(src.loc)
 	
 	if(!circuit)
 		return 0
 	var/obj/structure/frame/A = new /obj/structure/frame(src.loc)
-	var/obj/item/weapon/circuitboard/M = circuit
+	var/obj/item/circuitboard/M = circuit
 	A.circuit = M
 	A.anchored = TRUE
 	A.frame_type = M.board_type

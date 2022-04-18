@@ -46,7 +46,7 @@
 	poison_type = "phoron"
 
 	tame_items = list(
-	/obj/item/weapon/tank/phoron = 20,
+	/obj/item/tank/phoron = 20,
 	/obj/item/stack/material/phoron = 30
 	)
 

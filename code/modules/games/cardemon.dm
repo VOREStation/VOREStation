@@ -1,14 +1,23 @@
+<<<<<<< HEAD
 /*
  * Cardmon trading card game
  */
 /obj/item/weapon/pack/cardemon
+=======
+/obj/item/pack/cardemon
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "cardemon booster pack"
 	desc = "Finally! A children's card game in space!"
 	icon_state = "card_pack_cardemon"
 	parentdeck = "cardemon"
 
+<<<<<<< HEAD
 /obj/item/weapon/pack/cardemon/New()
 	..()
+=======
+/obj/item/pack/cardemon/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/datum/playingcard/P
 	var/i
 	for(i=0; i<5; i++)

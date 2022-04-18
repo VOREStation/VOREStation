@@ -1,0 +1,25 @@
+"a" = (/turf/simulated/wall,/area/template_noop)
+"b" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/item/seeds/reishimycelium,/turf/simulated/floor/plating,/area/template_noop)
+"c" = (/turf/simulated/wall{can_open = 1},/area/template_noop)
+"e" = (/obj/item/reagent_containers/syringe{icon_state = "broken"},/obj/structure/bed/chair/comfy/brown{dir = 1},/turf/simulated/floor/plating,/area/template_noop)
+"f" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/item/seeds/ambrosiavulgarisseed,/turf/simulated/floor/plating,/area/template_noop)
+"l" = (/obj/random/mouseremains,/turf/simulated/floor/plating,/area/template_noop)
+"m" = (/obj/random/crate,/obj/random/contraband,/obj/random/cigarettes,/obj/random/maintenance/engineering,/obj/random/maintenance/engineering,/obj/random/cash,/obj/random/maintenance/clean,/turf/simulated/floor/plating,/area/template_noop)
+"t" = (/obj/structure/reagent_dispensers/watertank/high,/obj/item/reagent_containers/glass/bucket,/turf/simulated/floor/plating,/area/template_noop)
+"x" = (/obj/item/poster/custom,/turf/simulated/floor/plating,/area/template_noop)
+"E" = (/obj/structure/closet/crate/hydroponics,/obj/random/contraband,/obj/item/material/knife/machete/hatchet,/obj/item/material/minihoe,/obj/item/tool/wirecutters/clippers/trimmers,/turf/simulated/floor/plating,/area/template_noop)
+"G" = (/turf/simulated/floor/plating,/area/template_noop)
+"K" = (/obj/structure/bed/chair/comfy/brown,/turf/simulated/floor/plating,/area/template_noop)
+"L" = (/obj/item/reagent_containers/syringe{icon_state = "broken"},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/plating,/area/template_noop)
+"U" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/item/seeds/poppyseed,/turf/simulated/floor/plating,/area/template_noop)
+"V" = (/turf/simulated/wall/r_wall,/area/template_noop)
+"W" = (/obj/machinery/portable_atmospherics/hydroponics,/obj/item/seeds/tobaccoseed,/turf/simulated/floor/plating,/area/template_noop)
+"Y" = (/obj/structure/table/steel,/obj/random/contraband/nofail,/obj/random/contraband,/obj/random/medical,/obj/machinery/light_construct/small{dir = 4},/obj/item/flashlight/lamp/green{pixel_x = -6; pixel_y = -1},/turf/simulated/floor/plating,/area/template_noop)
+
+(1,1,1) = {"
+aaaaacaV
+afWUblKV
+aLGGGGYV
+GGtEmxeV
+aaaaaaaV
+"}

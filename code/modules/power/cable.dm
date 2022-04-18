@@ -221,7 +221,7 @@ var/list/possible_cable_coil_colours = list(
 			return
 		coil.cable_join(src, user)
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(istype(W, /obj/item/multitool))
 
 		if(powernet && (powernet.avail > 0))		// is it powered?
 			to_chat(user, "<span class='warning'>[DisplayPower(powernet.avail)] in power network.</span>")
@@ -598,8 +598,13 @@ var/list/possible_cable_coil_colours = list(
 		w_class = ITEMSIZE_SMALL
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
+<<<<<<< HEAD
 	if(istype(W, /obj/item/device/multitool))
 		var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
+=======
+	if(istype(W, /obj/item/multitool))
+		var/selected_type = input("Pick new colour.", "Cable Colour", null, null) as null|anything in possible_cable_coil_colours
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		set_cable_color(selected_type, usr)
 		return
 	return ..()
@@ -614,7 +619,7 @@ var/list/possible_cable_coil_colours = list(
 		if(src.amount <= 14)
 			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return
-		var/obj/item/weapon/handcuffs/cable/B = new /obj/item/weapon/handcuffs/cable(usr.loc)
+		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.color = color
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		src.use(15)

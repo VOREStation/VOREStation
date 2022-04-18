@@ -22,14 +22,14 @@
 	say_list_type = /datum/say_list/dog
 
 	meat_amount = 3
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/corgi
 
 	var/obj/item/inventory_head
 	var/obj/item/inventory_back
 
 
 /mob/living/simple_mob/animal/passive/dog/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/newspaper))
+	if(istype(O, /obj/item/newspaper))
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
 				if ((M.client && !( M.blinded )))
@@ -67,7 +67,7 @@
 
 
 
-/obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+/obj/item/reagent_containers/food/snacks/meat/corgi
 	name = "corgi meat"
 	desc = "Tastes like... well, you know..."
 
@@ -136,7 +136,7 @@
 				movement_target = null
 			if( !movement_target || !(movement_target.loc in oview(src, 3)) )
 				movement_target = null
-				for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3))
+				for(var/obj/item/reagent_containers/food/snacks/S in oview(src,3))
 					if(isturf(S.loc) || ishuman(S.loc))
 						movement_target = S
 						break

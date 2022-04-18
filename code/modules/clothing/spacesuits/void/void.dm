@@ -27,7 +27,7 @@
 	desc = "A high-tech dark red space suit. Used for AI satellite maintenance."
 	slowdown = 0.5
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
-	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank,/obj/item/device/suit_cooling_unit)
+	allowed = list(/obj/item/flashlight,/obj/item/tank,/obj/item/suit_cooling_unit)
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	min_pressure_protection = 0 * ONE_ATMOSPHERE
@@ -45,8 +45,8 @@
 	//Inbuilt devices.
 	var/obj/item/clothing/shoes/magboots/boots = null // Deployable boots, if any.
 	var/obj/item/clothing/head/helmet/helmet = null   // Deployable helmet, if any.
-	var/obj/item/weapon/tank/tank = null              // Deployable tank, if any.
-	var/obj/item/device/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
+	var/obj/item/tank/tank = null              // Deployable tank, if any.
+	var/obj/item/suit_cooling_unit/cooler = null// Cooling unit, for FBPs.  Cannot be installed alongside a tank.
 	
 	//Cycler settings
 	var/no_cycle = FALSE	//stop this item from being put in a cycler
@@ -216,7 +216,7 @@
 
 	if(!istype(user,/mob/living)) return
 
-	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/weapon/hand_labeler))
+	if(istype(W,/obj/item/clothing/accessory) || istype(W, /obj/item/hand_labeler))
 		return ..()
 
 	if(user.get_inventory_slot(src) == slot_wear_suit)
@@ -267,12 +267,12 @@
 			W.forceMove(src)
 			boots = W
 		return
-	else if(istype(W,/obj/item/weapon/tank))
+	else if(istype(W,/obj/item/tank))
 		if(tank)
 			to_chat(user, "\The [src] already has an airtank installed.")
 		else if(cooler)
 			to_chat(user, "\The [src]'s suit cooling unit is in the way.  Remove it first.")
-		else if(istype(W,/obj/item/weapon/tank/phoron))
+		else if(istype(W,/obj/item/tank/phoron))
 			to_chat(user, "\The [W] cannot be inserted into \the [src]'s storage compartment.")
 		else
 			to_chat(user, "You insert \the [W] into \the [src]'s storage compartment.")
@@ -280,7 +280,7 @@
 			W.forceMove(src)
 			tank = W
 		return
-	else if(istype(W,/obj/item/device/suit_cooling_unit))
+	else if(istype(W,/obj/item/suit_cooling_unit))
 		if(cooler)
 			to_chat(user, "\The [src] already has a suit cooling unit installed.")
 		else if(tank)

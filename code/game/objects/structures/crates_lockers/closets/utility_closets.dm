@@ -22,19 +22,24 @@
 	//VOREStation Block Edit Start - Modified List
 		if ("small")
 			starts_with = list(
-				/obj/item/weapon/tank/emergency/oxygen = 2,
+				/obj/item/tank/emergency/oxygen = 2,
 				/obj/item/clothing/mask/breath = 2,
 				/obj/item/clothing/suit/space/emergency = 2,
 				/obj/item/clothing/head/helmet/space/emergency = 2)
 		if ("aid")
 			starts_with = list(
-				/obj/item/weapon/tank/emergency/oxygen,
-				/obj/item/weapon/storage/toolbox/emergency,
+				/obj/item/tank/emergency/oxygen,
+				/obj/item/storage/toolbox/emergency,
 				/obj/item/clothing/mask/breath,
+<<<<<<< HEAD
+=======
+				/obj/item/storage/firstaid/o2,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/suit/space/emergency,
 				/obj/item/clothing/head/helmet/space/emergency)
 		if ("tank")
 			starts_with = list(
+<<<<<<< HEAD
 				/obj/item/weapon/tank/emergency/oxygen/engi = 2,
 				/obj/item/clothing/mask/breath = 2,
 				/obj/item/clothing/suit/space/emergency = 2,
@@ -45,6 +50,16 @@
 				/obj/item/weapon/storage/firstaid/o2,
 				/obj/item/weapon/tank/emergency/oxygen/engi = 2,
 				/obj/item/clothing/mask/breath = 2,
+=======
+				/obj/item/tank/emergency/oxygen/engi = 2,
+				/obj/item/clothing/mask/breath = 2)
+		if ("both")
+			starts_with = list(
+				/obj/item/storage/toolbox/emergency,
+				/obj/item/tank/emergency/oxygen/engi,
+				/obj/item/clothing/mask/breath,
+				/obj/item/storage/firstaid/o2,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/suit/space/emergency = 2,
 				/obj/item/clothing/head/helmet/space/emergency = 2)
 	//VOREStation Block Edit End
@@ -53,7 +68,7 @@
 
 /obj/structure/closet/emcloset/legacy
 	starts_with = list(
-		/obj/item/weapon/tank/oxygen,
+		/obj/item/tank/oxygen,
 		/obj/item/clothing/mask/gas)
 
 /*
@@ -67,26 +82,26 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
 
 /obj/structure/closet/firecloset/full
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flashlight,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher,
+		/obj/item/flashlight,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
 
 /obj/structure/closet/firecloset/full/double
 	starts_with = list(
 		/obj/item/clothing/suit/fire = 2,
 		/obj/item/clothing/mask/gas = 2,
-		/obj/item/device/flashlight = 2,
-		/obj/item/weapon/tank/oxygen/red = 2,
-		/obj/item/weapon/extinguisher = 2,
+		/obj/item/flashlight = 2,
+		/obj/item/tank/oxygen/red = 2,
+		/obj/item/extinguisher = 2,
 		/obj/item/clothing/head/hardhat/red = 2)
 
 /obj/structure/closet/firecloset/full/atmos
@@ -114,21 +129,21 @@
 	if(prob(40))
 		starts_with += /obj/item/clothing/suit/storage/hazardvest
 	if(prob(70))
-		starts_with += /obj/item/device/flashlight
+		starts_with += /obj/item/flashlight
 	if(prob(70))
-		starts_with += /obj/item/weapon/tool/screwdriver
+		starts_with += /obj/item/tool/screwdriver
 	if(prob(70))
-		starts_with += /obj/item/weapon/tool/wrench
+		starts_with += /obj/item/tool/wrench
 	if(prob(70))
-		starts_with += /obj/item/weapon/weldingtool
+		starts_with += /obj/item/weldingtool
 	if(prob(70))
-		starts_with += /obj/item/weapon/tool/crowbar
+		starts_with += /obj/item/tool/crowbar
 	if(prob(70))
-		starts_with += /obj/item/weapon/tool/wirecutters
+		starts_with += /obj/item/tool/wirecutters
 	if(prob(70))
-		starts_with += /obj/item/device/t_scanner
+		starts_with += /obj/item/t_scanner
 	if(prob(20))
-		starts_with += /obj/item/weapon/storage/belt/utility
+		starts_with += /obj/item/storage/belt/utility
 	if(prob(30))
 		starts_with += /obj/item/stack/cable_coil/random
 	if(prob(30))
@@ -136,7 +151,7 @@
 	if(prob(30))
 		starts_with += /obj/item/stack/cable_coil/random
 	if(prob(20))
-		starts_with += /obj/item/device/multitool
+		starts_with += /obj/item/multitool
 	if(prob(5))
 		starts_with += /obj/item/clothing/gloves/yellow
 	if(prob(40))
@@ -156,7 +171,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/radiation = 2,
 		/obj/item/clothing/head/radiation = 2,
-		/obj/item/device/geiger = 2)
+		/obj/item/geiger = 2)
 
 /*
  * Bombsuit closet
@@ -207,9 +222,9 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire/firefighter,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flashlight,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher,
+		/obj/item/flashlight,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
 
 /*

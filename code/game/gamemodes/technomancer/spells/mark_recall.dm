@@ -4,7 +4,7 @@
 	Note that using Mark again will move the destination instead of creating a second destination, and only one destination \
 	can exist, regardless of who casted Mark."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/mark
+	obj_path = /obj/item/spell/mark
 	ability_icon_state = "tech_mark"
 	category = UTILITY_SPELLS
 //VOREStation Add - Multiple technomancer support
@@ -30,17 +30,25 @@
 	U = T = I = null
 	return ..()
 
+<<<<<<< HEAD
 //This is global, to avoid looping through a list of all objects, or god forbid, looping through world.
 GLOBAL_LIST_INIT(mark_spells, list())
 //VOREStation Add End
 /obj/item/weapon/spell/mark
+=======
+/obj/item/spell/mark
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "mark"
 	icon_state = "mark"
 	desc = "Marks a specific location to be used by Recall."
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/mark/on_use_cast(var/mob/living/user)
+=======
+/obj/item/spell/mark/on_use_cast(mob/living/user)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!allowed_to_teleport()) // Otherwise you could teleport back to the admin Z-level.
 		to_chat(user, "<span class='warning'>You can't teleport here!</span>")
 		return 0
@@ -70,18 +78,22 @@ GLOBAL_LIST_INIT(mark_spells, list())
 	function is useless.  Note that teleporting takes three seconds.  Being incapacitated while teleporting will cancel it."
 	enhancement_desc = "Recall takes two seconds instead of three."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/recall
+	obj_path = /obj/item/spell/recall
 	ability_icon_state = "tech_recall"
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/recall
+/obj/item/spell/recall
 	name = "recall"
 	icon_state = "recall"
 	desc = "This will bring you to your Mark."
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/recall/on_use_cast(var/mob/living/user)
+=======
+/obj/item/spell/recall/on_use_cast(mob/living/user)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(pay_energy(3000))
 		var/datum/technomancer_marker/marker = GLOB.mark_spells[weakref(user)] //VOREStation Add - Multiple technomancer support
 		if(!istype(marker))
@@ -109,7 +121,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 			var/turf/target_turf = marker.T //VOREStation Edit - Multiple technomancer support
 			var/turf/old_turf = get_turf(user)
 
-			for(var/obj/item/weapon/grab/G in user.contents) // People the Technomancer is grabbing come along for the ride.
+			for(var/obj/item/grab/G in user.contents) // People the Technomancer is grabbing come along for the ride.
 				if(G.affecting)
 					G.affecting.forceMove(locate( target_turf.x+rand(-1,1), target_turf.y+rand(-1,1), target_turf.z))
 					to_chat(G.affecting, "<span class='warning'>You are teleported along with [user]!</span>")

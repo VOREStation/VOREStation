@@ -68,7 +68,7 @@
 		return 0
 	return ..()
 
-/datum/blob_type/ectoplasmic_horror/on_chunk_tick(obj/item/weapon/blobcore_chunk/B)
+/datum/blob_type/ectoplasmic_horror/on_chunk_tick(obj/item/blobcore_chunk/B)
 	var/mob/living/carrier = B.get_carrier()
 
 	if(!carrier)

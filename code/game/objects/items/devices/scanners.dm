@@ -11,9 +11,12 @@ HALOGEN COUNTER	- Radcount on mobs
 */
 
 
-/obj/item/device/healthanalyzer
+/obj/item/healthanalyzer
 	name = "health analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "health"
 	item_state = "healthanalyzer"
 	slot_flags = SLOT_BELT
@@ -27,21 +30,28 @@ HALOGEN COUNTER	- Radcount on mobs
 	var/advscan = 0
 	var/showadvscan = 1
 
+<<<<<<< HEAD
 /obj/item/device/healthanalyzer/New()
 	if(advscan >= 1)
 		verbs += /obj/item/device/healthanalyzer/proc/toggle_adv
 	..()
+=======
+/obj/item/healthanalyzer/Initialize()
+	if(advscan >= 1)
+		verbs += /obj/item/healthanalyzer/proc/toggle_adv
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
-/obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	scan_mob(M, user) //default surgery behaviour is just to scan as usual
 	return 1
 
-/obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/attack(mob/living/M, mob/living/user)
 	scan_mob(M, user)
 
-/obj/item/device/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
+/obj/item/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
 	var/dat = ""
 	if ((CLUMSY in user.mutations) && prob(50))
 		user.visible_message("<span class='warning'>\The [user] has analyzed the floor's vitals!</span>", "<span class='warning'>You try to analyze the floor's vitals!</span>")
@@ -292,7 +302,7 @@ HALOGEN COUNTER	- Radcount on mobs
 		// VOREStation Edit End
 	user.show_message(dat, 1)
 
-/obj/item/device/healthanalyzer/verb/toggle_mode()
+/obj/item/healthanalyzer/verb/toggle_mode()
 	set name = "Switch Verbosity"
 	set category = "Object"
 
@@ -303,7 +313,7 @@ HALOGEN COUNTER	- Radcount on mobs
 		if(0)
 			to_chat(usr, "The scanner no longer shows limb damage.")
 
-/obj/item/device/healthanalyzer/proc/toggle_adv()
+/obj/item/healthanalyzer/proc/toggle_adv()
 	set name = "Toggle Advanced Scan"
 	set category = "Object"
 
@@ -314,30 +324,33 @@ HALOGEN COUNTER	- Radcount on mobs
 		if(0)
 			to_chat(usr, "The scanner will now perform a basic analysis.")
 
-/obj/item/device/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
+/obj/item/healthanalyzer/improved //reports bone fractures, IB, quantity of beneficial reagents in stomach; also regular health analyzer stuff
 	name = "improved health analyzer"
 	desc = "A miracle of medical technology, this handheld scanner can produce an accurate and specific report of a patient's biosigns."
 	advscan = 1
 	origin_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
 	icon_state = "health1"
 
-/obj/item/device/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
+/obj/item/healthanalyzer/advanced //reports all of the above, as well as radiation severity and minor brain damage
 	name = "advanced health analyzer"
 	desc = "An even more advanced handheld health scanner, complete with a full biosign monitor and on-board radiation and neurological analysis suites."
 	advscan = 2
 	origin_tech = list(TECH_MAGNET = 6, TECH_BIO = 7)
 	icon_state = "health2"
 
-/obj/item/device/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
+/obj/item/healthanalyzer/phasic //reports all of the above, as well as name and quantity of nonmed reagents in stomach
 	name = "phasic health analyzer"
 	desc = "Possibly the most advanced health analyzer to ever have existed, utilising bluespace technology to determine almost everything worth knowing about a patient."
 	advscan = 3
 	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
 
-/obj/item/device/analyzer
+/obj/item/analyzer
 	name = "analyzer"
 	desc = "A hand-held environmental scanner which reports current gas levels."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "atmos"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
@@ -350,14 +363,14 @@ HALOGEN COUNTER	- Radcount on mobs
 
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
 
-/obj/item/device/analyzer/atmosanalyze(var/mob/user)
+/obj/item/analyzer/atmosanalyze(var/mob/user)
 	var/air = user.return_air()
 	if (!air)
 		return
 
 	return atmosanalyzer_scan(src, air, user)
 
-/obj/item/device/analyzer/attack_self(mob/user as mob)
+/obj/item/analyzer/attack_self(mob/user as mob)
 	if (user.stat)
 		return
 	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
@@ -367,15 +380,18 @@ HALOGEN COUNTER	- Radcount on mobs
 	analyze_gases(src, user)
 	return
 
-/obj/item/device/analyzer/afterattack(var/obj/O, var/mob/user, var/proximity)
+/obj/item/analyzer/afterattack(var/obj/O, var/mob/user, var/proximity)
 	if(proximity)
 		analyze_gases(O, user)
 	return
 
 
-/obj/item/device/mass_spectrometer
+/obj/item/mass_spectrometer
 	name = "mass spectrometer"
 	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "spectrometer"
 	w_class = ITEMSIZE_SMALL
 	flags = OPENCONTAINER
@@ -390,19 +406,24 @@ HALOGEN COUNTER	- Radcount on mobs
 	var/details = 0
 	var/recent_fail = 0
 
+<<<<<<< HEAD
 /obj/item/device/mass_spectrometer/New()
 	..()
+=======
+/obj/item/mass_spectrometer/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/datum/reagents/R = new/datum/reagents(5)
 	reagents = R
 	R.my_atom = src
 
-/obj/item/device/mass_spectrometer/on_reagent_change()
+/obj/item/mass_spectrometer/on_reagent_change()
 	if(reagents.total_volume)
 		icon_state = initial(icon_state) + "_s"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/mass_spectrometer/attack_self(mob/user as mob)
+/obj/item/mass_spectrometer/attack_self(mob/user as mob)
 	if (user.stat)
 		return
 	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
@@ -428,15 +449,18 @@ HALOGEN COUNTER	- Radcount on mobs
 		reagents.clear_reagents()
 	return
 
-/obj/item/device/mass_spectrometer/adv
+/obj/item/mass_spectrometer/adv
 	name = "advanced mass spectrometer"
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
-/obj/item/device/reagent_scanner
+/obj/item/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "spectrometer"
 	item_state = "analyzer"
 	w_class = ITEMSIZE_SMALL
@@ -450,7 +474,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
+/obj/item/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
 	if(!proximity || user.stat || !istype(O))
 		return
 	if(!istype(user))
@@ -475,14 +499,17 @@ HALOGEN COUNTER	- Radcount on mobs
 
 	return
 
-/obj/item/device/reagent_scanner/adv
+/obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1
 	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
 
-/obj/item/device/slime_scanner
+/obj/item/slime_scanner
 	name = "slime scanner"
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "xenobio"
 	item_state = "xenobio"
 	origin_tech = list(TECH_BIO = 1)
@@ -492,7 +519,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	throw_range = 7
 	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
 
-/obj/item/device/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
 		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
 		return
@@ -524,8 +551,11 @@ HALOGEN COUNTER	- Radcount on mobs
 
 	user.show_message("Growth progress: [S.amount_grown]/10")
 
-/obj/item/device/halogen_counter
+/obj/item/halogen_counter
 	name = "halogen counter"
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "eftpos"
 	desc = "A hand-held halogen counter, used to detect the level of irradiation of living beings."
 	w_class = ITEMSIZE_SMALL
@@ -534,7 +564,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	throw_speed = 3
 	throw_range = 7
 
-/obj/item/device/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!iscarbon(M))
 		to_chat(user, "<span class='warning'>This device can only scan organic beings!</span>")
 		return

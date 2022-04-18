@@ -13,7 +13,7 @@
 "m" = (/turf/simulated/wall,/area/submap/MilitaryCamp1)
 "n" = (/obj/random/landmine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "o" = (/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"p" = (/obj/item/weapon/material/shard,/turf/template_noop,/area/submap/MilitaryCamp1)
+"p" = (/obj/item/material/shard,/turf/template_noop,/area/submap/MilitaryCamp1)
 "q" = (/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "r" = (/obj/structure/girder,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "s" = (/obj/machinery/computer/communications,/mob/living/simple_mob/mechanical/viscerator,/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor,/area/submap/MilitaryCamp1)
@@ -22,7 +22,7 @@
 "v" = (/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "w" = (/obj/machinery/computer/security,/mob/living/simple_mob/mechanical/viscerator,/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "x" = (/mob/living/simple_mob/mechanical/viscerator,/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor,/area/submap/MilitaryCamp1)
-"y" = (/obj/item/weapon/material/shard,/obj/random/landmine,/turf/template_noop,/area/submap/MilitaryCamp1)
+"y" = (/obj/item/material/shard,/obj/random/landmine,/turf/template_noop,/area/submap/MilitaryCamp1)
 "z" = (/obj/machinery/door/airlock,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "A" = (/obj/effect/decal/cleanable/dirt,/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "B" = (/mob/living/simple_mob/mechanical/viscerator,/turf/template_noop,/area/submap/MilitaryCamp1)
@@ -32,9 +32,17 @@
 "F" = (/obj/machinery/door/airlock,/obj/effect/mine,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "G" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/MilitaryCamp1)
 "H" = (/obj/random/landmine,/turf/template_noop,/area/template_noop)
+<<<<<<< HEAD
 "I" = (/obj/structure/table/standard,/obj/random/cigarettes,/obj/item/weapon/flame/lighter/random,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "J" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor,/area/submap/MilitaryCamp1)
 "K" = (/obj/effect/decal/cleanable/blood,/obj/random/landmine,/turf/template_noop,/area/submap/MilitaryCamp1)
+=======
+"I" = (/obj/structure/table/standard,/obj/random/cigarettes,/obj/item/flame/lighter/random,/obj/random/maintenance/anom,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"J" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"K" = (/obj/effect/decal/cleanable/blood,/obj/random/landmine,/turf/template_noop,/area/submap/MilitaryCamp1)
+"P" = (/obj/item/cell/device/weapon/empty,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+"Z" = (/mob/living/simple_mob/mechanical/viscerator,/obj/item/cell/device/weapon/empty,/turf/simulated/floor,/area/submap/MilitaryCamp1)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaa

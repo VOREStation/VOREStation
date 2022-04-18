@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/magnetic/gasthrower
+/obj/item/gun/magnetic/gasthrower
 	name = "phoronthrower"
 	desc = "A modernized flamethrower utilizing pressurized phoron gas as both a propellant and combustion medium."
 	description_fluff = "A weapon designed to effectively combat the threat posed by Almachi soldiers without the danger of other forms of flamethrower."
@@ -19,16 +19,16 @@
 	removable_components = TRUE
 	gun_unreliable = 0
 
-	load_type = /obj/item/weapon/tank
+	load_type = /obj/item/tank
 	projectile_type = /obj/item/projectile/scatter/flamethrower
 
 	power_cost = 250
 
-/obj/item/weapon/gun/magnetic/gasthrower/check_ammo()
+/obj/item/gun/magnetic/gasthrower/check_ammo()
 	if(!loaded || !istype(loaded, load_type))
 		return 0
 
-	var/obj/item/weapon/tank/Tank = loaded
+	var/obj/item/tank/Tank = loaded
 
 	Tank.air_contents.update_values()	// Safety
 
@@ -57,18 +57,18 @@
 
 	return 0
 
-/obj/item/weapon/gun/magnetic/gasthrower/use_ammo()
-	var/obj/item/weapon/tank/Tank = loaded
+/obj/item/gun/magnetic/gasthrower/use_ammo()
+	var/obj/item/tank/Tank = loaded
 
 	var/moles_to_pull = 0.25
 
 	Tank.air_contents.remove(moles_to_pull)
 
-/obj/item/weapon/gun/magnetic/gasthrower/show_ammo(var/mob/user)
+/obj/item/gun/magnetic/gasthrower/show_ammo(var/mob/user)
 	. = ..()
 
 	if(loaded)
-		var/obj/item/weapon/tank/T = loaded
+		var/obj/item/tank/T = loaded
 		. += "<span class='notice'>\The [T]'s pressure meter shows: [T.air_contents.return_pressure()] kpa.</span>"
 
 		switch(check_ammo())

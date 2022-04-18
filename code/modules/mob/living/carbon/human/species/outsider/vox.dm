@@ -102,14 +102,20 @@
 
 	H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
 	if(H.backbag == 1)
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/vox(H), slot_back)
+		H.equip_to_slot_or_del(new /obj/item/tank/vox(H), slot_back)
 		H.internal = H.back
 	else
-		H.equip_to_slot_or_del(new /obj/item/weapon/tank/vox(H), slot_r_hand)
+		H.equip_to_slot_or_del(new /obj/item/tank/vox(H), slot_r_hand)
 		H.internal = H.r_hand
+<<<<<<< HEAD
 	H.internal = locate(/obj/item/weapon/tank) in H.contents
 	if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
 		H.internals.icon_state = "internal1"
 
 /datum/species/vox/get_perfect_belly_air_type()
 	return /datum/gas_mixture/belly_air/vox
+=======
+	H.internal = locate(/obj/item/tank) in H.contents
+	if(istype(H.internal,/obj/item/tank) && H.internals)
+		H.internals.icon_state = "internal1"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

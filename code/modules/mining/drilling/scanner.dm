@@ -1,7 +1,9 @@
-/obj/item/weapon/mining_scanner
+/obj/item/mining_scanner
 	name = "deep scan device"
 	desc = "A complex device used to locate ore deep underground."
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "deep_scan_device"
 	item_state = "electronic"
 	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
@@ -10,7 +12,7 @@
 	var/range = 2
 	var/exact = FALSE
 
-/obj/item/weapon/mining_scanner/attack_self(mob/user as mob)
+/obj/item/mining_scanner/attack_self(mob/user as mob)
 	to_chat(user, "<span class='notice'>You begin sweeping \the [src] about, scanning for metal deposits.</span>")
 	playsound(src, 'sound/items/goggles_charge.ogg', 50, 1, -6)
 
@@ -19,7 +21,7 @@
 
 	ScanTurf(get_turf(user), user)
 
-/obj/item/weapon/mining_scanner/proc/ScanTurf(var/atom/target, var/mob/user)
+/obj/item/mining_scanner/proc/ScanTurf(var/atom/target, var/mob/user)
 	var/list/metals = list(
 		"surface minerals" = 0,
 		"industrial metals" = 0,
@@ -69,7 +71,7 @@
 
 	to_chat(user, message)
 
-/obj/item/weapon/mining_scanner/advanced
+/obj/item/mining_scanner/advanced
 	name = "advanced ore detector"
 	desc = "An advanced device used to locate ore deep underground."
 	description_info = "This scanner has variable range, you can use the Set Scanner Range verb, or alt+click the device. Drills dig in 5x5."
@@ -78,10 +80,10 @@
 	scan_time = 0.5 SECONDS
 	exact = TRUE
 
-/obj/item/weapon/mining_scanner/advanced/AltClick(mob/user)
+/obj/item/mining_scanner/advanced/AltClick(mob/user)
 	change_size()
 
-/obj/item/weapon/mining_scanner/advanced/verb/change_size()
+/obj/item/mining_scanner/advanced/verb/change_size()
 	set name = "Set Scanner Range"
 	set category = "Object"
 	var/custom_range = tgui_input_list(usr, "Scanner Range","Pick a range to scan. ", list(0,1,2,3,4,5,6,7))

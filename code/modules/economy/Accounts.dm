@@ -51,7 +51,7 @@
 		//create a sealed package containing the account details
 		var/obj/item/smallDelivery/P = new /obj/item/smallDelivery(source_db.loc)
 
-		var/obj/item/weapon/paper/R = new /obj/item/weapon/paper(P)
+		var/obj/item/paper/R = new /obj/item/paper(P)
 		P.wrapped = R
 		R.name = "Account information: [M.owner_name]"
 		R.info = "<b>Account details (confidential)</b><br><hr><br>"
@@ -68,8 +68,13 @@
 		stampoverlay.icon_state = "paper_stamp-cent"
 		if(!R.stamped)
 			R.stamped = new
+<<<<<<< HEAD
 		R.stamped += /obj/item/weapon/stamp
 		R.add_overlay(stampoverlay)
+=======
+		R.stamped += /obj/item/stamp
+		R.overlays += stampoverlay
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account

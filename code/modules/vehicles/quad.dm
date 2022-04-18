@@ -16,7 +16,7 @@
 	speed_mod = 0.45
 	car_limit = 1	//It gets a trailer. That's about it.
 	active_engines = 1
-	key_type = /obj/item/weapon/key/quadbike
+	key_type = /obj/item/key/quadbike
 
 	var/frame_state = "quad" //Custom-item proofing!
 	var/custom_frame = FALSE
@@ -25,8 +25,13 @@
 
 	var/outdoors_speed_mod = 0.7 //The general 'outdoors' speed. I.E., the general difference you'll be at when driving outside.
 
+<<<<<<< HEAD
 /obj/vehicle/train/engine/quadbike/New()
 	cell = new /obj/item/weapon/cell/high(src)
+=======
+/obj/vehicle/train/engine/quadbike/Initialize()
+	cell = new /obj/item/cell/high(src)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	key = new key_type(src)
 	turn_off()
 
@@ -38,7 +43,7 @@
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 	..()
 
-/obj/item/weapon/key/quadbike
+/obj/item/key/quadbike
 	name = "key"
 	desc = "A keyring with a small steel key, and a blue fob reading \"ZOOM!\"."
 	icon = 'icons/obj/vehicles.dmi'
@@ -72,9 +77,15 @@
 			pixel_y = 0
 
 
+<<<<<<< HEAD
 /obj/vehicle/train/engine/quadbike/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)
 		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
+=======
+/obj/vehicle/train/engine/quadbike/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/multitool) && open)
+		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()
@@ -248,9 +259,15 @@
 	Bodypaint.color = paint_color
 	add_overlay(Bodypaint)
 
+<<<<<<< HEAD
 /obj/vehicle/train/trolley/trailer/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)
 		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
+=======
+/obj/vehicle/train/trolley/trailer/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/multitool) && open)
+		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()

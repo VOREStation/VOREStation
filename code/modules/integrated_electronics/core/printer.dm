@@ -1,5 +1,5 @@
 
-/obj/item/device/integrated_circuit_printer
+/obj/item/integrated_circuit_printer
 	name = "integrated circuit printer"
 	desc = "A portable(ish) machine made to print tiny modular circuitry out of metal."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -13,27 +13,32 @@
 	var/upgraded = FALSE		// When hit with an upgrade disk, will turn true, allowing it to print the higher tier circuits.
 	var/can_clone = FALSE		// Same for above, but will allow the printer to duplicate a specific assembly. (Not implemented)
 //	var/static/list/recipe_list = list()
+<<<<<<< HEAD
 	var/obj/item/device/electronic_assembly/assembly_to_clone = null // Not implemented x3
 	var/dirty_items = FALSE
+=======
+	var/current_category = null
+	var/obj/item/electronic_assembly/assembly_to_clone = null
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
-/obj/item/device/integrated_circuit_printer/upgraded
+/obj/item/integrated_circuit_printer/upgraded
 	upgraded = TRUE
 	can_clone = TRUE
 
-/obj/item/device/integrated_circuit_printer/debug
+/obj/item/integrated_circuit_printer/debug
 	name = "fractal integrated circuit printer"
 	desc = "A portable(ish) machine that makes modular circuitry seemingly out of thin air."
 	upgraded = TRUE
 	can_clone = TRUE
 	debug = TRUE
 
-/obj/item/device/integrated_circuit_printer/attack_robot(mob/user as mob)
+/obj/item/integrated_circuit_printer/attack_robot(mob/user as mob)
 	if(Adjacent(user))
 		return tgui_interact(user)
 	else
 		return ..()
 
-/obj/item/device/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
+/obj/item/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/stack = O
 		if(stack.material.name == MAT_STEEL)
@@ -58,7 +63,7 @@
 		attack_self(user)
 		return TRUE
 
-	if(istype(O,/obj/item/weapon/disk/integrated_circuit/upgrade/advanced))
+	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/advanced))
 		if(upgraded)
 			to_chat(user, span("warning", "\The [src] already has this upgrade."))
 			return TRUE
@@ -68,7 +73,7 @@
 		attack_self(user)
 		return TRUE
 
-	if(istype(O,/obj/item/weapon/disk/integrated_circuit/upgrade/clone))
+	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/clone))
 		if(can_clone)
 			to_chat(user, span("warning", "\The [src] already has this upgrade."))
 			return TRUE
@@ -79,6 +84,7 @@
 
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/device/integrated_circuit_printer/vv_edit_var(var_name, var_value)
 	// Gotta update the static data in case an admin VV's the upgraded var for some reason..!
 	if(var_name == "upgraded")
@@ -90,6 +96,14 @@
 
 /obj/item/device/integrated_circuit_printer/tgui_state(mob/user)
 	return GLOB.tgui_physical_state
+=======
+/obj/item/integrated_circuit_printer/attack_self(var/mob/user)
+	interact(user)
+
+/obj/item/integrated_circuit_printer/interact(mob/user)
+	var/window_height = 600
+	var/window_width = 500
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/device/integrated_circuit_printer/tgui_interact(mob/user, datum/tgui/ui)
 	if(dirty_items)
@@ -106,6 +120,7 @@
 
 	var/list/categories = list()
 	for(var/category in SScircuit.circuit_fabricator_recipe_list)
+<<<<<<< HEAD
 		var/list/cat_obj = list(
 			"name" = category,
 			"items" = null
@@ -157,15 +172,70 @@
 	return data
 
 /obj/item/device/integrated_circuit_printer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+=======
+		if(category != current_category)
+			HTML += " <a href='?src=\ref[src];category=[category]'>\[[category]\]</a> "
+		else // Bold the button if it's already selected.
+			HTML += " <b>\[[category]\]</b> "
+	HTML += "<hr>"
+	HTML += "<center><h4>[current_category]</h4></center>"
+
+	var/list/current_list = SScircuit.circuit_fabricator_recipe_list[current_category]
+	for(var/path in current_list)
+		var/obj/O = path
+		var/can_build = TRUE
+		if(ispath(path, /obj/item/integrated_circuit))
+			var/obj/item/integrated_circuit/IC = path
+			if((initial(IC.spawn_flags) & IC_SPAWN_RESEARCH) && (!(initial(IC.spawn_flags) & IC_SPAWN_DEFAULT)) && !upgraded)
+				can_build = FALSE
+		if(can_build)
+			HTML += "<A href='?src=\ref[src];build=[path]'>\[[initial(O.name)]\]</A>: [initial(O.desc)]<br>"
+		else
+			HTML += "<s>\[[initial(O.name)]\]</s>: [initial(O.desc)]<br>"
+
+	user << browse(jointext(HTML, null), "window=integrated_printer;size=[window_width]x[window_height];border=1;can_resize=1;can_close=1;can_minimize=1")
+
+
+/obj/item/integrated_circuit_printer/Topic(href, href_list)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(..())
 		return TRUE
 
 	add_fingerprint(usr)
 
+<<<<<<< HEAD
 	switch(action)
 		if("build")
 			var/build_type = text2path(params["build"])
 			if(!build_type || !ispath(build_type))
+=======
+	if(href_list["category"])
+		current_category = href_list["category"]
+
+	if(href_list["build"])
+		var/build_type = text2path(href_list["build"])
+		if(!build_type || !ispath(build_type))
+			return 1
+
+		var/cost = 1
+
+		if(isnull(current_category))
+			current_category = SScircuit.circuit_fabricator_recipe_list[1]
+		if(ispath(build_type, /obj/item/electronic_assembly))
+			var/obj/item/electronic_assembly/E = build_type
+			cost = round( (initial(E.max_complexity) + initial(E.max_components) ) / 4)
+		else
+			var/obj/item/I = build_type
+			cost = initial(I.w_class)
+		if(!(build_type in SScircuit.circuit_fabricator_recipe_list[current_category]))
+			return
+
+		if(!debug)
+			if(!Adjacent(usr))
+				to_chat(usr, "<span class='notice'>You are too far away from \the [src].</span>")
+			if(metal - cost < 0)
+				to_chat(usr, "<span class='warning'>You need [cost] metal to build that!.</span>")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				return 1
 
 			var/cost = 1
@@ -199,7 +269,7 @@
 			return TRUE
 
 // FUKKEN UPGRADE DISKS
-/obj/item/weapon/disk/integrated_circuit/upgrade
+/obj/item/disk/integrated_circuit/upgrade
 	name = "integrated circuit printer upgrade disk"
 	desc = "Install this into your integrated circuit printer to enhance it."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -208,12 +278,12 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
 
-/obj/item/weapon/disk/integrated_circuit/upgrade/advanced
+/obj/item/disk/integrated_circuit/upgrade/advanced
 	name = "integrated circuit printer upgrade disk - advanced designs"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, advanced designs to the printer."
 
 // To be implemented later.
-/obj/item/weapon/disk/integrated_circuit/upgrade/clone
+/obj/item/disk/integrated_circuit/upgrade/clone
 	name = "integrated circuit printer upgrade disk - circuit cloner"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one allows the printer to duplicate assemblies."
 	icon_state = "upgrade_disk_clone"

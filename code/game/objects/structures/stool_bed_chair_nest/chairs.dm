@@ -13,7 +13,7 @@
 	. = ..()
 	update_layer()
 
-/obj/structure/bed/chair/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/chair/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if(!padding_material && istype(W, /obj/item/assembly/shock_kit))
 		var/obj/item/assembly/shock_kit/SK = W
@@ -139,7 +139,7 @@
 /obj/structure/bed/chair/office/update_icon()
 	return
 
-/obj/structure/bed/chair/office/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/chair/office/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/stack) || W.is_wirecutter())
 		return
 	..()
@@ -205,7 +205,27 @@
 /obj/structure/bed/chair/wood/update_icon()
 	return
 
+<<<<<<< HEAD
 /obj/structure/bed/chair/wood/attackby(obj/item/weapon/W as obj, mob/user as mob)
+=======
+/obj/structure/bed/chair/wood/walnut
+	name = "walnut chair"
+	color = WOOD_COLOR_RICH
+
+/obj/structure/bed/chair/wood/pine
+	name = "pinewood chair"
+	color = WOOD_COLOR_PALE
+
+/obj/structure/bed/chair/wood/ebony
+	name = "ebony chair"
+	color = WOOD_COLOR_BLACK
+
+/obj/structure/bed/chair/wood/mahogany
+	name = "mahogany chair"
+	color = WOOD_COLOR_CHOCOLATE
+
+/obj/structure/bed/chair/wood/attackby(obj/item/W as obj, mob/user as mob)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(istype(W,/obj/item/stack) || W.is_wirecutter())
 		return
 	..()

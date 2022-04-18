@@ -3,7 +3,7 @@
 	icon_keyboard = "teleport_key"
 	icon_screen = "teleport"
 	light_color = "#77fff8"
-	circuit = /obj/item/weapon/circuitboard/sensors
+	circuit = /obj/item/circuitboard/sensors
 	extra_view = 4
 	var/obj/machinery/shipsensors/sensors
 
@@ -104,6 +104,7 @@
 			. = TRUE
 
 	if(sensors)
+<<<<<<< HEAD
 		switch(action)
 			if("range")
 				var/nrange = input(usr, "Set new sensors range", "Sensor range", sensors.range) as num|null
@@ -118,6 +119,25 @@
 
 	if(. && !issilicon(usr))
 		playsound(src, "terminal_type", 50, 1)
+=======
+		if (href_list["range"])
+			var/nrange = input("Set new sensors range", "Sensor range", sensors.range) as num|null
+			if(!CanInteract(user,state))
+				return TOPIC_NOACTION
+			if (nrange)
+				sensors.set_range(clamp(nrange, 1, world.view))
+			return TOPIC_REFRESH
+		if (href_list["toggle"])
+			sensors.toggle()
+			return TOPIC_REFRESH
+
+	if (href_list["scan"])
+		var/obj/effect/overmap/O = locate(href_list["scan"])
+		if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
+			playsound(src, "sound/machines/printer.ogg", 30, 1)
+			new/obj/item/paper/(get_turf(src), O.get_scan_data(user), "paper (Sensor Scan - [O])")
+		return TOPIC_HANDLED
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/ship/sensors/process()
 	..()
@@ -143,11 +163,11 @@
 	var/range = 1
 	idle_power_usage = 5000
 
-/obj/machinery/shipsensors/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/shipsensors/attackby(obj/item/W, mob/user)
 	var/damage = max_health - health
-	if(damage && istype(W, /obj/item/weapon/weldingtool))
+	if(damage && istype(W, /obj/item/weldingtool))
 
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 
 		if(!WT.isOn())
 			return

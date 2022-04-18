@@ -56,11 +56,38 @@
 			if(ispath(path, /datum/reagent))
 				. += L[path]
 
+<<<<<<< HEAD
+=======
+/datum/crafting_recipe/stunprod
+	name = "Stunprod"
+	result = /obj/item/melee/baton/cattleprod
+	reqs = list(list(/obj/item/handcuffs/cable = 1),
+				list(/obj/item/stack/rods = 1),
+				list(/obj/item/tool/wirecutters = 1))
+	time = 40
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/spear
+	name = "Spear"
+	result = /obj/item/material/twohanded/spear
+	reqs = list(list(/obj/item/handcuffs/cable = 1),
+				list(/obj/item/stack/rods = 1),
+				list(/obj/item/material/shard = 1,
+					 /obj/item/material/butterflyblade = 1)
+				)
+	parts = list(/obj/item/material/shard = 1,
+				 /obj/item/material/butterflyblade = 1)
+	time = 40
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 // Locate one of the things that set the material type, and update it from the default (glass)
 /datum/crafting_recipe/spear/on_craft_completion(mob/user, atom/result)
-	var/obj/item/weapon/material/M
+	var/obj/item/material/M
 	for(var/path in parts)
-		var/obj/item/weapon/material/N = locate(path) in result
+		var/obj/item/material/N = locate(path) in result
 		if(istype(N, path))
 			if(!istype(M))
 				M = N
@@ -69,6 +96,102 @@
 	if(!istype(M))
 		return
 
-	var/obj/item/weapon/material/twohanded/spear/S = result
+	var/obj/item/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
 	qdel(M)
+<<<<<<< HEAD
+=======
+
+/datum/crafting_recipe/shortbow
+	name = "Shortbow"
+	result = /obj/item/gun/launcher/crossbow/bow
+	reqs = list(list(/obj/item/stack/material/wood = 10),
+		list(/obj/item/stack/material/cloth = 5))
+	time = 120
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/arrow_sandstone
+	name = "Wood arrow (sandstone tip)"
+	result = /obj/item/arrow/wood
+	reqs = list(list(/obj/item/stack/material/wood = 2),
+		list(/obj/item/stack/material/sandstone = 2))
+	time = 20
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/arrow_marble
+	name = "Wood arrow (marble tip)"
+	result = /obj/item/arrow/wood
+	reqs = list(list(/obj/item/stack/material/wood = 2),
+		list(/obj/item/stack/material/marble = 2))
+	time = 20
+	category = CAT_WEAPONRY
+	subcategory = CAT_AMMO
+
+/datum/crafting_recipe/quiver
+	name = "Arrow quiver"
+	result = /obj/item/storage/bag/quiver
+	reqs = list(list(/obj/item/stack/material/leather = 8))
+	time = 60
+	category = CAT_STORAGE
+
+/datum/crafting_recipe/material_armor
+	name = "Material Armor Plate"
+	result = /obj/item/clothing/accessory/material/advanced
+	reqs = list(
+		list(/obj/item/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	parts = list(
+		/obj/item/material/armor_plating/insert = 1
+	)
+	machinery = list(
+		/obj/machinery/r_n_d/protolathe = CRAFTING_MACHINERY_USE
+	)
+	always_available = FALSE
+	time = 80
+	category = CAT_CLOTHING
+
+
+/datum/crafting_recipe/material_armor/chestplate
+	name = "Material armor plate"
+	result = /obj/item/clothing/accessory/material/advanced
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/legguards
+	name = "Material armor arm-guards"
+	result = /obj/item/clothing/accessory/material/advanced/armguards
+	reqs = list(
+		list(/obj/item/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/armguards
+	name = "Material armor leg-guards"
+	result = /obj/item/clothing/accessory/material/advanced/legguards
+	reqs = list(
+		list(/obj/item/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/on_craft_completion(mob/user, obj/item/clothing/result)
+	var/obj/item/material/armor_plating/insert/insert = locate() in result
+	var/material_name = insert?.material?.name
+	if (!material_name)
+		qdel(result)
+		return
+	result.set_material(material_name)
+	qdel(insert)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

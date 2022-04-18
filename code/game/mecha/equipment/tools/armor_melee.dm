@@ -17,7 +17,7 @@
 	if(!chassis) return
 	return "<span style=\"color:[equip_ready?"#0f0":"#f00"];\">*</span>&nbsp;[src.name]"
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/weapon/W, var/mob/living/user, var/inc_damage = null)
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/handle_melee_contact(var/obj/item/W, var/mob/living/user, var/inc_damage = null)
 	if(!action_checks(user))
 		return inc_damage
 	chassis.log_message("Attacked by [W]. Attacker - [user]")
@@ -53,7 +53,7 @@
 	..()
 	return
 
-/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/mecha_parts/mecha_equipment/anticcw_armor_booster/proc/dynattackby(obj/item/W as obj, mob/user as mob)
 	if(!action_checks(user))
 		return chassis.dynattackby(W,user)
 	chassis.log_message("Attacked by [W]. Attacker - [user]")

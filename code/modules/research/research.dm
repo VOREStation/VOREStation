@@ -198,7 +198,7 @@ GLOBAL_LIST_INIT(design_datums, list())
 	id = TECH_PRECURSOR
 	level = 0
 
-/obj/item/weapon/disk/tech_disk
+/obj/item/disk/tech_disk
 	name = "technology disk"
 	desc = "A disk for storing technology data for further research."
 	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
@@ -209,10 +209,14 @@ GLOBAL_LIST_INIT(design_datums, list())
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/tech/stored
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/tech_disk/New()
+=======
+/obj/item/disk/tech_disk/Initialize()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	randpixel_xy()
 
-/obj/item/weapon/disk/design_disk
+/obj/item/disk/design_disk
 	name = "component design disk"
 	desc = "A disk for storing device design data for construction in lathes."
 	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
@@ -223,5 +227,9 @@ GLOBAL_LIST_INIT(design_datums, list())
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/design/blueprint
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/design_disk/New()
+=======
+/obj/item/disk/design_disk/Initialize()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	randpixel_xy()

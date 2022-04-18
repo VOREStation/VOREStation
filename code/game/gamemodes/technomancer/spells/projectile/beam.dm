@@ -4,10 +4,10 @@
 	spell_power_desc = "Increases damage dealt."
 	cost = 100
 	ability_icon_state = "tech_beam"
-	obj_path = /obj/item/weapon/spell/projectile/beam
+	obj_path = /obj/item/spell/projectile/beam
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/projectile/beam
+/obj/item/spell/projectile/beam
 	name = "beam"
 	icon_state = "beam"
 	desc = "Boring, but practical."

@@ -118,7 +118,19 @@
 	var/heavy = FALSE
 	var/z_original
 
+<<<<<<< HEAD
 	var/meteordrop = /obj/item/weapon/ore/iron
+=======
+	// Planetary meteors slope in, and impact only their target turf. They can be hard to see before impact, but have a shadow.
+	var/planetary
+	var/curheight = 0	// How "high" we are
+	// They also have shadows.
+	var/obj/effect/projectile_shadow/shadow
+
+	var/list/chunk_tech = list(TECH_MATERIAL = 5)
+
+	var/meteordrop = /obj/item/ore/iron
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/dropamt = 2
 
 	// How much damage it does to walls, using take_damage().
@@ -200,8 +212,8 @@
 /obj/effect/meteor/ex_act()
 	return
 
-/obj/effect/meteor/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
-	if(istype(W, /obj/item/weapon/pickaxe))
+/obj/effect/meteor/attackby(obj/item/W as obj, mob/user as mob, params)
+	if(istype(W, /obj/item/pickaxe))
 		qdel(src)
 		return
 	..()
@@ -247,7 +259,7 @@
 	pass_flags = PASSTABLE | PASSGRILLE
 	hits = 1
 	hitpwr = 3
-	meteordrop = /obj/item/weapon/ore/glass
+	meteordrop = /obj/item/ore/glass
 	wall_power = 50
 
 // Medium-sized meteors aren't very special and can be stopped easily by r-walls.
@@ -281,7 +293,7 @@
 	icon_state = "flaming"
 	hits = 5
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/phoron
+	meteordrop = /obj/item/ore/phoron
 	wall_power = 100
 
 /obj/effect/meteor/flaming/meteor_effect(var/explode)
@@ -294,7 +306,7 @@
 	name = "glowing meteor"
 	icon_state = "glowing"
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/uranium
+	meteordrop = /obj/item/ore/uranium
 	wall_power = 75
 
 
@@ -310,7 +322,7 @@
 	name = "conducting meteor"
 	icon_state = "glowing_blue"
 	desc = "Hide your floppies!"
-	meteordrop = /obj/item/weapon/ore/osmium
+	meteordrop = /obj/item/ore/osmium
 	dropamt = 3
 	wall_power = 80
 
@@ -331,7 +343,7 @@
 	hits = 30
 	hitpwr = 1
 	heavy = 1
-	meteordrop = /obj/item/weapon/ore/phoron
+	meteordrop = /obj/item/ore/phoron
 	wall_power = 150
 
 /obj/effect/meteor/tunguska/meteor_effect(var/explode)
@@ -343,3 +355,59 @@
 	..()
 	if(prob(20))
 		explosion(src.loc,2,4,6,8)
+<<<<<<< HEAD
+=======
+
+// Meat. It's a- it's- it has- It's a meatyor.
+
+/obj/effect/meteor/meaty
+	name = "meatyor"
+	desc = "A horrific amalgam of compacted flesh. Your skin crawls looking at this."
+	icon_state = "meat"
+
+	wall_power = 70
+	hits = 3
+	hitpwr = 1
+
+	meteordrop = /obj/item/reagent_containers/food/snacks/meat
+	dropamt = 4
+
+// Blob! By default, it spawns a blob weaker than the lethargic by grow-rate, but slightly hardier defense-wise. Like a barnacle, from space!
+/obj/effect/meteor/blobby
+	name = "blobteor"
+	desc = "A pulsing amalgam of gel. It writhes."
+	icon_state = "blob"
+
+	wall_power = 120
+	hits = 5
+	hitpwr = 1
+
+	meteordrop = /obj/structure/blob/core/barnacle
+	dropamt = 1
+
+/*
+ * Meteor core chunks.
+ */
+
+/obj/item/meteor_chunk	// It's not just a pebble.. it's a rock! From space!
+	name = "meteoric iron"
+	desc = "A meteor chunk. Cool."
+	icon = 'icons/obj/meteor.dmi'
+	icon_state = "small"
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_MATERIAL = 5)
+
+/obj/item/meteor_chunk/proc/copy_meteor(var/obj/effect/meteor/Parent)
+	if(!Parent)
+		return FALSE
+
+	name = "[Parent.name]ite chunk"	// The single case this doesn't presently work for meteors would be incredibly funny, "space dustite", and so I leave it.
+	desc = "A recovered piece of a [Parent.name]."
+	icon_state = Parent.icon_state
+
+	adjust_scale(0.7)
+	return TRUE
+
+/obj/item/meteor_chunk/ex_act()	// Meteor tuff
+	return
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

@@ -12,7 +12,7 @@
 	var/opened = 0
 	var/sealed = 0
 
-	var/seal_tool = /obj/item/weapon/weldingtool	//Tool used to seal the closet, defaults to welder
+	var/seal_tool = /obj/item/weldingtool	//Tool used to seal the closet, defaults to welder
 	var/wall_mounted = 0 //never solid (You can always pass over it)
 	var/health = 100
 
@@ -270,7 +270,7 @@
 
 	return
 
-/obj/structure/closet/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		if(opened)
 			if(anchored)
@@ -285,14 +285,14 @@
 		else
 			to_chat(user, "<span class='notice'>You can't reach the anchoring bolts when the door is closed!</span>")
 	else if(opened)
-		if(istype(W, /obj/item/weapon/grab))
-			var/obj/item/weapon/grab/G = W
+		if(istype(W, /obj/item/grab))
+			var/obj/item/grab/G = W
 			MouseDrop_T(G.affecting, user)      //act like they were dragged onto the closet
 			return 0
 		if(istype(W,/obj/item/tk_grab))
 			return 0
-		if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/WT = W
+		if(istype(W, /obj/item/weldingtool))
+			var/obj/item/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
 				if(!WT.isOn())
 					return
@@ -305,8 +305,8 @@
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with \the [WT].</span>", 3, "You hear welding.", 2)
 			qdel(src)
 			return
-		if(istype(W, /obj/item/weapon/storage/laundry_basket) && W.contents.len)
-			var/obj/item/weapon/storage/laundry_basket/LB = W
+		if(istype(W, /obj/item/storage/laundry_basket) && W.contents.len)
+			var/obj/item/storage/laundry_basket/LB = W
 			var/turf/T = get_turf(src)
 			for(var/obj/item/I in LB.contents)
 				LB.remove_from_storage(I, T)
@@ -321,13 +321,13 @@
 		usr.drop_item()
 		if(W)
 			W.forceMove(loc)
-	else if(istype(W, /obj/item/weapon/packageWrap))
+	else if(istype(W, /obj/item/packageWrap))
 		return
 	else if(seal_tool)
 		if(istype(W, seal_tool))
-			var/obj/item/weapon/S = W
-			if(istype(S, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = S
+			var/obj/item/S = W
+			if(istype(S, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = S
 				if(!WT.remove_fuel(0,user))
 					if(!WT.isOn())
 						return

@@ -1,4 +1,4 @@
-/obj/item/weapon/handcuffs
+/obj/item/handcuffs
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
@@ -21,13 +21,13 @@
 	var/use_time = 30
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
 
-/obj/item/weapon/handcuffs/get_worn_icon_state(var/slot_name)
+/obj/item/handcuffs/get_worn_icon_state(var/slot_name)
 	if(slot_name == slot_handcuffed_str)
 		return "handcuff1" //Simple
 
 	return ..()
 
-/obj/item/weapon/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 
 	if(!user.IsAdvancedToolUser())
 		return
@@ -48,19 +48,19 @@
 		else
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
-/obj/item/weapon/handcuffs/proc/can_place(var/mob/target, var/mob/user)
+/obj/item/handcuffs/proc/can_place(var/mob/target, var/mob/user)
 	if(user == target)
 		return 1
 	if(istype(user, /mob/living/silicon/robot))
 		if(user.Adjacent(target))
 			return 1
 	else
-		for(var/obj/item/weapon/grab/G in target.grabbed_by)
+		for(var/obj/item/grab/G in target.grabbed_by)
 			if(G.loc == user && G.state >= GRAB_AGGRESSIVE)
 				return 1
 	return 0
 
-/obj/item/weapon/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/proc/place_handcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
@@ -92,7 +92,7 @@
 	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
 
 	// Apply cuffs.
-	var/obj/item/weapon/handcuffs/cuffs = src
+	var/obj/item/handcuffs/cuffs = src
 	if(dispenser)
 		cuffs = new(get_turf(user))
 	else
@@ -105,7 +105,7 @@
 	target.stop_pulling()
 	return 1
 
-/obj/item/weapon/handcuffs/equipped(var/mob/living/user,var/slot)
+/obj/item/handcuffs/equipped(var/mob/living/user,var/slot)
 	. = ..()
 	if(slot == slot_handcuffed)
 		user.drop_r_hand()
@@ -138,13 +138,13 @@ var/last_chew = 0
 
 	last_chew = world.time
 
-/obj/item/weapon/handcuffs/fuzzy
+/obj/item/handcuffs/fuzzy
 	name = "fuzzy cuffs"
 	icon_state = "fuzzycuff"
 	breakouttime = 100 //VOREstation edit
 	desc = "Use this to keep... 'prisoners' in line."
 
-/obj/item/weapon/handcuffs/cable
+/obj/item/handcuffs/cable
 	name = "cable restraints"
 	desc = "Looks like some cables tied together. Could be used to tie something up."
 	icon_state = "cuff_white"
@@ -153,34 +153,34 @@ var/last_chew = 0
 	cuff_type = "cable restraints"
 	elastic = 1
 
-/obj/item/weapon/handcuffs/cable/red
+/obj/item/handcuffs/cable/red
 	color = "#DD0000"
 
-/obj/item/weapon/handcuffs/cable/yellow
+/obj/item/handcuffs/cable/yellow
 	color = "#DDDD00"
 
-/obj/item/weapon/handcuffs/cable/blue
+/obj/item/handcuffs/cable/blue
 	color = "#0000DD"
 
-/obj/item/weapon/handcuffs/cable/green
+/obj/item/handcuffs/cable/green
 	color = "#00DD00"
 
-/obj/item/weapon/handcuffs/cable/pink
+/obj/item/handcuffs/cable/pink
 	color = "#DD00DD"
 
-/obj/item/weapon/handcuffs/cable/orange
+/obj/item/handcuffs/cable/orange
 	color = "#DD8800"
 
-/obj/item/weapon/handcuffs/cable/cyan
+/obj/item/handcuffs/cable/cyan
 	color = "#00DDDD"
 
-/obj/item/weapon/handcuffs/cable/white
+/obj/item/handcuffs/cable/white
 	color = "#FFFFFF"
 
-/obj/item/weapon/handcuffs/cyborg
+/obj/item/handcuffs/cyborg
 	dispenser = 1
 
-/obj/item/weapon/handcuffs/cable/tape
+/obj/item/handcuffs/cable/tape
 	name = "tape restraints"
 	desc = "DIY!"
 	icon_state = "tape_cross"
@@ -189,11 +189,11 @@ var/last_chew = 0
 	breakouttime = 200
 	cuff_type = "duct tape"
 
-/obj/item/weapon/handcuffs/cable/tape/cyborg
+/obj/item/handcuffs/cable/tape/cyborg
 	dispenser = TRUE
 
 //Legcuffs. Not /really/ handcuffs, but its close enough.
-/obj/item/weapon/handcuffs/legcuffs
+/obj/item/handcuffs/legcuffs
 	name = "legcuffs"
 	desc = "Use this to keep prisoners in line."
 	gender = PLURAL
@@ -208,13 +208,13 @@ var/last_chew = 0
 	elastic = 0
 	cuff_sound = 'sound/weapons/handcuffs.ogg' //This shold work for now.
 
-/obj/item/weapon/handcuffs/legcuffs/get_worn_icon_state(var/slot_name)
+/obj/item/handcuffs/legcuffs/get_worn_icon_state(var/slot_name)
 	if(slot_name == slot_legcuffed_str)
 		return "legcuff1"
 
 	return ..()
 
-/obj/item/weapon/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
+/obj/item/handcuffs/legcuffs/attack(var/mob/living/carbon/C, var/mob/living/user)
 	if(!user.IsAdvancedToolUser())
 		return
 
@@ -234,7 +234,7 @@ var/last_chew = 0
 		else
 			to_chat(user, "<span class='danger'>You need to have a firm grip on [C] before you can put \the [src] on!</span>")
 
-/obj/item/weapon/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/proc/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
@@ -266,7 +266,7 @@ var/last_chew = 0
 	user.visible_message("<span class='danger'>\The [user] has put [cuff_type] on \the [H]!</span>")
 
 	// Apply cuffs.
-	var/obj/item/weapon/handcuffs/legcuffs/lcuffs = src
+	var/obj/item/handcuffs/legcuffs/lcuffs = src
 	if(dispenser)
 		lcuffs = new(get_turf(user))
 	else
@@ -280,7 +280,7 @@ var/last_chew = 0
 			target.hud_used.move_intent.icon_state = "walking"
 	return 1
 
-/obj/item/weapon/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
+/obj/item/handcuffs/legcuffs/equipped(var/mob/living/user,var/slot)
 	. = ..()
 	if(slot == slot_legcuffed)
 		if(user.m_intent != "walk")
@@ -289,7 +289,7 @@ var/last_chew = 0
 				user.hud_used.move_intent.icon_state = "walking"
 
 
-/obj/item/weapon/handcuffs/legcuffs/bola
+/obj/item/handcuffs/legcuffs/bola
 	name = "bola"
 	desc = "Keeps prey in line."
 	elastic = 1
@@ -297,15 +297,20 @@ var/last_chew = 0
 	breakouttime = 30
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
 
-/obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
+<<<<<<< HEAD
 /obj/item/weapon/handcuffs/legcuffs/bola/dropped()
 	visible_message("<b>\The [src]</b> falls apart!")
+=======
+/obj/item/handcuffs/legcuffs/bola/dropped()
+	visible_message("<span class='notice'>\The [src] falls apart!</span>")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	qdel(src)
 
-/obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
+/obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
 	playsound(src, cuff_sound, 30, 1, -2)
 
 	var/mob/living/carbon/human/H = target
@@ -321,7 +326,7 @@ var/last_chew = 0
 	H.visible_message("<span class='danger'>\The [H] has been snared by \the [src]!</span>")
 
 	// Apply cuffs.
-	var/obj/item/weapon/handcuffs/legcuffs/lcuffs = src
+	var/obj/item/handcuffs/legcuffs/lcuffs = src
 	lcuffs.loc = target
 	target.legcuffed = lcuffs
 	target.update_inv_legcuffed()

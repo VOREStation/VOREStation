@@ -190,8 +190,8 @@
 
 /mob/living/carbon/human/get_jetpack()
 	if(back)
-		var/obj/item/weapon/rig/rig = get_rig()
-		if(istype(back, /obj/item/weapon/tank/jetpack))
+		var/obj/item/rig/rig = get_rig()
+		if(istype(back, /obj/item/tank/jetpack))
 			return back
 		else if(istype(rig))
 			for(var/obj/item/rig_module/maneuvering_jets/module in rig.installed_modules)
@@ -205,7 +205,7 @@
 		return 1
 
 	//Do we have a working jetpack?
-	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
 
 	if(thrust)
 		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.do_thrust(0.01, src)))
@@ -223,7 +223,7 @@
 	if(species.flags & NO_SLIP)
 		return 0
 
-	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
+	var/obj/item/tank/jetpack/thrust = get_jetpack()
 	if(thrust?.can_thrust(0.01))
 		return 0
 

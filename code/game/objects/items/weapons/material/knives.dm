@@ -1,4 +1,4 @@
-/obj/item/weapon/material/butterfly
+/obj/item/material/butterfly
 	name = "butterfly knife"
 	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
 	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
@@ -13,7 +13,7 @@
 	drop_sound = 'sound/items/drop/knife.ogg'
 	pickup_sound = 'sound/items/pickup/knife.ogg'
 
-/obj/item/weapon/material/butterfly/update_force()
+/obj/item/material/butterfly/update_force()
 	if(active)
 		edge = TRUE
 		sharp = TRUE
@@ -32,19 +32,19 @@
 		w_class = initial(w_class)
 		attack_verb = initial(attack_verb)
 
-/obj/item/weapon/material/butterfly/switchblade
+/obj/item/material/butterfly/switchblade
 	name = "switchblade"
 	desc = "A classic switchblade with gold engraving. Just holding it makes you feel like a gangster."
 	icon_state = "switchblade"
 
-/obj/item/weapon/material/butterfly/boxcutter
+/obj/item/material/butterfly/boxcutter
 	name = "box cutter"
 	desc = "A thin, inexpensive razor-blade knife designed to open cardboard boxes."
 	icon_state = "boxcutter"
 	force_divisor = 0.1 // 6 when wielded with hardness 60 (steel)
 	thrown_force_divisor = 0.2 // 4 when thrown with weight 20 (steel)
 
-/obj/item/weapon/material/butterfly/attack_self(mob/user)
+/obj/item/material/butterfly/attack_self(mob/user)
 	active = !active
 	update_force()
 
@@ -59,7 +59,7 @@
 /*
  * Kitchen knives
  */
-/obj/item/weapon/material/knife
+/obj/item/material/knife
 	name = "kitchen knife"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
@@ -74,7 +74,7 @@
 	drop_sound = 'sound/items/drop/knife.ogg'
 
 // These no longer inherit from hatchets.
-/obj/item/weapon/material/knife/tacknife
+/obj/item/material/knife/tacknife
 	name = "tactical knife"
 	desc = "You'd be killing loads of people if this was Medal of Valor: Heroes of Space."
 	icon = 'icons/obj/weapons.dmi'
@@ -84,7 +84,7 @@
 	attack_verb = list("stabbed", "chopped", "cut")
 	applies_material_colour = 1
 
-/obj/item/weapon/material/knife/tacknife/combatknife
+/obj/item/material/knife/tacknife/combatknife
 	name = "combat knife"
 	desc = "If only you had a boot to put it in."
 	icon = 'icons/obj/weapons.dmi'
@@ -97,7 +97,7 @@
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.
-/obj/item/weapon/material/knife/tacknife/boot
+/obj/item/material/knife/tacknife/boot
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
@@ -106,28 +106,40 @@
 	force_divisor = 0.15
 	applies_material_colour = 0
 
-/obj/item/weapon/material/knife/hook
+/obj/item/material/knife/hook
 	name = "meat hook"
 	desc = "A sharp, metal hook what sticks into things."
 	icon_state = "hook_knife"
 
-/obj/item/weapon/material/knife/ritual
+/obj/item/material/knife/ritual
 	name = "ritual knife"
 	desc = "The unearthly energies that once powered this blade are now dormant."
 	icon = 'icons/obj/wizard.dmi'
 	icon_state = "render"
 	applies_material_colour = 0
 
+<<<<<<< HEAD
 /obj/item/weapon/material/knife/table
+=======
+/obj/item/material/knife/butch
+	name = "butcher's cleaver"
+	icon_state = "butch"
+	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
+	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
+	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+
+/obj/item/material/knife/table
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "table knife"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife_table"
 	sharp = FALSE // blunted tip
 	force_divisor = 0.1
 
-/obj/item/weapon/material/knife/table/plastic
+/obj/item/material/knife/table/plastic
 	default_material = "plastic"
 
+<<<<<<< HEAD
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
 	icon_state = "cleaver"
@@ -136,6 +148,9 @@
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/material/knife/machete
+=======
+/obj/item/material/knife/machete
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "machete"
 	desc = "A sharp machete often found in survival kits."
 	icon_state = "machete"
@@ -145,12 +160,12 @@
 	slot_flags = SLOT_BELT
 	default_material = "plasteel" //VOREStation Edit
 
-/obj/item/weapon/material/knife/machete/cyborg
+/obj/item/material/knife/machete/cyborg
 	name = "integrated machete"
 	desc = "A sharp machete often found attached to robots."
 	unbreakable = TRUE
 
-/obj/item/weapon/material/knife/tacknife/survival
+/obj/item/material/knife/tacknife/survival
 	name = "survival knife"
 	desc = "A hunting grade survival knife."
 	icon = 'icons/obj/kitchen.dmi'

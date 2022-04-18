@@ -1,0 +1,41 @@
+"a" = (/turf/simulated/wall,/area/template_noop)
+"d" = (/obj/random/maintenance,/turf/simulated/floor/wood,/area/template_noop)
+"g" = (/obj/machinery/door/airlock{name = "Construction Area"},/turf/simulated/floor/tiled/steel_grid,/area/template_noop)
+"h" = (/obj/item/camera_assembly{pixel_y = -7},/obj/structure/sign/poster{pixel_y = -32; poster_decl = /decl/poster/bay_28},/turf/simulated/floor/plating,/area/template_noop)
+"i" = (/obj/structure/closet/crate/nanothreads,/obj/item/pen/crayon/marker/mime,/obj/item/clothing/shoes/mime,/obj/item/clothing/head/soft/mime,/obj/item/clothing/under/mime,/obj/item/clothing/mask/gas/mime,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/turf/simulated/floor/wood,/area/template_noop)
+"m" = (/obj/structure/table/bench,/obj/item/stack/tile/carpet,/turf/simulated/floor/wood,/area/template_noop)
+"p" = (/obj/random/junk,/turf/simulated/floor/wood,/area/template_noop)
+"q" = (/obj/item/bikehorn,/obj/effect/floor_decal/spline/plain,/obj/structure/curtain{color = "#B00000"},/turf/simulated/floor/wood,/area/template_noop)
+"r" = (/obj/structure/closet/crate/nanothreads,/obj/item/clothing/shoes/clown_shoes,/obj/item/storage/backpack/clown,/obj/item/clothing/under/rank/clown,/obj/item/clothing/mask/gas/clown_hat,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/turf/simulated/floor/wood,/area/template_noop)
+"t" = (/obj/effect/floor_decal/spline/plain,/obj/structure/curtain{color = "#B00000"},/turf/simulated/floor/wood,/area/template_noop)
+"v" = (/obj/item/frame/light{dir = 4},/turf/simulated/floor/plating,/area/template_noop)
+"x" = (/obj/random/obstruction,/turf/simulated/floor/plating,/area/template_noop)
+"y" = (/obj/item/instrument/violin,/turf/simulated/floor/wood,/area/template_noop)
+"z" = (/obj/item/stack/tile/carpet,/obj/structure/sign/poster{pixel_y = -32; poster_decl = /decl/poster/vore_96},/turf/simulated/floor/wood,/area/template_noop)
+"A" = (/turf/simulated/floor/plating,/area/template_noop)
+"B" = (/obj/machinery/light,/turf/simulated/floor/wood,/area/template_noop)
+"F" = (/obj/structure/table/bench,/turf/simulated/floor/plating,/area/template_noop)
+"G" = (/obj/item/frame/apc,/obj/structure/sign/poster{pixel_y = -32; poster_decl = /decl/poster/bay_6},/turf/simulated/floor/plating,/area/template_noop)
+"H" = (/obj/structure/girder,/turf/simulated/floor/plating,/area/template_noop)
+"L" = (/obj/machinery/vending/snix{dir = 4},/turf/simulated/floor/wood,/area/template_noop)
+"O" = (/obj/effect/floor_decal/spline/plain,/obj/structure/curtain{color = "#B00000"},/obj/effect/graffitispawner{color = "#A8E61D"; color_secondary = "#61840F"; graffiti_type = "face"},/turf/simulated/floor/wood,/area/template_noop)
+"P" = (/obj/item/stack/tile/wood{amount = 12},/turf/simulated/floor/plating,/area/template_noop)
+"Q" = (/turf/template_noop,/area/template_noop)
+"U" = (/obj/effect/decal/cleanable/fruit_smudge{color = "#D10000"},/obj/machinery/light_construct{dir = 1},/turf/simulated/floor/wood,/area/template_noop)
+"V" = (/obj/structure/table/bench,/obj/random/junk,/turf/simulated/floor/plating,/area/template_noop)
+"X" = (/turf/simulated/floor/wood,/area/template_noop)
+"Y" = (/obj/machinery/light{dir = 8},/turf/simulated/floor/wood,/area/template_noop)
+"Z" = (/obj/structure/table/bench,/turf/simulated/floor/wood,/area/template_noop)
+
+(1,1,1) = {"
+aaaaaaaaa
+HXXXUXXra
+aXyXXXXix
+aOttttqaa
+aYXXXdXaQ
+aZZZmFvAQ
+aXpXPAAaQ
+aZZZFVAaQ
+aLzBAhGaQ
+aaaagaaaQ
+"}

@@ -1,15 +1,21 @@
 // SEE code/modules/materials/materials.dm FOR DETAILS ON INHERITED DATUM.
 // This class of weapons takes force and appearance data from a material datum.
 // They are also fragile based on material data and many can break/smash apart.
-/obj/item/weapon/material
+/obj/item/material
 	health = 10
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	gender = NEUTER
 	throw_speed = 3
 	throw_range = 7
 	w_class = ITEMSIZE_NORMAL
+<<<<<<< HEAD
 	sharp = FALSE
 	edge = FALSE
+=======
+	sharp = 0
+	edge = 0
+	icon = 'icons/obj/weapons.dmi'
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
@@ -27,8 +33,13 @@
 	var/datum/material/material
 	var/drops_debris = 1
 
+<<<<<<< HEAD
 /obj/item/weapon/material/New(var/newloc, var/material_key)
 	..(newloc)
+=======
+/obj/item/material/Initialize(var/ml, var/material_key)
+	. = ..(ml)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!material_key)
 		material_key = default_material
 	set_material(material_key)
@@ -45,10 +56,10 @@
 	if(!(material.conductive))
 		src.flags |= NOCONDUCT
 
-/obj/item/weapon/material/get_material()
+/obj/item/material/get_material()
 	return material
 
-/obj/item/weapon/material/proc/update_force()
+/obj/item/material/proc/update_force()
 	if(edge || sharp)
 		force = material.get_edge_damage()
 	else
@@ -60,7 +71,7 @@
 	//spawn(1)
 	//	to_world("[src] has force [force] and throwforce [throwforce] when made from default material [material.name]")
 
-/obj/item/weapon/material/proc/set_material(var/new_material)
+/obj/item/material/proc/set_material(var/new_material)
 	material = get_material_by_name(new_material)
 	if(!material)
 		qdel(src)
@@ -73,11 +84,11 @@
 			START_PROCESSING(SSobj, src)
 		update_force()
 
-/obj/item/weapon/material/Destroy()
+/obj/item/material/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
-/obj/item/weapon/material/apply_hit_effect()
+/obj/item/material/apply_hit_effect()
 	..()
 	if(!unbreakable)
 		if(material.is_brittle())
@@ -86,16 +97,16 @@
 			health--
 		check_health()
 
-/obj/item/weapon/material/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/whetstone))
-		var/obj/item/weapon/whetstone/whet = W
+/obj/item/material/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/whetstone))
+		var/obj/item/whetstone/whet = W
 		repair(whet.repair_amount, whet.repair_time, user)
-	if(istype(W, /obj/item/weapon/material/sharpeningkit))
-		var/obj/item/weapon/material/sharpeningkit/SK = W
+	if(istype(W, /obj/item/material/sharpeningkit))
+		var/obj/item/material/sharpeningkit/SK = W
 		repair(SK.repair_amount, SK.repair_time, user)
 	..()
 
-/obj/item/weapon/material/proc/check_health(var/consumed)
+/obj/item/material/proc/check_health(var/consumed)
 	if(health<=0)
 		health = 0
 
@@ -104,7 +115,7 @@
 		else if(!dulled && can_dull)
 			dull()
 
-/obj/item/weapon/material/proc/shatter(var/consumed)
+/obj/item/material/proc/shatter(var/consumed)
 	var/turf/T = get_turf(src)
 	T.visible_message("<span class='danger'>\The [src] [material.destruction_desc]!</span>")
 	if(istype(loc, /mob/living))
@@ -114,7 +125,7 @@
 	if(!consumed && drops_debris) material.place_shard(T)
 	qdel(src)
 
-/obj/item/weapon/material/proc/dull()
+/obj/item/material/proc/dull()
 	var/turf/T = get_turf(src)
 	T.visible_message("<span class='danger'>\The [src] goes dull!</span>")
 	playsound(src, "shatter", 70, 1)
@@ -123,7 +134,7 @@
 		sharp = FALSE
 		edge = FALSE
 
-/obj/item/weapon/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
+/obj/item/material/proc/repair(var/repair_amount, var/repair_time, mob/living/user)
 	if(!fragile)
 		if(health < initial(health))
 			user.visible_message("[user] begins repairing \the [src].", "You begin repairing \the [src].")
@@ -139,7 +150,7 @@
 		to_chat(user, "<span class='warning'>You can't repair \the [src].</span>")
 		return
 
-/obj/item/weapon/material/proc/sharpen(var/material, var/sharpen_time, var/kit, mob/living/M)
+/obj/item/material/proc/sharpen(var/material, var/sharpen_time, var/kit, mob/living/M)
 	if(!fragile)
 		if(health < initial(health))
 			to_chat(M, "You should repair [src] first. Try using [kit] on it.")
@@ -155,7 +166,7 @@
 
 /*
 Commenting this out pending rebalancing of radiation based on small objects.
-/obj/item/weapon/material/process()
+/obj/item/material/process()
 	if(!material.radioactivity)
 		return
 	for(var/mob/living/L in range(1,src))
@@ -164,17 +175,17 @@ Commenting this out pending rebalancing of radiation based on small objects.
 
 /*
 // Commenting this out while fires are so spectacularly lethal, as I can't seem to get this balanced appropriately.
-/obj/item/weapon/material/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+/obj/item/material/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	TemperatureAct(exposed_temperature)
 
 // This might need adjustment. Will work that out later.
-/obj/item/weapon/material/proc/TemperatureAct(temperature)
+/obj/item/material/proc/TemperatureAct(temperature)
 	health -= material.combustion_effect(get_turf(src), temperature, 0.1)
 	check_health(1)
 
-/obj/item/weapon/material/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+/obj/item/material/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(material.ignition_point && WT.remove_fuel(0, user))
 			TemperatureAct(150)
 	else

@@ -59,11 +59,11 @@
 	else
 		to_chat(user, "<span class='notice'>\The [src] does not respond to your touch.</span>")
 
-/obj/machinery/door/blast/puzzle/attackby(obj/item/weapon/C as obj, mob/user as mob)
-	if(istype(C, /obj/item/weapon))
+/obj/machinery/door/blast/puzzle/attackby(obj/item/C as obj, mob/user as mob)
+	if(istype(C))
 		if(C.pry == 1 && (user.a_intent != I_HURT || (stat & BROKEN)))
-			if(istype(C,/obj/item/weapon/material/twohanded/fireaxe))
-				var/obj/item/weapon/material/twohanded/fireaxe/F = C
+			if(istype(C,/obj/item/material/twohanded/fireaxe))
+				var/obj/item/material/twohanded/fireaxe/F = C
 				if(!F.wielded)
 					to_chat(user, "<span class='warning'>You need to be wielding \the [F] to do that.</span>")
 					return
@@ -76,13 +76,13 @@
 			return
 
 		else if(src.density && (user.a_intent == I_HURT))
-			var/obj/item/weapon/W = C
+			var/obj/item/W = C
 			user.setClickCooldown(user.get_attack_speed(W))
 			if(W.damtype == BRUTE || W.damtype == BURN)
 				user.do_attack_animation(src)
 				user.visible_message("<span class='danger'>\The [user] hits \the [src] with \the [W] with no visible effect.</span>")
 
-		else if(istype(C, /obj/item/weapon/plastique))
+		else if(istype(C, /obj/item/plastique))
 			to_chat(user, "<span class='danger'>On contacting \the [src], a flash of light envelops \the [C] as it is turned to ash. Oh.</span>")
 			qdel(C)
 			return 0

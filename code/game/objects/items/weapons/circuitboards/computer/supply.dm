@@ -2,27 +2,27 @@
 #error T_BOARD macro is not defined but we need it!
 #endif
 
-/obj/item/weapon/circuitboard/supplycomp
+/obj/item/circuitboard/supplycomp
 	name = T_BOARD("supply ordering console")
 	build_path = /obj/machinery/computer/supplycomp
 	origin_tech = list(TECH_DATA = 2)
 	var/contraband_enabled = 0
 
-/obj/item/weapon/circuitboard/supplycomp/control
+/obj/item/circuitboard/supplycomp/control
 	name = T_BOARD("supply ordering console")
 	build_path = /obj/machinery/computer/supplycomp/control
 	origin_tech = list(TECH_DATA = 3)
 
-/obj/item/weapon/circuitboard/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
+/obj/item/circuitboard/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		SC.can_order_contraband = contraband_enabled
 
-/obj/item/weapon/circuitboard/supplycomp/deconstruct(var/obj/machinery/computer/supplycomp/SC)
+/obj/item/circuitboard/supplycomp/deconstruct(var/obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		contraband_enabled = SC.can_order_contraband
 
-/obj/item/weapon/circuitboard/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/device/multitool))
+/obj/item/circuitboard/supplycomp/attackby(obj/item/I as obj, mob/user as mob)
+	if(istype(I,/obj/item/multitool))
 		var/catastasis = src.contraband_enabled
 		var/opposite_catastasis
 		if(catastasis)

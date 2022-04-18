@@ -9,13 +9,13 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 
 // Premade AI shell, for roundstart shells.
 /mob/living/silicon/robot/ai_shell/Initialize()
-	mmi = new /obj/item/device/mmi/inert/ai_remote(src)
+	mmi = new /obj/item/mmi/inert/ai_remote(src)
 	post_mmi_setup()
 	return ..()
 
 // Call after inserting or instantiating an MMI.
 /mob/living/silicon/robot/proc/post_mmi_setup()
-	if(istype(mmi, /obj/item/device/mmi/inert/ai_remote))
+	if(istype(mmi, /obj/item/mmi/inert/ai_remote))
 		make_shell()
 		playsound(src, 'sound/machines/twobeep.ogg', 50, 0)
 	else
@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(available_ai_shells)
 	shell = TRUE
 	braintype = "AI Shell"
 	SetName("[modtype] AI Shell [num2text(ident)]")
-	rbPDA = new /obj/item/device/pda/ai/shell(src)
+	rbPDA = new /obj/item/pda/ai/shell(src)
 	setup_PDA()
 	GLOB.available_ai_shells |= src
 	if(!QDELETED(camera))

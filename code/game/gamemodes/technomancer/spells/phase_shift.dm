@@ -3,11 +3,11 @@
 	desc = "Hides you in the safest possible place, where no harm can come to you.  Unfortunately, a prolonged stay inside the \
 	rift you create will afflict you with instability."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/phase_shift
+	obj_path = /obj/item/spell/phase_shift
 	ability_icon_state = "tech_phaseshift"
 	category = DEFENSIVE_SPELLS
 
-/obj/item/weapon/spell/phase_shift
+/obj/item/spell/phase_shift
 	name = "phase shift"
 	desc = "Allows you to dodge your untimely fate by shifting your location somewhere else, so long as you can survive inside the \
 	rift."
@@ -15,8 +15,13 @@
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/phase_shift/New()
 	..()
+=======
+/obj/item/spell/phase_shift/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#FA58F4")
 
 /obj/effect/phase_shift
@@ -51,7 +56,7 @@
 	user.forceMove(get_turf(src))
 	qdel(src)
 
-/obj/item/weapon/spell/phase_shift/on_use_cast(mob/user)
+/obj/item/spell/phase_shift/on_use_cast(mob/user)
 	if(isturf(user.loc)) //Check if we're not already in a rift.
 		if(pay_energy(2000))
 			var/obj/effect/phase_shift/PS = new(get_turf(user))

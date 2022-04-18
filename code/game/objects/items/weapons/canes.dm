@@ -1,4 +1,4 @@
-/obj/item/weapon/cane
+/obj/item/cane
 	name = "cane"
 	desc = "A cane used by a true gentleman."
 	icon = 'icons/obj/weapons.dmi'
@@ -13,23 +13,23 @@
 	matter = list(MAT_STEEL = 50)
 	attack_verb = list("bludgeoned", "whacked", "disciplined", "thrashed")
 
-/obj/item/weapon/cane/crutch
+/obj/item/cane/crutch
 	name ="crutch"
 	desc = "A long stick with a crosspiece at the top, used to help with walking."
 	icon_state = "crutch"
 	item_state = "crutch"
 
-/obj/item/weapon/cane/concealed
+/obj/item/cane/concealed
 	var/concealed_blade
 
-/obj/item/weapon/cane/concealed/Initialize()
+/obj/item/cane/concealed/Initialize()
 	. = ..()
-	var/obj/item/weapon/material/butterfly/switchblade/temp_blade = new(src)
+	var/obj/item/material/butterfly/switchblade/temp_blade = new(src)
 	concealed_blade = temp_blade
 	temp_blade.active = TRUE
 	temp_blade.update_force()
 
-/obj/item/weapon/cane/concealed/attack_self(var/mob/user)
+/obj/item/cane/concealed/attack_self(var/mob/user)
 	var/datum/gender/T = gender_datums[user.get_visible_gender()]
 	if(concealed_blade)
 		user.visible_message("<span class='warning'>[user] has unsheathed \a [concealed_blade] from [T.his] [src]!</span>", "You unsheathe \the [concealed_blade] from \the [src].")
@@ -44,7 +44,7 @@
 	else
 		..()
 
-/obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/butterfly/W, var/mob/user)
+/obj/item/cane/concealed/attackby(var/obj/item/material/butterfly/W, var/mob/user)
 	if(!src.concealed_blade && istype(W))
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
 		user.visible_message("<span class='warning'>[user] has sheathed \a [W] into [T.his] [src]!</span>", "You sheathe \the [W] into \the [src].")
@@ -56,7 +56,7 @@
 	else
 		..()
 
-/obj/item/weapon/cane/concealed/update_icon()
+/obj/item/cane/concealed/update_icon()
 	if(concealed_blade)
 		name = initial(name)
 		icon_state = initial(icon_state)
@@ -66,12 +66,12 @@
 		icon_state = "nullrod"
 		item_state = "foldcane"
 
-/obj/item/weapon/cane/white
+/obj/item/cane/white
 	name = "white cane"
 	desc = "A white cane. They are commonly used by the blind or visually impaired as a mobility tool or as a courtesy to others."
 	icon_state = "whitecane"
 
-/obj/item/weapon/cane/white/attack(mob/M as mob, mob/user as mob)
+/obj/item/cane/white/attack(mob/M as mob, mob/user as mob)
     if(user.a_intent == I_HELP)
         user.visible_message("<span class='notice'>\The [user] has lightly tapped [M] on the ankle with their white cane!</span>")
         return TRUE
@@ -81,7 +81,7 @@
 
 //Code for Telescopic White Cane writen by Gozulio
 
-/obj/item/weapon/cane/white/collapsible
+/obj/item/cane/white/collapsible
 	name = "telescopic white cane"
 	desc = "A telescopic white cane. They are commonly used by the blind or visually impaired as a mobility tool or as a courtesy to others."
 	icon_state = "whitecane1in"
@@ -94,7 +94,7 @@
 	force = 3
 	var/on = 0
 
-/obj/item/weapon/cane/white/collapsible/attack_self(mob/user as mob)
+/obj/item/cane/white/collapsible/attack_self(mob/user as mob)
 	on = !on
 	if(on)
 		user.visible_message("<b>\The [user]</b> extends the white cane.",\

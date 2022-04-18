@@ -384,10 +384,22 @@
 
 		// I really don't like the fact that I have to do this, but what the hell else *can* I do to make all of these
 		// random special items work?
-		if(ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/weapon/reagent_containers/food/drinks/glass2/fitnessflask))
-			var/obj/item/weapon/reagent_containers/food/drinks/glass2/G = item
+		if(ispath(item, /obj/item/reagent_containers/food/drinks/glass2) && !ispath(item, /obj/item/reagent_containers/food/drinks/glass2/fitnessflask))
+			var/obj/item/reagent_containers/food/drinks/glass2/G = item
 			icon_state = initial(G.base_icon)
+<<<<<<< HEAD
 		if(ispath(item, /obj/item/weapon/reagent_containers/hypospray/autoinjector))
+=======
+		if(ispath(item, /obj/item/clothing/suit))
+			var/obj/item/clothing/suit/U = item
+			if(initial(U.index))
+				icon_file = "icons/obj/clothing/suits_[initial(U.index)].dmi"
+		if(ispath(item, /obj/item/clothing/under))
+			var/obj/item/clothing/under/U = item
+			if(initial(U.index))
+				icon_file = "icons/obj/clothing/uniforms_[initial(U.index)].dmi"
+		if(ispath(item, /obj/item/reagent_containers/hypospray/autoinjector))
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			icon_state += "0"
 
 		var/icon/I

@@ -44,7 +44,7 @@
 /datum/frame/frame_types/conveyor
 	name = "Conveyor"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/weapon/circuitboard/conveyor
+	circuit = /obj/item/circuitboard/conveyor
 
 /datum/frame/frame_types/photocopier
 	name = "Photocopier"
@@ -69,7 +69,7 @@
 /datum/frame/frame_types/mass_driver
 	name = "Mass Driver"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/weapon/circuitboard/mass_driver
+	circuit = /obj/item/circuitboard/mass_driver
 
 /datum/frame/frame_types/holopad
 	name = "Holopad"
@@ -114,19 +114,19 @@
 /datum/frame/frame_types/recharger
 	name = "Recharger"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/weapon/circuitboard/recharger
+	circuit = /obj/item/circuitboard/recharger
 	frame_size = 3
 
 /datum/frame/frame_types/cell_charger
 	name = "Heavy-Duty Cell Charger"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/weapon/circuitboard/cell_charger
+	circuit = /obj/item/circuitboard/cell_charger
 	frame_size = 3
 
 /datum/frame/frame_types/grinder
 	name = "Grinder"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/weapon/circuitboard/grinder
+	circuit = /obj/item/circuitboard/grinder
 	frame_size = 3
 
 /datum/frame/frame_types/reagent_distillery
@@ -167,7 +167,7 @@
 /datum/frame/frame_types/wall_charger
 	name = "Wall Charger"
 	frame_class = FRAME_CLASS_MACHINE
-	circuit = /obj/item/weapon/circuitboard/recharger/wrecharger
+	circuit = /obj/item/circuitboard/recharger/wrecharger
 	frame_size = 3
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 32
@@ -237,7 +237,7 @@
 	icon = 'icons/obj/stock_parts.dmi'
 	icon_state = "machine_0"
 	var/state = FRAME_PLACED
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/circuitboard/circuit = null
 	var/need_circuit = TRUE
 	var/datum/frame/frame_types/frame_type = new /datum/frame/frame_types/machine
 
@@ -331,9 +331,9 @@
 				to_chat(user, "<span class='notice'>You unfasten the frame.</span>")
 				anchored = FALSE
 
-	else if(istype(P, /obj/item/weapon/weldingtool))
+	else if(istype(P, /obj/item/weldingtool))
 		if(state == FRAME_PLACED)
-			var/obj/item/weapon/weldingtool/WT = P
+			var/obj/item/weldingtool/WT = P
 			if(WT.remove_fuel(0, user))
 				playsound(src, P.usesound, 50, 1)
 				if(do_after(user, 20 * P.toolspeed))
@@ -346,9 +346,9 @@
 				to_chat(user, "The welding tool must be on to complete this task.")
 				return
 
-	else if(istype(P, /obj/item/weapon/circuitboard) && need_circuit && !circuit)
+	else if(istype(P, /obj/item/circuitboard) && need_circuit && !circuit)
 		if(state == FRAME_PLACED && anchored)
-			var/obj/item/weapon/circuitboard/B = P
+			var/obj/item/circuitboard/B = P
 			var/datum/frame/frame_types/board_type = B.board_type
 			if(board_type.name == frame_type.name)
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
@@ -478,7 +478,7 @@
 					to_chat(user, "<span class='notice'>There are no components to remove.</span>")
 				else
 					to_chat(user, "<span class='notice'>You remove the components.</span>")
-					for(var/obj/item/weapon/W in components)
+					for(var/obj/item/W in components)
 						W.forceMove(src.loc)
 					check_components()
 					update_desc()
@@ -549,7 +549,7 @@
 					to_chat(user, "<span class='notice'>You remove the cables.</span>")
 				else
 					to_chat(user, "<span class='notice'>You remove the cables and components.</span>")
-					for(var/obj/item/weapon/W in components)
+					for(var/obj/item/W in components)
 						W.forceMove(src.loc)
 					check_components()
 					update_desc()

@@ -160,19 +160,22 @@
 //
 // Bluespace flare landmark beacon
 //
-/obj/item/device/spaceflare
+/obj/item/spaceflare
 	name = "bluespace flare"
 	desc = "Burst transmitter used to broadcast all needed information for shuttle navigation systems. Has a flare attached for marking the spot where you probably shouldn't be standing."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "bluflare"
 	light_color = "#3728ff"
 	var/active
 
-/obj/item/device/spaceflare/attack_self(var/mob/user)
+/obj/item/spaceflare/attack_self(var/mob/user)
 	if(!active)
 		visible_message("<span class='notice'>[user] pulls the cord, activating the [src].</span>")
 		activate()
 
-/obj/item/device/spaceflare/proc/activate()
+/obj/item/spaceflare/proc/activate()
 	if(active)
 		return
 	var/turf/T = get_turf(src)
@@ -188,7 +191,7 @@
 	T.hotspot_expose(1500, 5)
 	update_icon()
 
-/obj/item/device/spaceflare/update_icon()
+/obj/item/spaceflare/update_icon()
 	. = ..()
 	if(active)
 		icon_state = "bluflare_on"

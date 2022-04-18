@@ -53,8 +53,8 @@
 	var/image/overlay_dumping
 	var/image/overlay_connected
 
-	var/obj/item/weapon/reagent_containers/glass/InputBeaker
-	var/obj/item/weapon/reagent_containers/glass/OutputBeaker
+	var/obj/item/reagent_containers/glass/InputBeaker
+	var/obj/item/reagent_containers/glass/OutputBeaker
 
 // A multiplier for the production amount. This should really only ever be lower than one, otherwise you end up with duping.
 	var/efficiency = 1
@@ -73,7 +73,7 @@
 
 /obj/machinery/portable_atmospherics/powered/reagent_distillery/RefreshParts()
 	var/total_laser_rating = 0
-	for(var/obj/item/weapon/stock_parts/micro_laser/ML in component_parts)
+	for(var/obj/item/stock_parts/micro_laser/ML in component_parts)
 		total_laser_rating += ML.rating
 
 	max_temp = initial(max_temp) + (50 * (total_laser_rating - 1))
@@ -209,9 +209,9 @@
 
 	update_icon()
 
-/obj/machinery/portable_atmospherics/powered/reagent_distillery/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/portable_atmospherics/powered/reagent_distillery/attackby(obj/item/W as obj, mob/user as mob)
 	var/list/options = list()
-	if(istype(W, /obj/item/weapon/reagent_containers/glass))
+	if(istype(W, /obj/item/reagent_containers/glass))
 		if(!InputBeaker)
 			options["install input"] = radial_install_input
 		if(!OutputBeaker)

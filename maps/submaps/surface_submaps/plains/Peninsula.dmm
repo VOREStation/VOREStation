@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -37,6 +38,18 @@
 /obj/structure/flora/tree/sif,
 /turf/template_noop,
 /area/template_noop)
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Peninsula)
+"c" = (/turf/simulated/floor/outdoors/rocks,/area/submap/Peninsula)
+"d" = (/turf/simulated/floor/water,/area/submap/Peninsula)
+"e" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Peninsula)
+"f" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Peninsula)
+"g" = (/obj/structure/table/woodentable,/obj/item/flashlight,/turf/template_noop,/area/submap/Peninsula)
+"h" = (/obj/structure/table/woodentable,/obj/item/cell/device,/obj/item/cell/device,/obj/random/tech_supply/anom,/turf/template_noop,/area/submap/Peninsula)
+"i" = (/obj/structure/bonfire,/turf/template_noop,/area/submap/Peninsula)
+"j" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/template_noop)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 a

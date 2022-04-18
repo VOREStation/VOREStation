@@ -67,7 +67,7 @@
 	return null
 
 /obj/machinery/atmospherics/pipe/tank/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/device/pipe_painter))
+	if(istype(W, /obj/item/pipe_painter))
 		return
 
 /obj/machinery/atmospherics/pipe/tank/air

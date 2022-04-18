@@ -1,18 +1,24 @@
-/obj/item/device/transfer_valve
+/obj/item/transfer_valve
 	name = "tank transfer valve"
 	desc = "Regulates the transfer of air between two tanks"
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "valve_1"
+<<<<<<< HEAD
 	var/obj/item/weapon/tank/tank_one
 	var/obj/item/weapon/tank/tank_two
 	var/obj/item/device/assembly/attached_device
+=======
+	var/obj/item/tank/tank_one
+	var/obj/item/tank/tank_two
+	var/obj/item/attached_device
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/mob/attacher = null
 	var/valve_open = 0
 	var/toggle = 1
 
-/obj/item/device/transfer_valve/attackby(obj/item/item, mob/user)
+/obj/item/transfer_valve/attackby(obj/item/item, mob/user)
 	var/turf/location = get_turf(src) // For admin logs
-	if(istype(item, /obj/item/weapon/tank))
+	if(istype(item, /obj/item/tank))
 		if(tank_one && tank_two)
 			to_chat(user, "<span class='warning'>There are already two tanks attached, remove one first.</span>")
 			return
@@ -34,7 +40,7 @@
 		SStgui.update_uis(src) // update all UIs attached to src
 //TODO: Have this take an assemblyholder
 	else if(isassembly(item))
-		var/obj/item/device/assembly/A = item
+		var/obj/item/assembly/A = item
 		if(A.secured)
 			to_chat(user, "<span class='notice'>The device is secured.</span>")
 			return
@@ -56,16 +62,17 @@
 	return
 
 
-/obj/item/device/transfer_valve/HasProximity(turf/T, atom/movable/AM, old_loc)
+/obj/item/transfer_valve/HasProximity(turf/T, atom/movable/AM, old_loc)
 	attached_device?.HasProximity(T, AM, old_loc)
 
-/obj/item/device/transfer_valve/Moved(old_loc, direction, forced)
+/obj/item/transfer_valve/Moved(old_loc, direction, forced)
 	. = ..()
 	if(isturf(old_loc))
 		unsense_proximity(callback = /atom/proc/HasProximity, center = old_loc)
 	if(isturf(loc))
 		sense_proximity(callback = /atom/proc/HasProximity)
 
+<<<<<<< HEAD
 /obj/item/device/transfer_valve/attack_self(mob/user)
 	tgui_interact(user)
 
@@ -111,15 +118,69 @@
 	if(.)
 		update_icon()
 		add_fingerprint(usr)
+=======
+/obj/item/transfer_valve/attack_self(mob/user as mob)
+	ui_interact(user)
 
-/obj/item/device/transfer_valve/proc/process_activation(var/obj/item/device/D)
+/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+
+	// this is the data which will be sent to the ui
+	var/data[0]
+	data["attachmentOne"] = tank_one ? tank_one.name : null
+	data["attachmentTwo"] = tank_two ? tank_two.name : null
+	data["valveAttachment"] = attached_device ? attached_device.name : null
+	data["valveOpen"] = valve_open ? 1 : 0
+
+	// update the ui if it exists, returns null if no ui is passed/found
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+	if (!ui)
+		// the ui does not exist, so we'll create a new() one
+        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
+		ui = new(user, src, ui_key, "transfer_valve.tmpl", "Tank Transfer Valve", 460, 280)
+		// when the ui is first opened this is the data it will use
+		ui.set_initial_data(data)
+		// open the new ui window
+		ui.open()
+		// auto update every Master Controller tick
+		//ui.set_auto_update(1)
+
+/obj/item/transfer_valve/Topic(href, href_list)
+	..()
+	if ( usr.stat || usr.restrained() )
+		return 0
+	if (src.loc != usr)
+		return 0
+	if(tank_one && href_list["tankone"])
+		remove_tank(tank_one)
+	else if(tank_two && href_list["tanktwo"])
+		remove_tank(tank_two)
+	else if(href_list["open"])
+		toggle_valve()
+	else if(attached_device)
+		if(href_list["rem_device"])
+			attached_device.loc = get_turf(src)
+			attached_device:holder = null
+			attached_device = null
+			update_icon()
+		if(href_list["device"])
+			attached_device.attack_self(usr)
+	src.add_fingerprint(usr)
+	return 1 // Returning 1 sends an update to attached UIs
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+
+/obj/item/transfer_valve/proc/process_activation(var/obj/item/D)
 	if(toggle)
 		toggle = FALSE
 		toggle_valve()
 		VARSET_IN(src, toggle, TRUE, 5 SECONDS)
 
+<<<<<<< HEAD
 /obj/item/device/transfer_valve/update_icon()
 	cut_overlays()
+=======
+/obj/item/transfer_valve/update_icon()
+	overlays.Cut()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	underlays = null
 
 	if(!tank_one && !tank_two && !attached_device)
@@ -136,7 +197,7 @@
 	if(attached_device)
 		add_overlay("device")
 
-/obj/item/device/transfer_valve/proc/remove_tank(obj/item/weapon/tank/T)
+/obj/item/transfer_valve/proc/remove_tank(obj/item/tank/T)
 	if(tank_one == T)
 		split_gases()
 		tank_one = null
@@ -149,7 +210,7 @@
 	T.forceMove(get_turf(src))
 	update_icon()
 
-/obj/item/device/transfer_valve/proc/merge_gases()
+/obj/item/transfer_valve/proc/merge_gases()
 	if(valve_open)
 		return
 	tank_two.air_contents.volume += tank_one.air_contents.volume
@@ -158,7 +219,7 @@
 	tank_two.air_contents.merge(temp)
 	valve_open = 1
 
-/obj/item/device/transfer_valve/proc/split_gases()
+/obj/item/transfer_valve/proc/split_gases()
 	if(!valve_open)
 		return
 
@@ -179,7 +240,7 @@
 	it explodes properly when it gets a signal (and it does).
 	*/
 
-/obj/item/device/transfer_valve/proc/toggle_valve()
+/obj/item/transfer_valve/proc/toggle_valve()
 	if(!valve_open && (tank_one && tank_two))
 		var/turf/bombturf = get_turf(src)
 		var/area/A = get_area(bombturf)
@@ -214,5 +275,5 @@
 
 // this doesn't do anything but the timer etc. expects it to be here
 // eventually maybe have it update icon to show state (timer, prox etc.) like old bombs
-/obj/item/device/transfer_valve/proc/c_state()
+/obj/item/transfer_valve/proc/c_state()
 	return

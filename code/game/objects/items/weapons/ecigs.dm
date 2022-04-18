@@ -3,9 +3,9 @@
 	desc = "For the modern approach to smoking."
 	icon = 'icons/obj/ecig.dmi'
 	var/active = 0
-	//var/obj/item/weapon/cell/ec_cell = /obj/item/weapon/cell/device
-	var/cartridge_type = /obj/item/weapon/reagent_containers/ecig_cartridge/med_nicotine
-	var/obj/item/weapon/reagent_containers/ecig_cartridge/ec_cartridge
+	//var/obj/item/cell/ec_cell = /obj/item/cell/device
+	var/cartridge_type = /obj/item/reagent_containers/ecig_cartridge/med_nicotine
+	var/obj/item/reagent_containers/ecig_cartridge/ec_cartridge
 	w_class = ITEMSIZE_TINY
 	slot_flags = SLOT_EARS | SLOT_MASK
 	attack_verb = list("attacked", "poked", "battered")
@@ -107,7 +107,7 @@
 
 
 /obj/item/clothing/mask/smokable/ecig/attackby(var/obj/item/I, var/mob/user as mob)
-	if(istype(I, /obj/item/weapon/reagent_containers/ecig_cartridge))
+	if(istype(I, /obj/item/reagent_containers/ecig_cartridge))
 		if (ec_cartridge)//can't add second one
 			to_chat(user, "<span class='notice'>A cartridge has already been installed.</span> ")
 		else//fits in new one
@@ -143,7 +143,7 @@
 	else
 		..()
 
-/obj/item/weapon/reagent_containers/ecig_cartridge
+/obj/item/reagent_containers/ecig_cartridge
 	name = "tobacco flavour cartridge"
 	desc = "A small metal cartridge, used with electronic cigarettes, which contains an atomizing coil and a solution to be atomized."
 	w_class = ITEMSIZE_TINY
@@ -153,101 +153,156 @@
 	volume = 20
 	flags = OPENCONTAINER
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/New()
+=======
+/obj/item/reagent_containers/ecig_cartridge/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	create_reagents(volume)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/examine(mob/user as mob)//to see how much left
+/obj/item/reagent_containers/ecig_cartridge/examine(mob/user as mob)//to see how much left
 	. = ..()
 	. += "The cartridge has [reagents.total_volume] units of liquid remaining."
 
 //flavours
-/obj/item/weapon/reagent_containers/ecig_cartridge/blank
+/obj/item/reagent_containers/ecig_cartridge/blank
 	name = "ecigarette cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil."
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/blanknico
+/obj/item/reagent_containers/ecig_cartridge/blanknico
 	name = "flavorless nicotine cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says you can add whatever flavoring agents you want."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/blanknico/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/blanknico/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/med_nicotine
+/obj/item/reagent_containers/ecig_cartridge/med_nicotine
 	name = "tobacco flavour cartridge"
 	desc =  "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its tobacco flavored."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/med_nicotine/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/med_nicotine/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 15)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/high_nicotine
+/obj/item/reagent_containers/ecig_cartridge/high_nicotine
 	name = "high nicotine tobacco flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its tobacco flavored, with extra nicotine."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/high_nicotine/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/high_nicotine/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 10)
 	reagents.add_reagent("water", 10)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/orange
+/obj/item/reagent_containers/ecig_cartridge/orange
 	name = "orange flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its orange flavored."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/orange/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/orange/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("orangejuice", 5)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/mint
+/obj/item/reagent_containers/ecig_cartridge/mint
 	name = "mint flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its mint flavored."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/mint/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/mint/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("menthol", 5)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/watermelon
+/obj/item/reagent_containers/ecig_cartridge/watermelon
 	name = "watermelon flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its watermelon flavored."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/watermelon/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/watermelon/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("watermelonjuice", 5)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/grape
+/obj/item/reagent_containers/ecig_cartridge/grape
 	name = "grape flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its grape flavored."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/grape/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/grape/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("grapejuice", 5)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/lemonlime
+/obj/item/reagent_containers/ecig_cartridge/lemonlime
 	name = "lemon-lime flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its lemon-lime flavored."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/lemonlime/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/lemonlime/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("lemon_lime", 5)
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/coffee
+/obj/item/reagent_containers/ecig_cartridge/coffee
 	name = "coffee flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its coffee flavored."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/coffee/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/coffee/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("coffee", 5)
 /*
-/obj/item/weapon/reagent_containers/ecig_cartridge/cannabis
+/obj/item/reagent_containers/ecig_cartridge/cannabis
 	name = "herb flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label seems to be suspiciously scuffed off..."
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/ecig_cartridge/cannabis/New()
 	..()
+=======
+/obj/item/reagent_containers/ecig_cartridge/cannabis/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("cannabis", 5)

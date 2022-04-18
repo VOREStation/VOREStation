@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Gram
  */
@@ -11,6 +12,13 @@
 	wildlife - in mind. The company operates just one production plant in Kalmar, but \
 	their weapons have found popularity on garden worlds as far afield as the Tajaran \
 	homeworld due to their excellent build quality, precision, and stopping power."
+=======
+/obj/item/gun/projectile/contender
+	name = "H-H Gram"
+	desc = "Hedberg-Hammarstrom's flagship one-shot hand-cannon. For when you really want to make a hole. This one has been modified to work almost like a bolt-action. Uses .357 rounds."
+	description_fluff = "Sif’s largest home-grown firearms manufacturer, the Hedberg-Hammarstrom company offers a range of high-quality, high-cost hunting rifles and shotguns designed with the Sivian wilderness - and its wildlife - in mind. \
+	The company operates just one production plant in Kalmar, but their weapons have found popularity on garden worlds as far afield as the Tajaran homeworld due to their excellent build quality, precision, and stopping power."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "pockrifle"
 	var/icon_retracted = "pockrifle-e"
 	item_state = "revolver"
@@ -22,7 +30,7 @@
 	var/retracted_bolt = 0
 	load_method = SINGLE_CASING
 
-/obj/item/weapon/gun/projectile/contender/attack_self(mob/user as mob)
+/obj/item/gun/projectile/contender/attack_self(mob/user as mob)
 	if(chambered)
 		chambered.loc = get_turf(src)
 		chambered = null
@@ -41,12 +49,13 @@
 	icon_state = initial(icon_state)
 	retracted_bolt = 0
 
-/obj/item/weapon/gun/projectile/contender/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/contender/load_ammo(var/obj/item/A, mob/user)
 	if(!retracted_bolt)
 		to_chat(user, "<span class='notice'>You can't load [src] without cycling the bolt.</span>")
 		return
 	..()
 
+<<<<<<< HEAD
 /*
  * Balmung
  */
@@ -55,5 +64,10 @@
 	desc = "A later model of the Hedberg-Hammarstrom \"Gram\", reinvented with a \
 	tactical look. For when you really want to make a hole. This one has been \
 	modified to work almost like a bolt-action. Uses .357 rounds."
+=======
+/obj/item/gun/projectile/contender/tacticool
+	name = "H-H Balmung"
+	desc = "A later model of the Hedberg-Hammarstrom Gram, reinvented with a tactical look. For when you really want to make a hole. This one has been modified to work almost like a bolt-action. Uses .357 rounds."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "pockrifle_b"
 	icon_retracted = "pockrifle_b-e"

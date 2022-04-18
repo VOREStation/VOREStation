@@ -83,6 +83,8 @@
 	desc = "A miniturized and compact shield projector.  This type has been optimized to diffuse lasers or block high velocity projectiles from the outside, \
 	but allow those projectiles to leave the shield from the inside.  Blocking too many damaging projectiles will cause the shield to fail."
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "signmaker_sec"
 	light_range = 4
 	light_power = 4

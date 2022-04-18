@@ -30,13 +30,13 @@ GLOBAL_LIST_INIT(generic_fishing_junk_list, list(
 		))
 
 GLOBAL_LIST_INIT(generic_fishing_pool_list, list(
-		/obj/item/weapon/bikehorn/rubberducky = 5,
+		/obj/item/bikehorn/rubberducky = 5,
 		/obj/item/toy/plushie/carp = 20,
 		/obj/random/junk = 80,
 		/obj/random/trash = 80,
-		/obj/item/weapon/spacecash/c1 = 10,
-		/obj/item/weapon/spacecash/c10 = 5,
-		/obj/item/weapon/spacecash/c100 = 1
+		/obj/item/spacecash/c1 = 10,
+		/obj/item/spacecash/c10 = 5,
+		/obj/item/spacecash/c100 = 1
 		))
 
 #define FISHING_RARE     "rare"
@@ -118,10 +118,10 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 	else
 		fish_type = null
 
-/turf/simulated/floor/water/attackby(obj/item/weapon/P as obj, mob/user as mob)
+/turf/simulated/floor/water/attackby(obj/item/P as obj, mob/user as mob)
 //If you use a fishing rod on an open body of water that var/has_fish enabled
-	if(istype(P, /obj/item/weapon/material/fishing_rod) && !being_fished)
-		var/obj/item/weapon/material/fishing_rod/R = P
+	if(istype(P, /obj/item/material/fishing_rod) && !being_fished)
+		var/obj/item/material/fishing_rod/R = P
 		if(!R.strung)
 			to_chat(user, "<span class='notice'>It is hard to go fishing without any line!</span>")
 			return

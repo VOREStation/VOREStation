@@ -32,7 +32,7 @@
 	return ..()
 
 // We're expecting 1 to be a target, 2 to be an old move loc, and 3 to be a new move loc.
-/datum/blob_type/reactive_spines/chunk_unique(obj/item/weapon/blobcore_chunk/B, var/list/extra_data = null)
+/datum/blob_type/reactive_spines/chunk_unique(obj/item/blobcore_chunk/B, var/list/extra_data = null)
 	if(!LAZYLEN(extra_data))
 		return
 
@@ -54,6 +54,6 @@
 
 	return
 
-/datum/blob_type/reactive_spines/chunk_setup(obj/item/weapon/blobcore_chunk/B)
-	GLOB.moved_event.register_global(B, /obj/item/weapon/blobcore_chunk/proc/call_chunk_unique)
+/datum/blob_type/reactive_spines/chunk_setup(obj/item/blobcore_chunk/B)
+	GLOB.moved_event.register_global(B, /obj/item/blobcore_chunk/proc/call_chunk_unique)
 	return

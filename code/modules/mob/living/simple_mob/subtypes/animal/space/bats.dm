@@ -32,8 +32,12 @@
 
 	has_langs = list("Mouse")
 
+<<<<<<< HEAD
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
 	meat_amount = 2
+=======
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	say_list_type = /datum/say_list/mouse	// Close enough
 

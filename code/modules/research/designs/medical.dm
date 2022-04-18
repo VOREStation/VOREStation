@@ -12,8 +12,13 @@
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks basic and could be improved."
 	id = "scalpel_laser1"
 	req_tech = list(TECH_BIO = 2, TECH_MATERIAL = 2, TECH_MAGNET = 2)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500)
 	build_path = /obj/item/weapon/surgical/scalpel/laser1
+=======
+	materials = list(MAT_STEEL = 12500, "glass" = 7500)
+	build_path = /obj/item/surgical/scalpel/laser1
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KAAAA"
 
 /datum/design/item/medical/scalpel_laser2
@@ -21,8 +26,13 @@
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks somewhat advanced."
 	id = "scalpel_laser2"
 	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 4, TECH_MAGNET = 4)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
 	build_path = /obj/item/weapon/surgical/scalpel/laser2
+=======
+	materials = list(MAT_STEEL = 12500, "glass" = 7500, "silver" = 2500)
+	build_path = /obj/item/surgical/scalpel/laser2
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KAAAB"
 
 /datum/design/item/medical/scalpel_laser3
@@ -30,8 +40,13 @@
 	desc = "A scalpel augmented with a directed laser, for more precise cutting without blood entering the field. This one looks to be the pinnacle of precision energy cutlery!"
 	id = "scalpel_laser3"
 	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 6, TECH_MAGNET = 5)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2000, MAT_GOLD = 1500)
 	build_path = /obj/item/weapon/surgical/scalpel/laser3
+=======
+	materials = list(MAT_STEEL = 12500, "glass" = 7500, "silver" = 2000, "gold" = 1500)
+	build_path = /obj/item/surgical/scalpel/laser3
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KAAAC"
 
 /datum/design/item/medical/scalpel_manager
@@ -39,8 +54,13 @@
 	desc = "A true extension of the surgeon's body, this marvel instantly and completely prepares an incision allowing for the immediate commencement of therapeutic steps."
 	id = "scalpel_manager"
 	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 5, TECH_DATA = 4)
+<<<<<<< HEAD
 	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_DIAMOND = 750)
 	build_path = /obj/item/weapon/surgical/scalpel/manager
+=======
+	materials = list (MAT_STEEL = 12500, "glass" = 7500, "silver" = 1500, "gold" = 1500, "diamond" = 750)
+	build_path = /obj/item/surgical/scalpel/manager
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KAAAD"
 
 /datum/design/item/medical/saw_manager
@@ -48,8 +68,13 @@
 	desc = "A strange development following the I.M.S., this heavy tool can split and open, or close and shut, intentional holes in bones."
 	id = "advanced_saw"
 	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 7, TECH_MAGNET = 6, TECH_DATA = 5)
+<<<<<<< HEAD
 	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 800, MAT_SILVER = 1500, MAT_GOLD = 1500, MAT_OSMIUM = 1000)
 	build_path = /obj/item/weapon/surgical/circular_saw/manager
+=======
+	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 800, "silver" = 1500, "gold" = 1500, MAT_OSMIUM = 1000)
+	build_path = /obj/item/surgical/circular_saw/manager
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KAAAE"
 
 /datum/design/item/medical/organ_ripper
@@ -58,7 +83,7 @@
 	id = "organ_ripper"
 	req_tech = list(TECH_BIO = 3, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_ILLEGAL = 3)
 	materials = list (MAT_STEEL = 12500, MAT_PLASTIC = 8000, MAT_OSMIUM = 2500)
-	build_path = /obj/item/weapon/surgical/scalpel/ripper
+	build_path = /obj/item/surgical/scalpel/ripper
 	sort_string = "KAAAF"
 
 /datum/design/item/medical/bone_clamp
@@ -66,8 +91,13 @@
 	desc = "A miracle of modern science, this tool rapidly knits together bone, without the need for bone gel."
 	id = "bone_clamp"
 	req_tech = list(TECH_BIO = 4, TECH_MATERIAL = 5, TECH_MAGNET = 4, TECH_DATA = 4)
+<<<<<<< HEAD
 	materials = list (MAT_STEEL = 12500, MAT_GLASS = 7500, MAT_SILVER = 2500)
 	build_path = /obj/item/weapon/surgical/bone_clamp
+=======
+	materials = list (MAT_STEEL = 12500, "glass" = 7500, "silver" = 2500)
+	build_path = /obj/item/surgical/bone_clamp
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KAABA"
 
 /datum/design/item/medical/medical_analyzer
@@ -75,8 +105,13 @@
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject."
 	id = "medical_analyzer"
 	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
 	build_path = /obj/item/device/healthanalyzer
+=======
+	materials = list(MAT_STEEL = 500, "glass" = 500)
+	build_path = /obj/item/healthanalyzer
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KBAAA"
 
 /datum/design/item/medical/improved_analyzer
@@ -84,8 +119,13 @@
 	desc = "A prototype version of the regular health analyzer, able to distinguish the location of more serious injuries as well as accurately determine radiation levels."
 	id = "improved_analyzer"
 	req_tech = list(TECH_MAGNET = 5, TECH_BIO = 6)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 1000, MAT_SILVER = 1000, MAT_GOLD = 1500)
 	build_path = /obj/item/device/healthanalyzer/improved
+=======
+	materials = list(MAT_STEEL = 2000, "glass" = 1000, "silver" = 1000, "gold" = 1500)
+	build_path = /obj/item/healthanalyzer/improved
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "KBAAB"
 
 /datum/design/item/medical/advanced_roller

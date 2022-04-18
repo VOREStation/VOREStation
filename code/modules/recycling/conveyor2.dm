@@ -12,9 +12,14 @@
 	desc = "A conveyor belt."
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
+<<<<<<< HEAD
 	anchored = TRUE
 	active_power_usage = 100
 	circuit = /obj/item/weapon/circuitboard/conveyor
+=======
+	anchored = 1
+	circuit = /obj/item/circuitboard/conveyor
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/operating = OFF	// 1 if running forward, -1 if backwards, 0 if off
 	var/operable = 1	// true if can operate (no broken segments in this belt run)
 	var/forwards		// this is the default (forward) direction, set by the map dir
@@ -128,7 +133,7 @@
 	if(default_deconstruction_crowbar(user, I))
 		return
 
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		if(panel_open)
 			var/input = sanitize(input(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
 			if(!input)
@@ -288,9 +293,9 @@
 	if(default_deconstruction_screwdriver(user, I))
 		return
 
-	if(istype(I, /obj/item/weapon/weldingtool))
+	if(istype(I, /obj/item/weldingtool))
 		if(panel_open)
-			var/obj/item/weapon/weldingtool/WT = I
+			var/obj/item/weldingtool/WT = I
 			if(!WT.remove_fuel(0, user))
 				to_chat(user, "The welding tool must be on to complete this task.")
 				return
@@ -302,7 +307,7 @@
 				qdel(src)
 				return
 
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		if(panel_open)
 			var/input = sanitize(input(usr, "What id would you like to give this conveyor switch?", "Multitool-Conveyor interface", id))
 			if(!input)

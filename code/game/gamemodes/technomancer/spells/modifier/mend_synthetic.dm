@@ -5,11 +5,11 @@
 	if the target is completely healthy, preventing further instability."
 	spell_power_desc = "Healing amount increased."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/modifier/mend_synthetic
+	obj_path = /obj/item/spell/modifier/mend_synthetic
 	ability_icon_state = "tech_mendsynth"
 	category = SUPPORT_SPELLS
 
-/obj/item/weapon/spell/modifier/mend_synthetic
+/obj/item/spell/modifier/mend_synthetic
 	name = "mend synthetic"
 	desc = "You are the Robotics lab"
 	icon_state = "mend_synthetic"

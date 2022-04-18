@@ -1,7 +1,7 @@
 //Todo: add leather and cloth for arbitrary coloured stools.
 var/global/list/stool_cache = list() //haha stool
 
-/obj/item/weapon/stool
+/obj/item/stool
 	name = "stool"
 	desc = "Apply butt."
 	icon = 'icons/obj/furniture_vr.dmi' //VOREStation Edit - new Icons
@@ -15,11 +15,16 @@ var/global/list/stool_cache = list() //haha stool
 	var/datum/material/material
 	var/datum/material/padding_material
 
-/obj/item/weapon/stool/padded
+/obj/item/stool/padded
 	icon_state = "stool_padded_preview" //set for the map
 
+<<<<<<< HEAD
 /obj/item/weapon/stool/New(var/newloc, var/new_material, var/new_padding_material)
 	..(newloc)
+=======
+/obj/item/stool/Initialize(var/ml, var/new_material, var/new_padding_material)
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
@@ -31,10 +36,15 @@ var/global/list/stool_cache = list() //haha stool
 	force = round(material.get_blunt_damage()*0.4)
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/stool/padded/New(var/newloc, var/new_material)
 	..(newloc, "steel", "carpet")
+=======
+/obj/item/stool/padded/Initialize(var/ml, var/new_material)
+	. = ..(ml, MAT_STEEL, "carpet")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
-/obj/item/weapon/stool/update_icon()
+/obj/item/stool/update_icon()
 	// Prep icon.
 	icon_state = ""
 	cut_overlays()
@@ -61,17 +71,17 @@ var/global/list/stool_cache = list() //haha stool
 		name = "[material.display_name] [initial(name)]"
 		desc = "A stool. Apply butt with care. It's made of [material.use_name]."
 
-/obj/item/weapon/stool/proc/add_padding(var/padding_type)
+/obj/item/stool/proc/add_padding(var/padding_type)
 	padding_material = get_material_by_name(padding_type)
 	update_icon()
 
-/obj/item/weapon/stool/proc/remove_padding()
+/obj/item/stool/proc/remove_padding()
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 		padding_material = null
 	update_icon()
 
-/obj/item/weapon/stool/attack(mob/M as mob, mob/user as mob)
+/obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(5) && istype(M,/mob/living))
 		user.visible_message("<span class='danger'>[user] breaks [src] over [M]'s back!</span>")
 		user.setClickCooldown(user.get_attack_speed())
@@ -88,7 +98,7 @@ var/global/list/stool_cache = list() //haha stool
 		return
 	..()
 
-/obj/item/weapon/stool/ex_act(severity)
+/obj/item/stool/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			qdel(src)
@@ -102,14 +112,14 @@ var/global/list/stool_cache = list() //haha stool
 				qdel(src)
 				return
 
-/obj/item/weapon/stool/proc/dismantle()
+/obj/item/stool/proc/dismantle()
 	if(material)
 		material.place_sheet(get_turf(src))
 	if(padding_material)
 		padding_material.place_sheet(get_turf(src))
 	qdel(src)
 
-/obj/item/weapon/stool/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/stool/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src, W.usesound, 50, 1)
 		dismantle()
@@ -149,3 +159,25 @@ var/global/list/stool_cache = list() //haha stool
 		remove_padding()
 	else
 		..()
+<<<<<<< HEAD
+=======
+
+/obj/item/stool/barstool
+	name = "bar stool"
+	desc = "Apply butt."
+	icon = 'icons/obj/furniture.dmi'
+	icon_state = "bar_stool_preview" //set for the map
+	randpixel = 0
+	center_of_mass = null
+	force = 10
+	throwforce = 10
+	w_class = ITEMSIZE_HUGE
+	base_icon = "bar_stool_base"
+	anchored = 1
+
+/obj/item/stool/barstool/padded
+	icon_state = "bar_stool_padded_preview" //set for the map
+
+/obj/item/stool/barstool/padded/Initialize(var/ml, var/new_material)
+	. = ..(ml, MAT_STEEL, "carpet")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

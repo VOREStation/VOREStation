@@ -1,6 +1,6 @@
 //Concussion, or 'dizzyness' grenades.
 
-/obj/item/weapon/grenade/concussion
+/obj/item/grenade/concussion
 	name = "concussion grenade"
 	desc = "A polymer concussion grenade, optimized for disorienting personnel without causing large amounts of injury."
 	icon_state = "concussion"
@@ -8,7 +8,7 @@
 
 	var/blast_radius = 5
 
-/obj/item/weapon/grenade/concussion/detonate()
+/obj/item/grenade/concussion/detonate()
 	..()
 	concussion_blast(get_turf(src), blast_radius)
 	qdel(src)

@@ -11,36 +11,41 @@
 	desc = "A device for analyzing chemicals in blood."
 	id = "mass_spectrometer"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
-	build_path = /obj/item/device/mass_spectrometer
+	build_path = /obj/item/mass_spectrometer
 	sort_string = "JAAAA"
 
 /datum/design/item/biotech/adv_mass_spectrometer
 	desc = "A device for analyzing chemicals in blood and their quantities."
 	id = "adv_mass_spectrometer"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
-	build_path = /obj/item/device/mass_spectrometer/adv
+	build_path = /obj/item/mass_spectrometer/adv
 	sort_string = "JAAAB"
 
 /datum/design/item/biotech/reagent_scanner
 	desc = "A device for identifying chemicals."
 	id = "reagent_scanner"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 2)
-	build_path = /obj/item/device/reagent_scanner
+	build_path = /obj/item/reagent_scanner
 	sort_string = "JAABA"
 
 /datum/design/item/biotech/adv_reagent_scanner
 	desc = "A device for identifying chemicals and their proportions."
 	id = "adv_reagent_scanner"
 	req_tech = list(TECH_BIO = 2, TECH_MAGNET = 4)
-	build_path = /obj/item/device/reagent_scanner/adv
+	build_path = /obj/item/reagent_scanner/adv
 	sort_string = "JAABB"
 
 /datum/design/item/biotech/robot_scanner
 	desc = "A hand-held scanner able to diagnose robotic injuries."
 	id = "robot_scanner"
 	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 2, TECH_ENGINEERING = 3)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 200)
 	build_path = /obj/item/device/robotanalyzer
+=======
+	materials = list(MAT_STEEL = 500, "glass" = 200)
+	build_path = /obj/item/robotanalyzer
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "JAACA"
 
 /datum/design/item/biotech/nanopaste
@@ -55,7 +60,12 @@
 	desc = "A device capable of quickly scanning all relevant data about a plant."
 	id = "plant_analyzer"
 	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
 	build_path = /obj/item/device/analyzer/plant_analyzer
+=======
+	materials = list(MAT_STEEL = 500, "glass" = 500)
+	build_path = /obj/item/analyzer/plant_analyzer
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "JAADA"
 

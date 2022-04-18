@@ -1,4 +1,4 @@
-/obj/item/device/integrated_electronics/detailer
+/obj/item/integrated_electronics/detailer
 	name = "assembly detailer"
 	desc = "A combination autopainter and flash anodizer designed to give electronic assemblies a colorful, wear-resistant finish."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -25,16 +25,17 @@
 		"hot pink" = COLOR_ASSEMBLY_HOT_PINK
 		)
 
-/obj/item/device/integrated_electronics/detailer/Initialize()
+/obj/item/integrated_electronics/detailer/Initialize()
 	update_icon()
 	return ..()
 
-/obj/item/device/integrated_electronics/detailer/update_icon()
+/obj/item/integrated_electronics/detailer/update_icon()
 	cut_overlays()
 	var/mutable_appearance/detail_overlay = mutable_appearance('icons/obj/integrated_electronics/electronic_tools.dmi', "detailer-color")
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
+<<<<<<< HEAD
 /obj/item/device/integrated_electronics/detailer/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
@@ -74,3 +75,13 @@
 	// 	return
 	// detail_color = new_color
 	// update_icon()
+=======
+/obj/item/integrated_electronics/detailer/attack_self(mob/user)
+	var/color_choice = input(user, "Select color.", "Assembly Detailer", detail_color) as null|anything in color_list
+	if(!color_list[color_choice])
+		return
+	if(!in_range(src, user))
+		return
+	detail_color = color_list[color_choice]
+	update_icon()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

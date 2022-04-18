@@ -22,7 +22,11 @@ GLOBAL_LIST_BOILERPLATE(all_mopbuckets, /obj/structure/mopbucket)
 		. += "It contains [reagents.total_volume] unit\s of water!"
 
 /obj/structure/mopbucket/attackby(obj/item/I, mob/user)
+<<<<<<< HEAD
 	if(istype(I, /obj/item/weapon/mop) || istype(I, /obj/item/weapon/soap) || istype(I, /obj/item/weapon/reagent_containers/glass/rag)) //VOREStation Edit - "Allows soap and rags to be used on mopbuckets"
+=======
+	if(istype(I, /obj/item/mop))
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(reagents.total_volume < 1)
 			to_chat(user, "<span class='warning'>\The [src] is out of water!</span>")
 		else

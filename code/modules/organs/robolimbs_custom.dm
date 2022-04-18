@@ -15,10 +15,15 @@
 	includes_tail = 1
 	unavailable_to_build = 1
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/limb/eggnerdltd
 	company = "Eggnerd Prototyping Ltd."
 //	icon = 'icons/obj/items_vr.dmi'
 //	icon_state = "verkdisk"
+=======
+/obj/item/disk/limb/uesseka
+	company = "Uesseka Prototyping Ltd."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 //////////////// General VS-only ones /////////////////
 /datum/robolimb/talon //They're buildable by default due to being extremely basic.
@@ -26,8 +31,14 @@
 	desc = "This metallic limb is sleek and featuresless apart from some exposed motors"
 	icon = 'icons/mob/human_races/cyberlimbs/talon/talon_main.dmi' //Sprited by: Viveret
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/limb/talon
 	company = "Talon LLC"
+=======
+/obj/item/disk/limb/nanotrasen_metro
+	company = "NanoTrasen - Metro"
+	catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /datum/robolimb/zenghu_taj //This wasn't indented. At all. It's a miracle this didn't break literally everything.
 	company = "Zeng-Hu - Tajaran"
@@ -44,10 +55,15 @@
 	includes_tail = 1
 	unavailable_to_build = 1
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/limb/eggnerdltdred
 	company = "Eggnerd Prototyping Ltd. (Red)"
 	icon = 'icons/obj/items_vr.dmi'	//VOREStation add. Use the right sprites
 	icon_state = "verkdisk"			//VOREStation add. Use the right sprites
+=======
+/obj/item/disk/limb/uessekared
+	company = "Uesseka Prototyping Ltd. (Red)"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 
 //Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.
@@ -67,7 +83,7 @@
 	species_cannot_use -= SPECIES_TAJ
 VS Edit - anyone can select these. */
 
-/obj/item/weapon/disk/limb/dsi_tajaran
+/obj/item/disk/limb/dsi_tajaran
 	company = "DSI - Tajaran"
 
 /datum/robolimb/dsi_lizard
@@ -86,7 +102,7 @@ VS Edit - anyone can select these. */
 	species_cannot_use -= SPECIES_UNATHI
 VS Edit - anyone can select these. */
 
-/obj/item/weapon/disk/limb/dsi_lizard
+/obj/item/disk/limb/dsi_lizard
 	company = "DSI - Lizard"
 
 /datum/robolimb/dsi_sergal
@@ -100,7 +116,7 @@ VS Edit - anyone can select these. */
 	skin_tone = 1
 	suggested_species = "Sergal"
 
-/obj/item/weapon/disk/limb/dsi_sergal
+/obj/item/disk/limb/dsi_sergal
 	company = "DSI - Sergal"
 
 /datum/robolimb/dsi_nevrean
@@ -114,7 +130,7 @@ VS Edit - anyone can select these. */
 	skin_tone = 1
 	suggested_species = "Nevrean"
 
-/obj/item/weapon/disk/limb/dsi_nevrean
+/obj/item/disk/limb/dsi_nevrean
 	company = "DSI - Nevrean"
 
 /datum/robolimb/dsi_vulpkanin
@@ -128,7 +144,7 @@ VS Edit - anyone can select these. */
 	skin_tone = 1
 	suggested_species = "Vulpkanin"
 
-/obj/item/weapon/disk/limb/dsi_vulpkanin
+/obj/item/disk/limb/dsi_vulpkanin
 	company = "DSI - Vulpkanin"
 
 /datum/robolimb/dsi_akula
@@ -142,7 +158,7 @@ VS Edit - anyone can select these. */
 	skin_tone = 1
 	suggested_species = "Akula"
 
-/obj/item/weapon/disk/limb/dsi_akula
+/obj/item/disk/limb/dsi_akula
 	company = "DSI - Akula"
 
 /datum/robolimb/dsi_spider
@@ -156,7 +172,7 @@ VS Edit - anyone can select these. */
 	skin_tone = 1
 	suggested_species = "Vasilissan"
 
-/obj/item/weapon/disk/limb/dsi_spider
+/obj/item/disk/limb/dsi_spider
 	company = "DSI - Vasilissan"
 
 /datum/robolimb/dsi_teshari
@@ -173,5 +189,5 @@ VS Edit - anyone can select these. */
 	species_cannot_use -= SPECIES_CUSTOM //VOREStation add - let 'em be selected.
 	..()
 
-/obj/item/weapon/disk/limb/dsi_teshari
+/obj/item/disk/limb/dsi_teshari
 	company = "DSI - Teshari"

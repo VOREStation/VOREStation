@@ -1,6 +1,7 @@
-/obj/item/weapon/material/gravemarker
+/obj/item/material/gravemarker
 	name = "grave marker"
 	desc = "An object used in marking graves."
+	icon = 'icons/obj/weapons.dmi'
 	icon_state = "gravemarker"
 	w_class = ITEMSIZE_LARGE
 	fragile = 1
@@ -11,7 +12,7 @@
 	var/grave_name = ""		//Name of the intended occupant
 	var/epitaph = ""		//A quick little blurb
 
-/obj/item/weapon/material/gravemarker/attackby(obj/item/weapon/W, mob/user as mob)
+/obj/item/material/gravemarker/attackby(obj/item/W, mob/user as mob)
 	if(W.is_screwdriver())
 		var/carving_1 = sanitizeSafe(input(user, "Who is \the [src.name] for?", "Gravestone Naming", null)  as text, MAX_NAME_LEN)
 		if(carving_1)
@@ -35,14 +36,14 @@
 			qdel(src)
 	..()
 
-/obj/item/weapon/material/gravemarker/examine(mob/user)
+/obj/item/material/gravemarker/examine(mob/user)
 	. = ..()
 	if(grave_name && get_dist(src, user) < 4)
 		. += "Here Lies [grave_name]"
 	if(epitaph && get_dist(src, user) < 2)
 		. += epitaph
 
-/obj/item/weapon/material/gravemarker/update_icon()
+/obj/item/material/gravemarker/update_icon()
 	if(icon_changes)
 		if(grave_name && epitaph)
 			icon_state = "[initial(icon_state)]_3"
@@ -55,7 +56,7 @@
 
 	..()
 
-/obj/item/weapon/material/gravemarker/attack_self(mob/user)
+/obj/item/material/gravemarker/attack_self(mob/user)
 	src.add_fingerprint(user)
 
 	if(!isturf(user.loc))

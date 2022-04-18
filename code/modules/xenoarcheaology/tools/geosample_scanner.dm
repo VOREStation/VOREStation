@@ -10,7 +10,7 @@
 	idle_power_usage = 20
 	active_power_usage = 300
 
-	//var/obj/item/weapon/reagent_containers/glass/coolant_container
+	//var/obj/item/reagent_containers/glass/coolant_container
 	var/scanning = 0
 	var/report_num = 0
 	//
@@ -71,8 +71,8 @@
 				N.use(amount_used)
 				scanner_seal_integrity = round(scanner_seal_integrity + amount_used * 10)
 				return
-		if(istype(I, /obj/item/weapon/reagent_containers/glass))
-			var/obj/item/weapon/reagent_containers/glass/G = I
+		if(istype(I, /obj/item/reagent_containers/glass))
+			var/obj/item/reagent_containers/glass/G = I
 			if(!G.is_open_container())
 				return
 			var/choice = tgui_alert(usr, "What do you want to do with the container?","Radiometric Scanner",list("Add coolant","Empty coolant","Scan container"))
@@ -300,29 +300,34 @@
 
 	if(scanned_item)
 		//create report
-		var/obj/item/weapon/paper/P = new(src)
+		var/obj/item/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [scanned_item.name]"
+<<<<<<< HEAD
 		P.stamped = list(/obj/item/weapon/stamp)
 		P.add_overlay("paper_stamped")
+=======
+		P.stamped = list(/obj/item/stamp)
+		P.overlays = list("paper_stamped")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		//work out data
 		var/data = " - Mundane object: [scanned_item.desc ? scanned_item.desc : "No information on record."]<br>"
 		var/datum/geosample/G
 		switch(scanned_item.type)
-			if(/obj/item/weapon/ore)
-				var/obj/item/weapon/ore/O = scanned_item
+			if(/obj/item/ore)
+				var/obj/item/ore/O = scanned_item
 				if(O.geologic_data)
 					G = O.geologic_data
 
-			if(/obj/item/weapon/rocksliver)
-				var/obj/item/weapon/rocksliver/O = scanned_item
+			if(/obj/item/rocksliver)
+				var/obj/item/rocksliver/O = scanned_item
 				if(O.geological_data)
 					G = O.geological_data
 
-			if(/obj/item/weapon/archaeological_find)
+			if(/obj/item/archaeological_find)
 				data = " - Mundane object (archaic xenos origins)<br>"
 
-				var/obj/item/weapon/archaeological_find/A = scanned_item
+				var/obj/item/archaeological_find/A = scanned_item
 				if(A.talking_atom)
 					data = " - Exhibits properties consistent with sonic reproduction and audio capture technologies.<br>"
 

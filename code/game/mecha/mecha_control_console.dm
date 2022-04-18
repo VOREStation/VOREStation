@@ -5,7 +5,7 @@
 	icon_screen = "mecha"
 	light_color = "#a97faa"
 	req_access = list(access_robotics)
-	circuit = /obj/item/weapon/circuitboard/mecha_control
+	circuit = /obj/item/circuitboard/mecha_control
 	var/list/located = list()
 	var/screen = 0
 	var/list/stored_data
@@ -74,6 +74,8 @@
 	name = "Exosuit tracking beacon"
 	desc = "Device used to transmit exosuit data."
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "motion2"
 	origin_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
 
@@ -129,6 +131,6 @@
 	return M.get_log_tgui()
 
 
-/obj/item/weapon/storage/box/mechabeacons
+/obj/item/storage/box/mechabeacons
 	name = "Exosuit Tracking Beacons"
 	starts_with = list(/obj/item/mecha_parts/mecha_tracking = 7)

@@ -90,11 +90,11 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 
 
 /obj/effect/rune/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/weapon/book/tome) && iscultist(user))
+	if(istype(I, /obj/item/book/tome) && iscultist(user))
 		to_chat(user, "You retrace your steps, carefully undoing the lines of the rune.")
 		qdel(src)
 		return
-	else if(istype(I, /obj/item/weapon/nullrod))
+	else if(istype(I, /obj/item/nullrod))
 		to_chat(user, "<span class='notice'>You disrupt the vile magic with the deadening field of the null rod!</span>")
 		qdel(src)
 		return
@@ -176,7 +176,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 /obj/effect/rune/proc/check_icon()
 	icon = get_uristrune_cult(word1, word2, word3)
 
-/obj/item/weapon/book/tome
+/obj/item/book/tome
 	name = "arcane tome"
 	icon = 'icons/obj/weapons.dmi'
 	item_icons = list(
@@ -288,14 +288,14 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 				</html>
 				"}
 
-/obj/item/weapon/book/tome/Initialize()
+/obj/item/book/tome/Initialize()
 	. = ..()
 	if(!cultwords["travel"])
 		runerandom()
 	for(var/V in cultwords)
 		words[cultwords[V]] = V
 
-/obj/item/weapon/book/tome/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/book/tome/attack(mob/living/M as mob, mob/living/user as mob)
 	add_attack_logs(user,M,"Hit with [name]")
 
 	if(istype(M,/mob/observer/dead))
@@ -314,7 +314,7 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 	to_chat(M, "<span class='danger'>You feel searing heat inside!</span>")
 
 
-/obj/item/weapon/book/tome/attack_self(mob/living/user as mob)
+/obj/item/book/tome/attack_self(mob/living/user as mob)
 	usr = user
 	if(!usr.canmove || usr.stat || usr.restrained())
 		return
@@ -425,20 +425,20 @@ var/global/list/rnwords = list("ire","ego","nahlizet","certum","veri","jatkaa","
 		to_chat(user, "The book seems full of illegible scribbles. Is this a joke?")
 		return
 
-/obj/item/weapon/book/tome/examine(mob/user)
+/obj/item/book/tome/examine(mob/user)
 	. = ..()
 	if(!iscultist(user))
 		. += "An old, dusty tome with frayed edges and a sinister looking cover."
 	else
 		. += "The scriptures of Nar-Sie, The One Who Sees, The Geometer of Blood. Contains the details of every ritual his followers could think of. Most of these are useless, though."
 
-/obj/item/weapon/book/tome/cultify()
+/obj/item/book/tome/cultify()
 	return
 
-/obj/item/weapon/book/tome/imbued //admin tome, spawns working runes without waiting
+/obj/item/book/tome/imbued //admin tome, spawns working runes without waiting
 	w_class = ITEMSIZE_SMALL
 	var/cultistsonly = 1
-/obj/item/weapon/book/tome/imbued/attack_self(mob/user as mob)
+/obj/item/book/tome/imbued/attack_self(mob/user as mob)
 	if(src.cultistsonly && !iscultist(usr))
 		return
 	if(!cultwords["travel"])

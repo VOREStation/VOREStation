@@ -1,6 +1,6 @@
 
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass
+/obj/item/reagent_containers/food/drinks/drinkingglass
 	name = "glass"
 	desc = "Your standard drinking glass."
 	icon_state = "glass_empty"
@@ -10,7 +10,7 @@
 	center_of_mass = list("x"=16, "y"=10)
 	matter = list(MAT_GLASS = 500)
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/drinkingglass/on_reagent_change()
 	if (!length(reagents?.reagent_list))
 		icon_state = "glass_empty"
 		name = "glass"
@@ -44,7 +44,7 @@
 	else
 		price_tag = null
 
-/obj/item/weapon/reagent_containers/food/drinks/cup
+/obj/item/reagent_containers/food/drinks/cup
 	name = "coffee cup"
 	desc = "The container of oriental luxuries."
 	icon_state = "cup_empty"
@@ -52,7 +52,7 @@
 	volume = 30
 	center_of_mass = list("x"=16, "y"=16)
 
-/obj/item/weapon/reagent_containers/food/drinks/cup/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/cup/on_reagent_change()
 	if (!length(reagents?.reagent_list))
 		icon_state = "cup_empty"
 		name = "coffee cup"
@@ -87,15 +87,24 @@
 		price_tag = null
 
 // for /obj/machinery/vending/sovietsoda
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda/New()
 	..()
 	reagents.add_reagent("sodawater", 50)
 
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola/New()
 	..()
+=======
+/obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize()
+	. = ..()
+	reagents.add_reagent("sodawater", 50)
+
+/obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("cola", 50)
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
 	name = "shot glass"
 	desc = "No glasses were shot in the making of this glass."
 	icon_state = "shotglass"
@@ -103,8 +112,13 @@
 	volume = 10
 	matter = list(MAT_GLASS = 175)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
 	cut_overlays()
+=======
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
+	overlays.Cut()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "shot glass"
 
 	if(!reagents.total_volume)
@@ -120,19 +134,24 @@
 	add_overlay(filling)
 	name += " of [reagents.get_master_reagent_name()]" //No matter what, the glass will tell you the reagent's name. Might be too abusable in the future.
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask
 	name = "fitness shaker"
 	desc = "Big enough to contain enough protein to get perfectly swole. Don't mind the bits."
 	icon_state = "fitness-cup_black"
 	volume = 100
 	matter = list(MAT_PLASTIC = 2000)
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/Initialize()
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/Initialize()
 	. = ..()
 	icon_state = pick("fitness-cup_black", "fitness-cup_red", "fitness-cup_black")
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
 	cut_overlays()
+=======
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
+	overlays.Cut()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "fitness-cup10")
@@ -152,10 +171,10 @@
 		filling.color += reagents.get_color()
 		add_overlay(filling)
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake
 	name = "protein shake"
 
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake/Initialize()
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/proteinshake/Initialize()
 	. = ..()
 	reagents.add_reagent("nutriment", 30)
 	reagents.add_reagent("iron", 10)

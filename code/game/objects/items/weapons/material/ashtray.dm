@@ -1,6 +1,6 @@
 var/global/list/ashtray_cache = list()
 
-/obj/item/weapon/material/ashtray
+/obj/item/material/ashtray
 	name = "ashtray"
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "blank"
@@ -10,8 +10,13 @@ var/global/list/ashtray_cache = list()
 	var/image/base_image
 	var/max_butts = 10
 
+<<<<<<< HEAD
 /obj/item/weapon/material/ashtray/New(var/newloc, var/material_name)
 	..(newloc, material_name)
+=======
+/obj/item/material/ashtray/Initialize(var/ml, var/material_name)
+	. = ..(ml, material_name)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!material)
 		qdel(src)
 		return
@@ -20,7 +25,7 @@ var/global/list/ashtray_cache = list()
 	update_icon()
 	return
 
-/obj/item/weapon/material/ashtray/update_icon()
+/obj/item/material/ashtray/update_icon()
 	color = null
 	cut_overlays()
 	var/cache_key = "base-[material.name]"
@@ -43,10 +48,10 @@ var/global/list/ashtray_cache = list()
 	else
 		desc = "An ashtray made of [material.display_name]."
 
-/obj/item/weapon/material/ashtray/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/material/ashtray/attackby(obj/item/W as obj, mob/user as mob)
 	if (health <= 0)
 		return
-	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/weapon/flame/match))
+	if (istype(W,/obj/item/trash/cigbutt) || istype(W,/obj/item/clothing/mask/smokable/cigarette) || istype(W, /obj/item/flame/match))
 		if (contents.len >= max_butts)
 			to_chat(user, "\The [src] is full.")
 			return
@@ -79,7 +84,7 @@ var/global/list/ashtray_cache = list()
 			shatter()
 	return
 
-/obj/item/weapon/material/ashtray/throw_impact(atom/hit_atom)
+/obj/item/material/ashtray/throw_impact(atom/hit_atom)
 	if (health > 0)
 		health = max(0,health - 3)
 		if (contents.len)
@@ -92,6 +97,7 @@ var/global/list/ashtray_cache = list()
 		update_icon()
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/material/ashtray/plastic/New(var/newloc)
 	..(newloc, "plastic")
 
@@ -100,3 +106,13 @@ var/global/list/ashtray_cache = list()
 
 /obj/item/weapon/material/ashtray/glass/New(var/newloc)
 	..(newloc, "glass")
+=======
+/obj/item/material/ashtray/plastic/Initialize(var/ml)
+	. = ..(ml, MAT_PLASTIC)
+
+/obj/item/material/ashtray/bronze/Initialize(var/ml)
+	. = ..(ml, MAT_BRONZE)
+
+/obj/item/material/ashtray/glass/Initialize(var/ml)
+	. = ..(ml, MAT_GLASS)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

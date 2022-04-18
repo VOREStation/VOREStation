@@ -13,7 +13,7 @@
 	var/min_x_scale = 0.9
 	var/min_y_scale = 0.9
 
-	var/removal_tool = /obj/item/weapon/shovel
+	var/removal_tool = /obj/item/shovel
 	var/harvest_tool = null // The type of item used to harvest the plant.
 	var/harvest_count = 0
 	var/destroy_on_harvest = FALSE
@@ -52,7 +52,7 @@
 /obj/structure/flora/proc/get_harvestable_desc()
 	return "<span class='notice'>\The [src] seems to have something hanging from it.</span>"
 
-/obj/structure/flora/attackby(var/obj/item/weapon/W, var/mob/living/user)
+/obj/structure/flora/attackby(var/obj/item/W, var/mob/living/user)
 
 	if(can_harvest(W))
 		var/harvest_spawn = pickweight(harvest_loot)
@@ -467,8 +467,8 @@
 	desc = "Hey, this one seems like a fun guy."
 	icon_state = "mush1"
 	icon = 'icons/obj/flora/mushrooms.dmi'
-	harvest_loot = list(/obj/item/weapon/reagent_containers/food/snacks/mushroomslice = 1)
-	harvest_tool = /obj/item/weapon/material/knife
+	harvest_loot = list(/obj/item/reagent_containers/food/snacks/mushroomslice = 1)
+	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
 
@@ -540,8 +540,8 @@
 	light_color = "#FF6633"
 	light_on = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/subterranean_bulbs)
-	harvest_loot = list(/obj/item/weapon/reagent_containers/food/snacks/grown/sif/cavebulbs = 1)
-	harvest_tool = /obj/item/weapon/material/knife
+	harvest_loot = list(/obj/item/reagent_containers/food/snacks/grown/sif/cavebulbs = 1)
+	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
 
@@ -561,10 +561,10 @@
 	desc = "This is a mysterious-looking plant. They kind of look like eyeballs. Creepy."
 	icon_state = "eyeplant"
 	catalogue_data = list(/datum/category_item/catalogue/flora/eyebulbs)
-	harvest_tool = /obj/item/weapon/material/knife
+	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
-	harvest_loot = list(/obj/item/weapon/reagent_containers/food/snacks/grown/sif/eyebulbs = 1)
+	harvest_loot = list(/obj/item/reagent_containers/food/snacks/grown/sif/eyebulbs = 1)
 
 /obj/structure/flora/sif/eyes/Initialize()
 	icon_state = "[initial(icon_state)][rand(1,3)]"
@@ -584,13 +584,19 @@
 	randomize_size = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/mosstendrils)
 
-	harvest_tool = /obj/item/weapon/material/knife
+	harvest_tool = /obj/item/material/knife
 	max_harvests = 3
 	min_harvests = 0
 	harvest_loot = list(
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wabback = 15,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/blackwabback = 1,
 		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wildwabback = 30
+=======
+		/obj/item/reagent_containers/food/snacks/grown/sif/whitewabback = 15,
+		/obj/item/reagent_containers/food/snacks/grown/sif/blackwabback = 1,
+		/obj/item/reagent_containers/food/snacks/grown/sif/wildwabback = 30
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 /obj/structure/flora/sif/tendrils/Initialize()
@@ -616,11 +622,11 @@
 	randomize_size = TRUE
 	catalogue_data = list(/datum/category_item/catalogue/flora/frostbelle)
 
-	harvest_tool = /obj/item/weapon/material/knife
+	harvest_tool = /obj/item/material/knife
 	max_harvests = 2
 	min_harvests = 0
 	harvest_loot = list(
-		/obj/item/weapon/reagent_containers/food/snacks/frostbelle = 1
+		/obj/item/reagent_containers/food/snacks/frostbelle = 1
 	)
 
 	var/variantnum = null

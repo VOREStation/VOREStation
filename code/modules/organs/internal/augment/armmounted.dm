@@ -18,7 +18,7 @@
 
 	target_parent_classes = list(ORGAN_FLESH, ORGAN_ASSISTED)
 
-	integrated_object_type = /obj/item/weapon/gun/energy/laser/mounted/augment
+	integrated_object_type = /obj/item/gun/energy/laser/mounted/augment
 
 /obj/item/organ/internal/augment/armmounted/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_screwdriver())
@@ -42,7 +42,7 @@
 
 	icon_state = "augment_taser"
 
-	integrated_object_type = /obj/item/weapon/gun/energy/taser/mounted/augment
+	integrated_object_type = /obj/item/gun/energy/taser/mounted/augment
 
 /obj/item/organ/internal/augment/armmounted/dartbow
 	name = "crossbow implant"
@@ -52,7 +52,7 @@
 
 	w_class = ITEMSIZE_SMALL
 
-	integrated_object_type = /obj/item/weapon/gun/energy/crossbow
+	integrated_object_type = /obj/item/gun/energy/crossbow
 
 // Wrist-or-hand-mounted implant
 
@@ -63,7 +63,7 @@
 
 	w_class = ITEMSIZE_SMALL
 
-	integrated_object_type = /obj/item/weapon/portable_scanner
+	integrated_object_type = /obj/item/portable_scanner
 
 /obj/item/organ/internal/augment/armmounted/hand/attackby(obj/item/I as obj, mob/user as mob)
 	if(I.is_screwdriver())
@@ -84,14 +84,14 @@
 /obj/item/organ/internal/augment/armmounted/hand/sword
 	name = "energy blade implant"
 
-	integrated_object_type = /obj/item/weapon/melee/energy/sword
+	integrated_object_type = /obj/item/melee/energy/sword
 
 /obj/item/organ/internal/augment/armmounted/hand/blade
 	name = "handblade implant"
 	desc = "A small implant that fits neatly into the hand. It deploys a small, but dangerous blade."
 	icon_state = "augment_handblade"
 
-	integrated_object_type = /obj/item/weapon/melee/augment/blade
+	integrated_object_type = /obj/item/melee/augment/blade
 
 /*
  * Shoulder augment.
@@ -150,7 +150,7 @@
 
 	icon_state = "augment_armblade"
 
-	integrated_object_type = /obj/item/weapon/melee/augment/blade/arm
+	integrated_object_type = /obj/item/melee/augment/blade/arm
 
 // The toolkit / multi-tool implant.
 
@@ -169,13 +169,13 @@
 	toolspeed = 0.8
 
 	var/list/integrated_tools = list(
-		/obj/item/weapon/tool/screwdriver = null,
-		/obj/item/weapon/tool/wrench = null,
-		/obj/item/weapon/tool/crowbar = null,
-		/obj/item/weapon/tool/wirecutters = null,
-		/obj/item/device/multitool = null,
+		/obj/item/tool/screwdriver = null,
+		/obj/item/tool/wrench = null,
+		/obj/item/tool/crowbar = null,
+		/obj/item/tool/wirecutters = null,
+		/obj/item/multitool = null,
 		/obj/item/stack/cable_coil/gray = null,
-		/obj/item/weapon/tape_roll = null
+		/obj/item/tape_roll = null
 		)
 
 	var/list/integrated_tools_by_name
@@ -260,15 +260,15 @@
 	integrated_object_type = null
 
 	integrated_tools = list(
-		/obj/item/weapon/surgical/hemostat = null,
-		/obj/item/weapon/surgical/retractor = null,
-		/obj/item/weapon/surgical/cautery = null,
-		/obj/item/weapon/surgical/surgicaldrill = null,
-		/obj/item/weapon/surgical/scalpel = null,
-		/obj/item/weapon/surgical/circular_saw = null,
-		/obj/item/weapon/surgical/bonegel = null,
-		/obj/item/weapon/surgical/FixOVein = null,
-		/obj/item/weapon/surgical/bonesetter = null,
+		/obj/item/surgical/hemostat = null,
+		/obj/item/surgical/retractor = null,
+		/obj/item/surgical/cautery = null,
+		/obj/item/surgical/surgicaldrill = null,
+		/obj/item/surgical/scalpel = null,
+		/obj/item/surgical/circular_saw = null,
+		/obj/item/surgical/bonegel = null,
+		/obj/item/surgical/FixOVein = null,
+		/obj/item/surgical/bonesetter = null,
 		/obj/item/stack/medical/crude_pack = null
 		)
 

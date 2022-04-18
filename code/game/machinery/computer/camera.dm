@@ -7,7 +7,7 @@
 	icon_keyboard = "security_key"
 	icon_screen = "cameras"
 	light_color = "#a91515"
-	circuit = /obj/item/weapon/circuitboard/security
+	circuit = /obj/item/circuitboard/security
 
 	var/mapping = 0//For the overview file, interesting bit of code.
 	var/list/network = list()
@@ -78,6 +78,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	light_color = "#FFEEDB"
 	light_range_on = 2
 	network = list(NETWORK_THUNDER)
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
 	camera_datum_type = /datum/tgui_module/camera/bigscreen
 	
@@ -86,6 +87,10 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	var/weakref/showing
 
 	var/enabled = TRUE // on or off
+=======
+	circuit = /obj/item/circuitboard/security/telescreen/entertainment
+	var/obj/item/radio/radio = null
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/security/telescreen/entertainment/Initialize()
 	GLOB.entertainment_screens += src
@@ -173,7 +178,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	icon_state = "television"
 	icon_keyboard = null
 	icon_screen = "detective_tv"
-	circuit = /obj/item/weapon/circuitboard/security/tv
+	circuit = /obj/item/circuitboard/security/tv
 	light_color = "#3848B3"
 	light_power_on = 0.5
 
@@ -183,7 +188,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	icon_keyboard = "mining_key"
 	icon_screen = "mining"
 	network = list("Mining Outpost")
-	circuit = /obj/item/weapon/circuitboard/security/mining
+	circuit = /obj/item/circuitboard/security/mining
 	light_color = "#F9BBFC"
 
 /obj/machinery/computer/security/engineering
@@ -191,7 +196,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	desc = "Used to monitor fires and breaches."
 	icon_keyboard = "power_key"
 	icon_screen = "engie_cams"
-	circuit = /obj/item/weapon/circuitboard/security/engineering
+	circuit = /obj/item/circuitboard/security/engineering
 	light_color = "#FAC54B"
 
 /obj/machinery/computer/security/engineering/get_default_networks()

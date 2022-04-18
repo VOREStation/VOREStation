@@ -6,31 +6,31 @@
 	spell_power_desc = "Makes certain rare functions possible to acquire via Gambit which cannot be obtained otherwise, if above 100%."
 	ability_icon_state = "tech_gambit"
 	cost = 50
-	obj_path = /obj/item/weapon/spell/gambit
+	obj_path = /obj/item/spell/gambit
 	category = UTILITY_SPELLS
 
-/var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/weapon/spell) - list(
-	/obj/item/weapon/spell,
-	/obj/item/weapon/spell/gambit,
-	/obj/item/weapon/spell/projectile,
-	/obj/item/weapon/spell/aura,
-//	/obj/item/weapon/spell/insert,
-	/obj/item/weapon/spell/spawner,
-	/obj/item/weapon/spell/summon,
-	/obj/item/weapon/spell/modifier)
+/var/global/list/all_technomancer_gambit_spells = typesof(/obj/item/spell) - list(
+	/obj/item/spell,
+	/obj/item/spell/gambit,
+	/obj/item/spell/projectile,
+	/obj/item/spell/aura,
+//	/obj/item/spell/insert,
+	/obj/item/spell/spawner,
+	/obj/item/spell/summon,
+	/obj/item/spell/modifier)
 
-/obj/item/weapon/spell/gambit
+/obj/item/spell/gambit
 	name = "gambit"
 	desc = "Do you feel lucky?"
 	icon_state = "gambit"
 	cast_methods = CAST_USE
 	aspect = ASPECT_UNSTABLE
 	var/list/rare_spells = list(
-		/obj/item/weapon/spell/modifier/mend_all
+		/obj/item/spell/modifier/mend_all
 	)
 
 
-/obj/item/weapon/spell/gambit/on_use_cast(mob/living/carbon/human/user)
+/obj/item/spell/gambit/on_use_cast(mob/living/carbon/human/user)
 	if(pay_energy(200))
 		adjust_instability(3)
 		if(check_for_scepter())
@@ -39,12 +39,12 @@
 			give_new_spell(random_spell())
 		qdel(src)
 
-/obj/item/weapon/spell/gambit/proc/give_new_spell(var/spell_type)
+/obj/item/spell/gambit/proc/give_new_spell(var/spell_type)
 	owner.drop_from_inventory(src, null)
 	owner.place_spell_in_hand(spell_type)
 
 // Gives a random spell.
-/obj/item/weapon/spell/gambit/proc/random_spell()
+/obj/item/spell/gambit/proc/random_spell()
 	var/list/potential_spells = all_technomancer_gambit_spells.Copy()
 	var/rare_spell_chance = between(0, calculate_spell_power(100) - 100, 100) // Having 120% spellpower means a 20% chance to get to roll for rare spells.
 	if(prob(rare_spell_chance))
@@ -53,7 +53,7 @@
 	return pick(potential_spells)
 
 // Gives a "random" spell.
-/obj/item/weapon/spell/gambit/proc/biased_random_spell()
+/obj/item/spell/gambit/proc/biased_random_spell()
 	var/list/potential_spells = list()
 	var/rare_spell_chance = between(0, calculate_spell_power(100) - 100, 100)
 	var/give_rare_spells = FALSE
@@ -64,11 +64,11 @@
 	// First the spell will concern itself with the health of the technomancer.
 	if(prob(owner.getBruteLoss() + owner.getBruteLoss() * 2)) // Having 20 brute means a 40% chance of being added to the pool.
 		if(!owner.isSynthetic())
-			potential_spells |= /obj/item/weapon/spell/modifier/mend_life
+			potential_spells |= /obj/item/spell/modifier/mend_life
 		else
-			potential_spells |= /obj/item/weapon/spell/modifier/mend_synthetic
+			potential_spells |= /obj/item/spell/modifier/mend_synthetic
 		if(give_rare_spells)
-			potential_spells |= /obj/item/weapon/spell/modifier/mend_all
+			potential_spells |= /obj/item/spell/modifier/mend_all
 
 	// Second, the spell will try to prepare the technomancer for threats.
 	var/hostile_mobs = 0 // Counts how many hostile mobs.  Higher numbers make it more likely for AoE spells to be chosen.
@@ -80,13 +80,13 @@
 			if(!is_ally(SM) && SM.has_AI() && SM.ai_holder.hostile)
 				hostile_mobs++
 				if(SM.summoned || SM.supernatural) // Our creations might be trying to kill us.
-					potential_spells |= /obj/item/weapon/spell/abjuration
+					potential_spells |= /obj/item/spell/abjuration
 
 		// Always assume borgs are hostile.
 		if(istype(L, /mob/living/silicon/robot))
 			if(!istype(L, /mob/living/silicon/robot/drone)) // Drones are okay, however.
 				hostile_mobs++
-				potential_spells |= /obj/item/weapon/spell/projectile/ionic_bolt
+				potential_spells |= /obj/item/spell/projectile/ionic_bolt
 
 		// Finally we get to humanoids.
 		if(istype(L, /mob/living/carbon/human))
@@ -96,7 +96,7 @@
 
 			for(var/obj/item/I in list(H.l_hand, H.r_hand))
 				// Guns are scary.
-				if(istype(I, /obj/item/weapon/gun)) // Toy guns will count as well but oh well.
+				if(istype(I, /obj/item/gun)) // Toy guns will count as well but oh well.
 					hostile_mobs++
 					continue
 				// Strong melee weapons are scary as well.
@@ -105,27 +105,27 @@
 					continue
 
 	if(hostile_mobs)
-		potential_spells |= /obj/item/weapon/spell/shield
-		potential_spells |= /obj/item/weapon/spell/reflect
-		potential_spells |= /obj/item/weapon/spell/targeting_matrix
-		potential_spells |= /obj/item/weapon/spell/warp_strike
+		potential_spells |= /obj/item/spell/shield
+		potential_spells |= /obj/item/spell/reflect
+		potential_spells |= /obj/item/spell/targeting_matrix
+		potential_spells |= /obj/item/spell/warp_strike
 
 		if(hostile_mobs >= 3) // Lots of baddies, give them AoE.
-			potential_spells |= /obj/item/weapon/spell/projectile/chain_lightning
-			potential_spells |= /obj/item/weapon/spell/projectile/chain_lightning/lesser
-			potential_spells |= /obj/item/weapon/spell/spawner/fire_blast
-			potential_spells |= /obj/item/weapon/spell/condensation
-			potential_spells |= /obj/item/weapon/spell/aura/frost
+			potential_spells |= /obj/item/spell/projectile/chain_lightning
+			potential_spells |= /obj/item/spell/projectile/chain_lightning/lesser
+			potential_spells |= /obj/item/spell/spawner/fire_blast
+			potential_spells |= /obj/item/spell/condensation
+			potential_spells |= /obj/item/spell/aura/frost
 		else
-			potential_spells |= /obj/item/weapon/spell/projectile/beam
-			potential_spells |= /obj/item/weapon/spell/projectile/overload
-			potential_spells |= /obj/item/weapon/spell/projectile/force_missile
-			potential_spells |= /obj/item/weapon/spell/projectile/lightning
+			potential_spells |= /obj/item/spell/projectile/beam
+			potential_spells |= /obj/item/spell/projectile/overload
+			potential_spells |= /obj/item/spell/projectile/force_missile
+			potential_spells |= /obj/item/spell/projectile/lightning
 
 	// Third priority is recharging the core.
 	if(core.energy / core.max_energy <= 0.5)
-		potential_spells |= /obj/item/weapon/spell/energy_siphon
-		potential_spells |= /obj/item/weapon/spell/instability_tap
+		potential_spells |= /obj/item/spell/energy_siphon
+		potential_spells |= /obj/item/spell/instability_tap
 
 	// Fallback method in case nothing gets added.
 	if(!potential_spells.len)

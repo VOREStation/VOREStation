@@ -5,7 +5,7 @@
 /var/const/DRINK_ICON_DEFAULT = ""
 /var/const/DRINK_ICON_NOISY = "_noise"
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2
+/obj/item/reagent_containers/food/drinks/glass2
 	name = "glass" // Name when empty
 	var/base_name = "glass" // Name to put in front of drinks, i.e. "[base_name] of [contents]"
 	desc = "A generic drinking glass." // Description when empty
@@ -27,13 +27,13 @@
 
 	matter = list(MAT_GLASS = 60)
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/examine(mob/M as mob)
+/obj/item/reagent_containers/food/drinks/glass2/examine(mob/M as mob)
 	. = ..()
 
 	for(var/I in extras)
-		if(istype(I, /obj/item/weapon/glass_extra))
+		if(istype(I, /obj/item/glass_extra))
 			. += "There is \a [I] in \the [src]."
-		else if(istype(I, /obj/item/weapon/reagent_containers/food/snacks/fruit_slice))
+		else if(istype(I, /obj/item/reagent_containers/food/snacks/fruit_slice))
 			. += "There is \a [I] on the rim."
 		else
 			. += "There is \a [I] somewhere on the glass. Somehow."
@@ -44,7 +44,7 @@
 	if(has_fizz())
 		. += "It is fizzing slightly."
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/proc/has_ice()
+/obj/item/reagent_containers/food/drinks/glass2/proc/has_ice()
 	if(reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(!((R.id == "ice") || ("ice" in R.glass_special))) // if it's not a cup of ice, and it's not already supposed to have ice in, see if the bartender's put ice in it
@@ -53,7 +53,7 @@
 
 	return 0
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/proc/has_fizz()
+/obj/item/reagent_containers/food/drinks/glass2/proc/has_fizz()
 	if(reagents.reagent_list.len > 0)
 		var/datum/reagent/R = reagents.get_master_reagent()
 		if(!("fizz" in R.glass_special))
@@ -65,23 +65,28 @@
 				return 1
 	return 0
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/Initialize()
+/obj/item/reagent_containers/food/drinks/glass2/Initialize()
 	. = ..()
 	icon_state = base_icon
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/on_reagent_change()
+/obj/item/reagent_containers/food/drinks/glass2/on_reagent_change()
 	..()
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/weapon/glass_extra/GE)
 	if(!("[base_icon]_[GE.glass_addition]left" in cached_icon_states(icon))) //VOREStation Edit
+=======
+/obj/item/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/glass_extra/GE)
+	if(!("[base_icon]_[GE.glass_addition]left" in icon_states(DRINK_ICON_FILE)))
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		return 0
 	if(!("[base_icon]_[GE.glass_addition]right" in cached_icon_states(icon))) //VOREStation Edit
 		return 0
 
 	return 1
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/update_icon()
+/obj/item/reagent_containers/food/drinks/glass2/update_icon()
 	underlays.Cut()
 
 	if (reagents.reagent_list.len > 0)
@@ -126,13 +131,19 @@
 
 	var/side = "left"
 	for(var/item in extras)
+<<<<<<< HEAD
 		if(istype(item, /obj/item/weapon/glass_extra))
 			var/obj/item/weapon/glass_extra/GE = item
 			var/image/I = image(icon, src, "[base_icon]_[GE.glass_addition][side]") //VOREStation Edit
+=======
+		if(istype(item, /obj/item/glass_extra))
+			var/obj/item/glass_extra/GE = item
+			var/image/I = image(DRINK_ICON_FILE, src, "[base_icon]_[GE.glass_addition][side]")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if(GE.glass_color)
 				I.color = GE.glass_color
 			underlays += I
-		else if(istype(item, /obj/item/weapon/reagent_containers/food/snacks/fruit_slice))
+		else if(istype(item, /obj/item/reagent_containers/food/snacks/fruit_slice))
 			var/obj/FS = item
 			var/image/I = image(FS)
 
@@ -147,7 +158,7 @@
 		else continue
 		side = "right"
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/afterattack(var/obj/target, var/mob/user, var/proximity)
+/obj/item/reagent_containers/food/drinks/glass2/afterattack(var/obj/target, var/mob/user, var/proximity)
 	if(user.a_intent == I_HURT) //We only want splashing to be done if they are on harm intent.
 		if(!is_open_container() || !proximity)
 			return 1
@@ -159,7 +170,7 @@
 			return 1
 	..()
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/standard_feed_mob(var/mob/user, var/mob/target)
+/obj/item/reagent_containers/food/drinks/glass2/standard_feed_mob(var/mob/user, var/mob/target)
 	if(afterattack(target, user)) //Check to see if harm intent & splash.
 		return
 	else

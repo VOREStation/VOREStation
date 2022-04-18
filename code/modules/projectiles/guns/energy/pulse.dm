@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  * Pulse Rifle
  */
@@ -5,6 +6,11 @@
 	name = "\improper LP1 Locust Rifle"
 	desc = "The Bishamonten LP1 is a weapon that uses advanced pulse-based beam generation technology to emit powerful laser blasts. \
 	Because of its complexity and cost, it is rarely seen in use except by specialists."
+=======
+/obj/item/gun/energy/pulse_rifle
+	name = "pulse rifle"
+	desc = "A weapon that uses advanced pulse-based beam generation technology to emit powerful laser blasts. Because of its complexity and cost, it is rarely seen in use except by specialists."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "pulse"
 	item_state = null	//so the human update icon uses the icon_state instead.
 	slot_flags = SLOT_BELT|SLOT_BACK
@@ -20,10 +26,11 @@
 		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/beam/pulse, fire_delay=null, charge_cost = 240),
 		)
 
-/obj/item/weapon/gun/energy/pulse_rifle/mounted
+/obj/item/gun/energy/pulse_rifle/mounted
 	self_recharge = 1
 	use_external_power = 1
 
+<<<<<<< HEAD
 /*
  * Pulse Destroyer
  */
@@ -31,11 +38,16 @@
 	name = "\improper LP1 MkII"
 	desc = "A more heavy-duty version of the Bishamonten LP1. It's had all its safety functions ripped out to facilitate the perfect killing machine."
 	icon_state = "pulsedest"
+=======
+/obj/item/gun/energy/pulse_rifle/destroyer
+	name = "pulse destroyer"
+	desc = "A heavy-duty, pulse-based energy weapon. Because of its complexity and cost, it is rarely seen in use except by specialists."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	projectile_type=/obj/item/projectile/beam/pulse
 	charge_cost = 120
 	fire_delay = 12
 
-/obj/item/weapon/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
+/obj/item/gun/energy/pulse_rifle/destroyer/attack_self(mob/living/user as mob)
 	to_chat(user, "<span class='warning'>[src.name] has three settings, and they are all DESTROY.</span>")
 
 /*
@@ -54,6 +66,7 @@
 		list(mode_name="DESTROY", projectile_type=/obj/item/projectile/beam/pulse, fire_delay=null, charge_cost = 240),
 		)
 
+<<<<<<< HEAD
 /*
  * Pulse Pistol
  */
@@ -66,12 +79,27 @@
 	tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard \
 	firing mechanisms.The Grasshopper remains one of the smallest production laser pistols ever produced that is still capable of causing significant \
 	damage to organic tissue."
+=======
+//non-bus version because it looks adorable.
+/obj/item/gun/energy/pulse_rifle/compact
+	name = "\improper LP2 Grasshopper Compact"
+	desc = "You feel like you're going to break the damn thing. The Bishamonten LP2 is a rare collectors item from the early 23rd century."
+	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
+	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
+	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms.\
+	The Grasshopper remains one of the smallest production laser pistols ever produced that is still capable of causing significant damage to organic tissue."
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	icon_state = "pulsepistol"
 	charge_cost = 480
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/energy/pulse_rifle/compact/admin
 	name = "\improper LP4 Mantis Deluxe"
+=======
+/obj/item/gun/energy/pulse_rifle/compact/admin
+	name = "\improper LP2 Grasshopper Deluxe"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "It's not the size of the gun, it's the size of the hole it puts through people."
 	charge_cost = 240
 

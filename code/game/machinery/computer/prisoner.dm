@@ -7,7 +7,7 @@
 	icon_screen = "explosive"
 	light_color = "#a91515"
 	req_access = list(access_armory)
-	circuit = /obj/item/weapon/circuitboard/prisoner
+	circuit = /obj/item/circuitboard/prisoner
 	var/id = 0.0
 	var/temp = null
 	var/status = 0
@@ -33,7 +33,7 @@
 	var/list/chemImplants = list()
 	var/list/trackImplants = list()
 	if(screen)
-		for(var/obj/item/weapon/implant/chem/C in all_chem_implants)
+		for(var/obj/item/implant/chem/C in all_chem_implants)
 			var/turf/T = get_turf(C)
 			if(!T)
 				continue
@@ -44,7 +44,7 @@
 				"units" = C.reagents.total_volume,
 				"ref" = "\ref[C]"
 			)))
-		for(var/obj/item/weapon/implant/tracking/track in all_tracking_implants)
+		for(var/obj/item/implant/tracking/track in all_tracking_implants)
 			var/turf/T = get_turf(track)
 			if(!T)
 				continue
@@ -71,7 +71,7 @@
 		return TRUE
 	switch(action)
 		if("inject")
-			var/obj/item/weapon/implant/I = locate(params["imp"])
+			var/obj/item/implant/I = locate(params["imp"])
 			if(I)
 				I.activate(clamp(params["val"], 0, 10))
 			. = TRUE
@@ -85,7 +85,7 @@
 			var/warning = sanitize(input(usr, "Message:", "Enter your message here!", ""))
 			if(!warning)
 				return
-			var/obj/item/weapon/implant/I = locate(params["imp"])
+			var/obj/item/implant/I = locate(params["imp"])
 			if(I && I.imp_in)
 				to_chat(I.imp_in, "<span class='notice'>You hear a voice in your head saying: '[warning]'</span>")
 			. = TRUE

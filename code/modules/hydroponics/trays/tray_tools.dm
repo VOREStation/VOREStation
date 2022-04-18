@@ -1,31 +1,41 @@
 //Analyzer, pestkillers, weedkillers, nutrients, hatchets, cutters.
 
-/obj/item/weapon/tool/wirecutters/clippers
+/obj/item/tool/wirecutters/clippers
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
 
-/obj/item/weapon/tool/wirecutters/clippers/trimmers
+/obj/item/tool/wirecutters/clippers/trimmers
     name = "hedgetrimmers"
     desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
     icon_state = "hedget"
     item_state = "hedget"
     force = 7 //One point extra than standard wire cutters.
 
-/obj/item/device/analyzer/plant_analyzer
+/obj/item/analyzer/plant_analyzer
 	name = "plant analyzer"
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "hydro"
 	item_state = "analyzer"
 	var/datum/seed/last_seed
 	var/list/last_reagents
 
+<<<<<<< HEAD
 /obj/item/device/analyzer/plant_analyzer/Destroy()
 	. = ..()
 	QDEL_NULL(last_seed)
+=======
+/obj/item/analyzer/plant_analyzer/proc/print_report_verb()
+	set name = "Print Plant Report"
+	set category = "Object"
+	set src = usr
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/device/analyzer/plant_analyzer/attack_self(mob/user)
 	tgui_interact(user)
 
+<<<<<<< HEAD
 /obj/item/device/analyzer/plant_analyzer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -64,21 +74,57 @@
 /obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
+=======
+/obj/item/analyzer/plant_analyzer/Topic(href, href_list)
+	if(..())
+		return
+	if(href_list["print"])
+		print_report(usr)
+
+/obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+	if(!last_data)
+		to_chat(user, "There is no scan data to print.")
+		return
+	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
+	P.name = "paper - [form_title]"
+	P.info = "[last_data]"
+	if(istype(user,/mob/living/carbon/human))
+		user.put_in_hands(P)
+	user.visible_message("\The [src] spits out a piece of paper.")
+	return
+
+/obj/item/analyzer/plant_analyzer/attack_self(mob/user as mob)
+	print_report(user)
+	return 0
+
+/obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+	if(!flag) return
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/datum/seed/grown_seed
 	var/datum/reagents/grown_reagents
 	if(istype(target,/obj/structure/table))
 		return ..()
-	else if(istype(target,/obj/item/weapon/reagent_containers/food/snacks/grown))
+	else if(istype(target,/obj/item/reagent_containers/food/snacks/grown))
 
+<<<<<<< HEAD
 		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = target
 		grown_seed = SSplants.seeds[G.plantname]
+=======
+		var/obj/item/reagent_containers/food/snacks/grown/G = target
+		grown_seed = plant_controller.seeds[G.plantname]
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		grown_reagents = G.reagents
 
-	else if(istype(target,/obj/item/weapon/grown))
+	else if(istype(target,/obj/item/grown))
 
+<<<<<<< HEAD
 		var/obj/item/weapon/grown/G = target
 		grown_seed = SSplants.seeds[G.plantname]
+=======
+		var/obj/item/grown/G = target
+		grown_seed = plant_controller.seeds[G.plantname]
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/seeds))

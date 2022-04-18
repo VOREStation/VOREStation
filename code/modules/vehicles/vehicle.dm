@@ -31,7 +31,7 @@
 	var/powered = 0		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/charge_use = 5	//set this to adjust the amount of power the vehicle uses per move
 
 	var/paint_color = "#666666" //For vehicles with special paint overlays.
@@ -88,8 +88,8 @@
 	if(load && !(load in buckled_mobs) && !istype(load, /datum/vehicle_dummy_load))
 		load.forceMove(loc)
 
-/obj/vehicle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/hand_labeler))
+/obj/vehicle/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/hand_labeler))
 		return
 	if(mechanical)
 		if(W.is_screwdriver())
@@ -101,10 +101,10 @@
 		else if(W.is_crowbar() && cell && open)
 			remove_cell(user)
 
-		else if(istype(W, /obj/item/weapon/cell) && !cell && open)
+		else if(istype(W, /obj/item/cell) && !cell && open)
 			insert_cell(W, user)
-		else if(istype(W, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/T = W
+		else if(istype(W, /obj/item/weldingtool))
+			var/obj/item/weldingtool/T = W
 			if(T.welding)
 				if(health < maxhealth)
 					if(open)
@@ -266,7 +266,7 @@
 		turn_on()
 		return
 
-/obj/vehicle/proc/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
+/obj/vehicle/proc/insert_cell(var/obj/item/cell/C, var/mob/living/carbon/human/H)
 	if(!mechanical)
 		return
 	if(cell)

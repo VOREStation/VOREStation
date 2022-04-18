@@ -1,0 +1,56 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/obj/effect/floor_decal/corner/red{dir = 5},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"c" = (/obj/effect/floor_decal/corner/blue{dir = 5},/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"e" = (/obj/effect/floor_decal/corner/blue{dir = 5},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"f" = (/turf/simulated/floor/plating,/area/template_noop)
+"g" = (/turf/simulated/wall,/area/template_noop)
+"h" = (/obj/effect/floor_decal/corner/red/full{dir = 4},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"i" = (/obj/item/stack/flag/red,/obj/effect/floor_decal/industrial/outline{color = "#BB0000"},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"j" = (/obj/effect/floor_decal/corner/blue{dir = 8},/obj/effect/floor_decal/corner/red,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"k" = (/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/plating,/area/template_noop)
+"l" = (/obj/effect/floor_decal/corner/blue/full,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"n" = (/obj/effect/floor_decal/corner/red{dir = 4},/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"p" = (/obj/effect/floor_decal/corner/red{dir = 6},/obj/item/stack/tile/floor/steel_dirty,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"q" = (/obj/effect/floor_decal/corner/blue{dir = 9},/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"r" = (/obj/random/crate,/obj/random/maintenance/security,/obj/random/maintenance/security,/obj/item/clothing/glasses/sunglasses/aviator,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/turf/simulated/floor/plating,/area/template_noop)
+"s" = (/obj/effect/floor_decal/corner/blue/full{dir = 8},/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"t" = (/obj/machinery/deployable/barrier{anchored = 1; req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"v" = (/obj/effect/floor_decal/corner/blue{dir = 1},/obj/effect/floor_decal/corner/red{dir = 4},/obj/item/stack/tile/floor/steel_dirty{amount = 15},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"y" = (/obj/structure/closet/lasertag/blue,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"z" = (/obj/effect/floor_decal/corner/blue{dir = 5},/obj/item/stack/tile/floor/steel_dirty,/obj/structure/sign/poster/nanotrasen{dir = 1; pixel_y = 32; poster_decl = /decl/poster/nanotrasen/bay_21},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"B" = (/obj/effect/floor_decal/corner/blue{dir = 9},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"C" = (/obj/random/toolbox,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"D" = (/obj/machinery/deployable/barrier{anchored = 1; req_access = list()},/obj/effect/floor_decal/corner/blue{dir = 10},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"E" = (/obj/effect/floor_decal/corner/red{dir = 5},/obj/random/crate,/obj/item/floor_painter,/obj/random/maintenance/engineering,/obj/random/maintenance/engineering,/obj/random/maintenance/engineering,/obj/random/maintenance/clean,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"F" = (/obj/item/tape/engineering,/turf/simulated/floor/plating,/area/template_noop)
+"G" = (/obj/effect/floor_decal/corner/blue{dir = 10},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"H" = (/obj/effect/floor_decal/corner/red{dir = 6},/obj/structure/closet/lasertag/red,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"I" = (/obj/machinery/deployable/barrier{anchored = 1; req_access = list()},/turf/simulated/floor/plating,/area/template_noop)
+"K" = (/obj/effect/floor_decal/corner/red{dir = 10},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"N" = (/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"O" = (/obj/effect/floor_decal/corner/red{dir = 6},/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"P" = (/obj/effect/floor_decal/corner/red{dir = 5},/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"Q" = (/obj/structure/girder,/turf/simulated/floor/plating,/area/template_noop)
+"R" = (/obj/effect/floor_decal/corner/red{dir = 5},/obj/structure/closet/toolcloset,/obj/random/tool/powermaint,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"S" = (/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"T" = (/obj/effect/floor_decal/corner/red/full{dir = 1},/obj/machinery/deployable/barrier{req_access = list()},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"U" = (/obj/effect/floor_decal/corner/blue{dir = 8},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"V" = (/obj/effect/floor_decal/corner/red{dir = 6},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"W" = (/obj/item/stack/tile/floor/steel_dirty,/turf/simulated/floor/plating,/area/template_noop)
+"X" = (/obj/item/stack/flag/blue,/obj/effect/floor_decal/industrial/outline{color = "#0000BB"},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"Y" = (/obj/effect/floor_decal/corner/red{dir = 10},/obj/structure/sign/poster/custom{pixel_y = -32; poster_decl = /decl/poster/vore_29},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"Z" = (/obj/item/stack/tile/floor/steel_dirty,/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+
+(1,1,1) = {"
+gggggggFggggggga
+gscccezvEbRPTQgg
+gqNCfWWZSWWfnTkg
+gBSWfffIfWfWSpkg
+gBttWfWIffffWVrg
+gBXtSWSIZSWfiHkg
+gBytZtWIStfSSOkg
+gBttStfIftZSZVkg
+glUSStSWWttttVkg
+gglDGDGjYKKKKhgg
+agggggggggggggga
+"}

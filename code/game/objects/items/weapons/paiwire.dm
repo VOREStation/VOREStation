@@ -1,4 +1,4 @@
-/obj/item/weapon/pai_cable/proc/plugin(obj/machinery/M as obj, mob/user as mob)
+/obj/item/pai_cable/proc/plugin(obj/machinery/M as obj, mob/user as mob)
 	if(istype(M, /obj/machinery/door) || istype(M, /obj/machinery/camera))
 		//VOREStation Add - Can't hack secured_wires doors (vault, etc)
 		if(istype(M, /obj/machinery/door/airlock))
@@ -15,5 +15,5 @@
 	else
 		user.visible_message("[user] fumbles to find a place on [M] to plug in [src].", "There aren't any ports on [M] that match the jack belonging to [src].")
 
-/obj/item/weapon/pai_cable/attack(obj/machinery/M as obj, mob/user as mob)
+/obj/item/pai_cable/attack(obj/machinery/M as obj, mob/user as mob)
 	src.plugin(M, user)

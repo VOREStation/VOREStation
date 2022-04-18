@@ -1,6 +1,6 @@
 //////////////////////Scrying orb//////////////////////
 
-/obj/item/weapon/scrying
+/obj/item/scrying
 	name = "scrying orb"
 	desc = "An incandescent orb of otherworldly energy, staring into it gives you vision beyond mortal means."
 	icon = 'icons/obj/projectiles.dmi'
@@ -12,7 +12,7 @@
 	force = 10
 	hitsound = 'sound/items/welder2.ogg'
 
-/obj/item/weapon/scrying/attack_self(mob/user as mob)
+/obj/item/scrying/attack_self(mob/user as mob)
 	if((user.mind && !wizards.is_antagonist(user.mind)))
 		to_chat(user, "<span class='warning'>You stare into the orb and see nothing but your own reflection.</span>")
 		return

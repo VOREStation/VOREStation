@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 GLOBAL_LIST_INIT(biblenames, list(
 	"Bible", "Koran", "Scrapbook",
 	"Pagan", "White Bible", "Holy Light",
@@ -20,6 +21,9 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	"necronomicon", "bible", "clipboard"))
 
 /obj/item/weapon/storage/bible
+=======
+/obj/item/storage/bible
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "bible"
 	desc = "Apply to head repeatedly."
 	icon_state ="bible"
@@ -36,6 +40,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	use_sound = 'sound/bureaucracy/bookopen.ogg'
 	drop_sound = 'sound/bureaucracy/bookclose.ogg'
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/bible/attack_self(mob/living/carbon/human/user)
 	if(GLOB.bible_icon_state)
 		icon_state = GLOB.bible_icon_state
@@ -82,20 +87,23 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	return TRUE
 
 /obj/item/weapon/storage/bible/booze
+=======
+/obj/item/storage/bible/booze
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "bible"
 	desc = "To be applied to the head repeatedly."
 	icon_state ="bible"
 
 /obj/item/weapon/storage/bible/booze/New()
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-		/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-		/obj/item/weapon/spacecash/c100,
-		/obj/item/weapon/spacecash/c100,
-		/obj/item/weapon/spacecash/c100
+		/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+		/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+		/obj/item/spacecash/c100,
+		/obj/item/spacecash/c100,
+		/obj/item/spacecash/c100
 	)
 
-/obj/item/weapon/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
 	if(user.mind && (user.mind.assigned_role == "Chaplain"))
 		if(A.reagents && A.reagents.has_reagent("water")) //blesses all the water in the holder
@@ -104,7 +112,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 			A.reagents.del_reagent("water")
 			A.reagents.add_reagent("holywater",water2holy)
 
-/obj/item/weapon/storage/bible/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/storage/bible/attackby(obj/item/W as obj, mob/user as mob)
 	if (src.use_sound)
 		playsound(src, src.use_sound, 50, 1, -5)
 	..()

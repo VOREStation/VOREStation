@@ -2,31 +2,36 @@
 //
 // Includes drug powder.
 //
+<<<<<<< HEAD
 // Illicit drugs~
 /obj/item/weapon/storage/pill_bottle/happy
+=======
+//Illicit drugs~
+/obj/item/storage/pill_bottle/happy
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "bottle of Happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
 	wrapper_color = COLOR_PINK
-	starts_with = list(/obj/item/weapon/reagent_containers/pill/happy = 7)
+	starts_with = list(/obj/item/reagent_containers/pill/happy = 7)
 
-/obj/item/weapon/storage/pill_bottle/zoom
+/obj/item/storage/pill_bottle/zoom
 	name = "bottle of Zoom pills"
 	desc = "Highly illegal drug. Trade brain for speed."
 	wrapper_color = COLOR_BLUE
-	starts_with = list(/obj/item/weapon/reagent_containers/pill/zoom = 7)
+	starts_with = list(/obj/item/reagent_containers/pill/zoom = 7)
 
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random
+/obj/item/reagent_containers/glass/beaker/vial/random
 	flags = 0
 	var/list/random_reagent_list = list(list("water" = 15) = 1, list("cleaner" = 15) = 1)
 
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random/toxin
+/obj/item/reagent_containers/glass/beaker/vial/random/toxin
 	random_reagent_list = list(
 		list("mindbreaker" = 10, "bliss" = 20)	= 3,
 		list("carpotoxin" = 15)							= 2,
 		list("impedrezene" = 15)						= 2,
 		list("zombiepowder" = 10)						= 1)
 
-/obj/item/weapon/reagent_containers/glass/beaker/vial/random/Initialize()
+/obj/item/reagent_containers/glass/beaker/vial/random/Initialize()
 	. = ..()
 	if(is_open_container())
 		flags ^= OPENCONTAINER
@@ -42,10 +47,18 @@
 	desc = "Contains [english_list(names)]."
 	update_icon()
 
+<<<<<<< HEAD
 //
 // Drug Powder
 //
 /obj/item/weapon/reagent_containers/powder
+=======
+/*/////////////////////////////////////
+// 			DRUG POWDER				//
+////////////////////////////////////// 
+*/
+/obj/item/reagent_containers/powder
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "powder"
 	desc = "A powdered form of... something."
 	icon = 'icons/obj/chemical.dmi'
@@ -56,18 +69,23 @@
 	w_class = ITEMSIZE_TINY
 	volume = 50
 
-/obj/item/weapon/reagent_containers/powder/examine(mob/user)
+/obj/item/reagent_containers/powder/examine(mob/user)
 	if(reagents)
 		var/datum/reagent/R = reagents.get_master_reagent()
 		desc = "A powdered form of what appears to be [R.name]. There's about [reagents.total_volume] units here."
 	return ..()
 
-/obj/item/weapon/reagent_containers/powder/Initialize()
+/obj/item/reagent_containers/powder/Initialize()
 	..()
 	get_appearance()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/powder/proc/get_appearance()
 	/// Names and colors based on dominant reagent.
+=======
+/obj/item/reagent_containers/powder/proc/get_appearance()
+	/// Names and colors based on dominant reagent. 
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if (reagents.reagent_list.len > 0)
 		color = reagents.get_color()
 		var/datum/reagent/R = reagents.get_master_reagent()
@@ -76,12 +94,12 @@
 
 /// Snorting.
 
-/obj/item/weapon/reagent_containers/powder/attackby(var/obj/item/weapon/W, var/mob/living/user)
+/obj/item/reagent_containers/powder/attackby(var/obj/item/W, var/mob/living/user)
 
 	if(!ishuman(user)) /// You gotta be fleshy to snort the naughty drugs.
 		return ..()
 
-	if(!istype(W, /obj/item/weapon/glass_extra/straw) && !istype(W, /obj/item/weapon/reagent_containers/rollingpaper))
+	if(!istype(W, /obj/item/glass_extra/straw) && !istype(W, /obj/item/reagent_containers/rollingpaper))
 		return ..()
 
 	user.visible_message("<span class='warning'>[user] snorts [src] with [W]!</span>")

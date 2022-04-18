@@ -1,4 +1,4 @@
-/obj/item/device/assembly/timer
+/obj/item/assembly/timer
 	name = "timer"
 	desc = "Used to time things. Works well with contraptions which has to count down. Tick tock."
 	icon_state = "timer"
@@ -13,7 +13,7 @@
 	var/time = 10
 
 
-/obj/item/device/assembly/timer/activate()
+/obj/item/assembly/timer/activate()
 	if(!..())
 		return FALSE
 
@@ -22,7 +22,7 @@
 	update_icon()
 	return 0
 
-/obj/item/device/assembly/timer/toggle_secure()
+/obj/item/assembly/timer/toggle_secure()
 	secured = !secured
 	if(secured)
 		START_PROCESSING(SSobj, src)
@@ -32,28 +32,33 @@
 	update_icon()
 	return secured
 
-/obj/item/device/assembly/timer/proc/set_state(var/state)
+/obj/item/assembly/timer/proc/set_state(var/state)
 	if(state && !timing) //Not running, starting though
 		START_PROCESSING(SSobj, src)
 	else if(timing && !state) //Running, stopping though
 		STOP_PROCESSING(SSobj, src)
 	timing = state
 
-/obj/item/device/assembly/timer/proc/timer_end()
+/obj/item/assembly/timer/proc/timer_end()
 	if(!secured)
 		return 0
 	pulse(0)
 	if(!holder)
 		visible_message("[bicon(src)] *beep* *beep*", "*beep* *beep*")
 
-/obj/item/device/assembly/timer/process()
+/obj/item/assembly/timer/process()
 	if(timing && time-- <= 0)
 		set_state(0)
 		timer_end()
 		time = 10
 
+<<<<<<< HEAD
 /obj/item/device/assembly/timer/update_icon()
 	cut_overlays()
+=======
+/obj/item/assembly/timer/update_icon()
+	overlays.Cut()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	attached_overlays = list()
 	if(timing)
 		add_overlay("timer_timing")
@@ -62,7 +67,7 @@
 		holder.update_icon()
 	return
 
-/obj/item/device/assembly/timer/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/assembly/timer/tgui_interact(mob/user, datum/tgui/ui)
 	if(!secured)
 		to_chat(user, "<span class='warning'>[src] is unsecured!</span>")
 		return FALSE
@@ -71,13 +76,13 @@
 		ui = new(user, src, "AssemblyTimer", name)
 		ui.open()
 
-/obj/item/device/assembly/timer/tgui_data(mob/user)
+/obj/item/assembly/timer/tgui_data(mob/user)
 	var/list/data = ..()
 	data["time"] = time * 10
 	data["timing"] = timing
 	return data
 
-/obj/item/device/assembly/timer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/assembly/timer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 

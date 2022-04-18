@@ -1,4 +1,4 @@
-/obj/item/weapon/tape_roll
+/obj/item/tape_roll
 	name = "tape roll"
 	desc = "A roll of sticky tape. Possibly for taping ducks... or was that ducts?"
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -9,17 +9,17 @@
 
 	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
 
-/obj/item/weapon/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(user, /mob/living/silicon/robot) || user == H)
 		return TRUE
 
-	for (var/obj/item/weapon/grab/G in H.grabbed_by)
+	for (var/obj/item/grab/G in H.grabbed_by)
 		if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
 			return TRUE
 			
 	return FALSE
 
-/obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
+/obj/item/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
 	if(istype(H))
 		if(user.a_intent == I_HELP)
 			return
@@ -91,7 +91,7 @@
 				if(!can_place(H, user))
 					return
 
-				var/obj/item/weapon/handcuffs/cable/tape/T = new(user)
+				var/obj/item/handcuffs/cable/tape/T = new(user)
 				playsound(src, 'sound/effects/tape.ogg',25)
 
 				if(!T.place_handcuffs(H, user))
@@ -101,16 +101,16 @@
 				return ..()
 			return 1
 
-/obj/item/weapon/tape_roll/proc/stick(var/obj/item/weapon/W, mob/user)
-	if(!istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/paper/sticky) || !user.unEquip(W))
+/obj/item/tape_roll/proc/stick(var/obj/item/W, mob/user)
+	if(!istype(W, /obj/item/paper) || istype(W, /obj/item/paper/sticky) || !user.unEquip(W))
 		return
 	user.drop_from_inventory(W)
-	var/obj/item/weapon/ducttape/tape = new(get_turf(src))
+	var/obj/item/ducttape/tape = new(get_turf(src))
 	tape.attach(W)
 	user.put_in_hands(tape)
 	playsound(src, 'sound/effects/tape.ogg',25)
 
-/obj/item/weapon/ducttape
+/obj/item/ducttape
 	name = "tape"
 	desc = "A piece of sticky tape."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -120,23 +120,28 @@
 	anchored = FALSE
 	drop_sound = null
 
-	var/obj/item/weapon/stuck = null
+	var/obj/item/stuck = null
 
+<<<<<<< HEAD
 /obj/item/weapon/ducttape/New()
 	..()
+=======
+/obj/item/ducttape/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	flags |= NOBLUDGEON
 
-/obj/item/weapon/ducttape/examine(mob/user)
+/obj/item/ducttape/examine(mob/user)
 	return stuck.examine(user)
 
-/obj/item/weapon/ducttape/proc/attach(var/obj/item/weapon/W)
+/obj/item/ducttape/proc/attach(var/obj/item/W)
 	stuck = W
 	W.forceMove(src)
 	icon_state = W.icon_state + "_taped"
 	name = W.name + " (taped)"
 	overlays = W.overlays
 
-/obj/item/weapon/ducttape/attack_self(mob/user)
+/obj/item/ducttape/attack_self(mob/user)
 	if(!stuck)
 		return
 
@@ -149,8 +154,8 @@
 	overlays = null
 	qdel(src)
 
-/obj/item/weapon/ducttape/attackby(var/obj/item/I, var/mob/user)
-	if(!(istype(src, /obj/item/weapon/handcuffs/cable/tape) || istype(src, /obj/item/clothing/mask/muzzle/tape)))
+/obj/item/ducttape/attackby(var/obj/item/I, var/mob/user)
+	if(!(istype(src, /obj/item/handcuffs/cable/tape) || istype(src, /obj/item/clothing/mask/muzzle/tape)))
 		return ..()
 	else
 		user.drop_from_inventory(I)
@@ -158,11 +163,11 @@
 		qdel(I)
 		to_chat(user, "<span-class='notice'>You place \the [I] back into \the [src].</span>")
 
-/obj/item/weapon/ducttape/attack_hand(mob/living/L)
+/obj/item/ducttape/attack_hand(mob/living/L)
 	anchored = FALSE
 	return ..() // Pick it up now that it's unanchored.
 
-/obj/item/weapon/ducttape/afterattack(var/A, mob/user, flag, params)
+/obj/item/ducttape/afterattack(var/A, mob/user, flag, params)
 
 	if(!in_range(user, A) || istype(A, /obj/machinery/door) || !stuck)
 		return

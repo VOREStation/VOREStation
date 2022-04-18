@@ -45,7 +45,7 @@ Code is pretty much ripped verbatim from nano modules, but with un-needed stuff 
 	if(!istype(user))
 		return 0
 
-	var/obj/item/weapon/card/id/I = user.GetIdCard()
+	var/obj/item/card/id/I = user.GetIdCard()
 	if(!I)
 		return 0
 

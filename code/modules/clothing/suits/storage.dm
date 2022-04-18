@@ -1,9 +1,15 @@
 /obj/item/clothing/suit/storage
-	var/obj/item/weapon/storage/internal/pockets
+	var/obj/item/storage/internal/pockets
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/storage/New()
 	..()
 	pockets = new/obj/item/weapon/storage/internal(src)
+=======
+/obj/item/clothing/suit/storage/Initialize()
+	. = ..()
+	pockets = new/obj/item/storage/internal(src)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pockets.max_w_class = ITEMSIZE_SMALL		//fit only pocket sized items
 	pockets.max_storage_space = ITEMSIZE_COST_SMALL * 2
 
@@ -83,9 +89,15 @@
 
 
 //New Vest 4 pocket storage and badge toggles, until suit accessories are a thing.
+<<<<<<< HEAD
 /obj/item/clothing/suit/storage/vest/heavy/New()
 	..()
 	pockets = new/obj/item/weapon/storage/internal(src)
+=======
+/obj/item/clothing/suit/storage/vest/heavy/Initialize()
+	. = ..()
+	pockets = new/obj/item/storage/internal(src)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pockets.max_w_class = ITEMSIZE_SMALL
 	pockets.max_storage_space = ITEMSIZE_COST_SMALL * 4
 

@@ -10,18 +10,18 @@
 /datum/supply_pack/hospitality/party
 	name = "Party equipment"
 	contains = list(
-			/obj/item/weapon/storage/box/mixedglasses = 2,
-			/obj/item/weapon/storage/box/glasses/square,
-			/obj/item/weapon/reagent_containers/food/drinks/shaker,
-			/obj/item/weapon/reagent_containers/food/drinks/flask/barflask,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/patron,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/goldschlager,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/specialwhiskey,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/jager,
-			/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
-			/obj/item/weapon/lipstick/random,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale = 2,
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer = 4,
+			/obj/item/storage/box/mixedglasses = 2,
+			/obj/item/storage/box/glasses/square,
+			/obj/item/reagent_containers/food/drinks/shaker,
+			/obj/item/reagent_containers/food/drinks/flask/barflask,
+			/obj/item/reagent_containers/food/drinks/bottle/patron,
+			/obj/item/reagent_containers/food/drinks/bottle/goldschlager,
+			/obj/item/reagent_containers/food/drinks/bottle/specialwhiskey,
+			/obj/item/reagent_containers/food/drinks/bottle/jager,
+			/obj/item/storage/fancy/cigarettes/dromedaryco,
+			/obj/item/lipstick/random,
+			/obj/item/reagent_containers/food/drinks/bottle/small/ale = 2,
+			/obj/item/reagent_containers/food/drinks/bottle/small/beer = 4,
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari
@@ -30,19 +30,19 @@
 /datum/supply_pack/hospitality/barsupplies
 	name = "Bar supplies"
 	contains = list(
-			/obj/item/weapon/storage/box/glasses/cocktail,
-			/obj/item/weapon/storage/box/glasses/rocks,
-			/obj/item/weapon/storage/box/glasses/square,
-			/obj/item/weapon/storage/box/glasses/pint,
-			/obj/item/weapon/storage/box/glasses/wine,
-			/obj/item/weapon/storage/box/glasses/shake,
-			/obj/item/weapon/storage/box/glasses/shot,
-			/obj/item/weapon/storage/box/glasses/mug,
-			/obj/item/weapon/storage/box/glasses/meta,
-			/obj/item/weapon/storage/box/glasses/meta/metapint,
-			/obj/item/weapon/reagent_containers/food/drinks/shaker,
-			/obj/item/weapon/storage/box/glass_extras/straws,
-			/obj/item/weapon/storage/box/glass_extras/sticks
+			/obj/item/storage/box/glasses/cocktail,
+			/obj/item/storage/box/glasses/rocks,
+			/obj/item/storage/box/glasses/square,
+			/obj/item/storage/box/glasses/pint,
+			/obj/item/storage/box/glasses/wine,
+			/obj/item/storage/box/glasses/shake,
+			/obj/item/storage/box/glasses/shot,
+			/obj/item/storage/box/glasses/mug,
+			/obj/item/storage/box/glasses/meta,
+			/obj/item/storage/box/glasses/meta/metapint,
+			/obj/item/reagent_containers/food/drinks/shaker,
+			/obj/item/storage/box/glass_extras/straws,
+			/obj/item/storage/box/glass_extras/sticks
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari
@@ -59,7 +59,7 @@
 	name = "Surprise pack of five pizzas"
 	contains = list(
 			/obj/random/pizzabox = 5,
-			/obj/item/weapon/material/knife/plastic
+			/obj/item/material/knife/plastic
 			)
 	cost = 15
 	containertype = /obj/structure/closet/crate/freezer/centauri
@@ -69,11 +69,11 @@
 	name = "Gift crate"
 	contains = list(
 		/obj/item/toy/bouquet = 3,
-		/obj/item/weapon/storage/fancy/heartbox = 2,
-		/obj/item/weapon/paper/card/smile,
-		/obj/item/weapon/paper/card/heart,
-		/obj/item/weapon/paper/card/cat,
-		/obj/item/weapon/paper/card/flower
+		/obj/item/storage/fancy/heartbox = 2,
+		/obj/item/paper/card/smile,
+		/obj/item/paper/card/heart,
+		/obj/item/paper/card/cat,
+		/obj/item/paper/card/flower
 		)
 	cost = 10
 	containertype = /obj/structure/closet/crate/allico

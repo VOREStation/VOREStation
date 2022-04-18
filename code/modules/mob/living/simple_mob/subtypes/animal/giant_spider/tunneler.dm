@@ -188,7 +188,7 @@
 	new /obj/effect/temporary_effect/tunneler_hole(get_turf(src))
 
 /mob/living/simple_mob/animal/giant_spider/tunneler/proc/dig_under_floor(turf/T)
-	new /obj/item/weapon/ore/glass(T) // This will be rather weird when on station but the alternative is too much work.
+	new /obj/item/ore/glass(T) // This will be rather weird when on station but the alternative is too much work.
 
 /obj/effect/temporary_effect/tunneler_hole
 	name = "hole"

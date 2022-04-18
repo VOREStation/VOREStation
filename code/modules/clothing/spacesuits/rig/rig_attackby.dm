@@ -1,4 +1,4 @@
-/obj/item/weapon/rig/attackby(obj/item/W as obj, mob/living/user as mob)
+/obj/item/rig/attackby(obj/item/W as obj, mob/living/user as mob)
 	if(!istype(user))
 		return 0
 
@@ -7,7 +7,7 @@
 			return
 
 	// Pass repair items on to the chestpiece.
-	if(chest && (istype(W,/obj/item/stack/material) || istype(W, /obj/item/weapon/weldingtool)))
+	if(chest && (istype(W,/obj/item/stack/material) || istype(W, /obj/item/weldingtool)))
 		return chest.attackby(W,user)
 
 	// Lock or unlock the access panel.
@@ -41,14 +41,14 @@
 
 	if(open)
 		// Hacking.
-		if(W.is_wirecutter() || istype(W, /obj/item/device/multitool))
+		if(W.is_wirecutter() || istype(W, /obj/item/multitool))
 			if(open)
 				wires.Interact(user)
 			else
 				to_chat(user, "You can't reach the wiring.")
 			return
 		// Air tank.
-		if(istype(W,/obj/item/weapon/tank)) //Todo, some kind of check for suits without integrated air supplies.
+		if(istype(W,/obj/item/tank)) //Todo, some kind of check for suits without integrated air supplies.
 
 			if(air_supply)
 				to_chat(user, "\The [src] already has a tank installed.")
@@ -93,7 +93,7 @@
 			update_icon()
 			return 1
 
-		else if(!cell && istype(W,/obj/item/weapon/cell))
+		else if(!cell && istype(W,/obj/item/cell))
 
 			if(!user.unEquip(W))
 				return
@@ -181,14 +181,14 @@
 	..()
 
 
-/obj/item/weapon/rig/attack_hand(var/mob/user)
+/obj/item/rig/attack_hand(var/mob/user)
 
 	if(electrified != 0)
 		if(shock(user)) //Handles removing charge from the cell, as well. No need to do that here.
 			return
 	..()
 
-/obj/item/weapon/rig/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/rig/emag_act(var/remaining_charges, var/mob/user)
 	if(!subverted)
 		LAZYCLEARLIST(req_access)
 		LAZYCLEARLIST(req_one_access)

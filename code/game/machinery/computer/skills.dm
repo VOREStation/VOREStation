@@ -14,9 +14,15 @@
 	icon_keyboard = "pcu_key"
 	light_color = "#5284e7"
 	req_one_access = list(access_heads)
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/skills/pcu
 	density = FALSE
 	var/obj/item/weapon/card/id/scan = null
+=======
+	circuit = /obj/item/circuitboard/skills/pcu
+	density = 0
+	var/obj/item/card/id/scan = null
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/authenticated = null
 	var/rank = null
 	var/screen = null
@@ -51,7 +57,7 @@
 	return ..()
 
 /obj/machinery/computer/skills/attackby(obj/item/O as obj, var/mob/user)
-	if(istype(O, /obj/item/weapon/card/id) && !scan && user.unEquip(O))
+	if(istype(O, /obj/item/card/id) && !scan && user.unEquip(O))
 		O.loc = src
 		scan = O
 		to_chat(user, "You insert [O].")
@@ -151,7 +157,7 @@
 				scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -302,7 +308,7 @@
   * Called when the print timer finishes
   */
 /obj/machinery/computer/skills/proc/print_finish()
-	var/obj/item/weapon/paper/P = new(loc)
+	var/obj/item/paper/P = new(loc)
 	P.info = "<center><b>Medical Record</b></center><br>"
 	if(istype(active1, /datum/data/record) && data_core.general.Find(active1))
 		P.info += {"Name: [active1.fields["name"]] ID: [active1.fields["id"]]

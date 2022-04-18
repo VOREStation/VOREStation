@@ -1,4 +1,4 @@
-/obj/item/weapon/deadringer
+/obj/item/deadringer
 	name = "silver pocket watch"
 	desc = "A fancy silver-plated digital pocket watch. Looks expensive."
 	icon = 'icons/obj/deadringer.dmi'
@@ -14,22 +14,27 @@
 	var/mob/living/carbon/human/watchowner = null
 
 
+<<<<<<< HEAD
 /obj/item/weapon/deadringer/New()
 	..()
+=======
+/obj/item/deadringer/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
+/obj/item/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch
 	reveal()
 	STOP_PROCESSING(SSobj, src)
 	..()
 
-/obj/item/weapon/deadringer/dropped()
+/obj/item/deadringer/dropped()
 	if(timer > 20)
 		reveal()
 		watchowner = null
 	return
 
-/obj/item/weapon/deadringer/attack_self(var/mob/living/user as mob)
+/obj/item/deadringer/attack_self(var/mob/living/user as mob)
 	var/mob/living/H = src.loc
 	if (!istype(H, /mob/living/carbon/human))
 		to_chat(H,"<font color='blue'>You have no clue what to do with this thing.</font>")
@@ -49,7 +54,7 @@
 		activated = 0
 		return
 
-/obj/item/weapon/deadringer/process()
+/obj/item/deadringer/process()
 	if(activated)
 		if (ismob(src.loc))
 			var/mob/living/carbon/human/H = src.loc
@@ -75,7 +80,7 @@
 		icon_state = "deadringer"
 	return
 
-/obj/item/weapon/deadringer/proc/deathprevent()
+/obj/item/deadringer/proc/deathprevent()
 	for(var/mob/living/simple_mob/D in oviewers(7, src))
 		if(!D.has_AI())
 			continue
@@ -86,13 +91,13 @@
 	makeacorpse(watchowner)
 	return
 
-/obj/item/weapon/deadringer/proc/reveal()
+/obj/item/deadringer/proc/reveal()
 	if(watchowner)
 		watchowner.alpha = 255
 		playsound(src, 'sound/effects/uncloak.ogg', 35, 1, -1)
 	return
 
-/obj/item/weapon/deadringer/proc/makeacorpse(var/mob/living/carbon/human/H)
+/obj/item/deadringer/proc/makeacorpse(var/mob/living/carbon/human/H)
 	if(H.isSynthetic())
 		return
 	corpse = new /mob/living/carbon/human(H.loc)
@@ -147,13 +152,13 @@
 		temp.disguise(c_type.type)
 		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_belt))
-		corpse.equip_to_slot_or_del(new /obj/item/weapon/storage/belt/chameleon/changeling(corpse), slot_belt)
+		corpse.equip_to_slot_or_del(new /obj/item/storage/belt/chameleon/changeling(corpse), slot_belt)
 		temp = corpse.get_equipped_item(slot_belt)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_belt)
 		temp.disguise(c_type.type)
 		temp.canremove = FALSE
 	if(H.get_equipped_item(slot_back))
-		corpse.equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/chameleon/changeling(corpse), slot_back)
+		corpse.equip_to_slot_or_del(new /obj/item/storage/backpack/chameleon/changeling(corpse), slot_back)
 		temp = corpse.get_equipped_item(slot_back)
 		var/obj/item/clothing/c_type = H.get_equipped_item(slot_back)
 		temp.disguise(c_type.type)

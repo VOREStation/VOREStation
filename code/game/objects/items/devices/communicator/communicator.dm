@@ -2,7 +2,7 @@
 //
 // Allows ghosts to roleplay with crewmembers without having to commit to joining the round, and also allows communications between two communicators.
 
-var/global/list/obj/item/device/communicator/all_communicators = list()
+var/global/list/obj/item/communicator/all_communicators = list()
 
 // List of core tabs the communicator can switch to
 #define HOMETAB 1
@@ -15,11 +15,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 #define MANITAB 8
 #define SETTTAB 9
 
-/obj/item/device/communicator
+/obj/item/communicator
 	name = "communicator"
 	desc = "A personal device used to enable long range dialog between two people, utilizing existing telecommunications infrastructure to allow \
 	communications across different stations, planets, or even star systems."
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "communicator"
 	w_class = ITEMSIZE_SMALL
 	slot_flags = SLOT_ID | SLOT_BELT
@@ -79,7 +81,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: None
 // Description: Adds the new communicator to the global list of all communicators, sorts the list, obtains a reference to the Exonet node, then tries to
 //				assign the device to the holder's name automatically in a spectacularly shitty way.
-/obj/item/device/communicator/Initialize()
+/obj/item/communicator/Initialize()
 	. = ..()
 	all_communicators += src
 	all_communicators = sortAtom(all_communicators)
@@ -97,22 +99,32 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: register_to_holder()
 // Parameters: None
 // Description: Tries to register ourselves to the mob that we've presumably spawned in. Not the most amazing way of doing this.
-/obj/item/device/communicator/proc/register_to_holder()
+/obj/item/communicator/proc/register_to_holder()
 	if(ismob(loc))
 		register_device(loc.name)
 		initialize_exonet(loc)
-	else if(istype(loc, /obj/item/weapon/storage))
-		var/obj/item/weapon/storage/S = loc
+	else if(istype(loc, /obj/item/storage))
+		var/obj/item/storage/S = loc
 		if(ismob(S.loc))
 			register_device(S.loc.name)
 			initialize_exonet(S.loc)
 
+<<<<<<< HEAD
+=======
+// Proc: examine()
+// Parameters: user - the user doing the examining
+// Description: Allows the user to click a link when examining to look at video if one is going.
+/obj/item/communicator/examine(mob/user)
+	. = ..()
+	if(Adjacent(user) && video_source)
+		. += "<span class='notice'>It looks like it's on a video call: <a href='?src=\ref[src];watchvideo=1'>\[view\]</a></span>"
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 // Proc: initialize_exonet()
 // Parameters: 1 (user - the person the communicator belongs to)
 // Description: Sets up the exonet datum, gives the device an address, and then gets a node reference.  Afterwards, populates the device
 //				list.
-/obj/item/device/communicator/proc/initialize_exonet(mob/user)
+/obj/item/communicator/proc/initialize_exonet(mob/user)
 	if(!user || !istype(user, /mob/living))
 		return
 	if(!exonet)
@@ -126,7 +138,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: examine()
 // Parameters: 1 (user - the person examining the device)
 // Description: Shows all the voice mobs inside the device, and their status.
-/obj/item/device/communicator/examine(mob/user)
+/obj/item/communicator/examine(mob/user)
 	. = ..()
 	
 	for(var/mob/living/voice/voice in contents)
@@ -147,13 +159,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: emp_act()
 // Parameters: None
 // Description: Drops all calls when EMPed, so the holder can then get murdered by the antagonist.
-/obj/item/device/communicator/emp_act()
+/obj/item/communicator/emp_act()
 	close_connection(reason = "Hardware error de%#_^@%-BZZZZZZZT")
 
 // Proc: add_to_EPv2()
 // Parameters: 1 (hex - a single hexadecimal character)
 // Description: Called when someone is manually dialing with nanoUI.  Adds colons when appropiate.
-/obj/item/device/communicator/proc/add_to_EPv2(var/hex)
+/obj/item/communicator/proc/add_to_EPv2(var/hex)
 	var/length = length(target_address)
 	if(length >= 24)
 		return
@@ -165,13 +177,13 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: populate_known_devices()
 // Parameters: 1 (user - the person using the device)
 // Description: Searches all communicators and ghosts in the world, and adds them to the known_devices list if they are 'visible'.
-/obj/item/device/communicator/proc/populate_known_devices(mob/user)
+/obj/item/communicator/proc/populate_known_devices(mob/user)
 	if(!exonet)
 		exonet = new(src)
 	src.known_devices.Cut()
 	if(!get_connection_to_tcomms()) //If the network's down, we can't see anything.
 		return
-	for(var/obj/item/device/communicator/comm in all_communicators)
+	for(var/obj/item/communicator/comm in all_communicators)
 		if(!comm || !comm.exonet || !comm.exonet.address || comm.exonet.address == src.exonet.address) //Don't add addressless devices, and don't add ourselves.
 			continue
 		src.known_devices |= comm
@@ -183,7 +195,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: get_connection_to_tcomms()
 // Parameters: None
 // Description: Simple check to see if the exonet node is active.
-/obj/item/device/communicator/proc/get_connection_to_tcomms()
+/obj/item/communicator/proc/get_connection_to_tcomms()
 	if(node && node.on && node.allow_external_communicators)
 		return can_telecomm(src,node)
 	return 0
@@ -191,7 +203,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: process()
 // Parameters: None
 // Description: Ticks the update_ticks variable, and checks to see if it needs to disconnect communicators every five ticks..
-/obj/item/device/communicator/process()
+/obj/item/communicator/process()
 	update_ticks++
 	if(update_ticks % 5)
 		if(!node)
@@ -202,10 +214,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: attackby()
 // Parameters: 2 (C - what is used on the communicator. user - the mob that has the communicator)
 // Description: When an ID is swiped on the communicator, the communicator reads the job and checks it against the Owner name, if success, the occupation is added.
-/obj/item/device/communicator/attackby(obj/item/C as obj, mob/user as mob)
+/obj/item/communicator/attackby(obj/item/C as obj, mob/user as mob)
 	..()
-	if(istype(C, /obj/item/weapon/card/id))
-		var/obj/item/weapon/card/id/idcard = C
+	if(istype(C, /obj/item/card/id))
+		var/obj/item/card/id/idcard = C
 		if(!idcard.registered_name || !idcard.assignment)
 			to_chat(user, "<span class='notice'>\The [src] rejects the ID.</span>")
 		else if(!owner)
@@ -220,7 +232,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Parameters: 1 (user - the mob that clicked the device in their hand)
 // Description: Makes an exonet datum if one does not exist, allocates an address for it, maintains the lists of all devies, clears the alert icon, and
 //				finally makes NanoUI appear.
-/obj/item/device/communicator/attack_self(mob/user)
+/obj/item/communicator/attack_self(mob/user)
 	initialize_exonet(user)
 	alert_called = 0
 	update_icon()
@@ -228,7 +240,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 
 // Proc: MouseDrop()
 //Same thing PDAs do
-/obj/item/device/communicator/MouseDrop(obj/over_object as obj)
+/obj/item/communicator/MouseDrop(obj/over_object as obj)
 	var/mob/M = usr
 	if (!(src.loc == usr) || (src.loc && src.loc.loc == usr))
 		return
@@ -240,7 +252,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: attack_ghost()
 // Parameters: 1 (user - the ghost clicking on the device)
 // Description: Recreates the known_devices list, so that the ghost looking at the device can see themselves, then calls ..() so that NanoUI appears.
-/obj/item/device/communicator/attack_ghost(mob/user)
+/obj/item/communicator/attack_ghost(mob/user)
 	populate_known_devices() //Update the devices so ghosts can see the list on NanoUI.
 	..()
 
@@ -272,7 +284,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: register_device()
 // Parameters: 1 (user - the person to use their name for)
 // Description: Updates the owner's name and the device's name.
-/obj/item/device/communicator/proc/register_device(new_name)
+/obj/item/communicator/proc/register_device(new_name)
 	if(!new_name)
 		return
 	owner = new_name
@@ -285,7 +297,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: Destroy()
 // Parameters: None
 // Description: Deletes all the voice mobs, disconnects all linked communicators, and cuts lists to allow successful qdel()
-/obj/item/device/communicator/Destroy()
+/obj/item/communicator/Destroy()
 	for(var/mob/living/voice/voice in contents)
 		voice_mobs.Remove(voice)
 		to_chat(voice, "<span class='danger'>[bicon(src)] Connection timed out with remote host.</span>")
@@ -315,7 +327,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Proc: update_icon()
 // Parameters: None
 // Description: Self explanatory
-/obj/item/device/communicator/update_icon()
+/obj/item/communicator/update_icon()
 	if(video_source)
 		icon_state = "communicator-video"
 		return
@@ -340,15 +352,17 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	client_huds |= global_hud.darkMask
 
 //It's the 26th century. We should have smart watches by now.
-/obj/item/device/communicator/watch
+/obj/item/communicator/watch
 	name = "communicator watch"
 	desc = "A personal device used to enable long range dialog between two people, utilizing existing telecommunications infrastructure to allow \
 	communications across different stations, planets, or even star systems. You can wear this one on your wrist!"
 	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "commwatch"
 	slot_flags = SLOT_GLOVES
 
-/obj/item/device/communicator/watch/update_icon()
+/obj/item/communicator/watch/update_icon()
 	if(video_source)
 		icon_state = "commwatch-video"
 		return

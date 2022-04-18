@@ -88,21 +88,21 @@ GLOBAL_LIST_INIT(plant_item_products, list(
 	/obj/item/stack/material/wax = 20,
 	/obj/item/stack/material/log = 30,
 	/obj/item/stack/material/resin = 10,
-	/obj/item/weapon/material/shard/shrapnel = 2,
-	/obj/item/weapon/ore = 5,
-	/obj/item/weapon/ore/iron = 2,
-	/obj/item/weapon/ore/coal = 2,
-	/obj/item/weapon/reagent_containers/food/snacks/meat = 3,
+	/obj/item/material/shard/shrapnel = 2,
+	/obj/item/ore = 5,
+	/obj/item/ore/iron = 2,
+	/obj/item/ore/coal = 2,
+	/obj/item/reagent_containers/food/snacks/meat = 3,
 	/obj/random/meat = 1,
-	/obj/item/weapon/reagent_containers/food/drinks/smallchocmilk = 2,
-	/obj/item/weapon/reagent_containers/food/drinks/smallmilk = 2,
+	/obj/item/reagent_containers/food/drinks/smallchocmilk = 2,
+	/obj/item/reagent_containers/food/drinks/smallmilk = 2,
 	/obj/item/ammo_casing/a145 = 1,
 	/obj/item/ammo_casing/chemdart/small = 1,
 	/obj/item/ammo_casing/chemdart = 1,
 	/obj/item/organ/internal/brain/grey = 1,
 	/obj/item/organ/internal/heart/grey = 1,
-	/obj/item/weapon/spacecash/c1 = 3,
-	/obj/item/weapon/spacecash/c10 = 1
+	/obj/item/spacecash/c1 = 3,
+	/obj/item/spacecash/c10 = 1
 	))
 
 GLOBAL_LIST_INIT(forbidden_plant_growth_sprites, list(

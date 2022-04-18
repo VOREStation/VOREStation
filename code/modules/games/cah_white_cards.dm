@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 /*
  * White CAH cards
  */
 /obj/item/weapon/deck/cah/var/list/card_text_list = list(
+=======
+// White cards.
+/obj/item/deck/cah/var/list/card_text_list = list(
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	"Those motherfucking carp",
 	"Having sex in the maintenance tunnels",
 	"Space 'Nam",

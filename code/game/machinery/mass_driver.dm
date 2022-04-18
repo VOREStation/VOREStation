@@ -9,7 +9,7 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 50
-	circuit = /obj/item/weapon/circuitboard/mass_driver
+	circuit = /obj/item/circuitboard/mass_driver
 
 	var/power = 1.0
 	var/code = 1.0
@@ -26,7 +26,7 @@
 	if(default_deconstruction_crowbar(user, I))
 		return
 
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		if(panel_open)
 			var/input = sanitize(input(usr, "What id would you like to give this conveyor?", "Multitool-Conveyor interface", id))
 			if(!input)

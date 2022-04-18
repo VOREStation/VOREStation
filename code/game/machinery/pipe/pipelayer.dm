@@ -2,8 +2,13 @@
 	name = "automatic pipe layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
+<<<<<<< HEAD
 	density = TRUE
 	circuit = /obj/item/weapon/circuitboard/pipelayer
+=======
+	density = 1
+	circuit = /obj/item/circuitboard/pipelayer
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/turf/old_turf		// Last turf we were on.
 	var/old_dir				// Last direction we were facing.
 	var/on = 0				// Pipelaying online?
@@ -13,7 +18,7 @@
 	var/max_metal = 50		// Max capacity for internal metal storage
 	var/metal = 0			// Current amount in internal metal storage
 	var/pipe_cost = 0.25	// Cost in steel for each pipe.
-	var/obj/item/weapon/tool/wrench/W // Internal wrench used for wrenching down the pipes
+	var/obj/item/tool/wrench/W // Internal wrench used for wrenching down the pipes
 	var/list/Pipes = list(
 		"regular pipes" = /obj/machinery/atmospherics/pipe/simple,
 		"scrubbers pipes" = /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -33,7 +38,7 @@
 
 /obj/machinery/pipelayer/RefreshParts()
 	var/mb_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		mb_rating += M.rating
 	max_metal = mb_rating * initial(max_metal)
 

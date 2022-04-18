@@ -20,7 +20,7 @@
 				qdel(src)
 	return
 
-/obj/effect/spider/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(LAZYLEN(W.attack_verb))
@@ -30,8 +30,8 @@
 
 	var/damage = W.force / 4.0
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))
 			damage = 15

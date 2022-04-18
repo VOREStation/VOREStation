@@ -19,7 +19,7 @@
 /obj/structure/closet/walllocker/emerglocker
 	name = "emergency locker"
 	desc = "A wall mounted locker with emergency supplies."
-	var/list/spawnitems = list(/obj/item/weapon/tank/emergency/oxygen,/obj/item/clothing/mask/breath,/obj/item/weapon/tool/crowbar/red)
+	var/list/spawnitems = list(/obj/item/tank/emergency/oxygen,/obj/item/clothing/mask/breath,/obj/item/tool/crowbar/red)
 	var/amount = 2 // spawns each items X times.
 	closet_appearance = /decl/closet_appearance/wall/emergency
 
@@ -27,7 +27,7 @@
 	src.attack_hand(user)
 	return
 
-/obj/structure/closet/walllocker/emerglocker/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/walllocker/emerglocker/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
 /obj/structure/closet/walllocker/emerglocker/attack_hand(mob/user as mob)
@@ -169,9 +169,9 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
-		/obj/item/device/flashlight,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher,
+		/obj/item/flashlight,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
 
 /obj/structure/closet/walllocker_double/hydrant/north

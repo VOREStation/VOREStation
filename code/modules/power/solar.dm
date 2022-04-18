@@ -55,7 +55,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 		control.remove_panel(src)
 	control = null
 
-/obj/machinery/power/solar/attackby(obj/item/weapon/W, mob/user)
+/obj/machinery/power/solar/attackby(obj/item/W, mob/user)
 
 	if(W.is_crowbar())
 		playsound(src, 'sound/machines/click.ogg', 50, 1)
@@ -80,8 +80,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 		if(!(stat & BROKEN))
 			broken()
 		else
-			new /obj/item/weapon/material/shard(src.loc)
-			new /obj/item/weapon/material/shard(src.loc)
+			new /obj/item/material/shard(src.loc)
+			new /obj/item/material/shard(src.loc)
 			qdel(src)
 			return
 	return
@@ -137,13 +137,13 @@ GLOBAL_LIST_EMPTY(solars_list)
 	switch(severity)
 		if(1.0)
 			if(prob(15))
-				new /obj/item/weapon/material/shard( src.loc )
+				new /obj/item/material/shard( src.loc )
 			qdel(src)
 			return
 
 		if(2.0)
 			if (prob(25))
-				new /obj/item/weapon/material/shard( src.loc )
+				new /obj/item/material/shard( src.loc )
 				qdel(src)
 				return
 
@@ -202,7 +202,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	if(!anchored || !isturf(loc)) // You can't pick it up
 		..()
 
-/obj/item/solar_assembly/attackby(var/obj/item/weapon/W, var/mob/user)
+/obj/item/solar_assembly/attackby(var/obj/item/W, var/mob/user)
 	if (!isturf(loc))
 		return 0
 	if(!anchored)
@@ -234,7 +234,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			return 1
 
 	if(!tracker)
-		if(istype(W, /obj/item/weapon/tracker_electronics))
+		if(istype(W, /obj/item/tracker_electronics))
 			tracker = 1
 			user.drop_item()
 			qdel(W)
@@ -242,7 +242,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			return 1
 	else
 		if(W.is_crowbar())
-			new /obj/item/weapon/tracker_electronics(src.loc)
+			new /obj/item/tracker_electronics(src.loc)
 			tracker = 0
 			user.visible_message("<span class='notice'>[user] takes out the electronics from the solar assembly.</span>")
 			return 1
@@ -417,8 +417,8 @@ GLOBAL_LIST_EMPTY(solars_list)
 			if (src.stat & BROKEN)
 				to_chat(user, "<font color='blue'>The broken glass falls out.</font>")
 				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )
-				new /obj/item/weapon/material/shard( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				new /obj/item/material/shard( src.loc )
+				var/obj/item/circuitboard/solar_control/M = new /obj/item/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -429,7 +429,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 			else
 				to_chat(user, "<font color='blue'>You disconnect the monitor.</font>")
 				var/obj/structure/frame/A = new /obj/structure/frame/computer( src.loc )
-				var/obj/item/weapon/circuitboard/solar_control/M = new /obj/item/weapon/circuitboard/solar_control( A )
+				var/obj/item/circuitboard/solar_control/M = new /obj/item/circuitboard/solar_control( A )
 				for (var/obj/C in src)
 					C.loc = src.loc
 				A.circuit = M
@@ -548,6 +548,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 // MISC
 //
 
-/obj/item/weapon/paper/solar
+/obj/item/paper/solar
 	name = "paper- 'Going green! Setup your own solar array instructions.'"
 	info = "<h1>Welcome</h1><p>At greencorps we love the environment, and space. With this package you are able to help mother nature and produce energy without any usage of fossil fuel or phoron! Singularity energy is dangerous while solar energy is safe, which is why it's better. Now here is how you setup your own solar array.</p><p>You can make a solar panel by wrenching the solar assembly onto a cable node. Adding a glass panel, reinforced or regular glass will do, will finish the construction of your solar panel. It is that easy!</p><p>Now after setting up 19 more of these solar panels you will want to create a solar tracker to keep track of our mother nature's gift, the SSsun.sun. These are the same steps as before except you insert the tracker equipment circuit into the assembly before performing the final step of adding the glass. You now have a tracker! Now the last step is to add a computer to calculate the SSsun.sun's movements and to send commands to the solar panels to change direction with the SSsun.sun. Setting up the solar computer is the same as setting up any computer, so you should have no trouble in doing that. You do need to put a wire node under the computer, and the wire needs to be connected to the tracker.</p><p>Congratulations, you should have a working solar array. If you are having trouble, here are some tips. Make sure all solar equipment are on a cable node, even the computer. You can always deconstruct your creations if you make a mistake.</p><p>That's all to it, be safe, be green!</p>"

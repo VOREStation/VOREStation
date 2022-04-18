@@ -3,11 +3,11 @@
 	desc = "Allows you to create and control a holographic illusion, that can take the form of most object or entities."
 	enhancement_desc = "Illusions will be made of hard light, allowing the interception of attacks, appearing more realistic."
 	cost = 25
-	obj_path = /obj/item/weapon/spell/illusion
+	obj_path = /obj/item/spell/illusion
 	ability_icon_state = "tech_illusion"
 	category = UTILITY_SPELLS
 
-/obj/item/weapon/spell/illusion
+/obj/item/spell/illusion
 	name = "illusion"
 	icon_state = "illusion"
 	desc = "Now you can toy with the minds of the whole colony."
@@ -16,7 +16,7 @@
 	var/atom/movable/copied = null
 	var/mob/living/simple_mob/illusion/illusion = null
 
-/obj/item/weapon/spell/illusion/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/illusion/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /atom/movable))
 		var/atom/movable/AM = hit_atom
 		if(pay_energy(100))
@@ -42,7 +42,7 @@
 				var/datum/ai_holder/AI = illusion.ai_holder
 				AI.give_destination(T)
 
-/obj/item/weapon/spell/illusion/on_use_cast(mob/user)
+/obj/item/spell/illusion/on_use_cast(mob/user)
 	if(illusion)
 		var/choice = tgui_alert(user, "Would you like to have \the [illusion] speak, or do an emote?", "Illusion", list("Speak","Emote","Cancel"))
 		switch(choice)
@@ -58,14 +58,19 @@
 				if(what_to_emote)
 					illusion.emote(what_to_emote)
 
-/obj/item/weapon/spell/illusion/Destroy()
+/obj/item/spell/illusion/Destroy()
 	QDEL_NULL(illusion)
 	copied = null
 	return ..()
 
 // Makes a tiny overlay of the thing the player has copied, so they can easily tell what they currently have.
+<<<<<<< HEAD
 /obj/item/weapon/spell/illusion/update_icon()
 	cut_overlays()
+=======
+/obj/item/spell/illusion/update_icon()
+	overlays.Cut()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(copied)
 		var/image/temp_image = image(copied)
 		var/matrix/M = matrix()

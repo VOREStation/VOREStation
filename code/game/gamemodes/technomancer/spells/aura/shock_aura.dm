@@ -4,11 +4,11 @@
 	enhancement_desc = "Aura does twice as much damage."
 	spell_power_desc = "Radius and damage scaled up."
 	cost = 100
-	obj_path = /obj/item/weapon/spell/aura/shock
+	obj_path = /obj/item/spell/aura/shock
 	ability_icon_state = "tech_shockaura"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/aura/shock
+/obj/item/spell/aura/shock
 	name = "electric aura"
 	desc = "Now you are a walking electrical storm."
 	icon_state = "generic"
@@ -16,7 +16,7 @@
 	aspect = ASPECT_SHOCK
 	glow_color = "#0000FF" //TODO
 
-/obj/item/weapon/spell/aura/shock/process()
+/obj/item/spell/aura/shock/process()
 	if(!pay_energy(500))
 		qdel(src)
 	var/list/nearby_mobs = range(calculate_spell_power(4),owner)

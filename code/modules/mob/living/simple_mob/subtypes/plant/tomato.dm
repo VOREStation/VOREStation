@@ -26,8 +26,12 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
+<<<<<<< HEAD
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/tomatomeat
 	meat_amount = 4
+=======
+	meat_type = /obj/item/reagent_containers/food/snacks/tomatomeat
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /decl/mob_organ_names/tomato
 	hit_zones = list("flesh", "leaf", "mouth")

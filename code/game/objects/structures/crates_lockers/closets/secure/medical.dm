@@ -5,12 +5,12 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/medical/alt
 
 	starts_with = list(
-		/obj/item/weapon/storage/box/autoinjectors,
-		/obj/item/weapon/storage/box/syringes,
-		/obj/item/weapon/reagent_containers/dropper = 2,
-		/obj/item/weapon/reagent_containers/glass/beaker = 2,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 2,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2)
+		/obj/item/storage/box/autoinjectors,
+		/obj/item/storage/box/syringes,
+		/obj/item/reagent_containers/dropper = 2,
+		/obj/item/reagent_containers/glass/beaker = 2,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline = 2,
+		/obj/item/reagent_containers/glass/bottle/antitoxin = 2)
 
 
 /obj/structure/closet/secure_closet/medical2
@@ -20,7 +20,7 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/medical
 
 	starts_with = list(
-		/obj/item/weapon/tank/anesthetic = 3,
+		/obj/item/tank/anesthetic = 3,
 		/obj/item/clothing/mask/breath/medical = 3)
 
 
@@ -37,23 +37,27 @@
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/shoes/white,
-		/obj/item/weapon/cartridge/medical,
-		/obj/item/device/radio/headset/headset_med,
-		/obj/item/device/radio/headset/headset_med/alt,
+		/obj/item/cartridge/medical,
+		/obj/item/radio/headset/headset_med,
+		/obj/item/radio/headset/headset_med/alt,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
 		/obj/item/clothing/shoes/boots/winter/medical,
 		/obj/item/clothing/under/rank/nursesuit,
 		/obj/item/clothing/head/nursehat,
+<<<<<<< HEAD
 		/obj/item/weapon/storage/box/freezer = 3,
 		/obj/item/weapon/storage/belt/medical) //VOREStation Add
+=======
+		/obj/item/storage/box/freezer = 3)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/structure/closet/secure_closet/medical3/Initialize()
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack/medic
+		starts_with += /obj/item/storage/backpack/medic
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/med
+		starts_with += /obj/item/storage/backpack/satchel/med
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack/dufflebag/med
+		starts_with += /obj/item/storage/backpack/dufflebag/med
 	switch(pick("blue", "green", "purple", "black", "navyblue"))
 		if ("blue")
 			starts_with += /obj/item/clothing/under/rank/medical/scrubs
@@ -96,30 +100,45 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/medical/paramedic
 
 	starts_with = list(
-		/obj/item/weapon/storage/backpack/dufflebag/emt,
-		/obj/item/weapon/storage/box/autoinjectors,
-		/obj/item/weapon/storage/box/syringes,
-		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline,
-		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-		/obj/item/weapon/storage/belt/medical/emt,
+		/obj/item/storage/backpack/dufflebag/emt,
+		/obj/item/storage/box/autoinjectors,
+		/obj/item/storage/box/syringes,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline,
+		/obj/item/reagent_containers/glass/bottle/antitoxin,
+		/obj/item/storage/belt/medical/emt,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/suit/storage/toggle/labcoat/emt,
+<<<<<<< HEAD
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/para,
 		/obj/item/device/radio/headset/headset_med/alt,
 		/obj/item/weapon/cartridge/medical,
 		/obj/item/weapon/storage/briefcase/inflatable,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
+=======
+		/obj/item/radio/headset/headset_med/alt,
+		/obj/item/cartridge/medical,
+		/obj/item/storage/briefcase/inflatable,
+		/obj/item/flashlight,
+		/obj/item/tank/emergency/oxygen/engi,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/device/healthanalyzer,
-		/obj/item/device/radio/off,
+		/obj/item/healthanalyzer,
+		/obj/item/radio/off,
 		/obj/random/medical,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/extinguisher/mini,
-		/obj/item/weapon/storage/box/freezer,
+		/obj/item/tool/crowbar,
+		/obj/item/extinguisher/mini,
+		/obj/item/storage/box/freezer,
 		/obj/item/clothing/accessory/storage/white_vest,
+<<<<<<< HEAD
 		/obj/item/taperoll/medical)
+=======
+		/obj/item/taperoll/medical,
+		/obj/item/gps/medical,
+		/obj/item/geiger
+		)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/structure/closet/secure_closet/CMO
 	name = "chief medical officer's locker"
@@ -131,35 +150,47 @@
 		/obj/item/clothing/under/rank/chief_medical_officer/skirt,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmo,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,
+<<<<<<< HEAD
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern/cmo,
 		/obj/item/weapon/cartridge/cmo,
+=======
+		/obj/item/cartridge/cmo,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/gloves/sterile/latex,
 		/obj/item/clothing/shoes/brown,
-		/obj/item/device/radio/headset/heads/cmo,
-		/obj/item/device/radio/headset/heads/cmo/alt,
-		/obj/item/device/flash,
-		/obj/item/weapon/reagent_containers/hypospray/vial,
+		/obj/item/radio/headset/heads/cmo,
+		/obj/item/radio/headset/heads/cmo/alt,
+		/obj/item/flash,
+		/obj/item/reagent_containers/hypospray/vial,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/cmo,
 		/obj/item/clothing/shoes/boots/winter/medical,
+<<<<<<< HEAD
 		/obj/item/clothing/head/beret/medical/cmo,
 		/obj/item/clothing/head/beret/medical/cmo/blue,
 		/obj/item/weapon/storage/box/freezer,
+=======
+		/obj/item/storage/box/freezer,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/mask/gas,
 		/obj/item/taperoll/medical,
 		/obj/item/clothing/suit/bio_suit/cmo,
 		/obj/item/clothing/head/bio_hood/cmo,
 		/obj/item/clothing/shoes/white,
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/glass/beaker/vial, //VOREStation Add
 		/obj/item/weapon/storage/belt/medical) //VOREStation Add
+=======
+		/obj/item/gps/medical/cmo)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/structure/closet/secure_closet/CMO/Initialize()
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack/medic
+		starts_with += /obj/item/storage/backpack/medic
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/med
+		starts_with += /obj/item/storage/backpack/satchel/med
 	if(prob(50))
-		starts_with += /obj/item/weapon/storage/backpack/dufflebag/med
+		starts_with += /obj/item/storage/backpack/dufflebag/med
 	switch(pick("blue", "green", "purple", "black", "navyblue"))
 		if ("blue")
 			starts_with += /obj/item/clothing/under/rank/medical/scrubs
@@ -184,8 +215,8 @@
 	req_access = list(access_surgery)
 
 	starts_with = list(
-		/obj/item/device/assembly/signaler,
-		/obj/item/device/radio/electropack = 3)
+		/obj/item/assembly/signaler,
+		/obj/item/radio/electropack = 3)
 
 
 /obj/structure/closet/secure_closet/chemical
@@ -195,6 +226,7 @@
 	closet_appearance = /decl/closet_appearance/secure_closet/medical/chemistry
 
 	starts_with = list(
+<<<<<<< HEAD
 		/obj/item/weapon/storage/box/pillbottles = 2,
 		/obj/item/weapon/storage/box/beakers,
 		/obj/item/weapon/storage/box/autoinjectors,
@@ -203,6 +235,15 @@
 		/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 2,
 		/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 2,
 		/obj/item/weapon/storage/fancy/vials) //VOREStation Add
+=======
+		/obj/item/storage/box/pillbottles = 2,
+		/obj/item/storage/box/beakers,
+		/obj/item/storage/box/autoinjectors,
+		/obj/item/storage/box/syringes,
+		/obj/item/reagent_containers/dropper = 2,
+		/obj/item/reagent_containers/glass/bottle/inaprovaline = 2,
+		/obj/item/reagent_containers/glass/bottle/antitoxin = 2)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 
 /obj/structure/closet/secure_closet/psych
@@ -218,15 +259,15 @@
 		/obj/item/clothing/under/rank/psych,
 		/obj/item/clothing/under/rank/psych/turtleneck,
 		/obj/item/clothing/suit/straight_jacket,
-		/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-		/obj/item/weapon/reagent_containers/syringe,
-		/obj/item/weapon/storage/pill_bottle/citalopram,
-		/obj/item/weapon/reagent_containers/pill/methylphenidate,
-		/obj/item/weapon/clipboard,
-		/obj/item/weapon/folder/white,
-		/obj/item/device/taperecorder,
-		/obj/item/device/tape/random = 3,
-		/obj/item/device/camera,
+		/obj/item/reagent_containers/glass/bottle/stoxin,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle/citalopram,
+		/obj/item/reagent_containers/pill/methylphenidate,
+		/obj/item/clipboard,
+		/obj/item/folder/white,
+		/obj/item/taperecorder,
+		/obj/item/tape/random = 3,
+		/obj/item/camera,
 		/obj/item/toy/plushie/therapy/blue)
 
 
@@ -246,9 +287,9 @@
 	name = "pill cabinet"
 
 	starts_with = list(
-		/obj/item/weapon/storage/pill_bottle/tramadol,
-		/obj/item/weapon/storage/pill_bottle/antitox,
-		/obj/item/weapon/storage/pill_bottle/carbon,
+		/obj/item/storage/pill_bottle/tramadol,
+		/obj/item/storage/pill_bottle/antitox,
+		/obj/item/storage/pill_bottle/carbon,
 		/obj/random/medical/pillbottle)
 
 
@@ -258,5 +299,5 @@
 	req_access = list(access_surgery)
 
 	starts_with = list(
-		/obj/item/weapon/tank/anesthetic = 3,
+		/obj/item/tank/anesthetic = 3,
 		/obj/item/clothing/mask/breath/medical = 3)

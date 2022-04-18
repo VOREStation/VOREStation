@@ -2,44 +2,49 @@
 	name = "Flame Tongue"
 	desc = "Using a miniturized flamethrower in your gloves, you can emit a flame strong enough to melt both your enemies and walls."
 	cost = 50
-	obj_path = /obj/item/weapon/spell/flame_tongue
+	obj_path = /obj/item/spell/flame_tongue
 	ability_icon_state = "tech_flametongue"
 	category = OFFENSIVE_SPELLS
 
-/obj/item/weapon/spell/flame_tongue
+/obj/item/spell/flame_tongue
 	name = "flame tongue"
 	icon_state = "flame_tongue"
 	desc = "Burn!"
 	cast_methods = CAST_MELEE
 	aspect = ASPECT_FIRE
-	var/obj/item/weapon/weldingtool/spell/welder = null
+	var/obj/item/weldingtool/spell/welder = null
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/flame_tongue/New()
 	..()
+=======
+/obj/item/spell/flame_tongue/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#FF6A00")
 	visible_message("<span class='warning'>\The [loc]'s hand begins to emit a flame.</span>")
-	welder = new /obj/item/weapon/weldingtool/spell(src)
+	welder = new /obj/item/weldingtool/spell(src)
 	welder.setWelding(1)
 
-/obj/item/weapon/spell/flame_tongue/Destroy()
+/obj/item/spell/flame_tongue/Destroy()
 	QDEL_NULL(welder)
 	return ..()
 
-/obj/item/weapon/weldingtool/spell
+/obj/item/weldingtool/spell
 	name = "flame"
 	eye_safety_modifier = 3
 
-/obj/item/weapon/weldingtool/spell/process()
+/obj/item/weldingtool/spell/process()
 	return
 
 //Needed to make the spell welder have infinite fuel.  Don't worry, it uses energy instead.
-/obj/item/weapon/weldingtool/spell/remove_fuel()
+/obj/item/weldingtool/spell/remove_fuel()
 	return 1
 
-/obj/item/weapon/weldingtool/spell/eyecheck(mob/user as mob)
+/obj/item/weldingtool/spell/eyecheck(mob/user as mob)
 	return
 
-/obj/item/weapon/spell/flame_tongue/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
+/obj/item/spell/flame_tongue/on_melee_cast(atom/hit_atom, mob/living/user, def_zone)
 	if(isliving(hit_atom) && user.a_intent != I_HELP)
 		var/mob/living/L = hit_atom
 		if(pay_energy(1000))

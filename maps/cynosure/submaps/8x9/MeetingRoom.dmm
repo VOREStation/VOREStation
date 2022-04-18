@@ -1,0 +1,48 @@
+"a" = (/turf/simulated/wall,/area/template_noop)
+"b" = (/obj/structure/bed/chair/sofa/brown/right{dir = 4},/turf/simulated/floor/carpet,/area/template_noop)
+"c" = (/turf/simulated/wall{can_open = 1},/area/template_noop)
+"d" = (/obj/structure/table/woodentable,/obj/item/book/bundle/custom_library/nonfiction/viabilityofcorporategov,/turf/simulated/floor/carpet,/area/template_noop)
+"g" = (/obj/structure/bed/chair/comfy/brown,/obj/random/maintenance,/turf/simulated/floor/carpet,/area/template_noop)
+"i" = (/obj/machinery/light/flamp,/obj/structure/sign/poster{pixel_y = -32; poster_decl = /decl/poster/pol_9},/turf/simulated/floor/wood,/area/template_noop)
+"k" = (/obj/structure/bed/chair/comfy/brown{dir = 1},/turf/simulated/floor/carpet,/area/template_noop)
+"l" = (/obj/structure/bed/chair/sofa/brown{dir = 8},/turf/simulated/floor/carpet,/area/template_noop)
+"m" = (/turf/template_noop,/area/template_noop)
+"n" = (/obj/structure/bed/chair/comfy/brown,/turf/simulated/floor/carpet,/area/template_noop)
+"o" = (/obj/structure/bed/chair/comfy/brown{dir = 1},/obj/random/contraband,/turf/simulated/floor/carpet,/area/template_noop)
+"q" = (/obj/structure/table/woodentable,/obj/item/paicard,/turf/simulated/floor/carpet,/area/template_noop)
+"r" = (/obj/structure/bed/chair/sofa/brown/left{dir = 8},/obj/random/maintenance,/turf/simulated/floor/carpet,/area/template_noop)
+"u" = (/obj/structure/reagent_dispensers/water_cooler/full{dir = 1},/turf/simulated/floor/wood,/area/template_noop)
+"w" = (/obj/structure/sign/poster{dir = 1; pixel_y = 32; poster_decl = /decl/poster/nanotrasen/pol_10},/turf/simulated/floor/carpet,/area/template_noop)
+"x" = (/obj/structure/bed/chair/sofa/brown/left{dir = 4},/turf/simulated/floor/carpet,/area/template_noop)
+"z" = (/obj/structure/table/woodentable,/obj/random/mre,/obj/random/snack,/obj/machinery/reagentgrinder,/turf/simulated/floor/wood,/area/template_noop)
+"A" = (/obj/structure/sign/poster/custom{dir = 8; pixel_x = -32; poster_decl = /decl/poster/vore_43},/turf/simulated/floor/wood/broken,/area/template_noop)
+"B" = (/turf/simulated/floor/carpet,/area/template_noop)
+"C" = (/obj/effect/graffitispawner{color = "#FF9300"; color_secondary = "#A55403"; graffiti_type = "end"},/turf/simulated/floor/wood,/area/template_noop)
+"D" = (/obj/effect/graffitispawner{color = "#FFF200"; color_secondary = "#886422"; graffiti_type = "guy"},/obj/machinery/light/flamp,/turf/simulated/floor/wood,/area/template_noop)
+"E" = (/obj/effect/graffitispawner{color = "#DA00FF"; color_secondary = "#810CFF"; graffiti_type = "revolution"},/turf/simulated/floor/wood,/area/template_noop)
+"G" = (/turf/simulated/floor/wood,/area/template_noop)
+"H" = (/obj/structure/table/woodentable,/obj/random/snack,/turf/simulated/floor/carpet,/area/template_noop)
+"J" = (/obj/structure/table/woodentable,/obj/item/storage/fancy/markers,/turf/simulated/floor/carpet,/area/template_noop)
+"L" = (/obj/structure/table/woodentable,/obj/random/cigarettes,/obj/item/clothing/glasses/threedglasses,/turf/simulated/floor/carpet,/area/template_noop)
+"M" = (/turf/simulated/floor/wood/broken,/area/template_noop)
+"O" = (/obj/structure/loot_pile/maint/junk,/obj/machinery/power/apc{coverlocked = 0; locked = 0; name = "south bump"; operating = 0; pixel_y = -24},/turf/simulated/floor/wood,/area/template_noop)
+"Q" = (/obj/structure/bed/chair/sofa/brown/right{dir = 8},/obj/item/clothing/mask/gas,/turf/simulated/floor/carpet,/area/template_noop)
+"R" = (/obj/machinery/newscaster{pixel_y = 26},/turf/simulated/floor/carpet,/area/template_noop)
+"S" = (/obj/structure/bed/chair/sofa/brown{dir = 4},/obj/random/snack,/turf/simulated/floor/carpet,/area/template_noop)
+"T" = (/obj/random/maintenance,/turf/simulated/floor/carpet,/area/template_noop)
+"V" = (/obj/machinery/light_construct/flamp,/turf/simulated/floor/wood/broken,/area/template_noop)
+"W" = (/obj/structure/table/woodentable,/obj/item/storage/box/cups{pixel_x = 2; pixel_y = 5},/obj/random/maintenance,/obj/random/powercell,/turf/simulated/floor/wood,/area/template_noop)
+"X" = (/obj/structure/table/woodentable,/obj/random/contraband,/obj/random/drinkbottle,/turf/simulated/floor/carpet,/area/template_noop)
+"Z" = (/obj/structure/table/woodentable,/obj/machinery/microwave{pixel_x = -3; pixel_y = 6},/obj/item/storage/box/donkpockets{pixel_x = -3; pixel_y = -3},/turf/simulated/floor/wood,/area/template_noop)
+
+(1,1,1) = {"
+aaaaaaaa
+aDwngRVa
+aGxXHQGa
+aGSqdlGa
+aGbLJrEa
+aATkoBGa
+aZCGGMia
+azWMOuaa
+aaacaaam
+"}

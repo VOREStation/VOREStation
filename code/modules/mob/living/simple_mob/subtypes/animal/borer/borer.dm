@@ -25,7 +25,7 @@
 	universal_understand = TRUE
 	can_be_antagged = TRUE
 
-	holder_type = /obj/item/weapon/holder/borer
+	holder_type = /obj/item/holder/borer
 	ai_holder_type = null // This is player-controlled, always.
 
 	var/mob/living/carbon/human/host = null		// The humanoid host for the brain worm.

@@ -1,12 +1,16 @@
-/obj/item/device/tvcamera
+/obj/item/tvcamera
 	name = "press camera drone"
 	desc = "A Ward-Takahashi EyeBuddy media streaming hovercam. Weapon of choice for war correspondents and reality show cameramen."
+	icon = 'icons/obj/device.dmi'
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
 	icon_state = "camcorder"
 	item_state = "camcorder"
 	w_class = ITEMSIZE_LARGE
 	slot_flags = SLOT_BELT
 	var/channel = "NCS Northern Star News Feed"
 	var/obj/machinery/camera/network/thunder/camera
+<<<<<<< HEAD
 	var/obj/item/device/radio/radio
 	var/weakref/showing
 	var/showing_name
@@ -14,8 +18,11 @@
 /obj/item/device/tvcamera/New()
 	..()
 	listening_objects += src
+=======
+	var/obj/item/radio/radio
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
-/obj/item/device/tvcamera/Destroy()
+/obj/item/tvcamera/Destroy()
 	listening_objects -= src
 	qdel(camera)
 	qdel(radio)
@@ -23,12 +30,12 @@
 	radio = null
 	..()
 
-/obj/item/device/tvcamera/examine()
+/obj/item/tvcamera/examine()
 	. = ..()
 	. += "Video feed is [camera.status ? "on" : "off"]"
 	. += "Audio feed is [radio.broadcasting ? "on" : "off"]"
 
-/obj/item/device/tvcamera/Initialize()
+/obj/item/tvcamera/Initialize()
 	. = ..()
 	camera = new(src)
 	camera.c_tag = channel
@@ -40,11 +47,11 @@
 	radio.icon_state = src.icon_state
 	update_icon()
 
-/obj/item/device/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
+/obj/item/tvcamera/hear_talk(mob/M, list/message_pieces, verb)
 	radio.hear_talk(M, message_pieces, verb)
 	. = ..()
 
-/obj/item/device/tvcamera/attack_self(mob/user)
+/obj/item/tvcamera/attack_self(mob/user)
 	add_fingerprint(user)
 	user.set_machine(src)
 	show_ui(user)
@@ -61,7 +68,11 @@
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
+<<<<<<< HEAD
 /obj/item/device/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
+=======
+/obj/item/tvcamera/Topic(bred, href_list, state = physical_state)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(..())
 		return 1
 	if(href_list["channel"])
@@ -90,6 +101,7 @@
 	if(!href_list["close"])
 		attack_self(usr)
 
+<<<<<<< HEAD
 /obj/item/device/tvcamera/proc/show_tvs(atom/thing)
 	if(showing)
 		hide_tvs(showing)
@@ -135,6 +147,9 @@
 		show_tvs(loc)
 
 /obj/item/device/tvcamera/update_icon()
+=======
+/obj/item/tvcamera/update_icon()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	..()
 	if(camera.status)
 		icon_state = "camcorder_on"

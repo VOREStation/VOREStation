@@ -123,7 +123,7 @@ var/list/channel_to_radio_key = new
 
 /mob/living/proc/handle_message_mode(message_mode, list/message_pieces, verb, used_radios)
 	if(message_mode == "intercom")
-		for(var/obj/item/device/radio/intercom/I in view(1, null))
+		for(var/obj/item/radio/intercom/I in view(1, null))
 			I.talk_into(src, message_pieces, verb)
 			used_radios += I
 	return 0

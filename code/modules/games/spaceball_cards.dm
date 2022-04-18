@@ -1,14 +1,23 @@
+<<<<<<< HEAD
 /*
  * Spaceball collectable cards
  */
 /obj/item/weapon/pack/spaceball
+=======
+/obj/item/pack/spaceball
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "spaceball booster pack"
 	desc = "Officially licensed to take your money."
 	icon_state = "card_pack_spaceball"
 	parentdeck = "spaceball"
 
+<<<<<<< HEAD
 /obj/item/weapon/pack/spaceball/New()
 	..()
+=======
+/obj/item/pack/spaceball/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/datum/playingcard/P
 	var/i
 	var/year = 300 + text2num(time2text(world.timeofday, "YYYY")) //VOREStation Edit

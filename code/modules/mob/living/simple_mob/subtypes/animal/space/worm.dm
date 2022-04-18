@@ -35,8 +35,13 @@
 
 	mob_class = MOB_CLASS_ABERRATION	// It's a monster.
 
+<<<<<<< HEAD
 	meat_amount = 10
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/worm
+=======
+	meat_amount = 2
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/worm
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/mob/living/simple_mob/animal/space/space_worm/previous //next/previous segments, correspondingly
 	var/mob/living/simple_mob/animal/space/space_worm/next     //head is the nextest segment
@@ -370,4 +375,51 @@
 	if(previous)
 		previous.update_body_faction()
 		return 1
+<<<<<<< HEAD
 	return 0
+=======
+	return 0
+
+// Worm meat.
+
+/obj/item/reagent_containers/food/snacks/meat/worm
+	name = "meat"
+	desc = "A chunk of pulsating meat."
+	icon_state = "wormmeat"
+	health = 180
+	filling_color = "#551A8B"
+	center_of_mass = list("x"=16, "y"=14)
+
+/obj/item/reagent_containers/food/snacks/meat/worm/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 6)
+	reagents.add_reagent("phoron", 3)
+	reagents.add_reagent("myelamine", 3)
+	src.bitesize = 3
+
+/obj/item/reagent_containers/food/snacks/meat/worm/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/material/knife))
+		var/to_spawn = pickweight(/obj/random/junk = 30,
+		/obj/random/trash = 30,
+		/obj/random/maintenance/clean = 15,
+		/obj/random/tool = 15,
+		/obj/random/medical = 3,
+		/obj/random/bomb_supply = 7,
+		/obj/random/contraband = 3,
+		/obj/random/unidentified_medicine/old_medicine = 7,
+		/obj/item/strangerock = 3,
+		/obj/item/ore/phoron = 7,
+		/obj/random/handgun = 1,
+		/obj/random/toolbox = 4,
+		/obj/random/drinkbottle = 5
+		)
+
+		new to_spawn(get_turf(src))
+
+		if(prob(20))
+			user.visible_message("<span class='alien'>Something oozes out of \the [src] as it is cut.</span>")
+
+		to_chat(user, "<span class='alien'>You cut the tissue holding the chunks together.</span>")
+
+	..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

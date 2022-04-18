@@ -1,4 +1,4 @@
-/obj/item/weapon/gun/magnetic/railgun
+/obj/item/gun/magnetic/railgun
 	name = "railgun"
 	desc = "The Mars Military Industries MI-76 Thunderclap. A man-portable mass driver for squad support anti-armour and destruction of fortifications and emplacements."
 	description_fluff = "Mars Military Industries is a Hephaestus Industries subsidiary focused on the development of new energy-ballistic hybrid weapons for use against heavy targets. \
@@ -12,12 +12,12 @@
 	slowdown = 1	// Slowdown equals slowdown_worn, until we decide to import the system to differentiate between held and worn items
 	fire_delay = 1
 
-	load_type = /obj/item/weapon/rcd_ammo
+	load_type = /obj/item/rcd_ammo
 	projectile_type = /obj/item/projectile/bullet/magnetic/slug
 
-	cell = /obj/item/weapon/cell/hyper
-	capacitor = /obj/item/weapon/stock_parts/capacitor/adv
-	loaded = /obj/item/weapon/rcd_ammo/large
+	cell = /obj/item/cell/hyper
+	capacitor = /obj/item/stock_parts/capacitor/adv
+	loaded = /obj/item/rcd_ammo/large
 	removable_components = FALSE
 
 	var/slowdown_held = 2
@@ -26,37 +26,37 @@
 
 // Not going to check type repeatedly, if you code or varedit
 // load_type and get runtime errors, don't come crying to me.
-/obj/item/weapon/gun/magnetic/railgun/show_ammo()
-	var/obj/item/weapon/rcd_ammo/ammo = loaded
+/obj/item/gun/magnetic/railgun/show_ammo()
+	var/obj/item/rcd_ammo/ammo = loaded
 	if (ammo)
 		return list("<span class='notice'>There are [ammo.remaining] shot\s remaining in \the [loaded].</span>")
 	else
 		return list("<span class='notice'>There is nothing loaded.</span>")
 
-/obj/item/weapon/gun/magnetic/railgun/check_ammo()
-	var/obj/item/weapon/rcd_ammo/ammo = loaded
+/obj/item/gun/magnetic/railgun/check_ammo()
+	var/obj/item/rcd_ammo/ammo = loaded
 	return ammo && ammo.remaining
 
-/obj/item/weapon/gun/magnetic/railgun/use_ammo()
-	var/obj/item/weapon/rcd_ammo/ammo = loaded
+/obj/item/gun/magnetic/railgun/use_ammo()
+	var/obj/item/rcd_ammo/ammo = loaded
 	ammo.remaining--
 	if(ammo.remaining <= 0)
 		out_of_ammo()
 
-/obj/item/weapon/gun/magnetic/railgun/proc/out_of_ammo()
+/obj/item/gun/magnetic/railgun/proc/out_of_ammo()
 	loaded.forceMove(get_turf(src))
 	loaded = null
 	visible_message("<span class='warning'>\The [src] beeps and ejects its empty cartridge.</span>","<span class='warning'>There's a beeping sound!</span>")
 	playsound(src, empty_sound, 40, 1)
 	update_state()
 
-/obj/item/weapon/gun/magnetic/railgun/automatic // Adminspawn only, this shit is absurd.
+/obj/item/gun/magnetic/railgun/automatic // Adminspawn only, this shit is absurd.
 	name = "\improper RHR accelerator"
 	desc = "The Mars Military Industries MI-227 Meteor. Originally a vehicle-mounted turret weapon for heavy anti-vehicular and anti-structural fire, the fact that it was made man-portable is mindboggling in itself."
 	icon_state = "heavy_railgun"
 
-	cell = /obj/item/weapon/cell/infinite
-	capacitor = /obj/item/weapon/stock_parts/capacitor/super
+	cell = /obj/item/cell/infinite
+	capacitor = /obj/item/stock_parts/capacitor/super
 	fire_delay = 0
 
 	slowdown = 2
@@ -72,19 +72,19 @@
 		list(mode_name="long bursts", burst=6, fire_delay=null, move_delay=10, one_handed_penalty=30, burst_accuracy=list(0,-15,-15,-15,-30), dispersion=list(0.6, 0.6, 1.0, 1.0, 1.2)),
 		)
 
-/obj/item/weapon/gun/magnetic/railgun/automatic/examine(var/mob/user)
+/obj/item/gun/magnetic/railgun/automatic/examine(var/mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "<span class='notice'>Someone has scratched <i>Ultima Ratio Regum</i> onto the side of the barrel.</span>"
 
-/obj/item/weapon/gun/magnetic/railgun/flechette
+/obj/item/gun/magnetic/railgun/flechette
 	name = "flechette gun"
 	desc = "The MI-12 Skadi is a burst fire capable railgun that fires flechette rounds at high velocity. Deadly against armour, but much less effective against soft targets."
 	icon_state = "flechette_gun"
 	item_state = "z8carbine"
 
-	cell = /obj/item/weapon/cell/hyper
-	capacitor = /obj/item/weapon/stock_parts/capacitor/adv
+	cell = /obj/item/cell/hyper
+	capacitor = /obj/item/stock_parts/capacitor/adv
 
 	fire_delay = 0
 
@@ -95,9 +95,9 @@
 	slowdown_worn = 0
 
 	power_cost = 100
-	load_type = /obj/item/weapon/magnetic_ammo
+	load_type = /obj/item/magnetic_ammo
 	projectile_type = /obj/item/projectile/bullet/magnetic/flechette
-	loaded = /obj/item/weapon/magnetic_ammo
+	loaded = /obj/item/magnetic_ammo
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
 	firemodes = list(
@@ -105,7 +105,7 @@
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 		)
 
-/obj/item/weapon/gun/magnetic/railgun/flechette/pistol
+/obj/item/gun/magnetic/railgun/flechette/pistol
 	name = "flechette pistol"
 	desc = "The MI-6a Ullr is a small-form-factor railgun that fires flechette rounds at high velocity. Deadly against armour, but much less effective against soft targets."
 	description_fluff = "Mars Military Industries is a Hephaestus Industries subsidiary focused on the development of new energy-ballistic hybrid weapons for use against heavy targets. \
@@ -114,8 +114,8 @@
 	item_state = "combatrevolver"
 	w_class = ITEMSIZE_SMALL
 
-	cell = /obj/item/weapon/cell/super
-	capacitor = /obj/item/weapon/stock_parts/capacitor
+	cell = /obj/item/cell/super
+	capacitor = /obj/item/stock_parts/capacitor
 
 	fire_delay = 0
 
@@ -126,9 +126,9 @@
 	slowdown_worn = 0
 
 	power_cost = 100
-	load_type = /obj/item/weapon/magnetic_ammo/pistol
+	load_type = /obj/item/magnetic_ammo/pistol
 	projectile_type = /obj/item/projectile/bullet/magnetic/flechette/small
-	loaded = /obj/item/weapon/magnetic_ammo/pistol
+	loaded = /obj/item/magnetic_ammo/pistol
 	removable_components = TRUE
 	empty_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
@@ -137,7 +137,7 @@
 		list(mode_name="short bursts", burst=3, fire_delay=null, move_delay=5, one_handed_penalty=30, burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)),
 	)
 
-/obj/item/weapon/gun/magnetic/railgun/heater
+/obj/item/gun/magnetic/railgun/heater
 	name = "coil rifle"
 	desc = "A large rifle designed and produced after the Grey Hour."
 	description_fluff = "The Hephaestus MI-51B is a weapon designed by Mars Military Industries - a Hephaestus subsidiary - in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
@@ -147,8 +147,8 @@
 
 	removable_components = TRUE
 
-	cell = /obj/item/weapon/cell/device/weapon
-	capacitor = /obj/item/weapon/stock_parts/capacitor
+	cell = /obj/item/cell/device/weapon
+	capacitor = /obj/item/stock_parts/capacitor
 
 	fire_delay = 8
 
@@ -168,7 +168,7 @@
 		list(mode_name="low power", power_cost = 150, projectile_type = /obj/item/projectile/bullet/magnetic/heated/weak, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=15),
 		)
 
-/obj/item/weapon/gun/magnetic/railgun/heater/pistol
+/obj/item/gun/magnetic/railgun/heater/pistol
 	name = "coil pistol"
 	desc = "A large pistol designed and produced after the Grey Hour."
 	description_fluff = "The MI-60D `Peacemaker` is a weapon designed by Mars Military Industries - a Hephaestus subsidiary - in the days after the Grey Hour, in preparation for the need for updated equipment by Solar forces.<br>\
@@ -180,8 +180,8 @@
 
 	slowdown_held = 0.1
 
-	cell = /obj/item/weapon/cell/device/weapon
-	capacitor = /obj/item/weapon/stock_parts/capacitor
+	cell = /obj/item/cell/device/weapon
+	capacitor = /obj/item/stock_parts/capacitor
 
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 
@@ -190,7 +190,7 @@
 		list(mode_name="stun", power_cost = 350, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=7, move_delay=null, one_handed_penalty=0),
 		)
 
-/obj/item/weapon/gun/magnetic/railgun/heater/pistol/hos
+/obj/item/gun/magnetic/railgun/heater/pistol/hos
 	name = "prototype peacemaker"
 
 	dna_lock = TRUE
@@ -202,15 +202,15 @@
 		list(mode_name="stun", power_cost = 300, projectile_type = /obj/item/projectile/energy/electrode/strong, burst=1, fire_delay=5, move_delay=null, one_handed_penalty=0),
 		)
 
-/obj/item/weapon/gun/magnetic/railgun/flechette/sif
+/obj/item/gun/magnetic/railgun/flechette/sif
 	name = "shredder rifle"
 	desc = "The MI-12B Kaldr is a burst fire capable coilgun that fires modified slugs intended for damaging soft targets."
 	description_fluff = "The Lawson Kaldr is a weapon recently deployed to various outposts on Sif, as well as local hunting guilds for the rapid dispatching of invasive wildlife."
 	icon_state = "railgun_sifguard"
 	item_state = "z8carbine"
 
-	cell = /obj/item/weapon/cell/high
-	capacitor = /obj/item/weapon/stock_parts/capacitor/adv
+	cell = /obj/item/cell/high
+	capacitor = /obj/item/stock_parts/capacitor/adv
 
 	slot_flags = SLOT_BACK
 

@@ -183,7 +183,7 @@
 "B" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/standard,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/tiled/dark,
 /area/aisat)
 "C" = (
@@ -191,7 +191,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor/tiled/dark,
 /area/aisat)
 "D" = (

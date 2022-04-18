@@ -1,27 +1,33 @@
-/obj/item/weapon/antag_spawner
+/obj/item/antag_spawner
 	w_class = ITEMSIZE_TINY
 	var/used = 0
 	var/ghost_query_type = null
 	var/searching = FALSE
 	var/datum/effect/effect/system/spark_spread/sparks
 
+<<<<<<< HEAD
 /obj/item/weapon/antag_spawner/New()
 	..()
 	sparks = new /datum/effect/effect/system/spark_spread()
+=======
+/obj/item/antag_spawner/Initialize()
+	. = ..()
+	sparks = new /datum/effect_system/spark_spread()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 
-/obj/item/weapon/antag_spawner/Destroy()
+/obj/item/antag_spawner/Destroy()
 	QDEL_NULL(sparks)
 	return ..()
 
-/obj/item/weapon/antag_spawner/proc/spawn_antag(client/C, turf/T)
+/obj/item/antag_spawner/proc/spawn_antag(client/C, turf/T)
 	return
 
-/obj/item/weapon/antag_spawner/proc/equip_antag(mob/target)
+/obj/item/antag_spawner/proc/equip_antag(mob/target)
 	return
 
-/obj/item/weapon/antag_spawner/proc/request_player()
+/obj/item/antag_spawner/proc/request_player()
 	if(!ghost_query_type)
 		return
 	if(searching)
@@ -37,32 +43,32 @@
 		reset_search()
 	return
 
-/obj/item/weapon/antag_spawner/proc/reset_search()
+/obj/item/antag_spawner/proc/reset_search()
 	searching = FALSE
 	return
 
-/obj/item/weapon/antag_spawner/technomancer_apprentice
+/obj/item/antag_spawner/technomancer_apprentice
 	name = "apprentice teleporter"
 	desc = "A teleportation device, which will bring a less potent manipulator of space to you."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "oldshieldoff"
 	ghost_query_type = /datum/ghost_query/apprentice
 
-/obj/item/weapon/antag_spawner/technomancer_apprentice/attack_self(mob/user)
+/obj/item/antag_spawner/technomancer_apprentice/attack_self(mob/user)
 	to_chat(user, "<span class='notice'>Teleporter attempting to lock on to your apprentice.</span>")
 	request_player()
 
-/obj/item/weapon/antag_spawner/technomancer_apprentice/request_player()
+/obj/item/antag_spawner/technomancer_apprentice/request_player()
 	icon_state = "oldshieldon"
 	..()
 
-/obj/item/weapon/antag_spawner/technomancer_apprentice/reset_search()
+/obj/item/antag_spawner/technomancer_apprentice/reset_search()
 	..()
 	if(!used)
 		icon_state = "oldshieldoff"
 		visible_message("<span class='warning'>The teleporter failed to find the apprentice.  Perhaps another attempt could be made later?</span>")
 
-/obj/item/weapon/antag_spawner/technomancer_apprentice/spawn_antag(client/C, turf/T)
+/obj/item/antag_spawner/technomancer_apprentice/spawn_antag(client/C, turf/T)
 	sparks.start()
 	var/mob/living/carbon/human/H = new/mob/living/carbon/human(T)
 	C.prefs.copy_to(H)
@@ -79,14 +85,19 @@
 		used = 1
 		qdel(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/antag_spawner/technomancer_apprentice/equip_antag(mob/technomancer_mob)
 	var/datum/antagonist/technomancer/antag_datum = all_antag_types[MODE_TECHNOMANCER]
+=======
+/obj/item/antag_spawner/technomancer_apprentice/equip_antag(mob/technomancer_mob)
+	var/datum/antagonist/technomancer/antag_datum = SSantags.antag_datums[MODE_TECHNOMANCER]
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	antag_datum.equip_apprentice(technomancer_mob)
 
 
 
 
-/obj/item/weapon/antag_spawner/syndicate_drone
+/obj/item/antag_spawner/syndicate_drone
 	name = "drone teleporter"
 	desc = "A teleportation device, which will bring a powerful and loyal drone to you."
 	icon = 'icons/obj/objects.dmi'
@@ -94,21 +105,21 @@
 	ghost_query_type = /datum/ghost_query/syndicate_drone
 	var/drone_type = null
 
-/obj/item/weapon/antag_spawner/syndicate_drone/attack_self(mob/user)
+/obj/item/antag_spawner/syndicate_drone/attack_self(mob/user)
 	to_chat(user, "<span class='notice'>Teleporter attempting to lock on to an available unit.</span>")
 	request_player()
 
-/obj/item/weapon/antag_spawner/syndicate_drone/request_player()
+/obj/item/antag_spawner/syndicate_drone/request_player()
 	icon_state = "oldshieldon"
 	..()
 
-/obj/item/weapon/antag_spawner/syndicate_drone/reset_search()
+/obj/item/antag_spawner/syndicate_drone/reset_search()
 	..()
 	if(!used)
 		icon_state = "oldshieldoff"
 		visible_message("<span class='warning'>The teleporter failed to find any available.  Perhaps another attempt could be made later?</span>")
 
-/obj/item/weapon/antag_spawner/syndicate_drone/spawn_antag(client/C, turf/T)
+/obj/item/antag_spawner/syndicate_drone/spawn_antag(client/C, turf/T)
 	sparks.start()
 	var/mob/living/silicon/robot/R = new drone_type(T)
 
@@ -125,11 +136,11 @@
 		//add_antagonist(var/datum/mind/player, var/ignore_role, var/do_not_equip, var/move_to_spawn, var/do_not_announce, var/preserve_appearance)
 		qdel(src)
 
-/obj/item/weapon/antag_spawner/syndicate_drone/protector
+/obj/item/antag_spawner/syndicate_drone/protector
 	drone_type = /mob/living/silicon/robot/syndicate/protector
 
-/obj/item/weapon/antag_spawner/syndicate_drone/combat_medic
+/obj/item/antag_spawner/syndicate_drone/combat_medic
 	drone_type = /mob/living/silicon/robot/syndicate/combat_medic
 
-/obj/item/weapon/antag_spawner/syndicate_drone/mechanist
+/obj/item/antag_spawner/syndicate_drone/mechanist
 	drone_type = /mob/living/silicon/robot/syndicate/mechanist

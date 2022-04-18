@@ -1,4 +1,4 @@
-/obj/item/weapon/circuitboard/atmoscontrol
+/obj/item/circuitboard/atmoscontrol
 	name = "\improper Central Atmospherics Computer Circuitboard"
 	build_path = /obj/machinery/computer/atmoscontrol
 
@@ -8,9 +8,15 @@
 	icon_keyboard = "generic_key"
 	icon_screen = "comm_logs"
 	light_color = "#00b000"
+<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/atmoscontrol
+=======
+	density = 1
+	anchored = 1.0
+	circuit = /obj/item/circuitboard/atmoscontrol
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	req_access = list(access_ce)
 	var/list/monitored_alarm_ids = null
 	var/datum/tgui_module/atmos_control/atmos_control

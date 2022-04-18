@@ -1,6 +1,6 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
-/obj/item/weapon/implant/freedom
+/obj/item/implant/freedom
 	name = "freedom implant"
 	desc = "Use this to escape from those evil Red Shirts."
 	implant_color = "r"
@@ -8,14 +8,18 @@
 	var/uses = 1.0
 
 
+<<<<<<< HEAD
 /obj/item/weapon/implant/freedom/New()
+=======
+/obj/item/implant/freedom/Initialize()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	src.uses = rand(1, 5)
 	..()
 	return
 
 
-/obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
+/obj/item/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
 	if (src.uses < 1)
 		return 0
 
@@ -23,7 +27,7 @@
 		src.uses--
 		to_chat(source, "You feel a faint click.")
 		if (source.handcuffed)
-			var/obj/item/weapon/W = source.handcuffed
+			var/obj/item/W = source.handcuffed
 			source.handcuffed = null
 			if(source.buckled && source.buckled.buckle_require_restraints)
 				source.buckled.unbuckle_mob()
@@ -36,7 +40,7 @@
 				if (W)
 					W.layer = initial(W.layer)
 		if (source.legcuffed)
-			var/obj/item/weapon/W = source.legcuffed
+			var/obj/item/W = source.legcuffed
 			source.legcuffed = null
 			source.update_inv_legcuffed()
 			if (source.client)
@@ -48,11 +52,11 @@
 					W.layer = initial(W.layer)
 	return
 
-/obj/item/weapon/implant/freedom/post_implant(mob/source)
+/obj/item/implant/freedom/post_implant(mob/source)
 	source.mind.store_memory("Freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.", 0, 0)
 	to_chat(source, "The implanted freedom implant can be activated by using the [src.activation_emote] emote, <B>say *[src.activation_emote]</B> to attempt to activate.")
 
-/obj/item/weapon/implant/freedom/get_data()
+/obj/item/implant/freedom/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Freedom Beacon<BR>

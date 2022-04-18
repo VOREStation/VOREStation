@@ -1,4 +1,4 @@
-/obj/item/weapon/spell/modifier
+/obj/item/spell/modifier
 	name = "modifier template"
 	desc = "Tell a coder if you can read this in-game."
 	icon_state = "purify"
@@ -9,22 +9,27 @@
 	var/spell_light_intensity = 2
 	var/spell_light_range = 3
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/modifier/New()
 	..()
+=======
+/obj/item/spell/modifier/Initialize()
+	. = ..()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
-/obj/item/weapon/spell/modifier/on_melee_cast(atom/hit_atom, mob/user)
+/obj/item/spell/modifier/on_melee_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /mob/living))
 		return on_add_modifier(hit_atom)
 	return FALSE
 
-/obj/item/weapon/spell/modifier/on_ranged_cast(atom/hit_atom, mob/user)
+/obj/item/spell/modifier/on_ranged_cast(atom/hit_atom, mob/user)
 	if(istype(hit_atom, /mob/living))
 		return on_add_modifier(hit_atom)
 	return FALSE
 
 
-/obj/item/weapon/spell/modifier/proc/on_add_modifier(var/mob/living/L)
+/obj/item/spell/modifier/proc/on_add_modifier(var/mob/living/L)
 	var/duration = modifier_duration
 	if(duration)
 		duration = round(duration * calculate_spell_power(1.0), 1)

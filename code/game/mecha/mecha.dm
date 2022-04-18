@@ -60,7 +60,7 @@
 	var/minimum_penetration = 15		//Incoming damage won't be fully applied if you don't have at least 20. Almost all AP clears this.
 	var/fail_penetration_value = 0.66	//By how much failing to penetrate reduces your shit. 66% by default. 100dmg = 66dmg if failed pen
 
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/state = MECHA_OPERATING
 	var/list/log = new
 	var/last_message = 0
@@ -86,7 +86,7 @@
 	var/datum/gas_mixture/cabin_air
 	var/obj/machinery/atmospherics/portables_connector/connected_port = null
 
-	var/obj/item/device/radio/radio = null
+	var/obj/item/radio/radio = null
 
 	var/max_temperature = 25000			//Kelvin values.
 	var/internal_damage_threshold = 33	//Health percentage below which internal damage is possible
@@ -460,12 +460,12 @@
 	internal_tank = new /obj/machinery/portable_atmospherics/canister/air(src)
 	return internal_tank
 
-/obj/mecha/proc/add_cell(var/obj/item/weapon/cell/C=null)
+/obj/mecha/proc/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new /obj/item/weapon/cell/mech(src)
+	cell = new /obj/item/cell/mech(src)
 
 /obj/mecha/get_cell()
 	return cell
@@ -1358,7 +1358,7 @@
 		src.check_for_internal_damage(list(MECHA_INT_FIRE, MECHA_INT_TEMP_CONTROL))
 	return
 
-/obj/mecha/proc/dynattackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/mecha/proc/dynattackby(obj/item/W as obj, mob/user as mob)
 	user.setClickCooldown(user.get_attack_speed(W))
 	src.log_message("Attacked by [W]. Attacker - [user]")
 	var/pass_damage_reduc_mod			//Modifer for failing to bring AP.
@@ -1415,17 +1415,17 @@
 ////// AttackBy //////
 //////////////////////
 
-/obj/mecha/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/mecha/attackby(obj/item/W as obj, mob/user as mob)
 
-	if(istype(W, /obj/item/device/mmi))
+	if(istype(W, /obj/item/mmi))
 		if(mmi_move_inside(W,user))
 			to_chat(user, "[src]-MMI interface initialized successfuly")
 		else
 			to_chat(user, "[src]-MMI interface initialization failed.")
 		return
 
-	if(istype(W, /obj/item/device/robotanalyzer))
-		var/obj/item/device/robotanalyzer/RA = W
+	if(istype(W, /obj/item/robotanalyzer))
+		var/obj/item/robotanalyzer/RA = W
 		RA.do_scan(src, user)
 		return
 
@@ -1449,18 +1449,18 @@
 				user.visible_message("[user] installs \the [W] in \the [src]", "You install \the [W] in \the [src].")
 		return
 
-	if(istype(W, /obj/item/weapon/card/robot))
-		var/obj/item/weapon/card/robot/RoC = W
+	if(istype(W, /obj/item/card/robot))
+		var/obj/item/card/robot/RoC = W
 		return attackby(RoC.dummy_card, user)
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(add_req_access || maint_access)
 			if(internals_access_allowed(usr))
-				var/obj/item/weapon/card/id/id_card
-				if(istype(W, /obj/item/weapon/card/id))
+				var/obj/item/card/id/id_card
+				if(istype(W, /obj/item/card/id))
 					id_card = W
 				else
-					var/obj/item/device/pda/pda = W
+					var/obj/item/pda/pda = W
 					id_card = pda.id
 				output_maintenance_dialog(id_card, user)
 				return
@@ -1524,7 +1524,7 @@
 			to_chat(user, "You screw the cell in place")
 		return
 
-	else if(istype(W, /obj/item/device/multitool))
+	else if(istype(W, /obj/item/multitool))
 		if(state>=MECHA_CELL_OPEN && src.occupant)
 			to_chat(user, "You attempt to eject the pilot using the maintenance controls.")
 			if(src.occupant.stat)
@@ -1536,7 +1536,7 @@
 				src.log_message("Eject attempt made using maintenance controls - rejected.")
 		return
 
-	else if(istype(W, /obj/item/weapon/cell))
+	else if(istype(W, /obj/item/cell))
 		if(state==MECHA_CELL_OUT)
 			if(!src.cell)
 				to_chat(user, "You install the powercell")
@@ -1548,8 +1548,8 @@
 				to_chat(user, "There's already a powercell installed.")
 		return
 
-	else if(istype(W, /obj/item/weapon/weldingtool) && user.a_intent != I_HURT)
-		var/obj/item/weapon/weldingtool/WT = W
+	else if(istype(W, /obj/item/weldingtool) && user.a_intent != I_HURT)
+		var/obj/item/weldingtool/WT = W
 		var/obj/item/mecha_parts/component/hull/HC = internal_components[MECH_HULL]
 		var/obj/item/mecha_parts/component/armor/AC = internal_components[MECH_ARMOR]
 		if (WT.remove_fuel(0,user))
@@ -1641,7 +1641,7 @@
 ////////  Brain Stuff  ////////
 ///////////////////////////////
 
-/obj/mecha/proc/mmi_move_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
+/obj/mecha/proc/mmi_move_inside(var/obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
 	if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
 		to_chat(user, "Consciousness matrix not detected.")
 		return 0
@@ -1668,7 +1668,7 @@
 		to_chat(user, "You stop attempting to install the brain.")
 	return 0
 
-/obj/mecha/proc/mmi_moved_inside(var/obj/item/device/mmi/mmi_as_oc as obj,mob/user as mob)
+/obj/mecha/proc/mmi_moved_inside(var/obj/item/mmi/mmi_as_oc as obj,mob/user as mob)
 	if(mmi_as_oc && (user in range(1)))
 		if(!mmi_as_oc.brainmob || !mmi_as_oc.brainmob.client)
 			to_chat(user, "Consciousness matrix not detected.")
@@ -2109,8 +2109,8 @@
 		occupant << browse(null, "window=exosuit")
 		if(occupant.client && cloaked_selfimage)
 			occupant.client.images -= cloaked_selfimage
-		if(istype(mob_container, /obj/item/device/mmi))
-			var/obj/item/device/mmi/mmi = mob_container
+		if(istype(mob_container, /obj/item/mmi))
+			var/obj/item/mmi/mmi = mob_container
 			if(mmi.brainmob)
 				occupant.loc = mmi
 			mmi.mecha = null
@@ -2156,13 +2156,13 @@
 	return 0
 
 
-/obj/mecha/check_access(obj/item/weapon/card/id/I, list/access_list)
+/obj/mecha/check_access(obj/item/card/id/I, list/access_list)
 	if(!istype(access_list))
 		return 1
 	if(!access_list.len) //no requirements
 		return 1
-	if(istype(I, /obj/item/device/pda))
-		var/obj/item/device/pda/pda = I
+	if(istype(I, /obj/item/pda))
+		var/obj/item/pda/pda = I
 		I = pda.id
 	if(!istype(I) || !I.access) //not ID or no access
 		return 0
@@ -2392,7 +2392,7 @@
 	return data
 
 
-/obj/mecha/proc/output_access_dialog(obj/item/weapon/card/id/id_card, mob/user)
+/obj/mecha/proc/output_access_dialog(obj/item/card/id/id_card, mob/user)
 	if(!id_card || !user) return
 	var/output = {"<html>
 						<head><style>
@@ -2417,7 +2417,7 @@
 	onclose(user, "exosuit_add_access")
 	return
 
-/obj/mecha/proc/output_maintenance_dialog(obj/item/weapon/card/id/id_card,mob/user)
+/obj/mecha/proc/output_maintenance_dialog(obj/item/card/id/id_card,mob/user)
 	if(!id_card || !user) return
 
 	var/maint_options = "<a href='?src=\ref[src];set_internal_tank_valve=1;user=\ref[user]'>Set Cabin Air Pressure</a>"

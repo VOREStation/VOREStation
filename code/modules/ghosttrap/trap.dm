@@ -83,8 +83,13 @@ var/list/ghost_traps
 	to_chat(target, "<b>Remember, the purpose of your existence is to serve the crew and the station. Above all else, do no harm.</b>")
 	to_chat(target, "<b>Use say #b to speak to other artificial intelligences.</b>")
 	var/turf/T = get_turf(target)
+<<<<<<< HEAD
 	T.visible_message("<b>\The [src]</b> chimes quietly.")
 	var/obj/item/device/mmi/digital/posibrain/P = target.loc
+=======
+	T.visible_message("<span class='notice'>\The [src] chimes quietly.</span>")
+	var/obj/item/mmi/digital/posibrain/P = target.loc
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!istype(P)) //wat
 		return
 	P.searching = 0

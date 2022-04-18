@@ -2,14 +2,14 @@
 //They don't, at the moment, grant knowledge of the language
 //The can_speak_special checks should check for the presence of the implants.
 
-/obj/item/weapon/implant/language
+/obj/item/implant/language
 	name = "GalCom language implant"
 	desc = "An implant allowing someone to speak the range of frequencies used in Galactic Common, as well as produce any phonemes that they usually cannot. Only helps with producing sounds, not understanding them."
 	known_implant = TRUE
 	var/list/languages = list(LANGUAGE_GALCOM)	// List of languages that this assists with
 	initialize_loc = BP_HEAD
 
-/obj/item/weapon/implant/language/post_implant(mob/M)	// Amends the mob's voice organ, then deletes itself
+/obj/item/implant/language/post_implant(mob/M)	// Amends the mob's voice organ, then deletes itself
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/obj/item/organ/internal/voicebox/V = locate() in H.internal_organs
@@ -27,7 +27,7 @@
 					V.add_assistable_langs(L)
 		QDEL_NULL(src)
 
-/obj/item/weapon/implant/language/get_data()
+/obj/item/implant/language/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Vey-Med L-1 Galactic Common Implant<BR>
@@ -42,12 +42,12 @@
 
 
 // EAL Implant
-/obj/item/weapon/implant/language/eal
+/obj/item/implant/language/eal
 	name = "EAL language implant"
 	desc = "An implant allowing an organic to speak Encoded Audio Language passably. Only helps with producing sounds, not understanding them."
 	languages = list(LANGUAGE_EAL)
 
-/obj/item/weapon/implant/language/eal/get_data()
+/obj/item/implant/language/eal/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Vey-Med L-2 Encoded Audio Language Implant<BR>
@@ -60,12 +60,12 @@
 <b>Integrity:</b> Implant will function for expected life, barring physical damage."}
 	return dat
 
-/obj/item/weapon/implant/language/skrellian
+/obj/item/implant/language/skrellian
 	name = "Skrellian language implant"
 	desc = "An implant allowing someone to speak the range of frequencies used in Skrellian, as well as produce any phonemes that they usually cannot. Only helps with hearing and producing sounds, not understanding them."
 	languages = list(LANGUAGE_SKRELLIAN)
 
-/obj/item/weapon/implant/language/skrellian/get_data()
+/obj/item/implant/language/skrellian/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b> Vey-Med L-1 Galactic Common Implant<BR>

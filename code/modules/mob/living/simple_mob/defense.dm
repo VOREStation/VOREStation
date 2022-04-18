@@ -32,7 +32,7 @@
 				L.visible_message("<span class='warning'>\The [L] tries to grab \the [src] but fails!</span>")
 				return
 
-			var/obj/item/weapon/grab/G = new /obj/item/weapon/grab(L, src)
+			var/obj/item/grab/G = new /obj/item/grab(L, src)
 
 			L.put_in_active_hand(G)
 
@@ -96,7 +96,7 @@
 	//Animals can't be stunned(?)
 	if(O.damtype == HALLOSS)
 		effective_force = 0
-	if(supernatural && istype(O,/obj/item/weapon/nullrod))
+	if(supernatural && istype(O,/obj/item/nullrod))
 		effective_force *= 2
 		purge = 3
 	if(O.force <= resistance)

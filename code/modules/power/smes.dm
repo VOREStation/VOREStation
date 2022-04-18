@@ -14,7 +14,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	anchored = TRUE
 	unacidable = TRUE
 	use_power = USE_POWER_OFF
-	circuit = /obj/item/weapon/circuitboard/smes
+	circuit = /obj/item/circuitboard/smes
 	clicksound = "switch"
 
 	var/capacity = 5e6 // maximum charge
@@ -279,7 +279,7 @@ GLOBAL_LIST_EMPTY(smeses)
 	tgui_interact(user)
 
 
-/obj/machinery/power/smes/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return FALSE
 
@@ -287,8 +287,8 @@ GLOBAL_LIST_EMPTY(smeses)
 		to_chat(user, "<span class='filter_notice'><span class='warning'>You need to open access hatch on [src] first!</span></span>")
 		return FALSE
 
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(!WT.isOn())
 			to_chat(user, "<span class='filter_notice'>Turn on \the [WT] first!</span>")
 			return FALSE

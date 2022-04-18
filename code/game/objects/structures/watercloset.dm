@@ -53,9 +53,9 @@
 			update_icon()
 			return
 
-	if(istype(I, /obj/item/weapon/grab))
+	if(istype(I, /obj/item/grab))
 		user.setClickCooldown(user.get_attack_speed(I))
-		var/obj/item/weapon/grab/G = I
+		var/obj/item/grab/G = I
 
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
@@ -99,12 +99,37 @@
 	return
 
 /obj/structure/toilet/prison/attackby(obj/item/I, mob/living/user)
-	if(istype(I, /obj/item/weapon/grab))
+	if(istype(I, /obj/item/grab))
 		user.setClickCooldown(user.get_attack_speed(I))
 		var/obj/item/weapon/grab/G = I
 
+<<<<<<< HEAD
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
+=======
+	var/obj/item/grab/G = I
+
+	if(isliving(G.affecting))
+		var/mob/living/GM = G.affecting
+
+		if(G.state>1)
+			if(!GM.loc == get_turf(src))
+				to_chat(user, "<span class='notice'>[GM.name] needs to be on the toilet.</span>")
+				return
+			if(open && !swirlie)
+				user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
+				swirlie = GM
+				if(do_after(user, 30, GM))
+					user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+					if(!GM.internal)
+						GM.adjustOxyLoss(5)
+				swirlie = null
+			else
+				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+				GM.adjustBruteLoss(5)
+		else
+			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))
@@ -134,8 +159,8 @@
 	anchored = TRUE
 
 /obj/structure/urinal/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = I
+	if(istype(I, /obj/item/grab))
+		var/obj/item/grab/G = I
 		if(isliving(G.affecting))
 			var/mob/living/GM = G.affecting
 			if(G.state>1)
@@ -199,7 +224,7 @@
 		soundloop.stop()
 
 /obj/machinery/shower/attackby(obj/item/I as obj, mob/user as mob)
-	if(I.type == /obj/item/device/analyzer)
+	if(I.type == /obj/item/analyzer)
 		to_chat(user, "<span class='notice'>The water temperature seems to be [watertemp].</span>")
 	if(I.is_wrench())
 		var/newtemp = tgui_input_list(user, "What setting would you like to set the temperature valve to?", "Water Temperature Valve", temperature_settings)
@@ -298,7 +323,7 @@
 		else if(temperature <= H.species.cold_level_1)
 			to_chat(H, "<span class='warning'>The water is freezing cold!</span>")
 
-/obj/item/weapon/bikehorn/rubberducky
+/obj/item/bikehorn/rubberducky
 	name = "rubber ducky"
 	desc = "Rubber ducky you're so fine, you make bathtime lots of fuuun. Rubber ducky I'm awfully fooooond of yooooouuuu~"	//thanks doohl
 	icon = 'icons/obj/watercloset.dmi'
@@ -368,15 +393,15 @@
 		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
 
-	var/obj/item/weapon/reagent_containers/RG = O
+	var/obj/item/reagent_containers/RG = O
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
 		user.visible_message("<span class='notice'>[user] fills \the [RG] using \the [src].</span>","<span class='notice'>You fill \the [RG] using \the [src].</span>")
 		playsound(src, 'sound/effects/sink.ogg', 75, 1)
 		return 1
 
-	else if (istype(O, /obj/item/weapon/melee/baton))
-		var/obj/item/weapon/melee/baton/B = O
+	else if (istype(O, /obj/item/melee/baton))
+		var/obj/item/melee/baton/B = O
 		if(B.bcell)
 			if(B.bcell.charge > 0 && B.status == 1)
 				flick("baton_active", src)
@@ -393,7 +418,7 @@
 					"<span class='danger'>[user] was stunned by [TU.his] wet [O]!</span>", \
 					"<span class='userdanger'>[user] was stunned by [TU.his] wet [O]!</span>")
 				return 1
-	else if(istype(O, /obj/item/weapon/mop))
+	else if(istype(O, /obj/item/mop))
 		O.reagents.add_reagent("water", 5)
 		to_chat(user, "<span class='notice'>You wet \the [O] in \the [src].</span>")
 		playsound(src, 'sound/effects/slosh.ogg', 25, 1)

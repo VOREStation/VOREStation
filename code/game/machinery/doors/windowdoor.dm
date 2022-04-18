@@ -12,7 +12,7 @@
 	use_power = USE_POWER_OFF
 	flags = ON_BORDER
 	opacity = 0
-	var/obj/item/weapon/airlock_electronics/electronics = null
+	var/obj/item/airlock_electronics/electronics = null
 	explosion_resistance = 5
 	can_atmos_pass = ATMOS_PASS_PROC
 	air_properties_vary_with_direction = 1
@@ -32,12 +32,12 @@
 		icon_state = "[base_state]open"
 
 /obj/machinery/door/window/proc/shatter(var/display_message = 1)
-	new /obj/item/weapon/material/shard(src.loc)
-	new /obj/item/weapon/material/shard(src.loc)
+	new /obj/item/material/shard(src.loc)
+	new /obj/item/material/shard(src.loc)
 	new /obj/item/stack/cable_coil(src.loc, 1)
-	var/obj/item/weapon/airlock_electronics/ae
+	var/obj/item/airlock_electronics/ae
 	if(!electronics)
-		ae = new/obj/item/weapon/airlock_electronics( src.loc )
+		ae = new/obj/item/airlock_electronics( src.loc )
 		if(LAZYLEN(req_access))
 			ae.conf_access = req_access
 		else if (LAZYLEN(req_one_access))
@@ -189,8 +189,8 @@
 
 	if(istype(I))
 		// Fixing.
-		if(istype(I, /obj/item/weapon/weldingtool) && user.a_intent == I_HELP)
-			var/obj/item/weapon/weldingtool/WT = I
+		if(istype(I, /obj/item/weldingtool) && user.a_intent == I_HELP)
+			var/obj/item/weldingtool/WT = I
 			if(health < maxhealth)
 				if(WT.remove_fuel(1 ,user))
 					to_chat(user, "<span class='notice'>You begin repairing [src]...</span>")
@@ -204,7 +204,7 @@
 			return
 
 		//Emags and ninja swords? You may pass.
-		if (istype(I, /obj/item/weapon/melee/energy/blade))
+		if (istype(I, /obj/item/melee/energy/blade))
 			if(emag_act(10, user))
 				var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
 				spark_system.set_up(5, 0, src.loc)
@@ -234,10 +234,10 @@
 				wa.update_state()
 
 				if(operating == -1)
-					wa.electronics = new/obj/item/weapon/circuitboard/broken()
+					wa.electronics = new/obj/item/circuitboard/broken()
 				else
 					if(!electronics)
-						wa.electronics = new/obj/item/weapon/airlock_electronics()
+						wa.electronics = new/obj/item/airlock_electronics()
 						if(LAZYLEN(req_access))
 							wa.electronics.conf_access = req_access
 						else if (LAZYLEN(req_one_access))
@@ -251,7 +251,7 @@
 				return
 
 		//If it's a weapon, smash windoor. Unless it's an id card, agent card, ect.. then ignore it (Cards really shouldnt damage a door anyway)
-		if(src.density && istype(I, /obj/item/weapon) && !istype(I, /obj/item/weapon/card))
+		if(src.density && istype(I) && !istype(I, /obj/item/card))
 			user.setClickCooldown(user.get_attack_speed(I))
 			var/aforce = I.force
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)

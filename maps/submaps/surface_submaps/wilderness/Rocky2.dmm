@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -47,6 +48,21 @@
 /obj/item/weapon/shovel,
 /turf/template_noop,
 /area/submap/Rocky2)
+=======
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/template_noop,/area/submap/Rocky2)
+"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rocky2)
+"d" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rocky2)
+"e" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky2)
+"f" = (/obj/structure/flora/tree/pine,/turf/template_noop,/area/submap/Rocky2)
+"g" = (/obj/structure/flora/ausbushes/grassybush,/turf/template_noop,/area/submap/Rocky2)
+"h" = (/obj/structure/flora/ausbushes/fullgrass,/turf/template_noop,/area/submap/Rocky2)
+"i" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/template_noop,/area/submap/Rocky2)
+"j" = (/obj/item/shovel{start_anomalous = 1},/turf/template_noop,/area/submap/Rocky2)
+"k" = (/obj/structure/flora/ausbushes/sunnybush,/turf/template_noop,/area/submap/Rocky2)
+"l" = (/obj/structure/flora/ausbushes/stalkybush,/turf/template_noop,/area/submap/Rocky2)
+"m" = (/obj/structure/flora/tree/dead,/turf/template_noop,/area/submap/Rocky2)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 a

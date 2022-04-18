@@ -180,9 +180,9 @@
 			if(!isnull(M.outgoing_melee_damage_percent))
 				weapon_damage *= M.outgoing_melee_damage_percent
 
-		if(istype(I, /obj/item/weapon/gun))
+		if(istype(I, /obj/item/gun))
 			will_point_blank = TRUE
-			var/obj/item/weapon/gun/G = I
+			var/obj/item/gun/G = I
 			var/obj/item/projectile/P
 
 			P = new G.projectile_type()

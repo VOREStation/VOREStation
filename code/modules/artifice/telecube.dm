@@ -17,7 +17,7 @@
 	value = CATALOGUER_REWARD_HARD
 
 // Standard one needs to be smacked onto another one to link together.
-/obj/item/weapon/telecube
+/obj/item/telecube
 	name = "locus"
 	desc = "A strange metallic cube that pulses silently."
 	description_info = "Ctrl-Clicking on this object will attempt to activate its unique ability."
@@ -32,7 +32,7 @@
 
 	throw_range = 2
 
-	var/obj/item/weapon/telecube/mate = null
+	var/obj/item/telecube/mate = null
 
 	var/start_paired = FALSE
 	var/mirror_colors = FALSE
@@ -51,7 +51,7 @@
 
 	var/omniteleport = FALSE // Will this teleport anchored things too?
 
-/obj/item/weapon/telecube/Initialize()
+/obj/item/telecube/Initialize()
 	. = ..()
 
 	glow = image("[icon_state]-ready")
@@ -79,7 +79,7 @@
 
 	update_icon()
 
-/obj/item/weapon/telecube/update_icon()
+/obj/item/telecube/update_icon()
 	. = ..()
 
 	if(isturf(loc))
@@ -100,7 +100,7 @@
 		cut_overlays()
 		add_overlay(glow)
 
-/obj/item/weapon/telecube/Destroy()
+/obj/item/telecube/Destroy()
 	if(mate)
 		var/turf/T = get_turf(mate)
 		mate.visible_message("<span class='critical'>\The [mate] collapses into itself!</span>")
@@ -110,15 +110,15 @@
 
 	return ..()
 
-/obj/item/weapon/telecube/equipped()
+/obj/item/telecube/equipped()
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/telecube/dropped()
+/obj/item/telecube/dropped()
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/telecube/proc/pair_cube(var/obj/item/weapon/telecube/M)
+/obj/item/telecube/proc/pair_cube(var/obj/item/telecube/M)
 	if(mate)
 		return 0
 	else
@@ -126,7 +126,7 @@
 		update_icon()
 		return 1
 
-/obj/item/weapon/telecube/proc/teleport_to_mate(var/atom/movable/A, var/areaporting = FALSE)
+/obj/item/telecube/proc/teleport_to_mate(var/atom/movable/A, var/areaporting = FALSE)
 	. = FALSE
 
 	if(!istype(A))
@@ -172,7 +172,7 @@
 		for(var/atom/movable/M in orange(teleport_range, A))
 			teleport_to_mate(M, TRUE)
 
-/obj/item/weapon/telecube/proc/swap_with_mate()
+/obj/item/telecube/proc/swap_with_mate()
 	. = FALSE
 
 	if(!mate || !teleport_range)
@@ -190,7 +190,7 @@
 	. = TRUE
 	return .
 
-/obj/item/weapon/telecube/proc/cooldown(var/mate_too = FALSE)
+/obj/item/telecube/proc/cooldown(var/mate_too = FALSE)
 	if(!ready)
 		return
 	
@@ -200,11 +200,11 @@
 	if(mate_too && mate)
 		mate.cooldown(mate_too = FALSE) //No infinite recursion pls
 
-/obj/item/weapon/telecube/proc/ready()
+/obj/item/telecube/proc/ready()
 	ready = TRUE
 	update_icon()
 
-/obj/item/weapon/telecube/proc/animate_out(var/atom/movable/AM)
+/obj/item/telecube/proc/animate_out(var/atom/movable/AM)
 	//See atom cloak/uncloak animations for comments
 	var/atom/movable/target = AM
 	var/our_filter_index = target.filters.len+1
@@ -215,7 +215,7 @@
 	sleep(5)
 	target.filters -= filter(type="blur", size = 2)
 
-/obj/item/weapon/telecube/proc/animate_in(var/atom/movable/AM)
+/obj/item/telecube/proc/animate_in(var/atom/movable/AM)
 	//See atom cloak/uncloak animations for comments
 	var/atom/movable/target = AM
 	var/our_filter_index = target.filters.len+1
@@ -226,44 +226,44 @@
 	sleep(5)
 	target.filters -= filter(type="blur", size = 0)
 
-/obj/item/weapon/telecube/CtrlClick(mob/user)
+/obj/item/telecube/CtrlClick(mob/user)
 	if(Adjacent(user) && teleport_to_mate(user))
 		cooldown(mate_too = FALSE)
 
-/obj/item/weapon/telecube/AltClick(mob/user)
+/obj/item/telecube/AltClick(mob/user)
 	if(Adjacent(user) && swap_with_mate())
 		cooldown(mate_too = TRUE)
 
-/obj/item/weapon/telecube/Bump(var/atom/movable/AM)
+/obj/item/telecube/Bump(var/atom/movable/AM)
 	if(teleport_to_mate(AM))
 		cooldown(mate_too = FALSE)
 	. = ..()
 
-/obj/item/weapon/telecube/Bumped(var/atom/movable/M)
+/obj/item/telecube/Bumped(var/atom/movable/M)
 	if(teleport_to_mate(M))
 		cooldown(mate_too = FALSE)
 	. = ..()
 
 // Subtypes
 
-/obj/item/weapon/telecube/mated
+/obj/item/telecube/mated
 	start_paired = TRUE
 
-/obj/item/weapon/telecube/randomized
+/obj/item/telecube/randomized
 	randomize_colors = TRUE
 
-/obj/item/weapon/telecube/randomized/mated
+/obj/item/telecube/randomized/mated
 	start_paired = TRUE
 
-/obj/item/weapon/telecube/precursor
+/obj/item/telecube/precursor
 	glow_color = "#FF1D8E"
 	color = "#2F1B26"
 
-/obj/item/weapon/telecube/precursor/mated
+/obj/item/telecube/precursor/mated
 	start_paired = TRUE
 
-/obj/item/weapon/telecube/precursor/mated/zone
+/obj/item/telecube/precursor/mated/zone
 	teleport_range = 2
 
-/obj/item/weapon/telecube/precursor/mated/mirrorcolor
+/obj/item/telecube/precursor/mated/mirrorcolor
 	mirror_colors = TRUE

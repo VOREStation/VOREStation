@@ -1,0 +1,28 @@
+"a" = (/turf/simulated/wall,/area/template_noop)
+"b" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/structure/barricade,/turf/simulated/floor/plating,/area/template_noop)
+"f" = (/obj/structure/bed/chair/sofa/blue/right{dir = 8},/obj/machinery/light/small{dir = 4},/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"i" = (/obj/structure/table/sifwoodentable,/obj/random/mre,/obj/random/drinkbottle,/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"k" = (/obj/effect/floor_decal/spline/plain,/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"m" = (/obj/structure/reagent_dispensers/water_cooler/full{dir = 4},/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"p" = (/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"q" = (/obj/machinery/light/small{brightness_color = "#DA0205"; brightness_power = 1; brightness_range = 5; dir = 8},/obj/effect/floor_decal/spline/plain,/obj/structure/table/sifwoodentable,/obj/item/storage/box/cups,/obj/random/maintenance/medical,/obj/random/maintenance/medical,/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"u" = (/obj/structure/table/sifwoodentable,/obj/item/folder/white,/obj/item/pen{pixel_x = 4; pixel_y = 4},/obj/random/maintenance/medical,/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"w" = (/obj/random/obstruction,/turf/simulated/floor/tiled/steel_grid,/area/template_noop)
+"y" = (/turf/simulated/wall/r_wall,/area/template_noop)
+"z" = (/obj/structure/bed/chair/sofa/blue/left{dir = 1},/obj/random/contraband,/obj/machinery/newscaster{pixel_x = -28},/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"E" = (/obj/structure/table/sifwoodentable,/obj/random/snack,/obj/random/drinksoft,/obj/structure/sign/poster/custom{dir = 1; pixel_y = 32; poster_decl = /decl/poster/nanotrasen/bay_25},/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"H" = (/obj/structure/bed/chair/sofa/blue/left{dir = 8},/obj/random/maintenance/medical,/obj/item/radio/intercom{dir = 4; pixel_x = 21},/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"J" = (/obj/item/radio/intercom/department/medbay{dir = 8; pixel_x = 21},/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"K" = (/obj/structure/table/sifwoodentable,/obj/random/plushie,/obj/random/maintenance/medical,/obj/random/maintenance/medical,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"O" = (/obj/structure/bed/chair/sofa/blue/right{dir = 1},/obj/random/maintenance/medical,/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+"U" = (/obj/effect/floor_decal/spline/plain,/obj/machinery/vending/hotfood{dir = 8},/turf/simulated/floor/carpet/tealcarpet,/area/template_noop)
+
+(1,1,1) = {"
+yyyyy
+aKEfy
+aiuHy
+azOJy
+amppy
+aqkUy
+aawby
+"}

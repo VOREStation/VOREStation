@@ -76,12 +76,12 @@
 		/obj/item/mecha_parts/mecha_equipment/teleporter
 		)
 
-/obj/mecha/combat/gygax/dark/add_cell(var/obj/item/weapon/cell/C=null)
+/obj/mecha/combat/gygax/dark/add_cell(var/obj/item/cell/C=null)
 	if(C)
 		C.forceMove(src)
 		cell = C
 		return
-	cell = new /obj/item/weapon/cell/hyper(src)
+	cell = new /obj/item/cell/hyper(src)
 
 /obj/mecha/combat/gygax/serenity
 	desc = "A lightweight exosuit made from a modified Gygax chassis combined with proprietary VeyMed medical tech. It's faster and sturdier than most medical mechs, but much of the armor plating has been stripped out, leaving it more vulnerable than a regular Gygax."

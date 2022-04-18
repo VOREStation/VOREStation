@@ -47,8 +47,8 @@
 
 /datum/surgery_step/cavity/make_space
 	allowed_tools = list(
-		/obj/item/weapon/surgical/surgicaldrill = 100,	\
-		/obj/item/weapon/pen = 75,	\
+		/obj/item/surgical/surgicaldrill = 100,	\
+		/obj/item/pen = 75,	\
 		/obj/item/stack/rods = 50
 	)
 
@@ -80,10 +80,10 @@
 /datum/surgery_step/cavity/close_space
 	priority = 2
 	allowed_tools = list(
-		/obj/item/weapon/surgical/cautery = 100,			\
+		/obj/item/surgical/cautery = 100,			\
 		/obj/item/clothing/mask/smokable/cigarette = 75,	\
-		/obj/item/weapon/flame/lighter = 50,			\
-		/obj/item/weapon/weldingtool = 25
+		/obj/item/flame/lighter = 50,			\
+		/obj/item/weldingtool = 25
 	)
 
 	min_duration = 60
@@ -128,7 +128,7 @@
 		if(affected && affected.cavity)
 			var/total_volume = tool.w_class
 			for(var/obj/item/I in affected.implants)
-				if(istype(I,/obj/item/weapon/implant))
+				if(istype(I,/obj/item/implant))
 					continue
 				total_volume += I.w_class
 			return total_volume <= get_max_wclass(affected)
@@ -162,8 +162,8 @@
 
 /datum/surgery_step/cavity/implant_removal
 	allowed_tools = list(
-		/obj/item/weapon/surgical/hemostat = 100,	\
-		/obj/item/weapon/material/kitchen/utensil/fork = 20
+		/obj/item/surgical/hemostat = 100,	\
+		/obj/item/material/kitchen/utensil/fork = 20
 	)
 
 	allowed_procs = list(IS_WIRECUTTER = 75)
@@ -195,8 +195,8 @@
 
 		var/obj/item/obj = pick(affected.implants)
 
-		if(istype(obj,/obj/item/weapon/implant))
-			var/obj/item/weapon/implant/imp = obj
+		if(istype(obj,/obj/item/implant))
+			var/obj/item/implant/imp = obj
 			if (imp.islegal())
 				find_prob +=60
 			else
@@ -224,8 +224,8 @@
 				obj.loc = get_turf(target)
 				obj.add_blood(target)
 				obj.update_icon()
-				if(istype(obj,/obj/item/weapon/implant))
-					var/obj/item/weapon/implant/imp = obj
+				if(istype(obj,/obj/item/implant))
+					var/obj/item/implant/imp = obj
 					imp.imp_in = null
 					imp.implanted = 0
 				else if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
@@ -243,7 +243,7 @@
 		var/fail_prob = 10
 		fail_prob += 100 - tool_quality(tool)
 		if (prob(fail_prob))
-			var/obj/item/weapon/implant/imp = affected.implants[1]
+			var/obj/item/implant/imp = affected.implants[1]
 			user.visible_message("<span class='danger'> Something beeps inside [target]'s [affected.name]!</span>")
 			playsound(imp, 'sound/items/countdown.ogg', 75, 1, -3)
 			spawn(25)

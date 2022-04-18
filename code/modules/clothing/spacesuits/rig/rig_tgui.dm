@@ -8,7 +8,7 @@
  * tgui_interact() is the proc that opens the UI. It doesn't really do anything else, unlike NanoV1.
  * We add an extra argument, custom_state, for the things that want a custom state for their UI.
  */
-/obj/item/weapon/rig/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/tgui_state/custom_state)
+/obj/item/rig/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui, datum/tgui_state/custom_state)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, (loc != usr ? ai_interface_path : interface_path), interface_title)
@@ -19,7 +19,7 @@
 /*
  * tgui_state() gives the UI the state to use by default.
  */
-/obj/item/weapon/rig/tgui_state()
+/obj/item/rig/tgui_state()
 	return GLOB.tgui_inventory_state
 
 /*
@@ -28,7 +28,7 @@
  * not authorized to do so.
  * This saves us two lines of code in tgui_act().
  */
-/obj/item/weapon/rig/tgui_status(mob/user, datum/tgui_state/state)
+/obj/item/rig/tgui_status(mob/user, datum/tgui_state/state)
 	. = ..()
 	if(!check_suit_access(user, FALSE)) // don't send a message to the user, this is a UI thing
 		// Forces the UI to never go interactive,
@@ -38,7 +38,7 @@
 /*
  * tgui_data() is the heavy lifter, it gives the UI it's relevant datastructure every SStgui tick.
  */
-/obj/item/weapon/rig/tgui_data(mob/user)
+/obj/item/rig/tgui_data(mob/user)
 	var/list/data = list()
 
 	if(selected_module)
@@ -120,7 +120,7 @@
 /*
  * tgui_act() is the TGUI equivelent of Topic(). It's responsible for all of the "actions" you can take in the UI.
  */
-/obj/item/weapon/rig/tgui_act(action, params)
+/obj/item/rig/tgui_act(action, params)
 	// This parent call is very important, as it's responsible for invoking tgui_status and checking our state's rules.
 	if(..())
 		return TRUE

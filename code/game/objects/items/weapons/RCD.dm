@@ -1,5 +1,5 @@
 // Contains the rapid construction device.
-/obj/item/weapon/rcd
+/obj/item/rcd
 	name = "rapid construction device"
 	desc = "A device used to rapidly build and deconstruct. Reload with compressed matter cartridges."
 	icon = 'icons/obj/tools.dmi'
@@ -29,6 +29,7 @@
 	var/window_type = /obj/structure/window/reinforced/full
 	var/material_to_use = DEFAULT_WALL_MATERIAL // So badmins can make RCDs that print diamond walls.
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
+<<<<<<< HEAD
 /* VOREStation Removal - Unused
 /obj/item/weapon/rcd/Initialize()
 	
@@ -38,23 +39,39 @@
 	return ..()
 */
 /obj/item/weapon/rcd/Destroy()
+=======
+
+/obj/item/rcd/Initialize()
+	src.spark_system = new /datum/effect_system/spark_spread
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	return ..()
+
+/obj/item/rcd/Destroy()
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	QDEL_NULL(spark_system)
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/rcd/examine(mob/user)
+/obj/item/rcd/examine(mob/user)
 	. = ..()
 	. += display_resources()
 
 // Used to show how much stuff (matter units, cell charge, etc) is left inside.
-/obj/item/weapon/rcd/proc/display_resources()
+/obj/item/rcd/proc/display_resources()
 	return "It currently holds [stored_matter]/[max_stored_matter] matter-units."
 
 // Used to add new cartridges.
+<<<<<<< HEAD
 /* VOREStation Tweak - Wow this is annoying, moved to _vr file for overhaul
 /obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
 	if(istype(W, /obj/item/weapon/rcd_ammo))
 		var/obj/item/weapon/rcd_ammo/cartridge = W
+=======
+/obj/item/rcd/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/rcd_ammo))
+		var/obj/item/rcd_ammo/cartridge = W
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if((stored_matter + cartridge.remaining) > max_stored_matter)
 			to_chat(user, span("warning", "The RCD can't hold that many additional matter-units."))
 			return FALSE
@@ -67,8 +84,12 @@
 	return ..()
 */
 // Changes which mode it is on.
+<<<<<<< HEAD
 /obj/item/weapon/rcd/attack_self(mob/living/user)
 /* VOREStation Removal - Moved to VR
+=======
+/obj/item/rcd/attack_self(mob/living/user)
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(mode_index >= modes.len) // Shouldn't overflow unless someone messes with it in VV poorly but better safe than sorry.
 		mode_index = 1
 	else
@@ -81,23 +102,23 @@
 		src.spark_system.start()
 */
 // Removes resources if the RCD can afford it.
-/obj/item/weapon/rcd/proc/consume_resources(amount)
+/obj/item/rcd/proc/consume_resources(amount)
 	if(!can_afford(amount))
 		return FALSE
 	stored_matter -= amount
 	return TRUE
 
 // Useful for testing before actually paying (e.g. before a do_after() ).
-/obj/item/weapon/rcd/proc/can_afford(amount)
+/obj/item/rcd/proc/can_afford(amount)
 	return stored_matter >= amount
 
-/obj/item/weapon/rcd/afterattack(atom/A, mob/living/user, proximity)
+/obj/item/rcd/afterattack(atom/A, mob/living/user, proximity)
 	if(!ranged && !proximity)
 		return FALSE
 	use_rcd(A, user)
 
 // Used to call rcd_act() on the atom hit.
-/obj/item/weapon/rcd/proc/use_rcd(atom/A, mob/living/user)
+/obj/item/rcd/proc/use_rcd(atom/A, mob/living/user)
 	if(busy && !allow_concurrent_building)
 		to_chat(user, span("warning", "\The [src] is busy finishing its current operation, be patient."))
 		return FALSE
@@ -143,23 +164,23 @@
 // RCD variants.
 
 // This one starts full.
-/obj/item/weapon/rcd/loaded/Initialize()
+/obj/item/rcd/loaded/Initialize()
 	stored_matter = max_stored_matter
 	return ..()
 
 // This one makes cooler walls by using an alternative material.
-/obj/item/weapon/rcd/shipwright
+/obj/item/rcd/shipwright
 	name = "shipwright's rapid construction device"
 	desc = "A device used to rapidly build and deconstruct. This version creates a stronger variant of wall, often \
 	used in the construction of hulls for starships. Reload with compressed matter cartridges."
 	material_to_use = MAT_STEELHULL
 
-/obj/item/weapon/rcd/shipwright/loaded/Initialize()
+/obj/item/rcd/shipwright/loaded/Initialize()
 	stored_matter = max_stored_matter
 	return ..()
 
 
-/obj/item/weapon/rcd/advanced
+/obj/item/rcd/advanced
 	name = "advanced rapid construction device"
 	desc = "A device used to rapidly build and deconstruct. This version works at a range, builds faster, and has a much larger capacity. \
 	Reload with compressed matter cartridges."
@@ -168,7 +189,7 @@
 	toolspeed = 0.5 // Twice as fast.
 	max_stored_matter = RCD_MAX_CAPACITY * 3 // Three times capacity.
 
-/obj/item/weapon/rcd/advanced/loaded/Initialize()
+/obj/item/rcd/advanced/loaded/Initialize()
 	stored_matter = max_stored_matter
 	return ..()
 
@@ -177,41 +198,41 @@
 // Currently just a base for the mounted RCDs.
 // Currently there isn't a way to swap out the cells.
 // One could be added if there is demand to do so.
-/obj/item/weapon/rcd/electric
+/obj/item/rcd/electric
 	name = "electric rapid construction device"
 	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity, no matter cartridges needed."
 	icon_state = "electric_rcd"
-	var/obj/item/weapon/cell/cell = null
+	var/obj/item/cell/cell = null
 	var/make_cell = TRUE // If false, initialize() won't spawn a cell for this.
 	var/electric_cost_coefficent = 83.33 // Higher numbers make it less efficent. 86.3... means it should matche the standard RCD capacity on a 10k cell.
 
-/obj/item/weapon/rcd/electric/Initialize()
+/obj/item/rcd/electric/Initialize()
 	if(make_cell)
-		cell = new /obj/item/weapon/cell/high(src)
+		cell = new /obj/item/cell/high(src)
 	return ..()
 
-/obj/item/weapon/rcd/electric/Destroy()
+/obj/item/rcd/electric/Destroy()
 	if(cell)
 		QDEL_NULL(cell)
 	return ..()
 
-/obj/item/weapon/rcd/electric/get_cell()
+/obj/item/rcd/electric/get_cell()
 	return cell
 
-/obj/item/weapon/rcd/electric/can_afford(amount) // This makes it so borgs won't drain their last sliver of charge by mistake, as a bonus.
-	var/obj/item/weapon/cell/cell = get_cell()
+/obj/item/rcd/electric/can_afford(amount) // This makes it so borgs won't drain their last sliver of charge by mistake, as a bonus.
+	var/obj/item/cell/cell = get_cell()
 	if(cell)
 		return cell.check_charge(amount * electric_cost_coefficent)
 	return FALSE
 
-/obj/item/weapon/rcd/electric/consume_resources(amount)
+/obj/item/rcd/electric/consume_resources(amount)
 	if(!can_afford(amount))
 		return FALSE
-	var/obj/item/weapon/cell/cell = get_cell()
+	var/obj/item/cell/cell = get_cell()
 	return cell.checked_use(amount * electric_cost_coefficent)
 
-/obj/item/weapon/rcd/electric/display_resources()
-	var/obj/item/weapon/cell/cell = get_cell()
+/obj/item/rcd/electric/display_resources()
+	var/obj/item/cell/cell = get_cell()
 	if(cell)
 		return "The power source connected to \the [src] has a charge of [cell.percent()]%."
 	return "It lacks a source of power, and cannot function."
@@ -219,15 +240,15 @@
 
 
 // 'Mounted' RCDs, used for borgs/RIGs/Mechas, all of which use their cells to drive the RCD.
-/obj/item/weapon/rcd/electric/mounted
+/obj/item/rcd/electric/mounted
 	name = "mounted electric rapid construction device"
 	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity from an external power source."
 	make_cell = FALSE
 
-/obj/item/weapon/rcd/electric/mounted/get_cell()
+/obj/item/rcd/electric/mounted/get_cell()
 	return get_external_power_supply()
 
-/obj/item/weapon/rcd/electric/mounted/proc/get_external_power_supply()
+/obj/item/rcd/electric/mounted/proc/get_external_power_supply()
 	if(isrobot(loc)) // In a borg.
 		var/mob/living/silicon/robot/R = loc
 		return R.cell
@@ -243,35 +264,35 @@
 
 
 // RCDs for borgs.
-/obj/item/weapon/rcd/electric/mounted/borg
+/obj/item/rcd/electric/mounted/borg
 	can_remove_rwalls = TRUE
 	desc = "A device used to rapidly build and deconstruct. It runs directly off of electricity, drawing directly from your cell."
 	electric_cost_coefficent = 41.66 // Twice as efficent, out of pity.
 	toolspeed = 0.5 // Twice as fast, since borg versions typically have this.
 
-/obj/item/weapon/rcd/electric/mounted/borg/swarm
+/obj/item/rcd/electric/mounted/borg/swarm
 	can_remove_rwalls = FALSE
 	name = "Rapid Assimilation Device"
 	ranged = TRUE
 	toolspeed = 0.7
 	material_to_use = MAT_STEELHULL
 
-/obj/item/weapon/rcd/electric/mounted/borg/lesser
+/obj/item/rcd/electric/mounted/borg/lesser
 	can_remove_rwalls = FALSE
 
 
 // RCDs for RIGs.
-/obj/item/weapon/rcd/electric/mounted/rig
+/obj/item/rcd/electric/mounted/rig
 
 
 // RCDs for Mechs.
-/obj/item/weapon/rcd/electric/mounted/mecha
+/obj/item/rcd/electric/mounted/mecha
 	ranged = TRUE
 	toolspeed = 0.5
 
 
 // Infinite use RCD for debugging/adminbuse.
-/obj/item/weapon/rcd/debug
+/obj/item/rcd/debug
 	name = "self-repleshing rapid construction device"
 	desc = "An RCD that appears to be plated with gold. For some reason it also seems to just \
 	be vastly superior to all other RCDs ever created, possibly due to it being colored gold."
@@ -281,25 +302,25 @@
 	allow_concurrent_building = TRUE
 	toolspeed = 0.25 // Four times as fast.
 
-/obj/item/weapon/rcd/debug/can_afford(amount)
+/obj/item/rcd/debug/can_afford(amount)
 	return TRUE
 
-/obj/item/weapon/rcd/debug/consume_resources(amount)
+/obj/item/rcd/debug/consume_resources(amount)
 	return TRUE
 
-/obj/item/weapon/rcd/debug/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/rcd_ammo))
+/obj/item/rcd/debug/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/rcd_ammo))
 		to_chat(user, span("notice", "\The [src] makes its own material, no need to add more."))
 		return FALSE
 	return ..()
 
-/obj/item/weapon/rcd/debug/display_resources()
+/obj/item/rcd/debug/display_resources()
 	return "It has UNLIMITED POWER!"
 
 
 
 // Ammo for the (non-electric) RCDs.
-/obj/item/weapon/rcd_ammo
+/obj/item/rcd_ammo
 	name = "compressed matter cartridge"
 	desc = "Highly compressed matter for the RCD."
 	icon = 'icons/obj/ammo.dmi'
@@ -310,7 +331,7 @@
 	matter = list(DEFAULT_WALL_MATERIAL = 30000,MAT_GLASS = 15000)
 	var/remaining = RCD_MAX_CAPACITY / 3
 
-/obj/item/weapon/rcd_ammo/large
+/obj/item/rcd_ammo/large
 	name = "high-capacity matter cartridge"
 	desc = "Do not ingest."
 	matter = list(DEFAULT_WALL_MATERIAL = 45000,MAT_GLASS = 22500)

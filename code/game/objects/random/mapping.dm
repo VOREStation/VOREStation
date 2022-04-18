@@ -165,12 +165,12 @@
 /obj/random_multi/single_item/captains_spare_id
 	name = "Multi Point - Captain's Spare"
 	id = "Captain's spare id"
-	item_path = /obj/item/weapon/card/id/gold/captain/spare
+	item_path = /obj/item/card/id/gold/captain/spare
 
 /obj/random_multi/single_item/hand_tele
 	name = "Multi Point - Hand Teleporter"
 	id = "hand tele"
-	item_path = /obj/item/weapon/hand_tele
+	item_path = /obj/item/hand_tele
 
 /obj/random_multi/single_item/sfr_headset
 	name = "Multi Point - headset"
@@ -185,10 +185,10 @@
 	icon_state = "rup"
 
 /obj/random/sfr/item_to_spawn()
-	return pick(prob(25);/obj/item/device/radio/headset/heads/captain/sfr,
-				prob(25);/obj/item/device/radio/headset/headset_cargo/alt,
-				prob(25);/obj/item/device/radio/headset/headset_com/alt,
-				prob(25);/obj/item/device/radio/headset)
+	return pick(prob(25);/obj/item/radio/headset/heads/captain/sfr,
+				prob(25);/obj/item/radio/headset/headset_cargo/alt,
+				prob(25);/obj/item/radio/headset/headset_com/alt,
+				prob(25);/obj/item/radio/headset)
 
 // Mining Goodies
 /obj/random/multiple/minevault
@@ -201,13 +201,14 @@
 	return pick(
 			prob(5);list(
 				/obj/item/clothing/mask/smokable/pipe,
-				/obj/item/weapon/reagent_containers/food/drinks/bottle/rum,
-				/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
-				/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
-				/obj/item/weapon/flame/lighter/zippo,
+				/obj/item/reagent_containers/food/drinks/bottle/rum,
+				/obj/item/reagent_containers/food/drinks/bottle/whiskey,
+				/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+				/obj/item/flame/lighter/zippo,
 				/obj/structure/closet/crate/hydroponics
 			),
 			prob(5);list(
+<<<<<<< HEAD
 				/obj/item/weapon/pickaxe,
 				/obj/item/clothing/under/rank/miner,
 				/obj/item/clothing/head/hardhat,
@@ -215,59 +216,70 @@
 			),
 			prob(5);list(
 				/obj/item/weapon/pickaxe/drill,
+=======
+				/obj/item/pickaxe/drill,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/suit/space/void/mining,
 				/obj/item/clothing/head/helmet/space/void/mining,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
+<<<<<<< HEAD
 				/obj/item/weapon/pickaxe/advdrill,
+=======
+				/obj/item/pickaxe/drill,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/suit/space/void/mining/alt,
 				/obj/item/clothing/head/helmet/space/void/mining/alt,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
-				/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
-				/obj/item/weapon/reagent_containers/glass/beaker/bluespace,
+				/obj/item/reagent_containers/glass/beaker/bluespace,
+				/obj/item/reagent_containers/glass/beaker/bluespace,
+				/obj/item/reagent_containers/glass/beaker/bluespace,
 				/obj/structure/closet/crate/science
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
+<<<<<<< HEAD
 				/obj/item/weapon/pickaxe,
+=======
+				/obj/item/pickaxe/drill,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/glasses/material,
 				/obj/structure/ore_box,
 				/obj/structure/closet/crate
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/glass/beaker/noreact,
-				/obj/item/weapon/reagent_containers/glass/beaker/noreact,
-				/obj/item/weapon/reagent_containers/glass/beaker/noreact,
+				/obj/item/reagent_containers/glass/beaker/noreact,
+				/obj/item/reagent_containers/glass/beaker/noreact,
+				/obj/item/reagent_containers/glass/beaker/noreact,
 				/obj/structure/closet/crate/science
 			),
 			prob(5);list(
-				/obj/item/weapon/storage/secure/briefcase/money,
+				/obj/item/storage/secure/briefcase/money,
 				/obj/structure/closet/crate/freezer/rations
 			),
 			prob(5);list(
@@ -280,10 +292,10 @@
 				/obj/structure/closet/crate
 			),
 			prob(5);list(
-				/obj/item/weapon/melee/baton,
-				/obj/item/weapon/melee/baton,
-				/obj/item/weapon/melee/baton,
-				/obj/item/weapon/melee/baton,
+				/obj/item/melee/baton,
+				/obj/item/melee/baton,
+				/obj/item/melee/baton,
+				/obj/item/melee/baton,
 				/obj/structure/closet/crate
 			),
 			prob(5);list(
@@ -292,10 +304,10 @@
 				/obj/structure/closet/crate
 			),
 			prob(2);list(
-				/obj/item/weapon/melee/baton/cattleprod,
-				/obj/item/weapon/melee/baton/cattleprod,
-				/obj/item/weapon/cell/high,
-				/obj/item/weapon/cell/high,
+				/obj/item/melee/baton/cattleprod,
+				/obj/item/melee/baton/cattleprod,
+				/obj/item/cell/high,
+				/obj/item/cell/high,
 				/obj/structure/closet/crate
 			),
 			prob(2);list(
@@ -309,8 +321,8 @@
 				/obj/structure/closet/crate
 			),
 			prob(2);list(
-				/obj/item/weapon/rig/industrial/equipped,
-				/obj/item/weapon/storage/bag/ore,
+				/obj/item/rig/industrial/equipped,
+				/obj/item/storage/bag/ore,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
@@ -338,8 +350,8 @@
 				/obj/item/clothing/head/helmet/space/syndicate/black/red,
 				/obj/item/clothing/suit/space/syndicate/black/red,
 				/obj/item/clothing/head/helmet/space/syndicate/black/red,
-				/obj/item/weapon/gun/projectile/automatic/mini_uzi,
-				/obj/item/weapon/gun/projectile/automatic/mini_uzi,
+				/obj/item/gun/projectile/automatic/mini_uzi,
+				/obj/item/gun/projectile/automatic/mini_uzi,
 				/obj/item/ammo_magazine/m45uzi,
 				/obj/item/ammo_magazine/m45uzi,
 				/obj/item/ammo_magazine/m45uzi/empty,
@@ -349,16 +361,23 @@
 			prob(2);list(
 				/obj/item/clothing/suit/ianshirt,
 				/obj/item/clothing/suit/ianshirt,
-				/obj/item/weapon/bedsheet/ian,
+				/obj/item/bedsheet/ian,
 				/obj/structure/closet/crate/plastic
 			),
 			prob(2);list(
 				/obj/item/clothing/suit/armor/vest,
 				/obj/item/clothing/suit/armor/vest,
+<<<<<<< HEAD
 				/obj/item/weapon/gun/projectile/garand,
 				/obj/item/weapon/gun/projectile/garand,
 				/obj/item/ammo_magazine/m762enbloc,
 				/obj/item/ammo_magazine/m762enbloc,
+=======
+				/obj/item/gun/projectile/garand,
+				/obj/item/gun/projectile/garand,
+				/obj/item/ammo_magazine/m762garand,
+				/obj/item/ammo_magazine/m762garand,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/structure/closet/crate/plastic
 			),
 			prob(2);list(
@@ -368,63 +387,68 @@
 				/obj/mecha/working/hoverpod/combatpod
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/silver,
-				/obj/item/weapon/storage/bag/ore,
+				/obj/item/pickaxe/silver,
+				/obj/item/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
+<<<<<<< HEAD
 				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/weapon/storage/bag/ore,
+=======
+				/obj/item/pickaxe/drill,
+				/obj/item/storage/bag/ore,
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/jackhammer,
-				/obj/item/weapon/storage/bag/ore,
+				/obj/item/pickaxe/jackhammer,
+				/obj/item/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/diamond,
-				/obj/item/weapon/storage/bag/ore,
+				/obj/item/pickaxe/diamond,
+				/obj/item/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/diamonddrill,
-				/obj/item/weapon/storage/bag/ore,
+				/obj/item/pickaxe/diamonddrill,
+				/obj/item/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/gold,
-				/obj/item/weapon/storage/bag/ore,
+				/obj/item/pickaxe/gold,
+				/obj/item/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/plasmacutter,
-				/obj/item/weapon/storage/bag/ore,
+				/obj/item/pickaxe/plasmacutter,
+				/obj/item/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/material/sword/katana,
-				/obj/item/weapon/material/sword/katana,
+				/obj/item/material/sword/katana,
+				/obj/item/material/sword/katana,
 				/obj/structure/closet/crate
 			),
 			prob(2);list(
-				/obj/item/weapon/material/sword,
-				/obj/item/weapon/material/sword,
+				/obj/item/material/sword,
+				/obj/item/material/sword,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
 				/obj/item/clothing/mask/balaclava,
-				/obj/item/weapon/material/star,
-				/obj/item/weapon/material/star,
-				/obj/item/weapon/material/star,
-				/obj/item/weapon/material/star,
+				/obj/item/material/star,
+				/obj/item/material/star,
+				/obj/item/material/star,
+				/obj/item/material/star,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
@@ -436,65 +460,65 @@
 				/obj/item/clothing/head/bearpelt,
 				/obj/item/clothing/under/soviet,
 				/obj/item/clothing/under/soviet,
-				/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial,
-				/obj/item/weapon/gun/projectile/shotgun/pump/rifle/ceremonial,
+				/obj/item/gun/projectile/shotgun/pump/rifle/ceremonial,
+				/obj/item/gun/projectile/shotgun/pump/rifle/ceremonial,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
-				/obj/item/weapon/gun/projectile/revolver/detective,
-				/obj/item/weapon/gun/projectile/contender,
-				/obj/item/weapon/gun/projectile/p92x,
-				/obj/item/weapon/gun/projectile/derringer,
+				/obj/item/gun/projectile/revolver/detective,
+				/obj/item/gun/projectile/contender,
+				/obj/item/gun/projectile/p92x,
+				/obj/item/gun/projectile/derringer,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
-				/obj/item/weapon/melee/cultblade,
+				/obj/item/melee/cultblade,
 				/obj/item/clothing/suit/cultrobes,
 				/obj/item/clothing/head/culthood,
-				/obj/item/device/soulstone,
+				/obj/item/soulstone,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
-				/obj/item/weapon/vampiric,
-				/obj/item/weapon/vampiric,
+				/obj/item/vampiric,
+				/obj/item/vampiric,
 				/obj/structure/closet/crate/science
 			),
 			prob(1);list(
-				/obj/item/weapon/archaeological_find
+				/obj/item/archaeological_find
 			),
 			prob(1);list(
-				/obj/item/weapon/melee/energy/sword,
-				/obj/item/weapon/melee/energy/sword,
-				/obj/item/weapon/melee/energy/sword,
-				/obj/item/weapon/shield/energy,
-				/obj/item/weapon/shield/energy,
+				/obj/item/melee/energy/sword,
+				/obj/item/melee/energy/sword,
+				/obj/item/melee/energy/sword,
+				/obj/item/shield/energy,
+				/obj/item/shield/energy,
 				/obj/structure/closet/crate/science
 			),
 			prob(1);list(
-				/obj/item/weapon/storage/backpack/clown,
+				/obj/item/storage/backpack/clown,
 				/obj/item/clothing/under/rank/clown,
 				/obj/item/clothing/shoes/clown_shoes,
-				/obj/item/device/pda/clown,
+				/obj/item/pda/clown,
 				/obj/item/clothing/mask/gas/clown_hat,
-				/obj/item/weapon/bikehorn,
-				/obj/item/weapon/reagent_containers/spray/waterflower,
-				/obj/item/weapon/pen/crayon/rainbow,
+				/obj/item/bikehorn,
+				/obj/item/reagent_containers/spray/waterflower,
+				/obj/item/pen/crayon/rainbow,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
 				/obj/item/clothing/under/mime,
 				/obj/item/clothing/shoes/black,
-				/obj/item/device/pda/mime,
+				/obj/item/pda/mime,
 				/obj/item/clothing/gloves/white,
 				/obj/item/clothing/mask/gas/mime,
 				/obj/item/clothing/head/beret,
 				/obj/item/clothing/suit/suspenders,
-				/obj/item/weapon/pen/crayon/mime,
-				/obj/item/weapon/reagent_containers/food/drinks/bottle/bottleofnothing,
+				/obj/item/pen/crayon/mime,
+				/obj/item/reagent_containers/food/drinks/bottle/bottleofnothing,
 				/obj/structure/closet/crate
 			),
 			prob(1);list(
-				/obj/item/weapon/storage/belt/champion,
+				/obj/item/storage/belt/champion,
 				/obj/item/clothing/mask/luchador,
 				/obj/item/clothing/mask/luchador/rudos,
 				/obj/item/clothing/mask/luchador/tecnicos,
@@ -520,6 +544,7 @@
 
 /obj/random/multiple/ore_pile/item_to_spawn()
 	return pick(
+<<<<<<< HEAD
 			/*prob(10);list(
 				/obj/item/weapon/ore/bauxite,
 				/obj/item/weapon/ore/bauxite,
@@ -532,18 +557,33 @@
 				/obj/item/weapon/ore/bauxite,
 				/obj/item/weapon/ore/bauxite
 			),*/
+=======
 			prob(10);list(
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite,
+				/obj/item/ore/bauxite
 			),
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			prob(10);list(
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal
+			),
+<<<<<<< HEAD
 			/*prob(10);list(
 				/obj/item/weapon/ore/copper,
 				/obj/item/weapon/ore/copper,
@@ -556,102 +596,117 @@
 				/obj/item/weapon/ore/copper,
 				/obj/item/weapon/ore/copper
 			),*/
+=======
+			prob(10);list(
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper,
+				/obj/item/ore/copper
+			),
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			prob(3);list(
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond
 			),
 			prob(15);list(
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold
 			),
 			prob(2);list(
-				/obj/item/weapon/ore/hydrogen,
-				/obj/item/weapon/ore/hydrogen
+				/obj/item/ore/hydrogen,
+				/obj/item/ore/hydrogen
 			),
 			prob(10);list(
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron
 			),
 			prob(10);list(
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/marble,
-				/obj/item/weapon/ore/marble,
-				/obj/item/weapon/ore/marble,
-				/obj/item/weapon/ore/marble,
-				/obj/item/weapon/ore/marble
+				/obj/item/ore/marble,
+				/obj/item/ore/marble,
+				/obj/item/ore/marble,
+				/obj/item/ore/marble,
+				/obj/item/ore/marble
 			),
 			prob(3);list(
-				/obj/item/weapon/ore/osmium,
-				/obj/item/weapon/ore/osmium,
-				/obj/item/weapon/ore/osmium
+				/obj/item/ore/osmium,
+				/obj/item/ore/osmium,
+				/obj/item/ore/osmium
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/phoron,
-				/obj/item/weapon/ore/phoron,
-				/obj/item/weapon/ore/phoron,
-				/obj/item/weapon/ore/phoron,
-				/obj/item/weapon/ore/phoron
+				/obj/item/ore/phoron,
+				/obj/item/ore/phoron,
+				/obj/item/ore/phoron,
+				/obj/item/ore/phoron,
+				/obj/item/ore/phoron
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/rutile,
-				/obj/item/weapon/ore/rutile,
-				/obj/item/weapon/ore/rutile,
-				/obj/item/weapon/ore/rutile,
-				/obj/item/weapon/ore/rutile
+				/obj/item/ore/rutile,
+				/obj/item/ore/rutile,
+				/obj/item/ore/rutile,
+				/obj/item/ore/rutile,
+				/obj/item/ore/rutile
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/silver,
-				/obj/item/weapon/ore/silver,
-				/obj/item/weapon/ore/silver,
-				/obj/item/weapon/ore/silver,
-				/obj/item/weapon/ore/silver
+				/obj/item/ore/silver,
+				/obj/item/ore/silver,
+				/obj/item/ore/silver,
+				/obj/item/ore/silver,
+				/obj/item/ore/silver
 			),
 			prob(3);list(
-				/obj/item/weapon/ore/uranium,
-				/obj/item/weapon/ore/uranium,
-				/obj/item/weapon/ore/uranium
+				/obj/item/ore/uranium,
+				/obj/item/ore/uranium,
+				/obj/item/ore/uranium
 			),
 			prob(2);list(
+<<<<<<< HEAD
 				/obj/item/weapon/ore/verdantium,
 				/obj/item/weapon/ore/verdantium
 			),/*
@@ -659,6 +714,15 @@
 				/obj/item/weapon/ore/void_opal,
 				/obj/item/weapon/ore/void_opal
 			),*/
+=======
+				/obj/item/ore/verdantium,
+				/obj/item/ore/verdantium
+			),
+			prob(2);list(
+				/obj/item/ore/magmellite,
+				/obj/item/ore/magmellite
+			),
+>>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		)
 
 /obj/random/multiple/corp_crate
@@ -727,16 +791,16 @@
 				/obj/structure/closet/crate/einstein //EINSTEIN BATTERYPACK
 			),
 			prob(5);list(
-				/obj/item/weapon/circuitboard/smes,
+				/obj/item/circuitboard/smes,
 				/obj/random/smes_coil,
 				/obj/random/smes_coil,
 				/obj/structure/closet/crate/focalpoint //FOCAL SMES
 			),
 			prob(10);list(
-				/obj/item/weapon/module/power_control,
+				/obj/item/module/power_control,
 				/obj/item/stack/cable_coil,
 				/obj/item/frame/apc,
-				/obj/item/weapon/cell/apc,
+				/obj/item/cell/apc,
 				/obj/structure/closet/crate/focalpoint //FOCAL APC
 			),
 			prob(5);list(
@@ -773,10 +837,10 @@
 			prob(2);list(
 				/obj/random/energy,
 				/obj/random/energy,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
 				/obj/structure/closet/crate/secure/heph //HEPHAESTUS ENERGY
 			),
 			prob(1);list(
@@ -865,67 +929,67 @@
 				/obj/structure/closet/crate/zenghu //ZENGHU PILLS
 			),
 			prob(10);list(
-				/obj/item/device/toner,
-				/obj/item/device/toner,
-				/obj/item/device/toner,
-				/obj/item/weapon/clipboard,
-				/obj/item/weapon/clipboard,
-				/obj/item/weapon/pen/red,
-				/obj/item/weapon/pen/blue,
-				/obj/item/weapon/pen/blue,
-				/obj/item/device/camera_film,
-				/obj/item/weapon/folder/blue,
-				/obj/item/weapon/folder/red,
-				/obj/item/weapon/folder/yellow,
-				/obj/item/weapon/hand_labeler,
-				/obj/item/weapon/tape_roll,
-				/obj/item/weapon/paper_bin,
+				/obj/item/toner,
+				/obj/item/toner,
+				/obj/item/toner,
+				/obj/item/clipboard,
+				/obj/item/clipboard,
+				/obj/item/pen/red,
+				/obj/item/pen/blue,
+				/obj/item/pen/blue,
+				/obj/item/camera_film,
+				/obj/item/folder/blue,
+				/obj/item/folder/red,
+				/obj/item/folder/yellow,
+				/obj/item/hand_labeler,
+				/obj/item/tape_roll,
+				/obj/item/paper_bin,
 				/obj/item/sticky_pad/random,
 				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
 				/obj/structure/closet/crate/unathi //UNAJERKY
 			),
 			prob(10);list(
-				/obj/item/weapon/reagent_containers/glass/bucket,
-				/obj/item/weapon/mop,
+				/obj/item/reagent_containers/glass/bucket,
+				/obj/item/mop,
 				/obj/item/clothing/under/rank/janitor,
-				/obj/item/weapon/cartridge/janitor,
+				/obj/item/cartridge/janitor,
 				/obj/item/clothing/gloves/black,
 				/obj/item/clothing/head/soft/purple,
-				/obj/item/weapon/storage/belt/janitor,
+				/obj/item/storage/belt/janitor,
 				/obj/item/clothing/shoes/galoshes,
-				/obj/item/weapon/storage/bag/trash,
-				/obj/item/device/lightreplacer,
-				/obj/item/weapon/reagent_containers/spray/cleaner,
-				/obj/item/weapon/reagent_containers/glass/rag,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
+				/obj/item/storage/bag/trash,
+				/obj/item/lightreplacer,
+				/obj/item/reagent_containers/spray/cleaner,
+				/obj/item/reagent_containers/glass/rag,
+				/obj/item/grenade/chem_grenade/cleaner,
+				/obj/item/grenade/chem_grenade/cleaner,
+				/obj/item/grenade/chem_grenade/cleaner,
 				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
 			),
 			prob(2);list(
-				/obj/item/weapon/tank/phoron/pressurized,
-				/obj/item/weapon/tank/phoron/pressurized,
+				/obj/item/tank/phoron/pressurized,
+				/obj/item/tank/phoron/pressurized,
 				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
 			),
 			prob(1);list(
@@ -1024,16 +1088,16 @@
 				/obj/structure/closet/crate/einstein //EINSTEIN BATTERYPACK
 			),
 			prob(5);list(
-				/obj/item/weapon/circuitboard/smes,
+				/obj/item/circuitboard/smes,
 				/obj/random/smes_coil,
 				/obj/random/smes_coil,
 				/obj/structure/closet/crate/focalpoint //FOCAL SMES
 			),
 			prob(10);list(
-				/obj/item/weapon/module/power_control,
+				/obj/item/module/power_control,
 				/obj/item/stack/cable_coil,
 				/obj/item/frame/apc,
-				/obj/item/weapon/cell/apc,
+				/obj/item/cell/apc,
 				/obj/structure/closet/crate/focalpoint //FOCAL APC
 			),
 			prob(5);list(
@@ -1136,67 +1200,67 @@
 				/obj/structure/closet/crate/zenghu //ZENGHU PILLS
 			),
 			prob(10);list(
-				/obj/item/device/toner,
-				/obj/item/device/toner,
-				/obj/item/device/toner,
-				/obj/item/weapon/clipboard,
-				/obj/item/weapon/clipboard,
-				/obj/item/weapon/pen/red,
-				/obj/item/weapon/pen/blue,
-				/obj/item/weapon/pen/blue,
-				/obj/item/device/camera_film,
-				/obj/item/weapon/folder/blue,
-				/obj/item/weapon/folder/red,
-				/obj/item/weapon/folder/yellow,
-				/obj/item/weapon/hand_labeler,
-				/obj/item/weapon/tape_roll,
-				/obj/item/weapon/paper_bin,
+				/obj/item/toner,
+				/obj/item/toner,
+				/obj/item/toner,
+				/obj/item/clipboard,
+				/obj/item/clipboard,
+				/obj/item/pen/red,
+				/obj/item/pen/blue,
+				/obj/item/pen/blue,
+				/obj/item/camera_film,
+				/obj/item/folder/blue,
+				/obj/item/folder/red,
+				/obj/item/folder/yellow,
+				/obj/item/hand_labeler,
+				/obj/item/tape_roll,
+				/obj/item/paper_bin,
 				/obj/item/sticky_pad/random,
 				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
 				/obj/structure/closet/crate/unathi //UNAJERKY
 			),
 			prob(10);list(
-				/obj/item/weapon/reagent_containers/glass/bucket,
-				/obj/item/weapon/mop,
+				/obj/item/reagent_containers/glass/bucket,
+				/obj/item/mop,
 				/obj/item/clothing/under/rank/janitor,
-				/obj/item/weapon/cartridge/janitor,
+				/obj/item/cartridge/janitor,
 				/obj/item/clothing/gloves/black,
 				/obj/item/clothing/head/soft/purple,
-				/obj/item/weapon/storage/belt/janitor,
+				/obj/item/storage/belt/janitor,
 				/obj/item/clothing/shoes/galoshes,
-				/obj/item/weapon/storage/bag/trash,
-				/obj/item/device/lightreplacer,
-				/obj/item/weapon/reagent_containers/spray/cleaner,
-				/obj/item/weapon/reagent_containers/glass/rag,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
+				/obj/item/storage/bag/trash,
+				/obj/item/lightreplacer,
+				/obj/item/reagent_containers/spray/cleaner,
+				/obj/item/reagent_containers/glass/rag,
+				/obj/item/grenade/chem_grenade/cleaner,
+				/obj/item/grenade/chem_grenade/cleaner,
+				/obj/item/grenade/chem_grenade/cleaner,
 				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
 			),
 			prob(2);list(
-				/obj/item/weapon/tank/phoron/pressurized,
-				/obj/item/weapon/tank/phoron/pressurized,
+				/obj/item/tank/phoron/pressurized,
+				/obj/item/tank/phoron/pressurized,
 				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
 			),
 			prob(1);list(
@@ -1256,8 +1320,8 @@
 				/obj/structure/closet/crate/large/einstein //EIN BATTERY MEGAPACK
 			),
 			prob(20);list(
-				/obj/item/weapon/circuitboard/smes,
-				/obj/item/weapon/circuitboard/smes,
+				/obj/item/circuitboard/smes,
+				/obj/item/circuitboard/smes,
 				/obj/random/smes_coil,
 				/obj/random/smes_coil,
 				/obj/random/smes_coil,
@@ -1269,16 +1333,16 @@
 			prob(2);list(
 				/obj/random/energy,
 				/obj/random/energy,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
 				/obj/random/energy,
 				/obj/random/energy,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
-				/obj/item/weapon/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
+				/obj/item/cell/device/weapon,
 				/obj/structure/closet/crate/large/secure/heph //HEPH ENERGY
 			),
 			prob(2);list(
@@ -1355,8 +1419,8 @@
 				/obj/structure/closet/crate/large/einstein //EIN BATTERY MEGAPACK
 			),
 			prob(20);list(
-				/obj/item/weapon/circuitboard/smes,
-				/obj/item/weapon/circuitboard/smes,
+				/obj/item/circuitboard/smes,
+				/obj/item/circuitboard/smes,
 				/obj/random/smes_coil,
 				/obj/random/smes_coil,
 				/obj/random/smes_coil,
