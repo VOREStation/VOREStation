@@ -574,6 +574,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "bB" = (
@@ -668,6 +672,10 @@
 	},
 /obj/structure/sign/painting/library_secure{
 	pixel_x = 30
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
@@ -1767,9 +1775,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 8;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/junction{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
@@ -1873,11 +1880,11 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/eva)
 "eI" = (
-/obj/structure/cable{
-	icon_state = "4-8"
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/level1/westspur)
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/medical/resleeving)
 "eJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/alarm{
@@ -2283,6 +2290,10 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "fQ" = (
@@ -2539,6 +2550,15 @@
 /obj/structure/railing/grey,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/northspur)
+"gu" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lhallway)
 "gv" = (
 /turf/simulated/wall/r_wall,
 /area/groundbase/security/hos)
@@ -2585,6 +2605,10 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/northspur)
@@ -3332,6 +3356,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "iB" = (
@@ -3586,6 +3611,10 @@
 "ji" = (
 /obj/structure/cable{
 	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/westspur)
@@ -3848,6 +3877,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 10
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
 "jS" = (
@@ -3855,10 +3888,11 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "jT" = (
-/obj/machinery/washing_machine,
+/obj/structure/disposaloutlet,
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "jU" = (
@@ -4114,6 +4148,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c{
 	outdoors = 0
 	},
@@ -4178,6 +4215,7 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "kF" = (
@@ -4355,6 +4393,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -5528,6 +5569,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
 "nR" = (
@@ -5585,6 +5629,18 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/iaa2)
+"nZ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/civilian/bar)
 "ob" = (
 /obj/effect/landmark/vines,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -6046,9 +6102,11 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "ph" = (
@@ -7961,6 +8019,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1/centsquare)
 "tQ" = (
@@ -8203,6 +8264,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/northspur)
 "uv" = (
@@ -8378,8 +8442,15 @@
 /obj/machinery/alarm{
 	dir = 4
 	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/obj/machinery/atmospherics/unary/vent_pump/siphon/on/atmos{
+	external_pressure_bound = 101.3;
+	external_pressure_bound_default = 101.3;
+	pressure_checks = 1;
+	pressure_checks_default = 1
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
@@ -8840,6 +8911,10 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halle)
+"vY" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/universal,
+/turf/simulated/wall,
+/area/groundbase/medical/resleeving)
 "vZ" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -8961,6 +9036,11 @@
 	},
 /obj/effect/floor_decal/corner/pink{
 	dir = 6
+	},
+/obj/structure/disposalpipe/tagger{
+	dir = 2;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
@@ -9604,6 +9684,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
 	outdoors = 0
 	},
@@ -9792,6 +9875,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/machinery/disposal/wall/cleaner{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
 "yi" = (
@@ -9870,6 +9959,7 @@
 /obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "ys" = (
@@ -9951,6 +10041,19 @@
 /obj/structure/sign/department/ass,
 /turf/simulated/wall,
 /area/groundbase/civilian/toolstorage)
+"yC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/obj/machinery/disposal/wall/cleaner{
+	dir = 8
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "yD" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/oxygen,
@@ -10045,8 +10148,8 @@
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
 "yO" = (
-/obj/random/vendorall,
 /obj/machinery/camera/network/civilian,
+/obj/machinery/gear_painter,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "yP" = (
@@ -10094,6 +10197,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -10172,6 +10278,7 @@
 /obj/effect/floor_decal/corner/pink{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
 "zd" = (
@@ -10617,6 +10724,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/hologram/holopad,
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "Ab" = (
@@ -10823,6 +10934,10 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "AC" = (
@@ -10913,6 +11028,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/westspur)
 "AN" = (
@@ -11008,6 +11124,9 @@
 "Bc" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
@@ -11126,6 +11245,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c{
@@ -11985,6 +12107,18 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
+"Dy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lhallway)
 "Dz" = (
 /obj/structure/disposalpipe/segment{
 	dir = 8;
@@ -12514,6 +12648,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/civilian/bar)
 "ET" = (
@@ -12670,6 +12807,9 @@
 	},
 /obj/effect/floor_decal/corner/pink{
 	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
@@ -13011,6 +13151,22 @@
 /obj/machinery/firealarm,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/office)
+"Gj" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/centsquare)
 "Gk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/tiled/dark,
@@ -13114,6 +13270,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/womensrestroom)
 "Gu" = (
@@ -13138,6 +13297,15 @@
 /obj/item/device/geiger,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
+"Gx" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level1/centsquare)
 "Gy" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -13434,9 +13602,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 5
-	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "Hl" = (
@@ -13689,9 +13856,10 @@
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1/centsquare)
 "HN" = (
-/obj/machinery/disposal/wall{
+/obj/machinery/disposal/wall/cleaner{
+	desc = "Automatically cleans and transports items to the local auto-resleeving facilities.";
 	dir = 1;
-	name = "Auto-Resleeving Item Deposit"
+	name = "auto-resleeving equipment deposit"
 	},
 /obj/structure/disposalpipe/trunk,
 /turf/simulated/floor/tiled/white,
@@ -14374,6 +14542,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
 "JE" = (
@@ -14424,6 +14596,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/resleeving)
 "JK" = (
@@ -14563,6 +14736,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
@@ -14786,6 +14962,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "Kv" = (
@@ -15433,9 +15610,9 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/structure/disposalpipe/segment{
-	dir = 2;
-	icon_state = "pipe-c"
+/obj/structure/disposalpipe/junction{
+	dir = 8;
+	icon_state = "pipe-j2"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/westspur)
@@ -15699,6 +15876,7 @@
 /area/groundbase/medical/resleeving)
 "MG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
 "MI" = (
@@ -16025,6 +16203,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
 "NA" = (
@@ -16136,6 +16317,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
@@ -16372,6 +16556,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "On" = (
@@ -17072,6 +17257,9 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/womensrestroom)
 "Qq" = (
@@ -17124,6 +17312,21 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/cargo/mining)
+"Qy" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/groundbase/level1/centsquare)
 "Qz" = (
 /obj/machinery/gateway{
 	dir = 10
@@ -17148,6 +17351,10 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -17654,6 +17861,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
 "RR" = (
@@ -17665,6 +17876,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 5
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -18477,6 +18691,12 @@
 /obj/item/weapon/circuitboard/partslathe,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/techstorage)
+"TM" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/centsquare)
 "TN" = (
 /obj/machinery/computer/rcon{
 	dir = 1
@@ -18657,6 +18877,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/centsquare)
 "Uk" = (
@@ -18772,6 +18993,10 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /obj/machinery/hologram/holopad,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
 "UC" = (
@@ -18996,6 +19221,12 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/engineering/lobby)
+"Vk" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/wall,
+/area/groundbase/medical/resleeving)
 "Vl" = (
 /obj/item/weapon/book/manual/rotary_electric_generator,
 /obj/structure/table/reinforced,
@@ -19146,6 +19377,17 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
+"VG" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/floor_decal/corner/pink{
+	dir = 6
+	},
+/obj/structure/sign/painting/library_secure{
+	pixel_x = 30
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/civilian/womensrestroom)
 "VH" = (
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/gatslug{
 	ghostjoin = 1
@@ -19416,6 +19658,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "Ws" = (
@@ -19436,6 +19679,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
 	dir = 4
 	},
 /turf/simulated/floor/bmarble,
@@ -19470,6 +19716,11 @@
 	dir = 8
 	},
 /obj/machinery/light,
+/obj/structure/disposalpipe/tagger{
+	dir = 8;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
 "WA" = (
@@ -19539,6 +19790,10 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -20431,8 +20686,10 @@
 "YW" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/structure/disposalpipe/segment{
-	dir = 4
+/obj/structure/disposalpipe/sortjunction/flipped{
+	dir = 4;
+	name = "Resleeving";
+	sortType = "Resleeving"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -20547,6 +20804,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/ce)
+"Zf" = (
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/centsquare)
 "Zg" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -20554,6 +20818,9 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/chamber)
 "Zh" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
 /area/groundbase/level1/centsquare)
 "Zj" = (
@@ -20800,13 +21067,14 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/storage)
 "ZV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/airlock/medical{
 	id_tag = "Resleeving Shower";
 	name = "Resleeving Lab";
 	req_one_access = null
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/resleeving)
 "ZX" = (
@@ -26697,7 +26965,7 @@ GF
 ht
 pJ
 yI
-KR
+nZ
 vE
 af
 pj
@@ -28158,7 +28426,7 @@ QD
 QD
 cB
 cB
-eI
+mk
 YM
 cB
 cB
@@ -28300,7 +28568,7 @@ QD
 QD
 cB
 cB
-eI
+mk
 cB
 cB
 cB
@@ -28442,7 +28710,7 @@ cB
 cB
 cB
 YM
-eI
+mk
 cB
 cB
 cB
@@ -30139,10 +30407,10 @@ Oz
 Oz
 Oz
 RQ
-LA
-LA
-LA
-LA
+CH
+CH
+CH
+CH
 bA
 LA
 LA
@@ -30816,24 +31084,24 @@ tG
 gM
 tG
 gB
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
 Om
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
-ay
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
+Gx
 YW
 ay
 ay
@@ -30853,7 +31121,7 @@ Nv
 Nv
 Eb
 Eb
-OA
+TM
 Eb
 eR
 eR
@@ -31559,11 +31827,11 @@ ay
 ay
 ay
 QB
-Vs
-Vs
-Vs
-Vs
-OA
+lT
+lT
+lT
+lT
+Zf
 ds
 eR
 eR
@@ -31659,8 +31927,8 @@ qE
 jn
 jT
 uU
-jn
-jn
+vY
+Vk
 jn
 jn
 jn
@@ -31700,7 +31968,7 @@ Gv
 Ge
 Eb
 Eb
-TK
+Qy
 Eb
 Eb
 qI
@@ -31842,7 +32110,7 @@ eR
 eR
 eR
 eR
-TK
+Qy
 Eb
 Eb
 Eb
@@ -31946,12 +32214,12 @@ jn
 jn
 pP
 wB
-wB
+eI
 wB
 Ap
 jn
 IY
-Gu
+Dy
 qO
 nb
 ZG
@@ -31984,7 +32252,7 @@ eR
 eR
 eR
 eR
-TK
+Qy
 Eb
 Nv
 Eb
@@ -32092,7 +32360,7 @@ Aa
 Wr
 kE
 JJ
-Fc
+gu
 UA
 WS
 ZO
@@ -32126,7 +32394,7 @@ pc
 pc
 pc
 eR
-TK
+Qy
 Eb
 Nv
 Nv
@@ -32268,7 +32536,7 @@ pc
 pc
 eR
 eR
-TK
+Qy
 Eb
 Nv
 Nv
@@ -32410,7 +32678,7 @@ pc
 eR
 eR
 eR
-TK
+Qy
 Eb
 Eb
 Nv
@@ -32554,9 +32822,9 @@ Bv
 Bv
 WH
 Ku
-ay
-ay
-QB
+Gx
+Gx
+Gj
 Nv
 Eb
 Eb
@@ -33410,9 +33678,9 @@ bg
 rg
 bM
 zc
-HO
+VG
 wm
-HO
+yC
 gy
 HO
 Ue

@@ -234,6 +234,11 @@
 /obj/machinery/computer/ship/engines,
 /turf/simulated/floor/tiled,
 /area/shuttle/groundbase/exploration)
+"ed" = (
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level3/nw)
 "ei" = (
 /obj/structure/panic_button{
 	pixel_x = 32;
@@ -608,6 +613,12 @@
 "lk" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level3/ne)
+"ly" = (
+/obj/structure/railing{
+	dir = 1
+	},
+/turf/simulated/open/virgo3c,
+/area/groundbase/level3/nw/open)
 "lz" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -1501,6 +1512,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/paramedic)
+"By" = (
+/obj/structure/catwalk,
+/turf/simulated/open/virgo3c,
+/area/groundbase/level3/nw/open)
 "BB" = (
 /turf/simulated/wall,
 /area/groundbase/medical/patient1)
@@ -2139,8 +2154,11 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/patient3)
 "Mz" = (
+/obj/structure/railing{
+	dir = 4
+	},
 /turf/simulated/open/virgo3c,
-/area/groundbase/unexplored/outdoors)
+/area/groundbase/level3/nw/open)
 "MF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -2378,6 +2396,12 @@
 /obj/machinery/status_display,
 /turf/simulated/wall,
 /area/groundbase/level3/escapepad)
+"Qq" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/open/virgo3c,
+/area/groundbase/level3/nw/open)
 "Qr" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c{
@@ -2402,6 +2426,10 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
+/area/groundbase/level3/nw/open)
+"QO" = (
+/obj/structure/railing,
+/turf/simulated/open/virgo3c,
 /area/groundbase/level3/nw/open)
 "Rg" = (
 /obj/machinery/firealarm{
@@ -5668,10 +5696,10 @@ Zo
 vs
 vs
 Mz
-Kr
-Kr
-Kr
-Kr
+Mz
+Mz
+Mz
+Mz
 QD
 QD
 QD
@@ -5809,11 +5837,11 @@ Zo
 vs
 vs
 vs
-Kr
-Kr
-Kr
-Kr
-Kr
+By
+By
+By
+By
+By
 QD
 QD
 QD
@@ -5951,11 +5979,11 @@ Zo
 vs
 vs
 vs
-Kr
-Kr
-Kr
-Kr
-Kr
+By
+By
+By
+By
+By
 QD
 QD
 QD
@@ -6093,11 +6121,11 @@ vs
 vs
 vs
 vs
-Kr
-Kr
-Kr
-Kr
-Kr
+Qq
+Qq
+Qq
+Qq
+Qq
 QD
 QD
 QD
@@ -6241,10 +6269,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr
@@ -6383,10 +6411,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr
@@ -6525,10 +6553,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr
@@ -8611,8 +8639,8 @@ Zo
 Zo
 Zo
 Zo
-Kr
-Kr
+vs
+vs
 qO
 uG
 PH
@@ -8753,8 +8781,8 @@ Zo
 Zo
 Zo
 Zo
-Kr
-Kr
+vs
+vs
 qO
 uG
 PH
@@ -8893,11 +8921,11 @@ Xv
 Zo
 Zo
 Zo
-Kr
-Kr
-Kr
-Kr
-Kr
+vs
+vs
+vs
+vs
+ed
 YK
 VH
 VH
@@ -9035,6 +9063,11 @@ Xv
 Zo
 Zo
 Zo
+vs
+vs
+vs
+vs
+ed
 Kr
 Kr
 Kr
@@ -9076,15 +9109,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
-Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr
@@ -9177,6 +9205,7 @@ Zo
 Zo
 Zo
 Zo
+vs
 Kr
 Kr
 Kr
@@ -9222,11 +9251,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr
@@ -9319,6 +9347,7 @@ Xv
 Zo
 Zo
 Zo
+vs
 Kr
 Kr
 Kr
@@ -9364,11 +9393,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr
@@ -9507,10 +9535,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr
@@ -9649,10 +9677,10 @@ Kr
 Kr
 Kr
 Kr
-Kr
-Kr
-Kr
-Kr
+QO
+By
+By
+ly
 Kr
 Kr
 Kr

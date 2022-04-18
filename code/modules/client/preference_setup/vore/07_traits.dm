@@ -198,13 +198,21 @@
 	. += "<br>"
 
 	. += "<b>Custom Say: </b>"
-	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a><br>"
+	. += "<a href='?src=\ref[src];custom_say=1'>Set Say Verb</a>"
+	. += "(<a href='?src=\ref[src];reset_say=1'>Reset</A>)"
+	. += "<br>"
 	. += "<b>Custom Whisper: </b>"
-	. += "<a href='?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a><br>"
+	. += "<a href='?src=\ref[src];custom_whisper=1'>Set Whisper Verb</a>"
+	. += "(<a href='?src=\ref[src];reset_whisper=1'>Reset</A>)"
+	. += "<br>"
 	. += "<b>Custom Ask: </b>"
-	. += "<a href='?src=\ref[src];custom_ask=1'>Set Ask Verb</a><br>"
+	. += "<a href='?src=\ref[src];custom_ask=1'>Set Ask Verb</a>"
+	. += "(<a href='?src=\ref[src];reset_ask=1'>Reset</A>)"
+	. += "<br>"
 	. += "<b>Custom Exclaim: </b>"
-	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a><br>"
+	. += "<a href='?src=\ref[src];custom_exclaim=1'>Set Exclaim Verb</a>"
+	. += "(<a href='?src=\ref[src];reset_exclaim=1'>Reset</A>)"
+	. += "<br>"
 
 /datum/category_item/player_setup_item/vore/traits/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(!CanUseTopic(user))
@@ -281,6 +289,30 @@
 		var/exclaim_choice = sanitize(input(usr, "This word or phrase will appear instead of 'exclaims', 'shouts' or 'yells': [pref.real_name] exclaims, \"Hi!\"", "Custom Exclaim", pref.custom_exclaim) as null|text, 12)
 		if(exclaim_choice)
 			pref.custom_exclaim = exclaim_choice
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_say"])
+		var/say_choice = tgui_alert(usr, "Reset your Custom Say Verb?","Reset Verb",list("Yes","No"))
+		if(say_choice == "Yes")
+			pref.custom_say = null
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_whisper"])
+		var/whisper_choice = tgui_alert(usr, "Reset your Custom Whisper Verb?","Reset Verb",list("Yes","No"))
+		if(whisper_choice == "Yes")
+			pref.custom_whisper = null
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_ask"])
+		var/ask_choice = tgui_alert(usr, "Reset your Custom Ask Verb?","Reset Verb",list("Yes","No"))
+		if(ask_choice == "Yes")
+			pref.custom_ask = null
+		return TOPIC_REFRESH
+
+	else if(href_list["reset_exclaim"])
+		var/exclaim_choice = tgui_alert(usr, "Reset your Custom Exclaim Verb?","Reset Verb",list("Yes","No"))
+		if(exclaim_choice == "Yes")
+			pref.custom_exclaim = null
 		return TOPIC_REFRESH
 
 	else if(href_list["add_trait"])
