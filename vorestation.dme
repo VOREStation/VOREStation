@@ -3667,6 +3667,7 @@
 #include "code\modules\reagents\reagents\_reagents.dm"
 #include "code\modules\reagents\reagents\core.dm"
 #include "code\modules\reagents\reagents\dispenser.dm"
+#include "code\modules\reagents\reagents\drugs.dm"
 #include "code\modules\reagents\reagents\food_drinks.dm"
 #include "code\modules\reagents\reagents\food_drinks_vr.dm"
 #include "code\modules\reagents\reagents\medicine.dm"
