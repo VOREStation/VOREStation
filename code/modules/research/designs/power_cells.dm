@@ -60,6 +60,36 @@
 	category = list("Misc")
 	sort_string = "BAABA"
 
+/datum/design/item/powercell/advance_device
+	name = "device, advanced"
+	build_type = PROTOLATHE
+	id = "advance_device"
+	req_tech = list(TECH_POWER = 2)
+	materials = list(MAT_STEEL = 400, MAT_GLASS = 50)
+	build_path = /obj/item/weapon/cell/device/advanced
+	category = list("Misc")
+	sort_string = "BAABB"
+
+/datum/design/item/powercell/super_device
+	name = "device, super"
+	build_type = PROTOLATHE
+	id = "super_device"
+	req_tech = list(TECH_POWER = 3, TECH_MATERIAL = 3)
+	materials = list(MAT_STEEL = 300, MAT_GLASS= 50, MAT_GOLD = 20, MAT_SILVER = 20)
+	build_path = /obj/item/weapon/cell/device/super
+	category = list("Misc")
+	sort_string = "BAABC"
+
+/datum/design/item/powercell/hype_device
+	name = "device, hyper"
+	build_type = PROTOLATHE
+	id = "hyper_device"
+	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
+	materials = list(MAT_STEEL = 300, MAT_GLASS= 50, MAT_GOLD = 30, MAT_SILVER = 30)
+	build_path = /obj/item/weapon/cell/device/hyper
+	category = list("Misc")
+	sort_string = "BAABD"
+
 /datum/design/item/powercell/weapon
 	name = "weapon"
 	build_type = PROTOLATHE
@@ -67,7 +97,7 @@
 	materials = list(MAT_STEEL = 700, MAT_GLASS = 50)
 	build_path = /obj/item/weapon/cell/device/weapon
 	category = list("Misc")
-	sort_string = "BAABB"
+	sort_string = "BAABE"
 
 /datum/design/item/powercell/mecha/high
 	name = "high-capacity mecha"

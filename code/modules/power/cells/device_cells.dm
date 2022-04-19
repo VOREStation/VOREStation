@@ -21,19 +21,67 @@
 	update_icon()
 
 /*
- * EMP Proof Device
+ * Device Advanced
  */
-/obj/item/weapon/cell/device/empproof //UNUSED
-	name = "shielded device power cell"
-	desc = "A small power cell designed to power handheld devices. Shielded from EMPs."
-	icon_state = "up_device_cell"
-	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
-	emp_proof = TRUE
+/obj/item/weapon/cell/device/advanced
+	name = "advanced device power cell"
+	desc = "A small upgraded power cell designed to power handheld devices."
+	icon_state = "high_device_cell"
+	maxcharge = 2400
+	charge_amount = 20
+	origin_tech = list(TECH_POWER = 2)
 
-/obj/item/weapon/cell/device/empproof/empty/Initialize()
+/obj/item/weapon/cell/device/weapon/empty/Initialize()
 	. = ..()
 	charge = 0
 	update_icon()
+
+/*
+ * Device Super
+ */
+/obj/item/weapon/cell/device/super
+	name = "super device power cell"
+	desc = "A small upgraded power cell designed to power handheld devices."
+	icon_state = "up_device_cell"
+	maxcharge = 3600
+	charge_amount = 20
+	origin_tech = list(TECH_POWER = 3)
+
+/obj/item/weapon/cell/device/super/empty/Initialize()
+	. = ..()
+	charge = 0
+	update_icon()
+
+/*
+ * Device Hyper
+ */
+/obj/item/weapon/cell/device/hyper
+	name = "hyper device power cell"
+	desc = "A small upgraded power cell designed to hold much more power for handheld devices."
+	icon_state = "hype_device_cell"
+	maxcharge = 4800
+	charge_amount = 20
+	origin_tech = list(TECH_POWER = 4)
+
+/obj/item/weapon/cell/device/hyper/empty/Initialize()
+	. = ..()
+	charge = 0
+	update_icon()
+
+/*
+ * Device Infinite
+ */
+/obj/item/weapon/cell/infinite
+	name = "infinite device power cell!"
+	icon_state = "inf_device_cell"
+	origin_tech =  null
+	maxcharge = 6000 //determines how badly mobs get shocked
+
+/obj/item/weapon/cell/infinite/check_charge()
+	return 1
+
+/obj/item/weapon/cell/infinite/use()
+	return 1
 
 /*
  * Weapon
@@ -55,7 +103,7 @@
  */
 /obj/item/weapon/cell/device/weapon/empproof
 	name = "shielded weapon power cell"
-	desc = "A small power cell designed to power handheld weaponry. Shielded from EMPs."
+	desc = "A small power cell designed to power handheld weaponry. This one is shielded from EMPs."
 	icon_state = "emp_weapon_cell"
 	matter = list(MAT_STEEL = 400, MAT_GLASS = 60)
 	emp_proof = TRUE
