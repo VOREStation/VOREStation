@@ -3697,6 +3697,7 @@
 #include "code\modules\research\rdconsole_tgui.dm"
 #include "code\modules\research\rdmachines.dm"
 #include "code\modules\research\research.dm"
+#include "code\modules\research\secret_techs_vr.dm"
 #include "code\modules\research\server.dm"
 #include "code\modules\research\teleport_vr.dm"
 #include "code\modules\research\designs\ai_holders.dm"

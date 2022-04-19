@@ -126,7 +126,7 @@
 
 /obj/machinery/radiocarbon_spectrometer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	// this is the data which will be sent to the ui
 	data["scanned_item"] = (scanned_item ? scanned_item.name : "")
 	data["scanned_item_desc"] = (scanned_item ? (scanned_item.desc ? scanned_item.desc : "No information on record.") : "")
@@ -346,6 +346,13 @@
 				anom_found = 1
 				data += " - Hyperspectral imaging reveals exotic energy wavelength detected with ID: [G.artifact_id]<br>"
 				data += " - Fourier transform analysis on anomalous energy absorption indicates energy source located inside emission radius of [G.artifact_distance]m<br>"
+
+		if(scanned_item.secret_tech)
+			data += " -Previously unknown tech levels detected within this sample.<br>"
+			//scanned_item.origin_tech += scanned_item.secret_tech
+			scanned_item.update_techs()
+			for(var/T in scanned_item.origin_tech)
+				data += " -Detected [CallTechName(T)] tech of level [scanned_item.origin_tech[T]].<br>"
 
 		if(!anom_found)
 			data += " - No anomalous data<br>"

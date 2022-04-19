@@ -197,7 +197,7 @@
 	if(..())
 		return TRUE
 
-	switch(action)	
+	switch(action)
 		if("select")
 			var/index = text2num(params["select"])
 			if(index && index <= LAZYLEN(positive_locations))
