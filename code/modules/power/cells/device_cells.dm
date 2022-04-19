@@ -21,12 +21,12 @@
 	update_icon()
 
 /*
- * Device Advanced
+ * Device Advanced (aka Weapon)
  */
-/obj/item/weapon/cell/device/advanced
+/obj/item/weapon/cell/device/weapon
 	name = "advanced device power cell"
 	desc = "A small upgraded power cell designed to power handheld devices."
-	icon_state = "high_device_cell"
+	icon_state = "weapon_cell"
 	maxcharge = 2400
 	charge_amount = 20
 	origin_tech = list(TECH_POWER = 2)
@@ -84,22 +84,7 @@
 	return 1
 
 /*
- * Weapon
- */
-/obj/item/weapon/cell/device/weapon
-	name = "weapon power cell"
-	desc = "A small power cell designed to power handheld weaponry."
-	icon_state = "weapon_cell"
-	maxcharge = 2400
-	charge_amount = 20
-
-/obj/item/weapon/cell/device/weapon/empty/Initialize()
-	. = ..()
-	charge = 0
-	update_icon()
-
-/*
- * EMP Proof Weapon
+ * EMP Proof
  */
 /obj/item/weapon/cell/device/weapon/empproof
 	name = "shielded weapon power cell"
@@ -114,7 +99,7 @@
 	update_icon()
 
 /*
- * Self-charging Weapon
+ * Self-charging
  */
 /obj/item/weapon/cell/device/weapon/recharge
 	name = "self-charging weapon power cell"
@@ -126,7 +111,7 @@
 	charge_delay = 75
 
 /*
- * Captain's Self-charging Weapon
+ * Captain's Self-charging
  */
 /obj/item/weapon/cell/device/weapon/recharge/captain
 	icon_state = "cap_weapon_cell"
