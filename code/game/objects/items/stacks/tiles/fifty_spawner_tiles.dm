@@ -28,6 +28,7 @@
 	name = "stack of teal carpet"
 	type_to_spawn = /obj/item/stack/tile/carpet/teal
 
+<<<<<<< HEAD
 /obj/fiftyspawner/decocarpet
 	name = "stack of deco carpet"
 	type_to_spawn = /obj/item/stack/tile/carpet/deco
@@ -36,6 +37,20 @@
 	name = "stack of retro carpet"
 	type_to_spawn = /obj/item/stack/tile/carpet/retro
 
+=======
+/obj/fiftyspawner/geocarpet
+	name = "stack of geometric carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/geo
+
+/obj/fiftyspawner/retrocarpet
+	name = "stack of blue retro carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/retro
+
+/obj/fiftyspawner/retrocarpet_red
+	name = "stack of red retro carpet"
+	type_to_spawn = /obj/item/stack/tile/carpet/retro_red
+
+>>>>>>> f7cc15b0988... Merge pull request #8556 from Cerebulon/arcadecarpets
 /obj/fiftyspawner/floor
 	name = "stack of floor tiles"
 	type_to_spawn = /obj/item/stack/tile/floor

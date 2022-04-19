@@ -60,6 +60,21 @@
 	icon_state = "oracarpet"
 	initial_flooring = /decl/flooring/carpet/oracarpet
 
+/turf/simulated/floor/carpet/geo
+	name = "geometric carpet"
+	icon_state = "geocarpet"
+	initial_flooring = /decl/flooring/carpet/geo
+
+/turf/simulated/floor/carpet/retro
+	name = "blue retro carpet"
+	icon_state = "retrocarpet"
+	initial_flooring = /decl/flooring/carpet/retro
+
+/turf/simulated/floor/carpet/retro_red
+	name = "red retro carpet"
+	icon_state = "retrocarpet_red"
+	initial_flooring = /decl/flooring/carpet/retro_red
+
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
 	icon = 'icons/turf/flooring/circuit.dmi'
@@ -87,7 +102,6 @@
 
 /turf/simulated/floor/wood/sif
 	name = "alien wooden floor"
-	icon = 'icons/turf/flooring/wood.dmi'
 	icon_state = "sifwood"
 	initial_flooring = /decl/flooring/wood/sif
 
@@ -97,6 +111,18 @@
 /turf/simulated/floor/wood/sif/broken/Initialize()
 	break_tile()
 	return ..()
+
+/turf/simulated/floor/wood/tile
+	icon_state = "wood_tile"
+	initial_flooring = /decl/flooring/wood/tile
+
+/turf/simulated/floor/wood/panel
+	icon_state = "wood_panel"
+	initial_flooring = /decl/flooring/wood/panel
+
+/turf/simulated/floor/wood/parquet
+	icon_state = "wood_parquet"
+	initial_flooring = /decl/flooring/wood/parquet
 
 /turf/simulated/floor/grass
 	name = "grass patch"

@@ -66,6 +66,7 @@
 					/obj/fiftyspawner/tealcarpet
 					)
 
+<<<<<<< HEAD
 /datum/supply_pack/materials/arcade_carpet
 	name = "Retro carpets"
 	containertype = /obj/structure/closet/crate/grayson
@@ -74,9 +75,20 @@
 	contains = list(
 					/obj/fiftyspawner/decocarpet,
 					/obj/fiftyspawner/retrocarpet
+=======
+/datum/supply_pack/materials/retrocarpet
+	name = "Retro carpet"
+	containertype = /obj/structure/closet/crate/grayson
+	containername = "Retro carpet crate"
+	cost = 15
+	contains = list(
+					/obj/fiftyspawner/geocarpet,
+					/obj/fiftyspawner/retrocarpet,
+					/obj/fiftyspawner/retrocarpet_red
+>>>>>>> f7cc15b0988... Merge pull request #8556 from Cerebulon/arcadecarpets
 					)
 
-/datum/supply_pack/misc/linoleum
+/datum/supply_pack/materials/linoleum
 	name = "Linoleum"
 	containertype = /obj/structure/closet/crate/grayson
 	containername = "Linoleum crate"
