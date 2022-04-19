@@ -71,16 +71,16 @@
 /*
  * Device Infinite
  */
-/obj/item/weapon/cell/infinite
+/obj/item/weapon/cell/device/infinite
 	name = "infinite device power cell!"
 	icon_state = "inf_device_cell"
 	origin_tech =  null
 	maxcharge = 6000 //determines how badly mobs get shocked
 
-/obj/item/weapon/cell/infinite/check_charge()
+/obj/item/weapon/cell/device/infinite/check_charge()
 	return 1
 
-/obj/item/weapon/cell/infinite/use()
+/obj/item/weapon/cell/device/infinite/use()
 	return 1
 
 /*
