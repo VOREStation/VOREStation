@@ -46,7 +46,7 @@
 /obj/machinery/chemical_dispenser/bar_soft
 	dispense_reagents = list(
 		"water", "ice", "coffee", "cream", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic",
-		"sodawater", "lemon_lime", "sugar", "orangejuice", "limejuice", "watermelonjuice", "thirteenloko", "grapesoda"
+		"sodawater", "lemonjuice", "lemon_lime", "sugar", "orangejuice", "limejuice", "watermelonjuice", "thirteenloko", "grapesoda"
 		)
 
 /obj/machinery/chemical_dispenser/bar_alc
