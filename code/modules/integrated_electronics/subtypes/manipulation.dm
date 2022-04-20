@@ -21,7 +21,7 @@
 	)
 	var/obj/item/weapon/gun/installed_gun = null
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
+	secret_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
 	power_draw_per_use = 50 // The targeting mechanism uses this.  The actual gun uses its own cell for firing if it's an energy weapon.
 
 /obj/item/integrated_circuit/manipulation/weapon_firing/Destroy()
@@ -141,7 +141,7 @@
 	outputs = list()
 	activators = list("prime grenade" = IC_PINTYPE_PULSE_IN)
 	spawn_flags = IC_SPAWN_RESEARCH
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
+	secret_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 3, TECH_COMBAT = 4)
 	var/obj/item/weapon/grenade/attached_grenade
 	var/pre_attached_grenade_type
 
