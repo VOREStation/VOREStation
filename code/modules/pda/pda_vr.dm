@@ -19,11 +19,11 @@
 
 /obj/item/device/pda/explorer
 	default_cartridge = /obj/item/weapon/cartridge/explorer
-	icon_state = "pda-lawyer-old"			//Explorer's can get the PF's old style instead, rather than re-using the detective PDA
+	icon_state = "pda-explore"			//Explorer's can get the PF's old style instead, rather than re-using the detective PDA
 
 /obj/item/device/pda/sar
 	default_cartridge = /obj/item/weapon/cartridge/sar
-	icon_state = "pda-gene"			//Gives FM's a distinct PDA of their own, rather than sharing with the bridge-secretary & CCO's.
-	
+	icon_state = "pda-sar"			//Gives FM's a distinct PDA of their own, rather than sharing with the bridge-secretary & CCO's.
+
 /obj/item/device/pda/pilot
 	icon_state = "pda-pilot"		//New sprites, but still no ROM cartridge or anything

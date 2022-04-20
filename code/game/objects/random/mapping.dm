@@ -71,20 +71,20 @@
 	icon_state = "radren-off"
 
 /obj/random/vendorall/item_to_spawn()
-	return pick (/obj/machinery/vending/coffee,
-				/obj/machinery/vending/snack,
-				/obj/machinery/vending/cola,
-				/obj/machinery/vending/fitness,
-				/obj/machinery/vending/cigarette,
-				/obj/machinery/vending/giftvendor,
-				/obj/machinery/vending/hotfood,
-				/obj/machinery/vending/weeb,
-				/obj/machinery/vending/sol,
-				/obj/machinery/vending/snix,
-				/obj/machinery/vending/snlvend,
-				/obj/machinery/vending/sovietsoda,
-				/obj/machinery/vending/sovietvend,
-				/obj/machinery/vending/radren)
+	return pick (prob(5);/obj/machinery/vending/coffee,	//VOREStation Edit Start - Let's weight this a little bit
+				prob(5);/obj/machinery/vending/snack,
+				prob(5);/obj/machinery/vending/cola,
+				prob(3);/obj/machinery/vending/fitness,
+				prob(4);/obj/machinery/vending/cigarette,
+				prob(3);/obj/machinery/vending/giftvendor,
+				prob(1);/obj/machinery/vending/hotfood,
+				prob(5);/obj/machinery/vending/weeb,
+				prob(5);/obj/machinery/vending/sol,
+				prob(5);/obj/machinery/vending/snix,
+				prob(5);/obj/machinery/vending/snlvend,
+				prob(5);/obj/machinery/vending/sovietsoda,
+				prob(5);/obj/machinery/vending/sovietvend,
+				prob(5);/obj/machinery/vending/radren) //VOREStation Edit End
 
 /obj/random/vendorfood //Random food vendors for station use
 	name = "random snack vending machine"
@@ -710,6 +710,14 @@
 				/obj/random/snack,
 				/obj/random/snack,
 				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
+			),
+			prob(10);list(
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI DONK-POCKETS
 			),
 			prob(10);list(
 				/obj/random/powercell,

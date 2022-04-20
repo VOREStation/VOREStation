@@ -430,7 +430,7 @@ const VoreSelectedBellyOptions = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Contaminates">
             <Button
-              onClick={() => act("set_attribute", { attribute: "b_contaminates" })}
+              onClick={() => act("set_attribute", { attribute: "b_contaminate" })}
               icon={contaminates ? "toggle-on" : "toggle-off"}
               selected={contaminates}
               content={contaminates ? "Yes" : "No"} />
@@ -789,6 +789,9 @@ const VoreUserPreferences = (props, context) => {
     step_mechanics_active,
     pickup_mechanics_active,
     noisy,
+    drop_vore,
+    stumble_vore,
+    slip_vore,
   } = data.prefs;
 
   const {
@@ -901,6 +904,48 @@ const VoreUserPreferences = (props, context) => {
       content: {
         enabled: "Spontaneous Pred Enabled",
         disabled: "Spontaneous Pred Disabled",
+      },
+    },
+    toggle_drop_vore: {
+      action: "toggle_drop_vore",
+      test: drop_vore,
+      tooltip: {
+        main: "Allows for dropnom spontaneous vore to occur. "
+          + "Note, you still need spontaneous vore pred and/or prey enabled.",
+        enable: "Click here to allow for dropnoms.",
+        disable: "Click here to disable dropnoms.",
+      },
+      content: {
+        enabled: "Drop Noms Enabled",
+        disabled: "Drop Noms Disabled",
+      },
+    },
+    toggle_slip_vore: {
+      action: "toggle_slip_vore",
+      test: slip_vore,
+      tooltip: {
+        main: "Allows for slip related spontaneous vore to occur. "
+          + "Note, you still need spontaneous vore pred and/or prey enabled.",
+        enable: "Click here to allow for slip vore.",
+        disable: "Click here to disable slip vore.",
+      },
+      content: {
+        enabled: "Slip Vore Enabled",
+        disabled: "Slip Vore Disabled",
+      },
+    },
+    toggle_stumble_vore: {
+      action: "toggle_stumble_vore",
+      test: stumble_vore,
+      tooltip: {
+        main: "Allows for stumble related spontaneous vore to occur. "
+          + " Note, you still need spontaneous vore pred and/or prey enabled.",
+        enable: "Click here to allow for stumble vore.",
+        disable: "Click here to disable stumble vore.",
+      },
+      content: {
+        enabled: "Stumble Vore Enabled",
+        disabled: "Stumble Vore Disabled",
       },
     },
     inbelly_spawning: {
@@ -1049,6 +1094,15 @@ const VoreUserPreferences = (props, context) => {
         </Flex.Item>
         <Flex.Item basis="32%" grow={1}>
           <VoreUserPreferenceItem spec={preferences.dropnom_pred} />
+        </Flex.Item>
+        <Flex.Item basis="32%">
+          <VoreUserPreferenceItem spec={preferences.toggle_drop_vore} />
+        </Flex.Item>
+        <Flex.Item basis="32%">
+          <VoreUserPreferenceItem spec={preferences.toggle_slip_vore} />
+        </Flex.Item>
+        <Flex.Item basis="32%" grow={1}>
+          <VoreUserPreferenceItem spec={preferences.toggle_stumble_vore} />
         </Flex.Item>
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.inbelly_spawning} />

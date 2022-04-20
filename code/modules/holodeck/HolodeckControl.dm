@@ -67,6 +67,7 @@
 	"Gym"				= new/datum/holodeck_program(/area/holodeck/source_gym), //VOREStation add
 	"Game Room"			= new/datum/holodeck_program(/area/holodeck/source_game_room), //VOREStation add
 	"Patient Ward"		= new/datum/holodeck_program(/area/holodeck/source_patient_ward), //VOREStation add
+	"Inside"			= new/datum/holodeck_program(/area/holodeck/the_uwu_zone, list('sound/vore/sunesound/prey/loop.ogg')), //VOREStation add
 	"Turn Off" 			= new/datum/holodeck_program(/area/holodeck/source_plating, list())
 	)
 

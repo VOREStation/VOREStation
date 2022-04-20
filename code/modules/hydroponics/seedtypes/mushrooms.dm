@@ -80,7 +80,7 @@
 	seed_name = "liberty cap"
 	display_name = "liberty cap mushrooms"
 	mutants = null
-	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "space_drugs" = list(1,25))
+	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "bliss" = list(1,25))
 
 /datum/seed/mushroom/hallucinogenic/strong/New()
 	..()

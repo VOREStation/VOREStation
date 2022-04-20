@@ -11,7 +11,7 @@ const MATERIAL_KEYS = {
   "steel": "sheet-metal_3",
   "glass": "sheet-glass_3",
   "silver": "sheet-silver_3",
-  "graphite": "sheet-silver_3",
+  "graphite": "sheet-puck_3",
   "plasteel": "sheet-plasteel_3",
   "durasteel": "sheet-durasteel_3",
   "verdantium": "sheet-wavy_3",
@@ -25,6 +25,7 @@ const MATERIAL_KEYS = {
   "uranium": "sheet-uranium_3",
   "titanium": "sheet-titanium_3",
   "lead": "sheet-adamantine_3",
+  "platinum": "sheet-adamantine_3",
   "plastic": "sheet-plastic_3",
 };
 
@@ -382,17 +383,15 @@ const MaterialAmount = (props, context) => {
       direction="column"
       align="center">
       <Flex.Item>
-        <Box
-          className={classes([
-            'sheetmaterials32x32',
-            MATERIAL_KEYS[name],
-          ])}
-          position="relative"
-          style={style}>
-          <Tooltip
-            position="bottom"
-            content={toTitleCase(name)} />
-        </Box>
+        <Tooltip position="bottom" content={toTitleCase(name)}>
+          <Box
+            className={classes([
+              'sheetmaterials32x32',
+              MATERIAL_KEYS[name],
+            ])}
+            position="relative"
+            style={style} />
+        </Tooltip>
       </Flex.Item>
       <Flex.Item>
         <Box

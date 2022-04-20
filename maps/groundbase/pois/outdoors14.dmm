@@ -1,0 +1,108 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"c" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"v" = (
+/obj/random/mob/semirandom_mob_spawner/animal,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"L" = (
+/obj/structure/fence/corner,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"N" = (
+/obj/structure/fence,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"P" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"Q" = (
+/obj/structure/fence/corner{
+	dir = 5
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"U" = (
+/obj/structure/fence/door,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+"W" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/poi/outdoor)
+
+(1,1,1) = {"
+P
+N
+N
+N
+N
+N
+a
+"}
+(2,1,1) = {"
+c
+W
+W
+v
+W
+W
+c
+"}
+(3,1,1) = {"
+c
+W
+W
+W
+W
+W
+c
+"}
+(4,1,1) = {"
+c
+v
+W
+W
+W
+v
+U
+"}
+(5,1,1) = {"
+c
+W
+W
+W
+W
+W
+c
+"}
+(6,1,1) = {"
+c
+W
+W
+v
+W
+W
+c
+"}
+(7,1,1) = {"
+Q
+N
+N
+N
+N
+N
+L
+"}

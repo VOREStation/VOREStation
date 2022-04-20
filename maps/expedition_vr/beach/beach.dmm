@@ -1388,6 +1388,7 @@
 /obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
 /obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
 /obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
 "By" = (
