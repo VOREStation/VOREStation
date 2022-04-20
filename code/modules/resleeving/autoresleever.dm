@@ -63,20 +63,15 @@
 		return
 	if(!istype(ghost,/mob/observer/dead))
 		return
-	var/restored_memory = null
-	if(ghost.mind)
-		message_admins("I found a ghost mind!!!")
-		restored_memory = ghost.mind.memory
-		message_admins("I set restored memory to : [restored_memory]")
-		if(ghost.mind.current && ghost.mind.current.stat != DEAD)
-			if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
-				if(tgui_alert(ghost, "Your brain is still alive, using the auto-resleever will delete that brain. Are you sure?", "Delete Brain", list("No","Yes")) != "Yes")
-					return
-				if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
-					qdel(ghost.mind.current.loc)
-			else
-				to_chat(ghost, "<span class='warning'>Your body is still alive, you cannot be resleeved.</span>")
+	if(ghost.mind && ghost.mind.current && ghost.mind.current.stat != DEAD)
+		if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
+			if(tgui_alert(ghost, "Your brain is still alive, using the auto-resleever will delete that brain. Are you sure?", "Delete Brain", list("No","Yes")) != "Yes")
 				return
+			if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
+				qdel(ghost.mind.current.loc)
+		else
+			to_chat(ghost, "<span class='warning'>Your body is still alive, you cannot be resleeved.</span>")
+			return
 
 	var/client/ghost_client = ghost.client
 	
@@ -153,7 +148,9 @@
 	if(new_character.dna)
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_organ_dna()
-	
+	if(ghost.mind)
+		ghost.mind.transfer_to(new_character)
+
 	new_character.key = player_key
 	
 	//Were they any particular special role? If so, copy.
@@ -208,9 +205,6 @@
 				for(var/path in record.nif_software)
 					new path(nif)
 				nif.durability = record.nif_durability
-	if(restored_memory)
-		new_character.memory = restored_memory
-		message_admins("I tried to set [new_character]'s memory to [new_character.memory]")
 
 	if(spawn_slots == -1)
 		return
