@@ -1,15 +1,12 @@
-/mob/verb/mob_examine(atom/A as mob)
+/mob/verb/mob_examine()
 	set name = "Mob Examine"
 	set desc = "Allows one to examine mobs they can see, even from inside of bellies and objects."
 	set category = "IC"
+	set popup_menu = FALSE
 
-	if((is_blind(src) || usr.stat) && !isobserver(src))
+	if((is_blind(src) || src.stat) && !isobserver(src))
 		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
 		return 1
-
-	if(!isbelly(loc) && !istype(loc, /obj/item/weapon/holder) && !isAI(src))
-		examinate(A)
-		return
 	var/list/E = list()
 	if(isAI(src))
 		var/mob/living/silicon/ai/my_ai = src
@@ -17,70 +14,59 @@
 			for(var/atom/M in view(world.view, get_turf(e)))
 				if(M == src || istype(M, /mob/observer))
 					continue
-				if(ismob(M))
-					if(A && A == M)
-						var/list/results = A.examine(src)
+				if(ismob(M) && !M.invisibility)
+					if(src && src == M)
+						var/list/results = src.examine(src)
 						if(!results || !results.len)
 							results = list("You were unable to examine that. Tell a developer!")
 						to_chat(src, jointext(results, "<br>"))
-						update_examine_panel(A)
+						update_examine_panel(src)
 						return
 					else
 						E |= M	
 		if(E.len == 0)
 			return
 	else
-		for(var/atom/M in view(world.view, get_turf(src)))
-			if(M == src || istype(M, /mob/observer))
+		var/my_turf = get_turf(src)
+		for(var/atom/M in view(world.view, my_turf))
+			if(ismob(M) && M != src && !istype(M, /mob/observer) && !M.invisibility)
+				E |= M	
+		for(var/turf/T in view(world.view, my_turf))
+			if(!isopenspace(T))
 				continue
-			E |= M	
+			var/turf/checked = T
+			var/keepgoing = TRUE
+			while(keepgoing)
+				var/checking = GetBelow(checked)
+				for(var/atom/m in checking)
+					if(ismob(m) && !istype(m, /mob/observer) && !m.invisibility)
+						E |= m
+				checked = checking
+				if(!isopenspace(checked))
+					keepgoing = FALSE
+	
 	if(E.len == 0)
+		to_chat(src, SPAN_NOTICE("There are no mobs to examine."))
 		return
-	if(A && A in E)
-		var/list/results = A.examine(src)
+	if(src && src in E)
+		var/list/results = src.examine(src)
 		if(!results || !results.len)
 			results = list("You were unable to examine that. Tell a developer!")
 			to_chat(src, jointext(results, "<br>"))
-			update_examine_panel(A)
+			update_examine_panel(src)
 			return
-	var/atom/B = input(usr, "What would you like to examine?", "Examine") as mob in E
+	var/atom/B = null
+	if(E.len == 1)
+		B = pick(E)
+	else
+		B = tgui_input_list(src, "What would you like to examine?", "Examine", E)
 	if(!B)
 		return
+	if(!isbelly(loc) && !istype(loc, /obj/item/weapon/holder) && !isAI(src))
+		if(B.z == src.z)
+			face_atom(B)
 	var/list/results = B.examine(src)
 	if(!results || !results.len)
 		results = list("You were unable to examine that. Tell a developer!")
 	to_chat(src, jointext(results, "<br>"))
 	update_examine_panel(B)
-
-/turf/simulated/open/verb/examine_below(mob/usr)
-	set name = "Examine Below"
-	set desc = "Allows one to examine things below them."
-	set src in oview(7)
-
-	
-	var/list/E = list()
-	var/list/T = list()
-	
-	var/keepgoing = TRUE
-	while(keepgoing)
-		var/t = GetBelow(src)
-		T |= t
-		if(!isopenspace(t))
-			keepgoing = FALSE
-	
-	for(var/trf in T)
-		for(var/O in trf)
-			if(isopenspace(O))
-				continue
-			E |= O
-
-	if(E.len == 0)
-		return
-	var/atom/B = input(usr, "What would you like to examine?", "Examine") as anything in E
-	if(!B)
-		return
-	var/list/results = B.examine(usr)
-	if(!results || !results.len)
-		results = list("You were unable to examine that. Tell a developer!")
-	to_chat(usr, jointext(results, "<br>"))
-	usr.update_examine_panel(B)
