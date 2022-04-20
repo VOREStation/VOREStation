@@ -164,7 +164,12 @@
 	desc = "A simple, comfortable poncho."
 	icon_state = "classicponcho"
 	item_state = "classicponcho"
+<<<<<<< HEAD
 	icon_override = 'icons/inventory/accessory/mob.dmi'
+=======
+	icon_override = 'icons/mob/ties.dmi'
+	var/icon_override_state		/// Change this for mid-round and paintkit. 
+>>>>>>> a17ed4ec65e... Merge pull request #8562 from Sypsoti/ponchofix_v2
 	var/fire_resist = T0C+100
 	allowed = list(/obj/item/weapon/tank/emergency/oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -177,18 +182,41 @@
 		SPECIES_TESHARI = 'icons/inventory/suit/mob_teshari.dmi'
 	)
 
-/obj/item/clothing/accessory/poncho/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
+/obj/item/clothing/accessory/poncho/equipped() /// Sets override, allows for mid-round changes && custom items. If you improve this code, please update paintkit.dm to accept it.
 	..()
 	var/mob/living/carbon/human/H = loc
 	if(istype(H) && H.wear_suit == src)
 		if(H.species.name == SPECIES_TESHARI)
+<<<<<<< HEAD
 			icon_override = 'icons/inventory/suit/mob_teshari.dmi'
 		else
 			icon_override = 'icons/inventory/accessory/mob.dmi'
 		update_clothing_icon()
+=======
+			icon_override = sprite_sheets[SPECIES_TESHARI]
+		else if(icon_override_state)
+			icon_override = icon_override_state
+		else
+			icon_override = 'icons/mob/ties.dmi'
+		H.update_inv_wear_suit()
+>>>>>>> a17ed4ec65e... Merge pull request #8562 from Sypsoti/ponchofix_v2
 
-/obj/item/clothing/accessory/poncho/dropped() //Resets the override to prevent the wrong .dmi from being used because equipped only triggers when wearing ponchos as suits.
-	icon_override = null
+/obj/item/clothing/accessory/poncho/dropped() // Reset override
+	if(icon_override_state)
+		icon_override = icon_override_state
+	else
+		icon_override = 'icons/mob/ties.dmi'
+
+/obj/item/clothing/accessory/poncho/on_attached(obj/item/clothing/S, mob/user) /// Otherwise gives teshari normal icon. 
+	. = ..()
+	if(icon_override_state)
+		icon_override = icon_override_state
+	else if(ishuman(user))
+		var/mob/living/carbon/human/H = user
+		if(H.species.name == SPECIES_TESHARI)
+			icon_override = sprite_sheets[SPECIES_TESHARI]
+	else
+		icon_override = 'icons/mob/ties.dmi'
 
 /obj/item/clothing/accessory/poncho/green
 	name = "green poncho"
