@@ -206,7 +206,8 @@
 	icon_state = "upgrade_disk"
 	item_state = "card-id"
 	w_class = ITEMSIZE_SMALL
-	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
+	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 3)
+	secret_tech = list(TECH_ENGINEERING = 1, TECH_DATA = 1)
 
 /obj/item/weapon/disk/integrated_circuit/upgrade/advanced
 	name = "integrated circuit printer upgrade disk - advanced designs"

@@ -253,7 +253,8 @@
 	icon_state = "fuelrodgun"
 	item_state = "coilgun"
 	icon = 'icons/obj/railgun.dmi'
-	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 4)
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_PHORON = 3, TECH_MAGNET = 3)
+	secret_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 1, TECH_PHORON = 1, TECH_ILLEGAL = 5, TECH_MAGNET = 1)
 	w_class = ITEMSIZE_LARGE
 
 	removable_components = TRUE

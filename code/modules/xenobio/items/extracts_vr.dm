@@ -122,7 +122,7 @@
 	description_info = "When injected with phoron, this extract creates some basic construction materials. When injected with blood, this extract creates some advanced construction materials. \
 	When injected with water, this extract creates some unorthodox materials. When injected with slime jelly, this extract creates some steel."
 	slime_type = /mob/living/simple_mob/slime/xenobio/metal
-
+	origin_tech = list(TECH_MATERIAL = 5)
 
 /decl/chemical_reaction/instant/slime/metal_materials_basic
 	name = "Slime Basic Construction Materials"

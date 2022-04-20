@@ -4,7 +4,8 @@
 	desc = "A tube of paste containing swarms of repair nanites. Very effective in repairing robotic machinery."
 	icon = 'icons/obj/stacks_vr.dmi' //VOREStation Edit
 	icon_state = "nanopaste"
-	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 3)
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3)
+	secret_tech = list(TECH_MATERIAL = 1)
 	amount = 10
 	toolspeed = 0.75 //Used in surgery, shouldn't be the same speed as a normal screwdriver on mechanical organ repair.
 	w_class = ITEMSIZE_SMALL
