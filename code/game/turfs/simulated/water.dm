@@ -102,6 +102,7 @@
 	edge_blending_priority = -2
 	movement_cost = 8
 	depth = 2
+	special_temperature = T0C - 5.5 //as cool as the atmosphere outside, if someone asks, its the phoron solved in the water that stops the freezing
 
 /turf/simulated/floor/water/pool
 	name = "pool"
