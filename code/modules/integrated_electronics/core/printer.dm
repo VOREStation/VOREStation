@@ -121,6 +121,8 @@
 			"name" = category,
 			"items" = null
 		)
+		if(cat_obj["name"] == "Illegal Parts" && !illegal_upgraded)
+			continue
 		var/list/circuit_list = SScircuit.circuit_fabricator_recipe_list[category]
 		var/list/items = list()
 		for(var/path in circuit_list)
@@ -226,6 +228,8 @@
 /obj/item/weapon/disk/integrated_circuit/upgrade/illegal
 	name = "integrated circuit printer upgrade disk - illegal designs"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, but illegal designs to the printer."
+	icon_state = "upgrade_disk_illegal"
+	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4, TECH_ILLEGAL = 1)
 
 // To be implemented later.
 /obj/item/weapon/disk/integrated_circuit/upgrade/clone
