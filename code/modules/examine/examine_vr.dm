@@ -11,7 +11,16 @@
 	if(isAI(src))
 		var/mob/living/silicon/ai/my_ai = src
 		for(var/e in my_ai.all_eyes)
-			for(var/atom/M in view(world.view, get_turf(e)))
+			var/turf/my_turf = get_turf(e)
+			var/foundcam = FALSE
+			for(var/obj/cam in view(world.view, my_turf))
+				if(istype(cam, /obj/machinery/camera))
+					var/obj/machinery/camera/mycam = cam
+					if(!mycam.stat)
+						foundcam = TRUE
+			if(!foundcam)
+				continue
+			for(var/atom/M in view(world.view, my_turf))
 				if(M == src || istype(M, /mob/observer))
 					continue
 				if(ismob(M) && !M.invisibility)
