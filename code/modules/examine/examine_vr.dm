@@ -57,13 +57,6 @@
 	if(E.len == 0)
 		to_chat(src, SPAN_NOTICE("There are no mobs to examine."))
 		return
-	if(src && src in E)
-		var/list/results = src.examine(src)
-		if(!results || !results.len)
-			results = list("You were unable to examine that. Tell a developer!")
-			to_chat(src, jointext(results, "<br>"))
-			update_examine_panel(src)
-			return
 	var/atom/B = null
 	if(E.len == 1)
 		B = pick(E)
