@@ -63,16 +63,20 @@
 		return
 	if(!istype(ghost,/mob/observer/dead))
 		return
-	
-	if(ghost.mind && ghost.mind.current && ghost.mind.current.stat != DEAD)
-		if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
-			if(tgui_alert(ghost, "Your brain is still alive, using the auto-resleever will delete that brain. Are you sure?", "Delete Brain", list("No","Yes")) != "Yes")
-				return
+	var/restored_memory = null
+	if(ghost.mind)
+		message_admins("I found a ghost mind!!!")
+		restored_memory = ghost.mind.memory
+		message_admins("I set restored memory to : [restored_memory]")
+		if(ghost.mind.current && ghost.mind.current.stat != DEAD)
 			if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
-				qdel(ghost.mind.current.loc)
-		else
-			to_chat(ghost, "<span class='warning'>Your body is still alive, you cannot be resleeved.</span>")
-			return
+				if(tgui_alert(ghost, "Your brain is still alive, using the auto-resleever will delete that brain. Are you sure?", "Delete Brain", list("No","Yes")) != "Yes")
+					return
+				if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
+					qdel(ghost.mind.current.loc)
+			else
+				to_chat(ghost, "<span class='warning'>Your body is still alive, you cannot be resleeved.</span>")
+				return
 
 	var/client/ghost_client = ghost.client
 	
@@ -156,7 +160,6 @@
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
-
 		var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
@@ -205,6 +208,9 @@
 				for(var/path in record.nif_software)
 					new path(nif)
 				nif.durability = record.nif_durability
+	if(restored_memory)
+		new_character.memory = restored_memory
+		message_admins("I tried to set [new_character]'s memory to [new_character.memory]")
 
 	if(spawn_slots == -1)
 		return
