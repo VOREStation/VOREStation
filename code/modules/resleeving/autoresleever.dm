@@ -63,7 +63,6 @@
 		return
 	if(!istype(ghost,/mob/observer/dead))
 		return
-	
 	if(ghost.mind && ghost.mind.current && ghost.mind.current.stat != DEAD)
 		if(istype(ghost.mind.current.loc, /obj/item/device/mmi))
 			if(tgui_alert(ghost, "Your brain is still alive, using the auto-resleever will delete that brain. Are you sure?", "Delete Brain", list("No","Yes")) != "Yes")
@@ -149,14 +148,15 @@
 	if(new_character.dna)
 		new_character.dna.ResetUIFrom(new_character)
 		new_character.sync_organ_dna()
-	
+	if(ghost.mind)
+		ghost.mind.transfer_to(new_character)
+
 	new_character.key = player_key
 	
 	//Were they any particular special role? If so, copy.
 	if(new_character.mind)
 		new_character.mind.loaded_from_ckey = picked_ckey
 		new_character.mind.loaded_from_slot = picked_slot
-
 		var/datum/antagonist/antag_data = get_antag_data(new_character.mind.special_role)
 		if(antag_data)
 			antag_data.add_antagonist(new_character.mind)
