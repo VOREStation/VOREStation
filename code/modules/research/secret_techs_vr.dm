@@ -25,11 +25,20 @@
 	..()
 
 	if(origin_tech && !secret_tech)
+		secret_tech += origin_tech
+		var/templvl = null
 		for(var/T in origin_tech)
-			if(origin_tech[T] > TECH_CAP)
-				secret_tech += list(origin_tech[T] = origin_tech[T] - TECH_CAP) // TO DO : MAKE THIS SHIT WORK
-				//secret_tech[T] = origin_tech[T] - TECH_CAP
-				origin_tech[T] = TECH_CAP
+			for(var/I in secret_tech)
+				if(CallTechName(T) == CallTechName(I))
+					if(origin_tech[T] > TECH_CAP)
+						templvl = origin_tech[T] - TECH_CAP
+						log_and_message_admins("Tech is level [origin_tech[T]] secret tech is level [secret_tech[I]]")
+						log_and_message_admins("Temp lvl is [templvl]")
+						secret_tech[I] = templvl
+						log_and_message_admins("After setting secret_tech to [templvl] it is [secret_tech[I]]")
+						origin_tech[T] = TECH_CAP
+					else
+						secret_tech -= secret_tech[I]
 
 /obj/item/weapon/secret_finder
 	name = "Portable Resonant Analyzer"
