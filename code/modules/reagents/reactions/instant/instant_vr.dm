@@ -147,13 +147,6 @@
     inhibitors = list("fluorine" = 0.01)
     result_amount = 1
 
-/decl/chemical_reaction/instant/nutridax
-	name = "Nutridax"
-	id = "nutridax"
-	result = "nutridax"
-	required_reagents = list("oxygen" = 1, "lipozine" = 1, "carbon" = 1)
-	result_amount = 3
-
 ///////////////////////////////////////////////////////////////////////////////////
 /// Vore Drugs
 
