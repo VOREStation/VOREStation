@@ -22,10 +22,13 @@
 
 // This gives us a hardcap at initialization.
 /obj/item/Initialize()
+	..()
+
 	if(origin_tech && !secret_tech)
 		for(var/T in origin_tech)
 			if(origin_tech[T] > TECH_CAP)
-				secret_tech += (origin_tech[T] - TECH_CAP)
+				secret_tech += list(origin_tech[T] = origin_tech[T] - TECH_CAP) // TO DO : MAKE THIS SHIT WORK
+				//secret_tech[T] = origin_tech[T] - TECH_CAP
 				origin_tech[T] = TECH_CAP
 
 /obj/item/weapon/secret_finder
@@ -44,9 +47,9 @@
 	if(istype(target,/obj/item))
 		var/obj/item/I = target
 		playsound(src, 'sound/machines/destructive_analyzer.ogg', 25, 1)
-		if(do_after(user, 5 SECONDS))
+		if(do_after(user, 3 SECONDS))
 			for(var/mob/M in viewers())
-				M.show_message(text("<span class='notice'>[user] sweeps \the [src] over \the [I].</span>"), 1)
+				M.show_message(span_notice("[user] sweeps \the [src] over \the [I]."), 1)
 			flick("[initial(icon_state)]-scan", src)
 			if(I.origin_tech && I.origin_tech.len)
 				for(var/T in I.origin_tech)
@@ -56,7 +59,7 @@
 				playsound(src, 'sound/machines/buzz-sigh.ogg', 25, 1)
 				return
 			else
-				to_chat(user, span_notice("No origin tech detected. Hidden levels possible."))
+				to_chat(user, span_notice("No origin tech detected."))
 			playsound(src, 'sound/machines/chime.ogg', 25, 1)
 			if(I.secret_tech)
 				to_chat(user, span_notice("Hidden technological potential detected! Advanced radiocarbon spectrometer scan recomended!"))
