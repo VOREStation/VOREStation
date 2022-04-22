@@ -8,37 +8,36 @@
 #define TECH_CAP 4
 
 /obj/item
-	var/list/secret_tech = null
+	var/list/secret_tech = null // This is a list of the techs that will be descovered in the spectrometer.
+	var/cap_override = FALSE // Set an item's cap override to true if you want it to not use the tech cap system, good for POI rewards and archeology finds! Note: Giving an item a secret tech list will do the same thing.
 
 // This is the proc for updating tech, calling it will add secret_tech into origin_tech, then set secret_tech to null so that one can't just infinitely increase an item's tech level.
 /obj/item/proc/update_techs()
-	for(var/I in origin_tech)
-		for(var/T in secret_tech)
-			if(CallTechName(T) == CallTechName(I))
-				origin_tech[I] = secret_tech[T] + origin_tech[I]
-				secret_tech.Remove(T)
-	origin_tech += secret_tech
+	if(!secret_tech) // Sanity check
+		return
+
+	if(!origin_tech)
+		origin_tech = list()
+	for(var/T in secret_tech)
+		if(T in origin_tech)
+			origin_tech[T] = secret_tech[T] + origin_tech[T]
+		else
+			origin_tech.Add(T)
+			origin_tech[T] = secret_tech[T] + origin_tech[T]
 	secret_tech = null
 
 // This gives us a hardcap at initialization.
 /obj/item/Initialize()
 	..()
 
-	if(origin_tech && !secret_tech)
-		secret_tech += origin_tech
-		var/templvl = null
+	if(origin_tech && !secret_tech && !cap_override)
+		secret_tech = list()
+		//var/templvl = null
 		for(var/T in origin_tech)
-			for(var/I in secret_tech)
-				if(CallTechName(T) == CallTechName(I))
-					if(origin_tech[T] > TECH_CAP)
-						templvl = origin_tech[T] - TECH_CAP
-						log_and_message_admins("Tech is level [origin_tech[T]] secret tech is level [secret_tech[I]]")
-						log_and_message_admins("Temp lvl is [templvl]")
-						secret_tech[I] = templvl
-						log_and_message_admins("After setting secret_tech to [templvl] it is [secret_tech[I]]")
-						origin_tech[T] = TECH_CAP
-					else
-						secret_tech -= secret_tech[I]
+			if(origin_tech[T] > TECH_CAP)
+				secret_tech.Add(T)
+				secret_tech[T] = origin_tech[T] - TECH_CAP
+				origin_tech[T] = TECH_CAP
 
 /obj/item/weapon/secret_finder
 	name = "Portable Resonant Analyzer"
