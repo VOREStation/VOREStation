@@ -36,6 +36,7 @@
 	if(lockable)
 		locked = !locked
 		to_chat(user, "<span class='warning'>You [locked ? "enable" : "disable"] the safety lock on \the [src]!</span>")
+		return 1
 
 /obj/item/weapon/gun/energy/locked/special_check(mob/user)
 	if(locked)
