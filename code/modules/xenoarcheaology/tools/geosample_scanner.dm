@@ -392,5 +392,5 @@
 			show_text = span_notice("[user] clumsily lifts \the [I] into \the [src] between two stubby modules.")
 
 	for(var/mob/M in viewers())
-		if M != user
+		if(M != user)
 			M.show_message(show_text, 1)
