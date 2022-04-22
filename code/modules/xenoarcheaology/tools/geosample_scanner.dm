@@ -91,10 +91,13 @@
 		if(scanned_item)
 			to_chat(user, "<span class=warning>\The [src] already has \a [scanned_item] inside!</span>")
 			return
-		user.drop_item()
-		I.loc = src
-		scanned_item = I
-		to_chat(user, "<span class=notice>You put \the [I] into \the [src].</span>")
+		if(!isrobot(user)) // VoreEdit, fixing a bug that allowed borgs to add modules to the scanner.
+			user.drop_item()
+			I.loc = src
+			scanned_item = I
+			to_chat(user, "<span class=notice>You put \the [I] into \the [src].</span>")
+		else
+			to_chat(user, span_notice("You cannot place [I] into the [src]"))
 
 /obj/machinery/radiocarbon_spectrometer/proc/update_coolant()
 	var/total_purity = 0
@@ -346,14 +349,14 @@
 				anom_found = 1
 				data += " - Hyperspectral imaging reveals exotic energy wavelength detected with ID: [G.artifact_id]<br>"
 				data += " - Fourier transform analysis on anomalous energy absorption indicates energy source located inside emission radius of [G.artifact_distance]m<br>"
-
+		// VOREADD, secret techs.
 		if(scanned_item.secret_tech)
 			data += " -Previously unknown tech levels detected within this sample.<br>"
 			//scanned_item.origin_tech += scanned_item.secret_tech
 			scanned_item.update_techs()
 			for(var/T in scanned_item.origin_tech)
 				data += " -Detected [CallTechName(T)] tech of level [scanned_item.origin_tech[T]].<br>"
-
+		//VOREADD End
 		if(!anom_found)
 			data += " - No anomalous data<br>"
 
@@ -364,3 +367,30 @@
 
 		scanned_item.loc = src.loc
 		scanned_item = null
+// VORE Add, gives borgs access to the sampler.
+/obj/machinery/radiocarbon_spectrometer/MouseDrop_T(var/obj/item/I, var/mob/living/user)
+	if(!istype(I))
+		return
+	if(user.stat || user.incapacitated(INCAPACITATION_DISABLED) || !istype(user))
+		return
+	if(!isturf(I.loc))
+		return
+
+	I.loc = src
+	scanned_item = I
+
+	var/show_text = span_notice("[user] places \the [I] into \the [src]")
+	if(!isrobot(user))
+		to_chat(user, span_notice("You put \the [I] into \the [src]."))
+	else
+		var/mob/living/silicon/robot/R = user
+		if(R.dogborg)
+			to_chat(user, span_notice("You nudge \the [I] into \the [src] with your nose."))
+			show_text = span_notice("[user] nudges \the [I] into \the [src] with their nose.")
+		else
+			to_chat(user, span_notice("You clumsily manage to lift \the [I] into \the [src] between two of your stubby modules."))
+			show_text = span_notice("[user] clumsily lifts \the [I] into \the [src] between two stubby modules.")
+
+	for(var/mob/M in viewers())
+		if M != user
+			M.show_message(show_text, 1)

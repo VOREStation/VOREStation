@@ -794,6 +794,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gun/energy/taser/xeno/robot(src)
 	src.modules += new /obj/item/device/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/weapon/pickaxe/excavationdrill(src)
+	src.modules += new /obj/item/weapon/secret_finder(src)
 	//src.modules += new /obj/item/device/cataloguer(src) //VOREStation Removal
 
 	src.emag = new /obj/item/weapon/hand_tele(src)
