@@ -16,7 +16,7 @@
 	var/id = 0
 	var/sun_angle = 0		// sun angle as set by sun datum
 	var/obj/machinery/power/solar_control/control = null
-	var/max_solar_distance = 40		//VOREStation Addition
+	var/SOLAR_MAX_DIST = 40		//VOREStation Addition
 
 
 /obj/machinery/power/tracker/Initialize(mapload, glass_type)

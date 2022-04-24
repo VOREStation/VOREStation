@@ -26,7 +26,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
 	var/glass_type = /obj/item/stack/material/glass
-	var/max_solar_distance = 40		//VOREStation Addition
+	var/SOLAR_MAX_DIST = 40		//VOREStation Addition
 
 /obj/machinery/power/solar/drain_power()
 	return -1
