@@ -16,6 +16,8 @@
 	var/id = 0
 	var/sun_angle = 0		// sun angle as set by sun datum
 	var/obj/machinery/power/solar_control/control = null
+	var/max_solar_distance = 40		//VOREStation Addition
+
 
 /obj/machinery/power/tracker/Initialize(mapload, glass_type)
 	. = ..()
@@ -26,9 +28,9 @@
 	unset_control() //remove from control computer
 	..()
 
-//set the control of the tracker to a given computer if closer than SOLAR_MAX_DIST
+//set the control of the tracker to a given computer if closer than max_solar_distance
 /obj/machinery/power/tracker/proc/set_control(var/obj/machinery/power/solar_control/SC)
-	if(SC && (get_dist(src, SC) > SOLAR_MAX_DIST))
+	if(SC && (get_dist(src, SC) > max_solar_distance))	//VOREStation Edit
 		return 0
 	control = SC
 	return 1

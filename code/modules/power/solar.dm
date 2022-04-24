@@ -1,4 +1,4 @@
-#define SOLAR_MAX_DIST 40
+//#define SOLAR_MAX_DIST 40		//VOREStation Removal
 #define SOLAR_AUTO_START_NO     0 // Will never start itself.
 #define SOLAR_AUTO_START_YES    1 // Will always start itself.
 #define SOLAR_AUTO_START_CONFIG 2 // Will start itself if config allows it (default is no).
@@ -26,6 +26,7 @@ GLOBAL_LIST_EMPTY(solars_list)
 	var/turn_angle = 0
 	var/obj/machinery/power/solar_control/control = null
 	var/glass_type = /obj/item/stack/material/glass
+	var/max_solar_distance = 40		//VOREStation Addition
 
 /obj/machinery/power/solar/drain_power()
 	return -1
@@ -41,10 +42,10 @@ GLOBAL_LIST_EMPTY(solars_list)
 	unset_control() //remove from control computer
 	. = ..()
 
-//set the control of the panel to a given computer if closer than SOLAR_MAX_DIST
+//set the control of the panel to a given computer if closer than max_solar_distance
 /obj/machinery/power/solar/proc/set_control(var/obj/machinery/power/solar_control/SC)
 	ASSERT(!control)
-	if(SC && (get_dist(src, SC) > SOLAR_MAX_DIST))
+	if(SC && (get_dist(src, SC) > max_solar_distance))
 		return 0
 	control = SC
 	return 1
