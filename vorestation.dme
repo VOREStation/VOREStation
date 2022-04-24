@@ -3987,6 +3987,7 @@
 #include "code\modules\vore\resizing\grav_pull_vr.dm"
 #include "code\modules\vore\resizing\holder_micro_vr.dm"
 #include "code\modules\vore\resizing\resize_vr.dm"
+#include "code\modules\vore\resizing\sizegun_slow_vr.dm"
 #include "code\modules\vore\resizing\sizegun_vr.dm"
 #include "code\modules\vore\smoleworld\smoleworld_vr.dm"
 #include "code\modules\vore\weight\fitness_machines_vr.dm"
