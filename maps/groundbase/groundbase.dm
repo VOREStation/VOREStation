@@ -8,6 +8,7 @@
 	#include "..\offmap_vr\common_offmaps.dm"
 	#include "..\tether\tether_jobs.dm"
 	#include "groundbase_poi_stuff.dm"
+	#include "gb-wilds.dm"
 
 	#if !AWAY_MISSION_TEST //Don't include these for just testing away missions
 		#include "gb-z1.dmm"
