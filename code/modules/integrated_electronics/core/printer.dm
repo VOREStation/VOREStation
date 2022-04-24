@@ -17,6 +17,15 @@
 	var/obj/item/device/electronic_assembly/assembly_to_clone = null // Not implemented x3
 	var/dirty_items = FALSE
 
+/obj/item/device/integrated_circuit_printer/all_upgrades
+	upgraded = TRUE
+	illegal_upgraded = TRUE
+	can_clone = TRUE
+
+/obj/item/device/integrated_circuit_printer/illegal
+	illegal_upgraded = TRUE
+	can_clone = TRUE
+
 /obj/item/device/integrated_circuit_printer/upgraded
 	upgraded = TRUE
 	can_clone = TRUE
@@ -25,6 +34,7 @@
 	name = "fractal integrated circuit printer"
 	desc = "A portable(ish) machine that makes modular circuitry seemingly out of thin air."
 	upgraded = TRUE
+	illegal_upgraded = TRUE
 	can_clone = TRUE
 	debug = TRUE
 
