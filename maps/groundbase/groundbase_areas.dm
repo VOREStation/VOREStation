@@ -130,6 +130,38 @@
 	name = "Science Break Room"
 	lightswitch = 1
 
+/area/groundbase/science/outpost
+	name = "Science Outpost"
+	lightswitch = 1
+/area/groundbase/science/outpost/substation
+	name = "Science Outpost Substation"
+/area/groundbase/science/outpost/atmos
+	name = "Science Outpost Atmospherics"
+	lightswitch = 0
+/area/groundbase/science/outpost/anomaly_lab
+	name = "Science Outpost Anomaly Lab"
+	lightswitch = 0
+/area/groundbase/science/outpost/anomaly_storage
+	name = "Science Outpost Anomaly Storage"
+	lightswitch = 0
+/area/groundbase/science/outpost/anomaly_testing
+	name = "Science Outpost Anomaly Testing"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_lab
+	name = "Science Outpost Toxins Lab"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_storage
+	name = "Science Outpost Toxins Storage"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxing_gasworks
+	name = "Science Outpost Toxins Gasworks"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_mixing
+	name = "Science Outpost Toxins Mixing"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_hallway
+	name = "Science Outpost Toxins Hallway"
+
 /area/groundbase/command
 	name = "Command"
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
@@ -288,6 +320,13 @@
 /area/groundbase/engineering/atmos/monitoring
 	name = "Atmospherics Monitoring"
 	lightswitch = 1
+/area/groundbase/engineering/solarshed
+	name = "Solar Shed"
+	lightswitch = 1
+/area/groundbase/engineering/solarfield
+	name = "Solar Field"
+	lightswitch = 1
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/groundbase/cargo
 	name = "Cargo"
