@@ -57,7 +57,7 @@
 "er" = (/obj/effect/decal/remains,/turf/simulated/floor/outdoors/dirt/jungle,/area/awaymission/accerion_ruins/outside)
 "eC" = (/obj/structure/bed/chair/comfy/black{dir = 8},/obj/machinery/light_switch{name = "light switch "; pixel_y = 26},/turf/simulated/floor/wood,/area/awaymission/accerion_ruins/quarters/dorm4)
 "eF" = (/obj/effect/floor_decal/corner/beige/full{dir = 8},/obj/item/weapon/stool/padded{dir = 4},/turf/simulated/floor/tiled/white,/area/awaymission/accerion_ruins/general/cafeteria)
-"eG" = (/obj/item/device/binoculars/spyglass,/turf/simulated/floor/outdoors/grass/accerion,/area/awaymission/accerion_ruins/outside)
+"eG" = (/obj/item/device/binoculars/spyglass,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/outdoors/dirt/jungle,/area/awaymission/accerion_ruins/outside)
 "eW" = (/obj/structure/cable/heavyduty{icon_state = "4-8"},/obj/structure/railing,/obj/structure/railing{dir = 1},/obj/structure/railing{dir = 4},/turf/simulated/floor/plating,/area/awaymission/accerion_ruins/outside)
 "eX" = (/obj/effect/overmap/visitable/sector/common_gateway/accerion_ruins,/turf/simulated/mineral/accerion/rock,/area/awaymission/accerion_ruins/outside)
 "eZ" = (/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/closet/crate/secure/loot,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/tiled,/area/awaymission/accerion_ruins/general/warehouse)
@@ -131,7 +131,7 @@
 "kY" = (/obj/structure/medical_stand,/obj/effect/floor_decal/borderfloorwhite{dir = 4},/obj/effect/floor_decal/corner/paleblue/border{dir = 4},/turf/simulated/floor/tiled/white,/area/awaymission/accerion_ruins/general/medical)
 "lf" = (/turf/simulated/floor/carpet,/area/awaymission/accerion_ruins/quarters/dorm5)
 "lm" = (/obj/machinery/vending/hydronutrients,/turf/simulated/floor/tiled/milspec,/area/awaymission/accerion_ruins/general/b1westwing)
-"lo" = (/obj/effect/decal/remains,/turf/simulated/floor/outdoors/grass/accerion,/area/awaymission/accerion_ruins/outside)
+"lo" = (/obj/effect/decal/remains,/obj/item/clothing/under/curator,/turf/simulated/floor/outdoors/dirt/jungle,/area/awaymission/accerion_ruins/outside)
 "lp" = (/turf/simulated/wall,/area/awaymission/accerion_ruins/general/janitor)
 "ls" = (/turf/simulated/floor/tiled,/area/awaymission/accerion_ruins/general/warehouse)
 "lt" = (/obj/structure/table/alien,/turf/simulated/shuttle/floor/alienplating,/area/awaymission/accerion_ruins/cave/crashed_ufo_scout)
@@ -440,7 +440,7 @@
 "KS" = (/obj/structure/grille,/obj/structure/window/reinforced/full,/obj/machinery/door/firedoor,/turf/simulated/floor/tiled,/area/awaymission/accerion_ruins/general/b1commonarea)
 "KW" = (/obj/effect/floor_decal/borderfloor{dir = 8},/obj/machinery/light{dir = 8},/turf/simulated/floor/tiled,/area/awaymission/accerion_ruins/general/b1commonarea)
 "Lh" = (/obj/machinery/gateway,/obj/effect/floor_decal/industrial/warning,/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/reinforced,/area/awaymission/accerion_ruins/general/gateway)
-"Ll" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/outdoors/grass/accerion,/area/awaymission/accerion_ruins/outside)
+"Ll" = (/obj/item/weapon/melee/chainofcommand/curator_whip,/turf/simulated/floor/outdoors/dirt/jungle,/area/awaymission/accerion_ruins/outside)
 "LB" = (/obj/item/device/flashlight/flare,/turf/simulated/floor/outdoors/dirt/jungle,/area/awaymission/accerion_ruins/outside)
 "LF" = (/obj/structure/window/phoronreinforced{dir = 8; icon_state = "phoronrwindow"},/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alien,/area/awaymission/accerion_ruins/cave/crashed_ufo_scout)
 "LG" = (/obj/structure/cable/heavyduty{icon_state = "4-8"},/obj/structure/catwalk,/turf/simulated/floor/plating,/area/awaymission/accerion_ruins/outside)
@@ -586,6 +586,7 @@
 "WX" = (/obj/effect/floor_decal/borderfloor,/obj/machinery/light,/turf/simulated/floor/tiled,/area/awaymission/accerion_ruins/general/b1westwing)
 "Xg" = (/obj/structure/disposalpipe/segment{dir = 2; icon_state = "pipe-c"},/obj/effect/floor_decal/corner/lime/border,/turf/simulated/floor/tiled,/area/awaymission/accerion_ruins/general/b2commonarea)
 "Xk" = (/obj/structure/disposalpipe/junction{dir = 2; icon_state = "pipe-j2"},/obj/structure/cable{icon_state = "1-2"},/turf/simulated/floor/tiled,/area/awaymission/accerion_ruins/general/b2commonarea)
+"Xp" = (/obj/item/clothing/head/fedora/brown,/turf/simulated/floor/outdoors/dirt/jungle,/area/awaymission/accerion_ruins/outside)
 "Xu" = (/turf/simulated/floor/outdoors/grass/accerion,/area/awaymission/accerion_ruins/outside)
 "Xv" = (/obj/effect/alien/weeds/node,/obj/effect/alien/weeds,/turf/simulated/shuttle/floor/alienplating,/area/awaymission/accerion_ruins/cave/crashed_ufo_scout)
 "XD" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/fresh_medicine,/turf/simulated/shuttle/floor/alienplating,/area/awaymission/accerion_ruins/cave/crashed_ufo_scout)
@@ -715,11 +716,11 @@ CNCNZDIzUpIzZDltIzFCzLvRvRhQhQHSIzIzIzcUZDzLbaSUZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCN
 CNCNZDIzIzIzZDZDzLzLXvnEQgdRltFwIzIzIzZDZDDazLpNZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNbXbXMVXuXuXuXuDwDwDwDwDwDwXuXuXuXuXuDwDwDwDwXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkCNCNCNXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHk
 CNCNZDZDIzIzhMZDZDZDzLzLzLzLIzIzIzZDZDZDCNzLzLZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNHkHkHkXuXuXuXuXuXuXuDwDwXuXuXuXuHkHkHkHkHkHkHkXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkCNCNXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHk
 CNCNCNZDQCIzIzmAZDZDbgzLqSqSqSIzVgZDZDCNCNCNCNZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNHkHkHkHkHkHkHkXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkXuXuCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkCNXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHk
-CNCNCNZDZDIzIzIzSJZDZDZDZDZDZDZDZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNHkHkHkHkHkHkHkXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHk
-CNCNCNCNZDZDIzIzIzZDVgZDoOhfbBZDPMZDIzCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNHkHkHkHkHkHkHkHkXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHk
-CNCNCNCNCNZDZDIzIzHiIzhQhQhQJVhQIzkiIzffCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuHkHkHkHkHkHkXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuloXuXuLlXuXuXuXuXuXuHkHkHkHkHk
-CNCNCNCNCNCNZDZDJTZDIzIzhQhQhQIzIzZDffZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuHkHkHkHkXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXueGXuXuXuXuXuXuXuXuHkHkHkHkHk
-CNCNCNCNCNCNCNZDZDZDqSqSIzIzIzqSqSZDZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuHkHkXuXuXuXuXuXuXuXuLlXuXuXuXuXuXuXuXuXuHkHkHkHkHkHk
+CNCNCNZDZDIzIzIzSJZDZDZDZDZDZDZDZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNHkHkHkHkHkHkHkXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuDwDwXuXuXuXuXuXuXuXuHkHkHkHkHk
+CNCNCNCNZDZDIzIzIzZDVgZDoOhfbBZDPMZDIzCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNHkHkHkHkHkHkHkHkXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuDwjFDwLlDwXuXuXuXuXuXuHkHkHkHkHk
+CNCNCNCNCNZDZDIzIzHiIzhQhQhQJVhQIzkiIzffCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuHkHkHkHkHkHkXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuDwDwloDwDwjFDwXuXuXuXuXuHkHkHkHkHk
+CNCNCNCNCNCNZDZDJTZDIzIzhQhQhQIzIzZDffZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuHkHkHkHkXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXpDweGDwXuXuXuXuXuXuXuHkHkHkHkHk
+CNCNCNCNCNCNCNZDZDZDqSqSIzIzIzqSqSZDZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuHkHkXuXuXuXuXuXuXuXuXuDwDwXuXuXuXuXuXuXuHkHkHkHkHkHk
 CNCNCNCNCNCNCNDwDwZDZDZDZDHiZDZDZDZDCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuHkHkXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHk
 CNCNCNCNCNCNCNCNDwDwDwDwPMIzPMDwDwCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuHkHkHkHkXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHk
 CNCNCNCNCNCNCNCNDwDwDwDwDwDwvsDwDwCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHkHkHkHkHkHkHkHkHkHkCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNCNXuXuXuXuXuXuXuXuHkHkHkHkHkXuXuXuXuXuXuXuXuXuXuXuXuXuXuXuHkHkHkHkHkHkHk
