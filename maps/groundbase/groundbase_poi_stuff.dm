@@ -187,7 +187,7 @@
 #endif
 
 
-/area/groundbase/poi
+/area/submap/groundbase/poi
 	name = "POI - Rascal's Pass"
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "orawhisqu"
@@ -198,20 +198,20 @@
 	name = "maintenance cave"
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
 
-/area/groundbase/poi/outdoor
+/area/submap/groundbase/poi/outdoor
 	name = "Outdoors"
 	ceiling_type = /turf/simulated/floor/virgo3c
-/area/groundbase/poi/outdoor/roofed
+/area/submap/groundbase/poi/outdoor/roofed
 	name = "Outdoors"
-/area/groundbase/poi/outdoor/cabin1
+/area/submap/groundbase/poi/outdoor/cabin1
 	name = "Cabin"
-/area/groundbase/poi/outdoor/cabin2
+/area/submap/groundbase/poi/outdoor/cabin2
 	name = "Cabin"
-/area/groundbase/poi/outdoor/cabin3
+/area/submap/groundbase/poi/outdoor/cabin3
 	name = "Cabin"
-/area/groundbase/poi/outdoor/cabin4
+/area/submap/groundbase/poi/outdoor/cabin4
 	name = "Cabin"
-/area/groundbase/poi/outdoor/cabin5
+/area/submap/groundbase/poi/outdoor/cabin5
 	name = "Cabin"
 
 /datum/map_template/groundbase/outdoor
@@ -938,3 +938,26 @@
 	mappath = 'pois/cavething14.dmm'
 	cost = 3
 	allow_duplicates = FALSE
+
+/area/submap/groundbase/poi/wildvillage
+	name = "POI - Wilderness Village"
+	icon = 'icons/turf/areas_vr.dmi'
+	ambience = AMBIENCE_OUTPOST
+	flags = AREA_FLAG_IS_NOT_PERSISTENT
+
+/area/submap/groundbase/poi/wildvillage/plot
+	icon_state = "grewhisqu"
+
+/area/submap/groundbase/poi/wildvillage/building
+	name = "Building"
+	icon_state = "grewhisqu"
+
+/area/submap/groundbase/poi/wildvillage/building/building1
+
+
+/datum/map_template/groundbase/wildvillage
+	name = "building 1"
+	cost = 1
+	allow_duplicates = FALSE
+/datum/map_template/groundbase/wildvillage/wide
+	name = "wide building 1"

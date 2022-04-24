@@ -1,0 +1,486 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"c" = (
+/obj/structure/curtain/black{
+	pixel_y = -32
+	},
+/obj/structure/bed/chair/sofa/left/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"e" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp/green{
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"f" = (
+/obj/structure/simple_door/iron,
+/turf/simulated/floor/bmarble,
+/area/template_noop)
+"g" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/template_noop)
+"i" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/template_noop)
+"j" = (
+/obj/structure/curtain/black{
+	pixel_y = 32
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"k" = (
+/obj/structure/bonfire,
+/turf/simulated/floor,
+/area/template_noop)
+"l" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"m" = (
+/obj/structure/bed/chair/sofa/right/brown{
+	dir = 8
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"n" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"p" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp/green{
+	pixel_y = 8
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/template_noop)
+"q" = (
+/turf/simulated/floor/wmarble,
+/area/template_noop)
+"r" = (
+/obj/structure/bed/chair/sofa/brown{
+	dir = 8
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"s" = (
+/obj/structure/curtain/black{
+	pixel_y = 32
+	},
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp/green{
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"t" = (
+/obj/structure/table/rack/shelf/steel,
+/obj/item/clothing/shoes/boots/jackboots,
+/turf/simulated/floor/wmarble,
+/area/template_noop)
+"y" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/template_noop)
+"z" = (
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"A" = (
+/obj/structure/curtain/black{
+	pixel_y = -32
+	},
+/obj/structure/bed/chair/sofa/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"B" = (
+/turf/simulated/wall,
+/area/template_noop)
+"D" = (
+/obj/structure/bed/chair/sofa/corner/brown{
+	dir = 8
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"E" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/mainttoyloot,
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"G" = (
+/turf/simulated/floor/carpet/sblucarpet,
+/area/template_noop)
+"H" = (
+/obj/structure/coatrack,
+/turf/simulated/floor/wmarble,
+/area/template_noop)
+"K" = (
+/obj/structure/curtain/black{
+	pixel_y = 32
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"M" = (
+/obj/structure/curtain/black{
+	pixel_x = -32
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"N" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/browndouble,
+/obj/structure/curtain/open/bed{
+	color = "#5e0c1d"
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/template_noop)
+"O" = (
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/template_noop)
+"P" = (
+/obj/structure/table/rack/steel,
+/obj/fiftyspawner/log,
+/turf/simulated/floor/bmarble,
+/area/template_noop)
+"R" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/tool,
+/obj/random/tool,
+/obj/random/mainttoyloot,
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"V" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"W" = (
+/obj/structure/curtain/black{
+	pixel_x = 32
+	},
+/turf/simulated/floor/carpet/sblucarpet,
+/area/template_noop)
+"X" = (
+/turf/simulated/floor/bmarble,
+/area/template_noop)
+"Y" = (
+/obj/structure/simple_door/iron,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/template_noop)
+"Z" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/carpet/sblucarpet,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+B
+B
+B
+B
+a
+a
+"}
+(2,1,1) = {"
+a
+B
+B
+y
+y
+B
+B
+k
+k
+B
+B
+a
+"}
+(3,1,1) = {"
+a
+B
+n
+M
+M
+z
+P
+X
+X
+X
+B
+a
+"}
+(4,1,1) = {"
+a
+y
+s
+z
+z
+z
+z
+z
+z
+c
+y
+a
+"}
+(5,1,1) = {"
+a
+y
+j
+z
+z
+z
+z
+e
+l
+A
+y
+a
+"}
+(6,1,1) = {"
+a
+B
+V
+z
+z
+z
+m
+r
+r
+D
+B
+a
+"}
+(7,1,1) = {"
+a
+B
+B
+B
+Y
+B
+B
+B
+B
+B
+B
+a
+"}
+(8,1,1) = {"
+a
+B
+b
+z
+z
+z
+B
+t
+X
+q
+B
+i
+"}
+(9,1,1) = {"
+a
+y
+K
+z
+z
+z
+Y
+X
+X
+X
+f
+O
+"}
+(10,1,1) = {"
+a
+B
+b
+z
+z
+z
+B
+H
+X
+q
+B
+i
+"}
+(11,1,1) = {"
+a
+B
+B
+B
+Y
+B
+B
+B
+B
+B
+B
+a
+"}
+(12,1,1) = {"
+a
+B
+Z
+Z
+G
+G
+B
+b
+z
+E
+B
+a
+"}
+(13,1,1) = {"
+a
+B
+g
+G
+G
+G
+Y
+z
+z
+R
+B
+a
+"}
+(14,1,1) = {"
+a
+B
+N
+G
+G
+p
+B
+z
+z
+R
+B
+a
+"}
+(15,1,1) = {"
+a
+B
+p
+W
+W
+Z
+B
+b
+z
+E
+B
+a
+"}
+(16,1,1) = {"
+a
+B
+B
+y
+y
+B
+B
+B
+B
+B
+B
+a
+"}
+(17,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

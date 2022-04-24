@@ -95,7 +95,7 @@
 /area/groundbase/science/outpost/atmos)
 "aQ" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "bc" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -107,7 +107,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "bf" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -284,7 +284,9 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/solar,
+/obj/machinery/power/solar{
+	max_solar_distance = 140
+	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
@@ -327,7 +329,7 @@
 /turf/unsimulated/wall/planetary/virgo3c{
 	icon_state = "riveted"
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "ec" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
@@ -369,11 +371,9 @@
 /area/groundbase/science/outpost/toxins_mixing)
 "ez" = (
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "1-4"
 	},
-/obj/structure/cable,
-/obj/machinery/power/solar,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -607,7 +607,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "hB" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -640,7 +640,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "if" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -698,7 +698,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "jb" = (
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/atmospherics/portables_connector{
@@ -953,7 +953,7 @@
 /area/groundbase/science/outpost/anomaly_testing)
 "lO" = (
 /turf/unsimulated/wall/planetary/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "lS" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -1093,7 +1093,7 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "nr" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "nv" = (
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
@@ -1271,7 +1271,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "pO" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
@@ -1374,6 +1374,17 @@
 /obj/machinery/atmospherics/pipe/simple/visible/yellow,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/anomaly_testing)
+"qM" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/engineering/solarfield)
 "qN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -1419,7 +1430,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "rr" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 8
@@ -1521,7 +1532,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "tc" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -1620,7 +1631,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "uj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
@@ -1737,7 +1748,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "vy" = (
 /obj/machinery/light{
 	dir = 4
@@ -1951,7 +1962,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "xv" = (
 /obj/machinery/suspension_gen,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -2022,7 +2033,7 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "yn" = (
 /turf/simulated/mineral/ignore_cavegen,
-/area/groundbase/wilderness/west/cave)
+/area/submap/groundbase/wilderness/west/cave)
 "yq" = (
 /obj/structure/cable{
 	icon_state = "1-8"
@@ -2446,7 +2457,7 @@
 "Cw" = (
 /obj/structure/anomaly_container,
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Dn" = (
 /obj/item/device/radio/intercom{
 	pixel_y = -24
@@ -2827,7 +2838,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Hr" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -3023,7 +3034,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "IO" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3089,7 +3100,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "JE" = (
 /obj/structure/dispenser,
 /turf/simulated/floor/tiled,
@@ -3327,6 +3338,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_storage)
+"Nv" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/engineering/solarfield)
 "Nw" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -3432,7 +3451,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
 "OQ" = (
-/obj/machinery/power/tracker,
+/obj/machinery/power/tracker{
+	max_solar_distance = 140
+	},
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -3895,7 +3916,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "UN" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
@@ -3928,7 +3949,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "VG" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -3954,7 +3975,9 @@
 /area/groundbase/science/outpost)
 "Wc" = (
 /obj/structure/cable,
-/obj/machinery/power/solar,
+/obj/machinery/power/solar{
+	max_solar_distance = 140
+	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
@@ -4013,6 +4036,17 @@
 	},
 /turf/simulated/floor/reinforced/airless,
 /area/groundbase/science/outpost/toxins_mixing)
+"WH" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/engineering/solarfield)
 "WR" = (
 /obj/machinery/atmospherics/pipe/vent/high_volume,
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
@@ -4086,7 +4120,7 @@
 /area/groundbase/science/outpost/toxins_mixing)
 "XS" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "XX" = (
 /obj/machinery/atmospherics/unary/heat_exchanger{
 	dir = 8
@@ -4195,7 +4229,7 @@
 /area/groundbase/engineering/solarshed)
 "YK" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west/unexplored)
+/area/submap/groundbase/wilderness/west/unexplored)
 "YL" = (
 /obj/structure/closet/excavation,
 /obj/machinery/firealarm,
@@ -9648,24 +9682,24 @@ nr
 ur
 mt
 dz
-Cq
 ez
-Cq
+dz
 ez
-Cq
+dz
 ez
+dz
 Cq
 Wc
 mt
 mt
 mt
 dz
-Cq
 ez
-Cq
+dz
 ez
-Cq
+dz
 ez
+dz
 Cq
 Wc
 mt
@@ -9790,24 +9824,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 mt
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -9932,24 +9966,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 mt
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -10074,24 +10108,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 mt
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -10216,24 +10250,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 mt
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -10784,24 +10818,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -10926,24 +10960,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -11068,24 +11102,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -11210,24 +11244,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -11352,24 +11386,24 @@ nr
 ur
 mt
 dz
-tc
-ez
-tc
-ez
-tc
-ez
+Nv
+dz
+Nv
+dz
+Nv
+dz
 tc
 Wc
 mt
 lB
 mt
 dz
-tc
-ez
-tc
-ez
-tc
-ez
+Nv
+dz
+Nv
+dz
+Nv
+dz
 tc
 Wc
 mt
@@ -11920,24 +11954,24 @@ nr
 ur
 mt
 dz
-Cq
 ez
-Cq
+dz
 ez
-Cq
+dz
 ez
+dz
 Cq
 Wc
 mt
 lB
 mt
 dz
-Cq
 ez
-Cq
+dz
 ez
-Cq
+dz
 ez
+dz
 Cq
 Wc
 mt
@@ -12062,24 +12096,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -12204,24 +12238,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -12346,24 +12380,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -12488,24 +12522,24 @@ WU
 Rf
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -13056,24 +13090,24 @@ Co
 YB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -13198,24 +13232,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -13340,24 +13374,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -13482,24 +13516,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -13624,24 +13658,24 @@ nr
 ur
 mt
 dz
-tc
-ez
-tc
-ez
-tc
-ez
+Nv
+dz
+Nv
+dz
+Nv
+dz
 tc
 Wc
 mt
 lB
 mt
 dz
-tc
-ez
-tc
-ez
-tc
-ez
+Nv
+dz
+Nv
+dz
+Nv
+dz
 tc
 Wc
 mt
@@ -14192,24 +14226,24 @@ nr
 ur
 mt
 dz
-Cq
 ez
-Cq
+dz
 ez
-Cq
+dz
 ez
+dz
 Cq
 Wc
 mt
 lB
 mt
 dz
-Cq
 ez
-Cq
+dz
 ez
-Cq
+dz
 ez
+dz
 Cq
 Wc
 mt
@@ -14334,24 +14368,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -14476,24 +14510,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -14618,24 +14652,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -14760,24 +14794,24 @@ nr
 ur
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
 lB
 mt
 dz
-ov
-ez
-ov
-ez
-ov
-ez
+WH
+dz
+WH
+dz
+WH
+dz
 ov
 Wc
 mt
@@ -15328,24 +15362,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -15470,24 +15504,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -15612,24 +15646,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -15754,24 +15788,24 @@ nr
 ur
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
 lB
 mt
 dz
-BP
-ez
-BP
-ez
-BP
-ez
+qM
+dz
+qM
+dz
+qM
+dz
 BP
 Wc
 mt
@@ -15896,24 +15930,24 @@ nr
 ur
 mt
 dz
-tc
-ez
-tc
-ez
-tc
-ez
+Nv
+dz
+Nv
+dz
+Nv
+dz
 tc
 Wc
 mt
 lB
 mt
 dz
-tc
-ez
-tc
-ez
-tc
-ez
+Nv
+dz
+Nv
+dz
+Nv
+dz
 tc
 Wc
 mt

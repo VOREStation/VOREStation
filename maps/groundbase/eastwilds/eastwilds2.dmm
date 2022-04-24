@@ -1,72 +1,72 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/unsimulated/wall/planetary/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "b" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/east/unexplored)
+/area/submap/groundbase/wilderness/east/unexplored)
 "c" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "d" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
 /turf/simulated/floor/water/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "l" = (
 /turf/simulated/mineral/cave/virgo3c,
-/area/groundbase/wilderness/east/cave)
+/area/submap/groundbase/wilderness/east/cave)
 "m" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "n" = (
 /turf/simulated/floor/beach/sand/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "r" = (
 /turf/simulated/mineral/ignore_cavegen,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "t" = (
 /turf/simulated/floor/water/deep/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "y" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
 	},
 /turf/simulated/floor/water/deep/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "F" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/east/unexplored)
+/area/submap/groundbase/wilderness/east/unexplored)
 "G" = (
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/east_west{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "V" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east{
 	dir = 4
 	},
 /turf/simulated/floor/water/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "W" = (
 /obj/effect/map_effect/portal/line/side_a{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "Y" = (
 /obj/effect/map_effect/portal/line/side_a{
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 "Z" = (
 /turf/simulated/floor/water/virgo3c,
-/area/groundbase/wilderness/east)
+/area/submap/groundbase/wilderness/east)
 
 (1,1,1) = {"
 a

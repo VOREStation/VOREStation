@@ -7,13 +7,13 @@
 	density = 0
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "r" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "U" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 
 (1,1,1) = {"
 a

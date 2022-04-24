@@ -155,31 +155,12 @@
 		/area/groundbase/civilian/hydroponics/out,
 		/area/groundbase/level3/escapepad,
 		/area/maintenance/groundbase/poi/caves,
-		/area/groundbase/poi,
+		/area/submap/groundbase/poi,
 		/area/maintenance/groundbase/poi/caves,
-		/area/groundbase/poi/outdoor,
-		/area/groundbase/poi/outdoor/roofed,
-		/area/groundbase/poi/outdoor/cabin1,
-		/area/groundbase/poi/outdoor/cabin2,
-		/area/groundbase/poi/outdoor/cabin3,
-		/area/groundbase/poi/outdoor/cabin4,
-		/area/groundbase/poi/outdoor/cabin5,
 		/area/groundbase/unexplored/outdoors,
 		/area/groundbase/unexplored/rock,
 		/area/groundbase/engineering/solarshed,
-		/area/groundbase/engineering/solarfield,
-		/area/groundbase/wilderness/north,
-		/area/groundbase/wilderness/north/unexplored,
-		/area/groundbase/wilderness/north/cave,
-		/area/groundbase/wilderness/south,
-		/area/groundbase/wilderness/south/unexplored,
-		/area/groundbase/wilderness/south/cave,
-		/area/groundbase/wilderness/east,
-		/area/groundbase/wilderness/east/unexplored,
-		/area/groundbase/wilderness/east/cave,
-		/area/groundbase/wilderness/west,
-		/area/groundbase/wilderness/west/unexplored,
-		/area/groundbase/wilderness/west/cave
+		/area/groundbase/engineering/solarfield
 		)
 
 	unit_test_exempt_from_atmos = list()
@@ -508,6 +489,14 @@
 	desc = "Wilderness"
 	mappath = 'maps/groundbase/southwilds/southwilds2.dmm'
 	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
+/datum/map_template/gb_lateload/wilds/south/type3
+	name = "Southern Wilds 3"
+	desc = "Wilderness"
+	mappath = 'maps/groundbase/southwilds/southwilds3.dmm'
+	associated_map_datum = /datum/map_z_level/gb_lateload/gb_south_wilds
+/datum/map_template/gb_lateload/wilds/south/type3/on_map_loaded(z)
+	. = ..()
+	seed_submaps(list(Z_LEVEL_GB_WILD_S), 8, /area/submap/groundbase/poi/wildvillage/plot, /datum/map_template/groundbase/wildvillage)	//POI seeding
 
 /datum/map_template/gb_lateload/wilds/east/type1
 	name = "Eastern Wilds 1"

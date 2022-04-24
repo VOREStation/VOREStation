@@ -4,18 +4,18 @@
 /area/template_noop)
 "A" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "P" = (
 /obj/structure/prop/rock/crystal,
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "R" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "S" = (
 /obj/structure/table/bench/sifwooden,
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 
 (1,1,1) = {"
 a

@@ -3,7 +3,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "al" = (
 /obj/random/maintenance/clean,
 /turf/template_noop,
@@ -26,7 +26,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/roofed)
+/area/submap/groundbase/poi/outdoor/roofed)
 "aQ" = (
 /obj/structure/flora/tree/bigtree,
 /turf/template_noop,
@@ -43,7 +43,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "bP" = (
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
@@ -61,7 +61,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "cm" = (
 /obj/random/miniature,
 /turf/template_noop,
@@ -76,7 +76,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "cu" = (
 /obj/random/trash_pile,
 /turf/simulated/floor/virgo3c{
@@ -100,7 +100,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "dQ" = (
 /obj/random/maintenance/medical,
 /turf/template_noop,
@@ -109,7 +109,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "eq" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
@@ -117,7 +117,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "ey" = (
 /turf/simulated/wall,
 /area/maintenance/groundbase/poi/caves)
@@ -135,7 +135,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "fp" = (
 /obj/structure/table/standard,
 /obj/item/device/flashlight/lamp/green{
@@ -146,7 +146,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "fq" = (
 /turf/simulated/floor/reinforced/virgo3c,
 /area/maintenance/groundbase/poi/caves)
@@ -166,7 +166,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "he" = (
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
@@ -198,7 +198,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "hY" = (
 /obj/structure/fence,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -219,7 +219,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "iY" = (
 /obj/random/toolbox,
 /turf/template_noop,
@@ -234,7 +234,7 @@
 /area/template_noop)
 "kg" = (
 /turf/simulated/wall/wood,
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "kh" = (
 /obj/structure/fence/corner{
 	dir = 8
@@ -255,7 +255,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "lK" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/template_noop)
@@ -273,13 +273,13 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "md" = (
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "me" = (
 /obj/random/mech_toy,
 /turf/template_noop,
@@ -294,7 +294,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "ng" = (
 /obj/machinery/optable,
 /turf/simulated/floor/virgo3c{
@@ -308,7 +308,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "nr" = (
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
@@ -316,21 +316,21 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "nJ" = (
 /obj/structure/bed/chair/sofa/left,
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "oK" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "oS" = (
 /turf/simulated/wall,
 /area/template_noop)
@@ -344,7 +344,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/roofed)
+/area/submap/groundbase/poi/outdoor/roofed)
 "pp" = (
 /obj/random/crate,
 /turf/template_noop,
@@ -359,12 +359,12 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "pM" = (
 /turf/simulated/floor/outdoors/grass/virgo3c{
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/roofed)
+/area/submap/groundbase/poi/outdoor/roofed)
 "pQ" = (
 /obj/structure/fence/corner{
 	dir = 5
@@ -395,13 +395,13 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "rJ" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo3c,
 /area/template_noop)
 "sa" = (
 /turf/simulated/wall/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "sn" = (
 /obj/random/maintenance/research,
 /turf/template_noop,
@@ -437,13 +437,13 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "vF" = (
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "vK" = (
 /obj/random/tool,
 /turf/template_noop,
@@ -453,7 +453,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/roofed)
+/area/submap/groundbase/poi/outdoor/roofed)
 "wa" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
@@ -465,7 +465,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "wc" = (
 /obj/structure/fence/corner,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -482,7 +482,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "xr" = (
 /obj/structure/table/standard,
 /obj/item/device/flashlight/lamp/green{
@@ -493,7 +493,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "xt" = (
 /obj/random/drinksoft,
 /turf/template_noop,
@@ -504,13 +504,13 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "xR" = (
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/roofed)
+/area/submap/groundbase/poi/outdoor/roofed)
 "yH" = (
 /obj/structure/table/steel_reinforced,
 /obj/random/tool,
@@ -566,7 +566,7 @@
 /area/maintenance/groundbase/poi/caves)
 "CS" = (
 /turf/simulated/wall,
-/area/groundbase/poi/outdoor/roofed)
+/area/submap/groundbase/poi/outdoor/roofed)
 "CX" = (
 /obj/structure/bed/double,
 /turf/simulated/floor/reinforced/virgo3c,
@@ -591,7 +591,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "DG" = (
 /obj/structure/table/standard,
 /obj/item/device/flashlight/lamp{
@@ -602,10 +602,10 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "DJ" = (
 /turf/simulated/wall/wood,
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "DL" = (
 /obj/random/unidentified_medicine,
 /turf/template_noop,
@@ -617,7 +617,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "DT" = (
 /obj/item/seeds/random,
 /turf/template_noop,
@@ -628,7 +628,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "Et" = (
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
@@ -650,14 +650,14 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "FF" = (
 /obj/structure/bed/chair/sofa/black,
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "FV" = (
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
@@ -683,7 +683,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "Hh" = (
 /obj/random/contraband,
 /turf/template_noop,
@@ -695,21 +695,21 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "Hk" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "HE" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "Ij" = (
 /obj/structure/table/rack/shelf/steel,
 /turf/template_noop,
@@ -740,7 +740,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "Ku" = (
 /obj/structure/table/rack/steel,
 /obj/random/tool,
@@ -759,7 +759,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "LO" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
@@ -768,7 +768,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "Mg" = (
 /obj/random/crate,
 /obj/random/maintenance/misc,
@@ -779,7 +779,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "MO" = (
 /turf/template_noop,
 /area/template_noop)
@@ -795,7 +795,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "NI" = (
 /obj/structure/table/glass,
 /obj/item/device/flashlight/lamp/green{
@@ -806,7 +806,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "OA" = (
 /obj/random/medical/lite,
 /turf/template_noop,
@@ -834,7 +834,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "QT" = (
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
@@ -842,7 +842,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "Rd" = (
 /obj/structure/bed/chair{
 	dir = 4
@@ -851,13 +851,13 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "Rw" = (
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "Rx" = (
 /obj/random,
 /turf/template_noop,
@@ -866,7 +866,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "RJ" = (
 /obj/structure/bed/chair/sofa/corner/brown{
 	dir = 8
@@ -875,7 +875,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "RR" = (
 /obj/structure/bed/chair/sofa/corner/brown{
 	dir = 4
@@ -884,7 +884,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "RS" = (
 /obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
@@ -893,7 +893,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "Sa" = (
 /obj/structure/bed/chair/sofa/right{
 	dir = 4
@@ -902,14 +902,14 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "SA" = (
 /obj/structure/bed/chair/sofa/right/brown,
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "SM" = (
 /obj/structure/bed/chair,
 /turf/simulated/floor/virgo3c{
@@ -923,13 +923,13 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "TF" = (
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin1)
+/area/submap/groundbase/poi/outdoor/cabin1)
 "TZ" = (
 /obj/random/crate,
 /obj/random/maintenance/misc,
@@ -940,7 +940,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/roofed)
+/area/submap/groundbase/poi/outdoor/roofed)
 "Un" = (
 /obj/random/pouch,
 /turf/template_noop,
@@ -951,7 +951,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "VN" = (
 /obj/structure/table/glass,
 /obj/random/maintenance/misc,
@@ -959,12 +959,12 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "Wq" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "Wr" = (
 /obj/structure/table/bench/sifwooden,
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
@@ -975,7 +975,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "WK" = (
 /obj/random/maintenance/security,
 /turf/template_noop,
@@ -988,7 +988,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin5)
+/area/submap/groundbase/poi/outdoor/cabin5)
 "Ya" = (
 /obj/random/mainttoyloot,
 /turf/template_noop,
@@ -1003,10 +1003,10 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "Yl" = (
 /turf/simulated/wall/wood,
-/area/groundbase/poi/outdoor/cabin2)
+/area/submap/groundbase/poi/outdoor/cabin2)
 "Yp" = (
 /obj/random/meat,
 /turf/template_noop,
@@ -1031,10 +1031,10 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 "ZR" = (
 /turf/simulated/wall/wood,
-/area/groundbase/poi/outdoor/cabin3)
+/area/submap/groundbase/poi/outdoor/cabin3)
 
 (1,1,1) = {"
 lK
