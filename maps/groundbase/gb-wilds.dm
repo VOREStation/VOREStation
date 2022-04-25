@@ -43,26 +43,27 @@
 	name = "to_east_wilds"
 	portal_id = "east_west_wilds_transition"
 
-/area/groundbase/wilderness
+/area/submap/groundbase/wilderness
 	name = "wilderness"
+	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "greblacir"
-/area/groundbase/wilderness/north
-/area/groundbase/wilderness/north/unexplored
+/area/submap/groundbase/wilderness/north
+/area/submap/groundbase/wilderness/north/unexplored
 	icon_state = "orablacir"
-/area/groundbase/wilderness/north/cave
+/area/submap/groundbase/wilderness/north/cave
 	icon_state = "yelblacir"
-/area/groundbase/wilderness/south
-/area/groundbase/wilderness/south/unexplored
+/area/submap/groundbase/wilderness/south
+/area/submap/groundbase/wilderness/south/unexplored
 	icon_state = "orablacir"
-/area/groundbase/wilderness/south/cave
+/area/submap/groundbase/wilderness/south/cave
 	icon_state = "yelblacir"
-/area/groundbase/wilderness/east
-/area/groundbase/wilderness/east/unexplored
+/area/submap/groundbase/wilderness/east
+/area/submap/groundbase/wilderness/east/unexplored
 	icon_state = "orablacir"
-/area/groundbase/wilderness/east/cave
+/area/submap/groundbase/wilderness/east/cave
 	icon_state = "yelblacir"
-/area/groundbase/wilderness/west
-/area/groundbase/wilderness/west/unexplored
+/area/submap/groundbase/wilderness/west
+/area/submap/groundbase/wilderness/west/unexplored
 	icon_state = "orablacir"
-/area/groundbase/wilderness/west/cave
+/area/submap/groundbase/wilderness/west/cave
 	icon_state = "yelblacir"

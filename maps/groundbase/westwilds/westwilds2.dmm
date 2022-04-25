@@ -38,7 +38,7 @@
 /turf/simulated/floor/beach/sand/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west/unexplored)
+/area/submap/groundbase/wilderness/west/unexplored)
 "at" = (
 /obj/structure/cable/green{
 	icon_state = "1-4"
@@ -95,7 +95,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "bf" = (
 /obj/structure/cable/green{
 	icon_state = "1-8"
@@ -436,10 +436,10 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "fM" = (
 /turf/simulated/mineral/ignore_cavegen,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "fQ" = (
 /obj/machinery/chem_master,
 /obj/machinery/camera/network/research_outpost{
@@ -605,7 +605,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "hB" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -639,7 +639,7 @@
 	icon_state = "1-2"
 	},
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "if" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -672,7 +672,7 @@
 /turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "iJ" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	dir = 1
@@ -702,7 +702,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "jb" = (
 /obj/effect/floor_decal/industrial/outline/blue,
 /obj/machinery/atmospherics/portables_connector{
@@ -710,6 +710,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
+"jc" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/engineering/solarfield)
 "je" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -759,7 +770,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "jA" = (
 /obj/structure/railing,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -841,7 +852,7 @@
 /turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "ki" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -912,7 +923,7 @@
 /area/groundbase/science/outpost/anomaly_testing)
 "kQ" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "kT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -981,7 +992,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "lJ" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 9
@@ -996,7 +1007,7 @@
 /area/groundbase/science/outpost/anomaly_testing)
 "lO" = (
 /turf/unsimulated/wall/planetary/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "lS" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -1062,7 +1073,7 @@
 	icon_state = "1-8"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "mC" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 10
@@ -1082,7 +1093,7 @@
 /turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "mL" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/blue{
 	dir = 4
@@ -1160,7 +1171,7 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "nr" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west/unexplored)
+/area/submap/groundbase/wilderness/west/unexplored)
 "nv" = (
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_testing)
@@ -1253,7 +1264,9 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/toxins_mixing)
 "pd" = (
-/obj/machinery/power/tracker,
+/obj/machinery/power/tracker{
+	SOLAR_MAX_DIST = 140
+	},
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
@@ -1340,7 +1353,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "pO" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 4
@@ -1506,7 +1519,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "rr" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/cyan{
 	dir = 8
@@ -1596,7 +1609,9 @@
 /obj/structure/cable{
 	icon_state = "0-2"
 	},
-/obj/machinery/power/solar,
+/obj/machinery/power/solar{
+	SOLAR_MAX_DIST = 140
+	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
@@ -1621,7 +1636,7 @@
 	dir = 5
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "sR" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -1643,6 +1658,17 @@
 	},
 /obj/structure/cable{
 	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/engineering/solarfield)
+"sZ" = (
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
@@ -1749,7 +1775,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "uj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible{
 	dir = 4
@@ -1789,7 +1815,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "uy" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
@@ -1882,7 +1908,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "vy" = (
 /obj/machinery/light{
 	dir = 4
@@ -1975,7 +2001,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "wj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	dir = 1
@@ -2094,7 +2120,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "xv" = (
 /obj/machinery/suspension_gen,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -2343,7 +2369,7 @@
 /turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "zT" = (
 /obj/machinery/bomb_tester,
 /turf/simulated/floor/tiled/steel_grid,
@@ -2616,11 +2642,9 @@
 /area/groundbase/science/outpost/toxins_lab)
 "Cm" = (
 /obj/structure/cable{
-	icon_state = "0-2"
+	icon_state = "1-4"
 	},
-/obj/structure/cable,
-/obj/machinery/power/solar,
-/turf/simulated/floor/virgo3c{
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
 /area/groundbase/engineering/solarfield)
@@ -2631,12 +2655,12 @@
 "Cw" = (
 /obj/structure/anomaly_container,
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "CL" = (
 /turf/unsimulated/wall/planetary/virgo3c{
 	icon_state = "riveted"
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Dk" = (
 /obj/structure/cable/heavyduty{
 	icon_state = "4-8"
@@ -2651,7 +2675,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Dn" = (
 /obj/item/device/radio/intercom{
 	pixel_y = -24
@@ -2669,7 +2693,7 @@
 /turf/simulated/floor/water/virgo3c{
 	outdoors = 0
 	},
-/area/groundbase/wilderness/west/unexplored)
+/area/submap/groundbase/wilderness/west/unexplored)
 "DF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -2863,7 +2887,7 @@
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Fz" = (
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8
@@ -2975,7 +2999,7 @@
 	icon_state = "2-4"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "GH" = (
 /obj/machinery/power/terminal{
 	dir = 1
@@ -2990,7 +3014,9 @@
 /area/groundbase/science/outpost/substation)
 "GK" = (
 /obj/structure/cable,
-/obj/machinery/power/solar,
+/obj/machinery/power/solar{
+	SOLAR_MAX_DIST = 140
+	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
@@ -3038,7 +3064,7 @@
 	dir = 10
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Hr" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -3243,7 +3269,7 @@
 	dir = 6
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "IO" = (
 /obj/structure/window/reinforced{
 	dir = 1
@@ -3276,6 +3302,14 @@
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/science/outpost/toxins_mixing)
+"IV" = (
+/obj/structure/cable{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/engineering/solarfield)
 "IX" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 8
@@ -3309,7 +3343,7 @@
 	dir = 9
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "JE" = (
 /obj/structure/dispenser,
 /turf/simulated/floor/tiled,
@@ -3328,7 +3362,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "JL" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -3363,7 +3397,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Kw" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
@@ -3391,7 +3425,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "KI" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/tiled,
@@ -3584,7 +3618,7 @@
 /turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "NG" = (
 /obj/structure/table/standard,
 /obj/item/weapon/tank/phoron,
@@ -3994,7 +4028,7 @@
 /turf/simulated/floor/tiled/asteroid_steel/outdoors/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Ti" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled/dark,
@@ -4076,7 +4110,7 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "UN" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxing_gasworks)
@@ -4098,7 +4132,7 @@
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
 	},
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Vk" = (
 /obj/machinery/power/apc{
 	dir = 8
@@ -4118,7 +4152,7 @@
 	dir = 4
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "VG" = (
 /obj/structure/cable/green{
 	icon_state = "4-8"
@@ -4162,7 +4196,7 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "Wl" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "Wm" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red{
 	dir = 5
@@ -4266,7 +4300,7 @@
 /area/groundbase/science/outpost/toxins_mixing)
 "XS" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/wilderness/west)
+/area/submap/groundbase/wilderness/west)
 "XW" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -4373,7 +4407,7 @@
 /area/groundbase/science/outpost/substation)
 "YK" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
-/area/groundbase/wilderness/west/unexplored)
+/area/submap/groundbase/wilderness/west/unexplored)
 "YL" = (
 /obj/structure/closet/excavation,
 /obj/machinery/firealarm,
@@ -4414,7 +4448,7 @@
 /area/groundbase/science/outpost/toxins_lab)
 "Zm" = (
 /turf/simulated/mineral/cave/virgo3c,
-/area/groundbase/wilderness/west/cave)
+/area/submap/groundbase/wilderness/west/cave)
 "Zw" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -6954,24 +6988,24 @@ nr
 jA
 dT
 sw
-sW
 Cm
-sW
+sw
 Cm
-sW
+sw
 Cm
+sw
 sW
 GK
 dT
 dT
 dT
 sw
-sW
 Cm
-sW
+sw
 Cm
-sW
+sw
 Cm
+sw
 sW
 GK
 dT
@@ -7096,24 +7130,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 dT
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -7238,24 +7272,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 dT
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -7380,24 +7414,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 dT
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -7522,24 +7556,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 dT
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -8090,24 +8124,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -8232,24 +8266,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -8374,24 +8408,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -8516,24 +8550,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -8658,24 +8692,24 @@ nr
 jA
 dT
 sw
-yE
-Cm
-yE
-Cm
-yE
-Cm
+IV
+sw
+IV
+sw
+IV
+sw
 yE
 GK
 dT
 vh
 dT
 sw
-yE
-Cm
-yE
-Cm
-yE
-Cm
+IV
+sw
+IV
+sw
+IV
+sw
 yE
 GK
 dT
@@ -9226,24 +9260,24 @@ nr
 jA
 dT
 sw
-sW
 Cm
-sW
+sw
 Cm
-sW
+sw
 Cm
+sw
 sW
 GK
 dT
 vh
 dT
 sw
-sW
 Cm
-sW
+sw
 Cm
-sW
+sw
 Cm
+sw
 sW
 GK
 dT
@@ -9368,24 +9402,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -9510,24 +9544,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -9652,24 +9686,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -9794,24 +9828,24 @@ me
 nC
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -10362,24 +10396,24 @@ nc
 qc
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -10504,24 +10538,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -10646,24 +10680,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -10788,24 +10822,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -10930,24 +10964,24 @@ nr
 jA
 dT
 sw
-yE
-Cm
-yE
-Cm
-yE
-Cm
+IV
+sw
+IV
+sw
+IV
+sw
 yE
 GK
 dT
 vh
 dT
 sw
-yE
-Cm
-yE
-Cm
-yE
-Cm
+IV
+sw
+IV
+sw
+IV
+sw
 yE
 GK
 dT
@@ -11498,24 +11532,24 @@ nr
 jA
 dT
 sw
-sW
 Cm
-sW
+sw
 Cm
-sW
+sw
 Cm
+sw
 sW
 GK
 dT
 vh
 dT
 sw
-sW
 Cm
-sW
+sw
 Cm
-sW
+sw
 Cm
+sw
 sW
 GK
 dT
@@ -11640,24 +11674,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -11782,24 +11816,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -11924,24 +11958,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -12066,24 +12100,24 @@ nr
 jA
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
 vh
 dT
 sw
-tL
-Cm
-tL
-Cm
-tL
-Cm
+sZ
+sw
+sZ
+sw
+sZ
+sw
 tL
 GK
 dT
@@ -12634,24 +12668,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -12776,24 +12810,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -12918,24 +12952,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -13060,24 +13094,24 @@ nr
 jA
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
 vh
 dT
 sw
-xI
-Cm
-xI
-Cm
-xI
-Cm
+jc
+sw
+jc
+sw
+jc
+sw
 xI
 GK
 dT
@@ -13202,24 +13236,24 @@ nr
 jA
 dT
 sw
-yE
-Cm
-yE
-Cm
-yE
-Cm
+IV
+sw
+IV
+sw
+IV
+sw
 yE
 GK
 dT
 vh
 dT
 sw
-yE
-Cm
-yE
-Cm
-yE
-Cm
+IV
+sw
+IV
+sw
+IV
+sw
 yE
 GK
 dT

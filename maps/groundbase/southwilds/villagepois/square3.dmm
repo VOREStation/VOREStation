@@ -1,0 +1,258 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"c" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"j" = (
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"m" = (
+/obj/structure/bed/chair/sofa/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"v" = (
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"w" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"z" = (
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"B" = (
+/obj/structure/simple_door/iron,
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"F" = (
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"G" = (
+/obj/structure/bed/chair/sofa/left/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"H" = (
+/obj/structure/simple_door/iron,
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"N" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/browndouble,
+/obj/structure/curtain/open/bed{
+	color = "#5e0c1d"
+	},
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"P" = (
+/obj/structure/bed/chair/sofa/right/brown{
+	dir = 1
+	},
+/turf/simulated/floor/wood/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"Q" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"R" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"U" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+"W" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square3)
+
+(1,1,1) = {"
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+"}
+(2,1,1) = {"
+v
+v
+v
+v
+U
+U
+c
+c
+c
+U
+U
+v
+"}
+(3,1,1) = {"
+Q
+v
+v
+v
+U
+z
+z
+z
+z
+w
+U
+v
+"}
+(4,1,1) = {"
+F
+F
+F
+F
+H
+z
+z
+z
+z
+G
+c
+v
+"}
+(5,1,1) = {"
+Q
+v
+v
+v
+U
+w
+z
+z
+z
+m
+c
+v
+"}
+(6,1,1) = {"
+v
+v
+v
+v
+U
+w
+w
+z
+z
+P
+U
+v
+"}
+(7,1,1) = {"
+v
+v
+v
+v
+U
+U
+U
+B
+U
+U
+U
+v
+"}
+(8,1,1) = {"
+v
+v
+v
+v
+U
+W
+j
+j
+j
+W
+U
+v
+"}
+(9,1,1) = {"
+v
+v
+v
+v
+U
+W
+j
+j
+j
+N
+U
+v
+"}
+(10,1,1) = {"
+v
+v
+v
+v
+U
+W
+j
+j
+j
+R
+U
+v
+"}
+(11,1,1) = {"
+v
+v
+v
+v
+U
+U
+U
+U
+U
+U
+U
+v
+"}
+(12,1,1) = {"
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+"}

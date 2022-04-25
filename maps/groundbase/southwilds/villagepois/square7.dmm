@@ -1,0 +1,199 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"n" = (
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"o" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"q" = (
+/obj/structure/simple_door/iron,
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"v" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"y" = (
+/obj/structure/table/marble,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"N" = (
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"R" = (
+/turf/simulated/floor/lino,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+
+(1,1,1) = {"
+a
+a
+a
+o
+N
+o
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+v
+v
+q
+v
+v
+v
+v
+v
+v
+a
+"}
+(3,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+v
+R
+R
+R
+a
+"}
+(4,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+y
+R
+R
+R
+a
+"}
+(5,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+y
+R
+R
+R
+a
+"}
+(6,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+y
+R
+R
+R
+a
+"}
+(7,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+y
+R
+R
+R
+a
+"}
+(8,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+y
+R
+R
+R
+a
+"}
+(9,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+y
+R
+R
+R
+a
+"}
+(10,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+v
+R
+R
+R
+a
+"}
+(11,1,1) = {"
+a
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
