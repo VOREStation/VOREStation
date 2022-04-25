@@ -32,6 +32,12 @@ SUBSYSTEM_DEF(shuttles)
 
 	var/tmp/list/current_run                       // Shuttles remaining to process this fire() tick
 
+<<<<<<< HEAD
+=======
+/datum/controller/subsystem/shuttles/OnNew()
+	global.shuttle_controller = src // TODO - Remove this! Change everything to point at SSshuttles intead
+
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 /datum/controller/subsystem/shuttles/Initialize(timeofday)
 	last_landmark_registration_time = world.time
 	// Find all declared shuttle datums and initailize them. (Okay, queue them for initialization a few lines further down)
@@ -43,7 +49,6 @@ SUBSYSTEM_DEF(shuttles)
 			LAZYDISTINCTADD(shuttles_to_initialize, shuttle_type)
 	block_init_queue = FALSE
 	process_init_queues()
-	return ..()
 
 /datum/controller/subsystem/shuttles/fire(resumed = 0)
 	if (!resumed)

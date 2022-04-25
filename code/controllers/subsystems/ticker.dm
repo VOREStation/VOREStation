@@ -43,10 +43,10 @@ SUBSYSTEM_DEF(ticker)
 
 // This global variable exists for legacy support so we don't have to rename every 'ticker' to 'SSticker' yet.
 var/global/datum/controller/subsystem/ticker/ticker
-/datum/controller/subsystem/ticker/PreInit()
+/datum/controller/subsystem/ticker/OnNew()
 	global.ticker = src // TODO - Remove this! Change everything to point at SSticker intead
 
-/datum/controller/subsystem/ticker/Initialize()
+/datum/controller/subsystem/ticker/Initialize(timeofday)
 	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
 	SSwebhooks.send(
@@ -57,7 +57,6 @@ var/global/datum/controller/subsystem/ticker/ticker
 		)
 	)
 	GLOB.autospeaker = new (null, null, null, 1) //Set up Global Announcer
-	return ..()
 
 /datum/controller/subsystem/ticker/fire(resumed = FALSE)
 	switch(current_state)

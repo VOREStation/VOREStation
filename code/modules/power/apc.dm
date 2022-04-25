@@ -1120,7 +1120,7 @@ GLOBAL_LIST_EMPTY(apcs)
 		equipment = autoset(equipment, 0)
 		lighting = autoset(lighting, 0)
 		environ = autoset(environ, 0)
-		power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
+		GLOB.power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 		autoflag = 0
 
 	// update icon & area power if anything changed
@@ -1144,27 +1144,27 @@ GLOBAL_LIST_EMPTY(apcs)
 			lighting = autoset(lighting, 1)
 			environ = autoset(environ, 1)
 			autoflag = 3
-			power_alarm.clearAlarm(loc, src)
+			GLOB.power_alarm.clearAlarm(loc, src)
 	else if((cell.percent() <= 30) && (cell.percent() > 15) && longtermpower < 0)                       // <30%, turn off equipment
 		if(autoflag != 2)
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 1)
 			environ = autoset(environ, 1)
-			power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
+			GLOB.power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 			autoflag = 2
 	else if(cell.percent() <= 15)        // <15%, turn off lighting & equipment
 		if((autoflag > 1 && longtermpower < 0) || (autoflag > 1 && longtermpower >= 0))
 			equipment = autoset(equipment, 2)
 			lighting = autoset(lighting, 2)
 			environ = autoset(environ, 1)
-			power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
+			GLOB.power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 			autoflag = 1
 	else                                   // zero charge, turn all off
 		if(autoflag != 0)
 			equipment = autoset(equipment, 0)
 			lighting = autoset(lighting, 0)
 			environ = autoset(environ, 0)
-			power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
+			GLOB.power_alarm.triggerAlarm(loc, src, hidden=alarms_hidden)
 			autoflag = 0
 
 // val 0=off, 1=off(auto) 2=on 3=on(auto)
@@ -1289,7 +1289,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	//start with main breaker off, chargemode in the default state and all channels on auto upon reboot
 	operating = 0
 	chargemode = initial(chargemode)
-	power_alarm.clearAlarm(loc, src)
+	GLOB.power_alarm.clearAlarm(loc, src)
 
 	lighting = POWERCHAN_ON_AUTO
 	equipment = POWERCHAN_ON_AUTO

@@ -10,7 +10,6 @@ SUBSYSTEM_DEF(mapping)
 	var/list/shelter_templates = list()
 
 /datum/controller/subsystem/mapping/Recover()
-	flags |= SS_NO_INIT // Make extra sure we don't initialize twice.
 	shelter_templates = SSmapping.shelter_templates
 
 /datum/controller/subsystem/mapping/Initialize(timeofday)
@@ -29,9 +28,14 @@ SUBSYSTEM_DEF(mapping)
 	// Mining generation probably should be here too
 	// TODO - Other stuff related to maps and areas could be moved here too.  Look at /tg
 	// Lateload Code related to Expedition areas.
+<<<<<<< HEAD
 	if(using_map) // VOREStation Edit: Re-enable this.
 		loadLateMaps()
 	..()
+=======
+	// if(using_map)
+		// loadLateMaps()
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 
 /datum/controller/subsystem/mapping/proc/load_map_templates()
 	for(var/datum/map_template/template as anything in subtypesof(/datum/map_template))

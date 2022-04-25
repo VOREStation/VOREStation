@@ -17,7 +17,6 @@ SUBSYSTEM_DEF(planets)
 /datum/controller/subsystem/planets/Initialize(timeofday)
 	admin_notice("<span class='danger'>Initializing planetary weather.</span>", R_DEBUG)
 	createPlanets()
-	..()
 
 /datum/controller/subsystem/planets/proc/createPlanets()
 	var/list/planet_datums = using_map.planet_datums_to_make

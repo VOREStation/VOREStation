@@ -4,7 +4,6 @@ SUBSYSTEM_DEF(supply)
 	name = "Supply"
 	wait = 20 SECONDS
 	priority = FIRE_PRIORITY_SUPPLY
-	//Initializes at default time
 	flags = SS_NO_TICK_CHECK
 
 	//supply points
@@ -24,7 +23,7 @@ SUBSYSTEM_DEF(supply)
 	var/movetime = 1200
 	var/datum/shuttle/autodock/ferry/supply/shuttle
 
-/datum/controller/subsystem/supply/Initialize()
+/datum/controller/subsystem/supply/Initialize(timeofday)
 	ordernum = rand(1,9000)
 
 	// build master supply list
@@ -34,8 +33,6 @@ SUBSYSTEM_DEF(supply)
 			supply_pack[P.name] = P
 		else
 			qdel(P)
-
-	. = ..()
 
 // Supply shuttle ticker - handles supply point regeneration. Just add points over time.
 /datum/controller/subsystem/supply/fire()

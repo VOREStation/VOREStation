@@ -29,7 +29,7 @@ SUBSYSTEM_DEF(garbage)
 	#endif
 
 
-/datum/controller/subsystem/garbage/PreInit()
+/datum/controller/subsystem/garbage/OnNew()
 	queues = new(GC_QUEUE_COUNT)
 	pass_counts = new(GC_QUEUE_COUNT)
 	fail_counts = new(GC_QUEUE_COUNT)

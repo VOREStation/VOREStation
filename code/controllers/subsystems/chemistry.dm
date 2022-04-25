@@ -15,10 +15,9 @@ SUBSYSTEM_DEF(chemistry)
 	chemical_reactions = SSchemistry.chemical_reactions
 	chemical_reagents = SSchemistry.chemical_reagents
 
-/datum/controller/subsystem/chemistry/Initialize()
+/datum/controller/subsystem/chemistry/Initialize(timeofday)
 	initialize_chemical_reagents()
 	initialize_chemical_reactions()
-	..()
 
 /datum/controller/subsystem/chemistry/stat_entry()
 	..("C: [chemical_reagents.len] | R: [chemical_reactions.len]")

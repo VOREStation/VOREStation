@@ -67,14 +67,14 @@
 #define SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/##X);\
 /datum/controller/subsystem/##X/New(){\
     NEW_SS_GLOBAL(SS##X);\
-    PreInit();\
+    OnNew();\
 }\
 /datum/controller/subsystem/##X
 
 #define PROCESSING_SUBSYSTEM_DEF(X) GLOBAL_REAL(SS##X, /datum/controller/subsystem/processing/##X);\
 /datum/controller/subsystem/processing/##X/New(){\
     NEW_SS_GLOBAL(SS##X);\
-    PreInit();\
+    OnNew();\
 }\
 /datum/controller/subsystem/processing/##X
 

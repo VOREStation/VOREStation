@@ -5,6 +5,7 @@ SUBSYSTEM_DEF(persistence)
 	var/list/tracking_values = list()
 	var/list/persistence_datums = list()
 
+<<<<<<< HEAD
 	/// Places our subsystem can spawn paintings (helps with art spawning differently across maps)
 	var/list/obj/structure/sign/painting/painting_frames = list()
 	var/list/all_paintings = list()
@@ -13,6 +14,11 @@ SUBSYSTEM_DEF(persistence)
 /datum/controller/subsystem/persistence/Initialize()
 	. = ..()
 	for(var/datum/persistent/P as anything in subtypesof(/datum/persistent))
+=======
+/datum/controller/subsystem/persistence/Initialize(timeofday)
+	for(var/thing in subtypesof(/datum/persistent))
+		var/datum/persistent/P = thing
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 		if(initial(P.name))
 			P = new P
 			persistence_datums[P.type] = P

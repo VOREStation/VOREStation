@@ -28,7 +28,6 @@ SUBSYSTEM_DEF(machines)
 	admin_notice("<span class='danger'>Initializing atmos machinery.</span>", R_DEBUG)
 	setup_atmos_machinery(global.machines)
 	fire()
-	..()
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
 	var/timer = TICK_USAGE
@@ -156,6 +155,7 @@ SUBSYSTEM_DEF(machines)
 		if(MC_TICK_CHECK)
 			return
 
+<<<<<<< HEAD
 /datum/controller/subsystem/machines/Recover()
 	for(var/datum/D as anything in global.pipe_networks)
 		if(!istype(D, /datum/pipe_network))
@@ -173,6 +173,8 @@ SUBSYSTEM_DEF(machines)
 		if(!istype(D, /obj/item))
 			error("Found wrong type during SSmachinery recovery: list=global.processing_power_items, item=[D], type=[D?.type]")
 			global.processing_power_items -= D
+=======
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 
 #undef SSMACHINES_PIPENETS
 #undef SSMACHINES_MACHINERY

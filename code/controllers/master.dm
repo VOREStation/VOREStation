@@ -11,7 +11,7 @@
 GLOBAL_REAL(Master, /datum/controller/master) = new
 
 //THIS IS THE INIT ORDER
-//Master -> SSPreInit -> GLOB -> world -> config -> SSInit -> Failsafe
+//Master -> SSOnNew -> GLOB -> world -> config -> SSInit -> Failsafe
 //GOT IT MEMORIZED?
 
 /datum/controller/master
@@ -181,7 +181,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	for (var/datum/controller/subsystem/SS in subsystems)
 		if (SS.flags & SS_NO_INIT)
 			continue
-		SS.Initialize(REALTIMEOFDAY)
+		SS.DoInitialize(REALTIMEOFDAY)
 		CHECK_TICK
 	current_ticklimit = TICK_LIMIT_RUNNING
 	var/time = (REALTIMEOFDAY - start_timeofday) / 10

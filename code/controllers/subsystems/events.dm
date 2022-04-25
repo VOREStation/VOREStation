@@ -12,8 +12,13 @@ SUBSYSTEM_DEF(events)
 
 	var/datum/event_meta/new_event = new
 
+<<<<<<< HEAD
 /datum/controller/subsystem/events/Initialize()
 	allEvents = subtypesof(/datum/event)
+=======
+/datum/controller/subsystem/events/Initialize(timeofday)
+	allEvents = typesof(/datum/event) - /datum/event
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 	event_containers = list(
 			EVENT_LEVEL_MUNDANE 	= new/datum/event_container/mundane,
 			EVENT_LEVEL_MODERATE	= new/datum/event_container/moderate,
@@ -21,7 +26,6 @@ SUBSYSTEM_DEF(events)
 		)
 	if(global.using_map.use_overmap)
 		GLOB.overmap_event_handler.create_events(global.using_map.overmap_z, global.using_map.overmap_size, global.using_map.overmap_event_areas)
-	return ..()
 
 /datum/controller/subsystem/events/fire(resumed)
 	if (!resumed)

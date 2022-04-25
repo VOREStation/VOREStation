@@ -11,6 +11,7 @@ SUBSYSTEM_DEF(character_setup)
 	var/list/newplayers_requiring_init = list()
 
 	var/list/save_queue = list()
+<<<<<<< HEAD
 /*
 /datum/controller/subsystem/character_setup/Initialize()
 	while(prefs_awaiting_setup.len)
@@ -24,6 +25,10 @@ SUBSYSTEM_DEF(character_setup)
 	. = ..()
 */	//Might be useful if we ever switch to Bay prefs.
 /datum/controller/subsystem/character_setup/fire(resumed = FALSE)
+=======
+
+/datum/controller/subsystem/character_setup/fire(resumed, no_mc_tick)
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 	while(save_queue.len)
 		var/datum/preferences/prefs = save_queue[save_queue.len]
 		save_queue.len--

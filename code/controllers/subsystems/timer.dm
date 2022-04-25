@@ -28,7 +28,7 @@ SUBSYSTEM_DEF(timer)
 	var/static/last_invoke_warning = 0
 	var/static/bucket_auto_reset = TRUE
 
-/datum/controller/subsystem/timer/PreInit()
+/datum/controller/subsystem/timer/OnNew()
 	bucket_list.len = BUCKET_LEN
 	head_offset = world.time
 	bucket_resolution = world.tick_lag

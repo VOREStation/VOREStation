@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(lighting)
 
 
 /datum/controller/subsystem/lighting/Initialize(timeofday)
+<<<<<<< HEAD
 	if(!subsystem_initialized)
 		if (config.starlight)
 			for(var/area/A in world)
@@ -25,6 +26,17 @@ SUBSYSTEM_DEF(lighting)
 	fire(FALSE, TRUE)
 
 	return ..()
+=======
+	if(!lighting_overlays_initialised)
+		// TODO - TG initializes starlight here.
+		create_all_lighting_overlays()
+		lighting_overlays_initialised = TRUE
+
+	// Pre-process lighting once before the round starts.
+	internal_process_lights(FALSE, TRUE)
+	internal_process_corners(FALSE, TRUE)
+	internal_process_overlays(FALSE, TRUE)
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 
 /datum/controller/subsystem/lighting/fire(resumed, init_tick_checks)
 	MC_SPLIT_TICK_INIT(3)

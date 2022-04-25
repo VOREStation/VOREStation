@@ -35,10 +35,47 @@
 //Do not override
 ///datum/controller/subsystem/New()
 
+<<<<<<< HEAD
 // Used to initialize the subsystem BEFORE the map has loaded
 // Called AFTER Recover if that is called
 // Prefer to use Initialize if possible
 /datum/controller/subsystem/proc/PreInit()
+=======
+/datum/controller/subsystem/Destroy()
+	dequeue()
+	can_fire = 0
+	flags |= SS_NO_FIRE
+	Master.subsystems -= src
+	return ..()
+
+
+/// Wrapper for non-implementation initialization behaviors.
+/datum/controller/subsystem/proc/DoInitialize(timeofday)
+	Initialize(timeofday)
+	subsystem_initialized = TRUE
+	var/time = (REALTIMEOFDAY - timeofday) / 10
+	var/msg = "Initialized [name] subsystem within [time] second[time == 1 ? "" : "s"]!"
+	to_chat(world, "<span class='boldannounce'>[msg]</span>")
+	log_world(msg)
+	return time
+
+
+// Do not implement any base behaviors here.
+/// Initializes the subsystem exactly once, AFTER map load, run by the MC and passed REALTIMEOFDAY. The preferred initialization proc.
+/datum/controller/subsystem/Initialize(timeofday)
+	return
+
+
+// Do not implement any base behaviors here.
+/// Called in subsystem/New if there is an existing instance of the subsystem, on the existing instance, before it is deleted.
+/datum/controller/subsystem/Recover()
+	return
+
+
+// Do not implement any base behaviors here.
+/// Called in subsystem/New - happens BEFORE map load, and ALSO every time the subsystem is Recovered, AFTER being Recovered.
+/datum/controller/subsystem/proc/OnNew()
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 	return
 
 //This is used so the mc knows when the subsystem sleeps. do not override.

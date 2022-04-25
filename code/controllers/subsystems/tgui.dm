@@ -21,8 +21,14 @@ SUBSYSTEM_DEF(tgui)
 	/// The HTML base used for all UIs.
 	var/basehtml
 
+<<<<<<< HEAD
 /datum/controller/subsystem/tgui/PreInit()
 	basehtml = file2text('tgui/public/tgui.html')
+=======
+/datum/controller/subsystem/tgui/OnNew()
+	base_html = file2text('tgui/packages/tgui/public/tgui.html')
+
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 
 /datum/controller/subsystem/tgui/Shutdown()
 	close_all_uis()

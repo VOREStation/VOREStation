@@ -13,6 +13,7 @@ SUBSYSTEM_DEF(skybox)
 	var/static/list/phase_shift_by_x = list()
 	var/static/list/phase_shift_by_y = list()
 
+<<<<<<< HEAD
 /datum/controller/subsystem/skybox/PreInit()
 	//Shuffle some lists
 	phase_shift_by_x = get_cross_shift_list(15)
@@ -29,6 +30,9 @@ SUBSYSTEM_DEF(skybox)
 	normal_space.icon = 'icons/turf/space.dmi'
 	normal_space.icon_state = "white"
 	
+=======
+/datum/controller/subsystem/skybox/OnNew()
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 	//Static
 	for (var/i in 0 to 25)
 		var/mutable_appearance/MA = new(normal_space)
@@ -87,10 +91,6 @@ SUBSYSTEM_DEF(skybox)
 
 		mapedge_cache["[dir]"] = MA
 
-	. = ..()
-
-/datum/controller/subsystem/skybox/Initialize()
-	. = ..()
 
 /datum/controller/subsystem/skybox/proc/get_skybox(z)
 	if(!subsystem_initialized)

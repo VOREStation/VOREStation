@@ -16,7 +16,6 @@ SUBSYSTEM_DEF(xenoarch)
 
 /datum/controller/subsystem/xenoarch/Initialize(timeofday)
 	SetupXenoarch()
-	..()
 
 /datum/controller/subsystem/xenoarch/Recover()
 	if (istype(SSxenoarch.artifact_spawning_turfs))

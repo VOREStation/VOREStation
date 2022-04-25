@@ -14,12 +14,13 @@ SUBSYSTEM_DEF(overlays)
 	var/static/image/iconbro
 	var/static/image/appearance_bro
 
-/datum/controller/subsystem/overlays/PreInit()
+/datum/controller/subsystem/overlays/OnNew()
 	overlay_icon_state_caches = list()
 	overlay_icon_cache = list()
 	queue = list()
 	stats = list()
 
+<<<<<<< HEAD
 	stringbro = new()
 	iconbro = new()
 	appearance_bro = new()
@@ -27,6 +28,10 @@ SUBSYSTEM_DEF(overlays)
 /datum/controller/subsystem/overlays/Initialize()
 	fire(mc_check = FALSE)
 	..()
+=======
+/datum/controller/subsystem/overlays/Initialize(timeofday)
+	fire(FALSE, TRUE)
+>>>>>>> b8f4f620d2f... Merge pull request #8518 from Spookerton/spkrtn/sys/ssalarm
 
 /datum/controller/subsystem/overlays/stat_entry()
 	..("Ov:[length(queue)]")
