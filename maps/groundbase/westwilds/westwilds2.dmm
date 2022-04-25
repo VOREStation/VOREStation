@@ -1265,7 +1265,7 @@
 /area/groundbase/science/outpost/toxins_mixing)
 "pd" = (
 /obj/machinery/power/tracker{
-	max_solar_distance = 140
+	SOLAR_MAX_DIST = 140
 	},
 /obj/structure/cable{
 	icon_state = "0-2"
@@ -1610,7 +1610,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/solar{
-	max_solar_distance = 140
+	SOLAR_MAX_DIST = 140
 	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
@@ -3015,7 +3015,7 @@
 "GK" = (
 /obj/structure/cable,
 /obj/machinery/power/solar{
-	max_solar_distance = 140
+	SOLAR_MAX_DIST = 140
 	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1

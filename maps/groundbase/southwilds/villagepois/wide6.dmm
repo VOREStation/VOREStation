@@ -1,0 +1,252 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"B" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"Z" = (
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+a
+"}
+(3,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(4,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(5,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(6,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(7,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(8,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(9,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(10,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(11,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(12,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(13,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(14,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(15,1,1) = {"
+a
+B
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+Z
+B
+a
+"}
+(16,1,1) = {"
+a
+B
+B
+B
+B
+B
+B
+B
+B
+B
+B
+a
+"}
+(17,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

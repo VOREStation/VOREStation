@@ -1,7 +1,7 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "b" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/random/maintenance/misc,
@@ -13,7 +13,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "c" = (
 /obj/structure/curtain/black{
 	pixel_y = -32
@@ -25,7 +25,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "e" = (
 /obj/structure/table/standard,
 /obj/item/device/flashlight/lamp/green{
@@ -35,18 +35,18 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "f" = (
 /obj/structure/simple_door/iron,
 /turf/simulated/floor/bmarble,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "g" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/carpet/sblucarpet,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "i" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "j" = (
 /obj/structure/curtain/black{
 	pixel_y = 32
@@ -56,18 +56,18 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "k" = (
 /obj/structure/bonfire,
 /turf/simulated/floor,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "l" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "m" = (
 /obj/structure/bed/chair/sofa/right/brown{
 	dir = 8
@@ -76,7 +76,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "n" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 4
@@ -85,17 +85,17 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "p" = (
 /obj/structure/table/standard,
 /obj/item/device/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/carpet/sblucarpet,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "q" = (
 /turf/simulated/floor/wmarble,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "r" = (
 /obj/structure/bed/chair/sofa/brown{
 	dir = 8
@@ -104,7 +104,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "s" = (
 /obj/structure/curtain/black{
 	pixel_y = 32
@@ -117,23 +117,23 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "t" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/item/clothing/shoes/boots/jackboots,
 /turf/simulated/floor/wmarble,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "y" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "z" = (
 /turf/simulated/floor/wood/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "A" = (
 /obj/structure/curtain/black{
 	pixel_y = -32
@@ -145,10 +145,10 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "B" = (
 /turf/simulated/wall,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "D" = (
 /obj/structure/bed/chair/sofa/corner/brown{
 	dir = 8
@@ -157,7 +157,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "E" = (
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
@@ -166,14 +166,14 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "G" = (
 /turf/simulated/floor/carpet/sblucarpet,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "H" = (
 /obj/structure/coatrack,
 /turf/simulated/floor/wmarble,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "K" = (
 /obj/structure/curtain/black{
 	pixel_y = 32
@@ -182,7 +182,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "M" = (
 /obj/structure/curtain/black{
 	pixel_x = -32
@@ -191,7 +191,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "N" = (
 /obj/structure/bed/double/padded,
 /obj/item/weapon/bedsheet/browndouble,
@@ -199,15 +199,15 @@
 	color = "#5e0c1d"
 	},
 /turf/simulated/floor/carpet/sblucarpet,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "O" = (
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "P" = (
 /obj/structure/table/rack/steel,
 /obj/fiftyspawner/log,
 /turf/simulated/floor/bmarble,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "R" = (
 /obj/structure/table/rack/steel,
 /obj/random/maintenance/misc,
@@ -218,7 +218,7 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "V" = (
 /obj/structure/bed/chair/comfy/black{
 	dir = 8
@@ -227,24 +227,24 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "W" = (
 /obj/structure/curtain/black{
 	pixel_x = 32
 	},
 /turf/simulated/floor/carpet/sblucarpet,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "X" = (
 /turf/simulated/floor/bmarble,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "Y" = (
 /obj/structure/simple_door/iron,
 /turf/simulated/floor/tiled/steel_ridged,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 "Z" = (
 /obj/structure/table/standard,
 /turf/simulated/floor/carpet/sblucarpet,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage/wide/wide1)
 
 (1,1,1) = {"
 a
