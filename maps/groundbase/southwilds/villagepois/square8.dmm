@@ -1,0 +1,206 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"d" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"f" = (
+/obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"h" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"n" = (
+/obj/structure/table/rack/shelf,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"u" = (
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"v" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"B" = (
+/obj/structure/simple_door/iron,
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"H" = (
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"V" = (
+/obj/structure/table/marble,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+v
+d
+v
+d
+d
+v
+d
+v
+v
+a
+"}
+(3,1,1) = {"
+a
+v
+n
+H
+H
+H
+H
+H
+H
+H
+v
+a
+"}
+(4,1,1) = {"
+a
+d
+n
+H
+H
+H
+n
+n
+n
+H
+d
+a
+"}
+(5,1,1) = {"
+a
+v
+n
+H
+H
+H
+H
+H
+H
+H
+v
+a
+"}
+(6,1,1) = {"
+a
+d
+H
+H
+H
+H
+n
+n
+n
+H
+d
+a
+"}
+(7,1,1) = {"
+a
+d
+H
+V
+V
+H
+H
+H
+H
+H
+d
+a
+"}
+(8,1,1) = {"
+a
+v
+H
+H
+V
+H
+n
+n
+n
+H
+v
+a
+"}
+(9,1,1) = {"
+a
+d
+H
+f
+V
+H
+H
+H
+H
+H
+d
+a
+"}
+(10,1,1) = {"
+a
+v
+H
+H
+V
+H
+H
+H
+H
+H
+v
+a
+"}
+(11,1,1) = {"
+a
+v
+v
+d
+d
+v
+B
+v
+d
+v
+v
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+h
+u
+h
+a
+a
+a
+a
+"}
