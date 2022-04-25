@@ -232,8 +232,14 @@ This actually tests if they have the same entries and values.
 		result = first ^ second
 	return result
 
-//Pretends to pick an element based on its weight but really just seems to pick a random element.
+
+/* pickweight
+	given an associative list of (key = weight, key = weight, ...), returns a random key biased by weights
+	if the argument is a list that does not appear associative by its first key, returns pick(list)
+	if the argument is empty or not a list, returns null
+*/
 /proc/pickweight(list/L)
+<<<<<<< HEAD
 	var/total = 0
 	var/item
 	for (item in L)
@@ -246,6 +252,48 @@ This actually tests if they have the same entries and values.
 		total -=L [item]
 		if (total <= 0)
 			return item
+=======
+	var/len = length(L)
+	if (len && islist(L))
+		for (var/key in L)
+			if (isnull(L[key]))
+				return pick(L)
+			break
+		var/sum = 0
+		for (var/key in L)
+			sum += L[key]
+		sum *= rand()
+		for (var/key in L)
+			sum -= L[key]
+			if (sum <= 0)
+				return key
+		return L[len]
+	return null
+
+
+/* pickweight_index
+	given an indexed list of (index = weight, index + 1 = weight, ...), returns a random index biased by weights. Higher weight = more chance
+	if the argument is not an indexed list of weights, returns pick(list)
+	if the argument is empty or not a list, returns null
+*/
+/proc/pickweight_index(list/L)
+	var/len = length(L)
+	if (len && islist(L))
+		for(var/index = 1 to len)
+			if (isnull(L[index]))
+				return pick(L)
+			break
+		var/sum = 0
+		for(var/index = 1 to len)
+			sum += L[index]
+		sum *= rand()
+		for(var/index = 1 to len)
+			sum -= L[index]
+			if (sum <= 0)
+				return index
+		return len
+	return null
+>>>>>>> ef93f1e96ac... Merge pull request #8547 from Spookerton/spkrtn/sys/weighty-picks
 
 	return null
 
