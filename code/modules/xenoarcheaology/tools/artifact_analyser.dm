@@ -1,10 +1,17 @@
 /obj/machinery/artifact_analyser
 	name = "Anomaly Analyser"
 	desc = "Studies the emissions of anomalous materials to discover their uses."
+<<<<<<< HEAD
 	icon = 'icons/obj/virology_vr.dmi' //VOREStation Edit
 	icon_state = "isolator"
 	anchored = TRUE
 	density = TRUE
+=======
+	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon_state = "xenoarch_console"
+	anchored = 1
+	density = 1
+>>>>>>> 66c6dd7961e... Merge pull request #8567 from Cerebulon/xenoarchapril
 	var/scan_in_progress = 0
 	var/scan_num = 0
 	var/obj/scanned_obj
