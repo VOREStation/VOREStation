@@ -25,6 +25,7 @@
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
+<<<<<<< HEAD
 		if(cell.use(power_use))
 			var/turf/T = get_turf(suspension_field)
 			for(var/mob/living/M in T)
@@ -34,6 +35,25 @@
 						to_chat(M, "<span class='warning'>[pick("You feel tingly","You feel like floating","It is hard to speak","You can barely move")].</span>")
 				else
 					deactivate()
+=======
+		cell.charge -= power_use
+
+		var/turf/T = get_turf(suspension_field)
+		for(var/mob/living/M in T)
+			M.Weaken(3)
+			cell.charge -= power_use
+			if(prob(5))
+				to_chat(M, "<span class='warning'>[pick("You feel tingly","You feel like floating","It is hard to speak","You can barely move")].</span>")
+
+		for(var/obj/item/I in T)
+			if(!suspension_field.contents.len)
+				suspension_field.icon_state = "energynet"
+				suspension_field.add_overlay("shield2")
+			I.forceMove(suspension_field)
+
+		if(cell.charge <= 0)
+			deactivate()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 			for(var/obj/item/I in T)
 				if(!suspension_field.contents.len)
@@ -159,8 +179,13 @@
 
 	if(collected)
 		suspension_field.icon_state = "energynet"
+<<<<<<< HEAD
 		suspension_field.add_overlay("shield2")
 		visible_message("<span class='notice'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</span>")
+=======
+		add_overlay("shield2")
+		src.visible_message("<font color='blue'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</font>")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	else
 		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"

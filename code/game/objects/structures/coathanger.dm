@@ -49,4 +49,8 @@
 	if (istype(coat, /obj/item/clothing/suit/storage/toggle/labcoat/cmo))
 		add_overlay("coat_cmo")
 	if (istype(coat, /obj/item/clothing/suit/storage/det_trench))
+<<<<<<< HEAD
 		add_overlay("coat_det")
+=======
+		add_overlay("coat_det")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay

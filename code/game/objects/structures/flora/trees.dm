@@ -289,6 +289,7 @@
 	update_icon()
 
 /obj/structure/flora/tree/sif/update_icon()
+<<<<<<< HEAD
 	cut_overlays()
 	var/bulbs = (5 - light_shift)
 	if(bulbs > 0)
@@ -296,3 +297,10 @@
 		add_overlay(mutable_appearance(icon, "[base_state][bulbs]_glow"))
 		add_overlay(emissive_appearance(icon, "[base_state][bulbs]_glow"))
 	
+=======
+	set_light(5 - light_shift, 1, "#33ccff")	// 5 variants, missing bulbs. 5th has no bulbs, so no glow.
+	var/image/glow = image(icon = icon, icon_state = "[base_state][light_shift]_glow")
+	glow.plane = PLANE_LIGHTING_ABOVE
+	cut_overlays()
+	add_overlay(glow)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay

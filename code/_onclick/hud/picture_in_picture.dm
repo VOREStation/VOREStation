@@ -59,7 +59,7 @@
 	var/matrix/M = matrix()
 	M.Translate(0, (height + 0.25) * world.icon_size)
 	move_tab.transform = M
-	overlays += move_tab
+	add_overlay(move_tab)
 
 	if(!button_x)
 		button_x = new /obj/screen/component_button(null, src)
@@ -102,6 +102,7 @@
 
 /obj/screen/movable/pic_in_pic/proc/add_background()
 	if((width > 0) && (height > 0))
+		var/list/add = list()
 		for(var/mutable_appearance/dir in background_mas)
 			var/matrix/M = matrix()
 			var/x_scale = 1
@@ -129,7 +130,8 @@
 			M.Scale(x_scale, y_scale)
 			M.Translate(x_off, y_off)
 			dir.transform = M
-			overlays += dir
+			add += dir
+		add_overlay(add)
 
 /obj/screen/movable/pic_in_pic/proc/set_view_size(width, height, do_refresh = TRUE)
 	width = CLAMP(width, 0, max_dimensions)

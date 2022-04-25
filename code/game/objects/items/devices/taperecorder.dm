@@ -371,7 +371,11 @@
 	var/ruined = 0
 
 
+<<<<<<< HEAD
 /obj/item/device/tape/update_icon()
+=======
+/obj/item/tape/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(ruined)
 		add_overlay("ribbonoverlay")
@@ -431,5 +435,11 @@
 
 
 //Random colour tapes
+<<<<<<< HEAD
 /obj/item/device/tape/random/New()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
+=======
+/obj/item/tape/random/Initialize()
+	. = ..()
+	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay

@@ -302,7 +302,11 @@
 		//create report
 		var/obj/item/weapon/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [scanned_item.name]"
+<<<<<<< HEAD
 		P.stamped = list(/obj/item/weapon/stamp)
+=======
+		P.stamped = list(/obj/item/stamp)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		P.add_overlay("paper_stamped")
 
 		//work out data
@@ -357,3 +361,45 @@
 
 		scanned_item.loc = src.loc
 		scanned_item = null
+<<<<<<< HEAD
+=======
+
+/obj/machinery/radiocarbon_spectrometer/Topic(href, href_list)
+	if(stat & (NOPOWER|BROKEN))
+		return 0 // don't update UIs attached to this object
+
+	if(href_list["scanItem"])
+		if(scanning)
+			stop_scanning()
+		else
+			if(scanned_item)
+				if(scanner_seal_integrity > 0)
+					scanner_progress = 0
+					scanning = 1
+					t_left_radspike = pick(5,10,15)
+					to_chat(usr, "<span class='notice'>Scan initiated.</span>")
+				else
+					to_chat(usr, "<span class='warning'>Could not initiate scan, seal requires replacing.</span>")
+			else
+				to_chat(usr, "<span class='warning'>Insert an item to scan.</span>")
+
+	if(href_list["maserWavelength"])
+		maser_wavelength = max(min(maser_wavelength + 1000 * text2num(href_list["maserWavelength"]), 10000), 1)
+
+	if(href_list["coolantRate"])
+		coolant_usage_rate = max(min(coolant_usage_rate + text2num(href_list["coolantRate"]), 10000), 0)
+
+	if(href_list["toggle_rad_shield"])
+		if(rad_shield)
+			rad_shield = 0
+		else
+			rad_shield = 1
+
+	if(href_list["ejectItem"])
+		if(scanned_item)
+			scanned_item.loc = src.loc
+			scanned_item = null
+
+	add_fingerprint(usr)
+	return 1 // update UIs attached to this object
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay

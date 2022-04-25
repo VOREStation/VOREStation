@@ -95,7 +95,7 @@
 	drop_l_hand()
 
 	if(healths)
-		healths.overlays = null // This is specific to humans but the relevant code is here; shouldn't mess with other mobs.
+		healths.cut_overlays()
 		healths.icon_state = "health6"
 
 	timeofdeath = world.time

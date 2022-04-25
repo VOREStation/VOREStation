@@ -99,11 +99,14 @@
 		icon_state = "closed_unlocked"
 
 	cut_overlays()
+<<<<<<< HEAD
 	/* Ours don't have toetags
 	if(has_label)
 		add_overlay("bodybag_label")
 	*/
 
+=======
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/item/bodybag/cryobag
 	name = "stasis bag"

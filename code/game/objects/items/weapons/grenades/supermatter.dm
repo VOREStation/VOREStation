@@ -18,7 +18,11 @@
 	update_icon()
 	playsound(src, 'sound/weapons/wave.ogg', 100)
 
+<<<<<<< HEAD
 /obj/item/weapon/grenade/supermatter/update_icon()
+=======
+/obj/item/grenade/supermatter/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(implode_at)
 		add_overlay(image(icon = 'icons/rust.dmi', icon_state = "emfield_s1"))

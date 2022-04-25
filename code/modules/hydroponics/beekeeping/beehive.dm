@@ -215,8 +215,13 @@
 	desc = "A frame for the beehive that the bees have filled with honeycombs."
 	honey = 20
 
+<<<<<<< HEAD
 /obj/item/honey_frame/filled/New()
 	..()
+=======
+/obj/item/honey_frame/filled/Initialize()
+	. = ..()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	add_overlay("honeycomb")
 
 /obj/item/beehive_assembly
@@ -267,8 +272,13 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	icon_state = "beepack"
 	var/full = 1
 
+<<<<<<< HEAD
 /obj/item/bee_pack/New()
 	..()
+=======
+/obj/item/bee_pack/Initialize()
+	. = ..()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	add_overlay("beepack-full")
 
 /obj/item/bee_pack/proc/empty()
@@ -283,4 +293,8 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	name = initial(name)
 	desc = initial(desc)
 	cut_overlays()
+<<<<<<< HEAD
 	add_overlay("beepack-full")
+=======
+	add_overlay("beepack-full")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay

@@ -184,7 +184,11 @@
 	..()
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/beaker/update_icon()
+=======
+/obj/item/reagent_containers/glass/beaker/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 
 	if(reagents.total_volume)
@@ -204,9 +208,12 @@
 
 	if (!is_open_container())
 		add_overlay("lid_[initial(icon_state)]")
+<<<<<<< HEAD
 
 	if (label_text)
 		add_overlay("label_[initial(icon_state)]")
+=======
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/item/weapon/reagent_containers/glass/beaker/large
 	name = "large beaker"
@@ -314,7 +321,11 @@
 	else
 		return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/bucket/update_icon()
+=======
+/obj/item/reagent_containers/glass/bucket/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if (!is_open_container())
 		add_overlay("lid_[initial(icon_state)]")

@@ -351,6 +351,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	if(update & 2)
 		cut_overlays()
 		if(!(stat & (BROKEN|MAINT)) && update_state & UPDATE_ALLGOOD)
+<<<<<<< HEAD
 			var/list/new_overlays = list()
 			new_overlays += mutable_appearance(icon, "apcox-[locked]")
 			new_overlays += emissive_appearance(icon, "apcox-[locked]")
@@ -364,6 +365,19 @@ GLOBAL_LIST_EMPTY(apcs)
 				new_overlays += mutable_appearance(icon, "apco2-[environ]")
 				new_overlays += emissive_appearance(icon, "apco2-[environ]")
 			add_overlay(new_overlays)
+=======
+			var/list/add = list(
+				status_overlays_lock[locked+1],
+				status_overlays_charging[charging+1]
+			)
+			if (operating)
+				add += list(
+					status_overlays_equipment[equipment+1],
+					status_overlays_lighting[lighting+1],
+					status_overlays_environ[environ+1]
+				)
+			add_overlay(add)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	if(update & 3)
 		if(update_state & UPDATE_BLUESCREEN)

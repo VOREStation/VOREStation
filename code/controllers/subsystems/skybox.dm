@@ -113,13 +113,18 @@ SUBSYSTEM_DEF(skybox)
 	if(settings.use_stars)
 		var/image/stars = image(settings.icon, settings.star_state)
 		stars.appearance_flags = RESET_COLOR
-		base.overlays += stars
+		base.add_overlay(stars)
 
+<<<<<<< HEAD
 	new_overlays += base
+=======
+	res.add_overlay(base)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	if(global.using_map.use_overmap && settings.use_overmap_details)
 		var/obj/effect/overmap/visitable/O = get_overmap_sector(z)
 		if(istype(O))
+<<<<<<< HEAD
 			var/image/self_image = O.generate_skybox(z)
 			new_overlays += self_image
 			//VOREStation Add
@@ -131,16 +136,33 @@ SUBSYSTEM_DEF(skybox)
 				for(var/obj/effect/overmap/visitable/other in O.loc)
 					if(other != O)
 						new_overlays += other.get_skybox_representation(z)
+=======
+			var/image/overmap = image(settings.icon)
+			overmap.add_overlay(O.generate_skybox())
+			var/list/add = list()
+			for(var/obj/effect/overmap/visitable/other in O.loc)
+				if(other != O)
+					add += other.get_skybox_representation()
+			overmap.add_overlay(add)
+			overmap.appearance_flags = RESET_COLOR
+			res.add_overlay(overmap)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	// Allow events to apply custom overlays to skybox! (Awesome!)
+	var/list/add = list()
 	for(var/datum/event/E in SSevents.active_events)
 		if(E.has_skybox_image && E.isRunning && (z in E.affecting_z))
+<<<<<<< HEAD
 			new_overlays += E.get_skybox_image()
 	
 	for(var/image/I in new_overlays)
 		I.appearance_flags |= RESET_COLOR
 
 	res.overlays = new_overlays
+=======
+			add += E.get_skybox_image()
+	res.add_overlay(add)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	return res
 

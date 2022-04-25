@@ -413,7 +413,11 @@
 		cut_overlays()
 		if(panel_open)
 			add_overlay("[initial(icon_state)]-panel")
+<<<<<<< HEAD
 	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
+=======
+	else if((O.is_wirecutter() || istype(O, /obj/item/multitool)) && panel_open)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)

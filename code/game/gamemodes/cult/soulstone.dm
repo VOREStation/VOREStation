@@ -140,7 +140,7 @@
 	S.real_name = "Shade of [T.real_name]"
 	S.icon = T.icon
 	S.icon_state = T.icon_state
-	S.overlays = T.overlays
+	S.copy_overlays(T, TRUE)
 	S.color = rgb(254,0,0)
 	S.alpha = 127
 	if (T.client)

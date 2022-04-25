@@ -57,8 +57,13 @@
 			M.gib()
 
 
+<<<<<<< HEAD
 /obj/machinery/gibber/New()
 	..()
+=======
+/obj/machinery/gibber/Initialize()
+	. = ..()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()

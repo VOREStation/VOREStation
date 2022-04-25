@@ -4656,16 +4656,13 @@
 //Called by cooking machines. This is mainly intended to set properties on the food that differ between raw/cooked
 /obj/item/weapon/reagent_containers/food/snacks/proc/cook()
 	if (coating)
-		var/list/temp = overlays.Copy()
-		for (var/i in temp)
-			if (istype(i, /image))
-				var/image/I = i
-				if (I.tag == "coating")
-					temp.Remove(I)
-					break
-
-		overlays = temp
-		//Carefully removing the old raw-batter overlay
+		var/image/coating_overlay
+		for (var/image/image in overlays)
+			if (image.tag == "coating")
+				coating_overlay = image
+				break
+		if (coating_overlay)
+			cut_overlay(coating_overlay)
 
 		if (!flat_icon)
 			flat_icon = getFlatIcon(src)

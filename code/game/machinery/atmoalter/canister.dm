@@ -131,7 +131,7 @@ update_flag
 */
 
 	if (src.destroyed)
-		src.overlays = 0
+		cut_overlays()
 		src.icon_state = text("[]-1", src.canister_color)
 		return
 

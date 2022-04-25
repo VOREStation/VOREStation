@@ -22,7 +22,7 @@
 	if(ismob(speaker))
 		icon = speaker.icon
 		icon_state = speaker.icon_state
-		overlays = speaker.overlays
+		copy_overlays(speaker, TRUE)
 		timeofdeath = speaker.timeofdeath
 
 		alpha = 127 //Maybe we'll have hologram calls later.

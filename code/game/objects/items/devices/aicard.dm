@@ -86,11 +86,19 @@
 	
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/device/aicard/update_icon()
 	cut_overlays()
 	if(carded_ai)
 		if (!carded_ai.control_disabled)
 			add_overlay("aicard-on")
+=======
+/obj/item/aicard/update_icon()
+	cut_overlays()
+	if(carded_ai)
+		if (!carded_ai.control_disabled)
+			add_overlay(image('icons/obj/pda.dmi', "aicard-on"))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		if(carded_ai.stat)
 			icon_state = "aicard-404"
 		else

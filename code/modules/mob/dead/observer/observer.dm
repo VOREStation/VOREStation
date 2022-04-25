@@ -984,7 +984,10 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/obj/item/device/paicard/PP = p
 			if(PP.pai == null)
 				count++
+<<<<<<< HEAD
 				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
+=======
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 				PP.add_overlay("pai-ghostalert")
 				spawn(54)
 					PP.cut_overlays()

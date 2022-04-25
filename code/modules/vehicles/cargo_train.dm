@@ -46,7 +46,11 @@
 	..()
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new key_type(src)
+<<<<<<< HEAD
 	var/image/I = new(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs		//VOREStation edit
+=======
+	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	add_overlay(I)
 	turn_off()	//so engine verbs are correctly set
 

@@ -607,7 +607,11 @@
 	if(installed_modules.len)
 		for(var/obj/item/rig_module/module in installed_modules)
 			if(module.suit_overlay)
+<<<<<<< HEAD
 				chest.add_overlay(image(module.suit_overlay_icon, icon_state = "[module.suit_overlay]", dir = SOUTH))
+=======
+				chest.add_overlay(image('icons/mob/rig_modules.dmi', icon_state = "[module.suit_overlay]", dir = SOUTH))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	if(wearer)
 		wearer.update_inv_shoes()

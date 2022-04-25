@@ -43,14 +43,14 @@
 				spell_holder.client.screen -= O
 			O.handle_icon_updates = 0
 		showing = 0
-		overlays.len = 0
-		overlays.Add(closed_state)
+		cut_overlays()
+		add_overlay(closed_state)
 	else if(forced_state != 1)
 		open_spellmaster()
 		update_spells(1)
 		showing = 1
-		overlays.len = 0
-		overlays.Add(open_state)
+		cut_overlays()
+		add_overlay(open_state)
 
 /obj/screen/movable/spell_master/proc/open_spellmaster()
 	var/list/screen_loc_xy = splittext(screen_loc,",")
@@ -189,7 +189,7 @@
 			if(spell.charge_counter > 0)
 				var/icon/partial_charge = icon(src.icon, "[spell_base]_spell_ready")
 				partial_charge.Crop(1, 1, partial_charge.Width(), round(partial_charge.Height() * spell.charge_counter / spell.charge_max))
-				overlays += partial_charge
+				add_overlay(partial_charge)
 				if(last_charged_icon)
 					cut_overlay(last_charged_icon)
 				last_charged_icon = partial_charge
@@ -209,7 +209,7 @@
 
 	cut_overlay("silence")
 	if(spell.silenced)
-		overlays += "silence"
+		add_overlay("silence")
 
 /obj/screen/spell/Click()
 	if(!usr || !spell)

@@ -91,8 +91,13 @@
 	const_holder.construct = new /datum/construction/reversible/mecha/ripley(const_holder)
 	const_holder.icon = 'icons/mecha/mech_construction.dmi'
 	const_holder.icon_state = "ripley0"
+<<<<<<< HEAD
 	const_holder.density = TRUE
 	const_holder.overlays.len = 0
+=======
+	const_holder.density = 1
+	const_holder.cut_overlays()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	spawn()
 		qdel(src)
 	return

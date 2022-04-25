@@ -190,7 +190,7 @@
 			usr.visible_message("<span class='notice'>[usr] detaches [rig] from \the [src].</span>", "<span class='notice'>You detach [rig] from \the [src]</span>")
 			rig.loc = get_turf(usr)
 			rig = null
-			overlays = new/list()
+			cut_overlays()
 
 /obj/structure/reagent_dispensers/fueltank/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
@@ -447,6 +447,10 @@
 	cut_overlays()
 	if(bottle)
 		add_overlay("water_cooler_bottle")
+<<<<<<< HEAD
+=======
+	return
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

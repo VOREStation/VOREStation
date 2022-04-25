@@ -216,6 +216,62 @@
 /obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"
 
+<<<<<<< HEAD
+=======
+/obj/structure/bed/chair/wood/walnut/wings
+	icon_state = "wooden_chair_wings"
+
+/obj/structure/bed/chair/wood/pine/wings
+	icon_state = "wooden_chair_wings"
+
+/obj/structure/bed/chair/wood/ebony/wings
+	icon_state = "wooden_chair_wings"
+
+/obj/structure/bed/chair/wood/mahogany/wings
+	icon_state = "wooden_chair_wings"
+
+//Eris Chairs
+
+/obj/structure/bed/chair/modern_chair
+	name = "modern chair"
+	desc = "It's like sitting in an egg."
+	icon_state = "modern_chair"
+	color = null
+	base_icon = "modern_chair"
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/modern_chair/Initialize()
+	. = ..()
+	var/image/I = image(icon, "[base_icon]_over")
+	I.layer = ABOVE_MOB_LAYER
+	I.plane = MOB_PLANE
+	add_overlay(I)
+
+/obj/structure/bed/chair/modern_bar_stool
+	name = "bar stool"
+	desc = "How vibrant!"
+	icon_state = "modern_stool"
+	color = null
+	base_icon = "modern_stool"
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/backed_grey
+	name = "grey chair"
+	desc = "Also available in red."
+	icon_state = "onestar_chair_grey"
+	color = null
+	base_icon = "onestar_chair_grey"
+	applies_material_colour = 0
+
+/obj/structure/bed/chair/backed_red
+	name = "red chair"
+	desc = "Also available in grey."
+	icon_state = "onestar_chair_red"
+	color = null
+	base_icon = "onestar_chair_red"
+	applies_material_colour = 0
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 //sofa
 
 /obj/structure/bed/chair/sofa

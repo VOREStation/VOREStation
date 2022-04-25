@@ -108,7 +108,11 @@
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
 		P.info += "<br>"
 		P.info += "[bicon(scanned_object)] [results]"
+<<<<<<< HEAD
 		P.stamped = list(/obj/item/weapon/stamp)
+=======
+		P.stamped = list(/obj/item/stamp)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		P.add_overlay("paper_stamped")
 
 		if(scanned_object && istype(scanned_object, /obj/machinery/artifact))

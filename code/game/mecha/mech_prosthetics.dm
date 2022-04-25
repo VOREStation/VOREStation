@@ -70,6 +70,33 @@
 /obj/machinery/mecha_part_fabricator/pros/Initialize()
 	. = ..()
 	manufacturer = basic_robolimb.company
+<<<<<<< HEAD
+=======
+	update_categories()
+
+/obj/machinery/pros_fabricator/process()
+	..()
+	if(stat)
+		return
+	if(busy)
+		update_use_power(USE_POWER_ACTIVE)
+		progress += speed
+		check_build()
+	else
+		update_use_power(USE_POWER_IDLE)
+	update_icon()
+
+/obj/machinery/pros_fabricator/update_icon()
+	cut_overlays()
+	icon_state = initial(icon_state)
+
+	if(panel_open)
+		add_overlay(image(icon, "[icon_state]_panel"))
+	if(stat & NOPOWER)
+		return
+	if(busy)
+		icon_state = "[icon_state]_work"
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/machinery/mecha_part_fabricator/pros/dispense_built_part(datum/design/D)
 	var/obj/item/I = ..()

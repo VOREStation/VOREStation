@@ -52,14 +52,14 @@
 				my_mob.client.screen -= O
 //			O.handle_icon_updates = 0
 		showing = 0
-		overlays.len = 0
-		overlays.Add(closed_state)
+		cut_overlays()
+		add_overlay(closed_state)
 	else if(forced_state != 1) // We're opening it, show the icons.
 		open_ability_master()
 		update_abilities(1)
 		showing = 1
-		overlays.len = 0
-		overlays.Add(open_state)
+		cut_overlays()
+		add_overlay(open_state)
 	update_icon()
 
 /obj/screen/movable/ability_master/proc/open_ability_master()
@@ -211,6 +211,7 @@
 	..()
 
 /obj/screen/ability/update_icon()
+<<<<<<< HEAD
 //	if(!spell)
 //		qdel(src)
 //		return
@@ -249,13 +250,15 @@
 //	cut_overlay("silence")
 //	if(spell.silenced)
 //		add_overlay("silence")
+=======
+	cut_overlays()
+	icon_state = "[background_base_state]_spell_base"
+	cut_overlay(ability_icon_state)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/screen/ability/Click()
 	if(!usr)
-//		qdel(src)
 		return
-
-//	spell.perform(usr)
 	activate()
 
 /obj/screen/ability/MouseDrop(var/atom/A)

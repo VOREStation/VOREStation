@@ -103,7 +103,11 @@
 	volume = 10
 	matter = list(MAT_GLASS = 175)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
+=======
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	name = "shot glass"
 
@@ -131,7 +135,11 @@
 	. = ..()
 	icon_state = pick("fitness-cup_black", "fitness-cup_red", "fitness-cup_black")
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
+=======
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 
 	if(reagents.total_volume)

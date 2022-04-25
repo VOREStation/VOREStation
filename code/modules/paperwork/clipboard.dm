@@ -33,11 +33,19 @@
 			add_fingerprint(usr)
 			return
 
+<<<<<<< HEAD
 /obj/item/weapon/clipboard/update_icon()
 	cut_overlays()
 	if(toppaper)
 		add_overlay(toppaper.icon_state)
 		add_overlay(toppaper.overlays)
+=======
+/obj/item/clipboard/update_icon()
+	cut_overlays()
+	if(toppaper)
+		add_overlay(toppaper.icon_state)
+		copy_overlays(toppaper)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	if(haspen)
 		add_overlay("clipboard_pen")
 	add_overlay("clipboard_over")

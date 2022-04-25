@@ -14,16 +14,12 @@
 		"Cereal" = /obj/item/weapon/reagent_containers/food/snacks/variable/cereal
 	)
 
+
 /obj/machinery/appliance/mixer/cereal/Initialize()
 	. = ..()
-	
 	cerealmaker_loop = new(list(src), FALSE)
-	
-/obj/machinery/appliance/mixer/cereal/Destroy()
-	. = ..()
-	
-	QDEL_NULL(cerealmaker_loop)
 
+<<<<<<< HEAD
 /*
 /obj/machinery/appliance/mixer/cereal/change_product_strings(var/obj/item/weapon/reagent_containers/food/snacks/product, var/datum/cooking_item/CI)
 	. = ..()
@@ -41,6 +37,13 @@
 
 	product.add_overlay(food_image)
 */
+=======
+
+/obj/machinery/appliance/mixer/cereal/Destroy()
+	QDEL_NULL(cerealmaker_loop)
+	return ..()
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/machinery/appliance/mixer/cereal/update_icon()
 	. = ..()
@@ -65,7 +68,7 @@
 
 		var/image/food_image = image(I.icon, I.icon_state)
 		food_image.color = I.color
-		food_image.add_overlay(I.overlays)
+		food_image.copy_overlays(I)
 		food_image.transform *= 0.7 - (num * 0.05)
 		food_image.pixel_x = rand(-2,2)
 		food_image.pixel_y = rand(-3,5)

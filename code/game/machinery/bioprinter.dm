@@ -70,13 +70,19 @@
 	return ..()
 
 /obj/machinery/organ_printer/update_icon()
+<<<<<<< HEAD
 	//VOREStation Edit
+=======
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(panel_open)
 		add_overlay("bioprinter_panel_open")
 	if(printing)
 		add_overlay("bioprinter_working")
+<<<<<<< HEAD
 	//VOREStation Edit End
+=======
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/machinery/organ_printer/Initialize()
 	. = ..()

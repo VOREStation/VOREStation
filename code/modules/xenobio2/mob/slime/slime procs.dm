@@ -59,8 +59,13 @@ Slime specific procs go here.
 		GenerateChild()
 	else
 		GenerateAdult()
+<<<<<<< HEAD
 
 /mob/living/simple_mob/xeno/slime/proc/GenerateChild()
+=======
+		
+/mob/living/simple_animal/xeno/slime/proc/GenerateChild()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	name = "[nameVar] baby slime"
 	real_name = "[nameVar] baby slime"
@@ -73,8 +78,13 @@ Slime specific procs go here.
 	health = maxHealth
 
 	return 1
+<<<<<<< HEAD
 
 /mob/living/simple_mob/xeno/slime/proc/GenerateAdult()
+=======
+	
+/mob/living/simple_animal/xeno/slime/proc/GenerateAdult()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	name = "[nameVar] slime"
 	real_name = "[nameVar] slime"
@@ -83,15 +93,24 @@ Slime specific procs go here.
 	icon_state = ""
 	overlay = round(rand(0, MAXOVERLAY))
 	GenerateAdultIcon()
+<<<<<<< HEAD
 
 /mob/living/simple_mob/xeno/slime/proc/GenerateAdultIcon()	//Hack and slash adventure game to make slimes have no color on light effects later
+=======
+	
+/mob/living/simple_animal/xeno/slime/proc/GenerateAdultIcon()	//Hack and slash adventure game to make slimes have no color on light effects later
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	var/image/Img = new(src.icon)
 	Img.icon_state = "slime adult"
 	Img.color = traitdat.traits[TRAIT_XENO_COLOR]
 	Img.layer = src.layer
 	add_overlay(Img)
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	switch(overlay)
 		if(SHINYOVERLAY)
 			var/image/I = new(src.icon)

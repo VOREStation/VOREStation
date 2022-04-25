@@ -194,10 +194,17 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 		icon_state = "newscaster_off"
 		if(isbroken) //If the thing is smashed, add crack overlay on top of the unpowered sprite.
 			add_overlay("crack3")
+<<<<<<< HEAD
 		set_light(0)
 		set_light_on(FALSE)
 		return
 
+=======
+		return
+
+	cut_overlays() //reset overlays
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	if(news_network.wanted_issue) //wanted icon state, there can be no overlays on it as it's a priority message
 		icon_state = "newscaster_wanted"
 		add_overlay(mutable_appearance(icon, "newscaster_wanted_ov"))
@@ -206,12 +213,19 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 
 	if(alert) //new message alert overlay
 		add_overlay("newscaster_alert")
+<<<<<<< HEAD
 		add_overlay(mutable_appearance(icon, "newscaster_alert"))
 		add_overlay(emissive_appearance(icon, "newscaster_alert"))
 
 	if(hitstaken > 0) //Cosmetic damage overlay
 		add_overlay("crack[hitstaken]")
 	
+=======
+
+	if(hitstaken > 0) //Cosmetic damage overlay
+		add_overlay("crack[hitstaken]")
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	icon_state = "newscaster_normal"
 	add_overlay(emissive_appearance(icon, "newscaster_normal_ov"))
 	add_overlay(mutable_appearance(icon, "newscaster_normal_ov"))

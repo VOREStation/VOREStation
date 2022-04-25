@@ -259,7 +259,12 @@
 	mannequin.update_transform() //VOREStation Edit to update size/shape stuff.
 	mannequin.toggle_tail(setting = TRUE)
 	mannequin.toggle_wing(setting = TRUE)
+<<<<<<< HEAD
 	COMPILE_OVERLAYS(mannequin)
+=======
+	mannequin.update_tail_showing()
+	mannequin.ImmediateOverlayUpdate()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	update_character_previews(new /mutable_appearance(mannequin))
 

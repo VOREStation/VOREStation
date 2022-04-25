@@ -71,7 +71,9 @@
 
 /obj/item/modular_computer/update_icon()
 	icon_state = icon_state_unpowered
+	cut_overlays()
 
+<<<<<<< HEAD
 	cut_overlays()
 
 	. = list()
@@ -84,12 +86,21 @@
 		if(icon_state_screensaver)
 			. += mutable_appearance(overlay_icon, icon_state_screensaver)
 			. += emissive_appearance(overlay_icon, icon_state_screensaver)
+=======
+	if(bsod)
+		add_overlay(image(overlay_icon, "bsod"))
+		return
+	if(!enabled)
+		if(icon_state_screensaver)
+			add_overlay(image(overlay_icon, icon_state_screensaver))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		set_light(0)
 		return add_overlay(.)
 	
 	set_light(light_strength)
 	
 	if(active_program)
+<<<<<<< HEAD
 		var/program_state = active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu
 		. += mutable_appearance(overlay_icon, program_state)
 		. += emissive_appearance(overlay_icon, program_state)
@@ -100,6 +111,16 @@
 		. += emissive_appearance(overlay_icon, icon_state_menu)
 	
 	return add_overlay(.)
+=======
+		var/list/add = list(
+			image(overlay_icon, active_program.program_icon_state ? active_program.program_icon_state : icon_state_menu)
+		)
+		if (active_program.program_key_state)
+			add += image(overlay_icon, active_program.program_key_state)
+		add_overlay(add) 
+	else
+		add_overlay(image(overlay_icon, icon_state_menu))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/item/modular_computer/proc/turn_on(var/mob/user)
 	if(bsod)

@@ -199,7 +199,11 @@
 	base_desc = desc
 	update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/pill_bottle/update_icon()
+=======
+/obj/item/storage/pill_bottle/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(wrapper_color)
 		var/image/I = image(icon, "pillbottle_wrap")

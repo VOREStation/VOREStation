@@ -56,7 +56,11 @@
 	desc = "A red folder with HoS markings."
 	icon_state = "folder_hos"
 
+<<<<<<< HEAD
 /obj/item/weapon/folder/update_icon()
+=======
+/obj/item/folder/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(contents.len)
 		add_overlay("folder_paper")

@@ -31,8 +31,12 @@
 	if(!isnull(seed))
 
 		if(mechanical && health <= (seed.get_trait(TRAIT_ENDURANCE) / 2))
+<<<<<<< HEAD
 			add_overlay(ov_lowhealth)
 
+=======
+			add_overlay("over_lowhealth3")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		if(dead)
 			var/ikey = "[seed.get_trait(TRAIT_PLANT_ICON)]-dead"
 			var/image/dead_overlay = SSplants.plant_icon_cache["[ikey]"]
@@ -62,7 +66,11 @@
 			if(!plant_overlay)
 				plant_overlay = image('icons/obj/hydroponics_growing.dmi', "[ikey]")
 				plant_overlay.color = seed.get_trait(TRAIT_PLANT_COLOUR)
+<<<<<<< HEAD
 				SSplants.plant_icon_cache["[ikey]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"] = plant_overlay
+=======
+				plant_controller.plant_icon_cache["[ikey]-[seed.get_trait(TRAIT_PLANT_COLOUR)]"] = plant_overlay
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 			add_overlay(plant_overlay)
 
 			if(harvest && overlay_stage == seed.growth_stages)
@@ -71,7 +79,11 @@
 				if(!harvest_overlay)
 					harvest_overlay = image('icons/obj/hydroponics_products.dmi', "[ikey]")
 					harvest_overlay.color = seed.get_trait(TRAIT_PRODUCT_COLOUR)
+<<<<<<< HEAD
 					SSplants.plant_icon_cache["product-[ikey]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"] = harvest_overlay
+=======
+					plant_controller.plant_icon_cache["product-[ikey]-[seed.get_trait(TRAIT_PRODUCT_COLOUR)]"] = harvest_overlay
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 				add_overlay(harvest_overlay)
 
 
@@ -81,7 +93,9 @@
 
 	//Updated the various alert icons.
 	if(mechanical)
+		var/list/add = list()
 		if(waterlevel <= 10)
+<<<<<<< HEAD
 			add_overlay(ov_lowwater)
 		if(nutrilevel <= 2)
 			add_overlay(ov_lownutri)
@@ -91,6 +105,18 @@
 			add_overlay(ov_harvest)
 		if(frozen)
 			add_overlay(ov_frozen)
+=======
+			add += "over_lowwater3"
+		if(nutrilevel <= 2)
+			add += "over_lownutri3"
+		if(weedlevel >= 5 || pestlevel >= 5 || toxins >= 40)
+			add += "over_alert3"
+		if(harvest)
+			add += "over_harvest3"
+		if(frozen)
+			add += "over_frozen3"
+		add_overlay(add)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	// Update bioluminescence.
 	if(seed)

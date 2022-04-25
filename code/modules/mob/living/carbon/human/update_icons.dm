@@ -581,7 +581,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	for(var/mut in mutations)
 		if(mut == LASER)
+<<<<<<< HEAD
 			standing.overlays += "lasereyes_s" // Leaving this as overlays +=
+=======
+			standing.add_overlay("lasereyes_s")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	overlays_standing[MUTATIONS_LAYER]	= standing
 	apply_layer(MUTATIONS_LAYER)
@@ -1079,7 +1083,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	for(var/datum/modifier/M in modifiers)
 		if(M.mob_overlay_state)
 			var/image/I = image(icon = 'icons/mob/modifier_effects.dmi', icon_state = M.mob_overlay_state)
+<<<<<<< HEAD
 			effects.overlays += I // Leaving this as overlays +=
+=======
+			effects.add_overlay(I)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	overlays_standing[MODIFIER_EFFECTS_LAYER] = effects
 
@@ -1125,7 +1133,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	for(var/obj/item/organ/external/E in organs)
 		if(E.open)
 			var/image/I = image(icon = 'icons/mob/surgery.dmi',  icon_state = "[E.icon_name][round(E.open)]", layer = BODY_LAYER+SURGERY_LAYER)
+<<<<<<< HEAD
 			total.overlays += I // Leaving this as overlays +=
+=======
+			total.add_overlay(I)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	if(total.overlays.len)
 		overlays_standing[SURGERY_LAYER] = total

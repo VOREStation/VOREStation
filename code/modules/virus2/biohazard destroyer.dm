@@ -11,7 +11,11 @@
 		if(I.type in typesof(path))
 			user.drop_item()
 			qdel(I)
+<<<<<<< HEAD
 			add_overlay("dispover-handle")
+=======
+			add_overlay(image('icons/obj/pipes/disposal.dmi', "dispover-handle"))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 			return
 	user.drop_item()
 	I.loc = src.loc

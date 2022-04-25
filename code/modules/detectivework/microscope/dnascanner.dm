@@ -110,7 +110,11 @@
 	if(bloodsamp)
 		var/obj/item/weapon/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [bloodsamp.name]"
+<<<<<<< HEAD
 		P.stamped = list(/obj/item/weapon/stamp)
+=======
+		P.stamped = list(/obj/item/stamp)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		P.cut_overlays()
 		P.add_overlay("paper_stamped")
 		//dna data itself

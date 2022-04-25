@@ -77,7 +77,11 @@
 		update_bait()
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/material/fishing_rod/update_icon()
+=======
+/obj/item/material/fishing_rod/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	..()
 	if(strung)

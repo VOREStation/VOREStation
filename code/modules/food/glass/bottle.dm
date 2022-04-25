@@ -34,7 +34,11 @@
 	if(!icon_state)
 		icon_state = "bottle-[rand(1,4)]"
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/bottle/update_icon()
+=======
+/obj/item/reagent_containers/glass/bottle/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 
 	if(reagents.total_volume)
@@ -53,7 +57,12 @@
 		add_overlay(filling)
 
 	if (!is_open_container())
+<<<<<<< HEAD
 		add_overlay("lid_[icon_state]")
+=======
+		var/image/lid = image(icon, src, "lid_bottle")
+		add_overlay(lid)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	if (label_text)
 		add_overlay("label_[icon_state]")

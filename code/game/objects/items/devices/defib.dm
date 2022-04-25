@@ -43,7 +43,11 @@
 	bcell = /obj/item/weapon/cell/apc
 
 
+<<<<<<< HEAD
 /obj/item/device/defib_kit/update_icon()
+=======
+/obj/item/defib_kit/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
@@ -62,7 +66,11 @@
 	else
 		add_overlay("[initial(icon_state)]-nocell")
 
+<<<<<<< HEAD
 /obj/item/device/defib_kit/ui_action_click()
+=======
+/obj/item/defib_kit/ui_action_click()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	toggle_paddles()
 
 /obj/item/device/defib_kit/attack_hand(mob/user)

@@ -230,9 +230,13 @@
 
 //		dirty(target,affected) //VOREStation Add -- Removed by Request
 
+<<<<<<< HEAD
 	return
 /* VOREStation Edit - See syringes_vr.dm
 /obj/item/weapon/reagent_containers/syringe/update_icon()
+=======
+/obj/item/reagent_containers/syringe/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 
 	if(mode == SYRINGE_BROKEN)
@@ -258,8 +262,13 @@
 
 		filling.color = reagents.get_color()
 		add_overlay(filling)
+<<<<<<< HEAD
 */
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+=======
+
+/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	if(istype(target, /mob/living/carbon/human))
 
 		var/mob/living/carbon/human/H = target

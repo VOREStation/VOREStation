@@ -63,7 +63,11 @@
 	I.pixel_x = xx		//and then return it
 	I.pixel_y = yy
 	add_overlay(img)
+<<<<<<< HEAD
 	add_overlay("evidence")	//should look nicer for transparent stuff. not really that important, but hey.
+=======
+	add_overlay("evidence")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	desc = "An evidence bag containing [I]."
 	I.loc = src
@@ -77,7 +81,11 @@
 		var/obj/item/I = contents[1]
 		user.visible_message("[user] takes [I] out of [src]", "You take [I] out of [src].",\
 		"You hear someone rustle around in a plastic bag, and remove something.")
+<<<<<<< HEAD
 		cut_overlays()	//remove the overlays
+=======
+		cut_overlays()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 		user.put_in_hands(I)
 		stored_item = null

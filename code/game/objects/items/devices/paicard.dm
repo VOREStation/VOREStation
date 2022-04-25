@@ -22,8 +22,13 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	if(istype(rig))
 		rig.forced_move(direction, user)
 
+<<<<<<< HEAD
 /obj/item/device/paicard/New()
 	..()
+=======
+/obj/item/paicard/Initialize()
+	. = ..()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	add_overlay("pai-off")
 
 /obj/item/device/paicard/Destroy()

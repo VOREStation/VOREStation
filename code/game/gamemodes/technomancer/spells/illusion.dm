@@ -64,7 +64,11 @@
 	return ..()
 
 // Makes a tiny overlay of the thing the player has copied, so they can easily tell what they currently have.
+<<<<<<< HEAD
 /obj/item/weapon/spell/illusion/update_icon()
+=======
+/obj/item/spell/illusion/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(copied)
 		var/image/temp_image = image(copied)

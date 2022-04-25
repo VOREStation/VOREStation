@@ -319,7 +319,10 @@
 
 /obj/machinery/alarm/update_icon()
 	cut_overlays()
+<<<<<<< HEAD
 
+=======
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	if(panel_open)
 		icon_state = "alarmx"
 		set_light(0)

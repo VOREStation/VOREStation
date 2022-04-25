@@ -138,8 +138,13 @@
 		if("[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf" in cached_icon_states('icons/obj/hydroponics_products.dmi'))
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
+<<<<<<< HEAD
 			plant_icon.add_overlay(fruit_leaves)
 		SSplants.plant_icon_cache[icon_key] = plant_icon
+=======
+			add_overlay(fruit_leaves)
+		plant_controller.plant_icon_cache[icon_key] = plant_icon
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	add_overlay(plant_icon)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
@@ -399,4 +404,8 @@ var/list/fruit_icon_cache = list()
 		var/image/I = image(icon,"fruit_slice")
 		I.color = flesh_colour
 		fruit_icon_cache["slice-[rind_colour]"] = I
+<<<<<<< HEAD
 	add_overlay(fruit_icon_cache["slice-[rind_colour]"])
+=======
+	add_overlay(fruit_icon_cache["slice-[rind_colour]"])
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay

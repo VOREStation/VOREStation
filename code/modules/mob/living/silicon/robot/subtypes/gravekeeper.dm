@@ -12,8 +12,13 @@
 /mob/living/silicon/robot/gravekeeper/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 
+<<<<<<< HEAD
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
 	module = new /obj/item/weapon/robot_module/robot/gravekeeper(src)
+=======
+	mmi = new /obj/item/mmi/digital/robot(src)
+	module = new /obj/item/robot_module/robot/gravekeeper(src)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	init_id()
 

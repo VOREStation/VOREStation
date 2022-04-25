@@ -55,7 +55,13 @@
 	alpha = 255
 
 	cut_overlays()
+<<<<<<< HEAD
 	add_overlay(icon_manager.get_atmos_icon("pipe", , pipe_color, "universal"))
+=======
+	var/icon/add = icon_manager.get_atmos_icon("pipe", , pipe_color, "universal")
+	add_overlay(add)
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	underlays.Cut()
 
 	if (node1)

@@ -607,7 +607,11 @@
 		var/mob/living/carbon/C = hud.mymob
 		if(C.handcuffed)
 			add_overlay(handcuff_overlay)
+<<<<<<< HEAD
 			
+=======
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 // PIP stuff
 /obj/screen/component_button
 	var/obj/screen/parent
@@ -938,13 +942,13 @@
 	var/hud_state = ammo_type[1]
 	var/hud_state_empty = ammo_type[2]
 
-	overlays.Cut()
+	cut_overlays()
 
 	var/empty = image('icons/mob/screen_ammo.dmi', src, "[hud_state_empty]")
 
 	if(rounds == 0)
 		if(warned)
-			overlays += empty
+			add_overlay(empty)
 		else
 			warned = TRUE
 			var/obj/screen/ammo/F = new /obj/screen/ammo(src)
@@ -954,24 +958,26 @@
 			spawn(20)
 				user.client.screen -= F
 				qdel(F)
-				overlays += empty
+				add_overlay(empty)
 	else
 		warned = FALSE
-		overlays += image('icons/mob/screen_ammo.dmi', src, "[hud_state]")
+		var/image/image = image('icons/mob/screen_ammo.dmi', src, "[hud_state]")
+		add_overlay(image)
 
+	var/list/add = list()
 	rounds = num2text(rounds)
-	//Handle the amount of rounds
 	switch(length(rounds))
 		if(1)
-			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[1]]")
+			add += image('icons/mob/screen_ammo.dmi', src, "o[rounds[1]]")
 		if(2)
-			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[2]]")
-			overlays += image('icons/mob/screen_ammo.dmi', src, "t[rounds[1]]")
+			add += image('icons/mob/screen_ammo.dmi', src, "o[rounds[2]]")
+			add += image('icons/mob/screen_ammo.dmi', src, "t[rounds[1]]")
 		if(3)
-			overlays += image('icons/mob/screen_ammo.dmi', src, "o[rounds[3]]")
-			overlays += image('icons/mob/screen_ammo.dmi', src, "t[rounds[2]]")
-			overlays += image('icons/mob/screen_ammo.dmi', src, "h[rounds[1]]")
+			add += image('icons/mob/screen_ammo.dmi', src, "o[rounds[3]]")
+			add += image('icons/mob/screen_ammo.dmi', src, "t[rounds[2]]")
+			add += image('icons/mob/screen_ammo.dmi', src, "h[rounds[1]]")
 		else //"0" is still length 1 so this means it's over 999
-			overlays += image('icons/mob/screen_ammo.dmi', src, "o9")
-			overlays += image('icons/mob/screen_ammo.dmi', src, "t9")
-			overlays += image('icons/mob/screen_ammo.dmi', src, "h9")
+			add += image('icons/mob/screen_ammo.dmi', src, "o9")
+			add += image('icons/mob/screen_ammo.dmi', src, "t9")
+			add += image('icons/mob/screen_ammo.dmi', src, "h9")
+	add_overlay(add)

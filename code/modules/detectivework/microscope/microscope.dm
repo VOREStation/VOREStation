@@ -37,9 +37,16 @@
 		return
 
 	to_chat(user, "<span class='notice'>Printing findings now...</span>")
+<<<<<<< HEAD
 	var/obj/item/weapon/paper/report = new(get_turf(src))
 	report.stamped = list(/obj/item/weapon/stamp)
 	report.overlays = list("paper_stamped")
+=======
+	var/obj/item/paper/report = new(get_turf(src))
+	report.stamped = list(/obj/item/stamp)
+	report.cut_overlays()
+	report.add_overlay("paper_stamped")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	report_num++
 
 	if(istype(sample, /obj/item/weapon/forensics/swab))

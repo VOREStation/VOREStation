@@ -51,11 +51,6 @@
 	if(. == 0) // If they have the same var, then sort by name.
 		. = sorttext(b.name, a.name)
 
-// Sorts entries in a performance stats list.
-/proc/cmp_generic_stat_item_time(list/A, list/B)
-	. = B[STAT_ENTRY_TIME] - A[STAT_ENTRY_TIME]
-	if (!.)
-		. = B[STAT_ENTRY_COUNT] - A[STAT_ENTRY_COUNT]
 
 /proc/cmp_typepaths_asc(A, B)
 	return sorttext("[B]","[A]") 

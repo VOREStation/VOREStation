@@ -163,7 +163,11 @@
 /obj/machinery/station_map/update_icon()
 	if(!holomap_datum)
 		return //Not yet.
+<<<<<<< HEAD
 		
+=======
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(stat & BROKEN)
 		icon_state = "station_mapb"

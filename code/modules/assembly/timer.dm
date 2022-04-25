@@ -52,7 +52,11 @@
 		timer_end()
 		time = 10
 
+<<<<<<< HEAD
 /obj/item/device/assembly/timer/update_icon()
+=======
+/obj/item/assembly/timer/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	attached_overlays = list()
 	if(timing)

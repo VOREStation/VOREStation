@@ -160,7 +160,11 @@
 /obj/item/weapon/storage/fancy/crayons/update_icon()
 	var/mutable_appearance/ma = new(src)
 	ma.cut_overlays()
+<<<<<<< HEAD
 	for(var/obj/item/weapon/pen/crayon/crayon in contents)
+=======
+	for(var/obj/item/pen/crayon/crayon in contents)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		add_overlay(image('icons/obj/crayons.dmi',crayon.colourName))
 	appearance = ma
 
@@ -202,7 +206,11 @@
 /obj/item/weapon/storage/fancy/markers/update_icon()
 	var/mutable_appearance/ma = new(src)
 	ma.cut_overlays()
+<<<<<<< HEAD
 	for(var/obj/item/weapon/pen/crayon/marker/marker in contents)
+=======
+	for(var/obj/item/pen/crayon/marker/marker in contents)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		ma.add_overlay(image('icons/obj/crayons.dmi',"m"+marker.colourName))
 	appearance = ma
 

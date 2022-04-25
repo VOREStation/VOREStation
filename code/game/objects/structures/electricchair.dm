@@ -40,7 +40,11 @@
 /obj/structure/bed/chair/e_chair/rotate_clockwise()
 	..()
 	cut_overlays()
+<<<<<<< HEAD
 	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))	//there's probably a better way of handling this, but eh. -Pete
+=======
+	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	return
 
 /obj/structure/bed/chair/e_chair/proc/shock()

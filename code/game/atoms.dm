@@ -27,7 +27,11 @@
 
 	// Overlays
 	///Our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
+<<<<<<< HEAD
 	var/list/our_overlays	
+=======
+	var/list/our_overlays
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	///Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
 	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
@@ -35,7 +39,11 @@
 
 	///Our local copy of filter data so we can add/remove it
 	var/list/filter_data
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 	// Track if we are already had initialize() called to prevent double-initialization.

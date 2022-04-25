@@ -1614,7 +1614,11 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 		if(!P.stamped)
 			P.stamped = new
+<<<<<<< HEAD
 		P.stamped += /obj/item/weapon/stamp/centcomm
+=======
+		P.stamped += /obj/item/stamp/centcomm
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		P.add_overlay(stampoverlay)
 
 	var/obj/item/rcvdcopy

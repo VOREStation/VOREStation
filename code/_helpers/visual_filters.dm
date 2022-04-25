@@ -135,7 +135,10 @@ GLOBAL_LIST_INIT(master_filter_info, list(
 	)
 ))
 
+<<<<<<< HEAD
 #undef ICON_NOT_SET
+=======
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 //Helpers to generate lists for filter helpers
 //This is the only practical way of writing these that actually produces sane lists

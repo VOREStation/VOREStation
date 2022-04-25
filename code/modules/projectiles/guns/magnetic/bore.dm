@@ -49,8 +49,8 @@
 		overlays_to_add += image(icon, "[icon_state]_green")
 	if(mat_storage)
 		overlays_to_add += image(icon, "[icon_state]_loaded")
-
-	overlays = overlays_to_add
+	cut_overlays()
+	add_overlay(overlays_to_add)
 	..()
 
 /obj/item/weapon/gun/magnetic/matfed/attack_hand(var/mob/user) // It doesn't keep a loaded item inside.

@@ -72,10 +72,17 @@
 		. = 0
 
 /obj/compass_holder/update_icon()
-	var/set_overlays = (compass_static_labels | compass_waypoint_markers)
+	var/list/add = (compass_static_labels | compass_waypoint_markers)
 	if(show_heading)
+<<<<<<< HEAD
 		set_overlays |= compass_heading_marker
 	overlays = set_overlays // ???
+=======
+		add |= compass_heading_marker
+	if (add.len)
+		cut_overlays()
+		add_overlay(add)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/compass_holder/proc/clear_waypoint(var/id)
 	LAZYREMOVE(compass_waypoints, id)

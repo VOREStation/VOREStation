@@ -11,7 +11,11 @@
 /mob/living/silicon/robot/syndicate/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)
 
+<<<<<<< HEAD
 	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
+=======
+	mmi = new /obj/item/mmi/digital/robot(src)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	init_id()
 

@@ -66,7 +66,11 @@
 			name = "[original_name] ([front_id])"
 			update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/wallet/update_icon()
+=======
+/obj/item/storage/wallet/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(front_id)
 		var/tiny_state = "id-generic"

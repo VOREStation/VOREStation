@@ -606,7 +606,7 @@ var/list/global/slot_flags_enumeration = list(
 /obj/item/clean_blood()
 	. = ..()
 	if(blood_overlay)
-		overlays.Remove(blood_overlay)
+		cut_overlay(blood_overlay)
 
 /obj/item/reveal_blood()
 	if(was_bloodied && !fluorescent)
@@ -645,7 +645,7 @@ GLOBAL_LIST_EMPTY(blood_overlays_by_type)
 
 	// Already cached
 	if(GLOB.blood_overlays_by_type[type])
-		blood_overlay = GLOB.blood_overlays_by_type[type]
+		add_overlay(blood_overlay)
 		return
 
 	// Firsties!

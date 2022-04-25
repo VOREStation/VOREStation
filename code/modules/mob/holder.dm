@@ -89,12 +89,38 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/GetAccess()
 	var/obj/item/I = GetID()
+<<<<<<< HEAD
 	return I?.GetAccess() || ..()
 
 /obj/item/weapon/holder/container_resist(mob/living/held)
 	if(ismob(loc))
 		var/mob/M = loc
 		M.drop_from_inventory(src) // If it's another item, we can just continue existing, or if it's a turf we'll qdel() in Moved()
+=======
+	return I ? I.GetAccess() : ..()
+
+/obj/item/holder/proc/sync(var/mob/living/M)
+	dir = 2
+	overlays.Cut() // Not using SSoverlays for this due to performance
+	icon = M.icon
+	icon_state = M.icon_state
+	item_state = M.item_state
+	color = M.color
+	name = M.name
+	desc = M.desc
+	overlays |= M.overlays // Not using SSoverlays for this due to performance
+	var/mob/living/carbon/human/H = loc
+	if(istype(H))
+		if(H.l_hand == src)
+			H.update_inv_l_hand()
+		else if(H.r_hand == src)
+			H.update_inv_r_hand()
+
+/obj/item/holder/container_resist(mob/living/held)
+	var/mob/M = loc
+	if(istype(M))
+		M.drop_from_inventory(src)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		to_chat(M, "<span class='warning'>\The [held] wriggles out of your grip!</span>")
 		to_chat(held, "<span class='warning'>You wiggle out of [M]'s grip!</span>")
 	else if(istype(loc, /obj/item/clothing/accessory/holster))

@@ -455,7 +455,11 @@
 		build_step = 3
 		to_chat(user, "You add \the [W] to [src].")
 		name = "helmet/signaler/prox sensor/robot arm assembly"
+<<<<<<< HEAD
 		add_overlay("hs_arm")
+=======
+		add_overlay(image('icons/obj/aibots.dmi', "hs_arm"))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		qdel(W)
 
 	else if(istype(W, /obj/item/weapon/melee/baton) && build_step == 3)

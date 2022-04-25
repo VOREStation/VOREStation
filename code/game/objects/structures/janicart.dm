@@ -304,6 +304,14 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		add_overlay("cart_replacer")
 	if(signs)
 		add_overlay("cart_sign[signs]")
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 //This is called if the cart is caught in an explosion, or destroyed by weapon fire
 /obj/structure/janitorialcart/proc/spill(var/chance = 100)

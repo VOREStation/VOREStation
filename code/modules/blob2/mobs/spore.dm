@@ -63,7 +63,11 @@
 	if(is_infesting)
 		cut_overlays()
 		icon = infested.icon
+<<<<<<< HEAD
 		add_overlay(infested.overlays)
+=======
+		copy_overlays(infested)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		var/mutable_appearance/blob_head_overlay = mutable_appearance('icons/mob/blob.dmi', "blob_head")
 		if(overmind)
 			blob_head_overlay.color = overmind.blob_type.complementary_color

@@ -93,6 +93,31 @@
 
 	default_apply_parts()
 	files = new /datum/research(src) //Setup the research data holder.
+<<<<<<< HEAD
+=======
+	update_categories()
+
+/obj/machinery/mecha_part_fabricator/process()
+	..()
+	if(stat)
+		return
+	if(busy)
+		update_use_power(USE_POWER_ACTIVE)
+		progress += speed
+		check_build()
+	else
+		update_use_power(USE_POWER_IDLE)
+	update_icon()
+
+/obj/machinery/mecha_part_fabricator/update_icon()
+	cut_overlays()
+	if(panel_open)
+		icon_state = "mechfab-o"
+	else
+		icon_state = "mechfab-idle"
+	if(busy)
+		add_overlay("mechfab-active")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /obj/machinery/mecha_part_fabricator/dismantle()
 	for(var/f in materials)
@@ -631,12 +656,18 @@
 		if(materials[S.material.name] + amnt <= res_max_amount)
 			if(S && S.get_amount() >= 1)
 				var/count = 0
+<<<<<<< HEAD
 				flick("[loading_icon_state]", src)
 				// yess hacky but whatever
 				if(loading_icon_state == "mechfab-idle")
 					add_overlay("mechfab-load-metal")
 					spawn(10)
 						cut_overlays("mechfab-load-metal")
+=======
+				add_overlay("mechfab-load-metal")
+				spawn(10)
+					cut_overlays("mechfab-load-metal")
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 				while(materials[S.material.name] + amnt <= res_max_amount && S.get_amount() >= 1)
 					materials[S.material.name] += amnt
 					S.use(1)

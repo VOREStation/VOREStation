@@ -43,7 +43,11 @@
 	R.offset_x += 0
 	R.offset_y += 0
 	R.ico += "paper_stamp-cent"
+<<<<<<< HEAD
 	R.stamped += /obj/item/weapon/stamp
+=======
+	R.stamped += /obj/item/stamp
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
@@ -63,7 +67,11 @@
 	stampoverlay.icon_state = "paper_stamp-cent"
 	if(!R.stamped)
 		R.stamped = new
+<<<<<<< HEAD
 	R.stamped += /obj/item/weapon/stamp
+=======
+	R.stamped += /obj/item/stamp
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 	var/obj/item/smallDelivery/D = new(R.loc)

@@ -92,8 +92,51 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 		. += "It is about [depth] levels deep."
 
 /turf/simulated/open/update_icon()
+<<<<<<< HEAD
 	cut_overlays()
 	update_icon_edge()
+=======
+	cut_overlays() // Edit - Overlays are being crashy when modified.
+	update_icon_edge()// Add - Get grass into open spaces and whatnot.
+	if(below)
+		// Skybox lives on its own plane, if we don't set it to see that, then open space tiles over true space tiles see white nothingness below
+		if(is_space())
+			plane = SPACE_PLANE
+		else
+			plane = OPENSPACE_PLANE + src.z
+
+		var/below_is_open = isopenspace(below)
+
+		if(below_is_open)
+			underlays = below.underlays
+		else
+			var/image/bottom_turf = image(icon = below.icon, icon_state = below.icon_state, dir=below.dir, layer=below.layer)
+			bottom_turf.plane = src.plane
+			bottom_turf.color = below.color
+			underlays = list(bottom_turf)
+		copy_overlays(below)
+
+		// get objects (not mobs, they are handled by /obj/zshadow)
+		var/list/o_img = list()
+		for(var/obj/O in below)
+			if(O.invisibility) continue // Ignore objects that have any form of invisibility
+			if(O.loc != below) continue // Ignore multi-turf objects not directly below
+			var/image/temp2 = image(O, dir = O.dir, layer = O.layer)
+			if(temp2.icon == null)
+				temp2.icon_state = null
+			temp2.plane = src.plane
+			temp2.color = O.color
+			temp2.copy_overlays(O)
+			// TODO Is pixelx/y needed?
+			o_img += temp2
+		add_overlay(o_img)
+
+		if(!below_is_open)
+			add_overlay(SSopen_space.over_OS_darkness)
+
+		return 0
+	return PROCESS_KILL
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 // Straight copy from space.
 /turf/simulated/open/attackby(obj/item/C as obj, mob/user as mob)

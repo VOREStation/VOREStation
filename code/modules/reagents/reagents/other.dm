@@ -418,7 +418,11 @@
 		if(istype(T, /turf/simulated/wall))
 			var/turf/simulated/wall/W = T
 			W.thermite = 1
+<<<<<<< HEAD
 			W.add_overlay(image('icons/effects/effects.dmi',icon_state = "#673910")) // What??
+=======
+			W.add_overlay(image('icons/effects/effects.dmi',icon_state = "#673910")) //Yeeah that's definitely not an icon is it
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 			remove_self(5)
 	return
 

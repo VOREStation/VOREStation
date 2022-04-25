@@ -118,7 +118,11 @@
 		toggle_valve()
 		VARSET_IN(src, toggle, TRUE, 5 SECONDS)
 
+<<<<<<< HEAD
 /obj/item/device/transfer_valve/update_icon()
+=======
+/obj/item/transfer_valve/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	underlays = null
 

@@ -34,7 +34,11 @@
 		internalPaper = null
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/paperplane/update_icon()
+=======
+/obj/item/paperplane/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	var/list/stamped = internalPaper.stamped
 	if(!stamped)

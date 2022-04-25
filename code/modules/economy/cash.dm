@@ -35,7 +35,11 @@
 		to_chat(user, "<span class='notice'>You combine the [initial_name]s to a bundle of [SC.worth] [initial_name]s.</span>")
 		qdel(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/spacecash/update_icon()
+=======
+/obj/item/spacecash/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	name = "[worth] [initial_name]\s"
 	if(worth in list(1000,500,200,100,50,20,10,1))

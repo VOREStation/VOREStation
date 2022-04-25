@@ -237,7 +237,7 @@
 			dropspot = target.loc
 
 
-		overlays = null
+		cut_overlays()
 
 		var droppedSomething = 0
 

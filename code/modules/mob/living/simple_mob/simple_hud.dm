@@ -167,7 +167,11 @@
 	zone_sel.color = ui_color
 	zone_sel.alpha = ui_alpha
 	zone_sel.cut_overlays()
+<<<<<<< HEAD
 	zone_sel.update_icon()
+=======
+	zone_sel.add_overlay(image('icons/mob/zone_sel.dmi', "[zone_sel.selecting]"))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	hud_elements |= zone_sel
 
 	//Hand things

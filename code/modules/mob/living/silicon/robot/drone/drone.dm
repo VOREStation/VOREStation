@@ -167,6 +167,7 @@ var/list/mob_hat_cache = list()
 	if(islist(shell_accessories))
 		add_overlay(shell_accessories)
 
+<<<<<<< HEAD
 	if(hat) // Let the drones wear hats.
 		add_overlay(get_hat_icon(hat, hat_x_offset, hat_y_offset))
 
@@ -202,6 +203,15 @@ var/list/mob_hat_cache = list()
 	
 	can_pick_shell = FALSE
 	updateicon()
+=======
+	cut_overlays()
+	if(stat == 0)
+		add_overlay("eyes-[icon_state]")
+	else
+		cut_overlay("eyes")
+	if(hat) // Let the drones wear hats.
+		add_overlay(get_hat_icon(hat, hat_x_offset, hat_y_offset))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 /mob/living/silicon/robot/drone/choose_icon()
 	return

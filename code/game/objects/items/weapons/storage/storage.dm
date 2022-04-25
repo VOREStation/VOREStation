@@ -352,7 +352,11 @@
 	var/stored_cap_width = 4 //length of sprite for start and end of the box representing the stored item
 	var/storage_width = min( round( 224 * max_storage_space/baseline_max_storage_space ,1) ,274) //length of sprite for the box representing total storage space
 
+<<<<<<< HEAD
 	QDEL_LIST_NULL(storage_start.vis_contents)
+=======
+	storage_start.cut_overlays()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 	var/matrix/M = matrix()
 	M.Scale((storage_width-storage_cap_width*2+3)/32,1)
@@ -377,10 +381,19 @@
 		M_continue.Scale((endpoint-startpoint-stored_cap_width*2)/32,1)
 		M_continue.Translate(startpoint+stored_cap_width+(endpoint-startpoint-stored_cap_width*2)/2 - 16,0)
 		M_end.Translate(endpoint-stored_cap_width,0)
+<<<<<<< HEAD
 		stored_start.transform = M_start
 		stored_continue.transform = M_continue
 		stored_end.transform = M_end
 		SS.add_overlay(list(stored_start, stored_continue, stored_end))
+=======
+		src.stored_start.transform = M_start
+		src.stored_continue.transform = M_continue
+		src.stored_end.transform = M_end
+		storage_start.add_overlay(stored_start)
+		storage_start.add_overlay(stored_continue)
+		storage_start.add_overlay(stored_end)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 		O.screen_loc = "4:[round((startpoint+endpoint)/2)+2],2:16"
 		O.maptext = ""
@@ -794,7 +807,11 @@
 	var/open_state
 	var/closed_state
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/trinketbox/update_icon()
+=======
+/obj/item/storage/trinketbox/update_icon()
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 	cut_overlays()
 	if(open)
 		icon_state = open_state

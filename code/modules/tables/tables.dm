@@ -356,30 +356,55 @@ var/list/table_icon_cache = list()
 	if(flipped != 1)
 		icon_state = "blank"
 		cut_overlays()
+<<<<<<< HEAD
 
 		// Base frame shape. Mostly done for glass/diamond tables, where this is visible.
 		for(var/i = 1 to 4)
 			var/image/I = get_table_image(icon, connections?[i] || 0, 1<<(i-1))
+=======
+
+		var/image/I
+
+		// Base frame shape. Mostly done for glass/diamond tables, where this is visible.
+		for(var/i = 1 to 4)
+			I = image(icon, dir = 1<<(i-1), icon_state = connections[i])
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 			add_overlay(I)
 
 		// Standard table image
 		if(material)
 			for(var/i = 1 to 4)
+<<<<<<< HEAD
 				var/connect = connections?[i] || 0
 				var/image/I = get_table_image(icon, "[material.icon_base]_[connect]", 1<<(i-1), material.icon_colour, 255 * material.opacity)
+=======
+				I = image(icon, "[material.icon_base]_[connections[i]]", dir = 1<<(i-1))
+				if(material.icon_colour) I.color = material.icon_colour
+				I.alpha = 255 * material.opacity
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 				add_overlay(I)
 
 		// Reinforcements
 		if(reinforced)
 			for(var/i = 1 to 4)
+<<<<<<< HEAD
 				var/connect = connections?[i] || 0
 				var/image/I = get_table_image(icon, "[reinforced.icon_reinf]_[connect]", 1<<(i-1), reinforced.icon_colour, 255 * reinforced.opacity)
+=======
+				I = image(icon, "[reinforced.icon_reinf]_[connections[i]]", dir = 1<<(i-1))
+				I.color = reinforced.icon_colour
+				I.alpha = 255 * reinforced.opacity
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 				add_overlay(I)
 
 		if(carpeted)
 			for(var/i = 1 to 4)
+<<<<<<< HEAD
 				var/connect = connections?[i] || 0
 				var/image/I = get_table_image(icon, "carpet_[connect]", 1<<(i-1))
+=======
+				I = image(icon, "carpet_[connections[i]]", dir = 1<<(i-1))
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 				add_overlay(I)
 	else
 		cut_overlays()

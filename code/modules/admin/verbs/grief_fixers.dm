@@ -40,7 +40,11 @@
 
 	for(var/turf/simulated/T in world)
 		T.air = null
+<<<<<<< HEAD
 		T.vis_contents.Remove(unsorted_overlays)
+=======
+		T.cut_overlay(unsorted_overlays)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 		T.zone = null
 
 	to_chat(usr, "\[4/5\] - All turfs reset to roundstart values.")

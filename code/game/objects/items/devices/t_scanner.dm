@@ -87,7 +87,11 @@
 		if(istype(scanned, /obj/machinery/atmospherics/pipe))
 			var/obj/machinery/atmospherics/pipe/P = scanned
 			I.color = P.pipe_color
+<<<<<<< HEAD
 			I.add_overlay(P.overlays)
+=======
+			I.copy_overlays(P)
+>>>>>>> 2a494dcb666... Merge pull request #8530 from Spookerton/cerebulon/ssoverlay
 
 		I.alpha = 128
 		I.mouse_opacity = 0
