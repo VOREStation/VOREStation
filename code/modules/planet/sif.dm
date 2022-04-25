@@ -1,4 +1,4 @@
-var/datum/planet/sif/planet_sif = null
+var/global/datum/planet/sif/planet_sif = null
 
 /datum/planet/sif
 	name = "Sif"

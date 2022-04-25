@@ -11,7 +11,7 @@
 	icon_state = "monitor"
 
 	var/monitor_state_index = "blank"
-	var/global/list/monitor_states = list()
+	var/static/list/monitor_states = list()
 
 /obj/item/clothing/mask/monitor/set_dir()
 	dir = SOUTH

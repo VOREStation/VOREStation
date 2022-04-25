@@ -1,6 +1,6 @@
 
 
-/var/all_ui_styles = list(
+var/global/all_ui_styles = list(
 	"Midnight"     = 'icons/mob/screen/midnight.dmi',
 	"Orange"       = 'icons/mob/screen/orange.dmi',
 	"old"          = 'icons/mob/screen/old.dmi',
@@ -10,7 +10,7 @@
 	"Hologram"     = 'icons/mob/screen/holo.dmi'
 	)
 
-/var/all_ui_styles_robot = list(
+var/global/all_ui_styles_robot = list(
 	"Midnight"     = 'icons/mob/screen1_robot.dmi',
 	"Orange"       = 'icons/mob/screen1_robot.dmi',
 	"old"          = 'icons/mob/screen1_robot.dmi',

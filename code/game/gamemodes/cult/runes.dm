@@ -1,4 +1,4 @@
-var/list/sacrificed = list()
+var/global/list/sacrificed = list()
 
 /obj/effect/rune/cultify()
 	return

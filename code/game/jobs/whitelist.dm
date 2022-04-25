@@ -1,6 +1,10 @@
+<<<<<<< HEAD
 #define WHITELISTFILE "data/whitelist.txt"
 
 var/list/whitelist = list()
+=======
+var/global/list/whitelist = list()
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 
 /hook/startup/proc/loadWhitelist()
 	if(config.usewhitelist)
@@ -16,7 +20,7 @@ var/list/whitelist = list()
 		return 0
 	return ("[M.ckey]" in whitelist)
 
-/var/list/alien_whitelist = list()
+var/global/list/alien_whitelist = list()
 
 /hook/startup/proc/loadAlienWhitelist()
 	if(config.usealienwhitelist)
@@ -111,10 +115,19 @@ var/list/whitelist = list()
 				return 1
 
 /proc/whitelist_overrides(mob/M)
+<<<<<<< HEAD
 	if(!config.usealienwhitelist)
 		return TRUE
 	if(check_rights(R_ADMIN|R_EVENT, 0, M))
 		return TRUE
+=======
+	return !config.usealienwhitelist || check_rights(R_ADMIN|R_EVENT, 0, M)
+
+var/global/list/genemod_whitelist = list()
+/hook/startup/proc/LoadGenemodWhitelist()
+	global.genemod_whitelist = file2list("config/genemodwhitelist.txt")
+	return TRUE
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 
 	return FALSE
 

@@ -1,4 +1,4 @@
-var/list/blob_cores = list()
+var/global/list/blob_cores = list()
 
 /obj/structure/blob/core
 	name = "blob core"

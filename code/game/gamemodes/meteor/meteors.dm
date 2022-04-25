@@ -1,13 +1,13 @@
-/var/const/meteor_wave_delay = 625 //minimum wait between waves in tenths of seconds
+var/global/const/meteor_wave_delay = 625 //minimum wait between waves in tenths of seconds
 //set to at least 100 unless you want evarr ruining every round
 
 //Meteors probability of spawning during a given wave
 
 //for space dust event
-/var/list/meteors_dust = list(/obj/effect/meteor/dust)
+var/global/list/meteors_dust = list(/obj/effect/meteor/dust)
 
 //for normal meteor event
-/var/list/meteors_normal = list(
+var/global/list/meteors_normal = list(
 	/obj/effect/meteor/dust=3,
 	/obj/effect/meteor/medium=8,
 	/obj/effect/meteor/big=3,
@@ -16,16 +16,28 @@
 	)
 
 //for threatening meteor event
+<<<<<<< HEAD
 /var/list/meteors_threatening = list(
 	/obj/effect/meteor/medium=5,
+=======
+var/global/list/meteors_threatening = list(
+	/obj/effect/meteor/medium=3,
+	/obj/effect/meteor/medium/spalling = 2,
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 	/obj/effect/meteor/big=10,
 	/obj/effect/meteor/flaming=3,
 	/obj/effect/meteor/irradiated=3,
 	/obj/effect/meteor/emp=3)
 
 //for catastrophic meteor event
+<<<<<<< HEAD
 /var/list/meteors_catastrophic = list(
 	/obj/effect/meteor/medium=5,
+=======
+var/global/list/meteors_catastrophic = list(
+	/obj/effect/meteor/medium=2,
+	/obj/effect/meteor/medium/spalling = 3,
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 	/obj/effect/meteor/big=75,
 	/obj/effect/meteor/flaming=10,
 	/obj/effect/meteor/irradiated=10,

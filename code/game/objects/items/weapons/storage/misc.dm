@@ -2,6 +2,7 @@
  * Donut Box
  */
 
+<<<<<<< HEAD
 var/list/random_weighted_donuts = list(
 	/obj/item/weapon/reagent_containers/food/snacks/donut/plain = 5,
 	/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly = 5,
@@ -26,6 +27,32 @@ var/list/random_weighted_donuts = list(
 	/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles = 3,
 	/obj/item/weapon/reagent_containers/food/snacks/donut/choc_sprinkles/jelly = 3,
 	/obj/item/weapon/reagent_containers/food/snacks/donut/chaos = 1
+=======
+var/global/list/random_weighted_donuts = list(
+	/obj/item/reagent_containers/food/snacks/donut/plain = 5,
+	/obj/item/reagent_containers/food/snacks/donut/plain/jelly = 5,
+	/obj/item/reagent_containers/food/snacks/donut/pink = 4,
+	/obj/item/reagent_containers/food/snacks/donut/pink/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/purple = 4,
+	/obj/item/reagent_containers/food/snacks/donut/purple/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/green = 4,
+	/obj/item/reagent_containers/food/snacks/donut/green/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/beige = 4,
+	/obj/item/reagent_containers/food/snacks/donut/beige/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/choc = 4,
+	/obj/item/reagent_containers/food/snacks/donut/choc/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/blue = 4,
+	/obj/item/reagent_containers/food/snacks/donut/blue/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/yellow = 4,
+	/obj/item/reagent_containers/food/snacks/donut/yellow/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/olive = 4,
+	/obj/item/reagent_containers/food/snacks/donut/olive/jelly = 4,
+	/obj/item/reagent_containers/food/snacks/donut/homer = 3,
+	/obj/item/reagent_containers/food/snacks/donut/homer/jelly = 3,
+	/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles = 3,
+	/obj/item/reagent_containers/food/snacks/donut/choc_sprinkles/jelly = 3,
+	/obj/item/reagent_containers/food/snacks/donut/chaos = 1
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 )
 
 /obj/item/weapon/storage/box/donut

@@ -1,4 +1,4 @@
-var/datum/antagonist/loyalists/loyalists
+var/global/datum/antagonist/loyalists/loyalists
 
 /datum/antagonist/loyalists
 	id = MODE_LOYALIST

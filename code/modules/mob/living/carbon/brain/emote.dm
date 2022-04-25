@@ -1,4 +1,4 @@
-var/list/_brain_default_emotes = list(
+var/global/list/_brain_default_emotes = list(
 	/decl/emote/audible/alarm,
 	/decl/emote/audible/alert,
 	/decl/emote/audible/notice,

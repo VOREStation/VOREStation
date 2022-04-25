@@ -1,4 +1,4 @@
-var/datum/antagonist/stowaway/stowaways
+var/global/datum/antagonist/stowaway/stowaways
 
 /datum/antagonist/STOWAWAY
 	id = MODE_STOWAWAY

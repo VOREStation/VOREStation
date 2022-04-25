@@ -1,4 +1,4 @@
-var/obj/screen/robot_inventory
+var/global/obj/screen/robot_inventory
 
 /mob/living/silicon/robot/create_mob_hud(datum/hud/HUD, apply_to_client = TRUE)
 	..()

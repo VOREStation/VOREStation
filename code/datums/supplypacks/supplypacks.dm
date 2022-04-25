@@ -7,7 +7,7 @@
 //NOTE NOTE: Hidden var is now deprecated, whoever removed support for it should've removed the var altogether
 
 //var/list/all_supply_groups = list("Operations","Security","Hospitality","Engineering","Atmospherics","Medical","Reagents","Reagent Cartridges","Science","Hydroponics", "Supply", "Miscellaneous")
-var/list/all_supply_groups = list("Atmospherics",
+var/global/list/all_supply_groups = list("Atmospherics",
 								  "Costumes",
 								  "Engineering",
 								  "Hospitality",

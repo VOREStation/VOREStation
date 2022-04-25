@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 var/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
 var/list/admin_departments = list("[using_map.boss_name]", "Virgo-Prime Governmental Authority", "Virgo-Erigonne Job Boards", "Supply") // Vorestation Edit
 var/list/alldepartments = list()
+=======
+var/global/list/obj/machinery/photocopier/faxmachine/allfaxes = list()
+var/global/list/admin_departments = list("[using_map.boss_name]", "Sif Governmental Authority", "Supply")
+var/global/list/alldepartments = list()
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 
-var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
+var/global/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 /obj/machinery/photocopier/faxmachine
 	name = "fax machine"

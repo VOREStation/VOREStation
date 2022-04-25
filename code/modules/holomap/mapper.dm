@@ -24,7 +24,7 @@
 
 	var/pinging = FALSE
 	var/updating = FALSE
-	var/global/icon/mask_icon
+	var/static/icon/mask_icon
 	var/obj/screen/mapper/extras_holder/extras_holder
 	var/hud_frame_hint
 

@@ -1,5 +1,5 @@
 
-var/list/dreams = list(
+var/global/list/dreams = list(
 	"an ID card","a bottle","a familiar face","a crewmember","a toolbox","a Security Officer","the Site Manager",
 	"voices from all around","deep space","a doctor","the engine","a traitor","an ally","darkness",
 	"light","a scientist","a monkey","a catastrophe","a loved one","a gun","warmth","freezing","the sun",

@@ -34,7 +34,7 @@
 
 	var/is_manifest = 0 //If set to 1, the ghost is able to whisper. Usually only set if a cultist drags them through the veil.
 	var/ghost_sprite = null
-	var/global/list/possible_ghost_sprites = list(
+	var/static/list/possible_ghost_sprites = list(
 		"Clear" = "blank",
 		"Green Blob" = "otherthing",
 		"Bland" = "ghost",

@@ -97,37 +97,41 @@ On the map:
 1455 for AI access
 */
 
-var/const/RADIO_LOW_FREQ	= 1200
-var/const/PUBLIC_LOW_FREQ	= 1441
-var/const/PUBLIC_HIGH_FREQ	= 1489
-var/const/RADIO_HIGH_FREQ	= 1600
+var/global/const/RADIO_LOW_FREQ	= 1200
+var/global/const/PUBLIC_LOW_FREQ	= 1441
+var/global/const/PUBLIC_HIGH_FREQ	= 1489
+var/global/const/RADIO_HIGH_FREQ	= 1600
 
-var/const/BOT_FREQ	= 1447
-var/const/COMM_FREQ = 1353
-var/const/ERT_FREQ	= 1345
-var/const/AI_FREQ	= 1343
-var/const/DTH_FREQ	= 1341
-var/const/SYND_FREQ = 1213
-var/const/RAID_FREQ	= 1277
-var/const/ENT_FREQ	= 1461 //entertainment frequency. This is not a diona exclusive frequency.
+var/global/const/BOT_FREQ	= 1447
+var/global/const/COMM_FREQ = 1353
+var/global/const/ERT_FREQ	= 1345
+var/global/const/AI_FREQ	= 1343
+var/global/const/DTH_FREQ	= 1341
+var/global/const/SYND_FREQ = 1213
+var/global/const/RAID_FREQ	= 1277
+var/global/const/ENT_FREQ	= 1461 //entertainment frequency. This is not a diona exclusive frequency.
 
 // department channels
-var/const/PUB_FREQ = 1459
-var/const/SEC_FREQ = 1359
-var/const/ENG_FREQ = 1357
-var/const/MED_FREQ = 1355
-var/const/SCI_FREQ = 1351
-var/const/SRV_FREQ = 1349
-var/const/SUP_FREQ = 1347
-var/const/EXP_FREQ = 1361
+var/global/const/PUB_FREQ = 1459
+var/global/const/SEC_FREQ = 1359
+var/global/const/ENG_FREQ = 1357
+var/global/const/MED_FREQ = 1355
+var/global/const/SCI_FREQ = 1351
+var/global/const/SRV_FREQ = 1349
+var/global/const/SUP_FREQ = 1347
+var/global/const/EXP_FREQ = 1361
 
 // internal department channels
-var/const/MED_I_FREQ = 1485
-var/const/SEC_I_FREQ = 1475
+var/global/const/MED_I_FREQ = 1485
+var/global/const/SEC_I_FREQ = 1475
 
+<<<<<<< HEAD
 var/const/TALON_FREQ = 1363 //VOREStation Add
 
 var/list/radiochannels = list(
+=======
+var/global/list/radiochannels = list(
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 	"Common"		= PUB_FREQ,
 	"Science"		= SCI_FREQ,
 	"Command"		= COMM_FREQ,
@@ -184,13 +188,13 @@ var/list/radiochannels = list(
 
 
 // central command channels, i.e deathsquid & response teams
-var/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
+var/global/list/CENT_FREQS = list(ERT_FREQ, DTH_FREQ)
 
 // Antag channels, i.e. Syndicate
-var/list/ANTAG_FREQS = list(SYND_FREQ, RAID_FREQ)
+var/global/list/ANTAG_FREQS = list(SYND_FREQ, RAID_FREQ)
 
 //Department channels, arranged lexically
-var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
+var/global/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
 
 var/list/OFFMAP_FREQS = list(TALON_FREQ) //VOREStation Add
 
@@ -238,17 +242,17 @@ var/list/OFFMAP_FREQS = list(TALON_FREQ) //VOREStation Add
 //This is done for performance, so we don't send signals to lots of machines unnecessarily.
 
 //This filter is special because devices belonging to default also recieve signals sent to any other filter.
-var/const/RADIO_DEFAULT = "radio_default"
+var/global/const/RADIO_DEFAULT = "radio_default"
 
-var/const/RADIO_TO_AIRALARM = "radio_airalarm" //air alarms
-var/const/RADIO_FROM_AIRALARM = "radio_airalarm_rcvr" //devices interested in recieving signals from air alarms
-var/const/RADIO_CHAT = "radio_telecoms"
-var/const/RADIO_ATMOSIA = "radio_atmos"
-var/const/RADIO_NAVBEACONS = "radio_navbeacon"
-var/const/RADIO_AIRLOCK = "radio_airlock"
-var/const/RADIO_SECBOT = "radio_secbot"
-var/const/RADIO_MULEBOT = "radio_mulebot"
-var/const/RADIO_MAGNETS = "radio_magnet"
+var/global/const/RADIO_TO_AIRALARM = "radio_airalarm" //air alarms
+var/global/const/RADIO_FROM_AIRALARM = "radio_airalarm_rcvr" //devices interested in recieving signals from air alarms
+var/global/const/RADIO_CHAT = "radio_telecoms"
+var/global/const/RADIO_ATMOSIA = "radio_atmos"
+var/global/const/RADIO_NAVBEACONS = "radio_navbeacon"
+var/global/const/RADIO_AIRLOCK = "radio_airlock"
+var/global/const/RADIO_SECBOT = "radio_secbot"
+var/global/const/RADIO_MULEBOT = "radio_mulebot"
+var/global/const/RADIO_MAGNETS = "radio_magnet"
 
 var/global/datum/controller/radio/radio_controller
 

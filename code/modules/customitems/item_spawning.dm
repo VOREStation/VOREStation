@@ -17,7 +17,7 @@
 // If hooded, have [kit_icon]_suit_t in both files for the hood-up version.
 // If not using the default overlay, have [kit_icon]_light in both files for custom light overlays.
 
-/var/list/custom_items = list()
+var/global/list/custom_items = list()
 
 /datum/custom_item
 	var/assoc_key

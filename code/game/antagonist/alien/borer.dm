@@ -1,4 +1,4 @@
-var/datum/antagonist/borer/borers
+var/global/datum/antagonist/borer/borers
 
 /datum/antagonist/borer
 	id = MODE_BORER

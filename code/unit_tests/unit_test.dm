@@ -1,6 +1,6 @@
-var/all_unit_tests_passed = 1
-var/failed_unit_tests = 0
-var/total_unit_tests = 0
+var/global/all_unit_tests_passed = 1
+var/global/failed_unit_tests = 0
+var/global/total_unit_tests = 0
 
 /datum/unit_test
 	var/name = "template"

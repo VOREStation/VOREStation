@@ -136,7 +136,7 @@
 	var/check_delay = 60	//periodically recheck if we need to rebuild a shield
 	use_power = USE_POWER_OFF
 	idle_power_usage = 0
-	var/global/list/blockedturfs =  list(
+	var/static/list/blockedturfs =  list(
 		/turf/space,
 		/turf/simulated/floor/outdoors,
 	)

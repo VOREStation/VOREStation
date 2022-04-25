@@ -10,7 +10,7 @@
 //			/old_opacity: Opacity before the change
 //			/new_opacity: Opacity after the change
 
-var/decl/observ/turf_changed/turf_changed_event = new()
+var/global/decl/observ/turf_changed/turf_changed_event = new()
 
 /decl/observ/turf_changed
 	name = "Turf Changed"

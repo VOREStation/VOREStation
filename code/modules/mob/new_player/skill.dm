@@ -1,22 +1,21 @@
-var/global/const
-	SKILL_NONE = 0
-	SKILL_BASIC = 1
-	SKILL_ADEPT = 2
-	SKILL_EXPERT = 3
-	SKILL_PROF = 4
+var/global/const/SKILL_NONE = 0
+var/global/const/SKILL_BASIC = 1
+var/global/const/SKILL_ADEPT = 2
+var/global/const/SKILL_EXPERT = 3
+var/global/const/SKILL_PROF = 4
 
-/datum/skill/var
-	ID = "none" // ID of the skill, used in code
-	name = "None" // name of the skill
-	desc = "Placeholder skill" // detailed description of the skill
-	field = "Misc" // the field under which the skill will be listed
-	secondary = 0 // secondary skills only have two levels and cost significantly less
+/datum/skill
+	var/ID = "none" // ID of the skill, used in code
+	var/name = "None" // name of the skill
+	var/desc = "Placeholder skill" // detailed description of the skill
+	var/field = "Misc" // the field under which the skill will be listed
+	var/secondary = 0 // secondary skills only have two levels and cost significantly less
 
 var/global/list/SKILLS = null
-var/list/SKILL_ENGINEER = list("field" = "Engineering", "EVA" = SKILL_BASIC, "construction" = SKILL_ADEPT, "electrical" = SKILL_BASIC, "engines" = SKILL_ADEPT)
-var/list/SKILL_ORGAN_ROBOTICIST = list("field" = "Science", "devices" = SKILL_ADEPT, "electrical" = SKILL_BASIC, "computer" = SKILL_ADEPT, "anatomy" = SKILL_BASIC)
-var/list/SKILL_SECURITY_OFFICER = list("field" = "Security", "combat" = SKILL_BASIC, "weapons" = SKILL_ADEPT, "law" = SKILL_ADEPT, "forensics" = SKILL_BASIC)
-var/list/SKILL_CHEMIST = list("field" = "Science", "chemistry" = SKILL_ADEPT, "science" = SKILL_ADEPT, "medical" = SKILL_BASIC, "devices" = SKILL_BASIC)
+var/global/list/SKILL_ENGINEER = list("field" = "Engineering", "EVA" = SKILL_BASIC, "construction" = SKILL_ADEPT, "electrical" = SKILL_BASIC, "engines" = SKILL_ADEPT)
+var/global/list/SKILL_ORGAN_ROBOTICIST = list("field" = "Science", "devices" = SKILL_ADEPT, "electrical" = SKILL_BASIC, "computer" = SKILL_ADEPT, "anatomy" = SKILL_BASIC)
+var/global/list/SKILL_SECURITY_OFFICER = list("field" = "Security", "combat" = SKILL_BASIC, "weapons" = SKILL_ADEPT, "law" = SKILL_ADEPT, "forensics" = SKILL_BASIC)
+var/global/list/SKILL_CHEMIST = list("field" = "Science", "chemistry" = SKILL_ADEPT, "science" = SKILL_ADEPT, "medical" = SKILL_BASIC, "devices" = SKILL_BASIC)
 var/global/list/SKILL_PRE = list("Engineer" = SKILL_ENGINEER, "Roboticist" = SKILL_ORGAN_ROBOTICIST, "Security Officer" = SKILL_SECURITY_OFFICER, "Chemist" = SKILL_CHEMIST)
 
 /datum/skill/management

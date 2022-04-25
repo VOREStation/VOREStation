@@ -1,4 +1,4 @@
-var/list/_default_mob_emotes = list(
+var/global/list/_default_mob_emotes = list(
 	/decl/emote/visible,
 	/decl/emote/visible/scratch,
 	/decl/emote/visible/drool,

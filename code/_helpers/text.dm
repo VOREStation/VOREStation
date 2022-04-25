@@ -335,8 +335,8 @@
 //For generating neat chat tag-images
 //The icon var could be local in the proc, but it's a waste of resources
 //	to always create it and then throw it out.
-/var/icon/text_tag_icons = 'icons/chattags.dmi'
-/var/list/text_tag_cache = list()
+var/global/icon/text_tag_icons = 'icons/chattags.dmi'
+var/global/list/text_tag_cache = list()
 /proc/create_text_tag(var/tagname, var/tagdesc = tagname, var/client/C = null)
 	if(!(C && C.is_preference_enabled(/datum/client_preference/chat_tags)))
 		return tagdesc

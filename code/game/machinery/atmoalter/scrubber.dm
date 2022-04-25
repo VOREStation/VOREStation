@@ -161,7 +161,7 @@
 	active_power_usage = 1000	//VOREStation Edit // Blowers running
 	power_rating = 100000	//VOREStation Add //100 kW ~ 135 HP
 
-	var/global/gid = 1
+	var/static/gid = 1
 	var/id = 0
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/New()

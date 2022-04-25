@@ -74,7 +74,7 @@
 		else
 			return meteors_minor
 
-/var/list/meteors_minor = list(
+var/global/list/meteors_minor = list(
 	/obj/effect/meteor/medium     = 80,
 	/obj/effect/meteor/dust       = 30,
 	/obj/effect/meteor/irradiated = 30,
@@ -84,7 +84,7 @@
 	///obj/effect/meteor/silver     = 10,
 )
 
-/var/list/meteors_moderate = list(
+var/global/list/meteors_moderate = list(
 	/obj/effect/meteor/medium     = 80,
 	/obj/effect/meteor/big        = 30,
 	/obj/effect/meteor/dust       = 30,
@@ -95,7 +95,7 @@
 	/obj/effect/meteor/emp        = 10,
 )
 
-/var/list/meteors_major = list(
+var/global/list/meteors_major = list(
 	/obj/effect/meteor/medium     = 80,
 	/obj/effect/meteor/big        = 30,
 	/obj/effect/meteor/dust       = 30,

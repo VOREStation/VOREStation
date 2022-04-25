@@ -1,4 +1,4 @@
-var/list/blob_nodes = list()
+var/global/list/blob_nodes = list()
 
 /obj/structure/blob/node
 	name = "blob node"

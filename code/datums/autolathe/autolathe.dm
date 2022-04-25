@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+var/global/datum/category_collection/autolathe/autolathe_recipes
+
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 /datum/category_item/autolathe/New()
 	..()
 	var/obj/item/I

@@ -65,7 +65,7 @@
 		if("Supreme Commander")
 			return get_all_centcom_access()
 
-/var/list/datum/access/priv_all_access_datums
+var/global/list/datum/access/priv_all_access_datums
 /proc/get_all_access_datums()
 	if(!priv_all_access_datums)
 		priv_all_access_datums = init_subtypes(/datum/access)
@@ -73,7 +73,7 @@
 
 	return priv_all_access_datums
 
-/var/list/datum/access/priv_all_access_datums_id
+var/global/list/datum/access/priv_all_access_datums_id
 /proc/get_all_access_datums_by_id()
 	if(!priv_all_access_datums_id)
 		priv_all_access_datums_id = list()
@@ -82,7 +82,7 @@
 
 	return priv_all_access_datums_id
 
-/var/list/datum/access/priv_all_access_datums_region
+var/global/list/datum/access/priv_all_access_datums_region
 /proc/get_all_access_datums_by_region()
 	if(!priv_all_access_datums_region)
 		priv_all_access_datums_region = list()
@@ -100,7 +100,7 @@
 			L += A.id
 	return L
 
-/var/list/priv_all_access
+var/global/list/priv_all_access
 /proc/get_all_accesses()
 	RETURN_TYPE(/list)
 	if(!priv_all_access)
@@ -108,7 +108,7 @@
 
 	return priv_all_access
 
-/var/list/priv_station_access
+var/global/list/priv_station_access
 /proc/get_all_station_access()
 	RETURN_TYPE(/list)
 	if(!priv_station_access)
@@ -116,7 +116,7 @@
 
 	return priv_station_access
 
-/var/list/priv_centcom_access
+var/global/list/priv_centcom_access
 /proc/get_all_centcom_access()
 	RETURN_TYPE(/list)
 	if(!priv_centcom_access)
@@ -124,7 +124,7 @@
 
 	return priv_centcom_access
 
-/var/list/priv_syndicate_access
+var/global/list/priv_syndicate_access
 /proc/get_all_syndicate_access()
 	RETURN_TYPE(/list)
 	if(!priv_syndicate_access)
@@ -132,7 +132,7 @@
 
 	return priv_syndicate_access
 
-/var/list/priv_private_access
+var/global/list/priv_private_access
 /proc/get_all_private_access()
 	RETURN_TYPE(/list)
 	if(!priv_private_access)
@@ -140,7 +140,7 @@
 
 	return priv_syndicate_access
 
-/var/list/priv_region_access
+var/global/list/priv_region_access
 /proc/get_region_accesses(var/code)
 	if(code == ACCESS_REGION_ALL)
 		return get_all_station_access()

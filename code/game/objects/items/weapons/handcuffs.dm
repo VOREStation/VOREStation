@@ -112,7 +112,7 @@
 		user.drop_l_hand()
 		user.stop_pulling()
 
-var/last_chew = 0
+var/global/last_chew = 0
 /mob/living/carbon/human/RestrainedClickOn(var/atom/A)
 	if (A != src) return ..()
 	if (last_chew + 26 > world.time) return

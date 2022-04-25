@@ -1,6 +1,26 @@
+<<<<<<< HEAD
 /datum/lighting_object
 	///the underlay we are currently applying to our turf to apply light
 	var/mutable_appearance/current_underlay
+=======
+var/global/total_lighting_overlays = 0
+/atom/movable/lighting_overlay
+	name = ""
+	mouse_opacity = 0
+	simulated = 0
+	anchored = 1
+	icon = LIGHTING_ICON
+	plane = PLANE_LIGHTING
+	//invisibility = INVISIBILITY_LIGHTING
+	color = LIGHTING_BASE_MATRIX
+	icon_state = "light1"
+	//auto_init = 0 // doesn't need special init
+	blend_mode = BLEND_OVERLAY
+
+	var/lum_r = 0
+	var/lum_g = 0
+	var/lum_b = 0
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 
 	///whether we are already in the SSlighting.objects_queue list
 	var/needs_update = FALSE

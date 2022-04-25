@@ -30,6 +30,30 @@ if [ $retVal -ne 0 ]; then
   FAILED=1
 fi
 
+#Checking for bare globals with a leading /
+(! grep -En "^/var" **/*.dm)
+retVal=$?
+if [ $retVal -ne 0 ]; then
+  echo -e "${RED}A bare global definition starting with / is present.${NC}"
+  FAILED=1
+fi
+
+#Checking for bare globals with no /global/ sugar
+(! grep -En "^var/(?!global/)" **/*.dm)
+retVal=$?
+if [ $retVal -ne 0 ]; then
+  echo -e "${RED}A bare global definition without the /global/ sugar is present.${NC}"
+  FAILED=1
+fi
+
+#Checking for lists with trailing attributes
+(! grep -En "list/((global/)|(static/)|(tmp/)|(const/))" **/*.dm)
+retVal=$?
+if [ $retVal -ne 0 ]; then
+  echo -e "${RED}A list with trailing /global/, /static/, /tmp/, or /const/ is present.${NC}"
+  FAILED=1
+fi
+
 #Checking for any 'checked' maps that include 'test'
 (! grep 'maps\\.*test.*' *.dme)
 retVal=$?

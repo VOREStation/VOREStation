@@ -1,4 +1,4 @@
-var/datum/antagonist/rogue_ai/malf
+var/global/datum/antagonist/rogue_ai/malf
 
 /datum/antagonist/rogue_ai
 	id = MODE_MALFUNCTION

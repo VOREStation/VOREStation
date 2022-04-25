@@ -1,7 +1,7 @@
 
-var/jsonpath = "/home/bay12/public_html"
-var/dmepath = "/home/bay12/git/baystation12.dme"
-var/makejson = 1 //temp
+var/global/jsonpath = "/home/bay12/public_html"
+var/global/dmepath = "/home/bay12/git/baystation12.dme"
+var/global/makejson = 1 //temp
 /proc/makejson()
 
 	if(!makejson)

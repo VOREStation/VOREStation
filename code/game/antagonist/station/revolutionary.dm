@@ -1,4 +1,4 @@
-var/datum/antagonist/revolutionary/revs
+var/global/datum/antagonist/revolutionary/revs
 
 /datum/antagonist/revolutionary
 	id = MODE_REVOLUTIONARY

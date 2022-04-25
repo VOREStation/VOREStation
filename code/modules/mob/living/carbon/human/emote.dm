@@ -1,4 +1,4 @@
-var/list/_human_default_emotes = list(
+var/global/list/_human_default_emotes = list(
 	/decl/emote/visible/blink,
 	/decl/emote/audible/synth,
 	/decl/emote/audible/synth/ping,

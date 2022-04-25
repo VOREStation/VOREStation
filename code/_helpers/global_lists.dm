@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+var/global/list/admins = list()							//list of all clients whom are admins
+
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 //Since it didn't really belong in any other category, I'm putting this here
 //This is for procs to replace all the goddamn 'in world's that are chilling around the code
 
@@ -22,7 +27,7 @@ var/global/list/joblist = list()					//list of all jobstypes, minus borg and AI
 #define all_genders_define_list list(MALE,FEMALE,PLURAL,NEUTER,HERM) //VOREStaton Edit
 #define all_genders_text_list list("Male","Female","Plural","Neuter","Herm") //VOREStation Edit
 
-var/list/mannequins_
+var/global/list/mannequins_
 
 // Times that players are allowed to respawn ("ckey" = world.time)
 GLOBAL_LIST_EMPTY(respawn_timers)
@@ -49,7 +54,7 @@ var/global/list/wing_styles_list = list()	// Stores /datum/sprite_accessory/wing
 
 GLOBAL_LIST_INIT(custom_species_bases, new) // Species that can be used for a Custom Species icon base
 	//Underwear
-var/datum/category_collection/underwear/global_underwear = new()
+var/global/datum/category_collection/underwear/global_underwear = new()
 
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel", "Satchel Alt", "Messenger Bag", "Sports Bag", "Strapless Satchel") //VOREStation edit
@@ -57,9 +62,9 @@ var/global/list/pdachoicelist = list("Default", "Slim", "Old", "Rugged", "Hologr
 var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 // Visual nets
-var/list/datum/visualnet/visual_nets = list()
-var/datum/visualnet/camera/cameranet = new()
-var/datum/visualnet/cult/cultnet = new()
+var/global/list/datum/visualnet/visual_nets = list()
+var/global/datum/visualnet/camera/cameranet = new()
+var/global/datum/visualnet/cult/cultnet = new()
 
 // Runes
 var/global/list/rune_list = new()

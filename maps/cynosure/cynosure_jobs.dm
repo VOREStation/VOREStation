@@ -1,8 +1,8 @@
 // Pilots
 
-var/const/EXPLORER 			=(1<<14)
+var/global/const/EXPLORER 			=(1<<14)
 
-var/const/access_explorer = 43
+var/global/const/access_explorer = 43
 
 /datum/access/explorer
 	id = access_explorer

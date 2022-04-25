@@ -7,8 +7,8 @@
 	var/supplied_law = "SuppliedLaw"
 	var/supplied_law_position = MIN_SUPPLIED_LAW_NUMBER
 
-	var/global/list/datum/ai_laws/admin_laws
-	var/global/list/datum/ai_laws/player_laws
+	var/static/list/datum/ai_laws/admin_laws
+	var/static/list/datum/ai_laws/player_laws
 	var/mob/living/silicon/owner = null
 
 /datum/tgui_module/law_manager/New(mob/living/silicon/S)

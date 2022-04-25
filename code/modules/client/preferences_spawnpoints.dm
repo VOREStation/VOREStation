@@ -1,4 +1,4 @@
-var/list/spawntypes = list()
+var/global/list/spawntypes = list()
 
 /proc/populate_spawn_points()
 	spawntypes = list()

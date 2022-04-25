@@ -1,7 +1,19 @@
+<<<<<<< HEAD
 // Because we can control each corner of every lighting object.
 // And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
 // For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
 
+=======
+var/global/total_lighting_corners = 0
+var/global/datum/lighting_corner/dummy/dummy_lighting_corner = new
+// Because we can control each corner of every lighting overlay.
+// And corners get shared between multiple turfs (unless you're on the corners of the map, then 1 corner doesn't).
+// For the record: these should never ever ever be deleted, even if the turf doesn't have dynamic lighting.
+
+// This list is what the code that assigns corners listens to, the order in this list is the order in which corners are added to the /turf/corners list.
+var/global/list/LIGHTING_CORNER_DIAGONAL = list(NORTHEAST, SOUTHEAST, SOUTHWEST, NORTHWEST)
+
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 /datum/lighting_corner
 	var/list/datum/light_source/affecting // Light sources affecting us.
 

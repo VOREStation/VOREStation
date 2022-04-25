@@ -1,4 +1,4 @@
-var/list/_slime_default_emotes = list(
+var/global/list/_slime_default_emotes = list(
 	/decl/emote/audible/moan,
 	/decl/emote/visible/twitch,
 	/decl/emote/visible/sway,

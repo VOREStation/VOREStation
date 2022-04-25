@@ -1,4 +1,4 @@
-var/datum/antagonist/mutineer/loyalist/loyalists
+var/global/datum/antagonist/mutineer/loyalist/loyalists
 
 /datum/antagonist/mutineer/loyalist
 	role_text = "Loyalist"

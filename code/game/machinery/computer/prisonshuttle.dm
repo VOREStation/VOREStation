@@ -3,12 +3,12 @@
 #define PRISON_STATION_AREATYPE "/area/shuttle/prison/station" //Type of the prison shuttle area for station
 #define PRISON_DOCK_AREATYPE "/area/shuttle/prison/prison"	//Type of the prison shuttle area for dock
 
-var/prison_shuttle_moving_to_station = 0
-var/prison_shuttle_moving_to_prison = 0
-var/prison_shuttle_at_station = 0
-var/prison_shuttle_can_send = 1
-var/prison_shuttle_time = 0
-var/prison_shuttle_timeleft = 0
+var/global/prison_shuttle_moving_to_station = 0
+var/global/prison_shuttle_moving_to_prison = 0
+var/global/prison_shuttle_at_station = 0
+var/global/prison_shuttle_can_send = 1
+var/global/prison_shuttle_time = 0
+var/global/prison_shuttle_timeleft = 0
 
 /obj/machinery/computer/prison_shuttle
 	name = "prison shuttle control console"

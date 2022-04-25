@@ -3,7 +3,7 @@
 
 /obj/machinery/shield_gen/external
 	name = "hull shield generator"
-	var/global/list/blockedturfs =  list(
+	var/static/list/blockedturfs =  list(
 		/turf/space,
 		/turf/simulated/floor/outdoors,
 	)

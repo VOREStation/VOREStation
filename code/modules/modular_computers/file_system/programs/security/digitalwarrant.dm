@@ -1,4 +1,4 @@
-var/warrant_uid = 0
+var/global/warrant_uid = 0
 /datum/datacore
 	var/list/warrants = list()
 

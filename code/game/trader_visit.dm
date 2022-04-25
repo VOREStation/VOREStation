@@ -1,7 +1,7 @@
 //Based on the ERT setup
 
 var/global/send_beruang = 0
-var/can_call_traders = 1
+var/global/can_call_traders = 1
 
 /client/proc/trader_ship()
 	set name = "Dispatch Beruang Trader Ship"

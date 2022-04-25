@@ -12,7 +12,7 @@
 	var/icon/wall_masks = 'icons/turf/wall_masks.dmi'
 	var/damage = 0
 	var/damage_overlay = 0
-	var/global/damage_overlays[16]
+	var/static/damage_overlays[16]
 	var/active
 	var/can_open = 0
 	var/datum/material/girder_material

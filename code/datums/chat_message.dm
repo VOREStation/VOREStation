@@ -25,7 +25,7 @@
   */
 
 // Cached runechat icon
-var/list/runechat_image_cache = list()
+var/global/list/runechat_image_cache = list()
 
 
 /hook/startup/proc/runechat_images()

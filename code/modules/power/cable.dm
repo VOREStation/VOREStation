@@ -21,7 +21,7 @@ If d1 = 0 and d2 = dir, it's a O-X cable, getting from the center of the tile to
 If d1 = dir1 and d2 = dir2, it's a full X-X cable, getting from dir1 to dir2
 By design, d1 is the smallest direction and d2 is the highest
 */
-var/list/possible_cable_coil_colours = list(
+var/global/list/possible_cable_coil_colours = list(
 		"White" = COLOR_WHITE,
 		"Silver" = COLOR_SILVER,
 		"Gray" = COLOR_GRAY,

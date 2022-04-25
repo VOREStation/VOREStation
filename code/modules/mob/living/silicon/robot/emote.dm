@@ -1,4 +1,4 @@
-var/list/_robot_default_emotes = list(
+var/global/list/_robot_default_emotes = list(
 	/decl/emote/audible/clap,
 	/decl/emote/visible/bow,
 	/decl/emote/visible/salute,

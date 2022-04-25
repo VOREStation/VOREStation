@@ -19,8 +19,8 @@
 //- Identify how hard it is to break into the area and where the weak points are
 //- Check if the area has too much empty space. If so, make it smaller and replace the rest with maintenance tunnels.
 
-var/camera_range_display_status = 0
-var/intercom_range_display_status = 0
+var/global/camera_range_display_status = 0
+var/global/intercom_range_display_status = 0
 
 GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 
@@ -124,7 +124,7 @@ GLOBAL_LIST_BOILERPLATE(all_debugging_effects, /obj/effect/debugging)
 					qdel(F)
 	feedback_add_details("admin_verb","mIRD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-var/list/debug_verbs = list (
+var/global/list/debug_verbs = list (
         /client/proc/do_not_use_these
         ,/client/proc/camera_view
         ,/client/proc/sec_camera_report

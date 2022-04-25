@@ -291,4 +291,132 @@
 			visible_message("<span class='alium'>[src.target] begins to crumble under the acid!</span>")
 	spawn(rand(150, 200)) tick()
 
+<<<<<<< HEAD
 //Xenomorph Effect egg removed, replaced with Structure Egg.
+=======
+/*
+ * Egg
+ */
+
+var/global/const/BURST = 0
+var/global/const/BURSTING = 1
+var/global/const/GROWING = 2
+var/global/const/GROWN = 3
+var/global/const/MIN_GROWTH_TIME = 1800 //time it takes to grow a hugger
+var/global/const/MAX_GROWTH_TIME = 3000
+
+/obj/effect/alien/egg
+	desc = "It looks like a weird egg"
+	name = "egg"
+//	icon_state = "egg_growing" // So the egg looks 'grown', even though it's not.
+	icon_state = "egg"
+	density = 0
+	anchored = 1
+
+	var/health = 100
+	var/status = BURST //can be GROWING, GROWN or BURST; all mutually exclusive
+
+/*
+/obj/effect/alien/egg/Initialize()
+	. = ..()
+	if(config.aliens_allowed)
+		addtimer(CALLBACK(src, .proc/Grow), rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
+	else
+		return INITIALIZE_HINT_QDEL
+*/
+
+/obj/effect/alien/egg/attack_hand(user as mob)
+
+	var/mob/living/carbon/M = user
+	if(!istype(M) || !(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs))
+		return attack_hand(user)
+
+	switch(status)
+		if(BURST)
+			to_chat(user, "<span class='warning'>You clear the hatched egg.</span>")
+			qdel(src)
+			return
+/*		if(GROWING)
+			to_chat(user, "<span class='warning'>The child is not developed yet.</span>")
+			return
+		if(GROWN)
+			to_chat(user, "<span class='warning'>You retrieve the child.</span>")
+			Burst(0)
+			return
+
+/obj/effect/alien/egg/proc/GetFacehugger() // Commented out for future edit.
+	return locate(/obj/item/clothing/mask/facehugger) in contents
+
+/obj/effect/alien/egg/proc/Grow()
+	icon_state = "egg"
+//	status = GROWN
+	status = BURST
+//	new /obj/item/clothing/mask/facehugger(src)
+	return
+*/
+/obj/effect/alien/egg/proc/Burst(var/kill = 1) //drops and kills the hugger if any is remaining
+	if(status == GROWN || status == GROWING)
+//		var/obj/item/clothing/mask/facehugger/child = GetFacehugger()
+		icon_state = "egg_hatched"
+/*		flick("egg_opening", src)
+		status = BURSTING
+		spawn(15)
+			status = BURST
+			child.loc = get_turf(src)
+
+			if(kill && istype(child))
+				child.Die()
+			else
+				for(var/mob/M in range(1,src))
+					if(CanHug(M))
+						child.Attach(M)
+						break
+*/
+/obj/effect/alien/egg/bullet_act(var/obj/item/projectile/Proj)
+	health -= Proj.damage
+	..()
+	healthcheck()
+	return
+
+/obj/effect/alien/egg/attack_generic(var/mob/user, var/damage, var/attack_verb)
+	visible_message("<span class='danger'>[user] [attack_verb] the [src]!</span>")
+	user.do_attack_animation(src)
+	health -= damage
+	healthcheck()
+	return
+
+/obj/effect/alien/egg/take_damage(var/damage)
+	health -= damage
+	healthcheck()
+	return
+
+
+/obj/effect/alien/egg/attackby(var/obj/item/W, var/mob/user)
+	if(health <= 0)
+		return
+	if(W.attack_verb.len)
+		src.visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
+	else
+		src.visible_message("<span class='danger'>\The [src] has been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
+	var/damage = W.force / 4.0
+
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
+
+		if(WT.remove_fuel(0, user))
+			damage = 15
+			playsound(src, 'sound/items/Welder.ogg', 100, 1)
+
+	src.health -= damage
+	src.healthcheck()
+
+
+/obj/effect/alien/egg/proc/healthcheck()
+	if(health <= 0)
+		Burst()
+
+/obj/effect/alien/egg/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	if(exposed_temperature > 500 + T0C)
+		health -= 5
+		healthcheck()
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda

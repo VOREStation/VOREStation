@@ -76,8 +76,8 @@
 
 	return
 
-var/world_topic_spam_protect_ip = "0.0.0.0"
-var/world_topic_spam_protect_time = world.timeofday
+var/global/world_topic_spam_protect_ip = "0.0.0.0"
+var/global/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC
@@ -560,8 +560,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		src.status = s
 
 #define FAILED_DB_CONNECTION_CUTOFF 5
-var/failed_db_connections = 0
-var/failed_old_db_connections = 0
+var/global/failed_db_connections = 0
+var/global/failed_old_db_connections = 0
 
 /hook/startup/proc/connectDB()
 	if(!config.sql_enabled)

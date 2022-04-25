@@ -36,7 +36,7 @@
 */
 
 // Assoc list containing all material datums indexed by name.
-var/list/name_to_material
+var/global/list/name_to_material
 
 //Returns the material the object is made of, if applicable.
 //Will we ever need to return more than one value here? Or should we just return the "dominant" material.

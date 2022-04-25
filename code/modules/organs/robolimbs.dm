@@ -1,8 +1,8 @@
-var/list/all_robolimbs = list()
-var/list/robolimb_data = list()
-var/list/chargen_robolimbs = list()
-var/datum/robolimb/basic_robolimb
-var/const/standard_monitor_styles = "blank=ipc_blank;\
+var/global/list/all_robolimbs = list()
+var/global/list/robolimb_data = list()
+var/global/list/chargen_robolimbs = list()
+var/global/datum/robolimb/basic_robolimb
+var/global/const/standard_monitor_styles = "blank=ipc_blank;\
 	pink=ipc_pink;\
 	green=ipc_green;\
 	red=ipc_red;\

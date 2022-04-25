@@ -1,7 +1,12 @@
+<<<<<<< HEAD
 //VOREStation Edit - Most of this file has been changed to use the Eris-style PA announcements.
 //You'll need to compare externally, or use your best judgement when merging.
 /var/datum/announcement/priority/priority_announcement = new(do_log = 0)
 /var/datum/announcement/priority/command/command_announcement = new(do_log = 0, do_newscast = 1)
+=======
+var/global/datum/announcement/priority/priority_announcement = new(do_log = 0)
+var/global/datum/announcement/priority/command/command_announcement = new(do_log = 0, do_newscast = 1)
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 
 /datum/announcement
 	var/title = "Attention"

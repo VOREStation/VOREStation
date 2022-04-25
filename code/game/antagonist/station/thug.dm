@@ -1,4 +1,4 @@
-var/datum/antagonist/thug/thugs
+var/global/datum/antagonist/thug/thugs
 
 /datum/antagonist/THUG
 	id = MODE_THUG

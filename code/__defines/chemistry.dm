@@ -46,10 +46,17 @@
 #define ANTIBIO_SUPER	3
 
 // Chemistry lists.
+<<<<<<< HEAD
 var/list/tachycardics  = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine") // Increase heart rate.
 var/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "bliss", "stoxin", "ambrosia_extract")   // Decrease heart rate.
 var/list/heartstopper  = list("potassium_chlorophoride", "zombie_powder") // This stops the heart.
 var/list/cheartstopper = list("potassium_chloride")                       // This stops the heart when overdose is met. -- c = conditional
+=======
+var/global/list/tachycardics  = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine", "bliss") // Increase heart rate.
+var/global/list/bradycardics  = list("neurotoxin", "cryoxadone", "clonexadone", "ambrosia_extract", "stoxin")                 // Decrease heart rate.
+var/global/list/heartstopper  = list("potassium_chlorophoride", "zombie_powder") // This stops the heart.
+var/global/list/cheartstopper = list("potassium_chloride")                       // This stops the heart when overdose is met. -- c = conditional
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 
 #define MAX_PILL_SPRITE 24 //max icon state of the pill sprites
 #define MAX_BOTTLE_SPRITE 4 //max icon state of the pill sprites

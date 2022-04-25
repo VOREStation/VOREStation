@@ -1,3 +1,25 @@
+<<<<<<< HEAD
+=======
+/*
+** Lighting Subsystem - Process the lighting! Do it!
+*/
+
+#define SSLIGHTING_STAGE_LIGHTS 1
+#define SSLIGHTING_STAGE_CORNERS 2
+#define SSLIGHTING_STAGE_OVERLAYS 3
+#define SSLIGHTING_STAGE_DONE 4
+// This subsystem's fire() method also gets called once during Master.Initialize().
+// During this fire we need to use CHECK_TICK to sleep and continue, but in all other fires we need to use MC_CHECK_TICK to pause and return.
+// This leads us to a rather annoying little tidbit of code that I have stuffed into this macro so I don't have to see it.
+#define DUAL_TICK_CHECK if (init_tick_checks) { CHECK_TICK; } else if (MC_TICK_CHECK) { return; }
+
+// Globals
+var/global/lighting_overlays_initialised = FALSE
+var/global/list/lighting_update_lights    = list()    // List of lighting sources  queued for update.
+var/global/list/lighting_update_corners   = list()    // List of lighting corners  queued for update.
+var/global/list/lighting_update_overlays  = list()    // List of lighting overlays queued for update.
+
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 SUBSYSTEM_DEF(lighting)
 	name = "Lighting"
 	wait = 2

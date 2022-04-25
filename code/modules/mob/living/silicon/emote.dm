@@ -1,4 +1,4 @@
-var/list/_silicon_default_emotes = list(
+var/global/list/_silicon_default_emotes = list(
 	/decl/emote/audible/synth,
 	/decl/emote/audible/synth/ping,
 	/decl/emote/audible/synth/buzz,

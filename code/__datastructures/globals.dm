@@ -27,7 +27,7 @@
 #define GLOBAL_REAL(X, Typepath) var/global##Typepath/##X
 
 // Defines a global var on the controller, do not use outside this file.
-#define GLOBAL_RAW(X) /datum/controller/global_vars/var/global##X
+#define GLOBAL_RAW(X) /datum/controller/global_vars/var/static##X
 
 // Create an untyped global with an initializer expression
 #define GLOBAL_VAR_INIT(X, InitValue) GLOBAL_RAW(/##X); GLOBAL_MANAGED(X, InitValue)

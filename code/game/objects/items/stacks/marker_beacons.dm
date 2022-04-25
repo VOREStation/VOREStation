@@ -1,5 +1,5 @@
 /*****************Marker Beacons**************************/
-var/list/marker_beacon_colors = list(
+var/global/list/marker_beacon_colors = list(
 "Random" = FALSE, //not a true color, will pick a random color
 "Burgundy" = LIGHT_COLOR_FLARE,
 "Bronze" = LIGHT_COLOR_ORANGE,

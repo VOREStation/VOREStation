@@ -45,7 +45,7 @@
 #define BE_CURSEDSWORD	0x100000
 //VOREStation Add End
 
-var/list/be_special_flags = list(
+var/global/list/be_special_flags = list(
 	"Traitor"          = BE_TRAITOR,
 	"Operative"        = BE_OPERATIVE,
 	"Changeling"       = BE_CHANGELING,

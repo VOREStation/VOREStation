@@ -1,5 +1,5 @@
-var/checked_for_inactives = 0
-var/inactive_keys = "None<br>"
+var/global/checked_for_inactives = 0
+var/global/inactive_keys = "None<br>"
 
 /client/proc/check_customitem_activity()
 	set category = "Admin"

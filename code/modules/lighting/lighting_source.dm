@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+var/global/total_lighting_sources = 0
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 // This is where the fun begins.
 // These are the main datums that emit light.
 

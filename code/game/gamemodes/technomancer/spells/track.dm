@@ -10,7 +10,7 @@
 
 // This stores a ref to all important items that belong to a Technomancer, in case of theft.  Used by the spell below.
 // I feel dirty for adding yet another global list used by one thing, but the only alternative is to loop through world, and yeahhh.
-var/list/technomancer_belongings = list()
+var/global/list/technomancer_belongings = list()
 
 /obj/item/weapon/spell/track
 	name = "track"

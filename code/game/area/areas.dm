@@ -374,7 +374,7 @@
 
 //////////////////////////////////////////////////////////////////
 
-var/list/mob/living/forced_ambiance_list = new
+var/global/list/mob/living/forced_ambiance_list = new
 
 /area/Entered(mob/M)
 	if(!istype(M) || !M.ckey)
@@ -501,7 +501,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 /*Adding a wizard area teleport list because motherfucking lag -- Urist*/
 /*I am far too lazy to make it a proper list of areas so I'll just make it run the usual telepot routine at the start of the game*/
-var/list/teleportlocs = list()
+var/global/list/teleportlocs = list()
 
 /hook/startup/proc/setupTeleportLocs()
 	for(var/area/AR in world)
@@ -516,7 +516,7 @@ var/list/teleportlocs = list()
 
 	return 1
 
-var/list/ghostteleportlocs = list()
+var/global/list/ghostteleportlocs = list()
 
 /hook/startup/proc/setupGhostTeleportLocs()
 	for(var/area/AR in world)

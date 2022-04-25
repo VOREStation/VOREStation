@@ -1,7 +1,7 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 
-var/hsboxspawn = 1
-var/list
+var/global/hsboxspawn = 1
+var/global/list
 		hrefs = list(
 					"hsbsuit" = "Suit Up (Space Travel Gear)",
 					"hsbmetal" = "Spawn 50 Metal",

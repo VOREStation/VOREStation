@@ -1,6 +1,6 @@
-var/list/flooring_cache = list()
+var/global/list/flooring_cache = list()
 
-var/image/no_ceiling_image = null
+var/global/image/no_ceiling_image = null
 
 /hook/startup/proc/setup_no_ceiling_image()
 	cache_no_ceiling_image()

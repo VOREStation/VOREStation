@@ -1,4 +1,4 @@
-var/savefile/Banlistjob
+var/global/savefile/Banlistjob
 
 
 /proc/_jobban_isbanned(var/client/clientvar, var/rank)

@@ -1,4 +1,4 @@
-var/list/turf_edge_cache = list()
+var/global/list/turf_edge_cache = list()
 
 /turf
 	// If greater than 0, this turf will apply edge overlays on top of other turfs cardinally adjacent to it, if those adjacent turfs are of a different icon_state,

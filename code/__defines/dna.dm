@@ -44,33 +44,33 @@
 
 // The way blocks are handled badly needs a rewrite, this is horrible.
 // Too much of a project to handle at the moment, TODO for later.
-var/BLINDBLOCK    = 0
-var/DEAFBLOCK     = 0
-var/HULKBLOCK     = 0
-var/TELEBLOCK     = 0
-var/FIREBLOCK     = 0
-var/XRAYBLOCK     = 0
-var/CLUMSYBLOCK   = 0
-var/FAKEBLOCK     = 0
-var/COUGHBLOCK    = 0
-var/GLASSESBLOCK  = 0
-var/EPILEPSYBLOCK = 0
-var/TWITCHBLOCK   = 0
-var/NERVOUSBLOCK  = 0
-var/MONKEYBLOCK   = STRUCDNASIZE
+var/global/BLINDBLOCK    = 0
+var/global/DEAFBLOCK     = 0
+var/global/HULKBLOCK     = 0
+var/global/TELEBLOCK     = 0
+var/global/FIREBLOCK     = 0
+var/global/XRAYBLOCK     = 0
+var/global/CLUMSYBLOCK   = 0
+var/global/FAKEBLOCK     = 0
+var/global/COUGHBLOCK    = 0
+var/global/GLASSESBLOCK  = 0
+var/global/EPILEPSYBLOCK = 0
+var/global/TWITCHBLOCK   = 0
+var/global/NERVOUSBLOCK  = 0
+var/global/MONKEYBLOCK   = STRUCDNASIZE
 
-var/BLOCKADD = 0
-var/DIFFMUT  = 0
+var/global/BLOCKADD = 0
+var/global/DIFFMUT  = 0
 
-var/HEADACHEBLOCK      = 0
-var/NOBREATHBLOCK      = 0
-var/REMOTEVIEWBLOCK    = 0
-var/REGENERATEBLOCK    = 0
-var/INCREASERUNBLOCK   = 0
-var/REMOTETALKBLOCK    = 0
-var/MORPHBLOCK         = 0
-var/BLENDBLOCK         = 0
-var/HALLUCINATIONBLOCK = 0
-var/NOPRINTSBLOCK      = 0
-var/SHOCKIMMUNITYBLOCK = 0
-var/SMALLSIZEBLOCK     = 0
+var/global/HEADACHEBLOCK      = 0
+var/global/NOBREATHBLOCK      = 0
+var/global/REMOTEVIEWBLOCK    = 0
+var/global/REGENERATEBLOCK    = 0
+var/global/INCREASERUNBLOCK   = 0
+var/global/REMOTETALKBLOCK    = 0
+var/global/MORPHBLOCK         = 0
+var/global/BLENDBLOCK         = 0
+var/global/HALLUCINATIONBLOCK = 0
+var/global/NOPRINTSBLOCK      = 0
+var/global/SHOCKIMMUNITYBLOCK = 0
+var/global/SMALLSIZEBLOCK     = 0

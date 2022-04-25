@@ -325,9 +325,9 @@ GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 /proc/is_valid_tochat_target(target)
 	return !istype(target, /savefile) && (ismob(target) || islist(target) || isclient(target) || target == world)
 
-var/to_chat_filename
-var/to_chat_line
-var/to_chat_src
+var/global/to_chat_filename
+var/global/to_chat_line
+var/global/to_chat_src
 
 //This proc is only really used if the SSchat subsystem is unavailable (not started yet)
 /proc/to_chat_immediate(target, time, message)

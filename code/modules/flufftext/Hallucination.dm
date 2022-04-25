@@ -11,13 +11,13 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 */
 
-/mob/living/carbon/var
-	image/halimage
-	image/halbody
-	obj/halitem
-	hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
-	handling_hal = 0
-	hal_crit = 0
+/mob/living/carbon
+	var/image/halimage
+	var/image/halbody
+	var/obj/halitem
+	var/hal_screwyhud = 0 //1 - critical, 2 - dead, 3 - oxygen indicator, 4 - toxin indicator
+	var/handling_hal = 0
+	var/hal_crit = 0
 
 /mob/living/carbon/proc/handle_hallucinations()
 	if(handling_hal) return
@@ -334,11 +334,19 @@ Gunshots/explosions/opening doors/less rare audio (done)
 		qdel(O)
 	return
 
+<<<<<<< HEAD
 var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/item/ammo_magazine/s357,\
 	/obj/item/weapon/gun/energy/crossbow, /obj/item/weapon/melee/energy/sword,\
 	/obj/item/weapon/storage/box/syndicate, /obj/item/weapon/storage/box/emps,\
 	/obj/item/weapon/cartridge/syndicate, /obj/item/clothing/under/chameleon,\
 	/obj/item/clothing/shoes/syndigaloshes, /obj/item/weapon/card/id/syndicate,\
+=======
+var/global/list/non_fakeattack_weapons = list(/obj/item/gun/projectile, /obj/item/ammo_magazine/s357,\
+	/obj/item/gun/energy/crossbow, /obj/item/melee/energy/sword,\
+	/obj/item/storage/box/syndicate, /obj/item/storage/box/emps,\
+	/obj/item/cartridge/syndicate, /obj/item/clothing/under/chameleon,\
+	/obj/item/clothing/shoes/syndigaloshes, /obj/item/card/id/syndicate,\
+>>>>>>> 21bd8477c7e... Merge pull request #8531 from Spookerton/spkrtn/sys/global-agenda
 	/obj/item/clothing/mask/gas/voice, /obj/item/clothing/glasses/thermal,\
 	/obj/item/device/chameleon, /obj/item/weapon/card/emag,\
 	/obj/item/weapon/storage/toolbox/syndicate, /obj/item/weapon/aiModule,\

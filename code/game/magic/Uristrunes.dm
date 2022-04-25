@@ -1,5 +1,5 @@
 
-var/list/word_to_uristrune_table = null
+var/global/list/word_to_uristrune_table = null
 
 /proc/word_to_uristrune_bit(word)
 	if(word_to_uristrune_table == null)
@@ -57,7 +57,7 @@ var/list/word_to_uristrune_table = null
 	return get_uristrune(bits, animated)
 
 
-var/list/uristrune_cache = list()
+var/global/list/uristrune_cache = list()
 
 /proc/get_uristrune(symbol_bits, animated = 0)
 	var/lookup = "[symbol_bits]-[animated]"

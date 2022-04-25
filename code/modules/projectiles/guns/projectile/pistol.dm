@@ -334,7 +334,7 @@
 	load_method = SINGLE_CASING
 	max_shells = 1 //literally just a barrel
 
-	var/global/list/ammo_types = list(
+	var/static/list/ammo_types = list(
 		/obj/item/ammo_casing/a357              = ".357",
 		/obj/item/ammo_casing/a9mm		        = "9mm",
 		/obj/item/ammo_casing/a45				= ".45",

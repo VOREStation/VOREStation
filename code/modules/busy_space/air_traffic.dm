@@ -1,6 +1,6 @@
 //Cactus, Speedbird, Dynasty, oh my
 
-var/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
+var/global/datum/lore/atc_controller/atc = new/datum/lore/atc_controller
 
 /datum/lore/atc_controller
 	var/delay_max = 25 MINUTES			//How long between ATC traffic, max.  Default is 25 mins.

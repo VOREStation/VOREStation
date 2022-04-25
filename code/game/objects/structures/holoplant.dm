@@ -9,7 +9,7 @@
 	active_power_usage = 5
 	var/interference = FALSE
 	var/icon/plant = null
-	var/global/list/possible_plants = list(
+	var/static/list/possible_plants = list(
 		"plant-1",
 		"plant-10",
 		"plant-09",

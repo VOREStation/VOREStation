@@ -1,5 +1,5 @@
-var/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_random_selection/default()
-var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random_selection/all()
+var/global/datum/uplink_random_selection/default_uplink_selection = new/datum/uplink_random_selection/default()
+var/global/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random_selection/all()
 
 /datum/uplink_random_item
 	var/uplink_item				// The uplink item
