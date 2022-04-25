@@ -1,6 +1,10 @@
 SUBSYSTEM_DEF(ai)
 	name = "AI"
+<<<<<<< HEAD
 	init_order = INIT_ORDER_AI
+=======
+	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+>>>>>>> f7d6a66ebc3... Merge pull request #8542 from Spookerton/spkrtn/sys/mercenary-behavior
 	priority = FIRE_PRIORITY_AI
 	wait = 2 SECONDS
 	flags = SS_NO_INIT
@@ -45,5 +49,20 @@ SUBSYSTEM_DEF(ai)
 			slept_mobs++
 			A.set_stance(STANCE_IDLE)
 
+<<<<<<< HEAD
 		if(MC_TICK_CHECK)
 			return
+=======
+/// Convenience define for safely dequeueing an AI datum from slow processing.
+#define STOP_AIPROCESSING(DATUM) \
+DATUM.process_flags &= ~AI_PROCESSING; \
+SSai.queue -= DATUM;
+
+
+// Prevent AI running during CI to avoid some irrelevant runtimes
+#ifdef UNIT_TEST
+/datum/controller/subsystem/ai/flags = SS_NO_INIT | SS_NO_FIRE
+#else
+/datum/controller/subsystem/ai/flags = SS_NO_INIT
+#endif
+>>>>>>> f7d6a66ebc3... Merge pull request #8542 from Spookerton/spkrtn/sys/mercenary-behavior
