@@ -2,18 +2,18 @@
 	name = "stock exchange computer"
 	desc = "A console that connects to the galactic stock market. Stocks trading involves substantial risk of loss and is not suitable for every cargo technician."
 	icon = 'icons/obj/computer.dmi'
-	icon_state = "computer"
-	icon_screen = "stock_computer"
-	icon_keyboard = "stock_key"
+	icon_state = "stockmarket"
+	icon_screen = "stocks"
+	icon_keyboard = "stockmarket_key"
 	var/logged_in = "Cargo Department"
 	var/vmode = 1
 	//circuit = /obj/item/circuitboard/computer/stockexchange TODO: Make buildable
 
-	light_color = LIGHT_COLOR_GREEN
+	light_color = LIGHT_COLOR_BLUE
 
 /obj/machinery/computer/stockexchange/Initialize()
 	. = ..()
-	logged_in = "SS13 Cargo Department"
+	logged_in = "Cargo Department"
 
 /obj/machinery/computer/stockexchange/attack_hand(mob/user)
 	if(..(user))
