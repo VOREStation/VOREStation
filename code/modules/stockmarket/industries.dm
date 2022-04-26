@@ -79,9 +79,9 @@
 
 /datum/industry/agriculture/generateProductName(var/company_name)
 	var/list/products = list("water tank", "cattle prod", "scythe", "plough", "sickle", "cultivator", "loy", "spade", "hoe", "daisy grubber", "cotton gin")
-	var/list/prefix = list("[company_name]'s ", "the [company_name] ", "the fully automatic ", "the full-duplex ", "the semi-automatic ", "the drone-mounted ", "the industry-leading ", "the world-class ")
+	var/list/prefix = list("[company_name]'s ", "The [company_name] ", "The fully automatic ", "The full-duplex ", "The semi-automatic ", "The drone-mounted ", "The industry-leading ", "The world-class ")
 	var/list/suffix = list(" of farming", " multiplex", " +[rand(1,15)]", " [consonant()][rand(1000, 9999)]", " hybrid", " maximus", " extreme")
-	return "[pick(prefix)][pick(products)][pick(suffix)]"
+	return "[pick(prefix)][pick(products)][pick(suffix)]. "
 
 
 
@@ -157,11 +157,11 @@
 
 /datum/industry/it/generateProductName(var/company_name)
 	var/list/products = list("generator", "laptop", "keyboard", "memory card", "display", "operating system", "processor", "graphics card", "nanobots", "power supply", "pAI", "mech", "capacitor", "cell")
-	var/list/prefix = list("the [company_name] ", "the high performance ", "the mobile ", "the portable ", "the professional ", "the extreme ", "the incredible ", "the blazing fast ", "the bleeding edge ", "the bluespace-powered ", null)
+	var/list/prefix = list("The [company_name] ", "The high performance ", "The mobile ", "The portable ", "The professional ", "The extreme ", "The incredible ", "The blazing fast ", "The bleeding edge ", "The bluespace-powered ", null)
 	var/L = pick(consonant(), "Seed ", "Radiant ", "Robust ", "Pentathon ", "Athlete ", "Phantom ", "Semper Fi ")
 	var/N = rand(1, 99)
 	var/prefix2 = "[L][N][prob(5) ? " " + latin_number(N) : null]"
-	return "[pick(prefix)][prefix2] [pick(products)]"
+	return "[pick(prefix)][prefix2] [pick(products)]. "
 
 /datum/industry/communications
 	name = "Communications"
@@ -173,11 +173,11 @@
 
 /datum/industry/communications/generateProductName(var/company_name)
 	var/list/products = list("mobile phone", "PDA", "tablet computer", "newscaster", "social network")
-	var/list/prefix = list("the [company_name] ", "the high performance ", "the mobile ", "the portable ", "the professional ", "the extreme ", "the incredible ", "the blazing fast ", "the bleeding edge ", null)
-	var/L = pick("[lowertext(consonant())]Phone ", "Universe ", "Xperience ", "Next ", "Engin Y ", "Cyborg ", "[consonant()]")
+	var/list/prefix = list("The [company_name] ", "The high performance ", "The mobile ", "The portable ", "The professional ", "The extreme ", "The incredible ", "The blazing fast ", "The bleeding edge ", null)
+	var/L = pick("[lowertext(consonant())]Phone ", "Universe ", "Xperience ", "Next ", "Engin-Y ", "Cyborg ", "[consonant()]")
 	var/N = rand(1,99)
 	var/prefix2 = "[L][N][prob(25) ? pick(" Tiny", " Mini", " Micro", " Slim", " Water", " Air", " Fire", " Earth", " Nano", " Pico", " Femto", " Planck") : null]"
-	return "[pick(prefix)][prefix2] [pick(products)]"
+	return "[pick(prefix)][prefix2] [pick(products)]. "
 
 /datum/industry/health
 	name = "Medicine"
@@ -191,7 +191,7 @@
 	var/list/prefix = list("amino", "nucleo", "nitro", "panto", "meth", "eth", "as", "algo", "coca", "hero", "lotsu", "opiod", "morph", "trinitro", "prop", "but", "acet", "acyclo", "lansop", "dyclo", "hydro", "oxycod", "vicod", "cannabi", "cryo", "dex", "chloro")
 	var/list/suffix = list("phen", "pirin", "pyrine", "ane", "amphetamine", "prazoline", "ine", "yl", "amine", "aminophen", "one", "ide", "phenate", "anol", "toulene", "glycerine", "vir", "tol", "trinic", "oxide")
 	var/list/uses = list("antidepressant", "analgesic", "anesthetic", "antiretroviral", "antiviral", "antibiotic", "cough drop", "depressant", "hangover cure", "homeopathic", "fertility drug", "hypnotic", "narcotic", "laxative", "multivitamin", "patch", "purgative", "relaxant", "steroid", "sleeping pill", "suppository", "tranquilizer")
-	return "[pick(prefix)][pick(suffix)], the [pick(uses)]"
+	return "[pick(prefix)][pick(suffix)], the [pick(uses)]. "
 
 /datum/industry/consumer
 	name = "Consumer"
@@ -204,20 +204,20 @@
 /datum/industry/consumer/generateProductName(var/company)
 	var/list/meat = list("chicken", "lizard", "corgi", "monkey", "goat", "fly", "xenomorph", "human", "walrus", "wendigo", "bear", "clown", "turkey", "pork", "carp", "crab", "mimic", "mystery")
 	var/list/qualifier = list("synthetic", "organic", "bio", "diet", "sugar-free", "paleolithic", "homeopathic", "recycled", "reclaimed", "vat-grown")
-	return "the [pick(qualifier)] [pick(meat)] meat product line"
+	return "The [pick(qualifier)] [pick(meat)] meat product line. "
 
 /datum/industry/mining
 	name = "Mining"
 	tokens = list( \
 		"industry" = list("mines", "large scale mining operations"), \
 		"industrial" = list("resource acquisitional"), \
-		"jobs" = list("shaft miners", "drill operators", "mining foremen", "gibtonite handlers")
+		"jobs" = list("shaft miners", "drill operators", "mining foremen")
 	)
 
 /datum/industry/mining/generateProductName(var/company)
 	var/list/equipment = list("drill", "pickaxe", "shovel", "jackhammer", "mini-pickaxe", "power hammer", "power gloves", "power armor", "hardsuit", "kinetic accelerator", "resonator", "oxygen tank", "emergency bike horn")
-	var/list/material = list("mauxite", "pharosium", "molitz", "adamantium", "mithril", "cobryl", "bohrum", "claretine", "viscerite", "syreline", "cerenkite", "plasmastone", "gold", "koshmarite", "phoron", "carbon dioxide")
-	return "the [pick(material)] [pick(equipment)]"
+	var/list/material = list("mauxite", "pharosium", "molitz", "adamantium", "mithril", "cobryl", "bohrum", "claretine", "viscerite", "syreline", "cerenkite", "plasmastone", "gold", "koshmarite", "phoron", "carbon dioxide", "powered")
+	return "The [pick(material)] [pick(equipment)]. "
 
 /datum/industry/defense
 	name = "Defense"
@@ -229,5 +229,5 @@
 
 /datum/industry/defense/generateProductName(var/company)
 	var/list/equipment = list("energy gun", "laser gun", "machine gun", "grenade", "stun baton", "artillery", "bomb", "attack drone", "missile", "chem sprayer")
-	var/list/material = list("bluespace", "stealth", "heat-seeking", "crime-seeking", "wide-range", "bioterror", "auto-reloading", "smart", "sentient", "rapid-fire", "species-targeting", "gibtonite", "mass-market", "perpetual-motion", "nuclear", "fission", "fusion")
-	return "the [pick(material)] [pick(equipment)]"
+	var/list/material = list("bluespace", "stealth", "heat-seeking", "crime-seeking", "wide-range", "bioterror", "auto-reloading", "smart", "sentient", "rapid-fire", "species-targeting", "mass-market", "perpetual-motion", "nuclear", "fission", "fusion")
+	return "The [pick(material)] [pick(equipment)]. "

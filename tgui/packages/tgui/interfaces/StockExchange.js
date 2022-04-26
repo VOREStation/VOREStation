@@ -106,12 +106,12 @@ const StockExchangeFullView = (props, context) => {
             <Table.Cell color="label">
               <Button icon="plus"
                 disabled={false}
-                onClick={() => act("stocks_buy", { share: stock.REF })} /><br />
+                onClick={() => act("stocks_buy", { share: stock.REF })} />
               <Button icon="minus"
                 disabled={false}
                 onClick={() => act("stocks_sell", { share: stock.REF })} /><br />
               <Button content="A"
-                onClick={() => act("stocks_archive", { share: stock.REF })} /><br />
+                onClick={() => act("stocks_archive", { share: stock.REF })} />
               <Button content="H"
                 onClick={() => act("stocks_history", { share: stock.REF })} /><br />
             </Table.Cell>

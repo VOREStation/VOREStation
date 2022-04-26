@@ -92,12 +92,13 @@ GLOBAL_LIST_EMPTY(FrozenAccounts)
 			return "The [pick(timely)] [pick(nouns)]"
 
 /datum/article/proc/generateAuthorName()
-	var/name_part1
-	var/name_part2
-
-	name_part1 = pick("John ", "Jack ", "Jill ", "Peter ", "James ", "Lois ", "Zoey ")
-	name_part2 = pick("Bull", "Palmer", "Glass", "Ruin", "McCory", "Batty", "Lane")
-	author = (name_part1 + name_part2)
+	switch(rand(1,3))
+		if (1)
+			return "[consonant()]. [pick(last_names)]"
+		if (2)
+			return "[prob(50) ? pick(first_names_male) : pick(first_names_female)] [consonant()].[prob(50) ? "[consonant()]. " : null] [pick(last_names)]"
+		if (3)
+			return "[prob(50) ? pick(first_names_male) : pick(first_names_female)] \"[prob(50) ? pick(first_names_male) : pick(first_names_female)]\" [pick(last_names)]"
 
 /datum/article/proc/formatSpacetime()
 	var/ticksc = round(ticks/100)

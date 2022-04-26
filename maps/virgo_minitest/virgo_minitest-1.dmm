@@ -3312,10 +3312,6 @@
 /obj/structure/shuttle,
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/shuttle/overmapdemo)
-"lU" = (
-/obj/machinery/computer/stockexchange,
-/turf/simulated/floor/tiled,
-/area/bridge)
 "mj" = (
 /obj/machinery/camera/network/civilian{
 	dir = 10;
@@ -5549,7 +5545,7 @@ fY
 GC
 gf
 gr
-lU
+gf
 gf
 gz
 gf
