@@ -51,10 +51,12 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
 	var/datum/map_template/template_to_use = null
 
-	if(!(global_used_pois[poi_type].len))
+	var/list/our_poi_list = global_used_pois[poi_type]
+
+	if(!our_poi_list.len)
 		return
 	else
-		template_to_use = pick(global_used_pois[poi_type])
+		template_to_use = pick(our_poi_list)
 
 	if(!template_to_use)
 		return
