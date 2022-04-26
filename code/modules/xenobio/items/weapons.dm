@@ -98,6 +98,8 @@ VORESTATION REMOVAL
 				S.slimebatoned(firer, round(agony/2))
 			else
 				L.Weaken(round(agony/2))
+		else if (rand(1,100) <= 25)
+			L.Weaken(round(rand(agony / 2, agony * 2)))
 
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L
