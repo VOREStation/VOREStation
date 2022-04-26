@@ -71,13 +71,13 @@
 	autohiss_basic_map = list(
 			"f" = list("v","vh"),
 			"ph" = list("v", "vh")
-		)
+		),
 	autohiss_extra_map = list(
 			"s" = list("z", "zz", "zzz"),
 			"ce" = list("z", "zz"),
 			"ci" = list("z", "zz"),
 			"v" = list("vv", "vvv")
-		)
+		),
 	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
 	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_unathi)
 
