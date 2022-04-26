@@ -132,6 +132,9 @@
 				prob(1);/obj/item/capture_crystal/random,
 				prob(1);/obj/random/unidentified_medicine
 				)
+/obj/random/mainttoyloot/nofail
+	spawn_nothing_percentage = 0
+
 
 /obj/random/maintenance/misc //Clutter and loot for maintenance and away missions
 	name = "random maintenance item"
@@ -150,7 +153,7 @@
 				prob(300);/obj/random/maintenance/security,
 				prob(300);/obj/random/maintenance/security,
 				prob(50);/obj/random/maintenance/morestuff,
-				prob(25);/obj/random/mainttoyloot,
+				prob(25);/obj/random/mainttoyloot/nofail,
 				prob(10);/obj/random/maintenance/foodstuff)
 
 /obj/random/maintenance/foodstuff
