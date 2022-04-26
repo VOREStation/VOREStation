@@ -23,6 +23,10 @@
 "v" = (
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/submap/groundbase/poi/wildvillage)
+"w" = (
+/obj/machinery/light/bigfloorlamp,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
 "z" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/submap/groundbase/poi/wildvillage/plot/long)
@@ -8788,7 +8792,7 @@ O
 O
 A
 A
-A
+w
 v
 F
 F
@@ -8829,7 +8833,7 @@ F
 F
 F
 v
-A
+w
 A
 A
 O
@@ -11628,7 +11632,7 @@ A
 O
 O
 O
-O
+w
 v
 F
 F
@@ -11669,7 +11673,7 @@ F
 F
 F
 v
-O
+w
 O
 O
 O

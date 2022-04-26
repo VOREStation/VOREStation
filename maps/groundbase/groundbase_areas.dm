@@ -366,6 +366,10 @@
 	name = "Bar"
 	sound_env = LARGE_ENCLOSED
 	lightswitch = 1
+/area/groundbase/civilian/bar/upper
+	name = "Bar Balcony"
+	base_turf = /turf/simulated/open/virgo3c
+
 /area/groundbase/civilian/cafe
 	name = "Cafe"
 	sound_env = SMALL_SOFTFLOOR

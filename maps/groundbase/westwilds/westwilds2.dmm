@@ -29,9 +29,6 @@
 /obj/machinery/atmospherics/binary/pump{
 	dir = 1
 	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "as" = (
@@ -97,9 +94,6 @@
 	},
 /area/submap/groundbase/wilderness/west)
 "bf" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
@@ -418,9 +412,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
@@ -853,19 +844,6 @@
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/west)
-"ki" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/visible/yellow,
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
-/obj/machinery/door/firedoor/glass,
-/turf/simulated/floor,
-/area/groundbase/science/outpost/toxins_mixing)
 "kn" = (
 /obj/machinery/light_switch{
 	dir = 8;
@@ -1210,9 +1188,6 @@
 /obj/machinery/atmospherics/binary/pump{
 	dir = 8
 	},
-/obj/structure/cable/green{
-	icon_state = "1-2"
-	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "oq" = (
@@ -1385,9 +1360,6 @@
 	output_tag = "burn_out";
 	pressure_setting = 0;
 	sensors = list("burn_sensor" = "Burn Chamber Sensor")
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
@@ -2592,13 +2564,6 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/anomaly_storage)
 "BS" = (
-/obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
-	dir = 8
-	},
-/obj/structure/cable/green{
-	icon_state = "0-4"
-	},
 /obj/machinery/atmospherics/binary/pump/on{
 	dir = 1;
 	target_pressure = 200
@@ -2697,9 +2662,6 @@
 "DF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "4-8"
 	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 4
@@ -3685,9 +3647,6 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/toxins_mixing)
 "Oq" = (
-/obj/structure/cable/green{
-	icon_state = "2-4"
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -4387,9 +4346,6 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
-	},
-/obj/structure/cable/green{
-	icon_state = "2-4"
 	},
 /obj/effect/floor_decal/corner/purple/full{
 	dir = 1
@@ -17830,7 +17786,7 @@ KA
 Zw
 ve
 Gm
-ki
+To
 To
 NX
 Zw

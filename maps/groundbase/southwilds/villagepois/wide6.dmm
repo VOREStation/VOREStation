@@ -1,15 +1,255 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
-/area/template_noop)
+/area/submap/groundbase/poi/wildvillage)
+"e" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 1;
+	id = "village_wide6";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"f" = (
+/obj/structure/table/rack,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wmarble,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"g" = (
+/obj/machinery/light/small,
+/obj/machinery/button/windowtint{
+	id = "village_wide6_bedroom";
+	layer = 3.3;
+	pixel_x = 30
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"h" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"i" = (
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"k" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"m" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/double,
+/obj/random/plushie,
+/obj/structure/curtain/open/privacy,
+/obj/item/weapon/paper{
+	info = "<font face="Verdana" color=black>It is hard for me to write this out, and I hope you will be back soon, but I fear that by the time you return I will already be gone. I will try my best to hold on, but even as I write this, I can feel myself slipping.<BR><BR>I know that you all do not believe me but I really can see them, just beyond the walls, and they&#39;re even closer now than they were before. I can see them even when I close my eyes. Seven golden eyes watch me, and I can feel their heat pouring into me. As they come closer, I can feel myself being tugged in. Like I&#39;m a little lost moon being tugged into the embrace of a passing star. <BR><BR>It still doesn&#39;t hurt. It&#39;s getting hard to see anything else, and I can&#39;t move anymore. I feel like everything is going to be okay. If you see seven eyes, don&#39;t be afraid. Just promise you&#39;ll come find me, okay?<BR><BR>I&#39;ll keep hol</font>";
+	name = "A hand written letter"
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"n" = (
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"o" = (
+/turf/simulated/floor/wmarble,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"p" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"r" = (
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"s" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/obj/structure/bed/chair/sofa/right/blue{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"t" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/obj/structure/table/rack,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wmarble,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"u" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	id = "village_wide6_bedroom";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"v" = (
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"x" = (
+/obj/structure/bed/chair/sofa/blue{
+	dir = 4
+	},
+/obj/item/weapon/bedsheet/ian,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"z" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 8;
+	id = "village_wide6";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"A" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
 "B" = (
 /turf/simulated/wall,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
-"Z" = (
-/turf/simulated/floor/virgo3c{
-	edge_blending_priority = -1;
-	outdoors = 0
+"C" = (
+/obj/machinery/door/airlock/silver{
+	name = "automatic door"
 	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"F" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"I" = (
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"J" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"K" = (
+/obj/structure/bookcase,
+/obj/item/weapon/book/bundle/custom_library/fiction/apurrrrfectman,
+/obj/item/weapon/book/bundle/custom_library/fiction/beyondthedoor,
+/obj/item/weapon/book/bundle/custom_library/fiction/chroniclesofmargatavol1,
+/obj/item/weapon/book/bundle/custom_library/fiction/coldmountain,
+/obj/item/weapon/book/bundle/custom_library/fiction/ghostship,
+/obj/item/weapon/book/bundle/custom_library/fiction/manfromsnowyriver,
+/obj/item/weapon/book/bundle/custom_library/fiction/metalglen,
+/obj/item/weapon/book/bundle/custom_library/fiction/poemsforarainyday,
+/obj/item/weapon/book/bundle/custom_library/fiction/raissue142,
+/obj/item/weapon/book/bundle/custom_library/fiction/raissue147,
+/obj/item/weapon/book/bundle/custom_library/fiction/silence,
+/obj/item/weapon/book/bundle/custom_library/fiction/taleoftherainbowcat,
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"L" = (
+/obj/machinery/door/airlock/silver{
+	name = "automatic door"
+	},
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"M" = (
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"N" = (
+/obj/structure/bed/chair/sofa/left/blue{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"O" = (
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"P" = (
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"Q" = (
+/obj/machinery/button/windowtint{
+	id = "village_wide6";
+	layer = 3.3;
+	pixel_y = 30
+	},
+/obj/structure/table/sifwoodentable,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"R" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"T" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/tiled/white,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"V" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	id = "village_wide6";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"W" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"X" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 4;
+	id = "village_wide6_bedroom";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"Y" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage/wide/wide6)
+"Z" = (
+/obj/structure/table/sifwoodentable,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 
 (1,1,1) = {"
@@ -32,9 +272,9 @@ B
 B
 B
 B
-B
-B
-B
+z
+z
+z
 B
 B
 B
@@ -42,183 +282,183 @@ a
 "}
 (3,1,1) = {"
 a
-B
+e
 Z
-Z
-Z
-Z
-Z
-Z
-Z
+W
+i
+i
+N
+x
+s
 Z
 B
 a
 "}
 (4,1,1) = {"
 a
-B
+e
 Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-B
+i
+i
+i
+i
+i
+i
+i
+V
 a
 "}
 (5,1,1) = {"
 a
-B
+e
 Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-B
+h
+i
+i
+i
+i
+i
+i
+V
 a
 "}
 (6,1,1) = {"
 a
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
+B
+B
+B
+B
+Q
+i
+h
 Z
 B
 a
 "}
 (7,1,1) = {"
 a
+p
+p
+p
+p
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
+B
+C
+B
+B
 B
 a
 "}
 (8,1,1) = {"
 a
+p
+p
+O
+p
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
+M
+o
+r
 B
-a
+Y
+F
 "}
 (9,1,1) = {"
 a
-B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-B
-a
+p
+O
+O
+p
+L
+o
+o
+o
+L
+P
+I
 "}
 (10,1,1) = {"
 a
+p
+O
+p
+A
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
+M
+o
+M
 B
-a
+p
+F
 "}
 (11,1,1) = {"
 a
+p
+O
+O
+p
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
+B
+C
+B
+B
 B
 a
 "}
 (12,1,1) = {"
 a
+p
+p
+p
+p
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
+J
+v
+v
+T
 B
 a
 "}
 (13,1,1) = {"
 a
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
 B
+B
+B
+B
+K
+v
+R
+n
+u
 a
 "}
 (14,1,1) = {"
 a
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-B
+o
+o
+o
+C
+v
+v
+m
+n
+u
 a
 "}
 (15,1,1) = {"
 a
 B
-Z
-Z
-Z
-Z
-Z
-Z
-Z
-Z
+f
+t
+f
+B
+k
+v
+n
+g
 B
 a
 "}
@@ -230,8 +470,8 @@ B
 B
 B
 B
-B
-B
+X
+X
 B
 B
 a
