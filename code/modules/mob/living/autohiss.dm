@@ -53,7 +53,7 @@
 	autohiss_basic_map = list(
 			"r" = list("rr", "rrr", "rrrr")
 		)
-	autohiss_exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI)
+	autohiss_exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI,LANGUAGE_ALAI)
 
 /datum/species/zaddat
 	autohiss_basic_map = list(
@@ -66,7 +66,7 @@
 			"ci" = list("z", "zz"),
 			"v" = list("vv", "vvv")
 		)
-	autohiss_exempt = list(LANGUAGE_ZADDAT)
+	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE)
 
 /datum/species/proc/handle_autohiss(message, datum/language/lang, mode)
 	if(!autohiss_basic_map)
