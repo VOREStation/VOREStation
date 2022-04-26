@@ -2,9 +2,21 @@
 "a" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/submap/groundbase/wilderness/south)
+"b" = (
+/obj/effect/landmark/poi_loader/gb_square,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage/plot/square)
 "c" = (
 /turf/simulated/mineral/cave/virgo3c,
 /area/submap/groundbase/wilderness/south/cave)
+"d" = (
+/obj/effect/landmark/poi_loader/gb_wide,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage/plot/wide)
+"e" = (
+/obj/effect/landmark/poi_loader/gb_long,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage/plot/long)
 "f" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/submap/groundbase/poi/wildvillage/plot/square)
@@ -7243,7 +7255,7 @@ F
 F
 F
 F
-F
+b
 v
 F
 F
@@ -7256,7 +7268,7 @@ F
 F
 F
 F
-F
+b
 v
 F
 F
@@ -7269,7 +7281,7 @@ F
 F
 F
 F
-F
+b
 v
 O
 O
@@ -9083,7 +9095,7 @@ E
 E
 E
 E
-E
+d
 v
 n
 n
@@ -9108,7 +9120,7 @@ n
 n
 n
 n
-n
+e
 v
 E
 E
@@ -9121,7 +9133,7 @@ E
 E
 E
 E
-E
+d
 v
 A
 A
@@ -11645,7 +11657,7 @@ F
 F
 F
 F
-F
+b
 v
 F
 F
@@ -11658,7 +11670,7 @@ F
 F
 F
 F
-F
+b
 v
 F
 F
@@ -11671,7 +11683,7 @@ F
 F
 F
 F
-F
+b
 v
 w
 O

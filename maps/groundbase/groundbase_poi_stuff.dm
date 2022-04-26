@@ -885,7 +885,7 @@
 	name = "Cave 49"
 	mappath = 'pois/cave49c.dmm'
 
-/datum/map_template/groundbase/maintcaves/cavething 
+/datum/map_template/groundbase/maintcaves/cavething
 	name = "Cavething 1"
 	mappath = 'pois/cavething1.dmm'
 	cost = 10
@@ -938,6 +938,26 @@
 	mappath = 'pois/cavething14.dmm'
 	cost = 3
 	allow_duplicates = FALSE
+
+
+/obj/effect/landmark/poi_loader/gb_square
+	name = "Square House Loader"
+	size_x = 12
+	size_y = 12
+	poi_type = /datum/map_template/groundbase/wildvillage/square
+
+/obj/effect/landmark/poi_loader/gb_wide
+	name = "Wide House Loader"
+	size_x = 17
+	size_y = 12
+	poi_type = /datum/map_template/groundbase/wildvillage/wide
+
+/obj/effect/landmark/poi_loader/gb_long
+	name = "Long House Loader"
+	size_x = 17
+	size_y = 24
+	poi_type = /datum/map_template/groundbase/wildvillage/long
+
 
 /area/submap/groundbase/poi/wildvillage
 	name = "POI - Wilderness Village"

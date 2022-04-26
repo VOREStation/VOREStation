@@ -1092,6 +1092,7 @@
 #include "code\game\objects\effects\item_pickup_ghost.dm"
 #include "code\game\objects\effects\job_start_landmarks.dm"
 #include "code\game\objects\effects\landmarks.dm"
+#include "code\game\objects\effects\landmarks_poi_vr.dm"
 #include "code\game\objects\effects\landmarks_vr.dm"
 #include "code\game\objects\effects\manifest.dm"
 #include "code\game\objects\effects\mines.dm"
