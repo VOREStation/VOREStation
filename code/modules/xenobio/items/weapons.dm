@@ -98,8 +98,20 @@ VORESTATION REMOVAL
 				S.slimebatoned(firer, round(agony/2))
 			else
 				L.Weaken(round(agony/2))
-		else if (rand(1,100) <= 25)
-			L.Weaken(round(rand(agony / 2, agony * 2)))
+		//else if (rand(1,100) <= 25)
+		else if(istype(target, /mob/living/simple_mob/))
+			var/mob/living/simple_mob/T = target
+			var/timediff = world.time - T.last_stun
+			if (T.xeno_stuns)
+				if(timediff > 15)
+					T.taser_hits = 1
+				else
+					T.taser_hits += 1
+
+				if(T.taser_hits >= T.hits_to_stun)
+					T.taser_hits = 0
+					T.Weaken(round(rand(agony * 5, agony * 15)))
+				T.last_stun = world.time
 
 		if(ishuman(L))
 			var/mob/living/carbon/human/H = L

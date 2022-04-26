@@ -48,6 +48,11 @@
 	var/mount_offset_x = 5				// Horizontal riding offset.
 	var/mount_offset_y = 8				// Vertical riding offset
 
+	var/xeno_stuns = TRUE				// Can xenotasers stun this mob? NOTE: This is not for slimes, they have their own code for taser hits. This is for other mobs.
+	var/taser_hits = 0					// How many times hit?
+	var/last_stun = 0					// When was the last hit?
+	var/hits_to_stun = 4				// How many hits are needed to stun.
+
 	var/obj/item/device/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
 	does_spin = FALSE
 	can_be_drop_pred = TRUE				// Mobs are pred by default.
