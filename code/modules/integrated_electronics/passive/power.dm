@@ -215,7 +215,7 @@
 				assembly.give_power(amount)
 			else
 				var/amount = assembly.draw_power(throughput)
-				IO.add_avail(amount)
+				IO.add_avail(amount / CELLRATE)
 
 		set_pin_data(IC_OUTPUT, 1, IO.avail())
 		set_pin_data(IC_OUTPUT, 2, IO.surplus())
