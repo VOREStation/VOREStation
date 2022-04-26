@@ -1,37 +1,122 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
-/area/submap/groundbase/poi/wildvillage/square/square8)
-"d" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/turf/simulated/floor,
-/area/submap/groundbase/poi/wildvillage/square/square8)
-"f" = (
+/area/submap/groundbase/poi/wildvillage)
+"e" = (
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/submap/groundbase/poi/wildvillage/square/square8)
-"h" = (
-/turf/simulated/floor/outdoors/newdirt/virgo3c,
+"j" = (
+/obj/structure/table/rack/shelf,
+/obj/machinery/light/floortube{
+	dir = 8
+	},
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"m" = (
+/obj/structure/table/rack,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/submap/groundbase/poi/wildvillage/square/square8)
 "n" = (
 /obj/structure/table/rack/shelf,
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/submap/groundbase/poi/wildvillage/square/square8)
-"u" = (
+"p" = (
 /turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"q" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"r" = (
+/obj/structure/table/rack/shelf,
+/obj/machinery/light/floortube{
+	dir = 4
+	},
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"s" = (
+/obj/structure/table/rack/shelf,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/submap/groundbase/poi/wildvillage/square/square8)
 "v" = (
 /turf/simulated/wall,
 /area/submap/groundbase/poi/wildvillage/square/square8)
-"B" = (
-/obj/structure/simple_door/iron,
-/turf/simulated/floor/bmarble,
-/area/submap/groundbase/poi/wildvillage/square/square8)
-"H" = (
+"x" = (
+/obj/structure/table/marble,
+/obj/random/maintenance/misc,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/submap/groundbase/poi/wildvillage/square/square8)
-"V" = (
+"D" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/trader/capture_crystal/cash,
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"E" = (
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"F" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"G" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"H" = (
+/obj/machinery/door/airlock/glass{
+	name = "automatic door"
+	},
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"R" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"W" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled/eris/dark/brown_platform,
+/area/submap/groundbase/poi/wildvillage/square/square8)
+"X" = (
 /obj/structure/table/marble,
 /turf/simulated/floor/tiled/eris/dark/brown_platform,
 /area/submap/groundbase/poi/wildvillage/square/square8)
@@ -54,12 +139,12 @@ a
 a
 v
 v
-d
+G
 v
-d
-d
+G
+G
 v
-d
+G
 v
 v
 a
@@ -68,111 +153,111 @@ a
 a
 v
 n
-H
-H
-H
-H
-H
-H
-H
+E
+E
+E
+E
+E
+E
+q
 v
 a
 "}
 (4,1,1) = {"
 a
-d
-n
-H
-H
-H
-n
-n
-n
-H
-d
+G
+s
+E
+E
+E
+r
+s
+s
+E
+G
 a
 "}
 (5,1,1) = {"
 a
 v
-n
-H
-H
-H
-H
-H
-H
-H
+s
+E
+E
+E
+E
+E
+E
+E
 v
 a
 "}
 (6,1,1) = {"
 a
-d
-H
-H
-H
-H
-n
-n
-n
-H
-d
+G
+E
+E
+E
+E
+s
+s
+s
+E
+G
 a
 "}
 (7,1,1) = {"
 a
-d
-H
-V
-V
-H
-H
-H
-H
-H
-d
+G
+E
+X
+X
+E
+E
+E
+E
+E
+G
 a
 "}
 (8,1,1) = {"
 a
 v
-H
-H
-V
-H
-n
-n
-n
-H
+E
+E
+x
+E
+j
+s
+s
+E
 v
 a
 "}
 (9,1,1) = {"
 a
-d
-H
-f
-V
-H
-H
-H
-H
-H
-d
+G
+E
+e
+X
+E
+E
+E
+E
+E
+G
 a
 "}
 (10,1,1) = {"
 a
 v
-H
-H
-V
-H
-H
-H
-H
-H
+W
+E
+x
+E
+E
+m
+m
+D
 v
 a
 "}
@@ -180,12 +265,12 @@ a
 a
 v
 v
-d
-d
+G
+G
 v
-B
+H
 v
-d
+G
 v
 v
 a
@@ -196,9 +281,9 @@ a
 a
 a
 a
-h
-u
-h
+F
+p
+R
 a
 a
 a
