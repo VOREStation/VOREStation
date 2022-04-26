@@ -7,7 +7,7 @@
 	icon_keyboard = "stockmarket_key"
 	var/logged_in = "Cargo Department"
 	var/vmode = 1
-	light_color = LIGHT_COLOR_BLUE
+	light_color = LIGHT_COLOR_GREEN
 
 /obj/machinery/computer/stockexchange/Initialize()
 	. = ..()
@@ -28,7 +28,7 @@
 		return 0
 	return SSsupply.points
 
-///// MAIN TGUI SCREEN /////
+///// MAIN TGUI SCREEN \\\\\
 
 /obj/machinery/computer/stockexchange/tgui_act(action, params, datum/tgui/ui)
 	if(..())
@@ -201,7 +201,7 @@
 		ui = new(user, src, "StockExchange")
 		ui.open()
 
-///// HISTORY SCREEN /////
+///// HISTORY SCREEN \\\\\
 
 /obj/machinery/computer/stockexchange/history/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -224,7 +224,7 @@
 			//var = CLAMP(newvar, min_val, max_val)
 			. = TRUE
 
-///// ARCHIVE SCREEN /////
+///// ARCHIVE SCREEN \\\\\
 
 /obj/machinery/computer/stockexchange/archive/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -247,7 +247,7 @@
 			//var = CLAMP(newvar, min_val, max_val)
 			. = TRUE
 
-///// PROCS /////
+///// PROCS \\\\\
 
 /obj/machinery/computer/stockexchange/proc/sell_some_shares(var/datum/stock/S, var/mob/user)
 	if (!user || !S)

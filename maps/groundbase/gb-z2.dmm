@@ -1226,6 +1226,15 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room2)
+"dA" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/computer/stockexchange{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/office)
 "dB" = (
 /obj/machinery/firealarm{
 	dir = 8
@@ -5689,9 +5698,7 @@
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/command/hop)
 "qN" = (
-/obj/effect/landmark{
-	name = "lightsout"
-	},
+/obj/structure/table/standard,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "qP" = (
@@ -6061,7 +6068,6 @@
 /area/groundbase/dorms/room3)
 "rN" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/table/standard,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -7076,6 +7082,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/table/standard,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
+/obj/item/weapon/packageWrap,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "uT" = (
@@ -12681,9 +12692,11 @@
 /area/groundbase/cargo/office)
 "Le" = (
 /obj/structure/disposalpipe/segment,
-/obj/structure/table/standard,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
+	},
+/obj/effect/landmark{
+	name = "lightsout"
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -13329,10 +13342,10 @@
 	pixel_x = 4;
 	pixel_y = -2
 	},
-/obj/item/weapon/stamp/cargo,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
+/obj/item/weapon/stamp/accepted,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "MR" = (
@@ -15256,9 +15269,6 @@
 	dir = 8
 	},
 /obj/item/device/destTagger,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
-/obj/item/weapon/packageWrap,
 /obj/item/weapon/packageWrap,
 /obj/item/weapon/packageWrap,
 /obj/item/weapon/packageWrap,
@@ -28772,7 +28782,7 @@ Lc
 Oi
 xK
 uS
-Lc
+qN
 FR
 FR
 Lc
@@ -29339,9 +29349,9 @@ Ki
 za
 za
 Vu
-qN
+Lc
 rj
-FR
+dA
 XU
 wm
 dH
