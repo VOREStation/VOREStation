@@ -20,14 +20,14 @@ INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 	return block(locate(src.x, src.y, src.z), locate((src.x + size_x - 1), (src.y + size_y - 1), src.z))
 
 /obj/effect/landmark/poi_loader/proc/annihilate_bounds()
-	var/deleted_atoms = 0
+	//var/deleted_atoms = 0
 	//admin_notice("<span class='danger'>Annihilating objects in poi loading location.</span>", R_DEBUG)
 	var/list/turfs_to_clean = get_turfs_to_clean()
 	if(turfs_to_clean.len)
 		for(var/x in 1 to 2) // Requires two passes to get everything.
 			for(var/turf/T in turfs_to_clean)
 				for(var/atom/movable/AM in T)
-					++deleted_atoms
+					//++deleted_atoms
 					qdel(AM)
 	//admin_notice("<span class='danger'>Annihilated [deleted_atoms] objects.</span>", R_DEBUG)
 
