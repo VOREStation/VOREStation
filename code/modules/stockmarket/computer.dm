@@ -81,14 +81,14 @@
 					continue
 				if (p > 0)
 					dat += "<hr>"
-				dat += "<div><b style='font-size:1.25em'>[E.current_title]</b></br>[E.current_desc]</div>"
+				dat += "<div><b>[E.current_title]</b></br>[E.current_desc]</div>"
 				p++
 			dat += "</div><hr><div><h3>Articles</h3>"
 			p = 0
 			for (var/datum/article/A in S.articles)
 				if (p > 0)
 					dat += "<hr>"
-				dat += "<div><b style='font-size:1.25em'>[A.headline]</b><br><i>[A.subtitle]</i><br><br>[A.article]<br>- [A.author], [A.spacetime] (via <i>[A.outlet]</i>)</div>"
+				dat += "<div><b>[A.headline]</b><br><i>[A.subtitle]</i><br><br>[A.article]<br>- [A.author], [A.spacetime] (via <i>[A.outlet]</i>)</div>"
 				p++
 			dat += "</div></body></html>"
 			var/datum/browser/popup = new(usr, "archive_[S.name]", "Stock News", 600, 400)
