@@ -99,7 +99,7 @@ VORESTATION REMOVAL
 			else
 				L.Weaken(round(agony/2))
 		//else if (rand(1,100) <= 25)
-		else if(istype(target, /mob/living/simple_mob/))
+		else if(istype(target, /mob/living/simple_mob/)) // VOREAdd, stuns for the xenotaser.
 			var/mob/living/simple_mob/T = target
 			var/timediff = world.time - T.last_stun
 			var/hits_to_stun = T.health / 20
