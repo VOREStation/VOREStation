@@ -33,6 +33,7 @@
 
 /obj/item/weapon/pet_carrier/New()
 	verbs += .proc/drop_pet
+	update_icon()
 	..()
 
 /obj/item/weapon/pet_carrier/Destroy()
