@@ -1,5 +1,5 @@
-/*
-[Summary]
+
+# Summary
 
 This module contains an AI implementation designed to be (at the base level) mobtype-agnostic,
 by being held inside a datum instead of being written into the mob directly. More specialized
@@ -11,7 +11,7 @@ When designing a new mob, all that is needed to give a mob an AI is to set
 its 'ai_holder_type' variable to the path of the AI that is desired.
 
 
-[Seperation]
+## Seperation
 
 In previous iterations of AI systems, the AI is generally written into the mob's code directly,
 which has some advantages, but often makes the code rigid, and also tied the speed of the AI
@@ -46,7 +46,7 @@ in the future.
 	delay, as the ai_holder might not exist yet.
 
 
-[Flow of Processing]
+## Flow of Processing
 
 Terrible visual representation here;
 AI Subsystem	-> Every 0.5s -> /datum/ai_holder/handle_tactics()	-> switch(stance)...
@@ -92,7 +92,7 @@ with each other, as opposed to having individual tick counters inside all of
 the ai_holder instances.  It should be noted that handle_tactics() is always
 called first, before handle_strategicals() every two seconds.
 
-[Process Skipping]
+## Process Skipping
 
 An ai_holder object can choose to enter a 'busy' state, or a 'sleep' state,
 in order to avoid processing.
@@ -117,7 +117,7 @@ from processing the other ai_holders until the sleep() finishes.
 Delays on the mob typically have set waitfor = FALSE, or spawn() is used.
 
 
-[Stances]
+## Stances
 
 The AI has a large number of states that it can be in, called stances.
 The AI will act in a specific way depending on which stance it is in,
@@ -138,7 +138,7 @@ module folder and are mostly self contained, however some files instead
 deal with general things that other stances may require, such as targeting
 or movement.
 
-[Interfaces]
+## Interfaces
 
 Interfaces are a concept that is used to help bridge the gap between
 the ai_holder, and its mob. Because the (base) ai_holder is explicitly
@@ -168,7 +168,7 @@ ranged attack. For simple_mobs, they can if a ranged projectile type was set,
 where as for a human mob, it could check if a gun is in a hand. For a borg,
 it could check if a gun is inside their current module.
 
-[Say List]
+## Say List
 
 A /datum/say_list is a very light datum that holds a list of strings for the
 AI to have their mob say based on certain conditions, such as when threatening
@@ -181,7 +181,7 @@ mercenaries and fake piloted mecha mobs.
 
 The say_list datum is applied to the mob itself and not held inside the AI datum.
 
-[Subtypes]
+## Subtypes
 
 Some subtypes of ai_holder are more specialized, but remain compatible with
 most mob types. There are many different subtypes that make the AI act different
@@ -196,6 +196,3 @@ To use a specific subtype on a mob, all that is needed is setting the mob's
 ai_holder_type to the subtype desired, and it will create that subtype when
 the mob is initialize()d. Switching to a subtype 'live' will require additional
 effort on the coder.
-
-
-*/

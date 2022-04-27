@@ -1,8 +1,5 @@
-/*
-BS12 object based lighting system
-*/
+# BS12 object based lighting system
 
-/*
 Changes from tg DAL:
   -	Lighting is done using objects instead of subareas.
   - Animated transitions. (newer tg DAL has this)
@@ -20,12 +17,10 @@ Changes from tg DAL:
 	  - Areas have luminosity set to 1 permanently, no hard-lighting.
 	  - Objects inside other objects can have lights and they properly affect the turf. (flashlights)
 	  - area/master and area/list/related have been eviscerated since subareas aren't needed.
-*/
 
-/*
-Relevant vars/procs:
+## Relevant vars/procs
 
-atom: (lighting_atom.dm)
+### atom: (lighting_atom.dm)
   - var/light_range; range in tiles of the light, used for calculating falloff
   - var/light_power; multiplier for the brightness of lights
   - var/light_color; hex string representing the RGB colour of the light
@@ -42,7 +37,7 @@ atom: (lighting_atom.dm)
 	  - Updates the light var on this atom, deleting or creating as needed and calling .update()
 
 
-turf: (lighting_turf.dm)
+### turf: (lighting_turf.dm)
   - var/list/affecting_lights; list of light sources that are shining onto this turf
 
   - proc/reconsider_lights():
@@ -54,7 +49,7 @@ turf: (lighting_turf.dm)
 	  - Create lighting overlays for this turf
 
 
-/atom/movable/lighting_overlay: (lighting_overlay.dm)
+### /atom/movable/lighting_overlay: (lighting_overlay.dm)
   - var/lum_r, var/lum_g, var/lum_b; lumcounts of each colour
   - var/needs_update; set on update_lumcount, checked by lighting process
 
@@ -64,4 +59,3 @@ turf: (lighting_turf.dm)
       - Change the lumcount vars and queue the overlay for update
   - proc/update_overlay()
 	  - Called by the lighting process to update the color of the overlay
-*/
