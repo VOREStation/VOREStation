@@ -105,13 +105,13 @@
 		return
 	var/size_diff = user.get_effective_size() - target.get_effective_size()
 	//if(target.mob_size > max_occupant_weight)
-	if(ishuman(target) && size_diff < 0.2)
+	if(ishuman(target) && size_diff < 0.19)
 		to_chat(user, span_warning("You get the feeling [target] is a tad too large for a [name]."))
 		return
 	if(!(target.pickup_pref && user.pickup_pref && target.pickup_active))
 		to_chat(user, span_warning("Pickup mechanics disabled!"))
 		return
-	if(target.mob_size > max_occupant_weight)
+	if(target.mob_size > max_occupant_weight && !ishuman(target))
 		//if(ishuman(target))
 			//to_chat(user, span_warning("Humans, generally, do not fit into pet carriers."))
 		//else
@@ -124,7 +124,7 @@
 			target.buckled.forceMove(target.loc)
 			return
 		else
-			to_chat(user, "It's going to be difficult to convince \the [src] to move into \the [name] without capturing it in a net.")
+			to_chat(user, "It's going to be difficult to convince \the [target] to move into \the [name] without capturing it in a net.")
 			return
 	if(user == target)
 		to_chat(user, span_warning("Why would you ever do that?"))
@@ -235,7 +235,7 @@
 	if(!(occupant in occupants) || !istype(occupant))
 		return
 	occupant.forceMove(new_turf ? new_turf : drop_location())
-	if(occupant.buckled && istype(occupant.buckled, /obj/effect/energy_net)) // Needs testing.
+	if(occupant.buckled && istype(occupant.buckled, /obj/effect/energy_net))
 		occupant.buckled.dropInto(src)
 	occupants -= occupant
 	occupant_weight -= occupant.mob_size
