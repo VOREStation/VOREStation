@@ -17624,6 +17624,7 @@
 /obj/machinery/recharger{
 	pixel_y = 5
 	},
+/obj/item/weapon/hand_labeler,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "Zw" = (
