@@ -8,10 +8,6 @@
 	icon = 'icons/obj/pet_carrier.dmi'
 	icon_state = "pet_carrier_open"
 	var/base_icon = "pet_carrier"
-	//icon_state = "pet_carrier_open"
-	//inhand_icon_state = "pet_carrier"
-	//lefthand_file = 'icons/mob/inhands/items_lefthand.dmi'
-	//righthand_file = 'icons/mob/inhands/items_righthand.dmi'
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
@@ -82,7 +78,6 @@
 		//playsound(user, 'sound/effects/bin_open.ogg', 50, TRUE)
 		playsound(user, 'sound/effects/crate_open.ogg', 50, TRUE)
 		open = TRUE
-	//update_appearance()
 	update_icon()
 
 /obj/item/weapon/pet_carrier/AltClick(mob/living/user)
@@ -112,9 +107,6 @@
 		to_chat(user, span_warning("Pickup mechanics disabled!"))
 		return
 	if(target.mob_size > max_occupant_weight && !ishuman(target))
-		//if(ishuman(target))
-			//to_chat(user, span_warning("Humans, generally, do not fit into pet carriers."))
-		//else
 		to_chat(user, span_warning("You get the feeling [target] isn't meant for a [name]."))
 		return
 	if(!ishuman(target) && target.mob_size > MOB_SMALL)
@@ -129,7 +121,10 @@
 	if(user == target)
 		to_chat(user, span_warning("Why would you ever do that?"))
 		return
+
 	load_occupant(user, target)
+	if(target.buckled && istype(target.buckled, /obj/effect/energy_net))
+		target.buckled.forceMove(target.loc) // In case someone nets something smaller than normal.
 
 /obj/item/weapon/pet_carrier/relaymove(mob/living/user, direction)
 	if(open)
@@ -248,8 +243,6 @@
 	base_icon = "biopod"
 
 	max_occupant_weight = MOB_MEDIUM
-	//icon_state = "biopod_open"
-	//inhand_icon_state = "biopod"
 
 /obj/item/weapon/pet_carrier/biopod/add_occupant(mob/living/occupant)
 	..()
