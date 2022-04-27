@@ -23,7 +23,7 @@
 	w_class = ITEMSIZE_LARGE
 	throw_speed = 2
 	throw_range = 3
-	matter = list(MAT_STEEL = 150, MAT_GLASS = 100)
+	matter = list(MAT_STEEL = 10000, MAT_GLASS = 4000)
 	var/open = TRUE
 	var/locked = FALSE
 	var/list/occupants = list()
@@ -104,8 +104,11 @@
 		return
 	var/size_diff = user.get_effective_size() - target.get_effective_size()
 	//if(target.mob_size > max_occupant_weight)
-	if(ishuman(target) && size_diff < 0.45)
+	if(ishuman(target) && size_diff < 0.2)
 		to_chat(user, span_warning("You get the feeling [target] is a tad too large for a [name]."))
+		return
+	if(!(target.pickup_pref && user.pickup_pref && target.pickup_active))
+		to_chat(user, span_warning("Pickup mechanics disabled!"))
 		return
 	if(target.mob_size > max_occupant_weight)
 		//if(ishuman(target))
@@ -113,7 +116,7 @@
 		//else
 		to_chat(user, span_warning("You get the feeling [target] isn't meant for a [name]."))
 		return
-	if(target.mob_size > MOB_SMALL)
+	if(!ishuman(target) && target.mob_size > MOB_SMALL)
 		if(target.buckled && istype(target.buckled, /obj/effect/energy_net))
 			//target.buckled.forceMove(target.loc)
 			load_occupant(user, target)

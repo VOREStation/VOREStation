@@ -15,3 +15,12 @@
 	materials = list(MAT_PLASTEEL = 5000, MAT_GLASS = 2000, MAT_DIAMOND = 500, MAT_DURASTEEL = 100)
 	build_path = /obj/item/weapon/slime_grinder
 	sort_string = "HBBB"
+
+/datum/design/item/weapon/xenobio/biopod
+	name = "bluespace stasis cage"
+	desc = "A miniturized stasis cage, capable of containing hostile wildlife larger than you would expect."
+	id = "biopod"
+	req_tech = list(TECH_MAGNET = 4, TECH_BIO = 8, TECH_BLUESPACE = 6)
+	materials = list(MAT_PLASTEEL = 10000, MAT_MORPHIUM = 400, MAT_DIAMOND = 200, MAT_DURASTEEL = 900)
+	build_path = /obj/item/weapon/pet_carrier/biopod
+	sort_string = "HBBC"

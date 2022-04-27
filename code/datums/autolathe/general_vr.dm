@@ -9,4 +9,7 @@
 /datum/category_item/autolathe/general/drinkingglass/pitcher
 	name = "plastic pitcher"
 	path =/obj/item/weapon/reagent_containers/food/drinks/glass2/pitcher
-	
+
+/datum/category_item/autolathe/general/pet_carrier
+	name = "pet carrier"
+	path =/obj/item/weapon/pet_carrier
