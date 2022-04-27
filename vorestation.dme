@@ -1281,6 +1281,7 @@
 #include "code\game\objects\items\weapons\mop_deploy.dm"
 #include "code\game\objects\items\weapons\paint.dm"
 #include "code\game\objects\items\weapons\paiwire.dm"
+#include "code\game\objects\items\weapons\pet_carrier.dm"
 #include "code\game\objects\items\weapons\policetape.dm"
 #include "code\game\objects\items\weapons\RCD.dm"
 #include "code\game\objects\items\weapons\RCD_vr.dm"
