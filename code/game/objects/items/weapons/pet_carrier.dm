@@ -56,25 +56,25 @@
 	if(occupants.len)
 		for(var/V in occupants)
 			var/mob/living/L = V
-			. += span_notice("It has [L] inside.")
+			. += SPAN_NOTICE("It has [L] inside.")
 	else
-		. += span_notice("It has nothing inside.")
+		. += SPAN_NOTICE("It has nothing inside.")
 	if(user.CanUseTopic(src))
-		. += span_notice("Activate it in your hand to [open ? "close" : "open"] its door.")
+		. += SPAN_NOTICE("Activate it in your hand to [open ? "close" : "open"] its door.")
 		if(!open)
-			. += span_notice("Alt-click to [locked ? "unlock" : "lock"] its door.")
+			. += SPAN_NOTICE("Alt-click to [locked ? "unlock" : "lock"] its door.")
 
 /obj/item/weapon/pet_carrier/attack_self(mob/living/user)
 	if(open)
-		to_chat(user, span_notice("You close [src]'s door."))
+		to_chat(user, SPAN_NOTICE("You close [src]'s door."))
 		//playsound(user, 'sound/effects/bin_close.ogg', 50, TRUE)
 		playsound(user, 'sound/effects/crate_close.ogg', 50, TRUE)
 		open = FALSE
 	else
 		if(locked)
-			to_chat(user, span_warning("[src] is locked!"))
+			to_chat(user, SPAN_WARNING("[src] is locked!"))
 			return
-		to_chat(user, span_notice("You open [src]'s door."))
+		to_chat(user, SPAN_NOTICE("You open [src]'s door."))
 		//playsound(user, 'sound/effects/bin_open.ogg', 50, TRUE)
 		playsound(user, 'sound/effects/crate_open.ogg', 50, TRUE)
 		open = TRUE
@@ -84,7 +84,7 @@
 	if(open || !user.CanUseTopic(src))
 		return
 	locked = !locked
-	to_chat(user, span_notice("You flip the lock switch [locked ? "down" : "up"]."))
+	to_chat(user, SPAN_NOTICE("You flip the lock switch [locked ? "down" : "up"]."))
 	if(locked)
 		playsound(user, 'sound/machines/door/boltsdown.ogg', 30, TRUE)
 	else
@@ -96,18 +96,18 @@
 	if(user.a_intent == I_HURT)
 		return ..()
 	if(!open)
-		to_chat(user, span_warning("You need to open [src]'s door!"))
+		to_chat(user, SPAN_WARNING("You need to open [src]'s door!"))
 		return
 	var/size_diff = user.get_effective_size() - target.get_effective_size()
 	//if(target.mob_size > max_occupant_weight)
 	if(ishuman(target) && size_diff < 0.19)
-		to_chat(user, span_warning("You get the feeling [target] is a tad too large for a [name]."))
+		to_chat(user, SPAN_WARNING("You get the feeling [target] is a tad too large for a [name]."))
 		return
 	if(!(target.pickup_pref && user.pickup_pref && target.pickup_active))
-		to_chat(user, span_warning("Pickup mechanics disabled!"))
+		to_chat(user, SPAN_WARNING("Pickup mechanics disabled!"))
 		return
 	if(target.mob_size > max_occupant_weight && !ishuman(target))
-		to_chat(user, span_warning("You get the feeling [target] isn't meant for a [name]."))
+		to_chat(user, SPAN_WARNING("You get the feeling [target] isn't meant for a [name]."))
 		return
 	if(!ishuman(target) && target.mob_size > MOB_SMALL)
 		if(target.buckled && istype(target.buckled, /obj/effect/energy_net))
@@ -122,7 +122,7 @@
 		to_chat(user, "You'll have to unbuckle \the [target] first!")
 		return
 	if(user == target)
-		to_chat(user, span_warning("Why would you ever do that?"))
+		to_chat(user, SPAN_WARNING("Why would you ever do that?"))
 		return
 
 	load_occupant(user, target)
@@ -131,13 +131,13 @@
 
 /obj/item/weapon/pet_carrier/relaymove(mob/living/user, direction)
 	if(open)
-		loc.visible_message(span_notice("[user] climbs out of [src]!"), \
-		span_warning("[user] jumps out of [src]!"))
+		loc.visible_message(SPAN_NOTICE("[user] climbs out of [src]!"), \
+		SPAN_WARNING("[user] jumps out of [src]!"))
 		remove_occupant(user)
 		return
 	else if(!locked)
-		loc.visible_message(span_notice("[user] pushes open the door to [src]!"), \
-		span_warning("[user] pushes open the door of [src]!"))
+		loc.visible_message(SPAN_NOTICE("[user] pushes open the door to [src]!"), \
+		SPAN_WARNING("[user] pushes open the door of [src]!"))
 		open = TRUE
 		//update_appearance()
 		update_icon()
@@ -149,23 +149,23 @@
 	//user.changeNext_move(100)
 	//user.last_special = world.time + 100
 	if(user.mob_size <= MOB_SMALL)
-		to_chat(user, span_notice("You poke a limb through [src]'s bars and start fumbling for the lock switch... (This will take some time.)"))
-		to_chat(loc, span_warning("You see [user] reach through the bars and fumble for the lock switch!"))
+		to_chat(user, SPAN_NOTICE("You poke a limb through [src]'s bars and start fumbling for the lock switch... (This will take some time.)"))
+		to_chat(loc, SPAN_WARNING("You see [user] reach through the bars and fumble for the lock switch!"))
 		if(!do_after(user, rand(300, 400), target = user) || open || !locked || !(user in occupants))
 			return
-		loc.visible_message(span_warning("[user] flips the lock switch on [src] by reaching through!"))
-		to_chat(user, span_boldannounce("Bingo! The lock pops open!"))
+		loc.visible_message(SPAN_WARNING("[user] flips the lock switch on [src] by reaching through!"))
+		to_chat(user, FONT_LARGE("Bingo! The lock pops open!"))
 		locked = FALSE
 		playsound(src, 'sound/machines/door/boltsup.ogg', 30, TRUE)
 		//update_appearance()
 		update_icon()
 	else
-		loc.visible_message(span_warning("[src] starts rattling as something pushes against the door!"))
-		to_chat(user, span_notice("You start pushing out of [src]... (This will take about 20 seconds.)"))
+		loc.visible_message(SPAN_WARNING("[src] starts rattling as something pushes against the door!"))
+		to_chat(user, SPAN_NOTICE("You start pushing out of [src]... (This will take about 20 seconds.)"))
 		if(!do_after(user, 200, target = user) || open || !locked || !(user in occupants))
 			return
-		loc.visible_message(span_warning("[user] shoves out of [src]!"))
-		to_chat(user, span_notice("You shove open [src]'s door against the lock's resistance and fall out!"))
+		loc.visible_message(SPAN_WARNING("[user] shoves out of [src]!"))
+		to_chat(user, SPAN_NOTICE("You shove open [src]'s door against the lock's resistance and fall out!"))
 		locked = FALSE
 		open = TRUE
 		//update_appearance()
@@ -205,21 +205,21 @@
 
 /obj/item/weapon/pet_carrier/proc/load_occupant(mob/living/user, mob/living/target)
 	if(pet_carrier_full(src))
-		to_chat(user, span_warning("[src] is already carrying too much!"))
+		to_chat(user, SPAN_WARNING("[src] is already carrying too much!"))
 		return
-	user.visible_message(span_notice("[user] starts loading [target] into [src]."), \
-	span_notice("You start loading [target] into [src]..."))
-	to_chat(target, span_userdanger("[user] starts loading you into \the [name]!"))
+	user.visible_message(SPAN_NOTICE("[user] starts loading [target] into [src]."), \
+	SPAN_NOTICE("You start loading [target] into [src]..."))
+	to_chat(target, SPAN_DANGER("[user] starts loading you into \the [name]!"))
 	if(!do_mob(user, target, 30))
 		return
 	if(target in occupants)
 		return
 	if(pet_carrier_full(src)) //Run the checks again, just in case
-		to_chat(user, span_warning("[src] is already carrying too much!"))
+		to_chat(user, SPAN_WARNING("[src] is already carrying too much!"))
 		return
-	user.visible_message(span_notice("[user] loads [target] into [src]!"), \
-	span_notice("You load [target] into [src]."))
-	to_chat(target, span_userdanger("[user] loads you into \the [name]!"))
+	user.visible_message(SPAN_NOTICE("[user] loads [target] into [src]!"), \
+	SPAN_NOTICE("You load [target] into [src]."))
+	to_chat(target, SPAN_DANGER("[user] loads you into \the [name]!"))
 	add_occupant(target)
 
 /obj/item/weapon/pet_carrier/proc/add_occupant(mob/living/occupant)
