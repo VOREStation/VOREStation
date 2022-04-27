@@ -1,5 +1,5 @@
 
-/datum/artifact_effect/animate_anomaly
+/datum/artifact_effect/common/animate_anomaly
 	name = "animate anomaly"
 	effect_type = EFFECT_PSIONIC
 	var/mob/living/target = null
@@ -7,15 +7,15 @@
 	effect_state = "pulsing"
 	effect_color = "#00c3ff"
 
-/datum/artifact_effect/animate_anomaly/ToggleActivate(var/reveal_toggle = 1)
+/datum/artifact_effect/common/animate_anomaly/ToggleActivate(var/reveal_toggle = 1)
 	..()
 	find_target()
 
-/datum/artifact_effect/animate_anomaly/New()
+/datum/artifact_effect/common/animate_anomaly/New()
 	..()
 	effectrange = max(3, effectrange)
 
-/datum/artifact_effect/animate_anomaly/proc/find_target()
+/datum/artifact_effect/common/animate_anomaly/proc/find_target()
 	var/atom/masterholder = get_master_holder()
 
 	if(!target || target.z != masterholder.z || get_dist(target, masterholder) > effectrange)
@@ -32,7 +32,7 @@
 
 		target = ClosestMob
 
-/datum/artifact_effect/animate_anomaly/DoEffectTouch(var/mob/living/user)
+/datum/artifact_effect/common/animate_anomaly/DoEffectTouch(var/mob/living/user)
 	var/atom/holder = get_master_holder()
 	var/obj/O = holder
 	var/turf/T = get_step_away(O, user)
@@ -41,7 +41,7 @@
 		O.Move(T)
 		O.visible_message("<span class='alien'>\The [holder] lurches away from [user]</span>")
 
-/datum/artifact_effect/animate_anomaly/DoEffectAura()
+/datum/artifact_effect/common/animate_anomaly/DoEffectAura()
 	var/obj/O = get_master_holder()
 	find_target()
 
@@ -60,5 +60,5 @@
 			O.Move(get_step_to(O, target))
 			O.visible_message("<span class='alien'>\The [O] lurches toward [target]</span>")
 
-/datum/artifact_effect/animate_anomaly/DoEffectPulse()
+/datum/artifact_effect/common/animate_anomaly/DoEffectPulse()
 	DoEffectAura()

@@ -1,10 +1,10 @@
-/datum/artifact_effect/teleport
+/datum/artifact_effect/rare/teleport
 	name = "teleport"
 	effect_type = EFFECT_BLUESPACE
 	effect_state = "pulsing"
 	effect_color = "#88ffdb"
 
-/datum/artifact_effect/teleport/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/rare/teleport/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()
 	var/weakness = GetAnomalySusceptibility(user)
 	if(prob(100 * weakness))
@@ -22,7 +22,7 @@
 		sparks.set_up(3, 0, user.loc)
 		sparks.start()
 
-/datum/artifact_effect/teleport/DoEffectAura()
+/datum/artifact_effect/rare/teleport/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -42,7 +42,7 @@
 				sparks.set_up(3, 0, M.loc)
 				sparks.start()
 
-/datum/artifact_effect/teleport/DoEffectPulse()
+/datum/artifact_effect/rare/teleport/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

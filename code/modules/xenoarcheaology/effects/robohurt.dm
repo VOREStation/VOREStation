@@ -1,10 +1,10 @@
-/datum/artifact_effect/robohurt
+/datum/artifact_effect/uncommon/robohurt
 	name = "robotic harm"
 	var/last_message
 
 	effect_color = "#5432cf"
 
-/datum/artifact_effect/robohurt/New()
+/datum/artifact_effect/uncommon/robohurt/New()
 	..()
 	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
 
@@ -17,7 +17,7 @@
 			R.adjustFireLoss(rand(10,50))
 			return 1
 
-/datum/artifact_effect/robohurt/DoEffectAura()
+/datum/artifact_effect/uncommon/robohurt/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -30,7 +30,7 @@
 			M.updatehealth()
 		return 1
 
-/datum/artifact_effect/robohurt/DoEffectPulse()
+/datum/artifact_effect/uncommon/robohurt/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

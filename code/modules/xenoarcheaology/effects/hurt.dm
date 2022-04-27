@@ -1,10 +1,10 @@
-/datum/artifact_effect/hurt
+/datum/artifact_effect/uncommon/hurt
 	name = "hurt"
 	effect_type = EFFECT_ORGANIC
 
 	effect_color = "#6d1212"
 
-/datum/artifact_effect/hurt/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/uncommon/hurt/DoEffectTouch(var/mob/toucher)
 	if(toucher)
 		var/weakness = GetAnomalySusceptibility(toucher)
 		if(iscarbon(toucher) && prob(weakness * 100))
@@ -21,7 +21,7 @@
 			C.make_dizzy(6 * weakness)
 			C.weakened += 6 * weakness
 
-/datum/artifact_effect/hurt/DoEffectAura()
+/datum/artifact_effect/uncommon/hurt/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -37,7 +37,7 @@
 				C.adjustBrainLoss(0.1 * weakness)
 				C.updatehealth()
 
-/datum/artifact_effect/hurt/DoEffectPulse()
+/datum/artifact_effect/uncommon/hurt/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

@@ -1,4 +1,4 @@
-/datum/artifact_effect/badfeeling
+/datum/artifact_effect/common/badfeeling
 	name = "badfeeling"
 	effect_type = EFFECT_PSIONIC
 	var/list/messages = list("You feel worried.",
@@ -28,7 +28,7 @@
 	effect_state = "summoning"
 	effect_color = "#643232"
 
-/datum/artifact_effect/badfeeling/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/common/badfeeling/DoEffectTouch(var/mob/user)
 	if(user)
 		if (istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -41,7 +41,7 @@
 			if(prob(50))
 				H.dizziness += rand(3,5)
 
-/datum/artifact_effect/badfeeling/DoEffectAura()
+/datum/artifact_effect/common/badfeeling/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -56,7 +56,7 @@
 				H.dizziness += rand(3,5)
 		return 1
 
-/datum/artifact_effect/badfeeling/DoEffectPulse()
+/datum/artifact_effect/common/badfeeling/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

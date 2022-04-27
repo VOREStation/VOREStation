@@ -1,4 +1,4 @@
-/datum/artifact_effect/goodfeeling
+/datum/artifact_effect/common/goodfeeling
 	name = "good feeling"
 	effect_type = EFFECT_PSIONIC
 	var/list/messages = list("You feel good.",
@@ -26,7 +26,7 @@
 	effect_state = "summoning"
 	effect_color = "#009118"
 
-/datum/artifact_effect/goodfeeling/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/common/goodfeeling/DoEffectTouch(var/mob/user)
 	if(user)
 		if (istype(user, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = user
@@ -39,7 +39,7 @@
 			if(prob(50))
 				H.dizziness += rand(3,5)
 
-/datum/artifact_effect/goodfeeling/DoEffectAura()
+/datum/artifact_effect/common/goodfeeling/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -54,7 +54,7 @@
 				H.dizziness += rand(3,5)
 		return 1
 
-/datum/artifact_effect/goodfeeling/DoEffectPulse()
+/datum/artifact_effect/common/goodfeeling/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

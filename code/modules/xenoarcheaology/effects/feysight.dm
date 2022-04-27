@@ -1,11 +1,11 @@
-/datum/artifact_effect/feysight
+/datum/artifact_effect/rare/feysight
 	name = "feysight"
 	effect_type = EFFECT_PSIONIC
 
 	effect_state = "pulsing"
 	effect_color = "#00c763"
 
-/datum/artifact_effect/feysight/proc/apply_modifier(var/mob/living/L)
+/datum/artifact_effect/rare/feysight/proc/apply_modifier(var/mob/living/L)
 	if(!istype(L))
 		return FALSE
 
@@ -25,12 +25,12 @@
 			it quickly passes.</span>")
 		return FALSE
 
-/datum/artifact_effect/feysight/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/rare/feysight/DoEffectTouch(var/mob/toucher)
 	if(toucher && isliving(toucher))
 		apply_modifier(toucher)
 		return TRUE
 
-/datum/artifact_effect/feysight/DoEffectAura()
+/datum/artifact_effect/rare/feysight/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -39,7 +39,7 @@
 				apply_modifier(L)
 		return TRUE
 
-/datum/artifact_effect/feysight/DoEffectPulse()
+/datum/artifact_effect/rare/feysight/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

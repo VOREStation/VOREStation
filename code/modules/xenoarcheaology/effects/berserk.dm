@@ -1,11 +1,11 @@
-/datum/artifact_effect/berserk
+/datum/artifact_effect/uncommon/berserk
 	name = "berserk"
 	effect_type = EFFECT_PSIONIC
 
 	effect_state = "summoning"
 	effect_color = "#5f0000"
 
-/datum/artifact_effect/berserk/proc/apply_berserk(var/mob/living/L)
+/datum/artifact_effect/uncommon/berserk/proc/apply_berserk(var/mob/living/L)
 	if(!istype(L))
 		return FALSE
 
@@ -25,12 +25,12 @@
 			it quickly passes.</span>")
 		return FALSE
 
-/datum/artifact_effect/berserk/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/uncommon/berserk/DoEffectTouch(var/mob/toucher)
 	if(toucher && isliving(toucher))
 		apply_berserk(toucher)
 		return TRUE
 
-/datum/artifact_effect/berserk/DoEffectAura()
+/datum/artifact_effect/uncommon/berserk/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -39,7 +39,7 @@
 				apply_berserk(L)
 		return TRUE
 
-/datum/artifact_effect/berserk/DoEffectPulse()
+/datum/artifact_effect/uncommon/berserk/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

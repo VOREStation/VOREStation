@@ -1,4 +1,4 @@
-/datum/artifact_effect/resurrect
+/datum/artifact_effect/extreme/resurrect
 	name = "resurrect"
 	effect_type = EFFECT_ORGANIC
 
@@ -7,7 +7,7 @@
 	effect_state = "pulsing"
 	effect_color = "#ff0000"
 
-/datum/artifact_effect/resurrect/proc/steal_life(var/mob/living/target = null)
+/datum/artifact_effect/extreme/resurrect/proc/steal_life(var/mob/living/target = null)
 	var/atom/holder = get_master_holder()
 	if(!istype(target))
 		return 0
@@ -19,7 +19,7 @@
 
 	return 0
 
-/datum/artifact_effect/resurrect/proc/give_life(var/mob/living/target = null)
+/datum/artifact_effect/extreme/resurrect/proc/give_life(var/mob/living/target = null)
 	var/atom/holder = get_master_holder()
 	if(!istype(target))
 		return
@@ -38,7 +38,7 @@
 			attempt_revive(target)
 			stored_life = 0
 
-/datum/artifact_effect/resurrect/proc/attempt_revive(var/mob/living/L = null)
+/datum/artifact_effect/extreme/resurrect/proc/attempt_revive(var/mob/living/L = null)
 	var/atom/holder = get_master_holder()
 	spawn()
 		if(istype(L, /mob/living/simple_mob))
@@ -75,7 +75,7 @@
 
 				holder.visible_message("<span class='alien'>\The [H]'s eyes open in a flash of light!</span>")
 
-/datum/artifact_effect/resurrect/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/extreme/resurrect/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		stored_life += 4 * steal_life(L)
@@ -86,7 +86,7 @@
 			give_life(L)
 			break
 
-/datum/artifact_effect/resurrect/DoEffectAura()
+/datum/artifact_effect/extreme/resurrect/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		stored_life += steal_life(L)
@@ -97,7 +97,7 @@
 			give_life(L)
 			break
 
-/datum/artifact_effect/resurrect/DoEffectPulse()
+/datum/artifact_effect/extreme/resurrect/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
 		stored_life += 2 * steal_life(L)

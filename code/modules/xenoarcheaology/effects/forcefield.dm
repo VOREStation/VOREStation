@@ -1,4 +1,4 @@
-/datum/artifact_effect/forcefield
+/datum/artifact_effect/uncommon/forcefield
 	name = "force field"
 	var/list/created_field = list()
 	effect_type = EFFECT_PARTICLE
@@ -6,11 +6,11 @@
 	effect_state = "shield-old"
 	effect_color = "#00b7ff"
 
-/datum/artifact_effect/forcefield/New()
+/datum/artifact_effect/uncommon/forcefield/New()
 	..()
 	trigger = TRIGGER_TOUCH
 
-/datum/artifact_effect/forcefield/ToggleActivate()
+/datum/artifact_effect/uncommon/forcefield/ToggleActivate()
 	var/atom/holder = get_master_holder()
 	..()
 	if(created_field.len)
@@ -30,7 +30,7 @@
 			UpdateMove()
 	return 1
 
-/datum/artifact_effect/forcefield/process()
+/datum/artifact_effect/uncommon/forcefield/process()
 	..()
 	for(var/obj/effect/energy_field/E in created_field)
 		if(E.strength < 1)
@@ -38,7 +38,7 @@
 		else if(E.strength < 5)
 			E.adjust_strength(0.25, 0)
 
-/datum/artifact_effect/forcefield/UpdateMove()
+/datum/artifact_effect/uncommon/forcefield/UpdateMove()
 	var/atom/holder = get_master_holder()
 	if(created_field.len && holder)
 		var/turf/T = get_turf(holder)

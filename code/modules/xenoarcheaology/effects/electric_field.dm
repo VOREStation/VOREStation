@@ -1,11 +1,11 @@
 
-/datum/artifact_effect/electric_field
+/datum/artifact_effect/uncommon/electric_field
 	name = "electric field"
 	effect_type = EFFECT_ENERGY
 
 	effect_color = "#ffff00"
 
-/datum/artifact_effect/electric_field/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/uncommon/electric_field/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()
 	var/list/nearby_mobs = list()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
@@ -29,7 +29,7 @@
 		else
 			L.electrocute_act(rand(25, 40), holder, 0.75, BP_TORSO)
 
-/datum/artifact_effect/electric_field/DoEffectAura()
+/datum/artifact_effect/uncommon/electric_field/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	var/list/nearby_mobs = list()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))
@@ -51,7 +51,7 @@
 		else
 			L.electrocute_act(rand(1, 10), holder, 0.75, BP_TORSO)
 
-/datum/artifact_effect/electric_field/DoEffectPulse()
+/datum/artifact_effect/uncommon/electric_field/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	var/list/nearby_mobs = list()
 	for(var/mob/living/L in oview(effectrange, get_turf(holder)))

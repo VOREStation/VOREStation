@@ -1,12 +1,12 @@
-/datum/artifact_effect/stun
+/datum/artifact_effect/uncommon/stun
 	name = "stun"
 	effect_color = "#00eeff"
 
-/datum/artifact_effect/stun/New()
+/datum/artifact_effect/uncommon/stun/New()
 	..()
 	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
 
-/datum/artifact_effect/stun/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/uncommon/stun/DoEffectTouch(var/mob/toucher)
 	if(toucher && iscarbon(toucher))
 		var/mob/living/carbon/C = toucher
 		var/susceptibility = GetAnomalySusceptibility(C)
@@ -16,7 +16,7 @@
 			C.stuttering += 30 * susceptibility
 			C.Stun(rand(1,10) * susceptibility)
 
-/datum/artifact_effect/stun/DoEffectAura()
+/datum/artifact_effect/uncommon/stun/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -31,7 +31,7 @@
 			else if(prob(10))
 				to_chat(C, "<font color='red'>You feel numb.</font>")
 
-/datum/artifact_effect/stun/DoEffectPulse()
+/datum/artifact_effect/uncommon/stun/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

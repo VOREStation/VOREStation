@@ -1,5 +1,5 @@
 
-/datum/artifact_effect/vampire
+/datum/artifact_effect/rare/vampire
 	name = "vampire"
 	effect_type = EFFECT_ORGANIC
 	var/last_bloodcall = 0
@@ -12,7 +12,7 @@
 	effect_state = "gravisphere"
 	effect_color = "#ff0000"
 
-/datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
+/datum/artifact_effect/rare/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
 	var/atom/holder = get_master_holder()
 	last_bloodcall = world.time
 	if(istype(M))
@@ -29,11 +29,11 @@
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 		M.vessel.remove_reagent("blood",rand(10,30))
 
-/datum/artifact_effect/vampire/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/rare/vampire/DoEffectTouch(var/mob/user)
 	bloodcall(user)
 	DoEffectAura()
 
-/datum/artifact_effect/vampire/DoEffectAura()
+/datum/artifact_effect/rare/vampire/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(nearby_mobs.len)
 		nearby_mobs.Cut()
@@ -86,5 +86,5 @@
 			holder.visible_message("<span class='alien'>\icon[holder] \The [holder] gleams a bloody red!</span>")
 			charges -= 0.1
 
-/datum/artifact_effect/vampire/DoEffectPulse()
+/datum/artifact_effect/rare/vampire/DoEffectPulse()
 	DoEffectAura()

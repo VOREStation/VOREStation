@@ -1,9 +1,9 @@
-/datum/artifact_effect/heal
+/datum/artifact_effect/uncommon/heal
 	name = "heal"
 	effect_type = EFFECT_ORGANIC
 	effect_color = "#4649ff"
 
-/datum/artifact_effect/heal/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/uncommon/heal/DoEffectTouch(var/mob/toucher)
 	//todo: check over this properly
 	if(toucher && iscarbon(toucher))
 		var/weakness = GetAnomalySusceptibility(toucher)
@@ -33,7 +33,7 @@
 			C.regenerate_icons()
 			return 1
 
-/datum/artifact_effect/heal/DoEffectAura()
+/datum/artifact_effect/uncommon/heal/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	//todo: check over this properly
 	if(holder)
@@ -50,7 +50,7 @@
 				C.adjustBrainLoss(-1 * weakness)
 				C.updatehealth()
 
-/datum/artifact_effect/heal/DoEffectPulse()
+/datum/artifact_effect/uncommon/heal/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	//todo: check over this properly
 	if(holder)

@@ -1,5 +1,5 @@
 //todo
-/datum/artifact_effect/celldrain
+/datum/artifact_effect/uncommon/celldrain
 	name = "cell drain"
 	effect_type = EFFECT_ELECTRO
 	var/last_message
@@ -7,7 +7,7 @@
 	effect_state = "pulsing"
 	effect_color = "#fbff02"
 
-/datum/artifact_effect/celldrain/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/uncommon/celldrain/DoEffectTouch(var/mob/user)
 	if(user)
 		if(istype(user, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = user
@@ -18,7 +18,7 @@
 
 		return 1
 
-/datum/artifact_effect/celldrain/DoEffectAura()
+/datum/artifact_effect/uncommon/celldrain/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -47,7 +47,7 @@
 					last_message = world.time
 	return 1
 
-/datum/artifact_effect/celldrain/DoEffectPulse()
+/datum/artifact_effect/uncommon/celldrain/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

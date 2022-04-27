@@ -138,7 +138,7 @@
 
 /datum/component/artifact_master/proc/generate_effects()
 	while(effect_generation_chance > 0)
-		var/chosen_path = pick(subtypesof(/datum/artifact_effect))
+		var/chosen_path = pick_effect()
 		if(effect_generation_chance >= 100)	// If we're above 100 percent, just cut a flat amount and add an effect.
 			var/datum/artifact_effect/AE = new chosen_path(src)
 			if(istype(holder, AE.req_type))
@@ -155,6 +155,14 @@
 			my_effects += new chosen_path(src)
 
 		effect_generation_chance = round(effect_generation_chance)
+
+/datum/component/artifact_master/proc/pick_effect()
+	return pickweight(list(
+		pick(subtypesof(/datum/artifact_effect/common)) = 50,
+		pick(subtypesof(/datum/artifact_effect/uncommon)) = 30,
+		pick(subtypesof(/datum/artifact_effect/rare)) = 17,
+		pick(subtypesof(/datum/artifact_effect/extreme)) = 3
+		))
 
 /datum/component/artifact_master/proc/get_holder()	// Returns the holder.
 	return holder

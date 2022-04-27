@@ -8,6 +8,6 @@
 
 /datum/component/artifact_master/hungry_statue
 	make_effects = list(
-		/datum/artifact_effect/animate_anomaly,
-		/datum/artifact_effect/vampire
+		/datum/artifact_effect/common/animate_anomaly,
+		/datum/artifact_effect/rare/vampire
 	)

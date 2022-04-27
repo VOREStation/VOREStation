@@ -1,5 +1,5 @@
 //todo
-/datum/artifact_effect/dnaswitch
+/datum/artifact_effect/extreme/dnaswitch
 	name = "dnaswitch"
 	effect_type = EFFECT_ORGANIC
 	var/severity
@@ -7,14 +7,14 @@
 	effect_state = "smoke"
 	effect_color = "#77ff83"
 
-/datum/artifact_effect/dnaswitch/New()
+/datum/artifact_effect/extreme/dnaswitch/New()
 	..()
 	if(effect == EFFECT_AURA)
 		severity = rand(5,30)
 	else
 		severity = rand(25,95)
 
-/datum/artifact_effect/dnaswitch/DoEffectTouch(var/mob/toucher)
+/datum/artifact_effect/extreme/dnaswitch/DoEffectTouch(var/mob/toucher)
 	var/weakness = GetAnomalySusceptibility(toucher)
 	if(ishuman(toucher) && prob(weakness * 100))
 		to_chat(toucher,pick("<font color='green'>You feel a little different.</font>",
@@ -30,7 +30,7 @@
 			scramble(0, toucher, weakness * severity)
 	return 1
 
-/datum/artifact_effect/dnaswitch/DoEffectAura()
+/datum/artifact_effect/extreme/dnaswitch/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
@@ -50,7 +50,7 @@
 				else
 					scramble(0, H, weakness * severity)
 
-/datum/artifact_effect/dnaswitch/DoEffectPulse()
+/datum/artifact_effect/extreme/dnaswitch/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)

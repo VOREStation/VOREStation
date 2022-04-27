@@ -31,6 +31,11 @@
 		A.pixel_x = pixel_x
 		A.pixel_y = pixel_y
 		A.set_dir(dir)
+<<<<<<< HEAD
+=======
+		if(start_anomalous && prob(50))
+			A.become_anomalous()
+>>>>>>> e37f6a7b9f7... Adjusts frequency of anomalies and weights effect rarity (#8572)
 
 /obj/random/drop_location()
 	return drop_get_turf ? get_turf(src) : ..()

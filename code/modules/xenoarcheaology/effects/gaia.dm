@@ -1,5 +1,4 @@
-
-/datum/artifact_effect/gaia
+/datum/artifact_effect/uncommon/gaia
 	name = "gaia"
 	effect_type = EFFECT_ORGANIC
 
@@ -7,7 +6,7 @@
 
 	effect_color = "#8cd448"
 
-/datum/artifact_effect/gaia/proc/age_plantlife(var/obj/machinery/portable_atmospherics/hydroponics/Tray = null)
+/datum/artifact_effect/uncommon/gaia/proc/age_plantlife(var/obj/machinery/portable_atmospherics/hydroponics/Tray = null)
 	if(istype(Tray) && Tray.seed)
 		Tray.health += rand(1,3) * HYDRO_SPEED_MULTIPLIER
 		Tray.age += 1
@@ -31,7 +30,7 @@
 			age_plantlife(Tray)
 			P.update_icon()
 
-/datum/artifact_effect/gaia/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/uncommon/gaia/DoEffectTouch(var/mob/user)
 	var/atom/holder = get_master_holder()
 	to_chat(user, "<span class='alien'>You feel the presence of something long forgotten.</span>")
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(world.view,get_turf(holder)))
@@ -46,7 +45,7 @@
 	for(var/obj/effect/plant/P in view(world.view,get_turf(holder)))
 		age_plantlife(P)
 
-/datum/artifact_effect/gaia/DoEffectAura()
+/datum/artifact_effect/uncommon/gaia/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(effectrange,holder))
 		age_plantlife(Tray)
@@ -60,7 +59,7 @@
 	for(var/obj/effect/plant/P in view(effectrange,get_turf(holder)))
 		age_plantlife(P)
 
-/datum/artifact_effect/gaia/DoEffectPulse()
+/datum/artifact_effect/uncommon/gaia/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	for(var/obj/machinery/portable_atmospherics/hydroponics/Tray in view(effectrange,holder))
 		age_plantlife(Tray)
@@ -74,7 +73,7 @@
 	for(var/obj/effect/plant/P in view(effectrange,get_turf(holder)))
 		age_plantlife(P)
 
-/datum/artifact_effect/gaia/process()
+/datum/artifact_effect/uncommon/gaia/process()
 	var/atom/holder = get_master_holder()
 	..()
 

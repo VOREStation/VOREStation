@@ -1,5 +1,4 @@
-
-/datum/artifact_effect/gravity_wave
+/datum/artifact_effect/uncommon/gravity_wave
 	name = "gravity wave"
 	effect_type = EFFECT_ENERGY
 
@@ -8,10 +7,10 @@
 	effect_state = "gravisphere"
 	effect_color = "#d8c3ff"
 
-/datum/artifact_effect/gravity_wave/DoEffectTouch(var/mob/user)
+/datum/artifact_effect/uncommon/gravity_wave/DoEffectTouch(var/mob/user)
 	gravwave(user, effectrange, STAGE_TWO)
 
-/datum/artifact_effect/gravity_wave/DoEffectAura()
+/datum/artifact_effect/uncommon/gravity_wave/DoEffectAura()
 	var/atom/holder = get_master_holder()
 	var/seconds_since_last_pull = max(0, round((last_wave_pull - world.time) / 10))
 
@@ -20,7 +19,7 @@
 		last_wave_pull = world.time
 		gravwave(get_turf(holder), effectrange, STAGE_TWO)
 
-/datum/artifact_effect/gravity_wave/DoEffectPulse()
+/datum/artifact_effect/uncommon/gravity_wave/DoEffectPulse()
 	var/atom/holder = get_master_holder()
 	holder.visible_message("<span class='alien'>\The [holder] distorts as local gravity intensifies, and shifts toward it.</span>")
 	gravwave(get_turf(holder), effectrange, STAGE_TWO)
