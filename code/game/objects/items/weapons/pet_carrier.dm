@@ -118,6 +118,9 @@
 		else
 			to_chat(user, "It's going to be difficult to convince \the [target] to move into \the [name] without capturing it in a net.")
 			return
+	if(target.buckled && !istype(target.buckled, /obj/effect/energy_net))
+		to_chat(user, "You'll have to unbuckle \the [target] first!")
+		return
 	if(user == target)
 		to_chat(user, span_warning("Why would you ever do that?"))
 		return
