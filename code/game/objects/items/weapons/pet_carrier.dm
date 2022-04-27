@@ -16,6 +16,7 @@
 			slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
+	item_state_slots = list(slot_r_hand_str = "pet_carrier", slot_l_hand_str = "pet_carrier")
 	force = 5
 	attack_verb = list("bashes", "carries")
 	//attack_verb_simple = list("bash", "carry")
@@ -30,6 +31,10 @@
 	var/max_occupants = 3 //Hard-cap so you can't have infinite mice or something in one carrier
 	var/max_occupant_weight = MOB_SMALL //This is calculated from the mob sizes of occupants
 
+/obj/item/pet_carrier/New()
+	verbs += .proc/drop_pet
+	..()
+
 /obj/item/pet_carrier/Destroy()
 	if(occupants.len)
 		for(var/V in occupants)
@@ -41,14 +46,14 @@
 		var/mob/living/L = gone
 		occupants -= gone
 		occupant_weight -= L.mob_size
-
+/*
 /obj/item/pet_carrier/Destroy(atom/A)
 	if(A in occupants && isliving(A))
 		var/mob/living/L = A
 		occupants -= L
 		occupant_weight -= L.mob_size
 	..()
-
+*/
 /obj/item/pet_carrier/examine(mob/user)
 	. = ..()
 	if(occupants.len)
@@ -80,7 +85,7 @@
 	update_icon()
 
 /obj/item/pet_carrier/AltClick(mob/living/user)
-	if(open || !user.CanUseTopic(src, TRUE))
+	if(open || !user.CanUseTopic(src))
 		return
 	locked = !locked
 	to_chat(user, span_notice("You flip the lock switch [locked ? "down" : "up"]."))
@@ -91,7 +96,7 @@
 	//update_appearance()
 	update_icon()
 
-/obj/item/pet_carrier/attack(mob/living/target, mob/living/user)
+/obj/item/pet_carrier/attack(mob/living/target as mob, mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		return ..()
 	if(!open)
@@ -132,18 +137,18 @@
 		to_chat(loc, span_warning("You see [user] reach through the bars and fumble for the lock switch!"))
 		if(!do_after(user, rand(300, 400), target = user) || open || !locked || !(user in occupants))
 			return
-		loc.visible_message(span_warning("[user] flips the lock switch on [src] by reaching through!"), null, null, null, user)
+		loc.visible_message(span_warning("[user] flips the lock switch on [src] by reaching through!"))
 		to_chat(user, span_boldannounce("Bingo! The lock pops open!"))
 		locked = FALSE
 		playsound(src, 'sound/machines/door/boltsup.ogg', 30, TRUE)
 		//update_appearance()
 		update_icon()
 	else
-		loc.visible_message(span_warning("[src] starts rattling as something pushes against the door!"), null, null, null, user)
+		loc.visible_message(span_warning("[src] starts rattling as something pushes against the door!"))
 		to_chat(user, span_notice("You start pushing out of [src]... (This will take about 20 seconds.)"))
 		if(!do_after(user, 200, target = user) || open || !locked || !(user in occupants))
 			return
-		loc.visible_message(span_warning("[user] shoves out of [src]!"), null, null, null, user)
+		loc.visible_message(span_warning("[user] shoves out of [src]!"))
 		to_chat(user, span_notice("You shove open [src]'s door against the lock's resistance and fall out!"))
 		locked = FALSE
 		open = TRUE
@@ -164,22 +169,30 @@
 	. = ..()
 	if(!open)
 		. += "[icon_state]_[locked ? "" : "un"]locked"
-*/
+
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
-	var/turf/T = get_turf(over_atom)
-	if(T.check_density(ignore_mobs = TRUE) && usr.CanUseTopic(src, TRUE, TRUE, FALSE, !isrobot(usr)) && usr.Adjacent(over_atom) && open && occupants.len)
+	var/turf/T = get_turf(over_atom.loc)
+	if(T.check_density(ignore_mobs = TRUE) && usr.CanUseTopic(src, TRUE) && usr.Adjacent(over_atom) && open && occupants.len)
 		usr.visible_message(span_notice("[usr] unloads [src]."), \
 		span_notice("You unload [src] onto [over_atom]."))
 		for(var/V in occupants)
-			remove_occupant(V, over_atom)
+			remove_occupant(V, T)
+*/
+/obj/item/pet_carrier/proc/drop_pet()
+	set name = "Empty Carrier"
+	set category = "Object"
+	set src in view(1)
+
+	for(var/V in occupants)
+		remove_occupant(V)
 
 /obj/item/pet_carrier/proc/load_occupant(mob/living/user, mob/living/target)
 	if(pet_carrier_full(src))
 		to_chat(user, span_warning("[src] is already carrying too much!"))
 		return
 	user.visible_message(span_notice("[user] starts loading [target] into [src]."), \
-	span_notice("You start loading [target] into [src]..."), null, null, target)
+	span_notice("You start loading [target] into [src]..."))
 	to_chat(target, span_userdanger("[user] starts loading you into \the [name]!"))
 	if(!do_mob(user, target, 30))
 		return
@@ -189,7 +202,7 @@
 		to_chat(user, span_warning("[src] is already carrying too much!"))
 		return
 	user.visible_message(span_notice("[user] loads [target] into [src]!"), \
-	span_notice("You load [target] into [src]."), null, null, target)
+	span_notice("You load [target] into [src]."))
 	to_chat(target, span_userdanger("[user] loads you into \the [name]!"))
 	add_occupant(target)
 
