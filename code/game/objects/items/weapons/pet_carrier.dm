@@ -2,7 +2,7 @@
 
 //Used to transport little animals without having to drag them across the station.
 //Comes with a handy lock to prevent them from running off.
-/obj/item/pet_carrier
+/obj/item/weapon/pet_carrier
 	name = "pet carrier"
 	desc = "A big white-and-blue pet carrier. Good for carrying <s>meat to the chef</s> cute animals around."
 	icon = 'icons/obj/pet_carrier.dmi'
@@ -17,8 +17,8 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi',
 			)
 	item_state_slots = list(slot_r_hand_str = "pet_carrier", slot_l_hand_str = "pet_carrier")
-	force = 5
-	attack_verb = list("bashes", "carries")
+	force = 0.2
+	attack_verb = list("bashed", "carried")
 	//attack_verb_simple = list("bash", "carry")
 	w_class = ITEMSIZE_LARGE
 	throw_speed = 2
@@ -31,17 +31,17 @@
 	var/max_occupants = 3 //Hard-cap so you can't have infinite mice or something in one carrier
 	var/max_occupant_weight = MOB_SMALL //This is calculated from the mob sizes of occupants
 
-/obj/item/pet_carrier/New()
+/obj/item/weapon/pet_carrier/New()
 	verbs += .proc/drop_pet
 	..()
 
-/obj/item/pet_carrier/Destroy()
+/obj/item/weapon/pet_carrier/Destroy()
 	if(occupants.len)
 		for(var/V in occupants)
 			remove_occupant(V)
 	return ..()
 
-/obj/item/pet_carrier/Exited(atom/movable/gone, direction)
+/obj/item/weapon/pet_carrier/Exited(atom/movable/gone, direction)
 	if(isliving(gone) && (gone in occupants))
 		var/mob/living/L = gone
 		occupants -= gone
@@ -54,7 +54,7 @@
 		occupant_weight -= L.mob_size
 	..()
 */
-/obj/item/pet_carrier/examine(mob/user)
+/obj/item/weapon/pet_carrier/examine(mob/user)
 	. = ..()
 	if(occupants.len)
 		for(var/V in occupants)
@@ -67,7 +67,7 @@
 		if(!open)
 			. += span_notice("Alt-click to [locked ? "unlock" : "lock"] its door.")
 
-/obj/item/pet_carrier/attack_self(mob/living/user)
+/obj/item/weapon/pet_carrier/attack_self(mob/living/user)
 	if(open)
 		to_chat(user, span_notice("You close [src]'s door."))
 		//playsound(user, 'sound/effects/bin_close.ogg', 50, TRUE)
@@ -84,7 +84,7 @@
 	//update_appearance()
 	update_icon()
 
-/obj/item/pet_carrier/AltClick(mob/living/user)
+/obj/item/weapon/pet_carrier/AltClick(mob/living/user)
 	if(open || !user.CanUseTopic(src))
 		return
 	locked = !locked
@@ -96,24 +96,38 @@
 	//update_appearance()
 	update_icon()
 
-/obj/item/pet_carrier/attack(mob/living/target as mob, mob/living/user as mob)
+/obj/item/weapon/pet_carrier/attack(mob/living/target as mob, mob/living/user as mob)
 	if(user.a_intent == I_HURT)
 		return ..()
 	if(!open)
 		to_chat(user, span_warning("You need to open [src]'s door!"))
 		return
-	if(target.mob_size > max_occupant_weight)
-		if(ishuman(target))
-			to_chat(user, span_warning("Humans, generally, do not fit into pet carriers."))
-		else
-			to_chat(user, span_warning("You get the feeling [target] isn't meant for a [name]."))
+	var/size_diff = user.get_effective_size() - target.get_effective_size()
+	//if(target.mob_size > max_occupant_weight)
+	if(ishuman(target) && size_diff < 0.45)
+		to_chat(user, span_warning("You get the feeling [target] is a tad too large for a [name]."))
 		return
+	if(target.mob_size > max_occupant_weight)
+		//if(ishuman(target))
+			//to_chat(user, span_warning("Humans, generally, do not fit into pet carriers."))
+		//else
+		to_chat(user, span_warning("You get the feeling [target] isn't meant for a [name]."))
+		return
+	if(target.mob_size > MOB_SMALL)
+		if(target.buckled && istype(target.buckled, /obj/effect/energy_net))
+			//target.buckled.forceMove(target.loc)
+			load_occupant(user, target)
+			target.buckled.forceMove(target.loc)
+			return
+		else
+			to_chat(user, "It's going to be difficult to convince \the [src] to move into \the [name] without capturing it in a net.")
+			return
 	if(user == target)
 		to_chat(user, span_warning("Why would you ever do that?"))
 		return
 	load_occupant(user, target)
 
-/obj/item/pet_carrier/relaymove(mob/living/user, direction)
+/obj/item/weapon/pet_carrier/relaymove(mob/living/user, direction)
 	if(open)
 		loc.visible_message(span_notice("[user] climbs out of [src]!"), \
 		span_warning("[user] jumps out of [src]!"))
@@ -129,7 +143,7 @@
 	else if(user.client)
 		container_resist(user)
 
-/obj/item/pet_carrier/container_resist(mob/living/user)
+/obj/item/weapon/pet_carrier/container_resist(mob/living/user)
 	//user.changeNext_move(100)
 	//user.last_special = world.time + 100
 	if(user.mob_size <= MOB_SMALL)
@@ -156,7 +170,7 @@
 		update_icon()
 		remove_occupant(user)
 
-/obj/item/pet_carrier/update_icon()
+/obj/item/weapon/pet_carrier/update_icon()
 	if(open)
 		icon_state = initial(icon_state)
 		return ..()
@@ -169,7 +183,7 @@
 	. = ..()
 	if(!open)
 		. += "[icon_state]_[locked ? "" : "un"]locked"
-
+// This wont fuckin work, and I don't care to fix it. I'll just make a verb do the same thing.
 /obj/item/pet_carrier/MouseDrop(atom/over_atom)
 	. = ..()
 	var/turf/T = get_turf(over_atom.loc)
@@ -179,7 +193,7 @@
 		for(var/V in occupants)
 			remove_occupant(V, T)
 */
-/obj/item/pet_carrier/proc/drop_pet()
+/obj/item/weapon/pet_carrier/proc/drop_pet()
 	set name = "Empty Carrier"
 	set category = "Object"
 	set src in view(1)
@@ -187,7 +201,7 @@
 	for(var/V in occupants)
 		remove_occupant(V)
 
-/obj/item/pet_carrier/proc/load_occupant(mob/living/user, mob/living/target)
+/obj/item/weapon/pet_carrier/proc/load_occupant(mob/living/user, mob/living/target)
 	if(pet_carrier_full(src))
 		to_chat(user, span_warning("[src] is already carrying too much!"))
 		return
@@ -206,27 +220,43 @@
 	to_chat(target, span_userdanger("[user] loads you into \the [name]!"))
 	add_occupant(target)
 
-/obj/item/pet_carrier/proc/add_occupant(mob/living/occupant)
+/obj/item/weapon/pet_carrier/proc/add_occupant(mob/living/occupant)
 	if(occupant in occupants || !istype(occupant))
 		return
 	occupant.forceMove(src)
 	occupants += occupant
 	occupant_weight += occupant.mob_size
 
-/obj/item/pet_carrier/proc/remove_occupant(mob/living/occupant, turf/new_turf)
+/obj/item/weapon/pet_carrier/proc/remove_occupant(mob/living/occupant, turf/new_turf)
 	if(!(occupant in occupants) || !istype(occupant))
 		return
 	occupant.forceMove(new_turf ? new_turf : drop_location())
+	if(occupant.buckled && istype(occupant.buckled, /obj/effect/energy_net)) // Needs testing.
+		occupant.buckled.dropInto(src)
 	occupants -= occupant
 	occupant_weight -= occupant.mob_size
 	occupant.dir = SOUTH
 
-/obj/item/pet_carrier/biopod
-	name = "biopod"
+/obj/item/weapon/pet_carrier/biopod
+	name = "portable bluspace stasis cage"
 	desc = "Alien device used for undescribable purpose. Or carrying pets."
 	icon_state = "biopod_open"
 	base_icon = "biopod"
+
+	max_occupant_weight = MOB_MEDIUM
 	//icon_state = "biopod_open"
 	//inhand_icon_state = "biopod"
+
+/obj/item/weapon/pet_carrier/biopod/add_occupant(mob/living/occupant)
+	..()
+	var/mob/living/simple_mob/animal = occupant
+	if(istype(animal))
+		animal.in_stasis = 1
+
+/obj/item/weapon/pet_carrier/biopod/remove_occupant(mob/living/occupant, turf/new_turf)
+	..()
+	var/mob/living/simple_mob/animal = occupant
+	if(istype(animal))
+		animal.in_stasis = 0
 
 #undef pet_carrier_full
