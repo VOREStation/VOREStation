@@ -193,6 +193,8 @@
 /obj/vehicle/proc/turn_on()
 	if(!mechanical || stat)
 		return FALSE
+	if(!cell)
+		return FALSE
 	if(powered && cell.charge < charge_use)
 		return FALSE
 	on = 1

@@ -670,6 +670,9 @@
 /obj/item/weapon/disk/nuclear{
 	name = "authentication disk"
 	},
+/obj/machinery/light/small{
+	dir = 8
+	},
 /turf/simulated/floor/wood,
 /area/groundbase/command/captainq)
 "bQ" = (
@@ -4252,7 +4255,7 @@
 "mo" = (
 /obj/structure/table/woodentable,
 /obj/machinery/photocopier/faxmachine{
-	department = "Library Conference Room"
+	department = "Library"
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
@@ -4467,6 +4470,12 @@
 /obj/item/weapon/material/minihoe,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
+"mX" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/command/captainq)
 "mY" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -10729,6 +10738,13 @@
 /obj/item/weapon/storage/box/monkeycubes/wolpincubes,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"FC" = (
+/obj/machinery/chem_master,
+/obj/structure/sign/painting/library_secure{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/Chemistry)
 "FD" = (
 /obj/structure/disposalpipe/segment{
 	dir = 1;
@@ -12799,6 +12815,11 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
+/obj/structure/table/standard,
+/obj/machinery/photocopier/faxmachine{
+	department = "Research";
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
 "Lt" = (
@@ -14144,6 +14165,10 @@
 	sortType = "Trash"
 	},
 /obj/structure/table/standard,
+/obj/machinery/photocopier/faxmachine{
+	department = "Cargo";
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "Pc" = (
@@ -14825,7 +14850,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/hall)
 "QY" = (
-/obj/machinery/vending/fitness,
+/obj/random/vendorall,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -17624,6 +17649,7 @@
 /obj/machinery/recharger{
 	pixel_y = 5
 	},
+/obj/item/weapon/hand_labeler,
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/library)
 "Zw" = (
@@ -31226,7 +31252,7 @@ tt
 bx
 Yu
 Ur
-nS
+FC
 sW
 TU
 RJ
@@ -32396,7 +32422,7 @@ Bo
 ia
 nz
 no
-XW
+mX
 ow
 ia
 kr
