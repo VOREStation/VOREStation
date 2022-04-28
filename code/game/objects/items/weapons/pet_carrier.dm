@@ -27,10 +27,9 @@
 	var/max_occupants = 3 //Hard-cap so you can't have infinite mice or something in one carrier
 	var/max_occupant_weight = MOB_SMALL //This is calculated from the mob sizes of occupants
 
-/obj/item/weapon/pet_carrier/New()
-	verbs += .proc/drop_pet
+/obj/item/weapon/pet_carrier/Initialize()
+	. = ..()
 	update_icon()
-	..()
 
 /obj/item/weapon/pet_carrier/Destroy()
 	if(occupants.len)
@@ -195,7 +194,7 @@
 		for(var/V in occupants)
 			remove_occupant(V, T)
 */
-/obj/item/weapon/pet_carrier/proc/drop_pet()
+/obj/item/weapon/pet_carrier/verb/drop_pet()
 	set name = "Empty Carrier"
 	set category = "Object"
 	set src in view(1)
