@@ -86,7 +86,7 @@
 		to_chat(src, "<font color='blue'>You have given up life and succumbed to death.</font>")
 	else
 		if(stat == DEAD)
-			to_chat(src, "<font color='blue'>You are already dead!</font>")
+			to_chat(src, "<font color='blue'>As much as you'd like, you can't die when already dead</font>")
 		else
 			to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
 
