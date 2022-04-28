@@ -443,33 +443,42 @@
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
 	forbid_events = TRUE
+
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 /area/groundbase/dorms/room1
 	name = "Dorm Room 1"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room2
 	name = "Dorm Room 2"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room3
 	name = "Dorm Room 3"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room4
 	name = "Dorm Room 4"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room5
 	name = "Dorm Room 5"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room6
 	name = "Dorm Room 6"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room7
 	name = "Dorm Room 7"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room8
 	name = "Dorm Room 8"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 
 /area/maintenance/groundbase/substation
 	name = "Substation"
