@@ -191,3 +191,27 @@
 				prob(1);/obj/item/weapon/flame/lighter/random,
 				prob(1);/obj/item/weapon/storage/wallet/random,
 				prob(1);/obj/random/cutout)
+
+/obj/random/instrument
+	name = "random instrument"
+	desc = "This is a random instrument."
+	icon = 'icons/obj/musician.dmi'
+	icon_state = "violin"
+	spawn_nothing_percentage = 0
+
+/obj/random/instrument/item_to_spawn()
+	return pick(prob(5);/obj/item/instrument/violin,
+				prob(5);/obj/item/instrument/banjo,
+				prob(5);/obj/item/instrument/guitar,
+				prob(5);/obj/item/instrument/eguitar,
+				prob(5);/obj/item/instrument/accordion,
+				prob(5);/obj/item/instrument/trumpet,
+				prob(5);/obj/item/instrument/saxophone,
+				prob(5);/obj/item/instrument/trombone,
+				prob(5);/obj/item/instrument/recorder,
+				prob(5);/obj/item/instrument/harmonica,
+				prob(1);/obj/item/instrument/bikehorn,
+				prob(5);/obj/item/instrument/piano_synth,
+				prob(5);/obj/item/instrument/glockenspiel,
+				prob(1);/obj/item/instrument/musicalmoth
+				)
