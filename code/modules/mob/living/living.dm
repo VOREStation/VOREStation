@@ -80,11 +80,15 @@
 
 /mob/living/verb/succumb()
 	set hidden = 1
-	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
+//	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
+	if (src.health < 0 && stat != DEAD)
 		src.death()
 		to_chat(src, "<font color='blue'>You have given up life and succumbed to death.</font>")
 	else
-		to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
+		if(stat == DEAD)
+			to_chat(src, "<font color='blue'>You are already dead!</font>")
+		else
+			to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
