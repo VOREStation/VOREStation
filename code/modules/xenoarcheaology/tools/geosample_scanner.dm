@@ -93,7 +93,7 @@
 			return
 		if(!isrobot(user)) // VoreEdit, fixing a bug that allowed borgs to add modules to the scanner.
 			user.drop_item()
-			I.loc = src
+			I.forceMove(src)
 			scanned_item = I
 			to_chat(user, "<span class=notice>You put \the [I] into \the [src].</span>")
 		else
@@ -376,7 +376,7 @@
 	if(!isturf(I.loc))
 		return
 
-	I.loc = src
+	I.forceMove(src)
 	scanned_item = I
 
 	var/show_text = span_notice("[user] places \the [I] into \the [src]")

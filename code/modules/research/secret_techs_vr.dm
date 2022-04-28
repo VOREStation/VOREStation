@@ -28,7 +28,7 @@
 
 // This gives us a hardcap at initialization.
 /obj/item/Initialize()
-	..()
+	. = ..()
 
 	if(origin_tech && !secret_tech && !cap_override)
 		secret_tech = list()
