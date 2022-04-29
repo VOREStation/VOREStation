@@ -5,6 +5,7 @@
 	icon_state = "stockmarket"
 	icon_screen = "stocks"
 	icon_keyboard = "stockmarket_key"
+	circuit = /obj/item/weapon/circuitboard/stockexchange
 	var/logged_in = "Cargo Department"
 	var/vmode = 1
 
@@ -17,13 +18,23 @@
 	. = ..()
 	logged_in = "Cargo Department"
 
+/obj/machinery/computer/med_data/Destroy()
+	return ..()
+
+/obj/machinery/computer/stockexchange/attackby(obj/item/W, mob/user, params)
+	..()
+	SStgui.update_uis(src)
+	return
+
+/obj/machinery/computer/stockexchange/attack_ai(mob/user)
+	src.attack_hand(user)
+
 /obj/machinery/computer/stockexchange/attack_hand(mob/user)
 	if(..(user))
 		return
 
-	//if(!ai_control && issilicon(user))
-	//	to_chat(user, "<span class='warning'>Access Denied.</span>")
-	//	return TRUE
+	if(stat & (BROKEN|NOPOWER))
+		return
 
 	tgui_interact(user)
 
