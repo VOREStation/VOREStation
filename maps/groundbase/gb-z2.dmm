@@ -13879,6 +13879,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
+"Ol" = (
+/obj/structure/noticeboard,
+/turf/simulated/wall,
+/area/groundbase/cargo/office)
 "Om" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -28537,7 +28541,7 @@ Ti
 XT
 CR
 pd
-Wj
+Ol
 Wj
 AU
 Qi
