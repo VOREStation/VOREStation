@@ -1,9 +1,15 @@
 /obj/machinery/chem_master
 	name = "ChemMaster 3000"
+<<<<<<< HEAD
 	desc = "Used to seperate and package chemicals in to patches, pills, or bottles. Warranty void if used to create Space Drugs."
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
+=======
+	desc = "Used to seperate and package chemicals in to patches, pills, or bottles. Warranty void if used to create illicit drugs."
+	density = 1
+	anchored = 1
+>>>>>>> 661b83e61d4... Drug Expansion (#8575)
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "mixer0"
 	circuit = /obj/item/weapon/circuitboard/chem_master

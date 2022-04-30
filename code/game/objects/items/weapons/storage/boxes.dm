@@ -444,7 +444,16 @@
 	desc = "Contains the seeds you need to get a little high."
 	starts_with = list(/obj/item/seeds/ambrosiavulgarisseed = 7)
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/box/ambrosiadeus
+=======
+/obj/item/storage/box/ambrosia_grown
+	name = "ambrosia box"
+	desc = "Contains a little pick-me-up for the long work day."
+	starts_with = list(/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris = 7)
+
+/obj/item/storage/box/ambrosiadeus
+>>>>>>> 661b83e61d4... Drug Expansion (#8575)
 	name = "ambrosia deus seeds box"
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)

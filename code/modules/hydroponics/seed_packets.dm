@@ -354,3 +354,6 @@ GLOBAL_LIST_BOILERPLATE(all_seed_packs, /obj/item/seeds)
 
 /obj/item/seeds/wurmwoad
 	seed_type = "wurmwoad"
+
+/obj/item/seeds/nutmeg
+	seed_type = "nutmeg"

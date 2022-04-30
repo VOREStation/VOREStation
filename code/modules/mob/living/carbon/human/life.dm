@@ -1050,10 +1050,7 @@
 
 		if(hallucination)
 			if(hallucination >= 20 && !(species.flags & (NO_POISON|IS_PLANT|NO_HALLUCINATION)) )
-				if(prob(3))
-					fake_attack(src)
-				if(!handling_hal)
-					spawn handle_hallucinations() //The not boring kind!
+				handle_hallucinations()
 				if(client && prob(5))
 					client.dir = pick(2,4,8)
 					spawn(rand(20,50))
@@ -1091,7 +1088,7 @@
 					if(client || sleeping > 3)
 						AdjustSleeping(-1)
 						throw_alert("asleep", /obj/screen/alert/asleep)
-				if( prob(2) && health && !hal_crit && client )
+				if( prob(2) && health && client )
 					spawn(0)
 						emote("snore")
 		//CONSCIOUS

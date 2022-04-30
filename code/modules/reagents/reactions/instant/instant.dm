@@ -266,11 +266,18 @@
 	required_reagents = list("bicaridine" = 1, "iron" = 2, "spidertoxin" = 1)
 	result_amount = 2
 
+/decl/chemical_reaction/instant/royale
+	name = "Royale"
+	id = "royale"
+	result = "royale"
+	required_reagents = list("copper" = 1, "phosphorus" = 1, "sulfur" = 1)
+	result_amount = 3
+
 /decl/chemical_reaction/instant/hyperzine
 	name = "Hyperzine"
 	id = "hyperzine"
 	result = "hyperzine"
-	required_reagents = list("sugar" = 1, "phosphorus" = 1, "sulfur" = 1)
+	required_reagents = list("royale" = 1, "sugar" = 1, "phosphorus" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/stimm
@@ -549,6 +556,34 @@
 	result = "luminol"
 	required_reagents = list("hydrogen" = 2, "carbon" = 2, "ammonia" = 2)
 	result_amount = 6
+
+/decl/chemical_reaction/instant/snowflake
+	name = "Snowflake"
+	id = "snowflake"
+	result = "snowflake"
+	required_reagents = list("frostoil" = 1, "fuel" = 1, "sulfur" = 1)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/sinkhole
+	name = "Sinkhole"
+	id = "sinkhole"
+	result = "sinkhole"
+	required_reagents = list("enzyme" = 1, "bicaridine" = 1, "tramadol" = 1)
+	result_amount = 1
+
+/decl/chemical_reaction/instant/schnappi
+	name = "Schnappi"
+	id = "schnappi"
+	result = "schnappi"
+	required_reagents = list("ammonia" = 1, "tramadol" = 1, "cleaner" = 1, "potassium" = 1, "phosphorus" = 1, "fuel" = 1)
+	result_amount = 6
+
+/decl/chemical_reaction/instant/colorspace
+	name = "Colorspace"
+	id = "colorspace"
+	result = "colorspace"
+	required_reagents = list("hydrogen" = 1, "ethanol" = 1, "silicon" = 1)
+	result_amount = 1
 
 /* Solidification */
 

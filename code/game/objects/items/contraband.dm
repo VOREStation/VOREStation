@@ -5,13 +5,13 @@
 // Illicit drugs~
 /obj/item/weapon/storage/pill_bottle/happy
 	name = "bottle of Happy pills"
-	desc = "Highly illegal drug. When you want to see the rainbow."
+	desc = "A recreational drug. When you want to see the rainbow. Probably not work-approved..."
 	wrapper_color = COLOR_PINK
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/happy = 7)
 
 /obj/item/weapon/storage/pill_bottle/zoom
 	name = "bottle of Zoom pills"
-	desc = "Highly illegal drug. Trade brain for speed."
+	desc = "Probably illegal. Trade brain for speed."
 	wrapper_color = COLOR_BLUE
 	starts_with = list(/obj/item/weapon/reagent_containers/pill/zoom = 7)
 
@@ -51,8 +51,8 @@
 	icon = 'icons/obj/chemical.dmi'
 	icon_state = "powder"
 	item_state = "powder"
-	amount_per_transfer_from_this = 2
-	possible_transfer_amounts = 2
+	amount_per_transfer_from_this = 5
+	possible_transfer_amounts = 5
 	w_class = ITEMSIZE_TINY
 	volume = 50
 
@@ -93,4 +93,36 @@
 	if(!reagents.total_volume) /// Did we use all of it?
 		qdel(src)
 
-////// End powder. /////////
+////// End powder. ///////////
+//////////////////////////////
+///// Drugs for loadout///////
+
+/obj/item/storage/pill_bottle/bliss
+	name = "unlabeled pill bottle"
+	desc = "A pill bottle with its label suspiciously scratched out."
+	starts_with = list(/obj/item/reagent_containers/pill/unidentified/bliss = 7)
+
+/obj/item/storage/pill_bottle/snowflake
+	name = "unlabeled pill bottle"
+	desc = "A pill bottle with its label suspiciously scratched out."
+	starts_with = list(/obj/item/reagent_containers/pill/unidentified/snowflake = 7)
+
+/obj/item/storage/pill_bottle/royale
+	name = "unlabeled pill bottle"
+	desc = "A pill bottle with its label suspiciously scratched out."
+	starts_with = list(/obj/item/reagent_containers/pill/unidentified/royale = 7)
+
+/obj/item/storage/pill_bottle/sinkhole
+	name = "unlabeled pill bottle"
+	desc = "A pill bottle with its label suspiciously scratched out."
+	starts_with = list(/obj/item/reagent_containers/pill/unidentified/sinkhole = 7)
+
+/obj/item/storage/pill_bottle/colorspace
+	name = "unlabeled pill bottle"
+	desc = "A pill bottle with its label suspiciously scratched out."
+	starts_with = list(/obj/item/reagent_containers/pill/unidentified/colorspace = 7)
+
+/obj/item/storage/pill_bottle/schnappi
+	name = "unlabeled pill bottle"
+	desc = "A pill bottle with its label suspiciously scratched out."
+	starts_with = list(/obj/item/reagent_containers/pill/unidentified/schnappi = 7)

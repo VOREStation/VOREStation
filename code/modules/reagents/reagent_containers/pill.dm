@@ -328,10 +328,15 @@
 
 /obj/item/weapon/reagent_containers/pill/zoom/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	if(prob(50))						//VOREStation edit begin: Zoom pill adjustments
 		reagents.add_reagent("mold", 2)	//Chance to be more dangerous
 	reagents.add_reagent("expired_medicine", 5)
 	reagents.add_reagent("stimm", 5)	//VOREStation edit end: Zoom pill adjustments
+=======
+	reagents.add_reagent("royale", 10)
+	reagents.add_reagent("synaptizine", 5)
+>>>>>>> 661b83e61d4... Drug Expansion (#8575)
 	color = reagents.get_color()
 
 /obj/item/weapon/reagent_containers/pill/diet
@@ -342,4 +347,40 @@
 /obj/item/weapon/reagent_containers/pill/diet/Initialize()
 	. = ..()
 	reagents.add_reagent("lipozine", 15) //VOREStation Edit
+	color = reagents.get_color()
+
+//// Recreational drugs for loadout
+/obj/item/reagent_containers/pill/unidentified
+	name = "mysterious pill"
+	desc = "You're not quite sure what's in this..."
+	icon_state = "pill1"
+
+/obj/item/reagent_containers/pill/unidentified/bliss/Initialize()
+	. = ..()
+	reagents.add_reagent("bliss", 10)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/unidentified/snowflake/Initialize()
+	. = ..()
+	reagents.add_reagent("snowflake", 10)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/unidentified/royale/Initialize()
+	. = ..()
+	reagents.add_reagent("royale", 5)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/unidentified/sinkhole/Initialize()
+	. = ..()
+	reagents.add_reagent("sinkhole", 5)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/unidentified/colorspace/Initialize()
+	. = ..()
+	reagents.add_reagent("colorspace", 10)
+	color = reagents.get_color()
+
+/obj/item/reagent_containers/pill/unidentified/schnappi/Initialize()
+	. = ..()
+	reagents.add_reagent("schnappi", 5)
 	color = reagents.get_color()

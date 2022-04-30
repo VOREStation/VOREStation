@@ -19,7 +19,8 @@
 	children = list(
 		/datum/lore/codex/page/not_contraband,
 		/datum/lore/codex/page/contraband_controlled,
-		/datum/lore/codex/page/contraband_restricted
+		/datum/lore/codex/page/contraband_restricted,
+		/datum/lore/codex/page/drug_contraband
 		)
 
 /datum/lore/codex/page/not_contraband
@@ -29,7 +30,6 @@
 	<li><b>Blades or other Equipment</b> which the possessor needs in order to fulfil their role onboard the facility, \
 	such as a kitchen knife for culinary personnel.</li>\
 	<li><b>Handheld Flashes</b>, which are useful for self-defense, as well as building certain machinery.</li>\
-	<li><b></b></li>\
 	</ul>"
 
 /datum/lore/codex/page/contraband_controlled
@@ -41,11 +41,10 @@
 	<br><br>\
 	The following objects are 'controlled'.\
 	<ul>\
-	<li><b>Recreational Drugs</b>, which includes Ambrosia.</li>\
+	<li><b>Recreational Drugs</b>, such as Ambrosia.</li>\
 	<li><b>Non-Lethal Weaponry</b>, for persons not authorized to handle them, such as Security or Command Staff.  This includes Stun Batons, Tasers, Pepper-Spray, \
 	Flashbangs</li>\
-	<li><b></b></li>\
-	<li><b></b></li>\
+	<li><b>Physical Restraints</b>, both makeshift and not.</li>\
 	</ul>"
 
 /datum/lore/codex/page/contraband_restricted
@@ -61,8 +60,32 @@
 	<li><b>Lethal Guns</b>, meaning guns which possess the capability to kill someone.  Functional ballistic weaponry can be loaded \
 	with ammunition that is lethal, meaning it falls under this.  Energy weapons lacking a lethal mode, such as tasers, do not fall under this.  \
 	Weapons which emit electromagnetic pulses, sometimes called 'Ionic' weapons, are considered lethal, as they are lethal to synthetics.</li>\
-	<li><b>Narcotic Drugs</b>, such as Mindbreaker.</li>\
+	<li><b>Illegal Drugs</b>, such as Royale.</li>\
 	<li><b>Illicit Identification Cards</b>, which includes forgeries, as well as ID cards designed to tamper with electronics.</li>\
+	</ul>"
+
+/datum/lore/codex/page/drug_contraband
+	name = "Legal Status of Drugs"
+	data = "If possession, creation, or distribution of a drug is a corporate or law violation depends entirely on the drug. The legal age for \
+	recreational use of any legal drug in Vir is 18. The most commonly found drugs and their legal status are as follows: \
+	<br><ul> \
+	<li><b>Alcohol - Legal</b>, Use may be restricted in public areas and private properties. A license is required to sell, but not to produce.</li> \
+	<li><b>Nicotine - Legal</b>, Use is unrestricted in public areas, but may be in private properties. A license is required to sell, but not to produce.</li> \
+	<li><b>Bliss - Legal</b>, Use is restricted to private residence or licensed controlled environments. A license is required to produce and to sell.</li> \
+	<li><b>Royale - Illegal</b>, Used in creation of other legal compounds, a license is required to produce or sell for non-recreational use. Possession is otherwise illegal.</li> \
+	<li><b>Hyperzine - Legal</b>, Use is restricted to private residence or licensed controlled environments. A license is required to produce and to sell. \
+	NanoTrasen facilities are licensed to distribute for work needs.</li> \
+	<li><b>Ambrosia - Legal</b>, May be restricted in public areas and private properties. A license is not required to produce, but is required to sell.</li> \
+	<li><b>Sinkhole - Illegal</b>, Production, possession, and distribution are all illegal in Vir.</li> \
+	<li><b>Snowflake - Legal</b>, Use is restricted to private residence or licensed controlled environments. A license is required to produce and to sell.</li> \
+	<li><b>DMT - Legal</b>, Also known as dimethyltryptamine, use is restricted to private residence or licensed controlled environments. A license is not required \
+	to produce, but is required to sell.</li> \
+	<li><b>Ayahuasca - Legal</b>, Use is restricted to private residence or licensed controlled environments. NanoTrasen facilities are a licensed controlled environment, \
+	but restrict use to religious ceremony. A license is not required to produce, but is required to sell.</li> \
+	<li><b>Colorspace - Legal</b>, Use is restricted to private residence or licensed controlled environments. A license is required to produce and to sell.</li> \
+	<li><b>Psilocybin - Legal</b>, Use is restricted to private residence or licensed controlled environments. A license is not required to produce, but is required to sell.</li> \
+	<li><b>Schnappi - Illegal</b>, Production, possession, and distribution are all illegal in Vir.</li> \
+	<li><b>Mindbreaker - Illegal</b>, Used in creation of other legal compounds, a license is required to produce or sell for non-recreational use. Possession is otherwise illegal.</li> \
 	</ul>"
 
 /datum/lore/codex/page/corporate_punishments
