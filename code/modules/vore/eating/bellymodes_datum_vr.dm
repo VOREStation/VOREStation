@@ -124,7 +124,18 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/oldstat = L.stat
 	if(L.stat == DEAD)
 		return null // Can't heal the dead with healbelly
-	if(B.owner.nutrition > 90 && (L.health < L.maxHealth))
+	var/mob/living/carbon/human/H = L
+	if(B.owner.nutrition > 90 && H.isSynthetic())
+		for(var/obj/item/organ/external/E in H.organs) //Needed for healing prosthetics
+			var/obj/item/organ/external/O = E
+			if(O.brute_dam > 0 || O.burn_dam > 0) //Making sure healing continues until fixed.
+				O.heal_damage(0.5, 0.5, 0, 1) // Less effective healing as able to fix broken limbs
+			if(L.health < L.maxHealth)
+				L.adjustToxLoss(-2)
+				L.adjustOxyLoss(-2)
+				L.adjustCloneLoss(-1)
+		B.owner.adjust_nutrition(-5)  // More costly for the pred, since metals and stuff
+	if(B.owner.nutrition > 90 && (L.health < L.maxHealth) && !H.isSynthetic())
 		L.adjustBruteLoss(-2.5)
 		L.adjustFireLoss(-2.5)
 		L.adjustToxLoss(-5)
