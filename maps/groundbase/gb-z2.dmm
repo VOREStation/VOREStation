@@ -6189,6 +6189,12 @@
 /obj/random/slimecore,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
+"sh" = (
+/obj/structure/table/glass,
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/storage/box/masks,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/triage)
 "si" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -16074,6 +16080,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
+"UA" = (
+/obj/structure/table/glass,
+/obj/machinery/recharger,
+/obj/item/device/defib_kit/loaded,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/triage)
 "UB" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -30981,7 +30993,7 @@ xG
 ID
 ko
 nR
-nR
+UA
 cR
 to
 iw
@@ -31123,7 +31135,7 @@ DM
 ID
 rs
 nR
-nR
+sh
 cR
 to
 iw
