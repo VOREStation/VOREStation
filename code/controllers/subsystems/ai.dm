@@ -1,6 +1,11 @@
 SUBSYSTEM_DEF(ai)
 	name = "AI"
+<<<<<<< HEAD
 	init_order = INIT_ORDER_AI
+=======
+	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	flags = SS_NO_INIT | (UNIT_TEST ? SS_NO_FIRE : 0) // Prevent AI running during CI to avoid some irrelevant runtimes
+>>>>>>> e1b7704dd00... Merge pull request #8591 from Atermonera/fix_ai_NOFIRE
 	priority = FIRE_PRIORITY_AI
 	wait = 2 SECONDS
 	flags = SS_NO_INIT
@@ -39,6 +44,7 @@ SUBSYSTEM_DEF(ai)
 		if(!L?.loc)
 			continue
 
+<<<<<<< HEAD
 		if(process_z[get_z(L)] || !L.low_priority) //VOREStation Edit End
 			A.handle_strategicals()
 		else
@@ -47,3 +53,9 @@ SUBSYSTEM_DEF(ai)
 
 		if(MC_TICK_CHECK)
 			return
+=======
+/// Convenience define for safely dequeueing an AI datum from slow processing.
+#define STOP_AIPROCESSING(DATUM) \
+DATUM.process_flags &= ~AI_PROCESSING; \
+SSai.queue -= DATUM;
+>>>>>>> e1b7704dd00... Merge pull request #8591 from Atermonera/fix_ai_NOFIRE

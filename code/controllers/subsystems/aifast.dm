@@ -1,6 +1,12 @@
 SUBSYSTEM_DEF(aifast)
+<<<<<<< HEAD
 	name = "AI (Fast)"
 	init_order = INIT_ORDER_AI_FAST
+=======
+	name = "AI Fast"
+	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
+	flags = SS_NO_INIT | (UNIT_TEST ? SS_NO_FIRE : 0) // Prevent AI running during CI to avoid some irrelevant runtimes
+>>>>>>> e1b7704dd00... Merge pull request #8591 from Atermonera/fix_ai_NOFIRE
 	priority = FIRE_PRIORITY_AI
 	wait = 0.25 SECONDS // Every quarter second
 	flags = SS_NO_INIT
@@ -21,6 +27,7 @@ SUBSYSTEM_DEF(aifast)
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
 
+<<<<<<< HEAD
 	while(currentrun.len)
 		var/datum/ai_holder/A = currentrun[currentrun.len]
 		--currentrun.len
@@ -30,3 +37,9 @@ SUBSYSTEM_DEF(aifast)
 
 		if(MC_TICK_CHECK)
 			return
+=======
+/// Convenience define for safely dequeueing an AI datum from fast processing.
+#define STOP_AIFASTPROCESSING(DATUM) \
+DATUM.process_flags &= ~AI_FASTPROCESSING; \
+SSaifast.queue -= DATUM;
+>>>>>>> e1b7704dd00... Merge pull request #8591 from Atermonera/fix_ai_NOFIRE
