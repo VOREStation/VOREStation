@@ -1,6 +1,10 @@
 /obj/machinery/atmospheric_field_generator
 	name = "atmospheric retention field generator"
+<<<<<<< HEAD
 	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated. Linked to environmental alarm systems and will automatically activate when hazardous conditions are detected.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
+=======
+	desc = "A floor-mounted piece of equipment that generates an atmosphere-retaining energy field when powered and activated. Links to environmental alarm systems and will automatically activate when hazardous conditions are detected.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 	icon = 'icons/obj/atm_fieldgen.dmi'
 	icon_state = "arfg_off"
 	anchored = TRUE
@@ -14,16 +18,28 @@
 	var/isactive = FALSE
 	var/wasactive = FALSE		//controls automatic reboot after power-loss
 	var/alwaysactive = FALSE	//for a special subtype
+<<<<<<< HEAD
 	
 	//how long it takes us to reboot if we're shut down by an EMP
 	var/reboot_delay_min = 50
 	var/reboot_delay_max = 75
 	
+=======
+
+	//how long it takes us to reboot if we're shut down by an EMP - mild variance makes it look a bit more interesting and unpredictable
+	var/reboot_delay_min = 50
+	var/reboot_delay_max = 75
+
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 	var/hatch_open = FALSE
 	var/wires_intact = TRUE
 	var/list/areas_added
 	var/field_type = /obj/structure/atmospheric_retention_field
+<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/arf_generator
+=======
+	circuit = /obj/item/circuitboard/arf_generator
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 
 /obj/machinery/atmospheric_field_generator/impassable
 	desc = "An older model of ARF-G that generates an impassable retention field. Works just as well as the modern variety, but is slightly more energy-efficient.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
@@ -37,6 +53,7 @@
 	active_power_usage = 2000
 
 /obj/machinery/atmospheric_field_generator/perma/impassable
+<<<<<<< HEAD
 	active_power_usage = 1500
 	field_type = /obj/structure/atmospheric_retention_field/impassable
 
@@ -47,12 +64,25 @@
 		return
 	if(W.is_crowbar() && !isactive)
 		if(!src) return
+=======
+	desc = "An older model of ARF-G that generates an impassable retention field whilst powered. This model's field is quite power-efficient, but will still drop from loss of power or electromagnetic interference.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
+	active_power_usage = 1500
+	field_type = /obj/structure/atmospheric_retention_field/impassable
+
+/obj/machinery/atmospheric_field_generator/attackby(obj/item/W as obj, mob/user as mob)
+	if(!src) return
+	if(W.is_crowbar())
+		if(isactive)
+			to_chat(user, "<span class='warning'>You can't open the ARF-G whilst it's running!</span>")
+			return
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 		to_chat(user, "<span class='notice'>You [hatch_open? "close" : "open"] \the [src]'s access hatch.</span>")
 		hatch_open = !hatch_open
 		update_icon()
 		if(alwaysactive && wires_intact)
 			generate_field()
 		return
+<<<<<<< HEAD
 	if(hatch_open && W.is_multitool())
 		if(!src) return
 		to_chat(user, "<span class='notice'>You toggle \the [src]'s activation behavior to [alwaysactive? "emergency" : "always-on"].</span>")
@@ -81,6 +111,36 @@
 		return
 
 /obj/machinery/atmospheric_field_generator/perma/Initialize()
+=======
+	if(hatch_open)
+		if(W.is_multitool())
+			to_chat(user, "<span class='notice'>You toggle \the [src]'s activation behavior to [alwaysactive? "emergency" : "always-on"].</span>")
+			alwaysactive = !alwaysactive
+			update_icon()
+			return
+		else if(W.is_wirecutter())
+			to_chat(user, "<span class='warning'>You [wires_intact? "cut" : "mend"] \the [src]'s wires!</span>")
+			wires_intact = !wires_intact
+			update_icon()
+			return
+		else if(istype(W,/obj/item/weldingtool))
+			var/obj/item/weldingtool/WT = W
+			if(!WT.isOn())
+				return
+			if(!WT.remove_fuel(0,user))
+				to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
+				return
+			user.visible_message("[user] starts to disassemble \the [src].", "You start to disassemble \the [src].")
+			playsound(src, WT.usesound, 50, 1)
+			if(do_after(user,15 * W.toolspeed))
+				if(!src || !user || !WT.remove_fuel(5, user)) return
+				to_chat(user, "<span class='notice'>You fully disassemble \the [src]. There were no salvageable parts.</span>")
+				qdel(src)
+			return
+
+/obj/machinery/atmospheric_field_generator/perma/Initialize()
+	. = ..()
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 	generate_field()
 
 /obj/machinery/atmospheric_field_generator/update_icon()
@@ -96,6 +156,7 @@
 		icon_state = "arfg_off"
 
 /obj/machinery/atmospheric_field_generator/power_change()
+<<<<<<< HEAD
 	var/oldstat
 	..()
 	if(!(stat & NOPOWER))
@@ -107,6 +168,16 @@
 		ispowered = 0
 		disable_field()
 		update_icon()
+=======
+	. = ..()
+	if(!(stat & NOPOWER))
+		ispowered = TRUE
+		if(alwaysactive || wasactive)	//reboot our field if we were on or are supposed to be always-on
+			generate_field()
+	if(isactive && (stat & NOPOWER))
+		ispowered = FALSE
+		disable_field()
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 
 /obj/machinery/atmospheric_field_generator/emp_act()
 	. = ..()
@@ -131,6 +202,7 @@
 	return
 
 /obj/machinery/atmospheric_field_generator/proc/generate_field()
+<<<<<<< HEAD
 	if(!ispowered || hatch_open || !wires_intact || isactive) //if it's not powered, the hatch is open, the wires are busted, or it's already on, don't do anything
 		return
 	else
@@ -151,6 +223,28 @@
 		isactive = 0
 	return
 	
+=======
+	if(!ispowered || hatch_open || !wires_intact || isactive) return
+	isactive = TRUE
+	icon_state = "arfg_on"
+	new field_type (src.loc)
+	src.visible_message("<span class='warning'>The ARF-G crackles to life!</span>","<span class='warning'>You hear an ARF-G coming online!</span>")
+	update_use_power(USE_POWER_ACTIVE)
+	update_icon()
+	return
+
+/obj/machinery/atmospheric_field_generator/proc/disable_field()
+	if(!isactive) return
+	icon_state = "arfg_off"
+	for(var/obj/structure/atmospheric_retention_field/F in loc)
+		qdel(F)
+	src.visible_message("The ARF-G shuts down with a low hum.","You hear an ARF-G powering down.")
+	update_use_power(USE_POWER_IDLE)
+	isactive = FALSE
+	update_icon()
+	return
+
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 /obj/machinery/atmospheric_field_generator/Initialize()
 	. = ..()
 	//Delete ourselves if we find extra mapped in arfgs
@@ -158,7 +252,11 @@
 		if(F != src)
 			log_debug("Duplicate ARFGS at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
@@ -185,10 +283,19 @@
 	can_atmos_pass = ATMOS_PASS_NO
 	var/basestate = "arfg_field"
 
+<<<<<<< HEAD
+=======
+	// /tg/light settings - uncomment once /tg/light is merged for fancier visuals
+	/*
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 	light_range = 3
 	light_power = 1
 	light_color = "#FFFFFF"
 	light_on = TRUE
+<<<<<<< HEAD
+=======
+	*/
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 
 /obj/structure/atmospheric_retention_field/update_icon()
 	cut_overlays() //overlays.Cut()
@@ -202,11 +309,19 @@
 	for(var/i = 1 to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
 		add_overlay(I)
+<<<<<<< HEAD
 	
 	return
 
 /obj/structure/atmospheric_retention_field/Initialize()
 	. = ..()	
+=======
+
+	return
+
+/obj/structure/atmospheric_retention_field/Initialize()
+	. = ..()
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 	update_nearby_tiles() //Force ZAS update
 	update_connections(1)
 	update_icon()

@@ -135,6 +135,7 @@
 	if(fire || party || atmosalm)
 		firedoors_close()
 		arfgs_activate()
+<<<<<<< HEAD
 		// VOREStation Edit - Make the lights colored!
 		if(fire)
 			for(var/obj/machinery/light/L in src)
@@ -150,6 +151,11 @@
 		for(var/obj/machinery/light/L in src)
 			L.reset_alert()
 		// VOREStation Edit End
+=======
+	else
+		firedoors_open()
+		arfgs_deactivate()
+>>>>>>> 1862b54013d... Atmospheric Retention Fields Port (#8582)
 
 // Close all firedoors in the area
 /area/proc/firedoors_close()
