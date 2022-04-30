@@ -9,6 +9,7 @@ env:
     BASENAME: "polaris"
 
 jobs:
+<<<<<<< HEAD
     autochangelog:
         name: Autochangelog
         runs-on: ubuntu-20.04
@@ -41,3 +42,34 @@ jobs:
                 commit_message: Automatic changelog generation for ${{ github.events.pull_request.number }}
                 branch: ${{ github.events.pull_request.base }}
                 commit_user_name: Autochangelog Bot
+=======
+  autochangelog:
+    name: Autochangelog
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - uses: /actions/checkout@v3
+        with:
+          ref: master
+      - name: Update repository to master
+        run: git pull "origin" master
+      - name: Ensure +x on CI directory
+        run: |
+          chmod -R +x ./tools/ci
+      - name: Generate Changelog
+        run: |
+          pip install pyyaml
+          python tools/GenerateChangelog/ss13_autochangelog.py \
+            html/changelogs \
+            ${{ github.event.pull_request.number }} \
+            "${{ github.event.pull_request.user.login }}" \
+            "${{ github.event.pull_request.body }}"
+          python tools/GenerateChangelog/ss13_genchangelog.py \
+            html/changelog.html \
+            html/changelogs
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automatic changelog generation for ${{ github.events.pull_request.number }}
+          branch: ${{ github.events.pull_request.base }}
+          commit_user_name: Autochangelog Bot
+>>>>>>> b725d731014... Merge pull request #8585 from PolarisSS13/dependabot/github_actions/actions/checkout-3
