@@ -3926,7 +3926,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar/upper)
 "lv" = (
-/obj/structure/closet/secure_closet/hydroponics,
+/obj/structure/closet/secure_closet/hydroponics{
+	req_access = list(77)
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -7624,8 +7626,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westright{
 	name = "Research Desk";
-	req_access = list(47,55);
-	req_one_access = null
+	req_access = list(47,77)
 	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
@@ -9559,10 +9560,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar/upper)
-"Ci" = (
-/obj/structure/closet/secure_closet/hydroponics/sci,
-/turf/simulated/floor/tiled,
-/area/groundbase/science/xenobot)
 "Cj" = (
 /obj/structure/sign/directions/stairs_down{
 	pixel_y = 38
@@ -17644,7 +17641,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
 "Zr" = (
-/obj/structure/closet/secure_closet/hydroponics,
+/obj/structure/closet/secure_closet/hydroponics{
+	req_access = list(77)
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
 "Zs" = (
@@ -21105,7 +21104,7 @@ IE
 BR
 BR
 kq
-Ci
+yU
 lv
 eT
 Zr
@@ -21250,7 +21249,7 @@ Qg
 PX
 PX
 IJ
-Ci
+yU
 lV
 LE
 DD
