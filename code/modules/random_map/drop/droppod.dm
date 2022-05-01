@@ -10,6 +10,7 @@
 	limit_x = 3
 	limit_y = 3
 	preserve_map = 0
+	max_attempts = 1
 
 	wall_type = /turf/simulated/wall/titanium
 	floor_type = /turf/simulated/floor/reinforced

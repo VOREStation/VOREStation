@@ -420,7 +420,7 @@
 	name = "\improper EPv2 circuit"
 	desc = "Enables the sending and receiving of messages on the Exonet with the EPv2 protocol."
 	extended_desc = "An EPv2 address is a string with the format of XXXX:XXXX:XXXX:XXXX.  Data can be send or received using the \
-	second pin on each side, with additonal data reserved for the third pin.  When a message is received, the second activaiton pin \
+	second pin on each side, with additonal data reserved for the third pin.  When a message is received, the second activation pin \
 	will pulse whatever's connected to it.  Pulsing the first activation pin will send a message.\
 	\
 	When messaging Communicators, you must set data to send to the string `text` to avoid errors in reception."
@@ -441,6 +441,12 @@
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_MAGNET = 2, TECH_BLUESPACE = 2)
 	power_draw_per_use = 50
 	var/datum/exonet_protocol/exonet = null
+	var/obj/machinery/exonet_node/node = null
+
+/obj/item/integrated_circuit/input/EPv2/proc/get_connection_to_tcomms()
+	if(node && node.on)
+		return can_telecomm(src,node)
+	return 0
 
 /obj/item/integrated_circuit/input/EPv2/Initialize()
 	. = ..()
@@ -451,6 +457,7 @@
 	set waitfor = FALSE
 	exonet.make_address("EPv2_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
+	node = get_exonet_node()
 
 /obj/item/integrated_circuit/input/EPv2/Destroy()
 	if(exonet)
@@ -465,7 +472,15 @@
 	var/text = get_pin_data(IC_INPUT, 3)
 
 	if(target_address && istext(target_address))
-		exonet.send_message(target_address, message, text)
+		if(!get_connection_to_tcomms())
+			set_pin_data(IC_OUTPUT, 1, null)
+			set_pin_data(IC_OUTPUT, 2, "Error: Cannot connect to Exonet node.")
+			set_pin_data(IC_OUTPUT, 3, "error")
+
+			push_data()
+			activate_pin(2)
+		else
+			exonet.send_message(target_address, message, text)
 
 /obj/item/integrated_circuit/input/receive_exonet_message(var/atom/origin_atom, var/origin_address, var/message, var/text)
 	set_pin_data(IC_OUTPUT, 1, origin_address)

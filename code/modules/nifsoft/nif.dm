@@ -168,9 +168,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		SC.brainmobs = list()
 	stat = NIF_PREINSTALL
 	vis_update()
-	H.verbs -= /mob/living/carbon/human/proc/set_nif_examine
+	if(H)
+		H.verbs -= /mob/living/carbon/human/proc/set_nif_examine
+		H.nif = null
 	qdel_null(menu)
-	H.nif = null
 	human = null
 	install_done = null
 	update_icon()

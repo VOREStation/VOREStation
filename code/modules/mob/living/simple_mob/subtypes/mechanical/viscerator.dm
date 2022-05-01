@@ -57,14 +57,14 @@
 // Used for a special grenade, to ensure they don't attack the wrong thing.
 /mob/living/simple_mob/mechanical/viscerator/mercenary/IIsAlly(mob/living/L)
 	. = ..()
-	if(!.) // Not friendly, see if they're a baddie first.
+	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
 		if(L.mind && mercs.is_antagonist(L.mind))
 			return TRUE
 
 // Similar to above but for raiders.
 /mob/living/simple_mob/mechanical/viscerator/raider/IIsAlly(mob/living/L)
 	. = ..()
-	if(!.) // Not friendly, see if they're a baddie first.
+	if(!. && isliving(L)) // Not friendly, see if they're a baddie first.
 		if(L.mind && raiders.is_antagonist(L.mind))
 			return TRUE
 
@@ -83,7 +83,7 @@
 
 /mob/living/simple_mob/mechanical/viscerator/station/IIsAlly(mob/living/L)
 	. = ..()
-	if(!.)
+	if(!. && isliving(L))
 		if(isrobot(L)) // They ignore synths.
 			return TRUE
 		if(istype(L, /mob/living/simple_mob/mechanical/ward/monitor/crew))	// Also ignore friendly monitor wards

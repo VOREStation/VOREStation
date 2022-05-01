@@ -1,3 +1,5 @@
+//VOREStation Note - we use different xenobio balance in extracts_vr, keep this unticked.
+
 // Base
 /obj/item/slime_extract
 	name = "slime extract"

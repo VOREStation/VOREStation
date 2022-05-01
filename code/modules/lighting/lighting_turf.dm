@@ -6,6 +6,7 @@
 
 	var/tmp/lighting_corners_initialised = FALSE
 
+	var/tmp/outdoors_adjacent = FALSE
 	///Our lighting object.
 	var/tmp/datum/lighting_object/lighting_object
 	///Lighting Corner datums.
@@ -96,9 +97,9 @@
 ///Setter for the byond luminosity var
 /turf/proc/set_luminosity(new_luminosity, force)
 	// SSplanets handles outdoor turfs
-	if(is_outdoors() && !force)
+	if((is_outdoors() && !force) || outdoors_adjacent)
 		return
-	
+
 	luminosity = new_luminosity
 
 ///Calculate on which directions this turfs block view.

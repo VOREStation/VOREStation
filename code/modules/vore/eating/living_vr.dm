@@ -21,6 +21,7 @@
 	var/vore_egg_type = "egg" 			// Default egg type.
 	var/feral = 0 						// How feral the mob is, if at all. Does nothing for non xenochimera at the moment.
 	var/revive_ready = REVIVING_READY	// Only used for creatures that have the xenochimera regen ability, so far.
+	var/revive_finished = 0				// Only used for xenochimera regen, allows us to find out when the regen will finish.
 	var/metabolism = 0.0015
 	var/vore_taste = null				// What the character tastes like
 	var/vore_smell = null				// What the character smells like
@@ -30,14 +31,24 @@
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/permit_healbelly = TRUE
+	var/stumble_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/slip_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/drop_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/can_be_drop_prey = FALSE
-	var/can_be_drop_pred = TRUE			// Mobs are pred by default.
+	var/can_be_drop_pred = FALSE
 	var/allow_spontaneous_tf = FALSE	// Obviously.
 	var/next_preyloop					// For Fancy sound internal loop
 	var/adminbus_trash = FALSE			// For abusing trash eater for event shenanigans.
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
+	var/regen_sounds = list(
+		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_4.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
+		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
+	)
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -230,6 +241,9 @@
 	P.allow_spontaneous_tf = src.allow_spontaneous_tf
 	P.step_mechanics_pref = src.step_mechanics_pref
 	P.pickup_pref = src.pickup_pref
+	P.drop_vore = src.drop_vore
+	P.slip_vore = src.slip_vore
+	P.stumble_vore = src.stumble_vore
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
@@ -266,6 +280,9 @@
 	allow_spontaneous_tf = P.allow_spontaneous_tf
 	step_mechanics_pref = P.step_mechanics_pref
 	pickup_pref = P.pickup_pref
+	drop_vore = P.drop_vore
+	slip_vore = P.slip_vore
+	stumble_vore = P.stumble_vore
 
 	if(bellies)
 		release_vore_contents(silent = TRUE)
@@ -504,9 +521,15 @@
 		to_chat(user, "<span class='notice'>They aren't able to be devoured.</span>")
 		log_and_message_admins("[key_name_admin(src)] attempted to devour [key_name_admin(prey)] against their prefs ([prey ? ADMIN_JMP(prey) : "null"])")
 		return FALSE
-
+	// Slipnoms from chompstation downstream, credit to cadyn for the original PR.
 	// Prepare messages
-	if(user == pred) //Feeding someone to yourself
+	if(prey.is_slipping)
+		attempt_msg = "<span class='warning'>It seems like [prey] is about to slide into [pred]'s [lowertext(belly.name)]!</span>"
+		success_msg = "<span class='warning'>[prey] suddenly slides into [pred]'s [lowertext(belly.name)]!</span>"
+	else if(pred.is_slipping)
+		attempt_msg = "<span class='warning'>It seems like [prey] is gonna end up inside [pred]'s [lowertext(belly.name)] as [pred] comes sliding over!</span>"
+		success_msg = "<span class='warning'>[prey] suddenly slips inside of [pred]'s [lowertext(belly.name)] as [pred] slides into them!</span>"
+	else if(user == pred) //Feeding someone to yourself
 		attempt_msg = "<span class='warning'>[pred] is attempting to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 		success_msg = "<span class='warning'>[pred] manages to [lowertext(belly.vore_verb)] [prey] into their [lowertext(belly.name)]!</span>"
 	else //Feeding someone to another person
@@ -566,7 +589,7 @@
 	var/air_type = /datum/gas_mixture/belly_air
 	if(istype(lifeform))	// If this doesn't succeed, then 'lifeform' is actually a bag or capture crystal with someone inside
 		air_type = lifeform.get_perfect_belly_air_type()		// Without any overrides/changes, its gonna be /datum/gas_mixture/belly_air
-	
+
 	var/air = new air_type(1000)
 	return air
 
@@ -925,6 +948,9 @@
 	dispvoreprefs += "<b>Healbelly permission:</b> [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Drop Vore:</b> [drop_vore ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Slip Vore:</b> [slip_vore ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Stumble Vore:</b> [stumble_vore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Inbelly Spawning:</b> [allow_inbelly_spawning ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Can be stepped on/over:</b> [step_mechanics_pref ? "Allowed" : "Disallowed"]<br>"

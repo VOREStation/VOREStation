@@ -127,7 +127,7 @@
 		. += shoes.slowdown
 
 	//VOREStation Addition Start
-	if(buckled && istype(buckled, /obj/machinery/power/rtg/d_type_reg))
+	if(buckled && istype(buckled, /obj/machinery/power/rtg/reg))
 		. += shoes.slowdown
 	//VOREStation Addition End
 

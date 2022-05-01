@@ -228,6 +228,9 @@
 		if(!temp)
 			to_chat(user, "<span class='notice'>You try to use your hand, but realize it is no longer attached!</span>")
 			return
+	if(istype(src, /obj/item/weapon/holder))
+		var/obj/item/weapon/holder/D = src
+		if(D.held_mob == user) return // No picking your own micro self up
 
 	var/old_loc = src.loc
 	if (istype(src.loc, /obj/item/weapon/storage))

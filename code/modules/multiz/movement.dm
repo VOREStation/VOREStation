@@ -243,9 +243,6 @@
 			if(L.incapacitated(INCAPACITATION_ALL))
 				L.stop_flying()
 				//Just here to see if the person is KO'd, stunned, etc. If so, it'll move onto can_fall.
-			else if (L.nutrition > 1000) //Eat too much while flying? Get fat and fall.
-				to_chat(L, "<span class='danger'>You're too heavy! Your wings give out and you plummit to the ground!</span>")
-				L.stop_flying() //womp womp.
 			else if(L.nutrition < 300 && L.nutrition > 299.4) //290 would be risky, as metabolism could mess it up. Let's do 289.
 				to_chat(L, "<span class='danger'>You are starting to get fatigued... You probably have a good minute left in the air, if that. Even less if you continue to fly around! You should get to the ground soon!</span>") //Ticks are, on average, 3 seconds. So this would most likely be 90 seconds, but lets just say 60.
 				L.adjust_nutrition(-0.5)

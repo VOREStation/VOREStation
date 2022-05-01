@@ -1,0 +1,52 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"b" = (
+/obj/structure/prop/rock/flat{
+	density = 0
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"r" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"U" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+
+(1,1,1) = {"
+a
+U
+r
+U
+a
+"}
+(2,1,1) = {"
+U
+r
+r
+r
+U
+"}
+(3,1,1) = {"
+r
+r
+b
+r
+r
+"}
+(4,1,1) = {"
+U
+r
+r
+r
+U
+"}
+(5,1,1) = {"
+a
+U
+r
+U
+a
+"}

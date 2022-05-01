@@ -92,7 +92,7 @@
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/pilot_room)
 "am" = (
-/obj/machinery/computer/ship/navigation{
+/obj/item/modular_computer/console/preset/talon{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/techfloor,
@@ -193,6 +193,22 @@
 /obj/item/device/paicard,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/workroom)
+"aw" = (
+/obj/structure/table/standard,
+/obj/item/clothing/gloves/sterile/nitrile,
+/obj/item/clothing/mask/surgical,
+/obj/item/clothing/suit/surgicalapron,
+/obj/structure/table/standard,
+/obj/structure/table/standard,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/structure/extinguisher_cabinet{
+	dir = 1;
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/white,
+/area/talon_v2/medical)
 "ax" = (
 /obj/machinery/camera/network/talon{
 	dir = 1
@@ -802,9 +818,9 @@
 /turf/simulated/floor/reinforced,
 /area/talon_v2/ofd_ops)
 "bX" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
+/obj/structure/table/standard,
+/obj/machinery/chemical_dispenser/full,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "bY" = (
@@ -1348,6 +1364,12 @@
 /obj/effect/shuttle_landmark/premade/talon_v2_near_fore_port,
 /turf/space,
 /area/space)
+"dS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/white,
+/area/talon_v2/medical)
 "dT" = (
 /obj/machinery/light{
 	dir = 8
@@ -4037,15 +4059,11 @@
 /turf/simulated/floor/carpet,
 /area/talon_v2/crew_quarters/sec_room)
 "mE" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 8
-	},
 /obj/structure/disposalpipe/segment{
 	dir = 1
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "mG" = (
@@ -5314,6 +5332,11 @@
 /obj/machinery/camera/network/talon{
 	dir = 1
 	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_x = 8;
+	pixel_y = -26
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "qI" = (
@@ -5539,6 +5562,7 @@
 "rG" = (
 /obj/structure/table/standard,
 /obj/machinery/reagentgrinder,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "rI" = (
@@ -7460,7 +7484,14 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/secure_storage)
 "xQ" = (
-/obj/machinery/suit_cycler/vintage/tmedic,
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/walllocker_double/medical/east,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
+/obj/random/medical,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "xR" = (
@@ -7516,12 +7547,12 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/atmospherics)
 "yd" = (
-/obj/machinery/light_switch{
-	dir = 4;
-	pixel_x = -24
-	},
 /obj/item/device/mass_spectrometer/adv,
 /obj/structure/table/standard,
+/obj/machinery/alarm/talon{
+	dir = 4;
+	pixel_x = -22
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "yh" = (
@@ -7539,10 +7570,11 @@
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/cap_room)
 "yj" = (
-/obj/structure/table/standard,
-/obj/machinery/chemical_dispenser/full,
-/obj/machinery/light{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
@@ -7669,14 +7701,9 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/bridge)
 "yx" = (
-/obj/machinery/light/small{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
 	},
-/obj/random/medical,
-/obj/random/medical,
-/obj/random/medical,
-/obj/random/medical,
-/obj/structure/closet/walllocker_double/medical/west,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "yz" = (
@@ -7696,7 +7723,9 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/talon_v2/maintenance/wing_starboard)
 "yD" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "yF" = (
@@ -7935,21 +7964,7 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/brig)
 "zw" = (
-/obj/machinery/door/airlock/medical{
-	name = "Medical Storage";
-	req_one_access = list(301)
-	},
-/obj/machinery/door/firedoor/glass/talon,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+/obj/machinery/sleep_console{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
@@ -8092,15 +8107,11 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/bridge)
 "zZ" = (
-/obj/structure/table/standard,
-/obj/item/clothing/gloves/sterile/nitrile,
-/obj/item/clothing/mask/surgical,
-/obj/item/clothing/suit/surgicalapron,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
 	},
-/obj/structure/sign/warning/nosmoking_1{
-	pixel_x = 26
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
@@ -8117,9 +8128,11 @@
 /turf/simulated/floor/plating,
 /area/talon_v2/engineering/port_store)
 "Ag" = (
-/obj/machinery/alarm/talon{
-	dir = 4;
-	pixel_x = -22
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
@@ -8577,15 +8590,25 @@
 /area/talon_v2/medical)
 "BU" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/adv{
-	pixel_x = 2;
-	pixel_y = 5
+/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/stack/nanopaste{
+	pixel_x = -7;
+	pixel_y = -4
 	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
+/obj/item/stack/nanopaste{
+	pixel_x = 9;
+	pixel_y = -4
 	},
-/obj/structure/closet/walllocker_double/medical/south,
+/obj/item/device/robotanalyzer{
+	pixel_y = -8
+	},
+/obj/machinery/light,
+/obj/machinery/button/holosign{
+	id = "tal_surg";
+	name = "surgery sign switch";
+	pixel_x = -10;
+	pixel_y = -22
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "BV" = (
@@ -8601,22 +8624,15 @@
 /area/shuttle/talonpod)
 "BX" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/item/stack/nanopaste{
-	pixel_x = -7;
-	pixel_y = -4
+/obj/item/weapon/storage/firstaid/regular,
+/obj/item/weapon/storage/firstaid/adv{
+	pixel_x = 2;
+	pixel_y = 5
 	},
-/obj/item/stack/nanopaste{
-	pixel_x = 9;
-	pixel_y = -4
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
-/obj/item/device/robotanalyzer{
-	pixel_y = -8
-	},
-/obj/machinery/alarm/talon{
-	dir = 8;
-	pixel_x = 22
-	},
+/obj/structure/closet/walllocker_double/medical/south,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "BY" = (
@@ -9978,13 +9994,9 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/central_hallway/fore)
 "Gx" = (
-/obj/machinery/light/small{
-	dir = 4
-	},
-/obj/structure/extinguisher_cabinet{
-	dir = 8;
-	pixel_x = 30
-	},
+/obj/structure/closet/walllocker_double/medical/east,
+/obj/item/bodybag/cryobag,
+/obj/item/bodybag/cryobag,
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "Gy" = (
@@ -11340,6 +11352,9 @@
 /area/talon_v2/central_hallway/port)
 "Kp" = (
 /obj/machinery/chem_master,
+/obj/machinery/light{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
 "Ks" = (
@@ -12277,11 +12292,8 @@
 /turf/simulated/floor/reinforced/airless,
 /area/space)
 "Na" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
+	dir = 6
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
@@ -14988,6 +15000,28 @@
 /obj/structure/handrail,
 /turf/simulated/floor/reinforced/airless,
 /area/talon_v2/maintenance/aft_starboard)
+"VA" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/holosign/surgery{
+	id = "tal_surg";
+	pixel_x = 8;
+	pixel_y = 22
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/talon_v2/central_hallway/star)
 "VD" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -15316,11 +15350,8 @@
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/eng_room)
 "WB" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
+/obj/machinery/sleeper{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/white,
 /area/talon_v2/medical)
@@ -28025,12 +28056,12 @@ Sk
 MG
 RQ
 rG
-Fn
+yx
 NZ
 Na
 BU
 RQ
-tX
+VA
 lv
 fW
 PK
@@ -28168,7 +28199,7 @@ uk
 RQ
 Kp
 yj
-NZ
+Ag
 zZ
 BX
 RQ
@@ -28308,11 +28339,11 @@ Sk
 rQ
 JI
 RQ
-RQ
-RQ
+bX
+yD
 zw
-RQ
-RQ
+dS
+aw
 RQ
 tX
 Lo
@@ -28451,9 +28482,9 @@ Sk
 uv
 RQ
 Wj
-yx
-NZ
-Ag
+Fn
+WB
+Fn
 Cq
 RQ
 HG
@@ -28593,9 +28624,9 @@ Sk
 Wu
 RQ
 HX
-yD
-WB
-bX
+Fn
+Fn
+Fn
 Cy
 RQ
 Ly

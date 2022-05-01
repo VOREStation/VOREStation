@@ -179,3 +179,28 @@
     else
         emote_sound = pick(smolsound)
     . = ..()
+
+/decl/emote/audible/coyawoo
+    key = "coyawoo"
+    emote_message_3p = "lets out a scraggly awoo."
+    emote_sound = 'sound/voice/coyoteawoo.ogg'
+	
+/decl/emote/audible/coyawoo2
+    key = "coyawoo2"
+    emote_message_3p = "lets out a pronounced, scraggly awoo."
+    emote_sound = 'sound/voice/coyoteawoo2.ogg'
+	
+/decl/emote/audible/coyawoo3
+    key = "coyawoo3"
+    emote_message_3p = "yaps and lets out a scraggly awoo."
+    emote_sound = 'sound/voice/coyoteawoo3.ogg'
+	
+/decl/emote/audible/coyawoo4
+    key = "coyawoo4"
+    emote_message_3p = "yaps several times, and lets out a short, scraggly awoo."
+    emote_sound = 'sound/voice/coyoteawoo4.ogg'
+	
+/decl/emote/audible/coyawoo5
+    key = "coyawoo5"
+    emote_message_3p = "lets out a scraggly, whine-awoo."
+    emote_sound = 'sound/voice/coyoteawoo5.ogg'

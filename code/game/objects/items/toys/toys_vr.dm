@@ -22,6 +22,7 @@
  *		Professor Who universal ID
  *		Professor Who sonic driver
  *		Action figures
+ *		Desk toys
  */
 
 
@@ -962,3 +963,114 @@
 	icon = 'icons/obj/toy_vr.dmi'
 	icon_state = "prisoner"
 	toysay = "I did not hit her! I did not!"
+
+/obj/item/toy/figure/error
+	name = "completely glitched action figure"
+	desc = "A \"Space Life\" brand... wait, what the hell is this thing? It seems to be requesting the sweet release of death."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "glitched"
+	toysay = "AaAAaAAAaAaaaAAA!!!!!"
+
+/*
+ * Desk toys
+ */
+/obj/item/weapon/toy/desk
+	icon = 'icons/obj/toy_vr.dmi'
+	var/on = FALSE
+	var/activation_sound = 'sound/machines/click.ogg'
+
+/obj/item/weapon/toy/desk/update_icon()
+	if(on)
+		icon_state = "[initial(icon_state)]-on"
+	else
+		icon_state = "[initial(icon_state)]"
+
+/obj/item/weapon/toy/desk/proc/activate(mob/user as mob)
+	on = !on
+	playsound(src.loc, activation_sound, 75, 1)
+	update_icon()
+	return 1
+
+/obj/item/weapon/toy/desk/attack_self(mob/user)
+	activate(user)
+
+/obj/item/weapon/toy/desk/AltClick(mob/user)
+	activate(user)
+
+/obj/item/weapon/toy/desk/MouseDrop(mob/user as mob) // Code from Paper bin, so you can still pick up the deck
+	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
+		if(!istype(usr, /mob/living/simple_mob))
+			if( !usr.get_active_hand() )		//if active hand is empty
+				var/mob/living/carbon/human/H = user
+				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
+
+				if (H.hand)
+					temp = H.organs_by_name["l_hand"]
+				if(temp && !temp.is_usable())
+					to_chat(user,"<span class='notice'>You try to move your [temp.name], but cannot!</span>")
+					return
+
+				to_chat(user,"<span class='notice'>You pick up [src].</span>")
+				user.put_in_hands(src)
+
+	return
+
+/obj/item/weapon/toy/desk/newtoncradle
+	name = "\improper Newton's cradle"
+	desc = "A ancient 21th century super-weapon model demonstrating that Sir Isaac Newton is the deadliest sonuvabitch in space."
+	description_fluff = "Aside from car radios, Eridanian Dregs are reportedly notorious for stealing these things. It is often \
+	theorized that the very same ball bearings are used in black-market cybernetics."
+	icon_state = "newtoncradle"
+
+/obj/item/weapon/toy/desk/fan
+	name = "office fan"
+	desc = "Your greatest fan."
+	description_fluff = "For weeks, the atmospherics department faced a conundrum on how to lower temperatures in a localized \
+	area through complicated pipe channels and ventilation systems. The problem was promptly solved by ordering several desk fans."
+	icon_state = "fan"
+
+/obj/item/weapon/toy/desk/officetoy
+	name = "office toy"
+	desc = "A generic microfusion powered office desk toy. Only generates magnetism and ennui."
+	description_fluff = "The mechanism inside is a Hephasteus trade secret. No peeking!"
+	icon_state = "desktoy"
+
+/obj/item/weapon/toy/desk/dippingbird
+	name = "dipping bird toy"
+	desc = "Engineers marvel at this scale model of a primitive thermal engine. It's highly debated why the majority of owners \
+	were in low-level bureaucratic jobs."
+	description_fluff = "One of the key essentials for every Eridanian suit - it's practically a rite of passage to own one \
+	of these things."
+	icon_state = "dippybird"
+
+/obj/item/weapon/toy/desk/stellardelight
+	name = "\improper Stellar Delight model"
+	desc = "A scale model of the Stellar Delight. Includes flashing lights!"
+	icon_state = "stellar_delight"
+
+/*
+ * Party popper
+ */
+/obj/item/weapon/toy/partypopper
+	name = "party popper"
+	desc = "Instructions : Aim away from face. Wait for appropriate timing. Pull cord, enjoy confetti."
+	icon = 'icons/obj/toy_vr.dmi'
+	icon_state = "partypopper"
+	w_class = ITEMSIZE_TINY
+	drop_sound = 'sound/items/drop/cardboardbox.ogg'
+	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
+
+/obj/item/weapon/toy/partypopper/attack_self(mob/user as mob)
+	if(icon_state == "partypopper")
+		user.visible_message("<span class='notice'>[user] pulls on the string, releasing a burst of confetti!</span>", "<span class='notice'>You pull on the string, releasing a burst of confetti!</span>")
+		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
+		var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
+		s.set_up(5, 1, src)
+		s.start()
+		icon_state = "partypopper_e"
+		var/turf/T = get_step(src, user.dir)
+		if(!turf_clear(T))
+			T = get_turf(src)
+		new /obj/effect/decal/cleanable/confetti(T)
+	else
+		to_chat(user, "<span class='notice'>The [src] is already spent!</span>")

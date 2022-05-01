@@ -164,10 +164,17 @@
 	var/limb_icon_key
 	var/understands_common = TRUE 		//VOREStation Edit - Makes it so that simplemobs can understand galcomm without being able to speak it.
 	var/heal_countdown = 5				//VOREStation Edit - A cooldown ticker for passive healing
+	var/obj/item/weapon/card/id/mobcard = null //VOREStation Edit
+	var/list/mobcard_access = list() //VOREStation Edit
+	var/mobcard_provided = FALSE //VOREStation Edit
 
 /mob/living/simple_mob/Initialize()
 	verbs -= /mob/verb/observe
 	health = maxHealth
+
+	if(mobcard_provided) //VOREStation Edit
+		mobcard = new /obj/item/weapon/card/id(src)
+		mobcard.access = mobcard_access.Copy()
 
 	for(var/L in has_langs)
 		languages |= GLOB.all_languages[L]
@@ -297,3 +304,13 @@
 
 /decl/mob_organ_names
 	var/list/hit_zones = list("body") //When in doubt, it's probably got a body.
+
+//VOREStation Add Start 	For allowing mobs with ID's door access
+/mob/living/simple_mob/Bump(var/atom/A)
+	if(mobcard && istype(A, /obj/machinery/door))
+		var/obj/machinery/door/D = A
+		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(mobcard))
+			D.open()
+	else
+		..()
+//Vorestation Add End

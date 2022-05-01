@@ -1,6 +1,7 @@
 /obj/item/weapon/material/butterfly
 	name = "butterfly knife"
 	desc = "A basic metal blade concealed in a lightweight plasteel grip. Small enough when folded to fit in a pocket."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon_state = "butterflyknife"
 	item_state = null
 	hitsound = null
@@ -63,6 +64,7 @@
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	sharp = TRUE
 	edge = TRUE
 	force_divisor = 0.15 // 9 when wielded with hardness 60 (steel)
@@ -86,7 +88,7 @@
 	name = "combat knife"
 	desc = "If only you had a boot to put it in."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife"
+	icon_state = "tacknife2"
 	item_state = "knife"
 	force_divisor = 0.34 // 20 with hardness 60 (steel)
 	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
@@ -99,7 +101,7 @@
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife"
+	icon_state = "tacknife3"
 	item_state = "knife"
 	force_divisor = 0.15
 	applies_material_colour = 0
@@ -128,7 +130,7 @@
 
 /obj/item/weapon/material/knife/butch
 	name = "butcher's cleaver"
-	icon_state = "butch"
+	icon_state = "cleaver"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
 	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")

@@ -433,7 +433,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/beetsoup
 
 /datum/recipe/tossedsalad
-	fruit = list("cabbage" = 2, "tomato" = 1, "carrot" = 1, "apple" = 1)
+	fruit = list("lettuce" = 2, "tomato" = 1, "carrot" = 1, "apple" = 1)
 	result = /obj/item/weapon/reagent_containers/food/snacks/tossedsalad
 
 /datum/recipe/flowersalad
@@ -458,6 +458,14 @@ I said no!
 	fruit = list("potato" = 1, "ambrosia" = 3)
 	items = list(/obj/item/weapon/reagent_containers/food/snacks/meatball)
 	result = /obj/item/weapon/reagent_containers/food/snacks/validsalad
+
+/datum/recipe/dankpocket
+	fruit = list("ambrosia" = 2)
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/meatball,
+		/obj/item/weapon/reagent_containers/food/snacks/doughslice
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/donkpocket/dankpocket
 
 /datum/recipe/validsalad/make_food(var/obj/container as obj)
 	. = ..(container)
@@ -1075,7 +1083,7 @@ I said no!
 	result = /obj/item/weapon/reagent_containers/food/snacks/fish_taco
 
 /datum/recipe/blt
-	fruit = list("tomato" = 1, "cabbage" = 1)
+	fruit = list("tomato" = 1, "lettuce" = 1)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,
 		/obj/item/weapon/reagent_containers/food/snacks/slice/bread,

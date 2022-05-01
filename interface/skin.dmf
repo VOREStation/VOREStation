@@ -126,6 +126,9 @@ macro "borghotkeymode"
 		name = "5"
 		command = ".me"
 	elem 
+		name = "6"
+		command = ".Subtle"
+	elem 
 		name = "A"
 		command = "KeyDown A"
 	elem
@@ -190,16 +193,19 @@ macro "borghotkeymode"
 		command = ".northeast"
 	elem 
 		name = "Y"
-		command = "Activate-Held-Object"
+		command = ".Whisper"
 	elem 
 		name = "CTRL+Y"
-		command = "Activate-Held-Object"
+		command = ".Whisper"
 	elem 
 		name = "Z"
 		command = "Activate-Held-Object"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem 
+		name = "U"
+		command = "Rest"
 	elem 
 		name = "NUMPAD1"
 		command = "body-r-leg"
@@ -920,6 +926,9 @@ macro "borgmacro"
 	elem 
 		name = "CTRL+Z"
 		command = "Activate-Held-Object"
+	elem 
+		name = "CTRL+U"
+		command = "Rest"
 	elem 
 		name = "CTRL+NUMPAD1"
 		command = "body-r-leg"

@@ -1,0 +1,393 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage)
+"d" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/item/device/flashlight/lamp{
+	pixel_x = 2;
+	pixel_y = 7
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"e" = (
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"f" = (
+/obj/machinery/door/airlock/silver{
+	name = "automatic door"
+	},
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"h" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"i" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"l" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/item/device/flashlight/lamp/green{
+	pixel_y = 8
+	},
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"m" = (
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"n" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/machinery/button/windowtint{
+	id = "village_square2_bedroom";
+	layer = 3.3;
+	pixel_y = 30
+	},
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"p" = (
+/obj/structure/bed/chair/sofa/left/brown{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"q" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/browndouble,
+/obj/structure/curtain/open/bed{
+	color = "#5e0c1d"
+	},
+/obj/random/plushie,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"r" = (
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"s" = (
+/obj/structure/bed/chair/sofa/right/brown{
+	dir = 4
+	},
+/obj/machinery/button/windowtint{
+	id = "village_square2";
+	layer = 3.3;
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"v" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"x" = (
+/obj/machinery/door/airlock/silver{
+	name = "automatic door"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"y" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 8;
+	id = "village_square2_bedroom";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"A" = (
+/obj/structure/table/standard,
+/obj/machinery/light/small,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"B" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 8;
+	id = "village_square2";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"D" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"F" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 1;
+	id = "village_square2";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"G" = (
+/obj/structure/bed/chair/sofa/brown{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"H" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"I" = (
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"J" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 4;
+	id = "village_square2";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"K" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"M" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"N" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/machinery/light/small,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"O" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	id = "village_square2";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"R" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"U" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+"V" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"W" = (
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square2)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+v
+y
+y
+y
+v
+v
+M
+M
+M
+a
+"}
+(3,1,1) = {"
+a
+v
+n
+I
+I
+I
+A
+v
+M
+a
+M
+a
+"}
+(4,1,1) = {"
+a
+v
+H
+I
+I
+I
+q
+v
+M
+M
+M
+a
+"}
+(5,1,1) = {"
+a
+v
+l
+I
+I
+I
+i
+v
+B
+B
+v
+a
+"}
+(6,1,1) = {"
+a
+v
+v
+v
+x
+v
+v
+v
+U
+h
+v
+a
+"}
+(7,1,1) = {"
+a
+v
+h
+h
+W
+p
+G
+s
+W
+W
+O
+a
+"}
+(8,1,1) = {"
+a
+F
+W
+W
+W
+W
+W
+W
+W
+W
+O
+a
+"}
+(9,1,1) = {"
+a
+F
+m
+W
+W
+K
+r
+W
+W
+R
+v
+a
+"}
+(10,1,1) = {"
+a
+v
+d
+N
+v
+v
+v
+f
+v
+v
+v
+a
+"}
+(11,1,1) = {"
+a
+v
+J
+J
+v
+M
+D
+e
+V
+M
+M
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+e
+a
+a
+a
+a
+"}

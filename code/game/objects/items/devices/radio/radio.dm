@@ -296,7 +296,8 @@ var/global/list/default_medbay_channels = list(
 
 GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels)
+/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels, var/states)	//VOREStation Edit
+
 	if(!GLOB.autospeaker)
 		return
 	var/datum/radio_frequency/connection = null
@@ -312,12 +313,15 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 	if(!LAZYLEN(zlevels))
 		zlevels = list(0)
-
+	//VOREStation Edit Start
+	if(!states)
+		states = "states"
+	//VOREStation Edit End
 	GLOB.autospeaker.SetName(from)
 	Broadcast_Message(connection, GLOB.autospeaker,
 						0, "*garbled automated announcement*", src,
 						message_to_multilingual(message), from, "Automated Announcement", from, "synthesized voice",
-						DATA_FAKE, 0, zlevels, connection.frequency, "states")
+						DATA_FAKE, 0, zlevels, connection.frequency, states)	//VOREStation Edit
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum
 /obj/item/device/radio/proc/handle_message_mode(mob/living/M as mob, list/message_pieces, message_mode)

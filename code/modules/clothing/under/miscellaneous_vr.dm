@@ -6,8 +6,8 @@
 /obj/item/clothing/under/permit
 	name = "public nudity permit"
 	desc = "This permit entitles the bearer to conduct their duties without a uniform. Normally issued to furred crewmembers or those with nothing to hide."
-	icon = 'icons/obj/card.dmi'
-	icon_state = "guest"
+	icon = 'icons/obj/card_new.dmi'
+	icon_state = "permit-nude"
 	body_parts_covered = 0
 	equip_sound = null
 
@@ -299,7 +299,7 @@
 /obj/item/clothing/under/summerdress/blue
 	icon_state = "summerdress2"
 
-/obj/item/clothing/under/dress/dress_cap/femformal // formal in the loosest sense. because it's going to be taken off. or something. funnier in my head i swear 
+/obj/item/clothing/under/dress/dress_cap/femformal // formal in the loosest sense. because it's going to be taken off. or something. funnier in my head i swear
 	name = "site manager's feminine formalwear"
 	desc = "Essentially a skimpy...dress? Leotard? Whatever it is, it has the coloration and markings suitable for a site manager or rough equivalent."
 	icon = 'icons/inventory/uniform/item_vr.dmi'

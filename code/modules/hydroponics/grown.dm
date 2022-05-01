@@ -93,7 +93,7 @@
 			descriptors |= "radioactive"
 		if(reagents.has_reagent("amatoxin") || reagents.has_reagent("toxin"))
 			descriptors |= "poisonous"
-		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("space_drugs") || reagents.has_reagent("earthsblood"))
+		if(reagents.has_reagent("psilocybin") || reagents.has_reagent("bliss") || reagents.has_reagent("earthsblood"))
 			descriptors |= "hallucinogenic"
 		if(reagents.has_reagent("bicaridine") || reagents.has_reagent("earthsblood"))
 			descriptors |= "medicinal"
@@ -190,7 +190,7 @@
 				pocell.charge = pocell.maxcharge
 				qdel(src)
 				return
-	
+
 		if(W.sharp)
 
 			if(seed.kitchen_tag == "pumpkin") // Ugggh these checks are awful.
@@ -218,7 +218,7 @@
 						to_chat(user, "You add the newly-formed wood to the stack. It now contains [NG.get_amount()] planks.")
 					qdel(src)
 					return
-				
+
 				if(seed.kitchen_tag == "sunflower")
 					new /obj/item/weapon/reagent_containers/food/snacks/rawsunflower(get_turf(src))
 					to_chat(user, SPAN_NOTICE("You remove the seeds from the flower, slightly damaging them."))
@@ -230,25 +230,25 @@
 					new /obj/item/weapon/reagent_containers/food/snacks/rawsticks(get_turf(src))
 					qdel(src)
 					return
-				
+
 				if(!isnull(seed.chems["carrotjuice"]))
 					to_chat(user, "You slice \the [src] into sticks.")
 					new /obj/item/weapon/reagent_containers/food/snacks/carrotfries(get_turf(src))
 					qdel(src)
 					return
-				
+
 				if(!isnull(seed.chems["pineapplejuice"]))
 					to_chat(user, "You slice \the [src] into rings.")
 					new /obj/item/weapon/reagent_containers/food/snacks/pineapple_ring(get_turf(src))
 					qdel(src)
 					return
-				
+
 				if(!isnull(seed.chems["soymilk"]))
 					to_chat(user, "You roughly chop up \the [src].")
 					new /obj/item/weapon/reagent_containers/food/snacks/soydope(get_turf(src))
 					qdel(src)
 					return
-				
+
 				if(seed.get_trait(TRAIT_FLESH_COLOUR))
 					to_chat(user, "You slice up \the [src].")
 					var/slices = rand(3,5)

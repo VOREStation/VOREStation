@@ -440,6 +440,8 @@
 	name = "\improper Medical Central Hall"
 /area/tether/surfacebase/medical/lowerhall
 	name = "\improper Medical Lower Hall"
+/area/tether/surfacebase/medical/autoresleeving
+	name = "\improper Medical Auto Resleeving"
 	//North SurfMed3-2 Stairwell
 /area/tether/surfacebase/medical/uppernorthstairwell
 	name = "\improper Medical Stairwell"

@@ -129,6 +129,8 @@
 /obj/vehicle/train/engine/turn_on()
 	if(!key)
 		return
+	if(!cell)
+		return
 	else
 		..()
 		update_stats()
@@ -230,7 +232,9 @@
 	if (on)
 		to_chat(usr, "You start [src]'s engine.")
 	else
-		if(cell.charge < charge_use)
+		if(!cell)
+			to_chat(usr, "[src] doesn't appear to have a power cell!")
+		else if(cell.charge < charge_use)
 			to_chat(usr, "[src] is out of power.")
 		else
 			to_chat(usr, "[src]'s engine won't start.")
