@@ -525,18 +525,6 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/westspur)
-"bw" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Teleporter"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/bmarble,
-/area/groundbase/civilian/arrivals)
 "bx" = (
 /obj/structure/table/reinforced,
 /obj/item/device/floor_painter,
@@ -593,11 +581,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
-"bD" = (
-/obj/structure/table/woodentable,
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
 "bE" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -636,21 +619,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
-"bH" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
-/obj/effect/landmark{
-	name = "JoinLateGateway"
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "bJ" = (
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/eastspur)
@@ -738,12 +706,11 @@
 	},
 /area/groundbase/command/tcomms)
 "bU" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/multi_tile/glass{
-	name = "Cryogenic Storage"
+/obj/machinery/light{
+	dir = 8
 	},
-/turf/simulated/floor/bmarble,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "bV" = (
 /obj/machinery/light{
 	dir = 1
@@ -921,12 +888,6 @@
 /obj/item/device/paicard,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/toolstorage)
-"cr" = (
-/obj/structure/bed/chair/backed_red{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "cs" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -1220,13 +1181,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/or1)
-"cZ" = (
-/obj/structure/cryofeed{
-	dir = 2
-	},
-/obj/machinery/camera/network/civilian,
-/turf/simulated/floor,
-/area/groundbase/civilian/arrivals)
 "da" = (
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/northspur)
@@ -1247,11 +1201,14 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/chamber)
-"de" = (
-/obj/machinery/cryopod/robot/door/gateway,
+"dd" = (
 /obj/effect/floor_decal/techfloor/orange{
+	dir = 9
+	},
+/obj/machinery/firealarm{
 	dir = 8
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/techfloor,
 /area/groundbase/civilian/arrivals)
 "df" = (
@@ -1810,17 +1767,11 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/engineering/atmos)
 "ex" = (
-/obj/effect/floor_decal/techfloor/orange{
+/obj/machinery/light{
 	dir = 1
 	},
-/obj/machinery/power/apc{
-	dir = 1
-	},
-/obj/structure/cable{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "ey" = (
 /obj/machinery/light{
 	dir = 8
@@ -2383,21 +2334,6 @@
 	alpha = 0
 	},
 /area/groundbase/level1/ne)
-"fW" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 8
-	},
-/obj/effect/landmark{
-	name = "JoinLateGateway"
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "fX" = (
 /obj/structure/table/standard,
 /obj/machinery/alarm/angled,
@@ -2415,18 +2351,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/briefing)
-"fZ" = (
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 10
-	},
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/groundbase/civilian/arrivals)
 "ga" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -2756,21 +2680,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
-"gP" = (
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 10
-	},
-/obj/structure/cryofeed{
-	dir = 1
-	},
-/obj/machinery/computer/cryopod{
-	pixel_x = 32
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "gQ" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/dark,
@@ -2951,7 +2860,7 @@
 /area/groundbase/security/equipment)
 "hq" = (
 /turf/simulated/wall,
-/area/groundbase/civilian/gameroom)
+/area/groundbase/civilian/arrivals)
 "hr" = (
 /turf/simulated/wall,
 /area/groundbase/civilian/cafe)
@@ -3350,9 +3259,6 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
-"is" = (
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "iu" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -3782,7 +3688,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/storage/box/nifsofts_medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
 "jx" = (
@@ -3818,13 +3723,13 @@
 "jC" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass{
-	name = "Gamatorium"
+	name = "Cryo/Teleporter"
 	},
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /turf/simulated/floor/bmarble,
-/area/groundbase/civilian/gameroom)
+/area/groundbase/civilian/arrivals)
 "jD" = (
 /obj/structure/sign/directions/evac{
 	dir = 10;
@@ -3988,6 +3893,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
+"jY" = (
+/obj/structure/sign/directions/evac{
+	dir = 8
+	},
+/turf/simulated/wall,
+/area/groundbase/civilian/arrivals)
 "jZ" = (
 /obj/machinery/holoplant,
 /obj/structure/cable{
@@ -4144,16 +4055,6 @@
 "kq" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
-"kr" = (
-/obj/structure/table/woodentable,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
 "ks" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
@@ -4249,11 +4150,15 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "kC" = (
-/obj/structure/bed/chair/backed_red{
+/obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
+/obj/effect/landmark/start,
+/obj/effect/landmark{
+	name = "JoinLateGateway"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "kE" = (
 /obj/machinery/button/remote/airlock{
 	desc = "A remote control switch for the medbay recovery room door.";
@@ -4387,18 +4292,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
-"kP" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
-/obj/effect/landmark{
-	name = "JoinLateGateway"
-	},
-/obj/machinery/alarm{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "kQ" = (
 /obj/machinery/power/apc{
 	dir = 8;
@@ -4463,12 +4356,15 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/apparel)
 "kY" = (
-/obj/structure/sign/directions/evac{
-	dir = 1;
-	pixel_y = 32
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "la" = (
 /obj/structure/table/marble,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -4750,6 +4646,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
 "lE" = (
@@ -4926,14 +4825,6 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/cafe)
-"mc" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light,
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "md" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -4948,17 +4839,14 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/tcomms)
 "mf" = (
-/obj/machinery/cryopod{
-	dir = 2
+/obj/machinery/power/apc{
+	dir = 8
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
+/obj/structure/cable/yellow{
+	icon_state = "0-2"
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 10
-	},
-/turf/simulated/floor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "mg" = (
 /obj/structure/table/marble,
 /obj/structure/cable/yellow{
@@ -5739,12 +5627,6 @@
 /obj/structure/barricade/cutout/clown,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
-"oi" = (
-/obj/structure/cryofeed{
-	dir = 2
-	},
-/turf/simulated/floor,
-/area/groundbase/civilian/arrivals)
 "oj" = (
 /obj/machinery/suit_cycler/engineering,
 /turf/simulated/floor/tiled,
@@ -5866,21 +5748,6 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
-"ow" = (
-/obj/machinery/cryopod{
-	dir = 2
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 10
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/turf/simulated/floor,
-/area/groundbase/civilian/arrivals)
 "ox" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -5949,6 +5816,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/office)
+"oF" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 6
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/computer/cryopod{
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "oG" = (
 /obj/machinery/light{
 	dir = 4
@@ -5965,9 +5844,17 @@
 	},
 /area/groundbase/security/lobby)
 "oI" = (
-/obj/structure/table/woodentable,
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "oJ" = (
 /obj/structure/cable{
 	icon_state = "1-4"
@@ -6417,18 +6304,17 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/halls)
 "pO" = (
-/obj/structure/table/woodentable,
 /obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 10
+	icon_state = "1-4"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "pP" = (
 /obj/machinery/vending/loadout/uniform,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -6838,18 +6724,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/medcargo)
-"qS" = (
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 10
-	},
-/obj/structure/cryofeed{
-	dir = 1
-	},
-/turf/simulated/floor,
-/area/groundbase/civilian/arrivals)
 "qU" = (
 /obj/effect/floor_decal/industrial/danger{
 	dir = 1
@@ -6897,6 +6771,7 @@
 /obj/structure/table/reinforced,
 /obj/item/device/retail_scanner/medical,
 /obj/item/weapon/storage/box/body_record_disk,
+/obj/item/weapon/storage/box/nifsofts_medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
 "ra" = (
@@ -7302,15 +7177,6 @@
 /obj/machinery/portable_atmospherics/powered/pump/filled,
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
-"rS" = (
-/obj/structure/closet/walllocker_double{
-	pixel_y = 28
-	},
-/obj/random/instrument,
-/obj/random/instrument,
-/obj/item/instrument/guitar,
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "rT" = (
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
 	outdoors = 0
@@ -7501,6 +7367,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"sq" = (
+/obj/structure/table/woodentable,
+/obj/item/device/paicard,
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "sr" = (
 /obj/structure/toilet,
 /obj/machinery/button/remote/airlock{
@@ -7640,11 +7517,12 @@
 	},
 /area/groundbase/level1/eastspur)
 "sH" = (
-/obj/structure/bed/chair/backed_red{
-	dir = 8
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/landmark{
+	name = "JoinLateGateway"
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "sI" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -7802,10 +7680,14 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "tb" = (
-/obj/structure/table/woodentable,
-/obj/random/coin/sometimes,
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "tc" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
@@ -7910,6 +7792,9 @@
 	},
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -8342,15 +8227,6 @@
 	},
 /turf/simulated/floor/carpet/gaycarpet,
 /area/groundbase/civilian/clown)
-"uq" = (
-/obj/effect/landmark{
-	name = "JoinLateCryo"
-	},
-/obj/machinery/alarm{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "ur" = (
 /obj/machinery/atmospherics/pipe/manifold4w/visible/green,
 /obj/machinery/meter,
@@ -8459,9 +8335,17 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/robot)
 "uJ" = (
-/obj/structure/bed/chair/backed_red,
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/cryopod{
+	dir = 2
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 10
+	},
+/turf/simulated/floor,
+/area/groundbase/civilian/arrivals)
 "uK" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
@@ -8500,17 +8384,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/techstorage)
 "uN" = (
-/obj/effect/landmark{
-	name = "JoinLateCryo"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/structure/table/woodentable,
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "uO" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -8538,6 +8414,16 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
 /area/groundbase/civilian/apparel)
+"uS" = (
+/obj/effect/floor_decal/techfloor/orange,
+/obj/effect/landmark{
+	name = "JoinLateGateway"
+	},
+/obj/machinery/alarm{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "uT" = (
 /obj/machinery/door/airlock/maintenance_hatch{
 	name = "Engine Airlock";
@@ -8604,6 +8490,9 @@
 /area/groundbase/security/warden)
 "va" = (
 /obj/structure/frame,
+/obj/structure/noticeboard{
+	pixel_x = -32
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "vb" = (
@@ -8921,10 +8810,6 @@
 	},
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/groundbase/civilian/mensrestroom)
-"vJ" = (
-/obj/effect/landmark/arrivals,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "vK" = (
 /obj/structure/table/bench/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -8934,28 +8819,8 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
 "vL" = (
-/obj/structure/sign/directions/stairs_up{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = 8
-	},
-/obj/structure/sign/directions/bar{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = -4
-	},
-/obj/structure/sign/directions/chapel{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = -10
-	},
-/obj/structure/sign/directions/evac{
-	dir = 8;
-	pixel_x = -32;
-	pixel_y = 2
-	},
-/turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/level1/northspur)
+/turf/simulated/wall,
+/area/groundbase/level1/nw)
 "vM" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level1/southwestspur)
@@ -9194,9 +9059,11 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "wr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/effect/landmark{
+	name = "JoinLateGateway"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "ws" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -9245,26 +9112,16 @@
 	},
 /area/maintenance/groundbase/level1/stunnel)
 "wx" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/obj/structure/cable/yellow{
+	icon_state = "1-8"
+	},
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
-"wy" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 6
-	},
-/obj/machinery/camera/network/civilian{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "wA" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
@@ -9305,8 +9162,15 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "wH" = (
-/turf/simulated/wall,
-/area/groundbase/civilian/arrivals)
+/obj/item/weapon/deck/cah,
+/obj/item/weapon/deck/cah/black,
+/obj/item/weapon/deck/cards,
+/obj/item/weapon/deck/wizoff,
+/obj/structure/closet/walllocker_double{
+	pixel_y = 28
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "wI" = (
 /obj/structure/table/rack,
 /obj/item/device/suit_cooling_unit,
@@ -9383,14 +9247,12 @@
 /turf/simulated/wall,
 /area/groundbase/civilian/bar)
 "wQ" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 8
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
 	},
-/obj/effect/landmark{
-	name = "JoinLateGateway"
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "wR" = (
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/aiciv)
@@ -9585,16 +9447,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
-"xk" = (
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/item/weapon/storage/pill_bottle/dice_nerd,
-/obj/structure/closet/walllocker_double{
-	pixel_y = 28
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "xl" = (
 /obj/machinery/hologram/holopad,
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
@@ -9953,12 +9805,13 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
-"xY" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 10
+"xX" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "xZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -10268,13 +10121,9 @@
 /turf/simulated/floor/carpet,
 /area/groundbase/security/detective)
 "yM" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/table/woodentable,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "yN" = (
 /obj/machinery/power/apc{
 	dir = 4
@@ -10427,21 +10276,6 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/chamber)
-"ze" = (
-/obj/machinery/cryopod{
-	dir = 2
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
-	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 10
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor,
-/area/groundbase/civilian/arrivals)
 "zf" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -10754,18 +10588,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/trashpit)
-"zO" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 5
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
-"zP" = (
-/obj/machinery/alarm{
-	pixel_y = 28
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "zQ" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -11039,13 +10861,6 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/trashpit)
-"Ax" = (
-/obj/machinery/cryopod/robot/door/gateway,
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "Ay" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -11123,17 +10938,12 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/eva)
 "AH" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-4"
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "AI" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/security{
@@ -12376,12 +12186,6 @@
 /obj/machinery/light/bigfloorlamp,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level1/westspur)
-"DN" = (
-/obj/machinery/light/small{
-	dir = 1
-	},
-/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
-/area/groundbase/level1/centsquare)
 "DO" = (
 /obj/machinery/mineral/output,
 /obj/effect/floor_decal/industrial/outline/red,
@@ -12412,11 +12216,18 @@
 /turf/simulated/wall,
 /area/groundbase/medical/equipment)
 "DR" = (
-/obj/machinery/firealarm{
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "DS" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -12435,6 +12246,29 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
+"DU" = (
+/obj/structure/sign/directions/stairs_up{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = 8
+	},
+/obj/structure/sign/directions/bar{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = -4
+	},
+/obj/structure/sign/directions/chapel{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = -10
+	},
+/obj/structure/sign/directions/evac{
+	dir = 8;
+	pixel_x = -32;
+	pixel_y = 2
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level1/northspur)
 "DV" = (
 /obj/machinery/vending/medical,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -12601,9 +12435,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Ep" = (
-/obj/effect/landmark/start,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/structure/cable/yellow{
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "Eq" = (
 /obj/structure/table/rack{
 	dir = 8;
@@ -12950,12 +12786,15 @@
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
 "Fj" = (
-/obj/structure/bed/chair/backed_red{
+/obj/effect/floor_decal/techfloor/orange{
 	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
+/obj/effect/landmark/arrivals,
+/obj/effect/landmark{
+	name = "JoinLateGateway"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Fk" = (
 /obj/machinery/light,
 /obj/structure/disposalpipe/segment{
@@ -12993,17 +12832,6 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
-"Fn" = (
-/obj/structure/table/woodentable,
-/obj/item/device/paicard,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
 "Fp" = (
 /obj/machinery/vending/wardrobe/virodrobe,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -13051,7 +12879,7 @@
 /area/groundbase/engineering/storage)
 "Fv" = (
 /obj/machinery/door/airlock{
-	name = "Gamatorium"
+	name = "Cryo/Teleporter"
 	},
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -13061,20 +12889,19 @@
 	dir = 4
 	},
 /turf/simulated/floor/bmarble,
-/area/groundbase/civilian/gameroom)
+/area/groundbase/civilian/arrivals)
 "Fw" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
 "Fy" = (
-/obj/item/weapon/deck/cah,
-/obj/item/weapon/deck/cah/black,
-/obj/item/weapon/deck/cards,
-/obj/item/weapon/deck/wizoff,
-/obj/structure/closet/walllocker_double{
-	pixel_y = 28
+/obj/structure/cryofeed{
+	dir = 2
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/groundbase/civilian/arrivals)
 "Fz" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13290,12 +13117,6 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/carpet/bcarpet,
 /area/groundbase/security/briefing)
-"Gd" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/landmark/start,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "Ge" = (
 /obj/structure/bed/chair/sofa/bench/left{
 	dir = 8
@@ -13656,12 +13477,6 @@
 	},
 /turf/simulated/floor/carpet/sblucarpet,
 /area/groundbase/security/iaa2)
-"GW" = (
-/obj/structure/sign/painting/public{
-	pixel_x = -30
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
 "GX" = (
 /obj/machinery/light{
 	dir = 8
@@ -13793,11 +13608,21 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/medical/resleeving)
 "Hl" = (
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/power/apc{
+	dir = 8
+	},
+/obj/structure/cable/yellow{
+	icon_state = "0-4"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark{
+	name = "JoinLateCryo"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Hm" = (
 /obj/structure/table/bench/steel,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -13944,11 +13769,11 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
 "HD" = (
-/obj/machinery/light{
-	dir = 1
+/obj/structure/cryofeed{
+	dir = 2
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/turf/simulated/floor,
+/area/groundbase/civilian/arrivals)
 "HE" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/highsecurity{
@@ -13965,10 +13790,15 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/engineering/techstorage)
 "HF" = (
-/obj/structure/table/woodentable,
-/obj/machinery/light,
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/effect/floor_decal/techfloor/orange,
+/obj/machinery/computer/cryopod/gateway{
+	pixel_y = -30
+	},
+/obj/effect/landmark{
+	name = "JoinLateGateway"
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "HG" = (
 /obj/structure/cable{
 	icon_state = "2-8"
@@ -14010,13 +13840,11 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/cafe)
 "HJ" = (
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/outdoors/sidewalk/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/machinery/door/firedoor,
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/groundbase/civilian/gameroom)
 "HK" = (
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_y = 32
@@ -14084,11 +13912,6 @@
 /obj/effect/landmark/start/medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
-"HT" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "HU" = (
 /obj/structure/dispenser{
 	phorontanks = 0
@@ -14212,6 +14035,11 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/storage)
+"Ii" = (
+/obj/structure/table/woodentable,
+/obj/random/coin/sometimes,
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "Ij" = (
 /obj/structure/table/standard,
 /obj/item/weapon/stock_parts/subspace/analyzer,
@@ -14235,9 +14063,11 @@
 	},
 /area/groundbase/level1/eastspur)
 "Im" = (
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/bmarble,
-/area/groundbase/civilian/arrivals)
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "In" = (
 /obj/machinery/atmospherics/pipe/simple/visible/universal{
 	name = "Air to Distro"
@@ -14453,6 +14283,13 @@
 /obj/effect/floor_decal/industrial/danger,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/engine)
+"IO" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "IP" = (
 /obj/machinery/door/firedoor,
 /obj/structure/grille,
@@ -14611,11 +14448,13 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/eva)
 "Jl" = (
-/obj/structure/sign/painting/public{
-	pixel_y = -30
+/obj/effect/floor_decal/techfloor/orange,
+/obj/machinery/light,
+/obj/effect/landmark{
+	name = "JoinLateGateway"
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Jm" = (
 /obj/machinery/camera/network/civilian{
 	dir = 1
@@ -14778,6 +14617,12 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/stunnel)
+"JH" = (
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "JI" = (
 /turf/simulated/wall/durasteel,
 /area/groundbase/command/ai/chamber)
@@ -14997,10 +14842,17 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
 "Kd" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -15071,6 +14923,16 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
+"Kk" = (
+/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/item/weapon/storage/pill_bottle/dice_nerd,
+/obj/structure/closet/walllocker_double{
+	pixel_y = 28
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "Kl" = (
 /obj/structure/table/rack/steel,
 /obj/item/weapon/circuitboard/algae_farm{
@@ -15469,6 +15331,16 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/tcomms)
+"Lj" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 4
+	},
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "Lk" = (
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -15845,14 +15717,21 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "Me" = (
-/obj/machinery/power/apc{
+/obj/machinery/cryopod{
+	dir = 2
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 10
+	},
+/obj/machinery/light{
 	dir = 8
 	},
-/obj/structure/cable/yellow{
-	icon_state = "0-2"
-	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor,
+/area/groundbase/civilian/arrivals)
 "Mf" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
@@ -15893,17 +15772,8 @@
 /turf/simulated/floor/tiled,
 /area/holodeck_control)
 "Mi" = (
-/obj/effect/landmark{
-	name = "JoinLateCryo"
-	},
-/obj/machinery/firealarm{
-	dir = 8
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/wall,
+/area/groundbase/civilian/gameroom)
 "Mj" = (
 /obj/structure/railing/grey,
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
@@ -16193,13 +16063,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
-"MT" = (
-/obj/effect/landmark/arrivals,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
 "MU" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -16359,11 +16222,8 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/upload)
 "Nr" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/bmarble,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "Ns" = (
 /obj/machinery/atmospherics/pipe/simple/visible/black{
 	dir = 4
@@ -16606,6 +16466,10 @@
 	},
 /turf/simulated/wall,
 /area/groundbase/cargo/mining)
+"NU" = (
+/obj/machinery/cryopod/robot/door/gateway,
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "NV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/effect/floor_decal/industrial/danger,
@@ -16799,14 +16663,11 @@
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lhallway)
 "Oq" = (
-/obj/effect/floor_decal/techfloor/orange,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/bed/chair/backed_red{
+	dir = 1
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "Or" = (
 /obj/machinery/station_map{
 	dir = 4;
@@ -16860,8 +16721,14 @@
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/centsquare)
 "OA" = (
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/bed/chair/backed_red{
+	dir = 4
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = -30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "OB" = (
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/mining,
@@ -16886,6 +16753,21 @@
 	},
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
 /area/groundbase/cargo/mining)
+"OE" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass{
+	name = "Gamatorium"
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/bmarble,
+/area/groundbase/civilian/gameroom)
 "OG" = (
 /obj/machinery/alarm,
 /turf/simulated/floor/bluegrid,
@@ -17091,8 +16973,14 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Pp" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/level1/southeastspur)
@@ -17116,6 +17004,15 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/aiciv)
+"Pt" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "Pv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
@@ -17143,12 +17040,15 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
 "Pz" = (
-/obj/machinery/light_switch{
-	dir = 8;
-	pixel_x = 30
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 5
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "PA" = (
 /obj/machinery/camera/network/command{
 	dir = 1
@@ -17246,7 +17146,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/groundbase/civilian/gameroom)
+/area/groundbase/civilian/arrivals)
 "PN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -17279,18 +17179,9 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/gateway)
 "PQ" = (
-/obj/effect/landmark/arrivals,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/structure/bed/chair/backed_red,
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "PS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/purple,
 /obj/structure/cable/yellow{
@@ -17590,14 +17481,14 @@
 /turf/simulated/floor/bmarble,
 /area/groundbase/engineering/engine)
 "QF" = (
-/obj/structure/bed/chair/backed_red{
-	dir = 4
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 10
 	},
-/obj/structure/sign/painting/public{
-	pixel_x = -30
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
 	},
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "QG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
@@ -17718,17 +17609,10 @@
 /turf/simulated/floor,
 /area/maintenance/groundbase/substation/aiciv)
 "QX" = (
-/obj/effect/landmark{
-	name = "JoinLateGateway"
-	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/landmark/start,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "QY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -17807,6 +17691,15 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/netunnel)
+"Ri" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 8
+	},
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "Rj" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/black,
 /turf/simulated/floor/tiled/techmaint,
@@ -17932,19 +17825,16 @@
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
-	dir = 4
-	},
 /obj/structure/disposalpipe/sortjunction{
 	dir = 4;
 	name = "Engineering";
 	sortType = "Engineering"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 10
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -18046,6 +17936,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
@@ -18156,14 +18049,11 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "RY" = (
-/obj/effect/landmark{
-	name = "JoinLateCryo"
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "RZ" = (
 /obj/machinery/camera/network/command{
 	dir = 4
@@ -18566,14 +18456,14 @@
 /turf/simulated/floor/bluegrid,
 /area/groundbase/command/ai/chamber)
 "SU" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 9
+/obj/structure/closet/walllocker_double{
+	pixel_y = 28
 	},
-/obj/machinery/computer/cryopod/gateway{
-	pixel_y = 30
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/random/instrument,
+/obj/random/instrument,
+/obj/item/instrument/guitar,
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "SV" = (
 /obj/effect/map_effect/portal/line/side_a,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -18585,9 +18475,12 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/hos)
 "SX" = (
-/obj/effect/floor_decal/techfloor/orange,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/machinery/light_switch{
+	dir = 8;
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "SY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -18907,6 +18800,16 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/hall)
+"TH" = (
+/obj/structure/bed/chair/backed_red{
+	dir = 1
+	},
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "TI" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -19609,12 +19512,11 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/workshop)
 "VD" = (
-/obj/effect/landmark{
-	name = "JoinLateGateway"
+/obj/machinery/firealarm{
+	dir = 4
 	},
-/obj/effect/landmark/start,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "VE" = (
 /obj/structure/morgue{
 	dir = 8
@@ -20097,17 +19999,12 @@
 	},
 /area/groundbase/level1/northspur)
 "WM" = (
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 5
+/obj/structure/table/woodentable,
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
 	},
-/obj/effect/floor_decal/corner_techfloor_grid{
-	dir = 10
-	},
-/obj/machinery/cryopod{
-	dir = 1
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "WN" = (
 /obj/machinery/firealarm{
 	dir = 4
@@ -20419,6 +20316,16 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/lobby)
+"Xx" = (
+/obj/effect/floor_decal/techfloor/orange{
+	dir = 8
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Xz" = (
 /obj/structure/table/reinforced,
 /obj/random/tech_supply,
@@ -20601,14 +20508,12 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
 "Ya" = (
-/obj/effect/landmark/arrivals,
-/obj/structure/cable{
-	icon_state = "1-2"
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/turf/simulated/floor/carpet/turcarpet,
+/area/groundbase/civilian/gameroom)
 "Yb" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/paper_bin{
@@ -20681,8 +20586,18 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/groundbase/engineering/atmos)
 "Yl" = (
-/turf/simulated/floor/wood,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/cryopod{
+	dir = 2
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 5
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 10
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/turf/simulated/floor,
+/area/groundbase/civilian/arrivals)
 "Ym" = (
 /obj/structure/railing/grey{
 	dir = 1
@@ -20896,12 +20811,14 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/detective)
 "YO" = (
-/obj/effect/floor_decal/techfloor/orange{
-	dir = 1
+/obj/machinery/alarm{
+	pixel_y = 28
 	},
-/obj/machinery/firealarm,
-/turf/simulated/floor/tiled/techfloor,
-/area/groundbase/civilian/arrivals)
+/obj/structure/sign/painting/public{
+	pixel_x = 30
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "YQ" = (
 /obj/structure/disposalpipe/segment,
 /turf/simulated/wall,
@@ -21029,15 +20946,17 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Zc" = (
-/obj/structure/table/woodentable,
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 9
+	dir = 4
 	},
-/turf/simulated/floor/carpet/turcarpet,
-/area/groundbase/civilian/gameroom)
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/groundbase/civilian/arrivals)
 "Zd" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -21119,6 +21038,18 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/ce)
+"Zq" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/noticeboard{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/lobby)
 "Zr" = (
 /obj/structure/closet/secure_closet/medical2,
 /obj/machinery/light_switch{
@@ -21169,10 +21100,12 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/groundbase/command/ai/robot)
 "Zz" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
-/area/groundbase/level1/centsquare)
+/obj/structure/table/woodentable,
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/gameroom)
 "ZA" = (
 /obj/structure/sign/directions/stairs_up{
 	dir = 1;
@@ -27282,7 +27215,7 @@ wl
 wl
 tL
 VH
-Np
+Zq
 TC
 ti
 mZ
@@ -29498,12 +29431,12 @@ MO
 MO
 MO
 hq
-GW
+HD
 Me
 Hl
 AH
-Yl
-Yl
+dd
+Xx
 QF
 hq
 lE
@@ -29646,7 +29579,7 @@ oI
 pO
 Fj
 wr
-mc
+uS
 hq
 lE
 hb
@@ -29782,12 +29715,12 @@ MO
 MO
 MO
 hq
-xk
+HD
 uJ
-oI
-kr
+tb
+Zc
 kC
-Yl
+NU
 sH
 hq
 lE
@@ -29919,7 +29852,7 @@ tG
 WL
 ZR
 Rn
-MO
+vL
 or
 gt
 oP
@@ -29927,9 +29860,9 @@ hq
 Fy
 uJ
 tb
-Fn
-kC
-Yl
+Zc
+Fj
+wr
 Jl
 hq
 lE
@@ -30061,18 +29994,18 @@ tG
 WL
 ZR
 tG
-tG
+DU
 Ym
 oS
-vL
+tG
 hq
-rS
+HD
 uJ
-oI
-kr
+tb
+Zc
 kC
-Yl
-cr
+NU
+sH
 hq
 lE
 lE
@@ -30210,10 +30143,10 @@ tG
 hq
 HD
 uJ
-bD
+tb
 Zc
-kC
-Yl
+Fj
+wr
 HF
 hq
 MO
@@ -30350,13 +30283,13 @@ ZR
 tG
 tG
 hq
-zP
+HD
 Yl
 DR
 Po
 Pz
-Yl
-sH
+IO
+oF
 hq
 MO
 MO
@@ -30494,9 +30427,9 @@ tG
 hq
 PM
 PM
-hq
+jY
 jC
-hq
+jY
 PM
 PM
 hq
@@ -32358,7 +32291,7 @@ BS
 Pb
 dk
 ii
-wx
+Vh
 eR
 eR
 pc
@@ -32500,7 +32433,7 @@ BS
 zj
 dk
 Eb
-wx
+Vh
 eR
 eR
 pc
@@ -32784,7 +32717,7 @@ ye
 CD
 dk
 Zm
-wx
+Vh
 eR
 eR
 pc
@@ -32926,7 +32859,7 @@ Pb
 Ok
 dk
 Eb
-wx
+Vh
 eR
 eR
 pc
@@ -33068,7 +33001,7 @@ kX
 dk
 dk
 Eb
-wx
+Vh
 eR
 eR
 eR
@@ -33210,7 +33143,7 @@ dk
 dk
 Eb
 Eb
-wx
+Vh
 eR
 eR
 eR
@@ -33352,7 +33285,7 @@ Eb
 Eb
 Eb
 Eb
-wx
+Vh
 eR
 eR
 eR
@@ -33484,17 +33417,17 @@ wf
 QC
 wO
 DQ
-wH
-wH
-wH
-wH
-wH
-wH
+qE
+qE
+qE
+qE
+qE
 Eb
 Eb
 Eb
 Eb
-wx
+Eb
+Vh
 eR
 eR
 eR
@@ -33626,17 +33559,17 @@ GD
 QC
 wO
 DQ
-oi
-ow
 Mi
-fZ
-qS
-wH
-DN
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
 Eb
 Eb
-Eb
-wx
+Vh
 eR
 eR
 eR
@@ -33768,17 +33701,17 @@ QH
 QC
 wO
 DQ
-oi
+JH
 mf
 RY
 Ep
-is
+Nr
 bU
 OA
+Mi
 Eb
 Eb
-YC
-wx
+Vh
 Eb
 Eb
 Eb
@@ -33910,16 +33843,16 @@ gE
 QC
 wO
 DQ
-cZ
-mf
+ex
+PQ
 uN
-Gd
-HT
+WM
+Oq
 Nr
 Zz
-Sj
-Sj
-Sj
+HJ
+Eb
+Eb
 Kd
 Eb
 Eb
@@ -34052,17 +33985,17 @@ Dx
 QC
 iO
 DQ
-oi
-ze
-uq
+Kk
+PQ
+uN
 WM
-gP
-wH
-Lk
-Eb
-Eb
+Oq
+Nr
+Pt
+Mi
+Zm
 YC
-wx
+Vh
 Eb
 Eb
 Eb
@@ -34195,15 +34128,15 @@ cl
 sh
 DQ
 wH
-wH
-wH
-wH
-wH
-wH
+PQ
+Ii
+sq
+TH
+xX
 kY
-Eb
-Eb
-Eb
+OE
+Bv
+Bv
 wx
 YC
 Eb
@@ -34337,14 +34270,14 @@ nG
 cu
 DQ
 SU
-fW
-de
+PQ
+uN
 wQ
-xY
-wH
-Eb
-Eb
-Eb
+Oq
+Nr
+Lj
+Mi
+Zm
 YC
 wv
 lT
@@ -34483,11 +34416,11 @@ PQ
 QX
 Ya
 Oq
-bw
+Nr
 yM
 HJ
-HJ
-HJ
+Eb
+Eb
 Rx
 CH
 CH
@@ -34621,15 +34554,15 @@ QC
 qA
 DQ
 YO
-MT
+Nr
 VD
-vJ
+Nr
 SX
 Im
-OA
+Ri
+Mi
 Eb
 Eb
-YC
 PG
 YC
 Eb
@@ -34762,14 +34695,14 @@ DQ
 Ju
 XR
 DQ
-zO
-bH
-Ax
-kP
-wy
-wH
-Zm
-Eb
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
+Mi
 Eb
 Eb
 PG
@@ -34904,12 +34837,12 @@ DQ
 xa
 QC
 DQ
-wH
-wH
-wH
-wH
-wH
-wH
+qE
+qE
+qE
+qE
+qE
+qE
 MK
 Ah
 Nv
