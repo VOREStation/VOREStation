@@ -1093,6 +1093,9 @@
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/holywater,
 /obj/item/weapon/nullrod,
+/obj/structure/noticeboard{
+	pixel_y = 32
+	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/chapel/office)
 "dg" = (
@@ -1138,8 +1141,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
 	},
-/obj/machinery/camera/network/medbay{
-	dir = 4
+/obj/structure/noticeboard{
+	pixel_x = -32
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
@@ -1208,6 +1211,9 @@
 /obj/item/device/multitool,
 /obj/fiftyspawner/steel,
 /obj/item/weapon/storage/belt/utility,
+/obj/machinery/alarm{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "dx" = (
@@ -5176,6 +5182,24 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
+"po" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/noticeboard{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/triage)
 "pp" = (
 /obj/machinery/light,
 /turf/simulated/floor/tiled/dark,
@@ -5723,6 +5747,9 @@
 /area/groundbase/science/xenobot)
 "qQ" = (
 /obj/structure/table/standard,
+/obj/structure/noticeboard{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
 "qS" = (
@@ -7073,6 +7100,9 @@
 /obj/structure/closet/l3closet/scientist,
 /obj/item/clothing/suit/bio_suit/scientist,
 /obj/item/clothing/head/bio_hood/scientist,
+/obj/structure/noticeboard{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology)
 "uO" = (
@@ -7625,8 +7655,8 @@
 /obj/machinery/door/firedoor/glass,
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westright{
-	name = "Research Desk";
-	req_access = list(47,77)
+	name = "Xenobotany Desk";
+	req_access = list(77)
 	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
@@ -7804,6 +7834,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"xf" = (
+/obj/structure/noticeboard{
+	pixel_y = -32
+	},
+/turf/simulated/floor/tiled/white,
+/area/medical/virology)
 "xg" = (
 /obj/structure/filingcabinet/medical,
 /obj/machinery/alarm,
@@ -8023,9 +8059,11 @@
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
 	},
-/obj/machinery/alarm,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
+	},
+/obj/structure/noticeboard{
+	pixel_y = 32
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
@@ -8471,6 +8509,9 @@
 /obj/structure/table/marble,
 /obj/machinery/chemical_dispenser/bar_soft/full{
 	dir = 8
+	},
+/obj/structure/noticeboard{
+	pixel_y = -32
 	},
 /turf/simulated/floor/lino{
 	edge_blending_priority = 0.1
@@ -9912,6 +9953,9 @@
 /obj/item/device/retail_scanner/science,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/structure/noticeboard{
+	pixel_x = 32
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
@@ -13445,6 +13489,9 @@
 	dir = 8;
 	pixel_y = -4
 	},
+/obj/structure/noticeboard{
+	pixel_x = 32
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/bridge)
 "Nb" = (
@@ -13883,9 +13930,11 @@
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
 "Ol" = (
-/obj/structure/noticeboard,
-/turf/simulated/wall,
-/area/groundbase/cargo/office)
+/obj/structure/noticeboard{
+	pixel_y = -32
+	},
+/turf/simulated/floor/wood,
+/area/groundbase/civilian/library)
 "Om" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -15222,6 +15271,12 @@
 	},
 /turf/simulated/wall,
 /area/groundbase/cargo/office)
+"RY" = (
+/obj/structure/noticeboard{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/xenobot)
 "Sa" = (
 /obj/machinery/embedded_controller/radio/airlock/access_controller{
 	dir = 8;
@@ -16453,6 +16508,18 @@
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
 	},
+/obj/item/roller{
+	pixel_y = -6
+	},
+/obj/item/roller{
+	pixel_y = -2
+	},
+/obj/item/roller{
+	pixel_y = 2
+	},
+/obj/item/roller{
+	pixel_y = 6
+	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
 "VE" = (
@@ -17510,6 +17577,12 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"YV" = (
+/obj/structure/noticeboard{
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/command/meeting)
 "YW" = (
 /obj/structure/fence/corner{
 	dir = 5
@@ -21098,7 +21171,7 @@ IE
 BR
 BR
 nV
-BR
+RY
 qP
 IE
 BR
@@ -23157,7 +23230,7 @@ zi
 WA
 XR
 MY
-MY
+Ol
 rP
 xE
 xq
@@ -28150,8 +28223,8 @@ VR
 VR
 VR
 to
-VR
-VR
+OI
+OI
 to
 to
 to
@@ -28552,7 +28625,7 @@ Ti
 XT
 CR
 pd
-Ol
+Wj
 Wj
 AU
 Qi
@@ -29850,7 +29923,7 @@ wa
 Xw
 Du
 Wx
-GN
+po
 fy
 pC
 jI
@@ -30147,7 +30220,7 @@ to
 to
 to
 to
-oH
+QD
 oH
 oH
 oH
@@ -30289,7 +30362,7 @@ to
 to
 to
 to
-oH
+QD
 oH
 oH
 oH
@@ -30431,7 +30504,7 @@ to
 to
 to
 to
-oH
+QD
 oH
 oH
 oH
@@ -30573,7 +30646,7 @@ to
 to
 to
 to
-oH
+QD
 oH
 oH
 oH
@@ -30715,7 +30788,7 @@ to
 iw
 to
 to
-oH
+QD
 oH
 oH
 oH
@@ -30856,8 +30929,8 @@ to
 iw
 to
 to
-oH
-oH
+QD
+QD
 oH
 oH
 oH
@@ -30998,8 +31071,8 @@ to
 iw
 to
 to
-oH
-oH
+QD
+QD
 oH
 oH
 oH
@@ -31140,8 +31213,8 @@ to
 iw
 to
 to
-oH
-oH
+QD
+QD
 oH
 oH
 oH
@@ -31282,8 +31355,8 @@ to
 iw
 iw
 to
-oH
-oH
+QD
+QD
 oH
 oH
 oH
@@ -33296,7 +33369,7 @@ iX
 gU
 ds
 zZ
-gE
+YV
 Se
 an
 Bo
@@ -35836,7 +35909,7 @@ OH
 cG
 Qr
 cG
-cG
+xf
 pe
 fk
 UH
