@@ -14,7 +14,7 @@
 	max_storage_space = INVENTORY_POUCH_SPACE
 	can_hold = null
 	pocketable = TRUE
-	
+
 	var/insert_delay = 0 SECONDS
 	var/remove_delay = 2 SECONDS
 
@@ -32,7 +32,7 @@
 	// No delay if you have the pouch in your hands
 	if(user.get_active_hand() == src || user.get_inactive_hand() == src)
 		return TRUE // Skip delay
-	
+
 	if(remove_delay && !do_after(user, remove_delay, src, needhand = TRUE, exclusive = TASK_USER_EXCLUSIVE))
 		return FALSE // Moved while there is a delay
 
@@ -58,10 +58,10 @@
 
 /obj/item/weapon/storage/pouch/ammo
 	name = "storage pouch (ammo)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold ammunition and cells."
+	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold ammunition, cells, explosives, and grenades."
 	icon_state = "ammo"
 	max_storage_space = INVENTORY_POUCH_SPACE
-	can_hold = list(/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/cell/device/weapon)
+	can_hold = list(/obj/item/ammo_magazine, /obj/item/ammo_casing, /obj/item/weapon/cell/device/weapon, /obj/item/weapon/grenade, /obj/item/weapon/plastique) //Vorestation Add - make it more useful for non-sec/explo
 
 /obj/item/weapon/storage/pouch/eng_tool
 	name = "storage pouch (tools)"
@@ -69,15 +69,35 @@
 	icon_state = "engineering_tool"
 	max_storage_space = INVENTORY_POUCH_SPACE
 	can_hold = list(
-		/obj/item/weapon/tool,
+		/obj/item/weapon/tool/crowbar,
+		/obj/item/weapon/tool/screwdriver,
 		/obj/item/weapon/weldingtool,
+		/obj/item/weapon/tool/wirecutters,
+		/obj/item/weapon/tool/wrench,
 		/obj/item/device/multitool,
 		/obj/item/device/flashlight,
+		/obj/item/weapon/cell/device,
+		/obj/item/stack/cable_coil,
 		/obj/item/device/t_scanner,
 		/obj/item/device/analyzer,
 		/obj/item/clothing/glasses,
 		/obj/item/clothing/gloves,
-	)
+		/obj/item/device/pda,
+		/obj/item/device/megaphone,
+		/obj/item/taperoll,
+		/obj/item/device/radio/headset,
+		/obj/item/device/robotanalyzer,
+		/obj/item/weapon/material/minihoe,
+		/obj/item/weapon/material/knife/machete/hatchet,
+		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/weapon/extinguisher/mini,
+		/obj/item/weapon/tape_roll,
+		/obj/item/device/integrated_electronics/wirer,
+		/obj/item/device/integrated_electronics/debugger, 
+		/obj/item/weapon/shovel/spade, 
+		/obj/item/stack/nanopaste, 
+		/obj/item/device/geiger
+	) //Vorestation Add - make it the same as the tool-belt why was it not like this to start with wtf
 
 /obj/item/weapon/storage/pouch/eng_supply
 	name = "storage pouch (supplies)"
@@ -88,15 +108,19 @@
 		/obj/item/weapon/cell/device,
 		/obj/item/stack/cable_coil,
 		/obj/item/taperoll,
-		/obj/item/weapon/extinguisher/mini,
-		/obj/item/weapon/tape_roll
-	)
+		/obj/item/weapon/extinguisher,
+		/obj/item/weapon/tape_roll,
+		/obj/item/stack/material/steel,
+		/obj/item/stack/material/glass,
+		/obj/item/device/lightreplacer,
+		/obj/item/weapon/cell
+	) //Vorestation Add - makes it actually useful lmao, adds sheets and cells as well as light replacers and lets you take any extinguisher that fits
 
 /obj/item/weapon/storage/pouch/eng_parts
 	name = "storage pouch (parts)"
 	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold machinery components."
 	icon_state = "part_pouch"
-	max_storage_space = INVENTORY_POUCH_SPACE
+	max_storage_space = INVENTORY_POUCH_SPACE*2 //Vorestation Add - yeah lemme give up my pocket to hold FOUR CAPACITORS or have an inferior box... now you can hold eight in your pocket so its at least a box
 	can_hold = list(
 		/obj/item/weapon/stock_parts,
 		/obj/item/stack/cable_coil,
@@ -120,8 +144,19 @@
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/stack/medical,
 		/obj/item/weapon/reagent_containers/hypospray,
-		/obj/item/weapon/storage/quickdraw/syringe_case
-	)
+		/obj/item/weapon/storage/quickdraw/syringe_case,
+		/obj/item/weapon/syringe_cartridge,
+		/obj/item/clothing/gloves/sterile,
+		/obj/item/device/sleevemate,
+		/obj/item/bodybag/,
+		/obj/item/clothing/mask/surgical,
+		/obj/item/weapon/soap,
+		/obj/item/stack/nanopaste,
+		/obj/item/taperoll/medical,
+		/obj/item/weapon/storage/box/freezer,
+		/obj/item/device/defib_kit/compact     
+	) //Vorestation add - added a bunch of misc medical stuff
+	remove_delay = 5 //Vorestation Add - .5 second delay, get the medical things faster because there is no reason to use this otherwise
 
 /obj/item/weapon/storage/pouch/flares
 	name = "storage pouch (flares)"
@@ -145,7 +180,7 @@
 	desc = "This storage pouch can be used to provide some additional storage for quick access. Can hold one normal sized weapon."
 	icon_state = "pistol_holster"
 	storage_slots = 1
-	can_hold = list(/obj/item/weapon/gun)
+	can_hold = list(/obj/item/weapon/gun) //this covers basically everything I think so its fine
 	remove_delay = 0
 /obj/item/weapon/storage/pouch/holster/full_stunrevolver
 	starts_with = list(/obj/item/weapon/gun/energy/stunrevolver)
@@ -159,11 +194,11 @@
 	..()
 
 /obj/item/weapon/storage/pouch/baton
-	name = "storage pouch (baton)"
-	desc = "This storage pouch can be used to provide some additional storage for quick access. Can hold one standard baton."
+	name = "storage pouch (melee)"
+	desc = "This storage pouch can be used to provide some additional storage for quick access. Can hold one normal size melee." //Vorestation add - make it a melee pouch literally why would you hold ONE BATON
 	icon_state = "baton_holster"
 	storage_slots = 1
-	can_hold = list(/obj/item/weapon/melee/baton)
+	can_hold = list(/obj/item/weapon/melee, /obj/item/weapon/material, /obj/item/weapon/tool/wrench) //should be like, every melee weapon I could think of that was normal size. Can make it more specific if needed. Also wrench because I thought it was funny.
 	remove_delay = 0
 /obj/item/weapon/storage/pouch/baton/full
 	starts_with = list(/obj/item/weapon/melee/baton)
