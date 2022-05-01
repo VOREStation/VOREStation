@@ -3926,7 +3926,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar/upper)
 "lv" = (
-/obj/structure/closet/secure_closet/hydroponics,
+/obj/structure/closet/secure_closet/hydroponics{
+	req_access = list(77)
+	},
 /obj/machinery/light{
 	dir = 8
 	},
@@ -6189,6 +6191,12 @@
 /obj/random/slimecore,
 /turf/simulated/floor/reinforced,
 /area/rnd/xenobiology)
+"sh" = (
+/obj/structure/table/glass,
+/obj/item/weapon/storage/box/gloves,
+/obj/item/weapon/storage/box/masks,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/triage)
 "si" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -7618,8 +7626,7 @@
 /obj/structure/table/reinforced,
 /obj/machinery/door/window/brigdoor/westright{
 	name = "Research Desk";
-	req_access = list(47,55);
-	req_one_access = null
+	req_access = list(47,77)
 	},
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1
@@ -9553,10 +9560,6 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar/upper)
-"Ci" = (
-/obj/structure/closet/secure_closet/hydroponics/sci,
-/turf/simulated/floor/tiled,
-/area/groundbase/science/xenobot)
 "Cj" = (
 /obj/structure/sign/directions/stairs_down{
 	pixel_y = 38
@@ -13879,6 +13882,10 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/cargo/qm)
+"Ol" = (
+/obj/structure/noticeboard,
+/turf/simulated/wall,
+/area/groundbase/cargo/office)
 "Om" = (
 /obj/machinery/alarm{
 	dir = 4
@@ -16070,6 +16077,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
+"UA" = (
+/obj/structure/table/glass,
+/obj/machinery/recharger,
+/obj/item/device/defib_kit/loaded,
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/triage)
 "UB" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -17628,7 +17641,9 @@
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
 "Zr" = (
-/obj/structure/closet/secure_closet/hydroponics,
+/obj/structure/closet/secure_closet/hydroponics{
+	req_access = list(77)
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
 "Zs" = (
@@ -21089,7 +21104,7 @@ IE
 BR
 BR
 kq
-Ci
+yU
 lv
 eT
 Zr
@@ -21234,7 +21249,7 @@ Qg
 PX
 PX
 IJ
-Ci
+yU
 lV
 LE
 DD
@@ -28537,7 +28552,7 @@ Ti
 XT
 CR
 pd
-Wj
+Ol
 Wj
 AU
 Qi
@@ -30977,7 +30992,7 @@ xG
 ID
 ko
 nR
-nR
+UA
 cR
 to
 iw
@@ -31119,7 +31134,7 @@ DM
 ID
 rs
 nR
-nR
+sh
 cR
 to
 iw

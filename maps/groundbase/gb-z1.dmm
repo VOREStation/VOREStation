@@ -3782,7 +3782,6 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/storage/box/nifsofts_medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
 "jx" = (
@@ -4750,6 +4749,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/item/roller,
+/obj/item/roller,
+/obj/item/roller,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
 "lE" = (
@@ -6897,6 +6899,7 @@
 /obj/structure/table/reinforced,
 /obj/item/device/retail_scanner/medical,
 /obj/item/weapon/storage/box/body_record_disk,
+/obj/item/weapon/storage/box/nifsofts_medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/equipment)
 "ra" = (
