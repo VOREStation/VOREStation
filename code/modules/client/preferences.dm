@@ -22,7 +22,7 @@ var/list/preferences_datums = list()
 	var/UI_style_color = "#ffffff"
 	var/UI_style_alpha = 255
 	var/tooltipstyle = "Midnight"		//Style for popup tooltips
-	var/client_fps = 0
+	var/client_fps = 40
 	var/ambience_freq = 5				// How often we're playing repeating ambience to a client.
 	var/ambience_chance = 35			// What's the % chance we'll play ambience (in conjunction with the above frequency)
 

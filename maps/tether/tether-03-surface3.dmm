@@ -5858,6 +5858,10 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner2,
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aiH" = (
@@ -5871,6 +5875,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/tagger{
+	dir = 2;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/recreation_area_restroom)
@@ -10493,6 +10502,10 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
+/obj/machinery/disposal/wall/cleaner,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
 "aqE" = (
@@ -13047,6 +13060,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
@@ -16464,6 +16481,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aAG" = (
@@ -16472,6 +16492,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -18809,6 +18832,7 @@
 /obj/item/weapon/book/codex/lore/robutt,
 /obj/item/weapon/book/codex,
 /obj/item/weapon/book/custom_library/nonfiction/freesirisailightbulbs,
+/obj/item/weapon/book/manual/synthetic_life,
 /turf/simulated/floor/wood,
 /area/library)
 "aEJ" = (
@@ -21034,6 +21058,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aIg" = (
@@ -22193,6 +22220,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "aKj" = (
@@ -22264,7 +22294,9 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
 "aKr" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aKs" = (
@@ -25096,7 +25128,14 @@
 /area/crew_quarters/bar)
 "aQg" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/random/donkpocketbox{
+	pixel_x = 1;
+	pixel_y = -4
+	},
+/obj/random/donkpocketbox{
+	pixel_x = -2;
+	pixel_y = 2
+	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_breakroom)
 "aQh" = (
@@ -27938,6 +27977,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aVx" = (
@@ -32293,15 +32333,15 @@
 "bda" = (
 /obj/effect/floor_decal/corner/grey/diagonal,
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donkpockets{
-	pixel_x = 3;
-	pixel_y = 3
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/random/donkpocketbox{
+	pixel_x = 1;
+	pixel_y = 4
 	},
 /obj/item/weapon/reagent_containers/food/snacks/mint,
 /obj/item/weapon/reagent_containers/glass/beaker{
 	pixel_x = 5
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
 "bdb" = (
@@ -32901,6 +32941,11 @@
 /obj/machinery/light_switch{
 	pixel_x = -28;
 	pixel_y = 29
+	},
+/obj/structure/disposalpipe/tagger{
+	dir = 2;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
@@ -33524,6 +33569,9 @@
 "bfl" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bfn" = (
@@ -33607,6 +33655,9 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -34013,6 +34064,10 @@
 	name = "north bump";
 	pixel_y = 24
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bgk" = (
@@ -34376,6 +34431,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bgS" = (
@@ -34468,6 +34526,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/techfloor,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
 "bhc" = (
@@ -34601,11 +34660,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery2)
 "bhp" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
+/obj/structure/disposalpipe/segment,
 /obj/machinery/light{
-	dir = 8
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
@@ -37163,6 +37220,10 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
 "bnF" = (
@@ -39409,7 +39470,9 @@
 	alarms_hidden = 1;
 	dir = 1;
 	name = "north bump";
-	pixel_y = 28
+	pixel_y = 28;
+	req_access = null;
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable/green{
 	icon_state = "0-4"
@@ -39676,6 +39739,7 @@
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
 /area/crew_quarters/barrestroom)
 "ioG" = (
@@ -41387,6 +41451,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
+"ome" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "ooM" = (
 /obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 1
@@ -41418,6 +41488,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
@@ -42122,6 +42196,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "qze" = (
@@ -42744,6 +42821,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
+"sJY" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
 "sLa" = (
 /obj/machinery/firealarm{
 	layer = 3.3;
@@ -42827,6 +42916,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"sUg" = (
+/obj/machinery/disposal/wall/cleaner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/barrestroom)
 "sVC" = (
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
@@ -42926,6 +43024,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
+"twM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "txo" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -50489,7 +50604,7 @@ aOf
 aOf
 aPB
 aQg
-aQg
+aQP
 aQt
 azr
 aQN
@@ -53277,7 +53392,7 @@ amw
 amw
 akZ
 apr
-apQ
+twM
 aiG
 afj
 aqD
@@ -55875,7 +55990,7 @@ aXa
 aXa
 kcC
 eGv
-aXa
+sJY
 fEX
 gCZ
 ykY
@@ -57168,8 +57283,8 @@ qbo
 bhi
 bhm
 fsd
-bhp
-beU
+qbo
+ome
 beU
 gRG
 laB
@@ -57449,7 +57564,7 @@ qvs
 bgm
 aPM
 ely
-hId
+bhp
 jCE
 hId
 bhq
@@ -60835,7 +60950,7 @@ bgH
 asX
 aGK
 qum
-aTE
+sUg
 aGK
 bfM
 aGK

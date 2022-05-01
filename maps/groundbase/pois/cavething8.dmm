@@ -1,0 +1,43 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall,
+/area/maintenance/groundbase/poi/caves)
+"h" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+"S" = (
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/maintenance/groundbase/poi/caves)
+
+(1,1,1) = {"
+a
+h
+S
+h
+a
+"}
+(2,1,1) = {"
+h
+S
+S
+S
+h
+"}
+(3,1,1) = {"
+a
+h
+S
+h
+a
+"}

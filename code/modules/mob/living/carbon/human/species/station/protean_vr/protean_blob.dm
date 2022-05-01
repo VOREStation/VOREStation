@@ -378,6 +378,7 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Put our owner in it (don't transfer var/mind)
 	blob.ckey = ckey
+	blob.ooc_notes = ooc_notes
 	temporary_form = blob
 
 	//Mail them to nullspace
@@ -459,6 +460,7 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Put our owner in it (don't transfer var/mind)
 	ckey = blob.ckey
+	ooc_notes = blob.ooc_notes // Lets give the protean any updated notes from blob form.
 	temporary_form = null
 
 	//Transfer vore organs

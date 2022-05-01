@@ -24,7 +24,7 @@
 				/obj/effect/decal/cleanable/blood/gibs/robot,
 				/obj/effect/decal/cleanable/blood/oil,
 				/obj/effect/decal/cleanable/blood/oil/streak,
-				/obj/effect/decal/cleanable/spiderling_remains,
+				/obj/effect/decal/cleanable/bug_remains,
 				/obj/effect/decal/remains/mouse,
 				/obj/effect/decal/cleanable/vomit,
 				/obj/effect/decal/cleanable/blood/splatter,
@@ -71,20 +71,20 @@
 	icon_state = "radren-off"
 
 /obj/random/vendorall/item_to_spawn()
-	return pick (/obj/machinery/vending/coffee,
-				/obj/machinery/vending/snack,
-				/obj/machinery/vending/cola,
-				/obj/machinery/vending/fitness,
-				/obj/machinery/vending/cigarette,
-				/obj/machinery/vending/giftvendor,
-				/obj/machinery/vending/hotfood,
-				/obj/machinery/vending/weeb,
-				/obj/machinery/vending/sol,
-				/obj/machinery/vending/snix,
-				/obj/machinery/vending/snlvend,
-				/obj/machinery/vending/sovietsoda,
-				/obj/machinery/vending/sovietvend,
-				/obj/machinery/vending/radren)
+	return pick (prob(5);/obj/machinery/vending/coffee,	//VOREStation Edit Start - Let's weight this a little bit
+				prob(5);/obj/machinery/vending/snack,
+				prob(5);/obj/machinery/vending/cola,
+				prob(3);/obj/machinery/vending/fitness,
+				prob(4);/obj/machinery/vending/cigarette,
+				prob(3);/obj/machinery/vending/giftvendor,
+				prob(1);/obj/machinery/vending/hotfood,
+				prob(5);/obj/machinery/vending/weeb,
+				prob(5);/obj/machinery/vending/sol,
+				prob(5);/obj/machinery/vending/snix,
+				prob(5);/obj/machinery/vending/snlvend,
+				prob(5);/obj/machinery/vending/sovietsoda,
+				prob(5);/obj/machinery/vending/sovietvend,
+				prob(5);/obj/machinery/vending/radren) //VOREStation Edit End
 
 /obj/random/vendorfood //Random food vendors for station use
 	name = "random snack vending machine"
@@ -208,13 +208,19 @@
 				/obj/structure/closet/crate/hydroponics
 			),
 			prob(5);list(
+				/obj/item/weapon/pickaxe,
+				/obj/item/clothing/under/rank/miner,
+				/obj/item/clothing/head/hardhat,
+				/obj/structure/closet/crate/engineering
+			),
+			prob(5);list(
 				/obj/item/weapon/pickaxe/drill,
 				/obj/item/clothing/suit/space/void/mining,
 				/obj/item/clothing/head/helmet/space/void/mining,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/clothing/suit/space/void/mining/alt,
 				/obj/item/clothing/head/helmet/space/void/mining/alt,
 				/obj/structure/closet/crate/engineering
@@ -249,7 +255,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/ore_box,
 				/obj/structure/closet/crate
@@ -368,7 +374,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/weapon/pickaxe/advdrill,
 				/obj/item/weapon/storage/bag/ore,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
@@ -704,6 +710,14 @@
 				/obj/random/snack,
 				/obj/random/snack,
 				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
+			),
+			prob(10);list(
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/weapon/storage/box/donkpockets,
+				/obj/structure/closet/crate/freezer/centauri //CENTAURI DONK-POCKETS
 			),
 			prob(10);list(
 				/obj/random/powercell,
@@ -1485,6 +1499,7 @@
 	return pick(
 				prob(10);list(/obj/item/weapon/pickaxe/silver),
 				prob(8);list(/obj/item/weapon/pickaxe/drill),
+				prob(6);list(/obj/item/weapon/pickaxe/advdrill),
 				prob(6);list(/obj/item/weapon/pickaxe/jackhammer),
 				prob(5);list(/obj/item/weapon/pickaxe/gold),
 				prob(4);list(/obj/item/weapon/pickaxe/plasmacutter),

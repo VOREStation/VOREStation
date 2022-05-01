@@ -1295,6 +1295,10 @@
 	},
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
+"ow" = (
+/obj/machinery/vending/weeb,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
 "rE" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/aux{
 	dir = 1
@@ -1340,6 +1344,10 @@
 /obj/random/powercell,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
+"Gh" = (
+/obj/machinery/vending/fitness,
+/turf/simulated/floor/tiled/techmaint/airless,
+/area/tether_away/fueldepot)
 "IR" = (
 /obj/machinery/atmospherics/pipe/simple/visible/aux{
 	dir = 8
@@ -1366,12 +1374,26 @@
 /obj/item/weapon/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
+"QY" = (
+/obj/machinery/atmospherics/pipe/simple/visible/universal{
+	dir = 1
+	},
+/obj/structure/catwalk,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug,
+/turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
 "Vy" = (
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
 /obj/structure/catwalk,
 /turf/simulated/shuttle/plating/airless,
+/area/tether_away/fueldepot)
+"XR" = (
+/obj/machinery/vending/foodfast{
+	dir = 0
+	},
+/turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "Ys" = (
 /obj/structure/table/steel_reinforced,
@@ -11246,7 +11268,7 @@ ao
 aS
 bc
 bo
-bC
+QY
 rE
 cc
 cn
@@ -11954,12 +11976,12 @@ aa
 aG
 aa
 aF
-aG
+Gh
 aG
 bz
 IR
 aG
-aG
+XR
 aF
 aa
 aG
@@ -12238,7 +12260,7 @@ aD
 aM
 aa
 aF
-aG
+ow
 bs
 bz
 bN

@@ -249,6 +249,9 @@
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
+		"drop_vore" = host.drop_vore,
+		"slip_vore" = host.slip_vore,
+		"stumble_vore" = host.stumble_vore,
 	)
 
 	return data
@@ -463,6 +466,18 @@
 			return TRUE
 		if("toggle_noisy")
 			host.noisy = !host.noisy
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_drop_vore")
+			host.drop_vore = !host.drop_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_slip_vore")
+			host.slip_vore = !host.slip_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_stumble_vore")
+			host.stumble_vore = !host.stumble_vore
 			unsaved_changes = TRUE
 			return TRUE
 
@@ -686,7 +701,7 @@
 			host.vore_selected.item_digest_mode = new_mode
 			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
 			. = TRUE
-		if("b_contaminates")
+		if("b_contaminate")
 			host.vore_selected.contaminates = !host.vore_selected.contaminates
 			. = TRUE
 		if("b_contamination_flavor")
@@ -981,6 +996,7 @@
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 12)
 			host.vore_selected.digest_oxy = new_new_damage
+			. = TRUE
 		if("b_emoteactive")
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
 			. = TRUE

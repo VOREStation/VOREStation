@@ -157,6 +157,20 @@
 	desc = "A neosilk clip-on tie. This one is disgusting."
 	icon_state = "horribletie"
 
+/obj/item/clothing/accessory/bowtie
+	name = "red bow tie"
+	desc = "Snazzy!"
+	icon_state = "redbowtie"
+	slot = ACCESSORY_SLOT_TIE
+
+/obj/item/clothing/accessory/bowtie/black
+	name = "black bow tie"
+	icon_state = "blackbowtie"
+
+/obj/item/clothing/accessory/bowtie/white
+	name = "white bow tie"
+	icon_state = "whitebowtie"
+
 /obj/item/clothing/accessory/stethoscope
 	name = "stethoscope"
 	desc = "An outdated medical apparatus for listening to the sounds of the human body. It also makes you look like you know what you're doing."

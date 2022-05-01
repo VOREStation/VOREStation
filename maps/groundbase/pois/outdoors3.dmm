@@ -1,0 +1,112 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/obj/structure/fence/corner{
+	dir = 10
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"b" = (
+/obj/structure/fence{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"c" = (
+/mob/living/simple_mob/vore/alienanimals/teppi,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"e" = (
+/obj/structure/fence,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"f" = (
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"q" = (
+/obj/structure/fence/door,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"F" = (
+/obj/structure/fence/corner,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"H" = (
+/obj/structure/fence/corner{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"W" = (
+/mob/living/simple_mob/vore/alienanimals/teppi/mutant,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+"Y" = (
+/obj/structure/fence/corner{
+	dir = 5
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/poi/outdoor)
+
+(1,1,1) = {"
+H
+e
+e
+e
+e
+e
+a
+"}
+(2,1,1) = {"
+b
+f
+f
+c
+f
+f
+b
+"}
+(3,1,1) = {"
+b
+f
+f
+f
+f
+f
+b
+"}
+(4,1,1) = {"
+b
+c
+f
+f
+f
+W
+q
+"}
+(5,1,1) = {"
+b
+f
+f
+f
+f
+f
+b
+"}
+(6,1,1) = {"
+b
+f
+f
+c
+f
+f
+b
+"}
+(7,1,1) = {"
+Y
+e
+e
+e
+e
+e
+F
+"}

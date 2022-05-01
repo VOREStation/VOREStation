@@ -8891,6 +8891,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/shaker,
 /obj/item/weapon/reagent_containers/glass/rag,
 /obj/structure/table/rack,
+/obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarroomb)
 "GD" = (
@@ -11259,7 +11260,7 @@
 /obj/machinery/door/airlock/angled_bay/secure{
 	dir = 4;
 	name = "Telecoms Access";
-	req_one_access = list(10,12,16,17,61)
+	req_one_access = list(16,17,61)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8

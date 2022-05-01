@@ -702,7 +702,7 @@
 	desc = "Spooky!"
 	gender = PLURAL
 	icon = 'icons/obj/wizard.dmi'
-	icon_state = "ectoplasm"
+	icon_state = "ectoplasm2"
 
 /obj/item/weapon/research
 	name = "research debugging device"

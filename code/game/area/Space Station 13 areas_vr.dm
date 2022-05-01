@@ -50,3 +50,6 @@
 
 /area/holodeck/source_patient_ward
 	name = "\improper Holodeck - Patient Ward"
+
+/area/holodeck/the_uwu_zone
+	name = "\improper Holodeck - Inside"

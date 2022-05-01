@@ -73,11 +73,6 @@
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
 
-/obj/item/weapon/gun/energy/sizegun/old
-	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. This one seems to be an older model, but still functional. Warning: Do not insert into mouth."
-	icon_state = "sizegun-old"
-	item_state = "sizegun-old"
-
 /obj/item/weapon/gun/energy/sizegun/admin
 	name = "modified size gun"
 	desc = "An older model sizegun, modified to be without limits on minimum/maximum size, and have an unlimited charge. Time to show 'em that size does matter."

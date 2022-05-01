@@ -60,10 +60,8 @@
 /datum/crafting_recipe/scopedrifle
 	name = "Bolt scope to bolt-action (cannot be removed)"
 	result = /obj/item/weapon/gun/projectile/shotgun/pump/rifle/scoped
-	reqs = list(
-		/obj/item/device/binoculars/scope = 1,
-		/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 1
-	)
+	reqs = list(list(/obj/item/device/binoculars/scope = 1), 
+		list(/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 1))
 	time = 180
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON

@@ -136,7 +136,12 @@ var/list/_human_default_emotes = list(
 	/decl/emote/helper/vflap,
 	/decl/emote/audible/prbt,
 	/decl/emote/audible/gyoh,
-	/decl/emote/audible/rumble
+	/decl/emote/audible/rumble,
+	/decl/emote/audible/coyawoo,
+	/decl/emote/audible/coyawoo2,
+	/decl/emote/audible/coyawoo3,
+	/decl/emote/audible/coyawoo4,
+	/decl/emote/audible/coyawoo5
 	//VOREStation Add End
 )
 

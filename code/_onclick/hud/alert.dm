@@ -39,6 +39,7 @@
 		alert.icon_state = "itembased"
 		var/image/I = image(icon = new_master.icon, icon_state = new_master.icon_state, dir = SOUTH)
 		I.plane = PLANE_PLAYER_HUD_ABOVE
+		I.color = new_master.color
 		alert.add_overlay(I)
 		alert.master = new_master
 	else
@@ -471,6 +472,7 @@ so as to remain in compliance with the most up-to-date laws."
 		return
 	if(master)
 		return usr.client.Click(master, location, control, params)
+	..() // VOREStation Edit: Pass through to click_vr
 
 /obj/screen/alert/Destroy()
 	..()

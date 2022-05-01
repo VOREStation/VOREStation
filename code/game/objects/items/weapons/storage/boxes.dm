@@ -115,6 +115,18 @@
 	icon_state = "sterile"
 	starts_with = list(/obj/item/clothing/mask/surgical = 7)
 
+/obj/item/weapon/storage/box/masks/white
+	name = "box of sterile masks"
+	desc = "This box contains masks of sterility."
+	icon_state = "sterile"
+	starts_with = list(/obj/item/clothing/mask/surgical/white = 7)
+
+/obj/item/weapon/storage/box/masks/dust
+	name = "box of dust masks"
+	desc = "This box contains dust masks. Breathe easy."
+	icon_state = "sterile"
+	starts_with = list(/obj/item/clothing/mask/surgical/dust = 7)
+
 /obj/item/weapon/storage/box/syringes
 	name = "box of syringes"
 	desc = "A box full of syringes."
@@ -272,18 +284,6 @@
 	desc = "It has pictures of paper cups on the front."
 	icon_state = "cups"
 	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/sillycup = 7)
-
-/obj/item/weapon/storage/box/donkpockets
-	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donkpocketbox"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 7)
-
-/obj/item/weapon/storage/box/sinpockets
-	name = "box of sin-pockets"
-	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
 
 /obj/item/weapon/storage/box/buns
 	name = "box of bread buns"
@@ -462,3 +462,46 @@
 		/obj/item/weapon/gun/projectile/revolver/capgun = 1,
 		/obj/item/ammo_magazine/ammo_box/cap = 1
 	)
+
+//Donk-pockets
+/obj/item/weapon/storage/box/donkpockets
+	name = "box of donk-pockets"
+	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
+	icon_state = "donkpocketbox"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 7)
+
+/obj/item/weapon/storage/box/donkpockets/spicy
+	name = "box of spicy-flavoured donk-pockets"
+	icon_state = "donkpocketboxspicy"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/spicy = 7)
+
+/obj/item/weapon/storage/box/donkpockets/teriyaki
+	name = "box of teriyaki-flavoured donk-pockets"
+	icon_state = "donkpocketboxteriyaki"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/teriyaki = 7)
+
+/obj/item/weapon/storage/box/donkpockets/pizza
+	name = "box of pizza-flavoured donk-pockets"
+	icon_state = "donkpocketboxpizza"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/pizza = 7)
+
+/obj/item/weapon/storage/box/donkpockets/honk
+	name = "box of banana-flavoured donk-pockets"
+	icon_state = "donkpocketboxbanana"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/honk = 7)
+
+/obj/item/weapon/storage/box/donkpockets/gondola
+	name = "box of gondola-flavoured donk-pockets"
+	icon_state = "donkpocketboxgondola"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/gondola = 7)
+
+/obj/item/weapon/storage/box/donkpockets/berry
+	name = "box of berry-flavoured donk-pockets"
+	icon_state = "donkpocketboxberry"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/berry = 7)
+
+/obj/item/weapon/storage/box/sinpockets
+	name = "box of sin-pockets"
+	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
+	icon_state = "donk_kit"
+	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 7)

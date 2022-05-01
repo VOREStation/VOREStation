@@ -4,6 +4,7 @@
 /obj/item/weapon/tool/screwdriver
 	name = "screwdriver"
 	desc = "You can be totally screwwy with this."
+	description_fluff = "This could be used to engrave messages on suitable surfaces if you really put your mind to it! Alt-click a floor or wall to engrave with it." //This way it's not a completely hidden, arcane art to engrave.
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "screwdriver"
 	center_of_mass = list("x" = 13,"y" = 7)

@@ -227,14 +227,6 @@
 /obj/item/clothing/shoes/boots/ranger/yellow
 	bootcolor = "yellow"
 
-/obj/item/clothing/shoes/primitive
-	name = "primitive shoes"
-	desc = "Some patched together rags. Better than being barefoot."
-	icon_state = "rag"
-	force = 0
-	drop_sound = 'sound/items/drop/clothing.ogg'
-	pickup_sound = 'sound/items/pickup/clothing.ogg'
-
 /*
  * 80s
  */
