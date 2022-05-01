@@ -73,13 +73,13 @@
 		new /datum/stack_recipe("scarf", /obj/item/clothing/accessory/scarf/white/craftable, 4, time = 5 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("baggy pants", /obj/item/clothing/under/pants/baggy/white/craftable, 8, time = 10 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("belt pouch", /obj/item/weapon/storage/belt/fannypack/white/craftable, 25, time = 1 MINUTE, pass_stack_color = TRUE, recycle_material = "[name]"),
-		new /datum/stack_recipe("pouch, small", /obj/item/weapon/storage/pouch/small, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("pouch, ammo", /obj/item/weapon/storage/pouch/ammo, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("pouch, tools", /obj/item/weapon/storage/pouch/eng_tool, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("pouch, parts", /obj/item/weapon/storage/pouch/eng_parts, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("pouch, supplies", /obj/item/weapon/storage/pouch/eng_supply, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("pouch, medical", /obj/item/weapon/storage/pouch/medical, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
-		new /datum/stack_recipe("pouch, flare", /obj/item/weapon/storage/pouch/flares, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"),
+		new /datum/stack_recipe("pouch, small", /obj/item/weapon/storage/pouch/small, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"), //vorestation Add
+		new /datum/stack_recipe("pouch, ammo", /obj/item/weapon/storage/pouch/ammo, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"), //vorestation Add
+		new /datum/stack_recipe("pouch, tools", /obj/item/weapon/storage/pouch/eng_tool, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"), //vorestation Add
+		new /datum/stack_recipe("pouch, parts", /obj/item/weapon/storage/pouch/eng_parts, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"), //vorestation Add
+		new /datum/stack_recipe("pouch, supplies", /obj/item/weapon/storage/pouch/eng_supply, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"), //vorestation Add
+		new /datum/stack_recipe("pouch, medical", /obj/item/weapon/storage/pouch/medical, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"), //vorestation Add
+		new /datum/stack_recipe("pouch, flare", /obj/item/weapon/storage/pouch/flares, 10, time = 20 SECONDS, pass_stack_color = FALSE, recycle_material = "[name]"), //vorestation Add
 		new /datum/stack_recipe("crude bandage", /obj/item/stack/medical/crude_pack, 1, time = 2 SECONDS, pass_stack_color = TRUE, recycle_material = "[name]"),
 		new /datum/stack_recipe("empty sandbag", /obj/item/stack/emptysandbag, 2, time = 2 SECONDS, pass_stack_color = TRUE, supplied_material = "[name]"),
 		new /datum/stack_recipe("satchel", /obj/item/weapon/storage/backpack/satchel/craftable, 30, time = 1 MINUTE, pass_stack_color = TRUE, recycle_material = "[name]"),

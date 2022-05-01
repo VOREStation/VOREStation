@@ -148,15 +148,16 @@
 		/obj/item/weapon/syringe_cartridge,
 		/obj/item/clothing/gloves/sterile,
 		/obj/item/device/sleevemate,
-		/obj/item/bodybag/,
+		/obj/item/bodybag,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/weapon/soap,
 		/obj/item/stack/nanopaste,
 		/obj/item/taperoll/medical,
 		/obj/item/weapon/storage/box/freezer,
-		/obj/item/device/defib_kit/compact     
+		/obj/item/clothing/mask/chewable/candy/lolli,    
 	) //Vorestation add - added a bunch of misc medical stuff
-	remove_delay = 5 //Vorestation Add - .5 second delay, get the medical things faster because there is no reason to use this otherwise
+	max_storage_space = ITEMSIZE_COST_SMALL*3 //Vorestation Add - makes it slightly smaller since its a lot of stuff with pocket access
+	remove_delay = 5 //Vorestation Add - .5 second delay, get the medical things faster because there is no reason to use this otherwise. still gotta stop moving to take things out.
 
 /obj/item/weapon/storage/pouch/flares
 	name = "storage pouch (flares)"
