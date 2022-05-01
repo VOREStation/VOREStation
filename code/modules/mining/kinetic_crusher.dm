@@ -230,7 +230,7 @@
 	desc = "A modified design of a proto-kinetic crusher, it is still little more of a combination of various mining tools cobbled together \
 	and kit-bashed into a high-tech cleaver on a stick - with a handguard and a goliath hide grip. While it is still of little use to any \
 	but the most skilled and/or suicidal miners against local fauna, it's an elegant weapon for a more civilized hunter."
-    
+
     look gary there i am
     - hatterhat
 */
@@ -256,6 +256,11 @@
 	backstab_bonus = 40 // 100
 	thrown_bonus = 20 // 120
 	update_item_state = FALSE
+
+
+/obj/item/weapon/kinetic_crusher/machete/Initialize()  //Making sure you can't store gauntlets/greaves on your belts.
+	if(w_class < ITEMSIZE_HUGE)
+		slot_flags = SLOT_BELT
 
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets
@@ -379,6 +384,7 @@
 	backstab_bonus = 40 // 85
 	// gimmick mode
 	thrown_bonus = 50 // 135 but you drop your knife because you threw it
+
 
 
 //destablizing force
