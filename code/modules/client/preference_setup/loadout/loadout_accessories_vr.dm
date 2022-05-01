@@ -117,6 +117,11 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+/datum/gear/accessory/dosimeter
+	display_name = "Dosimeter"
+	path = /obj/item/weapon/storage/box/dosimeter
+	description = "A small device that will display dangerous levels of radiation."
+
 /*
 Talon pin
 */
