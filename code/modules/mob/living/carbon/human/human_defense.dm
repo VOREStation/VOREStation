@@ -612,10 +612,23 @@ emp_act
 
 	species.handle_water_damage(src, amount)
 
+<<<<<<< HEAD
 /mob/living/carbon/human/shank_attack(obj/item/W, obj/item/weapon/grab/G, mob/user, hit_zone)
+=======
+/mob/living/carbon/human/proc/shank_attack(obj/item/W, obj/item/grab/G, mob/user, hit_zone)
+	if(!W.sharp || !W.force || W.damtype != BRUTE)
+		return FALSE //unsuitable weapon
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 
-	if(!..())
-		return 0
+	user.visible_message("<span class='danger'>\The [user] plunges \the [W] into \the [src]!</span>")
+
+	var/damage = shank_armor_helper(W, G, user)
+	apply_damage(damage, W.damtype, "torso", 0, sharp=W.sharp, edge=W.edge)
+
+	if(W.hitsound)
+		playsound(src, W.hitsound, 50, 1, -1)
+
+	add_attack_logs(user,src,"Knifed (shanked)")
 
 	var/organ_chance = 50
 	var/damage = shank_armor_helper(W, G, user)
@@ -639,3 +652,231 @@ emp_act
 		flick(G.hud.icon_state, G.hud)
 
 	return 1
+
+/mob/living/carbon/human/proc/help_shake_act(mob/living/carbon/human/H)
+	w_uniform?.add_fingerprint(H)
+	if(src.health < config.health_threshold_crit)
+		return
+
+	if(src == H)
+		var/datum/gender/T = gender_datums[src.get_visible_gender()]
+		src.visible_message( \
+			"<span class='notice'>[src] examines [T.himself].</span>", \
+			"<span class='notice'>You check yourself for injuries.</span>" \
+			)
+
+		for(var/obj/item/organ/external/org in H.organs)
+			var/list/status = list()
+			var/brutedamage = org.brute_dam
+			var/burndamage = org.burn_dam
+			switch(brutedamage)
+				if(1 to 20)
+					status += "bruised"
+				if(20 to 40)
+					status += "wounded"
+				if(40 to INFINITY)
+					status += "mangled"
+
+			switch(burndamage)
+				if(1 to 10)
+					status += "numb"
+				if(10 to 40)
+					status += "blistered"
+				if(40 to INFINITY)
+					status += "peeling away"
+
+			if(org.is_stump())
+				status += "MISSING"
+			if(org.status & ORGAN_MUTATED)
+				status += "weirdly shapen"
+			if(org.dislocated == 2)
+				status += "dislocated"
+			if(org.status & ORGAN_BROKEN)
+				status += "hurts when touched"
+			if(org.status & ORGAN_DEAD)
+				status += "is bruised and necrotic"
+			if(!org.is_usable() || org.is_dislocated())
+				status += "dangling uselessly"
+			if(status.len)
+				src.show_message("My [org.name] is <span class='warning'> [english_list(status)].</span>",1)
+			else
+				src.show_message("My [org.name] is <span class='notice'> OK.</span>",1)
+		return
+	
+	if(on_fire)
+		playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+		if (H.on_fire)
+			H.visible_message("<span class='warning'>[H] tries to pat out [src]'s flames, but to no avail!</span>",
+				"<span class='warning'>You try to pat out [src]'s flames, but to no avail! Put yourself out first!</span>")
+		else
+			H.visible_message("<span class='warning'>[H] tries to pat out [src]'s flames!</span>",
+				"<span class='warning'>You try to pat out [src]'s flames! Hot!</span>")
+			if(do_mob(H, src, 15))
+				src.adjust_fire_stacks(-0.5)
+				if (prob(10) && (H.fire_stacks <= 0))
+					H.adjust_fire_stacks(1)
+				H.IgniteMob()
+				if (H.on_fire)
+					H.visible_message("<span class='danger'>The fire spreads from [src] to [H]!</span>",
+						"<span class='danger'>The fire spreads to you as well!</span>")
+				else
+					src.adjust_fire_stacks(-0.5) //Less effective than stop, drop, and roll - also accounting for the fact that it takes half as long.
+					if (src.fire_stacks <= 0)
+						H.visible_message("<span class='warning'>[H] successfully pats out [src]'s flames.</span>",
+							"<span class='warning'>You successfully pat out [src]'s flames.</span>")
+						src.ExtinguishMob()
+						src.fire_stacks = 0
+		return TRUE
+
+	var/show_ssd
+	var/datum/gender/T = gender_datums[H.get_visible_gender()] // make sure to cast to human before using get_gender() or get_visible_gender()!
+	if(istype(H)) show_ssd = H.species.show_ssd
+	if(show_ssd && !client && !teleop)
+		H.visible_message("<span class='notice'>[H] shakes [src] trying to wake [T.him] up!</span>", \
+			"<span class='notice'>You shake [src], but [T.he] [T.does] not respond... Maybe [T.he] [T.has] S.S.D?</span>")
+	else if(lying || src.sleeping)
+		AdjustSleeping(-5)
+		if(src.sleeping == 0)
+			src.resting = 0
+		H.visible_message("<span class='notice'>[H] shakes [src] trying to wake [T.him] up!</span>", \
+			"<span class='notice'>You shake [src] trying to wake [T.him] up!</span>")
+	else
+		var/mob/living/carbon/human/hugger = H
+		var/datum/gender/TM = gender_datums[H.get_visible_gender()]
+		if(H.resting) //Are they resting on the ground?
+			H.visible_message("<span class='notice'>[H] grabs onto [src] and pulls [TM.himself] up</span>", \
+				"<span class='notice'>You grip onto [src] and pull yourself up off the ground!</span>")
+			if(H.fire_stacks >= (src.fire_stacks + 3)) //Fire checks.
+				src.adjust_fire_stacks(1)
+				H.adjust_fire_stacks(-1)
+			if(H.on_fire)
+				src.IgniteMob()
+			if(do_after(H, 0.5 SECONDS)) //.5 second delay. Makes it a bit stronger than just typing rest.
+				H.resting = FALSE //Hoist yourself up up off the ground. No para/stunned/weakened removal.
+		else if(istype(hugger))
+			hugger.species.hug(hugger,src)
+		else
+			H.visible_message("<span class='notice'>[H] hugs [src] to make [T.him] feel better!</span>", \
+				"<span class='notice'>You hug [src] to make [T.him] feel better!</span>")
+		if(H.fire_stacks >= (src.fire_stacks + 3))
+			src.adjust_fire_stacks(1)
+			H.adjust_fire_stacks(-1)
+		if(H.on_fire)
+			src.IgniteMob()
+	AdjustParalysis(-3)
+	AdjustStunned(-3)
+	AdjustWeakened(-3)
+
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
+
+// Attacking someone with a weapon while they are neck-grabbed
+/mob/living/carbon/human/proc/check_neckgrab_attack(obj/item/W, mob/user, var/hit_zone)
+	if(user.a_intent == I_HURT)
+		for(var/obj/item/grab/G in src.grabbed_by)
+			if(G.assailant == user)
+				if(G.state >= GRAB_AGGRESSIVE)
+					if(hit_zone == BP_TORSO && shank_attack(W, G, user))
+						return TRUE
+				if(G.state >= GRAB_NECK)
+					if(hit_zone == BP_HEAD && attack_throat(W, G, user, hit_zone))
+						return TRUE
+	return FALSE
+
+// Knifing
+/mob/living/carbon/proc/attack_throat(obj/item/W, obj/item/grab/G, mob/user)
+	if(!W.edge || !W.force || W.damtype != BRUTE)
+		return FALSE //unsuitable weapon
+
+	user.visible_message("<span class='danger'>\The [user] begins to slit [src]'s throat with \the [W]!</span>")
+
+	user.next_move = world.time + 20 //also should prevent user from triggering this repeatedly
+	if(!do_after(user, 20))
+		return FALSE
+	if(!(G && G.assailant == user && G.affecting == src)) //check that we still have a grab
+		return FALSE
+
+	var/damage_mod = 1
+	//presumably, if they are wearing a helmet that stops pressure effects, then it probably covers the throat as well
+	var/obj/item/clothing/head/helmet = get_equipped_item(slot_head)
+	if(istype(helmet) && (helmet.body_parts_covered & HEAD) && (helmet.min_pressure_protection != null)) // Both min- and max_pressure_protection must be set for it to function at all, so we can just check that one is set.
+		//we don't do an armor_check here because this is not an impact effect like a weapon swung with momentum, that either penetrates or glances off.
+		damage_mod = 1.0 - (helmet.armor["melee"]/100)
+
+	var/total_damage = 0
+	for(var/i in 1 to 3)
+		var/damage = min(W.force*1.5, 20)*damage_mod
+		apply_damage(damage, W.damtype, "head", 0, sharp=W.sharp, edge=W.edge)
+		total_damage += damage
+
+	var/oxyloss = total_damage
+	if(total_damage >= 40) //threshold to make someone pass out
+		oxyloss = 60 // Brain lacks oxygen immediately, pass out
+
+	adjustOxyLoss(min(oxyloss, 100 - getOxyLoss())) //don't put them over 100 oxyloss
+
+	if(total_damage)
+		if(oxyloss >= 40)
+			user.visible_message("<span class='danger'>\The [user] slit [src]'s throat open with \the [W]!</span>")
+		else
+			user.visible_message("<span class='danger'>\The [user] cut [src]'s neck with \the [W]!</span>")
+
+		if(W.hitsound)
+			playsound(src, W.hitsound, 50, 1, -1)
+
+	G.last_action = world.time
+	flick(G.hud.icon_state, G.hud)
+
+	add_attack_logs(user,src,"Knifed (throat slit)")
+
+	return TRUE
+
+/mob/living/carbon/human/proc/shank_armor_helper(obj/item/W, obj/item/grab/G, mob/user)
+	var/damage = W.force
+	var/damage_mod = 1
+	if(W.edge)
+		damage = damage * 1.25 //small damage bonus for having sharp and edge
+
+	var/obj/item/clothing/suit/worn_suit
+	var/obj/item/clothing/under/worn_under
+	var/worn_suit_armor
+	var/worn_under_armor
+
+	//if(slot_wear_suit)
+	if(get_equipped_item(slot_wear_suit))
+		worn_suit = get_equipped_item(slot_wear_suit)
+		//worn_suit = get_equipped_item(slot_wear_suit)
+		worn_suit_armor = worn_suit.armor["melee"]
+	else
+		worn_suit_armor = 0
+
+	//if(slot_w_uniform)
+	if(get_equipped_item(slot_w_uniform))
+		worn_under = get_equipped_item(slot_w_uniform)
+		//worn_under_armor = slot_w_uniform.armor["melee"]
+		worn_under_armor = worn_under.armor["melee"]
+	else
+		worn_under_armor = 0
+
+	if(worn_under_armor > worn_suit_armor)
+		damage_mod = 1 - (worn_under_armor/100)
+	else
+		damage_mod = 1 - (worn_suit_armor/100)
+
+	damage = damage * damage_mod
+
+	return damage
+
+/mob/living/carbon/human/process_resist()
+	if(..())
+		return TRUE
+	if(canmove)
+		if(on_fire)
+			resist_fire() //stop, drop, and roll
+		else
+			resist_restraints()
+
+/mob/living/carbon/human/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
+	..()
+	var/temp_inc = max(min(BODYTEMP_HEATING_MAX*(1-get_heat_protection()), exposed_temperature - bodytemperature), 0)
+	bodytemperature += temp_inc
+

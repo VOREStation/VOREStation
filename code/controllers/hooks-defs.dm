@@ -47,7 +47,7 @@
 /**
  * Podman hook.
  * Called in podmen.dm when someone is brought back as a Diona.
- * Parameters: var/mob/living/carbon/alien/diona
+ * Parameters: var/mob/living/simple_mob/diona_nymph
  */
 /hook/harvest_podman
 

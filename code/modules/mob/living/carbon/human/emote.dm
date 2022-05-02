@@ -280,10 +280,14 @@ var/list/_simple_mob_default_emotes = list(
 	if(length(species?.default_emotes))
 		. |= species.default_emotes
 
+<<<<<<< HEAD
 /mob/living/simple_mob/get_available_emotes()
 	. = global._simple_mob_default_emotes
 
 /mob/living/carbon/human/verb/pose()
+=======
+/mob/living/carbon/human/pose()
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 	set name = "Set Pose"
 	set desc = "Sets a description which will be shown when someone examines you."
 	set category = "IC"

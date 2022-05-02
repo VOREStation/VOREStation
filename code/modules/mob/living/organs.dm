@@ -35,4 +35,10 @@
 			if(!ispath(E))
 				E.droplimb(0,DROPLIMB_EDGE,1)
 
+	for(var/mob/M in src)
+		M.loc = src.loc
+		for(var/mob/N in viewers(src, null))
+			if(N.client)
+				N.show_message(SPAN_DANGER("[M] bursts out of [src]!"), 2)
+
 	..()

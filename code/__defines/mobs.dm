@@ -447,3 +447,50 @@
 #define DEATHGASP_NO_MESSAGE "no message"
 
 #define RESIST_COOLDOWN		2 SECONDS
+<<<<<<< HEAD
+=======
+
+
+/// Used by human/get_visible_gender(user, force) to return PLURAL
+#define VISIBLE_GENDER_FORCE_PLURAL 1
+
+/// Used by human/get_visible_gender(user, force) to return the mob's identifying gender
+#define VISIBLE_GENDER_FORCE_IDENTIFYING 2
+
+/// Used by human/get_visible_gender(user, force) to return the mob's biological gender
+#define VISIBLE_GENDER_FORCE_BIOLOGICAL 3
+
+//NOTE: Breathing happens once per FOUR TICKS, unless the last breath fails. In which case it happens once per ONE TICK! So oxyloss healing is done once per 4 ticks while oxyloss damage is applied once per tick!
+#define HUMAN_MAX_OXYLOSS 1 //Defines how much oxyloss humans can get per tick. A tile with no air at all (such as space) applies this value, otherwise it's a percentage of it.
+#define HUMAN_CRIT_MAX_OXYLOSS ( 2.0 / 6) //The amount of damage you'll get when in critical condition. We want this to be a 5 minute deal = 300s. There are 50HP to get through, so (1/6)*last_tick_duration per second. Breaths however only happen every 4 ticks. last_tick_duration = ~2.0 on average
+
+#define HEAT_DAMAGE_LEVEL_1 5 //Amount of damage applied when your body temperature just passes the 360.15k safety point
+#define HEAT_DAMAGE_LEVEL_2 10 //Amount of damage applied when your body temperature passes the 400K point
+#define HEAT_DAMAGE_LEVEL_3 20 //Amount of damage applied when your body temperature passes the 1000K point
+
+#define COLD_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when your body temperature just passes the 260.15k safety point
+#define COLD_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when your body temperature passes the 200K point
+#define COLD_DAMAGE_LEVEL_3 3 //Amount of damage applied when your body temperature passes the 120K point
+
+//Note that gas heat damage is only applied once every FOUR ticks.
+#define HEAT_GAS_DAMAGE_LEVEL_1 2 //Amount of damage applied when the current breath's temperature just passes the 360.15k safety point
+#define HEAT_GAS_DAMAGE_LEVEL_2 4 //Amount of damage applied when the current breath's temperature passes the 400K point
+#define HEAT_GAS_DAMAGE_LEVEL_3 8 //Amount of damage applied when the current breath's temperature passes the 1000K point
+
+#define COLD_GAS_DAMAGE_LEVEL_1 0.5 //Amount of damage applied when the current breath's temperature just passes the 260.15k safety point
+#define COLD_GAS_DAMAGE_LEVEL_2 1.5 //Amount of damage applied when the current breath's temperature passes the 200K point
+#define COLD_GAS_DAMAGE_LEVEL_3 3 //Amount of damage applied when the current breath's temperature passes the 120K point
+
+#define COLD_ALERT_SEVERITY_LOW         1 // Constants passed to the cold and heat alerts.
+#define COLD_ALERT_SEVERITY_MODERATE    2
+#define COLD_ALERT_SEVERITY_MAX         3
+#define ENVIRONMENT_COMFORT_MARKER_COLD 1
+
+#define HOT_ALERT_SEVERITY_LOW          1
+#define HOT_ALERT_SEVERITY_MODERATE     2
+#define HOT_ALERT_SEVERITY_MAX          3
+#define ENVIRONMENT_COMFORT_MARKER_HOT  2
+
+#define RADIATION_SPEED_COEFFICIENT 0.1
+#define HUMAN_COMBUSTION_TEMP 524 //524k is the sustained combustion temperature of human fat
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies

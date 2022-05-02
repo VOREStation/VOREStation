@@ -75,7 +75,7 @@
 			host = implant_assembly.implant.imp_in
 	if(host && test_validity(host))
 		assembly.give_power(10)
-		host.nutrition = max(host.nutrition - DEFAULT_HUNGER_FACTOR, 0)
+		host.adjust_nutrition(DEFAULT_HUNGER_FACTOR * 10)
 
 /obj/item/integrated_circuit/passive/power/metabolic_siphon/synthetic
 	name = "internal energy siphon"

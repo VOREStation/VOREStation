@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
 
 //NOTE: Breathing happens once per FOUR TICKS, unless the last breath fails. In which case it happens once per ONE TICK! So oxyloss healing is done once per 4 ticks while oxyloss damage is applied once per tick!
@@ -34,6 +35,8 @@
 #define RADIATION_SPEED_COEFFICIENT 0.1
 #define HUMAN_COMBUSTION_TEMP 524 //524k is the sustained combustion temperature of human fat
 
+=======
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 /mob/living/carbon/human
 	var/in_stasis = 0
 	var/heartbeat = 0
@@ -51,10 +54,6 @@
 	//to find it.
 	blinded = 0
 
-	//TODO: seperate this out
-	// update the current life tick, can be used to e.g. only do something every 4 ticks
-	life_tick++
-
 	// This is not an ideal place for this but it will do for now.
 	if(wearing_rig && wearing_rig.offline)
 		wearing_rig = null
@@ -70,13 +69,20 @@
 	if(getStasis() > 2)
 		Sleeping(20)
 
+	//Chemicals in the body, this is moved over here so that blood can be added after death
+	handle_chemicals_in_body()
+
 	//No need to update all of these procs if the guy is dead.
 	fall() //VORESTATION EDIT. Prevents people from floating
 	if(stat != DEAD && !stasis)
+		//Breathing, if applicable
+		handle_breathing()
+
 		//Updates the number of stored chemicals for powers
 		handle_changeling()
 
-		//Organs and blood
+		//Organs and Blood
+		handle_blood()
 		handle_organs()
 		stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 		weightgain() 			//VOREStation Addition
@@ -90,9 +96,21 @@
 		handle_medical_side_effects()
 
 		handle_heartbeat()
+<<<<<<< HEAD
 		handle_nif() 			//VOREStation Addition
+=======
+
+		handle_viruses()
+
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 		if(!client)
 			species.handle_npc(src)
+
+		adjust_nutrition(DEFAULT_HUNGER_FACTOR)
+
+		// Increase germ_level regularly
+		if(germ_level < GERM_LEVEL_AMBIENT && prob(30))	//if you're just standing there, you shouldn't get more germs beyond an ambient level
+			germ_level++
 
 	else if(stat == DEAD && !stasis)
 		handle_defib_timer()
@@ -342,6 +360,7 @@
 			updatehealth()
 			if(!isSynthetic() && organs.len)
 				var/obj/item/organ/external/O = pick(organs)
+<<<<<<< HEAD
 				if(istype(O)) O.add_autopsy_data("Radiation Poisoning", damage)
 
 	/** breathing **/
@@ -639,6 +658,10 @@
 
 	breath.update_values()
 	return 1
+=======
+				if(istype(O))
+					O.add_autopsy_data("Radiation Poisoning", damage)
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 
 /mob/living/carbon/human/proc/handle_allergens()
 	if(chem_effects[CE_ALLERGEN])
@@ -949,21 +972,13 @@
 			. += THERMAL_PROTECTION_HAND_RIGHT
 	return min(1,.)
 
-/mob/living/carbon/human/handle_chemicals_in_body()
+/mob/living/carbon/human/proc/handle_chemicals_in_body()
 
 	if(inStasisNow())
 		return
 
 	if(reagents)
 		chem_effects.Cut()
-
-		if(touching)
-			touching.metabolize()
-		if(ingested)
-			ingested.metabolize()
-		if(bloodstr)
-			bloodstr.metabolize()
-
 		if(!isSynthetic())
 
 			var/total_phoronloss = 0
@@ -983,11 +998,7 @@
 							r_hand_blocked = 1-(100-getarmor(BP_R_HAND, "bio"))/100	//This should get a number between 0 and 1
 							total_phoronloss += vsc.plc.CONTAMINATION_LOSS * r_hand_blocked
 			if(total_phoronloss)
-				if(!(status_flags & GODMODE))
-					adjustToxLoss(total_phoronloss)
-
-	if(status_flags & GODMODE)
-		return 0	//godmode
+				adjustToxLoss(total_phoronloss)
 
 	if(species.light_dam)
 		var/light_amount = 0
@@ -1540,21 +1551,20 @@
 			playsound_local(src,pick(scarySounds),50, 1, -1)
 
 /mob/living/carbon/human/handle_stomach()
-	spawn(0)
-		for(var/mob/living/M in stomach_contents)
-			if(M.loc != src)
+	// TODO SURGERY_REFACTOR: Handle this on the stomach organ
+	for(var/mob/living/M in stomach_contents)
+		if(M.loc != src)
+			stomach_contents.Remove(M)
+			continue
+		if(istype(M, /mob/living/carbon) && src.stat != DEAD)
+			if(M.stat == DEAD)
+				M.death(TRUE)
 				stomach_contents.Remove(M)
+				qdel(M)
 				continue
-			if(istype(M, /mob/living/carbon) && stat != 2)
-				if(M.stat == 2)
-					M.death(1)
-					stomach_contents.Remove(M)
-					qdel(M)
-					continue
-				if(air_master.current_cycle%3==1)
-					if(!(M.status_flags & GODMODE))
-						M.adjustBruteLoss(5)
-					adjust_nutrition(10)
+			if(air_master.current_cycle%3==1)
+				M.adjustBruteLoss(5)
+				adjust_nutrition(10)
 
 /mob/living/carbon/human/proc/handle_changeling()
 	if(mind && mind.changeling)
@@ -1601,9 +1611,8 @@
 		if(mind && hud_used)
 			ling_chem_display.invisibility = 101
 
-/mob/living/carbon/human/handle_shock()
-	..()
-	if(status_flags & GODMODE)	return 0	//godmode
+/mob/living/carbon/human/proc/handle_shock()
+	updateshock()
 	if(!can_feel_pain()) return
 
 	if(health < config.health_threshold_softcrit)// health 0 makes you immediately collapse
@@ -1656,6 +1665,45 @@
 
 	if(shock_stage >= 150)
 		Weaken(20)
+
+// proc to find out in how much pain the mob is at the moment
+/mob/living/carbon/human/proc/updateshock()
+	if (!can_feel_pain())
+		src.traumatic_shock = 0
+		return 0
+
+	src.traumatic_shock = 			\
+	1	* src.getOxyLoss() + 		\
+	0.7	* src.getToxLoss() + 		\
+	1.2	* src.getShockFireLoss() + 		\
+	1.2	* src.getShockBruteLoss() + 		\
+	1.7	* src.getCloneLoss() + 		\
+	2	* src.halloss
+
+	if(src.slurring)
+		src.traumatic_shock -= 20
+
+	// broken or ripped off organs will add quite a bit of pain
+	if(istype(src,/mob/living/carbon/human))
+		var/mob/living/carbon/human/M = src
+		for(var/obj/item/organ/external/organ in M.organs)
+			if(organ.is_broken() || organ.open)
+				src.traumatic_shock += 30
+			else if(organ.is_dislocated())
+				src.traumatic_shock += 15
+	
+	// Some individuals/species are more or less supectible to pain. Default trauma_mod = 1. Does not affect painkillers
+	if(istype(src, /mob/living/carbon/human))
+		var/mob/living/carbon/human/H = src
+		H.traumatic_shock *= H.species.trauma_mod
+		
+	src.traumatic_shock += -1 *  src.chem_effects[CE_PAINKILLER]
+
+	if(src.traumatic_shock < 0)
+		src.traumatic_shock = 0
+
+	return src.traumatic_shock
+
 
 /mob/living/carbon/human/proc/handle_pulse()
 	if(life_tick % 5) return pulse	//update pulse every 5 life ticks (~1 tick/sec, depending on server load)
@@ -1940,5 +1988,12 @@
 
 	brain.tick_defib_timer()
 
-#undef HUMAN_MAX_OXYLOSS
-#undef HUMAN_CRIT_MAX_OXYLOSS
+/mob/living/carbon/human/proc/add_chemical_effect(var/effect, var/magnitude = 1)
+	if(effect in chem_effects)
+		chem_effects[effect] += magnitude
+	else
+		chem_effects[effect] = magnitude
+
+/mob/living/carbon/human/proc/remove_chemical_effect(var/effect, var/magnitude)
+	if(effect in chem_effects)
+		chem_effects[effect] = magnitude ? max(0, chem_effects[effect] - magnitude) : 0

@@ -336,6 +336,7 @@
 		if(!istype(objective))	return
 		objective.completed = !objective.completed
 
+<<<<<<< HEAD
 	else if(href_list["implant"])
 		var/mob/living/carbon/human/H = current
 
@@ -355,6 +356,8 @@
 				H.implant_loyalty(override = TRUE)
 				log_admin("[key_name_admin(usr)] has loyalty implanted [current].")
 			else
+=======
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 	else if (href_list["silicon"])
 		BITSET(current.hud_updateflag, SPECIALROLE_HUD)
 		switch(href_list["silicon"])

@@ -169,8 +169,12 @@
 
 	H.verbs |= /mob/living/carbon/human/proc/psychic_whisper
 	H.verbs |= /mob/living/carbon/human/proc/tackle
+<<<<<<< HEAD
 	if(antag)
 		H.verbs |= /mob/living/carbon/proc/spawn_larvae
+=======
+	H.verbs |= /mob/living/carbon/human/proc/spawn_larvae
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 
 	if(H.client)
 		H.ghostize(0)
@@ -331,10 +335,16 @@
 
 			controlling = 1
 
+<<<<<<< HEAD
 			host.verbs += /mob/living/carbon/proc/release_control
 			host.verbs += /mob/living/carbon/proc/punish_host
 			if(antag)
 				host.verbs += /mob/living/carbon/proc/spawn_larvae
+=======
+			host.verbs += /mob/living/carbon/human/proc/release_control
+			host.verbs += /mob/living/carbon/human/proc/punish_host
+			host.verbs += /mob/living/carbon/human/proc/spawn_larvae
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 
 			return
 

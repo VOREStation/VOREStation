@@ -90,7 +90,109 @@
 		if(buckled && buckled.buckle_require_restraints)
 			buckled.unbuckle_mob()
 
-/mob/living/carbon/human/can_break_cuffs()
-	if(species.can_shred(src,1))
-		return 1
-	return ..()
+/mob/living/carbon/human/proc/can_break_cuffs()
+	return species.can_shred(src,1)
+
+/mob/living/carbon/human/resist_fire()
+	adjust_fire_stacks(-1.2)
+	Weaken(3)
+	spin(32,2)
+	visible_message(
+		"<span class='danger'>[src] rolls on the floor, trying to put themselves out!</span>",
+		"<span class='notice'>You stop, drop, and roll!</span>"
+		)
+	sleep(30)
+	if(fire_stacks <= 0)
+		visible_message(
+			"<span class='danger'>[src] has successfully extinguished themselves!</span>",
+			"<span class='notice'>You extinguish yourself.</span>"
+			)
+		ExtinguishMob()
+	return TRUE
+
+/mob/living/carbon/human/resist_restraints()
+	var/obj/item/I = null
+	if(handcuffed)
+		I = handcuffed
+	else if(legcuffed)
+		I = legcuffed
+	
+	if(I)
+		setClickCooldown(100)
+		cuff_resist(I, cuff_break = can_break_cuffs())
+
+/mob/living/carbon/human/proc/cuff_resist(obj/item/handcuffs/I, breakouttime = 1200, cuff_break = 0)
+	
+	if(istype(I))
+		breakouttime = I.breakouttime
+
+	var/displaytime = breakouttime / 10
+
+	var/reduceCuffTime = reduce_cuff_time()
+	if(reduceCuffTime)
+		breakouttime /= reduceCuffTime
+		displaytime /= reduceCuffTime
+
+	if(cuff_break)
+		visible_message("<span class='danger'>[src] is trying to break [I]!</span>",
+			"<span class='warning'>You attempt to break your [I]. (This will take around 5 seconds and you need to stand still)</span>")
+
+		if(do_after(src, 5 SECONDS, target = src, incapacitation_flags = INCAPACITATION_DEFAULT & ~INCAPACITATION_RESTRAINED))
+			if(!I || buckled)
+				return
+			visible_message("<span class='danger'>[src] manages to break [I]!</span>",
+				"<span class='warning'>You successfully break your [I].</span>")
+			say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
+
+			if(I == handcuffed)
+				handcuffed = null
+				update_handcuffed()
+			else if(I == legcuffed)
+				legcuffed = null
+				update_inv_legcuffed()
+	
+			if(buckled && buckled.buckle_require_restraints)
+				buckled.unbuckle_mob()
+
+			qdel(I)
+		else
+			to_chat(src, "<span class='warning'>You fail to break [I].</span>")
+		return
+	
+	visible_message("<span class='danger'>[src] attempts to remove [I]!</span>",
+		"<span class='warning'>You attempt to remove [I]. (This will take around [displaytime] seconds and you need to stand still)</span>")
+	if(do_after(src, breakouttime, target = src, incapacitation_flags = INCAPACITATION_DISABLED & INCAPACITATION_KNOCKDOWN))
+		visible_message("<span class='danger'>[src] manages to remove [I]!</span>",
+			"<span class='notice'>You successfully remove [I].</span>")
+		drop_from_inventory(I)
+	
+/mob/living/carbon/human/resist_buckle()
+	if(!buckled)
+		return
+
+	if(!restrained())
+		return ..()
+
+	setClickCooldown(100)
+	visible_message(
+		"<span class='danger'>[src] attempts to unbuckle themself!</span>",
+		"<span class='warning'>You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>"
+		)
+
+	if(do_after(src, 2 MINUTES, incapacitation_flags = INCAPACITATION_DEFAULT & ~(INCAPACITATION_RESTRAINED | INCAPACITATION_BUCKLED_FULLY)))
+		if(!buckled)
+			return
+		visible_message("<span class='danger'>[src] manages to unbuckle themself!</span>",
+						"<span class='notice'>You successfully unbuckle yourself.</span>")
+		buckled.user_unbuckle_mob(src, src)
+
+/mob/living/carbon/human/proc/update_handcuffed()
+	if(handcuffed)
+		drop_l_hand()
+		drop_r_hand()
+		stop_pulling()
+		throw_alert("handcuffed", /obj/screen/alert/restrained/handcuffed, new_master = handcuffed)
+	else
+		clear_alert("handcuffed")
+	update_action_buttons() //Some of our action buttons might be unusable when we're handcuffed.
+	update_inv_handcuffed()

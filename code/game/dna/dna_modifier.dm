@@ -226,7 +226,7 @@
 	if(src.occupant.client)
 		src.occupant.client.eye = src.occupant.client.mob
 		src.occupant.client.perspective = MOB_PERSPECTIVE
-	if(istype(occupant,/mob/living/carbon/brain))
+	if(istype(occupant,/mob/living/brain))
 		for(var/obj/O in src)
 			if(istype(O,/obj/item/organ/internal/brain))
 				O.loc = get_turf(src)

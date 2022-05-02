@@ -155,3 +155,16 @@
 
 	// Custom Species Name
 	var/custom_species
+
+	var/list/chem_effects = list()
+	var/pulse = PULSE_NORM	//current pulse level
+
+	var/list/datum/disease2/disease/virus2 = list()
+	var/list/antibodies = list()
+
+	var/shock_stage = 0
+
+	var/obj/item/handcuffed = null // Whether or not the mob is handcuffed
+	var/obj/item/legcuffed = null  // Same as handcuffs but for legs. Bear traps use this.
+
+	var/does_not_breathe = FALSE // Used for specific mobs that can't take advantage of the species flags (changelings)

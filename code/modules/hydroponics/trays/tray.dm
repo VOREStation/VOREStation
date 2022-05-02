@@ -157,8 +157,8 @@
 /obj/machinery/portable_atmospherics/hydroponics/attack_generic(var/mob/user)
 
 	// Why did I ever think this was a good idea. TODO: move this onto the nymph mob.
-	if(istype(user,/mob/living/carbon/alien/diona))
-		var/mob/living/carbon/alien/diona/nymph = user
+	if(istype(user,/mob/living/simple_mob/diona_nymph))
+		var/mob/living/simple_mob/diona_nymph/nymph = user
 
 		if(nymph.stat == DEAD || nymph.paralysis || nymph.weakened || nymph.stunned || nymph.restrained())
 			return

@@ -36,7 +36,7 @@
 		if(occupant)
 			pilot_image = getCompoundIcon(occupant)
 
-			if(!istype(occupant, /mob/living/carbon/brain))
+			if(!istype(occupant, /mob/living/brain))
 
 				var/icon/Cutter
 

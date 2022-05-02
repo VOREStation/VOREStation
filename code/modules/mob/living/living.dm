@@ -18,6 +18,9 @@
 
 	selected_image = image(icon = buildmode_hud, loc = src, icon_state = "ai_sel")
 
+	if (!default_language && species_language)
+		default_language = GLOB.all_languages[species_language]
+
 /mob/living/Destroy()
 	if(dsoverlay)
 		dsoverlay.loc = null //I'll take my coat with me
@@ -643,7 +646,6 @@
 			B.relay_absorbed_resist(src)
 
 /mob/living/proc/process_resist()
-
 	if(istype(src.loc, /mob/living/silicon/robot/platform))
 		var/mob/living/silicon/robot/platform/R = src.loc
 		R.drop_stored_atom(src, src)
@@ -658,7 +660,9 @@
 		var/obj/C = loc
 		C.container_resist(src)
 		return TRUE
+	return FALSE
 
+<<<<<<< HEAD
 	else if(canmove)
 		if(on_fire)
 			resist_fire() //stop, drop, and roll
@@ -667,6 +671,8 @@
 
 	if(attempt_vr(src,"vore_process_resist",args)) return TRUE //VOREStation Code
 
+=======
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 /mob/living/proc/resist_buckle()
 	if(buckled)
 		if(istype(buckled, /obj/vehicle))
@@ -904,9 +910,7 @@
 	return
 
 /mob/living/proc/can_feel_pain(var/check_organ)
-	if(isSynthetic())
-		return FALSE
-	return TRUE
+	return isSynthetic() || (species && !(species.flags & NO_PAIN))
 
 // Gets the correct icon_state for being on fire. See OnFire.dmi for the icons.
 /mob/living/proc/get_fire_icon_state()
@@ -1178,6 +1182,7 @@
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 
+<<<<<<< HEAD
 /datum/component/character_setup/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
@@ -1218,3 +1223,33 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"
 	screen_loc = ui_smallquad
+=======
+	var/datum/map_z_level/zlevel = using_map.zlevels["[T.z]"]
+	if(istype(zlevel))
+		. |= zlevel.event_regions
+
+/mob/living/verb/pose()
+	set name = "Set Pose"
+	set desc = "Sets a description which will be shown when someone examines you."
+	set category = "IC"
+
+	pose =  sanitize(input(usr, "This is [src]. It is...", "Pose", null)  as text)
+
+// Clears blood overlays
+/mob/living/clean_blood()
+	. = ..()
+	src.r_hand?.clean_blood()
+	src.l_hand?.clean_blood()
+	if(src.back?.clean_blood())
+		src.update_inv_back(0)
+
+	// If the mob is not human, it cleans the mask without asking for bitflags
+	if(!ishuman(src) && src.wear_mask?.clean_blood())
+		src.update_inv_wear_mask(0)
+
+/mob/living/proc/getDNA()
+	return dna
+
+/mob/living/proc/setDNA(var/datum/dna/newDNA)
+	dna = newDNA
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies

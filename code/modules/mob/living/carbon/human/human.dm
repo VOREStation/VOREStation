@@ -182,6 +182,7 @@
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
 
+<<<<<<< HEAD
 /mob/living/carbon/human/proc/implant_loyalty(override = FALSE) // Won't override by default.
 	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
 
@@ -197,12 +198,14 @@
 					return 1
 	return 0
 
+=======
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 /mob/living/carbon/human/restrained()
 	if (handcuffed)
-		return 1
+		return TRUE
 	if (istype(wear_suit, /obj/item/clothing/suit/straight_jacket))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /mob/living/carbon/human/var/co2overloadtime = null
 /mob/living/carbon/human/var/temperature_resistance = T0C+75
@@ -303,10 +306,7 @@
 
 //Removed the horrible safety parameter. It was only being used by ninja code anyways.
 //Now checks siemens_coefficient of the affected area by default
-/mob/living/carbon/human/electrocute_act(var/shock_damage, var/obj/source, var/base_siemens_coeff = 1.0, var/def_zone = null)
-
-	if(status_flags & GODMODE)	return 0	//godmode
-
+/mob/living/carbon/human/electrocute_act(var/shock_damage, var/obj/source, var/base_siemens_coeff = 1.0, var/def_zone = null, var/stun = FALSE)
 	if (!def_zone)
 		def_zone = pick("l_hand", "r_hand")
 
@@ -322,7 +322,48 @@
 	if(fire_stacks < 0) // Water makes you more conductive.
 		siemens_coeff *= 1.5
 
-	return ..(shock_damage, source, siemens_coeff, def_zone)
+	if(def_zone == "l_hand" || def_zone == "r_hand") //Diona (And any other potential plant people) hands don't get shocked.
+		if(species.flags & IS_PLANT)
+			return 0
+	shock_damage *= siemens_coeff
+	if (shock_damage < 1)
+		return 0
+
+	src.apply_damage(0.2 * shock_damage, BURN, def_zone, used_weapon="Electrocution") //shock the target organ
+	src.apply_damage(0.4 * shock_damage, BURN, BP_TORSO, used_weapon="Electrocution") //shock the torso more
+	src.apply_damage(0.2 * shock_damage, BURN, null, used_weapon="Electrocution") //shock a random part!
+	src.apply_damage(0.2 * shock_damage, BURN, null, used_weapon="Electrocution") //shock a random part!
+
+	playsound(src, "sparks", 50, 1, -1)
+	if (shock_damage > 15)
+		src.visible_message(
+			"<span class='warning'>[src] was electrocuted[source ? " by the [source]" : ""]!</span>", \
+			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
+			"<span class='warning'>You hear a heavy electrical crack.</span>" \
+		)
+	else
+		src.visible_message(
+			"<span class='warning'>[src] was shocked[source ? " by the [source]" : ""].</span>", \
+			"<span class='warning'>You feel a shock course through your body.</span>", \
+			"<span class='warning'>You hear a zapping sound.</span>" \
+		)
+
+	if(stun)
+		switch(shock_damage)
+			if(16 to 20)
+				Stun(2)
+			if(21 to 25)
+				Weaken(2)
+			if(26 to 30)
+				Weaken(5)
+			if(31 to INFINITY)
+				Weaken(10) //This should work for now, more is really silly and makes you lay there forever
+
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
+	s.set_up(5, 1, loc)
+	s.start()
+
+	return shock_damage
 
 
 /mob/living/carbon/human/Topic(href, href_list)
@@ -621,7 +662,9 @@
 	if(internal_organs_by_name[O_EYES]) // Eyes are fucked, not a 'weak point'.
 		var/obj/item/organ/internal/eyes/I = internal_organs_by_name[O_EYES]
 		I.additional_flash_effects(intensity)
-	return ..()
+	if(eyecheck() < intensity || override_blindness_check)
+		return ..()
+
 
 #define add_clothing_protection(A)	\
 	var/obj/item/clothing/C = A; \
@@ -960,30 +1003,66 @@
 		return
 	return md5(dna.uni_identity)
 
-/mob/living/carbon/human/clean_blood(var/washshoes)
+/mob/living/carbon/human/clean_blood()
 	. = ..()
+	var/washshoes = TRUE
+	var/washmask = TRUE
+	var/washears = TRUE
+	var/washglasses = TRUE
 
-	gunshot_residue = null
+	if(wear_suit)
+		washshoes = !(wear_suit.flags_inv & HIDESHOES)
 
-	//Always do hands (or whatever's on our hands)
-	if(gloves)
-		gloves.clean_blood()
-		update_inv_gloves()
+	if(head)
+		washmask = !(head.flags_inv & HIDEMASK)
+		washglasses = !(head.flags_inv & HIDEEYES)
+		washears = !(head.flags_inv & HIDEEARS)
+
+	if(wear_mask)
+		washears = washears && !(wear_mask.flags_inv & HIDEEARS)
+		washglasses = washglasses && !(wear_mask.flags_inv & HIDEEYES)
+
+	if(head?.clean_blood())
+		update_inv_head()
+
+	if(wear_suit?.clean_blood())
+		update_inv_wear_suit()
+
+	else if(w_uniform?.clean_blood())
+		update_inv_w_uniform()
+
+	if(gloves?.clean_blood())
+		update_inv_gloves(0)
 		gloves.germ_level = 0
-	else
+	else if(!gloves)
 		bloody_hands = 0
 		germ_level = 0
 
-	//Sometimes do shoes if asked (or feet if no shoes)
-	if(washshoes && shoes)
-		shoes.clean_blood()
-		update_inv_shoes()
-		shoes.germ_level = 0
-	else if(washshoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
-		LAZYCLEARLIST(feet_blood_DNA)
-		feet_blood_DNA = null
-		feet_blood_color = null
+	if(washshoes)
+		if(shoes?.clean_blood())
+			update_inv_shoes(0)
+			shoes.germ_level = 0
+		else if(!shoes && (feet_blood_color || LAZYLEN(feet_blood_DNA)))
+			LAZYCLEARLIST(feet_blood_DNA)
+			feet_blood_DNA = null
+			feet_blood_color = null
 
+	if(washmask && wear_mask?.clean_blood())
+		update_inv_wear_mask(0)
+
+	if(washglasses && glasses?.clean_blood())
+		update_inv_glasses(0)
+
+	if(washears && l_ear?.clean_blood())
+		update_inv_ears(0)
+
+	if(washears && r_ear?.clean_blood())
+		update_inv_ears(0)
+
+	if(belt?.clean_blood())
+		update_inv_belt(0)
+
+	gunshot_residue = null
 	update_bloodied()
 
 /mob/living/carbon/human/get_visible_implants(var/class = 0)
@@ -1325,7 +1404,7 @@
 			return 1
 	return 0
 
-/mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
+/mob/living/carbon/human/slip(var/slipped_on, stun_duration=8, var/slip_dist)
 	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
 	var/footcoverage_check = FALSE
 	for(var/obj/item/clothing/C in equipment)
@@ -1333,9 +1412,22 @@
 			footcoverage_check = TRUE
 			break
 	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
+<<<<<<< HEAD
 		return 0
 	if(..(slipped_on,stun_duration))
 		return 1
+=======
+		return FALSE
+
+	if(buckled)
+		return FALSE
+	stop_pulling()
+	to_chat(src, "<span class='warning'>You slipped on [slipped_on]!</span>")
+	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
+	Weaken(FLOOR(stun_duration/2, 1))
+	slide_for(slip_dist)
+	return TRUE
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 
 /mob/living/carbon/human/proc/relocate()
 	set category = "Object"
@@ -1485,7 +1577,7 @@
 	to_chat(src, "<span class='notice'>You are now [pulling_punches ? "pulling your punches" : "not pulling your punches"].</span>")
 	return
 
-/mob/living/carbon/human/should_have_organ(var/organ_check)
+/mob/living/carbon/human/proc/should_have_organ(var/organ_check)
 
 	var/obj/item/organ/external/affecting
 	if(organ_check in list(O_HEART, O_LUNGS))
@@ -1592,7 +1684,7 @@
 	msg += get_display_species()
 	return msg
 
-/mob/living/carbon/human/reduce_cuff_time()
+/mob/living/carbon/human/proc/reduce_cuff_time()
 	if(istype(gloves, /obj/item/clothing/gloves/gauntlets/rig))
 		return 2
 	return ..()
@@ -1649,3 +1741,36 @@
 
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
+<<<<<<< HEAD
+=======
+
+/mob/living/carbon/human/get_sound_volume_multiplier()
+	. = ..()
+	for(var/obj/item/clothing/C in list(l_ear, r_ear, head))
+		. = min(., C.volume_multiplier)
+
+//generates realistic-ish pulse output based on preset levels
+/mob/living/carbon/human/proc/get_pulse(var/method)	//method 0 is for hands, 1 is for machines, more accurate
+	var/temp = 0								//see setup.dm:694
+	switch(src.pulse)
+		if(PULSE_NONE)
+			return "0"
+		if(PULSE_SLOW)
+			temp = rand(40, 60)
+			return num2text(method ? temp : temp + rand(-10, 10))
+		if(PULSE_NORM)
+			temp = rand(60, 90)
+			return num2text(method ? temp : temp + rand(-10, 10))
+		if(PULSE_FAST)
+			temp = rand(90, 120)
+			return num2text(method ? temp : temp + rand(-10, 10))
+		if(PULSE_2FAST)
+			temp = rand(120, 160)
+			return num2text(method ? temp : temp + rand(-10, 10))
+		if(PULSE_THREADY)
+			return method ? ">250" : "extremely weak and fast, patient's artery feels like a thread"
+//			output for machines^	^^^^^^^output for people^^^^^^^^^
+
+/mob/living/carbon/human/needs_to_breathe()
+	return !does_not_breathe || ..()
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies

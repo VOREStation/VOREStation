@@ -82,7 +82,13 @@ var/list/channel_to_radio_key = new
 	return null
 
 /mob/living/get_default_language()
-	return default_language
+	if(default_language && can_speak(default_language))
+		return default_language
+
+	if(!species)
+		return GLOB.all_languages[LANGUAGE_GIBBERISH]
+
+	return species.default_language ? GLOB.all_languages[species.default_language] : GLOB.all_languages[LANGUAGE_GIBBERISH]
 
 //Takes a list of the form list(message, verb, whispering) and modifies it as needed
 //Returns 1 if a speech problem was applied, 0 otherwise

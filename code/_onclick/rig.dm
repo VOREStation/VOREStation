@@ -53,8 +53,13 @@
 /mob/living/carbon/human/can_use_rig()
 	return 1
 
+<<<<<<< HEAD
 /mob/living/carbon/brain/can_use_rig()
 	return istype(loc, /obj/item/device/mmi)
+=======
+/mob/living/brain/can_use_rig()
+	return istype(loc, /obj/item/mmi)
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 
 /mob/living/silicon/ai/can_use_rig()
 	return carded

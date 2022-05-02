@@ -116,6 +116,15 @@
 
 /mob/living/carbon/human/Moved()
 	. = ..()
+
+	// Walking is handled by regular life, but if you're running, you burn more calories.
+	if(src.nutrition > 0 && !(src.stat) && src.m_intent == "run")
+		adjust_nutrition(DEFAULT_HUNGER_FACTOR)
+
+	// Moving around increases germ_level faster
+	if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
+		germ_level++
+
 	if(embedded_flag)
 		handle_embedded_objects() //Moving with objects stuck in you can cause bad times.
 
@@ -289,3 +298,22 @@
 
 	playsound(T, S, volume, FALSE)
 	return
+<<<<<<< HEAD
+=======
+
+/mob/living/carbon/human/set_dir(var/new_dir)
+	. = ..()
+	if(. && species.tail)
+		update_tail_showing()
+
+/mob/living/carbon/human/Bump(atom/A)
+	. = ..()
+	if(iscarbon(A) && prob(10))
+		spread_disease_to(A, "Contact")
+
+/mob/living/carbon/human/proc/slide_for(var/slip_dist)
+	set waitfor = FALSE
+	for(var/i = 1 to slip_dist)
+		step(src, dir)
+		sleep(1)
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies

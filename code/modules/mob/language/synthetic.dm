@@ -24,7 +24,7 @@
 	var/message_body = "<span class='message'>[speaker.say_quote(message)], \"[message]\"</span></span></i>"
 
 	for (var/mob/M in dead_mob_list)
-		if(!istype(M,/mob/new_player) && !istype(M,/mob/living/carbon/brain)) //No meta-evesdropping
+		if(!istype(M,/mob/new_player) && !istype(M,/mob/living/brain)) //No meta-evesdropping
 			var/message_to_send = "[message_start] ([ghost_follow_link(speaker, M)]) [message_body]"
 			if(M.check_mentioned(message) && M.is_preference_enabled(/datum/client_preference/check_mention))
 				message_to_send = "<font size='3'><b>[message_to_send]</b></font>"

@@ -80,4 +80,19 @@
 	var/flying = 0				// Allows flight
 	var/inventory_panel_type = /datum/inventory_panel
 	var/datum/inventory_panel/inventory_panel
+<<<<<<< HEAD
 	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown. 
+=======
+	var/last_resist_time = 0 // world.time of the most recent resist that wasn't on cooldown.
+
+	var/pose = null // Active emote/pose
+
+	var/traumatic_shock = 0
+
+	var/datum/species/species //Contains icon generation and language information, set during Initialize().
+
+	var/life_tick = 0      // The amount of life ticks that have processed on this mob.
+
+	var/last_taste_time = 0  // The last time a taste message was shown to the player.
+	var/last_taste_text = "" // The taste message in question.
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies

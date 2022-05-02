@@ -1,6 +1,6 @@
 /mob/living/carbon/human/dummy
 	real_name = "Test Dummy"
-	status_flags = GODMODE|CANPUSH
+	status_flags = CANPUSH
 	has_huds = FALSE
 	blocks_emissive = FALSE
 

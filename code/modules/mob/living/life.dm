@@ -10,36 +10,33 @@
 	if(!loc)
 		return
 
+<<<<<<< HEAD
 	var/datum/gas_mixture/environment
 	if(isbelly(loc))
 		environment = loc.return_air_for_internal_lifeform(src)
 	else
 		environment = loc.return_air()
+=======
+	// update the current life tick, can be used to e.g. only do something every 4 ticks
+	life_tick++
+
+	var/datum/gas_mixture/environment = loc.return_air()
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 
 	//handle_modifiers() // Do this early since it might affect other things later. //VOREStation Edit
 
 	handle_light()
 
 	if(stat != DEAD)
-		//Breathing, if applicable
-		handle_breathing()
-
 		//Mutations and radiation
 		handle_mutations_and_radiation()
 
-
-
-		//Blood
-		handle_blood()
 
 		//Random events (vomiting etc)
 		handle_random_events()
 
 		. = 1
-
-	//Chemicals in the body, this is moved over here so that blood can be added after death
-	handle_chemicals_in_body()
-
+	
 	//Handle temperature/pressure differences between body and environment
 	if(environment)
 		handle_environment(environment)
@@ -72,16 +69,7 @@
 
 	handle_vision()
 
-/mob/living/proc/handle_breathing()
-	return
-
 /mob/living/proc/handle_mutations_and_radiation()
-	return
-
-/mob/living/proc/handle_chemicals_in_body()
-	return
-
-/mob/living/proc/handle_blood()
 	return
 
 /mob/living/proc/handle_random_events()
@@ -101,9 +89,8 @@
 			A.play_ambience(src, initial = FALSE)
 
 /mob/living/proc/update_pulling()
-	if(pulling)
-		if(incapacitated())
-			stop_pulling()
+	if(pulling && incapacitated())
+		stop_pulling()
 
 //This updates the health and status of the mob (conscious, unconscious, dead)
 /mob/living/proc/handle_regular_status_updates()

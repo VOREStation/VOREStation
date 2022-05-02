@@ -45,7 +45,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			B.name = B.data["blood_name"]
 
 // Takes care blood loss and regeneration
-/mob/living/carbon/human/handle_blood()
+/mob/living/carbon/human/proc/handle_blood()
 	if(inStasisNow())
 		return
 

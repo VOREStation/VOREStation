@@ -95,7 +95,7 @@
 	else if(istype(target,/mob/living))
 		var/mob/living/M = target
 		if(M.stat>1) return
-		if(chassis.occupant.a_intent == I_HURT || istype(chassis.occupant,/mob/living/carbon/brain)) //No tactile feedback for brains
+		if(chassis.occupant.a_intent == I_HURT || istype(chassis.occupant,/mob/living/brain)) //No tactile feedback for brains
 			M.take_overall_damage(dam_force)
 			M.adjustOxyLoss(round(dam_force/2))
 			M.updatehealth()

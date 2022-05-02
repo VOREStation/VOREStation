@@ -121,12 +121,14 @@
 	set desc = "Empties the contents of your stomach"
 	set category = "Abilities"
 
-	if(stomach_contents.len)
-		for(var/mob/M in src)
-			if(M in stomach_contents)
-				stomach_contents.Remove(M)
-				M.loc = loc
-		src.visible_message("<font color='red'><B>[src] hurls out the contents of their stomach!</B></font>")
+	// TODO SURGERY_REFACTOR: Actually use a stomach organ
+
+	// if(stomach_contents.len)
+	// 	for(var/mob/M in src)
+	// 		if(M in stomach_contents)
+	// 			stomach_contents.Remove(M)
+	// 			M.loc = loc
+	// 	src.visible_message("<font color='red'><B>[src] hurls out the contents of their stomach!</B></font>")
 	return
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -150,7 +152,7 @@
 /mob/living/carbon/human/proc/diona_split_into_nymphs(var/number_of_resulting_nymphs)
 	var/turf/T = get_turf(src)
 
-	var/mob/living/carbon/alien/diona/S = new(T)
+	var/mob/living/simple_mob/diona_nymph/S = new(T)
 	S.set_dir(dir)
 	transfer_languages(src, S)
 
@@ -162,7 +164,7 @@
 
 	var/nymphs = 1
 
-	for(var/mob/living/carbon/alien/diona/D in src)
+	for(var/mob/living/simple_mob/diona_nymph/D in src)
 		nymphs++
 		D.forceMove(T)
 		transfer_languages(src, D, WHITELISTED|RESTRICTED)
@@ -170,7 +172,7 @@
 
 	if(nymphs < number_of_resulting_nymphs)
 		for(var/i in nymphs to (number_of_resulting_nymphs - 1))
-			var/mob/M = new /mob/living/carbon/alien/diona(T)
+			var/mob/M = new /mob/living/simple_mob/diona_nymph(T)
 			transfer_languages(src, M, WHITELISTED|RESTRICTED)
 			M.set_dir(pick(NORTH, SOUTH, EAST, WEST))
 
@@ -376,3 +378,72 @@
 		E.eye_icon = states[choice]
 		to_chat(src,"<span class='warning'>You set your monitor to display [choice]!</span>")
 		update_icons_body()
+
+/mob/living/carbon/human/verb/mob_sleep()
+	set name = "Sleep"
+	set category = "IC"
+
+	if(usr.sleeping)
+		to_chat(usr, "<font color='red'>You are already sleeping</font>")
+		return
+	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
+		usr.AdjustSleeping(20)
+
+//Brain slug proc for voluntary removal of control.
+/mob/living/carbon/human/proc/release_control()
+
+	set category = "Abilities"
+	set name = "Release Control"
+	set desc = "Release control of your host's body."
+
+	var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
+
+	if(B && B.host_brain)
+		to_chat(src, "<span class='danger'>You withdraw your probosci, releasing control of [B.host_brain]</span>")
+
+		B.detatch()
+
+		verbs -= /mob/living/carbon/human/proc/release_control
+		verbs -= /mob/living/carbon/human/proc/punish_host
+		verbs -= /mob/living/carbon/human/proc/spawn_larvae
+
+	else
+		to_chat(src, "<span class='danger'>ERROR NO BORER OR BRAINMOB DETECTED IN THIS MOB, THIS IS A BUG !</span>")
+
+//Brain slug proc for tormenting the host.
+/mob/living/carbon/human/proc/punish_host()
+	set category = "Abilities"
+	set name = "Torment host"
+	set desc = "Punish your host with agony."
+
+	var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
+	if(B?.host_brain.ckey)
+		to_chat(src, "<span class='danger'>You send a punishing spike of psychic agony lancing into your host's brain.</span>")
+		if (!can_feel_pain())
+			to_chat(B.host_brain, "<span class='warning'>You feel a strange sensation as a foreign influence prods your mind.</span>")
+			to_chat(src, "<span class='danger'>It doesn't seem to be as effective as you hoped.</span>")
+		else
+			to_chat(B.host_brain, "<span class='danger'><FONT size=3>Horrific, burning agony lances through you, ripping a soundless scream from your trapped mind!</FONT></span>")
+
+/mob/living/carbon/human/proc/spawn_larvae()
+	set category = "Abilities"
+	set name = "Reproduce"
+	set desc = "Spawn several young."
+
+	var/mob/living/simple_mob/animal/borer/B = has_brain_worms()
+
+	if(!B)
+		return
+
+	if(B.chemicals >= 100)
+		to_chat(src, "<span class='danger'>Your host twitches and quivers as you rapidly excrete a larva from your sluglike body.</span>")
+		visible_message("<span class='danger'>\The [src] heaves violently, expelling a rush of vomit and a wriggling, sluglike creature!</span>")
+		B.chemicals -= 100
+		B.has_reproduced = 1
+
+		vomit(1)
+		new /mob/living/simple_mob/animal/borer(get_turf(src))
+
+	else
+		to_chat(src, "<span class='warning'>You do not have enough chemicals stored to reproduce.</span>")
+		return

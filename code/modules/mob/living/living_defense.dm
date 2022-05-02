@@ -95,9 +95,18 @@
 // Clicking with an empty hand
 /mob/living/attack_hand(mob/living/L)
 	..()
-	if(istype(L) && L.a_intent != I_HELP)
-		if(ai_holder) // Using disarm, grab, or harm intent is considered a hostile action to the mob's AI.
-			ai_holder.react_to_attack(L)
+	if(!istype(L))
+		return
+
+	var/mob/living/carbon/human/H = L
+	var/obj/item/organ/external/temp = L.organs_by_name[ "[L.hand ? "r" : "l"]_hand"]
+	if(temp && !temp.is_usable())
+		to_chat(H, "<font color='red'>You can't use your [temp.name]</font>")
+		return
+
+	// Using disarm, grab, or harm intent is considered a hostile action to the mob's AI.
+	if(L.a_intent != I_HELP && ai_holder)
+		ai_holder.react_to_attack(L)
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
@@ -163,7 +172,7 @@
 		apply_effect(EYE_BLUR, agony_amount/10)
 
 /mob/living/proc/electrocute_act(var/shock_damage, var/obj/source, var/siemens_coeff = 1.0, var/def_zone = null, var/stun = 1)
-	  return 0 //only carbon liveforms have this proc
+	  return 0
 
 /mob/living/emp_act(severity)
 	var/list/L = src.get_contents()
@@ -243,23 +252,44 @@
 
 //returns 0 if the effects failed to apply for some reason, 1 otherwise.
 /mob/living/proc/standard_weapon_hit_effects(obj/item/I, mob/living/user, var/effective_force, var/blocked, var/soaked, var/hit_zone)
-	if(!effective_force || blocked >= 100)
+	if(!effective_force || blocked >= 100 || !istype(I))
+		return FALSE
+
+	//If the armor soaks all of the damage, it just skips the rest of the checks
+	if(effective_force <= soaked)
 		return 0
+
+
 	//Apply weapon damage
 	var/weapon_sharp = is_sharp(I)
 	var/weapon_edge = has_edge(I)
+	var/hit_embed_chance = I.embed_chance
 
 	if(getsoak(hit_zone, "melee",) - (I.armor_penetration/5) > round(effective_force*0.8)) //soaking a hit turns sharp attacks into blunt ones
-		weapon_sharp = 0
-		weapon_edge = 0
+		weapon_sharp = FALSE
+		weapon_edge = FALSE
 
 	if(prob(max(getarmor(hit_zone, "melee") - I.armor_penetration, 0))) //melee armour provides a chance to turn sharp/edge weapon attacks into blunt ones
-		weapon_sharp = 0
-		weapon_edge = 0
+		weapon_sharp = FALSE
+		weapon_edge = FALSE
+		hit_embed_chance = I.force/(I.w_class*3)
 
 	apply_damage(effective_force, I.damtype, hit_zone, blocked, soaked, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
-	return 1
+	//Melee weapon embedded object code.
+	if(I.damtype == BRUTE && !I.anchored && !is_robot_module(I) && hit_embed_chance > 0)
+		var/damage = effective_force
+		if (blocked)
+			damage *= (100 - blocked)/100
+			hit_embed_chance *= (100 - blocked)/100
+
+		//blunt objects should really not be embedding in things unless a huge amount of force is involved
+		var/embed_threshold = weapon_sharp? 5*I.w_class : 15*I.w_class
+
+		if(damage > embed_threshold && prob(hit_embed_chance))
+			src.embed(I, hit_zone)
+
+	return TRUE
 
 //this proc handles being hit by a thrown atom
 /mob/living/hitby(atom/movable/AM as mob|obj,var/speed = THROWFORCE_SPEED_DIVISOR)//Standardization and logging -Sieve
@@ -642,3 +672,6 @@
 
 /mob/living/proc/restore_all_organs()
 	return
+
+/mob/living/proc/eyecheck()
+	return 0

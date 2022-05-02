@@ -56,7 +56,6 @@
 			continue
 		else
 			E.process()
-			number_wounds += E.number_wounds
 
 			if (!lying && !buckled && world.time - l_move_time < 15)
 			//Moving around with fractured ribs won't do you any good

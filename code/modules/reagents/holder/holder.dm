@@ -391,8 +391,8 @@
 /datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
 	if(!target || !istype(target))
 		return
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
+	if(ishuman(target))
+		var/mob/living/carbon/human/C = target
 		if(type == CHEM_BLOOD)
 			var/datum/reagents/R = C.reagents
 			return trans_to_holder(R, amount, multiplier, copy)

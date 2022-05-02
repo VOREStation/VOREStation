@@ -239,7 +239,6 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			ghost.set_respawn_timer()
 			announce_ghost_joinleave(ghost)
 
-/mob/observer/dead/can_use_hands()	return 0
 /mob/observer/dead/is_active()		return 0
 
 /mob/observer/dead/Stat()

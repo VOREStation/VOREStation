@@ -43,7 +43,7 @@ var/global/vs_control/vsc = new
 	var/airflow_stun_pressure_DESC = "Percent of 1 Atm. at which mobs will be stunned by airflow."
 
 	var/airflow_stun_cooldown = 60
-	var/airflow_stun_cooldown_NAME = "Aiflow Stunning - Cooldown"
+	var/airflow_stun_cooldown_NAME = "Airflow Stunning - Cooldown"
 	var/airflow_stun_cooldown_DESC = "How long, in tenths of a second, to wait before stunning them again."
 
 	var/airflow_stun = 1

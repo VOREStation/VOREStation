@@ -14,8 +14,12 @@
 	var/speak_statement = "states"
 	var/speak_exclamation = "declares"
 	var/speak_query = "queries"
+<<<<<<< HEAD
 	var/pose //Yes, now AIs can pose too.
 	var/obj/item/device/camera/siliconcam/aiCamera = null //photography
+=======
+	var/obj/item/camera/siliconcam/aiCamera = null //photography
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies
 	var/local_transmit //If set, can only speak to others of the same type within a short range.
 
 	var/next_alarm_notice
@@ -267,13 +271,6 @@
 			to_chat(src, "Sensor augmentations disabled.")
 
 	hudmode = sensor_type //This is checked in examine.dm on humans, so they can see medical/security records depending on mode
-
-/mob/living/silicon/verb/pose()
-	set name = "Set Pose"
-	set desc = "Sets a description which will be shown when someone examines you."
-	set category = "IC"
-
-	pose =  sanitize(input(usr, "This is [src]. It is...", "Pose", null)  as text)
 
 /mob/living/silicon/verb/set_flavor()
 	set name = "Set Flavour Text"

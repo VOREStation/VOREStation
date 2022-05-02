@@ -285,37 +285,37 @@ var/global/list/all_objectives = list()
 
 /datum/objective/escape/check_completion()
 	if(issilicon(owner.current))
-		return 0
+		return FALSE
 	if(isbrain(owner.current))
-		return 0
+		return FALSE
 	if(!emergency_shuttle.returned())
-		return 0
+		return FALSE
 	if(!owner.current || owner.current.stat ==2)
-		return 0
+		return FALSE
 	var/turf/location = get_turf(owner.current.loc)
 	if(!location)
-		return 0
+		return FALSE
 
 	if(istype(location, /turf/simulated/shuttle/floor4)) // Fails traitors if they are in the shuttle brig -- Polymorph
-		if(istype(owner.current, /mob/living/carbon))
-			var/mob/living/carbon/C = owner.current
+		if(ishuman(owner.current))
+			var/mob/living/carbon/human/C = owner.current
 			if (!C.handcuffed)
-				return 1
-		return 0
+				return TRUE
+		return FALSE
 
 	var/area/check_area = location.loc
 	if(istype(check_area, /area/shuttle/escape/centcom))
-		return 1
+		return TRUE
 	if(istype(check_area, /area/shuttle/escape_pod1/centcom))
-		return 1
+		return TRUE
 	if(istype(check_area, /area/shuttle/escape_pod2/centcom))
-		return 1
+		return TRUE
 	if(istype(check_area, /area/shuttle/escape_pod3/centcom))
-		return 1
+		return TRUE
 	if(istype(check_area, /area/shuttle/escape_pod5/centcom))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 

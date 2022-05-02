@@ -2,7 +2,7 @@
 	..(mapload, "biomass")
 
 /turf/simulated/wall/diona/attack_generic(var/mob/user, var/damage, var/attack_message)
-	if(istype(user, /mob/living/carbon/alien/diona))
+	if(istype(user, /mob/living/simple_mob/diona_nymph))
 		if(can_open == WALL_OPENING)
 			return
 		can_open = WALL_CAN_OPEN

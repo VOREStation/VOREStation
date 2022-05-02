@@ -1,5 +1,9 @@
+<<<<<<< HEAD:code/modules/mob/living/carbon/taste.dm
 /mob/living/carbon/proc/ingest(var/datum/reagents/from, var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
 	/* VOREStation Removal - Synths should be able to taste because... reasons
+=======
+/mob/living/proc/ingest(var/datum/reagents/from, var/datum/reagents/target, var/amount = 1, var/multiplier = 1, var/copy = 0) //we kind of 'sneak' a proc in here for ingesting stuff so we can play with it.
+>>>>>>> f1e82ef21af... Merge pull request #8561 from Atermonera/remove_carbonmob_dependencies:code/modules/mob/living/taste.dm
 	if(ishuman(src))
 		var/mob/living/carbon/human/H = src
 		var/braintype = H.get_FBP_type()
@@ -22,7 +26,7 @@
 catalogue the 'taste strength' of each one
 calculate text size per text.
 */
-/datum/reagents/proc/generate_taste_message(mob/living/carbon/taster = null)
+/datum/reagents/proc/generate_taste_message(mob/living/taster = null)
 	var/minimum_percent = 15
 	if(ishuman(taster))
 		var/mob/living/carbon/human/H = taster

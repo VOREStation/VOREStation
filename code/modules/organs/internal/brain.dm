@@ -16,7 +16,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	origin_tech = list(TECH_BIO = 3)
 	attack_verb = list("attacked", "slapped", "whacked")
 	var/clone_source = FALSE
-	var/mob/living/carbon/brain/brainmob = null
+	var/mob/living/brain/brainmob = null
 	var/can_assist = TRUE
 	var/defib_timer = -1
 
