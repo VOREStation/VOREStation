@@ -540,10 +540,10 @@
 /mob/living/bot/Login()
 	no_vore = FALSE // ROBOT VORE
 	init_vore() // ROBOT VORE
-	verbs |= /mob/living/proc/insidePanel()
+	verbs |= /mob/living/proc/insidePanel
 
 /mob/living/bot/Logout()
 	no_vore = TRUE // ROBOT VORE
 	release_vore_contents()
 	init_vore() // ROBOT VORE
-	verbs -= /mob/living/proc/insidePanel()
+	verbs -= /mob/living/proc/insidePanel
