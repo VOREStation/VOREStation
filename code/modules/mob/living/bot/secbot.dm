@@ -362,7 +362,6 @@
 		S.slimebatoned(src, xeno_stun_strength)
 
 /mob/living/bot/secbot/explode()
-	. = ..()
 	visible_message("<span class='warning'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
@@ -381,7 +380,7 @@
 
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
 	//qdel(src)
-	return
+	return ..()
 
 /mob/living/bot/secbot/proc/target_name(mob/living/T)
 	if(ishuman(T))

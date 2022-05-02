@@ -530,7 +530,7 @@
 		return
 	return feed_grabbed_to_self(src,T)
 
-/mob/living/bot/verb/ejectself(var/mob/living/T in oview(1))
+/mob/living/bot/verb/ejectself()
 	set name = "Eject pAI"
 	set category = "Bot Commands"
 	set desc = "Eject your card, return to smole."
