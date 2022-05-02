@@ -517,7 +517,8 @@
 		paicard = null
 		name = initial(name)
 		botcard.access = botcard_access.Copy()
-			to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
+		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
+
 		if(user)
 			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
 
