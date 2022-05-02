@@ -17,7 +17,7 @@
 	var/emagged = 0
 	var/light_strength = 3
 	var/busy = 0
-
+	var/obj/item/device/paicard/paicard = null
 	var/obj/access_scanner = null
 	var/list/req_access = list()
 	var/list/req_one_access = list()
@@ -72,7 +72,7 @@
 	SetStunned(0)
 	SetParalysis(0)
 
-	if(on && !client && !busy)
+	if(on && !client && !busy && !paicard)
 		spawn(0)
 			handleAI()
 
@@ -138,6 +138,12 @@
 			qdel(O)
 		else
 			to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
+	else if(istype(O, /obj/item/device/paicard))
+		if(open)
+			insertpai(user, O)
+			to_chat(user, span_notice("You slot the card into \the [initial(src.name)]."))
+		else
+			to_chat(user, span_notice("You must open the panel first!"))
 	else
 		..()
 
@@ -354,6 +360,8 @@
 	qdel(src)
 
 /mob/living/bot/is_sentient()
+	if(paicard)
+		return TRUE
 	return FALSE
 
 /******************************************************************/
@@ -443,3 +451,68 @@
 
 /mob/living/bot/isSynthetic() //Robots are synthetic, no?
 	return 1
+
+/mob/living/bot/proc/insertpai(mob/user, obj/item/device/paicard/card)
+	//var/obj/item/paicard/card = I
+	var/mob/living/silicon/pai/AI = card.pai
+	if(paicard)
+		to_chat(user, span_notice("This bot is already under PAI Control!"))
+		return
+	if(!istype(card)) // TODO: Add sleevecard support.
+		return
+	if(client)
+		to_chat(user, span_notice("Higher levels of processing are already present!"))
+		return
+	if(!card.pai)
+		to_chat(user, span_notice("This card does not currently have a personality!"))
+		return
+	paicard = card
+	card.forceMove(src)
+	src.ckey = AI.ckey
+	name = AI.name
+	ooc_notes = AI.ooc_notes
+	to_chat(src, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
+	if(AI.idcard.access)
+		botcard.access	|= AI.idcard.access
+
+/mob/living/bot/proc/ejectpai(mob/user)
+	if(paicard)
+		var/mob/living/silicon/pai/AI = paicard.pai
+		AI.ckey = src.ckey
+		AI.ooc_notes = ooc_notes
+		paicard.forceMove(loc)
+		paicard = null
+		botcard.access = botcard_access.Copy()
+			to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
+		if(user)
+			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
+
+/mob/living/bot/verb/eject()
+	set name = "Eject pAI"
+	set category = "Object"
+	set src in oview(1)
+
+	if(usr.stat) return
+
+	if(open)
+		ejectpai(usr)
+	else
+		to_chat(usr, span_notice("You must open the panel first!"))
+
+/mob/living/bot/verb/bot_nom(var/mob/living/T in oview(1))
+	set name = "Bot Nom"
+	set category = "Bot Commands"
+	set desc = "Allows you to eat someone. Yum."
+
+	if (stat != CONSCIOUS)
+		return
+	return feed_grabbed_to_self(src,T)
+
+/mob/living/bot/verb/ejectself(var/mob/living/T in oview(1))
+	set name = "Eject pAI"
+	set category = "Bot Commands"
+	set desc = "Eject your card, return to smole."
+
+	if (stat != CONSCIOUS)
+		return
+	return ejectpai()
