@@ -256,11 +256,9 @@
 	backstab_bonus = 40 // 100
 	thrown_bonus = 20 // 120
 	update_item_state = FALSE
+	slot_flags = SLOT_BELT
 
-
-/obj/item/weapon/kinetic_crusher/machete/Initialize()  //Making sure you can't store gauntlets/greaves on your belts.
-	if(w_class < ITEMSIZE_HUGE)
-		slot_flags = SLOT_BELT
+		
 
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets
@@ -280,6 +278,7 @@
 	detonation_damage = 37 // 75
 	backstab_bonus = 55 // 130
 	var/obj/item/offhand/crushergauntlets/offhand
+	slot_flags = null
 
 /obj/item/weapon/kinetic_crusher/machete/gauntlets/equipped()
 	. = ..()
