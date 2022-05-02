@@ -14,7 +14,6 @@
 	clickvol = "30"
 	flags = OPENCONTAINER | NOREACT
 	circuit = /obj/item/weapon/circuitboard/microwave
-	var/obj/item/device/paicard/paicard = null
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -126,7 +125,7 @@
 			to_chat(user, "<span class='warning'>It's dirty!</span>")
 			return 1
 	else if(is_type_in_list(O,acceptable_items))
-		if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
+		if(cookingContents().len>=(max_n_of_items + circuit_item_capacity))	//Adds component_parts to the maximum number of items. changed 1 to actually just be the circuit item capacity var.
 			to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
@@ -228,12 +227,8 @@
 	var/list/items_counts = list()
 	var/list/items_measures = list()
 	var/list/items_measures_p = list()
-	var/list/working_list = contents
-	working_list -= component_parts
-	working_list -= circuit
-	if(paicard)
-		working_list -= paicard
-	for(var/obj/O in ((contents - component_parts) - circuit))
+	//for(var/obj/O in ((contents - component_parts) - circuit))
+	for(var/obj/O in cookingContents())
 		var/display_name = O.name
 		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
 			items_measures[display_name] = "egg"
@@ -368,7 +363,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	start()
-	if(reagents.total_volume==0 && !(locate(/obj) in ((contents - component_parts) - circuit))) //dry run
+	if(reagents.total_volume==0 && !(locate(/obj) in cookingContents())) //dry run
 		if(!wzhzhzh(16)) //VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was 5)
 			abort()
 			return
@@ -464,7 +459,7 @@
 
 /obj/machinery/microwave/proc/has_extra_item() //- coded to have different microwaves be able to handle different items
 	if(item_level == 0)
-		for (var/obj/O in ((contents - component_parts) - circuit))
+		for (var/obj/O in cookingContents())
 			if ( \
 					!istype(O,/obj/item/weapon/reagent_containers/food) && \
 					!istype(O, /obj/item/weapon/grown) \
@@ -472,7 +467,7 @@
 				return 1
 		return 0
 	if(item_level == 1)
-		for (var/obj/O in ((contents - component_parts) - circuit))
+		for (var/obj/O in cookingContents())
 			if ( \
 					!istype(O, /obj/item/weapon/reagent_containers/food) && \
 					!istype(O, /obj/item/weapon/grown) && \
@@ -506,7 +501,7 @@
 	soundloop.stop()
 
 /obj/machinery/microwave/proc/dispose(var/message = 1)
-	for (var/atom/movable/A in ((contents-component_parts)-circuit))
+	for (var/atom/movable/A in cookingContents())
 		A.forceMove(loc)
 	if (src.reagents.total_volume)
 		src.dirty++
@@ -545,7 +540,7 @@
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
-	for (var/obj/O in (((contents - ffuu) - component_parts) - circuit))
+	for (var/obj/O in cookingContents())
 		amount++
 		if(O.reagents)
 			var/id = O.reagents.get_master_reagent_id()
@@ -578,8 +573,8 @@
 		return
 
 	usr.visible_message(
-	"<span class='notice'>[usr] opened [src] and has taken out [english_list(((contents-component_parts)-circuit))].</span>" ,
-	"<span class='notice'>You have opened [src] and taken out [english_list(((contents-component_parts)-circuit))].</span>"
+	"<span class='notice'>[usr] opened [src] and has taken out [english_list(cookingContents())].</span>" ,
+	"<span class='notice'>You have opened [src] and taken out [english_list(cookingContents())].</span>"
 	)
 	dispose()
 
@@ -632,37 +627,11 @@
 		M.muck_finish()
 	.  = ..()
 
-//VoreEdit, Living Microwave. Living Microwave.
-/obj/machinery/microwave/proc/insertpai(mob/user, obj/item/device/paicard/card)
-	//var/obj/item/paicard/card = I
-	var/mob/living/silicon/pai/AI = card.pai
+/obj/machinery/microwave/proc/cookingContents() //VOREEdit, this is a better way to deal with the contents of a microwave, since the previous method is stupid.
+	var/list/workingList = contents.Copy() // Using the copy proc because otherwise the two lists seem to become soul bonded.
+	workingList -= component_parts
+	workingList -= circuit
 	if(paicard)
-		to_chat(user, span_notice("This bot is already under PAI Control!"))
-		return
-	if(!istype(card)) // TODO: Add sleevecard support.
-		return
-	if(!card.pai)
-		to_chat(user, span_notice("This card does not currently have a personality!"))
-		return
-	paicard = card
-	user.unEquip(card)
-	card.forceMove(src)
-	AI.client.eye = src
-	//src.ckey = AI.ckey
-	get_items_list()
-	to_chat(AI, span_notice("Your location is [AI.loc]."))
-	name = AI.name
-	//ooc_notes = AI.ooc_notes
-	to_chat(AI, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
+		workingList -= paicard
+	return workingList
 
-/obj/machinery/microwave/proc/ejectpai(mob/user)
-	if(paicard)
-		var/mob/living/silicon/pai/AI = paicard.pai
-		//AI.ckey = src.ckey
-		paicard.forceMove(src.loc)
-		AI.client.eye = AI
-		paicard = null
-		name = initial(src.name)
-		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
-		if(user)
-			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
