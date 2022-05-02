@@ -467,6 +467,7 @@
 		to_chat(user, span_notice("This card does not currently have a personality!"))
 		return
 	paicard = card
+	user.unEquip(card)
 	card.forceMove(src)
 	src.ckey = AI.ckey
 	name = AI.name
@@ -480,8 +481,9 @@
 		var/mob/living/silicon/pai/AI = paicard.pai
 		AI.ckey = src.ckey
 		AI.ooc_notes = ooc_notes
-		paicard.forceMove(loc)
+		paicard.forceMove(src.loc)
 		paicard = null
+		name = initial(name)
 		botcard.access = botcard_access.Copy()
 			to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
 		if(user)
@@ -513,6 +515,4 @@
 	set category = "Bot Commands"
 	set desc = "Eject your card, return to smole."
 
-	if (stat != CONSCIOUS)
-		return
 	return ejectpai()
