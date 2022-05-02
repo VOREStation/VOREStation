@@ -66,6 +66,8 @@
 	soundloop = new(list(src), FALSE)
 
 /obj/machinery/microwave/Destroy()
+	if(paicard)
+		ejectpai() // Lets not delete the pAI.
 	QDEL_NULL(soundloop)
 	return ..()
 
@@ -634,6 +636,6 @@
 	if(paicard)
 		workingList -= paicard
 	for(var/M in workingList)
-		if(istype(M, circuit)) // I know not why we need this check, all I know is if we don't circuits will be added to microwave components after construction.
+		if(istype(M, circuit)) // Yes, we remove circuit twice. Yes, it's necessary. Yes, it's stupid.
 			workingList -= M
 	return workingList

@@ -386,6 +386,8 @@
 	update_icons()
 
 /mob/living/bot/proc/explode()
+	if(paicard)
+		ejectpai()
 	qdel(src)
 
 /mob/living/bot/is_sentient()
