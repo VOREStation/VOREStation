@@ -55,7 +55,7 @@
 			S = L
 
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 			if(!H.put_in_any_hand_if_possible(S))
 				S.forceMove(get_turf(src))
 		else

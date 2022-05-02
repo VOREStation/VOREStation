@@ -105,13 +105,13 @@
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if(istype(src, /mob/living/human))
 		//to_world("DEBUG: burn_skin(), mutations=[mutations]")
 		if(mShock in src.mutations) //shockproof
 			return 0
 		if (COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
-		var/mob/living/carbon/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
+		var/mob/living/human/H = src	//make this damage method divide the damage to be done among all the body parts, then burn each body part for that much damage. will have better effect then just randomly picking a body part
 		var/divided_damage = (burn_amount)/(H.organs.len)
 		var/extradam = 0	//added to when organ is at max dam
 		for(var/obj/item/organ/external/affecting in H.organs)
@@ -139,7 +139,7 @@
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(istype(src, /mob/living/human))
 //		to_world("[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 
@@ -536,8 +536,8 @@
 	rejuvenate()
 	if(buckled)
 		buckled.unbuckle_mob()
-	if(iscarbon(src))
-		var/mob/living/carbon/C = src
+	if(ishuman(src))
+		var/mob/living/human/C = src
 
 		if (C.handcuffed && !initial(C.handcuffed))
 			C.drop_from_inventory(C.handcuffed)
@@ -728,7 +728,7 @@
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
 	return 0
 
-/mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
+/mob/living/human/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in internal_organs)
 		return 0
 	return ..()
@@ -782,7 +782,7 @@
 				to_chat(src, "<span class='warning'>You feel nauseous...</span>")
 
 				if(ishuman(src))
-					var/mob/living/carbon/human/Hu = src
+					var/mob/living/human/Hu = src
 					if(CE_ANTACID in Hu.chem_effects)
 						if(prob(min(90, Hu.chem_effects[CE_ANTACID] * 15)))
 							spawn(rand(30 SECONDS, 2 MINUTES))
@@ -798,7 +798,7 @@
 					//Damaged livers cause you to vomit blood.
 					if(!blood_vomit)
 						if(ishuman(src))
-							var/mob/living/carbon/human/H = src
+							var/mob/living/human/H = src
 							if(!H.isSynthetic())
 								var/obj/item/organ/internal/liver/L = H.internal_organs_by_name["liver"]
 								if(!L || L.is_broken())
@@ -1037,7 +1037,7 @@
 			if(end_T)
 				add_attack_logs(src,M,"Thrown via grab to [end_T.x],[end_T.y],[end_T.z]")
 			if(ishuman(M))
-				var/mob/living/carbon/human/N = M
+				var/mob/living/human/N = M
 				if((N.health + N.halloss) < config.health_threshold_crit || N.stat == DEAD)
 					N.adjustBruteLoss(rand(10,30))
 			src.drop_from_inventory(G)
@@ -1048,6 +1048,22 @@
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
+<<<<<<< HEAD
+=======
+
+			return TRUE
+		return FALSE
+
+	if(a_intent == I_HELP && Adjacent(target) && isitem(item))
+		if(ishuman(target))
+			var/mob/living/human/H = target
+			if(H.in_throw_mode && H.a_intent == I_HELP && unEquip(item))
+				H.put_in_hands(item) // If this fails it will just end up on the floor, but that's fitting for things like dionaea.
+				visible_message("<b>[src]</b> hands \the [H] \a [item].", SPAN_NOTICE("You give \the [target] \a [item]."))
+			else
+				to_chat(src, SPAN_NOTICE("You offer \the [item] to \the [target]."))
+				do_give(H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			return TRUE
 		else
 			return FALSE

@@ -21,7 +21,7 @@
 
 /obj/item/weapon/newspaper/attack_self(mob/user as mob)
 	if(ishuman(user))
-		var/mob/living/carbon/human/human_user = user
+		var/mob/living/human/human_user = user
 		var/dat
 		pages = 0
 		switch(screen)

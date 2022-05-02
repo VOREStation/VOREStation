@@ -30,7 +30,7 @@
 		temp_change *= 2
 		temp_cap = baseline.cold_level_3 - 5
 
-	for(var/mob/living/carbon/human/H in nearby_mobs)
+	for(var/mob/living/human/H in nearby_mobs)
 		if(is_ally(H))
 			continue
 

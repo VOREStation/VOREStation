@@ -42,7 +42,7 @@
 	pref.be_random_name     = sanitize_integer(pref.be_random_name, 0, 1, initial(pref.be_random_name))
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/basic/copy_to_mob(var/mob/living/human/character)
 	if(config.humans_need_surnames)
 		var/firstspace = findtext(pref.real_name, " ")
 		var/name_length = length(pref.real_name)

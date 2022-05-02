@@ -89,7 +89,7 @@
 			if(new_light_overlay)
 				helmet.light_overlay = new_light_overlay
 			to_chat(user, "You set about modifying the helmet into [helmet].")
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 			if(istype(H))
 				helmet.species_restricted = list(H.species.get_bodytype(H))
 		else if(istype(I, /obj/item/clothing/suit/storage/hooded))
@@ -109,7 +109,7 @@
 				suit.icon_override = new_icon_override_file
 				S.icon_override = new_icon_override_file
 			to_chat(user, "You set about modifying the suit into [suit].")
-//			var/mob/living/carbon/human/H = user
+//			var/mob/living/human/H = user
 //			if(istype(H))
 //				suit.species_restricted = list(H.species.get_bodytype(H)) Does not quite make sense for something usually very pliable.
 		else
@@ -123,7 +123,7 @@
 			if(new_icon_override_file)
 				suit.icon_override = new_icon_override_file
 			to_chat(user, "You set about modifying the suit into [suit].")
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 			if(istype(H))
 				suit.species_restricted = list(H.species.get_bodytype(H))
 		use(1,user)

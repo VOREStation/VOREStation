@@ -7,8 +7,8 @@
 /datum/artifact_effect/hurt/DoEffectTouch(var/mob/toucher)
 	if(toucher)
 		var/weakness = GetAnomalySusceptibility(toucher)
-		if(iscarbon(toucher) && prob(weakness * 100))
-			var/mob/living/carbon/C = toucher
+		if(ishuman(toucher) && prob(weakness * 100))
+			var/mob/living/human/C = toucher
 			to_chat(C, "<span class='danger'>A painful discharge of energy strikes you!</span>")
 			C.adjustOxyLoss(rand(5,25) * weakness)
 			C.adjustToxLoss(rand(5,25) * weakness)
@@ -25,7 +25,7 @@
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/mob/living/carbon/C in range(src.effectrange,T))
+		for (var/mob/living/human/C in range(src.effectrange,T))
 			var/weakness = GetAnomalySusceptibility(C)
 			if(prob(weakness * 100))
 				if(prob(10))
@@ -41,7 +41,7 @@
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/mob/living/carbon/C in range(effectrange, T))
+		for (var/mob/living/human/C in range(effectrange, T))
 			var/weakness = GetAnomalySusceptibility(C)
 			if(prob(weakness * 100))
 				to_chat(C, "<span class='danger'>A wave of painful energy strikes you!</span>")

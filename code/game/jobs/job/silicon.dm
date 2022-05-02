@@ -25,14 +25,14 @@
 						the AI's commands, and their own Laws."
 
 // AI procs
-/datum/job/ai/equip(var/mob/living/carbon/human/H)
+/datum/job/ai/equip(var/mob/living/human/H)
 	if(!H)	return 0
 	return 1
 
 /datum/job/ai/is_position_available()
 	return (empty_playable_ai_cores.len != 0)
 
-/datum/job/ai/equip_preview(mob/living/carbon/human/H)
+/datum/job/ai/equip_preview(mob/living/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/straight_jacket(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cardborg(H), slot_head)
 	return 1
@@ -73,11 +73,11 @@
 					and important piece of station property, and is expected to follow its Laws."
 
 // Cyborg procs
-/datum/job/cyborg/equip(var/mob/living/carbon/human/H)
+/datum/job/cyborg/equip(var/mob/living/human/H)
 	if(!H)	return 0
 	return 1
 
-/datum/job/cyborg/equip_preview(mob/living/carbon/human/H)
+/datum/job/cyborg/equip_preview(mob/living/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/cardborg(H), slot_wear_suit)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cardborg(H), slot_head)
 	return 1

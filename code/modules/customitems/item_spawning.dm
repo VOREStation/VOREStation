@@ -176,7 +176,7 @@
 	return 1
 
 //gets the relevant list for the key from the listlist if it exists, check to make sure they are meant to have it and then calls the giving function
-/proc/equip_custom_items(mob/living/carbon/human/M)
+/proc/equip_custom_items(mob/living/human/M)
 	var/list/key_list = custom_items[M.ckey]
 	if(!key_list || key_list.len < 1)
 		return
@@ -223,7 +223,7 @@
 			place_custom_item(M,citem)
 
 // Places the item on the target mob.
-/proc/place_custom_item(mob/living/carbon/human/M, var/datum/custom_item/citem)
+/proc/place_custom_item(mob/living/human/M, var/datum/custom_item/citem)
 
 	if(!citem) return
 	var/obj/item/newitem = citem.spawn_item()

@@ -19,10 +19,15 @@
 
 //////////////////////////////Capturing////////////////////////////////////////////////////////
 
+<<<<<<< HEAD
 /obj/item/device/soulstone/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if(!istype(M, /mob/living/carbon/human))//If target is not a human.
+=======
+/obj/item/soulstone/attack(mob/living/human/M as mob, mob/user as mob)
+	if(!istype(M, /mob/living/human))//If target is not a human.
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return ..()
-	if(istype(M, /mob/living/carbon/human/dummy))
+	if(istype(M, /mob/living/human/dummy))
 		return..()
 	if(jobban_isbanned(M, "cultist"))
 		to_chat(user, "<span class='warning'>This person's soul is too corrupt and cannot be captured!</span>")
@@ -103,7 +108,11 @@
 
 
 ////////////////////////////Proc for moving soul in and out off stone//////////////////////////////////////
+<<<<<<< HEAD
 /obj/item/device/soulstone/proc/transfer_human(var/mob/living/carbon/human/T,var/mob/U)
+=======
+/obj/item/soulstone/proc/transfer_human(var/mob/living/human/T,var/mob/U)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(T))
 		return;
 	if(src.imprinted != "empty")

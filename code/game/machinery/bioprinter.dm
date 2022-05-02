@@ -225,7 +225,7 @@
 	var/new_organ = choice
 	var/obj/item/organ/O = new new_organ(get_turf(src))
 	O.status |= ORGAN_CUT_AWAY
-	var/mob/living/carbon/human/C = loaded_dna["donor"]
+	var/mob/living/human/C = loaded_dna["donor"]
 	O.set_dna(C.dna)
 	O.species = C.species
 

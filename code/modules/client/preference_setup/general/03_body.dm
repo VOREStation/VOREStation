@@ -269,7 +269,7 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 	pref.sanitize_body_styles()
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/body/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/body/copy_to_mob(var/mob/living/human/character)
 	// Copy basic values
 	character.r_eyes	= pref.r_eyes
 	character.g_eyes	= pref.g_eyes

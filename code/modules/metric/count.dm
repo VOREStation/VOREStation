@@ -26,7 +26,7 @@
 // Note that `ignore_synths` makes this proc ignore posibrains and drones, but NOT cyborgs, as they are still the same species in-universe.
 /datum/metric/proc/count_all_of_specific_species(species_name, ignore_synths = TRUE, cutoff = 75, respect_z = TRUE)
 	var/num = 0
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/human/H in player_list)
 		if(respect_z && !(H.z in using_map.station_levels))
 			continue
 		if(ignore_synths && H.isSynthetic() && H.get_FBP_type() != FBP_CYBORG)
@@ -39,7 +39,7 @@
 // Gives a count of how many FBPs of a specific type there are on the station.
 /datum/metric/proc/count_all_FBPs_of_kind(desired_FBP_class, cutoff = 75, respect_z = TRUE)
 	var/num = 0
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/human/H in player_list)
 		if(respect_z && !(H.z in using_map.station_levels))
 			continue
 		if(H.get_FBP_type() != desired_FBP_class)

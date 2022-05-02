@@ -84,9 +84,9 @@
 					to_chat(user, "<span class='notice'>There is already a blood sample in this syringe.</span>")
 					return
 
-				if(istype(target, /mob/living/carbon))
+				if(istype(target, /mob/living/human))
 					var/amount = reagents.get_free_space()
-					var/mob/living/carbon/T = target
+					var/mob/living/human/T = target
 					if(!T.dna)
 						to_chat(user, "<span class='warning'>You are unable to locate any blood. (To be specific, your target seems to be missing their DNA datum).</span>")
 						return
@@ -104,8 +104,8 @@
 
 					var/datum/reagent/B
 					drawing = 1
-					if(istype(T, /mob/living/carbon/human))
-						var/mob/living/carbon/human/H = T
+					if(istype(T, /mob/living/human))
+						var/mob/living/human/H = T
 						if(H.species && !H.should_have_organ(O_HEART))
 							H.reagents.trans_to_obj(src, amount)
 						else
@@ -164,8 +164,12 @@
 				to_chat(user, "<span class='notice'>[target] is full.</span>")
 				return
 
+<<<<<<< HEAD
 			var/mob/living/carbon/human/H = target
 			var/obj/item/organ/external/affected //VOREStation Edit - Moved this outside this if
+=======
+			var/mob/living/human/H = target
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			if(istype(H))
 				affected = H.get_organ(user.zone_sel.selecting) //VOREStation Edit - See above comment.
 				if(!affected)
@@ -257,12 +261,19 @@
 		filling.icon_state = "syringe[rounded_vol]"
 
 		filling.color = reagents.get_color()
+<<<<<<< HEAD
 		add_overlay(filling)
 */
 /obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
 	if(istype(target, /mob/living/carbon/human))
+=======
+		overlays += filling
 
-		var/mob/living/carbon/human/H = target
+/obj/item/reagent_containers/syringe/proc/syringestab(mob/living/human/target as mob, mob/living/human/user as mob)
+	if(istype(target, /mob/living/human))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
+
+		var/mob/living/human/H = target
 
 		var/target_zone = ran_zone(check_zone(user.zone_sel.selecting, target))
 		var/obj/item/organ/external/affecting = H.get_organ(target_zone)
@@ -305,7 +316,11 @@
 	if(!issilicon(user))
 		break_syringe(target, user)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/syringe/proc/break_syringe(mob/living/carbon/target, mob/living/carbon/user)
+=======
+/obj/item/reagent_containers/syringe/proc/break_syringe(mob/living/human/target, mob/living/human/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	desc += " It is broken."
 	mode = SYRINGE_BROKEN
 	if(target)

@@ -61,7 +61,7 @@
 		return 0
 	if(player.current)
 		if(ishuman(player.current))
-			var/mob/living/carbon/human/H = player.current
+			var/mob/living/human/H = player.current
 			if(H.isSynthetic())
 				return 0
 			if(H.species.flags & NO_SCAN)

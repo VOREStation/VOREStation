@@ -301,7 +301,11 @@
 		reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/storage/fancy/cigarettes/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(M, /mob))
 		return
 

@@ -15,7 +15,7 @@
 	if(src.stat == DEAD)
 		dead_mob_list -= src
 		living_mob_list += src
-	var/mob/living/carbon/C = src
+	var/mob/living/human/C = src
 
 	C.tod = null
 	C.setToxLoss(0)
@@ -28,7 +28,7 @@
 	C.heal_overall_damage(C.getBruteLoss(), C.getFireLoss())
 	C.reagents.clear_reagents()
 	if(ishuman(C))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/human/H = src
 		H.species.create_organs(H)
 		H.restore_all_organs(ignore_prosthetic_prefs=1) //Covers things like fractures and other things not covered by the above.
 		H.restore_blood()
@@ -102,8 +102,8 @@
 	set name = "Revive"
 	set desc = "We are ready to revive ourselves on command."
 
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(ishuman(usr))
+		var/mob/living/human/C = usr
 		C.changeling_revive()
 
 	qdel(src)

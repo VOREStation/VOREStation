@@ -15,7 +15,7 @@
 	step_towards(src, S)
 	apply_effect(current_size * 3, IRRADIATE, blocked = getarmor(null, "rad"))
 
-/mob/living/carbon/human/singularity_act()
+/mob/living/human/singularity_act()
 	var/gain = 20
 	if(mind)
 		if((mind.assigned_role == "Engineer") || (mind.assigned_role == "Chief Engineer"))
@@ -26,7 +26,7 @@
 	gib()
 	return gain
 
-/mob/living/carbon/human/singularity_pull(S, current_size)
+/mob/living/human/singularity_pull(S, current_size)
 	if(current_size >= STAGE_THREE)
 		var/list/handlist = list(l_hand, r_hand)
 		for(var/obj/item/hand in handlist)

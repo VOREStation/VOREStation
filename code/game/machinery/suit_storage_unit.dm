@@ -7,9 +7,15 @@
 	desc = "An industrial U-Stor-It Storage unit designed to accomodate all kinds of space suits. Its on-board equipment also allows the user to decontaminate the contents through a UV-ray purging cycle. There's a warning label dangling from the control pad, reading \"STRICTLY NO BIOLOGICALS IN THE CONFINES OF THE UNIT\"."
 	icon = 'icons/obj/suitstorage.dmi'
 	icon_state = "suitstorage000000100" //order is: [has helmet][has suit][has human][is open][is locked][is UV cycling][is powered][is dirty/broken] [is superUVcycling]
+<<<<<<< HEAD
 	anchored = TRUE
 	density = TRUE
 	var/mob/living/carbon/human/OCCUPANT = null
+=======
+	anchored = 1
+	density = 1
+	var/mob/living/human/OCCUPANT = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/obj/item/clothing/suit/space/SUIT = null
 	var/suit_type = null
 	var/obj/item/clothing/head/helmet/space/HELMET = null
@@ -169,6 +175,11 @@
 
 
 /obj/machinery/suit_storage_unit/proc/toggleUV(mob/user as mob)
+<<<<<<< HEAD
+=======
+//	var/protected = 0
+//	var/mob/living/human/H = user
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!panelopen)
 		return
 
@@ -183,6 +194,11 @@
 
 
 /obj/machinery/suit_storage_unit/proc/togglesafeties(mob/user as mob)
+<<<<<<< HEAD
+=======
+//	var/protected = 0
+//	var/mob/living/human/H = user
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!panelopen) //Needed check due to bugs
 		return
 
@@ -531,7 +547,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	var/datum/suit_cycler_choice/department/target_department
 	var/datum/suit_cycler_choice/species/target_species
 
-	var/mob/living/carbon/human/occupant = null
+	var/mob/living/human/occupant = null
 	var/obj/item/clothing/suit/space/void/suit = null
 	var/obj/item/clothing/head/helmet/space/helmet = null
 

@@ -119,7 +119,7 @@
 		else
 			TB.names.Add(name)
 			TB.namecounts[name] = 1
-		if(istype(M, /mob/living/carbon/human))
+		if(istype(M, /mob/living/human))
 			TB.humans[name] = M
 		else
 			TB.others[name] = M
@@ -247,7 +247,7 @@
 	if(. == TRACKING_NO_COVERAGE)
 		return camera && camera.can_use() ? TRACKING_POSSIBLE : TRACKING_NO_COVERAGE
 
-/mob/living/carbon/human/tracking_status()
+/mob/living/human/tracking_status()
 	//Cameras can't track people wearing an agent card or a ninja hood.
 	if(istype(head, /obj/item/clothing/head/helmet/space/rig))
 		var/obj/item/clothing/head/helmet/space/rig/helmet = head

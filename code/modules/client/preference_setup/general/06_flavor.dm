@@ -37,7 +37,7 @@
 	return
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/flavor/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/flavor/copy_to_mob(var/mob/living/human/character)
 	character.flavor_texts["general"]	= pref.flavor_texts["general"]
 	character.flavor_texts["head"]		= pref.flavor_texts["head"]
 	character.flavor_texts["face"]		= pref.flavor_texts["face"]

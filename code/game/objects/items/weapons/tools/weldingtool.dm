@@ -65,7 +65,7 @@
 
 /obj/item/weapon/weldingtool/attack(atom/A, mob/living/user, def_zone)
 	if(ishuman(A) && user.a_intent == I_HELP)
-		var/mob/living/carbon/human/H = A
+		var/mob/living/human/H = A
 		var/obj/item/organ/external/S = H.organs_by_name[user.zone_sel.selecting]
 
 		if(!S || S.robotic < ORGAN_ROBOT || S.open == 3)
@@ -311,13 +311,17 @@
 
 //Decides whether or not to damage a player's eyes based on what they're wearing as protection
 //Note: This should probably be moved to mob
+<<<<<<< HEAD
 /obj/item/weapon/weldingtool/proc/eyecheck(mob/living/carbon/user)
+=======
+/obj/item/weldingtool/proc/eyecheck(mob/living/human/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(user))
 		return 1
 	var/safety = user.eyecheck()
 	safety = between(-1, safety + eye_safety_modifier, 2)
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user, /mob/living/human))
+		var/mob/living/human/H = user
 		var/obj/item/organ/internal/eyes/E = H.internal_organs_by_name[O_EYES]
 		if(!E)
 			return
@@ -502,10 +506,10 @@
 
 /obj/item/weapon/weldingtool/tubefed/process()
 	if(mounted_pack)
-		if(!istype(mounted_pack.loc,/mob/living/carbon/human))
+		if(!istype(mounted_pack.loc,/mob/living/human))
 			mounted_pack.return_nozzle()
 		else
-			var/mob/living/carbon/human/H = mounted_pack.loc
+			var/mob/living/human/H = mounted_pack.loc
 			if(H.back != mounted_pack)
 				mounted_pack.return_nozzle()
 
@@ -649,7 +653,7 @@
 	if(istype(src.loc, /obj/item/rig_module))
 		var/obj/item/rig_module/module = src.loc
 		if(module.holder && module.holder.wearer)
-			var/mob/living/carbon/human/H = module.holder.wearer
+			var/mob/living/human/H = module.holder.wearer
 			if(istype(H) && H.back)
 				var/obj/item/weapon/rig/suit = H.back
 				if(istype(suit))

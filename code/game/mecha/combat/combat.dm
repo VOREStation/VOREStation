@@ -56,7 +56,7 @@
 				return
 			*/
 			if(ishuman(T))
-				var/mob/living/carbon/human/H = T
+				var/mob/living/human/H = T
 	//			if (M.health <= 0) return
 
 				var/obj/item/organ/external/temp = H.get_organ(pick(BP_TORSO, BP_TORSO, BP_TORSO, BP_HEAD))
@@ -129,7 +129,7 @@
 					melee_can_hit = 1
 	return
 
-/obj/mecha/combat/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/combat/moved_inside(var/mob/living/human/H as mob)
 	if(..())
 		if(H.client)
 			H.client.mouse_pointer_icon = file("icons/mecha/mecha_mouse.dmi")

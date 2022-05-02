@@ -41,7 +41,7 @@
 	reagents = R
 	R.my_atom = src
 
-/obj/item/toy/balloon/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+/obj/item/toy/balloon/attack(mob/living/human/M as mob, mob/user as mob)
 	return
 
 /obj/item/toy/balloon/afterattack(atom/A as mob|obj, mob/user as mob, proximity)
@@ -185,8 +185,8 @@
 	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
 	if(active)
 		add_overlay(blade_overlay)
-	if(istype(usr,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = usr
+	if(istype(usr,/mob/living/human))
+		var/mob/living/human/H = usr
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
@@ -256,7 +256,7 @@
 	if(H.is_incorporeal())
 		return
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
-		var/mob/living/carbon/M = H
+		var/mob/living/human/M = H
 		if(M.m_intent == "run")
 			to_chat(M, "<span class='warning'>You step on the snap pop!</span>")
 

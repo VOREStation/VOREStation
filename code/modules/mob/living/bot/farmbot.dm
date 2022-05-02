@@ -137,7 +137,7 @@
 
 /mob/living/bot/farmbot/lookForTargets()
 	if(emagged)
-		for(var/mob/living/carbon/human/H in view(7, src))
+		for(var/mob/living/human/H in view(7, src))
 			target = H
 			times_idle = 0 //VOREStation Add - Idle shutoff time
 			return

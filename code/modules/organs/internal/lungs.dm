@@ -49,9 +49,15 @@
 /obj/item/organ/internal/lungs/grey
 	icon_state = "lungs_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/lungs/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/lungs/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(owner && ishuman(owner))
 			H = owner

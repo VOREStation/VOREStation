@@ -253,7 +253,7 @@
 			return
 
 /mob/living/bot/secbot/handleAdjacentTarget()
-	var/mob/living/carbon/human/H = target
+	var/mob/living/human/H = target
 	check_threat(target)
 	if(awaiting_surrender < SECBOT_WAIT_TIME && istype(H) && !H.lying && threat < SECBOT_THREAT_ATTACK)
 		if(awaiting_surrender == 0) // On first tick of awaiting...
@@ -313,7 +313,7 @@
 		return
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		var/cuff = TRUE
 
 		if(!H.lying || H.handcuffed || arrest_type)
@@ -383,7 +383,7 @@
 
 /mob/living/bot/secbot/proc/target_name(mob/living/T)
 	if(ishuman(T))
-		var/mob/living/carbon/human/H = T
+		var/mob/living/human/H = T
 		return H.get_id_name("unidentified person")
 	return "unidentified lifeform"
 

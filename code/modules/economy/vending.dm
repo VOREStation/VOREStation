@@ -447,8 +447,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 	else
 		data["panel"] = 0
 
+<<<<<<< HEAD
 	var/mob/living/carbon/human/H
 	var/obj/item/weapon/card/id/C
+=======
+	var/mob/living/human/H
+	var/obj/item/card/id/C
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 	data["guestNotice"] = "No valid ID card detected. Wear your ID, or present cash.";
 	data["userMoney"] = 0
@@ -534,8 +539,13 @@ GLOBAL_LIST_EMPTY(vending_products)
 
 			vend_ready = FALSE // From this point onwards, vendor is locked to performing this transaction only, until it is resolved.
 
+<<<<<<< HEAD
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/weapon/card/id/C = H.GetIdCard()
+=======
+			var/mob/living/human/H = usr
+			var/obj/item/card/id/C = H.GetIdCard()
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 			if(!vendor_account || vendor_account.suspended)
 				to_chat(usr, "Vendor account offline. Unable to process transaction.")

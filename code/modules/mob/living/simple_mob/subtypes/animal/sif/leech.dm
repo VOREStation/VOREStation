@@ -48,7 +48,7 @@
 	var/max_chemicals = 400
 	var/list/bodypart_targets = list(BP_L_LEG,BP_R_LEG,BP_L_ARM,BP_R_ARM,BP_TORSO,BP_GROIN,BP_HEAD)
 	var/infest_target = BP_TORSO	// The currently chosen bodypart to infest.
-	var/mob/living/carbon/host		// Our humble host.
+	var/mob/living/human/host		// Our humble host.
 	var/list/produceable_chemicals = list("inaprovaline","anti_toxin","alkysine","bicaridine","tramadol","kelotane","leporazine","iron","phoron","condensedcapsaicin_v","frostoil")
 	var/randomized_reagent = "iron"	// The reagent chosen at random to be produced, if there's no one piloting the worm.
 	var/passive_reagent = "paracetamol"	// Reagent passively produced by the leech. Should usually be a painkiller.
@@ -97,7 +97,7 @@
 /mob/living/simple_mob/animal/sif/leech/IIsAlly(mob/living/L)
 	. = ..()
 
-	var/mob/living/carbon/human/H = L
+	var/mob/living/human/H = L
 	if(!istype(H))
 		return .
 
@@ -134,7 +134,7 @@
 
 /mob/living/simple_mob/animal/sif/leech/do_special_attack(atom/A)
 	. = TRUE
-	if(istype(A, /mob/living/carbon))
+	if(istype(A, /mob/living/human))
 		switch(a_intent)
 			if(I_DISARM) // Poison
 				set_AI_busy(TRUE)
@@ -182,7 +182,7 @@
 			chemicals -= 3
 
 		if(!docile && ishuman(host) && chemicals < max_chemicals)
-			var/mob/living/carbon/human/H = host
+			var/mob/living/human/H = host
 			H.vessel.remove_reagent("blood", 1)
 			if(!H.reagents.has_reagent("inaprovaline"))
 				H.reagents.add_reagent("inaprovaline", 1)
@@ -217,7 +217,7 @@
 
 			var/heartless_mod = 0
 			if(ishuman(host))	// Species without hearts mean the worm gets hungry faster, if AI controlled.
-				var/mob/living/carbon/human/H = host
+				var/mob/living/human/H = host
 				if(!H.species.has_organ[O_HEART])
 					heartless_mod = 1
 
@@ -250,11 +250,11 @@
 		to_chat(user, span("warning","We cannot infest a target in your current state."))
 		return
 
-	var/mob/living/carbon/M = target
+	var/mob/living/human/M = target
 
 	if(!M && src.client)
 		var/list/choices = list()
-		for(var/mob/living/carbon/C in view(1,src))
+		for(var/mob/living/human/C in view(1,src))
 			if(src.Adjacent(C))
 				choices += C
 
@@ -272,8 +272,8 @@
 		to_chat(user, "\The [M] cannot be infested.")
 		return
 
-	if(istype(M,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M,/mob/living/human))
+		var/mob/living/human/H = M
 
 		var/obj/item/organ/external/E = H.organs_by_name[infest_target]
 		if(!E || E.is_stump() || E.robotic >= ORGAN_ROBOT)
@@ -307,8 +307,8 @@
 			ai_holder.hostile = FALSE
 			ai_holder.lose_target()
 
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M,/mob/living/human))
+			var/mob/living/human/H = M
 			host_bodypart = H.get_organ(infest_target)
 			host_bodypart.implants |= src
 
@@ -350,10 +350,10 @@
 		to_chat(src, span("alium","We are too tired to do this..."))
 		return
 
-	var/mob/living/carbon/M
+	var/mob/living/human/M
 	if(src.client)
 		var/list/choices = list()
-		for(var/mob/living/carbon/C in view(1,src))
+		for(var/mob/living/human/C in view(1,src))
 			if(src.Adjacent(C))
 				choices += C
 
@@ -368,11 +368,11 @@
 
 	poison_inject(usr, M)
 
-/mob/living/simple_mob/animal/sif/leech/proc/poison_inject(var/mob/living/user, var/mob/living/carbon/L)
+/mob/living/simple_mob/animal/sif/leech/proc/poison_inject(var/mob/living/user, var/mob/living/human/L)
 	if(!L || !Adjacent(L) || stat)
 		return
 
-	var/mob/living/carbon/human/H = L
+	var/mob/living/human/H = L
 
 	if(!istype(H) || H.isSynthetic())
 		to_chat(user, span("warning","You cannot inject this target..."))

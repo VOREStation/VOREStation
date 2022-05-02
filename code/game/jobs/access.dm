@@ -215,7 +215,7 @@
 /mob/living/bot/GetIdCard()
 	return botcard
 
-/mob/living/carbon/human/GetIdCard()
+/mob/living/human/GetIdCard()
 	if(get_active_hand())
 		var/obj/item/I = get_active_hand()
 		var/id = I.GetID()
@@ -229,7 +229,7 @@
 /mob/living/silicon/GetIdCard()
 	return idcard
 
-/proc/FindNameFromID(var/mob/living/carbon/human/H)
+/proc/FindNameFromID(var/mob/living/human/H)
 	ASSERT(istype(H))
 	var/obj/item/weapon/card/id/C = H.GetIdCard()
 	if(C)

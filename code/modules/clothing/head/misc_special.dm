@@ -120,7 +120,7 @@
 
 	var/turf/location = src.loc
 	if(istype(location, /mob/))
-		var/mob/living/carbon/human/M = location
+		var/mob/living/human/M = location
 		if(M.item_is_in_hands(src) || M.head == src)
 			location = M.loc
 
@@ -197,7 +197,7 @@
 	siemens_coefficient = 1.5
 	item_icons = null
 
-/obj/item/clothing/head/kitty/update_icon(var/mob/living/carbon/human/user)
+/obj/item/clothing/head/kitty/update_icon(var/mob/living/human/user)
 	if(!istype(user)) return
 	var/icon/ears = new/icon("icon" = 'icons/inventory/head/mob.dmi', "icon_state" = "kitty")
 	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
@@ -251,13 +251,13 @@
 	to_chat(wearer, "<span class='danger'>The inside of your head hurts...</span>")
 	wearer.adjustBrainLoss(brainloss_cost)
 
-/obj/item/clothing/head/psy_crown/equipped(var/mob/living/carbon/human/H)
+/obj/item/clothing/head/psy_crown/equipped(var/mob/living/human/H)
 	..()
 	if(istype(H) && H.head == src && H.is_sentient())
 		START_PROCESSING(SSobj, src)
 		to_chat(H, flavor_equip)
 
-/obj/item/clothing/head/psy_crown/dropped(var/mob/living/carbon/human/H)
+/obj/item/clothing/head/psy_crown/dropped(var/mob/living/human/H)
 	..()
 	STOP_PROCESSING(SSobj, src)
 	if(H.is_sentient())

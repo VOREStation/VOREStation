@@ -36,7 +36,12 @@
 	return INITIALIZE_HINT_QDEL
 
 /obj/effect/landmark/corpse/proc/createCorpse() //Creates a mob and checks for gear in each slot before attempting to equip it.
+<<<<<<< HEAD
 	var/mob/living/carbon/human/M = new /mob/living/carbon/human (src.loc)
+=======
+	set waitfor = FALSE
+	var/mob/living/human/M = new /mob/living/human (src.loc)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(random_species)
 		var/random_pick = pick(random_species_list)
 		M.set_species(random_pick)

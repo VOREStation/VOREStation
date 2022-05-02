@@ -128,7 +128,7 @@
 /obj/item/organ/external/diona/removed()
 	if(robotic >= ORGAN_ROBOT)
 		return ..()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/human/H = owner
 	..()
 	if(!istype(H) || !H.organs || !H.organs.len)
 		H.death()
@@ -144,7 +144,7 @@
 /obj/item/organ/internal/diona/removed(var/mob/living/user, var/skip_nymph)
 	if(robotic >= ORGAN_ROBOT)
 		return ..()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/human/H = owner
 	..()
 	if(!istype(H) || !H.organs || !H.organs.len)
 		H.death()
@@ -229,7 +229,7 @@
 /obj/item/organ/internal/brain/cephalon/removed(var/mob/living/user, var/skip_nymph)
 	if(robotic >= ORGAN_ROBOT)
 		return ..()
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/human/H = owner
 	..()
 	if(!istype(H) || !H.organs || !H.organs.len)
 		H.death()

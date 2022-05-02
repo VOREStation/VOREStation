@@ -14,7 +14,7 @@
 	var/icon_base = "magboots"
 	action_button_name = "Toggle Magboots"
 	var/obj/item/clothing/shoes/shoes = null	//Undershoes
-	var/mob/living/carbon/human/wearer = null	//For shoe procs
+	var/mob/living/human/wearer = null	//For shoe procs
 	step_volume_mod = 1.3
 	drop_sound = 'sound/items/drop/metalboots.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
@@ -44,7 +44,7 @@
 	user.update_action_buttons()
 
 /obj/item/clothing/shoes/magboots/mob_can_equip(mob/user, slot, disable_warning = FALSE)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 
 	if(H.shoes)
 		shoes = H.shoes
@@ -71,7 +71,7 @@
 
 /obj/item/clothing/shoes/magboots/dropped()
 	..()
-	var/mob/living/carbon/human/H = wearer
+	var/mob/living/human/H = wearer
 	if(shoes)
 		if(!H.equip_to_slot_if_possible(shoes, slot_shoes))
 			shoes.forceMove(get_turf(src))
@@ -103,7 +103,7 @@
 		//make sure these can only be used when equipped.
 		if(!ishuman(user))
 			return
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if (H.shoes != src)
 			to_chat(user, "You will have to put on the [src] before you can do that.")
 			return

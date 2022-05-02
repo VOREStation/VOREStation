@@ -23,7 +23,7 @@
 	if(istype(T))
 		for(var/mob/living/L in orange(T, radius))
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/human/H = L
 				to_chat(H, "<span class='critical'>WHUMP.</span>")
 
 				var/ear_safety = 0

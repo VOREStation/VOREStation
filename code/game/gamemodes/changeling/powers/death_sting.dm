@@ -10,7 +10,7 @@
 	set name = "Death Sting (40)"
 	set desc = "Causes spasms onto death."
 
-	var/mob/living/carbon/T = changeling_sting(40,/mob/proc/changeling_DEATHsting)
+	var/mob/living/human/T = changeling_sting(40,/mob/proc/changeling_DEATHsting)
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Death sting (changeling)")

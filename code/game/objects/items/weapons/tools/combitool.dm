@@ -45,7 +45,11 @@
 		to_chat(user, "You switch \the [src] to the [tool.name] fitting.")
 	return 1
 
+<<<<<<< HEAD
 /obj/item/weapon/combitool/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/combitool/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!M.Adjacent(user))
 		return 0
 	var/obj/item/tool = tools[current_tool]

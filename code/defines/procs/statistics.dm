@@ -25,7 +25,7 @@
 	if(!sqllogging)
 		return
 
-/proc/sql_report_death(var/mob/living/carbon/human/H)
+/proc/sql_report_death(var/mob/living/human/H)
 	if(!sqllogging)
 		return
 	if(!H)

@@ -6,7 +6,7 @@
 	density = FALSE
 
 
-/obj/machinery/iv_drip/var/mob/living/carbon/human/attached = null
+/obj/machinery/iv_drip/var/mob/living/human/attached = null
 /obj/machinery/iv_drip/var/mode = 1 // 1 is injecting, 0 is taking blood.
 /obj/machinery/iv_drip/var/obj/item/weapon/reagent_containers/beaker = null
 
@@ -114,7 +114,7 @@
 					visible_message("\The [src] pings.")
 				return
 
-			var/mob/living/carbon/human/T = attached
+			var/mob/living/human/T = attached
 
 			if(!istype(T))
 				return

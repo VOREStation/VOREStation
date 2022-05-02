@@ -81589,7 +81589,7 @@
 /obj/item/weapon/stool/padded,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/mob/living/carbon/human/monkey/punpun,
+/mob/living/human/monkey/punpun,
 /turf/simulated/floor/lino,
 /area/crew_quarters/bar)
 "cVT" = (

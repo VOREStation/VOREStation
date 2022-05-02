@@ -251,7 +251,7 @@
 		job = "?"
 
 	newsign.data["mob"] = null
-	newsign.data["mobtype"] = /mob/living/carbon/human
+	newsign.data["mobtype"] = /mob/living/human
 	if(source in S.stored_names)
 		newsign.data["name"] = source
 	else

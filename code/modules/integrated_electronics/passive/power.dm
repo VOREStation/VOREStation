@@ -62,15 +62,21 @@
 	origin_tech = list(TECH_POWER = 4, TECH_ENGINEERING = 4, TECH_DATA = 4, TECH_BIO = 5)
 	spawn_flags = IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/passive/power/metabolic_siphon/proc/test_validity(var/mob/living/carbon/human/host)
+/obj/item/integrated_circuit/passive/power/metabolic_siphon/proc/test_validity(var/mob/living/human/host)
 	if(!host || host.isSynthetic() || host.stat == DEAD || host.nutrition <= 10)
 		return FALSE // Robots and dead people don't have a metabolism.
 	return TRUE
 
 /obj/item/integrated_circuit/passive/power/metabolic_siphon/handle_passive_energy()
+<<<<<<< HEAD
 	var/mob/living/carbon/human/host = null
 	if(assembly && istype(assembly, /obj/item/device/electronic_assembly/implant))
 		var/obj/item/device/electronic_assembly/implant/implant_assembly = assembly
+=======
+	var/mob/living/human/host = null
+	if(assembly && istype(assembly, /obj/item/electronic_assembly/implant))
+		var/obj/item/electronic_assembly/implant/implant_assembly = assembly
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(implant_assembly.implant.imp_in)
 			host = implant_assembly.implant.imp_in
 	if(host && test_validity(host))
@@ -85,7 +91,7 @@
 	origin_tech = list(TECH_POWER = 3, TECH_ENGINEERING = 4, TECH_DATA = 3)
 	spawn_flags = IC_SPAWN_RESEARCH
 
-/obj/item/integrated_circuit/passive/power/metabolic_siphon/synthetic/test_validity(var/mob/living/carbon/human/host)
+/obj/item/integrated_circuit/passive/power/metabolic_siphon/synthetic/test_validity(var/mob/living/human/host)
 	if(!host || !host.isSynthetic() || host.stat == DEAD || host.nutrition <= 10)
 		return FALSE // This time we don't want a metabolism.
 	return TRUE

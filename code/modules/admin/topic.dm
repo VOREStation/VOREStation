@@ -277,11 +277,16 @@
 
 		switch(href_list["simplemake"])
 			if("observer")			M.change_mob_type( /mob/observer/dead , null, null, delmob )
+<<<<<<< HEAD
 			if("larva")				M.change_mob_type( /mob/living/carbon/alien/larva , null, null, delmob )
 			if("nymph")				M.change_mob_type( /mob/living/carbon/alien/diona , null, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
+=======
+			if("nymph")				M.change_mob_type( /mob/living/simple_mob/diona_nymph , null, null, delmob )
+			if("human")				M.change_mob_type( /mob/living/human , null, null, delmob, href_list["species"])
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			if("slime")				M.change_mob_type( /mob/living/simple_mob/slime/xenobio , null, null, delmob )
-			if("monkey")			M.change_mob_type( /mob/living/carbon/human/monkey , null, null, delmob )
+			if("monkey")			M.change_mob_type( /mob/living/human/monkey , null, null, delmob )
 			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
 			if("cat")				M.change_mob_type( /mob/living/simple_mob/animal/passive/cat , null, null, delmob )
 			if("runtime")			M.change_mob_type( /mob/living/simple_mob/animal/passive/cat/runtime , null, null, delmob )
@@ -1017,9 +1022,9 @@
 	else if(href_list["monkeyone"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
+		var/mob/living/human/H = locate(href_list["monkeyone"])
 		if(!istype(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 
 		log_admin("[key_name(usr)] attempting to monkeyize [key_name(H)]")
@@ -1029,9 +1034,9 @@
 	else if(href_list["corgione"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["corgione"])
+		var/mob/living/human/H = locate(href_list["corgione"])
 		if(!istype(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 
 		log_admin("[key_name(usr)] attempting to corgize [key_name(H)]")
@@ -1083,8 +1088,8 @@
 		if(!M)	return
 
 		M.loc = prison_cell
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/prisoner = M
+		if(istype(M, /mob/living/human))
+			var/mob/living/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/prison(prisoner), slot_w_uniform)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), slot_shoes)
 
@@ -1204,8 +1209,8 @@
 		for(var/obj/item/I in M)
 			M.drop_from_inventory(I)
 
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/observer = M
+		if(istype(M, /mob/living/human))
+			var/mob/living/human/observer = M
 			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), slot_w_uniform)
 			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), slot_shoes)
 		M.Paralyse(5)
@@ -1234,31 +1239,21 @@
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
+		var/mob/living/human/H = locate(href_list["makeai"])
 		if(!istype(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 
 		message_admins("<font color='red'>Admin [key_name_admin(usr)] AIized [key_name_admin(H)]!</font>", 1)
 		log_admin("[key_name(usr)] AIized [key_name(H)]")
 		H.AIize()
 
-	else if(href_list["makealien"])
-		if(!check_rights(R_SPAWN))	return
-
-		var/mob/living/carbon/human/H = locate(href_list["makealien"])
-		if(!istype(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
-			return
-
-		usr.client.cmd_admin_alienize(H)
-
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
+		var/mob/living/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 
 		usr.client.cmd_admin_robotize(H)
@@ -1285,9 +1280,9 @@
 	else if(href_list["togmutate"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
+		var/mob/living/human/H = locate(href_list["togmutate"])
 		if(!istype(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 		var/block=text2num(href_list["block"])
 		usr.client.cmd_admin_toggle_block(H,block)
@@ -1412,9 +1407,9 @@
 	else if(href_list["adminspawncookie"])
 		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["adminspawncookie"])
+		var/mob/living/human/H = locate(href_list["adminspawncookie"])
 		if(!ishuman(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 
 		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
@@ -1436,9 +1431,9 @@
 	else if(href_list["adminsmite"])
 		if(!check_rights(R_ADMIN|R_FUN|R_EVENT))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["adminsmite"])
+		var/mob/living/human/H = locate(href_list["adminsmite"])
 		if(!ishuman(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 
 		owner.smite(H)
@@ -1480,9 +1475,9 @@
 
 
 	else if(href_list["SyndicateReply"])
-		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])
+		var/mob/living/human/H = locate(href_list["SyndicateReply"])
 		if(!istype(H))
-			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
+			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/human</span>")
 			return
 		if(!istype(H.l_ear, /obj/item/device/radio/headset) && !istype(H.r_ear, /obj/item/device/radio/headset))
 			to_chat(usr, "<span class='filter_adminlog'>The person you are trying to contact is not wearing a headset</span>")
@@ -2056,8 +2051,13 @@
 /mob/living/proc/can_centcom_reply()
 	return 0
 
+<<<<<<< HEAD
 /mob/living/carbon/human/can_centcom_reply()
 	return istype(l_ear, /obj/item/device/radio/headset) || istype(r_ear, /obj/item/device/radio/headset)
+=======
+/mob/living/human/can_centcom_reply()
+	return istype(l_ear, /obj/item/radio/headset) || istype(r_ear, /obj/item/radio/headset)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 /mob/living/silicon/ai/can_centcom_reply()
 	return common_radio != null && !check_unable(2)

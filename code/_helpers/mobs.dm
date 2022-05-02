@@ -302,7 +302,7 @@ Proc for attack log creation, because really why not
 /atom/proc/human_mobs(var/range = world.view)
 	var/list/viewers = oviewers(src,range)
 	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in viewers)
+	for(var/mob/living/human/H in viewers)
 		humans += H
 
 	return humans

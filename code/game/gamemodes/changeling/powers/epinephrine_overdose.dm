@@ -27,7 +27,7 @@
 		return 0
 	changeling.chem_charges -= 30
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/human/C = src
 	to_chat(C, "<span class='notice'>Energy rushes through us.  [C.lying ? "We arise." : ""]</span>")
 	C.set_stat(CONSCIOUS)
 	C.SetParalysis(0)
@@ -53,7 +53,7 @@
 	metabolism = REM * 2
 	overdose = 5 //This is intentionally low, as we want the ling to take some tox damage, to discourage spamming the ability.
 
-/datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/epinephrine/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	M.add_chemical_effect(CE_SPEEDBOOST, 3)

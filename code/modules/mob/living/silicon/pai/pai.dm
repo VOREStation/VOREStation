@@ -258,7 +258,7 @@
 			to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
 			return 0 //VOREStation edit.
 		if(ishuman(holder))
-			var/mob/living/carbon/human/H = holder
+			var/mob/living/human/H = holder
 			for(var/obj/item/organ/external/affecting in H.organs)
 				if(card in affecting.implants)
 					affecting.take_damage(rand(30,50))
@@ -412,8 +412,13 @@
 	return 0
 
 // Handle being picked up.
+<<<<<<< HEAD
 /mob/living/silicon/pai/get_scooped(var/mob/living/carbon/grabber, var/self_drop)
 	var/obj/item/weapon/holder/H = ..(grabber, self_drop)
+=======
+/mob/living/silicon/pai/get_scooped(var/mob/living/human/grabber, var/self_drop)
+	var/obj/item/holder/H = ..(grabber, self_drop)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(H))
 		return
 

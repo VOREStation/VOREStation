@@ -8,14 +8,19 @@
 	w_class = ITEMSIZE_SMALL
 	item_state = "electronic"
 
+<<<<<<< HEAD
 /obj/item/device/antibody_scanner/attack(mob/M as mob, mob/user as mob)
 	if(!istype(M,/mob/living/carbon/))
+=======
+/obj/item/antibody_scanner/attack(mob/M as mob, mob/user as mob)
+	if(!istype(M,/mob/living/human/))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		report("Scan aborted: Incompatible target.", user)
 		return
 
-	var/mob/living/carbon/C = M
-	if (istype(C,/mob/living/carbon/human/))
-		var/mob/living/carbon/human/H = C
+	var/mob/living/human/C = M
+	if (istype(C,/mob/living/human/))
+		var/mob/living/human/H = C
 		if(!H.should_have_organ(O_HEART))
 			report("Scan aborted: The target does not have blood.", user)
 			return
@@ -54,14 +59,19 @@
 	src.virus2.makerandom()
 	growth = rand(5, 50)
 
+<<<<<<< HEAD
 /obj/item/weapon/virusdish/attackby(var/obj/item/weapon/W as obj,var/mob/living/carbon/user as mob)
 	if(istype(W,/obj/item/weapon/hand_labeler) || istype(W,/obj/item/weapon/reagent_containers/syringe))
+=======
+/obj/item/virusdish/attackby(var/obj/item/W as obj,var/mob/living/human/user as mob)
+	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_containers/syringe))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return
 	..()
 	if(prob(50))
 		to_chat(user, "<span class='danger'>\The [src] shatters!</span>")
 		if(virus2.infectionchance > 0)
-			for(var/mob/living/carbon/target in view(1, get_turf(src)))
+			for(var/mob/living/human/target in view(1, get_turf(src)))
 				if(airborne_can_reach(get_turf(src), get_turf(target)))
 					infect_virus2(target, src.virus2)
 		qdel(src)
@@ -85,8 +95,13 @@
 	icon_state = "virussample-ruined"
 	desc = "The bacteria in the dish are completely dead."
 
+<<<<<<< HEAD
 /obj/item/weapon/ruinedvirusdish/attackby(var/obj/item/weapon/W as obj,var/mob/living/carbon/user as mob)
 	if(istype(W,/obj/item/weapon/hand_labeler) || istype(W,/obj/item/weapon/reagent_containers/syringe))
+=======
+/obj/item/ruinedvirusdish/attackby(var/obj/item/W as obj,var/mob/living/human/user as mob)
+	if(istype(W,/obj/item/hand_labeler) || istype(W,/obj/item/reagent_containers/syringe))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return ..()
 
 	if(prob(50))

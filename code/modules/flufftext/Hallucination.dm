@@ -11,7 +11,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 
 */
 
-/mob/living/carbon/var
+/mob/living/human/var
 	image/halimage
 	image/halbody
 	obj/halitem
@@ -19,7 +19,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	handling_hal = 0
 	hal_crit = 0
 
-/mob/living/carbon/proc/handle_hallucinations()
+/mob/living/human/proc/handle_hallucinations()
 	if(handling_hal) return
 	handling_hal = 1
 	while(client && hallucination > 20)
@@ -40,8 +40,8 @@ Gunshots/explosions/opening doors/less rare audio (done)
 					var/list/slots_free = list(ui_lhand,ui_rhand)
 					if(l_hand) slots_free -= ui_lhand
 					if(r_hand) slots_free -= ui_rhand
-					if(istype(src,/mob/living/carbon/human))
-						var/mob/living/carbon/human/H = src
+					if(istype(src,/mob/living/human))
+						var/mob/living/human/H = src
 						if(!H.belt) slots_free += ui_belt
 						if(!H.l_store) slots_free += ui_storage1
 						if(!H.r_store) slots_free += ui_storage2
@@ -212,7 +212,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	return start_txt + mocktxt + end_txt + "</TT></BODY></HTML>"
 
 /proc/check_panel(mob/M)
-	if (istype(M, /mob/living/carbon/human) || istype(M, /mob/living/silicon/ai))
+	if (istype(M, /mob/living/human) || istype(M, /mob/living/silicon/ai))
 		if(M.hallucination < 15)
 			return 1
 	return 0*/
@@ -225,7 +225,7 @@ Gunshots/explosions/opening doors/less rare audio (done)
 	density = FALSE
 	anchored = TRUE
 	opacity = 0
-	var/mob/living/carbon/human/my_target = null
+	var/mob/living/human/my_target = null
 	var/weapon_name = null
 	var/obj/item/weap = null
 	var/image/stand_icon = null
@@ -352,10 +352,10 @@ var/list/non_fakeattack_weapons = list(/obj/item/weapon/gun/projectile, /obj/ite
 
 /proc/fake_attack(var/mob/living/target)
 	var/list/possible_clones = new/list()
-	var/mob/living/carbon/human/clone = null
+	var/mob/living/human/clone = null
 	var/clone_weapon = null
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/human/H in living_mob_list)
 		if(H.stat || H.lying)
 			continue
 		possible_clones += H

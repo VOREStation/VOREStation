@@ -523,7 +523,7 @@ var/global/list/additional_antag_types = list()
 
 /proc/get_nt_opposed()
 	var/list/dudes = list()
-	for(var/mob/living/carbon/human/man in player_list)
+	for(var/mob/living/human/man in player_list)
 		if(man.client)
 			if(man.client.prefs.economic_status == CLASS_LOWER)
 				dudes += man

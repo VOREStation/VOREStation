@@ -11,11 +11,11 @@ var/const/BLOOD_VOLUME_SURVIVE = 40
 */
 var/const/CE_STABLE_THRESHOLD = 0.5
 
-/mob/living/carbon/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
-/mob/living/carbon/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
+/mob/living/human/var/datum/reagents/vessel // Container for blood and BLOOD ONLY. Do not transfer other chems here.
+/mob/living/human/var/var/pale = 0          // Should affect how mob sprite is drawn, but currently doesn't.
 
 //Initializes blood vessels
-/mob/living/carbon/human/proc/make_blood()
+/mob/living/human/proc/make_blood()
 
 	if(vessel)
 		return
@@ -32,7 +32,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	vessel.add_reagent("blood",species.blood_volume)
 
 //Resets blood data
-/mob/living/carbon/human/proc/fixblood()
+/mob/living/human/proc/fixblood()
 	for(var/datum/reagent/blood/B in vessel.reagent_list)
 		if(B.id == "blood")
 			B.data = list(	"donor"=src,"viruses"=null,"species"=species.name,"blood_DNA"=dna.unique_enzymes,"blood_colour"= species.get_blood_colour(src),"blood_type"=dna.b_type,	\
@@ -45,7 +45,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			B.name = B.data["blood_name"]
 
 // Takes care blood loss and regeneration
+<<<<<<< HEAD
 /mob/living/carbon/human/handle_blood()
+=======
+/mob/living/human/proc/handle_blood()
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(inStasisNow())
 		return
 
@@ -181,7 +185,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 						blood_loss_divisor = max(blood_loss_divisor + 10, 1)
 					if(temp.applied_pressure)
 						if(ishuman(temp.applied_pressure))
-							var/mob/living/carbon/human/H = temp.applied_pressure
+							var/mob/living/human/H = temp.applied_pressure
 							H.bloody_hands(src, 0)
 						//somehow you can apply pressure to every wound on the organ at the same time
 						//you're basically forced to do nothing at all, so let's make it pretty effective
@@ -195,11 +199,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		drip(blood_max)
 
 //Makes a blood drop, leaking amt units of blood from the mob
-/mob/living/carbon/human/proc/drip(var/amt)
+/mob/living/human/proc/drip(var/amt)
 	if(remove_blood(amt))
 		blood_splatter(src,src)
 
-/mob/living/carbon/human/proc/remove_blood(var/amt)
+/mob/living/human/proc/remove_blood(var/amt)
 	if(!should_have_organ(O_HEART)) //TODO: Make drips come from the reagents instead.
 		return 0
 
@@ -216,7 +220,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 ****************************************************/
 
 //Gets blood from mob to the container, preserving all data in it.
+<<<<<<< HEAD
 /mob/living/carbon/proc/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+=======
+/mob/living/human/proc/take_blood(obj/item/reagent_containers/container, var/amount)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 	var/datum/reagent/B = get_blood(container.reagents)
 	if(!B)
@@ -234,8 +242,8 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	B.data["blood_type"] = copytext(src.dna.b_type,1,0)
 
 	// Putting this here due to return shenanigans.
-	if(istype(src,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = src
+	if(istype(src,/mob/living/human))
+		var/mob/living/human/H = src
 		B.data["blood_colour"] = H.species.get_blood_colour(H)
 		B.color = B.data["blood_colour"]
 
@@ -247,7 +255,11 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	return B
 
 //For humans, blood does not appear from blue, it comes from vessels.
+<<<<<<< HEAD
 /mob/living/carbon/human/take_blood(obj/item/weapon/reagent_containers/container, var/amount)
+=======
+/mob/living/human/take_blood(obj/item/reagent_containers/container, var/amount)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 	if(!should_have_organ(O_HEART))
 		return null
@@ -259,7 +271,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	vessel.remove_reagent("blood",amount) // Removes blood if human
 
 //Transfers blood from container ot vessels
-/mob/living/carbon/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/human/proc/inject_blood(var/datum/reagent/blood/injected, var/amount)
 	if (!injected || !istype(injected))
 		return
 	var/list/sniffles = virus_copylist(injected.data["virus2"])
@@ -275,7 +287,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	reagents.update_total()
 
 //Transfers blood from reagents to vessel, respecting blood types compatability.
-/mob/living/carbon/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
+/mob/living/human/inject_blood(var/datum/reagent/blood/injected, var/amount)
 
 	if(!should_have_organ(O_HEART))
 		reagents.add_reagent("blood", amount, injected.data)
@@ -295,7 +307,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	..()
 
 //Gets human's own blood.
-/mob/living/carbon/proc/get_blood(datum/reagents/container)
+/mob/living/human/proc/get_blood(datum/reagents/container)
 	var/datum/reagent/blood/res = locate() in container.reagent_list //Grab some blood
 	if(res) // Make sure there's some blood at all
 		if(res.data["donor"] != src) //If it's not theirs, then we look for theirs
@@ -340,8 +352,8 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 	var/turf/T = get_turf(target)
 	var/synth = 0
 
-	if(istype(source,/mob/living/carbon/human))
-		var/mob/living/carbon/human/M = source
+	if(istype(source,/mob/living/human))
+		var/mob/living/human/M = source
 		if(M.isSynthetic()) synth = 1
 		source = M.get_blood(M.vessel)
 

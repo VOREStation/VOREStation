@@ -24,10 +24,16 @@ var/global/datum/repository/crew/crew_repository = new()
 	var/tracked = scan()
 	for(var/obj/item/clothing/under/C in tracked)
 		var/turf/pos = get_turf(C)
+<<<<<<< HEAD
 		var/area/B = pos?.loc //VOREStation Add: No sensor in Dorm
 		if((C.has_sensor) && (pos?.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(B.block_suit_sensors) && !(is_jammed(C)) && !(is_vore_jammed(C))) //VOREStation Edit
 			if(istype(C.loc, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = C.loc
+=======
+		if((C) && (C.has_sensor) && (pos) && (pos.z == zLevel) && (C.sensor_mode != SUIT_SENSOR_OFF) && !(is_jammed(C)))
+			if(istype(C.loc, /mob/living/human))
+				var/mob/living/human/H = C.loc
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 				if(H.w_uniform != C)
 					continue
 
@@ -66,7 +72,7 @@ var/global/datum/repository/crew/crew_repository = new()
 
 /datum/repository/crew/proc/scan()
 	var/list/tracked = list()
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/human/H in mob_list)
 		if(istype(H.w_uniform, /obj/item/clothing/under))
 			var/obj/item/clothing/under/C = H.w_uniform
 			if (C.has_sensor)

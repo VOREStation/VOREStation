@@ -5,7 +5,11 @@
 
 	if(!check_rights(R_FUN)) return
 
+<<<<<<< HEAD
 	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Admin", human_mob_list)
+=======
+	var/mob/living/human/H = input("Select mob.", "Change Mob Appearance - Admin") as null|anything in human_mob_list
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!H) return
 
 	log_and_message_admins("is altering the appearance of [H].")
@@ -19,7 +23,11 @@
 
 	if(!check_rights(R_FUN)) return
 
+<<<<<<< HEAD
 	var/mob/living/carbon/human/H = tgui_input_list(usr, "Select mob.", "Change Mob Appearance - Self", human_mob_list)
+=======
+	var/mob/living/human/H = input("Select mob.", "Change Mob Appearance - Self") as null|anything in human_mob_list
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!H) return
 
 	if(!H.client)
@@ -41,9 +49,13 @@
 
 	if(!check_rights(R_FUN))	return
 
+<<<<<<< HEAD
 	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Edit Appearance", human_mob_list)
+=======
+	var/mob/living/human/M = input("Select mob.", "Edit Appearance") as null|anything in human_mob_list
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!istype(M, /mob/living/human))
 		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
 		return
 	switch(tgui_alert(usr, "Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Tajaran can result in unintended consequences.","Danger!",list("Yes","No")))

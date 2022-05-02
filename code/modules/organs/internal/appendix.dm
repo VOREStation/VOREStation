@@ -6,7 +6,7 @@
 	var/inflamed = 0
 	var/inflame_progress = 0
 
-/mob/living/carbon/human/proc/appendicitis()
+/mob/living/human/proc/appendicitis()
 	if(stat == DEAD)
 		return 0
 	var/obj/item/organ/internal/appendix/A = internal_organs_by_name[O_APPENDIX]

@@ -250,7 +250,7 @@ GLOBAL_LIST_EMPTY(all_blobs)
 
 /obj/structure/blob/attack_hand(mob/living/M as mob)
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		H.setClickCooldown(H.get_attack_speed())
 		var/datum/unarmed_attack/attack = H.get_unarmed_attack(src, BP_TORSO)
 		if(!attack)

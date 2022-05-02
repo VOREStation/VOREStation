@@ -175,3 +175,87 @@
 /obj/machinery/computer/shuttle_control/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	read_authorization(W)
 	..()
+<<<<<<< HEAD
+=======
+
+/obj/machinery/computer/shuttle_control/emergency/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+	var/data[0]
+	var/datum/shuttle/autodock/ferry/emergency/shuttle = SSshuttles.shuttles[shuttle_tag]
+	if (!istype(shuttle))
+		return
+
+	var/shuttle_state
+	switch(shuttle.moving_status)
+		if(SHUTTLE_IDLE) shuttle_state = "idle"
+		if(SHUTTLE_WARMUP) shuttle_state = "warmup"
+		if(SHUTTLE_INTRANSIT) shuttle_state = "in_transit"
+
+	var/shuttle_status
+	switch (shuttle.process_state)
+		if(IDLE_STATE)
+			if (shuttle.in_use)
+				shuttle_status = "Busy."
+			else if (!shuttle.location)
+				shuttle_status = "Standing by at [station_name()]."
+			else
+				shuttle_status = "Standing by at [using_map.dock_name]."
+		if(WAIT_LAUNCH, FORCE_LAUNCH)
+			shuttle_status = "Shuttle has received command and will depart shortly."
+		if(WAIT_ARRIVE)
+			shuttle_status = "Proceeding to destination."
+		if(WAIT_FINISH)
+			shuttle_status = "Arriving at destination now."
+
+	//build a list of authorizations
+	var/list/auth_list[req_authorizations]
+
+	if (!emagged)
+		var/i = 1
+		for (var/dna_hash in authorized)
+			auth_list[i++] = list("auth_name"=authorized[dna_hash], "auth_hash"=dna_hash)
+
+		while (i <= req_authorizations)	//fill up the rest of the list with blank entries
+			auth_list[i++] = list("auth_name"="", "auth_hash"=null)
+	else
+		for (var/i = 1; i <= req_authorizations; i++)
+			auth_list[i] = list("auth_name"="<font color=\"red\">ERROR</font>", "auth_hash"=null)
+
+	var/has_auth = has_authorization()
+
+	data = list(
+		"shuttle_status" = shuttle_status,
+		"shuttle_state" = shuttle_state,
+		"has_docking" = shuttle.active_docking_controller? 1 : 0,
+		"docking_status" = shuttle.active_docking_controller? shuttle.active_docking_controller.get_docking_status() : null,
+		"docking_override" = shuttle.active_docking_controller? shuttle.active_docking_controller.override_enabled : null,
+		"can_launch" = shuttle.can_launch(src),
+		"can_cancel" = shuttle.can_cancel(src),
+		"can_force" = shuttle.can_force(src),
+		"auth_list" = auth_list,
+		"has_auth" = has_auth,
+		"user" = debug? user : null,
+	)
+
+	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
+
+	if (!ui)
+		ui = new(user, src, ui_key, "escape_shuttle_control_console.tmpl", "Shuttle Control", 470, 420)
+		ui.set_initial_data(data)
+		ui.open()
+		ui.set_auto_update(1)
+
+/obj/machinery/computer/shuttle_control/emergency/Topic(href, href_list)
+	if(..())
+		return 1
+
+	if(href_list["removeid"])
+		var/dna_hash = href_list["removeid"]
+		authorized -= dna_hash
+
+	if(!emagged && href_list["scanid"])
+		//They selected an empty entry. Try to scan their id.
+		if (ishuman(usr))
+			var/mob/living/human/H = usr
+			if (!read_authorization(H.get_active_hand()))	//try to read what's in their hand first
+				read_authorization(H.wear_id)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor

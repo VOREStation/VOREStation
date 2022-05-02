@@ -39,13 +39,13 @@
 	return values
 
 //Human overrides for taur riding
-/mob/living/carbon/human
+/mob/living/human
 	max_buckled_mobs = 1 //Yeehaw
 	can_buckle = TRUE
 	buckle_movable = TRUE
 	buckle_lying = FALSE
 
-/mob/living/carbon/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
+/mob/living/human/buckle_mob(mob/living/M, forced = FALSE, check_loc = TRUE)
 	if(forced)
 		return ..() // Skip our checks
 	if(!istaurtail(tail_style))
@@ -67,7 +67,7 @@
 		if(M.Adjacent(src))
 			M.forceMove(get_turf(src))
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 
 	if(istaurtail(H.tail_style))
 		to_chat(src,"<span class='warning'>Too many legs. TOO MANY LEGS!!</span>")
@@ -78,10 +78,10 @@
 		riding_datum.rider_size = M.size_multiplier
 		buckled_mobs[M] = "riding"
 
-/mob/living/carbon/human/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.
+/mob/living/human/MouseDrop_T(mob/living/M, mob/living/user) //Prevention for forced relocation caused by can_buckle. Base proc has no other use.
 	return
 
-/mob/living/carbon/human/proc/taur_mount(var/mob/living/M in living_mobs(1))
+/mob/living/human/proc/taur_mount(var/mob/living/M in living_mobs(1))
 	set name = "Taur Mount/Dismount"
 	set category = "Abilities"
 	set desc = "Let people ride on you."
@@ -98,7 +98,7 @@
 	if(buckle_mob(M))
 		visible_message("<span class='notice'>[M] starts riding [name]!</span>")
 
-/mob/living/carbon/human/attack_hand(mob/user as mob)
+/mob/living/human/attack_hand(mob/user as mob)
 	if(LAZYLEN(buckled_mobs))
 		//We're getting off!
 		if(user in buckled_mobs)

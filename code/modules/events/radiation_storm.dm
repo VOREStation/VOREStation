@@ -33,14 +33,14 @@
 	for(var/z in using_map.station_levels)
 		SSradiation.z_radiate(locate(1, 1, z), radiation_level, 1)
 
-	for(var/mob/living/carbon/C in living_mob_list)
+	for(var/mob/living/human/C in living_mob_list)
 		var/area/A = get_area(C)
 		if(!A)
 			continue
 		if(A.flags & RAD_SHIELDED)
 			continue
-		if(istype(C,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = C
+		if(istype(C,/mob/living/human))
+			var/mob/living/human/H = C
 			if(prob(5))
 				if (prob(75))
 					randmutb(H) // Applies bad mutation

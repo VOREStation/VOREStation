@@ -246,9 +246,9 @@
 		L.ExtinguishMob()
 		L.fire_stacks = -20 //Douse ourselves with water to avoid fire more easily
 
-	if(iscarbon(O))
+	if(ishuman(O))
 		//flush away reagents on the skin
-		var/mob/living/carbon/M = O
+		var/mob/living/human/M = O
 		if(M.touching)
 			var/remove_amount = M.touching.maximum_volume * M.reagent_permeability() //take off your suit first
 			M.touching.remove_any(remove_amount)
@@ -292,7 +292,7 @@
 	M.bodytemperature += temp_adj
 
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		if(temperature >= H.species.heat_level_1)
 			to_chat(H, "<span class='danger'>The water is searing hot!</span>")
 		else if(temperature <= H.species.cold_level_1)
@@ -329,7 +329,7 @@
 
 /obj/structure/sink/attack_hand(mob/user as mob)
 	if (ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 		if (H.hand)
 			temp = H.organs_by_name["l_hand"]

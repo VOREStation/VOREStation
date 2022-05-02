@@ -29,8 +29,8 @@
 	chunk_active_ability_cooldown = 2 MINUTES
 
 /datum/blob_type/volatile_alluvium/on_received_damage(var/obj/structure/blob/B, damage, damage_type, mob/living/attacker)
-	if(damage > 0 && attacker && get_dist(B, attacker) <= 2 && prob(min(damage, 70)) && istype(attacker, /mob/living/carbon/human)) // Melee weapons of any type carried by a human will have a high chance of being stolen.
-		var/mob/living/carbon/human/H = attacker
+	if(damage > 0 && attacker && get_dist(B, attacker) <= 2 && prob(min(damage, 70)) && istype(attacker, /mob/living/human)) // Melee weapons of any type carried by a human will have a high chance of being stolen.
+		var/mob/living/human/H = attacker
 		var/obj/item/I = H.get_active_hand()
 		H.drop_item()
 		if(I)

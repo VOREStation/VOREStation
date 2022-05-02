@@ -36,7 +36,7 @@
 /obj/effect/plant/proc/trodden_on(var/mob/living/victim)
 	if(!is_mature())
 		return
-	var/mob/living/carbon/human/H = victim
+	var/mob/living/human/H = victim
 	if(prob(round(seed.get_trait(TRAIT_POTENCY)/3)))
 		entangle(victim)
 	if(istype(H) && H.shoes)
@@ -97,8 +97,8 @@
 	//grabbing people
 	if(!victim.anchored && Adjacent(victim) && victim.loc != src.loc)
 		var/can_grab = 1
-		if(istype(victim, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = victim
+		if(istype(victim, /mob/living/human))
+			var/mob/living/human/H = victim
 			if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 				can_grab = 0
 		if(can_grab)

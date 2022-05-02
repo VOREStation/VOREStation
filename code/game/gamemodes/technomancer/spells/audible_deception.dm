@@ -80,7 +80,7 @@
 		// Air Horn time.
 		if(selected_sound == 'sound/items/AirHorn.ogg' && pay_energy(3800))
 			adjust_instability(49) // Pay for your sins.
-			for(var/mob/living/carbon/M in ohearers(6, T))
+			for(var/mob/living/human/M in ohearers(6, T))
 				if(M.get_ear_protection() >= 2)
 					continue
 				M.SetSleeping(0)

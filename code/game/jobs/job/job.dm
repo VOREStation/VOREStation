@@ -43,14 +43,14 @@
 	. = ..()
 	department_accounts = department_accounts || departments_managed
 
-/datum/job/proc/equip(var/mob/living/carbon/human/H, var/alt_title)
+/datum/job/proc/equip(var/mob/living/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)
 		return FALSE
 	. = outfit.equip(H, title, alt_title)
 	return 1
 
-/datum/job/proc/get_outfit(var/mob/living/carbon/human/H, var/alt_title)
+/datum/job/proc/get_outfit(var/mob/living/human/H, var/alt_title)
 	if(alt_title && alt_titles)
 		var/datum/alt_title/A = alt_titles[alt_title]
 		if(A && initial(A.title_outfit))
@@ -58,7 +58,7 @@
 	. = . || outfit_type
 	. = outfit_by_type(.)
 
-/datum/job/proc/setup_account(var/mob/living/carbon/human/H)
+/datum/job/proc/setup_account(var/mob/living/human/H)
 	if(!account_allowed || (H.mind && H.mind.initial_account))
 		return
 
@@ -90,7 +90,7 @@
 	to_chat(H, "<span class='notice'><b>Your account number is: [M.account_number], your account pin is: [M.remote_access_pin]</b></span>")
 
 // overrideable separately so AIs/borgs can have cardborg hats without unneccessary new()/qdel()
-/datum/job/proc/equip_preview(mob/living/carbon/human/H, var/alt_title)
+/datum/job/proc/equip_preview(mob/living/human/H, var/alt_title)
 	var/decl/hierarchy/outfit/outfit = get_outfit(H, alt_title)
 	if(!outfit)
 		return FALSE
@@ -111,14 +111,14 @@
 		return max(0, minimal_player_age - C.player_age)
 	return 0
 
-/datum/job/proc/apply_fingerprints(var/mob/living/carbon/human/target)
+/datum/job/proc/apply_fingerprints(var/mob/living/human/target)
 	if(!istype(target))
 		return 0
 	for(var/obj/item/item in target.contents)
 		apply_fingerprints_to_item(target, item)
 	return 1
 
-/datum/job/proc/apply_fingerprints_to_item(var/mob/living/carbon/human/holder, var/obj/item/item)
+/datum/job/proc/apply_fingerprints_to_item(var/mob/living/human/holder, var/obj/item/item)
 	item.add_fingerprint(holder,1)
 	if(item.contents.len)
 		for(var/obj/item/sub_item in item.contents)
@@ -144,7 +144,7 @@
 
 /datum/job/proc/get_job_icon()
 	if(!job_master.job_icons[title])
-		var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
+		var/mob/living/human/dummy/mannequin/mannequin = get_mannequin("#job_icon")
 		dress_mannequin(mannequin)
 		mannequin.dir = SOUTH
 		COMPILE_OVERLAYS(mannequin)
@@ -155,7 +155,7 @@
 
 	return job_master.job_icons[title]
 
-/datum/job/proc/dress_mannequin(var/mob/living/carbon/human/dummy/mannequin/mannequin)
+/datum/job/proc/dress_mannequin(var/mob/living/human/dummy/mannequin/mannequin)
 	mannequin.delete_inventory(TRUE)
 	equip_preview(mannequin)
 	if(mannequin.back)

@@ -160,9 +160,9 @@
 	else if(href_list["make_skeleton"])
 		if(!check_rights(R_FUN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["make_skeleton"])
+		var/mob/living/human/H = locate(href_list["make_skeleton"])
 		if(!istype(H))
-			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be used on instances of type /mob/living/human")
 			return
 
 		H.ChangeToSkeleton()
@@ -230,9 +230,9 @@
 	else if(href_list["makemonkey"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makemonkey"])
+		var/mob/living/human/H = locate(href_list["makemonkey"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/human")
 			return
 
 		if(tgui_alert(usr, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
@@ -244,9 +244,9 @@
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
+		var/mob/living/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/human")
 			return
 
 		if(tgui_alert(usr, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
@@ -255,6 +255,7 @@
 			return
 		holder.Topic(href, list("makerobot"=href_list["makerobot"]))
 
+<<<<<<< HEAD
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))	return
 
@@ -269,12 +270,14 @@
 			return
 		holder.Topic(href, list("makealien"=href_list["makealien"]))
 
+=======
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["makeai"])
+		var/mob/living/human/H = locate(href_list["makeai"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/human")
 			return
 
 		if(tgui_alert(usr, "Confirm mob type change?","Confirm",list("Transform","Cancel")) != "Transform")	return
@@ -286,9 +289,9 @@
 	else if(href_list["setspecies"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/human/H = locate(href_list["setspecies"])
+		var/mob/living/human/H = locate(href_list["setspecies"])
 		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			to_chat(usr, "This can only be done to instances of type /mob/living/human")
 			return
 
 		var/new_species = tgui_input_list(usr, "Please choose a new species.","Species", GLOB.all_species)
@@ -361,8 +364,8 @@
 		var/list/possibleverbs = list()
 		possibleverbs += "Cancel" 								// One for the top...
 		possibleverbs += typesof(/mob/proc,/mob/verb,/mob/living/proc,/mob/living/verb)
-		if(istype(H,/mob/living/carbon/human))
-			possibleverbs += typesof(/mob/living/carbon/proc,/mob/living/carbon/verb,/mob/living/carbon/human/verb,/mob/living/carbon/human/proc)
+		if(istype(H,/mob/living/human))
+			possibleverbs += typesof(/mob/living/human/proc,/mob/living/human/verb,/mob/living/human/verb,/mob/living/human/proc)
 		if(istype(H,/mob/living/silicon/robot))
 			possibleverbs += typesof(/mob/living/silicon/proc,/mob/living/silicon/robot/proc,/mob/living/silicon/robot/verb)
 		if(istype(H,/mob/living/silicon/ai))
@@ -401,9 +404,9 @@
 	else if(href_list["addorgan"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/M = locate(href_list["addorgan"])
+		var/mob/living/human/M = locate(href_list["addorgan"])
 		if(!istype(M))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+			to_chat(usr, "This can only be done to instances of type /mob/living/human")
 			return
 
 		var/new_organ = tgui_input_list(usr, "Please choose an organ to add.","Organ", subtypesof(/obj/item/organ))
@@ -423,9 +426,9 @@
 	else if(href_list["remorgan"])
 		if(!check_rights(R_SPAWN))	return
 
-		var/mob/living/carbon/M = locate(href_list["remorgan"])
+		var/mob/living/human/M = locate(href_list["remorgan"])
 		if(!istype(M))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+			to_chat(usr, "This can only be done to instances of type /mob/living/human")
 			return
 
 		var/obj/item/organ/rem_organ = tgui_input_list(usr, "Please choose an organ to remove.","Organ", M.internal_organs)

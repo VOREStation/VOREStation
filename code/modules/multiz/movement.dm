@@ -123,7 +123,7 @@
 /mob/living/can_overcome_gravity()
 	return hovering
 
-/mob/living/carbon/human/can_overcome_gravity()
+/mob/living/human/can_overcome_gravity()
 	. = ..()
 	if(!.)
 		return species && species.can_overcome_gravity(src)
@@ -163,7 +163,7 @@
 		return FALSE
 	return (hovering || is_incorporeal())
 
-/mob/living/carbon/human/can_ztravel()
+/mob/living/human/can_ztravel()
 	if(incapacitated())
 		return FALSE
 
@@ -308,7 +308,7 @@
 		return FALSE
 	return ..()
 
-/mob/living/carbon/human/can_fall()
+/mob/living/human/can_fall()
 	if(..())
 		return species.can_fall(src)
 
@@ -378,7 +378,7 @@
 /atom/movable/proc/special_fall_handle(var/atom/A)
 	return FALSE
 
-/mob/living/carbon/human/special_fall_handle(var/atom/A)
+/mob/living/human/special_fall_handle(var/atom/A)
 	if(species)
 		return species.fall_impact_special(src, A)
 	return FALSE
@@ -400,7 +400,7 @@
 	if(landing.CheckFall(src))
 		return landing
 
-/mob/living/carbon/human/find_fall_target(var/turf/landing)
+/mob/living/human/find_fall_target(var/turf/landing)
 	if(species)
 		var/atom/A = species.find_fall_target_special(src, landing)
 		if(A)
@@ -504,7 +504,7 @@
 		Weaken(4)
 		updatehealth()
 
-/mob/living/carbon/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
+/mob/living/human/fall_impact(atom/hit_atom, damage_min, damage_max, silent, planetary)
 	if(!species?.handle_falling(src, hit_atom, damage_min, damage_max, silent, planetary))
 		..()
 
@@ -528,7 +528,7 @@
 	return parachuting
 
 //For humans, this needs to be a wee bit more complicated
-/mob/living/carbon/human/CanParachute()
+/mob/living/human/CanParachute()
 	//Certain slots don't really need to be checked for parachute ability, i.e. pockets, ears, etc. If this changes, just add them to the loop, I guess?
 	//This is done in Priority Order, so items lower down the list don't call handleParachute() unless they're actually used.
 	if(back && back.isParachute())

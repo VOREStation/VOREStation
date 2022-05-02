@@ -26,7 +26,7 @@
 
 	organ_names = /decl/mob_organ_names/spore
 
-	var/mob/living/carbon/human/infested = null // The human this thing is totally not making into a zombie.
+	var/mob/living/human/infested = null // The human this thing is totally not making into a zombie.
 	var/can_infest = FALSE
 	var/is_infesting = FALSE
 
@@ -98,7 +98,7 @@
 /mob/living/simple_mob/blob/spore/handle_special()
 	..()
 	if(can_infest && !is_infesting && isturf(loc))
-		for(var/mob/living/carbon/human/H in view(src,1))
+		for(var/mob/living/human/H in view(src,1))
 			if(H.stat != DEAD) // We want zombies.
 				continue
 			if(H.isSynthetic()) // Not philosophical zombies.
@@ -112,7 +112,7 @@
 	if(factory && z != factory.z) // This is to prevent spores getting lost in space and making the factory useless.
 		qdel(src)
 
-/mob/living/simple_mob/blob/spore/proc/infest(mob/living/carbon/human/H)
+/mob/living/simple_mob/blob/spore/proc/infest(mob/living/human/H)
 	is_infesting = TRUE
 	if(H.wear_suit)
 		var/obj/item/clothing/suit/A = H.wear_suit

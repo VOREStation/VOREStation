@@ -14,7 +14,7 @@
 	set desc = "Removes handcuffs and legcuffs instantly."
 
 	var/escape_cooldown = 5 MINUTES		//This is used later to prevent spamming
-	var/mob/living/carbon/human/C = src
+	var/mob/living/human/C = src
 	var/datum/changeling/changeling = changeling_power(40,0,100,CONSCIOUS)
 	if(!changeling)
 		return 0

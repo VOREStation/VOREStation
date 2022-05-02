@@ -54,7 +54,7 @@
 
 	return PROJECTILE_FORCE_MISS
 
-/mob/living/simple_mob/illusion/attack_hand(mob/living/carbon/human/M)
+/mob/living/simple_mob/illusion/attack_hand(mob/living/human/M)
 	if(!realistic)
 		playsound(src, 'sound/weapons/punchmiss.ogg', 25, 1, -1)
 		visible_message(span("warning", "\The [M]'s hand goes through \the [src]!"))

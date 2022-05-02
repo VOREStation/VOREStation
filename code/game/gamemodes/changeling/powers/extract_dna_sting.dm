@@ -18,7 +18,7 @@
 	if(!changeling)
 		return 0
 
-	var/mob/living/carbon/human/T = changeling_sting(40, /mob/proc/changeling_extract_dna_sting)
+	var/mob/living/human/T = changeling_sting(40, /mob/proc/changeling_extract_dna_sting)
 
 	if(!T)
 		return

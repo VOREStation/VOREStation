@@ -9,7 +9,7 @@
 	set name = "Unfat sting (5)"
 	set desc = "Sting target"
 
-	var/mob/living/carbon/T = changeling_sting(5,/mob/proc/changeling_unfat_sting)
+	var/mob/living/human/T = changeling_sting(5,/mob/proc/changeling_unfat_sting)
 	if(!T)	return 0
 	add_attack_logs(src,T,"Unfat sting (changeling)")
 	to_chat(T, "<span class='danger'>you feel a small prick as stomach churns violently and you become to feel skinnier.</span>")

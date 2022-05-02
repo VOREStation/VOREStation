@@ -136,7 +136,7 @@
 /mob/living/silicon/proc/generate_ion_law(var/exclude_crew_names = FALSE)
 	var/list/players = list()
 
-	for(var/mob/living/carbon/human/player in player_list)
+	for(var/mob/living/human/player in player_list)
 		if(!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
 			continue
 		players += player.real_name

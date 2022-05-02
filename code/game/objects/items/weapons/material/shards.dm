@@ -55,7 +55,11 @@
 			return
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/material/shard/afterattack(var/atom/target, mob/living/carbon/human/user as mob)
+=======
+/obj/item/material/shard/afterattack(var/atom/target, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/active_hand //hand the shard is in
 	var/will_break = FALSE
 	var/protected_hands = FALSE //this is a fucking mess
@@ -112,7 +116,7 @@
 
 		playsound(src, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 
 			if(H.species.siemens_coefficient<0.5) //Thick skin.
 				return

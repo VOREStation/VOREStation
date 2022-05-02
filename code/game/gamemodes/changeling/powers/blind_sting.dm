@@ -12,7 +12,7 @@
 	set name = "Blind sting (20)"
 	set desc="Sting target"
 
-	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
+	var/mob/living/human/T = changeling_sting(20,/mob/proc/changeling_blind_sting)
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Blind sting (changeling)")

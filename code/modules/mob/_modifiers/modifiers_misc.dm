@@ -96,7 +96,7 @@ the artifact triggers the rage.
 
 	// Temporarily end pain.
 	if(ishuman(holder))
-		var/mob/living/carbon/human/H = holder
+		var/mob/living/human/H = holder
 		last_shock_stage = H.shock_stage
 		H.shock_stage = 0
 
@@ -109,7 +109,7 @@ the artifact triggers the rage.
 			holder.Paralyse(5)
 
 		if(ishuman(holder))
-			var/mob/living/carbon/human/H = holder
+			var/mob/living/human/H = holder
 			H.shock_stage = last_shock_stage
 
 /datum/modifier/berserk/can_apply(var/mob/living/L, var/suppress_failure = FALSE)
@@ -131,7 +131,7 @@ the artifact triggers the rage.
 		return FALSE // Borgs can get angry but their metal shell can't be pushed harder by just being mad. Same for Posibrains.
 
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/human/H = L
 		if(H.species.name == "Diona")
 			to_chat(L, "<span class='warning'>You feel strange for a moment, but it passes.</span>")
 			return FALSE // Happy trees aren't affected by blood rages.

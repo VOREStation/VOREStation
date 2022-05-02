@@ -474,7 +474,7 @@
 					event()
 				turns += 1
 			if(emagged)
-				var/mob/living/carbon/M = usr //for some vars
+				var/mob/living/human/M = usr //for some vars
 				switch(event)
 					if(ORION_TRAIL_RAIDERS)
 						if(prob(50))
@@ -493,8 +493,8 @@
 						if(severity >= 3) //you didn't pray hard enough
 							to_chat(M, span("warning", "An overpowering wave of nausea consumes over you. You hunch over, your stomach's contents preparing for a spectacular exit."))
 							spawn(30)
-							if(istype(M,/mob/living/carbon/human))
-								var/mob/living/carbon/human/H = M
+							if(istype(M,/mob/living/human))
+								var/mob/living/human/H = M
 								H.vomit()
 					if(ORION_TRAIL_FLUX)
 						if(prob(75))
@@ -675,8 +675,13 @@
 						last_spaceport_action = "You failed to raid the spaceport! You lost [FU*-1] Fuel and [FO*-1] Food, AND [lost_crew] in your scramble to escape! ([FU]FI,[FO]FO,-Crew)"
 						if(emagged)
 							src.visible_message("The machine states, 'YOU ARE UNDER ARREST, RAIDER!' and shoots handcuffs onto [usr]!", "You hear something say 'YOU ARE UNDER ARREST, RAIDER!' and a clinking sound")
+<<<<<<< HEAD
 							var/obj/item/weapon/handcuffs/C = new(src.loc)
 							var/mob/living/carbon/human/H = usr
+=======
+							var/obj/item/handcuffs/C = new(src.loc)
+							var/mob/living/human/H = usr
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 							if(istype(H))
 								C.forceMove(H)
 								H.handcuffed = C

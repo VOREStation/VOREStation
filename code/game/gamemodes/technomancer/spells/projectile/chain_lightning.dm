@@ -37,7 +37,7 @@
 /obj/item/projectile/beam/chain_lightning/attack_mob(var/mob/living/target_mob, var/distance, var/miss_modifier=0)
 	//First we shock the guy we just hit.
 	if(ishuman(target_mob))
-		var/mob/living/carbon/human/H = target_mob
+		var/mob/living/human/H = target_mob
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
 		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected, 0)
 	else
@@ -60,7 +60,7 @@
 		var/mob/living/new_target = null
 		var/siemens_comparison = 0
 
-		for(var/mob/living/carbon/human/H in filtered_targets)
+		for(var/mob/living/human/H in filtered_targets)
 			var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
 			var/their_siemens = H.get_siemens_coefficient_organ(affected)
 			if(their_siemens > siemens_comparison) //We want as conductive as possible, so higher is better.

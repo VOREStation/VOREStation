@@ -18,8 +18,13 @@
 	if(default_unfasten_wrench(user, I, 20))
 		return
 
+<<<<<<< HEAD
 	if(istype(I,/obj/item/weapon/virusdish))
 		var/mob/living/carbon/c = user
+=======
+	if(istype(I,/obj/item/virusdish))
+		var/mob/living/human/c = user
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(dish)
 			to_chat(user, "\The [src] is already loaded.")
 			return

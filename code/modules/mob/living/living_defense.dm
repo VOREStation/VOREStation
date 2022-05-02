@@ -95,9 +95,24 @@
 // Clicking with an empty hand
 /mob/living/attack_hand(mob/living/L)
 	..()
+<<<<<<< HEAD
 	if(istype(L) && L.a_intent != I_HELP)
 		if(ai_holder) // Using disarm, grab, or harm intent is considered a hostile action to the mob's AI.
 			ai_holder.react_to_attack(L)
+=======
+	if(!istype(L))
+		return
+
+	var/mob/living/human/H = L
+	var/obj/item/organ/external/temp = L.organs_by_name[ "[L.hand ? "r" : "l"]_hand"]
+	if(temp && !temp.is_usable())
+		to_chat(H, "<font color='red'>You can't use your [temp.name]</font>")
+		return
+
+	// Using disarm, grab, or harm intent is considered a hostile action to the mob's AI.
+	if(L.a_intent != I_HELP && ai_holder)
+		ai_holder.react_to_attack(L)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 /mob/living/bullet_act(var/obj/item/projectile/P, var/def_zone)
 
@@ -409,7 +424,7 @@
 	var/turf/location = get_turf(src)
 	location.hotspot_expose(fire_burn_temperature(), 50, 1)
 
-//altered this to cap at the temperature of the fire causing it, using the same 1:1500 value as /mob/living/carbon/human/handle_fire() in human/life.dm
+//altered this to cap at the temperature of the fire causing it, using the same 1:1500 value as /mob/living/human/handle_fire() in human/life.dm
 /mob/living/fire_act(datum/gas_mixture/air, exposed_temperature, exposed_volume)
 	if(exposed_temperature)
 		if(fire_stacks < exposed_temperature/1500) // Subject to balance

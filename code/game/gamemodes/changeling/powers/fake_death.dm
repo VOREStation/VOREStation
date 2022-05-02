@@ -16,7 +16,7 @@
 	if(!changeling)
 		return
 
-	var/mob/living/carbon/C = src
+	var/mob/living/human/C = src
 
 	if(changeling.max_geneticpoints < 0) //Absorbed by another ling
 		to_chat(src, "<span class='danger'>We have no genomes, not even our own, and cannot regenerate.</span>")

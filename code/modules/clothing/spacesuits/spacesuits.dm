@@ -109,7 +109,7 @@
 // broken limbs - at the time of writing, only the ninja suit, but
 // I can see it being useful for other suits as we expand them. ~ Z
 // The actual splinting occurs in /obj/item/organ/external/proc/fracture()
-/obj/item/clothing/suit/space/proc/check_limb_support(var/mob/living/carbon/human/user)
+/obj/item/clothing/suit/space/proc/check_limb_support(var/mob/living/human/user)
 
 	// If this isn't set, then we don't need to care.
 	if(!istype(user) || isnull(supporting_limbs))
@@ -127,7 +127,7 @@
 				to_chat(user, "\The [src] stops supporting your [E.name].")
 		supporting_limbs.Cut()
 
-/obj/item/clothing/suit/space/proc/handle_fracture(var/mob/living/carbon/human/user, var/obj/item/organ/external/E)
+/obj/item/clothing/suit/space/proc/handle_fracture(var/mob/living/human/user, var/obj/item/organ/external/E)
 	if(!istype(user) || isnull(supporting_limbs))
 		return
 	if(E.is_broken() && E.apply_splint(src))

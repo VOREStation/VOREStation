@@ -84,11 +84,11 @@
 
 /obj/item/weapon/spellbook/Topic(href, href_list)
 	..()
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/human/H = usr
 
 	if(H.stat || H.restrained())
 		return
-	if(!istype(H, /mob/living/carbon/human))
+	if(!istype(H, /mob/living/human))
 		return 1
 
 	if(H.mind.special_role == "apprentice")
@@ -403,8 +403,13 @@
 	icon_state ="bookhorses"
 	desc = "This book is more horse than your mind has room for."
 
+<<<<<<< HEAD
 /obj/item/weapon/spellbook/oneuse/horsemask/recoil(mob/living/carbon/user as mob)
 	if(istype(user, /mob/living/carbon/human))
+=======
+/obj/item/spellbook/oneuse/horsemask/recoil(mob/living/human/user as mob)
+	if(istype(user, /mob/living/human))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		to_chat(user, "<font size='15' color='red'><b>HOR-SIE HAS RISEN</b></font>")
 		var/obj/item/clothing/mask/horsehead/magichead = new /obj/item/clothing/mask/horsehead
 		magichead.canremove = FALSE		//curses!

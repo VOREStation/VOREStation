@@ -12,7 +12,7 @@
 	effect_state = "gravisphere"
 	effect_color = "#ff0000"
 
-/datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/carbon/human/M)
+/datum/artifact_effect/vampire/proc/bloodcall(var/mob/living/human/M)
 	var/atom/holder = get_master_holder()
 	last_bloodcall = world.time
 	if(istype(M))
@@ -44,7 +44,7 @@
 			nearby_mobs |= L
 
 	if(world.time - bloodcall_interval >= last_bloodcall && LAZYLEN(nearby_mobs))
-		var/mob/living/carbon/human/M = pick(nearby_mobs)
+		var/mob/living/human/M = pick(nearby_mobs)
 		if(get_dist(M, T) <= effectrange && M.health > 20)
 			bloodcall(M)
 			holder.Beam(M, icon_state = "drainbeam", time = 1 SECOND)

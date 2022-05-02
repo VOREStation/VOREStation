@@ -85,7 +85,7 @@
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
 	else if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
+		var/mob/living/human/H = occupant
 
 		if(H.isSynthetic())
 			// In case they somehow end up with positive values for otherwise unobtainable damage...
@@ -258,8 +258,8 @@
 		update_icon()
 		return 1
 
-	else if(istype(L,  /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = L
+	else if(istype(L,  /mob/living/human))
+		var/mob/living/human/H = L
 		if(H.isSynthetic() || H.wearing_rig)
 			add_fingerprint(H)
 			H.reset_view(src)

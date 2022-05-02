@@ -190,13 +190,21 @@
 	slot_flags = SLOT_BELT
 	attack_verb = list("beaten", "smashed", "struck", "whacked")
 
+<<<<<<< HEAD
 /obj/item/weapon/scepter/attack_self(mob/living/carbon/human/user)
+=======
+/obj/item/scepter/attack_self(mob/living/human/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/obj/item/item_to_test = user.get_other_hand(src)
 	if(istype(item_to_test, /obj/item/weapon/spell))
 		var/obj/item/weapon/spell/S = item_to_test
 		S.on_scepter_use_cast(user)
 
+<<<<<<< HEAD
 /obj/item/weapon/scepter/afterattack(atom/target, mob/living/carbon/human/user, proximity_flag, click_parameters)
+=======
+/obj/item/scepter/afterattack(atom/target, mob/living/human/user, proximity_flag, click_parameters)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(proximity_flag)
 		return ..()
 	var/obj/item/item_to_test = user.get_other_hand(src)

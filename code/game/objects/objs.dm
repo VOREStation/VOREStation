@@ -94,8 +94,8 @@
 
 		// check for TK users
 
-		if (istype(usr, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = usr
+		if (istype(usr, /mob/living/human))
+			var/mob/living/human/H = usr
 			if(H.get_type_in_hands(/obj/item/tk_grab))
 				if(!(H in nearby))
 					if(H.client && H.machine==src)

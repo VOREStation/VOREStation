@@ -355,7 +355,7 @@ var/global/datum/controller/occupations/job_master
 	return 1
 
 
-/datum/controller/occupations/proc/EquipRank(var/mob/living/carbon/human/H, var/rank, var/joined_late = 0)
+/datum/controller/occupations/proc/EquipRank(var/mob/living/human/H, var/rank, var/joined_late = 0)
 	if(!H)	return null
 
 	var/datum/job/job = GetJob(rank)

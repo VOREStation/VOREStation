@@ -34,8 +34,8 @@
 	..()
 	if (usr.stat || usr.restrained() || src.loc != usr)
 		return
-	var/mob/living/carbon/human/H = usr
-	if (!( istype(H, /mob/living/carbon/human)))
+	var/mob/living/human/H = usr
+	if (!( istype(H, /mob/living/human)))
 		return 1
 	if ((usr == src.loc || (in_range(src, usr) && istype(src.loc, /turf))))
 		usr.set_machine(src)

@@ -37,7 +37,7 @@
 	if(!ishuman(user))
 		return 0
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 
 	if(H.hands_are_full()) //Make sure our hands aren't full.
 		to_chat(H, "<span class='warning'>Your hands are full.  Drop something first.</span>")
@@ -86,9 +86,15 @@
 		to_chat(user, "<span class='warning'>The tank scoffs at your insolence. It only provides services to welders.</span>")
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/weldpack/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/wearer = user
+=======
+/obj/item/weldpack/attack_hand(mob/user as mob)
+	if(istype(user, /mob/living/human))
+		var/mob/living/human/wearer = user
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(wearer.back == src)
 			if(nozzle && nozzle_attached)
 				if(!wearer.incapacitated())

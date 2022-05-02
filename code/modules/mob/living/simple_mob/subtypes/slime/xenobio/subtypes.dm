@@ -454,7 +454,7 @@
 			var/mob/living/simple_mob/slime/xenobio/X = L
 			X.adjust_nutrition(rand(15, 25), 0)
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 			if(H.isSynthetic())
 				continue
 			H.nutrition = between(0, H.nutrition + rand(15, 25), 800)
@@ -577,7 +577,7 @@
 		expire()
 
 	if(ishuman(holder)) // Robolimbs need this code sadly.
-		var/mob/living/carbon/human/H = holder
+		var/mob/living/human/H = holder
 		for(var/obj/item/organ/external/E in H.organs)
 			var/obj/item/organ/external/O = E
 			O.heal_damage(2, 2, 0, 1)
@@ -643,7 +643,7 @@
 	if(isliving(A))
 		var/mob/living/L = A
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = A
+			var/mob/living/human/H = A
 			if(istype(H.species, /datum/species/monkey))
 				return ..()// Don't blow up when just eatting monkeys.
 

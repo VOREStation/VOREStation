@@ -15,12 +15,12 @@
 
 	var/upgrade_to	// The type path this stack can be upgraded to.
 
-/obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/attack(mob/living/human/M as mob, mob/user as mob)
 	if (!istype(M))
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return 1
 
-	if ( ! (istype(user, /mob/living/carbon/human) || \
+	if ( ! (istype(user, /mob/living/human) || \
 			istype(user, /mob/living/silicon)) )
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
@@ -30,8 +30,8 @@
 		to_chat(user, "<span class='warning'>There's not enough [uses_charge ? "charge" : "items"] left to use that!</span>")
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(!affecting)
@@ -91,12 +91,12 @@
 
 	upgrade_to = /obj/item/stack/medical/bruise_pack
 
-/obj/item/stack/medical/crude_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/crude_pack/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -160,12 +160,12 @@
 
 	upgrade_to = /obj/item/stack/medical/advanced/bruise_pack
 
-/obj/item/stack/medical/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/bruise_pack/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -234,12 +234,12 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/medical/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/ointment/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -273,12 +273,12 @@
 	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/rip1.ogg','sound/effects/rip2.ogg','sound/effects/tape.ogg')
 
-/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/bruise_pack/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -343,12 +343,12 @@
 	origin_tech = list(TECH_BIO = 1)
 	apply_sounds = list('sound/effects/ointment.ogg')
 
-/obj/item/stack/medical/advanced/ointment/attack(mob/living/carbon/M as mob, mob/user as mob)
+/obj/item/stack/medical/advanced/ointment/attack(mob/living/human/M as mob, mob/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 
 		if(affecting.open)
@@ -386,12 +386,12 @@
 
 	var/list/splintable_organs = list(BP_HEAD, BP_L_HAND, BP_R_HAND, BP_L_ARM, BP_R_ARM, BP_L_FOOT, BP_R_FOOT, BP_L_LEG, BP_R_LEG, BP_GROIN, BP_TORSO)	//List of organs you can splint, natch.
 
-/obj/item/stack/medical/splint/attack(mob/living/carbon/M as mob, mob/living/user as mob)
+/obj/item/stack/medical/splint/attack(mob/living/human/M as mob, mob/living/user as mob)
 	if(..())
 		return 1
 
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(user.zone_sel.selecting)
 		var/limb = affecting.name
 		if(!(affecting.organ_tag in splintable_organs))

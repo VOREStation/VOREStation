@@ -32,17 +32,20 @@
 	if(!istype(victim))
 		return
 
-	if(istype(victim, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = victim
+	if(istype(victim, /mob/living/human))
+		var/mob/living/human/H = victim
 		if(istype(H.species, /datum/species/monkey))
 			meat_type = H.species.meat_type
 			icon_state = "spikebloody"
+<<<<<<< HEAD
 		else
 			return 0
 	else if(istype(victim, /mob/living/carbon/alien))
 		meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
 		icon_state = "spikebloodygreen"
 	else
+=======
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return 0
 
 	victim_name = victim.name

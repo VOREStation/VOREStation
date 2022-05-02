@@ -38,7 +38,7 @@
 	color = "#1C1300"
 	ingest_met = REM * 5
 
-/datum/reagent/carbon/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/carbon/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	if(M.ingested && M.ingested.reagent_list.len > 1) // Need to have at least 2 reagents - cabon and something to remove
@@ -66,10 +66,10 @@
 	reagent_state = GAS
 	color = "#808080"
 
-/datum/reagent/chlorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/chlorine/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.take_organ_damage(1*REM, 0)
 
-/datum/reagent/chlorine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/chlorine/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 	M.take_organ_damage(1*REM, 0)
 
 /datum/reagent/copper
@@ -79,7 +79,7 @@
 	taste_description = "pennies"
 	color = "#6E3B08"
 
-/datum/reagent/copper/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/copper/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_SKRELL)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
@@ -111,7 +111,7 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 15)
 
-/datum/reagent/ethanol/affect_blood(var/mob/living/carbon/M, var/alien, var/removed) //This used to do just toxin. That's boring. Let's make this FUN.
+/datum/reagent/ethanol/affect_blood(var/mob/living/human/M, var/alien, var/removed) //This used to do just toxin. That's boring. Let's make this FUN.
 	if(issmall(M)) removed *= 2
 	var/strength_mod = 3 * M.species.alcohol_mod //Alcohol is 3x stronger when injected into the veins.
 	if(alien == IS_SKRELL)
@@ -155,7 +155,7 @@
 	if(halluci)
 		M.hallucination = max(M.hallucination, halluci*3)
 
-/datum/reagent/ethanol/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/ethanol/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we get the nutrition effects
 		M.adjust_nutrition(nutriment_factor * removed)
@@ -226,10 +226,10 @@
 	reagent_state = GAS
 	color = "#808080"
 
-/datum/reagent/fluorine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fluorine/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.adjustToxLoss(removed)
 
-/datum/reagent/fluorine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/fluorine/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 	M.adjustToxLoss(removed)
 
 /datum/reagent/hydrogen
@@ -248,7 +248,7 @@
 	reagent_state = SOLID
 	color = "#353535"
 
-/datum/reagent/iron/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/iron/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(alien != IS_DIONA && alien != IS_SKRELL)
 		M.add_chemical_effect(CE_BLOODRESTORE, 8 * removed)
 
@@ -260,7 +260,7 @@
 	reagent_state = SOLID
 	color = "#808080"
 
-/datum/reagent/lithium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/lithium/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 			step(M, pick(cardinal))
@@ -275,7 +275,7 @@
 	reagent_state = LIQUID
 	color = "#484848"
 
-/datum/reagent/mercury/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/mercury/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(alien != IS_DIONA)
 		if(M.canmove && !M.restrained() && istype(M.loc, /turf/space))
 			step(M, pick(cardinal))
@@ -299,7 +299,7 @@
 	reagent_state = GAS
 	color = "#808080"
 
-/datum/reagent/oxygen/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/oxygen/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_VOX)
 		M.adjustToxLoss(removed * 3)
 
@@ -327,7 +327,7 @@
 	reagent_state = SOLID
 	color = "#C7C7C7"
 
-/datum/reagent/radium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/radium/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.apply_effect(10 * removed, IRRADIATE, 0) // Radium may increase your chances to cure a disease
 	if(M.virus2.len)
@@ -365,13 +365,13 @@
 	var/power = 5
 	var/meltdose = 10 // How much is needed to melt
 
-/datum/reagent/acid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/acid/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(issmall(M)) removed *= 2
 	M.take_organ_damage(0, removed * power * 2)
 
-/datum/reagent/acid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed) // This is the most interesting
+/datum/reagent/acid/affect_touch(var/mob/living/human/M, var/alien, var/removed) // This is the most interesting
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		if(H.head)
 			if(H.head.unacidable)
 				to_chat(H, "<span class='danger'>Your [H.head] protects you from the acid.</span>")
@@ -416,8 +416,8 @@
 		M.take_organ_damage(0, removed * power * 0.2) //burn damage, since it causes chemical burns. Acid doesn't make bones shatter, like brute trauma would.
 		return
 	if(!M.unacidable && removed > 0)
-		if(istype(M, /mob/living/carbon/human) && volume >= meltdose)
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/human) && volume >= meltdose)
+			var/mob/living/human/H = M
 			var/obj/item/organ/external/affecting = H.get_organ(BP_HEAD)
 			if(affecting)
 				if(affecting.take_damage(0, removed * power * 0.1))
@@ -470,7 +470,7 @@
 	glass_desc = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	glass_icon = DRINK_ICON_NOISY
 
-/datum/reagent/sugar/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/sugar/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.adjust_nutrition(removed * 3)
 
 	var/effective_dose = dose

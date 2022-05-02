@@ -136,6 +136,7 @@ default behaviour is:
 		if(a_intent == I_HELP || src.restrained())
 			now_pushing = 0
 			return
+<<<<<<< HEAD
 		// VOREStation Edit - Begin
 		// Plow that nerd.
 		if(ishuman(tmob))
@@ -150,6 +151,9 @@ default behaviour is:
 			if(handle_micro_bump_other(tmob)) return
 		// VOREStation Edit - End
 		if(istype(tmob, /mob/living/carbon/human) && (FAT in tmob.mutations))
+=======
+		if(istype(tmob, /mob/living/human) && (FAT in tmob.mutations))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			if(prob(40) && !(FAT in src.mutations))
 				to_chat(src, "<span class='danger'>You fail to push [tmob]'s fat ass out of the way.</span>")
 				now_pushing = 0
@@ -219,7 +223,7 @@ default behaviour is:
 	return ..()
 
 // Called when something steps onto us. This allows for mulebots and vehicles to run things over. <3
-/mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/carbon/human/Crossed()
+/mob/living/Crossed(var/atom/movable/AM) // Transplanting this from /mob/living/human/Crossed()
 	if(AM == src || AM.is_incorporeal()) // We're not going to run over ourselves or ghosts
 		return
 

@@ -91,8 +91,8 @@
 			// Dirt overlays.
 			update_dirt()
 
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/human))
+			var/mob/living/human/H = M
 			// Tracking blood
 			var/list/bloodDNA = null
 			var/bloodcolor=""
@@ -151,7 +151,7 @@
 	..()
 
 //returns 1 if made bloody, returns 0 otherwise
-/turf/simulated/add_blood(mob/living/carbon/human/M as mob)
+/turf/simulated/add_blood(mob/living/human/M as mob)
 	if (!..())
 		return 0
 
@@ -168,11 +168,8 @@
 	return 0
 
 // Only adds blood on the floor -- Skie
-/turf/simulated/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if( istype(M, /mob/living/carbon/alien ))
-		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
-		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
-	else if( istype(M, /mob/living/silicon/robot ))
+/turf/simulated/proc/add_blood_floor(mob/living/human/M as mob)
+	if( istype(M, /mob/living/silicon/robot ))
 		new /obj/effect/decal/cleanable/blood/oil(src)
 	else if(ishuman(M))
 		add_blood(M)

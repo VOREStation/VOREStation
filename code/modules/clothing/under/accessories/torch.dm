@@ -213,13 +213,13 @@ badges
 
 /obj/item/clothing/accessory/badge/solgov/tags/Initialize()
 	. = ..()
-	var/mob/living/carbon/human/H
-	H = get_holder_of_type(src, /mob/living/carbon/human)
+	var/mob/living/human/H
+	H = get_holder_of_type(src, /mob/living/human)
 	if(H)
 		set_name(H.real_name)
 		set_desc(H)
 
-/obj/item/clothing/accessory/badge/solgov/tags/set_desc(var/mob/living/carbon/human/H)
+/obj/item/clothing/accessory/badge/solgov/tags/set_desc(var/mob/living/human/H)
 	if(!istype(H))
 		return
 	var/religion = "Unset"

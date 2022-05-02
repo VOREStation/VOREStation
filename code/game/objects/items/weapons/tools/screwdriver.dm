@@ -54,7 +54,11 @@
 		src.pixel_y = rand(0, 16)
 	..()
 
+<<<<<<< HEAD
 /obj/item/weapon/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/tool/screwdriver/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(M) || user.a_intent == "help")
 		return ..()
 	if(user.zone_sel.selecting != O_EYES && user.zone_sel.selecting != BP_HEAD)

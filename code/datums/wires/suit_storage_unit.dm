@@ -9,7 +9,7 @@
 
 /datum/wires/suit_storage_unit/interactable(mob/user)
 	var/obj/machinery/suit_cycler/S = holder
-	if(iscarbon(user) && S.Adjacent(user) && S.electrified)
+	if(ishuman(user) && S.Adjacent(user) && S.electrified)
 		return !S.shock(user, 100)
 	if(S.panel_open)
 		return TRUE

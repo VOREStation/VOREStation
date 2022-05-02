@@ -280,7 +280,7 @@
 /datum/inventory_panel/human
 	tgui_id = "InventoryPanelHuman"
 
-/datum/inventory_panel/human/New(mob/living/carbon/human/new_host)
+/datum/inventory_panel/human/New(mob/living/human/new_host)
 	if(!istype(new_host))
 		qdel(src)
 		return
@@ -290,7 +290,7 @@
 	if(..())
 		return TRUE
 
-	var/mob/living/carbon/human/H = host
+	var/mob/living/human/H = host
 
 	switch(action)
 		if("targetSlot")
@@ -301,7 +301,7 @@
 /datum/inventory_panel/human/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = list() // We don't inherit TGUI data because humans are soooo different.
 
-	var/mob/living/carbon/human/H = host // Not my fault if this runtimes, a human inventory panel should never be created without a human attached.
+	var/mob/living/human/H = host // Not my fault if this runtimes, a human inventory panel should never be created without a human attached.
 
 	var/obj/item/clothing/under/suit = null
 	if(istype(H.w_uniform, /obj/item/clothing/under))

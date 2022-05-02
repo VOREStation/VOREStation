@@ -51,7 +51,11 @@
 	..()
 
 //hit other people with it
+<<<<<<< HEAD
 /obj/item/device/holowarrant/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/holowarrant/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	user.visible_message("<span class='notice'>You show the warrant to [M].</span>", \
 			"<span class='notice'>[user] holds up a warrant projector and shows the contents to [M].</span>")
 	M.examinate(src)

@@ -41,7 +41,7 @@
 // POCKET SAND!
 /obj/item/weapon/ore/glass/throw_impact(atom/hit_atom)
 	..()
-	var/mob/living/carbon/human/H = hit_atom
+	var/mob/living/human/H = hit_atom
 	if(istype(H) && H.has_eyes() && prob(85))
 		to_chat(H, "<span class='danger'>Some of \the [src] gets in your eyes!</span>")
 		H.Blind(5)
@@ -93,7 +93,7 @@
 // POCKET ... Crystal dust.
 /obj/item/weapon/ore/verdantium/throw_impact(atom/hit_atom)
 	..()
-	var/mob/living/carbon/human/H = hit_atom
+	var/mob/living/human/H = hit_atom
 	if(istype(H) && H.has_eyes() && prob(85))
 		to_chat(H, "<span class='danger'>Some of \the [src] gets in your eyes!</span>")
 		H.Blind(10)

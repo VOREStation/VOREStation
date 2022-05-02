@@ -102,36 +102,9 @@ var/eventchance = 10 // Percent chance per 5 minutes.
 var/hadevent    = 0
 
 /proc/appendicitis()
-	for(var/mob/living/carbon/human/H in shuffle(living_mob_list))
+	for(var/mob/living/human/H in shuffle(living_mob_list))
 		if(H.client && H.appendicitis())
 			break
-
-/proc/alien_infestation(var/spawncount = 1) // -- TLE
-	//command_alert("Unidentified lifesigns detected coming aboard [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert")
-	//world << sound('sound/AI/aliens.ogg')
-	var/list/vents = list()
-	for(var/obj/machinery/atmospherics/unary/vent_pump/temp_vent in machines)
-		if(!temp_vent.welded && temp_vent.network && (temp_vent.loc.z in using_map.station_levels))
-			if(temp_vent.network.normal_members.len > 50) // Stops Aliens getting stuck in small networks. See: Security, Virology
-				vents += temp_vent
-
-	var/list/candidates = get_alien_candidates()
-
-	if(prob(40)) spawncount++ //sometimes, have two larvae spawn instead of one
-	while((spawncount >= 1) && vents.len && candidates.len)
-
-		var/obj/vent = pick(vents)
-		var/candidate = pick(candidates)
-
-		var/mob/living/carbon/alien/larva/new_xeno = new(vent.loc)
-		new_xeno.key = candidate
-
-		candidates -= candidate
-		vents -= vent
-		spawncount--
-
-	spawn(rand(5000, 6000)) //Delayed announcements to keep the crew on their toes.
-		command_announcement.Announce("Unidentified lifesigns detected coming aboard \the [station_name()]. Secure any exterior access, including ducting and ventilation.", "Lifesign Alert", new_sound = 'sound/AI/aliens.ogg')
 
 /proc/high_radiation_event()
 
@@ -142,13 +115,13 @@ var/hadevent    = 0
 
 	sleep(100)
 */
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/human/H in living_mob_list)
 		var/turf/T = get_turf(H)
 		if(!T)
 			continue
 		if(isNotStationLevel(T.z))
 			continue
-		if(istype(H,/mob/living/carbon/human))
+		if(istype(H,/mob/living/human))
 			H.apply_effect((rand(15,75)),IRRADIATE,0)
 			if (prob(5))
 				H.apply_effect((rand(90,150)),IRRADIATE,0)
@@ -268,7 +241,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			var/allergysev = pick("deathly", "mildly", "severely", "contagiously")
 			var/crew
 			var/list/pos_crew = list()
-			for(var/mob/living/carbon/human/pos in player_list)
+			for(var/mob/living/human/pos in player_list)
 				pos_crew += pos.real_name
 			if(pos_crew.len)
 				crew = pick(pos_crew)

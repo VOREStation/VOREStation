@@ -137,7 +137,7 @@
 			if(broadcast_size >= 11)
 				var/turf/T = get_turf(user)
 				playsound(src, 'sound/items/AirHorn.ogg', 100, 1)
-				for(var/mob/living/carbon/M in oviewers(4, T))
+				for(var/mob/living/human/M in oviewers(4, T))
 					if(M.get_ear_protection() >= 2)
 						continue
 					M.SetSleeping(0)

@@ -103,6 +103,7 @@ var/global/list/string_slot_flags = list(
 	"holster" = SLOT_HOLSTER
 )
 
+<<<<<<< HEAD
 GLOBAL_LIST_EMPTY(mannequins)
 /proc/get_mannequin(var/ckey = "NULL")
 	var/mob/living/carbon/human/dummy/mannequin/M = GLOB.mannequins[ckey]
@@ -113,6 +114,15 @@ GLOBAL_LIST_EMPTY(mannequins)
 
 /proc/del_mannequin(var/ckey = "NULL")
 	GLOB.mannequins-= ckey
+=======
+/proc/get_mannequin(var/ckey)
+	if(!mannequins_)
+		mannequins_ = new()
+ 	. = mannequins_[ckey]
+	if(!.)
+		. = new/mob/living/human/dummy/mannequin()
+		mannequins_[ckey] = .
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 //////////////////////////
 /////Initial Building/////

@@ -152,8 +152,8 @@
 /obj/machinery/door/window/attack_hand(mob/user as mob)
 	src.add_fingerprint(user)
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/human))
+		var/mob/living/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 			visible_message("<span class='danger'>[user] smashes against the [src.name].</span>", 1)

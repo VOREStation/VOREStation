@@ -37,7 +37,7 @@
 /obj/item/clothing/mask/chewable/equipped(var/mob/living/user, var/slot)
 	..()
 	if(slot == slot_wear_mask)
-		var/mob/living/carbon/human/C = user
+		var/mob/living/human/C = user
 		if(C.check_has_mouth())
 			START_PROCESSING(SSprocessing, src)
 		else
@@ -55,7 +55,7 @@
 	chewtime--
 	if(reagents && reagents.total_volume)
 		if(ishuman(loc))
-			var/mob/living/carbon/human/C = loc
+			var/mob/living/human/C = loc
 			if (src == C.wear_mask && C.check_has_mouth())
 				reagents.trans_to_mob(C, REM, CHEM_INGEST, 0.2)
 		else

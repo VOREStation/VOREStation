@@ -100,12 +100,12 @@
 
 /datum/language/tajsign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/list/allowed_species = list(SPECIES_TAJ, SPECIES_TESHARI)	// Need a tail and ears and such to use this.
-	if(iscarbon(speaker))
+	if(ishuman(speaker))
 		var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
 		if(!hands)
 			return FALSE
 		if(ishuman(speaker))
-			var/mob/living/carbon/human/H = speaker
+			var/mob/living/human/H = speaker
 			if(H.species.get_bodytype(H) in allowed_species)
 				return TRUE
 

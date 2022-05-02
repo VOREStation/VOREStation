@@ -51,7 +51,7 @@
 
 
 // Checks if this step applies to the user mob at all
-/datum/surgery_step/proc/is_valid_target(mob/living/carbon/human/target)
+/datum/surgery_step/proc/is_valid_target(mob/living/human/target)
 	if(!hasorgans(target))
 		return 0
 
@@ -70,7 +70,7 @@
 // Let's check if stuff blocks us from doing surgery on them
 // TODO: make it based on area coverage rather than just forbid spacesuits?
 // Returns true if target organ is covered
-/datum/surgery_step/proc/coverage_check(mob/living/user, mob/living/carbon/human/target, obj/item/organ/external/affected, obj/item/tool)
+/datum/surgery_step/proc/coverage_check(mob/living/user, mob/living/human/target, obj/item/organ/external/affected, obj/item/tool)
 	if(!affected)
 		return FALSE
 
@@ -84,16 +84,16 @@
 	return FALSE
 
 // checks whether this step can be applied with the given user and target
-/datum/surgery_step/proc/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return 0
 
 // does stuff to begin the step, usually just printing messages. Moved germs transfering and bloodying here too
-/datum/surgery_step/proc/begin_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/begin_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if (can_infect && affected)
 		spread_germs_to_organ(affected, user)
 	if (ishuman(user) && prob(60))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if (blood_level)
 			H.bloody_hands(target,0)
 		if (blood_level > 1)
@@ -101,16 +101,16 @@
 	return
 
 // does stuff to end the step, which is normally print a message + do whatever this step changes
-/datum/surgery_step/proc/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return
 
 // stuff that happens when the step fails
-/datum/surgery_step/proc/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/proc/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return null
 
 
 
-/proc/spread_germs_to_organ(var/obj/item/organ/external/E, var/mob/living/carbon/human/user)
+/proc/spread_germs_to_organ(var/obj/item/organ/external/E, var/mob/living/human/user)
 	if(!istype(user) || !istype(E)) return
 
 	var/germ_level = user.germ_level
@@ -120,7 +120,7 @@
 	E.germ_level = max(germ_level,E.germ_level) //as funny as scrubbing microbes out with clean gloves is - no.
 
 
-/obj/item/proc/can_do_surgery(mob/living/carbon/M, mob/living/user)
+/obj/item/proc/can_do_surgery(mob/living/human/M, mob/living/user)
 //	if(M == user)
 //		return 0
 	if(!ishuman(M))
@@ -128,7 +128,7 @@
 
 	return 1
 
-/obj/item/proc/do_surgery(mob/living/carbon/M, mob/living/user)
+/obj/item/proc/do_surgery(mob/living/human/M, mob/living/user)
 	if(!can_do_surgery(M, user))
 		return 0
 	if(!istype(M))
@@ -181,7 +181,7 @@
 
 				M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
 				if (ishuman(M))
-					var/mob/living/carbon/human/H = M
+					var/mob/living/human/H = M
 					H.update_surgery()
 				return	1	  												//don't want to do weapony things after surgery
 	return 0

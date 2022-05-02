@@ -29,8 +29,8 @@
 	parent_organ = BP_HEAD
 
 	organ_verbs = list(
-		/mob/living/carbon/human/proc/augment_menu,
-		/mob/living/carbon/human/proc/toggle_shades)
+		/mob/living/human/proc/augment_menu,
+		/mob/living/human/proc/toggle_shades)
 
 	integrated_object_type = /obj/item/clothing/glasses/hud/security/jensenshades
 
@@ -41,7 +41,7 @@
 	owner.toggle_shades()
 
 // Here for posterity and example.
-/mob/living/carbon/human/proc/toggle_shades()
+/mob/living/human/proc/toggle_shades()
 	set name = "Toggle Integrated Thermoshades"
 	set desc = "Toggle your flash-proof, thermal-integrated sunglasses."
 	set category = "Augments"
@@ -98,7 +98,7 @@
 		else
 			return
 
-	if(istype(owner, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = owner
+	if(istype(owner, /mob/living/human))
+		var/mob/living/human/H = owner
 		H.add_modifier(/datum/modifier/sprinting, 1 MINUTES)
 

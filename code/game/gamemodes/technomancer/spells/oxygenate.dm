@@ -19,7 +19,7 @@
 	if(!within_range(hit_atom))
 		return
 	if(ishuman(hit_atom))
-		var/mob/living/carbon/human/H = hit_atom
+		var/mob/living/human/H = hit_atom
 		if(pay_energy(1500))
 			H.adjustOxyLoss(-35)
 			adjust_instability(10)

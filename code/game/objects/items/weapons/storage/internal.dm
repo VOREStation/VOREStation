@@ -66,7 +66,7 @@
 /obj/item/weapon/storage/internal/proc/handle_attack_hand(mob/user as mob)
 
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(H.l_store == master_item && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(master_item)
 			H.l_store = null

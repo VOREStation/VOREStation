@@ -23,7 +23,7 @@
 	mrate_static = TRUE
 	overdose = REAGENTS_OVERDOSE
 
-/datum/reagent/drugs/affect_blood(mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drugs/affect_blood(mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 
@@ -55,7 +55,7 @@
 	"Colors seem... flatter.",
 	"Everything feels a little dull, now.")
 
-/datum/reagent/drugs/bliss/affect_blood(mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drugs/bliss/affect_blood(mob/living/human/M, var/alien, var/removed)
 	..()
 	var/drug_strength = 15
 	if(alien == IS_SKRELL)
@@ -99,7 +99,7 @@
 	"Things feel really colourless to you all of a sudden.",
 	"You feel the urge to lie down and nap.")
 
-/datum/reagent/drugs/ambrosia_extract/affect_blood(mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drugs/ambrosia_extract/affect_blood(mob/living/human/M, var/alien, var/removed)
 	..()
 	var/drug_strength = 3
 	if(alien == IS_SKRELL)
@@ -131,7 +131,7 @@
 	"It feels like you've melded with the world around you...")
 	sober_message_list = list("Everything feels... flat.", "You feel almost TOO grounded in your surroundings.")
 
-/datum/reagent/drugs/psilocybin/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drugs/psilocybin/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	..()
 
 	var/threshold = 1 * M.species.chem_strength_tox
@@ -181,7 +181,7 @@
 	"It feels like you've melded with the world around you...")
 	sober_message_list = list("Everything feels... flat.", "You feel almost TOO grounded in your surroundings.")
 
-/datum/reagent/drugs/talum_quem/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drugs/talum_quem/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	..()
 
 	var/drug_strength = 29 * M.species.chem_strength_tox
@@ -238,7 +238,7 @@
 	high_message_list = list("Everything feels good, stable.", "You feel grounded.")
 	sober_message_list = list("The stability is gone...", "Everything is much less stable.")
 
-/datum/reagent/drugs/paroxetine/affect_blood(mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/drugs/paroxetine/affect_blood(mob/living/human/M, var/alien, var/removed)
 	..()
 	if(prob(5) && prob_proc == TRUE)
 		to_chat(M, "<span class='warning'>Everything feels out of control...</span>")

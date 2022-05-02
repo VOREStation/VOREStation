@@ -71,7 +71,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/proc/contaminate()
 
-/mob/living/carbon/human/contaminate()
+/mob/living/human/contaminate()
 	//See if anything can be contaminated.
 
 	if(!pl_suit_protected())
@@ -87,7 +87,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 /mob/proc/pl_effects()
 
-/mob/living/carbon/human/pl_effects()
+/mob/living/human/pl_effects()
 	//Handles all the bad things phoron can do.
 
 	//Contamination
@@ -137,7 +137,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			to_chat(src, "<span class='danger'>High levels of toxins cause you to spontaneously mutate!</span>")
 			domutcheck(src,null)
 
-/mob/living/carbon/human/proc/burn_eyes()
+/mob/living/human/proc/burn_eyes()
 	var/obj/item/organ/internal/eyes/E = internal_organs_by_name[O_EYES]
 	if(E)
 		if(prob(20))
@@ -148,7 +148,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			to_chat(src, "<span class='danger'>You are blinded!</span>")
 			Blind(20)
 
-/mob/living/carbon/human/proc/pl_head_protected()
+/mob/living/human/proc/pl_head_protected()
 	//Checks if the head is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
 	if(head)
 		if(vsc.plc.PHORONGUARD_ONLY)
@@ -158,7 +158,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/pl_suit_protected()
+/mob/living/human/proc/pl_suit_protected()
 	//Checks if the suit is adequately sealed.	//This is just odd. TODO: Make this respect the body_parts_covered stuff like thermal gear does.
 	var/coverage = 0
 	for(var/obj/item/protection in list(wear_suit, gloves, shoes))	//This is why it's odd. If I'm in a full suit, but my shoes and gloves aren't phoron proof, damage.
@@ -173,7 +173,7 @@ var/image/contamination_overlay = image('icons/effects/contamination.dmi')
 
 	return BIT_TEST_ALL(coverage, UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS)
 
-/mob/living/carbon/human/proc/suit_contamination()
+/mob/living/human/proc/suit_contamination()
 	//Runs over the things that can be contaminated and does so.
 	if(w_uniform)
 		w_uniform.contaminate()

@@ -6,7 +6,7 @@
 	energy_drain = 10
 	range = MELEE
 	equip_cooldown = 20
-	var/mob/living/carbon/occupant = null
+	var/mob/living/human/occupant = null
 	var/door_locked = 1
 	salvageable = 0
 	allow_duplicate = TRUE
@@ -110,8 +110,8 @@
 		to_chat(usr, "<span class='danger'>You can't reach the passenger compartment from here.</span>")
 		return
 
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(ishuman(usr))
+		var/mob/living/human/C = usr
 		if(C.handcuffed)
 			to_chat(usr, "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>")
 			return

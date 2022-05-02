@@ -93,7 +93,7 @@
 
 /obj/item/organ/internal/regennetwork/Initialize()
 	. = ..()
-	var/mob/living/carbon/human/H = null
+	var/mob/living/human/H = null
 	spawn(15)
 		if(ishuman(owner))
 			H = owner

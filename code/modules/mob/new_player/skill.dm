@@ -168,10 +168,10 @@ var/global/list/SKILL_PRE = list("Engineer" = SKILL_ENGINEER, "Roboticist" = SKI
 				L += S
 
 
-/mob/living/carbon/human/proc/GetSkillClass(points)
+/mob/living/human/proc/GetSkillClass(points)
 	return CalculateSkillClass(points, age)
 
-/proc/show_skill_window(var/mob/user, var/mob/living/carbon/human/M)
+/proc/show_skill_window(var/mob/user, var/mob/living/human/M)
 	if(!istype(M)) return
 	if(SKILLS == null)
 		setup_skills()
@@ -206,7 +206,7 @@ var/global/list/SKILL_PRE = list("Engineer" = SKILL_ENGINEER, "Roboticist" = SKI
 	user << browse(HTML, "window=show_skills;size=600x800")
 	return
 
-/mob/living/carbon/human/verb/show_skills()
+/mob/living/human/verb/show_skills()
 	set category = "IC"
 	set name = "Show Own Skills"
 

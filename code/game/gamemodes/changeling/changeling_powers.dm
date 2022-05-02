@@ -100,7 +100,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	for(var/language in languages)
 		mind.changeling.absorbed_languages |= language
 
-	var/mob/living/carbon/human/H = src
+	var/mob/living/human/H = src
 	if(istype(H))
 		var/saved_dna = H.dna.Clone() /// Prevent transform from breaking. 
 		var/datum/absorbed_dna/newDNA = new(H.real_name, saved_dna, H.species.name, H.languages, H.identifying_gender, H.flavor_texts, H.modifiers)
@@ -123,7 +123,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 /mob/proc/changeling_power(var/required_chems=0, var/required_dna=0, var/max_genetic_damage=100, var/max_stat=0)
 
 	if(!src.mind)		return
-	if(!iscarbon(src))	return
+	if(!ishuman(src))	return
 
 	var/datum/changeling/changeling = src.mind.changeling
 	if(!changeling)
@@ -220,9 +220,13 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 	if(!changeling)								return
 
 	var/list/victims = list()
-	for(var/mob/living/carbon/C in oview(changeling.sting_range))
+	for(var/mob/living/human/C in oview(changeling.sting_range))
 		victims += C
+<<<<<<< HEAD
 	var/mob/living/carbon/T = tgui_input_list(src, "Who will we sting?", "Sting!", victims)
+=======
+	var/mob/living/human/T = input(src, "Who will we sting?") as null|anything in victims
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 	if(!T)
 		return

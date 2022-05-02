@@ -139,8 +139,8 @@
 //Proc: attack_hand
 //Description: Attacked with empty hand. Only to allow special attack_bys.
 /obj/machinery/door/blast/attack_hand(mob/user as mob)
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/X = user
+	if(istype(user, /mob/living/human))
+		var/mob/living/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			src.attack_alien(user)
 			return
@@ -217,8 +217,8 @@
 // Parameters: Attacking Xeno mob.
 // Description: Forces open the door after a delay.
 /obj/machinery/door/blast/attack_alien(var/mob/user) //Familiar, right? Doors.
-	if(istype(user, /mob/living/carbon/human))
-		var/mob/living/carbon/human/X = user
+	if(istype(user, /mob/living/human))
+		var/mob/living/human/X = user
 		if(istype(X.species, /datum/species/xenos))
 			if(src.density)
 				visible_message("<span class='alium'>\The [user] begins forcing \the [src] open!</span>")

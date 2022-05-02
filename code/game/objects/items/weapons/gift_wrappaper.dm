@@ -171,9 +171,15 @@
 	if(Adjacent(user))
 		. += "There is about [src.amount] square units of paper left!"
 
+<<<<<<< HEAD
 /obj/item/weapon/wrapping_paper/attack(mob/target as mob, mob/user as mob)
 	if (!istype(target, /mob/living/carbon/human)) return
 	var/mob/living/carbon/human/H = target
+=======
+/obj/item/wrapping_paper/attack(mob/target as mob, mob/user as mob)
+	if (!istype(target, /mob/living/human)) return
+	var/mob/living/human/H = target
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 	if (istype(H.wear_suit, /obj/item/clothing/suit/straight_jacket) || H.stat)
 		if (src.amount > 2)

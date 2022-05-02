@@ -22,7 +22,7 @@
 	return
 
 /mob/living/silicon/robot/drone/MouseDrop(var/atom/over_object)
-	var/mob/living/carbon/human/H = over_object
+	var/mob/living/human/H = over_object
 	if(!istype(H) || !Adjacent(H))
 		return ..()
 	if(H.a_intent == "grab" && hat && !(H.l_hand && H.r_hand))

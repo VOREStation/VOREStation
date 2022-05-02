@@ -155,7 +155,7 @@
 	if(blocked < 100)
 		weaken_duration = smash_duration + min(0, force - target.getarmor(hit_zone, "melee") + 10)
 
-	if(hit_zone == "head" && istype(target, /mob/living/carbon/))
+	if(hit_zone == "head" && istype(target, /mob/living/human/))
 		user.visible_message("<span class='danger'>\The [user] smashes [src] over [target]'s head!</span>")
 		if(weaken_duration)
 			target.apply_effect(min(weaken_duration, 5), WEAKEN, blocked) // Never weaken more than a flash!
@@ -188,7 +188,11 @@
 	edge = FALSE
 	var/icon/broken_outline = icon('icons/obj/drinks.dmi', "broken")
 
+<<<<<<< HEAD
 /obj/item/weapon/broken_bottle/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/broken_bottle/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	playsound(src, 'sound/weapons/bladeslice.ogg', 50, 1, -1)
 	return ..()
 

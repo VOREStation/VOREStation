@@ -338,7 +338,7 @@
 						// TODO - tossing?
 						//M.visible_message("<span class='warning'>[M.name] is tossed around by the sudden acceleration!</span>")
 						//M.throw_at_random(FALSE, 4, 1)
-						if(istype(M, /mob/living/carbon))
+						if(istype(M, /mob/living/human))
 							M.Weaken(3)
 							//VOREStation Add
 							if(move_direction)

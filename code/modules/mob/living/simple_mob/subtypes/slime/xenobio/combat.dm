@@ -11,7 +11,7 @@
 				var/stun_power = between(0, power_charge + rand(0, 3), 10)
 
 				if(ishuman(L))
-					var/mob/living/carbon/human/H = L
+					var/mob/living/human/H = L
 					stun_power *= max(H.species.siemens_coefficient, 0)
 
 				if(prob(stun_power * 10)) // Try an electric shock.

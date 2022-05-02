@@ -30,7 +30,7 @@
 	imp_in = source
 	implanted = TRUE
 	if(ishuman(source))
-		var/mob/living/carbon/human/H = source
+		var/mob/living/human/H = source
 		var/obj/item/organ/external/affected = H.get_organ(target_zone)
 		if(affected)
 			affected.implants |= src
@@ -66,7 +66,11 @@
 	icon_state = "implant_melted"
 	malfunction = MALFUNCTION_PERMANENT
 
+<<<<<<< HEAD
 /obj/item/weapon/implant/proc/implant_loadout(var/mob/living/carbon/human/H)
+=======
+/obj/item/implant/proc/implant_loadout(var/mob/living/human/H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	. = istype(H) && handle_implant(H, initialize_loc)
 	if(.)
 		invisibility = initial(invisibility)
@@ -388,7 +392,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/weapon/implant/chem/activate(var/cause)
 	if((!cause) || (!src.imp_in))	return 0
-	var/mob/living/carbon/R = src.imp_in
+	var/mob/living/human/R = src.imp_in
 	src.reagents.trans_to_mob(R, cause, CHEM_BLOOD)
 	to_chat(R, "You hear a faint *beep*.")
 	if(!src.reagents.total_volume)
@@ -443,16 +447,21 @@ the implant may become unstable and either pre-maturely inject the subject or si
 
 /obj/item/weapon/implant/loyalty/handle_implant(mob/M, target_zone = BP_TORSO)
 	. = ..(M, target_zone)
-	if(!istype(M, /mob/living/carbon/human))
+	if(!istype(M, /mob/living/human))
 		. = FALSE
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	var/datum/antagonist/antag_data = get_antag_data(H.mind.special_role)
 	if(antag_data && (antag_data.flags & ANTAG_IMPLANT_IMMUNE))
 		H.visible_message("[H] seems to resist the implant!", "You feel the corporate tendrils of [using_map.company_name] try to invade your mind!")
 		. = FALSE
 
+<<<<<<< HEAD
 /obj/item/weapon/implant/loyalty/post_implant(mob/M)
 	var/mob/living/carbon/human/H = M
+=======
+/obj/item/implant/loyalty/post_implant(mob/M)
+	var/mob/living/human/H = M
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	clear_antag_roles(H.mind, 1)
 	to_chat(H, "<span class='notice'>You feel a surge of loyalty towards [using_map.company_name].</span>")
 

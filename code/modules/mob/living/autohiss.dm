@@ -9,7 +9,7 @@
 /mob/proc/handle_autohiss(message, datum/language/L)
 	return message // no autohiss at this level
 
-/mob/living/carbon/human/handle_autohiss(message, datum/language/L)
+/mob/living/human/handle_autohiss(message, datum/language/L)
 	if(!client || client.autohiss_mode == AUTOHISS_OFF) // no need to process if there's no client or they have autohiss off
 		return message
 	return species.handle_autohiss(message, L, client.autohiss_mode)

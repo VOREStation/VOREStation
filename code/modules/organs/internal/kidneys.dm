@@ -44,9 +44,15 @@
 /obj/item/organ/internal/kidneys/grey
 	icon_state = "kidneys_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/kidneys/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/kidneys/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner

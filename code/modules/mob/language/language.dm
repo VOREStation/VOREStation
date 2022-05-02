@@ -163,7 +163,7 @@
 	. = TRUE
 	if(name != "Noise")	// Audible Emotes
 		if(ishuman(speaker))
-			var/mob/living/carbon/human/H = speaker
+			var/mob/living/human/H = speaker
 			if(H.species.has_organ[O_VOICE] && !(flags & SIGNLANG) && !(flags & NONVERBAL)) // Does the species need a voicebox? Is the language even spoken?
 				var/obj/item/organ/internal/voicebox/vocal = H.internal_organs_by_name[O_VOICE]
 				if(!vocal || vocal.is_broken() || vocal.mute)

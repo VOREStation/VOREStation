@@ -80,8 +80,8 @@
 			else if(istype(A, /obj/item))
 				var/obj/item/cleaned_item = A
 				cleaned_item.clean_blood()
-			else if(istype(A, /mob/living/carbon/human))
-				var/mob/living/carbon/human/cleaned_human = A
+			else if(istype(A, /mob/living/human))
+				var/mob/living/human/cleaned_human = A
 				if(cleaned_human.lying)
 					if(cleaned_human.head)
 						cleaned_human.head.clean_blood()

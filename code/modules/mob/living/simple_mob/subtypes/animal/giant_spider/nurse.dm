@@ -57,8 +57,13 @@
 
 /mob/living/simple_mob/animal/giant_spider/nurse/inject_poison(mob/living/L, target_zone)
 	..() // Inject the stoxin here.
+<<<<<<< HEAD
 	if(ishuman(L) && prob(egg_inject_chance) && can_lay_eggs)			//VOREStation Edit
 		var/mob/living/carbon/human/H = L
+=======
+	if(ishuman(L) && prob(egg_inject_chance))
+		var/mob/living/human/H = L
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		var/obj/item/organ/external/O = H.get_organ(target_zone)
 		if(O)
 			var/eggcount = 0

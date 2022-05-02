@@ -59,7 +59,7 @@
 	SEND_SIGNAL(T, COMSIG_REAGENTS_TOUCH, src, amount)
 	return
 
-/datum/reagent/proc/on_mob_life(var/mob/living/carbon/M, var/alien, var/datum/reagents/metabolism/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
+/datum/reagent/proc/on_mob_life(var/mob/living/human/M, var/alien, var/datum/reagents/metabolism/location) // Currently, on_mob_life is called on carbons. Any interaction with non-carbon mobs (lube) will need to be done in touch_mob.
 	if(!istype(M))
 		return
 	if(!affects_dead && M.stat == DEAD)
@@ -89,7 +89,7 @@
 		ingest_rem_mult *= active_metab.metabolism_speed
 
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 			if(!H.isSynthetic())
 				if(H.species.has_organ[O_HEART] && (active_metab.metabolism_class == CHEM_BLOOD))
 					var/obj/item/organ/internal/heart/Pump = H.internal_organs_by_name[O_HEART]
@@ -175,21 +175,21 @@
 	remove_self(removed)
 	return
 
-/datum/reagent/proc/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	return
 
-/datum/reagent/proc/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	M.bloodstr.add_reagent(id, removed)
 	return
 
-/datum/reagent/proc/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/proc/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 	return
 
-/datum/reagent/proc/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
+/datum/reagent/proc/overdose(var/mob/living/human/M, var/alien, var/removed) // Overdose effect.
 	if(alien == IS_DIONA)
 		return
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		overdose_mod *= H.species.chemOD_mod
 	// 6 damage per unit at minimum, scales with excessive reagents. Rounding should help keep damage consistent between ingest / inject, but isn't perfect.
 	// Hardcapped at 3.6 damage per tick, or 18 damage per unit at 0.2 metabolic rate so that you can't instakill people with overdoses by feeding them infinite periadaxon.

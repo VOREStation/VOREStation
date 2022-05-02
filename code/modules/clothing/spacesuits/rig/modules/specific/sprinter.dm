@@ -25,7 +25,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	to_chat(H, "<font color='blue'><b>You activate the suit's sprint mode.</b></font>")
 
@@ -36,7 +36,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	to_chat(H, "<span class='danger'>Your hardsuit returns to normal speed.</span>")
 

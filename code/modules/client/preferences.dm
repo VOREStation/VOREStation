@@ -367,7 +367,7 @@ var/list/preferences_datums = list()
 	ShowChoices(usr)
 	return 1
 
-/datum/preferences/proc/copy_to(mob/living/carbon/human/character, icon_updates = TRUE)
+/datum/preferences/proc/copy_to(mob/living/human/character, icon_updates = TRUE)
 	// Sanitizing rather than saving as someone might still be editing when copy_to occurs.
 	player_setup.sanitize_setup()
 

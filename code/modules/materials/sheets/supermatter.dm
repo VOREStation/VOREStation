@@ -26,8 +26,8 @@
 		return
 
 	var/burn_user = TRUE
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(M, /mob/living/human))
+		var/mob/living/human/H = user
 		var/obj/item/clothing/gloves/G = H.gloves
 		if(istype(G) && ((G.flags & THICKMATERIAL && prob(70)) || istype(G, /obj/item/clothing/gloves/gauntlets)))
 			burn_user = FALSE

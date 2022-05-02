@@ -13,7 +13,7 @@
 
 /datum/wires/smartfridge/interactable(mob/user)
 	var/obj/machinery/smartfridge/S = holder
-	if(iscarbon(user) && S.Adjacent(user) && S.seconds_electrified && S.shock(user, 100))
+	if(ishuman(user) && S.Adjacent(user) && S.seconds_electrified && S.shock(user, 100))
 		return FALSE
 	if(S.panel_open)
 		return TRUE

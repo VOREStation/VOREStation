@@ -49,7 +49,7 @@
 		return TRUE
 	if(target && can_attack(target))
 		if(ishuman(target))
-			var/mob/living/carbon/human/H = target
+			var/mob/living/human/H = target
 			if(istype(H.species, /datum/species/monkey))
 				ai_log("xenobio_slime/is_justified_to_discipline() : Judged to be unjustified because we're targeting a monkey. Exiting.", AI_LOG_DEBUG)
 				return FALSE // Attacking monkeys is okay.
@@ -179,7 +179,7 @@
 	if(istype(AM, /mob/living))
 		var/mob/living/L = AM
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 			if(istype(H.species, /datum/species/monkey))
 				return 1 // Otherwise ranged slimes will eat a lot less often.
 		if(L.stat >= UNCONSCIOUS)
@@ -190,7 +190,7 @@
 	. = ..()
 	if(.) // Do some additional checks because we have Special Code(tm).
 		if(ishuman(AM))
-			var/mob/living/carbon/human/H = AM
+			var/mob/living/human/H = AM
 			if(istype(H.species, /datum/species/monkey)) // istype() is so they'll eat the alien monkeys too.
 				return TRUE // Monkeys are always food (sorry Pun Pun).
 			else if(H.species && H.species.name == SPECIES_PROMETHEAN) // Prometheans are always our friends.
@@ -204,7 +204,7 @@
 	. = ..(attacker)
 
 	if(ishuman(attacker))
-		var/mob/living/carbon/human/H = attacker
+		var/mob/living/human/H = attacker
 		if(H.species && H.species.name == SPECIES_PROMETHEAN)	// They're a jerk.
 			grudges |= H
 

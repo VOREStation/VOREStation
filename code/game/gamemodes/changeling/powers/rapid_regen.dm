@@ -20,7 +20,7 @@
 	src.mind.changeling.chem_charges -= 50
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/C = src
+		var/mob/living/human/C = src
 		var/healing_amount = 40
 		if(src.mind.changeling.recursive_enhancement)
 			healing_amount = C.maxHealth

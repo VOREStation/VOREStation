@@ -8,7 +8,7 @@
 
 /decl/emote/audible/snap/proc/can_snap(var/atom/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		for(var/limb in list(BP_L_HAND, BP_R_HAND))
 			var/obj/item/organ/external/L = H.get_organ(limb)
 			if(istype(L) && L.is_usable() && !L.splinted)

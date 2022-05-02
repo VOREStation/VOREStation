@@ -71,7 +71,7 @@
 				if (ID in virusDB)
 					R = virusDB[ID]
 
-				var/mob/living/carbon/human/D = B.data["donor"]
+				var/mob/living/human/D = B.data["donor"]
 				pathogen_pool.Add(list(list(\
 					"name" = "[istype(D) ? "[D.get_species()] " : ""][B.name]", \
 					"dna" = B.data["blood_DNA"], \
@@ -161,7 +161,7 @@
 			P.info += "<hr>"
 
 			for(var/datum/reagent/blood/B in sample.reagents.reagent_list)
-				var/mob/living/carbon/human/D = B.data["donor"]
+				var/mob/living/human/D = B.data["donor"]
 				P.info += "<large><u>[D.get_species()] [B.name]:</u></large><br>[B.data["blood_DNA"]]<br>"
 
 				var/list/virus = B.data["virus2"]

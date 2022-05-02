@@ -382,7 +382,7 @@
 	if(isliving(target)) //will we ever even need to tranfer reagents to non-living mobs?
 		var/mob/living/L = target
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 			if(H.check_shields(0, null, null, null, "the spray") == 1)		//If they block the spray, it does nothing.
 				amount = 0
 		perm = L.reagent_permeability()
@@ -391,8 +391,13 @@
 /datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
 	if(!target || !istype(target))
 		return
+<<<<<<< HEAD
 	if(iscarbon(target))
 		var/mob/living/carbon/C = target
+=======
+	if(ishuman(target))
+		var/mob/living/human/C = target
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(type == CHEM_BLOOD)
 			var/datum/reagents/R = C.reagents
 			return trans_to_holder(R, amount, multiplier, copy)

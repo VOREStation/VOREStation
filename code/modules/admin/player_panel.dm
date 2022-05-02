@@ -226,15 +226,13 @@
 
 			if(isliving(M))
 
-				if(iscarbon(M)) //Carbon stuff
+				if(ishuman(M)) //Carbon stuff
 					if(ishuman(M))
 						M_job = M.job
 					else if(isslime(M))
 						M_job = "slime"
 					else if(issmall(M))
 						M_job = "Monkey"
-					else if(isalien(M))
-						M_job = "Alien"
 					else
 						M_job = "Carbon-based"
 
@@ -344,14 +342,12 @@
 			dat += "<td>Ghost</td>"
 		else if(issmall(M))
 			dat += "<td>Monkey</td>"
-		else if(isalien(M))
-			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"
 
 
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M,/mob/living/human))
+			var/mob/living/human/H = M
 			if(H.mind && H.mind.assigned_role)
 				dat += "<td>[H.mind.assigned_role]</td>"
 		else

@@ -95,8 +95,8 @@
 
 /datum/modifier/franken_sickness/tick()
 	if(holder.stat != DEAD)
-		if(istype(holder, /mob/living/carbon/human))
-			var/mob/living/carbon/human/F = holder
+		if(istype(holder, /mob/living/human))
+			var/mob/living/human/F = holder
 			if(F.can_defib)
 				F.can_defib = 0
 

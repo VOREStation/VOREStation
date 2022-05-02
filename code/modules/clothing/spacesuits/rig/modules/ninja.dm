@@ -35,7 +35,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	to_chat(H, "<font color='blue'><b>You are now nearly invisible to normal detection.</b></font>")
 	H.alpha = 5
@@ -49,7 +49,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	to_chat(H, "<span class='danger'>You are now visible.</span>")
 
@@ -97,7 +97,7 @@
 
 /obj/item/rig_module/teleporter/engage(var/atom/target, var/notify_ai)
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
 		to_chat(H, "<span class='warning'>You cannot teleport out of your current location.</span>")

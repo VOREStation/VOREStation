@@ -72,7 +72,7 @@
 
 	// scan the crew for possible infectees
 	var/list/crew = list()
-	for(var/mob/living/carbon/human/H in world) if(H.client)
+	for(var/mob/living/human/H in world) if(H.client)
 		// heads should not be infected
 		if(H.mind.assigned_role in command_positions) continue
 		crew += H
@@ -97,14 +97,14 @@
 	var/list/infectees = list()
 
 	for(var/i = 0, i < lethal_amount, i++)
-		var/mob/living/carbon/human/H = pick(crew)
+		var/mob/living/human/H = pick(crew)
 		if(lethal.uniqueID in H.virus2)
 			i--
 			continue
 		H.virus2["[lethal.uniqueID]"] = lethal.getcopy()
 		infectees += H
 
-	var/mob/living/carbon/human/patient_zero = pick(infectees)
+	var/mob/living/human/patient_zero = pick(infectees)
 	var/datum/disease2/disease/V = patient_zero.virus2["[lethal.uniqueID]"]
 	V.stage = 3
 
@@ -142,7 +142,7 @@
 /datum/game_mode/epidemic/check_win()
 	var/alive = 0
 	var/sick = 0
-	for(var/mob/living/carbon/human/H in world)
+	for(var/mob/living/human/H in world)
 		if(H.key && H.stat != 2) alive++
 		if(H.virus2.len && H.stat != 2) sick++
 

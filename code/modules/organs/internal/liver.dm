@@ -6,7 +6,7 @@
 
 /obj/item/organ/internal/liver/process()
 	..()
-	if(!iscarbon(owner)) return
+	if(!ishuman(owner)) return
 
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 
@@ -59,9 +59,15 @@
 /obj/item/organ/internal/liver/grey
 	icon_state = "liver_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/liver/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/liver/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner

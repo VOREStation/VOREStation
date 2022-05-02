@@ -18,7 +18,7 @@
 		return 0
 	src.mind.changeling.chem_charges -= 10
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/human/C = src
 	var/heal_amount = 2
 	if(src.mind.changeling.recursive_enhancement)
 		heal_amount = heal_amount * 2

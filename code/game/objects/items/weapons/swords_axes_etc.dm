@@ -34,7 +34,7 @@
 		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 		user.Weaken(3 * force)
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 			H.apply_damage(2*force, BRUTE, BP_HEAD)
 		else
 			user.take_organ_damage(2*force)
@@ -76,8 +76,8 @@
 		force = 3//not so robust now
 		attack_verb = list("hit", "punched")
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/human))
+		var/mob/living/human/H = user
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 
@@ -102,7 +102,7 @@
 			to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 			user.Weaken(3 * force)
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/human/H = user
 				H.apply_damage(2*force, BRUTE, BP_HEAD)
 			else
 				user.take_organ_damage(2*force)

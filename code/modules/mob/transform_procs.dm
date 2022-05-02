@@ -1,4 +1,4 @@
-/mob/living/carbon/human/proc/monkeyize()
+/mob/living/human/proc/monkeyize()
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -45,7 +45,11 @@
 	spawning = 1
 	return ..()
 
+<<<<<<< HEAD
 /mob/living/carbon/human/AIize(var/move = TRUE) // 'move' argument needs defining here too because BYOND is dumb
+=======
+/mob/living/human/AIize(move=1) // 'move' argument needs defining here too because BYOND is dumb
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if (transforming)
 		return
 	for(var/t in organs)
@@ -60,7 +64,7 @@
 
 	return ..(move)
 
-/mob/living/carbon/AIize(var/move = TRUE)
+/mob/living/human/AIize(var/move = TRUE)
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -142,7 +146,7 @@
 	return O
 
 //human -> robot
-/mob/living/carbon/human/proc/Robotize()
+/mob/living/human/proc/Robotize()
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -201,6 +205,7 @@
 		qdel(src)
 	return O
 
+<<<<<<< HEAD
 //human -> alien
 /mob/living/carbon/human/proc/Alienize()
 	if (transforming)
@@ -227,6 +232,9 @@
 
 
 /mob/living/carbon/human/proc/corgize()
+=======
+/mob/living/human/proc/corgize()
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if (transforming)
 		return
 	for(var/obj/item/W in src)
@@ -247,7 +255,7 @@
 	qdel(src)
 	return
 
-/mob/living/carbon/human/Animalize()
+/mob/living/human/Animalize()
 
 	var/list/mobtypes = typesof(/mob/living/simple_mob)
 	var/mobpath = tgui_input_list(usr, "Which type of mob should [src] turn into?", "Choose a type", mobtypes)

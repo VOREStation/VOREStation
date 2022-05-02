@@ -323,7 +323,11 @@
 			)
 	item_state = "sheet-metal"
 
+<<<<<<< HEAD
 /obj/item/weapon/form_printer/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/form_printer/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	return
 
 /obj/item/weapon/form_printer/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, flag, params)

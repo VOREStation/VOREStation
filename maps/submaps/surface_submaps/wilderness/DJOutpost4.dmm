@@ -16,9 +16,15 @@
 "ap" = (/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aq" = (/obj/structure/sign/warning/server_room,/turf/simulated/wall/rpshull,/area/submap/DJOutpost1)
 "ar" = (/obj/structure/sign/goldenplaque{desc = "An award given to Sif Free Radio for media excellency. It looks fake."; name = "Best Radio Station 2558"; pixel_y = 30},/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+<<<<<<< HEAD
 "as" = (/obj/structure/bookcase,/obj/structure/safe/floor,/obj/item/weapon/bone/skull/unknown,/obj/item/weapon/bone,/obj/item/weapon/bone/ribs,/obj/item/weapon/gun/energy/gun/burst,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "at" = (/mob/living/carbon/human/ai_controlled/replicant,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "au" = (/obj/effect/decal/remains,/obj/effect/decal/cleanable/blood,/obj/item/clothing/under/frontier,/obj/random_multi/single_item/sfr_headset,/obj/item/weapon/archaeological_find,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+=======
+"as" = (/obj/structure/bookcase,/obj/structure/safe/floor,/obj/item/bone/skull/unknown,/obj/item/bone,/obj/item/bone/ribs{start_anomalous = 1},/obj/random/energy/highend,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+"at" = (/mob/living/human/ai_controlled/replicant,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+"au" = (/obj/effect/decal/remains,/obj/effect/decal/cleanable/blood,/obj/item/clothing/under/frontier,/obj/random_multi/single_item/sfr_headset,/obj/item/archaeological_find,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 "av" = (/obj/machinery/door/airlock/maintenance/int,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DJOutpost1)
 "aw" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio/intercom{icon_state = "intercom"; dir = 8},/obj/random/firstaid,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "ax" = (/obj/machinery/computer/message_monitor,/obj/item/weapon/paper/monitorkey,/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)

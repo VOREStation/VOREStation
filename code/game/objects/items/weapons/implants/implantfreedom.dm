@@ -15,7 +15,11 @@
 	return
 
 
+<<<<<<< HEAD
 /obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
+=======
+/obj/item/implant/freedom/trigger(emote, mob/living/human/source as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if (src.uses < 1)
 		return 0
 

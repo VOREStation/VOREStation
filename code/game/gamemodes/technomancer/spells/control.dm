@@ -10,8 +10,13 @@
 	ability_icon_state = "tech_control"
 	category = UTILITY_SPELLS
 
+<<<<<<< HEAD
 /mob/living/carbon/human/proc/technomancer_control()
 	place_spell_in_hand(/obj/item/weapon/spell/control)
+=======
+/mob/living/human/proc/technomancer_control()
+	place_spell_in_hand(/obj/item/spell/control)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 /obj/item/weapon/spell/control
 	name = "control"

@@ -67,7 +67,7 @@
 	things_to_siphon |= recursive_content_check(target, things_to_siphon, recursion_limit = 3, client_check = 0, sight_check = 0, include_mobs = 1, include_objects = 1, ignore_show_messages = 1)
 	for(var/atom/movable/AM in things_to_siphon)
 		if(ishuman(AM)) // We can drain FBPs, so we can skip the test below.
-			var/mob/living/carbon/human/H = AM
+			var/mob/living/human/H = AM
 			if(H.isSynthetic())
 				continue
 		if(AM.drain_power(1) <= 0) // This checks if whatever's in the list can be drained from.
@@ -115,7 +115,7 @@
 	// If we have 'leftover' flow, let's try to do more.
 	if(round(flow_remaining))
 		if(ishuman(siphoning))
-			var/mob/living/carbon/human/H = siphoning
+			var/mob/living/human/H = siphoning
 			// Let's drain from FBPs.  Note that it is possible for the caster to drain themselves if they are an FBP and desperate.
 			if(H.isSynthetic())
 				var/nutrition_to_steal = flow_remaining * 0.025 // Should steal about 25 nutrition per second by default.
@@ -192,7 +192,7 @@
 	if(target_mob == firer) // This shouldn't actually occur due to Bump(), but just in-case.
 		return 1
 	if(ishuman(target_mob)) // Otherwise someone else stood in the beam and is going to pay for it.
-		var/mob/living/carbon/human/H = target_mob
+		var/mob/living/human/H = target_mob
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(BP_TORSO))
 		H.electrocute_act(power, src, H.get_siemens_coefficient_organ(affected), affected, 0)
 	else

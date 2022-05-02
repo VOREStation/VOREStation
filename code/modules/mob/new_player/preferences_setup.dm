@@ -1,6 +1,6 @@
 /datum/preferences
 	//The mob should have a gender you want before running this proc. Will run fine without H
-/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/carbon/human/H)
+/datum/preferences/proc/randomize_appearance_and_body_for(var/mob/living/human/H)
 	var/datum/species/current_species = GLOB.all_species[species ? species : "Human"]
 	set_biological_gender(pick(current_species.genders))
 
@@ -193,7 +193,7 @@
 	g_skin = green
 	b_skin = blue
 
-/datum/preferences/proc/dress_preview_mob(var/mob/living/carbon/human/mannequin)
+/datum/preferences/proc/dress_preview_mob(var/mob/living/human/mannequin)
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
 		mannequin.dna = new /datum/dna(null)
 	copy_to(mannequin, TRUE)
@@ -251,7 +251,7 @@
 		previewJob.equip_preview(mannequin, player_alt_titles[previewJob.title])
 
 /datum/preferences/proc/update_preview_icon()
-	var/mob/living/carbon/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
+	var/mob/living/human/dummy/mannequin/mannequin = get_mannequin(client_ckey)
 	if(!mannequin.dna) // Special handling for preview icons before SSAtoms has initailized.
 		mannequin.dna = new /datum/dna(null)
 	mannequin.delete_inventory(TRUE)

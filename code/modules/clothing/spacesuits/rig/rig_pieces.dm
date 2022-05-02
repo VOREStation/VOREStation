@@ -97,7 +97,7 @@
 	if(!A || !proximity)
 		return 0
 
-	var/mob/living/carbon/human/H = loc
+	var/mob/living/human/H = loc
 	if(!istype(H) || (!H.back && !H.belt))
 		return 0
 

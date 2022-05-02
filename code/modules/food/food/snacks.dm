@@ -87,13 +87,13 @@
 		to_chat(M, "<span class='warning'>How do you expect to eat this without opening it?</span>")
 		return FALSE
 
-	if(istype(M, /mob/living/carbon))
+	if(istype(M, /mob/living/human))
 		//TODO: replace with standard_feed_mob() call.
 
 		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
 		if(M == user)								//If you're eating it yourself
-			if(istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
+			if(istype(M,/mob/living/human))
+				var/mob/living/human/H = M
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? You don't have a mouth!")
 					return
@@ -135,8 +135,8 @@
 			return ..()
 
 		else
-			if(istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
+			if(istype(M,/mob/living/human))
+				var/mob/living/human/H = M
 				if(!H.check_has_mouth())
 					to_chat(user, "Where do you intend to put \the [src]? \The [H] doesn't have a mouth!")
 					return
@@ -274,8 +274,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// FOOD END
 ////////////////////////////////////////////////////////////////////////////////
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
 	if(!isanimal(user) && !isalien(user))
+=======
+/obj/item/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
+	if(!isanimal(user))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return
 	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
 	bitecount++
@@ -1766,7 +1771,202 @@
 	if(reagents.has_reagent("water"))
 		Expand()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped
+=======
+/obj/item/reagent_containers/food/snacks/nettlesoup
+	name = "Nettle soup"
+	desc = "To think, the botanist would've beat you to death with one of these."
+	icon_state = "nettlesoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#AFC4B5"
+	center_of_mass = list("x"=16, "y"=7)
+	nutriment_amt = 8
+	nutriment_desc = list("salad" = 4, "egg" = 2, "potato" = 2)
+	bitesize = 5
+
+/obj/item/reagent_containers/food/snacks/nettlesoup/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 5)
+	reagents.add_reagent("tricordrazine", 5)
+
+/obj/item/reagent_containers/food/snacks/mysterysoup
+	name = "Mystery soup"
+	desc = "The mystery is, why aren't you eating it?"
+	icon_state = "mysterysoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#F082FF"
+	center_of_mass = list("x"=16, "y"=6)
+	nutriment_amt = 1
+	nutriment_desc = list("backwash" = 1)
+	bitesize = 5
+
+/obj/item/reagent_containers/food/snacks/mysterysoup/Initialize()
+	. = ..()
+	var/mysteryselect = pick(1,2,3,4,5,6,7,8,9,10)
+	switch(mysteryselect)
+		if(1)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("capsaicin", 3)
+			reagents.add_reagent("tomatojuice", 2)
+		if(2)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("frostoil", 3)
+			reagents.add_reagent("tomatojuice", 2)
+		if(3)
+			reagents.add_reagent("nutriment", 5, nutriment_desc)
+			reagents.add_reagent("water", 5)
+			reagents.add_reagent("tricordrazine", 5)
+		if(4)
+			reagents.add_reagent("nutriment", 5, nutriment_desc)
+			reagents.add_reagent("water", 10)
+		if(5)
+			reagents.add_reagent("nutriment", 2, nutriment_desc)
+			reagents.add_reagent("banana", 10)
+		if(6)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("blood", 10)
+		if(7)
+			reagents.add_reagent("slimejelly", 10)
+			reagents.add_reagent("water", 10)
+		if(8)
+			reagents.add_reagent("carbon", 10)
+			reagents.add_reagent("toxin", 10)
+		if(9)
+			reagents.add_reagent("nutriment", 5, nutriment_desc)
+			reagents.add_reagent("tomatojuice", 10)
+		if(10)
+			reagents.add_reagent("nutriment", 6, nutriment_desc)
+			reagents.add_reagent("tomatojuice", 5)
+			reagents.add_reagent("imidazoline", 5)
+
+/obj/item/reagent_containers/food/snacks/wishsoup
+	name = "Wish Soup"
+	desc = "I wish this was soup."
+	icon_state = "wishsoup"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#D1F4FF"
+	center_of_mass = list("x"=16, "y"=11)
+	bitesize = 5
+
+/obj/item/reagent_containers/food/snacks/wishsoup/Initialize()
+	. = ..()
+	reagents.add_reagent("water", 10)
+	if(prob(25))
+		src.desc = "A wish come true!"
+		reagents.add_reagent("nutriment", 8, list("something good" = 8))
+
+/obj/item/reagent_containers/food/snacks/hotchili
+	name = "Hot Chili"
+	desc = "A five alarm Texan Chili!"
+	icon_state = "hotchili"
+	trash = /obj/item/trash/snack_bowl
+	filling_color = "#FF3C00"
+	center_of_mass = list("x"=15, "y"=9)
+	nutriment_amt = 3
+	nutriment_desc = list("chilli peppers" = 3)
+	bitesize = 5
+
+/obj/item/reagent_containers/food/snacks/hotchili/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	reagents.add_reagent("capsaicin", 3)
+	reagents.add_reagent("tomatojuice", 2)
+
+/obj/item/reagent_containers/food/snacks/coldchili
+	name = "Cold Chili"
+	desc = "This slush is barely a liquid!"
+	icon_state = "coldchili"
+	filling_color = "#2B00FF"
+	center_of_mass = list("x"=15, "y"=9)
+	trash = /obj/item/trash/snack_bowl
+	nutriment_amt = 3
+	nutriment_desc = list("ice peppers" = 3)
+	bitesize = 5
+
+/obj/item/reagent_containers/food/snacks/coldchili/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)
+	reagents.add_reagent("frostoil", 3)
+	reagents.add_reagent("tomatojuice", 2)
+
+/obj/item/reagent_containers/food/snacks/cube //Generic version
+	name = "dehydrated matter cube"
+	desc = "Just add water! Warning: Do not swallow!"
+	icon_state = "monkeycube"
+	nutriment_amt = 1
+	nutriment_desc = list("sawdust" = 1)
+	bitesize = 12
+	filling_color = "#ADAC7F"
+	center_of_mass = list("x"=16, "y"=14)
+	w_class = ITEMSIZE_TINY
+	flags = OPENCONTAINER
+	var/wrapped = 0
+	var/contents_type = "item"
+	var/monkey_type = "Monkey"
+	var/item_type = /obj/item/stack/material/steel
+
+/obj/item/reagent_containers/food/snacks/cube/Initialize()
+	. = ..()
+
+/obj/item/reagent_containers/food/snacks/cube/proc/Expand()
+	src.visible_message("<span class='notice'>\The [src] expands!</span>")
+	if (contents_type == "mob")
+		var/mob/living/human/H = new(get_turf(src))
+		H.set_species(monkey_type)
+		H.real_name = H.species.get_random_name()
+		H.name = H.real_name
+		if(ismob(loc))
+			var/mob/M = loc
+			M.unEquip(src)
+	else if (contents_type == "item")
+		new item_type(get_turf(src))
+	qdel(src)
+	return 1
+
+/obj/item/reagent_containers/food/snacks/cube/attack_self(mob/user as mob)
+	if(wrapped)
+		Unwrap(user)
+
+/obj/item/reagent_containers/food/snacks/cube/proc/Unwrap(mob/user as mob)
+	icon_state = "monkeycube"
+	desc = "Just add water!"
+	to_chat(user, "You unwrap the cube.")
+	wrapped = 0
+	flags |= OPENCONTAINER
+	return
+
+/obj/item/reagent_containers/food/snacks/cube/On_Consume(var/mob/M)
+	var/mob/living/human/H = M
+	if(ishuman(M))
+		if (contents_type == "mob")
+			H.visible_message("<span class='warning'>A screeching creature bursts out of [M]'s chest!</span>")
+			var/obj/item/organ/external/organ = H.get_organ(BP_TORSO)
+			organ.take_damage(50, 0, 0, "Animal escaping the ribcage")
+		else if (contents_type == "item")
+			H.visible_message("<span class='warning'>A rapidly expanding mass bursts from [M]'s mouth!</span>")
+			var/obj/item/organ/external/organ = H.get_organ(BP_HEAD)
+			organ.take_damage(25, 0, 0, "Large object exiting the mouth")
+	Expand()
+
+/obj/item/reagent_containers/food/snacks/cube/on_reagent_change()
+	if(reagents.has_reagent("water"))
+		Expand()
+
+//Carbon mob cubes
+
+/obj/item/reagent_containers/food/snacks/cube/monkeycube
+	name = "monkey cube"
+	center_of_mass = list("x"=16, "y"=14)
+	contents_type = "mob"
+
+/obj/item/reagent_containers/food/snacks/cube/monkeycube/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 10)
+
+
+/obj/item/reagent_containers/food/snacks/cube/monkeycube/wrapped
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	desc = "Still wrapped in some paper."
 	icon_state = "monkeycubewrap"
 	flags = 0

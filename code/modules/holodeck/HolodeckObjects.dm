@@ -148,7 +148,7 @@
 /datum/unarmed_attack/holopugilism
 	sparring_variant_type = /datum/unarmed_attack/holopugilism
 
-/datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/zone)
+/datum/unarmed_attack/holopugilism/unarmed_override(var/mob/living/human/user,var/mob/living/human/target,var/zone)
 	user.do_attack_animation(src)
 	var/damage = rand(0, 9)
 	if(!damage)
@@ -350,8 +350,8 @@
 	cut_overlays()		//So that it doesn't keep stacking overlays non-stop on top of each other
 	if(active)
 		add_overlay(blade_overlay)
-	if(istype(usr,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = usr
+	if(istype(usr,/mob/living/human))
+		var/mob/living/human/H = usr
 		H.update_inv_l_hand()
 		H.update_inv_r_hand()
 

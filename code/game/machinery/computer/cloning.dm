@@ -371,7 +371,7 @@
 
 	add_fingerprint(usr)
 
-/obj/machinery/computer/cloning/proc/scan_mob(mob/living/carbon/human/subject as mob, var/scan_brain = 0)
+/obj/machinery/computer/cloning/proc/scan_mob(mob/living/human/subject as mob, var/scan_brain = 0)
 	if(stat & NOPOWER)
 		return
 	if(scanner.stat & (NOPOWER|BROKEN))
@@ -379,18 +379,12 @@
 	if(scan_brain && !can_brainscan())
 		return
 	if(isnull(subject) || (!(ishuman(subject))) || (!subject.dna))
-		if(isalien(subject))
-			set_scan_temp("Xenomorphs are not scannable.", "bad")
-			SStgui.update_uis(src)
-			return
-		// can add more conditions for specific non-human messages here
-		else
-			set_scan_temp("Subject species is not scannable.", "bad")
-			SStgui.update_uis(src)
-			return
+		set_scan_temp("Subject species is not scannable.", "bad")
+		SStgui.update_uis(src)
+		return
 	if(!subject.has_brain())
 		if(ishuman(subject))
-			var/mob/living/carbon/human/H = subject
+			var/mob/living/human/H = subject
 			if(H.should_have_organ("brain"))
 				set_scan_temp("No brain detected in subject.", "bad")
 		else

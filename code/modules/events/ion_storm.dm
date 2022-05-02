@@ -25,13 +25,13 @@
 	command_announcement.Announce("It has come to our attention that \the [location_name()] passed through an ion storm.  Please monitor all electronic equipment for malfunctions.", "Anomaly Alert")
 
 /datum/event/ionstorm/start()
-	for (var/mob/living/carbon/human/player in player_list)
+	for (var/mob/living/human/player in player_list)
 		if(	!player.mind || player_is_antag(player.mind, only_offstation_roles = 1) || player.client.inactivity > MinutesToTicks(10))
 			continue
 		players += player.real_name
 
 	// Flomph synthetics
-	for(var/mob/living/carbon/S in living_mob_list)
+	for(var/mob/living/human/S in living_mob_list)
 		if (!S.isSynthetic())
 			continue
 		if(!(S.z in affecting_z))
@@ -104,7 +104,7 @@ Would like to add a law like "Law x is _______" where x = a number, and _____ is
 			var/allergysev = pick("deathly", "mildly", "severely", "contagiously")
 			var/crew
 			var/list/pos_crew = list()
-			for(var/mob/living/carbon/human/pos in player_list)
+			for(var/mob/living/human/pos in player_list)
 				pos_crew += pos.real_name
 			if(pos_crew.len)
 				crew = pick(pos_crew)

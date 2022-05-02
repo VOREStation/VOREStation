@@ -13,7 +13,7 @@
 	var/image/mob_overlay = null
 	var/overlay_state = null
 	var/concealed_holster = 0
-	var/mob/living/carbon/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
+	var/mob/living/human/wearer = null 	// To check if the wearer changes, so species spritesheets change properly.
 	var/list/on_rolled = list()					// Used when jumpsuit sleevels are rolled ("rolled" entry) or it's rolled down ("down"). Set to "none" to hide in those states.
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/inventory/accessory/mob_teshari.dmi') //Teshari can into webbing, too!
 	drop_sound = 'sound/items/drop/accessory.ogg'
@@ -177,13 +177,13 @@
 	icon_state = "stethoscope"
 	slot = ACCESSORY_SLOT_TIE
 
-/obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/stethoscope/do_surgery(mob/living/human/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
 		return ..()
 	attack(M, user) //default surgery behaviour is just to scan as usual
 	return 1
 
-/obj/item/clothing/accessory/stethoscope/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/stethoscope/attack(mob/living/human/M, mob/living/user)
 	if(ishuman(M) && isliving(user))
 		if(user.a_intent == I_HELP)
 			var/body_part = parse_zone(user.zone_sel.selecting)

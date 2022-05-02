@@ -268,7 +268,11 @@
 		turn_on()
 		return
 
+<<<<<<< HEAD
 /obj/vehicle/proc/insert_cell(var/obj/item/weapon/cell/C, var/mob/living/carbon/human/H)
+=======
+/obj/vehicle/proc/insert_cell(var/obj/item/cell/C, var/mob/living/human/H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!mechanical)
 		return
 	if(cell)
@@ -282,7 +286,7 @@
 	powercheck()
 	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
-/obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
+/obj/vehicle/proc/remove_cell(var/mob/living/human/H)
 	if(!mechanical)
 		return
 	if(!cell)

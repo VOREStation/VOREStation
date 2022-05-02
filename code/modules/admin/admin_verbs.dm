@@ -278,8 +278,8 @@
 	D.makerandom(severity)
 	D.infectionchance = input(usr, "How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
 
-	if(istype(T,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = T
+	if(istype(T,/mob/living/human))
+		var/mob/living/human/H = T
 		if (H.species)
 			D.affected_species = list(H.species.get_bodytype())
 			if(H.species.primitive_form)

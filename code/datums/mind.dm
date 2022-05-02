@@ -235,7 +235,7 @@
 
 				var/list/possible_targets = list("Free objective")
 				for(var/datum/mind/possible_target in ticker.minds)
-					if ((possible_target != src) && istype(possible_target.current, /mob/living/carbon/human))
+					if ((possible_target != src) && istype(possible_target.current, /mob/living/human))
 						possible_targets += possible_target.current
 
 				var/mob/def_target = null
@@ -514,7 +514,7 @@
 		src.client.verbs += /client/proc/aooc
 
 //HUMAN
-/mob/living/carbon/human/mind_initialize()
+/mob/living/human/mind_initialize()
 	. = ..()
 	if(!mind.assigned_role)
 		mind.assigned_role = USELESS_JOB	//defualt //VOREStation Edit - Visitor not Assistant
@@ -523,10 +523,6 @@
 /mob/living/simple_mob/slime/mind_initialize()
 	. = ..()
 	mind.assigned_role = "slime"
-
-/mob/living/carbon/alien/larva/mind_initialize()
-	. = ..()
-	mind.special_role = "Larva"
 
 //AI
 /mob/living/silicon/ai/mind_initialize()

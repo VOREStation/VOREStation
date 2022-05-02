@@ -128,7 +128,7 @@
 		to_chat(user, "<span class='warning'>Only humanoids can use this device.</span>")
 		return
 
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 
 	if(!ishuman(loc) || user != loc)
 		to_chat(H, "<span class='warning'>This device needs to be on your person.</span>")
@@ -303,7 +303,7 @@
 		
 		// The marker is worn by a human
 		else if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
+			var/mob/living/human/H = loc
 			if(H.stat == DEAD)
 				mob_indicator = HOLOMAP_DEAD
 			else
@@ -374,15 +374,20 @@
 	marker_prefix = base_prefix
 	if (prefix_update_head)
 		if(ishuman(loc))
-			var/mob/living/carbon/human/H = loc
+			var/mob/living/human/H = loc
 			var/obj/item/helmet = H.get_equipped_item(slot_head)
 			if(helmet && ("[helmet.type]" in prefix_update_head))
 				marker_prefix = prefix_update_head["[helmet.type]"]
 				return
 	if (prefix_update_rig)
 		if(ishuman(loc))
+<<<<<<< HEAD
 			var/mob/living/carbon/human/H = loc
 			var/obj/item/weapon/rig = H.get_rig()
+=======
+			var/mob/living/human/H = loc
+			var/obj/item/rig = H.get_rig()
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			if(rig && ("[rig.type]" in prefix_update_rig))
 				marker_prefix = prefix_update_rig["[rig.type]"]
 				return

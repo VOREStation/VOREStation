@@ -118,7 +118,7 @@
 	set name = "Toggle Paddles"
 	set category = "Object"
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/human/user = usr
 	if(!paddles)
 		to_chat(user, "<span class='warning'>The paddles are missing!</span>")
 		return
@@ -269,7 +269,11 @@
 	return 1
 
 //Checks for various conditions to see if the mob is revivable
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/can_defib(mob/living/carbon/human/H) //This is checked before doing the defib operation
+=======
+/obj/item/shockpaddles/proc/can_defib(mob/living/human/H) //This is checked before doing the defib operation
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if((H.species.flags & NO_DEFIB))
 		return "buzzes, \"Incompatible physiology. Operation aborted.\""
 	else if(H.isSynthetic() && !use_on_synthetic)
@@ -285,7 +289,11 @@
 
 	return null
 
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/can_revive(mob/living/carbon/human/H) //This is checked right before attempting to revive
+=======
+/obj/item/shockpaddles/proc/can_revive(mob/living/human/H) //This is checked right before attempting to revive
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/obj/item/organ/internal/brain/brain = H.internal_organs_by_name[O_BRAIN]
 	if(H.should_have_organ(O_BRAIN) && (!brain || brain.defib_timer <= 0 ) )
 		return "buzzes, \"Resuscitation failed - Excessive neural degeneration. Further attempts futile.\""
@@ -309,14 +317,22 @@
 
 	return null
 
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/check_contact(mob/living/carbon/human/H)
+=======
+/obj/item/shockpaddles/proc/check_contact(mob/living/human/H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!combat)
 		for(var/obj/item/clothing/cloth in list(H.wear_suit, H.w_uniform))
 			if((cloth.body_parts_covered & UPPER_TORSO) && (cloth.item_flags & THICKMATERIAL))
 				return FALSE
 	return TRUE
 
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/check_vital_organs(mob/living/carbon/human/H)
+=======
+/obj/item/shockpaddles/proc/check_vital_organs(mob/living/human/H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	for(var/organ_tag in H.species.has_organ)
 		var/obj/item/organ/O = H.species.has_organ[organ_tag]
 		var/name = initial(O.name)
@@ -329,7 +345,11 @@
 				return "buzzes, \"Resuscitation failed - Excessive damage to vital organ ([name]). Further attempts futile.\""
 	return null
 
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/check_blood_level(mob/living/carbon/human/H)
+=======
+/obj/item/shockpaddles/proc/check_blood_level(mob/living/human/H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!H.should_have_organ(O_HEART))
 		return FALSE
 
@@ -352,8 +372,13 @@
 /obj/item/weapon/shockpaddles/proc/checked_use(var/charge_amt)
 	return 0
 
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/attack(mob/living/M, mob/living/user, var/target_zone)
 	var/mob/living/carbon/human/H = M
+=======
+/obj/item/shockpaddles/attack(mob/living/M, mob/living/user, var/target_zone)
+	var/mob/living/human/H = M
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(H) || user.a_intent == I_HURT)
 		return ..() //Do a regular attack. Harm intent shocking happens as a hit effect
 
@@ -384,7 +409,11 @@
 	return ..()
 
 // This proc is used so that we can return out of the revive process while ensuring that busy and update_icon() are handled
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/do_revive(mob/living/carbon/human/H, mob/user)
+=======
+/obj/item/shockpaddles/proc/do_revive(mob/living/human/H, mob/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/mob/observer/dead/ghost = H.get_ghost()
 	if(ghost)
 		ghost.notify_revive("Someone is trying to resuscitate you. Re-enter your body if you want to be revived!", 'sound/effects/genetics.ogg', source = src)
@@ -444,7 +473,11 @@
 	log_and_message_admins("used \a [src] to revive [key_name(H)].")
 
 
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/do_electrocute(mob/living/carbon/human/H, mob/user, var/target_zone)
+=======
+/obj/item/shockpaddles/proc/do_electrocute(mob/living/human/H, mob/user, var/target_zone)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/obj/item/organ/external/affecting = H.get_organ(target_zone)
 	if(!affecting)
 		to_chat(user, "<span class='warning'>They are missing that body part!</span>")
@@ -482,7 +515,11 @@
 
 	add_attack_logs(user,H,"Shocked using [name]")
 
+<<<<<<< HEAD
 /obj/item/weapon/shockpaddles/proc/make_alive(mob/living/carbon/human/M) //This revives the mob
+=======
+/obj/item/shockpaddles/proc/make_alive(mob/living/human/M) //This revives the mob
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	dead_mob_list.Remove(M)
 	if((M in living_mob_list) || (M in dead_mob_list))
 		WARNING("Mob [M] was defibbed but already in the living or dead list still!")
@@ -497,6 +534,7 @@
 	M.Weaken(rand(10,25))
 	M.updatehealth()
 	apply_brain_damage(M)
+<<<<<<< HEAD
 	// VOREStation Edits Start: Defib pain
 	if(istype(M.species, /datum/species/xenochimera)) // Only do the following to Xenochimera. Handwave this however you want, this is to balance defibs on an alien race.
 		M.adjustHalLoss(220) // This hurts a LOT, stacks on top of the previous halloss.
@@ -505,6 +543,12 @@
 	// SSgame_master.adjust_danger(-20) // VOREStation Edit - We don't use SSgame_master yet.
 
 /obj/item/weapon/shockpaddles/proc/apply_brain_damage(mob/living/carbon/human/H)
+=======
+	M.adjustHalLoss(40)
+	SSgame_master.adjust_danger(-20)
+
+/obj/item/shockpaddles/proc/apply_brain_damage(mob/living/human/H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!H.should_have_organ(O_BRAIN))
 		return // No brain.
 

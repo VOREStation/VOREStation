@@ -417,14 +417,19 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 
 
 /obj/singularity/proc/mezzer()
+<<<<<<< HEAD
 	for(var/mob/living/carbon/M in oviewers(8, src))
 		if(istype(M, /mob/living/carbon/brain)) //Ignore brains
+=======
+	for(var/mob/living/human/M in oviewers(8, src))
+		if(istype(M, /mob/living/brain)) //Ignore brains
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			continue
 		if(M.status_flags & GODMODE)
 			continue
 		if(M.stat == CONSCIOUS)
-			if (istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
+			if (istype(M,/mob/living/human))
+				var/mob/living/human/H = M
 				if(istype(H.glasses,/obj/item/clothing/glasses/meson) && current_size != STAGE_SUPER)
 					to_chat(H, "<span class=\"notice\">You look directly into The [src.name], good thing you had your protective eyewear on!</span>")
 					return

@@ -120,7 +120,6 @@ var/global/floorIsLava = 0
 			else if(ishuman(M))
 				body += {"<A href='?src=\ref[src];makeai=\ref[M]'>Make AI</A> |
 					<A href='?src=\ref[src];makerobot=\ref[M]'>Make Robot</A> |
-					<A href='?src=\ref[src];makealien=\ref[M]'>Make Alien</A>
 				"}
 
 			//Simple Animals
@@ -132,7 +131,7 @@ var/global/floorIsLava = 0
 			body += "<A href='?src=\ref[src];respawn=\ref[M.client]'>Respawn</A> | "
 
 			// DNA2 - Admin Hax
-			if(M.dna && iscarbon(M))
+			if(M.dna && ishuman(M))
 				body += "<br><br>"
 				body += "<b>DNA Blocks:</b><br><table border='0'><tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>"
 				var/bname
@@ -1357,14 +1356,18 @@ var/datum/announcement/minor/admin_min_announcer = new
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
+<<<<<<< HEAD
 	var/mob/living/carbon/human/M = tgui_input_list(usr, "Select mob.", "Select mob.", human_mob_list)
+=======
+	var/mob/living/human/M = input("Select mob.", "Select mob.") as null|anything in human_mob_list
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!M) return
 
 	show_skill_window(usr, M)
 
 	return
 
-/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+/client/proc/update_mob_sprite(mob/living/human/H as mob)
 	set category = "Admin"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite update errors."
@@ -1523,7 +1526,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 				msg = "has unparalyzed [key_name(H)]."
 				log_and_message_admins(msg)
 
-/datum/admins/proc/set_tcrystals(mob/living/carbon/human/H as mob)
+/datum/admins/proc/set_tcrystals(mob/living/human/H as mob)
 	set category = "Debug"
 	set name = "Set Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user."
@@ -1539,7 +1542,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	else
 		to_chat(usr, "You do not have access to this command.")
 
-/datum/admins/proc/add_tcrystals(mob/living/carbon/human/H as mob)
+/datum/admins/proc/add_tcrystals(mob/living/human/H as mob)
 	set category = "Debug"
 	set name = "Add Telecrystals"
 	set desc = "Allows admins to change telecrystals of a user by addition."

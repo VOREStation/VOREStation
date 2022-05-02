@@ -22,7 +22,7 @@
 	flags = 0
 	var/obj/screen/grab/hud = null
 	var/mob/living/affecting = null
-	var/mob/living/carbon/human/assailant = null
+	var/mob/living/human/assailant = null
 	var/state = GRAB_PASSIVE
 
 	var/allow_upgrade = 1
@@ -137,7 +137,7 @@
 		affecting.drop_l_hand()
 		affecting.drop_r_hand()
 
-		if(iscarbon(affecting))
+		if(ishuman(affecting))
 			handle_eye_mouth_covering(affecting, assailant, assailant.zone_sel.selecting)
 
 		if(force_down)
@@ -160,7 +160,11 @@
 
 	adjust_position()
 
+<<<<<<< HEAD
 /obj/item/weapon/grab/proc/handle_eye_mouth_covering(mob/living/carbon/target, mob/user, var/target_zone)
+=======
+/obj/item/grab/proc/handle_eye_mouth_covering(mob/living/human/target, mob/user, var/target_zone)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/announce = (target_zone != last_hit_zone) //only display messages when switching between different target zones
 	last_hit_zone = target_zone
 
@@ -316,7 +320,7 @@
 	//clicking on the victim while grabbing them
 	if(M == affecting)
 		if(ishuman(affecting))
-			var/mob/living/carbon/human/H = affecting
+			var/mob/living/human/H = affecting
 			var/hit_zone = assailant.zone_sel.selecting
 			flick(hud.icon_state, hud)
 			switch(assailant.a_intent)

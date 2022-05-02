@@ -144,7 +144,7 @@
 			if(!client)	return 1
 
 			//Make a new mannequin quickly, and allow the observer to take the appearance
-			var/mob/living/carbon/human/dummy/mannequin = new()
+			var/mob/living/human/dummy/mannequin = new()
 			client.prefs.dress_preview_mob(mannequin)
 			var/mob/observer/dead/observer = new(mannequin)
 			observer.moveToNullspace() //Let's not stay in our doomed mannequin
@@ -205,7 +205,7 @@
 
 		/* Vorestation Removal Start
 		//Prevents people rejoining as same character.
-		for (var/mob/living/carbon/human/C in mob_list)
+		for (var/mob/living/human/C in mob_list)
 			var/char_name = client.prefs.real_name
 			if(char_name == C.real_name)
 				to_chat(usr, "<span class='notice'>There is a character that already exists with the same name - <b>[C.real_name]</b>, please join with a different one, or use Quit the Round with the previous character.</span>") //VOREStation Edit
@@ -543,7 +543,7 @@
 	spawning = 1
 	close_spawn_windows()
 
-	var/mob/living/carbon/human/new_character
+	var/mob/living/human/new_character
 
 	var/use_species_name
 	var/datum/species/chosen_species

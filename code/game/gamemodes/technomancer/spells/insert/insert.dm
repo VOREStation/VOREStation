@@ -15,8 +15,13 @@
 	..()
 	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
+<<<<<<< HEAD
 /obj/item/weapon/inserted_spell
 	var/mob/living/carbon/human/origin = null
+=======
+/obj/item/inserted_spell
+	var/mob/living/human/origin = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/mob/living/host = null
 	var/spell_power_at_creation = 1.0 // This is here because the spell object that made this object probably won't exist.
 

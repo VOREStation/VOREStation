@@ -35,7 +35,7 @@
 		for(var/t in GLOB.all_species)
 			options += t
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 			if(H.species)
 				options -= H.species.name
 		else if(isrobot(M))
@@ -57,11 +57,11 @@
 				new_mob = new /mob/living/simple_mob/slime/xenobio(M.loc)
 				new_mob.universal_speak = 1
 			else
-				var/mob/living/carbon/human/H
+				var/mob/living/human/H
 				if(ishuman(M))
 					H = M
 				else
-					new_mob = new /mob/living/carbon/human(M.loc)
+					new_mob = new /mob/living/human(M.loc)
 					H = new_mob
 
 				if(M.gender == MALE)

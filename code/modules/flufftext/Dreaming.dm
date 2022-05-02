@@ -22,7 +22,7 @@ var/list/dreams = list(
 	"swallowed whole","a fox","a wolf","a cat","a tiger","a dog","a taur","a xenochimera"
 	)
 
-/mob/living/carbon/proc/dream()
+/mob/living/human/proc/dream()
 	dreaming = 1
 
 	spawn(0)
@@ -35,8 +35,8 @@ var/list/dreams = list(
 		dreaming = 0
 		return
 
-/mob/living/carbon/proc/handle_dreams()
+/mob/living/human/proc/handle_dreams()
 	if(client && !dreaming && prob(5))
 		dream()
 
-/mob/living/carbon/var/dreaming = 0
+/mob/living/human/var/dreaming = 0

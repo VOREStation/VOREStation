@@ -327,7 +327,7 @@
 	LE.preparePixelProjectile(A, src, params)
 	LE.fire()
 
-/mob/living/carbon/human/LaserEyes(atom/A, params)
+/mob/living/human/LaserEyes(atom/A, params)
 	if(nutrition>0)
 		..()
 		nutrition = max(nutrition - rand(1,5),0)
@@ -363,8 +363,8 @@
 
 /obj/screen/click_catcher/Click(location, control, params)
 	var/list/modifiers = params2list(params)
-	if(modifiers["middle"] && istype(usr, /mob/living/carbon))
-		var/mob/living/carbon/C = usr
+	if(modifiers["middle"] && istype(usr, /mob/living/human))
+		var/mob/living/human/C = usr
 		C.swap_hand()
 	else
 		var/list/P = params2list(params)

@@ -88,7 +88,7 @@
 			continue
 
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 			if(H.check_shields(damage = 0, damage_source = src, attacker = src, def_zone = null, attack_text = "the leap"))
 				continue // We were blocked.
 

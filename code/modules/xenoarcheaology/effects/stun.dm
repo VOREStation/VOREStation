@@ -7,8 +7,8 @@
 	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
 
 /datum/artifact_effect/stun/DoEffectTouch(var/mob/toucher)
-	if(toucher && iscarbon(toucher))
-		var/mob/living/carbon/C = toucher
+	if(toucher && ishuman(toucher))
+		var/mob/living/human/C = toucher
 		var/susceptibility = GetAnomalySusceptibility(C)
 		if(prob(susceptibility * 100))
 			to_chat(C, "<font color='red'>A powerful force overwhelms your consciousness.</font>")
@@ -20,7 +20,7 @@
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/mob/living/carbon/C in range(src.effectrange,T))
+		for (var/mob/living/human/C in range(src.effectrange,T))
 			var/susceptibility = GetAnomalySusceptibility(C)
 			if(prob(10 * susceptibility))
 				to_chat(C, "<font color='red'>Your body goes numb for a moment.</font>")
@@ -35,7 +35,7 @@
 	var/atom/holder = get_master_holder()
 	if(holder)
 		var/turf/T = get_turf(holder)
-		for (var/mob/living/carbon/C in range(src.effectrange,T))
+		for (var/mob/living/human/C in range(src.effectrange,T))
 			var/susceptibility = GetAnomalySusceptibility(C)
 			if(prob(100 * susceptibility))
 				to_chat(C, "<font color='red'>A wave of energy overwhelms your senses!</font>")

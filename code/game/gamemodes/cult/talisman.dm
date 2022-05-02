@@ -43,7 +43,11 @@
 		return
 
 
+<<<<<<< HEAD
 /obj/item/weapon/paper/talisman/attack(mob/living/carbon/T as mob, mob/living/user as mob)
+=======
+/obj/item/paper/talisman/attack(mob/living/human/T as mob, mob/living/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(iscultist(user))
 		if(imbue == "runestun")
 			user.take_organ_damage(5, 0)

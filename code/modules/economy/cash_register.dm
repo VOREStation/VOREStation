@@ -183,7 +183,7 @@
 			cash_stored += SC.worth
 			add_overlay("register_cash")
 			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
+				var/mob/living/human/H = user
 				H.drop_from_inventory(SC)
 			qdel(SC)
 		else
@@ -336,7 +336,7 @@
 		SC.update_icon()
 		if(!SC.worth)
 			if(ishuman(SC.loc))
-				var/mob/living/carbon/human/H = SC.loc
+				var/mob/living/human/H = SC.loc
 				H.drop_from_inventory(SC)
 			qdel(SC)
 		cash_stored += transaction_amount

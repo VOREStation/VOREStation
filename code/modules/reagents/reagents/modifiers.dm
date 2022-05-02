@@ -15,7 +15,7 @@
 	var/modifier_duration = 3 SECONDS	// How long, per unit dose, will this last?
 										// 2 SECONDS is the resolution of life code, and the modifier will expire before chemical processing tries to re-add it
 
-/datum/reagent/modapplying/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	M.add_modifier(modifier_to_add, modifier_duration, suppress_failure = TRUE)
@@ -31,14 +31,14 @@
 	modifier_to_add = /datum/modifier/cryogelled
 	modifier_duration = 3 SECONDS
 
-/datum/reagent/modapplying/cryofluid/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/cryofluid/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	..(M, alien, removed)
 	M.bodytemperature -= removed * 20
 
-/datum/reagent/modapplying/cryofluid/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/cryofluid/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	affect_blood(M, alien, removed * 2.5)
 
-/datum/reagent/modapplying/cryofluid/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/modapplying/cryofluid/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 	affect_blood(M, alien, removed * 0.6)
 
 /datum/reagent/modapplying/cryofluid/touch_mob(var/mob/M, var/amount)

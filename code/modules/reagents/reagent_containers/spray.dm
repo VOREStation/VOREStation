@@ -242,7 +242,11 @@
 	if(InputSocket.get_pairing())
 		add_overlay(hose_overlay)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/spray/chemsprayer/hosed/AltClick(mob/living/carbon/user)
+=======
+/obj/item/reagent_containers/spray/chemsprayer/hosed/AltClick(mob/living/human/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(++spray_particles > 3) spray_particles = 1
 
 	to_chat(user, "<span class='notice'>You turn the dial on \the [src] to [spray_particles].</span>")

@@ -99,7 +99,7 @@
 		return TRUE
 
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/human/H = target
 		if(!H.check_has_mouth())
 			to_chat(user, "Where do you intend to put \the [src]? [user == target ? "You don't" : "\The [H] doesn't"] have a mouth!")
 			return FALSE

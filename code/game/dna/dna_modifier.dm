@@ -73,8 +73,13 @@
 	interact_offline = 1
 	circuit = /obj/item/weapon/circuitboard/clonescanner
 	var/locked = 0
+<<<<<<< HEAD
 	var/mob/living/carbon/occupant = null
 	var/obj/item/weapon/reagent_containers/glass/beaker = null
+=======
+	var/mob/living/human/occupant = null
+	var/obj/item/reagent_containers/glass/beaker = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/opened = 0
 	var/damage_coeff
 	var/scan_level
@@ -630,7 +635,7 @@
 						databuf.types = DNA2_BUF_UI // DNA2_BUF_UE
 						databuf.dna = connected.occupant.dna.Clone()
 						if(ishuman(connected.occupant))
-							var/mob/living/carbon/human/H = connected.occupant
+							var/mob/living/human/H = connected.occupant
 							databuf.dna.real_name = H.dna.real_name
 							databuf.gender = H.gender
 							databuf.body_descriptors = H.descriptors
@@ -642,7 +647,7 @@
 						databuf.types = DNA2_BUF_UI|DNA2_BUF_UE
 						databuf.dna = connected.occupant.dna.Clone()
 						if(ishuman(connected.occupant))
-							var/mob/living/carbon/human/H = connected.occupant
+							var/mob/living/human/H = connected.occupant
 							databuf.dna.real_name = H.dna.real_name
 							databuf.gender = H.gender
 							databuf.body_descriptors = H.descriptors
@@ -654,7 +659,7 @@
 						databuf.types = DNA2_BUF_SE
 						databuf.dna = connected.occupant.dna.Clone()
 						if(ishuman(connected.occupant))
-							var/mob/living/carbon/human/H = connected.occupant
+							var/mob/living/human/H = connected.occupant
 							databuf.dna.real_name = H.dna.real_name
 							databuf.gender = H.gender
 							databuf.body_descriptors = H.descriptors
@@ -685,7 +690,7 @@
 							connected.occupant.real_name = buf.dna.real_name
 							connected.occupant.name = buf.dna.real_name
 							if(ishuman(connected.occupant))
-								var/mob/living/carbon/human/H = connected.occupant
+								var/mob/living/human/H = connected.occupant
 								H.gender = buf.gender
 								H.descriptors = buf.body_descriptors
 						connected.occupant.UpdateAppearance(buf.dna.UI.Copy())
@@ -693,7 +698,7 @@
 						connected.occupant.dna.SE = buf.dna.SE
 						connected.occupant.dna.UpdateSE()
 						if(ishuman(connected.occupant))
-							var/mob/living/carbon/human/H = connected.occupant
+							var/mob/living/human/H = connected.occupant
 							H.gender = buf.gender
 							H.descriptors = buf.body_descriptors
 						domutcheck(connected.occupant,connected)

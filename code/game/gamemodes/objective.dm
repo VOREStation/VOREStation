@@ -142,10 +142,17 @@ var/global/list/all_objectives = list()
 	return target
 
 /datum/objective/anti_revolution/demote/check_completion()
+<<<<<<< HEAD
 	if(target && target.current && istype(target,/mob/living/carbon/human))
 		var/obj/item/weapon/card/id/I = target.current:wear_id
 		if(istype(I, /obj/item/device/pda))
 			var/obj/item/device/pda/P = I
+=======
+	if(target && target.current && istype(target,/mob/living/human))
+		var/obj/item/card/id/I = target.current:wear_id
+		if(istype(I, /obj/item/pda))
+			var/obj/item/pda/P = I
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			I = P.id
 
 		if(!istype(I)) return 1
@@ -297,8 +304,13 @@ var/global/list/all_objectives = list()
 		return 0
 
 	if(istype(location, /turf/simulated/shuttle/floor4)) // Fails traitors if they are in the shuttle brig -- Polymorph
+<<<<<<< HEAD
 		if(istype(owner.current, /mob/living/carbon))
 			var/mob/living/carbon/C = owner.current
+=======
+		if(ishuman(owner.current))
+			var/mob/living/human/C = owner.current
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			if (!C.handcuffed)
 				return 1
 		return 0
@@ -389,11 +401,11 @@ var/global/list/all_objectives = list()
 	if(already_completed)
 		return 1
 
-	if(target && target.current && istype(target.current, /mob/living/carbon/human))
+	if(target && target.current && istype(target.current, /mob/living/human))
 		if(target.current.stat == DEAD)
 			return 0
 
-		var/mob/living/carbon/human/H = target.current
+		var/mob/living/human/H = target.current
 		for(var/obj/item/organ/external/E in H.organs)
 			if(E.status & ORGAN_BROKEN)
 				return 1
@@ -557,9 +569,15 @@ var/global/list/all_objectives = list()
 		return 0
 
 	var/current_amount
+<<<<<<< HEAD
 	var/obj/item/weapon/rig/S
 	if(istype(owner.current,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = owner.current
+=======
+	var/obj/item/rig/S
+	if(istype(owner.current,/mob/living/human))
+		var/mob/living/human/H = owner.current
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		S = H.back
 
 	if(!istype(S) || !S.installed_modules || !S.installed_modules.len)
@@ -585,19 +603,12 @@ var/global/list/all_objectives = list()
 	var/captured_amount = 0
 	var/area/centcom/holding/A = locate()
 
-	for(var/mob/living/carbon/human/M in A) // Humans (and subtypes).
+	for(var/mob/living/human/M in A) // Humans (and subtypes).
 		var/worth = M.species.rarity_value
 		if(M.stat==2)//Dead folks are worth less.
 			worth*=0.5
 			continue
 		captured_amount += worth
-
-	for(var/mob/living/carbon/alien/larva/M in A)//Larva are important for research.
-		if(M.stat==2)
-			captured_amount+=0.5
-			continue
-		captured_amount+=1
-
 
 	if(captured_amount<target_amount)
 		return 0
@@ -613,7 +624,7 @@ var/global/list/all_objectives = list()
 				if(P.client && P.ready && P.mind!=owner)
 					n_p ++
 		else if (ticker.current_state == GAME_STATE_PLAYING)
-			for(var/mob/living/carbon/human/P in player_list)
+			for(var/mob/living/human/P in player_list)
 				if(P.client && !(P.mind.changeling) && P.mind!=owner)
 					n_p ++
 		target_amount = min(target_amount, n_p)
@@ -663,7 +674,7 @@ var/global/list/all_objectives = list()
 		//	return 0 // They're loose. Close but no cigar.
 
 		var/area/skipjack_station/start/A = locate()
-		for(var/mob/living/carbon/human/M in A)
+		for(var/mob/living/human/M in A)
 			if(target.current == M)
 				return 1 //They're restrained on the shuttle. Success.
 	else
@@ -854,7 +865,7 @@ var/global/list/all_objectives = list()
 /datum/objective/cult/sacrifice/find_target()
 	var/list/possible_targets = list()
 	if(!possible_targets.len)
-		for(var/mob/living/carbon/human/player in player_list)
+		for(var/mob/living/human/player in player_list)
 			if(player.mind && !(player.mind in cult))
 				possible_targets += player.mind
 	if(possible_targets.len > 0)
@@ -884,7 +895,7 @@ var/global/list/all_objectives = list()
 /datum/objective/rev/check_completion()
 	var/rval = 1
 	if(target && target.current)
-		var/mob/living/carbon/human/H = target.current
+		var/mob/living/human/H = target.current
 		if(!istype(H))
 			return 1
 		if(H.stat == DEAD || H.restrained())

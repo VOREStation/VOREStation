@@ -57,7 +57,7 @@
 			return FALSE // We missed.
 
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 			if(H.check_shields(damage = damage_to_do, damage_source = src, attacker = src, def_zone = null, attack_text = "the attack"))
 				return FALSE // We were blocked.
 

@@ -135,7 +135,7 @@
 
 /datum/language/sign/can_speak_special(var/mob/speaker)	// TODO: If ever we make external organs assist languages, convert this over to the new format
 	var/obj/item/organ/external/hand/hands = locate() in speaker //you can't sign without hands
-	return (hands || !iscarbon(speaker))
+	return (hands || !ishuman(speaker))
 
 /datum/language/sign/scramble(var/input, var/list/known_languages)
 	return stars(input)

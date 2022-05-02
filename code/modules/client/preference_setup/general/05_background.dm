@@ -31,7 +31,7 @@
 	pref.economic_status = sanitize_inlist(pref.economic_status, ECONOMIC_CLASS, initial(pref.economic_status))
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/background/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/background/copy_to_mob(var/mob/living/human/character)
 	character.med_record		= pref.med_record
 	character.sec_record		= pref.sec_record
 	character.gen_record		= pref.gen_record

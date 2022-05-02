@@ -77,7 +77,7 @@
 		else if(isliving(usr))
 			var/obj/item/weapon/card/id/id
 			if(ishuman(usr))
-				var/mob/living/carbon/human/H = usr
+				var/mob/living/human/H = usr
 				id = H.get_idcard()
 				// In their ID slot?
 				if(id && src.check_access(id))
@@ -124,7 +124,7 @@
 /obj/item/weapon/airlock_electronics/proc/get_available_accesses(var/mob/user)
 	var/obj/item/weapon/card/id/id
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		id = H.get_idcard()
 	else if(issilicon(user))
 		var/mob/living/silicon/R = user

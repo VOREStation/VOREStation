@@ -85,9 +85,15 @@
 
 /obj/structure/boulder/Bumped(AM)
 	. = ..()
+<<<<<<< HEAD
 	if(istype(AM,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = AM
 		var/obj/item/weapon/pickaxe/P = H.get_inactive_hand()
+=======
+	if(istype(AM,/mob/living/human))
+		var/mob/living/human/H = AM
+		var/obj/item/pickaxe/P = H.get_inactive_hand()
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(istype(P))
 			src.attackby(P, H)
 

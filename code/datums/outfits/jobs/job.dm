@@ -13,8 +13,13 @@
 
 	flags = OUTFIT_HAS_BACKPACK
 
+<<<<<<< HEAD
 /decl/hierarchy/outfit/job/equip_id(mob/living/carbon/human/H, rank, assignment)
 	var/obj/item/weapon/card/id/C = ..()
+=======
+/decl/hierarchy/outfit/job/equip_id(mob/living/human/H, rank, assignment)
+	var/obj/item/card/id/C = ..()
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/datum/job/J = job_master.GetJob(rank)
 	if(J)
 		C.access = J.get_access()

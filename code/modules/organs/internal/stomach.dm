@@ -19,7 +19,7 @@
 		create_reagents(30)
 
 /obj/item/organ/internal/stomach/handle_organ_proc_special()
-	if(owner && istype(owner, /mob/living/carbon/human))
+	if(owner && istype(owner, /mob/living/human))
 		if(reagents)
 			if(reagents.total_volume + 2 < max_acid_volume && prob(20))
 				reagents.add_reagent(acidtype, rand(1,2))
@@ -67,7 +67,7 @@
 
 /*			//VOREStation Removal - normal chem processing
 		if(ishuman(owner))
-			var/mob/living/carbon/human/H = owner
+			var/mob/living/human/H = owner
 
 			if(H.ingested?.total_volume && H.bloodstr)
 				H.ingested.trans_to_holder(H.bloodstr, rand(2,5))

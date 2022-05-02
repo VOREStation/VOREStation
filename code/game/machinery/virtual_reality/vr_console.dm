@@ -6,11 +6,19 @@
 
 	var/base_state = "syndipod_"
 
+<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	circuit = /obj/item/weapon/circuitboard/vr_sleeper
 	var/mob/living/carbon/human/occupant = null
 	var/mob/living/carbon/human/avatar = null
+=======
+	density = 1
+	anchored = 1
+	circuit = /obj/item/circuitboard/vr_sleeper
+	var/mob/living/human/occupant = null
+	var/mob/living/human/avatar = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/datum/mind/vr_mind = null
 	var/datum/effect/effect/system/smoke_spread/bad/smoke
 

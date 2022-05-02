@@ -35,12 +35,26 @@
 /obj/item/device/analyzer/plant_analyzer/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
+<<<<<<< HEAD
 /obj/item/device/analyzer/plant_analyzer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	var/datum/seed/grown_seed = last_seed
 	if(!istype(grown_seed))
 		return list("no_seed" = TRUE)
+=======
+/obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+	if(!last_data)
+		to_chat(user, "There is no scan data to print.")
+		return
+	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
+	P.name = "paper - [form_title]"
+	P.info = "[last_data]"
+	if(istype(user,/mob/living/human))
+		user.put_in_hands(P)
+	user.visible_message("\The [src] spits out a piece of paper.")
+	return
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 	data["no_seed"] = FALSE
 	data["seed"] = grown_seed.get_tgui_analyzer_data(user)

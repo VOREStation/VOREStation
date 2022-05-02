@@ -113,7 +113,7 @@ var/datum/uplink/uplink = new()
 		if(L.len) I = L[1]
 
 	if(istype(I) && ishuman(user))
-		var/mob/living/carbon/human/A = user
+		var/mob/living/human/A = user
 		A.put_in_any_hand_if_possible(I)
 	return I
 

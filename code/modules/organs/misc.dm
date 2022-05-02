@@ -17,7 +17,7 @@
 
 	// They're also super gross and ooze ichor.
 	if(prob(5))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/human/H = owner
 		if(!istype(H))
 			return
 

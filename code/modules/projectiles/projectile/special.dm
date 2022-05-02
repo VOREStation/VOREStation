@@ -156,7 +156,7 @@
 /obj/item/projectile/energy/floramut/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
 			if(prob(15))
 				M.apply_effect((rand(30,80)),IRRADIATE)
@@ -178,7 +178,7 @@
 				M.show_message("<font color='red'>The radiation beam singes you!</font>")
 			//	for (var/mob/V in viewers(src))
 			//		V.show_message("<font color='red'>[M] is singed by the radiation beam.</font>", 3, "<font color='red'> You hear the crackle of burning leaves.</font>", 2)
-	else if(istype(target, /mob/living/carbon/))
+	else if(istype(target, /mob/living/human/))
 	//	for (var/mob/V in viewers(src))
 	//		V.show_message("The radiation beam dissipates harmlessly through [M]", 3)
 		M.show_message("<font color='blue'>The radiation beam dissipates harmlessly through your body.</font>")
@@ -214,10 +214,10 @@
 /obj/item/projectile/energy/florayield/on_hit(var/atom/target, var/blocked = 0)
 	var/mob/living/M = target
 	if(ishuman(target)) //These rays make plantmen fat.
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		if((H.species.flags & IS_PLANT) && (M.nutrition < 500))
 			M.adjust_nutrition(30)
-	else if (istype(target, /mob/living/carbon/))
+	else if (istype(target, /mob/living/human/))
 		M.show_message("<font color='blue'>The radiation beam dissipates harmlessly through your body.</font>")
 	else
 		return 1
@@ -231,7 +231,7 @@
 
 /obj/item/projectile/beam/mindflayer/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
-		var/mob/living/carbon/human/M = target
+		var/mob/living/human/M = target
 		M.Confuse(rand(5,8))
 	..()
 
@@ -258,8 +258,13 @@
 
 /obj/item/projectile/bola/on_hit(var/atom/target, var/blocked = 0)
 	if(ishuman(target))
+<<<<<<< HEAD
 		var/mob/living/carbon/human/M = target
 		var/obj/item/weapon/handcuffs/legcuffs/bola/B = new(src.loc)
+=======
+		var/mob/living/human/M = target
+		var/obj/item/handcuffs/legcuffs/bola/B = new(src.loc)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(!B.place_legcuffs(M,firer))
 			if(B)
 				qdel(B)
@@ -305,7 +310,7 @@
 		var/mob/living/L = target
 		L.add_modifier(/datum/modifier/grievous_wounds, 30 SECONDS)
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 
 			var/target_armor = H.getarmor(def_zone, check_armour)
 			var/obj/item/organ/external/target_limb = H.get_organ(def_zone)

@@ -70,7 +70,7 @@
 	if(user == usr && !(usr.restrained() || usr.stat) && (usr.contents.Find(src) || in_range(src, usr)))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_hand() )		//if active hand is empty
-				var/mob/living/carbon/human/H = user
+				var/mob/living/human/H = user
 				var/obj/item/organ/external/temp = H.organs_by_name["r_hand"]
 
 				if (H.hand)

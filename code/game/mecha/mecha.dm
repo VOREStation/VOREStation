@@ -34,7 +34,7 @@
 	infra_luminosity = 15				//Byond implementation is bugged.
 	var/initial_icon = null				//Mech type for resetting icon. Only used for reskinning kits (see custom items)
 	var/can_move = 1
-	var/mob/living/carbon/occupant = null
+	var/mob/living/human/occupant = null
 
 	var/step_in = 10					//Make a step in step_in/10 sec.
 	var/encumbrance_gap = 1			//How many points of slowdown are negated from equipment? Added to the mech's base step_in.
@@ -1095,8 +1095,8 @@
 	else
 		temp_deflect_chance = round(ArmC.get_efficiency() * ArmC.deflect_chance + (defence_mode ? 25 : 0))
 
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/human))
+		var/mob/living/human/H = user
 		if(H.species.can_shred(user))
 			if(!prob(temp_deflect_chance))
 				src.take_damage(15)	//The take_damage() proc handles armor values
@@ -1936,8 +1936,8 @@
 		return
 
 	src.log_message("[usr] tries to move in.")
-	if(iscarbon(usr))
-		var/mob/living/carbon/C = usr
+	if(ishuman(usr))
+		var/mob/living/human/C = usr
 		if(C.handcuffed)
 			to_chat(usr, "<span class='danger'>Kinda hard to climb in while handcuffed don't you think?</span>")
 			return
@@ -1985,7 +1985,7 @@
 			to_chat(usr, "You stop entering the exosuit.")
 	return
 
-/obj/mecha/proc/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/proc/moved_inside(var/mob/living/human/H as mob)
 	if(H && H.client && (H in range(1)))
 		H.reset_view(src)
 		/*
@@ -2137,14 +2137,14 @@
 ////// Access stuff /////
 /////////////////////////
 
-/obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
+/obj/mecha/proc/operation_allowed(mob/living/human/H)
 	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.operation_req_access))
 			return 1
 	return 0
 
 
-/obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
+/obj/mecha/proc/internals_access_allowed(mob/living/human/H)
 	if(istype(H))
 		for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 			if(src.check_access(ID,src.internals_req_access))

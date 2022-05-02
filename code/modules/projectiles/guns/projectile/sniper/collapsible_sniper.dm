@@ -6,7 +6,7 @@
 	set category = "Object"
 	set name = "Disassemble Rifle"
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/human/user = usr
 	if(user.stat)
 		return
 
@@ -162,9 +162,15 @@
 			w_class = ITEMSIZE_LARGE
 
 		if(3)
+<<<<<<< HEAD
 			var/obj/item/weapon/gun/projectile/heavysniper/collapsible/gun = new (get_turf(src), 0)
 			if(usr && istype(usr, /mob/living/carbon/human))
 				var/mob/living/carbon/human/user = usr
+=======
+			var/obj/item/gun/projectile/heavysniper/collapsible/gun = new (get_turf(src), 0)
+			if(usr && istype(usr, /mob/living/human))
+				var/mob/living/human/user = usr
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 				user.unEquip(src, force=1)
 				user.put_in_any_hand_if_possible(gun) || gun.dropInto(loc)
 			qdel(src)

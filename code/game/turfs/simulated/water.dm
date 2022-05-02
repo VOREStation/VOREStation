@@ -63,7 +63,7 @@
 		else
 			var/gasid = "carbon_dioxide"
 			if(ishuman(L))
-				var/mob/living/carbon/human/H = L
+				var/mob/living/human/H = L
 				if(H.species && H.species.exhale_type)
 					gasid = H.species.exhale_type
 			var/datum/gas_mixture/water_breath = new()
@@ -118,7 +118,7 @@
 /mob/living/proc/can_breathe_water()
 	return FALSE
 
-/mob/living/carbon/human/can_breathe_water()
+/mob/living/human/can_breathe_water()
 	if(species)
 		return species.can_breathe_water()
 	return ..()

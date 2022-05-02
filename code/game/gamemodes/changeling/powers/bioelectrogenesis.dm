@@ -7,10 +7,15 @@
 	enhancedtext = "Shocking biologicals without grabbing only requires five chemicals, and has more disabling power."
 	ability_icon_state = "ling_bioelectrogenesis"
 	genomecost = 2
+<<<<<<< HEAD
 	verbpath = /mob/living/carbon/human/proc/changeling_bioelectrogenesis
+=======
+	power_category = CHANGELING_POWER_ENHANCEMENTS
+	verbpath = /mob/living/human/proc/changeling_bioelectrogenesis
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 //Recharge whatever's in our hand, or shock people.
-/mob/living/carbon/human/proc/changeling_bioelectrogenesis()
+/mob/living/human/proc/changeling_bioelectrogenesis()
 	set category = "Changeling"
 	set name = "Bioelectrogenesis (20 + 10/shock)"
 	set desc = "Recharges anything in your hand, or shocks people."
@@ -126,7 +131,11 @@
 		if(src)
 			qdel(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/electric_hand/afterattack(var/atom/target, var/mob/living/carbon/human/user, proximity)
+=======
+/obj/item/electric_hand/afterattack(var/atom/target, var/mob/living/human/user, proximity)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!target)
 		return
 	if(!proximity)
@@ -139,8 +148,8 @@
 		siemens = gloves.siemens_coefficient
 
 	//Excuse the copypasta.
-	if(istype(target,/mob/living/carbon))
-		var/mob/living/carbon/C = target
+	if(istype(target,/mob/living/human))
+		var/mob/living/human/C = target
 
 		if(user.mind.changeling.chem_charges < shock_cost)
 			to_chat(src, "<span class='warning'>We require more chemicals to electrocute [C]!</span>")

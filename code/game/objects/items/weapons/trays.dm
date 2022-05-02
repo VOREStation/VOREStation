@@ -16,7 +16,11 @@
 	var/max_carry = 10
 	drop_sound = 'sound/items/trayhit1.ogg'
 
+<<<<<<< HEAD
 /obj/item/weapon/tray/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/tray/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	user.setClickCooldown(user.get_attack_speed(src))
 	// Drop all the things. All of them.
 	cut_overlays()
@@ -42,7 +46,7 @@
 			playsound(src, 'sound/items/trayhit2.ogg', 50, 1) //sound playin'
 			return //it always returns, but I feel like adding an extra return just for safety's sakes. EDIT; Oh well I won't :3
 
-	var/mob/living/carbon/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
+	var/mob/living/human/H = M      ///////////////////////////////////// /Let's have this ready for later.
 
 
 	if(!(user.zone_sel.selecting == (O_EYES || BP_HEAD))) //////////////hitting anything else other than the eyes

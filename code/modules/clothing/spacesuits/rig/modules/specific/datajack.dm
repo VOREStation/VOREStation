@@ -24,7 +24,7 @@
 		return 0
 
 	if(target)
-		var/mob/living/carbon/human/H = holder.wearer
+		var/mob/living/human/H = holder.wearer
 		if(!accepts_item(target,H))
 			return 0
 	return 1

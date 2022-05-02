@@ -83,7 +83,7 @@
 
 	var/speaker_name = speaker.name
 	if(ishuman(speaker))
-		var/mob/living/carbon/human/H = speaker
+		var/mob/living/human/H = speaker
 		speaker_name = H.GetVoice()
 
 	var/list/combined = combine_message(message_pieces, verb, speaker)
@@ -269,7 +269,7 @@
 		speaker_name = speaker.name
 
 	if(ishuman(speaker))
-		var/mob/living/carbon/human/H = speaker
+		var/mob/living/human/H = speaker
 		if(H.voice)
 			speaker_name = H.voice
 

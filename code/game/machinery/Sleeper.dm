@@ -88,11 +88,18 @@
 	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
 	icon_state = "sleeper_0"
+<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
 	circuit = /obj/item/weapon/circuitboard/sleeper
 	var/mob/living/carbon/human/occupant = null
+=======
+	density = 1
+	anchored = 1
+	circuit = /obj/item/circuitboard/sleeper
+	var/mob/living/human/occupant = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/list/available_chemicals = list()
 	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
 	var/amounts = list(5, 10)

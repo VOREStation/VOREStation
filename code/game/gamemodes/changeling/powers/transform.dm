@@ -33,14 +33,14 @@
 	changeling.geneticdamage = 5
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/human/H = src
 		var/newSpecies = chosen_dna.speciesName
 		H.set_species(newSpecies,1)
 
 	src.dna = chosen_dna.dna.Clone()
 	src.dna.b_type = "AB+" //This is needed to avoid blood rejection bugs.  The fact that the blood type might not match up w/ records could be a *FEATURE* too.
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/human/H = src
 		H.b_type = "AB+" //For some reason we have two blood types on the mob.
 		H.identifying_gender = chosen_dna.identifying_gender
 		H.flavor_texts = chosen_dna.flavour_texts ? chosen_dna.flavour_texts.Copy() : null
@@ -49,7 +49,7 @@
 	domutcheck(src, null)
 	changeling_update_languages(changeling.absorbed_languages)
 	if(chosen_dna.genMods)
-		var/mob/living/carbon/human/self = src
+		var/mob/living/human/self = src
 		for(var/datum/modifier/mod in self.modifiers)
 			self.modifiers.Remove(mod.type)
 

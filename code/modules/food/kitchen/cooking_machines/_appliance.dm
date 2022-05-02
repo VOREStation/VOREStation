@@ -661,12 +661,16 @@
 		if (isSynthetic())
 			src.composition_reagent = "iron"
 		else
+<<<<<<< HEAD
 			if(istype(src, /mob/living/carbon/human/diona) || istype(src, /mob/living/carbon/alien/diona))
+=======
+			if(istype(src, /mob/living/human/diona) || istype(src, /mob/living/simple_mob/diona_nymph))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 				src.composition_reagent = "nutriment" // diona are plants, not meat
 			else
 				src.composition_reagent = "protein"
-				if(istype(src, /mob/living/carbon/human))
-					var/mob/living/carbon/human/H = src
+				if(istype(src, /mob/living/human))
+					var/mob/living/human/H = src
 					if(istype(H.species, /datum/species/diona))
 						src.composition_reagent = "nutriment"
 

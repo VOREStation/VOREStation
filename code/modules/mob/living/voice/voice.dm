@@ -129,7 +129,7 @@
 /mob/living/voice/say_understands(var/other, var/datum/language/speaking = null)
 	//These only pertain to common. Languages are handled by mob/say_understands()
 	if(!speaking)
-		if(iscarbon(other))
+		if(ishuman(other))
 			return TRUE
 		if(issilicon(other))
 			return TRUE

@@ -6,8 +6,13 @@
 
 	anchored = TRUE
 
+<<<<<<< HEAD
 	var/obj/item/weapon/tank/tank
 	var/mob/living/carbon/breather
+=======
+	var/obj/item/tank/tank
+	var/mob/living/human/breather
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	var/obj/item/clothing/mask/breath/contained
 
 	var/spawn_type = /obj/item/weapon/tank/emergency/oxygen/engi
@@ -37,7 +42,7 @@
 	QDEL_NULL(contained)
 	return ..()
 
-/obj/machinery/oxygen_pump/MouseDrop(var/mob/living/carbon/human/target, src_location, over_location)
+/obj/machinery/oxygen_pump/MouseDrop(var/mob/living/human/target, src_location, over_location)
 	var/mob/living/user = usr
 	if(!istype(user) || !istype(target))
 		return ..()
@@ -78,7 +83,7 @@
 /obj/machinery/oxygen_pump/attack_ai(mob/user as mob)
 	tgui_interact(user)
 
-/obj/machinery/oxygen_pump/proc/attach_mask(var/mob/living/carbon/C)
+/obj/machinery/oxygen_pump/proc/attach_mask(var/mob/living/human/C)
 	if(C && istype(C))
 		contained.forceMove(get_turf(C))
 		C.equip_to_slot(contained, slot_wear_mask)
@@ -92,7 +97,7 @@
 				breather.internals.icon_state = "internal1"
 		update_use_power(USE_POWER_ACTIVE)
 
-/obj/machinery/oxygen_pump/proc/can_apply_to_target(var/mob/living/carbon/human/target, mob/user as mob)
+/obj/machinery/oxygen_pump/proc/can_apply_to_target(var/mob/living/human/target, mob/user as mob)
 	if(!user)
 		user = target
 	// Check target validity
@@ -294,7 +299,7 @@
 
 		if(breather)	// Safety.
 			if(ishuman(breather) && !(breather.isSynthetic()))
-				var/mob/living/carbon/human/H = breather
+				var/mob/living/human/H = breather
 
 				if(H.internal_organs_by_name[O_LUNGS])
 					var/obj/item/organ/internal/L = H.internal_organs_by_name[O_LUNGS]

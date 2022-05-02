@@ -8,7 +8,7 @@
 	req_open = 1
 	can_infect = 1
 
-/datum/surgery_step/brainstem/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return 0
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -32,20 +32,20 @@
 	min_duration = 80
 	max_duration = 100
 
-/datum/surgery_step/brainstem/mend_vessels/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vessels/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 0
 
-/datum/surgery_step/brainstem/mend_vessels/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vessels/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to mend the blood vessels on [target]'s brainstem with \the [tool].", \
 	"You start to mend the blood vessels on [target]'s brainstem with \the [tool].")
 	..()
 
-/datum/surgery_step/brainstem/mend_vessels/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vessels/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] has mended the blood vessels on [target]'s brainstem with \the [tool].</span>" , \
 	"<span class='notice'> You have mended the blood vessels on [target]'s brainstem with \the [tool].</span>",)
 	target.op_stage.brainstem = 1
 
-/datum/surgery_step/brainstem/mend_vessels/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vessels/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, tearing at [target]'s brainstem with \the [tool]!</span>" , \
 	"<span class='danger'>Your hand slips, tearing at [target]'s brainstem with \the [tool]!</span>" )
@@ -69,15 +69,15 @@
 	min_duration = 200 //Very. Very. Carefully.
 	max_duration = 300
 
-/datum/surgery_step/brainstem/drill_vertebrae/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/drill_vertebrae/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 1
 
-/datum/surgery_step/brainstem/drill_vertebrae/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/drill_vertebrae/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to drill around [target]'s brainstem with \the [tool].", \
 	"You start to drill around [target]'s brainstem with \the [tool].")
 	..()
 
-/datum/surgery_step/brainstem/drill_vertebrae/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/drill_vertebrae/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has drilled around [target]'s brainstem with \the [tool].</span>" , \
 	"<span class='notice'> You have drilled around [target]'s brainstem with \the [tool].</span>",)
@@ -85,7 +85,7 @@
 	target.op_stage.brainstem = 2
 	affected.fracture() //Does not apply damage, simply breaks it if it wasn't already. Doesn't stop a defib on its own.
 
-/datum/surgery_step/brainstem/drill_vertebrae/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/drill_vertebrae/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, shredding [target]'s brainstem with \the [tool]!</span>" , \
 	"<span class='danger'>Your hand slips, shredding [target]'s brainstem with \the [tool]!</span>" )
@@ -110,21 +110,21 @@
 	min_duration = 90
 	max_duration = 120
 
-/datum/surgery_step/brainstem/clean_chips/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/clean_chips/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 2
 
-/datum/surgery_step/brainstem/clean_chips/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/clean_chips/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to pick around [target]'s brainstem for bone chips with \the [tool].", \
 	"You start to pick around [target]'s brainstem for bone chips with \the [tool].")
 	..()
 
-/datum/surgery_step/brainstem/clean_chips/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/clean_chips/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] has cleaned around [target]'s brainstem with \the [tool].</span>" , \
 	"<span class='notice'> You have cleaned around [target]'s brainstem with \the [tool].</span>",)
 	target.AdjustParalysis(10) //Still invasive.
 	target.op_stage.brainstem = 3
 
-/datum/surgery_step/brainstem/clean_chips/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/clean_chips/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, gouging [target]'s brainstem with \the [tool]!</span>" , \
 	"<span class='danger'>Your hand slips, gouging [target]'s brainstem with \the [tool]!</span>" )
@@ -149,22 +149,22 @@
 	min_duration = 100
 	max_duration = 200
 
-/datum/surgery_step/brainstem/mend_cord/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_cord/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 3
 
-/datum/surgery_step/brainstem/mend_cord/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_cord/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to fuse [target]'s spinal cord with \the [tool].", \
 	"You start to fuse [target]'s spinal cord with \the [tool].")
 	..()
 
-/datum/surgery_step/brainstem/mend_cord/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_cord/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] has fused [target]'s spinal cord with \the [tool].</span>" , \
 	"<span class='notice'> You have fused [target]'s spinal cord with \the [tool].</span>",)
 	target.op_stage.brainstem = 4
 	target.AdjustParalysis(5)
 	target.add_modifier(/datum/modifier/franken_sickness, 20 MINUTES)
 
-/datum/surgery_step/brainstem/mend_cord/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_cord/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, tearing at [target]'s spinal cord with \the [tool]!</span>" , \
 	"<span class='danger'>Your hand slips, tearing at [target]'s spinal cord with \the [tool]!</span>" )
@@ -188,21 +188,21 @@
 	min_duration = 100
 	max_duration = 160
 
-/datum/surgery_step/brainstem/mend_vertebrae/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vertebrae/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 4
 
-/datum/surgery_step/brainstem/mend_vertebrae/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vertebrae/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to mend [target]'s opened vertebrae with \the [tool].", \
 	"You start to mend [target]'s opened vertebrae with \the [tool].")
 	..()
 
-/datum/surgery_step/brainstem/mend_vertebrae/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vertebrae/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] has mended [target]'s vertebrae with \the [tool].</span>" , \
 	"<span class='notice'> You have mended [target]'s vertebrae with \the [tool].</span>",)
 	target.can_defib = 1
 	target.op_stage.brainstem = 5
 
-/datum/surgery_step/brainstem/mend_vertebrae/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/mend_vertebrae/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, tearing at [target]'s spinal cord with \the [tool]!</span>" , \
 	"<span class='danger'>Your hand slips, tearing at [target]'s spinal cord with \the [tool]!</span>" )
@@ -227,21 +227,21 @@
 	min_duration = 90
 	max_duration = 120
 
-/datum/surgery_step/brainstem/realign_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/realign_tissue/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	return ..() && target_zone == BP_HEAD && target.op_stage.brainstem == 5
 
-/datum/surgery_step/brainstem/realign_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/realign_tissue/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to realign the tissues in [target]'s skull with \the [tool].", \
 	"You start to realign the tissues in [target]'s skull with \the [tool].")
 	..()
 
-/datum/surgery_step/brainstem/realign_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/realign_tissue/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] has realigned the tissues in [target]'s skull back into place with \the [tool].</span>" , \
 	"<span class='notice'> You have realigned the tissues in [target]'s skull back into place with \the [tool].</span>",)
 	target.AdjustParalysis(5) //I n v a s i v e
 	target.op_stage.brainstem = 0 //The cycle begins anew.
 
-/datum/surgery_step/brainstem/realign_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/brainstem/realign_tissue/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, gouging [target]'s brainstem with \the [tool]!</span>" , \
 	"<span class='danger'>Your hand slips, gouging [target]'s brainstem with \the [tool]!</span>" )

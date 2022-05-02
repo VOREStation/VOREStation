@@ -29,11 +29,11 @@
 	set name = "Enfeebling Sting (30)"
 	set desc = "Reduces the maximum health of a victim for a few minutes.."
 
-	var/mob/living/carbon/T = changeling_sting(30,/mob/proc/changeling_enfeebling_string)
+	var/mob/living/human/T = changeling_sting(30,/mob/proc/changeling_enfeebling_string)
 	if(!T)
 		return 0
 	if(ishuman(T))
-		var/mob/living/carbon/human/H = T
+		var/mob/living/human/H = T
 
 		add_attack_logs(src,T,"Enfeebling sting (changeling)")
 

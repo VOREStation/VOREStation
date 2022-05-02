@@ -12,7 +12,7 @@
 
 /obj/item/clothing/accessory/armor/on_attached(var/obj/item/clothing/S, var/mob/user)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(H.wear_suit == S)
 			if((body_parts_covered & ARMS) && istype(H.gloves, /obj/item/clothing))
 				var/obj/item/clothing/G = H.gloves

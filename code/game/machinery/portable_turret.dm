@@ -261,7 +261,7 @@
 		return TURRET_NOT_TARGET
 
 	if(ishuman(L))
-		var/mob/living/carbon/human/M = L
+		var/mob/living/human/M = L
 		if(istype(M.wear_suit, /obj/item/clothing/suit/redtag) && check_synth) // Checks if they are a red player
 			return TURRET_PRIORITY_TARGET
 
@@ -753,9 +753,6 @@
 	if(isanimal(L)) // Animals are not so dangerous
 		return check_anomalies ? TURRET_SECONDARY_TARGET : TURRET_NOT_TARGET
 
-	if(isxenomorph(L) || isalien(L)) // Xenos are dangerous
-		return check_anomalies ? TURRET_PRIORITY_TARGET	: TURRET_NOT_TARGET
-
 	if(ishuman(L))	//if the target is a human, analyze threat level
 		if(assess_perp(L) < 4)
 			return TURRET_NOT_TARGET	//if threat level < 4, keep going
@@ -765,7 +762,7 @@
 
 	return TURRET_PRIORITY_TARGET	//if the perp has passed all previous tests, congrats, it is now a "shoot-me!" nominee
 
-/obj/machinery/porta_turret/proc/assess_perp(var/mob/living/carbon/human/H)
+/obj/machinery/porta_turret/proc/assess_perp(var/mob/living/human/H)
 	if(!H || !istype(H))
 		return 0
 

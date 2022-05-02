@@ -70,7 +70,7 @@
 		set_light(0, 0, l_color = "#000000")
 
 	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/human/H = loc
 		H.update_inv_wear_suit(0)
 		H.update_action_buttons()
 	..()

@@ -26,7 +26,7 @@
 	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
 	P.name = "paper - [form_title]"
 	P.info = "[last_data]"
-	if(istype(user,/mob/living/carbon/human))
+	if(istype(user,/mob/living/human))
 		user.put_in_hands(P)
 	user.visible_message("\The [src] spits out a piece of paper.")
 	return

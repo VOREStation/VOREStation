@@ -205,7 +205,7 @@
 
 	dislocated = 1
 	if(istype(owner))
-		owner.verbs |= /mob/living/carbon/human/proc/relocate
+		owner.verbs |= /mob/living/human/proc/relocate
 
 /obj/item/organ/external/proc/relocate()
 	if(dislocated == -1)
@@ -219,7 +219,7 @@
 		for(var/obj/item/organ/external/limb in owner.organs)
 			if(limb.dislocated == 1)
 				return
-		owner.verbs -= /mob/living/carbon/human/proc/relocate
+		owner.verbs -= /mob/living/human/proc/relocate
 
 /obj/item/organ/external/update_health()
 	damage = min(max_damage, (brute_dam + burn_dam))
@@ -232,7 +232,7 @@
 	spawn(1)
 		get_icon()
 
-/obj/item/organ/external/replaced(var/mob/living/carbon/human/target)
+/obj/item/organ/external/replaced(var/mob/living/human/target)
 	owner = target
 	forceMove(owner)
 	if(istype(owner))
@@ -783,8 +783,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 	status &= ~ORGAN_BLEEDING
 	var/clamped = 0
 
-	var/mob/living/carbon/human/H
-	if(istype(owner,/mob/living/carbon/human))
+	var/mob/living/human/H
+	if(istype(owner,/mob/living/human))
 		H = owner
 
 	//update damage counts
@@ -891,7 +891,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				"<span class='moderate'><b>Your [src.name] explodes[gore]!</b></span>",\
 				"<span class='danger'>You hear the [gore_sound].</span>")
 
-	var/mob/living/carbon/human/victim = owner //Keep a reference for post-removed().
+	var/mob/living/human/victim = owner //Keep a reference for post-removed().
 	var/obj/item/organ/external/parent_organ = parent
 
 	var/use_flesh_colour = species?.get_flesh_colour(owner) ? species.get_flesh_colour(owner) : "#C80000"
@@ -983,7 +983,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /obj/item/organ/external/proc/is_stump()
 	return 0
 
-/obj/item/organ/external/proc/release_restraints(var/mob/living/carbon/human/holder)
+/obj/item/organ/external/proc/release_restraints(var/mob/living/human/holder)
 	if(!holder)
 		holder = owner
 	if(!holder)
@@ -1216,7 +1216,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!owner)
 		return
 	var/is_robotic = robotic >= ORGAN_ROBOT
-	var/mob/living/carbon/human/victim = owner
+	var/mob/living/human/victim = owner
 
 	..()
 
@@ -1397,7 +1397,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	return covering_clothing
 
-/mob/living/carbon/human/proc/has_embedded_objects()
+/mob/living/human/proc/has_embedded_objects()
 	. = 0
 	for(var/obj/item/organ/external/L in organs)
 		for(var/obj/item/I in L.implants)

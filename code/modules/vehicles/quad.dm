@@ -136,7 +136,7 @@
 			health -= round(M.mob_size / 4) // Less damage if they actually put the point in to emag it.
 		var/turf/T2 = get_step(A, pick(throw_dirs))
 		M.throw_at(T2, 1, 1, src)
-		if(istype(load, /mob/living/carbon/human))
+		if(istype(load, /mob/living/human))
 			var/mob/living/D = load
 			to_chat(D, "<span class='danger'>You hit [M]!</span>")
 			add_attack_logs(D,M,"Ran over with [src.name]")
@@ -235,7 +235,7 @@
 			throw_dirs -= dir
 		var/turf/T2 = get_step(A, pick(throw_dirs))
 		M.throw_at(T2, 1, 1, src)
-		if(istype(load, /mob/living/carbon/human))
+		if(istype(load, /mob/living/human))
 			var/mob/living/D = load
 			to_chat(D, "<span class='danger'>You hit [M]!</span>")
 			add_attack_logs(D,M,"Ran over with [src.name]")

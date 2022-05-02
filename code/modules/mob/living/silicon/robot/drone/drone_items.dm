@@ -297,7 +297,11 @@
 	wrapped = null
 	//update_icon()
 
+<<<<<<< HEAD
 /obj/item/weapon/gripper/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/gripper/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(wrapped) 	//The force of the wrapped obj gets set to zero during the attack() and afterattack().
 		force_holder = wrapped.force
 		wrapped.force = 0.0
@@ -419,7 +423,11 @@
 	var/datum/matter_synth/wood = null
 	var/datum/matter_synth/plastic = null
 
+<<<<<<< HEAD
 /obj/item/weapon/matter_decompiler/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/matter_decompiler/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	return
 
 /obj/item/weapon/matter_decompiler/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, proximity, params)

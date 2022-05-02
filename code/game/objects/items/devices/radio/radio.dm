@@ -293,7 +293,7 @@ var/global/list/default_medbay_channels = list(
 				to_chat(usr, "<span class='notice'>Loadspeaker disabled.</span>")
 			. = TRUE
 
-	if(. && iscarbon(usr))
+	if(. && ishuman(usr))
 		playsound(src, "button", 10)
 
 GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
@@ -400,11 +400,11 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
 	// --- Human: use their actual job ---
 	if (ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		jobname = H.get_assignment()
 
 	// --- Carbon Nonhuman ---
-	else if (iscarbon(M)) // Nonhuman carbon mob
+	else if (ishuman(M)) // Nonhuman carbon mob
 		jobname = "No id"
 
 	// --- AI ---

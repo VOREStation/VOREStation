@@ -15,7 +15,7 @@
 	var/obj/item/clothing/gloves/gloves = null	//Undergloves
 
 /obj/item/clothing/gloves/gauntlets/mob_can_equip(mob/user, slot, disable_warning = FALSE)
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(H.gloves)
 		gloves = H.gloves
 		if(!istype(gloves))
@@ -40,7 +40,7 @@
 	return 1
 
 /obj/item/clothing/gloves/gauntlets/dropped()
-	var/mob/living/carbon/human/H = wearer
+	var/mob/living/human/H = wearer
 	if(gloves)
 		if(!H.equip_to_slot_if_possible(gloves, slot_gloves))
 			gloves.forceMove(get_turf(src))

@@ -36,7 +36,7 @@ var/global/list/total_extraction_beacons = list()
 		beacon = A
 		to_chat(user, "You link the extraction pack to the beacon system.")
 
-/obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/carbon/human/user, flag, params)
+/obj/item/extraction_pack/afterattack(atom/movable/A, mob/living/human/user, flag, params)
 	if(!beacon)
 		to_chat(user, "[src] is not linked to a beacon, and cannot be used.")
 		return
@@ -106,7 +106,7 @@ var/global/list/total_extraction_beacons = list()
 			playsound(holder_obj, 'sound/items/fultext_launch.wav', 50, 1, -3)
 			animate(holder_obj, pixel_z = 1000, time = 30)
 			if(ishuman(A))
-				var/mob/living/carbon/human/L = A
+				var/mob/living/human/L = A
 				L.AdjustStunned(20)
 				L.drowsyness = 0
 			sleep(30)

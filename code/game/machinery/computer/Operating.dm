@@ -9,7 +9,7 @@
 	icon_screen = "crew"
 	circuit = /obj/item/weapon/circuitboard/operating
 	var/obj/machinery/optable/table = null
-	var/mob/living/carbon/human/victim = null
+	var/mob/living/human/victim = null
 	var/verbose = 1 //general speaker toggle
 	var/patientName = null
 	var/oxyAlarm = 30 //oxy damage at which the computer will beep
@@ -57,7 +57,7 @@
 
 /obj/machinery/computer/operating/tgui_data(mob/user)
 	var/data[0]
-	var/mob/living/carbon/human/occupant
+	var/mob/living/human/occupant
 	if(table)
 		occupant = table.victim
 	data["hasOccupant"] = occupant ? 1 : 0

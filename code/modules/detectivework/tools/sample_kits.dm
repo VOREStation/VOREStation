@@ -65,7 +65,7 @@
 		return
 	if(!ishuman(user))
 		return
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(H.gloves)
 		to_chat(user, "<span class='warning'>Take \the [H.gloves] off first.</span>")
 		return
@@ -84,7 +84,7 @@
 	if(evidence && evidence.len)
 		return 0
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 
 	if(H.gloves)
 		to_chat(user, "<span class='warning'>\The [H] is wearing gloves.</span>")

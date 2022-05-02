@@ -59,8 +59,8 @@
 	user.show_message("<span class='notice'>    Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
 	if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
 		user.show_message("<span class='notice'>    Time of Death: [C.tod]</span>")
-	if(istype(C, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = C
+	if(istype(C, /mob/living/human))
+		var/mob/living/human/H = C
 		var/list/damaged = H.get_damaged_organs(1,1)
 		user.show_message("<span class='notice'>Localized Damage, Brute/Burn:</span>",1)
 		if(length(damaged)>0)
@@ -75,8 +75,8 @@
 	icon = "link"
 
 /datum/data/pda/utility/scanmode/dna/scan_mob(mob/living/C as mob, mob/living/user as mob)
-	if(istype(C, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = C
+	if(istype(C, /mob/living/human))
+		var/mob/living/human/H = C
 		if(!istype(H.dna, /datum/dna))
 			to_chat(user, "<span class=notice>No fingerprints found on [H]</span>")
 		else

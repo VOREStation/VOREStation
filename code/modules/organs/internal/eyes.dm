@@ -22,9 +22,15 @@
 /obj/item/organ/internal/eyes/grey
 	icon_state = "eyes_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/eyes/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/eyes/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner
@@ -50,7 +56,7 @@
 		// Finally, update the eye icon on the mob.
 		owner.regenerate_icons()
 
-/obj/item/organ/internal/eyes/replaced(var/mob/living/carbon/human/target)
+/obj/item/organ/internal/eyes/replaced(var/mob/living/human/target)
 
 	// Apply our eye colour to the target.
 	if(istype(target) && eye_colour)

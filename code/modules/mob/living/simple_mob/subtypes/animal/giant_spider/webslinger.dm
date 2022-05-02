@@ -42,7 +42,7 @@
 /mob/living/simple_mob/animal/giant_spider/webslinger/should_special_attack(atom/A)
 	if(ismob(A))
 		if(ishuman(A))
-			var/mob/living/carbon/human/H = A
+			var/mob/living/human/H = A
 			if(!H.legcuffed)
 				return TRUE
 	return FALSE

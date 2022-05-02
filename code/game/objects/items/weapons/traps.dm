@@ -100,7 +100,7 @@
 		return 0
 
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/human/H = L
 		var/obj/item/organ/external/affected = H.get_organ(check_zone(target_zone))
 		if(!affected) // took it clean off!
 			to_chat(H, "<span class='danger'>The steel jaws of \the [src] take your limb clean off!</span>")
@@ -306,7 +306,7 @@
 				PN.draw_power(drained_energy)
 
 				if(ishuman(user))
-					var/mob/living/carbon/human/H = user
+					var/mob/living/human/H = user
 
 					var/obj/item/organ/external/affected = H.get_organ(check_zone(target_zone))
 
@@ -355,7 +355,7 @@
 
 	playsound(src, 'sound/effects/glass_step.ogg', 50, 1) // not sure how to handle metal shards with sounds
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/human/H = L
 
 		if(H.species.siemens_coefficient<0.5) //Thick skin.
 			return

@@ -16,7 +16,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/icon_state_closed = "laptop-closed"
 
-/obj/item/modular_computer/laptop/AltClick(mob/living/carbon/user)
+/obj/item/modular_computer/laptop/AltClick(mob/living/human/user)
 	// We need to be close to it to open it
 	if((!in_range(src, user)) || user.stat || user.restrained())
 		return

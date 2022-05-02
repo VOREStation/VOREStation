@@ -207,7 +207,7 @@
 	var/on_store_visible_message_1 = "hums and hisses as it moves" //We need two variables because byond doesn't let us have variables inside strings at compile-time.
 	var/on_store_visible_message_2 = "into storage."
 	var/announce_channel = "Common"
-	var/allow_occupant_types = list(/mob/living/carbon/human)
+	var/allow_occupant_types = list(/mob/living/human)
 	var/disallow_occupant_types = list()
 
 	var/mob/occupant = null       // Person waiting to be despawned.
@@ -245,7 +245,7 @@
 
 	time_till_despawn = 600 //1 minute. We want to be much faster then normal cryo, since waiting in an elevator for half an hour is a special kind of hell.
 
-	allow_occupant_types = list(/mob/living/silicon/robot,/mob/living/carbon/human)
+	allow_occupant_types = list(/mob/living/silicon/robot,/mob/living/human)
 	disallow_occupant_types = list(/mob/living/silicon/robot/drone)
 
 /obj/machinery/cryopod/robot/door/dorms
@@ -626,7 +626,7 @@
 		usr.forceMove(src)
 		set_occupant(usr)
 		if(ishuman(usr) && applies_stasis)
-			var/mob/living/carbon/human/H = occupant
+			var/mob/living/human/H = occupant
 			H.Stasis(1000)
 		if(usr.buckled && istype(usr.buckled, /obj/structure/bed/chair/wheelchair))
 			usr.buckled.loc = usr.loc
@@ -664,7 +664,7 @@
 
 	occupant.forceMove(get_turf(src))
 	if(ishuman(occupant) && applies_stasis)
-		var/mob/living/carbon/human/H = occupant
+		var/mob/living/human/H = occupant
 		H.Stasis(0)
 	set_occupant(null)
 
@@ -725,7 +725,7 @@
 		set_occupant(M)
 		time_entered = world.time
 		if(ishuman(M) && applies_stasis)
-			var/mob/living/carbon/human/H = M
+			var/mob/living/human/H = M
 			H.Stasis(1000)
 		if(M.buckled && istype(M.buckled, /obj/structure/bed/chair/wheelchair))
 			M.buckled.loc = M.loc

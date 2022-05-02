@@ -733,8 +733,8 @@ GLOBAL_LIST_EMPTY(apcs)
 	add_fingerprint(user)
 
 	//Human mob special interaction goes here.
-	if(istype(user,/mob/living/carbon/human))
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/human))
+		var/mob/living/human/H = user
 
 		if(H.species.can_shred(H))
 			user.setClickCooldown(user.get_attack_speed())
@@ -904,7 +904,7 @@ GLOBAL_LIST_EMPTY(apcs)
 	else
 		if(!in_range(src, user) || !istype(loc, /turf))
 			return 0
-	var/mob/living/carbon/human/H = user
+	var/mob/living/human/H = user
 	if(istype(H) && prob(H.getBrainLoss()))
 		to_chat(user, "<span class='danger'>You momentarily forget how to use [src].</span>")
 		return 0

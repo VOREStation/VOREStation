@@ -85,7 +85,7 @@
 		if(can_move(T))
 			forceMove(T)
 			set_dir(move_dir)
-			for(var/mob/living/carbon/C in loc)
+			for(var/mob/living/human/C in loc)
 				dust_mob(C)
 			sleep(1) // So movement is smooth
 

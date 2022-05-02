@@ -70,7 +70,11 @@
 		id_card.fingerprint_hash= md5(dna.uni_identity)
 	id_card.update_name()
 
+<<<<<<< HEAD
 /mob/living/carbon/human/set_id_info(var/obj/item/weapon/card/id/id_card)
+=======
+/mob/living/human/set_id_info(var/obj/item/card/id/id_card)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	..()
 	id_card.age = age
 	id_card.sex = capitalize(name_gender())

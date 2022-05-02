@@ -74,7 +74,7 @@ var/global/list/narsie_list = list()
 		consume(A)
 
 /obj/singularity/narsie/mezzer()
-	for(var/mob/living/carbon/M in oviewers(8, src))
+	for(var/mob/living/human/M in oviewers(8, src))
 		if(M.stat == CONSCIOUS)
 			if(M.status_flags & GODMODE)
 				continue
@@ -287,7 +287,7 @@ var/global/list/narsie_list = list()
 		acquire(pick(cultists))
 		return
 		//If there was living cultists, it picks one to follow.
-	for(var/mob/living/carbon/human/food in living_mob_list)
+	for(var/mob/living/human/food in living_mob_list)
 		if(food.stat)
 			continue
 		var/turf/pos = get_turf(food)

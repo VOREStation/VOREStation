@@ -17,7 +17,7 @@
 /obj/item/weapon/storage/quickdraw/attack_hand(mob/user as mob)
 	if(src.loc == user) //If they aren't holding us, we do nothing special
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 			if(quickmode)
 				var/first_item = contents[1]
 				if(first_item && !H.get_active_hand()) //Do we have anything to give you?

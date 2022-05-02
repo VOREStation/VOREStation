@@ -120,7 +120,7 @@
 
 	M.visible_message("<span class='danger'>\The [M] has been injected with \the [src] by \the [user].</span>")
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	if(!istype(H))
 		to_chat(user, "<span class='warning'>Apparently it didn't work...</span>")
 		return

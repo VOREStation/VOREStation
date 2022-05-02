@@ -291,14 +291,14 @@
 	if(model)
 		var/datum/robolimb/robohead = all_robolimbs[model]
 		if(robohead?.monitor_styles && robohead?.monitor_icon)
-			LAZYDISTINCTADD(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
+			LAZYDISTINCTADD(organ_verbs, /mob/living/human/proc/setmonitor_state)
 		else
-			LAZYREMOVE(organ_verbs, /mob/living/carbon/human/proc/setmonitor_state)
+			LAZYREMOVE(organ_verbs, /mob/living/human/proc/setmonitor_state)
 		handle_organ_mod_special()
 
 /obj/item/organ/external/head/removed()
 	if(owner)
-		if(iscarbon(owner))
+		if(ishuman(owner))
 			name = "[owner.real_name]'s head"
 			owner.drop_from_inventory(owner.glasses)
 			owner.drop_from_inventory(owner.head)
@@ -346,7 +346,7 @@
 	cut_overlays()
 
 	//Every 'addon' below requires information from species
-	if(!iscarbon(owner) || !owner.species)
+	if(!ishuman(owner) || !owner.species)
 		return
 
 	var/icon/eyecon //VOREStation Add

@@ -79,7 +79,7 @@
 /obj/item/projectile/energy/hook/on_impact(var/atom/A)
 	perform_intent_unique(get_turf(A))
 
-/obj/item/projectile/energy/hook/proc/ranged_disarm(var/mob/living/carbon/human/H)
+/obj/item/projectile/energy/hook/proc/ranged_disarm(var/mob/living/human/H)
 	if(istype(H))
 		var/list/holding = list(H.get_active_hand() = 60, H.get_inactive_hand() = 40)
 
@@ -167,13 +167,13 @@
 					done_mob_unique = TRUE
 					success = TRUE
 				if(I_HURT)
-					if(prob(10) && istype(L, /mob/living/carbon/human))
+					if(prob(10) && istype(L, /mob/living/human))
 						to_chat(L, "<span class='warning'>\The [src] rips at your hands!</span>")
 						ranged_disarm(L)
 					success = TRUE
 					done_mob_unique = TRUE
 				if(I_DISARM)
-					if(prob(disarm_chance) && istype(L, /mob/living/carbon/human))
+					if(prob(disarm_chance) && istype(L, /mob/living/human))
 						ranged_disarm(L)
 					else
 						L.visible_message("<span class='danger'>\The [src] sends \the [L] stumbling backwards.</span>")

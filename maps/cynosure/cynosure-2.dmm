@@ -40913,7 +40913,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals3{
 	dir = 8
 	},
-/mob/living/carbon/human/monkey/punpun,
+/mob/living/human/monkey/punpun,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/crew_quarters/bar)
 "sAI" = (

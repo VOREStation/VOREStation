@@ -9,8 +9,13 @@
 	var/obj/item/weapon/reagent_containers/container = null
 
 /obj/machinery/computer/curer/attackby(var/obj/I as obj, var/mob/user as mob)
+<<<<<<< HEAD
 	if(istype(I,/obj/item/weapon/reagent_containers))
 		var/mob/living/carbon/C = user
+=======
+	if(istype(I,/obj/item/reagent_containers))
+		var/mob/living/human/C = user
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(!container)
 			container = I
 			C.drop_item()

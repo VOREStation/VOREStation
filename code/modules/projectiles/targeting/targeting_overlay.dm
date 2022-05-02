@@ -115,7 +115,7 @@
 
 	var/cancel_aim = 1
 
-	var/mob/living/carbon/human/H = owner
+	var/mob/living/human/H = owner
 	if(!(aiming_with in owner) || (istype(H) && !H.item_is_in_hands(aiming_with)))
 		to_chat(owner, "<span class='warning'>You must keep hold of your weapon!</span>")
 	else if(owner.eye_blind)

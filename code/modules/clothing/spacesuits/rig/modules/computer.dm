@@ -137,7 +137,7 @@
 	if(!..())
 		return 0
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	if(!target)
 		if(ai_card)
@@ -249,7 +249,7 @@
 		return 0
 
 	if(target)
-		var/mob/living/carbon/human/H = holder.wearer
+		var/mob/living/human/H = holder.wearer
 		if(!accepts_item(target,H))
 			return 0
 	return 1
@@ -392,7 +392,7 @@
 		return 1
 
 	// Are we close enough?
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 	if(!target.Adjacent(H))
 		return 0
 
@@ -421,7 +421,7 @@
 	if(!interfaced_with)
 		return ..()
 
-	var/mob/living/carbon/human/H
+	var/mob/living/human/H
 	if(holder && holder.wearer)
 		H = holder.wearer
 

@@ -11,7 +11,7 @@
 
 	Otherwise pretty standard.
 */
-/mob/living/carbon/human/UnarmedAttack(var/atom/A, var/proximity)
+/mob/living/human/UnarmedAttack(var/atom/A, var/proximity)
 
 	if(!..())
 		return
@@ -30,10 +30,10 @@
 		return TRUE
 	return FALSE
 
-/mob/living/carbon/human/RestrainedClickOn(var/atom/A)
+/mob/living/human/RestrainedClickOn(var/atom/A)
 	return
 
-/mob/living/carbon/human/RangedAttack(var/atom/A)
+/mob/living/human/RangedAttack(var/atom/A)
 	if(!gloves && !mutations.len && !spitting)
 		return
 	var/obj/item/clothing/gloves/G = gloves
@@ -51,21 +51,6 @@
 
 /mob/living/RestrainedClickOn(var/atom/A)
 	return
-
-/*
-	Aliens
-*/
-
-/mob/living/carbon/alien/RestrainedClickOn(var/atom/A)
-	return
-
-/mob/living/carbon/alien/UnarmedAttack(var/atom/A, var/proximity)
-
-	if(!..())
-		return 0
-
-	setClickCooldown(get_attack_speed())
-	A.attack_generic(src,rand(5,6),"bitten")
 
 /*
 	New Players:

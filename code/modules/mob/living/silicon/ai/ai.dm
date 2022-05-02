@@ -470,7 +470,7 @@ var/list/ai_verbs_default = list(
 	if (href_list["track"])
 		var/mob/target = locate(href_list["track"]) in mob_list
 
-		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
+		if(target && (!istype(target, /mob/living/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
 			to_chat(src, "<font color='red'>System error. Cannot locate [html_decode(href_list["trackname"])].</font>")
@@ -614,7 +614,7 @@ var/list/ai_verbs_default = list(
 
 		if("My Character") //Loaded character slot
 			if(!client || !client.prefs) return
-			var/mob/living/carbon/human/dummy/dummy = new ()
+			var/mob/living/human/dummy/dummy = new ()
 			//This doesn't include custom_items because that's ... hard.
 			client.prefs.dress_preview_mob(dummy)
 			sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?
@@ -904,19 +904,19 @@ var/list/ai_verbs_default = list(
 		return
 
 	var/jobname // the mob's "job"
-	var/mob/living/carbon/human/impersonating //The crew member being impersonated, if any.
+	var/mob/living/human/impersonating //The crew member being impersonated, if any.
 	var/changed_voice
 
 	if(ishuman(speaker))
-		var/mob/living/carbon/human/H = speaker
+		var/mob/living/human/H = speaker
 
 		if(H.wear_mask && istype(H.wear_mask,/obj/item/clothing/mask/gas/voice))
 			changed_voice = 1
 			var/list/impersonated = new()
-			var/mob/living/carbon/human/I = impersonated[speaker_name]
+			var/mob/living/human/I = impersonated[speaker_name]
 
 			if(!I)
-				for(var/mob/living/carbon/human/M in mob_list)
+				for(var/mob/living/human/M in mob_list)
 					if(M.real_name == speaker_name)
 						I = M
 						impersonated[speaker_name] = I
@@ -932,7 +932,7 @@ var/list/ai_verbs_default = list(
 		else
 			jobname = H.get_assignment()
 
-	else if(iscarbon(speaker)) // Nonhuman carbon mob
+	else if(ishuman(speaker)) // Nonhuman carbon mob
 		jobname = "No id"
 	else if(isAI(speaker))
 		jobname = "AI"

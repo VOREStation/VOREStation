@@ -47,7 +47,7 @@
 	var/can_rename_areas_in = AREA_STATION	// Only station areas can be reanamed
 
 /obj/item/blueprints/attack_self(mob/M as mob)
-	if (!istype(M,/mob/living/carbon/human))
+	if (!istype(M,/mob/living/human))
 		to_chat(M, "This stack of blue paper means nothing to you.") //monkeys cannot into projecting
 		return
 	interact()

@@ -60,7 +60,7 @@ mob
 						hsboxspawn = 1
 						return
 				if("hsbsuit")
-					var/mob/living/carbon/human/P = usr
+					var/mob/living/human/P = usr
 					if(P.wear_suit)
 						P.wear_suit.loc = P.loc
 						P.wear_suit.reset_plane_and_layer()

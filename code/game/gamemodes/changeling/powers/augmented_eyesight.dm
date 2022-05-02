@@ -17,7 +17,7 @@
 	if(!changeling)
 		return 0
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/human/C = src
 
 	changeling.thermal_sight = !changeling.thermal_sight
 

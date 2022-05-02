@@ -38,7 +38,7 @@
 		damage_to_energy_cost *= 0.75
 
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/human/H = owner
 		if(istype(H.get_other_hand(src), src.type)) // Two shields in both hands.
 			damage_to_energy_cost *= 0.75
 

@@ -291,8 +291,13 @@
 
 			var/idname = "*None Provided*"
 			var/idrank = "*None Provided*"
+<<<<<<< HEAD
 			if(ishuman(usr))
 				var/mob/living/carbon/human/H = usr
+=======
+			if(ishuman(user))
+				var/mob/living/human/H = user
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 				idname = H.get_authentification_name()
 				idrank = H.get_assignment()
 			else if(issilicon(usr))

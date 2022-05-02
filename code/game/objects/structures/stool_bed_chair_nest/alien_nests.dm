@@ -45,8 +45,8 @@
 
 	unbuckle_mob()
 
-	var/mob/living/carbon/xenos = user
-	var/mob/living/carbon/victim = M
+	var/mob/living/human/xenos = user
+	var/mob/living/human/victim = M
 
 	if(istype(victim) && locate(/obj/item/organ/internal/xenos/hivenode) in victim.internal_organs)
 		return

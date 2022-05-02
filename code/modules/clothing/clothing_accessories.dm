@@ -41,8 +41,13 @@
 			A.attack_hand(user)
 		return
 	if (ishuman(user) && src.loc == user)
+<<<<<<< HEAD
 		var/mob/living/carbon/human/H = user
 		if(src == H.w_uniform) // VOREStation Edit - Un-equip on single click, but not on uniform.
+=======
+		var/mob/living/human/H = user
+		if(src != H.l_store && src != H.r_store && src != H.s_store)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			return
 	return ..()
 

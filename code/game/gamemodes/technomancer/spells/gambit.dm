@@ -30,7 +30,11 @@
 	)
 
 
+<<<<<<< HEAD
 /obj/item/weapon/spell/gambit/on_use_cast(mob/living/carbon/human/user)
+=======
+/obj/item/spell/gambit/on_use_cast(mob/living/human/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(pay_energy(200))
 		adjust_instability(3)
 		if(check_for_scepter())
@@ -89,8 +93,8 @@
 				potential_spells |= /obj/item/weapon/spell/projectile/ionic_bolt
 
 		// Finally we get to humanoids.
-		if(istype(L, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = L
+		if(istype(L, /mob/living/human))
+			var/mob/living/human/H = L
 			if(is_ally(H)) // Don't get scared by our apprentice.
 				continue
 

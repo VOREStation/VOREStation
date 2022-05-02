@@ -21,7 +21,7 @@
 	S["communicator_visibility"]	<< pref.communicator_visibility
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/general/equipment/copy_to_mob(var/mob/living/human/character)
 	character.all_underwear.Cut()
 	character.all_underwear_metadata.Cut()
 

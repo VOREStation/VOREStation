@@ -52,7 +52,11 @@
 	qdel(src)
 	user.put_in_hands(internal_paper_tmp)
 
+<<<<<<< HEAD
 /obj/item/weapon/paperplane/attackby(obj/item/P, mob/living/carbon/human/user, params)
+=======
+/obj/item/paperplane/attackby(obj/item/P, mob/living/human/user, params)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	..()
 	if(istype(P, /obj/item/weapon/pen))
 		to_chat(user, "<span class='notice'>You should unfold [src] before changing it.</span>")
@@ -82,7 +86,7 @@
 /obj/item/weapon/paperplane/throw_impact(atom/hit_atom)
 	if(..() || !ishuman(hit_atom))//if the plane is caught or it hits a nonhuman
 		return
-	var/mob/living/carbon/human/H = hit_atom
+	var/mob/living/human/H = hit_atom
 	if(prob(2))
 		if((H.head && H.head.body_parts_covered & EYES) || (H.wear_mask && H.wear_mask.body_parts_covered & EYES) || (H.glasses && H.glasses.body_parts_covered & EYES))
 			return
@@ -93,7 +97,11 @@
 			E.damage += 2.5
 		H.emote("scream")
 
+<<<<<<< HEAD
 /obj/item/weapon/paper/AltClick(mob/living/carbon/user, obj/item/I)
+=======
+/obj/item/paper/AltClick(mob/living/human/user, obj/item/I)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if ( istype(user) )
 		if( (!in_range(src, user)) || user.stat || user.restrained() )
 			return

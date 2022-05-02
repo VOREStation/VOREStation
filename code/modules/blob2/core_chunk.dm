@@ -97,7 +97,11 @@
 		last_passive_use = world.time
 		blob_type.on_chunk_tick(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/blobcore_chunk/AltClick(mob/living/carbon/user)
+=======
+/obj/item/blobcore_chunk/AltClick(mob/living/human/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(blob_type && blob_type.chunk_active_type == BLOB_CHUNK_TOGGLE)
 		should_tick = !should_tick
 

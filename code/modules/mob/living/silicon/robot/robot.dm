@@ -762,8 +762,8 @@
 			to_chat(user, "You remove \the [broken_device].")
 			user.put_in_active_hand(broken_device)
 
-	if(istype(user,/mob/living/carbon/human) && !opened)
-		var/mob/living/carbon/human/H = user
+	if(istype(user,/mob/living/human) && !opened)
+		var/mob/living/human/H = user
 		//Adding borg petting.  Help intent pets, Disarm intent taps and Harm is punching(no damage)
 		switch(H.a_intent)
 			if(I_HELP)
@@ -812,8 +812,8 @@
 	//check if it doesn't require any access at all
 	if(check_access(null))
 		return 1
-	if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if(istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		//if they are holding or wearing a card that has access, that works
 		if(check_access(H.get_active_hand()) || check_access(H.wear_id))
 			return 1

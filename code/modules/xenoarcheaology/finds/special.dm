@@ -61,7 +61,7 @@
 /obj/item/weapon/vampiric/process()
 	//see if we've identified anyone nearby
 	if(world.time - last_bloodcall > bloodcall_interval && nearby_mobs.len)
-		var/mob/living/carbon/human/M = pop(nearby_mobs)
+		var/mob/living/human/M = pop(nearby_mobs)
 		if(M in view(7,src) && M.health > 20)
 			if(prob(50))
 				bloodcall(M)
@@ -121,7 +121,11 @@
 	if(world.time - last_bloodcall >= bloodcall_interval && (M in view(7, src)))
 		bloodcall(M)
 
+<<<<<<< HEAD
 /obj/item/weapon/vampiric/proc/bloodcall(var/mob/living/carbon/human/M)
+=======
+/obj/item/vampiric/proc/bloodcall(var/mob/living/human/M)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	last_bloodcall = world.time
 	if(istype(M))
 		playsound(src, pick('sound/hallucinations/wail.ogg','sound/hallucinations/veryfar_noise.ogg','sound/hallucinations/far_noise.ogg'), 50, 1, -3)
@@ -178,7 +182,7 @@
 /obj/effect/shadow_wight/process()
 	if(src.loc)
 		src.loc = get_turf(pick(orange(1,src)))
-		var/mob/living/carbon/M = locate() in src.loc
+		var/mob/living/human/M = locate() in src.loc
 		if(M)
 			playsound(src, pick('sound/hallucinations/behind_you1.ogg',\
 			'sound/hallucinations/behind_you2.ogg',\

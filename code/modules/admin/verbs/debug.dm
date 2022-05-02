@@ -100,7 +100,7 @@
 	if(!ticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon/human))
+	if(istype(M, /mob/living/human))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
 			M:Robotize()
@@ -156,6 +156,7 @@
 			paiController.pai_candidates.Remove(candidate)
 	feedback_add_details("admin_verb","MPAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+<<<<<<< HEAD
 /client/proc/cmd_admin_alienize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Alien"
@@ -174,14 +175,21 @@
 		tgui_alert_async(usr, "Invalid mob")
 
 
+=======
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
 	set category = "Debug"
 	set name = "Del-All"
 
 	// to prevent REALLY stupid deletions
+<<<<<<< HEAD
 	var/blocked = list(/obj, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/human, /mob/observer/dead, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
 	var/hsbitem = tgui_input_list(usr, "Choose an object to delete.", "Delete:", typesof(/obj) + typesof(/mob) - blocked)
+=======
+	var/blocked = list(/obj, /mob, /mob/living, /mob/living/human, /mob/living/human, /mob/observer/dead, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
+	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(/obj) + typesof(/mob) - blocked
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(hsbitem)
 		for(var/atom/O in world)
 			if(istype(O, hsbitem))
@@ -274,8 +282,8 @@
 	if (!ticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
-	if (istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	if (istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		if (H.wear_id)
 			var/obj/item/weapon/card/id/id = H.wear_id
 			if(istype(H.wear_id, /obj/item/device/pda))
@@ -430,7 +438,7 @@
 	if(!ishuman(target))
 		return
 
-	var/mob/living/carbon/human/H = target
+	var/mob/living/human/H = target
 
 	var/decl/hierarchy/outfit/outfit = tgui_input_list(usr, "Select outfit.", "Select equipment.", outfits())
 	if(!outfit)
@@ -439,7 +447,7 @@
 	feedback_add_details("admin_verb","SEQ")
 	dressup_human(H, outfit, 1)
 
-/proc/dressup_human(var/mob/living/carbon/human/H, var/decl/hierarchy/outfit/outfit)
+/proc/dressup_human(var/mob/living/human/H, var/decl/hierarchy/outfit/outfit)
 	if(!H || !outfit)
 		return
 	if(outfit.undress)
@@ -608,7 +616,7 @@
 	if(!ticker)
 		tgui_alert_async(usr, "Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon))
+	if(istype(M, /mob/living/human))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.update_mutations()

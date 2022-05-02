@@ -38,7 +38,7 @@
 	..()
 	create_reagents(15)
 
-/obj/item/clothing/gloves/ring/reagent/equipped(var/mob/living/carbon/human/H)
+/obj/item/clothing/gloves/ring/reagent/equipped(var/mob/living/human/H)
 	..()
 	if(istype(H) && H.gloves==src)
 

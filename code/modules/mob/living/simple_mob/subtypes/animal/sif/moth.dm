@@ -85,14 +85,20 @@
 	desc = "A dust cloud filled with disorienting bacterial spores."
 	color = "#80AB82"
 
+<<<<<<< HEAD
 /obj/effect/effect/smoke/elemental/mothspore/affect(mob/living/L) //Similar to a very weak flash, but depends on breathing instead of eye protection.
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
+=======
+/obj/effect/vfx/smoke/elemental/mothspore/affect(mob/living/L) //Similar to a very weak flash, but depends on breathing instead of eye protection.
+	if(ishuman(L))
+		var/mob/living/human/C = L
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(C.stat != DEAD)
 			if(C.needs_to_breathe())
 				var/spore_strength = 5
 				if(ishuman(C))
-					var/mob/living/carbon/human/H = C
+					var/mob/living/human/H = C
 					H.Confuse(spore_strength)
 					H.eye_blurry = max(H.eye_blurry, spore_strength)
 					H.adjustHalLoss(10 * (spore_strength / 5))

@@ -53,7 +53,7 @@
 			SM.revive()
 			holder.visible_message("<span class='alien'>\The [SM]'s eyes open in a flash of light!</span>")
 		else if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 
 			if(!H.client && H.mind)
 				for(var/mob/observer/dead/ghost in player_list)

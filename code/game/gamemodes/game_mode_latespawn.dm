@@ -20,7 +20,7 @@
 		process_count = 0
 		try_latespawn()
 
-/datum/game_mode/proc/latespawn(var/mob/living/carbon/human/character)
+/datum/game_mode/proc/latespawn(var/mob/living/human/character)
 	if(!character.mind)
 		return
 	try_latespawn(character.mind)

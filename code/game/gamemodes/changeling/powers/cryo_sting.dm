@@ -13,7 +13,7 @@
 	set name = "Cryogenic Sting (20)"
 	set desc = "Chills and freezes a biological creature."
 
-	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_cryo_sting)
+	var/mob/living/human/T = changeling_sting(20,/mob/proc/changeling_cryo_sting)
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Cryo sting (changeling)")

@@ -15,8 +15,8 @@
 	if(!changeling)
 		return 0
 
-	if(istype(src,/mob/living/carbon))
-		var/mob/living/carbon/C = src
+	if(istype(src,/mob/living/human))
+		var/mob/living/human/C = src
 		C.seedarkness = !C.seedarkness
 		if(C.seedarkness)
 			to_chat(C, "<span class='notice'>We allow the shadows to return.</span>")

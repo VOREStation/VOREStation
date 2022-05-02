@@ -35,7 +35,7 @@
 		usr.real_name = usr.name_archive
 		usr.name = usr.real_name
 		if(ishuman(usr))
-			var/mob/living/carbon/human/H = usr
+			var/mob/living/human/H = usr
 			H.name = H.get_visible_name()
 
 	usr.loc = O.loc // Appear where the object you were controlling is -- TLE

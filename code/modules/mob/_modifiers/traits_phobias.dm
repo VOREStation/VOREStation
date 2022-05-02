@@ -125,8 +125,8 @@
 			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
 				continue
 
-			if(istype(thing, /mob/living/carbon/human))
-				var/mob/living/carbon/human/H = thing
+			if(istype(thing, /mob/living/human))
+				var/mob/living/human/H = thing
 				var/self_multiplier = H == holder ? 2 : 1
 				var/human_blood_fear_amount = 0
 				if(!H.gloves && H.bloody_hands && H.hand_blood_color != SYNTH_BLOOD_COLOUR)
@@ -456,8 +456,8 @@
 				else
 					fear_amount += 10 // It's huge and feral.
 
-			if(istype(L, /mob/living/carbon/human))
-				var/mob/living/carbon/human/S = L
+			if(istype(L, /mob/living/human))
+				var/mob/living/human/S = L
 				if(istype(S.species, /datum/species/skrell)) //Skrell ARE slimey.
 					fear_amount += 1
 				if(istype(S.species, /datum/species/shapeshifter/promethean))
@@ -547,9 +547,15 @@
 			var/mob/living/L = thing
 			if(L.alpha <= FAKE_INVIS_ALPHA_THRESHOLD) // Can't fear something you can't (easily) see.
 				continue
+<<<<<<< HEAD
 			if(istype(L, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = L
 				if(H.l_hand && istype(H.l_hand, /obj/item/weapon/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/weapon/reagent_containers/syringe))
+=======
+			if(istype(L, /mob/living/human))
+				var/mob/living/human/H = L
+				if(H.l_hand && istype(H.l_hand, /obj/item/reagent_containers/syringe) || H.r_hand && istype(H.r_hand, /obj/item/reagent_containers/syringe))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 					fear_amount += 10
 
 				if(H.l_ear && istype(H.l_ear, /obj/item/weapon/reagent_containers/syringe) || H.r_ear && istype(H.r_ear, /obj/item/weapon/reagent_containers/syringe))
@@ -612,13 +618,13 @@
 	var/list/xenos = list()
 	if(!ishuman(holder))
 		return
-	var/mob/living/carbon/human/us = holder
-	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
+	var/mob/living/human/us = holder
+	for(var/mob/living/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(!(istype(us.species, H.species) )) // Are they a different species?
 			xenos += H
 	return xenos
 
-/datum/modifier/trait/phobia/xenophobia/generic/make_message(var/mob/living/carbon/human/H)
+/datum/modifier/trait/phobia/xenophobia/generic/make_message(var/mob/living/human/H)
 	// Do special responses first if possible.
 //	if(H.stat == DEAD)
 //		return pick( list("Unsurprising to see a weak and inferior [H.species.name] fail to survive.", "If that [H.species.name] were a [holder.species.name], this wouldn't've have happened.") )
@@ -648,14 +654,14 @@
 
 /datum/modifier/trait/phobia/xenophobia/human/get_xenos()
 	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
+	for(var/mob/living/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(H == holder)
 			continue // No self loathing here.
 		if(istype(H.species, /datum/species/human) ) // Are they a human.
 			humans += H
 	return humans
 
-/datum/modifier/trait/phobia/xenophobia/human/make_message(var/mob/living/carbon/human/H)
+/datum/modifier/trait/phobia/xenophobia/human/make_message(var/mob/living/human/H)
 	// Do special responses first if possible.
 
 	// Generic responses if none of the above apply.
@@ -677,14 +683,14 @@
 
 /datum/modifier/trait/phobia/xenophobia/skrell/get_xenos()
 	var/list/skrell = list()
-	for(var/mob/living/carbon/human/H in view(5, holder)) // See haemophobia for why this is 5.
+	for(var/mob/living/human/H in view(5, holder)) // See haemophobia for why this is 5.
 		if(H == holder)
 			continue // No self loathing here.
 		if(istype(H.species, /datum/species/skrell) ) // Are they a squid now?
 			skrell += H
 	return skrell
 
-/datum/modifier/trait/phobia/xenophobia/skrell/make_message(var/mob/living/carbon/human/H)
+/datum/modifier/trait/phobia/xenophobia/skrell/make_message(var/mob/living/human/H)
 	// Do special responses first if possible.
 
 	// Generic responses if none of the above apply.

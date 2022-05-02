@@ -90,8 +90,8 @@
 		// Deafen them.
 		if(L.get_ear_protection() < 2)
 			L.AdjustSleeping(-100)
-			if(iscarbon(L))
-				var/mob/living/carbon/C = L
+			if(ishuman(L))
+				var/mob/living/human/C = L
 				C.ear_deaf += 10
 			to_chat(L, span("danger", "Lightning struck nearby, and the thunderclap is deafening!"))
 

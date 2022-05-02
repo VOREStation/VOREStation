@@ -15,13 +15,13 @@
 	stack_type = /obj/item/stack/material/resin
 
 /datum/material/resin/can_open_material_door(var/mob/living/user)
-	var/mob/living/carbon/M = user
+	var/mob/living/human/M = user
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		return TRUE
 	return FALSE
 
 /datum/material/resin/wall_touch_special(var/turf/simulated/wall/W, var/mob/living/L)
-	var/mob/living/carbon/M = L
+	var/mob/living/human/M = L
 	if(istype(M) && locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
 		to_chat(M, "<span class='alien'>\The [W] shudders under your touch, starting to become porous.</span>")
 		playsound(W, 'sound/effects/attackblob.ogg', 50, 1)

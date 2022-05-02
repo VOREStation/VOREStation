@@ -47,7 +47,7 @@
 	var/list/antigens = list()
 	var/speed = 1
 	var/resistance = 10
-	var/mob/living/carbon/infectee = null
+	var/mob/living/human/infectee = null
 
 	// this holds spawned viruses so that the "Info" links work after the proc exits
 	var/list/spawned_viruses = list()
@@ -177,7 +177,7 @@
 			resistance = S
 		if("infectee")
 			var/list/candidates = list()
-			for(var/mob/living/carbon/G in living_mob_list)
+			for(var/mob/living/human/G in living_mob_list)
 				if(G.stat != DEAD && G.species)
 					if(G.species.get_bodytype() in species)
 						candidates["[G.name][G.client ? "" : " (no client)"]"] = G

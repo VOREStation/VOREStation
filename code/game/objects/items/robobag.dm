@@ -70,7 +70,7 @@
 /obj/structure/closet/body_bag/cryobag/robobag/Entered(atom/movable/AM)
 	..()
 	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
+		var/mob/living/human/H = AM
 		if(H.isSynthetic())
 			if(H.getToxLoss() == 0)	// We don't exactly care about the bag being 'used' when containing a synth, unless it's got work.
 				used = FALSE

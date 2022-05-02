@@ -55,7 +55,7 @@
 				var/trans = syringe.reagents.trans_to_mob(L, 15, CHEM_BLOOD)
 				add_attack_logs(thrower,L,"Shot with [src.name] containing [contained], trasferred [trans] units")
 
-		syringe.break_syringe(iscarbon(hit_atom)? hit_atom : null)
+		syringe.break_syringe(ishuman(hit_atom)? hit_atom : null)
 		syringe.update_icon()
 
 	icon_state = initial(icon_state) //reset icon state

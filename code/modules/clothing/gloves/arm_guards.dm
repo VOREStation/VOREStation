@@ -8,7 +8,7 @@
 	drop_sound = 'sound/items/drop/metalshield.ogg'
 	pickup_sound = 'sound/items/pickup/axe.ogg'
 
-/obj/item/clothing/gloves/arm_guard/mob_can_equip(var/mob/living/carbon/human/H, slot, disable_warning = FALSE)
+/obj/item/clothing/gloves/arm_guard/mob_can_equip(var/mob/living/human/H, slot, disable_warning = FALSE)
 	if(..()) //This will only run if no other problems occured when equiping.
 		if(H.wear_suit)
 			if(H.wear_suit.body_parts_covered & ARMS)

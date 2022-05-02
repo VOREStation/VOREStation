@@ -352,4 +352,55 @@
 	charge_cost = 1200
 	force = 12
 	accuracy = 0
+<<<<<<< HEAD
 	scoped_accuracy = 20
+=======
+	scoped_accuracy = 20
+
+////////Laser Tag////////////////////
+
+/obj/item/gun/energy/lasertag
+	name = "laser tag gun"
+	item_state = "laser"
+	desc = "Standard issue weapon of the Imperial Guard"
+	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
+	matter = list(MAT_STEEL = 2000)
+	projectile_type = /obj/item/projectile/beam/lasertag/blue
+	cell_type = /obj/item/cell/device/weapon/recharge
+	battery_lock = 1
+	var/required_vest
+
+/obj/item/gun/energy/lasertag/special_check(var/mob/living/human/M)
+	if(ishuman(M))
+		if(!istype(M.wear_suit, required_vest))
+			to_chat(M, "<span class='warning'>You need to be wearing your laser tag vest!</span>")
+			return 0
+	return ..()
+
+/obj/item/gun/energy/lasertag/blue
+	icon_state = "bluetag"
+	item_state = "bluetag"
+	projectile_type = /obj/item/projectile/beam/lasertag/blue
+	required_vest = /obj/item/clothing/suit/bluetag
+
+/obj/item/gun/energy/lasertag/red
+	icon_state = "redtag"
+	item_state = "redtag"
+	projectile_type = /obj/item/projectile/beam/lasertag/red
+	required_vest = /obj/item/clothing/suit/redtag
+
+/obj/item/gun/energy/lasertag/omni
+	projectile_type = /obj/item/projectile/beam/lasertag/omni
+
+// Laser scattergun, proof of concept.
+
+/obj/item/gun/energy/lasershotgun
+	name = "laser scattergun"
+	icon = 'icons/obj/energygun.dmi'
+	item_state = "laser"
+	icon_state = "scatter"
+	desc = "A strange Almachi weapon, utilizing a refracting prism to turn a single laser blast into a diverging cluster."
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
+
+	projectile_type = /obj/item/projectile/scatter/laser
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor

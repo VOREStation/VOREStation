@@ -230,7 +230,7 @@ var/list/global_huds = list(
 /datum/hud/proc/hidden_inventory_update()
 	if(!mymob) return
 	if(ishuman(mymob))
-		var/mob/living/carbon/human/H = mymob
+		var/mob/living/human/H = mymob
 		for(var/gear_slot in H.species.hud.gear)
 			var/list/hud_data = H.species.hud.gear[gear_slot]
 			if(inventory_shown && hud_shown)
@@ -280,7 +280,7 @@ var/list/global_huds = list(
 		return
 
 	if(ishuman(mymob))
-		var/mob/living/carbon/human/H = mymob
+		var/mob/living/human/H = mymob
 		for(var/gear_slot in H.species.hud.gear)
 			var/list/hud_data = H.species.hud.gear[gear_slot]
 			if(hud_shown)
@@ -404,7 +404,7 @@ var/list/global_huds = list(
 	hud_used.reorganize_alerts()
 	return TRUE
 
-/mob/living/carbon/human/toggle_hud_vis(full)
+/mob/living/human/toggle_hud_vis(full)
 	..()
 
 	// Prevents humans from hiding a few hud elements

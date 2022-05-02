@@ -35,7 +35,7 @@
 	else
 		icon_state = "scanner_idle"
 
-/obj/machinery/scanner/attack_hand(mob/living/carbon/human/user)
+/obj/machinery/scanner/attack_hand(mob/living/human/user)
 	if(stat & NOPOWER)
 		return
 	if(!ishuman(user) || lastuser == user.real_name)

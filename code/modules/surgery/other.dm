@@ -19,7 +19,7 @@
 	min_duration = 70
 	max_duration = 90
 
-/datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_vein/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(!hasorgans(target))
 		return 0
 
@@ -34,14 +34,14 @@
 
 	return affected.open == (affected.encased ? 3 : 2) && internal_bleeding
 
-/datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_vein/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts patching the damaged vein in [target]'s [affected.name] with \the [tool]." , \
 	"You start patching the damaged vein in [target]'s [affected.name] with \the [tool].")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
-/datum/surgery_step/fix_vein/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_vein/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has patched the damaged vein in [target]'s [affected.name] with \the [tool].</span>", \
 		"<span class='notice'>You have patched the damaged vein in [target]'s [affected.name] with \the [tool].</span>")
@@ -51,7 +51,7 @@
 		affected.update_damages()
 	if (ishuman(user) && prob(40)) user:bloody_hands(target, 0)
 
-/datum/surgery_step/fix_vein/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_vein/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</span>" , \
 	"<span class='danger'>Your hand slips, smearing [tool] in the incision in [target]'s [affected.name]!</span>")
@@ -74,7 +74,7 @@
 	min_duration = 110
 	max_duration = 160
 
-/datum/surgery_step/fix_dead_tissue/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_dead_tissue/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(!hasorgans(target))
 		return 0
 
@@ -87,20 +87,20 @@
 
 	return affected && affected.open >= 2 && (affected.status & ORGAN_DEAD)
 
-/datum/surgery_step/fix_dead_tissue/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_dead_tissue/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts cutting away necrotic tissue in [target]'s [affected.name] with \the [tool]." , \
 	"You start cutting away necrotic tissue in [target]'s [affected.name] with \the [tool].")
 	target.custom_pain("The pain in [affected.name] is unbearable!", 100)
 	..()
 
-/datum/surgery_step/fix_dead_tissue/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_dead_tissue/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>", \
 		"<span class='notice'>You have cut away necrotic tissue in [target]'s [affected.name] with \the [tool].</span>")
 	affected.open = 3
 
-/datum/surgery_step/fix_dead_tissue/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/fix_dead_tissue/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='danger'>[user]'s hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>", \
 	"<span class='danger'>Your hand slips, slicing an artery inside [target]'s [affected.name] with \the [tool]!</span>")
@@ -125,8 +125,13 @@
 	min_duration = 50
 	max_duration = 60
 
+<<<<<<< HEAD
 /datum/surgery_step/treat_necrosis/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!istype(tool, /obj/item/weapon/reagent_containers))
+=======
+/datum/surgery_step/treat_necrosis/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
+	if (!istype(tool, /obj/item/reagent_containers))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return 0
 
 	var/obj/item/weapon/reagent_containers/container = tool
@@ -144,14 +149,14 @@
 		return 0
 	return affected && affected.open == 3 && (affected.status & ORGAN_DEAD)
 
-/datum/surgery_step/treat_necrosis/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/treat_necrosis/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts applying medication to the affected tissue in [target]'s [affected.name] with \the [tool]." , \
 	"You start applying medication to the affected tissue in [target]'s [affected.name] with \the [tool].")
 	target.custom_pain("Something in your [affected.name] is causing you a lot of pain!", 50)
 	..()
 
-/datum/surgery_step/treat_necrosis/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/treat_necrosis/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	if (!istype(tool, /obj/item/weapon/reagent_containers))
@@ -167,7 +172,7 @@
 		user.visible_message("<span class='notice'>[user] applies [trans] units of the solution to affected tissue in [target]'s [affected.name].</span>", \
 			"<span class='notice'>You apply [trans] units of the solution to affected tissue in [target]'s [affected.name] with \the [tool].</span>")
 
-/datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/treat_necrosis/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 
 	if (!istype(tool, /obj/item/weapon/reagent_containers))
@@ -200,7 +205,7 @@
 	min_duration = 120
 	max_duration = 180
 
-/datum/surgery_step/hardsuit/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/hardsuit/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(!istype(target))
 		return 0
 	if(istype(tool,/obj/item/weapon/weldingtool))
@@ -209,8 +214,13 @@
 			return 0
 	return (target_zone == BP_TORSO) && ((istype(target.back, /obj/item/weapon/rig) && !(target.back.canremove)) || (istype(target.belt, /obj/item/weapon/rig) && !(target.belt.canremove)))
 
+<<<<<<< HEAD
 /datum/surgery_step/hardsuit/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/weapon/rig/rig = target.back
+=======
+/datum/surgery_step/hardsuit/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
+	var/obj/item/rig/rig = target.back
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(rig))
 		rig = target.belt
 		if(!istype(rig))
@@ -219,8 +229,13 @@
 	"You start cutting through the support systems of \the [rig] on [target] with \the [tool].")
 	..()
 
+<<<<<<< HEAD
 /datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/weapon/rig/rig = target.back
+=======
+/datum/surgery_step/hardsuit/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
+	var/obj/item/rig/rig = target.back
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(rig))
 		rig = target.belt
 		if(!istype(rig))
@@ -229,7 +244,7 @@
 	user.visible_message("<span class='notice'>[user] has cut through the support systems of \the [rig] on [target] with \the [tool].</span>", \
 		"<span class='notice'>You have cut through the support systems of \the [rig] on [target] with \the [tool].</span>")
 
-/datum/surgery_step/hardsuit/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/hardsuit/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='danger'>[user]'s [tool] can't quite seem to get through the metal...</span>", \
 	"<span class='danger'>\The [tool] can't quite seem to get through the metal. It's weakening, though - try again.</span>")
 

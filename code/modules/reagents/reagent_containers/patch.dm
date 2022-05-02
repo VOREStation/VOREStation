@@ -23,8 +23,8 @@
 	var/mob/living/L = user
 
 	if(M == L)
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/human))
+			var/mob/living/human/H = M
 			var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 			if(!affecting)
 				to_chat(user, "<span class='warning'>The limb is missing!</span>")
@@ -44,8 +44,8 @@
 			qdel(src)
 			return 1
 
-	else if(istype(M, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = M
+	else if(istype(M, /mob/living/human))
+		var/mob/living/human/H = M
 		var/obj/item/organ/external/affecting = H.get_organ(check_zone(L.zone_sel.selecting))
 		if(!affecting)
 			to_chat(user, "<span class='warning'>The limb is missing!</span>")

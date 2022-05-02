@@ -19,7 +19,7 @@
 		to_chat(src, "<span class='warning'>We must be grabbing a creature in our active hand to absorb them.</span>")
 		return
 
-	var/mob/living/carbon/human/T = G.affecting
+	var/mob/living/human/T = G.affecting
 	if(!istype(T) || T.isSynthetic())
 		to_chat(src, "<span class='warning'>\The [T] is not compatible with our biology.</span>")
 		return

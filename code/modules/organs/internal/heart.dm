@@ -28,9 +28,15 @@
 	icon_state = "heart_grey-on"
 	dead_icon = "heart_grey-off"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/heart/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/heart/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner

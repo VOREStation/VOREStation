@@ -94,7 +94,7 @@
 /mob/living/simple_mob/mechanical/mining_drone/IIsAlly(mob/living/L)
 	. = ..()
 
-	var/mob/living/carbon/human/H = L
+	var/mob/living/human/H = L
 	if(!istype(H))
 		return .
 

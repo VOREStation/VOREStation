@@ -61,8 +61,13 @@
 //	var/balloonPath = /obj/item/latexballon
 
 //TODO: Make inflating gloves a thing
+<<<<<<< HEAD
 /*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/carbon/human/user)
 	user.visible_message("<b>\The [src]</b> expands!")
+=======
+/*/obj/item/clothing/gloves/sterile/proc/Inflate(/mob/living/human/user)
+	user.visible_message("<span class='notice'>\The [src] expands!</span>")
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	qdel(src)*/
 
 /obj/item/clothing/gloves/sterile/latex

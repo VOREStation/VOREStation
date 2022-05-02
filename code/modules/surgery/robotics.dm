@@ -6,7 +6,7 @@
 /datum/surgery_step/robotics/
 	can_infect = 0
 
-/datum/surgery_step/robotics/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if (isslime(target))
 		return 0
 	if (target_zone == O_EYES)	//there are specific steps for eye surgery
@@ -41,24 +41,24 @@
 	min_duration = 90
 	max_duration = 110
 
-/datum/surgery_step/robotics/unscrew_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/unscrew_hatch/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.open == 0 && target_zone != O_MOUTH
 
-/datum/surgery_step/robotics/unscrew_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/unscrew_hatch/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts to unscrew the maintenance hatch on [target]'s [affected.name] with \the [tool].", \
 	"You start to unscrew the maintenance hatch on [target]'s [affected.name] with \the [tool].")
 	..()
 
-/datum/surgery_step/robotics/unscrew_hatch/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/unscrew_hatch/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has opened the maintenance hatch on [target]'s [affected.name] with \the [tool].</span>", \
 	"<span class='notice'>You have opened the maintenance hatch on [target]'s [affected.name] with \the [tool].</span>",)
 	affected.open = 1
 
-/datum/surgery_step/robotics/unscrew_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/unscrew_hatch/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s [tool.name] slips, failing to unscrew [target]'s [affected.name].</span>", \
 	"<span class='warning'>Your [tool] slips, failing to unscrew [target]'s [affected.name].</span>")
@@ -78,24 +78,24 @@
 	min_duration = 30
 	max_duration = 40
 
-/datum/surgery_step/robotics/open_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/open_hatch/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.open == 1
 
-/datum/surgery_step/robotics/open_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/open_hatch/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts to pry open the maintenance hatch on [target]'s [affected.name] with \the [tool].",
 	"You start to pry open the maintenance hatch on [target]'s [affected.name] with \the [tool].")
 	..()
 
-/datum/surgery_step/robotics/open_hatch/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/open_hatch/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] opens the maintenance hatch on [target]'s [affected.name] with \the [tool].</span>", \
 	 "<span class='notice'>You open the maintenance hatch on [target]'s [affected.name] with \the [tool].</span>")
 	affected.open = 3
 
-/datum/surgery_step/robotics/open_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/open_hatch/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s [tool.name] slips, failing to open the hatch on [target]'s [affected.name].</span>",
 	"<span class='warning'>Your [tool] slips, failing to open the hatch on [target]'s [affected.name].</span>")
@@ -115,25 +115,25 @@
 	min_duration = 70
 	max_duration = 100
 
-/datum/surgery_step/robotics/close_hatch/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/close_hatch/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		return affected && affected.open && target_zone != O_MOUTH
 
-/datum/surgery_step/robotics/close_hatch/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/close_hatch/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] begins to close and secure the hatch on [target]'s [affected.name] with \the [tool]." , \
 	"You begin to close and secure the hatch on [target]'s [affected.name] with \the [tool].")
 	..()
 
-/datum/surgery_step/robotics/close_hatch/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/close_hatch/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] closes and secures the hatch on [target]'s [affected.name] with \the [tool].</span>", \
 	"<span class='notice'>You close and secure the hatch on [target]'s [affected.name] with \the [tool].</span>")
 	affected.open = 0
 	affected.germ_level = 0
 
-/datum/surgery_step/robotics/close_hatch/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/close_hatch/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s [tool.name] slips, failing to close the hatch on [target]'s [affected.name].</span>",
 	"<span class='warning'>Your [tool.name] slips, failing to close the hatch on [target]'s [affected.name].</span>")
@@ -151,7 +151,7 @@
 	min_duration = 50
 	max_duration = 60
 
-/datum/surgery_step/robotics/repair_brute/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_brute/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(istype(tool, /obj/item/weapon/weldingtool))
@@ -160,20 +160,20 @@
 				return 0
 		return affected && affected.open == 3 && (affected.disfigured || affected.brute_dam > 0) && target_zone != O_MOUTH
 
-/datum/surgery_step/robotics/repair_brute/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_brute/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] begins to patch damage to [target]'s [affected.name]'s support structure with \the [tool]." , \
 	"You begin to patch damage to [target]'s [affected.name]'s support structure with \the [tool].")
 	..()
 
-/datum/surgery_step/robotics/repair_brute/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_brute/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] finishes patching damage to [target]'s [affected.name] with \the [tool].</span>", \
 	"<span class='notice'>You finish patching damage to [target]'s [affected.name] with \the [tool].</span>")
 	affected.heal_damage(rand(30,50),0,1,1)
 	affected.disfigured = 0
 
-/datum/surgery_step/robotics/repair_brute/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_brute/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user]'s [tool.name] slips, damaging the internal structure of [target]'s [affected.name].</span>",
 	"<span class='warning'>Your [tool.name] slips, damaging the internal structure of [target]'s [affected.name].</span>")
@@ -191,7 +191,7 @@
 	min_duration = 50
 	max_duration = 60
 
-/datum/surgery_step/robotics/repair_burn/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_burn/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(istype(tool, /obj/item/stack/cable_coil))
@@ -208,20 +208,20 @@
 
 		return affected && affected.open == 3 && (affected.disfigured || affected.burn_dam > 0) && target_zone != O_MOUTH
 
-/datum/surgery_step/robotics/repair_burn/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_burn/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] begins to splice new cabling into [target]'s [affected.name]." , \
 	"You begin to splice new cabling into [target]'s [affected.name].")
 	..()
 
-/datum/surgery_step/robotics/repair_burn/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_burn/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] finishes splicing cable into [target]'s [affected.name].</span>", \
 	"<span class='notice'>You finishes splicing new cable into [target]'s [affected.name].</span>")
 	affected.heal_damage(0,rand(30,50),1,1)
 	affected.disfigured = 0
 
-/datum/surgery_step/robotics/repair_burn/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/repair_burn/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='warning'>[user] causes a short circuit in [target]'s [affected.name]!</span>",
 	"<span class='warning'>You cause a short circuit in [target]'s [affected.name]!</span>")
@@ -242,7 +242,7 @@
 	min_duration = 70
 	max_duration = 90
 
-/datum/surgery_step/robotics/fix_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/fix_organ_robotic/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -254,7 +254,7 @@
 			break
 	return affected.open == 3 && is_organ_damaged
 
-/datum/surgery_step/robotics/fix_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/fix_organ_robotic/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -268,7 +268,7 @@
 	target.custom_pain("The pain in your [affected.name] is living hell!",1)
 	..()
 
-/datum/surgery_step/robotics/fix_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/fix_organ_robotic/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -282,7 +282,7 @@
 				if(I.organ_tag == O_EYES)
 					target.sdisabilities &= ~BLIND
 
-/datum/surgery_step/robotics/fix_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/fix_organ_robotic/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
 		return
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
@@ -310,7 +310,7 @@
 	min_duration = 90
 	max_duration = 110
 
-/datum/surgery_step/robotics/detatch_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/detatch_organ_robotic/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 		return 0
@@ -333,12 +333,12 @@
 
 	return ..() && organ_to_remove
 
-/datum/surgery_step/robotics/detatch_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/detatch_organ_robotic/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to decouple [target]'s [target.op_stage.current_organ] with \the [tool].", \
 	"You start to decouple [target]'s [target.op_stage.current_organ] with \the [tool]." )
 	..()
 
-/datum/surgery_step/robotics/detatch_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/detatch_organ_robotic/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] has decoupled [target]'s [target.op_stage.current_organ] with \the [tool].</span>" , \
 	"<span class='notice'>You have decoupled [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
 
@@ -346,7 +346,7 @@
 	if(I && istype(I))
 		I.status |= ORGAN_CUT_AWAY
 
-/datum/surgery_step/robotics/detatch_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/detatch_organ_robotic/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips, disconnecting \the [tool].</span>", \
 	"<span class='warning'>Your hand slips, disconnecting \the [tool].</span>")
 
@@ -360,7 +360,7 @@
 	min_duration = 100
 	max_duration = 120
 
-/datum/surgery_step/robotics/attach_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/attach_organ_robotic/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!(affected && (affected.robotic >= ORGAN_ROBOT)))
 		return 0
@@ -382,12 +382,12 @@
 	target.op_stage.current_organ = organ_to_replace
 	return ..()
 
-/datum/surgery_step/robotics/attach_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/attach_organ_robotic/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
 	"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
 	..()
 
-/datum/surgery_step/robotics/attach_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/attach_organ_robotic/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='notice'>[user] has reattached [target]'s [target.op_stage.current_organ] with \the [tool].</span>" , \
 	"<span class='notice'>You have reattached [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
 
@@ -395,7 +395,7 @@
 	if(I && istype(I))
 		I.status &= ~ORGAN_CUT_AWAY
 
-/datum/surgery_step/robotics/attach_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/attach_organ_robotic/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips, disconnecting \the [tool].</span>", \
 	"<span class='warning'>Your hand slips, disconnecting \the [tool].</span>")
 
@@ -411,7 +411,7 @@
 	min_duration = 60
 	max_duration = 80
 
-/datum/surgery_step/robotics/install_mmi/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_mmi/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(target_zone != BP_HEAD)
 		return
 
@@ -443,13 +443,13 @@
 
 	return 1
 
-/datum/surgery_step/robotics/install_mmi/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_mmi/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts installing \the [tool] into [target]'s [affected.name].", \
 	"You start installing \the [tool] into [target]'s [affected.name].")
 	..()
 
-/datum/surgery_step/robotics/install_mmi/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_mmi/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has installed \the [tool] into [target]'s [affected.name].</span>", \
 	"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
@@ -479,7 +479,7 @@
 					target.real_name = target.name
 					return
 
-/datum/surgery_step/robotics/install_mmi/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_mmi/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \
 	"<span class='warning'>Your hand slips.</span>")
 
@@ -495,7 +495,7 @@
 	min_duration = 60
 	max_duration = 80
 
-/datum/surgery_step/robotics/install_nymph/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_nymph/can_use(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	if(target_zone != BP_TORSO)
 		return
 
@@ -530,13 +530,13 @@
 
 	return 1
 
-/datum/surgery_step/robotics/install_nymph/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_nymph/begin_step(mob/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("[user] starts setting \the [tool] into [target]'s [affected.name].", \
 	"You start setting \the [tool] into [target]'s [affected.name].")
 	..()
 
-/datum/surgery_step/robotics/install_nymph/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_nymph/end_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	user.visible_message("<span class='notice'>[user] has installed \the [tool] into [target]'s [affected.name].</span>", \
 	"<span class='notice'>You have installed \the [tool] into [target]'s [affected.name].</span>")
@@ -555,8 +555,8 @@
 
 	target.species = GLOB.all_species[SPECIES_DIONA]
 
-	target.verbs |= /mob/living/carbon/human/proc/diona_split_nymph
-	target.verbs |= /mob/living/carbon/human/proc/regenerate
+	target.verbs |= /mob/living/human/proc/diona_split_nymph
+	target.verbs |= /mob/living/human/proc/regenerate
 
 	spawn(0) //Name yourself on your own damn time
 		var/new_name = ""
@@ -572,6 +572,6 @@
 		target.name = new_name
 		target.real_name = target.name
 
-/datum/surgery_step/robotics/install_nymph/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+/datum/surgery_step/robotics/install_nymph/fail_step(mob/living/user, mob/living/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \
 	"<span class='warning'>Your hand slips.</span>")

@@ -52,7 +52,7 @@
 	set name = "Toggle Handset"
 	set category = "Object"
 
-	var/mob/living/carbon/human/user = usr
+	var/mob/living/human/user = usr
 	if(!handset)
 		to_chat(user, "<span class='warning'>The handset is missing!</span>")
 		return

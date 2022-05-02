@@ -13,9 +13,15 @@
 /obj/item/organ/internal/xenos/eggsac/grey
 	icon_state = "sac_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/xenos/eggsac/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/xenos/eggsac/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner
@@ -30,7 +36,7 @@
 	var/max_plasma = 500
 
 	organ_verbs = list(
-		/mob/living/carbon/human/proc/transfer_plasma
+		/mob/living/human/proc/transfer_plasma
 		)
 
 /obj/item/organ/internal/xenos/plasmavessel/handle_organ_proc_special()
@@ -54,9 +60,15 @@
 	icon_state = "plasma_grey"
 	stored_plasma = 200
 
+<<<<<<< HEAD
 /obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/xenos/plasmavessel/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner
@@ -83,17 +95,23 @@
 	organ_tag = O_ACID
 
 	organ_verbs = list(
-		/mob/living/carbon/human/proc/corrosive_acid,
-		/mob/living/carbon/human/proc/neurotoxin,
-		/mob/living/carbon/human/proc/acidspit
+		/mob/living/human/proc/corrosive_acid,
+		/mob/living/human/proc/neurotoxin,
+		/mob/living/human/proc/acidspit
 		)
 
 /obj/item/organ/internal/xenos/acidgland/grey
 	icon_state = "acidgland_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/xenos/acidgland/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/xenos/acidgland/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner
@@ -108,9 +126,15 @@
 /obj/item/organ/internal/xenos/hivenode/grey
 	icon_state = "xenode_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/xenos/hivenode/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/xenos/hivenode/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner
@@ -123,16 +147,22 @@
 	organ_tag = O_RESIN
 
 	organ_verbs = list(
-		/mob/living/carbon/human/proc/resin,
-		/mob/living/carbon/human/proc/plant
+		/mob/living/human/proc/resin,
+		/mob/living/human/proc/plant
 		)
 
 /obj/item/organ/internal/xenos/resinspinner/grey
 	icon_state = "xenode_grey"
 
+<<<<<<< HEAD
 /obj/item/organ/internal/xenos/resinspinner/grey/colormatch/New()
 	..()
 	var/mob/living/carbon/human/H = null
+=======
+/obj/item/organ/internal/xenos/resinspinner/grey/colormatch/Initialize()
+	. = ..()
+	var/mob/living/human/H = null
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	spawn(15)
 		if(ishuman(owner))
 			H = owner

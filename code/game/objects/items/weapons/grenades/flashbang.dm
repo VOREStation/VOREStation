@@ -9,11 +9,11 @@
 /obj/item/weapon/grenade/flashbang/detonate()
 	..()
 	for(var/obj/structure/closet/L in hear(max_range, get_turf(src)))
-		if(locate(/mob/living/carbon/, L))
-			for(var/mob/living/carbon/M in L)
+		if(locate(/mob/living/human/, L))
+			for(var/mob/living/human/M in L)
 				bang(get_turf(src), M)
 
-	for(var/mob/living/carbon/M in hear(max_range, get_turf(src)))
+	for(var/mob/living/human/M in hear(max_range, get_turf(src)))
 		bang(get_turf(src), M)
 
 	for(var/obj/structure/blob/B in hear(max_range - 2,get_turf(src)))       		//Blob damage here
@@ -27,7 +27,11 @@
 
 	qdel(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
+=======
+/obj/item/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/human/M)					// Added a new proc called 'bang' that takes a location and a person to be banged.
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	to_chat(M, "<span class='danger'>BANG</span>")						// Called during the loop that bangs people in lockers/containers and when banging
 	playsound(src, 'sound/effects/bang.ogg', 50, 1, 30)		// people in normal view.  Could theroetically be called during other explosions.
 																	// -- Polymorph
@@ -35,12 +39,12 @@
 	//Checking for protections
 	var/eye_safety = 0
 	var/ear_safety = 0
-	if(iscarbon(M))
+	if(ishuman(M))
 		eye_safety = M.eyecheck()
 		ear_safety = M.get_ear_protection()
 
 	//Flashing everyone
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	var/flash_effectiveness = 1
 	var/bang_effectiveness = 1
 	if(ishuman(M))

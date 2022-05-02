@@ -84,6 +84,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	dat += 		"\tKey: <font color='cyan'>Suffocation</font>/<font color='green'>Toxin</font>/<font color='#FFA500'>Burns</font>/<font color='red'>Brute</font><br>"
 	dat += 		"\tDamage Specifics: <font color='cyan'>[OX]</font> - <font color='green'>[TX]</font> - <font color='#FFA500'>[BU]</font> - <font color='red'>[BR]</font><br>"
 	dat +=		"Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span><br>"
+<<<<<<< HEAD
 	//VOREStation edit/addition starts
 	if(M.timeofdeath && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
 		dat += 	"<span class='notice'>Time of Death: [worldtime2stationtime(M.timeofdeath)]</span><br>"
@@ -93,6 +94,12 @@ HALOGEN COUNTER	- Radcount on mobs
 	//VOREStation edit/addition ends
 	if(istype(M, /mob/living/carbon/human) && mode == 1)
 		var/mob/living/carbon/human/H = M
+=======
+	if(M.tod && (M.stat == DEAD || (M.status_flags & FAKEDEATH)))
+		dat += 	"<span class='notice'>Time of Death: [M.tod]</span><br>"
+	if(istype(M, /mob/living/human) && mode == 1)
+		var/mob/living/human/H = M
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		var/list/damaged = H.get_damaged_organs(1,1)
 		dat += 	"<span class='notice'>Localized Damage, Brute/Burn:</span><br>"
 		if(length(damaged)>0)
@@ -127,8 +134,8 @@ HALOGEN COUNTER	- Radcount on mobs
 			dat += "<span class='warning'>[severity] levels of radiation detected. [(severity == "Critical") ? " Immediate treatment advised." : ""]</span><br>"
 		else
 			dat += "<span class='warning'>Radiation detected.</span><br>"
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(ishuman(M))
+		var/mob/living/human/C = M
 		if(C.reagents.total_volume)
 			var/unknown = 0
 			var/reagentdata[0]
@@ -218,7 +225,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	else if (M.getBrainLoss() >= 1 && advscan >= 2 && showadvscan == 1)
 		dat += "<span class='warning'>Minor brain damage detected.</span><br>"
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		for(var/obj/item/organ/internal/appendix/a in H.internal_organs)
 			var/severity = ""
 			if(a.inflamed > 3)
@@ -534,8 +541,13 @@ HALOGEN COUNTER	- Radcount on mobs
 	throw_speed = 3
 	throw_range = 7
 
+<<<<<<< HEAD
 /obj/item/device/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!iscarbon(M))
+=======
+/obj/item/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
+	if(!ishuman(M))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		to_chat(user, "<span class='warning'>This device can only scan organic beings!</span>")
 		return
 	user.visible_message("<span class='warning'>\The [user] has analyzed [M]'s radiation levels!</span>", "<span class='notice'>Analyzing Results for [M]:</span>")

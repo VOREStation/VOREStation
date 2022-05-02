@@ -13,7 +13,11 @@
 	var/reveal_blood = TRUE
 	var/reveal_fibers = FALSE
 
+<<<<<<< HEAD
 /obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
+=======
+/obj/item/detective_scanner/attack(mob/living/human/M as mob, mob/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if (!ishuman(M))
 		to_chat(user, "<span class='warning'>\The [M] does not seem to be compatible with this device.</span>")
 		flick("[icon_state]0",src)

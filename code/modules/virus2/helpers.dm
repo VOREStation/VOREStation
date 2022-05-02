@@ -1,9 +1,9 @@
 //Returns 1 if mob can be infected, 0 otherwise.
-/proc/infection_check(var/mob/living/carbon/M, var/vector = "Airborne")
+/proc/infection_check(var/mob/living/human/M, var/vector = "Airborne")
 	if (!istype(M))
 		return 0
 
-	var/mob/living/carbon/human/H = M
+	var/mob/living/human/H = M
 	if(istype(H) && H.species.get_virus_immune(H))
 		return 0
 
@@ -42,7 +42,7 @@
 	return 1
 
 //Similar to infection check, but used for when M is spreading the virus.
-/proc/infection_spreading_check(var/mob/living/carbon/M, var/vector = "Airborne")
+/proc/infection_spreading_check(var/mob/living/human/M, var/vector = "Airborne")
 	if (!istype(M))
 		return 0
 
@@ -68,7 +68,7 @@
 	return rval
 
 //Attemptes to infect mob M with virus. Set forced to 1 to ignore protective clothnig
-/proc/infect_virus2(var/mob/living/carbon/M,var/datum/disease2/disease/disease,var/forced = 0)
+/proc/infect_virus2(var/mob/living/human/M,var/datum/disease2/disease/disease,var/forced = 0)
 	if(!istype(disease))
 //		log_debug("Bad virus")
 		return
@@ -112,19 +112,19 @@
 
 
 //Infects mob M with disease D
-/proc/infect_mob(var/mob/living/carbon/M, var/datum/disease2/disease/D)
+/proc/infect_mob(var/mob/living/human/M, var/datum/disease2/disease/D)
 	infect_virus2(M,D,1)
 	M.hud_updateflag |= 1 << STATUS_HUD
 
 //Infects mob M with random lesser disease, if he doesn't have one
-/proc/infect_mob_random_lesser(var/mob/living/carbon/M)
+/proc/infect_mob_random_lesser(var/mob/living/human/M)
 	var/datum/disease2/disease/D = new /datum/disease2/disease
 
 	D.makerandom(1)
 	infect_mob(M, D)
 
 //Infects mob M with random greated disease, if he doesn't have one
-/proc/infect_mob_random_greater(var/mob/living/carbon/M)
+/proc/infect_mob_random_greater(var/mob/living/human/M)
 	var/datum/disease2/disease/D = new /datum/disease2/disease
 
 	D.makerandom(2)
@@ -134,7 +134,11 @@
 /proc/dprob(var/p)
 	return(prob(sqrt(p)) && prob(sqrt(p)))
 
+<<<<<<< HEAD
 /mob/living/carbon/proc/spread_disease_to(var/mob/living/carbon/victim, var/vector = "Airborne")
+=======
+/mob/living/human/proc/spread_disease_to(var/mob/living/human/victim, var/vector = "Airborne")
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if (src == victim)
 		return "retardation"
 
@@ -166,7 +170,7 @@
 		var/nudity = 1
 
 		if (ishuman(victim))
-			var/mob/living/carbon/human/H = victim
+			var/mob/living/human/H = victim
 			var/obj/item/organ/external/select_area = H.get_organ(src.zone_sel.selecting)
 			var/list/clothes = list(H.head, H.wear_mask, H.wear_suit, H.w_uniform, H.gloves, H.shoes)
 			for(var/obj/item/clothing/C in clothes)

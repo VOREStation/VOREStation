@@ -42,7 +42,7 @@
 	else //No flavor text?  Try for hardcoded fluff instead.
 		return ..()
 
-/mob/living/carbon/human/get_description_fluff()
+/mob/living/human/get_description_fluff()
 	return print_flavor_text(0)
 
 /* The examine panel itself */

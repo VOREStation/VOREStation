@@ -39,8 +39,13 @@
 	src.icon_state += "_[active]"
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/implanter/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob/living/carbon))
+=======
+/obj/item/implanter/attack(mob/M as mob, mob/user as mob)
+	if (!istype(M, /mob/living/human))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return
 	if(active)
 		if (imp)
@@ -60,7 +65,7 @@
 						imp.post_implant(M)
 
 						if(ishuman(M))
-							var/mob/living/carbon/human/H = M
+							var/mob/living/human/H = M
 							BITSET(H.hud_updateflag, IMPLOYAL_HUD)
 							BITSET(H.hud_updateflag, BACKUP_HUD) //VOREStation Add - Backup HUD updates
 
@@ -142,8 +147,8 @@
 			to_chat(user, "<span class='warning'>You can't store \the [A.name] in this!</span>")
 			c.scanned = null
 			return
-		if(istype(A.loc,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = A.loc
+		if(istype(A.loc,/mob/living/human))
+			var/mob/living/human/H = A.loc
 			H.remove_from_mob(A)
 		else if(istype(A.loc,/obj/item/weapon/storage))
 			var/obj/item/weapon/storage/S = A.loc

@@ -5273,7 +5273,7 @@
 "bXu" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating,/area/maintenance/central)
 "bXv" = (/obj/machinery/smartfridge/drinks,/turf/simulated/floor/lino,/area/crew_quarters/bar)
 "bXw" = (/obj/effect/landmark/start{name = "Bartender"},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 6},/obj/machinery/light{dir = 1},/turf/simulated/floor/lino,/area/crew_quarters/bar)
-"bXx" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/mob/living/carbon/human/monkey/punpun,/turf/simulated/floor/lino,/area/crew_quarters/bar)
+"bXx" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 5},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 9},/mob/living/human/monkey/punpun,/turf/simulated/floor/lino,/area/crew_quarters/bar)
 "bXy" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/newscaster{pixel_y = 32},/turf/simulated/floor/lino,/area/crew_quarters/bar)
 "bXz" = (/obj/structure/table/reinforced,/obj/machinery/door/blast/shutters{dir = 4; id = "bar"; layer = 3.1; name = "Bar Shutters"},/turf/simulated/floor/lino,/area/crew_quarters/bar)
 "bXA" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/wood,/area/crew_quarters/bar)

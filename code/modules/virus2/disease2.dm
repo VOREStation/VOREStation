@@ -63,7 +63,7 @@
 				res |= picked.primitive_form
 	return res
 
-/datum/disease2/disease/proc/activate(var/mob/living/carbon/mob)
+/datum/disease2/disease/proc/activate(var/mob/living/human/mob)
 	if(dead)
 		cure(mob)
 		return
@@ -75,7 +75,7 @@
 			mob.antibodies |= antigen // 20% immunity is a good chance IMO, because it allows finding an immune person easily
 
 	// Some species are flat out immune to organic viruses.
-	var/mob/living/carbon/human/H = mob
+	var/mob/living/human/H = mob
 	if(istype(H) && H.species.get_virus_immune(H))
 		cure(mob)
 		return
@@ -127,7 +127,7 @@
 
 	//Short airborne spread
 	if(src.spreadtype == "Airborne")
-		for(var/mob/living/carbon/M in oview(1,mob))
+		for(var/mob/living/human/M in oview(1,mob))
 			if(airborne_can_reach(get_turf(mob), get_turf(M)))
 				infect_virus2(M,src)
 
@@ -135,7 +135,7 @@
 	mob.bodytemperature = max(mob.bodytemperature, min(310+5*min(stage,max_stage) ,mob.bodytemperature+5*min(stage,max_stage)))
 	clicks+=speed
 
-/datum/disease2/disease/proc/cure(var/mob/living/carbon/mob)
+/datum/disease2/disease/proc/cure(var/mob/living/human/mob)
 	for(var/datum/disease2/effectholder/e in effects)
 		e.effect.deactivate(mob)
 	mob.virus2.Remove("[uniqueID]")
@@ -283,7 +283,7 @@ var/global/list/virusDB = list()
 /proc/virus2_lesser_infection()
 	var/list/candidates = list()	//list of candidate keys
 
-	for(var/mob/living/carbon/human/G in player_list)
+	for(var/mob/living/human/G in player_list)
 		if(G.client && G.stat != DEAD)
 			candidates += G
 
@@ -296,7 +296,7 @@ var/global/list/virusDB = list()
 /proc/virus2_greater_infection()
 	var/list/candidates = list()	//list of candidate keys
 
-	for(var/mob/living/carbon/human/G in player_list)
+	for(var/mob/living/human/G in player_list)
 		if(G.client && G.stat != DEAD)
 			candidates += G
 	if(!candidates.len)	return

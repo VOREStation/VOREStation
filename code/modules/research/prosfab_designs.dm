@@ -52,7 +52,7 @@
 			else
 				newspecies = prosfab.species
 
-		var/mob/living/carbon/human/H = new(newloc,newspecies)
+		var/mob/living/human/H = new(newloc,newspecies)
 		H.set_stat(DEAD)
 		H.gender = gender
 		for(var/obj/item/organ/external/EO in H.organs)

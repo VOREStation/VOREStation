@@ -99,9 +99,9 @@
 
 		if(energetic_impact)
 			var/eye_coverage = 0
-			for(var/mob/living/carbon/M in viewers(world.view, get_turf(src)))
+			for(var/mob/living/human/M in viewers(world.view, get_turf(src)))
 				eye_coverage = 0
-				if(iscarbon(M))
+				if(ishuman(M))
 					eye_coverage = M.eyecheck()
 				if(eye_coverage < 2)
 					M.flash_eyes()

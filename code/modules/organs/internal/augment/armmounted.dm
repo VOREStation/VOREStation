@@ -140,8 +140,8 @@
 		else
 			return
 
-	if(istype(owner, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = owner
+	if(istype(owner, /mob/living/human))
+		var/mob/living/human/H = owner
 		H.add_modifier(/datum/modifier/melee_surge, 0.75 MINUTES)
 
 /obj/item/organ/internal/augment/armmounted/shoulder/blade

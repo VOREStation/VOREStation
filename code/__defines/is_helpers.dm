@@ -43,10 +43,15 @@
 #define isslime(A)		istype(A, /mob/living/simple_mob/slime)
 #define isxeno(A)		istype(A, /mob/living/simple_mob/animal/space/alien)
 
+<<<<<<< HEAD
 #define iscarbon(A)		istype(A, /mob/living/carbon)
 #define isalien(A)		istype(A, /mob/living/carbon/alien)
 #define isbrain(A)		istype(A, /mob/living/carbon/brain)
 #define ishuman(A)		istype(A, /mob/living/carbon/human)
+=======
+#define isbrain(A)		istype(A, /mob/living/brain)
+#define ishuman(A)		istype(A, /mob/living/human)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 #define issilicon(A)	istype(A, /mob/living/silicon)
 #define isAI(A)			istype(A, /mob/living/silicon/ai)

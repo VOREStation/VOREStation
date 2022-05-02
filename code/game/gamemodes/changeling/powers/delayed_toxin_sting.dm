@@ -25,7 +25,7 @@
 	set name = "Delayed Toxic Sting (20)"
 	set desc = "Injects the target with a toxin that will take effect after a few minutes."
 
-	var/mob/living/carbon/T = changeling_sting(20,/mob/proc/changeling_delayed_toxic_sting)
+	var/mob/living/human/T = changeling_sting(20,/mob/proc/changeling_delayed_toxic_sting)
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Delayed toxic sting (chagneling)")

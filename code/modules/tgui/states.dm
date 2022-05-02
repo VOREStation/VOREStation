@@ -119,6 +119,7 @@
 		return STATUS_DISABLED
 	return STATUS_CLOSE // Otherwise, we got nothing.
 
+<<<<<<< HEAD
 /**
  * public
  *
@@ -135,6 +136,10 @@
 
 	var/dist = get_dist(src_object, src)
 	if(dist <= 1) // Open and interact if 1-0 tiles away.
+=======
+/mob/living/human/shared_living_tgui_distance(atom/movable/src_object)
+	if((TK in mutations) && (get_dist(src, src_object) <= 2))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return STATUS_INTERACTIVE
 	else if(dist <= world.view)
 		return STATUS_UPDATE

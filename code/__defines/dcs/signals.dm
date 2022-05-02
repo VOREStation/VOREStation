@@ -60,7 +60,7 @@
 #define COMSIG_PARENT_ATTACKBY "atom_attackby"
 ///Return this in response if you don't want later item attack procs to be called.
 	#define COMPONENT_CANCEL_ATTACK_CHAIN (1<<0)
-///from base of atom/attack_hulk(): (/mob/living/carbon/human)
+///from base of atom/attack_hulk(): (/mob/living/human)
 #define COMSIG_ATOM_HULK_ATTACK "hulk_attack"
 ///from base of atom/animal_attack(): (/mob/user)
 #define COMSIG_ATOM_ATTACK_ANIMAL "attack_animal"
@@ -381,21 +381,21 @@
 #define COMSIG_LIVING_CAN_TRACK "mob_cantrack"
 	#define COMPONENT_CANT_TRACK (1<<0)
 
-// /mob/living/carbon signals
+// /mob/living/human signals
 
-///from base of mob/living/carbon/soundbang_act(): (list(intensity))
+///from base of mob/living/human/soundbang_act(): (list(intensity))
 #define COMSIG_CARBON_SOUNDBANG "carbon_soundbang"
 ///from /item/organ/proc/Insert() (/obj/item/organ/)
 #define COMSIG_CARBON_GAIN_ORGAN "carbon_gain_organ"
 ///from /item/organ/proc/Remove() (/obj/item/organ/)
 #define COMSIG_CARBON_LOSE_ORGAN "carbon_lose_organ"
-///from /mob/living/carbon/doUnEquip(obj/item/I, force, newloc, no_move, invdrop, silent)
+///from /mob/living/human/doUnEquip(obj/item/I, force, newloc, no_move, invdrop, silent)
 #define COMSIG_CARBON_EQUIP_HAT "carbon_equip_hat"
-///from /mob/living/carbon/doUnEquip(obj/item/I, force, newloc, no_move, invdrop, silent)
+///from /mob/living/human/doUnEquip(obj/item/I, force, newloc, no_move, invdrop, silent)
 #define COMSIG_CARBON_UNEQUIP_HAT "carbon_unequip_hat"
-///defined twice, in carbon and human's topics, fired when interacting with a valid embedded_object to pull it out (mob/living/carbon/target, /obj/item, /obj/item/bodypart/L)
+///defined twice, in carbon and human's topics, fired when interacting with a valid embedded_object to pull it out (mob/living/human/target, /obj/item, /obj/item/bodypart/L)
 #define COMSIG_CARBON_EMBED_RIP "item_embed_start_rip"
-///called when removing a given item from a mob, from mob/living/carbon/remove_embedded_object(mob/living/carbon/target, /obj/item)
+///called when removing a given item from a mob, from mob/living/human/remove_embedded_object(mob/living/human/target, /obj/item)
 #define COMSIG_CARBON_EMBED_REMOVAL "item_embed_remove_safe"
 
 // /mob/living/simple_animal/hostile signals
@@ -447,7 +447,7 @@
 #define COMSIG_ITEM_DROPPED "item_drop"
 ///from base of obj/item/pickup(): (/mob/taker)
 #define COMSIG_ITEM_PICKUP "item_pickup"
-///from base of mob/living/carbon/attacked_by(): (mob/living/carbon/target, mob/living/user, hit_zone)
+///from base of mob/living/human/attacked_by(): (mob/living/human/target, mob/living/user, hit_zone)
 #define COMSIG_ITEM_ATTACK_ZONE "item_attack_zone"
 ///return a truthy value to prevent ensouling, checked in /obj/effect/proc_holder/spell/targeted/lichdom/cast(): (mob/user)
 #define COMSIG_ITEM_IMBUE_SOUL "item_imbue_soul"
@@ -525,7 +525,7 @@
 
 // /obj/item/pen signals
 
-///called after rotation in /obj/item/pen/attack_self(): (rotation, mob/living/carbon/user)
+///called after rotation in /obj/item/pen/attack_self(): (rotation, mob/living/human/user)
 #define COMSIG_PEN_ROTATED "pen_rotated"
 
 // /obj/item/gun signals
@@ -565,15 +565,15 @@
 ///sent from mecha action buttons to the mecha they're linked to
 #define COMSIG_MECHA_ACTION_ACTIVATE "mecha_action_activate"
 
-// /mob/living/carbon/human signals
+// /mob/living/human signals
 
-///from mob/living/carbon/human/UnarmedAttack(): (atom/target, proximity)
+///from mob/living/human/UnarmedAttack(): (atom/target, proximity)
 #define COMSIG_HUMAN_EARLY_UNARMED_ATTACK "human_early_unarmed_attack"
-///from mob/living/carbon/human/UnarmedAttack(): (atom/target, proximity)
+///from mob/living/human/UnarmedAttack(): (atom/target, proximity)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACK "human_melee_unarmed_attack"
-///from mob/living/carbon/human/UnarmedAttack(): (mob/living/carbon/human/attacker)
+///from mob/living/human/UnarmedAttack(): (mob/living/human/attacker)
 #define COMSIG_HUMAN_MELEE_UNARMED_ATTACKBY "human_melee_unarmed_attackby"
-///Hit by successful disarm attack (mob/living/carbon/human/attacker,zone_targeted)
+///Hit by successful disarm attack (mob/living/human/attacker,zone_targeted)
 #define COMSIG_HUMAN_DISARM_HIT	"human_disarm_hit"
 ///Whenever EquipRanked is called, called after job is set
 #define COMSIG_JOB_RECEIVED "job_received"
@@ -705,10 +705,10 @@
 
 // /datum/component/two_handed signals
 
-///from base of datum/component/two_handed/proc/wield(mob/living/carbon/user): (/mob/user)
+///from base of datum/component/two_handed/proc/wield(mob/living/human/user): (/mob/user)
 #define COMSIG_TWOHANDED_WIELD "twohanded_wield"
 	#define COMPONENT_TWOHANDED_BLOCK_WIELD (1<<0)
-///from base of datum/component/two_handed/proc/unwield(mob/living/carbon/user): (/mob/user)
+///from base of datum/component/two_handed/proc/unwield(mob/living/human/user): (/mob/user)
 #define COMSIG_TWOHANDED_UNWIELD "twohanded_unwield"
 
 // /datum/action signals

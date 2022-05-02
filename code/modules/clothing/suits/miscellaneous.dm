@@ -292,7 +292,7 @@
 
 /obj/item/clothing/suit/straight_jacket/attack_hand(mob/living/user as mob)
 	if(ishuman(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(src == H.wear_suit)
 			to_chat(H, "<span class='notice'>You need help taking this off!</span>")
 			return
@@ -304,7 +304,7 @@
 		user.drop_l_hand()
 		user.drop_r_hand()
 		if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 			H.drop_from_inventory(H.handcuffed)
 
 /obj/item/clothing/suit/ianshirt

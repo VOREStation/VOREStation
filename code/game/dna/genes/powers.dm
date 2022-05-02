@@ -20,7 +20,7 @@
 
 /datum/dna/gene/basic/remoteview/activate(var/mob/M, var/connected, var/flags)
 	..(M,connected,flags)
-	M.verbs += /mob/living/carbon/human/proc/remoteobserve
+	M.verbs += /mob/living/human/proc/remoteobserve
 
 /datum/dna/gene/basic/regenerate
 	name="Regenerate"
@@ -48,7 +48,7 @@
 
 /datum/dna/gene/basic/remotetalk/activate(var/mob/M, var/connected, var/flags)
 	..(M,connected,flags)
-	M.verbs += /mob/living/carbon/human/proc/remotesay
+	M.verbs += /mob/living/human/proc/remotesay
 
 /datum/dna/gene/basic/morph
 	name="Morph"
@@ -60,7 +60,7 @@
 
 /datum/dna/gene/basic/morph/activate(var/mob/M)
 	..(M)
-	M.verbs += /mob/living/carbon/human/proc/morph
+	M.verbs += /mob/living/human/proc/morph
 
 /datum/dna/gene/basic/cold_resist
 	name="Cold Resistance"
@@ -138,7 +138,7 @@
 	else
 		return "hulk_[g]_s"
 
-/datum/dna/gene/basic/hulk/OnMobLife(var/mob/living/carbon/human/M)
+/datum/dna/gene/basic/hulk/OnMobLife(var/mob/living/human/M)
 	if(!istype(M)) return
 	if(M.health <= 25)
 		M.mutations.Remove(HULK)

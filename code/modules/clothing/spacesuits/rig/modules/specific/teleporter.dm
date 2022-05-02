@@ -33,7 +33,7 @@
 
 /obj/item/rig_module/teleporter/engage(var/atom/target, var/notify_ai)
 
-	var/mob/living/carbon/human/H = holder.wearer
+	var/mob/living/human/H = holder.wearer
 
 	if(!istype(H.loc, /turf))
 		to_chat(H, "<span class='warning'>You cannot teleport out of your current location.</span>")

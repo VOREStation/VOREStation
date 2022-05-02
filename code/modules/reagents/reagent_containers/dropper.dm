@@ -45,8 +45,8 @@
 			if(!do_mob(user, target, time))
 				return
 
-			if(istype(target, /mob/living/carbon/human))
-				var/mob/living/carbon/human/victim = target
+			if(istype(target, /mob/living/human))
+				var/mob/living/human/victim = target
 
 				var/obj/item/safe_thing = null
 				if(victim.wear_mask)

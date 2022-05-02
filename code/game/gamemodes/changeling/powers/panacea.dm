@@ -20,7 +20,7 @@
 
 	to_chat(src, "<span class='notice'>We cleanse impurities from our form.</span>")
 
-	var/mob/living/carbon/human/C = src
+	var/mob/living/human/C = src
 
 	C.radiation = 0
 	C.sdisabilities = 0

@@ -8,7 +8,7 @@
 	unacidable = TRUE //To avoid the pilot-deleting shit that came with mechas
 	layer = MOB_LAYER
 	//var/can_move = 1
-	var/mob/living/carbon/occupant = null
+	var/mob/living/human/occupant = null
 	//var/step_in = 10 //make a step in step_in/10 sec.
 	//var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
 	//var/step_energy_drain = 10

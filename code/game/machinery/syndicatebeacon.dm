@@ -19,7 +19,7 @@
 /obj/machinery/syndicate_beacon/attack_hand(var/mob/user as mob)
 	usr.set_machine(src)
 	var/dat = "<font color=#005500><i>Scanning [pick("retina pattern", "voice print", "fingerprints", "dna sequence")]...<br>Identity confirmed,<br></i></font>"
-	if(istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon/ai))
+	if(istype(user, /mob/living/human) || istype(user, /mob/living/silicon/ai))
 		if(is_special_character(user))
 			dat += "<font color=#07700><i>Operative record found. Greetings, Agent [user.name].</i></font><br>"
 		else if(charges < 1)
@@ -48,6 +48,7 @@
 			updateUsrDialog()
 			return
 		charges -= 1
+<<<<<<< HEAD
 		switch(rand(1,2))
 			if(1)
 				temptext = "<font color=red><i><b>Double-crosser. You planned to betray us from the start. Allow us to repay the favor in kind.</b></i></font>"
@@ -56,6 +57,16 @@
 				return
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/N = M
+=======
+		if (prob(50))
+			temptext = "<font color=red><i><b>Double-crosser. You planned to betray us from the start. Allow us to repay the favor in kind.</b></i></font>"
+			updateUsrDialog()
+			spawn(rand(50, 200))
+				selfdestruct()
+			return
+		if(istype(M, /mob/living/human))
+			var/mob/living/human/N = M
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			to_chat(N, "<B>You have joined the ranks of the Syndicate and become a traitor to the station!</B>")
 			traitors.add_antagonist(N.mind)
 			traitors.equip(N)

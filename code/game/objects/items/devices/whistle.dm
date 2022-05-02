@@ -27,7 +27,11 @@
 
 	to_chat(usr, "You configure the hailer to shout \"[use_message]\".")
 
+<<<<<<< HEAD
 /obj/item/device/hailer/attack_self(mob/living/carbon/user as mob)
+=======
+/obj/item/hailer/attack_self(mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if (spamcheck)
 		return
 

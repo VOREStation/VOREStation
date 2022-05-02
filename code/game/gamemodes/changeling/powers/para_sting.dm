@@ -9,7 +9,7 @@
 	set name = "Paralysis sting (30)"
 	set desc="Sting target"
 
-	var/mob/living/carbon/T = changeling_sting(30,/mob/proc/changeling_paralysis_sting)
+	var/mob/living/human/T = changeling_sting(30,/mob/proc/changeling_paralysis_sting)
 	if(!T)
 		return 0
 	add_attack_logs(src,T,"Paralysis sting (changeling)")

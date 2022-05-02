@@ -19,7 +19,7 @@ var/list/organ_cache = list()
 	var/stapled_nerves = FALSE
 
 	// Reference data.
-	var/mob/living/carbon/human/owner	// Current mob owning the organ.
+	var/mob/living/human/owner	// Current mob owning the organ.
 	var/list/transplant_data			// Transplant match data.
 	var/list/autopsy_data = list()		// Trauma data for forensics.
 	var/list/trace_chemicals = list()	// Traces of chemicals in the organ.
@@ -89,15 +89,20 @@ var/list/organ_cache = list()
 
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
+<<<<<<< HEAD
 	if(iscarbon(holder))
 		var/mob/living/carbon/C = holder
+=======
+	if(ishuman(owner))
+		var/mob/living/human/C = owner
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		species = GLOB.all_species[SPECIES_HUMAN]
 		if(holder.dna)
 			dna = C.dna.Clone()
 			species = C.species //VOREStation Edit - For custom species
 		else
 			log_debug("[src] at [loc] spawned without a proper DNA.")
-		var/mob/living/carbon/human/H = C
+		var/mob/living/human/H = C
 		if(istype(H))
 			if(internal)
 				var/obj/item/organ/external/E = H.get_organ(parent_organ)
@@ -121,7 +126,7 @@ var/list/organ_cache = list()
 			if(owner.isSynthetic())
 				meat_type = /obj/item/stack/material/steel
 			else if(ishuman(owner))
-				var/mob/living/carbon/human/H = owner
+				var/mob/living/human/H = owner
 				meat_type = H?.species?.meat_type
 
 			if(!meat_type)
@@ -207,7 +212,7 @@ var/list/organ_cache = list()
 		germ_level = 0
 		return 0
 
-	var/antibiotics = iscarbon(owner) ? owner.chem_effects[CE_ANTIBIOTIC] || 0 : 0
+	var/antibiotics = ishuman(owner) ? owner.chem_effects[CE_ANTIBIOTIC] || 0 : 0
 
 	var/infection_damage = 0
 
@@ -412,7 +417,7 @@ var/list/organ_cache = list()
 	owner = null
 
 
-/obj/item/organ/proc/replaced(var/mob/living/carbon/human/target,var/obj/item/organ/external/affected)
+/obj/item/organ/proc/replaced(var/mob/living/human/target,var/obj/item/organ/external/affected)
 
 	if(!istype(target)) return
 
@@ -551,7 +556,7 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/check_verb_compatability()		// Used for determining if an organ should give or remove its verbs. I.E., FBP part in a human, no verbs. If true, keep or add.
 	if(owner)
 		if(ishuman(owner))
-			var/mob/living/carbon/human/H = owner
+			var/mob/living/human/H = owner
 			var/obj/item/organ/O = H.get_organ(parent_organ)
 			if(forgiving_class)
 				if(O.robotic <= ORGAN_ASSISTED && robotic <= ORGAN_LIFELIKE)	// Parent is organic or assisted, we are at most synthetic.

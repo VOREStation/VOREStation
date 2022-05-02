@@ -10,5 +10,5 @@
 	organ_tag = O_DIAGNOSTIC
 
 	organ_verbs = list(
-	/mob/living/carbon/human/proc/self_diagnostics
+	/mob/living/human/proc/self_diagnostics
 	)

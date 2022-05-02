@@ -114,7 +114,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	smoketime -= amount
 	if(reagents && reagents.total_volume) // check if it has any reagents at all
 		if(ishuman(loc))
-			var/mob/living/carbon/human/C = loc
+			var/mob/living/human/C = loc
 			if (src == C.wear_mask && C.check_has_mouth()) // if it's in the human/monkey mouth, transfer reagents to the mob
 				reagents.trans_to_mob(C, amount, CHEM_INGEST, 1.5) // I don't predict significant balance issues by letting blunts actually WORK.
 		else // else just remove some of the reagents
@@ -226,7 +226,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	STOP_PROCESSING(SSobj, src)
 	update_icon()
 
-/obj/item/clothing/mask/smokable/attack(mob/living/carbon/human/H, mob/user, def_zone)
+/obj/item/clothing/mask/smokable/attack(mob/living/human/H, mob/user, def_zone)
 	if(lit && H == user && istype(H))
 		var/obj/item/blocked = H.check_mouth_coverage()
 		if(blocked)
@@ -626,7 +626,11 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	return
 
 
+<<<<<<< HEAD
 /obj/item/weapon/flame/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
+=======
+/obj/item/flame/lighter/attack(mob/living/human/M as mob, mob/living/human/user as mob)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(!istype(M, /mob))
 		return
 

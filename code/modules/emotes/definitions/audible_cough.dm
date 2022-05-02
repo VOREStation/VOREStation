@@ -36,7 +36,7 @@
 
 /decl/emote/audible/cough/get_emote_sound(var/atom/user)
 	if(ishuman(user) && !check_synthetic(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(H.get_gender() == FEMALE)
 			if(length(H.species.female_cough_sounds))
 				return list(

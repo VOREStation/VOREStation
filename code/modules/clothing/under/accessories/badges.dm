@@ -18,7 +18,7 @@
 	stored_name = new_name
 	name = "[initial(name)] ([stored_name])"
 
-/obj/item/clothing/accessory/badge/proc/set_desc(var/mob/living/carbon/human/H)
+/obj/item/clothing/accessory/badge/proc/set_desc(var/mob/living/human/H)
 
 /obj/item/clothing/accessory/badge/attack_self(mob/user as mob)
 	if(!stored_name)
@@ -32,7 +32,7 @@
 		else
 			user.visible_message("<span class='notice'>[user] displays their [src.name].\nIt reads: [badge_string].</span>","<span class='notice'>You display your [src.name]. It reads: [badge_string].</span>")
 
-/obj/item/clothing/accessory/badge/attack(mob/living/carbon/human/M, mob/living/user)
+/obj/item/clothing/accessory/badge/attack(mob/living/human/M, mob/living/user)
 	if(isliving(user))
 		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='danger'>You invade [M]'s personal space, thrusting [src] into their face insistently.</span>")
 		user.do_attack_animation(M)
@@ -50,6 +50,7 @@
 	icon_state = "ntbadge"
 	badge_string = null
 
+<<<<<<< HEAD
 /obj/item/clothing/accessory/badge/press
 	name = "corporate press pass"
 	desc = "A corporate reporter's pass, emblazoned with the NanoTrasen logo."
@@ -57,6 +58,13 @@
 	item_state = "pbadge"
 	badge_string = "Corporate Reporter"
 	w_class = ITEMSIZE_TINY
+=======
+/obj/item/clothing/accessory/badge/sheriff/attack(mob/living/human/M, mob/living/user)
+	if(isliving(user))
+		user.visible_message("<span class='danger'>[user] invades [M]'s personal space, the sheriff badge into their face!.</span>","<span class='danger'>You invade [M]'s personal space, thrusting the sheriff badge into their face insistently.</span>")
+		user.do_attack_animation(M)
+		user.setClickCooldown(DEFAULT_QUICK_COOLDOWN) //to prevent spam
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 	drop_sound = 'sound/items/drop/rubber.ogg'
 	pickup_sound = 'sound/items/pickup/rubber.ogg'

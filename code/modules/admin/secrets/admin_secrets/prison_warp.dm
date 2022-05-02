@@ -9,7 +9,7 @@
 	. = ..()
 	if(!.)
 		return
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/human/H in mob_list)
 		var/turf/T = get_turf(H)
 		var/security = 0
 		if((T in using_map.admin_levels) || prisonwarped.Find(H))

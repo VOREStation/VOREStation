@@ -100,7 +100,7 @@
 	return threat
 
 // Carbon / mostly Human threat check.
-/mob/living/carbon/get_threat(var/mob/living/threatened)
+/mob/living/human/get_threat(var/mob/living/threatened)
 	. = ..()
 
 	if(has_AI())
@@ -136,7 +136,7 @@
 
 	return threat
 
-/mob/living/carbon/guess_threat_level(var/mob/living/threatened)
+/mob/living/human/guess_threat_level(var/mob/living/threatened)
 	var/threat_guess = 0
 
 	// First lets consider their attack ability.
@@ -150,7 +150,7 @@
 	if(!I || !istype(I))
 		var/damage_guess = 0
 		if(ishuman(src) && ishuman(threatened))
-			var/mob/living/carbon/human/H = src
+			var/mob/living/human/H = src
 			var/datum/unarmed_attack/attack = H.get_unarmed_attack(threatened, BP_TORSO)
 			if(!attack)
 				damage_guess += 5

@@ -64,9 +64,15 @@
 /mob/proc/technomancer_pay_energy(amount)
 	return 0
 
+<<<<<<< HEAD
 /mob/living/carbon/human/technomancer_pay_energy(amount)
 	if(istype(back, /obj/item/weapon/technomancer_core))
 		var/obj/item/weapon/technomancer_core/TC = back
+=======
+/mob/living/human/technomancer_pay_energy(amount)
+	if(istype(back, /obj/item/technomancer_core))
+		var/obj/item/technomancer_core/TC = back
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		return TC.pay_energy(amount)
 	return 0
 
@@ -97,7 +103,7 @@
 /obj/item/weapon/technomancer_core/proc/regenerate()
 	energy = min(max(energy + regen_rate, 0), max_energy)
 	if(wearer && ishuman(wearer))
-		var/mob/living/carbon/human/H = wearer
+		var/mob/living/human/H = wearer
 		H.wiz_energy_update_hud()
 
 // We pay for on-going effects here.
@@ -154,20 +160,24 @@
 
 /obj/spellbutton/Click()
 	if(ishuman(usr))
-		var/mob/living/carbon/human/H = usr
+		var/mob/living/human/H = usr
 		H.place_spell_in_hand(spellpath)
 
 /obj/spellbutton/DblClick()
 	return Click()
 
-/mob/living/carbon/human/Stat()
+/mob/living/human/Stat()
 	. = ..()
 
 	if(. && istype(back,/obj/item/weapon/technomancer_core))
 		var/obj/item/weapon/technomancer_core/core = back
 		setup_technomancer_stat(core)
 
+<<<<<<< HEAD
 /mob/living/carbon/human/proc/setup_technomancer_stat(var/obj/item/weapon/technomancer_core/core)
+=======
+/mob/living/human/proc/setup_technomancer_stat(var/obj/item/technomancer_core/core)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(core && statpanel("Spell Core"))
 		var/charge_status = "[core.energy]/[core.max_energy] ([round( (core.energy / core.max_energy) * 100)]%) \
 		([round(core.energy_delta)]/s)"
@@ -208,7 +218,7 @@
 			return 1
 	return 0
 
-/mob/living/carbon/human/proc/wiz_energy_update_hud()
+/mob/living/human/proc/wiz_energy_update_hud()
 	if(client && hud_used)
 		if(istype(back, /obj/item/weapon/technomancer_core)) //I reckon there's a better way of doing this.
 			var/obj/item/weapon/technomancer_core/core = back
@@ -238,11 +248,11 @@
 /obj/item/weapon/technomancer_core/unstable/regenerate()
 	var/instability_bonus = 0
 	if(loc && ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/human/H = loc
 		instability_bonus = H.instability * 1.5
 	energy = min(energy + regen_rate + instability_bonus, max_energy)
 	if(loc && ishuman(loc))
-		var/mob/living/carbon/human/H = loc
+		var/mob/living/human/H = loc
 		H.wiz_energy_update_hud()
 
 //Lower capacity but safer core.

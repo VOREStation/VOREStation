@@ -14,8 +14,8 @@
 		if((M.stat != 2) || (!M.client))
 			continue
 		//They need a brain!
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
+		if(istype(M, /mob/living/human))
+			var/mob/living/human/H = M
 			if(!H.has_brain())
 				continue
 		if(M.ckey == find_key)
@@ -103,7 +103,7 @@
 	spawn(30)
 		eject_wait = 0
 
-	var/mob/living/carbon/human/H = new /mob/living/carbon/human(src, R.dna.species)
+	var/mob/living/human/H = new /mob/living/human(src, R.dna.species)
 	occupant = H
 
 	if(!R.dna.real_name)	//to prevent null names
@@ -336,7 +336,7 @@
 	occupant.loc = src.loc
 	eject_wait = 0 //If it's still set somehow.
 	if(ishuman(occupant)) //Need to be safe.
-		var/mob/living/carbon/human/patient = occupant
+		var/mob/living/human/patient = occupant
 		if(!(patient.species.flags & NO_SCAN)) //If, for some reason, someone makes a genetically-unalterable clone, let's not make them permanently disabled.
 			domutcheck(occupant) //Waiting until they're out before possible transforming.
 	occupant = null

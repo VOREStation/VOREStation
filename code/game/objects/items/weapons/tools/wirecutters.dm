@@ -40,12 +40,17 @@
 				icon_state = "cutters-y"
 				item_state = "cutters_yellow"
 
+<<<<<<< HEAD
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
 	..()
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
+=======
+/obj/item/tool/wirecutters/attack(mob/living/human/C as mob, mob/user as mob)
+	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		usr.visible_message("\The [usr] cuts \the [C]'s restraints with \the [src]!",\
 		"You cut \the [C]'s restraints with \the [src]!",\
 		"You hear cable being cut.")

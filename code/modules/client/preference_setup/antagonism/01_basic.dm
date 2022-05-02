@@ -22,7 +22,7 @@ var/global/list/uplink_locations = list("PDA", "Headset", "None")
 	if(!pref.antag_vis) pref.antag_vis = "Hidden"
 
 // Moved from /datum/preferences/proc/copy_to()
-/datum/category_item/player_setup_item/antagonism/basic/copy_to_mob(var/mob/living/carbon/human/character)
+/datum/category_item/player_setup_item/antagonism/basic/copy_to_mob(var/mob/living/human/character)
 	character.exploit_record = pref.exploit_record
 	character.antag_faction = pref.antag_faction
 	character.antag_vis = pref.antag_vis

@@ -207,7 +207,7 @@
 	if(!istype(src.loc, /mob/living))	// Needs to be in your hands to reset
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/human/H = usr
 	if(!istype(H))
 		return
 	if(H.stat)

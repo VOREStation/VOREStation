@@ -36,7 +36,7 @@
 	hood_up = FALSE
 	hood.canremove = TRUE // This shouldn't matter anyways but just incase.
 	if(ishuman(hood.loc))
-		var/mob/living/carbon/H = hood.loc
+		var/mob/living/human/H = hood.loc
 		H.unEquip(hood, 1)
 		H.update_inv_wear_suit()
 	hood.forceMove(src)
@@ -47,7 +47,7 @@
 /obj/item/clothing/suit/storage/hooded/proc/ToggleHood()
 	if(!hood_up)
 		if(ishuman(loc))
-			var/mob/living/carbon/human/H = src.loc
+			var/mob/living/human/H = src.loc
 			if(H.wear_suit != src)
 				to_chat(H, "<span class='warning'>You must be wearing [src] to put up the hood!</span>")
 				return

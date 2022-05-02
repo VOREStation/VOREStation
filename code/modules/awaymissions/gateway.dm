@@ -335,8 +335,13 @@ GLOBAL_DATUM(gateway_away, /obj/machinery/gateway/centeraway)
 /obj/machinery/gateway/centeraway/Bumped(atom/movable/M as mob|obj)
 	if(!ready)	return
 	if(!active)	return
+<<<<<<< HEAD
 	if(istype(M, /mob/living/carbon))
 		for(var/obj/item/weapon/implant/exile/E in M)//Checking that there is an exile implant in the contents
+=======
+	if(istype(M, /mob/living/human))
+		for(var/obj/item/implant/exile/E in M)//Checking that there is an exile implant in the contents
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			if(E.imp_in == M)//Checking that it's actually implanted vs just in their pocket
 				to_chat(M, "<font color='black'>The station gate has detected your exile implant and is blocking your entry.</font>")
 				return

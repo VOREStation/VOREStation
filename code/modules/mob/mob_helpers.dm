@@ -1,7 +1,7 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 /proc/isxenomorph(A)
-	if(istype(A, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = A
+	if(istype(A, /mob/living/human))
+		var/mob/living/human/H = A
 		return istype(H.species, /datum/species/xenos)
 	return 0
 
@@ -39,7 +39,7 @@
 /mob/proc/isMonkey()
 	return 0
 
-/mob/living/carbon/human/isMonkey()
+/mob/living/human/isMonkey()
 	return istype(species, /datum/species/monkey)
 
 /proc/isdeaf(A)
@@ -61,21 +61,21 @@
 	return ishuman(A)
 
 /proc/iscuffed(A)
-	if(istype(A, /mob/living/carbon))
-		var/mob/living/carbon/C = A
+	if(istype(A, /mob/living/human))
+		var/mob/living/human/C = A
 		if(C.handcuffed)
 			return 1
 	return 0
 
 /proc/hassensorlevel(A, var/level)
-	var/mob/living/carbon/human/H = A
+	var/mob/living/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode >= level
 	return 0
 
 /proc/getsensorlevel(A)
-	var/mob/living/carbon/human/H = A
+	var/mob/living/human/H = A
 	if(istype(H) && istype(H.w_uniform, /obj/item/clothing/under))
 		var/obj/item/clothing/under/U = H.w_uniform
 		return U.sensor_mode
@@ -365,8 +365,8 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 				hud_used.action_intent.icon_state = I_HELP
 
 /proc/is_blind(A)
-	if(istype(A, /mob/living/carbon))
-		var/mob/living/carbon/C = A
+	if(istype(A, /mob/living/human))
+		var/mob/living/human/C = A
 		if(C.sdisabilities & BLIND || C.blinded)
 			return 1
 	return 0
@@ -510,7 +510,11 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 	return 0
 
+<<<<<<< HEAD
 /mob/living/carbon/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+=======
+/mob/living/human/assess_perp(var/obj/access_obj, var/check_access, var/auth_weapons, var/check_records, var/check_arrest)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(handcuffed)
 		return SAFE_PERP
 
@@ -579,7 +583,7 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 		threatcount += 4
 /*
 	if(discipline && !rabid)
-		if(!target_mob || istype(target_mob, /mob/living/carbon/human/monkey))
+		if(!target_mob || istype(target_mob, /mob/living/human/monkey))
 			return SAFE_PERP
 
 	if(target_mob)

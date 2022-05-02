@@ -18,7 +18,7 @@
 /decl/emote/audible/slap/do_extra(var/atom/user, var/atom/target)
 	. = ..()
 	if(ishuman(target))
-		var/mob/living/carbon/human/H = target
+		var/mob/living/human/H = target
 		var/obj/item/clothing/mask/smokable/mask = H.wear_mask
 		if(istype(mask) && H.unEquip(mask))
 			mask.forceMove(get_turf(H))

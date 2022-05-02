@@ -292,6 +292,126 @@
 		to_chat(usr, "<span class='warning'>Error: No growns inside. Please insert growns.</span>")
 	return
 
+<<<<<<< HEAD
+=======
+/obj/machinery/biogenerator/proc/create_product(var/item, var/cost)
+	cost = round(cost/build_eff)
+	if(cost > points)
+		menustat = "nopoints"
+		return 0
+	processing = 1
+	update_icon()
+	updateUsrDialog()
+	points -= cost
+	sleep(30)
+	switch(item)
+		if("milk")
+			beaker.reagents.add_reagent("milk", 10)
+		if("milk5")
+			beaker.reagents.add_reagent("milk", 50)
+		if("cream")
+			beaker.reagents.add_reagent("cream", 10)
+		if("cream5")
+			beaker.reagents.add_reagent("cream", 50)
+		if("meat")
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+		if("meat5")
+			new/obj/item/reagent_containers/food/snacks/meat(loc) //This is ugly.
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+			new/obj/item/reagent_containers/food/snacks/meat(loc)
+		if("unizyme")
+			beaker.reagents.add_reagent("enzyme", 10)
+		if("unizyme50")
+			beaker.reagents.add_reagent("enzyme", 50)
+		if("nutrispread")
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+		if("nutrispread5")
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+			new/obj/item/reagent_containers/food/snacks/spreads(loc)
+		if("ez")
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+		if("l4z")
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+		if("rh")
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+		if("ez5") //It's not an elegant method, but it's safe and easy. -Cheridan
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+			new/obj/item/reagent_containers/glass/bottle/eznutrient(loc)
+		if("l4z5")
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+			new/obj/item/reagent_containers/glass/bottle/left4zed(loc)
+		if("rh5")
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+			new/obj/item/reagent_containers/glass/bottle/robustharvest(loc)
+		if("wallet")
+			new/obj/item/storage/wallet(loc)
+		if("gloves")
+			new/obj/item/clothing/gloves/botanic_leather(loc)
+		if("plantbag")
+			new/obj/item/storage/bag/plants(loc)
+		if("plantbaglarge")
+			new/obj/item/storage/bag/plants/large(loc)
+		if("tbelt")
+			new/obj/item/storage/belt/utility(loc)
+		if("satchel")
+			new/obj/item/storage/backpack/satchel(loc)
+		if("cashbag")
+			new/obj/item/storage/bag/cash(loc)
+		if("chembag")
+			new/obj/item/storage/bag/chemistry(loc)
+		if("monkey")
+			new/mob/living/human/monkey(loc)
+		if("workboots")
+			new/obj/item/clothing/shoes/boots/workboots(loc)
+		if("leatherchaps")
+			new/obj/item/clothing/under/pants/chaps
+		if("leathercoat")
+			new/obj/item/clothing/suit/leathercoat(loc)
+		if("leatherjacket")
+			new/obj/item/clothing/suit/storage/toggle/brown_jacket(loc)
+		if("wintercoat")
+			new/obj/item/clothing/suit/storage/hooded/wintercoat(loc)
+	processing = 0
+	menustat = "complete"
+	update_icon()
+	return 1
+
+/obj/machinery/biogenerator/Topic(href, href_list)
+	if(stat & BROKEN) return
+	if(usr.stat || usr.restrained()) return
+	if(!in_range(src, usr)) return
+
+	usr.set_machine(src)
+
+	switch(href_list["action"])
+		if("activate")
+			activate()
+		if("detach")
+			if(beaker)
+				beaker.loc = src.loc
+				beaker = null
+				update_icon()
+		if("create")
+			create_product(href_list["item"], text2num(href_list["cost"]))
+		if("menu")
+			menustat = "menu"
+	updateUsrDialog()
+
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 /obj/machinery/biogenerator/RefreshParts()
 	..()
 	var/man_rating = 0

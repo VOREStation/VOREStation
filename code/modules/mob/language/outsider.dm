@@ -29,8 +29,8 @@
 
 	var/mob/living/simple_mob/animal/borer/B
 
-	if(istype(speaker,/mob/living/carbon))
-		var/mob/living/carbon/M = speaker
+	if(istype(speaker,/mob/living/human))
+		var/mob/living/human/M = speaker
 		B = M.has_brain_worms()
 	else if(istype(speaker,/mob/living/simple_mob/animal/borer))
 		B = speaker
@@ -108,7 +108,7 @@
 
 /datum/language/xenos/check_special_condition(var/mob/other)
 
-	var/mob/living/carbon/M = other
+	var/mob/living/human/M = other
 	if(!istype(M))
 		return 1
 	if(locate(/obj/item/organ/internal/xenos/hivenode) in M.internal_organs)
@@ -173,8 +173,8 @@
 
 	var/mob/living/simple_mob/animal/borer/B
 
-	if(istype(speaker,/mob/living/carbon))
-		var/mob/living/carbon/M = speaker
+	if(istype(speaker,/mob/living/human))
+		var/mob/living/human/M = speaker
 		B = M.has_brain_worms()
 	else if(istype(speaker,/mob/living/simple_mob/animal/borer))
 		B = speaker

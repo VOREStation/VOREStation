@@ -121,7 +121,7 @@
 		// Fix for naked ghosts.
 		// Unclear why this isn't being grabbed by appearance.
 		if(ishuman(body))
-			var/mob/living/carbon/human/H = body
+			var/mob/living/human/H = body
 			add_overlay(H.overlays_standing)
 
 	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
@@ -184,7 +184,7 @@ Works together with spawning an observer, noted above.
 /mob/proc/ghostize(var/can_reenter_corpse = 1)
 	if(key)
 		if(ishuman(src))
-			var/mob/living/carbon/human/H = src
+			var/mob/living/human/H = src
 			if(H.vr_holder && !can_reenter_corpse)
 				H.exit_vr()
 				return 0

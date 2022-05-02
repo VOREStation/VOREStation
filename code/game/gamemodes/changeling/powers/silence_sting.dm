@@ -13,7 +13,7 @@
 	set name = "Silence sting (10)"
 	set desc="Sting target"
 
-	var/mob/living/carbon/T = changeling_sting(10,/mob/proc/changeling_silence_sting)
+	var/mob/living/human/T = changeling_sting(10,/mob/proc/changeling_silence_sting)
 	if(!T)	return 0
 	add_attack_logs(src,T,"Silence sting (changeling)")
 	var/duration = 30

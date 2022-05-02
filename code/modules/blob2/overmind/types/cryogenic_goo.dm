@@ -22,7 +22,7 @@
 
 /datum/blob_type/cryogenic_goo/on_attack(obj/structure/blob/B, mob/living/victim)
 	if(ishuman(victim))
-		var/mob/living/carbon/human/H = victim
+		var/mob/living/human/H = victim
 		var/protection = H.get_cold_protection(50)
 		if(protection < 1)
 			var/temp_change = 80 // Each hit can reduce temperature by up to 80 kelvin.

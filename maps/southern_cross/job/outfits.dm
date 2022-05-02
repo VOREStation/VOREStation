@@ -19,7 +19,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
 
-/decl/hierarchy/outfit/job/explorer2/post_equip(mob/living/carbon/human/H)
+/decl/hierarchy/outfit/job/explorer2/post_equip(mob/living/human/H)
 	..()
 	for(var/obj/item/clothing/accessory/permit/gun/planetside/permit in H.back.contents)
 		permit.set_name(H.real_name)

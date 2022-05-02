@@ -607,9 +607,15 @@
 /obj/item/weapon/storage/dropped(mob/user as mob)
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/attack_hand(mob/user as mob)
 	if(ishuman(user) && !pocketable)
 		var/mob/living/carbon/human/H = user
+=======
+/obj/item/storage/attack_hand(mob/user as mob)
+	if(ishuman(user))
+		var/mob/living/human/H = user
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
 			H.l_store = null

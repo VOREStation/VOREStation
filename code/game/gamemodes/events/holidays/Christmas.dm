@@ -23,11 +23,16 @@
 	desc = "Directions for use: Requires two people, one to pull each end."
 	var/cracked = 0
 
+<<<<<<< HEAD
 /obj/item/weapon/toy/xmas_cracker/New()
 	..()
 
 /obj/item/weapon/toy/xmas_cracker/attack(mob/target, mob/user)
 	if( !cracked && (istype(target,/mob/living/silicon) || (istype(target,/mob/living/carbon/human) && !target.get_active_hand())) && target.stat == CONSCIOUS)
+=======
+/obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
+	if( !cracked && (istype(target,/mob/living/silicon) || (istype(target,/mob/living/human) && !target.get_active_hand())) && target.stat == CONSCIOUS)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 		target.visible_message("<span class='notice'>[user] and [target] pop \an [src]! *pop*</span>", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='notice'>You hear a *pop*.</span>")
 		var/obj/item/weapon/paper/Joke = new /obj/item/weapon/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"

@@ -33,7 +33,7 @@
 		expire()
 		return
 	if(ishuman(holder))
-		var/mob/living/carbon/human/H = holder
+		var/mob/living/human/H = holder
 		for(var/obj/item/organ/external/E in H.organs)
 			var/obj/item/organ/external/O = E
 			if(O.robotic >= ORGAN_ROBOT)

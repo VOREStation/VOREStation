@@ -36,7 +36,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 
 /*
-/datum/job/captain/equip(var/mob/living/carbon/human/H)
+/datum/job/captain/equip(var/mob/living/human/H)
 	. = ..()
 	if(.)
 		H.implant_loyalty(src)

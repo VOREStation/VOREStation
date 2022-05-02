@@ -15,7 +15,7 @@
 
 /decl/emote/audible/sneeze/get_emote_sound(var/atom/user)
 	if(ishuman(user) && !check_synthetic(user))
-		var/mob/living/carbon/human/H = user
+		var/mob/living/human/H = user
 		if(H.get_gender() == FEMALE)
 			return list(
 				"sound" = H.species.female_sneeze_sound,

@@ -383,8 +383,19 @@
 
 		env.merge(removed)
 
+<<<<<<< HEAD
 	for(var/mob/living/carbon/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
 		if(!istype(l.glasses, /obj/item/clothing/glasses/meson)) // VOREStation Edit - Only mesons can protect you!
+=======
+	for(var/mob/living/human/l in view(src, min(7, round(sqrt(power/6))))) // If they can see it without mesons on.  Bad on them.
+		var/eye_shield = 0	//How protected they are
+		if(istype(l.glasses, /obj/item/clothing/glasses/meson))
+			eye_shield += 1
+		if(istype(l.head, /obj/item/clothing/head/helmet/space))
+			if(l.run_armor_check(BP_HEAD, "rad") >= 60)
+				eye_shield += 1
+		if(eye_shield < 1)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			l.hallucination = max(0, min(200, l.hallucination + power * config_hallucination_power * sqrt( 1 / max(1,get_dist(l, src)) ) ) )
 
 	SSradiation.radiate(src, max(power * 1.5, 50) ) //Better close those shutters!

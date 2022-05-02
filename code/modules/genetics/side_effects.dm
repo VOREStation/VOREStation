@@ -5,11 +5,11 @@
 	var/effect // description of what happens when not treated
 	var/duration = 0 // delay between start() and finish()
 
-/datum/genetics/side_effect/proc/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/proc/start(mob/living/human/H)
 	// start the side effect, this should give some cue as to what's happening,
 	// such as gasping. These cues need to be unique among side-effects.
 
-/datum/genetics/side_effect/proc/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/proc/finish(mob/living/human/H)
 	// Finish the side-effect. This should first check whether the cure has been
 	// applied, and if not, cause bad things to happen.
 
@@ -20,10 +20,10 @@
 	effect = "Subject's skin burns."
 	duration = 30 SECONDS
 
-/datum/genetics/side_effect/genetic_burn/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/genetic_burn/start(mob/living/human/H)
 	H.custom_emote(VISIBLE_MESSAGE, "starts turning very red..")
 
-/datum/genetics/side_effect/genetic_burn/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/genetic_burn/finish(mob/living/human/H)
 	if(H.reagents.has_reagent("dexalin"))
 		return
 	for(var/organ_name in BP_ALL)
@@ -37,10 +37,10 @@
 	effect = "Subject's bone breaks."
 	duration = 60 SECONDS
 
-/datum/genetics/side_effect/bone_snap/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/bone_snap/start(mob/living/human/H)
 	H.custom_emote(VISIBLE_MESSAGE, "'s limbs start shivering uncontrollably.")
 
-/datum/genetics/side_effect/bone_snap/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/bone_snap/finish(mob/living/human/H)
 	if(H.reagents.has_reagent("bicaridine"))
 		return
 	var/organ_name = pick(BP_ALL)
@@ -55,16 +55,16 @@
 	effect = "Subject becomes confused."
 	duration = 30 SECONDS
 
-/datum/genetics/side_effect/confuse/start(mob/living/carbon/human/H)
+/datum/genetics/side_effect/confuse/start(mob/living/human/H)
 	var/datum/gender/T = gender_datums[H.get_visible_gender()]
 	H.custom_emote(VISIBLE_MESSAGE, "has drool running down from [T.his] mouth.")
 
-/datum/genetics/side_effect/confuse/finish(mob/living/carbon/human/H)
+/datum/genetics/side_effect/confuse/finish(mob/living/human/H)
 	if(H.reagents.has_reagent("anti_toxin"))
 		return
 	H.Confuse(100)
 
-/proc/trigger_side_effect(mob/living/carbon/human/H)
+/proc/trigger_side_effect(mob/living/human/H)
 	spawn
 		if(!istype(H)) return
 		var/tp = pick(subtypesof(/datum/genetics/side_effect))

@@ -27,7 +27,7 @@
 		return FALSE // Drones don't feel anything.
 
 	if(ishuman(L))
-		var/mob/living/carbon/human/H = L
+		var/mob/living/human/H = L
 		if(H.species.name == "Diona")
 			to_chat(L, "<span class='warning'>You feel strange for a moment, but it passes.</span>")
 			return FALSE // Happy trees aren't affected by tranquility.
@@ -38,5 +38,5 @@
 	..()
 
 	if(ishuman(holder))
-		var/mob/living/carbon/human/H = holder
+		var/mob/living/human/H = holder
 		H.druggy = min(15, H.druggy + 4)

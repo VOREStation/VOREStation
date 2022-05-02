@@ -469,7 +469,7 @@
 
 /obj/item/weapon/spell/construct/proc/pay_blood(var/amount) //If, for some reason, this is put into the hands of a cultist, by a talisnam or whatever.
 	if(ishuman(owner))
-		var/mob/living/carbon/human/H = owner
+		var/mob/living/human/H = owner
 		if(!H.should_have_organ(O_HEART))
 			return 1
 		if(H.vessel.remove_reagent("blood", amount))

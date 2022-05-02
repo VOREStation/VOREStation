@@ -3,7 +3,7 @@
 	name = "Appearance Editor"
 	tgui_id = "AppearanceChanger"
 	var/flags = APPEARANCE_ALL_HAIR
-	var/mob/living/carbon/human/owner = null
+	var/mob/living/human/owner = null
 	var/list/valid_species = list()
 	var/list/valid_hairstyles = list()
 	var/list/valid_facial_hairstyles = list()
@@ -29,7 +29,7 @@
 
 /datum/tgui_module/appearance_changer/New(
 		var/host,
-		mob/living/carbon/human/H,
+		mob/living/human/H,
 		check_species_whitelist = 1,
 		list/species_whitelist = list(),
 		list/species_blacklist = list())
@@ -81,7 +81,7 @@
 	if(..())
 		return TRUE
 
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -279,8 +279,13 @@
 		// VOREStation Add End
 	return FALSE
 
+<<<<<<< HEAD
 /datum/tgui_module/appearance_changer/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state)
 	var/mob/living/carbon/human/target = owner
+=======
+/datum/tgui_module/appearance_changer/tgui_interact(mob/user, datum/tgui/ui = null, datum/tgui/parent_ui = null, datum/tgui_state/custom_state = GLOB.tgui_default_state)
+	var/mob/living/human/target = owner
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(customize_usr)
 		if(!ishuman(user))
 			return TRUE
@@ -338,7 +343,7 @@
 
 	generate_data(user)
 
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -427,7 +432,7 @@
 	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - newturf.x, (world.maxy>>1) - newturf.y)
 
 /datum/tgui_module/appearance_changer/proc/update_dna()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -437,7 +442,7 @@
 		target.update_dna()
 
 /datum/tgui_module/appearance_changer/proc/can_change(var/flag)
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -446,7 +451,7 @@
 	return target && (flags & flag)
 
 /datum/tgui_module/appearance_changer/proc/can_change_skin_tone()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -455,7 +460,7 @@
 	return target && (flags & APPEARANCE_SKIN) && target.species.appearance_flags & HAS_SKIN_TONE
 
 /datum/tgui_module/appearance_changer/proc/can_change_skin_color()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE
@@ -473,8 +478,13 @@
 	valid_wingstyles.Cut()
 	// VOREStation Add End
 
+<<<<<<< HEAD
 /datum/tgui_module/appearance_changer/proc/generate_data(mob/user)
 	var/mob/living/carbon/human/target = owner
+=======
+/datum/tgui_module/appearance_changer/proc/generate_data()
+	var/mob/living/human/target = owner
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(customize_usr)
 		if(!ishuman(user))
 			return TRUE
@@ -525,7 +535,7 @@
 	// VOREStation Add End
 
 /datum/tgui_module/appearance_changer/proc/get_genders()
-	var/mob/living/carbon/human/target = owner
+	var/mob/living/human/target = owner
 	if(customize_usr)
 		if(!ishuman(usr))
 			return TRUE

@@ -453,7 +453,7 @@
 	if(!istype(src.loc, /mob/living))
 		return
 
-	var/mob/living/carbon/human/H = usr
+	var/mob/living/human/H = usr
 
 	if(!istype(H))
 		return

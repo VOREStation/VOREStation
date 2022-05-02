@@ -22,7 +22,7 @@ SUBSYSTEM_DEF(inactivity)
 			if(C.mob)
 				if(ishuman(C.mob))
 					var/job
-					var/mob/living/carbon/human/H = C.mob
+					var/mob/living/human/H = C.mob
 					var/datum/data/record/R = find_general_record("name", H.real_name)
 					if(R)
 						job = R.fields["real_rank"]

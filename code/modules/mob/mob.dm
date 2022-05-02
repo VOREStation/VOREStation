@@ -512,7 +512,7 @@
 
 	if(pulling)
 		if(ishuman(pulling))
-			var/mob/living/carbon/human/H = pulling
+			var/mob/living/human/H = pulling
 			visible_message(SPAN_WARNING("\The [src] lets go of \the [H]."), SPAN_NOTICE("You let go of \the [H]."), exclude_mobs = list(H))
 			if(!H.stat)
 				to_chat(H, SPAN_WARNING("\The [src] lets go of you."))
@@ -561,7 +561,7 @@
 				to_chat(src, "<span class='warning'>Somebody has a grip on them!</span>")
 				return
 
-		if(!iscarbon(src))
+		if(!ishuman(src))
 			M.LAssailant = null
 		else
 			M.LAssailant = usr
@@ -586,7 +586,7 @@
 		pullin.icon_state = "pull1"
 
 	if(ishuman(AM))
-		var/mob/living/carbon/human/H = AM
+		var/mob/living/human/H = AM
 		if(H.lying) // If they're on the ground we're probably dragging their arms to move them
 			visible_message(SPAN_WARNING("\The [src] leans down and grips \the [H]'s arms."), SPAN_NOTICE("You lean down and grip \the [H]'s arms."), exclude_mobs = list(H))
 			if(!H.stat)
@@ -949,7 +949,7 @@
 		clear_alert("embeddedobject")
 
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/human/H = src
 		var/obj/item/organ/external/affected
 
 		for(var/obj/item/organ/external/organ in H.organs) //Grab the organ holding the implant.
@@ -967,7 +967,7 @@
 			H.custom_pain("Something tears wetly in your [affected] as [selection] is pulled free!", 50)
 
 		if (ishuman(U))
-			var/mob/living/carbon/human/human_user = U
+			var/mob/living/human/human_user = U
 			human_user.bloody_hands(H)
 
 	else if(issilicon(src))

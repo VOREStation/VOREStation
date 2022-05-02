@@ -65,7 +65,7 @@
 		//playsound(loc, 'sound/effects/radio_common.ogg', 20, 1, 1, preference = /datum/client_preference/radio_sounds)
 		return ..(freq, level)
 	if(ishuman(src.loc))
-		var/mob/living/carbon/human/H = src.loc
+		var/mob/living/human/H = src.loc
 		if(H.l_ear == src || H.r_ear == src)
 			//playsound(loc, 'sound/effects/radio_common.ogg', 20, 1, 1, preference = /datum/client_preference/radio_sounds)
 			return ..(freq, level)

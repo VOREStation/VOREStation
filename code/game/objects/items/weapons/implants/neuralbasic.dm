@@ -8,7 +8,7 @@
 
 /obj/item/weapon/implant/neural/post_implant(var/mob/source)
 	if(ishuman(source))
-		var/mob/living/carbon/human/H = source
+		var/mob/living/human/H = source
 		if(H.species.has_organ[O_BRAIN])
 			var/obj/item/organ/internal/brain/possible_brain = H.internal_organs_by_name[O_BRAIN]
 			my_brain = possible_brain //Organs will take damage all the same.
@@ -94,7 +94,7 @@ Implant Specifics:<BR>"}
 /obj/item/weapon/implant/neural/meltdown()
 	..()
 	STOP_PROCESSING(SSobj, src)
-	var/mob/living/carbon/human/H = null
+	var/mob/living/human/H = null
 	if(my_brain && my_brain.owner)
 		if(ishuman(my_brain.owner))
 			H = my_brain.owner

@@ -510,7 +510,7 @@
 			continue
 
 		if(ishuman(L))
-			var/mob/living/carbon/human/H = L
+			var/mob/living/human/H = L
 			var/protection = H.get_cold_protection()
 
 			if(protection < 1)
@@ -570,7 +570,7 @@
 		if(S.client) // Player slimes always have free will.
 			to_chat(S, "<span class='warning'>An intense wave of rage is felt from inside, but you remain in control of yourself.</span>")
 
-	for(var/mob/living/carbon/human/H in view(get_turf(holder.my_atom)))
+	for(var/mob/living/human/H in view(get_turf(holder.my_atom)))
 		if(H.species.name == SPECIES_PROMETHEAN)
 			H.add_modifier(/datum/modifier/berserk, 30 SECONDS)
 			to_chat(H, "<span class='warning'>An intense wave of rage is felt from inside, but you remain in control of yourself.</span>")

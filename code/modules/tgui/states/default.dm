@@ -19,7 +19,7 @@ GLOBAL_DATUM_INIT(tgui_default_state, /datum/tgui_state/default, new)
 	if(. == STATUS_INTERACTIVE) // Non-human living mobs can only look, not touch.
 		return STATUS_UPDATE
 
-/mob/living/carbon/human/default_can_use_tgui_topic(src_object)
+/mob/living/human/default_can_use_tgui_topic(src_object)
 	. = shared_tgui_interaction(src_object)
 	if(. > STATUS_CLOSE)
 		. = min(., shared_living_tgui_distance(src_object)) // Check the distance...

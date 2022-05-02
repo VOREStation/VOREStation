@@ -116,7 +116,7 @@
 				update_icon()
 			return
 		else if(ishuman(user))
-			var/mob/living/carbon/human/H = user
+			var/mob/living/human/H = user
 
 			if(istype(H.get_active_hand(), /obj/item/clothing/head) && !get_active_hand())
 				var/obj/item/clothing/head/newhat = H.get_active_hand()
@@ -162,7 +162,7 @@
 /mob/living/simple_mob/animal/sif/sakimm/IIsAlly(mob/living/L)
 	. = ..()
 
-	var/mob/living/carbon/human/H = L
+	var/mob/living/human/H = L
 	if(!istype(H))
 		return .
 

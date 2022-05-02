@@ -71,7 +71,7 @@
   * * opponent - (optional) the defender controller in the battle, for PvP
   */
 
-/obj/item/toy/mecha/proc/combat_sleep(var/delay, obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
+/obj/item/toy/mecha/proc/combat_sleep(var/delay, obj/item/toy/mecha/attacker, mob/living/human/attacker_controller, mob/living/human/opponent)
 	if(!attacker_controller) // If the attacker for whatever reason is null, don't continue.
 		return FALSE
 
@@ -142,7 +142,7 @@
 /**
   * Attack is called from the user's toy, aimed at target(another human), checking for target's toy.
   */
-/obj/item/toy/mecha/attack(mob/living/carbon/human/target, mob/living/carbon/human/user)
+/obj/item/toy/mecha/attack(mob/living/human/target, mob/living/human/user)
 	if(target == user)
 		to_chat(user, "<span class='notice'>Target another toy mech if you want to start a battle with yourself.</span>")
 		return
@@ -191,7 +191,7 @@
   * Arguments:
   * * user - the user wanting to do battle
   */
-/obj/item/toy/mecha/proc/withdraw_offer(mob/living/carbon/user)
+/obj/item/toy/mecha/proc/withdraw_offer(mob/living/human/user)
 	if(wants_to_battle)
 		wants_to_battle = FALSE
 		to_chat(user, "<span class='notice'>You get the feeling they don't want to battle.</span>")
@@ -221,14 +221,14 @@
   * * attacker_controller - the user, the one who is holding the toys / controlling the fight
   * * opponent - optional arg used in Mech PvP battles: the other person who is taking part in the fight (controls src)
   */
-/obj/item/toy/mecha/proc/mecha_brawl(obj/item/toy/mecha/attacker, mob/living/carbon/attacker_controller, mob/living/carbon/opponent)
+/obj/item/toy/mecha/proc/mecha_brawl(obj/item/toy/mecha/attacker, mob/living/human/attacker_controller, mob/living/human/opponent)
 	//A GOOD DAY FOR A SWELL BATTLE!
 	attacker_controller.visible_message("<span class='danger'> [attacker_controller.name] collides [attacker] with [src]! Looks like they're preparing for a brawl! </span>", \
 						"<span class='danger'> You collide [attacker] into [src], sparking a fierce battle! </span>", \
 						"<span class='hear'> You hear hard plastic smacking into hard plastic.</span>")
 
 	/// Who's in control of the defender (src)?
-	var/mob/living/carbon/src_controller = (opponent)? opponent : attacker_controller
+	var/mob/living/human/src_controller = (opponent)? opponent : attacker_controller
 	/// How long has the battle been going?
 	var/battle_length = 0
 
@@ -390,7 +390,7 @@
   * * attacker: optional arg for checking two mechs at once
   * * target: optional arg used in Mech PvP battles (if used, attacker is target's toy)
   */
-/obj/item/toy/mecha/proc/check_battle_start(mob/living/carbon/user, obj/item/toy/mecha/attacker, mob/living/carbon/target)
+/obj/item/toy/mecha/proc/check_battle_start(mob/living/human/user, obj/item/toy/mecha/attacker, mob/living/human/target)
 	var/datum/gender/T
 	if(target)
 		T = gender_datums[target.get_visible_gender()] // Doing this because Polaris Code has shitty gender datums and it's clunkier than FUCK.

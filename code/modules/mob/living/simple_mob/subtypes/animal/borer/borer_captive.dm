@@ -55,9 +55,15 @@
 			to_chat(H, "<span class='danger'>With an immense exertion of will, you regain control of your body!</span>")
 			to_chat(B.host, "<span class='danger'>You feel control of the host brain ripped from your grasp, and retract your probosci before the wild neural impulses can damage you.</span>")
 			B.detatch()
+<<<<<<< HEAD
 			verbs -= /mob/living/carbon/proc/release_control
 			verbs -= /mob/living/carbon/proc/punish_host
 			verbs -= /mob/living/carbon/proc/spawn_larvae
+=======
+			verbs -= /mob/living/human/proc/release_control
+			verbs -= /mob/living/human/proc/punish_host
+			verbs -= /mob/living/human/proc/spawn_larvae
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 
 		return
 

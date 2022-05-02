@@ -67,6 +67,7 @@
 			continue
 
 		var/flash_time = strength
+<<<<<<< HEAD
 		if(istype(O, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = O
 			//VOREStation Edit Start
@@ -74,6 +75,10 @@
 				H.nif.notify("High intensity light detected, and blocked!",TRUE)
 				continue
 			//VOREStation Edit End
+=======
+		if(istype(O, /mob/living/human))
+			var/mob/living/human/H = O
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 			if(!H.eyecheck() <= 0)
 				continue
 			flash_time *= H.species.flash_mod
@@ -101,8 +106,8 @@
 	if(disable || !anchored || (last_flash && world.time < last_flash + 150))
 		return
 
-	if(iscarbon(AM))
-		var/mob/living/carbon/M = AM
+	if(ishuman(AM))
+		var/mob/living/human/M = AM
 		if(M.m_intent != "walk")
 			flash()
 

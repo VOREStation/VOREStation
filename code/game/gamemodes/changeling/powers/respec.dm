@@ -22,7 +22,7 @@
 
 	ling_datum.chem_storage = 50
 	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
+		var/mob/living/human/H = src
 	//	H.does_not_breathe = 0 //If self respiration was bought, revert that too.
 		H.remove_modifiers_of_type(/datum/modifier/endoarmor) //Revert endoarmor too.
 	src.make_changeling() //And give back our freebies.

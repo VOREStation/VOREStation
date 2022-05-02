@@ -17,7 +17,7 @@
 	germ_level = 0
 	fingerprint_chance = 10 // They're thieves' gloves. What do you think?
 
-/obj/item/clothing/gloves/sterile/thieves/proc/pickpocket(var/mob/living/carbon/human/user, var/mob/living/carbon/human/target, var/proximity)
+/obj/item/clothing/gloves/sterile/thieves/proc/pickpocket(var/mob/living/human/user, var/mob/living/human/target, var/proximity)
 	if(!proximity || !user || !target)
 		return 0
 
@@ -85,7 +85,7 @@
 		return 1
 
 /obj/item/clothing/gloves/sterile/thieves/Touch(var/atom/A, var/proximity)
-	if(proximity && istype(usr, /mob/living/carbon/human) && do_after(usr, 1 SECOND, A))
+	if(proximity && istype(usr, /mob/living/human) && do_after(usr, 1 SECOND, A))
 		return pickpocket(usr, A, proximity)
 	return 0
 
@@ -109,18 +109,18 @@
 		battery = new battery_type(src)
 
 /obj/item/clothing/gloves/ring/buzzer/Touch(var/atom/A, var/proximity)
-	if(proximity && istype(usr, /mob/living/carbon/human))
+	if(proximity && istype(usr, /mob/living/human))
 		return zap(usr, A, proximity)
 	return 0
 
-/obj/item/clothing/gloves/ring/buzzer/proc/zap(var/mob/living/carbon/human/user, var/atom/movable/target, var/proximity)
+/obj/item/clothing/gloves/ring/buzzer/proc/zap(var/mob/living/human/user, var/atom/movable/target, var/proximity)
 	. = FALSE
 	if(user.a_intent == I_HURT && battery.percent() >= 50)
 		if(isliving(target))
 			var/mob/living/L = target
 
 			if(ishuman(L) && battery.percent() >= 90)	// Silent text-wise, for maximum potential for gimmicks.
-				var/mob/living/carbon/human/H = L
+				var/mob/living/human/H = L
 
 				if(H.stat == DEAD)
 					. = TRUE
@@ -136,7 +136,7 @@
 
 	return 0
 
-/obj/item/clothing/gloves/ring/buzzer/proc/do_defib(var/mob/living/carbon/human/H = null)
+/obj/item/clothing/gloves/ring/buzzer/proc/do_defib(var/mob/living/human/H = null)
 	if(!istype(H))
 		return 0
 

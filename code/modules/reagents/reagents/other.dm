@@ -177,10 +177,10 @@
 	glass_name = "liquid gold"
 	glass_desc = "It's magic. We don't have to explain it."
 
-/datum/reagent/adminordrazine/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adminordrazine/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 	affect_blood(M, alien, removed)
 
-/datum/reagent/adminordrazine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adminordrazine/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.heal_organ_damage(40,40)
 	M.adjustCloneLoss(-40)
 	M.adjustToxLoss(-40)
@@ -213,7 +213,7 @@
 	else if(M.bodytemperature < 311)
 		M.bodytemperature = min(310, M.bodytemperature + (40 * TEMPERATURE_DAMAGE_COEFFICIENT))
 	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 		var/wound_heal = 5
 		for(var/obj/item/organ/I in H.internal_organs)
 			if(I.damage > 0) //Adminordrazine heals even robits, it is magic
@@ -263,10 +263,10 @@
 	reagent_state = SOLID
 	color = "#B8B8C0"
 
-/datum/reagent/uranium/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/uranium/affect_touch(var/mob/living/human/M, var/alien, var/removed)
 	affect_ingest(M, alien, removed)
 
-/datum/reagent/uranium/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/uranium/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.apply_effect(5 * removed, IRRADIATE, 0)
 
 /datum/reagent/uranium/touch_turf(var/turf/T)
@@ -318,15 +318,15 @@
 	taste_description = "taffy" // 0. The supermatter is tasty, tasty taffy.
 
 // Same as if you boop it wrong. It touches you, you die
-/datum/reagent/supermatter/affect_touch(mob/living/carbon/M, alien, removed)
+/datum/reagent/supermatter/affect_touch(mob/living/human/M, alien, removed)
 	. = ..()
 	M.ash()
 
-/datum/reagent/supermatter/affect_ingest(mob/living/carbon/M, alien, removed)
+/datum/reagent/supermatter/affect_ingest(mob/living/human/M, alien, removed)
 	. = ..()
 	M.ash()
 
-/datum/reagent/supermatter/affect_blood(mob/living/carbon/M, alien, removed)
+/datum/reagent/supermatter/affect_blood(mob/living/human/M, alien, removed)
 	. = ..()
 	M.ash()
 
@@ -340,7 +340,7 @@
 	color = "#C8A5DC"
 	mrate_static = TRUE
 
-/datum/reagent/adrenaline/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/adrenaline/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	M.SetParalysis(0)
@@ -358,7 +358,7 @@
 	glass_name = "holy water"
 	glass_desc = "An ashen-obsidian-water mix, this solution will alter certain sections of the brain's rationality."
 
-/datum/reagent/water/holywater/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/water/holywater/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	..()
 	if(ishuman(M)) // Any location
 		if(M.mind && cult.is_antagonist(M.mind) && prob(10))
@@ -427,7 +427,7 @@
 	if(istype(L))
 		L.adjust_fire_stacks(amount / 5)
 
-/datum/reagent/thermite/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/thermite/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.adjustFireLoss(3 * removed)
 
 /datum/reagent/space_cleaner
@@ -441,8 +441,8 @@
 
 /datum/reagent/space_cleaner/touch_mob(var/mob/M)
 	..()
-	if(iscarbon(M))
-		var/mob/living/carbon/C = M
+	if(ishuman(M))
+		var/mob/living/human/C = M
 		C.clean_blood()
 
 /datum/reagent/space_cleaner/touch_obj(var/obj/O)
@@ -460,6 +460,7 @@
 		for(var/mob/living/simple_mob/slime/M in T)
 			M.adjustToxLoss(rand(5, 10))
 
+<<<<<<< HEAD
 /datum/reagent/space_cleaner/affect_touch(var/mob/living/carbon/M, var/alien, var/removed)
 	if(M.r_hand)
 		M.r_hand.clean_blood()
@@ -487,9 +488,14 @@
 		else
 			H.clean_blood(1)
 			return
+=======
+/datum/reagent/space_cleaner/affect_touch(var/mob/living/human/M, var/alien, var/removed)
+	if(alien == IS_SLIME)
+		M.adjustToxLoss(rand(5, 10))
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	M.clean_blood()
 
-/datum/reagent/space_cleaner/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/space_cleaner/affect_ingest(var/mob/living/human/M, var/alien, var/removed)
 	if(alien == IS_SLIME)
 		M.adjustToxLoss(6 * removed)
 	else
@@ -499,8 +505,8 @@
 
 /datum/reagent/space_cleaner/touch_mob(var/mob/living/L, var/amount)
 	..()
-	if(istype(L, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = L
+	if(istype(L, /mob/living/human))
+		var/mob/living/human/H = L
 		if(H.wear_mask)
 			if(istype(H.wear_mask, /obj/item/clothing/mask/smokable))
 				var/obj/item/clothing/mask/smokable/S = H.wear_mask
@@ -566,9 +572,9 @@
 
 	affects_robots = TRUE
 
-/datum/reagent/coolant/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/coolant/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	if(M.isSynthetic() && ishuman(M))
-		var/mob/living/carbon/human/H = M
+		var/mob/living/human/H = M
 
 		var/datum/reagent/blood/coolant = H.get_blood(H.vessel)
 
@@ -640,7 +646,7 @@
 	metabolism = REM * 3 // Broken nanomachines go a bit slower.
 	scannable = 1
 
-/datum/reagent/defective_nanites/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/defective_nanites/affect_blood(var/mob/living/human/M, var/alien, var/removed)
 	M.take_organ_damage(2 * removed, 2 * removed)
 	M.adjustOxyLoss(4 * removed)
 	M.adjustToxLoss(2 * removed)

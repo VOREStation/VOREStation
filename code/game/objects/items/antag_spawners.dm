@@ -64,7 +64,7 @@
 
 /obj/item/weapon/antag_spawner/technomancer_apprentice/spawn_antag(client/C, turf/T)
 	sparks.start()
-	var/mob/living/carbon/human/H = new/mob/living/carbon/human(T)
+	var/mob/living/human/H = new/mob/living/human(T)
 	C.prefs.copy_to(H)
 	H.key = C.key
 

@@ -120,7 +120,7 @@
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 	return
 
-/obj/mecha/combat/gygax/serenity/moved_inside(var/mob/living/carbon/human/H as mob)
+/obj/mecha/combat/gygax/serenity/moved_inside(var/mob/living/human/H as mob)
 	if(..())
 		if(H.glasses)
 			occupant_message("<font color='red'>[H.glasses] prevent you from using [src] [hud]</font>")
@@ -133,7 +133,7 @@
 
 /obj/mecha/combat/gygax/serenity/go_out()
 	if(ishuman(occupant))
-		var/mob/living/carbon/human/H = occupant
+		var/mob/living/human/H = occupant
 		if(H.glasses == hud)
 			H.glasses = null
 			H.recalculate_vis()

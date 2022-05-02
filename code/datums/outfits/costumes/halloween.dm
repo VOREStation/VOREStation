@@ -8,7 +8,7 @@
 	suit = /obj/item/clothing/suit/storage/apron
 	r_hand = /obj/item/weapon/material/twohanded/fireaxe/foam
 
-/decl/hierarchy/outfit/costume/masked_killer/post_equip(var/mob/living/carbon/human/H)
+/decl/hierarchy/outfit/costume/masked_killer/post_equip(var/mob/living/human/H)
 	var/victim = get_mannequin(H.ckey)
 	for(var/obj/item/carried_item in H.get_equipped_items(TRUE))
 		carried_item.add_blood(victim) //Oh yes, there will be blood.. just not blood from the killer because that's odd. //If I knew how to make fake blood, I would
@@ -21,8 +21,13 @@
 	glasses = /obj/item/clothing/glasses/fakesunglasses
 	l_pocket = /obj/item/toy/sword
 
+<<<<<<< HEAD
 /decl/hierarchy/outfit/costume/professional/post_equip(var/mob/living/carbon/human/H)
 	var/obj/item/weapon/storage/briefcase/new_briefcase = new(H)
+=======
+/decl/hierarchy/outfit/costume/professional/post_equip(var/mob/living/human/H)
+	var/obj/item/storage/briefcase/new_briefcase = new(H)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	for(var/obj/item/briefcase_item in new_briefcase)
 		qdel(briefcase_item)
 	new_briefcase.contents += new /obj/item/weapon/gun/projectile/pistol/toy
@@ -40,7 +45,7 @@
 	head = /obj/item/clothing/head/beret
 	r_hand = /obj/item/weapon/gun/projectile/revolver/capgun
 
-/decl/hierarchy/outfit/costume/horrorcop/post_equip(var/mob/living/carbon/human/H)
+/decl/hierarchy/outfit/costume/horrorcop/post_equip(var/mob/living/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
 	if(LAZYLEN(U.accessories))
 		for(var/obj/item/clothing/accessory/A in U.accessories)
@@ -57,7 +62,7 @@
 	suit = /obj/item/clothing/accessory/poncho
 	r_hand = /obj/item/weapon/gun/projectile/revolver/capgun
 
-/decl/hierarchy/outfit/costume/cowboy/post_equip(var/mob/living/carbon/human/H)
+/decl/hierarchy/outfit/costume/cowboy/post_equip(var/mob/living/human/H)
 	var/obj/item/clothing/under/U = H.w_uniform
 	if(LAZYLEN(U.accessories))
 		for(var/obj/item/clothing/accessory/A in U.accessories)

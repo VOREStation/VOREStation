@@ -65,7 +65,7 @@ var/global/list/image/splatter_cache=list()
 		name = initial(name)
 		desc = initial(desc)
 
-/obj/effect/decal/cleanable/blood/Crossed(mob/living/carbon/human/perp)
+/obj/effect/decal/cleanable/blood/Crossed(mob/living/human/perp)
 	if(perp.is_incorporeal())
 		return
 	if (!istype(perp))
@@ -113,7 +113,7 @@ var/global/list/image/splatter_cache=list()
 	color = adjust_brightness(color, -50)
 	amount = 0
 
-/obj/effect/decal/cleanable/blood/attack_hand(mob/living/carbon/human/user)
+/obj/effect/decal/cleanable/blood/attack_hand(mob/living/human/user)
 	..()
 	if (amount && istype(user))
 		add_fingerprint(user)
@@ -128,7 +128,7 @@ var/global/list/image/splatter_cache=list()
 		user.bloody_hands += taken
 		user.hand_blood_color = basecolor
 		user.update_inv_gloves(1)
-		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
+		user.verbs += /mob/living/human/proc/bloody_doodle
 
 /obj/effect/decal/cleanable/blood/splatter
         random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")

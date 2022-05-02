@@ -43,7 +43,7 @@
 
 
 /datum/event2/event/virus/set_up()
-	for(var/mob/living/carbon/human/H in player_list)
+	for(var/mob/living/human/H in player_list)
 		if(H.client && !H.isSynthetic() && H.stat != DEAD && !player_is_antag(H.mind))
 			candidates += H
 	candidates = shuffle(candidates)
@@ -59,7 +59,7 @@
 		return
 
 	for(var/i = 1 to number_of_viruses)
-		var/mob/living/carbon/human/H = LAZYACCESS(candidates, 1)
+		var/mob/living/human/H = LAZYACCESS(candidates, 1)
 		if(!H)
 			return
 		var/datum/disease2/disease/D = new()

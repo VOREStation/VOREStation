@@ -3,7 +3,7 @@
 
 	var/startOxyloss
 	var/endOxyloss
-	var/mob/living/carbon/human/H
+	var/mob/living/human/H
 	async = 1
 
 /datum/unit_test/space_suffocation/start_test()
@@ -48,7 +48,7 @@
 /datum/unit_test/modifier
 	name = "modifier test template"
 	var/mob/living/subject = null
-	var/subject_type = /mob/living/carbon/human
+	var/subject_type = /mob/living/human
 	var/list/inputs = list(1.00, 0.75, 0.50, 0.25, 0.00, -0.50, -1.0, -2.0)
 	var/list/expected_outputs = list(1.00, 0.75, 0.50, 0.25, 0.00, -0.50, -1.0, -2.0)
 	var/datum/modifier/test_modifier = null

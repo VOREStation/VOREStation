@@ -9,7 +9,11 @@
 
 	toolspeed = 2 //It is now used in surgery as a not awful, but probably dangerous option, due to speed.
 
+<<<<<<< HEAD
 /obj/item/weapon/tape_roll/proc/can_place(var/mob/living/carbon/human/H, var/mob/user)
+=======
+/obj/item/tape_roll/proc/can_place(var/mob/living/human/H, var/mob/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(istype(user, /mob/living/silicon/robot) || user == H)
 		return TRUE
 
@@ -19,7 +23,11 @@
 			
 	return FALSE
 
+<<<<<<< HEAD
 /obj/item/weapon/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
+=======
+/obj/item/tape_roll/attack(var/mob/living/human/H, var/mob/user)
+>>>>>>> 666428014d2... Merge pull request #8546 from Atermonera/surgery_refactor
 	if(istype(H))
 		if(user.a_intent == I_HELP)
 			return

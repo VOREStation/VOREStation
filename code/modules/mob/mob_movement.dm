@@ -42,14 +42,14 @@
 			return
 		if(SOUTHWEST)
 			if(isliving(usr))
-				var/mob/living/carbon/C = usr
+				var/mob/living/human/C = usr
 				C.toggle_throw_mode()
 			else
 				to_chat(usr, "<font color='red'>This mob type cannot throw items.</font>")
 			return
 		if(NORTHWEST)
 			if(isliving(usr))
-				var/mob/living/carbon/C = usr
+				var/mob/living/human/C = usr
 				if(!C.get_active_hand())
 					if(C.pulling)
 						C.stop_pulling()
@@ -91,7 +91,7 @@
 
 /client/verb/toggle_throw_mode()
 	set hidden = 1
-	if(!istype(mob, /mob/living/carbon))
+	if(!istype(mob, /mob/living/human))
 		return
 	if (!mob.stat && isturf(mob.loc) && !mob.restrained())
 		mob:toggle_throw_mode()
@@ -256,7 +256,7 @@
 			total_delay += 3
 		else if(istype(my_mob.buckled, /obj/structure/bed/chair/wheelchair))
 			if(ishuman(my_mob))
-				var/mob/living/carbon/human/driver = my_mob
+				var/mob/living/human/driver = my_mob
 				var/obj/item/organ/external/l_hand = driver.get_organ("l_hand")
 				var/obj/item/organ/external/r_hand = driver.get_organ("r_hand")
 				if((!l_hand || l_hand.is_stump()) && (!r_hand || r_hand.is_stump()))

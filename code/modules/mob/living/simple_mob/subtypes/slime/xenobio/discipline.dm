@@ -12,7 +12,7 @@
 /mob/living/simple_mob/slime/xenobio/proc/is_justified_to_discipline()
 	if(victim) // Punish if eating someone that isn't a monkey.
 		if(ishuman(victim))
-			var/mob/living/carbon/human/H = victim
+			var/mob/living/human/H = victim
 			if(istype(H.species, /datum/species/monkey))
 				return FALSE
 		return TRUE
