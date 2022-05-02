@@ -75,7 +75,7 @@
 	if(on && !client && !busy && !paicard)
 		spawn(0)
 			handleAI()
-
+/*
 /mob/living/bot/examine(mob/user)
 	. = ..()
 	if(health < maxHealth)
@@ -86,13 +86,13 @@
 	else
 		. += "[src] is in pristine condition."
 	. += span_notice("Its maintenance panel is [open ? "open" : "closed"].")
-	. += span_info("You can use a <b>screwdriver</b> to [open ? "close" : "open"] it."))
+	. += span_info("You can use a <b>screwdriver</b> to [open ? "close" : "open"] it.")
 	. += span_notice("Its control panel is [locked ? "locked" : "unlocked"].")
 	if(paicard)
 		. += span_notice("It has a pAI device installed.")
 		if(open)
-			. += span_info("You can use a <b>crowbar</b> to remove it."))
-
+			. += span_info("You can use a <b>crowbar</b> to remove it.")
+*/
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
 		health = getMaxHealth()
@@ -229,12 +229,13 @@
 				if(LAZYLEN(can_go))
 					if(step_towards(src, pick(can_go)))
 						return
-			if((locate(/mob/living/bot) in loc) && !pulledby) // Same as above, but we also don't want to have bots ontop of bots. Cleanbots shouldn't stack >:(
-				var/turf/my_turf = get_turf(src)
-				var/list/can_go = my_turf.CardinalTurfsWithAccess(botcard)
-				if(LAZYLEN(can_go))
-					if(step_towards(src, pick(can_go)))
-						return
+			for(var/mob in loc)
+				if(istype(mob, /mob/living/bot) && mob != src) // Same as above, but we also don't want to have bots ontop of bots. Cleanbots shouldn't stack >:(
+					var/turf/my_turf = get_turf(src)
+					var/list/can_go = my_turf.CardinalTurfsWithAccess(botcard)
+					if(LAZYLEN(can_go))
+						if(step_towards(src, pick(can_go)))
+							return
 			handleIdle()
 
 /mob/living/bot/proc/handleRegular()

@@ -183,7 +183,7 @@
 		return
 	else if(istype(O, /obj/item/device/paicard))
 		if(!paicard)
-			insertpai(user)
+			insertpai(user, O)
 	else
 		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [O].</span>")
 	..()
@@ -646,6 +646,7 @@
 	paicard = card
 	user.unEquip(card)
 	card.forceMove(src)
+	AI.client.eye = src
 	//src.ckey = AI.ckey
 	name = AI.name
 	//ooc_notes = AI.ooc_notes
@@ -656,8 +657,9 @@
 		var/mob/living/silicon/pai/AI = paicard.pai
 		//AI.ckey = src.ckey
 		paicard.forceMove(src.loc)
+		AI.client.eye = AI
 		paicard = null
 		name = initial(src.name)
-			to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
+		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
 		if(user)
 			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
