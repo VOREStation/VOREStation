@@ -128,7 +128,7 @@
 /mob/living/bot/secbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return
-	
+
 	add_fingerprint(usr)
 
 	switch(action)
@@ -362,6 +362,7 @@
 		S.slimebatoned(src, xeno_stun_strength)
 
 /mob/living/bot/secbot/explode()
+	. = ..()
 	visible_message("<span class='warning'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
@@ -379,7 +380,8 @@
 	s.start()
 
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
-	qdel(src)
+	//qdel(src)
+	return
 
 /mob/living/bot/secbot/proc/target_name(mob/living/T)
 	if(ishuman(T))

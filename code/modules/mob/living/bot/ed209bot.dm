@@ -27,6 +27,7 @@
 		icon_state = "ed209[on]"
 
 /mob/living/bot/secbot/ed209/explode()
+	. = ..()
 	visible_message("<span class='warning'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
@@ -49,7 +50,7 @@
 	s.start()
 
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
-	qdel(src)
+	return//qdel(src)
 
 /mob/living/bot/secbot/ed209/handleRangedTarget()
 	RangedAttack(target)

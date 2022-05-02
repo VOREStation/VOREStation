@@ -269,6 +269,7 @@
 				tank.reagents.splash(A, 100)
 
 /mob/living/bot/farmbot/explode()
+	. = ..()
 	visible_message("<span class='danger'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
@@ -286,7 +287,7 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	//qdel(src)
 	return
 
 

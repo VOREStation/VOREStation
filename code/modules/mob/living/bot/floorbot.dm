@@ -42,7 +42,7 @@
 	data["on"] = on
 	data["open"] = open
 	data["locked"] = locked
-	
+
 	data["vocal"] = vocal
 	data["amount"] = amount
 
@@ -75,7 +75,7 @@
 /mob/living/bot/floorbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	add_fingerprint(src)
 
 	switch(action)
@@ -85,7 +85,7 @@
 			else
 				turn_on()
 			. = TRUE
-	
+
 	if(locked && !issilicon(usr))
 		return
 
@@ -288,6 +288,7 @@
 					addTiles(4)
 
 /mob/living/bot/floorbot/explode()
+	. = ..()
 	turn_off()
 	visible_message("<span class='danger'>\The [src] blows apart!</span>")
 	playsound(src, "sparks", 50, 1)
@@ -302,7 +303,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	//qdel(src)
+	return
 
 /mob/living/bot/floorbot/proc/addTiles(var/am)
 	amount += am
