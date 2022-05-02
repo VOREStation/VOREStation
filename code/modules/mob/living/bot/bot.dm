@@ -162,8 +162,10 @@
 		else
 			to_chat(user, span_notice("You must open the panel first!"))
 	else if(O.is_crowbar())
-		if(open)
-			ejectpai(user)
+		if(open && paicard)
+			to_chat(user, span_notice("You are attempting to remove the pAI.."))
+			if(do_after(user,10 * O.toolspeed))
+				ejectpai(user)
 	else
 		..()
 

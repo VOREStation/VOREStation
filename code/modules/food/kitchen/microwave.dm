@@ -633,5 +633,7 @@
 	workingList -= circuit
 	if(paicard)
 		workingList -= paicard
+	for(var/M in workingList)
+		if(istype(M, circuit)) // I know not why we need this check, all I know is if we don't circuits will be added to microwave components after construction.
+			workingList -= M
 	return workingList
-
