@@ -76,6 +76,23 @@
 		spawn(0)
 			handleAI()
 
+/mob/living/bot/examine(mob/user)
+	. = ..()
+	if(health < maxHealth)
+		if(health > maxHealth/3)
+			. += "[src]'s parts look loose."
+		else
+			. += "[src]'s parts look very loose!"
+	else
+		. += "[src] is in pristine condition."
+	. += span_notice("Its maintenance panel is [open ? "open" : "closed"].")
+	. += span_info("You can use a <b>screwdriver</b> to [open ? "close" : "open"] it."))
+	. += span_notice("Its control panel is [locked ? "locked" : "unlocked"].")
+	if(paicard)
+		. += span_notice("It has a pAI device installed.")
+		if(open)
+			. += span_info("You can use a <b>crowbar</b> to remove it."))
+
 /mob/living/bot/updatehealth()
 	if(status_flags & GODMODE)
 		health = getMaxHealth()
@@ -144,6 +161,9 @@
 			to_chat(user, span_notice("You slot the card into \the [initial(src.name)]."))
 		else
 			to_chat(user, span_notice("You must open the panel first!"))
+	else if(O.is_crowbar())
+		if(open)
+			ejectpai(user)
 	else
 		..()
 
@@ -204,6 +224,12 @@
 				startPatrol()
 		else
 			if((locate(/obj/machinery/door) in loc) && !pulledby) //Don't hang around blocking doors, but don't run off if someone tries to pull us through one.
+				var/turf/my_turf = get_turf(src)
+				var/list/can_go = my_turf.CardinalTurfsWithAccess(botcard)
+				if(LAZYLEN(can_go))
+					if(step_towards(src, pick(can_go)))
+						return
+			if((locate(/mob/living/bot) in loc) && !pulledby) // Same as above, but we also don't want to have bots ontop of bots. Cleanbots shouldn't stack >:(
 				var/turf/my_turf = get_turf(src)
 				var/list/can_go = my_turf.CardinalTurfsWithAccess(botcard)
 				if(LAZYLEN(can_go))
@@ -489,18 +515,6 @@
 		if(user)
 			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
 
-/mob/living/bot/verb/eject()
-	set name = "Eject pAI"
-	set category = "Object"
-	set src in oview(1)
-
-	if(usr.stat) return
-
-	if(open)
-		ejectpai(usr)
-	else
-		to_chat(usr, span_notice("You must open the panel first!"))
-
 /mob/living/bot/verb/bot_nom(var/mob/living/T in oview(1))
 	set name = "Bot Nom"
 	set category = "Bot Commands"
@@ -516,3 +530,7 @@
 	set desc = "Eject your card, return to smole."
 
 	return ejectpai()
+
+/mob/living/bot/Login()
+	no_vore = FALSE // ROBOT VORE
+	init_vore() // ROBOT VORE

@@ -14,6 +14,7 @@
 	clickvol = "30"
 	flags = OPENCONTAINER | NOREACT
 	circuit = /obj/item/weapon/circuitboard/microwave
+	var/obj/item/device/paicard/paicard = null
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -22,7 +23,7 @@
 	var/global/list/acceptable_items // List of the items you can put in
 	var/global/list/available_recipes // List of the recipes you can use
 	var/global/list/acceptable_reagents // List of the reagents you can put in
-	
+
 	var/global/max_n_of_items = 20
 	var/appliancetype = MICROWAVE
 	var/datum/looping_sound/microwave/soundloop
@@ -36,7 +37,7 @@
 
 /obj/machinery/microwave/Initialize()
 	. = ..()
-	
+
 	reagents = new/datum/reagents(100)
 	reagents.my_atom = src
 
@@ -47,7 +48,7 @@
 		for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
 			if((initial(typepath.appliance) & appliancetype))
 				available_recipes += new typepath
-		
+
 		acceptable_items = new
 		acceptable_reagents = new
 		for (var/datum/recipe/recipe in available_recipes)
@@ -180,6 +181,9 @@
 				to_chat(user, "<span class='notice'>You decide not to do that.</span>")
 	else if(default_part_replacement(user, O))
 		return
+	else if(istype(O, /obj/item/device/paicard))
+		if(!paicard)
+			insertpai(user)
 	else
 		to_chat(user, "<span class='warning'>You have no idea what you can cook with this [O].</span>")
 	..()
@@ -192,6 +196,10 @@
 	attack_hand(user)
 
 /obj/machinery/microwave/attack_hand(mob/user as mob)
+	if(user.a_intent == I_GRAB)
+		if(paicard)
+			ejectpai(user)
+			return
 	user.set_machine(src)
 	tgui_interact(user)
 
@@ -211,7 +219,7 @@
 	data["operating"] = operating
 	data["dirty"] = dirty == 100
 	data["items"] = get_items_list()
-	
+
 	return data
 
 /obj/machinery/microwave/proc/get_items_list()
@@ -220,6 +228,11 @@
 	var/list/items_counts = list()
 	var/list/items_measures = list()
 	var/list/items_measures_p = list()
+	var/list/working_list = contents
+	working_list -= component_parts
+	working_list -= circuit
+	if(paicard)
+		working_list -= paicard
 	for(var/obj/O in ((contents - component_parts) - circuit))
 		var/display_name = O.name
 		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
@@ -283,7 +296,7 @@
 		if("dispose")
 			dispose()
 			return TRUE
-/*	
+/*
 /obj/machinery/microwave/interact(mob/user as mob) // The microwave Menu
 	var/dat = ""
 	if(src.broken > 0)
@@ -390,7 +403,7 @@
 			cooked = fail()
 			cooked.forceMove(src.loc)
 		return
-		
+
 	//Making multiple copies of a recipe
 	var/halftime = round(recipe.time*4/10/2) // VOREStation Edit - Quicker Microwaves (Undone during Auroraport, left note in case of reversion, was round(recipe.time/20/2))
 	if(!wzhzhzh(halftime))
@@ -483,7 +496,7 @@
 		icon_state = "mw"
 	SStgui.update_uis(src)
 	soundloop.stop()
-	
+
 /obj/machinery/microwave/proc/stop()
 	playsound(src.loc, 'sound/machines/ding.ogg', 50, 1)
 	operating = FALSE // Turn it off again aferwards
@@ -558,7 +571,7 @@
 
 	if(!do_after(usr, 1 SECONDS, target = src))
 		return
-	
+
 	if(operating)
 		to_chat(usr, "<span class='warning'>You can't do that, [src] door is locked!</span>")
 		return
@@ -594,7 +607,7 @@
 		/obj/item/weapon/holder
 	)
 	result = /obj/effect/decal/cleanable/blood/gibs
-	
+
 /datum/recipe/splat/before_cook(obj/container)
 	if(istype(container, /obj/machinery/microwave))
 		var/obj/machinery/microwave/M = container
@@ -617,3 +630,34 @@
 		var/obj/machinery/microwave/M = container
 		M.muck_finish()
 	.  = ..()
+
+//VoreEdit, Living Microwave. Living Microwave.
+/obj/machinery/microwave/proc/insertpai(mob/user, obj/item/device/paicard/card)
+	//var/obj/item/paicard/card = I
+	var/mob/living/silicon/pai/AI = card.pai
+	if(paicard)
+		to_chat(user, span_notice("This bot is already under PAI Control!"))
+		return
+	if(!istype(card)) // TODO: Add sleevecard support.
+		return
+	if(!card.pai)
+		to_chat(user, span_notice("This card does not currently have a personality!"))
+		return
+	paicard = card
+	user.unEquip(card)
+	card.forceMove(src)
+	//src.ckey = AI.ckey
+	name = AI.name
+	//ooc_notes = AI.ooc_notes
+	to_chat(src, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
+
+/obj/machinery/microwave/proc/ejectpai(mob/user)
+	if(paicard)
+		var/mob/living/silicon/pai/AI = paicard.pai
+		//AI.ckey = src.ckey
+		paicard.forceMove(src.loc)
+		paicard = null
+		name = initial(src.name)
+			to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
+		if(user)
+			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
