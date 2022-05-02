@@ -50,7 +50,6 @@
 		src.explode()
 
 /mob/living/bot/cleanbot/edCLN/explode()
-	. = ..()
 	on = 0
 	visible_message("<span class='danger'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
@@ -70,7 +69,7 @@
 	s.set_up(3, 1, src)
 	s.start()
 	//qdel(src)
-	return
+	return ..()
 
 /mob/living/bot/cleanbot/edCLN/tgui_data(mob/user)
 	var/list/data = ..()

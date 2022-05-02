@@ -288,7 +288,6 @@
 					addTiles(4)
 
 /mob/living/bot/floorbot/explode()
-	. = ..()
 	turn_off()
 	visible_message("<span class='danger'>\The [src] blows apart!</span>")
 	playsound(src, "sparks", 50, 1)
@@ -304,7 +303,7 @@
 	s.set_up(3, 1, src)
 	s.start()
 	//qdel(src)
-	return
+	return ..()
 
 /mob/living/bot/floorbot/proc/addTiles(var/am)
 	amount += am
