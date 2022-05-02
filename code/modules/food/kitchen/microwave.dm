@@ -540,6 +540,7 @@
 	src.operating = 0 // Turn it off again aferwards
 	SStgui.update_uis(src)
 	soundloop.stop()
+	src.ejectpai() // If it broke, time to yeet the PAI.
 
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
@@ -648,9 +649,11 @@
 	card.forceMove(src)
 	AI.client.eye = src
 	//src.ckey = AI.ckey
+	get_items_list()
+	to_chat(AI, span_notice("Your location is [AI.loc]."))
 	name = AI.name
 	//ooc_notes = AI.ooc_notes
-	to_chat(src, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
+	to_chat(AI, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
 
 /obj/machinery/microwave/proc/ejectpai(mob/user)
 	if(paicard)
