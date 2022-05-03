@@ -200,6 +200,7 @@
 					prob(2);/obj/item/toy/tennis/cyan,
 					prob(2);/obj/item/toy/tennis/blue,
 					prob(2);/obj/item/toy/tennis/purple,
+					prob(1);/obj/item/toy/baseball,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
 					prob(1);/obj/item/clothing/glasses/sunglasses/bigshot,
 					prob(1);/obj/item/clothing/glasses/welding,
