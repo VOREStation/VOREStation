@@ -139,7 +139,11 @@
 			var/image/fruit_leaves = image('icons/obj/hydroponics_products.dmi',"[seed.get_trait(TRAIT_PRODUCT_ICON)]-leaf")
 			fruit_leaves.color = "[seed.get_trait(TRAIT_PLANT_COLOUR)]"
 			plant_icon.add_overlay(fruit_leaves)
+<<<<<<< HEAD
 		SSplants.plant_icon_cache[icon_key] = plant_icon
+=======
+		plant_controller.plant_icon_cache[icon_key] = plant_icon
+>>>>>>> e8ba7fab21e... Merge pull request #8596 from Atermonera/leaf_me_alone
 	add_overlay(plant_icon)
 
 /obj/item/weapon/reagent_containers/food/snacks/grown/Crossed(var/mob/living/M)
