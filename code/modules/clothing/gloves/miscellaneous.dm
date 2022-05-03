@@ -136,6 +136,10 @@
 	drop_sound = 'sound/items/drop/metalboots.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
+/obj/item/clothing/gloves/knuckledusters/Initialize()
+	. = ..()
+	icon_state = "knuckledusters[rand(0,1)]"
+
 /obj/item/clothing/gloves/ranger
 	var/glovecolor = "white"
 	name = "ranger gloves"

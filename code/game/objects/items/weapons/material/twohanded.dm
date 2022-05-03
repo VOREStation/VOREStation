@@ -86,7 +86,7 @@
 	base_icon = "fireaxe"
 	name = "fire axe"
 	desc = "Truly, the weapon of a madman. Who would think to fight fire with an axe?"
-	description_info = "This weapon can cleave, striking nearby lesser, hostile enemies close to the primary target.  It must be held in both hands to do this."
+	description_info = "This weapon can cleave, striking nearby lesser, hostile enemies close to the primary target. It must be held in both hands to do this."
 	unwielded_force_divisor = 0.25
 	force_divisor = 0.7 // 10/42 with hardness 60 (steel) and 0.25 unwielded divisor
 	dulled_divisor = 0.75	//Still metal on a stick
@@ -192,3 +192,84 @@
 
 /obj/item/weapon/material/twohanded/spear/flint
 	default_material = MAT_FLINT
+
+/*
+ * Needs tweaking (or removal, this material code is god awful)
+//hammer time (funni joke)
+/obj/item/weapon/material/twohanded/sledgehammer //like the fireaxe, it has bonus damage to structures
+	name = "sledgehammer"
+	icon_state = "sledgehammer0"
+	base_icon = "sledgehammer"
+	desc = "We're all wondering the same thing. Is it a hammer made of sludge?"
+	description_info = "This weapon has a wide swinging arc, striking nearby lesser, hostile enemies close to the primary target. It must be held in both hands to do this."
+	unwielded_force_divisor = 1
+	force_divisor = 1
+	dulled_divisor = 0.75	//Still heavy metal on a stick
+	sharp = FALSE
+	edge = FALSE
+	w_class = ITEMSIZE_LARGE
+	slot_flags = null
+	force = 20
+	force_wielded = 45
+	attack_verb = list("bashed","pounded","bludgeoned","pummeled","thrashed")
+	applies_material_colour = 0
+	can_cleave = TRUE
+	drop_sound = 'sound/items/drop/axe.ogg'
+	pickup_sound = 'sound/items/pickup/axe.ogg'
+
+/obj/item/weapon/material/twohanded/sledgehammer/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+	if(!proximity) return
+	..()
+	if(A && wielded)
+		if(istype(A,/obj/structure/window))
+			var/obj/structure/window/W = A
+			W.shatter()
+		else if(istype(A,/obj/structure/grille))
+			qdel(A)
+
+/obj/item/weapon/material/twohanded/warmace
+	name = "war mace"
+	icon_state = "warhammer0"
+	base_icon = "warhammer"
+	desc = "A heavy wooden club with a turquoise head."
+	description_info = "This weapon has a wide swinging arc, striking nearby lesser, hostile enemies close to the primary target. It must be held in both hands to do this."
+	unwielded_force_divisor = 1
+	force_divisor = 1
+	dulled_divisor = 0.75	//Still a big rock on a stick
+	sharp = FALSE
+	edge = FALSE
+	w_class = ITEMSIZE_LARGE
+	slot_flags = null
+	force = 20
+	force_wielded = 40
+	attack_verb = list("bashed","pounded","bludgeoned","pummeled","thrashed")
+	applies_material_colour = 0
+	can_cleave = TRUE
+	default_material = MAT_WOOD
+	hitsound = 'sound/weapons/genhit3.ogg'
+	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
+
+/obj/item/weapon/material/twohanded/shamanstaff
+	name = "tribal staff"
+	icon_state = "shamenstaff0"
+	base_icon = "shamenstaff"
+	desc = "An intricate staff, carried for centuries by important members of the tribe."
+	description_info = "This weapon has a wide swinging arc, striking nearby lesser, hostile enemies close to the primary target. It must be held in both hands to do this."
+	unwielded_force_divisor = 1
+	force_divisor = 1
+	dulled_divisor = 0.5	//Still heavy metal on a stick
+	sharp = FALSE
+	edge = FALSE
+	w_class = ITEMSIZE_LARGE
+	slot_flags = null
+	force = 15
+	force_wielded = 30
+	attack_verb = list("bashed","pounded","bludgeoned","pummeled","thrashed")
+	applies_material_colour = 0
+	can_cleave = TRUE
+	default_material = MAT_WOOD
+	hitsound = 'sound/weapons/genhit3.ogg'
+	drop_sound = 'sound/items/drop/wooden.ogg'
+	pickup_sound = 'sound/items/pickup/wooden.ogg'
+*/

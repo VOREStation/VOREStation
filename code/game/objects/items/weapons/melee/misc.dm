@@ -96,3 +96,16 @@
 	new_voice.real_name = "cursed sword"
 	voice_mobs.Add(new_voice)
 	listening_objects |= src
+
+/obj/item/weapon/melee/warclub
+	name = "war club"
+	desc = "A simple carved wooden club with turquoise inlays."
+	icon_state = "warclub"
+	item_state = "warclub"
+	force = 10
+	throwforce = 5
+	w_class = ITEMSIZE_NORMAL
+	sharp = FALSE
+	edge = FALSE
+	attack_verb = list("mashed", "bashed", "hit", "bludgeoned", "whacked")
+	hitsound = 'sound/weapons/genhit3.ogg'

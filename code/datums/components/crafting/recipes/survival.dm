@@ -58,6 +58,16 @@
 	time = 60
 	category = CAT_TOOL
 
+/datum/crafting_recipe/cultivator
+	name = "bone hoe"
+	result = /obj/item/weapon/material/minihoe/bone
+	reqs = list(list(/obj/item/weapon/bone = 1),
+		list(/obj/item/stack/material/stick = 2),
+		list(/obj/item/stack/material/fiber = 2)
+	)
+	time = 80
+	category = CAT_TOOL
+
 /datum/crafting_recipe/sticks
 	name = "sticks"
 	result = /obj/item/stack/material/stick/fivestack

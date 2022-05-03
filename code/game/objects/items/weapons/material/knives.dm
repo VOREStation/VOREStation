@@ -88,12 +88,12 @@
 	name = "combat knife"
 	desc = "If only you had a boot to put it in."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife2"
+	icon_state = "trenchknife"
 	item_state = "knife"
 	force_divisor = 0.34 // 20 with hardness 60 (steel)
 	thrown_force_divisor = 1.75 // 20 with weight 20 (steel)
 	attack_verb = list("sliced", "stabbed", "chopped", "cut")
-	applies_material_colour = 1
+	applies_material_colour = 0
 
 // Identical to the tactical knife but nowhere near as stabby.
 // Kind of like the toy esword compared to the real thing.
@@ -101,9 +101,18 @@
 	name = "boot knife"
 	desc = "A small fixed-blade knife for putting inside a boot."
 	icon = 'icons/obj/weapons.dmi'
-	icon_state = "tacknife3"
+	icon_state = "tacknife2"
 	item_state = "knife"
 	force_divisor = 0.15
+	applies_material_colour = 1
+
+/obj/item/weapon/material/knife/tacknife/hunting
+	name = "hunting knife"
+	desc = "A small fixed-blade knife that's meant for cutting up fresh meats"
+	icon = 'icons/obj/weapons.dmi'
+	icon_state = "huntingknife"
+	item_state = "knife"
+	force_divisor = 0.20
 	applies_material_colour = 0
 
 /obj/item/weapon/material/knife/hook
