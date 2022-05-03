@@ -241,6 +241,7 @@
 //		icon_state = "[spell_base]_spell_ready"
 	cut_overlays()
 	icon_state = "[background_base_state]_spell_base"
+<<<<<<< HEAD
 
 	overlays += ability_icon_state
 
@@ -249,6 +250,9 @@
 //	cut_overlay("silence")
 //	if(spell.silenced)
 //		add_overlay("silence")
+=======
+	add_overlay(ability_icon_state)
+>>>>>>> 6c674321f2a... Merge pull request #8600 from Atermonera/readds_abilities
 
 /obj/screen/ability/Click()
 	if(!usr)
