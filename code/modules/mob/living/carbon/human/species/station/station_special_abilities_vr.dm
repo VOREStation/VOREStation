@@ -1050,7 +1050,8 @@
 	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
 		var/obj/item/weapon/storage/vore_egg/bugcocoon/C = new(loc)
 		forceMove(C)
-		var/datum/tgui_module/appearance_changer/V = new(src, src)
+		transforming = TRUE
+		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
 		V.tgui_interact(src)
 
 		var/mob_holder_type = src.holder_type || /obj/item/weapon/holder
