@@ -528,3 +528,13 @@
 /datum/trait/neutral/submit_to_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/proc/lend_prey_control
+
+/datum/trait/neutral/cocoon_tf
+	name = "Cocoon Spinner"
+	desc = "Allows you to build a cocoon around yourself, using it to transform your body if you desire."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/cocoon_tf/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/enter_cocoon

@@ -38,6 +38,7 @@
 	map_name = "appearance_changer_[REF(src)]_map"
 	// Initialize map objects
 	cam_screen = new
+
 	cam_screen.name = "screen"
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
@@ -407,6 +408,11 @@
 	return data
 
 /datum/tgui_module/appearance_changer/proc/update_active_camera_screen()
+	cam_screen.vis_contents = list(owner) // Copied from the vore version.
+	cam_background.icon_state = "clear"
+	cam_background.fill_rect(1, 1, 1, 1)
+	local_skybox.cut_overlays()
+	/*
 	var/turf/newturf = get_turf(customize_usr ? tgui_host() : owner)
 	if(newturf == last_camera_turf)
 		return
@@ -425,6 +431,7 @@
 	local_skybox.add_overlay(SSskybox.get_skybox(get_z(newturf)))
 	local_skybox.scale_to_view(3)
 	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - newturf.x, (world.maxy>>1) - newturf.y)
+	*/
 
 /datum/tgui_module/appearance_changer/proc/update_dna()
 	var/mob/living/carbon/human/target = owner
