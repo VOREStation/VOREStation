@@ -24,7 +24,7 @@
 	var/languages=null
 	var/list/flavor=null
 	var/gender = null
-	var/list/body_descriptors = list() // An empty list works better than null.
+	var/list/body_descriptors = null // Guess we'll keep null.
 	var/list/genetic_modifiers = list() // Modifiers with the MODIFIER_GENETIC flag are saved.  Note that only the type is saved, not an instance.
 
 /datum/dna2/record/proc/GetData()
@@ -54,7 +54,8 @@
 	newrecord.implant = implant
 	newrecord.flavor = flavor
 	newrecord.gender = gender
-	newrecord.body_descriptors = body_descriptors.Copy()
+	if(body_descriptors)
+		newrecord.body_descriptors = body_descriptors.Copy()
 	newrecord.genetic_modifiers = genetic_modifiers.Copy()
 	return newrecord
 
