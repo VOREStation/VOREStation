@@ -76,9 +76,15 @@
 		return
 
 	if(ringer)
-		playsound(src, 'sound/machines/twobeep.ogg', 50, 1)
+		var/S
+		if(ttone in ttone_sound)
+			S = ttone_sound[ttone]
+		else
+			S = 'sound/machines/twobeep.ogg'
+
+		playsound(src, S, 50, 1)
 		for (var/mob/O in hearers(2, loc))
-			O.show_message(text("[bicon(src)] *beep*"))
+			O.show_message(text("[bicon(src)] *[ttone]*"))
 
 	alert_called = 1
 	update_icon()

@@ -340,6 +340,11 @@
 		if("toggle_ringer")
 			ringer = !ringer
 
+		if("set_ringer_tone")
+			var/ringtone = tgui_input_text(usr, "Set Ringer Tone", "Ringer")
+			if(ringtone)
+				ttone = ringtone
+
 		if("selfie_mode")
 			selfie_mode = !selfie_mode
 
