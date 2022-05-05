@@ -81,7 +81,7 @@
 /obj/structure/flora/proc/spawn_harvest(var/path = null, var/mob/user = null)
 	if(!ispath(path))
 		return 0
-	
+
 	var/atom/movable/AM = new path()
 	if(user)
 		user.put_in_hands(AM)
@@ -96,7 +96,7 @@
 	name = "bush"
 	icon = 'icons/obj/flora/snowflora.dmi'
 	icon_state = "snowbush1"
-	
+
 	destroy_on_harvest = TRUE
 	harvest_tool = /obj/item/weapon/material/knife
 	randomize_harvest_count = FALSE
@@ -121,13 +121,13 @@
 	name = "bush"
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "firstbush_1"
-	
+
 	destroy_on_harvest = TRUE
 	harvest_tool = /obj/item/weapon/material/knife
 	randomize_harvest_count = TRUE
 	harvest_loot = list(/obj/item/stack/material/fiber = 1)
 	min_harvests = 1
-	max_harvests = 3		
+	max_harvests = 3
 
 /obj/structure/flora/ausbushes/spawn_harvest(var/path = null, var/mob/user = null)
 	. = ..()

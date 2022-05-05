@@ -52,6 +52,12 @@
 	singular_name = "sivian overgrowth floor tile"
 	desc = "A patch of dark overgrowth like those that decorate the plains of Sif."
 
+/obj/item/stack/tile/grass/jungle
+	name = "jungle tile"
+	singular_name = "jungle floor tile"
+	desc = "A patch thick, lush grass that one would commonly see in the jungle."
+	icon_state = "tile_jungle_grass"
+
 /*
  * Wood
  */

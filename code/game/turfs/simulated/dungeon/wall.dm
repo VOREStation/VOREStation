@@ -100,3 +100,29 @@
 			if(istype(get_step(src, direction), /turf/simulated/wall/solidrock/mossyrockpoi))
 				var/turf/simulated/wall/solidrock/mossyrockpoi/M = get_step(src, direction)
 				M.update_icon()
+
+//Thick foliage. Unbreakable, no teleport (Like Mossyrock)
+
+/turf/simulated/wall/solidrock/junglewallpoi // Version for POI labyrinths. No teleporting, no breaking.
+	desc = "Thick, impassable wall of foliage that is nigh impossible to cut through."
+	var/junglewall_side = "junglewall_side"
+
+/turf/simulated/wall/solidrock/Initialize(mapload)
+	. = ..(mapload, "junglewall")
+
+/turf/simulated/wall/solidrock/junglewallpoi/update_icon(var/update_neighbors)
+	if(density)
+		var/image/I
+		for(var/i = 1 to 4)
+			I = image('icons/turf/wall_masks.dmi', "junglewall[wall_connections[i]]", dir = 1<<(i-1))
+			add_overlay(I)
+		for(var/direction in cardinal)
+			var/turf/T = get_step(src,direction)
+			if(istype(T) && !T.density)
+				add_overlay(get_cached_border(junglewall_side,direction,icon,junglewall_side))
+
+	else if(update_neighbors)
+		for(var/direction in alldirs)
+			if(istype(get_step(src, direction), /turf/simulated/wall/solidrock/junglewallpoi))
+				var/turf/simulated/wall/solidrock/junglewallpoi/M = get_step(src, direction)
+				M.update_icon()
