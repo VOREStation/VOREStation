@@ -295,7 +295,7 @@ var/list/channel_to_radio_key = new
 
 	//Handle nonverbal languages here
 	for(var/datum/multilingual_say_piece/S in message_pieces)
-		if(S.speaking.flags & NONVERBAL)
+		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
 			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
 
 	//These will contain the main receivers of the message
@@ -402,19 +402,19 @@ var/list/channel_to_radio_key = new
 		log_say(message, src)
 	return 1
 
-/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
+/mob/living/proc/say_signlang(var/message, var/verb="gestures", var/verb_understood="gestures", var/datum/language/language, var/type = 1)
 	var/turf/T = get_turf(src)
 	//We're in something, gesture to people inside the same thing
 	if(loc != T)
 		for(var/mob/M in loc)
-			M.hear_signlang(message, verb, language, src)
+			M.hear_signlang(message, verb, verb_understood, language, src, type)
 
 	//We're on a turf, gesture to visible as if we were a normal language
 	else
 		var/list/potentials = get_mobs_and_objs_in_view_fast(T, world.view)
 		var/list/mobs = potentials["mobs"]
 		for(var/mob/M as anything in mobs)
-			M.hear_signlang(message, verb, language, src)
+			M.hear_signlang(message, verb, verb_understood, language, src, type)
 		var/list/objs = potentials["objs"]
 		for(var/obj/O as anything in objs)
 			O.hear_signlang(message, verb, language, src)
