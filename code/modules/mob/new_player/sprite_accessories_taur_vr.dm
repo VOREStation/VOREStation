@@ -135,14 +135,8 @@
 	extra_overlay = "naga_markings"
 	//icon_sprite_tag = "naga2c"
 
-/datum/sprite_accessory/tail/taur/naga/alt
-	name = "Naga alt (Taur)"
-	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
-	icon_state = "altnaga_s"
-	//icon_sprite_tag = "altnaga"
-
 /datum/sprite_accessory/tail/taur/naga/alt_2c
-	name = "Naga alt dual-color (Taur)"
+	name = "Naga alt style dual-color (Taur)"
 	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
 	icon_state = "altnaga_s"
 	extra_overlay = "altnaga_markings"
