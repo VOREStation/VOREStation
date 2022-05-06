@@ -411,12 +411,24 @@ var/list/channel_to_radio_key = new
 
 	//We're on a turf, gesture to visible as if we were a normal language
 	else
+		var/low_range = FALSE
+		if(T && type == 2)			// type 2 is audible signlang. yes. sue me.
+			//Air is too thin to carry sound at all, contact speech only
+			var/datum/gas_mixture/environment = T.return_air()
+			var/pressure = environment ? environment.return_pressure() : 0
+			if(pressure < SOUND_MINIMUM_PRESSURE)
+				low_range = TRUE
+
 		var/list/potentials = get_mobs_and_objs_in_view_fast(T, world.view)
 		var/list/mobs = potentials["mobs"]
 		for(var/mob/M as anything in mobs)
+			if(low_range && !(M in range(1, src)))
+				continue
 			M.hear_signlang(message, verb, verb_understood, language, src, type)
 		var/list/objs = potentials["objs"]
 		for(var/obj/O as anything in objs)
+			if(low_range && !(O in range(1, src)))
+				continue
 			O.hear_signlang(message, verb, language, src)
 	return 1
 
