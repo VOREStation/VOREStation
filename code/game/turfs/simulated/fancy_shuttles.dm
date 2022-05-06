@@ -344,6 +344,16 @@ GLOBAL_LIST_EMPTY(fancy_shuttles)
 	icon = 'icons/turf/fancy_shuttles/delivery_preview.dmi'
 
 /**
+ * Crashed shuttle 1
+ * North facing: W:9, H:15
+ */
+/obj/effect/fancy_shuttle/crashed1
+	icon = 'icons/turf/fancy_shuttles/crashed1_preview.dmi'
+	split_file = 'icons/turf/fancy_shuttles/crashed1.dmi'
+/obj/effect/fancy_shuttle_floor_preview/crashed1
+	icon = 'icons/turf/fancy_shuttles/crashed1_preview.dmi'
+
+/**
  * Tether Cargo shuttle
  * North facing: W:8, H:12
  */
