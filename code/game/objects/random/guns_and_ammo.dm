@@ -65,6 +65,7 @@
 	icon_state = "gun"
 
 /obj/random/projectile/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(3);/obj/item/weapon/gun/projectile/automatic/wt550,
 				prob(3);/obj/item/weapon/gun/projectile/automatic/mini_uzi,
 				prob(3);/obj/item/weapon/gun/projectile/automatic/tommygun,
@@ -99,6 +100,43 @@
 				prob(4);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
 				prob(2);/obj/item/weapon/gun/projectile/silenced)
+=======
+	return pick(prob(3);/obj/item/gun/projectile/automatic/wt550,
+				prob(3);/obj/item/gun/projectile/automatic/mini_uzi,
+				prob(3);/obj/item/gun/projectile/automatic/tommygun,
+				prob(2);/obj/item/gun/projectile/automatic/c20r,
+				prob(2);/obj/item/gun/projectile/automatic/sts35,
+				prob(2);/obj/item/gun/projectile/automatic/z8,
+				prob(2);/obj/item/gun/projectile/automatic/combatsmg,
+				prob(4);/obj/item/gun/projectile/colt,
+				prob(2);/obj/item/gun/projectile/deagle,
+				prob(1);/obj/item/gun/projectile/deagle/camo,
+				prob(1);/obj/item/gun/projectile/deagle/gold,
+				prob(3);/obj/item/gun/projectile/derringer,
+				prob(1);/obj/item/gun/projectile/heavysniper,
+				prob(4);/obj/item/gun/projectile/luger,
+				prob(3);/obj/item/gun/projectile/luger/brown,
+				prob(4);/obj/item/gun/projectile/sec,
+				prob(3);/obj/item/gun/projectile/sec/wood,
+				prob(4);/obj/item/gun/projectile/p92x,
+				prob(3);/obj/item/gun/projectile/p92x/brown,
+				prob(4);/obj/item/gun/projectile/pistol,
+				prob(5);/obj/item/gun/projectile/pirate,
+				prob(2);/obj/item/gun/projectile/revolver,
+				prob(4);/obj/item/gun/projectile/revolver/deckard,
+				prob(4);/obj/item/gun/projectile/revolver/detective,
+				prob(2);/obj/item/gun/projectile/revolver/judge,
+				prob(3);/obj/item/gun/projectile/revolver/lemat,
+				prob(2);/obj/item/gun/projectile/revolver/mateba,
+				prob(4);/obj/item/gun/projectile/shotgun/doublebarrel,
+				prob(3);/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
+				prob(3);/obj/item/gun/projectile/shotgun/pump,
+				prob(2);/obj/item/gun/projectile/shotgun/pump/combat,
+				prob(4);/obj/item/gun/projectile/shotgun/pump/rifle,
+				prob(3);/obj/item/gun/projectile/shotgun/pump/rifle/lever,
+				prob(2);/obj/item/gun/projectile/shotgun/semi,
+				prob(2);/obj/item/gun/projectile/silenced)
+>>>>>>> e0e497187d9... Merge pull request #8588 from Doctress/sjorgenshotgun
 
 /obj/random/projectile/sec
 	name = "Random Security Projectile Weapon"
@@ -115,11 +153,20 @@
 	desc = "This is a random shotgun-type weapon."
 	icon_state = "gun_shotgun"
 
+<<<<<<< HEAD
 /obj/random/projectile/item_to_spawn()
 	return pick(prob(4);/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump,
 				prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat)
+=======
+/obj/random/projectile/shotgun/item_to_spawn()
+	return pick(prob(4);/obj/item/gun/projectile/shotgun/doublebarrel,
+				prob(3);/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
+				prob(3);/obj/item/gun/projectile/shotgun/pump,
+				prob(1);/obj/item/gun/projectile/shotgun/pump/combat,
+				prob(1);/obj/item/gun/projectile/shotgun/semi)
+>>>>>>> e0e497187d9... Merge pull request #8588 from Doctress/sjorgenshotgun
 
 /obj/random/handgun
 	name = "Random Handgun"
@@ -492,8 +539,17 @@
 				/obj/item/ammo_magazine/ammo_box/b12g
 			),
 			prob(1);list(
+<<<<<<< HEAD
 				/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 				/obj/item/ammo_magazine/ammo_box/b12g
+=======
+				/obj/item/gun/projectile/shotgun/pump/combat,
+				/obj/item/storage/box/shotgunammo
+			),
+			prob(1);list(
+				/obj/item/gun/projectile/shotgun/semi,
+				/obj/item/storage/box/shotgunammo
+>>>>>>> e0e497187d9... Merge pull request #8588 from Doctress/sjorgenshotgun
 			)
 		)
 

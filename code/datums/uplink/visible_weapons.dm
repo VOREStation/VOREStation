@@ -137,7 +137,16 @@
 /datum/uplink_item/item/visible_weapons/combatshotgun
 	name = "Combat Shotgun"
 	item_cost = 75
+<<<<<<< HEAD
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
+=======
+	path = /obj/item/gun/projectile/shotgun/pump/combat
+	
+/datum/uplink_item/item/visible_weapons/semishotgun
+	name = "Semi-Automatic Shotgun"
+	item_cost = 100
+	path = /obj/item/gun/projectile/shotgun/semi
+>>>>>>> e0e497187d9... Merge pull request #8588 from Doctress/sjorgenshotgun
 
 /datum/uplink_item/item/visible_weapons/leveraction
 	name = "Lever Action Rifle"
