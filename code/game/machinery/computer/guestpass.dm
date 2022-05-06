@@ -107,6 +107,9 @@
 
 
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/weapon/card/id/guest))
+		to_chat(user, "<span class='warning'>The guest pass terminal denies to accept the guest pass.</span>")
+		return
 	if(istype(I, /obj/item/weapon/card/id))
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
