@@ -46,9 +46,13 @@
 		/obj/item/device/flash,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/science/rd,
+<<<<<<< HEAD
 		/obj/item/clothing/shoes/boots/winter/science,
 		/obj/item/clothing/head/beret/science/rd,
 		/obj/item/weapon/bluespace_harpoon) //VOREStation Add
+=======
+		/obj/item/clothing/shoes/boots/winter/science)
+>>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
 
 /obj/structure/closet/secure_closet/xenoarchaeologist
 	name = "Xenoarchaeologist Locker"
@@ -60,7 +64,11 @@
 		/obj/item/clothing/suit/storage/toggle/labcoat,
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/shoes/white,
+<<<<<<< HEAD
 		/obj/item/weapon/melee/umbrella, // vorestation addition,
+=======
+		/obj/item/melee/umbrella,
+>>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
 		/obj/item/clothing/glasses/science,
 		/obj/item/device/radio/headset/headset_sci,
 		/obj/item/weapon/storage/belt/archaeology,
@@ -81,8 +89,16 @@
 		/obj/item/device/beacon_locator,
 		/obj/item/device/radio/beacon,
 		/obj/item/clothing/glasses/meson,
+<<<<<<< HEAD
 		/obj/item/weapon/pickaxe,
 		/obj/item/device/measuring_tape,
 		/obj/item/weapon/pickaxe/hand,
 		/obj/item/weapon/storage/bag/fossils,
 		/obj/item/weapon/hand_labeler)
+=======
+		/obj/item/pickaxe,
+		/obj/item/measuring_tape,
+		/obj/item/pickaxe/hand,
+		/obj/item/storage/bag/fossils,
+		/obj/item/hand_labeler)
+>>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers

@@ -47,7 +47,10 @@
 		/obj/item/clothing/head/soft,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/cargo/qm,
+<<<<<<< HEAD
 		/obj/item/clothing/head/beret/qm,
+=======
+>>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
 		/obj/item/clothing/shoes/boots/winter/supply)
 
 /obj/structure/closet/secure_closet/quartermaster/Initialize()

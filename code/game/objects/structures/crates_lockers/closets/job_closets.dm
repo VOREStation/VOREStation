@@ -33,6 +33,7 @@
 		/obj/item/clothing/under/sl_suit = 2,
 		/obj/item/clothing/under/rank/bartender = 2,
 		/obj/item/clothing/under/rank/bartender/skirt,
+		/obj/item/clothing/suit/storage/hooded/wintercoat/bar,
 		/obj/item/clothing/under/dress/dress_saloon,
 		/obj/item/clothing/accessory/wcoat = 2,
 		/obj/item/clothing/shoes/black = 2,
@@ -68,8 +69,14 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/janitor,
 		/obj/item/clothing/under/dress/maid/janitor,
+<<<<<<< HEAD
 		/obj/item/device/radio/headset/headset_service,
 		/obj/item/weapon/cartridge/janitor,
+=======
+		/obj/item/clothing/suit/storage/hooded/wintercoat/janitor,
+		/obj/item/radio/headset/headset_service,
+		/obj/item/cartridge/janitor,
+>>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/head/soft/purple,
 		/obj/item/clothing/head/beret/purple,
@@ -108,6 +115,7 @@
 		/obj/item/clothing/glasses/sunglasses/big = 2,
 		/obj/item/clothing/under/lawyer/blue = 2,
 		/obj/item/clothing/under/lawyer/blue/skirt = 2,
+<<<<<<< HEAD
 		/obj/item/device/tape/random = 2
 		)
 
@@ -128,3 +136,6 @@
 		/obj/item/weapon/storage/box/mousetraps = 1,
 		/obj/item/weapon/grenade/chem_grenade/cleaner = 4
 		)
+=======
+		/obj/item/tape/random = 2)
+>>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
