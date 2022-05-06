@@ -177,6 +177,11 @@ var/last_chew = 0
 /obj/item/weapon/handcuffs/cable/white
 	color = "#FFFFFF"
 
+/obj/item/weapon/handcuffs/cable/plantfiber
+	name = "rope bindings"
+	desc = "A length of rope fashioned to hold someone's hands together."
+	color = "#7e6442"
+
 /obj/item/weapon/handcuffs/cyborg
 	dispenser = 1
 
@@ -288,50 +293,56 @@ var/last_chew = 0
 			if(user.hud_used && user.hud_used.move_intent)
 				user.hud_used.move_intent.icon_state = "walking"
 
-
+//Bola
 /obj/item/weapon/handcuffs/legcuffs/bola
 	name = "bola"
-	desc = "Keeps prey in line."
+	desc = "A restraining device designed to be thrown at the target. Upon connecting with said target, it will wrap around their legs, making it difficult for them to move quickly."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "bola"
 	elastic = 1
 	use_time = 0
-	breakouttime = 30
+	breakouttime = 35 //easy to apply, easy to break out of
+	cuff_type = "bola"
 	cuff_sound = 'sound/weapons/towelwipe.ogg' //Is there anything this sound can't do?
+
+/obj/item/weapon/handcuffs/legcuffs/bola/throw_at(atom/target, range, speed, mob/thrower, spin=1, diagonals_first = 0, datum/callback/callback)
+	if(!..())
+		return
+	playsound(src.loc,'sound/weapons/bolathrow.ogg', 75, 1)
 
 /obj/item/weapon/handcuffs/legcuffs/bola/can_place(var/mob/target, var/mob/user)
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
-/obj/item/weapon/handcuffs/legcuffs/bola/dropped()
-	visible_message("<b>\The [src]</b> falls apart!")
-	qdel(src)
+/obj/item/weapon/handcuffs/legcuffs/bola/throw_impact(atom/hit_atom, datum/thrownthing/throwingdatum)
+	if(..() || !iscarbon(hit_atom))//if it gets caught or the target can't be cuffed,
+		return//abort
+	ensnare(hit_atom)
 
-/obj/item/weapon/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)
-	playsound(src, cuff_sound, 30, 1, -2)
+/obj/item/weapon/handcuffs/legcuffs/bola/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_legcuffed_str)
+		return "bola1"
 
-	var/mob/living/carbon/human/H = target
-	if(!istype(H))
-		src.dropped()
-		return 0
+	return ..()
 
-	if(!H.has_organ_for_slot(slot_legcuffed))
-		H.visible_message("<b>\The [src]</b> slams into [H], but slides off!")
-		src.dropped()
-		return 0
+/obj/item/weapon/handcuffs/legcuffs/bola/proc/ensnare(mob/living/carbon/C)
+	if(!C.legcuffed)
+		visible_message("<span class='danger'>\The [src] ensnares [C]!</span>")
+		C.legcuffed = src
+		forceMove(C)
+		C.Weaken(25)
+		C.update_inv_legcuffed()
+		to_chat(C, "<span class='userdanger'>\The [src] ensnares you!</span>")
+		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
 
-	H.visible_message("<span class='danger'>\The [H] has been snared by \the [src]!</span>")
+/obj/item/weapon/handcuffs/legcuffs/bola/cable
+	name = "cable bola"
+	desc = "A crappy version of the classic bola made from cable and scrap. It works, but only for a bit."
+	icon_state = "bolac"
+	breakouttime = 15 //crappy bola gets easier breakout time
 
-	// Apply cuffs.
-	var/obj/item/weapon/handcuffs/legcuffs/lcuffs = src
-	lcuffs.loc = target
-	target.legcuffed = lcuffs
-	target.update_inv_legcuffed()
-	if(target.m_intent != "walk")
-		target.m_intent = "walk"
-		if(target.hud_used && user.hud_used.move_intent)
-			target.hud_used.move_intent.icon_state = "walking"
-	return 1
+/obj/item/weapon/handcuffs/legcuffs/bola/cable/get_worn_icon_state(var/slot_name)
+	if(slot_name == slot_legcuffed_str)
+		return "bolac1"
 
-/obj/item/weapon/handcuffs/cable/plantfiber
-	name = "rope bindings"
-	desc = "A length of rope fashioned to hold someone's hands together."
-	color = "#7e6442"
+	return ..()

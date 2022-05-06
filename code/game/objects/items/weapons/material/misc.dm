@@ -72,6 +72,11 @@
 	w_class = ITEMSIZE_SMALL
 	attack_verb = list("slashed", "sliced", "cut", "clawed")
 
+/obj/item/weapon/material/minihoe/bone
+	name = "bone hoe"
+	desc = "A primitive tool for removing weeds or scratching that pesky itch."
+	icon_state = "cultivator"
+
 /obj/item/weapon/material/snow/snowball
 	name = "loose packed snowball"
 	desc = "A fun snowball. Throw it at your friends!"
@@ -216,8 +221,8 @@
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 
 /obj/item/weapon/material/knife/machete/hatchet/stone
-	name = "hatchet"
-	desc = "A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood."
+	name = "primitive hatchet"
+	desc = "A knapped stone blade mounted on wooden handle that is used for chopping things, including wood."
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "stone_wood_axe"
 	default_material = MAT_FLINT
@@ -226,3 +231,4 @@
 
 /obj/item/weapon/material/knife/machete/hatchet/stone/bone
 	icon_state = "stone_bone_axe"
+	desc = "A knapped stone blade mounted on bone handle that is used for chopping things, including wood."

@@ -147,8 +147,9 @@
 	return pick(prob(10);/obj/item/poster,\
 				prob(8);/obj/item/weapon/haircomb,\
 				prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol,\
-				prob(6);/obj/item/weapon/material/butterflyblade,\
+				prob(6);/obj/item/weapon/material/knifeblade,\
 				prob(6);/obj/item/weapon/material/butterflyhandle,\
+				prob(6);/obj/item/weapon/material/switchbladehandle,\
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,\
 				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,\
 				prob(4);/obj/item/weapon/material/butterfly,\
