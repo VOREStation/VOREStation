@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "recommendations": [
 		"gbasood.byond-dm-language-support",
@@ -12,3 +13,12 @@
 		"icrawl.discord-vscode"
 	]
 }
+=======
+{
+  "recommendations": [
+    "gbasood.byond-dm-language-support",
+    "platymuus.dm-langclient",
+    "eamodio.gitlens"
+  ]
+}
+>>>>>>> b7d8d4050fb... Merge pull request #8620 from Spookerton/spkrtn/sys/editor-config-pls
