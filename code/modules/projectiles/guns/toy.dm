@@ -55,6 +55,19 @@
 	recoil = null //it's a toy
 
 /*
+ * Moist Nugget
+ */
+/obj/item/weapon/gun/projectile/shotgun/pump/toy/moistnugget
+	name = "\improper Donk-Soft mosin-nagant"
+	desc = "Donk-Soft foam mosin-nagant! It's Donk or Don't! Ages 8 and up."
+	description_fluff = "A special Donk-Soft rifle originally made to pair with a Soviet Soldier costume. It didn't catch on quite as well as other Donk-Soft products."
+	icon = 'icons/obj/gun_toy.dmi'
+	icon_state = "moistnugget"
+	item_state = "moistnugget"
+	max_shells = 5
+	matter = list(MAT_PLASTIC = 2500)
+
+/*
  * Pistol
  */
 /obj/item/weapon/gun/projectile/pistol/toy

@@ -9,7 +9,7 @@
 		slot_l_hand_str = 'icons/mob/items/lefthand_instruments.dmi',
 		slot_r_hand_str = 'icons/mob/items/righthand_instruments.dmi',
 	)
-	
+
 	/// Our song datum.
 	var/datum/song/handheld/song
 	/// Our allowed list of instrument ids. This is nulled on initialize.
@@ -53,6 +53,12 @@
 	name = "golden violin"
 	desc = "A golden musical instrument with four strings and a bow. \"The devil went down to space, he was looking for an assistant to grief.\""
 	icon_state = "golden_violin"
+
+/obj/item/instrument/xylophone
+	name = "xylophone"
+	desc = "A percussion instrument consisting of a series of wooden bars graduated in length."
+	icon_state = "xylophone"
+	allowed_instrument_ids = "xylophone"
 
 /obj/item/instrument/piano_synth
 	name = "synthesizer"
