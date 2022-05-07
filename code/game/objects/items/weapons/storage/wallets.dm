@@ -9,10 +9,17 @@
 		/obj/item/weapon/spacecash,
 		/obj/item/weapon/card,
 		/obj/item/clothing/mask/smokable/cigarette/,
+<<<<<<< HEAD
 		/obj/item/device/flashlight/pen,
 		/obj/item/device/tape,
 		/obj/item/weapon/cartridge,
 		/obj/item/device/encryptionkey,
+=======
+		/obj/item/flashlight/pen,
+		/obj/item/cassette_tape,
+		/obj/item/cartridge,
+		/obj/item/encryptionkey,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 		/obj/item/seeds,
 		/obj/item/stack/medical,
 		/obj/item/weapon/coin,

@@ -67,6 +67,7 @@
 	icon_state = "gripper-sec"
 
 	can_hold = list(
+<<<<<<< HEAD
 	/obj/item/weapon/paper,
 	/obj/item/weapon/paper_bundle,
 	/obj/item/weapon/pen,
@@ -75,6 +76,16 @@
 	/obj/item/device/taperecorder,
 	/obj/item/device/tape,
 	/obj/item/device/uv_light
+=======
+	/obj/item/paper,
+	/obj/item/paper_bundle,
+	/obj/item/pen,
+	/obj/item/sample,
+	/obj/item/forensics/sample_kit,
+	/obj/item/taperecorder,
+	/obj/item/cassette_tape,
+	/obj/item/uv_light
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	)
 
 /obj/item/weapon/gripper/paperwork

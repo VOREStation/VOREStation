@@ -218,6 +218,7 @@
 		/obj/item/clothing/under/rank/psych,
 		/obj/item/clothing/under/rank/psych/turtleneck,
 		/obj/item/clothing/suit/straight_jacket,
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
 		/obj/item/weapon/reagent_containers/syringe,
 		/obj/item/weapon/storage/pill_bottle/citalopram,
@@ -227,6 +228,17 @@
 		/obj/item/device/taperecorder,
 		/obj/item/device/tape/random = 3,
 		/obj/item/device/camera,
+=======
+		/obj/item/reagent_containers/glass/bottle/stoxin,
+		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/pill_bottle/citalopram,
+		/obj/item/reagent_containers/pill/methylphenidate,
+		/obj/item/clipboard,
+		/obj/item/folder/white,
+		/obj/item/taperecorder,
+		/obj/item/cassette_tape/random = 3,
+		/obj/item/camera,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 		/obj/item/toy/plushie/therapy/blue)
 
 

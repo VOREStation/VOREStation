@@ -4528,9 +4528,15 @@
 	dir = 4
 	},
 /obj/structure/closet,
+<<<<<<< HEAD
 /obj/item/device/tape/random,
 /obj/item/device/taperecorder,
 /obj/item/device/camera{
+=======
+/obj/item/cassette_tape/random,
+/obj/item/taperecorder,
+/obj/item/camera{
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -19773,9 +19779,15 @@
 /area/surface/station/medical/patient_wing)
 "mMW" = (
 /obj/structure/table/woodentable,
+<<<<<<< HEAD
 /obj/item/weapon/book/codex/corp_regs,
 /obj/item/device/tape/random,
 /obj/item/device/taperecorder,
+=======
+/obj/item/book/codex/corp_regs,
+/obj/item/cassette_tape/random,
+/obj/item/taperecorder,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/captain)
 "mMX" = (
@@ -20464,8 +20476,13 @@
 /area/surface/station/maintenance/substation/security/snd)
 "nod" = (
 /obj/structure/table/standard,
+<<<<<<< HEAD
 /obj/item/device/tape/random,
 /obj/item/device/tape/random{
+=======
+/obj/item/cassette_tape/random,
+/obj/item/cassette_tape/random{
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	pixel_y = -2
 	},
 /obj/item/device/taperecorder,
@@ -20643,8 +20660,13 @@
 	pixel_x = 4;
 	pixel_y = 4
 	},
+<<<<<<< HEAD
 /obj/item/device/tape/random,
 /obj/item/device/taperecorder,
+=======
+/obj/item/cassette_tape/random,
+/obj/item/taperecorder,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /turf/simulated/floor/tiled,
 /area/surface/station/security/prison)
 "nsL" = (
@@ -22423,11 +22445,19 @@
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/item/weapon/paper_bin,
 /obj/item/device/paicard,
 /obj/item/device/tape/random,
 /obj/item/device/taperecorder,
 /obj/item/weapon/reagent_containers/food/drinks/jar,
+=======
+/obj/item/paper_bin,
+/obj/item/paicard,
+/obj/item/cassette_tape/random,
+/obj/item/taperecorder,
+/obj/item/reagent_containers/food/drinks/jar,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;

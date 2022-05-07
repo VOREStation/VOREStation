@@ -245,12 +245,21 @@
 		/obj/item/clothing/suit/storage/vest/detective,
 		/obj/item/taperoll/police,
 		/obj/item/clothing/accessory/holster/armpit,
+<<<<<<< HEAD
 		/obj/item/device/flashlight/maglight,
 		/obj/item/weapon/reagent_containers/food/drinks/flask/detflask,
 		/obj/item/weapon/storage/briefcase/crimekit,
 		/obj/item/device/taperecorder,
 		/obj/item/weapon/storage/bag/detective,
 		/obj/item/device/tape/random = 3)
+=======
+		/obj/item/flashlight/maglight,
+		/obj/item/reagent_containers/food/drinks/flask/detflask,
+		/obj/item/storage/briefcase/crimekit,
+		/obj/item/taperecorder,
+		/obj/item/storage/bag/detective,
+		/obj/item/cassette_tape/random = 3)
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 
 /obj/structure/closet/secure_closet/injection
 	name = "lethal injections locker"

@@ -11,7 +11,11 @@
 	var/recording = 0.0
 	var/playing = 0.0
 	var/playsleepseconds = 0.0
+<<<<<<< HEAD
 	var/obj/item/device/tape/mytape = /obj/item/device/tape/random
+=======
+	var/obj/item/cassette_tape/mytape = /obj/item/cassette_tape/random
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	var/canprint = 1
 	slot_flags = SLOT_BELT
 	throwforce = 2
@@ -36,8 +40,13 @@
 	return ..()
 
 
+<<<<<<< HEAD
 /obj/item/device/taperecorder/attackby(obj/item/I, mob/user, params)
 	if(istype(I, /obj/item/device/tape))
+=======
+/obj/item/taperecorder/attackby(obj/item/I, mob/user, params)
+	if(istype(I, /obj/item/cassette_tape))
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 		if(mytape)
 			to_chat(user, "<span class='notice'>There's already a tape inside.</span>")
 			return
@@ -355,8 +364,13 @@
 
 
 
+<<<<<<< HEAD
 /obj/item/device/tape
 	name = "tape"
+=======
+/obj/item/cassette_tape
+	name = "cassette tape"
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	desc = "A magnetic tape that can hold up to ten minutes of content."
 	icon_state = "tape_white"
 	item_state = "analyzer"
@@ -371,43 +385,74 @@
 	var/ruined = 0
 
 
+<<<<<<< HEAD
 /obj/item/device/tape/update_icon()
+=======
+/obj/item/cassette_tape/update_icon()
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	cut_overlays()
 	if(ruined)
 		add_overlay("ribbonoverlay")
 
 
+<<<<<<< HEAD
 /obj/item/device/tape/fire_act()
 	ruin()
 
 /obj/item/device/tape/attack_self(mob/user)
+=======
+/obj/item/cassette_tape/fire_act()
+	ruin()
+
+/obj/item/cassette_tape/attack_self(mob/user)
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	if(!ruined)
 		to_chat(user, "<span class='notice'>You pull out all the tape!</span>")
 		ruin()
 
 
+<<<<<<< HEAD
 /obj/item/device/tape/proc/ruin()
+=======
+/obj/item/cassette_tape/proc/ruin()
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	ruined = 1
 	update_icon()
 
 
+<<<<<<< HEAD
 /obj/item/device/tape/proc/fix()
+=======
+/obj/item/cassette_tape/proc/fix()
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	ruined = 0
 	update_icon()
 
 
+<<<<<<< HEAD
 /obj/item/device/tape/proc/record_speech(text)
+=======
+/obj/item/cassette_tape/proc/record_speech(text)
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	timestamp += used_capacity
 	storedinfo += "\[[time2text(used_capacity*10,"mm:ss")]\] [text]"
 
 
 //shows up on the printed transcript as (Unrecognized sound)
+<<<<<<< HEAD
 /obj/item/device/tape/proc/record_noise(text)
+=======
+/obj/item/cassette_tape/proc/record_noise(text)
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	timestamp += used_capacity
 	storedinfo += "*\[[time2text(used_capacity*10,"mm:ss")]\] [text]"
 
 
+<<<<<<< HEAD
 /obj/item/device/tape/attackby(obj/item/I, mob/user, params)
+=======
+/obj/item/cassette_tape/attackby(obj/item/I, mob/user, params)
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 	if(ruined && I.is_screwdriver())
 		to_chat(user, "<span class='notice'>You start winding the tape back in...</span>")
 		playsound(src, I.usesound, 50, 1)
@@ -431,5 +476,11 @@
 
 
 //Random colour tapes
+<<<<<<< HEAD
 /obj/item/device/tape/random/New()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
+=======
+/obj/item/cassette_tape/random/Initialize()
+	. = ..()
+	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path

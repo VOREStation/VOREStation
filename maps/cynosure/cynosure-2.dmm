@@ -6895,9 +6895,15 @@
 /obj/machinery/recharger/wallcharger{
 	pixel_y = -28
 	},
+<<<<<<< HEAD
 /obj/item/device/tape/random,
 /obj/item/device/taperecorder,
 /obj/item/device/megaphone,
+=======
+/obj/item/cassette_tape/random,
+/obj/item/taperecorder,
+/obj/item/megaphone,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /obj/structure/closet/secure_closet/hos/cynosure,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/crew_quarters/heads/hos)
@@ -8692,8 +8698,13 @@
 	pixel_x = -8;
 	pixel_y = -6
 	},
+<<<<<<< HEAD
 /obj/item/weapon/handcuffs,
 /obj/item/device/tape/random,
+=======
+/obj/item/handcuffs,
+/obj/item/cassette_tape/random,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /turf/simulated/floor/carpet,
 /area/surface/station/security/detectives_office)
 "een" = (
@@ -9181,8 +9192,13 @@
 /obj/effect/floor_decal/steeldecal/steel_decals_central5{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/item/device/tape/random,
 /obj/item/device/taperecorder,
+=======
+/obj/item/cassette_tape/random,
+/obj/item/taperecorder,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /turf/simulated/floor/tiled,
 /area/surface/station/security/processing)
 "epn" = (
@@ -12083,11 +12099,19 @@
 	dir = 4
 	},
 /obj/structure/table/standard,
+<<<<<<< HEAD
 /obj/item/device/tape/random,
 /obj/item/device/taperecorder,
 /obj/item/device/megaphone,
 /obj/item/weapon/packageWrap,
 /obj/item/weapon/storage/box,
+=======
+/obj/item/cassette_tape/random,
+/obj/item/taperecorder,
+/obj/item/megaphone,
+/obj/item/packageWrap,
+/obj/item/storage/box,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 32
 	},
@@ -14457,9 +14481,15 @@
 /area/surface/station/hallway/primary/groundfloor/south)
 "gFi" = (
 /obj/structure/table/woodentable,
+<<<<<<< HEAD
 /obj/item/device/taperecorder,
 /obj/item/weapon/book/codex/lore/news,
 /obj/item/device/tape/random,
+=======
+/obj/item/taperecorder,
+/obj/item/book/codex/lore/news,
+/obj/item/cassette_tape/random,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /turf/simulated/floor/wood,
 /area/surface/station/library)
 "gFo" = (
@@ -20455,6 +20485,7 @@
 /area/surface/station/maintenance/substation/security/gnd)
 "jGo" = (
 /obj/structure/table/woodentable,
+<<<<<<< HEAD
 /obj/item/device/taperecorder,
 /obj/item/device/tape/random{
 	pixel_y = -2
@@ -20462,6 +20493,15 @@
 /obj/item/device/tape/random,
 /obj/item/device/camera,
 /obj/item/weapon/barcodescanner,
+=======
+/obj/item/taperecorder,
+/obj/item/cassette_tape/random{
+	pixel_y = -2
+	},
+/obj/item/cassette_tape/random,
+/obj/item/camera,
+/obj/item/barcodescanner,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /turf/simulated/floor/wood,
 /area/surface/station/library)
 "jGI" = (
@@ -43152,8 +43192,13 @@
 	pixel_x = 8;
 	pixel_y = -6
 	},
+<<<<<<< HEAD
 /obj/item/weapon/handcuffs,
 /obj/item/device/tape/random,
+=======
+/obj/item/handcuffs,
+/obj/item/cassette_tape/random,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /turf/simulated/floor/carpet,
 /area/surface/station/security/detectives_office)
 "tCe" = (
@@ -49980,8 +50025,13 @@
 	dir = 1;
 	pixel_y = -22
 	},
+<<<<<<< HEAD
 /obj/item/weapon/folder/red,
 /obj/item/device/tape/random,
+=======
+/obj/item/folder/red,
+/obj/item/cassette_tape/random,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
 	},

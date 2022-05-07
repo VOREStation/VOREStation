@@ -229,6 +229,7 @@
 		/obj/item/clothing/glasses,
 		/obj/item/ammo_casing/a12g,
 		/obj/item/ammo_magazine,
+<<<<<<< HEAD
 		/obj/item/weapon/cell/device,
 		/obj/item/weapon/reagent_containers/food/snacks/donut/,
 		/obj/item/weapon/melee/baton,
@@ -243,6 +244,22 @@
 		/obj/item/device/tape,
 		/obj/item/device/pda,
 		/obj/item/device/radio/headset,
+=======
+		/obj/item/cell/device,
+		/obj/item/reagent_containers/food/snacks/donut/,
+		/obj/item/melee/baton,
+		/obj/item/gun/energy/taser,
+		/obj/item/gun/energy/stunrevolver,
+		/obj/item/gun/energy/stunrevolver/vintage,
+		/obj/item/gun/magnetic/railgun/heater/pistol,
+		/obj/item/gun/energy/gun,
+		/obj/item/flame/lighter,
+		/obj/item/flashlight,
+		/obj/item/taperecorder,
+		/obj/item/cassette_tape,
+		/obj/item/pda,
+		/obj/item/radio/headset,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 		/obj/item/clothing/gloves,
 		/obj/item/device/hailer,
 		/obj/item/device/megaphone,
@@ -262,8 +279,13 @@
 	storage_slots = 7
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(
+<<<<<<< HEAD
 		/obj/item/device/taperecorder,
 		/obj/item/device/tape,
+=======
+		/obj/item/taperecorder,
+		/obj/item/cassette_tape,
+>>>>>>> c326d99ec5d... Merge pull request #8612 from Spookerton/cerebulon/cassette-tape-path
 		/obj/item/clothing/glasses,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/cell/device,
