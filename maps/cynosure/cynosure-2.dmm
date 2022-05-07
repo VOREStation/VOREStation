@@ -4171,7 +4171,7 @@
 	},
 /obj/machinery/door/airlock{
 	name = "Chapel Office";
-	req_one_access = list(27)
+	req_one_access = list(22)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/chapel/office)
