@@ -8135,7 +8135,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/research{
+/obj/machinery/door/airlock/glass_research{
 	name = "Isolation Room B";
 	req_one_access = list(65)
 	},
@@ -9000,7 +9000,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/research{
+/obj/machinery/door/airlock/glass_research{
 	name = "Isolation Room C";
 	req_one_access = list(65)
 	},
@@ -23521,7 +23521,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/machinery/door/airlock/research{
+/obj/machinery/door/airlock/glass_research{
 	name = "Isolation Room A";
 	req_one_access = list(65)
 	},
