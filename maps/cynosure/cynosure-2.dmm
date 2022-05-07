@@ -41811,6 +41811,12 @@
 /obj/item/weapon/melee/umbrella/random{
 	pixel_y = -4
 	},
+<<<<<<< HEAD
+=======
+/obj/effect/floor_decal/arrows,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+/obj/item/clothing/suit/storage/hooded/wintercoat,
+>>>>>>> a1bd6280c69... Merge pull request #8617 from Spookerton/cerebulon/science-gets-more-coats
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/groundfloor/south)
 "sWe" = (
