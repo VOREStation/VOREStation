@@ -19441,8 +19441,13 @@
 	},
 /obj/item/roller,
 /obj/item/bodybag/cryobag,
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid,
 /obj/item/weapon/storage/pill_bottle/spaceacillin,
+=======
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/pill_bottle/spaceacillin,
+>>>>>>> 2122f745d17... Merge pull request #8614 from Spookerton/cerebulon/first-aid-empty
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "PT" = (

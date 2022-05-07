@@ -51545,6 +51545,20 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/crew_quarters/cafeteria)
+<<<<<<< HEAD
+=======
+"xAC" = (
+/obj/effect/floor_decal/corner/white/diagonal,
+/obj/item/bodybag/cryobag,
+/obj/structure/closet/medical_wall{
+	pixel_x = 32
+	},
+/obj/item/storage/pill_bottle/spaceacillin,
+/obj/item/roller,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/floor/tiled/freezer,
+/area/surface/station/crew_quarters/pool)
+>>>>>>> 2122f745d17... Merge pull request #8614 from Spookerton/cerebulon/first-aid-empty
 "xAM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
