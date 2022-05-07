@@ -129,7 +129,7 @@
 
 /obj/item/weapon/reagent_containers/spray/pepper/Initialize()
 	. = ..()
-	reagents.add_reagent("condensedcapsaicin", 40)
+	reagents.add_reagent("condensedcapsaicin", volume)
 
 /obj/item/weapon/reagent_containers/spray/pepper/examine(mob/user)
 	. = ..()
@@ -146,7 +146,19 @@
 		return
 	. = ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/spray/waterflower
+=======
+/obj/item/reagent_containers/spray/pepper/small
+	name = "personal pepperspray"
+	desc = "A small personal defense weapon with up to two smaller pumps of blinding spray."
+	icon_state = "pepperspray_small"
+	item_state = "pepperspray_small"
+	volume = 10
+	amount_per_transfer_from_this = 5
+
+/obj/item/reagent_containers/spray/waterflower
+>>>>>>> 16f35bdfad1... Merge pull request #8607 from Sypsoti/loadoutcontraband
 	name = "water flower"
 	desc = "A seemingly innocent sunflower...with a twist."
 	icon = 'icons/obj/device.dmi'

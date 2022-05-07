@@ -5,7 +5,7 @@
 	slot = "implant"
 	exploitable = 1
 	sort_category = "Cyberware"
-	cost = 6
+	cost = 4
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"

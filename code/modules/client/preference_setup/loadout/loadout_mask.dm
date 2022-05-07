@@ -40,6 +40,7 @@
 	path = /obj/item/clothing/mask/gas/plaguedoctor
 	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
 
+<<<<<<< HEAD
 /datum/gear/mask/plaguedoctor2
 	display_name = "golden plague doctor's mask"
 	path = /obj/item/clothing/mask/gas/plaguedoctor/gold
@@ -69,3 +70,18 @@
 		var/obj/item/clothing/accessory/gaiter_type = gaiter
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))
+=======
+/datum/gear/mask/gasmasks
+	display_name = "gas mask selection"
+	path = /obj/item/clothing/mask/gas
+	cost = 2
+
+/datum/gear/mask/gasmasks/New()
+	..()
+	var/masks = list()
+	masks["gas mask"] = /obj/item/clothing/mask/gas
+	masks["clear gas mask"] = /obj/item/clothing/mask/gas/clear
+	masks["plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor
+	masks["gold plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor/gold
+	gear_tweaks += new/datum/gear_tweak/path(masks)
+>>>>>>> 16f35bdfad1... Merge pull request #8607 from Sypsoti/loadoutcontraband
