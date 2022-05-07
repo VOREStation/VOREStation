@@ -4,6 +4,7 @@
 // Holographic racks are in code/modules/tables/rack.dm
 
 /turf/simulated/floor/holofloor
+	desc = "A convincing simulation."
 	thermal_conductivity = 0
 	flags = TURF_ACID_IMMUNE
 
@@ -279,7 +280,12 @@
 	damtype = HALLOSS
 	no_attack_log = 1
 
+<<<<<<< HEAD
 /obj/item/weapon/holo/esword
+=======
+/obj/item/holo/esword
+	name = "holographic energy sword"
+>>>>>>> e69a92bcb7b... Merge pull request #8618 from Spookerton/cerebulon/swimwear
 	desc = "May the force be within you. Sorta."
 	icon_state = "esword"
 	var/lcolor

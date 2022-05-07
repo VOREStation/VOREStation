@@ -3147,7 +3147,9 @@
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/closet/athletic_swimwear,
+/obj/structure/closet/athletic_swimwear{
+	name = "swimwear wardrobe"
+	},
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/pool)
 "bwp" = (
@@ -9106,7 +9108,9 @@
 "eni" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/window/reinforced,
-/obj/structure/closet/athletic_swimwear,
+/obj/structure/closet/athletic_swimwear{
+	name = "swimwear wardrobe"
+	},
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/pool)
 "enM" = (
