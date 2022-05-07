@@ -5069,9 +5069,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/machinery/alarm{
+/obj/machinery/alarm/monitor/isolation{
 	dir = 4;
-	pixel_x = -22
+	pixel_x = -22;
+	alarm_id = "isolation_one"
 	},
 /obj/machinery/camera/network/research_outpost{
 	c_tag = "OPR - Isolation Cell A";
@@ -10234,9 +10235,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/machinery/alarm{
+/obj/machinery/alarm/monitor/isolation{
 	dir = 4;
-	pixel_x = -22
+	pixel_x = -22;
+	alarm_id = "isolation_three"
 	},
 /obj/machinery/camera/network/research_outpost{
 	c_tag = "OPR - Isolation Cell C";
@@ -18558,9 +18560,10 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
-/obj/machinery/alarm{
+/obj/machinery/alarm/monitor/isolation{
 	dir = 4;
-	pixel_x = -22
+	pixel_x = -22;
+	alarm_id = "isolation_two"
 	},
 /obj/machinery/camera/network/research_outpost{
 	c_tag = "OPR - Isolation Cell B";
