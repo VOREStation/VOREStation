@@ -36,6 +36,16 @@ var/const/access_explorer = 43
 	alt_titles = list(
 		"Pilot" = /decl/hierarchy/outfit/job/pilot)
 
+/datum/job/paramedic
+	alt_titles = list(
+					"Emergency Medical Technician" = /datum/alt_title/emt,
+					"Search and Rescue" = /datum/alt_title/sar)
+
+/datum/alt_title/sar
+	title = "Search and Rescue"
+	title_blurb = "A Search and Rescue operative recovers individuals who are injured or dead on the surface of Sif."
+	title_outfit = /decl/hierarchy/outfit/job/medical/sar
+
 /datum/job/rd
     access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,
                         access_tox_storage, access_teleporter, access_sec_doors,
@@ -47,9 +57,3 @@ var/const/access_explorer = 43
                         access_research, access_robotics, access_xenobiology, access_ai_upload, access_tech_storage,
                         access_RC_announce, access_keycard_auth, access_tcomsat, access_gateway, access_xenoarch,
                         access_network, access_maint_tunnels, access_explorer, access_eva, access_external_airlocks)
-			
-/*
-	alt_titles = list(
-		"Explorer Technician" = /decl/hierarchy/outfit/job/explorer2/technician,
-		"Explorer Medic" = /decl/hierarchy/outfit/job/explorer2/medic)
-*/
