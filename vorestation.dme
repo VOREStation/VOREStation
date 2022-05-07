@@ -1166,6 +1166,7 @@
 #include "code\game\objects\items\pizza_voucher_vr.dm"
 #include "code\game\objects\items\poi_items.dm"
 #include "code\game\objects\items\robobag.dm"
+#include "code\game\objects\items\selectable_item_vr.dm"
 #include "code\game\objects\items\shooting_range.dm"
 #include "code\game\objects\items\tailoring.dm"
 #include "code\game\objects\items\trash.dm"
