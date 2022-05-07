@@ -1916,6 +1916,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
+"ei" = (
+/obj/effect/floor_decal/borderfloorwhite/corner,
+/obj/effect/floor_decal/corner/purple/bordercorner,
+/obj/effect/floor_decal/corner/white{
+	dir = 4
+	},
+/obj/machinery/door/window/eastright{
+	name = "Suit Storage";
+	req_one_access = list(65)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/outpost/research/xenoarcheology)
 "ej" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -3318,6 +3330,24 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/incineratormaint)
+"hw" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced{
+	dir = 1
+	},
+/obj/structure/table/rack{
+	layer = 2.6
+	},
+/obj/effect/floor_decal/spline/plain,
+/obj/item/clothing/suit/bio_suit/anomaly,
+/obj/item/clothing/head/bio_hood/anomaly,
+/obj/item/clothing/glasses/science,
+/obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/old_cargo/gray,
+/area/surface/outpost/research/xenoarcheology)
 "hx" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -3955,22 +3985,17 @@
 /turf/simulated/floor/tiled/old_tile/white,
 /area/surface/station/medical/morgue)
 "iL" = (
-/obj/structure/table/rack{
-	layer = 2.6
-	},
-/obj/structure/window/reinforced,
-/obj/structure/window/reinforced{
-	dir = 8
-	},
-/obj/effect/floor_decal/spline/plain{
+/obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 4
 	},
-/obj/item/clothing/suit/bio_suit/anomaly,
-/obj/item/clothing/head/bio_hood/anomaly,
-/obj/item/clothing/mask/breath,
-/obj/item/clothing/glasses/science,
-/obj/item/clothing/gloves/sterile/latex,
-/turf/simulated/floor/tiled/old_cargo/gray,
+/obj/effect/floor_decal/steeldecal/steel_decals4{
+	dir = 9
+	},
+/obj/structure/sign/warning{
+	name = "\improper PROTECTIVE EQUIPMENT MUST BE WORN";
+	pixel_x = 32
+	},
+/turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "iM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -5159,6 +5184,20 @@
 /obj/machinery/status_display,
 /turf/simulated/wall,
 /area/surface/station/medical/hallway/bmt)
+"lr" = (
+/obj/effect/floor_decal/borderfloorwhite/corner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/purple/bordercorner{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/white,
+/obj/machinery/door/window/eastleft{
+	name = "Suit Storage";
+	req_access = list(65)
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/outpost/research/xenoarcheology)
 "lt" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 6
@@ -5698,6 +5737,24 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/vault)
+"mn" = (
+/obj/structure/window/reinforced{
+	dir = 8
+	},
+/obj/structure/window/reinforced,
+/obj/structure/table/rack{
+	layer = 2.6
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/item/clothing/suit/bio_suit/anomaly,
+/obj/item/clothing/head/bio_hood/anomaly,
+/obj/item/clothing/glasses/science,
+/obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/old_cargo/gray,
+/area/surface/outpost/research/xenoarcheology)
 "mo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -5979,6 +6036,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway/bmt)
+"mS" = (
+/obj/machinery/light{
+	dir = 8;
+	pixel_y = -16
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/outpost/research/xenoarcheology)
 "mT" = (
 /obj/machinery/alarm{
 	dir = 1;
@@ -11928,6 +11992,24 @@
 /obj/effect/catwalk_plated/dark,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
+"zI" = (
+/obj/structure/window/reinforced{
+	dir = 4
+	},
+/obj/structure/window/reinforced,
+/obj/structure/table/rack{
+	layer = 2.6
+	},
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/item/clothing/suit/bio_suit/anomaly,
+/obj/item/clothing/head/bio_hood/anomaly,
+/obj/item/clothing/glasses/science,
+/obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/mask/breath,
+/turf/simulated/floor/tiled/old_cargo/gray,
+/area/surface/outpost/research/xenoarcheology)
 "zJ" = (
 /obj/structure/undies_wardrobe,
 /turf/simulated/floor/tiled/freezer,
@@ -13527,6 +13609,9 @@
 /obj/structure/sign/warning/engineering_access,
 /turf/simulated/wall/r_wall,
 /area/surface/station/engineering/hallway/bmt)
+"Db" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/surface/outpost/research/xenoarcheology)
 "Dc" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -21494,23 +21579,21 @@
 /turf/simulated/wall/r_wall,
 /area/surface/station/rnd/test_area)
 "Uv" = (
-/obj/structure/table/rack{
-	layer = 2.6
+/obj/structure/window/reinforced{
+	dir = 8
 	},
 /obj/structure/window/reinforced{
 	dir = 1
 	},
-/obj/structure/window/reinforced{
-	dir = 8
+/obj/structure/table/rack{
+	layer = 2.6
 	},
-/obj/effect/floor_decal/spline/plain{
-	dir = 4
-	},
+/obj/effect/floor_decal/spline/plain,
 /obj/item/clothing/suit/bio_suit/anomaly,
 /obj/item/clothing/head/bio_hood/anomaly,
-/obj/item/clothing/mask/breath,
 /obj/item/clothing/glasses/science,
 /obj/item/clothing/gloves/sterile/latex,
+/obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/old_cargo/gray,
 /area/surface/outpost/research/xenoarcheology)
 "Uw" = (
@@ -49393,12 +49476,12 @@ HE
 HE
 HE
 HE
-HE
-HE
-HE
-HE
-HE
-HE
+OU
+OU
+OU
+OU
+OU
+OU
 HE
 HE
 HE
@@ -49650,12 +49733,12 @@ HE
 HE
 HE
 HE
-HE
-HE
-HE
-HE
-HE
-HE
+OU
+Uv
+mS
+Db
+mn
+OU
 aW
 aW
 aW
@@ -49907,12 +49990,12 @@ HE
 HE
 HE
 HE
-HE
-HE
-HE
-HE
-HE
-HE
+OU
+hw
+lr
+ei
+zI
+OU
 aW
 hG
 xO
@@ -50166,10 +50249,10 @@ sD
 sD
 sD
 sD
+Ec
+XI
 OU
 OU
-OU
-HE
 aW
 zC
 Xj
@@ -50423,8 +50506,8 @@ NK
 ZO
 Yq
 sD
-Uv
-iL
+Rw
+XI
 uZ
 uZ
 uZ
@@ -52731,7 +52814,7 @@ uc
 yo
 Yv
 Bl
-jd
+iL
 xl
 nU
 yG
