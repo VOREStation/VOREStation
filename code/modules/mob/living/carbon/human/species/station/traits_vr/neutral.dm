@@ -528,3 +528,13 @@
 /datum/trait/neutral/submit_to_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/proc/lend_prey_control
+
+/datum/trait/neutral/vertical_nom
+	name = "Vertical Nom"
+	desc = "Allows you to consume people from up above."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/vertical_nom/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/vertical_nom
