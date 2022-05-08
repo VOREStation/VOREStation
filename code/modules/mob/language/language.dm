@@ -12,6 +12,7 @@
 	var/exclaim_verb = "exclaims"     // Used when sentence ends in a !
 	var/whisper_verb                  // Optional. When not specified speech_verb + quietly/softly is used instead.
 	var/signlang_verb = list("signs", "gestures") // list of emotes that might be displayed if this language has NONVERBAL or SIGNLANG flags
+	var/signlang_verb_understood = list("signs")  // snowflake bs, used only for echo
 	var/colour = "body"               // CSS style to use for strings in this language.
 	var/key = "x"                     // Character used to speak in language eg. :o for Unathi.
 	var/flags = 0                     // Various language flags.
@@ -20,6 +21,7 @@
 	var/list/space_chance = 55        // Likelihood of getting a space in the random scramble string
 	var/machine_understands = 1		  // Whether machines can parse and understand this language
 	var/list/partial_understanding	  // List of languages that can /somehwat/ understand it, format is: name = chance of understanding a word
+	var/ignore_adverb = FALSE 		  // For inaudible languages that we dont want adverb for
 
 /datum/language/proc/get_random_name(var/gender, name_count=2, syllable_count=4, syllable_divisor=2)
 	if(!syllables || !syllables.len)
@@ -235,7 +237,7 @@
 //TBD
 /mob/proc/check_lang_data()
 	. = ""
-	
+
 	for(var/datum/language/L in languages)
 		if(!(L.flags & NONGLOBAL))
 			. += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"

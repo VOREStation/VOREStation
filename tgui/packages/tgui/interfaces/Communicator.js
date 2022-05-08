@@ -1129,6 +1129,10 @@ const SettingsTab = (props, context) => {
                 : "Ringer off."
             }
             onClick={() => act("toggle_ringer")} />
+          <Button
+            fluid
+            content="Set Ringer Tone"
+            onClick={() => act("set_ringer_tone")} />
         </LabeledList.Item>
       </LabeledList>
     </Section>
