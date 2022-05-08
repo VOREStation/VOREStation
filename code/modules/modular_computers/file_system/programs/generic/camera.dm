@@ -13,6 +13,8 @@
 			return access_engine
 		if(NETWORK_CIRCUITS)
 			return access_research
+		if(NETWORK_MINE)
+			return access_qm
 		if(NETWORK_ERT)
 			return access_cent_specops
 		//VOREStation Add Start
