@@ -15814,8 +15814,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 8
 	},
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "secbus"
@@ -16452,8 +16452,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 8
 	},
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "medbus"
@@ -17229,11 +17229,11 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel,
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
 "dqh" = (
@@ -17770,15 +17770,15 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 10
-	},
 /obj/structure/table/standard,
 /obj/item/weapon/tank/phoron,
 /obj/random/medical,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
@@ -18604,7 +18604,7 @@
 /turf/simulated/floor/plating,
 /area/tether/station/dock_two)
 "eVl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 6
 	},
 /turf/simulated/wall/fancy_shuttle/low{
@@ -21085,10 +21085,12 @@
 /area/maintenance/substation/cargo)
 "hsf" = (
 /obj/machinery/shipsensors/fancy_shuttle,
-/turf/simulated/wall/fancy_shuttle{
-	fancy_shuttle_tag = "secbus"
+/turf/simulated/wall/fancy_shuttle/nondense{
+	fancy_shuttle_tag = "secbus";
+	nitrogen = 0;
+	oxygen = 0
 	},
-/area/shuttle/securiship/cockpit)
+/area/shuttle/securiship/general)
 "hsq" = (
 /obj/structure/catwalk,
 /obj/random/junk,
@@ -24208,12 +24210,12 @@
 /obj/structure/fuel_port{
 	pixel_y = 32
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
-	dir = 1
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
@@ -25601,8 +25603,8 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/station/dock_two)
 "lof" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 8
 	},
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "medbus"
@@ -27303,9 +27305,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "mIV" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 6
-	},
 /obj/structure/cable/green{
 	icon_state = "4-8"
 	},
@@ -27318,6 +27317,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 6
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/engines)
@@ -27759,10 +27761,10 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "ncN" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "secbus"
 	},
@@ -28192,7 +28194,7 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "nAr" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 10
 	},
 /turf/simulated/wall/fancy_shuttle/low{
@@ -28202,9 +28204,6 @@
 	},
 /area/shuttle/securiship/engines)
 "nAx" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
-	},
 /obj/machinery/portable_atmospherics/canister/phoron,
 /obj/machinery/light{
 	dir = 8
@@ -28212,6 +28211,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
@@ -28827,8 +28829,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 8
 	},
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "medbus"
@@ -30136,7 +30138,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/yellow,
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel,
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "medbus"
 	},
@@ -31095,8 +31097,8 @@
 /turf/simulated/floor,
 /area/storage/emergency_storage/emergency4)
 "rkl" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 4
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 8
 	},
 /turf/simulated/wall/fancy_shuttle{
 	fancy_shuttle_tag = "secbus"
@@ -31166,7 +31168,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5
 	},
-/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle{
@@ -32508,7 +32510,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/exploration/hallway)
 "sOn" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 6
 	},
 /turf/simulated/wall/fancy_shuttle{
@@ -33996,13 +33998,13 @@
 /turf/simulated/shuttle/wall,
 /area/shuttle/belter)
 "uvN" = (
-/obj/machinery/atmospherics/portables_connector{
-	dir = 4
-	},
 /obj/machinery/portable_atmospherics/canister/phoron,
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/machinery/atmospherics/portables_connector/fuel{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
@@ -34872,12 +34874,12 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "vtg" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 9
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 9
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
@@ -35419,7 +35421,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 10
 	},
 /turf/simulated/wall/fancy_shuttle{
@@ -35489,12 +35491,12 @@
 /obj/structure/cable/green{
 	icon_state = "1-4"
 	},
-/obj/machinery/atmospherics/binary/pump{
-	dir = 4
-	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/machinery/atmospherics/binary/pump/fuel{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
@@ -35674,7 +35676,7 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "wwJ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle{
@@ -36732,9 +36734,6 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "xMQ" = (
-/obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
-	dir = 1
-	},
 /obj/structure/cable/green{
 	icon_state = "1-8"
 	},
@@ -36754,6 +36753,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/engines)
@@ -37002,9 +37004,6 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "xZE" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow{
-	dir = 10
-	},
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -37017,6 +37016,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/fuel{
+	dir = 10
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/engines)
@@ -37095,7 +37097,6 @@
 /obj/structure/cable{
 	icon_state = "1-8"
 	},
-/obj/machinery/atmospherics/binary/pump,
 /obj/machinery/light,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9
@@ -37104,6 +37105,7 @@
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
 	},
+/obj/machinery/atmospherics/binary/pump/fuel,
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/engines)
 "ydT" = (
@@ -53894,7 +53896,7 @@ aaa
 aaa
 aaa
 aaa
-hsf
+osM
 osM
 scB
 sJw
@@ -54754,7 +54756,7 @@ aaa
 aaa
 aaa
 aaa
-tqu
+hsf
 tqu
 mRq
 psE
