@@ -47,6 +47,8 @@
 // Cocoon Stuff
 /datum/tgui_module/appearance_changer/cocoon
 	name ="Appearance Editor (Cocoon)"
+	flags = APPEARANCE_ALL_HAIR
+	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
 	//if(!istype(owner.loc, /obj/item/weapon/storage/vore_egg/bugcocoon))
