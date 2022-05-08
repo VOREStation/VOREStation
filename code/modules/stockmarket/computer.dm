@@ -18,7 +18,7 @@
 	. = ..()
 	logged_in = "Cargo Department"
 
-/obj/machinery/computer/med_data/Destroy()
+/obj/machinery/computer/stockexchange/Destroy()
 	return ..()
 
 /obj/machinery/computer/stockexchange/attackby(obj/item/W, mob/user, params)
