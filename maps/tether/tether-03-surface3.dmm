@@ -31643,10 +31643,10 @@
 	dir = 1;
 	fancy_shuttle_tag = "tourbus"
 	},
-/obj/effect/fancy_shuttle_floor_preview/tourbus{
+/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
+/obj/effect/fancy_shuttle_floor_preview/tourbus{
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle{
@@ -38696,18 +38696,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
-"eGv" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus";
-	name = "tourbus"
-	},
-/obj/machinery/atmospherics/binary/pump,
-/obj/structure/cable/green{
-	dir = 1;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
 "eHk" = (
 /obj/structure/sign/nosmoking_2{
 	pixel_x = 29
@@ -39270,9 +39258,6 @@
 /obj/machinery/door/window/northright,
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9
-	},
-/obj/machinery/power/terminal{
-	dir = 4
 	},
 /obj/machinery/light,
 /obj/machinery/power/apc{
@@ -40243,7 +40228,7 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/security/iaa/officeb)
 "jZe" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/obj/machinery/atmospherics/binary/pump,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "kar" = (
@@ -55989,7 +55974,7 @@ xOa
 aXa
 aXa
 kcC
-eGv
+sJY
 sJY
 fEX
 gCZ
