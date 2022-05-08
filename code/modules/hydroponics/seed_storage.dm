@@ -121,6 +121,7 @@
 		/obj/item/seeds/lettuce = 3,
 		/obj/item/seeds/limeseed = 3,
 		/obj/item/seeds/mtearseed = 2,
+		/obj/item/seeds/nutmeg = 3,
 		/obj/item/seeds/orangeseed = 3,
 		/obj/item/seeds/onionseed = 3,
 		/obj/item/seeds/peanutseed = 3,
@@ -178,6 +179,7 @@
 		/obj/item/seeds/limeseed = 3,
 		/obj/item/seeds/mtearseed = 2,
 		/obj/item/seeds/nettleseed = 2,
+		/obj/item/seeds/nutmeg = 3,
 		/obj/item/seeds/orangeseed = 3,
 		/obj/item/seeds/peanutseed = 3,
 		/obj/item/seeds/plastiseed = 3,
@@ -296,9 +298,164 @@
 				else if(seed.get_trait(TRAIT_WATER_CONSUMPTION) > 5)
 					seedinfo["traits"]["Water Consumption"] = "High"
 				else
+<<<<<<< HEAD
 					seedinfo["traits"]["Water Consumption"] = "Norm"
 			else
 				seedinfo["traits"]["Water Consumption"] = "No"
+=======
+					dat += "<td>No</td>"
+
+			dat += "<td>"
+			switch(seed.get_trait(TRAIT_CARNIVOROUS))
+				if(1)
+					dat += "CARN "
+				if(2)
+					dat	+= "<font color='red'>CARN </font>"
+			switch(seed.get_trait(TRAIT_SPREAD))
+				if(1)
+					dat += "VINE "
+				if(2)
+					dat	+= "<font color='red'>VINE </font>"
+			if ("pressure" in scanner)
+				if(seed.get_trait(TRAIT_LOWKPA_TOLERANCE) < 20)
+					dat += "LP "
+				if(seed.get_trait(TRAIT_HIGHKPA_TOLERANCE) > 220)
+					dat += "HP "
+			if ("temperature" in scanner)
+				if(seed.get_trait(TRAIT_HEAT_TOLERANCE) > 30)
+					dat += "TEMRES "
+				else if(seed.get_trait(TRAIT_HEAT_TOLERANCE) < 10)
+					dat += "TEMSEN "
+			if ("light" in scanner)
+				if(seed.get_trait(TRAIT_LIGHT_TOLERANCE) > 10)
+					dat += "LIGRES "
+				else if(seed.get_trait(TRAIT_LIGHT_TOLERANCE) < 3)
+					dat += "LIGSEN "
+			if(seed.get_trait(TRAIT_TOXINS_TOLERANCE) < 3)
+				dat += "TOXSEN "
+			else if(seed.get_trait(TRAIT_TOXINS_TOLERANCE) > 6)
+				dat += "TOXRES "
+			if(seed.get_trait(TRAIT_PEST_TOLERANCE) < 3)
+				dat += "PESTSEN "
+			else if(seed.get_trait(TRAIT_PEST_TOLERANCE) > 6)
+				dat += "PESTRES "
+			if(seed.get_trait(TRAIT_WEED_TOLERANCE) < 3)
+				dat += "WEEDSEN "
+			else if(seed.get_trait(TRAIT_WEED_TOLERANCE) > 6)
+				dat += "WEEDRES "
+			if(seed.get_trait(TRAIT_PARASITE))
+				dat += "PAR "
+			if ("temperature" in scanner)
+				if(seed.get_trait(TRAIT_ALTER_TEMP) > 0)
+					dat += "TEMP+ "
+				if(seed.get_trait(TRAIT_ALTER_TEMP) < 0)
+					dat += "TEMP- "
+			if(seed.get_trait(TRAIT_BIOLUM))
+				dat += "LUM "
+			dat += "</td>"
+			dat += "<td>[S.amount]</td>"
+			dat += "<td><a href='byond://?src=\ref[src];task=vend;id=[S.ID]'>Vend</a></td>"
+			dat += "</tr>"
+		if(hacked || emagged)
+			for (var/datum/seed_pile/S in piles_contra)
+				var/datum/seed/seed = S.seed_type
+				if(!seed)
+					continue
+				dat += "<tr>"
+				dat += "<td>[seed.seed_name]</td>"
+				dat += "<td>#[seed.uid]</td>"
+				if ("stats" in scanner)
+					dat += "<td>[seed.get_trait(TRAIT_ENDURANCE)]</td><td>[seed.get_trait(TRAIT_YIELD)]</td><td>[seed.get_trait(TRAIT_MATURATION)]</td><td>[seed.get_trait(TRAIT_PRODUCTION)]</td><td>[seed.get_trait(TRAIT_POTENCY)]</td>"
+					if(seed.get_trait(TRAIT_HARVEST_REPEAT))
+						dat += "<td>Multiple</td>"
+					else
+						dat += "<td>Single</td>"
+				if ("temperature" in scanner)
+					dat += "<td>[seed.get_trait(TRAIT_IDEAL_HEAT)] K</td>"
+				if ("light" in scanner)
+					dat += "<td>[seed.get_trait(TRAIT_IDEAL_LIGHT)] L</td>"
+				if ("soil" in scanner)
+					if(seed.get_trait(TRAIT_REQUIRES_NUTRIENTS))
+						if(seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) < 0.05)
+							dat += "<td>Low</td>"
+						else if(seed.get_trait(TRAIT_NUTRIENT_CONSUMPTION) > 0.2)
+							dat += "<td>High</td>"
+						else
+							dat += "<td>Norm</td>"
+					else
+						dat += "<td>No</td>"
+					if(seed.get_trait(TRAIT_REQUIRES_WATER))
+						if(seed.get_trait(TRAIT_WATER_CONSUMPTION) < 1)
+							dat += "<td>Low</td>"
+						else if(seed.get_trait(TRAIT_WATER_CONSUMPTION) > 5)
+							dat += "<td>High</td>"
+						else
+							dat += "<td>Norm</td>"
+					else
+						dat += "<td>No</td>"
+
+				dat += "<td>"
+				switch(seed.get_trait(TRAIT_CARNIVOROUS))
+					if(1)
+						dat += "CARN "
+					if(2)
+						dat	+= "<font color='red'>CARN </font>"
+				switch(seed.get_trait(TRAIT_SPREAD))
+					if(1)
+						dat += "VINE "
+					if(2)
+						dat	+= "<font color='red'>VINE </font>"
+				if ("pressure" in scanner)
+					if(seed.get_trait(TRAIT_LOWKPA_TOLERANCE) < 20)
+						dat += "LP "
+					if(seed.get_trait(TRAIT_HIGHKPA_TOLERANCE) > 220)
+						dat += "HP "
+				if ("temperature" in scanner)
+					if(seed.get_trait(TRAIT_HEAT_TOLERANCE) > 30)
+						dat += "TEMRES "
+					else if(seed.get_trait(TRAIT_HEAT_TOLERANCE) < 10)
+						dat += "TEMSEN "
+				if ("light" in scanner)
+					if(seed.get_trait(TRAIT_LIGHT_TOLERANCE) > 10)
+						dat += "LIGRES "
+					else if(seed.get_trait(TRAIT_LIGHT_TOLERANCE) < 3)
+						dat += "LIGSEN "
+				if(seed.get_trait(TRAIT_TOXINS_TOLERANCE) < 3)
+					dat += "TOXSEN "
+				else if(seed.get_trait(TRAIT_TOXINS_TOLERANCE) > 6)
+					dat += "TOXRES "
+				if(seed.get_trait(TRAIT_PEST_TOLERANCE) < 3)
+					dat += "PESTSEN "
+				else if(seed.get_trait(TRAIT_PEST_TOLERANCE) > 6)
+					dat += "PESTRES "
+				if(seed.get_trait(TRAIT_WEED_TOLERANCE) < 3)
+					dat += "WEEDSEN "
+				else if(seed.get_trait(TRAIT_WEED_TOLERANCE) > 6)
+					dat += "WEEDRES "
+				if(seed.get_trait(TRAIT_PARASITE))
+					dat += "PAR "
+				if ("temperature" in scanner)
+					if(seed.get_trait(TRAIT_ALTER_TEMP) > 0)
+						dat += "TEMP+ "
+					if(seed.get_trait(TRAIT_ALTER_TEMP) < 0)
+						dat += "TEMP- "
+				if(seed.get_trait(TRAIT_BIOLUM))
+					dat += "LUM "
+				dat += "</td>"
+				dat += "<td>[S.amount]</td>"
+				dat += "<td><a href='byond://?src=\ref[src];task=vend;id=[S.ID]'>Vend</a></td>"
+				dat += "</tr>"
+		dat += "</table>"
+
+	user << browse(dat, "window=seedstorage")
+	onclose(user, "seedstorage")
+
+/obj/machinery/seed_storage/Topic(var/href, var/list/href_list)
+	if (..())
+		return
+	var/task = href_list["task"]
+	var/ID = text2num(href_list["id"])
+>>>>>>> f35c60e440d... Merge pull request #8623 from Sypsoti/nutmegseedstorage
 
 		seedinfo["traits"]["notes"] = ""
 		switch(seed.get_trait(TRAIT_CARNIVOROUS))
@@ -377,6 +534,7 @@
 				else
 					piles -= N
 					qdel(N)
+<<<<<<< HEAD
 				return TRUE
 			else if(action == "purge")
 				for(var/obj/O in N.seeds)
@@ -385,6 +543,26 @@
 					qdel(N)
 				return TRUE
 			break
+=======
+			break
+	if(hacked || emagged)
+		for (var/datum/seed_pile/N in piles_contra)
+			if (N.ID == ID)
+				if (task == "vend")
+					var/obj/O = pick(N.seeds)
+					if (O)
+						--N.amount
+						N.seeds -= O
+						if (N.amount <= 0 || N.seeds.len <= 0)
+							piles_contra -= N
+							qdel(N)
+						O.loc = src.loc
+					else
+						piles_contra -= N
+						qdel(N)
+				break
+	updateUsrDialog()
+>>>>>>> f35c60e440d... Merge pull request #8623 from Sypsoti/nutmegseedstorage
 
 /obj/machinery/seed_storage/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/seeds) && !lockdown)
