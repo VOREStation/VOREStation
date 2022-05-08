@@ -360,3 +360,40 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		var/rendered = "<span class='message'>[msg]</span>"
 		pai.show_message(rendered, type)
 	..()
+
+
+// VoreEdit: Living Machine Stuff after this.
+// This adds a var and proc for all machines to take a pAI. (The pAI can't control anything, it's just for RP.)
+// You need to add usage of the proc to each machine to actually add support. For an example of this, see code\modules\food\kitchen\microwave.dm
+/obj/machinery
+	var/obj/item/device/paicard/paicard = null
+
+/obj/machinery/proc/insertpai(mob/user, obj/item/device/paicard/card)
+	//var/obj/item/paicard/card = I
+	var/mob/living/silicon/pai/AI = card.pai
+	if(paicard)
+		to_chat(user, span_notice("This bot is already under PAI Control!"))
+		return
+	if(!istype(card)) // TODO: Add sleevecard support.
+		return
+	if(!card.pai)
+		to_chat(user, span_notice("This card does not currently have a personality!"))
+		return
+	paicard = card
+	user.unEquip(card)
+	card.forceMove(src)
+	AI.client.eye = src
+	to_chat(AI, span_notice("Your location is [card.loc].")) // DEBUG. TODO: Make unfolding the chassis trigger an eject.
+	name = AI.name
+	to_chat(AI, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
+
+/obj/machinery/proc/ejectpai(mob/user)
+	if(paicard)
+		var/mob/living/silicon/pai/AI = paicard.pai
+		paicard.forceMove(src.loc)
+		AI.client.eye = AI
+		paicard = null
+		name = initial(src.name)
+		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
+		if(user)
+			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))

@@ -9,10 +9,12 @@
 	switch(network)
 		if(NETWORK_THUNDER)
 			return 0
-		if(NETWORK_ENGINE,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)
+		if(NETWORK_ENGINE,NETWORK_ENGINEERING,NETWORK_ALARM_ATMOS,NETWORK_ALARM_FIRE,NETWORK_ALARM_POWER)
 			return access_engine
 		if(NETWORK_CIRCUITS)
 			return access_research
+		if(NETWORK_MINE)
+			return access_qm
 		if(NETWORK_ERT)
 			return access_cent_specops
 		//VOREStation Add Start

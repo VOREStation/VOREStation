@@ -75,6 +75,20 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	// If you turn this on, it changes the way communicator video works. User configurable option.
 	var/selfie_mode = FALSE
 
+	// Ringtones! (Based on the PDA ones)
+	var/ttone = "beep" //The ringtone!
+	var/list/ttone_sound = list("beep" = 'sound/machines/twobeep.ogg',
+								"boom" = 'sound/effects/explosionfar.ogg',
+								"slip" = 'sound/misc/slip.ogg',
+								"honk" = 'sound/items/bikehorn.ogg',
+								"SKREE" = 'sound/voice/shriek1.ogg',
+								// "holy" = 'sound/items/PDA/ambicha4-short.ogg',
+								"xeno" = 'sound/voice/hiss1.ogg',
+								"dust" = 'sound/effects/supermatter.ogg',
+								"spark" = 'sound/effects/sparks4.ogg',
+								"rad" = 'sound/items/geiger/high1.ogg',
+								"servo" = 'sound/machines/rig/rigservo.ogg')
+
 // Proc: New()
 // Parameters: None
 // Description: Adds the new communicator to the global list of all communicators, sorts the list, obtains a reference to the Exonet node, then tries to
