@@ -99,12 +99,13 @@
 	if(get_turf(target) == src.loc)
 		UnarmedAttack(target)
 
-/mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
+//mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
+/mob/living/bot/cleanbot/UnarmedAttack(atom/D, var/proximity)
 	if(!..())
 		return
 
-	if(!istype(D))
-		return
+	//if(!istype(D))
+	//	return
 
 	if(D.loc != loc)
 		return
@@ -113,17 +114,33 @@
 	if(prob(20))
 		custom_emote(2, "begins to clean up \the [D]")
 	update_icons()
-	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
-	if(do_after(src, cleantime))
-		if(istype(loc, /turf/simulated))
-			var/turf/simulated/f = loc
-			f.dirt = 0
-		if(!D)
-			return
-		qdel(D)
-		if(D == target)
-			cleanbot_reserved_turfs -= target
-			target = null
+	var/cleantime = 0
+	if(istype(D, /obj/effect/decal/cleanable))
+		cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
+		if(do_after(src, cleantime))
+			if(istype(loc, /turf/simulated))
+				var/turf/simulated/f = loc
+				f.dirt = 0
+			if(!D)
+				return
+			qdel(D)
+			if(D == target)
+				cleanbot_reserved_turfs -= target
+				target = null
+	else if(D == src)
+		for(var/obj/effect/O in loc)
+			if(istype(O, /obj/effect/decal/cleanable/dirt))
+				cleantime += 10
+			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+				cleantime += 50
+		if(do_after(src, cleantime))
+			clean_blood()
+			if(istype(loc, /turf/simulated))
+				var/turf/simulated/T = loc
+				T.dirt = 0
+			for(var/obj/effect/O in loc)
+				if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+					qdel(O)
 	busy = 0
 	update_icons()
 

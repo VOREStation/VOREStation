@@ -543,8 +543,16 @@
 	init_vore() // ROBOT VORE
 	verbs |= /mob/living/proc/insidePanel
 
+	return ..()
+
 /mob/living/bot/Logout()
 	no_vore = TRUE // ROBOT VORE
 	release_vore_contents()
 	init_vore() // ROBOT VORE
 	verbs -= /mob/living/proc/insidePanel
+	no_vore = TRUE
+	devourable = FALSE
+	feeding = FALSE
+	can_be_drop_pred = FALSE
+
+	return ..()
