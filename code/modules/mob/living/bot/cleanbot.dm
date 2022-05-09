@@ -112,7 +112,10 @@
 
 	busy = 1
 	if(prob(20))
-		custom_emote(2, "begins to clean up \the [D]")
+		if(D == src)
+			custom_emote(2, "begins to clean up \the [loc]")
+		else
+			custom_emote(2, "begins to clean up \the [D]")
 	update_icons()
 	var/cleantime = 0
 	if(istype(D, /obj/effect/decal/cleanable))
