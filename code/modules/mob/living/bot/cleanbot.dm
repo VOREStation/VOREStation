@@ -10,6 +10,7 @@
 	wait_if_pulled = 1
 	min_target_dist = 0
 
+	var/cTimeMult = 1 // A multiplier for how long it should take to clean. Anything bigger than one will increase time, less than one will make it faster.
 	var/vocal = 1
 	var/cleaning = 0
 	var/wet_floors = 0
@@ -120,7 +121,9 @@
 	var/cleantime = 0
 	if(istype(D, /obj/effect/decal/cleanable))
 		cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
-		if(do_after(src, cleantime))
+		if(prob(20))
+			custom_emote(2, "begins to clean up \the [D]")
+		if(do_after(src, cleantime * cTimeMult))
 			if(istype(loc, /turf/simulated))
 				var/turf/simulated/f = loc
 				f.dirt = 0
@@ -136,14 +139,17 @@
 				cleantime += 10
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				cleantime += 50
-		if(do_after(src, cleantime))
-			clean_blood()
-			if(istype(loc, /turf/simulated))
-				var/turf/simulated/T = loc
-				T.dirt = 0
-			for(var/obj/effect/O in loc)
-				if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
-					qdel(O)
+		if(cleantime > 0)
+			if(do_after(src, cleantime * cTimeMult))
+				clean_blood()
+				if(istype(loc, /turf/simulated))
+					var/turf/simulated/T = loc
+					T.dirt = 0
+				for(var/obj/effect/O in loc)
+					if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+						qdel(O)
+		else
+			handleIdle()
 	busy = 0
 	update_icons()
 
