@@ -112,11 +112,6 @@
 		return
 
 	busy = 1
-	if(prob(20))
-		if(D == src)
-			custom_emote(2, "begins to clean up \the [loc]")
-		else
-			custom_emote(2, "begins to clean up \the [D]")
 	update_icons()
 	var/cleantime = 0
 	if(istype(D, /obj/effect/decal/cleanable))
@@ -139,7 +134,9 @@
 				cleantime += 10
 			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
 				cleantime += 50
-		if(cleantime > 0)
+		if(cleantime != 0)
+			if(prob(20))
+				custom_emote(2, "begins to clean up \the [loc]")
 			if(do_after(src, cleantime * cTimeMult))
 				clean_blood()
 				if(istype(loc, /turf/simulated))

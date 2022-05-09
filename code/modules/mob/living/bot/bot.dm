@@ -377,6 +377,7 @@
 	resetTarget()
 	patrol_path = list()
 	ignore_list = list()
+	update_canmove()
 	return 1
 
 /mob/living/bot/proc/turn_off()
@@ -384,6 +385,7 @@
 	busy = 0 // If ever stuck... reboot!
 	set_light(0)
 	update_icons()
+	update_canmove()
 
 /mob/living/bot/proc/explode()
 	if(paicard)
@@ -483,6 +485,11 @@
 
 /mob/living/bot/isSynthetic() //Robots are synthetic, no?
 	return 1
+
+/mob/living/bot/update_canmove()
+	..()
+	canmove = on
+	return canmove
 
 /mob/living/bot/proc/insertpai(mob/user, obj/item/device/paicard/card)
 	//var/obj/item/paicard/card = I
