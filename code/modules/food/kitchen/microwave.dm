@@ -444,7 +444,7 @@
 	for(var/obj/item/weapon/reagent_containers/food/snacks/S in cooked_items)
 		reagents.trans_to_holder(S.reagents, total/cooked_items.len)
 
-	for(var/obj/item/weapon/reagent_containers/food/snacks/S in contents)
+	for(var/obj/item/weapon/reagent_containers/food/snacks/S in cookingContents())
 		S.cook()
 
 	dispose(0) //clear out anything left
@@ -543,7 +543,7 @@
 /obj/machinery/microwave/proc/fail()
 	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
-	for (var/obj/O in cookingContents())
+	for (var/obj/O in cookingContents() - ffuu)
 		amount++
 		if(O.reagents)
 			var/id = O.reagents.get_master_reagent_id()
