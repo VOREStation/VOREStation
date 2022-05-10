@@ -1074,7 +1074,7 @@
 	to_chat(src, "Your icon has been set. You now require a module reset to change it.")
 
 /mob/living/silicon/robot/proc/sensor_mode() //Medical/Security HUD controller for borgs
-	set name = "Set Sensor Augmentation"
+	set name = "Toggle Sensor Augmentation" //VOREStation Add
 	set category = "Robot Commands"
 	set desc = "Augment visual feed with internal sensor overlays."
 	sensor_type = !sensor_type //VOREStation Add
