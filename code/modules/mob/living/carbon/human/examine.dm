@@ -484,9 +484,6 @@
 				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 	else if(istype(M, /mob/living/silicon/robot))
 		var/mob/living/silicon/robot/R = M
-		switch(hudtype)
-			if("security")
-				return R.hudmode == "Security"
-			if("medical")
-				return R.hudmode == "Medical"
+		return R.sensor_type //VOREStation Add - Borgo sensors are now binary so just have them on or off
+
 	return 0

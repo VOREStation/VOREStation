@@ -790,6 +790,8 @@ var/list/ai_verbs_default = list(
 	set name = "Set Sensor Augmentation"
 	set category = "AI Settings"
 	set desc = "Augment visual feed with internal sensor overlays"
+	sensor_type = !sensor_type //VOREStation Add
+	to_chat(usr, "You [sensor_type ? "enable" : "disable"] your sensors.") //VOREStation Add
 	toggle_sensor_mode()
 
 /mob/living/silicon/ai/proc/toggle_hologram_movement()
