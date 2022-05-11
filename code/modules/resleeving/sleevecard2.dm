@@ -5,7 +5,6 @@
 						/datum/category_item/catalogue/technology/resleeving)
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
-	var/mob/living/silicon/pai/infomorph/infomorph
 
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 
@@ -14,7 +13,7 @@
 
 /obj/item/device/paicard/sleevecard/attackby(var/obj/item/device/sleevemate/I as obj, mob/user as mob)
 	if(istype(I))
-		if(I.stored_mind)
+		if(I.stored_mind && !pai)
 			var/datum/mind/M = I.stored_mind
 			var/datum/transcore_db/db = SStranscore.db_by_mind_name(M.name)
 			if(db)
@@ -28,7 +27,7 @@
 				to_chat(user, span_notice("Your sleevemate flashes an error, apparently this mind doesn't have a backup."))
 
 /obj/item/device/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
-	infomorph = new(src,MR.mindname,db_key=db_key)
+	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key=db_key)
 
 	for(var/datum/language/L in MR.languages)
 		infomorph.add_language(L.name)
@@ -47,12 +46,6 @@
 		return 1
 
 	return 0
-
-/obj/item/device/paicard/sleevecard/setPersonality(mob/living/silicon/pai/infomorph/personality)
-	src.infomorph = personality
-	if(pai != infomorph)
-		pai = infomorph
-	add_overlay("pai-happy")
 
 /obj/item/device/paicard/sleevecard/attack_self(mob/user)
 	add_fingerprint(user)
