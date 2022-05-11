@@ -55,7 +55,7 @@
 
 	if(infomorph.client)
 		pai = infomorph
-		setEmotion(1)
+		setEmotion(1) // TO DO: Test if this works?
 		return 1
 
 	return 0
@@ -134,10 +134,6 @@
 	pda.ownjob = "Sleevecard"
 	pda.owner = text("[]", src)
 	pda.name = pda.owner + " (" + pda.ownjob + ")"
-
-	var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
-	if(M)
-		M.toff = TRUE
 
 
 /mob/living/silicon/pai/infomorph/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
