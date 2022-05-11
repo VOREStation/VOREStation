@@ -21,6 +21,7 @@ chaosdoomsday - Black-Eyed Shadekin
 chargae - Protean
 chemlight - Xenochimera
 chillyfang - Black-Eyed Shadekin
+chloeplayer - Protean
 comradenitro - Protean
 coolcrow420 - Black-Eyed Shadekin
 crossexonar - Protean
@@ -60,6 +61,7 @@ lorgenz - Protean
 losstinspess - Xenochimera
 magpiemayhem - Vox
 magpiemayhem - Xenochimera
+makkinindorn - Protean
 marcobarko - Protean
 mewchild - Diona
 mewchild - Vox
