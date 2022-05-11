@@ -3,19 +3,9 @@
 	desc = "This KHI-upgraded pAI module has enough capacity to run a whole mind of human-level intelligence."
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/khi,
 						/datum/category_item/catalogue/technology/resleeving)
-
-	//icon = 'icons/obj/pda.dmi'
-	//icon_state = "pai"
-	//item_state = "electronic"
-
-	//w_class = ITEMSIZE_SMALL
-	//slot_flags = SLOT_BELT
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
 	var/mob/living/silicon/pai/infomorph/infomorph
-	//var/obj/item/device/radio/sleevecard/radio
-	//var/mob/living/silicon/infomorph/infomorph
-	//var/current_emotion = 1
 
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 
@@ -50,12 +40,10 @@
 	//Don't set 'real_name' because then we get a nice (as sleevecard) thing.
 	infomorph.name = "[initial(infomorph.name)] ([MR.mindname])"
 	name = "[initial(name)] ([MR.mindname])"
-	//var/emoname = pai_emotions[1]
-	//setEmotion(1)
 
 	if(infomorph.client)
 		pai = infomorph
-		setEmotion(1) // TO DO: Test if this works?
+		setEmotion(1)
 		return 1
 
 	return 0
@@ -65,29 +53,7 @@
 	if(pai != infomorph)
 		pai = infomorph
 	add_overlay("pai-happy")
-/*
-//This is a 'hard' proc, it does no permission checking, do that on the computer
-/obj/item/device/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
-	infomorph = new(src,MR.mindname,db_key=db_key)
 
-	for(var/datum/language/L in MR.languages)
-		infomorph.add_language(L.name)
-	MR.mind_ref.active = 1 //Well, it's about to be.
-	MR.mind_ref.transfer_to(pai) //Does mind+ckey+client.
-	infomorph.ooc_notes = MR.mind_oocnotes
-	infomorph.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
-
-	//Don't set 'real_name' because then we get a nice (as sleevecard) thing.
-	infomorph.name = "[initial(infomorph.name)] ([MR.mindname])"
-	name = "[initial(name)] ([MR.mindname])"
-	var/emoname = pai_emotions[1]
-	setEmotion(pai_emotions[emoname])
-	pai = infomorph
-	if(infomorph.client)
-		return 1
-
-	return 0
-*/
 /obj/item/device/paicard/sleevecard/attack_self(mob/user)
 	add_fingerprint(user)
 
@@ -106,29 +72,7 @@
 /mob/living/silicon/pai/infomorph/New(var/obj/item/device/paicard/sleevecard/SC, var/name = "Unknown", var/db_key)
 	..()
 
-	//ASSERT(SC)
 	name = "[initial(name)] ([name])"
-	//src.forceMove(SC)
-	//card = SC
-	//sradio = new(src)
-	//translator = new(src)
-	//communicator = new(src)
-	//if(!card.radio)
-	//	card.radio = new (card)
-	//radio = card.radio
-
-	//src.db_key = db_key
-
-	//Default languages without universal translator software
-	//add_language(LANGUAGE_EAL, 1)
-	//add_language(LANGUAGE_SIGN, 0)
-	/*
-	verbs += /mob/living/silicon/infomorph/proc/choose_verbs
-	verbs += /mob/living/proc/hide
-	verbs += /mob/living/silicon/infomorph/proc/fold_out
-	verbs += /mob/living/silicon/infomorph/proc/fold_in
-	*/
-	//software = default_infomorph_software.Copy()
 
 	//PDA
 	pda.ownjob = "Sleevecard"
