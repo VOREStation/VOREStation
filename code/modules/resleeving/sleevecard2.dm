@@ -64,8 +64,6 @@
 
 /mob/living/silicon/pai/infomorph
 	name = "sleevecard" //Has the same name as the card for consistency, but this is the MOB in the card.
-	icon = 'icons/mob/pai_vr.dmi' //Changed to the virgo icon, giving more sprite options.
-	icon_state = "pai-repairbot"
 
 	ram = 30
 
