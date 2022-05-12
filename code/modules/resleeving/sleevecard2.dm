@@ -58,7 +58,7 @@
 /mob/living/silicon/pai/infomorph
 	name = "sleevecard" //Has the same name as the card for consistency, but this is the MOB in the card.
 
-	ram = 30
+	ram = 35
 
 /mob/living/silicon/pai/infomorph/New(var/obj/item/device/paicard/sleevecard/SC, var/name = "Unknown", var/db_key)
 	..()
