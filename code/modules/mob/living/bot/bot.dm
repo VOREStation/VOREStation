@@ -377,6 +377,7 @@
 	resetTarget()
 	patrol_path = list()
 	ignore_list = list()
+	update_canmove()
 	return 1
 
 /mob/living/bot/proc/turn_off()
@@ -384,6 +385,7 @@
 	busy = 0 // If ever stuck... reboot!
 	set_light(0)
 	update_icons()
+	update_canmove()
 
 /mob/living/bot/proc/explode()
 	if(paicard)
@@ -484,6 +486,11 @@
 /mob/living/bot/isSynthetic() //Robots are synthetic, no?
 	return 1
 
+/mob/living/bot/update_canmove()
+	..()
+	canmove = on
+	return canmove
+
 /mob/living/bot/proc/insertpai(mob/user, obj/item/device/paicard/card)
 	//var/obj/item/paicard/card = I
 	var/mob/living/silicon/pai/AI = card.pai
@@ -543,8 +550,16 @@
 	init_vore() // ROBOT VORE
 	verbs |= /mob/living/proc/insidePanel
 
+	return ..()
+
 /mob/living/bot/Logout()
 	no_vore = TRUE // ROBOT VORE
 	release_vore_contents()
 	init_vore() // ROBOT VORE
 	verbs -= /mob/living/proc/insidePanel
+	no_vore = TRUE
+	devourable = FALSE
+	feeding = FALSE
+	can_be_drop_pred = FALSE
+
+	return ..()
