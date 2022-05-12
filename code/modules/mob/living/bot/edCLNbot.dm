@@ -11,6 +11,7 @@
 
 	patrol_speed = 3
 	target_speed = 6
+	cTimeMult = 0.3 // Big bois should be big fast :3
 
 	vocal = 1
 	cleaning = 0
