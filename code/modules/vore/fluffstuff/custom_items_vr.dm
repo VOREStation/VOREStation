@@ -1498,12 +1498,19 @@
 	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")
 	
 //Bricker98:Nettie Stough
-/obj/item/modular_computer/tablet/preset/custom_loadout/elite/nettie
-    name = "Remodeled Tablet"
-    desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
+/obj/item/modular_computer/tablet/preset/custom_loadout/nettie
+  name = "Remodeled Tablet"
+  desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
+  icon = 'icons/obj/modular_tablet.dmi'
+  icon_state = "elite"
+  icon_state_unpowered = "elite"
 
-/obj/item/modular_computer/tablet/preset/custom_loadout/elite/nettie/install_default_hardware()
+/obj/item/modular_computer/tablet/preset/custom_loadout/nettie/install_default_hardware()
   ..()
-  qdel_null(hard_drive)
-  hard_drive = new/obj/item/weapon/computer_hardware/hard_drive(src)
-  qdel_null(card_slot)
+  processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/small(src)
+  tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
+  hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
+  network_card = new/obj/item/weapon/computer_hardware/network_card/advanced(src)
+  nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+  battery_module = new/obj/item/weapon/computer_hardware/battery_module(src)
+  battery_module.charge_to_full()
