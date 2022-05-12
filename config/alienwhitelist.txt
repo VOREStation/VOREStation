@@ -18,6 +18,7 @@ bricker98 - Black-Eyed Shadekin
 camanis - Protean
 cgr - Protean
 chaosdoomsday - Black-Eyed Shadekin
+chaosdoomsday - Protean
 chargae - Protean
 chemlight - Xenochimera
 chillyfang - Black-Eyed Shadekin
