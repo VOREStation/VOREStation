@@ -1496,3 +1496,14 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "lemonplush"
 	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")
+	
+//Bricker98:Nettie Stough
+/obj/item/modular_computer/tablet/preset/custom_loadout/elite/nettie
+    name = "Remodeled Tablet"
+    desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
+
+/obj/item/modular_computer/tablet/preset/custom_loadout/elite/nettie/install_default_hardware()
+  ..()
+  qdel_null(hard_drive)
+  hard_drive = new/obj/item/weapon/computer_hardware/hard_drive(src)
+  qdel_null(card_slot)
