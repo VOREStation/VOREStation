@@ -323,7 +323,7 @@ emp_act
 
 		if(!stat)
 			switch(hit_zone)
-				if("head")//Harder to score a stun but if you do it lasts a bit longer
+				if(BP_HEAD)//Harder to score a stun but if you do it lasts a bit longer
 					if(prob(effective_force))
 						apply_effect(20, PARALYZE, blocked, soaked)
 						visible_message("<span class='danger'>\The [src] has been knocked unconscious!</span>")
@@ -337,7 +337,7 @@ emp_act
 						if(glasses && prob(33))
 							glasses.add_blood(src)
 							update_inv_glasses(0)
-				if("chest")//Easier to score a stun but lasts less time
+				if(BP_TORSO)//Easier to score a stun but lasts less time
 					if(prob(effective_force + 10))
 						apply_effect(6, WEAKEN, blocked, soaked)
 						visible_message("<span class='danger'>\The [src] has been knocked down!</span>")

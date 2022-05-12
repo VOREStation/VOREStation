@@ -43,7 +43,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		return ..()
 
 	var/pai_name = input(user, "Choose your character's name", "Character Name") as text
-	var/actual_pai_name = sanitize_name(pai_name)
+	var/actual_pai_name = sanitize_name(pai_name, ,1)
 	if(isnull(actual_pai_name))
 		return ..()
 

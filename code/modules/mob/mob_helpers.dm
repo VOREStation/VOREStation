@@ -602,33 +602,33 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 
 //The base miss chance for the different defence zones
 var/list/global/base_miss_chance = list(
-	"head" = 40,
-	"chest" = 10,
-	"groin" = 20,
-	"l_leg" = 20,
-	"r_leg" = 20,
-	"l_arm" = 20,
-	"r_arm" = 20,
-	"l_hand" = 50,
-	"r_hand" = 50,
-	"l_foot" = 50,
-	"r_foot" = 50,
+	BP_HEAD = 40,
+	BP_TORSO = 10,
+	BP_GROIN = 20,
+	BP_L_LEG = 20,
+	BP_R_LEG = 20,
+	BP_L_ARM = 20,
+	BP_R_ARM = 20,
+	BP_L_HAND = 50,
+	BP_R_HAND = 50,
+	BP_L_FOOT = 50,
+	BP_R_FOOT = 50,
 )
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
 var/list/global/organ_rel_size = list(
-	"head" = 25,
-	"chest" = 70,
-	"groin" = 30,
-	"l_leg" = 25,
-	"r_leg" = 25,
-	"l_arm" = 25,
-	"r_arm" = 25,
-	"l_hand" = 10,
-	"r_hand" = 10,
-	"l_foot" = 10,
-	"r_foot" = 10,
+	BP_HEAD = 25,
+	BP_TORSO = 70,
+	BP_GROIN = 30,
+	BP_L_LEG = 25,
+	BP_R_LEG = 25,
+	BP_L_ARM = 25,
+	BP_R_ARM = 25,
+	BP_L_HAND = 10,
+	BP_R_HAND = 10,
+	BP_L_FOOT = 10,
+	BP_R_FOOT = 10,
 )
 
 /mob/proc/flash_eyes(intensity = FLASH_PROTECTION_MODERATE, override_blindness_check = FALSE, affect_silicon = FALSE, visual = FALSE, type = /obj/screen/fullscreen/flash)
