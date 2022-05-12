@@ -198,6 +198,12 @@
 	ckeywhitelist = list("bobofboblandia")
 	character_name = list("Charles Gettler")
 
+/datum/gear/fluff/nettie_tablet
+	path = /obj/item/modular_computer/tablet/preset/custom_loadout/elite/nettie
+	display_name = "Remodeled Tablet"
+	ckeywhitelist = list("bricker98")
+	character_name = list("Nettie Stough")
+
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
 	display_name = "Xin's Soviet Uniform"
