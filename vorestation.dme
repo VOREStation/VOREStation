@@ -3749,7 +3749,7 @@
 #include "code\modules\resleeving\machine_subtypes.dm"
 #include "code\modules\resleeving\machines.dm"
 #include "code\modules\resleeving\resleeving_sickness.dm"
-#include "code\modules\resleeving\sleevecard2.dm"
+#include "code\modules\resleeving\sleevecard.dm"
 #include "code\modules\rogueminer_vr\asteroid.dm"
 #include "code\modules\rogueminer_vr\controller.dm"
 #include "code\modules\rogueminer_vr\debug.dm"
