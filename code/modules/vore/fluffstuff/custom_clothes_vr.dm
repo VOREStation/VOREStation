@@ -208,20 +208,6 @@
 	item_state = "greatcoat_mob"
 
 //For general use
-/obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
-	name = "long wool coat"
-	desc = "A sophisticated long coat made of wool, keeps you warm and cozy in the harsh winters."
-
-	icon = 'icons/inventory/suit/mob_vr.dmi'
-	icon_state = "russofurcoat"
-
-	icon_override = 'icons/inventory/suit/mob_vr.dmi'
-	item_state = "russofurcoat"
-
-	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
-	flags_inv = HIDETIE|HIDEHOLSTER
-
-//For general use
 /obj/item/clothing/suit/storage/fluff/fedcoat
 	name = "Federation Uniform Jacket (Red)"
 	desc = "A uniform jacket from the United Federation. Starfleet still uses this uniform and there are variations of it. Set phasers to awesome."
