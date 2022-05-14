@@ -487,7 +487,6 @@
 					/obj/item/weapon/plantspray/pests = 20,
 					/obj/item/weapon/reagent_containers/syringe = 5,
 					/obj/item/weapon/reagent_containers/glass/beaker = 4,
-					/obj/item/weapon/watertank = 1,
 					/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,
 					/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
@@ -1524,8 +1523,7 @@
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/belt/janitor = 5,
 		/obj/item/clothing/shoes/galoshes = 5,
-		/obj/item/weapon/cartridge/janitor = 5,
-		/obj/item/weapon/watertank/janitor = 1
+		/obj/item/weapon/cartridge/janitor = 5
 	)
 	req_log_access = access_hop
 	has_logs = 1
