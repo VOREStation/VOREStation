@@ -47,7 +47,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari
 	containername = "crate of bar supplies"
-	
+
 /datum/supply_pack/hospitality/cookingoil
 	name = "Cooking oil tank crate"
 	contains = list(/obj/structure/reagent_dispensers/cookingoil)
@@ -79,6 +79,7 @@
 	containertype = /obj/structure/closet/crate/allico
 	containername = "crate of gifts"
 
+<<<<<<< HEAD
 /datum/supply_pack/hospitality/painting
 	name = "Painting equipment"
 	contains = list(
@@ -95,7 +96,16 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/centauri
 	containername = "Painting equipment"
+=======
+/datum/supply_pack/hospitality/holywater
+	name = "Holy water crate"
+	contains = list(
+		/obj/item/reagent_containers/food/drinks/bottle/holywater = 3
+		)
+	cost = 15
+	containertype = /obj/structure/closet/crate/gilthari
+	containername = "holy water crate"
+>>>>>>> fab45d385f5... Merge pull request #8633 from Sypsoti/bartendinggood
 
 /datum/supply_pack/randomised/hospitality/
 	group = "Hospitality"
-
