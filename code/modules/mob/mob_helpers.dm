@@ -601,7 +601,11 @@ var/list/intents = list(I_HELP,I_DISARM,I_GRAB,I_HURT)
 //TODO: Integrate defence zones and targeting body parts with the actual organ system, move these into organ definitions.
 
 //The base miss chance for the different defence zones
+<<<<<<< HEAD
 var/list/global/base_miss_chance = list(
+=======
+var/global/list/base_miss_chance = list(
+>>>>>>> 7f75c63be2b... Merge pull request #8629 from KillianKirilenko/kk-minifix
 	BP_HEAD = 40,
 	BP_TORSO = 10,
 	BP_GROIN = 20,
@@ -617,7 +621,11 @@ var/list/global/base_miss_chance = list(
 
 //Used to weight organs when an organ is hit randomly (i.e. not a directed, aimed attack).
 //Also used to weight the protection value that armour provides for covering that body part when calculating protection from full-body effects.
+<<<<<<< HEAD
 var/list/global/organ_rel_size = list(
+=======
+var/global/list/organ_rel_size = list(
+>>>>>>> 7f75c63be2b... Merge pull request #8629 from KillianKirilenko/kk-minifix
 	BP_HEAD = 25,
 	BP_TORSO = 70,
 	BP_GROIN = 30,
