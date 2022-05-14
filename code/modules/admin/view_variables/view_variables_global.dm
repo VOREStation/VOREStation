@@ -36,11 +36,6 @@
 
 /decl/global_vars/VV_hidden()
 	return list(
-		"forumsqladdress",
-		"forumsqldb",
-		"forumsqllogin",
-		"forumsqlpass",
-		"forumsqlport",
 		"sqladdress",
 		"sqldb",
 		"sqllogin",
