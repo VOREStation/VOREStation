@@ -609,7 +609,11 @@
 	..()
 	if(prob(5))
 		M.emote(pick("twitch", "blink_r", "shiver"))
+<<<<<<< HEAD
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+=======
+	M.add_chemical_effect(CE_SPEEDBOOST, 1.2)
+>>>>>>> a5a9d814454... Merge pull request #8634 from Sypsoti/hyperzinenerf
 
 /datum/reagent/hyperzine/overdose(var/mob/living/carbon/M, var/alien, var/removed)
 	..()

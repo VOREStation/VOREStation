@@ -143,8 +143,14 @@
 
 	M.druggy = max(M.druggy, 30)
 
+	var/drug_strength = 20
 	var/effective_dose = dose
+<<<<<<< HEAD
 	if(issmall(M)) effective_dose *= 2
+=======
+	if(issmall(M))
+		effective_dose *= 2
+>>>>>>> a5a9d814454... Merge pull request #8634 from Sypsoti/hyperzinenerf
 	if(effective_dose < 1 * threshold)
 		M.apply_effect(3, STUTTER)
 		M.make_dizzy(5)
@@ -156,6 +162,7 @@
 		M.make_jittery(5)
 		M.make_dizzy(5)
 		M.druggy = max(M.druggy, 35)
+		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(5) && prob_proc == TRUE)
 			M.emote(pick("twitch", "giggle"))
 			prob_proc = FALSE
@@ -164,6 +171,7 @@
 		M.make_jittery(10)
 		M.make_dizzy(10)
 		M.druggy = max(M.druggy, 40)
+		M.hallucination = max(M.hallucination, drug_strength * threshold)
 		if(prob(10) && prob_proc == TRUE)
 			M.emote(pick("twitch", "giggle"))
 			prob_proc = FALSE
@@ -206,6 +214,243 @@
 	color = "#181818"
 	high_messages = FALSE
 
+<<<<<<< HEAD
+=======
+/datum/reagent/drugs/snowflake
+	name = "Snowflake"
+	id = "snowflake"
+	description = "A recreational stimulant refined from frostoil found in certain plants."
+	taste_description = "metallic and bitter"
+	overdose = 15
+	color = "#bbd7eb"
+	high_message_list = list("You feel euphoric!",
+	"You feel unstoppable.",
+	"You just can't seem to stop sniffling...",
+	"You feel impatient...",
+	"Your eyes feel a bit dry.")
+	sober_message_list = list("You feel a bit more sluggish.",
+	"You feel terrible...",
+	"You feel pretty dehydrated.")
+
+/datum/reagent/drugs/snowflake/affect_blood(mob/living/carbon/M, alien, removed)
+	..()
+
+	M.add_chemical_effect(CE_PAINKILLER,3)
+	if(prob(12) && prob_proc == TRUE)
+		M.emote(pick("shiver", "sniff"))
+		prob_proc = FALSE
+
+/datum/reagent/drugs/snowflake/overdose(mob/living/carbon/M, alien, removed)
+	if(prob(35) && prob_proc == TRUE)
+		M.vomit()
+		M.adjustToxLoss(5)
+		M.adjustBrainLoss(1)
+	..()
+
+/datum/reagent/drugs/royale
+	name = "Royale"
+	id = "royale"
+	description = "A drug used in the process of making Hyperzine. A powerful stimulant on its own, it comes with significant drawbacks and potential for misuse."
+	taste_description = "something faint and odious"
+	color = "#dbd4ba"
+	overdose = 10
+	high_message_list = list("You feel energized!",
+	"You're just not going fast enough. Faster!",
+	"You could out-run the world if you tried.",
+	"It's almost painful to sit still...",
+	"Is everything going in slow motion?")
+	sober_message_list = list("Everything is suddenly... sluggish.",
+	"You feel like trash, but you can finally sit still...")
+
+/datum/reagent/drugs/royale/affect_blood(mob/living/carbon/M, alien, removed)
+	..()
+	if(alien == IS_TAJARA) /// Similar to hyperzine...
+		removed *= 1.25
+	if(alien == IS_SLIME)
+		M.make_jittery(4)
+		if(dose >= 5)
+			M.adjust_nutrition(-removed * 2)
+	if(prob(5) && prob_proc == TRUE)
+		M.emote(pick("twitch", "blink_r", "shiver"))
+		M.add_chemical_effect(CE_PAINKILLER, 20) /// With chance of pain numbing...
+		prob_proc = FALSE
+	M.add_chemical_effect(CE_SPEEDBOOST, 1) /// And less speed boost.
+
+/datum/reagent/drugs/royale/overdose(mob/living/carbon/M, alien, removed)
+	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		for(var/i = 0, i < 4, i++)
+			step(M, pick(cardinal))
+	if(prob(5))
+		M.emote("laugh")
+	if(prob(5))
+		M.visible_message("<span class = 'danger'>[M]'s hands flip out and flail everywhere!</span>")
+		var/obj/item/I = M.get_active_hand()
+		if(I)
+			M.drop_item()
+	M.adjustToxLoss(1)
+	M.adjustBrainLoss(pick(0.5, 0.6, 0.7, 0.8, 0.9, 1))
+	..()
+
+/datum/reagent/drugs/sinkhole
+	name = "Sinkhole"
+	id = "sinkhole"
+	description = "A painkiller and recreational drug that hampers brain function."
+	taste_description = "a grainy paste"
+	color = "#462d35"
+	high_message_list = list("You feel euphoric!",
+	"You have a strange sense of calm and excitement all at once.",
+	"You feel... sleepy.",
+	"You feel dizzy.")
+	sober_message_list = list("Your thoughts are in a fog...", "You just need to lay down and rest.")
+
+/datum/reagent/drugs/sinkhole/affect_blood(mob/living/carbon/M, alien, removed)
+	..()
+
+	M.add_chemical_effect(CE_PAINKILLER, 40)
+	M.adjustBrainLoss(0.25)
+	if(prob(5) && prob_proc == TRUE)
+		M.emote(pick("shiver", "twitch"))
+		prob_proc = FALSE
+
+/datum/reagent/drugs/sinkhole/overdose(mob/living/carbon/M, alien, removed)
+	if(prob(10) && isturf(M.loc) && !istype(M.loc, /turf/space) && M.canmove && !M.restrained())
+		for(var/i = 0, i < 4, i++)
+			step(M, pick(cardinal))
+	M.adjustToxLoss(2)
+	M.drowsyness = max(M.drowsyness, 10)
+	M.adjustBrainLoss(pick(0.5, 0.6, 0.7, 0.8, 0.9, 1))
+	..()
+
+/datum/reagent/drugs/dmt
+	name = "Dimethyltryptamine"
+	id = "dmt"
+	description = "A psychedelic compound found naturally in certain plants."
+	taste_description = "plastic"
+	taste_mult = 1.8
+	color = "#d4bc8e"
+	high_message_list = list("You feel a sense of belonging.",
+	"Are you being watched...?",
+	"The boundaries of the universe feel limitless...")
+	sober_message_list = list("You feel painfully grounded again.")
+
+/datum/reagent/drugs/dmt/affect_blood(mob/living/carbon/M, alien, removed)
+	..()
+
+	if(alien == IS_TAJARA)
+		removed *= 1.25
+	if(prob(15) && prob_proc == TRUE)
+		M.emote(pick("deathgasp", "sigh", "smile"))
+		prob_proc = FALSE
+
+	var/drug_strength = 30
+
+	if(alien == IS_SKRELL)
+		drug_strength *= 0.8
+	if(alien == IS_SLIME)
+		drug_strength *= 1.2
+	M.druggy = max(M.druggy, 5)
+	M.hallucination = max(M.hallucination, drug_strength)
+
+/datum/reagent/drugs/ayahuasca
+	name = "Ayahuasca"
+	id = "ayahuasca"
+	description = "A brew of herbs known for religious use and spiritual experience."
+	taste_description = "strong and bitter herbs"
+	color = "#5b5f46"
+	high_message_list = list("You feel at one with the universe.",
+	"You feel in tune with the vibrations of the cosmos.",
+	"The spirits are with you...",
+	"Everything has a harmony, and you are part of it.")
+	sober_message_list = list("The presence of the spirits fades.",
+	"You feel grounded once again.")
+
+/datum/reagent/drugs/ayahuasca/affect_blood(mob/living/carbon/M, alien, removed)
+	if(alien == IS_TAJARA)
+		removed *= 1.25
+	..()
+	if(prob(15) && prob_proc == TRUE)
+		M.emote(pick("deathgasp", "moan", "smile", "groan"))
+		prob_proc = FALSE
+	var/drug_strength = 60
+
+	if(alien == IS_SKRELL)
+		drug_strength *= 0.8
+
+	if(alien == IS_SLIME)
+		drug_strength *= 1.2
+	M.druggy = max(M.druggy, 10)
+	M.hallucination = max(M.hallucination, drug_strength)
+
+/datum/reagent/drugs/colorspace
+	name = "Colorspace"
+	id = "colorspace"
+	description = "A psychedelic drug that alters thought and perception."
+	taste_description = "flavorless paste"
+	color = "#a7a6a4"
+	high_message_list = list("The floor is melting...",
+	"Everything is so much brighter! Wow!",
+	"Everything is shifting around you.",
+	"Your skin tickles.")
+	sober_message_list = list("The world grows still again.", "Colors seem duller.")
+
+/datum/reagent/drugs/colorspace/affect_blood(mob/living/carbon/M, alien, removed)
+	..()
+
+	var/drug_strength = 80
+
+	if(alien == IS_SKRELL)
+		drug_strength *= 0.8
+
+	if(alien == IS_SLIME)
+		drug_strength *= 1.2
+
+	M.druggy = max(M.druggy, 15)
+	M.hallucination = max(M.hallucination, drug_strength)
+
+/datum/reagent/drugs/schnappi
+	name = "Schnappi"
+	id = "schnappi"
+	description = "A dangerous and impure opiate that can cause necrosis in prolonged use."
+	color = "#0264B4"
+	taste_description = "a little crocodile" /// Schnee Schnii Schnappi, das kleiner krokodil...
+	overdose = 15
+	high_message_list = list("You feel pretty chill.",
+	"Your skin feels all rough and dry.",
+	"You feel too chill...!")
+	sober_message_list = list("You're full of regret...", "Is it finally over?")
+
+/datum/reagent/drugs/schnappi/affect_blood(mob/living/carbon/M, alien, removed)
+	..()
+	M.drowsyness = max(M.drowsyness, 5)
+	M.add_chemical_effect(CE_PAINKILLER, 1)
+	if(prob(15) && prob_proc == TRUE)
+		M.adjustToxLoss(2)
+		prob_proc = FALSE
+	if(prob(10) && prob_proc == TRUE)
+		M.visible_message("<span class='warning'>[M] looks dazed!</span>")
+		M.Stun(5)
+		M.emote("drool")
+		prob_proc = FALSE
+
+/datum/reagent/drugs/schnappi/overdose(mob/living/carbon/M, alien, removed)
+	M.drowsyness = max(M.drowsyness, 10)
+	if(prob(10))
+		M.visible_message("<span class='warning'>[M] looks dazed!</span>")
+		M.Stun(3)
+		M.emote("drool")
+	else if(prob(10))
+		to_chat(M, "<span class ='warning'>Your skin is cracking and bleeding!</span>")
+		M.adjustBruteLoss(5)
+		M.adjustToxLoss(1)
+		M.emote("cry")
+	else if(prob(10))
+		M.visible_message("<span class ='warning'>[M] sways and falls over!</span>")
+		M.adjustToxLoss(10)
+		M.Weaken(8)
+		M.emote("faint")
+	..()
+
+>>>>>>> a5a9d814454... Merge pull request #8634 from Sypsoti/hyperzinenerf
 /*///////////////////////////////////////////////////////////////////////////
 ///						PSYCHIATRIC DRUGS								/////
 ///																		/////
