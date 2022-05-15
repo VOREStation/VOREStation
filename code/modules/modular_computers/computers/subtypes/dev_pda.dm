@@ -4,7 +4,7 @@
 	icon = 'icons/obj/modular_pda.dmi'
 	icon_state = "pda"
 	icon_state_unpowered = "pda"
-	//hardware_flag = PROGRAM_PDA
+	hardware_flag = PROGRAM_PDA
 	max_hardware_size = 1
 	w_class = ITEMSIZE_SMALL
 	light_strength = 2
