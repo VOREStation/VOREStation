@@ -8,7 +8,7 @@
 
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 
-/obj/item/device/paicard/attack_ghost(mob/user as mob)
+/obj/item/device/paicard/sleevecard/attack_ghost(mob/user as mob)
 	return
 
 /obj/item/device/paicard/sleevecard/attackby(var/obj/item/device/sleevemate/I as obj, mob/user as mob)
