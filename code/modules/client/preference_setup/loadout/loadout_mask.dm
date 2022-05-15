@@ -64,8 +64,31 @@
 
 /datum/gear/mask/gaiter/New()
 	..()
+<<<<<<< HEAD
 	var/list/gaiters = list()
 	for(var/gaiter in typesof(/obj/item/clothing/accessory/gaiter))
 		var/obj/item/clothing/accessory/gaiter_type = gaiter
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))
+=======
+	var/masks = list()
+	masks["gas mask"] = /obj/item/clothing/mask/gas
+	masks["clear gas mask"] = /obj/item/clothing/mask/gas/clear
+	masks["plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor
+	masks["gold plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor/gold
+	gear_tweaks += new/datum/gear_tweak/path(masks)
+
+/datum/gear/mask/cloth
+	display_name = "cloth mask (recolorable)"
+	path = /obj/item/clothing/mask/surgical/cloth
+	cost = 2
+
+/datum/gear/mask/cloth/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/mask/dust
+	display_name = "dust mask"
+	path = /obj/item/clothing/mask/surgical/dust
+	cost = 2
+>>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22

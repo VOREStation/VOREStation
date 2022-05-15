@@ -365,6 +365,16 @@
 	slot_flags = SLOT_TIE
 	slot = ACCESSORY_SLOT_DECOR
 
+/obj/item/clothing/accessory/bracelet/slap
+	name = "slap bracelet"
+	desc = "Banned in schools! Popular with children and in poorly managed corporate events!"
+	icon_state = "slap"
+
+/obj/item/clothing/accessory/bracelet/beaded
+	name = "beaded bracelet"
+	desc = "Made from loose beads with a center hole and connected by a piece of string or elastic band through said holes."
+	icon_state = "beaded"
+
 /obj/item/clothing/accessory/bracelet/friendship
 	name = "friendship bracelet"
 	desc = "A beautiful friendship bracelet in all the colors of the rainbow."
@@ -432,6 +442,15 @@
 	..(newloc, "glass")
 
 	..()
+
+/obj/item/clothing/accessory/bracelet/material/sifwood/Initialize(var/ml)
+	. = ..(ml, MAT_SIFWOOD)
+
+/obj/item/clothing/accessory/bracelet/material/copper/Initialize(var/ml)
+	. = ..(ml, MAT_COPPER)
+
+/obj/item/clothing/accessory/bracelet/material/bronze/Initialize(var/ml)
+	. = ..(ml, MAT_BRONZE)
 
 /obj/item/clothing/accessory/halfcape
 	name = "half cape"
@@ -557,6 +576,120 @@
 	name = "intersex pride pin"
 	icon_state = "pride_intersex"
 
+<<<<<<< HEAD
 /obj/item/clothing/accessory/pride/vore
 	name = "vore pride pin"
 	icon_state = "pride_vore"
+=======
+//legbrace
+/obj/item/clothing/accessory/legbrace
+	name = "leg braces"
+	desc = "A set of leg braces to help support weak legs"
+	icon_state = "legbrace"
+	gender = PLURAL
+
+//necklaces
+/obj/item/clothing/accessory/necklace
+	icon_state = "necklace"
+	drop_sound = 'sound/items/drop/ring.ogg'
+	pickup_sound = 'sound/items/pickup/ring.ogg'
+	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_MASK | SLOT_TIE
+
+/obj/item/clothing/accessory/necklace/Initialize(var/ml, var/new_material)
+	. = ..(ml)
+	if(!new_material)
+		new_material = MAT_STEEL
+	material = get_material_by_name(new_material)
+	if(!istype(material))
+		qdel(src)
+		return
+	name = "[material.display_name] necklace"
+	desc = "A necklace of high-quality [material.display_name]."
+	color = material.icon_colour
+
+/obj/item/clothing/accessory/necklace/get_material()
+	return material
+
+/obj/item/clothing/accessory/necklace/wood/Initialize(var/ml)
+	. = ..(ml, MAT_WOOD)
+
+/obj/item/clothing/accessory/necklace/plastic/Initialize(var/ml)
+	. = ..(ml, MAT_PLASTIC)
+
+/obj/item/clothing/accessory/necklace/iron/Initialize(var/ml)
+	. = ..(ml, MAT_IRON)
+
+/obj/item/clothing/accessory/necklace/steel/Initialize(var/ml)
+	. = ..(ml, MAT_STEEL)
+
+/obj/item/clothing/accessory/necklace/silver/Initialize(var/ml)
+	. = ..(ml, MAT_SILVER)
+
+/obj/item/clothing/accessory/necklace/gold/Initialize(var/ml)
+	. = ..(ml, MAT_GOLD)
+
+/obj/item/clothing/accessory/necklace/platinum/Initialize(var/ml)
+	. = ..(ml, MAT_PLATINUM)
+
+/obj/item/clothing/accessory/necklace/phoron/Initialize(var/ml)
+	. = ..(ml, MAT_PHORON)
+
+/obj/item/clothing/accessory/necklace/glass/Initialize(var/ml)
+	. = ..(ml, MAT_GLASS)
+
+/obj/item/clothing/accessory/necklace/sifwood/Initialize(var/ml)
+	. = ..(ml, MAT_SIFWOOD)
+
+/obj/item/clothing/accessory/necklace/copper/Initialize(var/ml)
+	. = ..(ml, MAT_COPPER)
+
+/obj/item/clothing/accessory/necklace/bronze/Initialize(var/ml)
+	. = ..(ml, MAT_BRONZE)
+
+//neckercheif
+
+/obj/item/clothing/accessory/neckerchief
+	name = "neckerchief"
+	desc = "A piece of cloth tied around the neck. A favorite of scouts, sailors and partisans everywhere."
+	icon_state = "neckerchief"
+	slot_flags = SLOT_MASK | SLOT_TIE
+
+//watches
+
+/obj/item/clothing/accessory/watch
+	name = "watch"
+	desc = "A Ward-Takahashi produced wristwatch, encased in black plastic and featuring a digital display synced to the current system time!"
+	description_fluff = "For those who want too much time on their wrists instead."
+	icon_state = "watch"
+	slot_flags = SLOT_GLOVES | SLOT_TIE
+
+/obj/item/clothing/accessory/watch/examine(mob/user)
+	. = ..()
+	if(Adjacent(user))
+		. += "The watch shows that the time is [stationtime2text()]."
+
+/obj/item/clothing/accessory/watch/silver
+	name = "silver watch"
+	desc = "A Gilthari ZeitMeister, a finely tuned wristwatch encased in silver."
+	description_fluff = "To unleash the telemarketer in you!"
+	icon_state = "watch_silver"
+
+/obj/item/clothing/accessory/watch/gold
+	name = "gold watch"
+	desc = "A Gilthari ZeitMeister, a finely tuned wristwatch encased in <b>REAL</b> faux gold."
+	description_fluff = "Be the jerk-ass pawn shop owner you'll never be."
+	icon_state = "watch_gold"
+
+/obj/item/clothing/accessory/watch/holo
+	name = "holograpic watch"
+	desc = "A Gilthari ZeitMeister deluxe, with a holographic screen."
+	description_fluff = "The latest Gilthari technology!"
+	icon_state = "watch_holo"
+
+/obj/item/clothing/accessory/watch/leather
+	name = "leather watch"
+	desc = "A Gilthari ZeitMeister classic, a finely tuned wristwatch with a fancy leather strap."
+	description_fluff = "Made from real synth leather."
+	icon_state = "watch_leather"
+>>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22

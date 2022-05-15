@@ -52,12 +52,25 @@ var/list/outfits_decls_by_type_
 
 	var/id_pda_assignment
 
+<<<<<<< HEAD
 	var/backpack = /obj/item/weapon/storage/backpack
 	var/satchel_one  = /obj/item/weapon/storage/backpack/satchel/norm
 	var/satchel_two  = /obj/item/weapon/storage/backpack/satchel
 	var/messenger_bag = /obj/item/weapon/storage/backpack/messenger
 	var/sports_bag = /obj/item/weapon/storage/backpack/sport
 	var/satchel_three = /obj/item/weapon/storage/backpack/satchel/strapless
+=======
+	var/backpack = /obj/item/storage/backpack
+	var/satchel_one  = /obj/item/storage/backpack/satchel/norm
+	var/satchel_two  = /obj/item/storage/backpack/satchel
+	var/messenger_bag = /obj/item/storage/backpack/messenger
+	var/sports_bag = /obj/item/storage/backpack/sport
+	var/rucksack_black = /obj/item/storage/backpack/rucksack
+	var/rucksack_blue = /obj/item/storage/backpack/rucksack/blue
+	var/rucksack_green = /obj/item/storage/backpack/rucksack/green
+	var/rucksack_navy = /obj/item/storage/backpack/rucksack/navy
+	var/rucksack_tan = /obj/item/storage/backpack/rucksack/tan
+>>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22
 
 	var/flags // Specific flags
 
@@ -79,7 +92,15 @@ var/list/outfits_decls_by_type_
 			if(4) back = satchel_two
 			if(5) back = messenger_bag
 			if(6) back = sports_bag
+<<<<<<< HEAD
 			if(7) back = satchel_three
+=======
+			if(7) back = rucksack_black
+			if(8) back = rucksack_blue
+			if(9) back = rucksack_green
+			if(10) back = rucksack_navy
+			if(11) back = rucksack_tan
+>>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22
 			else back = null
 
 /decl/hierarchy/outfit/proc/post_equip(mob/living/carbon/human/H)

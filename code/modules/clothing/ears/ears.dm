@@ -185,3 +185,21 @@
 	name = "light blue headtail cloth"
 	icon_state = "skrell_cloth_lblue_male"
 	item_state_slots = list(slot_r_hand_str = "egg2", slot_l_hand_str = "egg2")
+
+/obj/item/clothing/ears/hearingaid
+	name = "hearing aid"
+	desc = "A device that assists the hard of hearing"
+	icon = 'icons/obj/clothing/ears.dmi'
+	icon_state = "hearing_aid"
+
+/obj/item/clothing/ears/hearingaid/black
+	name = "black hearing aid"
+	icon_state = "hearing_aid_black"
+
+/obj/item/clothing/ears/hearingaid/silver
+	name = "silver hearing aid"
+	icon_state = "hearing_aid_silver"
+
+/obj/item/clothing/ears/hearingaid/white
+	name = "white hearing aid"
+	icon_state = "hearing_aid_white"
