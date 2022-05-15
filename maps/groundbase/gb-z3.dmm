@@ -115,7 +115,7 @@
 /obj/effect/shuttle_landmark{
 	base_area = /area/groundbase/level3/escapepad;
 	base_turf = /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c;
-	docking_controller = "escape_dock";
+	docking_controller = null;
 	landmark_tag = "escape_station";
 	name = "Ship Arrivals"
 	},
