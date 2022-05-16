@@ -534,6 +534,7 @@
 					/obj/item/clothing/accessory/collar/bell = 5,
 					/obj/item/clothing/accessory/collar/spike = 5,
 					/obj/item/clothing/accessory/collar/pink = 5,
+					/obj/item/clothing/accessory/collar/collarplanet_earth = 5,
 					/obj/item/clothing/accessory/collar/holo = 5,
 					/obj/item/clothing/accessory/collar/shock = 5,
 					/obj/item/weapon/storage/belt/fannypack = 1,
