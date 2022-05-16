@@ -55,6 +55,11 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/allowmobvore = TRUE
 	var/permit_healbelly = TRUE
 
+	// These are 'modifier' prefs, do nothing on their own but pair with drop_prey/drop_pred settings.
+	var/drop_vore = TRUE
+	var/stumble_vore = TRUE
+	var/slip_vore = TRUE
+
 	var/resizable = TRUE
 	var/show_vore_fx = TRUE
 	var/step_mechanics_pref = FALSE
@@ -143,6 +148,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	step_mechanics_pref = json_from_file["step_mechanics_pref"]
 	pickup_pref = json_from_file["pickup_pref"]
 	belly_prefs = json_from_file["belly_prefs"]
+	drop_vore = json_from_file["drop_vore"]
+	slip_vore = json_from_file["slip_vore"]
+	stumble_vore = json_from_file["stumble_vore"]
 
 	//Quick sanitize
 	if(isnull(digestable))
@@ -177,6 +185,12 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		pickup_pref = TRUE
 	if(isnull(belly_prefs))
 		belly_prefs = list()
+	if(isnull(drop_vore))
+		drop_vore = TRUE
+	if(isnull(slip_vore))
+		slip_vore = TRUE
+	if(isnull(stumble_vore))
+		stumble_vore = TRUE
 
 	return TRUE
 
@@ -205,6 +219,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"step_mechanics_pref"	= step_mechanics_pref,
 			"pickup_pref"			= pickup_pref,
 			"belly_prefs"			= belly_prefs,
+			"drop_vore"				= drop_vore,
+			"slip_vore"				= slip_vore,
+			"stumble_vore"			= stumble_vore,
 		)
 
 	//List to JSON

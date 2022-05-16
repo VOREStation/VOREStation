@@ -79,12 +79,23 @@
 	return 1
 
 /mob/living/verb/succumb()
-	set hidden = 1
-	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
+	set name = "Succumb to death"
+	set category = "IC"
+	set desc = "Press this button if you are in crit and wish to die. Use this sparingly (ending a scene, no medical, etc.)"
+	var/confirm1 = tgui_alert(usr, "Pressing this button will kill you instantenously! Are you sure you wish to proceed?", "Confirm wish to succumb", list("No","Yes"))
+	var/confirm2 = "No"
+	if(confirm1 == "Yes")
+		confirm2 = tgui_alert(usr, "Pressing this buttom will really kill you, no going back", "Are you sure?", list("Yes", "No")) //Swapped answers to protect from accidental double clicks.
+	if (src.health < 0 && stat != DEAD && confirm1 == "Yes" && confirm2 == "Yes") // Checking both confirm1 and confirm2 for good measure. I don't trust TGUI.
 		src.death()
 		to_chat(src, "<font color='blue'>You have given up life and succumbed to death.</font>")
 	else
-		to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
+		if(stat == DEAD)
+			to_chat(src, "<font color='blue'>As much as you'd like, you can't die when already dead</font>")
+		else if(confirm1 == "No" || confirm2 == "No")
+			to_chat(src, "<font color='blue'>You chose to live another day.</font>")
+		else
+			to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)

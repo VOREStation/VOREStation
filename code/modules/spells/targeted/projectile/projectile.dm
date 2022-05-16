@@ -33,7 +33,7 @@ If the spell_projectile is seeking, it will update its target every process and 
 		if(istype(projectile, /obj/item/projectile/spell_projectile))
 			var/obj/item/projectile/spell_projectile/SP = projectile
 			SP.carried = src //casting is magical
-		projectile.def_zone = check_zone("chest")
+		projectile.def_zone = check_zone(BP_TORSO)
 		projectile.old_style_target(target)
 		projectile.fire()
 

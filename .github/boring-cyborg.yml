@@ -32,6 +32,10 @@ labelPRBasedOnFilePath:
   "Type: .git or .github":
     - '.github/**'
     - '.git/**'
+    
+  # Contains changes to the TGUI bundle
+  "Type: TGUI Bundle":
+    - 'tgui/public/**'
 
 ##### Greetings ########################################################################################################
 # Comment to be posted to welcome users when they open their first PR

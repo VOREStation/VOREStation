@@ -4,10 +4,10 @@
 /area/template_noop)
 "w" = (
 /turf/simulated/floor/outdoors/newdirt/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "Q" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 
 (1,1,1) = {"
 a

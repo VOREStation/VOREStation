@@ -4,45 +4,45 @@
 /area/template_noop)
 "b" = (
 /turf/simulated/wall/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "d" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "l" = (
 /obj/structure/bed/chair/sofa/left/brown,
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "q" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "s" = (
 /obj/structure/bed/chair/sofa/right/brown,
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "u" = (
 /obj/structure/bed/chair/sofa/right/brown{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "x" = (
 /obj/structure/table/glass,
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "D" = (
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
 /obj/structure/table/rack/steel,
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "F" = (
 /obj/structure/bed/chair/sofa/left/brown{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "Q" = (
 /obj/structure/table/glass,
 /obj/item/device/flashlight/lamp/green{
@@ -50,19 +50,19 @@
 	pixel_y = 5
 	},
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "V" = (
 /obj/structure/table/glass,
 /obj/random/maintenance/misc,
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "W" = (
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 "X" = (
 /obj/structure/simple_door/wood,
 /turf/simulated/floor,
-/area/groundbase/poi/outdoor/cabin4)
+/area/submap/groundbase/poi/outdoor/cabin4)
 
 (1,1,1) = {"
 a

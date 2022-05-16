@@ -1,0 +1,349 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage)
+"b" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 8;
+	id = "village_square1";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"c" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"d" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"e" = (
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"f" = (
+/obj/structure/bed/double/padded,
+/obj/item/weapon/bedsheet/browndouble,
+/obj/structure/curtain/open/bed{
+	color = "#5e0c1d"
+	},
+/obj/random/plushie,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"l" = (
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/structure/table/standard,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"m" = (
+/obj/structure/undies_wardrobe,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"n" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"p" = (
+/obj/machinery/door/airlock/silver{
+	name = "automatic door"
+	},
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"s" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"v" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"w" = (
+/obj/machinery/light/small{
+	dir = 1
+	},
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"z" = (
+/obj/structure/bed/chair/sofa/brown,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"A" = (
+/obj/structure/table/rack/steel,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"D" = (
+/obj/structure/bed/chair/sofa/left/brown,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"E" = (
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"G" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"J" = (
+/obj/machinery/light_switch{
+	dir = 1;
+	pixel_y = -30
+	},
+/obj/machinery/button/windowtint{
+	id = "village_square1";
+	layer = 3.3;
+	pixel_x = 7;
+	pixel_y = -30
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"K" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 1;
+	id = "village_square1";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"O" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/structure/window/reinforced/polarized{
+	color = "#222222";
+	dir = 4;
+	id = "village_square1";
+	opacity = 1
+	},
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"P" = (
+/obj/structure/table/standard,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"R" = (
+/obj/machinery/door/airlock/silver{
+	name = "automatic door"
+	},
+/turf/simulated/floor/tiled/steel_ridged,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"S" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp/green,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"V" = (
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/random/maintenance/misc,
+/obj/structure/table/rack/steel,
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"W" = (
+/turf/simulated/floor/carpet,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"Y" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp/green{
+	pixel_y = 8
+	},
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+"Z" = (
+/obj/structure/bed/chair/sofa/right/brown,
+/turf/simulated/floor/wood,
+/area/submap/groundbase/poi/wildvillage/square/square1)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+v
+b
+b
+v
+v
+b
+b
+v
+v
+a
+"}
+(3,1,1) = {"
+a
+v
+n
+E
+E
+E
+E
+P
+d
+Y
+v
+a
+"}
+(4,1,1) = {"
+a
+K
+Z
+E
+E
+E
+E
+E
+E
+P
+v
+s
+"}
+(5,1,1) = {"
+a
+K
+z
+E
+E
+E
+E
+E
+E
+E
+p
+e
+"}
+(6,1,1) = {"
+a
+v
+z
+P
+P
+E
+G
+E
+E
+J
+v
+c
+"}
+(7,1,1) = {"
+a
+v
+z
+P
+Y
+E
+v
+v
+R
+v
+v
+a
+"}
+(8,1,1) = {"
+a
+K
+z
+E
+E
+E
+v
+m
+W
+V
+v
+a
+"}
+(9,1,1) = {"
+a
+K
+D
+E
+E
+E
+v
+w
+W
+W
+v
+a
+"}
+(10,1,1) = {"
+a
+v
+n
+E
+E
+A
+v
+f
+S
+l
+v
+a
+"}
+(11,1,1) = {"
+a
+v
+v
+O
+O
+v
+v
+v
+v
+v
+v
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

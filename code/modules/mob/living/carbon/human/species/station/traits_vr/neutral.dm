@@ -48,9 +48,9 @@
 	autohiss_extra_map = list(
 			"x" = list("ks", "kss", "ksss")
 		),
-	autohiss_exempt = list("Sinta'unathi"))
+	autohiss_exempt = list(LANGUAGE_UNATHI))
 
-	excludes = list(/datum/trait/neutral/autohiss_tajaran)
+	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_zaddat)
 
 /datum/trait/neutral/autohiss_tajaran
 	name = "Autohiss (Tajaran)"
@@ -60,8 +60,26 @@
 	autohiss_basic_map = list(
 			"r" = list("rr", "rrr", "rrrr")
 		),
-	autohiss_exempt = list("Siik"))
-	excludes = list(/datum/trait/neutral/autohiss_unathi)
+	autohiss_exempt = list(LANGUAGE_SIIK,LANGUAGE_AKHANI,LANGUAGE_ALAI))
+	excludes = list(/datum/trait/neutral/autohiss_unathi, /datum/trait/neutral/autohiss_zaddat)
+
+/datum/trait/neutral/autohiss_zaddat
+	name = "Autohiss (Zaddat)"
+	desc = "You buzz your S's and F's."
+	cost = 0
+	var_changes = list(
+	autohiss_basic_map = list(
+			"f" = list("v","vh"),
+			"ph" = list("v", "vh")
+		),
+	autohiss_extra_map = list(
+			"s" = list("z", "zz", "zzz"),
+			"ce" = list("z", "zz"),
+			"ci" = list("z", "zz"),
+			"v" = list("vv", "vvv")
+		),
+	autohiss_exempt = list(LANGUAGE_ZADDAT,LANGUAGE_VESPINAE))
+	excludes = list(/datum/trait/neutral/autohiss_tajaran, /datum/trait/neutral/autohiss_unathi)
 
 /datum/trait/neutral/bloodsucker
 	name = "Bloodsucker, Obligate"
@@ -251,7 +269,7 @@
 	desc = "This trait drastically reduces the effects of allergen reactions. If you don't have any allergens set, it does nothing. It does not apply to special reactions (such as unathi drowsiness from sugars)."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("allergen_damage_severity" = 2, "allergen_disable_severity" = 3)
+	var_changes = list("allergen_damage_severity" = 1.25, "allergen_disable_severity" = 5)
 	excludes = list(/datum/trait/neutral/allergen_increased_effect)
 
 /datum/trait/neutral/allergen_increased_effect
@@ -259,7 +277,7 @@
 	desc = "This trait drastically increases the effects of allergen reactions, enough that even a small dose can be lethal. If you don't have any allergens set, it does nothing. It does not apply to special reactions (such as unathi drowsiness from sugars)."
 	cost = 0
 	custom_only = FALSE
-	var_changes = list("allergen_damage_severity" = 8, "allergen_disable_severity" = 6)
+	var_changes = list("allergen_damage_severity" = 5, "allergen_disable_severity" = 20)
 	excludes = list(/datum/trait/neutral/allergen_reduced_effect)
 
 // Spicy Food Traits, from negative to positive.
@@ -510,3 +528,13 @@
 /datum/trait/neutral/submit_to_prey/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/proc/lend_prey_control
+
+/datum/trait/neutral/vertical_nom
+	name = "Vertical Nom"
+	desc = "Allows you to consume people from up above."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/vertical_nom/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/vertical_nom

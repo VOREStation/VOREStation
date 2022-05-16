@@ -135,6 +135,13 @@
 	extra_overlay = "naga_markings"
 	//icon_sprite_tag = "naga2c"
 
+/datum/sprite_accessory/tail/taur/naga/alt_2c
+	name = "Naga alt style dual-color (Taur)"
+	suit_sprites = 'icons/mob/taursuits_naga_alt_vr.dmi'
+	icon_state = "altnaga_s"
+	extra_overlay = "altnaga_markings"
+	//icon_sprite_tag = "altnaga2c"
+
 /datum/sprite_accessory/tail/taur/horse
 	name = "Horse (Taur)"
 	icon_state = "horse_s"
@@ -584,3 +591,12 @@
 	extra_overlay = "rat_markings"
 	clip_mask_state = "taur_clip_mask_rat"
 	icon_sprite_tag = "rat"
+
+/datum/sprite_accessory/tail/taur/noodle
+	name = "Eastern Dragon (Taur)"
+	icon_state = "noodle_s"
+	extra_overlay = "noodle_markings"
+	extra_overlay2 = "noodle_markings_2"
+	suit_sprites = 'icons/mob/taursuits_noodle_vr.dmi'
+	clip_mask_state = "taur_clip_mask_noodle"
+	icon_sprite_tag = "noodle"

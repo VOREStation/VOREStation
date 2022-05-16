@@ -10,6 +10,7 @@
 	wait_if_pulled = 1
 	min_target_dist = 0
 
+	var/cTimeMult = 1 // A multiplier for how long it should take to clean. Anything bigger than one will increase time, less than one will make it faster.
 	var/vocal = 1
 	var/cleaning = 0
 	var/wet_floors = 0
@@ -99,31 +100,53 @@
 	if(get_turf(target) == src.loc)
 		UnarmedAttack(target)
 
-/mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
+//mob/living/bot/cleanbot/UnarmedAttack(var/obj/effect/decal/cleanable/D, var/proximity)
+/mob/living/bot/cleanbot/UnarmedAttack(atom/D, var/proximity)
 	if(!..())
 		return
 
-	if(!istype(D))
-		return
+	//if(!istype(D))
+	//	return
 
 	if(D.loc != loc)
 		return
 
 	busy = 1
-	if(prob(20))
-		custom_emote(2, "begins to clean up \the [D]")
 	update_icons()
-	var/cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
-	if(do_after(src, cleantime))
-		if(istype(loc, /turf/simulated))
-			var/turf/simulated/f = loc
-			f.dirt = 0
-		if(!D)
-			return
-		qdel(D)
-		if(D == target)
-			cleanbot_reserved_turfs -= target
-			target = null
+	var/cleantime = 0
+	if(istype(D, /obj/effect/decal/cleanable))
+		cleantime = istype(D, /obj/effect/decal/cleanable/dirt) ? 10 : 50
+		if(prob(20))
+			custom_emote(2, "begins to clean up \the [D]")
+		if(do_after(src, cleantime * cTimeMult))
+			if(istype(loc, /turf/simulated))
+				var/turf/simulated/f = loc
+				f.dirt = 0
+			if(!D)
+				return
+			qdel(D)
+			if(D == target)
+				cleanbot_reserved_turfs -= target
+				target = null
+	else if(D == src)
+		for(var/obj/effect/O in loc)
+			if(istype(O, /obj/effect/decal/cleanable/dirt))
+				cleantime += 10
+			if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+				cleantime += 50
+		if(cleantime != 0)
+			if(prob(20))
+				custom_emote(2, "begins to clean up \the [loc]")
+			if(do_after(src, cleantime * cTimeMult))
+				clean_blood()
+				if(istype(loc, /turf/simulated))
+					var/turf/simulated/T = loc
+					T.dirt = 0
+				for(var/obj/effect/O in loc)
+					if(istype(O,/obj/effect/rune) || istype(O,/obj/effect/decal/cleanable) || istype(O,/obj/effect/overlay))
+						qdel(O)
+		else
+			handleIdle()
 	busy = 0
 	update_icons()
 
@@ -140,8 +163,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	//qdel(src)
+	return ..()
 
 /mob/living/bot/cleanbot/update_icons()
 	if(busy)

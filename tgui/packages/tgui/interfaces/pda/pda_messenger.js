@@ -63,6 +63,10 @@ const ActiveConversation = (props, context) => {
       }
       height="450px"
       stretchContents>
+      <Button
+        icon="comment"
+        onClick={() => act("Message", { "target": active_conversation })}
+        content="Reply" />
       <Section style={{
         "height": "97%",
         "overflow-y": "auto",
