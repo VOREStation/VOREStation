@@ -1219,7 +1219,7 @@
 "dx" = (
 /obj/machinery/door/airlock{
 	id_tag = "toilet1";
-	name = "Toilet 1"
+	name = "Room 9"
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/bathroom)
@@ -2318,7 +2318,7 @@
 "gP" = (
 /obj/machinery/button/remote/airlock{
 	dir = 4;
-	id = "dorm6";
+	id = "dorm4";
 	pixel_x = -27;
 	specialfunctions = 4
 	},
