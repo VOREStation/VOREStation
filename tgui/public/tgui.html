@@ -314,6 +314,12 @@ if (window.__windowId__ === '[' + 'tgui:windowId' + ']') {
 
 // Global error handling
 window.onerror = function (msg, url, line, col, error) {
+  // Send fallback command
+  Byond.topic({
+    tgui: 1,
+    window_id: window.__windowId__,
+    type: 'act/__fallback',
+  });
   // Proper stacktrace
   var stack = error && error.stack;
   // Ghetto stacktrace

@@ -55,6 +55,9 @@
 		return TRUE
 
 	switch(action)
+		if("__fallback")
+			to_chat(usr, "TGUI Fallback Triggered!")
+
 		if("show_player_info")
 			var/datum/tgui_module/player_notes_info/A = new(src)
 			A.key = params["name"]
@@ -94,6 +97,9 @@
 		return TRUE
 
 	switch(action)
+		if("__fallback")
+			to_chat(usr, "TGUI Fallback Triggered!")
+
 		if("add_player_info")
 			var/key = params["ckey"]
 			var/add = tgui_input_message(usr, "Write your comment below.", "Add Player Info")
