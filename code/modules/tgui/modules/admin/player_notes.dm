@@ -56,58 +56,8 @@
 
 	switch(action)
 		if("__fallback")
-			var/page = 1
-			var/filter
-
-			var/dat = "<B>Player notes</B> - <a href='?src=\ref[src];notes=filter'>Apply Filter</a><HR>"
-			dat +="<span style='color:#8a0000; font-weight: bold'>WARNING: TGUI-FALLBACK MODE</span><br>"
-			var/savefile/S=new("data/player_notes.sav")
-			var/list/note_keys
-			S >> note_keys
-			if(!note_keys)
-				dat += "No notes found."
-			else
-				dat += "<table>"
-				note_keys = sortList(note_keys)
-
-				if(filter)
-					var/list/results = list()
-					var/regex/needle = regex(filter, "i")
-					for(var/haystack in note_keys)
-						if(needle.Find(haystack))
-							results += haystack
-					note_keys = results
-
-				// Display the notes on the current page
-				var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
-				// Emulate CEILING(why does BYOND not have ceil, 1)
-				if(number_pages != round(number_pages))
-					number_pages = round(number_pages) + 1
-				var/page_index = page - 1
-
-				if(page_index < 0 || page_index >= number_pages)
-					dat += "<tr><td>No keys found.</td></tr>"
-				else
-					var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
-					var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-					upper_bound = min(upper_bound, note_keys.len)
-					for(var/index = lower_bound, index <= upper_bound, index++)
-						var/t = note_keys[index]
-						dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
-
-				dat += "</table><hr>"
-
-				// Display a footer to select different pages
-				for(var/index = 1, index <= number_pages, index++)
-					if(index == page)
-						dat += "<b>"
-					dat += "<a href='?src=\ref[src];notes=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
-					if(index == page)
-						dat += "</b>"
-			if(note_keys)
-				note_keys = sortList(note_keys)
-
-			usr << browse(dat, "window=player_notes;size=400x400")
+			var/datum/admins/A = admin_datums[usr.ckey]
+			A.PlayerNotesLegacy()
 
 		if("show_player_info")
 			var/datum/tgui_module/player_notes_info/A = new(src)
@@ -134,6 +84,7 @@
 
 	return data
 
+// PLAYER NOTES INFO
 /datum/tgui_module/player_notes_info
 	name = "Player Notes Info"
 	tgui_id = "PlayerNotesInfo"
@@ -149,44 +100,8 @@
 
 	switch(action)
 		if("__fallback")
-			var/dat = "<html><head><title>Info on [key]</title></head>"
-			dat += "<body>"
-			dat +="<span style='color:#8a0000; font-weight: bold'>WARNING: TGUI-FALLBACK MODE</span><br>"
-
-			var/p_age = "unknown"
-			for(var/client/C in GLOB.clients)
-				if(C.ckey == key)
-					p_age = C.player_age
-					break
-			dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
-
-			var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-			var/list/infos
-			info >> infos
-			if(!infos)
-				dat += "No information found on the given key.<br>"
-			else
-				var/update_file = 0
-				var/i = 0
-				for(var/datum/player_info/I in infos)
-					i += 1
-					if(!I.timestamp)
-						I.timestamp = "Pre-4/3/2012"
-						update_file = 1
-					if(!I.rank)
-						I.rank = "N/A"
-						update_file = 1
-					dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-					if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
-						dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A>"
-					dat += "<br><br>"
-				if(update_file) info << infos
-
-			dat += "<br>"
-			dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
-
-			dat += "</body></html>"
-			usr << browse(dat, "window=adminplayerinfo;size=480x480")
+			var/datum/admins/A = admin_datums[usr.ckey]
+			A.show_player_info_legacy(key)
 
 		if("add_player_info")
 			var/key = params["ckey"]
@@ -241,3 +156,158 @@
 	data["age"] = p_age
 
 	return data
+
+// ==== LEGACY UI ====
+
+/datum/admins/proc/PlayerNotesLegacy()
+	if (!istype(src,/datum/admins))
+		src = usr.client.holder
+	if (!istype(src,/datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+	PlayerNotesPageLegacy(1)
+
+/datum/admins/proc/PlayerNotesFilterLegacy()
+	if (!istype(src,/datum/admins))
+		src = usr.client.holder
+	if (!istype(src,/datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+	var/filter = input(usr, "Filter string (case-insensitive regex)", "Player notes filter") as text|null
+	PlayerNotesPageLegacy(1, filter)
+
+/datum/admins/proc/PlayerNotesPageLegacy(page, filter)
+	var/dat = "<B>Player notes</B> - <a href='?src=\ref[src];notes_legacy=filter'>Apply Filter</a><HR>"
+	var/savefile/S=new("data/player_notes.sav")
+	var/list/note_keys
+	S >> note_keys
+	if(!note_keys)
+		dat += "No notes found."
+	else
+		dat += "<table>"
+		note_keys = sortList(note_keys)
+
+		if(filter)
+			var/list/results = list()
+			var/regex/needle = regex(filter, "i")
+			for(var/haystack in note_keys)
+				if(needle.Find(haystack))
+					results += haystack
+			note_keys = results
+
+		// Display the notes on the current page
+		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
+		// Emulate CEILING(why does BYOND not have ceil, 1)
+		if(number_pages != round(number_pages))
+			number_pages = round(number_pages) + 1
+		var/page_index = page - 1
+
+		if(page_index < 0 || page_index >= number_pages)
+			dat += "<tr><td>No keys found.</td></tr>"
+		else
+			var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
+			var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
+			upper_bound = min(upper_bound, note_keys.len)
+			for(var/index = lower_bound, index <= upper_bound, index++)
+				var/t = note_keys[index]
+				dat += "<tr><td><a href='?src=\ref[src];notes_legacy=show;ckey=[t]'>[t]</a></td></tr>"
+
+		dat += "</table><hr>"
+
+		// Display a footer to select different pages
+		for(var/index = 1, index <= number_pages, index++)
+			if(index == page)
+				dat += "<b>"
+			dat += "<a href='?src=\ref[src];notes_legacy=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
+			if(index == page)
+				dat += "</b>"
+
+	usr << browse(dat, "window=player_notes;size=400x400")
+
+/datum/admins/proc/player_has_info_legacy(var/key as text)
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos || !infos.len) return 0
+	else return 1
+
+/datum/admins/proc/show_player_info_legacy(var/key as text)
+	if (!istype(src,/datum/admins))
+		src = usr.client.holder
+	if (!istype(src,/datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+	var/dat = "<html><head><title>Info on [key]</title></head>"
+	dat += "<body>"
+
+	var/p_age = "unknown"
+	for(var/client/C in GLOB.clients)
+		if(C.ckey == key)
+			p_age = C.player_age
+			break
+	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
+
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos)
+		dat += "No information found on the given key.<br>"
+	else
+		var/update_file = 0
+		var/i = 0
+		for(var/datum/player_info/I in infos)
+			i += 1
+			if(!I.timestamp)
+				I.timestamp = "Pre-4/3/2012"
+				update_file = 1
+			if(!I.rank)
+				I.rank = "N/A"
+				update_file = 1
+			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
+			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
+				dat += "<A href='?src=\ref[src];remove_player_info_legacy=[key];remove_index=[i]'>Remove</A>"
+			dat += "<br><br>"
+		if(update_file) info << infos
+
+	dat += "<br>"
+	dat += "<A href='?src=\ref[src];add_player_info_legacy=[key]'>Add Comment</A><br>"
+
+	dat += "</body></html>"
+	usr << browse(dat, "window=adminplayerinfo;size=480x480")
+
+/datum/admins/Topic(href, href_list)
+	..()
+
+	if(href_list["add_player_info_legacy"])
+		var/key = href_list["add_player_info_legacy"]
+		var/add = sanitize(input(usr, "Add Player Info (Legacy)") as null|text)
+		if(!add) return
+
+		notes_add(key,add,usr)
+		show_player_info_legacy(key)
+
+	if(href_list["remove_player_info_legacy"])
+		var/key = href_list["remove_player_info_legacy"]
+		var/index = text2num(href_list["remove_index"])
+
+		notes_del(key, index)
+		show_player_info_legacy(key)
+
+	if(href_list["notes_legacy"])
+		var/ckey = href_list["ckey"]
+		if(!ckey)
+			var/mob/M = locate(href_list["mob"])
+			if(ismob(M))
+				ckey = M.ckey
+
+		switch(href_list["notes_legacy"])
+			if("show")
+				show_player_info_legacy(ckey)
+			if("list")
+				var/filter
+				if(href_list["filter"] && href_list["filter"] != "0")
+					filter = url_decode(href_list["filter"])
+				PlayerNotesPageLegacy(text2num(href_list["index"]), filter)
+			if("filter")
+				PlayerNotesFilterLegacy()
+		return
