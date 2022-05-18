@@ -124,3 +124,8 @@ Talon winter coat
 	display_name = "hazard vest, atmospherics"
 	path = /obj/item/clothing/suit/storage/hazardvest/atmos
 	allowed_roles = list("Chief Engineer","Atmospheric Technician", "Engineer")
+
+//Long fur coat
+/datum/gear/suit/russofurcoat
+	display_name = "long fur coat"
+	path = /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
