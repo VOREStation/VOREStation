@@ -1345,6 +1345,9 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/swtunnel)
+"dA" = (
+/turf/simulated/mineral/cave/virgo3c,
+/area/maintenance/groundbase/level1/setunnel)
 "dB" = (
 /obj/machinery/light{
 	dir = 8
@@ -2951,6 +2954,13 @@
 	},
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/cafe)
+"hG" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/eastspur)
 "hH" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -8149,6 +8159,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/bar)
+"uh" = (
+/obj/structure/stairs/spawner/south,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/setunnel)
 "ui" = (
 /obj/machinery/light/floortube{
 	dir = 8;
@@ -14572,6 +14588,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
+"JB" = (
+/obj/structure/stairs/spawner/west,
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/eastspur)
 "JC" = (
 /turf/simulated/floor/tiled,
 /area/groundbase/command/tcomms/foyer)
@@ -17929,6 +17953,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/civilian/cafe)
+"RJ" = (
+/obj/structure/stairs/spawner/north,
+/turf/simulated/floor/outdoors/newdirt_nograss/virgo3c{
+	outdoors = 0
+	},
+/area/maintenance/groundbase/level1/nwtunnel)
 "RK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -20769,6 +20799,13 @@
 /obj/structure/cable/yellow,
 /turf/simulated/floor/reinforced,
 /area/groundbase/engineering/engine)
+"YI" = (
+/obj/structure/railing/grey{
+	dir = 1
+	},
+/obj/structure/railing/grey,
+/turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
+/area/groundbase/level1/eastspur)
 "YJ" = (
 /obj/structure/closet{
 	name = "Evidence Closet"
@@ -21751,9 +21788,9 @@ MO
 MO
 MO
 MO
-MO
-MO
-MO
+RJ
+FF
+FF
 MO
 MO
 MO
@@ -21893,11 +21930,11 @@ MO
 MO
 MO
 MO
-MO
-MO
-MO
-MO
-MO
+RJ
+FF
+FF
+FF
+FF
 FF
 FF
 FF
@@ -22037,7 +22074,7 @@ MO
 MO
 MO
 MO
-MO
+FF
 FF
 FF
 FF
@@ -35671,7 +35708,7 @@ Ro
 MK
 MK
 MK
-MK
+JB
 qE
 sm
 my
@@ -35813,7 +35850,7 @@ KT
 MK
 MK
 MK
-MK
+YI
 MK
 MK
 MK
@@ -35953,10 +35990,10 @@ iG
 MK
 KT
 MK
-MK
-MK
-MK
 Ah
+MK
+Os
+MK
 Ah
 MK
 MK
@@ -36095,10 +36132,10 @@ MK
 MK
 KT
 MK
+Ah
 MK
-Ah
-Ah
-Ah
+Os
+MK
 Ah
 Ah
 Ah
@@ -36238,9 +36275,9 @@ eR
 KT
 MK
 Ah
-Ah
-Ah
-Ah
+MK
+Os
+MK
 Ah
 Ah
 Ah
@@ -36381,7 +36418,7 @@ KT
 XX
 MK
 MK
-MK
+Os
 MK
 MK
 MK
@@ -36523,7 +36560,7 @@ HG
 ho
 ho
 ho
-ho
+hG
 ho
 ho
 ho
@@ -39823,7 +39860,7 @@ iW
 iW
 ce
 ce
-ce
+iW
 Cw
 jF
 vu
@@ -39965,7 +40002,7 @@ iW
 ce
 ce
 ce
-ce
+iW
 iW
 iW
 zf
@@ -40107,7 +40144,7 @@ iW
 ce
 ce
 ce
-ce
+iW
 iW
 iW
 zf
@@ -40250,8 +40287,8 @@ ce
 ce
 ce
 ce
-ce
-ce
+iW
+vj
 Cw
 jF
 jF
@@ -40392,13 +40429,13 @@ ce
 ce
 ce
 ce
+iW
+vj
+vj
+uh
+dA
 ce
 ce
-iW
-iW
-iW
-iW
-iW
 ce
 ce
 ce
@@ -40535,11 +40572,11 @@ ce
 ce
 ce
 ce
+vj
+vj
+uh
+dA
 ce
-iW
-iW
-iW
-iW
 ce
 ce
 ce
@@ -40677,10 +40714,10 @@ ce
 ce
 ce
 ce
-ce
-ce
-ce
-ce
+dA
+dA
+dA
+dA
 ce
 ce
 ce
