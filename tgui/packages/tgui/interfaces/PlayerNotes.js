@@ -35,13 +35,11 @@ export const PlayerNotes = (props, context) => {
             Open Legacy UI
           </Button>
           <Divider />
-          <Input key="Input_Manual" placeholder="CKEY to Open" />
-          <Button
-            onClick={() => act("show_player_info_manual", {
-              name: Input_Manual.value,
-            })}>
-            Open Notes
-          </Button>
+          <Button.Input
+            content="CKEY to Open"
+            onCommit={(e, value) => act('show_player_info', {
+              name: value,
+            })} />
           <Divider vertical />
           <Button
             color="green"

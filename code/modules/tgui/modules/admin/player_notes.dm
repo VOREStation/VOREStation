@@ -1,4 +1,4 @@
-#define PLAYER_NOTES_ENTRIES_PER_PAGE 2
+#define PLAYER_NOTES_ENTRIES_PER_PAGE 50
 
 /datum/tgui_module/player_notes
 	name = "Player Notes"
