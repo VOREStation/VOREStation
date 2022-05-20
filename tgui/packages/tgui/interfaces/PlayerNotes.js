@@ -7,8 +7,14 @@ export const PlayerNotes = (props, context) => {
   const {
     device_theme,
     filter,
+    pages,
     ckeys = [],
   } = data;
+
+  const runCallback = (cb) => {
+    return cb();
+  };
+
   return (
     <Window
       title={'Player Notes'}
@@ -23,10 +29,16 @@ export const PlayerNotes = (props, context) => {
             onClick={() => act("filter_player_notes")}>
             Apply Filter
           </Button>
-          <Input />
+          <Button
+            icon="sidebar"
+            onClick={() => act("open_legacy_ui")}>
+            Open Legacy UI
+          </Button>
+          <Divider />
+          <Input key="Input_Manual" placeholder="CKEY to Open" />
           <Button
             onClick={() => act("show_player_info_manual", {
-              name: ckey.name,
+              name: Input_Manual.value,
             })}>
             Open Notes
           </Button>
@@ -55,10 +67,21 @@ export const PlayerNotes = (props, context) => {
             ))}
           </Table>
           <Divider />
-          <Button
-            onClick={() => act("filter_player_notes")}>
-            1
-          </Button>
+          {runCallback(() => {
+            const row = [];
+            for (let i = 1; i < pages; i++) {
+              row.push(
+                <Button
+                  key={i}
+                  onClick={() => act("set_page", {
+                    index: i,
+                  })}>
+                  {i}
+                </Button>
+              );
+            }
+            return row;
+          })}
         </Section>
       </Window.Content>
     </Window>

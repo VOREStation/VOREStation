@@ -1,4 +1,4 @@
-#define PLAYER_NOTES_ENTRIES_PER_PAGE 50
+#define PLAYER_NOTES_ENTRIES_PER_PAGE 2
 
 /datum/tgui_module/player_notes
 	name = "Player Notes"
@@ -6,14 +6,18 @@
 
 	var/ckeys = list()
 
-/datum/tgui_module/player_notes/proc/filter_ckeys(var/filter)
+	var/current_filter = ""
+	var/current_page = 1
+
+	var/number_pages = 0
+
+/datum/tgui_module/player_notes/proc/filter_ckeys(var/page, var/filter)
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
-	var/page = 1
-
 	S >> note_keys
-
-	if(note_keys)
+	if(!note_keys)
+		to_chat(usr, "No notes found.")
+	else
 		note_keys = sortList(note_keys)
 
 		if(filter)
@@ -25,7 +29,7 @@
 			note_keys = results
 
 		// Display the notes on the current page
-		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
+		number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
 		// Emulate CEILING(why does BYOND not have ceil, 1)
 		if(number_pages != round(number_pages))
 			number_pages = round(number_pages) + 1
@@ -37,15 +41,15 @@
 			var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
 			var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
 			upper_bound = min(upper_bound, note_keys.len)
+			ckeys = list()
 			for(var/index = lower_bound, index <= upper_bound, index++)
-				var/t = note_keys[index]
+				ckeys += note_keys[index]
 
-		// Display a footer to select different pages
-		for(var/index = 1, index <= number_pages, index++)
-			if(index == page)
-				to_chat(usr, "Index: [index]")
+	current_filter = filter
 
-	return note_keys
+/datum/tgui_module/player_notes/proc/open_legacy()
+	var/datum/admins/A = admin_datums[usr.ckey]
+	A.PlayerNotesLegacy()
 
 /datum/tgui_module/player_notes/tgui_state(mob/user)
 	return GLOB.tgui_admin_state
@@ -56,8 +60,8 @@
 
 	switch(action)
 		if("__fallback")
-			var/datum/admins/A = admin_datums[usr.ckey]
-			A.PlayerNotesLegacy()
+			log_runtime(EXCEPTION("TGUI Fallback Triggered: \"[ui.user]\" tried to use/open \"[ui.title]/[ui.interface]\"! Trying to open legacy UI!"))
+			open_legacy()
 
 		if("show_player_info")
 			var/datum/tgui_module/player_notes_info/A = new(src)
@@ -66,16 +70,25 @@
 
 		if("filter_player_notes")
 			var/input = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
-			ckeys = filter_ckeys(input)
+			current_filter = input
+
+		if("set_page")
+			var/page = params["index"]
+			current_page = page
 
 		if("clear_player_info_filter")
-			ckeys = filter_ckeys("")
+			current_filter = ""
 
+		if("open_legacy_ui")
+			open_legacy()
 
 /datum/tgui_module/player_notes/tgui_data(mob/user)
 	var/list/data = list()
 
+	filter_ckeys(current_page, current_filter)
 	data["ckeys"] = list()
+	data["pages"] = number_pages + 1
+	data["filter"] = current_filter
 
 	for(var/ckey in ckeys)
 		data["ckeys"] += list(list(
