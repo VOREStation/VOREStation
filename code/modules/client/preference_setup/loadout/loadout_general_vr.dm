@@ -96,3 +96,8 @@
 	display_name = "schnapsen playing cards"
 	description = "French-suit playing cards! Pre-picked for 2-player mode."
 	path = /obj/item/weapon/deck/schnapsen
+
+/datum/gear/uno_game
+	display_name = "UNO playing cards"
+	description = "A deck of cards for playing UNO!"
+	path = /obj/item/weapon/deck/uno
