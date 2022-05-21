@@ -20,7 +20,7 @@
 		/obj/item/weapon/storage/toolbox/mechanical,
 		/obj/item/clothing/suit/storage/hazardvest,
 		///obj/item/clothing/mask/gas,	//VOREStation Removal: Locker bloat, grr. The fancy one below functions as a mask & helmet combined.
-		/obj/item/clothing/head/hardhat/firefighter/chief //VOREStation Add: replaces the bog-standard gas mask
+		/obj/item/clothing/head/hardhat/firefighter/chief, //VOREStation Add: replaces the bog-standard gas mask
 		///obj/item/device/multitool,	//VOREStation Removal: The belt they get, both standard and the fancy one, both come with one already, why stick another in here too?
 		/obj/item/weapon/storage/belt/utility/chief/full,
 		/obj/item/device/flash,
