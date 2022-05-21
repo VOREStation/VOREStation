@@ -11,7 +11,7 @@
 		/obj/item/clothing/under/rank/chief_engineer,
 		/obj/item/clothing/under/rank/chief_engineer/skirt,
 		/obj/item/clothing/head/hardhat/white,
-		/obj/item/clothing/head/welding,
+		///obj/item/clothing/head/welding,	//VOREStation Removal: Locker bloat, grr. They get fancy goggles or can raid the welding supplies locker for one of these.
 		/obj/item/clothing/gloves/heavy_engineer,	//VOREStation Edit: chief gets the good shit
 		/obj/item/clothing/shoes/brown,
 		/obj/item/weapon/cartridge/ce,
@@ -19,18 +19,19 @@
 		/obj/item/device/radio/headset/heads/ce/alt,
 		/obj/item/weapon/storage/toolbox/mechanical,
 		/obj/item/clothing/suit/storage/hazardvest,
-		/obj/item/clothing/mask/gas,
-		/obj/item/device/multitool,
+		///obj/item/clothing/mask/gas,	//VOREStation Removal: Locker bloat, grr. The fancy one below functions as a mask & helmet combined.
+		/obj/item/clothing/head/hardhat/firefighter/chief //VOREStation Add: replaces the bog-standard gas mask
+		///obj/item/device/multitool,	//VOREStation Removal: The belt they get, both standard and the fancy one, both come with one already, why stick another in here too?
 		/obj/item/weapon/storage/belt/utility/chief/full,
 		/obj/item/device/flash,
 		/obj/item/device/t_scanner/upgraded,
 		/obj/item/taperoll/engineering,
-		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
+		///obj/item/clothing/suit/storage/hooded/wintercoat/engineering,	//VOREStation Removal: Locker bloat, grr. They can grab from the engi-clothes vendor if they want the standard one.
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce,
-		/obj/item/clothing/shoes/boots/winter/engineering,
+		///obj/item/clothing/shoes/boots/winter/engineering,	//VOREStation Removal: Locker bloat, grr. As above.
 		/obj/item/clothing/head/beret/engineering/ce,
 		/obj/item/clothing/head/beret/engineering/ce/white,
-		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/weapon/tank/emergency/oxygen/double,	//VOREStation Edit: chief gets the good shit
 		/obj/item/weapon/reagent_containers/spray/windowsealant) //VOREStation Add
 
 /obj/structure/closet/secure_closet/engineering_chief/Initialize()
