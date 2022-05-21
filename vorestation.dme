@@ -85,6 +85,7 @@
 #include "code\__defines\sound.dm"
 #include "code\__defines\spaceman_dmm.dm"
 #include "code\__defines\span_vr.dm"
+#include "code\__defines\species_abilities_vr.dm"
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\species_languages_vr.dm"
 #include "code\__defines\sprite_sheets.dm"
