@@ -1401,7 +1401,7 @@
 	character_name = list("Nehi Maximus")
 
 /datum/gear/fluff/lucky_amour
-	path = /obj/item/device/modkit_conversion/crusader_luck
+	path = /obj/item/clothing/suit/armor/combat/crusader_costume/lucky
 	display_name = "Lucky's amour"
 	ckeywhitelist = list ("thedavestdave")
 	character_name = list("Lucky")
