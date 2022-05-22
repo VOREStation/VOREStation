@@ -72,9 +72,23 @@
 			to_chat(user, "<span class='warning'>You must remove the [flooring.descriptor] first.</span>")
 			return
 		else if(istype(C, /obj/item/stack/tile))
-			try_replace_tile(C, user)
-			return
-	
+			if(try_replace_tile(C, user))
+				return
+			else if(istype(C, /obj/item/stack/tile/floor)) // While we're at it, let's see if this is a raw patch of natural sand, dirt, or whatever that you're trying to put a plating on.
+				if(!flooring.build_type && can_be_plated && !((flooring.flags & TURF_REMOVE_WRENCH) || (flooring.flags & TURF_REMOVE_CROWBAR) || (flooring.flags & TURF_REMOVE_SCREWDRIVER) || (flooring.flags & TURF_REMOVE_SHOVEL)))
+					for(var/obj/structure/P in contents)
+						if(istype(P, /obj/structure/flora))
+							to_chat(user, "<span class='warning'>The [P.name] is in the way, you'll have to get rid of it first.</span>")
+							return
+					var/obj/item/stack/tile/floor/S = C
+					if (S.get_amount() < 1)
+						return
+					S.use(1)
+					playsound(src, 'sound/weapons/Genhit.ogg', 50, 1)
+					ChangeTurf(/turf/simulated/floor, preserve_outdoors = TRUE)
+					return
+
+
 	// Floor is plating (or no flooring)
 	else
 		// Placing wires on plating
@@ -136,7 +150,7 @@
 						return
 					if(!can_remove_plating(user))
 						return
-					
+
 					user.visible_message("<span class='warning'>[user] begins cutting through [src].</span>", "<span class='warning'>You begin cutting through [src].</span>")
 					// This is slow because it's a potentially hostile action to just cut through places into space in the middle of the bar and such
 					// Presumably also the structural floor is thick?
