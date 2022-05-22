@@ -628,6 +628,7 @@
 					/obj/item/device/analyzer = 5,
 					/obj/item/device/t_scanner = 5,
 					/obj/item/weapon/tool/screwdriver = 5,
+					/obj/item/weapon/extinguisher/mini = 3,
 					/obj/item/device/flashlight/glowstick = 3,
 					/obj/item/device/flashlight/glowstick/red = 3,
 					/obj/item/device/flashlight/glowstick/blue = 3,
