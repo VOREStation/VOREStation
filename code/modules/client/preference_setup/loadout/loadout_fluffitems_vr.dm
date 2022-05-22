@@ -1405,3 +1405,4 @@
 	display_name = "Lucky's amour"
 	ckeywhitelist = list ("thedavestdave")
 	character_name = list("Lucky")
+	allowed_roles = "Chaplain"
