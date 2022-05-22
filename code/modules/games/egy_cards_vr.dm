@@ -1,14 +1,14 @@
 //Sprites ported from Eris
 
-/obj/item/weapon/deck/uno
-	name = "deck of Uno playing cards"
-	desc = "A simple deck of uno playing cards."
+/obj/item/weapon/deck/egy
+	name = "deck of EGY playing cards"
+	desc = "A simple deck of EGY playing cards. Be the first to lose all cards, but forget not to declare: EGY on your second to last trick."
 	icon_state = "deck3"
 
 
 
 
-/obj/item/weapon/deck/uno/New()
+/obj/item/weapon/deck/egy/New()
 	..()
 	var/datum/playingcard/P
 	//Universal cards
