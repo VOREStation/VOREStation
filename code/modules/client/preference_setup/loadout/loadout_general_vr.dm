@@ -94,5 +94,5 @@
 
 /datum/gear/schnapsen
 	display_name = "schnapsen playing cards"
-	description = "French-suit playing cards! Pre-picked for 2-player mode."
+	description = "An ancient Austro-Hungarian suit of cards!"
 	path = /obj/item/weapon/deck/schnapsen
