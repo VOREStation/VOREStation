@@ -448,6 +448,8 @@ var/list/mob/living/forced_ambiance_list = new
 			return // Being buckled to something solid keeps you in place.
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
 			return
+		if(H.incorporeal_move) // VOREstation edit - Phaseshifted beings should not be affected by gravity
+			return
 
 		if(H.m_intent == "run")
 			H.AdjustStunned(6)
