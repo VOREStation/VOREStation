@@ -42,16 +42,6 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/tile/grass/sif
-	name = "sivian grass tile"
-	singular_name = "sivian grass floor tile"
-	desc = "A patch of grass like those that decorate the plains of Sif."
-
-/obj/item/stack/tile/grass/sif/forest
-	name = "sivian overgrowth tile"
-	singular_name = "sivian overgrowth floor tile"
-	desc = "A patch of dark overgrowth like those that decorate the plains of Sif."
-
 /*
  * Wood
  */
