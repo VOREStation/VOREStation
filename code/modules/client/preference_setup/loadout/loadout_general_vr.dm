@@ -99,5 +99,5 @@
 
 /datum/gear/egy_game
 	display_name = "EGY playing cards"
-	description = "A deck of cards for playing EGY! Be the firs tto lose all cards!"
+	description = "A deck of cards for playing EGY! Be the first to lose all cards!"
 	path = /obj/item/weapon/deck/egy
