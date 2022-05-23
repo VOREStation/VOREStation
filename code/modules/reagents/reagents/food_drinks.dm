@@ -692,6 +692,13 @@
 	reagent_state = SOLID
 	color = "#441a03"
 
+/datum/reagent/cakebatter
+	name = "Cake Batter"
+	id = "cakebatter"
+	description = "A batter for making delicious cakes."
+	reagent_state = LIQUID
+	color = "#F0EDDA"
+
 /datum/reagent/frostoil
 	name = "Frost Oil"
 	id = "frostoil"

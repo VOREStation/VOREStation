@@ -208,6 +208,20 @@
 	item_state = "greatcoat_mob"
 
 //For general use
+/obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
+	name = "long fur coat"
+	desc = "A sophisticated long coat made of fur."
+
+	icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "russofurcoat"
+
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	item_state = "russofurcoat"
+
+	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
+	flags_inv = HIDETIE|HIDEHOLSTER
+
+//For general use
 /obj/item/clothing/suit/storage/fluff/fedcoat
 	name = "Federation Uniform Jacket (Red)"
 	desc = "A uniform jacket from the United Federation. Starfleet still uses this uniform and there are variations of it. Set phasers to awesome."
@@ -2432,6 +2446,39 @@ Departamental Swimsuits, for general use
 				H.update_inv_wear_suit()
 	else
 		RemoveHood_evelyn()
+
+//Allweek:Fifi the Magnificent
+/obj/item/clothing/head/fluff/fifi_hat
+	name = "fifi's hat"
+	desc = "It's a colorful hat for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_hat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_hat"
+
+/obj/item/clothing/under/fluff/fifi_jumpsuit
+	name = "fifi's jumpsuit"
+	desc = "It's a colorful outfit for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_jumpsuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_jumpsuit"
+
+/obj/item/clothing/shoes/fluff/fifi_socks
+	name = "fifi's socks"
+	desc = "A pair of colorful socks for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_socks"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_socks"
+
+
 
 //Uncle_Fruit_VEVO - Bradley Khatibi
 /obj/item/clothing/shoes/fluff/airjordans

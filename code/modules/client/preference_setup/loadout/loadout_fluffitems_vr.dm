@@ -78,6 +78,24 @@
 	ckeywhitelist = list("alfalah")
 	character_name = list("Charlotte Graves")
 
+/datum/gear/fluff/fifi_hat
+	path = /obj/item/clothing/head/fluff/fifi_hat
+	display_name = "Fifi's hat"
+	ckeywhitelist = list("allweek")
+	character_name = list("Fifi The Magnificent")
+
+/datum/gear/fluff/fifi_jumpsuit
+	path = /obj/item/clothing/under/fluff/fifi_jumpsuit
+	display_name = "Fifi's jumpsuit"
+	ckeywhitelist = list("allweek")
+	character_name = list("Fifi The Magnificent")
+
+/datum/gear/fluff/fifi_hat
+	path = /obj/item/clothing/shoes/fluff/fifi_socks
+	display_name = "Fifi's socks"
+	ckeywhitelist = list("allweek")
+	character_name = list("Fifi The Magnificent")
+
 /datum/gear/fluff/lynn_penlight
 	path = /obj/item/device/flashlight/pen/fluff/lynn
 	display_name = "Lynn's Penlight"
@@ -197,6 +215,12 @@
 	display_name = "Charles' Top-Hat"
 	ckeywhitelist = list("bobofboblandia")
 	character_name = list("Charles Gettler")
+
+/datum/gear/fluff/nettie_tablet
+	path = /obj/item/modular_computer/tablet/preset/custom_loadout/nettie
+	display_name = "Remodeled Tablet"
+	ckeywhitelist = list("bricker98")
+	character_name = list("Nettie Stough")
 
 /datum/gear/fluff/xin_sovietuniform
 	path = /obj/item/clothing/under/soviet
@@ -1377,7 +1401,8 @@
 	character_name = list("Nehi Maximus")
 
 /datum/gear/fluff/lucky_amour
-	path = /obj/item/device/modkit_conversion/crusader_luck
+	path = /obj/item/clothing/suit/armor/combat/crusader_costume/lucky
 	display_name = "Lucky's amour"
 	ckeywhitelist = list ("thedavestdave")
 	character_name = list("Lucky")
+	allowed_roles = "Chaplain"

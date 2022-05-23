@@ -1449,7 +1449,7 @@
 
 //thedavestdave Lucky
 ///I know this is pretty bodgey but if it stupid and it works it isn't stupid
-/obj/item/clothing/suit/storage/hooded/explorer/lucky
+/obj/item/clothing/suit/armor/combat/crusader_costume/lucky
 	icon = 'icons/vore/custom_clothes_vr.dmi'
 	icon_state = "luck"
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
@@ -1457,15 +1457,6 @@
 	name = "Lucky's armor"
 	desc = "A chain mail suit with a badly drawn one eared cat on the front."
 
-
-/obj/item/device/modkit_conversion/crusader_luck
-    skip_content_check = TRUE
-    name = "Lucky's armor"
-    desc = "A chain mail suit with a badly drawn one eared cat on the front."
-    icon = 'icons/vore/custom_items_vr.dmi'
-    icon_state = "modkit"
-    from_suit = /obj/item/clothing/suit/storage/hooded/explorer
-    to_suit = /obj/item/clothing/suit/storage/hooded/explorer/lucky
 
 //RevolverEloise - Revolver Eloise
 /obj/item/weapon/sword/fluff/revolver
@@ -1496,3 +1487,21 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "lemonplush"
 	attack_verb = list("blorbled", "slimed", "absorbed", "glomped")
+
+//Bricker98:Nettie Stough
+/obj/item/modular_computer/tablet/preset/custom_loadout/nettie
+  name = "Remodeled Tablet"
+  desc = "A tablet computer, looks quite high-tech and has some emblems on the back."
+  icon = 'icons/obj/modular_tablet.dmi'
+  icon_state = "elite"
+  icon_state_unpowered = "elite"
+
+/obj/item/modular_computer/tablet/preset/custom_loadout/nettie/install_default_hardware()
+  ..()
+  processor_unit = new/obj/item/weapon/computer_hardware/processor_unit/small(src)
+  tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
+  hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/(src)
+  network_card = new/obj/item/weapon/computer_hardware/network_card/advanced(src)
+  nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+  battery_module = new/obj/item/weapon/computer_hardware/battery_module(src)
+  battery_module.charge_to_full()

@@ -147,6 +147,34 @@
 				"<span class='notice'>You add \the [O] to \the [src].</span>")
 			SStgui.update_uis(src)
 			return
+	else if (istype(O,/obj/item/weapon/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
+		var/obj/item/weapon/storage/bag/plants/bag = O
+		var/failed = 1
+		for(var/obj/item/G in O.contents)
+			if(!G.reagents || !G.reagents.total_volume)
+				continue
+			failed = 0
+			if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
+				to_chat(user, "<span class='warning'>This [src] is full of ingredients, you cannot put more.</span>")
+				return 0
+			else
+				bag.remove_from_storage(G, src)
+				contents += G
+				if(contents.len>=(max_n_of_items + component_parts.len + circuit_item_capacity))
+					break
+
+		if(failed)
+			to_chat(user, "Nothing in the plant bag is usable.")
+			return 0
+
+		if(!O.contents.len)
+			to_chat(user, "You empty \the [O] into \the [src].")
+		else
+			to_chat(user, "You fill \the [src] from \the [O].")
+
+		SStgui.update_uis(src)
+		return 0
+
 	else if(istype(O,/obj/item/weapon/reagent_containers/glass) || \
 			istype(O,/obj/item/weapon/reagent_containers/food/drinks) || \
 			istype(O,/obj/item/weapon/reagent_containers/food/condiment) \

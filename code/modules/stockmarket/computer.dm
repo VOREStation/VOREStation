@@ -5,21 +5,36 @@
 	icon_state = "stockmarket"
 	icon_screen = "stocks"
 	icon_keyboard = "stockmarket_key"
+	circuit = /obj/item/weapon/circuitboard/stockexchange
 	var/logged_in = "Cargo Department"
 	var/vmode = 1
+
+	var/screen = "stocks"
+	var/datum/stock/current_stock = null
+
 	light_color = LIGHT_COLOR_GREEN
 
 /obj/machinery/computer/stockexchange/Initialize()
 	. = ..()
 	logged_in = "Cargo Department"
 
+/obj/machinery/computer/stockexchange/Destroy()
+	return ..()
+
+/obj/machinery/computer/stockexchange/attackby(obj/item/W, mob/user, params)
+	..()
+	SStgui.update_uis(src)
+	return
+
+/obj/machinery/computer/stockexchange/attack_ai(mob/user)
+	src.attack_hand(user)
+
 /obj/machinery/computer/stockexchange/attack_hand(mob/user)
 	if(..(user))
 		return
 
-	//if(!ai_control && issilicon(user))
-	//	to_chat(user, "<span class='warning'>Access Denied.</span>")
-	//	return TRUE
+	if(stat & (BROKEN|NOPOWER))
+		return
 
 	tgui_interact(user)
 
@@ -51,55 +66,27 @@
 				sell_some_shares(S, usr)
 
 		if("stocks_check")
-			var/dat = "<html><head><title>Stock Transaction Logs</title></head><body><h2>Stock Transaction Logs</h2><div><a href='?src=[REF(src)];show_logs=1'>Refresh</a></div></br>"
-			for(var/D in GLOB.stockExchange.logs)
-				var/datum/stock_log/L = D
-				if(istype(L, /datum/stock_log/buy))
-					dat += "[L.time] | <b>[L.user_name]</b> bought <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits in <b>[L.company_name]</b>.</br>"
-					continue
-				if(istype(L, /datum/stock_log/sell))
-					dat += "[L.time] | <b>[L.user_name]</b> sold <b>[L.stocks]</b> stocks at [L.shareprice] a share for <b>[L.money]</b> total credits from <b>[L.company_name]</b>.</br>"
-					continue
-				if(istype(L, /datum/stock_log/borrow))
-					dat += "[L.time] | <b>[L.user_name]</b> borrowed <b>[L.stocks]</b> stocks with a deposit of <b>[L.money]</b> credits in <b>[L.company_name]</b>.</br>"
-					continue
-			var/datum/browser/popup = new(usr, "stock_logs", "Stock Transaction Logs", 600, 400)
-			popup.set_content(dat)
-			popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
-			popup.open()
+			screen = "logs"
 
 		if("stocks_archive")
 			var/datum/stock/S = locate(params["share"])
-			if (logged_in && logged_in != "")
-				var/list/LR = GLOB.stockExchange.last_read[S]
-				LR[logged_in] = world.time
-			var/dat = "<html><head><title>News feed for [S.name]</title></head><body><h2>News feed for [S.name]</h2><div><a href='?src=[REF(src)];archive=[REF(S)]'>Refresh</a></div>"
-			dat += "<div><h3>Events</h3>"
-			var/p = 0
-			for (var/datum/stockEvent/E in S.events)
-				if (E.hidden)
-					continue
-				if (p > 0)
-					dat += "<hr>"
-				dat += "<div><b>[E.current_title]</b></br>[E.current_desc]</div>"
-				p++
-			dat += "</div><hr><div><h3>Articles</h3>"
-			p = 0
-			for (var/datum/article/A in S.articles)
-				if (p > 0)
-					dat += "<hr>"
-				dat += "<div><b>[A.headline]</b><br><i>[A.subtitle]</i><br><br>[A.article]<br>- [A.author], [A.spacetime] (via <i>[A.outlet]</i>)</div>"
-				p++
-			dat += "</div></body></html>"
-			var/datum/browser/popup = new(usr, "archive_[S.name]", "Stock News", 600, 400)
-			popup.set_content(dat)
-			popup.set_title_image(usr.browse_rsc_icon(src.icon, src.icon_state))
-			popup.open()
+			if(S)
+				current_stock = S
+			//if (logged_in && logged_in != "")
+			//	var/list/LR = GLOB.stockExchange.last_read[S]
+			//	LR[logged_in] = world.time
+				screen = "archive"
 
 		if("stocks_history")
 			var/datum/stock/S = locate(params["share"]) in GLOB.stockExchange.stocks
 			if (S)
+				//current_stock = S
+				//screen = "graph"
 				S.displayValues(usr)
+
+		if("stocks_backbutton")
+			current_stock = null
+			screen = "stocks"
 
 		if("stocks_cycle_view")
 			vmode++
@@ -111,87 +98,158 @@
 
 	data["stationName"] = using_map.station_name
 	data["balance"] = balance()
+	data["screen"] = screen
+	
+	switch(screen)
+		// Main Stocks List
+		if("stocks")
+			if (vmode)
+				data["viewMode"] = "Full"
+			else
+				data["viewMode"] = "Compressed"
 
-	if (vmode)
-		data["viewMode"] = "Full"
-	else
-		data["viewMode"] = "Compressed"
-
-	for (var/datum/stock/S in GLOB.stockExchange.last_read)
-		var/list/LR = GLOB.stockExchange.last_read[S]
-		if (!(logged_in in LR))
-			LR[logged_in] = 0
-
-	data["stocks"] = list()
-
-	if (vmode)
-		for (var/datum/stock/S in GLOB.stockExchange.stocks)
-			var/mystocks = 0
-			if (logged_in && (logged_in in S.shareholders))
-				mystocks = S.shareholders[logged_in]
-
-			var/value = 0
-			if (!S.bankrupt)
-				value = S.current_value
-
-			data["stocks"] += list(list(
-				"REF" = REF(S),
-				"valueChange" = S.disp_value_change, // > 0 is +, < 0 is -, else its =
-				"bankrupt" = S.bankrupt,
-				"ID" = S.short_name,
-				"Name" = S.name,
-				"Value" = value,
-				"Owned" = mystocks,
-				"Avail" = S.available_shares,
-				"Products" = S.products,
-			))
-
-			var/news = 0
-			if (logged_in)
+			for (var/datum/stock/S in GLOB.stockExchange.last_read)
 				var/list/LR = GLOB.stockExchange.last_read[S]
-				var/lrt = LR[logged_in]
-				for (var/datum/article/A in S.articles)
-					if (A.ticks > lrt)
-						news = 1
-						break
-				if (!news)
-					for (var/datum/stockEvent/E in S.events)
-						if (E.last_change > lrt && !E.hidden)
-							news = 1
-	else
-		for (var/datum/stock/S in GLOB.stockExchange.stocks)
-			var/mystocks = 0
-			if (logged_in && (logged_in in S.shareholders))
-				mystocks = S.shareholders[logged_in]
+				if (!(logged_in in LR))
+					LR[logged_in] = 0
 
-			var/unification = 0
-			if (S.last_unification)
-				unification = DisplayTimeText(world.time - S.last_unification)
+			data["stocks"] = list()
 
-			data["stocks"] += list(list(
-				"REF" = REF(S),
-				"bankrupt" = S.bankrupt,
-				"ID" = S.short_name,
-				"Name" = S.name,
-				"Owned" = mystocks,
-				"Avail" = S.available_shares,
-				"Unification" = unification,
-				"Products" = S.products,
-			))
+			if (vmode)
+				for (var/datum/stock/S in GLOB.stockExchange.stocks)
+					var/mystocks = 0
+					if (logged_in && (logged_in in S.shareholders))
+						mystocks = S.shareholders[logged_in]
 
-			var/news = 0
-			if (logged_in)
-				var/list/LR = GLOB.stockExchange.last_read[S]
-				var/lrt = LR[logged_in]
-				for (var/datum/article/A in S.articles)
-					if (A.ticks > lrt)
-						news = 1
-						break
-				if (!news)
-					for (var/datum/stockEvent/E in S.events)
-						if (E.last_change > lrt && !E.hidden)
-							news = 1
-							break
+					var/value = 0
+					if (!S.bankrupt)
+						value = S.current_value
+
+					data["stocks"] += list(list(
+						"REF" = REF(S),
+						"valueChange" = S.disp_value_change, // > 0 is +, < 0 is -, else its =
+						"bankrupt" = S.bankrupt,
+						"ID" = S.short_name,
+						"Name" = S.name,
+						"Value" = value,
+						"Owned" = mystocks,
+						"Avail" = S.available_shares,
+						"Products" = S.products,
+					))
+
+					var/news = 0
+					if (logged_in)
+						var/list/LR = GLOB.stockExchange.last_read[S]
+						var/lrt = LR[logged_in]
+						for (var/datum/article/A in S.articles)
+							if (A.ticks > lrt)
+								news = 1
+								break
+						if (!news)
+							for (var/datum/stockEvent/E in S.events)
+								if (E.last_change > lrt && !E.hidden)
+									news = 1
+			else
+				for (var/datum/stock/S in GLOB.stockExchange.stocks)
+					var/mystocks = 0
+					if (logged_in && (logged_in in S.shareholders))
+						mystocks = S.shareholders[logged_in]
+
+					var/unification = 0
+					if (S.last_unification)
+						unification = DisplayTimeText(world.time - S.last_unification)
+
+					data["stocks"] += list(list(
+						"REF" = REF(S),
+						"bankrupt" = S.bankrupt,
+						"ID" = S.short_name,
+						"Name" = S.name,
+						"Owned" = mystocks,
+						"Avail" = S.available_shares,
+						"Unification" = unification,
+						"Products" = S.products,
+					))
+
+					var/news = 0
+					if (logged_in)
+						var/list/LR = GLOB.stockExchange.last_read[S]
+						var/lrt = LR[logged_in]
+						for (var/datum/article/A in S.articles)
+							if (A.ticks > lrt)
+								news = 1
+								break
+						if (!news)
+							for (var/datum/stockEvent/E in S.events)
+								if (E.last_change > lrt && !E.hidden)
+									news = 1
+									break
+
+		// Stocks Logs Screen
+		if("logs")
+			data["logs"] = list()
+			
+			for(var/D in GLOB.stockExchange.logs)
+				var/datum/stock_log/L = D
+
+				if (istype(L, /datum/stock_log/buy))
+					data["logs"] += list(list(
+							"type" = "transaction_bought",
+							"time" = L.time,
+							"user_name" = L.user_name,
+							"stocks" = L.stocks,
+							"shareprice" = L.shareprice,
+							"money" = L.money,
+							"company_name" = L.company_name,
+					))
+				else if (istype(L, /datum/stock_log/sell))
+					data["logs"] += list(list(
+							"type" = "transaction_sold",
+							"time" = L.time,
+							"user_name" = L.user_name,
+							"stocks" = L.stocks,
+							"shareprice" = L.shareprice,
+							"money" = L.money,
+							"company_name" = L.company_name,
+					))
+				else if (istype(L, /datum/stock_log/borrow))
+					data["logs"] += list(list(
+							"type" = "borrow",
+							"time" = L.time,
+							"user_name" = L.user_name,
+							"stocks" = L.stocks,
+							"money" = L.money,
+							"company_name" = L.company_name,
+					))
+
+		// Archive Screen
+		if("archive")
+			data["name"] = current_stock.name
+			data["events"] = list()
+			data["articles"] = list()
+
+			for (var/datum/stockEvent/E in current_stock.events)
+				if (E.hidden)
+					continue
+				data["events"] += list(list(
+						"current_title" = E.current_title,
+						"current_desc" = E.current_desc,
+				))
+
+			for (var/datum/article/A in current_stock.articles)
+				data["articles"] += list(list(
+						"headline" = A.headline,
+						"subtitle" = A.subtitle,
+						"article" = A.article,
+						"author" = A.author,
+						"spacetime" = A.spacetime,
+						"outlet" = A.outlet,
+				))
+
+		// Stock Graph
+		if("graph")
+			data["name"] = current_stock.name
+			data["maxValue"] = 100
+			data["values"] = current_stock.values
 
 	return data
 
@@ -200,52 +258,6 @@
 	if(!ui)
 		ui = new(user, src, "StockExchange")
 		ui.open()
-
-///// HISTORY SCREEN /////
-
-/obj/machinery/computer/stockexchange/history/tgui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "StockExchangeHistory")
-		ui.open()
-
-/obj/machinery/computer/stockexchange/history/tgui_data(mob/user)
-	var/list/data = list()
-	//data["var"] = var
-	return data
-
-/obj/machinery/computer/stockexchange/history/tgui_act(action, params)
-	if(..())
-		return
-	switch(action)
-		if("copypasta")
-			//var/newvar = params["var"]
-			// A demo of proper input sanitation.
-			//var = CLAMP(newvar, min_val, max_val)
-			. = TRUE
-
-///// ARCHIVE SCREEN /////
-
-/obj/machinery/computer/stockexchange/archive/tgui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "StockExchangeArchive")
-		ui.open()
-
-/obj/machinery/computer/stockexchange/archive/tgui_data(mob/user)
-	var/list/data = list()
-	//data["var"] = var
-	return data
-
-/obj/machinery/computer/stockexchange/archive/tgui_act(action, params)
-	if(..())
-		return
-	switch(action)
-		if("copypasta")
-			//var/newvar = params["var"]
-			// A demo of proper input sanitation.
-			//var = CLAMP(newvar, min_val, max_val)
-			. = TRUE
 
 ///// PROCS /////
 

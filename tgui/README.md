@@ -37,7 +37,8 @@ to translate concepts between old and new tgui, read this
 
 You will need these programs to start developing in tgui:
 
-- [Node v12.18.3+](https://nodejs.org/en/download/)
+- [Node v16.13+](https://nodejs.org/en/download/)
+  - **LTS** release is recommended instead of latest
 - [Yarn v1.22.4+](https://yarnpkg.com/getting-started/install) (optional)
 - [Git Bash](https://git-scm.com/downloads)
   or [MSys2](https://www.msys2.org/) (optional)
