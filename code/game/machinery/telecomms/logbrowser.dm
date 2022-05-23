@@ -26,13 +26,13 @@
 	data["network"] = network
 	data["temp"] = temp
 
-	var/list/servers = list()
+	var/list/serverData = list()
 	for(var/obj/machinery/telecomms/T in servers)
-		servers.Add(list(list(
+		serverData.Add(list(list(
 			"id" = T.id,
 			"name" = T.name,
 		)))
-	data["servers"] = servers
+	data["servers"] = serverData
 
 	data["selectedServer"] = null
 	if(SelectedServer)
