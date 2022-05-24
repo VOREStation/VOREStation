@@ -93,14 +93,57 @@
 	color = null
 	applies_material_colour = 0
 
-// Leaving this in for the sake of compilation.
 /obj/structure/bed/chair/comfy
+	name = "comfy chair"
 	desc = "It's a chair. It looks comfy."
 	icon_state = "comfychair"
 	base_icon = "comfychair"
 
+<<<<<<< HEAD
 /obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","leather")
+=======
+/obj/structure/bed/chair/comfy/update_icon()
+	..()
+	var/image/I = image(icon, "[base_icon]_over")
+	I.layer = ABOVE_MOB_LAYER
+	I.plane = MOB_PLANE
+	I.color = material.icon_colour
+	add_overlay(I)
+	if(padding_material)
+		I = image(icon, "[base_icon]_padding_over")
+		I.layer = ABOVE_MOB_LAYER
+		I.plane = MOB_PLANE
+		I.color = padding_material.icon_colour
+		add_overlay(I)
+
+/obj/structure/bed/chair/comfy/brown/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, MAT_LEATHER)
+
+/obj/structure/bed/chair/comfy/red/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "carpet")
+
+/obj/structure/bed/chair/comfy/teal/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "teal")
+
+/obj/structure/bed/chair/comfy/black/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "black")
+
+/obj/structure/bed/chair/comfy/green/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "green")
+
+/obj/structure/bed/chair/comfy/purp/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "purple")
+
+/obj/structure/bed/chair/comfy/blue/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "blue")
+
+/obj/structure/bed/chair/comfy/beige/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "beige")
+
+/obj/structure/bed/chair/comfy/lime/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "lime")
+>>>>>>> 86cb4c5f606... Fixes directional overlays on padded comfy and rounded chairs (#8622)
 
 /obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","carpet")
@@ -108,6 +151,7 @@
 /obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","teal")
 
+<<<<<<< HEAD
 /obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","black")
 
@@ -131,6 +175,43 @@
 
 /obj/structure/bed/chair/comfy/orange/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","orange")
+=======
+/obj/structure/bed/chair/comfy/rounded
+	name = "rounded chair"
+	desc = "It's a rounded chair. It looks comfy."
+	icon_state = "roundedchair"
+	base_icon = "roundedchair"
+
+/obj/structure/bed/chair/comfy/rounded/brown/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, MAT_LEATHER)
+
+/obj/structure/bed/chair/comfy/rounded/red/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "carpet")
+
+/obj/structure/bed/chair/comfy/rounded/teal/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "teal")
+
+/obj/structure/bed/chair/comfy/rounded/black/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "black")
+
+/obj/structure/bed/chair/comfy/rounded/green/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "green")
+
+/obj/structure/bed/chair/comfy/rounded/purple/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "purple")
+
+/obj/structure/bed/chair/comfy/rounded/blue/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "blue")
+
+/obj/structure/bed/chair/comfy/rounded/beige/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "beige")
+
+/obj/structure/bed/chair/comfy/rounded/lime/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "lime")
+
+/obj/structure/bed/chair/comfy/rounded/yellow/Initialize(var/ml,var/newmaterial)
+	. = ..(ml, MAT_STEEL, "yellow")
+>>>>>>> 86cb4c5f606... Fixes directional overlays on padded comfy and rounded chairs (#8622)
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
@@ -466,5 +547,10 @@
 /obj/structure/bed/chair/sofa/right/orange
 	sofa_material = "orange"
 
+<<<<<<< HEAD
 /obj/structure/bed/chair/sofa/corner/orange
 	sofa_material = "orange"
+=======
+/obj/structure/bed/chair/sofa/orange/corner
+	icon_state = "sofacorner"
+>>>>>>> 86cb4c5f606... Fixes directional overlays on padded comfy and rounded chairs (#8622)
