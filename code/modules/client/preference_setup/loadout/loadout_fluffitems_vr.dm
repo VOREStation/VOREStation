@@ -90,7 +90,7 @@
 	ckeywhitelist = list("allweek")
 	character_name = list("Fifi The Magnificent")
 
-/datum/gear/fluff/fifi_hat
+/datum/gear/fluff/fifi_socks
 	path = /obj/item/clothing/shoes/fluff/fifi_socks
 	display_name = "Fifi's socks"
 	ckeywhitelist = list("allweek")
