@@ -12,3 +12,6 @@
 /datum/tgui_module/crew_manifest/robot
 /datum/tgui_module/crew_manifest/robot/tgui_state(mob/user)
 	return GLOB.tgui_self_state
+
+/datum/tgui_module/crew_manifest/ntos
+	ntos = TRUE
