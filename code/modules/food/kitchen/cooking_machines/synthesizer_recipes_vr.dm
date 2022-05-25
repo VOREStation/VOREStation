@@ -7,18 +7,6 @@
 	if(!I)	// Something has gone horribly wrong, or right.
 		log_debug("[name] created an Autolathe design without an assigned path.")
 		return
-
-	if(I.matter && !resources)
-		resources = list()
-		for(var/material in I.matter)
-			var/coeff = (no_scale ? 1 : 1.25) //most objects are more expensive to produce than to recycle
-			resources[material] = I.matter[material]*coeff // but if it's a sheet or RCD cartridge, it's 1:1
-	if(is_stack)
-		if(istype(I, /obj/item/stack))
-			var/obj/item/stack/IS = I
-			max_stack = IS.max_amount
-		else
-			max_stack = 10
 	qdel(I)
 
 /*********************
@@ -34,12 +22,30 @@
 	w_class = ITEMSIZE_SMALL
 	nutriment_amt = 3
 
+/*******************
+* Category entries *
+*******************/
+
+/datum/category_item/synthesizer
+	var/path
+	var/list/nutriment_desc
+	var/hidden
+	var/icon
+	var/icon_state
+	var/desc
+	var/filling_color
+
+/datum/category_item/synthesizer/dd_SortValue()
+	return name
+
 /****************************
 * Category Collection Setup *
 ****************************/
 
 /datum/category_collection/synthesizer_recipes
 	category_group_type = /datum/category_group/synthesizer_recipes
+
+/datum/category_collection/synthesizer_recipes/proc/replicate(var/what, var/temp, var/mob/living/user)
 
 /*************
 * Categories *
@@ -68,7 +74,35 @@
 		if(initial(S.name) in items_by_name)
 			continue
 
-		var/datum/category_item/autolathe/materials/WorkDat = new(src, M)
+		var/datum/category_item/synthesizer/materials/WorkDat = new(src, M)
 
 		items |= WorkDat
 		items_by_name[WorkDat.name] = WorkDat
+
+/datum/category_group/synthesizer_recipes/basic
+	name = "Basics"
+	category_item_type = /datum/category_item/synthesizer/basics
+
+/datum/category_group/synthesizer_recipes/raw
+	name = "Raw"
+	category_item_type = /datum/category_item/synthesizer/raw
+
+/datum/category_group/synthesizer_recipes/cooked
+	name = "Cooked"
+	category_item_type = /datum/category_item/synthesizer/cooked
+
+/datum/category_group/synthesizer_recipes/liquid
+	name = "Liquid"
+	category_item_type = /datum/category_item/synthesizer/liquid
+
+/datum/category_group/synthesizer_recipes/noodle
+	name = "Noodles"
+	category_item_type = /datum/category_item/synthesizer/noodle
+
+/datum/category_group/synthesizer_recipes/exotic
+	name = "Exotic"
+	category_item_type = /datum/category_item/synthesizer/exotic
+
+/datum/category_item/synthesizer/general/ashtray_glass
+	name = "glass ashtray"
+	path =/obj/item/weapon/material/ashtray/glass

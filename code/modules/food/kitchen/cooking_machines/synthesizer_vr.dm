@@ -1,15 +1,13 @@
-//Poojy's miracle 'I don't want generic pizza' machine
+//Poojy's miracle 'I don't want generic pizza' / there's noone working kitchen machine
 //Yes it's a generic food 3d printer. ~
-// in here because makes sense, if really it's just a refillable synthesizer of food
+// in here because makes sense, if really it's just a refillable autolathe of food
 
 /obj/machinery/synthesizer
 	name = "food synthesizer"
 	desc = "a device able to produce an incredible array of conventional foods. Although only the most ascetic of users claim it produces good tasting products."
-	icon = 'icons/obj/cooking_machines_vr.dmi'
+	icon = 'icons/obj/machines/synthisizer_vr.dmi'
 	icon_state = "synthesizer_off"
-	on_icon = "synthesizer_on"
-	off_icon = "synthesizer_off"
-
+	pixel_y = 32 //So it glues to the wall
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -32,11 +30,12 @@
 	var/build_time = 50
 
 	circuit = /obj/item/weapon/circuitboard/synthesizer
-
-	var/list/spawn_cartridge = null // Copied Dispensor2.dm stuff. Yes I know this is terrifying.
 	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/cart
 	var/cart_type = /obj/item/weapon/reagent_containers/synth_disp_cartridge
 	var/datum/wires/synthesizer/wires
+
+	//Voice activation stuff
+	var/activator = "computer"
 
 
 /obj/machinery/synthesizer/Initialize()
@@ -61,43 +60,93 @@
 		. += "The cartridge is [cart ? "installed" : "missing"]."
 	return
 
+/obj/machinery/synthesizer/hear_talk(mob/M, list/message_pieces, verb)
+
+
+/obj/machinery/synthesizer/Hear(message, atom/movable/speaker, message_language, raw_message, radio_freq, list/spans, message_mode)
+	. = ..()
+	if(speaker == src)
+		return
+	if(!(get_dist(src, speaker) <= 1))
+		return
+	else
+		check_activation(speaker, raw_message)
+
+/obj/machinery/synthesizer/proc/check_activation(atom/movable/speaker, raw_message)
+	if(!powered() || busy || panel_open)//Shut down.
+		return
+	if(!findtext(raw_message, activator))
+		return FALSE //They have to say computer, like a discord bot prefix.
+	if(!busy)
+		if(findtext(raw_message, "?")) //Burger? no be SPECIFIC.
+			return FALSE
+
+		if(!findtext(raw_message, ",")) // gotta place pauses between your request. All hail comma.
+			audible_message("<span class='notice'>Unable to Comply, Please state request with specific pauses.</span>", runemessage = "BUZZ")
+			return
+
+		var/target
+		var/temp = null
+		for(var/X in all_menus)
+			var/tofind = X
+			if(findtext(raw_message, tofind))
+				target = tofind //Alright they've asked for something on the menu.
+
+		for(var/Y in temps) //See if they want it hot, or cold.
+			var/hotorcold = Y
+			if(findtext(raw_message, hotorcold))
+				temp = hotorcold //If they specifically request a temperature, we'll oblige. Else it doesn't rename.
+		if(target && powered())
+			menutype = REPLICATING
+			idle_power_usage = 400
+			icon_state = "replicator-on"
+			playsound(src, 'DS13/sound/effects/replicator.ogg', 100, 1)
+			ready = FALSE
+			var/speed_mult = 60 //Starts off hella slow.
+			speed_mult -= (speed_grade*10) //Upgrade with manipulators to make this faster!
+
 /obj/machinery/synthesizer/update_icon()
 	cut_overlays()
 	icon_state = initial(icon_state)
 	if(panel_open)
-		add_overlay("[icon_state]-panel")
+		icon_state = "[icon_state]_off"
+		if(!NOPOWER)
+			add_overlay("[icon_state]_ppanel")
+		else
+			add_overlay("[icon_state]_panel")
 		if(cart)
-			add_overlay("[icon_state]-cart")
 			if(cart.reagents.total_volume)
-			var/mutable_appearance/filling_overlay = mutable_appearance(icon, "input-reagent")
+			var/mutable_appearance/filling_overlay = mutable_appearance(icon, "cartfill_", layer = src.layer - 0.1) //just under it so the glass effect looks nice
 			var/percent = round((cart.reagents.total_volume / cart.volume) * 100)
 				switch(percent)
 					if(0 to 9)
-						filling_overlay.icon_state = "input-reagent0"
+						filling_overlay.icon_state = "cartfill_0"
 					if(10 to 24)
-						filling_overlay.icon_state = "input-reagent10"
+						filling_overlay.icon_state = "cartfill_10"
 					if(25 to 49)
-						filling_overlay.icon_state = "input-reagent25"
+						filling_overlay.icon_state = "cartfill_25"
 					if(50 to 74)
-						filling_overlay.icon_state = "input-reagent50"
+						filling_overlay.icon_state = "cartfill_50"
 					if(75 to 79)
-						filling_overlay.icon_state = "input-reagent75"
+						filling_overlay.icon_state = "cartfill_75"
 					if(80 to 90)
-						filling_overlay.icon_state = "input-reagent80"
+						filling_overlay.icon_state = "cartfill_80"
 					if(91 to INFINITY)
-						filling_overlay.icon_state = "input-reagent100"
+						filling_overlay.icon_state = "cartfill_100"
 				add_overlay(filling_overlay)
+			add_overlay("[icon_state]_cart")
 
 	if(stat & NOPOWER)
+		icon_state = "[icon_state]_off"
 		set_light_on(FALSE)
 		return
 
 	if(busy)
-		icon_state = "[icon_state]_work"
+		icon_state = "[icon_state]_busy"
 
 	switch(state)
 		if(busy)
-			set_light_color("#00ccff")
+			set_light_color("#faebd7") // "antique white"
 			set_light_on(TRUE)
 		else if(!busy)
 			set_light_on(FALSE)
@@ -113,12 +162,7 @@
 		return
 
 	if(cart) // let's hot swap that bad boy.
-		remove_cart(cart, user)
-		cart = C
-		C.loc = src
-		C.add_fingerprint(user)
-		to_chat(user, "<span class='notice'>You remove old canister and insert the new [C] to \the [src].</span>")
-		SStgui.update_uis(src)
+		remove_cart(C, user)
 		return
 
 	else if(!cart)
@@ -131,12 +175,20 @@
 		return
 
 /obj/machinery/synthesizer/proc/remove_cart(obj/item/weapon/reagent_containers/synth_disp_cartridge/C, mob/user)
-	user.put_in_hands(C)
-	cart--
+	for(var/obj/item/weapon/reagent_containers/synth_disp_cartridge/old in src)
+		if(old in cart)
+			old.loc = get_turf(src.loc)
+			cart--
+			C.loc = src
+			C.add_fingerprint(user)
+			cart = C
+			user.put_in_hands(old)
+			to_chat(user, "<span class='notice'>You remove [old] and insert the new [C] to \the [src].</span>")
+	SStgui.update_uis(src)
 
 /obj/machinery/synthesizer/attackby(obj/item/W, mob/user)
 	if(busy)
-		to_chat(user, "<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>")
+		audible_message("<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>", runemessage = "BUZZ")
 		return
 	if(default_deconstruction_crowbar(user, O))
 		return
@@ -389,10 +441,42 @@
 		/obj/item/stock_parts/scanning_module = 1)
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge
-	name = "chemical dispenser cartridge"
-	desc = "This goes in a chemical dispenser."
-	icon_state = "cartridge"
+	name = "Synthisizer cartridge"
+	desc = "This goes in a food synthisizer."
+	icon = 'icons/obj/machines/synthisizer_vr.dmi'
+	icon_state = "synth_cartridge"
 
 	w_class = ITEMSIZE_NORMAL
 
-	volume = CARTRIDGE_VOLUME_LARGE
+	volume = CARTRIDGE_VOLUME_MEDIUM //enough for feeding folk, but not so much it won't be needing replacment
+	prefill = list("synthsoygreen" = CARTRIDGE_VOLUME_MEDIUM) //preloaded offstation
+	possible_transfer_amounts = null
+
+/obj/item/weapon/reagent_containers/synth_disp_cartridge/update_icon()
+	cut_overlays()
+	if(reagents.total_volume)
+		var/mutable_appearance/filling_overlay = mutable_appearance(icon, "bigcartfill_", layer = src.layer - 0.1) //just under it so the glass effect looks nice
+		var/percent = round((cart.reagents.total_volume / cart.volume) * 100)
+			switch(percent)
+				if(0 to 9)
+					filling_overlay.icon_state = "bigcartfill_0"
+				if(10 to 35)
+					filling_overlay.icon_state = "bigcartfill_25"
+				if(36 to 74)
+					filling_overlay.icon_state = "bigcartfill_50"
+				if(75 to 90)
+					filling_overlay.icon_state = "bigcartfill_75"
+				if(91 to INFINITY)
+					filling_overlay.icon_state = "bigcartfill_100"
+			add_overlay(filling_overlay)
+
+/datum/reagent/nutriment/synthsyolent
+	name = "Soylent Agent Green"
+	id = "synthsoygreen"
+	description = "An thick, horridly rubbery fluid that somehow can be synthisized into 'edible' meals."
+	taste_description = "unrefined cloying oil"
+	taste_mult = 1.3
+	nutriment_factor = 1
+	reagent_state = LIQUID
+	color = "#faebd7"
+
