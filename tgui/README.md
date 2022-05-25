@@ -33,6 +33,13 @@ If you were already familiar with an older, Ractive-based tgui, and want
 to translate concepts between old and new tgui, read this
 [interface conversion guide](docs/converting-old-tgui-interfaces.md).
 
+### Other Documentation
+
+- [Component Reference](docs/component-reference.md) - UI building blocks
+- [Using TGUI and Byond API for custom HTML popups](docs/tgui-for-custom-html-popups.md)
+- [Chat Embedded Components](docs/chat-embedded-components.md)
+- [Writing Tests](docs/writing-tests.md)
+
 ## Pre-requisites
 
 You will need these programs to start developing in tgui:
@@ -40,6 +47,7 @@ You will need these programs to start developing in tgui:
 - [Node v16.13+](https://nodejs.org/en/download/)
   - **LTS** release is recommended instead of latest
 - [Yarn v1.22.4+](https://yarnpkg.com/getting-started/install) (optional)
+  - You can run `npm install -g yarn` to install it.
 - [Git Bash](https://git-scm.com/downloads)
   or [MSys2](https://www.msys2.org/) (optional)
 
@@ -189,10 +197,6 @@ Add stylesheets here if you really need a fine control over your UI styles.
 - `/packages/tgui/styles/layouts` - Layout-related styles.
 - `/packages/tgui/styles/themes` - Contains all the various themes you can
 use in tgui. Each theme must be registered in `webpack.config.js` file.
-
-## Component Reference
-
-See: [Component Reference](docs/component-reference.md).
 
 ## License
 
