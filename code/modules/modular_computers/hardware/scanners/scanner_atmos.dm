@@ -26,9 +26,8 @@
 /obj/item/weapon/computer_hardware/scanner/atmos/proc/scan_data(mob/user, atom/target, proximity = TRUE)
 	if(!can_use_scanner(user, target, proximity))
 		return 0
-	//var/air_contents = target.return_air()
-	//if(!air_contents)
-	//	return 0
-	//var/list/raw = atmosanalyzer_scan(target, air_contents)
-	//return jointext(raw, "<br>")
-	return "<br>"
+	var/air_contents = target.return_air()
+	if(!air_contents)
+		return 0
+	var/list/raw = atmosanalyzer_scan(target, air_contents, user)
+	return jointext(raw, "<br>")

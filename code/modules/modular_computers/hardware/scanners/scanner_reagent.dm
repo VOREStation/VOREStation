@@ -12,7 +12,7 @@
 /obj/item/weapon/computer_hardware/scanner/reagent/do_on_afterattack(mob/user, obj/target, proximity)
 	if(!can_use_scanner(user, target, proximity))
 		return
-	//var/dat = reagent_scan_results(target)
-	//if(driver && driver.using_scanner)
-	//	driver.data_buffer = jointext(dat, "\[br\]")
-	//to_chat(user, "<span class = 'notice'>[jointext(dat, "<br>")]</span>")
+	var/dat = reagent_scan_results(target)
+	if(driver && driver.using_scanner)
+		driver.data_buffer = jointext(dat, "\[br\]")
+	to_chat(user, "<span class = 'notice'>[jointext(dat, "<br>")]</span>")

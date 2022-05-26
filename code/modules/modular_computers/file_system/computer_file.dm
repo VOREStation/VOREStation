@@ -7,12 +7,18 @@ var/global/file_uid = 0
 	var/obj/item/weapon/computer_hardware/hard_drive/holder	// Holder that contains this file.
 	var/unsendable = 0										// Whether the file may be sent to someone via NTNet transfer or other means.
 	var/undeletable = 0										// Whether the file may be deleted. Setting to 1 prevents deletion/renaming/etc.
+	var/hidden = FALSE	 									// Whether the file is hidden from view in the OS
+	var/read_only = FALSE									// Protects files that should never be edited by the user due to special properties.
 	var/uid													// UID of this file
+	var/list/metadata										// Any metadata the file uses.
+	var/papertype = /obj/item/weapon/paper					// Paper type to use for printing
 
-/datum/computer_file/New()
+/datum/computer_file/New(list/md = null)
 	..()
 	uid = file_uid
 	file_uid++
+	if(islist(md))
+		metadata = md.Copy()
 
 /datum/computer_file/Destroy()
 	if(!holder)
@@ -30,7 +36,10 @@ var/global/file_uid = 0
 	var/datum/computer_file/temp = new type
 	temp.unsendable = unsendable
 	temp.undeletable = undeletable
+	temp.hidden = hidden
 	temp.size = size
+	if(metadata)
+		temp.metadata = metadata.Copy()
 	if(rename)
 		temp.filename = filename + "(Copy)"
 	else

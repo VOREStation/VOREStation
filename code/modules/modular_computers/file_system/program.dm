@@ -1,18 +1,22 @@
 // /program/ files are executable programs that do things.
 /datum/computer_file/program
-	filetype = "PRG"
 	filename = "UnknownProgram"				// File name. FILE NAME MUST BE UNIQUE IF YOU WANT THE PROGRAM TO BE DOWNLOADABLE FROM NTNET!
+	filetype = "PRG"
+	
 	var/required_access = null				// List of required accesses to run/download the program.
 	var/requires_access_to_run = 1			// Whether the program checks for required_access when run.
 	var/requires_access_to_download = 1		// Whether the program checks for required_access when downloading.
+
 	// TGUIModule
 	var/datum/tgui_module/TM = null			// If the program uses TGUIModule, put it here and it will be automagically opened. Otherwise implement tgui_interact.
 	var/tguimodule_path = null				// Path to tguimodule, make sure to set this if implementing new program.
+
 	// Etc Program stuff
 	var/program_state = PROGRAM_STATE_KILLED// PROGRAM_STATE_KILLED or PROGRAM_STATE_BACKGROUND or PROGRAM_STATE_ACTIVE - specifies whether this program is running.
 	var/obj/item/modular_computer/computer	// Device that runs this program.
 	var/filedesc = "Unknown Program"		// User-friendly name of this program.
 	var/extended_desc = "N/A"				// Short description of this program's function.
+	var/category = PROG_MISC				// Category that this program belongs to.
 	var/program_icon_state = null			// Program-specific screen icon state
 	var/program_key_state = "standby_key"	// Program-specific keyboard icon state
 	var/program_menu_icon = "newwin"		// Icon to use for program's link in main menu

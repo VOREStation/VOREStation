@@ -3,18 +3,12 @@
 	ntos = TRUE
 	tgui_id = "Scanner"
 
-///datum/tgui_module/cardmod/tgui_static_data(mob/user)
-//	var/list/data =  ..()
-	//if(data_core)
-	//	data_core.get_manifest_list()
-	//data["manifest"] = PDA_Manifest
-//	return data
+/datum/tgui_module/scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..()
 
-/datum/tgui_module/cardmod/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/datum/computer_file/program/scanner/program = host
 	if(!istype(program))
 		return 0
-	var/list/data = ..()
 	
 	if(program.computer.scanner)
 		data["scanner_name"] = program.computer.scanner.name
@@ -32,7 +26,7 @@
 
 	return data
 
-/datum/tgui_module/cardmod/tgui_act(action, list/params, datum/tgui/ui)
+/datum/tgui_module/scanner/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
@@ -52,10 +46,15 @@
 				program.disconnect_scanner()
 			return 1
 
+		if("PC_toggle_component")
+			var/obj/item/weapon/computer_hardware/H = computer.find_hardware_by_name(params["name"])
+			if(H && istype(H))
+				H.enabled = !H.enabled
+
 		if("scan")
 			if(program.check_scanning())
 				program.metadata_buffer.Cut()
-				program.computer.scanner.run_scan(usr, src)
+				program.computer.scanner.run_scan(usr, program)
 			return 1
 
 		if("save")

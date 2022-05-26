@@ -35,12 +35,15 @@
 	var/spam_flag = 0
 	var/age = 0
 	var/last_modified_ckey
+	var/list/metadata
 
 	var/was_maploaded = FALSE // This tracks if the paper was created on mapload.
 
 	var/const/deffont = "Verdana"
 	var/const/signfont = "Times New Roman"
 	var/const/crayonfont = "Comic Sans MS"
+
+	var/scan_file_type = /datum/computer_file/data/text
 
 /obj/item/weapon/paper/card
 	name = "blank card"

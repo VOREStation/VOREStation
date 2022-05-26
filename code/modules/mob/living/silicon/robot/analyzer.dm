@@ -15,10 +15,7 @@
 	matter = list(MAT_STEEL = 500, MAT_GLASS = 200)
 	var/mode = 1;
 
-/obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
-	do_scan(M, user)
-
-/obj/item/device/robotanalyzer/proc/do_scan(mob/living/M as mob, mob/living/user as mob)
+/proc/roboscan(mob/living/M as mob, mob/living/user as mob)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<font color='red'>You try to analyze the floor's vitals!</font>")
 		for(var/mob/O in viewers(M, null))
@@ -129,5 +126,9 @@
 			to_chat(user, "<span class='notice'>General Statistics:</span>")
 			to_chat(user, "<span class='notice'>Movement Weight: [Mecha.get_step_delay()]</span><br>")
 
+	return
+
+/obj/item/device/robotanalyzer/attack(mob/living/M as mob, mob/living/user as mob)
+	roboscan(M, user)
 	src.add_fingerprint(user)
 	return

@@ -33,7 +33,7 @@ export const NtosScanner = (props, context) => {
                   <Button
                     icon="power-off"
                     selected={using_scanner}
-                    onClick={() => act("power_uav")}>
+                    onClick={() => act("connect_scanner", { "connect_scanner": !using_scanner })}>
                     {using_scanner ? 'Installed' : 'Uninstalled'}
                   </Button>
                 </div>
@@ -44,7 +44,7 @@ export const NtosScanner = (props, context) => {
                   <Button
                     icon="power-off"
                     selected={scanner_enabled}
-                    onClick={() => act("PC_toggle_component")}>
+                    onClick={() => act("PC_toggle_component", { "name": scanner_name })}>
                     {scanner_enabled ? 'Enabled' : 'Disabled'}
                   </Button>
                 </div>
@@ -53,13 +53,11 @@ export const NtosScanner = (props, context) => {
                 </div>
                 <div class="itemContent">
                   <Button
-                    icon="power-off"
                     disabled={!check_scanning}
                     onClick={() => act("scan")}>
                     Perform Scan
                   </Button>
                   <Button
-                    icon="power-off"
                     disabled={!can_save_scan}
                     onClick={() => act("save")}>
                     Save Scan

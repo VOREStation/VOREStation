@@ -9,11 +9,11 @@
 	available_on_ntnet = 1
 	usage_flags = PROGRAM_ALL
 	tguimodule_path = /datum/tgui_module/scanner
-	//category = PROG_UTIL
+	category = PROG_UTIL
 
 	var/using_scanner = 0	//Whether or not the program is synched with the scanner module.
 	var/data_buffer = ""	//Buffers scan output for saving/viewing.
-	//var/scan_file_type = /datum/computer_file/data/text		//The type of file the data will be saved to.
+	var/scan_file_type = /datum/computer_file/data/text		//The type of file the data will be saved to.
 	var/list/metadata_buffer = list()
 	var/paper_type
 
@@ -39,6 +39,17 @@
 		return 0
 	//if(!create_file(name, data_buffer, scan_file_type, metadata_buffer.Copy()))
 		//return 0
+
+	if(!computer.hard_drive)
+		return 0
+	var/datum/computer_file/data/F = new/datum/computer_file/data()
+	F.filename = name
+	F.filetype = scan_file_type
+	F.stored_data = data_buffer
+	F.metadata = metadata_buffer.Copy()
+	F.calculate_size()
+	if(!computer.hard_drive.store_file(F))
+		return 0
 	return 1
 
 /datum/computer_file/program/scanner/proc/check_scanning()

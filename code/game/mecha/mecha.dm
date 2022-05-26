@@ -1425,8 +1425,7 @@
 		return
 
 	if(istype(W, /obj/item/device/robotanalyzer))
-		var/obj/item/device/robotanalyzer/RA = W
-		RA.do_scan(src, user)
+		roboscan(src, user)
 		return
 
 	if(istype(W, /obj/item/mecha_parts/mecha_equipment))

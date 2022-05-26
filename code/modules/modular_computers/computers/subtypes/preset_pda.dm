@@ -8,7 +8,7 @@
 	card_slot = new /obj/item/weapon/computer_hardware/card_slot(src)
 	battery_module = new /obj/item/weapon/computer_hardware/battery_module(src)
 	battery_module.charge_to_full()
-	scanner = new /obj/item/weapon/computer_hardware/scanner/medical(src)
+	scanner = new /obj/item/weapon/computer_hardware/scanner/atmos(src)
 
 /obj/item/modular_computer/pda/install_default_programs()
 	..()
@@ -30,7 +30,7 @@
 	//hard_drive.store_file(new/datum/computer_file/program/newscast())
 	//if(prob(50)) //harmless tax software
 			//os.create_file(new /datum/computer_file/program/uplink())
-	set_autorun("chatclient")
+	set_autorun("ntnrc_client")
 
 /obj/item/modular_computer/pda/medical/install_default_hardware()
 	..()
@@ -60,11 +60,11 @@
 
 /obj/item/modular_computer/pda/heads/hop/install_default_hardware()
 	..()
-	//scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
+	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/pda/heads/hos/install_default_hardware()
 	..()
-	//scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
+	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/pda/heads/ce/install_default_hardware()
 	..()
@@ -76,7 +76,7 @@
 
 /obj/item/modular_computer/pda/heads/rd/install_default_hardware()
 	..()
-	//scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
+	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/pda/cargo/install_default_programs()
 	..()
@@ -86,7 +86,7 @@
 
 /obj/item/modular_computer/pda/cargo/install_default_hardware()
 	..()
-	//scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
+	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/pda/mining/install_default_hardware()
 	..()
@@ -98,8 +98,8 @@
 
 /obj/item/modular_computer/pda/captain/install_default_hardware()
 	..()
-	//scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
+	scanner = new /obj/item/weapon/computer_hardware/scanner/paper(src)
 
 /obj/item/modular_computer/pda/roboticist/install_default_hardware()
 	..()
-	//scanner = new /obj/item/weapon/computer_hardware/scanner/robotic(src)
+	scanner = new /obj/item/weapon/computer_hardware/scanner/robotic(src)
