@@ -34,17 +34,6 @@
 	reagent_state = LIQUID
 	color = "#faebd7"
 
-/*******************
-* Category entries *
-*******************/
-
-/datum/category_item/synthesizer
-	var/path
-	var/hidden = FALSE
-	var/voice_order
-	var/voice_temp
-
-
 /****************************
 * Category Collection Setup *
 ****************************/
@@ -89,11 +78,42 @@
 	name = "Exotic"
 	category_item_type = /datum/category_item/synthesizer/exotic */
 
+/*******************
+* Category entries *
+*******************/
+
+/datum/category_item/synthesizer
+	var/path
+	var/hidden = FALSE
+	var/list/voice_order
+	var/voice_temp
+
 /datum/category_item/synthesizer/basic/meat
 	name = "meat steak"
 	path = /obj/item/weapon/reagent_containers/food/snacks/meat
+	voice_order = list("meat slab","slab of meat","steak")
+	voice_temp = "cold"
 
 /datum/category_item/synthesizer/basic/corgi
 	name = "corgi steak"
 	path = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+	voice_order = list("Dog steak", "Dog", "Canine")
+	voice_temp = "cold"
 	hidden = TRUE
+
+/*
+/datum/category_item/synthesizer/exotic/micro
+	name = "Crew Replica"
+	path = /obj/item/weapon/holder/micro
+	voice_order = list("micro", "crewmember", "crew member", "crew", "nerd", "snackrifice", "snacksized", "snack-sized", "snack sized")
+	voice_temp = findsnackrifice(
+
+/datum/category_item/synthesizer/exotic/micro/proc/findsnackrifice(mob/snack)
+	var/mob/snack
+	var/matrix/original_transform
+
+/datum/category_item/synthesizer/exotic/micro/proc/assemblesnackrifice
+	vis_contents += held
+	name = held.name
+	original_transform = held.transform
+	held.transform = null */

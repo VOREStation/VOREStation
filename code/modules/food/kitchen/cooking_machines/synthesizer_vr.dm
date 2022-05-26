@@ -33,6 +33,7 @@
 	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/cart
 	var/cart_type = /obj/item/weapon/reagent_containers/synth_disp_cartridge
 	var/datum/wires/synthesizer/wires
+	var/static/datum/category_collection/synthesizer_recipes
 
 	//Voice activation stuff
 	var/activator = "computer"
@@ -137,18 +138,18 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 			if(cart.reagents.total_volume)
 				var/mutable_appearance/filling_overlay = mutable_appearance(icon, "cartfill_", layer = src.layer - 0.1) //just under it so the glass effect looks nice
 				var/percent = cart.percent()
-					switch(percent)
-						if(0 to 9)
-							filling_overlay.icon_state = "cartfill_0"
-						if(10 to 35)
-							filling_overlay.icon_state = "cartfill_25"
-						if(36 to 74)
-							filling_overlay.icon_state = "cartfill_50"
-						if(75 to 90)
-							filling_overlay.icon_state = "cartfill_75"
-						if(91 to INFINITY)
-							filling_overlay.icon_state = "cartfill_100"
-					add_overlay(filling_overlay)
+				switch(percent)
+					if(0 to 9)
+						filling_overlay.icon_state = "cartfill_0"
+					if(10 to 35)
+						filling_overlay.icon_state = "cartfill_25"
+					if(36 to 74)
+						filling_overlay.icon_state = "cartfill_50"
+					if(75 to 90)
+						filling_overlay.icon_state = "cartfill_75"
+					if(91 to INFINITY)
+						filling_overlay.icon_state = "cartfill_100"
+				add_overlay(filling_overlay)
 			add_overlay("[icon_state]_cart")
 
 	if(stat & NOPOWER)
@@ -158,13 +159,10 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 
 	if(busy)
 		icon_state = "[icon_state]_busy"
-
-	switch(state)
-		if(busy)
-			set_light_color("#faebd7") // "antique white"
-			set_light_on(TRUE)
-		else if(!busy)
-			set_light_on(FALSE)
+		set_light_color("#faebd7") // "antique white"
+		set_light_on(TRUE)
+	else
+		set_light_on(FALSE)
 
 /obj/machinery/synthesizer/proc/add_cart(obj/item/weapon/reagent_containers/synth_disp_cartridge/C, mob/user)
 	if(!panel_open) //just in case
@@ -208,14 +206,14 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 	if(busy)
 		audible_message("<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>", runemessage = "BUZZ")
 		return
-	if(default_deconstruction_crowbar(user, O))
+	if(default_deconstruction_crowbar(user, W))
 		return
-	if(default_part_replacement(user, O))
+	if(default_part_replacement(user, W))
 		return
 	if(stat)
 		return
 	if(panel_open)
-		if(O.is_multitool() || O.is_wirecutter())
+		if(W.is_multitool() || W.is_wirecutter())
 			wires.Interact(user)
 			return
 		if(istype(W, /obj/item/weapon/reagent_containers/synth_disp_cartridge))
@@ -246,7 +244,7 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 
 	if(W.is_screwdriver())
 		panel_open = !panel_open
-		playsound(src, I.usesound, 50, 1)
+		playsound(src, W.usesound, 50, 1)
 		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")
 		update_icon()
 
@@ -294,9 +292,9 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 	var/list/data = ..()
 	var/list/categories
 	var/list/recipes
-	for(var/datum/category_group/synthesizer/A in synthesizer_recipes.categories)
+	for(var/datum/category_group/synthesizer_recipes/A in synthesizer_recipes.categories)
 		categories += A.name
-		for(var/datum/category_item/synthesizer/F in A.items)
+		for(var/datum/category_item/synthesizer/F in A)
 			if(F.hidden && !hacked)
 				continue
 			recipes.Add(list(list(
@@ -318,7 +316,6 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 	data["busy"] = busy
 	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
 	data["materials"] = materials.tgui_data()
-	data["mat_efficiency"] = mat_efficiency
 	return data
 
 /obj/machinery/synthesizer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -354,46 +351,34 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 					return
 				//Create the desired item.
 				var/obj/item/weapon/reagent_containers/food/snacks/synthsized_meal/meal = new making.path(src.loc)
-				busy = making.name
+				for(var/obj/item/weapon/reagent_containers/food/snacks/F in making.path)
+
+					//Begin mimicking the food
+					meal.name = F.name
+					meal.desc = F.desc
+					meal.icon = F.icon
+					meal.icon_state = F.icon_state
+					meal.nutriment_desc = list(F?.nutriment_desc + meal.nutriment_desc) //there's always a bland aftertaste, especially if the meal isn't programmed with 'em
+					meal.bitesize = F?.bitesize //suffer your aerogel like 1 Nutriment turkey, nerds.
+					meal.filling_color = F?.filling_color
+					meal.trash = F?.trash	//If this can lead to exploits then we'll remove it, but.
+
+			/*	for(var/obj/item/weapon/holder/micro/M in making.path) //Soylent Agent Green is People!!!!!
+					//Begin mimicking the snackrifice
+					meal.name = M.name
+					meal.icon = getFlatIcon(M,0)
+					meal.nutriment_desc = M?.vore_taste	*/
+
+				busy = TRUE
 				update_use_power(USE_POWER_ACTIVE)
+				update_icon() // light up time
+				src.cart.reagents.remove_reagent("synthsoygreen", 5)
+				sleep(speed_grade)
 
+				playsound(src, 'DS13/sound/effects/replicator.ogg', 100, 1)
+				usr.put_in_any_hand_if_possible(meal)
+				return TRUE
 
-
-			update_icon() // So lid closes
-
-			sleep(build_time)
-
-			busy = 0
-			update_use_power(USE_POWER_IDLE)
-			update_icon() // So lid opens
-
-
-			if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
-				I.matter.Cut()
-			else
-				I.matter = list()
-
-			for(var/material in making.resources)	// Handle the datum's autoscaling for waste, so we're properly wasting material, but not so much if we have efficiency.
-				I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
-
-			flick("[initial(icon_state)]_finish", src)
-			if(multiplier > 1)
-				if(istype(I, /obj/item/stack))
-					var/obj/item/stack/S = I
-					S.set_amount(multiplier)
-				else
-					for(multiplier; multiplier > 1; --multiplier) // Create multiple items if it's not a stack.
-						I = new making.path(src.loc)
-						// We've already deducted the cost of multiple items. Process the matter the same.
-						if(LAZYLEN(I.matter))
-							I.matter.Cut()
-
-						else
-							I.matter = list()
-
-						for(var/material in making.resources)
-							I.matter[material] = round(making.resources[material] / (making.no_scale ? 1 : 1.25)) * (making.no_scale ? 1 : mat_efficiency)
-			return TRUE
 	return FALSE
 
 
@@ -403,31 +388,25 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 	menu_grade = 0
 	speed_grade = 0
 
-	for(var/obj/item/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
 		speed_grade = (10 SECONDS) / M.rating //let's try to make it worthwhile to upgrade 'em 10s, 5s, 3.3s, 2.5s
-	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
+	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
 		menu_grade = S.rating //how much bonus Nutriment is added to the printed food. the regular wafer is only 1
 		// Science parts will be of help if they bother.
 	update_tgui_static_data(usr)
 
-/obj/machinery/synthesizer/proc/copy(var/atom/food) //get path.name and details from here
-	var/obj/belly/dupe = new /obj/belly(new_owner)
+//obj/machinery/synthesizer/proc/copy(var/atom/food) //get path.name and details from here
+//	var/obj/belly/dupe = new /obj/belly(new_owner)
 
-/obj/machinery/synthesizer/examine(mob/user)
-	. = ..()
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	if(in_range(user, src) || isobserver(user))
-		. += "<span class='notice'>The status display reads: Storing up to <b>[materials.max_amount]</b> material units.<br>Material consumption at <b>[mat_efficiency*100]%</b>.</span>"
-
-/obj/machinery/synthesizer/proc/synthesize(var/what, var/temp, var/mob/living/user)
-	var/atom/food
+//obj/machinery/synthesizer/proc/synthesize(var/what, var/temp, var/mob/living/user)
+//	var/atom/food
 
 /obj/item/weapon/circuitboard/synthesizer
 	name = "Food Replicator (Machine Board)"
 	build_path = /obj/machinery/synthesizer
 	req_components = list(
-		/obj/item/stock_parts/manipulator = 1,
-		/obj/item/stock_parts/scanning_module = 1)
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/scanning_module = 1)
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge
 	name = "Synthisizer cartridge"
@@ -437,14 +416,14 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 
 	w_class = ITEMSIZE_NORMAL
 
-	volume = CARTRIDGE_VOLUME_MEDIUM //enough for feeding folk, but not so much it won't be needing replacment
+	volume = 250 //enough for feeding folk, but not so much it won't be needing replacment
 	possible_transfer_amounts = null
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge/small
 	name = "Portable Synthisizer Cartridge"
 	icon_state = "Scart"
 	w_class = ITEMSIZE_NORMAL
-	volume = CARTRIDGE_VOLUME_SMALL
+	volume = 100
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge/Initialize()
 	. = ..()
