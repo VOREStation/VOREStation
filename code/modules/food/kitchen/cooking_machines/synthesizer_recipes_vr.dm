@@ -15,12 +15,24 @@
 /obj/item/weapon/reagent_containers/food/snacks/synthsized_meal
 	name = "Nutrient paste meal"
 	desc = "It's a synthisized edible wafer of nutrients. Everything you need and makes field rations a delicacy in comparison."
+	icon = 'icons/obj/food_vr.dmi'
 	icon_state = "pasteblock"
 	filling_color = "#c5e384"
 	center_of_mass = list("x"=16, "y"=6)
 	nutriment_desc = list("undefinable blandness" = 1)
 	w_class = ITEMSIZE_SMALL
-	nutriment_amt = 3
+	nutriment_amt = 1
+
+//gotta make the fuel a thing, might as well make it horrid, amirite. Should only be a cargo import.
+/datum/reagent/nutriment/synthsyolent
+	name = "Soylent Agent Green"
+	id = "synthsoygreen"
+	description = "An thick, horridly rubbery fluid that somehow can be synthisized into 'edible' meals."
+	taste_description = "unrefined cloying oil"
+	taste_mult = 1.3
+	nutriment_factor = 1
+	reagent_state = LIQUID
+	color = "#faebd7"
 
 /*******************
 * Category entries *
@@ -28,15 +40,10 @@
 
 /datum/category_item/synthesizer
 	var/path
-	var/list/nutriment_desc
-	var/hidden
-	var/icon
-	var/icon_state
-	var/desc
-	var/filling_color
+	var/hidden = FALSE
+	var/voice_order
+	var/voice_temp
 
-/datum/category_item/synthesizer/dd_SortValue()
-	return name
 
 /****************************
 * Category Collection Setup *
@@ -45,7 +52,7 @@
 /datum/category_collection/synthesizer_recipes
 	category_group_type = /datum/category_group/synthesizer_recipes
 
-/datum/category_collection/synthesizer_recipes/proc/replicate(var/what, var/temp, var/mob/living/user)
+
 
 /*************
 * Categories *
@@ -57,32 +64,11 @@
 	name = "All"
 	category_item_type = /datum/category_item/synthesizer
 
-// Copypasted from materials, they should show in All
-/datum/category_group/synthesizer_recipes/all/New()
-	..()
-
-	for(var/Name in name_to_material)
-		var/datum/material/M = name_to_material[Name]
-
-		if(!M.stack_type)	// Shouldn't happen, but might. Never know.
-			continue
-
-		if(istype(M, /datum/material/alienalloy))
-			continue
-
-		var/obj/item/stack/material/S = M.stack_type
-		if(initial(S.name) in items_by_name)
-			continue
-
-		var/datum/category_item/synthesizer/materials/WorkDat = new(src, M)
-
-		items |= WorkDat
-		items_by_name[WorkDat.name] = WorkDat
-
 /datum/category_group/synthesizer_recipes/basic
 	name = "Basics"
-	category_item_type = /datum/category_item/synthesizer/basics
+	category_item_type = /datum/category_item/synthesizer/basic
 
+/*
 /datum/category_group/synthesizer_recipes/raw
 	name = "Raw"
 	category_item_type = /datum/category_item/synthesizer/raw
@@ -101,8 +87,13 @@
 
 /datum/category_group/synthesizer_recipes/exotic
 	name = "Exotic"
-	category_item_type = /datum/category_item/synthesizer/exotic
+	category_item_type = /datum/category_item/synthesizer/exotic */
 
-/datum/category_item/synthesizer/general/ashtray_glass
-	name = "glass ashtray"
-	path =/obj/item/weapon/material/ashtray/glass
+/datum/category_item/synthesizer/basic/meat
+	name = "meat steak"
+	path = /obj/item/weapon/reagent_containers/food/snacks/meat
+
+/datum/category_item/synthesizer/basic/corgi
+	name = "corgi steak"
+	path = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+	hidden = TRUE

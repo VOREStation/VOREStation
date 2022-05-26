@@ -4,7 +4,7 @@
 
 /obj/machinery/synthesizer
 	name = "food synthesizer"
-	desc = "a device able to produce an incredible array of conventional foods. Although only the most ascetic of users claim it produces good tasting products."
+	desc = "a device able to produce an incredible array of conventional foods. Although only the most ascetic of users claim it produces truly good tasting products."
 	icon = 'icons/obj/machines/synthisizer_vr.dmi'
 	icon_state = "synthesizer_off"
 	pixel_y = 32 //So it glues to the wall
@@ -26,8 +26,8 @@
 	light_power = 1
 	light_on = FALSE
 
-	var/mat_efficiency = 1
-	var/build_time = 50
+	var/menu_grade //how tasty is it?
+	var/speed_grade //how fast can it be?
 
 	circuit = /obj/item/weapon/circuitboard/synthesizer
 	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/cart
@@ -36,6 +36,7 @@
 
 	//Voice activation stuff
 	var/activator = "computer"
+	var/list/voicephrase
 
 
 /obj/machinery/synthesizer/Initialize()
@@ -59,6 +60,9 @@
 	if(panel_open)
 		. += "The cartridge is [cart ? "installed" : "missing"]."
 	return
+
+/* Voice activation stuff.
+can tgui accept orders that isn't through the menu? Probably. hijack that.
 
 /obj/machinery/synthesizer/hear_talk(mob/M, list/message_pieces, verb)
 
@@ -105,6 +109,21 @@
 			var/speed_mult = 60 //Starts off hella slow.
 			speed_mult -= (speed_grade*10) //Upgrade with manipulators to make this faster!
 
+		synthesize(tofind, hotorcold, speaker)
+
+
+/obj/machinery/synthesizer/proc/synthesize(var/what, var/temp, var/mob/living/user)
+	var/atom/food
+
+	/var/list/order = list(
+	order["activator"] = activator
+	order["menu_order"] = menu_order
+	order["temp_or_name"] = temp_or_name)
+
+	tgui_act("add_order", order)
+
+*/
+
 /obj/machinery/synthesizer/update_icon()
 	cut_overlays()
 	icon_state = initial(icon_state)
@@ -116,24 +135,20 @@
 			add_overlay("[icon_state]_panel")
 		if(cart)
 			if(cart.reagents.total_volume)
-			var/mutable_appearance/filling_overlay = mutable_appearance(icon, "cartfill_", layer = src.layer - 0.1) //just under it so the glass effect looks nice
-			var/percent = round((cart.reagents.total_volume / cart.volume) * 100)
-				switch(percent)
-					if(0 to 9)
-						filling_overlay.icon_state = "cartfill_0"
-					if(10 to 24)
-						filling_overlay.icon_state = "cartfill_10"
-					if(25 to 49)
-						filling_overlay.icon_state = "cartfill_25"
-					if(50 to 74)
-						filling_overlay.icon_state = "cartfill_50"
-					if(75 to 79)
-						filling_overlay.icon_state = "cartfill_75"
-					if(80 to 90)
-						filling_overlay.icon_state = "cartfill_80"
-					if(91 to INFINITY)
-						filling_overlay.icon_state = "cartfill_100"
-				add_overlay(filling_overlay)
+				var/mutable_appearance/filling_overlay = mutable_appearance(icon, "cartfill_", layer = src.layer - 0.1) //just under it so the glass effect looks nice
+				var/percent = cart.percent()
+					switch(percent)
+						if(0 to 9)
+							filling_overlay.icon_state = "cartfill_0"
+						if(10 to 35)
+							filling_overlay.icon_state = "cartfill_25"
+						if(36 to 74)
+							filling_overlay.icon_state = "cartfill_50"
+						if(75 to 90)
+							filling_overlay.icon_state = "cartfill_75"
+						if(91 to INFINITY)
+							filling_overlay.icon_state = "cartfill_100"
+					add_overlay(filling_overlay)
 			add_overlay("[icon_state]_cart")
 
 	if(stat & NOPOWER)
@@ -184,7 +199,10 @@
 			cart = C
 			user.put_in_hands(old)
 			to_chat(user, "<span class='notice'>You remove [old] and insert the new [C] to \the [src].</span>")
-	SStgui.update_uis(src)
+		else
+			to_chat(user, "<span class='notice'>There's no cartridge here...</span>") //Sanity checks aren't ever a bad thing
+			return
+		SStgui.update_uis(src)
 
 /obj/machinery/synthesizer/attackby(obj/item/W, mob/user)
 	if(busy)
@@ -214,9 +232,6 @@
 			else
 				add_cart(W, user)
 
-	if(is_robot_module(O))
-		return FALSE
-
 	if(W.is_wrench())
 		playsound(src, W.usesound, 50, 1)
 		to_chat(user, "<span class='notice'>You begin to [anchored ? "un" : ""]fasten \the [src].</span>")
@@ -239,57 +254,15 @@
 		return ..()
 
 /obj/machinery/synthesizer/attack_hand(mob/user as mob)
+	if(stat & BROKEN)
+		return
+	if(panel_open)
+		return wires.Interact(user)
 	user.set_machine(src)
-	interact(user)
+	tgui_interact(user)
 
-/obj/machinery/synthesizer/tgui_interact(mob/user, datum/tgui/ui)
-	ui = SStgui.try_update_ui(user, src, ui)
-	if(!ui)
-		ui = new(user, src, "Food Synthesizer", name)
-		ui.open()
-
-/obj/machinery/synthesizer/tgui_status(mob/user)
-	if(disabled)
-		return STATUS_CLOSE
-	return ..()
-
-/obj/machinery/synthesizer/tgui_static_data(mob/user)
-	var/list/data = ..()
-
-	var/list/categories
-	var/list/recipes
-	for(var/datum/category_group/synthesizer/A in synthesizer_recipes.categories)
-		categories += A.name
-		for(var/datum/category_item/synthesizer/F in A.items)
-			if(F.hidden && !hacked)
-				continue
-			if(F.man_rating > man_rating)
-				continue
-			recipes.Add(list(list(
-				"category" = A.name,
-				"name" = F.name,
-				"ref" = REF(F),
-				"requirements" = F.resources,
-				"hidden" = F.hidden,
-				"coeff_applies" = !F.no_scale,
-			)))
-	data["recipes"] = recipes
-	data["categories"] = categories
-
-	return data
-
-/obj/machinery/synthesizer/ui_assets(mob/user)
-	return list(
-		get_asset_datum(/datum/asset/spritesheet/sheetmaterials)
-	)
-
-/obj/machinery/synthesizer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	var/list/data = ..()
-	data["busy"] = busy
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	data["materials"] = materials.tgui_data()
-	data["mat_efficiency"] = mat_efficiency
-	return data
+/obj/machinery/synthesizer/attack_ai(mob/user)
+	return attack_hand(user)
 
 /obj/machinery/synthesizer/interact(mob/user)
 	if(panel_open)
@@ -303,6 +276,50 @@
 		shock(user, 50)
 
 	tgui_interact(user)
+
+
+// TGUI to do.
+/obj/machinery/synthesizer/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "Food Synthesizer", name)
+		ui.open()
+
+/obj/machinery/synthesizer/tgui_status(mob/user)
+	if(disabled)
+		return STATUS_CLOSE
+	return ..()
+
+/obj/machinery/synthesizer/tgui_static_data(mob/user)
+	var/list/data = ..()
+	var/list/categories
+	var/list/recipes
+	for(var/datum/category_group/synthesizer/A in synthesizer_recipes.categories)
+		categories += A.name
+		for(var/datum/category_item/synthesizer/F in A.items)
+			if(F.hidden && !hacked)
+				continue
+			recipes.Add(list(list(
+				"category" = A.name,
+				"name" = F.name,
+				"ref" = REF(F),
+				"voice_order" = F.voice_order,
+				"voice_temp" = F.voice_temp,
+				"hidden" = F.hidden,
+			)))
+	data["recipes"] = recipes
+	data["categories"] = categories
+
+	return data
+
+/obj/machinery/synthesizer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+	var/list/data = ..(
+	"Cartstatus" = cart ? cart.percent() : null,)
+	data["busy"] = busy
+	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
+	data["materials"] = materials.tgui_data()
+	data["mat_efficiency"] = mat_efficiency
+	return data
 
 /obj/machinery/synthesizer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
@@ -322,41 +339,25 @@
 			if(making.hidden && !hacked)
 				return
 
-			var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-
-			var/list/materials_used = list()
-
-			var/multiplier = (params["multiplier"] || 1)
-
-			if(making.is_stack)
-				var/max_sheets
-				for(var/material in making.resources)
-					var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
-					var/sheets = round(materials.get_material_amount(material) / round(making.resources[material] * coeff))
-					if(isnull(max_sheets) || max_sheets > sheets)
-						max_sheets = sheets
-					if(!isnull(materials.get_material_amount(material)) && materials.get_material_amount(material) < round(making.resources[material] * coeff))
-						max_sheets = 0
-				//Build list of multipliers for sheets.
-				multiplier = input(usr, "How many do you want to print? (0-[max_sheets])") as num|null
-				if(!multiplier || multiplier <= 0 || multiplier > max_sheets || tgui_status(usr, state) != STATUS_INTERACTIVE)
-					return FALSE
 
 			//Check if we still have the materials.
-			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
+			if(!cart)
+				to_chat(usr, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
+				return
+			if(cart && (!(cart.reagents) || (cart.reagents.total_volume <= 0)))
+				to_chat(usr, "<span class='notice'>The synthesizer cartridge is empty.</span>")
+				return
 
-			for(var/datum/material/used_material as anything in making.resources)
-				var/amount_needed = making.resources[used_material] * coeff * multiplier
-				materials_used[used_material] = amount_needed
-
-			if(LAZYLEN(materials_used))
-				if(!materials.has_materials(materials_used))
+			else if(cart && cart.reagents && (cart.reagents.total_volume >= 1))
+				//Sanity check.
+				if(!making || !src)
 					return
+				//Create the desired item.
+				var/obj/item/weapon/reagent_containers/food/snacks/synthsized_meal/meal = new making.path(src.loc)
+				busy = making.name
+				update_use_power(USE_POWER_ACTIVE)
 
-				materials.use_materials(materials_used)
 
-			busy = making.name
-			update_use_power(USE_POWER_ACTIVE)
 
 			update_icon() // So lid closes
 
@@ -366,12 +367,6 @@
 			update_use_power(USE_POWER_IDLE)
 			update_icon() // So lid opens
 
-			//Sanity check.
-			if(!making || !src)
-				return
-
-			//Create the desired item.
-			var/obj/item/I = new making.path(src.loc)
 
 			if(LAZYLEN(I.matter))	// Sadly we must obey the laws of equivalent exchange.
 				I.matter.Cut()
@@ -401,28 +396,22 @@
 			return TRUE
 	return FALSE
 
-//Updates overall lathe storage size.
+
+//Updates performance
 /obj/machinery/synthesizer/RefreshParts()
 	..()
-	mb_rating = 0
-	man_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/MB in component_parts)
-		mb_rating += MB.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
-		man_rating += M.rating
+	menu_grade = 0
+	speed_grade = 0
 
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		speed_grade = M.rating
+		speed_grade = (10 SECONDS) / M.rating //let's try to make it worthwhile to upgrade 'em 10s, 5s, 3.3s, 2.5s
 	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
-		menu_grade = S.rating
-
-
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	materials.max_amount = mb_rating * 75000
-
-	build_time = 50 / man_rating
-	mat_efficiency = 1.1 - man_rating * 0.1// Normally, price is 1.25 the amount of material, so this shouldn't go higher than 0.6. Maximum rating of parts is 5
+		menu_grade = S.rating //how much bonus Nutriment is added to the printed food. the regular wafer is only 1
+		// Science parts will be of help if they bother.
 	update_tgui_static_data(usr)
+
+/obj/machinery/synthesizer/proc/copy(var/atom/food) //get path.name and details from here
+	var/obj/belly/dupe = new /obj/belly(new_owner)
 
 /obj/machinery/synthesizer/examine(mob/user)
 	. = ..()
@@ -444,39 +433,41 @@
 	name = "Synthisizer cartridge"
 	desc = "This goes in a food synthisizer."
 	icon = 'icons/obj/machines/synthisizer_vr.dmi'
-	icon_state = "synth_cartridge"
+	icon_state = "bigcart"
 
 	w_class = ITEMSIZE_NORMAL
 
 	volume = CARTRIDGE_VOLUME_MEDIUM //enough for feeding folk, but not so much it won't be needing replacment
-	prefill = list("synthsoygreen" = CARTRIDGE_VOLUME_MEDIUM) //preloaded offstation
 	possible_transfer_amounts = null
+
+/obj/item/weapon/reagent_containers/synth_disp_cartridge/small
+	name = "Portable Synthisizer Cartridge"
+	icon_state = "Scart"
+	w_class = ITEMSIZE_NORMAL
+	volume = CARTRIDGE_VOLUME_SMALL
+
+/obj/item/weapon/reagent_containers/synth_disp_cartridge/Initialize()
+	. = ..()
+	reagents.add_reagent("synthsoygreen", volume)
+
+/obj/item/weapon/reagent_containers/synth_disp_cartridge/proc/percent()		// return % filling for lazy tgui things
+	return round((reagents.total_volume / volume) * 100)
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge/update_icon()
 	cut_overlays()
+	icon_state = initial(icon_state)
 	if(reagents.total_volume)
-		var/mutable_appearance/filling_overlay = mutable_appearance(icon, "bigcartfill_", layer = src.layer - 0.1) //just under it so the glass effect looks nice
-		var/percent = round((cart.reagents.total_volume / cart.volume) * 100)
-			switch(percent)
-				if(0 to 9)
-					filling_overlay.icon_state = "bigcartfill_0"
-				if(10 to 35)
-					filling_overlay.icon_state = "bigcartfill_25"
-				if(36 to 74)
-					filling_overlay.icon_state = "bigcartfill_50"
-				if(75 to 90)
-					filling_overlay.icon_state = "bigcartfill_75"
-				if(91 to INFINITY)
-					filling_overlay.icon_state = "bigcartfill_100"
-			add_overlay(filling_overlay)
-
-/datum/reagent/nutriment/synthsyolent
-	name = "Soylent Agent Green"
-	id = "synthsoygreen"
-	description = "An thick, horridly rubbery fluid that somehow can be synthisized into 'edible' meals."
-	taste_description = "unrefined cloying oil"
-	taste_mult = 1.3
-	nutriment_factor = 1
-	reagent_state = LIQUID
-	color = "#faebd7"
-
+		var/mutable_appearance/filling_overlay = mutable_appearance(icon, "[icon_state]fill_", layer = src.layer - 0.1) //just under it so the glass effect looks nice
+		var/percent = percent()
+		switch(percent)
+			if(0 to 9)
+				filling_overlay.icon_state = "[icon_state]fill_0"
+			if(10 to 35)
+				filling_overlay.icon_state = "[icon_state]fill_25"
+			if(36 to 74)
+				filling_overlay.icon_state = "[icon_state]fill_50"
+			if(75 to 90)
+				filling_overlay.icon_state = "[icon_state]fill_75"
+			if(91 to INFINITY)
+				filling_overlay.icon_state = "[icon_state]fill_100"
+		add_overlay(filling_overlay)
