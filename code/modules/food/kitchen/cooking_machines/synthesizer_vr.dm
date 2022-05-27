@@ -20,6 +20,7 @@
 	var/disabled = FALSE
 	var/shocked = FALSE
 	var/busy = FALSE
+	var/usage_amt = 5
 
 	light_system = STATIC_LIGHT
 	light_range = 3
@@ -204,6 +205,7 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 
 /obj/machinery/synthesizer/attackby(obj/item/W, mob/user)
 	if(busy)
+		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
 		audible_message("<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>", runemessage = "BUZZ")
 		return
 	if(default_deconstruction_crowbar(user, W))
@@ -314,8 +316,6 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 	var/list/data = ..(
 	"Cartstatus" = cart ? cart.percent() : null,)
 	data["busy"] = busy
-	var/datum/component/material_container/materials = GetComponent(/datum/component/material_container)
-	data["materials"] = materials.tgui_data()
 	return data
 
 /obj/machinery/synthesizer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -327,6 +327,7 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 
 	if(busy)
 		to_chat(usr, "<span class='notice'>The synthesizer is busy. Please wait for completion of previous operation.</span>")
+		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
 		return
 	switch(action)
 		if("make")
@@ -340,9 +341,11 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 			//Check if we still have the materials.
 			if(!cart)
 				to_chat(usr, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
+				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
 				return
 			if(cart && (!(cart.reagents) || (cart.reagents.total_volume <= 0)))
 				to_chat(usr, "<span class='notice'>The synthesizer cartridge is empty.</span>")
+				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
 				return
 
 			else if(cart && cart.reagents && (cart.reagents.total_volume >= 1))
@@ -372,10 +375,11 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 				busy = TRUE
 				update_use_power(USE_POWER_ACTIVE)
 				update_icon() // light up time
+				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100, 1)
 				src.cart.reagents.remove_reagent("synthsoygreen", 5)
 				sleep(speed_grade)
 
-				playsound(src, 'DS13/sound/effects/replicator.ogg', 100, 1)
+				playsound(src, 'sound/machines/replicator_working.ogg', 100, 1)
 				usr.put_in_any_hand_if_possible(meal)
 				return TRUE
 
@@ -402,7 +406,7 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 //	var/atom/food
 
 /obj/item/weapon/circuitboard/synthesizer
-	name = "Food Replicator (Machine Board)"
+	name = "Food Synthisizer (Machine Board)"
 	build_path = /obj/machinery/synthesizer
 	req_components = list(
 		/obj/item/weapon/stock_parts/manipulator = 1,
