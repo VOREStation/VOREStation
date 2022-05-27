@@ -11,7 +11,9 @@ var/global/datum/ntnet/ntnet_global = new()
 	var/list/chat_channels = list()
 	var/list/fileservers = list()
 	var/list/email_accounts = list()				// I guess we won't have more than 999 email accounts active at once in single round, so this will do until Servers are implemented someday.
+	var/list/available_reports = list()				// A list containing one of each available report datums, used for the report editor program.
 	var/list/banned_nids = list()
+	var/list/registered_nids = list()				// A list of nid - os datum pairs. An OS in this list is not necessarily connected to NTNet or visible on it.
 	// Amount of logs the system tries to keep in memory. Keep below 999 to prevent byond from acting weirdly.
 	// High values make displaying logs much laggier.
 	var/setting_maxlogcount = 100
@@ -61,6 +63,15 @@ var/global/datum/ntnet/ntnet_global = new()
 				logs.Remove(L)
 			else
 				break
+
+/datum/ntnet/proc/get_os_by_nid(NID)
+	return registered_nids["[NID]"]
+
+///datum/ntnet/proc/register(NID, datum/extension/interactive/ntos/os)
+	//registered_nids["[NID]"] = os
+
+/datum/ntnet/proc/unregister(NID)
+	registered_nids -= "[NID]"
 
 /datum/ntnet/proc/check_banned(var/NID)
 	if(!relays || !relays.len)
@@ -126,6 +137,22 @@ var/global/datum/ntnet/ntnet_global = new()
 	for(var/F in subtypesof(/datum/computer_file/data/email_account/service))
 		new F()
 
+/// Builds report list.
+/datum/ntnet/proc/build_reports_list()
+	available_reports = list()
+	for(var/F in typesof(/datum/computer_file/report))
+		var/datum/computer_file/report/type = F
+		if(initial(type.available_on_ntnet))
+			available_reports += new type
+
+/datum/ntnet/proc/fetch_reports(access)
+	if(!access)
+		return available_reports
+	. = list()
+	for(var/datum/computer_file/report/report in available_reports)
+		if(report.verify_access_edit(access))
+			. += report
+
 // Attempts to find a downloadable file according to filename var
 /datum/ntnet/proc/find_ntnet_file_by_name(var/filename)
 	for(var/datum/computer_file/program/P in available_station_software)
@@ -174,6 +201,12 @@ var/global/datum/ntnet/ntnet_global = new()
 		if(NTNET_SYSTEMCONTROL)
 			setting_systemcontrol = !setting_systemcontrol
 			add_log("Configuration Updated. Wireless network firewall now [setting_systemcontrol ? "allows" : "disallows"] remote control of station's systems.")
+
+/// Returns email account matching login. Otherwise null
+/datum/ntnet/proc/find_email_by_name(login)
+	for(var/datum/computer_file/data/email_account/A in ntnet_global.email_accounts)
+		if(A.login == login)
+			return A
 
 /datum/ntnet/proc/does_email_exist(var/login)
 	for(var/datum/computer_file/data/email_account/A in ntnet_global.email_accounts)

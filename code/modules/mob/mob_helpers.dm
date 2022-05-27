@@ -688,3 +688,12 @@ var/global/image/backplane
 
 /mob/proc/can_feed()
 	return TRUE
+
+//Tries to find the mob's email.
+/proc/find_email(real_name)
+	//for(var/mob/mob in GLOB.living_mob_list_)
+		//if(mob.real_name == real_name)
+			//if(!mob.mind)
+				//return
+			//return mob.mind.initial_email_login["login"]
+	return

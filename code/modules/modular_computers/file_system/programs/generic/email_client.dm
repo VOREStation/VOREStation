@@ -10,6 +10,8 @@
 	available_on_ntnet = 1
 	var/stored_login = ""
 	var/stored_password = ""
+	usage_flags = PROGRAM_ALL
+	category = PROG_OFFICE
 
 	tguimodule_path = /datum/tgui_module/email_client
 

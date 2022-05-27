@@ -26,11 +26,11 @@
 	hard_drive.store_file(new/datum/computer_file/program/email_client())
 	hard_drive.store_file(new/datum/computer_file/program/crew_manifest())
 	hard_drive.store_file(new/datum/computer_file/program/wordprocessor())
-	//hard_drive.store_file(new/datum/computer_file/program/records())
+	hard_drive.store_file(new/datum/computer_file/program/records())
 	//hard_drive.store_file(new/datum/computer_file/program/newscast())
 	//if(prob(50)) //harmless tax software
 			//os.create_file(new /datum/computer_file/program/uplink())
-	set_autorun("ntnrc_client")
+	set_autorun("emailc")
 
 /obj/item/modular_computer/pda/medical/install_default_hardware()
 	..()
@@ -57,6 +57,7 @@
 	//var/datum/extension/interactive/ntos/os = get_extension(src, /datum/extension/interactive/ntos)
 	//if(os)
 		//os.create_file(new/datum/computer_file/program/reports())
+	hard_drive.store_file(new/datum/computer_file/program/reports())
 
 /obj/item/modular_computer/pda/heads/hop/install_default_hardware()
 	..()
@@ -83,6 +84,7 @@
 	//var/datum/extension/interactive/ntos/os = get_extension(src, /datum/extension/interactive/ntos)
 	//if(os)
 		//os.create_file(new/datum/computer_file/program/reports())
+	hard_drive.store_file(new/datum/computer_file/program/reports())
 
 /obj/item/modular_computer/pda/cargo/install_default_hardware()
 	..()

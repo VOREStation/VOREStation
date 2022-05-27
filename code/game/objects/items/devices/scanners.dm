@@ -41,6 +41,9 @@ HALOGEN COUNTER	- Radcount on mobs
 /obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
 	scan_mob(M, user)
 
+/proc/medical_scan_action(atom/target, mob/living/user, obj/scanner, var/verbose)
+	return ""
+
 /obj/item/device/healthanalyzer/proc/scan_mob(mob/living/M, mob/living/user)
 	var/dat = ""
 	if ((CLUMSY in user.mutations) && prob(50))
@@ -336,7 +339,7 @@ HALOGEN COUNTER	- Radcount on mobs
 	icon_state = "health3"
 
 /obj/item/device/analyzer
-	name = "analyzer"
+	name = "gas analyzer"
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	icon_state = "atmos"
 	item_state = "analyzer"
@@ -474,6 +477,16 @@ HALOGEN COUNTER	- Radcount on mobs
 		to_chat(user, span("notice", "No significant chemical agents found in [O]."))
 
 	return
+
+/proc/reagent_scan_results(obj/O, details = 0)
+	if(isnull(O.reagents))
+		return list("No significant chemical agents found in [O].")
+	if(O.reagents.reagent_list.len == 0)
+		return list("No active chemical agents found in [O].")
+	. = list("Chemicals found in [O]:")
+	var/one_percent = O.reagents.total_volume / 100
+	for (var/datum/reagent/R in O.reagents.reagent_list)
+		. += "[R][details ? ": [R.volume / one_percent]%" : ""]"
 
 /obj/item/device/reagent_scanner/adv
 	name = "advanced reagent scanner"
