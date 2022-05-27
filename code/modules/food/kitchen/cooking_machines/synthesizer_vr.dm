@@ -7,7 +7,7 @@
 	desc = "a device able to produce an incredible array of conventional foods. Although only the most ascetic of users claim it produces truly good tasting products."
 	icon = 'icons/obj/machines/synthisizer_vr.dmi'
 	icon_state = "synthesizer_off"
-	pixel_y = 32 //So it glues to the wall
+//	pixel_y = 32 //So it glues to the wall
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
@@ -46,6 +46,8 @@
 	. = ..()
 	if(cart_type)
 		cart = cart_type
+	if(!synthesizer_recipes)
+		synthesizer_recipes = new()
 	wires = new(src)
 
 	default_apply_parts()
@@ -282,19 +284,39 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 /obj/machinery/synthesizer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "Food Synthesizer", name)
+		ui = new(user, src, "synthesizer", name)
 		ui.open()
 
 /obj/machinery/synthesizer/tgui_status(mob/user)
 	if(disabled)
 		return STATUS_CLOSE
 	return ..()
-
+/*
+	var/list/categories = list()
+	var/list/recipes = list()
+	for(var/datum/category_group/autolathe/A in autolathe_recipes.categories)
+		categories += A.name
+		for(var/datum/category_item/autolathe/M in A.items)
+			if(M.hidden && !hacked)
+				continue
+			if(M.man_rating > man_rating)
+				continue
+			recipes.Add(list(list(
+				"category" = A.name,
+				"name" = M.name,
+				"ref" = REF(M),
+				"requirements" = M.resources,
+				"hidden" = M.hidden,
+				"coeff_applies" = !M.no_scale,
+				"is_stack" = M.is_stack,
+			)))
+	data["recipes"] = recipes
+	data["categories"] = categories*/
 /obj/machinery/synthesizer/tgui_static_data(mob/user)
 	var/list/data = ..()
-	var/list/categories
-	var/list/recipes
-	for(var/datum/category_group/synthesizer_recipes/A in synthesizer_recipes.categories)
+	var/list/categories = list()
+	var/list/recipes = list()
+	for(var/datum/category_group/synthesizer/A in synthesizer_recipes.categories)
 		categories += A.name
 		for(var/datum/category_item/synthesizer/F in A)
 			if(F.hidden && !hacked)
@@ -313,8 +335,8 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 	return data
 
 /obj/machinery/synthesizer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
-	var/list/data = ..(
-	"Cartstatus" = cart ? cart.percent() : null,)
+	var/list/data = ..()
+	data["Cartstatus"] = (src.cart ? src.cart.percent() : null,)
 	data["busy"] = busy
 	return data
 
@@ -376,10 +398,11 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 				update_use_power(USE_POWER_ACTIVE)
 				update_icon() // light up time
 				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100, 1)
+				playsound(src, 'sound/machines/replicator_working.ogg', 100, 1)
 				src.cart.reagents.remove_reagent("synthsoygreen", 5)
 				sleep(speed_grade)
 
-				playsound(src, 'sound/machines/replicator_working.ogg', 100, 1)
+
 				usr.put_in_any_hand_if_possible(meal)
 				return TRUE
 

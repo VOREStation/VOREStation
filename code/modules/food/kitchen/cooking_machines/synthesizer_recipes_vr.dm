@@ -5,7 +5,7 @@
 		I = new path()
 
 	if(!I)	// Something has gone horribly wrong, or right.
-		log_debug("[name] created an Autolathe design without an assigned path.")
+		log_debug("[name] created an synthisizer design without an assigned path.")
 		return
 	qdel(I)
 
@@ -39,7 +39,7 @@
 ****************************/
 
 /datum/category_collection/synthesizer_recipes
-	category_group_type = /datum/category_group/synthesizer_recipes
+	category_group_type = /datum/category_group/synthesizer
 
 
 
@@ -47,34 +47,34 @@
 * Categories *
 *************/
 
-/datum/category_group/synthesizer_recipes
+/datum/category_group/synthesizer
 
-/datum/category_group/synthesizer_recipes/all
+/datum/category_group/synthesizer/all
 	name = "All"
 	category_item_type = /datum/category_item/synthesizer
 
-/datum/category_group/synthesizer_recipes/basic
+/datum/category_group/synthesizer/basic
 	name = "Basics"
 	category_item_type = /datum/category_item/synthesizer/basic
 
 /*
-/datum/category_group/synthesizer_recipes/raw
+/datum/category_group/synthesizer/raw
 	name = "Raw"
 	category_item_type = /datum/category_item/synthesizer/raw
 
-/datum/category_group/synthesizer_recipes/cooked
+/datum/category_group/synthesizer/cooked
 	name = "Cooked"
 	category_item_type = /datum/category_item/synthesizer/cooked
 
-/datum/category_group/synthesizer_recipes/liquid
+/datum/category_group/synthesizer/liquid
 	name = "Liquid"
 	category_item_type = /datum/category_item/synthesizer/liquid
 
-/datum/category_group/synthesizer_recipes/noodle
+/datum/category_group/synthesizer/noodle
 	name = "Noodles"
 	category_item_type = /datum/category_item/synthesizer/noodle
 
-/datum/category_group/synthesizer_recipes/exotic
+/datum/category_group/synthesizer/exotic
 	name = "Exotic"
 	category_item_type = /datum/category_item/synthesizer/exotic */
 
