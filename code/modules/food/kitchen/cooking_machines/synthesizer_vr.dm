@@ -69,6 +69,12 @@
 	. = ..()
 	if(panel_open)
 		. += "The cartridge is [cart ? "installed" : "missing"]."
+	if(cart && (!(stat & (NOPOWER|BROKEN))))
+		var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
+		if(istype(C) && C.reagents && C.reagents.total_volume)
+			var/percent = round((C.reagents.total_volume / C.volume) * 100)
+			. += "The installed cartridge has [percent]% remaining."
+
 	return
 
 // TGUI to do.
@@ -132,47 +138,48 @@
 
 
 			//Check if we still have the materials.
-			for(var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C in cart)
-				if(!C)
-					to_chat(usr, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
-					playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
+			var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
+			if(!istype(C))
+				to_chat(usr, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
+				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
+				return
+			if((!(C.reagents)) || (C.reagents.total_volume <= 0))
+				to_chat(usr, "<span class='notice'>The synthesizer cartridge is empty.</span>")
+				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
+				return
+
+			else if(C.reagents && (C.reagents.total_volume >= 5))
+				//Sanity check.
+				if(!making || !src)
 					return
-				if(C && (!(C.reagents) || (C.reagents.total_volume <= 0)))
-					to_chat(usr, "<span class='notice'>The synthesizer cartridge is empty.</span>")
-					playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
-					return
+				//Create the desired item.
+				var/obj/item/weapon/reagent_containers/food/snacks/synthsized_meal/meal = new making.path(src.loc)
+				for(var/obj/item/weapon/reagent_containers/food/snacks/F in making.path)
 
-				else if(C && C.reagents && (C.reagents.total_volume >= 5))
-					//Sanity check.
-					if(!making || !src)
-						return
-					//Create the desired item.
-					var/obj/item/weapon/reagent_containers/food/snacks/synthsized_meal/meal = new making.path(src.loc)
-					for(var/obj/item/weapon/reagent_containers/food/snacks/F in making.path)
+					//Begin mimicking the food
+					meal.name = F.name
+					meal.desc = F.desc
+					meal.icon = F.icon
+					meal.icon_state = F.icon_state
+					meal.nutriment_desc = list(F?.nutriment_desc + meal.nutriment_desc) //there's always a bland aftertaste, especially if the meal isn't programmed with 'em
+					meal.bitesize = F?.bitesize //suffer your aerogel like 1 Nutriment turkey, nerds.
+					meal.filling_color = F?.filling_color
+					meal.trash = F?.trash	//If this can lead to exploits then we'll remove it, but.
 
-						//Begin mimicking the food
-						meal.name = F.name
-						meal.desc = F.desc
-						meal.icon = F.icon
-						meal.icon_state = F.icon_state
-						meal.nutriment_desc = list(F?.nutriment_desc + meal.nutriment_desc) //there's always a bland aftertaste, especially if the meal isn't programmed with 'em
-						meal.bitesize = F?.bitesize //suffer your aerogel like 1 Nutriment turkey, nerds.
-						meal.filling_color = F?.filling_color
-						meal.trash = F?.trash	//If this can lead to exploits then we'll remove it, but.
+			/*	for(var/obj/item/weapon/holder/micro/M in making.path) //Soylent Agent Green is People!!!!!
+					//Begin mimicking the snackrifice
+					meal.name = M.name
+					meal.icon = getFlatIcon(M,0)
+					meal.nutriment_desc = M?.vore_taste	*/
 
-				/*	for(var/obj/item/weapon/holder/micro/M in making.path) //Soylent Agent Green is People!!!!!
-						//Begin mimicking the snackrifice
-						meal.name = M.name
-						meal.icon = getFlatIcon(M,0)
-						meal.nutriment_desc = M?.vore_taste	*/
-
-					busy = TRUE
-					update_use_power(USE_POWER_ACTIVE)
-					update_icon() // light up time
-					playsound(src, 'sound/machines/replicator_input_ok.ogg', 100, 1)
-					playsound(src, 'sound/machines/replicator_working.ogg', 100, 1)
-					C.reagents.remove_reagent("synthsoygreen", 5)
-					sleep(speed_grade)
+				busy = TRUE
+				update_use_power(USE_POWER_ACTIVE)
+				update_icon() // light up time
+				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100, 1)
+				playsound(src, 'sound/machines/replicator_working.ogg', 100, 1)
+				C.reagents.remove_reagent("synthsoygreen", 5)
+				sleep(speed_grade)
+				if(Adjacent(usr))
 					usr.put_in_any_hand_if_possible(meal)
 			return TRUE
 
@@ -181,32 +188,33 @@
 /obj/machinery/synthesizer/update_icon()
 	cut_overlays()
 
-	icon_state = initial(icon_state)
-
+	icon_state = initial(icon_state) //we use this to reduce code bloat. It's nice.
 	if(panel_open)
 		icon_state = "[icon_state]_off"
-		var/image/panel_layer = image("[icon]", src, icon_state = "[icon_state]", layer = src.layer + 0.1) //move service panels just above our machine
+		 //add service panels just above our machine
 		if(!(stat & (NOPOWER|BROKEN)))
-			panel_layer.icon_state = "[icon_state]_ppanel"
+			add_overlay("[initial(icon_state)]_ppanel")
 		else
-			panel_layer.icon_state = "[icon_state]_panel"
-
-		add_overlay(panel_layer)
-
-		for(var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C in cart)
-			if(cart && C.reagents.total_volume)
-				var/image/cart_layer = image("[icon]", src, layer = src.layer + 0.3) //move the cartridge above our panel
-				var/image/filling_overlay = image("[icon]", src, "[icon_state]fill_0", layer = src.layer + 0.2) //but with our filling just behind it
+			add_overlay("[initial(icon_state)]_panel")
+		if(cart)
+			var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
+			if(C.reagents && C.reagents.total_volume)
+				var/image/filling_overlay = image("[icon]", src, "[initial(icon_state)]fill_0")	//Modular filling
 				var/percent = round((C.reagents.total_volume / C.volume) * 100)
 				switch(percent)
-					if(0 to 9)			filling_overlay.icon_state = "cartfill_0"
-					if(10 to 35)		filling_overlay.icon_state = "cartfill_25"
-					if(36 to 74)		filling_overlay.icon_state = "cartfill_50"
-					if(75 to 90)		filling_overlay.icon_state = "cartfill_75"
-					if(91 to INFINITY)	filling_overlay.icon_state = "cartfill_100"
-				filling_overlay.color = reagents.get_color()
-				add_overlay(cart_layer)
+					if(0 to 9)			filling_overlay.icon_state = "[initial(icon_state)]fill_0"
+					if(10 to 35)		filling_overlay.icon_state = "[initial(icon_state)]fill_25"
+					if(36 to 74)		filling_overlay.icon_state = "[initial(icon_state)]fill_50"
+					if(75 to 90)		filling_overlay.icon_state = "[initial(icon_state)]fill_75"
+					if(91 to 99)		filling_overlay.icon_state = "[initial(icon_state)]fill_100"
+					if(100 to INFINITY)	filling_overlay.icon_state = "[initial(icon_state)]fill_100"
+				filling_overlay.color = C.reagents.get_color()
+				//Add our filling, if any.
 				add_overlay(filling_overlay)
+			//Then add our cart so the filling is inside of the canister.
+			add_overlay("[initial(icon_state)]_cart")
+	else
+		icon_state = "[icon_state]_on"
 
 	if(stat & NOPOWER)
 		icon_state = "[icon_state]_off"
@@ -218,24 +226,23 @@
 		set_light_color("#faebd7") // "antique white"
 		set_light_on(TRUE)
 	else
-		icon_state = "[icon_state]_on"
 		set_light_on(FALSE)
 
 /obj/machinery/synthesizer/proc/add_cart(obj/item/weapon/reagent_containers/synth_disp_cartridge/C, mob/user)
+	if(!Adjacent(user))
+		return //How did you even try?
 	if(!panel_open) //just in case
 		to_chat(user, "The hatch must be open to insert a [C].")
 		return
-
 	if(!istype(C)) //Never. Trust. Byond.
 		if(user)
 			to_chat(user, "<span class='warning'>\The [src] only accepts synthiziser cartridges.</span>")
 		return
-
-	if(cart) // let's hot swap that bad boy.
+	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/R = cart
+	if(istype(R)) // let's hot swap that bad boy.
 		remove_cart(user)
 		return
-
-	else if(!cart)
+	else
 		user.drop_from_inventory(C)
 		cart = C
 		C.loc = src
@@ -246,16 +253,17 @@
 	return
 
 /obj/machinery/synthesizer/proc/remove_cart(mob/user)
-	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = src.cart
+	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
 	if(!C)
 		to_chat(user, "<span class='notice'>There's no cartridge here...</span>") //Sanity checks aren't ever a bad thing
 		return
-	C.loc = get_turf(src.loc)
+	if(!Adjacent(user)) //gotta, y'know, be in touch range to pull a physical canister out
+		return
+	C.loc = get_turf(loc)
+	C.update_icon()
 	cart = null
-	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/R = user.get_inactive_hand() //let's check to see if you're holding a different tank
-	if(!R) //No? Ok then, check the other hand.
-		R = user.get_active_hand()
-	else if(!R) //Still no? oh well, no replacement. Just shove the old in hands and move on.
+	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/R = (user.get_active_hand() || user.get_inactive_hand()) //let's check to see if you're holding a different tank
+	if(!istype(R))
 		to_chat(user, "<span class='notice'>You remove [C] from  \the [src].</span>")
 	else
 		user.drop_from_inventory(R) //Ayyy, good
@@ -263,8 +271,8 @@
 		R.add_fingerprint(user)
 		cart = R
 		to_chat(user, "<span class='notice'>You remove [C] and insert the new [R] to \the [src].</span>")
-
-	user.put_in_hands(C) //pick up your trash, nerd.
+	if(Adjacent(user))
+		user.put_in_hands(C) //pick up your trash, nerd. and don't hand it to the AI. They will be upset.
 	update_icon()
 	SStgui.update_uis(src)
 
@@ -276,11 +284,15 @@
 	if(default_part_replacement(user, W))
 		return
 	if(stat)
+		update_icon()
+		return
+	if(W.is_screwdriver())
+		panel_open = !panel_open
+		playsound(src, W.usesound, 50, 1)
+		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")
+		update_icon()
 		return
 	if(panel_open)
-		if(W.is_multitool() || W.is_wirecutter())
-			wires.Interact(user)
-			return
 		if(istype(W, /obj/item/weapon/reagent_containers/synth_disp_cartridge))
 			if(!anchored)
 				to_chat(user, "<span class='warning'>Anchor its bolts first.</span>")
@@ -307,26 +319,22 @@
 		else
 			to_chat(user, "<span class='notice'>You decide not to [anchored ? "un" : ""]fasten \the [src].</span>")
 
-	if(W.is_screwdriver())
-		panel_open = !panel_open
-		playsound(src, W.usesound, 50, 1)
-		user.visible_message("<span class='notice'>[user] [panel_open ? "opens" : "closes"] the hatch on the [src].</span>", "<span class='notice'>You [panel_open ? "open" : "close"] the hatch on the [src].</span>")
-		update_icon()
-
 	if(default_deconstruction_crowbar(user, W))
 		return
 
 	else
-		update_icon()
 		return ..()
 
 /obj/machinery/synthesizer/attack_hand(mob/user as mob)
 	if(stat & BROKEN)
 		return
-	if(panel_open)
+	if(!panel_open)
+		user.set_machine(src)
+		tgui_interact(user)
+	else
+		remove_cart(user)
 		wires.Interact(user)
-	user.set_machine(src)
-	tgui_interact(user)
+		return
 
 /obj/machinery/synthesizer/attack_ai(mob/user)
 	return attack_hand(user)
@@ -390,21 +398,30 @@
 /obj/item/weapon/reagent_containers/synth_disp_cartridge/Initialize()
 	. = ..()
 	reagents.add_reagent("synthsoygreen", volume)
+	update_icon()
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge/update_icon()
 	cut_overlays()
 	if(reagents.total_volume)
-		var/image/filling_overlay = image("[icon]", src, "[icon_state]fill_0", layer = src.layer - 0.1)
+		var/image/filling_overlay = image("[icon]", src, "[initial(icon_state)]fill_0", layer = src.layer - 0.1)
 		var/percent = round((reagents.total_volume / volume) * 100)
 		switch(percent)
-			if(0 to 9)			filling_overlay.icon_state = "[icon_state]fill_0"
-			if(10 to 35)		filling_overlay.icon_state = "[icon_state]fill_25"
-			if(36 to 74)		filling_overlay.icon_state = "[icon_state]fill_50"
-			if(75 to 90)		filling_overlay.icon_state = "[icon_state]fill_75"
-			if(91 to INFINITY)	filling_overlay.icon_state = "[icon_state]fill_100"
+			if(0 to 9)			filling_overlay.icon_state = "[initial(icon_state)]fill_0"
+			if(10 to 35)		filling_overlay.icon_state = "[initial(icon_state)]fill_25"
+			if(36 to 74)		filling_overlay.icon_state = "[initial(icon_state)]fill_50"
+			if(75 to 90)		filling_overlay.icon_state = "[initial(icon_state)]fill_75"
+			if(91 to 100)		filling_overlay.icon_state = "[initial(icon_state)]fill_100"
+			if(100 to INFINITY)	filling_overlay.icon_state = "[initial(icon_state)]fill_100"
 		filling_overlay.color = reagents.get_color()
 		add_overlay(filling_overlay)
 
+/obj/item/weapon/reagent_containers/synth_disp_cartridge/examine(mob/user)
+	. = ..()
+	if(reagents && reagents.total_volume)
+		var/percent = round((reagents.total_volume / volume) * 100)
+		. += "The cartridge has [percent]% remaining."
+
+	return
 
 /* Voice activation stuff.
 can tgui accept orders that isn't through the menu? Probably. hijack that.

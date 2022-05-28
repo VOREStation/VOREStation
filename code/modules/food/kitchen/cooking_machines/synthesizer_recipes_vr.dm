@@ -32,7 +32,7 @@
 	taste_mult = 1.3
 	nutriment_factor = 1
 	reagent_state = LIQUID
-	color = "#faebd7"
+	color = "#4b0082"
 
 /****************************
 * Category Collection Setup *
