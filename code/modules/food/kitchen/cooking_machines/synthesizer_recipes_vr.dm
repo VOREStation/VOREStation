@@ -117,3 +117,6 @@
 	name = held.name
 	original_transform = held.transform
 	held.transform = null */
+
+/datum/category_item/synthesizer/dd_SortValue()
+	return name
