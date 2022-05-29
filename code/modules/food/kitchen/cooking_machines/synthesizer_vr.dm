@@ -39,7 +39,7 @@
 	var/cart_type = /obj/item/weapon/reagent_containers/synth_disp_cartridge
 
 	//all of our food
-	var/static/datum/category_collection/synthesizer_recipes = list()
+	var/static/datum/category_collection/synthesizer_recipes/synthesizer_recipes
 
 	//Voice activation stuff
 	var/activator = "computer"
@@ -81,7 +81,7 @@
 /obj/machinery/synthesizer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "synthesizer", name)
+		ui = new(user, src, "Synthesizer", name)
 		ui.open()
 
 /obj/machinery/synthesizer/tgui_status(mob/user)
@@ -96,7 +96,7 @@
 	var/list/recipes = list()
 	for(var/datum/category_group/synthesizer/A in synthesizer_recipes.categories)
 		categories += A.name
-		for(var/datum/category_item/synthesizer/F in A)
+		for(var/datum/category_item/synthesizer/F in A.items)
 			if(F.hidden && !hacked)
 				continue
 			recipes.Add(list(list(

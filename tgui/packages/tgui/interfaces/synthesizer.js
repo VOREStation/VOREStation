@@ -1,17 +1,12 @@
-import { round } from 'common/math';
 import { flow } from 'common/fp';
 import { filter, sortBy } from 'common/collections';
-import { Fragment } from 'inferno';
 import { useBackend, useSharedState } from "../backend";
-import { Box, Button, Flex, Icon, Input, LabeledList, ProgressBar, Section, Dropdown } from "../components";
+import { Box, Button, Flex, Input, Section, Dropdown } from "../components";
 import { Window } from "../layouts";
 import { createSearch, toTitleCase } from 'common/string';
 
-const canBeMade = (recipe) => {
-  return true;
-};
 
-export const synthesizer = (props, context) => {
+export const Synthesizer = (props, context) => {
   const { act, data } = useBackend(context);
   const {
     recipes,
@@ -56,38 +51,9 @@ export const synthesizer = (props, context) => {
                   color={recipe.hidden && "red" || null}
                   icon="hammer"
                   iconSpin={busy === recipe.name}
-                  disabled={!canBeMade(recipe, materials, 1)}
                   onClick={() => act("make", { make: recipe.ref })}>
                   {toTitleCase(recipe.name)}
                 </Button>
-                {!recipe.is_stack && (
-                  <Box as="span">
-                    <Button
-                      color={recipe.hidden && "red" || null}
-                      disabled={!canBeMade(recipe, materials, 5)}
-                      onClick={() => act("make", { make: recipe.ref, multiplier: 5 })}>
-                      x5
-                    </Button>
-                    <Button
-                      color={recipe.hidden && "red" || null}
-                      disabled={!canBeMade(recipe, materials, 10)}
-                      onClick={() => act("make", { make: recipe.ref, multiplier: 10 })}>
-                      x10
-                    </Button>
-                  </Box>
-                ) || null}
-              </Flex.Item>
-              <Flex.Item>
-                {recipe.requirements && (
-                  Object
-                    .keys(recipe.requirements)
-                    .map(mat => toTitleCase(mat) + ": " + recipe.requirements[mat])
-                    .join(", ")
-                ) || (
-                  <Box>
-                    No resources required.
-                  </Box>
-                )}
               </Flex.Item>
             </Flex>
           ))}

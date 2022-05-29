@@ -53,6 +53,9 @@
 	name = "All"
 	category_item_type = /datum/category_item/synthesizer
 
+/datum/category_group/synthesizer/all/New()
+	..()
+
 /datum/category_group/synthesizer/basic
 	name = "Basics"
 	category_item_type = /datum/category_item/synthesizer/basic
