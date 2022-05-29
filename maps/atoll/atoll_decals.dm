@@ -37,6 +37,7 @@
 /obj/effect/floor_decal/atoll/power
 	icon_state = "power"
 
+//Fake shadows and silhouettes
 /obj/effect/decal/shadow
 	icon = 'maps/atoll/icons/decals/wall_decals.dmi'
 	icon_state = "wall_shadow"
@@ -58,5 +59,4 @@
 
 /obj/effect/decal/whitecaps/Initialize()
 	icon_state = pick("1","2","3")
-	spawn(rand(1,6))
 	. = ..()
