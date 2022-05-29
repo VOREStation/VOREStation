@@ -8623,7 +8623,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"terser@npm:^5.7.2":
+"terser@npm:^5.13.1, terser@npm:^5.7.2":
   version: 5.13.1
   resolution: "terser@npm:5.13.1"
   dependencies:
@@ -8696,6 +8696,7 @@ resolve@^2.0.0-next.3:
   dependencies:
     core-js: ^3.22.5
     regenerator-runtime: ^0.13.9
+    terser: ^5.13.1
     unfetch: ^4.2.0
   languageName: unknown
   linkType: soft
