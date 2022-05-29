@@ -7,6 +7,9 @@ import { Box, Button, Flex, Icon, Input, LabeledList, ProgressBar, Section, Drop
 import { Window } from "../layouts";
 import { createSearch, toTitleCase } from 'common/string';
 
+const canBeMade = (recipe) => {
+  return true;
+};
 
 export const synthesizer = (props, context) => {
   const { act, data } = useBackend(context);

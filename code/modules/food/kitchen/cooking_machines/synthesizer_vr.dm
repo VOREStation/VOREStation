@@ -109,12 +109,24 @@
 			)))
 	data["recipes"] = recipes
 	data["categories"] = categories
-
 	return data
 
 /obj/machinery/synthesizer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	data["busy"] = busy
+	data["isThereCart"] = cart ? TRUE : FALSE
+	var/cartfilling[0]
+	if(cart && cart.reagents && cart.reagents.reagent_list.len)
+		for(var/datum/reagent/R in cart.reagents.reagent_list)
+			cartfilling.Add(list(list("name" = R.name, "id" = R.id, "volume" = R.volume))) // list in a list because Byond merges the first list...
+	data["cartfilling"] = cartfilling
+
+	if(cart)
+		data["cartCurrentVolume"] = cart.reagents.total_volume
+		data["cartMaxVolume"] = cart.reagents.maximum_volume
+	else
+		data["cartCurrentVolume"] = null
+		data["cartMaxVolume"] = null
 	return data
 
 /obj/machinery/synthesizer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
