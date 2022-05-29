@@ -384,15 +384,15 @@
 //	var/atom/food
 
 /obj/item/weapon/circuitboard/synthesizer
-	name = "Food Synthisizer (Machine Board)"
+	name = "Food Synthesizer (Machine Board)"
 	build_path = /obj/machinery/synthesizer
 	req_components = list(
 		/obj/item/weapon/stock_parts/manipulator = 1,
 		/obj/item/weapon/stock_parts/scanning_module = 1)
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge
-	name = "Synthisizer cartridge"
-	desc = "This goes in a food synthisizer."
+	name = "Synthesizer cartridge"
+	desc = "This goes in a food Synthesizer."
 	icon = 'icons/obj/machines/synthisizer_vr.dmi'
 	icon_state = "bigcart"
 
@@ -402,7 +402,7 @@
 	possible_transfer_amounts = null
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge/small
-	name = "Portable Synthisizer Cartridge"
+	name = "Portable Synthesizer Cartridge"
 	icon_state = "Scart"
 	w_class = ITEMSIZE_NORMAL
 	volume = 100

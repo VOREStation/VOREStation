@@ -5,7 +5,7 @@
 		I = new path()
 
 	if(!I)	// Something has gone horribly wrong, or right.
-		log_debug("[name] created an synthisizer design without an assigned path.")
+		log_debug("[name] created an Synthesizer design without an assigned path.")
 		return
 	qdel(I)
 
