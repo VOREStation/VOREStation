@@ -67,3 +67,22 @@
 	network = list(NETWORK_XENOBIO)
 	req_access = list()
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+
+//Boards for Food Synthesizers, synthesizer_vr.dm
+/obj/item/weapon/circuitboard/synthesizer
+	name = T_BOARD("Food Synthesizer")
+	build_path = /obj/machinery/synthesizer
+	board_type = new /datum/frame/frame_types/machine
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/scanning_module = 1)
+
+/obj/item/weapon/circuitboard/synthesizer/mini
+	name = T_BOARD("Portable Food Synthesizer")
+	build_path = /obj/machinery/synthesizer/mini
+	board_type = new /datum/frame/frame_types/machine
+	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
+	req_components = list(
+		/obj/item/weapon/stock_parts/manipulator = 1,
+		/obj/item/weapon/stock_parts/scanning_module = 1)

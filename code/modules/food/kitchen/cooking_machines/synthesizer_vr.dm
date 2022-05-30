@@ -7,8 +7,8 @@
 	desc = "a device able to produce an incredible array of conventional foods. Although only the most ascetic of users claim it produces truly good tasting products."
 	icon = 'icons/obj/machines/synthisizer_vr.dmi'
 	icon_state = "synthesizer"
-//	pixel_y = 32 //So it glues to the wall
-	density = TRUE
+	pixel_y = 32 //So it glues to the wall
+	density = FALSE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
@@ -49,6 +49,23 @@
 /obj/machinery/synthesizer/Initialize()
 	. = ..()
 	cart = new /obj/item/weapon/reagent_containers/synth_disp_cartridge(src)
+	if(!synthesizer_recipes)
+		synthesizer_recipes = new()
+	wires = new(src)
+
+	default_apply_parts()
+	RefreshParts()
+	update_icon()
+
+/obj/machinery/synthesizer/mini
+	name = "small food synthesizer"
+	icon = 'icons/obj/machines/synthisizer_vr.dmi'
+	icon_state = "portsynth"
+	cart_type = /obj/item/weapon/reagent_containers/synth_disp_cartridge/small
+
+/obj/machinery/synthesizer/mini/Initialize()
+	. = ..()
+	cart = new /obj/item/weapon/reagent_containers/synth_disp_cartridge/small(src)
 	if(!synthesizer_recipes)
 		synthesizer_recipes = new()
 	wires = new(src)
@@ -148,51 +165,58 @@
 			if(making.hidden && !hacked)
 				return
 
-
+			to_chat(world,"We're going to try and make [making.name]")
 			//Check if we still have the materials.
 			var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
 			if(!istype(C))
 				to_chat(usr, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
-				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
+				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
 				return
 			if((!(C.reagents)) || (C.reagents.total_volume <= 0))
 				to_chat(usr, "<span class='notice'>The synthesizer cartridge is empty.</span>")
-				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
+				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
 				return
 
 			else if(C.reagents && (C.reagents.total_volume >= 5))
 				//Sanity check.
 				if(!making || !src)
 					return
-				//Create the desired item.
-				var/obj/item/weapon/reagent_containers/food/snacks/synthsized_meal/meal = new making.path(src.loc)
-				for(var/obj/item/weapon/reagent_containers/food/snacks/F in making.path)
-
-					//Begin mimicking the food
-					meal.name = F.name
-					meal.desc = F.desc
-					meal.icon = F.icon
-					meal.icon_state = F.icon_state
-					meal.nutriment_desc = list(F?.nutriment_desc + meal.nutriment_desc) //there's always a bland aftertaste, especially if the meal isn't programmed with 'em
-					meal.bitesize = F?.bitesize //suffer your aerogel like 1 Nutriment turkey, nerds.
-					meal.filling_color = F?.filling_color
-					meal.trash = F?.trash	//If this can lead to exploits then we'll remove it, but.
+				to_chat(world,"We have the supplies for [making.name], onwards to printing!")
+				busy = TRUE
+				update_use_power(USE_POWER_ACTIVE)
+				update_icon() // light up time
+				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100)
+				C.reagents.remove_reagent("synthsoygreen", 5)
+				sleep(speed_grade) //machine go brrr
+				playsound(src, 'sound/machines/replicator_working.ogg', 150)
+					//Create the desired item.
+				var/obj/item/weapon/reagent_containers/food/snacks/synthsized_meal/meal = new /obj/item/weapon/reagent_containers/food/snacks/synthsized_meal(src.loc)
+				var/obj/item/weapon/reagent_containers/food/snacks/food_mimic = new making.path
+				to_chat(world,"We've printed [meal.name], we're going to attempt to copy [initial(food_mimic.name)] via [making.path]")
+				//Begin mimicking the food
+				meal.name = initial(food_mimic.name)
+				meal.desc = initial(food_mimic.desc)
+				meal.icon = initial(food_mimic.icon)
+				meal.icon_state = initial(food_mimic.icon_state)
+				var/list/tastyblandness = list()
+				tastyblandness |= list(initial(food_mimic.nutriment_desc))
+				tastyblandness |= list(initial(meal.nutriment_desc))
+				meal.nutriment_desc = list(tastyblandness) //there's always a bland aftertaste, especially if the meal isn't programmed with 'em
+				meal.bitesize = initial(food_mimic?.bitesize) //suffer your aerogel like 1 Nutriment turkey, nerds.
+				meal.filling_color = initial(food_mimic?.filling_color)
+				meal.trash = initial(food_mimic?.trash)	//If this can lead to exploits then we'll remove it, but.
+				qdel(food_mimic)
 
 			/*	for(var/obj/item/weapon/holder/micro/M in making.path) //Soylent Agent Green is People!!!!!
 					//Begin mimicking the snackrifice
 					meal.name = M.name
 					meal.icon = getFlatIcon(M,0)
 					meal.nutriment_desc = M?.vore_taste	*/
-
-				busy = TRUE
-				update_use_power(USE_POWER_ACTIVE)
-				update_icon() // light up time
-				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100, 1)
-				playsound(src, 'sound/machines/replicator_working.ogg', 100, 1)
-				C.reagents.remove_reagent("synthsoygreen", 5)
-				sleep(speed_grade)
+				audible_message("<span class='notice'>\Please take your [meal.name].</span>", runemessage = "[meal.name] is complete!")
 				if(Adjacent(usr))
 					usr.put_in_any_hand_if_possible(meal)
+				busy = FALSE
+				update_icon() //turn off lights, please.
 			return TRUE
 
 	return FALSE
@@ -202,7 +226,7 @@
 
 	icon_state = initial(icon_state) //we use this to reduce code bloat. It's nice.
 	if(panel_open)
-		icon_state = "[icon_state]_off"
+		icon_state = "[initial(icon_state)]_off"
 		 //add service panels just above our machine
 		if(!(stat & (NOPOWER|BROKEN)))
 			add_overlay("[initial(icon_state)]_ppanel")
@@ -226,15 +250,15 @@
 			//Then add our cart so the filling is inside of the canister.
 			add_overlay("[initial(icon_state)]_cart")
 	else
-		icon_state = "[icon_state]_on"
+		icon_state = "[initial(icon_state)]_on"
 
 	if(stat & NOPOWER)
-		icon_state = "[icon_state]_off"
+		icon_state = "[initial(icon_state)]_off"
 		set_light_on(FALSE)
 		return
 
 	if(busy)
-		icon_state = "[icon_state]_busy"
+		icon_state = "[initial(icon_state)]_busy"
 		set_light_color("#faebd7") // "antique white"
 		set_light_on(TRUE)
 	else
@@ -250,8 +274,13 @@
 		if(user)
 			to_chat(user, "<span class='warning'>\The [src] only accepts synthiziser cartridges.</span>")
 		return
+	if(istype(C) && (C != cart_type))
+		if(user)
+			to_chat(user, "<span class='warning'>\The [src] only accepts smaller synthiziser cartridges.</span>")
+		return
+
 	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/R = cart
-	if(istype(R)) // let's hot swap that bad boy.
+	if(cart && istype(R)) // let's hot swap that bad boy.
 		remove_cart(user)
 		return
 	else
@@ -278,11 +307,7 @@
 	if(!istype(R))
 		to_chat(user, "<span class='notice'>You remove [C] from  \the [src].</span>")
 	else
-		user.drop_from_inventory(R) //Ayyy, good
-		R.loc = src //toss that bad boy in, shall we?
-		R.add_fingerprint(user)
-		cart = R
-		to_chat(user, "<span class='notice'>You remove [C] and insert the new [R] to \the [src].</span>")
+		add_cart(R, user)
 	if(Adjacent(user))
 		user.put_in_hands(C) //pick up your trash, nerd. and don't hand it to the AI. They will be upset.
 	update_icon()
@@ -290,8 +315,8 @@
 
 /obj/machinery/synthesizer/attackby(obj/item/W, mob/user)
 	if(busy)
-		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
-		audible_message("<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>", runemessage = "BUZZ")
+		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
+		audible_message("<span class='notice'>\The [src] is busy. Please wait for completion of previous operation.</span>", runemessage = "The Synthesizer is busy.")
 		return
 	if(default_part_replacement(user, W))
 		return
@@ -343,9 +368,18 @@
 	if(!panel_open)
 		user.set_machine(src)
 		tgui_interact(user)
-	else
-		remove_cart(user)
-		wires.Interact(user)
+	else if(panel_open)
+		if(cart)
+			var/choice = alert(user, "Removing the Cartridge?", "", "Yes", "Cancel", "Wires Menu")
+			switch(choice)
+				if("Cancel")
+					return FALSE
+				if("Yes")
+					remove_cart(user)
+				if("Wires Menu")
+					wires.Interact(user)
+		else
+			wires.Interact(user)
 		return
 
 /obj/machinery/synthesizer/attack_ai(mob/user)
@@ -382,13 +416,6 @@
 
 //obj/machinery/synthesizer/proc/synthesize(var/what, var/temp, var/mob/living/user)
 //	var/atom/food
-
-/obj/item/weapon/circuitboard/synthesizer
-	name = "Food Synthesizer (Machine Board)"
-	build_path = /obj/machinery/synthesizer
-	req_components = list(
-		/obj/item/weapon/stock_parts/manipulator = 1,
-		/obj/item/weapon/stock_parts/scanning_module = 1)
 
 /obj/item/weapon/reagent_containers/synth_disp_cartridge
 	name = "Synthesizer cartridge"
