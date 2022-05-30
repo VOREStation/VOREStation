@@ -182,3 +182,18 @@
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
 	build_path = /obj/item/weapon/circuitboard/pointdefense_control
 	sort_string = "OAABB"
+
+//Food Synthesizers
+/datum/design/circuit/synthesizer
+	name = "Food Synthesizer"
+	id = "food_synthesizer"
+	build_path = /obj/item/weapon/circuitboard/synthesizer
+	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
+	sort_string = "PJFSS"
+
+/datum/design/circuit/synthesizer/mini
+	name = "Portable Food Synthesizer"
+	id = "portablefood_synthesizer"
+	build_path = /obj/item/weapon/circuitboard/synthesizer/mini
+	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5, TECH_BLUESPACE = 4)
+	sort_string = "PJFSM"
