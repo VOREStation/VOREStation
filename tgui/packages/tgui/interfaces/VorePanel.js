@@ -415,6 +415,7 @@ const VoreSelectedBellyOptions = (props, context) => {
     contaminate_flavor,
     contaminate_color,
     egg_type,
+    save_digest_mode,
   } = belly;
 
   return (
@@ -467,6 +468,14 @@ const VoreSelectedBellyOptions = (props, context) => {
               icon={display_absorbed_examine ? "toggle-on" : "toggle-off"}
               selected={display_absorbed_examine}
               content={display_absorbed_examine ? "True" : "False"} />
+          </LabeledList.Item>
+
+          <LabeledList.Item label="Save Digest Mode">
+            <Button
+              onClick={() => act("set_attribute", { attribute: "b_save_digest_mode" })}
+              icon={save_digest_mode ? "toggle-on" : "toggle-off"}
+              selected={save_digest_mode}
+              content={save_digest_mode ? "True" : "False"} />
           </LabeledList.Item>
         </LabeledList>
       </Flex.Item>
