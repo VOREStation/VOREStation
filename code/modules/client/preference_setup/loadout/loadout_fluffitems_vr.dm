@@ -90,7 +90,7 @@
 	ckeywhitelist = list("allweek")
 	character_name = list("Fifi The Magnificent")
 
-/datum/gear/fluff/fifi_hat
+/datum/gear/fluff/fifi_socks
 	path = /obj/item/clothing/shoes/fluff/fifi_socks
 	display_name = "Fifi's socks"
 	ckeywhitelist = list("allweek")
@@ -1062,11 +1062,11 @@
 	ckeywhitelist = list("swat43")
 	character_name = list("Fortune Bloise")
 
-/datum/gear/fluff/alexis_cane
-	path = /obj/item/weapon/cane/wand
-	display_name = "Alexis' Cane"
+/datum/gear/fluff/kyutar
+	path = /obj/item/instrument/piano_synth/fluff/kyutar
+	display_name = "Kyu's Holotar"
 	ckeywhitelist = list("stobarico")
-	character_name = list("Alexis Bloise")
+	character_name = list("Kyu Comet")
 
 /datum/gear/fluff/roiz_coat
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/roiz
