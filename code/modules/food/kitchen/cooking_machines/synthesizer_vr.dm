@@ -40,6 +40,7 @@
 
 	//all of our food
 	var/static/datum/category_collection/synthesizer_recipes/synthesizer_recipes
+	var/food_mimic_storage
 
 	//Voice activation stuff
 	var/activator = "computer"
@@ -187,32 +188,44 @@
 				update_icon() // light up time
 				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100)
 				C.reagents.remove_reagent("synthsoygreen", 5)
+				var/obj/item/weapon/reagent_containers/food/snacks/food_mimic = new making.path(src)
+				food_mimic_storage = food_mimic //I guess we need to have the item initalize first to get flavorings!
 				sleep(speed_grade) //machine go brrr
+			//	sleep(2) //testing brr
 				playsound(src, 'sound/machines/replicator_working.ogg', 150)
 					//Create the desired item.
 				var/obj/item/weapon/reagent_containers/food/snacks/synthsized_meal/meal = new /obj/item/weapon/reagent_containers/food/snacks/synthsized_meal(src.loc)
-				var/obj/item/weapon/reagent_containers/food/snacks/food_mimic = new making.path
-				to_chat(world,"We've printed [meal.name], we're going to attempt to copy [initial(food_mimic.name)] via [making.path]")
+
 				//Begin mimicking the food
 				meal.name = initial(food_mimic.name)
 				meal.desc = initial(food_mimic.desc)
 				meal.icon = initial(food_mimic.icon)
 				meal.icon_state = initial(food_mimic.icon_state)
-				var/list/tastyblandness = list()
-				tastyblandness |= list(initial(food_mimic.nutriment_desc))
-				tastyblandness |= list(initial(meal.nutriment_desc))
-				meal.nutriment_desc = list(tastyblandness) //there's always a bland aftertaste, especially if the meal isn't programmed with 'em
+
+				//Flavoring
+				var/datum/reagent/nutriment/FM = food_mimic.reagents.has_reagent(/datum/reagent/nutriment) //let's get that data
+				to_chat(world,"food mimic has [FM] in it.")
+				if(FM && FM.data)
+					to_chat(world,"We've got food data, let's get that bitch mixed")
+					FM.mix_data(meal.nutriment_desc, 1)										//mix in our blandness
+					meal.reagents.remove_reagent("nutriment", meal.reagents.total_volume)	//delete the bland reagent, because we only want a baseline of 1
+					meal.reagents.add_reagent("nutriment", 1, FM.data)				//give the replicated food our new flavor profile.
+
+				if(src.menu_grade >= 2) //Is the machine upgraded?
+					meal.reagents.add_reagent("nutriment", ((1 * src.menu_grade) - 1)) //add the missing Nutriment bonus, subtracting the one we've already added in.
+
 				meal.bitesize = initial(food_mimic?.bitesize) //suffer your aerogel like 1 Nutriment turkey, nerds.
 				meal.filling_color = initial(food_mimic?.filling_color)
 				meal.trash = initial(food_mimic?.trash)	//If this can lead to exploits then we'll remove it, but.
 				qdel(food_mimic)
+				src.food_mimic_storage = null
 
 			/*	for(var/obj/item/weapon/holder/micro/M in making.path) //Soylent Agent Green is People!!!!!
 					//Begin mimicking the snackrifice
 					meal.name = M.name
 					meal.icon = getFlatIcon(M,0)
 					meal.nutriment_desc = M?.vore_taste	*/
-				audible_message("<span class='notice'>\Please take your [meal.name].</span>", runemessage = "[meal.name] is complete!")
+				src.audible_message("<span class='notice'>Please take your [meal.name].</span>", runemessage = "[meal.name] is complete!")
 				if(Adjacent(usr))
 					usr.put_in_any_hand_if_possible(meal)
 				busy = FALSE
