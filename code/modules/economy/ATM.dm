@@ -258,17 +258,17 @@ log transactions
 					var/new_sec_level = max( min(text2num(href_list["new_security_level"]), 2), 0)
 					authenticated_account.security_level = new_sec_level
 			if("attempt_auth")
-
-				// check if they have low security enabled
-				scan_user(usr)
-
-				if(!ticks_left_locked_down && held_card)
-					var/tried_account_num = text2num(href_list["account_num"])
-					if(!tried_account_num)
-						tried_account_num = held_card.associated_account_number
+				if(!ticks_left_locked_down)
+					var/tried_account_num = held_card ? held_card.associated_account_number : text2num(href_list["account_num"])
 					var/tried_pin = text2num(href_list["account_pin"])
 
-					authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
+					// check if they have low security enabled
+
+					if (!tried_account_num)
+						scan_user(usr)
+					else
+						authenticated_account = attempt_account_access(tried_account_num, tried_pin, held_card && held_card.associated_account_number == tried_account_num ? 2 : 1)
+
 					if(!authenticated_account)
 						number_incorrect_tries++
 						if(previous_account_number == tried_account_num)
@@ -460,19 +460,6 @@ log transactions
 				I = P.id
 			if(I)
 				authenticated_account = attempt_account_access(I.associated_account_number)
-				if(authenticated_account)
-					to_chat(human_user, "<font color='blue'>[bicon(src)] Access granted. Welcome user '[authenticated_account.owner_name].</font>'")
-
-					//create a transaction log entry
-					var/datum/transaction/T = new()
-					T.target_name = authenticated_account.owner_name
-					T.purpose = "Remote terminal access"
-					T.source_terminal = machine_id
-					T.date = current_date_string
-					T.time = stationtime2text()
-					authenticated_account.transaction_log.Add(T)
-
-					view_screen = NO_SCREEN
 
 // put the currently held id on the ground or in the hand of the user
 /obj/machinery/atm/proc/release_held_id(mob/living/carbon/human/human_user as mob)
