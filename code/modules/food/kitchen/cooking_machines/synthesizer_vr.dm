@@ -203,8 +203,12 @@
 				meal.icon_state = initial(food_mimic.icon_state)
 
 				//Flavoring
-				var/datum/reagent/nutriment/FM = food_mimic.reagents.has_reagent(/datum/reagent/nutriment) //let's get that data
-				to_chat(world,"food mimic has [FM] in it.")
+				var/datum/reagent/nutriment/FM[0]
+				for(var/datum/reagent/nutriment/R in food_mimic.reagents.reagent_list) //let's get that data
+					FM.data.Add(list(list("data" = R.data)))
+
+
+				to_chat(world,"food mimic has FM.data [FM.data ? "present" : "missing"] in it.")
 				if(FM && FM.data)
 					to_chat(world,"We've got food data, let's get that bitch mixed")
 					FM.mix_data(meal.nutriment_desc, 1)										//mix in our blandness
