@@ -31,7 +31,7 @@
 		"Cat" = "pai-cat",
 		"Mouse" = "pai-mouse",
 		"Monkey" = "pai-monkey",
-		"Corgi" = "pai-borgi",
+		"Borgi" = "pai-borgi",
 		"Fox" = "pai-fox",
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
@@ -409,6 +409,8 @@
 	resting = 0
 	icon_state = "[chassis]"
 	verbs -= /mob/living/silicon/pai/proc/pai_nom //VOREStation edit. Let's remove their nom verb
+	if(isopenspace(card.loc))
+		fall()
 
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
@@ -453,11 +455,11 @@
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		to_chat(src, "<span class='notice'>You allow access modifications.</span>")
-
+		visible_message("<span class='notice'>\The [src] clicks as their access modification slot opens.</span>","<span class='notice'>You allow access modifications.</span>", runemessage = "click")
 	else
 		idaccessible = 0
-		to_chat(src, "<span class='notice'>You block access modfications.</span>")
+		visible_message("<span class='notice'>\The [src] clicks as their access modification slot closes.</span>","<span class='notice'>You block access modfications.</span>", runemessage = "click")
+
 
 /mob/living/silicon/pai/verb/wipe_software()
 	set name = "Enter Storage"

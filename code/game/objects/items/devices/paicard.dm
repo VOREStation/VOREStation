@@ -14,6 +14,8 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
+	var/image/screen_layer
+	var/screen_color = "#21ffff"
 
 /obj/item/device/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -313,36 +315,40 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
-	add_overlay("pai-neutral")
+	setEmotion(1)
 
 /obj/item/device/paicard/proc/removePersonality()
 	src.pai = null
 	cut_overlays()
-	add_overlay("pai-off")
+	setEmotion(16)
 
 /obj/item/device/paicard
 	var/current_emotion = 1
 /obj/item/device/paicard/proc/setEmotion(var/emotion)
 	if(pai)
 		cut_overlays()
+		qdel(screen_layer)
+		screen_layer = null
 		switch(emotion)
-			if(1) add_overlay("pai-neutral")
-			if(2) add_overlay("pai-what")
-			if(3) add_overlay("pai-happy")
-			if(4) add_overlay("pai-cat")
-			if(5) add_overlay("pai-extremely-happy")
-			if(6) add_overlay("pai-face")
-			if(7) add_overlay("pai-laugh")
-			if(8) add_overlay("pai-sad")
-			if(9) add_overlay("pai-angry")
-			if(10) add_overlay("pai-silly")
-			if(11) add_overlay("pai-nose")
-			if(12) add_overlay("pai-smirk")
-			if(13) add_overlay("pai-exclamation")
-			if(14) add_overlay("pai-question")
-			if(15) add_overlay("pai-blank")
-			if(16) add_overlay("pai-off")
+			if(1) screen_layer = image(icon, "pai-neutral")
+			if(2) screen_layer = image(icon, "pai-what")
+			if(3) screen_layer = image(icon, "pai-happy")
+			if(4) screen_layer = image(icon, "pai-cat")
+			if(5) screen_layer = image(icon, "pai-extremely-happy")
+			if(6) screen_layer = image(icon, "pai-face")
+			if(7) screen_layer = image(icon, "pai-laugh")
+			if(8) screen_layer = image(icon, "pai-sad")
+			if(9) screen_layer = image(icon, "pai-angry")
+			if(10) screen_layer = image(icon, "pai-silly")
+			if(11) screen_layer = image(icon, "pai-nose")
+			if(12) screen_layer = image(icon, "pai-smirk")
+			if(13) screen_layer = image(icon, "pai-exclamation")
+			if(14) screen_layer = image(icon, "pai-question")
+			if(15) screen_layer = image(icon, "pai-blank")
+			if(16) screen_layer = image(icon, "pai-off")
 
+		screen_layer.color = pai.eye_color
+		add_overlay(screen_layer)
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()

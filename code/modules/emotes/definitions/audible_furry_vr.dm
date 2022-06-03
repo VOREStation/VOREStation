@@ -34,6 +34,7 @@
     key = "chirp"
     emote_message_3p = "chirps!"
     emote_sound = 'sound/misc/nymphchirp.ogg'
+    sound_vary = FALSE
 /decl/emote/audible/hoot
     key = "hoot"
     emote_message_3p = "hoots!"

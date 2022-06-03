@@ -1,10 +1,44 @@
 /mob/living/silicon/pai
 	var/people_eaten = 0
 	icon = 'icons/mob/pai_vr.dmi'
+	softfall = TRUE
+	var/eye_glow = TRUE
+	var/image/eye_layer = null		// Holds the eye overlay.
+	var/eye_color = "#00ff0d"
 	var/global/list/wide_chassis = list(
 		"rat",
 		"panther"
 		)
+	var/global/list/flying_chassis = list(
+		"pai-parrot",
+		"pai-bat",
+		"pai-butterfly",
+		"pai-hawk"
+		)
+
+	//Sure I could spend all day making wacky overlays for all of the different forms
+	//but quite simply most of these sprites aren't made for that, and I'd rather just make new ones
+	//the birds especially! Just naw. If someone else wants to mess with 12x4 frames of animation where
+	//most of the pixels are different kinds of green and tastefully translate that to whitescale
+	//they can have fun with that! I not doing it!
+	var/global/list/allows_eye_color = list(
+		"pai-repairbot",
+		"pai-typezero",
+		"pai-bat",
+		"pai-butterfly",
+		"pai-mouse",
+		"pai-monkey",
+		"pai-raccoon",
+		"pai-cat",
+		"rat",
+		"panther"
+		)
+
+/mob/living/silicon/pai/Initialize()
+	. = ..()
+	
+	verbs |= /mob/living/proc/hide
+	verbs |= /mob/living/proc/vertical_nom
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -42,6 +76,7 @@
 			icon_state = "[chassis]_rest_full"
 		else
 			icon_state = "[chassis]_rest"
+	add_eyes()
 
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
 	..()
@@ -54,6 +89,7 @@
 		icon_state = "[chassis]_full"
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
+	add_eyes()
 
 //proc override to avoid pAI players being invisible while the chassis selection window is open
 /mob/living/silicon/pai/proc/choose_chassis()
@@ -64,10 +100,7 @@
 	choice = tgui_input_list(usr, "What would you like to use for your mobile chassis icon?", "Chassis Choice", possible_chassis)
 	if(!choice) return
 	chassis = possible_chassis[choice]
-	verbs |= /mob/living/proc/hide
-	if(icon != 'icons/mob/pai_vr64x64.dmi' || icon != 'icons/mob/pai_vr.dmi')
-		//It's been modified to something else, so just leave it alone
-	else if(chassis in wide_chassis)
+	if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
 		pixel_x = -16
 		vis_height = 64
@@ -76,8 +109,60 @@
 		pixel_x = 0
 		vis_height = 32
 
+	if(chassis in flying_chassis)
+		hovering = TRUE
+	else
+		hovering = FALSE
+		if(isopenspace(loc))
+			fall()
+
 	update_icon()
+
+/mob/living/silicon/pai/verb/toggle_eyeglow()
+	set category = "pAI Commands"
+	set name = "Toggle Eye Glow"
+	if(chassis in allows_eye_color)
+		if(eye_glow)
+			eye_glow = FALSE
+		else
+			eye_glow = TRUE
+		update_icon()
+	else
+		to_chat(src, "Your selected chassis cannot modify its eye glow!")
+		return
+
+
+/mob/living/silicon/pai/verb/pick_eye_color()
+	set category = "pAI Commands"
+	set name = "Pick Eye Color"
+	if(chassis in allows_eye_color)
+	else
+		to_chat(src, "<span class='warning'>Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen.</span>")
+
+	eye_color = input(src, "Choose your character's eye color:", "Eye Color") as color|null
+	update_icon()
+	card.setEmotion(card.current_emotion)
+
 // Release belly contents before being gc'd!
 /mob/living/silicon/pai/Destroy()
 	release_vore_contents()
 	return ..()
+
+/mob/living/silicon/pai/proc/add_eyes()
+	remove_eyes()
+	if(!chassis in allows_eye_color)
+		return
+	if(!eye_layer)
+		eye_layer = image(icon, "[icon_state]-eyes")
+	eye_layer.appearance_flags = appearance_flags
+	eye_layer.color = eye_color
+	if(eye_glow)
+		eye_layer.plane = PLANE_LIGHTING_ABOVE
+	add_overlay(eye_layer)
+
+/mob/living/silicon/pai/proc/remove_eyes()
+	if(!chassis in allows_eye_color)
+		return
+	cut_overlay(eye_layer)
+	qdel(eye_layer)
+	eye_layer = null

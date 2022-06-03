@@ -56,12 +56,13 @@
 	emote_sound = 'sound/machines/dwoop.ogg'
 
 /decl/emote/audible/synth/boop
-	key = "boop"
+	key = "roboboop"
 	emote_message_1p_target = "You boop at TARGET!"
 	emote_message_1p = "You boop."
 	emote_message_3p_target = "boops at TARGET!"
 	emote_message_3p = "boops."
 	emote_sound = 'sound/voice/roboboop.ogg'
+	sound_vary = FALSE
 
 /decl/emote/audible/synth/robochirp
 	key = "robochirp"
