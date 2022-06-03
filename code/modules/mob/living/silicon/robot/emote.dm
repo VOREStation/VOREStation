@@ -22,6 +22,8 @@ var/list/_robot_default_emotes = list(
 	/decl/emote/audible/synth/deny,
 	/decl/emote/audible/synth/scary,
 	/decl/emote/audible/synth/dwoop,
+	/decl/emote/audible/synth/boop,
+	/decl/emote/audible/synth/robochirp,
 	/decl/emote/audible/synth/security,
 	/decl/emote/audible/synth/security/halt,
 	//VOREStation Add

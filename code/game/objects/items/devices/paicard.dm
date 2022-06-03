@@ -48,12 +48,19 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		return ..()
 
 	var/turf/location = get_turf(src)
-	var/obj/item/device/paicard/card = new(location)
-	var/mob/living/silicon/pai/new_pai = new(card)
+	if(istype(src , /obj/item/device/paicard/typeb))
+		var/obj/item/device/paicard/typeb/card = new(location)
+		var/mob/living/silicon/pai/new_pai = new(card)
+		new_pai.key = user.key
+		card.setPersonality(new_pai)
+		new_pai.SetName(actual_pai_name)
+	else
+		var/obj/item/device/paicard/card = new(location)
+		var/mob/living/silicon/pai/new_pai = new(card)
+		new_pai.key = user.key
+		card.setPersonality(new_pai)
+		new_pai.SetName(actual_pai_name)
 	qdel(src)
-	new_pai.key = user.key
-	card.setPersonality(new_pai)
-	new_pai.SetName(actual_pai_name)
 	return ..()
 // VOREStation Edit End
 
@@ -214,6 +221,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		else //</font></font>
 			dat += "<b>Radio Uplink</b><br>"
 			dat += "<font color=red><i>Radio firmware not loaded. Please install a pAI personality to load firmware.</i></font><br>"
+		/* - //A button for instantly deleting people from the game is lame, especially considering that pAIs on our server tend to activate without a master.
 		dat += {"
 			<table>
 				<td class="button_red"><a href='byond://?src=\ref[src];wipe=1' class='button'>Wipe current pAI personality</a>
@@ -221,6 +229,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 				</td>
 			</table>
 		"}
+		*/
 	else
 		if(looking_for_personality)
 			dat += {"
@@ -304,7 +313,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
-	add_overlay("pai-happy")
+	add_overlay("pai-neutral")
 
 /obj/item/device/paicard/proc/removePersonality()
 	src.pai = null
@@ -317,21 +326,23 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	if(pai)
 		cut_overlays()
 		switch(emotion)
-			if(1) add_overlay("pai-happy")
-			if(2) add_overlay("pai-cat")
-			if(3) add_overlay("pai-extremely-happy")
-			if(4) add_overlay("pai-face")
-			if(5) add_overlay("pai-laugh")
-			if(6) add_overlay("pai-off")
-			if(7) add_overlay("pai-sad")
-			if(8) add_overlay("pai-angry")
-			if(9) add_overlay("pai-what")
-			if(10) add_overlay("pai-neutral")
-			if(11) add_overlay("pai-silly")
-			if(12) add_overlay("pai-nose")
-			if(13) add_overlay("pai-smirk")
-			if(14) add_overlay("pai-exclamation")
-			if(15) add_overlay("pai-question")
+			if(1) add_overlay("pai-neutral")
+			if(2) add_overlay("pai-what")
+			if(3) add_overlay("pai-happy")
+			if(4) add_overlay("pai-cat")
+			if(5) add_overlay("pai-extremely-happy")
+			if(6) add_overlay("pai-face")
+			if(7) add_overlay("pai-laugh")
+			if(8) add_overlay("pai-sad")
+			if(9) add_overlay("pai-angry")
+			if(10) add_overlay("pai-silly")
+			if(11) add_overlay("pai-nose")
+			if(12) add_overlay("pai-smirk")
+			if(13) add_overlay("pai-exclamation")
+			if(14) add_overlay("pai-question")
+			if(15) add_overlay("pai-blank")
+			if(16) add_overlay("pai-off")
+
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()
@@ -397,3 +408,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
 		if(user)
 			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
+
+/obj/item/device/paicard/typeb
+	name = "personal AI device"
+	icon = 'icons/obj/paicard.dmi'

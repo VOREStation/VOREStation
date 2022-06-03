@@ -54,3 +54,19 @@
 	emote_message_3p_target = "chirps happily at TARGET!"
 	emote_message_3p = "chirps happily."
 	emote_sound = 'sound/machines/dwoop.ogg'
+
+/decl/emote/audible/synth/boop
+	key = "boop"
+	emote_message_1p_target = "You boop at TARGET!"
+	emote_message_1p = "You boop."
+	emote_message_3p_target = "boops at TARGET!"
+	emote_message_3p = "boops."
+	emote_sound = 'sound/voice/roboboop.ogg'
+
+/decl/emote/audible/synth/robochirp
+	key = "robochirp"
+	emote_message_1p_target = "You chirp at TARGET!"
+	emote_message_1p = "You chirp."
+	emote_message_3p_target = "chirps at TARGET!"
+	emote_message_3p = "chirps."
+	emote_sound = 'sound/voice/robochirp.ogg'

@@ -43,15 +43,6 @@
 		else
 			icon_state = "[chassis]_rest"
 
-	if(chassis in wide_chassis)
-		icon = 'icons/mob/pai_vr64x64.dmi'
-		pixel_x = -16
-		vis_height = 64
-	else
-		icon = 'icons/mob/pai_vr.dmi'
-		pixel_x = 0
-		vis_height = 32
-
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
 	..()
 	update_fullness_pai()
@@ -64,12 +55,6 @@
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
 
-	if(chassis in wide_chassis)
-		icon = 'icons/mob/pai_vr64x64.dmi'
-		pixel_x = -16
-	else
-		icon = 'icons/mob/pai_vr.dmi'
-		pixel_x = 0
 //proc override to avoid pAI players being invisible while the chassis selection window is open
 /mob/living/silicon/pai/proc/choose_chassis()
 	set category = "pAI Commands"
@@ -80,6 +65,17 @@
 	if(!choice) return
 	chassis = possible_chassis[choice]
 	verbs |= /mob/living/proc/hide
+	if(icon != 'icons/mob/pai_vr64x64.dmi' || icon != 'icons/mob/pai_vr.dmi')
+		//It's been modified to something else, so just leave it alone
+	else if(chassis in wide_chassis)
+		icon = 'icons/mob/pai_vr64x64.dmi'
+		pixel_x = -16
+		vis_height = 64
+	else
+		icon = 'icons/mob/pai_vr.dmi'
+		pixel_x = 0
+		vis_height = 32
+
 	update_icon()
 // Release belly contents before being gc'd!
 /mob/living/silicon/pai/Destroy()
