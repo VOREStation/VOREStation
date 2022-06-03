@@ -75,6 +75,8 @@
 	//used to store what traits the player had picked out in their preferences before joining, in text form.
 	var/list/traits = list()
 
+	var/datum/religion/my_religion
+
 /datum/mind/New(var/key)
 	src.key = key
 	purchase_log = list()

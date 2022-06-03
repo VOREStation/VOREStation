@@ -34,14 +34,6 @@
 	if(!B || !I)
 		return
 
-	if(GLOB.religion)
-		B.deity_name = GLOB.deity
-		B.name = GLOB.bible_name
-		B.icon_state = GLOB.bible_icon_state
-		B.item_state = GLOB.bible_item_state
-		to_chat(H, "<span class='boldnotice'>There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the [title].</span>")
-		return
-
 	INVOKE_ASYNC(src, .proc/religion_prompts, H, B, I)
 
 /datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/weapon/storage/bible/B, obj/item/weapon/card/id/I)
@@ -85,15 +77,12 @@
 			B.name = "Guru Granth Sahib"
 		else
 			B.name = "The Holy Book of [new_religion]"
-	feedback_set_details("religion_name","[new_religion]")
 
 	var/deity_name = "Hashem"
 	var/new_deity = sanitize(input(H, "Would you like to change your deity? Default is Hashem", "Name change", deity_name), MAX_NAME_LEN)
 
 	if((length(new_deity) == 0) || (new_deity == "Hashem"))
 		new_deity = deity_name
-	B.deity_name = new_deity
-
 
 	var/new_title = sanitize(input(H, "Would you like to change your title?", "Title Change", I.assignment), MAX_NAME_LEN)
 
@@ -109,13 +98,27 @@
 	if (length(new_title) != 0 && !faking_job)
 		I.assignment = new_title
 
-	I.name = text("[I.registered_name]'s ID Card ([I.assignment])")
+	H.mind.my_religion = new /datum/religion(new_religion, new_deity, B.name, "bible", "bible", new_title)
 
+	B.deity_name = H.mind.my_religion.deity
+	I.assignment = H.mind.my_religion.title
+	I.name = text("[I.registered_name]'s ID Card ([I.assignment])")
 	data_core.manifest_modify(I.registered_name, I.assignment, I.rank)
 
-	GLOB.religion = new_religion
-	GLOB.bible_name = B.name
-	GLOB.deity = B.deity_name
-	feedback_set_details("religion_deity","[new_deity]")
+/datum/religion
+	var/religion = "Unitarianism"
+	var/deity = "Hashem"
+	var/bible_name = "Bible"
+	var/bible_icon_state = "bible"
+	var/bible_item_state = "bible"
+	var/title = "Chaplain"
+	var/configured = FALSE
 
-
+/datum/religion/New(var/r, var/d, var/bn, var/bis, var/bits, var/t)
+	. = ..()
+	religion = r
+	deity = d
+	bible_name = bn
+	bible_icon_state = bis
+	bible_item_state = bits
+	title = t
