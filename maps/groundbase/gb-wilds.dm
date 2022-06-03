@@ -47,6 +47,7 @@
 	name = "wilderness"
 	icon = 'icons/turf/areas_vr.dmi'
 	icon_state = "greblacir"
+	base_turf = /turf/simulated/mineral/floor/virgo3c
 /area/submap/groundbase/wilderness/north
 /area/submap/groundbase/wilderness/north/unexplored
 	icon_state = "orablacir"
