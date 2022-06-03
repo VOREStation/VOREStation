@@ -1,5 +1,4 @@
 /* eslint react/no-danger: "off" */
-import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
 import { Button, Box, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
@@ -103,7 +102,7 @@ export const NtosWordProcessor = (props, context) => {
             {/* This dangerouslySetInnerHTML is only ever passed data that has passed through pencode2html
               * It should be safe enough to support pencode in this way.
               */}
-            <Section mt={1}> 
+            <Section mt={1}>
               <div dangerouslySetInnerHTML={{ __html: filedata }} />
             </Section>
           </Section>

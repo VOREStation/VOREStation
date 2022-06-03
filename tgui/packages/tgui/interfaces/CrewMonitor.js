@@ -2,7 +2,7 @@ import { sortBy } from 'common/collections';
 import { flow } from 'common/fp';
 import { useBackend, useLocalState } from "../backend";
 import { Window } from "../layouts";
-import { NanoMap, Box, Table, Button, Tabs, Icon, NumberInput } from "../components";
+import { NanoMap, Box, Table, Button, Tabs, Icon } from "../components";
 import { Fragment } from 'inferno';
 
 const getStatText = cm => {
@@ -27,7 +27,7 @@ const getStatColor = cm => {
 
 export const CrewMonitor = () => {
   return (
-    <Window 
+    <Window
       width={800}
       height={600}
       resizable>
@@ -161,7 +161,7 @@ const CrewMonitorMapView = (props, context) => {
   return (
     <Box height="526px" mb="0.5rem" overflow="hidden">
       <NanoMap onZoom={v => setZoom(v)}>
-        {data.crewmembers.filter(x => 
+        {data.crewmembers.filter(x =>
           (x.sensor_type === 3 && ~~x.realZ === ~~config.mapZLevel)
         ).map(cm => (
           <NanoMap.Marker

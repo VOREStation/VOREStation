@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
 import { useBackend } from "../../backend";
-import { Box, Button, Input, NoticeBox } from '../../components';
+import { Box, Button, NoticeBox } from '../../components';
 
 export const MiningUser = (props, context) => {
   const { act, data } = useBackend(context);

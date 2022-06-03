@@ -1,11 +1,11 @@
 import { useBackend } from "../backend";
 import { Fragment } from "inferno";
-import { Box, Button, LabeledList, ProgressBar, Section, LabeledControls, AnimatedNumber, Table } from "../components";
+import { Box, Button, LabeledList, Section, Table } from "../components";
 import { Window } from "../layouts";
 
 const getStatusText = port => {
   if (port.input) { return "Input"; }
-  if (port.output) { return "Output"; } 
+  if (port.output) { return "Output"; }
   if (port.f_type) { return port.f_type; }
   return "Disabled";
 };
@@ -56,7 +56,7 @@ export const OmniMixer = (props, context) => {
               )}
               <Table.Cell textAlign="center">Concentration</Table.Cell>
               {config ? (
-                <Table.Cell textAlign="center">Lock</Table.Cell> 
+                <Table.Cell textAlign="center">Lock</Table.Cell>
               ) : null}
             </Table.Row>
             {ports ? ports.map(port => (

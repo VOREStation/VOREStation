@@ -1,6 +1,5 @@
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Table, Divider } from "../components";
+import { Button, Section } from "../components";
 import { Window } from "../layouts";
 import { toTitleCase } from 'common/string';
 

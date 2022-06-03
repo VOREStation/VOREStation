@@ -1,7 +1,5 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Table } from "../components";
+import { Button, Section, Table } from "../components";
 import { Window } from "../layouts";
 
 export const AgentCard = (props, context) => {

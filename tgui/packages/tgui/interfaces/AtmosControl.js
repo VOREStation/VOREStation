@@ -1,7 +1,7 @@
 import { sortBy } from 'common/collections';
 import { Window } from '../layouts';
 import { Fragment } from 'inferno';
-import { Button, Box, NumberInput, Tabs, Icon, Section, NanoMap } from '../components';
+import { Button, Box, Tabs, Icon, Section, NanoMap } from '../components';
 import { useBackend, useLocalState } from '../backend';
 import { createLogger } from '../logging';
 const logger = createLogger("fuck");
@@ -40,10 +40,10 @@ export const AtmosControlContent = (props, context) => {
           <Button
             key={alarm.name}
             content={alarm.name}
-            color={alarm.danger === 2 
-              ? 'bad' 
-              : alarm.danger === 1 
-                ? 'average' 
+            color={alarm.danger === 2
+              ? 'bad'
+              : alarm.danger === 1
+                ? 'average'
                 : ''}
             onClick={() => act('alarm', { 'alarm': alarm.ref })} />
         ))}
@@ -57,7 +57,7 @@ export const AtmosControlContent = (props, context) => {
       <Box height="526px" mb="0.5rem" overflow="hidden">
         <NanoMap onZoom={v => setZoom(v)}>
           {sortedAlarms
-            .filter(x => 
+            .filter(x =>
               (~~x.z === ~~config.mapZLevel)
             ).map(cm => (
               <NanoMap.Marker

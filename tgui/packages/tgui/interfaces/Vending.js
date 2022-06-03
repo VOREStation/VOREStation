@@ -1,7 +1,7 @@
 import { classes } from 'common/react';
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Box, Button, Section, Table, Tooltip, LabeledList } from '../components';
+import { Box, Button, Section, Table, Tooltip } from '../components';
 import { Window } from '../layouts';
 
 const VendingRow = (props, context) => {

@@ -1,7 +1,6 @@
 import { sortBy } from 'common/collections';
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { AnimatedNumber, Box, Button, Flex, Icon, LabeledList, NoticeBox, NumberInput, ProgressBar, Section } from "../components";
+import { AnimatedNumber, Box, Button, LabeledList, NoticeBox, NumberInput, Section } from "../components";
 import { Window } from "../layouts";
 
 export const TelesciConsole = (props, context) => {

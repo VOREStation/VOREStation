@@ -1,7 +1,6 @@
 import { round } from 'common/math';
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, NumberInput, Section } from "../components";
+import { Button, LabeledList, NumberInput, Section } from "../components";
 import { Window } from "../layouts";
 import { formatTime } from '../format';
 

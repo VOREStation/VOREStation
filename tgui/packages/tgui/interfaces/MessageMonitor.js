@@ -1,8 +1,7 @@
-import { round } from 'common/math';
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Dropdown, Flex, Icon, Input, LabeledList, ProgressBar, Section, Tabs, NoticeBox } from "../components";
+import { Box, Button, Dropdown, Flex, Icon, Input, LabeledList, Section, Tabs } from "../components";
 import { Window } from "../layouts";
 import { TemporaryNotice } from './common/TemporaryNotice';
 import { FullscreenNotice } from './common/FullscreenNotice';
@@ -17,7 +16,7 @@ export const MessageMonitor = (props, context) => {
     hacking,
     emag,
   } = data;
-  
+
   let body;
   if (hacking || emag) {
     body = <MessageMonitorHack />;
@@ -44,7 +43,7 @@ export const MessageMonitor = (props, context) => {
 
 const MessageMonitorHack = (props, context) => {
   const { act, data } = useBackend(context);
-  
+
   const {
     isMalfAI,
   } = data;
@@ -342,8 +341,8 @@ const MessageMonitorAdmin = (props, context) => {
           <Dropdown
             value={customrecepient}
             options={recipientOptions}
-            width="100%" 
-            mb={-0.7} 
+            width="100%"
+            mb={-0.7}
             onSelected={key => act("set_recipient", {
               'val': possibleRecipients[key],
             })} />
