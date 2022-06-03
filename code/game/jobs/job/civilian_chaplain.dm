@@ -29,7 +29,9 @@
 		return
 
 	var/obj/item/weapon/storage/bible/B = locate(/obj/item/weapon/storage/bible) in H
-	if(!B)
+	var/obj/item/weapon/card/id/I = locate(/obj/item/weapon/card/id) in H
+
+	if(!B || !I)
 		return
 
 	if(GLOB.religion)
@@ -39,10 +41,10 @@
 		B.item_state = GLOB.bible_item_state
 		to_chat(H, "<span class='boldnotice'>There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the [title].</span>")
 		return
-	
-	INVOKE_ASYNC(src, .proc/religion_prompts, H, B)
 
-/datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/weapon/storage/bible/B)
+	INVOKE_ASYNC(src, .proc/religion_prompts, H, B, I)
+
+/datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/weapon/storage/bible/B, obj/item/weapon/card/id/I)
 	var/religion_name = "Unitarianism"
 	var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Unitarianism", "Name change", religion_name), MAX_NAME_LEN)
 	if(!new_religion)
@@ -92,9 +94,28 @@
 		new_deity = deity_name
 	B.deity_name = new_deity
 
+
+	var/new_title = sanitize(input(H, "Would you like to change your title?", "Title Change", I.assignment), MAX_NAME_LEN)
+
+	var/list/all_jobs = get_job_datums()
+
+	// Are they trying to fake an actual existent job
+	var/faking_job = FALSE
+
+	for (var/datum/job/J in all_jobs)
+		if (J.title == new_title || (new_title in get_alternate_titles(J.title)))
+			faking_job = TRUE
+
+	if (length(new_title) != 0 && !faking_job)
+		I.assignment = new_title
+
+	I.name = text("[I.registered_name]'s ID Card ([I.assignment])")
+
+	data_core.manifest_modify(I.registered_name, I.assignment, I.rank)
+
 	GLOB.religion = new_religion
 	GLOB.bible_name = B.name
 	GLOB.deity = B.deity_name
 	feedback_set_details("religion_deity","[new_deity]")
-	
+
 
