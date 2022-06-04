@@ -16,7 +16,7 @@ var/list/_robot_default_emotes = list(
 	/decl/emote/visible/spin,
 	/decl/emote/visible/sidestep,
 	/decl/emote/audible/synth,
-	/decl/emote/audible/synth/ping,
+	/decl/emote/audible/synth/beep,
 	/decl/emote/audible/synth/buzz,
 	/decl/emote/audible/synth/confirm,
 	/decl/emote/audible/synth/deny,

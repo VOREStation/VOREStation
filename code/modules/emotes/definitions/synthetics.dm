@@ -1,17 +1,18 @@
 /decl/emote/audible/synth
-	key = "beep"
-	emote_message_3p = "beeps."
-	emote_sound = 'sound/machines/twobeep.ogg'
+	key = "ping"
+	emote_message_3p = "pings."
+	emote_sound = 'sound/machines/ping.ogg'
 
 /decl/emote/audible/synth/mob_can_use(var/mob/living/user)
 	if(istype(user) && user.isSynthetic())
 		return ..()
 	return FALSE
 
-/decl/emote/audible/synth/ping
-	key = "ping"
-	emote_message_3p = "pings."
-	emote_sound = 'sound/machines/ping.ogg'
+/decl/emote/audible/synth/beep
+	key = "beep"
+	emote_message_3p = "beeps."
+	emote_sound = 'sound/machines/twobeep.ogg'
+	sound_vary = FALSE
 
 /decl/emote/audible/synth/buzz
 	key = "buzz"
@@ -62,7 +63,6 @@
 	emote_message_3p_target = "boops at TARGET!"
 	emote_message_3p = "boops."
 	emote_sound = 'sound/voice/roboboop.ogg'
-	sound_vary = FALSE
 
 /decl/emote/audible/synth/robochirp
 	key = "robochirp"

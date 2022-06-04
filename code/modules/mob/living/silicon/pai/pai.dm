@@ -47,7 +47,8 @@
 		"Hawk" = "pai-hawk",
 		"Duffel" = "pai-duffel",
 		"Rat" = "rat",
-		"Panther" = "panther"
+		"Panther" = "panther",
+		"Cyber Elf" = "cyberelf"
 		//VOREStation Addition End
 		)
 

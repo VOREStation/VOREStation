@@ -13,7 +13,8 @@
 		"pai-parrot",
 		"pai-bat",
 		"pai-butterfly",
-		"pai-hawk"
+		"pai-hawk",
+		"cyberelf"
 		)
 
 	//Sure I could spend all day making wacky overlays for all of the different forms
@@ -33,7 +34,8 @@
 		"rat",
 		"panther",
 		"pai-bear",
-		"pai-fen"
+		"pai-fen",
+		"cyberelf"
 		)
 
 /mob/living/silicon/pai/Initialize()

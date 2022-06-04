@@ -15,7 +15,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 	var/image/screen_layer
-	var/screen_color = "#21ffff"
+	var/screen_color = "#00ff0d"
 
 /obj/item/device/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
