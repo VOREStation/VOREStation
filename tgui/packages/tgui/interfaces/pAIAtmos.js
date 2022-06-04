@@ -1,8 +1,7 @@
 import { filter } from 'common/collections';
-import { Fragment } from 'inferno';
-import { decodeHtmlEntities, toTitleCase } from 'common/string';
+import { decodeHtmlEntities } from 'common/string';
 import { useBackend } from "../backend";
-import { AnimatedNumber, Box, Button, Divider, Flex, Icon, LabeledList, ProgressBar, Section } from "../components";
+import { LabeledList, Section } from "../components";
 import { Window } from "../layouts";
 
 const getItemColor = (value, min2, min1, max1, max2) => {

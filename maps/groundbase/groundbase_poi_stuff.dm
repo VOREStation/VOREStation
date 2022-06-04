@@ -965,6 +965,7 @@
 	ambience = AMBIENCE_OUTPOST
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
 	requires_power = 0
+	base_turf = /turf/simulated/mineral/floor/virgo3c
 
 /area/submap/groundbase/poi/wildvillage/plot
 	icon_state = "grewhisqu"

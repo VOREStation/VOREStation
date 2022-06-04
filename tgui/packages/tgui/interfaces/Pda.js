@@ -1,7 +1,5 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, Modal, ProgressBar, Section } from "../components";
+import { Box, Button, Flex, Icon, LabeledList, Section } from "../components";
 import { Window } from "../layouts";
 
 /* This is all basically stolen from routes.js. */

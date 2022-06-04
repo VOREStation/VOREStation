@@ -1,7 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Tabs } from "../components";
+import { Box, Button, LabeledList, Section, Tabs } from "../components";
 import { Window } from "../layouts";
 
 const RCS_MAINMENU = 0;	// Settings menu

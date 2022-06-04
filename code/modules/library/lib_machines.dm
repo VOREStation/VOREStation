@@ -341,14 +341,7 @@
 				screenstate = 5
 			if("6")
 				if(!bibledelay)
-
-					var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(src.loc)
-					if(GLOB.religion)
-						B.icon_state = GLOB.bible_icon_state
-						B.item_state = GLOB.bible_item_state
-						B.name = GLOB.bible_name
-						B.deity_name = GLOB.deity
-
+					new /obj/item/weapon/storage/bible(src.loc)
 					bibledelay = 1
 					spawn(60)
 						bibledelay = 0
