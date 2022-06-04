@@ -1,13 +1,13 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Collapsible, Icon, Input, LabeledList, Section, Tabs } from "../components";
-import { ComplexModal, modalOpen, modalRegisterBodyOverride } from "../interfaces/common/ComplexModal";
+import { Box, Button, Icon, Input, LabeledList, Section, Tabs } from "../components";
+import { ComplexModal, modalOpen } from "../interfaces/common/ComplexModal";
 import { Window } from "../layouts";
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
 import { createSearch } from 'common/string';
-import { filter, sortBy } from 'common/collections';
+import { filter } from 'common/collections';
 import { flow } from 'common/fp';
 
 const doEdit = (context, field) => {

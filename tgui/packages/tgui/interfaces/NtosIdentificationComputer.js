@@ -1,10 +1,5 @@
-import { sortBy } from 'common/collections';
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Input, LabeledList, Section, Table, Tabs } from "../components";
-import { Window, NtosWindow } from "../layouts";
-import { decodeHtmlEntities } from 'common/string';
-import { COLORS } from "../constants";
+import { NtosWindow } from "../layouts";
 import { IdentificationComputerContent } from "./IdentificationComputer";
 
 export const NtosIdentificationComputer = (props, context) => {

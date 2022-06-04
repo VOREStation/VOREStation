@@ -1,19 +1,18 @@
-import { round } from 'common/math';
 import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, NoticeBox, LabeledList, Section } from "../components";
+import { Box, Button, NoticeBox, LabeledList, Section } from "../components";
 import { Window } from "../layouts";
 
 export const TelecommsMachineBrowser = (props, context) => {
   const { act, data } = useBackend(context);
-  
+
   const {
     network,
     temp,
     machinelist,
     selectedMachine,
   } = data;
-  
+
   return (
     <Window
       width={575}
