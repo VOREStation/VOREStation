@@ -153,20 +153,18 @@
 	return ..()
 
 /mob/living/silicon/pai/proc/add_eyes()
-	remove_eyes()
-	if(!chassis in allows_eye_color)
-		return
-	if(!eye_layer)
-		eye_layer = image(icon, "[icon_state]-eyes")
-	eye_layer.appearance_flags = appearance_flags
-	eye_layer.color = eye_color
-	if(eye_glow)
-		eye_layer.plane = PLANE_LIGHTING_ABOVE
-	add_overlay(eye_layer)
+	if(chassis in allows_eye_color)
+		remove_eyes()
+		if(!eye_layer)
+			eye_layer = image(icon, "[icon_state]-eyes")
+		eye_layer.appearance_flags = appearance_flags
+		eye_layer.color = eye_color
+		if(eye_glow)
+			eye_layer.plane = PLANE_LIGHTING_ABOVE
+		add_overlay(eye_layer)
 
 /mob/living/silicon/pai/proc/remove_eyes()
-	if(!chassis in allows_eye_color)
-		return
-	cut_overlay(eye_layer)
-	qdel(eye_layer)
-	eye_layer = null
+	if(chassis in allows_eye_color)
+		cut_overlay(eye_layer)
+		qdel(eye_layer)
+		eye_layer = null
