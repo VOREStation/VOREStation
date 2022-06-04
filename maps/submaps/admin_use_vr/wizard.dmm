@@ -240,7 +240,7 @@
 /area/wizard_station)
 "aB" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/unsimulated/floor{
 	dir = 8;
 	icon_state = "wood"

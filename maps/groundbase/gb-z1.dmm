@@ -885,7 +885,7 @@
 /obj/random/tech_supply,
 /obj/random/tech_supply,
 /obj/random/tech_supply,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/toolstorage)
 "cs" = (
@@ -5546,7 +5546,7 @@
 /area/groundbase/security/lobby)
 "nU" = (
 /obj/structure/table/reinforced,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /obj/machinery/recharger{
 	pixel_y = 5
 	},
@@ -7379,7 +7379,7 @@
 /area/groundbase/security/lobby)
 "sq" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
 	},

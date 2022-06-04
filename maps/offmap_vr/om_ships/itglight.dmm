@@ -6353,7 +6353,7 @@
 /area/itglight/common)
 "MF" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/glass/reinforced,
 /area/itglight/common)
 "MG" = (

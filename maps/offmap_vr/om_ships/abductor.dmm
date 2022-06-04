@@ -105,8 +105,8 @@
 /area/abductor/interior)
 "hj" = (
 /obj/structure/table/alien,
-/obj/item/device/paicard,
-/obj/item/device/paicard,
+/obj/random/paicard,
+/obj/random/paicard,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "hq" = (

@@ -7759,7 +7759,7 @@
 	pixel_x = 32
 	},
 /obj/structure/table/standard,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled,
 /area/storage/primary)
 "amW" = (
@@ -28761,7 +28761,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
 "aWW" = (
@@ -33813,7 +33813,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/locker)
 "hTw" = (
