@@ -1,8 +1,6 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Table } from "../components";
-import { Window, NtosWindow } from "../layouts";
+import { Box, Button, LabeledList, Section, Table } from "../components";
+import { NtosWindow } from "../layouts";
 import { NtosEmailClientViewMessage } from './NtosEmailClient';
 
 export const NtosEmailAdministration = (props, context) => {

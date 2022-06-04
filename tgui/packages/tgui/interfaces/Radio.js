@@ -1,7 +1,6 @@
-import { map } from 'common/collections';
 import { toFixed, round } from 'common/math';
 import { useBackend } from '../backend';
-import { Box, Button, LabeledList, NumberInput, Section, ColorBox } from '../components';
+import { Box, Button, LabeledList, NumberInput, Section } from '../components';
 import { RADIO_CHANNELS } from '../constants';
 import { Window } from '../layouts';
 

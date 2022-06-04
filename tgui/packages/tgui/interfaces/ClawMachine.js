@@ -1,5 +1,5 @@
 import { useBackend } from "../backend";
-import { Button, ProgressBar, Flex, Box, LabeledList } from "../components";
+import { Button, ProgressBar, Box, LabeledList } from "../components";
 import { Window } from "../layouts";
 
 export const ClawMachine = (props, context) => {
@@ -15,8 +15,8 @@ export const ClawMachine = (props, context) => {
 
   if (gameStatus === 'CLAWMACHINE_NEW') {
     body = (
-      <Box 
-        align="center"> 
+      <Box
+        align="center">
         <br /> <hr />
         <b>Pay to Play!</b> <br /> <hr />
         {instructions}
@@ -28,9 +28,9 @@ export const ClawMachine = (props, context) => {
   }
   else if (gameStatus === 'CLAWMACHINE_END') {
     body = (
-      <Box 
+      <Box
         align="center">
-        <br /> <hr />		
+        <br /> <hr />
         <b>Thank you for playing!</b> <br /> <hr />
         {winscreen}
         <br /> <hr /> <br />
@@ -56,7 +56,7 @@ export const ClawMachine = (props, context) => {
           </LabeledList.Item>
         </LabeledList>
         <Box
-          align="center"> 
+          align="center">
           <br /> <hr /> <br />
           {instructions}
           <br /> <br /> <hr /> <br /> <br />
@@ -75,7 +75,7 @@ export const ClawMachine = (props, context) => {
     );
   }
   return (
-    <Window 
+    <Window
       resizable>
       <center>
         {body}

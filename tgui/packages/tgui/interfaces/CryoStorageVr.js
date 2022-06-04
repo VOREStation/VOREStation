@@ -1,5 +1,5 @@
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Section, Tabs, NoticeBox } from "../components";
+import { Box, Section, Tabs, NoticeBox } from "../components";
 import { Window } from "../layouts";
 import { CryoStorageCrew } from "./CryoStorage";
 
