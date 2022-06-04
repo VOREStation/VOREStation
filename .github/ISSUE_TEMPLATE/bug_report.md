@@ -1,3 +1,12 @@
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: 'Type: Bug'
+assignees: ''
+
+---
+
 <!-- Please DO NOT report 'suggestions' on GitHub. If your issue consists of an opinion about how something should be, it doesn't belong here. -->
 <!-- If your issue consists of something not operating as intended, please report it below by filling out the template. -->
 <!-- These directions will not appear in the issue, when submitted. -->

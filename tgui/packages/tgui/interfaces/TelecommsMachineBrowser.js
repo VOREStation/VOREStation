@@ -19,10 +19,10 @@ export const TelecommsMachineBrowser = (props, context) => {
       height={450}
       resizable>
       <Window.Content scrollable>
-        {(temp && temp.length) ? (
-          <NoticeBox warning>
+        {temp ? (
+          <NoticeBox danger={temp.color === "bad"} warning={temp.color !== "bad"}>
             <Box display="inline-box" verticalAlign="middle">
-              {temp}
+              {temp.text}
             </Box>
             <Button
               icon="times-circle"
