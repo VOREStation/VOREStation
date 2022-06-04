@@ -84,9 +84,10 @@
 			icon_state = "[chassis]_rest"
 	if(chassis in wide_chassis)
 		pixel_x = -16
+		default_pixel_x = -16
 	else
 		pixel_x = 0
-
+		default_pixel_x = 0
 	add_eyes()
 
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
@@ -102,8 +103,10 @@
 		icon_state = "[chassis]_rest_full"
 	if(chassis in wide_chassis)
 		pixel_x = -16
+		default_pixel_x = -16
 	else
 		pixel_x = 0
+		default_pixel_x = 0
 	add_eyes()
 
 //proc override to avoid pAI players being invisible while the chassis selection window is open
