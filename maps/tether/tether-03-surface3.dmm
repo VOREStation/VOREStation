@@ -8328,7 +8328,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "anb" = (
@@ -9784,7 +9784,7 @@
 /obj/random/maintenance/medical,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall)
 "apA" = (
@@ -40756,7 +40756,7 @@
 /area/tether/surfacebase/security/hos)
 "lHr" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/entertainment)
 "lIe" = (

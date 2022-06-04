@@ -7,7 +7,8 @@
 	var/eye_color = "#00ff0d"
 	var/global/list/wide_chassis = list(
 		"rat",
-		"panther"
+		"panther",
+		"teppi"
 		)
 	var/global/list/flying_chassis = list(
 		"pai-parrot",
@@ -35,7 +36,8 @@
 		"panther",
 		"pai-bear",
 		"pai-fen",
-		"cyberelf"
+		"cyberelf",
+		"teppi"
 		)
 
 /mob/living/silicon/pai/Initialize()
@@ -80,6 +82,12 @@
 			icon_state = "[chassis]_rest_full"
 		else
 			icon_state = "[chassis]_rest"
+	if(chassis in wide_chassis)
+		pixel_x = -16
+		default_pixel_x = -16
+	else
+		pixel_x = 0
+		default_pixel_x = 0
 	add_eyes()
 
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
@@ -93,6 +101,12 @@
 		icon_state = "[chassis]_full"
 	else if(people_eaten && resting)
 		icon_state = "[chassis]_rest_full"
+	if(chassis in wide_chassis)
+		pixel_x = -16
+		default_pixel_x = -16
+	else
+		pixel_x = 0
+		default_pixel_x = 0
 	add_eyes()
 
 //proc override to avoid pAI players being invisible while the chassis selection window is open
@@ -106,11 +120,9 @@
 	chassis = possible_chassis[choice]
 	if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
-		pixel_x = -16
 		vis_height = 64
 	else
 		icon = 'icons/mob/pai_vr.dmi'
-		pixel_x = 0
 		vis_height = 32
 
 	if(chassis in flying_chassis)

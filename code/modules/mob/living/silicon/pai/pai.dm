@@ -48,7 +48,8 @@
 		"Duffel" = "pai-duffel",
 		"Rat" = "rat",
 		"Panther" = "panther",
-		"Cyber Elf" = "cyberelf"
+		"Cyber Elf" = "cyberelf",
+		"Teppi" = "teppi"
 		//VOREStation Addition End
 		)
 
