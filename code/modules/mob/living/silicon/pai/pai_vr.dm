@@ -31,7 +31,9 @@
 		"pai-raccoon",
 		"pai-cat",
 		"rat",
-		"panther"
+		"panther",
+		"pai-bear",
+		"pai-fen"
 		)
 
 /mob/living/silicon/pai/Initialize()
