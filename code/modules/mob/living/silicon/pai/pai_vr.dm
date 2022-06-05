@@ -37,14 +37,18 @@
 		"pai-bear",
 		"pai-fen",
 		"cyberelf",
-		"teppi"
+		"teppi",
+		"catslug"
 		)
 
 /mob/living/silicon/pai/Initialize()
 	. = ..()
 	
 	verbs |= /mob/living/proc/hide
-	verbs |= /mob/living/proc/vertical_nom
+	verbs |= /mob/proc/dominate_predator
+	verbs |= /mob/living/proc/dominate_prey
+	verbs |= /mob/living/proc/set_size
+	verbs |= /mob/living/proc/shred_limb
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -117,6 +121,8 @@
 
 	choice = tgui_input_list(usr, "What would you like to use for your mobile chassis icon?", "Chassis Choice", possible_chassis)
 	if(!choice) return
+	var/oursize = size_multiplier
+	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset 
 	chassis = possible_chassis[choice]
 	if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
@@ -124,6 +130,7 @@
 	else
 		icon = 'icons/mob/pai_vr.dmi'
 		vis_height = 32
+	resize(oursize, FALSE, TRUE, TRUE, FALSE)	//And then back again now that we're sure the vis_height is correct.
 
 	if(chassis in flying_chassis)
 		hovering = TRUE
@@ -155,9 +162,11 @@
 	else
 		to_chat(src, "<span class='warning'>Your selected chassis eye color can not be modified. The color you pick will only apply to supporting chassis and your card screen.</span>")
 
-	eye_color = input(src, "Choose your character's eye color:", "Eye Color") as color|null
-	update_icon()
-	card.setEmotion(card.current_emotion)
+	var/new_eye_color = input(src, "Choose your character's eye color:", "Eye Color") as color|null
+	if(new_eye_color)
+		eye_color = new_eye_color
+		update_icon()
+		card.setEmotion(card.current_emotion)
 
 // Release belly contents before being gc'd!
 /mob/living/silicon/pai/Destroy()
@@ -165,8 +174,8 @@
 	return ..()
 
 /mob/living/silicon/pai/proc/add_eyes()
+	remove_eyes()
 	if(chassis in allows_eye_color)
-		remove_eyes()
 		if(!eye_layer)
 			eye_layer = image(icon, "[icon_state]-eyes")
 		eye_layer.appearance_flags = appearance_flags
@@ -176,7 +185,32 @@
 		add_overlay(eye_layer)
 
 /mob/living/silicon/pai/proc/remove_eyes()
-	if(chassis in allows_eye_color)
-		cut_overlay(eye_layer)
-		qdel(eye_layer)
-		eye_layer = null
+	cut_overlay(eye_layer)
+	qdel(eye_layer)
+	eye_layer = null
+
+/mob/living/silicon/pai/UnarmedAttack(atom/A, proximity_flag)
+	. = ..()
+
+	if(!ismob(A) || A == src)
+		return
+
+	var/t_him = "them"
+	if(ishuman(A))
+		var/mob/living/carbon/human/T = A
+		if(!T.species.ambiguous_genders)
+			switch(T.identifying_gender)
+				if(MALE)
+					t_him = "him"
+				if(FEMALE)
+					t_him = "her"
+		else
+			t_him = "them"
+	else
+		switch(A.gender)
+			if(MALE)
+				t_him = "him"
+			if(FEMALE)
+				t_him = "her"
+	visible_message("<span class='notice'>\The [src] hugs [A] to make [t_him] feel better!</span>", \
+					"<span class='notice'>You hug [A] to make [t_him] feel better!</span>")

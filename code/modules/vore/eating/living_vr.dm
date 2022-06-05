@@ -680,6 +680,13 @@
 		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
 		return
 
+	if(istype(I, /obj/item/device/paicard))
+		var/obj/item/device/paicard/palcard = I
+		var/mob/living/silicon/pai/pocketpal = palcard.pai
+		if(!pocketpal.devourable)
+			to_chat(src, "<span class='warning'>\The [pocketpal] doesn't allow you to eat it.</span>")
+			return
+
 	if(is_type_in_list(I,edible_trash) | adminbus_trash)
 		if(I.hidden_uplink)
 			to_chat(src, "<span class='warning'>You really should not be eating this.</span>")
