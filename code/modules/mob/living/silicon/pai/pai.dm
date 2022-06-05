@@ -269,8 +269,8 @@
 					break
 		holder.drop_from_inventory(card)
 	else if(isbelly(card.loc)) //VOREStation edit.
-			to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
-			return 0 //VOREStation edit.
+		to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
+		return 0 //VOREStation edit.
 	else if(istype(card.loc,/obj/item/device/pda))
 		var/obj/item/device/pda/holder = card.loc
 		holder.pai = null
