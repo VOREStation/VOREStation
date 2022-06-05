@@ -426,3 +426,8 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/random/paicard/item_to_spawn()
 	return pick(/obj/item/device/paicard ,/obj/item/device/paicard/typeb)
+
+/obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
+	if(!pai.digestable)
+		return
+	. = ..()	
