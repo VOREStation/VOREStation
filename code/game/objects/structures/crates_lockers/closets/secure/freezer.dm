@@ -3,9 +3,17 @@
 	req_access = list(access_kitchen)
 
 	starts_with = list(
+<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/food/condiment/flour = 7,
 		/obj/item/weapon/reagent_containers/food/condiment/sugar = 2,
 		/obj/item/weapon/reagent_containers/food/condiment/spacespice = 2
+=======
+		/obj/item/reagent_containers/food/condiment/carton/flour = 6,
+		/obj/item/reagent_containers/food/condiment/carton/sugar = 1,
+		/obj/item/reagent_containers/food/condiment/carton/flour/rustic = 1,
+		/obj/item/reagent_containers/food/condiment/carton/sugar/rustic = 1,
+		/obj/item/reagent_containers/food/condiment/spacespice = 2
+>>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 		)
 
 	open_sound = 'sound/machines/click.ogg'

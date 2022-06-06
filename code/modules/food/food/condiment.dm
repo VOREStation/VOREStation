@@ -135,6 +135,11 @@
 				desc = "Barbecue sauce, it's labeled 'sweet and spicy'."
 				icon_state = "barbecue"
 				center_of_mass = list("x"=16, "y"=6)
+			if("sprinkles")
+				name = "sprinkles"
+				desc = "Bottle of sprinkles, colourful!"
+				icon_state= "sprinkles"
+				center_of_mass = list("x"=16, "y"=6)
 			else
 				name = "Misc Condiment Bottle"
 				if (reagents.reagent_list.len==1)
@@ -208,7 +213,18 @@
 	. = ..()
 	reagents.add_reagent("yeast", 50)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small
+=======
+/obj/item/weapon/reagent_containers/food/condiment/sprinkles
+	name = "Sprinkles"
+
+/obj/item/weapon/reagent_containers/food/condiment/sprinkles/Initialize()
+	. = ..()
+	reagents.add_reagent("sprinkles", 50)
+
+/obj/item/reagent_containers/food/condiment/small
+>>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	possible_transfer_amounts = list(1,20)
 	amount_per_transfer_from_this = 1
 	volume = 20
@@ -448,23 +464,76 @@
 
 //End of MRE stuff.
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/flour
 	name = "flour sack"
 	desc = "A big bag of flour. Good for baking!"
+=======
+/obj/item/reagent_containers/food/condiment/carton/flour
+	name = "flour carton"
+	desc = "A big carton of flour. Good for baking!"
+>>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	icon = 'icons/obj/food.dmi'
 	icon_state = "flour"
 	volume = 220
 	center_of_mass = list("x"=16, "y"=8)
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/flour/on_reagent_change()
 	return
 
 /obj/item/weapon/reagent_containers/food/condiment/flour/Initialize()
+=======
+/obj/item/reagent_containers/food/condiment/carton/flour/on_reagent_change()
+	update_icon()
+	return
+
+/obj/item/reagent_containers/food/condiment/carton/flour/Initialize()
+>>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	. = ..()
 	reagents.add_reagent("flour", 200)
 	randpixel_xy()
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/spacespice
+=======
+/obj/item/reagent_containers/food/condiment/carton/update_icon()
+	overlays.Cut()
+
+	if(reagents.total_volume)
+		var/image/filling = image('icons/obj/food.dmi', src, "[icon_state]10")
+
+		filling.icon_state = "[icon_state]-[clamp(round(100 * reagents.total_volume / volume, 25), 0, 100)]"
+
+		overlays += filling
+
+/obj/item/reagent_containers/food/condiment/carton/flour/rustic
+	name = "flour sack"
+	desc = "An artisanal sack of flour. Classy!"
+	icon_state = "flour_bag"
+
+/obj/item/reagent_containers/food/condiment/carton/sugar
+	name = "sugar carton"
+	desc = "A big carton of sugar. Sweet!"
+	icon_state = "sugar"
+	volume = 120
+	center_of_mass = list("x"=16, "y"=8)
+
+/obj/item/reagent_containers/food/condiment/carton/sugar/on_reagent_change()
+	update_icon()
+	return
+
+/obj/item/reagent_containers/food/condiment/carton/sugar/Initialize()
+	. = ..()
+	reagents.add_reagent("sugar", 100)
+
+/obj/item/reagent_containers/food/condiment/carton/sugar/rustic
+	name = "sugar sack"
+	desc = "An artisanal sack of sugar. Classy!"
+	icon_state = "sugar_bag"
+
+/obj/item/reagent_containers/food/condiment/spacespice
+>>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	name = "space spices"
 	desc = "An exotic blend of spices for cooking. Definitely not worms."
 	icon_state = "spacespicebottle"
