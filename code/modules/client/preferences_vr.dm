@@ -72,6 +72,21 @@
 
 	feedback_add_details("admin_verb","TEmoteNoise") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/client/verb/toggle_emote_pitch()
+	set name = "Toggle Emote Pitch Variation"
+	set category = "Preferences"
+	set desc = "Toggles variation of pitch on your emote noises."
+
+	var/pref_path = /datum/client_preference/emote_pitch
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "Your emotes will now have [ (is_preference_enabled(pref_path)) ? "varied" : "standard"] pitch.")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TEmotePitch") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/verb/toggle_ghost_quiets()
 	set name = "Toggle Ghost Privacy"
 	set category = "Preferences"

@@ -29,8 +29,8 @@ var/global/list/emotes_by_key
 	var/emote_message_radio_synthetic                   // As above, but for synthetics.
 	var/emote_message_muffled                           // A message to show if the emote is audible and the user is muzzled.
 
-	var/list/emote_sound                                // A sound for the emote to play. 
-	                                                    // Can either be a single sound, a list of sounds to pick from, or an 
+	var/list/emote_sound                                // A sound for the emote to play.
+	                                                    // Can either be a single sound, a list of sounds to pick from, or an
 	                                                    // associative array of gender to single sounds/a list of sounds.
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
@@ -42,7 +42,7 @@ var/global/list/emotes_by_key
 	var/check_range                                     // falsy, or a range outside which the emote will not work
 	var/conscious = TRUE                                // Do we need to be awake to emote this?
 	var/emote_range = 0                                 // If >0, restricts emote visibility to viewers within range.
-	
+
 	var/sound_preferences = list(/datum/client_preference/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 	var/sound_vary = TRUE
 
@@ -174,7 +174,7 @@ var/global/list/emotes_by_key
 /decl/emote/proc/do_extra(var/atom/user, var/atom/target)
 	return
 
-/decl/emote/proc/do_sound(var/atom/user)
+/decl/emote/proc/do_sound(var/mob/user)
 	var/list/use_sound = get_emote_sound(user)
 	if(!islist(use_sound) || length(use_sound) < 2)
 		return
@@ -186,8 +186,11 @@ var/global/list/emotes_by_key
 			sound_to_play = sound_to_play[user.gender]
 		if(islist(sound_to_play) && length(sound_to_play))
 			sound_to_play = pick(sound_to_play)
+	var/vary = sound_vary
+	if(vary && user.client && !(user.client.is_preference_enabled(/datum/client_preference/emote_pitch)))
+		vary = FALSE
 	if(sound_to_play)
-		playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
+		playsound(user.loc, sound_to_play, use_sound["vol"], vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())

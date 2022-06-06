@@ -95,7 +95,7 @@ var/list/_client_preferences_by_type
 	key = "DIGEST_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
-	
+
 /datum/client_preference/belch_noises // Belching noises - pref toggle for 'em
 	description = "Burping"
 	key = "BELCH_NOISES"
@@ -107,8 +107,15 @@ var/list/_client_preferences_by_type
 	key = "EMOTE_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
+
+/datum/client_preference/emote_pitch
+	description = "Emote Pitch" //MERP
+	key = "EMOTE_PITCH"
+	enabled_description = "Varied"
+	disabled_description = "Standard"
+
 /datum/client_preference/whisubtle_vis
-	description = "Whi/Subtles Ghost Visible" 
+	description = "Whi/Subtles Ghost Visible"
 	key = "WHISUBTLE_VIS"
 	enabled_description = "Visible"
 	disabled_description = "Hidden"
