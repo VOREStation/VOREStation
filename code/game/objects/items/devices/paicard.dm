@@ -16,6 +16,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	var/mob/living/silicon/pai/pai
 	var/image/screen_layer
 	var/screen_color = "#00ff0d"
+	var/last_notify = 0
 
 /obj/item/device/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -44,26 +45,52 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	if(choice == "No")
 		return ..()
 
-	var/pai_name = input(user, "Choose your character's name", "Character Name") as text
-	var/actual_pai_name = sanitize_name(pai_name, ,1)
-	if(isnull(actual_pai_name))
-		return ..()
-
+	choice = tgui_alert(user, "Do you want to load your pAI data?", "Load", list("Yes", "No"))
+	var/actual_pai_name
 	var/turf/location = get_turf(src)
-	if(istype(src , /obj/item/device/paicard/typeb))
-		var/obj/item/device/paicard/typeb/card = new(location)
-		var/mob/living/silicon/pai/new_pai = new(card)
-		new_pai.key = user.key
-		card.setPersonality(new_pai)
-		new_pai.SetName(actual_pai_name)
-	else
-		var/obj/item/device/paicard/card = new(location)
-		var/mob/living/silicon/pai/new_pai = new(card)
-		new_pai.key = user.key
-		card.setPersonality(new_pai)
-		new_pai.SetName(actual_pai_name)
+	if(choice == "No")
+		var/pai_name = input(user, "Choose your character's name", "Character Name") as text
+		actual_pai_name = sanitize_name(pai_name, ,1)
+		if(isnull(actual_pai_name))
+			return ..()
+		if(istype(src , /obj/item/device/paicard/typeb))
+			var/obj/item/device/paicard/typeb/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			new_pai.SetName(actual_pai_name)
+		else
+			var/obj/item/device/paicard/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			new_pai.SetName(actual_pai_name)
+
+	if(choice == "Yes")
+		if(istype(src , /obj/item/device/paicard/typeb))
+			var/obj/item/device/paicard/typeb/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			if(!new_pai.savefile_load(new_pai))
+				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				actual_pai_name = sanitize_name(pai_name, ,1)
+				if(isnull(actual_pai_name))
+					return ..()
+		else
+			var/obj/item/device/paicard/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			if(!new_pai.savefile_load(new_pai))
+				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				actual_pai_name = sanitize_name(pai_name, ,1)
+				if(isnull(actual_pai_name))
+					return ..()
+
 	qdel(src)
 	return ..()
+
 // VOREStation Edit End
 
 /obj/item/device/paicard/attack_self(mob/user)
@@ -352,9 +379,11 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()
-	var/turf/T = get_turf_or_move(src.loc)
-	for (var/mob/M in viewers(T))
-		M.show_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", 3, "<span class='notice'>\The [src] bleeps electronically.</span>", 2)
+	if(pai)
+		return
+	if(last_notify == 0 || (5 MINUTES <= world.time - last_notify))
+		audible_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", hearing_distance = world.view, runemessage = "bleeps!")
+		last_notify = world.time
 
 /obj/item/device/paicard/emp_act(severity)
 	for(var/mob/M in src)

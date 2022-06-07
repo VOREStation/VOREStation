@@ -214,3 +214,63 @@
 				t_him = "her"
 	visible_message("<span class='notice'>\The [src] hugs [A] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [A] to make [t_him] feel better!</span>")
+
+/mob/living/silicon/pai/proc/savefile_path(mob/user)
+	return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey]/pai.sav"
+
+/mob/living/silicon/pai/proc/savefile_save(mob/user)
+	if(IsGuestKey(user.key))
+		return 0
+
+	var/savefile/F = new /savefile(src.savefile_path(user))
+
+
+	F["name"] << src.name
+	F["description"] << src.flavor_text
+	F["eyecolor"] << src.eye_color
+	F["chassis"] << src.chassis
+	F["emotion"] << src.card.current_emotion
+	F["version"] << 1
+
+	return 1
+
+/mob/living/silicon/pai/proc/savefile_load(mob/user, var/silent = 1)
+	if (IsGuestKey(user.key))
+		return 0
+
+	var/path = savefile_path(user)
+
+	if (!fexists(path))
+		return 0
+
+	var/savefile/F = new /savefile(path)
+
+	if(!F) return //Not everyone has a pai savefile.
+
+	var/version = null
+	F["version"] >> version
+
+	if (isnull(version) || version != 1)
+		fdel(path)
+		if (!silent)
+			tgui_alert_async(user, "Your savefile was incompatible with this version and was deleted.")
+		return 0
+	var/ourname
+	var/ouremotion
+	F["name"] >> ourname
+	SetName(ourname)
+	F["description"] >> flavor_text
+	F["eyecolor"] >> eye_color
+	F["chassis"] >> chassis
+	F["emotion"] >> ouremotion
+	card.screen_color = eye_color
+	if(ouremotion)
+		card.setEmotion(ouremotion)
+	update_icon()
+	return 1
+
+/mob/living/silicon/pai/verb/save_pai_to_slot()
+	set category = "pAI Commands"
+	set name = "Save Configuration"
+	savefile_save(src)
+	to_chat(src, "[name] configuration saved to global pAI settings.")
