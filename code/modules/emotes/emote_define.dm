@@ -44,7 +44,7 @@ var/global/list/emotes_by_key
 	var/emote_range = 0                                 // If >0, restricts emote visibility to viewers within range.
 	
 	var/sound_preferences = list(/datum/client_preference/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
-	var/sound_vary = TRUE
+	var/sound_vary = FALSE
 
 /decl/emote/Initialize()
 	. = ..()
