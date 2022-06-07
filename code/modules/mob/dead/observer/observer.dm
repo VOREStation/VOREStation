@@ -984,8 +984,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			var/obj/item/device/paicard/PP = p
 			if(PP.pai == null)
 				count++
-				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
 				PP.add_overlay("pai-ghostalert")
+				PP.alertUpdate()
 				spawn(54)
 					PP.cut_overlays()
 		to_chat(usr,"<span class='notice'>Flashing the displays of [count] unoccupied PAIs.</span>")
