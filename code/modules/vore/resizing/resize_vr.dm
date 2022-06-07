@@ -113,8 +113,6 @@
 /mob/living/carbon/human/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(!resizable && !ignore_prefs)
 		return 1
-	if(species)
-		vis_height = species.icon_height
 	. = ..()
 	if(LAZYLEN(hud_list) && has_huds)
 		var/new_y_offset = vis_height * (size_multiplier - 1)
