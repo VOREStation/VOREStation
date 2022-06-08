@@ -106,6 +106,7 @@
 
 			if(message)
 				exonet.send_message(comm.exonet.address, "text", message)
+				to_chat(usr, "<span class='notice'>[bicon(src)] Sent message to [comm.owner], <b>\"[message]\"</b></span>")
 
 // Verb: text_communicator()
 // Parameters: None
