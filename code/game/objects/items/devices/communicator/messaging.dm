@@ -95,7 +95,17 @@
 		L = loc
 
 	if(L)
-		to_chat(L, "<span class='notice'>[bicon(src)] Message from [who].</span>")
+		to_chat(L, "<span class='notice'>[bicon(src)] Message from [who]: <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)</span>")
+
+// This is the only Topic the communicators really uses
+/obj/item/device/communicator/Topic(href, href_list)
+	switch(href_list["action"])
+		if("Reply")
+			var/obj/item/device/communicator/comm = locate(href_list["target"])
+			var/message = input(usr, "Enter your message below.", "Reply")
+
+			if(message)
+				exonet.send_message(comm.exonet.address, "text", message)
 
 // Verb: text_communicator()
 // Parameters: None
