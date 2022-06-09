@@ -66,6 +66,16 @@
 				if(H.revive_ready == REVIVING_DONE) // Sanity check.
 					H.hatch() // Hatch.
 
+		if("fold/unfold")
+			if(!(hud && ispAI(usr)))
+				return
+			else
+				var/mob/living/silicon/pai/p = usr
+				if(p.loc == p.card)
+					p.fold_out()
+				else
+					p.fold_up()
+
 		else
 			return 0
 
