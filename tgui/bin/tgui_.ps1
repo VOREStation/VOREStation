@@ -50,6 +50,10 @@ function task-dev-server {
   yarn node --experimental-modules "packages/tgui-dev-server/index.js" @Args
 }
 
+function task-bench {
+  yarn tgui:bench @Args
+}
+
 ## Run a linter through all packages
 function task-lint {
   yarn run tsc
@@ -130,6 +134,13 @@ if ($Args.Length -gt 0) {
   if ($Args[0] -eq "--analyze") {
     task-install
     task-webpack --mode=production --analyze
+    exit 0
+  }
+
+  if ($Args[0] -eq "--bench") {
+    $Rest = $Args | Select-Object -Skip 1
+    task-install
+    task-bench --wait-on-error
     exit 0
   }
 }
