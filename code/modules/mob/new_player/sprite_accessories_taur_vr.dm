@@ -411,6 +411,12 @@
 	suit_sprites = 'icons/mob/taursuits_drake_vr.dmi'
 	icon_sprite_tag = "drake"
 
+/datum/sprite_accessory/tail/taur/ch/fatdrake
+	name = "Drake (Fat Taur dual-color)"
+	icon_state = "fatdrake_s"
+	extra_overlay = "fatdrake_markings"
+	icon_sprite_tag = "drake"
+
 /datum/sprite_accessory/tail/taur/otie
 	name = "Otie (Taur)"
 	icon_state = "otie_s"
