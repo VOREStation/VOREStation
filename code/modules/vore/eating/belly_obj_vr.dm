@@ -342,7 +342,7 @@
 		owner.update_icons()
 
 	//Print notifications/sound if necessary
-	if(!silent)
+	if(!silent && count)
 		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
 		var/soundfile
 		if(!fancy_vore)
