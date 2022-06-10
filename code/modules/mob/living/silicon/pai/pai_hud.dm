@@ -117,6 +117,26 @@
 	using.alpha = ui_alpha
 	hud_elements |= using
 
+	//PDA button
+	using = new /obj/screen()
+	using.name = "pda"
+	using.icon = ui_style
+	using.icon_state = "pda"
+	using.screen_loc = ui_acti
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	//Communicator button
+	using = new /obj/screen()
+	using.name = "communicator"
+	using.icon = ui_style
+	using.icon_state = "communicator"
+	using.screen_loc = ui_acti
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
 	//Pull button
 	pullin = new /obj/screen()
 	pullin.icon = ui_style
@@ -187,9 +207,6 @@
 
 /mob/living/silicon/pai/toggle_hud_vis(full)
 	
-	hud_used.hud_shown = 1
-	
-
 	if(hud_used.hud_shown)
 		hud_used.hud_shown = 0
 		if(hud_used.adding)

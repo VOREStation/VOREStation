@@ -87,6 +87,18 @@
 			if(ispAI(usr))
 				var/mob/living/silicon/pai/p = usr
 				p.radio.tgui_interact(p)
+
+		if("pda")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.pda.cmd_pda_open_ui()
+		
+		if("communicator")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.communicator.activate()
+
+
 		else
 			return 0
 
