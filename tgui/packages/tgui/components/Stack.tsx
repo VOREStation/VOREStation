@@ -5,6 +5,7 @@
  */
 
 import { classes } from 'common/react';
+import { RefObject } from 'inferno';
 import { Flex, FlexItemProps, FlexProps } from './Flex';
 
 interface StackProps extends FlexProps {
@@ -29,14 +30,19 @@ export const Stack = (props: StackProps) => {
   );
 };
 
-const StackItem = (props: FlexProps) => {
-  const { className, ...rest } = props;
+type StackItemProps = FlexProps & {
+  innerRef?: RefObject<HTMLDivElement>,
+};
+
+const StackItem = (props: StackItemProps) => {
+  const { className, innerRef, ...rest } = props;
   return (
     <Flex.Item
       className={classes([
         'Stack__item',
         className,
       ])}
+      ref={innerRef}
       {...rest} />
   );
 };
