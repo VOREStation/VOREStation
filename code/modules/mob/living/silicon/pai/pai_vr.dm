@@ -291,16 +291,30 @@
 		return 0
 	var/ourname
 	var/ouremotion
+	var/ourdesc
+	var/oureyes
+	var/ourchassis
+	var/ourgender
 	F["name"] >> ourname
-	SetName(ourname)
-	F["description"] >> flavor_text
-	F["eyecolor"] >> eye_color
-	F["chassis"] >> chassis
+	F["description"] >> ourdesc
+	F["eyecolor"] >> oureyes
+	F["chassis"] >> ourchassis
 	F["emotion"] >> ouremotion
-	F["gender"] >> gender
-	card.screen_color = eye_color
+	F["gender"] >> ourgender
+	if(ourname)
+		SetName(ourname)
+	if(ourdesc)
+		flavor_text = ourdesc
+	if(ourchassis)
+		chassis = ourchassis
+	if(ourgender)
+		gender = ourgender
+	if(oureyes)
+		card.screen_color = oureyes
+		eye_color = oureyes
 	if(ouremotion)
 		card.setEmotion(ouremotion)
+	
 	update_icon()
 	return 1
 
