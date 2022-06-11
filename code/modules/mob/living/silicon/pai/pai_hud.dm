@@ -1,10 +1,12 @@
 /mob/living/silicon/pai
 	var/obj/screen/pai/pai_fold_display = null
-	var/list/hud_elements = list()
 
 /obj/screen/pai/pai_fold_display
 	name = "fold/unfold"
 	icon = 'icons/mob/pai_hud.dmi'
+
+/datum/hud
+	var/list/hud_elements = list()
 
 /mob/living/silicon/pai/create_mob_hud(datum/hud/HUD)
 	..()
@@ -17,10 +19,12 @@
 	var/list/adding = list()
 	var/list/other = list()
 	var/list/hotkeybuttons = list()
+	var/list/hud_elements = list()
 
 	HUD.adding = adding
 	HUD.other = other
 	HUD.hotkeybuttons = hotkeybuttons
+	HUD.hud_elements = hud_elements
 
 	var/obj/screen/using
 
@@ -144,7 +148,7 @@
 	pullin.name = "pull"
 	pullin.screen_loc = ui_movi
 	HUD.hotkeybuttons += pullin
-	hud_elements |= pullin
+	HUD.hud_elements |= pullin
 
 	//Health status
 	healths = new /obj/screen()
@@ -152,7 +156,7 @@
 	healths.icon_state = "health0"
 	healths.name = "health"
 	healths.screen_loc = ui_health
-	hud_elements |= healths
+	HUD.hud_elements |= healths
 
 	pain = new /obj/screen( null )
 
@@ -162,12 +166,12 @@
 	zone_sel.alpha = ui_alpha
 	zone_sel.cut_overlays()
 	zone_sel.update_icon()
-	hud_elements |= zone_sel
+	HUD.hud_elements |= zone_sel
 
 	pai_fold_display = new /obj/screen/pai/pai_fold_display()
 	pai_fold_display.screen_loc = ui_health
 	pai_fold_display.icon_state = "folded"
-	hud_elements |= pai_fold_display
+	HUD.hud_elements |= pai_fold_display
 
 
 	if(client)
@@ -217,8 +221,8 @@
 			client.screen -= hud_used.hotkeybuttons
 		if(hud_used.other_important)
 			client.screen -= hud_used.other_important
-		if(hud_elements)
-			client.screen -= hud_elements
+		if(hud_used.hud_elements)
+			client.screen -= hud_used.hud_elements
 
 	else
 		hud_used.hud_shown = 1
@@ -236,8 +240,8 @@
 			client.screen |= internals
 		if(gun_setting_icon)
 			client.screen |= gun_setting_icon
-		if(hud_elements)
-			client.screen |= hud_elements
+		if(hud_used.hud_elements)
+			client.screen |= hud_used.hud_elements
 
 		hud_used?.action_intent.screen_loc = ui_acti //Restore intent selection to the original position
 		client.screen += zone_sel				//This one is a special snowflake
