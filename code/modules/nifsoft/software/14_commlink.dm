@@ -128,4 +128,4 @@
 		return
 
 	if(ringer && nif.human)
-		nif.notify("Commlink message from [who]: \"[text]\" (<a href='?src=\ref[nifsoft];open=1'>Open</a>)")
+		nif.notify("Commlink message from [who]: \"[text]\" (<a href='?src=\ref[nifsoft];open=1'>Open</a>) (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)")
