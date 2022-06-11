@@ -98,9 +98,10 @@
 
 /datum/pai_software/crew_manifest
 	name = "Crew Manifest"
-	ram_cost = 5
+	ram_cost = 0
 	id = "manifest"
 	toggle = 0
+	default = 1		//Comes with the communicator already, also why not
 
 /datum/pai_software/crew_manifest/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -117,9 +118,10 @@
 
 /datum/pai_software/messenger
 	name = "Digital Messenger"
-	ram_cost = 5
+	ram_cost = 0
 	id = "messenger"
 	toggle = 0
+	default = 1		//Can already be accessed through verbs, and also why not
 
 /datum/pai_software/messenger/tgui_interact(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui/parent_ui)
 	return user.pda.tgui_interact(user, parent_ui = parent_ui)

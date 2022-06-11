@@ -14,6 +14,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 	var/chassis
 	var/ouremotion
 	var/eye_color
+	var/gender
 
 /hook/startup/proc/paiControllerSetup()
 	paiController = new /datum/paiController()
@@ -50,6 +51,8 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 				pai.chassis = candidate.chassis
 			if(candidate.ouremotion)
 				card.setEmotion(candidate.ouremotion)
+			if(candidate.gender)
+				pai.gender = candidate.gender
 			pai.update_icon()
 			pai.real_name = pai.name
 			card.looking_for_personality = 0
