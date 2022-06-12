@@ -362,7 +362,8 @@ SUBSYSTEM_DEF(vote)
 
 		if(VOTE_RESTART)
 			if(config.allow_vote_restart || usr.client.holder)
-				if(!GLOB.admins.len || usr.client.holder)
+				var/admin_number_present = send2irc_adminless_only(initiator_ckey, name)
+				if(admin_number_present <= 0 || || usr.client.holder)
 					if(tgui_alert(usr, "Are you sure you want to start a RESTART VOTE? You should only do this if the server is dying and no staff are around to investigate.", "RESTART VOTE", list("No", "Yes I want to start a RESTART VOTE")) == "Yes I want to start a RESTART VOTE")
 						initiate_vote(VOTE_RESTART, usr.key)
 				else
