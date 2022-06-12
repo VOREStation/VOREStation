@@ -29,11 +29,13 @@ var/list/holder_mob_icon_cache = list()
 	ASSERT(ismob(held))
 	. = ..()
 	held.forceMove(src)
+	held.reset_view(src)
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/holder/Entered(mob/held, atom/OldLoc)
 	if(held_mob)
 		held.forceMove(get_turf(src))
+		held.reset_view(null)
 		return
 	ASSERT(ismob(held))
 	. = ..()
@@ -71,6 +73,7 @@ var/list/holder_mob_icon_cache = list()
 	held_mob.transform = original_transform
 	held_mob.vis_flags = original_vis_flags
 	held_mob.forceMove(get_turf(src))
+	held_mob.reset_view(null)
 	held_mob = null
 
 /obj/item/weapon/holder/throw_at(atom/target, range, speed, thrower)
@@ -103,9 +106,12 @@ var/list/holder_mob_icon_cache = list()
 			holster.clear_holster()
 		to_chat(held, "<span class='warning'>You extricate yourself from [holster].</span>")
 		forceMove(get_turf(src))
+		held.reset_view(null)
+
 	else if(isitem(loc))
 		to_chat(held, "<span class='warning'>You struggle free of [loc].</span>")
 		forceMove(get_turf(src))
+		held.reset_view(null)
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona
