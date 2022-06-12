@@ -102,6 +102,16 @@
 	containername = "Commonwealth engineering hardsuit crate"
 	access = access_engine
 
+/datum/supply_pack/misc/breacher_rig
+	name = "unathi breacher hardsuit (empty)"
+	contains = list(
+			/obj/item/weapon/rig/breacher = 1
+			)
+	cost = 300
+	containertype = /obj/structure/closet/crate/secure/gear
+	containername = "unathi breacher hardsuit crate"
+	access = access_armory
+
 /datum/supply_pack/misc/zero_rig
 	name = "null hardsuit (jets)"
 	contains = list(
