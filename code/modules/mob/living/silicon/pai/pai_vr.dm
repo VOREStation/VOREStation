@@ -38,7 +38,9 @@
 		"pai-fen",
 		"cyberelf",
 		"teppi",
-		"catslug"
+		"catslug",
+		"car",
+		"typeone"
 		)
 
 /mob/living/silicon/pai/Initialize()
