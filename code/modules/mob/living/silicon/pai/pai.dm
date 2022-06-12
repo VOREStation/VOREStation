@@ -50,7 +50,9 @@
 		"Panther" = "panther",
 		"Cyber Elf" = "cyberelf",
 		"Teppi" = "teppi",
-		"Catslug" = "catslug"
+		"Catslug" = "catslug",
+		"Car" = "car",
+		"Type One" = "typeone"
 		//VOREStation Addition End
 		)
 
