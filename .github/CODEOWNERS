@@ -4,8 +4,9 @@
 # In the event that multiple org members are to be informed of changes
 # to the same file or dir, add them to the end under Multiple Owners
 
-# ShadowLarkens
-/code/__DEFINES/tgui.dm @ShadowLarkens
-/code/controllers/subsystem/tgui.dm @ShadowLarkens
-/code/modules/tgui @ShadowLarkens
-/tgui @ShadowLarkens
+# MULTIPLE OWNERS
+
+/code/__DEFINES/tgui.dm @ItsSelis @ShadowLarkens
+/code/controllers/subsystem/tgui.dm @ItsSelis @ShadowLarkens
+/code/modules/tgui @ItsSelis @ShadowLarkens
+/tgui @ItsSelis @ShadowLarkens
