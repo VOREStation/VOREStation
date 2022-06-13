@@ -38,7 +38,9 @@
 		"pai-fen",
 		"cyberelf",
 		"teppi",
-		"catslug"
+		"catslug",
+		"car",
+		"typeone"
 		)
 
 /mob/living/silicon/pai/Initialize()
@@ -195,25 +197,58 @@
 	if(!ismob(A) || A == src)
 		return
 
+	switch(a_intent)
+		if(I_HELP)
+			if(isliving(A))
+				hug(src, A)
+		if(I_GRAB)
+			pai_nom(A)
+
+/mob/living/silicon/pai/proc/hug(var/mob/living/silicon/pai/H, var/mob/living/target)
+
 	var/t_him = "them"
-	if(ishuman(A))
-		var/mob/living/carbon/human/T = A
-		if(!T.species.ambiguous_genders)
-			switch(T.identifying_gender)
-				if(MALE)
-					t_him = "him"
-				if(FEMALE)
-					t_him = "her"
-		else
-			t_him = "them"
-	else
-		switch(A.gender)
+	if(ishuman(target))
+		var/mob/living/carbon/human/T = target
+		switch(T.identifying_gender)
 			if(MALE)
 				t_him = "him"
 			if(FEMALE)
 				t_him = "her"
-	visible_message("<span class='notice'>\The [src] hugs [A] to make [t_him] feel better!</span>", \
-					"<span class='notice'>You hug [A] to make [t_him] feel better!</span>")
+			if(NEUTER)
+				t_him = "it"
+			if(HERM)
+				t_him = "hir"
+			else
+				t_him = "them"
+	else	
+		switch(target.gender)
+			if(MALE)
+				t_him = "him"
+			if(FEMALE)
+				t_him = "her"
+			if(NEUTER)
+				t_him = "it"
+			if(HERM)
+				t_him = "hir"
+			else
+				t_him = "them"
+
+	if(H.zone_sel.selecting == "head")
+		H.visible_message( \
+			"<span class='notice'>[H] pats [target] on the head.</span>", \
+			"<span class='notice'>You pat [target] on the head.</span>", )
+	else if(H.zone_sel.selecting == "r_hand" || H.zone_sel.selecting == "l_hand")
+		H.visible_message( \
+			"<span class='notice'>[H] shakes [target]'s hand.</span>", \
+			"<span class='notice'>You shake [target]'s hand.</span>", )
+	else if(H.zone_sel.selecting == "mouth")
+		H.visible_message( \
+			"<span class='notice'>[H] boops [target]'s nose.</span>", \
+			"<span class='notice'>You boop [target] on the nose.</span>", )
+	else
+		H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
+						"<span class='notice'>You hug [target] to make [t_him] feel better!</span>")
+	playsound(src, 'sound/weapons/thudswoosh.ogg', 50, 1, -1)
 
 /mob/living/silicon/pai/proc/savefile_path(mob/user)
 	return "data/player_saves/[copytext(user.ckey, 1, 2)]/[user.ckey]/pai.sav"
@@ -230,6 +265,7 @@
 	F["eyecolor"] << src.eye_color
 	F["chassis"] << src.chassis
 	F["emotion"] << src.card.current_emotion
+	F["gender"] << src.gender
 	F["version"] << 1
 
 	return 1
@@ -257,15 +293,30 @@
 		return 0
 	var/ourname
 	var/ouremotion
+	var/ourdesc
+	var/oureyes
+	var/ourchassis
+	var/ourgender
 	F["name"] >> ourname
-	SetName(ourname)
-	F["description"] >> flavor_text
-	F["eyecolor"] >> eye_color
-	F["chassis"] >> chassis
+	F["description"] >> ourdesc
+	F["eyecolor"] >> oureyes
+	F["chassis"] >> ourchassis
 	F["emotion"] >> ouremotion
-	card.screen_color = eye_color
+	F["gender"] >> ourgender
+	if(ourname)
+		SetName(ourname)
+	if(ourdesc)
+		flavor_text = ourdesc
+	if(ourchassis)
+		chassis = ourchassis
+	if(ourgender)
+		gender = ourgender
+	if(oureyes)
+		card.screen_color = oureyes
+		eye_color = oureyes
 	if(ouremotion)
 		card.setEmotion(ouremotion)
+	
 	update_icon()
 	return 1
 
@@ -274,3 +325,41 @@
 	set name = "Save Configuration"
 	savefile_save(src)
 	to_chat(src, "[name] configuration saved to global pAI settings.")
+
+/mob/living/silicon/pai/a_intent_change(input as text)
+	. = ..()
+	
+	switch(a_intent)
+		if(I_HELP)
+			hud_used.help_intent.icon_state = "intent_help-s"
+			hud_used.disarm_intent.icon_state = "intent_disarm-n"
+			hud_used.grab_intent.icon_state = "intent_grab-n"
+			hud_used.hurt_intent.icon_state = "intent_harm-n"
+
+		if(I_DISARM)
+			hud_used.help_intent.icon_state = "intent_help-n"
+			hud_used.disarm_intent.icon_state = "intent_disarm-s"
+			hud_used.grab_intent.icon_state = "intent_grab-n"
+			hud_used.hurt_intent.icon_state = "intent_harm-n"
+
+		if(I_GRAB)
+			hud_used.help_intent.icon_state = "intent_help-n"
+			hud_used.disarm_intent.icon_state = "intent_disarm-n"
+			hud_used.grab_intent.icon_state = "intent_grab-s"
+			hud_used.hurt_intent.icon_state = "intent_harm-n"
+
+		if(I_HURT)
+			hud_used.help_intent.icon_state = "intent_help-n"
+			hud_used.disarm_intent.icon_state = "intent_disarm-n"
+			hud_used.grab_intent.icon_state = "intent_grab-n"
+			hud_used.hurt_intent.icon_state = "intent_harm-s"
+
+/mob/living/silicon/pai/verb/toggle_gender_identity_vr()
+	set name = "Set Gender Identity"
+	set desc = "Sets the pronouns when examined and performing an emote."
+	set category = "IC"
+	var/new_gender_identity = tgui_input_list(usr, "Please select a gender Identity:", "Set Gender Identity", list(FEMALE, MALE, NEUTER, PLURAL, HERM))
+	if(!new_gender_identity)
+		return 0
+	gender = new_gender_identity
+	return 1
