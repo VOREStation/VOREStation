@@ -69,6 +69,15 @@
 	extra_overlay2 = "wolf_markings_2"
 	//icon_sprite_tag = "wolf2c"
 
+/datum/sprite_accessory/tail/taur/wolf/wolf_2c_wag
+	name = "Wolf 3-color (Taur, vwag)"
+	icon_state = "wolf_s"
+	extra_overlay = "wolf_markings"
+	extra_overlay2 = "wolf_markings_2"
+	ani_state = "fatwolf_s"
+	extra_overlay_w = "fatwolf_markings"
+	extra_overlay2_w = "wolf_markings_2"
+
 /datum/sprite_accessory/tail/taur/wolf/fatwolf_2c
 	name = "Fat Wolf 3-color (Taur)"
 	icon_state = "fatwolf_s"
