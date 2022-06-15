@@ -1,4 +1,4 @@
-import { createPopper } from "@popperjs/core";
+import { createPopper } from '@popperjs/core';
 import { ArgumentsOf } from 'common/types';
 import { Component, findDOMfromVNode, InfernoNode, render } from 'inferno';
 
@@ -61,7 +61,9 @@ export class Popper extends Component<PopperProps> {
 
   componentWillUnmount() {
     this.popperInstance?.destroy();
-    render(null, this.renderedContent, () => this.renderedContent.remove());
+    render(null, this.renderedContent, () => {
+      this.renderedContent.remove();
+    });
   }
 
   renderPopperContent(callback: () => void) {
