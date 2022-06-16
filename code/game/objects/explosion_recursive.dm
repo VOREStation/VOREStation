@@ -6,6 +6,7 @@
 /obj
 	var/explosion_resistance
 
+<<<<<<< HEAD
 
 
 var/list/explosion_turfs = list()
@@ -13,12 +14,16 @@ var/list/explosion_turfs = list()
 var/explosion_in_progress = 0
 
 
+=======
+>>>>>>> 1d8141bda3d... Merge pull request #8645 from Verkister/patch-91
 /proc/explosion_rec(turf/epicenter, power)
+	var/list/explosion_turfs = list()
+	var/explosion_in_progress = 0
 
 	var/loopbreak = 0
 	while(explosion_in_progress)
 		if(loopbreak >= 15) return
-		sleep(10)
+		spawn(10)
 		loopbreak++
 
 	if(power <= 0) return
@@ -39,7 +44,7 @@ var/explosion_in_progress = 0
 	//This steap handles the gathering of turfs which will be ex_act() -ed in the next step. It also ensures each turf gets the maximum possible amount of power dealt to it.
 	for(var/direction in cardinal)
 		var/turf/T = get_step(epicenter, direction)
-		T.explosion_spread(power - epicenter.explosion_resistance, direction)
+		T.explosion_spread(power - epicenter.explosion_resistance, direction, explosion_turfs)
 
 	//This step applies the ex_act effects for the explosion, as planned in the previous step.
 	for(var/turf/T in explosion_turfs)
@@ -56,8 +61,10 @@ var/explosion_in_progress = 0
 		T.ex_act(severity)
 		if(!T)
 			T = locate(x,y,z)
-		for(var/atom/A in T)
-			A.ex_act(severity)
+		for(var/atom_movable in T.contents)
+			var/atom/movable/AM = atom_movable
+			if(AM && AM.simulated)
+				AM.ex_act(severity)
 
 	explosion_in_progress = 0
 
@@ -65,6 +72,9 @@ var/explosion_in_progress = 0
 	var/explosion_resistance
 
 /turf/space
+	explosion_resistance = 3
+
+/turf/simulated/open
 	explosion_resistance = 3
 
 /turf/simulated/floor
@@ -90,14 +100,13 @@ var/explosion_in_progress = 0
 
 //Code-wise, a safe value for power is something up to ~25 or ~30.. This does quite a bit of damage to the station.
 //direction is the direction that the spread took to come to this tile. So it is pointing in the main blast direction - meaning where this tile should spread most of it's force.
-/turf/proc/explosion_spread(power, direction)
+/turf/proc/explosion_spread(power, direction, var/list/explosion_turfs)
 	if(power <= 0)
 		return
+	if(src in explosion_turfs)
+		return
 
-	/*
-	sleep(2)
-	new/obj/effect/debugging/marker(src)
-	*/
+	explosion_turfs |= src
 
 	if(explosion_turfs[src] >= power)
 		return //The turf already sustained and spread a power greated than what we are dealing with. No point spreading again.
@@ -109,11 +118,11 @@ var/explosion_in_progress = 0
 			spread_power -= O.explosion_resistance
 
 	var/turf/T = get_step(src, direction)
-	T.explosion_spread(spread_power, direction)
+	T.explosion_spread(spread_power, direction, explosion_turfs)
 	T = get_step(src, turn(direction,90))
-	T.explosion_spread(spread_power, turn(direction,90))
+	T.explosion_spread(spread_power, turn(direction,90), explosion_turfs)
 	T = get_step(src, turn(direction,-90))
-	T.explosion_spread(spread_power, turn(direction,90))
+	T.explosion_spread(spread_power, turn(direction,90), explosion_turfs)
 
 /turf/unsimulated/explosion_spread(power)
 	return //So it doesn't get to the parent proc, which simulates explosions
