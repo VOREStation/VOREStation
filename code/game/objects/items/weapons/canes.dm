@@ -24,7 +24,11 @@
 
 /obj/item/weapon/cane/concealed/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	var/obj/item/weapon/material/butterfly/switchblade/temp_blade = new(src)
+=======
+	var/obj/item/material/sword/katana/caneblade/temp_blade = new(src)
+>>>>>>> ce9cea6d676... Merge pull request #8652 from DemonPizza/Caneblade
 	concealed_blade = temp_blade
 	temp_blade.active = TRUE
 	temp_blade.update_force()
@@ -41,10 +45,15 @@
 		user.update_inv_l_hand(0)
 		user.update_inv_r_hand()
 		concealed_blade = null
+		update_icon()
 	else
 		..()
 
+<<<<<<< HEAD
 /obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/butterfly/W, var/mob/user)
+=======
+/obj/item/cane/concealed/attackby(var/obj/item/material/sword/katana/caneblade/W, var/mob/user)
+>>>>>>> ce9cea6d676... Merge pull request #8652 from DemonPizza/Caneblade
 	if(!src.concealed_blade && istype(W))
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
 		user.visible_message("<span class='warning'>[user] has sheathed \a [W] into [T.his] [src]!</span>", "You sheathe \the [W] into \the [src].")
@@ -63,7 +72,7 @@
 		item_state = initial(icon_state)
 	else
 		name = "cane shaft"
-		icon_state = "nullrod"
+		icon_state = "caneshaft"
 		item_state = "foldcane"
 
 /obj/item/weapon/cane/white
