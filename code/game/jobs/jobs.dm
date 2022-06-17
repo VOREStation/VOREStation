@@ -54,6 +54,7 @@ var/const/ENTERTAINER		=(1<<14) //VOREStation Add
 //VOREStation Add
 var/const/TALON				=(1<<3)
 
+<<<<<<< HEAD
 var/const/TALCAP			=(1<<0)
 var/const/TALPIL			=(1<<1)
 var/const/TALDOC			=(1<<2)
@@ -61,6 +62,22 @@ var/const/TALSEC			=(1<<3)
 var/const/TALENG			=(1<<4)
 var/const/TALMIN			=(1<<5)
 //VOREStation Add End
+=======
+var/global/const/HOP				=(1<<0)
+var/global/const/BARTENDER			=(1<<1)
+var/global/const/BOTANIST			=(1<<2)
+var/global/const/CHEF				=(1<<3)
+var/global/const/JANITOR			=(1<<4)
+var/global/const/LIBRARIAN			=(1<<5)
+var/global/const/QUARTERMASTER		=(1<<6)
+var/global/const/CARGOTECH			=(1<<7)
+var/global/const/MINER				=(1<<8)
+var/global/const/LAWYER			=(1<<9)
+var/global/const/CHAPLAIN			=(1<<10)
+var/global/const/ASSISTANT			=(1<<11)
+var/global/const/BRIDGE			=(1<<12)
+var/global/const/HERMIT				=(1<<13)
+>>>>>>> 68a1694b92f... Merge pull request #8653 from MistakeNot4892/hermits
 
 /proc/guest_jobbans(var/job)
 	return ( (job in SSjob.get_job_titles_in_department(DEPARTMENT_COMMAND)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SYNTHETIC)) || (job in SSjob.get_job_titles_in_department(DEPARTMENT_SECURITY)) )

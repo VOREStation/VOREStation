@@ -653,10 +653,8 @@ var/global/datum/controller/occupations/job_master
 /datum/controller/occupations/proc/LateSpawn(var/client/C, var/rank)
 
 	var/datum/spawnpoint/spawnpos
-	var/fail_deadly = FALSE
-
 	var/datum/job/J = SSjob.get_job(rank)
-	fail_deadly = J?.offmap_spawn
+	var/fail_deadly = !!(J?.offmap_spawn)
 
 	//Spawn them at their preferred one
 	if(C && C.prefs.spawnpoint)
@@ -674,9 +672,9 @@ var/global/datum/controller/occupations/job_master
 	. = list("turf","msg")
 	if(spawnpos && istype(spawnpos) && spawnpos.turfs.len)
 		if(spawnpos.check_job_spawning(rank))
-			.["turf"] = spawnpos.get_spawn_position()
-			.["msg"] = spawnpos.msg
-			.["channel"] = spawnpos.announce_channel
+			.["turf"] =     spawnpos.get_spawn_position()
+			.["msg"] =      spawnpos.msg
+			.["channel"] =  spawnpos.announce_channel
 		else
 			if(fail_deadly)
 				to_chat(C, "<span class='warning'>Your chosen spawnpoint ([spawnpos.display_name]) is unavailable for your chosen job. Please correct your spawn point choice.</span>")

@@ -377,4 +377,3 @@
 	corpseshoes = /obj/item/clothing/shoes/boots/tactical
 	corpseid = 1
 	corpseidjob = "Hedberg-Hammarstrom Enforcer"
-

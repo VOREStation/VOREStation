@@ -35,7 +35,16 @@
 		if("JoinLateElevator")
 			latejoin_elevator += loc
 			delete_me = 1
+<<<<<<< HEAD
 			return
+=======
+		if("JoinLateCheckpoint")
+			latejoin_checkpoint += loc
+			delete_me = 1
+		if("JoinLateWilderness")
+			latejoin_wilderness += loc
+			delete_me = 1
+>>>>>>> 68a1694b92f... Merge pull request #8653 from MistakeNot4892/hermits
 		if("JoinLateCryo")
 			latejoin_cryo += loc
 			delete_me = 1

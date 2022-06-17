@@ -15,6 +15,8 @@
 
 	#include "datums/supplypacks/munitions.dm"
 	#include "datums/random_map.dm"
+	#include "datums/spawn.dm"
+
 	#include "items/encryptionkey_cyno.dm"
 	#include "items/headset_cyno.dm"
 	#include "items/clothing/cyno_suit.dm"

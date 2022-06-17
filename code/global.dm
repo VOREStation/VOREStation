@@ -59,6 +59,7 @@ var/list/wizardstart     = list()
 var/list/newplayer_start = list()
 
 //Spawnpoints.
+<<<<<<< HEAD
 var/list/latejoin          = list()
 var/list/latejoin_gateway  = list()
 var/list/latejoin_elevator = list()
@@ -83,6 +84,34 @@ var/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/cornerdirsz = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST, NORTH|UP, EAST|UP, WEST|UP, SOUTH|UP, NORTH|DOWN, EAST|DOWN, WEST|DOWN, SOUTH|DOWN)
 var/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
 var/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
+=======
+var/global/list/latejoin            = list()
+var/global/list/latejoin_gateway    = list()
+var/global/list/latejoin_elevator   = list()
+var/global/list/latejoin_cryo       = list()
+var/global/list/latejoin_cyborg     = list()
+var/global/list/latejoin_checkpoint = list()
+var/global/list/latejoin_wilderness = list()
+
+var/global/list/prisonwarp         = list() // Prisoners go to these
+var/global/list/holdingfacility    = list() // Captured people go here
+var/global/list/xeno_spawn         = list() // Aliens spawn at at these.
+var/global/list/tdome1             = list()
+var/global/list/tdome2             = list()
+var/global/list/tdomeobserve       = list()
+var/global/list/tdomeadmin         = list()
+var/global/list/prisonsecuritywarp = list() // Prison security goes to these.
+var/global/list/prisonwarped       = list() // List of players already warped.
+var/global/list/blobstart          = list()
+var/global/list/ninjastart         = list()
+
+var/global/list/cardinal    = list(NORTH, SOUTH, EAST, WEST)
+var/global/list/cardinalz   = list(NORTH, SOUTH, EAST, WEST, UP, DOWN)
+var/global/list/cornerdirs  = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+var/global/list/cornerdirsz = list(NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST, NORTH|UP, EAST|UP, WEST|UP, SOUTH|UP, NORTH|DOWN, EAST|DOWN, WEST|DOWN, SOUTH|DOWN)
+var/global/list/alldirs     = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAST, SOUTHWEST)
+var/global/list/reverse_dir = list( // reverse_dir[dir] = reverse of dir
+>>>>>>> 68a1694b92f... Merge pull request #8653 from MistakeNot4892/hermits
 	 2,  1,  3,  8, 10,  9, 11,  4,  6,  5,  7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42,
 	41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21,
 	23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63

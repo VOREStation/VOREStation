@@ -295,17 +295,16 @@
 /datum/category_item/player_setup_item/occupation/proc/SetJob(mob/user, role, level)
 	var/datum/job/job = job_master.GetJob(role)
 	if(!job)
-		return 0
+		return FALSE
 
 	if(job.type == /datum/job/assistant)
 		if(pref.job_civilian_low & job.flag)
 			pref.job_civilian_low &= ~job.flag
 		else
 			pref.job_civilian_low |= job.flag
-		return 1
-
+		return TRUE
 	SetJobDepartment(job, level)
-	return 1
+	return TRUE
 
 /datum/category_item/player_setup_item/occupation/proc/reset_jobhigh()
 	pref.job_civilian_med |= pref.job_civilian_high
@@ -320,7 +319,7 @@
 // Level is equal to the desired new level of the job. So for a value of 4, we want to disable the job.
 /datum/category_item/player_setup_item/occupation/proc/SetJobDepartment(var/datum/job/job, var/level)
 	if(!job || !level)
-		return 0
+		return FALSE
 
 	switch(job.department_flag)
 		if(CIVILIAN)
@@ -359,6 +358,7 @@
 					pref.job_engsec_med |= job.flag
 				if(3)
 					pref.job_engsec_low |= job.flag
+<<<<<<< HEAD
 		//VOREStation Add
 		if(TALON)
 			pref.job_talon_low &= ~job.flag
@@ -375,6 +375,9 @@
 		//VOREStation Add End
 
 	return 1
+=======
+	return TRUE
+>>>>>>> 68a1694b92f... Merge pull request #8653 from MistakeNot4892/hermits
 
 /datum/category_item/player_setup_item/occupation/proc/ResetJobs()
 	pref.job_civilian_high = 0

@@ -34,11 +34,11 @@
 	var/outfit_type						  // What outfit datum does this job use in its default title?
 
 	var/offmap_spawn = FALSE			  // Do we require weird and special spawning and datacore handling?
+	var/substitute_announce_title         // Set this to replace the actual job title in join/leave messages (for 'gamey' jobs like Survivalist)
 	var/mob_type = JOB_CARBON 		      // Bitflags representing mob type this job spawns
 
 	// Description of the job's role and minimum responsibilities.
 	var/job_description = "This Job doesn't have a description! Please report it!"
-
 /datum/job/New()
 	. = ..()
 	department_accounts = department_accounts || departments_managed
@@ -182,4 +182,7 @@
 		return TRUE
 	if(brain_type in banned_job_species)
 		return TRUE
+<<<<<<< HEAD
 	*/
+=======
+>>>>>>> 68a1694b92f... Merge pull request #8653 from MistakeNot4892/hermits

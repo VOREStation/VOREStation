@@ -12,27 +12,29 @@ var/list/spawntypes = list()
 	var/display_name //Name used in preference setup.
 	var/list/restrict_job = null
 	var/list/disallow_job = null
+	var/list/permit_offsite_job = null
 	var/announce_channel = "Common"
 	var/allowed_mob_types = JOB_SILICON|JOB_CARBON
 
 /datum/spawnpoint/proc/check_job_spawning(job)
-	if(restrict_job && !(job in restrict_job))
-		return 0
-
-	if(disallow_job && (job in disallow_job))
-		return 0
-
 	var/datum/job/J = SSjob.get_job(job)
 	if(!J) // Couldn't find, admin shenanigans? Allow it
-		return 1
-
-	if(J.offmap_spawn && !(job in restrict_job))
-		return 0
-
+		return TRUE
+	if(J.offmap_spawn && !(job in permit_offsite_job) && !(job in restrict_job))
+		return FALSE
+	if(restrict_job && !(job in restrict_job))
+		return FALSE
+	if(disallow_job && (job in disallow_job))
+		return FALSE
 	if(!(J.mob_type & allowed_mob_types))
+<<<<<<< HEAD
 		return 0
 
 	return 1
+=======
+		return FALSE
+	return TRUE
+>>>>>>> 68a1694b92f... Merge pull request #8653 from MistakeNot4892/hermits
 
 /datum/spawnpoint/proc/get_spawn_position()
 	return get_turf(pick(turfs))
@@ -79,6 +81,7 @@ var/list/spawntypes = list()
 	..()
 	turfs = latejoin_cyborg
 
+<<<<<<< HEAD
 /obj/effect/landmark/arrivals
 	name = "JoinLateShuttle"
 	delete_me = 1
@@ -104,3 +107,12 @@ var/global/list/latejoin_tram   = list()
 /datum/spawnpoint/tram/New()
 	..()
 	turfs = latejoin_tram
+=======
+/datum/spawnpoint/wilderness
+	display_name = "Wilderness"
+	msg = null
+
+/datum/spawnpoint/wilderness/New()
+	..()
+	turfs = latejoin_wilderness
+>>>>>>> 68a1694b92f... Merge pull request #8653 from MistakeNot4892/hermits
