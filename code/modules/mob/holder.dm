@@ -172,14 +172,13 @@ var/list/holder_mob_icon_cache = list()
 	origin_tech = list(TECH_BIO = 2)
 	item_state = "cat"
 
-<<<<<<< HEAD
 /obj/item/weapon/holder/cat/runtime
-=======
+
 /obj/item/holder/fennec
 	origin_tech = list(TECH_BIO = 2)
 
 /obj/item/holder/cat/runtime
->>>>>>> e5b61683790... Merge pull request #8650 from Ketrai/fennec
+
 	origin_tech = list(TECH_BIO = 2, TECH_DATA = 4)
 
 /obj/item/weapon/holder/cat/cak
