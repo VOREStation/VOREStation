@@ -107,7 +107,7 @@
 	contains = list(
 			/obj/item/weapon/rig/breacher = 1
 			)
-	cost = 300
+	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
 	containername = "unathi breacher hardsuit crate"
 	access = access_armory
