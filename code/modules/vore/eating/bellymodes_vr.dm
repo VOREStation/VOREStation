@@ -124,7 +124,8 @@
 					formatted_message = replacetext(formatted_message, "%pred", owner)
 					formatted_message = replacetext(formatted_message, "%prey", M)
 					formatted_message = replacetext(formatted_message, "%countprey", absorbed_count)
-					to_chat(M, "<span class='notice'>[formatted_message]</span>")
+					if(formatted_message)
+						to_chat(M, "<span class='notice'>[formatted_message]</span>")
 				else
 					if(digest_mode == DM_DIGEST && !M.digestable)
 						EL = emote_lists[DM_HOLD]					// Use Hold's emote list if we're indigestible
@@ -136,7 +137,8 @@
 					formatted_message = replacetext(formatted_message, "%prey", M)
 					formatted_message = replacetext(formatted_message, "%countprey", living_count)
 					formatted_message = replacetext(formatted_message, "%count", contents.len)
-					to_chat(M, "<span class='notice'>[formatted_message]</span>")
+					if(formatted_message)
+						to_chat(M, "<span class='notice'>[formatted_message]</span>")
 
 	if(to_update)
 		updateVRPanels()
