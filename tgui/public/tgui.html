@@ -364,6 +364,12 @@
 // ------------------------------------------------------
 
 window.onerror = function (msg, url, line, col, error) {
+  // Send fallback command
+  Byond.topic({
+    tgui: 1,
+    window_id: window.__windowId__,
+    type: 'act/__fallback',
+  });
   // Proper stacktrace
   var stack = error && error.stack;
   // Ghetto stacktrace
@@ -615,7 +621,7 @@ Thank you for your cooperation.
 </marquee>
 <div id="FatalError__stack" class="FatalError__stack"></div>
 <div class="FatalError__footer">
-Nanotrasen (c) 2225-2322
+Nanotrasen (c) 2284-2322
 </div>
 </div>
 

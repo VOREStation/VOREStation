@@ -3912,6 +3912,7 @@
 #include "code\modules\tgui\modules\shutoff_monitor.dm"
 #include "code\modules\tgui\modules\supermatter_monitor.dm"
 #include "code\modules\tgui\modules\teleporter.dm"
+#include "code\modules\tgui\modules\admin\player_notes.dm"
 #include "code\modules\tgui\modules\ntos-only\cardmod.dm"
 #include "code\modules\tgui\modules\ntos-only\configurator.dm"
 #include "code\modules\tgui\modules\ntos-only\email.dm"
