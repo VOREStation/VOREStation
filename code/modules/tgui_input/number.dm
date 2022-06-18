@@ -117,7 +117,7 @@
 	data["max_value"] = max_value
 	data["message"] = message
 	data["min_value"] = min_value
-	data["large_buttons"] = usr.client.prefs.tgui_swapped_buttons
+	data["swapped_buttons"] = !usr.client.prefs.tgui_swapped_buttons
 	data["title"] = title
 	return data
 

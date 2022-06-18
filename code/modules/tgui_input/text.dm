@@ -118,7 +118,7 @@
 	data["message"] = message
 	data["multiline"] = multiline
 	data["placeholder"] = default // Default is a reserved keyword
-	data["large_buttons"] = usr.client.prefs.tgui_swapped_buttons
+	data["swapped_buttons"] = !usr.client.prefs.tgui_swapped_buttons
 	data["title"] = title
 	return data
 

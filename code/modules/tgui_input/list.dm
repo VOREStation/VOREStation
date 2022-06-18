@@ -122,7 +122,7 @@
 	data["items"] = items
 	data["large_buttons"] = usr.client.prefs.tgui_large_buttons
 	data["message"] = message
-	data["large_buttons"] = usr.client.prefs.tgui_swapped_buttons
+	data["swapped_buttons"] = !usr.client.prefs.tgui_swapped_buttons
 	data["title"] = title
 	return data
 
