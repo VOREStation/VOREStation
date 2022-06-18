@@ -163,7 +163,7 @@
 			if (weights[I])
 				holder.trans_to(I, weights[I] / total)
 
-/obj/item/reagent_containers/cooking_container/update_icon()
+/obj/item/weapon/reagent_containers/cooking_container/update_icon()
 	overlays.Cut()
 
 	if(food_items)

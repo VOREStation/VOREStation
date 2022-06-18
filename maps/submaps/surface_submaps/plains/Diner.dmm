@@ -30,13 +30,8 @@
 /area/submap/Diner)
 "ai" = (
 /obj/structure/table/standard,
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/enzyme,
 /obj/item/weapon/reagent_containers/glass/beaker,
-=======
-/obj/item/reagent_containers/food/condiment/enzyme,
-/obj/item/reagent_containers/glass/beaker,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aj" = (
@@ -44,19 +39,11 @@
 /obj/machinery/light{
 	dir = 1
 	},
-<<<<<<< HEAD
 /obj/item/weapon/material/knife/butch,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "ak" = (
-/obj/machinery/vending/cola,
-=======
-/obj/item/material/knife/butch,
-/turf/simulated/floor/tiled/white,
-/area/submap/Diner)
-"ak" = (
 /obj/machinery/vending/hotfood,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "al" = (
@@ -91,29 +78,17 @@
 "ar" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/table/standard,
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
 /obj/item/weapon/material/kitchen/utensil/fork,
-=======
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/item/material/kitchen/utensil/fork,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "as" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/table/standard,
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 4
-=======
-/obj/item/reagent_containers/food/condiment/small/peppershaker,
-/obj/machinery/light{
-	dir = 4;
-	icon_state = "tube1"
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -127,32 +102,19 @@
 /area/submap/Diner)
 "au" = (
 /obj/structure/table/standard,
-<<<<<<< HEAD
 /obj/item/weapon/book/manual/chef_recipes,
-=======
-/obj/item/book/manual/chef_recipes,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "av" = (
 /obj/structure/table/standard,
-<<<<<<< HEAD
 /obj/item/weapon/material/kitchen/rollingpin,
-=======
-/obj/item/material/kitchen/rollingpin,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aw" = (
 /obj/machinery/appliance/mixer/cereal,
 /obj/machinery/light{
-<<<<<<< HEAD
-	icon_state = "tube1";
-	dir = 4
-=======
 	dir = 4;
 	icon_state = "tube1"
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -163,7 +125,6 @@
 /area/submap/Diner)
 "ay" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-<<<<<<< HEAD
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
@@ -173,19 +134,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-=======
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/condiment/sugar,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "az" = (
@@ -202,34 +151,20 @@
 /area/submap/Diner)
 "aC" = (
 /obj/structure/table/standard,
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/item/weapon/material/kitchen/utensil/fork,
-=======
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
-/obj/effect/floor_decal/corner/red/diagonal,
-/obj/item/material/kitchen/utensil/fork,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aD" = (
 /obj/structure/table/standard,
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-=======
-/obj/item/reagent_containers/food/condiment/small/peppershaker,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /obj/effect/floor_decal/corner/red/diagonal,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aE" = (
 /obj/effect/floor_decal/corner/red/diagonal,
-<<<<<<< HEAD
 /obj/item/weapon/stool/padded,
-=======
-/obj/item/stool/padded,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aF" = (
@@ -245,15 +180,6 @@
 /area/submap/Diner)
 "aI" = (
 /obj/structure/closet/crate/freezer,
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-=======
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
@@ -261,29 +187,19 @@
 /obj/random/meat,
 /obj/random/meat,
 /obj/random/meat,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aJ" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/red/diagonal,
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
-=======
-/obj/item/reagent_containers/food/condiment/small/saltshaker,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aK" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/machinery/light{
-<<<<<<< HEAD
-	icon_state = "tube1";
-	dir = 4
-=======
 	dir = 4;
 	icon_state = "tube1"
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -310,7 +226,6 @@
 /obj/machinery/light/small{
 	dir = 4
 	},
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/meat,
 /obj/item/weapon/reagent_containers/food/snacks/meat,
 /obj/item/weapon/reagent_containers/food/snacks/meat,
@@ -319,26 +234,12 @@
 /obj/item/weapon/reagent_containers/food/snacks/meat,
 /obj/item/weapon/reagent_containers/food/snacks/meat,
 /obj/item/weapon/reagent_containers/food/snacks/meat,
-=======
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
-/obj/item/reagent_containers/food/snacks/meat,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aO" = (
 /obj/structure/table/standard,
 /obj/effect/floor_decal/corner/red/diagonal,
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
-=======
-/obj/item/reagent_containers/food/condiment/small/peppershaker,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "aP" = (
@@ -349,23 +250,13 @@
 /area/submap/Diner)
 "aQ" = (
 /obj/structure/closet/crate/freezer,
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-=======
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
-/obj/item/reagent_containers/food/condiment/carton/flour,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aR" = (
@@ -426,20 +317,14 @@
 /area/submap/Diner)
 "bc" = (
 /obj/machinery/light{
-<<<<<<< HEAD
-	icon_state = "tube1";
-	dir = 4
-=======
 	dir = 4;
 	icon_state = "tube1"
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "bd" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/closet/secure_closet/freezer/fridge,
-<<<<<<< HEAD
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/storage/fancy/egg_box,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice,
@@ -453,21 +338,6 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/milk,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
-=======
-/obj/item/storage/fancy/egg_box,
-/obj/item/storage/fancy/egg_box,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/orangejuice,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/milk,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
-/obj/item/reagent_containers/food/drinks/bottle/cream,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "be" = (
@@ -481,11 +351,7 @@
 /area/submap/Diner)
 "bg" = (
 /obj/structure/table/woodentable,
-<<<<<<< HEAD
 /obj/item/device/flashlight/lamp,
-=======
-/obj/item/flashlight/lamp,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/lino,
 /area/submap/Diner)
 "bh" = (
@@ -495,14 +361,11 @@
 "bi" = (
 /turf/simulated/floor/lino,
 /area/submap/Diner)
-<<<<<<< HEAD
-=======
 "bj" = (
 /obj/structure/table/standard,
 /obj/random/mug,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 "bk" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -511,19 +374,12 @@
 /area/submap/Diner)
 "bl" = (
 /obj/structure/table/woodentable,
-<<<<<<< HEAD
 /obj/item/weapon/cell/high,
-=======
-/obj/item/cell/high,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/lino,
 /area/submap/Diner)
 "bm" = (
 /obj/structure/table/woodentable,
-<<<<<<< HEAD
-=======
 /obj/random/mug,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/lino,
 /area/submap/Diner)
 "bn" = (
@@ -539,13 +395,8 @@
 "bp" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/windoor_assembly{
-<<<<<<< HEAD
-	icon_state = "l_windoor_assembly01";
-	dir = 2
-=======
 	dir = 2;
 	icon_state = "l_windoor_assembly01"
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -561,13 +412,8 @@
 /area/submap/Diner)
 "bs" = (
 /obj/structure/sink{
-<<<<<<< HEAD
-	icon_state = "sink";
-	dir = 8;
-=======
 	dir = 8;
 	icon_state = "sink";
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -612,10 +458,7 @@
 /area/submap/Diner)
 "bA" = (
 /obj/structure/table/standard,
-<<<<<<< HEAD
-=======
 /obj/random/soap/anom,
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Diner)
 
@@ -1027,11 +870,7 @@ aa
 (16,1,1) = {"
 aa
 ad
-<<<<<<< HEAD
-ah
-=======
 bj
->>>>>>> edb54f137d6... Cooking QOL V2 (#8644)
 ap
 ap
 ap
