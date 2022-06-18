@@ -1,12 +1,11 @@
-import { round } from 'common/math';
 import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Table } from "../components";
+import { Button, Flex, Section } from "../components";
 import { Window } from "../layouts";
 
 export const Turbolift = (props, context) => {
   const { act, data } = useBackend(context);
-  
+
   const {
     floors,
     doors_open,

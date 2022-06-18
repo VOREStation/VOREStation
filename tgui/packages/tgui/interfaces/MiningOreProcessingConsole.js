@@ -1,10 +1,8 @@
 import { toTitleCase } from 'common/string';
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Collapsible, Dropdown, Flex, Input, NoticeBox, Section, LabeledList, AnimatedNumber } from '../components';
+import { useBackend } from "../backend";
+import { Box, Button, Dropdown, Section, LabeledList, AnimatedNumber } from '../components';
 import { Window } from "../layouts";
-import { refocusLayout } from '../layouts';
-import { sortBy } from 'common/collections';
 import { MiningUser } from './common/Mining';
 
 export const MiningOreProcessingConsole = (props, context) => {

@@ -5862,7 +5862,7 @@
 /area/maintenance/stellardelight/deck2/atmos)
 "mJ" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/crew_quarters/bar)
 "mK" = (
@@ -7931,18 +7931,18 @@
 	pixel_x = -1;
 	pixel_y = -42
 	},
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
@@ -8066,7 +8066,7 @@
 /obj/random/tech_supply,
 /obj/random/tech_supply,
 /obj/random/tech_supply,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/machinery/newscaster{
 	pixel_y = 28
@@ -21981,7 +21981,7 @@
 /area/medical/reception)
 "WR" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled/eris/dark/cargo,
 /area/crew_quarters/recreation_area)
 "WS" = (

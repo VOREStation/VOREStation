@@ -10,6 +10,8 @@
 
 	#define USING_MAP_DATUM /datum/map/example
 
+	#warn Please uncheck example before committing
+
 #elif !defined(MAP_OVERRIDE)
 
 	#warn A map has already been included, ignoring Northern Star

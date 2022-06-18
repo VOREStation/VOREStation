@@ -1,8 +1,5 @@
-import { round } from 'common/math';
-import { capitalize } from 'common/string';
-import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from "../backend";
-import { Box, Button, Flex, Collapsible, Icon, LabeledList, NoticeBox, Section, Tabs } from "../components";
+import { useBackend } from "../backend";
+import { Button } from "../components";
 import { Window } from "../layouts";
 
 export const XenoarchReplicator = (props, context) => {

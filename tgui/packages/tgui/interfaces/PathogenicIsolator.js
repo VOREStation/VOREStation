@@ -1,9 +1,7 @@
-import { round } from 'common/math';
 import { Fragment } from 'inferno';
-import { formatCommaNumber } from '../format';
 import { useBackend, useLocalState } from "../backend";
-import { ComplexModal, modalOpen, modalRegisterBodyOverride } from "../interfaces/common/ComplexModal";
-import { Box, Button, Flex, Icon, NoticeBox, LabeledList, ProgressBar, Section, Tabs } from "../components";
+import { ComplexModal, modalRegisterBodyOverride } from "../interfaces/common/ComplexModal";
+import { Box, Button, Flex, NoticeBox, LabeledList, Section, Tabs } from "../components";
 import { Window } from "../layouts";
 
 const virusModalBodyOverride = (modal, context) => {
@@ -51,8 +49,8 @@ const virusModalBodyOverride = (modal, context) => {
             <LabeledList>
               {virus.symptoms.map(s => (
                 <LabeledList.Item key={s.stage} label={s.stage + ". " + s.name}>
-                  <Box inline><Box inline color="label">Strength:</Box> {s.strength}&nbsp;</Box> 
-                  <Box inline><Box inline color="label">Aggressiveness:</Box> {s.aggressiveness}</Box> 
+                  <Box inline><Box inline color="label">Strength:</Box> {s.strength}&nbsp;</Box>
+                  <Box inline><Box inline color="label">Aggressiveness:</Box> {s.aggressiveness}</Box>
                 </LabeledList.Item>
               ))}
             </LabeledList>

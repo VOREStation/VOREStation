@@ -1120,7 +1120,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled,
 /area/teleporter/departing)
 "acc" = (
@@ -15345,6 +15345,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "bPl" = (
@@ -22625,6 +22626,7 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 4
 	},
+/obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "iEn" = (
@@ -23204,6 +23206,7 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 5
 	},
+/obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "jnG" = (
@@ -26600,7 +26603,7 @@
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
 /obj/random/junk,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor,
 /area/maintenance/station/exploration)
 "lVJ" = (
@@ -28245,7 +28248,7 @@
 	layer = 2.9
 	},
 /obj/random/junk,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
 "nCS" = (

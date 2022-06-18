@@ -65,6 +65,43 @@
 			if(istype(H) && istype(H.species, /datum/species/xenochimera)) // If you're somehow able to click this while not a chimera, this should prevent weird runtimes. Will need changing if regeneration is ever opened to non-chimera using the same alert.
 				if(H.revive_ready == REVIVING_DONE) // Sanity check.
 					H.hatch() // Hatch.
+		//pAI buttons!!!
+		if("fold/unfold")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				if(p.loc == p.card)
+					p.fold_out()
+				else
+					p.fold_up()
+		if("choose chassis")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.choose_chassis()
+
+		if("software interface")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.paiInterface()
+		
+		if("radio configuration")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.radio.tgui_interact(p)
+
+		if("pda")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.pda.cmd_pda_open_ui()
+		
+		if("communicator")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.communicator.activate()
+
+		if("known languages")
+			if(ispAI(usr))
+				var/mob/living/silicon/pai/p = usr
+				p.check_languages()
 
 		else
 			return 0

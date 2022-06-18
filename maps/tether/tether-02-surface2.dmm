@@ -11238,6 +11238,8 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 8
 	},
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/evastorage)
 "arK" = (
@@ -13264,7 +13266,7 @@
 /obj/machinery/recharger,
 /obj/item/weapon/storage/toolbox/mechanical,
 /obj/random/drinkbottle,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/bar)
 "avg" = (
@@ -22134,7 +22136,7 @@
 /obj/item/device/taperecorder{
 	pixel_x = -3
 	},
-/obj/item/device/paicard{
+/obj/random/paicard{
 	pixel_x = 4
 	},
 /obj/item/weapon/circuitboard/teleporter,
@@ -31053,7 +31055,7 @@
 /obj/structure/sign/painting/public{
 	pixel_x = -30
 	},
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/reading_room)
 "biK" = (
@@ -31624,7 +31626,7 @@
 	pixel_x = -23
 	},
 /obj/random/junk,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/atmos)
 "bkE" = (
