@@ -649,6 +649,9 @@
 				stat("Station Time", stationtime2text())
 				stat("Station Date", stationdate2text())
 				stat("Round Duration", roundduration2text())
+				stat("Current Map", using_map.name)
+				if(rotation_due)
+					stat("Next Map", get_map())
 
 		if(client.holder)
 			if(statpanel("Status"))

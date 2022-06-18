@@ -120,6 +120,8 @@ var/list/all_maps = list()
 	var/overmap_z = 0		     // If 0 will generate overmap zlevel on init. Otherwise will populate the zlevel provided.
 	var/overmap_event_areas = 0  // How many event "clouds" will be generated
 
+	var/secret_rotation = 0 // If the map should display as 'secret' in the Status Panel
+
 	var/datum/skybox_settings/default_skybox // What skybox do we use if a zlevel doesn't have a custom one? Provide a type.
 
 	var/lobby_icon = 'icons/misc/title.dmi' // The icon which contains the lobby image(s)

@@ -7,8 +7,11 @@
 		return
 
 	to_chat(usr, "<span class='filter_notice'><b>== Map Rotation Status ==</b></span>")
-	to_chat(usr, "<span class='filter_notice'>Map currently in rotation: [get_map()]</span>")
+	to_chat(usr, "<span class='filter_notice'>Currently on map: [using_map.name]</span>")
+	if(rotation_due)
+		to_chat(usr, "<span class='filter_notice'>Map currently in rotation: [get_map()]</span>")
 	to_chat(usr, "<span class='filter_notice'>Allow map rotation: [config.allow_map_rotation]</span>")
+	to_chat(usr, "<span class='filter_notice'>Custom rotation handling: [config.custom_rotation_handling]</span>")
 	to_chat(usr, "<span class='filter_notice'>Rotation due: [rotation_due]</span>")
 	to_chat(usr, "<span class='filter_notice'>Rotation overridden: [rotation_overridden]</span>")
 	switch(config.map_rotation_mode)

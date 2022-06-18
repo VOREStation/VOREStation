@@ -118,4 +118,5 @@ var/rotation_overridden = FALSE
     map_round_count = 0
     rotation_overridden = FALSE
     update_rotation_data()
-    //shell("python ./scripts/rotate_map.py")
+    if (config.custom_rotation_handling == 0)
+        shell("python ./scripts/rotate_map.py")

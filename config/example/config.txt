@@ -597,7 +597,12 @@ JUKEBOX_TRACK_FILES config/jukebox.json
 
 ## Map Rotation Specific ##
 # Enable/Disable Map Rotation
-ALLOW_MAP_ROTATION 1
+ALLOW_MAP_ROTATION 0
+
+# Enable/Disable Custom Handling
+# 0: scripts/rotate_map.py gets called
+# 1: Flag (0/1 aka FALSE/TRUE for 'doRotation') gets set on Line 3 of data/rotation.txt
+CUSTOM_ROTATION_HANDLING 0
 
 # 0 = Manual, 1 = Vote, 2 = Automatic
 MAP_ROTATION_MODE 1

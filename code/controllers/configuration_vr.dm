@@ -12,7 +12,8 @@
 	var/static/ipqualityscore_apikey //API key for ipqualityscore.com
 	var/static/use_playtime_restriction_for_jobs = FALSE
 
-	var/static/allow_map_rotation = 1
+	var/static/allow_map_rotation = 0
+	var/static/custom_rotation_handling = 0
 	var/static/map_rotation_mode = 1
 	var/static/rotation_schedule_mode = 1
 	var/static/rotate_after_round = 10
@@ -69,6 +70,8 @@
 				config.use_playtime_restriction_for_jobs = TRUE
 			if("allow_map_rotation")
 				config.allow_map_rotation = text2num(value)
+			if("custom_rotation_handling")
+				config.custom_rotation_handling = text2num(value)
 			if("map_rotation_mode")
 				config.map_rotation_mode = text2num(value)
 			if("rotation_schedule_mode")

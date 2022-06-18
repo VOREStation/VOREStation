@@ -41,6 +41,7 @@
 	overmap_size = 99
 	overmap_event_areas = 200
 	usable_email_tlds = list("virgo.nt")
+	secret_rotation = FALSE
 
 	zlevel_datum_type = /datum/map_z_level/stellar_delight
 
