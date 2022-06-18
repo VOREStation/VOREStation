@@ -1,5 +1,5 @@
 import { useBackend } from '../backend';
-import { Button, Divider, Input, Section, Table } from '../components';
+import { Button, Divider, Section, Table } from '../components';
 import { Window } from '../layouts';
 
 export const PlayerNotes = (props, context) => {
