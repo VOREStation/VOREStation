@@ -151,7 +151,7 @@
 			switch(new_rank)
 				if(null,"") return
 				if("*New Rank*")
-					new_rank = input(usr, "Please input a new rank", "New custom rank", null, null) as null|text
+					new_rank = input(usr, "Please input a new rank", "New custom rank") as null|text
 					if(config.admin_legacy_system)
 						new_rank = ckeyEx(new_rank)
 					if(!new_rank)

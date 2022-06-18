@@ -40,7 +40,7 @@
 		smes_data["RCON_tag"] = SMES.RCon_tag
 		smeslist.Add(list(smes_data))
 
-	data["pages"] = number_pages
+	data["pages"] = number_pages + 1
 	data["current_page"] = current_page
 	data["smes_info"] = sortByKey(smeslist, "RCON_tag")
 
