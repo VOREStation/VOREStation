@@ -119,6 +119,15 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 
+/datum/sprite_accessory/ears/antennae_eye
+	name = "antennae eye, colorable"
+	desc = ""
+	icon_state = "antennae"
+	extra_overlay = "antennae_eye_1"
+	extra_overlay2 = "antennae_eye_2"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/ears/curly_bug
 	name = "curly antennae, colorable"
 	desc = ""
