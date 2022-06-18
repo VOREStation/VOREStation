@@ -181,6 +181,8 @@
 			"shrink_grow_size" = selected.shrink_grow_size,
 			"emote_time" = selected.emote_time,
 			"emote_active" = selected.emote_active,
+			"nutrition_ex" = host.nutrition_message_visible,
+			"weight_ex" = host.weight_message_visible,
 			"belly_fullscreen" = selected.belly_fullscreen,
 		)
 
@@ -253,6 +255,10 @@
 		"drop_vore" = host.drop_vore,
 		"slip_vore" = host.slip_vore,
 		"stumble_vore" = host.stumble_vore,
+		"nutrition_message_visible" = host.nutrition_message_visible,
+		"nutrition_messages" = host.nutrition_messages,
+		"weight_message_visible" = host.weight_message_visible,
+		"weight_messages" = host.weight_messages
 	)
 
 	return data
@@ -748,7 +754,7 @@
 				host.vore_selected.absorbed_desc = new_desc
 				. = TRUE
 		if("b_msgs")
-			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message (500 for idle messages), max 10 messages per topic.","Really, don't.") // Should remain tgui_alert() (blocking)
+			tgui_alert(user,"Setting abusive or deceptive messages will result in a ban. Consider this your warning. Max 150 characters per message (250 for examines, 500 for idle messages), max 10 messages per topic.","Really, don't.") // Should remain tgui_alert() (blocking)
 			var/help = " Press enter twice to separate messages. '%pred' will be replaced with your name. '%prey' will be replaced with the prey's name. '%belly' will be replaced with your belly's name. '%count' will be replaced with the number of anything in your belly. '%countprey' will be replaced with the number of living prey in your belly."
 			switch(params["msgtype"])
 				if("dmp")
@@ -810,6 +816,32 @@
 					var/new_message = input(user,"These are sent to people who examine you when this belly has absorbed victims. Write them in 3rd person ('Their %belly is larger'). %count will not work for this type, and %countprey will only count absorbed victims."+help,"Examine Message (with absorbed victims)",host.vore_selected.get_messages("ema")) as message
 					if(new_message)
 						host.vore_selected.set_messages(new_message,"ema")
+
+				if("en")
+					var/list/indices = list(1,2,3,4,5,6,7,8,9,10)
+					var/index = tgui_input_list(user,"Select a message to edit:","Select Message", indices)
+					if(index && index <= 10)
+						var/alert = tgui_alert(user, "What do you wish to do with this message?","Selection",list("Edit","Clear","Cancel"))
+						switch(alert)
+							if("Clear")
+								host.nutrition_messages[index] = ""
+							if("Edit")
+								var/new_message = input(user, "Input a message", "Input", host.nutrition_messages[index]) as message
+								if(new_message)
+									host.nutrition_messages[index] = new_message
+
+				if("ew")
+					var/list/indices = list(1,2,3,4,5,6,7,8,9,10)
+					var/index = tgui_input_list(user,"Select a message to edit:","Select Message", indices)
+					if(index && index <= 10)
+						var/alert = tgui_alert(user, "What do you wish to do with this message?","Selection",list("Edit","Clear","Cancel"))
+						switch(alert)
+							if("Clear")
+								host.weight_messages[index] = ""
+							if("Edit")
+								var/new_message = input(user, "Input a message", "Input", host.weight_messages[index]) as message
+								if(new_message)
+									host.weight_messages[index] = new_message
 
 				if("im_digest")
 					var/new_message = input(user,"These are sent to prey every minute when you are on Digest mode. Write them in 2nd person ('%pred's %belly squishes down on you.')."+help,"Idle Message (Digest)",host.vore_selected.get_messages("im_digest")) as message
@@ -1077,6 +1109,12 @@
 			. = TRUE
 		if("b_save_digest_mode")
 			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode
+			. = TRUE
+		if("toggle_nutrition_ex")
+			host.nutrition_message_visible = !host.nutrition_message_visible
+			. = TRUE
+		if("toggle_weight_ex")
+			host.weight_message_visible = !host.weight_message_visible
 			. = TRUE
 		if("b_del")
 			var/alert = tgui_alert(usr, "Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation",list("Cancel","Delete"))
