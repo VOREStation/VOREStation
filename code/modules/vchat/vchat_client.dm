@@ -161,6 +161,7 @@ GLOBAL_DATUM_INIT(iconCache, /savefile, new("data/iconCache.sav")) //Cache of ic
 	update_vis()
 
 	spawn()
+	if(owner.is_preference_enabled(/datum/client_preference/vchat_enable))
 		tgui_alert_async(owner,"VChat didn't load after some time. Switching to use oldchat as a fallback. Try using 'Reload VChat' verb in OOC verbs, or reconnecting to try again.")
 
 //Provide the JS with who we are

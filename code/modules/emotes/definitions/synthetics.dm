@@ -63,6 +63,7 @@
 	emote_message_3p_target = "boops at TARGET!"
 	emote_message_3p = "boops."
 	emote_sound = 'sound/voice/roboboop.ogg'
+	sound_vary = TRUE
 
 /decl/emote/audible/synth/robochirp
 	key = "robochirp"
@@ -71,3 +72,4 @@
 	emote_message_3p_target = "chirps at TARGET!"
 	emote_message_3p = "chirps."
 	emote_sound = 'sound/voice/robochirp.ogg'
+	sound_vary = TRUE

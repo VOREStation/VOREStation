@@ -50,7 +50,9 @@
 		"Panther" = "panther",
 		"Cyber Elf" = "cyberelf",
 		"Teppi" = "teppi",
-		"Catslug" = "catslug"
+		"Catslug" = "catslug",
+		"Car" = "car",
+		"Type One" = "typeone"
 		//VOREStation Addition End
 		)
 
@@ -286,6 +288,7 @@
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
 	verbs |= /mob/living/silicon/pai/proc/pai_nom
 	verbs |= /mob/living/proc/vertical_nom
+	update_icon()
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"

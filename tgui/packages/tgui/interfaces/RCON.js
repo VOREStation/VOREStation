@@ -14,7 +14,7 @@ export const RCON = (props, context) => {
   return (
     <Window
       width={630}
-      height={440}
+      height={540}
       resizable>
       <Window.Content scrollable>
         <RCONContent />
@@ -61,10 +61,16 @@ const RCONSmesList = (props, context) => {
 
   const {
     smes_info,
+    pages,
+    current_page,
   } = data;
 
+  const runCallback = (cb) => {
+    return cb();
+  };
+
   return (
-    <Section title="SMESs">
+    <Section title={"SMESs (Page " + current_page + ")"}>
       <Stack vertical>
         {smes_info.map(smes => (
           <Stack.Item key={smes.RCON_tag}>
@@ -72,6 +78,23 @@ const RCONSmesList = (props, context) => {
           </Stack.Item>
         ))}
       </Stack>
+      Page Selection:<br />
+      {runCallback(() => {
+        const row = [];
+        for (let i = 1; i < pages; i++) {
+          row.push(
+            <Button
+              selected={current_page === i}
+              key={i}
+              onClick={() => act("set_smes_page", {
+                index: i,
+              })}>
+              {i}
+            </Button>
+          );
+        }
+        return row;
+      })}
     </Section>
   );
 };

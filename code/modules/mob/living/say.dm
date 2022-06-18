@@ -141,7 +141,7 @@ var/list/channel_to_radio_key = new
 		return "asks"
 	return verb
 
-/mob/living/say(var/message, var/whispering = 0)
+/mob/living/say(var/message, var/datum/language/speaking = null, var/whispering = 0)
 	//If you're muted for IC chat
 	if(client)
 		if(message)

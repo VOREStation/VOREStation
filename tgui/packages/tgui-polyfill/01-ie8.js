@@ -743,7 +743,7 @@
           ontype = 'on' + type,
           handlers = (window[ontype] || Object)[SECRET],
           i = handlers ? find(handlers, handler) : -1
-         ;
+          ;
         if (-1 < i) handlers.splice(i, 1);
       }),
       pageXOffset: {get: getter('scrollLeft')},

@@ -2,7 +2,7 @@
 	name = SPECIES_ALRAUNE
 	name_plural = "Alraunes"
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/punch, /datum/unarmed_attack/bite)
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	slowdown = 1 //slow, they're plants. Not as slow as full diona.
 	total_health = 100 //standard
 	brute_mod = 1 //nothing special

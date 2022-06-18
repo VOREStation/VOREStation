@@ -205,6 +205,14 @@
 	emote_message_3p = "purrs."
 	emote_sound = 'sound/voice/cat_purr_long.ogg'
 
+/decl/emote/audible/fennecscream
+	key = "fennecscream"
+	emote_message_3p = "screeches!"
+
+/decl/emote/audible/zoom
+	key = "zoom"
+	emote_message_3p = "zooms."
+
 /decl/emote/audible/teshsqueak
 	key = "surprised"
 	emote_message_1p = "You chirp in surprise!"
