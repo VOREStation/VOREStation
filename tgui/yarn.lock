@@ -9168,19 +9168,6 @@ resolve@^2.0.0-next.3:
   languageName: unknown
   linkType: soft
 
-"tgui-panel@workspace:packages/tgui-panel":
-  version: 0.0.0-use.local
-  resolution: "tgui-panel@workspace:packages/tgui-panel"
-  dependencies:
-    common: "workspace:*"
-    dompurify: ^2.3.8
-    inferno: ^7.4.11
-    tgui: "workspace:*"
-    tgui-dev-server: "workspace:*"
-    tgui-polyfill: "workspace:*"
-  languageName: unknown
-  linkType: soft
-
 "tgui-polyfill@workspace:*, tgui-polyfill@workspace:packages/tgui-polyfill":
   version: 0.0.0-use.local
   resolution: "tgui-polyfill@workspace:packages/tgui-polyfill"
