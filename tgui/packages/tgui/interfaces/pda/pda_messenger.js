@@ -1,8 +1,7 @@
 import { decodeHtmlEntities } from 'common/string';
 import { filter } from 'common/collections';
-import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../../components";
+import { Box, Button, LabeledList, Section } from "../../components";
 
 export const pda_messenger = (props, context) => {
   const { act, data } = useBackend(context);
@@ -63,6 +62,10 @@ const ActiveConversation = (props, context) => {
       }
       height="450px"
       stretchContents>
+      <Button
+        icon="comment"
+        onClick={() => act("Message", { "target": active_conversation })}
+        content="Reply" />
       <Section style={{
         "height": "97%",
         "overflow-y": "auto",
@@ -103,6 +106,10 @@ const ActiveConversation = (props, context) => {
         }
         height="450px"
         stretchContents>
+        <Button
+          icon="comment"
+          onClick={() => act("Message", { "target": active_conversation })}
+          content="Reply" />
         <Section style={{
           "height": "97%",
           "overflow-y": "auto",

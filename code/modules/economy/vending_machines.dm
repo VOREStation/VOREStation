@@ -487,7 +487,6 @@
 					/obj/item/weapon/plantspray/pests = 20,
 					/obj/item/weapon/reagent_containers/syringe = 5,
 					/obj/item/weapon/reagent_containers/glass/beaker = 4,
-					/obj/item/weapon/watertank = 1,
 					/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,
 					/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
@@ -530,6 +529,7 @@
 					/obj/item/seeds/cocoapodseed = 3,
 					/obj/item/seeds/plumpmycelium = 2,
 					/obj/item/seeds/cabbageseed = 3,
+					/obj/item/seeds/lettuce = 3,
 					/obj/item/seeds/grapeseed = 3,
 					/obj/item/seeds/pumpkinseed = 3,
 					/obj/item/seeds/cherryseed = 3,
@@ -628,6 +628,7 @@
 					/obj/item/device/analyzer = 5,
 					/obj/item/device/t_scanner = 5,
 					/obj/item/weapon/tool/screwdriver = 5,
+					/obj/item/weapon/extinguisher/mini = 3,
 					/obj/item/device/flashlight/glowstick = 3,
 					/obj/item/device/flashlight/glowstick/red = 3,
 					/obj/item/device/flashlight/glowstick/blue = 3,
@@ -1523,14 +1524,13 @@
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/belt/janitor = 5,
 		/obj/item/clothing/shoes/galoshes = 5,
-		/obj/item/weapon/cartridge/janitor = 5,
-		/obj/item/weapon/watertank/janitor = 1
+		/obj/item/weapon/cartridge/janitor = 5
 	)
 	req_log_access = access_hop
 	has_logs = 1
 
 /obj/machinery/vending/wardrobe/lawdrobe
-	name = "lawyer wardrobe vendor"
+	name = "IAA wardrobe vendor"
 	desc = "All the things you need to perform your job! Why didn't you already have them?"
 	product_slogans = "Want to do your job? Sure you do!"
 	icon_state = "lawdrobe"

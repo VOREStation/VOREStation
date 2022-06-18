@@ -40,7 +40,11 @@ export class Section extends Component<SectionProps> {
       addScrollableNode(this.scrollableRef.current);
     }
     if (this.props.autoFocus) {
-      setTimeout(() => this.scrollableRef.current.focus(), 1);
+      setTimeout(() => {
+        if (this.scrollableRef.current) {
+          return this.scrollableRef.current.focus();
+        }
+      }, 1);
     }
   }
 

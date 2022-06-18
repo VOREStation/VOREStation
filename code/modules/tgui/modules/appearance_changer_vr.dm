@@ -43,3 +43,15 @@
 		if(APPEARANCECHANGER_CHANGED_EYES)
 			to_chat(M, "<span class='notice'>You feel lightheaded and drowsy...</span>")
 			to_chat(O, "<span class='notice'>You feel warm as you make subtle changes to your captive's body.</span>")
+
+// Cocoon Stuff
+/datum/tgui_module/appearance_changer/cocoon
+	name ="Appearance Editor (Cocoon)"
+	flags = APPEARANCE_ALL_HAIR
+	customize_usr = TRUE
+
+/datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
+	//if(!istype(owner.loc, /obj/item/weapon/storage/vore_egg/bugcocoon))
+	if(!owner.transforming)
+		return STATUS_CLOSE
+	return ..()

@@ -14,6 +14,9 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	var/obj/item/device/radio/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
+	var/image/screen_layer
+	var/screen_color = "#00ff0d"
+	var/last_notify = 0
 
 /obj/item/device/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -42,19 +45,52 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	if(choice == "No")
 		return ..()
 
-	var/pai_name = input(user, "Choose your character's name", "Character Name") as text
-	var/actual_pai_name = sanitize_name(pai_name)
-	if(isnull(actual_pai_name))
-		return ..()
-
+	choice = tgui_alert(user, "Do you want to load your pAI data?", "Load", list("Yes", "No"))
+	var/actual_pai_name
 	var/turf/location = get_turf(src)
-	var/obj/item/device/paicard/card = new(location)
-	var/mob/living/silicon/pai/new_pai = new(card)
+	if(choice == "No")
+		var/pai_name = input(user, "Choose your character's name", "Character Name") as text
+		actual_pai_name = sanitize_name(pai_name, ,1)
+		if(isnull(actual_pai_name))
+			return ..()
+		if(istype(src , /obj/item/device/paicard/typeb))
+			var/obj/item/device/paicard/typeb/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			new_pai.SetName(actual_pai_name)
+		else
+			var/obj/item/device/paicard/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			new_pai.SetName(actual_pai_name)
+
+	if(choice == "Yes")
+		if(istype(src , /obj/item/device/paicard/typeb))
+			var/obj/item/device/paicard/typeb/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			if(!new_pai.savefile_load(new_pai))
+				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				actual_pai_name = sanitize_name(pai_name, ,1)
+				if(isnull(actual_pai_name))
+					return ..()
+		else
+			var/obj/item/device/paicard/card = new(location)
+			var/mob/living/silicon/pai/new_pai = new(card)
+			new_pai.key = user.key
+			card.setPersonality(new_pai)
+			if(!new_pai.savefile_load(new_pai))
+				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				actual_pai_name = sanitize_name(pai_name, ,1)
+				if(isnull(actual_pai_name))
+					return ..()
+
 	qdel(src)
-	new_pai.key = user.key
-	card.setPersonality(new_pai)
-	new_pai.SetName(actual_pai_name)
 	return ..()
+
 // VOREStation Edit End
 
 /obj/item/device/paicard/attack_self(mob/user)
@@ -214,6 +250,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		else //</font></font>
 			dat += "<b>Radio Uplink</b><br>"
 			dat += "<font color=red><i>Radio firmware not loaded. Please install a pAI personality to load firmware.</i></font><br>"
+		/* - //A button for instantly deleting people from the game is lame, especially considering that pAIs on our server tend to activate without a master.
 		dat += {"
 			<table>
 				<td class="button_red"><a href='byond://?src=\ref[src];wipe=1' class='button'>Wipe current pAI personality</a>
@@ -221,6 +258,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 				</td>
 			</table>
 		"}
+		*/
 	else
 		if(looking_for_personality)
 			dat += {"
@@ -304,40 +342,48 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/item/device/paicard/proc/setPersonality(mob/living/silicon/pai/personality)
 	src.pai = personality
-	add_overlay("pai-happy")
+	setEmotion(1)
 
 /obj/item/device/paicard/proc/removePersonality()
 	src.pai = null
 	cut_overlays()
-	add_overlay("pai-off")
+	setEmotion(16)
 
 /obj/item/device/paicard
 	var/current_emotion = 1
 /obj/item/device/paicard/proc/setEmotion(var/emotion)
 	if(pai)
 		cut_overlays()
+		qdel(screen_layer)
+		screen_layer = null
 		switch(emotion)
-			if(1) add_overlay("pai-happy")
-			if(2) add_overlay("pai-cat")
-			if(3) add_overlay("pai-extremely-happy")
-			if(4) add_overlay("pai-face")
-			if(5) add_overlay("pai-laugh")
-			if(6) add_overlay("pai-off")
-			if(7) add_overlay("pai-sad")
-			if(8) add_overlay("pai-angry")
-			if(9) add_overlay("pai-what")
-			if(10) add_overlay("pai-neutral")
-			if(11) add_overlay("pai-silly")
-			if(12) add_overlay("pai-nose")
-			if(13) add_overlay("pai-smirk")
-			if(14) add_overlay("pai-exclamation")
-			if(15) add_overlay("pai-question")
+			if(1) screen_layer = image(icon, "pai-neutral")
+			if(2) screen_layer = image(icon, "pai-what")
+			if(3) screen_layer = image(icon, "pai-happy")
+			if(4) screen_layer = image(icon, "pai-cat")
+			if(5) screen_layer = image(icon, "pai-extremely-happy")
+			if(6) screen_layer = image(icon, "pai-face")
+			if(7) screen_layer = image(icon, "pai-laugh")
+			if(8) screen_layer = image(icon, "pai-sad")
+			if(9) screen_layer = image(icon, "pai-angry")
+			if(10) screen_layer = image(icon, "pai-silly")
+			if(11) screen_layer = image(icon, "pai-nose")
+			if(12) screen_layer = image(icon, "pai-smirk")
+			if(13) screen_layer = image(icon, "pai-exclamation")
+			if(14) screen_layer = image(icon, "pai-question")
+			if(15) screen_layer = image(icon, "pai-blank")
+			if(16) screen_layer = image(icon, "pai-off")
+
+		screen_layer.color = pai.eye_color
+		add_overlay(screen_layer)
 		current_emotion = emotion
 
 /obj/item/device/paicard/proc/alertUpdate()
-	var/turf/T = get_turf_or_move(src.loc)
-	for (var/mob/M in viewers(T))
-		M.show_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", 3, "<span class='notice'>\The [src] bleeps electronically.</span>", 2)
+	if(pai)
+		return
+	if(last_notify == 0 || (5 MINUTES <= world.time - last_notify))
+		audible_message("<span class='notice'>\The [src] flashes a message across its screen, \"Additional personalities available for download.\"</span>", hearing_distance = world.view, runemessage = "bleeps!")
+		last_notify = world.time
 
 /obj/item/device/paicard/emp_act(severity)
 	for(var/mob/M in src)
@@ -360,3 +406,57 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		var/rendered = "<span class='message'>[msg]</span>"
 		pai.show_message(rendered, type)
 	..()
+
+
+// VoreEdit: Living Machine Stuff after this.
+// This adds a var and proc for all machines to take a pAI. (The pAI can't control anything, it's just for RP.)
+// You need to add usage of the proc to each machine to actually add support. For an example of this, see code\modules\food\kitchen\microwave.dm
+/obj/machinery
+	var/obj/item/device/paicard/paicard = null
+
+/obj/machinery/proc/insertpai(mob/user, obj/item/device/paicard/card)
+	//var/obj/item/paicard/card = I
+	var/mob/living/silicon/pai/AI = card.pai
+	if(paicard)
+		to_chat(user, span_notice("This bot is already under PAI Control!"))
+		return
+	if(!istype(card)) // TODO: Add sleevecard support.
+		return
+	if(!card.pai)
+		to_chat(user, span_notice("This card does not currently have a personality!"))
+		return
+	paicard = card
+	user.unEquip(card)
+	card.forceMove(src)
+	AI.client.eye = src
+	to_chat(AI, span_notice("Your location is [card.loc].")) // DEBUG. TODO: Make unfolding the chassis trigger an eject.
+	name = AI.name
+	to_chat(AI, span_notice("You feel a tingle in your circuits as your systems interface with \the [initial(src.name)]."))
+
+/obj/machinery/proc/ejectpai(mob/user)
+	if(paicard)
+		var/mob/living/silicon/pai/AI = paicard.pai
+		paicard.forceMove(src.loc)
+		AI.client.eye = AI
+		paicard = null
+		name = initial(src.name)
+		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
+		if(user)
+			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
+
+/obj/item/device/paicard/typeb
+	name = "personal AI device"
+	icon = 'icons/obj/paicard.dmi'
+
+/obj/random/paicard
+	name = "personal AI device spawner"
+	icon = 'icons/obj/paicard.dmi'
+	icon_state = "pai"
+
+/obj/random/paicard/item_to_spawn()
+	return pick(/obj/item/device/paicard ,/obj/item/device/paicard/typeb)
+
+/obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
+	if(!pai.digestable)
+		return
+	. = ..()	

@@ -5148,12 +5148,12 @@
 /turf/unsimulated/floor/techfloor_grid,
 /area/centcom/evac)
 "uC" = (
-/obj/machinery/computer/shuttle_control/emergency{
-	dir = 8
-	},
 /obj/machinery/light/floortube{
 	dir = 4;
 	pixel_x = 6
+	},
+/obj/machinery/computer{
+	dir = 8
 	},
 /turf/simulated/shuttle/floor,
 /area/centcom/terminal)
@@ -5209,8 +5209,8 @@
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape)
 "uT" = (
-/obj/structure/shuttle/engine/propulsion{
-	dir = 8
+/obj/machinery/ion_engine{
+	dir = 4
 	},
 /turf/simulated/shuttle/plating,
 /area/centcom/terminal)
@@ -6661,6 +6661,16 @@
 	dir = 1
 	},
 /turf/simulated/floor/tiled/steel_grid,
+/area/centcom/terminal)
+"CP" = (
+/obj/machinery/door/airlock/angled_bay/external/glass{
+	dir = 4;
+	door_color = "#822a1e";
+	frequency = null;
+	id_tag = null;
+	locked = 1
+	},
+/turf/simulated/shuttle/floor/yellow,
 /area/centcom/terminal)
 "CR" = (
 /obj/machinery/porta_turret/crescent{
@@ -20347,7 +20357,7 @@ dm
 dm
 wb
 wb
-dm
+CP
 wb
 wb
 dm

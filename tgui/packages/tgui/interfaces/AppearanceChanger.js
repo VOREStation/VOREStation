@@ -1,8 +1,8 @@
-import { filter, sortBy } from 'common/collections';
+import { sortBy } from 'common/collections';
 import { capitalize, decodeHtmlEntities } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
-import { Box, Button, ByondUi, Flex, Icon, LabeledList, ProgressBar, Section, Tabs, ColorBox } from "../components";
+import { Box, Button, ByondUi, Flex, LabeledList, Section, Tabs, ColorBox } from "../components";
 import { Window } from "../layouts";
 
 export const AppearanceChanger = (props, context) => {
@@ -324,7 +324,7 @@ const AppearanceChangerHair = (props, context) => {
   return (
     <Section title="Hair" fill scrollable>
       {hair_styles.map(hair => (
-        <Button 
+        <Button
           key={hair.hairstyle}
           onClick={() => act("hair", { hair: hair.hairstyle })}
           selected={hair.hairstyle === hair_style}
@@ -345,7 +345,7 @@ const AppearanceChangerFacialHair = (props, context) => {
   return (
     <Section title="Facial Hair" fill scrollable>
       {facial_hair_styles.map(hair => (
-        <Button 
+        <Button
           key={hair.facialhairstyle}
           onClick={() => act("facial_hair", { facial_hair: hair.facialhairstyle })}
           selected={hair.facialhairstyle === facial_hair_style}
@@ -370,7 +370,7 @@ const AppearanceChangerEars = (props, context) => {
         selected={ear_style === null}
         content="-- Not Set --" />
       {sortBy(e => e.name.toLowerCase())(ear_styles).map(ear => (
-        <Button 
+        <Button
           key={ear.instance}
           onClick={() => act("ear", { ref: ear.instance })}
           selected={ear.name === ear_style}
@@ -395,7 +395,7 @@ const AppearanceChangerTails = (props, context) => {
         selected={tail_style === null}
         content="-- Not Set --" />
       {sortBy(e => e.name.toLowerCase())(tail_styles).map(tail => (
-        <Button 
+        <Button
           key={tail.instance}
           onClick={() => act("tail", { ref: tail.instance })}
           selected={tail.name === tail_style}
@@ -420,7 +420,7 @@ const AppearanceChangerWings = (props, context) => {
         selected={wing_style === null}
         content="-- Not Set --" />
       {sortBy(e => e.name.toLowerCase())(wing_styles).map(wing => (
-        <Button 
+        <Button
           key={wing.instance}
           onClick={() => act("wing", { ref: wing.instance })}
           selected={wing.name === wing_style}

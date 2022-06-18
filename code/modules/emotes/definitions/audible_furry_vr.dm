@@ -34,6 +34,7 @@
     key = "chirp"
     emote_message_3p = "chirps!"
     emote_sound = 'sound/misc/nymphchirp.ogg'
+    sound_vary = FALSE
 /decl/emote/audible/hoot
     key = "hoot"
     emote_message_3p = "hoots!"
@@ -109,10 +110,12 @@
     key = "snort"
     emote_message_3p = "snorts!"
     emote_sound = 'sound/voice/Snort.ogg'
+    sound_vary = FALSE
 /decl/emote/audible/meow
     key = "meow"
     emote_message_3p = "gently meows!"
     emote_sound = 'sound/voice/Meow.ogg'
+    sound_vary = FALSE
 /decl/emote/audible/moo
     key = "moo"
     emote_message_3p = "takes a breath and lets out a moo."
@@ -155,6 +158,12 @@
             emote_sound = pick(smolsound)
         else
             emote_sound = pick(bigsound)
+    else if(istype(user, /mob/living/silicon/pai))
+        var/mob/living/silicon/pai/me = user
+        if(me.chassis == "teppi")
+            emote_sound = pick(bigsound)
+        else
+            emote_sound = pick(smolsound)
     else if(user.size_multiplier >= 1.5)
         emote_sound = pick(bigsound)
     else

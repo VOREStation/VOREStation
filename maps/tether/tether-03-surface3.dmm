@@ -5858,6 +5858,10 @@
 	},
 /obj/effect/floor_decal/borderfloor/corner2,
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2,
+/obj/structure/disposalpipe/segment{
+	dir = 8;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
 "aiH" = (
@@ -5871,6 +5875,11 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/tagger{
+	dir = 2;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
 	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/recreation_area_restroom)
@@ -8319,7 +8328,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
 "anb" = (
@@ -9775,7 +9784,7 @@
 /obj/random/maintenance/medical,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/surface_three_hall)
 "apA" = (
@@ -10492,6 +10501,10 @@
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
+	},
+/obj/machinery/disposal/wall/cleaner,
+/obj/structure/disposalpipe/trunk{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
@@ -13047,6 +13060,10 @@
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
@@ -16464,6 +16481,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aAG" = (
@@ -16472,6 +16492,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -21035,6 +21058,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aIg" = (
@@ -22194,6 +22220,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "aKj" = (
@@ -22265,7 +22294,9 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/crew_quarters/bar)
 "aKr" = (
-/obj/structure/disposalpipe/segment,
+/obj/structure/disposalpipe/junction{
+	dir = 1
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aKs" = (
@@ -27946,6 +27977,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "aVx" = (
@@ -31611,10 +31643,10 @@
 	dir = 1;
 	fancy_shuttle_tag = "tourbus"
 	},
-/obj/effect/fancy_shuttle_floor_preview/tourbus{
+/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
 	dir = 1
 	},
-/obj/machinery/atmospherics/unary/engine/fancy_shuttle{
+/obj/effect/fancy_shuttle_floor_preview/tourbus{
 	dir = 1
 	},
 /turf/simulated/wall/fancy_shuttle{
@@ -32910,6 +32942,11 @@
 	pixel_x = -28;
 	pixel_y = 29
 	},
+/obj/structure/disposalpipe/tagger{
+	dir = 2;
+	name = "package tagger - Resleeving";
+	sort_tag = "Resleeving"
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
 "beh" = (
@@ -33532,6 +33569,9 @@
 "bfl" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bfn" = (
@@ -33615,6 +33655,9 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
@@ -34021,6 +34064,10 @@
 	name = "north bump";
 	pixel_y = 24
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 2;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bgk" = (
@@ -34384,6 +34431,9 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/bar)
 "bgS" = (
@@ -34476,6 +34526,7 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/techfloor,
+/obj/machinery/light,
 /turf/simulated/floor/tiled/techfloor,
 /area/crew_quarters/sleep/cryo)
 "bhc" = (
@@ -34609,11 +34660,9 @@
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/surgery2)
 "bhp" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 4
-	},
+/obj/structure/disposalpipe/segment,
 /obj/machinery/light{
-	dir = 8
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/southhall)
@@ -37171,6 +37220,10 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
+	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
 "bnF" = (
@@ -38643,18 +38696,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_main)
-"eGv" = (
-/obj/effect/floor_decal/fancy_shuttle{
-	fancy_shuttle_tag = "tourbus";
-	name = "tourbus"
-	},
-/obj/machinery/atmospherics/binary/pump,
-/obj/structure/cable/green{
-	dir = 1;
-	icon_state = "1-2"
-	},
-/turf/simulated/floor/tiled,
-/area/shuttle/tourbus/general)
 "eHk" = (
 /obj/structure/sign/nosmoking_2{
 	pixel_x = 29
@@ -39218,9 +39259,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 9
 	},
-/obj/machinery/power/terminal{
-	dir = 4
-	},
 /obj/machinery/light,
 /obj/machinery/power/apc{
 	name = "south bump";
@@ -39686,6 +39724,7 @@
 /obj/machinery/door/airlock{
 	name = "Unisex Restrooms"
 	},
+/obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
 /area/crew_quarters/barrestroom)
 "ioG" = (
@@ -40189,7 +40228,7 @@
 /turf/simulated/wall,
 /area/tether/surfacebase/security/iaa/officeb)
 "jZe" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/obj/machinery/atmospherics/binary/pump,
 /turf/simulated/floor/tiled/monotile,
 /area/tether/surfacebase/shuttle_pad)
 "kar" = (
@@ -40717,7 +40756,7 @@
 /area/tether/surfacebase/security/hos)
 "lHr" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/wood,
 /area/tether/surfacebase/entertainment)
 "lIe" = (
@@ -41397,6 +41436,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/crew_quarters/recreation_area)
+"ome" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "ooM" = (
 /obj/effect/floor_decal/steeldecal/monofloor{
 	dir = 1
@@ -41428,6 +41473,10 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 1;
+	icon_state = "pipe-c"
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/recreation_area_restroom)
@@ -42132,6 +42181,9 @@
 	icon_state = "1-2"
 	},
 /obj/structure/disposalpipe/segment,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
 "qze" = (
@@ -42754,6 +42806,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/triage)
+"sJY" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "tourbus";
+	name = "tourbus"
+	},
+/obj/structure/cable/green{
+	dir = 1;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/yellow,
+/turf/simulated/floor/tiled,
+/area/shuttle/tourbus/general)
 "sLa" = (
 /obj/machinery/firealarm{
 	layer = 3.3;
@@ -42837,6 +42901,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_three)
+"sUg" = (
+/obj/machinery/disposal/wall/cleaner{
+	dir = 1
+	},
+/obj/structure/disposalpipe/trunk{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/white,
+/area/crew_quarters/barrestroom)
 "sVC" = (
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
@@ -42936,6 +43009,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/research/researchdivision)
+"twM" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/structure/disposalpipe/junction{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "txo" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -53287,7 +53377,7 @@ amw
 amw
 akZ
 apr
-apQ
+twM
 aiG
 afj
 aqD
@@ -55884,8 +55974,8 @@ xOa
 aXa
 aXa
 kcC
-eGv
-aXa
+sJY
+sJY
 fEX
 gCZ
 ykY
@@ -57178,8 +57268,8 @@ qbo
 bhi
 bhm
 fsd
-bhp
-beU
+qbo
+ome
 beU
 gRG
 laB
@@ -57459,7 +57549,7 @@ qvs
 bgm
 aPM
 ely
-hId
+bhp
 jCE
 hId
 bhq
@@ -60845,7 +60935,7 @@ bgH
 asX
 aGK
 qum
-aTE
+sUg
 aGK
 bfM
 aGK

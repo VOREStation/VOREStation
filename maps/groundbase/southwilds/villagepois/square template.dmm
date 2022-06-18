@@ -1,0 +1,182 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/template_noop)
+"v" = (
+/turf/simulated/wall,
+/area/template_noop)
+
+(1,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+a
+"}
+(3,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(4,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(5,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(6,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(7,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(8,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(9,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(10,1,1) = {"
+a
+v
+n
+n
+n
+n
+n
+n
+n
+n
+v
+a
+"}
+(11,1,1) = {"
+a
+v
+v
+v
+v
+v
+v
+v
+v
+v
+v
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

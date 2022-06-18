@@ -1,6 +1,6 @@
 /* eslint react/no-danger: "off" */
 import { useBackend } from "../../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../../components";
+import { Box, Button, Section } from "../../components";
 
 export const pda_notekeeper = (props, context) => {
   const { act, data } = useBackend(context);

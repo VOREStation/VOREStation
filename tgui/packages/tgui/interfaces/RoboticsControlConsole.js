@@ -1,6 +1,6 @@
 import { Fragment } from 'inferno';
-import { useBackend, useSharedState } from '../backend';
-import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section, Tabs } from '../components';
+import { useBackend } from '../backend';
+import { Box, Button, LabeledList, ProgressBar, NoticeBox, Section } from '../components';
 import { Window } from '../layouts';
 
 export const RoboticsControlConsole = (props, context) => {

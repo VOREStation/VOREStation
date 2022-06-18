@@ -1,11 +1,11 @@
 import { useBackend } from "../backend";
 import { Fragment } from "inferno";
-import { Box, Button, LabeledList, ProgressBar, Section, LabeledControls, AnimatedNumber } from "../components";
+import { Box, Button, LabeledList, Section } from "../components";
 import { Window } from "../layouts";
 
 const getStatusText = port => {
   if (port.input) { return "Input"; }
-  if (port.output) { return "Output"; } 
+  if (port.output) { return "Output"; }
   if (port.f_type) { return port.f_type; }
   return "Disabled";
 };

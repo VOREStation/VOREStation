@@ -92,10 +92,9 @@
 	if(!window.is_ready())
 		window.initialize(
 			fancy = user.client.prefs.tgui_fancy,
-			inline_assets = list(
-			get_asset_datum(/datum/asset/simple/tgui_common),
-			get_asset_datum(/datum/asset/simple/tgui)
-		))
+			assets = list(
+				get_asset_datum(/datum/asset/simple/tgui),
+			))
 	else
 		window.send_message("ping")
 	window.send_asset(get_asset_datum(/datum/asset/simple/fontawesome))

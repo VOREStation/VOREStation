@@ -1,0 +1,371 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/template_noop,
+/area/submap/groundbase/poi/wildvillage)
+"b" = (
+/obj/structure/table/standard,
+/obj/machinery/microwave,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"c" = (
+/turf/simulated/floor/lino,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"g" = (
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"h" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"i" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/lino,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"k" = (
+/obj/structure/table/standard,
+/obj/item/weapon/book/manual/cook_guide,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"m" = (
+/obj/structure/closet/secure_closet/freezer/fridge,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"n" = (
+/obj/machinery/chem_master/condimaster,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"p" = (
+/obj/machinery/light/floortube{
+	dir = 8
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/storage/box/beakers{
+	name = "box of measuring cups";
+	pixel_x = 2;
+	pixel_y = 3;
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"r" = (
+/obj/item/weapon/stool/baystool/padded{
+	dir = 1
+	},
+/turf/simulated/floor/lino,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"s" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/lino,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"u" = (
+/turf/simulated/floor/outdoors/sidewalk/side/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"v" = (
+/turf/simulated/wall,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"x" = (
+/obj/structure/table/marble,
+/obj/machinery/door/blast/gate/thin{
+	dir = 2;
+	id = "villagekitchn";
+	layer = 3.3
+	},
+/obj/machinery/light/floortube{
+	dir = 1
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"y" = (
+/obj/machinery/appliance/mixer/candy,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"A" = (
+/obj/machinery/light/small{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"B" = (
+/obj/structure/table/standard,
+/obj/machinery/reagentgrinder{
+	pixel_y = 10
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"D" = (
+/obj/structure/table/standard,
+/obj/item/weapon/material/kitchen/rollingpin,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"E" = (
+/obj/machinery/appliance/cooker/oven,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"F" = (
+/obj/machinery/appliance/cooker/grill,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"G" = (
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/spacespice,
+/obj/item/weapon/reagent_containers/food/condiment/spacespice,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
+/obj/structure/closet,
+/obj/random/donkpocketbox,
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"I" = (
+/obj/machinery/light/floortube{
+	dir = 4
+	},
+/obj/structure/table/standard,
+/obj/item/weapon/material/knife/butch,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"J" = (
+/obj/machinery/appliance/mixer/cereal,
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"M" = (
+/obj/machinery/light_switch{
+	dir = 4;
+	pixel_x = -30
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"P" = (
+/obj/machinery/door/airlock/silver{
+	name = "automatic door"
+	},
+/turf/simulated/floor/bmarble,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"R" = (
+/obj/structure/table/marble,
+/obj/machinery/door/blast/gate/thin{
+	dir = 2;
+	id = "villagekitchn";
+	layer = 3.3
+	},
+/turf/simulated/floor/virgo3c{
+	edge_blending_priority = -1;
+	outdoors = 0
+	},
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"S" = (
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/submap/groundbase/poi/wildvillage)
+"U" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/structure/closet/secure_closet/freezer/meat,
+/obj/machinery/button/remote/blast_door{
+	dir = 1;
+	id = "villagekitchn";
+	name = "Kitchen shutters";
+	pixel_y = -30
+	},
+/turf/simulated/floor/tiled/eris/cafe,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+"X" = (
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/turf/simulated/floor,
+/area/submap/groundbase/poi/wildvillage/square/square7)
+
+(1,1,1) = {"
+a
+a
+a
+A
+u
+S
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+v
+v
+v
+P
+v
+v
+v
+v
+v
+a
+a
+"}
+(3,1,1) = {"
+a
+v
+n
+M
+g
+g
+G
+v
+c
+i
+a
+S
+"}
+(4,1,1) = {"
+a
+X
+B
+g
+g
+g
+g
+R
+r
+c
+S
+S
+"}
+(5,1,1) = {"
+a
+X
+b
+g
+p
+D
+g
+x
+r
+c
+S
+a
+"}
+(6,1,1) = {"
+a
+v
+F
+g
+g
+g
+g
+R
+r
+c
+a
+a
+"}
+(7,1,1) = {"
+a
+v
+E
+g
+g
+g
+g
+R
+r
+c
+a
+a
+"}
+(8,1,1) = {"
+a
+X
+b
+g
+I
+k
+g
+x
+r
+c
+S
+a
+"}
+(9,1,1) = {"
+a
+X
+J
+g
+g
+g
+g
+R
+r
+c
+S
+S
+"}
+(10,1,1) = {"
+a
+v
+y
+g
+h
+m
+U
+v
+c
+s
+a
+S
+"}
+(11,1,1) = {"
+a
+v
+v
+X
+v
+X
+v
+v
+v
+v
+a
+a
+"}
+(12,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}

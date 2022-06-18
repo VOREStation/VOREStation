@@ -1,9 +1,8 @@
 /* eslint react/no-danger: "off" */
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Button, Box, Section, Table } from '../components';
+import { Button, Section, Table } from '../components';
 import { NtosWindow } from '../layouts';
-import { decodeHtmlEntities } from 'common/string';
 
 export const NtosFileManager = (props, context) => {
   const { act, data } = useBackend(context);

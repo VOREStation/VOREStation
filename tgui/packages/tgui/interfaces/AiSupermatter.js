@@ -1,8 +1,6 @@
-import { round } from 'common/math';
 import { useBackend } from "../backend";
-import { Box, Flex, Icon, LabeledList, ProgressBar, Section } from "../components";
+import { Box, Icon, LabeledList, ProgressBar, Section } from "../components";
 import { Window } from "../layouts";
-import { formatSiUnit, formatPower } from "../format";
 import { FullscreenNotice } from './common/FullscreenNotice';
 
 export const AiSupermatter = (props, context) => {

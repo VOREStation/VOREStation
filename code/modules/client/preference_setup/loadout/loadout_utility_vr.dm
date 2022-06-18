@@ -74,3 +74,8 @@
 	display_name = "bluespace bracelet"
 	path = /obj/item/clothing/gloves/bluespace
 	cost = 5
+
+/datum/gear/utility/walkpod
+	display_name = "podzu music player"
+	path = /obj/item/device/walkpod
+	cost = 2

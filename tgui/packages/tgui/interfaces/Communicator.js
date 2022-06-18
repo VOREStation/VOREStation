@@ -2,7 +2,7 @@ import { filter } from 'common/collections';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from "../backend";
-import { Box, ByondUi, Button, Flex, Icon, LabeledList, Input, ProgressBar, Section, Table } from "../components";
+import { Box, ByondUi, Button, Flex, Icon, LabeledList, Input, Section, Table } from "../components";
 import { Window } from "../layouts";
 import { CrewManifestContent } from './CrewManifest';
 
@@ -1129,6 +1129,10 @@ const SettingsTab = (props, context) => {
                 : "Ringer off."
             }
             onClick={() => act("toggle_ringer")} />
+          <Button
+            fluid
+            content="Set Ringer Tone"
+            onClick={() => act("set_ringer_tone")} />
         </LabeledList.Item>
       </LabeledList>
     </Section>

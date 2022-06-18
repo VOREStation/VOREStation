@@ -1,7 +1,7 @@
 /* eslint react/no-danger: "off" */
 import { Fragment } from 'inferno';
 import { useBackend } from '../backend';
-import { Button, Box, Section, Table, LabeledList, Input, Tabs, TextArea, Flex, AnimatedNumber, ProgressBar } from '../components';
+import { Button, Box, Section, Table, LabeledList, Input, Tabs, Flex, AnimatedNumber, ProgressBar } from '../components';
 import { NtosWindow } from '../layouts';
 import { round } from 'common/math';
 

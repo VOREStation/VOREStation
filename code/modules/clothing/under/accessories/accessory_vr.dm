@@ -269,6 +269,13 @@
 	item_state = "collar_cowbell_overlay"
 	overlay_state = "collar_cowbell_overlay"
 
+/obj/item/clothing/accessory/collar/collarplanet_earth
+	name = "planet collar"
+	desc = "A collar featuring a surprisingly detailed replica of a earth-like planet surrounded by a weak battery powered force shield. There is a button to turn it off."
+	icon_state = "collarplanet_earth"
+	item_state = "collarplanet_earth"
+	overlay_state = "collarplanet_earth"
+
 
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"

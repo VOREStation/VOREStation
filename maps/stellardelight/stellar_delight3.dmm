@@ -1606,7 +1606,7 @@
 /area/maintenance/stellardelight/deck3/foreportroomb)
 "gk" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/cafe)
 "gl" = (
@@ -5054,7 +5054,7 @@
 /area/space)
 "sI" = (
 /obj/structure/table/standard,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/bluegrid,
 /area/ai_cyborg_station)
@@ -10254,7 +10254,7 @@
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardaft)
 "Lm" = (
-/obj/item/device/paicard,
+/obj/random/paicard,
 /obj/structure/table/glass,
 /obj/machinery/camera/network/civilian{
 	dir = 8
@@ -13710,7 +13710,7 @@
 	name = "station intercom (Science)";
 	pixel_y = 24
 	},
-/obj/item/device/paicard{
+/obj/random/paicard{
 	pixel_x = 4
 	},
 /obj/item/weapon/paper_bin{

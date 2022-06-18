@@ -35,11 +35,24 @@
 	set category = "Admin"
 	set name = "Aghost"
 	if(!holder)	return
+
+	var/build_mode
+	if(src.buildmode)
+		build_mode = tgui_alert(src, "You appear to be currently in buildmode. Do you want to re-enter buildmode after aghosting?", "Buildmode", list("Yes", "No"))
+		if(build_mode != "Yes")
+			to_chat(src, "Will not re-enter buildmode after switch.")
+
 	if(istype(mob,/mob/observer/dead))
 		//re-enter
 		var/mob/observer/dead/ghost = mob
 		if(ghost.can_reenter_corpse)
-			ghost.reenter_corpse()
+			if(build_mode)
+				togglebuildmode(mob)
+				ghost.reenter_corpse()
+				if(build_mode == "Yes")
+					togglebuildmode(mob)
+			else
+				ghost.reenter_corpse()
 		else
 			to_chat(ghost, "<span class='filter_system warning'>Error:  Aghost:  Can't reenter corpse.</span>")
 			return
@@ -51,8 +64,16 @@
 	else
 		//ghostize
 		var/mob/body = mob
-		var/mob/observer/dead/ghost = body.ghostize(1)
-		ghost.admin_ghosted = 1
+		var/mob/observer/dead/ghost
+		if(build_mode)
+			togglebuildmode(body)
+			ghost = body.ghostize(1)
+			ghost.admin_ghosted = 1
+			if(build_mode == "Yes")
+				togglebuildmode(ghost)
+		else
+			ghost = body.ghostize(1)
+			ghost.admin_ghosted = 1
 		if(body)
 			body.teleop = ghost
 			if(!body.key)

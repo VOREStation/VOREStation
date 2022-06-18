@@ -196,7 +196,7 @@
 /mob/living/simple_mob/vore/hostile/morph/will_show_tooltip()
 	return (!morphed)
 
-/mob/living/simple_mob/vore/hostile/morph/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE)
+/mob/living/simple_mob/vore/hostile/morph/resize(var/new_size, var/animate = TRUE, var/uncapped = FALSE, var/ignore_prefs = FALSE, var/aura_animation = TRUE)
 	if(morphed && !ismob(form))
 		return
 	return ..()

@@ -27,6 +27,7 @@
 		/mob/living/carbon/human/proc/sonar_ping,
 		/mob/living/carbon/human/proc/tie_hair,
 		/mob/living/proc/flying_toggle,
+		/mob/living/proc/flying_vore_toggle,
 		/mob/living/proc/start_wings_hovering)		//Xenochimera get all the special verbs since they can't select traits.
 
 	virus_immune = 1 // They practically ARE one.
@@ -205,7 +206,7 @@
 			feral++
 		else
 			feral = max(0,--feral)
-			
+
 		// Being in a belly or in the darkness decreases stress further. Helps mechanically reward players for staying in darkness + RP'ing appropriately. :9
 		var/turf/T = get_turf(H)
 		if(feral && (isbelly(H.loc) || T.get_lumcount() <= 0.1))

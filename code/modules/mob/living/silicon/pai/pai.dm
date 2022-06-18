@@ -31,7 +31,7 @@
 		"Cat" = "pai-cat",
 		"Mouse" = "pai-mouse",
 		"Monkey" = "pai-monkey",
-		"Corgi" = "pai-borgi",
+		"Borgi" = "pai-borgi",
 		"Fox" = "pai-fox",
 		"Parrot" = "pai-parrot",
 		"Rabbit" = "pai-rabbit",
@@ -47,7 +47,12 @@
 		"Hawk" = "pai-hawk",
 		"Duffel" = "pai-duffel",
 		"Rat" = "rat",
-		"Panther" = "panther"
+		"Panther" = "panther",
+		"Cyber Elf" = "cyberelf",
+		"Teppi" = "teppi",
+		"Catslug" = "catslug",
+		"Car" = "car",
+		"Type One" = "typeone"
 		//VOREStation Addition End
 		)
 
@@ -127,7 +132,7 @@
 		pda.ownjob = "Personal Assistant"
 		pda.owner = text("[]", src)
 		pda.name = pda.owner + " (" + pda.ownjob + ")"
-		
+
 		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
 		if(M)
 			M.toff = TRUE
@@ -247,16 +252,15 @@
 
 	last_special = world.time + 100
 
+	if(istype(card.loc, /obj/machinery)) // VOREStation edit, this statement allows pAIs stuck in a machine to eject themselves.
+		var/obj/machinery/M = card.loc
+		M.ejectpai()
 	//I'm not sure how much of this is necessary, but I would rather avoid issues.
 	if(istype(card.loc,/obj/item/rig_module))
 		to_chat(src, "There is no room to unfold inside this rig module. You're good and stuck.")
 		return 0
 	else if(istype(card.loc,/mob))
 		var/mob/holder = card.loc
-		var/datum/belly/inside_belly = check_belly(card) //VOREStation edit.
-		if(inside_belly) //VOREStation edit.
-			to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
-			return 0 //VOREStation edit.
 		if(ishuman(holder))
 			var/mob/living/carbon/human/H = holder
 			for(var/obj/item/organ/external/affecting in H.organs)
@@ -266,6 +270,9 @@
 					H.visible_message("<span class='danger'>\The [src] explodes out of \the [H]'s [affecting.name] in shower of gore!</span>")
 					break
 		holder.drop_from_inventory(card)
+	else if(isbelly(card.loc)) //VOREStation edit.
+		to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
+		return 0 //VOREStation edit.
 	else if(istype(card.loc,/obj/item/device/pda))
 		var/obj/item/device/pda/holder = card.loc
 		holder.pai = null
@@ -279,9 +286,9 @@
 
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
-	verbs += /mob/living/silicon/pai/proc/pai_nom //VOREStation edit
-	verbs += /mob/living/proc/set_size //VOREStation edit
-	verbs += /mob/living/proc/shred_limb //VORREStation edit
+	verbs |= /mob/living/silicon/pai/proc/pai_nom
+	verbs |= /mob/living/proc/vertical_nom
+	update_icon()
 
 /mob/living/silicon/pai/verb/fold_up()
 	set category = "pAI Commands"
@@ -375,7 +382,7 @@
 	if(src.loc == card)
 		return
 
-	release_vore_contents() //VOREStation Add
+	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
@@ -405,7 +412,10 @@
 	canmove = 1
 	resting = 0
 	icon_state = "[chassis]"
-	verbs -= /mob/living/silicon/pai/proc/pai_nom //VOREStation edit. Let's remove their nom verb
+	if(isopenspace(card.loc))
+		fall()
+	verbs -= /mob/living/silicon/pai/proc/pai_nom
+	verbs -= /mob/living/proc/vertical_nom
 
 // No binary for pAIs.
 /mob/living/silicon/pai/binarycheck()
@@ -430,10 +440,12 @@
 				if("Add Access")
 					idcard.access |= ID.access
 					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
+					to_chat(src, "<span class='notice'>\The [user] swipes the [W] over you. You copy the access codes.</span>")
 					return
 				if("Remove Access")
 					idcard.access = list()
 					to_chat(user, "<span class='notice'>You remove the access from [src].</span>")
+					to_chat(src, "<span class='warning'>\The [user] swipes the [W] over you, removing access codes from you.</span>")
 					return
 				if("Cancel")
 					return
@@ -448,16 +460,16 @@
 
 	if(idaccessible == 0)
 		idaccessible = 1
-		to_chat(src, "<span class='notice'>You allow access modifications.</span>")
-
+		visible_message("<span class='notice'>\The [src] clicks as their access modification slot opens.</span>","<span class='notice'>You allow access modifications.</span>", runemessage = "click")
 	else
 		idaccessible = 0
-		to_chat(src, "<span class='notice'>You block access modfications.</span>")
+		visible_message("<span class='notice'>\The [src] clicks as their access modification slot closes.</span>","<span class='notice'>You block access modfications.</span>", runemessage = "click")
+
 
 /mob/living/silicon/pai/verb/wipe_software()
-	set name = "Wipe Software"
-	set category = "OOC"
-	set desc = "Wipe your software. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
+	set name = "Enter Storage"
+	set category = "pAI Commands"
+	set desc = "Upload your personality to the cloud and wipe your software from the card. This is functionally equivalent to cryo or robotic storage, freeing up your job slot."
 
 	// Make sure people don't kill themselves accidentally
 	if(tgui_alert(usr, "WARNING: This will immediately wipe your software and ghost you, removing your character from the round permanently (similar to cryo and robotic storage). Are you entirely sure you want to do this?", "Wipe Software", list("No", "Yes")) != "Yes")

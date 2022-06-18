@@ -1,8 +1,6 @@
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Slider, Table } from '../components';
-import { formatPower } from '../format';
+import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Table } from '../components';
 import { Window } from '../layouts';
-import { round } from 'common/math';
 import { capitalize } from 'common/string';
 
 export const AlgaeFarm = (props, context) => {
@@ -18,7 +16,7 @@ export const AlgaeFarm = (props, context) => {
     output,
     errorText,
   } = data;
-  
+
   return (
     <Window
       width={500}
@@ -99,7 +97,7 @@ export const AlgaeFarm = (props, context) => {
                     </LabeledList>
                   ) : (
                     <Box color="bad">No connection detected.</Box>
-                  )} 
+                  )}
                 </Section>
               </Table.Cell>
             </Table.Row>

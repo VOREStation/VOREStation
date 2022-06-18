@@ -98,9 +98,10 @@
 
 /datum/pai_software/crew_manifest
 	name = "Crew Manifest"
-	ram_cost = 5
+	ram_cost = 0
 	id = "manifest"
 	toggle = 0
+	default = 1		//Comes with the communicator already, also why not
 
 /datum/pai_software/crew_manifest/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -117,9 +118,10 @@
 
 /datum/pai_software/messenger
 	name = "Digital Messenger"
-	ram_cost = 5
+	ram_cost = 0
 	id = "messenger"
 	toggle = 0
+	default = 1		//Can already be accessed through verbs, and also why not
 
 /datum/pai_software/messenger/tgui_interact(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui/parent_ui)
 	return user.pda.tgui_interact(user, parent_ui = parent_ui)
@@ -411,6 +413,35 @@
 		user.add_language(LANGUAGE_SKRELLIAN)
 		user.add_language(LANGUAGE_ZADDAT)
 		user.add_language(LANGUAGE_SCHECHI)
+		user.add_language(LANGUAGE_DRUDAKAR)
+		user.add_language(LANGUAGE_SLAVIC)
+		user.add_language(LANGUAGE_BIRDSONG)
+		user.add_language(LANGUAGE_SAGARU)
+		user.add_language(LANGUAGE_CANILUNZT)
+		user.add_language(LANGUAGE_ECUREUILIAN)
+		user.add_language(LANGUAGE_DAEMON)
+		user.add_language(LANGUAGE_ENOCHIAN)
+		user.add_language(LANGUAGE_VESPINAE)
+		user.add_language(LANGUAGE_SPACER)
+		user.add_language(LANGUAGE_CLOWNISH)
+		user.add_language(LANGUAGE_TAVAN)
+		user.add_language(LANGUAGE_ECHOSONG)
+		user.add_language(LANGUAGE_CHIMPANZEE)
+		user.add_language(LANGUAGE_NEAERA)
+		user.add_language(LANGUAGE_STOK)
+		user.add_language(LANGUAGE_FARWA)
+		user.add_language(LANGUAGE_ROOTLOCAL)
+		user.add_language(LANGUAGE_VOX)
+		user.add_language(LANGUAGE_SKRELLIANFAR)
+		user.add_language(LANGUAGE_MINBUS)
+		user.add_language(LANGUAGE_ALAI)
+		user.add_language(LANGUAGE_PROMETHEAN)
+		user.add_language(LANGUAGE_GIBBERISH)
+		user.add_language("Mouse")
+		user.add_language("Cat")
+		user.add_language("Bird")
+		user.add_language("Dog")
+		user.add_language("Teppi")
 	else
 		user.remove_language(LANGUAGE_UNATHI)
 		user.remove_language(LANGUAGE_SIIK)
@@ -418,6 +449,35 @@
 		user.remove_language(LANGUAGE_SKRELLIAN)
 		user.remove_language(LANGUAGE_ZADDAT)
 		user.remove_language(LANGUAGE_SCHECHI)
+		user.remove_language(LANGUAGE_DRUDAKAR)
+		user.remove_language(LANGUAGE_SLAVIC)
+		user.remove_language(LANGUAGE_BIRDSONG)
+		user.remove_language(LANGUAGE_SAGARU)
+		user.remove_language(LANGUAGE_CANILUNZT)
+		user.remove_language(LANGUAGE_ECUREUILIAN)
+		user.remove_language(LANGUAGE_DAEMON)
+		user.remove_language(LANGUAGE_ENOCHIAN)
+		user.remove_language(LANGUAGE_VESPINAE)
+		user.remove_language(LANGUAGE_SPACER)
+		user.remove_language(LANGUAGE_CLOWNISH)
+		user.remove_language(LANGUAGE_TAVAN)
+		user.remove_language(LANGUAGE_ECHOSONG)
+		user.remove_language(LANGUAGE_CHIMPANZEE)
+		user.remove_language(LANGUAGE_NEAERA)
+		user.remove_language(LANGUAGE_STOK)
+		user.remove_language(LANGUAGE_FARWA)
+		user.remove_language(LANGUAGE_ROOTLOCAL)
+		user.remove_language(LANGUAGE_VOX)
+		user.remove_language(LANGUAGE_SKRELLIANFAR)
+		user.remove_language(LANGUAGE_MINBUS)
+		user.remove_language(LANGUAGE_ALAI)
+		user.remove_language(LANGUAGE_PROMETHEAN)
+		user.remove_language(LANGUAGE_GIBBERISH)
+		user.remove_language("Mouse")
+		user.remove_language("Cat")
+		user.remove_language("Bird")
+		user.remove_language("Dog")
+		user.remove_language("Teppi")
 
 /datum/pai_software/translator/is_active(mob/living/silicon/pai/user)
 	return user.translator_on

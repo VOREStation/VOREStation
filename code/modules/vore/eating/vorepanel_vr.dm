@@ -176,6 +176,7 @@
 			"digest_burn" = selected.digest_burn,
 			"digest_oxy" = selected.digest_oxy,
 			"bulge_size" = selected.bulge_size,
+			"save_digest_mode" = selected.save_digest_mode,
 			"display_absorbed_examine" = selected.display_absorbed_examine,
 			"shrink_grow_size" = selected.shrink_grow_size,
 			"emote_time" = selected.emote_time,
@@ -249,6 +250,9 @@
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
+		"drop_vore" = host.drop_vore,
+		"slip_vore" = host.slip_vore,
+		"stumble_vore" = host.stumble_vore,
 	)
 
 	return data
@@ -463,6 +467,18 @@
 			return TRUE
 		if("toggle_noisy")
 			host.noisy = !host.noisy
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_drop_vore")
+			host.drop_vore = !host.drop_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_slip_vore")
+			host.slip_vore = !host.slip_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_stumble_vore")
+			host.stumble_vore = !host.stumble_vore
 			unsaved_changes = TRUE
 			return TRUE
 
@@ -686,7 +702,7 @@
 			host.vore_selected.item_digest_mode = new_mode
 			host.vore_selected.items_preserved.Cut() //Re-evaltuate all items in belly on belly-mode change
 			. = TRUE
-		if("b_contaminates")
+		if("b_contaminate")
 			host.vore_selected.contaminates = !host.vore_selected.contaminates
 			. = TRUE
 		if("b_contamination_flavor")
@@ -1058,6 +1074,9 @@
 			. = TRUE
 		if("b_disable_hud")
 			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
+			. = TRUE
+		if("b_save_digest_mode")
+			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode
 			. = TRUE
 		if("b_del")
 			var/alert = tgui_alert(usr, "Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation",list("Cancel","Delete"))

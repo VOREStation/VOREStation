@@ -226,6 +226,13 @@
 
 //Tries to unleash or recall your stored mob
 /obj/item/capture_crystal/attack_self(mob/living/user)
+	if(bound_mob && !owner)
+		if(bound_mob == user)
+			to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It does not activate for you.</span>")
+			playsound(src, 'sound/effects/capture-crystal-negative.ogg', 75, 1, -1)
+			return
+		if(tgui_alert(user, "\The [src] hasn't got an owner. It has \the [bound_mob] registered to it. Would you like to claim this as yours?", "Claim ownership", list("No","Yes")) == "Yes")
+			owner = user
 	if(!cooldown_check())
 		to_chat(user, "<span class='notice'>\The [src] emits an unpleasant tone... It is not ready yet.</span>")
 		if(bound_mob)

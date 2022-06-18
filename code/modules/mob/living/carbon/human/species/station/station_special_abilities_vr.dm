@@ -161,7 +161,7 @@
 	var/blood_color = species.blood_color
 	var/flesh_color = species.flesh_color
 	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-	
+
 	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
 	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
@@ -813,7 +813,7 @@
 
 /mob/living/proc/flying_toggle()
 	set name = "Toggle Flight"
-	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall. Additionally, you can't fly if you are too heavy."
+	set desc = "While flying over open spaces, you will use up some nutrition. If you run out nutrition, you will fall."
 	set category = "Abilities"
 
 	var/mob/living/carbon/human/C = src
@@ -826,13 +826,24 @@
 	if(C.nutrition < 25 && !C.flying) //Don't have any food in you?" You can't fly.
 		to_chat(C, "<span class='notice'>You lack the nutrition to fly.</span>")
 		return
-	if(C.nutrition > 1000 && !C.flying)
-		to_chat(C, "<span class='notice'>You have eaten too much to fly! You need to lose some nutrition.</span>")
-		return
 
 	C.flying = !C.flying
 	update_floating()
 	to_chat(C, "<span class='notice'>You have [C.flying?"started":"stopped"] flying.</span>")
+
+/mob/living/
+	var/flight_vore = FALSE
+
+/mob/living/proc/flying_vore_toggle()
+	set name = "Toggle Flight Vore"
+	set desc = "Allows you to engage in voracious misadventures while flying."
+	set category = "Abilities"
+
+	flight_vore = !flight_vore
+	if(flight_vore)
+		to_chat(src, "You have allowed for flight vore! Bumping into characters while flying will now trigger dropnoms! Unless prefs don't match.. then you will take a tumble!")
+	else
+		to_chat(src, "Flight vore disabled! You will no longer engage dropnoms while in flight.")
 
 //Proc to stop inertial_drift. Exchange nutrition in order to stop gliding around.
 /mob/living/proc/start_wings_hovering()
@@ -1026,3 +1037,29 @@
 	species.has_glowing_eyes = !species.has_glowing_eyes
 	update_eyes()
 	to_chat(src, "Your eyes [species.has_glowing_eyes ? "are now" : "are no longer"] glowing.")
+
+
+
+/mob/living/carbon/human/proc/enter_cocoon()
+	set name = "Spin Cocoon"
+	set category = "Abilities"
+	if(!isturf(loc))
+		to_chat(src, "You don't have enough space to spin a cocoon!")
+		return
+
+	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
+		var/obj/item/weapon/storage/vore_egg/bugcocoon/C = new(loc)
+		forceMove(C)
+		transforming = TRUE
+		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
+		V.tgui_interact(src)
+
+		var/mob_holder_type = src.holder_type || /obj/item/weapon/holder
+		C.w_class = src.size_multiplier * 4 //Egg size and weight scaled to match occupant.
+		var/obj/item/weapon/holder/H = new mob_holder_type(C, src)
+		C.max_storage_space = H.w_class
+		C.icon_scale_x = 0.25 * C.w_class
+		C.icon_scale_y = 0.25 * C.w_class
+		C.update_transform()
+		//egg_contents -= src
+		C.contents -= src
