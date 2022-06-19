@@ -15,7 +15,7 @@
  * * encode - Toggling this determines if input is filtered via html_encode. Setting this to FALSE gives raw input.
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
-/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = TRUE, timeout = 0)
+/proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = MAX_MESSAGE_LEN, multiline = FALSE, encode = FALSE, timeout = 0)
 	if (istext(user))
 		stack_trace("tgui_input_text() received text for user instead of mob")
 		return
@@ -150,7 +150,7 @@
 /datum/tgui_input_text/proc/set_entry(entry)
 	if(!isnull(entry))
 		var/converted_entry = encode ? html_encode(entry) : entry
-		converted_entry = readd_quotes(converted_entry)
+		//converted_entry = readd_quotes(converted_entry)
 		src.entry = trim(converted_entry, max_length)
 
 /**
