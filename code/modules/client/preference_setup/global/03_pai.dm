@@ -42,7 +42,7 @@
 		var/t
 		switch(href_list["option"])
 			if("name")
-				t = sanitizeName(input(user, "Enter a name for your pAI", "Global Preference", candidate.name) as text|null, MAX_NAME_LEN, 1)
+				t = sanitizeName(tgui_input_text(user, "Enter a name for your pAI", "Global Preference", candidate.name, MAX_NAME_LEN), MAX_NAME_LEN, 1)
 				if(t && CanUseTopic(user))
 					candidate.name = t
 			if("desc")

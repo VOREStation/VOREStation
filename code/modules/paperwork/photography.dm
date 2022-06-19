@@ -47,7 +47,7 @@ var/global/photo_count = 0
 
 /obj/item/weapon/photo/attackby(obj/item/weapon/P as obj, mob/user as mob)
 	if(istype(P, /obj/item/weapon/pen))
-		var/txt = sanitize(input(user, "What would you like to write on the back?", "Photo Writing", null)  as text, 128)
+		var/txt = sanitize(tgui_input_text(user, "What would you like to write on the back?", "Photo Writing", null, 128), 128)
 		if(loc == user && user.stat == 0)
 			scribble = txt
 	..()
@@ -75,7 +75,7 @@ var/global/photo_count = 0
 	set category = "Object"
 	set src in usr
 
-	var/n_name = sanitizeSafe(input(usr, "What would you like to label the photo?", "Photo Labelling", null)  as text, MAX_NAME_LEN)
+	var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the photo?", "Photo Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	//loc.loc check is for making possible renaming photos in clipboards
 	if(( (loc == usr || (loc.loc && loc.loc == usr)) && usr.stat == 0))
 		name = "[(n_name ? text("[n_name]") : "photo")]"

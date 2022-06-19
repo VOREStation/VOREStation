@@ -100,7 +100,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["select_client_fps"])
-		var/fps_new = tgui_input_number(user, "Input Client FPS (1-200, 0 uses server FPS)", "Global Preference", pref.client_fps, 200, 1)
+		var/fps_new = tgui_input_number(user, "Input Client FPS (1-200, 0 uses server FPS)", "Global Preference", pref.client_fps, 200, 0)
 		if(isnull(fps_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(fps_new < 0 || fps_new > MAX_CLIENT_FPS) return TOPIC_NOACTION
 		pref.client_fps = fps_new

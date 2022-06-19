@@ -9,8 +9,9 @@
  * * items - The options that can be chosen by the user, each string is assigned a button on the UI.
  * * default - The option with this value will be selected on first paint of the TGUI window.
  * * timeout - The timeout of the input box, after which the input box will close and qdel itself. Set to zero for no timeout.
+ * * strict_modern - Disabled the preference check of the input box, only allowing the TGUI window to show.
  */
-/proc/tgui_input_list(mob/user, message, title = "Select", list/items, default, timeout = 0)
+/proc/tgui_input_list(mob/user, message, title = "Select", list/items, default, timeout = 0, strict_modern = FALSE)
 	if (istext(user))
 		stack_trace("tgui_alert() received text for user instead of mob")
 		return
@@ -25,7 +26,7 @@
 		else
 			return
 	/// Client does NOT have tgui_input on: Returns regular input
-	if(!usr.client.prefs.tgui_input_mode)
+	if(!usr.client.prefs.tgui_input_mode && !strict_modern)
 		return input(user, message, title, default) as null|anything in items
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout)
 	input.tgui_interact(user)

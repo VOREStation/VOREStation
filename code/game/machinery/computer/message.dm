@@ -246,7 +246,7 @@
 			var/dkey = trim(tgui_input_text(usr, "Please enter the current decryption key."))
 			if(dkey && dkey != "")
 				if(linkedServer.decryptkey == dkey)
-					var/newkey = trim(input(usr,"Please enter the new key (3 - 16 characters max):"))
+					var/newkey = trim(tgui_input_text(usr,"Please enter the new key (3 - 16 characters max):",null,null,16))
 					if(length(newkey) <= 3)
 						set_temp("NOTICE: Decryption key too short!", "average")
 					else if(length(newkey) > 16)

@@ -279,7 +279,7 @@
 			var/oldtext = html_decode(msg_body)
 			oldtext = replacetext(oldtext, "\[editorbr\]", "\n")
 
-			var/newtext = sanitize(replacetext(input(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext) as message|null, "\n", "\[editorbr\]"), 20000)
+			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext, 20000, TRUE), "\n", "\[editorbr\]"), 20000)
 			if(newtext)
 				msg_body = newtext
 			return 1
@@ -362,13 +362,13 @@
 			return 1
 
 		if("changepassword")
-			var/oldpassword = sanitize(input(user,"Please enter your old password:", "Password Change"), 100)
+			var/oldpassword = sanitize(tgui_input_text(user,"Please enter your old password:", "Password Change", null, 100), 100)
 			if(!oldpassword)
 				return 1
-			var/newpassword1 = sanitize(input(user,"Please enter your new password:", "Password Change"), 100)
+			var/newpassword1 = sanitize(tgui_input_text(user,"Please enter your new password:", "Password Change", null, 100), 100)
 			if(!newpassword1)
 				return 1
-			var/newpassword2 = sanitize(input(user,"Please re-enter your new password:", "Password Change"), 100)
+			var/newpassword2 = sanitize(tgui_input_text(user,"Please re-enter your new password:", "Password Change", null, 100), 100)
 			if(!newpassword2)
 				return 1
 
@@ -399,7 +399,7 @@
 				error = "Error exporting file. Are you using a functional and NTOS-compliant device?"
 				return 1
 
-			var/filename = sanitize(input(user,"Please specify file name:", "Message export"), 100)
+			var/filename = sanitize(tgui_input_text(user,"Please specify file name:", "Message export", null, 100), 100)
 			if(!filename)
 				return 1
 

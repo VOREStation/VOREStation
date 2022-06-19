@@ -69,7 +69,7 @@
 		to_chat(user, "<span class='notice'>You put the [W] into \the [src].</span>")
 		update_icon()
 	else if(istype(W, /obj/item/weapon/pen))
-		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text, MAX_NAME_LEN)
+		var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the folder?", "Folder Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if((loc == usr && usr.stat == 0))
 			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return

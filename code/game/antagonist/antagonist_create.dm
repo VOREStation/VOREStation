@@ -118,7 +118,7 @@
 
 /datum/antagonist/proc/set_antag_name(var/mob/living/player)
 	// Choose a name, if any.
-	var/newname = sanitize(input(player, "You are a [role_text]. Would you like to change your name to something else?", "Name change") as null|text, MAX_NAME_LEN)
+	var/newname = sanitize(tgui_input_text(player, "You are a [role_text]. Would you like to change your name to something else?", "Name change", null, MAX_NAME_LEN), MAX_NAME_LEN)
 	if (newname)
 		player.real_name = newname
 		player.name = player.real_name

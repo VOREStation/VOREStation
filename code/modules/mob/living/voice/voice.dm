@@ -80,7 +80,7 @@
 	set desc = "Changes your name."
 	set src = usr
 
-	var/new_name = sanitizeSafe(input(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name)  as text, MAX_NAME_LEN)
+	var/new_name = sanitizeSafe(tgui_input_text(src, "Who would you like to be now?", "Communicator", src.client.prefs.real_name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(new_name)
 		if(comm)
 			comm.visible_message("<span class='notice'>[bicon(comm)] [src.name] has left, and now you see [new_name].</span>")
