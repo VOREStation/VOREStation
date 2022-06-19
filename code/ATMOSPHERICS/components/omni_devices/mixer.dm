@@ -265,7 +265,7 @@
 	if(non_locked < 1)
 		return
 
-	var/new_con = (tgui_input_number(usr,"Enter a new concentration (0-[round(remain_con * 100, 0.5)])%","Concentration control", min(remain_con, old_con)*100, round(comain_con * 100, 0.5), 0)) / 100
+	var/new_con = (tgui_input_number(usr,"Enter a new concentration (0-[round(remain_con * 100, 0.5)])%","Concentration control", min(remain_con, old_con)*100, round(remain_con * 100, 0.5), 0)) / 100
 
 	//cap it between 0 and the max remaining concentration
 	new_con = between(0, new_con, remain_con)
