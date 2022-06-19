@@ -470,7 +470,7 @@
 		var/new_name = target.real_name
 		while(target.client)
 			if(!target) return
-			var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
+			var/try_name = tgui_input_text(target,"Pick a name for your new form!", "New Name", target.name)
 			var/clean_name = sanitizeName(try_name, allow_numbers = TRUE)
 			if(clean_name)
 				var/okay = tgui_alert(target,"New name will be '[clean_name]', ok?", "Confirmation",list("Cancel","Ok"))
@@ -562,7 +562,7 @@
 		var/new_name = ""
 		while(!new_name)
 			if(!target) return
-			var/try_name = input(target,"Pick a name for your new form!", "New Name", target.name)
+			var/try_name = tgui_input_text(target,"Pick a name for your new form!", "New Name", target.name)
 			var/clean_name = sanitizeName(try_name, allow_numbers = TRUE)
 			if(clean_name)
 				var/okay = tgui_alert(target,"New name will be '[clean_name]', ok?", "Confirmation",list("Cancel","Ok"))

@@ -158,4 +158,4 @@
 		return
 
 /obj/item/weapon/paper/admin/get_signature()
-	return input(usr, "Enter the name you wish to sign the paper with (will prompt for multiple entries, in order of entry)", "Signature") as text|null
+	return tgui_input_text(usr, "Enter the name you wish to sign the paper with (will prompt for multiple entries, in order of entry)", "Signature")

@@ -102,7 +102,7 @@
 	switch(href_list["action"])
 		if("Reply")
 			var/obj/item/device/communicator/comm = locate(href_list["target"])
-			var/message = input(usr, "Enter your message below.", "Reply")
+			var/message = tgui_input_text(usr, "Enter your message below.", "Reply")
 
 			if(message)
 				exonet.send_message(comm.exonet.address, "text", message)
@@ -153,7 +153,7 @@
 	if(choice)
 		var/obj/item/device/communicator/chosen_communicator = choice
 		var/mob/observer/dead/O = src
-		var/text_message = sanitize(input(src, "What do you want the message to say?") as message)
+		var/text_message = sanitize(tgui_input_text(src, "What do you want the message to say?", multiline = TRUE))
 		if(text_message && O.exonet)
 			O.exonet.send_message(chosen_communicator.exonet.address, "text", text_message)
 

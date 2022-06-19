@@ -47,7 +47,7 @@
 			turn_off()
 		return
 	if(istype(I, /obj/item/device/multitool))
-		var/new_temp = input(usr, "Input a new target temperature, in degrees C.","Target Temperature", 20) as num
+		var/new_temp = tgui_input_number(usr, "Input a new target temperature, in degrees C.","Target Temperature", 20)
 		if(!Adjacent(user) || user.incapacitated())
 			return
 		new_temp = convert_c2k(new_temp)

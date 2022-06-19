@@ -229,7 +229,7 @@ Book Cart End
 		var/choice = tgui_input_list(usr, "What would you like to change?", "Change What?", list("Title", "Contents", "Author", "Cancel"))
 		switch(choice)
 			if("Title")
-				var/newtitle = reject_bad_text(sanitizeSafe(input(usr, "Write a new title:")))
+				var/newtitle = reject_bad_text(sanitizeSafe(tgui_input_text(usr, "Write a new title:")))
 				if(!newtitle)
 					to_chat(usr, "The title is invalid.")
 					return
@@ -244,7 +244,7 @@ Book Cart End
 				else
 					src.dat += content
 			if("Author")
-				var/newauthor = sanitize(input(usr, "Write the author's name:"))
+				var/newauthor = sanitize(tgui_input_text(usr, "Write the author's name:"))
 				if(!newauthor)
 					to_chat(usr, "The name is invalid.")
 					return

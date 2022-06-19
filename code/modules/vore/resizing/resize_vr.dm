@@ -140,7 +140,7 @@
 		return
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
-	var/new_size = input(nagmessage, "Pick a Size") as num|null
+	var/new_size = tgui_input_number(nagmessage, "Pick a Size")
 	if(size_range_check(new_size))
 		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
 		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything

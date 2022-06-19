@@ -65,7 +65,7 @@
 	if(..())
 		return 1
 	if(href_list["channel"])
-		var/nc = input(usr, "Channel name", "Select new channel name", channel) as text|null
+		var/nc = tgui_input_text(usr, "Channel name", "Select new channel name", channel)
 		if(nc)
 			channel = nc
 			camera.c_tag = channel

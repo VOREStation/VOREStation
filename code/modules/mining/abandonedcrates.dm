@@ -146,7 +146,7 @@
 		return
 
 	to_chat(user, "<span class='notice'>The crate is locked with a Deca-code lock.</span>")
-	var/input = input(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "") as text
+	var/input = tgui_input_text(usr, "Enter [codelen] digits. All digits must be unique.", "Deca-Code Lock", "")
 	if(!Adjacent(user))
 		return
 	var/list/sanitised = list()

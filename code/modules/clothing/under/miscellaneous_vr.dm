@@ -76,7 +76,7 @@
 		to_chat(H,"<span class='warning'>You must be WEARING the uniform to change your size.</span>")
 		return
 
-	var/new_size = input(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200) as num|null
+	var/new_size = tgui_input_number(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200, 600, 1)
 	if(!new_size)
 		return //cancelled
 

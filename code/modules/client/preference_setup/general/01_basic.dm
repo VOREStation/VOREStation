@@ -81,7 +81,7 @@
 
 /datum/category_item/player_setup_item/general/basic/OnTopic(var/href,var/list/href_list, var/mob/user)
 	if(href_list["rename"])
-		var/raw_name = input(user, "Choose your character's name:", "Character Name")  as text|null
+		var/raw_name = tgui_input_text(user, "Choose your character's name:", "Character Name")
 		if (!isnull(raw_name) && CanUseTopic(user))
 			var/new_name = sanitize_name(raw_name, pref.species, is_FBP())
 			if(new_name)
@@ -125,7 +125,7 @@
 	else if(href_list["age"])
 		var/min_age = get_min_age()
 		var/max_age = get_max_age()
-		var/new_age = input(user, "Choose your character's age:\n([min_age]-[max_age])", "Character Preference", pref.age) as num|null
+		var/new_age = tgui_input_number(user, "Choose your character's age:\n([min_age]-[max_age])", "Character Preference", pref.age, max_age, min_age)
 		if(new_age && CanUseTopic(user))
 			pref.age = max(min(round(text2num(new_age)), max_age), min_age)
 			return TOPIC_REFRESH
