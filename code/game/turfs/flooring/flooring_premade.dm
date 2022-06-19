@@ -23,7 +23,7 @@
 	name = "deco carpet"
 	icon_state = "decocarpet"
 	initial_flooring = /decl/flooring/carpet/geo
-	
+
 /turf/simulated/floor/carpet/retro
 	name = "retro carpet"
 	icon_state = "retrocarpet"
@@ -74,6 +74,11 @@
 	name = "red retro carpet"
 	icon_state = "retrocarpet_red"
 	initial_flooring = /decl/flooring/carpet/retro_red
+
+/turf/simulated/floor/carpet/happy
+	name = "happy carpet"
+	icon_state = "happycarpet"
+	initial_flooring = /decl/flooring/carpet/happy
 
 /turf/simulated/floor/bluegrid
 	name = "mainframe floor"
