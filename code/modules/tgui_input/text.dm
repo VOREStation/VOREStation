@@ -150,6 +150,7 @@
 /datum/tgui_input_text/proc/set_entry(entry)
 	if(!isnull(entry))
 		var/converted_entry = encode ? html_encode(entry) : entry
+		converted_entry = readd_quotes(converted_entry)
 		src.entry = trim(converted_entry, max_length)
 
 /**
