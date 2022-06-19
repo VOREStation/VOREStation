@@ -149,7 +149,7 @@
 	if(!can_rename)
 		to_chat(user, "<span class='warning'>You can't rename this vessel.</span>")
 		return
-	var/new_name = input(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name) as null|text
+	var/new_name = tgui_input_text(user, "Please enter a new name for this vessel. Note that you can only set its name once, so choose wisely.", "Rename Shuttle", visible_name)
 	var/sanitized_name = sanitizeName(new_name, MAX_NAME_LEN, TRUE)
 	if(sanitized_name)
 		//can_rename = FALSE //VOREStation Removal

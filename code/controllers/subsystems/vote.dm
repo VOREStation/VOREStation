@@ -231,11 +231,11 @@ SUBSYSTEM_DEF(vote)
 						choices.Add(antag.role_text)
 				choices.Add("None")
 			if(VOTE_CUSTOM)
-				question = sanitizeSafe(input(usr, "What is the vote for?") as text|null)
+				question = sanitizeSafe(tgui_input_text(usr, "What is the vote for?"))
 				if(!question)
 					return 0
 				for(var/i = 1 to 10)
-					var/option = capitalize(sanitize(input(usr, "Please enter an option or hit cancel to finish") as text|null))
+					var/option = capitalize(sanitize(tgui_input_text(usr, "Please enter an option or hit cancel to finish")))
 					if(!option || mode || !usr.client)
 						break
 					choices.Add(option)

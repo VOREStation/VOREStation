@@ -153,7 +153,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			if(reject_bad_text(params["write"]))
 				recipient = params["write"] //write contains the string of the receiving department's name
 
-				var/new_message = sanitize(input(usr, "Write your message:", "Awaiting Input", ""))
+				var/new_message = sanitize(tgui_input_text(usr, "Write your message:", "Awaiting Input", ""))
 				if(new_message)
 					message = new_message
 					screen = RCS_MESSAUTH
@@ -169,7 +169,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				. = TRUE
 
 		if("writeAnnouncement")
-			var/new_message = sanitize(input(usr, "Write your message:", "Awaiting Input", ""))
+			var/new_message = sanitize(tgui_input_text(usr, "Write your message:", "Awaiting Input", ""))
 			if(new_message)
 				message = new_message
 			else
@@ -238,7 +238,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	if(computer_deconstruction_screwdriver(user, O))
 		return
 	if(istype(O, /obj/item/device/multitool))
-		var/input = sanitize(input(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
+		var/input = sanitize(tgui_input_text(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")
 			return

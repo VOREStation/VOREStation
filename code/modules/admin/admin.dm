@@ -638,12 +638,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
 
 	if(channel) //They picked a channel
-		var/sender = input(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer") as null|text
+		var/sender = tgui_input_text(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer")
 
 		if(sender) //They put a sender
 			sender = sanitize(sender, 75, extra = 0)
-			var/message = input(usr, "Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
-			var/msgverb = input(usr, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says") as null|text	//VOREStation Addition
+			var/message = tgui_input_text(usr, "Message content (max 500):", "Contents", "This is a test of the announcement system.", multiline = TRUE)
+			var/msgverb = tgui_input_text(usr, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says")
 			if(message) //They put a message
 				message = sanitize(message, 500, extra = 0)
 				//VOREStation Edit Start
@@ -681,7 +681,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed.</span>")
 
 	var/list/decomposed
-	var/message = input(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "") as null|message
+	var/message = tgui_input_text(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "", multiline = TRUE)
 
 	if(!message)
 		return
@@ -1047,7 +1047,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	var/amount = input(usr, "Amount of fruit to spawn", "Fruit Amount", 1) as null|num
+	var/amount = tgui_input_number(usr, "Amount of fruit to spawn", "Fruit Amount", 1)
 	if(!isnull(amount))
 		var/datum/seed/S = SSplants.seeds[seedtype]
 		S.harvest(usr,0,0,amount)
@@ -1460,7 +1460,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = input(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
+		crystals = tgui_input_number(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals)
 		if (!isnull(crystals))
 			H.mind.tcrystals = crystals
 			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
@@ -1476,7 +1476,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = input(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
+		crystals = tgui_input_number(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals)
 		if (!isnull(crystals))
 			H.mind.tcrystals += crystals
 			var/msg = "[key_name(usr)] has added [crystals] to [H.ckey]'s telecrystals."
@@ -1499,7 +1499,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 				to_chat(usr, "Error: you are not an admin!")
 				return
 
-			var/replyorigin = input(src.owner, "Please specify who the fax is coming from", "Origin") as text|null
+			var/replyorigin = tgui_input_text(src.owner, "Please specify who the fax is coming from", "Origin")
 
 			var/obj/item/weapon/paper/admin/P = new /obj/item/weapon/paper/admin( null ) //hopefully the null loc won't cause trouble for us
 			faxreply = P
@@ -1514,7 +1514,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 /datum/admins/var/obj/item/weapon/paper/admin/faxreply // var to hold fax replies in
 
 /datum/admins/proc/faxCallback(var/obj/item/weapon/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
-	var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
+	var/customname = tgui_input_text(src.owner, "Pick a title for the report", "Title")
 
 	P.name = "[P.origin] - [customname]"
 	P.desc = "This is a paper titled '" + P.name + "'."

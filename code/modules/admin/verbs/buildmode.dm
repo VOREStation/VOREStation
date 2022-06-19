@@ -257,16 +257,16 @@
 			if(BUILDMODE_EDIT)
 				var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "viruses", "cuffed", "ka", "last_eaten", "urine")
 
-				master.buildmode.varholder = input(usr,"Enter variable name:" ,"Name", "name")
+				master.buildmode.varholder = tgui_input_text(usr,"Enter variable name:" ,"Name", "name")
 				if(master.buildmode.varholder in locked && !check_rights(R_DEBUG,0))
 					return 1
 				var/thetype = tgui_input_list(usr,"Select variable type:", "Type", list("text","number","mob-reference","obj-reference","turf-reference"))
 				if(!thetype) return 1
 				switch(thetype)
 					if("text")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", "value") as text
+						master.buildmode.valueholder = tgui_input_text(usr,"Enter variable value:" ,"Value", "value")
 					if("number")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", 123) as num
+						master.buildmode.valueholder = tgui_input_number(usr,"Enter variable value:" ,"Value", 123)
 					if("mob-reference")
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", mob_list)
 					if("obj-reference")
@@ -286,11 +286,11 @@
 				var/choice = tgui_alert(usr, "Change the new light range, power, or color?", "Light Maker", list("Range", "Power", "Color"))
 				switch(choice)
 					if("Range")
-						var/input = input(usr, "New light range.","Light Maker",3) as null|num
+						var/input = tgui_input_number(usr, "New light range.","Light Maker",3)
 						if(input)
 							new_light_range = input
 					if("Power")
-						var/input = input(usr, "New light power.","Light Maker",3) as null|num
+						var/input = tgui_input_number(usr, "New light power.","Light Maker",3)
 						if(input)
 							new_light_intensity = input
 					if("Color")
@@ -625,7 +625,7 @@
 			return
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
-	var/desired_path = input(usr, "Enter full or partial typepath.","Typepath","[default_path]")
+	var/desired_path = tgui_input_text(usr, "Enter full or partial typepath.","Typepath","[default_path]")
 
 	var/list/types = typesof(/atom)
 	var/list/matches = list()

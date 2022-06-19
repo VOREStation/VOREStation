@@ -186,7 +186,7 @@
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/filter = input(usr, "Filter string (case-insensitive regex)", "Player notes filter") as text|null
+	var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
 	PlayerNotesPageLegacy(1, filter)
 
 /datum/admins/proc/PlayerNotesPageLegacy(page, filter)
@@ -293,7 +293,7 @@
 
 	if(href_list["add_player_info_legacy"])
 		var/key = href_list["add_player_info_legacy"]
-		var/add = sanitize(input(usr, "Add Player Info (Legacy)") as null|text)
+		var/add = sanitize(tgui_input_text(usr, "Add Player Info (Legacy)"))
 		if(!add) return
 
 		notes_add(key,add,usr)

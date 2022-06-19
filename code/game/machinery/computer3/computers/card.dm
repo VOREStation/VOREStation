@@ -305,7 +305,7 @@
 		if(auth)
 			var/t1 = href_list["assign"]
 			if(t1 == "Custom")
-				var/temp_t = sanitize(input(usr, "Enter a custom job assignment.","Assignment"))
+				var/temp_t = sanitize(tgui_input_text(usr, "Enter a custom job assignment.","Assignment"))
 				if(temp_t)
 					t1 = temp_t
 			set_default_access(t1)
