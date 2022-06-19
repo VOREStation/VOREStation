@@ -17,6 +17,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	var/image/screen_layer
 	var/screen_color = "#00ff0d"
 	var/last_notify = 0
+	var/screen_msg
 
 /obj/item/device/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -259,6 +260,8 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			</table>
 		"}
 		*/
+		if(screen_msg)
+			dat += "<b>Message from [pai.name]</b><br>[screen_msg]"
 	else
 		if(looking_for_personality)
 			dat += {"

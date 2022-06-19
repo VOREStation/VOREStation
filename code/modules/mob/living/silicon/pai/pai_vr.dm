@@ -376,3 +376,58 @@
 	else
 		hide_glow = FALSE
 	update_icon()
+
+/mob/living/silicon/pai/verb/screen_message(message as text|null)
+	set category = "pAI Commands"
+	set name = "Screen Message"
+	set desc = "Allows you to display a message on your screen. This will show up in the chat of anyone who is holding your card."
+
+	if (src.client)
+		if(client.prefs.muted & MUTE_IC)
+			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
+			return
+	if(loc != card)
+		to_chat(src, "<span class='warning'>Your message won't be visible while unfolded!</span>")
+	if (!message)
+		message = tgui_input_text(src, "Enter text you would like to show on your screen.","Screen Message")
+	message = sanitize_or_reflect(message,src)
+	if (!message)
+		return
+	message = capitalize(message)
+	if (stat == DEAD)
+		return
+	card.screen_msg = message
+	var/logmsg = "(CARD SCREEN)[message]"
+	log_say(logmsg,src)
+	to_chat(src, "<span class='cult'>You print a message to your screen, \"[message]\"</span>")
+	if(isliving(card.loc))
+		var/mob/living/L = card.loc
+		if(L.client)
+			to_chat(L, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+		else return
+	else if(isbelly(card.loc))
+		var/obj/belly/b = card.loc
+		if(b.owner.client)
+			to_chat(b.owner, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+		else return
+	else if(istype(card.loc, /obj/item/device/pda))
+		var/obj/item/device/pda/p = card.loc
+		if(isliving(p.loc))
+			var/mob/living/L = p.loc
+			if(L.client)
+				to_chat(L, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+			else return
+		else if(isbelly(p.loc))
+			var/obj/belly/b = card.loc
+			if(b.owner.client)
+				to_chat(b.owner, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
+			else return
+		else return
+	else return
+	to_chat(src, "<span class='notice'>Your message was relayed.</span>")
+	for (var/mob/G in player_list)
+		if (istype(G, /mob/new_player))
+			continue
+		else if(isobserver(G) && G.is_preference_enabled(/datum/client_preference/ghost_ears))
+			if(is_preference_enabled(/datum/client_preference/whisubtle_vis) || G.client.holder)
+				to_chat(G, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")

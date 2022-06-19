@@ -767,9 +767,16 @@
 		else if(istype(I,/obj/item/weapon/bikehorn/tinytether))
 			to_chat(src, "<span class='notice'>You feel a rush of power swallowing such a large, err, tiny structure.</span>")
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
-		else if(istype(I,/obj/item/device/paicard) || istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
+		else if(istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship. Or maybe it is something else.</span>")
+		else if(istype(I,/obj/item/device/paicard))
+			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
+			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship.</span>")
+			var/obj/item/device/paicard/ourcard = I
+			if(ourcard.pai && ourcard.pai.client && isbelly(ourcard.loc))
+				var/obj/belly/B = ourcard.loc
+				to_chat(ourcard.pai, "<span class= 'notice'><B>[B.desc]</B></span>")
 		else if(istype(I,/obj/item/weapon/reagent_containers/food))
 			var/obj/item/weapon/reagent_containers/food/F = I
 			if(!F.reagents.total_volume)
