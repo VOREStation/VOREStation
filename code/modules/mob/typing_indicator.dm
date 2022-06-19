@@ -41,6 +41,7 @@
 
 	set_typing_indicator(TRUE)
 	var/message = tgui_input_text(usr, "Type your message:", "Say")
+	message = readd_quotes(message)
 	set_typing_indicator(FALSE)
 
 	if(message)
@@ -52,6 +53,7 @@
 
 	set_typing_indicator(TRUE)
 	var/message = tgui_input_text(usr, "Type your message:", "Emote", multiline = TRUE)
+	message = readd_quotes(message)
 	set_typing_indicator(FALSE)
 
 	if(message)
@@ -63,6 +65,7 @@
 	set hidden = 1
 
 	var/message = tgui_input_text(usr, "Type your message:", "Whisper")
+	message = readd_quotes(message)
 
 	if(message)
 		whisper(message)
@@ -72,6 +75,7 @@
 	set hidden = 1
 
 	var/message = tgui_input_text(usr, "Type your message:", "Subtle", multiline = TRUE)
+	message = readd_quotes(message)
 
 	if(message)
 		me_verb_subtle(message)
