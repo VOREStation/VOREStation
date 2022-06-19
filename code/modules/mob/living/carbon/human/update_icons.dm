@@ -90,7 +90,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define L_HAND_LAYER			28		//Left-hand item
 #define R_HAND_LAYER			29		//Right-hand item
 #define WING_LAYER				30		//Wings or protrusions over the suit.
-#define TAIL_LAYER_ALT			31		//Modified tail-sprite layer. Tend to be larger.
+#define TAIL_NORTH_LAYER_ALT	31		//Modified tail-sprite layer. Tend to be larger.
 #define MODIFIER_EFFECTS_LAYER	32		//Effects drawn by modifiers
 #define FIRE_LAYER				33		//'Mob on fire' overlay layer
 #define MOB_WATER_LAYER			34		//'Mob submerged' overlay layer
@@ -98,7 +98,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 #define TOTAL_LAYERS			35		//VOREStation edit. <---- KEEP THIS UPDATED, should always equal the highest number here, used to initialize a list.
 //////////////////////////////////
 
-#define GET_TAIL_LAYER (dir == NORTH ? TAIL_NORTH_LAYER : TAIL_SOUTH_LAYER)
+#define GET_TAIL_LAYER (dir == SOUTH ? TAIL_SOUTH_LAYER : TAIL_NORTH_LAYER)
 
 /mob/living/carbon/human
 	var/list/overlays_standing[TOTAL_LAYERS]
@@ -836,7 +836,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		suit_sprite = INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
-	var/tail_is_rendered = (overlays_standing[TAIL_NORTH_LAYER] || overlays_standing[TAIL_SOUTH_LAYER])
+	var/tail_is_rendered = (overlays_standing[TAIL_NORTH_LAYER] || overlays_standing[TAIL_NORTH_LAYER_ALT] || overlays_standing[TAIL_SOUTH_LAYER])
 	var/valid_clip_mask = tail_style?.clip_mask
 
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
@@ -954,9 +954,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return
 
 	remove_layer(TAIL_NORTH_LAYER)
+	remove_layer(TAIL_NORTH_LAYER_ALT)
 	remove_layer(TAIL_SOUTH_LAYER)
 
-	var tail_layer = GET_TAIL_LAYER
+	var/tail_layer = GET_TAIL_LAYER
+	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
+		tail_layer = TAIL_NORTH_LAYER_ALT
 
 	var/image/tail_image = get_tail_image()
 	if(tail_image)
@@ -996,9 +999,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
 	var/tail_layer = GET_TAIL_LAYER
+	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
+		tail_layer = TAIL_NORTH_LAYER_ALT
 	var/image/tail_overlay = overlays_standing[tail_layer]
 
 	remove_layer(TAIL_NORTH_LAYER)
+	remove_layer(TAIL_NORTH_LAYER_ALT)
 	remove_layer(TAIL_SOUTH_LAYER)
 
 	if(tail_overlay)

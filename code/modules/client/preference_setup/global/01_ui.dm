@@ -3,30 +3,34 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
-	S["UI_style"]			>> pref.UI_style
-	S["UI_style_color"]		>> pref.UI_style_color
-	S["UI_style_alpha"]		>> pref.UI_style_alpha
-	S["ooccolor"]			>> pref.ooccolor
-	S["tooltipstyle"]		>> pref.tooltipstyle
-	S["client_fps"]			>> pref.client_fps
-	S["ambience_freq"]		>> pref.ambience_freq
-	S["ambience_chance"] 	>> pref.ambience_chance
-	S["tgui_fancy"]			>> pref.tgui_fancy
-	S["tgui_lock"]			>> pref.tgui_lock
-	S["tgui_input_mode"]	>> pref.tgui_input_mode
+	S["UI_style"]				>> pref.UI_style
+	S["UI_style_color"]			>> pref.UI_style_color
+	S["UI_style_alpha"]			>> pref.UI_style_alpha
+	S["ooccolor"]				>> pref.ooccolor
+	S["tooltipstyle"]			>> pref.tooltipstyle
+	S["client_fps"]				>> pref.client_fps
+	S["ambience_freq"]			>> pref.ambience_freq
+	S["ambience_chance"] 		>> pref.ambience_chance
+	S["tgui_fancy"]				>> pref.tgui_fancy
+	S["tgui_lock"]				>> pref.tgui_lock
+	S["tgui_input_mode"]		>> pref.tgui_input_mode
+	S["tgui_large_buttons"]		>> pref.tgui_large_buttons
+	S["tgui_swapped_buttons"]	>> pref.tgui_swapped_buttons
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
-	S["UI_style"]			<< pref.UI_style
-	S["UI_style_color"]		<< pref.UI_style_color
-	S["UI_style_alpha"]		<< pref.UI_style_alpha
-	S["ooccolor"]			<< pref.ooccolor
-	S["tooltipstyle"]		<< pref.tooltipstyle
-	S["client_fps"]			<< pref.client_fps
-	S["ambience_freq"]		<< pref.ambience_freq
-	S["ambience_chance"] 	<< pref.ambience_chance
-	S["tgui_fancy"]			<< pref.tgui_fancy
-	S["tgui_lock"]			<< pref.tgui_lock
-	S["tgui_input_mode"]	<< pref.tgui_input_mode
+	S["UI_style"]				<< pref.UI_style
+	S["UI_style_color"]			<< pref.UI_style_color
+	S["UI_style_alpha"]			<< pref.UI_style_alpha
+	S["ooccolor"]				<< pref.ooccolor
+	S["tooltipstyle"]			<< pref.tooltipstyle
+	S["client_fps"]				<< pref.client_fps
+	S["ambience_freq"]			<< pref.ambience_freq
+	S["ambience_chance"] 		<< pref.ambience_chance
+	S["tgui_fancy"]				<< pref.tgui_fancy
+	S["tgui_lock"]				<< pref.tgui_lock
+	S["tgui_input_mode"]		<< pref.tgui_input_mode
+	S["tgui_large_buttons"]		<< pref.tgui_large_buttons
+	S["tgui_swapped_buttons"]	<< pref.tgui_swapped_buttons
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style			= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
@@ -40,6 +44,8 @@
 	pref.tgui_fancy			= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
 	pref.tgui_lock			= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
 	pref.tgui_input_mode	= sanitize_integer(pref.tgui_input_mode, 0, 1, initial(pref.tgui_input_mode))
+	pref.tgui_large_buttons	= sanitize_integer(pref.tgui_large_buttons, 0, 1, initial(pref.tgui_large_buttons))
+	pref.tgui_swapped_buttons	= sanitize_integer(pref.tgui_swapped_buttons, 0, 1, initial(pref.tgui_swapped_buttons))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. = "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
@@ -52,7 +58,9 @@
 	. += "<b>Ambience Chance:</b> <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
 	. += "<b>tgui Window Mode:</b> <a href='?src=\ref[src];tgui_fancy=1'><b>[(pref.tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</b></a><br>"
 	. += "<b>tgui Window Placement:</b> <a href='?src=\ref[src];tgui_lock=1'><b>[(pref.tgui_lock) ? "Primary Monitor" : "Free (default)"]</b></a><br>"
-	. += "<b>Input Mode (Say, Me, Whisper, Subtle):</b> <a href='?src=\ref[src];tgui_input_mode=1'><b>[(pref.tgui_input_mode) ? "TGUI" : "BYOND (default)"]</b></a><br>"
+	. += "<b>TGUI Input Framework:</b> <a href='?src=\ref[src];tgui_input_mode=1'><b>[(pref.tgui_input_mode) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += "<b>TGUI Large Buttons:</b> <a href='?src=\ref[src];tgui_large_buttons=1'><b>[(pref.tgui_large_buttons) ? "Enabled (default)" : "Disabled"]</b></a><br>"
+	. += "<b>TGUI Swapped Buttons:</b> <a href='?src=\ref[src];tgui_swapped_buttons=1'><b>[(pref.tgui_swapped_buttons) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
 		. += "<b>OOC Color:</b>"
 		if(pref.ooccolor == initial(pref.ooccolor))
@@ -124,6 +132,14 @@
 
 	else if(href_list["tgui_input_mode"])
 		pref.tgui_input_mode = !pref.tgui_input_mode
+		return TOPIC_REFRESH
+
+	else if(href_list["tgui_large_buttons"])
+		pref.tgui_large_buttons = !pref.tgui_large_buttons
+		return TOPIC_REFRESH
+
+	else if(href_list["tgui_swapped_buttons"])
+		pref.tgui_swapped_buttons = !pref.tgui_swapped_buttons
 		return TOPIC_REFRESH
 
 	else if(href_list["reset"])

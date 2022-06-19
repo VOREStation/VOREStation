@@ -466,7 +466,7 @@
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/chapel/office)
 "bl" = (
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "bn" = (
 /obj/machinery/door/airlock{
@@ -2397,7 +2397,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "gZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2493,7 +2493,7 @@
 /obj/structure/bed/chair/sofa/black,
 /obj/machinery/alarm,
 /obj/effect/landmark/start/chef,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "hp" = (
 /obj/structure/bed/chair/sofa/pew/left{
@@ -4272,7 +4272,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "mo" = (
 /obj/structure/table/woodentable,
@@ -4529,7 +4529,7 @@
 /area/groundbase/civilian/janitor)
 "nf" = (
 /obj/structure/table/wooden_reinforced,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "ng" = (
 /obj/machinery/camera/network/research{
@@ -7192,18 +7192,18 @@
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/northspur)
 "uU" = (
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,
 /obj/item/weapon/reagent_containers/food/condiment/small/peppermill,
@@ -10608,7 +10608,7 @@
 /area/groundbase/medical/psych)
 "EW" = (
 /obj/structure/bed/chair/sofa/right/black,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "EX" = (
 /obj/structure/closet/secure_closet/quartermaster,
@@ -13850,7 +13850,7 @@
 /obj/structure/bed/chair/sofa/black{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "NU" = (
 /obj/structure/sign/painting/library_secure{
@@ -13949,7 +13949,7 @@
 /obj/structure/bed/chair/sofa/left/black{
 	dir = 8
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "Oi" = (
 /obj/structure/disposalpipe/tagger{
@@ -13971,7 +13971,7 @@
 	layer = 3.3;
 	pixel_y = -27
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "Ok" = (
 /obj/machinery/power/apc{
@@ -17751,7 +17751,7 @@
 /area/groundbase/cargo/office)
 "Zi" = (
 /obj/machinery/firealarm,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/groundbase/civilian/kitchen/backroom)
 "Zk" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,

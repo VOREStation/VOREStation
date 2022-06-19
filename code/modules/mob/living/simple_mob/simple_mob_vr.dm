@@ -213,6 +213,7 @@
 	// Since they have bellies, add verbs to toggle settings on them.
 	verbs |= /mob/living/simple_mob/proc/toggle_digestion
 	verbs |= /mob/living/simple_mob/proc/toggle_fancygurgle
+	verbs |= /mob/living/proc/vertical_nom
 
 	//A much more detailed version of the default /living implementation
 	var/obj/belly/B = new /obj/belly(src)

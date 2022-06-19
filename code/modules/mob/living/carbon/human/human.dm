@@ -854,13 +854,25 @@
 		remoteview_target = null
 		reset_view(0)
 
-/mob/living/carbon/human/get_visible_gender()
-	if(wear_suit && wear_suit.flags_inv & HIDEJUMPSUIT && ((head && head.flags_inv & HIDEMASK) || wear_mask))
-		return PLURAL //plural is the gender-neutral default
-	if(species)
-		if(species.ambiguous_genders)
-			return PLURAL // regardless of what you're wearing, your gender can't be figured out
-	return get_gender()
+/mob/living/carbon/human/get_visible_gender(mob/user, force)
+	switch(force)
+		if(VISIBLE_GENDER_FORCE_PLURAL)
+			return PLURAL
+		if(VISIBLE_GENDER_FORCE_IDENTIFYING)
+			return get_gender()
+		if(VISIBLE_GENDER_FORCE_BIOLOGICAL)
+			return gender
+		else
+			if((wear_mask || (head?.flags_inv & HIDEMASK)) && (wear_suit?.flags_inv & HIDEJUMPSUIT))
+				return PLURAL
+			if(species?.ambiguous_genders && user)
+				if(ishuman(user))
+					var/mob/living/carbon/human/human = user
+					if(!istype(human.species, species))
+						return PLURAL
+				else if(!isobserver(user) && !issilicon(user))
+					return PLURAL
+			return get_gender()
 
 /mob/living/carbon/human/proc/increase_germ_level(n)
 	if(gloves)

@@ -8114,7 +8114,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 1
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/ai)
 "Dy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
