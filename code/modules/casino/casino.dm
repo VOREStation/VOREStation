@@ -259,7 +259,7 @@
 	if(usr.incapacitated())
 		return
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		interval = input("Put the desired interval (1-1000)", "Set Interval") as num
+		interval = tgui_input_number(usr, "Put the desired interval (1-1000)", "Set Interval", null, 1000, 1)
 		if(interval>1000 || interval<1)
 			usr << "<span class='notice'>Invalid interval.</span>"
 			return

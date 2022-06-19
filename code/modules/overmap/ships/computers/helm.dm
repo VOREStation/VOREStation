@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	switch(action)
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
-			var/sec_name = input(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text
+			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]")
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 				return FALSE
 			if(!sec_name)

@@ -200,7 +200,7 @@
 			if(istype(src.mob, /mob/new_player))
 				mob.name = capitalize(ckey)
 		else
-			var/new_key = ckeyEx(input(usr, "Enter your desired display name.", "Fake Key", key) as text|null)
+			var/new_key = ckeyEx(tgui_input_text(usr, "Enter your desired display name.", "Fake Key", key))
 			if(!new_key)
 				return
 			if(length(new_key) >= 26)
@@ -274,10 +274,10 @@
 		if("Big Bomb")
 			explosion(epicenter, 3, 5, 7, 5)
 		if("Custom Bomb")
-			var/devastation_range = input(usr, "Devastation range (in tiles):") as num
-			var/heavy_impact_range = input(usr, "Heavy impact range (in tiles):") as num
-			var/light_impact_range = input(usr, "Light impact range (in tiles):") as num
-			var/flash_range = input(usr, "Flash range (in tiles):") as num
+			var/devastation_range = tgui_input_number(usr, "Devastation range (in tiles):")
+			var/heavy_impact_range = tgui_input_number(usr, "Heavy impact range (in tiles):")
+			var/light_impact_range = tgui_input_number(usr, "Light impact range (in tiles):")
+			var/flash_range = tgui_input_number(usr, "Flash range (in tiles):")
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 	message_admins("<font color='blue'>[ckey] creating an admin explosion at [epicenter.loc].</font>")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -297,7 +297,7 @@
 		if ("Badmin") severity = 99
 
 	D.makerandom(severity)
-	D.infectionchance = input(usr, "How virulent is this disease? (1-100)", "Give Disease", D.infectionchance) as num
+	D.infectionchance = tgui_input_number(usr, "How virulent is this disease? (1-100)", "Give Disease", D.infectionchance)
 
 	if(istype(T,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = T
@@ -328,7 +328,7 @@
 	var/new_modifier_type = tgui_input_list(usr, "What modifier should we add to [L]?", "Modifier Type", possible_modifiers)
 	if(!new_modifier_type)
 		return
-	var/duration = input(usr, "How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration") as num
+	var/duration = tgui_input_number(usr, "How long should the new modifier last, in seconds.  To make it last forever, write '0'.", "Modifier Duration")
 	if(duration == 0)
 		duration = null
 	else
@@ -342,7 +342,7 @@
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
-		var/message = sanitize(input(usr, "What do you want the message to be?", "Make Sound") as text|null)
+		var/message = sanitize(tgui_input_text(usr, "What do you want the message to be?", "Make Sound"))
 		if(!message)
 			return
 		O.audible_message(message)
@@ -426,7 +426,7 @@
 	var/mob/living/silicon/S = tgui_input_list(usr, "Select silicon.", "Rename Silicon.", silicon_mob_list)
 	if(!S) return
 
-	var/new_name = sanitizeSafe(input(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
+	var/new_name = sanitizeSafe(tgui_input_text(src, "Enter new name. Leave blank or as is to cancel.", "[S.real_name] - Enter new silicon name", S.real_name))
 	if(new_name && new_name != S.real_name)
 		log_and_message_admins("has renamed the silicon '[S.real_name]' to '[new_name]'")
 		S.SetName(new_name)

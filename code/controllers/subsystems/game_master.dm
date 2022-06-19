@@ -350,13 +350,13 @@ SUBSYSTEM_DEF(game_master)
 		choose_game_master(usr)
 
 	if(href_list["set_staleness"])
-		var/amount = input(usr, "How much staleness should there be?", "Game Master") as null|num
+		var/amount = tgui_input_number(usr, "How much staleness should there be?", "Game Master")
 		if(!isnull(amount))
 			staleness = amount
 			message_admins("GM staleness was set to [amount] by [usr.key].")
 
 	if(href_list["set_danger"])
-		var/amount = input(usr, "How much danger should there be?", "Game Master") as null|num
+		var/amount = tgui_input_number(usr, "How much danger should there be?", "Game Master")
 		if(!isnull(amount))
 			danger = amount
 			message_admins("GM danger was set to [amount] by [usr.key].")

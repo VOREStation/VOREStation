@@ -27,7 +27,7 @@
 		return
 
 	user.visible_message("<span class='notice'>[user] lifts [src] bottle over [comp]!</span>")
-	var/shuttle_name = input(usr, "Choose a name for the shuttle", "New Shuttle Name") as null|text
+	var/shuttle_name = tgui_input_text(usr, "Choose a name for the shuttle", "New Shuttle Name")
 	if(!shuttle_name || QDELETED(src) || QDELETED(comp) || comp.shuttle_tag || user.incapacitated())
 		return // After input() safety re-checks
 

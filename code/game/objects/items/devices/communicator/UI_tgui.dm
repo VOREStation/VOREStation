@@ -376,7 +376,7 @@
 				to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
 				return FALSE
 			var/their_address = params["message"]
-			var/text = sanitizeSafe(input(usr,"Enter your message.","Text Message"))
+			var/text = sanitizeSafe(tgui_input_text(usr,"Enter your message.","Text Message"))
 			if(text)
 				exonet.send_message(their_address, "text", text)
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
@@ -424,7 +424,7 @@
 			selected_tab = params["switch_tab"]
 
 		if("edit")
-			var/n = input(usr, "Please enter message", name, notehtml) as message|null
+			var/n = tgui_input_text(usr, "Please enter message", name, notehtml, multiline = TRUE)
 			n = sanitizeSafe(n, extra = 0)
 			if(n)
 				note = html_decode(n)

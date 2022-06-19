@@ -42,7 +42,7 @@
 
 	var/datum/random_map/M
 	if(tgui_alert(usr, "Do you wish to customise the map?","Customize",list("Yes","No")) == "Yes")
-		var/seed = input(usr, "Seed? (blank for none)")       as text|null
+		var/seed = tgui_input_text(usr, "Seed? (blank for none)")
 		var/lx =   input(usr, "X-size? (blank for default)")  as num|null
 		var/ly =   input(usr, "Y-size? (blank for default)")  as num|null
 		M = new map_datum(seed,null,null,null,lx,ly,1)

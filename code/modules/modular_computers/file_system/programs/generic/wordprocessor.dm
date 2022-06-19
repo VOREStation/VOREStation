@@ -130,7 +130,7 @@
 				if(tgui_alert(usr, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
 					save_file(open_file)
 
-			var/newname = sanitize(input(usr, "Enter file name:", "New File") as text|null)
+			var/newname = sanitize(tgui_input_text(usr, "Enter file name:", "New File"))
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname)
@@ -143,7 +143,7 @@
 			return TRUE
 
 		if("PRG_saveasfile")
-			var/newname = sanitize(input(usr, "Enter file name:", "Save As") as text|null)
+			var/newname = sanitize(tgui_input_text(usr, "Enter file name:", "Save As"))
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname, loaded_data)
@@ -155,7 +155,7 @@
 
 		if("PRG_savefile")
 			if(!open_file)
-				open_file = sanitize(input(usr, "Enter file name:", "Save As") as text|null)
+				open_file = sanitize(tgui_input_text(usr, "Enter file name:", "Save As"))
 				if(!open_file)
 					return 0
 			if(!save_file(open_file))
