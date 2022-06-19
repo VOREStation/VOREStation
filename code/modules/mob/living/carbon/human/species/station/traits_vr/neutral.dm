@@ -164,7 +164,7 @@
 	cost = 0
 	custom_only = FALSE
 	can_take = SYNTHETICS
-	var_changes = list("organic_food_coeff" = 0.6, "synthetic_food_coeff" = 0.9)
+	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.6)
 
 /datum/trait/neutral/glowing_eyes
 	name = "Glowing Eyes"
