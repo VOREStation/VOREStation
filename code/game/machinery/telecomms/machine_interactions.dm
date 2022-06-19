@@ -295,7 +295,7 @@
 				. = TRUE
 
 		if("network")
-			var/newnet = input(usr, "Specify the new network for this machine. This will break all current links.", src, network) as null|text
+			var/newnet = tgui_input_text(usr, "Specify the new network for this machine. This will break all current links.", src, network)
 			if(newnet && canAccess(usr))
 
 				if(length(newnet) > 15)

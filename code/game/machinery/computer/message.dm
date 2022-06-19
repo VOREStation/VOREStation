@@ -243,7 +243,7 @@
 			. = TRUE
 		//Change the password - KEY REQUIRED
 		if("pass")
-			var/dkey = trim(input(usr, "Please enter the current decryption key.") as text|null)
+			var/dkey = trim(tgui_input_text(usr, "Please enter the current decryption key."))
 			if(dkey && dkey != "")
 				if(linkedServer.decryptkey == dkey)
 					var/newkey = trim(input(usr,"Please enter the new key (3 - 16 characters max):"))
@@ -325,7 +325,7 @@
 			. = TRUE
 
 		if("addtoken")
-			linkedServer.spamfilter += input(usr,"Enter text you want to be filtered out","Token creation") as text|null
+			linkedServer.spamfilter += tgui_input_text(usr,"Enter text you want to be filtered out","Token creation")
 			. = TRUE
 
 		if("deltoken")

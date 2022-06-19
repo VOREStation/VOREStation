@@ -119,7 +119,7 @@ var/warrant_uid = 0
 
 		if("editwarrantnamecustom")
 			. = TRUE
-			var/new_name = sanitize(input(usr, "Please input name") as null|text)
+			var/new_name = sanitize(tgui_input_text(usr, "Please input name"))
 			if(tgui_status(usr, state) == STATUS_INTERACTIVE)
 				if (!new_name)
 					return
@@ -127,7 +127,7 @@ var/warrant_uid = 0
 
 		if("editwarrantcharges")
 			. = TRUE
-			var/new_charges = sanitize(input(usr, "Please input charges", "Charges", activewarrant.fields["charges"]) as null|text)
+			var/new_charges = sanitize(tgui_input_text(usr, "Please input charges", "Charges", activewarrant.fields["charges"]))
 			if(tgui_status(usr, state) == STATUS_INTERACTIVE)
 				if (!new_charges)
 					return

@@ -44,7 +44,7 @@ Slime cube lives here.
 	S.shapeshifter_set_colour("#05FF9B")
 	for(var/mob/M in viewers(get_turf_or_move(loc)))
 		M.show_message("<span class='warning'>The monkey cube suddenly takes the shape of a humanoid!</span>")
-	var/newname = sanitize(input(S, "You are a Promethean. Would you like to change your name to something else?", "Name change") as null|text, MAX_NAME_LEN)
+	var/newname = sanitize(tgui_input_text(S, "You are a Promethean. Would you like to change your name to something else?", "Name change"), MAX_NAME_LEN)
 	if(newname)
 		S.real_name = newname
 		S.name = S.real_name

@@ -157,7 +157,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	switch(action)
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
-			var/sec_name = input(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]") as text
+			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]")
 			if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 				return FALSE
 			if(!sec_name)
@@ -171,10 +171,10 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 					R.fields["x"] = linked.x
 					R.fields["y"] = linked.y
 				if("new")
-					var/newx = input(usr, "Input new entry x coordinate", "Coordinate input", linked.x) as num
+					var/newx = tgui_input_number(usr, "Input new entry x coordinate", "Coordinate input", linked.x)
 					if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 						return TRUE
-					var/newy = input(usr, "Input new entry y coordinate", "Coordinate input", linked.y) as num
+					var/newy = tgui_input_number(usr, "Input new entry y coordinate", "Coordinate input", linked.y)
 					if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 						return FALSE
 					R.fields["x"] = CLAMP(newx, 1, world.maxx)
@@ -191,14 +191,14 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 
 		if("setcoord")
 			if(params["setx"])
-				var/newx = input(usr, "Input new destiniation x coordinate", "Coordinate input", dx) as num|null
+				var/newx = tgui_input_number(usr, "Input new destiniation x coordinate", "Coordinate input", dx)
 				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return
 				if(newx)
 					dx = CLAMP(newx, 1, world.maxx)
 
 			if(params["sety"])
-				var/newy = input(usr, "Input new destiniation y coordinate", "Coordinate input", dy) as num|null
+				var/newy = tgui_input_number(usr, "Input new destiniation y coordinate", "Coordinate input", dy)
 				if(tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return
 				if(newy)
@@ -216,13 +216,13 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 			. = TRUE
 
 		if("speedlimit")
-			var/newlimit = input(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000) as num|null
+			var/newlimit = tgui_input_number(usr, "Input new speed limit for autopilot (0 to brake)", "Autopilot speed limit", speedlimit*1000)
 			if(newlimit)
 				speedlimit = CLAMP(newlimit/1000, 0, 100)
 			. = TRUE
 
 		if("accellimit")
-			var/newlimit = input(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000) as num|null
+			var/newlimit = tgui_input_number(usr, "Input new acceleration limit", "Acceleration limit", accellimit*1000)
 			if(newlimit)
 				accellimit = max(newlimit/1000, 0)
 			. = TRUE

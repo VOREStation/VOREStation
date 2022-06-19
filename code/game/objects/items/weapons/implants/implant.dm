@@ -288,7 +288,7 @@ Implant Specifics:<BR>"}
 
 /obj/item/weapon/implant/explosive/post_implant(mob/source as mob)
 	elevel = tgui_alert(usr, "What sort of explosion would you prefer?", "Implant Intent", list("Localized Limb", "Destroy Body", "Full Explosion"))
-	phrase = input(usr, "Choose activation phrase:") as text
+	phrase = tgui_input_text(usr, "Choose activation phrase:")
 	var/list/replacechars = list("'" = "","\"" = "",">" = "","<" = "","(" = "",")" = "")
 	phrase = replace_characters(phrase, replacechars)
 	usr.mind.store_memory("Explosive implant in [source] can be activated by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)

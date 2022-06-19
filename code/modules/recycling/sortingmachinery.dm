@@ -57,7 +57,7 @@
 				else
 					nameset = 1
 			if("Description")
-				var/str = sanitize(input(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, "<font color='red'>Invalid text.</font>")
 					return
@@ -169,7 +169,7 @@
 					nameset = 1
 
 			if("Description")
-				var/str = sanitize(input(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, "<font color='red'>Invalid text.</font>")
 					return

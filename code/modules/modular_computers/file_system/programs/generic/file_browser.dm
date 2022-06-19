@@ -28,7 +28,7 @@
 		if("PRG_newtextfile")
 			if(!HDD)
 				return
-			var/newname = sanitize(input(usr, "Enter file name or leave blank to cancel:", "File rename"))
+			var/newname = sanitize(tgui_input_text(usr, "Enter file name or leave blank to cancel:", "File rename"))
 			if(!newname)
 				return
 			var/datum/computer_file/data/F = new/datum/computer_file/data()

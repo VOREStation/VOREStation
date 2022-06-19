@@ -107,8 +107,8 @@
 			if("toggle_cash_lock")
 				cash_locked = !cash_locked
 			if("link_account")
-				var/attempt_account_num = input(usr, "Enter account number", "New account number") as num
-				var/attempt_pin = input(usr, "Enter PIN", "Account PIN") as num
+				var/attempt_account_num = tgui_input_number(usr, "Enter account number", "New account number")
+				var/attempt_pin = tgui_input_number(usr, "Enter PIN", "Account PIN")
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account)
 					if(linked_account.suspended)
@@ -117,11 +117,11 @@
 				else
 					to_chat(usr, "[bicon(src)]<span class='warning'>Account not found.</span>")
 			if("custom_order")
-				var/t_purpose = sanitize(input(usr, "Enter purpose", "New purpose") as text)
+				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
 				if (!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose
-				var/t_amount = round(input(usr, "Enter price", "New price") as num)
+				var/t_amount = round(tgui_input_number(usr, "Enter price", "New price"))
 				if (!t_amount || !Adjacent(usr) || t_amount < 0) return
 				transaction_amount += t_amount
 				price_list += t_amount
@@ -129,7 +129,7 @@
 				src.visible_message("[bicon(src)][transaction_purpose]: [t_amount] Thaler\s.")
 			if("set_amount")
 				var/item_name = locate(href_list["item"])
-				var/n_amount = round(input(usr, "Enter amount", "New amount") as num)
+				var/n_amount = round(tgui_input_number(usr, "Enter amount", "New amount"))
 				n_amount = CLAMP(n_amount, 0, 20)
 				if (!item_list[item_name] || !Adjacent(usr)) return
 				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
@@ -234,7 +234,7 @@
 		var/datum/money_account/D = get_account(I.associated_account_number)
 		var/attempt_pin = ""
 		if(D && D.security_level)
-			attempt_pin = input(usr, "Enter PIN", "Transaction") as num
+			attempt_pin = tgui_input_number(usr, "Enter PIN", "Transaction")
 			D = null
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 

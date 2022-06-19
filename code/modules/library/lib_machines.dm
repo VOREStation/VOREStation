@@ -73,7 +73,7 @@
 		return
 
 	if(href_list["settitle"])
-		var/newtitle = input(usr, "Enter a title to search for:") as text|null
+		var/newtitle = tgui_input_text(usr, "Enter a title to search for:")
 		if(newtitle)
 			title = sanitize(newtitle)
 		else
@@ -87,7 +87,7 @@
 			category = "Any"
 		category = sanitizeSQL(category)
 	if(href_list["setauthor"])
-		var/newauthor = input(usr, "Enter an author to search for:") as text|null
+		var/newauthor = tgui_input_text(usr, "Enter an author to search for:")
 		if(newauthor)
 			author = sanitize(newauthor)
 		else
@@ -365,7 +365,7 @@
 		if(checkoutperiod < 1)
 			checkoutperiod = 1
 	if(href_list["editbook"])
-		buffer_book = sanitizeSafe(input(usr, "Enter the book's title:") as text|null)
+		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:"))
 	if(href_list["editmob"])
 		buffer_mob = sanitize(input(usr, "Enter the recipient's name:") as text|null, MAX_NAME_LEN)
 	if(href_list["checkout"])

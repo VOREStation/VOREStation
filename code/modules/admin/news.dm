@@ -22,13 +22,13 @@
 	if(F)
 		var/title = F["title"]
 		var/body = html2paper_markup(F["body"])
-		var/new_title = sanitize(input(src,"Write a good title for the news update.  Note: HTML is NOT supported.","Write News", title) as null|text, extra = 0)
+		var/new_title = sanitize(tgui_input_text(src,"Write a good title for the news update.  Note: HTML is NOT supported.","Write News", title), extra = 0)
 		if(!new_title)
 			return
-		var/new_body = sanitize(input(src,"Write the body of the news update here. Note: HTML is NOT supported, however paper markup is supported.  \n\
+		var/new_body = sanitize(tgui_input_text(src,"Write the body of the news update here. Note: HTML is NOT supported, however paper markup is supported.  \n\
 		Hitting enter will automatically add a line break.  \n\
 		Valid markup includes: \[b\], \[i\], \[u\], \[large\], \[h1\], \[h2\], \[h3\]\ \[*\], \[hr\], \[small\], \[list\], \[table\], \[grid\], \
-		\[row\], \[cell\], \[logo\], \[sglogo\].","Write News", body) as null|message, extra = 0)
+		\[row\], \[cell\], \[logo\], \[sglogo\].","Write News", body, multiline = TRUE), extra = 0)
 
 		new_body = paper_markup2html(new_body)
 

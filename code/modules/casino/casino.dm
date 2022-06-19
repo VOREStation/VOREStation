@@ -259,7 +259,7 @@
 	if(usr.incapacitated())
 		return
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		interval = input("Put the desired interval (1-1000)", "Set Interval") as num
+		interval = tgui_input_number(usr, "Put the desired interval (1-1000)", "Set Interval", null, 1000, 1)
 		if(interval>1000 || interval<1)
 			usr << "<span class='notice'>Invalid interval.</span>"
 			return
@@ -478,7 +478,7 @@
 	if(usr.incapacitated())
 		return
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		casinoslave_price = input("Select the desired price (1-1000)", "Set Price") as num
+		casinoslave_price = tgui_input_number("Select the desired price (1-1000)", "Set Price", null, null, 1000, 1)
 		if(casinoslave_price>1000 || casinoslave_price<1)
 			to_chat(user,"<span class='notice'>Invalid price.</span> ")
 			return

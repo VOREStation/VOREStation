@@ -94,7 +94,7 @@
 
 	if(!target) return
 
-	text = input(usr, "What would you like to say?", "Speak to creature", null, null)
+	text = tgui_input_text(usr, "What would you like to say?", "Speak to creature", null, null)
 
 	text = sanitize(text)
 
@@ -134,7 +134,7 @@
 	set desc = "Whisper silently to someone over a distance."
 	set category = "Abilities"
 
-	var/msg = sanitize(input(usr, "Message:", "Psychic Whisper") as text|null)
+	var/msg = sanitize(tgui_input_text(usr, "Message:", "Psychic Whisper"))
 	if(msg)
 		log_say("(PWHISPER to [key_name(M)]) [msg]", src)
 		to_chat(M, "<font color='green'>You hear a strange, alien voice in your head... <i>[msg]</i></font>")
