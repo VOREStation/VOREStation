@@ -19,10 +19,10 @@
 	icon_state = "tealcarpet"
 	initial_flooring = /decl/flooring/carpet/tealcarpet
 
-/turf/simulated/floor/carpet/deco
+/turf/simulated/floor/carpet/geo
 	name = "deco carpet"
 	icon_state = "decocarpet"
-	initial_flooring = /decl/flooring/carpet/deco
+	initial_flooring = /decl/flooring/carpet/geo
 	
 /turf/simulated/floor/carpet/retro
 	name = "retro carpet"
@@ -94,11 +94,11 @@
 	initial_flooring = /decl/flooring/wood
 
 /turf/simulated/floor/wood/broken
-	icon_state = "wood_broken0" // This gets changed when spawned.
+	icon_state = "wood-broken0" // This gets changed when spawned.
 
-/turf/simulated/floor/wood/broken/Initialize()
+/turf/simulated/floor/wood/broken/LateInitialize()
+	. = ..()
 	break_tile()
-	return ..()
 
 /turf/simulated/floor/wood/sif
 	name = "alien wooden floor"
@@ -106,23 +106,55 @@
 	initial_flooring = /decl/flooring/wood/sif
 
 /turf/simulated/floor/wood/sif/broken
-	icon_state = "sifwood_broken0" // This gets changed when spawned.
+	icon_state = "sifwood-broken0" // This gets changed when spawned.
 
-/turf/simulated/floor/wood/sif/broken/Initialize()
+/turf/simulated/floor/wood/sif/broken/LateInitialize()
+	. = ..()
 	break_tile()
-	return ..()
 
-/turf/simulated/floor/wood/tile
+/turf/simulated/floor/wood/alt
+	icon = 'icons/turf/flooring/wood.dmi'
+	initial_flooring = /decl/flooring/wood/alt
+
+/turf/simulated/floor/wood/alt/broken
+	icon_state = "wood-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/broken/LateInitialize()
+	. = ..()
+	break_tile()
+
+/turf/simulated/floor/wood/alt/tile
 	icon_state = "wood_tile"
-	initial_flooring = /decl/flooring/wood/tile
+	initial_flooring = /decl/flooring/wood/alt/tile
 
-/turf/simulated/floor/wood/panel
+/turf/simulated/floor/wood/alt/tile/broken
+	icon_state = "wood_tile-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/tile/broken/LateInitialize()
+	. = ..()
+	break_tile()
+
+/turf/simulated/floor/wood/alt/panel
 	icon_state = "wood_panel"
-	initial_flooring = /decl/flooring/wood/panel
+	initial_flooring = /decl/flooring/wood/alt/panel
 
-/turf/simulated/floor/wood/parquet
+/turf/simulated/floor/wood/alt/panel/broken
+	icon_state = "wood_panel-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/panel/broken/LateInitialize()
+	. = ..()
+	break_tile()
+
+/turf/simulated/floor/wood/alt/parquet
 	icon_state = "wood_parquet"
-	initial_flooring = /decl/flooring/wood/parquet
+	initial_flooring = /decl/flooring/wood/alt/parquet
+
+/turf/simulated/floor/wood/alt/parquet/broken
+	icon_state = "wood_parquet-broken0" // This gets changed when spawned.
+
+/turf/simulated/floor/wood/alt/parquet/broken/LateInitialize()
+	. = ..()
+	break_tile()
 
 /turf/simulated/floor/grass
 	name = "grass patch"
