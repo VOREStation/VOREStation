@@ -45,7 +45,7 @@
 			to_chat(usr, "<span class='notice'>Electronic warfare [S.electronic_warfare ? "enabled" : "disabled"].</span>")
 			. = TRUE
 		if("age")
-			var/new_age = input(usr,"What age would you like to put on this card?","Agent Card Age", S.age) as null|num
+			var/new_age = tgui_input_number(usr,"What age would you like to put on this card?","Agent Card Age", S.age)
 			if(!isnull(new_age) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				if(new_age < 0)
 					S.age = initial(S.age)
@@ -63,7 +63,7 @@
 				to_chat(usr, "<span class='notice'>Appearance changed to [choice].</span>")
 				. = TRUE
 		if("assignment")
-			var/new_job = sanitize(input(usr,"What assignment would you like to put on this card?\nChanging assignment will not grant or remove any access levels.","Agent Card Assignment", S.assignment) as null|text)
+			var/new_job = sanitize(tgui_input_text(usr,"What assignment would you like to put on this card?\nChanging assignment will not grant or remove any access levels.","Agent Card Assignment", S.assignment))
 			if(!isnull(new_job) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.assignment = new_job
 				to_chat(usr, "<span class='notice'>Occupation changed to '[new_job]'.</span>")
@@ -97,7 +97,7 @@
 				var/mob/living/carbon/human/H = usr
 				if(H.dna)
 					default = md5(H.dna.uni_identity)
-			var/new_fingerprint_hash = sanitize(input(usr,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default) as null|text)
+			var/new_fingerprint_hash = sanitize(tgui_input_text(usr,"What fingerprint hash would you like to be written on this card?","Agent Card Fingerprint Hash",default))
 			if(!isnull(new_fingerprint_hash) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.fingerprint_hash = new_fingerprint_hash
 				to_chat(usr, "<span class='notice'>Fingerprint hash changed to '[new_fingerprint_hash]'.</span>")

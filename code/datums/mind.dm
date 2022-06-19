@@ -190,7 +190,7 @@
 		assigned_role = new_role
 
 	else if (href_list["memory_edit"])
-		var/new_memo = sanitize(tgui_input_text("Write new memory", "Memory", memory, multiline = TRUE))
+		var/new_memo = sanitize(tgui_input_text(usr, "Write new memory", "Memory", memory, multiline = TRUE))
 		if (isnull(new_memo)) return
 		memory = new_memo
 
@@ -198,7 +198,7 @@
 		var/datum/mind/mind = locate(href_list["amb_edit"])
 		if(!mind)
 			return
-		var/new_ambition = tgui_input_text("Enter a new ambition", "Memory", mind.ambitions, multiline = TRUE)
+		var/new_ambition = tgui_input_text(usr, "Enter a new ambition", "Memory", mind.ambitions, multiline = TRUE)
 		if(isnull(new_ambition))
 			return
 		if(mind)
@@ -296,7 +296,7 @@
 				if(objective&&objective.type==text2path("/datum/objective/[new_obj_type]"))
 					def_num = objective.target_amount
 
-				var/target_number = tgui_input_number("Input target number:", "Objective", def_num)
+				var/target_number = tgui_input_number(usr, "Input target number:", "Objective", def_num)
 				if (isnull(target_number))//Ordinarily, you wouldn't need isnull. In this case, the value may already exist.
 					return
 
@@ -314,7 +314,7 @@
 				new_objective.target_amount = target_number
 
 			if ("custom")
-				var/expl = sanitize(tgui_input_text("Custom objective:", "Objective", objective ? objective.explanation_text : ""))
+				var/expl = sanitize(tgui_input_text(usr, "Custom objective:", "Objective", objective ? objective.explanation_text : ""))
 				if (!expl) return
 				new_objective = new /datum/objective
 				new_objective.owner = src
@@ -410,7 +410,7 @@
 				//	var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink() No longer needed, uses stored in mind
 					var/crystals
 					crystals = tcrystals
-					crystals = tgui_input_number("Amount of telecrystals for [key]", crystals)
+					crystals = tgui_input_number(usr, "Amount of telecrystals for [key]", crystals)
 					if (!isnull(crystals))
 						tcrystals = crystals
 

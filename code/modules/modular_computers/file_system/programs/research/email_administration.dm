@@ -92,7 +92,7 @@
 			if(!current_account)
 				return TRUE
 
-			var/newpass = sanitize(input(usr,"Enter new password for account [current_account.login]", "Password"), 100)
+			var/newpass = sanitize(tgui_input_text(usr,"Enter new password for account [current_account.login]", "Password", null, 100), 100)
 			if(!newpass)
 				return TRUE
 			current_account.password = newpass
@@ -120,7 +120,7 @@
 			var/newdomain = sanitize(tgui_input_list(usr,"Pick domain:", "Domain name", using_map.usable_email_tlds))
 			if(!newdomain)
 				return TRUE
-			var/newlogin = sanitize(input(usr,"Pick account name (@[newdomain]):", "Account name"), 100)
+			var/newlogin = sanitize(tgui_input_text(usr,"Pick account name (@[newdomain]):", "Account name", null, 100), 100)
 			if(!newlogin)
 				return TRUE
 
