@@ -1,7 +1,6 @@
 import { Loader } from './common/Loader';
 import { InputButtons } from './common/InputButtons';
 import { useBackend, useLocalState } from '../backend';
-import { KEY_ENTER, KEY_ESCAPE } from '../../common/keycodes';
 import { Box, Section, Stack, TextArea } from '../components';
 import { Window } from '../layouts';
 
@@ -48,14 +47,10 @@ export const TextInputModal = (_, context) => {
     <Window title={title} width={325} height={windowHeight}>
       {timeout && <Loader value={timeout} />}
       <Window.Content
-        onKeyDown={(event) => {
-          const keyCode = window.event ? event.which : event.keyCode;
-          if (keyCode === KEY_ENTER) {
-            act('submit', { entry: input });
-          }
-          if (keyCode === KEY_ESCAPE) {
-            act('cancel');
-          }
+        onEscape={() => act('cancel')}
+        onEnter={(event) => {
+          act('submit', { entry: input });
+          event.preventDefault();
         }}>
         <Section fill>
           <Stack fill vertical>
