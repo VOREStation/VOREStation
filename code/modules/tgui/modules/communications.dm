@@ -324,11 +324,11 @@
 					post_status(src, params["statdisp"], user = usr)
 
 		if("setmsg1")
-			stat_msg1 = reject_bad_text(sanitize(input(usr, "Line 1", "Enter Message Text", stat_msg1) as text|null, 40), 40)
+			stat_msg1 = reject_bad_text(sanitize(tgui_input_text(usr, "Line 1", "Enter Message Text", stat_msg1, 40), 40), 40)
 			setMenuState(usr, COMM_SCREEN_STAT)
 
 		if("setmsg2")
-			stat_msg2 = reject_bad_text(sanitize(input(usr, "Line 2", "Enter Message Text", stat_msg2) as text|null, 40), 40)
+			stat_msg2 = reject_bad_text(sanitize(tgui_input_text(usr, "Line 2", "Enter Message Text", stat_msg2, 40), 40), 40)
 			setMenuState(usr, COMM_SCREEN_STAT)
 
 		// OMG CENTCOMM LETTERHEAD

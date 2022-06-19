@@ -288,7 +288,7 @@
 			. = TRUE
 
 		if("id")
-			var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
+			var/newid = copytext(reject_bad_text(tgui_input_text(usr, "Specify the new ID for this machine", src, id)),1,MAX_MESSAGE_LEN)
 			if(newid && canAccess(usr))
 				id = newid
 				set_temp("-% New ID assigned: \"[id]\" %-", "average")

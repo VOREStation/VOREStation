@@ -93,8 +93,8 @@
 			if(can_change(APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(target.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						target.custom_species = sanitize(input(usr, "Input custom species name:",
-							"Custom Species Name") as null|text, MAX_NAME_LEN)
+						target.custom_species = sanitize(tgui_input_text(usr, "Input custom species name:",
+							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 					cut_data()
 					generate_data(usr)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -113,7 +113,7 @@
 				return 1
 		if("skin_tone")
 			if(can_change_skin_tone())
-				var/new_s_tone = input(usr, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35) as num|null
+				var/new_s_tone = tgui_input_number(usr, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35, 220, 1)
 				if(isnum(new_s_tone) && can_still_topic(usr, state))
 					new_s_tone = 35 - max(min( round(new_s_tone), 220),1)
 					changed_hook(APPEARANCECHANGER_CHANGED_SKINTONE)
