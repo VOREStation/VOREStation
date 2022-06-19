@@ -826,7 +826,7 @@
 							if("Clear")
 								host.nutrition_messages[index] = ""
 							if("Edit")
-								var/new_message = input(user, "Input a message", "Input", host.nutrition_messages[index]) as message
+								var/new_message = tgui_input_text(user, "Input a message", "Input", host.nutrition_messages[index], multiline = TRUE) as message
 								if(new_message)
 									host.nutrition_messages[index] = new_message
 
@@ -839,7 +839,7 @@
 							if("Clear")
 								host.weight_messages[index] = ""
 							if("Edit")
-								var/new_message = input(user, "Input a message", "Input", host.weight_messages[index]) as message
+								var/new_message = tgui_input_text(user, "Input a message", "Input", host.weight_messages[index], multiline = TRUE) as message
 								if(new_message)
 									host.weight_messages[index] = new_message
 
