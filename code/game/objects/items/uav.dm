@@ -136,7 +136,7 @@
 			cell = I
 
 	else if(istype(I, /obj/item/weapon/pen) || istype(I, /obj/item/device/flashlight/pen))
-		var/tmp_label = sanitizeSafe(input(user, "Enter a nickname for [src]", "Nickname", nickname), MAX_NAME_LEN)
+		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a nickname for [src]", "Nickname", nickname, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50 || length(tmp_label) < 3)
 			to_chat(user, "<span class='notice'>The nickname must be between 3 and 50 characters.</span>")
 		else

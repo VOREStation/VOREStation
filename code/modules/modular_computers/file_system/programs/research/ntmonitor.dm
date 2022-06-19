@@ -80,14 +80,14 @@
 		if("ban_nid")
 			if(!ntnet_global)
 				return
-			var/nid = input(usr,"Enter NID of device which you want to block from the network:", "Enter NID") as null|num
+			var/nid = tgui_input_number(usr,"Enter NID of device which you want to block from the network:", "Enter NID")
 			if(nid && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				ntnet_global.banned_nids |= nid
 			return TRUE
 		if("unban_nid")
 			if(!ntnet_global)
 				return
-			var/nid = input(usr,"Enter NID of device which you want to unblock from the network:", "Enter NID") as null|num
+			var/nid = tgui_input_number(usr,"Enter NID of device which you want to unblock from the network:", "Enter NID")
 			if(nid && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				ntnet_global.banned_nids -= nid
 			return TRUE 

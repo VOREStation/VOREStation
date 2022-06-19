@@ -28,7 +28,7 @@
 		if("PRG_newtextfile")
 			if(!HDD)
 				return
-			var/newname = sanitize(input(usr, "Enter file name or leave blank to cancel:", "File rename"))
+			var/newname = sanitize(tgui_input_text(usr, "Enter file name or leave blank to cancel:", "File rename"))
 			if(!newname)
 				return
 			var/datum/computer_file/data/F = new/datum/computer_file/data()
@@ -63,7 +63,7 @@
 			var/oldtext = html_decode(F.stored_data)
 			oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-			var/newtext = sanitize(replacetext(input(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext) as message|null, "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 			if(!newtext)
 				return
 

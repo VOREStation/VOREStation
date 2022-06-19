@@ -17,6 +17,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	var/image/screen_layer
 	var/screen_color = "#00ff0d"
 	var/last_notify = 0
+	var/screen_msg
 
 /obj/item/device/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -49,7 +50,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	var/actual_pai_name
 	var/turf/location = get_turf(src)
 	if(choice == "No")
-		var/pai_name = input(user, "Choose your character's name", "Character Name") as text
+		var/pai_name = tgui_input_text(user, "Choose your character's name", "Character Name")
 		actual_pai_name = sanitize_name(pai_name, ,1)
 		if(isnull(actual_pai_name))
 			return ..()
@@ -73,7 +74,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			new_pai.key = user.key
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
-				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
 				actual_pai_name = sanitize_name(pai_name, ,1)
 				if(isnull(actual_pai_name))
 					return ..()
@@ -83,7 +84,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			new_pai.key = user.key
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
-				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
 				actual_pai_name = sanitize_name(pai_name, ,1)
 				if(isnull(actual_pai_name))
 					return ..()
@@ -259,6 +260,8 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			</table>
 		"}
 		*/
+		if(screen_msg)
+			dat += "<b>Message from [pai.name]</b><br>[screen_msg]"
 	else
 		if(looking_for_personality)
 			dat += {"
@@ -328,7 +331,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			if(2)
 				radio.ToggleReception()
 	if(href_list["setlaws"])
-		var/newlaws = sanitize(input(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message)
+		var/newlaws = sanitize(tgui_input_text(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws, multiline = TRUE))
 		if(newlaws)
 			pai.pai_laws = newlaws
 			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")

@@ -666,7 +666,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		to_chat(src,"<span class='warning'>You don't have a NIF, not sure why this was here.</span>")
 		return
 
-	var/new_flavor = sanitize(input(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg) as null|text, max_length = 128)
+	var/new_flavor = sanitize(tgui_input_text(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg, 128), max_length = 128)
 	//They clicked cancel or meanwhile lost their NIF
 	if(!nif || isnull(new_flavor))
 		return //No changes

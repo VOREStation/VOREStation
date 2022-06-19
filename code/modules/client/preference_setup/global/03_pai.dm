@@ -42,19 +42,19 @@
 		var/t
 		switch(href_list["option"])
 			if("name")
-				t = sanitizeName(input(user, "Enter a name for your pAI", "Global Preference", candidate.name) as text|null, MAX_NAME_LEN, 1)
+				t = sanitizeName(tgui_input_text(user, "Enter a name for your pAI", "Global Preference", candidate.name, MAX_NAME_LEN), MAX_NAME_LEN, 1)
 				if(t && CanUseTopic(user))
 					candidate.name = t
 			if("desc")
-				t = input(user, "Enter a description for your pAI", "Global Preference", html_decode(candidate.description)) as message|null
+				t = tgui_input_text(user, "Enter a description for your pAI", "Global Preference", html_decode(candidate.description), multiline = TRUE)
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.description = sanitize(t)
 			if("role")
-				t = input(user, "Enter a role for your pAI", "Global Preference", html_decode(candidate.role)) as text|null
+				t = tgui_input_text(user, "Enter a role for your pAI", "Global Preference", html_decode(candidate.role))
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.role = sanitize(t)
 			if("ooc")
-				t = input(user, "Enter any OOC comments", "Global Preference", html_decode(candidate.comments)) as message
+				t = tgui_input_text(user, "Enter any OOC comments", "Global Preference", html_decode(candidate.comments), multiline = TRUE)
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.comments = sanitize(t)
 		return TOPIC_REFRESH

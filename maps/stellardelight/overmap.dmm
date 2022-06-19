@@ -9,7 +9,7 @@
 /turf/unsimulated/map,
 /area/overmap)
 "I" = (
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/space)
 "J" = (
 /obj/effect/overmap/bluespace_rift,

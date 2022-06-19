@@ -77,7 +77,7 @@
 		if("remove all")
 			to_chat(src, "<span class='filter_adminlog'><b>[TORFILE] was [fdel(TORFILE)?"":"not "]removed.</b></span>")
 		if("find")
-			var/input = input(src,"Please input an IP address to search for:","Find ToR ban",null) as null|text
+			var/input = tgui_input_text(src,"Please input an IP address to search for:","Find ToR ban",null)
 			if(input)
 				if(ToRban_isbanned(input))
 					to_chat(src, "<span class='filter_adminlog'><font color='green'><b>Address is a known ToR address</b></font></span>")

@@ -297,7 +297,7 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/datum/gender/T = gender_datums[get_visible_gender()]
 
-	pose = sanitize(input(usr, "This is [src]. [T.he]...", "Pose", null)  as text)
+	pose = sanitize(tgui_input_text(usr, "This is [src]. [T.he]...", "Pose", null))
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"

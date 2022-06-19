@@ -22,7 +22,7 @@
 		named = 1
 		*/
 
-	var/message = sanitize(input(user,"Choose a message to relay to those around you.") as text|null)
+	var/message = sanitize(tgui_input_text(user,"Choose a message to relay to those around you."))
 	if(message)
 		audible_message("[bicon(src)] \The [src.name] states, \"[message]\"", runemessage = "synthesized speech")
 		if(ismob(loc))

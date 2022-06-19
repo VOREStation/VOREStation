@@ -130,7 +130,6 @@
  * Ace was here! Redid this a little so we'd use math for shrinking characters. This is the old code.
  */
 
-
 /mob/living/proc/set_size()
 	set name = "Adjust Mass"
 	set category = "Abilities" //Seeing as prometheans have an IC reason to be changing mass.
@@ -140,7 +139,8 @@
 		return
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or 1% to 600% in dormitories). (DO NOT ABUSE)"
-	var/new_size = input(nagmessage, "Pick a Size") as num|null
+	var/default = size_multiplier * 100
+	var/new_size = tgui_input_number(usr, nagmessage, "Pick a Size", default)
 	if(size_range_check(new_size))
 		resize(new_size/100, uncapped = has_large_resize_bounds(), ignore_prefs = TRUE)
 		// I'm not entirely convinced that `src ? ADMIN_JMP(src) : "null"` here does anything

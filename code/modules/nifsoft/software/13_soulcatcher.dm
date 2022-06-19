@@ -125,10 +125,10 @@
 		switch(choice)
 
 			if("Design Inside")
-				var/new_flavor = input(nif.human, "Type what the prey sees after being 'caught'. This will be \
+				var/new_flavor = tgui_input_text(nif.human, "Type what the prey sees after being 'caught'. This will be \
 				printed after an intro ending with: \"Around you, you see...\" to the prey. If you already \
 				have prey, this will be printed to them after \"Your surroundings change to...\". Limit 2048 char.", \
-				"VR Environment", html_decode(inside_flavor)) as message
+				"VR Environment", html_decode(inside_flavor), MAX_MESSAGE_LEN*2, TRUE)
 				new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2)
 				inside_flavor = new_flavor
 				nif.notify("Updating VR environment...")
@@ -494,7 +494,7 @@
 		to_chat(src,SPAN_WARNING("You need a loaded mind to use NSay."))
 		return
 	if(!message)
-		message = input(usr, "Type a message to say.","Speak into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.say_into(sane_message,src)
@@ -525,7 +525,7 @@
 		return
 
 	if(!message)
-		message = input(usr, "Type an action to perform.","Emote into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.emote_into(sane_message,src)
@@ -580,7 +580,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = input(usr, "Type a message to say.","Speak into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.say_into(sane_message,src,null)
@@ -591,7 +591,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = input(usr, "Type an action to perform.","Emote into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.emote_into(sane_message,src,null)

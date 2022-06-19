@@ -214,7 +214,7 @@
 		if(tmr.timing)
 			to_chat(usr, "<span class='notice'>Clock is ticking already.</span>")
 		else
-			var/ntime = input(usr, "Enter desired time in seconds", "Time", "5") as num
+			var/ntime = tgui_input_number(usr, "Enter desired time in seconds", "Time", "5", 1000, 0)
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"

@@ -43,7 +43,7 @@
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "ak" = (
-/obj/machinery/vending/cola,
+/obj/machinery/vending/hotfood,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "al" = (
@@ -113,8 +113,8 @@
 "aw" = (
 /obj/machinery/appliance/mixer/cereal,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -134,7 +134,7 @@
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/cream,
-/obj/item/weapon/reagent_containers/food/condiment/sugar,
+/obj/item/weapon/reagent_containers/food/condiment/carton/sugar,
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
 "az" = (
@@ -180,13 +180,13 @@
 /area/submap/Diner)
 "aI" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
+/obj/random/meat,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aJ" = (
@@ -198,8 +198,8 @@
 "aK" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -250,13 +250,13 @@
 /area/submap/Diner)
 "aQ" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /turf/simulated/floor/tiled/freezer,
 /area/submap/Diner)
 "aR" = (
@@ -317,8 +317,8 @@
 /area/submap/Diner)
 "bc" = (
 /obj/machinery/light{
-	icon_state = "tube1";
-	dir = 4
+	dir = 4;
+	icon_state = "tube1"
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -361,6 +361,11 @@
 "bi" = (
 /turf/simulated/floor/lino,
 /area/submap/Diner)
+"bj" = (
+/obj/structure/table/standard,
+/obj/random/mug,
+/turf/simulated/floor/tiled/white,
+/area/submap/Diner)
 "bk" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -374,6 +379,7 @@
 /area/submap/Diner)
 "bm" = (
 /obj/structure/table/woodentable,
+/obj/random/mug,
 /turf/simulated/floor/lino,
 /area/submap/Diner)
 "bn" = (
@@ -389,8 +395,8 @@
 "bp" = (
 /obj/effect/floor_decal/corner/red/diagonal,
 /obj/structure/windoor_assembly{
-	icon_state = "l_windoor_assembly01";
-	dir = 2
+	dir = 2;
+	icon_state = "l_windoor_assembly01"
 	},
 /turf/simulated/floor/tiled/white,
 /area/submap/Diner)
@@ -406,8 +412,8 @@
 /area/submap/Diner)
 "bs" = (
 /obj/structure/sink{
-	icon_state = "sink";
 	dir = 8;
+	icon_state = "sink";
 	pixel_x = -12;
 	pixel_y = 2
 	},
@@ -452,6 +458,7 @@
 /area/submap/Diner)
 "bA" = (
 /obj/structure/table/standard,
+/obj/random/soap/anom,
 /turf/simulated/floor/tiled/hydro,
 /area/submap/Diner)
 
@@ -863,7 +870,7 @@ aa
 (16,1,1) = {"
 aa
 ad
-ah
+bj
 ap
 ap
 ap

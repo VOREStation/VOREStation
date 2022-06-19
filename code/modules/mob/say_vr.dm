@@ -42,7 +42,7 @@
 
 	var/input
 	if(!message)
-		input = sanitize_or_reflect(input(src,"Choose an emote to display.") as text|null, src)
+		input = sanitize_or_reflect(tgui_input_text(src,"Choose an emote to display."), src)
 	else
 		input = message
 
@@ -123,7 +123,7 @@
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
 	if (!message)
-		message = input(usr, "Type a message to say.","Psay") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Psay")
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
@@ -204,7 +204,7 @@
 			to_chat(src, "<span class='warning'>You cannot speak in IC (muted).</span>")
 			return
 	if (!message)
-		message = input(usr, "Type a message to emote.","Pme") as text|null
+		message = tgui_input_text(usr, "Type a message to emote.","Pme")
 	message = sanitize_or_reflect(message,src)
 	if (!message)
 		return
