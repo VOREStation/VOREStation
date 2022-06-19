@@ -191,22 +191,22 @@
 		stop_playing()
 
 	else if(href_list["setlinearfalloff"])
-		var/amount = input(usr, "Set linear sustain duration in seconds", "Linear Sustain Duration") as null|num
+		var/amount = tgui_input_number(usr, "Set linear sustain duration in seconds", "Linear Sustain Duration")
 		if(!isnull(amount))
 			set_linear_falloff_duration(round(amount * 10, world.tick_lag))
 
 	else if(href_list["setexpfalloff"])
-		var/amount = input(usr, "Set exponential sustain factor", "Exponential sustain factor") as null|num
+		var/amount = tgui_input_number(usr, "Set exponential sustain factor", "Exponential sustain factor")
 		if(!isnull(amount))
 			set_exponential_drop_rate(round(amount, 0.00001))
 
 	else if(href_list["setvolume"])
-		var/amount = input(usr, "Set volume", "Volume") as null|num
+		var/amount = tgui_input_number(usr, "Set volume", "Volume")
 		if(!isnull(amount))
 			set_volume(round(amount, 1))
 
 	else if(href_list["setdropoffvolume"])
-		var/amount = input(usr, "Set dropoff threshold", "Dropoff Threshold Volume") as null|num
+		var/amount = tgui_input_number(usr, "Set dropoff threshold", "Dropoff Threshold Volume")
 		if(!isnull(amount))
 			set_dropoff_volume(round(amount, 0.01))
 
@@ -233,7 +233,7 @@
 			set_instrument(choice)
 
 	else if(href_list["setnoteshift"])
-		var/amount = input(usr, "Set note shift", "Note Shift") as null|num
+		var/amount = tgui_input_number(usr, "Set note shift", "Note Shift")
 		if(!isnull(amount))
 			note_shift = clamp(amount, note_shift_min, note_shift_max)
 

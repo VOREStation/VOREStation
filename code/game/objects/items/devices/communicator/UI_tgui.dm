@@ -322,7 +322,7 @@
 	. = TRUE
 	switch(action)
 		if("rename")
-			var/new_name = sanitizeSafe(input(usr,"Please enter your name.","Communicator",usr.name) )
+			var/new_name = sanitizeSafe(tgui_input_text(usr,"Please enter your name.","Communicator",usr.name) )
 			if(new_name)
 				register_device(new_name)
 

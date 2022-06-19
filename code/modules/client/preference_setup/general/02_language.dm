@@ -94,7 +94,7 @@
 		var/char
 		var/keys[0]
 		do
-			char = input(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining") as null|text
+			char = tgui_input_text(usr, "Enter a single special character.\nYou may re-select the same characters.\nThe following characters are already in use by radio: ; : .\nThe following characters are already in use by special say commands: ! * ^", "Enter Character - [3 - keys.len] remaining")
 			if(char)
 				if(length(char) > 1)
 					tgui_alert_async(user, "Only single characters allowed.", "Error")

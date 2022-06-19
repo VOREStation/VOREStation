@@ -338,7 +338,7 @@
 				var/mins = 0
 				if(minutes > CMinutes)
 					mins = minutes - CMinutes
-				mins = input(usr,"How long (in minutes)? (Default: 1440)","Ban time",mins ? mins : 1440) as num|null
+				mins = tgui_input_number(usr,"How long (in minutes)? (Default: 1440)","Ban time",mins ? mins : 1440)
 				if(!mins)	return
 				mins = min(525599,mins)
 				minutes = CMinutes + mins
@@ -1867,7 +1867,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_wanted_desc"])
-		src.admincaster_feed_message.body = sanitize(input(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
+		src.admincaster_feed_message.body = sanitize(tgui_input_text(usr, "Provide the a description of the Wanted person and any other details you deem important", "Network Security Handler", ""))
 		src.access_news_network()
 
 	else if(href_list["ac_submit_wanted"])

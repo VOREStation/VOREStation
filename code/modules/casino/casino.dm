@@ -478,7 +478,7 @@
 	if(usr.incapacitated())
 		return
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		casinoslave_price = input("Select the desired price (1-1000)", "Set Price") as num
+		casinoslave_price = tgui_input_number("Select the desired price (1-1000)", "Set Price", null, null, 1000, 1)
 		if(casinoslave_price>1000 || casinoslave_price<1)
 			to_chat(user,"<span class='notice'>Invalid price.</span> ")
 			return

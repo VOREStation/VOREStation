@@ -125,7 +125,7 @@
 	else if(href_list["age"])
 		var/min_age = get_min_age()
 		var/max_age = get_max_age()
-		var/new_age = input(user, "Choose your character's age:\n([min_age]-[max_age])", "Character Preference", pref.age) as num|null
+		var/new_age = tgui_input_number(user, "Choose your character's age:\n([min_age]-[max_age])", "Character Preference", pref.age, max_age, min_age)
 		if(new_age && CanUseTopic(user))
 			pref.age = max(min(round(text2num(new_age)), max_age), min_age)
 			return TOPIC_REFRESH

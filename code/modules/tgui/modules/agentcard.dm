@@ -75,7 +75,7 @@
 				var/mob/living/carbon/human/H = usr
 				if(H.dna)
 					default = H.dna.b_type
-			var/new_blood_type = sanitize(input(usr,"What blood type would you like to be written on this card?","Agent Card Blood Type",default) as null|text)
+			var/new_blood_type = sanitize(tgui_input_text(usr,"What blood type would you like to be written on this card?","Agent Card Blood Type",default))
 			if(!isnull(new_blood_type) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.blood_type = new_blood_type
 				to_chat(usr, "<span class='notice'>Blood type changed to '[new_blood_type]'.</span>")
@@ -86,7 +86,7 @@
 				var/mob/living/carbon/human/H = usr
 				if(H.dna)
 					default = H.dna.unique_enzymes
-			var/new_dna_hash = sanitize(input(usr,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default) as null|text)
+			var/new_dna_hash = sanitize(tgui_input_text(usr,"What DNA hash would you like to be written on this card?","Agent Card DNA Hash",default))
 			if(!isnull(new_dna_hash) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.dna_hash = new_dna_hash
 				to_chat(usr, "<span class='notice'>DNA hash changed to '[new_dna_hash]'.</span>")
@@ -103,7 +103,7 @@
 				to_chat(usr, "<span class='notice'>Fingerprint hash changed to '[new_fingerprint_hash]'.</span>")
 				. = TRUE
 		if("name")
-			var/new_name = sanitizeName(input(usr,"What name would you like to put on this card?","Agent Card Name", S.registered_name) as null|text)
+			var/new_name = sanitizeName(tgui_input_text(usr,"What name would you like to put on this card?","Agent Card Name", S.registered_name))
 			if(!isnull(new_name) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.registered_name = new_name
 				S.update_name()
@@ -114,7 +114,7 @@
 			to_chat(usr, "<span class='notice'>Photo changed.</span>")
 			. = TRUE
 		if("sex")
-			var/new_sex = sanitize(input(usr,"What sex would you like to put on this card?","Agent Card Sex", S.sex) as null|text)
+			var/new_sex = sanitize(tgui_input_text(usr,"What sex would you like to put on this card?","Agent Card Sex", S.sex))
 			if(!isnull(new_sex) && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				S.sex = new_sex
 				to_chat(usr, "<span class='notice'>Sex changed to '[new_sex]'.</span>")

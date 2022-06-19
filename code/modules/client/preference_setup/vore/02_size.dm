@@ -58,7 +58,7 @@
 
 /datum/category_item/player_setup_item/vore/size/OnTopic(var/href, var/list/href_list, var/mob/user)
 	if(href_list["size_multiplier"])
-		var/new_size = input(user, "Choose your character's size, ranging from 25% to 200%", "Set Size") as num|null
+		var/new_size = tgui_input_number(user, "Choose your character's size, ranging from 25% to 200%", "Set Size", null, 200, 25)
 		if (!ISINRANGE(new_size,25,200))
 			pref.size_multiplier = 1
 			to_chat(user, "<span class='notice'>Invalid size.</span>")
@@ -72,11 +72,11 @@
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["weight"])
-		var/new_weight = input(user, "Choose your character's relative body weight.\n\
+		var/new_weight = tgui_input_number(user, "Choose your character's relative body weight.\n\
 			This measurement should be set relative to a normal 5'10'' person's body and not the actual size of your character.\n\
 			If you set your weight to 500 because you're a naga or have metal implants then complain that you're a blob I\n\
 			swear to god I will find you and I will punch you for not reading these directions!\n\
-			([WEIGHT_MIN]-[WEIGHT_MAX])", "Character Preference") as num|null
+			([WEIGHT_MIN]-[WEIGHT_MAX])", "Character Preference", null, WEIGHT_MAX, WEIGHT_MIN)
 		if(new_weight)
 			var/unit_of_measurement = tgui_alert(user, "Is that number in pounds (lb) or kilograms (kg)?", "Confirmation", list("Pounds", "Kilograms"))
 			if(unit_of_measurement == "Pounds")

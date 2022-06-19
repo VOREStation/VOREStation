@@ -295,7 +295,7 @@
 		return
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or between 1 to 600% in dorms area). Up-sizing consumes metal, downsizing returns metal."
-	var/new_size = input(user, nagmessage, "Pick a Size", user.size_multiplier*100) as num|null
+	var/new_size = tgui_input_number(user, nagmessage, "Pick a Size", user.size_multiplier*100, 600, 1)
 	if(!new_size || !size_range_check(new_size))
 		return
 
