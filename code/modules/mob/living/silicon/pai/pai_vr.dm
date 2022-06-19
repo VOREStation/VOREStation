@@ -3,6 +3,7 @@
 	icon = 'icons/mob/pai_vr.dmi'
 	softfall = TRUE
 	var/eye_glow = TRUE
+	var/hide_glow = FALSE
 	var/image/eye_layer = null		// Holds the eye overlay.
 	var/eye_color = "#00ff0d"
 	var/global/list/wide_chassis = list(
@@ -46,7 +47,6 @@
 /mob/living/silicon/pai/Initialize()
 	. = ..()
 	
-	verbs |= /mob/living/proc/hide
 	verbs |= /mob/proc/dominate_predator
 	verbs |= /mob/living/proc/dominate_prey
 	verbs |= /mob/living/proc/set_size
@@ -147,10 +147,11 @@
 	set category = "pAI Commands"
 	set name = "Toggle Eye Glow"
 	if(chassis in allows_eye_color)
-		if(eye_glow)
+		if(eye_glow && !hide_glow)
 			eye_glow = FALSE
 		else
 			eye_glow = TRUE
+			hide_glow = FALSE
 		update_icon()
 	else
 		to_chat(src, "Your selected chassis cannot modify its eye glow!")
@@ -182,7 +183,7 @@
 			eye_layer = image(icon, "[icon_state]-eyes")
 		eye_layer.appearance_flags = appearance_flags
 		eye_layer.color = eye_color
-		if(eye_glow)
+		if(eye_glow && !hide_glow)
 			eye_layer.plane = PLANE_LIGHTING_ABOVE
 		add_overlay(eye_layer)
 
@@ -363,3 +364,15 @@
 		return 0
 	gender = new_gender_identity
 	return 1
+
+/mob/living/silicon/pai/verb/pai_hide()
+	set name = "Hide"
+	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
+	set category = "Abilities"
+	
+	hide()
+	if(status_flags & HIDING)
+		hide_glow = TRUE
+	else
+		hide_glow = FALSE
+	update_icon()
