@@ -159,7 +159,7 @@ list[](
 				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
 				return new_data
 		if("number")
-			new_data = input(usr, "Now type in a number.","[src] number writing", isnum(default) ? default : null) as null|num
+			new_data = tgui_input_number(usr, "Now type in a number.","[src] number writing", isnum(default) ? default : null)
 			if(isnum(new_data) && holder.check_interactivity(user) )
 				to_chat(user, "<span class='notice'>You input [new_data] into the pin.</span>")
 				return new_data
