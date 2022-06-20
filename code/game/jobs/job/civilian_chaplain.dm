@@ -38,7 +38,7 @@
 
 /datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/weapon/storage/bible/B, obj/item/weapon/card/id/I)
 	var/religion_name = "Unitarianism"
-	var/new_religion = sanitize(tgui_input_text(H, "You are the crew services officer. Would you like to change your religion? Default is Unitarianism", "Name change", religion_name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Unitarianism", "Name change", religion_name), MAX_NAME_LEN)
 	if(!new_religion)
 		new_religion = religion_name
 
@@ -79,12 +79,12 @@
 			B.name = "The Holy Book of [new_religion]"
 
 	var/deity_name = "Hashem"
-	var/new_deity = sanitize(tgui_input_text(H, "Would you like to change your deity? Default is Hashem", "Name change", deity_name, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/new_deity = sanitize(input(H, "Would you like to change your deity? Default is Hashem", "Name change", deity_name), MAX_NAME_LEN)
 
 	if((length(new_deity) == 0) || (new_deity == "Hashem"))
 		new_deity = deity_name
 
-	var/new_title = sanitize(tgui_input_text(H, "Would you like to change your title?", "Title Change", I.assignment, MAX_NAME_LEN), MAX_NAME_LEN)
+	var/new_title = sanitize(input(H, "Would you like to change your title?", "Title Change", I.assignment), MAX_NAME_LEN)
 
 	var/list/all_jobs = get_job_datums()
 

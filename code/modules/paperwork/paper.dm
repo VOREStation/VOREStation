@@ -431,7 +431,7 @@
 			to_chat(usr, "<span class='info'>There isn't enough space left on \the [src] to write anything.</span>")
 			return
 
-		var/raw = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE)
+		var/raw = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE, prevent_enter = TRUE)
 		if(!raw)
 			return
 		

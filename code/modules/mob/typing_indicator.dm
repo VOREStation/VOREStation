@@ -40,7 +40,7 @@
 	set hidden = 1
 
 	set_typing_indicator(TRUE)
-	var/message = tgui_input_text(usr, "Type your message:", "Say", enter_submit = TRUE)
+	var/message = tgui_input_text(usr, "Type your message:", "Say")
 	set_typing_indicator(FALSE)
 
 	if(message)
@@ -51,7 +51,7 @@
 	set hidden = 1
 
 	set_typing_indicator(TRUE)
-	var/message = tgui_input_text(usr, "Type your message:", "Emote", multiline = TRUE, enter_submit = TRUE)
+	var/message = tgui_input_text(usr, "Type your message:", "Emote", multiline = TRUE)
 	set_typing_indicator(FALSE)
 
 	if(message)
@@ -62,7 +62,7 @@
 	set name = ".Whisper"
 	set hidden = 1
 
-	var/message = tgui_input_text(usr, "Type your message:", "Whisper", enter_submit = TRUE)
+	var/message = tgui_input_text(usr, "Type your message:", "Whisper")
 
 	if(message)
 		whisper(message)
@@ -71,7 +71,7 @@
 	set name = ".Subtle"
 	set hidden = 1
 
-	var/message = tgui_input_text(usr, "Type your message:", "Subtle", multiline = TRUE, enter_submit = TRUE)
+	var/message = tgui_input_text(usr, "Type your message:", "Subtle", multiline = TRUE)
 
 	if(message)
 		me_verb_subtle(message)

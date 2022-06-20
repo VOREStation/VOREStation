@@ -846,7 +846,7 @@
 		if (ismob(M))
 			if(!check_if_greater_rights_than(M.client))
 				return
-			var/reason = sanitize(tgui_input_text(usr, "Please enter reason.", multiline = TRUE))
+			var/reason = sanitize(tgui_input_text(usr, "Please enter reason.", multiline = TRUE, prevent_enter = TRUE))
 			if(!reason)
 				return
 
@@ -1821,7 +1821,7 @@
 		src.access_news_network()
 
 	else if(href_list["ac_set_new_message"])
-		src.admincaster_feed_message.body = sanitize(tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", multiline = TRUE))
+		src.admincaster_feed_message.body = sanitize(tgui_input_text(usr, "Write your Feed story", "Network Channel Handler", "", multiline = TRUE, prevent_enter = TRUE))
 		src.access_news_network()
 
 	else if(href_list["ac_submit_new_message"])

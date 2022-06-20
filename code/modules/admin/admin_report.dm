@@ -174,7 +174,7 @@ world/New()
 	if(!found) 
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
-	var/body = tgui_input_text(src.mob, "Enter a body for the news", "Body", multiline = TRUE)
+	var/body = tgui_input_text(src.mob, "Enter a body for the news", "Body", multiline = TRUE, prevent_enter = TRUE)
 	if(!body) return
 
 	found.body = body
