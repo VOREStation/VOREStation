@@ -600,7 +600,7 @@
 	var/list/available_options = list("Examine", "Eject", "Move")
 	if(ishuman(target))
 		available_options += "Transform"
-	intent = tgui_alert(user, "What would you like to do with [target]?", "Vore Pick", available_options)
+	intent = tgui_alert(user, "What would you like to do with [target]?", "Vore Pick", available_options, strict_byond = TRUE)
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
