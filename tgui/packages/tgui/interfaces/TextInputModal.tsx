@@ -91,8 +91,10 @@ const InputArea = (props, context) => {
       maxLength={max_length}
       onEscape={() => act('cancel')}
       onEnter={(event) => {
-        act('submit', { entry: input });
-        event.preventDefault();
+        if (enter_submit) {
+          act('submit', { entry: input });
+          event.preventDefault();
+        }
       }}
       onInput={(_, value) => onType(value)}
       placeholder="Type something..."
