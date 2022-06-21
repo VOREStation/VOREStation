@@ -54,15 +54,17 @@
 /datum/tgui_module/player_notes/tgui_state(mob/user)
 	return GLOB.tgui_admin_state
 
+/datum/tgui_module/player_notes/tgui_fallback(payload)
+	if(..())
+		return TRUE
+
+	open_legacy()
+
 /datum/tgui_module/player_notes/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
 	switch(action)
-		if("__fallback")
-			log_runtime(EXCEPTION("TGUI Fallback Triggered: \"[ui.user]\" tried to use/open \"[ui.title]/[ui.interface]\"! Trying to open legacy UI!"))
-			open_legacy()
-
 		if("show_player_info")
 			var/datum/tgui_module/player_notes_info/A = new(src)
 			A.key = params["name"]
@@ -107,15 +109,18 @@
 /datum/tgui_module/player_notes_info/tgui_state(mob/user)
 	return GLOB.tgui_admin_state
 
+/datum/tgui_module/player_notes_info/tgui_fallback(payload)
+	if(..())
+		return TRUE
+
+	var/datum/admins/A = admin_datums[usr.ckey]
+	A.show_player_info_legacy(key)
+
 /datum/tgui_module/player_notes_info/tgui_act(action, params, datum/tgui/ui)
 	if(..())
 		return TRUE
 
 	switch(action)
-		if("__fallback")
-			var/datum/admins/A = admin_datums[usr.ckey]
-			A.show_player_info_legacy(key)
-
 		if("add_player_info")
 			var/key = params["ckey"]
 			var/add = tgui_input_text(usr, "Write your comment below.", "Add Player Info", multiline = TRUE, prevent_enter = TRUE)
