@@ -46,7 +46,7 @@
 				if(t && CanUseTopic(user))
 					candidate.name = t
 			if("desc")
-				t = tgui_input_text(user, "Enter a description for your pAI", "Global Preference", html_decode(candidate.description), multiline = TRUE)
+				t = tgui_input_text(user, "Enter a description for your pAI", "Global Preference", html_decode(candidate.description), multiline = TRUE, prevent_enter = TRUE)
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.description = sanitize(t)
 			if("role")
@@ -54,7 +54,7 @@
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.role = sanitize(t)
 			if("ooc")
-				t = tgui_input_text(user, "Enter any OOC comments", "Global Preference", html_decode(candidate.comments), multiline = TRUE)
+				t = tgui_input_text(user, "Enter any OOC comments", "Global Preference", html_decode(candidate.comments), multiline = TRUE, prevent_enter = TRUE)
 				if(!isnull(t) && CanUseTopic(user))
 					candidate.comments = sanitize(t)
 		return TOPIC_REFRESH

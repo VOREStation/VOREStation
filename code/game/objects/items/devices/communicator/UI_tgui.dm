@@ -424,7 +424,7 @@
 			selected_tab = params["switch_tab"]
 
 		if("edit")
-			var/n = tgui_input_text(usr, "Please enter message", name, notehtml, multiline = TRUE)
+			var/n = tgui_input_text(usr, "Please enter message", name, notehtml, multiline = TRUE, prevent_enter = TRUE)
 			n = sanitizeSafe(n, extra = 0)
 			if(n)
 				note = html_decode(n)
