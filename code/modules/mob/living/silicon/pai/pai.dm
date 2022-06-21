@@ -22,7 +22,7 @@
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
 	var/obj/item/device/paicard/card	// The card we inhabit
-	var/obj/item/device/radio/radio		// Our primary radio
+	var/obj/item/device/radio/borg/pai/radio		// Our primary radio
 	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
 
 	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
@@ -112,7 +112,7 @@
 	communicator = new(src)
 	if(card)
 		if(!card.radio)
-			card.radio = new /obj/item/device/radio(src.card)
+			card.radio = new /obj/item/device/radio/borg/pai(src.card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -135,7 +135,7 @@
 
 		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
 		if(M)
-			M.toff = TRUE
+			M.toff = FALSE
 	..()
 
 /mob/living/silicon/pai/Login()
@@ -143,7 +143,6 @@
 	// Vorestation Edit: Meta Info for pAI
 	if (client.prefs)
 		ooc_notes = client.prefs.metadata
-
 
 // this function shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()
@@ -403,12 +402,14 @@
 			M.drop_from_inventory(H)
 		H.loc = get_turf(src)
 		src.loc = get_turf(H)
-
-	// Move us into the card and move the card to the ground.
-	src.loc = card
-	card.loc = get_turf(card)
-	src.forceMove(card)
-	card.forceMove(card.loc)
+	
+	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
+		var/obj/belly/B = loc
+		src.forceMove(card)
+		card.forceMove(B)
+	else				//Otherwise go on floor
+		src.forceMove(card)
+		card.forceMove(get_turf(card))
 	canmove = 1
 	resting = 0
 	icon_state = "[chassis]"
@@ -441,11 +442,15 @@
 					idcard.access |= ID.access
 					to_chat(user, "<span class='notice'>You add the access from the [W] to [src].</span>")
 					to_chat(src, "<span class='notice'>\The [user] swipes the [W] over you. You copy the access codes.</span>")
+					if(radio)
+						radio.recalculateChannels()
 					return
 				if("Remove Access")
 					idcard.access = list()
 					to_chat(user, "<span class='notice'>You remove the access from [src].</span>")
 					to_chat(src, "<span class='warning'>\The [user] swipes the [W] over you, removing access codes from you.</span>")
+					if(radio)
+						radio.recalculateChannels()
 					return
 				if("Cancel")
 					return
