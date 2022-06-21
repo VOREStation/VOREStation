@@ -180,17 +180,17 @@
 /datum/tgui/proc/send_full_update(custom_data, force)
 	if(!user.client || !initialized || closing)
 		return
-	if(!COOLDOWN_FINISHED(src, refresh_cooldown))
-		refreshing = TRUE
-		addtimer(CALLBACK(src, .proc/send_full_update), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
-		return
-	refreshing = FALSE
+	//if(!COOLDOWN_FINISHED(src, refresh_cooldown))
+		//refreshing = TRUE
+		//addtimer(CALLBACK(src, .proc/send_full_update), TGUI_REFRESH_FULL_UPDATE_COOLDOWN, TIMER_UNIQUE)
+		//return
+	//refreshing = FALSE
 	var/should_update_data = force || status >= STATUS_UPDATE
 	window.send_message("update", get_payload(
 		custom_data,
 		with_data = should_update_data,
 		with_static_data = TRUE))
-	COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
+	//COOLDOWN_START(src, refresh_cooldown, TGUI_REFRESH_FULL_UPDATE_COOLDOWN)
 
 /**
  * public

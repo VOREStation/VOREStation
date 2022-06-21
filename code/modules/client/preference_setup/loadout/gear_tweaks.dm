@@ -204,7 +204,7 @@ var/datum/gear_tweak/custom_desc/gear_tweak_free_desc = new()
 		return
 	if(valid_custom_desc)
 		return tgui_input_list(user, "Choose an item description.", "Character Preference",valid_custom_desc, metadata)
-	var/san_input = sanitize(tgui_input_text(user, "Choose the item's description. Leave it blank to use the default description.", "Item Description", metadata, multiline = TRUE), extra = 0)
+	var/san_input = sanitize(tgui_input_text(user, "Choose the item's description. Leave it blank to use the default description.", "Item Description", metadata, multiline = TRUE, prevent_enter = TRUE), extra = 0)
 	return san_input ? san_input : get_default()
 
 /datum/gear_tweak/custom_desc/tweak_item(var/obj/item/I, var/metadata)

@@ -50,6 +50,31 @@
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
 
+	var/nutrition_message_visible = TRUE
+	var/list/nutrition_messages = list(
+							"They are starving! You can hear their stomach snarling from across the room!" = 1,
+							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach." = 2,
+							"",
+							"They have a stuffed belly, bloated fat and round from eating too much.",
+							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
+							"They are sporting a large, round, sagging stomach. It contains at least their body weight worth of glorping slush.",
+							"They are engorged with a huge stomach that sags and wobbles as they move. They must have consumed at least twice their body weight. It looks incredibly soft.",
+							"Their stomach is firmly packed with digesting slop. They must have eaten at least a few times worth their body weight! It looks hard for them to stand, and their gut jiggles when they move.",
+							"They are so absolutely stuffed that you aren't sure how it's possible for them to move. They can't seem to swell any bigger. The surface of their belly looks sorely strained!",
+							"They are utterly filled to the point where it's hard to even imagine them moving, much less comprehend it when they do. Their gut is swollen to monumental sizes and amount of food they consumed must be insane.")
+	var/weight_message_visible = TRUE
+	var/list/weight_messages = list(
+							"They are terribly lithe and frail!",
+							"They have a very slender frame.",
+							"They have a lightweight, athletic build.",
+							"They have a healthy, average body.",
+							"They have a thick, curvy physique.",
+							"They have a plush, chubby figure.",
+							"They have an especially plump body with a round potbelly and large hips.",
+							"They have a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs.",
+							"They are incredibly obese. Their massive potbelly sags over their waistline while their fat ass would probably require two chairs to sit down comfortably!",
+							"They are so morbidly obese, you wonder how they can even stand, let alone waddle around the station. They can't get any fatter without being immobilized.")
+
 //
 // Hook for generic creation of stuff on new creatures
 //
@@ -246,6 +271,11 @@
 	P.slip_vore = src.slip_vore
 	P.stumble_vore = src.stumble_vore
 
+	P.nutrition_message_visible = src.nutrition_message_visible
+	P.nutrition_messages = src.nutrition_messages
+	P.weight_message_visible = src.weight_message_visible
+	P.weight_messages = src.weight_messages
+
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
 		serialized += list(B.serialize()) //Can't add a list as an object to another list in Byond. Thanks.
@@ -285,6 +315,11 @@
 	drop_vore = P.drop_vore
 	slip_vore = P.slip_vore
 	stumble_vore = P.stumble_vore
+
+	nutrition_message_visible = P.nutrition_message_visible
+	nutrition_messages = P.nutrition_messages
+	weight_message_visible = P.weight_message_visible
+	weight_messages = P.weight_messages
 
 	if(bellies)
 		release_vore_contents(silent = TRUE)

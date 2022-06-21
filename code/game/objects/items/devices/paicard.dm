@@ -1,3 +1,20 @@
+var/global/list/radio_channels_by_freq = list(
+	num2text(PUB_FREQ) = "Common",
+	num2text(AI_FREQ)  = "AI Private",
+	num2text(ENT_FREQ) = "Entertainment",
+	num2text(ERT_FREQ) = "Response Team",
+	num2text(COMM_FREQ)= "Command",
+	num2text(ENG_FREQ) = "Engineering",
+	num2text(MED_FREQ) = "Medical",
+	num2text(MED_I_FREQ)="Medical(I)",
+	num2text(SEC_FREQ) = "Security",
+	num2text(SEC_I_FREQ)="Security(I)",
+	num2text(SCI_FREQ) = "Science",
+	num2text(SUP_FREQ) = "Supply",
+	num2text(SRV_FREQ) = "Service",
+	num2text(EXP_FREQ) = "Explorer"
+	)
+
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/item/device/paicard
@@ -11,7 +28,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	show_messages = 0
 	preserve_item = 1
 
-	var/obj/item/device/radio/radio
+	var/obj/item/device/radio/borg/pai/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 	var/image/screen_layer
@@ -42,10 +59,16 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	if(pai != null) //Have a person in them already?
 		return ..()
 
-	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI?", "Confirmation", list("Yes", "No"))
-	if(choice == "No")
-		return ..()
+	if(jobban_isbanned(usr, "pAI"))
+		to_chat(usr,"<span class='warning'>You cannot join a pAI card when you are banned from playing as a pAI.</span>")
+		return
 
+	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI, or submit yourself to being recruited?", "Confirmation", list("Inhabit", "Recruit", "Cancel"))
+	if(choice == "Cancel")
+		return ..()
+	if(choice == "Recruit")
+		paiController.recruitWindow(user)
+		return ..()
 	choice = tgui_alert(user, "Do you want to load your pAI data?", "Load", list("Yes", "No"))
 	var/actual_pai_name
 	var/turf/location = get_turf(src)
@@ -331,7 +354,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			if(2)
 				radio.ToggleReception()
 	if(href_list["setlaws"])
-		var/newlaws = sanitize(tgui_input_text(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws, multiline = TRUE))
+		var/newlaws = sanitize(tgui_input_text(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws, multiline = TRUE, prevent_enter = TRUE))
 		if(newlaws)
 			pai.pai_laws = newlaws
 			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
@@ -446,6 +469,34 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		to_chat(AI, span_notice("You feel a tad claustrophobic as your mind closes back into your card, ejecting from \the [initial(src.name)]."))
 		if(user)
 			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
+
+///////////////////////////////
+//////////pAI Radios//////////
+///////////////////////////////
+//Thanks heroman!
+
+/obj/item/device/radio/borg/pai
+	name = "integrated radio"
+	icon = 'icons/obj/robot_component.dmi' // Cyborgs radio icons should look like the component.
+	icon_state = "radio"
+	loudspeaker = FALSE
+
+/obj/item/device/radio/borg/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return
+
+/obj/item/device/radio/borg/pai/recalculateChannels()
+	if(!istype(loc,/obj/item/device/paicard))
+		return
+	var/obj/item/device/paicard/card = loc
+	secure_radio_connections = list()
+	channels = list()
+
+	for(var/internal_chan in internal_channels)
+		var/ch_name = radio_channels_by_freq[internal_chan]
+		if(has_channel_access(card.pai, internal_chan))
+			channels += ch_name
+			channels[ch_name] = 1
+			secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 /obj/item/device/paicard/typeb
 	name = "personal AI device"

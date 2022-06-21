@@ -73,7 +73,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 				if(t)
 					candidate.name = t
 			if("desc")
-				t = tgui_input_text(usr, "Enter a description for your pAI", "pAI Description", candidate.description, multiline = TRUE)
+				t = tgui_input_text(usr, "Enter a description for your pAI", "pAI Description", candidate.description, multiline = TRUE, prevent_enter = TRUE)
 				if(t)
 					candidate.description = sanitize(t)
 			if("role")
@@ -81,7 +81,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 				if(t)
 					candidate.role = sanitize(t)
 			if("ooc")
-				t = tgui_input_text(usr, "Enter any OOC comments", "pAI OOC Comments", candidate.comments, multiline = TRUE)
+				t = tgui_input_text(usr, "Enter any OOC comments", "pAI OOC Comments", candidate.comments, multiline = TRUE, prevent_enter = TRUE)
 				if(t)
 					candidate.comments = sanitize(t)
 			if("save")

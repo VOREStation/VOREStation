@@ -115,19 +115,19 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["set_medical_records"])
-		var/new_medical = sanitize(tgui_input_text(user,"Enter medical information here.","Character Preference", html_decode(pref.med_record), MAX_RECORD_LENGTH, TRUE), MAX_RECORD_LENGTH, extra = 0)
+		var/new_medical = sanitize(tgui_input_text(user,"Enter medical information here.","Character Preference", html_decode(pref.med_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH, extra = 0)
 		if(!isnull(new_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.med_record = new_medical
 		return TOPIC_REFRESH
 
 	else if(href_list["set_general_records"])
-		var/new_general = sanitize(tgui_input_text(user,"Enter employment information here.","Character Preference", html_decode(pref.gen_record), MAX_RECORD_LENGTH, TRUE), MAX_RECORD_LENGTH, extra = 0)
+		var/new_general = sanitize(tgui_input_text(user,"Enter employment information here.","Character Preference", html_decode(pref.gen_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH, extra = 0)
 		if(!isnull(new_general) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.gen_record = new_general
 		return TOPIC_REFRESH
 
 	else if(href_list["set_security_records"])
-		var/sec_medical = sanitize(tgui_input_text(user,"Enter security information here.","Character Preference", html_decode(pref.sec_record), MAX_RECORD_LENGTH, TRUE), MAX_RECORD_LENGTH, extra = 0)
+		var/sec_medical = sanitize(tgui_input_text(user,"Enter security information here.","Character Preference", html_decode(pref.sec_record), MAX_RECORD_LENGTH, TRUE, prevent_enter = TRUE), MAX_RECORD_LENGTH, extra = 0)
 		if(!isnull(sec_medical) && !jobban_isbanned(user, "Records") && CanUseTopic(user))
 			pref.sec_record = sec_medical
 		return TOPIC_REFRESH

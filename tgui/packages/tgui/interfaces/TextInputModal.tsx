@@ -12,6 +12,7 @@ type TextInputData = {
   placeholder: string;
   timeout: number;
   title: string;
+  prevent_enter: boolean;
 };
 
 export const TextInputModal = (_, context) => {
@@ -24,6 +25,7 @@ export const TextInputModal = (_, context) => {
     placeholder,
     timeout,
     title,
+    prevent_enter,
   } = data;
   const [input, setInput] = useLocalState<string>(
     context,
@@ -49,8 +51,10 @@ export const TextInputModal = (_, context) => {
       <Window.Content
         onEscape={() => act('cancel')}
         onEnter={(event) => {
-          act('submit', { entry: input });
-          event.preventDefault();
+          if (!prevent_enter) {
+            act('submit', { entry: input });
+            event.preventDefault();
+          }
         }}>
         <Section fill>
           <Stack fill vertical>
@@ -76,7 +80,7 @@ export const TextInputModal = (_, context) => {
 /** Gets the user input and invalidates if there's a constraint. */
 const InputArea = (props, context) => {
   const { act, data } = useBackend<TextInputData>(context);
-  const { max_length, multiline } = data;
+  const { max_length, multiline, prevent_enter } = data;
   const { input, onType } = props;
 
   return (
@@ -87,8 +91,10 @@ const InputArea = (props, context) => {
       maxLength={max_length}
       onEscape={() => act('cancel')}
       onEnter={(event) => {
-        act('submit', { entry: input });
-        event.preventDefault();
+        if (!prevent_enter) {
+          act('submit', { entry: input });
+          event.preventDefault();
+        }
       }}
       onInput={(_, value) => onType(value)}
       placeholder="Type something..."
