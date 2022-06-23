@@ -7,7 +7,9 @@
 	path = "virgo_minitest"
 
 	lobby_icon = 'icons/misc/title_vr.dmi'
-	lobby_screens = list("tether2_night")
+	lobby_screens = list("logo2")
+
+	id_hud_icons = 'icons/mob/hud_jobs_vr.dmi'
 
 	accessible_z_levels = list("1" = 100)
 	base_turf_by_z = list("1" = /turf/space)
