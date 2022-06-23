@@ -1,6 +1,74 @@
 /mob/living/silicon/pai
 	var/obj/screen/pai/pai_fold_display = null
 
+/obj/screen/pai
+	icon = 'icons/mob/pai_hud.dmi'
+	var/base_state
+
+/obj/screen/pai/Click_vr(location, control, params)
+	if(!usr)	return 1
+	if(!ispAI(usr))		return 1
+	var/mob/living/silicon/pai/p = usr
+	switch(name)
+		if("fold/unfold")
+			if(p.loc == p.card)
+				p.fold_out()
+			else
+				p.fold_up()
+		if("choose chassis")
+			p.choose_chassis()
+
+		if("software interface")
+			p.paiInterface()
+		
+		if("radio configuration")
+			p.radio.tgui_interact(p)
+
+		if("pda")
+			p.pda.cmd_pda_open_ui()
+		
+		if("communicator")
+			p.communicator.activate()
+
+		if("known languages")
+			p.check_languages()
+
+		if("software toggle")
+			p.refresh_software_status()
+			if(p.hud_used.inventory_shown)
+				p.hud_used.inventory_shown = 0
+				p.client.screen -= p.hud_used.other
+			else
+				p.hud_used.inventory_shown = 1
+				p.client.screen += p.hud_used.other
+		
+		if("directives")
+			p.directives()
+
+		if("crew manifest")
+			p.crew_manifest()
+
+		if("universal translator")
+			p.translator()
+
+		if("medical records")
+			p.med_records()
+		
+		if("security records")
+			p.sec_records()
+		
+		if("remote signaler")
+			p.remote_signal()
+
+		if("atmosphere sensor")
+			p.atmos_sensor()
+
+		if("door jack")
+			p.door_jack()
+
+		if("ar hud")
+			p.ar_hud()
+
 /obj/screen/pai/pai_fold_display
 	name = "fold/unfold"
 	icon = 'icons/mob/pai_hud.dmi'
@@ -26,7 +94,7 @@
 	HUD.hotkeybuttons = hotkeybuttons
 	HUD.hud_elements = hud_elements
 
-	var/obj/screen/using
+	var/obj/screen/pai/using
 
 	//Small intent quarters
 
@@ -91,66 +159,6 @@
 	using.alpha = ui_alpha
 	HUD.hotkeybuttons += using
 
-	//Choose chassis button
-	using = new /obj/screen()
-	using.name = "choose chassis"
-	using.icon = ui_style
-	using.icon_state = "choose_chassis"
-	using.screen_loc = ui_movi
-	using.color = ui_color
-	using.alpha = ui_alpha
-	hud_elements |= using
-
-	//Software interface button
-	using = new /obj/screen()
-	using.name = "software interface"
-	using.icon = ui_style
-	using.icon_state = "software_interface"
-	using.screen_loc = ui_acti
-	using.color = ui_color
-	using.alpha = ui_alpha
-	hud_elements |= using
-
-	//Radio configuration button
-	using = new /obj/screen()
-	using.name = "radio configuration"
-	using.icon = ui_style
-	using.icon_state = "radio_configuration"
-	using.screen_loc = ui_acti
-	using.color = ui_color
-	using.alpha = ui_alpha
-	hud_elements |= using
-
-	//PDA button
-	using = new /obj/screen()
-	using.name = "pda"
-	using.icon = ui_style
-	using.icon_state = "pda"
-	using.screen_loc = ui_pai_comms
-	using.color = ui_color
-	using.alpha = ui_alpha
-	hud_elements |= using
-
-	//Communicator button
-	using = new /obj/screen()
-	using.name = "communicator"
-	using.icon = ui_style
-	using.icon_state = "communicator"
-	using.screen_loc = ui_pai_comms
-	using.color = ui_color
-	using.alpha = ui_alpha
-	hud_elements |= using
-
-	//Language button
-	using = new /obj/screen()
-	using.name = "known languages"
-	using.icon = ui_style
-	using.icon_state = "language"
-	using.screen_loc = ui_acti
-	using.color = ui_color
-	using.alpha = ui_alpha
-	hud_elements |= using
-
 	//Pull button
 	pullin = new /obj/screen()
 	pullin.icon = ui_style
@@ -183,12 +191,148 @@
 	pai_fold_display.icon_state = "folded"
 	HUD.hud_elements |= pai_fold_display
 
+	//Choose chassis button
+	using = new /obj/screen/pai()
+	using.name = "choose chassis"
+	using.icon_state = "choose_chassis"
+	using.screen_loc = ui_movi
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	//Software interface button
+	using = new /obj/screen/pai()
+	using.name = "software interface"
+	using.icon_state = "software_interface"
+	using.screen_loc = ui_acti
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	//Radio configuration button
+	using = new /obj/screen/pai()
+	using.name = "radio configuration"
+	using.icon_state = "radio_configuration"
+	using.screen_loc = ui_acti
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	//PDA button
+	using = new /obj/screen/pai()
+	using.name = "pda"
+	using.icon_state = "pda"
+	using.screen_loc = ui_pai_comms
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	//Communicator button
+	using = new /obj/screen/pai()
+	using.name = "communicator"
+	using.icon_state = "communicator"
+	using.screen_loc = ui_pai_comms
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	//Language button
+	using = new /obj/screen/pai()
+	using.name = "known languages"
+	using.icon_state = "language"
+	using.screen_loc = ui_acti
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	using = new /obj/screen/pai()
+	using.name = "software toggle"
+	using.icon_state = "software"
+	using.screen_loc = ui_inventory
+	using.color = ui_color
+	using.alpha = ui_alpha
+	hud_elements |= using
+
+	using = new /obj/screen/pai()
+	using.name = "directives"
+	using.icon_state = "directives"
+	using.screen_loc = "WEST:6,SOUTH:18"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "crew manifest"
+	using.icon_state = "manifest"
+	using.screen_loc = "WEST:6,SOUTH+1:2"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "medical records"
+	using.base_state = "med_records"
+	using.screen_loc = "WEST:6,SOUTH+1:18"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "security records"
+	using.base_state = "sec_records"
+	using.screen_loc = "WEST:6,SOUTH+2:2"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "atmosphere sensor"
+	using.base_state = "atmos_sensor"
+	using.screen_loc = "WEST:6,SOUTH+2:18"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "remote signaler"
+	using.base_state = "signaller"
+	using.screen_loc = "WEST:6,SOUTH+3:2"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "universal translator"
+	using.base_state = "translator"
+	using.screen_loc = "WEST:6,SOUTH+3:18"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "door jack"
+	using.base_state = "door_jack"
+	using.screen_loc = "WEST:6,SOUTH+4:2"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
+
+	using = new /obj/screen/pai()
+	using.name = "ar hud"
+	using.base_state = "ar_hud"
+	using.screen_loc = "WEST:6,SOUTH+4:18"
+	using.color = ui_color
+	using.alpha = ui_alpha
+	other |= using
 
 	if(client)
 		client.screen = list()
 		client.screen += hud_elements
 		client.screen += adding + hotkeybuttons
 		client.screen += client.void
+
+	HUD.inventory_shown = 0
+
 
 /mob/living/silicon/pai/handle_regular_hud_updates()
 	. = ..()
