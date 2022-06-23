@@ -16,33 +16,38 @@
  * * timeout - The timeout of the textbox, after which the modal will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_text(mob/user, message = "", title = "Text Input", default, max_length = INFINITY, multiline = FALSE, encode = FALSE, timeout = 0, prevent_enter = FALSE)
-	if (istext(user))
+	if(istext(user))
 		stack_trace("tgui_input_text() received text for user instead of mob")
 		return
-	if (!user)
+	if(!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if(!istype(user))
+		if(istype(user, /client))
 			var/client/client = user
 			user = client.mob
 		else
 			return
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!user.client.prefs.tgui_input_mode)
+		var/non_tgui_input
 		if(encode)
 			if(multiline)
-				return stripped_multiline_input(user, message, title, default, max_length)
+				non_tgui_input = stripped_multiline_input(user, message, title, default, max_length)
 			else
-				return stripped_input(user, message, title, default, max_length)
+				non_tgui_input = stripped_input(user, message, title, default, max_length)
 		else
 			if(multiline)
-				return input(user, message, title, default) as message|null
+				non_tgui_input = input(user, message, title, default) as message|null
 			else
-				return input(user, message, title, default) as text|null
+				non_tgui_input = input(user, message, title, default) as text|null
+		if(non_tgui_input)
+			non_tgui_input = readd_quotes(non_tgui_input)
+		return non_tgui_input
+		
 	var/datum/tgui_input_text/text_input = new(user, message, title, default, max_length, multiline, encode, timeout, prevent_enter)
 	text_input.tgui_interact(user)
 	text_input.wait()
-	if (text_input)
+	if(text_input)
 		. = text_input.entry
 		qdel(text_input)
 
@@ -83,7 +88,7 @@
 	src.message = message
 	src.multiline = multiline
 	src.title = title
-	if (timeout)
+	if(timeout)
 		src.timeout = timeout
 		start_time = world.time
 		QDEL_IN(src, timeout)
@@ -98,7 +103,7 @@
  * the window was closed by the user.
  */
 /datum/tgui_input_text/proc/wait()
-	while (!entry && !closed)
+	while(!entry && !closed)
 		stoplag(1)
 
 /datum/tgui_input_text/tgui_interact(mob/user, datum/tgui/ui)
@@ -134,7 +139,7 @@
 
 /datum/tgui_input_text/tgui_act(action, list/params)
 	. = ..()
-	if (.)
+	if(.)
 		return
 	switch(action)
 		if("submit")
@@ -170,13 +175,13 @@
  * * timeout - The timeout of the input box, after which the menu will close and qdel itself. Set to zero for no timeout.
  */
 /proc/tgui_input_text_async(mob/user, message, title, default, datum/callback/callback, max_length, multiline, encode, timeout = 60 SECONDS)
-	if (istext(user))
+	if(istext(user))
 		stack_trace("tgui_input_text_async() received text for user instead of mob")
 		return
-	if (!user)
+	if(!user)
 		user = usr
-	if (!istype(user))
-		if (istype(user, /client))
+	if(!istype(user))
+		if(istype(user, /client))
 			var/client/client = user
 			user = client.mob
 		else
