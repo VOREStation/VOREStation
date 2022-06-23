@@ -343,3 +343,8 @@
 			LAZYINITLIST(src_object.tgui_shared_states)
 			src_object.tgui_shared_states[href_list["key"]] = href_list["value"]
 			SStgui.update_uis(src_object)
+		if("fallback")
+			#ifdef TGUI_DEBUGGING
+			log_tgui(user, "Fallback Triggered: [href_list["payload"]], Window: [window.id], Source: [src_object]")
+			#endif
+			src_object.tgui_fallback(payload)
