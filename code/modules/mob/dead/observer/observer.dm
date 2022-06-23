@@ -124,8 +124,13 @@
 			var/mob/living/carbon/human/H = body
 			add_overlay(H.overlays_standing)
 
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
-	forceMove(T)
+	if(!T)
+		T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(T)
+		forceMove(T)
+	else
+		moveToNullspace()
+		to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
 
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
@@ -161,10 +166,10 @@
 		I = getFlatIcon(src, defdir = SOUTH, no_anim = TRUE)
 		set_cached_examine_icon(src, I, 200 SECONDS)
 	return I
-	
+
 /mob/observer/dead/examine(mob/user)
 	. = ..()
-	
+
 	if(is_admin(user))
 		. += "\t><span class='admin'>[ADMIN_FULLMONTY(src)]</span>"
 
@@ -337,7 +342,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/areas = return_sorted_areas()
 	if(client?.holder)
 		return areas
-	
+
 	for(var/key in areas)
 		var/area/A = areas[key]
 		if(A.z in using_map?.secret_levels)
@@ -371,7 +376,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/area/A
-	
+
 	if(!areaname)
 		var/list/areas = jumpable_areas()
 		var/input = tgui_input_list(usr, "Select an area:", "Ghost Teleport", areas)
@@ -413,29 +418,29 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	ManualFollow(M || jumpable_mobs()[mobname])
-	
+
 /mob/observer/dead/forceMove(atom/destination)
 	if(client?.holder)
 		return ..()
-	
+
 	if(get_z(destination) in using_map?.secret_levels)
 		to_chat(src,SPAN_WARNING("Sorry, that z-level does not allow ghosts."))
 		if(following)
 			stop_following()
 		return
-	
+
 	return ..()
 
 /mob/observer/dead/Move(atom/newloc, direct = 0, movetime)
 	if(client?.holder)
 		return ..()
-	
+
 	if(get_z(newloc) in using_map?.secret_levels)
 		to_chat(src,SPAN_WARNING("Sorry, that z-level does not allow ghosts."))
 		if(following)
 			stop_following()
 		return
-	
+
 	return ..()
 
 // This is the ghost's follow verb with an argument
@@ -514,7 +519,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/mob/observer/dead/M in following_mobs)
 		if(!.)
 			M.stop_following()
-		
+
 		if(M.following != src)
 			following_mobs -= M
 		else
@@ -867,7 +872,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Darkness"
 	set desc = "Toggles your ability to see lighting overlays, and the darkness they create."
 	set category = "Ghost"
-	
+
 	var/static/list/darkness_names = list("normal darkness levels", "30% darkness removed", "70% darkness removed", "no darkness")
 	var/static/list/darkness_levels = list(255, 178, 76, 0)
 
@@ -876,7 +881,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		index = 1
 	else
 		index++
-	
+
 	lighting_alpha = darkness_levels[index]
 	updateghostsight()
 	to_chat(src, "Your vision now has [darkness_names[index]].")
@@ -977,7 +982,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Blank pAI alert"
 	set desc = "Flash an indicator light on available blank pAI devices for a smidgen of hope."
-	
+
 	if(jobban_isbanned(usr, "pAI"))
 		to_chat(usr,"<span class='warning'>You cannot alert pAI cards when you are banned from playing as a pAI.</span>")
 		return

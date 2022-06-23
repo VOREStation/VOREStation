@@ -28,7 +28,7 @@
 		else
 			return
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!usr.client.prefs.tgui_input_mode)
+	if(!user.client.prefs.tgui_input_mode)
 		if(encode)
 			if(multiline)
 				return stripped_multiline_input(user, message, title, default, max_length)

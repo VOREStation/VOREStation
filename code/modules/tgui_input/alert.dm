@@ -31,7 +31,7 @@
 	//	return tgui_input_list(user, message, title, buttons, timeout, autofocus)
 
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!usr.client.prefs.tgui_input_mode || strict_byond)
+	if(!user.client.prefs.tgui_input_mode || strict_byond)
 		if(length(buttons) == 2)
 			return alert(user, message, title, buttons[1], buttons[2])
 		if(length(buttons) == 3)
@@ -64,7 +64,7 @@
 	/// The lifespan of the tgui_modal, after which the window will close and delete itself.
 	var/timeout
 	/// The bool that controls if this modal should grab window focus
-	var/autofocus    
+	var/autofocus
 	/// Boolean field describing if the tgui_modal was closed by the user.
 	var/closed
 
@@ -117,7 +117,7 @@
 /datum/tgui_alert/tgui_data(mob/user)
 	var/list/data = list()
 	if(timeout)
-		.["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
+		data["timeout"] = CLAMP01((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS))
 	return data
 
 /datum/tgui_alert/tgui_act(action, list/params)
