@@ -174,10 +174,10 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/cat/runtime
 
-/obj/item/holder/fennec
+/obj/item/weapon/holder/fennec
 	origin_tech = list(TECH_BIO = 2)
 
-/obj/item/holder/cat/runtime
+/obj/item/weapon/holder/cat/runtime
 
 	origin_tech = list(TECH_BIO = 2, TECH_DATA = 4)
 

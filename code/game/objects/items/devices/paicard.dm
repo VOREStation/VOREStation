@@ -23,7 +23,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	icon_state = "pai"
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
 	preserve_item = 1
@@ -513,4 +513,4 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 /obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
 	if(!pai.digestable)
 		return
-	. = ..()	
+	. = ..()
