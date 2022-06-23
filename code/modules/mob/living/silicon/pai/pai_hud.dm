@@ -20,13 +20,13 @@
 
 		if("software interface")
 			p.paiInterface()
-		
+
 		if("radio configuration")
 			p.radio.tgui_interact(p)
 
 		if("pda")
 			p.pda.cmd_pda_open_ui()
-		
+
 		if("communicator")
 			p.communicator.activate()
 
@@ -41,7 +41,7 @@
 			else
 				p.hud_used.inventory_shown = 1
 				p.client.screen += p.hud_used.other
-		
+
 		if("directives")
 			p.directives()
 
@@ -53,10 +53,10 @@
 
 		if("medical records")
 			p.med_records()
-		
+
 		if("security records")
 			p.sec_records()
-		
+
 		if("remote signaler")
 			p.remote_signal()
 
@@ -364,7 +364,9 @@
 			pai_fold_display.icon_state = "unfolded"
 
 /mob/living/silicon/pai/toggle_hud_vis(full)
-	
+	if(!client)
+		return FALSE
+
 	if(hud_used.hud_shown)
 		hud_used.hud_shown = 0
 		if(hud_used.adding)

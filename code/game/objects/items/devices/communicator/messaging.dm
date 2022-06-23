@@ -57,7 +57,7 @@
 	var/who = null
 	if(isobserver(candidate))
 		var/mob/observer/dead/ghost = candidate
-		who = ghost
+		who = ghost.name
 		im_list += list(list("address" = origin_address, "to_address" = exonet.address, "im" = text))
 	else if(istype(candidate, /obj/item/device/communicator))
 		var/obj/item/device/communicator/comm = candidate
