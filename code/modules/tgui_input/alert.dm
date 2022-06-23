@@ -26,9 +26,9 @@
 		else
 			return
 	// A gentle nudge - you should not be using TGUI alert for anything other than a simple message.
-	if(length(buttons) > 3)
-		log_tgui(user, "Error: TGUI Alert initiated with too many buttons. Use a list.", "TguiAlert")
-		return tgui_input_list(user, message, title, buttons, timeout, autofocus)
+	//if(length(buttons) > 3)
+	//	log_tgui(user, "Error: TGUI Alert initiated with too many buttons. Use a list.", "TguiAlert")
+	//	return tgui_input_list(user, message, title, buttons, timeout, autofocus)
 
 	// Client does NOT have tgui_input on: Returns regular input
 	if(!usr.client.prefs.tgui_input_mode || strict_byond)
