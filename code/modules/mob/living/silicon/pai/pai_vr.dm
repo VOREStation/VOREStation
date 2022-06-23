@@ -6,6 +6,9 @@
 	var/hide_glow = FALSE
 	var/image/eye_layer = null		// Holds the eye overlay.
 	var/eye_color = "#00ff0d"
+	var/icon/holo_icon
+	var/icon/holo_icon_north
+	var/holo_icon_dimension = 32
 	var/global/list/wide_chassis = list(
 		"rat",
 		"panther",
@@ -41,7 +44,8 @@
 		"teppi",
 		"catslug",
 		"car",
-		"typeone"
+		"typeone",
+		"13"
 		)
 	//These vars keep track of whether you have the related software, used for easily updating the UI
 	var/soft_ut = FALSE	//universal translator
@@ -59,6 +63,11 @@
 	verbs |= /mob/living/proc/dominate_prey
 	verbs |= /mob/living/proc/set_size
 	verbs |= /mob/living/proc/shred_limb
+
+/mob/living/silicon/pai/Login()
+	. = ..()
+	last_special = world.time + 100		//Let's give get_character_icon time to work
+	get_character_icon()
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -78,6 +87,10 @@
 
 /mob/living/silicon/pai/update_icon() //Some functions cause this to occur, such as resting
 	..()
+	if(chassis == "13")
+		add_eyes()
+		return
+
 	update_fullness_pai()
 
 	if(!people_eaten && !resting)
@@ -106,6 +119,9 @@
 
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
 	..()
+	if(chassis == "13")
+		add_eyes()
+		return
 	update_fullness_pai()
 	if(!people_eaten && !resting)
 		icon_state = "[chassis]"
@@ -134,7 +150,13 @@
 	var/oursize = size_multiplier
 	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset 
 	chassis = possible_chassis[choice]
-	if(chassis in wide_chassis)
+	if(chassis == "13")
+		if(!holo_icon)
+			if(!get_character_icon())
+				return
+		icon_state = null
+		icon = holo_icon
+	else if(chassis in wide_chassis)
 		icon = 'icons/mob/pai_vr64x64.dmi'
 		vis_height = 64
 	else
@@ -154,6 +176,7 @@
 /mob/living/silicon/pai/verb/toggle_eyeglow()
 	set category = "pAI Commands"
 	set name = "Toggle Eye Glow"
+
 	if(chassis in allows_eye_color)
 		if(eye_glow && !hide_glow)
 			eye_glow = FALSE
@@ -186,14 +209,22 @@
 
 /mob/living/silicon/pai/proc/add_eyes()
 	remove_eyes()
-	if(chassis in allows_eye_color)
-		if(!eye_layer)
-			eye_layer = image(icon, "[icon_state]-eyes")
-		eye_layer.appearance_flags = appearance_flags
-		eye_layer.color = eye_color
-		if(eye_glow && !hide_glow)
-			eye_layer.plane = PLANE_LIGHTING_ABOVE
-		add_overlay(eye_layer)
+	if(chassis == "13")
+		if(holo_icon.Width() > 32)
+			eye_layer = image('icons/mob/pai_vr64x64.dmi', "type13-eyes")
+			pixel_x = -16
+			default_pixel_x = -16
+			holo_icon_dimension = 64
+		else
+			eye_layer = image('icons/mob/pai_vr.dmi', "type13-eyes")
+	else if(chassis in allows_eye_color)
+		eye_layer = image(icon, "[icon_state]-eyes")
+	else return
+	eye_layer.appearance_flags = appearance_flags
+	eye_layer.color = eye_color
+	if(eye_glow && !hide_glow)
+		eye_layer.plane = PLANE_LIGHTING_ABOVE
+	add_overlay(eye_layer)
 
 /mob/living/silicon/pai/proc/remove_eyes()
 	cut_overlay(eye_layer)
@@ -545,3 +576,33 @@
 
 /mob/living/silicon/pai/proc/ar_hud()
 	touch_window("AR HUD")
+
+/mob/living/silicon/pai/proc/get_character_icon()
+	if(!client || !client.prefs) return FALSE
+	var/mob/living/carbon/human/dummy/dummy = new ()
+	//This doesn't include custom_items because that's ... hard.
+	client.prefs.dress_preview_mob(dummy)
+	sleep(1 SECOND) //Strange bug in preview code? Without this, certain things won't show up. Yay race conditions?
+	dummy.regenerate_icons()
+
+	var/icon/new_holo = getCompoundIcon(dummy)
+
+	dummy.tail_alt = TRUE
+	dummy.set_dir(NORTH)
+	var/icon/new_holo_north = getCompoundIcon(dummy)
+
+	qdel(holo_icon)
+	qdel(holo_icon_north)
+	qdel(dummy)
+	holo_icon = new_holo
+	holo_icon_north = new_holo_north
+	return TRUE
+
+/mob/living/silicon/pai/set_dir(var/new_dir)
+	. = ..()
+	if(. && (chassis == "13"))
+		switch(dir)
+			if(SOUTH)
+				icon = holo_icon
+			else
+				icon = holo_icon_north

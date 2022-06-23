@@ -52,7 +52,8 @@
 		"Teppi" = "teppi",
 		"Catslug" = "catslug",
 		"Car" = "car",
-		"Type One" = "typeone"
+		"Type One" = "typeone",
+		"Type Thirteen" = "13"
 		//VOREStation Addition End
 		)
 
@@ -103,6 +104,8 @@
 	var/translator_on = 0 // keeps track of the translator module
 
 	var/current_pda_messaging = null
+
+	var/our_icon_rotation = 0
 
 /mob/living/silicon/pai/New(var/obj/item/device/paicard)
 	src.loc = paicard
@@ -246,6 +249,7 @@
 		return
 
 	if(world.time <= last_special)
+		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
 		return
 
 	last_special = world.time + 100
@@ -299,6 +303,7 @@
 		return
 
 	if(world.time <= last_special)
+		to_chat(src, "<span class ='warning'>You can't fold up yet.</span>")
 		return
 
 	close_up()
@@ -345,13 +350,48 @@
 		var/obj/item/weapon/rig/rig = src.get_rig()
 		if(istype(rig))
 			rig.force_rest(src)
+			return
+	else if(chassis == "13")
+		resting = !resting
+		update_transform()
 	else
 		resting = !resting
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
 		update_icon() //VOREStation edit
-		to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
+	to_chat(src, "<span class='notice'>You are now [resting ? "resting" : "getting up"]</span>")
 
 	canmove = !resting
+
+/mob/living/silicon/pai/update_transform()
+	. = ..()
+	if(chassis != "13")
+		return
+	to_chat(src, "I'm gonna try to rotate the icon!")
+	var/desired_scale_x = size_multiplier * icon_scale_x
+	var/desired_scale_y = size_multiplier * icon_scale_y
+	appearance_flags |= PIXEL_SCALE
+
+	var/matrix/M = matrix()
+	var/anim_time = 3
+
+	if(resting)
+		var/randn = rand(1, 2)
+		if(randn <= 1) // randomly choose a rotation
+			M.Turn(-90)
+		else
+			M.Turn(90)
+		M.Scale(desired_scale_y, desired_scale_x)//VOREStation Edit
+		if(holo_icon_dimension == 64)//VOREStation Edit
+			M.Translate(13,-22)
+		else
+			M.Translate(1,-6)
+		layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
+	else
+		M.Scale(desired_scale_x, desired_scale_y)//VOREStation Edit
+		M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
+		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
+	animate(src, transform = M, time = anim_time)
+
 
 //Overriding this will stop a number of headaches down the track.
 /mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
