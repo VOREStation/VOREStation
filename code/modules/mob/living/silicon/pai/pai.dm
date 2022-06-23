@@ -407,8 +407,10 @@
 		src.forceMove(card)
 		card.forceMove(B)
 	else				//Otherwise go on floor
+		src.loc = card
+		card.loc = get_turf(card)
 		src.forceMove(card)
-		card.forceMove(get_turf(card))
+		card.forceMove(card.loc)
 	canmove = 1
 	resting = 0
 	icon_state = "[chassis]"
