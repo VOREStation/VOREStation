@@ -26,7 +26,7 @@
 		else
 			return
 	/// Client does NOT have tgui_input on: Returns regular input
-	if(!usr.client.prefs.tgui_input_mode && !strict_modern)
+	if(!user.client.prefs.tgui_input_mode && !strict_modern)
 		return input(user, message, title, default) as null|anything in items
 	var/datum/tgui_list_input/input = new(user, message, title, items, default, timeout)
 	input.tgui_interact(user)

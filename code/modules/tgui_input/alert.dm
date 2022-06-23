@@ -31,7 +31,7 @@
 	//	return tgui_input_list(user, message, title, buttons, timeout, autofocus)
 
 	// Client does NOT have tgui_input on: Returns regular input
-	if(!usr.client.prefs.tgui_input_mode || strict_byond)
+	if(!user.client.prefs.tgui_input_mode || strict_byond)
 		if(length(buttons) == 2)
 			return alert(user, message, title, buttons[1], buttons[2])
 		if(length(buttons) == 3)
