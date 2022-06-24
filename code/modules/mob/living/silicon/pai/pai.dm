@@ -251,7 +251,7 @@
 	if(world.time <= last_special)
 		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
 		return
-
+	
 	last_special = world.time + 100
 
 	if(istype(card.loc, /obj/machinery)) // VOREStation edit, this statement allows pAIs stuck in a machine to eject themselves.
@@ -353,7 +353,7 @@
 			return
 	else if(chassis == "13")
 		resting = !resting
-		update_transform()
+		//update_transform()	I want this to make you ROTATE like normal HUMANS do! But! There's lots of problems and I don't know how to fix them!
 	else
 		resting = !resting
 		icon_state = resting ? "[chassis]_rest" : "[chassis]"
@@ -362,37 +362,42 @@
 
 	canmove = !resting
 
+/*
 /mob/living/silicon/pai/update_transform()
-	. = ..()
-	if(chassis != "13")
-		return
-	to_chat(src, "I'm gonna try to rotate the icon!")
+
 	var/desired_scale_x = size_multiplier * icon_scale_x
 	var/desired_scale_y = size_multiplier * icon_scale_y
-	appearance_flags |= PIXEL_SCALE
 
+	// Now for the regular stuff.
 	var/matrix/M = matrix()
-	var/anim_time = 3
+	M.Scale(desired_scale_x, desired_scale_y)
+	M.Translate(0, (vis_height/2)*(desired_scale_y-1))
 
-	if(resting)
-		var/randn = rand(1, 2)
-		if(randn <= 1) // randomly choose a rotation
-			M.Turn(-90)
-		else
+	if(chassis != "13")
+		appearance_flags |= PIXEL_SCALE
+
+		var/anim_time = 3
+
+		if(resting)
 			M.Turn(90)
-		M.Scale(desired_scale_y, desired_scale_x)//VOREStation Edit
-		if(holo_icon_dimension == 64)//VOREStation Edit
-			M.Translate(13,-22)
+			M.Scale(desired_scale_y, desired_scale_x)
+			if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
+				M.Translate(13,-22)
+			else if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 64)
+				M.Translate(1,-22)
+			else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 32)
+				M.Translate(13,-6)
+			else
+				M.Translate(1,-6)
+			layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
 		else
-			M.Translate(1,-6)
-		layer = MOB_LAYER -0.01 // Fix for a byond bug where turf entry order no longer matters
-	else
-		M.Scale(desired_scale_x, desired_scale_y)//VOREStation Edit
-		M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
-		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
-	animate(src, transform = M, time = anim_time)
-
-
+			M.Scale(desired_scale_x, desired_scale_y)
+			M.Translate(0, (vis_height/2)*(desired_scale_y-1))
+			layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
+		animate(src, transform = M, time = anim_time)
+	src.transform = M
+	handle_status_indicators()
+*/
 //Overriding this will stop a number of headaches down the track.
 /mob/living/silicon/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(W.force)
