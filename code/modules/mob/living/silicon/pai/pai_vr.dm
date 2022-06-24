@@ -8,7 +8,8 @@
 	var/eye_color = "#00ff0d"
 	var/icon/holo_icon
 	var/icon/holo_icon_north
-	var/holo_icon_dimension = 32
+	var/holo_icon_dimension_X = 32
+	var/holo_icon_dimension_Y = 32
 	var/global/list/wide_chassis = list(
 		"rat",
 		"panther",
@@ -88,6 +89,7 @@
 /mob/living/silicon/pai/update_icon() //Some functions cause this to occur, such as resting
 	..()
 	if(chassis == "13")
+		icon = holo_icon
 		add_eyes()
 		return
 
@@ -120,6 +122,7 @@
 /mob/living/silicon/pai/update_icons() //And other functions cause this to occur, such as digesting someone.
 	..()
 	if(chassis == "13")
+		icon = holo_icon
 		add_eyes()
 		return
 	update_fullness_pai()
@@ -211,12 +214,20 @@
 	remove_eyes()
 	if(chassis == "13")
 		if(holo_icon.Width() > 32)
-			eye_layer = image('icons/mob/pai_vr64x64.dmi', "type13-eyes")
+			holo_icon_dimension_X = 64
 			pixel_x = -16
 			default_pixel_x = -16
-			holo_icon_dimension = 64
-		else
+		if(holo_icon.Height() > 32)
+			holo_icon_dimension_Y = 64
+		if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 32)
 			eye_layer = image('icons/mob/pai_vr.dmi', "type13-eyes")
+		else if(holo_icon_dimension_X == 32 && holo_icon_dimension_Y == 64)
+			eye_layer = image('icons/mob/pai_vr32x64.dmi', "type13-eyes")
+		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 32)
+			eye_layer = image('icons/mob/pai_vr64x32.dmi', "type13-eyes")
+		else if(holo_icon_dimension_X == 64 && holo_icon_dimension_Y == 64)
+			eye_layer = image('icons/mob/pai_vr64x64.dmi', "type13-eyes")
+		else
 	else if(chassis in allows_eye_color)
 		eye_layer = image(icon, "[icon_state]-eyes")
 	else return
