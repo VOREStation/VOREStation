@@ -807,8 +807,11 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(ubelt.show_above_suit)
 			belt_layer = BELT_LAYER_ALT
 
+
+	var/icon/c_mask = tail_style?.clip_mask
+
 	//NB: this uses a var from above
-	overlays_standing[belt_layer] = belt.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_belt_str, default_icon = INV_BELT_DEF_ICON, default_layer = belt_layer)
+	overlays_standing[belt_layer] = belt.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_belt_str, default_icon = INV_BELT_DEF_ICON, default_layer = belt_layer, clip_mask = c_mask)
 
 	apply_layer(belt_layer)
 
@@ -961,7 +964,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
 		tail_layer = TAIL_NORTH_LAYER_ALT
 	if(src.tail_style && src.tail_style.clip_mask_state)
-		tail_layer = TAIL_SOUTH_LAYER		// Use default, let clip mask handle everything
+		tail_layer = TAIL_NORTH_LAYER		// Use default, let clip mask handle everything
 
 	var/image/tail_image = get_tail_image()
 	if(tail_image)
@@ -1004,7 +1007,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
 		tail_layer = TAIL_NORTH_LAYER_ALT
 	if(src.tail_style && src.tail_style.clip_mask_state)
-		tail_layer = TAIL_SOUTH_LAYER		// Use default, let clip mask handle everything
+		tail_layer = TAIL_NORTH_LAYER		// Use default, let clip mask handle everything
 	var/image/tail_overlay = overlays_standing[tail_layer]
 
 	remove_layer(TAIL_NORTH_LAYER)
@@ -1028,6 +1031,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	var/t_state = "[species.get_tail(src)]_once"
 	var/tail_layer = GET_TAIL_LAYER
+	if(src.tail_style && src.tail_style.clip_mask_state)
+		tail_layer = TAIL_NORTH_LAYER		// Use default, let clip mask handle everything
 
 	var/image/tail_overlay = overlays_standing[tail_layer]
 	if(tail_overlay && tail_overlay.icon_state == t_state)
