@@ -51,8 +51,8 @@
 		pred.visible_message("<span class='danger'>\The [pred] falls right onto \the [prey]!</span>")
 	else if(prey.vore_selected && prey.can_be_drop_pred && pred.can_be_drop_prey && pred.drop_vore && prey.drop_vore)
 		prey.feed_grabbed_to_self_falling_nom(prey,pred)
-		pred.Weaken(4)
-		pred.visible_message("<span class='danger'>\The [pred] falls right into \the [prey]!</span>")
+		prey.Weaken(4)
+		prey.visible_message("<span class='danger'>\The [pred] falls right into \the [prey]!</span>")
 	else
 		pred.loc = prey.loc
 		if(!safe_fall)
