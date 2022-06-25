@@ -3,13 +3,9 @@ import { useBackend } from '../backend';
 import { ByondUi } from '../components';
 import { Window } from '../layouts';
 
-
 export const StationBlueprints = (props, context) => {
   return (
-    <Window
-      width={870}
-      height={708}
-      resizable>
+    <Window width={870} height={708} resizable>
       <StationBlueprintsContent />
     </Window>
   );
@@ -22,9 +18,7 @@ export const StationBlueprintsContent = (props, context) => {
   return (
     <Fragment>
       <div className="CameraConsole__left">
-        <Window.Content scrollable>
-          Honk!
-        </Window.Content>
+        <Window.Content scrollable>Honk!</Window.Content>
       </div>
       <div className="CameraConsole__right">
         <ByondUi
@@ -32,7 +26,8 @@ export const StationBlueprintsContent = (props, context) => {
           params={{
             id: mapRef,
             type: 'map',
-          }} />
+          }}
+        />
       </div>
     </Fragment>
   );

@@ -1,8 +1,8 @@
 import { createSearch } from 'common/string';
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from "../backend";
+import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
-import { Window } from "../layouts";
+import { Window } from '../layouts';
 import { refocusLayout } from '../layouts';
 
 const sortTypes = {
@@ -26,27 +26,14 @@ export const CasinoPrizeDispenser = (props, context) => {
 };
 
 const CasinoPrizeDispenserSearch = (props, context) => {
-  const [
-    _searchText,
-    setSearchText,
-  ] = useLocalState(context, 'search', '');
-  const [
-    _sortOrder,
-    setSortOrder,
-  ] = useLocalState(context, 'sort', '');
-  const [
-    descending,
-    setDescending,
-  ] = useLocalState(context, 'descending', false);
+  const [_searchText, setSearchText] = useLocalState(context, 'search', '');
+  const [_sortOrder, setSortOrder] = useLocalState(context, 'sort', '');
+  const [descending, setDescending] = useLocalState(context, 'descending', false);
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
         <Flex.Item grow="1" mr="0.5rem">
-          <Input
-            placeholder="Search by item name.."
-            width="100%"
-            onInput={(_e, value) => setSearchText(value)}
-          />
+          <Input placeholder="Search by item name.." width="100%" onInput={(_e, value) => setSearchText(value)} />
         </Flex.Item>
         <Flex.Item basis="30%">
           <Dropdown
@@ -54,13 +41,14 @@ const CasinoPrizeDispenserSearch = (props, context) => {
             options={Object.keys(sortTypes)}
             width="100%"
             lineHeight="19px"
-            onSelected={v => setSortOrder(v)} />
+            onSelected={(v) => setSortOrder(v)}
+          />
         </Flex.Item>
         <Flex.Item>
           <Button
-            icon={descending ? "arrow-down" : "arrow-up"}
+            icon={descending ? 'arrow-down' : 'arrow-up'}
             height="19px"
-            tooltip={descending ? "Descending order" : "Ascending order"}
+            tooltip={descending ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
             onClick={() => setDescending(!descending)}
@@ -73,24 +61,12 @@ const CasinoPrizeDispenserSearch = (props, context) => {
 
 const CasinoPrizeDispenserItems = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    points,
-    items,
-  } = data;
+  const { points, items } = data;
   // Search thingies
-  const [
-    searchText,
-    _setSearchText,
-  ] = useLocalState(context, 'search', '');
-  const [
-    sortOrder,
-    _setSortOrder,
-  ] = useLocalState(context, 'sort', 'Alphabetical');
-  const [
-    descending,
-    _setDescending,
-  ] = useLocalState(context, 'descending', false);
-  const searcher = createSearch(searchText, item => {
+  const [searchText, _setSearchText] = useLocalState(context, 'search', '');
+  const [sortOrder, _setSortOrder] = useLocalState(context, 'sort', 'Alphabetical');
+  const [descending, _setDescending] = useLocalState(context, 'descending', false);
+  const searcher = createSearch(searchText, (item) => {
     return item[0];
   });
 
@@ -98,8 +74,8 @@ const CasinoPrizeDispenserItems = (props, context) => {
   let contents = Object.entries(items).map((kv, _i) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
-      .map(kv2 => {
-        kv2[1].affordable = points >= (kv2[1].price);
+      .map((kv2) => {
+        kv2[1].affordable = points >= kv2[1].price;
         return kv2[1];
       })
       .sort(sortTypes[sortOrder]);
@@ -111,23 +87,12 @@ const CasinoPrizeDispenserItems = (props, context) => {
     }
 
     has_contents = true;
-    return (
-      <CasinoPrizeDispenserItemsCategory
-        key={kv[0]}
-        title={kv[0]}
-        items={items_in_cat}
-      />
-    );
+    return <CasinoPrizeDispenserItemsCategory key={kv[0]} title={kv[0]} items={items_in_cat} />;
   });
   return (
     <Flex.Item grow="1" overflow="auto">
-      <Section onClick={e => refocusLayout()}>
-        {has_contents
-          ? contents : (
-            <Box color="label">
-              No items matching your criteria was found!
-            </Box>
-          )}
+      <Section onClick={(e) => refocusLayout()}>
+        {has_contents ? contents : <Box color="label">No items matching your criteria was found!</Box>}
       </Section>
     </Flex.Item>
   );
@@ -135,14 +100,10 @@ const CasinoPrizeDispenserItems = (props, context) => {
 
 const CasinoPrizeDispenserItemsCategory = (properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    title,
-    items,
-    ...rest
-  } = properties;
+  const { title, items, ...rest } = properties;
   return (
     <Collapsible open title={title} {...rest}>
-      {items.map(item => (
+      {items.map((item) => (
         <Box key={item.name}>
           <Box
             display="inline-block"
@@ -154,22 +115,24 @@ const CasinoPrizeDispenserItemsCategory = (properties, context) => {
             {item.name}
           </Box>
           <Button
-            content={(item.price).toLocaleString('en-US')}
+            content={item.price.toLocaleString('en-US')}
             width="15%"
             textAlign="center"
             style={{
               float: 'right',
             }}
-            onClick={() => act('purchase', {
-              cat: title,
-              name: item.name,
-              price: item.price,
-              restriction: item.restriction,
-            })}
+            onClick={() =>
+              act('purchase', {
+                cat: title,
+                name: item.name,
+                price: item.price,
+                restriction: item.restriction,
+              })
+            }
           />
           <Box
             style={{
-              clear: "both",
+              clear: 'both',
             }}
           />
         </Box>

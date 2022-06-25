@@ -1,8 +1,8 @@
 import { sortBy } from 'common/collections';
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Input, LabeledList, Section, Table, Tabs } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, Flex, Input, LabeledList, Section, Table, Tabs } from '../components';
+import { Window } from '../layouts';
 import { decodeHtmlEntities } from 'common/string';
 import { CrewManifestContent } from './CrewManifest';
 
@@ -21,15 +21,9 @@ export const IdentificationComputer = (props, context) => {
 export const IdentificationComputerContent = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    ntos,
-  } = props;
+  const { ntos } = props;
 
-  const {
-    mode,
-    has_modify,
-    printing,
-  } = data;
+  const { mode, has_modify, printing } = data;
 
   let body = <IdentificationComputerAccessModification ntos={ntos} />;
   if (ntos && !data.have_id_slot) {
@@ -44,18 +38,19 @@ export const IdentificationComputerContent = (props, context) => {
     <Fragment>
       <Tabs>
         {(!ntos || !!data.have_id_slot) && (
-          <Tabs.Tab icon="home" selected={mode === 0} onClick={() => act("mode", { "mode_target": 0 })}>
+          <Tabs.Tab icon="home" selected={mode === 0} onClick={() => act('mode', { 'mode_target': 0 })}>
             Access Modification
           </Tabs.Tab>
         )}
-        <Tabs.Tab icon="home" selected={mode === 1} onClick={() => act("mode", { "mode_target": 1 })}>
+        <Tabs.Tab icon="home" selected={mode === 1} onClick={() => act('mode', { 'mode_target': 1 })}>
           Crew Manifest
         </Tabs.Tab>
-        {!ntos || !!data.have_printer && (
-          <Tabs.Tab float="right" icon="print" onClick={() => act("print")} disabled={!mode && !has_modify} color="">
-            Print
-          </Tabs.Tab>
-        )}
+        {!ntos ||
+          (!!data.have_printer && (
+            <Tabs.Tab float="right" icon="print" onClick={() => act('print')} disabled={!mode && !has_modify} color="">
+              Print
+            </Tabs.Tab>
+          ))}
       </Tabs>
       {body}
     </Fragment>
@@ -63,19 +58,13 @@ export const IdentificationComputerContent = (props, context) => {
 };
 
 export const IdentificationComputerPrinting = (props, context) => {
-  return (
-    <Section title="Printing">
-      Please wait...
-    </Section>
-  );
+  return <Section title="Printing">Please wait...</Section>;
 };
 
 export const IdentificationComputerAccessModification = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    ntos,
-  } = props;
+  const { ntos } = props;
 
   const {
     station_name,
@@ -101,19 +90,11 @@ export const IdentificationComputerAccessModification = (props, context) => {
       )}
       <LabeledList>
         <LabeledList.Item label="Target Identitity">
-          <Button
-            icon="eject"
-            fluid
-            content={target_name}
-            onClick={() => act("modify")} />
+          <Button icon="eject" fluid content={target_name} onClick={() => act('modify')} />
         </LabeledList.Item>
         {!ntos && (
           <LabeledList.Item label="Authorized Identitity">
-            <Button
-              icon="eject"
-              fluid
-              content={scan_name}
-              onClick={() => act("scan")} />
+            <Button icon="eject" fluid content={scan_name} onClick={() => act('scan')} />
           </LabeledList.Item>
         )}
       </LabeledList>
@@ -122,16 +103,10 @@ export const IdentificationComputerAccessModification = (props, context) => {
           <Section title="Details" level={2}>
             <LabeledList>
               <LabeledList.Item label="Registered Name">
-                <Input
-                  value={target_owner}
-                  fluid
-                  onInput={(e, val) => act("reg", { reg: val })} />
+                <Input value={target_owner} fluid onInput={(e, val) => act('reg', { reg: val })} />
               </LabeledList.Item>
               <LabeledList.Item label="Account Number">
-                <Input
-                  value={account_number}
-                  fluid
-                  onInput={(e, val) => act("account", { account: val })} />
+                <Input value={account_number} fluid onInput={(e, val) => act('account', { account: val })} />
               </LabeledList.Item>
               <LabeledList.Item label="Dismissals">
                 <Button.Confirm
@@ -139,24 +114,27 @@ export const IdentificationComputerAccessModification = (props, context) => {
                   icon="exclamation-triangle"
                   confirmIcon="fire"
                   fluid
-                  content={"Dismiss " + target_owner}
-                  confirmContent={"You are dismissing " + target_owner + ", confirm?"}
-                  onClick={() => act("terminate")} />
+                  content={'Dismiss ' + target_owner}
+                  confirmContent={'You are dismissing ' + target_owner + ', confirm?'}
+                  onClick={() => act('terminate')}
+                />
               </LabeledList.Item>
             </LabeledList>
           </Section>
           <Section title="Assignment" level={2}>
             <Table>
-              {departments.map(dept => (
+              {departments.map((dept) => (
                 <Fragment key={dept.department_name}>
                   <Table.Row>
-                    <Table.Cell header verticalAlign="middle">{dept.department_name}</Table.Cell>
+                    <Table.Cell header verticalAlign="middle">
+                      {dept.department_name}
+                    </Table.Cell>
                     <Table.Cell>
-                      {dept.jobs.map(job => (
+                      {dept.jobs.map((job) => (
                         <Button
                           key={job.job}
                           selected={job.job === id_rank}
-                          onClick={() => act("assign", { "assign_target": job.job })}>
+                          onClick={() => act('assign', { 'assign_target': job.job })}>
                           {decodeHtmlEntities(job.display_name)}
                         </Button>
                       ))}
@@ -170,28 +148,25 @@ export const IdentificationComputerAccessModification = (props, context) => {
                   Special
                 </Table.Cell>
                 <Table.Cell>
-                  <Button
-                    onClick={() => act("assign", { "assign_target": "Custom" })}>
-                    Custom
-                  </Button>
+                  <Button onClick={() => act('assign', { 'assign_target': 'Custom' })}>Custom</Button>
                 </Table.Cell>
               </Table.Row>
             </Table>
           </Section>
-          {!!centcom_access && (
+          {(!!centcom_access && (
             <Section title="Central Command" level={2}>
-              {all_centcom_access.map(access => (
+              {all_centcom_access.map((access) => (
                 <Box key={access.ref}>
                   <Button
                     fluid
                     selected={access.allowed}
-                    onClick={() => act("access", { access_target: access.ref, allowed: access.allowed })}>
+                    onClick={() => act('access', { access_target: access.ref, allowed: access.allowed })}>
                     {decodeHtmlEntities(access.desc)}
                   </Button>
                 </Box>
               ))}
             </Section>
-          ) || (
+          )) || (
             <Section title={station_name} level={2}>
               <IdentificationComputerRegions actName="access" />
             </Section>
@@ -205,20 +180,16 @@ export const IdentificationComputerAccessModification = (props, context) => {
 export const IdentificationComputerRegions = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    actName,
-  } = props;
+  const { actName } = props;
 
-  const {
-    regions,
-  } = data;
+  const { regions } = data;
 
   return (
     <Flex wrap="wrap" spacing={1}>
-      {sortBy(r => r.name)(regions).map(region => (
+      {sortBy((r) => r.name)(regions).map((region) => (
         <Flex.Item mb={1} basis="content" grow={1} key={region.name}>
           <Section title={region.name} height="100%">
-            {sortBy(a => a.desc)(region.accesses).map(access => (
+            {sortBy((a) => a.desc)(region.accesses).map((access) => (
               <Box key={access.ref}>
                 <Button
                   fluid
