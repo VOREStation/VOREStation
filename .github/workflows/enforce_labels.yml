@@ -6,6 +6,6 @@ jobs:
   enforce-label:
     runs-on: ubuntu-latest
     steps:
-    - uses: yogevbd/enforce-label-action@2.1.0
+    - uses: yogevbd/enforce-label-action@2.2.2
       with:
         BANNED_LABELS: "Input: Staff,Input: Author,Needs Announcement,Needs Changelog,Needs Documentation,Stale"
