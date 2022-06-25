@@ -222,8 +222,10 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			<b><font size='3px'>Personal AI Device</font></b><br><br>
 			<table class="request">
 				<tr>
-					<td class="request">Installed Personality:</td>
-					<td>[pai.name]</td>
+					<td><font size='5px'; color=[screen_color]><b>[pai.name]</b></font></td>
+				</tr>
+				<tr>
+					<td class="request">Integrity: [pai.health]</td>
 				</tr>
 				<tr>
 					<td class="request">Prime directive:</td>
