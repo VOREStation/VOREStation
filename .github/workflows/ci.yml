@@ -10,7 +10,7 @@ env:
 jobs:
   file_tests:
     name: Run Linters
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Ensure +x on CI directory
@@ -26,7 +26,7 @@ jobs:
 
   dreamchecker:
     name: DreamChecker
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
 
@@ -36,25 +36,25 @@ jobs:
           path: ~/SpacemanDMM
           key: ${{ runner.os }}-dreamchecker-${{ hashFiles('dependencies.sh')}}
           restore-keys: ${{ runner.os }}-dreamchecker
-      
+
       - name: Install Dependencies
         run: |
           tools/ci/install_spaceman_dmm.sh dreamchecker
-          
+
       - name: Run Linter
         id: linter
         run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
-          
+
       - name: Annotate Linter
         uses: yogstation13/DreamAnnotate@v1
         if: always()
-        with: 
+        with:
           outputFile: output-annotations.txt
 
   unit_tests:
     name: Integration Tests
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - name: Ensure +x on CI directory
