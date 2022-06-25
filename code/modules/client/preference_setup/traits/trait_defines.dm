@@ -7,9 +7,12 @@
 /datum/trait/modifier/apply_trait_post_spawn(mob/living/L)
 	L.add_modifier(modifier_type)
 
+/datum/trait/modifier/is_available()
+	return !!modifier_type
+
 /datum/trait/modifier/generate_desc()
 	var/new_desc = desc
-	if(!modifier_type)
+	if(!is_available())
 		new_desc = "[new_desc] This trait is not implemented yet."
 		return new_desc
 	var/datum/modifier/M = new modifier_type()
