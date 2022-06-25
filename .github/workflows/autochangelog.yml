@@ -1,43 +1,43 @@
 name: Autochangelog
-on: 
-    pull_request_target:
-        types: closed
-        branches:
-            - master
-        
+on:
+  pull_request_target:
+    types: closed
+    branches:
+      - master
+
 env:
-    BASENAME: "polaris"
+  BASENAME: "vorestation"
 
 jobs:
-    autochangelog:
-        name: Autochangelog
-        runs-on: ubuntu-20.04
-        if: github.event.pull_request.merged == true
-        steps:
-          - uses: /actions/checkout@v2
-            with:
-                ref: master
-          - name: Update repository to master
-            run: git pull "origin" master
-          - name: Ensure +x on CI directory
-            run: |
-                chmod -R +x ./tools/ci
-          - uses: actions/setup-python@v2
-            with:
-                python-version: '3.7'
-          - name: Generate Changelog
-            run: |
-                pip install pyyaml
-                python tools/GenerateChangelog/ss13_autochangelog.py \
-                    html/changelogs \
-                    ${{ github.event.pull_request.number }} \
-                    "${{ github.event.pull_request.user.login }}" \
-                    "${{ github.event.pull_request.body }}"
-                python tools/GenerateChangelog/ss13_genchangelog.py \
-                    html/changelog.html \
-                    html/changelogs
-          - uses: stefanzweifel/git-auto-commit-action@v4
-            with:
-                commit_message: Automatic changelog generation for ${{ github.events.pull_request.number }}
-                branch: ${{ github.events.pull_request.base }}
-                commit_user_name: Autochangelog Bot
+  autochangelog:
+    name: Autochangelog
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - uses: /actions/checkout@v2
+        with:
+          ref: master
+      - name: Update repository to master
+        run: git pull "origin" master
+      - name: Ensure +x on CI directory
+        run: |
+          chmod -R +x ./tools/ci
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Generate Changelog
+        run: |
+          pip install pyyaml
+          python tools/GenerateChangelog/ss13_autochangelog.py \
+            html/changelogs \
+            ${{ github.event.pull_request.number }} \
+            "${{ github.event.pull_request.user.login }}" \
+            "${{ github.event.pull_request.body }}"
+          python tools/GenerateChangelog/ss13_genchangelog.py \
+            html/changelog.html \
+            html/changelogs
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Automatic changelog generation for ${{ github.events.pull_request.number }}
+          branch: ${{ github.events.pull_request.base }}
+          commit_user_name: Autochangelog Bot

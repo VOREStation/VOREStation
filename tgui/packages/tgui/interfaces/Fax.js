@@ -1,22 +1,17 @@
-import { useBackend } from "../backend";
-import { Box, Button, LabeledList, NoticeBox, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
+import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 
 export const Fax = (props, context) => {
   const { data } = useBackend(context);
 
-  const {
-    authenticated,
-  } = data;
+  const { authenticated } = data;
 
   if (!authenticated) {
     return (
-      <Window
-        width={600}
-        height={250}
-        resizable>
+      <Window width={600} height={250} resizable>
         <Window.Content>
           <RemoveItem />
           <LoginScreen />
@@ -26,10 +21,7 @@ export const Fax = (props, context) => {
   }
 
   return (
-    <Window
-      width={600}
-      height={250}
-      resizable>
+    <Window width={600} height={250} resizable>
       <Window.Content>
         <RemoveItem />
         <LoginInfo />
@@ -42,49 +34,25 @@ export const Fax = (props, context) => {
 export const FaxContent = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    bossName,
-    copyItem,
-    cooldown,
-    destination,
-  } = data;
+  const { bossName, copyItem, cooldown, destination } = data;
 
   return (
     <Section>
-      {!!cooldown && (
-        <NoticeBox info>
-          Transmitter arrays realigning. Please stand by.
-        </NoticeBox>
-      )}
+      {!!cooldown && <NoticeBox info>Transmitter arrays realigning. Please stand by.</NoticeBox>}
       <LabeledList>
-        <LabeledList.Item label="Network">
-          {bossName} Quantum Entanglement Network
-        </LabeledList.Item>
+        <LabeledList.Item label="Network">{bossName} Quantum Entanglement Network</LabeledList.Item>
       </LabeledList>
-      {copyItem && (
+      {(copyItem && (
         <Box mt={1}>
           <LabeledList>
-            <LabeledList.Item label="Currently Sending">
-              {copyItem}
-            </LabeledList.Item>
+            <LabeledList.Item label="Currently Sending">{copyItem}</LabeledList.Item>
             <LabeledList.Item label="Sending To">
-              <Button
-                icon="map-marker-alt"
-                content={destination}
-                onClick={() => act("dept")} />
+              <Button icon="map-marker-alt" content={destination} onClick={() => act('dept')} />
             </LabeledList.Item>
           </LabeledList>
-          <Button
-            icon="share-square"
-            onClick={() => act("send")}
-            content="Send"
-            fluid />
+          <Button icon="share-square" onClick={() => act('send')} content="Send" fluid />
         </Box>
-      ) || (
-        <Box mt={1}>
-          Please insert item to transmit.
-        </Box>
-      )}
+      )) || <Box mt={1}>Please insert item to transmit.</Box>}
     </Section>
   );
 };
@@ -92,9 +60,7 @@ export const FaxContent = (props, context) => {
 const RemoveItem = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    copyItem,
-  } = data;
+  const { copyItem } = data;
 
   if (!copyItem) {
     return null;
@@ -102,11 +68,7 @@ const RemoveItem = (props, context) => {
 
   return (
     <Box>
-      <Button
-        fluid
-        icon="eject"
-        onClick={() => act("remove")}
-        content="Remove Item" />
+      <Button fluid icon="eject" onClick={() => act('remove')} content="Remove Item" />
     </Box>
   );
 };

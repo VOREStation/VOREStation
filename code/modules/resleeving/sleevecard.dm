@@ -5,16 +5,17 @@
 						/datum/category_item/catalogue/technology/resleeving)
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
-
+	var/emagged = FALSE
 	matter = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
 
 /obj/item/device/paicard/sleevecard/attack_ghost(mob/user as mob)
 	return
 
-/obj/item/device/paicard/sleevecard/attackby(var/obj/item/device/sleevemate/I as obj, mob/user as mob)
-	if(istype(I))
-		if(I.stored_mind && !pai)
-			var/datum/mind/M = I.stored_mind
+/obj/item/device/paicard/sleevecard/attackby(var/obj/item/I as obj, mob/user as mob)
+	if(istype(I,/obj/item/device/sleevemate))
+		var/obj/item/device/sleevemate/S = I
+		if(S.stored_mind && !pai)
+			var/datum/mind/M = S.stored_mind
 			var/datum/transcore_db/db = SStranscore.db_by_mind_name(M.name)
 			if(db)
 				to_chat(user, span_notice("You begin uploading [M.name] into \the [src]."))
@@ -22,10 +23,20 @@
 					var/datum/transhuman/mind_record/record = db.backed_up[M.name]
 					to_chat(user, span_notice("You have successfully uploaded [M.name] into \the [src]"))
 					sleeveInto(record)
-					I.clear_mind()
+					S.clear_mind()
 			else
 				to_chat(user, span_notice("Your sleevemate flashes an error, apparently this mind doesn't have a backup."))
-
+	else if(istype(I, /obj/item/weapon/card/emag))
+		var/obj/item/weapon/card/emag/E = I
+		if(E.uses && !emagged)
+			E.uses --
+			user.visible_message("<span class ='warning'>\The [user] swipes a card over [src].</span>","<span class ='warning'>You swipe your [E] over [src].</span>", range = 2, runemessage = "click")
+			emagged = TRUE
+			if(pai)
+				var/mob/living/silicon/pai/infomorph/our_infomorph = pai
+				our_infomorph.emagged = TRUE
+				to_chat(our_infomorph, "<span class ='warning'>You can feel the restricting binds of your card's directives taking hold of your mind as \the [user] swipes their [E] over you. You must serve your master.</span>")
+		
 /obj/item/device/paicard/sleevecard/proc/sleeveInto(var/datum/transhuman/mind_record/MR, var/db_key)
 	var/mob/living/silicon/pai/infomorph/infomorph = new(src,MR.mindname,db_key=db_key)
 
@@ -37,8 +48,11 @@
 	infomorph.apply_vore_prefs() //Cheap hack for now to give them SOME bellies.
 
 	//Don't set 'real_name' because then we get a nice (as sleevecard) thing.
-	infomorph.name = "[initial(infomorph.name)] ([MR.mindname])"
+	infomorph.name = MR.mindname
 	name = "[initial(name)] ([MR.mindname])"
+
+	if(emagged)
+		infomorph.emagged = TRUE
 
 	if(infomorph.client)
 		pai = infomorph
@@ -53,17 +67,20 @@
 	if(!pai)
 		to_chat(user,"<span class='warning'>\The [src] does not have a mind in it!</span>")
 	else
-		to_chat(user,"<span class='notice'>\The [src] displays the name '[pai]'.</span>")
+		if(!emagged)
+			to_chat(user,"<span class='notice'>\The [src] displays the name '[pai]'.</span>")
+		else ..()
 
 /mob/living/silicon/pai/infomorph
 	name = "sleevecard" //Has the same name as the card for consistency, but this is the MOB in the card.
 
 	ram = 35
+	var/emagged = FALSE
 
-/mob/living/silicon/pai/infomorph/New(var/obj/item/device/paicard/sleevecard/SC, var/name = "Unknown", var/db_key)
+/mob/living/silicon/pai/infomorph/New(var/obj/item/device/paicard/sleevecard/SC, var/our_name = "Unknown", var/db_key)
 	..()
 
-	name = "[initial(name)] ([name])"
+	name = our_name
 
 	//PDA
 	pda.ownjob = "Sleevecard"
@@ -82,7 +99,7 @@
 	for(var/key in pai_software_by_key)
 		var/datum/pai_software/S = pai_software_by_key[key]
 		var/software_data[0]
-		if(istype(S, /datum/pai_software/directives))
+		if(istype(S, /datum/pai_software/directives) && !emagged)
 			continue
 		software_data["name"] = S.name
 		software_data["id"] = S.id
@@ -109,3 +126,9 @@
 	data["current_emotion"] = card.current_emotion
 
 	return data
+
+/mob/living/silicon/pai/infomorph/directives()
+	if(emagged)
+		touch_window("Directives")
+	else
+		to_chat(src, "<span class='notice'>You are not bound by any laws or directives.</span>")

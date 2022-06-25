@@ -1,24 +1,25 @@
-
 import { Placement } from '@popperjs/core';
 import { Component, findDOMfromVNode, InfernoNode } from 'inferno';
-import { Popper } from "./Popper";
+import { Popper } from './Popper';
 
-const DEFAULT_PLACEMENT = "top";
+const DEFAULT_PLACEMENT = 'top';
 
 type TooltipProps = {
   children?: InfernoNode;
   content: InfernoNode;
-  position?: Placement,
+  position?: Placement;
 };
 
 type TooltipState = {
   hovered: boolean;
 };
 
-const DISABLE_EVENT_LISTENERS = [{
-  name: "eventListeners",
-  enabled: false,
-}];
+const DISABLE_EVENT_LISTENERS = [
+  {
+    name: 'eventListeners',
+    enabled: false,
+  },
+];
 
 export class Tooltip extends Component<TooltipProps, TooltipState> {
   state = {
@@ -40,13 +41,13 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
       return;
     }
 
-    domNode.addEventListener("mouseenter", () => {
+    domNode.addEventListener('mouseenter', () => {
       this.setState({
         hovered: true,
       });
     });
 
-    domNode.addEventListener("mouseleave", () => {
+    domNode.addEventListener('mouseleave', () => {
       this.setState({
         hovered: false,
       });
@@ -57,7 +58,7 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
     return (
       <Popper
         options={{
-          placement: this.props.position || "auto",
+          placement: this.props.position || 'auto',
           modifiers: DISABLE_EVENT_LISTENERS,
         }}
         popperContent={
@@ -70,8 +71,8 @@ export class Tooltip extends Component<TooltipProps, TooltipState> {
           </div>
         }
         additionalStyles={{
-          "pointer-events": "none",
-          "z-index": 2,
+          'pointer-events': 'none',
+          'z-index': 2,
         }}>
         {this.props.children}
       </Popper>

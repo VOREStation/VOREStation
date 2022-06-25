@@ -643,7 +643,7 @@
 	if(matches.len==1)
 		result = matches[1]
 	else
-		result = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches)
+		result = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches, strict_modern = TRUE)
 		if(!objholder)
 			result = default_path
 	return result
