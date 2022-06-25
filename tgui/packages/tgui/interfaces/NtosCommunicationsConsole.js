@@ -1,6 +1,6 @@
-import { useBackend } from "../backend";
-import { NtosWindow } from "../layouts";
-import { CommunicationsConsoleContent } from "./CommunicationsConsole";
+import { useBackend } from '../backend';
+import { NtosWindow } from '../layouts';
+import { CommunicationsConsoleContent } from './CommunicationsConsole';
 
 export const NtosCommunicationsConsole = (props, context) => {
   const { act, data } = useBackend(context);

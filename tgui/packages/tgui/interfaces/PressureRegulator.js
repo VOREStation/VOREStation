@@ -1,7 +1,7 @@
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Button, LabeledList, Section, AnimatedNumber } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Button, LabeledList, Section, AnimatedNumber } from '../components';
+import { Window } from '../layouts';
 
 export const PressureRegulator = (props, context) => {
   const { act, data } = useBackend(context);
@@ -18,10 +18,7 @@ export const PressureRegulator = (props, context) => {
   } = data;
 
   return (
-    <Window
-      width={470}
-      height={370}
-      resizable>
+    <Window width={470} height={370} resizable>
       <Window.Content>
         <Section title="Status">
           <LabeledList>
@@ -41,9 +38,10 @@ export const PressureRegulator = (props, context) => {
           buttons={
             <Button
               icon="power-off"
-              content={on ? "Unlocked" : "Closed"}
+              content={on ? 'Unlocked' : 'Closed'}
               selected={on}
-              onClick={() => act("toggle_valve")} />
+              onClick={() => act('toggle_valve')}
+            />
           }>
           <LabeledList>
             <LabeledList.Item
@@ -54,35 +52,30 @@ export const PressureRegulator = (props, context) => {
                     icon="power-off"
                     content="Off"
                     selected={regulate_mode === 0}
-                    onClick={() => act("regulate_mode", { mode: "off" })} />
+                    onClick={() => act('regulate_mode', { mode: 'off' })}
+                  />
                   <Button
                     icon="compress-arrows-alt"
                     content="Input"
                     selected={regulate_mode === 1}
-                    onClick={() => act("regulate_mode", { mode: "input" })} />
+                    onClick={() => act('regulate_mode', { mode: 'input' })}
+                  />
                   <Button
                     icon="expand-arrows-alt"
                     content="Output"
                     selected={regulate_mode === 2}
-                    onClick={() => act("regulate_mode", { mode: "output" })} />
+                    onClick={() => act('regulate_mode', { mode: 'output' })}
+                  />
                 </Fragment>
-              } />
+              }
+            />
             <LabeledList.Item
               label="Desired Output Pressure"
               buttons={
                 <Fragment>
-                  <Button
-                    icon="compress-arrows-alt"
-                    content="MIN"
-                    onClick={() => act("set_press", { press: "min" })} />
-                  <Button
-                    icon="expand-arrows-alt"
-                    content="MAX"
-                    onClick={() => act("set_press", { press: "max" })} />
-                  <Button
-                    icon="wrench"
-                    content="SET"
-                    onClick={() => act("set_press", { press: "set" })} />
+                  <Button icon="compress-arrows-alt" content="MIN" onClick={() => act('set_press', { press: 'min' })} />
+                  <Button icon="expand-arrows-alt" content="MAX" onClick={() => act('set_press', { press: 'max' })} />
+                  <Button icon="wrench" content="SET" onClick={() => act('set_press', { press: 'set' })} />
                 </Fragment>
               }>
               {pressure_set / 100} kPa
@@ -94,15 +87,14 @@ export const PressureRegulator = (props, context) => {
                   <Button
                     icon="compress-arrows-alt"
                     content="MIN"
-                    onClick={() => act("set_flow_rate", { press: "min" })} />
+                    onClick={() => act('set_flow_rate', { press: 'min' })}
+                  />
                   <Button
                     icon="expand-arrows-alt"
                     content="MAX"
-                    onClick={() => act("set_flow_rate", { press: "max" })} />
-                  <Button
-                    icon="wrench"
-                    content="SET"
-                    onClick={() => act("set_flow_rate", { press: "set" })} />
+                    onClick={() => act('set_flow_rate', { press: 'max' })}
+                  />
+                  <Button icon="wrench" content="SET" onClick={() => act('set_flow_rate', { press: 'set' })} />
                 </Fragment>
               }>
               {set_flow_rate / 10} L/s

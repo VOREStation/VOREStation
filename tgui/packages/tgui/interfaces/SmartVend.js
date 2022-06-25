@@ -6,13 +6,10 @@ import { Window } from '../layouts';
 export const SmartVend = (props, context) => {
   const { act, config, data } = useBackend(context);
   return (
-    <Window
-      width={440}
-      height={550}
-      resizable>
+    <Window width={440} height={550} resizable>
       <Window.Content scrollable>
         <Section title="Storage">
-          {data.secure && (
+          {(data.secure && (
             <NoticeBox danger={data.locked === -1} info={data.locked !== -1}>
               {data.locked === -1 ? (
                 <Box>Sec.re ACC_** //):securi_nt.diag=&gt;##&apos;or 1=1&apos;%($...</Box>
@@ -20,17 +17,12 @@ export const SmartVend = (props, context) => {
                 <Box>Secure Access: Please have your identification ready.</Box>
               )}
             </NoticeBox>
-          ) || null}
-          {data.contents.length === 0 && (
-            <NoticeBox>
-              Unfortunately, this {config.title} is empty.
-            </NoticeBox>
-          ) || (
+          )) ||
+            null}
+          {(data.contents.length === 0 && <NoticeBox>Unfortunately, this {config.title} is empty.</NoticeBox>) || (
             <Table>
               <Table.Row header>
-                <Table.Cell collapsing>
-                  Item
-                </Table.Cell>
+                <Table.Cell collapsing>Item</Table.Cell>
                 <Table.Cell collapsing textAlign="center">
                   Amount
                 </Table.Cell>
@@ -40,9 +32,7 @@ export const SmartVend = (props, context) => {
               </Table.Row>
               {map((value, key) => (
                 <Table.Row key={key}>
-                  <Table.Cell collapsing>
-                    {value.name}
-                  </Table.Cell>
+                  <Table.Cell collapsing>{value.name}</Table.Cell>
                   <Table.Cell collapsing textAlign="center">
                     {value.amount} in stock
                   </Table.Cell>
@@ -50,30 +40,42 @@ export const SmartVend = (props, context) => {
                     <Button
                       content="1"
                       disabled={value.amount < 1}
-                      onClick={() => act('Release', {
-                        index: value.index,
-                        amount: 1,
-                      })} />
+                      onClick={() =>
+                        act('Release', {
+                          index: value.index,
+                          amount: 1,
+                        })
+                      }
+                    />
                     <Button
                       content="5"
                       disabled={value.amount < 5}
-                      onClick={() => act('Release', {
-                        index: value.index,
-                        amount: 5,
-                      })} />
+                      onClick={() =>
+                        act('Release', {
+                          index: value.index,
+                          amount: 5,
+                        })
+                      }
+                    />
                     <Button
                       content="Custom"
                       disabled={value.amount < 1}
-                      onClick={() => act('Release', {
-                        index: value.index,
-                      })} />
+                      onClick={() =>
+                        act('Release', {
+                          index: value.index,
+                        })
+                      }
+                    />
                     <Button
                       content="All"
                       disabled={value.amount < 1}
-                      onClick={() => act('Release', {
-                        index: value.index,
-                        amount: value.amount,
-                      })} />
+                      onClick={() =>
+                        act('Release', {
+                          index: value.index,
+                          amount: value.amount,
+                        })
+                      }
+                    />
                   </Table.Cell>
                 </Table.Row>
               ))(data.contents)}

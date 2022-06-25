@@ -1,10 +1,14 @@
 import { Component } from 'inferno';
 import { Box, Button, Icon, Tooltip, LabeledList, Slider } from '.';
-import { useBackend } from "../backend";
+import { useBackend } from '../backend';
 
-const pauseEvent = e => {
-  if (e.stopPropagation) { e.stopPropagation(); }
-  if (e.preventDefault) { e.preventDefault(); }
+const pauseEvent = (e) => {
+  if (e.stopPropagation) {
+    e.stopPropagation();
+  }
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
   e.cancelBubble = true;
   e.returnValue = false;
   return false;
@@ -17,8 +21,8 @@ export class NanoMap extends Component {
     super(props);
 
     // Auto center based on window size
-    const Xcenter = (window.innerWidth / 2) - 256;
-    const Ycenter = (window.innerHeight / 2) - 256;
+    const Xcenter = window.innerWidth / 2 - 256;
+    const Ycenter = window.innerHeight / 2 - 256;
 
     this.state = {
       offsetX: Xcenter,
@@ -31,7 +35,7 @@ export class NanoMap extends Component {
     };
 
     // Dragging
-    this.handleDragStart = e => {
+    this.handleDragStart = (e) => {
       this.ref = e.target;
       this.setState({
         dragging: false,
@@ -43,8 +47,8 @@ export class NanoMap extends Component {
       pauseEvent(e);
     };
 
-    this.handleDragMove = e => {
-      this.setState(prevState => {
+    this.handleDragMove = (e) => {
+      this.setState((prevState) => {
         const state = { ...prevState };
         const newOffsetX = e.screenX - state.originX;
         const newOffsetY = e.screenY - state.originY;
@@ -61,7 +65,7 @@ export class NanoMap extends Component {
       pauseEvent(e);
     };
 
-    this.handleDragEnd = e => {
+    this.handleDragEnd = (e) => {
       this.setState({
         dragging: false,
         originX: null,
@@ -72,30 +76,38 @@ export class NanoMap extends Component {
       pauseEvent(e);
     };
 
-    this.handleOnClick = e => {
-      let byondX = (e.offsetX/this.state.zoom)/zoomScale;
-      let byondY = 1-(e.offsetY/this.state.zoom)/zoomScale; // Byond origin is bottom left, this is top left
-  
+    this.handleOnClick = (e) => {
+      let byondX = e.offsetX / this.state.zoom / zoomScale;
+      let byondY = 1 - e.offsetY / this.state.zoom / zoomScale; // Byond origin is bottom left, this is top left
+
       e.byondX = byondX;
       e.byondY = byondY;
-      if (typeof(this.props.onClick) === "function") {
+      if (typeof this.props.onClick === 'function') {
         this.props.onClick(e);
       }
     };
-    
+
     this.handleZoom = (_e, value) => {
-      this.setState(state => {
+      this.setState((state) => {
         const newZoom = Math.min(Math.max(value, 1), 8);
         let zoomDiff = (newZoom - state.zoom) * 1.5;
         state.zoom = newZoom;
 
         let newOffsetX = state.offsetX - 262 * zoomDiff;
-        if (newOffsetX < -500) { newOffsetX = -500; }
-        if (newOffsetX > 500) { newOffsetX = 500; }
-        
+        if (newOffsetX < -500) {
+          newOffsetX = -500;
+        }
+        if (newOffsetX > 500) {
+          newOffsetX = 500;
+        }
+
         let newOffsetY = state.offsetY - 256 * zoomDiff;
-        if (newOffsetY < -200) { newOffsetY = -200; }
-        if (newOffsetY > 200) { newOffsetY = 200; }
+        if (newOffsetY < -200) {
+          newOffsetY = -200;
+        }
+        if (newOffsetY > 200) {
+          newOffsetY = 200;
+        }
 
         state.offsetX = newOffsetX;
         state.offsetY = newOffsetY;
@@ -105,41 +117,34 @@ export class NanoMap extends Component {
         return state;
       });
     };
-
   }
 
   render() {
     const { config } = useBackend(this.context);
     const { dragging, offsetX, offsetY, zoom = 1 } = this.state;
     const { children } = this.props;
-    
-    const mapUrl = config.map + "_nanomap_z" + config.mapZLevel + ".png";
+
+    const mapUrl = config.map + '_nanomap_z' + config.mapZLevel + '.png';
     // (x * zoom), x Needs to be double the turf- map size. (for virgo, 140x140)
-    const mapSize = (zoomScale * zoom) + 'px';
+    const mapSize = zoomScale * zoom + 'px';
     const newStyle = {
       width: mapSize,
       height: mapSize,
-      "margin-top": offsetY + "px",
-      "margin-left": offsetX + "px",
-      "overflow": "hidden",
-      "position": "relative",
-      "background-image": "url(" + mapUrl + ")",
-      "background-size": "cover",
-      "background-repeat": "no-repeat",
-      "text-align": "center",
-      "cursor": dragging ? "move" : "auto",
+      'margin-top': offsetY + 'px',
+      'margin-left': offsetX + 'px',
+      'overflow': 'hidden',
+      'position': 'relative',
+      'background-image': 'url(' + mapUrl + ')',
+      'background-size': 'cover',
+      'background-repeat': 'no-repeat',
+      'text-align': 'center',
+      'cursor': dragging ? 'move' : 'auto',
     };
 
     return (
       <Box className="NanoMap__container">
-        <Box
-          style={newStyle}
-          textAlign="center"
-          onMouseDown={this.handleDragStart}
-          onClick={this.handleOnClick}>
-          <Box>
-            {children}
-          </Box>
+        <Box style={newStyle} textAlign="center" onMouseDown={this.handleDragStart} onClick={this.handleOnClick}>
+          <Box>{children}</Box>
         </Box>
         <NanoMapZoomer zoom={zoom} onZoom={this.handleZoom} />
       </Box>
@@ -148,39 +153,27 @@ export class NanoMap extends Component {
 }
 
 const NanoMapMarker = (props, context) => {
-  const {
-    x,
-    y,
-    zoom = 1,
-    icon,
-    tooltip,
-    color,
-    onClick,
-  } = props;
+  const { x, y, zoom = 1, icon, tooltip, color, onClick } = props;
 
-  const handleOnClick = e => {
+  const handleOnClick = (e) => {
     pauseEvent(e);
     if (onClick) {
       onClick(e);
     }
   };
 
-  const rx = ((x * 2 * zoom) - zoom) - 3;
-  const ry = ((y * 2 * zoom) - zoom) - 3;
+  const rx = x * 2 * zoom - zoom - 3;
+  const ry = y * 2 * zoom - zoom - 3;
   return (
     <div>
       <Box
         position="absolute"
         className="NanoMap__marker"
         lineHeight="0"
-        bottom={ry + "px"}
-        left={rx + "px"}
+        bottom={ry + 'px'}
+        left={rx + 'px'}
         onMouseDown={handleOnClick}>
-        <Icon
-          name={icon}
-          color={color}
-          fontSize="6px"
-        />
+        <Icon name={icon} color={color} fontSize="6px" />
         <Tooltip content={tooltip} />
       </Box>
     </div>
@@ -199,7 +192,7 @@ const NanoMapZoomer = (props, context) => {
             minValue="1"
             maxValue="8"
             stepPixelSize="10"
-            format={v => v + "x"}
+            format={(v) => v + 'x'}
             value={props.zoom}
             onDrag={(e, v) => props.onZoom(e, v)}
           />
@@ -207,14 +200,15 @@ const NanoMapZoomer = (props, context) => {
         <LabeledList.Item label="Z-Level">
           {data.map_levels
             .sort((a, b) => Number(a) - Number(b))
-            .map(level => (
+            .map((level) => (
               <Button
                 key={level}
                 selected={~~level === ~~config.mapZLevel}
                 content={level}
                 onClick={() => {
-                  act("setZLevel", { "mapZLevel": level });
-                }} />
+                  act('setZLevel', { 'mapZLevel': level });
+                }}
+              />
             ))}
         </LabeledList.Item>
       </LabeledList>

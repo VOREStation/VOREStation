@@ -1,45 +1,34 @@
-import { useBackend } from "../backend";
-import { Button, ProgressBar, Box, LabeledList } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Button, ProgressBar, Box, LabeledList } from '../components';
+import { Window } from '../layouts';
 
 export const ClawMachine = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    wintick,
-    instructions,
-    gameStatus,
-    winscreen,
-  } = data;
+  const { wintick, instructions, gameStatus, winscreen } = data;
 
   let body;
 
   if (gameStatus === 'CLAWMACHINE_NEW') {
     body = (
-      <Box
-        align="center">
+      <Box align="center">
         <br /> <hr />
         <b>Pay to Play!</b> <br /> <hr />
         {instructions}
         <br /> <hr /> <br />
-        <Button content="Start"
-          onClick={() => act('newgame')} />
+        <Button content="Start" onClick={() => act('newgame')} />
       </Box>
     );
-  }
-  else if (gameStatus === 'CLAWMACHINE_END') {
+  } else if (gameStatus === 'CLAWMACHINE_END') {
     body = (
-      <Box
-        align="center">
+      <Box align="center">
         <br /> <hr />
         <b>Thank you for playing!</b> <br /> <hr />
         {winscreen}
         <br /> <hr /> <br />
-        <Button content="Close"
-          onClick={() => act('return')} />
+        <Button content="Close" onClick={() => act('return')} />
       </Box>
     );
-  }
-  else if (gameStatus === 'CLAWMACHINE_ON') {
+  } else if (gameStatus === 'CLAWMACHINE_ON') {
     body = (
       <Window.Content>
         <LabeledList>
@@ -52,34 +41,27 @@ export const ClawMachine = (props, context) => {
               }}
               value={data.wintick}
               minValue={0}
-              maxValue={10} />
+              maxValue={10}
+            />
           </LabeledList.Item>
         </LabeledList>
-        <Box
-          align="center">
+        <Box align="center">
           <br /> <hr /> <br />
           {instructions}
           <br /> <br /> <hr /> <br /> <br />
-          <Button content="Up"
-            onClick={() => act('pointless')} />
+          <Button content="Up" onClick={() => act('pointless')} />
           <br /> <br />
-          <Button content="Left"
-            onClick={() => act('pointless')} />
-          <Button content="Right"
-            onClick={() => act('pointless')} />
+          <Button content="Left" onClick={() => act('pointless')} />
+          <Button content="Right" onClick={() => act('pointless')} />
           <br /> <br />
-          <Button content="Down"
-            onClick={() => act('pointless')} />
+          <Button content="Down" onClick={() => act('pointless')} />
         </Box>
       </Window.Content>
     );
   }
   return (
-    <Window
-      resizable>
-      <center>
-        {body}
-      </center>
+    <Window resizable>
+      <center>{body}</center>
     </Window>
   );
 };
