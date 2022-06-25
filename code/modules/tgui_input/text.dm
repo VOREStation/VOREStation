@@ -129,7 +129,7 @@
 /datum/tgui_input_text/tgui_data(mob/user)
 	var/list/data = list()
 	if(timeout)
-		.["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
+		data["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
 	return data
 
 /datum/tgui_input_text/tgui_act(action, list/params)
