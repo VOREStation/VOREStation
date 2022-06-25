@@ -29,6 +29,12 @@
 	else if(user.fire_stacks < 0)
 		user.fire_stacks = (min(0, user.fire_stacks + 1.5))
 
+<<<<<<< HEAD
 /obj/item/weapon/towel/random/New()
 	..()
 	color = "#"+get_random_colour()
+=======
+/obj/item/towel/random/Initialize()
+	. = ..()
+	color = get_random_colour()
+>>>>>>> a9c08ab5f5f... Merge pull request #8657 from MistakeNot4892/randcol

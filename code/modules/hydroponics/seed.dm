@@ -417,10 +417,17 @@
 	seed_noun = pick("spores","nodes","cuttings","seeds")
 
 	set_trait(TRAIT_POTENCY,rand(5,30),200,0)
+<<<<<<< HEAD
 	set_trait(TRAIT_PRODUCT_ICON,pick(SSplants.accessible_product_sprites))
 	set_trait(TRAIT_PLANT_ICON,pick(SSplants.accessible_plant_sprites))
 	set_trait(TRAIT_PLANT_COLOUR,"#[get_random_colour(0,75,190)]")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#[get_random_colour(0,75,190)]")
+=======
+	set_trait(TRAIT_PRODUCT_ICON,pick(plant_controller.accessible_product_sprites))
+	set_trait(TRAIT_PLANT_ICON,pick(plant_controller.accessible_plant_sprites))
+	set_trait(TRAIT_PLANT_COLOUR,get_random_colour(0,75,190))
+	set_trait(TRAIT_PRODUCT_COLOUR,get_random_colour(0,75,190))
+>>>>>>> a9c08ab5f5f... Merge pull request #8657 from MistakeNot4892/randcol
 	update_growth_stages()
 
 	if(prob(20))
@@ -548,7 +555,7 @@
 
 	if(prob(5))
 		set_trait(TRAIT_BIOLUM,1)
-		set_trait(TRAIT_BIOLUM_COLOUR,"#[get_random_colour(0,75,190)]")
+		set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
 
 	if(prob(3))
 		set_trait(TRAIT_SPORING,1)
@@ -654,7 +661,7 @@
 					if(get_trait(TRAIT_BIOLUM))
 						source_turf.visible_message("<b>\The [display_name]</b> begins to glow!")
 						if(prob(degree*2))
-							set_trait(TRAIT_BIOLUM_COLOUR,"#[get_random_colour(0,75,190)]")
+							set_trait(TRAIT_BIOLUM_COLOUR,get_random_colour(0,75,190))
 							source_turf.visible_message("<span class='notice'>\The [display_name]'s glow </span><font color='[get_trait(TRAIT_BIOLUM_COLOUR)]'>changes colour</font>!")
 					else
 						source_turf.visible_message("<span class='notice'>\The [display_name]'s glow dims...</span>")

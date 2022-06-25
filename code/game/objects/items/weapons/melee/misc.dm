@@ -56,9 +56,15 @@
 		H.update_inv_r_hand()
 
 // Randomizes color
+<<<<<<< HEAD
 /obj/item/weapon/melee/umbrella/random/New()
 	color = "#"+get_random_colour()
 	..()
+=======
+/obj/item/melee/umbrella/random/Initialize()
+	color = get_random_colour()
+	. = ..()
+>>>>>>> a9c08ab5f5f... Merge pull request #8657 from MistakeNot4892/randcol
 
 /obj/item/weapon/melee/cursedblade
 	name = "crystal blade"
