@@ -1073,11 +1073,11 @@
 	name = "long building 2"
 	mappath = 'southwilds/villagepois/long2.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long2
-/datum/map_template/groundbase/wildvillage/wide/long3
+/datum/map_template/groundbase/wildvillage/long/long3
 	name = "wide building 3"
 	mappath = 'southwilds/villagepois/long3.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long3
-/datum/map_template/groundbase/wildvillage/wide/long4
+/datum/map_template/groundbase/wildvillage/long/long4
 	name = "wide building 4"
 	mappath = 'southwilds/villagepois/long4.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long4
