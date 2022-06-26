@@ -59,7 +59,7 @@
 
 /mob/living/silicon/pai/Initialize()
 	. = ..()
-	
+
 	verbs |= /mob/proc/dominate_predator
 	verbs |= /mob/living/proc/dominate_prey
 	verbs |= /mob/living/proc/set_size
@@ -68,7 +68,15 @@
 /mob/living/silicon/pai/Login()
 	. = ..()
 	last_special = world.time + 100		//Let's give get_character_icon time to work
-	get_character_icon()
+	if(!holo_icon)
+		get_character_icon()
+	if(stat == DEAD)
+		healths.icon_state = "health7"
+
+/mob/living/silicon/pai/proc/full_restore()
+	adjustBruteLoss(- bruteloss)
+	adjustFireLoss(- fireloss)
+	stat = CONSCIOUS
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -151,7 +159,7 @@
 	choice = tgui_input_list(usr, "What would you like to use for your mobile chassis icon?", "Chassis Choice", possible_chassis)
 	if(!choice) return
 	var/oursize = size_multiplier
-	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset 
+	resize(1, FALSE, TRUE, TRUE, FALSE)		//We resize ourselves to normal here for a moment to let the vis_height get reset
 	chassis = possible_chassis[choice]
 	if(chassis == "13")
 		if(!holo_icon)
@@ -271,7 +279,7 @@
 				t_him = "hir"
 			else
 				t_him = "them"
-	else	
+	else
 		switch(target.gender)
 			if(MALE)
 				t_him = "him"
@@ -367,7 +375,7 @@
 		eye_color = oureyes
 	if(ouremotion)
 		card.setEmotion(ouremotion)
-	
+
 	update_icon()
 	return 1
 
@@ -379,7 +387,7 @@
 
 /mob/living/silicon/pai/a_intent_change(input as text)
 	. = ..()
-	
+
 	switch(a_intent)
 		if(I_HELP)
 			hud_used.help_intent.icon_state = "intent_help-s"
@@ -419,7 +427,7 @@
 	set name = "Hide"
 	set desc = "Allows to hide beneath tables or certain items. Toggled on or off."
 	set category = "Abilities"
-	
+
 	hide()
 	if(status_flags & HIDING)
 		hide_glow = TRUE
@@ -483,7 +491,10 @@
 				to_chat(G, "<span class='cult'>[src.name]'s screen prints, \"[message]\"</span>")
 
 /mob/living/silicon/pai/proc/touch_window(soft_name)	//This lets us touch TGUI procs and windows that may be nested behind other TGUI procs and windows
-	for(var/thing in software)							//so we can access our software without having to open up the software interface TGUI window
+	if(stat != CONSCIOUS)								//so we can access our software without having to open up the software interface TGUI window
+		to_chat(src, "<span class ='warning'>You can't do that right now.</span>")
+		return
+	for(var/thing in software)
 		var/datum/pai_software/S = software[thing]
 		if(istype(S, /datum/pai_software) && S.name == soft_name)
 			if(S.toggle)
@@ -508,7 +519,7 @@
 
 /mob/living/silicon/pai/proc/refresh_software_status()	//This manages the pAI software status buttons icon states based on if you have them and if they are enabled
 	for(var/thing in software)							//this only gets called when you click one of the relevent buttons, rather than all the time!
-		var/datum/pai_software/soft = software[thing]	
+		var/datum/pai_software/soft = software[thing]
 		if(istype(soft,/datum/pai_software/med_records))
 			soft_mr = TRUE
 		if(istype(soft,/datum/pai_software/sec_records))

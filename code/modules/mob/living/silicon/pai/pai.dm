@@ -251,7 +251,7 @@
 	if(world.time <= last_special)
 		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
 		return
-	
+
 	last_special = world.time + 100
 
 	if(istype(card.loc, /obj/machinery)) // VOREStation edit, this statement allows pAIs stuck in a machine to eject themselves.
@@ -418,7 +418,7 @@
 		close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.
-/mob/living/silicon/pai/proc/close_up()
+/mob/living/silicon/pai/proc/close_up(silent= FALSE)
 
 	last_special = world.time + 100
 
@@ -428,7 +428,7 @@
 	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
+	if(istype(T) && !silent) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
 
 	if(client)
 		src.stop_pulling()
@@ -446,7 +446,7 @@
 			M.drop_from_inventory(H)
 		H.loc = get_turf(src)
 		src.loc = get_turf(H)
-	
+
 	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
 		var/obj/belly/B = loc
 		src.forceMove(card)

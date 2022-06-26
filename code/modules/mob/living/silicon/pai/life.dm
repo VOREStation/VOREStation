@@ -24,7 +24,7 @@
 	handle_statuses()
 
 	if(health <= 0)
-		death(null,"gives one shrill beep before falling lifeless.")
+		death(null,"fizzles out and clatters to the floor...")
 	else if(health < maxHealth && istype(src.loc , /obj/item/device/paicard))
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5)
