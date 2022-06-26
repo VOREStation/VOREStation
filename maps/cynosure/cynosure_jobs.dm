@@ -34,7 +34,12 @@ var/const/access_explorer = 43
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."
 
 	alt_titles = list(
-		"Pilot" = /decl/hierarchy/outfit/job/pilot)
+		"Pilot" = /datum/alt_title/pilot)
+
+/datum/alt_title/pilot
+	title = "Pilot"
+	title_blurb = "A pilot ferries crew around in Cynosure Station's shuttle, the NTC Calvera."
+	title_outfit = /decl/hierarchy/outfit/job/pilot
 
 /datum/job/rd
     access = list(access_rd, access_heads, access_tox, access_genetics, access_morgue,

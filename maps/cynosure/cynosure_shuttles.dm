@@ -418,7 +418,7 @@ ESCAPE_POD(1)
 // Explorer Shuttle
 
 /datum/shuttle/autodock/overmap/explorer_shuttle
-	name = "Exploration Shuttle"
+	name = "NTC Calvera"
 	warmup_time = 0
 	current_location = "nav_pad4_cynosure"
 	docking_controller_tag = "expshuttle_docker"
@@ -427,15 +427,16 @@ ESCAPE_POD(1)
 	ceiling_type = /turf/simulated/floor/reinforced/airless
 
 /obj/effect/overmap/visitable/ship/landable/explorer_shuttle
-	name = "Exploration Shuttle"
+	name = "NTC Calvera"
 	desc = "The exploration team's shuttle."
+	scanner_desc = "A Wulf Vagabond-class short-range expedition shuttle. It is broadcasting NanoTrasen identification codes: VIR-472-320377 - NTC Calvera."
 	vessel_mass = 2000
 	vessel_size = SHIP_SIZE_SMALL
-	shuttle = "Exploration Shuttle"
+	shuttle = "NTC Calvera"
 
 /obj/machinery/computer/shuttle_control/explore/explorer_shuttle
 	name = "takeoff and landing console"
-	shuttle_tag = "Exploration Shuttle"
+	shuttle_tag = "NTC Calvera"
 	req_one_access = list(access_explorer)
 
 /*
