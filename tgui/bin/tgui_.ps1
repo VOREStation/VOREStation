@@ -58,6 +58,10 @@ function task-prettier {
   yarn tgui:prettier @Args
 }
 
+function task-prettify {
+  yarn prettierx --write packages @Args
+}
+
 ## Run a linter through all packages
 function task-lint {
   yarn run tsc
@@ -131,6 +135,16 @@ if ($Args.Length -gt 0) {
     $Rest = $Args | Select-Object -Skip 1
     task-install
     task-test @Rest
+    exit 0
+  }
+
+  if ($Args[0] -eq "--pretty") {
+    $Rest = $Args | Select-Object -Skip 1
+    task-install
+    task-prettify
+    task-prettier
+    task-lint
+    task-webpack --mode=production
     exit 0
   }
 
