@@ -11,6 +11,7 @@
 		/obj/item/clothing/under/rank/chief_engineer,
 		/obj/item/clothing/under/rank/chief_engineer/skirt,
 		/obj/item/clothing/head/hardhat/white,
+		/obj/item/clothing/mask/surgical/dust,
 		///obj/item/clothing/head/welding,	//VOREStation Removal: Locker bloat, grr. They get fancy goggles or can raid the welding supplies locker for one of these.
 		/obj/item/clothing/gloves/heavy_engineer,	//VOREStation Edit: chief gets the good shit
 		/obj/item/clothing/shoes/brown,
@@ -77,6 +78,7 @@
 		/obj/item/device/radio/headset/headset_eng,
 		/obj/item/device/radio/headset/headset_eng/alt,
 		/obj/item/clothing/suit/storage/hazardvest,
+		/obj/item/clothing/mask/surgical/dust,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/weapon/cartridge/engineering,
@@ -119,7 +121,7 @@
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/atmos,
 		/obj/item/clothing/shoes/boots/winter/atmos,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
-		/obj/item/weapon/storage/belt/utility/atmostech) //VOREStation edit. They don't get a toolbox to fill it from, so why not give a spare one that's full already? 
+		/obj/item/weapon/storage/belt/utility/atmostech) //VOREStation edit. They don't get a toolbox to fill it from, so why not give a spare one that's full already?
 
 /obj/structure/closet/secure_closet/atmos_personal/Initialize()
 	if(prob(50))

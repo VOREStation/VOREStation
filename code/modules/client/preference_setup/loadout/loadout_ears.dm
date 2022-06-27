@@ -12,7 +12,7 @@
 /datum/gear/ears/circuitry
 	display_name = "earwear, circuitry (empty)"
 	path = /obj/item/clothing/ears/circuitry
-	
+
 
 /datum/gear/ears/earrings
 	display_name = "earring selection"
@@ -40,3 +40,17 @@
 	earrings["dangle, platinum"] = /obj/item/clothing/ears/earring/dangle/platinum
 	earrings["dangle, diamond"] = /obj/item/clothing/ears/earring/dangle/diamond
 	gear_tweaks += new/datum/gear_tweak/path(earrings)
+
+/datum/gear/ears/hearingaid
+	display_name = "hearing aid selection"
+	description = "A selection of different coloured hearing aids."
+	path = /obj/item/clothing/ears/hearingaid
+
+/datum/gear/ears/hearingaid/New()
+	..()
+	var/hearingaids = list()
+	hearingaids["hearing aid"] = /obj/item/clothing/ears/hearingaid
+	hearingaids["black hearing aid"] = /obj/item/clothing/ears/hearingaid/black
+	hearingaids["silver hearing aid"] = /obj/item/clothing/ears/hearingaid/silver
+	hearingaids["white hearing aid"] = /obj/item/clothing/ears/hearingaid/white
+	gear_tweaks += new/datum/gear_tweak/path(hearingaids)

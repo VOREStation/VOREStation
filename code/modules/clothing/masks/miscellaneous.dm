@@ -46,7 +46,7 @@
 			gas_transfer_coefficient = 1
 			body_parts_covered = body_parts_covered & ~FACE
 			armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
-			icon_state = "steriledown"
+			icon_state = "[initial(icon_state)]down"
 			to_chat(usr, "You pull the mask below your chin.")
 		else
 			gas_transfer_coefficient = initial(gas_transfer_coefficient)
@@ -406,3 +406,13 @@
 	icon_state = "mouthwheat"
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = 0
+
+/obj/item/clothing/mask/surgical/cloth
+	name = "cloth mask"
+	desc = "A cloth mask designed to protect the wearer against allergens, illnesses, and social interaction."
+	icon_state = "cloth"
+
+/obj/item/clothing/mask/surgical/dust
+	name = "dust mask"
+	desc = "A dust mask designed to protect the wearer against construction and/or custodial particulate."
+	icon_state = "dust"

@@ -415,6 +415,36 @@
 	desc = "A green sports backpack for plant related work."
 	icon_state = "backsport_hydro"
 
+/*
+ * Rucksacks
+ */
+
+/obj/item/weapon/storage/backpack/rucksack
+	name = "black rucksack"
+	desc = "A rugged rucksack, popular with outdoorsmen"
+	icon_state = "rucksack"
+	item_state_slots = list(slot_r_hand_str = "rucksack", slot_l_hand_str = "rucksack")
+
+/obj/item/weapon/storage/backpack/rucksack/blue
+	name = "blue rucksack"
+	icon_state = "rucksack_blue"
+	item_state_slots = list(slot_r_hand_str = "rucksack_blue", slot_l_hand_str = "rucksack_blue")
+
+/obj/item/weapon/storage/backpack/rucksack/green
+	name = "green rucksack"
+	icon_state = "rucksack_green"
+	item_state_slots = list(slot_r_hand_str = "rucksack_green", slot_l_hand_str = "rucksack_green")
+
+/obj/item/weapon/storage/backpack/rucksack/navy
+	name = "navy rucksack"
+	icon_state = "rucksack_navy"
+	item_state_slots = list(slot_r_hand_str = "rucksack_navy", slot_l_hand_str = "rucksack_navy")
+
+/obj/item/weapon/storage/backpack/rucksack/tan
+	name = "tan rucksack"
+	icon_state = "rucksack_tan"
+	item_state_slots = list(slot_r_hand_str = "rucksack_tan", slot_l_hand_str = "rucksack_tan")
+
 //Purses
 /obj/item/weapon/storage/backpack/purse
 	name = "purse"

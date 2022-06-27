@@ -69,6 +69,7 @@
 		/obj/item/clothing/under/rank/janitor,
 		/obj/item/clothing/under/dress/maid/janitor,
 		/obj/item/device/radio/headset/headset_service,
+		/obj/item/clothing/mask/surgical/dust,
 		/obj/item/weapon/cartridge/janitor,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/head/soft/purple,
