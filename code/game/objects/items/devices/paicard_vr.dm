@@ -6,7 +6,7 @@
 	var/capacitor = TRUE	//critical- power processing
 	var/projector = TRUE	//non-critical- affects unfolding
 	var/emitter = TRUE		//non-critical- affects unfolding
-	var/screen = TRUE		//non-critical- affects screen
+	var/speech_synthesizer = TRUE		//non-critical- affects speech
 	var/list/parts = list(
 		"cell",
 		"processor",
@@ -14,7 +14,7 @@
 		"capacitor",
 		"projector",
 		"emitter",
-		"screen")
+		"speech synthesizer")
 
 /obj/item/device/paicard/attackby(var/obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/weapon/tool/screwdriver))
@@ -52,10 +52,10 @@
 				to_chat(user,"Emitters: <span class ='notice'>functional</span>")
 			else
 				to_chat(user,"Emitters: <span class ='warning'>damaged</span>")
-			if(screen)
-				to_chat(user,"Screen: <span class ='notice'>functional</span>")
+			if(speech_synthesizer)
+				to_chat(user,"Speech Synthesizer: <span class ='notice'>functional</span>")
 			else
-				to_chat(user,"Screen: <span class ='warning'>damaged</span>")
+				to_chat(user,"Speech Synthesizer: <span class ='warning'>damaged</span>")
 	if(istype(I,/obj/item/device/multitool))
 		if(!panel_open)
 			to_chat(user, "<span class ='warning'>You can't do that in this state.</span>")
@@ -92,11 +92,11 @@
 						to_chat(user,"Emitters: <span class ='notice'>functional</span>")
 					else
 						to_chat(user,"Emitters: <span class ='warning'>damaged</span>")
-				if("screen")
-					if(screen)
-						to_chat(user,"Screen: <span class ='notice'>functional</span>")
+				if("speech synthesizer")
+					if(speech_synthesizer)
+						to_chat(user,"Speech Synthesizer: <span class ='notice'>functional</span>")
 					else
-						to_chat(user,"Screen: <span class ='warning'>damaged</span>")
+						to_chat(user,"Speech Synthesizer: <span class ='warning'>damaged</span>")
 
 /obj/item/device/paicard/attack_self(mob/user)
 	if(!panel_open)
@@ -124,8 +124,8 @@
 			projector = FALSE
 		if("emitter")
 			emitter = FALSE
-		if("screen")
-			screen = FALSE
+		if("speech synthesizer")
+			speech_synthesizer = FALSE
 	parts -= choice
 
 /obj/item/device/paicard/proc/death_damage()
@@ -150,7 +150,7 @@
 			if(2)
 				emitter = FALSE
 			if(3)
-				screen = FALSE
+				speech_synthesizer = FALSE
 	else
 		switch(pick(1,4))
 			if(1)

@@ -20,7 +20,7 @@
 		if(loc != card)
 			close_up()
 			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
-	if(!card.projector || !card.emitter)
+	else if(!card.projector || !card.emitter)
 		if(prob(5))
 			close_up()
 			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service recommended!</span>")
