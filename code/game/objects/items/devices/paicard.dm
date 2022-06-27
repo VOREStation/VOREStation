@@ -117,7 +117,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 // VOREStation Edit End
 
-/obj/item/device/paicard/attack_self(mob/user)
+/obj/item/device/paicard/proc/access_screen(mob/user)
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)

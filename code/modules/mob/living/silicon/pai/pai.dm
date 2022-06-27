@@ -171,7 +171,8 @@
 
 /mob/living/silicon/pai/emp_act(severity)
 	// Silence for 2 minutes
-	// 20% chance to kill
+	// 20% chance to damage critical components
+	// 50% chance to damage a non critical component
 		// 33% chance to unbind
 		// 33% chance to change prime directive (based on severity)
 		// 33% chance of no additional effect
@@ -180,10 +181,12 @@
 	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
+		card.death_damage()
 		for (var/mob/M in viewers(T))
 			M.show_message("<font color='red'>A shower of sparks spray from [src]'s inner workings.</font>", 3, "<font color='red'>You hear and smell the ozone hiss of electrical sparks being expelled violently.</font>", 2)
-		return src.death(0)
-
+		return
+	if(prob(50))
+		card.damage_random_component(TRUE)
 	switch(pick(1,2,3))
 		if(1)
 			src.master = null
@@ -285,6 +288,7 @@
 
 	card.forceMove(src)
 	card.screen_loc = null
+	canmove = TRUE
 
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")

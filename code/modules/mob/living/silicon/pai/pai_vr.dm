@@ -67,8 +67,8 @@
 
 /mob/living/silicon/pai/Login()
 	. = ..()
-	last_special = world.time + 100		//Let's give get_character_icon time to work
 	if(!holo_icon)
+		last_special = world.time + 100		//Let's give get_character_icon time to work
 		get_character_icon()
 	if(stat == DEAD)
 		healths.icon_state = "health7"
@@ -76,7 +76,14 @@
 /mob/living/silicon/pai/proc/full_restore()
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
+	spawn(10)
+	card.cut_overlays()
+	card.setEmotion(16)
+	update_icon()
+	spawn(50)
 	stat = CONSCIOUS
+	canmove = TRUE
+	card.setEmotion(15)
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"
@@ -628,3 +635,15 @@
 				icon = holo_icon
 			else
 				icon = holo_icon_north
+
+/mob/living/silicon/pai/adjustBruteLoss(amount, include_robo)
+	. = ..()
+	if(amount > 0 && health <= 90)	//Something's probably attacking us!
+		if(prob(amount))	//The more damage it is doing, the more likely it is to damage something important!
+			card.damage_random_component()
+
+/mob/living/silicon/pai/adjustFireLoss(amount, include_robo)
+	. = ..()
+	if(amount > 0 && health <= 90)
+		if(prob(amount))
+			card.damage_random_component()
