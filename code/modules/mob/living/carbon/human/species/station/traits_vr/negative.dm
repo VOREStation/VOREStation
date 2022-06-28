@@ -171,7 +171,7 @@
 	name = "Bad Shot"
 	desc = "You are terrible at aiming."
 	cost = -1
-	var_changes = list("gun_accuracy_mod" = -50)
+	var_changes = list("gun_accuracy_mod" = -35)
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
 
