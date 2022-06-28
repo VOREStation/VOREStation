@@ -76,14 +76,13 @@
 /mob/living/silicon/pai/proc/full_restore()
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
-	spawn(10)
-	card.cut_overlays()
+	spawn(100)
 	card.setEmotion(16)
-	update_icon()
-	spawn(50)
+	spawn(500)
 	stat = CONSCIOUS
 	canmove = TRUE
 	card.setEmotion(15)
+	card.visible_message("\The [card] chimes.", runemessage = "chime")
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))
 	set name = "pAI Nom"

@@ -13,14 +13,14 @@
 	if (src.stat == DEAD)
 		return
 
-	if(!card.cell || !card.processor || !card.board || !card.capacitor)
+	if(card.cell != PP_FUNCTIONAL|| card.processor != PP_FUNCTIONAL || card.board != PP_FUNCTIONAL || card.capacitor != PP_FUNCTIONAL)
 		death()
 
-	if(!card.projector && !card.emitter)
+	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
 		if(loc != card)
 			close_up()
 			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
-	else if(!card.projector || !card.emitter)
+	else if(card.projector  != PP_FUNCTIONAL|| card.emitter != PP_FUNCTIONAL)
 		if(prob(5))
 			close_up()
 			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service recommended!</span>")
@@ -36,6 +36,7 @@
 	handle_statuses()
 
 	if(health <= 0)
+		card.death_damage()
 		death(null,"fizzles out and clatters to the floor...")
 	else if(health < maxHealth && istype(src.loc , /obj/item/device/paicard))
 		adjustBruteLoss(-0.5)

@@ -251,6 +251,9 @@
 	if(src.loc != card)
 		return
 
+	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
+		to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
+
 	if(world.time <= last_special)
 		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
 		return
@@ -531,6 +534,7 @@
 		return
 
 	close_up()
+	paikeys -= ckey
 	visible_message("<b>[src]</b> fades away from the screen, the pAI device goes silent.")
 	card.removePersonality()
 	clear_client()

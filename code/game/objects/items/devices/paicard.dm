@@ -58,10 +58,20 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 /obj/item/device/paicard/attack_ghost(mob/user as mob)
 	if(pai != null) //Have a person in them already?
 		return ..()
-
+	var/time_till_respawn = user.time_till_respawn()
+	if(time_till_respawn == -1) // Special case, never allowed to respawn
+		to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
+	else if(time_till_respawn) // Nonzero time to respawn
+		to_chat(usr, "<span class='warning'>You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
+		return
 	if(jobban_isbanned(usr, "pAI"))
 		to_chat(usr,"<span class='warning'>You cannot join a pAI card when you are banned from playing as a pAI.</span>")
 		return
+
+	for(var/ourkey in paikeys)
+		if(ourkey == user.ckey)
+			to_chat(usr, "<span class='warning'>You can't just rejoin any old pAI card!!! Your card still exists.</span>")
+			return
 
 	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI, or submit yourself to being recruited?", "Confirmation", list("Inhabit", "Recruit", "Cancel"))
 	if(choice == "Cancel")
@@ -81,12 +91,14 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			var/obj/item/device/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 		else
 			var/obj/item/device/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 
@@ -95,6 +107,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			var/obj/item/device/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
 				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
@@ -105,6 +118,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			var/obj/item/device/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
 				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
@@ -513,6 +527,5 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	return pick(/obj/item/device/paicard ,/obj/item/device/paicard/typeb)
 
 /obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
-	if(!pai.digestable)
-		return
-	. = ..()
+	if(pai.digestable)
+		return ..()
