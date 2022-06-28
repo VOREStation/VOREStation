@@ -1,4 +1,5 @@
 /datum/trait/neutral
+	category = TRAIT_TYPE_NEUTRAL
 
 /datum/trait/neutral/metabolism_up
 	name = "Metabolism, Fast"

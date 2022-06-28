@@ -1,5 +1,5 @@
 /datum/trait/negative
-	category = -1
+	category = TRAIT_TYPE_NEGATIVE
 
 /datum/trait/negative/speed_slow
 	name = "Slowdown"
@@ -92,6 +92,8 @@
 	desc = "Increases your susceptibility to electric shocks by 100%"
 	cost = -1
 	var_changes = list("siemens_coefficient" = 2.0) //This makes you extremely weak to tasers.
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 
 /datum/trait/negative/haemophilia
 	name = "Haemophilia - Organics only"
@@ -99,6 +101,8 @@
 	cost = -2
 	var_changes = list("bloodloss_rate" = 2)
 	can_take = ORGANICS
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_LESS_BETTER
 
 /datum/trait/negative/hollow
 	name = "Hollow Bones/Aluminum Alloy"
@@ -116,6 +120,7 @@
 	desc = "Your light weight and poor balance make you very susceptible to unhelpful bumping. Think of it like a bowling ball versus a pin."
 	cost = -2
 	var_changes = list("lightweight" = 1)
+	custom_only = FALSE
 
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
@@ -137,3 +142,36 @@
 	name = "Nitrogen Breather"
 	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
 	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen")
+
+/datum/trait/negative/monolingual
+	name = "Monolingual"
+	desc = "You are not good at learning languages."
+	cost = -3
+	var_changes = list("num_alternate_languages" = 0)
+	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+
+/datum/trait/negative/monolingual
+	name = "Monolingual"
+	desc = "You are not good at learning languages."
+	cost = -1
+	var_changes = list("num_alternate_languages" = 0)
+	var_changes_pref = list("extra_languages" = -3)
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+
+/datum/trait/negative/dark_blind
+	name = "Nyctalopia"
+	desc = "You cannot see in dark at all."
+	cost = -1
+	var_changes = list("darksight" = 0)
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+
+/datum/trait/negative/bad_shooter
+	name = "Bad Shot"
+	desc = "You are terrible at aiming."
+	cost = -1
+	var_changes = list("gun_accuracy_mod" = -50)
+	custom_only = FALSE
+	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+
