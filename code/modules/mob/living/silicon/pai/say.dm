@@ -2,6 +2,6 @@
 	if(silence_time)
 		to_chat(src, "<font color=green>Communication circuits remain uninitialized.</font>")
 	else if(card.speech_synthesizer != PP_FUNCTIONAL)
-		to_chat(src, "<span class='warning'>Communication circuits damaged. Service required.</font>")
+		to_chat(src, "<span class='warning'>Communication circuits damaged. Service required.</span>")
 	else
 		..()
