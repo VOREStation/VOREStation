@@ -312,7 +312,7 @@
 				//	continue
 				if(!AM.simulated)
 					continue
-				if(istype(AM, /mob/observer/eye/aiEye))
+				if(isobserver(AM) || isEye(AM))
 					continue
 				if(isliving(AM))
 					var/mob/living/bug = AM
