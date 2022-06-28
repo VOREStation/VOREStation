@@ -312,6 +312,8 @@
 				//	continue
 				if(!AM.simulated)
 					continue
+				if(istype(AM, /mob/observer/eye/aiEye))
+					continue
 				if(isliving(AM))
 					var/mob/living/bug = AM
 					bug.gib()
