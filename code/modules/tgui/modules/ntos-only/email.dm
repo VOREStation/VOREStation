@@ -231,10 +231,10 @@
 /datum/tgui_module/email_client/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	var/mob/living/user = usr
 	check_for_new_messages(1)		// Any actual interaction (button pressing) is considered as acknowledging received message, for the purpose of notification icons.
-	
+
 	switch(action)
 		if("login")
 			log_in()
@@ -279,7 +279,7 @@
 			var/oldtext = html_decode(msg_body)
 			oldtext = replacetext(oldtext, "\[editorbr\]", "\n")
 
-			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext, 20000, TRUE), "\n", "\[editorbr\]"), 20000)
+			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Enter your message. You may use most tags from paper formatting", "Message Editor", oldtext, 20000, TRUE, prevent_enter = TRUE), "\n", "\[editorbr\]"), 20000)
 			if(newtext)
 				msg_body = newtext
 			return 1
