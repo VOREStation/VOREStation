@@ -534,7 +534,6 @@
 		return
 
 	close_up()
-	paikeys -= ckey
 	visible_message("<b>[src]</b> fades away from the screen, the pAI device goes silent.")
 	card.removePersonality()
 	clear_client()

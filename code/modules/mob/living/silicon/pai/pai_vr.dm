@@ -222,6 +222,13 @@
 // Release belly contents before being gc'd!
 /mob/living/silicon/pai/Destroy()
 	release_vore_contents()
+	if(ckey)
+		paikeys -= ckey
+	return ..()
+
+/mob/living/silicon/pai/clear_client()
+	if(ckey)
+		paikeys -= ckey
 	return ..()
 
 /mob/living/silicon/pai/proc/add_eyes()
