@@ -76,6 +76,13 @@
 			if(ourcard.panel_open)
 				to_chat(user, "<span class='warning'>\The [ourcard] won't fit in the recharger with its panel open.</span>")
 				return
+			if(ourcard.pai)
+				if(ourcard.pai.stat == CONSCIOUS)
+					to_chat(user, "<span class='warning'>\The [ourcard] boops... it doesn't need to be recharged!</span>")
+					return
+			else
+				to_chat(user, "<span class='warning'>\The [ourcard] doesn't have a personality!</span>")
+				return
 
 		user.drop_item()
 		G.loc = src
@@ -140,10 +147,11 @@
 		else if(pcard.pai.fireloss)
 			pcard.pai.adjustFireLoss(-1)
 		else
-			pcard.forceMove(get_turf(src))
-			pcard.pai.full_restore()
 			charging = null
 			update_icon()
+			src.visible_message("<span class ='notice'>\The [src] ejects the [pcard]!</span>")
+			pcard.forceMove(get_turf(src))
+			pcard.pai.full_restore()
 	//VOREStation Edit End
 	else
 		var/obj/item/weapon/cell/C = charging.get_cell()

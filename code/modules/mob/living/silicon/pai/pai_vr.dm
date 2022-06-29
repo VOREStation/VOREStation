@@ -76,12 +76,16 @@
 /mob/living/silicon/pai/proc/full_restore()
 	adjustBruteLoss(- bruteloss)
 	adjustFireLoss(- fireloss)
-	spawn(100)
+	do_after(src, 1 SECONDS)
 	card.setEmotion(16)
-	spawn(500)
 	stat = CONSCIOUS
+	do_after(src, 5 SECONDS)
+	var/mob/observer/dead/ghost = src.get_ghost()
+	if(ghost)
+		ghost.notify_revive("Someone is trying to revive you. Re-enter your body if you want to be revived!", 'sound/effects/pai-restore.ogg', source = card)
 	canmove = TRUE
 	card.setEmotion(15)
+	playsound(card, 'sound/effects/pai-restore.ogg', 50, FALSE)
 	card.visible_message("\The [card] chimes.", runemessage = "chime")
 
 /mob/living/silicon/pai/proc/pai_nom(var/mob/living/T in oview(1))

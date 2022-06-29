@@ -19,9 +19,11 @@ var/global/list/paikeys = list()
 		if(panel_open)
 			panel_open = FALSE
 			user.visible_message("<span class ='notice'>\The [user] secured \the [src]'s maintenance panel.</span>")
-		else
+			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+		else if(pai)
 			panel_open = TRUE
 			user.visible_message("<span class ='warning'>\The [user] opened \the [src]'s maintenance panel.</span>")
+			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 	if(istype(I,/obj/item/device/robotanalyzer))
 		if(!panel_open)
 			to_chat(user, "<span class ='warning'>The panel isn't open. You will need to unscrew it to open it.</span>")
@@ -153,41 +155,69 @@ var/global/list/paikeys = list()
 					else
 						to_chat(user,"Speech Synthesizer: <span class ='warning'>missing</span>")
 
-	if(istype(I,/obj/item/paiparts/cell) && cell == PP_MISSING)
-		user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
-		cell = PP_FUNCTIONAL
-		user.drop_from_inventory(I)
-		qdel(I)
-	if(istype(I,/obj/item/paiparts/processor) && processor == PP_MISSING)
-		user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
-		processor = PP_FUNCTIONAL
-		user.drop_from_inventory(I)
-		qdel(I)
-	if(istype(I,/obj/item/paiparts/board) && board == PP_MISSING)
-		user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
-		board = PP_FUNCTIONAL
-		user.drop_from_inventory(I)
-		qdel(I)
-	if(istype(I,/obj/item/paiparts/capacitor) && capacitor == PP_MISSING)
-		user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
-		capacitor = PP_FUNCTIONAL
-		user.drop_from_inventory(I)
-		qdel(I)
-	if(istype(I,/obj/item/paiparts/projector) && projector == PP_MISSING)
-		user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
-		projector = PP_FUNCTIONAL
-		user.drop_from_inventory(I)
-		qdel(I)
-	if(istype(I,/obj/item/paiparts/emitter) && emitter == PP_MISSING)
-		user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
-		emitter = PP_FUNCTIONAL
-		user.drop_from_inventory(I)
-		qdel(I)
-	if(istype(I,/obj/item/paiparts/speech_synthesizer) && speech_synthesizer == PP_MISSING)
-		user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
-		speech_synthesizer = PP_FUNCTIONAL
-		user.drop_from_inventory(I)
-		qdel(I)
+	if(istype(I,/obj/item/paiparts/cell))
+		if(cell == PP_MISSING)
+			if(do_after(user, 3 SECONDS))
+				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				cell = PP_FUNCTIONAL
+				user.drop_from_inventory(I)
+				qdel(I)
+		else
+			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+	if(istype(I,/obj/item/paiparts/processor))
+		if(processor == PP_MISSING)
+			if(do_after(user, 3 SECONDS))
+				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				processor = PP_FUNCTIONAL
+				user.drop_from_inventory(I)
+				qdel(I)
+		else
+			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+	if(istype(I,/obj/item/paiparts/board))
+		if(board == PP_MISSING)
+			if(do_after(user, 3 SECONDS))
+				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				board = PP_FUNCTIONAL
+				user.drop_from_inventory(I)
+				qdel(I)
+		else
+			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+	if(istype(I,/obj/item/paiparts/capacitor))
+		if(capacitor == PP_MISSING)
+			if(do_after(user, 3 SECONDS))
+				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				capacitor = PP_FUNCTIONAL
+				user.drop_from_inventory(I)
+				qdel(I)
+		else
+			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+	if(istype(I,/obj/item/paiparts/projector))
+		if(projector == PP_MISSING)
+			if(do_after(user, 3 SECONDS))
+				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				projector = PP_FUNCTIONAL
+				user.drop_from_inventory(I)
+				qdel(I)
+		else
+			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+	if(istype(I,/obj/item/paiparts/emitter))
+		if(emitter == PP_MISSING)
+			if(do_after(user, 3 SECONDS))
+				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				emitter = PP_FUNCTIONAL
+				user.drop_from_inventory(I)
+				qdel(I)
+		else
+			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
+	if(istype(I,/obj/item/paiparts/speech_synthesizer))
+		if(speech_synthesizer == PP_MISSING)
+			if(do_after(user, 3 SECONDS))
+				user.visible_message("<span class ='notice'>\The [user] installs \the [I] into \the [src].</span>","<span class ='notice'>You install \the [I] into \the [src].</span>")
+				speech_synthesizer = PP_FUNCTIONAL
+				user.drop_from_inventory(I)
+				qdel(I)
+		else
+			to_chat(user, "<span class ='warning'>You would need to remove the installed [I] first!</span>")
 
 /obj/item/device/paicard/attack_self(mob/user)
 	if(!panel_open)
@@ -210,6 +240,12 @@ var/global/list/paikeys = list()
 		parts |= "speech synthesizer"
 
 	var/choice = tgui_input_list(user, "Which part would you like to remove?", "Remove part", parts)
+	if(choice)
+		playsound(src, 'sound/items/pickup/component.ogg', vary = TRUE)
+	else
+		return
+	if(!do_after(user, 3 SECONDS))
+		return
 	switch(choice)
 		if("cell")
 			if(cell == PP_FUNCTIONAL)
@@ -311,6 +347,8 @@ var/global/list/paikeys = list()
 	desc = "It's broken scrap from a pAI card!"
 	icon = 'icons/obj/paicard.dmi'
 	icon_state = "broken"
+	pickup_sound = 'sound/items/pickup/card.ogg'
+	drop_sound = 'sound/items/drop/card.ogg'
 /obj/item/paiparts/Initialize()
 	. = ..()
 	pixel_x = rand(-10,10)

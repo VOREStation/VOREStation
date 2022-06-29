@@ -58,6 +58,9 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 /obj/item/device/paicard/attack_ghost(mob/user as mob)
 	if(pai != null) //Have a person in them already?
 		return ..()
+	if(is_damage_critical())
+		to_chat(usr, "<span class='warning'>That card is too damaged to activate!</span>")
+		return
 	var/time_till_respawn = user.time_till_respawn()
 	if(time_till_respawn == -1) // Special case, never allowed to respawn
 		to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
@@ -132,6 +135,9 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 // VOREStation Edit End
 
 /obj/item/device/paicard/proc/access_screen(mob/user)
+	if(is_damage_critical())
+		to_chat(user, "<span class='warning'>WARNING: CRITICAL HARDWARE FAILURE, SERVICE DEVICE IMMEDIATELY</span>")
+		return
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
