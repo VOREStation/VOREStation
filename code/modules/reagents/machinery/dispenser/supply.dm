@@ -52,7 +52,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ethanol,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sacid,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tungsten,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/calcium
 		)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure
@@ -63,6 +64,12 @@
 /datum/supply_pack/alcohol_reagents
 	name = "Bar alcoholic dispenser refill"
 	contains = list(
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon_lime,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sodawater,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tonic,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/beer,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/kahlua,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/whiskey,
@@ -74,6 +81,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tequila,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/vermouth,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cider,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/bitters
@@ -104,7 +112,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/grapesoda
 		)
 	cost = 50
 	containertype = /obj/structure/closet/crate
@@ -120,8 +129,16 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/milk,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cream,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/sugar,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/tea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ice,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mint,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/greentea,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf
 		)
 	cost = 50
 	containertype = /obj/structure/closet/crate
