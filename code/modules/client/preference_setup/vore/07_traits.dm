@@ -86,9 +86,6 @@
 		pref.gross_meatbag = 1
 		pref.dirty_synth = 0
 
-	if(pref.species != SPECIES_CUSTOM)
-		pref.pos_traits.Cut()
-		pref.neg_traits.Cut()
 	// Clean up positive traits
 	for(var/datum/trait/path as anything in pref.pos_traits)
 		if(!(path in positive_traits))

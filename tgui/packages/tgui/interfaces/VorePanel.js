@@ -1,7 +1,7 @@
 import { capitalize } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
-import { Box, Button, Flex, Collapsible, Icon, LabeledList, NoticeBox, Section, Tabs } from '../components';
+import { Box, Button, Flex, Collapsible, Icon, LabeledList, NoticeBox, Section, Tabs, Divider } from '../components';
 import { Window } from '../layouts';
 import { classes } from 'common/react';
 
@@ -41,8 +41,17 @@ const digestModeToPreyMode = {
  */
 export const VorePanel = (props, context) => {
   const { act, data } = useBackend(context);
+
+  const [tabIndex, setTabIndex] = useLocalState(context, 'panelTabIndex', 0);
+
+  const tabs = [];
+
+  tabs[0] = <VoreBellySelectionAndCustomization />;
+
+  tabs[1] = <VoreUserPreferences />;
+
   return (
-    <Window width={700} height={660} theme="abstract" resizable>
+    <Window width={890} height={660} theme="abstract" resizable>
       <Window.Content scrollable>
         {(data.unsaved_changes && (
           <NoticeBox danger>
@@ -56,8 +65,17 @@ export const VorePanel = (props, context) => {
         )) ||
           null}
         <VoreInsidePanel />
-        <VoreBellySelectionAndCustomization />
-        <VoreUserPreferences />
+        <Tabs>
+          <Tabs.Tab selected={tabIndex === 0} onClick={() => setTabIndex(0)}>
+            Bellies
+            <Icon name="list" ml={0.5} />
+          </Tabs.Tab>
+          <Tabs.Tab selected={tabIndex === 1} onClick={() => setTabIndex(1)}>
+            Preferences
+            <Icon name="user-cog" ml={0.5} />
+          </Tabs.Tab>
+        </Tabs>
+        {tabs[tabIndex] || 'Error'}
       </Window.Content>
     </Window>
   );
@@ -111,26 +129,33 @@ const VoreBellySelectionAndCustomization = (props, context) => {
   const { our_bellies, selected } = data;
 
   return (
-    <Section title="My Bellies">
-      <Tabs>
-        {our_bellies.map((belly) => (
-          <Tabs.Tab
-            key={belly.name}
-            selected={belly.selected}
-            textColor={digestModeToColor[belly.digest_mode]}
-            onClick={() => act('bellypick', { bellypick: belly.ref })}>
-            <Box inline textColor={(belly.selected && digestModeToColor[belly.digest_mode]) || null}>
-              {belly.name} ({belly.contents})
-            </Box>
-          </Tabs.Tab>
-        ))}
-        <Tabs.Tab onClick={() => act('newbelly')}>
-          New
-          <Icon name="plus" ml={0.5} />
-        </Tabs.Tab>
-      </Tabs>
-      {selected && <VoreSelectedBelly belly={selected} />}
-    </Section>
+    <Flex>
+      <Flex.Item shrink>
+        <Section title="My Bellies" scollable>
+          <Tabs vertical>
+            <Tabs.Tab onClick={() => act('newbelly')}>
+              New
+              <Icon name="plus" ml={0.5} />
+            </Tabs.Tab>
+            <Divider />
+            {our_bellies.map((belly) => (
+              <Tabs.Tab
+                key={belly.name}
+                selected={belly.selected}
+                textColor={digestModeToColor[belly.digest_mode]}
+                onClick={() => act('bellypick', { bellypick: belly.ref })}>
+                <Box inline textColor={(belly.selected && digestModeToColor[belly.digest_mode]) || null}>
+                  {belly.name} ({belly.contents})
+                </Box>
+              </Tabs.Tab>
+            ))}
+          </Tabs>
+        </Section>
+      </Flex.Item>
+      <Flex.Item grow>
+        <Section title={selected.belly_name}>{selected && <VoreSelectedBelly belly={selected} />}</Section>
+      </Flex.Item>
+    </Flex>
   );
 };
 
@@ -143,7 +168,7 @@ const VoreSelectedBelly = (props, context) => {
   const { belly } = props;
   const { contents } = belly;
 
-  const [tabIndex, setTabIndex] = useLocalState(context, 'tabIndex', 0);
+  const [tabIndex, setTabIndex] = useLocalState(context, 'bellyTabIndex', 0);
 
   const tabs = [];
 
@@ -204,15 +229,15 @@ const VoreSelectedBellyControls = (props, context) => {
         buttons={
           <Fragment>
             <Button
-              icon="arrow-left"
+              icon="arrow-up"
               tooltipPosition="left"
-              tooltip="Move this belly tab left."
+              tooltip="Move this belly tab up."
               onClick={() => act('move_belly', { dir: -1 })}
             />
             <Button
-              icon="arrow-right"
+              icon="arrow-down"
               tooltipPosition="left"
-              tooltip="Move this belly tab right."
+              tooltip="Move this belly tab down."
               onClick={() => act('move_belly', { dir: 1 })}
             />
           </Fragment>
