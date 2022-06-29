@@ -1196,6 +1196,7 @@
 #include "code\game\objects\items\devices\modkit.dm"
 #include "code\game\objects\items\devices\multitool.dm"
 #include "code\game\objects\items\devices\paicard.dm"
+#include "code\game\objects\items\devices\paicard_vr.dm"
 #include "code\game\objects\items\devices\pipe_painter.dm"
 #include "code\game\objects\items\devices\powersink.dm"
 #include "code\game\objects\items\devices\spy_bug.dm"

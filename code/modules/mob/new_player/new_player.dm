@@ -182,7 +182,7 @@
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "<font color='red'>The round is either not ready, or has already finished...</font>")
 			return
-		
+
 		var/time_till_respawn = time_till_respawn()
 		if(time_till_respawn == -1) // Special case, never allowed to respawn
 			to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
@@ -224,7 +224,7 @@
 			return 0
 
 		var/datum/species/S = GLOB.all_species[client.prefs.species]
-		
+
 		if(!(S.spawn_flags & SPECIES_CAN_JOIN))
 			tgui_alert_async(src,"Your current species, [client.prefs.species], is not available for play on the station.")
 			return 0
@@ -367,7 +367,7 @@
 		popup.set_content(dat)
 		popup.open()
 
-/mob/new_player/proc/time_till_respawn()
+/mob/proc/time_till_respawn()
 	if(!ckey)
 		return -1 // What?
 

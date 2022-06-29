@@ -37,6 +37,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 		if(istype(card,/obj/item/device/paicard) && istype(candidate,/datum/paiCandidate))
 			var/mob/living/silicon/pai/pai = new(card)
 			pai.key = candidate.key
+			paikeys |= pai.ckey
 			card.setPersonality(pai)
 			if(!candidate.name)
 				pai.SetName(pick(ninja_names))
@@ -379,6 +380,16 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 		if(!C)	return
 		asked.Add(C.key)
 		asked[C.key] = world.time
+
+		var/mob/ourmob = C.mob
+		if(ourmob)
+			var/time_till_respawn = ourmob.time_till_respawn()
+			if(time_till_respawn == -1 || time_till_respawn)
+				return
+		for(var/ourkey in paikeys)
+			if(ourkey == ourmob.ckey)
+				return
+
 		var/response = tgui_alert(C, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", list("Yes", "No", "Never for this round"))
 		if(!C)	return		//handle logouts that happen whilst the alert is waiting for a response.
 		if(response == "Yes")
