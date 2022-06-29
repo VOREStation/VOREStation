@@ -21,9 +21,10 @@ var/global/list/paikeys = list()
 			user.visible_message("<span class ='notice'>\The [user] secured \the [src]'s maintenance panel.</span>")
 			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 		else if(pai)
-			panel_open = TRUE
-			user.visible_message("<span class ='warning'>\The [user] opened \the [src]'s maintenance panel.</span>")
-			playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
+			if(do_after(user, 3 SECONDS))
+				panel_open = TRUE
+				user.visible_message("<span class ='warning'>\The [user] opened \the [src]'s maintenance panel.</span>")
+				playsound(src, 'sound/items/Screwdriver.ogg', 50, 1)
 	if(istype(I,/obj/item/device/robotanalyzer))
 		if(!panel_open)
 			to_chat(user, "<span class ='warning'>The panel isn't open. You will need to unscrew it to open it.</span>")
