@@ -43,6 +43,8 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right, "descriptor" = "right foot")
 		)
 
+	trait_points = 2
+
 /datum/species/custom/update_sort_hint()
 	sort_hint = SPECIES_SORT_CUSTOM
 
