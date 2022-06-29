@@ -393,7 +393,7 @@
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
-#include "gb-mining.dm"
+#include "groundbase_mining.dm"
 /datum/map_template/gb_lateload/mining
 	name = "V3c Underground"
 	desc = "The caves underneath the survace of Virgo 3C"
