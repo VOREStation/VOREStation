@@ -274,3 +274,12 @@
 	backpack = /obj/item/weapon/storage/backpack/talon
 	satchel_one = /obj/item/weapon/storage/backpack/satchel/talon
 	messenger_bag = /obj/item/weapon/storage/backpack/messenger/talon
+
+/datum/job/paramedic
+	alt_titles = list(
+					"Emergency Medical Technician" = /datum/alt_title/emt,
+					"Search and Rescue" = /datum/alt_title/sar)
+
+/datum/alt_title/sar
+	title = "Search and Rescue"
+	title_blurb = "A Search and Rescue operative recovers individuals who are injured or dead outside of their assigned facility."
