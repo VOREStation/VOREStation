@@ -171,7 +171,8 @@
 
 /mob/living/silicon/pai/emp_act(severity)
 	// Silence for 2 minutes
-	// 20% chance to kill
+	// 20% chance to damage critical components
+	// 50% chance to damage a non critical component
 		// 33% chance to unbind
 		// 33% chance to change prime directive (based on severity)
 		// 33% chance of no additional effect
@@ -180,10 +181,12 @@
 	to_chat(src, "<font color=green><b>Communication circuit overload. Shutting down and reloading communication circuits - speech and messaging functionality will be unavailable until the reboot is complete.</b></font>")
 	if(prob(20))
 		var/turf/T = get_turf_or_move(src.loc)
+		card.death_damage()
 		for (var/mob/M in viewers(T))
 			M.show_message("<font color='red'>A shower of sparks spray from [src]'s inner workings.</font>", 3, "<font color='red'>You hear and smell the ozone hiss of electrical sparks being expelled violently.</font>", 2)
-		return src.death(0)
-
+		return
+	if(prob(50))
+		card.damage_random_component(TRUE)
 	switch(pick(1,2,3))
 		if(1)
 			src.master = null
@@ -248,10 +251,13 @@
 	if(src.loc != card)
 		return
 
+	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
+		to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
+
 	if(world.time <= last_special)
 		to_chat(src, "<span class ='warning'>You can't unfold yet.</span>")
 		return
-	
+
 	last_special = world.time + 100
 
 	if(istype(card.loc, /obj/machinery)) // VOREStation edit, this statement allows pAIs stuck in a machine to eject themselves.
@@ -285,6 +291,7 @@
 
 	card.forceMove(src)
 	card.screen_loc = null
+	canmove = TRUE
 
 	var/turf/T = get_turf(src)
 	if(istype(T)) T.visible_message("<b>[src]</b> folds outwards, expanding into a mobile form.")
@@ -418,7 +425,7 @@
 		close_up()
 
 //I'm not sure how much of this is necessary, but I would rather avoid issues.
-/mob/living/silicon/pai/proc/close_up()
+/mob/living/silicon/pai/proc/close_up(silent= FALSE)
 
 	last_special = world.time + 100
 
@@ -428,7 +435,7 @@
 	release_vore_contents(FALSE) //VOREStation Add
 
 	var/turf/T = get_turf(src)
-	if(istype(T)) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
+	if(istype(T) && !silent) T.visible_message("<b>[src]</b> neatly folds inwards, compacting down to a rectangular card.")
 
 	if(client)
 		src.stop_pulling()
@@ -446,7 +453,7 @@
 			M.drop_from_inventory(H)
 		H.loc = get_turf(src)
 		src.loc = get_turf(H)
-	
+
 	if(isbelly(loc))	//If in tumby, when fold up, card go into tumby
 		var/obj/belly/B = loc
 		src.forceMove(card)

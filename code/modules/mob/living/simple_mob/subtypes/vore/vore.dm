@@ -30,7 +30,7 @@
 	set desc = "Set your description."
 	set category = "Abilities"
 	var/newdesc
-	newdesc = sanitizeSafe(tgui_input_text(src,"Set your description. Max 4096 chars.", "Description set",""), MAX_MESSAGE_LEN)
+	newdesc = sanitizeSafe(tgui_input_text(src,"Set your description. Max 4096 chars.", "Description set","", prevent_enter = TRUE), MAX_MESSAGE_LEN)
 	if(newdesc)
 		desc = newdesc
 

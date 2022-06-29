@@ -136,6 +136,7 @@
 	damage = 0
 	check_armour = "laser"
 	var/set_size = 1 //Let's default to 100%
+	can_miss = FALSE
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray

@@ -961,10 +961,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	remove_layer(TAIL_SOUTH_LAYER)
 
 	var/tail_layer = GET_TAIL_LAYER
-	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
-		tail_layer = TAIL_NORTH_LAYER_ALT
 	if(src.tail_style && src.tail_style.clip_mask_state)
 		tail_layer = TAIL_NORTH_LAYER		// Use default, let clip mask handle everything
+	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
+		tail_layer = TAIL_NORTH_LAYER_ALT
 
 	var/image/tail_image = get_tail_image()
 	if(tail_image)
@@ -1004,10 +1004,10 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 /mob/living/carbon/human/proc/set_tail_state(var/t_state)
 	var/tail_layer = GET_TAIL_LAYER
-	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
-		tail_layer = TAIL_NORTH_LAYER_ALT
 	if(src.tail_style && src.tail_style.clip_mask_state)
 		tail_layer = TAIL_NORTH_LAYER		// Use default, let clip mask handle everything
+	if(tail_alt && tail_layer == TAIL_NORTH_LAYER)
+		tail_layer = TAIL_NORTH_LAYER_ALT
 	var/image/tail_overlay = overlays_standing[tail_layer]
 
 	remove_layer(TAIL_NORTH_LAYER)
