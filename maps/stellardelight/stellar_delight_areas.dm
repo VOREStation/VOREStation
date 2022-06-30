@@ -272,8 +272,10 @@
 
 /area/stellardelight/deck3/transitgateway
 	name = "Transit Gateway"
+	forbid_events = TRUE
 /area/stellardelight/deck3/cryo
 	name = "Cryogenic Storage"
+	forbid_events = TRUE
 
 /area/stellardelight/deck3/readingroom
 	name = "Reading Rooms"
@@ -281,7 +283,7 @@
 	flags = RAD_SHIELDED| BLUE_SHIELDED |AREA_FLAG_IS_NOT_PERSISTENT
 	soundproofed = TRUE
 	block_suit_sensors = TRUE
-	forbid_events = TRUE	
+	forbid_events = TRUE
 
 /area/stellardelight/deck3/portdock
 	name = "Port Dock"

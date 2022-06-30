@@ -294,7 +294,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_message = "<span class='warning'>Rain falls on you, drenching you in water.</span>"
 
 	var/next_lightning_strike = 0 // world.time when lightning will strike.
-	var/min_lightning_cooldown = 1 SECONDS
+	var/min_lightning_cooldown = 1 MINUTE
 	var/max_lightning_cooldown = 5 MINUTE
 	observed_message = "An intense storm pours down over the region."
 	transition_messages = list(
@@ -601,7 +601,7 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 		/mob/living/simple_mob/vore/bigdragon/friendly = 1,
 		/mob/living/simple_mob/vore/alienanimals/dustjumper = 20
 		)
-	
+
 
 /turf/simulated/floor/outdoors/grass/forest/virgo3c/Initialize()
 	if(tree_chance && prob(tree_chance) && !check_density())
