@@ -28,6 +28,16 @@
 	containername = "soda dispenser crate"
 	group = "Reagents"
 
+/datum/supply_pack/coffee_dispenser
+	name = "Coffee dispenser"
+	contains = list(
+			/obj/machinery/chemical_dispenser/bar_coffee{anchored = FALSE}
+		)
+	cost = 25
+	containertype = /obj/structure/largecrate
+	containername = "coffee dispenser crate"
+	group = "Reagents"
+
 /datum/supply_pack/reagents
 	name = "Chemistry dispenser refill"
 	contains = list(
