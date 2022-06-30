@@ -84,7 +84,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/orange,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/watermelon,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lemon,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/grapesoda
 		)
 
 /obj/machinery/chemical_dispenser/bar_alc
@@ -115,7 +116,8 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cognac,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cider,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/ale,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/mead,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/bitters
 		)
 
 /obj/machinery/chemical_dispenser/bar_coffee

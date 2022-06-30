@@ -487,6 +487,14 @@
 			host.stumble_vore = !host.stumble_vore
 			unsaved_changes = TRUE
 			return TRUE
+		if("toggle_nutrition_ex")
+			host.nutrition_message_visible = !host.nutrition_message_visible
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_weight_ex")
+			host.weight_message_visible = !host.weight_message_visible
+			unsaved_changes = TRUE
+			return TRUE
 
 /datum/vore_look/proc/pick_from_inside(mob/user, params)
 	var/atom/movable/target = locate(params["pick"])
@@ -1109,12 +1117,6 @@
 			. = TRUE
 		if("b_save_digest_mode")
 			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode
-			. = TRUE
-		if("toggle_nutrition_ex")
-			host.nutrition_message_visible = !host.nutrition_message_visible
-			. = TRUE
-		if("toggle_weight_ex")
-			host.weight_message_visible = !host.weight_message_visible
 			. = TRUE
 		if("b_del")
 			var/alert = tgui_alert(usr, "Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation",list("Cancel","Delete"))
