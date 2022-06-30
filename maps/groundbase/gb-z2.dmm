@@ -22,6 +22,16 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/groundbase/civilian/kitchen)
+"ac" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/hologram/holopad,
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/medislug{
+	ghostjoin = 1
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/lobby)
 "ad" = (
 /obj/structure/bed/chair/office/light{
 	dir = 1
@@ -35,6 +45,20 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rd)
+"ae" = (
+/obj/structure/cable/yellow{
+	icon_state = "2-8"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/landmark{
+	name = "lightsout"
+	},
+/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug{
+	ghostjoin = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/command/bridge)
 "af" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -44,6 +68,12 @@
 "ag" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/science/picnic)
+"ah" = (
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/rnd)
 "ai" = (
 /obj/machinery/door/airlock{
 	id_tag = null;
@@ -51,6 +81,18 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/dorms/room2)
+"aj" = (
+/obj/machinery/button/remote/blast_door{
+	id = "cirshutters";
+	name = "Privacy Shutter Control";
+	pixel_y = 30
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/circuits)
 "ak" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/cyan,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -58,6 +100,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"al" = (
+/obj/effect/landmark/start/roboticist,
+/obj/structure/bed/chair/office/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/robotics)
 "am" = (
 /obj/item/toy/figure/mime,
 /obj/item/weapon/pen/crayon/marker/mime,
@@ -90,6 +139,22 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level2/ne)
+"aq" = (
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/camera/network/research{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/machinery/computer/med_data/laptop{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/robotics)
 "ar" = (
 /obj/machinery/light,
 /obj/structure/bed/double/padded,
@@ -131,6 +196,18 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
+"av" = (
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
+/obj/machinery/alarm{
+	dir = 1
+	},
+/obj/structure/bed/chair/office/light{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/science/robotics)
 "ax" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/item/weapon/towel/random,
@@ -4655,20 +4732,6 @@
 /obj/machinery/microwave,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
-"nC" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug{
-	ghostjoin = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "2-8"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/effect/landmark{
-	name = "lightsout"
-	},
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/command/bridge)
 "nD" = (
 /obj/machinery/disposal/wall{
 	dir = 8;
@@ -11493,10 +11556,6 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/cargo/office)
-"Hy" = (
-/obj/effect/landmark/start/roboticist,
-/turf/simulated/floor/tiled,
-/area/groundbase/science/robotics)
 "Hz" = (
 /obj/structure/table/marble,
 /obj/machinery/camera/network/civilian{
@@ -12099,15 +12158,6 @@
 "Jc" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/level2/nw)
-"Jd" = (
-/obj/machinery/button/remote/blast_door{
-	id = "cirshutters";
-	name = "Privacy Shutter Control";
-	pixel_y = 30
-	},
-/obj/machinery/atmospherics/unary/vent_pump/on,
-/turf/simulated/floor/tiled,
-/area/groundbase/science/circuits)
 "Je" = (
 /obj/effect/floor_decal/chapel,
 /obj/structure/disposalpipe/segment,
@@ -13672,16 +13722,6 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/groundbase/medical/triage)
-"Np" = (
-/mob/living/simple_mob/vore/alienanimals/catslug/custom/medislug{
-	ghostjoin = 1
-	},
-/obj/structure/cable/yellow{
-	icon_state = "1-2"
-	},
-/obj/machinery/hologram/holopad,
-/turf/simulated/floor/tiled/white,
-/area/groundbase/medical/lobby)
 "Nq" = (
 /turf/simulated/floor/reinforced/virgo3c{
 	edge_blending_priority = -1
@@ -16053,18 +16093,6 @@
 "Ud" = (
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
-"Ue" = (
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 8
-	},
-/obj/machinery/camera/network/research{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/science/robotics)
 "Uf" = (
 /obj/structure/filingcabinet/filingcabinet,
 /obj/machinery/camera/network/command,
@@ -17022,15 +17050,6 @@
 	edge_blending_priority = 0.1
 	},
 /area/groundbase/civilian/kitchen)
-"WU" = (
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 1
-	},
-/obj/machinery/alarm{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/science/robotics)
 "WV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -23389,7 +23408,7 @@ mP
 mP
 FL
 Rh
-Jd
+aj
 UX
 Dn
 ww
@@ -24526,7 +24545,7 @@ pt
 RE
 Wn
 hU
-Hy
+al
 CA
 AR
 ov
@@ -24805,7 +24824,7 @@ bZ
 Fm
 Fm
 Fm
-Fm
+ah
 Fm
 MR
 Wn
@@ -25102,7 +25121,7 @@ de
 Wn
 Yz
 ir
-Ue
+aq
 Wn
 Gu
 Nn
@@ -25244,7 +25263,7 @@ Ph
 bD
 Hb
 wp
-WU
+av
 Wn
 zT
 zT
@@ -30144,7 +30163,7 @@ to
 HL
 WZ
 cM
-Np
+ac
 WQ
 qT
 Bx
@@ -30752,7 +30771,7 @@ vr
 sx
 ld
 jg
-nC
+ae
 ss
 Mb
 vr

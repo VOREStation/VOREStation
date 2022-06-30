@@ -1,4 +1,17 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/obj/structure/cable/pink{
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/milspec/color/red/half{
+	dir = 1
+	},
+/obj/machinery/newscaster/security_unit{
+	pixel_y = 28
+	},
+/mob/living/simple_mob/vore/fennec/bridgette,
+/turf/simulated/floor/tiled/dark,
+/area/security/security_cell_hallway)
 "ab" = (
 /obj/structure/cable/pink{
 	icon_state = "2-4"
@@ -37,6 +50,19 @@
 /obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/floor/tiled/dark,
 /area/security/security_lockerroom)
+"af" = (
+/obj/machinery/computer/transhuman/resleeving{
+	dir = 8
+	},
+/obj/effect/floor_decal/industrial/warning{
+	dir = 1
+	},
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/item/weapon/book/manual/resleeving,
+/turf/simulated/floor/tiled/steel_grid,
+/area/assembly/robotics)
 "ag" = (
 /obj/structure/cable/pink{
 	icon_state = "1-4"
@@ -98,6 +124,20 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/prison/cell_block)
+"al" = (
+/obj/structure/table/standard,
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = 30
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 8
+	},
+/obj/machinery/computer/med_data/laptop{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/steel,
+/area/assembly/robotics)
 "am" = (
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 2
@@ -167,6 +207,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
 /turf/simulated/floor/tiled/dark,
 /area/security/tactical)
+"av" = (
+/obj/structure/table/standard,
+/obj/machinery/cell_charger,
+/obj/machinery/power/apc/angled{
+	dir = 8
+	},
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "0-4"
+	},
+/obj/item/weapon/storage/box/backup_kit,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/assembly/robotics)
 "aw" = (
 /obj/structure/stairs/spawner/north,
 /obj/structure/railing/grey{
@@ -192,6 +245,18 @@
 "ay" = (
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/pathfinder)
+"az" = (
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-2"
+	},
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "2-8"
+	},
+/mob/living/simple_mob/animal/passive/mimepet/gregory,
+/turf/simulated/floor/tiled/eris,
+/area/rnd/xenobiology/xenoflora)
 "aA" = (
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -204,18 +269,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
-"aB" = (
-/obj/structure/table/standard,
-/obj/machinery/cell_charger,
-/obj/machinery/power/apc/angled{
-	dir = 8
-	},
-/obj/structure/cable/green{
-	color = "#42038a";
-	icon_state = "0-4"
-	},
-/turf/simulated/floor/tiled/steel_dirty,
-/area/assembly/robotics)
 "aC" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -1285,19 +1338,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
-"cP" = (
-/obj/structure/cable/pink{
-	icon_state = "4-8"
-	},
-/obj/effect/floor_decal/milspec/color/red/half{
-	dir = 1
-	},
-/mob/living/simple_mob/vore/fennec/bridgette,
-/obj/machinery/newscaster/security_unit{
-	pixel_y = 28
-	},
-/turf/simulated/floor/tiled/dark,
-/area/security/security_cell_hallway)
 "cQ" = (
 /obj/machinery/mineral/unloading_machine,
 /turf/simulated/floor/tiled/eris/steel/cargo,
@@ -5275,18 +5315,6 @@
 	},
 /turf/simulated/floor/carpet/purcarpet,
 /area/stellardelight/deck1/dorms/dorm6)
-"lk" = (
-/obj/machinery/computer/transhuman/resleeving{
-	dir = 8
-	},
-/obj/effect/floor_decal/industrial/warning{
-	dir = 1
-	},
-/obj/machinery/light{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/steel_grid,
-/area/assembly/robotics)
 "ll" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 9
@@ -5399,19 +5427,6 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
-"lu" = (
-/obj/structure/table/standard,
-/obj/item/weapon/book/manual/resleeving,
-/obj/item/weapon/storage/box/backup_kit,
-/obj/structure/extinguisher_cabinet{
-	dir = 8;
-	pixel_x = 30
-	},
-/obj/machinery/atmospherics/unary/vent_scrubber/on{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/steel,
-/area/assembly/robotics)
 "lv" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -9217,18 +9232,6 @@
 	},
 /turf/simulated/floor/airless,
 /area/stellardelight/deck1/exterior)
-"tl" = (
-/obj/structure/cable/green{
-	color = "#42038a";
-	icon_state = "1-2"
-	},
-/mob/living/simple_mob/animal/passive/mimepet/gregory,
-/obj/structure/cable/green{
-	color = "#42038a";
-	icon_state = "2-8"
-	},
-/turf/simulated/floor/tiled/eris,
-/area/rnd/xenobiology/xenoflora)
 "tm" = (
 /obj/structure/dogbed,
 /mob/living/simple_mob/animal/passive/tindalos/twigs,
@@ -35218,7 +35221,7 @@ Ne
 Ne
 Ne
 Qu
-cP
+aa
 wT
 QC
 Iq
@@ -36395,7 +36398,7 @@ xs
 zG
 Ih
 ru
-aB
+av
 aD
 Mr
 fo
@@ -36960,8 +36963,8 @@ JU
 LB
 nu
 yI
-lk
-lu
+af
+al
 rz
 ss
 aD
@@ -37558,7 +37561,7 @@ Yc
 zI
 CS
 Gl
-tl
+az
 KN
 Yw
 FA
