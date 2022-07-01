@@ -38,7 +38,7 @@ jobs:
           restore-keys: ${{ runner.os }}-dreamchecker
 
       - name: Restore Yarn cache
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'Type: TGUI Bundle') }}
+        if: "${{ contains(github.event.pull_request.labels.*.name, 'Type: TGUI Bundle') }}"
         uses: actions/cache@v3
         with:
           path: tgui/.yarn/cache
@@ -58,7 +58,7 @@ jobs:
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
 
       - name: TGUI Linters
-        if: ${{ contains(github.event.pull_request.labels.*.name, 'Type: TGUI Bundle') }}
+        if: "${{ contains(github.event.pull_request.labels.*.name, 'Type: TGUI Bundle') }}"
         run: |
           cd tgui
           yarn install
