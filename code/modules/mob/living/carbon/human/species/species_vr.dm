@@ -50,6 +50,7 @@
 	ASSERT(src)
 	ASSERT(istype(H))
 	var/datum/species/new_copy = new src.type()
+	new_copy.race_key = race_key
 
 	if(selects_bodytype && custom_base) //If race selects a bodytype, retrieve the custom_base species and copy needed variables.
 		var/datum/species/S = GLOB.all_species[custom_base]
