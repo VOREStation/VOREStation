@@ -9,11 +9,14 @@
 	available_on_ntnet = TRUE
 	tgui_id = "NtosWordProcessor"
 
-	var/browsing
+	var/browsing = FALSE
 	var/open_file
 	var/loaded_data
 	var/error
 	var/is_edited
+
+	usage_flags = PROGRAM_ALL
+	category = PROG_OFFICE
 
 /datum/computer_file/program/wordprocessor/proc/get_file(var/filename)
 	var/obj/item/weapon/computer_hardware/hard_drive/HDD = computer.hard_drive
