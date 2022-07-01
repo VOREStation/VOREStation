@@ -37,6 +37,17 @@ jobs:
           key: ${{ runner.os }}-dreamchecker-${{ hashFiles('dependencies.sh')}}
           restore-keys: ${{ runner.os }}-dreamchecker
 
+      - name: Restore Yarn cache
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'Type: TGUI Bundle') }}
+        uses: actions/cache@v3
+        with:
+          path: tgui/.yarn/cache
+          key: ${{ runner.os }}-yarn-${{ secrets.CACHE_PURGE_KEY }}-${{ hashFiles('tgui/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ secrets.CACHE_PURGE_KEY }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
       - name: Install Dependencies
         run: |
           tools/ci/install_spaceman_dmm.sh dreamchecker
@@ -45,6 +56,16 @@ jobs:
         id: linter
         run: |
           ~/dreamchecker > ${GITHUB_WORKSPACE}/output-annotations.txt 2>&1
+
+      - name: TGUI Linters
+        if: ${{ contains(github.event.pull_request.labels.*.name, 'Type: TGUI Bundle') }}
+        run: |
+          cd tgui
+          yarn install
+          yarn tgui:prettier
+          yarn run tsc
+          yarn run eslint packages --ext ".js,.cjs,.ts,.tsx" @Args
+          cd ..
 
       - name: Annotate Linter
         uses: yogstation13/DreamAnnotate@v1
@@ -79,7 +100,25 @@ jobs:
           TEST_DEFINE: "UNIT_TEST"
           TEST_FILE: "code/_unit_tests.dm"
           RUN: "1"
-      - name: Compile POIs (no run)
+
+  map_tests:
+    needs: unit_tests
+    name: Map Tests
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        map: ['tether', 'stellardelight', 'groundbase']
+    steps:
+      - uses: actions/checkout@v3
+      - name: Ensure +x on CI directory
+        run: |
+          chmod -R +x ./tools/ci
+      - name: Setup Cache
+        uses: actions/cache@v3
+        with:
+          path: $HOME/BYOND
+          key: ${{ runner.os }}-byond
+      - name: Compile POIs (${{ matrix.map }})
         run: |
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
@@ -87,7 +126,7 @@ jobs:
           TEST_DEFINE: "MAP_TEST"
           TEST_FILE: "code/_map_tests.dm"
           RUN: "0"
-      - name: Compile away missions (no run)
+      - name: Compile away missions (${{ matrix.map }})
         run: |
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
