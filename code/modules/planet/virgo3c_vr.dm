@@ -150,7 +150,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 		WEATHER_CLEAR = 60,
 		WEATHER_OVERCAST = 20,
 		WEATHER_LIGHT_SNOW = 1,
-		WEATHER_BLOODMOON = 1,
+		WEATHER_BLOOD_MOON = 1,
 		WEATHER_EMBERFALL = 0.5)
 	transition_messages = list(
 		"The sky clears up.",
@@ -410,7 +410,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	temp_low = 273.15  // 0c
 	flight_failure_modifier = 25
 	transition_chances = list(
-		WEATHER_BLOODMOON = 25,
+		WEATHER_BLOOD_MOON = 25,
 		WEATHER_CLEAR = 75
 		)
 	observed_message = "Everything is red. Something really ominous is going on."
