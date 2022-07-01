@@ -100,25 +100,7 @@ jobs:
           TEST_DEFINE: "UNIT_TEST"
           TEST_FILE: "code/_unit_tests.dm"
           RUN: "1"
-
-  map_tests:
-    needs: unit_tests
-    name: Map Tests
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        map: ['tether', 'stellardelight', 'groundbase']
-    steps:
-      - uses: actions/checkout@v3
-      - name: Ensure +x on CI directory
-        run: |
-          chmod -R +x ./tools/ci
-      - name: Setup Cache
-        uses: actions/cache@v3
-        with:
-          path: $HOME/BYOND
-          key: ${{ runner.os }}-byond
-      - name: Compile POIs (${{ matrix.map }})
+      - name: Compile POIs
         run: |
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
@@ -126,7 +108,7 @@ jobs:
           TEST_DEFINE: "MAP_TEST"
           TEST_FILE: "code/_map_tests.dm"
           RUN: "0"
-      - name: Compile away missions (${{ matrix.map }})
+      - name: Compile away missions
         run: |
           tools/ci/install_byond.sh
           tools/ci/compile_and_run.sh
