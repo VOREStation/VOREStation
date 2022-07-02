@@ -124,6 +124,7 @@
 	default_skybox = /datum/skybox_settings/groundbase
 
 	unit_test_exempt_areas = list(		//These are all outside
+		/area/groundbase/cargo/bay,
 		/area/groundbase/exploration/shuttlepad,
 		/area/groundbase/level1,
 		/area/groundbase/level1/ne,
