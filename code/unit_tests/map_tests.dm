@@ -52,11 +52,11 @@
 				area_good = 0
 
 			if(!A.air_scrub_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air scrubber. (X[A.x]|Y[A.y]) - (Z[A.z]")
+				log_unit_test("[bad_msg] lacks an Air scrubber. (X[A.x]|Y[A.y]) - (Z[A.z])")
 				area_good = 0
 
 			if(!A.air_vent_info.len && !(A.type in exempt_from_atmos))
-				log_unit_test("[bad_msg] lacks an Air vent. (X[A.x]|Y[A.y]) - (Z[A.z]")
+				log_unit_test("[bad_msg] lacks an Air vent. (X[A.x]|Y[A.y]) - (Z[A.z])")
 				area_good = 0
 
 			if(!area_good)
