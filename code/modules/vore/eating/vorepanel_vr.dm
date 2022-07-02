@@ -611,10 +611,10 @@
 	var/atom/movable/target = locate(params["pick"])
 	if(!(target in host.vore_selected))
 		return TRUE // Not in our X anymore, update UI
-	var/list/available_options = list("Examine", "Eject", "Move")
+	var/list/available_options = list("Examine", "Eject", "Move", "Exchange")
 	if(ishuman(target))
 		available_options += "Transform"
-	intent = tgui_alert(user, "What would you like to do with [target]?", "Vore Pick", available_options, strict_byond = TRUE)
+	intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", available_options)
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
@@ -656,6 +656,23 @@
 			var/datum/tgui_module/appearance_changer/vore/V = new(host, H)
 			V.tgui_interact(user)
 			return TRUE
+
+		if("Exchange")
+			if(host.absorbed || host.stat)
+				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
+				return TRUE
+
+			var/mob/living/M = input(user, "Select the target to request an exchange of [target.name] with.", "Request Exchange") as mob in range(1)
+			if(get_dist(user,M) >= 2)
+				to_chat(user, "<span class='warning'>You need to be closer to do that.</span>")
+				return
+
+			var/obj/belly/B = tgui_input_list(user, "Select the target belly of [M.name].", "Request Exchange", M.vore_organs)
+			if(!B)
+				to_chat(user, "<span class='warning'>You need to select a valid target belly.</span>")
+				return
+
+			host.vore_selected.request_exchange(target, M, B)
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
