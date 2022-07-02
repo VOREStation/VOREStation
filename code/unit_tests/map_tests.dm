@@ -1,5 +1,5 @@
 /datum/unit_test/apc_area_test
-	name = "MAP: Area Test APC / Scrubbers / Vents Z level 1"
+	name = "MAP: Area Test APC / Scrubbers / Vents (Defined Z-Levels)"
 
 /datum/unit_test/apc_area_test/start_test()
 	var/list/bad_areas = list()
@@ -121,12 +121,12 @@
 			var/a_gas = ""
 			for(var/gas in E.A.air.gas)
 				a_gas += "[gas]=[E.A.air.gas[gas]]"
-			
+
 			var/b_temp
 			var/b_moles
 			var/b_vol
 			var/b_gas = ""
-			
+
 			// Two zones mixing
 			if(istype(E, /connection_edge/zone))
 				var/connection_edge/zone/Z = E
@@ -144,11 +144,11 @@
 				b_vol = "Unsim"
 				for(var/gas in U.air.gas)
 					b_gas += "[gas]=[U.air.gas[gas]]"
-			
+
 			edge_log += "Active Edge [E] ([E.type])"
 			edge_log += "Edge side A: T:[a_temp], Mol:[a_moles], Vol:[a_vol], Gas:[a_gas]"
 			edge_log += "Edge side B: T:[b_temp], Mol:[b_moles], Vol:[b_vol], Gas:[b_gas]"
-			
+
 			for(var/turf/T in E.connecting_turfs)
 				edge_log += "+--- Connecting Turf [T] ([T.type]) @ [T.x], [T.y], [T.z] ([T.loc])"
 
