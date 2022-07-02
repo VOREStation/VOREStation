@@ -83,6 +83,7 @@ jobs:
           TEST_DEFINE: "UNIT_TEST"
           TEST_FILE: "code/_unit_tests.dm"
           MAP: ${{ matrix.map }}
+          REPLACE: true
           RUN: "1"
       - name: Compile POIs (no run)
         run: |
@@ -92,6 +93,7 @@ jobs:
           TEST_DEFINE: "MAP_TEST"
           TEST_FILE: "code/_map_tests.dm"
           MAP: ${{ matrix.map }}
+          REPLACE: false
           RUN: "0"
       - name: Compile away missions (no run)
         run: |
@@ -101,4 +103,5 @@ jobs:
           TEST_DEFINE: "AWAY_MISSION_TEST"
           TEST_FILE: "code/_away_mission_tests.dm"
           MAP: ${{ matrix.map }}
+          REPLACE: false
           RUN: "0"

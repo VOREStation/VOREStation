@@ -11,13 +11,17 @@ cp config/example/* config/
 # Define any unit test defines that need to run
 echo "#define ${TEST_DEFINE} 1" > ${TEST_FILE}
 
+replace = ${REPLACE}
 # Messy map compile code
-if grep -Fxq "#include \"maps\tether\tether.dm\"" $BASENAME.dme then
-  sed -i "/#include \"maps\tether\tether.dm\"/c\\#include \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
-elif grep -Fxq "#include \"maps\stellardelight\stellardelight.dm\"" $BASENAME.dme then
-  sed -i "/#include \"maps\stellardelight\stellardelight.dm\"/c\\#include \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
-elif grep -Fxq "#include \"maps\groundbase\groundbase.dm\"" $BASENAME.dme then
-  sed -i "/#include \"maps\groundbase\groundbase.dm\"/c\\#include \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
+if grep -q "#include\ \"maps\\tether\\tether.dm\"" $BASENAME.dme && replace; then
+  sed -i "/#include\ \"maps\\tether\\tether.dm\"/c\#include\ \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
+  replace = false
+elif grep -q "#include\ \"maps\\stellardelight\\stellardelight.dm\"" $BASENAME.dme && replace; then
+  sed -i "/#include\ \"maps\\stellardelight\\stellardelight.dm\"/c\#include\ \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
+  replace = false
+elif grep -q "#include\ \"maps\\groundbase\\groundbase.dm\"" $BASENAME.dme && replace; then
+  sed -i "/#include\ \"maps\\groundbase\\groundbase.dm\"/c\#include\ \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
+  replace = false
 fi
 
 # Compile a copy of the codebase, and print errors as Github Actions annotations
