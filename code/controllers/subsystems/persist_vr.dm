@@ -63,10 +63,11 @@ SUBSYSTEM_DEF(persist)
 		LAZYINITLIST(C.play_hours)
 		var/dept_hours = C.department_hours
 		var/play_hours = C.play_hours
-		if(isnum(dept_hours[department_earning]))
-			dept_hours[department_earning] += pto_factored
-		else
-			dept_hours[department_earning] = pto_factored
+		if(!(J.playtime_only))
+			if(isnum(dept_hours[department_earning]))
+				dept_hours[department_earning] += pto_factored
+			else
+				dept_hours[department_earning] = pto_factored
 
 		// If they're earning PTO they must be in a useful job so are earning playtime in that department
 		if(J.timeoff_factor > 0)
