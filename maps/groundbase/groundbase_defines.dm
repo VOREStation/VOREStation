@@ -165,6 +165,11 @@
 
 	unit_test_exempt_from_atmos = list()
 
+	unit_test_z_levels = list(
+		Z_LEVEL_GB_BOTTOM,
+		Z_LEVEL_GB_MIDDLE,
+		Z_LEVEL_GB_TOP
+	)
 
 	lateload_z_levels = list(
 		list("Groundbase - Central Command"),
@@ -534,4 +539,3 @@
 */
 
 ////////////////////////////////////////////////////////////////////////
-
