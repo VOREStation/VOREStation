@@ -1045,9 +1045,9 @@
 
 	return see
 
-/obj/belly/proc/request_exchange(atom/moveable/content, mob/living/target, obj/belly/target_belly)
+/obj/belly/proc/request_exchange(atom/movable/content, mob/living/target, obj/belly/target_belly)
 
-/obj/belly/proc/process_exchange(atom/moveable/content, obj/belly/target)
+/obj/belly/proc/process_exchange(atom/movable/content, obj/belly/target)
 
 //Transfers contents from one belly to another
 /obj/belly/proc/transfer_contents(atom/movable/content, obj/belly/target, silent = 0)
