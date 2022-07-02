@@ -697,6 +697,9 @@
 	if(new_color)
 		glow_color = new_color
 
+/obj/item
+	var/trash_eatable = TRUE
+
 /mob/living/proc/eat_trash()
 	set name = "Eat Trash"
 	set category = "Abilities"
@@ -713,6 +716,10 @@
 
 	if(is_type_in_list(I,item_vore_blacklist))
 		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
+		return
+
+	if(!I.trash_eatable)
+		to_chat(src, "<span class='warning'>You can't eat that so casually!</span>")
 		return
 
 	if(istype(I, /obj/item/device/paicard))
