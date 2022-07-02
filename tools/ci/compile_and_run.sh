@@ -11,7 +11,7 @@ cp config/example/* config/
 # Define any unit test defines that need to run
 echo "#define ${TEST_DEFINE} 1" > ${TEST_FILE}
 
-replace = ${REPLACE}
+replace=${REPLACE}
 # Messy map compile code
 if grep -q "#include\ \"maps\\tether\\tether.dm\"" $BASENAME.dme && replace; then
   sed -i "/#include\ \"maps\\tether\\tether.dm\"/c\#include\ \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
