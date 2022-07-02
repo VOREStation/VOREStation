@@ -124,6 +124,7 @@
 	default_skybox = /datum/skybox_settings/groundbase
 
 	unit_test_exempt_areas = list(		//These are all outside
+		/area/groundbase/exploration/shuttlepad,
 		/area/groundbase/level1,
 		/area/groundbase/level1/ne,
 		/area/groundbase/level1/nw,
@@ -140,11 +141,20 @@
 		/area/groundbase/level2/nw,
 		/area/groundbase/level2/se,
 		/area/groundbase/level2/sw,
+		/area/groundbase/level2/northspur,
+		/area/groundbase/level2/eastspur,
+		/area/groundbase/level2/westspur,
+		/area/groundbase/level2/southeastspur,
+		/area/groundbase/level2/southwestspur,
 		/area/groundbase/level3,
 		/area/groundbase/level3/ne,
 		/area/groundbase/level3/nw,
 		/area/groundbase/level3/se,
 		/area/groundbase/level3/sw,
+		/area/groundbase/level3/ne/open,
+		/area/groundbase/level3/nw/open,
+		/area/groundbase/level3/se/open,
+		/area/groundbase/level3/sw/open,
 		/area/maintenance/groundbase/level1/netunnel,
 		/area/maintenance/groundbase/level1/nwtunnel,
 		/area/maintenance/groundbase/level1/setunnel,
