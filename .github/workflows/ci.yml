@@ -53,7 +53,11 @@ jobs:
           outputFile: output-annotations.txt
 
   unit_tests:
-    name: Integration Tests
+    strategy:
+      matrix:
+        map: ['tether', 'stellardelight', 'groundbase']
+    name: Integration Tests (${{ matrix.map }})
+    needs: ['file_tests', 'dreamchecker']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -78,6 +82,7 @@ jobs:
         env:
           TEST_DEFINE: "UNIT_TEST"
           TEST_FILE: "code/_unit_tests.dm"
+          MAP: ${{ matrix.map }}
           RUN: "1"
       - name: Compile POIs (no run)
         run: |
@@ -86,6 +91,7 @@ jobs:
         env:
           TEST_DEFINE: "MAP_TEST"
           TEST_FILE: "code/_map_tests.dm"
+          MAP: ${{ matrix.map }}
           RUN: "0"
       - name: Compile away missions (no run)
         run: |
@@ -94,4 +100,5 @@ jobs:
         env:
           TEST_DEFINE: "AWAY_MISSION_TEST"
           TEST_FILE: "code/_away_mission_tests.dm"
+          MAP: ${{ matrix.map }}
           RUN: "0"
