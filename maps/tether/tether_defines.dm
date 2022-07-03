@@ -152,6 +152,13 @@
 		/area/tether/surfacebase/lowernortheva/external, //it outside
 		/area/tether/surfacebase/security/gasstorage) //it maint
 
+	unit_test_z_levels = list(
+		Z_LEVEL_SURFACE_LOW,
+		Z_LEVEL_SURFACE_MID,
+		Z_LEVEL_SURFACE_HIGH,
+		Z_LEVEL_TRANSIT,
+		Z_LEVEL_SPACE_LOW
+	)
 
 	lateload_z_levels = list(
 		list("Tether - Centcom","Tether - Misc","Tether - Underdark","Tether - Plains"), //Stock Tether lateload maps
