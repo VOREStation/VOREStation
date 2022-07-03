@@ -76,3 +76,15 @@
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("chirp", "squawk", "tweet")
+
+/datum/language/teppi
+	name = "Teppi"
+	desc = "A set of gyohs that only teppi can understand."
+	speech_verb = "rumbles"
+	ask_verb = "tilts"
+	exclaim_verb = "roars"
+	key = "i"
+	flags = WHITELISTED
+	machine_understands = 0
+	space_chance = 100
+	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh")
