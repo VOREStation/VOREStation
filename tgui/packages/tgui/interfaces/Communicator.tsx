@@ -1,4 +1,5 @@
 import { filter } from 'common/collections';
+import { BooleanLike } from 'common/react';
 import { decodeHtmlEntities, toTitleCase } from 'common/string';
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
@@ -19,8 +20,30 @@ const SETTTAB = 9;
 
 let TabToTemplate = {}; // Populated under each template
 
+type Data = {
+  // GENERAL
+  currentTab: number;
+  video_comm: BooleanLike;
+  mapRef: string;
+
+  // FOOTER
+  time: string;
+  connectionStatus: BooleanLike;
+  owner: string;
+  occupation: string;
+
+  // HEADER
+  flashlight: BooleanLike;
+
+  // NOTIFICATIONS
+  voice_mobs: [];
+  communicating: [];
+  requestsReceived: [];
+  invitesSent: [];
+};
+
 export const Communicator = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<Data>(context);
 
   const { currentTab, video_comm, mapRef } = data;
 
@@ -54,7 +77,7 @@ export const Communicator = (props, context) => {
 };
 
 const VideoComm = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<Data>(context);
 
   const { video_comm, mapRef } = data;
 
@@ -164,7 +187,7 @@ const VideoComm = (props, context) => {
 };
 
 const TemplateError = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<Data>(context);
 
   const { currentTab } = data;
 
@@ -172,7 +195,7 @@ const TemplateError = (props, context) => {
 };
 
 const CommunicatorHeader = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<Data>(context);
 
   const { time, connectionStatus, owner, occupation } = data;
 
@@ -194,7 +217,7 @@ const CommunicatorHeader = (props, context) => {
 };
 
 const CommunicatorFooter = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<Data>(context);
 
   const { flashlight } = data;
 
@@ -245,7 +268,7 @@ const CommunicatorFooter = (props, context) => {
 
 /* Helper for notifications (yes this is a mess, but whatever, it works) */
 const hasNotifications = (app, context) => {
-  const { data } = useBackend(context);
+  const { data } = useBackend<Data>(context);
 
   const {
     /* Phone Notifications */
@@ -267,9 +290,13 @@ const hasNotifications = (app, context) => {
 
 /* Tabs Below this point */
 
+type HomeTabData = {
+  homeScreen: { number: number; module: string; icon: string }[];
+};
+
 /* Home tab, provides access to all other tabs. */
 const HomeTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<HomeTabData>(context);
 
   const { homeScreen } = data;
 
@@ -305,9 +332,19 @@ const HomeTab = (props, context) => {
 
 TabToTemplate[HOMETAB] = <HomeTab />;
 
+type PhoneTabData = {
+  targetAddress: string;
+  voice_mobs: { name: string; true_name: string; ref: string }[];
+  communicating: { address: string; name: string; true_name: string; ref: string }[];
+  requestsReceived: { address: string; name: string; ref: string }[];
+  invitesSent: { address: string; name: string }[];
+  video_comm: string;
+  selfie_mode: BooleanLike;
+};
+
 /* Phone tab, provides a phone interface! */
 const PhoneTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<PhoneTabData>(context);
 
   const { targetAddress, voice_mobs, communicating, requestsReceived, invitesSent, video_comm, selfie_mode } = data;
 
@@ -326,7 +363,7 @@ const PhoneTab = (props, context) => {
         </LabeledList.Item>
       </LabeledList>
       <NumberPad />
-      <Section title="Connection Management" level={2} mt={2}>
+      <Section title="Connection Management" mt={2}>
         <LabeledList>
           <LabeledList.Item label="Camera Mode">
             <Button
@@ -336,7 +373,7 @@ const PhoneTab = (props, context) => {
             />
           </LabeledList.Item>
         </LabeledList>
-        <Section title="External Connections" level={3}>
+        <Section title="External Connections">
           {(!!voice_mobs.length && (
             <LabeledList>
               {voice_mobs.map((mob) => (
@@ -352,7 +389,7 @@ const PhoneTab = (props, context) => {
             </LabeledList>
           )) || <Box>No connections</Box>}
         </Section>
-        <Section title="Internal Connections" level={3}>
+        <Section title="Internal Connections">
           {(!!communicating.length && (
             <Table>
               {communicating.map((comm) => (
@@ -386,7 +423,7 @@ const PhoneTab = (props, context) => {
             </Table>
           )) || <Box>No connections</Box>}
         </Section>
-        <Section title="Requests Received" level={3}>
+        <Section title="Requests Received">
           {(!!requestsReceived.length && (
             <LabeledList>
               {requestsReceived.map((request) => (
@@ -401,7 +438,7 @@ const PhoneTab = (props, context) => {
             </LabeledList>
           )) || <Box>No requests received.</Box>}
         </Section>
-        <Section title="Invites Sent" level={3}>
+        <Section title="Invites Sent">
           {(!!invitesSent.length && (
             <LabeledList>
               {invitesSent.map((invite) => (
@@ -428,7 +465,7 @@ const PhoneTab = (props, context) => {
 
 // Subtemplate
 const NumberPad = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<PhoneTabData>(context);
 
   const { targetAddress } = data;
 
@@ -438,7 +475,7 @@ const NumberPad = (props, context) => {
     <Button key={char} content={char} fontSize={2} fluid onClick={() => act('add_hex', { add_hex: char })} />
   ));
 
-  let finalArray = [];
+  let finalArray: any[] = [];
 
   for (let i = 0; i < buttonArray.length; i += 4) {
     finalArray.push(
@@ -492,9 +529,13 @@ const NumberPad = (props, context) => {
 
 TabToTemplate[PHONTAB] = <PhoneTab />;
 
+type ContactsTabData = {
+  knownDevices: { address: string; name: string }[];
+};
+
 /* Contacts */
 const ContactsTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<ContactsTabData>(context);
 
   const { knownDevices } = data;
 
@@ -552,9 +593,19 @@ const ContactsTab = (props, context) => {
 
 TabToTemplate[CONTTAB] = <ContactsTab />;
 
+type MessagingTabData = {
+  // TAB
+  imContacts: { address: string; name: string }[];
+
+  // THREAD
+  targetAddressName: string;
+  targetAddress: string;
+  imList: { im: string }[];
+};
+
 /* Messaging */
 const MessagingTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<MessagingTabData>(context);
 
   const { imContacts } = data;
 
@@ -605,7 +656,7 @@ const IsIMOurs = (im, targetAddress) => {
   return im.address !== targetAddress;
 };
 
-const enforceLengthLimit = (prefix, name, length) => {
+const enforceLengthLimit = (prefix: string, name: string, length: number) => {
   if ((prefix + name).length > length) {
     if (name.length > length) {
       return name.slice(0, length) + '...';
@@ -631,7 +682,7 @@ const findClassMessage = (im, targetAddress, lastIndex, filterArray) => {
 };
 
 const MessagingThreadTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<MessagingTabData>(context);
 
   const { targetAddressName, targetAddress, imList } = data;
 
@@ -722,9 +773,28 @@ const MessagingThreadTab = (props, context) => {
 
 TabToTemplate[MESSSUBTAB] = <MessagingThreadTab />;
 
+type NewsTabData = {
+  feeds: { index: number; name: string }[];
+  target_feed: { name: string; author: string; messages: NewsMessage[] };
+  latest_news: NewsMessage[];
+};
+
+type NewsMessage = {
+  ref: string;
+  body: string;
+  img: string;
+  caption: string;
+  message_type: string;
+  author: string;
+  time_stamp: string;
+
+  index: number;
+  channel: string;
+};
+
 /* News */
 const NewsTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<NewsTabData>(context);
 
   const { feeds, target_feed } = data;
 
@@ -737,14 +807,13 @@ const NewsTab = (props, context) => {
 };
 
 const NewsTargetFeed = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<NewsTabData>(context);
 
   const { target_feed } = data;
 
   return (
     <Section
       title={decodeHtmlEntities(target_feed.name) + ' by ' + decodeHtmlEntities(target_feed.author)}
-      level={2}
       buttons={<Button content="Back" icon="chevron-up" onClick={() => act('newsfeed', { newsfeed: null })} />}>
       {target_feed.messages.map((message) => (
         <Section key={message.ref}>
@@ -765,13 +834,13 @@ const NewsTargetFeed = (props, context) => {
 };
 
 const NewsFeed = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<NewsTabData>(context);
 
   const { feeds, latest_news } = data;
 
   return (
     <Fragment>
-      <Section title="Recent News" level={2}>
+      <Section title="Recent News">
         <Section>
           {latest_news.map((news) => (
             <Box mb={2} key={news.index}>
@@ -802,7 +871,7 @@ const NewsFeed = (props, context) => {
           ))}
         </Section>
       </Section>
-      <Section title="News Feeds" level={2}>
+      <Section title="News Feeds">
         {feeds.map((feed) => (
           <Button
             key={feed.index}
@@ -819,9 +888,13 @@ const NewsFeed = (props, context) => {
 
 TabToTemplate[NEWSTAB] = <NewsTab />;
 
+type NoteTabData = {
+  note: string;
+};
+
 /* Note Keeper */
 const NoteTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<NoteTabData>(context);
 
   const { note } = data;
 
@@ -861,29 +934,56 @@ const getItemColor = (value, min2, min1, max1, max2) => {
   return 'good';
 };
 
+type WeatherTabData = {
+  aircontents: AirContent[];
+  weather: Weather[];
+};
+
+type AirContent = {
+  entry: string;
+  val;
+  bad_low: number;
+  poor_low: number;
+  poor_high: number;
+  bad_high: number;
+  units;
+};
+
+type Weather = {
+  Planet: string;
+  Time: string;
+  Weather: string;
+  Temperature;
+  High;
+  Low;
+  WindDir;
+  WindSpeed;
+  Forecast: string;
+};
+
 const WeatherTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<WeatherTabData>(context);
 
   const { aircontents, weather } = data;
 
   return (
     <Section title="Weather">
-      <Section level={2} title="Current Conditions">
+      <Section title="Current Conditions">
         <LabeledList>
-          {filter((i) => i.val !== '0' || i.entry === 'Pressure' || i.entry === 'Temperature')(aircontents).map(
-            (item) => (
-              <LabeledList.Item
-                key={item.entry}
-                label={item.entry}
-                color={getItemColor(item.val, item.bad_low, item.poor_low, item.poor_high, item.bad_high)}>
-                {item.val}
-                {decodeHtmlEntities(item.units)}
-              </LabeledList.Item>
-            )
-          )}
+          {filter((i: AirContent) => i.val !== '0' || i.entry === 'Pressure' || i.entry === 'Temperature')(
+            aircontents
+          ).map((item: AirContent) => (
+            <LabeledList.Item
+              key={item.entry}
+              label={item.entry}
+              color={getItemColor(item.val, item.bad_low, item.poor_low, item.poor_high, item.bad_high)}>
+              {item.val}
+              {decodeHtmlEntities(item.units)}
+            </LabeledList.Item>
+          ))}
         </LabeledList>
       </Section>
-      <Section level={2} title="Weather Reports">
+      <Section title="Weather Reports">
         {(!!weather.length && (
           <LabeledList>
             {weather.map((wr) => (
@@ -914,9 +1014,19 @@ TabToTemplate[WTHRTAB] = <WeatherTab />;
 // Lol just steal it from the existing template
 TabToTemplate[MANITAB] = <CrewManifestContent />;
 
+type SettingsTabData = {
+  owner: string;
+  occupation: string;
+  connectionStatus: BooleanLike;
+  address: string;
+  visible: BooleanLike;
+  ring: BooleanLike;
+  selfie_mode: BooleanLike;
+};
+
 /* Settings */
 const SettingsTab = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<SettingsTabData>(context);
 
   const { owner, occupation, connectionStatus, address, visible, ring, selfie_mode } = data;
 
