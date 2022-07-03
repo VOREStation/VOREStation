@@ -60,6 +60,7 @@
 	plane = TURF_PLANE
 	layer = ABOVE_TURF_LAYER
 	construct_type = /obj/machinery/light_construct/floortube
+	overlay_above_everything = FALSE
 
 /obj/machinery/light/floortube/flicker
 	auto_flicker = TRUE
@@ -106,6 +107,7 @@
 	plane = MOB_PLANE
 	layer = ABOVE_MOB_LAYER
 	construct_type = /obj/machinery/light_construct/bigfloorlamp
+	overlay_above_everything = TRUE
 
 /obj/machinery/light/bigfloorlamp/flicker
 	auto_flicker = TRUE
@@ -151,6 +153,7 @@
 	layer = ABOVE_MOB_LAYER
 	construct_type = null
 	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
+	overlay_above_everything = TRUE
 	color = "#3e5064"
 
 /obj/machinery/light/small/fairylights/broken()
@@ -159,47 +162,31 @@
 /obj/machinery/light/small/fairylights/flicker
 	auto_flicker = TRUE
 
-/obj/machinery/light/small/fairylights/update_icon()
-
-	switch(status)
-		if(LIGHT_OK)
-			if(shows_alerts && current_alert && on)
-				icon_state = "[base_state]-alert-[current_alert]"
-				add_light_overlay(FALSE)
-			else
-				icon_state = "[base_state][on]"
-				add_light_overlay()
-		if(LIGHT_EMPTY)
-			icon_state = "[base_state]-empty"
-			on = 0
-			remove_light_overlay()
-		if(LIGHT_BURNED)
-			icon_state = "[base_state]-burned"
-			on = 0
-			remove_light_overlay()
-		if(LIGHT_BROKEN)
-			icon_state = "[base_state]-broken"
-			on = 0
-			remove_light_overlay()
-	return
-
 /obj/machinery/light
 	var/image/overlay_layer = null
-	var/overlay_color = null
+	var/overlay_above_everything = TRUE
 
-/obj/machinery/light/proc/add_light_overlay(do_color = TRUE)
+/obj/machinery/light/proc/add_light_overlay(do_color = TRUE, provided_state = null)
 	remove_light_overlay()
-	overlay_layer = image(icon, "[base_state]-overlay")
+	if(provided_state)
+		overlay_layer = image(icon, "[provided_state]-overlay")
+	else
+		overlay_layer = image(icon, "[base_state]-overlay")
 	overlay_layer.appearance_flags = RESET_COLOR|KEEP_APART
 	if(overlay_color && do_color)
 		overlay_layer.color = overlay_color
-	overlay_layer.plane = PLANE_LIGHTING_ABOVE
+	if(overlay_above_everything)
+		overlay_layer.plane = PLANE_LIGHTING_ABOVE
+	else
+		overlay_layer.plane = PLANE_EMISSIVE
+
 	add_overlay(overlay_layer)
 
 /obj/machinery/light/proc/remove_light_overlay()
-	cut_overlay(overlay_layer)
-	qdel(overlay_layer)
-	overlay_layer = null
+	if(overlay_layer)
+		cut_overlay(overlay_layer)
+		qdel(overlay_layer)
+		overlay_layer = null
 
 
 /*
