@@ -309,7 +309,7 @@
 /mob/living/simple_mob/Bump(var/atom/A)
 	if(mobcard && istype(A, /obj/machinery/door))
 		var/obj/machinery/door/D = A
-		if(!istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(mobcard))
+		if(client && !istype(D, /obj/machinery/door/firedoor) && !istype(D, /obj/machinery/door/blast) && !istype(D, /obj/machinery/door/airlock/lift) && D.check_access(mobcard))
 			D.open()
 	else
 		..()
