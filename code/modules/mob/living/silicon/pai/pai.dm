@@ -123,7 +123,7 @@
 	add_language(LANGUAGE_GUTTER, 1)
 	add_language(LANGUAGE_EAL, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
-	add_language(LANGUAGE_SIGN, 0)
+	add_language(LANGUAGE_SIGN, 1)
 
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
