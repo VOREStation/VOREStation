@@ -1,7 +1,7 @@
 import { Fragment } from 'inferno';
 import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Icon, Input, LabeledList, Section, Tabs } from '../components';
-import { ComplexModal, modalOpen } from '../interfaces/common/ComplexModal';
+import { ComplexModal, modalOpen } from './common/ComplexModal';
 import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
@@ -43,7 +43,7 @@ export const GeneralRecords = (_properties, context) => {
   }
 
   return (
-    <Window width={800} height={640} resizable>
+    <Window width={800} height={640} resizable scrollable>
       <ComplexModal />
       <Window.Content className="Layout__content--flexColumn">
         <LoginInfo />
