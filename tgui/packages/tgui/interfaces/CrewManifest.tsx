@@ -17,7 +17,7 @@ data["manifest"] = PDA_Manifest
  * ```
  */
 
-export const CrewManifest = (props, context) => {
+export const CrewManifest = () => {
   return (
     <Window width={400} height={600}>
       <Window.Content scrollable>
@@ -27,8 +27,12 @@ export const CrewManifest = (props, context) => {
   );
 };
 
+type Data = {
+  manifest: { elems: { name: string; rank: string; active: string }[]; cat: string }[];
+};
+
 export const CrewManifestContent = (props, context) => {
-  const { act, data } = useBackend(context);
+  const { act, data } = useBackend<Data>(context);
 
   const { manifest } = data;
 
@@ -45,8 +49,7 @@ export const CrewManifestContent = (props, context) => {
                   </Box>
                 </Box>
               }
-              key={cat.cat}
-              level={2}>
+              key={cat.cat}>
               <Table>
                 <Table.Row header color="white">
                   <Table.Cell>Name</Table.Cell>
