@@ -17,6 +17,9 @@
 	//Time required in the department as other jobs before playing this one (in hours)
 	var/dept_time_required = 0
 
+	//Do we forbid ourselves from earning PTO?
+	var/playtime_only = FALSE
+
 // Check client-specific availability rules.
 /datum/job/proc/player_has_enough_pto(client/C)
 	return timeoff_factor >= 0 || (C && LAZYACCESS(C.department_hours, pto_type) > 0)
