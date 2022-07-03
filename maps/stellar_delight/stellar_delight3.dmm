@@ -1032,8 +1032,12 @@
 /obj/structure/cable/green{
 	icon_state = "2-8"
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
 "ei" = (
@@ -6294,6 +6298,8 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/readingroom)
 "xw" = (
@@ -6558,6 +6564,8 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/readingroom)
 "ys" = (
@@ -7083,6 +7091,7 @@
 /obj/structure/closet/crate/bin{
 	anchored = 1
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/readingroom)
 "Ai" = (
@@ -7125,6 +7134,8 @@
 /obj/structure/cable/green{
 	icon_state = "0-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/readingroom)
 "An" = (
@@ -7384,6 +7395,7 @@
 	dir = 8
 	},
 /obj/structure/bookcase,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/wood,
 /area/stellardelight/deck3/readingroom)
 "Be" = (
@@ -9267,6 +9279,8 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/stellardelight/deck3/readingroom)
 "HR" = (
@@ -13966,6 +13980,18 @@
 /obj/structure/girder/displaced,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/stellardelight/deck3/forestarroomb)
+"Yk" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/portcent)
 "Yl" = (
 /obj/structure/cable/green{
 	icon_state = "2-8"
@@ -14292,6 +14318,8 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
 "Zt" = (
@@ -22452,7 +22480,7 @@ yq
 xv
 HQ
 Zp
-My
+Yk
 RM
 WQ
 OX
