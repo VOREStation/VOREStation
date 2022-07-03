@@ -2233,6 +2233,11 @@
 	outdoors = 0
 	},
 /area/groundbase/cargo/office)
+"go" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/small/fairylights,
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level2/nw)
 "gq" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/paper_bin{
@@ -4162,6 +4167,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
+"lM" = (
+/obj/machinery/light/small/fairylights,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/nw)
 "lN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -10687,6 +10696,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"EZ" = (
+/obj/machinery/light/small/fairylights,
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/nw)
 "Fa" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -11503,6 +11516,16 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/chapel)
+"Hr" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/small/fairylights,
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level2/nw)
 "Hs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -24212,13 +24235,13 @@ bY
 bY
 pw
 pw
-LT
+lM
 ml
 LT
-pw
+EZ
 pw
 bY
-bY
+lM
 bY
 bY
 bY
@@ -24354,13 +24377,13 @@ bY
 bY
 bY
 bY
-pw
+EZ
 ml
 pw
+lM
 bY
 bY
-bY
-bY
+lM
 bY
 bY
 bY
@@ -24496,13 +24519,13 @@ Hm
 Hm
 Hm
 Hm
-Hm
+Hr
 pJ
 sF
-sF
+go
 sF
 vV
-sF
+go
 sF
 sF
 sF
@@ -24638,13 +24661,13 @@ bY
 bY
 bY
 bY
-pw
+EZ
 sN
 pw
-bY
+lM
 bY
 Oa
-bY
+lM
 bY
 bY
 bY
@@ -24780,13 +24803,13 @@ bY
 bY
 bY
 bY
-yS
+lM
 sN
 bY
-bY
+lM
 bY
 Oa
-yS
+lM
 bY
 Aq
 bY
