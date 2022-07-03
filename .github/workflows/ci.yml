@@ -67,7 +67,7 @@ jobs:
       matrix:
         map: ['tether', 'stellardelight', 'groundbase']
     name: Integration Tests (${{ matrix.map }})
-    needs: ['file_tests', 'dreamchecker']
+    # needs: ['file_tests', 'dreamchecker']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
