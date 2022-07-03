@@ -148,6 +148,7 @@
 
 	unit_test_exempt_from_atmos = list(
 		/area/engineering/atmos_intake, // Outside,
+		/area/engineering/engine_gas,
 		/area/rnd/external, //  Outside,
 		/area/rnd/outpost/xenobiology/outpost_stairs,
 		/area/tether/surfacebase/entertainment/stage, // Connected to entertainment area
@@ -161,6 +162,13 @@
 		/area/tether/outpost/solars_outside, // Outside
 		/area/vacant/vacant_bar_upper // Maint
 		)
+
+	unit_test_exempt_from_wires = list(
+		/area/shuttle/medivac/general,
+		/area/shuttle/medivac/engines,
+		/area/shuttle/securiship/general,
+		/area/shuttle/securiship/engines
+	)
 
 	unit_test_z_levels = list(
 		Z_LEVEL_SURFACE_LOW,
