@@ -126,7 +126,7 @@
 		/area/stellardelight/deck2/starboardescape,
 		/area/stellardelight/deck3/exterior,
 
-		/area/medical/cryo
+		/area/medical/cryo,
 		/area/holodeck_control,
 		/area/tcommsat/chamber
 		)
