@@ -125,6 +125,11 @@
 
 	unit_test_exempt_from_atmos = list() //it maint
 
+	unit_test_z_levels = list(
+		Z_LEVEL_SHIP_LOW,
+		Z_LEVEL_SHIP_MID,
+		Z_LEVEL_SHIP_HIGH
+	)
 
 	lateload_z_levels = list(
 		list("Ship - Central Command"),
