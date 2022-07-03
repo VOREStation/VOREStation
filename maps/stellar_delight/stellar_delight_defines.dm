@@ -120,7 +120,15 @@
 	unit_test_exempt_areas = list(
 		/area/stellardelight/deck1/exterior,
 		/area/stellardelight/deck1/exploshuttle,
-		/area/stellardelight/deck1/miningshuttle
+		/area/stellardelight/deck1/miningshuttle,
+		/area/stellardelight/deck2/exterior,
+		/area/stellardelight/deck2/portescape,
+		/area/stellardelight/deck2/starboardescape,
+		/area/stellardelight/deck3/exterior,
+
+		/area/medical/cryo
+		/area/holodeck_control,
+		/area/tcommsat/chamber
 		)
 
 	unit_test_exempt_from_atmos = list() //it maint
