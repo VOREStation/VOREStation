@@ -13,14 +13,14 @@ echo "#define ${TEST_DEFINE} 1" > ${TEST_FILE}
 
 replace=${REPLACE}
 # Messy map compile code
-if grep -q "#include\ \"maps\\tether\\tether.dm\"" $BASENAME.dme && replace; then
-  sed -i "/#include\ \"maps\\tether\\tether.dm\"/c\#include\ \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
+if grep -q '#include\ \"maps\\tether\\tether.dm\"' $BASENAME.dme && replace; then
+  sed -i 's/#include[[:space:]]\"maps\\tether\\tether.dm\"/#include\ \"maps\\${MAP}\\${MAP}.dm\"/g' $BASENAME.dme
   replace = false
-elif grep -q "#include\ \"maps\\stellardelight\\stellardelight.dm\"" $BASENAME.dme && replace; then
-  sed -i "/#include\ \"maps\\stellardelight\\stellardelight.dm\"/c\#include\ \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
+elif grep -q '#include\ \"maps\\stellardelight\\stellardelight.dm\"' $BASENAME.dme && replace; then
+  sed -i 's/#include[[:space:]]\"maps\\stellardelight\\stellardelight.dm\"/#include\ \"maps\\${MAP}\\${MAP}.dm\"/g' $BASENAME.dme
   replace = false
-elif grep -q "#include\ \"maps\\groundbase\\groundbase.dm\"" $BASENAME.dme && replace; then
-  sed -i "/#include\ \"maps\\groundbase\\groundbase.dm\"/c\#include\ \"maps\\${MAP}\\${MAP}.dm\"" $BASENAME.dme
+elif grep -q '#include\ \"maps\\groundbase\\groundbase.dm\"' $BASENAME.dme && replace; then
+  sed -i 's/#include[[:space:]]\"maps\\groundbase\\groundbase.dm\"/#include\ \"maps\\${MAP}\\${MAP}.dm\"/g' $BASENAME.dme
   replace = false
 fi
 
