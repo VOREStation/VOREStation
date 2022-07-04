@@ -77,7 +77,8 @@ SUBSYSTEM_DEF(persist)
 				play_hours[department_earning] = wait_in_hours
 
 		// Cap it
-		dept_hours[department_earning] = min(config.pto_cap, dept_hours[department_earning])
+		if(!(J.playtime_only))
+			dept_hours[department_earning] = min(config.pto_cap, dept_hours[department_earning])
 
 		// Okay we figured it out, lets update database!
 		var/sql_ckey = sql_sanitize_text(C.ckey)
