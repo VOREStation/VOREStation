@@ -3118,6 +3118,9 @@
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
 "afe" = (
@@ -14718,9 +14721,6 @@
 "bnG" = (
 /obj/machinery/door/airlock/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
@@ -15317,6 +15317,14 @@
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
+"bIK" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "medbus"
+	},
+/area/shuttle/medivac/engines)
 "bIO" = (
 /obj/machinery/exonet_node{
 	anchored = 1
@@ -16456,6 +16464,16 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/cargo)
+"czD" = (
+/obj/effect/floor_decal/fancy_shuttle{
+	fancy_shuttle_tag = "medbus";
+	name = "medbus"
+	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/tiled,
+/area/shuttle/medivac/general)
 "czS" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -19532,11 +19550,6 @@
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/excursion/cargo)
 "fNX" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/door/airlock/maintenance/common{
 	name = "Engine Access";
 	req_one_access = list(1,67)
@@ -20181,20 +20194,15 @@
 /area/quartermaster/foyer)
 "gqN" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
-/obj/structure/cable{
-	d1 = 2;
-	d2 = 4;
-	icon_state = "2-4"
-	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
@@ -22763,11 +22771,6 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "iEn" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -23051,11 +23054,6 @@
 /turf/simulated/floor/airless,
 /area/shuttle/belter)
 "iVi" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -24344,6 +24342,9 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/fuel{
 	dir = 1
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
 "kjA" = (
@@ -24718,6 +24719,9 @@
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
 	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/general)
 "kzY" = (
@@ -24829,9 +24833,6 @@
 /area/tether/exploration/hallway)
 "kEt" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
@@ -27390,9 +27391,6 @@
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "mIV" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
 /obj/structure/cable{
 	icon_state = "2-4"
 	},
@@ -27405,6 +27403,9 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 6
+	},
+/obj/structure/cable/green{
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/engines)
@@ -28228,16 +28229,14 @@
 	req_one_access = list(11,67)
 	},
 /obj/structure/cable{
-	d1 = 1;
-	d2 = 4;
-	icon_state = "1-4"
-	},
-/obj/structure/cable{
 	icon_state = "0-4"
 	},
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/structure/cable{
+	icon_state = "4-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
@@ -31445,6 +31444,14 @@
 /obj/structure/plasticflaps,
 /turf/simulated/floor,
 /area/quartermaster/delivery)
+"rEr" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "secbus"
+	},
+/area/shuttle/securiship/general)
 "rFi" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -32053,9 +32060,6 @@
 	req_one_access = list(5,67)
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
@@ -32590,6 +32594,14 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
+"sRA" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "medbus"
+	},
+/area/shuttle/medivac/general)
 "sRG" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -32804,6 +32816,9 @@
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
 	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
 "teI" = (
@@ -32837,9 +32852,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/cable/green{
 	d1 = 2;
 	d2 = 4;
@@ -32848,6 +32860,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
+	},
+/obj/structure/cable{
+	icon_state = "1-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
@@ -33397,6 +33412,9 @@
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
 	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/general)
 "tGV" = (
@@ -33575,9 +33593,6 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock)
 "tOn" = (
-/obj/structure/cable/green{
-	icon_state = "4-8"
-	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 4;
@@ -33589,6 +33604,11 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
 	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/general)
@@ -33603,11 +33623,6 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "tOr" = (
-/obj/structure/cable/green{
-	d1 = 2;
-	d2 = 8;
-	icon_state = "2-8"
-	},
 /obj/structure/cable{
 	icon_state = "2-8"
 	},
@@ -33813,6 +33828,9 @@
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
 "udq" = (
@@ -33828,9 +33846,6 @@
 /area/maintenance/station/cargo)
 "udG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
@@ -34926,6 +34941,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 9
 	},
+/obj/structure/cable{
+	icon_state = "1-4"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/engines)
 "vtx" = (
@@ -35335,6 +35353,12 @@
 	fancy_shuttle_tag = "medbus";
 	name = "medbus"
 	},
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/cable{
+	icon_state = "2-4"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/medivac/general)
 "vVA" = (
@@ -35460,6 +35484,9 @@
 	name = "secbus"
 	},
 /obj/effect/map_helper/airlock/sensor/int_sensor,
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/general)
 "waj" = (
@@ -35530,9 +35557,6 @@
 /area/quartermaster/belterdock/gear)
 "weP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/structure/cable{
-	icon_state = "1-2"
-	},
 /obj/structure/cable/green{
 	icon_state = "1-4"
 	},
@@ -35776,6 +35800,9 @@
 	fancy_shuttle_tag = "secbus";
 	name = "secbus"
 	},
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/securiship/general)
 "wBw" = (
@@ -35913,11 +35940,6 @@
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
 "wLR" = (
-/obj/structure/cable/green{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
 /obj/machinery/door/airlock/glass_security,
 /obj/structure/cable{
 	icon_state = "1-2"
@@ -36263,6 +36285,14 @@
 /obj/structure/sign/department/gravi,
 /turf/simulated/wall/r_wall,
 /area/engineering/hallway)
+"xfE" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/turf/simulated/wall/fancy_shuttle{
+	fancy_shuttle_tag = "secbus"
+	},
+/area/shuttle/securiship/engines)
 "xfN" = (
 /obj/structure/flora/pottedplant/stoutbush,
 /obj/effect/floor_decal/borderfloor{
@@ -36740,9 +36770,6 @@
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "xMQ" = (
-/obj/structure/cable/green{
-	icon_state = "1-8"
-	},
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 8;
@@ -51353,12 +51380,12 @@ qtf
 vyd
 ter
 ucL
-tda
+sRA
 afa
-kXu
-kXu
+czD
+czD
 vVy
-hDi
+bIK
 kiN
 vtg
 lof
@@ -54051,11 +54078,11 @@ sJM
 abJ
 tOn
 vZG
-kok
+rEr
 wAK
 kzv
 tGO
-kKj
+xfE
 mIV
 ydq
 ncN

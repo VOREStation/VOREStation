@@ -73,6 +73,8 @@
 	name = "MAP: Cable Test (Defined Z-Levels)"
 
 /datum/unit_test/wire_test/start_test()
+	set background=1
+
 	var/wire_test_count = 0
 	var/bad_tests = 0
 	var/turf/T = null
@@ -80,25 +82,35 @@
 	var/list/cable_turfs = list()
 	var/list/dirs_checked = list()
 
+	var/list/exempt_from_wires = list()
+	exempt_from_wires += using_map.unit_test_exempt_from_wires.Copy()
+
 	var/list/zs_to_test = using_map.unit_test_z_levels || list(1) //Either you set it, or you just get z1
 
-	for(C in world)
-		T = null
+	for(var/color in possible_cable_coil_colours)
+		cable_turfs = list()
 
-		T = get_turf(C)
-		if(T && (T.z in zs_to_test))
-			cable_turfs |= get_turf(C)
+		for(C in world)
+			T = null
 
-	for(T in cable_turfs)
-		var/bad_msg = "--------------- [T.name] \[[T.x] / [T.y] / [T.z]\]"
-		dirs_checked.Cut()
-		for(C in T)
-			wire_test_count++
-			var/combined_dir = "[C.d1]-[C.d2]"
-			if(combined_dir in dirs_checked)
-				bad_tests++
-				log_unit_test("[bad_msg] Contains multiple wires with same direction on top of each other.")
-			dirs_checked.Add(combined_dir)
+			T = get_turf(C)
+			var/area/A = get_area(T)
+			if(T && (T.z in zs_to_test) && !(A.type in exempt_from_wires))
+				if(C.color == possible_cable_coil_colours[color])
+					cable_turfs |= get_turf(C)
+
+		for(T in cable_turfs)
+			var/bad_msg = "--------------- [T.name] \[[T.x] / [T.y] / [T.z]\] [color]"
+			dirs_checked.Cut()
+			for(C in T)
+				wire_test_count++
+				var/combined_dir = "[C.d1]-[C.d2]"
+				if(combined_dir in dirs_checked)
+					bad_tests++
+					log_unit_test("[bad_msg] Contains multiple wires with same direction on top of each other.")
+				dirs_checked.Add(combined_dir)
+
+		log_unit_test("[color] wires checked.")
 
 	if(bad_tests)
 		fail("\[[bad_tests] / [wire_test_count]\] Some turfs had overlapping wires going the same direction.")
