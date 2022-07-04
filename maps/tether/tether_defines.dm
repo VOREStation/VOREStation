@@ -163,13 +163,6 @@
 		/area/vacant/vacant_bar_upper // Maint
 		)
 
-	unit_test_exempt_from_wires = list(
-		/area/shuttle/medivac/general,
-		/area/shuttle/medivac/engines,
-		/area/shuttle/securiship/general,
-		/area/shuttle/securiship/engines
-	)
-
 	unit_test_z_levels = list(
 		Z_LEVEL_SURFACE_LOW,
 		Z_LEVEL_SURFACE_MID,
