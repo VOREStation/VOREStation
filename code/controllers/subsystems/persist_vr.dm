@@ -59,15 +59,16 @@ SUBSYSTEM_DEF(persist)
 		var/client/C = M.client
 		var/wait_in_hours = wait / (1 HOUR)
 		var/pto_factored = wait_in_hours * J.timeoff_factor
+		if(J.playtime_only)
+			pto_factored = 0
 		LAZYINITLIST(C.department_hours)
 		LAZYINITLIST(C.play_hours)
 		var/dept_hours = C.department_hours
 		var/play_hours = C.play_hours
-		if(!(J.playtime_only))
-			if(isnum(dept_hours[department_earning]))
-				dept_hours[department_earning] += pto_factored
-			else
-				dept_hours[department_earning] = pto_factored
+		if(isnum(dept_hours[department_earning]))
+			dept_hours[department_earning] += pto_factored
+		else
+			dept_hours[department_earning] = pto_factored
 
 		// If they're earning PTO they must be in a useful job so are earning playtime in that department
 		if(J.timeoff_factor > 0)
@@ -77,8 +78,7 @@ SUBSYSTEM_DEF(persist)
 				play_hours[department_earning] = wait_in_hours
 
 		// Cap it
-		if(!(J.playtime_only))
-			dept_hours[department_earning] = min(config.pto_cap, dept_hours[department_earning])
+		dept_hours[department_earning] = min(config.pto_cap, dept_hours[department_earning])
 
 		// Okay we figured it out, lets update database!
 		var/sql_ckey = sql_sanitize_text(C.ckey)
