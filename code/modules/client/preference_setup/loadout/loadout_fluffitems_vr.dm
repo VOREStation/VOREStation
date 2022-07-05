@@ -1396,7 +1396,13 @@
 
 /datum/gear/fluff/nehi_radio
 	path = /obj/item/device/radio/headset/fluff/zodiacshadow
-	display_name = "Nehi's Radio"
+	display_name = "Nehi's 'phones"
+	ckeywhitelist = list("zodiacshadow")
+	character_name = list("Nehi Maximus")
+
+/datum/gear/fluff/nehi_health_medal
+	path = /obj/item/clothing/accessory/medal/silver/fluff/zodiacshadow
+	display_name = "Health Service Achievement medal"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")
 
