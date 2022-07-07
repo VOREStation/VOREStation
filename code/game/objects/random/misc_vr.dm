@@ -114,6 +114,7 @@
 				prob(30);/obj/item/weapon/aliencoin/gold,
 				prob(20);/obj/item/weapon/aliencoin/phoron,
 				prob(5);/obj/item/capture_crystal,
+				prob(5);/obj/random/mouseray,
 				prob(5);/obj/item/device/perfect_tele,
 				prob(5);/obj/item/weapon/bluespace_harpoon,
 				prob(1);/obj/item/device/paicard,
@@ -130,8 +131,7 @@
 				prob(1);/obj/fiftyspawner/diamond,
 				prob(5);/obj/fiftyspawner/phoron,
 				prob(1);/obj/item/capture_crystal/random,
-				prob(1);/obj/random/unidentified_medicine,
-				prob(1);/obj/random/mouseray
+				prob(1);/obj/random/unidentified_medicine
 				)
 /obj/random/mainttoyloot/nofail
 	spawn_nothing_percentage = 0
