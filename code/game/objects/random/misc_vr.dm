@@ -130,7 +130,8 @@
 				prob(1);/obj/fiftyspawner/diamond,
 				prob(5);/obj/fiftyspawner/phoron,
 				prob(1);/obj/item/capture_crystal/random,
-				prob(1);/obj/random/unidentified_medicine
+				prob(1);/obj/random/unidentified_medicine,
+				prob(1);/obj/random/mouseray
 				)
 /obj/random/mainttoyloot/nofail
 	spawn_nothing_percentage = 0

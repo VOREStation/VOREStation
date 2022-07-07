@@ -22,105 +22,6 @@
 		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper
 		)
 
-/obj/item/weapon/gun/energy/mouseray/admin
-	name = "experimental metamorphosis ray"
-	tf_admin_pref_override = TRUE
-	cooldown_time = 5 SECONDS
-	tf_allow_select = TRUE
-	charge_meter = FALSE
-	charge_cost = 0
-	icon_state = "adminray"
-
-/obj/item/weapon/gun/energy/mouseray/metamorphosis
-	name = "metamorphosis ray"
-	tf_allow_select = TRUE
-	tf_possible_types = list(
-		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
-		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
-		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
-		"woof" = /mob/living/simple_mob/vore/woof,
-		"corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
-		"cat" = /mob/living/simple_mob/animal/passive/cat,
-		"chicken" = /mob/living/simple_mob/animal/passive/chicken,
-		"cow" = /mob/living/simple_mob/animal/passive/cow,
-		"lizard" = /mob/living/simple_mob/animal/passive/lizard,
-		"hare" = /mob/living/simple_mob/vore/rabbit,
-		"fox" = /mob/living/simple_mob/animal/passive/fox,
-		"fennec" = /mob/living/simple_mob/vore/fennec,
-		"cute fennec" = /mob/living/simple_mob/animal/passive/fennec,
-		"red panda" = /mob/living/simple_mob/vore/redpanda,
-		"opossum" = /mob/living/simple_mob/animal/passive/opossum,
-		"horse" = /mob/living/simple_mob/vore/horse,
-		"goose" = /mob/living/simple_mob/animal/space/goose,
-		"sheep" = /mob/living/simple_mob/vore/sheep
-		)
-
-/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced
-	name = "advanced metamorphosis ray"
-	tf_possible_types = list(
-		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
-		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
-		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
-		"woof" = /mob/living/simple_mob/vore/woof,
-		"corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
-		"cat" = /mob/living/simple_mob/animal/passive/cat,
-		"chicken" = /mob/living/simple_mob/animal/passive/chicken,
-		"cow" = /mob/living/simple_mob/animal/passive/cow,
-		"lizard" = /mob/living/simple_mob/animal/passive/lizard,
-		"rabbit" = /mob/living/simple_mob/vore/rabbit,
-		"fox" = /mob/living/simple_mob/animal/passive/fox,
-		"fennec" = /mob/living/simple_mob/vore/fennec,
-		"cute fennec" = /mob/living/simple_mob/animal/passive/fennec,
-		"fennix" = /mob/living/simple_mob/vore/fennix,
-		"red panda" = /mob/living/simple_mob/vore/redpanda,
-		"opossum" = /mob/living/simple_mob/animal/passive/opossum,
-		"horse" = /mob/living/simple_mob/vore/horse,
-		"goose" = /mob/living/simple_mob/animal/space/goose,
-		"sheep" = /mob/living/simple_mob/vore/sheep,
-		"space bumblebee" = /mob/living/simple_mob/vore/bee,
-		"space bear" = /mob/living/simple_mob/animal/space/bear,
-		"voracious lizard" = /mob/living/simple_mob/vore/aggressive/dino,
-		"giant frog" = /mob/living/simple_mob/vore/aggressive/frog,
-		"jelly blob" = /mob/living/simple_mob/animal/space/jelly,
-		"wolf" = /mob/living/simple_mob/animal/wolf,
-		"direwolf" = /mob/living/simple_mob/animal/wolf/direwolf,
-		"great wolf" = /mob/living/simple_mob/vore/greatwolf,
-		"sect queen" = /mob/living/simple_mob/vore/sect_queen,
-		"sect drone" = /mob/living/simple_mob/vore/sect_drone,
-		"panther" = /mob/living/simple_mob/vore/aggressive/panther,
-		"giant snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
-		"deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
-		"otie" = /mob/living/simple_mob/otie,
-		"mutated otie" =/mob/living/simple_mob/otie/feral,
-		"red otie" = /mob/living/simple_mob/otie/red,
-		"defanged xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
-		"catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
-		"teppi" = /mob/living/simple_mob/vore/alienanimals/teppi,
-		"monkey" = /mob/living/carbon/human/monkey,
-		"wolpin" = /mob/living/carbon/human/wolpin,
-		"sparra" = /mob/living/carbon/human/sparram,
-		"saru" = /mob/living/carbon/human/sergallingm,
-		"sobaka" = /mob/living/carbon/human/sharkm,
-		"farwa" = /mob/living/carbon/human/farwa,
-		"neaera" = /mob/living/carbon/human/neaera,
-		"stok" = /mob/living/carbon/human/stok,
-		"weretiger" = /mob/living/simple_mob/vore/weretiger,
-		"dragon" = /mob/living/simple_mob/vore/bigdragon/friendly,
-		"leopardmander" = /mob/living/simple_mob/vore/leopardmander
-		)
-
-/obj/item/weapon/gun/energy/mouseray/woof
-	name = "woof ray"
-	tf_type = /mob/living/simple_mob/vore/woof
-
-/obj/item/weapon/gun/energy/mouseray/corgi
-	name = "corgi ray"
-	tf_type = /mob/living/simple_mob/animal/passive/dog/corgi
-
-/obj/item/weapon/gun/energy/mouseray/cat
-	name = "cat ray"
-	tf_type = /mob/living/simple_mob/animal/passive/cat
-
 /obj/item/weapon/gun/energy/mouseray/attack_self(mob/user)
 	. = ..()
 	if(tf_allow_select)
@@ -297,18 +198,7 @@
 	new_mob.nutrition_message_visible = nutrition_message_visible
 	new_mob.allow_spontaneous_tf = allow_spontaneous_tf
 
-/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random
-	name = "unstable metamorphosis ray"
-	tf_allow_select = FALSE
-
-/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex)
-	if(world.time < cooldown)
-		to_chat(usr, "<span class='warning'>\The [src] isn't ready yet.</span>")
-		return
-	var/choice = pick(tf_possible_types)
-	tf_type = tf_possible_types[choice]
-	. = ..()
-
+/////SUBTYPES/////
 
 /obj/item/weapon/gun/energy/mouseray/medical		//This just changes people back, it can't TF people into anything without shenanigans
 	name = "recombobulation ray"
@@ -373,3 +263,194 @@
 		return
 	else
 		firer.visible_message("<span class='warning'>\The [shot_from] buzzes impolitely.</span>")
+
+/obj/item/weapon/gun/energy/mouseray/admin		//NEVER GIVE THIS TO ANYONE
+	name = "experimental metamorphosis ray"
+	tf_admin_pref_override = TRUE
+	cooldown_time = 5 SECONDS
+	tf_allow_select = TRUE
+	charge_meter = FALSE
+	charge_cost = 0
+	icon_state = "adminray"
+
+/obj/item/weapon/gun/energy/mouseray/metamorphosis
+	name = "metamorphosis ray"
+	tf_allow_select = TRUE
+	tf_possible_types = list(
+		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
+		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
+		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
+		"woof" = /mob/living/simple_mob/vore/woof,
+		"corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
+		"cat" = /mob/living/simple_mob/animal/passive/cat,
+		"chicken" = /mob/living/simple_mob/animal/passive/chicken,
+		"cow" = /mob/living/simple_mob/animal/passive/cow,
+		"lizard" = /mob/living/simple_mob/animal/passive/lizard,
+		"rabbit" = /mob/living/simple_mob/vore/rabbit,
+		"fox" = /mob/living/simple_mob/animal/passive/fox,
+		"fennec" = /mob/living/simple_mob/vore/fennec,
+		"cute fennec" = /mob/living/simple_mob/animal/passive/fennec,
+		"fennix" = /mob/living/simple_mob/vore/fennix,
+		"red panda" = /mob/living/simple_mob/vore/redpanda,
+		"opossum" = /mob/living/simple_mob/animal/passive/opossum,
+		"horse" = /mob/living/simple_mob/vore/horse,
+		"goose" = /mob/living/simple_mob/animal/space/goose,
+		"sheep" = /mob/living/simple_mob/vore/sheep
+		)
+
+/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced
+	name = "advanced metamorphosis ray"
+	tf_possible_types = list(
+		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
+		"rat" = /mob/living/simple_mob/animal/passive/mouse/rat,
+		"giant rat" = /mob/living/simple_mob/vore/aggressive/rat,
+		"dust jumper" = /mob/living/simple_mob/vore/alienanimals/dustjumper,
+		"woof" = /mob/living/simple_mob/vore/woof,
+		"corgi" = /mob/living/simple_mob/animal/passive/dog/corgi,
+		"cat" = /mob/living/simple_mob/animal/passive/cat,
+		"chicken" = /mob/living/simple_mob/animal/passive/chicken,
+		"cow" = /mob/living/simple_mob/animal/passive/cow,
+		"lizard" = /mob/living/simple_mob/animal/passive/lizard,
+		"rabbit" = /mob/living/simple_mob/vore/rabbit,
+		"fox" = /mob/living/simple_mob/animal/passive/fox,
+		"fennec" = /mob/living/simple_mob/vore/fennec,
+		"cute fennec" = /mob/living/simple_mob/animal/passive/fennec,
+		"fennix" = /mob/living/simple_mob/vore/fennix,
+		"red panda" = /mob/living/simple_mob/vore/redpanda,
+		"opossum" = /mob/living/simple_mob/animal/passive/opossum,
+		"horse" = /mob/living/simple_mob/vore/horse,
+		"goose" = /mob/living/simple_mob/animal/space/goose,
+		"sheep" = /mob/living/simple_mob/vore/sheep,
+		"space bumblebee" = /mob/living/simple_mob/vore/bee,
+		"space bear" = /mob/living/simple_mob/animal/space/bear,
+		"voracious lizard" = /mob/living/simple_mob/vore/aggressive/dino,
+		"giant frog" = /mob/living/simple_mob/vore/aggressive/frog,
+		"jelly blob" = /mob/living/simple_mob/animal/space/jelly,
+		"wolf" = /mob/living/simple_mob/animal/wolf,
+		"direwolf" = /mob/living/simple_mob/animal/wolf/direwolf,
+		"great wolf" = /mob/living/simple_mob/vore/greatwolf,
+		"sect queen" = /mob/living/simple_mob/vore/sect_queen,
+		"sect drone" = /mob/living/simple_mob/vore/sect_drone,
+		"panther" = /mob/living/simple_mob/vore/aggressive/panther,
+		"giant snake" = /mob/living/simple_mob/vore/aggressive/giant_snake,
+		"deathclaw" = /mob/living/simple_mob/vore/aggressive/deathclaw,
+		"otie" = /mob/living/simple_mob/otie,
+		"mutated otie" =/mob/living/simple_mob/otie/feral,
+		"red otie" = /mob/living/simple_mob/otie/red,
+		"defanged xenomorph" = /mob/living/simple_mob/vore/xeno_defanged,
+		"catslug" = /mob/living/simple_mob/vore/alienanimals/catslug,
+		"teppi" = /mob/living/simple_mob/vore/alienanimals/teppi,
+		"monkey" = /mob/living/carbon/human/monkey,
+		"wolpin" = /mob/living/carbon/human/wolpin,
+		"sparra" = /mob/living/carbon/human/sparram,
+		"saru" = /mob/living/carbon/human/sergallingm,
+		"sobaka" = /mob/living/carbon/human/sharkm,
+		"farwa" = /mob/living/carbon/human/farwa,
+		"neaera" = /mob/living/carbon/human/neaera,
+		"stok" = /mob/living/carbon/human/stok,
+		"weretiger" = /mob/living/simple_mob/vore/weretiger,
+		"dragon" = /mob/living/simple_mob/vore/bigdragon/friendly,
+		"leopardmander" = /mob/living/simple_mob/vore/leopardmander
+		)
+
+/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random
+	name = "unstable metamorphosis ray"
+	tf_allow_select = FALSE
+
+/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex)
+	if(world.time < cooldown)
+		to_chat(usr, "<span class='warning'>\The [src] isn't ready yet.</span>")
+		return
+	var/choice = pick(tf_possible_types)
+	tf_type = tf_possible_types[choice]
+	. = ..()
+
+/obj/item/weapon/gun/energy/mouseray/woof
+	name = "woof ray"
+	tf_type = /mob/living/simple_mob/vore/woof
+
+/obj/item/weapon/gun/energy/mouseray/corgi
+	name = "corgi ray"
+	tf_type = /mob/living/simple_mob/animal/passive/dog/corgi
+
+/obj/item/weapon/gun/energy/mouseray/cat
+	name = "cat ray"
+	tf_type = /mob/living/simple_mob/animal/passive/cat
+
+/obj/item/weapon/gun/energy/mouseray/chicken
+	name = "chicken ray"
+	tf_type = /mob/living/simple_mob/animal/passive/chicken
+
+/obj/item/weapon/gun/energy/mouseray/lizard
+	name = "lizard ray"
+	tf_type = /mob/living/simple_mob/animal/passive/lizard
+
+/obj/item/weapon/gun/energy/mouseray/rabbit
+	name = "rabbit ray"
+	tf_type = /mob/living/simple_mob/vore/rabbit
+
+/obj/item/weapon/gun/energy/mouseray/fennec
+	name = "fennec ray"
+	tf_type = /mob/living/simple_mob/animal/passive/fennec
+
+/obj/item/weapon/gun/energy/mouseray/monkey
+	name = "monkey ray"
+	tf_type = /mob/living/carbon/human/monkey
+
+/obj/item/weapon/gun/energy/mouseray/wolpin
+	name = "wolpin ray"
+	tf_type = /mob/living/carbon/human/wolpin
+
+/obj/item/weapon/gun/energy/mouseray/otie
+	name = "otie ray"
+	tf_type = /mob/living/simple_mob/otie
+
+/obj/item/weapon/gun/energy/mouseray/direwolf
+	name = "dire wolf ray"
+	tf_type = /mob/living/simple_mob/animal/wolf/direwolf
+
+/obj/item/weapon/gun/energy/mouseray/giantrat
+	name = "giant rat ray"
+	tf_type = /mob/living/simple_mob/vore/aggressive/rat
+
+/obj/item/weapon/gun/energy/mouseray/redpanda
+	name = "red panda ray"
+	tf_type = /mob/living/simple_mob/vore/redpanda
+
+/obj/item/weapon/gun/energy/mouseray/catslug
+	name = "catslug ray"
+	tf_type = /mob/living/simple_mob/vore/alienanimals/catslug
+
+/obj/item/weapon/gun/energy/mouseray/teppi
+	name = "teppi ray"
+	tf_type = /mob/living/simple_mob/vore/alienanimals/teppi
+
+
+/////RANDOM SPAWNER/////
+
+/obj/random/mouseray
+	name = "random ray"
+	icon = 'icons/mob/randomlandmarks.dmi'
+	icon_state = "fanc_trejur"
+	spawn_nothing_percentage = 0
+
+/obj/random/mainttoyloot/item_to_spawn()
+	return pick(prob(300);/obj/item/weapon/gun/energy/mouseray,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/corgi,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/woof,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/cat,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/chicken,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/lizard,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/rabbit,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/fennec,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/monkey,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/wolpin,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/otie,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/direwolf,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/giantrat,
+				prob(50);/obj/item/weapon/gun/energy/mouseray/redpanda,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/catslug,
+				prob(5);/obj/item/weapon/gun/energy/mouseray/teppi,
+				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis,
+				prob(1);/obj/item/weapon/gun/energy/mouseray/metamorphosis/advanced/random
+				)
