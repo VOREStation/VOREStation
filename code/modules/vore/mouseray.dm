@@ -1,0 +1,202 @@
+/obj/item/weapon/gun/energy/mouseray
+	name = "mouse ray"
+	desc = "A mysterious looking ray gun..."
+	icon = 'icons/obj/mouseray.dmi'
+	icon_state = "mouseray"
+	item_state = "mouseray"
+	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
+	fire_sound = 'sound/weapons/wave.ogg'
+	charge_cost = 240
+	projectile_type = /obj/item/projectile/beam/mouselaser
+	origin_tech = list(TECH_BLUESPACE = 4)
+	battery_lock = 1
+	firemodes = list()
+	var/tf_type = /mob/living/simple_mob/animal/passive/mouse
+	var/cooldown = 0
+	var/cooldown_time = 15 SECONDS
+	var/tf_admin_pref_override = FALSE
+	var/tf_allow_select = FALSE
+	var/tf_possible_types = list(
+		"mouse" = /mob/living/simple_mob/animal/passive/mouse,
+		"woof" = /mob/living/simple_mob/vore/woof)
+
+/obj/item/weapon/gun/energy/mouseray/admin
+	name = "experimental metamorphosis ray"
+	tf_admin_pref_override = TRUE
+	cooldown_time = 5 SECONDS
+	tf_allow_select = TRUE
+	charge_cost = 0
+
+/obj/item/weapon/gun/energy/mouseray/woof
+	name = "woof ray"
+	tf_type = /mob/living/simple_mob/vore/woof
+
+/obj/item/weapon/gun/energy/mouseray/attack_self(mob/user)
+	. = ..()
+	if(tf_allow_select)
+		pick_type()
+
+/obj/item/weapon/gun/energy/mouseray/proc/pick_type()
+	var/choice = tgui_input_list(usr, "Select a type to turn things into.", "[src.name]", tf_possible_types)
+	if(!choice)
+		return
+	tf_type = tf_possible_types[choice]
+	to_chat(usr, "<span class='notice'>You selected [choice].</span>")
+
+/obj/item/weapon/gun/energy/mouseray/Fire(atom/target, mob/living/user, clickparams, pointblank, reflex)
+	if(world.time < cooldown)
+		to_chat(usr, "<span class='warning'>\The [src] isn't ready yet.</span>")
+		return
+	. = ..()
+
+/obj/item/weapon/gun/energy/mouseray/Fire_userless(atom/target)
+	if(world.time < cooldown)
+		return
+	. = ..()
+
+/obj/item/weapon/gun/energy/mouseray/consume_next_projectile()
+	. = ..()
+	var/obj/item/projectile/beam/mouselaser/G = .
+	cooldown = world.time + cooldown_time
+	if(tf_type)
+		G.tf_type = tf_type
+	if(tf_admin_pref_override)
+		G.tf_admin_pref_override = tf_admin_pref_override
+
+/obj/item/weapon/gun/energy/mouseray/update_icon()
+	if(charge_meter)
+		var/ratio = power_supply.charge / power_supply.maxcharge
+
+		//make sure that rounding down will not give us the empty state even if we have charge for a shot left.
+		if(power_supply.charge < charge_cost)
+			ratio = 0
+		else
+			ratio = max(round(ratio, 0.25) * 100, 25)
+
+		icon_state = "[initial(icon_state)][ratio]"
+
+/obj/item/projectile/beam/mouselaser
+	name = "metamorphosis beam"
+	icon_state = "xray"
+	nodamage = 1
+	damage = 0
+	range = 7
+	check_armour = "laser"
+	can_miss = FALSE
+	var/tf_type = /mob/living/simple_mob/animal/passive/mouse
+	var/tf_admin_pref_override = FALSE
+
+	muzzle_type = /obj/effect/projectile/muzzle/laser_omni
+	tracer_type = /obj/effect/projectile/tracer/laser_omni
+	impact_type = /obj/effect/projectile/impact/laser_omni
+
+/obj/item/projectile/beam/mouselaser/on_hit(var/atom/target)
+	var/mob/living/M = target
+	if(!istype(M))
+		return
+	if(target != firer)	//If you shot yourself, you probably want to be TFed so don't bother with prefs.
+		if(!M.allow_spontaneous_tf && !tf_admin_pref_override)
+			return
+	if(M.tf_mob_holder)
+		var/mob/living/ourmob = M.tf_mob_holder
+		if(ourmob.ai_holder)
+			var/datum/ai_holder/our_AI = ourmob.ai_holder
+			our_AI.set_stance(STANCE_IDLE)
+		M.tf_mob_holder = null
+		ourmob.ckey = M.ckey
+		var/turf/get_dat_turf = get_turf(target)
+		ourmob.loc = get_dat_turf
+		ourmob.forceMove(get_dat_turf)
+		ourmob.vore_selected = M.vore_selected
+		M.vore_selected = null
+		for(var/obj/belly/B as anything in M.vore_organs)
+			B.loc = ourmob
+			B.forceMove(ourmob)
+			B.owner = ourmob
+			M.vore_organs -= B
+			ourmob.vore_organs += B
+
+		ourmob.Life(1)
+		qdel(target)
+		return
+	else
+		if(M.stat == DEAD)	//We can let it undo the TF, because the person will be dead, but otherwise things get weird.
+			return
+		var/mob/living/new_mob = spawn_mob(M)
+		new_mob.faction = M.faction
+
+		if(new_mob && isliving(new_mob))
+			for(var/obj/belly/B as anything in new_mob.vore_organs)
+				new_mob.vore_organs -= B
+				qdel(B)
+			new_mob.vore_organs = list()
+			new_mob.name = M.name
+			new_mob.real_name = M.real_name
+			for(var/lang in M.languages)
+				new_mob.languages |= lang
+			M.copy_vore_prefs_to_mob(new_mob)
+			new_mob.vore_selected = M.vore_selected
+			new_mob.allow_spontaneous_tf = TRUE
+
+			for(var/obj/belly/B as anything in M.vore_organs)
+				B.loc = new_mob
+				B.forceMove(new_mob)
+				B.owner = new_mob
+				M.vore_organs -= B
+				new_mob.vore_organs += B
+
+			new_mob.ckey = M.ckey
+			if(M.ai_holder && new_mob.ai_holder)
+				var/datum/ai_holder/old_AI = M.ai_holder
+				old_AI.set_stance(STANCE_SLEEP)
+				var/datum/ai_holder/new_AI = new_mob.ai_holder
+				new_AI.hostile = old_AI.hostile
+				new_AI.retaliate = old_AI.retaliate
+			M.loc = new_mob
+			M.forceMove(new_mob)
+			new_mob.tf_mob_holder = M
+
+/obj/item/projectile/beam/mouselaser/proc/spawn_mob(var/mob/living/target)
+	if(!ispath(tf_type))
+		return
+	var/new_mob = new tf_type(get_turf(target))
+	return new_mob
+
+/mob/living
+	var/mob/living/tf_mob_holder = null
+
+/mob/living/proc/handle_tf_holder()
+	if(!tf_mob_holder)
+		return
+	if(stat != tf_mob_holder.stat)
+		if(stat == DEAD)
+			tf_mob_holder.death(FALSE, null)
+		if(tf_mob_holder.stat == DEAD)
+			death()
+
+/mob/living/proc/copy_vore_prefs_to_mob(var/mob/living/new_mob)
+	//For primarily copying vore preference settings from a carbon mob to a simplemob
+	//It can be used for other things, but be advised, if you're using it to put a simplemob into a carbon mob, you're gonna be overriding a bunch of prefs
+	new_mob.ooc_notes = ooc_notes
+	new_mob.digestable = digestable
+	new_mob.devourable = devourable
+	new_mob.absorbable = absorbable
+	new_mob.feeding = feeding
+	new_mob.can_be_drop_prey = can_be_drop_prey
+	new_mob.can_be_drop_pred = can_be_drop_pred
+	new_mob.allow_inbelly_spawning = allow_inbelly_spawning
+	new_mob.digest_leave_remains = digest_leave_remains
+	new_mob.allowmobvore = allowmobvore
+	new_mob.permit_healbelly = permit_healbelly
+	new_mob.noisy = noisy
+	new_mob.drop_vore = drop_vore
+	new_mob.stumble_vore = stumble_vore
+	new_mob.slip_vore = slip_vore
+	new_mob.resizable = resizable
+	new_mob.show_vore_fx = show_vore_fx
+	new_mob.step_mechanics_pref = step_mechanics_pref
+	new_mob.pickup_pref = pickup_pref
+	new_mob.vore_taste = vore_taste
+	new_mob.vore_smell = vore_smell
+	new_mob.nutrition_message_visible = nutrition_message_visible
+	new_mob.allow_spontaneous_tf = allow_spontaneous_tf
