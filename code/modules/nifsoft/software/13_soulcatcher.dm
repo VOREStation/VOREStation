@@ -326,7 +326,7 @@
 /mob/living/carbon/brain/caught_soul/hear_say()
 	if(ext_deaf || !client)
 		return FALSE
-	..()
+	.=..()
 
 /mob/living/carbon/brain/caught_soul/show_message(msg, type, alt, alt_type)
 	if(ext_blind || !client)

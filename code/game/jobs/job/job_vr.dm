@@ -42,7 +42,7 @@
 	if(C && config.use_playtime_restriction_for_jobs && dept_time_required)
 		var/remaining_time_needed = dept_time_required
 		for(var/key in C.play_hours)
-			if(isnum(C.play_hours[key]))
+			if(isnum(C.play_hours[key]) && !(key == PTO_TALON))
 				remaining_time_needed = max(0, remaining_time_needed - C.play_hours[key])
 		return remaining_time_needed
 	return 0
