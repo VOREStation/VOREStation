@@ -129,3 +129,17 @@ Talon winter coat
 /datum/gear/suit/russofurcoat
 	display_name = "long fur coat"
 	path = /obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
+
+//Colorable Hoodie
+
+/datum/gear/suit/hoodie_vr
+	display_name = "hoodie with hood (colorable)"
+	path = /obj/item/clothing/suit/storage/hooded/hoodie
+
+/datum/gear/suit/hoodie_vr/New()
+	var/list/hoodies = list()
+	for(var/hoodie_style in typesof(/obj/item/clothing/suit/storage/hooded/hoodie))
+		var/obj/item/clothing/suit/storage/toggle/hoodie/hoodie = hoodie_style
+		hoodies[initial(hoodie.name)] = hoodie
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hoodies))
+	gear_tweaks += gear_tweak_free_color_choice
