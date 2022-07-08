@@ -434,7 +434,7 @@
 	icon_state = "fanc_trejur"
 	spawn_nothing_percentage = 0
 
-/obj/random/mainttoyloot/item_to_spawn()
+/obj/random/mouseray/item_to_spawn()
 	return pick(prob(300);/obj/item/weapon/gun/energy/mouseray,
 				prob(50);/obj/item/weapon/gun/energy/mouseray/corgi,
 				prob(50);/obj/item/weapon/gun/energy/mouseray/woof,
