@@ -162,6 +162,38 @@
 /mob/living
 	var/mob/living/tf_mob_holder = null
 
+/mob/living/proc/revert_mob_tf()
+	if(!tf_mob_holder)
+		return
+	var/mob/living/ourmob = tf_mob_holder
+	if(ourmob.ai_holder)
+		var/datum/ai_holder/our_AI = ourmob.ai_holder
+		our_AI.set_stance(STANCE_IDLE)
+	tf_mob_holder = null
+	ourmob.ckey = ckey
+	var/turf/get_dat_turf = get_turf(src)
+	ourmob.loc = get_dat_turf
+	ourmob.forceMove(get_dat_turf)
+	ourmob.vore_selected = vore_selected
+	vore_selected = null
+	for(var/obj/belly/B as anything in vore_organs)
+		B.loc = ourmob
+		B.forceMove(ourmob)
+		B.owner = ourmob
+		vore_organs -= B
+		ourmob.vore_organs += B
+
+	ourmob.Life(1)
+
+	if(ishuman(src))
+		for(var/obj/item/W in src)
+			if(istype(W, /obj/item/weapon/implant/backup) || istype(W, /obj/item/device/nif))
+				continue
+			src.drop_from_inventory(W)
+
+	qdel(src)
+
+
 /mob/living/proc/handle_tf_holder()
 	if(!tf_mob_holder)
 		return
@@ -266,7 +298,6 @@
 
 /obj/item/weapon/gun/energy/mouseray/admin		//NEVER GIVE THIS TO ANYONE
 	name = "experimental metamorphosis ray"
-	tf_admin_pref_override = TRUE
 	cooldown_time = 5 SECONDS
 	tf_allow_select = TRUE
 	charge_meter = FALSE
