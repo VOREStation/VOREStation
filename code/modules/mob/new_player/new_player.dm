@@ -387,14 +387,21 @@
 
 /mob/new_player/proc/IsJobAvailable(rank)
 	var/datum/job/job = job_master.GetJob(rank)
-	if(!job)	return 0
-	if(!job.is_position_available()) return 0
-	if(jobban_isbanned(src,rank))	return 0
-	if(!job.player_old_enough(src.client))	return 0
+	if(!job)
+		return 0
+	if(!job.is_position_available())
+		return 0
+	if(jobban_isbanned(src,rank))
+		return 0
+	if(!job.player_old_enough(src.client))
+		return 0
 	//VOREStation Add
-	if(!job.player_has_enough_playtime(src.client))	return 0
-	if(!is_job_whitelisted(src,rank))	return 0
-	if(!job.player_has_enough_pto(src.client)) return 0
+	if(!job.player_has_enough_playtime(src.client))
+		return 0
+	if(!is_job_whitelisted(src,rank))
+		return 0
+	if(!job.player_has_enough_pto(src.client))
+		return 0
 	//VOREStation Add End
 	return 1
 
