@@ -627,6 +627,23 @@
 			</html>
 			"}
 
+/obj/item/weapon/book/manual/robotics_manual
+	name = "Guide to Robotics"
+	icon_state ="evabook"
+	item_state = "book3"
+	author = "Simple Robotics"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
+	title = "Guide to Robotics"
+
+/obj/item/weapon/book/manual/robotics_manual/New()
+	..()
+	dat = {"
+		<html><head>
+		</head>
+		<body>
+		<iframe width='100%' height='97%' src="[config.wikiurl]Guide_to_Robotics=yes&remove_links=1" frameborder="0" id="main_frame"></iframe>
+		</body>
+		</html>
+		"}
 
 /obj/item/weapon/book/manual/robotics_cyborgs
 	name = "Cyborgs for Dummies"

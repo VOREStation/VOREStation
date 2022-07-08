@@ -19957,6 +19957,7 @@
 /obj/item/weapon/book/manual/resleeving,
 /obj/item/weapon/book/manual/ripley_build_and_repair,
 /obj/item/weapon/book/manual/robotics_cyborgs,
+/obj/item/weapon/book/manual/robotics_manual,
 /obj/item/weapon/book/manual/rust_engine,
 /obj/item/weapon/book/manual/security_space_law,
 /obj/item/weapon/book/manual/standard_operating_procedure,
@@ -36287,6 +36288,7 @@
 "bkS" = (
 /obj/structure/table/standard,
 /obj/item/weapon/book/manual/robotics_cyborgs,
+/obj/item/weapon/book/manual/robotics_manual,
 /obj/item/clothing/glasses/omnihud/rnd,
 /obj/machinery/light{
 	dir = 8
