@@ -163,7 +163,11 @@ const VoreBellySelectionAndCustomization = (props, context) => {
         </Section>
       </Flex.Item>
       <Flex.Item grow>
-        <Section title={selected.belly_name}>{selected && <VoreSelectedBelly belly={selected} />}</Section>
+        {selected && (
+          <Section title={selected.belly_name}>
+            <VoreSelectedBelly belly={selected} />
+          </Section>
+        )}
       </Flex.Item>
     </Flex>
   );

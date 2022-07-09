@@ -49,7 +49,7 @@ var/global/ingredientLimit = 20
 		I.forceMove(src)
 
 		if(S.reagents)
-			S.reagents.trans_to(src,S.reagents.total_volume)
+			S.reagents.trans_to_holder(reagents,S.reagents.total_volume)
 
 		ingredients += S
 
@@ -142,7 +142,7 @@ var/global/ingredientLimit = 20
 
 /obj/item/weapon/reagent_containers/food/snacks/customizable/sandwich/attackby(obj/item/I,mob/user)
 	if(istype(I,/obj/item/weapon/reagent_containers/food/snacks/slice/bread) && !addTop)
-		I.reagents.trans_to(src,I.reagents.total_volume)
+		I.reagents.trans_to_holder(reagents,I.reagents.total_volume)
 		qdel(I)
 		addTop = 1
 		src.drawTopping()

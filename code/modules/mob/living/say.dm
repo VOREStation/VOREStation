@@ -361,18 +361,18 @@ var/list/channel_to_radio_key = new
 				var/runechat_enabled = M.client?.is_preference_enabled(/datum/client_preference/runechat_mob)
 
 				if(dst <= message_range || (M.stat == DEAD && !forbid_seeing_deadchat)) //Inside normal message range, or dead with ears (handled in the view proc)
-					if(M.client && !runechat_enabled)
-						var/image/I1 = listening[M] || speech_bubble
-						images_to_clients[I1] |= M.client
-						M << I1
-					M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol)
+					if(M.hear_say(message_pieces, verb, italics, src, speech_sound, sound_vol))
+						if(M.client && !runechat_enabled)
+							var/image/I1 = listening[M] || speech_bubble
+							images_to_clients[I1] |= M.client
+							M << I1
 				if(whispering && !isobserver(M)) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
-						if(M.client && !runechat_enabled)
-							var/image/I2 = listening[M] || speech_bubble
-							images_to_clients[I2] |= M.client
-							M << I2
-						M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2)
+						if(M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2))
+							if(M.client && !runechat_enabled)
+								var/image/I2 = listening[M] || speech_bubble
+								images_to_clients[I2] |= M.client
+								M << I2
 					if(dst > w_scramble_range && dst <= world.view) //Inside whisper 'visible' range
 						M.show_message("<span class='game say'><span class='name'>[name]</span> [w_not_heard].</span>", 2)
 

@@ -11229,6 +11229,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/weapon/gun/energy/mouseray/medical,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/cmostore)
 "yW" = (

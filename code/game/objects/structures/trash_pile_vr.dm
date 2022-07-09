@@ -25,7 +25,8 @@
 		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/clothing/accessory/permit/gun,
 		/obj/item/weapon/gun/projectile/dartgun,
-		/obj/item/clothing/gloves/black/bloodletter
+		/obj/item/clothing/gloves/black/bloodletter,
+		/obj/item/weapon/gun/energy/mouseray/metamorphosis
 		)
 
 	var/global/list/allocated_gamma = list()
@@ -261,7 +262,8 @@
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
 					prob(1);/obj/item/device/survivalcapsule/popcabin,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
-					prob(1);/obj/item/capture_crystal)
+					prob(1);/obj/item/capture_crystal,
+					prob(1);/obj/item/weapon/gun/energy/mouseray)
 
 	var/obj/item/I = new path()
 	return I
