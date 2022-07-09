@@ -15,7 +15,7 @@
 "duration": 1180,
 "artist": "Cboyardee",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Electronic"
 },
@@ -25,7 +25,7 @@
 "duration": 2450,
 "artist": "Jeroen Tel (Remixed by Cuboos)",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Electronic"
 },
@@ -515,7 +515,7 @@
 "duration": 1340,
 "artist": "Leslie Fish",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Folk and Indie"
 },
@@ -525,7 +525,7 @@
 "duration": 2660,
 "artist": "Duane Elms",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Folk and Indie"
 },
@@ -535,7 +535,7 @@
 "duration": 1700,
 "artist": "Leslie Fish",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Folk and Indie"
 },
@@ -2255,7 +2255,7 @@
 "duration": 3180,
 "artist": "David Bowie",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Rock"
 },
@@ -2285,8 +2285,8 @@
 "duration": 3330,
 "artist": "Chris Hadfield",
 "secret": false,
-"lobby": false,
-"jukebox": false,
+"lobby": true,
+"jukebox": true,
 "genre": "Pop"
 },
 {
@@ -2895,7 +2895,7 @@
 "duration": 2730,
 "artist": "Hall & Oates",
 "secret": false,
-"lobby": false,
+"lobby": true,
 "jukebox": true,
 "genre": "Pop"
 },
@@ -3596,7 +3596,7 @@
 "duration" : 2040,
 "artist" : "TeknoAXE",
 "secret": false,
-"lobby": true,
+"lobby": false,
 "jukebox": true,
 "genre": "Ambience"
 },
@@ -3606,7 +3606,7 @@
 "duration" : 2300,
 "artist" : "TeknoAXE",
 "secret": false,
-"lobby": true,
+"lobby": false,
 "jukebox": true,
 "genre": "Ambience"
 },
@@ -3938,7 +3938,7 @@
 "secret": false,
 "lobby": false,
 "jukebox": true,
-"genre": "Electronic"
+"genre": "Video Game"
 },
 {
 "url" : "https://files.catbox.moe/yumfgs.mp3",
@@ -3948,7 +3948,7 @@
 "secret": false,
 "lobby": false,
 "jukebox": true,
-"genre": "Electronic"
+"genre": "Video Game"
 },
 {
 "url" : "https://files.catbox.moe/ewn2u4.mp3",
@@ -3969,5 +3969,712 @@
 "lobby": false,
 "jukebox": true,
 "genre": "Electronic"
+},
+{
+"url": "https://files.catbox.moe/3h38kn.mp3",
+"title": "Among Us",
+"duration": 720,
+"genre": "Disco, Funk, Soul, and R&B",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/rqhxj1.mp3",
+"title": "Leggy Zone",
+"duration": 1470,
+"genre": "Electronic",
+"secret": true,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/e6l6mw.mp3",
+"title": "Shop Theme",
+"duration": 8910,
+"genre": "Electronic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/q2ob3n.mp3",
+"title": "PONPONPON",
+"duration": 2430,
+"artist": "Kyary Pamyu Pamyu",
+"genre": "J-Pop",
+"secret": false,
+"lobby": false
+},
+{
+"url": "https://files.catbox.moe/o8flhu.mp3",
+"title": "Man's Road",
+"duration": 2060,
+"artist": "America",
+"genre": "Rock",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/0gb5qs.mp3",
+"title": "Passionflower",
+"duration": 3840,
+"artist": "Jon Gomm",
+"genre": "Rock",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/p5e28z.mp3",
+"title": "What the Fuck",
+"duration": 2420,
+"artist": "Koh",
+"genre": "Folk and Indie",
+"secret": true,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/0f2xma.mp3",
+"title": "Bonetrousle",
+"duration": 580,
+"artist": "Toby Fox",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/pbtbjv.mp3",
+"title": "Dog Song",
+"duration": 380,
+"artist": "Toby Fox",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/4v3eeb.mp3",
+"title": "Anticipation",
+"duration": 230,
+"artist": "Toby Fox",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/0q8ch6.mp3",
+"title": "Smash Clown",
+"duration": 820,
+"artist": "Goat",
+"genre": "Space",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/ygcg2e.mp3",
+"title": "Honk The Police",
+"duration": 590,
+"artist": "Goat",
+"genre": "Space",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/h0yswi.mp3",
+"title": "Cargonia",
+"duration": 630,
+"artist": "Goat",
+"genre": "Space",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/xg76ja.mp3",
+"title": "Hail Cargonia",
+"duration": 980,
+"artist": "Goat",
+"genre": "Space",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/tbr2rc.mp3",
+"title": "Banned From Cargo",
+"duration": 2450,
+"artist": "Goat",
+"genre": "Space",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/tw2et2.mp3",
+"title": "Periphery Dixie",
+"duration": 1200,
+"artist": "Goat",
+"genre": "Space",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/rm5hcs.mp3",
+"title": "Cargonia (cover)",
+"duration": 2730,
+"artist": "Dadbot5000",
+"genre": "Space",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/ybfof9.mp3",
+"title": "The Legend",
+"duration": 1120,
+"artist": "Toby Fox",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/ugfx06.mp3",
+"title": "Field of Hopes and Dreams",
+"duration": 1610,
+"artist": "Toby Fox",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/wr08om.mp3",
+"title": "Checker Dance",
+"duration": 780,
+"artist": "Toby Fox",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/4au954.mp3",
+"title": "Vs Susie",
+"duration": 810,
+"artist": "Toby Fox",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/c9y5x2.mp3",
+"title": "Golden Wind",
+"duration": 2930,
+"artist": "Yugo Kanno",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/ymvtem.mp3",
+"title": "Sono Chi no Sadame",
+"duration": 2610,
+"artist": "Hiroaki TOMMY Tominaga",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/z73u05.mp3",
+"title": "Bloody Stream",
+"duration": 2590,
+"artist": "Coda",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/yg3643.mp3",
+"title": "Stand Proud",
+"duration": 2750,
+"artist": "Jin Hashimoto",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/344qrf.mp3",
+"title": "Sono Chi no Kioku ~end of THE WORLD~",
+"duration": 2620,
+"artist": "JO☆STARS",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/0n6y6v.mp3",
+"title": "Crazy Noisy Bizarre Town",
+"duration": 1840,
+"artist": "THE DU",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/j3xzw6.mp3",
+"title": "Chase",
+"duration": 1450,
+"artist": "Batta",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/luf1bh.mp3",
+"title": "Great Days",
+"duration": 2400,
+"artist": "Karen Aoki & Daisuke Hasegaw",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/ytp4d2.mp3",
+"title": "Fighting Gold",
+"duration": 2540,
+"artist": "Coda",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/q1xjdp.mp3",
+"title": "I Want It That Way",
+"duration": 2120,
+"artist": "Backstreet Boys",
+"genre": "Pop",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/pxpkat.mp3",
+"title": "Shop Theme Cover",
+"duration": 1770,
+"artist": "Songe",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/nz03o1.mp3",
+"title": "Deep Space 9 (Cover)",
+"duration": 1220,
+"artist": "Heropoint",
+"genre": "Rock",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/n4vcnq.mp3",
+"title": "Trouble Shooting Star",
+"duration": 1460,
+"artist": "",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/byy378.mp3",
+"title": "The Lord of the Rings The Fellowship of the its my book they will walk if I tell them to",
+"duration": 970,
+"artist": "Tom Cardy",
+"genre": "Folk and Indie",
+"secret": true,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/akgbup.mp3",
+"title": "Flight of the Bumblebee",
+"duration": 2050,
+"artist": "Rimsky Korsakov",
+"genre": "Classical and Orchestral",
+"secret": true,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/milk8o.mp3",
+"title": "As Heaven Is Wide",
+"duration": 2880,
+"artist": "Garbage",
+"genre": "Rock",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/8mh82l.mp3",
+"title": "Combat Montage",
+"duration": 1410,
+"artist": "Kevin Manthei",
+"genre": "Rock",
+"secret": true,
+"lobby": false,
+"jukebox": true
+},
+
+{
+"url": "https://files.catbox.moe/qa6ahi.mp3",
+"title": "Deadlines",
+"duration": 1570,
+"artist": "Network Music Ensemble",
+"genre": "Rock",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/cdmm5k.mp3",
+"title": "Holding Out For A Hero",
+"duration": 2620,
+"artist": "Ella Mae Bowen",
+"genre": "Country and Western",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/jlv9eb.mp3",
+"title": "Jiko Bunseki",
+"duration": 1420,
+"artist": "Yuki Hayashi",
+"genre": "Anime",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/vzbcsc.mp3",
+"title": "Let It End",
+"duration": 2220,
+"artist": "Karliene",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/nsfwxe.mp3",
+"title": "Proof Of A Hero (16 bit)",
+"duration": 1410,
+"artist": "Bulby",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/ywoaqa.mp3",
+"title": "Proof Of A Hero",
+"duration": 1340,
+"artist": "Kouda Masato",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/xlrbbe.mp3",
+"title": "Pure Imagination",
+"duration": 2060,
+"artist": "Fiona Apple",
+"genre": "Electronic",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/q3f6sq.mp3",
+"title": "Rhapsody In Blue",
+"duration": 9870,
+"artist": "Kamil Hala, Slovak Philharmonic Orchestra, Libor Pešek",
+"genre": "Classical and Orchestral",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/vzsm5k.mp3",
+"title": "Surface Of SR388",
+"duration": 1710,
+"artist": "BG Ollie",
+"genre": "Video Game",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/ngtv3e.mp3",
+"title": "Where My Heart Will Take Me",
+"duration": 0,
+"artist": "Russell Watson",
+"genre": "Country and Western",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/cfq7bo.mp3",
+"title": "Kiss From A Rose",
+"duration": 2860,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/4mypzc.mp3",
+"title": "Black Hole Sun",
+"duration": 3210,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/qpkv1q.mp3",
+"title": "I Still Haven't Found What I'm Looking For",
+"duration": 2870,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/g8vawq.mp3",
+"title": "Nights In White Satin",
+"duration": 2710,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/01ljjx.mp3",
+"title": "Land Of Confusion",
+"duration": 2850,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/2iugx4.mp3",
+"title": "Aspirations",
+"duration": 3010,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/m3cwu1.mp3",
+"title": "Head Over Heels",
+"duration": 2420,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/xtizlg.mp3",
+"title": "Get Lucky",
+"duration": 2490,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/dym0sp.mp3",
+"title": "God Only Knows",
+"duration": 1810,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/i8gml0.mp3",
+"title": "Scarborough Fair",
+"duration": 2020,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/chc70l.mp3",
+"title": "The Sphere A Kind Of Dream",
+"duration": 620,
+"artist": "Dan Avidan & Super Guitar Bros",
+"genre": "Acoustic",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/w48oqv.mp3",
+"title": "Pushin' The Speed of Light",
+"duration": 2130,
+"artist": "Julia Ecklar & Anne Prather",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/zacsky.mp3",
+"title": "S.T.L.",
+"duration": 1190,
+"artist": "Free Fall & Other Delights",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/9a3ow3.mp3",
+"title": "Phantom Lover of the Star Drive",
+"duration": 1930,
+"artist": "Free Fall & Other Delights",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/eo59pv.mp3",
+"title": "Molecular Clouds",
+"duration": 1560,
+"artist": "Free Fall & Other Delights",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/227jw9.mp3",
+"title": "A Reconsideration (Zero-G Sex)",
+"duration": 2530,
+"artist": "Free Fall & Other Delights",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/yvn8bu.mp3",
+"title": "Stuck Here",
+"duration": 1360,
+"artist": "Free Fall & Other Delights",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/nsnf73.mp3",
+"title": "The Ballad of Transport 18",
+"duration": 2660,
+"artist": "Leslie Fish",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/hwsbsi.mp3",
+"title": "Don't Push That Button",
+"duration": 2450,
+"artist": "Duane Elms",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/iizfw9.mp3",
+"title": "Late Night at the Draco Tavern",
+"duration": 2600,
+"artist": "Duane Elms",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/4zaljk.mp3",
+"title": "Startide Rising",
+"duration": 1050,
+"artist": "Duane Elms",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": true,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/9y01ry.mp3",
+"title": "F.A.P. Feline American Princess",
+"duration": 2640,
+"artist": "Leslie Fish",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
+},
+{
+"url": "https://files.catbox.moe/s7u3vi.mp3",
+"title": "Hymn to Breaking Strain",
+"duration": 2710,
+"artist": "Julia Ecklar & Leslie Fish",
+"genre": "Folk and Indie",
+"secret": false,
+"lobby": false,
+"jukebox": true
 }
 ]
