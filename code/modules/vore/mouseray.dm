@@ -133,7 +133,19 @@
 				new_mob.languages |= lang
 			M.copy_vore_prefs_to_mob(new_mob)
 			new_mob.vore_selected = M.vore_selected
-			new_mob.allow_spontaneous_tf = TRUE
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				if(ishuman(new_mob))
+					var/mob/living/carbon/human/N = new_mob
+					N.gender = H.gender
+					N.identifying_gender = H.identifying_gender
+				else
+					new_mob.gender = H.identifying_gender
+			else
+				new_mob.gender = M.gender
+				if(ishuman(new_mob))
+					var/mob/living/carbon/human/N = new_mob
+					N.identifying_gender = M.gender
 
 			for(var/obj/belly/B as anything in M.vore_organs)
 				B.loc = new_mob
