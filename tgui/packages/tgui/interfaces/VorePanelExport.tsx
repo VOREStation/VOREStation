@@ -2,7 +2,12 @@ import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Button, Divider, Section } from '../components';
 
-type Data = { bellies: Belly[] };
+type Data = {
+  db_version: string;
+  db_repo: string;
+  mob_name: string;
+  bellies: Belly[];
+};
 
 type Belly = {
   // General Information
@@ -15,6 +20,11 @@ type Belly = {
   mode: string;
   addons: string[];
   item_mode: string;
+
+  // Options
+  digest_brute: number;
+  digest_burn: number;
+  digest_oxy: number;
 
   // Messages
   struggle_messages_outside: string[];
@@ -46,6 +56,11 @@ const generateBellyString = (belly: Belly) => {
     addons,
     item_mode,
 
+    // Options
+    digest_brute,
+    digest_burn,
+    digest_oxy,
+
     // Messages
     struggle_messages_outside,
     struggle_messages_inside,
@@ -64,93 +79,104 @@ const generateBellyString = (belly: Belly) => {
   } = belly;
 
   let result = '<details>';
-  result += '<summary>=== ' + name + ' ===</summary><br>';
-  result += '<b>== Controls ==</b><br>';
+  result +=
+    '<summary>=== ' +
+    name +
+    ' - (<span style="color: red;">' +
+    digest_brute +
+    '</span >/<span style="color: orange;">' +
+    digest_burn +
+    '</span>/<span style="color: blue;">' +
+    digest_oxy +
+    '</span>) ===</summary><br>';
+  result += '<p><b>== Controls ==</b><br>';
   result += 'Mode:<br>' + mode + '<br><br>';
   result += 'Addons:<br>' + addons + '<br><br>';
   result += 'Item Mode:<br>' + item_mode + '<br><br>';
-  result += '<p><b>== Descriptions ==</b><br>';
+  result += '<b>== Descriptions ==</b><br>';
   result += 'Verb:<br>' + vore_verb + '<br><br>';
   result += 'Description:<br>"' + desc + '"<br><br>';
   result += 'Absorbed Description:<br>"' + absorbed_desc + '"<br><br>';
+  result += '<b>== Messages ==</b><br>';
+
+  result += '<div class="flex-container">';
+  result += '<div>Struggle Messages (Outside):<br>';
+  struggle_messages_outside?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Struggle Messages (Inside):<br>';
+  struggle_messages_inside?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Absorbed Struggle Messages (Outside):<br>';
+  absorbed_struggle_messages_outside?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Absorbed Struggle Messages (Inside):<br>';
+  absorbed_struggle_messages_inside?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Digest Messages (Owner):<br>';
+  digest_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Digest Messages (Prey):<br>';
+  digest_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Absorb Messages (Owner):<br>';
+  absorb_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Absorb Messages (Prey):<br>';
+  absorb_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Unabsorb Messages (Owner):<br>';
+  unabsorb_messages_owner?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Unabsorb Messages (Prey):<br>';
+  unabsorb_messages_prey?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Examine Messages:<br>';
+  examine_messages?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div><br><br>';
+
+  result += '<div>Examine Messages (Absorbed):<br>';
+  examine_messages_absorbed?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</div></div><br><br>';
   result += '<b>== Options ==</b><br>';
   result += '[WIP]<br><br>';
   result += '<b>== Sounds ==</b><br>';
   result += '[WIP]<br><br>';
   result += '<b>== Interactions ==</b><br>';
   result += '[WIP]<br><br>';
-  result += '<b>== Messages ==</b><br>';
-
-  result += 'Struggle Messages (Outside):<br>';
-  struggle_messages_outside?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Struggle Messages (Inside):<br>';
-  struggle_messages_inside?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Absorbed Struggle Messages (Outside):<br>';
-  absorbed_struggle_messages_outside?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Absorbed Struggle Messages (Inside):<br>';
-  absorbed_struggle_messages_inside?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Digest Messages (Owner):<br>';
-  digest_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Digest Messages (Prey):<br>';
-  digest_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Absorb Messages (Owner):<br>';
-  absorb_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Absorb Messages (Prey):<br>';
-  absorb_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Unabsorb Messages (Owner):<br>';
-  unabsorb_messages_owner?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Unabsorb Messages (Prey):<br>';
-  unabsorb_messages_prey?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Examine Messages:<br>';
-  examine_messages?.forEach((msg) => {
-    result += msg + '<br>';
-  });
-  result += '<br><br>';
-
-  result += 'Examine Messages (Absorbed):<br>';
-  examine_messages_absorbed?.forEach((msg) => {
-    result += msg + '<br>';
-  });
   result += '</p></details>';
 
   return result;
@@ -159,7 +185,7 @@ const generateBellyString = (belly: Belly) => {
 const downloadPrefs = (context, extension: string) => {
   const { act, data } = useBackend<Data>(context);
 
-  const { bellies } = data;
+  const { db_version, db_repo, mob_name, bellies } = data;
 
   let now = new Date();
   let hours = String(now.getHours());
@@ -190,7 +216,7 @@ const downloadPrefs = (context, extension: string) => {
       '<style>' +
       'details > summary { ' +
       ' padding: 4px;' +
-      ' width: 200px;' +
+      ' width: 375px;' +
       ' background-color: #eeeeee;' +
       ' border: none;' +
       ' box-shadow: 1px 1px 2px #bbbbbb;' +
@@ -202,15 +228,30 @@ const downloadPrefs = (context, extension: string) => {
       ' margin: 0;' +
       ' box-shadow: 1px 1px 2px #bbbbbb;' +
       '}' +
+      '.flex-container {' +
+      ' display: flex;' +
+      ' flex-wrap: wrap;' +
+      '}' +
+      '.flex-container > div {' +
+      ' margin: 10px;' +
+      ' padding: 10px;' +
+      ' border-style: solid;' +
+      '}' +
       '</style>';
 
     blob = new Blob(
       [
         '<!DOCTYPE html><html lang="en"><head><title>' +
           bellies.length +
-          ' Exported Bellies</title>' +
+          ' Exported Bellies (DB_VER: ) ' +
+          db_repo +
+          '-' +
+          db_version +
+          '</title>' +
           style +
-          '</head><body>',
+          '</head><body><h2>Bellies of ' +
+          mob_name +
+          '</h2>',
       ],
       {
         type: 'text/html;charset=utf8',
@@ -253,17 +294,17 @@ const VorePanelExportContent = (props, context) => {
   const { bellies } = data;
 
   return (
-    <Section title="Belly Data Export">
-      <Section title="Export">
+    <Section title="Vore Export Panel">
+      <Section title="Export/Import">
         <Button fluid icon="file-alt" onClick={() => downloadPrefs(context, '.html')}>
           Export (HTML)
         </Button>
-        <Button fluid icon="file" onClick={() => downloadPrefs(context, '.vsbd')}>
-          Export (VSBD) [WIP]
+        <Button fluid icon="file" onClick={() => downloadPrefs(context, '.vrdb')}>
+          Export (VRDB) [WIP]
         </Button>
         <Divider />
-        <Button fluid icon="file" onClick={() => importPrefs(context, '.vsbd')}>
-          Import (VSBD) [WIP]
+        <Button fluid icon="file" onClick={() => importPrefs(context, '.vrdb')}>
+          Import (VRDB) [WIP]
         </Button>
       </Section>
       <Section title="Bellies">

@@ -28,6 +28,7 @@
 	var/mob/living/host = user
 
 	data["db_version"] = "0.1"
+	data["db_repo"] = "vorestation"
 	data["mob_name"] = host.real_name
 	data["bellies"] = list(list())
 
@@ -46,6 +47,11 @@
 			// belly_data["mode"] = mode
 			// belly_data["addons"] = addons
 			// belly_data["item_mode"] = item_mode
+
+			// Options
+			belly_data["digest_brute"] = B.digest_brute
+			belly_data["digest_burn"] = B.digest_burn
+			belly_data["digest_oxy"] = B.digest_oxy
 
 			// Messages
 			belly_data["struggle_messages_outside"] = list()
