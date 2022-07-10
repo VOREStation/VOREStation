@@ -54,7 +54,18 @@ type Belly = {
   examine_messages: string[];
   examine_messages_absorbed: string[];
 
-  emote_list: any[];
+  // emote_list: any[];
+  emotes_digest;
+  emotes_hold;
+  emotes_holdabsorbed;
+  emotes_absorb;
+  emotes_heal;
+  emotes_drain;
+  emotes_steal;
+  emotes_egg;
+  emotes_shrink;
+  emotes_grow;
+  emotes_unabsorb;
 
   // Sounds
   is_wet: BooleanLike;
@@ -124,7 +135,18 @@ const generateBellyString = (belly: Belly) => {
     examine_messages,
     examine_messages_absorbed,
 
-    emote_list,
+    // emote_list,
+    emotes_digest,
+    emotes_hold,
+    emotes_holdabsorbed,
+    emotes_absorb,
+    emotes_heal,
+    emotes_drain,
+    emotes_steal,
+    emotes_egg,
+    emotes_shrink,
+    emotes_grow,
+    emotes_unabsorb,
 
     // Sounds
     is_wet,
@@ -240,13 +262,78 @@ const generateBellyString = (belly: Belly) => {
   examine_messages_absorbed?.forEach((msg) => {
     result += msg + '<br>';
   });
+  result += '</details></p>';
 
-  emote_list?.forEach(([EL, emote]) => {
-    result += '<details><summary>Idle Messages (' + EL + '):</summary><p>';
-    result += emote + '<br>';
+  result += '<details><summary>= Idle Messages =</summary><p>';
+
+  result += '<details><summary>Idle Messages (Hold):</summary><p>';
+  emotes_hold?.forEach((msg) => {
+    result += msg + '<br>';
   });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Hold Absorbed):</summary><p>';
+  emotes_holdabsorbed?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Digest):</summary><p>';
+  emotes_digest?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Absorb):</summary><p>';
+  emotes_absorb?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Unabsorb):</summary><p>';
+  emotes_unabsorb?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Drain):</summary><p>';
+  emotes_drain?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Heal):</summary><p>';
+  emotes_heal?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Size Steal):</summary><p>';
+  emotes_steal?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Shrink):</summary><p>';
+  emotes_shrink?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Grow):</summary><p>';
+  emotes_grow?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
+
+  result += '<details><summary>Idle Messages (Encase In Egg):</summary><p>';
+  emotes_egg?.forEach((msg) => {
+    result += msg + '<br>';
+  });
+  result += '</details></p><br>';
 
   result += '</details></p><br>';
+
   result += '<b>== Options ==</b><br>';
   result +=
     'Can Taste:<br>' +

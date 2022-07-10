@@ -100,13 +100,57 @@
 			for(var/msg in B.examine_messages_absorbed)
 				belly_data["examine_messages_absorbed"] += msg
 
-			belly_data["emote_list"] = list()
-			for(var/EL in B.emote_lists)
-				var/list/msg_list
-				for(var/msg in B.emote_lists[EL])
-					msg_list += msg
+			//belly_data["emote_list"] = list()
+			//for(var/EL in B.emote_lists)
+			//	for(var/msg in B.emote_lists[EL])
+			//		msg_list += msg
+			//
+			//	belly_data["emote_lists"] += list(EL, msg_list)
 
-				belly_data["emote_lists"] += list(EL, msg_list)
+			// I will use this first before the code above gets fixed
+			belly_data["emotes_digest"] = list()
+			for(var/msg in B.emote_lists[DM_DIGEST])
+				belly_data["emotes_digest"] += msg
+
+			belly_data["emotes_hold"] = list()
+			for(var/msg in B.emote_lists[DM_HOLD])
+				belly_data["emotes_hold"] += msg
+
+			belly_data["emotes_holdabsorbed"] = list()
+			for(var/msg in B.emote_lists[DM_HOLD_ABSORBED])
+				belly_data["emotes_holdabsorbed"] += msg
+
+			belly_data["emotes_absorb"] = list()
+			for(var/msg in B.emote_lists[DM_ABSORB])
+				belly_data["emotes_absorb"] += msg
+
+			belly_data["emotes_heal"] = list()
+			for(var/msg in B.emote_lists[DM_HEAL])
+				belly_data["emotes_heal"] += msg
+
+			belly_data["emotes_drain"] = list()
+			for(var/msg in B.emote_lists[DM_DRAIN])
+				belly_data["emotes_drain"] += msg
+
+			belly_data["emotes_steal"] = list()
+			for(var/msg in B.emote_lists[DM_SIZE_STEAL])
+				belly_data["emotes_steal"] += msg
+
+			belly_data["emotes_egg"] = list()
+			for(var/msg in B.emote_lists[DM_EGG])
+				belly_data["emotes_egg"] += msg
+
+			belly_data["emotes_shrink"] = list()
+			for(var/msg in B.emote_lists[DM_SHRINK])
+				belly_data["emotes_shrink"] += msg
+
+			belly_data["emotes_grow"] = list()
+			for(var/msg in B.emote_lists[DM_GROW])
+				belly_data["emotes_grow"] += msg
+
+			belly_data["emotes_unabsorb"] = list()
+			for(var/msg in B.emote_lists[DM_UNABSORB])
+				belly_data["emotes_unabsorb"] += msg
 
 			// Options
 			belly_data["digest_brute"] = B.digest_brute
