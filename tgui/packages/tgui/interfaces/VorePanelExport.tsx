@@ -1,6 +1,7 @@
 import { useBackend } from '../backend';
 import { Window } from '../layouts';
 import { Button, Divider, Section } from '../components';
+import { BooleanLike } from 'common/react';
 
 type Data = {
   db_version: string;
@@ -26,6 +27,19 @@ type Belly = {
   digest_burn: number;
   digest_oxy: number;
 
+  can_taste: BooleanLike;
+  contaminates: BooleanLike;
+  contamination_flavor: string;
+  contamination_color: string;
+  nutrition_percent: number;
+  bulge_size: number;
+  display_absorbed_examine: BooleanLike;
+  save_digest_mode: BooleanLike;
+  emote_active: BooleanLike;
+  emote_time: number;
+  shrink_grow_size: number;
+  egg_type: string;
+
   // Messages
   struggle_messages_outside: string[];
   struggle_messages_inside: string[];
@@ -40,7 +54,29 @@ type Belly = {
   examine_messages: string[];
   examine_messages_absorbed: string[];
 
-  emote_list: string[];
+  emote_list: any[];
+
+  // Sounds
+  is_wet: BooleanLike;
+  wet_loop: BooleanLike;
+  fancy_vore: BooleanLike;
+  vore_sound: string;
+  release_sound: string;
+
+  // Interactions
+  escapable: BooleanLike;
+
+  escapechance: number;
+  escapetime: number;
+
+  transferchance: number;
+  transferlocation: string;
+
+  transferchance_secondary: number;
+  transferlocation_secondary: string;
+
+  absorbchance: number;
+  digestchance: number;
 };
 
 const generateBellyString = (belly: Belly) => {
@@ -61,6 +97,19 @@ const generateBellyString = (belly: Belly) => {
     digest_burn,
     digest_oxy,
 
+    can_taste,
+    contaminates,
+    contamination_flavor,
+    contamination_color,
+    nutrition_percent,
+    bulge_size,
+    display_absorbed_examine,
+    save_digest_mode,
+    emote_active,
+    emote_time,
+    shrink_grow_size,
+    egg_type,
+
     // Messages
     struggle_messages_outside,
     struggle_messages_inside,
@@ -76,6 +125,28 @@ const generateBellyString = (belly: Belly) => {
     examine_messages_absorbed,
 
     emote_list,
+
+    // Sounds
+    is_wet,
+    wet_loop,
+    fancy_vore,
+    vore_sound,
+    release_sound,
+
+    // Interactions
+    escapable,
+
+    escapechance,
+    escapetime,
+
+    transferchance,
+    transferlocation,
+
+    transferchance_secondary,
+    transferlocation_secondary,
+
+    absorbchance,
+    digestchance,
   } = belly;
 
   let result = '<details>';
@@ -88,7 +159,7 @@ const generateBellyString = (belly: Belly) => {
     digest_burn +
     '</span>/<span style="color: blue;">' +
     digest_oxy +
-    '</span>) ===</summary><br>';
+    '</span>) ===</summary>';
   result += '<p><b>== Controls ==</b><br>';
   result += 'Mode:<br>' + mode + '<br><br>';
   result += 'Addons:<br>' + addons + '<br><br>';
@@ -99,85 +170,140 @@ const generateBellyString = (belly: Belly) => {
   result += 'Absorbed Description:<br>"' + absorbed_desc + '"<br><br>';
   result += '<b>== Messages ==</b><br>';
 
-  result += '<div class="flex-container">';
-  result += '<div>Struggle Messages (Outside):<br>';
+  result += '<details><summary>Struggle Messages (Outside):</summary><p>';
   struggle_messages_outside?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Struggle Messages (Inside):<br>';
+  result += '<details><summary>Struggle Messages (Inside):</summary><p>';
   struggle_messages_inside?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Absorbed Struggle Messages (Outside):<br>';
+  result += '<details><summary>Absorbed Struggle Messages (Outside):</summary><p>';
   absorbed_struggle_messages_outside?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Absorbed Struggle Messages (Inside):<br>';
+  result += '<details><summary>Absorbed Struggle Messages (Inside):</summary><p>';
   absorbed_struggle_messages_inside?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Digest Messages (Owner):<br>';
+  result += '<details><summary>Digest Messages (Owner):</summary><p>';
   digest_messages_owner?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Digest Messages (Prey):<br>';
+  result += '<details><summary>Digest Messages (Prey):</summary><p>';
   digest_messages_prey?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Absorb Messages (Owner):<br>';
+  result += '<details><summary>Absorb Messages (Owner):</summary><p>';
   absorb_messages_owner?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Absorb Messages (Prey):<br>';
+  result += '<details><summary>Absorb Messages (Prey):</summary><p>';
   absorb_messages_prey?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Unabsorb Messages (Owner):<br>';
+  result += '<details><summary>Unabsorb Messages (Owner):</summary><p>';
   unabsorb_messages_owner?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Unabsorb Messages (Prey):<br>';
+  result += '<details><summary>Unabsorb Messages (Prey):</summary><p>';
   unabsorb_messages_prey?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Examine Messages:<br>';
+  result += '<details><summary>Examine Messages:</summary><p>';
   examine_messages?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div><br><br>';
+  result += '</details></p>';
 
-  result += '<div>Examine Messages (Absorbed):<br>';
+  result += '<details><summary>Examine Messages (Absorbed):</summary><p>';
   examine_messages_absorbed?.forEach((msg) => {
     result += msg + '<br>';
   });
-  result += '</div></div><br><br>';
+
+  emote_list?.forEach(([EL, emote]) => {
+    result += '<details><summary>Idle Messages (' + EL + '):</summary><p>';
+    result += emote + '<br>';
+  });
+
+  result += '</details></p><br>';
   result += '<b>== Options ==</b><br>';
-  result += '[WIP]<br><br>';
+  result +=
+    'Can Taste:<br>' +
+    (can_taste ? '<span style="color: green;">Yes' : '<span style="color: red;">No') +
+    '</span><br><br>';
+  result +=
+    'Contaminates:<br>' +
+    (contaminates ? '<span style="color: green;">Yes' : '<span style="color: red;">No') +
+    '</span><br><br>';
+  result += 'Contamination Flavor:<br>' + contamination_flavor + '<br><br>';
+  result += 'Contamination Color:<br>' + contamination_color + '<br><br>';
+  result += 'Nutritional Gain:<br>' + nutrition_percent + '%<br><br>';
+  result += 'Required Examine Size:<br>' + bulge_size * 100 + '%<br><br>';
+  result +=
+    'Display Absorbed Examines:<br>' +
+    (display_absorbed_examine ? '<span style="color: green;">True' : '<span style="color: red;">False') +
+    '</span><br><br>';
+  result +=
+    'Save Digest Mode:<br>' +
+    (save_digest_mode ? '<span style="color: green;">True' : '<span style="color: red;">False') +
+    '</span><br><br>';
+  result +=
+    'Idle Emotes:<br>' +
+    (emote_active ? '<span style="color: green;">Active' : '<span style="color: red;">Inactive') +
+    '</span><br><br>';
+  result += 'Idle Emote Delay:<br>' + emote_time + ' seconds<br><br>';
+  result += 'Shrink/Grow Size:<br>' + shrink_grow_size * 100 + '%<br><br>';
+  result += 'Egg Type:<br>' + egg_type + '<br><br>';
   result += '<b>== Sounds ==</b><br>';
-  result += '[WIP]<br><br>';
-  result += '<b>== Interactions ==</b><br>';
-  result += '[WIP]<br><br>';
+  result +=
+    'Fleshy Belly:<br>' +
+    (is_wet ? '<span style="color: green;">Enabled' : '<span style="color: red;">Disabled') +
+    '</span><br><br>';
+  result +=
+    'Internal Loop:<br>' +
+    (wet_loop ? '<span style="color: green;">Enabled' : '<span style="color: red;">Disabled') +
+    '</span><br><br>';
+  result +=
+    'Use Fancy Sounds:<br>' +
+    (fancy_vore ? '<span style="color: green;">Enabled' : '<span style="color: red;">Disabled') +
+    '</span><br><br>';
+  result += 'Vore Sound:<br>' + vore_sound + '<br><br>';
+  result += 'Release Sound:<br>' + release_sound + '<br><br>';
+  result +=
+    '<b>== Interactions (' +
+    (escapable ? '<span style="color: green;">Enabled' : '<span style="color: red;">Disabled') +
+    '</span>) ==</b><br>';
+  result += 'Escape Chance:<br>' + escapechance + '%<br><br>';
+  result += 'Escape Time:<br>' + escapetime / 10 + 's<br><br>';
+  result += 'Transfer Chance:<br>' + transferchance + '%<br><br>';
+  result += 'Transfer Location:<br>' + transferlocation + '<br><br>';
+  result += 'Secondary Transfer Chance:<br>' + transferchance_secondary + '%<br><br>';
+  result += 'Secondary Transfer Location:<br>' + transferlocation_secondary + '<br><br>';
+  result += 'Absorb Chance:<br>' + absorbchance + '%<br><br>';
+  result += 'Digest Chance:<br>' + digestchance + '%<br><br>';
   result += '</p></details>';
+  result += '<hr>';
 
   return result;
 };
@@ -208,36 +334,11 @@ const downloadPrefs = (context, extension: string) => {
 
   let datesegment = ' ' + year + '-' + month + '-' + dayofmonth + ' (' + hours + ' ' + minutes + ')';
 
-  let filename = 'belly_export' + datesegment + extension;
+  let filename = mob_name + datesegment + extension;
   let blob;
 
   if (extension === '.html') {
-    let style =
-      '<style>' +
-      'details > summary { ' +
-      ' padding: 4px;' +
-      ' width: 375px;' +
-      ' background-color: #eeeeee;' +
-      ' border: none;' +
-      ' box-shadow: 1px 1px 2px #bbbbbb;' +
-      ' cursor: pointer;' +
-      '}' +
-      'details > p {' +
-      ' background-color: #eeeeee;' +
-      ' padding: 4px;' +
-      ' margin: 0;' +
-      ' box-shadow: 1px 1px 2px #bbbbbb;' +
-      '}' +
-      '.flex-container {' +
-      ' display: flex;' +
-      ' flex-wrap: wrap;' +
-      '}' +
-      '.flex-container > div {' +
-      ' margin: 10px;' +
-      ' padding: 10px;' +
-      ' border-style: solid;' +
-      '}' +
-      '</style>';
+    let style = '<style>' + '</style>';
 
     blob = new Blob(
       [
@@ -299,18 +400,13 @@ const VorePanelExportContent = (props, context) => {
         <Button fluid icon="file-alt" onClick={() => downloadPrefs(context, '.html')}>
           Export (HTML)
         </Button>
-        <Button fluid icon="file" onClick={() => downloadPrefs(context, '.vrdb')}>
+        <Button disabled fluid icon="file" onClick={() => downloadPrefs(context, '.vrdb')}>
           Export (VRDB) [WIP]
         </Button>
         <Divider />
-        <Button fluid icon="file" onClick={() => importPrefs(context, '.vrdb')}>
+        <Button disabled fluid icon="file" onClick={() => importPrefs(context, '.vrdb')}>
           Import (VRDB) [WIP]
         </Button>
-      </Section>
-      <Section title="Bellies">
-        {bellies.map((belly) => (
-          <p>Name: {belly.name}</p>
-        ))}
       </Section>
     </Section>
   );

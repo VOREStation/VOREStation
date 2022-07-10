@@ -272,6 +272,9 @@ const VoreSelectedBellyControls = (props, context) => {
       <LabeledList.Item label="Item Mode">
         <Button onClick={() => act('set_attribute', { attribute: 'b_item_mode' })} content={item_mode} />
       </LabeledList.Item>
+      <LabeledList.Item label="Export">
+        <Button onClick={() => act('exportpanel')} content={'Export'} />
+      </LabeledList.Item>
       <LabeledList.Item basis="100%" mt={1}>
         <Button.Confirm
           fluid

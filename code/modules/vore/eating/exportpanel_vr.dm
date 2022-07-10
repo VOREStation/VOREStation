@@ -30,7 +30,6 @@
 	data["db_version"] = "0.1"
 	data["db_repo"] = "vorestation"
 	data["mob_name"] = host.real_name
-	data["bellies"] = list(list())
 
 	for(var/belly in host.vore_organs)
 		if(isbelly(belly))
@@ -44,14 +43,13 @@
 			belly_data["vore_verb"] = B.vore_verb
 
 			// Controls
-			// belly_data["mode"] = mode
-			// belly_data["addons"] = addons
-			// belly_data["item_mode"] = item_mode
-
-			// Options
-			belly_data["digest_brute"] = B.digest_brute
-			belly_data["digest_burn"] = B.digest_burn
-			belly_data["digest_oxy"] = B.digest_oxy
+			belly_data["mode"] = B.digest_mode
+			var/list/addons = list()
+			for(var/flag_name in B.mode_flag_list)
+				if(B.mode_flags & B.mode_flag_list[flag_name])
+					addons.Add(flag_name)
+			belly_data["addons"] = addons
+			belly_data["item_mode"] = B.item_digest_mode
 
 			// Messages
 			belly_data["struggle_messages_outside"] = list()
@@ -104,8 +102,51 @@
 
 			belly_data["emote_list"] = list()
 			for(var/EL in B.emote_lists)
+				var/list/msg_list
 				for(var/msg in B.emote_lists[EL])
-					belly_data["emote_list"] += msg
+					msg_list += msg
+
+				belly_data["emote_lists"] += list(EL, msg_list)
+
+			// Options
+			belly_data["digest_brute"] = B.digest_brute
+			belly_data["digest_burn"] = B.digest_burn
+			belly_data["digest_oxy"] = B.digest_oxy
+
+			belly_data["can_taste"] = B.can_taste
+			belly_data["contaminates"] = B.contaminates
+			belly_data["contamination_flavor"] = B.contamination_flavor
+			belly_data["contamination_color"] = B.contamination_color
+			belly_data["nutrition_percent"] = B.nutrition_percent
+			belly_data["bulge_size"] = B.bulge_size
+			belly_data["display_absorbed_examine"] = B.display_absorbed_examine
+			belly_data["save_digest_mode"] = B.save_digest_mode
+			belly_data["emote_active"] = B.emote_active
+			belly_data["emote_time"] = B.emote_time
+			belly_data["shrink_grow_size"] = B.shrink_grow_size
+			belly_data["egg_type"] = B.egg_type
+
+			// Sounds
+			belly_data["is_wet"] = B.is_wet
+			belly_data["wet_loop"] = B.wet_loop
+			belly_data["fancy_vore"] = B.fancy_vore
+			belly_data["vore_sound"] = B.vore_sound
+			belly_data["release_sound"] = B.release_sound
+
+			// Interactions
+			belly_data["escapable"] = B.escapable
+
+			belly_data["escapechance"] = B.escapechance
+			belly_data["escapetime"] = B.escapetime
+
+			belly_data["transferchance"] = B.transferchance
+			belly_data["transferlocation"] = B.transferlocation
+
+			belly_data["transferchance_secondary"] = B.transferchance_secondary
+			belly_data["transferlocation_secondary"] = B.transferlocation_secondary
+
+			belly_data["absorbchance"] = B.absorbchance
+			belly_data["digestchance"] = B.digestchance
 
 			data["bellies"] += list(belly_data)
 
