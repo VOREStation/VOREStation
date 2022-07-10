@@ -116,12 +116,12 @@
 
 /datum/tgui_input_text/tgui_static_data(mob/user)
 	var/list/data = list()
-	data["large_buttons"] = usr.client.prefs.tgui_large_buttons
+	data["large_buttons"] = user.client.prefs.tgui_large_buttons
 	data["max_length"] = max_length
 	data["message"] = message
 	data["multiline"] = multiline
 	data["placeholder"] = default // Default is a reserved keyword
-	data["swapped_buttons"] = !usr.client.prefs.tgui_swapped_buttons
+	data["swapped_buttons"] = !user.client.prefs.tgui_swapped_buttons
 	data["title"] = title
 	data["prevent_enter"] = prevent_enter
 	return data

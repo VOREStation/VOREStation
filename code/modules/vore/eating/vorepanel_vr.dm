@@ -985,7 +985,7 @@
 			host.vore_selected.can_taste = !host.vore_selected.can_taste
 			. = TRUE
 		if("b_bulge_size")
-			var/new_bulge = tgui_input_number(user, "Choose the required size prey must be to show up on examine, ranging from 25% to 200% Set this to 0 for no text on examine.", "Set Belly Examine Size.", max_value = 200, min_value = 25)
+			var/new_bulge = tgui_input_number(user, "Choose the required size prey must be to show up on examine, ranging from 25% to 200% Set this to 0 for no text on examine.", "Set Belly Examine Size.", max_value = 200, min_value = 0)
 			if(new_bulge == null)
 				return FALSE
 			if(new_bulge == 0) //Disable.
@@ -1042,7 +1042,7 @@
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
 			. = TRUE
 		if("b_emotetime")
-			var/new_time = tgui_input_number(user, "Choose the period it takes for idle belly emotes to be shown to prey. Measured in seconds, Minimum 1 minute, Maximum 10 minutes.", "Set Belly Emote Delay.", host.vore_selected.digest_brute, 10, 1)
+			var/new_time = tgui_input_number(user, "Choose the period it takes for idle belly emotes to be shown to prey. Measured in seconds, Minimum 1 minute, Maximum 10 minutes.", "Set Belly Emote Delay.", host.vore_selected.digest_brute, 600, 60)
 			if(new_time == null)
 				return FALSE
 			var/new_new_time = CLAMP(new_time, 60, 600)

@@ -45,7 +45,7 @@
 	spawn_positions = 5
 	pto_type = PTO_SECURITY
 	alt_titles = list("Patrol Officer" = /datum/alt_title/patrol_officer, "Security Guard" = /datum/alt_title/security_guard,
-						"Security Deputy" = /datum/alt_title/security_guard, "Junior Officer" = /datum/alt_title/junior_officer)
+						"Security Deputy" = /datum/alt_title/security_guard, "Junior Officer" = /datum/alt_title/junior_officer, "Security Contractor" = /datum/alt_title/security_contractor)
 
 /datum/alt_title/patrol_officer
 	title = "Patrol Officer"
@@ -55,3 +55,6 @@
 
 /datum/alt_title/security_deputy
 	title = "Security Deputy"
+
+/datum/alt_title/security_contractor
+	title = "Security Contractor"

@@ -6,9 +6,7 @@ import { Window } from '../layouts';
 import { decodeHtmlEntities } from 'common/string';
 import { CrewManifestContent } from './CrewManifest';
 
-export const IdentificationComputer = (props, context) => {
-  const { act, data } = useBackend(context);
-
+export const IdentificationComputer = () => {
   return (
     <Window width={600} height={700}>
       <Window.Content resizable>

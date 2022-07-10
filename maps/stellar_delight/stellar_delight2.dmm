@@ -11229,6 +11229,7 @@
 /obj/machinery/light{
 	dir = 4
 	},
+/obj/item/weapon/gun/energy/mouseray/medical,
 /turf/simulated/floor/tiled/eris/white/bluecorner,
 /area/medical/cmostore)
 "yW" = (
@@ -13905,12 +13906,6 @@
 	},
 /obj/structure/cable/orange{
 	icon_state = "1-4"
-	},
-/obj/structure/cable/orange{
-	icon_state = "2-4"
-	},
-/obj/structure/cable/orange{
-	icon_state = "2-4"
 	},
 /obj/structure/cable/orange{
 	icon_state = "2-4"
