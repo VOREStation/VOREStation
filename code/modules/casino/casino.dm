@@ -311,7 +311,7 @@
 	desc = "A small ball used for roulette wheel. This one is made of regular metal. Its weighted to only land on odd."
 
 /obj/item/roulette_ball/cheat/odd/get_cheated_result()
-	return pick(list(1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35))s
+	return pick(list(1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35))
 
 //
 //Blackjack table
