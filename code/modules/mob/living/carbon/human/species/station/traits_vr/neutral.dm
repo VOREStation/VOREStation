@@ -539,3 +539,17 @@
 /datum/trait/neutral/vertical_nom/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/proc/vertical_nom
+
+/datum/trait/neutral/micro_size_down
+	name = "Light Frame"
+	desc = "You are considered smaller than you are for micro interactions."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("micro_size_mod" = -0.15)
+
+/datum/trait/neutral/micro_size_up
+	name = "Heavy Frame"
+	desc = "You are considered bigger than you are for micro interactions."
+	cost = 0
+	custom_only = FALSE
+	var_changes = list("micro_size_mod" = 0.15)
