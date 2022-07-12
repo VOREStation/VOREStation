@@ -222,12 +222,12 @@
 
 /obj/item/roulette_ball/hollow/attackby(var/obj/item/W, var/mob/user)
 	if(trapped)
-		to_chat(user, "span class='notice'>This ball already has something trapped in it!</span>")
+		to_chat(user, "<span class='notice'>This ball already has something trapped in it!</span>")
 		return
 	if(istype(W, /obj/item/weapon/holder))
 		var/obj/item/weapon/holder/H = W
 		if(!H.held_mob)
-			to_chat(user, "span class='warning'>This holder has nobody in it? Yell at a developer!</span>")
+			to_chat(user, "<span class='warning'>This holder has nobody in it? Yell at a developer!</span>")
 			return
 		user.drop_from_inventory(H)
 		H.forceMove(src)
