@@ -232,7 +232,8 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/wallet,
 				/obj/item/weapon/storage/vore_egg,
 				/obj/item/weapon/bikehorn/tinytether,
-				/obj/item/capture_crystal
+				/obj/item/capture_crystal,
+				/obj/item/roulette_ball
 				)
 
 var/global/list/contamination_flavors = list(

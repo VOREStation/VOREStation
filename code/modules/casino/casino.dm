@@ -262,6 +262,12 @@
 	if(trapped && trapped.held_mob)
 		to_chat(trapped.held_mob, "<span class='critical'>THE WHOLE WORLD IS SENT WHIRLING AS THE ROULETTE SPINS!!!</span>")
 
+/obj/item/roulette_ball/hollow/Destroy()
+	if(trapped)
+		trapped.forceMove(src.loc)
+		trapped = null
+	return ..()
+
 /obj/item/roulette_ball/cheat
 	cheatball = TRUE
 
