@@ -229,6 +229,9 @@
 		if(!H.held_mob)
 			to_chat(user, "<span class='warning'>This holder has nobody in it? Yell at a developer!</span>")
 			return
+		if(H.held_mob.get_effective_size() > 50)
+			to_chat(user, "<span class='warning'>\The [H] is too big to fit inside!</span>")
+			return
 		user.drop_from_inventory(H)
 		H.forceMove(src)
 		trapped = H
