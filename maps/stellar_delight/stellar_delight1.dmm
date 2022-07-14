@@ -10622,12 +10622,18 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
+/obj/item/device/suit_cooling_unit{
+	pixel_y = -5
+	},
+/obj/item/device/suit_cooling_unit{
+	pixel_y = -5
+	},
+/obj/item/weapon/tank/oxygen,
+/obj/item/weapon/tank/oxygen,
 /obj/item/clothing/suit/space/void/pilot,
 /obj/item/clothing/suit/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/stellardelight/deck1/pilot)
 "wu" = (
