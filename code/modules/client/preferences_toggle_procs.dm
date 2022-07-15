@@ -406,6 +406,32 @@
 
 	feedback_add_details("admin_verb","TRadioSounds")
 
+/client/verb/toggle_say_sounds()
+	set name = "Toggle Say Sounds"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody speaks using say or whisper."
+
+	var/pref_path = /datum/client_preference/say_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/say_sounds)) ? "hear" : "not hear"] say/whisper sounds.")
+
+	feedback_add_details("admin_verb","TSaySounds")
+
+/client/verb/toggle_emote_sounds()
+	set name = "Toggle Me Sounds"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody speaks using me or subtle."
+
+	var/pref_path = /datum/client_preference/emote_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/emote_sounds)) ? "hear" : "not hear"] me/subtle sounds.")
+
+	feedback_add_details("admin_verb","TMeSounds")
+
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
 	set name = "Toggle Examine Mode"

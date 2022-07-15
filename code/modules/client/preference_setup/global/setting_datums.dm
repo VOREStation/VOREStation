@@ -95,7 +95,7 @@ var/list/_client_preferences_by_type
 	key = "DIGEST_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
-	
+
 /datum/client_preference/belch_noises // Belching noises - pref toggle for 'em
 	description = "Burping"
 	key = "BELCH_NOISES"
@@ -108,7 +108,7 @@ var/list/_client_preferences_by_type
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
 /datum/client_preference/whisubtle_vis
-	description = "Whi/Subtles Ghost Visible" 
+	description = "Whi/Subtles Ghost Visible"
 	key = "WHISUBTLE_VIS"
 	enabled_description = "Visible"
 	disabled_description = "Hidden"
@@ -296,6 +296,18 @@ var/list/_client_preferences_by_type
 /datum/client_preference/radio_sounds
 	description = "Radio Sounds"
 	key = "RADIO_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/say_sounds
+	description = "Say and whisper Sounds"
+	key = "SAY_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/emote_sounds
+	description = "Me and Subtle Sounds"
+	key = "EMOTE_SOUNDS"
 	enabled_description = "On"
 	disabled_description = "Off"
 

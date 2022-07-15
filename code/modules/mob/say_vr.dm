@@ -67,6 +67,7 @@
 			else
 				spawn(0)
 					M.show_message(message, 2)
+					M << sound('sound/talksounds/subtle_sound.ogg', volume = 25)
 
 		for(var/obj/O as anything in vis_objs)
 			spawn(0)
