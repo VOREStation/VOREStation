@@ -300,14 +300,26 @@ var/list/_client_preferences_by_type
 	disabled_description = "Off"
 
 /datum/client_preference/say_sounds
-	description = "Say and whisper Sounds"
+	description = "Say Sounds"
 	key = "SAY_SOUNDS"
 	enabled_description = "On"
 	disabled_description = "Off"
 
 /datum/client_preference/emote_sounds
-	description = "Me and Subtle Sounds"
+	description = "Me Sounds"
 	key = "EMOTE_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/whisper_sounds
+	description = "Whisper Sounds"
+	key = "WHISPER_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/subtle_sounds
+	description = "Subtle Sounds"
+	key = "SUBTLE_SOUNDS"
 	enabled_description = "On"
 	disabled_description = "Off"
 

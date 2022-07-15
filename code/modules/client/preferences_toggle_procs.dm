@@ -409,28 +409,54 @@
 /client/verb/toggle_say_sounds()
 	set name = "Toggle Say Sounds"
 	set category = "Preferences"
-	set desc = "Toggle hearing a sound when somebody speaks using say or whisper."
+	set desc = "Toggle hearing a sound when somebody speaks using say."
 
 	var/pref_path = /datum/client_preference/say_sounds
 	toggle_preference(pref_path)
 	SScharacter_setup.queue_preferences_save(prefs)
 
-	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/say_sounds)) ? "hear" : "not hear"] say/whisper sounds.")
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/say_sounds)) ? "hear" : "not hear"] say sounds.")
 
 	feedback_add_details("admin_verb","TSaySounds")
 
 /client/verb/toggle_emote_sounds()
 	set name = "Toggle Me Sounds"
 	set category = "Preferences"
-	set desc = "Toggle hearing a sound when somebody speaks using me or subtle."
+	set desc = "Toggle hearing a sound when somebody speaks using me ."
 
 	var/pref_path = /datum/client_preference/emote_sounds
 	toggle_preference(pref_path)
 	SScharacter_setup.queue_preferences_save(prefs)
 
-	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/emote_sounds)) ? "hear" : "not hear"] me/subtle sounds.")
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/emote_sounds)) ? "hear" : "not hear"] me sounds.")
 
 	feedback_add_details("admin_verb","TMeSounds")
+
+/client/verb/toggle_whisper_sounds()
+	set name = "Toggle Whisper Sounds"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody speaks using whisper."
+
+	var/pref_path = /datum/client_preference/whisper_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/whisper_sounds)) ? "hear" : "not hear"] whisper sounds.")
+
+	feedback_add_details("admin_verb","TWhisperSounds")
+
+/client/verb/toggle_subtle_sounds()
+	set name = "Toggle Subtle Sounds"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody uses subtle."
+
+	var/pref_path = /datum/client_preference/subtle_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/subtle_sounds)) ? "hear" : "not hear"] subtle sounds.")
+
+	feedback_add_details("admin_verb","TSubtleSounds")
 
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()

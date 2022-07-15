@@ -67,7 +67,8 @@
 			else
 				spawn(0)
 					M.show_message(message, 2)
-					M << sound('sound/talksounds/subtle_sound.ogg', volume = 25)
+					if(M.is_preference_enabled(/datum/client_preference/subtle_sounds))
+						M << sound('sound/talksounds/subtle_sound.ogg', volume = 50)
 
 		for(var/obj/O as anything in vis_objs)
 			spawn(0)
