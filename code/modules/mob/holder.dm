@@ -107,11 +107,13 @@ var/list/holder_mob_icon_cache = list()
 		to_chat(held, "<span class='warning'>You extricate yourself from [holster].</span>")
 		forceMove(get_turf(src))
 		held.reset_view(null)
-
 	else if(isitem(loc))
+		var/obj/item/I = loc
 		to_chat(held, "<span class='warning'>You struggle free of [loc].</span>")
 		forceMove(get_turf(src))
 		held.reset_view(null)
+		if(istype(I))
+			I.on_holder_escape(src)
 
 //Mob specific holders.
 /obj/item/weapon/holder/diona

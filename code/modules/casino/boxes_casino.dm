@@ -50,3 +50,45 @@
 	/obj/item/clothing/head/cowboy/ranger,
 	/obj/item/clothing/shoes/boots/cowboy/brown
 	)
+
+/obj/item/weapon/storage/box/roulette_balls_normal
+	name = "roulette ball box"
+	desc = "A box of spare roulette balls."
+	icon_state = "balls"
+	can_hold = list(/obj/item/roulette_ball)
+	starts_with = list(
+		/obj/item/roulette_ball = 7,
+		/obj/item/roulette_ball/hollow = 2)
+
+/obj/item/weapon/storage/box/roulette_balls_fancy
+	name = "fancy roulette ball box"
+	desc = "A box of extra-pretty roulette balls."
+	icon_state = "balls"
+	can_hold = list(/obj/item/roulette_ball)
+	starts_with = list(
+		/obj/item/roulette_ball,
+		/obj/item/roulette_ball/hollow,
+		/obj/item/roulette_ball/red,
+		/obj/item/roulette_ball/orange,
+		/obj/item/roulette_ball/yellow,
+		/obj/item/roulette_ball/green,
+		/obj/item/roulette_ball/blue,
+		/obj/item/roulette_ball/purple,
+		/obj/item/roulette_ball/moon,
+		/obj/item/roulette_ball/planet,
+		/obj/item/roulette_ball/gold)
+
+/obj/item/weapon/storage/box/roulette_balls_cheat
+	name = "special roulette ball box"
+	desc = "A box of 'special' roulette balls."
+	icon_state = "balls"
+	can_hold = list(/obj/item/roulette_ball)
+	starts_with = list(
+		/obj/item/roulette_ball/cheat/first_twelve,
+		/obj/item/roulette_ball/cheat/second_twelve,
+		/obj/item/roulette_ball/cheat/third_twelve,
+		/obj/item/roulette_ball/cheat/red,
+		/obj/item/roulette_ball/cheat/black,
+		/obj/item/roulette_ball/cheat/zeros,
+		/obj/item/roulette_ball/cheat/odd,
+		/obj/item/roulette_ball/cheat/even)
