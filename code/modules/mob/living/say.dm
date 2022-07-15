@@ -252,7 +252,7 @@ var/list/channel_to_radio_key = new
 	var/sound_vol = handle_v[2]
 
 	//Default range and italics, may be overridden past here
-	var/message_range = world.view
+	var/message_range = world.view	/////////////////////////////////THISSUN?????/////////////////////////////////////
 	var/italics = 0
 
 	//Speaking into radios
@@ -368,6 +368,7 @@ var/list/channel_to_radio_key = new
 							M << I1
 				if(whispering && !isobserver(M)) //Don't even bother with these unless whispering
 					if(dst > message_range && dst <= w_scramble_range) //Inside whisper scramble range
+						////////////////////////DO WHISPER SOUNDS HERE ABOUTS////////////////////////////////////////////////////////
 						if(M.hear_say(stars_all(message_pieces), verb, italics, src, speech_sound, sound_vol*0.2))
 							if(M.client && !runechat_enabled)
 								var/image/I2 = listening[M] || speech_bubble
@@ -400,6 +401,7 @@ var/list/channel_to_radio_key = new
 		log_whisper(message, src)
 	else
 		log_say(message, src)
+		to_world("This is the sound_vol, [sound_vol]")
 	return 1
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/verb_understood="gestures", var/datum/language/language, var/type = 1)
