@@ -398,7 +398,7 @@
 /datum/gear/suit/wintercoat/medical/para
 	display_name = "winter coat, paramedic"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/para
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic","Field Medic")
 
 /datum/gear/suit/wintercoat/medical/chemist
 	display_name = "winter coat, chemist"
@@ -413,7 +413,7 @@
 /datum/gear/suit/wintercoat/medical/sar
 	display_name = "winter coat, search and rescue"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
-	allowed_roles = list("Chief Medical Officer", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Paramedic","Field Medic")
 
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
