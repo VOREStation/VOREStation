@@ -331,3 +331,7 @@
 /decl/emote/visible/tilt
 	key = "tilt"
 	emote_message_3p = "tilts USER_THEIR head."
+
+/decl/emote/visible/zoom
+	key = "zoom"
+	emote_message_3p = "zooms around the place."

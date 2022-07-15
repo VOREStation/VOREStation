@@ -174,7 +174,11 @@ var/list/holder_mob_icon_cache = list()
 
 /obj/item/weapon/holder/cat/runtime
 
+<<<<<<< HEAD
 /obj/item/weapon/holder/fennec
+=======
+/obj/item/holder/karik
+>>>>>>> 36602b9d9db... Merge pull request #8663 from Cerebulon/nerffox
 	origin_tech = list(TECH_BIO = 2)
 
 /obj/item/weapon/holder/cat/runtime
