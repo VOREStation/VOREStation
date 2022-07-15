@@ -360,6 +360,7 @@
 	name = "Arrivals"
 	lightswitch = 1
 	forbid_events = TRUE
+	forbid_singulo = TRUE
 /area/groundbase/civilian/toolstorage
 	name = "Tool Storage"
 	lightswitch = 1
@@ -446,6 +447,7 @@
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
 	forbid_events = TRUE
+	forbid_singulo = TRUE
 
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
