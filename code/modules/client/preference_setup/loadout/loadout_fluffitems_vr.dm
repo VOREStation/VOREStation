@@ -813,6 +813,12 @@
 	ckeywhitelist = list("pandora029")
 	character_name = list("Evelyn Tareen", "Velyn Tareen")
 
+/datum/gear/fluff/seona_flightsuit
+	path = /obj/item/clothing/under/fluff/foxoflightsuit/
+	display_name = "padded flightsuit"
+	ckeywhitelist = list("pandora029")
+	character_name = list("Seona Young")
+
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Lily's Unity Medal"
