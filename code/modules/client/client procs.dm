@@ -566,3 +566,36 @@
 	set name = "TguiKeyUp"
 	set hidden = TRUE
 	return // stub
+
+/client/verb/toggle_fullscreen()
+	set name = "Toggle Fullscreen"
+	set category = "OOC"
+
+	fullscreen = !fullscreen
+
+	if (fullscreen)
+		winset(usr, "mainwindow", "on-size=")
+		winset(usr, "mainwindow", "titlebar=false")
+		winset(usr, "mainwindow", "can-resize=false")
+		winset(usr, "mainwindow", "menu=")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "is-maximized=true")
+	else
+		winset(usr, "mainwindow", "menu=menu")
+		winset(usr, "mainwindow", "titlebar=true")
+		winset(usr, "mainwindow", "can-resize=true")
+		winset(usr, "mainwindow", "is-maximized=false")
+		winset(usr, "mainwindow", "on-size=attempt_auto_fit_viewport") // The attempt_auto_fit_viewport() proc is not implemented yet
+
+/*
+/client/verb/toggle_status_bar()
+	set name = "Toggle Status Bar"
+	set category = "OOC"
+
+	show_status_bar = !show_status_bar
+
+	if (show_status_bar)
+		winset(usr, "input", "is-visible=true")
+	else
+		winset(usr, "input", "is-visible=false")
+*/
