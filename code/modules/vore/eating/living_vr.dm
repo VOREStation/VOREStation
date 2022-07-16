@@ -706,6 +706,9 @@
 /obj/item
 	var/trash_eatable = TRUE
 
+/mob/living/proc/get_digestion_nutrition_modifier()
+	return 1
+
 /mob/living/proc/eat_trash()
 	set name = "Eat Trash"
 	set category = "Abilities"
