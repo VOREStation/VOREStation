@@ -86,7 +86,7 @@
 					return
 				sane = TRUE
 				break
-		
+
 		if(!sane)
 			to_chat(src, "<span class='warning'>Sorry, that link doesn't appear to be valid. Please try again.</span>")
 			return
@@ -194,6 +194,8 @@
 
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
+	if(prefs)
+		prefs.selecting_slots = FALSE
 
 	connection_time = world.time
 	connection_realtime = world.realtime
