@@ -33,4 +33,23 @@
 		to_chat(usr, "OOC notes updated.")
 		log_admin("[key_name(usr)] updated their OOC notes mid-round.")
 
+/mob/living/verb/set_voice_freq()
+	set name = "Set Voice Frequency"
+	set desc = "Sets your voice frequency to be higher or lower pitched!"
+	set category = "OOC"
 
+	var/list/preset_voice_freqs = list("high" = MAX_VOICE_FREQ, "middle-high" = 56250, "middle" = 425000, "middle-low"= 28750, "low" = MIN_VOICE_FREQ, "custom" = 1, "random" = 0)
+	var/choice = tgui_input_list(src, "What would you like to set your voice frequency to?", "Voice Frequency", preset_voice_freqs)
+	if(!choice)
+		return
+	choice = preset_voice_freqs[choice]
+	if(choice == 0)
+		voice_freq = choice
+		return
+	else if(choice == 1)
+		choice = tgui_input_number(src, "Choose your character's voice frequency, ranging from [MIN_VOICE_FREQ] to [MAX_VOICE_FREQ]", "Custom Voice Frequency", null, MAX_VOICE_FREQ, MIN_VOICE_FREQ, round_value = TRUE)
+	else if(choice > MAX_VOICE_FREQ)
+		choice = MAX_VOICE_FREQ
+	else if(choice < MIN_VOICE_FREQ)
+		choice = MIN_VOICE_FREQ
+	voice_freq = choice
