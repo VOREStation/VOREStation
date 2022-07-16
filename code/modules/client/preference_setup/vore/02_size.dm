@@ -40,15 +40,12 @@
 	S["voice_freq"]			<< pref.voice_freq
 	S["voice_sounds_list"]	<< pref.voice_sounds_list
 
-
 /datum/category_item/player_setup_item/vore/size/sanitize_character()
 	pref.weight_vr			= sanitize_integer(pref.weight_vr, WEIGHT_MIN, WEIGHT_MAX, initial(pref.weight_vr))
 	pref.weight_gain		= sanitize_integer(pref.weight_gain, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_gain))
 	pref.weight_loss		= sanitize_integer(pref.weight_loss, WEIGHT_CHANGE_MIN, WEIGHT_CHANGE_MAX, initial(pref.weight_loss))
 	pref.fuzzy				= sanitize_integer(pref.fuzzy, 0, 1, initial(pref.fuzzy))
-	if(pref.voice_freq == 0)
-		pref.voice_freq			= sanitize_integer(pref.voice_freq, 0, 0, initial(pref.fuzzy))
-	else
+	if(pref.voice_freq != 0)
 		pref.voice_freq			= sanitize_integer(pref.voice_freq, MIN_VOICE_FREQ, MAX_VOICE_FREQ, initial(pref.fuzzy))
 	if(pref.size_multiplier == null || pref.size_multiplier < RESIZE_TINY || pref.size_multiplier > RESIZE_HUGE)
 		pref.size_multiplier = initial(pref.size_multiplier)
@@ -133,8 +130,10 @@
 			return
 		choice = preset_voice_freqs[choice]
 		if(choice == 0)
+			pref.voice_freq = choice
+			return TOPIC_REFRESH
 		else if(choice == 1)
-			choice = tgui_input_number(user, "Choose your character's voice frequency, ranging from [MIN_VOICE_FREQ] to [MAX_VOICE_FREQ]", "Custom Voice Frequency", null, MAX_VOICE_FREQ, MIN_VOICE_FREQ)
+			choice = tgui_input_number(user, "Choose your character's voice frequency, ranging from [MIN_VOICE_FREQ] to [MAX_VOICE_FREQ]", "Custom Voice Frequency", null, MAX_VOICE_FREQ, MIN_VOICE_FREQ, round_value = TRUE)
 		if(choice > MAX_VOICE_FREQ)
 			choice = MAX_VOICE_FREQ
 		else if(choice < MIN_VOICE_FREQ)

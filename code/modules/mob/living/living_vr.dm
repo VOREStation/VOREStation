@@ -44,8 +44,10 @@
 		return
 	choice = preset_voice_freqs[choice]
 	if(choice == 0)
+		voice_freq = choice
+		return
 	else if(choice == 1)
-		choice = tgui_input_number(src, "Choose your character's voice frequency, ranging from [MIN_VOICE_FREQ] to [MAX_VOICE_FREQ]", "Custom Voice Frequency", null, MAX_VOICE_FREQ, MIN_VOICE_FREQ)
+		choice = tgui_input_number(src, "Choose your character's voice frequency, ranging from [MIN_VOICE_FREQ] to [MAX_VOICE_FREQ]", "Custom Voice Frequency", null, MAX_VOICE_FREQ, MIN_VOICE_FREQ, round_value = TRUE)
 	else if(choice > MAX_VOICE_FREQ)
 		choice = MAX_VOICE_FREQ
 	else if(choice < MIN_VOICE_FREQ)

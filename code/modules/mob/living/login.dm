@@ -13,16 +13,22 @@
 		to_chat(src,"<span class='notice'>Mob AI disabled while you are controlling the mob.</span>")
 
 	AddComponent(/datum/component/character_setup)
-	
+
 	// Vore stuff
 	verbs |= /mob/living/proc/escapeOOC
 	verbs |= /mob/living/proc/lick
 	verbs |= /mob/living/proc/smell
 	verbs |= /mob/living/proc/switch_scaling
-	
+
 	if(!no_vore)
 		verbs |= /mob/living/proc/vorebelly_printout
 		if(!vorePanel)
 			AddComponent(/datum/component/vore_panel)
+	//VOREStation Add Start
+	if(client.prefs.voice_sounds_list)
+		voice_sounds_list = client.prefs.voice_sounds_list
+	else
+		voice_sounds_list = talk_sound
+	//VOREStation Add End
 
 	return .
