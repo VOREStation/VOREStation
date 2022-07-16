@@ -1896,6 +1896,18 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled/eris/dark/orangecorner,
 /area/engineering/locker_room)
+"dT" = (
+/obj/machinery/computer/atmos_alert{
+	dir = 1
+	},
+/obj/machinery/camera/network/engineering{
+	dir = 4
+	},
+/obj/structure/sign/scenery/fakefireaxe{
+	pixel_x = -32
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/engineering/atmos/monitoring)
 "dU" = (
 /obj/structure/bed/chair/backed_red{
 	dir = 4
@@ -14630,15 +14642,6 @@
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/crew_quarters/kitchen)
-"GC" = (
-/obj/machinery/computer/atmos_alert{
-	dir = 1
-	},
-/obj/machinery/camera/network/engineering{
-	dir = 4
-	},
-/turf/simulated/floor/tiled/techfloor,
-/area/engineering/atmos/monitoring)
 "GD" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/atmospherics/pipe/simple/hidden/green,
@@ -29887,7 +29890,7 @@ NK
 eq
 sz
 to
-GC
+dT
 Ag
 Fl
 sp
