@@ -135,3 +135,6 @@
 /area/awaymission/lucky7/entry
 	name = "\improper Gateway - Entry Hall"
 	icon_state = "entry_3"
+
+/obj/machinery/telecomms/allinone/casino
+	freq_listening = list(PUB_FREQ, CSN_FREQ)
