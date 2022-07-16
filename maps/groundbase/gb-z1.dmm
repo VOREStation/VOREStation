@@ -586,6 +586,12 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level1/westspur)
+"bw" = (
+/obj/structure/closet/toolcloset,
+/obj/item/weapon/pickaxe,
+/obj/item/weapon/chainsaw,
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/workshop)
 "bx" = (
 /obj/structure/table/reinforced,
 /obj/item/device/floor_painter,
@@ -642,6 +648,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
+"bD" = (
+/obj/structure/closet/secure_closet/engineering_electrical/double,
+/obj/item/clothing/gloves/yellow,
+/obj/item/clothing/gloves/yellow,
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/workshop)
 "bE" = (
 /obj/structure/cable/yellow{
 	icon_state = "0-8"
@@ -680,6 +692,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/armory)
+"bH" = (
+/obj/structure/cable/yellow{
+	icon_state = "4-8"
+	},
+/obj/machinery/light,
+/obj/structure/closet/secure_closet/engineering_welding/double,
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/workshop)
 "bJ" = (
 /turf/simulated/floor/outdoors/newdirt_nograss/virgo3c,
 /area/groundbase/level1/eastspur)
@@ -1842,11 +1862,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/civilian/bar)
-"ez" = (
-/obj/structure/closet/toolcloset,
-/obj/item/weapon/pickaxe,
-/turf/simulated/floor/tiled,
-/area/groundbase/engineering/workshop)
 "eA" = (
 /obj/structure/disposalpipe/segment{
 	dir = 2;
@@ -3114,14 +3129,6 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/mining)
-"hS" = (
-/obj/structure/closet/secure_closet/engineering_welding,
-/obj/structure/cable/yellow{
-	icon_state = "4-8"
-	},
-/obj/machinery/light,
-/turf/simulated/floor/tiled,
-/area/groundbase/engineering/workshop)
 "hT" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/tiled,
@@ -13116,12 +13123,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/holodeck_control)
-"FW" = (
-/obj/structure/closet/secure_closet/engineering_electrical,
-/obj/item/clothing/gloves/yellow,
-/obj/item/clothing/gloves/yellow,
-/turf/simulated/floor/tiled,
-/area/groundbase/engineering/workshop)
 "FX" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/glass_security/polarized{
@@ -35209,14 +35210,14 @@ pe
 Wl
 VC
 XJ
-ez
+bw
 zv
 NY
 ER
 jf
 BH
-FW
-hS
+bD
+bH
 JM
 ph
 aE
