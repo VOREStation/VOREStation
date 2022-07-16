@@ -255,6 +255,8 @@ var/list/channel_to_radio_key = new
 	var/message_range = world.view
 	var/italics = 0
 	var/do_sound = TRUE
+	if(!voice_sounds_list || !voice_sounds_list.len)
+		do_sound = FALSE
 
 	//Speaking into radios
 	if(used_radios.len)
