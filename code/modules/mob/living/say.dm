@@ -18,6 +18,7 @@ var/list/department_radio_keys = list(
 	":p" = "AI Private",	".p" = "AI Private",
 	":y" = "Explorer",	".y" = "Explorer",
 	":a" = "Talon",		".a" = "Talon", //VOREStation Add,
+	":g" = "Casino",	".g" = "Casino",
 
 	":R" = "right ear",	".R" = "right ear",
 	":L" = "left ear",	".L" = "left ear",
@@ -37,6 +38,7 @@ var/list/department_radio_keys = list(
 	":P" = "AI Private",	".P" = "AI Private",
 	":Y" = "Explorer",	".Y" = "Explorer",
 	":A" = "Talon",		".A" = "Talon", //VOREStation Add,
+	":G" = "Casino",	".G" = "Casino",
 
 	// Cyrillic characters on the same keys on the Russian QWERTY (phonetic) layout
 	":к" = "right ear",    ".к" = "right ear",
@@ -57,7 +59,8 @@ var/list/department_radio_keys = list(
 	":м" = "Service",        ".м" = "Service",
 	":з" = "AI Private",    ".з" = "AI Private",
 	":н" = "Explorer",    ".н" = "Explorer",
-	":ф" = "Talon",        ".ф" = "Talon" //VOREStation Add
+	":ф" = "Talon",        ".ф" = "Talon", //VOREStation Add
+	":п" = "Casino",	".п" = "Casino",
 )
 
 

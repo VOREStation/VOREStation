@@ -125,7 +125,7 @@
 /obj/structure/casino_table/roulette_chart
 	name = "roulette chart"
 	desc = "Roulette chart. Place your bets!"
-	icon_state = "roulette_chart"
+	icon_state = "roulette_table"
 
 /obj/item/roulette_ball
 	name = "roulette ball"
@@ -229,7 +229,7 @@
 		if(!H.held_mob)
 			to_chat(user, "<span class='warning'>This holder has nobody in it? Yell at a developer!</span>")
 			return
-		if(H.held_mob.get_effective_size() > 50)
+		if(H.held_mob.get_effective_size(TRUE) > 50)
 			to_chat(user, "<span class='warning'>\The [H] is too big to fit inside!</span>")
 			return
 		user.drop_from_inventory(H)

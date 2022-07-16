@@ -2,6 +2,13 @@
 "aa" = (
 /turf/simulated/wall,
 /area/groundbase/exploration/equipment)
+"ab" = (
+/obj/machinery/suit_cycler/medical,
+/obj/structure/sign/scenery/fakefireaxe{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/paramedic)
 "ak" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -16835,7 +16842,7 @@ ID
 lz
 Cv
 Vm
-og
+ab
 to
 to
 Qk
