@@ -7,7 +7,7 @@
 /**
  * Removes excess whitespace and indentation from the string.
  */
-export const multiline = (str) => {
+export const multiline = (str: string): string => {
   if (Array.isArray(str)) {
     // Small stub to allow usage as a template tag
     return multiline(str.join(''));
@@ -44,8 +44,8 @@ export const multiline = (str) => {
  *
  * Example: createGlobPattern('*@domain')('user@domain') === true
  */
-export const createGlobPattern = (pattern) => {
-  const escapeString = (str) => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
+export const createGlobPattern = (pattern: string) => {
+  const escapeString = (str: string) => str.replace(/[|\\{}()[\]^$+*?.]/g, '\\$&');
   const regex = new RegExp(
     '^' +
       pattern
@@ -54,7 +54,7 @@ export const createGlobPattern = (pattern) => {
         .join('.*') +
       '$'
   );
-  return (str) => regex.test(str);
+  return (str: string) => regex.test(str);
 };
 
 /**
@@ -81,11 +81,18 @@ export const createSearch = (searchText, stringifier) => {
   };
 };
 
-export const isUppercase = (chr) => {
+export const isUppercase = (chr: string) => {
   return chr.toUpperCase() === chr;
 };
 
-export const capitalize = (str) => {
+/**
+ * Capitalizes a word and lowercases the rest.
+ * @param {string} str
+ * @returns {string} capitalized string
+ *
+ * @example capitalize('heLLo') === 'Hello'
+ */
+export const capitalize = (str: string) => {
   // Handle array
   if (Array.isArray(str)) {
     return str.map(capitalize);
@@ -98,7 +105,32 @@ export const capitalize = (str) => {
   return chr.toUpperCase() + str.slice(1).toLowerCase();
 };
 
-export const toTitleCase = (str) => {
+/**
+ * Similar to capitalize, this takes a string and replaces all first letters
+ * of any words.
+ *
+ * @param {string} str
+ * @return {string} The string with the first letters capitalized.
+ *
+ * @example capitalizeAll('heLLo woRLd') === 'HeLLo WoRLd'
+ */
+export const capitalizeAll = (str: string): string => {
+  return str.replace(/(^\w{1})|(\s+\w{1})/g, (letter) => letter.toUpperCase());
+};
+
+/**
+ * Capitalizes only the first letter of the str.
+ *
+ * @param {string} str
+ * @return {string} capitalized string
+ *
+ * @example capitalizeFirst('heLLo woRLd') === 'HeLLo woRLd'
+ */
+export const capitalizeFirst = (str: string): string => {
+  return str.replace(/^\w/, (letter) => letter.toUpperCase());
+};
+
+export const toTitleCase = (str: string) => {
   // Handle array
   if (Array.isArray(str)) {
     return str.map(toTitleCase);
@@ -152,7 +184,7 @@ export const toTitleCase = (str) => {
  * @param  {String} str Encoded HTML string
  * @return {String} Decoded HTML string
  */
-export const decodeHtmlEntities = (str) => {
+export const decodeHtmlEntities = (str: string): string => {
   if (!str) {
     return str;
   }
