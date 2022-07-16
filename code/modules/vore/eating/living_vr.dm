@@ -32,7 +32,7 @@
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
 	var/voice_freq = 0					// Preference for character voice frequency
-	var/voice_sounds_list				// The sound list containing our voice sounds!
+	var/list/voice_sounds_list = list()	// The sound list containing our voice sounds!
 	var/permit_healbelly = TRUE
 	var/stumble_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/slip_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
