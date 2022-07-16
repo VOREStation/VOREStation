@@ -12,3 +12,6 @@
 	alt_farmanimals -= src
 
 	. = ..()
+
+/mob/living/carbon/human/get_digestion_nutrition_modifier()
+	return species.digestion_nutrition_modifier

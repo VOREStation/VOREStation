@@ -290,9 +290,9 @@
 		owner.update_icons()
 	if(isrobot(owner))
 		var/mob/living/silicon/robot/R = owner
-		R.cell.charge += (nutrition_percent / 100) * compensation * 25
+		R.cell.charge += (nutrition_percent / 100) * compensation * 25 * M.get_digestion_nutrition_modifier()
 	else
-		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5)
+		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5 * M.get_digestion_nutrition_modifier())
 
 /obj/belly/proc/steal_nutrition(mob/living/L)
 	if(L.nutrition >= 100)
