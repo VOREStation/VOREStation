@@ -2235,7 +2235,9 @@
 /area/groundbase/cargo/office)
 "go" = (
 /obj/structure/disposalpipe/segment,
-/obj/machinery/light/small/fairylights,
+/obj/machinery/light/small/fairylights{
+	pixel_y = -2
+	},
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level2/nw)
 "gq" = (
@@ -5071,6 +5073,12 @@
 	outdoors = 0
 	},
 /area/groundbase/level2/se)
+"oG" = (
+/obj/machinery/light/small/fairylights{
+	pixel_y = -1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/nw)
 "oH" = (
 /turf/simulated/open/virgo3c,
 /area/groundbase/level2/eastspur)
@@ -7693,6 +7701,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room1)
+"wl" = (
+/obj/machinery/light/small/fairylights{
+	pixel_y = -1
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/nw)
 "wm" = (
 /obj/machinery/computer/supplycomp/control{
 	dir = 8
@@ -11523,7 +11537,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/disposalpipe/segment,
-/obj/machinery/light/small/fairylights,
+/obj/machinery/light/small/fairylights{
+	pixel_y = -2
+	},
 /turf/simulated/floor/outdoors/sidewalk/virgo3c,
 /area/groundbase/level2/nw)
 "Hs" = (
@@ -24377,13 +24393,13 @@ bY
 bY
 bY
 bY
-EZ
+wl
 ml
 pw
-lM
+oG
 bY
 bY
-lM
+oG
 bY
 bY
 bY
@@ -24661,13 +24677,13 @@ bY
 bY
 bY
 bY
-EZ
+wl
 sN
 pw
-lM
+oG
 bY
 Oa
-lM
+oG
 bY
 bY
 bY

@@ -407,7 +407,7 @@
 	feedback_add_details("admin_verb","TRadioSounds")
 
 /client/verb/toggle_say_sounds()
-	set name = "Sound Toggle: Say"
+	set name = "Sound-Toggle-Say"
 	set category = "Preferences"
 	set desc = "Toggle hearing a sound when somebody speaks using say."
 
@@ -420,7 +420,7 @@
 	feedback_add_details("admin_verb","TSaySounds")
 
 /client/verb/toggle_emote_sounds()
-	set name = "Sound Toggle: Me"
+	set name = "Sound-Toggle-Me"
 	set category = "Preferences"
 	set desc = "Toggle hearing a sound when somebody speaks using me ."
 
@@ -433,7 +433,7 @@
 	feedback_add_details("admin_verb","TMeSounds")
 
 /client/verb/toggle_whisper_sounds()
-	set name = "Sound Toggle: Whisper"
+	set name = "Sound-Toggle-Whisper"
 	set category = "Preferences"
 	set desc = "Toggle hearing a sound when somebody speaks using whisper."
 
@@ -446,7 +446,7 @@
 	feedback_add_details("admin_verb","TWhisperSounds")
 
 /client/verb/toggle_subtle_sounds()
-	set name = "Sound Toggle: Subtle"
+	set name = "Sound-Toggle-Subtle"
 	set category = "Preferences"
 	set desc = "Toggle hearing a sound when somebody uses subtle."
 
