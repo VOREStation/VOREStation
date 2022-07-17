@@ -580,7 +580,7 @@
 
 	//Handle the [All] choice. Ugh inelegant. Someone make this pretty.
 	if(params["pickall"])
-		intent = tgui_alert(usr, "Eject all, Move all?","Query",list("Eject all","Cancel","Move all"))
+		intent = tgui_alert(user, "Eject all, Move all?","Query",list("Eject all","Cancel","Move all"))
 		switch(intent)
 			if("Cancel")
 				return TRUE
@@ -598,7 +598,7 @@
 					to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 					return TRUE
 
-				var/obj/belly/choice = tgui_input_list(usr, "Move all where?","Select Belly", host.vore_organs)
+				var/obj/belly/choice = tgui_input_list(user, "Move all where?","Select Belly", host.vore_organs)
 				if(!choice)
 					return FALSE
 
@@ -636,12 +636,44 @@
 				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 				return TRUE
 
-			var/obj/belly/choice = tgui_input_list(usr, "Move [target] where?","Select Belly", host.vore_organs)
-			if(!choice || !(target in host.vore_selected))
+			var/dest_choice = tgui_alert(user, "Do you want target moved into your own belly or someone else's?", "Select Target", list("Your Own", "Someone Else's"))
+			var/mob/living/belly_owner = host
+
+			switch(dest_choice)
+				if("Someone Else's")
+					var/list/viable_candidates = list()
+					for(var/mob/living/candidate in range(1, host))
+						if(istype(candidate) && !(candidate == host))
+							if(candidate.vore_organs.len && candidate.feeding && !candidate.no_vore)
+								viable_candidates += candidate
+					if(!viable_candidates.len)
+						to_chat(user, "<span class='notice'>There are no viable candidates around you!</span>")
+						return TRUE
+					belly_owner = tgui_input_list(user, "Who do you want to recieve the target?", "Select Predator", viable_candidates)
+				else
+					belly_owner = host
+
+			if(!belly_owner || !(belly_owner in range(1, host)))
 				return TRUE
 
-			to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
-			host.vore_selected.transfer_contents(target, choice)
+			var/obj/belly/choice = tgui_input_list(user, "Move [target] where?","Select Belly", belly_owner.vore_organs)
+			if(!choice || !(target in host.vore_selected) || !belly_owner || !(belly_owner in range(1, host)))
+				return TRUE
+
+			if(belly_owner != host)
+				to_chat(user, "<span class='notice'>Transfer offer sent. Await their response.</span>")
+				var/accepted = tgui_alert(belly_owner, "[host] is trying to transfer [target] from their [lowertext(host.vore_selected.name)] into your [lowertext(choice.name)]. Do you accept?", "Feeding Offer", list("Yes", "No"))
+				if(accepted != "Yes")
+					to_chat(user, "<span class='warning'>[belly_owner] refused the transfer!!</span>")
+					return TRUE
+				if(!belly_owner || !(belly_owner in range(1, host)))
+					return TRUE
+				to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to [belly_owner]'s [lowertext(choice.name)]!</span>")
+				to_chat(belly_owner,"<span class='warning'>[target] is squished from [host]'s [lowertext(host.vore_selected.name)] to your [lowertext(choice.name)]!</span>")
+				host.vore_selected.transfer_contents(target, choice)
+			else
+				to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
+				host.vore_selected.transfer_contents(target, choice)
 			return TRUE
 
 		if("Transform")
