@@ -2147,7 +2147,7 @@
 	},
 /obj/item/clothing/shoes/black,
 /obj/item/device/communicator,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "ew" = (
 /obj/structure/table/steel_reinforced,
@@ -3598,7 +3598,7 @@
 /obj/machinery/disposal/wall/cleaner{
 	dir = 4
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "hQ" = (
 /obj/structure/table/standard,
@@ -5634,7 +5634,7 @@
 /obj/machinery/vending/loadout/loadout_misc,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /obj/effect/landmark/vines,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "me" = (
 /obj/structure/cable/white{
@@ -5865,7 +5865,7 @@
 /obj/item/clothing/shoes/black,
 /obj/machinery/light,
 /obj/item/device/communicator,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "mH" = (
 /obj/structure/table/steel_reinforced,
@@ -10651,7 +10651,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "xJ" = (
 /obj/structure/table/reinforced,
@@ -11718,7 +11718,7 @@
 	},
 /obj/machinery/vending/loadout/uniform,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "Af" = (
 /obj/structure/table/reinforced,
@@ -12917,7 +12917,7 @@
 	},
 /obj/machinery/vending/loadout/clothing,
 /obj/machinery/alarm/angled,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "CW" = (
 /obj/effect/floor_decal/steeldecal/steel_decals5{
@@ -13106,7 +13106,7 @@
 	},
 /obj/structure/undies_wardrobe,
 /obj/effect/landmark/vermin,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "Dv" = (
 /obj/structure/cable/white{
@@ -14300,7 +14300,7 @@
 	},
 /obj/machinery/vending/loadout/overwear,
 /obj/machinery/camera/network/civilian,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "FS" = (
 /obj/structure/cable/green{
@@ -15274,7 +15274,7 @@
 /area/engineering/storage)
 "HV" = (
 /obj/machinery/washing_machine,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "HW" = (
 /obj/machinery/door/firedoor/glass,
@@ -21572,7 +21572,7 @@
 	dir = 8
 	},
 /obj/machinery/vending/loadout/gadget,
-/turf/simulated/floor/holofloor/tiled/dark,
+/turf/simulated/floor/tiled/dark,
 /area/crew_quarters/locker)
 "VV" = (
 /obj/structure/cable/orange{
