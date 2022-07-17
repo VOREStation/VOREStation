@@ -254,6 +254,37 @@
 						"Magician" = /datum/alt_title/magician, "Comedian" = /datum/alt_title/comedian, "Tragedian" = /datum/alt_title/tragedian,
 						"Artist" = /datum/alt_title/artist)
 
+/datum/job/entertainer/equip(var/mob/living/carbon/human/H, var/alt_title, var/ask_questions = TRUE)
+	. = ..()
+	if(!.)
+		return
+	if(!ask_questions)
+		return
+
+	var/obj/item/weapon/card/id/I = locate(/obj/item/weapon/card/id) in H
+
+	if(!I)
+		return
+
+	INVOKE_ASYNC(src, .proc/name_prompt, H, I)
+
+/datum/job/entertainer/proc/name_prompt(mob/living/carbon/human/H, obj/item/weapon/card/id/I)
+	var/new_title = sanitize(input(H, "Would you like to change your title?", "Title Change", I.assignment), MAX_NAME_LEN)
+
+	var/list/all_jobs = get_job_datums()
+
+	// Are they trying to fake an actual existent job
+	var/faking_job = FALSE
+
+	for (var/datum/job/J in all_jobs)
+		if (J.title == new_title || (new_title in get_alternate_titles(J.title)))
+			faking_job = TRUE
+
+	if (length(new_title) != 0 && !faking_job)
+		I.assignment = new_title
+
+	I.name = text("[I.registered_name]'s ID Card ([I.assignment])")
+
 // Entertainer Alt Titles
 /datum/alt_title/actor
 	title = "Actor"
