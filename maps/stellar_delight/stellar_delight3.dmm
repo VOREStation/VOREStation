@@ -11701,7 +11701,7 @@
 	layer = 3.1;
 	name = "HoP's Shutters"
 	},
-/obj/structure/low_wall/bay/reinforced/blue,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "PL" = (
