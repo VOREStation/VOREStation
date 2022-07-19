@@ -614,7 +614,7 @@
 	var/list/available_options = list("Examine", "Eject", "Move", "Transfer")
 	if(ishuman(target))
 		available_options += "Transform"
-	intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", available_options, strict_byond = TRUE)
+	intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", available_options)
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
