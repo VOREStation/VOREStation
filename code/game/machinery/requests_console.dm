@@ -98,7 +98,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 /obj/machinery/requests_console/update_icon()
 	cut_overlays()
-	
+
 	if(stat & NOPOWER)
 		set_light(0)
 		set_light_on(FALSE)
@@ -145,9 +145,9 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 /obj/machinery/requests_console/tgui_act(action, list/params)
 	if(..())
 		return TRUE
-	
+
 	add_fingerprint(usr)
-	
+
 	switch(action)
 		if("write")
 			if(reject_bad_text(params["write"]))
@@ -198,7 +198,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				screen = RCS_SENTPASS
 				message_log += list(list("Message sent to [recipient]", "[message]"))
 			else
-				audible_message(text("[bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
+				audible_message(text("\icon[src][bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
 			. = TRUE
 
 		//Handle printing

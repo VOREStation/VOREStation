@@ -35822,6 +35822,7 @@
 /obj/effect/floor_decal/corner/green/border,
 /obj/machinery/light,
 /obj/machinery/portable_atmospherics/canister/oxygen,
+/obj/item/weapon/storage/box/nifsofts_pilot,
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pilot_office)
 "wEF" = (

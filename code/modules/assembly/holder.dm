@@ -16,13 +16,13 @@
 /obj/item/device/assembly_holder/proc/attach(var/obj/item/device/assembly/D, var/obj/item/device/assembly/D2, var/mob/user)
 	if(!D || !D2)
 		return FALSE
-	
+
 	if(!istype(D) || !istype(D2))
 		return FALSE
 
 	if(D.secured || D2.secured)
 		return FALSE
-	
+
 	if(user)
 		user.remove_from_mob(D)
 		user.remove_from_mob(D2)
@@ -151,7 +151,7 @@
 	if(!D)
 		return 0
 	if(!secured)
-		visible_message("[bicon(src)] *beep* *beep*", "*beep* *beep*")
+		visible_message("\icon[src][bicon(src)] *beep* *beep*", "*beep* *beep*")
 	if((normal) && (a_right) && (a_left))
 		if(a_right != D)
 			a_right.pulsed(0)

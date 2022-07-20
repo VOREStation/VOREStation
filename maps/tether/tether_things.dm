@@ -330,7 +330,7 @@
 	layer = ABOVE_WINDOW_LAYER
 /obj/machinery/vending/wallmed2
 	layer = ABOVE_WINDOW_LAYER
-/obj/structure/closet/fireaxecabinet
+/obj/structure/fireaxecabinet
 	layer = ABOVE_WINDOW_LAYER
 /obj/structure/extinguisher_cabinet
 	layer = ABOVE_WINDOW_LAYER
