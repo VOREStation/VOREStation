@@ -147,10 +147,10 @@
 
 	for(var/mob/living/M in T)
 		M.Weaken(5)
-		M.visible_message("<span class='notice'>[bicon(M)] [M] begins to float in the air!</span>","You feel tingly and light, but it is difficult to move.")
+		M.visible_message("<span class='notice'>\icon[M][bicon(M)] [M] begins to float in the air!</span>","You feel tingly and light, but it is difficult to move.")
 
 	suspension_field = new(T)
-	visible_message("<span class='notice'>[bicon(src)] [src] activates with a low hum.</span>")
+	visible_message("<span class='notice'>\icon[src][bicon(src)] [src] activates with a low hum.</span>")
 	icon_state = "suspension3"
 
 	for(var/obj/item/I in T)
@@ -160,7 +160,7 @@
 	if(collected)
 		suspension_field.icon_state = "energynet"
 		suspension_field.add_overlay("shield2")
-		visible_message("<span class='notice'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</span>")
+		visible_message("<span class='notice'>\icon[suspension_field][bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</span>")
 	else
 		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
@@ -175,7 +175,7 @@
 		to_chat(M, "<span class='notice'>You no longer feel like floating.</span>")
 		M.Weaken(3)
 
-	visible_message("<span class='notice'>[bicon(src)] [src] deactivates with a gentle shudder.</span>")
+	visible_message("<span class='notice'>\icon[src][bicon(src)] [src] deactivates with a gentle shudder.</span>")
 	qdel(suspension_field)
 	suspension_field = null
 	icon_state = "suspension2"
