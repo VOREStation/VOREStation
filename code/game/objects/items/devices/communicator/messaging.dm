@@ -34,7 +34,7 @@
 			if(src in comm.voice_invites)
 				comm.open_connection(src)
 				return
-			to_chat(src, "<span class='notice'>[bicon(origin_atom)] Receiving communicator request from [origin_atom].  To answer, use the <b>Call Communicator</b> \
+			to_chat(src, "<span class='notice'>\icon[origin_atom][bicon(origin_atom)] Receiving communicator request from [origin_atom].  To answer, use the <b>Call Communicator</b> \
 			verb, and select that name to answer the call.</span>")
 			src << 'sound/machines/defib_SafetyOn.ogg'
 			comm.voice_invites |= src
@@ -44,7 +44,7 @@
 			random = random / 10
 			exonet.send_message(origin_address, "64 bytes received from [exonet.address] ecmp_seq=1 ttl=51 time=[random] ms")
 	if(message == "text")
-		to_chat(src, "<span class='notice'>[bicon(origin_atom)] Received text message from [origin_atom]: <b>\"[text]\"</b></span>")
+		to_chat(src, "<span class='notice'>\icon[origin_atom][bicon(origin_atom)] Received text message from [origin_atom]: <b>\"[text]\"</b></span>")
 		src << 'sound/machines/defib_safetyOff.ogg'
 		exonet_messages.Add("<b>From [origin_atom]:</b><br>[text]")
 		return
@@ -84,7 +84,7 @@
 
 		playsound(src, S, 50, 1)
 		for (var/mob/O in hearers(2, loc))
-			O.show_message(text("[bicon(src)] *[ttone]*"))
+			O.show_message(text("\icon[src][bicon(src)] *[ttone]*"))
 
 	alert_called = 1
 	update_icon()
@@ -95,7 +95,7 @@
 		L = loc
 
 	if(L)
-		to_chat(L, "<span class='notice'>[bicon(src)] Message from [who]: <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)</span>")
+		to_chat(L, "<span class='notice'>\icon[src][bicon(src)] Message from [who]: <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)</span>")
 
 // This is the only Topic the communicators really uses
 /obj/item/device/communicator/Topic(href, href_list)
@@ -108,7 +108,7 @@
 				exonet.send_message(comm.exonet.address, "text", message)
 				im_list += list(list("address" = exonet.address, "to_address" = comm.exonet.address, "im" = message))
 				log_pda("(COMM: [src]) sent \"[message]\" to [exonet.get_atom_from_address(comm.exonet.address)]", usr)
-				to_chat(usr, "<span class='notice'>[bicon(src)] Sent message to [comm.owner], <b>\"[message]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
+				to_chat(usr, "<span class='notice'>\icon[src][bicon(src)] Sent message to [comm.owner], <b>\"[message]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
 
 // Verb: text_communicator()
 // Parameters: None

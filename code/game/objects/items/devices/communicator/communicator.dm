@@ -142,10 +142,10 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 // Description: Shows all the voice mobs inside the device, and their status.
 /obj/item/device/communicator/examine(mob/user)
 	. = ..()
-	
+
 	for(var/mob/living/voice/voice in contents)
 		. += "<span class='notice'>On the screen, you can see a image feed of [voice].</span>"
-		
+
 		if(voice && voice.key)
 			switch(voice.stat)
 				if(CONSCIOUS)
@@ -302,7 +302,7 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/item/device/communicator/Destroy()
 	for(var/mob/living/voice/voice in contents)
 		voice_mobs.Remove(voice)
-		to_chat(voice, "<span class='danger'>[bicon(src)] Connection timed out with remote host.</span>")
+		to_chat(voice, "<span class='danger'>\icon[src][bicon(src)] Connection timed out with remote host.</span>")
 		qdel(voice)
 	close_connection(reason = "Connection timed out")
 
