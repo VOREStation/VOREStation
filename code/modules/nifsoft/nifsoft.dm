@@ -380,7 +380,7 @@
 
 // Pilot Disk //
 /obj/item/weapon/disk/nifsoft/pilot
-	name = "	"
+	name = "NIFSoft Uploader - Pilot"
 	desc = "Contains free NIFSofts useful for pilot members.\n\
 	It has a small label: \n\
 	\"Portable NIFSoft Installation Media. \n\
@@ -399,7 +399,7 @@
 /obj/item/weapon/storage/box/nifsofts_pilot
 	name = "pilot nifsoft uploaders"
 	desc = "A box of free nifsofts for pilot employees."
-	icon = 'icons/obj/boxes.dmi'0
+	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_pilot"
 
 /obj/item/weapon/storage/box/nifsofts_pilot/New()
