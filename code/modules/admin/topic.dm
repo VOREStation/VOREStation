@@ -102,6 +102,8 @@
 		notes_add(banckey,banreason,usr)
 
 		DB_ban_record(bantype, playermob, banduration, banreason, banjob, null, banckey, banip, bancid )
+		if((bantype == BANTYPE_PERMA || bantype == BANTYPE_TEMP) && playermob.client)
+			qdel(playermob.client)
 
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))

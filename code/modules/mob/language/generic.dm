@@ -18,7 +18,7 @@
 // 'basic' language; spoken by default.
 /datum/language/common
 	name = LANGUAGE_GALCOM
-	desc = "The common galactic tongue, engineered for cross-species communication."
+	desc = "The common galactic tongue, engineered for cross-species communication. Every spacer there is knows this!"
 	speech_verb = "says"
 	whisper_verb = "whispers"
 	key = "0"
@@ -127,7 +127,7 @@
 
 /datum/language/sign
 	name = LANGUAGE_SIGN
-	desc = "A sign language commonly used for those who are deaf or mute."
+	desc = "A sign language commonly used for those who are deaf or mute. Especially popular with spacers, due to practicality in airless environments."
 	signlang_verb = list("gestures")
 	colour = "say_quote"
 	key = "s"
@@ -152,7 +152,7 @@
 // Silly language for those times when you try to talk a languague you normally can't
 /datum/language/gibberish
 	name = LANGUAGE_GIBBERISH
-	desc = "A completely incomprehensible language."
+	desc = "A completely incomprehensible gibberish that can barely be called a language."
 	signlang_verb = list("flails")
 	speech_verb = "spews"
 	whisper_verb = "mumbles"

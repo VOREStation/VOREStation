@@ -10,6 +10,7 @@
 	required_access = access_network
 	available_on_ntnet = TRUE
 	tgui_id = "NtosNetMonitor"
+	category = PROG_ADMIN
 
 /datum/computer_file/program/ntnetmonitor/tgui_data(mob/user)
 	if(!ntnet_global)
@@ -90,4 +91,4 @@
 			var/nid = tgui_input_number(usr,"Enter NID of device which you want to unblock from the network:", "Enter NID")
 			if(nid && tgui_status(usr, state) == STATUS_INTERACTIVE)
 				ntnet_global.banned_nids -= nid
-			return TRUE 
+			return TRUE

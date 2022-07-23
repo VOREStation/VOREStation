@@ -991,3 +991,6 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 // this gets called when the item gets chucked by the vending machine
 /obj/item/proc/vendor_action(var/obj/machinery/vending/V)
 	return
+
+/obj/item/proc/on_holder_escape(var/obj/item/weapon/holder/H)
+	return

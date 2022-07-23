@@ -13,6 +13,23 @@
 /obj/item/weapon/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
+"ab" = (
+/obj/machinery/artifact_scanpad,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/science/outpost/anomaly_lab)
+"ac" = (
+/obj/machinery/artifact_analyser,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/science/outpost/anomaly_lab)
+"ad" = (
+/obj/structure/table/standard,
+/obj/item/device/flashlight/lamp,
+/obj/machinery/vending/wallmed1{
+	pixel_x = 30
+	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/science/outpost/anomaly_lab)
 "am" = (
 /obj/machinery/atmospherics/pipe/simple/visible/blue{
 	dir = 9
@@ -436,11 +453,6 @@
 /obj/machinery/camera/network/research_outpost{
 	dir = 1
 	},
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/science/outpost/anomaly_lab)
-"gg" = (
-/obj/machinery/artifact_scanpad,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "gi" = (
@@ -952,11 +964,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
-"lq" = (
-/obj/machinery/artifact_analyser,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/science/outpost/anomaly_lab)
 "lw" = (
 /obj/structure/cable/green{
 	icon_state = "1-2"
@@ -2674,15 +2681,6 @@
 /obj/machinery/atmospherics/portables_connector,
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
-"DN" = (
-/obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
-/obj/machinery/vending/wallmed1{
-	pixel_x = 30
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/science/outpost/anomaly_lab)
 "DP" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/supply,
 /obj/machinery/meter,
@@ -18616,9 +18614,9 @@ MY
 qy
 Sh
 mh
-gg
-lq
-DN
+ab
+ac
+ad
 bp
 hm
 qg

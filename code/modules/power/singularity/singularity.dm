@@ -365,7 +365,8 @@ GLOBAL_LIST_BOILERPLATE(all_singularities, /obj/singularity)
 		return 0
 
 	// VOREStation Edit Start
-	if(istype(get_area(T), /area/crew_quarters/sleep)) //No going to dorms
+	var/area/A = get_area(T)
+	if(A.forbid_singulo) //No going to dorms
 		return 0
 	// VOREStation Edit End
 

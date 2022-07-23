@@ -1188,7 +1188,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/awaymission/snowfield/base)
 "ds" = (
-/obj/structure/closet/fireaxecabinet{
+/obj/structure/fireaxecabinet{
 	pixel_y = 32
 	},
 /turf/simulated/floor/tiled/dark,

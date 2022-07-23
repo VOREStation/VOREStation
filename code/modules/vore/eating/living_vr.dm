@@ -26,10 +26,13 @@
 	var/vore_taste = null				// What the character tastes like
 	var/vore_smell = null				// What the character smells like
 	var/no_vore = FALSE					// If the character/mob can vore.
+	var/restrict_vore_ventcrawl = FALSE // Self explanatory
 	var/noisy = FALSE					// Toggle audible hunger.
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
+	var/voice_freq = 0					// Preference for character voice frequency
+	var/list/voice_sounds_list = list()	// The sound list containing our voice sounds!
 	var/permit_healbelly = TRUE
 	var/stumble_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/slip_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
@@ -505,6 +508,9 @@
 		crystal.bound_mob = null
 		crystal.bound_mob = capture_crystal = 0
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
+	else if(tf_mob_holder)
+		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob. [ADMIN_FLW(src)]")
+		revert_mob_tf()
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
@@ -697,6 +703,12 @@
 	if(new_color)
 		glow_color = new_color
 
+/obj/item
+	var/trash_eatable = TRUE
+
+/mob/living/proc/get_digestion_nutrition_modifier()
+	return 1
+
 /mob/living/proc/eat_trash()
 	set name = "Eat Trash"
 	set category = "Abilities"
@@ -713,6 +725,10 @@
 
 	if(is_type_in_list(I,item_vore_blacklist))
 		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
+		return
+
+	if(!I.trash_eatable)
+		to_chat(src, "<span class='warning'>You can't eat that so casually!</span>")
 		return
 
 	if(istype(I, /obj/item/device/paicard))
@@ -781,7 +797,7 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and funny looks.</span>")
 		else if(istype(I,/obj/item/weapon/paper))
 			to_chat(src, "<span class='notice'>You can taste the dry flavor of bureaucracy.</span>")
-		else if(istype(I,/obj/item/weapon/dice))
+		else if(istype(I,/obj/item/weapon/dice) || istype(I,/obj/item/roulette_ball))
 			to_chat(src, "<span class='notice'>You can taste the bitter flavor of cheating.</span>")
 		else if(istype(I,/obj/item/weapon/lipstick))
 			to_chat(src, "<span class='notice'>You can taste the flavor of couture and style. Toddler at the make-up bag style.</span>")

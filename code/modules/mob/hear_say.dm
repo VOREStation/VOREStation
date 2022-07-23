@@ -92,7 +92,7 @@
 	var/list/combined = combine_message(message_pieces, verb, speaker)
 	var/message = combined["formatted"]
 	if(message == "")
-		return
+		return FALSE
 
 	if(sleeping || stat == UNCONSCIOUS)
 		hear_sleep(multilingual_to_message(message_pieces))
@@ -129,9 +129,11 @@
 			var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 			playsound_local(source, speech_sound, sound_vol, 1)
 
+	return TRUE
+
 // Done here instead of on_hear_say() since that is NOT called if the mob is clientless (which includes most AI mobs).
 /mob/living/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	..()
+	.=..()
 	if(has_AI()) // Won't happen if no ai_holder exists or there's a player inside w/o autopilot active.
 		ai_holder.on_hear_say(speaker, multilingual_to_message(message_pieces))
 

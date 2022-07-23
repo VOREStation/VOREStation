@@ -56,7 +56,8 @@
 // Release belly contents before being gc'd!
 /mob/living/simple_mob/Destroy()
 	release_vore_contents()
-	prey_excludes.Cut()
+	if(prey_excludes)
+		prey_excludes.Cut()
 	return ..()
 
 //For all those ID-having mobs

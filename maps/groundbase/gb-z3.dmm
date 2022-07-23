@@ -2,6 +2,13 @@
 "aa" = (
 /turf/simulated/wall,
 /area/groundbase/exploration/equipment)
+"ab" = (
+/obj/machinery/suit_cycler/medical,
+/obj/structure/sign/scenery/fakefireaxe{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/paramedic)
 "ak" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -2567,6 +2574,16 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level3/nw)
+"OJ" = (
+/obj/effect/landmark/start/pilot,
+/obj/structure/closet/walllocker_double{
+	dir = 8;
+	name = "NIFsoft uploader cabinet";
+	pixel_x = -32
+	},
+/obj/item/weapon/storage/box/nifsofts_pilot,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/pilot)
 "OT" = (
 /obj/structure/lattice,
 /turf/simulated/open/virgo3c,
@@ -5599,7 +5616,7 @@ Qa
 qO
 fz
 bm
-Tk
+OJ
 pd
 Tk
 bm
@@ -16835,7 +16852,7 @@ ID
 lz
 Cv
 Vm
-og
+ab
 to
 to
 Qk

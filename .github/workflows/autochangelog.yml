@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - uses: /actions/checkout@v2
+      - uses: /actions/checkout@v3
         with:
           ref: master
       - name: Update repository to master
@@ -22,7 +22,7 @@ jobs:
       - name: Ensure +x on CI directory
         run: |
           chmod -R +x ./tools/ci
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
           python-version: '3.7'
       - name: Generate Changelog

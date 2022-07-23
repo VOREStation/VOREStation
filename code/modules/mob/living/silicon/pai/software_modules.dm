@@ -140,7 +140,7 @@
 
 /datum/pai_software/med_records/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/records = list()
 	for(var/datum/data/record/general in sortRecord(data_core.general))
 		var/list/record = list()
@@ -196,7 +196,7 @@
 
 /datum/pai_software/sec_records/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/records = list()
 	for(var/datum/data/record/general in sortRecord(data_core.general))
 		var/list/record = list()
@@ -486,7 +486,7 @@
 
 /datum/pai_software/signaller/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/obj/item/radio/integrated/signal/R = user.sradio
 
 	data["frequency"] = R.frequency
@@ -509,7 +509,7 @@
 				spawn(0)
 					R.send_signal("ACTIVATE")
 				for(var/mob/O in hearers(1, R.loc))
-					O.show_message("[bicon(R)] *beep* *beep*", 3, "*beep* *beep*", 2)
+					O.show_message("\icon[R][bicon(R)] *beep* *beep*", 3, "*beep* *beep*", 2)
 			if("freq")
 				var/frequency = unformat_frequency(params["freq"])
 				frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
