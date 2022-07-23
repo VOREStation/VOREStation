@@ -2,11 +2,13 @@
 "a" = (
 /turf/template_noop,
 /area/template_noop)
-"e" = (
+"b" = (
+/mob/living/simple_mob/vore/alienanimals/space_ghost{
+	faction = "spookyland"
+	},
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/darkstar)
-"z" = (
-/mob/living/simple_mob/vore/alienanimals/space_ghost,
+"e" = (
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/darkstar)
 
@@ -50,7 +52,7 @@ a
 e
 e
 e
-z
+b
 e
 e
 e
