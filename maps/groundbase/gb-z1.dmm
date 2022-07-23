@@ -5912,6 +5912,7 @@
 	},
 /obj/item/clothing/glasses/welding/superior,
 /obj/item/device/flashlight/lamp,
+/obj/item/weapon/stamp/ce,
 /turf/simulated/floor/carpet/oracarpet,
 /area/groundbase/engineering/ce)
 "nf" = (
