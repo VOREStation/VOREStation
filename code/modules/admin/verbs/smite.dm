@@ -25,21 +25,21 @@
 				broken_legs++
 			if(!broken_legs)
 				to_chat(src,"[target] didn't have any breakable legs, sorry.")
-		
+
 		if(SMITE_BLUESPACEARTILLERY)
 			bluespace_artillery(target,src)
-		
+
 		if(SMITE_SPONTANEOUSCOMBUSTION)
 			target.adjust_fire_stacks(10)
 			target.IgniteMob()
 			target.visible_message("<span class='danger'>[target] bursts into flames!</span>")
-		
+
 		if(SMITE_LIGHTNINGBOLT)
 			var/turf/T = get_step(get_step(target, NORTH), NORTH)
 			T.Beam(target, icon_state="lightning[rand(1,12)]", time = 5)
 			target.electrocute_act(75,def_zone = BP_HEAD)
 			target.visible_message("<span class='danger'>[target] is struck by lightning!</span>")
-		
+
 		else
 			return //Injection? Don't print any messages.
 
@@ -49,14 +49,6 @@
 /proc/bluespace_artillery(mob/living/target, user)
 	if(!istype(target))
 		return
-
-	if(BSACooldown)
-		if(user)
-			to_chat(user,"<span class='warning'>BSA is still cooling down, please wait!</span>")
-		return
-
-	BSACooldown = 1
-	VARSET_IN(global, BSACooldown, FALSE, 5 SECONDS)
 
 	to_chat(target,"You've been hit by bluespace artillery!")
 	log_and_message_admins("[key_name(target)] has been hit by Bluespace Artillery fired by [key_name(user ? user : usr)]")
@@ -68,10 +60,10 @@
 		if(prob(80))	T.break_tile_to_plating()
 		else			T.break_tile()
 
-	if(target.health == 1)
+	if(target.health < 10)
 		target.gib()
 	else
-		target.adjustBruteLoss( min( 99 , (target.health - 1) )    )
+		target.adjustBruteLoss( max( 99 , (target.health - 1) )    )
 		target.Stun(20)
 		target.Weaken(20)
 		target.stuttering = 20

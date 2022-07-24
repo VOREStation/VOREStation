@@ -147,11 +147,11 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 /datum/weather/virgo3c/clear
 	name = "clear"
 	transition_chances = list(
-		WEATHER_CLEAR = 60,
-		WEATHER_OVERCAST = 20,
-		WEATHER_LIGHT_SNOW = 1,
-		WEATHER_BLOOD_MOON = 1,
-		WEATHER_EMBERFALL = 0.5)
+		WEATHER_CLEAR = 120,
+		WEATHER_OVERCAST = 40,
+		WEATHER_LIGHT_SNOW = 2,
+		WEATHER_BLOOD_MOON = 2,
+		WEATHER_EMBERFALL = 1)
 	transition_messages = list(
 		"The sky clears up.",
 		"The sky is visible.",
