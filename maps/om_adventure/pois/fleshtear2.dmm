@@ -4,15 +4,17 @@
 	base_icon = 'icons/turf/stomach_vr.dmi'
 	},
 /area/om_adventure/poi/fleshtear2)
-"B" = (
-/turf/template_noop,
-/area/template_noop)
-"H" = (
-/mob/living/simple_mob/creature,
+"b" = (
+/mob/living/simple_mob/creature{
+	faction = "spookyland"
+	},
 /turf/simulated/floor/flesh{
 	base_icon = 'icons/turf/stomach_vr.dmi'
 	},
 /area/om_adventure/poi/fleshtear2)
+"B" = (
+/turf/template_noop,
+/area/template_noop)
 
 (1,1,1) = {"
 B
@@ -45,7 +47,7 @@ B
 B
 B
 a
-H
+b
 a
 a
 B
