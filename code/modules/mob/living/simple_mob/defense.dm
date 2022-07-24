@@ -45,7 +45,18 @@
 
 		if(I_HURT)
 			var/armor = run_armor_check(def_zone = null, attack_flag = "melee")
-			apply_damage(damage = harm_intent_damage, damagetype = BURN, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
+			if(istype(L,/mob/living/carbon/human)) //VOREStation EDIT START Is it a human?
+				var/mob/living/carbon/human/attacker = L //We are a human!
+				var/datum/unarmed_attack/attack = attacker.get_unarmed_attack(src, BP_TORSO) //What attack are we using? Also, just default to attacking the chest.
+				var/rand_damage = rand(1, 5) //Like normal human attacks, let's randomize the damage...
+				var/real_damage = rand_damage //Let's go ahead and start calculating our damage.
+				var/hit_dam_type = attack.damage_type //Let's get the type of damage. Brute? Burn? Defined by the unarmed_attack.
+				real_damage += attack.get_unarmed_damage(attacker) //Add the damage that their special attack has. Some have 0. Some have 15.
+				apply_damage(damage = real_damage, damagetype = hit_dam_type, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
+				L.visible_message("<span class='warning'>\The [L] [pick(attack.attack_verb)] \the [src]!</span>")
+				L.do_attack_animation(src)
+				return //VOREStation EDIT END
+			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE) //VOREStation EDIT Somebody set this to burn instead of brute.
 			L.visible_message("<span class='warning'>\The [L] [response_harm] \the [src]!</span>")
 			L.do_attack_animation(src)
 
