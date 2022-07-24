@@ -11,6 +11,7 @@
 	verbs |= /mob/living/simple_mob/proc/set_name
 	verbs |= /mob/living/simple_mob/proc/set_desc
 
+	ooc_notes = client.prefs.metadata
 	digestable = client.prefs_vr.digestable
 	devourable = client.prefs_vr.devourable
 	absorbable = client.prefs_vr.absorbable
