@@ -52,6 +52,10 @@
 				var/real_damage = rand_damage //Let's go ahead and start calculating our damage.
 				var/hit_dam_type = attack.damage_type //Let's get the type of damage. Brute? Burn? Defined by the unarmed_attack.
 				real_damage += attack.get_unarmed_damage(attacker) //Add the damage that their special attack has. Some have 0. Some have 15.
+				if(real_damage <= damage_threshold)
+					L.visible_message("<span class='warning'>\The [L] uselessly hits \the [src]!</span>")
+					L.do_attack_animation(src)
+					return
 				apply_damage(damage = real_damage, damagetype = hit_dam_type, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE)
 				L.visible_message("<span class='warning'>\The [L] [pick(attack.attack_verb)] \the [src]!</span>")
 				L.do_attack_animation(src)
