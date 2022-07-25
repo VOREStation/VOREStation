@@ -570,6 +570,7 @@
 
 	if(one_handed_penalty)
 		if(!src.is_held_twohanded(user))
+			to_chat(user, "<span class='warning'>IS HELD TWOHANDED PENALTY.</span>")
 			switch(one_handed_penalty)
 				if(1 to 15)
 					if(prob(50)) //don't need to tell them every single time
@@ -581,6 +582,7 @@
 				if(46 to INFINITY)
 					to_chat(user, "<span class='warning'>You struggle to keep \the [src] on target with just one hand!</span>")
 		else if(!user.can_wield_item(src))
+			to_chat(user, "<span class='warning'>CAN WIELD ITEM PENALTY.</span>")
 			switch(one_handed_penalty)
 				if(1 to 15)
 					if(prob(50)) //don't need to tell them every single time
