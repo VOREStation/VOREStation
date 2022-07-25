@@ -1,5 +1,3 @@
-
-var/global/BSACooldown = 0
 var/global/floorIsLava = 0
 
 
@@ -1565,8 +1563,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
 					to_chat(C, "<span class='log_message'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='?_src_=holder;AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
-		
-		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]" 
+
+		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
 		var/fax_text = paper_html_to_plaintext(P.info)
 		log_game(plaintext_title)
 		log_game(fax_text)
