@@ -199,3 +199,13 @@
 	cost = 60
 	containertype = /obj/structure/closet/crate/large/xion
 	containername = "pump crate"
+
+/datum/supply_pack/misc/desktoys
+	name = "Desk toys"
+	contains = list(
+		/obj/item/toy/desk/newtoncradle = 2,
+		/obj/item/toy/desk/fan = 2,
+		/obj/item/toy/desk/officetoy = 2,
+		/obj/item/toy/desk/dippingbird = 2)
+	cost = 15
+	containertype = /obj/structure/closet/crate/oculum

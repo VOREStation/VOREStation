@@ -3,7 +3,7 @@
 		if(exact)
 			return decls_repository.get_decl(path)
 		else
-			var/list/L = decls_repository.get_decls_of_type(path) 
+			var/list/L = decls_repository.get_decls_of_type(path)
 			return L[pick(L)]
 	return null
 
@@ -27,7 +27,7 @@
 		src.poster_decl = get_poster_decl(poster_decl, TRUE)
 	else
 		src.poster_decl = get_poster_decl(/decl/poster, FALSE)
-	
+
 	name += " - [src.poster_decl.name]"
 	return ..()
 
@@ -58,8 +58,8 @@
 		if (locate(/obj/structure/sign/poster) in T)
 			stuff_on_wall = 1
 			break
-	
-	if(stuff_on_wall)		
+
+	if(stuff_on_wall)
 		to_chat(user, "<span class='notice'>There is already a poster there!</span>")
 		return FALSE
 
@@ -71,7 +71,7 @@
 		to_chat(user, "<span class='notice'>You place the poster!</span>")
 		qdel(src)
 		return TRUE
-	
+
 	P.roll_and_drop(P.loc)
 	qdel(src)
 	return FALSE
@@ -156,7 +156,7 @@
 	else if(ispath(P))
 		src.poster_decl = get_poster_decl(P, TRUE)
 	else
-		src.poster_decl = get_poster_decl(target_poster_decl_path, FALSE)		
+		src.poster_decl = get_poster_decl(target_poster_decl_path, FALSE)
 
 	name = "[initial(name)] - [poster_decl.name]"
 	desc = "[initial(desc)] [poster_decl.desc]"
