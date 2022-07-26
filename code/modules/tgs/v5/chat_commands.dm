@@ -4,10 +4,10 @@
 	admin_only = FALSE
 
 /datum/tgs_chat_command/status/Run(datum/tgs_chat_user/sender, params)
-	var/list/counts = 0
-	var/list/afks = 0
-	var/list/active = 0
-	var/list/bellied = 0
+	var/counts = 0
+	var/afks = 0
+	var/active = 0
+	var/bellied = 0
 
 	for(var/X in TGS_CLIENT_COUNT)
 		var/client/C = X
