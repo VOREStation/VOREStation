@@ -9,7 +9,7 @@
 	var/active = 0
 	var/bellied = 0
 
-	for(var/X in TGS_CLIENT_COUNT)
+	for(var/X in GLOB.clients)
 		var/client/C = X
 		counts++
 		if(C && !(istype(C.mob,/mob/new_player) || istype(C.mob, /mob/observer)))
