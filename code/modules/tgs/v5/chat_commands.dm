@@ -11,7 +11,8 @@
 
 	for(var/X in GLOB.clients)
 		var/client/C = X
-		counts++
+		if(C)
+			counts++
 		if(C && !(istype(C.mob,/mob/new_player) || istype(C.mob, /mob/observer)))
 			if(C && C.mob && isbelly(C.mob.loc))
 				bellied++
