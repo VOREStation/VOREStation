@@ -20,7 +20,7 @@
 		else
 			active++
 
-	return "Current server status:\n**Web Manifest:** <https://vore-station.net/manifest.php>\n**Players:** [counts]\n**AFK:** [afks]\n**Active:** [active]\n**Bellied** [bellied]\nRound Duration:** [roundduration2text()]"
+	return "Current server status:\n**Web Manifest:** <https://vore-station.net/manifest.php>\n**Players:** [counts]\n**AFK:** [afks]\n**Active:** [active]\n**Bellied:** [bellied]\n\nRound Duration:** [roundduration2text()]"
 
 /datum/tgs_chat_command/parsetest
 	name = "parsetest"
