@@ -9,7 +9,7 @@
 	name_plural = "Xenochimeras"
 	icobase = 'icons/mob/human_races/r_xenochimera.dmi'
 	deform = 'icons/mob/human_races/r_def_xenochimera.dmi'
-	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws/chimera, /datum/unarmed_attack/bite/sharp)
 	darksight = 8		//critters with instincts to hide in the dark need to see in the dark - about as good as tajara.
 	slowdown = -0.2		//scuttly, but not as scuttly as a tajara or a teshari.
 	brute_mod = 0.8		//About as tanky to brute as a Unathi. They'll probably snap and go feral when hurt though.
@@ -97,6 +97,9 @@
 		//Very low pressure damage
 		if(adjusted_pressure2 <= 20)
 			H.take_overall_damage(brute=LOW_PRESSURE_DAMAGE, used_weapon = "Low Pressure")
+		//they handle areas where they can't breathe better than most, but it still lowers their effective health as well as all the other bad stuff that comes with unbreathable environments
+		if(H.getOxyLoss() >= 50)
+			H.does_not_breathe = TRUE
 
 		//Cold hurts and gives them pain messages, eventually weakening and paralysing, but doesn't damage or trigger feral.
 		//NB: 'body_temperature' used here is the 'setpoint' species var
