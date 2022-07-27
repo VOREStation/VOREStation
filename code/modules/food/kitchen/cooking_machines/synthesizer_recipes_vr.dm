@@ -36,7 +36,7 @@
 	color = "#c5e384"
 
 //gotta make the fuel a thing, might as well make it horrid, amirite. Should only be a cargo import.
-/datum/reagent/nutriment/synthsyolent
+/datum/reagent/nutriment/synthsoylent
 	name = "Soylent Agent Green"
 	id = "synthsoygreen"
 	description = "An thick, horridly rubbery fluid that somehow can be synthisized into 'edible' meals."
@@ -52,8 +52,6 @@
 
 /datum/category_collection/synthesizer_recipes
 	category_group_type = /datum/category_group/synthesizer
-
-
 
 /*************
 * Categories *
@@ -92,6 +90,10 @@
 	name = "Exotic"
 	category_item_type = /datum/category_item/synthesizer/exotic
 
+/datum/category_group/synthesizer/crewprint
+	name = "Crew"
+	category_item_type = /datum/category_item/synthesizer/crewprint
+
 /*******************
 * Category entries *
 *******************/
@@ -112,109 +114,199 @@
 	voice_order = list("plain muffin", "bald cupcake")
 	voice_temp = "cold"
 
-/*
+	name = ""
+	path =
+	voice_order = list()
+	voice_temp = ""
+
 /datum/category_item/synthesizer/basic/popcorn
-name = "Popcorn"
-path = /obj/item/weapon/reagent_containers/food/snacks/popcorn
+	name = "Popcorn"
+	path = /obj/item/weapon/reagent_containers/food/snacks/popcorn
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/genericsandwich
-name = "Sandwich"
-path = /obj/item/weapon/reagent_containers/food/snacks/sandwich
+	name = "Basic Sandvich"
+	path = /obj/item/weapon/reagent_containers/food/snacks/sandwich
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/tastybread
-/obj/item/weapon/reagent_containers/food/snacks/tastybread
+	name = "Tubular Bread"
+	path = /obj/item/weapon/reagent_containers/food/snacks/tastybread
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/bagelplain
-/obj/item/weapon/reagent_containers/food/snacks/bagelplain
+	name = "Bagel (Plain)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bagelplain
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/bagelsunflower
-/obj/item/weapon/reagent_containers/food/snacks/bagelsunflower
+	name = "Bagel (Sunflower)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bagelsunflower
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/bagelcheese
-/obj/item/weapon/reagent_containers/food/snacks/bagelcheese
+	name = "Bagel (Cheese)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bagelcheese
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/bagelraisin
-/obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+	name = "Bagel (Raisin)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bagelraisin
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/bagelpoppy
-/obj/item/weapon/reagent_containers/food/snacks/bagelpoppy
+	name = "Bagel (Poppyseed)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bagelpoppy
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/croissant
-/obj/item/weapon/reagent_containers/food/snacks/croissant
-	name = "croissant"
+	name = "Croissant"
+	path = /obj/item/weapon/reagent_containers/food/snacks/croissant
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/meatbreadslice
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
+	name = "Meat bread (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/meatbread/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/tofubreadslice
-/obj/item/weapon/reagent_containers/food/snacks/slice/tofubread/filled
+	name = "Tofu bread (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/tofubread/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/creamcheesebreadslice
-/obj/item/weapon/reagent_containers/food/snacks/slice/creamcheesebread/filled
+	name = "Creamcheese bread (slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/creamcheesebread/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/catagory_item/synthesizer/basic/xenobreadslice
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
+	name = "Xeno Bread (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/margheritaslice
-/obj/item/weapon/reagent_containers/food/snacks/slice/margherita/filled
+	name = "Margherita Pizza (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/margherita/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/meatpizzaslice
-/obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza/filled
+	name = "Meat Lovers Pizza (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/meatpizza/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/mushroompizzasilce
-/obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza/filled
+	name = "Mushroom Pizza (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/mushroompizza/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/veggiepizzaslice
-/obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza/filled
+	name = "The Works Pizza (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/vegetablepizza/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/pineapplepizzaslice
-/obj/item/weapon/reagent_containers/food/snacks/pineappleslice/filled
+	name = "Pineapple Pizza (Slice)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/pineappleslice/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/corndog
-/obj/item/weapon/reagent_containers/food/snacks/corn_dog
+	name = "County Fair Corndog"
+	path = /obj/item/weapon/reagent_containers/food/snacks/corn_dog
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/spicedmeatbun
-/obj/item/weapon/reagent_containers/food/snacks/spicedmeatbun
+	name = "Spiced Meat Bun"
+	path = /obj/item/weapon/reagent_containers/food/snacks/spicedmeatbun
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/quicheslice
-/obj/item/weapon/reagent_containers/food/snacks/quicheslice/filled
+	name = "Quiche Slice"
+	path = /obj/item/weapon/reagent_containers/food/snacks/quicheslice/filled
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/poached egg
-/obj/item/weapon/reagent_containers/food/snacks/poachedegg
-	name = "poached egg"
+	name = "Egg (Poached)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/poachedegg
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/boiledegg
-/obj/item/weapon/reagent_containers/food/snacks/boiledegg
+	name = "Egg (Boiled)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/boiledegg
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/friedegg
-/obj/item/weapon/reagent_containers/food/snacks/friedegg
+	name = "Egg (Fried)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/friedegg
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/chiliedegg
-/obj/item/weapon/reagent_containers/food/snacks/chilied_eggs
+	name = "Egg (Deviled)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/chilied_eggs
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/bacon
-/obj/item/weapon/reagent_containers/food/snacks/bacon_stick
+	name = "Bacon wafer"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bacon_stick
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/eggbacon
-/obj/item/weapon/reagent_containers/food/snacks/bacon_and_eggs
+	name = "Bacon and Eggs"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bacon_and_eggs
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/blt
-/obj/item/weapon/reagent_containers/food/snacks/blt
+	name = "BLT sandwich"
+	path = /obj/item/weapon/reagent_containers/food/snacks/blt
+	voice_order = list()
+	voice_temp = ""
 
-/datum/category_item/synthesizer/basic/mintcandy
-/obj/item/weapon/reagent_containers/food/snacks/mint
-	name = "mint"
+/datum/category_item/synthesizer/basic/mint
+	name = "Candy (Mint)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/mint
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/basic/candybar
-/obj/item/weapon/reagent_containers/food/snacks/candy
-	name = "Grandma Ellen's Candy Bar"
+	name = "Candy (Bar)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/candy
+	voice_order = list()
+	voice_temp = "cold"
 
 /datum/category_item/synthesizer/basic/proteinbar
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar
-	name = "SwoleMAX protein bar" */
+	name = "Candy (Protein)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar
+	voice_order = list()
+	voice_temp = "cold"
 
 /datum/category_item/synthesizer/basic/cb10
-	name = "Shantak Bar"
+	name = "Candy (Nutty)"
 	path = /obj/item/weapon/reagent_containers/food/snacks/cb10
 	voice_order = list("shantak","shantak bar", "chocolate nut bar")
 	voice_temp = "cold"
@@ -229,10 +321,52 @@ path = /obj/item/weapon/reagent_containers/food/snacks/sandwich
 	voice_order = list("meat slab","slab of meat","raw steak", "raw meat steak")
 	voice_temp = "cold"
 
+/datum/category_item/synthesizer/raw/bacon
+	name = "Bacon (raw)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/rawbacon
+	voice_order = list()
+	voice_temp = "cold"
+
+/datum/category_item/synthesizer/raw/mushroom
+	name = "Mushroom slice"
+	path = /obj/item/weapon/reagent_containers/food/snacks/mushroomslice
+	voice_order = list()
+	voice_temp = "cold"
+
+/datum/category_item/synthesizer/raw/tomato
+	name = "Tomato steak (raw)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/tomatomeat
+	voice_order = list()
+	voice_temp = "cold"
+
+/datum/category_item/synthesizer/raw/bear
+	name = "Bear steak (raw)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
+	voice_order = list()
+	voice_temp = "cold"
+
+/datum/category_item/synthesizer/raw/xeno
+	name = "Xeno steak (raw)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/xenomeat
+	voice_order = list()
+	voice_temp = "cold"
+
+/datum/category_item/synthesizer/raw/spider
+	name = "Spider steak (raw)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
+	voice_order = list()
+	voice_temp = "cold"
+
+/datum/category_item/synthesizer/raw/spahgetti
+	name = "Spaghetti (raw)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/spagetti
+	voice_order = list()
+	voice_temp = "cold"
+
 /datum/category_item/synthesizer/raw/corgi
 	name = "corgi steak (raw)"
 	path = /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
-	voice_order = list("Dog steak", "Dog", "Canine")
+	voice_order = list("Dog steak", "Dog", "Canine steak")
 	voice_temp = "cold"
 	hidden = TRUE
 
@@ -244,249 +378,445 @@ path = /obj/item/weapon/reagent_containers/food/snacks/sandwich
 	path = /obj/item/weapon/reagent_containers/food/snacks/ribplate
 	voice_order = list("plate of ribs", "rib plate")
 	voice_temp = "hot"
-/*
-/datum/category_item/synthesizer/cooked/ovenfries
-/obj/item/weapon/reagent_containers/food/snacks/ovenfries
 
-/datum/category_item/synthesizer/cooked/dionaroast
-/obj/item/weapon/reagent_containers/food/snacks/dionaroast
+/datum/category_item/synthesizer/cooked/ovenfries
+	name = "Oven baked fries"
+	path = /obj/item/weapon/reagent_containers/food/snacks/ovenfries
+	voice_order = list()
+	voice_temp = "hot"
 
 /datum/category_item/synthesizer/cooked/monkeydelight
-/obj/item/weapon/reagent_containers/food/snacks/monkeysdelight
+	name = "Monkey's Delight"
+	path = /obj/item/weapon/reagent_containers/food/snacks/monkeysdelight
+	voice_order = list()
+	voice_temp = "cold"
 
 /datum/category_item/synthesizer/cooked/turkey
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/turkey
+	name = "Turkey (Whole)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/turkey
+	voice_order = list()
+	voice_temp = "hot"
 
 /datum/category_item/synthesizer/cooked/tofurkey
-/obj/item/weapon/reagent_containers/food/snacks/tofurkey
+	name = "Tofurkey"
+	path = /obj/item/weapon/reagent_containers/food/snacks/tofurkey
+	voice_order = list()
+	voice_temp = "hot"
+
 
 /datum/category_item/synthesizer/cooked/zestfish
-/obj/item/weapon/reagent_containers/food/snacks/zestfish
+	name = "Zesty Fish"
+	path = /obj/item/weapon/reagent_containers/food/snacks/zestfish
+	voice_order = list()
+	voice_temp = "hot"
 
 /datum/category_item/synthesizer/cooked/bread
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bread
+	name = "Bread Loaf"
+	path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/bread
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/baguette
-/obj/item/weapon/reagent_containers/food/snacks/baguette
+	name = "Baguette"
+	path = /obj/item/weapon/reagent_containers/food/snacks/baguette
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/tofubread
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread
+	name = "Tofu Bread Loaf"
+	path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/tofubread
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/flatbread
-/obj/item/weapon/reagent_containers/food/snacks/flatbread
+	name = "Flatbread"
+	path = /obj/item/weapon/reagent_containers/food/snacks/flatbread
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/tortilla
-/obj/item/weapon/reagent_containers/food/snacks/tortilla
-	name = "tortilla"
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/meatbread
+	name = "Flour Tortilla"
+	path = /obj/item/weapon/reagent_containers/food/snacks/tortilla
+	voice_order = list()
+	voice_temp = ""
 
-/obj/item/weapon/reagent_containers/food/snacks/sliceable/bananabread
 /obj/item/weapon/reagent_containers/food/snacks/bun
+	name = "Burger Bun"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bun
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/meatpie
-/obj/item/weapon/reagent_containers/food/snacks/meatpie
+	name = "Pie (Meat)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/meatpie
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/tofupie
-/obj/item/weapon/reagent_containers/food/snacks/tofupie
+	name = "Pie (Tofu)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/tofupie
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/xenopie
-/obj/item/weapon/reagent_containers/food/snacks/xemeatpie
+	name = "Pie (Xeno)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/xemeatpie
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/plumppie
-/obj/item/weapon/reagent_containers/food/snacks/plump_pie
+	name = "Pie (Mushroom)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/plump_pie
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/enchiladas
-/obj/item/weapon/reagent_containers/food/snacks/enchiladas
+	name = "Enchiladas"
+	path = /obj/item/weapon/reagent_containers/food/snacks/enchiladas
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/lasagna
-/obj/item/weapon/reagent_containers/food/snacks/lasagna
+	name = "Lasagne"
+	path = /obj/item/weapon/reagent_containers/food/snacks/lasagna
+	voice_order = list()
+	voice_temp = ""
+
 
 /datum/category_item/synthesizer/cooked/ovenbacon
-/obj/item/weapon/reagent_containers/food/snacks/bacon/oven
+	name = "Oven baked bacon"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bacon/oven
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/macncheese
-/obj/item/weapon/reagent_containers/food/snacks/macncheese
+	name = "Mac and Cheese"
+	path = /obj/item/weapon/reagent_containers/food/snacks/macncheese
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/chickenmomo
-/obj/item/weapon/reagent_containers/food/snacks/chickenmomo
 	name = "chicken momo"
+	path = /obj/item/weapon/reagent_containers/food/snacks/chickenmomo
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/veggiemomo
-/obj/item/weapon/reagent_containers/food/snacks/veggiemomo
 	name = "veggie momo"
+	path = /obj/item/weapon/reagent_containers/food/snacks/veggiemomo
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/sweetnsour
-/obj/item/weapon/reagent_containers/food/snacks/sweet_and_sour
+	name = "Sweet and Sour Pork"
+	path = /obj/item/weapon/reagent_containers/food/snacks/sweet_and_sour
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/baconflatbread
-/obj/item/weapon/reagent_containers/food/snacks/bacon_flatbread
+	name = "Bacon Flatbread"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bacon_flatbread
+	voice_order = list()
+	voice_temp = ""
+
 
 /datum/category_item/synthesizer/cooked/meatpocket
-/obj/item/weapon/reagent_containers/food/snacks/meat_pocket
+	name = "Meat and Cheese Flatbread"
+	path = /obj/item/weapon/reagent_containers/food/snacks/meat_pocket
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/fishtaco
-/obj/item/weapon/reagent_containers/food/snacks/fish_taco
+	name = "Taco"
+	path = /obj/item/weapon/reagent_containers/food/snacks/taco
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/cooked/fishtaco
+	name = "Fish Taco"
+	path = /obj/item/weapon/reagent_containers/food/snacks/fish_taco
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/ntmuffin
-/obj/item/weapon/reagent_containers/food/snacks/nt_muffin
+	name = "Dwarven Breakfast Muffin"
+	path = /obj/item/weapon/reagent_containers/food/snacks/nt_muffin
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/porkbowl
-/obj/item/weapon/reagent_containers/food/snacks/porkbowl
+	name = "Pork Bowl"
+	path = /obj/item/weapon/reagent_containers/food/snacks/porkbowl
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/baconburger
-/obj/item/weapon/reagent_containers/food/snacks/burger/bacon
+	name = "Bacon Burger"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burger/bacon
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/loadedpotato
-/obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
+	name = "Loaded Baked Potato"
+	path = /obj/item/weapon/reagent_containers/food/snacks/loadedbakedpotato
+	voice_order = list()
+	voice_temp = ""
+
 
 /datum/category_item/synthesizer/cooked/britishpotatos
-/obj/item/weapon/reagent_containers/food/snacks/bangersandmash	name = "Bangers and Mash"
+	name = "Bangers and Mash"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bangersandmash
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/cheesemash
-/obj/item/weapon/reagent_containers/food/snacks/cheesymash
 	name = "Cheesy Mashed Potato"
+	path = /obj/item/weapon/reagent_containers/food/snacks/cheesymash
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/nuggies
-/obj/item/weapon/reagent_containers/food/snacks/nugget
 	name = "chicken nugget"
+	path = /obj/item/weapon/reagent_containers/food/snacks/nugget
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/fuegoburrito
-/obj/item/weapon/reagent_containers/food/snacks/fuegoburrito
 	name = "fuego phoron burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/fuegoburrito
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/meatburrito
-/obj/item/weapon/reagent_containers/food/snacks/meatburrito
 	name = "carne asada burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/meatburrito
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/cheeseburrito
-/obj/item/weapon/reagent_containers/food/snacks/cheeseburrito
 	name = "Cheese burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/cheeseburrito
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/eggroll
-/obj/item/weapon/reagent_containers/food/snacks/eggroll
 	name = "egg roll"
+	path = /obj/item/weapon/reagent_containers/food/snacks/eggroll
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/chilliburrito
-/obj/item/weapon/reagent_containers/food/snacks/burrito
 	name = "chilli burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burrito
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/spicyburrito
-/obj/item/weapon/reagent_containers/food/snacks/burrito_spicy
 	name = "spicy burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burrito_spicy
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/meatcheeseburrito
-/obj/item/weapon/reagent_containers/food/snacks/burrito_cheese
 	name = "carne queso burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/spicycheeseburrito
-/obj/item/weapon/reagent_containers/food/snacks/burrito_cheese_spicy
 	name = "spicy cheese burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burrito_cheese_spicy
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/veganburrito
-/obj/item/weapon/reagent_containers/food/snacks/burrito_vegan
 	name = "vegan burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burrito_vegan
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/breakfastburrito
-/obj/item/weapon/reagent_containers/food/snacks/breakfast_wrap
 	name = "breakfast wrap"
+	path = /obj/item/weapon/reagent_containers/food/snacks/breakfast_wrap
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/mysteryburrito
-/obj/item/weapon/reagent_containers/food/snacks/burrito_mystery
 	name = "mystery meat burrito"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burrito_mystery
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/hellrito
-/obj/item/weapon/reagent_containers/food/snacks/burrito_hell
 	name = "el diablo"
+	path = /obj/item/weapon/reagent_containers/food/snacks/burrito_hell
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/stuffedmeatball
-/obj/item/weapon/reagent_containers/food/snacks/stuffed_meatball
 	name = "stuffed meatball"
+	path = /obj/item/weapon/reagent_containers/food/snacks/stuffed_meatball
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/eggpancake
-/obj/item/weapon/reagent_containers/food/snacks/egg_pancake
-	name = "egg pancake"
+	name = "Egg Pancake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/egg_pancake
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/redcurry
-/obj/item/weapon/reagent_containers/food/snacks/redcurry
-	name = "red curry"
+	name = "Red Curry"
+	path = /obj/item/weapon/reagent_containers/food/snacks/redcurry
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/greencurry
-/obj/item/weapon/reagent_containers/food/snacks/greencurry
-	name = "green curry"
+	name = "Green Curry"
+	path = /obj/item/weapon/reagent_containers/food/snacks/greencurry
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/yellowcurry
-/obj/item/weapon/reagent_containers/food/snacks/yellowcurry
-	name = "yellow curry"
+	name = "Yellow Curry"
+	path = /obj/item/weapon/reagent_containers/food/snacks/yellowcurry
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/bibimbap
-/obj/item/weapon/reagent_containers/food/snacks/bibimbap
-	name = "bibimbap bowl"
+	name = "Bibimbap Bowl"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bibimbap
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/lomein
-/obj/item/weapon/reagent_containers/food/snacks/lomein
 	name = "lo mein"
+	path = /obj/item/weapon/reagent_containers/food/snacks/lomein
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/friedrice
-/obj/item/weapon/reagent_containers/food/snacks/friedrice
 	name = "fried rice"
+	path = /obj/item/weapon/reagent_containers/food/snacks/friedrice
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/risotto
-/obj/item/weapon/reagent_containers/food/snacks/risotto
 	name = "risotto"
+	path = /obj/item/weapon/reagent_containers/food/snacks/risotto
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/risottoballs
-/obj/item/weapon/reagent_containers/food/snacks/risottoballs
 	name = "risotto balls"
+	path = /obj/item/weapon/reagent_containers/food/snacks/risottoballs
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/chickensandwich
-/obj/item/weapon/reagent_containers/food/snacks/chickenfillet
 	name = "chicken fillet sandwich"
+	path = /obj/item/weapon/reagent_containers/food/snacks/chickenfillet
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/friedmushroom
-/obj/item/weapon/reagent_containers/food/snacks/friedmushroom
 	name = "fried mushroom"
+	path = /obj/item/weapon/reagent_containers/food/snacks/friedmushroom
+	voice_order = list()
+	voice_temp = ""
 
-/datum/category_item/synthesizer/cooked/meatleaf
-/obj/item/weapon/reagent_containers/food/snacks/meatbun
+/datum/category_item/synthesizer/cooked/meatbun
 	name = "meat and leaf bun"
+	path = /obj/item/weapon/reagent_containers/food/snacks/meatbun
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/spicybun
-/obj/item/weapon/reagent_containers/food/snacks/spicedmeatbun
-	name = "char sui meat bun"
+	name = "Char Sui Meat Bun"
+	path = /obj/item/weapon/reagent_containers/food/snacks/spicedmeatbun
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/eggrice
-/obj/item/weapon/reagent_containers/food/snacks/omurice
-	name = "omelette rice (regular)"
+	name = "Omelette Rice (regular)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/omurice
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/eggriceheart
-	name = "omelette rice (heart)"
-	/obj/item/weapon/reagent_containers/food/snacks/omurice/heart
+	name = "Omelette Rice (heart)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/omurice/heart
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/cooked/eggriceface
-	name = "omelette rice (face)"
-	/obj/item/weapon/reagent_containers/food/snacks/omurice/face */
+	name = "Omelette Rice (face)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/omurice/face
+	voice_order = list()
+	voice_temp = ""
+
 /*********
 * Liquid *
 **********/
 
 /datum/category_item/synthesizer/liquid/liquidfood
-	name = "LiquidFood Ration"
+	name = "Liquid Ration (Generic)"
 	path = /obj/item/weapon/reagent_containers/food/snacks/liquidfood
 	voice_order = list("Liquid ration", "food drink", "Liquidfood")
 	voice_temp = "cold"
 
-//obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-//obj/item/weapon/reagent_containers/food/snacks/liquidvitamin,
+/datum/category_item/synthesizer/liquid/liquidprotein
+	name = "Liquid Ration (Protein)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/liquidprotein
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/liquid/liquidvitamin
+	name = "Liquid Ration (Vitamin)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/liquidvitamin
+	voice_order = list()
+	voice_temp = ""
+
+
 /**********
 * Dessert *
 ***********/
-/*
-/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly,
-/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly,
-/obj/item/weapon/reagent_containers/food/snacks/candiedapple,
-/obj/item/weapon/reagent_containers/food/snacks/applepie,
-/obj/item/weapon/reagent_containers/food/snacks/cherrypie,
-/obj/item/weapon/reagent_containers/food/snacks/appletart, */
+
+/datum/category_item/synthesizer/dessert/jelly_donut
+	name = "Donut (Jelly)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/cherry_donut
+	name = "Donut (Cherry)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly/cherryjelly
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/candyapple
+	name = "Candied Apple"
+	path = /obj/item/weapon/reagent_containers/food/snacks/candiedapple
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/applepie
+	name = "Pie (Apple)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/applepie
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/cherrypie
+	name = "Pie (Cherry)"
+	path = /obj/item/weapon/reagent_containers/food/snacks/cherrypie
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/appletart
+	name = "Apple Tart"
+	path = /obj/item/weapon/reagent_containers/food/snacks/appletart
+	voice_order = list()
+	voice_temp = ""
 
 /datum/category_item/synthesizer/dessert/cinnamonbun
 	name = "cinnamon bun"
@@ -494,67 +824,235 @@ path = /obj/item/weapon/reagent_containers/food/snacks/sandwich
 	voice_order = list("Cinnamon bun","sweetroll", "cinnabun")
 	voice_temp = "hot"
 
-/*
-/obj/item/weapon/reagent_containers/food/snacks/slice/carrotcake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/plaincake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/orangecake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/limecake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/lemoncake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/chocolatecake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/birthdaycake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/watermelonslice,
-/obj/item/weapon/reagent_containers/food/snacks/slice/applecake/filled,
-/obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie/filled,
-/obj/item/weapon/reagent_containers/food/snacks/keylimepieslice/filled,
-/obj/item/weapon/reagent_containers/food/snacks/browniesslice/filled,
-/obj/item/weapon/reagent_containers/food/snacks/skrellsnacks,
-/obj/item/weapon/reagent_containers/food/snacks/mint/admints,
-/obj/item/weapon/reagent_containers/food/snacks/sugarcookie,
-/obj/item/weapon/reagent_containers/food/snacks/custardbun
-	name = "custard bun"
-/obj/item/weapon/reagent_containers/food/snacks/honeybun
-	name = "honey bun"
-/obj/item/weapon/reagent_containers/food/snacks/honeytoast,
-/obj/item/weapon/reagent_containers/food/snacks/cookie,
-/obj/item/weapon/reagent_containers/food/snacks/fruitbar,
-/obj/item/weapon/reagent_containers/food/snacks/pie
-/obj/item/weapon/reagent_containers/food/snacks/amanita_pie
-/obj/item/weapon/reagent_containers/food/snacks/pancakes
-	name = "pancakes"
-/obj/item/weapon/reagent_containers/food/snacks/pancakes/berry
-/obj/item/weapon/reagent_containers/food/snacks/funnelcake
-/obj/item/weapon/reagent_containers/food/snacks/truffle
-/obj/item/weapon/reagent_containers/food/snacks/icecreamsandwich
-	name = "ice cream sandwich"
-/obj/item/weapon/reagent_containers/food/snacks/pisanggoreng
-	name = "pisang goreng" */
+/datum/category_item/synthesizer/dessert/carrotcake
+	name = "Carrot Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/carrotcake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/cheesecake
+	name = "Cheesecake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/cheesecake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/plaincake
+	name = "Plain Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/plaincake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/orangecake
+	name = "Orange Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/orangecake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/limecake
+	name = "Lime Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/limecake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/lemoncake
+	name = "Lemon Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/lemoncake/filled
+
+/datum/category_item/synthesizer/dessert/chocolatecake
+	name = "Chocolate Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/chocolatecake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/birthdaycake
+	name = "Birthday Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/birthdaycake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/watermelonslice
+	name = "Watermelon Slice"
+	path = /obj/item/weapon/reagent_containers/food/snacks/watermelonslice
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/applecake
+	name = "Apple Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/applecake/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/pumpkinpie
+	name = "Pumpkin Pie"
+	path = /obj/item/weapon/reagent_containers/food/snacks/slice/pumpkinpie/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/keylimepieslice
+	name = "Key Lime Pie"
+	path = /obj/item/weapon/reagent_containers/food/snacks/keylimepieslice/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/browniesslice
+	name = "Brownie"
+	path = /obj/item/weapon/reagent_containers/food/snacks/browniesslice/filled
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/skrellsnacks
+	name = "Skrell Snacks"
+	path = /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/admints
+	name = "Admints"
+	path = /obj/item/weapon/reagent_containers/food/snacks/mint/admints
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/sugarcookie
+	name = "Sugar Cookie"
+	path = /obj/item/weapon/reagent_containers/food/snacks/sugarcookie
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/custardbun
+	name = "Custard Bun"
+	path = /obj/item/weapon/reagent_containers/food/snacks/custardbun
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/honeybun
+	name = "Honey Bun"
+	path = /obj/item/weapon/reagent_containers/food/snacks/honeybun
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/honeytoast
+	name = "Honey Toast"
+	path = /obj/item/weapon/reagent_containers/food/snacks/honeytoast
+
+/datum/category_item/synthesizer/dessert/cookie
+	name = "Cookie"
+	path = /obj/item/weapon/reagent_containers/food/snacks/cookie
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/fruitbar
+	name = "Fruit Bar"
+	path = /obj/item/weapon/reagent_containers/food/snacks/fruitbar
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/pie
+	name = "Plain Pie"
+	path = /obj/item/weapon/reagent_containers/food/snacks/pie
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/amanita_pie
+	name = "Amanita Pie"
+	path = /obj/item/weapon/reagent_containers/food/snacks/amanita_pie
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/pancakes
+	name = "Pancakes"
+	path = /obj/item/weapon/reagent_containers/food/snacks/pancakes
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/berrypancake
+	name = "Berry Pancakes"
+	path = /obj/item/weapon/reagent_containers/food/snacks/pancakes/berry
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/funnelcake
+	name = "Funnel Cake"
+	path = /obj/item/weapon/reagent_containers/food/snacks/funnelcake
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/truffle
+	name = "Truffle"
+	path = /obj/item/weapon/reagent_containers/food/snacks/truffle
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/icecreamsandwich
+	name = "Ice Cream Sandwich"
+	path = /obj/item/weapon/reagent_containers/food/snacks/icecreamsandwich
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/dessert/pisanggoreng
+	name = "Pisang Goreng"
+	path = /obj/item/weapon/reagent_containers/food/snacks/pisanggoreng
+	voice_order = list()
+	voice_temp = ""
+
 /*********
 * Exotic *
 **********/
+
 /datum/category_item/synthesizer/exotic/hatchling_suprise
-	name = "hatchling suprise"
+	name = "Hatchling Suprise"
 	path = /obj/item/weapon/reagent_containers/food/snacks/hatchling_suprise
 	voice_order = list("hatchling surpise")
 	voice_temp = "hot"
 
-/*
-/obj/item/weapon/reagent_containers/food/snacks/red_sun_special
-	name = "red sun special"
-/obj/item/weapon/reagent_containers/food/snacks/riztizkzi_sea
-	name = "moghesian sea delight"
-/obj/item/weapon/reagent_containers/food/snacks/father_breakfast
-	name = "breakfast of champions"
-/obj/item/weapon/reagent_containers/food/snacks/bearburger
-	name = "bearburger"
-/obj/item/weapon/reagent_containers/food/snacks/namagashi
-	name = "Ryo-kucha Namagashi"
 
-/datum/category_item/synthesizer/exotic/micro
+/datum/category_item/synthesizer/exotic/red_sun_special
+	name = "Red Sun Special"
+	path = /obj/item/weapon/reagent_containers/food/snacks/red_sun_special
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/exotic/riztizkzi_sea
+	name = "Moghesian Sea Delight"
+	path = /obj/item/weapon/reagent_containers/food/snacks/riztizkzi_sea
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/exotic/father_breakfast
+	name = "Fatherly Breakfast"
+	path = /obj/item/weapon/reagent_containers/food/snacks/father_breakfast
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/exotic/bearburger
+	name = "Bear Burger"
+	path = /obj/item/weapon/reagent_containers/food/snacks/bearburger
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/exotic/namagashi
+	name = "Ryo-kucha Namagashi"
+	path = /obj/item/weapon/reagent_containers/food/snacks/namagashi
+	voice_order = list()
+	voice_temp = ""
+
+/datum/category_item/synthesizer/exotic/dionaroast
+	name = "Diona Roast"
+	path = /obj/item/weapon/reagent_containers/food/snacks/dionaroast
+	voice_order = list()
+	voice_temp = "hot"
+
+/datum/category_item/synthesizer/exotic/burnedmess
+	name = "Dubious Food"
+	path = /obj/item/weapon/reagent_containers/food/snacks/badrecipe
+	voice_order = list()
+	voice_temp = "hot"
+
+/*
+/datum/category_item/synthesizer/crewprint/micro
 	name = "Crew Replica"
-	path = /obj/item/weapon/holder/micro
+	path = /mob/living/carbon/human/mannequin
 	voice_order = list("micro", "crewmember", "crew member", "crew", "nerd", "snackrifice", "snacksized", "snack-sized", "snack sized")
-	voice_temp = findsnackrifice(
+//	voice_temp = "[findsnackrifice()]"
 
 /datum/category_item/synthesizer/exotic/micro/proc/findsnackrifice(mob/snack)
 	var/mob/snack

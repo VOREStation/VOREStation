@@ -406,6 +406,19 @@
 
 	feedback_add_details("admin_verb","TRadioSounds")
 
+/client/verb/toggle_synth_cookie()
+	set name = "Toggle Synth Cookie"
+	set category = "Preferences"
+	set desc = "Toggle being a valid consideration for a food synthesizer's crew print cookie."
+
+	var/pref_path = /datum/client_preference/synth_cookie
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/synth_cookie)) ? "permit" : "not permit"] snackable prints of yourself.")
+
+	feedback_add_details("admin_verb","SCookieToggle")
+
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
 	set name = "Toggle Examine Mode"

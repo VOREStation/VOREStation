@@ -46,6 +46,9 @@
 	var/activator = "computer"
 	var/list/voicephrase
 
+	//crew printing required stuff.
+	var/db_key
+	var/datum/transcore_db/our_db
 
 /obj/machinery/synthesizer/Initialize()
 	. = ..()
@@ -54,6 +57,7 @@
 		synthesizer_recipes = new()
 	wires = new(src)
 
+	our_db = SStranscore.db_by_key(db_key)
 	default_apply_parts()
 	RefreshParts()
 	update_icon()
@@ -71,6 +75,7 @@
 		synthesizer_recipes = new()
 	wires = new(src)
 
+	our_db = SStranscore.db_by_key(db_key)
 	default_apply_parts()
 	RefreshParts()
 	update_icon()
@@ -145,6 +150,13 @@
 	else
 		data["cartCurrentVolume"] = null
 		data["cartMaxVolume"] = null
+
+	var/bodyrecords_list_ui[0]
+	for(var/N in our_db.body_scans)
+		var/datum/transhuman/body_record/BR = our_db.body_scans[N]
+		bodyrecords_list_ui[++bodyrecords_list_ui.len] = list("name" = N, "recref" = "\ref[BR]")
+	data["bodyrecords"] = bodyrecords_list_ui
+
 	return data
 
 /obj/machinery/synthesizer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -168,16 +180,7 @@
 
 			//Check if we still have the materials.
 			var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
-			if(!istype(C))
-				to_chat(usr, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
-				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
-				return
-			if((!(C.reagents)) || (C.reagents.total_volume <= 0))
-				to_chat(usr, "<span class='notice'>The synthesizer cartridge is empty.</span>")
-				playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
-				return
-
-			else if(C.reagents && (C.reagents.total_volume >= 5))
+			if(src.check_cart(usr, C)
 				//Sanity check.
 				if(!making || !src)
 					return
@@ -231,6 +234,31 @@
 				update_icon() //turn off lights, please.
 			return TRUE
 
+		if("crewprint")
+			var/datum/category_item/synthesizer/crewprint = locate(params["crewprint"])
+			if(!istype(making))
+				return
+			if(making.hidden && !hacked)
+				return
+
+			//Check if we still have the materials.
+			var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
+			if(src.check_cart(usr, C)
+				//Sanity check.
+				if(!making || !src)
+					return
+				busy = TRUE
+				update_use_power(USE_POWER_ACTIVE)
+				update_icon() // light up time
+				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100)
+				C.reagents.remove_reagent("synthsoygreen", 5)
+				var/mob/living/carbon/human/dummy/mannequin = new()
+				client.prefs.dress_preview_mob(mannequin)
+				var/obj/item/weapon/reagent_containers/food/snacks/food_mimic = new(mannequin)
+				food_mimic_storage = food_mimic //I guess we need to have the item initalize first to get flavorings!
+				sleep(speed_grade) //machine go brrr
+				playsound(src, 'sound/machines/replicator_working.ogg', 150)
+
 	return FALSE
 
 /obj/machinery/synthesizer/update_icon()
@@ -276,6 +304,7 @@
 	else
 		set_light_on(FALSE)
 
+//Cartridge things
 /obj/machinery/synthesizer/proc/add_cart(obj/item/weapon/reagent_containers/synth_disp_cartridge/C, mob/user)
 	if(!Adjacent(user))
 		return //How did you even try?
@@ -290,7 +319,6 @@
 		if(user)
 			to_chat(user, "<span class='warning'>\The [src] only accepts smaller synthiziser cartridges.</span>")
 		return
-
 	var/obj/item/weapon/reagent_containers/synth_disp_cartridge/R = cart
 	if(cart && istype(R)) // let's hot swap that bad boy.
 		remove_cart(user)
@@ -324,6 +352,20 @@
 		user.put_in_hands(C) //pick up your trash, nerd. and don't hand it to the AI. They will be upset.
 	update_icon()
 	SStgui.update_uis(src)
+
+/obj/machinery/synthesizer/proc/check_cart(obj/item/weapon/reagent_containers/synth_disp_cartridge/C, mob/user)
+	if(!istype(C))
+			to_chat(user, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
+			playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
+			return FALSE
+	if((!(C.reagents)) || (C.reagents.total_volume <= 0))
+		to_chat(user, "<span class='notice'>The synthesizer cartridge is empty.</span>")
+		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
+		return FALSE
+
+	else if(C.reagents && (C.reagents.total_volume >= 5))
+		SStgui.update_uis(src)
+		return TRUE
 
 /obj/machinery/synthesizer/attackby(obj/item/W, mob/user)
 	if(busy)
