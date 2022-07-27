@@ -107,6 +107,8 @@
 
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
+	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)

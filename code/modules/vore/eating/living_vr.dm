@@ -234,6 +234,7 @@
 	P.vore_taste = src.vore_taste
 	P.vore_smell = src.vore_smell
 	P.permit_healbelly = src.permit_healbelly
+	P.noisy = src.noisy
 	P.show_vore_fx = src.show_vore_fx
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
@@ -273,6 +274,7 @@
 	vore_taste = P.vore_taste
 	vore_smell = P.vore_smell
 	permit_healbelly = P.permit_healbelly
+	noisy = P.noisy
 	show_vore_fx = P.show_vore_fx
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
@@ -677,6 +679,13 @@
 	if(is_type_in_list(I,item_vore_blacklist))
 		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
 		return
+
+	if(istype(I, /obj/item/device/paicard))
+		var/obj/item/device/paicard/palcard = I
+		var/mob/living/silicon/pai/pocketpal = palcard.pai
+		if(!pocketpal.devourable)
+			to_chat(src, "<span class='warning'>\The [pocketpal] doesn't allow you to eat it.</span>")
+			return
 
 	if(is_type_in_list(I,edible_trash) | adminbus_trash)
 		if(I.hidden_uplink)

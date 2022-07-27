@@ -1,12 +1,10 @@
-import { capitalize } from 'common/string';
-import { round } from 'common/math';
 import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
 import {
-  Box, 
-  Button, 
-  Flex, 
-  Icon, 
+  Box,
+  Button,
+  Flex,
+  Icon,
   LabeledList,
   ProgressBar,
   Section } from "../components";
@@ -124,7 +122,7 @@ export const EmbeddedController = (props, context) => {
 
 /**
  * Used for the upper status display that is used on 90% of these UIs.
- * @param {StatusDisplayProps} props 
+ * @param {StatusDisplayProps} props
  */
 const StatusDisplay = (props, context) => {
   const {
@@ -169,7 +167,7 @@ const StandardControls = (props, context) => {
       data["external_pressure"]
       - data["chamber_pressure"]) > 5);
   }
-  
+
   let internalForceSafe = true;
   if (data["exterior_status"] && data.exterior_status.state === "open") {
     internalForceSafe = false;
@@ -552,7 +550,7 @@ primaryRoutes["AirlockConsoleDocking"] = AirlockConsoleDocking;
  */
 const DockingConsoleSimple = (props, context) => {
   const { act, data } = useBackend(context);
- 
+
   let dockHatch = <Box color="bad">ERROR</Box>;
 
   if (data.exterior_status.state === "open") {
@@ -662,8 +660,8 @@ const DoorAccessConsole = (props, context) => {
           {/* Interior Button */}
           <Button
             icon={interiorOpen ? "arrow-left" : "exclamation-triangle"}
-            content={interiorOpen 
-              ? "Cycle To Exterior" 
+            content={interiorOpen
+              ? "Cycle To Exterior"
               : "Lock Exterior Door"}
             onClick={() => {
               act(interiorOpen ? "cycle_ext_door" : "force_ext");

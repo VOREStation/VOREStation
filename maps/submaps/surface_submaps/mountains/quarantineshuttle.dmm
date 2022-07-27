@@ -344,7 +344,7 @@
 	},
 /area/submap/cave/qShuttle)
 "aX" = (
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},

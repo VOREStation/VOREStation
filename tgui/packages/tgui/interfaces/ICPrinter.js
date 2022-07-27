@@ -1,10 +1,7 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
 import { useBackend, useSharedState } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Divider, Tabs, Stack } from "../components";
+import { Box, Button, LabeledList, ProgressBar, Section, Tabs, Stack } from "../components";
 import { Window } from "../layouts";
 import { sortBy, filter } from 'common/collections';
-import { logger } from '../logging';
 
 export const ICPrinter = (props, context) => {
   const { act, data } = useBackend(context);

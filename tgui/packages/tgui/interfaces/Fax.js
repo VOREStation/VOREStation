@@ -1,6 +1,5 @@
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Collapsible, Icon, Input, LabeledList, NoticeBox, Section, Tabs } from "../components";
+import { Box, Button, LabeledList, NoticeBox, Section } from "../components";
 import { Window } from "../layouts";
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';

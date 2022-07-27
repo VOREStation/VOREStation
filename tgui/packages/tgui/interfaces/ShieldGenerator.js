@@ -1,7 +1,7 @@
 import { useBackend } from "../backend";
 import { Window } from "../layouts";
 import { Fragment } from 'inferno';
-import { Button, Box, Flex, Section, LabeledList, NumberInput, AnimatedNumber, Icon } from "../components";
+import { Button, Box, Section, LabeledList, NumberInput, Icon } from "../components";
 import { round } from "common/math";
 import { formatSiUnit, formatPower } from "../format";
 import { FullscreenNotice } from './common/FullscreenNotice';

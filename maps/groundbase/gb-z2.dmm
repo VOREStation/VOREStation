@@ -5295,7 +5295,7 @@
 /area/groundbase/command/hop)
 "pA" = (
 /obj/structure/table/hardwoodtable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
@@ -9003,7 +9003,7 @@
 	pixel_y = 4
 	},
 /obj/item/weapon/circuitboard/teleporter,
-/obj/item/device/paicard{
+/obj/random/paicard{
 	pixel_x = 4
 	},
 /obj/item/device/taperecorder{

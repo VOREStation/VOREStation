@@ -1,11 +1,10 @@
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Slider, Table, Flex, AnimatedNumber } from '../components';
-import { formatPower } from '../format';
+import { Box, Button, LabeledList, ProgressBar, Section, Flex, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
 import { round } from 'common/math';
 import { toTitleCase } from 'common/string';
 
-// As of 2020-08-06 this isn't actually ever used, but it needs to exist because that's what tgui_modules expect 
+// As of 2020-08-06 this isn't actually ever used, but it needs to exist because that's what tgui_modules expect
 export const SupermatterMonitor = (props, context) => (
   <Window
     width={600}

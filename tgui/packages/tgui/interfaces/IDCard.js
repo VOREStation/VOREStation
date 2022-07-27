@@ -1,7 +1,6 @@
 import { Box, Flex, LabeledList, Section, Icon } from "../components";
 import { useBackend } from "../backend";
 import { Window } from "../layouts";
-import { Fragment } from "inferno";
 import { RankIcon } from "./common/RankIcon";
 
 export const IDCard = (props, context) => {

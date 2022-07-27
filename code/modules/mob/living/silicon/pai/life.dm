@@ -25,7 +25,9 @@
 
 	if(health <= 0)
 		death(null,"gives one shrill beep before falling lifeless.")
-
+	else if(health < maxHealth && istype(src.loc , /obj/item/device/paicard))
+		adjustBruteLoss(-0.5)
+		adjustFireLoss(-0.5)
 
 /mob/living/silicon/pai/updatehealth()
 	if(status_flags & GODMODE)

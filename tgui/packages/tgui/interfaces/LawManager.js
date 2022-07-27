@@ -1,7 +1,6 @@
-import { round } from 'common/math';
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState, useSharedState } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, Tabs, NoticeBox, Table, Input } from "../components";
+import { useBackend, useSharedState } from "../backend";
+import { Button, LabeledList, Section, Tabs, NoticeBox, Table, Input } from "../components";
 import { Window } from "../layouts";
 
 export const LawManager = (props, context) => {

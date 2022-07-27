@@ -1,7 +1,6 @@
 import { capitalize } from 'common/string';
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, ByondUi, Button, Flex, Icon, LabeledList, ProgressBar, Section, ColorBox } from "../components";
+import { Box, ByondUi, Button, Flex, LabeledList, Section, ColorBox } from "../components";
 import { Window } from "../layouts";
 
 export const BodyDesigner = (props, context) => {

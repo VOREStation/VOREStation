@@ -1,7 +1,5 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
 import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section, NoticeBox } from "../components";
+import { Box, Button, LabeledList, Section, NoticeBox } from "../components";
 import { Window } from "../layouts";
 
 export const BotanyEditor = (props, context) => {
@@ -75,7 +73,7 @@ export const BotanyEditor = (props, context) => {
                 Eject Target
               </Button>
             </Box>
-          ) || ( 
+          ) || (
             <NoticeBox warning>No target seed packet loaded.</NoticeBox>
           )}
         </Section>

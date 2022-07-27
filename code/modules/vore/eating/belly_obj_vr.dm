@@ -30,6 +30,7 @@
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
 	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
+	var/save_digest_mode = TRUE			// Whether this belly's digest mode persists across rounds
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
@@ -157,61 +158,67 @@
 
 //For serialization, keep this updated, required for bellies to save correctly.
 /obj/belly/vars_to_save()
-	return ..() + list(
-		"name",
-		"desc",
-		"absorbed_desc",
-		"vore_sound",
-		"vore_verb",
-		"human_prey_swallow_time",
-		"nonhuman_prey_swallow_time",
-		"emote_time",
-		"nutrition_percent",
-		"digest_brute",
-		"digest_burn",
-		"digest_oxy",
-		"immutable",
-		"can_taste",
-		"escapable",
-		"escapetime",
-		"digestchance",
-		"absorbchance",
-		"escapechance",
-		"transferchance",
-		"transferchance_secondary",
-		"transferlocation",
-		"transferlocation_secondary",
-		"bulge_size",
-		"display_absorbed_examine",
-		"shrink_grow_size",
-		"struggle_messages_outside",
-		"struggle_messages_inside",
-		"absorbed_struggle_messages_outside",
-		"absorbed_struggle_messages_inside",
-		"digest_messages_owner",
-		"digest_messages_prey",
-		"absorb_messages_owner",
-		"absorb_messages_prey",
-		"unabsorb_messages_owner",
-		"unabsorb_messages_prey",
-		"examine_messages",
-		"examine_messages_absorbed",
-		"emote_lists",
-		"emote_time",
-		"emote_active",
-		"mode_flags",
-		"item_digest_mode",
-		"contaminates",
-		"contamination_flavor",
-		"contamination_color",
-		"release_sound",
-		"fancy_vore",
-		"is_wet",
-		"wet_loop",
-		"belly_fullscreen",
-		"disable_hud",
-		"egg_type"
-		)
+	var/list/saving = list(
+	"name",
+	"desc",
+	"absorbed_desc",
+	"vore_sound",
+	"vore_verb",
+	"human_prey_swallow_time",
+	"nonhuman_prey_swallow_time",
+	"emote_time",
+	"nutrition_percent",
+	"digest_brute",
+	"digest_burn",
+	"digest_oxy",
+	"immutable",
+	"can_taste",
+	"escapable",
+	"escapetime",
+	"digestchance",
+	"absorbchance",
+	"escapechance",
+	"transferchance",
+	"transferchance_secondary",
+	"transferlocation",
+	"transferlocation_secondary",
+	"bulge_size",
+	"display_absorbed_examine",
+	"shrink_grow_size",
+	"struggle_messages_outside",
+	"struggle_messages_inside",
+	"absorbed_struggle_messages_outside",
+	"absorbed_struggle_messages_inside",
+	"digest_messages_owner",
+	"digest_messages_prey",
+	"absorb_messages_owner",
+	"absorb_messages_prey",
+	"unabsorb_messages_owner",
+	"unabsorb_messages_prey",
+	"examine_messages",
+	"examine_messages_absorbed",
+	"emote_lists",
+	"emote_time",
+	"emote_active",
+	"mode_flags",
+	"item_digest_mode",
+	"contaminates",
+	"contamination_flavor",
+	"contamination_color",
+	"release_sound",
+	"fancy_vore",
+	"is_wet",
+	"wet_loop",
+	"belly_fullscreen",
+	"disable_hud",
+	"egg_type",
+	"save_digest_mode"
+	)
+
+	if (save_digest_mode == 1)
+		return ..() + saving + list("digest_mode")
+
+	return ..() + saving
 
 /obj/belly/Initialize()
 	. = ..()
@@ -335,7 +342,7 @@
 		owner.update_icons()
 
 	//Print notifications/sound if necessary
-	if(!silent)
+	if(!silent && count)
 		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
 		var/soundfile
 		if(!fancy_vore)
@@ -1101,6 +1108,7 @@
 	dupe.egg_type = egg_type
 	dupe.emote_time = emote_time
 	dupe.emote_active = emote_active
+	dupe.save_digest_mode = save_digest_mode
 
 	//// Object-holding variables
 	//struggle_messages_outside - strings

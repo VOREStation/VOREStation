@@ -176,6 +176,7 @@
 			"digest_burn" = selected.digest_burn,
 			"digest_oxy" = selected.digest_oxy,
 			"bulge_size" = selected.bulge_size,
+			"save_digest_mode" = selected.save_digest_mode,
 			"display_absorbed_examine" = selected.display_absorbed_examine,
 			"shrink_grow_size" = selected.shrink_grow_size,
 			"emote_time" = selected.emote_time,
@@ -1073,6 +1074,9 @@
 			. = TRUE
 		if("b_disable_hud")
 			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
+			. = TRUE
+		if("b_save_digest_mode")
+			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode
 			. = TRUE
 		if("b_del")
 			var/alert = tgui_alert(usr, "Are you sure you want to delete your [lowertext(host.vore_selected.name)]?","Confirmation",list("Cancel","Delete"))

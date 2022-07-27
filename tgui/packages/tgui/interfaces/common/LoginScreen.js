@@ -1,5 +1,5 @@
 import { useBackend } from '../../backend';
-import { Box, Button, Flex, Icon, Section } from '../../components';
+import { Box, Button, Icon } from '../../components';
 import { FullscreenNotice } from './FullscreenNotice';
 
 /**
