@@ -44,7 +44,7 @@
 
 /datum/alt_title/medical_contractor
 	title = "Medical Contractor"
-	title_blurb = "A Medical Contractor can be anything from a full-blown doctor to the likes of a nurse or orderly, but isn't directly employed by NT proper.
+	title_blurb = "A Medical Contractor can be anything from a full-blown doctor to the likes of a nurse or orderly, but isn't directly employed by NT proper."
 
 
 /datum/job/chemist
