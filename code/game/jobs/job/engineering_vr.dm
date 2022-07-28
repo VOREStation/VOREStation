@@ -36,7 +36,7 @@
 
 /datum/alt_title/engineering_contractor
 	title = "Engineering Contractor"
-	title_blurb = "An Engineering Contractor fulfills similar duties to other engineers, but isn't directly employed by NT proper.
+	title_blurb = "An Engineering Contractor fulfills similar duties to other engineers, but isn't directly employed by NT proper."
 
 
 
