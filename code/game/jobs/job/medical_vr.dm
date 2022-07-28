@@ -27,7 +27,7 @@
 	pto_type = PTO_MEDICAL
 	alt_titles = list("Physician" = /datum/alt_title/physician, "Medical Practitioner" = /datum/alt_title/medical_practitioner, "Surgeon" = /datum/alt_title/surgeon,
 						"Emergency Physician" = /datum/alt_title/emergency_physician, "Nurse" = /datum/alt_title/nurse, "Orderly" = /datum/alt_title/orderly,
-						"Virologist" = /datum/alt_title/virologist, "Medical Contractor = /datum/alt_title/medical_contractor)
+						"Virologist" = /datum/alt_title/virologist, "Medical Contractor" = /datum/alt_title/medical_contractor)
 
 
 /datum/alt_title/physician
