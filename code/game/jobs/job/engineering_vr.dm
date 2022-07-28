@@ -27,12 +27,17 @@
 /datum/job/engineer
 	pto_type = PTO_ENGINEERING
 	alt_titles = list("Maintenance Technician" = /datum/alt_title/maint_tech, "Engine Technician" = /datum/alt_title/engine_tech,
-						"Electrician" = /datum/alt_title/electrician, "Construction Engineer" = /datum/alt_title/construction_engi)
+						"Electrician" = /datum/alt_title/electrician, "Construction Engineer" = /datum/alt_title/construction_engi, "Engineering Contractor" = /datum/alt_title/engineering_contractor)
 
 /datum/alt_title/construction_engi
 	title = "Construction Engineer"
 	title_blurb = "A Construction Engineer fulfills similar duties to other engineers, but usually occupies spare time with construction of extra facilities in dedicated areas or \
 					as additions to station layout."
+
+/datum/alt_title/engineering_contractor
+	title = "Engineering Contractor"
+	title_blurb = "An Engineering Contractor fulfills similar duties to other engineers, but isn't directly employed by NT proper.
+
 
 
 
