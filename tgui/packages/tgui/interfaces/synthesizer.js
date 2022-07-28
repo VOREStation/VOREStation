@@ -1,7 +1,7 @@
 import { flow } from 'common/fp';
 import { filter, sortBy } from 'common/collections';
 import { useBackend, useSharedState } from "../backend";
-import { Box, Button, Flex, Input, Section, Dropdown } from "../components";
+import { Button, Flex, Input, Section, Dropdown } from "../components";
 import { Window } from "../layouts";
 import { createSearch, toTitleCase } from 'common/string';
 

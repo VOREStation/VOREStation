@@ -180,7 +180,7 @@
 
 			//Check if we still have the materials.
 			var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
-			if(src.check_cart(usr, C)
+			if(src.check_cart(usr, C))
 				//Sanity check.
 				if(!making || !src)
 					return
@@ -189,8 +189,8 @@
 				update_icon() // light up time
 				playsound(src, 'sound/machines/replicator_input_ok.ogg', 100)
 				C.reagents.remove_reagent("synthsoygreen", 5)
-				var/obj/item/weapon/reagent_containers/food/snacks/food_mimic = new making.path(src)
-				food_mimic_storage = food_mimic //I guess we need to have the item initalize first to get flavorings!
+				var/obj/item/weapon/reagent_containers/food/snacks/food_mimic = new making.path(src) //Let's get this on a tray
+				food_mimic_storage = food_mimic //nice.
 				sleep(speed_grade) //machine go brrr
 				playsound(src, 'sound/machines/replicator_working.ogg', 150)
 
@@ -235,7 +235,7 @@
 			return TRUE
 
 		if("crewprint")
-			var/datum/category_item/synthesizer/crewprint = locate(params["crewprint"])
+			var/datum/category_item/synthesizer/making = locate(params["crewprint"])
 			if(!istype(making))
 				return
 			if(making.hidden && !hacked)
@@ -243,7 +243,7 @@
 
 			//Check if we still have the materials.
 			var/obj/item/weapon/reagent_containers/synth_disp_cartridge/C = cart
-			if(src.check_cart(usr, C)
+			if(src.check_cart(usr, C))
 				//Sanity check.
 				if(!making || !src)
 					return
@@ -355,9 +355,9 @@
 
 /obj/machinery/synthesizer/proc/check_cart(obj/item/weapon/reagent_containers/synth_disp_cartridge/C, mob/user)
 	if(!istype(C))
-			to_chat(user, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
-			playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
-			return FALSE
+		to_chat(user, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
+		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
+		return FALSE
 	if((!(C.reagents)) || (C.reagents.total_volume <= 0))
 		to_chat(user, "<span class='notice'>The synthesizer cartridge is empty.</span>")
 		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
