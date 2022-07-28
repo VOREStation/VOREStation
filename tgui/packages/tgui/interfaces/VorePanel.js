@@ -499,6 +499,7 @@ const VoreSelectedBellyOptions = (props, context) => {
     contaminate_flavor,
     contaminate_color,
     egg_type,
+    selective_preference,
     save_digest_mode,
   } = belly;
 
@@ -608,6 +609,12 @@ const VoreSelectedBellyOptions = (props, context) => {
               onClick={() => act('set_attribute', { attribute: 'b_egg_type' })}
               icon="pen"
               content={capitalize(egg_type)}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Selective Mode Preference">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_selective_mode_pref_toggle' })}
+              content={capitalize(selective_preference)}
             />
           </LabeledList.Item>
         </LabeledList>
@@ -1256,6 +1263,9 @@ const VoreUserPreferences = (props, context) => {
         </Flex.Item>
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.spontaneous_tf} />
+        </Flex.Item>
+        <Flex.Item basis="32%">
+          <Button fluid content="Slective Mode Preference" onClick={() => act('switch_selective_mode_pref')} />
         </Flex.Item>
       </Flex>
       <Section title="Aesthetic Preferences">

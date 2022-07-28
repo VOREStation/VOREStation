@@ -223,15 +223,35 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	id = DM_SELECT
 
 /datum/digest_mode/selective/process_mob(obj/belly/B, mob/living/L)
-	var/datum/digest_mode/tempmode = GLOB.digest_modes["Hold"]
+	var/datum/digest_mode/tempmode = GLOB.digest_modes[DM_HOLD]			// Default to Hold in case of big oof fallback
 	//if not absorbed, see if they're food
-	if(L.digestable)
-		tempmode = GLOB.digest_modes["Digest"]
-	//if they're indigestible, then try to absorb them
-	else if(L.absorbable)
-		tempmode = GLOB.digest_modes["Absorb"]
-	//if they're not absorbable, just drain
-	else
-		tempmode = GLOB.digest_modes["Drain"]
-	//finally, process the mob as if they were subject to the chosen mode
+	switch(L.selective_preference)										// First, we respect prey prefs
+		if(DM_DIGEST)
+			if(L.digestable)
+				tempmode = GLOB.digest_modes[DM_DIGEST]					// They want to be digested and can be, Digest
+			else
+				tempmode = GLOB.digest_modes[DM_DRAIN]					// They want to be digested but can't be! Drain.
+		if(DM_ABSORB)
+			if(L.absorbable)
+				tempmode = GLOB.digest_modes[DM_ABSORB]					// They want to be absorbed and can be. Absorb.
+			else
+				tempmode = GLOB.digest_modes[DM_DRAIN]					// They want to be absorbed but can't be! Drain.
+		if(DM_DRAIN)
+			tempmode = GLOB.digest_modes[DM_DRAIN]						// They want to be drained. Drain.
+		if(DM_DEFAULT)
+			switch(B.selective_preference)								// They don't actually care? Time for our own preference.
+				if(DM_DIGEST)
+					if(L.digestable)
+						tempmode = GLOB.digest_modes[DM_DIGEST]			// We prefer digestion and they're digestible? Digest
+					else if(L.absorbable)
+						tempmode = GLOB.digest_modes[DM_ABSORB]			// If not digestible, are they absorbable? Then absorb.
+					else
+						tempmode = GLOB.digest_modes[DM_DRAIN]			// Otherwise drain.
+				if(DM_ABSORB)
+					if(L.absorbable)
+						tempmode = GLOB.digest_modes[DM_ABSORB]			// We prefer absorption and they're absorbable? Absorb.
+					else if(L.digestable)
+						tempmode = GLOB.digest_modes[DM_DIGEST]			// If not absorbable, are they digestible? Then digest.
+					else
+						tempmode = GLOB.digest_modes[DM_DRAIN]			// Otherwise drain.
 	return tempmode.process_mob(B, L)
