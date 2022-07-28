@@ -280,7 +280,7 @@
 	voice_order = list("quiche")
 	voice_temp = "hot"
 
-/datum/category_item/synthesizer/breakfastmenu/poached egg
+/datum/category_item/synthesizer/breakfastmenu/poachedegg
 	name = "Egg (Poached)"
 	path = /obj/item/weapon/reagent_containers/food/snacks/poachedegg
 	voice_order = list("poached egg")
@@ -296,7 +296,7 @@
 	name = "Egg (Fried)"
 	path = /obj/item/weapon/reagent_containers/food/snacks/friedegg
 	voice_order = list("fried egg", "egg well")
-	voice_temp = ""
+	voice_temp = "hot"
 
 /datum/category_item/synthesizer/breakfastmenu/chiliedegg
 	name = "Egg (Chilied)"
@@ -720,7 +720,7 @@
 
 /datum/category_item/synthesizer/dessert/chocolate_donut
 	name = "Donut (Chocolate)"
-	path = /obj/item/weapon/reagent_containers/food/snacks/donut/chocolate
+	path = /obj/item/weapon/reagent_containers/food/snacks/donut/choc
 	voice_order = list("chocolate donut", "donut with chocolate")
 	voice_temp = "cold"
 
@@ -987,7 +987,7 @@
 	voice_order = list("xeno pie", "pie of xeno")
 	voice_temp = "hot"
 
-/datum/catagory_item/synthesizer/exotic/xenobreadslice
+/datum/category_item/synthesizer/exotic/xenobreadslice
 	name = "Xeno Bread (Slice)"
 	path = /obj/item/weapon/reagent_containers/food/snacks/sliceable/xenomeatbread
 	voice_order = list("meat bread slice", "slice of meat bread")

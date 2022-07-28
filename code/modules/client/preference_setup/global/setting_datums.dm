@@ -107,12 +107,20 @@ var/list/_client_preferences_by_type
 	key = "EMOTE_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
+
 /datum/client_preference/whisubtle_vis
 	description = "Whi/Subtles Ghost Visible"
 	key = "WHISUBTLE_VIS"
 	enabled_description = "Visible"
 	disabled_description = "Hidden"
 	enabled_by_default = FALSE
+
+/datum/client_preference/synth_cookie
+	description ="Synth Cookie Print"
+	key = "COOKIE_MAN"
+	enabled_description = "Allowed"
+	disabled_description = "Forbidden"
+
 //VOREStation Add End
 /datum/client_preference/weather_sounds
 	description ="Weather sounds"

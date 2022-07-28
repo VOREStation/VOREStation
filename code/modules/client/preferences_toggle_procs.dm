@@ -458,7 +458,7 @@
 	feedback_add_details("admin_verb","TSubtleSounds")
 
 /client/verb/toggle_synth_cookie()
-	set name = "Toggle Synth Cookie"
+	set name = "Toggle-Synth-Cookie"
 	set category = "Preferences"
 	set desc = "Toggle being a valid consideration for a food synthesizer's crew print cookie."
 
