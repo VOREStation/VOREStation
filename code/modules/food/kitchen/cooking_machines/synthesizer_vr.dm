@@ -234,7 +234,7 @@
 				update_icon() //turn off lights, please.
 			return TRUE
 
-		if("crewprint")
+/*		if("crewprint")
 			var/datum/category_item/synthesizer/making = locate(params["crewprint"])
 			if(!istype(making))
 				return
@@ -257,7 +257,7 @@
 				var/obj/item/weapon/reagent_containers/food/snacks/food_mimic = new(mannequin)
 				food_mimic_storage = food_mimic //I guess we need to have the item initalize first to get flavorings!
 				sleep(speed_grade) //machine go brrr
-				playsound(src, 'sound/machines/replicator_working.ogg', 150)
+				playsound(src, 'sound/machines/replicator_working.ogg', 150)*/
 
 	return FALSE
 
