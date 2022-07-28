@@ -675,7 +675,7 @@
 		var/list/selected = TLV["temperature"]
 		var/max_temperature = min(selected[3] - T0C, MAX_TEMPERATURE)
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
-		var/input_temperature = input(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C) as num|null
+		var/input_temperature = tgui_input_number(usr, "What temperature would you like the system to mantain? (Capped between [min_temperature] and [max_temperature]C)", "Thermostat Controls", target_temperature - T0C, max_temperature, min_temperature)
 		if(isnum(input_temperature))
 			if(input_temperature > max_temperature || input_temperature < min_temperature)
 				to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
@@ -729,7 +729,7 @@
 			var/env = params["env"]
 
 			var/name = params["var"]
-			var/value = input(usr, "New [name] for [env]:", name, TLV[env][name]) as num|null
+			var/value = tgui_input_number(usr, "New [name] for [env]:", name, TLV[env][name])
 			if(!isnull(value) && !..())
 				if(value < 0)
 					TLV[env][name] = -1

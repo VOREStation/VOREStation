@@ -144,6 +144,21 @@
     key = "squeaky"
     emote_message_3p = "squeaks."
     emote_sound = 'sound/items/drop/plushie.ogg'
+/decl/emote/audible/mothscream
+  key = "mothscream"
+  emote_message_3p ="screams"
+  emote_sound = 'sound/voice/moth/scream_moth.ogg'
+
+/decl/emote/audible/mothchitter
+  key = "mothchitter"
+  emote_message_3p = "chitters"
+  emote_sound = 'sound/voice/moth/moth_chitter.ogg'
+
+/decl/emote/audible/mothlaugh
+  key = "mothlaugh"
+  emote_message_3p = "laughs"
+  emote_sound = 'sound/voice/moth/moth_laugh.ogg'
+
 
 /decl/emote/audible/gyoh
     key = "gyoh"
@@ -193,22 +208,22 @@
     key = "coyawoo"
     emote_message_3p = "lets out a scraggly awoo."
     emote_sound = 'sound/voice/coyoteawoo.ogg'
-	
+
 /decl/emote/audible/coyawoo2
     key = "coyawoo2"
     emote_message_3p = "lets out a pronounced, scraggly awoo."
     emote_sound = 'sound/voice/coyoteawoo2.ogg'
-	
+
 /decl/emote/audible/coyawoo3
     key = "coyawoo3"
     emote_message_3p = "yaps and lets out a scraggly awoo."
     emote_sound = 'sound/voice/coyoteawoo3.ogg'
-	
+
 /decl/emote/audible/coyawoo4
     key = "coyawoo4"
     emote_message_3p = "yaps several times, and lets out a short, scraggly awoo."
     emote_sound = 'sound/voice/coyoteawoo4.ogg'
-	
+
 /decl/emote/audible/coyawoo5
     key = "coyawoo5"
     emote_message_3p = "lets out a scraggly, whine-awoo."

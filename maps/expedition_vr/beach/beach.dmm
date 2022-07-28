@@ -873,6 +873,10 @@
 "nD" = (
 /turf/simulated/mineral/ignore_mapgen,
 /area/tether_away/beach/water)
+"nP" = (
+/mob/living/simple_mob/animal/passive/fennec/faux,
+/turf/simulated/floor/wood,
+/area/tether_away/beach/resort/kitchen)
 "of" = (
 /obj/structure/table/woodentable,
 /obj/random/drinkbottle,
@@ -1345,16 +1349,16 @@
 /turf/simulated/floor/beach/sand/outdoors,
 /area/tether_away/beach/resort)
 "Bk" = (
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar,
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar,
 /obj/item/weapon/reagent_containers/food/condiment/small/sugar,
@@ -1363,10 +1367,10 @@
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
 /obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
-/obj/item/weapon/reagent_containers/food/condiment/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
+/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
 /obj/item/weapon/material/knife/butch,
 /obj/item/weapon/material/minihoe,
 /obj/item/weapon/material/knife/machete/hatchet,
@@ -11048,7 +11052,7 @@ ad
 ad
 ad
 ad
-ad
+nP
 ad
 ad
 ad

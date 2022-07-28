@@ -121,7 +121,7 @@
 
 /obj/structure/morgue/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/weapon/pen))
-		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
+		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null)
 		if (user.get_active_hand() != P)
 			return
 		if ((!in_range(src, usr) && src.loc != user))
@@ -249,7 +249,7 @@ GLOBAL_LIST_BOILERPLATE(all_crematoriums, /obj/structure/morgue/crematorium)
 
 /obj/structure/morgue/crematorium/attackby(P as obj, mob/user as mob)
 	if (istype(P, /obj/item/weapon/pen))
-		var/t = input(user, "What would you like the label to be?", text("[]", src.name), null)  as text
+		var/t = tgui_input_text(user, "What would you like the label to be?", text("[]", src.name), null)
 		if (user.get_active_hand() != P)
 			return
 		if ((!in_range(src, usr) > 1 && src.loc != user))

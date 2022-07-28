@@ -53,6 +53,8 @@ GLOBAL_DATUM_INIT(openspace_backdrop_one_for_all, /atom/movable/openspace_backdr
 	pathweight = 100000 //Seriously, don't try and path over this one numbnuts
 	dynamic_lighting = 0 // Someday lets do proper lighting z-transfer.  Until then we are leaving this off so it looks nicer.
 	can_build_into_floor = TRUE
+	can_dirty = FALSE // It's open space
+	can_start_dirty = FALSE
 
 /turf/simulated/open/vacuum
 	oxygen = 0

@@ -24,21 +24,10 @@ export const Smes = (props, context) => {
     outputLevelMax,
     outputUsed,
   } = data;
-  const inputState = (
-    capacityPercent >= 100 && 'good'
-    || inputting && 'average'
-    || 'bad'
-  );
-  const outputState = (
-    outputting && 'good'
-    || charge > 0 && 'average'
-    || 'bad'
-  );
+  const inputState = (capacityPercent >= 100 && 'good') || (inputting && 'average') || 'bad';
+  const outputState = (outputting && 'good') || (charge > 0 && 'average') || 'bad';
   return (
-    <Window
-      width={340}
-      height={350}
-      resizable>
+    <Window width={340} height={350} resizable>
       <Window.Content>
         <Section title="Stored Energy">
           <ProgressBar
@@ -48,8 +37,7 @@ export const Smes = (props, context) => {
               average: [0.15, 0.5],
               bad: [-Infinity, 0.15],
             }}>
-            {round(charge/(1000*60), 1)} kWh / {round(capacity/(1000*60))} kWh
-            ({capacityPercent}%)
+            {round(charge / (1000 * 60), 1)} kWh / {round(capacity / (1000 * 60))} kWh ({capacityPercent}%)
           </ProgressBar>
         </Section>
         <Section title="Input">
@@ -65,9 +53,7 @@ export const Smes = (props, context) => {
                 </Button>
               }>
               <Box color={inputState}>
-                {capacityPercent >= 100 && 'Fully Charged'
-                  || inputting && 'Charging'
-                  || 'Not Charging'}
+                {(capacityPercent >= 100 && 'Fully Charged') || (inputting && 'Charging') || 'Not Charging'}
               </Box>
             </LabeledList.Item>
             <LabeledList.Item label="Target Input">
@@ -76,15 +62,21 @@ export const Smes = (props, context) => {
                   <Button
                     icon="fast-backward"
                     disabled={inputLevel === 0}
-                    onClick={() => act('input', {
-                      target: 'min',
-                    })} />
+                    onClick={() =>
+                      act('input', {
+                        target: 'min',
+                      })
+                    }
+                  />
                   <Button
                     icon="backward"
                     disabled={inputLevel === 0}
-                    onClick={() => act('input', {
-                      adjust: -10000,
-                    })} />
+                    onClick={() =>
+                      act('input', {
+                        adjust: -10000,
+                      })
+                    }
+                  />
                 </Flex.Item>
                 <Flex.Item grow={1} mx={1}>
                   <Slider
@@ -94,30 +86,37 @@ export const Smes = (props, context) => {
                     maxValue={inputLevelMax / POWER_MUL}
                     step={5}
                     stepPixelSize={4}
-                    format={value => formatPower(value * POWER_MUL, 1)}
-                    onDrag={(e, value) => act('input', {
-                      target: value * POWER_MUL,
-                    })} />
+                    format={(value) => formatPower(value * POWER_MUL, 1)}
+                    onDrag={(e, value) =>
+                      act('input', {
+                        target: value * POWER_MUL,
+                      })
+                    }
+                  />
                 </Flex.Item>
                 <Flex.Item>
                   <Button
                     icon="forward"
                     disabled={inputLevel === inputLevelMax}
-                    onClick={() => act('input', {
-                      adjust: 10000,
-                    })} />
+                    onClick={() =>
+                      act('input', {
+                        adjust: 10000,
+                      })
+                    }
+                  />
                   <Button
                     icon="fast-forward"
                     disabled={inputLevel === inputLevelMax}
-                    onClick={() => act('input', {
-                      target: 'max',
-                    })} />
+                    onClick={() =>
+                      act('input', {
+                        target: 'max',
+                      })
+                    }
+                  />
                 </Flex.Item>
               </Flex>
             </LabeledList.Item>
-            <LabeledList.Item label="Available">
-              {formatPower(inputAvailable)}
-            </LabeledList.Item>
+            <LabeledList.Item label="Available">{formatPower(inputAvailable)}</LabeledList.Item>
           </LabeledList>
         </Section>
         <Section title="Output">
@@ -132,13 +131,7 @@ export const Smes = (props, context) => {
                   {outputAttempt ? 'On' : 'Off'}
                 </Button>
               }>
-              <Box color={outputState}>
-                {outputting
-                  ? 'Sending'
-                  : charge > 0
-                    ? 'Not Sending'
-                    : 'No Charge'}
-              </Box>
+              <Box color={outputState}>{outputting ? 'Sending' : charge > 0 ? 'Not Sending' : 'No Charge'}</Box>
             </LabeledList.Item>
             <LabeledList.Item label="Target Output">
               <Flex inline width="100%">
@@ -146,15 +139,21 @@ export const Smes = (props, context) => {
                   <Button
                     icon="fast-backward"
                     disabled={outputLevel === 0}
-                    onClick={() => act('output', {
-                      target: 'min',
-                    })} />
+                    onClick={() =>
+                      act('output', {
+                        target: 'min',
+                      })
+                    }
+                  />
                   <Button
                     icon="backward"
                     disabled={outputLevel === 0}
-                    onClick={() => act('output', {
-                      adjust: -10000,
-                    })} />
+                    onClick={() =>
+                      act('output', {
+                        adjust: -10000,
+                      })
+                    }
+                  />
                 </Flex.Item>
                 <Flex.Item grow={1} mx={1}>
                   <Slider
@@ -163,30 +162,37 @@ export const Smes = (props, context) => {
                     maxValue={outputLevelMax / POWER_MUL}
                     step={5}
                     stepPixelSize={4}
-                    format={value => formatPower(value * POWER_MUL, 1)}
-                    onDrag={(e, value) => act('output', {
-                      target: value * POWER_MUL,
-                    })} />
+                    format={(value) => formatPower(value * POWER_MUL, 1)}
+                    onDrag={(e, value) =>
+                      act('output', {
+                        target: value * POWER_MUL,
+                      })
+                    }
+                  />
                 </Flex.Item>
                 <Flex.Item>
                   <Button
                     icon="forward"
                     disabled={outputLevel === outputLevelMax}
-                    onClick={() => act('output', {
-                      adjust: 10000,
-                    })} />
+                    onClick={() =>
+                      act('output', {
+                        adjust: 10000,
+                      })
+                    }
+                  />
                   <Button
                     icon="fast-forward"
                     disabled={outputLevel === outputLevelMax}
-                    onClick={() => act('output', {
-                      target: 'max',
-                    })} />
+                    onClick={() =>
+                      act('output', {
+                        target: 'max',
+                      })
+                    }
+                  />
                 </Flex.Item>
               </Flex>
             </LabeledList.Item>
-            <LabeledList.Item label="Outputting">
-              {formatPower(outputUsed)}
-            </LabeledList.Item>
+            <LabeledList.Item label="Outputting">{formatPower(outputUsed)}</LabeledList.Item>
           </LabeledList>
         </Section>
       </Window.Content>

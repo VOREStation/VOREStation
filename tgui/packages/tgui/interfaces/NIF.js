@@ -1,7 +1,7 @@
 import { Fragment } from 'inferno';
-import { useBackend, useLocalState } from "../backend";
-import { Box, Button, LabeledList, ProgressBar, Modal, Section, Dropdown, AnimatedNumber, NoticeBox, Table } from "../components";
-import { Window } from "../layouts";
+import { useBackend, useLocalState } from '../backend';
+import { Box, Button, LabeledList, ProgressBar, Modal, Section, Dropdown, AnimatedNumber, NoticeBox, Table } from '../components';
+import { Window } from '../layouts';
 
 const NIF_WORKING = 0;
 const NIF_POWFAIL = 1;
@@ -9,27 +9,15 @@ const NIF_TEMPFAIL = 2;
 const NIF_INSTALLING = 3;
 const NIF_PREINSTALL = 4;
 
-const validThemes = [
-  "abductor",
-  "cardtable",
-  "hackerman",
-  "malfunction",
-  "ntos",
-  "paper",
-  "retro",
-  "syndicate",
-];
+const validThemes = ['abductor', 'cardtable', 'hackerman', 'malfunction', 'ntos', 'paper', 'retro', 'syndicate'];
 
 export const NIF = (props, context) => {
   const { act, config, data } = useBackend(context);
 
-  const {
-    theme,
-    last_notification,
-  } = data;
+  const { theme, last_notification } = data;
 
-  const [settingsOpen, setSettingsOpen] = useLocalState(context, "settingsOpen", false);
-  const [viewingModule, setViewing] = useLocalState(context, "viewingModule", null);
+  const [settingsOpen, setSettingsOpen] = useLocalState(context, 'settingsOpen', false);
+  const [viewingModule, setViewing] = useLocalState(context, 'viewingModule', null);
 
   return (
     <Window theme={theme} width={500} height={400} resizable>
@@ -45,7 +33,8 @@ export const NIF = (props, context) => {
                     icon="times"
                     tooltip="Dismiss"
                     tooltipPosition="left"
-                    onClick={() => act("dismissNotification")} />
+                    onClick={() => act('dismissNotification')}
+                  />
                 </Table.Cell>
               </Table.Row>
             </Table>
@@ -53,51 +42,68 @@ export const NIF = (props, context) => {
         )}
         {!!viewingModule && (
           <Modal m={1} p={0} color="label">
-            <Section m={0} title={viewingModule.name} buttons={
-              <Fragment>
-                <Button.Confirm
-                  icon="ban"
-                  color="bad"
-                  content="Uninstall"
-                  confirmIcon="ban"
-                  confirmContent={"Uninstall " + viewingModule.name + "?"}
-                  onClick={() => {
-                    act("uninstall", { module: viewingModule.ref });
-                    setViewing(null);
-                  }} />
-                <Button
-                  icon="window-close"
-                  onClick={() => setViewing(null)} />
-              </Fragment>
-            }>
+            <Section
+              m={0}
+              title={viewingModule.name}
+              buttons={
+                <Fragment>
+                  <Button.Confirm
+                    icon="ban"
+                    color="bad"
+                    content="Uninstall"
+                    confirmIcon="ban"
+                    confirmContent={'Uninstall ' + viewingModule.name + '?'}
+                    onClick={() => {
+                      act('uninstall', { module: viewingModule.ref });
+                      setViewing(null);
+                    }}
+                  />
+                  <Button icon="window-close" onClick={() => setViewing(null)} />
+                </Fragment>
+              }>
               <Box>{viewingModule.desc}</Box>
               <Box>
-                It consumes <Box color="good" inline>{viewingModule.p_drain}</Box> energy units while installed,
-                and <Box color="average" inline>{viewingModule.a_drain}</Box> additionally while active.
+                It consumes{' '}
+                <Box color="good" inline>
+                  {viewingModule.p_drain}
+                </Box>{' '}
+                energy units while installed, and{' '}
+                <Box color="average" inline>
+                  {viewingModule.a_drain}
+                </Box>{' '}
+                additionally while active.
               </Box>
-              <Box color={viewingModule.illegal ? "bad" : "good"}>
-                It is {viewingModule.illegal ? "NOT " : ""}
-                a legal software package.
+              <Box color={viewingModule.illegal ? 'bad' : 'good'}>
+                It is {viewingModule.illegal ? 'NOT ' : ''}a legal software package.
               </Box>
               <Box>
-                The MSRP of the package is <Box color="good" inline>{viewingModule.cost}₮.</Box>
+                The MSRP of the package is{' '}
+                <Box color="good" inline>
+                  {viewingModule.cost}₮.
+                </Box>
               </Box>
               <Box>
                 The difficulty to construct the associated implant is&nbsp;
-                <Box color="good" inline>Rating {viewingModule.wear}</Box>.
+                <Box color="good" inline>
+                  Rating {viewingModule.wear}
+                </Box>
+                .
               </Box>
             </Section>
           </Modal>
         )}
-        <Section title={"Welcome to your NIF, " + config.user.name} buttons={
-          <Button
-            icon="cogs"
-            tooltip="Settings"
-            tooltipPosition="bottom-end"
-            selected={settingsOpen}
-            onClick={() => setSettingsOpen(!settingsOpen)} />
-        }>
-          {settingsOpen && <NIFSettings /> || <NIFMain setViewing={setViewing} />}
+        <Section
+          title={'Welcome to your NIF, ' + config.user.name}
+          buttons={
+            <Button
+              icon="cogs"
+              tooltip="Settings"
+              tooltipPosition="bottom-end"
+              selected={settingsOpen}
+              onClick={() => setSettingsOpen(!settingsOpen)}
+            />
+          }>
+          {(settingsOpen && <NIFSettings />) || <NIFMain setViewing={setViewing} />}
         </Section>
       </Window.Content>
     </Window>
@@ -108,57 +114,48 @@ const getNifCondition = (nif_stat, nif_percent) => {
   switch (nif_stat) {
     case NIF_WORKING:
       if (nif_percent < 25) {
-        return "Service Needed Soon";
+        return 'Service Needed Soon';
       } else {
-        return "Operating Normally";
+        return 'Operating Normally';
       }
       break;
     case NIF_POWFAIL:
-      return "Insufficient Energy!";
+      return 'Insufficient Energy!';
       break;
     case NIF_TEMPFAIL:
-      return "System Failure!";
+      return 'System Failure!';
       break;
     case NIF_INSTALLING:
-      return "Adapting To User";
+      return 'Adapting To User';
       break;
   }
-  return "Unknown";
+  return 'Unknown';
 };
 
 const getNutritionText = (nutrition, isSynthetic) => {
   if (isSynthetic) {
     if (nutrition >= 450) {
-      return "Overcharged";
+      return 'Overcharged';
     } else if (nutrition >= 250) {
-      return "Good Charge";
+      return 'Good Charge';
     }
-    return "Low Charge";
+    return 'Low Charge';
   }
 
   if (nutrition >= 250) {
-    return "NIF Power Requirement met.";
+    return 'NIF Power Requirement met.';
   } else if (nutrition >= 150) {
-    return "Fluctuations in available power.";
+    return 'Fluctuations in available power.';
   }
-  return "Power failure imminent.";
+  return 'Power failure imminent.';
 };
 
 const NIFMain = (props, context) => {
   const { act, config, data } = useBackend(context);
 
-  const {
-    nif_percent,
-    nif_stat,
-    last_notification,
-    nutrition,
-    isSynthetic,
-    modules,
-  } = data;
+  const { nif_percent, nif_stat, last_notification, nutrition, isSynthetic, modules } = data;
 
-  const {
-    setViewing,
-  } = props;
+  const { setViewing } = props;
 
   return (
     <Box>
@@ -173,10 +170,11 @@ const NIFMain = (props, context) => {
               average: [25, 50],
               bad: [-Infinity, 0],
             }}>
-            {getNifCondition(nif_stat, nif_percent)} (<AnimatedNumber value={nif_percent} />%)
+            {getNifCondition(nif_stat, nif_percent)} (<AnimatedNumber value={nif_percent} />
+            %)
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label={"NIF Power"}>
+        <LabeledList.Item label={'NIF Power'}>
           <ProgressBar
             value={nutrition}
             minValue={0}
@@ -192,7 +190,7 @@ const NIFMain = (props, context) => {
       </LabeledList>
       <Section level={2} title="NIFSoft Modules" mt={1}>
         <LabeledList>
-          {modules.map(module => (
+          {modules.map((module) => (
             <LabeledList.Item
               label={module.name}
               key={module.ref}
@@ -205,25 +203,24 @@ const NIFMain = (props, context) => {
                     confirmIcon="trash"
                     tooltip="Uninstall Module"
                     tooltipPosition="left"
-                    onClick={() => act("uninstall", { module: module.ref })} />
+                    onClick={() => act('uninstall', { module: module.ref })}
+                  />
                   <Button
                     icon="search"
                     onClick={() => setViewing(module)}
                     tooltip="View Information"
-                    tooltipPosition="left" />
+                    tooltipPosition="left"
+                  />
                 </Fragment>
               }>
-              {module.activates && (
+              {(module.activates && (
                 <Button
                   fluid
                   selected={module.active}
                   content={module.stat_text}
-                  onClick={() => act("toggle_module", { module: module.ref })} />
-              ) || (
-                <Box>
-                  {module.stat_text}
-                </Box>
-              )}
+                  onClick={() => act('toggle_module', { module: module.ref })}
+                />
+              )) || <Box>{module.stat_text}</Box>}
             </LabeledList.Item>
           ))}
         </LabeledList>
@@ -235,9 +232,7 @@ const NIFMain = (props, context) => {
 const NIFSettings = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    theme,
-  } = data;
+  const { theme } = data;
 
   return (
     <LabeledList>
@@ -247,7 +242,8 @@ const NIFSettings = (props, context) => {
           placeholder="Default"
           selected={theme}
           options={validThemes}
-          onSelected={val => act("setTheme", { theme: val })} />
+          onSelected={(val) => act('setTheme', { theme: val })}
+        />
       </LabeledList.Item>
     </LabeledList>
   );

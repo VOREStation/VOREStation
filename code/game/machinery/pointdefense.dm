@@ -94,7 +94,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 
 /obj/machinery/pointdefense_control/attackby(var/obj/item/W, var/mob/user)
 	if(W?.is_multitool())
-		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
+		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			// Check for duplicate controllers with this ID
 			for(var/obj/machinery/pointdefense_control/PC as anything in pointdefense_controllers)
@@ -211,7 +211,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 
 /obj/machinery/power/pointdefense/attackby(var/obj/item/W, var/mob/user)
 	if(W?.is_multitool())
-		var/new_ident = input(user, "Enter a new ident tag.", "[src]", id_tag) as null|text
+		var/new_ident = tgui_input_text(user, "Enter a new ident tag.", "[src]", id_tag)
 		if(new_ident && new_ident != id_tag && user.Adjacent(src) && CanInteract(user, GLOB.tgui_physical_state))
 			to_chat(user, "<span class='notice'>You register [src] with the [new_ident] network.</span>")
 			id_tag = new_ident

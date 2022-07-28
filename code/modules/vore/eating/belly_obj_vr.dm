@@ -378,6 +378,9 @@
 		slip.slip_protect = world.time + 25 // This is to prevent slipping back into your pred if they stand on soap or something.
 	//Place them into our drop_location
 	M.forceMove(drop_location())
+	if(ismob(M))
+		var/mob/ourmob = M
+		ourmob.reset_view(null)
 	items_preserved -= M
 
 	//Special treatment for absorbed prey
@@ -416,6 +419,10 @@
 			soundfile = fancy_release_sounds[release_sound]
 		if(soundfile)
 			playsound(src, soundfile, vol = 100, vary = 1, falloff = VORE_SOUND_FALLOFF, preference = /datum/client_preference/eating_noises, volume_channel = VOLUME_CHANNEL_VORE)
+	//Should fix your view not following you out of mobs sometimes!
+	if(ismob(M))
+		var/mob/ourmob = M
+		ourmob.reset_view(null)
 
 	return 1
 
@@ -429,6 +436,9 @@
 		prey.buckled.unbuckle_mob()
 
 	prey.forceMove(src)
+	if(ismob(prey))
+		var/mob/ourmob = prey
+		ourmob.reset_view(owner)
 	owner.updateVRPanel()
 	if(isanimal(owner))
 		owner.update_icon()
@@ -571,6 +581,9 @@
 		else if((type == "im_digest" || type == "im_hold" || type == "im_holdabsorbed" || type == "im_absorb" || type == "im_heal" || type == "im_drain" || type == "im_steal" || type == "im_egg" || type == "im_shrink" || type == "im_grow" || type == "im_unabsorb") && (length(raw_list[i]) > 510 || length(raw_list[i]) < 10))
 			raw_list.Cut(i,i)
 			log_debug("[owner] tried to set [lowertext(name)] idle message with >501 or <10 char message")
+		else if((type == "em" || type == "ema") && (length(raw_list[i]) > 260 || length(raw_list[i]) < 10))
+			raw_list.Cut(i,i)
+			log_debug("[owner] tried to set [lowertext(name)] examine message with >260 or <10 char message")
 		else
 			raw_list[i] = readd_quotes(raw_list[i])
 			//Also fix % sign for var replacement
@@ -722,6 +735,10 @@
 	//This is probably already the case, but for sub-prey, it won't be.
 	if(M.loc != src)
 		M.forceMove(src)
+
+	if(ismob(M))
+		var/mob/ourmob = M
+		ourmob.reset_view(owner)
 
 	//Seek out absorbed prey of the prey, absorb them too.
 	//This in particular will recurse oddly because if there is absorbed prey of prey of prey...
@@ -1033,6 +1050,9 @@
 	if(!(content in src) || !istype(target))
 		return
 	content.forceMove(target)
+	if(ismob(content))
+		var/mob/ourmob = content
+		ourmob.reset_view(owner)
 	if(isitem(content))
 		var/obj/item/I = content
 		if(istype(I,/obj/item/weapon/card/id))

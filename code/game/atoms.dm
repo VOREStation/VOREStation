@@ -27,7 +27,7 @@
 
 	// Overlays
 	///Our local copy of (non-priority) overlays without byond magic. Use procs in SSoverlays to manipulate
-	var/list/our_overlays	
+	var/list/our_overlays
 	///Overlays that should remain on top and not normally removed when using cut_overlay functions, like c4.
 	var/list/priority_overlays
 	///vis overlays managed by SSvis_overlays to automaticaly turn them like other overlays
@@ -35,7 +35,7 @@
 
 	///Our local copy of filter data so we can add/remove it
 	var/list/filter_data
-	
+
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 	// Track if we are already had initialize() called to prevent double-initialization.
@@ -225,7 +225,7 @@
 		else
 			f_name += "oil-stained [name][infix]."
 
-	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", desc)
+	var/list/output = list("\icon[src.examine_icon()][bicon(src)] That's [f_name] [suffix]", desc)
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
@@ -681,7 +681,7 @@
 	if(!isnull(.))
 		datum_flags |= DF_VAR_EDITED
 		return
-		
+
 	. = ..()
 
 /atom/proc/atom_say(message)
@@ -716,7 +716,7 @@
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
 
-/atom/proc/get_visible_gender()
+/atom/proc/get_visible_gender(mob/user, force)
 	return gender
 
 /atom/proc/interact(mob/user)

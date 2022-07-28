@@ -1,9 +1,9 @@
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, LabeledList, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, Flex, LabeledList, Section } from '../components';
+import { Window } from '../layouts';
 import { decodeHtmlEntities } from 'common/string';
-import { formatPower } from "../format";
+import { formatPower } from '../format';
 
 export const ICCircuit = (props, context) => {
   const { act, data } = useBackend(context);
@@ -25,64 +25,58 @@ export const ICCircuit = (props, context) => {
   return (
     <Window width={600} height={400} resizable title={displayed_name}>
       <Window.Content scrollable>
-        <Section title="Stats" buttons={
-          <Fragment>
-            <Button onClick={() => act("rename")}>Rename</Button>
-            <Button onClick={() => act("scan")}>Scan with Device</Button>
-            <Button onClick={() => act("remove")}>Remove</Button>
-          </Fragment>
-        }>
+        <Section
+          title="Stats"
+          buttons={
+            <Fragment>
+              <Button onClick={() => act('rename')}>Rename</Button>
+              <Button onClick={() => act('scan')}>Scan with Device</Button>
+              <Button onClick={() => act('remove')}>Remove</Button>
+            </Fragment>
+          }>
           <LabeledList>
-            <LabeledList.Item label="Complexity">
-              {complexity}
-            </LabeledList.Item>
-            {power_draw_idle && (
-              <LabeledList.Item label="Power Draw (Idle)">
-                {formatPower(power_draw_idle)}
-              </LabeledList.Item>
-            ) || null}
-            {power_draw_per_use && (
-              <LabeledList.Item label="Power Draw (Active)">
-                {formatPower(power_draw_per_use)}
-              </LabeledList.Item>
-            ) || null}
+            <LabeledList.Item label="Complexity">{complexity}</LabeledList.Item>
+            {(power_draw_idle && (
+              <LabeledList.Item label="Power Draw (Idle)">{formatPower(power_draw_idle)}</LabeledList.Item>
+            )) ||
+              null}
+            {(power_draw_per_use && (
+              <LabeledList.Item label="Power Draw (Active)">{formatPower(power_draw_per_use)}</LabeledList.Item>
+            )) ||
+              null}
           </LabeledList>
           {extended_desc}
         </Section>
         <Section title="Circuit">
           <Flex textAlign="center" spacing={1}>
-            {inputs.length && (
+            {(inputs.length && (
               <Flex.Item grow={1}>
                 <Section title="Inputs">
                   <ICIODisplay list={inputs} />
                 </Section>
               </Flex.Item>
-            ) || null}
-            <Flex.Item basis={(inputs.length && outputs.length)
-              ? "33%"
-              : (inputs.length || outputs.length)
-                ? "45%"
-                : "100%"}>
+            )) ||
+              null}
+            <Flex.Item
+              basis={inputs.length && outputs.length ? '33%' : inputs.length || outputs.length ? '45%' : '100%'}>
               <Section title={displayed_name} mb={1}>
-                <Box>
-                  {desc}
-                </Box>
+                <Box>{desc}</Box>
               </Section>
             </Flex.Item>
-            {outputs.length && (
+            {(outputs.length && (
               <Flex.Item grow={1}>
                 <Section title="Outputs">
                   <ICIODisplay list={outputs} />
                 </Section>
               </Flex.Item>
-            ) || null}
+            )) ||
+              null}
           </Flex>
           <Section title="Triggers">
-            {activators.map(activator => (
+            {activators.map((activator) => (
               <LabeledList.Item key={activator.name} label={activator.name}>
-                <Button
-                  onClick={() => act("pin_name", { pin: activator.ref })}>
-                  {activator.pulse_out ? "<PULSE OUT>" : "<PULSE IN>"}
+                <Button onClick={() => act('pin_name', { pin: activator.ref })}>
+                  {activator.pulse_out ? '<PULSE OUT>' : '<PULSE IN>'}
                 </Button>
                 <ICLinkDisplay pin={activator} />
               </LabeledList.Item>
@@ -97,20 +91,14 @@ export const ICCircuit = (props, context) => {
 const ICIODisplay = (props, context) => {
   const { act } = useBackend(context);
 
-  const {
-    list,
-  } = props;
+  const { list } = props;
 
-  return list.map(iopin => (
+  return list.map((iopin) => (
     <Box key={iopin.ref}>
-      <Button
-        onClick={() => act("pin_name", { pin: iopin.ref })}>
+      <Button onClick={() => act('pin_name', { pin: iopin.ref })}>
         {decodeHtmlEntities(iopin.type)}: {iopin.name}
       </Button>
-      <Button
-        onClick={() => act("pin_data", { pin: iopin.ref })}>
-        {iopin.data}
-      </Button>
+      <Button onClick={() => act('pin_data', { pin: iopin.ref })}>{iopin.data}</Button>
       <ICLinkDisplay pin={iopin} />
     </Box>
   ));
@@ -119,20 +107,12 @@ const ICIODisplay = (props, context) => {
 const ICLinkDisplay = (props, context) => {
   const { act } = useBackend(context);
 
-  const {
-    pin,
-  } = props;
+  const { pin } = props;
 
-  return pin.linked.map(link => (
+  return pin.linked.map((link) => (
     <Box inline key={link.ref}>
-      <Button
-        onClick={() => act("pin_unwire", { pin: pin.ref, link: link.ref })}>
-        {link.name}
-      </Button>@&nbsp;
-      <Button
-        onClick={() => act("examine", { ref: link.holder_ref })}>
-        {link.holder_name}
-      </Button>
+      <Button onClick={() => act('pin_unwire', { pin: pin.ref, link: link.ref })}>{link.name}</Button>@&nbsp;
+      <Button onClick={() => act('examine', { ref: link.holder_ref })}>{link.holder_name}</Button>
     </Box>
   ));
 };

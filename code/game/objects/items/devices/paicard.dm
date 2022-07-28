@@ -1,3 +1,20 @@
+var/global/list/radio_channels_by_freq = list(
+	num2text(PUB_FREQ) = "Common",
+	num2text(AI_FREQ)  = "AI Private",
+	num2text(ENT_FREQ) = "Entertainment",
+	num2text(ERT_FREQ) = "Response Team",
+	num2text(COMM_FREQ)= "Command",
+	num2text(ENG_FREQ) = "Engineering",
+	num2text(MED_FREQ) = "Medical",
+	num2text(MED_I_FREQ)="Medical(I)",
+	num2text(SEC_FREQ) = "Security",
+	num2text(SEC_I_FREQ)="Security(I)",
+	num2text(SCI_FREQ) = "Science",
+	num2text(SUP_FREQ) = "Supply",
+	num2text(SRV_FREQ) = "Service",
+	num2text(EXP_FREQ) = "Explorer"
+	)
+
 GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 /obj/item/device/paicard
@@ -6,17 +23,18 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	icon_state = "pai"
 	item_state = "electronic"
 	w_class = ITEMSIZE_SMALL
-	slot_flags = SLOT_BELT
+	slot_flags = SLOT_BELT | SLOT_HOLSTER
 	origin_tech = list(TECH_DATA = 2)
 	show_messages = 0
 	preserve_item = 1
 
-	var/obj/item/device/radio/radio
+	var/obj/item/device/radio/borg/pai/radio
 	var/looking_for_personality = 0
 	var/mob/living/silicon/pai/pai
 	var/image/screen_layer
 	var/screen_color = "#00ff0d"
 	var/last_notify = 0
+	var/screen_msg
 
 /obj/item/device/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
@@ -40,16 +58,35 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 /obj/item/device/paicard/attack_ghost(mob/user as mob)
 	if(pai != null) //Have a person in them already?
 		return ..()
+	if(is_damage_critical())
+		to_chat(usr, "<span class='warning'>That card is too damaged to activate!</span>")
+		return
+	var/time_till_respawn = user.time_till_respawn()
+	if(time_till_respawn == -1) // Special case, never allowed to respawn
+		to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
+	else if(time_till_respawn) // Nonzero time to respawn
+		to_chat(usr, "<span class='warning'>You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
+		return
+	if(jobban_isbanned(usr, "pAI"))
+		to_chat(usr,"<span class='warning'>You cannot join a pAI card when you are banned from playing as a pAI.</span>")
+		return
 
-	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI?", "Confirmation", list("Yes", "No"))
-	if(choice == "No")
+	for(var/ourkey in paikeys)
+		if(ourkey == user.ckey)
+			to_chat(usr, "<span class='warning'>You can't just rejoin any old pAI card!!! Your card still exists.</span>")
+			return
+
+	var/choice = tgui_alert(user, "You sure you want to inhabit this PAI, or submit yourself to being recruited?", "Confirmation", list("Inhabit", "Recruit", "Cancel"))
+	if(choice == "Cancel")
 		return ..()
-
+	if(choice == "Recruit")
+		paiController.recruitWindow(user)
+		return ..()
 	choice = tgui_alert(user, "Do you want to load your pAI data?", "Load", list("Yes", "No"))
 	var/actual_pai_name
 	var/turf/location = get_turf(src)
 	if(choice == "No")
-		var/pai_name = input(user, "Choose your character's name", "Character Name") as text
+		var/pai_name = tgui_input_text(user, "Choose your character's name", "Character Name")
 		actual_pai_name = sanitize_name(pai_name, ,1)
 		if(isnull(actual_pai_name))
 			return ..()
@@ -57,12 +94,14 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			var/obj/item/device/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 		else
 			var/obj/item/device/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			new_pai.SetName(actual_pai_name)
 
@@ -71,9 +110,10 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			var/obj/item/device/paicard/typeb/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
-				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
 				actual_pai_name = sanitize_name(pai_name, ,1)
 				if(isnull(actual_pai_name))
 					return ..()
@@ -81,9 +121,10 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			var/obj/item/device/paicard/card = new(location)
 			var/mob/living/silicon/pai/new_pai = new(card)
 			new_pai.key = user.key
+			paikeys |= new_pai.ckey
 			card.setPersonality(new_pai)
 			if(!new_pai.savefile_load(new_pai))
-				var/pai_name = input(new_pai, "Choose your character's name", "Character Name") as text
+				var/pai_name = tgui_input_text(new_pai, "Choose your character's name", "Character Name")
 				actual_pai_name = sanitize_name(pai_name, ,1)
 				if(isnull(actual_pai_name))
 					return ..()
@@ -93,7 +134,10 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 
 // VOREStation Edit End
 
-/obj/item/device/paicard/attack_self(mob/user)
+/obj/item/device/paicard/proc/access_screen(mob/user)
+	if(is_damage_critical())
+		to_chat(user, "<span class='warning'>WARNING: CRITICAL HARDWARE FAILURE, SERVICE DEVICE IMMEDIATELY</span>")
+		return
 	if (!in_range(src, user))
 		return
 	user.set_machine(src)
@@ -198,8 +242,10 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			<b><font size='3px'>Personal AI Device</font></b><br><br>
 			<table class="request">
 				<tr>
-					<td class="request">Installed Personality:</td>
-					<td>[pai.name]</td>
+					<td><font size='5px'; color=[screen_color]><b>[pai.name]</b></font></td>
+				</tr>
+				<tr>
+					<td class="request">Integrity: [pai.health]</td>
 				</tr>
 				<tr>
 					<td class="request">Prime directive:</td>
@@ -259,6 +305,8 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			</table>
 		"}
 		*/
+		if(screen_msg)
+			dat += "<b>Message from [pai.name]</b><br>[screen_msg]"
 	else
 		if(looking_for_personality)
 			dat += {"
@@ -328,7 +376,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 			if(2)
 				radio.ToggleReception()
 	if(href_list["setlaws"])
-		var/newlaws = sanitize(input(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws) as message)
+		var/newlaws = sanitize(tgui_input_text(usr, "Enter any additional directives you would like your pAI personality to follow. Note that these directives will not override the personality's allegiance to its imprinted master. Conflicting directives will be ignored.", "pAI Directive Configuration", pai.pai_laws, multiline = TRUE, prevent_enter = TRUE))
 		if(newlaws)
 			pai.pai_laws = newlaws
 			to_chat(pai, "Your supplemental directives have been updated. Your new directives are:")
@@ -444,6 +492,34 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 		if(user)
 			to_chat(user, span_notice("You eject the card from \the [initial(src.name)]."))
 
+///////////////////////////////
+//////////pAI Radios//////////
+///////////////////////////////
+//Thanks heroman!
+
+/obj/item/device/radio/borg/pai
+	name = "integrated radio"
+	icon = 'icons/obj/robot_component.dmi' // Cyborgs radio icons should look like the component.
+	icon_state = "radio"
+	loudspeaker = FALSE
+
+/obj/item/device/radio/borg/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	return
+
+/obj/item/device/radio/borg/pai/recalculateChannels()
+	if(!istype(loc,/obj/item/device/paicard))
+		return
+	var/obj/item/device/paicard/card = loc
+	secure_radio_connections = list()
+	channels = list()
+
+	for(var/internal_chan in internal_channels)
+		var/ch_name = radio_channels_by_freq[internal_chan]
+		if(has_channel_access(card.pai, internal_chan))
+			channels += ch_name
+			channels[ch_name] = 1
+			secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
+
 /obj/item/device/paicard/typeb
 	name = "personal AI device"
 	icon = 'icons/obj/paicard.dmi'
@@ -457,6 +533,5 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/device/paicard)
 	return pick(/obj/item/device/paicard ,/obj/item/device/paicard/typeb)
 
 /obj/item/device/paicard/digest_act(var/atom/movable/item_storage = null)
-	if(!pai.digestable)
-		return
-	. = ..()	
+	if(pai.digestable)
+		return ..()

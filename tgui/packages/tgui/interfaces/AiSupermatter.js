@@ -1,17 +1,12 @@
-import { useBackend } from "../backend";
-import { Box, Icon, LabeledList, ProgressBar, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Icon, LabeledList, ProgressBar, Section } from '../components';
+import { Window } from '../layouts';
 import { FullscreenNotice } from './common/FullscreenNotice';
 
 export const AiSupermatter = (props, context) => {
   const { data } = useBackend(context);
 
-  const {
-    integrity_percentage,
-    ambient_temp,
-    ambient_pressure,
-    detonating,
-  } = data;
+  const { integrity_percentage, ambient_temp, ambient_pressure, detonating } = data;
 
   let body = <AiSupermatterContent />;
   if (detonating) {
@@ -19,12 +14,8 @@ export const AiSupermatter = (props, context) => {
   }
 
   return (
-    <Window
-      width={500}
-      height={300}>
-      <Window.Content>
-        {body}
-      </Window.Content>
+    <Window width={500} height={300}>
+      <Window.Content>{body}</Window.Content>
     </Window>
   );
 };
@@ -32,13 +23,7 @@ export const AiSupermatter = (props, context) => {
 const AiSupermatterDetonation = (props, context) => (
   <FullscreenNotice title="DETONATION IMMINENT">
     <Box fontSize="1.5rem" bold color="bad">
-      <Icon
-        color="bad"
-        name="exclamation-triangle"
-        verticalAlign="middle"
-        size={3}
-        mr="1rem"
-      />
+      <Icon color="bad" name="exclamation-triangle" verticalAlign="middle" size={3} mr="1rem" />
       <Box color="bad">CRYSTAL DELAMINATING</Box>
       <Box color="bad">Evacuate area immediately</Box>
     </Box>
@@ -48,11 +33,7 @@ const AiSupermatterDetonation = (props, context) => (
 const AiSupermatterContent = (props, context) => {
   const { data } = useBackend(context);
 
-  const {
-    integrity_percentage,
-    ambient_temp,
-    ambient_pressure,
-  } = data;
+  const { integrity_percentage, ambient_temp, ambient_pressure } = data;
 
   return (
     <Section title="Status">
@@ -65,7 +46,8 @@ const AiSupermatterContent = (props, context) => {
               good: [90, Infinity],
               average: [25, 90],
               bad: [-Infinity, 25],
-            }} />
+            }}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Environment Temperature">
           <ProgressBar
@@ -79,9 +61,7 @@ const AiSupermatterContent = (props, context) => {
             {ambient_temp} K
           </ProgressBar>
         </LabeledList.Item>
-        <LabeledList.Item label="Environment Pressure">
-          {ambient_pressure} kPa
-        </LabeledList.Item>
+        <LabeledList.Item label="Environment Pressure">{ambient_pressure} kPa</LabeledList.Item>
       </LabeledList>
     </Section>
   );

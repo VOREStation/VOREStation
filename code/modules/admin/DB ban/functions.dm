@@ -182,7 +182,7 @@
 	switch(param)
 		if("reason")
 			if(!value)
-				value = sanitize(input(usr, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null) as null|text)
+				value = sanitize(tgui_input_text(usr, "Insert the new reason for [pckey]'s ban", "New Reason", "[reason]", null))
 				value = sql_sanitize_text(value)
 				if(!value)
 					to_chat(usr, "Cancelled")
@@ -193,7 +193,7 @@
 			message_admins("[key_name_admin(usr)] has edited a ban for [pckey]'s reason from [reason] to [value]",1)
 		if("duration")
 			if(!value)
-				value = input(usr, "Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null) as null|num
+				value = tgui_input_number(usr, "Insert the new duration (in minutes) for [pckey]'s ban", "New Duration", "[duration]", null)
 				if(!isnum(value) || !value)
 					to_chat(usr, "Cancelled")
 					return

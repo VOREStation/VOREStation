@@ -2096,14 +2096,14 @@ Departamental Swimsuits, for general use
 		translocator_unequip(translocator, user)
 		T.forceMove(src)
 		translocator = T
-		user.show_message("[bicon(src)]*click!*")
+		user.show_message("\icon[src][bicon(src)]*click!*")
 		playsound(src, 'sound/machines/click.ogg', 30, 1)
 
 /obj/item/clothing/head/fluff/nikki/proc/translocator_unequip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
 	if (translocator)
 		if (user)
 			user.put_in_hands(T)
-			user.show_message("[bicon(src)]*click!*")
+			user.show_message("\icon[src][bicon(src)]*click!*")
 		else
 			translocator.forceMove(get_turf(src))
 		translocator = null
@@ -2487,3 +2487,18 @@ Departamental Swimsuits, for general use
     icon_state = "airjordans"
     icon = 'icons/vore/custom_clothes_vr.dmi'
     icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+//Pandora029:Seona Young
+/obj/item/clothing/under/fluff/foxoflightsuit
+	name = "padded flightsui"
+	desc = "A ruddy-orange combination immersion-and-flight suit, fitted with extra padding across the front of its legs. Warm, waterproof and practical, seveal patches are scattered across it alongside a hard-wearing harness."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "foxflightsuit"
+	worn_state = "foxflightsuit_mob"
+	rolled_sleeves = 0
+	rolled_down = 0
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "foxflightsuit_mob"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS

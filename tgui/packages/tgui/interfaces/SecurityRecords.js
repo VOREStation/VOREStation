@@ -1,8 +1,8 @@
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Input, LabeledList, Section, Tabs } from "../components";
-import { ComplexModal, modalOpen } from "../interfaces/common/ComplexModal";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, Flex, Input, LabeledList, Section, Tabs } from '../components';
+import { ComplexModal, modalOpen } from '../interfaces/common/ComplexModal';
+import { Window } from '../layouts';
 import { LoginInfo } from './common/LoginInfo';
 import { LoginScreen } from './common/LoginScreen';
 import { TemporaryNotice } from './common/TemporaryNotice';
@@ -16,16 +16,10 @@ const doEdit = (context, field) => {
 
 export const SecurityRecords = (_properties, context) => {
   const { data } = useBackend(context);
-  const {
-    authenticated,
-    screen,
-  } = data;
+  const { authenticated, screen } = data;
   if (!authenticated) {
     return (
-      <Window
-        width={700}
-        height={680}
-        resizable>
+      <Window width={700} height={680} resizable>
         <Window.Content>
           <LoginScreen />
         </Window.Content>
@@ -34,27 +28,25 @@ export const SecurityRecords = (_properties, context) => {
   }
 
   let body;
-  if (screen === 2) { // List Records
+  if (screen === 2) {
+    // List Records
     body = <SecurityRecordsList />;
-  } else if (screen === 3) { // Record Maintenance
+  } else if (screen === 3) {
+    // Record Maintenance
     body = <SecurityRecordsMaintenance />;
-  } else if (screen === 4) { // View Records
+  } else if (screen === 4) {
+    // View Records
     body = <SecurityRecordsView />;
   }
 
   return (
-    <Window
-      width={700}
-      height={680}
-      resizable>
+    <Window width={700} height={680} resizable>
       <ComplexModal maxHeight="100%" maxWidth="400px" />
       <Window.Content scrollable>
         <LoginInfo />
         <TemporaryNotice />
         <SecurityRecordsNavigation />
-        <Section flexGrow>
-          {body}
-        </Section>
+        <Section flexGrow>{body}</Section>
       </Window.Content>
     </Window>
   );
@@ -62,9 +54,7 @@ export const SecurityRecords = (_properties, context) => {
 
 const SecurityRecordsList = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    records,
-  } = data;
+  const { records } = data;
   return (
     <Fragment>
       <Input
@@ -79,7 +69,7 @@ const SecurityRecordsList = (_properties, context) => {
             icon="user"
             mb="0.5rem"
             color={record.color}
-            content={record.id + ": " + record.name + " (Criminal Status: " + record.criminal + ")"}
+            content={record.id + ': ' + record.name + ' (Criminal Status: ' + record.criminal + ')'}
             onClick={() => act('d_rec', { d_rec: record.ref })}
           />
         ))}
@@ -92,32 +82,17 @@ const SecurityRecordsMaintenance = (_properties, context) => {
   const { act } = useBackend(context);
   return (
     <Fragment>
-      <Button
-        icon="download"
-        content="Backup to Disk"
-        disabled
-      /><br />
-      <Button
-        icon="upload"
-        content="Upload from Disk"
-        my="0.5rem"
-        disabled
-      /> <br />
-      <Button.Confirm
-        icon="trash"
-        content="Delete All Security Records"
-        onClick={() => act('del_all')}
-      />
+      <Button icon="download" content="Backup to Disk" disabled />
+      <br />
+      <Button icon="upload" content="Upload from Disk" my="0.5rem" disabled /> <br />
+      <Button.Confirm icon="trash" content="Delete All Security Records" onClick={() => act('del_all')} />
     </Fragment>
   );
 };
 
 const SecurityRecordsView = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    security,
-    printing,
-  } = data;
+  const { security, printing } = data;
   return (
     <Fragment>
       <Section title="General Data" mt="-6px">
@@ -148,13 +123,9 @@ const SecurityRecordsView = (_properties, context) => {
           content="Print Entry"
           ml="0.5rem"
           onClick={() => act('print_p')}
-        /><br />
-        <Button
-          icon="arrow-left"
-          content="Back"
-          mt="0.5rem"
-          onClick={() => act('screen', { screen: 2 })}
         />
+        <br />
+        <Button icon="arrow-left" content="Back" mt="0.5rem" onClick={() => act('screen', { screen: 2 })} />
       </Section>
     </Fragment>
   );
@@ -162,15 +133,9 @@ const SecurityRecordsView = (_properties, context) => {
 
 const SecurityRecordsViewGeneral = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    general,
-  } = data;
+  const { general } = data;
   if (!general || !general.fields) {
-    return (
-      <Box color="bad">
-        General records lost!
-      </Box>
-    );
+    return <Box color="bad">General records lost!</Box>;
   }
   return (
     <Flex>
@@ -181,25 +146,15 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
               <Box height="20px" inline preserveWhitespace>
                 {field.value}
               </Box>
-              {!!field.edit && (
-                <Button
-                  icon="pen"
-                  ml="0.5rem"
-                  onClick={() => doEdit(context, field)}
-                />
-              )}
+              {!!field.edit && <Button icon="pen" ml="0.5rem" onClick={() => doEdit(context, field)} />}
             </LabeledList.Item>
           ))}
         </LabeledList>
       </Flex.Item>
       <Flex.Item textAlign="right">
-        {!!general.has_photos && (
+        {!!general.has_photos &&
           general.photos.map((p, i) => (
-            <Box
-              key={i}
-              display="inline-block"
-              textAlign="center"
-              color="label">
+            <Box key={i} display="inline-block" textAlign="center" color="label">
               <img
                 src={p.substr(1, p.length - 1)}
                 style={{
@@ -207,18 +162,14 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
                   'margin-bottom': '0.5rem',
                   '-ms-interpolation-mode': 'nearest-neighbor',
                 }}
-              /><br />
+              />
+              <br />
               Photo #{i + 1}
             </Box>
-          ))
-        )}
+          ))}
         <Box>
-          <Button onClick={() => act("photo_front")}>
-            Update Front Photo
-          </Button>
-          <Button onClick={() => act("photo_side")}>
-            Update Side Photo
-          </Button>
+          <Button onClick={() => act('photo_front')}>Update Front Photo</Button>
+          <Button onClick={() => act('photo_side')}>Update Side Photo</Button>
         </Box>
       </Flex.Item>
     </Flex>
@@ -227,19 +178,12 @@ const SecurityRecordsViewGeneral = (_properties, context) => {
 
 const SecurityRecordsViewSecurity = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    security,
-  } = data;
+  const { security } = data;
   if (!security || !security.fields) {
     return (
       <Box color="bad">
         Security records lost!
-        <Button
-          icon="pen"
-          content="New Record"
-          ml="0.5rem"
-          onClick={() => act('new')}
-        />
+        <Button icon="pen" content="New Record" ml="0.5rem" onClick={() => act('new')} />
       </Box>
     );
   }
@@ -247,10 +191,7 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
     <Fragment>
       <LabeledList>
         {security.fields.map((field, i) => (
-          <LabeledList.Item
-            key={i}
-            label={field.field}
-            preserveWhitespace>
+          <LabeledList.Item key={i} label={field.field} preserveWhitespace>
             {field.value}
             <Button
               icon="pen"
@@ -263,24 +204,19 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
       </LabeledList>
       <Section title="Comments/Log">
         {security.comments.length === 0 ? (
-          <Box color="label">
-            No comments found.
-          </Box>
-        )
-          : security.comments.map((comment, i) => (
+          <Box color="label">No comments found.</Box>
+        ) : (
+          security.comments.map((comment, i) => (
             <Box key={i}>
               <Box color="label" inline>
                 {comment.header}
-              </Box><br />
+              </Box>
+              <br />
               {comment.text}
-              <Button
-                icon="comment-slash"
-                color="bad"
-                ml="0.5rem"
-                onClick={() => act('del_c', { del_c: i + 1 })}
-              />
+              <Button icon="comment-slash" color="bad" ml="0.5rem" onClick={() => act('del_c', { del_c: i + 1 })} />
             </Box>
-          ))}
+          ))
+        )}
 
         <Button
           icon="comment"
@@ -297,24 +233,15 @@ const SecurityRecordsViewSecurity = (_properties, context) => {
 
 const SecurityRecordsNavigation = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    screen,
-  } = data;
+  const { screen } = data;
   return (
     <Tabs>
-      <Tabs.Tab
-        selected={screen === 2}
-        icon="list"
-        onClick={() => act('screen', { screen: 2 })}>
+      <Tabs.Tab selected={screen === 2} icon="list" onClick={() => act('screen', { screen: 2 })}>
         List Records
       </Tabs.Tab>
-      <Tabs.Tab
-        icon="wrench"
-        selected={screen === 3}
-        onClick={() => act('screen', { screen: 3 })}>
+      <Tabs.Tab icon="wrench" selected={screen === 3} onClick={() => act('screen', { screen: 3 })}>
         Record Maintenance
       </Tabs.Tab>
     </Tabs>
   );
 };
-

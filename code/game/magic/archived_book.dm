@@ -40,7 +40,7 @@ var/global/datum/book_manager/book_mgr = new()
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	var/isbn = input(usr, "ISBN number?", "Delete Book") as num | null
+	var/isbn = tgui_input_number(usr, "ISBN number?", "Delete Book")
 	if(!isbn)
 		return
 

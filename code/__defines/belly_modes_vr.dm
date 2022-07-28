@@ -10,6 +10,7 @@
 #define DM_SIZE_STEAL							"Size Steal"
 #define DM_HEAL									"Heal"
 #define DM_EGG 									"Encase In Egg"
+#define DM_SELECT								"Selective"
 
 //Addon mode flags
 #define DM_FLAG_NUMBING			0x1

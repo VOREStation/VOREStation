@@ -778,7 +778,7 @@
 	var/image/standing = ..()
 	if(taurized) //Special snowflake var on suits
 		standing.pixel_x = -16
-		standing.layer = BODY_LAYER + 15 // 15 is above tail layer, so will not be covered by taurbody.
+		standing.layer = BODY_LAYER + 16 // 16 is above tail layer, so will not be covered by taurbody.
 	return standing
 
 /obj/item/clothing/suit/apply_accessories(var/image/standing)

@@ -1,8 +1,5 @@
 /mob/living/silicon/pai/Life()
 
-	if (src.stat == 2)
-		return
-
 	if(src.cable)
 		if(get_dist(src, src.cable) > 1)
 			var/turf/T = get_turf_or_move(src.loc)
@@ -12,6 +9,21 @@
 
 			qdel(src.cable)
 			src.cable = null
+
+	if (src.stat == DEAD)
+		return
+
+	if(card.cell != PP_FUNCTIONAL|| card.processor != PP_FUNCTIONAL || card.board != PP_FUNCTIONAL || card.capacitor != PP_FUNCTIONAL)
+		death()
+
+	if(card.projector != PP_FUNCTIONAL && card.emitter != PP_FUNCTIONAL)
+		if(loc != card)
+			close_up()
+			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service required!</span>")
+	else if(card.projector  != PP_FUNCTIONAL|| card.emitter != PP_FUNCTIONAL)
+		if(prob(5))
+			close_up()
+			to_chat(src, "<span class ='warning'>ERROR: System malfunction. Service recommended!</span>")
 
 	handle_regular_hud_updates()
 	handle_vision()
@@ -24,7 +36,8 @@
 	handle_statuses()
 
 	if(health <= 0)
-		death(null,"gives one shrill beep before falling lifeless.")
+		card.death_damage()
+		death(null,"fizzles out and clatters to the floor...")
 	else if(health < maxHealth && istype(src.loc , /obj/item/device/paicard))
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5)

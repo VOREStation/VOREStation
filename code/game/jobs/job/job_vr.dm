@@ -17,6 +17,9 @@
 	//Time required in the department as other jobs before playing this one (in hours)
 	var/dept_time_required = 0
 
+	//Do we forbid ourselves from earning PTO?
+	var/playtime_only = FALSE
+
 // Check client-specific availability rules.
 /datum/job/proc/player_has_enough_pto(client/C)
 	return timeoff_factor >= 0 || (C && LAZYACCESS(C.department_hours, pto_type) > 0)
@@ -39,7 +42,7 @@
 	if(C && config.use_playtime_restriction_for_jobs && dept_time_required)
 		var/remaining_time_needed = dept_time_required
 		for(var/key in C.play_hours)
-			if(isnum(C.play_hours[key]))
+			if(isnum(C.play_hours[key]) && !(key == PTO_TALON))
 				remaining_time_needed = max(0, remaining_time_needed - C.play_hours[key])
 		return remaining_time_needed
 	return 0

@@ -14,6 +14,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 	var/chassis
 	var/ouremotion
 	var/eye_color
+	var/gender
 
 /hook/startup/proc/paiControllerSetup()
 	paiController = new /datum/paiController()
@@ -36,6 +37,7 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 		if(istype(card,/obj/item/device/paicard) && istype(candidate,/datum/paiCandidate))
 			var/mob/living/silicon/pai/pai = new(card)
 			pai.key = candidate.key
+			paikeys |= pai.ckey
 			card.setPersonality(pai)
 			if(!candidate.name)
 				pai.SetName(pick(ninja_names))
@@ -50,6 +52,8 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 				pai.chassis = candidate.chassis
 			if(candidate.ouremotion)
 				card.setEmotion(candidate.ouremotion)
+			if(candidate.gender)
+				pai.gender = candidate.gender
 			pai.update_icon()
 			pai.real_name = pai.name
 			card.looking_for_personality = 0
@@ -66,19 +70,19 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 
 		switch(option)
 			if("name")
-				t = sanitizeSafe(input(usr, "Enter a name for your pAI", "pAI Name", candidate.name) as text, MAX_NAME_LEN)
+				t = sanitizeSafe(tgui_input_text(usr, "Enter a name for your pAI", "pAI Name", candidate.name, MAX_NAME_LEN), MAX_NAME_LEN)
 				if(t)
 					candidate.name = t
 			if("desc")
-				t = input(usr, "Enter a description for your pAI", "pAI Description", candidate.description) as message
+				t = tgui_input_text(usr, "Enter a description for your pAI", "pAI Description", candidate.description, multiline = TRUE, prevent_enter = TRUE)
 				if(t)
 					candidate.description = sanitize(t)
 			if("role")
-				t = input(usr, "Enter a role for your pAI", "pAI Role", candidate.role) as text
+				t = tgui_input_text(usr, "Enter a role for your pAI", "pAI Role", candidate.role)
 				if(t)
 					candidate.role = sanitize(t)
 			if("ooc")
-				t = input(usr, "Enter any OOC comments", "pAI OOC Comments", candidate.comments) as message
+				t = tgui_input_text(usr, "Enter any OOC comments", "pAI OOC Comments", candidate.comments, multiline = TRUE, prevent_enter = TRUE)
 				if(t)
 					candidate.comments = sanitize(t)
 			if("save")
@@ -376,6 +380,16 @@ var/datum/paiController/paiController			// Global handler for pAI candidates
 		if(!C)	return
 		asked.Add(C.key)
 		asked[C.key] = world.time
+
+		var/mob/ourmob = C.mob
+		if(ourmob)
+			var/time_till_respawn = ourmob.time_till_respawn()
+			if(time_till_respawn == -1 || time_till_respawn)
+				return
+		for(var/ourkey in paikeys)
+			if(ourkey == ourmob.ckey)
+				return
+
 		var/response = tgui_alert(C, "[inquirer] is requesting a pAI personality. Would you like to play as a personal AI?", "pAI Request", list("Yes", "No", "Never for this round"))
 		if(!C)	return		//handle logouts that happen whilst the alert is waiting for a response.
 		if(response == "Yes")
