@@ -11,6 +11,8 @@
 	do_colouration = 0 //Set to 1 to enable coloration using the tail color.
 	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
 
+	var/list/lower_layer_dirs = list(SOUTH)
+
 /datum/sprite_accessory/tail/New()
 	. = ..()
 	if(clip_mask_icon && clip_mask_state)
@@ -1174,6 +1176,14 @@
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
 	ckeys_allowed = list("prettiebyrd")
+
+/datum/sprite_accessory/tail/altevian
+	name = "Altevian Tail"
+	icon = 'icons/mob/vore/tails_vr.dmi'
+	icon_state = "altevian"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	lower_layer_dirs = list(SOUTH, WEST)
 
 /datum/sprite_accessory/tail/tentacle
 	name = "Tentacle, colorable (vwag)"

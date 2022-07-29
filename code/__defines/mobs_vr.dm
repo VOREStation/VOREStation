@@ -25,6 +25,7 @@
 #define SPECIES_PROTEAN			"Protean"
 #define SPECIES_RAPALA			"Rapala"
 #define SPECIES_SERGAL			"Sergal"
+#define SPECIES_ALTEVIAN		"Altevian"
 #define SPECIES_SHADEKIN_CREW	"Black-Eyed Shadekin"
 #define SPECIES_VASILISSAN		"Vasilissan"
 #define SPECIES_VULPKANIN		"Vulpkanin"
