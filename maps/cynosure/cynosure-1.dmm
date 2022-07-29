@@ -5069,7 +5069,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/machinery/alarm{
+=======
+/obj/machinery/alarm/monitor/isolation{
+	alarm_id = "isolation_one";
+>>>>>>> de1377c1dab... deco stuff (#8667)
 	dir = 4;
 	pixel_x = -22
 	},
@@ -10234,7 +10239,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/machinery/alarm{
+=======
+/obj/machinery/alarm/monitor/isolation{
+	alarm_id = "isolation_three";
+>>>>>>> de1377c1dab... deco stuff (#8667)
 	dir = 4;
 	pixel_x = -22
 	},
@@ -14785,6 +14795,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
+"FU" = (
+/obj/structure/sign/explosive,
+/turf/simulated/wall/r_wall,
+/area/surface/station/rnd/storage)
 "FV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/door/firedoor/border_only,
@@ -18558,7 +18572,12 @@
 /obj/machinery/atmospherics/unary/vent_scrubber{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/machinery/alarm{
+=======
+/obj/machinery/alarm/monitor/isolation{
+	alarm_id = "isolation_two";
+>>>>>>> de1377c1dab... deco stuff (#8667)
 	dir = 4;
 	pixel_x = -22
 	},
@@ -49971,7 +49990,7 @@ JV
 JV
 JV
 uB
-uB
+FU
 uB
 yq
 tM

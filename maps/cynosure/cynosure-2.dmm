@@ -7166,6 +7166,9 @@
 /area/surface/station/engineering/reactor_airlock)
 "dpQ" = (
 /obj/machinery/appliance/cooker/grill,
+/obj/structure/sign/clock{
+	pixel_y = -32
+	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "dpS" = (
@@ -30418,8 +30421,17 @@
 	pixel_x = -2;
 	pixel_y = -2
 	},
+<<<<<<< HEAD
 /obj/item/weapon/folder/red_hos,
 /obj/item/weapon/pen/multi,
+=======
+/obj/item/folder/red_hos,
+/obj/item/pen/multi,
+/obj/item/toy/desk/fan{
+	pixel_x = -4;
+	pixel_y = 16
+	},
+>>>>>>> de1377c1dab... deco stuff (#8667)
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/crew_quarters/heads/hos)
 "nWU" = (
@@ -50183,6 +50195,11 @@
 	dir = 4
 	},
 /obj/machinery/chemical_dispenser/full,
+/obj/structure/sign/poster/custom{
+	dir = 4;
+	pixel_x = 32;
+	poster_decl = /decl/poster/pol_17
+	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/chemistry)
 "wRL" = (

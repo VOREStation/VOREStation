@@ -1435,3 +1435,56 @@
 	name = "giant ghost balloon"
 	desc = "Oh no, it's a ghost! Oh wait, it's just a balloon. Phew!"
 	icon_state = "ghostballoon"
+
+//ship models
+/obj/item/toy/modelship
+	name = "Model ship"
+	desc = "A model of a SolGov ship, in 1:250th scale, on a handsome wooden stand. Small lights blink on the hull and at the engine exhaust."
+	icon_state = "ship_model_1"
+	icon = 'icons/obj/toy.dmi'
+
+/obj/item/toy/modelship/two
+	desc = "A small model of a spaceship, in 1:278th scale, it has small lights iluminating it's windows and engines."
+	icon_state = "ship_model_2"
+
+//desk toys
+/obj/item/toy/desk
+	name = "desk toy master"
+	desc = "A object that does not exist. Parent Item"
+	icon = 'icons/obj/toy.dmi'
+
+	var/on = 0
+	var/activation_sound = 'sound/weapons/empty.ogg'
+
+/obj/item/toy/desk/update_icon()
+	if(on)
+		icon_state = "[initial(icon_state)]-on"
+	else
+		icon_state = "[initial(icon_state)]"
+
+/obj/item/toy/desk/attack_self(mob/user)
+	on = !on
+	if(on && activation_sound)
+		playsound(src.loc, activation_sound, 15, 1, -3)
+	update_icon()
+	return 1
+
+/obj/item/toy/desk/newtoncradle
+	name = "\improper Newton's cradle"
+	desc = "An ancient 21th century super-weapon model demonstrating that Sir Isaac Newton is the deadliest sonuvabitch in space."
+	icon_state = "newtoncradle"
+
+/obj/item/toy/desk/fan
+	name = "desk fan"
+	desc = "Your greatest fan."
+	icon_state= "fan"
+
+/obj/item/toy/desk/officetoy
+	name = "office toy"
+	desc = "A generic microfusion powered office desk toy. Only generates magnetism and ennui."
+	icon_state= "desktoy"
+
+/obj/item/toy/desk/dippingbird
+	name = "dipping bird toy"
+	desc = "An ancient human bird idol, worshipped by clerks and desk jockeys."
+	icon_state= "dippybird"
