@@ -1,6 +1,6 @@
-import { useBackend } from "../backend";
-import { Window } from "../layouts";
-import { Box, Button, Section } from "../components";
+import { useBackend } from '../backend';
+import { Window } from '../layouts';
+import { Box, Button, Section } from '../components';
 
 export const XenoarchArtifactAnalyzer = (props, context) => {
   return (
@@ -15,17 +15,12 @@ export const XenoarchArtifactAnalyzer = (props, context) => {
 const XenoarchArtifactAnalyzerContent = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    owned_scanner,
-    scan_in_progress,
-  } = data;
+  const { owned_scanner, scan_in_progress } = data;
 
   if (!owned_scanner) {
     return (
       <Section title="No Scanner Detected">
-        <Box color="bad">
-          Warning: No scanner was detected. This machine requires a scanner to operate.
-        </Box>
+        <Box color="bad">Warning: No scanner was detected. This machine requires a scanner to operate.</Box>
       </Section>
     );
   }
@@ -34,11 +29,7 @@ const XenoarchArtifactAnalyzerContent = (props, context) => {
     return (
       <Section title="Scan In Progress">
         Scanning...
-        <Button
-          mt={1}
-          fluid
-          icon="stop"
-          onClick={() => act("scan")}>
+        <Button mt={1} fluid icon="stop" onClick={() => act('scan')}>
           Cancel Scan
         </Button>
       </Section>
@@ -47,10 +38,7 @@ const XenoarchArtifactAnalyzerContent = (props, context) => {
 
   return (
     <Section title="Artifact Analyzer">
-      <Button
-        fluid
-        icon="search"
-        onClick={() => act("scan")}>
+      <Button fluid icon="search" onClick={() => act('scan')}>
         Begin Scan
       </Button>
     </Section>

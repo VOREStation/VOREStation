@@ -76,7 +76,7 @@
 		to_chat(H,"<span class='warning'>You must be WEARING the uniform to change your size.</span>")
 		return
 
-	var/new_size = input(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200) as num|null
+	var/new_size = tgui_input_number(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200, 600, 1)
 	if(!new_size)
 		return //cancelled
 
@@ -109,7 +109,7 @@
 
 /obj/item/clothing/under/hyperfiber/bluespace/mob_can_unequip(mob/M, slot, disable_warning = 0)
 	. = ..()
-	if(. && ishuman(M) && original_size)
+	if(. && ishuman(M) && original_size && !disable_warning)
 		var/mob/living/carbon/human/H = M
 		H.resize(original_size, ignore_prefs = TRUE)
 		original_size = null
@@ -129,7 +129,7 @@
 
 /obj/item/clothing/gloves/bluespace/mob_can_equip(mob/M, gloves, disable_warning = 0)
 	. = ..()
-	if(. && ishuman(M))
+	if(. && ishuman(M) && !disable_warning)
 		var/mob/living/carbon/human/H = M
 		if(!H.resizable)
 			return
@@ -145,7 +145,7 @@
 
 /obj/item/clothing/gloves/bluespace/mob_can_unequip(mob/M, gloves, disable_warning = 0)
 	. = ..()
-	if(. && ishuman(M) && original_size)
+	if(. && ishuman(M) && original_size && !disable_warning)
 		var/mob/living/carbon/human/H = M
 		if(!H.resizable)
 			return

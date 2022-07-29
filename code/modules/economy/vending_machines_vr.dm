@@ -635,7 +635,15 @@
 					/obj/item/clothing/mask/bandana/gold = 5,
 					/obj/item/clothing/mask/bandana/green = 5,
 					/obj/item/clothing/mask/bandana/red = 5,
-					/obj/item/clothing/mask/surgical = 5)
+					/obj/item/clothing/mask/surgical = 5,
+					/obj/item/clothing/accessory/pride/bi = 5,
+					/obj/item/clothing/accessory/pride/trans = 5,
+					/obj/item/clothing/accessory/pride/ace = 5, 
+					/obj/item/clothing/accessory/pride/enby = 5,
+					/obj/item/clothing/accessory/pride/pan = 5,
+					/obj/item/clothing/accessory/pride/lesbian = 5,
+					/obj/item/clothing/accessory/pride/intersex = 5,
+					/obj/item/clothing/accessory/pride/vore = 5)
 	prices = list(/obj/item/clothing/accessory = 50,
 					/obj/item/clothing/accessory/armband/med/color = 50,
 					/obj/item/clothing/accessory/asymmetric = 50,
@@ -752,9 +760,18 @@
 					/obj/item/clothing/mask/bandana/gold = 50,
 					/obj/item/clothing/mask/bandana/green = 50,
 					/obj/item/clothing/mask/bandana/red = 50,
-					/obj/item/clothing/mask/surgical = 50)
+					/obj/item/clothing/mask/surgical = 50,
+					/obj/item/clothing/accessory/pride/bi = 50,
+					/obj/item/clothing/accessory/pride/trans = 50,
+					/obj/item/clothing/accessory/pride/ace = 50, 
+					/obj/item/clothing/accessory/pride/enby = 50,
+					/obj/item/clothing/accessory/pride/pan = 50,
+					/obj/item/clothing/accessory/pride/lesbian = 50,
+					/obj/item/clothing/accessory/pride/intersex = 50,
+					/obj/item/clothing/accessory/pride/vore = 50)
 	premium = list(/obj/item/weapon/bedsheet/rainbow = 1)
-	contraband = list(/obj/item/clothing/mask/gas/clown_hat = 1)
+	contraband = list(/obj/item/clothing/mask/gas/clown_hat = 1,
+	                   /obj/item/clothing/accessory/collar/collarplanet_earth = 5)
 
 /obj/machinery/vending/loadout/clothing
 	name = "General Jump"
@@ -2428,7 +2445,7 @@
 	desc = "Food made by dogs!"
 	product_ads = "EAT FOOD!!!;Awooooooooooooooo!~;Made by actual dogs!;Now with twenty percent more taste!!!"
 	icon = 'icons/obj/vending.dmi'
-	icon_state = "fridge_food"
+	icon_state = "hotfood"
 	products = list(/obj/item/weapon/tray = 50,
 					/obj/item/weapon/material/kitchen/utensil/fork = 50,
 					/obj/item/weapon/material/knife/plastic = 50,
@@ -2916,7 +2933,7 @@
 	desc = "Food made by dogs!"
 	product_ads = "EAT FOOD!!!;Awooooooooooooooo!~;Made by actual dogs!;Now with twenty percent more taste!!!"
 	icon = 'icons/obj/vending.dmi'
-	icon_state = "fridge_food"
+	icon_state = "hotfood"
 	products = list(/obj/item/weapon/tray = 50,
 					/obj/item/weapon/material/kitchen/utensil/fork = 50,
 					/obj/item/weapon/material/knife/plastic = 50,
@@ -3312,7 +3329,7 @@
 	desc = "Food made by dogs!"
 	product_ads = "EAT FOOD!!!;Awooooooooooooooo!~;Made by actual dogs!;Now with twenty percent more taste!!!"
 	icon = 'icons/obj/vending.dmi'
-	icon_state = "fridge_food"
+	icon_state = "hotfood"
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/bearmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/carpmeat = 10,
 					/obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish = 10,

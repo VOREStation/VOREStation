@@ -47,6 +47,7 @@
 #define ui_construct_purge "EAST:00,CENTER-1:15"
 #define ui_construct_fire "EAST-1:16,CENTER+1:13" //above health, slightly to the left
 #define ui_construct_pull "EAST-1:28,SOUTH+1:10" //above the zone_sel icon
+#define ui_pai_comms "EAST-1:28,SOUTH+1:5"
 
 //Lower right, persistant menu
 #define ui_dropbutton "EAST-4:22,SOUTH:5"

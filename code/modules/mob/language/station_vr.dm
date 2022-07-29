@@ -11,7 +11,7 @@
 
 /datum/language/birdsong
 	name = LANGUAGE_BIRDSONG
-	desc = "A language primarily spoken by Narvians"
+	desc = "A tweety language primarily spoken by Nevreans."
 	speech_verb = "chirps"
 	colour = "birdsongc"
 	key = "G"
@@ -151,14 +151,31 @@
 
 /datum/language/tavan
 	name = LANGUAGE_TAVAN
-	desc = "A language native to the Altevians, it has been adopted by other rodent faring species over time."
+	desc = "A language native to the rat-like Altevians, it has been adopted by other rodent faring species over time."
 	key = "E"
 	speech_verb = "squeaks"
 	whisper_verb = "squiks"
 	exclaim_verb = "squeaks loudly"
 	syllables = list ("sque", "uik", "squeak", "squee", "eak", "eek", "uek", "squik",
 			"squeek", "sq", "squee", "ee", "ek", "ak", "ueak", "squea")
-	colour = "tavan" 
+	colour = "tavan"
+
+/datum/language/echosong
+	name = LANGUAGE_ECHOSONG
+	desc = "An ultrasound-based language, inaudible to those unable to understand it, spoken by few species capable of actually hearing it."
+	key = "U"
+	signlang_verb = list("opens their mouth soundlessly", "mouthes something silently")
+	signlang_verb_understood = list("squeaks")
+	colour = "echosong"
+	flags = INAUDIBLE
+	ignore_adverb = TRUE
+
+/datum/language/echosong/scramble(var/input, var/list/known_languages)
+	return stars(input)
+
+/datum/language/echosong/broadcast(var/mob/living/speaker, var/message, var/speaker_mask)
+	log_say("(INAUDIBLE) [message]", speaker)
+	speaker.say_signlang(format_message(message), pick(signlang_verb), pick(signlang_verb_understood), src, 2)
 
 /datum/language/unathi
 	flags = 0

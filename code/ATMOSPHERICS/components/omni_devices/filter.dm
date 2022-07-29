@@ -170,7 +170,7 @@
 		if("set_flow_rate")
 			if(!configuring || use_power)
 				return
-			var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate) as num
+			var/new_flow_rate = tgui_input_number(usr,"Enter new flow rate limit (0-[max_flow_rate]L/s)","Flow Rate Control",set_flow_rate,max_flow_rate,0)
 			set_flow_rate = between(0, new_flow_rate, max_flow_rate)
 			. = TRUE
 		if("switch_mode")

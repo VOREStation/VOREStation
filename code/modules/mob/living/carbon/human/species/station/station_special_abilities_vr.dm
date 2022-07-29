@@ -1037,3 +1037,29 @@
 	species.has_glowing_eyes = !species.has_glowing_eyes
 	update_eyes()
 	to_chat(src, "Your eyes [species.has_glowing_eyes ? "are now" : "are no longer"] glowing.")
+
+
+
+/mob/living/carbon/human/proc/enter_cocoon()
+	set name = "Spin Cocoon"
+	set category = "Abilities"
+	if(!isturf(loc))
+		to_chat(src, "You don't have enough space to spin a cocoon!")
+		return
+
+	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
+		var/obj/item/weapon/storage/vore_egg/bugcocoon/C = new(loc)
+		forceMove(C)
+		transforming = TRUE
+		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
+		V.tgui_interact(src)
+
+		var/mob_holder_type = src.holder_type || /obj/item/weapon/holder
+		C.w_class = src.size_multiplier * 4 //Egg size and weight scaled to match occupant.
+		var/obj/item/weapon/holder/H = new mob_holder_type(C, src)
+		C.max_storage_space = H.w_class
+		C.icon_scale_x = 0.25 * C.w_class
+		C.icon_scale_y = 0.25 * C.w_class
+		C.update_transform()
+		//egg_contents -= src
+		C.contents -= src

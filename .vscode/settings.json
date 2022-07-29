@@ -1,41 +1,4 @@
 {
-<<<<<<< HEAD
-    "eslint.nodePath": "./tgui/.yarn/sdks",
-    "eslint.workingDirectories": [
-        "./tgui"
-    ],
-    "typescript.tsdk": "./tgui/.yarn/sdks/typescript/lib",
-    "typescript.enablePromptUseWorkspaceTsdk": true,
-    "search.exclude": {
-        "**/.yarn": true,
-        "**/.pnp.*": true
-    },
-    "workbench.editorAssociations": {
-        "*.dmi": "imagePreview.previewEditor"
-    },
-    "files.eol": "\n",
-    "gitlens.advanced.blame.customArguments": [
-        "-w"
-    ],
-    "tgstationTestExplorer.project.resultsType": "json",
-    "[javascript]": {
-        "editor.rulers": [
-            120
-        ]
-    },
-    "[typescript]": {
-        "editor.rulers": [
-            120
-        ]
-    },
-    "[scss]": {
-        "editor.rulers": [
-            120
-        ]
-    },
-    "tgstationTestExplorer.project.DMEName": "tgmc.dme"
-}
-=======
   "files.eol": "\n",
   "files.encoding": "utf8",
   "files.insertFinalNewline": true,
@@ -80,4 +43,3 @@
     "--ignore-revs-file", ".git-blame-ignore-revs"
   ]
 }
->>>>>>> 60c189933ac... Merge pull request #8583 from Spookerton/spkrtn/sys/workspace-settings-improvement

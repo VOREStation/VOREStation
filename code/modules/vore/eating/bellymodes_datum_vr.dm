@@ -57,9 +57,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		var/mob/living/silicon/robot/R = B.owner
 		R.cell.charge += 25 * damage_gain
 	if(offset) // If any different than default weight, multiply the % of offset.
-		B.owner.adjust_nutrition(offset*(4.5 * (damage_gain) / difference)) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
+		B.owner.adjust_nutrition(offset*(4.5 * (damage_gain) / difference)*L.get_digestion_nutrition_modifier()) //4.5 nutrition points per health point. Normal same size 100+100 health prey with average weight would give 900 points if the digestion was instant. With all the size/weight offset taxes plus over time oxyloss+hunger taxes deducted with non-instant digestion, this should be enough to not leave the pred starved.
 	else
-		B.owner.adjust_nutrition(4.5 * (damage_gain) / difference)
+		B.owner.adjust_nutrition((4.5 * (damage_gain) / difference)*L.get_digestion_nutrition_modifier())
 	if(L.stat != oldstat)
 		return list("to_update" = TRUE)
 
@@ -124,7 +124,19 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	var/oldstat = L.stat
 	if(L.stat == DEAD)
 		return null // Can't heal the dead with healbelly
-	if(B.owner.nutrition > 90 && (L.health < L.maxHealth))
+	var/mob/living/carbon/human/H = L
+	if(B.owner.nutrition > 90 && H.isSynthetic())
+		for(var/obj/item/organ/external/E in H.organs) //Needed for healing prosthetics
+			var/obj/item/organ/external/O = E
+			if(O.brute_dam > 0 || O.burn_dam > 0) //Making sure healing continues until fixed.
+				O.heal_damage(0.5, 0.5, 0, 1) // Less effective healing as able to fix broken limbs
+				B.owner.adjust_nutrition(-5)  // More costly for the pred, since metals and stuff
+			if(L.health < L.maxHealth)
+				L.adjustToxLoss(-2)
+				L.adjustOxyLoss(-2)
+				L.adjustCloneLoss(-1)
+				B.owner.adjust_nutrition(-1)  // Normal cost per old functionality
+	if(B.owner.nutrition > 90 && (L.health < L.maxHealth) && !H.isSynthetic())
 		L.adjustBruteLoss(-2.5)
 		L.adjustFireLoss(-2.5)
 		L.adjustToxLoss(-5)
@@ -206,3 +218,20 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.ownegg = null
 		return list("to_update" = TRUE)
 	return
+
+/datum/digest_mode/selective //unselectable, "smart" digestion mode for mobs only
+	id = DM_SELECT
+
+/datum/digest_mode/selective/process_mob(obj/belly/B, mob/living/L)
+	var/datum/digest_mode/tempmode = GLOB.digest_modes["Hold"]
+	//if not absorbed, see if they're food
+	if(L.digestable)
+		tempmode = GLOB.digest_modes["Digest"]
+	//if they're indigestible, then try to absorb them
+	else if(L.absorbable)
+		tempmode = GLOB.digest_modes["Absorb"]
+	//if they're not absorbable, just drain
+	else
+		tempmode = GLOB.digest_modes["Drain"]
+	//finally, process the mob as if they were subject to the chosen mode
+	return tempmode.process_mob(B, L)

@@ -26,10 +26,13 @@
 	var/vore_taste = null				// What the character tastes like
 	var/vore_smell = null				// What the character smells like
 	var/no_vore = FALSE					// If the character/mob can vore.
+	var/restrict_vore_ventcrawl = FALSE // Self explanatory
 	var/noisy = FALSE					// Toggle audible hunger.
 	var/absorbing_prey = 0 				// Determines if the person is using the succubus drain or not. See station_special_abilities_vr.
 	var/drain_finalized = 0				// Determines if the succubus drain will be KO'd/absorbed. Can be toggled on at any time.
 	var/fuzzy = 0						// Preference toggle for sharp/fuzzy icon.
+	var/voice_freq = 0					// Preference for character voice frequency
+	var/list/voice_sounds_list = list()	// The sound list containing our voice sounds!
 	var/permit_healbelly = TRUE
 	var/stumble_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/slip_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
@@ -49,6 +52,31 @@
 		'sound/effects/mob_effects/xenochimera/regen_3.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_5.ogg'
 	)
+
+	var/nutrition_message_visible = TRUE
+	var/list/nutrition_messages = list(
+							"They are starving! You can hear their stomach snarling from across the room!" = 1,
+							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach." = 2,
+							"",
+							"They have a stuffed belly, bloated fat and round from eating too much.",
+							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
+							"They are sporting a large, round, sagging stomach. It contains at least their body weight worth of glorping slush.",
+							"They are engorged with a huge stomach that sags and wobbles as they move. They must have consumed at least twice their body weight. It looks incredibly soft.",
+							"Their stomach is firmly packed with digesting slop. They must have eaten at least a few times worth their body weight! It looks hard for them to stand, and their gut jiggles when they move.",
+							"They are so absolutely stuffed that you aren't sure how it's possible for them to move. They can't seem to swell any bigger. The surface of their belly looks sorely strained!",
+							"They are utterly filled to the point where it's hard to even imagine them moving, much less comprehend it when they do. Their gut is swollen to monumental sizes and amount of food they consumed must be insane.")
+	var/weight_message_visible = TRUE
+	var/list/weight_messages = list(
+							"They are terribly lithe and frail!",
+							"They have a very slender frame.",
+							"They have a lightweight, athletic build.",
+							"They have a healthy, average body.",
+							"They have a thick, curvy physique.",
+							"They have a plush, chubby figure.",
+							"They have an especially plump body with a round potbelly and large hips.",
+							"They have a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs.",
+							"They are incredibly obese. Their massive potbelly sags over their waistline while their fat ass would probably require two chairs to sit down comfortably!",
+							"They are so morbidly obese, you wonder how they can even stand, let alone waddle around the station. They can't get any fatter without being immobilized.")
 
 //
 // Hook for generic creation of stuff on new creatures
@@ -234,6 +262,7 @@
 	P.vore_taste = src.vore_taste
 	P.vore_smell = src.vore_smell
 	P.permit_healbelly = src.permit_healbelly
+	P.noisy = src.noisy
 	P.show_vore_fx = src.show_vore_fx
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
@@ -244,6 +273,11 @@
 	P.drop_vore = src.drop_vore
 	P.slip_vore = src.slip_vore
 	P.stumble_vore = src.stumble_vore
+
+	P.nutrition_message_visible = src.nutrition_message_visible
+	P.nutrition_messages = src.nutrition_messages
+	P.weight_message_visible = src.weight_message_visible
+	P.weight_messages = src.weight_messages
 
 	var/list/serialized = list()
 	for(var/obj/belly/B as anything in src.vore_organs)
@@ -273,6 +307,7 @@
 	vore_taste = P.vore_taste
 	vore_smell = P.vore_smell
 	permit_healbelly = P.permit_healbelly
+	noisy = P.noisy
 	show_vore_fx = P.show_vore_fx
 	can_be_drop_prey = P.can_be_drop_prey
 	can_be_drop_pred = P.can_be_drop_pred
@@ -283,6 +318,11 @@
 	drop_vore = P.drop_vore
 	slip_vore = P.slip_vore
 	stumble_vore = P.stumble_vore
+
+	nutrition_message_visible = P.nutrition_message_visible
+	nutrition_messages = P.nutrition_messages
+	weight_message_visible = P.weight_message_visible
+	weight_messages = P.weight_messages
 
 	if(bellies)
 		release_vore_contents(silent = TRUE)
@@ -468,6 +508,9 @@
 		crystal.bound_mob = null
 		crystal.bound_mob = capture_crystal = 0
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
+	else if(tf_mob_holder)
+		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob. [ADMIN_FLW(src)]")
+		revert_mob_tf()
 	//Don't appear to be in a vore situation
 	else
 		to_chat(src,"<span class='alert'>You aren't inside anyone, though, is the thing.</span>")
@@ -660,6 +703,12 @@
 	if(new_color)
 		glow_color = new_color
 
+/obj/item
+	var/trash_eatable = TRUE
+
+/mob/living/proc/get_digestion_nutrition_modifier()
+	return 1
+
 /mob/living/proc/eat_trash()
 	set name = "Eat Trash"
 	set category = "Abilities"
@@ -677,6 +726,17 @@
 	if(is_type_in_list(I,item_vore_blacklist))
 		to_chat(src, "<span class='warning'>You are not allowed to eat this.</span>")
 		return
+
+	if(!I.trash_eatable)
+		to_chat(src, "<span class='warning'>You can't eat that so casually!</span>")
+		return
+
+	if(istype(I, /obj/item/device/paicard))
+		var/obj/item/device/paicard/palcard = I
+		var/mob/living/silicon/pai/pocketpal = palcard.pai
+		if(!pocketpal.devourable)
+			to_chat(src, "<span class='warning'>\The [pocketpal] doesn't allow you to eat it.</span>")
+			return
 
 	if(is_type_in_list(I,edible_trash) | adminbus_trash)
 		if(I.hidden_uplink)
@@ -737,7 +797,7 @@
 				to_chat(src, "<span class='notice'>You can taste the flavor of aromatic rolling paper and funny looks.</span>")
 		else if(istype(I,/obj/item/weapon/paper))
 			to_chat(src, "<span class='notice'>You can taste the dry flavor of bureaucracy.</span>")
-		else if(istype(I,/obj/item/weapon/dice))
+		else if(istype(I,/obj/item/weapon/dice) || istype(I,/obj/item/roulette_ball))
 			to_chat(src, "<span class='notice'>You can taste the bitter flavor of cheating.</span>")
 		else if(istype(I,/obj/item/weapon/lipstick))
 			to_chat(src, "<span class='notice'>You can taste the flavor of couture and style. Toddler at the make-up bag style.</span>")
@@ -758,9 +818,16 @@
 		else if(istype(I,/obj/item/weapon/bikehorn/tinytether))
 			to_chat(src, "<span class='notice'>You feel a rush of power swallowing such a large, err, tiny structure.</span>")
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
-		else if(istype(I,/obj/item/device/paicard) || istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
+		else if(istype(I,/obj/item/device/mmi/digital/posibrain) || istype(I,/obj/item/device/aicard))
 			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
 			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship. Or maybe it is something else.</span>")
+		else if(istype(I,/obj/item/device/paicard))
+			visible_message("<span class='warning'>[src] demonstrates their voracious capabilities by swallowing [I] whole!</span>")
+			to_chat(src, "<span class='notice'>You can taste the sweet flavor of digital friendship.</span>")
+			var/obj/item/device/paicard/ourcard = I
+			if(ourcard.pai && ourcard.pai.client && isbelly(ourcard.loc))
+				var/obj/belly/B = ourcard.loc
+				to_chat(ourcard.pai, "<span class= 'notice'><B>[B.desc]</B></span>")
 		else if(istype(I,/obj/item/weapon/reagent_containers/food))
 			var/obj/item/weapon/reagent_containers/food/F = I
 			if(!F.reagents.total_volume)
@@ -1053,9 +1120,13 @@
 	if(!screen_icon)
 		screen_icon = new()
 		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/vore_panel_click)
-	screen_icon.icon = HUD.ui_style
-	screen_icon.color = HUD.ui_color
-	screen_icon.alpha = HUD.ui_alpha
+	if(ispAI(user))
+		screen_icon.icon = 'icons/mob/pai_hud.dmi'
+		screen_icon.screen_loc = ui_acti
+	else
+		screen_icon.icon = HUD.ui_style
+		screen_icon.color = HUD.ui_color
+		screen_icon.alpha = HUD.ui_alpha
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 

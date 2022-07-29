@@ -169,6 +169,10 @@
 		pred = loc.loc
 	else if(isliving(prey.loc))
 		pred = loc
+	else if(ispAI(src))
+		var/mob/living/silicon/pai/pocketpal = src
+		if(isbelly(pocketpal.card.loc))
+			pred = pocketpal.card.loc.loc
 	else
 		to_chat(prey, "<span class='notice'>You are not inside anyone.</span>")
 		return

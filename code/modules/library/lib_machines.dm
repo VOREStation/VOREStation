@@ -73,7 +73,7 @@
 		return
 
 	if(href_list["settitle"])
-		var/newtitle = input(usr, "Enter a title to search for:") as text|null
+		var/newtitle = tgui_input_text(usr, "Enter a title to search for:")
 		if(newtitle)
 			title = sanitize(newtitle)
 		else
@@ -87,7 +87,7 @@
 			category = "Any"
 		category = sanitizeSQL(category)
 	if(href_list["setauthor"])
-		var/newauthor = input(usr, "Enter an author to search for:") as text|null
+		var/newauthor = tgui_input_text(usr, "Enter an author to search for:")
 		if(newauthor)
 			author = sanitize(newauthor)
 		else
@@ -341,14 +341,7 @@
 				screenstate = 5
 			if("6")
 				if(!bibledelay)
-
-					var/obj/item/weapon/storage/bible/B = new /obj/item/weapon/storage/bible(src.loc)
-					if(GLOB.religion)
-						B.icon_state = GLOB.bible_icon_state
-						B.item_state = GLOB.bible_item_state
-						B.name = GLOB.bible_name
-						B.deity_name = GLOB.deity
-
+					new /obj/item/weapon/storage/bible(src.loc)
 					bibledelay = 1
 					spawn(60)
 						bibledelay = 0
@@ -372,9 +365,9 @@
 		if(checkoutperiod < 1)
 			checkoutperiod = 1
 	if(href_list["editbook"])
-		buffer_book = sanitizeSafe(input(usr, "Enter the book's title:") as text|null)
+		buffer_book = sanitizeSafe(tgui_input_text(usr, "Enter the book's title:"))
 	if(href_list["editmob"])
-		buffer_mob = sanitize(input(usr, "Enter the recipient's name:") as text|null, MAX_NAME_LEN)
+		buffer_mob = sanitize(tgui_input_text(usr, "Enter the recipient's name:", null, null, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(href_list["checkout"])
 		var/datum/borrowbook/b = new /datum/borrowbook
 		b.bookname = sanitizeSafe(buffer_book)
@@ -389,7 +382,7 @@
 		var/obj/item/weapon/book/b = locate(href_list["delbook"])
 		inventory.Remove(b)
 	if(href_list["setauthor"])
-		var/newauthor = sanitize(input(usr, "Enter the author's name: ") as text|null)
+		var/newauthor = sanitize(tgui_input_text(usr, "Enter the author's name: "))
 		if(newauthor)
 			scanner.cache.author = newauthor
 	if(href_list["setcategory"])
@@ -469,7 +462,7 @@
 			query.Execute()
 
 	if(href_list["orderbyid"])
-		var/orderid = input(usr, "Enter your order:") as num|null
+		var/orderid = tgui_input_number(usr, "Enter your order:")
 		if(orderid)
 			if(isnum(orderid))
 				var/nhref = "src=\ref[src];targetid=[orderid]"

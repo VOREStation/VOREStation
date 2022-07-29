@@ -268,10 +268,10 @@
 /mob/living/bot/medbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	usr.set_machine(src)
 	add_fingerprint(usr)
-	
+
 	. = TRUE
 	switch(action)
 		if("power")
@@ -348,8 +348,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	//qdel(src)
+	return ..()
 
 /mob/living/bot/medbot/handleRegular()
 	. = ..()
@@ -535,7 +535,7 @@
 /obj/item/weapon/firstaid_arm_assembly/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && loc != usr)

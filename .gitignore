@@ -15,7 +15,6 @@ data
 data/
 cfg/
 
-<<<<<<< HEAD
 #Visual studio stuff
 *.vscode/*
 !/.vscode/launch.json
@@ -23,11 +22,5 @@ cfg/
 !/.vscode/settings.json
 !/.vscode/tasks.json
 
-code/game/gamemodes/technomancer/spells/projectile/overload.dm
-code/game/gamemodes/technomancer/spells/projectile/overload.dm
-code/modules/client/preference_setup/loadout/loadout_xeno.dm
-temp.dmi
-=======
 node_modules/
 package-lock.json
->>>>>>> 60c189933ac... Merge pull request #8583 from Spookerton/spkrtn/sys/workspace-settings-improvement

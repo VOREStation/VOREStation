@@ -1,6 +1,6 @@
 import { decodeHtmlEntities } from 'common/string';
-import { useBackend } from "../../backend";
-import { Box, Button, NoticeBox } from "../../components";
+import { useBackend } from '../../backend';
+import { Box, Button, NoticeBox } from '../../components';
 
 /**
  * Displays a notice box with text and style dictated by the
@@ -16,9 +16,7 @@ import { Box, Button, NoticeBox } from "../../components";
  * @param {object} context
  */
 export const TemporaryNotice = (_properties, context) => {
-  const {
-    decode,
-  } = _properties;
+  const { decode } = _properties;
   const { act, data } = useBackend(context);
   const { temp } = data;
   if (!temp) {
@@ -30,10 +28,7 @@ export const TemporaryNotice = (_properties, context) => {
       <Box display="inline-block" verticalAlign="middle">
         {decode ? decodeHtmlEntities(temp.text) : temp.text}
       </Box>
-      <Button
-        icon="times-circle"
-        float="right"
-        onClick={() => act('cleartemp')} />
+      <Button icon="times-circle" float="right" onClick={() => act('cleartemp')} />
       <Box clear="both" />
     </NoticeBox>
   );

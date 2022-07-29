@@ -183,6 +183,7 @@
 	key = "squish"
 	emote_sound = 'sound/effects/slime_squish.ogg' //Credit to DrMinky (freesound.org) for the sound.
 	emote_message_3p = "squishes."
+	sound_vary = FALSE
 
 /decl/emote/audible/warble
 	key = "warble"
@@ -204,6 +205,14 @@
 	emote_message_3p = "purrs."
 	emote_sound = 'sound/voice/cat_purr_long.ogg'
 
+/decl/emote/audible/fennecscream
+	key = "fennecscream"
+	emote_message_3p = "screeches!"
+
+/decl/emote/audible/zoom
+	key = "zoom"
+	emote_message_3p = "zooms."
+
 /decl/emote/audible/teshsqueak
 	key = "surprised"
 	emote_message_1p = "You chirp in surprise!"
@@ -211,6 +220,7 @@
 	emote_message_1p_target = "You chirp in surprise at TARGET!"
 	emote_message_3p_target = "chirps in surprise at TARGET!"
 	emote_sound = 'sound/voice/teshsqueak.ogg' // Copyright CC BY 3.0 InspectorJ (freesound.org) for the source audio.
+	sound_vary = FALSE
 
 /decl/emote/audible/teshchirp
 	key = "tchirp"
