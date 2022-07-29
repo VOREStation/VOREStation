@@ -20,8 +20,7 @@
 		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return 1
 
-	if ( ! (istype(user, /mob/living/carbon/human) || \
-			istype(user, /mob/living/silicon)) )
+	if (!M.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
@@ -129,7 +128,7 @@
 				if(used >= available)
 					to_chat(user, "<span class='warning'>You run out of [src]!</span>")
 					break
-				
+
 				if (W.current_stage <= W.max_bleeding_stage)
 					user.visible_message("<b>\The [user]</b> bandages \a [W.desc] on [M]'s [affecting.name].", \
 					                              "<span class='notice'>You bandage \a [W.desc] on [M]'s [affecting.name].</span>" )
