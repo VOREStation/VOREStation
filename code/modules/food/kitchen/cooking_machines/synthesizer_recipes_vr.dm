@@ -58,40 +58,44 @@
 *************/
 
 /datum/category_group/synthesizer
+	var/id = null
 
-/datum/category_group/synthesizer/all
-	name = "All"
-	category_item_type = /datum/category_item/synthesizer
-
-/datum/category_group/synthesizer/all/New()
+/datum/category_group/synthesizer/New()
 	..()
 
 /datum/category_group/synthesizer/appasnack
-	name = "Snack / Appatizers"
+	name = "Snack / Appetizers"
+	id = "appasnacc"
 	category_item_type = /datum/category_item/synthesizer/appasnack
 
-/datum/category_group/synthesizer/cooked
+/datum/category_group/synthesizer/breakfastmenu
 	name = "Breakfast Menu"
+	id = "breakfast"
 	category_item_type = /datum/category_item/synthesizer/breakfastmenu
 
-/datum/category_group/synthesizer/cooked
+/datum/category_group/synthesizer/lunchmenu
 	name = "Lunch Menu"
+	id = "lunch"
 	category_item_type = /datum/category_item/synthesizer/lunchmenu
 
-/datum/category_group/synthesizer/cooked
+/datum/category_group/synthesizer/dinnermenu
 	name = "Dinner Menu"
+	id = "dinner"
 	category_item_type = /datum/category_item/synthesizer/dinnermenu
 
-/datum/category_group/synthesizer/dessert
+/datum/category_group/synthesizer/dessertmenu
 	name = "Dessert Menu"
+	id = "dessert"
 	category_item_type = /datum/category_item/synthesizer/dessert
 
-/datum/category_group/synthesizer/exotic
+/datum/category_group/synthesizer/exoticmenu
 	name = "Exotic Menu"
+	id = "exotic"
 	category_item_type = /datum/category_item/synthesizer/exotic
 
-/datum/category_group/synthesizer/raw
+/datum/category_group/synthesizer/rawmenu
 	name = "Raw Offerings"
+	id = "raw"
 	category_item_type = /datum/category_item/synthesizer/raw
 
 /*******************

@@ -34,7 +34,7 @@ export const Synthesizer = (props, context) => {
   let body;
   if (screen === 1) {
     // Menu time!
-    body = <AppatizerMenu />;
+    body = <AppetizerMenu />;
   } else if (screen === 2) {
     body = <BreakfastMenu />;
   } else if (screen === 3) {
@@ -64,7 +64,7 @@ export const Synthesizer = (props, context) => {
   );
 };
 
-const AppatizerMenu = (_properties, context) => {
+const AppetizerMenu = (_properties, context) => {
   const { act, data } = useBackend(context);
   const { records } = data;
   return (

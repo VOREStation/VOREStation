@@ -2,6 +2,20 @@
 //Yes it's a generic food 3d printer. ~
 // in here because makes sense, if really it's just a refillable autolathe of food
 
+#define SYNTH_NOWORKY	1
+#define SYNTH_APPETIZER	2
+#define SYNTH_BREAKFAST	3
+#define SYNTH_LUNCH		4
+#define SYNTH_DINNER	5
+#define SYNTH_DESSERT	6
+#define SYNTH_EXOTIC	7
+#define SYNTH_RAW		8
+#define SYNTH_CREW		9
+
+//#define VOICE_ORDER(A, O, T) list(activator = A, order = O, temp = T)
+
+// "Computer, Steak, Hot."
+
 /obj/machinery/synthesizer
 	name = "food synthesizer"
 	desc = "a device able to produce an incredible array of conventional foods. Although only the most ascetic of users claim it produces truly good tasting products."
@@ -16,6 +30,7 @@
 	clicksound = "keyboard"
 	clickvol = 30
 
+	var/screen = null
 	var/hacked = FALSE
 	var/disabled = FALSE
 	var/shocked = FALSE
@@ -121,22 +136,22 @@
 
 /obj/machinery/synthesizer/tgui_static_data(mob/user)
 	var/list/data = ..()
-
 	var/list/categories = list()
 	var/list/recipes = list()
-	for(var/datum/category_group/synthesizer/A in synthesizer_recipes.categories)
-		categories += A.name
-		for(var/datum/category_item/synthesizer/F in A.items)
-			if(F.hidden && !hacked)
+	for(var/datum/category_group/synthesizer/menulist in synthesizer_recipes.categories)
+		categories += menulist.name
+		for(var/datum/category_item/synthesizer/food in menulist.items)
+			if(food.hidden && !hacked)
 				continue
-			recipes.Add(list(list(
-				"category" = A.name,
-				"name" = F.name,
-				"ref" = REF(F),
-				"voice_order" = F.voice_order,
-				"voice_temp" = F.voice_temp,
-				"hidden" = F.hidden,
-			)))
+				recipes.Add(list(list(
+					"category" = menulist.name,
+					"id" = menulist.id,
+					"name" = food.name,
+					"ref" = REF(food),
+					"voice_order" = food.voice_order,
+					"voice_temp" = food.voice_temp,
+					"hidden" = food.hidden,
+					)))
 	data["recipes"] = recipes
 	data["categories"] = categories
 	return data
@@ -145,6 +160,7 @@
 	var/list/data = ..()
 	data["busy"] = busy
 	data["isThereCart"] = cart ? TRUE : FALSE
+	data["screen"] = screen
 	var/cartfilling[0]
 	if(cart && cart.reagents && cart.reagents.reagent_list.len)
 		for(var/datum/reagent/R in cart.reagents.reagent_list)
@@ -157,6 +173,24 @@
 	else
 		data["cartCurrentVolume"] = null
 		data["cartMaxVolume"] = null
+
+	switch(screen) //show each screen tab. ID to help? maybe? idfk
+		if("SYNTH_APPETIZER")
+			data["id"] = "appasnacc"
+		if("SYNTH_BREAKFAST")
+			data["id"] = "breakfast"
+		if("SYNTH_LUNCH")
+			data["id"] = "lunch"
+		if("SYNTH_DINNER")
+			data["id"] = "dinner"
+		if("SYNTH_DESSERT")
+			data["id"] = "dessert"
+		if("SYNTH_EXOTIC")
+			data["id"] = "exotic"
+		if("SYNTH_RAW")
+			data["id"] = "raw"
+		if("SYNTH_CREW")
+			return
 
 	var/bodyrecords_list_ui[0]
 	for(var/N in our_db.body_scans)
@@ -178,7 +212,6 @@
 		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
 		return
 
-//	switch(screen)
 	switch(action)
 		if("make")
 			var/datum/category_item/synthesizer/making = locate(params["make"])
@@ -229,13 +262,6 @@
 				meal.trash = food_mimic?.trash	//If this can lead to exploits then we'll remove it, but.
 				qdel(food_mimic)
 				src.food_mimic_storage = null
-
-			/*	for(var/obj/item/weapon/holder/micro/M in making.path) //Soylent Agent Green is People!!!!!
-					//Begin mimicking the snackrifice
-					meal.name = M.name
-					meal.icon = getFlatIcon(M,0)
-					meal.nutriment_desc = M?.vore_taste	*/
-
 				src.audible_message("<span class='notice'>Please take your [meal.name].</span>", runemessage = "[meal.name] is complete!")
 				if(Adjacent(usr))
 					usr.put_in_any_hand_if_possible(meal)
@@ -367,12 +393,11 @@
 		to_chat(user, "<span class='notice'>The synthesizer cartridge is nonexistant.</span>")
 		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
 		return FALSE
-	if((!(C.reagents)) || (C.reagents.total_volume <= 0))
+	if((!(C.reagents)) || (C.reagents.total_volume <= 0) || (!C.reagents.has_reagent("synthsoygreen")))
 		to_chat(user, "<span class='notice'>The synthesizer cartridge is empty.</span>")
 		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100)
 		return FALSE
-
-	else if(C.reagents && (C.reagents.total_volume >= 5))
+	else if(C.reagents && C.reagents.has_reagent("synthsoygreen") && (C.reagents.total_volume >= 5))
 		SStgui.update_uis(src)
 		return TRUE
 
@@ -525,6 +550,9 @@
 
 	return
 
+/obj/item/weapon/reagent_containers/synth_disp_cartridge/is_open_container()
+	return FALSE //sealed, proprietary container. aka preventing alternative beaker memes.
+
 /* Voice activation stuff.
 can tgui accept orders that isn't through the menu? Probably. hijack that.
 
@@ -557,12 +585,12 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 		var/temp = null
 		for(var/X in all_menus)
 			var/tofind = X
-			if(findtext(raw_message, tofind))
-				target = tofind //Alright they've asked for something on the menu.
+			if(findtext(raw_message, order))
+				target = order //Alright they've asked for something on the menu.
 
 		for(var/Y in temps) //See if they want it hot, or cold.
-			var/hotorcold = Y
-			if(findtext(raw_message, hotorcold))
+			var/temp = Y
+			if(findtext(raw_message, T))
 				temp = hotorcold //If they specifically request a temperature, we'll oblige. Else it doesn't rename.
 		if(target && powered())
 			menutype = REPLICATING
@@ -579,10 +607,7 @@ can tgui accept orders that isn't through the menu? Probably. hijack that.
 /obj/machinery/synthesizer/proc/synthesize(var/what, var/temp, var/mob/living/user)
 	var/atom/food
 
-	/var/list/order = list(
-	order["activator"] = activator
-	order["menu_order"] = menu_order
-	order["temp_or_name"] = temp_or_name)
+	/var/list/order = VOICE_ORDER
 
 	tgui_act("add_order", order)
 
