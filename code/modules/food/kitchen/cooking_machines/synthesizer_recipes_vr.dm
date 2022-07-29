@@ -94,11 +94,6 @@
 	name = "Raw Offerings"
 	category_item_type = /datum/category_item/synthesizer/raw
 
-/*
-/datum/category_group/synthesizer/crewprint
-	name = "Crew"
-	category_item_type = /datum/category_item/synthesizer/crewprint */
-
 /*******************
 * Category entries *
 *******************/
@@ -1069,14 +1064,6 @@
 	voice_order = list("Dog steak", "Dog", "Canine steak")
 	voice_temp = "cold"
 	hidden = TRUE
-
-/*
-/datum/category_item/synthesizer/crewprint/micro
-	name = "Crew Replica"
-	path = /mob/living/carbon/human/mannequin
-	voice_order = list("micro", "crewmember", "crew member", "crew", "nerd", "snackrifice", "snacksized", "snack-sized", "snack sized")
-	voice_temp = ""*/
-
 
 /datum/category_item/synthesizer/dd_SortValue()
 	return name

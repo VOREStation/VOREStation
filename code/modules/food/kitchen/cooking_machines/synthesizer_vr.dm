@@ -101,6 +101,13 @@
 	return
 
 // TGUI to do.
+
+
+/obj/machinery/synthesizer/ui_assets(mob/user)
+	return list(
+		get_asset_datum(/datum/asset/spritesheet/synthesizer),
+	)
+
 /obj/machinery/synthesizer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -170,6 +177,8 @@
 		to_chat(usr, "<span class='notice'>The synthesizer is busy. Please wait for completion of previous operation.</span>")
 		playsound(src, 'sound/machines/replicator_input_failed.ogg', 100, 1)
 		return
+
+//	switch(screen)
 	switch(action)
 		if("make")
 			var/datum/category_item/synthesizer/making = locate(params["make"])

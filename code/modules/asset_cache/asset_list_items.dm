@@ -304,6 +304,44 @@
 	downscaled.Scale(240, 240)
 	InsertAll("", downscaled)
 	..()
+
+/datum/asset/spritesheet/synthesizer //mimic of vending machines but better optimization than not? idk
+	name = "synthesizer"
+
+/datum/asset/spritesheet/synthesizer/register()
+	for(var/path in subtypesof(/datum/category_item/synthesizer))
+		var/obj/item/weapon/reagent_containers/food/fud = path //drinks are helpfully a subtype of food
+
+		var/icon_file
+		var/icon_state
+		var/icon/I
+
+		if(initial(fud.icon) && initial(fud.icon_state)) //if it's got an icon replacement we'll skip
+			icon_file = initial(fud.icon)
+			icon_state = initial(fud.icon_state)
+			if(!(icon_state in icon_states(icon_file)))
+				stack_trace("Food [fud] with icon '[icon_file]' missing state '[icon_state]'")
+				continue
+			I = icon(icon_file, icon_state, SOUTH)
+
+		else
+			// construct the icon and slap it into the resource cache
+			var/atom/meal = fud
+			if (!ispath(meal, /atom))
+				continue
+			icon_file = initial(meal.icon)
+			icon_state = initial(meal.icon_state)
+			if(!(icon_state in icon_states(icon_file)))
+				stack_trace("Food [meal] with icon '[icon_file]' missing state '[icon_state]'")
+				continue
+			I = icon(icon_file, icon_state, SOUTH)
+
+
+		var/imgid = replacetext(replacetext("[fud]", "/obj/item/weapon/reagent_containers/food/", ""), "/", "-")
+
+		Insert(imgid, I)
+	return ..()
+
 //VOREStation Add End
 
 // // Representative icons for each research design
