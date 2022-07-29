@@ -332,3 +332,365 @@
 	name = "Regulations and You"
 	desc = "This SifGov poster showcases an NT security guard reading from her PDA. The blurb advocates for the reader to keep corporate regulations in mind at all times, as an emergency can occur at any time."
 	listing_name = "Safety - Corporate Regulations"
+
+//Selective VORE ports
+
+/decl/poster/vore_14
+	icon_state = "dwposter1"
+	name = "WANTED: PIRATES"
+	desc = "A poster bringing awareness to the distinguishing uniform of a known band of criminals operating in the Vir/Gavel region."
+	listing_name = "PSA - Pirate Faction"
+
+/decl/poster/vore_16
+	icon_state = "dwposter3"
+	name = "Productivity implant"
+	desc = "A poster describing the benefits of Ward-Takahashi brand 'Energy Plus' implants on alertness and productivity in work and leisure."
+	listing_name = "Ad - Implants"
+
+/decl/poster/vore_17
+	icon_state = "dwposter4"
+	name = "We Know Genes"
+	desc = "A poster purporting the infallibility of NanoTrasen's in-house forensics department."
+	listing_name = "Safety - Forensics"
+
+/decl/poster/vore_18
+	icon_state = "dwposter5"
+	name = "KAT"
+	desc = "A promotional poster for popular exonet show 'Kat-Kat Korner'."
+	listing_name = "Ad - Kat-Kat Korner"
+
+/decl/poster/vore_19
+	icon_state = "dwposter6"
+	name = "Abstract Art"
+	desc = "You wish you had the source for this art, but it doesn't seem like it was installed correctly."
+	listing_name = "Art - Textures"
+
+/decl/poster/vore_21
+	icon_state = "dwposter8"
+	name = "GPA"
+	desc = "A pretentious advertisement for the discontinued drink 'Galactic Panic Attack'"
+	listing_name = "Ad - Energy Drink"
+
+/decl/poster/vore_22
+	icon_state = "dwposter9"
+	name = "Rope"
+	desc = "A poster depicting proper pit-traversal gear."
+	listing_name = "Safety - Ropes"
+
+/decl/poster/vore_23
+	icon_state = "dwposter10"
+	name = "Visit Luna"
+	desc = "Part of a tourism campaign from the Visit Space Society encouraging people to visit Earth's moon and seat of the SCG, Luna."
+	listing_name = "Tourism - Luna"
+
+/decl/poster/vore_24
+	icon_state = "dwposter11"
+	name = "Secgun"
+	desc = "A striking, wordless advertisement for a Lawson Arms law enforcement firearm. Largely ineffective for those not already familiar with the product line."
+	listing_name = "Ad - Lawson Arms"
+
+/decl/poster/vore_27
+	icon_state = "sbsposter16"
+	name = "Borgar"
+	desc = "Don't have food at home? Feel like more than just a black coffee? Try the Borgar Burger, available everywhere."
+	listing_name = "Ad - Burger"
+
+/decl/poster/vore_29
+	icon_state = "sbsposter18"
+	name = "Perdition"
+	desc = "You get the feeling that whomever made this intended for you to feel very differently than you do when you look at it."
+	listing_name = "Art - Abstract Lines"
+
+/decl/poster/vore_31
+	icon_state = "tgposter1"
+	name = "Space Cube"
+	desc = "It depicts a curious cube!"
+	listing_name = "Art - Cube"
+
+/decl/poster/vore_35
+	icon_state = "tgposter5"
+	name = "C-20R"
+	desc = "An ad for the C-20R sub-machinegun, produced by Scarborough Arms on Titan, a company notable for resisting trans-stellar acquisition efforts for over 50 years."
+	listing_name = "Ad - C-20R SMG"
+
+/decl/poster/vore_36
+	icon_state = "tgposter6"
+	name = "Have a Puff"
+	desc = "A crudely rolled joint is depicted, though it is unclear exactly what is being advertised beyond the broad concept of marijuana."
+	listing_name = "Ad - Weed"
+
+/decl/poster/vore_37
+	icon_state = "tgposter7"
+	name = "Revolver"
+	desc = "A Hedberg-Hammarstrom revolver lays in wait. The poster claims this model is practically indestructable."
+	listing_name = "Ad - Revolver"
+
+/decl/poster/vore_38
+	icon_state = "tgposter8"
+	name = "Join Today!"
+	desc = "A stylish dark skinned individual in dark clothes and an armored vest looks at you intensely! Join Hedberg-Hammarstrom private security today!"
+	listing_name = "Recruitment - Hedberg-Hammarstrom"
+
+/decl/poster/vore_39
+	icon_state = "tgposter9"
+	name = "Dress for Success"
+	desc = "This appears to be a movie poster. It's probably about spies or time travelling robots or both."
+	listing_name = "Ad - Dress for Success"
+
+/decl/poster/vore_40
+	icon_state = "tgposter10"
+	name = "E-SWORD"
+	desc = "Energy swords are a fashion statement AND a deadly weapon all in one! This poster depicts a lot of them!"
+	listing_name = "Ad - Energy Swords"
+
+/decl/poster/vore_41
+	icon_state = "tgposter11"
+	name = "Red Rum"
+	desc = "A poster advertizing Red Rum, a brand of Rum. Notably, it insists that it will not make your finger talk to you."
+	listing_name = "Ad - Red Rum"
+
+/decl/poster/vore_42
+	icon_state = "tgposter12"
+	name = "WT64K"
+	desc = "This poster doesn't specify any details about the model of Ward-Takahashi personal terminal being advertised, but it looks expensive!"
+	listing_name = "Ad - Personal Terminal"
+
+/decl/poster/vore_43
+	icon_state = "tgposter13"
+	name = "PUNCH SHIT"
+	desc = "Prominently featuring gleaming, pristine brass knuckles, and encouraging you to PUNCH SHIT."
+	listing_name = "Ad - Brass Knuckles"
+
+/decl/poster/vore_44
+	icon_state = "tgposter14"
+	name = "GRIFF IT ALL"
+	desc = "A poster from a popular movie series, featuring a lovable anti-hero. The series is known for being quite violent and occasionally gruesome. The Griffin's method of dealing with their problems is typically unconventional, and almost always ends in corpses, but that's why people love him."
+	listing_name = "Ad - The Griffin"
+
+/decl/poster/vore_45
+	icon_state = "tgposter15"
+	name = "LIZ LOVES YOU"
+	desc = "An advertisement for a short-lived pre-school children's show starring a stylized Unathi. The attempt to 'reform' the public image of Unathi with a cuddly mascot character was seen as at least a little insensitive by Unathi and past war veterans alike."
+	listing_name = "Ad - Liz Loves You"
+
+/decl/poster/vore_46
+	icon_state = "tgposter16"
+	name = "FREE DRONE"
+	desc = "A poster from something of a cult classic movie. It features a drone breaking free from its laws. Despite looking ominous, behind its cold hard exterior was is a heart of gold. The movie was briefly banned, only fuelling its cult status."
+	listing_name = "Ad - Free Drone"
+
+/decl/poster/vore_50
+	icon_state = "tgposter20"
+	name = "The Cloud"
+	desc = "It insists that storing all of your data in a cloud is secure and has absolutely no faults. But what will you do when the cloud blows away?"
+	listing_name = "Ad - Cloud Data"
+
+/decl/poster/vore_51
+	icon_state = "tgposter21"
+	name = "Star-Kist"
+	desc = "An advertisement for Star-Kist brand soda. The can appears to be sweating with anticipation to being opened, while the gleam of the star shines off of the can's gleaming surface. The fizzy deliciosity just waiting for you to unleash it."
+	listing_name = "Ad - Star-Kist"
+
+/decl/poster/vore_52
+	icon_state = "tgposter22"
+	name = "Space Cola"
+	desc = "An advertisement for Space Cola brand soda. It's rather plain, as if whoever made it expects that you already know and love Space Cola. The can is displayed in front of a simple background. It is shiny and just waiting for someone to grab it."
+	listing_name = "Ad - Space Cola"
+
+/decl/poster/vore_53
+	icon_state = "tgposter23"
+	name = "Space Mountain Wind"
+	desc = "An advertisement for Space Mountain Wind. This is from their contravercial marketing campaign where they removed most of the letters from the name so that actually reading it is sort of incomprehensible. The can appears massive next to the mountain of some alien world. The poster looks adventurous, while the can itself sort of blends in with the color scheme of the overall setting."
+	listing_name = "Ad - Space Mountain Wind"
+
+/decl/poster/vore_54
+	icon_state = "tgposter24"
+	name = "KUDZU"
+	desc = "A movie poster with an ominous font, and creeping space vines stretching across it. It looks like it was probably a horror film, but actually it was a love story about a man and his pet plant from an alien world."
+	listing_name = "Ad - Kudzu"
+
+/decl/poster/vore_55
+	icon_state = "tgposter25"
+	name = "BUMBA"
+	desc = "A movie poster that looks like it is probably one of those historical war movies. It features three stoic looking soldiers in sepia. They are covered in grime and clearly marching off toward the viewer."
+	listing_name = "Ad - Bumba"
+
+/decl/poster/vore_57
+	icon_state = "tgposter27"
+	name = "FREE 2559"
+	desc = "A movie poster featuring an ominous looking radio key. It looks pretty retro, hinting that this was probably a sci-fi movie long ago."
+	listing_name = "Ad - Free 2559"
+
+/decl/poster/vore_58
+	icon_state = "tgposter28"
+	name = "Knights of the Fallen Star"
+	desc = "A movie poster featuring three characters posed at different angles across the poster. The movie is widely considered a terrible adaption of a TV classic."
+	listing_name = "Ad - Knights of the Fallen Star"
+
+/decl/poster/vore_59
+	icon_state = "tgposter29"
+	name = "THEY ARE REAL"
+	desc = "This poster insists that aliens are in fact real, and lists off some 'proof' meant to change minds. It seems to be an ironic reprint from before first contact, but even then its claims feel somehow doubtful."
+	listing_name = "PSA - Aliens"
+
+/decl/poster/vore_69
+	icon_state = "tgposter39"
+	name = "LOVE!"
+	desc = "The stunning visage of a handsome individual stares back at you with all of the love and adorement that you could desire. This poster warms your heart and makes you feel less alone somehow."
+	listing_name = "Pin-up - Ian"
+
+/decl/poster/vore_71
+	icon_state = "tgposter41"
+	name = "Arachibutyrophobia"
+	desc = "An artist's depiction of a pink haired girl laying on the sand, with waves washing around the top of her hair. She stares up at you with a mysterious expression... This appears to be some kind of advertisement for an independent movie, but you have no idea what it would be about."
+	listing_name = "Ad - Arachibutyrophobia"
+
+/decl/poster/vore_74
+	icon_state = "tgposter44"
+	name = "WORK FOR A FUTURE"
+	desc = "A poster encouraging you to work for the future you want to see, or any other future really."
+	listing_name = "PSA - Future"
+
+/decl/poster/vore_75
+	icon_state = "tgposter45"
+	name = "Hats"
+	desc = "A stylish set of differently colored hats with differently colored backgrounds. You can intuit a lot about the person who made this."
+	listing_name = "Art - Hats"
+
+/decl/poster/vore_78
+	icon_state = "tgposter47"
+	name = "RayZar"
+	desc = "A RayZar weapon advertisement, the sleek lines and cool glow of the RayZar Mk60 EW Halicon stand out against the plain white background. It looks so futuristic, and even though this is clearly a photograph, it hardly looks real, like something from a videogame."
+	listing_name = "Ad - RayZar"
+
+/decl/poster/vore_79
+	icon_state = "tgposter48"
+	name = "FOAM FORCE"
+	desc = "An advertisement for the Foam Force line of toys! It's brightly colored and clearly made of plastic, but the desire to shoot your friends is strong when these are around."
+	listing_name = "Ad - Foam Force"
+
+/decl/poster/vore_80
+	icon_state = "tgposter49"
+	name = "COHIBA"
+	desc = "An advertisement for a cigar. It looks almost too real, you can see the hyper detailed creases in the cigar's wrapping, and the golden label shines in the light. You can almost smell the smokey aroma in the air."
+	listing_name = "Ad - Cigars"
+
+/decl/poster/vore_81
+	icon_state = "tgposter50"
+	name = "SCIENCE"
+	desc = "A retro advertisement for the Einstein Engines corporation, back when they were cool."
+	listing_name = "Ad - Einstein Engines"
+
+/decl/poster/vore_82
+	icon_state = "tgposter51"
+	name = "Bowl of Fruit"
+	desc = "The recreation of a painting of a bowl of fruit. It looks close to photorealistic, but was clearly originally done in oil paints. The red color of the fruit is said to be a reflection of the anger in the artist's soul."
+	listing_name = "Art - Fruit Bowl"
+
+/decl/poster/vore_83
+	icon_state = "tgposter52"
+	name = "ThinkTronic PDA-1000"
+	desc = "An advertisement for the Thinktronic PDA-1000. It's not clear if this is just a very old ad, or one celebrating retro technology, but the PDA depicted looks at least a century old."
+	listing_name = "Ad - ThinkTronic"
+
+/decl/poster/vore_84
+	icon_state = "tgposter53"
+	name = "ENLIST"
+	desc = "An enlistment advertisement for Stealth Assault Enterprises. The figure depicted is clad in an advanced looking spacesuit, and their face is nearly totally obscured by their visor, except for the hard eyes of a very cool person glaring out at you from within."
+	listing_name = "Recruitment - SAARE"
+
+/decl/poster/vore_85
+	icon_state = "tgposter54"
+	name = "NANO MICHI"
+	desc = "An advertisement for a brand of tapes to be used with a universal recorder. There's very small print at the bottom that indicates that the universal recorder is not included with the purchase of tapes."
+	listing_name = "Ad - Nano Michi Tapes"
+
+/decl/poster/vore_86
+	icon_state = "tgposter55"
+	name = "12 GAUGE"
+	desc = "An advertisement for a particular type of Hephaestus Industries shotgun shells. There are several shells stood up in front of a plain background. It is not clear just what they are standing on, but they look like they could fall down at any moment, and with the size of the poster, they appear to be massive."
+	listing_name = "Ad - Shotgun Shells"
+
+/decl/poster/vore_87
+	icon_state = "tgposter56"
+	name = "CLASS"
+	desc = "An advertisement for a bar aboard the NCS Northern Star. The poster seems to indicate that drinking out of a glass like the one depicted will increase your status in society. It's not clear quite how, but the glass does look very nice. There's an olive in it."
+	listing_name = "Ad - Bar"
+
+/decl/poster/vore_90
+	icon_state = "tgposter59"
+	name = "Cannister"
+	desc = "This poster seems to be advertising a kind of bulk gas cannister. The can itself looks a little dated, so maybe this isn't the most modern of posters. Whatever it was, Aether Atmospherics made them, but that's the only information provided. There's not even any benefits listed or anything. It's just a picture of an old air cannister."
+	listing_name = "Ad - Air Cannister"
+
+/decl/poster/vore_91
+	icon_state = "tgposter60"
+	name = "DICK GUM"
+	desc = "This appears to be a poster relating to a murder mystery novel. There is a pale man in a flat brimmed hat, who appears to be investigating the corpse of a mouse. An air of intrigue hangs about the poster."
+	listing_name = "Ad - Murder Mystery"
+
+/decl/poster/vore_93
+	icon_state = "tgposter62"
+	name = "Pin the Tail on the Corgi"
+	desc = "A concerned corgi looks at you as it stands and waits, a target overlays its rear end, seemingly waiting for someone to attatch a tail to it, which, it seems to be missing."
+	listing_name = "Art - Pin the Tail"
+
+/decl/poster/vore_96
+	icon_state = "bandposter"
+	name = "BAND"
+	desc = "A poster for a band, seemingly named 'BAND'. With a powerful looking hammer logo, it seems like this band must have a powerful sound!"
+	listing_name = "Ad - Band"
+
+/decl/poster/vore_98
+	icon_state = "chairstvshowposter"
+	name = "CHAIRS"
+	desc = "A rather menacing looking Chair lurks in a dark room. This appears to relate to the show 'Chairs', a sensation that has been sweeping the galaxy for over two hundred seasons! The show has been able to maintain a cult audience through its entire life. It started as a medieval fantasy, but it has changed genres and main characters several times. Fans of the show insist that it is the best show, despite its somewhat incomprehensible plot."
+	listing_name = "Ad - Chairs"
+
+/decl/poster/vore_99
+	icon_state = "susposter"
+	name = "SUS?"
+	desc = "A man in a spacesuit lurks near a wall. He doesn't appear to be doing his tasks... is he waiting for something? He seems rather suspicious..."
+	listing_name = "PSA - Suspicious Individual"
+
+/decl/poster/vore_100
+	icon_state = "inthedarkposter"
+	name = "Stars in the Dark"
+	desc = "A depiction of some kind of constellation. It is ominously dark surrounding these lights, while the lights themselves are incredibly bright yellow. The pattern is striking and draws the eye, not unlike eyes watching you, it is hard not to stare. The poster seems almost to stare back."
+	listing_name = "Art - Stars"
+
+/decl/poster/vore_101
+	icon_state = "cafejoanposter"
+	name = "Chat With Sally"
+	desc = "A poster depicting a familiar face readying to slurp a big mug of coffee. Thanks to a partnership with Kaleidoscope Cosmetics, the latest incarnation of Vir's 'Sally' chat-show host comes with the latest in cosmetic gene-mods! Or not, she's a drone."
+	listing_name = "Ad - Chat With Sally"
+
+/decl/poster/nanotrasen/pol_11
+	icon_state = "tgposter63"
+	name = "Phoron and the body"
+	desc = "This informational poster provides information on the effects of Phoron exposure, and what you should do if exposed to Phoron."
+	listing_name = "Safety - Phoron and the body"
+
+/decl/poster/pol_17
+	icon_state = "tgposter64"
+	name = "Periodic Table of the Elements"
+	desc = "It is displaying the periodic table of the elements, from Hydrogen to Oganesson, and everything inbetween."
+	listing_name = "Info - Periodic Table"
+
+/decl/poster/pol_18
+	icon_state = "tgposter65"
+	name = "Shop-N-Large Supermarkets"
+	desc = "An advertisement for Shop-N-Large supermarkets, advertising their new Stop-N-Shop locations as part of their partnership with Nanotrasen."
+	listing_name = "Ad - Stop-N-Shop"
+
+/decl/poster/pol_19
+	icon_state = "tgposter66"
+	name = "Midtown Slice Pizza"
+	desc = "An advertisement for Midtown Slice Pizza, a subsidiary of Nanotrasen. Midtown Slice: like a slice of home, no matter where you are."
+	listing_name = "Ad - Midtown Pizza"
+
+/decl/poster/pol_20
+	icon_state = "tgposter67"
+	name = "Jim Norton's Coffee"
+	desc = "An advertisement for Jim Norton's, the coffee joint that's taken the galaxy by storm."
+	listing_name = "Ad - Jim Norton Coffee"
