@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
     "recommendations": [
 		"gbasood.byond-dm-language-support",
@@ -8,17 +7,7 @@
 		"oderwat.indent-rainbow",
 		"rexebin.darkpurple-black",
 		"dbaeumer.vscode-eslint",
-		"editorconfig.editorconfig",
 		"donkie.vscode-tgstation-test-adapter",
 		"icrawl.discord-vscode"
 	]
 }
-=======
-{
-  "recommendations": [
-    "gbasood.byond-dm-language-support",
-    "platymuus.dm-langclient",
-    "eamodio.gitlens"
-  ]
-}
->>>>>>> b7d8d4050fb... Merge pull request #8620 from Spookerton/spkrtn/sys/editor-config-pls
