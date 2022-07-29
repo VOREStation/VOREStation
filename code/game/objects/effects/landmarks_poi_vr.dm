@@ -9,12 +9,9 @@ var/global/list/global_used_pois = list()
 	var/poi_type = null
 	var/remove_from_pool = TRUE
 
-/obj/effect/landmark/poi_loader/New()
-INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
-
 /obj/effect/landmark/poi_loader/Initialize()
-	src.load_poi()
-	return ..()
+	load_poi()
+	. =..()
 
 /obj/effect/landmark/poi_loader/proc/get_turfs_to_clean()
 	return block(locate(src.x, src.y, src.z), locate((src.x + size_x - 1), (src.y + size_y - 1), src.z))

@@ -104,16 +104,16 @@
 	var/translator_on = 0 // keeps track of the translator module
 
 	var/current_pda_messaging = null
-	
+
 	var/our_icon_rotation = 0
 
 /mob/living/silicon/pai/Initialize()
-
 	. = ..()
 
 	card = loc
 	if(!istype(card))
 		return INITIALIZE_HINT_QDEL
+
 	sradio = new(src)
 	communicator = new(src)
 	if(card)
@@ -144,7 +144,6 @@
 		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
 		if(M)
 			M.toff = FALSE
-	..()
 
 /mob/living/silicon/pai/Login()
 	..()
