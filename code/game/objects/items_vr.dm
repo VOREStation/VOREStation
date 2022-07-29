@@ -1,11 +1,16 @@
 /obj/item
-	var/list/possessed_voice = list()//Allows for items to be possessed/inhabited by voices.
+	var/list/possessed_voice //Allows for items to be possessed/inhabited by voices.
+	var/list/warned_of_possession //Checks to see who has been informed this item is possessed.
 
 
 /obj/item/proc/inhabit_item(var/mob/candidate, var/candidate_name, var/mob/living/candidate_original_form)
 	//This makes it so that any object in the game can have something put in it like the cursed sword!
 	//This means the proc can also be manually called by admin commands.
 	//Handle moving the person into the object.
+	if(!possessed_voice) //Create the list for possessed_voice if it doesn't already have one.
+		possessed_voice = list()
+	if(!warned_of_possession) //Creates a list of warned users.
+		warned_of_possession = list()
 	var/mob/living/voice/new_voice = new /mob/living/voice(src) 	//Make the voice mob the person is going to be.
 	new_voice.transfer_identity(candidate) 			//Now make the voice mob load from the ghost's active character in preferences.
 	new_voice.mind = candidate.mind					//Transfer the mind, if any.

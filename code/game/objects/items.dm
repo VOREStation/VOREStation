@@ -255,7 +255,8 @@
 			ghost.assumeform(src)
 			ghost.animate_towards(user)
 	//VORESTATION EDIT START. This handles possessed items.
-	if(src.possessed_voice.len) //Is this item possessed?
+	if(src.possessed_voice.len && !(user.ckey in warned_of_possession)) //Is this item possessed?
+		warned_of_possession |= user.ckey
 		tgui_alert_async(user,{"
 		THIS ITEM IS POSSESSED BY A PLAYER CURRENTLY IN THE ROUND. This could be by anomalous means or otherwise.
 		If this is not something you wish to partake in, it is highly suggested you place the item back down.
