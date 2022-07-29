@@ -127,7 +127,7 @@
 
 /datum/nifsoft/sizechange/activate()
 	if((. = ..()))
-		var/new_size = input(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200) as num|null
+		var/new_size = tgui_input_number(usr, "Put the desired size (25-200%), or (1-600%) in dormitory areas.", "Set Size", 200, 600, 1)
 
 		if (!nif.human.size_range_check(new_size))
 			if(new_size)

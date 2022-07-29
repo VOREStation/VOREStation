@@ -16,7 +16,8 @@ $color-received: #cd7a0d !default;
   max-width: 100%;
 }
 
-.TinderMessage_First_Sent, .TinderMessage_Subsequent_Sent {
+.TinderMessage_First_Sent,
+.TinderMessage_Subsequent_Sent {
   text-align: right;
   background-color: $color-sent;
 }
@@ -29,7 +30,8 @@ $color-received: #cd7a0d !default;
   border-radius: 10px 0px 0px 10px;
 }
 
-.TinderMessage_First_Received, .TinderMessage_Subsequent_Received {
+.TinderMessage_First_Received,
+.TinderMessage_Subsequent_Received {
   text-align: left;
   background-color: $color-received;
 }
@@ -42,7 +44,8 @@ $color-received: #cd7a0d !default;
   border-radius: 0px 10px 10px 0px;
 }
 
-.ClassicMessage_Sent, .ClassicMessage_Received {
+.ClassicMessage_Sent,
+.ClassicMessage_Received {
   word-break: break-all;
 }
 

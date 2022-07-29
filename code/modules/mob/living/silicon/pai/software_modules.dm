@@ -98,9 +98,10 @@
 
 /datum/pai_software/crew_manifest
 	name = "Crew Manifest"
-	ram_cost = 5
+	ram_cost = 0
 	id = "manifest"
 	toggle = 0
+	default = 1		//Comes with the communicator already, also why not
 
 /datum/pai_software/crew_manifest/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -117,9 +118,10 @@
 
 /datum/pai_software/messenger
 	name = "Digital Messenger"
-	ram_cost = 5
+	ram_cost = 0
 	id = "messenger"
 	toggle = 0
+	default = 1		//Can already be accessed through verbs, and also why not
 
 /datum/pai_software/messenger/tgui_interact(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui/parent_ui)
 	return user.pda.tgui_interact(user, parent_ui = parent_ui)
@@ -138,7 +140,7 @@
 
 /datum/pai_software/med_records/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/records = list()
 	for(var/datum/data/record/general in sortRecord(data_core.general))
 		var/list/record = list()
@@ -194,7 +196,7 @@
 
 /datum/pai_software/sec_records/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/records = list()
 	for(var/datum/data/record/general in sortRecord(data_core.general))
 		var/list/record = list()
@@ -367,34 +369,24 @@
 
 	return data
 
-/datum/pai_software/sec_hud
-	name = "Security HUD"
-	ram_cost = 20
-	id = "sec_hud"
+/datum/pai_software/pai_hud
+	name = "AR HUD"
+	ram_cost = 30
+	id = "ar_hud"
 
-/datum/pai_software/sec_hud/toggle(mob/living/silicon/pai/user)
-	user.secHUD = !user.secHUD
-	user.plane_holder.set_vis(VIS_CH_ID, user.secHUD)
-	user.plane_holder.set_vis(VIS_CH_WANTED, user.secHUD)
-	user.plane_holder.set_vis(VIS_CH_IMPTRACK, user.secHUD)
-	user.plane_holder.set_vis(VIS_CH_IMPLOYAL, user.secHUD)
-	user.plane_holder.set_vis(VIS_CH_IMPCHEM, user.secHUD)
+/datum/pai_software/pai_hud/toggle(mob/living/silicon/pai/user)
+	user.paiHUD = !user.paiHUD
+	user.plane_holder.set_vis(VIS_CH_ID,user.paiHUD)
+	user.plane_holder.set_vis(VIS_CH_WANTED,user.paiHUD)
+	user.plane_holder.set_vis(VIS_CH_IMPTRACK,user.paiHUD)
+	user.plane_holder.set_vis(VIS_CH_IMPCHEM,user.paiHUD)
+	user.plane_holder.set_vis(VIS_CH_STATUS_R,user.paiHUD)
+	user.plane_holder.set_vis(VIS_CH_HEALTH_VR,user.paiHUD)
+	user.plane_holder.set_vis(VIS_CH_BACKUP,user.paiHUD) //backup stuff from silicon_vr is here now
+	user.plane_holder.set_vis(VIS_AUGMENTED,user.paiHUD)
 
-/datum/pai_software/sec_hud/is_active(mob/living/silicon/pai/user)
-	return user.secHUD
-
-/datum/pai_software/med_hud
-	name = "Medical HUD"
-	ram_cost = 20
-	id = "med_hud"
-
-/datum/pai_software/med_hud/toggle(mob/living/silicon/pai/user)
-	user.medHUD = !user.medHUD
-	user.plane_holder.set_vis(VIS_CH_STATUS, user.medHUD)
-	user.plane_holder.set_vis(VIS_CH_HEALTH, user.medHUD)
-
-/datum/pai_software/med_hud/is_active(mob/living/silicon/pai/user)
-	return user.medHUD
+/datum/pai_software/pai_hud/is_active(mob/living/silicon/pai/user)
+	return user.paiHUD
 
 /datum/pai_software/translator
 	name = "Universal Translator"
@@ -411,6 +403,35 @@
 		user.add_language(LANGUAGE_SKRELLIAN)
 		user.add_language(LANGUAGE_ZADDAT)
 		user.add_language(LANGUAGE_SCHECHI)
+		user.add_language(LANGUAGE_DRUDAKAR)
+		user.add_language(LANGUAGE_SLAVIC)
+		user.add_language(LANGUAGE_BIRDSONG)
+		user.add_language(LANGUAGE_SAGARU)
+		user.add_language(LANGUAGE_CANILUNZT)
+		user.add_language(LANGUAGE_ECUREUILIAN)
+		user.add_language(LANGUAGE_DAEMON)
+		user.add_language(LANGUAGE_ENOCHIAN)
+		user.add_language(LANGUAGE_VESPINAE)
+		user.add_language(LANGUAGE_SPACER)
+		user.add_language(LANGUAGE_CLOWNISH)
+		user.add_language(LANGUAGE_TAVAN)
+		user.add_language(LANGUAGE_ECHOSONG)
+		user.add_language(LANGUAGE_CHIMPANZEE)
+		user.add_language(LANGUAGE_NEAERA)
+		user.add_language(LANGUAGE_STOK)
+		user.add_language(LANGUAGE_FARWA)
+		user.add_language(LANGUAGE_ROOTLOCAL)
+		user.add_language(LANGUAGE_VOX)
+		user.add_language(LANGUAGE_SKRELLIANFAR)
+		user.add_language(LANGUAGE_MINBUS)
+		user.add_language(LANGUAGE_ALAI)
+		user.add_language(LANGUAGE_PROMETHEAN)
+		user.add_language(LANGUAGE_GIBBERISH)
+		user.add_language("Mouse")
+		user.add_language("Cat")
+		user.add_language("Bird")
+		user.add_language("Dog")
+		user.add_language("Teppi")
 	else
 		user.remove_language(LANGUAGE_UNATHI)
 		user.remove_language(LANGUAGE_SIIK)
@@ -418,6 +439,35 @@
 		user.remove_language(LANGUAGE_SKRELLIAN)
 		user.remove_language(LANGUAGE_ZADDAT)
 		user.remove_language(LANGUAGE_SCHECHI)
+		user.remove_language(LANGUAGE_DRUDAKAR)
+		user.remove_language(LANGUAGE_SLAVIC)
+		user.remove_language(LANGUAGE_BIRDSONG)
+		user.remove_language(LANGUAGE_SAGARU)
+		user.remove_language(LANGUAGE_CANILUNZT)
+		user.remove_language(LANGUAGE_ECUREUILIAN)
+		user.remove_language(LANGUAGE_DAEMON)
+		user.remove_language(LANGUAGE_ENOCHIAN)
+		user.remove_language(LANGUAGE_VESPINAE)
+		user.remove_language(LANGUAGE_SPACER)
+		user.remove_language(LANGUAGE_CLOWNISH)
+		user.remove_language(LANGUAGE_TAVAN)
+		user.remove_language(LANGUAGE_ECHOSONG)
+		user.remove_language(LANGUAGE_CHIMPANZEE)
+		user.remove_language(LANGUAGE_NEAERA)
+		user.remove_language(LANGUAGE_STOK)
+		user.remove_language(LANGUAGE_FARWA)
+		user.remove_language(LANGUAGE_ROOTLOCAL)
+		user.remove_language(LANGUAGE_VOX)
+		user.remove_language(LANGUAGE_SKRELLIANFAR)
+		user.remove_language(LANGUAGE_MINBUS)
+		user.remove_language(LANGUAGE_ALAI)
+		user.remove_language(LANGUAGE_PROMETHEAN)
+		user.remove_language(LANGUAGE_GIBBERISH)
+		user.remove_language("Mouse")
+		user.remove_language("Cat")
+		user.remove_language("Bird")
+		user.remove_language("Dog")
+		user.remove_language("Teppi")
 
 /datum/pai_software/translator/is_active(mob/living/silicon/pai/user)
 	return user.translator_on
@@ -436,7 +486,7 @@
 
 /datum/pai_software/signaller/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/obj/item/radio/integrated/signal/R = user.sradio
 
 	data["frequency"] = R.frequency
@@ -459,7 +509,7 @@
 				spawn(0)
 					R.send_signal("ACTIVATE")
 				for(var/mob/O in hearers(1, R.loc))
-					O.show_message("[bicon(R)] *beep* *beep*", 3, "*beep* *beep*", 2)
+					O.show_message("\icon[R][bicon(R)] *beep* *beep*", 3, "*beep* *beep*", 2)
 			if("freq")
 				var/frequency = unformat_frequency(params["freq"])
 				frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)

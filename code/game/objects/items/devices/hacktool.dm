@@ -47,7 +47,7 @@
 		to_chat(user, "<span class='warning'>You are already hacking!</span>")
 		return 0
 	if(!is_type_in_list(target, supported_types))
-		to_chat(user, "[bicon(src)] <span class='warning'>Unable to hack this target!</span>")
+		to_chat(user, "\icon[src][bicon(src)] <span class='warning'>Unable to hack this target!</span>")
 		return 0
 	var/found = known_targets.Find(target)
 	if(found)

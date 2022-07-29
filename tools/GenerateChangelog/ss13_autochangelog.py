@@ -68,18 +68,18 @@ for line in args.pr_body.splitlines():
 		if incltag == True: # If we're already reading logs, skip
 			continue
 		incltag = True
-		
+
 		# Fetch the author name
 		author = line[1:]
 		author.strip()
-		
+
 		if not len(author):
 			author = args.pr_author
-		
+
 		if author not in new_logs:
 			new_logs[author] = [] # Make array entry for the author
 		continue
-		
+
 	# If we hit a /cl, we're no longer reading logs
 	elif line == "/🆑":
 		print("Found closing /:cl: tag")
@@ -88,19 +88,19 @@ for line in args.pr_body.splitlines():
 	# If we aren't reading logs, we don't care about any other line contents
 	if not incltag:
 		continue
-		
+
 	# Split line into tag (icon) and body (comment)
 	body = re.split("[ ,:-]", line, 1)
 	if len(body) != 2:
 		continue # If there's just one word, then it can't really be a changelog, now can it
-	
+
 	if body[0] in validPrefixes:
 		tag = validPrefixes[body[0]]
 		body = body[1].strip(" ,-:\t\n")
 	else: # If the tag is invalid, just default to rscadd
 		tag = "rscadd"
 		body = line.strip(" ,-:\t\n")
-		
+
 	new_logs[author].append(f"  - {tag}: \"{body}\"")
 	new += 1
 
@@ -110,7 +110,7 @@ for auth in new_logs:
 	# Sanitize authors without changes
 	if not len(new_logs[auth]):
 		continue
-	
+
 	f = open(os.path.join(args.target_dir, f"{auth}{args.pr_numb}.yml"), 'w')
 	print(f"Writing changes to {f}")
 	f.write(f'author: {auth}\n')

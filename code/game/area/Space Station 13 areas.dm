@@ -1010,6 +1010,7 @@ NOTE: there are two lists of areas in the end of this file: centcom and station 
 	flags = RAD_SHIELDED
 	ambience = AMBIENCE_GENERIC
 	forbid_events = TRUE
+	forbid_singulo = TRUE
 
 /area/crew_quarters/toilet
 	name = "\improper Dormitory Toilets"

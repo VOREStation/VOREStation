@@ -377,7 +377,7 @@
 				droplimb(0, DROPLIMB_EDGE)
 			else if(spread_dam && owner && parent && (brute_overflow || burn_overflow) && (brute_overflow >= 5 || burn_overflow >= 5) && !permutation) //No infinite damage loops.
 				var/brute_third = brute_overflow * 0.33
-				var/burn_third = burn_overflow * 0.33	
+				var/burn_third = burn_overflow * 0.33
 				if(children && children.len)
 					var/brute_on_children = brute_third / children.len
 					var/burn_on_children = burn_third / children.len
@@ -1062,14 +1062,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if((status & ORGAN_BROKEN) || cannot_break)
 		return
 
-	if(owner)
-		owner.visible_message(\
-			"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
-			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
-			"<span class='danger'>You hear a sickening crack.</span>")
-		jostle_bone()
-		if(organ_can_feel_pain() && !isbelly(owner.loc))
+	if(owner)	//VOREStation Edit Start
+		if(organ_can_feel_pain() && !isbelly(owner.loc) && !isliving(owner.loc))
+			owner.visible_message(\
+				"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
+				"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
+				"<span class='danger'>You hear a sickening crack.</span>")
 			owner.emote("scream")
+		jostle_bone()	//VOREStation Edit End
 
 	playsound(src, "fracture", 10, 1, -2)
 	status |= ORGAN_BROKEN

@@ -1,8 +1,8 @@
 import { round } from 'common/math';
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Box, Button, Flex, Icon, LabeledList, ProgressBar, Section } from '../components';
+import { Window } from '../layouts';
 
 const stats = [
   ['good', 'Alive'],
@@ -22,53 +22,28 @@ const damageRange = {
   bad: [0.5, Infinity],
 };
 
-const tempColors = [
-  'bad',
-  'average',
-  'average',
-  'good',
-  'average',
-  'average',
-  'bad',
-];
+const tempColors = ['bad', 'average', 'average', 'good', 'average', 'average', 'bad'];
 
 export const Sleeper = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    hasOccupant,
-  } = data;
+  const { hasOccupant } = data;
   const body = hasOccupant ? <SleeperMain /> : <SleeperEmpty />;
   return (
-    <Window
-      width={550}
-      height={760}
-      resizable>
-      <Window.Content className="Layout__content--flexColumn">
-        {body}
-      </Window.Content>
+    <Window width={550} height={760} resizable>
+      <Window.Content className="Layout__content--flexColumn">{body}</Window.Content>
     </Window>
   );
 };
 
 const SleeperMain = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    occupant,
-    dialysis,
-    stomachpumping,
-  } = data;
+  const { occupant, dialysis, stomachpumping } = data;
   return (
     <Fragment>
       <SleeperOccupant />
       <SleeperDamage />
-      <SleeperDialysisPump
-        title="Dialysis"
-        active={dialysis}
-        actToDo="togglefilter" />
-      <SleeperDialysisPump
-        title="Stomach Pump"
-        active={stomachpumping}
-        actToDo="togglepump" />
+      <SleeperDialysisPump title="Dialysis" active={dialysis} actToDo="togglefilter" />
+      <SleeperDialysisPump title="Stomach Pump" active={stomachpumping} actToDo="togglepump" />
       <SleeperChemicals />
     </Fragment>
   );
@@ -76,41 +51,27 @@ const SleeperMain = (props, context) => {
 
 const SleeperOccupant = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    occupant,
-    auto_eject_dead,
-    stasis,
-  } = data;
+  const { occupant, auto_eject_dead, stasis } = data;
   return (
     <Section
       title="Occupant"
-      buttons={(
+      buttons={
         <Fragment>
           <Box color="label" inline>
             Auto-eject if dead:&nbsp;
           </Box>
           <Button
-            icon={auto_eject_dead ? "toggle-on" : "toggle-off"}
+            icon={auto_eject_dead ? 'toggle-on' : 'toggle-off'}
             selected={auto_eject_dead}
             content={auto_eject_dead ? 'On' : 'Off'}
-            onClick={() =>
-              act('auto_eject_dead_' + (auto_eject_dead ? 'off' : 'on'))}
+            onClick={() => act('auto_eject_dead_' + (auto_eject_dead ? 'off' : 'on'))}
           />
-          <Button
-            icon="user-slash"
-            content="Eject"
-            onClick={() => act('ejectify')}
-          />
-          <Button
-            content={stasis}
-            onClick={() => act("changestasis")}
-          />
+          <Button icon="user-slash" content="Eject" onClick={() => act('ejectify')} />
+          <Button content={stasis} onClick={() => act('changestasis')} />
         </Fragment>
-      )}>
+      }>
       <LabeledList>
-        <LabeledList.Item label="Name">
-          {occupant.name}
-        </LabeledList.Item>
+        <LabeledList.Item label="Name">{occupant.name}</LabeledList.Item>
         <LabeledList.Item label="Health">
           <ProgressBar
             min={0}
@@ -164,21 +125,13 @@ const SleeperOccupant = (props, context) => {
 
 const SleeperDamage = (props, context) => {
   const { data } = useBackend(context);
-  const {
-    occupant,
-  } = data;
+  const { occupant } = data;
   return (
-    <Section
-      title="Damage">
+    <Section title="Damage">
       <LabeledList>
         {damages.map((d, i) => (
           <LabeledList.Item key={i} label={d[0]}>
-            <ProgressBar
-              key={i}
-              min="0"
-              max="100"
-              value={occupant[d[1]] / 100}
-              ranges={damageRange}>
+            <ProgressBar key={i} min="0" max="100" value={occupant[d[1]] / 100} ranges={damageRange}>
               {round(occupant[d[1]], 0)}
             </ProgressBar>
           </LabeledList.Item>
@@ -190,16 +143,8 @@ const SleeperDamage = (props, context) => {
 
 const SleeperDialysisPump = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    isBeakerLoaded,
-    beakerMaxSpace,
-    beakerFreeSpace,
-  } = data;
-  const {
-    active,
-    actToDo,
-    title,
-  } = props;
+  const { isBeakerLoaded, beakerMaxSpace, beakerFreeSpace } = data;
+  const { active, actToDo, title } = props;
   const canDialysis = active && beakerFreeSpace > 0;
   return (
     <Section
@@ -209,16 +154,11 @@ const SleeperDialysisPump = (props, context) => {
           <Button
             disabled={!isBeakerLoaded || beakerFreeSpace <= 0}
             selected={canDialysis}
-            icon={canDialysis ? "toggle-on" : "toggle-off"}
-            content={canDialysis ? "Active" : "Inactive"}
+            icon={canDialysis ? 'toggle-on' : 'toggle-off'}
+            content={canDialysis ? 'Active' : 'Inactive'}
             onClick={() => act(actToDo)}
           />
-          <Button
-            disabled={!isBeakerLoaded}
-            icon="eject"
-            content="Eject"
-            onClick={() => act('removebeaker')}
-          />
+          <Button disabled={!isBeakerLoaded} icon="eject" content="Eject" onClick={() => act('removebeaker')} />
         </Fragment>
       }>
       {isBeakerLoaded ? (
@@ -238,9 +178,7 @@ const SleeperDialysisPump = (props, context) => {
           </LabeledList.Item>
         </LabeledList>
       ) : (
-        <Box color="label">
-          No beaker loaded.
-        </Box>
+        <Box color="label">No beaker loaded.</Box>
       )}
     </Section>
   );
@@ -248,12 +186,7 @@ const SleeperDialysisPump = (props, context) => {
 
 const SleeperChemicals = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    occupant,
-    chemicals,
-    maxchem,
-    amounts,
-  } = data;
+  const { occupant, chemicals, maxchem, amounts } = data;
   return (
     <Section title="Chemicals" flexGrow="1">
       {chemicals.map((chem, i) => {
@@ -263,50 +196,40 @@ const SleeperChemicals = (props, context) => {
           barColor = 'bad';
           odWarning = (
             <Box color="bad">
-              <Icon name="exclamation-circle" />&nbsp;
-              Overdosing!
+              <Icon name="exclamation-circle" />
+              &nbsp; Overdosing!
             </Box>
           );
         } else if (chem.od_warning) {
           barColor = 'average';
           odWarning = (
             <Box color="average">
-              <Icon name="exclamation-triangle" />&nbsp;
-              Close to overdosing
+              <Icon name="exclamation-triangle" />
+              &nbsp; Close to overdosing
             </Box>
           );
         }
         return (
           <Box key={i} backgroundColor="rgba(0, 0, 0, 0.33)" mb="0.5rem">
-            <Section
-              title={chem.title}
-              level="3"
-              mx="0"
-              lineHeight="18px"
-              buttons={odWarning}>
+            <Section title={chem.title} level="3" mx="0" lineHeight="18px" buttons={odWarning}>
               <Flex align="flex-start">
-                <ProgressBar
-                  min="0"
-                  max={maxchem}
-                  value={chem.occ_amount / maxchem}
-                  color={barColor}
-                  mr="0.5rem">
+                <ProgressBar min="0" max={maxchem} value={chem.occ_amount / maxchem} color={barColor} mr="0.5rem">
                   {chem.pretty_amount}/{maxchem}u
                 </ProgressBar>
                 {amounts.map((a, i) => (
                   <Button
                     key={i}
-                    disabled={!chem.injectable
-                      || ((chem.occ_amount + a) > maxchem)
-                      || occupant.stat === 2}
+                    disabled={!chem.injectable || chem.occ_amount + a > maxchem || occupant.stat === 2}
                     icon="syringe"
                     content={a}
                     mb="0"
                     height="19px"
-                    onClick={() => act('chemical', {
-                      chemid: chem.id,
-                      amount: a,
-                    })}
+                    onClick={() =>
+                      act('chemical', {
+                        chemid: chem.id,
+                        amount: a,
+                      })
+                    }
                   />
                 ))}
               </Flex>
@@ -320,28 +243,20 @@ const SleeperChemicals = (props, context) => {
 
 const SleeperEmpty = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    isBeakerLoaded,
-  } = data;
+  const { isBeakerLoaded } = data;
   return (
     <Section textAlign="center" flexGrow="1">
       <Flex height="100%">
         <Flex.Item grow="1" align="center" color="label">
-          <Icon
-            name="user-slash"
-            mb="0.5rem"
-            size="5"
-          /><br />
+          <Icon name="user-slash" mb="0.5rem" size="5" />
+          <br />
           No occupant detected.
-          {isBeakerLoaded && (
+          {(isBeakerLoaded && (
             <Box>
-              <Button
-                icon="eject"
-                content="Remove Beaker"
-                onClick={() => act('removebeaker')}
-              />
+              <Button icon="eject" content="Remove Beaker" onClick={() => act('removebeaker')} />
             </Box>
-          ) || null}
+          )) ||
+            null}
         </Flex.Item>
       </Flex>
     </Section>

@@ -406,6 +406,58 @@
 
 	feedback_add_details("admin_verb","TRadioSounds")
 
+/client/verb/toggle_say_sounds()
+	set name = "Sound-Toggle-Say"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody speaks using say."
+
+	var/pref_path = /datum/client_preference/say_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/say_sounds)) ? "hear" : "not hear"] say sounds.")
+
+	feedback_add_details("admin_verb","TSaySounds")
+
+/client/verb/toggle_emote_sounds()
+	set name = "Sound-Toggle-Me"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody speaks using me ."
+
+	var/pref_path = /datum/client_preference/emote_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/emote_sounds)) ? "hear" : "not hear"] me sounds.")
+
+	feedback_add_details("admin_verb","TMeSounds")
+
+/client/verb/toggle_whisper_sounds()
+	set name = "Sound-Toggle-Whisper"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody speaks using whisper."
+
+	var/pref_path = /datum/client_preference/whisper_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/whisper_sounds)) ? "hear" : "not hear"] whisper sounds.")
+
+	feedback_add_details("admin_verb","TWhisperSounds")
+
+/client/verb/toggle_subtle_sounds()
+	set name = "Sound-Toggle-Subtle"
+	set category = "Preferences"
+	set desc = "Toggle hearing a sound when somebody uses subtle."
+
+	var/pref_path = /datum/client_preference/subtle_sounds
+	toggle_preference(pref_path)
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	to_chat(src, "You will now [(is_preference_enabled(/datum/client_preference/subtle_sounds)) ? "hear" : "not hear"] subtle sounds.")
+
+	feedback_add_details("admin_verb","TSubtleSounds")
+
 // Not attached to a pref datum because those are strict binary toggles
 /client/verb/toggle_examine_mode()
 	set name = "Toggle Examine Mode"

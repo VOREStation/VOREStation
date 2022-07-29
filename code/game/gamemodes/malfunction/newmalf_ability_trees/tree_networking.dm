@@ -93,8 +93,8 @@
 	if(!ability_prechecks(user, price))
 		return
 
-	var/title = input(usr, "Select message title: ")
-	var/text = input(usr, "Select message text: ")
+	var/title = tgui_input_text(usr, "Select message title: ")
+	var/text = tgui_input_text(usr, "Select message text: ")
 	if(!title || !text || !ability_pay(user, price))
 		to_chat(user, "Hack Aborted")
 		return

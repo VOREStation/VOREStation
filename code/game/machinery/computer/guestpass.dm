@@ -107,6 +107,9 @@
 
 
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/weapon/card/id/guest))
+		to_chat(user, "<span class='warning'>The guest pass terminal denies to accept the guest pass.</span>")
+		return
 	if(istype(I, /obj/item/weapon/card/id))
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
@@ -167,15 +170,15 @@
 			mode = params["mode"]
 
 		if("giv_name")
-			var/nam = sanitizeName(input(usr, "Person pass is issued to", "Name", giv_name) as text|null)
+			var/nam = sanitizeName(tgui_input_text(usr, "Person pass is issued to", "Name", giv_name))
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(input(usr, "Reason why pass is issued", "Reason", reason) as text|null)
+			var/reas = sanitize(tgui_input_text(usr, "Reason why pass is issued", "Reason", reason))
 			if(reas)
 				reason = reas
 		if("duration")
-			var/dur = input(usr, "Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration") as num|null //VOREStation Edit
+			var/dur = tgui_input_number(usr, "Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration", null, 360, 0)
 			if(dur)
 				if(dur > 0 && dur <= 360) //VOREStation Edit
 					duration = dur

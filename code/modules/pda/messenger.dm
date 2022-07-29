@@ -117,10 +117,10 @@
 			create_message(usr, P)
 			if(href_list["target"] in conversations)            // Need to make sure the message went through, if not welp.
 				active_conversation = href_list["target"]
-	
+
 
 /datum/data/pda/app/messenger/proc/create_message(var/mob/living/U, var/obj/item/device/pda/P)
-	var/t = input(U, "Please enter message", name, null) as text|null
+	var/t = tgui_input_text(U, "Please enter message", name, null)
 	if(!t)
 		return
 	t = sanitize(copytext(t, 1, MAX_MESSAGE_LEN))
@@ -178,7 +178,7 @@
 
 		SStgui.update_user_uis(U, P) // Update the sending user's PDA UI so that they can see the new message
 		log_pda("(PDA: [src.name]) sent \"[t]\" to [P.name]", usr)
-		to_chat(U, "[bicon(pda)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
+		to_chat(U, "\icon[pda][bicon(pda)] <b>Sent message to [P.owner] ([P.ownjob]), </b>\"[t]\"")
 	else
 		to_chat(U, "<span class='notice'>ERROR: Messaging server is not responding.</span>")
 
@@ -224,7 +224,7 @@
 /datum/data/pda/app/messenger/multicast
 /datum/data/pda/app/messenger/multicast/receive_message(list/data, ref)
 	. = ..()
-	
+
 	var/obj/item/device/pda/multicaster/M = pda
 	if(!istype(M))
 		return

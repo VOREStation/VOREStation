@@ -167,7 +167,7 @@
 			var/new_frequency = sanitize_frequency(frequency + text2num(href_list["freq"]))
 			set_frequency(new_frequency)
 		if(href_list["tag"])
-			var/str = copytext(reject_bad_text(input(usr,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+			var/str = copytext(reject_bad_text(tgui_input_text(usr,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 			if(!str || !length(str))
 				to_chat(usr,"<span class='notice'>[name]'s tag set to be blank.</span>")
 				name = initial(name)
@@ -269,6 +269,13 @@
 	item_state = "collar_cowbell_overlay"
 	overlay_state = "collar_cowbell_overlay"
 
+/obj/item/clothing/accessory/collar/collarplanet_earth
+	name = "planet collar"
+	desc = "A collar featuring a surprisingly detailed replica of a earth-like planet surrounded by a weak battery powered force shield. There is a button to turn it off."
+	icon_state = "collarplanet_earth"
+	item_state = "collarplanet_earth"
+	overlay_state = "collarplanet_earth"
+
 
 /obj/item/clothing/accessory/collar/holo
 	name = "Holo-collar"
@@ -293,7 +300,7 @@
 			return
 		to_chat(user,"<span class='notice'>You adjust the [name]'s tag.</span>")
 
-	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+	var/str = copytext(reject_bad_text(tgui_input_text(user,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 
 	if(!str || !length(str))
 		to_chat(user,"<span class='notice'>[name]'s tag set to be blank.</span>")
@@ -330,7 +337,7 @@
 	if(!(istype(user.get_active_hand(),I)) || !(istype(user.get_inactive_hand(),src)) || (user.stat))
 		return
 
-	var/str = copytext(reject_bad_text(input(user,"Tag text?","Set tag","")),1,MAX_NAME_LEN)
+	var/str = copytext(reject_bad_text(tgui_input_text(user,"Tag text?","Set tag","",MAX_NAME_LEN)),1,MAX_NAME_LEN)
 
 	if(!str || !length(str))
 		if(!writtenon)

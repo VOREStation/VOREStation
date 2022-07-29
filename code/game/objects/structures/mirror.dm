@@ -134,7 +134,7 @@
 				if(user.mind)
 					user.mind.transfer_to(vox)
 				spawn(1)
-					var/newname = sanitizeSafe(input(vox,"Enter a name, or leave blank for the default name.", "Name change","") as text, MAX_NAME_LEN)
+					var/newname = sanitizeSafe(tgui_input_text(vox,"Enter a name, or leave blank for the default name.", "Name change","", MAX_NAME_LEN), MAX_NAME_LEN)
 					if(!newname || newname == "")
 						var/datum/language/L = GLOB.all_languages[vox.species.default_language]
 						newname = L.get_random_name()

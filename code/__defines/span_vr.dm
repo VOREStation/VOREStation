@@ -40,7 +40,7 @@
 #define span_danger(str) ("<span class='danger'>" + str + "</span>")
 #define span_warning(str) ("<span class='warning'>" + str + "</span>")
 #define span_rose(str) ("<span class='rose'>" + str + "</span>")
-#define span_info(str) ("<span class='info'>" + str + "</span>"
+#define span_info(str) ("<span class='info'>" + str + "</span>")
 #define span_notice(str) ("<span class='notice'>" + str + "</span>")
 #define span_alium(str) ("<span class='alium'>" + str + "</span>")
 #define span_cult(str) ("<span class='cult'>" + str + "</span>")

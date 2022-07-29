@@ -510,7 +510,7 @@
 	health_hud_intensity = 2.5
 	item_slowdown_mod = 0.1
 
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	name_language = LANGUAGE_ROOTLOCAL
 	species_language = LANGUAGE_ROOTLOCAL
 	secondary_langs = list(LANGUAGE_ROOTGLOBAL)

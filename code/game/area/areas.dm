@@ -51,6 +51,7 @@
 	var/sound_env = STANDARD_STATION
 	var/turf/base_turf //The base turf type of the area, which can be used to override the z-level's base turf
 	var/forbid_events = FALSE // If true, random events will not start inside this area.
+	var/forbid_singulo = FALSE // If true singulo will not move in.
 	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
 
@@ -386,7 +387,7 @@ var/list/mob/living/forced_ambiance_list = new
 /area/Entered(mob/M)
 	if(!istype(M) || !M.ckey)
 		return
-	
+
 	if(!isliving(M))
 		M.lastarea = src
 		return
@@ -454,6 +455,8 @@ var/list/mob/living/forced_ambiance_list = new
 		if(H.buckled)
 			return // Being buckled to something solid keeps you in place.
 		if(istype(H.shoes, /obj/item/clothing/shoes/magboots) && (H.shoes.item_flags & NOSLIP))
+			return
+		if(H.incorporeal_move) // VOREstation edit - Phaseshifted beings should not be affected by gravity
 			return
 
 		if(H.m_intent == "run")

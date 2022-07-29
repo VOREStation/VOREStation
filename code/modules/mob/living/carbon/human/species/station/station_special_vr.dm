@@ -17,7 +17,7 @@
 	base_species = "Xenochimera"
 	selects_bodytype = TRUE
 
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list("Sol Common")
 	//color_mult = 1 //It seemed to work fine in testing, but I've been informed it's unneeded.
 	tail = "tail" //Scree's tail. Can be disabled in the vore tab by choosing "hide species specific tail sprite"
@@ -333,7 +333,7 @@
 	brute_mod = 0.8		//20% brute damage reduction
 	burn_mod =  1.15	//15% burn damage increase. They're spiders. Aerosol can+lighter = dead spiders.
 
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 	secondary_langs = list(LANGUAGE_VESPINAE)
 	color_mult = 1
 	tail = "tail" //Spider tail.

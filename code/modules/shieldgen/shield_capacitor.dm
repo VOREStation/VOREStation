@@ -49,7 +49,7 @@
 	else if(W.is_wrench())
 		src.anchored = !src.anchored
 		playsound(src, W.usesound, 75, 1)
-		src.visible_message("<font color='blue'>[bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</font>")
+		src.visible_message("<font color='blue'>\icon[src][bicon(src)] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</font>")
 
 		if(anchored)
 			spawn(0)

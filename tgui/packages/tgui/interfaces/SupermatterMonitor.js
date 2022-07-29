@@ -1,16 +1,12 @@
 import { useBackend } from '../backend';
-import { Box, Button, NoticeBox, LabeledList, ProgressBar, Section, Slider, Table, Flex, AnimatedNumber } from '../components';
-import { formatPower } from '../format';
+import { Box, Button, LabeledList, ProgressBar, Section, Flex, AnimatedNumber } from '../components';
 import { Window } from '../layouts';
 import { round } from 'common/math';
 import { toTitleCase } from 'common/string';
 
-// As of 2020-08-06 this isn't actually ever used, but it needs to exist because that's what tgui_modules expect 
+// As of 2020-08-06 this isn't actually ever used, but it needs to exist because that's what tgui_modules expect
 export const SupermatterMonitor = (props, context) => (
-  <Window
-    width={600}
-    height={400}
-    resizable>
+  <Window width={600} height={400} resizable>
     <Window.Content scrollable>
       <SupermatterMonitorContent />
     </Window.Content>
@@ -20,9 +16,7 @@ export const SupermatterMonitor = (props, context) => (
 export const SupermatterMonitorContent = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    active,
-  } = data;
+  const { active } = data;
 
   if (active) {
     return <SupermatterMonitorActive />;
@@ -34,32 +28,20 @@ export const SupermatterMonitorContent = (props, context) => {
 const SupermatterMonitorList = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    supermatters,
-  } = data;
+  const { supermatters } = data;
 
   return (
     <Section
       title="Supermatters Detected"
-      buttons={
-        <Button
-          content="Refresh"
-          icon="sync"
-          onClick={() => act("refresh")} />
-      }>
+      buttons={<Button content="Refresh" icon="sync" onClick={() => act('refresh')} />}>
       <Flex wrap="wrap">
         {supermatters.map((sm, i) => (
           <Flex.Item basis="49%" grow={i % 2} key={i}>
-            <Section title={sm.area_name + " (#" + sm.uid + ")"}>
+            <Section title={sm.area_name + ' (#' + sm.uid + ')'}>
               <LabeledList>
-                <LabeledList.Item label="Integrity">
-                  {sm.integrity} %
-                </LabeledList.Item>
+                <LabeledList.Item label="Integrity">{sm.integrity} %</LabeledList.Item>
                 <LabeledList.Item label="Options">
-                  <Button
-                    icon="eye"
-                    content="View Details"
-                    onClick={() => act("set", { set: sm.uid })} />
+                  <Button icon="eye" content="View Details" onClick={() => act('set', { set: sm.uid })} />
                 </LabeledList.Item>
               </LabeledList>
             </Section>
@@ -90,12 +72,7 @@ const SupermatterMonitorActive = (props, context) => {
   return (
     <Section
       title={toTitleCase(SM_area)}
-      buttons={
-        <Button
-          icon="arrow-left"
-          content="Return to Menu"
-          onClick={() => act("clear")} />
-      }>
+      buttons={<Button icon="arrow-left" content="Return to Menu" onClick={() => act('clear')} />}>
       <LabeledList>
         <LabeledList.Item label="Core Integrity">
           <ProgressBar
@@ -107,42 +84,27 @@ const SupermatterMonitorActive = (props, context) => {
               good: [100, 100],
               average: [50, 100],
               bad: [-Infinity, 50],
-            }} />
+            }}
+          />
         </LabeledList.Item>
         <LabeledList.Item label="Relative EER">
-          <Box color={
-            (SM_power > 300 && 'bad')
-            || (SM_power > 150 && 'average')
-            || 'good'
-          }>
-            <AnimatedNumber format={val => round(val, 2) + " MeV/cm³"} value={SM_power} />
+          <Box color={(SM_power > 300 && 'bad') || (SM_power > 150 && 'average') || 'good'}>
+            <AnimatedNumber format={(val) => round(val, 2) + ' MeV/cm³'} value={SM_power} />
           </Box>
         </LabeledList.Item>
         <LabeledList.Item label="Temperature">
-          <Box color={
-            (SM_ambienttemp > 5000 && 'bad')
-            || (SM_ambienttemp > 4000 && 'average')
-            || 'good'
-          }>
-            <AnimatedNumber format={val => round(val, 2) + " K"} value={SM_ambienttemp} />
+          <Box color={(SM_ambienttemp > 5000 && 'bad') || (SM_ambienttemp > 4000 && 'average') || 'good'}>
+            <AnimatedNumber format={(val) => round(val, 2) + ' K'} value={SM_ambienttemp} />
           </Box>
         </LabeledList.Item>
         <LabeledList.Item label="Pressure">
-          <Box color={
-            (SM_ambientpressure > 10000 && 'bad')
-            || (SM_ambientpressure > 5000 && 'average')
-            || 'good'
-          }>
-            <AnimatedNumber format={val => round(val, 2) + " kPa"} value={SM_ambientpressure} />
+          <Box color={(SM_ambientpressure > 10000 && 'bad') || (SM_ambientpressure > 5000 && 'average') || 'good'}>
+            <AnimatedNumber format={(val) => round(val, 2) + ' kPa'} value={SM_ambientpressure} />
           </Box>
         </LabeledList.Item>
         <LabeledList.Item label="Chamber EPR">
-          <Box color={
-            (SM_EPR > 4 && 'bad')
-            || (SM_EPR > 1 && 'average')
-            || 'good'
-          }>
-            <AnimatedNumber format={val => round(val, 2)} value={SM_EPR} />
+          <Box color={(SM_EPR > 4 && 'bad') || (SM_EPR > 1 && 'average') || 'good'}>
+            <AnimatedNumber format={(val) => round(val, 2)} value={SM_EPR} />
           </Box>
         </LabeledList.Item>
         <LabeledList.Item label="Gas Composition">

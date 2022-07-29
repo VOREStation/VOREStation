@@ -25,6 +25,12 @@
 	var/list/traits = list()
 	//Vars that need to be copied when producing a copy of species.
 	var/list/copy_vars = list("base_species", "icobase", "deform", "tail", "tail_animation", "icobase_tail", "color_mult", "primitive_form", "appearance_flags", "flesh_color", "base_color", "blood_mask", "damage_mask", "damage_overlays", "move_trail", "has_floating_eyes")
+	var/trait_points = 0
+
+	var/micro_size_mod = 0		// How different is our size for interactions that involve us being small?
+	var/macro_size_mod = 0		// How different is our size for interactions that involve us being big?
+	var/digestion_nutrition_modifier = 1
+
 
 /datum/species/proc/give_numbing_bite() //Holy SHIT this is hacky, but it works. Updating a mob's attacks mid game is insane.
 	unarmed_attacks = list()
@@ -48,6 +54,7 @@
 	ASSERT(src)
 	ASSERT(istype(H))
 	var/datum/species/new_copy = new src.type()
+	new_copy.race_key = race_key
 
 	if(selects_bodytype && custom_base) //If race selects a bodytype, retrieve the custom_base species and copy needed variables.
 		var/datum/species/S = GLOB.all_species[custom_base]

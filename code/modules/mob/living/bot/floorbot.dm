@@ -42,7 +42,7 @@
 	data["on"] = on
 	data["open"] = open
 	data["locked"] = locked
-	
+
 	data["vocal"] = vocal
 	data["amount"] = amount
 
@@ -75,7 +75,7 @@
 /mob/living/bot/floorbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	add_fingerprint(src)
 
 	switch(action)
@@ -85,7 +85,7 @@
 			else
 				turn_on()
 			. = TRUE
-	
+
 	if(locked && !issilicon(usr))
 		return
 
@@ -302,7 +302,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
+	//qdel(src)
+	return ..()
 
 /mob/living/bot/floorbot/proc/addTiles(var/am)
 	amount += am
@@ -381,7 +382,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if (istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)
@@ -411,7 +412,7 @@
 		user.drop_from_inventory(src)
 		qdel(src)
 	else if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

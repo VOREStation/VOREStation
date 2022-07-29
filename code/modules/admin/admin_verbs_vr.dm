@@ -39,9 +39,9 @@
 	if(isturf(orbiter))
 		to_chat(usr, "<span class = 'warning'>The orbiter cannot be a turf. It can only be used as a center.</span>")
 		return
-	var/distance = input(usr, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32) as num|null
-	var/speed = input(usr, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20) as num|null
-	var/segments = input(usr, "How many segments will they have in their orbit? (3 is a triangle, 36 is a circle, etc)", "Orbit Segments", 36) as num|null
+	var/distance = tgui_input_number(usr, "How large will their orbit radius be? (In pixels. 32 is 'near around a character)", "Orbit Radius", 32)
+	var/speed = tgui_input_number(usr, "How fast will they orbit (negative numbers spin clockwise)", "Orbit Speed", 20)
+	var/segments = tgui_input_number(usr, "How many segments will they have in their orbit? (3 is a triangle, 36 is a circle, etc)", "Orbit Segments", 36)
 	var/clock = FALSE
 	if(!distance)
 		distance = 32

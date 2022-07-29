@@ -75,7 +75,7 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light_construct/attack_hand(mob/user)
 	. = ..()
-	if(.) 
+	if(.)
 		return . // obj/machinery/attack_hand returns 1 if user can't use the machine
 	if(cell)
 		user.visible_message("[user] removes [cell] from [src]!","<span class='notice'>You remove [cell].</span>")
@@ -251,6 +251,9 @@ var/global/list/light_type_cache = list()
 	var/brightness_power_ns
 	var/brightness_color_ns
 
+	var/overlay_color = LIGHT_COLOR_INCANDESCENT_TUBE
+
+
 /obj/machinery/light/flicker
 	auto_flicker = TRUE
 
@@ -266,6 +269,7 @@ var/global/list/light_type_cache = list()
 	light_type = /obj/item/weapon/light/bulb
 	construct_type = /obj/machinery/light_construct/small
 	shows_alerts = FALSE	//VOREStation Edit
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 /obj/machinery/light/small/flicker
 	auto_flicker = TRUE
@@ -287,6 +291,7 @@ var/global/list/light_type_cache = list()
 	construct_type = /obj/machinery/light_construct/flamp
 	shows_alerts = FALSE	//VOREStation Edit
 	var/lamp_shade = 1
+	overlay_color = LIGHT_COLOR_INCANDESCENT_BULB
 
 /obj/machinery/light/flamp/Initialize(var/ml, obj/machinery/light_construct/construct = null)
 	. = ..(ml, construct)
@@ -296,7 +301,6 @@ var/global/list/light_type_cache = list()
 		update_icon()
 	else if(start_with_cell && !no_emergency)
 		cell = new/obj/item/weapon/cell/emergency_light(src)
-	
 
 /obj/machinery/light/flamp/flicker
 	auto_flicker = TRUE
@@ -356,18 +360,26 @@ var/global/list/light_type_cache = list()
 			//VOREStation Edit Start
 			if(shows_alerts && current_alert && on)
 				icon_state = "[base_state]-alert-[current_alert]"
+				add_light_overlay(FALSE, icon_state)
 			else
 				icon_state = "[base_state][on]"
+				if(on)
+					add_light_overlay()
+				else
+					remove_light_overlay()
 			//VOREStation Edit End
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
 			on = 0
+			remove_light_overlay()	//VOREStation add
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
 			on = 0
+			remove_light_overlay()	//VOREStation add
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
 			on = 0
+			remove_light_overlay()	//VOREStation add
 	return
 
 /obj/machinery/light/flamp/update_icon()
@@ -376,15 +388,22 @@ var/global/list/light_type_cache = list()
 		switch(status)		// set icon_states
 			if(LIGHT_OK)
 				icon_state = "[base_state][on]"
+				if(on)	//VOREStation add
+					add_light_overlay()	//VOREStation add
+				else	//VOREStation add
+					remove_light_overlay()	//VOREStation add
 			if(LIGHT_EMPTY)
 				on = 0
 				icon_state = "[base_state][on]"
+				remove_light_overlay()	//VOREStation add
 			if(LIGHT_BURNED)
 				on = 0
 				icon_state = "[base_state][on]"
+				remove_light_overlay()	//VOREStation add
 			if(LIGHT_BROKEN)
 				on = 0
 				icon_state = "[base_state][on]"
+				remove_light_overlay()	//VOREStation add
 		return
 	else
 		base_state = "flamp"
@@ -410,12 +429,12 @@ var/global/list/light_type_cache = list()
 
 	current_alert = null
 	var/obj/item/weapon/light/L = get_light_type_instance(light_type)
-	
+
 	if(L)
 		update_from_bulb(L)
 	else
 		brightness_color = nightshift_enabled ? initial(brightness_color_ns) : initial(brightness_color)
-	
+
 	update()
 
 //VOREstation Edit End
@@ -717,7 +736,7 @@ var/global/list/light_type_cache = list()
 	update(FALSE)
 	return
 
-// ai alt click - Make light flicker.  Very important for atmosphere.  
+// ai alt click - Make light flicker.  Very important for atmosphere.
 /obj/machinery/light/AIAltClick(mob/user)
 	flicker(1)
 
@@ -893,7 +912,7 @@ var/global/list/light_type_cache = list()
 	throwforce = 5
 	w_class = ITEMSIZE_TINY
 	matter = list(MAT_STEEL = 60)
-	
+
 	///LIGHT_OK, LIGHT_BURNED or LIGHT_BROKEN
 	var/status = LIGHT_OK
 	///Base icon_state name to append suffixes for status
@@ -919,7 +938,7 @@ var/global/list/light_type_cache = list()
 	var/nightshift_power = 0.45
 	///Replaces brightness_color during nightshifts.
 	var/nightshift_color = LIGHT_COLOR_NIGHTSHIFT
-	
+
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
@@ -961,7 +980,7 @@ var/global/list/light_type_cache = list()
 	name = "large light bulb"
 	brightness_range = 7
 	brightness_power = 1.5
-	
+
 	nightshift_range = 4
 	nightshift_power = 0.75
 
