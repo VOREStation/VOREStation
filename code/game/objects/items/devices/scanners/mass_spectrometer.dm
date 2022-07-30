@@ -30,7 +30,7 @@
 /obj/item/mass_spectrometer/attack_self(mob/user as mob)
 	if (user.stat)
 		return
-	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(reagents.total_volume)

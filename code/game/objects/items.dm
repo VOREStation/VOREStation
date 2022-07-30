@@ -162,6 +162,10 @@
 		var/obj/item/organ/external/hand = H.organs_by_name[check_hand]
 		if(istype(hand) && hand.is_usable())
 			return TRUE
+	var/mob/living/simple_mob/S = M
+	if(istype(S) && S.has_hands) //Are they a mob? And do they have hands?
+		return TRUE
+
 	return FALSE
 
 
