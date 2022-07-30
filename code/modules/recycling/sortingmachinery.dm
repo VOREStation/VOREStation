@@ -47,7 +47,7 @@
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if("Title")
-				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, "<span class='warning'> Invalid text.</span>")
 					return
@@ -62,7 +62,7 @@
 				else
 					nameset = 1
 			if("Description")
-				var/str = sanitize(input(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, "<font color='red'>Invalid text.</font>")
 					return
@@ -163,7 +163,7 @@
 		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if("Title")
-				var/str = sanitizeSafe(input(usr,"Label text?","Set label",""), MAX_NAME_LEN)
+				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
 					to_chat(user, "<span class='warning'> Invalid text.</span>")
 					return
@@ -179,7 +179,7 @@
 					nameset = 1
 
 			if("Description")
-				var/str = sanitize(input(usr,"Label text?","Set label",""))
+				var/str = sanitize(tgui_input_text(usr,"Label text?","Set label",""))
 				if(!str || !length(str))
 					to_chat(user, "<font color='red'>Invalid text.</font>")
 					return

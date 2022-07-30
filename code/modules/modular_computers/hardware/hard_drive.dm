@@ -5,9 +5,13 @@
 	icon_state = "hdd_normal"
 	hardware_size = 1
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
+
 	var/max_capacity = 128
 	var/used_capacity = 0
-	var/list/stored_files = list()		// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
+	/// List of stored files on this drive. DO NOT MODIFY DIRECTLY!
+	var/list/stored_files = list()
+	/// Whether drive is protected against changes
+	var/read_only = FALSE
 
 /obj/item/computer_hardware/hard_drive/advanced
 	name = "advanced hard drive"
@@ -60,6 +64,7 @@
 	// 999 is a byond limit that is in place. It's unlikely someone will reach that many files anyway, since you would sooner run out of space.
 	to_chat(user, "NT-NFS File Table Status: [stored_files.len]/999")
 	to_chat(user, "Storage capacity: [used_capacity]/[max_capacity]GQ")
+	to_chat(user, "Read-only mode: [(read_only ? "ON" : "OFF")]")
 
 // Use this proc to add file to the drive. Returns 1 on success and 0 on failure. Contains necessary sanity checks.
 /obj/item/computer_hardware/hard_drive/proc/store_file(var/datum/computer_file/F)

@@ -55,7 +55,7 @@
 	add_fingerprint(user)
 	user.set_machine(src)
 	show_ui(user)
-	
+
 /obj/item/device/tvcamera/proc/show_ui(mob/user)
 	var/dat = list()
 	dat += "Channel name is: <a href='?src=\ref[src];channel=1'>[channel ? channel : "unidentified broadcast"]</a><br>"
@@ -76,7 +76,7 @@
 	if(..())
 		return 1
 	if(href_list["channel"])
-		var/nc = input(usr, "Channel name", "Select new channel name", channel) as text|null
+		var/nc = tgui_input_text(usr, "Channel name", "Select new channel name", channel)
 		if(nc)
 			channel = nc
 			camera.c_tag = channel
@@ -105,7 +105,7 @@
 /obj/item/device/tvcamera/proc/show_tvs(atom/thing)
 	if(showing)
 		hide_tvs(showing)
-	
+
 	showing = weakref(thing)
 	showing_name = "[thing]"
 	for(var/obj/machinery/computer/security/telescreen/entertainment/ES as anything in GLOB.entertainment_screens)
@@ -138,7 +138,7 @@
 /obj/item/device/tvcamera/process()
 	if(!showing)
 		return PROCESS_KILL
-	
+
 	var/atom/A = showing.resolve()
 	if(!A || QDELETED(A))
 		show_tvs(loc)
@@ -162,4 +162,77 @@
 		H.update_inv_r_hand()
 		H.update_inv_l_hand()
 		H.update_inv_belt()
+
+
+//Assembly by roboticist
+
+/obj/item/robot_parts/head/attackby(var/obj/item/device/assembly/S, mob/user as mob)
+	if(!istype(S, /obj/item/device/assembly/infra))
+		..()
+		return
+	var/obj/item/weapon/TVAssembly/A = new(user)
+	qdel(S)
+	user.put_in_hands(A)
+	to_chat(user, "<span class='notice'>You add the infrared sensor to the robot head.</span>")
+	user.drop_from_inventory(src)
+	qdel(src)
+
+
+/obj/item/weapon/TVAssembly
+	name = "\improper TV Camera Assembly"
+	desc = "A robotic head with an infrared sensor inside."
+	icon = 'icons/obj/robot_parts.dmi'
+	icon_state = "head"
+	item_state = "head"
+	var/buildstep = 0
+	w_class = ITEMSIZE_LARGE
+
+/obj/item/weapon/TVAssembly/attackby(W, mob/user)
+	switch(buildstep)
+		if(0)
+			if(istype(W, /obj/item/robot_parts/robot_component/camera))
+				var/obj/item/robot_parts/robot_component/camera/CA = W
+				to_chat(user, "<span class='notice'>You add the camera module to [src]</span>")
+				user.drop_item()
+				qdel(CA)
+				desc = "This TV camera assembly has a camera module."
+				buildstep++
+		if(1)
+			if(istype(W, /obj/item/device/taperecorder))
+				var/obj/item/device/taperecorder/T = W
+				user.drop_item()
+				qdel(T)
+				buildstep++
+				to_chat(user, "<span class='notice'>You add the tape recorder to [src]</span>")
+		if(2)
+			if(istype(W, /obj/item/stack/cable_coil))
+				var/obj/item/stack/cable_coil/C = W
+				if(!C.use(3))
+					to_chat(user, "<span class='notice'>You need six cable coils to wire the devices.</span>")
+					..()
+					return
+				C.use(3)
+				buildstep++
+				to_chat(user, "<span class='notice'>You wire the assembly</span>")
+				desc = "This TV camera assembly has wires sticking out"
+				return
+		if(3)
+			if(istype(W, /obj/item/weapon/tool/wirecutters))
+				to_chat(user, "<span class='notice'> You trim the wires.</span>")
+				buildstep++
+				desc = "This TV camera assembly needs casing."
+				return
+		if(4)
+			if(istype(W, /obj/item/stack/material/steel))
+				var/obj/item/stack/material/steel/S = W
+				buildstep++
+				S.use(1)
+				to_chat(user, "<span class='notice'>You encase the assembly in a Ward-Takeshi casing.</span>")
+				var/turf/T = get_turf(src)
+				new /obj/item/device/tvcamera(T)
+				user.drop_from_inventory(src)
+				qdel(src)
+				return
+
+	..()
 

@@ -110,7 +110,7 @@ GLOBAL_LIST_EMPTY(all_cataloguers)
 	var/list/box_segments = list()
 	if(user.client)
 		box_segments = draw_box(target, scan_range, user.client)
-		color_box(box_segments, "#00FF00", scan_delay)
+		color_box(box_segments, "#00FFFF", scan_delay)
 
 	playsound(src, 'sound/machines/beep.ogg', 50)
 

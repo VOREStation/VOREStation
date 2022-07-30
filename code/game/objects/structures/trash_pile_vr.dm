@@ -25,7 +25,8 @@
 		/obj/item/weapon/gun/projectile/pirate,
 		/obj/item/clothing/accessory/permit/gun,
 		/obj/item/weapon/gun/projectile/dartgun,
-		/obj/item/clothing/gloves/black/bloodletter
+		/obj/item/clothing/gloves/black/bloodletter,
+		/obj/item/weapon/gun/energy/mouseray/metamorphosis
 		)
 
 	var/global/list/allocated_gamma = list()
@@ -200,6 +201,8 @@
 					prob(2);/obj/item/toy/tennis/cyan,
 					prob(2);/obj/item/toy/tennis/blue,
 					prob(2);/obj/item/toy/tennis/purple,
+					prob(1);/obj/item/weapon/storage/box/brainzsnax,
+					prob(1);/obj/item/weapon/storage/box/brainzsnax/red,
 					prob(1);/obj/item/clothing/glasses/sunglasses,
 					prob(1);/obj/item/clothing/glasses/sunglasses/bigshot,
 					prob(1);/obj/item/clothing/glasses/welding,
@@ -233,7 +236,8 @@
 					prob(4);/obj/item/weapon/storage/pill_bottle/happy,
 					prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
 					prob(4);/obj/item/seeds/ambrosiavulgarisseed,
-					prob(4);/obj/item/weapon/gun/energy/sizegun/old,
+					prob(4);/obj/item/weapon/gun/energy/sizegun,
+					prob(4);/obj/item/device/slow_sizegun,
 					prob(3);/obj/item/weapon/material/butterfly,
 					prob(3);/obj/item/weapon/material/butterfly/switchblade,
 					prob(3);/obj/item/clothing/gloves/knuckledusters,
@@ -245,7 +249,8 @@
 					prob(2);/obj/item/weapon/storage/box/syndie_kit/spy,
 					prob(2);/obj/item/weapon/grenade/anti_photon,
 					prob(2);/obj/item/clothing/under/hyperfiber/bluespace,
-					prob(2);/obj/item/weapon/reagent_containers/glass/beaker/vial/amorphorovir,
+					prob(2);/obj/item/selectable_item/chemistrykit/size,
+					prob(2);/obj/item/selectable_item/chemistrykit/gender,
 					prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
 					prob(1);/obj/item/device/nif/bad,
 					prob(1);/obj/item/device/radio_jammer,
@@ -259,7 +264,8 @@
 					prob(1);/obj/item/weapon/storage/secure/briefcase/trashmoney,
 					prob(1);/obj/item/device/survivalcapsule/popcabin,
 					prob(1);/obj/item/weapon/reagent_containers/syringe/steroid,
-					prob(1);/obj/item/capture_crystal)
+					prob(1);/obj/item/capture_crystal,
+					prob(1);/obj/item/weapon/gun/energy/mouseray)
 
 	var/obj/item/I = new path()
 	return I

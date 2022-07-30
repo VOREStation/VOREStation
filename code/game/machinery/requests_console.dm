@@ -29,15 +29,11 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	icon = 'icons/obj/terminals_vr.dmi' //VOREStation Edit
 	icon_state = "req_comp_0"
 	layer = ABOVE_WINDOW_LAYER
-<<<<<<< HEAD
 	circuit = /obj/item/weapon/circuitboard/request
 	blocks_emissive = NONE
 	light_power = 0.25
 	light_color = "#00ff00"
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
-=======
-	circuit = /obj/item/circuitboard/request
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/department = "Unknown" //The list of all departments on the station (Determined from this variable on each unit) Set this to the same thing if you want several consoles in one department
 	var/list/message_log = list() //List of all messages
 	var/departmentType = 0 		//Bitflag. Zero is reply-only. Map currently uses raw numbers instead of defines.
@@ -102,7 +98,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 
 /obj/machinery/requests_console/update_icon()
 	cut_overlays()
-	
+
 	if(stat & NOPOWER)
 		set_light(0)
 		set_light_on(FALSE)
@@ -149,15 +145,15 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 /obj/machinery/requests_console/tgui_act(action, list/params)
 	if(..())
 		return TRUE
-	
+
 	add_fingerprint(usr)
-	
+
 	switch(action)
 		if("write")
 			if(reject_bad_text(params["write"]))
 				recipient = params["write"] //write contains the string of the receiving department's name
 
-				var/new_message = sanitize(input(usr, "Write your message:", "Awaiting Input", ""))
+				var/new_message = sanitize(tgui_input_text(usr, "Write your message:", "Awaiting Input", ""))
 				if(new_message)
 					message = new_message
 					screen = RCS_MESSAUTH
@@ -173,7 +169,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				. = TRUE
 
 		if("writeAnnouncement")
-			var/new_message = sanitize(input(usr, "Write your message:", "Awaiting Input", ""))
+			var/new_message = sanitize(tgui_input_text(usr, "Write your message:", "Awaiting Input", ""))
 			if(new_message)
 				message = new_message
 			else
@@ -202,7 +198,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				screen = RCS_SENTPASS
 				message_log += list(list("Message sent to [recipient]", "[message]"))
 			else
-				audible_message(text("[bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
+				audible_message(text("\icon[src][bicon(src)] *The Requests Console beeps: 'NOTICE: No server detected!'"),,4)
 			. = TRUE
 
 		//Handle printing
@@ -238,11 +234,11 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			. = TRUE
 
 					//err... hacking code, which has no reason for existing... but anyway... it was once supposed to unlock priority 3 messaging on that console (EXTREME priority...), but the code for that was removed.
-/obj/machinery/requests_console/attackby(var/obj/item/O as obj, var/mob/user as mob)
+/obj/machinery/requests_console/attackby(var/obj/item/weapon/O as obj, var/mob/user as mob)
 	if(computer_deconstruction_screwdriver(user, O))
 		return
-	if(istype(O, /obj/item/multitool))
-		var/input = sanitize(input(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
+	if(istype(O, /obj/item/device/multitool))
+		var/input = sanitize(tgui_input_text(usr, "What Department ID would you like to give this request console?", "Multitool-Request Console Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")
 			return
@@ -260,30 +256,25 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 			req_console_information |= department
 		return
 
-	if(istype(O, /obj/item/card/id))
+	if(istype(O, /obj/item/weapon/card/id))
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
-			var/obj/item/card/id/T = O
+			var/obj/item/weapon/card/id/T = O
 			msgVerified = text("<font color='green'><b>Verified by [T.registered_name] ([T.assignment])</b></font>")
 			SStgui.update_uis(src)
 		if(screen == RCS_ANNOUNCE)
-			var/obj/item/card/id/ID = O
+			var/obj/item/weapon/card/id/ID = O
 			if(access_RC_announce in ID.GetAccess())
 				announceAuth = 1
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else
 				reset_message()
 				to_chat(user, "<span class='warning'>You are not authorized to send announcements.</span>")
-<<<<<<< HEAD
 			SStgui.update_uis(src)
 	if(istype(O, /obj/item/weapon/stamp))
-=======
-			updateUsrDialog()
-	if(istype(O, /obj/item/stamp))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(inoperable(MAINT)) return
 		if(screen == RCS_MESSAUTH)
-			var/obj/item/stamp/T = O
+			var/obj/item/weapon/stamp/T = O
 			msgStamped = text("<font color='blue'><b>Stamped with the [T.name]</b></font>")
 			SStgui.update_uis(src)
 	return

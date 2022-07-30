@@ -213,7 +213,7 @@
 			if(is_authenticated() && modify)
 				var/t1 = params["assign_target"]
 				if(t1 == "Custom")
-					var/temp_t = sanitize(input(usr, "Enter a custom job assignment.","Assignment"), 45)
+					var/temp_t = sanitize(tgui_input_text(usr, "Enter a custom job assignment.","Assignment"), 45)
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t

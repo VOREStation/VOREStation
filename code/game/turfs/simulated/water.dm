@@ -8,6 +8,7 @@
 	var/under_state = "rock"
 	edge_blending_priority = -1
 	movement_cost = 4
+	can_be_plated = FALSE
 	outdoors = OUTDOORS_YES
 	flags = TURF_ACID_IMMUNE
 
@@ -102,6 +103,7 @@
 	edge_blending_priority = -2
 	movement_cost = 8
 	depth = 2
+	special_temperature = T0C - 5.5 //as cool as the atmosphere outside, if someone asks, its the phoron solved in the water that stops the freezing
 
 /turf/simulated/floor/water/pool
 	name = "pool"

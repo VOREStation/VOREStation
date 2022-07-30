@@ -17,6 +17,8 @@
 
 	combustion = FALSE
 
+	can_miss = FALSE
+
 	muzzle_type = /obj/effect/projectile/muzzle/medigun
 	tracer_type = /obj/effect/projectile/tracer/medigun
 	impact_type = /obj/effect/projectile/impact/medigun

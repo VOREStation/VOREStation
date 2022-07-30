@@ -452,5 +452,6 @@
 /obj/item/toner
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "toner cartridge"
+	icon = 'icons/obj/device.dmi'
 	icon_state = "tonercartridge"
 	var/toner_amount = 30

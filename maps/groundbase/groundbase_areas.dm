@@ -130,6 +130,38 @@
 	name = "Science Break Room"
 	lightswitch = 1
 
+/area/groundbase/science/outpost
+	name = "Science Outpost"
+	lightswitch = 1
+/area/groundbase/science/outpost/substation
+	name = "Science Outpost Substation"
+/area/groundbase/science/outpost/atmos
+	name = "Science Outpost Atmospherics"
+	lightswitch = 0
+/area/groundbase/science/outpost/anomaly_lab
+	name = "Science Outpost Anomaly Lab"
+	lightswitch = 0
+/area/groundbase/science/outpost/anomaly_storage
+	name = "Science Outpost Anomaly Storage"
+	lightswitch = 0
+/area/groundbase/science/outpost/anomaly_testing
+	name = "Science Outpost Anomaly Testing"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_lab
+	name = "Science Outpost Toxins Lab"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_storage
+	name = "Science Outpost Toxins Storage"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxing_gasworks
+	name = "Science Outpost Toxins Gasworks"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_mixing
+	name = "Science Outpost Toxins Mixing"
+	lightswitch = 0
+/area/groundbase/science/outpost/toxins_hallway
+	name = "Science Outpost Toxins Hallway"
+
 /area/groundbase/command
 	name = "Command"
 	holomap_color = HOLOMAP_AREACOLOR_COMMAND
@@ -288,6 +320,13 @@
 /area/groundbase/engineering/atmos/monitoring
 	name = "Atmospherics Monitoring"
 	lightswitch = 1
+/area/groundbase/engineering/solarshed
+	name = "Solar Shed"
+	lightswitch = 1
+/area/groundbase/engineering/solarfield
+	name = "Solar Field"
+	lightswitch = 1
+	sound_env = SOUND_ENVIRONMENT_MOUNTAINS
 
 /area/groundbase/cargo
 	name = "Cargo"
@@ -320,6 +359,8 @@
 /area/groundbase/civilian/arrivals
 	name = "Arrivals"
 	lightswitch = 1
+	forbid_events = TRUE
+	forbid_singulo = TRUE
 /area/groundbase/civilian/toolstorage
 	name = "Tool Storage"
 	lightswitch = 1
@@ -327,6 +368,10 @@
 	name = "Bar"
 	sound_env = LARGE_ENCLOSED
 	lightswitch = 1
+/area/groundbase/civilian/bar/upper
+	name = "Bar Balcony"
+	base_turf = /turf/simulated/open/virgo3c
+
 /area/groundbase/civilian/cafe
 	name = "Cafe"
 	sound_env = SMALL_SOFTFLOOR
@@ -374,10 +419,12 @@
 	name = "Men's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
+	forbid_events = TRUE
 /area/groundbase/civilian/womensrestroom
 	name = "Women's Restroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 	lightswitch = 1
+	forbid_events = TRUE
 
 /area/groundbase/exploration
 	name = "Exploration"
@@ -400,33 +447,43 @@
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
 	forbid_events = TRUE
+	forbid_singulo = TRUE
+
 /area/groundbase/dorms/bathroom
 	name = "Dormitory Bathroom"
 	sound_env = SOUND_ENVIRONMENT_BATHROOM
 /area/groundbase/dorms/room1
 	name = "Dorm Room 1"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room2
 	name = "Dorm Room 2"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room3
 	name = "Dorm Room 3"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room4
 	name = "Dorm Room 4"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room5
 	name = "Dorm Room 5"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room6
 	name = "Dorm Room 6"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room7
 	name = "Dorm Room 7"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 /area/groundbase/dorms/room8
 	name = "Dorm Room 8"
 	lightswitch = 0
+	sound_env = SMALL_SOFTFLOOR
 
 /area/maintenance/groundbase/substation
 	name = "Substation"

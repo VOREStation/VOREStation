@@ -1,9 +1,4 @@
 //DEFINITIONS FOR ASSET DATUMS START HERE.
-/datum/asset/simple/tgui_common
-	// keep_local_name = TRUE
-	assets = list(
-		"tgui-common.bundle.js" = file("tgui/public/tgui-common.bundle.js"),
-	)
 
 /datum/asset/simple/tgui
 	// keep_local_name = TRUE
@@ -547,6 +542,15 @@
 		"stellardelight_nanomap_z1.png"		= 'icons/_nanomaps/sd_deck1.png',
 		"stellardelight_nanomap_z2.png"		= 'icons/_nanomaps/sd_deck2.png',
 		"stellardelight_nanomap_z3.png"		= 'icons/_nanomaps/sd_deck3.png',
+		"groundbase_nanomap_z1.png"			= 'icons/_nanomaps/gb1.png',
+		"groundbase_nanomap_z2.png"			= 'icons/_nanomaps/gb2.png',
+		"groundbase_nanomap_z3.png"			= 'icons/_nanomaps/gb3.png',
+		"groundbase_nanomap_z4.png"			= 'icons/_nanomaps/gbnorth.png',
+		"groundbase_nanomap_z5.png"			= 'icons/_nanomaps/gbsouth.png',
+		"groundbase_nanomap_z6.png"			= 'icons/_nanomaps/gbeast.png',
+		"groundbase_nanomap_z7.png"			= 'icons/_nanomaps/gbwest.png',
+		"groundbase_nanomap_z10.png"		= 'icons/_nanomaps/gbmining.png',
+
 
 		// VOREStation Edit End
 	)

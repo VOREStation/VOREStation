@@ -85,6 +85,17 @@
 /**
  * public
  *
+ * Called on a UI when the UI crashed.
+ *
+ * required payload list A list of the payload supposed to be set on the regular UI.
+ */
+/datum/proc/tgui_fallback(list/payload)
+	SHOULD_CALL_PARENT(TRUE)
+	SEND_SIGNAL(src, COMSIG_UI_FALLBACK, usr)
+
+/**
+ * public
+ *
  * Called on an object when a tgui object is being created, allowing you to
  * push various assets to tgui, for examples spritesheets.
  *

@@ -1,4 +1,7 @@
-/obj/item/cell/crap
+/*
+ * Crap
+ */
+/obj/item/weapon/cell/crap
 	name = "\improper rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = list(TECH_POWER = 0)
@@ -6,110 +9,126 @@
 	maxcharge = 500
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
-<<<<<<< HEAD
 /obj/item/weapon/cell/crap/empty/New()
 	..()
-=======
-/obj/item/cell/crap/empty/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	charge = 0
 
-/obj/item/cell/secborg
+/*
+ * Security Borg
+ */
+/obj/item/weapon/cell/secborg
 	name = "security borg rechargable D battery"
 	origin_tech = list(TECH_POWER = 0)
 	icon_state = "secborg"
 	maxcharge = 600	//600 max charge / 100 charge per shot = six shots
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 40)
 
-<<<<<<< HEAD
 /obj/item/weapon/cell/secborg/empty/New()
 	..()
-=======
-/obj/item/cell/secborg/empty/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	charge = 0
 	update_icon()
 
-/obj/item/cell/apc
+/*
+ * APC
+ */
+/obj/item/weapon/cell/apc
 	name = "heavy-duty power cell"
 	origin_tech = list(TECH_POWER = 1)
 	icon_state = "apc"
 	maxcharge = 5000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 50)
 
-/obj/item/cell/high
+/*
+ * High
+ */
+/obj/item/weapon/cell/high
 	name = "high-capacity power cell"
 	origin_tech = list(TECH_POWER = 2)
 	icon_state = "high"
 	maxcharge = 10000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 60)
 
-<<<<<<< HEAD
 /obj/item/weapon/cell/high/empty/New()
 	..()
-=======
-/obj/item/cell/high/empty/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	charge = 0
 	update_icon()
 
-/obj/item/cell/super
+/*
+ * Super
+ */
+/obj/item/weapon/cell/super
 	name = "super-capacity power cell"
 	origin_tech = list(TECH_POWER = 5)
 	icon_state = "super"
 	maxcharge = 20000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 70)
 
-<<<<<<< HEAD
 /obj/item/weapon/cell/super/empty/New()
 	..()
-=======
-/obj/item/cell/super/empty/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	charge = 0
 	update_icon()
 
-/obj/item/cell/hyper
+/*
+ * Hyper
+ */
+/obj/item/weapon/cell/hyper
 	name = "hyper-capacity power cell"
 	origin_tech = list(TECH_POWER = 6)
 	icon_state = "hyper"
 	maxcharge = 30000
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 
-<<<<<<< HEAD
 /obj/item/weapon/cell/hyper/empty/New()
 	..()
-=======
-/obj/item/cell/hyper/empty/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	charge = 0
 	update_icon()
 
-/obj/item/cell/mech
+/*
+ * Mecha
+ */
+/obj/item/weapon/cell/mech
 	name = "mecha power cell"
 	icon_state = "mech"
 	charge = 15000
 	maxcharge = 15000
+	matter = list(MAT_STEEL = 800, MAT_GLASS = 60)
 
-/obj/item/cell/infinite
+/obj/item/weapon/cell/mech/high
+	name = "high-capacity mecha power cell"
+	origin_tech = list(TECH_POWER = 3)
+	icon_state = "blue"
+	charge = 20000
+	maxcharge = 20000
+	matter = list(MAT_STEEL = 800, MAT_GLASS = 80)
+
+/obj/item/weapon/cell/mech/super
+	name = "super-capacity mecha power cell"
+	origin_tech = list(TECH_POWER = 6)
+	icon_state = "white"
+	charge = 25000
+	maxcharge = 25000
+	matter = list(MAT_STEEL = 800, MAT_GLASS = 100)
+
+/*
+ * Infinite
+ */
+/obj/item/weapon/cell/infinite
 	name = "infinite-capacity power cell!"
-	icon_state = "infinite"
+	icon_state = "infinity"
 	origin_tech =  null
 	maxcharge = 30000 //determines how badly mobs get shocked
 	matter = list(MAT_STEEL = 700, MAT_GLASS = 80)
 
-/obj/item/cell/infinite/check_charge()
+/obj/item/weapon/cell/infinite/check_charge()
 	return 1
 
-/obj/item/cell/infinite/use()
+/obj/item/weapon/cell/infinite/use()
 	return 1
 
-/obj/item/cell/potato
+/*
+ * Potato
+ */
+/obj/item/weapon/cell/potato
 	name = "potato battery"
 	desc = "A rechargable starch based power cell."
 	origin_tech = list(TECH_POWER = 1)
@@ -117,9 +136,11 @@
 	charge = 100
 	maxcharge = 300
 	minor_fault = 1
-	standard_overlays = FALSE
 
-/obj/item/cell/slime
+/*
+ * Slime
+ */
+/obj/item/weapon/cell/slime
 	name = "charged slime core"
 	desc = "A yellow slime core infused with phoron, it crackles with power."
 	origin_tech = list(TECH_POWER = 4, TECH_BIO = 5)
@@ -131,8 +152,29 @@
 	self_recharge = TRUE
 	standard_overlays = FALSE
 
-//Not actually a cell, but if people look for it, they'll probably look near other cells
-/obj/item/fbp_backup_cell
+/*
+ * Emergency Light
+ */
+/obj/item/weapon/cell/emergency_light
+	name = "miniature power cell"
+	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
+	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
+	matter = list(MAT_GLASS = 20)
+	icon_state = "em_light"
+	w_class = ITEMSIZE_TINY
+
+/obj/item/weapon/cell/emergency_light/Initialize()
+	. = ..()
+	var/area/A = get_area(src)
+	if(!A.lightswitch || !A.light_power)
+		charge = 0 //For naturally depowered areas, we start with no power
+
+/*
+ * Backup Battery
+ *
+ * Not actually a cell, but if people look for it, they'll probably look near other cells
+ */
+/obj/item/device/fbp_backup_cell
 	name = "backup battery"
 	desc = "A small one-time-use chemical battery for synthetic crew when they are low on power in emergency situations."
 	icon = 'icons/obj/power_cells.dmi'
@@ -141,11 +183,11 @@
 	var/amount = 100
 	var/used = FALSE
 
-/obj/item/fbp_backup_cell/Initialize()
+/obj/item/device/fbp_backup_cell/Initialize()
 	. = ..()
-	add_overlay("[icon_state]1")
+	add_overlay("[icon_state]_100")
 
-/obj/item/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
+/obj/item/device/fbp_backup_cell/attack(mob/living/M as mob, mob/user as mob)
 	if(!used && ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.isSynthetic())
@@ -160,7 +202,7 @@
 
 	. = ..()
 
-/obj/item/fbp_backup_cell/proc/use(var/mob/living/user, var/mob/living/target)
+/obj/item/device/fbp_backup_cell/proc/use(var/mob/living/user, var/mob/living/target)
 	if(used)
 		return
 	used = TRUE
@@ -168,17 +210,3 @@
 	cut_overlays()
 	target.adjust_nutrition(amount)
 	user.custom_emote(message = "connects \the [src] to [user == target ? "their" : "[target]'s"] charging port, expending it.")
-
-/obj/item/cell/emergency_light
-	name = "miniature power cell"
-	desc = "A tiny power cell with a very low power capacity. Used in light fixtures to power them in the event of an outage."
-	maxcharge = 120 //Emergency lights use 0.2 W per tick, meaning ~10 minutes of emergency power from a cell
-	matter = list(MAT_GLASS = 20)
-	icon_state = "em_light"
-	w_class = ITEMSIZE_TINY
-
-/obj/item/cell/emergency_light/Initialize()
-	. = ..()
-	var/area/A = get_area(src)
-	if(!A.lightswitch || !A.light_power)
-		charge = 0 //For naturally depowered areas, we start with no power

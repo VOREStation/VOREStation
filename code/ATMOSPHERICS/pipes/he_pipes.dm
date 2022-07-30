@@ -98,7 +98,8 @@
 			else
 				var/datum/gas_mixture/environment = loc.return_air()
 				environment_temperature = environment.temperature
-			if(abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference)
+			var/turf/simulated/loc_as_turf = loc
+			if((abs(environment_temperature-pipe_air.temperature) > minimum_temperature_difference) || (loc_as_turf.special_temperature))
 				parent.temperature_interact(loc, volume, thermal_conductivity)
 		else if(istype(loc, /turf/space/))
 			parent.radiate_heat_to_space(surface, 1)

@@ -22,7 +22,7 @@
 		to_chat(usr, "The hailer is fried. The tiny input screen just shows a waving ASCII penis.")
 		return
 
-	var/new_message = input(usr, "Please enter new message (leave blank to reset).") as text
+	var/new_message = tgui_input_text(usr, "Please enter new message (leave blank to reset).")
 	if(!new_message || new_message == "")
 		use_message = "Halt! Security!"
 	else

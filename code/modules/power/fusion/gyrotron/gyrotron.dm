@@ -10,7 +10,7 @@ GLOBAL_LIST_EMPTY(gyrotrons)
 	use_power = USE_POWER_IDLE
 	active_power_usage = 50000
 
-	circuit = /obj/item/circuitboard/gyrotron
+	circuit = /obj/item/weapon/circuitboard/gyrotron
 
 	var/id_tag
 	var/rate = 3
@@ -52,13 +52,8 @@ GLOBAL_LIST_EMPTY(gyrotrons)
 		icon_state = "emitter-off"
 
 /obj/machinery/power/emitter/gyrotron/attackby(var/obj/item/W, var/mob/user)
-<<<<<<< HEAD
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = input(usr, "Enter a new ident tag.", "Gyrotron", id_tag) as null|text
-=======
-	if(istype(W, /obj/item/multitool))
-		var/new_ident = input("Enter a new ident tag.", "Gyrotron", id_tag) as null|text
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron", id_tag)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return

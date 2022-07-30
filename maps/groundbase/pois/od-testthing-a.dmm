@@ -4,13 +4,13 @@
 /area/template_noop)
 "m" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "G" = (
 /turf/simulated/floor/wood,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 "J" = (
 /turf/simulated/wall/wood,
-/area/groundbase/poi/outdoor)
+/area/submap/groundbase/poi/outdoor)
 
 (1,1,1) = {"
 a

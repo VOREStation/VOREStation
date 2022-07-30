@@ -84,7 +84,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 
 /obj/machinery/message_server/examine(mob/user, distance, infix, suffix)
 	. = ..()
-	. += "It appears to be [active ? "online" : "offline"]."	
+	. += "It appears to be [active ? "online" : "offline"]."
 
 /obj/machinery/message_server/proc/GenerateKey()
 	//Feel free to move to Helpers.
@@ -131,12 +131,12 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 				if(2)
 					if(!Console.silent)
 						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5, runemessage = "beep! beep!")
+						Console.audible_message(text("\icon[Console][bicon(Console)] *The Requests Console beeps: 'PRIORITY Alert in [sender]'"),,5, runemessage = "beep! beep!")
 					Console.message_log += list(list("High Priority message from [sender]", "[authmsg]"))
 				else
 					if(!Console.silent)
 						playsound(Console, 'sound/machines/twobeep.ogg', 50, 1)
-						Console.audible_message(text("[bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4, runemessage = "beep beep")
+						Console.audible_message(text("\icon[Console][bicon(Console)] *The Requests Console beeps: 'Message from [sender]'"),,4, runemessage = "beep beep")
 					Console.message_log += list(list("Message from [sender]", "[authmsg]"))
 			Console.set_light(2)
 

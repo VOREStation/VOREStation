@@ -103,33 +103,33 @@
 				if(allowed(usr))
 					locked = !locked
 				else
-					to_chat(usr, "[bicon(src)]<span class='warning'>Insufficient access.</span>")
+					to_chat(usr, "\icon[src][bicon(src)]<span class='warning'>Insufficient access.</span>")
 			if("toggle_cash_lock")
 				cash_locked = !cash_locked
 			if("link_account")
-				var/attempt_account_num = input(usr, "Enter account number", "New account number") as num
-				var/attempt_pin = input(usr, "Enter PIN", "Account PIN") as num
+				var/attempt_account_num = tgui_input_number(usr, "Enter account number", "New account number")
+				var/attempt_pin = tgui_input_number(usr, "Enter PIN", "Account PIN")
 				linked_account = attempt_account_access(attempt_account_num, attempt_pin, 1)
 				if(linked_account)
 					if(linked_account.suspended)
 						linked_account = null
-						src.visible_message("[bicon(src)]<span class='warning'>Account has been suspended.</span>")
+						src.visible_message("\icon[src][bicon(src)]<span class='warning'>Account has been suspended.</span>")
 				else
-					to_chat(usr, "[bicon(src)]<span class='warning'>Account not found.</span>")
+					to_chat(usr, "\icon[src][bicon(src)]<span class='warning'>Account not found.</span>")
 			if("custom_order")
-				var/t_purpose = sanitize(input(usr, "Enter purpose", "New purpose") as text)
+				var/t_purpose = sanitize(tgui_input_text(usr, "Enter purpose", "New purpose"))
 				if (!t_purpose || !Adjacent(usr)) return
 				transaction_purpose = t_purpose
 				item_list += t_purpose
-				var/t_amount = round(input(usr, "Enter price", "New price") as num)
+				var/t_amount = round(tgui_input_number(usr, "Enter price", "New price"))
 				if (!t_amount || !Adjacent(usr) || t_amount < 0) return
 				transaction_amount += t_amount
 				price_list += t_amount
 				playsound(src, 'sound/machines/twobeep.ogg', 25)
-				src.visible_message("[bicon(src)][transaction_purpose]: [t_amount] Thaler\s.")
+				src.visible_message("\icon[src][bicon(src)][transaction_purpose]: [t_amount] Thaler\s.")
 			if("set_amount")
 				var/item_name = locate(href_list["item"])
-				var/n_amount = round(input(usr, "Enter amount", "New amount") as num)
+				var/n_amount = round(tgui_input_number(usr, "Enter amount", "New amount"))
 				n_amount = CLAMP(n_amount, 0, 20)
 				if (!item_list[item_name] || !Adjacent(usr)) return
 				transaction_amount += (n_amount - item_list[item_name]) * price_list[item_name]
@@ -163,7 +163,7 @@
 					price_list.Cut()
 			if("reset_log")
 				transaction_logs.Cut()
-				to_chat(usr, "[bicon(src)]<span class='notice'>Transaction log reset.</span>")
+				to_chat(usr, "\icon[src][bicon(src)]<span class='notice'>Transaction log reset.</span>")
 	updateDialog()
 
 
@@ -208,7 +208,7 @@
 		return 1
 	else
 		confirm_item = I
-		src.visible_message("[bicon(src)]<b>Total price:</b> [transaction_amount] Thaler\s. Swipe again to confirm.")
+		src.visible_message("\icon[src][bicon(src)]<b>Total price:</b> [transaction_amount] Thaler\s. Swipe again to confirm.")
 		playsound(src, 'sound/machines/twobeep.ogg', 25)
 		return 0
 
@@ -219,14 +219,14 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[bicon(src)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][bicon(src)]<span class='warning'>The cash box is open.</span>")
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(I))
 		return
 
 	if (!linked_account)
-		usr.visible_message("[bicon(src)]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("\icon[src][bicon(src)]<span class='warning'>Unable to connect to linked account.</span>")
 		return
 
 	// Access account for transaction
@@ -234,18 +234,18 @@
 		var/datum/money_account/D = get_account(I.associated_account_number)
 		var/attempt_pin = ""
 		if(D && D.security_level)
-			attempt_pin = input(usr, "Enter PIN", "Transaction") as num
+			attempt_pin = tgui_input_number(usr, "Enter PIN", "Transaction")
 			D = null
 		D = attempt_account_access(I.associated_account_number, attempt_pin, 2)
 
 		if(!D)
-			src.visible_message("[bicon(src)]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+			src.visible_message("\icon[src][bicon(src)]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
 		else
 			if(D.suspended)
-				src.visible_message("[bicon(src)]<span class='warning'>Your account has been suspended.</span>")
+				src.visible_message("\icon[src][bicon(src)]<span class='warning'>Your account has been suspended.</span>")
 			else
 				if(transaction_amount > D.money)
-					src.visible_message("[bicon(src)]<span class='warning'>Not enough funds.</span>")
+					src.visible_message("\icon[src][bicon(src)]<span class='warning'>Not enough funds.</span>")
 				else
 					// Transfer the money
 					D.money -= transaction_amount
@@ -284,7 +284,7 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[bicon(src)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][bicon(src)]<span class='warning'>The cash box is open.</span>")
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(E))
@@ -293,7 +293,7 @@
 	// Access account for transaction
 	if(check_account())
 		if(transaction_amount > E.worth)
-			src.visible_message("[bicon(src)]<span class='warning'>Not enough funds.</span>")
+			src.visible_message("\icon[src][bicon(src)]<span class='warning'>Not enough funds.</span>")
 		else
 			// Transfer the money
 			E.worth -= transaction_amount
@@ -322,14 +322,14 @@
 
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[bicon(src)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][bicon(src)]<span class='warning'>The cash box is open.</span>")
 		return
 
 	if((item_list.len > 1 || item_list[item_list[1]] > 1) && !confirm(SC))
 		return
 
 	if(transaction_amount > SC.worth)
-		src.visible_message("[bicon(src)]<span class='warning'>Not enough money.</span>")
+		src.visible_message("\icon[src][bicon(src)]<span class='warning'>Not enough money.</span>")
 	else
 		// Insert cash into magical slot
 		SC.worth -= transaction_amount
@@ -351,20 +351,20 @@
 /obj/machinery/cash_register/proc/scan_item_price(obj/O)
 	if(!istype(O))	return
 	if(item_list.len > 10)
-		src.visible_message("[bicon(src)]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
+		src.visible_message("\icon[src][bicon(src)]<span class='warning'>Only up to ten different items allowed per purchase.</span>")
 		return
 	if (cash_open)
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 25)
-		to_chat(usr, "[bicon(src)]<span class='warning'>The cash box is open.</span>")
+		to_chat(usr, "\icon[src][bicon(src)]<span class='warning'>The cash box is open.</span>")
 		return
 
 	// First check if item has a valid price
 	var/price = O.get_item_cost()
 	if(isnull(price))
-		src.visible_message("[bicon(src)]<span class='warning'>Unable to find item in database.</span>")
+		src.visible_message("\icon[src][bicon(src)]<span class='warning'>Unable to find item in database.</span>")
 		return
 	// Call out item cost
-	src.visible_message("[bicon(src)]\A [O]: [price ? "[price] Thaler\s" : "free of charge"].")
+	src.visible_message("\icon[src][bicon(src)]\A [O]: [price ? "[price] Thaler\s" : "free of charge"].")
 	// Note the transaction purpose for later use
 	if(transaction_purpose)
 		transaction_purpose += "<br>"
@@ -432,11 +432,11 @@
 
 /obj/machinery/cash_register/proc/check_account()
 	if (!linked_account)
-		usr.visible_message("[bicon(src)]<span class='warning'>Unable to connect to linked account.</span>")
+		usr.visible_message("\icon[src][bicon(src)]<span class='warning'>Unable to connect to linked account.</span>")
 		return 0
 
 	if(linked_account.suspended)
-		src.visible_message("[bicon(src)]<span class='warning'>Connected account has been suspended.</span>")
+		src.visible_message("\icon[src][bicon(src)]<span class='warning'>Connected account has been suspended.</span>")
 		return 0
 	return 1
 
@@ -444,7 +444,7 @@
 /obj/machinery/cash_register/proc/transaction_complete()
 	/// Visible confirmation
 	playsound(src, 'sound/machines/chime.ogg', 25)
-	src.visible_message("[bicon(src)]<span class='notice'>Transaction complete.</span>")
+	src.visible_message("\icon[src][bicon(src)]<span class='notice'>Transaction complete.</span>")
 	flick("register_approve", src)
 	reset_memory()
 	updateDialog()

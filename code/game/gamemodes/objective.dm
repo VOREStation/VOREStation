@@ -481,7 +481,7 @@ var/global/list/all_objectives = list()
 		var/tmp_obj = new custom_target
 		var/custom_name = tmp_obj:name
 		qdel(tmp_obj)
-		custom_name = sanitize(input(usr, "Enter target name:", "Objective target", custom_name) as text|null)
+		custom_name = sanitize(tgui_input_text(usr, "Enter target name:", "Objective target", custom_name))
 		if (!custom_name) return
 		target_name = custom_name
 		steal_target = custom_target

@@ -16,13 +16,13 @@
 /obj/item/assembly_holder/proc/attach(var/obj/item/assembly/D, var/obj/item/assembly/D2, var/mob/user)
 	if(!D || !D2)
 		return FALSE
-	
+
 	if(!istype(D) || !istype(D2))
 		return FALSE
 
 	if(D.secured || D2.secured)
 		return FALSE
-	
+
 	if(user)
 		user.remove_from_mob(D)
 		user.remove_from_mob(D2)
@@ -151,7 +151,7 @@
 	if(!D)
 		return 0
 	if(!secured)
-		visible_message("[bicon(src)] *beep* *beep*", "*beep* *beep*")
+		visible_message("\icon[src][bicon(src)] *beep* *beep*", "*beep* *beep*")
 	if((normal) && (a_right) && (a_left))
 		if(a_right != D)
 			a_right.pulsed(0)
@@ -219,7 +219,7 @@
 		if(tmr.timing)
 			to_chat(usr, "<span class='notice'>Clock is ticking already.</span>")
 		else
-			var/ntime = input(usr, "Enter desired time in seconds", "Time", "5") as num
+			var/ntime = tgui_input_number(usr, "Enter desired time in seconds", "Time", "5", 1000, 0)
 			if (ntime>0 && ntime<1000)
 				tmr.time = ntime
 				name = initial(name) + "([tmr.time] secs)"

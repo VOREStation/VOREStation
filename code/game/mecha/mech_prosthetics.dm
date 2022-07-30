@@ -61,6 +61,7 @@
 					"Cyborg Parts",
 					"Cyborg Internals",
 					"Cybernetics",
+					"pAI Parts", //VOREStation Add
 					"Implants",
 					"Control Interfaces",
 					"Other",

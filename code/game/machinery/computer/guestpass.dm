@@ -13,16 +13,11 @@
 	var/expired = 0
 	var/reason = "NOT SPECIFIED"
 
-<<<<<<< HEAD
-/obj/item/weapon/card/id/guest/update_icon()
+/obj/item/card/id/guest/update_icon()
 	return
 
-/obj/item/weapon/card/id/guest/GetAccess()
-	if(world.time > expiration_time)
-=======
 /obj/item/card/id/guest/GetAccess()
-	if (world.time > expiration_time)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	if(world.time > expiration_time)
 		return access
 	else
 		return temp_access
@@ -94,13 +89,8 @@
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 	icon_keyboard = null
 	icon_screen = "pass"
-<<<<<<< HEAD
 	density = FALSE
-	circuit = /obj/item/weapon/circuitboard/guestpass
-=======
-	density = 0
 	circuit = /obj/item/circuitboard/guestpass
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/obj/item/card/id/giver
 	var/list/accesses = list()
@@ -117,6 +107,9 @@
 
 
 /obj/machinery/computer/guestpass/attackby(obj/I, mob/user)
+	if(istype(I, /obj/item/card/id/guest))
+		to_chat(user, "<span class='warning'>The guest pass terminal denies to accept the guest pass.</span>")
+		return
 	if(istype(I, /obj/item/card/id))
 		if(!giver && user.unEquip(I))
 			I.forceMove(src)
@@ -177,15 +170,15 @@
 			mode = params["mode"]
 
 		if("giv_name")
-			var/nam = sanitizeName(input(usr, "Person pass is issued to", "Name", giv_name) as text|null)
+			var/nam = sanitizeName(tgui_input_text(usr, "Person pass is issued to", "Name", giv_name))
 			if(nam)
 				giv_name = nam
 		if("reason")
-			var/reas = sanitize(input(usr, "Reason why pass is issued", "Reason", reason) as text|null)
+			var/reas = sanitize(tgui_input_text(usr, "Reason why pass is issued", "Reason", reason))
 			if(reas)
 				reason = reas
 		if("duration")
-			var/dur = input(usr, "Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration") as num|null //VOREStation Edit
+			var/dur = tgui_input_number(usr, "Duration (in minutes) during which pass is valid (up to 360 minutes).", "Duration", null, 360, 0)
 			if(dur)
 				if(dur > 0 && dur <= 360) //VOREStation Edit
 					duration = dur
@@ -199,7 +192,6 @@
 				if(A in giver.access)	//Let's make sure the ID card actually has the access.
 					accesses.Add(A)
 				else
-<<<<<<< HEAD
 					to_chat(usr, "<span class='warning'>Invalid selection, please consult technical support if there are any issues.</span>")
 					log_debug("[key_name_admin(usr)] tried selecting an invalid guest pass terminal option.")
 		if("id")
@@ -209,41 +201,6 @@
 					if(!usr.get_active_hand())
 						usr.put_in_hands(giver)
 					giver = null
-=======
-					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/card/id) && usr.unEquip(I))
-						I.loc = src
-						giver = I
-
-			if ("print")
-				var/dat = "<h3>Activity log of guest pass terminal #[uid]</h3><br>"
-				for (var/entry in internal_log)
-					dat += "[entry]<br><hr>"
-				//to_chat(usr, "Printing the log, standby...")
-				//sleep(50)
-				var/obj/item/paper/P = new/obj/item/paper( loc )
-				P.name = "activity log"
-				P.info = dat
-
-			if ("issue")
-				if (giver)
-					var/number = pad_left("[rand(1, 9999)]", 4, "0")
-					var/entry = "\[[stationtime2text()]\] Pass #[number] issued by [giver.registered_name] ([giver.assignment]) to [giv_name]. Reason: [reason]. Grants access to following areas: "
-					for (var/i=1 to accesses.len)
-						var/A = accesses[i]
-						if (A)
-							var/area = get_access_desc(A)
-							entry += "[i > 1 ? ", [area]" : "[area]"]"
-					entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
-					internal_log.Add(entry)
-
-					var/obj/item/card/id/guest/pass = new(src.loc)
-					pass.temp_access = accesses.Copy()
-					pass.registered_name = giv_name
-					pass.expiration_time = world.time + duration*10*60
-					pass.reason = reason
-					pass.name = "guest pass #[number]"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				else
 					giver.loc = src.loc
 					giver = null

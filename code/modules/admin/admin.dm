@@ -1,5 +1,3 @@
-
-var/global/BSACooldown = 0
 var/global/floorIsLava = 0
 
 
@@ -218,7 +216,6 @@ var/global/floorIsLava = 0
 /datum/player_info/var/content // text content of the information
 /datum/player_info/var/timestamp // Because this is bloody annoying
 
-#define PLAYER_NOTES_ENTRIES_PER_PAGE 50
 /datum/admins/proc/PlayerNotes()
 	set category = "Admin"
 	set name = "Player Notes"
@@ -235,56 +232,20 @@ var/global/floorIsLava = 0
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/filter = input(usr, "Filter string (case-insensitive regex)", "Player notes filter") as text|null
+	var/filter = tgui_input_text(usr, "Filter string (case-insensitive regex)", "Player notes filter")
 	PlayerNotesPage(1, filter)
 
 /datum/admins/proc/PlayerNotesPage(page, filter)
-	var/dat = "<B>Player notes</B> - <a href='?src=\ref[src];notes=filter'>Apply Filter</a><HR>"
 	var/savefile/S=new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
-	if(!note_keys)
-		dat += "No notes found."
-	else
-		dat += "<table>"
+
+	if(note_keys)
 		note_keys = sortList(note_keys)
 
-		if(filter)
-			var/list/results = list()
-			var/regex/needle = regex(filter, "i")
-			for(var/haystack in note_keys)
-				if(needle.Find(haystack))
-					results += haystack
-			note_keys = results
-
-		// Display the notes on the current page
-		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
-		// Emulate CEILING(why does BYOND not have ceil, 1)
-		if(number_pages != round(number_pages))
-			number_pages = round(number_pages) + 1
-		var/page_index = page - 1
-
-		if(page_index < 0 || page_index >= number_pages)
-			dat += "<tr><td>No keys found.</td></tr>"
-		else
-			var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
-			var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
-			upper_bound = min(upper_bound, note_keys.len)
-			for(var/index = lower_bound, index <= upper_bound, index++)
-				var/t = note_keys[index]
-				dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
-
-		dat += "</table><hr>"
-
-		// Display a footer to select different pages
-		for(var/index = 1, index <= number_pages, index++)
-			if(index == page)
-				dat += "<b>"
-			dat += "<a href='?src=\ref[src];notes=list;index=[index];filter=[filter ? url_encode(filter) : 0]'>[index]</a> "
-			if(index == page)
-				dat += "</b>"
-
-	usr << browse(dat, "window=player_notes;size=400x400")
+	var/datum/tgui_module/player_notes/A = new(src)
+	A.ckeys = note_keys
+	A.tgui_interact(usr)
 
 
 /datum/admins/proc/player_has_info(var/key as text)
@@ -303,44 +264,10 @@ var/global/floorIsLava = 0
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
-	var/dat = "<html><head><title>Info on [key]</title></head>"
-	dat += "<body>"
 
-	var/p_age = "unknown"
-	for(var/client/C in GLOB.clients)
-		if(C.ckey == key)
-			p_age = C.player_age
-			break
-	dat +="<span style='color:#000000; font-weight: bold'>Player age: [p_age]</span><br>"
-
-	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
-	var/list/infos
-	info >> infos
-	if(!infos)
-		dat += "No information found on the given key.<br>"
-	else
-		var/update_file = 0
-		var/i = 0
-		for(var/datum/player_info/I in infos)
-			i += 1
-			if(!I.timestamp)
-				I.timestamp = "Pre-4/3/2012"
-				update_file = 1
-			if(!I.rank)
-				I.rank = "N/A"
-				update_file = 1
-			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
-				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A>"
-			dat += "<br><br>"
-		if(update_file) info << infos
-
-	dat += "<br>"
-	dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
-
-	dat += "</body></html>"
-	usr << browse(dat, "window=adminplayerinfo;size=480x480")
-
+	var/datum/tgui_module/player_notes_info/A = new(src)
+	A.key = key
+	A.tgui_interact(usr)
 
 
 /datum/admins/proc/access_news_network() //MARKER
@@ -688,7 +615,7 @@ var/global/floorIsLava = 0
 	set desc="Announce your desires to the world"
 	if(!check_rights(0))	return
 
-	var/message = tgui_input_message(usr, "Global message to send:", "Admin Announce")
+	var/message = tgui_input_text(usr, "Global message to send:", "Admin Announce", multiline = TRUE, prevent_enter = TRUE)
 	if(message)
 		if(!check_rights(R_SERVER,0))
 			message = sanitize(message, 500, extra = 0)
@@ -709,12 +636,12 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/channel = tgui_input_list(usr, "Channel for message:","Channel", radiochannels)
 
 	if(channel) //They picked a channel
-		var/sender = input(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer") as null|text
+		var/sender = tgui_input_text(usr, "Name of sender (max 75):", "Announcement", "Announcement Computer")
 
 		if(sender) //They put a sender
 			sender = sanitize(sender, 75, extra = 0)
-			var/message = input(usr, "Message content (max 500):", "Contents", "This is a test of the announcement system.") as null|message
-			var/msgverb = input(usr, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says") as null|text	//VOREStation Addition
+			var/message = tgui_input_text(usr, "Message content (max 500):", "Contents", "This is a test of the announcement system.", multiline = TRUE, prevent_enter = TRUE)
+			var/msgverb = tgui_input_text(usr, "Name of verb (Such as 'states', 'says', 'asks', etc):", "Verb", "says")
 			if(message) //They put a message
 				message = sanitize(message, 500, extra = 0)
 				//VOREStation Edit Start
@@ -752,7 +679,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 		The above will result in those messages playing, with a 5 second gap between each. Maximum of 20 messages allowed.</span>")
 
 	var/list/decomposed
-	var/message = input(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "") as null|message
+	var/message = tgui_input_text(usr,"See your chat box for instructions. Keep a copy elsewhere in case it is rejected when you click OK.", "Input Conversation", "", multiline = TRUE, prevent_enter = TRUE)
 
 	if(!message)
 		return
@@ -1118,7 +1045,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 	if(!seedtype || !SSplants.seeds[seedtype])
 		return
-	var/amount = input(usr, "Amount of fruit to spawn", "Fruit Amount", 1) as null|num
+	var/amount = tgui_input_number(usr, "Amount of fruit to spawn", "Fruit Amount", 1)
 	if(!isnull(amount))
 		var/datum/seed/S = SSplants.seeds[seedtype]
 		S.harvest(usr,0,0,amount)
@@ -1531,7 +1458,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = input(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
+		crystals = tgui_input_number(usr, "Amount of telecrystals for [H.ckey], currently [H.mind.tcrystals].", crystals)
 		if (!isnull(crystals))
 			H.mind.tcrystals = crystals
 			var/msg = "[key_name(usr)] has modified [H.ckey]'s telecrystals to [crystals]."
@@ -1547,7 +1474,7 @@ var/datum/announcement/minor/admin_min_announcer = new
 	var/crystals
 
 	if(check_rights(R_ADMIN|R_EVENT))
-		crystals = input(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals) as null|num
+		crystals = tgui_input_number(usr, "Amount of telecrystals to give to [H.ckey], currently [H.mind.tcrystals].", crystals)
 		if (!isnull(crystals))
 			H.mind.tcrystals += crystals
 			var/msg = "[key_name(usr)] has added [crystals] to [H.ckey]'s telecrystals."
@@ -1570,9 +1497,9 @@ var/datum/announcement/minor/admin_min_announcer = new
 				to_chat(usr, "Error: you are not an admin!")
 				return
 
-			var/replyorigin = input(src.owner, "Please specify who the fax is coming from", "Origin") as text|null
+			var/replyorigin = tgui_input_text(src.owner, "Please specify who the fax is coming from", "Origin")
 
-			var/obj/item/paper/admin/P = new /obj/item/paper/admin( null ) //hopefully the null loc won't cause trouble for us
+			var/obj/item/weapon/paper/admin/P = new /obj/item/weapon/paper/admin( null ) //hopefully the null loc won't cause trouble for us
 			faxreply = P
 
 			P.admindatum = src
@@ -1582,10 +1509,10 @@ var/datum/announcement/minor/admin_min_announcer = new
 			P.adminbrowse()
 
 
-/datum/admins/var/obj/item/paper/admin/faxreply // var to hold fax replies in
+/datum/admins/var/obj/item/weapon/paper/admin/faxreply // var to hold fax replies in
 
-/datum/admins/proc/faxCallback(var/obj/item/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
-	var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
+/datum/admins/proc/faxCallback(var/obj/item/weapon/paper/admin/P, var/obj/machinery/photocopier/faxmachine/destination)
+	var/customname = tgui_input_text(src.owner, "Pick a title for the report", "Title")
 
 	P.name = "[P.origin] - [customname]"
 	P.desc = "This is a paper titled '" + P.name + "'."
@@ -1614,13 +1541,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 
 		if(!P.stamped)
 			P.stamped = new
-<<<<<<< HEAD
 		P.stamped += /obj/item/weapon/stamp/centcomm
 		P.add_overlay(stampoverlay)
-=======
-		P.stamped += /obj/item/stamp/centcomm
-		P.overlays += stampoverlay
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/obj/item/rcvdcopy
 	rcvdcopy = destination.copy(P)
@@ -1641,8 +1563,8 @@ var/datum/announcement/minor/admin_min_announcer = new
 			for(var/client/C in GLOB.admins)
 				if((R_ADMIN | R_MOD | R_EVENT) & C.holder.rights)
 					to_chat(C, "<span class='log_message'><span class='prefix'>FAX LOG:</span>[key_name_admin(src.owner)] has sent a fax message to [destination.department] (<a href='?_src_=holder;AdminFaxView=\ref[rcvdcopy]'>VIEW</a>)</span>")
-		
-		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]" 
+
+		var/plaintext_title = P.sender ? "replied to [key_name(P.sender)]'s fax" : "sent a fax message to [destination.department]"
 		var/fax_text = paper_html_to_plaintext(P.info)
 		log_game(plaintext_title)
 		log_game(fax_text)

@@ -10,7 +10,7 @@
 	Biological genetic bombarder:
 	Takes traits from a disk and replaces/adds to the genes in a xenobiological creature.
 */
-/obj/item/disk/xenobio
+/obj/item/weapon/disk/xenobio
 	name = "biological data disk"
 	desc = "A small disk used for carrying data on genetics."
 	icon = 'icons/obj/hydroponics_machines.dmi'
@@ -20,7 +20,7 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-/obj/item/disk/xenobio/attack_self(var/mob/user as mob)
+/obj/item/weapon/disk/xenobio/attack_self(var/mob/user as mob)
 	if(genes.len)
 		var/choice = tgui_alert(user, "Are you sure you want to wipe the disk?", "Xenobiological Data", list("No", "Yes"))
 		if(src && user && genes && choice && choice == "Yes" && user.Adjacent(get_turf(src)))
@@ -30,26 +30,21 @@
 			genes = list()
 			genesource = "unknown"
 
-/obj/item/storage/box/xenobiodisk
+/obj/item/weapon/storage/box/xenobiodisk
 	name = "biological disk box"
 	desc = "A box of biological data disks, apparently."
 
-<<<<<<< HEAD
 /obj/item/weapon/storage/box/xenobiodisk/New()
 	..()
-=======
-/obj/item/storage/box/xenobiodisk/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/i = 0 to 7)
-		new /obj/item/disk/xenobio(src)
+		new /obj/item/weapon/disk/xenobio(src)
 
 /obj/machinery/xenobio
 	density = TRUE
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
 
-	var/obj/item/disk/xenobio/loaded_disk //Currently loaded data disk.
+	var/obj/item/weapon/disk/xenobio/loaded_disk //Currently loaded data disk.
 
 	var/open = 0
 	var/active = 0
@@ -65,17 +60,17 @@
 /obj/machinery/xenobio/attack_hand(mob/user as mob)
 	ui_interact(user)
 
-/obj/machinery/xenobio/attackby(obj/item/W as obj, mob/user as mob)
+/obj/machinery/xenobio/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(default_deconstruction_screwdriver(user, W))
 		return
 	if(default_deconstruction_crowbar(user, W))
 		return
-	if(istype(W,/obj/item/disk/xenobio))
+	if(istype(W,/obj/item/weapon/disk/xenobio))
 		if(loaded_disk)
 			to_chat(user, "There is already a data disk loaded.")
 			return
 		else
-			var/obj/item/disk/xenobio/B = W
+			var/obj/item/weapon/disk/xenobio/B = W
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)
@@ -107,22 +102,22 @@
 	in_use = 0
 	if(failed_task)
 		failed_task = 0
-		visible_message("[bicon(src)] [src] pings unhappily, flashing a red warning light.")
+		visible_message("\icon[src][bicon(src)] [src] pings unhappily, flashing a red warning light.")
 	else
-		visible_message("[bicon(src)] [src] pings happily.")
+		visible_message("\icon[src][bicon(src)] [src] pings happily.")
 
 	if(eject_disk)
 		eject_disk = 0
 		if(loaded_disk)
 			loaded_disk.forceMove(get_turf(src))
-			visible_message("[bicon(src)] [src] beeps and spits out [loaded_disk].")
+			visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
 			loaded_disk = null
 
 /obj/machinery/xenobio/extractor
 	name = "biological product destructive analyzer"
 	icon = 'icons/obj/hydroponics_machines_vr.dmi' //VOREStation Edit
 	icon_state = "traitcopier"
-	circuit = /obj/item/circuitboard/bioproddestanalyzer
+	circuit = /obj/item/weapon/circuitboard/bioproddestanalyzer
 
 	var/obj/item/xenoproduct/product
 	var/datum/xeno/traits/genetics // Currently scanned xeno genetic structure.
@@ -131,8 +126,8 @@
 /obj/machinery/xenobio/extractor/Initialize()
 	. = ..()
 	default_apply_parts()
-	
-/obj/machinery/xenobio/extractor/attackby(obj/item/W as obj, mob/user as mob)
+
+/obj/machinery/xenobio/extractor/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/xenoproduct))
 		if(product)
 			to_chat(user, "There is already a xenobiological product loaded.")
@@ -188,7 +183,7 @@
 /obj/machinery/xenobio/proc/eject_disk()
 	if(!loaded_disk) return
 	loaded_disk.forceMove(loc)
-	visible_message("[bicon(src)] [src] beeps and spits out [loaded_disk].")
+	visible_message("\icon[src][bicon(src)] [src] beeps and spits out [loaded_disk].")
 	loaded_disk = null
 
 /obj/machinery/xenobio/extractor/Topic(href, href_list)
@@ -200,7 +195,7 @@
 		if(!product) return
 
 		product.forceMove(get_turf(src))
-		visible_message("[bicon(src)] [src] beeps and spits out [product].")
+		visible_message("\icon[src][bicon(src)] [src] beeps and spits out [product].")
 		product = null
 
 	if(href_list["eject_disk"])
@@ -259,7 +254,7 @@
 	icon = 'icons/obj/cryogenics.dmi'
 	icon_state = "cellold0"
 	disk_needs_genes = 1
-	circuit = /obj/item/circuitboard/biobombarder
+	circuit = /obj/item/weapon/circuitboard/biobombarder
 
 	var/mob/living/simple_mob/xeno/slime/occupant
 
@@ -267,9 +262,9 @@
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/xenobio/editor/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/grab))
-		var/obj/item/grab/G = W
+/obj/machinery/xenobio/editor/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weapon/grab))
+		var/obj/item/weapon/grab/G = W
 		if(occupant)
 			to_chat(user, "There is already an organism loaded.")
 			return
@@ -395,24 +390,24 @@
 		occupant.forceMove(loc)
 		occupant = null
 
-/obj/item/circuitboard/bioproddestanalyzer
+/obj/item/weapon/circuitboard/bioproddestanalyzer
 	name = T_BOARD("biological product destructive analyzer")
 	build_path = "/obj/machinery/xenobio/extractor"
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
 	req_components = list(
-							/obj/item/stock_parts/manipulator = 2,
-							/obj/item/stock_parts/matter_bin = 1,
-							/obj/item/stock_parts/scanning_module = 3
+							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_parts/matter_bin = 1,
+							/obj/item/weapon/stock_parts/scanning_module = 3
 							)
 
-/obj/item/circuitboard/biobombarder
+/obj/item/weapon/circuitboard/biobombarder
 	name = T_BOARD("biological genetic bombarder")
 	build_path = "/obj/machinery/xenobio/editor"
 	board_type = "machine"
 	origin_tech = list(TECH_DATA = 4, TECH_BIO = 4)
 	req_components = list(
-							/obj/item/stock_parts/manipulator = 2,
-							/obj/item/stock_parts/matter_bin = 2,
-							/obj/item/stock_parts/scanning_module = 2
+							/obj/item/weapon/stock_parts/manipulator = 2,
+							/obj/item/weapon/stock_parts/matter_bin = 2,
+							/obj/item/weapon/stock_parts/scanning_module = 2
 							)

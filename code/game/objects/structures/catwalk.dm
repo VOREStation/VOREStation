@@ -128,9 +128,9 @@
 		new /obj/item/stack/rods(get_turf(src))
 		Destroy()
 
-/obj/structure/catwalk/Crossed()
+/obj/structure/catwalk/Crossed(atom/movable/AM)
 	. = ..()
-	if(isliving(usr) && !usr.is_incorporeal())
+	if(isliving(AM) && !AM.is_incorporeal())
 		playsound(src, pick('sound/effects/footstep/catwalk1.ogg', 'sound/effects/footstep/catwalk2.ogg', 'sound/effects/footstep/catwalk3.ogg', 'sound/effects/footstep/catwalk4.ogg', 'sound/effects/footstep/catwalk5.ogg'), 25, 1)
 
 /obj/effect/catwalk_plated

@@ -5808,8 +5808,7 @@
 /obj/item/reagent_containers/food/snacks/wormsickly/Initialize()
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
-	reagents.add_reagent("fishbait", 9)
-	reagents.add_reagent("protein",  3)
+	reagents.add_reagent("protein", 1)
 
 <<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/cutlet
@@ -5834,8 +5833,7 @@
 /obj/item/reagent_containers/food/snacks/worm/Initialize()
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
-	reagents.add_reagent("fishbait", 15)
-	reagents.add_reagent("protein",   5)
+	reagents.add_reagent("protein", 2)
 
 <<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/rawmeatball
@@ -5860,8 +5858,7 @@
 /obj/item/reagent_containers/food/snacks/wormdeluxe/Initialize()
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
-	reagents.add_reagent("fishbait", 30)
-	reagents.add_reagent("protein",  10)
+	reagents.add_reagent("protein", 2)
 
 <<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/hotdog
@@ -6487,7 +6484,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/wormsickly/Initialize()
 	. = ..()
-	reagents.add_reagent("fishbait", 10)
+	reagents.add_reagent("fishbait", 9)
+	reagents.add_reagent("protein",  3)
 
 <<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/worm
@@ -6512,7 +6510,8 @@
 /obj/item/reagent_containers/food/snacks/mouseburger/Initialize()
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
-	reagents.add_reagent("fishbait", 20)
+	reagents.add_reagent("fishbait", 15)
+	reagents.add_reagent("protein",   5)
 
 <<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/wormdeluxe
@@ -6526,7 +6525,8 @@
 
 /obj/item/weapon/reagent_containers/food/snacks/wormdeluxe/Initialize()
 	. = ..()
-	reagents.add_reagent("fishbait", 40)
+	reagents.add_reagent("fishbait", 30)
+	reagents.add_reagent("protein",  10)
 
 /obj/item/weapon/reagent_containers/food/snacks/siffruit
 	name = "pulsing fruit"

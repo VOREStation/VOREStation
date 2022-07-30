@@ -283,6 +283,7 @@
 >>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	damtype = HALLOSS
 	no_attack_log = 1
+	no_random_knockdown = TRUE
 
 /obj/item/holo/esword
 	desc = "May the force be within you. Sorta."

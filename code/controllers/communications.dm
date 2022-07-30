@@ -126,6 +126,7 @@ var/const/MED_I_FREQ = 1485
 var/const/SEC_I_FREQ = 1475
 
 var/const/TALON_FREQ = 1363 //VOREStation Add
+var/const/CSN_FREQ = 1365 //VOREStation Add
 
 var/list/radiochannels = list(
 	"Common"		= PUB_FREQ,
@@ -145,7 +146,8 @@ var/list/radiochannels = list(
 	"Entertainment" = ENT_FREQ,
 	"Medical(I)"	= MED_I_FREQ,
 	"Security(I)"	= SEC_I_FREQ,
-	"Talon"			= TALON_FREQ //VOREStation Add
+	"Talon"			= TALON_FREQ, //VOREStation Add
+	"Casino" 		= CSN_FREQ,
 )
 
 // Hey, if anyone ever needs to update tgui/packages/tgui/constants.js with new radio channels
@@ -155,7 +157,7 @@ var/list/radiochannels = list(
 	set category = "Generate TGUI Radio Constants"
 
 	var/list/channel_info = list()
-	
+
 	for(var/i in RADIO_LOW_FREQ to RADIO_HIGH_FREQ)
 		for(var/key in radiochannels)
 			if(i == radiochannels[key])
@@ -192,7 +194,7 @@ var/list/ANTAG_FREQS = list(SYND_FREQ, RAID_FREQ)
 //Department channels, arranged lexically
 var/list/DEPT_FREQS = list(AI_FREQ, COMM_FREQ, ENG_FREQ, ENT_FREQ, MED_FREQ, SEC_FREQ, SCI_FREQ, SRV_FREQ, SUP_FREQ)
 
-var/list/OFFMAP_FREQS = list(TALON_FREQ) //VOREStation Add
+var/list/OFFMAP_FREQS = list(TALON_FREQ, CSN_FREQ) //VOREStation Add
 
 /proc/frequency_span_class(var/frequency)
 	// Antags!

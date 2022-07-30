@@ -273,6 +273,8 @@
 	var/wikilink = null //link to wiki page for species
 	var/icon_height = 32
 	var/agility = 20 //prob() to do agile things
+	var/gun_accuracy_mod = 0	// More is better
+	var/gun_accuracy_dispersion_mod = 0	// More is worse
 
 	var/sort_hint = SPECIES_SORT_NORMAL
 

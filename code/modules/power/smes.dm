@@ -315,6 +315,8 @@ GLOBAL_LIST_EMPTY(smeses)
 				"<span class='filter_notice'><span class='notice'>[user.name] has added cables to the [src].</span></span>",\
 				"<span class='filter_notice'><span class='notice'>You added cables to the [src].</span></span>")
 		stat = 0
+		if(!powernet)
+			connect_to_network()
 		return FALSE
 
 	else if(W.is_wirecutter() && !building_terminal)
@@ -418,7 +420,7 @@ GLOBAL_LIST_EMPTY(smeses)
 		switch(io)
 			if(SMES_TGUI_INPUT)
 				set_input(target)
-			if(SMES_TGUI_OUTPUT)	
+			if(SMES_TGUI_OUTPUT)
 				set_output(target)
 
 

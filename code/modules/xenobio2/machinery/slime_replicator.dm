@@ -63,7 +63,7 @@
 
 /obj/machinery/slime/replicator/proc/replicate_slime()
 	if(!src.core)
-		src.visible_message("[bicon(src)] [src] pings unhappily.")
+		src.visible_message("\icon[src][bicon(src)] [src] pings unhappily.")
 	else if(inuse)
 		return
 

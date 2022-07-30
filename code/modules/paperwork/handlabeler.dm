@@ -73,7 +73,7 @@
 	if(mode)
 		to_chat(user, SPAN_NOTICE("You turn on \the [src]."))
 		//Now let them chose the text.
-		var/str = sanitizeSafe(input(user,"Label text?","Set label",""), MAX_NAME_LEN)
+		var/str = sanitizeSafe(tgui_input_text(user,"Label text?","Set label","",MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!str || !length(str))
 			to_chat(user, SPAN_WARNING("Invalid text."))
 			return

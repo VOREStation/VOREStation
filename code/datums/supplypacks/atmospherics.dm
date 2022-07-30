@@ -106,7 +106,7 @@
 	cost = 35
 	containertype = /obj/structure/closet/crate/aether
 	containername = "Emergency crate"
-
+/*
 /datum/supply_pack/atmos/firefighting
 	name = "Firefighting equipment"
 	contains = list(
@@ -118,4 +118,4 @@
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/aether
-	containername = "Firefighting crate"
+	containername = "Firefighting crate"*/

@@ -433,7 +433,7 @@
 		return
 	else if(istype(I, /obj/item/pen))
 		if(loc == user && !user.incapacitated())
-			var/new_name = input(user, "What would you like to label the tape?", "Tape labeling") as null|text
+			var/new_name = tgui_input_text(user, "What would you like to label the tape?", "Tape labeling")
 			if(isnull(new_name)) return
 			new_name = sanitizeSafe(new_name)
 			if(new_name)

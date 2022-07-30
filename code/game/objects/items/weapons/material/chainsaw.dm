@@ -1,7 +1,6 @@
-/obj/item/chainsaw
+/obj/item/weapon/chainsaw
 	name = "chainsaw"
 	desc = "Vroom vroom."
-	icon = 'icons/obj/weapons.dmi'
 	icon_state = "chainsaw0"
 	item_state = "chainsaw0"
 	var/on = 0
@@ -13,25 +12,21 @@
 	var/active_force = 55
 	var/inactive_force = 10
 
-<<<<<<< HEAD
-/obj/item/weapon/chainsaw/New()
-=======
-/obj/item/chainsaw/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/weapon/chainsaw/Initialize()
 	var/datum/reagents/R = new/datum/reagents(max_fuel)
 	reagents = R
 	R.my_atom = src
 	R.add_reagent("fuel", max_fuel)
 	START_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
-/obj/item/chainsaw/Destroy()
+/obj/item/weapon/chainsaw/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	if(reagents)
 		qdel(reagents)
 	..()
 
-/obj/item/chainsaw/proc/turnOn(mob/user as mob)
+/obj/item/weapon/chainsaw/proc/turnOn(mob/user as mob)
 	if(on) return
 
 	visible_message("You start pulling the string on \the [src].", "[usr] starts pulling the string on the [src].")
@@ -54,7 +49,7 @@
 		else
 			to_chat(user, "You fumble with the string.")
 
-/obj/item/chainsaw/proc/turnOff(mob/user as mob)
+/obj/item/weapon/chainsaw/proc/turnOff(mob/user as mob)
 	if(!on) return
 	to_chat(user, "You switch the gas nozzle on the chainsaw, turning it off.")
 	attack_verb = list("bluntly hit", "beat", "knocked")
@@ -65,13 +60,13 @@
 	on = 0
 	update_icon()
 
-/obj/item/chainsaw/attack_self(mob/user as mob)
+/obj/item/weapon/chainsaw/attack_self(mob/user as mob)
 	if(!on)
 		turnOn(user)
 	else
 		turnOff(user)
 
-/obj/item/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
+/obj/item/weapon/chainsaw/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return
 	..()
 	if(on)
@@ -103,7 +98,7 @@
 		else
 			to_chat(user, "<span class='notice'>Don't move while you're refilling the chainsaw.</span>")
 
-/obj/item/chainsaw/process()
+/obj/item/weapon/chainsaw/process()
 	if(!on) return
 
 	if(on)
@@ -114,15 +109,15 @@
 			to_chat(usr, "\The [src] sputters to a stop!")
 			turnOff()
 
-/obj/item/chainsaw/proc/get_fuel()
+/obj/item/weapon/chainsaw/proc/get_fuel()
 	return reagents.get_reagent_amount("fuel")
 
-/obj/item/chainsaw/examine(mob/user)
+/obj/item/weapon/chainsaw/examine(mob/user)
 	. = ..()
 	if(max_fuel && get_dist(user, src) == 0)
 		. += "<span class = 'notice'>The [src] feels like it contains roughtly [get_fuel()] units of fuel left.</span>"
 
-/obj/item/chainsaw/update_icon()
+/obj/item/weapon/chainsaw/update_icon()
 	if(on)
 		icon_state = "chainsaw1"
 		item_state = "chainsaw1"

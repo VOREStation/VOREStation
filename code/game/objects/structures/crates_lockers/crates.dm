@@ -25,7 +25,7 @@
 	if(!src.can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/radio/electropack) in src)
+	if(rigged && locate(/obj/item/device/radio/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -89,8 +89,10 @@
 
 	src.set_dir(turn(src.dir, 90))
 
-/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
-	if(opened)
+/obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(W.is_wrench() && istype(src,/obj/structure/closet/crate/bin))
+		return ..()
+	else if(opened)
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.
@@ -98,7 +100,7 @@
 		user.drop_item()
 		if(W)
 			W.forceMove(src.loc)
-	else if(istype(W, /obj/item/packageWrap))
+	else if(istype(W, /obj/item/weapon/packageWrap))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
@@ -109,7 +111,7 @@
 			to_chat(user , "<span class='notice'>You rig [src].</span>")
 			rigged = 1
 			return
-	else if(istype(W, /obj/item/radio/electropack))
+	else if(istype(W, /obj/item/device/radio/electropack))
 		if(rigged)
 			to_chat(user , "<span class='notice'>You attach [W] to [src].</span>")
 			user.drop_item()
@@ -207,10 +209,10 @@
 	else
 		src.toggle(user)
 
-/obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/tool/wirecutters)))
+/obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/tool/wirecutters)))
 		return ..()
-	if(istype(W, /obj/item/melee/energy/blade))
+	if(istype(W, /obj/item/weapon/melee/energy/blade))
 		emag_act(INFINITY, user)
 	if(!opened)
 		src.togglelock(user)
@@ -279,17 +281,17 @@
 	desc = "A crate with rapid construction device."
 
 	starts_with = list(
-		/obj/item/rcd_ammo = 3,
-		/obj/item/rcd)
+		/obj/item/weapon/rcd_ammo = 3,
+		/obj/item/weapon/rcd)
 
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
 
 	starts_with = list(
 		/obj/item/solar_assembly = 21,
-		/obj/item/circuitboard/solar_control,
-		/obj/item/tracker_electronics,
-		/obj/item/paper/solar)
+		/obj/item/weapon/circuitboard/solar_control,
+		/obj/item/weapon/tracker_electronics,
+		/obj/item/weapon/paper/solar)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer"
@@ -693,7 +695,6 @@
 
 /obj/structure/closet/crate/hydroponics/prespawned
 	starts_with = list(
-<<<<<<< HEAD
 		/obj/item/weapon/reagent_containers/spray/plantbgone = 2,
 		/obj/item/weapon/material/minihoe)
 
@@ -723,7 +724,3 @@
 	closet_appearance = null
 	open_sound = 'sound/effects/wooden_closet_open.ogg'
 	close_sound = 'sound/effects/wooden_closet_close.ogg'
-=======
-		/obj/item/reagent_containers/spray/plantbgone = 2,
-		/obj/item/material/minihoe)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

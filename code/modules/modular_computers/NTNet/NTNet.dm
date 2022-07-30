@@ -10,21 +10,30 @@ var/global/datum/ntnet/ntnet_global = new()
 	var/list/available_news = list()
 	var/list/chat_channels = list()
 	var/list/fileservers = list()
-	var/list/email_accounts = list()				// I guess we won't have more than 999 email accounts active at once in single round, so this will do until Servers are implemented someday.
+	/// Holds all the email accounts that exists. Hopefully won't exceed 999
+	var/list/email_accounts = list()
 	var/list/banned_nids = list()
-	// Amount of logs the system tries to keep in memory. Keep below 999 to prevent byond from acting weirdly.
-	// High values make displaying logs much laggier.
+	/// A list of nid - os datum pairs. An OS in this list is not necessarily connected to NTNet or visible on it.
+	var/list/registered_nids = list()
+	/// Amount of log entries the system tries to keep in memory. Keep below 999 to prevent byond from acting weirdly. High values make displaying logs much laggier.
 	var/setting_maxlogcount = 100
 
-	// These only affect wireless. LAN (consoles) are unaffected since it would be possible to create scenario where someone turns off NTNet, and is unable to turn it back on since it refuses connections
-	var/setting_softwaredownload = 1
-	var/setting_peertopeer = 1
-	var/setting_communication = 1
-	var/setting_systemcontrol = 1
-	var/setting_disabled = 0					// Setting to 1 will disable all wireless, independently on relays status.
+	/// Programs requiring NTNET_SOFTWAREDOWNLOAD won't work if this is set to FALSE and public-facing device they are connecting with is wireless.
+	var/setting_softwaredownload = TRUE
+	/// Programs requiring NTNET_PEERTOPEER won't work if this is set to FALSE and public-facing device they are connecting with is wireless.
+	var/setting_peertopeer = TRUE
+	/// Programs requiring NTNET_COMMUNICATION won't work if this is set to FALSE and public-facing device they are connecting with is wireless.
+	var/setting_communication = TRUE
+	/// Programs requiring NTNET_SYSTEMCONTROL won't work if this is set to FALSE and public-facing device they are connecting with is wireless.
+	var/setting_systemcontrol = TRUE
 
-	var/intrusion_detection_enabled = 1 		// Whether the IDS warning system is enabled
-	var/intrusion_detection_alarm = 0			// Set when there is an IDS warning due to malicious (antag) software.
+	/// Setting to TRUE will disable all wireless connections, independently off relays status.
+	var/setting_disabled = FALSE
+
+	/// Whether the IDS warning system is enabled
+	var/intrusion_detection_enabled = TRUE
+	/// Set when there is an IDS warning due to malicious (antag) software.
+	var/intrusion_detection_alarm = FALSE
 
 
 // If new NTNet datum is spawned, it replaces the old one.
@@ -62,7 +71,13 @@ var/global/datum/ntnet/ntnet_global = new()
 			else
 				break
 
-/datum/ntnet/proc/check_banned(var/NID)
+/datum/ntnet/proc/get_os_by_nid(NID)
+	return registered_nids["[NID]"]
+
+/datum/ntnet/proc/unregister(NID)
+	registered_nids -= "[NID]"
+
+/datum/ntnet/proc/check_banned(NID)
 	if(!relays || !relays.len)
 		return FALSE
 
@@ -138,10 +153,12 @@ var/global/datum/ntnet/ntnet_global = new()
 // Resets the IDS alarm
 /datum/ntnet/proc/resetIDS()
 	intrusion_detection_alarm = 0
+	add_log("-!- INTRUSION DETECTION ALARM RESET BY SYSTEM OPERATOR -!-")
 
 /datum/ntnet/proc/toggleIDS()
 	resetIDS()
 	intrusion_detection_enabled = !intrusion_detection_enabled
+	add_log("Configuration Updated. Intrusion Detection [intrusion_detection_enabled ? "enabled" : "disabled"].")
 
 // Removes all logs
 /datum/ntnet/proc/purge_logs()
@@ -185,4 +202,3 @@ var/global/datum/ntnet/ntnet_global = new()
 	for(var/datum/ntnet_conversation/chan in chat_channels)
 		if(chan.id == id)
 			return chan
-

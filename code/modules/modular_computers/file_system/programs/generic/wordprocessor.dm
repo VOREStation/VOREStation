@@ -9,11 +9,14 @@
 	available_on_ntnet = TRUE
 	tgui_id = "NtosWordProcessor"
 
-	var/browsing
+	var/browsing = FALSE
 	var/open_file
 	var/loaded_data
 	var/error
 	var/is_edited
+
+	usage_flags = PROGRAM_ALL
+	category = PROG_OFFICE
 
 /datum/computer_file/program/wordprocessor/proc/get_file(var/filename)
 	var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
@@ -130,7 +133,7 @@
 				if(tgui_alert(usr, "Would you like to save your changes first?","Save Changes",list("Yes","No")) == "Yes")
 					save_file(open_file)
 
-			var/newname = sanitize(input(usr, "Enter file name:", "New File") as text|null)
+			var/newname = sanitize(tgui_input_text(usr, "Enter file name:", "New File"))
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname)
@@ -143,7 +146,7 @@
 			return TRUE
 
 		if("PRG_saveasfile")
-			var/newname = sanitize(input(usr, "Enter file name:", "Save As") as text|null)
+			var/newname = sanitize(tgui_input_text(usr, "Enter file name:", "Save As"))
 			if(!newname)
 				return TRUE
 			var/datum/computer_file/data/F = create_file(newname, loaded_data)
@@ -155,7 +158,7 @@
 
 		if("PRG_savefile")
 			if(!open_file)
-				open_file = sanitize(input(usr, "Enter file name:", "Save As") as text|null)
+				open_file = sanitize(tgui_input_text(usr, "Enter file name:", "Save As"))
 				if(!open_file)
 					return 0
 			if(!save_file(open_file))
@@ -166,7 +169,7 @@
 			var/oldtext = html_decode(loaded_data)
 			oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-			var/newtext = sanitize(replacetext(input(usr, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext) as message|null, "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Editing file '[open_file]'. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 			if(!newtext)
 				return
 			loaded_data = newtext

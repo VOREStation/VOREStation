@@ -27,6 +27,7 @@
 	var/initial_flooring
 	var/decl/flooring/flooring
 	var/mineral = DEFAULT_WALL_MATERIAL
+	var/can_be_plated = TRUE // This is here for inheritance's sake. Override to FALSE for turfs you don't want someone to simply slap a plating over such as hazards.
 
 	thermal_conductivity = 0.040
 	heat_capacity = 10000

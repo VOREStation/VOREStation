@@ -43,7 +43,7 @@
 	var/list/nearby_things = range(0, get_turf(src))
 	for(var/mob/M in nearby_things)
 		var/obj/O = assembly ? assembly : src
-		to_chat(M, "<span class='notice'>[bicon(O)] [stuff_to_display]</span>")
+		to_chat(M, "<span class='notice'>\icon[O][bicon(O)] [stuff_to_display]</span>")
 
 /obj/item/integrated_circuit/output/screen/large
 	name = "large screen"
@@ -56,7 +56,7 @@
 /obj/item/integrated_circuit/output/screen/large/do_work()
 	..()
 	var/obj/O = assembly ? loc : assembly
-	O.visible_message("<span class='notice'>[bicon(O)] [stuff_to_display]</span>")
+	O.visible_message("<span class='notice'>\icon[O][bicon(O)] [stuff_to_display]</span>")
 
 /obj/item/integrated_circuit/output/light
 	name = "light"
@@ -134,7 +134,7 @@
 	text = get_pin_data(IC_INPUT, 1)
 	if(!isnull(text))
 		var/obj/O = assembly ? loc : assembly
-		audible_message("[bicon(O)] \The [O.name] states, \"[text]\"", runemessage = text)
+		audible_message("\icon[O][bicon(O)] \The [O.name] states, \"[text]\"", runemessage = text)
 
 /obj/item/integrated_circuit/output/text_to_speech/advanced
 	name = "advanced text-to-speech circuit"
@@ -259,15 +259,28 @@
 /obj/item/integrated_circuit/output/video_camera
 	name = "video camera circuit"
 	desc = "This small camera allows a remote viewer to see what it sees."
-	extended_desc = "The camera is linked to the Research camera network."
+	var/list/networks = list(
+		"research"			= NETWORK_CIRCUITS,
+		"engine"			= NETWORK_ENGINE,
+		"engineering"		= NETWORK_ENGINEERING,
+		"mining"			= NETWORK_MINE,
+		"medical"			= NETWORK_MEDICAL,
+		"entertainment"		= NETWORK_THUNDER,
+		"security"			= NETWORK_SECURITY,
+		"command"			= NETWORK_COMMAND
+		)
 	icon_state = "video_camera"
 	w_class = ITEMSIZE_SMALL
 	complexity = 10
 	inputs = list(
 		"camera name" = IC_PINTYPE_STRING,
+		"camera network" = IC_PINTYPE_STRING,
 		"camera active" = IC_PINTYPE_BOOLEAN
 		)
-	inputs_default = list("1" = "video camera circuit")
+	inputs_default = list(
+		"1" = "video camera circuit",
+		"2" = "research"
+		)
 	outputs = list()
 	activators = list()
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
@@ -276,6 +289,11 @@
 
 /obj/item/integrated_circuit/output/video_camera/New()
 	..()
+	extended_desc = list()
+	extended_desc += "Network choices are; "
+	extended_desc += jointext(networks, ", ")
+	extended_desc += "."
+	extended_desc = jointext(extended_desc, null)
 	camera = new(src)
 	on_data_written()
 
@@ -294,10 +312,20 @@
 /obj/item/integrated_circuit/output/video_camera/on_data_written()
 	if(camera)
 		var/cam_name = get_pin_data(IC_INPUT, 1)
-		var/cam_active = get_pin_data(IC_INPUT, 2)
+		var/cam_network = get_pin_data(IC_INPUT, 2)
+		var/cam_active = get_pin_data(IC_INPUT, 3)
 		if(!isnull(cam_name))
 			camera.c_tag = cam_name
+		camera.replace_networks(list(cam_network))
 		set_camera_status(cam_active)
+		if(isnull(cam_network))
+			camera.clear_all_networks()
+			return
+		var/selected_network = networks[cam_network]
+		if(!selected_network)
+			camera.clear_all_networks()
+			return
+		camera.replace_networks(list(selected_network))
 
 /obj/item/integrated_circuit/output/video_camera/power_fail()
 	if(camera)

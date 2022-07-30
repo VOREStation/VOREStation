@@ -613,7 +613,7 @@
 			to_chat(user, "<span class='notice'>\The [src] is linked to \the [buffered_button].</span>")
 			return TRUE
 		// Otherwise fall back to asking them
-		var/t = sanitizeSafe(input(user, "Enter the ID for the window.", src.name, null), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter the ID for the window.", src.name, null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if (!t && user.get_active_hand() != W && in_range(src, user))
 			src.id = t
 			to_chat(user, "<span class='notice'>The new ID of \the [src] is [id]</span>")
@@ -668,7 +668,7 @@
 		var/obj/item/device/multitool/MT = W
 		if(!id)
 			// If no ID is set yet (newly built button?) let them select an ID for first-time use!
-			var/t = sanitizeSafe(input(user, "Enter an ID for \the [src].", src.name, null), MAX_NAME_LEN)
+			var/t = sanitizeSafe(tgui_input_text(user, "Enter an ID for \the [src].", src.name, null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if (t && user.get_active_hand() != W && in_range(src, user))
 				src.id = t
 				to_chat(user, "<span class='notice'>The new ID of \the [src] is [id]</span>")

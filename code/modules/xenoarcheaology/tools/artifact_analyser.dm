@@ -13,6 +13,14 @@
 	var/scan_duration = 50
 	var/obj/scanned_object
 	var/report_num = 0
+	var/list/priority_objects = list(/obj/machinery/artifact,
+									 /obj/machinery/auto_cloner,
+									 /obj/machinery/power/supermatter,
+									 /obj/structure/constructshell,
+									 /obj/machinery/giga_drill,
+									 /obj/structure/cult/pylon,
+									 /obj/machinery/replicator,
+									 /obj/structure/crystal)
 
 /obj/machinery/artifact_analyser/Initialize()
 	. = ..()
@@ -49,9 +57,9 @@
 /obj/machinery/artifact_analyser/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	add_fingerprint(usr)
-	
+
 	switch(action)
 		if("scan")
 			if(scan_in_progress)
@@ -62,6 +70,7 @@
 				reconnect_scanner()
 			if(owned_scanner)
 				var/artifact_in_use = 0
+				var/obj/secondary_priority
 				for(var/obj/O in owned_scanner.loc)
 					if(O == owned_scanner)
 						continue
@@ -78,13 +87,22 @@
 					if(artifact_in_use)
 						atom_say("Cannot scan. Too much interference.")
 					else
-						scanned_object = O
-						scan_in_progress = 1
-						scan_completion_time = world.time + scan_duration
-						atom_say("Scanning begun.")
-					break
+						for(var/otype in priority_objects)
+							if(istype(O, otype))
+								scanned_object = O
+								break
+						if(scanned_object)
+							break
+						else
+							secondary_priority = O
+				if(secondary_priority && !scanned_object)
+					scanned_object = secondary_priority
 				if(!scanned_object)
 					atom_say("Unable to isolate scan target.")
+				else
+					scan_in_progress = 1
+					scan_completion_time = world.time + scan_duration
+					atom_say("Scanning begun.")
 			return TRUE
 
 /obj/machinery/artifact_analyser/process()
@@ -102,30 +120,20 @@
 		else
 			results = get_scan_info(scanned_object)
 
-<<<<<<< HEAD
 		atom_say("Scanning complete.")
 		var/obj/item/weapon/paper/P = new(src.loc)
-=======
-		src.visible_message("<b>[name]</b> states, \"Scanning complete.\"")
-		var/obj/item/paper/P = new(src.loc)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		P.name = "[src] report #[++report_num]"
 		P.info = "<b>[src] analysis report #[report_num]</b><br>"
 		P.info += "<br>"
-		P.info += "[bicon(scanned_object)] [results]"
-<<<<<<< HEAD
+		P.info += "\icon[scanned_object][bicon(scanned_object)] [results]"
 		P.stamped = list(/obj/item/weapon/stamp)
 		P.add_overlay("paper_stamped")
-=======
-		P.stamped = list(/obj/item/stamp)
-		P.overlays = list("paper_stamped")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		if(scanned_object && istype(scanned_object, /obj/machinery/artifact))
 			var/obj/machinery/artifact/A = scanned_object
 			A.anchored = FALSE
 			A.being_used = 0
-			scanned_object = null
+		scanned_object = null
 
 //hardcoded responses, oh well
 /obj/machinery/artifact_analyser/proc/get_scan_info(var/obj/scanned_obj)

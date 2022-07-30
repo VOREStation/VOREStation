@@ -16,10 +16,22 @@
 			/obj/item/reagent_containers/food/snacks/tofu = 4,
 			/obj/item/reagent_containers/food/snacks/meat = 4,
 			/obj/item/reagent_containers/food/condiment/yeast = 3
+			/obj/item/reagent_containers/food/condiment/sprinkles = 1
 			)
 	cost = 10
 	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Food crate"
+
+/datum/supply_pack/supply/fancyfood
+	name = "Artisanal food delivery"
+	contains = list(
+			/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic = 6,
+			/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic = 6
+			)
+	cost = 25
+	containertype = /obj/structure/closet/crate/freezer/centauri
+	containername = "Artisanal food crate"
+
 
 /datum/supply_pack/supply/toner
 	name = "Toner cartridges"
@@ -67,20 +79,6 @@
 
 /datum/supply_pack/supply/bureaucracy
 	contains = list(
-<<<<<<< HEAD
-			/obj/item/weapon/clipboard = 2,
-			/obj/item/weapon/pen/red,
-			/obj/item/weapon/pen/blue,
-			/obj/item/weapon/pen/blue,
-			/obj/item/device/camera_film,
-			/obj/item/weapon/folder/blue,
-			/obj/item/weapon/folder/red,
-			/obj/item/weapon/folder/yellow,
-			/obj/item/weapon/hand_labeler,
-			/obj/item/weapon/tape_roll,
-			/obj/structure/filingcabinet/chestdrawer{anchored = FALSE},
-			/obj/item/weapon/paper_bin
-=======
 			/obj/item/clipboard = 2,
 			/obj/item/pen/red,
 			/obj/item/pen/blue,
@@ -91,9 +89,8 @@
 			/obj/item/folder/yellow,
 			/obj/item/hand_labeler,
 			/obj/item/tape_roll,
-			/obj/structure/filingcabinet/chestdrawer{anchored = 0},
+			/obj/structure/filingcabinet/chestdrawer{anchored = FALSE},
 			/obj/item/paper_bin
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	name = "Office supplies"
 	cost = 15

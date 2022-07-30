@@ -32,7 +32,10 @@
 		for(var/obj/item/i in contents)
 			var/i_state = i.item_state
 			if(!i_state) i_state = i.icon_state
-			standing.add_overlay(image(icon = INV_BELT_DEF_ICON, icon_state = i_state))
+			var/image/add_icon = image(icon = INV_BELT_DEF_ICON, icon_state = i_state)
+			if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
+				standing.filters += filter(type = "alpha", icon = clip_mask)
+			standing.add_overlay(add_icon)
 	return standing
 
 /obj/item/storage/update_icon()

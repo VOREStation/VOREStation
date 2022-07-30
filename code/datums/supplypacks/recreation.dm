@@ -35,6 +35,15 @@
 	containertype = /obj/structure/closet/crate/allico
 	containername = "foam weapon crate"
 
+/datum/supply_pack/recreation/donksoftborg
+	name = "Donk-Soft Cyborg Blaster Crate"
+	contains = list(
+			/obj/item/borg/upgrade/toygun = 2,
+			)
+	cost = 35
+	containertype = /obj/structure/closet/crate/allico
+	containername = "foam weapon crate"
+
 /datum/supply_pack/recreation/donksoftvend
 	name = "Donk-Soft Vendor Crate"
 	contains = list()

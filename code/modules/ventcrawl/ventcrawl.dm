@@ -44,6 +44,15 @@ var/list/ventcrawl_machinery = list(
 	if(buckled)
 		to_chat(src, "<span class='warning'>You cannot ventcrawl while buckled!</span>")
 		return FALSE
+	if(restrict_vore_ventcrawl)
+		var/foundstuff = FALSE
+		for(var/obj/belly/B in vore_organs)
+			if(B.contents.len)
+				foundstuff = TRUE
+				break
+		if(foundstuff)
+			to_chat(src, "<span class='warning'>You cannot ventcrawl while full!</span>")
+			return FALSE
 	return ventcrawl_carry()
 
 /mob/living/Login()

@@ -6,10 +6,7 @@ $color-background: rgba(255, 0, 0, 0.35) !default;
 $color-separator: rgba(255, 0, 0, 1) !default;
 
 .Section--elevator--fire {
-  background-color: color.adjust(
-    $color-background,
-    $lightness: 10%,
-    $alpha: 1);
+  background-color: color.adjust($color-background, $lightness: 10%, $alpha: 1);
   background-color: $color-background;
 }
 

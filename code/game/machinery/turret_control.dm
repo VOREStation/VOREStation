@@ -128,7 +128,7 @@
 /obj/machinery/turretid/tgui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PortableTurret", name) // 500, 400
+		ui = new(user, src, "PortableTurret", name, ui_x = 500, ui_y = 400) // 500, 400
 		ui.open()
 
 /obj/machinery/turretid/tgui_data(mob/user)

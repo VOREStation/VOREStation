@@ -32,7 +32,7 @@
 	var/xeno_harm_strength = 15 	// How hard to hit simple_mobs.
 	var/baton_glow = "#FF6A00"
 
-	var/used_weapon	= /obj/item/melee/baton	//Weapon used by the bot
+	var/used_weapon	= /obj/item/weapon/melee/baton	//Weapon used by the bot
 
 	var/list/threat_found_sounds = list('sound/voice/bcriminal.ogg', 'sound/voice/bjustice.ogg', 'sound/voice/bfreeze.ogg')
 	var/list/preparing_arrest_sounds = list('sound/voice/bgod.ogg', 'sound/voice/biamthelaw.ogg', 'sound/voice/bsecureday.ogg', 'sound/voice/bradio.ogg', 'sound/voice/bcreep.ogg')
@@ -70,7 +70,7 @@
 	baton_glow = "#33CCFF"
 	req_one_access = list(access_research, access_robotics)
 	botcard_access = list(access_research, access_robotics, access_xenobiology, access_xenoarch, access_tox, access_tox_storage, access_maint_tunnels)
-	used_weapon = /obj/item/melee/baton/slime
+	used_weapon = /obj/item/weapon/melee/baton/slime
 	var/xeno_stun_strength = 5 // How hard to slimebatoned()'d naughty slimes. 5 works out to 2 discipline and 5 weaken.
 
 /mob/living/bot/secbot/slime/slimesky
@@ -128,7 +128,7 @@
 /mob/living/bot/secbot/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return
-	
+
 	add_fingerprint(usr)
 
 	switch(action)
@@ -335,10 +335,10 @@
 			busy = TRUE
 			if(do_mob(src, H, 60))
 				if(!H.handcuffed)
-					if(istype(H.back, /obj/item/rig) && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
-						H.handcuffed = new /obj/item/handcuffs/cable(H) // Better to be cable cuffed than stun-locked
+					if(istype(H.back, /obj/item/weapon/rig) && istype(H.gloves,/obj/item/clothing/gloves/gauntlets/rig))
+						H.handcuffed = new /obj/item/weapon/handcuffs/cable(H) // Better to be cable cuffed than stun-locked
 					else
-						H.handcuffed = new /obj/item/handcuffs(H)
+						H.handcuffed = new /obj/item/weapon/handcuffs(H)
 					H.update_handcuffed()
 			busy = FALSE
 	else if(istype(M, /mob/living))
@@ -365,11 +365,11 @@
 	visible_message("<span class='warning'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
-	var/obj/item/secbot_assembly/Sa = new /obj/item/secbot_assembly(Tsec)
+	var/obj/item/weapon/secbot_assembly/Sa = new /obj/item/weapon/secbot_assembly(Tsec)
 	Sa.build_step = 1
 	Sa.add_overlay("hs_hole")
 	Sa.created_name = name
-	new /obj/item/assembly/prox_sensor(Tsec)
+	new /obj/item/device/assembly/prox_sensor(Tsec)
 	new used_weapon(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
@@ -379,7 +379,8 @@
 	s.start()
 
 	new /obj/effect/decal/cleanable/blood/oil(Tsec)
-	qdel(src)
+	//qdel(src)
+	return ..()
 
 /mob/living/bot/secbot/proc/target_name(mob/living/T)
 	if(ishuman(T))
@@ -401,7 +402,7 @@
 
 //Secbot Construction
 
-/obj/item/clothing/head/helmet/attackby(var/obj/item/assembly/signaler/S, mob/user as mob)
+/obj/item/clothing/head/helmet/attackby(var/obj/item/device/assembly/signaler/S, mob/user as mob)
 	..()
 	if(!issignaler(S))
 		..()
@@ -412,7 +413,7 @@
 
 	if(S.secured)
 		qdel(S)
-		var/obj/item/secbot_assembly/A = new /obj/item/secbot_assembly
+		var/obj/item/weapon/secbot_assembly/A = new /obj/item/weapon/secbot_assembly
 		user.put_in_hands(A)
 		to_chat(user, "You add the signaler to the helmet.")
 		user.drop_from_inventory(src)
@@ -420,7 +421,7 @@
 	else
 		return
 
-/obj/item/secbot_assembly
+/obj/item/weapon/secbot_assembly
 	name = "helmet/signaler assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -433,10 +434,10 @@
 	var/build_step = 0
 	var/created_name = "Securitron"
 
-/obj/item/secbot_assembly/attackby(var/obj/item/W, var/mob/user)
+/obj/item/weapon/secbot_assembly/attackby(var/obj/item/W, var/mob/user)
 	..()
-	if(istype(W, /obj/item/weldingtool) && !build_step)
-		var/obj/item/weldingtool/WT = W
+	if(istype(W, /obj/item/weapon/weldingtool) && !build_step)
+		var/obj/item/weapon/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			build_step = 1
 			add_overlay("hs_hole")
@@ -458,10 +459,10 @@
 		add_overlay("hs_arm")
 		qdel(W)
 
-	else if(istype(W, /obj/item/melee/baton) && build_step == 3)
+	else if(istype(W, /obj/item/weapon/melee/baton) && build_step == 3)
 		user.drop_item()
 		to_chat(user, "You complete the Securitron! Beep boop.")
-		if(istype(W, /obj/item/melee/baton/slime))
+		if(istype(W, /obj/item/weapon/melee/baton/slime))
 			var/mob/living/bot/secbot/slime/S = new /mob/living/bot/secbot/slime(get_turf(src))
 			S.name = created_name
 		else
@@ -470,8 +471,8 @@
 		qdel(W)
 		qdel(src)
 
-	else if(istype(W, /obj/item/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+	else if(istype(W, /obj/item/weapon/pen))
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, user) && loc != user)

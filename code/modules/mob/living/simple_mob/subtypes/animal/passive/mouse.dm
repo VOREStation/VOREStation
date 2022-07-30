@@ -84,7 +84,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M.visible_message("<font color='blue'>[bicon(src)] Squeek!</font>")
+			M.visible_message("<font color='blue'>\icon[src][bicon(src)] Squeek!</font>")
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 

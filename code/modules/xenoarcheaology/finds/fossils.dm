@@ -2,50 +2,38 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // fossils
 
-/obj/item/fossil
+/obj/item/weapon/fossil
 	name = "Fossil"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "bone"
 	desc = "It's a fossil."
 	var/animal = 1
 
-<<<<<<< HEAD
 /obj/item/weapon/fossil/base/New()
 	var/list/l = list(/obj/item/weapon/fossil/bone = 9,/obj/item/weapon/fossil/skull = 3,
 	/obj/item/weapon/fossil/skull/horned = 2)
-=======
-/obj/item/fossil/base
-	var/static/list/l = list(
-		/obj/item/fossil/bone = 9,
-		/obj/item/fossil/skull = 3,
-		/obj/item/fossil/skull/horned = 2
-	)
-
-/obj/item/fossil/base/Initialize()
-	..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/t = pickweight(l)
 	new t(src.loc)
 	qdel(src)
 
-/obj/item/fossil/bone
+/obj/item/weapon/fossil/bone
 	name = "Fossilised bone"
 	icon_state = "bone"
 	desc = "It's a fossilised bone."
 
-/obj/item/fossil/skull
+/obj/item/weapon/fossil/skull
 	name = "Fossilised skull"
 	icon_state = "skull"
 	desc = "It's a fossilised skull."
 
-/obj/item/fossil/skull/horned
+/obj/item/weapon/fossil/skull/horned
 	icon_state = "hskull"
 	desc = "It's a fossilised, horned skull."
 
-/obj/item/fossil/skull/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/fossil/bone))
+/obj/item/weapon/fossil/skull/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weapon/fossil/bone))
 		var/obj/o = new /obj/skeleton(get_turf(src))
-		var/a = new /obj/item/fossil/bone
+		var/a = new /obj/item/weapon/fossil/bone
 		var/b = new src.type
 		o.contents.Add(a)
 		o.contents.Add(b)
@@ -66,11 +54,11 @@
 	src.breq = rand(6)+3
 	src.desc = "An incomplete skeleton, looks like it could use [src.breq-src.bnum] more bones."
 
-/obj/skeleton/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/fossil/bone))
+/obj/skeleton/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W,/obj/item/weapon/fossil/bone))
 		if(!bstate)
 			bnum++
-			src.contents.Add(new/obj/item/fossil/bone)
+			src.contents.Add(new/obj/item/weapon/fossil/bone)
 			qdel(W)
 			if(bnum==breq)
 				usr = user
@@ -78,7 +66,7 @@
 				src.bstate = 1
 				src.density = TRUE
 				src.name = "alien skeleton display"
-				if(src.contents.Find(/obj/item/fossil/skull/horned))
+				if(src.contents.Find(/obj/item/weapon/fossil/skull/horned))
 					src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
 				else
 					src.desc = "A creature made of [src.contents.len-1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
@@ -87,15 +75,10 @@
 				to_chat(user, "Looks like it could use [src.breq-src.bnum] more bones.")
 		else
 			..()
-<<<<<<< HEAD
 	else if(istype(W,/obj/item/weapon/pen))
-		plaque_contents = sanitize(input(usr, "What would you like to write on the plaque:","Skeleton plaque",""))
-=======
-	else if(istype(W,/obj/item/pen))
-		plaque_contents = sanitize(input("What would you like to write on the plaque:","Skeleton plaque",""))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
-		user.visible_message("[user] writes something on the base of [src].","You relabel the plaque on the base of [bicon(src)] [src].")
-		if(src.contents.Find(/obj/item/fossil/skull/horned))
+		plaque_contents = sanitize(tgui_input_text(usr, "What would you like to write on the plaque:","Skeleton plaque",""))
+		user.visible_message("[user] writes something on the base of [src].","You relabel the plaque on the base of \icon[src][bicon(src)] [src].")
+		if(src.contents.Find(/obj/item/weapon/fossil/skull/horned))
 			src.desc = "A creature made of [src.contents.len-1] assorted bones and a horned skull. The plaque reads \'[plaque_contents]\'."
 		else
 			src.desc = "A creature made of [src.contents.len-1] assorted bones and a skull. The plaque reads \'[plaque_contents]\'."
@@ -103,21 +86,16 @@
 		..()
 
 //shells and plants do not make skeletons
-/obj/item/fossil/shell
+/obj/item/weapon/fossil/shell
 	name = "Fossilised shell"
 	icon_state = "shell"
 	desc = "It's a fossilised shell."
 
-/obj/item/fossil/plant
+/obj/item/weapon/fossil/plant
 	name = "Fossilised plant"
 	icon_state = "plant1"
 	desc = "It's fossilised plant remains."
 	animal = 0
 
-<<<<<<< HEAD
 /obj/item/weapon/fossil/plant/New()
-=======
-/obj/item/fossil/plant/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "plant[rand(1,4)]"

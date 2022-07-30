@@ -1,4 +1,4 @@
-/obj/item/folder
+/obj/item/weapon/folder
 	name = "folder"
 	desc = "A folder."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -8,97 +8,87 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
-/obj/item/folder/blue
+/obj/item/weapon/folder/blue
 	desc = "A blue folder."
 	icon_state = "folder_blue"
 
-/obj/item/folder/red
+/obj/item/weapon/folder/red
 	desc = "A red folder."
 	icon_state = "folder_red"
 
-/obj/item/folder/yellow
+/obj/item/weapon/folder/yellow
 	desc = "A yellow folder."
 	icon_state = "folder_yellow"
 
-/obj/item/folder/white
+/obj/item/weapon/folder/white
 	desc = "A white folder."
 	icon_state = "folder_white"
 
-/obj/item/folder/blue_captain
+/obj/item/weapon/folder/blue_captain
 	desc = "A blue folder with Site Manager markings."
 	icon_state = "folder_captain"
 
-/obj/item/folder/blue_hop
+/obj/item/weapon/folder/blue_hop
 	desc = "A blue folder with HoP markings."
 	icon_state = "folder_hop"
 
-/obj/item/folder/white_cmo
+/obj/item/weapon/folder/white_cmo
 	desc = "A white folder with CMO markings."
 	icon_state = "folder_cmo"
 
-/obj/item/folder/white_rd
+/obj/item/weapon/folder/white_rd
 	desc = "A white folder with RD markings."
 	icon_state = "folder_rd"
 
-<<<<<<< HEAD
 /obj/item/weapon/folder/white_rd/New()
-=======
-/obj/item/folder/white_rd/Initialize()
-	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	//add some memos
-	var/obj/item/paper/P = new()
+	var/obj/item/weapon/paper/P = new()
 	P.name = "Memo RE: proper analysis procedure"
 	P.info = "<br>We keep test dummies in pens here for a reason"
 	src.contents += P
 	update_icon()
 
-/obj/item/folder/yellow_ce
+/obj/item/weapon/folder/yellow_ce
 	desc = "A yellow folder with CE markings."
 	icon_state = "folder_ce"
 
-/obj/item/folder/red_hos
+/obj/item/weapon/folder/red_hos
 	desc = "A red folder with HoS markings."
 	icon_state = "folder_hos"
 
-<<<<<<< HEAD
 /obj/item/weapon/folder/update_icon()
 	cut_overlays()
-=======
-/obj/item/folder/update_icon()
-	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(contents.len)
 		add_overlay("folder_paper")
 	return
 
-/obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/paper_bundle))
+/obj/item/weapon/folder/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/weapon/paper) || istype(W, /obj/item/weapon/photo) || istype(W, /obj/item/weapon/paper_bundle))
 		user.drop_item()
 		W.loc = src
 		to_chat(user, "<span class='notice'>You put the [W] into \the [src].</span>")
 		update_icon()
-	else if(istype(W, /obj/item/pen))
-		var/n_name = sanitizeSafe(input(usr, "What would you like to label the folder?", "Folder Labelling", null)  as text, MAX_NAME_LEN)
+	else if(istype(W, /obj/item/weapon/pen))
+		var/n_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the folder?", "Folder Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)
 		if((loc == usr && usr.stat == 0))
 			name = "folder[(n_name ? text("- '[n_name]'") : null)]"
 	return
 
-/obj/item/folder/attack_self(mob/user as mob)
+/obj/item/weapon/folder/attack_self(mob/user as mob)
 	var/dat = "<title>[name]</title>"
 
-	for(var/obj/item/paper/P in src)
+	for(var/obj/item/weapon/paper/P in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[P]'>Remove</A> <A href='?src=\ref[src];rename=\ref[P]'>Rename</A> - <A href='?src=\ref[src];read=\ref[P]'>[P.name]</A><BR>"
-	for(var/obj/item/photo/Ph in src)
+	for(var/obj/item/weapon/photo/Ph in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Ph]'>Rename</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
-	for(var/obj/item/paper_bundle/Pb in src)
+	for(var/obj/item/weapon/paper_bundle/Pb in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[Pb]'>Remove</A> <A href='?src=\ref[src];rename=\ref[Pb]'>Rename</A> - <A href='?src=\ref[src];browse=\ref[Pb]'>[Pb.name]</A><BR>"
 	user << browse(dat, "window=folder")
 	onclose(user, "folder")
 	add_fingerprint(usr)
 	return
 
-/obj/item/folder/Topic(href, href_list)
+/obj/item/weapon/folder/Topic(href, href_list)
 	..()
 	if((usr.stat || usr.restrained()))
 		return
@@ -112,7 +102,7 @@
 				usr.put_in_hands(P)
 
 		else if(href_list["read"])
-			var/obj/item/paper/P = locate(href_list["read"])
+			var/obj/item/weapon/paper/P = locate(href_list["read"])
 			if(P && (P.loc == src) && istype(P))
 				if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/observer/dead) || istype(usr, /mob/living/silicon)))
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
@@ -121,28 +111,28 @@
 					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
 					onclose(usr, "[P.name]")
 		else if(href_list["look"])
-			var/obj/item/photo/P = locate(href_list["look"])
+			var/obj/item/weapon/photo/P = locate(href_list["look"])
 			if(P && (P.loc == src) && istype(P))
 				P.show(usr)
 		else if(href_list["browse"])
-			var/obj/item/paper_bundle/P = locate(href_list["browse"])
+			var/obj/item/weapon/paper_bundle/P = locate(href_list["browse"])
 			if(P && (P.loc == src) && istype(P))
 				P.attack_self(usr)
 				onclose(usr, "[P.name]")
 		else if(href_list["rename"])
-			var/obj/item/O = locate(href_list["rename"])
+			var/obj/item/weapon/O = locate(href_list["rename"])
 
 			if(O && (O.loc == src))
-				if(istype(O, /obj/item/paper))
-					var/obj/item/paper/to_rename = O
+				if(istype(O, /obj/item/weapon/paper))
+					var/obj/item/weapon/paper/to_rename = O
 					to_rename.rename()
 
-				else if(istype(O, /obj/item/photo))
-					var/obj/item/photo/to_rename = O
+				else if(istype(O, /obj/item/weapon/photo))
+					var/obj/item/weapon/photo/to_rename = O
 					to_rename.rename()
 
-				else if(istype(O, /obj/item/paper_bundle))
-					var/obj/item/paper_bundle/to_rename = O
+				else if(istype(O, /obj/item/weapon/paper_bundle))
+					var/obj/item/weapon/paper_bundle/to_rename = O
 					to_rename.rename()
 
 		//Update everything

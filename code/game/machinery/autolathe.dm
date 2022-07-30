@@ -184,7 +184,7 @@
 					if(!isnull(materials.get_material_amount(material)) && materials.get_material_amount(material) < round(making.resources[material] * coeff))
 						max_sheets = 0
 				//Build list of multipliers for sheets.
-				multiplier = input(usr, "How many do you want to print? (0-[max_sheets])") as num|null
+				multiplier = tgui_input_number(usr, "How many do you want to print? (0-[max_sheets])", null, null, max_sheets, 0)
 				if(!multiplier || multiplier <= 0 || multiplier > max_sheets || tgui_status(usr, state) != STATUS_INTERACTIVE)
 					return FALSE
 

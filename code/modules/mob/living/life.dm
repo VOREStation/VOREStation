@@ -72,6 +72,8 @@
 
 	handle_vision()
 
+	handle_tf_holder()	//VOREStation Addition
+
 /mob/living/proc/handle_breathing()
 	return
 

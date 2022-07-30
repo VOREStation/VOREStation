@@ -29,20 +29,14 @@
 		return
 
 	var/obj/item/storage/bible/B = locate(/obj/item/storage/bible) in H
-	if(!B)
+	var/obj/item/card/id/I = locate(/obj/item/card/id) in H
+
+	if(!B || !I)
 		return
 
-	if(GLOB.religion)
-		B.deity_name = GLOB.deity
-		B.name = GLOB.bible_name
-		B.icon_state = GLOB.bible_icon_state
-		B.item_state = GLOB.bible_item_state
-		to_chat(H, "<span class='boldnotice'>There is already an established religion onboard the station. You are an acolyte of [GLOB.deity]. Defer to the [title].</span>")
-		return
-	
-	INVOKE_ASYNC(src, .proc/religion_prompts, H, B)
+	INVOKE_ASYNC(src, .proc/religion_prompts, H, B, I)
 
-/datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/weapon/storage/bible/B)
+/datum/job/chaplain/proc/religion_prompts(mob/living/carbon/human/H, obj/item/storage/bible/B, obj/item/card/id/I)
 	var/religion_name = "Unitarianism"
 	var/new_religion = sanitize(input(H, "You are the crew services officer. Would you like to change your religion? Default is Unitarianism", "Name change", religion_name), MAX_NAME_LEN)
 	if(!new_religion)
@@ -83,18 +77,48 @@
 			B.name = "Guru Granth Sahib"
 		else
 			B.name = "The Holy Book of [new_religion]"
-	feedback_set_details("religion_name","[new_religion]")
 
 	var/deity_name = "Hashem"
 	var/new_deity = sanitize(input(H, "Would you like to change your deity? Default is Hashem", "Name change", deity_name), MAX_NAME_LEN)
 
 	if((length(new_deity) == 0) || (new_deity == "Hashem"))
 		new_deity = deity_name
-	B.deity_name = new_deity
 
-	GLOB.religion = new_religion
-	GLOB.bible_name = B.name
-	GLOB.deity = B.deity_name
-	feedback_set_details("religion_deity","[new_deity]")
-	
+	var/new_title = sanitize(input(H, "Would you like to change your title?", "Title Change", I.assignment), MAX_NAME_LEN)
 
+	var/list/all_jobs = get_job_datums()
+
+	// Are they trying to fake an actual existent job
+	var/faking_job = FALSE
+
+	for (var/datum/job/J in all_jobs)
+		if (J.title == new_title || (new_title in get_alternate_titles(J.title)))
+			faking_job = TRUE
+
+	if (length(new_title) != 0 && !faking_job)
+		I.assignment = new_title
+
+	H.mind.my_religion = new /datum/religion(new_religion, new_deity, B.name, "bible", "bible", new_title)
+
+	B.deity_name = H.mind.my_religion.deity
+	I.assignment = H.mind.my_religion.title
+	I.name = text("[I.registered_name]'s ID Card ([I.assignment])")
+	data_core.manifest_modify(I.registered_name, I.assignment, I.rank)
+
+/datum/religion
+	var/religion = "Unitarianism"
+	var/deity = "Hashem"
+	var/bible_name = "Bible"
+	var/bible_icon_state = "bible"
+	var/bible_item_state = "bible"
+	var/title = "Chaplain"
+	var/configured = FALSE
+
+/datum/religion/New(var/r, var/d, var/bn, var/bis, var/bits, var/t)
+	. = ..()
+	religion = r
+	deity = d
+	bible_name = bn
+	bible_icon_state = bis
+	bible_item_state = bits
+	title = t

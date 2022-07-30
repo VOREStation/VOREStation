@@ -31,7 +31,8 @@
 	dispense_reagents = list(
 		"hydrogen", "lithium", "carbon", "nitrogen", "oxygen", "fluorine", "sodium",
 		"aluminum", "silicon", "phosphorus", "sulfur", "chlorine", "potassium", "iron",
-		"copper", "mercury", "radium", "water", "ethanol", "sugar", "sacid", "tungsten"
+		"copper", "mercury", "radium", "water", "ethanol", "sugar", "sacid", "tungsten",
+		"calcium"
 		)
 
 /obj/machinery/chemical_dispenser/ert
@@ -46,7 +47,7 @@
 /obj/machinery/chemical_dispenser/bar_soft
 	dispense_reagents = list(
 		"water", "ice", "coffee", "cream", "tea", "icetea", "cola", "spacemountainwind", "dr_gibb", "space_up", "tonic",
-		"sodawater", "lemon_lime", "sugar", "orangejuice", "limejuice", "watermelonjuice", "thirteenloko", "grapesoda"
+		"sodawater", "lemonjuice", "lemon_lime", "sugar", "orangejuice", "limejuice", "watermelonjuice", "thirteenloko", "grapesoda"
 		)
 
 /obj/machinery/chemical_dispenser/bar_alc
@@ -58,5 +59,5 @@
 /obj/machinery/chemical_dispenser/bar_coffee
 	dispense_reagents = list(
 		"coffee", "cafe_latte", "soy_latte", "hot_coco", "milk", "cream", "tea", "ice",
-		"orangejuice", "lemonjuice", "limejuice", "berryjuice", "mint", "decaf"
+		"orangejuice", "lemonjuice", "limejuice", "berryjuice", "mint", "decaf", "greentea"
 		)

@@ -1,33 +1,27 @@
-import { round } from 'common/math';
-import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Flex, Icon, LabeledList, Slider, Section } from "../components";
-import { Window } from "../layouts";
+import { useBackend } from '../backend';
+import { Button, LabeledList, Slider, Section } from '../components';
+import { Window } from '../layouts';
 
 export const VolumePanel = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    volume_channels,
-  } = data;
+  const { volume_channels } = data;
 
   return (
     <Window width={350} height={600}>
       <Window.Content>
         <Section title="Volume Levels">
           <LabeledList>
-            {Object.keys(volume_channels).map(key => (
+            {Object.keys(volume_channels).map((key) => (
               <LabeledList.Item label={key} key={key}>
                 <Slider
                   width="88%"
                   minValue={0}
                   maxValue={200}
                   value={volume_channels[key] * 100}
-                  onChange={(e, val) => act("adjust_volume", { channel: key, vol: (val / 100) })} />
-                <Button
-                  ml={1}
-                  icon="undo"
-                  onClick={() => act("adjust_volume", { channel: key, vol: 1 })} />
+                  onChange={(e, val) => act('adjust_volume', { channel: key, vol: val / 100 })}
+                />
+                <Button ml={1} icon="undo" onClick={() => act('adjust_volume', { channel: key, vol: 1 })} />
               </LabeledList.Item>
             ))}
           </LabeledList>

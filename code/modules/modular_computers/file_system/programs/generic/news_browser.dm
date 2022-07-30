@@ -8,7 +8,7 @@
 	size = 4
 	requires_ntnet = TRUE
 	available_on_ntnet = TRUE
-
+	usage_flags = PROGRAM_ALL
 	tgui_id = "NtosNewsBrowser"
 
 	var/datum/computer_file/data/news_article/loaded_article
@@ -106,7 +106,7 @@
 			if(downloading || !loaded_article)
 				return
 
-			var/savename = sanitize(input(usr, "Enter file name or leave blank to cancel:", "Save article", loaded_article.filename))
+			var/savename = sanitize(tgui_input_text(usr, "Enter file name or leave blank to cancel:", "Save article", loaded_article.filename))
 			if(!savename)
 				return TRUE
 			var/obj/item/computer_hardware/hard_drive/HDD = computer.hard_drive
@@ -118,4 +118,3 @@
 		if("PRG_toggle_archived")
 			. = TRUE
 			show_archived = !show_archived
-

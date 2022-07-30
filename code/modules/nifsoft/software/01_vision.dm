@@ -108,6 +108,12 @@
 	incompatible_with = list(NIF_MATERIAL,NIF_THERMALS,NIF_NIGHTVIS)
 	vision_exclusive = TRUE
 
+/datum/nifsoft/mesons/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		if(H.client)
+			H.client.screen |= global_hud.meson
+
 /datum/nifsoft/material
 	name = "Material Scanner"
 	desc = "Similar to the worn Optical Material Scanner Goggles, these allow you to see objects through walls."
@@ -121,6 +127,12 @@
 	vision_flags_mob = SEE_OBJS
 	incompatible_with = list(NIF_MESONS,NIF_THERMALS,NIF_NIGHTVIS)
 	vision_exclusive = TRUE
+
+/datum/nifsoft/material/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		if(H.client)
+			H.client.screen |= global_hud.material
 
 /datum/nifsoft/thermals
 	name = "Thermal Scanner"
@@ -137,6 +149,12 @@
 	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_NIGHTVIS)
 	vision_exclusive = TRUE
 
+/datum/nifsoft/thermals/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		if(H.client)
+			H.client.screen |= global_hud.thermal
+
 /datum/nifsoft/nightvis
 	name = "Low-Light Amp"
 	desc = "Similar to the worn Night Vision Goggles, these allow you to see in complete darkness."
@@ -150,3 +168,9 @@
 	darkness_view = 7
 	incompatible_with = list(NIF_MESONS,NIF_MATERIAL,NIF_THERMALS)
 	vision_exclusive = TRUE
+
+/datum/nifsoft/nightvis/life()
+	if((. = ..()))
+		var/mob/living/carbon/human/H = nif.human
+		if(H.client)
+			H.client.screen |= global_hud.nvg

@@ -77,12 +77,16 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 			var/obj/item/organ/internal/heart/heart = internal_organs_by_name[O_HEART]
 
 			if(!heart)
+				blood_volume_raw = 0
 				blood_volume = 0
 			else if(heart.is_broken())
+				blood_volume_raw *= 0.3
 				blood_volume *= 0.3
 			else if(heart.is_bruised())
+				blood_volume_raw *= 0.7
 				blood_volume *= 0.7
 			else if(heart.damage)
+				blood_volume_raw *= 0.8
 				blood_volume *= 0.8
 
 		//Effects of bloodloss

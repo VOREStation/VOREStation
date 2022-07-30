@@ -29,7 +29,7 @@
 	if(loc == user && tools.len)
 		. += "It has the following fittings:"
 		for(var/obj/item/tool in tools)
-			. += "[bicon(tool)] - [tool.name][tools[current_tool]==tool?" (selected)":""]")
+			. += "\icon[tool][bicon(tool)] - [tool.name][tools[current_tool]==tool?" (selected)":""]")
 
 <<<<<<< HEAD
 /obj/item/weapon/combitool/New()

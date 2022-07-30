@@ -279,13 +279,13 @@ var/list/debug_verbs = list (
 /client/proc/count_objects_on_z_level()
 	set category = "Mapping"
 	set name = "Count Objects On Level"
-	var/level = input(usr, "Which z-level?","Level?") as text
+	var/level = tgui_input_text(usr, "Which z-level?","Level?")
 	if(!level) return
 	var/num_level = text2num(level)
 	if(!num_level) return
 	if(!isnum(num_level)) return
 
-	var/type_text = input(usr, "Which type path?","Path?") as text
+	var/type_text = tgui_input_text(usr, "Which type path?","Path?")
 	if(!type_text) return
 	var/type_path = text2path(type_text)
 	if(!type_path) return
@@ -323,7 +323,7 @@ var/list/debug_verbs = list (
 	set category = "Mapping"
 	set name = "Count Objects All"
 
-	var/type_text = input(usr, "Which type path?","") as text
+	var/type_text = tgui_input_text(usr, "Which type path?","")
 	if(!type_text) return
 	var/type_path = text2path(type_text)
 	if(!type_path) return

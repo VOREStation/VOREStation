@@ -210,7 +210,7 @@
 	if(!check_interactivity(M))
 		return
 
-	var/input = sanitizeSafe(input(usr, "What do you want to name this?", "Rename", src.name) as null|text, MAX_NAME_LEN)
+	var/input = sanitizeSafe(tgui_input_text(usr, "What do you want to name this?", "Rename", src.name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(src && input)
 		to_chat(M, "<span class='notice'>The machine now has a label reading '[input]'.</span>")
 		name = input
@@ -410,7 +410,7 @@
 	if(battery)
 		var/lost = battery.use(amount * CELLRATE)
 		net_power -= lost
-		return lost > 0
+		return lost
 	return FALSE
 
 // Ditto for giving.

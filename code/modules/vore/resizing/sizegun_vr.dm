@@ -41,7 +41,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100) as num|null
+	var/size_select = tgui_input_number(usr, "Put the desired size (25-200%), (1-600%) in dormitory areas.", "Set Size", size_set_to * 100, 600, 1)
 	if(!size_select)
 		return //cancelled
 	//We do valid resize testing in actual firings because people move after setting these things.
@@ -72,11 +72,6 @@
 /obj/item/weapon/gun/energy/sizegun/examine(mob/user)
 	. = ..()
 	. += "<span class='info'>It is currently set at [size_set_to*100]%</span>"
-
-/obj/item/weapon/gun/energy/sizegun/old
-	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. This one seems to be an older model, but still functional. Warning: Do not insert into mouth."
-	icon_state = "sizegun-old"
-	item_state = "sizegun-old"
 
 /obj/item/weapon/gun/energy/sizegun/admin
 	name = "modified size gun"
@@ -120,7 +115,7 @@
 	set category = "Object"
 	set src in view(1)
 
-	var/size_select = input(usr, "Put the desired size (1-600%)", "Set Size", size_set_to * 100) as num|null
+	var/size_select = tgui_input_number(usr, "Put the desired size (1-600%)", "Set Size", size_set_to * 100, 600, 1)
 	if(!size_select)
 		return //cancelled
 	size_set_to = clamp((size_select/100), 0, 1000) //eheh
@@ -141,6 +136,7 @@
 	damage = 0
 	check_armour = "laser"
 	var/set_size = 1 //Let's default to 100%
+	can_miss = FALSE
 
 	muzzle_type = /obj/effect/projectile/muzzle/xray
 	tracer_type = /obj/effect/projectile/tracer/xray
