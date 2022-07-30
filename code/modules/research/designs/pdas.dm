@@ -5,13 +5,8 @@
 	desc = "Cheaper than whiny non-digital assistants."
 	id = "pda"
 	req_tech = list(TECH_ENGINEERING = 2, TECH_POWER = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
-	build_path = /obj/item/device/pda
-=======
-	materials = list(MAT_STEEL = 50, "glass" = 50)
 	build_path = /obj/item/pda
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "WAAAA"
 
 // Cartridges

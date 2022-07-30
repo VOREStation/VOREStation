@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 GLOBAL_LIST_INIT(biblenames, list(
 	"Bible", "Koran", "Scrapbook",
 	"Pagan", "White Bible", "Holy Light",
@@ -20,10 +19,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	"ithaqua", "scientology", "melted",
 	"necronomicon", "bible", "clipboard"))
 
-/obj/item/weapon/storage/bible
-=======
 /obj/item/storage/bible
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "bible"
 	desc = "Apply to head repeatedly."
 	icon_state ="bible"
@@ -40,9 +36,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	use_sound = 'sound/bureaucracy/bookopen.ogg'
 	drop_sound = 'sound/bureaucracy/bookclose.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bible/attack_self(mob/living/carbon/human/user)
-
+/obj/item/storage/bible/attack_self(mob/living/carbon/human/user)
 	if(user?.mind?.assigned_role != "Chaplain")
 		return FALSE
 
@@ -78,7 +72,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
   * Arguments:
   * * user The mob interacting with the menu
   */
-/obj/item/weapon/storage/bible/proc/check_menu(mob/living/carbon/human/user)
+/obj/item/storage/bible/proc/check_menu(mob/living/carbon/human/user)
 	if(user.mind.my_religion.configured)
 		return FALSE
 	if(!istype(user))
@@ -91,10 +85,7 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 		return FALSE
 	return TRUE
 
-/obj/item/weapon/storage/bible/booze
-=======
 /obj/item/storage/bible/booze
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "bible"
 	desc = "To be applied to the head repeatedly."
 	icon_state ="bible"

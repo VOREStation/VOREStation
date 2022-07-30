@@ -14,13 +14,8 @@
 	aspect = ASPECT_LIGHT
 	var/color_to_use = "#FFFFFF"
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/chroma/New()
-	..()
-=======
 /obj/item/spell/chroma/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(6, 5, l_color = color_to_use)
 
 /obj/effect/temporary_effect/chroma

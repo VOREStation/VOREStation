@@ -30,25 +30,17 @@
 	U = T = I = null
 	return ..()
 
-<<<<<<< HEAD
 //This is global, to avoid looping through a list of all objects, or god forbid, looping through world.
 GLOBAL_LIST_INIT(mark_spells, list())
 //VOREStation Add End
-/obj/item/weapon/spell/mark
-=======
 /obj/item/spell/mark
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "mark"
 	icon_state = "mark"
 	desc = "Marks a specific location to be used by Recall."
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/mark/on_use_cast(var/mob/living/user)
-=======
-/obj/item/spell/mark/on_use_cast(mob/living/user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/spell/mark/on_use_cast(var/mob/living/user)
 	if(!allowed_to_teleport()) // Otherwise you could teleport back to the admin Z-level.
 		to_chat(user, "<span class='warning'>You can't teleport here!</span>")
 		return 0
@@ -89,11 +81,7 @@ GLOBAL_LIST_INIT(mark_spells, list())
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/recall/on_use_cast(var/mob/living/user)
-=======
-/obj/item/spell/recall/on_use_cast(mob/living/user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/spell/recall/on_use_cast(var/mob/living/user)
 	if(pay_energy(3000))
 		var/datum/technomancer_marker/marker = GLOB.mark_spells[weakref(user)] //VOREStation Add - Multiple technomancer support
 		if(!istype(marker))
@@ -140,4 +128,3 @@ GLOBAL_LIST_INIT(mark_spells, list())
 	else
 		to_chat(user, "<span class='warning'>You can't afford the energy cost!</span>")
 		return 0
-

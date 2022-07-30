@@ -69,15 +69,9 @@
 	icon_state = "dr_gibb"
 	center_of_mass = list("x"=16, "y"=8)
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
-		..()
-		reagents.add_reagent("dr_gibb", 30)
-=======
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb/Initialize()
 	. = ..()
 	reagents.add_reagent("dr_gibb", 30)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet
 	name = "\improper Diet Dr. Gibb"
@@ -86,15 +80,9 @@
 	icon_state = "dr_gibb_diet"
 	center_of_mass = list("x"=16, "y"=8)
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
-		..()
-		reagents.add_reagent("diet_dr_gibb", 30)
-=======
 /obj/item/reagent_containers/food/drinks/cans/dr_gibb_diet/Initialize()
 	. =..()
 	reagents.add_reagent("diet_dr_gibb", 30)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/reagent_containers/food/drinks/cans/starkist
 	name = "\improper Star-kist"

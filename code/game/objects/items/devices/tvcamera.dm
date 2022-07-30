@@ -10,17 +10,13 @@
 	slot_flags = SLOT_BELT
 	var/channel = "NCS Northern Star News Feed"
 	var/obj/machinery/camera/network/thunder/camera
-<<<<<<< HEAD
-	var/obj/item/device/radio/radio
+	var/obj/item/radio/radio
 	var/weakref/showing
 	var/showing_name
 
-/obj/item/device/tvcamera/New()
+/obj/item/tvcamera/New()
 	..()
 	listening_objects += src
-=======
-	var/obj/item/radio/radio
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/tvcamera/Destroy()
 	listening_objects -= src
@@ -56,7 +52,7 @@
 	user.set_machine(src)
 	show_ui(user)
 
-/obj/item/device/tvcamera/proc/show_ui(mob/user)
+/obj/item/tvcamera/proc/show_ui(mob/user)
 	var/dat = list()
 	dat += "Channel name is: <a href='?src=\ref[src];channel=1'>[channel ? channel : "unidentified broadcast"]</a><br>"
 	dat += "Video streaming is <a href='?src=\ref[src];video=1'>[camera.status ? "on" : "off"]</a><br>"
@@ -68,11 +64,7 @@
 	popup.set_content(jointext(dat,null))
 	popup.open()
 
-<<<<<<< HEAD
-/obj/item/device/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
-=======
-/obj/item/tvcamera/Topic(bred, href_list, state = physical_state)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/tvcamera/Topic(bred, href_list, state = GLOB.tgui_physical_state)
 	if(..())
 		return 1
 	if(href_list["channel"])
@@ -101,8 +93,7 @@
 	if(!href_list["close"])
 		attack_self(usr)
 
-<<<<<<< HEAD
-/obj/item/device/tvcamera/proc/show_tvs(atom/thing)
+/obj/item/tvcamera/proc/show_tvs(atom/thing)
 	if(showing)
 		hide_tvs(showing)
 
@@ -113,7 +104,7 @@
 
 	START_PROCESSING(SSobj, src)
 
-/obj/item/device/tvcamera/proc/hide_tvs()
+/obj/item/tvcamera/proc/hide_tvs()
 	if(!showing)
 		return
 	for(var/obj/machinery/computer/security/telescreen/entertainment/ES as anything in GLOB.entertainment_screens)
@@ -122,12 +113,12 @@
 	showing = null
 	showing_name = null
 
-/obj/item/device/tvcamera/Moved(atom/old_loc, direction, forced = FALSE, movetime)
+/obj/item/tvcamera/Moved(atom/old_loc, direction, forced = FALSE, movetime)
 	. = ..()
 	if(camera.status && loc != old_loc)
 		show_tvs(loc)
 
-/obj/item/device/tvcamera/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/tvcamera/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(camera.status && !isturf(target))
 		show_tvs(target)
@@ -135,7 +126,7 @@
 		if(user.machine == src)
 			show_ui(user) // refresh the UI
 
-/obj/item/device/tvcamera/process()
+/obj/item/tvcamera/process()
 	if(!showing)
 		return PROCESS_KILL
 
@@ -146,10 +137,7 @@
 	if(get_dist(get_turf(src), get_turf(A)) > 5)
 		show_tvs(loc)
 
-/obj/item/device/tvcamera/update_icon()
-=======
 /obj/item/tvcamera/update_icon()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	..()
 	if(camera.status)
 		icon_state = "camcorder_on"
@@ -166,8 +154,8 @@
 
 //Assembly by roboticist
 
-/obj/item/robot_parts/head/attackby(var/obj/item/device/assembly/S, mob/user as mob)
-	if(!istype(S, /obj/item/device/assembly/infra))
+/obj/item/robot_parts/head/attackby(var/obj/item/assembly/S, mob/user as mob)
+	if(!istype(S, /obj/item/assembly/infra))
 		..()
 		return
 	var/obj/item/weapon/TVAssembly/A = new(user)
@@ -198,8 +186,8 @@
 				desc = "This TV camera assembly has a camera module."
 				buildstep++
 		if(1)
-			if(istype(W, /obj/item/device/taperecorder))
-				var/obj/item/device/taperecorder/T = W
+			if(istype(W, /obj/item/taperecorder))
+				var/obj/item/taperecorder/T = W
 				user.drop_item()
 				qdel(T)
 				buildstep++
@@ -229,10 +217,9 @@
 				S.use(1)
 				to_chat(user, "<span class='notice'>You encase the assembly in a Ward-Takeshi casing.</span>")
 				var/turf/T = get_turf(src)
-				new /obj/item/device/tvcamera(T)
+				new /obj/item/tvcamera(T)
 				user.drop_from_inventory(src)
 				qdel(src)
 				return
 
 	..()
-

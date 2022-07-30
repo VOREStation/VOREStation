@@ -93,37 +93,22 @@
 /datum/design/item/stock_part/basic_capacitor
 	id = "basic_capacitor"
 	req_tech = list(TECH_POWER = 1)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
-	build_path = /obj/item/weapon/stock_parts/capacitor
-=======
-	materials = list(MAT_STEEL = 50, "glass" = 50)
 	build_path = /obj/item/stock_parts/capacitor
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAACA"
 
 /datum/design/item/stock_part/adv_capacitor
 	id = "adv_capacitor"
 	req_tech = list(TECH_POWER = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50)
-	build_path = /obj/item/weapon/stock_parts/capacitor/adv
-=======
-	materials = list(MAT_STEEL = 50, "glass" = 50)
 	build_path = /obj/item/stock_parts/capacitor/adv
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAACB"
 
 /datum/design/item/stock_part/super_capacitor
 	id = "super_capacitor"
 	req_tech = list(TECH_POWER = 5, TECH_MATERIAL = 4)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 50, MAT_GOLD = 20)
-	build_path = /obj/item/weapon/stock_parts/capacitor/super
-=======
-	materials = list(MAT_STEEL = 50, "glass" = 50, "gold" = 20)
 	build_path = /obj/item/stock_parts/capacitor/super
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAACC"
 
 /datum/design/item/stock_part/hyper_capacitor
@@ -145,37 +130,22 @@
 /datum/design/item/stock_part/basic_sensor
 	id = "basic_sensor"
 	req_tech = list(TECH_MAGNET = 1)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/scanning_module
-=======
-	materials = list(MAT_STEEL = 50, "glass" = 20)
 	build_path = /obj/item/stock_parts/scanning_module
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAADA"
 
 /datum/design/item/stock_part/adv_sensor
 	id = "adv_sensor"
 	req_tech = list(TECH_MAGNET = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/scanning_module/adv
-=======
-	materials = list(MAT_STEEL = 50, "glass" = 20)
 	build_path = /obj/item/stock_parts/scanning_module/adv
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAADB"
 
 /datum/design/item/stock_part/phasic_sensor
 	id = "phasic_sensor"
 	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 50, MAT_GLASS = 20, MAT_SILVER = 10)
-	build_path = /obj/item/weapon/stock_parts/scanning_module/phasic
-=======
-	materials = list(MAT_STEEL = 50, "glass" = 20, "silver" = 10)
 	build_path = /obj/item/stock_parts/scanning_module/phasic
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAADC"
 
 /datum/design/item/stock_part/hyper_sensor
@@ -197,37 +167,22 @@
 /datum/design/item/stock_part/basic_micro_laser
 	id = "basic_micro_laser"
 	req_tech = list(TECH_MAGNET = 1)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 10, MAT_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/micro_laser
-=======
-	materials = list(MAT_STEEL = 10, "glass" = 20)
 	build_path = /obj/item/stock_parts/micro_laser
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAAEA"
 
 /datum/design/item/stock_part/high_micro_laser
 	id = "high_micro_laser"
 	req_tech = list(TECH_MAGNET = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 10, MAT_GLASS = 20)
-	build_path = /obj/item/weapon/stock_parts/micro_laser/high
-=======
-	materials = list(MAT_STEEL = 10, "glass" = 20)
 	build_path = /obj/item/stock_parts/micro_laser/high
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAAEB"
 
 /datum/design/item/stock_part/ultra_micro_laser
 	id = "ultra_micro_laser"
 	req_tech = list(TECH_MAGNET = 5, TECH_MATERIAL = 5)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 10, MAT_GLASS = 20, MAT_URANIUM = 10)
-	build_path = /obj/item/weapon/stock_parts/micro_laser/ultra
-=======
-	materials = list(MAT_STEEL = 10, "glass" = 20, "uranium" = 10)
 	build_path = /obj/item/stock_parts/micro_laser/ultra
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "AAAEC"
 
 /datum/design/item/stock_part/hyper_micro_laser
@@ -288,13 +243,8 @@
 	desc = "Special mechanical module made to store, sort, and apply standard machine parts."
 	id = "rped"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 15000, MAT_GLASS = 5000)
-	build_path = /obj/item/weapon/storage/part_replacer
-=======
-	materials = list(MAT_STEEL = 15000, "glass" = 5000)
 	build_path = /obj/item/storage/part_replacer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "ABAAA"
 
 /datum/design/item/stock_part/ARPED
@@ -303,9 +253,8 @@
 	and the ability to manipulate beakers."
 	id = "arped"
 	req_tech = list(TECH_ENGINEERING = 5, TECH_MATERIAL = 5)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000)
-	build_path = /obj/item/weapon/storage/part_replacer/adv
+	build_path = /obj/item/storage/part_replacer/adv
 	sort_string = "ABAAB"
 
 /datum/design/item/stock_part/PBRPED
@@ -315,9 +264,5 @@
 	id = "pbrped"
 	req_tech = list(TECH_ENGINEERING = 7, TECH_MATERIAL = 7, TECH_BLUESPACE = 5)
 	materials = list(MAT_STEEL = 30000, MAT_GLASS = 10000, MAT_SILVER = 5000, MAT_GOLD = 5000, MAT_DIAMOND = 1000)
-	build_path = /obj/item/weapon/storage/part_replacer/adv/discount_bluespace
-=======
-	materials = list(MAT_STEEL = 30000, "glass" = 10000)
-	build_path = /obj/item/storage/part_replacer/adv
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	build_path = /obj/item/storage/part_replacer/adv/discount_bluespace
 	sort_string = "ABAAB"

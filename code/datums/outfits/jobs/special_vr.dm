@@ -4,10 +4,10 @@
 	gloves = /obj/item/clothing/gloves/white
 	shoes = /obj/item/clothing/shoes/laceup
 	head = /obj/item/clothing/head/beret/centcom/officer
-	l_ear = /obj/item/device/radio/headset/centcom
+	l_ear = /obj/item/radio/headset/centcom
 	glasses = /obj/item/clothing/glasses/omnihud/all
 	id_type = /obj/item/weapon/card/id/centcom
-	pda_type = /obj/item/device/pda/centcom
+	pda_type = /obj/item/pda/centcom
 	flags = OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/emergency_responder
@@ -15,11 +15,11 @@
 	uniform = /obj/item/clothing/under/ert
 	shoes = /obj/item/clothing/shoes/boots/swat
 	gloves = /obj/item/clothing/gloves/swat
-	l_ear = /obj/item/device/radio/headset/ert
+	l_ear = /obj/item/radio/headset/ert
 	glasses = /obj/item/clothing/glasses/sunglasses
 	back = /obj/item/weapon/storage/backpack/satchel
 	id_type = /obj/item/weapon/card/id/centcom/ERT
-	pda_type = /obj/item/device/pda/centcom
+	pda_type = /obj/item/pda/centcom
 	flags = OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
 
 /decl/hierarchy/outfit/job/emergency_responder/post_equip(var/mob/living/carbon/human/H)
@@ -34,7 +34,7 @@
 	mask = /obj/item/clothing/mask/gas/clown_hat
 	backpack_contents = list(/obj/item/weapon/stamp/clown = 1, /obj/item/weapon/bikehorn = 1)
 	id_type = /obj/item/weapon/card/id/civilian/clown
-	pda_type = /obj/item/device/pda/clown
+	pda_type = /obj/item/pda/clown
 	flags = 0
 
 /decl/hierarchy/outfit/job/mime
@@ -45,7 +45,7 @@
 	mask = /obj/item/clothing/mask/gas/mime
 	backpack_contents = list(/obj/item/weapon/pen/crayon/mime = 1)
 	id_type = /obj/item/weapon/card/id/civilian/mime
-	pda_type = /obj/item/device/pda/mime
+	pda_type = /obj/item/pda/mime
 
 /decl/hierarchy/outfit/job/mime/post_equip(var/mob/living/carbon/human/H)
 	..()

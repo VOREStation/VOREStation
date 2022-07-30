@@ -19,7 +19,7 @@
 /area/shuttle/generic_shuttle/gen)
 "af" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/machinery/button/remote/blast_door{
 	id = "generic_dorm1_blast";
 	name = "Blast Doors Controls";
@@ -683,7 +683,7 @@
 	dir = 6
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/fiftyspawner/steel,
 /turf/simulated/floor/plating,
 /area/shuttle/generic_shuttle/eng)
@@ -812,7 +812,7 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/metalfoam,
+/obj/item/storage/box/metalfoam,
 /turf/simulated/floor/plating,
 /area/shuttle/generic_shuttle/eng)
 "bM" = (
@@ -925,7 +925,7 @@
 /area/shuttle/generic_shuttle/gen)
 "tg" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/wood,
 /area/shuttle/generic_shuttle/gen)
 "Ue" = (

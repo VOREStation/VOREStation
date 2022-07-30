@@ -8,7 +8,7 @@
 /obj/item/weapon/robot_module/robot/stray/New(var/mob/living/silicon/robot/R)
 	..()
 	// General
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/dogborg/boop_module(src)
 
 	// Sec
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
@@ -17,7 +17,7 @@
 	src.modules += new /obj/item/weapon/dogborg/pounce(src)
 
 	// Med
-	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src)
 
 	// Engi
@@ -25,7 +25,7 @@
 	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/device/multitool(src)
+	src.modules += new /obj/item/multitool(src)
 
 	// Boof
 	src.emag 	 = new /obj/item/weapon/gun/energy/retro/mounted(src)
@@ -40,11 +40,11 @@
 	H.water = water
 	src.modules += H
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/B = new /obj/item/device/dogborg/sleeper(src)
+	var/obj/item/dogborg/sleeper/B = new /obj/item/dogborg/sleeper(src)
 	B.water = water
 	src.modules += B
 

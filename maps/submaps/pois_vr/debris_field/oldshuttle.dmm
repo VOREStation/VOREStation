@@ -3,7 +3,7 @@
 /turf/space,
 /area/space)
 "ab" = (
-/obj/item/weapon/material/twohanded/spear,
+/obj/item/material/twohanded/spear,
 /turf/space,
 /area/space)
 "ac" = (
@@ -18,8 +18,8 @@
 /turf/simulated/shuttle/wall/voidcraft,
 /area/submap/debrisfield/misc_debris)
 "ae" = (
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
+/obj/item/material/shard,
 /obj/structure/grille/broken,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
@@ -67,7 +67,7 @@
 	dir = 1
 	},
 /obj/structure/table/rack/shelf,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/shuttle/floor/black/airless,
 /area/submap/debrisfield/misc_debris)
 "aq" = (
@@ -91,8 +91,8 @@
 	dir = 1
 	},
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/tank/oxygen,
-/obj/item/device/suit_cooling_unit,
+/obj/item/tank/oxygen,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/head/helmet/space/void/pilot,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/suit/space/void/pilot,
@@ -114,10 +114,10 @@
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /turf/simulated/shuttle/floor/black/airless,
 /area/submap/debrisfield/misc_debris)
 "aw" = (
@@ -367,12 +367,12 @@
 /turf/simulated/shuttle/floor/darkred/airless,
 /area/submap/debrisfield/misc_debris)
 "bd" = (
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
 /obj/structure/closet/crate,
 /turf/simulated/shuttle/floor/darkred/airless,
 /area/submap/debrisfield/misc_debris)

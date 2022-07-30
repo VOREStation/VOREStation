@@ -196,17 +196,12 @@
 
 /datum/reagent/water/touch_obj(var/obj/O, var/amount)
 	..()
-<<<<<<< HEAD
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/monkeycube))
-		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = O
-=======
-	if(istype(O, /obj/item/reagent_containers/food/snacks/cube))
-		var/obj/item/reagent_containers/food/snacks/cube/cube = O
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	if(istype(O, /obj/item/reagent_containers/food/snacks/monkeycube))
+		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = O
 		if(!cube.wrapped)
 			cube.Expand()
-	else if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/cube))
-		var/obj/item/weapon/reagent_containers/food/snacks/cube/cube = O
+	else if(istype(O, /obj/item/reagent_containers/food/snacks/cube))
+		var/obj/item/reagent_containers/food/snacks/cube/cube = O
 		cube.Expand()
 	else
 		O.water_act(amount / 5)

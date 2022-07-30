@@ -39,13 +39,8 @@
 		else
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
-<<<<<<< HEAD
-	else if(istype(W, /obj/item/weapon/pen))
-		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
-=======
 	else if(istype(W, /obj/item/pen))
-		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
@@ -155,13 +150,8 @@
 		else
 			to_chat(user, "<span class='warning'>You need to set a destination first!</span>")
 
-<<<<<<< HEAD
-	else if(istype(W, /obj/item/weapon/pen))
-		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
-=======
 	else if(istype(W, /obj/item/pen))
-		switch(alert("What would you like to alter?",,"Title","Description", "Cancel"))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		switch(tgui_alert(usr, "What would you like to alter?","Select Alteration",list("Title","Description","Cancel")))
 			if("Title")
 				var/str = sanitizeSafe(tgui_input_text(usr,"Label text?","Set label","", MAX_NAME_LEN), MAX_NAME_LEN)
 				if(!str || !length(str))
@@ -352,21 +342,16 @@
 	item_state = "electronic"
 	slot_flags = SLOT_BELT
 
-<<<<<<< HEAD
-/obj/item/device/destTagger/tgui_state(mob/user)
+/obj/item/destTagger/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
-=======
-/obj/item/destTagger/proc/openwindow(mob/user as mob)
-	var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
-/obj/item/device/destTagger/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/destTagger/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "DestinationTagger", name)
 		ui.open()
 
-/obj/item/device/destTagger/tgui_data(mob/user, datum/tgui/ui)
+/obj/item/destTagger/tgui_data(mob/user, datum/tgui/ui)
 	var/list/data = ..()
 
 	data["currTag"] = currTag
@@ -374,32 +359,20 @@
 
 	return data
 
-<<<<<<< HEAD
-/obj/item/device/destTagger/attack_self(mob/user as mob)
+/obj/item/destTagger/attack_self(mob/user as mob)
 	tgui_interact(user)
 
-/obj/item/device/destTagger/tgui_act(action, params)
+/obj/item/destTagger/tgui_act(action, params)
 	if(..())
 		return TRUE
 	add_fingerprint(usr)
 	switch(action)
 		if("set_tag")
 			var/new_tag = params["tag"]
-			if(!(new_tag in GLOB.tagger_locations))	
+			if(!(new_tag in GLOB.tagger_locations))
 				return FALSE
 			currTag = new_tag
 			. = TRUE
-=======
-/obj/item/destTagger/attack_self(mob/user as mob)
-	openwindow(user)
-	return
-
-/obj/item/destTagger/Topic(href, href_list)
-	src.add_fingerprint(usr)
-	if(href_list["nextTag"] && (href_list["nextTag"] in GLOB.tagger_locations))
-		src.currTag = href_list["nextTag"]
-	openwindow(usr)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/disposal/deliveryChute
 	name = "Delivery chute"

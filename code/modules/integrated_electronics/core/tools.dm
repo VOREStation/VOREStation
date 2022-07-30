@@ -113,15 +113,9 @@
 	var/data_to_write = null
 	var/accepting_refs = 0
 
-<<<<<<< HEAD
-/obj/item/device/integrated_electronics/debugger/attack_self(mob/user)
+/obj/item/integrated_electronics/debugger/attack_self(mob/user)
 	var/type_to_use = tgui_input_list(usr, "Please choose a type to use.","[src] type setting", list("string","number","ref", "null"))
 	if(!CanInteract(user, GLOB.tgui_physical_state))
-=======
-/obj/item/integrated_electronics/debugger/attack_self(mob/user)
-	var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number","ref", "null")
-	if(!CanInteract(user, physical_state))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		return
 
 	var/new_data = null
@@ -344,13 +338,8 @@
 /obj/item/storage/bag/circuits/mini/arithmetic/all // Don't believe this will ever be needed.
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/arithmetic/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/arithmetic/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/arithmetic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -366,13 +355,8 @@
 /obj/item/storage/bag/circuits/mini/trig/all // Ditto
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/trig/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/trig/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/trig/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -388,13 +372,8 @@
 /obj/item/storage/bag/circuits/mini/input/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/input/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/input/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/input/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -410,13 +389,8 @@
 /obj/item/storage/bag/circuits/mini/output/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/output/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/output/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/output/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -432,13 +406,8 @@
 /obj/item/storage/bag/circuits/mini/memory/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/memory/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/memory/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/memory/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -454,13 +423,8 @@
 /obj/item/storage/bag/circuits/mini/logic/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/logic/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/logic/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/logic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -476,13 +440,8 @@
 /obj/item/storage/bag/circuits/mini/time/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/time/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/time/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/time/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -498,13 +457,8 @@
 /obj/item/storage/bag/circuits/mini/reagents/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/reagents/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/reagents/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/reagent/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -520,13 +474,8 @@
 /obj/item/storage/bag/circuits/mini/transfer/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/transfer/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/transfer/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/transfer/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -542,13 +491,8 @@
 /obj/item/storage/bag/circuits/mini/converter/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/converter/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/converter/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/converter/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -563,13 +507,8 @@
 /obj/item/storage/bag/circuits/mini/smart/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/smart/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/smart/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/smart/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -584,13 +523,8 @@
 /obj/item/storage/bag/circuits/mini/manipulation/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/manipulation/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/manipulation/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/manipulation/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -606,13 +540,8 @@
 /obj/item/storage/bag/circuits/mini/power/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/circuits/mini/power/New()
-	..()
-=======
 /obj/item/storage/bag/circuits/mini/power/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/obj/item/integrated_circuit/passive/power/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)

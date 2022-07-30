@@ -3,15 +3,9 @@
 	desc = "Regulates the transfer of air between two tanks"
 	icon = 'icons/obj/assemblies.dmi'
 	icon_state = "valve_1"
-<<<<<<< HEAD
-	var/obj/item/weapon/tank/tank_one
-	var/obj/item/weapon/tank/tank_two
-	var/obj/item/device/assembly/attached_device
-=======
 	var/obj/item/tank/tank_one
 	var/obj/item/tank/tank_two
 	var/obj/item/attached_device
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/mob/attacher = null
 	var/valve_open = 0
 	var/toggle = 1
@@ -72,20 +66,19 @@
 	if(isturf(loc))
 		sense_proximity(callback = /atom/proc/HasProximity)
 
-<<<<<<< HEAD
-/obj/item/device/transfer_valve/attack_self(mob/user)
+/obj/item/transfer_valve/attack_self(mob/user)
 	tgui_interact(user)
 
-/obj/item/device/transfer_valve/tgui_state(mob/user)
+/obj/item/transfer_valve/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/transfer_valve/tgui_interact(mob/user, datum/tgui/ui = null)
+/obj/item/transfer_valve/tgui_interact(mob/user, datum/tgui/ui = null)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "TransferValve", name) // 460, 320
 		ui.open()
 
-/obj/item/device/transfer_valve/tgui_data(mob/user)
+/obj/item/transfer_valve/tgui_data(mob/user)
 	var/list/data = list()
 	data["tank_one"] = tank_one ? tank_one.name : null
 	data["tank_two"] = tank_two ? tank_two.name : null
@@ -93,7 +86,7 @@
 	data["valve"] = valve_open
 	return data
 
-/obj/item/device/transfer_valve/tgui_act(action, params)
+/obj/item/transfer_valve/tgui_act(action, params)
 	if(..())
 		return
 	. = TRUE
@@ -118,55 +111,6 @@
 	if(.)
 		update_icon()
 		add_fingerprint(usr)
-=======
-/obj/item/transfer_valve/attack_self(mob/user as mob)
-	ui_interact(user)
-
-/obj/item/transfer_valve/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-
-	// this is the data which will be sent to the ui
-	var/data[0]
-	data["attachmentOne"] = tank_one ? tank_one.name : null
-	data["attachmentTwo"] = tank_two ? tank_two.name : null
-	data["valveAttachment"] = attached_device ? attached_device.name : null
-	data["valveOpen"] = valve_open ? 1 : 0
-
-	// update the ui if it exists, returns null if no ui is passed/found
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if (!ui)
-		// the ui does not exist, so we'll create a new() one
-        // for a list of parameters and their descriptions see the code docs in \code\modules\nano\nanoui.dm
-		ui = new(user, src, ui_key, "transfer_valve.tmpl", "Tank Transfer Valve", 460, 280)
-		// when the ui is first opened this is the data it will use
-		ui.set_initial_data(data)
-		// open the new ui window
-		ui.open()
-		// auto update every Master Controller tick
-		//ui.set_auto_update(1)
-
-/obj/item/transfer_valve/Topic(href, href_list)
-	..()
-	if ( usr.stat || usr.restrained() )
-		return 0
-	if (src.loc != usr)
-		return 0
-	if(tank_one && href_list["tankone"])
-		remove_tank(tank_one)
-	else if(tank_two && href_list["tanktwo"])
-		remove_tank(tank_two)
-	else if(href_list["open"])
-		toggle_valve()
-	else if(attached_device)
-		if(href_list["rem_device"])
-			attached_device.loc = get_turf(src)
-			attached_device:holder = null
-			attached_device = null
-			update_icon()
-		if(href_list["device"])
-			attached_device.attack_self(usr)
-	src.add_fingerprint(usr)
-	return 1 // Returning 1 sends an update to attached UIs
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/transfer_valve/proc/process_activation(var/obj/item/D)
 	if(toggle)
@@ -174,13 +118,8 @@
 		toggle_valve()
 		VARSET_IN(src, toggle, TRUE, 5 SECONDS)
 
-<<<<<<< HEAD
-/obj/item/device/transfer_valve/update_icon()
-	cut_overlays()
-=======
 /obj/item/transfer_valve/update_icon()
-	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	cut_overlays()
 	underlays = null
 
 	if(!tank_one && !tank_two && !attached_device)

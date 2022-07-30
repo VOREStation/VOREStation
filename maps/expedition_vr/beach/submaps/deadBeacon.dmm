@@ -49,12 +49,12 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "l" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/plating,
 /area/submap/cave/deadBeacon)
 "m" = (
 /obj/structure/table/steel,
-/obj/item/weapon/circuitboard/comm_server,
+/obj/item/circuitboard/comm_server,
 /obj/machinery/light{
 	dir = 8;
 	status = 1
@@ -65,7 +65,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "o" = (
-/obj/item/weapon/paper/crumpled{
+/obj/item/paper/crumpled{
 	info = "Sampatti Relay Sif-833 <BR> Decryption Key for 12-04-2488: <BR> 849B0022FBA920C244 <BR> Eyes Only.  <BR> The insider who knows all the secrets can bring down Lanka.";
 	name = "Dusty Note"
 	},
@@ -118,7 +118,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "v" = (
-/obj/item/weapon/circuitboard/broken,
+/obj/item/circuitboard/broken,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "w" = (
@@ -147,7 +147,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "A" = (
-/obj/item/weapon/circuitboard/broken,
+/obj/item/circuitboard/broken,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/submap/cave/deadBeacon)
 "B" = (
@@ -163,12 +163,12 @@
 /area/submap/cave/deadBeacon)
 "D" = (
 /obj/item/trash/cigbutt,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "E" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/submap/cave/deadBeacon)
 "F" = (

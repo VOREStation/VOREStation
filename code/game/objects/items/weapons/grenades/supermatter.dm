@@ -18,13 +18,8 @@
 	update_icon()
 	playsound(src, 'sound/weapons/wave.ogg', 100)
 
-<<<<<<< HEAD
-/obj/item/weapon/grenade/supermatter/update_icon()
-	cut_overlays()
-=======
 /obj/item/grenade/supermatter/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(implode_at)
 		add_overlay(image(icon = 'icons/rust.dmi', icon_state = "emfield_s1"))
 

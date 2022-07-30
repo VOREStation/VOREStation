@@ -20,13 +20,8 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
-<<<<<<< HEAD
-/obj/item/device/radio/headset/New()
-	..()
-=======
 /obj/item/radio/headset/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	internal_channels.Cut()
 	if(ks1type)
 		keyslot1 = new ks1type(src)

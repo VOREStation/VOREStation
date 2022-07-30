@@ -84,13 +84,9 @@
 		return "<span class='warning'>It\'s out of [ammo_material]!</span>"
 
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
+/obj/item/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
 	. = ..()
 	update_rating_mod()
-=======
-/obj/item/gun/magnetic/matfed/attackby(var/obj/item/thing, var/mob/user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(removable_components)
 		if(thing.is_crowbar())
 			if(!manipulator)

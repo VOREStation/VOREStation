@@ -49,18 +49,12 @@
 	if(ox != null) oxygen_amt = ox
 	if(co != null) carbon_amt = co
 	..()
-<<<<<<< HEAD
 
 /obj/effect/spawner/newbomb/Initialize(newloc)
 	..(newloc)
-	var/obj/item/device/transfer_valve/V = new(src.loc)
+	var/obj/item/transfer_valve/V = new(src.loc)
 	var/obj/item/weapon/tank/phoron/PT = new(V)
 	var/obj/item/weapon/tank/oxygen/OT = new(V)
-=======
-	var/obj/item/transfer_valve/V = new(src.loc)
-	var/obj/item/tank/phoron/PT = new(V)
-	var/obj/item/tank/oxygen/OT = new(V)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	V.tank_one = PT
 	V.tank_two = OT
@@ -106,16 +100,9 @@
 	var/phoron_amt = 0
 	var/oxygen_amt = 0
 
-<<<<<<< HEAD
-/obj/effect/spawner/onetankbomb/New(newloc) //just needs an assembly.
-	..(newloc)
-
-	var/type = pick(/obj/item/weapon/tank/phoron/onetankbomb, /obj/item/weapon/tank/oxygen/onetankbomb)
-=======
 /obj/effect/spawner/onetankbomb/Initialize() //just needs an assembly.
 	..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb, /obj/item/tank/oxygen/onetankbomb)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	new type(src.loc)
 
 	qdel(src)
@@ -128,16 +115,9 @@
 //	var/assembly_type = /obj/item/assembly/signaler
 
 	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
-<<<<<<< HEAD
-/obj/effect/spawner/onetankbomb/full/New(newloc) //just needs an assembly.
-	..(newloc)
-
-	var/type = pick(/obj/item/weapon/tank/phoron/onetankbomb/full, /obj/item/weapon/tank/oxygen/onetankbomb/full)
-=======
 /obj/effect/spawner/onetankbomb/full/Initialize() //just needs an assembly.
 	. = ..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb/full, /obj/item/tank/oxygen/onetankbomb/full)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	new type(src.loc)
 
 	qdel(src)
@@ -150,20 +130,8 @@
 //	var/assembly_type = /obj/item/assembly/signaler
 
 	//Note that the maximum amount of gas you can put in a 70L air tank at 1013.25 kPa and 519K is 16.44 mol.
-<<<<<<< HEAD
-/obj/effect/spawner/onetankbomb/full/New(newloc) //just needs an assembly.
-	..(newloc)
-
-	var/type = pick(/obj/item/weapon/tank/phoron/onetankbomb/full, /obj/item/weapon/tank/oxygen/onetankbomb/full)
-	new type(src.loc)
-
-	qdel(src)
-
-
-=======
 /obj/effect/spawner/onetankbomb/frag/Initialize() //just needs an assembly.
 	. = ..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb/full, /obj/item/tank/oxygen/onetankbomb/full)
-	new type(src.loc)	
+	new type(src.loc)
 	return INITIALIZE_HINT_QDEL
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

@@ -31,15 +31,9 @@
 "aG" = (/obj/machinery/fusion_fuel_compressor,/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/cobweb,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aH" = (/obj/machinery/fusion_fuel_injector/mapped,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aI" = (/obj/effect/decal/cleanable/blood/oil/streak{amount = 0},/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
-<<<<<<< HEAD
 "aJ" = (/obj/machinery/power/rad_collector,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 9},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aK" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 5},/turf/simulated/floor,/area/submap/DecoupledEngine)
-"aL" = (/obj/structure/grille/broken,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/item/weapon/material/shard/phoron,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
-=======
-"aJ" = (/obj/machinery/power/rad_collector,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{dir = 9; icon_state = "warning"},/turf/simulated/floor,/area/submap/DecoupledEngine)
-"aK" = (/obj/effect/floor_decal/rust,/obj/effect/floor_decal/industrial/warning{dir = 5; icon_state = "warning"},/turf/simulated/floor,/area/submap/DecoupledEngine)
-"aL" = (/obj/structure/grille/broken,/obj/structure/window/phoronreinforced{dir = 4; icon_state = "phoronrwindow"},/obj/item/material/shard/phoron,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"aL" = (/obj/structure/grille/broken,/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 4},/obj/item/material/shard/phoron,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aM" = (/obj/machinery/atmospherics/pipe/manifold4w/visible,/obj/effect/floor_decal/rust,/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aN" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 4},/obj/effect/floor_decal/rust,/obj/machinery/atmospherics/pipe/simple/visible{dir = 4},/turf/simulated/floor,/area/submap/DecoupledEngine)
 "aO" = (/obj/structure/shuttle/engine/propulsion{icon_state = "propulsion_r"; dir = 4},/turf/simulated/floor/water,/area/submap/DecoupledEngine)

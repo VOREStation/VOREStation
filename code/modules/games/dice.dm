@@ -8,12 +8,8 @@
 	var/result = 6
 	attack_verb = list("diced")
 
-<<<<<<< HEAD
-/obj/item/weapon/dice/New()
-=======
 /obj/item/dice/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "[name][rand(1,sides)]"
 
 /obj/item/dice/d4
@@ -88,13 +84,8 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/pill_bottle/dice/New()
-	..()
-=======
 /obj/item/storage/pill_bottle/dice/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/i = 1 to 7)
 		new /obj/item/dice( src )
 
@@ -106,17 +97,6 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/pill_bottle/dice_nerd/New()
-	..()
-	new /obj/item/weapon/dice/d4( src )
-	new /obj/item/weapon/dice( src )
-	new /obj/item/weapon/dice/d8( src )
-	new /obj/item/weapon/dice/d10( src )
-	new /obj/item/weapon/dice/d12( src )
-	new /obj/item/weapon/dice/d20( src )
-	new /obj/item/weapon/dice/d100( src )
-=======
 /obj/item/storage/pill_bottle/dice_nerd/Initialize()
 	. = ..()
 	new /obj/item/dice/d4( src )
@@ -126,7 +106,6 @@
 	new /obj/item/dice/d12( src )
 	new /obj/item/dice/d20( src )
 	new /obj/item/dice/d100( src )
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /*
  *Liar's Dice cup
@@ -177,12 +156,7 @@
 		revealDice(player)
 
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/dicecup/loaded/New()
-	..()
-=======
 /obj/item/storage/dicecup/loaded/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/i = 1 to 5)
 		new /obj/item/dice( src )

@@ -269,18 +269,13 @@
 	if(W.is_wrench())
 		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
-<<<<<<< HEAD
 //VOREStation Add
-/obj/structure/bed/holobed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/bed/holobed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		to_chat(user, "<span class='notice'>It's a holochair, you can't dismantle it!</span>")
 	return
 //VOREStation Add End
-/obj/item/weapon/holo
-=======
-
 /obj/item/holo
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	damtype = HALLOSS
 	no_attack_log = 1
 	no_random_knockdown = TRUE
@@ -304,19 +299,11 @@
 	unacidable = TRUE
 	var/active = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/holo/esword/green/New()
-		lcolor = "#008000"
-
-/obj/item/weapon/holo/esword/red/New()
-		lcolor = "#FF0000"
-=======
 /obj/item/holo/esword/green
 	lcolor = "#008000"
 
 /obj/item/holo/esword/red
 	lcolor = "#FF0000"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
@@ -372,13 +359,8 @@
 
 //BASKETBALL OBJECTS
 
-<<<<<<< HEAD
-/obj/item/weapon/beach_ball/holoball
-	icon = 'icons/obj/balls_vr.dmi'
-=======
 /obj/item/beach_ball/holoball
-	icon = 'icons/obj/basketball.dmi'
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	icon = 'icons/obj/balls_vr.dmi'
 	icon_state = "basketball"
 	name = "basketball"
 	desc = "Here's your chance, do your dance at the Space Jam."

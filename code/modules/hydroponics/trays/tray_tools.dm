@@ -21,31 +21,23 @@
 	var/datum/seed/last_seed
 	var/list/last_reagents
 
-<<<<<<< HEAD
-/obj/item/device/analyzer/plant_analyzer/Destroy()
+/obj/item/analyzer/plant_analyzer/Destroy()
 	. = ..()
 	QDEL_NULL(last_seed)
-=======
-/obj/item/analyzer/plant_analyzer/proc/print_report_verb()
-	set name = "Print Plant Report"
-	set category = "Object"
-	set src = usr
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
-/obj/item/device/analyzer/plant_analyzer/attack_self(mob/user)
+/obj/item/analyzer/plant_analyzer/attack_self(mob/user)
 	tgui_interact(user)
 
-<<<<<<< HEAD
-/obj/item/device/analyzer/plant_analyzer/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/analyzer/plant_analyzer/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "PlantAnalyzer", name)
 		ui.open()
-	
-/obj/item/device/analyzer/plant_analyzer/tgui_state(mob/user)
+
+/obj/item/analyzer/plant_analyzer/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/analyzer/plant_analyzer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/analyzer/plant_analyzer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	var/datum/seed/grown_seed = last_seed
@@ -58,10 +50,10 @@
 
 	return data
 
-/obj/item/device/analyzer/plant_analyzer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/analyzer/plant_analyzer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("print")
 			print_report(usr)
@@ -71,35 +63,9 @@
 			last_reagents = null
 			return TRUE
 
-/obj/item/device/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
+/obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
 	if(!flag)
 		return
-=======
-/obj/item/analyzer/plant_analyzer/Topic(href, href_list)
-	if(..())
-		return
-	if(href_list["print"])
-		print_report(usr)
-
-/obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
-	if(!last_data)
-		to_chat(user, "There is no scan data to print.")
-		return
-	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
-	P.name = "paper - [form_title]"
-	P.info = "[last_data]"
-	if(istype(user,/mob/living/carbon/human))
-		user.put_in_hands(P)
-	user.visible_message("\The [src] spits out a piece of paper.")
-	return
-
-/obj/item/analyzer/plant_analyzer/attack_self(mob/user as mob)
-	print_report(user)
-	return 0
-
-/obj/item/analyzer/plant_analyzer/afterattack(obj/target, mob/user, flag)
-	if(!flag) return
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/datum/seed/grown_seed
 	var/datum/reagents/grown_reagents
@@ -107,24 +73,14 @@
 		return ..()
 	else if(istype(target,/obj/item/reagent_containers/food/snacks/grown))
 
-<<<<<<< HEAD
-		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = target
-		grown_seed = SSplants.seeds[G.plantname]
-=======
 		var/obj/item/reagent_containers/food/snacks/grown/G = target
 		grown_seed = plant_controller.seeds[G.plantname]
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/grown))
 
-<<<<<<< HEAD
-		var/obj/item/weapon/grown/G = target
-		grown_seed = SSplants.seeds[G.plantname]
-=======
 		var/obj/item/grown/G = target
 		grown_seed = plant_controller.seeds[G.plantname]
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		grown_reagents = G.reagents
 
 	else if(istype(target,/obj/item/seeds))
@@ -161,7 +117,7 @@
 
 	tgui_interact(user)
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report_verb()
+/obj/item/analyzer/plant_analyzer/proc/print_report_verb()
 	set name = "Print Plant Report"
 	set category = "Object"
 	set src = usr
@@ -170,7 +126,7 @@
 		return
 	print_report(usr)
 
-/obj/item/device/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
+/obj/item/analyzer/plant_analyzer/proc/print_report(var/mob/living/user)
 	var/datum/seed/grown_seed = last_seed
 	if(!istype(grown_seed))
 		to_chat(user, "<span class='warning'>There is no scan data to print.</span>")
@@ -199,7 +155,7 @@
 
 	dat += jointext(tgui_data["trait_info"], "<br>\n")
 
-	var/obj/item/weapon/paper/P = new /obj/item/weapon/paper(get_turf(src))
+	var/obj/item/paper/P = new /obj/item/paper(get_turf(src))
 	P.name = "paper - [form_title]"
 	P.info = "[dat]"
 	if(istype(user,/mob/living/carbon/human))
@@ -323,7 +279,7 @@
 
 	if(get_trait(TRAIT_SPORING))
 		data["trait_info"] += "It occasionally releases reagent carrying spores into the atmosphere."
-	
+
 	if(exude_gasses && exude_gasses.len)
 		for(var/gas in exude_gasses)
 			var/amount = ""

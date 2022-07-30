@@ -33,11 +33,11 @@
 		s.start()
 
 
-/obj/item/weapon/paper/sdshield
+/obj/item/paper/sdshield
 	name = "ABOUT THE SHIELD GENERATOR"
 	info = "<H1>ABOUT THE SHIELD GENERATOR</H1><BR><BR>If you&#39;re up here you are more than likely worried about hitting rocks or some other such thing. It is good to worry about such things as that is an inevitability.<BR><BR>The Stellar Delight is a rather compact vessel, so a setting of 55 to the range will just barely cover her aft. <BR><BR>It is recommended that you turn off all of the different protection types except multi dimensional warp and whatever it is you&#39;re worried about running into. (probably meteors (hyperkinetic)). <BR><BR>With only those two and all the other default settings, the shield uses more than 6 MW to run, which is more than the ship can ordinarily produce. AS SUCH, it is also recommended that you reduce the input cap to whatever you find reasonable (being as it defaults to 1 MW, which is the entirety of the stock power supply) and activate and configure the shield BEFORE you need it. <BR><BR>The shield takes some time to expand its range to the desired specifications, and on top of that, under the default low power setting, takes around 40 seconds to spool up. Once it is active, the fully charged internal capacitors will last for a few minutes before depleting fully. You can increase the passive energy use to decrease the spool up time, but it also uses the stored energy much faster, so, that is not recommended except in dire emergencies.<BR><BR>So, this shield is not intended to be run indefinitely, unless you seriously beef up the ship&#39;s engine and power supply.<BR><BR>Fortunately, if you&#39;ve got a good pilot, you shouldn&#39;t really need the shield generator except in rare cases and only for short distances. Still, it is a good idea to configure the shield to be ready before you need it.<BR><BR>Good luck out there - <I>Budly Gregington</I>"
 
-/obj/item/weapon/book/manual/sd_guide
+/obj/item/book/manual/sd_guide
 	name = "Stellar Delight User's Guide"
 	icon = 'icons/obj/library.dmi'
 	icon_state ="newscodex"
@@ -45,7 +45,7 @@
 	author = "Central Command"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Stellar Delight User's Guide"
 
-/obj/item/weapon/book/manual/sd_guide/New()
+/obj/item/book/manual/sd_guide/New()
 	..()
 	dat = {"<html>
 				<head>
@@ -108,9 +108,9 @@
 // ### Wall Machines On Full Windows ###
 // To make sure wall-mounted machines placed on full-tile windows are clickable they must be above the window
 //
-/obj/item/device/radio/intercom
+/obj/item/radio/intercom
 	layer = ABOVE_WINDOW_LAYER
-/obj/item/weapon/storage/secure/safe
+/obj/item/storage/secure/safe
 	layer = ABOVE_WINDOW_LAYER
 /obj/machinery/airlock_sensor
 	layer = ABOVE_WINDOW_LAYER
@@ -161,11 +161,11 @@
 /obj/structure/noticeboard
 	layer = ABOVE_WINDOW_LAYER
 
-/obj/item/device/multitool/scioutpost
+/obj/item/multitool/scioutpost
 	name = "science outpost linked multitool"
 	desc = "It has the data for the science outpost's quantum pad pre-loaded... assuming you didn't override it."
 
-/obj/item/device/multitool/scioutpost/Initialize()
+/obj/item/multitool/scioutpost/Initialize()
 	. = ..()
 	for(var/obj/machinery/power/quantumpad/scioutpost/outpost in world)
 		connectable = outpost
@@ -174,4 +174,3 @@
 		return
 
 /obj/machinery/power/quantumpad/scioutpost
-

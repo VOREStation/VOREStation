@@ -29,7 +29,7 @@
 /area/submap/groundbase/poi/wildvillage)
 "f" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"
 	},
@@ -154,7 +154,7 @@
 /area/submap/groundbase/poi/wildvillage/square/square1)
 "S" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/carpet,
 /area/submap/groundbase/poi/wildvillage/square/square1)
 "V" = (
@@ -169,7 +169,7 @@
 /area/submap/groundbase/poi/wildvillage/square/square1)
 "Y" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/wood,

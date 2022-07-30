@@ -275,13 +275,8 @@
 	desc = "Scan DNA."
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
-<<<<<<< HEAD
 	density = TRUE
-	circuit = /obj/item/weapon/circuitboard/scan_consolenew
-=======
-	density = 1
 	circuit = /obj/item/circuitboard/scan_consolenew
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/selected_ui_block = 1.0
 	var/selected_ui_subblock = 1.0
 	var/selected_se_block = 1.0

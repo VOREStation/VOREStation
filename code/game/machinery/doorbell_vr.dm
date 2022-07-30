@@ -51,8 +51,8 @@
 //		return
 	else if(default_part_replacement(user, W))
 		return
-	else if(panel_open && istype(W, /obj/item/device/multitool))
-		var/obj/item/device/multitool/M = W
+	else if(panel_open && istype(W, /obj/item/multitool))
+		var/obj/item/multitool/M = W
 		if(M.connectable && istype(M.connectable, /obj/machinery/button/doorbell))
 			var/obj/machinery/button/doorbell/B = M.connectable
 			id_tag = B.id
@@ -132,8 +132,8 @@
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for \the [src].", src.name, initial(src.name), MAX_NAME_LEN), MAX_NAME_LEN)
 		if(t && in_range(src, user))
 			name = t
-	else if(panel_open && istype(W, /obj/item/device/multitool))
-		var/obj/item/device/multitool/M = W
+	else if(panel_open && istype(W, /obj/item/multitool))
+		var/obj/item/multitool/M = W
 		M.connectable = src
 		to_chat(user, "<span class='caution'>You save the data in \the [M]'s buffer.</span>")
 	else if(W.is_wrench())

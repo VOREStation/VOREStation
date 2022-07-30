@@ -34,13 +34,8 @@
 	var/standard_overlays = TRUE
 	var/last_overlay_state = null // Used to optimize update_icon() calls.
 
-<<<<<<< HEAD
-/obj/item/weapon/cell/New()
-	..()
-=======
 /obj/item/cell/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	c_uid = cell_uid++
 	charge = maxcharge
 	update_icon()
@@ -84,8 +79,7 @@
 #define OVERLAY_PARTIAL	1
 #define OVERLAY_EMPTY	0
 
-<<<<<<< HEAD
-/obj/item/weapon/cell/update_icon()
+/obj/item/cell/update_icon()
 	if(!standard_overlays)
 		return
 	var/ratio = clamp(round(charge / maxcharge, 0.25) * 100, 0, 100)
@@ -94,32 +88,6 @@
 		cut_overlay(last_overlay_state)
 		add_overlay(new_state)
 		last_overlay_state = new_state
-=======
-/obj/item/cell/update_icon()
-	var/new_overlay = null // The overlay that is needed.
-	// If it's different than the current overlay, then it'll get changed.
-	// Otherwise nothing happens, to save on CPU.
-
-	if(charge < 0.01) // Empty.
-		new_overlay = OVERLAY_EMPTY
-		if(last_overlay_state != new_overlay)
-			cut_overlays()
-
-	else if(charge/maxcharge >= 0.995) // Full
-		new_overlay = OVERLAY_FULL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_half_state)
-			add_overlay(overlay_full_state)
-
-
-	else // Inbetween.
-		new_overlay = OVERLAY_PARTIAL
-		if(last_overlay_state != new_overlay)
-			cut_overlay(overlay_full_state)
-			add_overlay(overlay_half_state)
-
-	last_overlay_state = new_overlay
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 #undef OVERLAY_FULL
 #undef OVERLAY_PARTIAL
@@ -228,13 +196,9 @@
 	if (prob(10))
 		rigged = 1 //broken batterys are dangerous
 
-<<<<<<< HEAD
-/obj/item/weapon/cell/emp_act(severity)
+/obj/item/cell/emp_act(severity)
 	if(emp_proof)
 		return
-=======
-/obj/item/cell/emp_act(severity)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	//remove this once emp changes on dev are merged in
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc

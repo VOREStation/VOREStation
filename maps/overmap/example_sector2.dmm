@@ -57,17 +57,10 @@
 "be" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/mine/abandoned)
 "bf" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/turf/simulated/floor/airless{icon_state = "damaged3"},/area/mine/abandoned)
 "bg" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/obj/item/clothing/mask/facehugger{icon_state = "facehugger_dead"; stat = 2},/turf/simulated/floor/plating,/area/mine/abandoned)
-<<<<<<< HEAD
-"bh" = (/obj/item/weapon/shard,/obj/structure/lattice,/turf/space,/area)
-"bi" = (/obj/item/weapon/shard{icon_state = "small"},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
-"bj" = (/obj/effect/gibspawner/robot,/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
-"bk" = (/obj/effect/gibspawner/human,/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
-=======
 "bh" = (/obj/item/shard,/obj/structure/lattice,/turf/space,/area)
 "bi" = (/obj/item/shard{icon_state = "small"},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
 "bj" = (/obj/effect/spawner/gibs/robot,/turf/simulated/floor/airless{icon_state = "floorscorched1"},/area/mine/abandoned)
 "bk" = (/obj/effect/spawner/gibs/human,/turf/simulated/floor/airless{icon_state = "damaged2"},/area/mine/abandoned)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "bl" = (/obj/effect/alien/weeds{icon_state = "weeds1"},/obj/effect/decal/remains/xeno,/turf/simulated/floor/plating,/area/mine/abandoned)
 "bm" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating/airless,/area/mine/abandoned)
 "bn" = (/obj/item/shard,/turf/simulated/floor/plating/airless,/area/mine/abandoned)

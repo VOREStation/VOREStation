@@ -108,18 +108,6 @@
 	name = "hypo belt"
 	desc = "A medical belt designed to carry autoinjectors and other medical equipment."
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/belt/medical/technomancer/New()
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/toxin(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/oxy(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/purity(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ(src)
-	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat(src)
-	..()
-=======
 /obj/item/storage/belt/medical/technomancer/Initialize()
 	new /obj/item/reagent_containers/hypospray/autoinjector/biginjector/brute(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn(src)
@@ -130,7 +118,6 @@
 	new /obj/item/reagent_containers/hypospray/autoinjector/biginjector/organ(src)
 	new /obj/item/reagent_containers/hypospray/autoinjector/biginjector/combat(src)
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /datum/technomancer/equipment/belt_of_holding
 	name = "Belt of Holding"
@@ -221,14 +208,10 @@
 	name = "Spyglass"
 	desc = "A mundane spyglass, it may prove useful to those who wish to scout ahead, or fight from an extreme range."
 	cost = 100
-<<<<<<< HEAD
-	obj_path = /obj/item/device/binoculars/spyglass
+	obj_path = /obj/item/binoculars/spyglass
 
-/obj/item/device/binoculars/spyglass
+/obj/item/binoculars/spyglass
 	name = "spyglass"
 	desc = "It's a hand-held telescope, useful for star-gazing, peeping, and recon."
 	icon_state = "spyglass"
 	slot_flags = SLOT_BELT
-=======
-	obj_path = /obj/item/binoculars/spyglass
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

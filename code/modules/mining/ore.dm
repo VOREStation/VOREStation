@@ -106,13 +106,8 @@
 	icon_state = "ore_lead"
 	material = MAT_LEAD
 	origin_tech = list(TECH_MATERIAL = 3)
-<<<<<<< HEAD
 /*
-/obj/item/weapon/ore/copper
-=======
-
 /obj/item/ore/copper
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "raw copper"
 	icon_state = "ore_copper"
 	material = "copper"
@@ -126,25 +121,14 @@
 	name = "raw bauxite"
 	icon_state = "ore_bauxite"
 	material = "bauxite"
-<<<<<<< HEAD
 */
-/obj/item/weapon/ore/rutile
-	name = "raw rutile"
-	icon_state = "ore_rutile"
-	material = "rutile"
-/*
-/obj/item/weapon/ore/void_opal
-	name = "raw void opal"
-=======
-
 /obj/item/ore/rutile
 	name = "raw rutile"
 	icon_state = "ore_rutile"
 	material = "rutile"
-
-/obj/item/ore/magmellite
-	name = "impure magmellite"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/*
+/obj/item/ore/void_opal
+	name = "raw void opal"
 	icon_state = "ore_void_opal"
 	material = "void opal"
 
@@ -157,13 +141,8 @@
 	name = "raw quartz"
 	icon_state = "ore_quartz"
 	material = "quartz"
-<<<<<<< HEAD
 */
-/obj/item/weapon/ore/slag
-=======
-
 /obj/item/ore/slag
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "Slag"
 	desc = "Someone screwed up..."
 	icon_state = "slag"
@@ -181,12 +160,12 @@
 		return ..()
 
 //VOREStation Add
-/obj/item/weapon/ore/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/ore/attack(mob/living/M as mob, mob/living/user as mob)
 	if(M.handle_eat_minerals(src, user))
 		return
 	..()
 
-/obj/item/weapon/ore/attack_generic(var/mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
+/obj/item/ore/attack_generic(var/mob/living/user) //Allow adminbussed mobs to eat ore if they click it while NOT on help intent.
 	if(user.handle_eat_minerals(src))
 		return
 	..()

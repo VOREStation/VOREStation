@@ -12,21 +12,12 @@
 
 	var/obj/item/loaded_item	//What is currently inside the analyzer.
 
-<<<<<<< HEAD
-/obj/item/weapon/portable_destructive_analyzer/New()
-	..()
-	files = new /datum/research/techonly(src) //Setup the research data holder.
-
-/obj/item/weapon/portable_destructive_analyzer/attack_self(user as mob)
-	var/response = tgui_alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
-=======
 /obj/item/portable_destructive_analyzer/Initialize()
 	. = ..()
 	files = new /datum/research/techonly(src) //Setup the research data holder.
 
 /obj/item/portable_destructive_analyzer/attack_self(user as mob)
-	var/response = alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/response = tgui_alert(user, 	"Analyzing the item inside will *DESTROY* the item for good.\n\
 							Syncing to the research server will send the data that is stored inside to research.\n\
 							Ejecting will place the loaded item onto the floor.",
 							"What would you like to do?", list("Analyze", "Sync", "Eject"))

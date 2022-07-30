@@ -615,11 +615,7 @@
 
 // Cookies and Candies //
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/cookie
-=======
 /obj/item/reagent_containers/food/snacks/cookiesnack
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	price_tag = 1
 
 /obj/item/reagent_containers/food/snacks/chocolatebar

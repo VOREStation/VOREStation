@@ -83522,11 +83522,7 @@
 /obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
-=======
 /obj/item/reagent_containers/food/condiment/small/peppershaker{
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_x = 3
 	},
 /obj/item/reagent_containers/food/condiment/small/sugar,
@@ -85844,11 +85840,7 @@
 /obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
-=======
 /obj/item/reagent_containers/food/condiment/small/peppershaker{
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_x = 3
 	},
 /turf/simulated/floor/tiled/white,
@@ -111658,11 +111650,7 @@
 /obj/structure/window/reinforced{
 	dir = 8
 	},
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped,
-=======
 /obj/item/reagent_containers/food/snacks/cube/monkeycube/wrapped,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},

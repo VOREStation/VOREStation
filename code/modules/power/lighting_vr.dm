@@ -19,7 +19,7 @@
 		layer = ABOVE_MOB_LAYER
 
 // Wall tube lights
-/obj/item/weapon/light/tube
+/obj/item/light/tube
 	brightness_range = 6
 	brightness_power = 1
 
@@ -27,7 +27,7 @@
 	nightshift_power = 0.45
 
 // Big tubes, unused I think
-/obj/item/weapon/light/tube/large
+/obj/item/light/tube/large
 	brightness_range = 8
 	brightness_power = 2
 
@@ -35,7 +35,7 @@
 	nightshift_power = 1
 
 // Small wall lights
-/obj/item/weapon/light/bulb
+/obj/item/light/bulb
 	brightness_range = 4
 	brightness_power = 1
 
@@ -43,7 +43,7 @@
 	nightshift_power = 0.45
 
 // Floor lamps
-/obj/item/weapon/light/bulb/large
+/obj/item/light/bulb/large
 	brightness_range = 6
 	brightness_power = 1
 
@@ -133,7 +133,7 @@
 
 // Fairy lights
 
-/obj/item/weapon/light/bulb/smol
+/obj/item/light/bulb/smol
 	brightness_range = 1
 	brightness_power = 0.5
 
@@ -146,7 +146,7 @@
 	icon_state = "fairy_lights1"
 	base_state = "fairy_lights"
 	desc = "A set of lights on a long string of wire, anchored to the walls."
-	light_type = /obj/item/weapon/light/bulb/smol
+	light_type = /obj/item/light/bulb/smol
 	shows_alerts = FALSE
 	anchored = TRUE
 	plane = ABOVE_MOB_PLANE

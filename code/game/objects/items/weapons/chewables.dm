@@ -178,8 +178,7 @@
 		closed_state = "[initial(icon_state)]"
 	..()
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/update_icon()
+/obj/item/storage/box/fancy/chewables/tobacco/nico/update_icon()
 	cut_overlays()
 	if(open)
 		icon_state = open_state
@@ -188,7 +187,7 @@
 	else
 		icon_state = closed_state
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/open(mob/user as mob)
+/obj/item/storage/box/fancy/chewables/tobacco/nico/open(mob/user as mob)
 	if(open)
 		return
 	open = TRUE
@@ -197,10 +196,6 @@
 	else
 		update_icon()
 	..()
-=======
-/obj/item/storage/box/fancy/chewables/tobacco/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/close(mob/user as mob)
 	open = FALSE

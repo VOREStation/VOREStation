@@ -80,7 +80,7 @@
 /area/submap/Oldhouse)
 "at" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
+/obj/item/paper,
 /obj/effect/decal/cleanable/cobweb2,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
@@ -117,7 +117,7 @@
 /area/submap/Oldhouse)
 "aA" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aB" = (
@@ -139,17 +139,17 @@
 /area/submap/Oldhouse)
 "aF" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/pen/blue,
+/obj/item/pen/blue,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aG" = (
-/obj/item/weapon/reagent_containers/food/snacks/chips,
-/obj/item/weapon/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Oldhouse)
 "aH" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aI" = (
@@ -165,13 +165,13 @@
 /area/submap/Oldhouse)
 "aK" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper,
-/obj/item/weapon/paper,
+/obj/item/paper,
+/obj/item/paper,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aL" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/paper/crumpled,
+/obj/item/paper/crumpled,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aM" = (
@@ -199,12 +199,12 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Oldhouse)
 "aP" = (
-/obj/item/weapon/circuitboard/papershredder,
+/obj/item/circuitboard/papershredder,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aQ" = (
-/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
-/obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
+/obj/item/reagent_containers/food/snacks/cheesiehonkers,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/Oldhouse)
 "aR" = (
@@ -212,12 +212,12 @@
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aS" = (
-/obj/item/weapon/paper/crumpled,
+/obj/item/paper/crumpled,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aT" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/backpack/satchel,
+/obj/item/storage/backpack/satchel,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aU" = (
@@ -229,7 +229,7 @@
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aV" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/wood,
 /area/submap/Oldhouse)
 "aW" = (

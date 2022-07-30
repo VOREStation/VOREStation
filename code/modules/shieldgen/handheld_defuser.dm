@@ -4,32 +4,18 @@
 	description_info = "This device disrupts shields on directly adjacent tiles (in a + shaped pattern), in a similar way the floor mounted variant does. It is, however, portable and run by an internal battery. Can be recharged with a regular recharger."
 	icon = 'icons/obj/machines/shielding.dmi'
 	icon_state = "hdiffuser_off"
-<<<<<<< HEAD
 	origin_tech = list(TECH_MAGNET = 5, TECH_POWER = 5, TECH_ILLEGAL = 2)
-	var/obj/item/weapon/cell/device/cell
-	var/enabled = 0
-
-
-/obj/item/weapon/shield_diffuser/Initialize()
-=======
 	var/obj/item/cell/device/cell
 	var/enabled = 0
 
 
 /obj/item/shield_diffuser/Initialize()
-	cell = new(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 	cell = new(src)
 
-<<<<<<< HEAD
-/obj/item/weapon/shield_diffuser/Destroy()
-	QDEL_NULL(cell)
-=======
 /obj/item/shield_diffuser/Destroy()
 	qdel(cell)
 	cell = null
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(enabled)
 		STOP_PROCESSING(SSobj, src)
 	. = ..()
@@ -58,11 +44,7 @@
 	else
 		icon_state = "hdiffuser_off"
 
-<<<<<<< HEAD
-/obj/item/weapon/shield_diffuser/attack_self(mob/user)
-=======
-/obj/item/shield_diffuser/attack_self()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/shield_diffuser/attack_self(mob/user)
 	enabled = !enabled
 	update_icon()
 	if(enabled)

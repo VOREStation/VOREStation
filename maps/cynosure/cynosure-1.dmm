@@ -21576,15 +21576,7 @@
 /obj/machinery/conveyor_switch/oneway{
 	id = "garbage"
 	},
-<<<<<<< HEAD
-/obj/machinery/camera/network/civilian{
-	c_tag = "CIV - Waste Disposal";
-	dir = 1
-	},
-/obj/item/device/radio/intercom{
-=======
 /obj/item/radio/intercom{
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_y = -21
 	},
 /turf/simulated/floor/tiled/old_tile/gray,

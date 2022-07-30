@@ -62,21 +62,13 @@
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack
 	else
-<<<<<<< HEAD
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
-	/* VOREStation Removal - Always give both
-=======
 		starts_with += /obj/item/storage/backpack/satchel/norm
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	/* VOREStation Removal - Always give both
 	if(prob(75))
 		starts_with += /obj/item/material/knife/tacknife/survival
 	else
-<<<<<<< HEAD
-		starts_with += /obj/item/weapon/material/knife/machete
-	*/ //VOREStation Removal End
-=======
 		starts_with += /obj/item/material/knife/machete
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	*/ //VOREStation Removal End
 	return ..()
 
 //SAR Lockers

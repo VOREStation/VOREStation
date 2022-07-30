@@ -113,12 +113,8 @@
 	agony_amount = 80
 	electrocute_amount = 20
 
-<<<<<<< HEAD
-/obj/item/weapon/electric_hand/New()
-=======
 /obj/item/electric_hand/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(ismob(loc))
 		visible_message("<span class='warning'>Electrical arcs form around [loc.name]\'s hand!</span>",
 		"<span class='warning'>We store a charge of electricity in our hand.</span>",

@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 /*
  * Taser
  */
-/obj/item/weapon/gun/energy/taser
-=======
 /obj/item/gun/energy/taser
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "taser gun"
 	desc = "The NT Mk30 NL is a small gun used for non-lethal takedowns. Produced by NT, it's actually a licensed version of a W-T RayZar design."
 	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist \
@@ -31,14 +27,10 @@
 	charge_cost = 400
 	recharge_time = 7 //Time it takes for shots to recharge (in ticks)
 
-<<<<<<< HEAD
 /*
  * Disabler
  */
-/obj/item/weapon/gun/energy/taser/disabler
-=======
-/obj/item/gun/energy/taser/mounted/cyborg/swarm
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/gun/energy/taser/disabler
 	name = "disabler"
 	desc = "The NT Mk4 T-DL is a small gun used for non-lethal takedowns. Produced by NT, it's an archaic device which attacks the target's \
 	nervous-system and is actually a heavily modified version of the NT Mk30 NL. It's use is heavily regulated due to its effects on the body."
@@ -46,14 +38,10 @@
 	projectile_type = /obj/item/projectile/beam/stun/disabler
 	charge_cost = 480
 
-<<<<<<< HEAD
 /*
  * Crossbow
  */
-/obj/item/weapon/gun/energy/crossbow
-=======
 /obj/item/gun/energy/crossbow
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "mini energy-crossbow"
 	desc = "A weapon favored by many mercenary stealth specialists."
 	icon_state = "crossbow"
@@ -83,14 +71,10 @@
 	slot_flags = SLOT_BELT
 	projectile_type = /obj/item/projectile/energy/bolt/large
 
-<<<<<<< HEAD
 /*
  * Plasma Stun
  */
-/obj/item/weapon/gun/energy/plasmastun
-=======
 /obj/item/gun/energy/plasmastun
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "plasma pulse projector"
 	desc = "The RayZar MA21 Selkie is a weapon that uses a laser pulse to ionise the local atmosphere, creating a disorienting pulse of plasma and deafening shockwave as the wave expands."
 	description_fluff = "RayZar is Ward-Takahashi’s main consumer weapons brand, known for producing and licensing a wide variety of specialist energy weapons of various types and quality primarily for the civilian market. \
@@ -102,16 +86,10 @@
 	charge_cost = 600
 	projectile_type = /obj/item/projectile/energy/plasmastun
 
-<<<<<<< HEAD
 /*
  * Stun Revolver
  */
-/obj/item/weapon/gun/energy/stunrevolver
-=======
-//Stun Revolvers
-
 /obj/item/gun/energy/stunrevolver
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "stun revolver"
 	desc = "A LAEP20 \"Aktzin\". Designed and produced by Lawson Arms under the wing of Hephaestus, \
 	several TSCs have been trying to get a hold of the blueprints for half a decade."
@@ -128,12 +106,12 @@
 /*
  * Detective Stun Revolver
  */
-/obj/item/weapon/gun/energy/stunrevolver/detective
+/obj/item/gun/energy/stunrevolver/detective
 	desc = "A LAEP20 \"Aktzin\". Designed and produced by Lawson Arms under the wing of Hephaestus, \
 	several TSCs have been trying to get a hold of the blueprints for half a decade."
 	var/unique_reskin
 
-/obj/item/weapon/gun/energy/stunrevolver/detective/update_icon(var/ignore_inhands)
+/obj/item/gun/energy/stunrevolver/detective/update_icon(var/ignore_inhands)
 	if(power_supply == null)
 		if(unique_reskin)
 			icon_state = "[unique_reskin]_open"
@@ -160,10 +138,9 @@
 		else
 			icon_state = "[initial(icon_state)]"
 
-<<<<<<< HEAD
 	if(!ignore_inhands) update_held_icon()
 
-/obj/item/weapon/gun/energy/stunrevolver/detective/verb/rename_gun()
+/obj/item/gun/energy/stunrevolver/detective/verb/rename_gun()
 	set name = "Name Gun"
 	set category = "Object"
 	set desc = "Rename your gun. If you're Security."
@@ -182,7 +159,7 @@
 		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
-/obj/item/weapon/gun/energy/stunrevolver/detective/verb/reskin_gun()
+/obj/item/gun/energy/stunrevolver/detective/verb/reskin_gun()
 	set name = "Resprite gun"
 	set category = "Object"
 	set desc = "Click to choose a sprite for your gun."
@@ -206,10 +183,7 @@
 /*
  * Vintage Stun Revolver
  */
-/obj/item/weapon/gun/energy/stunrevolver/vintage
-=======
 /obj/item/gun/energy/stunrevolver/vintage
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "vintage stun revolver"
 	desc = "An older model stun revolver that is still in service across the frontier."
 	description_fluff = "The LTX1020 \"Bolter\", a Firefly Co. staple from when the company was in its hayday. \
@@ -221,14 +195,10 @@
 	item_state = "stunrevolver"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
 
-<<<<<<< HEAD
 /*
  * Snubnose Stun Revolver
  */
-/obj/item/weapon/gun/energy/stunrevolver/snubnose
-=======
 /obj/item/gun/energy/stunrevolver/snubnose
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "snub stun revolver"
 	desc = "A snub nose stun revolver sporting a rather elegant look."
 	description_fluff = "The LTX1010 \"Stubby\", a Firefly Co. staple from when the company was in its hayday. \

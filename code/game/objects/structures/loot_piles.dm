@@ -262,17 +262,11 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 	uncommon_loot = list(
-<<<<<<< HEAD
-		/obj/item/weapon/reagent_containers/syringe/steroid,
-		/obj/item/weapon/storage/pill_bottle/zoom,
-		/obj/item/weapon/storage/pill_bottle/happy,
-		/obj/item/weapon/storage/pill_bottle/paracetamol //VOREStation Edit
-=======
 		/obj/item/reagent_containers/syringe/steroid,
 		/obj/item/storage/pill_bottle/zoom,
 		/obj/item/storage/pill_bottle/happy,
 		/obj/item/storage/pill_bottle/tramadol
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		/obj/item/storage/pill_bottle/paracetamol //VOREStation Edit
 	)
 
 // Contains loads of different types of boxes, which may have items inside!
@@ -306,27 +300,9 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	)
 
 	uncommon_loot = list(
-<<<<<<< HEAD
-		/obj/item/weapon/storage/box/sinpockets,
+		/obj/item/storage/box/sinpockets,
 		/obj/item/ammo_magazine/ammo_box/b12g/practice,
 		/obj/item/ammo_magazine/ammo_box/b12g/blank,
-		/obj/item/weapon/storage/box/smokes,
-		/obj/item/weapon/storage/box/metalfoam,
-		/obj/item/weapon/storage/box/handcuffs,
-		/obj/item/weapon/storage/box/seccarts
-	)
-
-	rare_loot = list(
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/box/empslite,
-		/obj/item/ammo_magazine/ammo_box/b12g/flash,
-		/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
-		/obj/item/weapon/storage/box/teargas
-=======
-		/obj/item/storage/box/sinpockets,
-		/obj/item/storage/box/practiceshells,
-		/obj/item/storage/box/blanks,
-		/obj/item/storage/box/smokes,
 		/obj/item/storage/box/metalfoam,
 		/obj/item/storage/box/handcuffs,
 		/obj/item/storage/box/seccarts
@@ -335,10 +311,9 @@ Loot piles can be depleted, if loot_depleted is turned on.  Note that players wh
 	rare_loot = list(
 		/obj/item/storage/box/flashbangs,
 		/obj/item/storage/box/empslite,
-		/obj/item/storage/box/flashshells,
-		/obj/item/storage/box/stunshells,
+		/obj/item/ammo_magazine/ammo_box/b12g/flash,
+		/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 		/obj/item/storage/box/teargas
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 // One of the more useful maint piles, contains electrical components.

@@ -103,10 +103,6 @@
 		user.setClickCooldown(user.get_attack_speed(I))
 		var/obj/item/weapon/grab/G = I
 
-<<<<<<< HEAD
-		if(isliving(G.affecting))
-			var/mob/living/GM = G.affecting
-=======
 	var/obj/item/grab/G = I
 
 	if(isliving(G.affecting))
@@ -129,7 +125,6 @@
 				GM.adjustBruteLoss(5)
 		else
 			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))

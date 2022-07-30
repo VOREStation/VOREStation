@@ -118,9 +118,6 @@
 	icon_state = "render"
 	applies_material_colour = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/material/knife/table
-=======
 /obj/item/material/knife/butch
 	name = "butcher's cleaver"
 	icon_state = "butch"
@@ -129,7 +126,6 @@
 	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/material/knife/table
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "table knife"
 	icon = 'icons/obj/kitchen.dmi'
 	icon_state = "knife_table"
@@ -139,18 +135,7 @@
 /obj/item/material/knife/table/plastic
 	default_material = "plastic"
 
-<<<<<<< HEAD
-/obj/item/weapon/material/knife/butch
-	name = "butcher's cleaver"
-	icon_state = "cleaver"
-	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
-	force_divisor = 0.25 // 15 when wielded with hardness 60 (steel)
-	attack_verb = list("cleaved", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-
-/obj/item/weapon/material/knife/machete
-=======
 /obj/item/material/knife/machete
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "machete"
 	desc = "A sharp machete often found in survival kits."
 	icon_state = "machete"

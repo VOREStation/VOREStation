@@ -1,4 +1,4 @@
-/obj/item/weapon/xenobio
+/obj/item/xenobio
 	name = "xenobio gun"
 	desc = "You shouldn't see this!"
 	icon = 'icons/obj/gun_vr.dmi'
@@ -7,14 +7,14 @@
 	var/loaded_item = null
 	var/loadable_name = null
 	var/firable = TRUE
-/obj/item/weapon/xenobio/examine(var/mob/user)
+/obj/item/xenobio/examine(var/mob/user)
 	. = ..()
 	if(loaded_item)
 		.+= "A [loaded_item] is slotted into the side."
 	else
 		.+= "There appears to be an empty slot for attaching a [loadable_name]."
 
-/obj/item/weapon/xenobio/attack_hand(mob/user as mob)
+/obj/item/xenobio/attack_hand(mob/user as mob)
 	if(user.get_inactive_hand() == src && loaded_item)
 		user.put_in_hands(loaded_item)
 		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
@@ -23,12 +23,12 @@
 	else
 		return ..()
 
-/obj/item/weapon/xenobio/attackby(obj/item/I as obj, mob/user as mob)
+/obj/item/xenobio/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, loadable_item))
 		if(loaded_item)
 			to_chat(user, "<span class = 'warning'>[I] doesn't seem to fit into [src].</span>")
 			return
-		//var/obj/item/weapon/reagent_containers/glass/beaker/B = I
+		//var/obj/item/reagent_containers/glass/beaker/B = I
 		user.drop_item()
 		I.loc = src
 		loaded_item = I
@@ -36,14 +36,14 @@
 		return 1
 	..()
 
-/obj/item/weapon/xenobio/attack_self(mob/living/user as mob)
+/obj/item/xenobio/attack_self(mob/living/user as mob)
 	if(loaded_item)
 		user.put_in_hands(loaded_item)
 		user.visible_message("<span class='notice'>[user] removes [loaded_item] from [src].</span>", "<span class='notice'>You remove [loaded_item] from [src].</span>")
 		loaded_item = null
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 
-/obj/item/weapon/xenobio/afterattack(atom/A, mob/user as mob)
+/obj/item/xenobio/afterattack(atom/A, mob/user as mob)
 	if(!loaded_item)
 		to_chat(user,"<span class = 'warning'>\The [src] shot fizzles, it appears you need to load something!</span>")
 		//playsound(src, 'sound/weapons/wave.ogg', 60, 1)
@@ -63,15 +63,15 @@
 	s.set_up(4, 1, user)
 	s.start()
 
-/obj/item/weapon/xenobio/monkey_gun
+/obj/item/xenobio/monkey_gun
 	name = "Bluespace Cube Rehydrator"
 	desc = "Based on the technology of the 'Bluespace Harpoon' this device can teleport a loaded cube to a given target and rehydrate it."
-	loadable_item = /obj/item/weapon/reagent_containers/food/snacks/monkeycube
+	loadable_item = /obj/item/reagent_containers/food/snacks/monkeycube
 	loadable_name = "Monkey Cube"
 	origin_tech = list(TECH_BLUESPACE = 5, TECH_BIO = 6)
 	//projectile_type = /obj/item/projectile/beam/xenobio/monkey
 
-/obj/item/weapon/xenobio/monkey_gun/afterattack(atom/A, mob/user as mob)
+/obj/item/xenobio/monkey_gun/afterattack(atom/A, mob/user as mob)
 	..()
 
 	if(!firable)
@@ -87,7 +87,7 @@
 		playsound(src, 'sound/weapons/empty.ogg', 50, 1)
 		return
 	if(loaded_item)
-		var/obj/item/weapon/reagent_containers/food/snacks/monkeycube/cube = loaded_item
+		var/obj/item/reagent_containers/food/snacks/monkeycube/cube = loaded_item
 		cube.loc = A
 		cube.Expand()
 		loaded_item = null
@@ -95,7 +95,7 @@
 		VARSET_IN(src, firable, TRUE, 2 SECONDS)
 
 // Instead of bringing the slime to the grinder, lets bring the grinder to the slime! This will process slimes and monkies one at a time.
-/obj/item/weapon/slime_grinder
+/obj/item/slime_grinder
 	name = "portable slime processor"
 	desc = "An industrial grinder used to automate the process of slime core extraction.  It can also recycle biomatter. This one appears miniturized"
 	//icon = 'icons/obj/weapons_vr.dmi'
@@ -105,7 +105,7 @@
 	var/monkeys_recycled = 0
 	description_info = "Click a monkey or slime to begin processing."
 
-/obj/item/weapon/slime_grinder/proc/extract(var/atom/movable/AM, var/mob/living/user)
+/obj/item/slime_grinder/proc/extract(var/atom/movable/AM, var/mob/living/user)
 	processing = TRUE
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
@@ -126,13 +126,13 @@
 			monkeys_recycled++
 			sleep(1 SECOND)
 		while(monkeys_recycled >= 4)
-			new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(src))
+			new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(src))
 			playsound(src, 'sound/effects/splat.ogg', 50, 1)
 			monkeys_recycled -= 4
 			sleep(1 SECOND)
 	processing = FALSE
 
-/obj/item/weapon/slime_grinder/proc/can_insert(var/atom/movable/AM)
+/obj/item/slime_grinder/proc/can_insert(var/atom/movable/AM)
 	if(istype(AM, /mob/living/simple_mob/slime))
 		var/mob/living/simple_mob/slime/S = AM
 		if(S.stat != DEAD)
@@ -147,7 +147,7 @@
 		return TRUE
 	return FALSE
 
-/obj/item/weapon/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/slime_grinder/attack(mob/M as mob, mob/living/user as mob)
 	if(processing)
 		return
 	if(!can_insert(M))

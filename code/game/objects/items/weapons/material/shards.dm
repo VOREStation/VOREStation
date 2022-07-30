@@ -142,16 +142,8 @@
 			return
 
 // Preset types - left here for the code that uses them
-<<<<<<< HEAD
-/obj/item/weapon/material/shard/shrapnel/New(loc)
-	..(loc, "steel")
-
-/obj/item/weapon/material/shard/phoron/New(loc)
-	..(loc, "borosilicate glass")
-=======
 /obj/item/material/shard/shrapnel/Initialize(var/ml)
 	. = ..(ml, MAT_STEEL)
 
 /obj/item/material/shard/phoron/Initialize(var/ml)
 	. = ..(ml, "borosilicate glass")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

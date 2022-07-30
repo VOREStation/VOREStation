@@ -18,7 +18,7 @@
 /turf/simulated/mineral/ignore_mapgen/cave,
 /area/template_noop)
 "m" = (
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
@@ -30,16 +30,16 @@
 /area/template_noop)
 "q" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/bone,
-/obj/item/weapon/bone/skull,
+/obj/item/bone,
+/obj/item/bone/skull,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "r" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "s" = (
-/obj/item/weapon/bone/ribs,
+/obj/item/bone/ribs,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
@@ -49,21 +49,21 @@
 /area/template_noop)
 "u" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "v" = (
-/obj/item/weapon/grenade/explosive/frag,
+/obj/item/grenade/explosive/frag,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "y" = (
-/obj/item/weapon/bone,
-/obj/item/weapon/bone/ribs,
+/obj/item/bone,
+/obj/item/bone/ribs,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "A" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "C" = (
@@ -81,8 +81,8 @@
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "F" = (
-/obj/item/weapon/bone,
-/obj/item/weapon/bone/skull,
+/obj/item/bone,
+/obj/item/bone/skull,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "I" = (
@@ -93,7 +93,7 @@
 /area/template_noop)
 "J" = (
 /obj/effect/decal/cleanable/blood,
-/obj/item/weapon/bone/ribs,
+/obj/item/bone/ribs,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "K" = (
@@ -108,11 +108,11 @@
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "P" = (
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "Q" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /obj/structure/loot_pile/surface/bones,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
@@ -122,15 +122,15 @@
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "U" = (
-/obj/item/weapon/bone/ribs,
+/obj/item/bone/ribs,
 /obj/item/clothing/suit/storage/hooded/knight,
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/shoes/knight/black,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "V" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)

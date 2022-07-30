@@ -31,12 +31,8 @@
 	desc = "A banner with the symbol of the Solar Confederate Government."
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/solgov)
 
-<<<<<<< HEAD
 /* //VOREStation Removal
-/obj/item/weapon/banner/virgov
-=======
 /obj/item/banner/virgov
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\improper VirGov banner"
 	icon_state = "banner-virgov"
 	desc = "A banner with the symbol of the local government, the Vir Governmental Authority, also known as VirGov."

@@ -21,7 +21,7 @@
 /obj/item/ammo_casing/macrobattery/Destroy()
 	STOP_PROCESSING(SSobj, src)
 	. = ..()
-	
+
 /obj/item/ammo_casing/macrobattery/process()
 	ticks++
 	if(ticks%ticks_to_charge == 0)
@@ -39,12 +39,12 @@
 		BB = null
 		BB = new projectile_type
 		// TGMC Ammo HUD - Update the HUD every time we expend/fire, given the Curabitur's method of handling firing.
-		if(istype(loc, /obj/item/weapon/gun/projectile/multi_cannon))
-			var/obj/item/weapon/gun/projectile/multi_cannon = loc
+		if(istype(loc, /obj/item/gun/projectile/multi_cannon))
+			var/obj/item/gun/projectile/multi_cannon = loc
 			var/mob/living/user = multi_cannon.loc
 			if(istype(user))
 				user?.hud_used.update_ammo_hud(user, multi_cannon)
-		return 
+		return
 	else
 		BB = null
 		return null
@@ -56,12 +56,12 @@
 			BB = new projectile_type
 	if(charge >= max_charge)
 		STOP_PROCESSING(SSobj, src)
-	if(istype(loc,/obj/item/weapon/gun/projectile/multi_cannon))
-		loc.update_icon()	
-		
+	if(istype(loc,/obj/item/gun/projectile/multi_cannon))
+		loc.update_icon()
+
 	// TGMC Ammo HUD - Update the HUD every time we're called to recharge.
-	if(istype(loc, /obj/item/weapon/gun/projectile/multi_cannon))
-		var/obj/item/weapon/gun/projectile/multi_cannon = loc
+	if(istype(loc, /obj/item/gun/projectile/multi_cannon))
+		var/obj/item/gun/projectile/multi_cannon = loc
 		var/mob/living/user = multi_cannon.loc
 		if(istype(user))
 			user?.hud_used.update_ammo_hud(user, multi_cannon)
@@ -103,7 +103,7 @@
 		target.adjustBruteLoss(-20)
 		target.adjustFireLoss(-20)
 	else
-		return 1	
+		return 1
 
 /obj/item/projectile/beam/medical_cell/detox/on_hit(var/mob/living/carbon/human/target)
 	if(istype(target, /mob/living/carbon/human))

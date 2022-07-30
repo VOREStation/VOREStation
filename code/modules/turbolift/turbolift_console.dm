@@ -69,7 +69,7 @@
 
 // Hit it with a PDA or ID to enable priority call mode
 /obj/structure/lift/button/attackby(obj/item/W as obj, mob/user as mob)
-	var/obj/item/weapon/card/id/id = W.GetID()
+	var/obj/item/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
@@ -123,7 +123,7 @@
 
 // Hit it with a PDA or ID to enable priority call mode
 /obj/structure/lift/panel/attackby(obj/item/W as obj, mob/user as mob)
-	var/obj/item/weapon/card/id/id = W.GetID()
+	var/obj/item/card/id/id = W.GetID()
 	if(istype(id))
 		if(!check_access(id))
 			playsound(src, 'sound/machines/buzz-two.ogg', 50, 0)
@@ -143,7 +143,7 @@
 /obj/structure/lift/panel/interact(var/mob/user)
 	if(!..())
 		return
-	
+
 	tgui_interact(user)
 
 /obj/structure/lift/panel/tgui_interact(mob/user, datum/tgui/ui)
@@ -171,7 +171,7 @@
 			"name" = floor.name,
 		)))
 	data["floors"] = floors
-	
+
 	return data
 
 /obj/structure/lift/panel/tgui_act(action, params)

@@ -88,16 +88,6 @@
 
 /obj/item/moneybag/vault
 
-<<<<<<< HEAD
-/obj/item/weapon/moneybag/vault/New()
-	..()
-	new /obj/item/weapon/coin/silver(src)
-	new /obj/item/weapon/coin/silver(src)
-	new /obj/item/weapon/coin/silver(src)
-	new /obj/item/weapon/coin/silver(src)
-	new /obj/item/weapon/coin/gold(src)
-	new /obj/item/weapon/coin/gold(src)
-=======
 /obj/item/moneybag/vault/Initialize()
 	. = ..()
 	new /obj/item/coin/silver(src)
@@ -106,4 +96,3 @@
 	new /obj/item/coin/silver(src)
 	new /obj/item/coin/gold(src)
 	new /obj/item/coin/gold(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

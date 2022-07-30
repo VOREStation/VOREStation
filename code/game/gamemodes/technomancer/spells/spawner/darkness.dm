@@ -18,13 +18,8 @@
 		adjust_instability(4)
 		..()
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/spawner/darkness/New()
-	..()
-=======
 /obj/item/spell/spawner/darkness/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(6, -20, l_color = "#FFFFFF")
 
 /obj/effect/temporary_effect/darkness

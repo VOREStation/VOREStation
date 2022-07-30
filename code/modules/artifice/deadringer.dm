@@ -14,13 +14,8 @@
 	var/mob/living/carbon/human/watchowner = null
 
 
-<<<<<<< HEAD
-/obj/item/weapon/deadringer/New()
-	..()
-=======
 /obj/item/deadringer/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 
 /obj/item/deadringer/Destroy() //just in case some smartass tries to stay invisible by destroying the watch

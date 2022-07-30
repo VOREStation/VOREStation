@@ -13,13 +13,8 @@
 	aspect = ASPECT_EMP
 	spawner_type = /obj/effect/temporary_effect/pulse/pulsar
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/spawner/pulsar/New()
-	..()
-=======
 /obj/item/spell/spawner/pulsar/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#2ECCFA")
 
 /obj/item/spell/spawner/pulsar/on_ranged_cast(atom/hit_atom, mob/user)
@@ -44,7 +39,7 @@
 
 /obj/effect/temporary_effect/pulse/proc/pulse_loop()
 	set waitfor = FALSE
-	
+
 	while(pulses_remaining)
 		sleep(pulse_delay)
 		on_pulse()
@@ -68,10 +63,3 @@
 
 /obj/effect/temporary_effect/pulse/pulsar/on_pulse()
 	empulse(src, 1, 1, 2, 2, log = 1)
-
-
-
-
-
-
-

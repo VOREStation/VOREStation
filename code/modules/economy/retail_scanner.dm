@@ -26,12 +26,8 @@
 
 
 // Claim machine ID
-<<<<<<< HEAD
-/obj/item/device/retail_scanner/New()
-=======
 /obj/item/retail_scanner/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	machine_id = "[station_name()] RETAIL #[num_financial_terminals++]"
 	if(locate(/obj/structure/table) in loc)
 		pixel_y = 3
@@ -428,10 +424,5 @@
 /obj/item/retail_scanner/cargo
 	account_to_connect = "Cargo"
 
-<<<<<<< HEAD
-/obj/item/device/retail_scanner/civilian
-	account_to_connect = "Civilian"
-=======
 /obj/item/retail_scanner/civilian
 	account_to_connect = "Civilian"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

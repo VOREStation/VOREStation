@@ -25,8 +25,7 @@
 	usesound = 'sound/items/drill_use.ogg'
 	toolspeed = 0.5
 
-<<<<<<< HEAD
-/obj/item/weapon/tool/wrench/pipe
+/obj/item/tool/wrench/pipe
 	name = "pipe wrench"
 	desc = "A wrench used for plumbing. Can make a good makeshift weapon."
 	icon_state = "pipe_wrench"
@@ -34,10 +33,7 @@
 	force = 8
 	throwforce = 10
 
-/obj/item/weapon/tool/wrench/hybrid	// Slower and bulkier than normal power tools, but it has the power of reach. If reach even worked half the time.
-=======
 /obj/item/tool/wrench/hybrid	// Slower and bulkier than normal power tools, but it has the power of reach. If reach even worked half the time.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "strange wrench"
 	desc = "A wrench with many common uses. Can be usually found in your hand."
 	icon = 'icons/obj/tools.dmi'
@@ -92,13 +88,8 @@
 	toolspeed = 0.25
 	var/obj/item/tool/screwdriver/power/counterpart = null
 
-<<<<<<< HEAD
-/obj/item/weapon/tool/wrench/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
-=======
 /obj/item/tool/wrench/power/Initialize(var/ml, no_counterpart = TRUE)
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

@@ -11,7 +11,7 @@
 
 	var/list/decals
 	var/list/available_decals = list(
-		"Stripe" = "stripe", 
+		"Stripe" = "stripe",
 		"Vertical Stripe" = "stripe_vertical"
 	)
 
@@ -31,7 +31,7 @@
 	var/new_pupil_color = input(usr, "Select a pupil colour.", "Pupil Colour Selection") as color|null
 	if(usr.incapacitated() || QDELETED(usr) || QDELETED(src) || loc != usr)
 		return
-	
+
 	pupil_color = new_pupil_color || initial(pupil_color)
 	usr.update_icon()
 
@@ -47,16 +47,6 @@
 		"Explorer" = 1
 	)
 
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/platform/explorer/New()
-	..()
-	modules += new /obj/item/weapon/tool/wrench/cyborg(src)
-	modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
-	modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
-	modules += new /obj/item/weapon/pickaxe/plasmacutter(src)
-	modules += new /obj/item/weapon/material/knife/machete/cyborg(src)
-=======
 /obj/item/robot_module/robot/platform/explorer/Initialize()
 
 	. = ..()
@@ -69,7 +59,6 @@
 	modules += new /obj/item/tool/screwdriver/cyborg(src)
 	modules += new /obj/item/pickaxe/plasmacutter(src)
 	modules += new /obj/item/material/knife/machete/cyborg(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(7500)
 	var/obj/item/stack/medical/bruise_pack/bandaid = new(src)
@@ -79,7 +68,7 @@
 	modules += bandaid
 	synths += medicine
 
-	var/obj/item/gun/energy/phasegun/mounted/cyborg/phasegun = new(src) 
+	var/obj/item/gun/energy/phasegun/mounted/cyborg/phasegun = new(src)
 	modules += phasegun
 
 	emag = new /obj/item/chainsaw(src)
@@ -103,14 +92,6 @@
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
 
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/platform/cargo/New()
-	..()
-	modules += new /obj/item/weapon/packageWrap(src)
-	modules += new /obj/item/weapon/pen/multi(src)
-	modules += new /obj/item/device/destTagger(src)
-	emag = new /obj/item/weapon/stamp/denied
-=======
 /obj/item/robot_module/robot/platform/cargo/Initialize()
 
 	. = ..()
@@ -121,7 +102,6 @@
 	modules += new /obj/item/pen/multi(src)
 	modules += new /obj/item/destTagger(src)
 	emag = new /obj/item/stamp/denied
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/robot_module/robot/platform/cargo/respawn_consumable(mob/living/silicon/robot/R, rate)
 	. = ..()

@@ -100,12 +100,8 @@
 	safe_blink(AM, 14)
 	qdel(src)
 
-<<<<<<< HEAD
 
-/obj/item/weapon/disposable_teleporter/slime
-=======
 /obj/item/disposable_teleporter/slime
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "greater slime crystal"
 	desc = "A larger, gooier crystal."
 	description_info = "This will teleport you to a specific area once, when used in-hand."
@@ -133,7 +129,7 @@
 
 //Flashlight
 
-/obj/item/device/flashlight/slime
+/obj/item/flashlight/slime
 	gender = PLURAL
 	name = "glowing slime extract"
 	desc = "A slimy ball that appears to be glowing from bioluminesence."
@@ -146,14 +142,14 @@
 	on = 1 //Bio-luminesence has one setting, on.
 	power_use = 0
 
-/obj/item/device/flashlight/slime/New()
+/obj/item/flashlight/slime/New()
 	..()
 	set_light(light_range, light_power, light_color)
 
-/obj/item/device/flashlight/slime/update_brightness()
+/obj/item/flashlight/slime/update_brightness()
 	return
 
-/obj/item/device/flashlight/slime/attack_self(mob/user)
+/obj/item/flashlight/slime/attack_self(mob/user)
 	return //Bio-luminescence does not toggle.
 
 
@@ -183,7 +179,7 @@
 
 
 //BS Pouch
-/obj/item/weapon/storage/backpack/holding/slime
+/obj/item/storage/backpack/holding/slime
 	name = "bluespace slime pouch"
 	desc = "A slimy pouch that opens into a localized pocket of bluespace."
 	icon_state = "slimepouch"

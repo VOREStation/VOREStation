@@ -1071,8 +1071,6 @@ var/global/list/common_tools = list(
 		istype(W, /obj/item/shovel) \
 	)
 
-<<<<<<< HEAD
-=======
 /proc/is_surgery_tool(obj/item/W as obj)
 	return (	\
 	istype(W, /obj/item/surgical/scalpel)			||	\
@@ -1083,7 +1081,6 @@ var/global/list/common_tools = list(
 	istype(W, /obj/item/surgical/bonesetter)
 	)
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 // check if mob is lying down on something we can operate him on.
 // The RNG with table/rollerbeds comes into play in do_surgery() so that fail_step() can be used instead.
 /proc/can_operate(mob/living/carbon/M, mob/living/user)
@@ -1191,7 +1188,7 @@ var/mob/dview/dview_mob = new
 		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
-	
+
 	dview_mob.see_invisible = invis_flags
 
 	. = view(range, dview_mob)
@@ -1510,7 +1507,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	. += new /obj/screen/plane_master/lighting							//Lighting system (but different!)
 	. += new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
 	. += new /obj/screen/plane_master/emissive							//Emissive overlays
-	
+
 	. += new /obj/screen/plane_master/ghosts							//Ghosts!
 	. += new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 

@@ -8,11 +8,7 @@
 	sharp = TRUE
 	var/datum/geosample/geological_data
 
-<<<<<<< HEAD
-/obj/item/weapon/rocksliver/New()
-=======
 /obj/item/rocksliver/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "sliver[rand(1, 3)]"
 	randpixel_xy()
 

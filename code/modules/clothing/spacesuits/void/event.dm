@@ -147,7 +147,7 @@
 
 //Officer Crewsuit (GOLD, X)
 //The best of the bunch - at the time, this would have been almost cutting edge
-//Now it's good, but it's badly outclassed by the hot shit that the TSCs and such can get 
+//Now it's good, but it's badly outclassed by the hot shit that the TSCs and such can get
 /obj/item/clothing/head/helmet/space/void/refurb/officer
 	name = "vintage officer's voidsuit helmet"
 	desc = "A refurbished early contact era voidsuit helmet of human design. These things aren't especially good against modern weapons but they're sturdy, incredibly easy to come by, and there are lots of spare parts for repairs. The visor has a bad habit of fogging up and collecting condensation, but it beats sucking hard vacuum. This variant appears to be an officer's, and has the best protection of all the old models."
@@ -214,7 +214,7 @@
 			/obj/item/gps,
 			/obj/item/radio/beacon,
 			)
-			
+
 //Scientist Crewsuit (PURPLE, O)
 //Baseline values are slightly worse than the gray crewsuit, but it has significantly better Energy protection and is the only other suit with 100% rad immunity besides the engi suit
 /obj/item/clothing/head/helmet/space/void/refurb/research
@@ -276,12 +276,12 @@
 	icon_state = "rig-vintageminer"
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
-	allowed = list(/obj/item/device/flashlight,
+	allowed = list(/obj/item/flashlight,
 			/obj/item/weapon/tank,
-			/obj/item/device/suit_cooling_unit,
+			/obj/item/suit_cooling_unit,
 			/obj/item/weapon/storage/briefcase/inflatable,
-			/obj/item/device/gps,
-			/obj/item/device/radio/beacon,
+			/obj/item/gps,
+			/obj/item/radio/beacon,
 			/obj/item/weapon/pickaxe,
 			/obj/item/weapon/shovel
 			)
@@ -320,16 +320,8 @@
 			/obj/item/holowarrant,
 			/obj/item/megaphone,
 			/obj/item/ammo_magazine,
-<<<<<<< HEAD
-			/obj/item/device/spaceflare,
-			/obj/item/device/powersink,
-			/obj/item/device/radio_jammer,
-			/obj/item/weapon/cell
-			)
-=======
 			/obj/item/spaceflare,
 			/obj/item/powersink,
 			/obj/item/radio_jammer,
-			/obj/item/cell
+			/obj/item/weapon/cell
 			)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

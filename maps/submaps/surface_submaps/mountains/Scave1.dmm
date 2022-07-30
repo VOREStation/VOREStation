@@ -5,11 +5,7 @@
 "e" = (/obj/effect/spider/spiderling/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "f" = (/obj/item/spacecash/c100,/obj/item/spacecash/c100,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "g" = (/obj/random/mob/spider/mutant,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-<<<<<<< HEAD
-"h" = (/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/item/weapon/spacecash/c100,/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-=======
 "h" = (/obj/item/spacecash/c100,/obj/item/spacecash/c100,/obj/item/spacecash/c100,/obj/effect/decal/remains,/obj/random/thermalponcho,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "i" = (/obj/random/mob/spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "j" = (/obj/item/grenade/spawnergrenade/spider,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "k" = (/obj/random/toolbox,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
@@ -18,9 +14,6 @@
 "n" = (/obj/item/flashlight,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "o" = (/mob/living/simple_mob/animal/giant_spider/frost,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "p" = (/obj/effect/spider/stickyweb,/obj/effect/spider/stickyweb,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-<<<<<<< HEAD
-"q" = (/obj/effect/decal/remains,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
-=======
 "q" = (/obj/effect/decal/remains/deer,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "r" = (/obj/random/gun/random/anomalous,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "s" = (/obj/effect/decal/remains/ribcage,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
@@ -33,7 +26,6 @@
 "W" = (/obj/effect/decal/remains/tajaran,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "X" = (/obj/effect/decal/remains/mouse,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
 "Y" = (/obj/random/tool/power,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/Scave1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

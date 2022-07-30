@@ -77,5 +77,5 @@
 
 /datum/gear/utility/walkpod
 	display_name = "podzu music player"
-	path = /obj/item/device/walkpod
+	path = /obj/item/walkpod
 	cost = 2

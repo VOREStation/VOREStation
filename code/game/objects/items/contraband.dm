@@ -2,13 +2,8 @@
 //
 // Includes drug powder.
 //
-<<<<<<< HEAD
-// Illicit drugs~
-/obj/item/weapon/storage/pill_bottle/happy
-=======
 //Illicit drugs~
 /obj/item/storage/pill_bottle/happy
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "bottle of Happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
 	wrapper_color = COLOR_PINK
@@ -47,18 +42,11 @@
 	desc = "Contains [english_list(names)]."
 	update_icon()
 
-<<<<<<< HEAD
-//
-// Drug Powder
-//
-/obj/item/weapon/reagent_containers/powder
-=======
 /*/////////////////////////////////////
 // 			DRUG POWDER				//
-////////////////////////////////////// 
+//////////////////////////////////////
 */
 /obj/item/reagent_containers/powder
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "powder"
 	desc = "A powdered form of... something."
 	icon = 'icons/obj/chemical.dmi'
@@ -79,13 +67,8 @@
 	..()
 	get_appearance()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/powder/proc/get_appearance()
-	/// Names and colors based on dominant reagent.
-=======
 /obj/item/reagent_containers/powder/proc/get_appearance()
-	/// Names and colors based on dominant reagent. 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	/// Names and colors based on dominant reagent.
 	if (reagents.reagent_list.len > 0)
 		color = reagents.get_color()
 		var/datum/reagent/R = reagents.get_master_reagent()

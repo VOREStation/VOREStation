@@ -86,15 +86,15 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "ju" = (
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "kg" = (
-/obj/item/weapon/bone/skull/unathi,
+/obj/item/bone/skull/unathi,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "kk" = (
@@ -123,7 +123,7 @@
 /area/submap/GreatWolfDen)
 "lQ" = (
 /obj/effect/decal/cleanable/filth,
-/obj/item/weapon/card/emag_broken,
+/obj/item/card/emag_broken,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "mk" = (
@@ -204,11 +204,11 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "vu" = (
-/obj/item/weapon/bone/skull/tajaran,
+/obj/item/bone/skull/tajaran,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "wc" = (
-/obj/item/weapon/bone/skull/unathi,
+/obj/item/bone/skull/unathi,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
@@ -511,7 +511,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "Rb" = (
-/obj/item/weapon/bone/leg,
+/obj/item/bone/leg,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
@@ -522,7 +522,7 @@
 /obj/structure/flora/sif/subterranean{
 	icon_state = "frostbelle"
 	},
-/obj/item/weapon/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "Rj" = (
@@ -538,7 +538,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "SO" = (
-/obj/item/weapon/telecube/mated,
+/obj/item/telecube/mated,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
 "SQ" = (
@@ -548,10 +548,10 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/template_noop)
 "Tf" = (
-/obj/item/weapon/paper/card/heart{
+/obj/item/paper/card/heart{
 	desc = "A gift card with a heart on the cover. This appears to be a thank-you to the.. wolves??"
 	},
-/obj/item/weapon/paper/crumpled{
+/obj/item/paper/crumpled{
 	icon_state = "scrap_bloodied";
 	info = "The wolves dragged me back to their den when they found me incapacitated, and nursed me back to health, instead of eating me. I don't know why. Anyway, they're a bunch of goodboyes. Don't let the bones strewn about their den frighten you. Just be nice to them and they won't hurt you.";
 	name = "survivor's note"
@@ -581,7 +581,7 @@
 /area/submap/GreatWolfDen)
 "WH" = (
 /obj/structure/loot_pile/surface/bones,
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /obj/random/projectile/scrapped_gun,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)
@@ -605,7 +605,7 @@
 /turf/simulated/floor/outdoors/snow/virgo3b,
 /area/submap/GreatWolfDen)
 "Xy" = (
-/obj/item/weapon/bone/ribs,
+/obj/item/bone/ribs,
 /obj/effect/landmark/loot_spawn/low,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/GreatWolfDen)

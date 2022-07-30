@@ -128,18 +128,10 @@
 				set_flooring(use_flooring)
 				playsound(src, 'sound/items/Deconstruct.ogg', 80, 1)
 				return
-<<<<<<< HEAD
-		// Plating repairs and removal
-		else if(istype(C, /obj/item/weapon/weldingtool))
-			var/obj/item/weapon/weldingtool/welder = C
-			if(welder.isOn())
-				// Needs repairs
-=======
 		// Repairs.
 		else if(istype(C, /obj/item/weldingtool))
 			var/obj/item/weldingtool/welder = C
 			if(welder.isOn() && (is_plating()))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				if(broken || burnt)
 					if(welder.remove_fuel(0,user))
 						to_chat(user, "<span class='notice'>You fix some dents on the broken plating.</span>")

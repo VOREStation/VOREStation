@@ -3,7 +3,7 @@
 	uniform = /obj/item/clothing/under/solgov/utility/army/urban
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	gloves = /obj/item/clothing/gloves/combat
-	l_ear = /obj/item/device/radio/headset/centcom
+	l_ear = /obj/item/radio/headset/centcom
 	r_pocket = /obj/item/ammo_magazine/m95
 	l_pocket = /obj/item/ammo_magazine/m95
 	l_hand = /obj/item/ammo_magazine/m95
@@ -29,7 +29,7 @@
 	name = "USDF officer"
 	head = /obj/item/clothing/head/dress/army/command
 	shoes = /obj/item/clothing/shoes/boots/jackboots
-	l_ear = /obj/item/device/radio/headset/centcom
+	l_ear = /obj/item/radio/headset/centcom
 	uniform = /obj/item/clothing/under/solgov/mildress/army/command
 	back = /obj/item/weapon/storage/backpack/satchel
 	belt = /obj/item/weapon/gun/projectile/revolver/consul
@@ -51,12 +51,12 @@
 /decl/hierarchy/outfit/solcom/representative
 	name = "SolCom Representative"
 	shoes = /obj/item/clothing/shoes/laceup
-	l_ear = /obj/item/device/radio/headset/centcom
+	l_ear = /obj/item/radio/headset/centcom
 	uniform = /obj/item/clothing/under/suit_jacket/navy
 	back = /obj/item/weapon/storage/backpack/satchel
 	l_pocket = /obj/item/weapon/pen/blue
 	r_pocket = /obj/item/weapon/pen/red
-	r_hand = /obj/item/device/pda/centcom
+	r_hand = /obj/item/pda/centcom
 	l_hand = /obj/item/weapon/clipboard
 
 /decl/hierarchy/outfit/solcom/representative/equip_id(mob/living/carbon/human/H)
@@ -74,7 +74,7 @@
 	head = /obj/item/clothing/head/helmet/combat/imperial
 	shoes =/obj/item/clothing/shoes/leg_guard/combat/imperial
 	gloves = /obj/item/clothing/gloves/arm_guard/combat/imperial
-	l_ear = /obj/item/device/radio/headset/syndicate
+	l_ear = /obj/item/radio/headset/syndicate
 	uniform = /obj/item/clothing/under/imperial
 	mask = /obj/item/clothing/mask/gas/imperial
 	suit = /obj/item/clothing/suit/armor/combat/imperial
@@ -91,7 +91,7 @@
 	head = /obj/item/clothing/head/helmet/combat/imperial/centurion
 	shoes = /obj/item/clothing/shoes/leg_guard/combat/imperial
 	gloves = /obj/item/clothing/gloves/arm_guard/combat/imperial
-	l_ear = /obj/item/device/radio/headset/syndicate
+	l_ear = /obj/item/radio/headset/syndicate
 	uniform = /obj/item/clothing/under/imperial
 	mask = /obj/item/clothing/mask/gas/imperial
 	suit = /obj/item/clothing/suit/armor/combat/imperial/centurion
@@ -112,10 +112,10 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	name = OUTFIT_JOB_NAME("Explorer")
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	uniform = /obj/item/clothing/under/explorer
-	l_ear = /obj/item/device/radio/headset/explorer
+	l_ear = /obj/item/radio/headset/explorer
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
-	pda_type = /obj/item/device/pda/explorer
+	pda_type = /obj/item/pda/explorer
 	id_type = /obj/item/weapon/card/id/exploration
 	id_pda_assignment = "Explorer"
 	backpack = /obj/item/weapon/storage/backpack/explorer
@@ -130,11 +130,11 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	suit = /obj/item/clothing/suit/storage/toggle/bomber/pilot
 	gloves = /obj/item/clothing/gloves/fingerless
 	glasses = /obj/item/clothing/glasses/fakesunglasses/aviator
-	l_ear = /obj/item/device/radio/headset/pilot/alt
+	l_ear = /obj/item/radio/headset/pilot/alt
 	uniform_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1 = 1)
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
-	pda_type = /obj/item/device/pda/pilot
+	pda_type = /obj/item/pda/pilot
 	id_type = /obj/item/weapon/card/id/civilian/pilot
 	id_pda_assignment = "Pilot"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
@@ -144,11 +144,11 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	uniform = /obj/item/clothing/under/utility/blue
 	//suit = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
-	l_ear = /obj/item/device/radio/headset/sar
+	l_ear = /obj/item/radio/headset/sar
 	l_hand = /obj/item/weapon/storage/firstaid/regular
 	belt = /obj/item/weapon/storage/belt/medical/emt
 	pda_slot = slot_l_store
-	pda_type = /obj/item/device/pda/sar
+	pda_type = /obj/item/pda/sar
 	id_type = /obj/item/weapon/card/id/exploration/fm
 	id_pda_assignment = "Field Medic"
 	backpack = /obj/item/weapon/storage/backpack/explorer
@@ -160,10 +160,10 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	name = OUTFIT_JOB_NAME("Pathfinder")
 	shoes = /obj/item/clothing/shoes/boots/winter/explorer
 	uniform = /obj/item/clothing/under/explorer //TODO: Uniforms.
-	l_ear = /obj/item/device/radio/headset/pathfinder
+	l_ear = /obj/item/radio/headset/pathfinder
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
-	pda_type = /obj/item/device/pda/pathfinder
+	pda_type = /obj/item/pda/pathfinder
 	id_type = /obj/item/weapon/card/id/exploration/head
 	id_pda_assignment = "Pathfinder"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL

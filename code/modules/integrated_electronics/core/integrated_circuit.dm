@@ -52,15 +52,6 @@ a creative player the means to solve many problems.  Circuits are held inside an
 		qdel(A)
 	. = ..()
 
-<<<<<<< HEAD
-=======
-/obj/item/integrated_circuit/nano_host()
-	if(istype(src.loc, /obj/item/electronic_assembly))
-		var/obj/item/electronic_assembly/assembly = loc
-		return assembly.resolve_nano_host()
-	return ..()
-
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /obj/item/integrated_circuit/emp_act(severity)
 	for(var/datum/integrated_io/io in inputs + outputs + activators)
 		io.scramble()
@@ -86,7 +77,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	return GLOB.tgui_physical_state
 
 /obj/item/integrated_circuit/tgui_host(mob/user)
-	if(istype(loc, /obj/item/device/electronic_assembly))
+	if(istype(loc, /obj/item/electronic_assembly))
 		return loc.tgui_host()
 	return ..()
 
@@ -164,14 +155,7 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	if(..())
 		return TRUE
 
-<<<<<<< HEAD
 	var/datum/integrated_io/pin = locate(params["pin"]) in inputs + outputs + activators
-=======
-	var/update = 1
-	var/obj/item/electronic_assembly/A = src.assembly
-	var/update_to_assembly = 0
-	var/datum/integrated_io/pin = locate(href_list["pin"]) in inputs + outputs + activators
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/datum/integrated_io/linked = null
 
 	if(params["link"])
@@ -179,121 +163,15 @@ a creative player the means to solve many problems.  Circuits are held inside an
 
 	var/obj/held_item = usr.get_active_hand()
 
-<<<<<<< HEAD
 	. = TRUE
 	switch(action)
 		if("rename")
 			rename_component(usr)
 			return
-=======
-	if(href_list["rename"])
-		rename_component(usr)
-		if(href_list["from_assembly"])
-			update = 0
-			var/obj/item/electronic_assembly/ea = loc
-			if(istype(ea))
-				ea.interact(usr)
-
-	if(href_list["pin_name"])
-		if (!istype(held_item, /obj/item/multitool) || !allow_multitool)
-			href_list["wire"] = 1
-		else
-			var/obj/item/multitool/M = held_item
-			M.wire(pin,usr)
-
-
-
-	if(href_list["pin_data"])
-		if (!istype(held_item, /obj/item/multitool) || !allow_multitool)
-			href_list["wire"] = 1
-
-		else
-			var/datum/integrated_io/io = pin
-			io.ask_for_pin_data(usr, held_item) // The pins themselves will determine how to ask for data, and will validate the data.
-			/*
-			if(io.io_type == DATA_CHANNEL)
-
-				var/type_to_use = input("Please choose a type to use.","[src] type setting") as null|anything in list("string","number", "null")
-				if(!check_interactivity(usr))
-					return
-
-				var/new_data = null
-				switch(type_to_use)
-					if("string")
-						new_data = input("Now type in a string.","[src] string writing") as null|text
-						to_chat(usr, "<span class='notice'>You input [new_data] into the pin.</span>")
-							//to_chat(user, "<span class='notice'>You write '[new_data]' to the '[io]' pin of \the [io.holder].</span>")
-					if("number")
-						new_data = input("Now type in a number.","[src] number writing") as null|num
-						if(isnum(new_data) && check_interactivity(usr) )
-							to_chat(usr, "<span class='notice'>You input [new_data] into the pin.</span>")
-					if("null")
-						if(check_interactivity(usr))
-							to_chat(usr, "<span class='notice'>You clear the pin's memory.</span>")
-
-				io.write_data_to_pin(new_data)
-
-			else if(io.io_type == PULSE_CHANNEL)
-				io.holder.check_then_do_work(ignore_power = TRUE)
-				to_chat(usr, "<span class='notice'>You pulse \the [io.holder]'s [io] pin.</span>")
-			*/
-
-
-	if(href_list["pin_unwire"])
-		if (!istype(held_item, /obj/item/multitool) || !allow_multitool)
-			href_list["wire"] = 1
-		else
-			var/obj/item/multitool/M = held_item
-			M.unwire(pin, linked, usr)
-
-	if(href_list["wire"])
-		if(istype(held_item, /obj/item/integrated_electronics/wirer))
-			var/obj/item/integrated_electronics/wirer/wirer = held_item
-			if(linked)
-				wirer.wire(linked, usr)
-			else if(pin)
-				wirer.wire(pin, usr)
-
-		else if(istype(held_item, /obj/item/integrated_electronics/debugger))
-			var/obj/item/integrated_electronics/debugger/debugger = held_item
-			if(pin)
-				debugger.write_data(pin, usr)
-		else
-			to_chat(usr, "<span class='warning'>You can't do a whole lot without the proper tools.</span>")
-
-	if(href_list["examine"])
-		var/obj/item/integrated_circuit/examined
-		if(href_list["examined"])
-			examined = href_list["examined"]
-		else
-			examined = src
-		examined.interact(usr)
-		update = 0
-
-	if(href_list["bottom"])
-		var/obj/item/integrated_circuit/circuit = locate(href_list["bottom"]) in src.assembly.contents
-		var/assy = circuit.assembly
-		if(!circuit)
-			return
-		circuit.loc = null
-		circuit.loc = assy
-		. = 1
-		update_to_assembly = 1
-
-	if(href_list["scan"])
-		if(istype(held_item, /obj/item/integrated_electronics/debugger))
-			var/obj/item/integrated_electronics/debugger/D = held_item
-			if(D.accepting_refs)
-				D.afterattack(src, usr, TRUE)
-			else
-				to_chat(usr, "<span class='warning'>The Debugger's 'ref scanner' needs to be on.</span>")
-		else
-			to_chat(usr, "<span class='warning'>You need a multitool/debugger set to 'ref' mode to do that.</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		if("wire", "pin_name", "pin_data", "pin_unwire")
-			if(istype(held_item, /obj/item/device/multitool) && allow_multitool)
-				var/obj/item/device/multitool/M = held_item
+			if(istype(held_item, /obj/item/multitool) && allow_multitool)
+				var/obj/item/multitool/M = held_item
 				switch(action)
 					if("pin_name")
 						M.wire(pin, usr)
@@ -303,15 +181,15 @@ a creative player the means to solve many problems.  Circuits are held inside an
 					if("pin_unwire")
 						M.unwire(pin, linked, usr)
 
-			else if(istype(held_item, /obj/item/device/integrated_electronics/wirer))
-				var/obj/item/device/integrated_electronics/wirer/wirer = held_item
+			else if(istype(held_item, /obj/item/integrated_electronics/wirer))
+				var/obj/item/integrated_electronics/wirer/wirer = held_item
 				if(linked)
 					wirer.wire(linked, usr)
 				else if(pin)
 					wirer.wire(pin, usr)
 
-			else if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-				var/obj/item/device/integrated_electronics/debugger/debugger = held_item
+			else if(istype(held_item, /obj/item/integrated_electronics/debugger))
+				var/obj/item/integrated_electronics/debugger/debugger = held_item
 				if(pin)
 					debugger.write_data(pin, usr)
 			else
@@ -319,8 +197,8 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			return
 
 		if("scan")
-			if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-				var/obj/item/device/integrated_electronics/debugger/D = held_item
+			if(istype(held_item, /obj/item/integrated_electronics/debugger))
+				var/obj/item/integrated_electronics/debugger/D = held_item
 				if(D.accepting_refs)
 					D.afterattack(src, usr, TRUE)
 				else
@@ -328,22 +206,6 @@ a creative player the means to solve many problems.  Circuits are held inside an
 			else
 				to_chat(usr, "<span class='warning'>You need a multitool/debugger set to 'ref' mode to do that.</span>")
 			return
-<<<<<<< HEAD
-=======
-		var/obj/item/electronic_assembly/ea = loc
-		power_fail()
-		disconnect_all()
-		var/turf/T = get_turf(src)
-		forceMove(T)
-		assembly = null
-		playsound(T, 'sound/items/Crowbar.ogg', 50, 1)
-		to_chat(usr, "<span class='notice'>You pop \the [src] out of the case, and slide it out.</span>")
-
-		if(istype(ea))
-			ea.interact(usr)
-		update = 0
-		return
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 
 		if("examine")
@@ -360,14 +222,14 @@ a creative player the means to solve many problems.  Circuits are held inside an
 	return FALSE
 
 /obj/item/integrated_circuit/proc/remove(mob/user)
-	var/obj/item/device/electronic_assembly/A = assembly
+	var/obj/item/electronic_assembly/A = assembly
 	if(!A)
 		to_chat(user, "<span class='warning'>This circuit is not in an assembly!</span>")
 		return
 	if(!removable)
 		to_chat(user, "<span class='warning'>\The [src] seems to be permanently attached to the case.</span>")
 		return
-	var/obj/item/device/electronic_assembly/ea = loc
+	var/obj/item/electronic_assembly/ea = loc
 
 	power_fail()
 	disconnect_all()

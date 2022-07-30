@@ -1281,8 +1281,8 @@
 "ja" = (
 /obj/structure/catwalk,
 /obj/structure/table/rack/steel,
-/obj/item/weapon/tool/crowbar/red,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/crowbar/red,
+/obj/item/tool/wrench,
 /turf/simulated/shuttle/plating/airless,
 /area/tether_away/fueldepot)
 "om" = (
@@ -1366,12 +1366,12 @@
 /area/tether_away/fueldepot)
 "OG" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "Qg" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled/techmaint/airless,
 /area/tether_away/fueldepot)
 "QY" = (

@@ -173,19 +173,11 @@
 /obj/machinery/atmospherics/unary/engine/RefreshParts()
 	..()
 	//allows them to upgrade the max limit of fuel intake (which only gives diminishing returns) for increase in max thrust but massive reduction in fuel economy
-<<<<<<< HEAD
-	var/bin_upgrade = 5 * CLAMP(total_component_rating_of_type(/obj/item/weapon/stock_parts/matter_bin), 0, 6)//5 litre per rank
-	volume_per_burn = bin_upgrade ? initial(volume_per_burn) + bin_upgrade : 2 //Penalty missing part: 10% fuel use, no thrust
-	boot_time = bin_upgrade ? initial(boot_time) - bin_upgrade : initial(boot_time) * 2
-	//energy cost - thb all of this is to limit the use of back up batteries
-	var/energy_upgrade = CLAMP(total_component_rating_of_type(/obj/item/weapon/stock_parts/capacitor), 0.1, 6)
-=======
 	var/bin_upgrade = 5 * clamp(total_component_rating_of_type(/obj/item/stock_parts/matter_bin), 0, 6)//5 litre per rank
 	volume_per_burn = bin_upgrade ? initial(volume_per_burn) + bin_upgrade : 2 //Penalty missing part: 10% fuel use, no thrust
 	boot_time = bin_upgrade ? initial(boot_time) - bin_upgrade : initial(boot_time) * 2
 	//energy cost - thb all of this is to limit the use of back up batteries
 	var/energy_upgrade = clamp(total_component_rating_of_type(/obj/item/stock_parts/capacitor), 0.1, 6)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	charge_per_burn = initial(charge_per_burn) / energy_upgrade
 	change_power_consumption(initial(idle_power_usage) / energy_upgrade, USE_POWER_IDLE)
 

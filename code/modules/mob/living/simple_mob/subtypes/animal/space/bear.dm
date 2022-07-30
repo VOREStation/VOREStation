@@ -22,12 +22,8 @@
 	melee_attack_delay = 1 SECOND
 	attacktext = list("mauled")
 
-<<<<<<< HEAD
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/bearmeat
-	meat_amount = 8
-=======
 	meat_type = /obj/item/reagent_containers/food/snacks/bearmeat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	meat_amount = 8
 
 	say_list_type = /datum/say_list/bear
 

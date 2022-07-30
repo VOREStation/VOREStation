@@ -14,13 +14,8 @@
 	cast_methods = CAST_USE
 	aspect = ASPECT_UNSTABLE
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/instability_tap/New()
-	..()
-=======
 /obj/item/spell/instability_tap/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#FA58F4")
 
 /obj/item/spell/instability_tap/on_use_cast(mob/user)

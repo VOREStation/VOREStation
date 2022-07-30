@@ -1,12 +1,8 @@
 /*
  * Crowbar
  */
-<<<<<<< HEAD
-/obj/item/weapon/tool/crowbar
-=======
 
 /obj/item/tool/crowbar
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "crowbar"
 	desc = "Used to remove floors and to pry open doors."
 	icon = 'icons/obj/tools.dmi'
@@ -88,13 +84,8 @@
 	toolspeed = 0.25
 	var/obj/item/tool/wirecutters/power/counterpart = null
 
-<<<<<<< HEAD
-/obj/item/weapon/tool/crowbar/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
-=======
 /obj/item/tool/crowbar/power/Initialize(var/ml, no_counterpart = TRUE)
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

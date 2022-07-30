@@ -14,13 +14,8 @@
 	pass_flags = PASSTABLE
 	braintype = "Drone"
 	lawupdate = 0
-<<<<<<< HEAD
 	density = TRUE
-	idcard_type = /obj/item/weapon/card/id/syndicate
-=======
-	density = 1
 	idcard_type = /obj/item/card/id/syndicate
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	req_access = list(999)
 	integrated_light_power = 3
 	local_transmit = 0
@@ -116,4 +111,3 @@
 		/spell/aoe_turf/conjure/forcewall/swarm,
 		/spell/aoe_turf/blink/swarm
 		)
-

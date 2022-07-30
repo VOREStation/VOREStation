@@ -42,10 +42,10 @@
 /area/submap/debrisfield/misc_debris)
 "ak" = (
 /obj/structure/closet/crate/secure/engineering,
-/obj/item/weapon/tool/screwdriver/power,
-/obj/item/weapon/tool/crowbar/power,
-/obj/item/weapon/tool/screwdriver/power,
-/obj/item/weapon/tool/crowbar/power,
+/obj/item/tool/screwdriver/power,
+/obj/item/tool/crowbar/power,
+/obj/item/tool/screwdriver/power,
+/obj/item/tool/crowbar/power,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
@@ -78,17 +78,17 @@
 "ar" = (
 /obj/structure/lattice,
 /obj/item/stack/material/steel,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/submap/debrisfield/misc_debris)
 "as" = (
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
 "at" = (
 /obj/structure/lattice,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/submap/debrisfield/misc_debris)
 "au" = (
@@ -97,20 +97,20 @@
 /turf/template_noop,
 /area/submap/debrisfield/misc_debris)
 "av" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/submap/debrisfield/misc_debris)
 "aw" = (
 /obj/structure/lattice,
 /obj/effect/decal/cleanable/molten_item,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/submap/debrisfield/misc_debris)
 "ax" = (
 /obj/structure/closet/crate/secure/engineering,
-/obj/item/weapon/weldingtool/experimental,
-/obj/item/weapon/weldingtool/electric,
-/obj/item/weapon/weldingtool/electric,
+/obj/item/weldingtool/experimental,
+/obj/item/weldingtool/electric,
+/obj/item/weldingtool/electric,
 /turf/template_noop,
 /area/submap/debrisfield/misc_debris)
 "ay" = (
@@ -145,12 +145,12 @@
 /area/submap/debrisfield/misc_debris)
 "aF" = (
 /obj/structure/grille,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)
 "aG" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/shuttle/plating/airless,
 /area/submap/debrisfield/misc_debris)

@@ -209,13 +209,9 @@
 	user.s_active = src
 	LAZYDISTINCTADD(is_seeing,user)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/proc/hide_from(mob/user as mob)
+/obj/item/storage/proc/hide_from(mob/user as mob)
 	var/client/C = user.client
 	LAZYREMOVE(is_seeing,user)
-=======
-/obj/item/storage/proc/hide_from(mob/user as mob)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	if(!C)
 		if(!LAZYLEN(is_seeing))
@@ -332,8 +328,7 @@
 	src.closer.screen_loc = "[4+cols+1]:16,2:16"
 	return
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
+/obj/item/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
 	SHOULD_NOT_SLEEP(TRUE)
 
 	/// A prototype for drawing the leftmost border behind each item in storage
@@ -348,9 +343,6 @@
 		stored_start = mutable_appearance(icon = 'icons/mob/screen1.dmi', icon_state = "stored_start", layer = 0.1, plane = PLANE_PLAYER_HUD_ITEMS)
 		stored_continue = mutable_appearance(icon = 'icons/mob/screen1.dmi', icon_state = "stored_continue", layer = 0.1, plane = PLANE_PLAYER_HUD_ITEMS)
 		stored_end = mutable_appearance(icon = 'icons/mob/screen1.dmi', icon_state = "stored_end", layer = 0.1, plane = PLANE_PLAYER_HUD_ITEMS)
-=======
-/obj/item/storage/proc/space_orient_objs(var/list/obj/item/display_contents)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/baseline_max_storage_space = INVENTORY_STANDARD_SPACE / 2 //should be equal to default backpack capacity // This is a lie.
 	// Above var is misleading, what it does upon changing is makes smaller inventory sizes have smaller space on the UI.
@@ -529,16 +521,11 @@
 /obj/item/storage/proc/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
 
-<<<<<<< HEAD
 	if(!stall_removal(W, usr)) // Can sleep here and delay removal for slow storage
 		return 0
 
-	if(istype(src, /obj/item/weapon/storage/fancy))
-		var/obj/item/weapon/storage/fancy/F = src
-=======
 	if(istype(src, /obj/item/storage/fancy))
 		var/obj/item/storage/fancy/F = src
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		F.update_icon(1)
 
 	for(var/mob/M in is_seeing)
@@ -620,13 +607,8 @@
 /obj/item/storage/dropped(mob/user as mob)
 	return
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/attack_hand(mob/user as mob)
-	if(ishuman(user) && !pocketable)
-=======
 /obj/item/storage/attack_hand(mob/user as mob)
-	if(ishuman(user))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	if(ishuman(user) && !pocketable)
 		var/mob/living/carbon/human/H = user
 		if(H.l_store == src && !H.get_active_hand())	//Prevents opening if it's in a pocket.
 			H.put_in_hands(src)
@@ -709,9 +691,6 @@
 	for(var/obj/item/I in contents)
 		remove_from_storage(I, T)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/proc/calibrate_size()
-=======
 /obj/item/storage/Initialize()
 	. = ..()
 
@@ -775,7 +754,6 @@
 	calibrate_size()
 
 /obj/item/storage/proc/calibrate_size()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/total_storage_space = 0
 	for(var/obj/item/I in contents)
 		total_storage_space += I.get_storage_cost()
@@ -878,13 +856,8 @@
 	var/open_state
 	var/closed_state
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/trinketbox/update_icon()
-	cut_overlays()
-=======
 /obj/item/storage/trinketbox/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(open)
 		icon_state = open_state
 
@@ -901,11 +874,7 @@
 	else
 		icon_state = closed_state
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/trinketbox/New()
-=======
 /obj/item/storage/trinketbox/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!open_state)
 		open_state = "[initial(icon_state)]_open"
 	if(!closed_state)

@@ -62,19 +62,11 @@
 "bj" = (/obj/machinery/door/airlock/highsecurity,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bk" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/white,/area/submap/DoomP)
 "bl" = (/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-<<<<<<< HEAD
 "bm" = (/obj/structure/table/standard,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-"bn" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/syndie_kit/spy,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-"bo" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/smokes,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-"bp" = (/obj/structure/table/rack,/obj/item/weapon/storage/box/handcuffs,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-"bq" = (/obj/structure/table/rack,/obj/item/weapon/cell/device/weapon,/obj/item/weapon/cell/device/weapon,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-=======
-"bm" = (/obj/structure/table/standard,/obj/random/grenade/box,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bn" = (/obj/structure/table/standard,/obj/item/storage/box/syndie_kit/spy,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bo" = (/obj/structure/table/rack,/obj/item/storage/box/smokes,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bp" = (/obj/structure/table/rack,/obj/item/storage/box/handcuffs,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
-"bq" = (/obj/structure/table/rack,/obj/item/cell/device/weapon,/obj/item/cell/device/weapon,/obj/random/multiple/gun/projectile/handgun,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"bq" = (/obj/structure/table/rack,/obj/item/cell/device/weapon,/obj/item/cell/device/weapon,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "br" = (/obj/structure/table/rack,/obj/random/energy,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bs" = (/obj/structure/table/rack,/obj/item/gun/projectile/contender,/obj/item/ammo_magazine/s357,/obj/item/ammo_magazine/s357,/turf/simulated/floor/tiled/techfloor,/area/submap/DoomP)
 "bt" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/toy/plushie/spider,/obj/effect/floor_decal/corner/lime/full{dir = 8},/turf/simulated/floor/tiled/white,/area/submap/DoomP)

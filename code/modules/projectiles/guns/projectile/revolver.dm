@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 /*
  * Revolver
  */
-/obj/item/weapon/gun/projectile/revolver
-=======
 /obj/item/gun/projectile/revolver
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "revolver"
 	desc = "The MarsTech HE Colt is a choice revolver for when you absolutely, positively need to put a hole in the other guy. Uses .357 rounds."
 	description_fluff = "MarsTech first made their name in the Second Cold War as the 'Lunar Arms Company' providing home-grown arms to the Selene Federation, \
@@ -45,23 +41,13 @@
 	chamber_offset = 0
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/revolver/stainless
+/obj/item/gun/projectile/revolver/stainless
 	icon_state = "revolver_stainless"
 
 /*
  * Detective Revolver
  */
-/obj/item/weapon/gun/projectile/revolver/detective
-=======
-/obj/item/gun/projectile/revolver/mateba
-	name = "mateba"
-	desc = "This unique looking handgun is named after an Italian company famous for the original manufacture of these revolvers, and pasta kneading machines. Uses .357 rounds." // Yes I'm serious. -Spades
-	icon_state = "mateba"
-	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
-
 /obj/item/gun/projectile/revolver/detective
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "revolver"
 	desc = "A standard MarsTech R1 snubnose revolver, popular among some law enforcement agencies for its simple, long-lasting construction. Uses .38-Special rounds."
 	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
@@ -142,17 +128,17 @@
  * Lombardi Revolvers
  * 		Use to be detective revolvers until seperated
  */
-/obj/item/weapon/gun/projectile/revolver/lombardi
+/obj/item/gun/projectile/revolver/lombardi
 	name = "Lombardi Buzzard"
 	desc = "A rugged revolver that is mostly used by small law enforcement agencies across the frontier as a cheap, reliable sidearm. Uses .357 rounds."
 	icon_state = "lombardi_police"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
-/obj/item/weapon/gun/projectile/revolver/lombardi/panther
+/obj/item/gun/projectile/revolver/lombardi/panther
 	name = "Lombardi Panther"
 	icon_state = "lombardi_panther"
 
-/obj/item/weapon/gun/projectile/revolver/lombardi/gold
+/obj/item/gun/projectile/revolver/lombardi/gold
 	name = "Lombardi Deluxe 2502"
 	desc = "A sweet looking revolver that is deocrated with false gold and silver plating. Favored among by gamblers and criminals alike. Uses .357 rounds."
 	icon_state = "lombardi_gold"
@@ -160,7 +146,7 @@
 /*
  * Captain's Peacekeeper
  */
-/obj/item/weapon/gun/projectile/revolver/cappeacekeeper
+/obj/item/gun/projectile/revolver/cappeacekeeper
 	name = "decorated peacekeeper"
 	desc = "A MarsTech Frontiersman revolver that has been heavily modified. It has been decorated for personal use by command officers. Uses .44 rounds."
 	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, \
@@ -173,24 +159,18 @@
 /*
  * Mateba
  */
-/obj/item/weapon/gun/projectile/revolver/mateba
+/obj/item/gun/projectile/revolver/mateba
 	name = "mateba"
 	desc = "This unique looking handgun is named after an Italian company famous for the original manufacture of \
 	these revolvers, and pasta kneading machines. Uses .357 rounds." // Yes I'm serious. -Spades
 	icon_state = "mateba"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
-<<<<<<< HEAD
 /*
  * Deckard (Blade Runner)
  */
-/obj/item/weapon/gun/projectile/revolver/deckard
-	name = "\improper \"Deckard\" .38"
-=======
-// Blade Runner pistol.
 /obj/item/gun/projectile/revolver/deckard
-	name = "\improper Deckard .38"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "\improper \"Deckard\" .38"
 	desc = "A custom-built revolver, based off the semi-popular Detective Special model. Uses .38-Special rounds."
 	icon_state = "deckard-empty"
 	caliber = ".38"
@@ -213,26 +193,10 @@
 		flick("deckard-reload",src)
 	..()
 
-<<<<<<< HEAD
 /*
  * Judge
  */
-/obj/item/weapon/gun/projectile/revolver/judge
-=======
-/obj/item/gun/projectile/revolver/capgun
-	name = "cap gun"
-	desc = "Looks almost like the real thing! Ages 8 and up."
-	icon_state = "revolver"
-	item_state = "revolver"
-	caliber = "caps"
-	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
-	handle_casings = CYCLE_CASINGS
-	max_shells = 7
-	ammo_type = /obj/item/ammo_casing/cap
-	projectile_type = /obj/item/projectile/bullet/pistol/strong
-
 /obj/item/gun/projectile/revolver/judge
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\"The Judge\""
 	desc = "A revolving hand-shotgun by Jindal Arms that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12g rounds."
 	description_fluff = "While wholly owned by Hephaestus Industries, the Jindal Arms brand does not appear \
@@ -249,11 +213,10 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	// ToDo: Remove accuracy debuf in exchange for slightly injuring your hand every time you fire it.
 
-<<<<<<< HEAD
 /*
  * Mako
  */
-/obj/item/weapon/gun/projectile/revolver/lemat
+/obj/item/gun/projectile/revolver/lemat
 	name = "\improper \"Mako\" Revolver"
 	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. \
 	For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
@@ -264,15 +227,6 @@
 	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely \
 	unremarkable one way or another as weapons and used very standard firing mechanisms - the Mako was a notable \
 	exception, and original examples are much sought after."
-=======
-/obj/item/gun/projectile/revolver/lemat
-	name = "Mako Revolver"
-	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
-	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
-	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
-	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms - \
-	the Mako was a notable exception, and original examples are much sought after."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "combatrevolver"
 	item_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -289,11 +243,7 @@
 	var/list/tertiary_loaded = list()
 
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/revolver/lemat/New()
-=======
 /obj/item/gun/projectile/revolver/lemat/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/i in 1 to secondary_max_shells)
 		secondary_loaded += new secondary_ammo_type(src)
 	..()
@@ -365,15 +315,10 @@
 		. += "It has a secondary barrel that is empty."
 
 
-<<<<<<< HEAD
 /*
  * Webley (Bay Port)
  */
-/obj/item/weapon/gun/projectile/revolver/webley
-=======
-//Ported from Bay
 /obj/item/gun/projectile/revolver/webley
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "patrol revolver"
 	desc = "A rugged top break revolver commonly issued to planetary law enforcement offices. Uses .44 magnum rounds."
 	description_fluff = "The Heberg-Hammarstrom Althing is a simple, head-wearing revolver made with an anti-corrosive alloy. \
@@ -386,11 +331,10 @@
 	handle_casings = CYCLE_CASINGS
 	ammo_type = /obj/item/ammo_casing/a44
 
-<<<<<<< HEAD
 /*
  * Webley (Eris Port)
  */
-/obj/item/weapon/gun/projectile/revolver/consul
+/obj/item/gun/projectile/revolver/consul
 	name = "\improper \"Consul\" Revolver"
 	desc = "Are you feeling lucky, punk? Uses .44 rounds."
 	icon_state = "inspector"
@@ -400,21 +344,12 @@
 	handle_casings = CYCLE_CASINGS
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 
-/obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
+/obj/item/gun/projectile/revolver/consul/proc/update_charge()
 	cut_overlays()
 	if(loaded.len==0)
 		add_overlay("inspector_off")
 	else
 		add_overlay("inspector_on")
 
-/obj/item/weapon/gun/projectile/revolver/consul/update_icon()
+/obj/item/gun/projectile/revolver/consul/update_icon()
 	update_charge()
-=======
-/obj/item/gun/projectile/revolver/webley/auto
-	name = "autorevolver"
-	icon_state = "mosley"
-	desc = "A shiny Fosbery Autococker automatic revolver, with black accents. Marketed as the 'Revolver for the Modern Era'. Uses .44 magnum rounds."
-	fire_delay = 5.7 //Autorevolver. Also synced with the animation
-	fire_anim = "mosley_fire"
-	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

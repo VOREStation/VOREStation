@@ -30,7 +30,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 			/obj/item/weapon/storage/bag/trash,
 			/obj/item/weapon/mop,
 			/obj/item/weapon/reagent_containers/spray,
-			/obj/item/device/lightreplacer,
+			/obj/item/lightreplacer,
 			/obj/item/clothing/suit/caution,
 		))
 
@@ -63,7 +63,7 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		myspray = I
 		setTguiIcon("myspray", myspray)
 
-	else if(istype(I, /obj/item/device/lightreplacer))
+	else if(istype(I, /obj/item/lightreplacer))
 		if(myreplacer)
 			to_chat(user, "<span class='warning'>[src] already has \an [I].</span>")
 			return FALSE
@@ -153,41 +153,16 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		update_icon()
 		return 1
 
-<<<<<<< HEAD
-	else if(istype(I, /obj/item/weapon/reagent_containers/spray) && !myspray)
-		equip_janicart_item(user, I)
-		return 1
-
-	else if(istype(I, /obj/item/device/lightreplacer) && !myreplacer)
-		equip_janicart_item(user, I)
-		return 1
-
-	else if(istype(I, /obj/item/weapon/storage/bag/trash) && !mybag)
-		equip_janicart_item(user, I)
-=======
 	else if(istype(I, /obj/item/reagent_containers/spray) && !myspray)
-		user.unEquip(I, 0, src)
-		myspray = I
-		update_icon()
-		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		equip_janicart_item(user, I)
 		return 1
 
 	else if(istype(I, /obj/item/lightreplacer) && !myreplacer)
-		user.unEquip(I, 0, src)
-		myreplacer = I
-		update_icon()
-		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
+		equip_janicart_item(user, I)
 		return 1
 
 	else if(istype(I, /obj/item/storage/bag/trash) && !mybag)
-		user.unEquip(I, 0, src)
-		mybag = I
-		update_icon()
-		updateUsrDialog()
-		to_chat(user, "<span class='notice'>You put [I] into [src].</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		equip_janicart_item(user, I)
 		return 1
 
 	else if(istype(I, /obj/item/clothing/suit/caution))
@@ -213,26 +188,10 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 /obj/structure/janitorialcart/AltClick(mob/living/user)
 	if(user.incapacitated() || !Adjacent(user))	return
 	var/obj/I = usr.get_active_hand()
-<<<<<<< HEAD
-	if(istype(I, /obj/item/weapon/mop))
-		equip_janicart_item(user, I)
-	else if(istype(I, /obj/item/weapon/reagent_containers) && mybucket)
-		var/obj/item/weapon/reagent_containers/C = I
-=======
 	if(istype(I, /obj/item/mop))
-		if(!mymop)
-			usr.drop_from_inventory(I,src)
-			mymop = I
-			update_icon()
-			updateUsrDialog()
-			to_chat(usr, "<span class='notice'>You put [I] into [src].</span>")
-			update_icon()
-		else
-			to_chat(usr, "<span class='notice'>The cart already has a mop attached</span>")
-		return
+		equip_janicart_item(user, I)
 	else if(istype(I, /obj/item/reagent_containers) && mybucket)
 		var/obj/item/reagent_containers/C = I
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		C.afterattack(mybucket, usr, 1)
 		update_icon()
 

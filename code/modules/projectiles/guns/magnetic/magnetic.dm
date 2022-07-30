@@ -303,15 +303,9 @@
 
 	return new projectile_type(src)
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/magnetic/fuelrod/New()
-	cell = new /obj/item/weapon/cell/high
-	capacitor = new /obj/item/weapon/stock_parts/capacitor
-=======
 /obj/item/gun/magnetic/fuelrod/Initialize()
 	cell = new /obj/item/cell/high
 	capacitor = new /obj/item/stock_parts/capacitor
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 
 #undef ICON_CELL

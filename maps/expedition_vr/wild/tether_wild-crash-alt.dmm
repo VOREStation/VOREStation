@@ -6,7 +6,7 @@
 "f" = (/turf/simulated/floor/outdoors/dirt/virgo3b,/area/tether/surfacebase/crash)
 "g" = (/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "h" = (/turf/simulated/shuttle/wall/dark/hard_corner/virgo3b,/area/tether/surfacebase/crash)
-"i" = (/obj/item/weapon/material/shard,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
+"i" = (/obj/item/material/shard,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "j" = (/obj/structure/closet/crate/secure/weapon,/obj/random/weapon,/turf/simulated/shuttle/floor/black/virgo3b,/area/tether/surfacebase/crash)
 "k" = (/obj/effect/step_trigger/teleporter/wild/to_wild_3,/turf/simulated/floor/outdoors/grass/sif/virgo3b{icon_state = "grass_sif_dark"; name = "passage"; tree_chance = 0},/area/tether/surfacebase/outside/wilderness)
 "l" = (/obj/effect/step_trigger/teleporter/wild/to_wild_1,/turf/simulated/floor/outdoors/grass/sif/virgo3b{icon_state = "grass_sif_dark"; name = "passage"; tree_chance = 0},/area/tether/surfacebase/outside/wilderness)
@@ -134,4 +134,3 @@ accccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
 acccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccca
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

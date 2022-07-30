@@ -3,13 +3,8 @@
 		if(isNotStationLevel(xmas.z))	continue
 		for(var/turf/simulated/floor/T in orange(1,xmas))
 			for(var/i=1,i<=rand(1,5),i++)
-<<<<<<< HEAD
-				new /obj/item/weapon/a_gift(T)
-	//for(var/mob/living/simple_mob/corgi/Ian/Ian in mob_list)
-=======
 				new /obj/item/a_gift(T)
 	//for(var/mob/living/simple_animal/corgi/Ian/Ian in mob_list)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
 
 /proc/ChristmasEvent()
@@ -28,14 +23,7 @@
 	desc = "Directions for use: Requires two people, one to pull each end."
 	var/cracked = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/toy/xmas_cracker/New()
-	..()
-
-/obj/item/weapon/toy/xmas_cracker/attack(mob/target, mob/user)
-=======
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if( !cracked && (istype(target,/mob/living/silicon) || (istype(target,/mob/living/carbon/human) && !target.get_active_hand())) && target.stat == CONSCIOUS)
 		target.visible_message("<span class='notice'>[user] and [target] pop \an [src]! *pop*</span>", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='notice'>You hear a *pop*.</span>")
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
@@ -69,4 +57,3 @@
 	flags_inv = 0
 	body_parts_covered = 0
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-

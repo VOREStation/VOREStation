@@ -43,9 +43,9 @@
 	var/fancy_vore = FALSE					// Using the new sounds?
 	var/is_wet = TRUE						// Is this belly's insides made of slimy parts?
 	var/wet_loop = TRUE						// Does the belly have a fleshy loop playing?
-	var/obj/item/weapon/storage/vore_egg/ownegg	// Is this belly creating an egg?
+	var/obj/item/storage/vore_egg/ownegg	// Is this belly creating an egg?
 	var/egg_type = "Egg"					// Default egg type and path.
-	var/egg_path = /obj/item/weapon/storage/vore_egg
+	var/egg_path = /obj/item/storage/vore_egg
 	var/list/list/emote_lists = list()			// Idle emotes that happen on their own, depending on the bellymode. Contains lists of strings indexed by bellymode
 	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
@@ -369,7 +369,7 @@
 		L.muffled = FALSE
 		L.forced_psay = FALSE
 
-	for(var/obj/item/weapon/holder/H in M.contents)
+	for(var/obj/item/holder/H in M.contents)
 		H.held_mob.muffled = FALSE
 		H.held_mob.forced_psay = FALSE
 
@@ -657,18 +657,18 @@
 		for(var/obj/item/W in M)
 			if(istype(W, /obj/item/organ/internal/mmi_holder/posibrain))
 				var/obj/item/organ/internal/mmi_holder/MMI = W
-				var/obj/item/device/mmi/brainbox = MMI.removed()
+				var/obj/item/mmi/brainbox = MMI.removed()
 				if(brainbox)
 					items_preserved += brainbox
 			for(var/slot in slots)
 				var/obj/item/I = M.get_equipped_item(slot = slot)
 				if(I)
 					M.unEquip(I,force = TRUE)
-					if(contaminates || istype(I, /obj/item/weapon/card/id))
+					if(contaminates || istype(I, /obj/item/card/id))
 						I.gurgle_contaminate(contents, contamination_flavor, contamination_color) //We do an initial contamination pass to get stuff like IDs wet.
 					if(item_digest_mode == IM_HOLD)
 						items_preserved |= I
-					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I,/obj/item/organ)))
+					else if(item_digest_mode == IM_DIGEST_FOOD && !(istype(I,/obj/item/reagent_containers/food) || istype(I,/obj/item/organ)))
 						items_preserved |= I
 
 	//Reagent transfer
@@ -1055,7 +1055,7 @@
 		ourmob.reset_view(owner)
 	if(isitem(content))
 		var/obj/item/I = content
-		if(istype(I,/obj/item/weapon/card/id))
+		if(istype(I,/obj/item/card/id))
 			I.gurgle_contaminate(target.contents, target.contamination_flavor, target.contamination_color)
 		if(I.gurgled && target.contaminates)
 			I.decontaminate()

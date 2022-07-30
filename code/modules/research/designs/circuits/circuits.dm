@@ -35,32 +35,22 @@ CIRCUITS BELOW
 	name = "orion trail arcade machine"
 	id = "oriontrail"
 	req_tech = list(TECH_DATA = 1)
-<<<<<<< HEAD
-	build_path = /obj/item/weapon/circuitboard/arcade/orion_trail
+	build_path = /obj/item/circuitboard/arcade/orion_trail
 	sort_string = "MAAAB"
 
 /datum/design/circuit/clawmachine
 	name = "grab-a-gift arcade machine"
 	id = "clawmachine"
 	req_tech = list(TECH_DATA = 1)
-	build_path = /obj/item/weapon/circuitboard/arcade/clawmachine
+	build_path = /obj/item/circuitboard/arcade/clawmachine
 	sort_string = "MAAAC"
-=======
-	build_path = /obj/item/circuitboard/arcade/orion_trail
-	sort_string = "MAAAZ"		// Duplicate string, really need to redo this whole thing
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /datum/design/circuit/jukebox
 	name = "jukebox"
 	id = "jukebox"
 	req_tech = list(TECH_MAGNET = 2, TECH_DATA = 1)
-<<<<<<< HEAD
-	build_path = /obj/item/weapon/circuitboard/jukebox
-	sort_string = "MAAAO"
-=======
 	build_path = /obj/item/circuitboard/jukebox
-	sort_string = "MAAAB"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	sort_string = "MAAAO"
 
 /datum/design/circuit/seccamera
 	name = "security camera monitor"
@@ -448,7 +438,7 @@ CIRCUITS BELOW
 	name = "atmospheric field generator"
 	id = "arf_generator"
 	req_tech = list(TECH_MAGNET = 4, TECH_POWER = 4, TECH_BIO = 3)
-	build_path = /obj/item/weapon/circuitboard/arf_generator
+	build_path = /obj/item/circuitboard/arf_generator
 	sort_string = "LAAAD"
 
 /datum/design/circuit/mecha
@@ -691,47 +681,47 @@ CIRCUITS BELOW
 	name = "shield generator"
 	id = "shield_generator"
 	req_tech = list(TECH_MAGNET = 3, TECH_POWER = 4, TECH_BLUESPACE = 2, TECH_ENGINEERING = 3)
-	build_path = /obj/item/weapon/circuitboard/shield_generator
+	build_path = /obj/item/circuitboard/shield_generator
 	sort_string = "OAAAA"
 
 /datum/design/circuit/shield_diffuser
 	name = "shield diffuser"
 	id = "shield_diffuser"
 	req_tech = list(TECH_MAGNET = 4, TECH_POWER = 2, TECH_ENGINEERING = 5)
-	build_path = /obj/item/weapon/circuitboard/shield_diffuser
+	build_path = /obj/item/circuitboard/shield_diffuser
 	sort_string = "OAAAB"
 
 /datum/design/circuit/pointdefense
 	name = "point defense battery"
 	id = "pointdefense"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 3, TECH_COMBAT = 4)
-	build_path = /obj/item/weapon/circuitboard/pointdefense
+	build_path = /obj/item/circuitboard/pointdefense
 	sort_string = "OAABA"
 
 /datum/design/circuit/pointdefense_control
 	name = "point defense control"
 	id = "pointdefense_control"
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 3, TECH_COMBAT = 2)
-	build_path = /obj/item/weapon/circuitboard/pointdefense_control
+	build_path = /obj/item/circuitboard/pointdefense_control
 	sort_string = "OAABB"
 
 /datum/design/circuit/recycler_crusher
 	name = "recycler - crusher"
 	id = "recycler_crusher"
 	req_tech = list(TECH_MATERIAL = 2)
-	build_path = /obj/item/weapon/circuitboard/recycler_crusher
+	build_path = /obj/item/circuitboard/recycler_crusher
 	sort_string = "OAABC"
 
 /datum/design/circuit/recycler_sorter
 	name = "recycler - sorter"
 	id = "recycler_sorter"
 	req_tech = list(TECH_MATERIAL = 2)
-	build_path = /obj/item/weapon/circuitboard/recycler_sorter
+	build_path = /obj/item/circuitboard/recycler_sorter
 	sort_string = "OAABD"
 
 /datum/design/circuit/recycler_stamper
 	name = "recycler - stamper"
 	id = "recycler_stamper"
 	req_tech = list(TECH_MATERIAL = 2)
-	build_path = /obj/item/weapon/circuitboard/recycler_stamper
+	build_path = /obj/item/circuitboard/recycler_stamper
 	sort_string = "OAABE"

@@ -9,13 +9,8 @@
 	var/spell_light_intensity = 2
 	var/spell_light_range = 3
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/modifier/New()
-	..()
-=======
 /obj/item/spell/modifier/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(spell_light_range, spell_light_intensity, l_color = light_color)
 
 /obj/item/spell/modifier/on_melee_cast(atom/hit_atom, mob/user)

@@ -587,17 +587,10 @@
 	var/iastamp
 	var/deniedstamp
 
-<<<<<<< HEAD
-/obj/item/rig_module/device/stamp/New()
-	..()
-	iastamp = new /obj/item/weapon/stamp/internalaffairs(src)
-	deniedstamp = new /obj/item/weapon/stamp/denied(src)
-=======
 /obj/item/rig_module/device/stamp/Initialize()
 	. = ..()
 	iastamp = new /obj/item/stamp/internalaffairs(src)
 	deniedstamp = new /obj/item/stamp/denied(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	device = iastamp
 
 /obj/item/rig_module/device/stamp/engage(atom/target)

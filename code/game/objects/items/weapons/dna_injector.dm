@@ -19,12 +19,8 @@
 	var/datatype=0
 	var/value=0
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/New()
-=======
 /obj/item/dnainjector/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(datatype && block)
 		buf=new
 		buf.dna=new
@@ -147,11 +143,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/hulkmut/New()
-=======
 /obj/item/dnainjector/hulkmut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = HULKBLOCK
 	..()
 
@@ -161,11 +153,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antihulk/New()
-=======
 /obj/item/dnainjector/antihulk/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = HULKBLOCK
 	..()
 
@@ -175,11 +163,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/xraymut/New()
-=======
 /obj/item/dnainjector/xraymut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = XRAYBLOCK
 	..()
 
@@ -189,11 +173,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antixray/New()
-=======
 /obj/item/dnainjector/antixray/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = XRAYBLOCK
 	..()
 
@@ -203,11 +183,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/firemut/New()
-=======
 /obj/item/dnainjector/firemut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = FIREBLOCK
 	..()
 
@@ -217,11 +193,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antifire/New()
-=======
 /obj/item/dnainjector/antifire/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = FIREBLOCK
 	..()
 
@@ -231,11 +203,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/telemut/New()
-=======
 /obj/item/dnainjector/telemut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = TELEBLOCK
 	..()
 
@@ -245,11 +213,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antitele/New()
-=======
 /obj/item/dnainjector/antitele/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = TELEBLOCK
 	..()
 
@@ -259,11 +223,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/nobreath/New()
-=======
 /obj/item/dnainjector/nobreath/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = NOBREATHBLOCK
 	..()
 
@@ -273,11 +233,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antinobreath/New()
-=======
 /obj/item/dnainjector/antinobreath/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = NOBREATHBLOCK
 	..()
 
@@ -287,11 +243,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/remoteview/New()
-=======
 /obj/item/dnainjector/remoteview/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = REMOTEVIEWBLOCK
 	..()
 
@@ -301,11 +253,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antiremoteview/New()
-=======
 /obj/item/dnainjector/antiremoteview/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = REMOTEVIEWBLOCK
 	..()
 
@@ -315,11 +263,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/regenerate/New()
-=======
 /obj/item/dnainjector/regenerate/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = REGENERATEBLOCK
 	..()
 
@@ -329,11 +273,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antiregenerate/New()
-=======
 /obj/item/dnainjector/antiregenerate/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = REGENERATEBLOCK
 	..()
 
@@ -343,11 +283,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/runfast/New()
-=======
 /obj/item/dnainjector/runfast/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = INCREASERUNBLOCK
 	..()
 
@@ -357,11 +293,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antirunfast/New()
-=======
 /obj/item/dnainjector/antirunfast/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = INCREASERUNBLOCK
 	..()
 
@@ -371,11 +303,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/morph/New()
-=======
 /obj/item/dnainjector/morph/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = MORPHBLOCK
 	..()
 
@@ -385,11 +313,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antimorph/New()
-=======
 /obj/item/dnainjector/antimorph/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = MORPHBLOCK
 	..()
 
@@ -399,11 +323,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/noprints/New()
-=======
 /obj/item/dnainjector/noprints/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = NOPRINTSBLOCK
 	..()
 
@@ -413,11 +333,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antinoprints/New()
-=======
 /obj/item/dnainjector/antinoprints/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = NOPRINTSBLOCK
 	..()
 
@@ -427,11 +343,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/insulation/New()
-=======
 /obj/item/dnainjector/insulation/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = SHOCKIMMUNITYBLOCK
 	..()
 
@@ -441,11 +353,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antiinsulation/New()
-=======
 /obj/item/dnainjector/antiinsulation/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = SHOCKIMMUNITYBLOCK
 	..()
 
@@ -455,11 +363,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/midgit/New()
-=======
 /obj/item/dnainjector/midgit/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = SMALLSIZEBLOCK
 	..()
 
@@ -469,11 +373,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antimidgit/New()
-=======
 /obj/item/dnainjector/antimidgit/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = SMALLSIZEBLOCK
 	..()
 
@@ -484,11 +384,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antiglasses/New()
-=======
 /obj/item/dnainjector/antiglasses/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = GLASSESBLOCK
 	..()
 
@@ -498,11 +394,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/glassesmut/New()
-=======
 /obj/item/dnainjector/glassesmut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = GLASSESBLOCK
 	..()
 
@@ -512,11 +404,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/epimut/New()
-=======
 /obj/item/dnainjector/epimut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = HEADACHEBLOCK
 	..()
 
@@ -526,11 +414,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antiepi/New()
-=======
 /obj/item/dnainjector/antiepi/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = HEADACHEBLOCK
 	..()
 
@@ -540,11 +424,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/anticough/New()
-=======
 /obj/item/dnainjector/anticough/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = COUGHBLOCK
 	..()
 
@@ -554,11 +434,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/coughmut/New()
-=======
 /obj/item/dnainjector/coughmut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = COUGHBLOCK
 	..()
 
@@ -568,11 +444,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/clumsymut/New()
-=======
 /obj/item/dnainjector/clumsymut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = CLUMSYBLOCK
 	..()
 
@@ -582,11 +454,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/anticlumsy/New()
-=======
 /obj/item/dnainjector/anticlumsy/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = CLUMSYBLOCK
 	..()
 
@@ -596,11 +464,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antitour/New()
-=======
 /obj/item/dnainjector/antitour/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = TWITCHBLOCK
 	..()
 
@@ -610,11 +474,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/tourmut/New()
-=======
 /obj/item/dnainjector/tourmut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = TWITCHBLOCK
 	..()
 
@@ -624,11 +484,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/stuttmut/New()
-=======
 /obj/item/dnainjector/stuttmut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = NERVOUSBLOCK
 	..()
 
@@ -638,11 +494,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antistutt/New()
-=======
 /obj/item/dnainjector/antistutt/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = NERVOUSBLOCK
 	..()
 
@@ -652,11 +504,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/blindmut/New()
-=======
 /obj/item/dnainjector/blindmut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = BLINDBLOCK
 	..()
 
@@ -666,11 +514,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antiblind/New()
-=======
 /obj/item/dnainjector/antiblind/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = BLINDBLOCK
 	..()
 
@@ -680,11 +524,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/deafmut/New()
-=======
 /obj/item/dnainjector/deafmut/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = DEAFBLOCK
 	..()
 
@@ -694,11 +534,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antideaf/New()
-=======
 /obj/item/dnainjector/antideaf/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = DEAFBLOCK
 	..()
 
@@ -708,11 +544,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/hallucination/New()
-=======
 /obj/item/dnainjector/hallucination/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = HALLUCINATIONBLOCK
 	..()
 
@@ -722,11 +554,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/antihallucination/New()
-=======
 /obj/item/dnainjector/antihallucination/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = HALLUCINATIONBLOCK
 	..()
 
@@ -736,11 +564,7 @@
 	datatype = DNA2_BUF_SE
 	value = 0xFFF
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/h2m/New()
-=======
 /obj/item/dnainjector/h2m/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = MONKEYBLOCK
 	..()
 
@@ -750,10 +574,6 @@
 	datatype = DNA2_BUF_SE
 	value = 0x001
 
-<<<<<<< HEAD
-/obj/item/weapon/dnainjector/m2h/New()
-=======
 /obj/item/dnainjector/m2h/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	block = MONKEYBLOCK
 	..()

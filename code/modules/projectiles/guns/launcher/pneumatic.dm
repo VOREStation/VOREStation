@@ -20,13 +20,8 @@
 	var/force_divisor = 400                             // Force equates to speed. Speed/5 equates to a damage multiplier for whoever you hit.
 	                                                    // For reference, a fully pressurized oxy tank at 50% gas release firing a health
 	                                                    // analyzer with a force_divisor of 10 hit with a damage multiplier of 3000+.
-<<<<<<< HEAD
-/obj/item/weapon/gun/launcher/pneumatic/New()
-	..()
-=======
 /obj/item/gun/launcher/pneumatic/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	item_storage = new(src)
 	item_storage.name = "hopper"
 	item_storage.max_w_class = max_w_class

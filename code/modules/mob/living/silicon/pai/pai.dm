@@ -21,9 +21,9 @@
 	var/ram = 100	// Used as currency to purchase different abilities
 	var/list/software = list()
 	var/userDNA		// The DNA string of our assigned user
-	var/obj/item/device/paicard/card	// The card we inhabit
-	var/obj/item/device/radio/borg/pai/radio		// Our primary radio
-	var/obj/item/device/communicator/integrated/communicator	// Our integrated communicator.
+	var/obj/item/paicard/card	// The card we inhabit
+	var/obj/item/radio/borg/pai/radio		// Our primary radio
+	var/obj/item/communicator/integrated/communicator	// Our integrated communicator.
 
 	var/chassis = "pai-repairbot"   // A record of your chosen chassis.
 	var/global/list/possible_chassis = list(
@@ -83,7 +83,7 @@
 	var/screen				// Which screen our main window displays
 	var/subscreen			// Which specific function of the main screen is being displayed
 
-	var/obj/item/device/pda/ai/pai/pda = null
+	var/obj/item/pda/ai/pai/pda = null
 
 	var/paiHUD = 0			// Toggles whether the AR HUD is active or not
 
@@ -107,14 +107,14 @@
 
 	var/our_icon_rotation = 0
 
-/mob/living/silicon/pai/New(var/obj/item/device/paicard)
+/mob/living/silicon/pai/New(var/obj/item/paicard)
 	src.loc = paicard
 	card = paicard
 	sradio = new(src)
 	communicator = new(src)
 	if(card)
 		if(!card.radio)
-			card.radio = new /obj/item/device/radio/borg/pai(src.card)
+			card.radio = new /obj/item/radio/borg/pai(src.card)
 		radio = card.radio
 
 	//Default languages without universal translator software
@@ -166,7 +166,7 @@
 	return 0
 
 /mob/living/silicon/pai/restrained()
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		return 0
 	..()
 
@@ -282,8 +282,8 @@
 	else if(isbelly(card.loc)) //VOREStation edit.
 		to_chat(src, "<span class='notice'>There is no room to unfold in here. You're good and stuck.</span>") //VOREStation edit.
 		return 0 //VOREStation edit.
-	else if(istype(card.loc,/obj/item/device/pda))
-		var/obj/item/device/pda/holder = card.loc
+	else if(istype(card.loc,/obj/item/pda))
+		var/obj/item/pda/holder = card.loc
 		holder.pai = null
 
 	src.client.perspective = EYE_PERSPECTIVE
@@ -353,7 +353,7 @@
 	set category = "IC"
 
 	// Pass lying down or getting up to our pet human, if we're in a rig.
-	if(istype(src.loc,/obj/item/device/paicard))
+	if(istype(src.loc,/obj/item/paicard))
 		resting = 0
 		var/obj/item/weapon/rig/rig = src.get_rig()
 		if(istype(rig))

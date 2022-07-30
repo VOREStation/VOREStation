@@ -16,7 +16,7 @@
 	var/supported = 0
 	var/active = 0
 	var/list/resource_field = list()
-	var/obj/item/device/radio/intercom/faultreporter
+	var/obj/item/radio/intercom/faultreporter
 	var/drill_range = 5
 	var/offset = 2
 
@@ -68,7 +68,7 @@
 		cell = new cell(src)
 	default_apply_parts()
 	cell = default_use_hicell()
-	faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
+	faultreporter = new /obj/item/radio/intercom{channels=list("Supply")}(null)
 
 /obj/machinery/mining/drill/Destroy()
 	qdel_null(faultreporter)
@@ -172,7 +172,7 @@
 
 /obj/machinery/mining/drill/attackby(obj/item/O as obj, mob/user as mob)
 	if(!active)
-		if(istype(O, /obj/item/device/multitool))
+		if(istype(O, /obj/item/multitool))
 			var/newtag = text2num(sanitizeSafe(tgui_input_text(user, "Enter new ID number or leave empty to cancel.", "Assign ID number", null, 4), 4))
 			if(newtag)
 				name = "[initial(name)] #[newtag]"

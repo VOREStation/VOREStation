@@ -94,13 +94,9 @@
 	desc = "A comprehensive survival box issued to crew members for use in emergency situations. Contains additional supplies."
 	icon_state = "survival_comp"
 	starts_with = list(
-<<<<<<< HEAD
-		/obj/item/weapon/tool/prybar/red,
+		/obj/item/tool/prybar/red,
 		/obj/item/clothing/glasses/goggles,
-		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
-=======
 		/obj/item/reagent_containers/hypospray/autoinjector,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/flashlight/glowstick,
 		/obj/item/reagent_containers/food/snacks/candy/proteinbar,
@@ -119,23 +115,19 @@
 	icon_state = "sterile"
 	starts_with = list(/obj/item/clothing/mask/surgical = 7)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/masks/white
+/obj/item/storage/box/masks/white
 	name = "box of sterile masks"
 	desc = "This box contains masks of sterility."
 	icon_state = "sterile"
 	starts_with = list(/obj/item/clothing/mask/surgical/white = 7)
 
-/obj/item/weapon/storage/box/masks/dust
+/obj/item/storage/box/masks/dust
 	name = "box of dust masks"
 	desc = "This box contains dust masks. Breathe easy."
 	icon_state = "sterile"
 	starts_with = list(/obj/item/clothing/mask/surgical/dust = 7)
 
-/obj/item/weapon/storage/box/syringes
-=======
 /obj/item/storage/box/syringes
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "box of syringes"
 	desc = "A box full of syringes."
 	icon_state = "syringe"
@@ -144,13 +136,8 @@
 /obj/item/storage/box/syringegun
 	name = "box of syringe gun cartridges"
 	desc = "A box full of compressed gas cartridges."
-<<<<<<< HEAD
 	icon_state = "syringe2"
-	starts_with = list(/obj/item/weapon/syringe_cartridge = 7)
-=======
-	icon_state = "syringe"
 	starts_with = list(/obj/item/syringe_cartridge = 7)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/storage/box/beakers
 	name = "box of beakers"
@@ -167,129 +154,7 @@
 		/obj/item/dnainjector/m2h = 3
 	)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/flashbangs
-=======
-/obj/item/storage/box/blanks
-	name = "box of blank shells"
-	desc = "It has a picture of a gun and several warning symbols on the front."
-	icon_state = "blankshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/blank = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/blanks/large
-	starts_with = list(/obj/item/ammo_casing/a12g/blank = 16)
-
-/obj/item/storage/box/beanbags
-	name = "box of beanbag shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "beanshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-	starts_with = list(/obj/item/ammo_casing/a12g/beanbag = 16)
-
-/obj/item/storage/box/shotgunammo
-	name = "box of shotgun slugs"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalshellshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/shotgunammo/large
-	starts_with = list(/obj/item/ammo_casing/a12g = 16)
-
-/obj/item/storage/box/shotgunshells
-	name = "box of shotgun shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalslug_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/shotgunshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/pellet = 16)
-
-/obj/item/storage/box/flashshells
-	name = "box of illumination shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "illumshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/flash = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/flashshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/flash = 16)
-
-/obj/item/storage/box/stunshells
-	name = "box of stun shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "stunshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/stunshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/stunshell = 16)
-
-/obj/item/storage/box/practiceshells
-	name = "box of practice shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "blankshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/practice = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/practiceshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/practice = 16)
-
-/obj/item/storage/box/empshells
-	name = "box of emp shells"
-	desc = "It has a picture of a gun and several warning symbols on the front."
-	icon_state = "empshot_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/emp = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/empshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/emp = 16)
-
-/obj/item/storage/box/flechetteshells
-	name = "box of shotgun flechettes"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	icon_state = "lethalslug_box"
-	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
-	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 8)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/flechetteshells/large
-	starts_with = list(/obj/item/ammo_casing/a12g/flechette = 16)
-
-/obj/item/storage/box/sniperammo
-	name = "box of 14.5mm shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145 = 7)
-	drop_sound = 'sound/items/drop/ammobox.ogg'
-	pickup_sound = 'sound/items/pickup/ammobox.ogg'
-
-/obj/item/storage/box/sniperammo/highvel
-	name = "box of 14.5mm sabot shells"
-	desc = "It has a picture of a gun and several warning symbols on the front.<br>WARNING: Live ammunition. Misuse may result in serious injury or death."
-	starts_with = list(/obj/item/ammo_casing/a145/highvel = 7)
-
 /obj/item/storage/box/flashbangs
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "box of flashbangs (WARNING)"
 	desc = "<B>WARNING: These devices are extremely dangerous and can cause blindness or deafness in repeated use.</B>"
 	icon_state = "flashbang"
@@ -411,38 +276,16 @@
 /obj/item/storage/box/condimentbottles
 	name = "box of condiment bottles"
 	desc = "It has a large ketchup smear on it."
-<<<<<<< HEAD
 	icon_state = "condiment"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/condiment = 7)
-=======
 	starts_with = list(/obj/item/reagent_containers/food/condiment = 7)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/storage/box/cups
 	name = "box of paper cups"
 	desc = "It has pictures of paper cups on the front."
-<<<<<<< HEAD
 	icon_state = "cups"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/drinks/sillycup = 7)
-
-/obj/item/weapon/storage/box/buns
-=======
 	starts_with = list(/obj/item/reagent_containers/food/drinks/sillycup = 7)
 
-/obj/item/storage/box/donkpockets
-	name = "box of donk-pockets"
-	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket = 7)
-
-/obj/item/storage/box/sinpockets
-	name = "box of sin-pockets"
-	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
-	icon_state = "donk_kit"
-	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
-
 /obj/item/storage/box/buns
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "box of bread buns"
 	desc = "Freshly baked at some point in the past few months."
 	icon_state = "bun_box"
@@ -454,40 +297,23 @@
 	desc = "Drymate brand monkey cubes. Just add water!"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "monkeycubebox"
-<<<<<<< HEAD
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube)
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped = 4)
-=======
-	can_hold = list(/obj/item/reagent_containers/food/snacks/cube/monkeycube)
-	starts_with = list(/obj/item/reagent_containers/food/snacks/cube/monkeycube/wrapped = 4)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	can_hold = list(/obj/item/reagent_containers/food/snacks/monkeycube)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped = 4)
 
 /obj/item/storage/box/monkeycubes/farwacubes
 	name = "farwa cube box"
 	desc = "Drymate brand farwa cubes, shipped from Meralar. Just add water!"
-<<<<<<< HEAD
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/farwacube = 4)
-=======
-	starts_with = list(/obj/item/reagent_containers/food/snacks/cube/monkeycube/wrapped/farwacube = 4)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/farwacube = 4)
 
 /obj/item/storage/box/monkeycubes/stokcubes
 	name = "stok cube box"
 	desc = "Drymate brand stok cubes, shipped from Moghes. Just add water!"
-<<<<<<< HEAD
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/stokcube = 4)
-=======
-	starts_with = list(/obj/item/reagent_containers/food/snacks/cube/monkeycube/wrapped/stokcube = 4)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/stokcube = 4)
 
 /obj/item/storage/box/monkeycubes/neaeracubes
 	name = "neaera cube box"
 	desc = "Drymate brand neaera cubes, shipped from Qerr'balak. Just add water!"
-<<<<<<< HEAD
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube = 4)
-=======
-	starts_with = list(/obj/item/reagent_containers/food/snacks/cube/monkeycube/wrapped/neaeracube = 4)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	starts_with = list(/obj/item/reagent_containers/food/snacks/monkeycube/wrapped/neaeracube = 4)
 
 /obj/item/storage/box/ids
 	name = "box of spare IDs"
@@ -516,12 +342,8 @@
 /obj/item/storage/box/pillbottles
 	name = "box of pill bottles"
 	desc = "It has pictures of pill bottles on its front."
-<<<<<<< HEAD
 	icon_state = "pillbox"
-	starts_with = list(/obj/item/weapon/storage/pill_bottle = 7)
-=======
 	starts_with = list(/obj/item/storage/pill_bottle = 7)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/storage/box/snappops
 	name = "snap pop box"
@@ -556,13 +378,8 @@
 /obj/item/storage/box/autoinjectors
 	name = "box of injectors"
 	desc = "Contains autoinjectors."
-<<<<<<< HEAD
 	icon_state = "auto"
-	starts_with = list(/obj/item/weapon/reagent_containers/hypospray/autoinjector = 7)
-=======
-	icon_state = "syringe"
 	starts_with = list(/obj/item/reagent_containers/hypospray/autoinjector = 7)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/storage/box/lights
 	name = "box of replacement bulbs"
@@ -632,14 +449,8 @@
 	desc = "Contains the seeds you need to get a proper healthy high."
 	starts_with = list(/obj/item/seeds/ambrosiadeusseed = 7)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/capguntoy
+/obj/item/storage/box/capguntoy
 	name = "\improper AlliCo \"Zipper\" Cap Gun"
-=======
-/obj/item/storage/box/foam_darts
-	name = "\improper Donk-Soft ammo box"
-	desc = "Contains Donk-Soft foam darts. It's Donk or Don't! Ages 8 and up."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon = 'icons/obj/gun_toy.dmi'
 	icon_state = "cap_gun_box"
 	desc = "This box is shaped on the inside so that only the \"Zipper\" Capgun and extra caps can fit."

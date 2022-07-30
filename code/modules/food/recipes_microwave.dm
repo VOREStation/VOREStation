@@ -6,7 +6,7 @@
 /datum/recipe/telebacon
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat,
-		/obj/item/device/assembly/signaler
+		/obj/item/assembly/signaler
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
 
@@ -14,7 +14,7 @@ I said no!
 /datum/recipe/syntitelebacon
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/meat/syntiflesh,
-		/obj/item/device/assembly/signaler
+		/obj/item/assembly/signaler
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/telebacon
 */
@@ -741,7 +741,7 @@ I said no!
 	reagents = list("water" = 5)
 	items = list(
 		/obj/item/weapon/reagent_containers/food/snacks/bun,
-		/obj/item/device/soulstone
+		/obj/item/soulstone
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/bageltwo
 

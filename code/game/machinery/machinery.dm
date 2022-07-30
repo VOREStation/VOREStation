@@ -110,16 +110,12 @@ Class Procs:
 	var/clicksound			// sound played on succesful interface. Just put it in the list of vars at the start.
 	var/clickvol = 40		// volume
 	var/interact_offline = 0 // Can the machine be interacted with while de-powered.
-<<<<<<< HEAD
-	var/obj/item/weapon/circuitboard/circuit = null
+	var/obj/item/circuitboard/circuit = null
 
 	// 0.0 - 1.0 multipler for prob() based on bullet structure damage
 	// So if this is 1.0 then a 100 damage bullet will always break this structure
 	// If this is 0.5 then a 50 damage bullet will break this structure 25% of the time
 	var/bullet_vulnerability = 0.25
-=======
-	var/obj/item/circuitboard/circuit = null
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
@@ -333,12 +329,8 @@ Class Procs:
 		RefreshParts()
 		return C
 
-<<<<<<< HEAD
-/obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/weapon/storage/part_replacer/R)
-	var/parts_replaced = FALSE
-=======
 /obj/machinery/proc/default_part_replacement(var/mob/user, var/obj/item/storage/part_replacer/R)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/parts_replaced = FALSE
 	if(!istype(R))
 		return 0
 	if(!component_parts)
@@ -349,20 +341,12 @@ Class Procs:
 	if(panel_open || !R.panel_req)
 		var/obj/item/circuitboard/CB = circuit
 		var/P
-<<<<<<< HEAD
-		for(var/obj/item/A in component_parts)
-=======
 		for(var/obj/item/stock_parts/A in component_parts)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			for(var/T in CB.req_components)
 				if(ispath(A.type, T))
 					P = T
 					break
-<<<<<<< HEAD
-			for(var/obj/item/B in R.contents)
-=======
 			for(var/obj/item/stock_parts/B in R.contents)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				if(istype(B, P) && istype(A, P))
 					if(B.get_rating() > A.get_rating())
 						R.remove_from_storage(B, src)

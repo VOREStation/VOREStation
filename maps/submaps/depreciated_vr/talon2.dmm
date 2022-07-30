@@ -97,7 +97,7 @@
 /area/space)
 "az" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/blucarpet,
 /area/space)
 "aA" = (
@@ -174,7 +174,7 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_captain,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/wood,
@@ -286,7 +286,7 @@
 /obj/structure/table/standard,
 /obj/structure/closet/hydrant{
 	pixel_y = 32;
-	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/device/flashlight = 2, /obj/item/weapon/tank/oxygen/red = 2, /obj/item/weapon/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
+	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/flashlight = 2, /obj/item/tank/oxygen/red = 2, /obj/item/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
 	},
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/space)
@@ -346,7 +346,7 @@
 /obj/structure/table/steel,
 /obj/structure/closet/hydrant{
 	pixel_x = -32;
-	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/device/flashlight = 2, /obj/item/weapon/tank/oxygen/red = 2, /obj/item/weapon/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
+	starts_with = list(/obj/item/clothing/suit/fire/firefighter = 2, /obj/item/clothing/mask/gas = 2, /obj/item/flashlight = 2, /obj/item/tank/oxygen/red = 2, /obj/item/extinguisher = 2, /obj/item/clothing/head/hardhat/red = 2)
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/space)
@@ -355,7 +355,7 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_engineer,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/wood,
@@ -365,7 +365,7 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_pilot,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/wood,
@@ -528,7 +528,7 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_doctor,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/wood,
@@ -552,7 +552,7 @@
 	dir = 1
 	},
 /obj/structure/closet/secure_closet/talon_guard,
-/obj/item/device/radio/off{
+/obj/item/radio/off{
 	channels = list("Talon" = 1)
 	},
 /turf/simulated/floor/wood,
@@ -581,7 +581,7 @@
 	icon_state = "0-4"
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/paper/talon_shields,
+/obj/item/paper/talon_shields,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/space)
 "bB" = (
@@ -661,8 +661,8 @@
 	},
 /obj/structure/table/woodentable,
 /obj/item/modular_computer/tablet/preset/custom_loadout/advanced,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/simulated/floor/carpet/blucarpet,
 /area/space)
 "bL" = (
@@ -1068,7 +1068,7 @@
 /turf/simulated/floor/carpet,
 /area/space)
 "eW" = (
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed/padded,
 /obj/machinery/firealarm{
 	dir = 4;
@@ -1086,7 +1086,7 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/space)
 "fa" = (
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed/padded,
 /obj/machinery/firealarm{
 	dir = 8;
@@ -1574,7 +1574,7 @@
 	},
 /obj/structure/railing,
 /obj/structure/table/standard,
-/obj/item/device/bluespaceradio/talon_prelinked,
+/obj/item/bluespaceradio/talon_prelinked,
 /turf/simulated/floor/tiled/eris/dark/violetcorener,
 /area/space)
 "jQ" = (
@@ -2057,7 +2057,7 @@
 /area/space)
 "rU" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/stool/baystool/padded,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/space)
 "rW" = (
@@ -2167,7 +2167,7 @@
 /area/space)
 "tN" = (
 /obj/structure/table/steel,
-/obj/item/weapon/paper/dockingcodes,
+/obj/item/paper/dockingcodes,
 /turf/simulated/floor/tiled/eris/dark/cyancorner,
 /area/space)
 "tO" = (
@@ -2206,13 +2206,13 @@
 	icon_state = "0-4"
 	},
 /obj/structure/closet/crate/plastic,
-/obj/item/device/flashlight,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/device/flashlight/glowstick,
-/obj/item/device/flashlight/glowstick,
-/obj/item/device/flashlight/glowstick,
-/obj/item/weapon/storage/box/metalfoam,
-/obj/item/device/survivalcapsule/luxury,
+/obj/item/flashlight,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/flashlight/glowstick,
+/obj/item/flashlight/glowstick,
+/obj/item/flashlight/glowstick,
+/obj/item/storage/box/metalfoam,
+/obj/item/survivalcapsule/luxury,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/space)
 "uz" = (
@@ -2255,7 +2255,7 @@
 /turf/simulated/floor/tiled/eris/steel,
 /area/space)
 "uM" = (
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/stool/baystool/padded,
 /obj/machinery/camera/network/talon{
 	dir = 6
 	},
@@ -2744,7 +2744,7 @@
 /area/space)
 "CN" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/closet/autolok_wall{
 	pixel_x = 27
 	},
@@ -2798,7 +2798,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 6
 	},
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/stool/baystool/padded,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/space)
 "Dr" = (
@@ -3239,7 +3239,7 @@
 	pixel_y = 32;
 	shut_up = 0
 	},
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed/padded,
 /obj/structure/closet/autolok_wall{
 	pixel_x = 27
@@ -3368,7 +3368,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/weapon/storage/dicecup/loaded,
+/obj/item/storage/dicecup/loaded,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/space)
 "NE" = (
@@ -3444,7 +3444,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
 	},
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/stool/baystool/padded,
 /obj/structure/cable/green{
 	dir = 1;
 	icon_state = "4-8"
@@ -3962,7 +3962,7 @@
 "WS" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/weapon/stool/baystool/padded,
+/obj/item/stool/baystool/padded,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/space)
 "WZ" = (

@@ -34,13 +34,8 @@
 	if(!icon_state)
 		icon_state = "bottle-[rand(1,4)]"
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/glass/bottle/update_icon()
-	cut_overlays()
-=======
 /obj/item/reagent_containers/glass/bottle/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "[icon_state]10")

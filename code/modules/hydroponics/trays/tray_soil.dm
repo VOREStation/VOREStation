@@ -10,7 +10,7 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O,/obj/item/tank))
 		return
-	if(istype(O,/obj/item/weapon/shovel))
+	if(istype(O,/obj/item/shovel))
 		if(!seed)
 			var/choice= tgui_alert(user, "Do you want to destroy the growplot?", "Destroy growplot?" , list("Yes", "No"))
 			if(!choice||choice=="No")
@@ -33,30 +33,19 @@
 	return 1
 
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(obj/item/O, mob/user)
-<<<<<<< HEAD
-	if(istype(O, /obj/item/weapon/shovel) && user.a_intent == I_HURT)
+	if(istype(O, /obj/item/shovel) && user.a_intent == I_HURT)
 		user.visible_message(SPAN_NOTICE("\The [user] begins filling in \the [src]."))
 		if(do_after(user, 3 SECONDS) && !QDELETED(src))
 			user.visible_message(SPAN_NOTICE("\The [user] fills in \the [src]."))
 			qdel(src)
-		return
-=======
-	if(istype(O, /obj/item/shovel))
-
-		if(user.a_intent == I_HURT)
-			user.visible_message(SPAN_NOTICE("\The [user] begins filling in \the [src]."))
-			if(do_after(user, 3 SECONDS) && !QDELETED(src))
-				user.visible_message(SPAN_NOTICE("\The [user] fills in \the [src]."))
-				qdel(src)
 			return TRUE
 
 		var/turf/T = get_turf(src)
 		if(istype(T))
-			return T.attackby(O, user)	
-	
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			return T.attackby(O, user)
+
 	. = ..()
-	
+
 
 // Holder for vine plants.
 // Icons for plants are generated as overlays, so setting it to invisible wouldn't work.

@@ -102,13 +102,8 @@
 /datum/uplink_item/item/visible_weapons/heavysnipermerc
 	name = "Anti-Materiel Rifle (14.5mm)"
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT
-<<<<<<< HEAD
-	path = /obj/item/weapon/gun/projectile/heavysniper
-	antag_roles = list("mercenary", "ert") //VOREStation Edit
-=======
 	path = /obj/item/gun/projectile/heavysniper
-	antag_roles = list("mercenary")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	antag_roles = list("mercenary", "ert") //VOREStation Edit
 
 /datum/uplink_item/item/visible_weapons/heavysnipertraitor
 	name = "Anti-Materiel Rifle (14.5mm)"

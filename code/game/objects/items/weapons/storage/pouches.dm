@@ -74,29 +74,29 @@
 		/obj/item/weapon/weldingtool,
 		/obj/item/weapon/tool/wirecutters,
 		/obj/item/weapon/tool/wrench,
-		/obj/item/device/multitool,
-		/obj/item/device/flashlight,
+		/obj/item/multitool,
+		/obj/item/flashlight,
 		/obj/item/weapon/cell/device,
 		/obj/item/stack/cable_coil,
-		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
+		/obj/item/t_scanner,
+		/obj/item/analyzer,
 		/obj/item/clothing/glasses,
 		/obj/item/clothing/gloves,
-		/obj/item/device/pda,
-		/obj/item/device/megaphone,
+		/obj/item/pda,
+		/obj/item/megaphone,
 		/obj/item/taperoll,
-		/obj/item/device/radio/headset,
-		/obj/item/device/robotanalyzer,
+		/obj/item/radio/headset,
+		/obj/item/robotanalyzer,
 		/obj/item/weapon/material/minihoe,
 		/obj/item/weapon/material/knife/machete/hatchet,
-		/obj/item/device/analyzer/plant_analyzer,
+		/obj/item/analyzer/plant_analyzer,
 		/obj/item/weapon/extinguisher/mini,
 		/obj/item/weapon/tape_roll,
-		/obj/item/device/integrated_electronics/wirer,
-		/obj/item/device/integrated_electronics/debugger, 
-		/obj/item/weapon/shovel/spade, 
-		/obj/item/stack/nanopaste, 
-		/obj/item/device/geiger
+		/obj/item/integrated_electronics/wirer,
+		/obj/item/integrated_electronics/debugger,
+		/obj/item/weapon/shovel/spade,
+		/obj/item/stack/nanopaste,
+		/obj/item/geiger
 	) //Vorestation Add - make it the same as the tool-belt why was it not like this to start with wtf
 
 /obj/item/weapon/storage/pouch/eng_supply
@@ -112,7 +112,7 @@
 		/obj/item/weapon/tape_roll,
 		/obj/item/stack/material/steel,
 		/obj/item/stack/material/glass,
-		/obj/item/device/lightreplacer,
+		/obj/item/lightreplacer,
 		/obj/item/weapon/cell
 	) //Vorestation Add - makes it actually useful lmao, adds sheets and cells as well as light replacers and lets you take any extinguisher that fits
 
@@ -133,7 +133,7 @@
 	icon_state = "medical_supply"
 	max_storage_space = INVENTORY_POUCH_SPACE
 	can_hold = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/weapon/dnainjector,
 		/obj/item/weapon/reagent_containers/dropper,
 		/obj/item/weapon/reagent_containers/glass/beaker,
@@ -147,14 +147,14 @@
 		/obj/item/weapon/storage/quickdraw/syringe_case,
 		/obj/item/weapon/syringe_cartridge,
 		/obj/item/clothing/gloves/sterile,
-		/obj/item/device/sleevemate,
+		/obj/item/sleevemate,
 		/obj/item/bodybag,
 		/obj/item/clothing/mask/surgical,
 		/obj/item/weapon/soap,
 		/obj/item/stack/nanopaste,
 		/obj/item/taperoll/medical,
 		/obj/item/weapon/storage/box/freezer,
-		/obj/item/clothing/mask/chewable/candy/lolli,    
+		/obj/item/clothing/mask/chewable/candy/lolli,
 	) //Vorestation add - added a bunch of misc medical stuff
 	max_storage_space = ITEMSIZE_COST_SMALL*3 //Vorestation Add - makes it slightly smaller since its a lot of stuff with pocket access
 	remove_delay = 5 //Vorestation Add - .5 second delay, get the medical things faster because there is no reason to use this otherwise. still gotta stop moving to take things out.
@@ -164,11 +164,11 @@
 	desc = "This storage pouch can be used to provide some additional storage for quick access. Can only hold flares and glowsticks."
 	icon_state = "flare"
 	storage_slots = 5
-	can_hold = list(/obj/item/device/flashlight/flare, /obj/item/device/flashlight/glowstick)
+	can_hold = list(/obj/item/flashlight/flare, /obj/item/flashlight/glowstick)
 /obj/item/weapon/storage/pouch/flares/full_flare
-	starts_with = list(/obj/item/device/flashlight/flare = 5)
+	starts_with = list(/obj/item/flashlight/flare = 5)
 /obj/item/weapon/storage/pouch/flares/full_glow
-	starts_with = list(/obj/item/device/flashlight/glowstick = 5)
+	starts_with = list(/obj/item/flashlight/glowstick = 5)
 
 /obj/item/weapon/storage/pouch/flares/update_icon()
 	cut_overlays()

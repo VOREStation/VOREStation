@@ -204,20 +204,16 @@
 							/obj/item/stock_parts/scanning_module = 3,
 							/obj/item/stack/material/glass/reinforced = 2)
 
-<<<<<<< HEAD
-/obj/item/weapon/circuitboard/medical_kiosk
+/obj/item/circuitboard/medical_kiosk
 	name = T_BOARD("medical kiosk")
 	build_path = /obj/machinery/medical_kiosk
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
 	req_components = list(
-							/obj/item/weapon/stock_parts/scanning_module = 3,
+							/obj/item/stock_parts/scanning_module = 3,
 							/obj/item/stack/material/glass/reinforced = 2)
 
-/obj/item/weapon/circuitboard/sleeper
-=======
 /obj/item/circuitboard/sleeper
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = T_BOARD("sleeper")
 	build_path = /obj/machinery/sleeper
 	board_type = new /datum/frame/frame_types/medical_pod

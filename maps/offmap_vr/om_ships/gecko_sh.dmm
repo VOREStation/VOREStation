@@ -98,7 +98,7 @@
 /area/shuttle/gecko_sh_engineering)
 "bL" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh)
 "bN" = (
@@ -112,8 +112,8 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
@@ -174,12 +174,12 @@
 	},
 /obj/machinery/light,
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh)
 "cY" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -199,8 +199,8 @@
 /area/shuttle/gecko_sh)
 "dO" = (
 /obj/effect/floor_decal/industrial/warning,
-/obj/item/weapon/tank/oxygen/yellow,
-/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/suit/space/void/refurb/engineering,
 /obj/item/clothing/head/helmet/space/void/refurb/engineering,
@@ -619,7 +619,7 @@
 /obj/structure/closet/crate{
 	dir = 1
 	},
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -1054,8 +1054,8 @@
 /obj/structure/window/basic{
 	dir = 4
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
@@ -1106,7 +1106,7 @@
 /obj/structure/closet/crate{
 	dir = 1
 	},
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -1150,16 +1150,16 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_engineering)
 "xT" = (
-/obj/item/weapon/tank/phoron/pressurized,
-/obj/item/weapon/tank/phoron/pressurized,
-/obj/item/weapon/tank/phoron/pressurized,
+/obj/item/tank/phoron/pressurized,
+/obj/item/tank/phoron/pressurized,
+/obj/item/tank/phoron/pressurized,
 /obj/structure/fuel_port/heavy{
 	pixel_y = 28
 	},
 /obj/structure/closet/crate{
 	dir = 2
 	},
-/obj/item/weapon/tool/crowbar/red,
+/obj/item/tool/crowbar/red,
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_engineering)
@@ -1537,8 +1537,8 @@
 /obj/structure/window/basic{
 	dir = 4
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
@@ -1661,7 +1661,7 @@
 /obj/structure/closet/crate{
 	dir = 1
 	},
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/machinery/light,
@@ -1688,8 +1688,8 @@
 /obj/structure/window/basic{
 	dir = 4
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
@@ -1733,8 +1733,8 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
@@ -1782,8 +1782,8 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
@@ -2180,13 +2180,13 @@
 "PI" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/closet/crate/engineering,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_engineering)
@@ -2213,8 +2213,8 @@
 /obj/structure/window/basic{
 	dir = 8
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
@@ -2240,10 +2240,10 @@
 /obj/structure/closet/crate{
 	dir = 1
 	},
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh_engineering)
 "Qx" = (
@@ -2275,11 +2275,11 @@
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_sh_engineering)
 "Rh" = (
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb/pilot,
 /obj/item/clothing/head/helmet/space/void/refurb/pilot,
 /obj/effect/floor_decal/industrial/outline/grey,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb/pilot,
 /obj/item/clothing/head/helmet/space/void/refurb/pilot,
 /obj/structure/closet/crate/aether{
@@ -2411,7 +2411,7 @@
 	pixel_x = 27
 	},
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_sh)
 "Tx" = (
@@ -2618,7 +2618,7 @@
 	dir = 8
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/item/stack/material/tritium{
 	amount = 25
 	},
@@ -2717,8 +2717,8 @@
 /obj/structure/window/basic{
 	dir = 4
 	},
-/obj/item/weapon/tank/air,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,

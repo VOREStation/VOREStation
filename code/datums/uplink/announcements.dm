@@ -24,20 +24,8 @@
 		return
 	return list("title" = title, "message" = message)
 
-<<<<<<< HEAD
-/datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/device/uplink/U, var/loc, var/mob/user, var/list/args)
-	post_comm_message(args["title"], replacetext(args["message"], "\n", "<br/>"))
-=======
 /datum/uplink_item/abstract/announcements/fake_centcom/get_goods(var/obj/item/uplink/U, var/loc, var/mob/user, var/list/args)
-	for (var/obj/machinery/computer/communications/C in machines)
-		if(! (C.stat & (BROKEN|NOPOWER) ) )
-			var/obj/item/paper/P = new /obj/item/paper( C.loc )
-			P.name = "'[command_name()] Update.'"
-			P.info = replacetext(args["message"], "\n", "<br/>")
-			P.update_space(P.info)
-			P.update_icon()
-
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	post_comm_message(args["title"], replacetext(args["message"], "\n", "<br/>"))
 	command_announcement.Announce(args["message"], args["title"])
 	return 1
 
@@ -117,4 +105,3 @@
 	var/datum/event_meta/EM = new(EVENT_LEVEL_MUNDANE, "Fake Radiation Storm", add_to_queue = 0)
 	new/datum/event/radiation_storm/syndicate(EM)
 	return 1
-

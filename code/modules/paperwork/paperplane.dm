@@ -11,11 +11,7 @@
 
 	var/obj/item/paper/internalPaper
 
-<<<<<<< HEAD
-/obj/item/weapon/paperplane/New(loc, obj/item/weapon/paper/newPaper)
-=======
 /obj/item/paperplane/Initialize(var/ml, obj/item/paper/newPaper)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
@@ -24,7 +20,7 @@
 		flags = newPaper.flags
 		color = newPaper.color
 		if(isstorage(newPaper.loc))
-			var/obj/item/weapon/storage/S = newPaper.loc
+			var/obj/item/storage/S = newPaper.loc
 			S.remove_from_storage(newPaper, src)
 		else
 			newPaper.forceMove(src)
@@ -38,23 +34,14 @@
 		internalPaper = null
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/paperplane/update_icon()
-	cut_overlays()
-=======
 /obj/item/paperplane/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/list/stamped = internalPaper.stamped
 	if(!stamped)
 		stamped = new
 	else if(stamped)
-<<<<<<< HEAD
-		for(var/obj/item/weapon/stamp/stamp as anything in stamped)
-=======
 		for(var/S in stamped)
 			var/obj/item/stamp/ = S
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			var/image/stampoverlay = image('icons/obj/bureaucracy.dmi', "paperplane_[initial(stamp.icon_state)]")
 			add_overlay(stampoverlay)
 

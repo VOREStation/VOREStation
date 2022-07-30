@@ -2286,14 +2286,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-<<<<<<< HEAD
-/obj/item/weapon/storage/firstaid/o2{
-	pixel_x = 0;
-	pixel_y = 0
-	},
-=======
 /obj/item/storage/firstaid/o2,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /obj/machinery/light,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
@@ -2305,14 +2298,7 @@
 	pixel_x = 5;
 	pixel_y = 5
 	},
-<<<<<<< HEAD
-/obj/item/weapon/storage/firstaid/fire{
-	pixel_x = 0;
-	pixel_y = 0
-	},
-=======
 /obj/item/storage/firstaid/fire,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
 /obj/effect/floor_decal/industrial/warning{
@@ -14258,8 +14244,6 @@
 /obj/machinery/mech_recharger,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/garage)
-<<<<<<< HEAD
-=======
 "Iy" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
@@ -14334,15 +14318,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/plating,
 /area/surface/outpost/checkpoint)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "Lz" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
 /obj/machinery/mech_recharger,
 /obj/effect/landmark/robot_platform/explorer,
 /turf/simulated/floor/plating,
 /area/surface/outpost/main/garage)
-<<<<<<< HEAD
-=======
 "LH" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -14733,7 +14714,6 @@
 "ZX" = (
 /turf/simulated/wall,
 /area/surface/outpost/checkpoint)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aa

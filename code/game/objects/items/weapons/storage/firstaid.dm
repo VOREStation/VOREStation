@@ -32,7 +32,7 @@
 	item_state_slots = list(slot_r_hand_str = "firstaid-ointment", slot_l_hand_str = "firstaid-ointment")
 	//icon_variety = list("ointment","firefirstaid") //VOREStation Removal
 	starts_with = list(
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/ointment,
@@ -49,7 +49,7 @@
 		/obj/item/stack/medical/bruise_pack,
 		/obj/item/stack/medical/ointment,
 		/obj/item/stack/medical/ointment,
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector
 	)
 
@@ -66,14 +66,14 @@
 		/obj/item/weapon/reagent_containers/pill/antitox,
 		/obj/item/weapon/reagent_containers/pill/antitox,
 		/obj/item/weapon/reagent_containers/pill/antitox,
-		/obj/item/device/healthanalyzer
+		/obj/item/healthanalyzer
 	)
 
 /obj/item/weapon/storage/firstaid/o2
 	name = "oxygen deprivation first aid kit"
 	desc = "A box full of oxygen goodies."
 	icon_state = "o2"
-	item_state_slots = list(slot_r_hand_str = "firstaid-o2", slot_l_hand_str = "firstaid-o2") 
+	item_state_slots = list(slot_r_hand_str = "firstaid-o2", slot_l_hand_str = "firstaid-o2")
 	starts_with = list(
 		/obj/item/weapon/reagent_containers/pill/dexalin,
 		/obj/item/weapon/reagent_containers/pill/dexalin,
@@ -81,7 +81,7 @@
 		/obj/item/weapon/reagent_containers/pill/dexalin,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector,
 		/obj/item/weapon/reagent_containers/syringe/inaprovaline,
-		/obj/item/device/healthanalyzer
+		/obj/item/healthanalyzer
 	)
 
 /obj/item/weapon/storage/firstaid/adv
@@ -113,7 +113,7 @@
 		/obj/item/weapon/storage/pill_bottle/spaceacillin,
 		/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/clotting,
 		/obj/item/stack/medical/splint,
-		/obj/item/device/healthanalyzer/advanced
+		/obj/item/healthanalyzer/advanced
 	)
 
 /obj/item/weapon/storage/firstaid/surgery
@@ -136,7 +136,7 @@
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
-		/obj/item/device/healthanalyzer/advanced,
+		/obj/item/healthanalyzer/advanced,
 		/obj/item/weapon/autopsy_scanner
 		)
 
@@ -151,7 +151,7 @@
 		/obj/item/weapon/surgical/bonegel,
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/device/healthanalyzer/advanced,
+		/obj/item/healthanalyzer/advanced,
 		/obj/item/weapon/autopsy_scanner
 		)
 
@@ -207,7 +207,7 @@
 		add_overlay(I)
 
 /obj/item/weapon/storage/pill_bottle/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/device/flashlight/pen))
+	if(istype(W, /obj/item/weapon/pen) || istype(W, /obj/item/flashlight/pen))
 		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a label for [name]", "Label", label_text, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50)
 			to_chat(user, "<span class='notice'>The label can be at most 50 characters long.</span>")

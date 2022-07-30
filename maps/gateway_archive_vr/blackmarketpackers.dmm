@@ -9,7 +9,7 @@
 /turf/simulated/floor/plating/airless/asteroid,
 /area/awaymission)
 "ad" = (
-/obj/item/weapon/circular_saw,
+/obj/item/circular_saw,
 /obj/structure/lattice,
 /turf/space,
 /area)
@@ -55,7 +55,7 @@
 /obj/machinery/porta_turret{
 	dir = 8;
 	emagged = 1;
-	installation = /obj/item/weapon/gun/energy/lasercannon
+	installation = /obj/item/gun/energy/lasercannon
 	},
 /turf/simulated/floor/engine,
 /area/awaymission/BMPship3)
@@ -195,15 +195,15 @@
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship1)
 "aH" = (
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
 /obj/structure/closet/crate,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship1)
 "aI" = (
-/obj/item/weapon/scalpel,
+/obj/item/scalpel,
 /obj/structure/closet/crate,
-/obj/item/weapon/tank/anesthetic,
+/obj/item/tank/anesthetic,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship1)
 "aJ" = (
@@ -211,7 +211,7 @@
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship1)
 "aK" = (
-/obj/item/weapon/storage/box/syringes,
+/obj/item/storage/box/syringes,
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship1)
 "aL" = (
@@ -254,9 +254,9 @@
 /area/awaymission/BMPship1)
 "aQ" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/appendix,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/appendix,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor/plating{
 	 icon_state = "warnplate";
 	dir = 1
@@ -265,8 +265,8 @@
 "aR" = (
 /obj/structure/closet/crate/freezer,
 /obj/item/brain,
-/obj/item/weapon/reagent_containers/food/snacks/appendix,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/appendix,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor/plating{
 	 icon_state = "warnplate";
 	dir = 1
@@ -274,7 +274,7 @@
 /area/awaymission/BMPship1)
 "aS" = (
 /obj/structure/table/standard,
-/obj/item/weapon/packageWrap,
+/obj/item/packageWrap,
 /turf/simulated/floor/plating{
 	 icon_state = "warnplate";
 	dir = 1
@@ -282,7 +282,7 @@
 /area/awaymission/BMPship1)
 "aT" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box,
+/obj/item/storage/box,
 /obj/machinery/light/small{
 	dir = 1
 	},
@@ -346,7 +346,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "bd" = (
-/obj/item/weapon/storage/box,
+/obj/item/storage/box,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "be" = (
@@ -368,7 +368,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "bh" = (
-/obj/item/weapon/hand_labeler,
+/obj/item/hand_labeler,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "bi" = (
@@ -393,14 +393,14 @@
 /area/awaymission/BMPship3)
 "bk" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/spacecash/c500,
-/obj/item/weapon/spacecash/c100,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/spacecash/c500,
+/obj/item/spacecash/c100,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor/wood,
 /area/awaymission/BMPship3)
 "bl" = (
 /obj/structure/stool/bed,
-/obj/item/weapon/bedsheet/yellow,
+/obj/item/bedsheet/yellow,
 /turf/simulated/floor/wood,
 /area/awaymission/BMPship3)
 "bm" = (
@@ -501,8 +501,8 @@
 /area/awaymission/BMPship1)
 "bz" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "bA" = (
@@ -591,8 +591,8 @@
 /area/awaymission/BMPship1)
 "bN" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/spacecash/c1000,
-/obj/item/weapon/spacecash/c50,
+/obj/item/spacecash/c1000,
+/obj/item/spacecash/c50,
 /turf/simulated/floor/plating{
 	 icon_state = "warnplate";
 	dir = 4
@@ -668,7 +668,7 @@
 	icon_state = "4-8";
 	pixel_y = 0
 	},
-/obj/item/weapon/hand_labeler,
+/obj/item/hand_labeler,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "ca" = (
@@ -687,7 +687,7 @@
 	icon_state = "4-8";
 	pixel_y = 0
 	},
-/obj/item/weapon/storage/box,
+/obj/item/storage/box,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship1)
 "cc" = (
@@ -786,8 +786,8 @@
 /area/awaymission/BMPship1)
 "cr" = (
 /obj/structure/closet/crate,
-/obj/item/device/analyzer,
-/obj/item/weapon/spacecash/c10,
+/obj/item/analyzer,
+/obj/item/spacecash/c10,
 /turf/simulated/floor/plating{
 	dir = 2;
 	icon_state = "warnplate"
@@ -795,9 +795,9 @@
 /area/awaymission/BMPship1)
 "cs" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/spacecash/c1000,
-/obj/item/weapon/spacecash/c200,
-/obj/item/weapon/spacecash/c500,
+/obj/item/spacecash/c1000,
+/obj/item/spacecash/c200,
+/obj/item/spacecash/c500,
 /turf/simulated/floor/plating{
 	dir = 2;
 	icon_state = "warnplate"
@@ -805,9 +805,9 @@
 /area/awaymission/BMPship1)
 "ct" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,
-/obj/item/weapon/reagent_containers/food/snacks/appendix,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/hugemushroomslice,
+/obj/item/reagent_containers/food/snacks/appendix,
 /turf/simulated/floor/plating{
 	dir = 2;
 	icon_state = "warnplate"
@@ -886,13 +886,13 @@
 /area/awaymission/BMPship2)
 "cC" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/paper{
+/obj/item/tool/screwdriver,
+/obj/item/tool/screwdriver,
+/obj/item/paper{
 	info = "The next person who takes one of my screwdrivers gets stabbed with one. They are MINE. - Love, Madsen";
 	name = "scribbled note"
 	},
-/obj/item/weapon/tool/screwdriver,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -957,16 +957,16 @@
 /area/awaymission/BMPship2)
 "cL" = (
 /obj/structure/table/standard,
-/obj/item/weapon/butch,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/butch,
+/obj/item/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor{
 	 icon_state = "barber"
 	},
 /area/awaymission/BMPship2)
 "cM" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /turf/simulated/floor{
 	 icon_state = "barber"
 	},
@@ -992,14 +992,14 @@
 /area/awaymission/BMPship2)
 "cP" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
 /area/awaymission/BMPship2)
 "cQ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/kitchenknife,
+/obj/item/kitchenknife,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1062,7 +1062,7 @@
 	},
 /area/awaymission/BMPship3)
 "cY" = (
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,
+/obj/item/reagent_containers/food/snacks/hugemushroomslice,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1071,7 +1071,7 @@
 /turf/simulated/floor,
 /area/awaymission/BMPship2)
 "da" = (
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor,
 /area/awaymission/BMPship2)
 "db" = (
@@ -1198,7 +1198,7 @@
 	},
 /area/awaymission/BMPship3)
 "du" = (
-/obj/item/weapon/reagent_containers/food/snacks/hugemushroomslice,
+/obj/item/reagent_containers/food/snacks/hugemushroomslice,
 /turf/simulated/floor,
 /area/awaymission/BMPship2)
 "dv" = (
@@ -1240,7 +1240,7 @@
 	},
 /area/awaymission/BMPship2)
 "dA" = (
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -1265,8 +1265,8 @@
 /area/awaymission/BMPship1)
 "dD" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
@@ -1281,7 +1281,7 @@
 	},
 /area/awaymission/BMPship1)
 "dF" = (
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /turf/simulated/floor{
 	icon_state = "white"
 	},
@@ -1315,7 +1315,7 @@
 /area/awaymission/BMPship1)
 "dJ" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "I'm no scientist, but judging from the design and components, it seems to be some kind of gateway. This thing is gonna be worth a lot of cash to the right man. The boys are excited, as they have every right to be, and I've let them crack into that case of beer we got. I normally wouldn't allow such a thing, but this is a time for celebration! It's not like a couple drinks will hurt anything.";
 	name = "Captain's log entry"
 	},
@@ -1326,7 +1326,7 @@
 /area/awaymission/BMPship3)
 "dK" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor{
 	 icon_state = "carpet14-2";
 	dir = 4
@@ -1426,7 +1426,7 @@
 	},
 /area/awaymission/BMPship2)
 "dW" = (
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -1503,7 +1503,7 @@
 	},
 /area/awaymission/BMPship1)
 "ec" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/engine,
 /area/awaymission/BMPship1)
 "ed" = (
@@ -1700,7 +1700,7 @@
 	},
 /area/awaymission/BMPship3)
 "eA" = (
-/obj/item/weapon/shard,
+/obj/item/shard,
 /turf/simulated/floor{
 	 icon_state = "carpetside";
 	dir = 5
@@ -1865,7 +1865,7 @@
 /area/awaymission/BMPship1)
 "eR" = (
 /obj/structure/rack,
-/obj/item/weapon/storage/box/lights,
+/obj/item/storage/box/lights,
 /turf/simulated/floor{
 	dir = 8;
 	icon_state = "warning"
@@ -1949,7 +1949,7 @@
 	},
 /area/awaymission/BMPship3)
 "eZ" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "medium"
 	},
 /turf/simulated/floor{
@@ -1987,7 +1987,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship2)
 "ff" = (
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -2068,7 +2068,7 @@
 /area/awaymission/BMPship1)
 "fp" = (
 /obj/structure/rack,
-/obj/item/weapon/storage/belt/utility/full,
+/obj/item/storage/belt/utility/full,
 /turf/simulated/floor{
 	dir = 8;
 	icon_state = "warning"
@@ -2223,7 +2223,7 @@
 /area/awaymission/BMPship1)
 "fE" = (
 /obj/structure/rack,
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
 /turf/simulated/floor{
 	dir = 8;
 	icon_state = "warning"
@@ -2419,7 +2419,7 @@
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship2)
 "gb" = (
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship2)
 "gc" = (
@@ -2447,7 +2447,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
-/obj/item/weapon/kitchenknife,
+/obj/item/kitchenknife,
 /turf/simulated/shuttle/plating,
 /area/awaymission/BMPship1)
 "gg" = (
@@ -2457,7 +2457,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
 /turf/simulated/floor,
 /area/awaymission/BMPship1)
 "gh" = (
@@ -2517,7 +2517,7 @@
 	dir = 4;
 	id = "meatConvey2"
 	},
-/obj/item/weapon/kitchenknife,
+/obj/item/kitchenknife,
 /turf/simulated/shuttle/plating,
 /area/awaymission/BMPship2)
 "gp" = (
@@ -2608,7 +2608,7 @@
 /turf/simulated/floor/plating/airless,
 /area/awaymission/BMPship3)
 "gC" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "small"
 	},
 /obj/structure/cable{
@@ -2646,7 +2646,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-/obj/item/weapon/kitchenknife,
+/obj/item/kitchenknife,
 /turf/simulated/floor{
 	icon_state = "bar"
 	},
@@ -2691,7 +2691,7 @@
 	},
 /area/awaymission/BMPship1)
 "gK" = (
-/obj/item/weapon/mop,
+/obj/item/mop,
 /turf/simulated/floor{
 	icon_state = "showroomfloor"
 	},
@@ -2715,7 +2715,7 @@
 	},
 /area/awaymission/BMPship3)
 "gO" = (
-/obj/item/weapon/shard,
+/obj/item/shard,
 /turf/simulated/floor/plating/airless{
 	 icon_state = "platingdmg1"
 	},
@@ -2755,13 +2755,13 @@
 /area/awaymission/BMPship2)
 "gU" = (
 /obj/structure/closet/crate/freezer,
-/obj/item/weapon/reagent_containers/food/snacks/meat,
+/obj/item/reagent_containers/food/snacks/meat,
 /turf/simulated/floor{
 	icon_state = "showroomfloor"
 	},
 /area/awaymission/BMPship1)
 "gV" = (
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor{
 	icon_state = "showroomfloor"
 	},
@@ -2861,7 +2861,7 @@
 /turf/simulated/mineral/random,
 /area/awaymission)
 "hj" = (
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/plating/airless{
 	 icon_state = "platingdmg2"
 	},
@@ -2922,7 +2922,7 @@
 /area/awaymission/BMPship1)
 "hu" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "DEAR DAIRY: So we was doing our typpical route when the captain says we've been picking up weird signals on some backwatter planet. Madsen wanted to stay on course but he ain't the captain, so we went out of the way to check it out. There was lots of rocks on the way, but we got to the planet fine. Found a big fancy camp with nobody around and this big metal donut thing with NT stamps all over it right in the middle. Case of beer too. Captain reckons we can pass it off to some buyer in the Syndicate. Ingram says it's bad luck and that someone is going to come look for it but it sounds like better money than selling bad meat to jerky companies.";
 	name = "Old Diary"
 	},
@@ -2930,8 +2930,8 @@
 /area/awaymission/BMPship1)
 "hv" = (
 /obj/structure/table/standard,
-/obj/item/weapon/pen/red,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/pen/red,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor,
 /area/awaymission/BMPship1)
 "hw" = (
@@ -3090,7 +3090,7 @@
 	dir = 4
 	},
 /obj/structure/grille,
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "small"
 	},
 /turf/simulated/floor/engine,
@@ -3138,8 +3138,8 @@
 /area/awaymission/BMPship1)
 "id" = (
 /obj/structure/stool/bed,
-/obj/item/weapon/bedsheet,
-/obj/item/weapon/storage/wallet/random,
+/obj/item/bedsheet,
+/obj/item/storage/wallet/random,
 /obj/structure/cable{
 	d1 = 1;
 	d2 = 2;
@@ -3215,7 +3215,7 @@
 /turf/simulated/floor,
 /area/awaymission/BMPship1)
 "in" = (
-/obj/item/weapon/shard{
+/obj/item/shard{
 	icon_state = "medium"
 	},
 /turf/space,
@@ -3240,7 +3240,7 @@
 /area/awaymission/BMPship1)
 "is" = (
 /obj/structure/stool/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor,
 /area/awaymission/BMPship1)
 "it" = (
@@ -3281,13 +3281,13 @@
 /area/awaymission)
 "iy" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/spacecash/c10,
-/obj/item/weapon/spacecash/c200,
+/obj/item/spacecash/c10,
+/obj/item/spacecash/c200,
 /turf/simulated/floor,
 /area/awaymission/BMPship1)
 "iz" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/spacecash/c10,
+/obj/item/spacecash/c10,
 /turf/simulated/floor,
 /area/awaymission/BMPship1)
 "iA" = (
@@ -3327,8 +3327,8 @@
 	},
 /area/awaymission)
 "iF" = (
-/obj/item/weapon/storage/box/matches,
-/obj/item/weapon/storage/fancy/cigarettes/dromedaryco,
+/obj/item/storage/box/matches,
+/obj/item/storage/fancy/cigarettes/dromedaryco,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship3)
 "iG" = (
@@ -3343,7 +3343,7 @@
 	},
 /area/awaymission/BMPship3)
 "iI" = (
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/simulated/floor/plating,
 /area/awaymission/BMPship3)
 "iJ" = (

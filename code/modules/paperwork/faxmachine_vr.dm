@@ -8,12 +8,12 @@
  */
 /obj/machinery/photocopier/faxmachine/proc/export_fax(fax)
 	var faxid = "[num2text(world.realtime,12)]_[rand(10000)]"
-	if (istype(fax, /obj/item/weapon/paper))
-		var/obj/item/weapon/paper/P = fax
+	if (istype(fax, /obj/item/paper))
+		var/obj/item/paper/P = fax
 		var/text = "<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>";
 		file("[config.fax_export_dir]/fax_[faxid].html") << text;
-	else if (istype(fax, /obj/item/weapon/photo))
-		var/obj/item/weapon/photo/H = fax
+	else if (istype(fax, /obj/item/photo))
+		var/obj/item/photo/H = fax
 		fcopy(H.img, "[config.fax_export_dir]/photo_[faxid].png")
 		var/text = "<html><head><title>[H.name]</title></head>" \
 			+ "<body style='overflow:hidden;margin:0;text-align:center'>" \
@@ -21,8 +21,8 @@
 			+ "[H.scribble ? "<br>Written on the back:<br><i>[H.scribble]</i>" : ""]"\
 			+ "</body></html>"
 		file("[config.fax_export_dir]/fax_[faxid].html") << text
-	else if (istype(fax, /obj/item/weapon/paper_bundle))
-		var/obj/item/weapon/paper_bundle/B = fax
+	else if (istype(fax, /obj/item/paper_bundle))
+		var/obj/item/paper_bundle/B = fax
 		var/data = ""
 		for (var/page = 1, page <= B.pages.len, page++)
 			var/obj/pageobj = B.pages[page]

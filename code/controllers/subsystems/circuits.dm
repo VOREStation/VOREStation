@@ -37,18 +37,11 @@ SUBSYSTEM_DEF(circuit)
 		var/list/category_list = circuit_fabricator_recipe_list[category]
 		category_list += IC // Populating the fabricator categories
 
-<<<<<<< HEAD
-	for(var/obj/item/device/electronic_assembly/A as anything in typesof(/obj/item/device/electronic_assembly))
-		var/path = A
-		all_assemblies[initial(A.name)] = path
-		cached_assemblies[path] = new path
-=======
 	for(var/path in typesof(/obj/item/electronic_assembly))
 		var/obj/item/electronic_assembly/A = path
 		var/name = initial(A.name)
 		all_assemblies[name] = path
 		cached_assemblies[A] = new path
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 
 	circuit_fabricator_recipe_list["Assemblies"] = list(

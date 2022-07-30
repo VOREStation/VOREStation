@@ -15,10 +15,10 @@
 
 			var/list/backup_implants = list()
 			for(var/obj/item/organ/I in H.organs)
-				for(var/obj/item/weapon/implant/backup/BI in I.contents)
+				for(var/obj/item/implant/backup/BI in I.contents)
 					backup_implants += BI
 			if(backup_implants.len)
-				for(var/obj/item/weapon/implant/backup/BI in backup_implants)
+				for(var/obj/item/implant/backup/BI in backup_implants)
 					BI.forceMove(src)
 
 			H.set_species("Promethean")
@@ -26,7 +26,7 @@
 
 			if(backup_implants.len)
 				var/obj/item/organ/external/torso = H.get_organ(BP_TORSO)
-				for(var/obj/item/weapon/implant/backup/BI in backup_implants)
+				for(var/obj/item/implant/backup/BI in backup_implants)
 					BI.forceMove(torso)
 					torso.implants += BI
 
@@ -44,7 +44,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.nif)
-			var/obj/item/device/nif/nif = H.nif //L o c a l
+			var/obj/item/nif/nif = H.nif //L o c a l
 			if(nif.stat == NIF_TEMPFAIL)
 				nif.stat = NIF_INSTALLING
 			nif.repair(removed)
@@ -117,7 +117,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.nif)
-			var/obj/item/device/nif/nif = H.nif //L o c a l
+			var/obj/item/nif/nif = H.nif //L o c a l
 			if(nif.stat == NIF_TEMPFAIL)
 				nif.stat = NIF_INSTALLING
 			nif.repair(removed*0.1)

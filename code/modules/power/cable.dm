@@ -598,13 +598,8 @@ var/list/possible_cable_coil_colours = list(
 		w_class = ITEMSIZE_SMALL
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
-<<<<<<< HEAD
-	if(istype(W, /obj/item/device/multitool))
-		var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
-=======
 	if(istype(W, /obj/item/multitool))
-		var/selected_type = input("Pick new colour.", "Cable Colour", null, null) as null|anything in possible_cable_coil_colours
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		var/selected_type = tgui_input_list(usr, "Pick new colour.", "Cable Colour", possible_cable_coil_colours)
 		set_cable_color(selected_type, usr)
 		return
 	return ..()

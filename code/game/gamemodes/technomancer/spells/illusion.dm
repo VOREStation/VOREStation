@@ -64,13 +64,8 @@
 	return ..()
 
 // Makes a tiny overlay of the thing the player has copied, so they can easily tell what they currently have.
-<<<<<<< HEAD
-/obj/item/weapon/spell/illusion/update_icon()
-	cut_overlays()
-=======
 /obj/item/spell/illusion/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(copied)
 		var/image/temp_image = image(copied)
 		var/matrix/M = matrix()

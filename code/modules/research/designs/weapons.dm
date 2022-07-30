@@ -29,75 +29,45 @@
 /datum/design/item/weapon/energy/nuclear_gun
 	id = "nuclear_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 5, TECH_POWER = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_URANIUM = 500)
-	build_path = /obj/item/weapon/gun/energy/gun/nuclear
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 1000, "uranium" = 500)
 	build_path = /obj/item/gun/energy/gun/nuclear
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MAAAB"
 
 /datum/design/item/weapon/energy/phoronpistol
 	id = "ppistol"
 	req_tech = list(TECH_COMBAT = 5, TECH_PHORON = 4)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000, MAT_PHORON = 3000)
-	build_path = /obj/item/weapon/gun/energy/toxgun
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 1000, "phoron" = 3000)
 	build_path = /obj/item/gun/energy/toxgun
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MAAAC"
 
 /datum/design/item/weapon/energy/lasercannon
 	desc = "The lasing medium of this prototype is enclosed in a tube lined with uranium-235 and subjected to high neutron flux in a nuclear reactor core."
 	id = "lasercannon"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 1000, MAT_DIAMOND = 2000)
-	build_path = /obj/item/weapon/gun/energy/lasercannon
-=======
-	materials = list(MAT_STEEL = 10000, "glass" = 1000, "diamond" = 2000)
 	build_path = /obj/item/gun/energy/lasercannon
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MAAAD"
 
 /datum/design/item/weapon/energy/decloner
 	id = "decloner"
 	req_tech = list(TECH_COMBAT = 8, TECH_MATERIAL = 7, TECH_BIO = 5, TECH_POWER = 6)
-<<<<<<< HEAD
 	materials = list(MAT_GOLD = 5000,MAT_URANIUM = 10000)
-	build_path = /obj/item/weapon/gun/energy/decloner
-=======
-	materials = list("gold" = 5000,"uranium" = 10000)
 	build_path = /obj/item/gun/energy/decloner
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MAAAE"
 
 /datum/design/item/weapon/energy/temp_gun
 	desc = "A gun that shoots high-powered glass-encased energy temperature bullets."
 	id = "temp_gun"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 4, TECH_POWER = 3, TECH_MAGNET = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 500, MAT_SILVER = 3000)
-	build_path = /obj/item/weapon/gun/energy/temperature
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 500, "silver" = 3000)
 	build_path = /obj/item/gun/energy/temperature
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MAAAF"
 
 /datum/design/item/weapon/energy/flora_gun
 	id = "flora_gun"
 	req_tech = list(TECH_MATERIAL = 2, TECH_BIO = 3, TECH_POWER = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 500, MAT_URANIUM = 500)
-	build_path = /obj/item/weapon/gun/energy/floragun
-=======
-	materials = list(MAT_STEEL = 2000, "glass" = 500, "uranium" = 500)
 	build_path = /obj/item/gun/energy/floragun
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MAAAG"
 
 /datum/design/item/weapon/energy/vinstunrevolver
@@ -117,13 +87,8 @@
 	id = "smg"
 	desc = "An advanced 9mm SMG with a reflective laser optic."
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 8000, MAT_SILVER = 2000, MAT_DIAMOND = 1000)
-	build_path = /obj/item/weapon/gun/projectile/automatic/advanced_smg
-=======
-	materials = list(MAT_STEEL = 8000, "silver" = 2000, "diamond" = 1000)
 	build_path = /obj/item/gun/projectile/automatic/advanced_smg
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MABAA"
 
 // Ballistic ammo
@@ -147,11 +112,7 @@
 	id = "stunshell"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	materials = list(MAT_STEEL = 4000)
-<<<<<<< HEAD
 	build_path = /obj/item/ammo_magazine/ammo_box/b12g/stunshell
-=======
-	build_path = /obj/item/storage/box/stunshells
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MABBB"
 
 /datum/design/item/weapon/ballistic/ammo/empshell
@@ -160,11 +121,7 @@
 	id = "empshell"
 	req_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 	materials = list(MAT_STEEL = 4000, MAT_URANIUM = 1000)
-<<<<<<< HEAD
 	build_path = /obj/item/ammo_magazine/ammo_box/b12g/emp
-=======
-	build_path = /obj/item/storage/box/empshells
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MABBC"
 
 // Phase weapons
@@ -184,37 +141,22 @@
 /datum/design/item/weapon/phase/phase_carbine
 	id = "phasecarbine"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 2, TECH_POWER = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 6000, MAT_GLASS = 1500)
-	build_path = /obj/item/weapon/gun/energy/phasegun
-=======
-	materials = list(MAT_STEEL = 6000, "glass" = 1500)
 	build_path = /obj/item/gun/energy/phasegun
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MACAB"
 
 /datum/design/item/weapon/phase/phase_rifle
 	id = "phaserifle"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 7000, MAT_GLASS = 2000, MAT_SILVER = 500)
-	build_path = /obj/item/weapon/gun/energy/phasegun/rifle
-=======
-	materials = list(MAT_STEEL = 7000, "glass" = 2000, "silver" = 500)
 	build_path = /obj/item/gun/energy/phasegun/rifle
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MACAC"
 
 /datum/design/item/weapon/phase/phase_cannon
 	id = "phasecannon"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4, TECH_POWER = 4)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 2000, MAT_SILVER = 1000, MAT_DIAMOND = 750)
-	build_path = /obj/item/weapon/gun/energy/phasegun/cannon
-=======
-	materials = list(MAT_STEEL = 10000, "glass" = 2000, "silver" = 1000, "diamond" = 750)
 	build_path = /obj/item/gun/energy/phasegun/cannon
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MACAD"
 */ //VOREStation Removal End
 
@@ -223,51 +165,31 @@
 /datum/design/item/weapon/rapidsyringe
 	id = "rapidsyringe"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000)
-	build_path = /obj/item/weapon/gun/launcher/syringe/rapid
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 1000)
 	build_path = /obj/item/gun/launcher/syringe/rapid
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MADAA"
 
 /datum/design/item/weapon/dartgun
 	desc = "A gun that fires small hollow chemical-payload darts."
 	id = "dartgun_r"
 	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_BIO = 4, TECH_MAGNET = 3, TECH_ILLEGAL = 1)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GOLD = 5000, MAT_SILVER = 2500, MAT_GLASS = 750)
-	build_path = /obj/item/weapon/gun/projectile/dartgun/research
-=======
-	materials = list(MAT_STEEL = 5000, "gold" = 5000, "silver" = 2500, "glass" = 750)
 	build_path = /obj/item/gun/projectile/dartgun/research
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MADAB"
 
 /datum/design/item/weapon/chemsprayer
 	desc = "An advanced chem spraying device."
 	id = "chemsprayer"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 3, TECH_BIO = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 1000)
-	build_path = /obj/item/weapon/reagent_containers/spray/chemsprayer
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 1000)
 	build_path = /obj/item/reagent_containers/spray/chemsprayer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MADAC"
 
 /datum/design/item/weapon/fuelrod
 	id = "fuelrod_gun"
 	req_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_PHORON = 4, TECH_ILLEGAL = 5, TECH_MAGNET = 5)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 10000, MAT_GLASS = 2000, MAT_GOLD = 500, MAT_SILVER = 500, MAT_URANIUM = 1000, MAT_PHORON = 3000, MAT_DIAMOND = 1000)
-	build_path = /obj/item/weapon/gun/magnetic/fuelrod
-=======
-	materials = list(MAT_STEEL = 10000, "glass" = 2000, "gold" = 500, "silver" = 500, "uranium" = 1000, "phoron" = 3000, "diamond" = 1000)
 	build_path = /obj/item/gun/magnetic/fuelrod
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MADAD"
 
 // Ammo for those
@@ -303,13 +225,8 @@
 /datum/design/item/weapon/ammo/flechette
 	id = "magnetic_ammo"
 	req_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4, TECH_MAGNET = 4)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GOLD = 300, MAT_GLASS = 150, MAT_PHORON = 100)
-	build_path = /obj/item/weapon/magnetic_ammo
-=======
-	materials = list(MAT_STEEL = 500, "gold" = 300, "glass" = 150, MAT_PHORON = 100)
 	build_path = /obj/item/magnetic_ammo
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MADBE"
 
 // Melee weapons
@@ -322,13 +239,8 @@
 	name = "Portable Energy Blade"
 	id = "chargesword"
 	req_tech = list(TECH_COMBAT = 6, TECH_MAGNET = 4, TECH_ENGINEERING = 5, TECH_ILLEGAL = 4, TECH_ARCANE = 1)
-<<<<<<< HEAD
 	materials = list(MAT_PLASTEEL = 3500, MAT_GLASS = 1000, MAT_LEAD = 2250, MAT_METALHYDROGEN = 500)
-	build_path = /obj/item/weapon/melee/energy/sword/charge
-=======
-	materials = list(MAT_PLASTEEL = 3500, "glass" = 1000, MAT_LEAD = 2250, MAT_METALHYDROGEN = 500)
 	build_path = /obj/item/melee/energy/sword/charge
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "MBAAA"
 
 /datum/design/item/weapon/melee/eaxe
@@ -348,10 +260,5 @@
 	id = "large_Grenade"
 	req_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
 	materials = list(MAT_STEEL = 3000)
-<<<<<<< HEAD
-	build_path = /obj/item/weapon/grenade/chem_grenade/large
-	sort_string = "MCAAA"
-=======
 	build_path = /obj/item/grenade/chem_grenade/large
 	sort_string = "MCAAA"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

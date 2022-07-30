@@ -87,26 +87,17 @@
 	return FALSE
 
 //A vial-loaded hypospray. Cartridge-based!
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/hypospray/vial
+/obj/item/reagent_containers/hypospray/vial
 	name = "advanced hypospray"
 	icon_state = "advhypo"
-=======
-/obj/item/reagent_containers/hypospray/vial
-	name = "hypospray mkII"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "A new development from DeForest Medical, this new hypospray takes 30-unit vials as the drug supply for easy swapping."
 	var/obj/item/reagent_containers/glass/beaker/vial/loaded_vial //Wow, what a name.
 	volume = 0
 
 /obj/item/reagent_containers/hypospray/vial/Initialize()
 	. = ..()
-<<<<<<< HEAD
 	icon_state = "[initial(icon_state)]"
-	loaded_vial = new /obj/item/weapon/reagent_containers/glass/beaker/vial(src) //Comes with an empty vial
-=======
 	loaded_vial = new /obj/item/reagent_containers/glass/beaker/vial(src) //Comes with an empty vial
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	volume = loaded_vial.volume
 	reagents.maximum_volume = loaded_vial.reagents.maximum_volume
 
@@ -126,20 +117,15 @@
 	else
 		return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/hypospray/vial/update_icon()
+/obj/item/reagent_containers/hypospray/vial/update_icon()
 	..()
 	if(loaded_vial)
 		icon_state = "[initial(icon_state)]"
 	else
 		icon_state = "[initial(icon_state)]_empty"
 
-/obj/item/weapon/reagent_containers/hypospray/vial/attackby(obj/item/weapon/W, mob/user as mob)
-	if(istype(W, /obj/item/weapon/reagent_containers/glass/beaker/vial))
-=======
 /obj/item/reagent_containers/hypospray/vial/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/reagent_containers/glass/beaker/vial))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(!loaded_vial)
 			user.visible_message("<span class='notice'>[user] begins loading [W] into \the [src].</span>","<span class='notice'>You start loading [W] into \the [src].</span>")
 			if(!do_after(user,30) || loaded_vial || !(W in user))
@@ -204,12 +190,8 @@
 	else
 		. += "<span class='notice'>It is spent.</span>"
 
-<<<<<<< HEAD
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/detox
-=======
 /obj/item/reagent_containers/hypospray/autoinjector/detox
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "autoinjector (antitox)"
 	icon_state = "green"
 	filled_reagents = list("anti_toxin" = 5)
@@ -235,16 +217,12 @@
 	origin_tech = list(TECH_BIO = 4)
 	filled_reagents = list("inaprovaline" = 15)
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/empty //for the autolathe
+/obj/item/reagent_containers/hypospray/autoinjector/biginjector/empty //for the autolathe
 	name = "large autoinjector"
 	filled = 0
 	filled_reagents = list()
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute
-=======
 /obj/item/reagent_containers/hypospray/autoinjector/biginjector/brute
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "trauma hypo"
 	desc = "A refined version of the standard autoinjector, allowing greater capacity.  This one is made to be used on victims of \
 	moderate blunt trauma."

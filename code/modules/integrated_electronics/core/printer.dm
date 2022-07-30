@@ -1,5 +1,5 @@
 
-/obj/item/device/integrated_circuit_printer
+/obj/item/integrated_circuit_printer
 	name = "integrated circuit printer"
 	desc = "A portable(ish) machine made to print tiny modular circuitry out of metal."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -14,23 +14,23 @@
 	var/illegal_upgraded = FALSE // When hit with an illegal upgrade disk, will turn true, allowing it to print the illegal circuits.
 	var/can_clone = FALSE		// Same for above, but will allow the printer to duplicate a specific assembly. (Not implemented)
 //	var/static/list/recipe_list = list()
-	var/obj/item/device/electronic_assembly/assembly_to_clone = null // Not implemented x3
+	var/obj/item/electronic_assembly/assembly_to_clone = null // Not implemented x3
 	var/dirty_items = FALSE
 
-/obj/item/device/integrated_circuit_printer/all_upgrades
+/obj/item/integrated_circuit_printer/all_upgrades
 	upgraded = TRUE
 	illegal_upgraded = TRUE
 	can_clone = TRUE
 
-/obj/item/device/integrated_circuit_printer/illegal
+/obj/item/integrated_circuit_printer/illegal
 	illegal_upgraded = TRUE
 	can_clone = TRUE
 
-/obj/item/device/integrated_circuit_printer/upgraded
+/obj/item/integrated_circuit_printer/upgraded
 	upgraded = TRUE
 	can_clone = TRUE
 
-/obj/item/device/integrated_circuit_printer/debug
+/obj/item/integrated_circuit_printer/debug
 	name = "fractal integrated circuit printer"
 	desc = "A portable(ish) machine that makes modular circuitry seemingly out of thin air."
 	upgraded = TRUE
@@ -38,13 +38,13 @@
 	can_clone = TRUE
 	debug = TRUE
 
-/obj/item/device/integrated_circuit_printer/attack_robot(mob/user as mob)
+/obj/item/integrated_circuit_printer/attack_robot(mob/user as mob)
 	if(Adjacent(user))
 		return tgui_interact(user)
 	else
 		return ..()
 
-/obj/item/device/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
+/obj/item/integrated_circuit_printer/attackby(var/obj/item/O, var/mob/user)
 	if(istype(O,/obj/item/stack/material))
 		var/obj/item/stack/material/stack = O
 		if(stack.material.name == MAT_STEEL)
@@ -100,19 +100,19 @@
 
 	return ..()
 
-/obj/item/device/integrated_circuit_printer/vv_edit_var(var_name, var_value)
+/obj/item/integrated_circuit_printer/vv_edit_var(var_name, var_value)
 	// Gotta update the static data in case an admin VV's the upgraded var for some reason..!
 	if(var_name == "upgraded")
 		dirty_items = TRUE
 	return ..()
 
-/obj/item/device/integrated_circuit_printer/attack_self(var/mob/user)
+/obj/item/integrated_circuit_printer/attack_self(var/mob/user)
 	tgui_interact(user)
 
-/obj/item/device/integrated_circuit_printer/tgui_state(mob/user)
+/obj/item/integrated_circuit_printer/tgui_state(mob/user)
 	return GLOB.tgui_physical_state
 
-/obj/item/device/integrated_circuit_printer/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/integrated_circuit_printer/tgui_interact(mob/user, datum/tgui/ui)
 	if(dirty_items)
 		update_tgui_static_data(user, ui)
 		dirty_items = FALSE
@@ -122,7 +122,7 @@
 		ui = new(user, src, "ICPrinter", name) // 500, 600
 		ui.open()
 
-/obj/item/device/integrated_circuit_printer/tgui_static_data(mob/user)
+/obj/item/integrated_circuit_printer/tgui_static_data(mob/user)
 	var/list/data = ..()
 
 	var/list/categories = list()
@@ -138,15 +138,15 @@
 		for(var/path in circuit_list)
 			var/obj/O = path
 			var/can_build = TRUE
-			
+
 			if(ispath(path, /obj/item/integrated_circuit))
 				var/obj/item/integrated_circuit/IC = path
 				if((initial(IC.spawn_flags) & IC_SPAWN_RESEARCH) && (!(initial(IC.spawn_flags) & IC_SPAWN_DEFAULT)) && !upgraded)
 					can_build = FALSE
 
 			var/cost = 1
-			if(ispath(path, /obj/item/device/electronic_assembly))
-				var/obj/item/device/electronic_assembly/E = path
+			if(ispath(path, /obj/item/electronic_assembly))
+				var/obj/item/electronic_assembly/E = path
 				cost = round((initial(E.max_complexity) + initial(E.max_components)) / 4)
 			else
 				var/obj/item/I = path
@@ -159,14 +159,14 @@
 				"cost" = cost,
 				"path" = path,
 			)))
-		
+
 		cat_obj["items"] = items
 		categories.Add(list(cat_obj))
 	data["categories"] = categories
 
 	return data
 
-/obj/item/device/integrated_circuit_printer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/integrated_circuit_printer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["metal"] = metal
@@ -179,7 +179,7 @@
 
 	return data
 
-/obj/item/device/integrated_circuit_printer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/integrated_circuit_printer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -193,13 +193,13 @@
 
 			var/cost = 1
 
-			if(ispath(build_type, /obj/item/device/electronic_assembly))
-				var/obj/item/device/electronic_assembly/E = build_type
+			if(ispath(build_type, /obj/item/electronic_assembly))
+				var/obj/item/electronic_assembly/E = build_type
 				cost = round( (initial(E.max_complexity) + initial(E.max_components) ) / 4)
 			else
 				var/obj/item/I = build_type
 				cost = initial(I.w_class)
-			
+
 			var/in_some_category = FALSE
 			for(var/category in SScircuit.circuit_fabricator_recipe_list)
 				if(build_type in SScircuit.circuit_fabricator_recipe_list[category])

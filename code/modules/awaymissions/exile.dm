@@ -4,15 +4,9 @@
 /obj/item/implanter/exile
 	name = "implanter-exile"
 
-<<<<<<< HEAD
-/obj/item/weapon/implanter/exile/New()
-	src.imp = new /obj/item/weapon/implant/exile( src )
-	..()
-=======
 /obj/item/implanter/exile/Initialize()
 	src.imp = new /obj/item/implant/exile( src )
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	update()
 	return
 
@@ -35,17 +29,9 @@
 	icon_state = "implantcase-r"
 
 
-<<<<<<< HEAD
-/obj/item/weapon/implantcase/exile/New()
-	src.imp = new /obj/item/weapon/implant/exile( src )
-	..()
-	return
-
-=======
 /obj/item/implantcase/exile/Initialize()
 	src.imp = new /obj/item/implant/exile( src )
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/structure/closet/secure_closet/exile
 	name = "Exile Implants"

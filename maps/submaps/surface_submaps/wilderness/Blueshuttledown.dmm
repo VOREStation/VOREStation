@@ -21,7 +21,7 @@
 "au" = (/obj/machinery/body_scanconsole,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 5},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "av" = (/turf/simulated/floor/tiled/steel,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "aw" = (/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
-"ax" = (/obj/structure/table/steel,/obj/item/weapon/gun/projectile/automatic/wt550,/obj/item/weapon/gun/projectile/automatic/p90,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"ax" = (/obj/structure/table/steel,/obj/item/gun/projectile/automatic/wt550,/obj/item/gun/projectile/automatic/p90,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "ay" = (/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "az" = (/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "aA" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -41,27 +41,17 @@
 "aO" = (/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aP" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 4},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aQ" = (/obj/structure/table/steel,/obj/effect/floor_decal/borderfloor/full,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"aR" = (/obj/structure/table/steel,/obj/item/weapon/grenade/smokebomb,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"aR" = (/obj/structure/table/steel,/obj/item/grenade/smokebomb,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "aS" = (/obj/effect/floor_decal/borderfloor/corner,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "aT" = (/obj/effect/floor_decal/borderfloor,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "aU" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-<<<<<<< HEAD
-"aV" = (/obj/structure/table/standard,/obj/item/weapon/storage/firstaid/surgery,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 10},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"aW" = (/obj/structure/table/standard,/obj/item/weapon/tank/anesthetic,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"aX" = (/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"aY" = (/obj/structure/table/standard,/obj/item/clothing/gloves/sterile,/obj/item/clothing/gloves/sterile,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"aZ" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/item/weapon/reagent_containers/spray/sterilizine,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"ba" = (/obj/structure/table/standard,/obj/item/weapon/storage/box/masks,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 6},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"bb" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-=======
-"aV" = (/obj/structure/table/standard,/obj/item/storage/firstaid/surgery,/obj/effect/floor_decal/corner/green/border{dir = 10; icon_state = "bordercolor"},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"aV" = (/obj/structure/table/standard,/obj/item/storage/firstaid/surgery,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 10},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aW" = (/obj/structure/table/standard,/obj/item/tank/anesthetic,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aX" = (/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
 "aY" = (/obj/structure/table/standard,/obj/item/clothing/gloves/sterile,/obj/item/clothing/gloves/sterile,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"aZ" = (/obj/structure/table/standard,/obj/item/reagent_containers/spray/sterilizine,/obj/item/reagent_containers/spray/sterilizine,/obj/effect/floor_decal/corner/green/border,/obj/random/firstaid,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"ba" = (/obj/structure/table/standard,/obj/item/storage/box/masks,/obj/effect/floor_decal/corner/green/border{dir = 6; icon_state = "bordercolor"},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
-"bb" = (/obj/machinery/light{dir = 8; icon_state = "tube1"},/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"aZ" = (/obj/structure/table/standard,/obj/item/reagent_containers/spray/sterilizine,/obj/item/reagent_containers/spray/sterilizine,/obj/effect/floor_decal/corner/green/border,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"ba" = (/obj/structure/table/standard,/obj/item/storage/box/masks,/obj/effect/floor_decal/corner/green/border{icon_state = "bordercolor"; dir = 6},/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
+"bb" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 9},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bc" = (/obj/structure/bed/chair/office/dark{dir = 1},/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bd" = (/obj/machinery/door/airlock/security{locked = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "be" = (/obj/machinery/door/airlock/glass,/turf/simulated/floor/tiled/white,/area/submap/Blackshuttledown)
@@ -80,13 +70,8 @@
 "br" = (/obj/structure/table/steel,/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bs" = (/obj/machinery/light{icon_state = "tube1"; dir = 8},/obj/effect/floor_decal/borderfloor{dir = 8},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bt" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-<<<<<<< HEAD
-"bu" = (/obj/item/weapon/stool,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"bv" = (/obj/structure/table/steel,/obj/random/projectile,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
-=======
 "bu" = (/obj/item/stool,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"bv" = (/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"bv" = (/obj/structure/table/steel,/obj/random/projectile,/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "bw" = (/obj/structure/sink{dir = 8; icon_state = "sink"; pixel_x = -16},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "bx" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/submap/Blackshuttledown)
 "by" = (/obj/machinery/door/airlock/glass,/obj/effect/floor_decal/borderfloor{dir = 1},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
@@ -115,53 +100,26 @@
 "bV" = (/obj/structure/table/steel,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "bW" = (/obj/effect/floor_decal/borderfloor/corner{dir = 4},/obj/effect/floor_decal/borderfloor/corner{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bX" = (/obj/machinery/light{dir = 4; icon_state = "tube1"; pixel_x = 0},/obj/effect/floor_decal/borderfloor{dir = 5},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-<<<<<<< HEAD
-"bY" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-=======
-"bY" = (/obj/structure/bed,/obj/item/bedsheet/blue,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"bY" = (/obj/structure/bed,/obj/item/bedsheet,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "bZ" = (/obj/machinery/door/airlock,/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "ca" = (/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "cb" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/obj/structure/curtain/open/shower/security,/obj/structure/window/reinforced/tinted/frosted{icon_state = "fwindow"; dir = 1},/obj/structure/window/reinforced/tinted/frosted,/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
-"cc" = (/obj/structure/table/steel,/obj/item/weapon/gun/projectile/pistol,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
+"cc" = (/obj/structure/table/steel,/obj/item/gun/projectile/pistol,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "cd" = (/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-<<<<<<< HEAD
-"ce" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-=======
-"ce" = (/obj/structure/bed,/obj/item/bedsheet/blue,/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"ce" = (/obj/structure/bed,/obj/item/bedsheet,/obj/structure/bed,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cf" = (/obj/structure/urinal{dir = 4; icon_state = "urinal"; pixel_x = -32},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "cg" = (/obj/structure/toilet{icon_state = "toilet00"; dir = 4},/obj/structure/curtain,/obj/structure/window/reinforced/tinted/frosted{icon_state = "fwindow"; dir = 1},/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
 "ch" = (/obj/structure/table/steel,/obj/random/energy,/turf/simulated/floor/tiled/steel_grid,/area/submap/Blackshuttledown)
 "ci" = (/turf/simulated/floor/tiled/yellow,/area/submap/Blackshuttledown)
 "cj" = (/obj/machinery/light,/obj/structure/table/rack,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/head/helmet/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/item/clothing/suit/space,/obj/effect/floor_decal/borderfloor{dir = 10},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "ck" = (/obj/structure/dispenser/oxygen,/obj/effect/floor_decal/borderfloor{dir = 6},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-<<<<<<< HEAD
 "cl" = (/obj/structure/table/woodentable,/obj/random/projectile,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"cm" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-=======
-"cl" = (/obj/structure/table/woodentable,/obj/random/multiple/gun/projectile/handgun,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"cm" = (/obj/structure/bed,/obj/item/bedsheet/blue,/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"cm" = (/obj/structure/bed,/obj/item/bedsheet,/obj/machinery/light,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cp" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark5"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "cq" = (/turf/template_noop,/turf/simulated/shuttle/wall/dark{icon_state = "dark9"; name = "Unknown Shuttle"},/area/submap/Blackshuttledown)
 "cr" = (/obj/effect/floor_decal/borderfloor{dir = 4},/mob/living/simple_mob/humanoid/merc/melee/sword/poi,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "cs" = (/obj/effect/floor_decal/borderfloor{dir = 4},/mob/living/simple_mob/humanoid/merc/ranged/laser/poi,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
 "ct" = (/mob/living/simple_mob/humanoid/merc/ranged/smg/sol,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-<<<<<<< HEAD
-=======
-"dr" = (/obj/structure/prop/machine/tgmc_console2/starts_on,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"dX" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/prop/machine/tgmc_console1,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"fh" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"jx" = (/mob/living/simple_mob/mechanical/viscerator/mercenary,/turf/simulated/floor/tiled/hydro,/area/submap/Blackshuttledown)
-"kN" = (/obj/structure/table/steel,/obj/item/reagent_containers/food/drinks/glass2/coffeemug/fleet,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"ls" = (/obj/effect/floor_decal/borderfloor{dir = 1},/obj/structure/prop/machine/tgmc_console2/starts_on,/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"pK" = (/obj/structure/prop/machine/tgmc_console5/starts_on,/obj/effect/floor_decal/borderfloor/full,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"xx" = (/obj/effect/floor_decal/borderfloor,/obj/structure/table/rack,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"Ca" = (/obj/effect/floor_decal/borderfloor{dir = 4},/obj/structure/window/reinforced,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"Rc" = (/obj/structure/table/steel,/obj/item/reagent_containers/food/drinks/glass2/coffeemug/sol,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
-"Ug" = (/obj/effect/floor_decal/borderfloor,/obj/structure/window/reinforced{dir = 4},/obj/structure/table/rack,/obj/item/rig/combat,/obj/item/tank/jetpack/rig,/turf/simulated/floor/tiled/steel,/area/submap/Blackshuttledown)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

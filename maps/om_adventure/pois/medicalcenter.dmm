@@ -12,7 +12,7 @@
 /area/om_adventure/poi/medicalcenter)
 "m" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/curtain/medical,
 /obj/tether_away_spawner/spookyland,
 /turf/simulated/floor/tiled/eris/white/orangecorner,
@@ -92,7 +92,7 @@
 /area/om_adventure/poi/medicalcenter)
 "I" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/curtain/medical,
 /turf/simulated/floor/tiled/eris/white/orangecorner,
 /area/om_adventure/poi/medicalcenter)

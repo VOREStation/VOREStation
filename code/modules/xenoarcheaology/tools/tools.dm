@@ -23,13 +23,8 @@
 	name = "sample bag box"
 	desc = "A box claiming to contain sample bags."
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/samplebags/New()
-	..()
-=======
 /obj/item/storage/box/samplebags/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/i = 1 to 7)
 		var/obj/item/evidencebag/S = new(src)
 		S.name = "sample bag"
@@ -113,13 +108,8 @@
 	var/dissonance_spread = 1
 	var/material = "unknown"
 
-<<<<<<< HEAD
-/obj/item/device/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
-	user.visible_message("<b>\The [user]</b> scans \the [A], the air around them humming gently.")
-=======
 /obj/item/depth_scanner/proc/scan_atom(var/mob/user, var/atom/A)
-	user.visible_message("<span class='notice'>\The [user] scans \the [A], the air around them humming gently.</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	user.visible_message("<b>\The [user]</b> scans \the [A], the air around them humming gently.")
 
 	if(istype(A, /turf/simulated/mineral))
 		var/turf/simulated/mineral/M = A
@@ -161,27 +151,19 @@
 
 			to_chat(user, "<span class='notice'>\icon[src][bicon(src)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
 
-<<<<<<< HEAD
-/obj/item/device/depth_scanner/attack_self(var/mob/living/user)
+/obj/item/depth_scanner/attack_self(var/mob/living/user)
 	tgui_interact(user)
 
-/obj/item/device/depth_scanner/tgui_state(mob/user)
+/obj/item/depth_scanner/tgui_state(mob/user)
 	return GLOB.tgui_deep_inventory_state
 
-/obj/item/device/depth_scanner/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/depth_scanner/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchDepthScanner", name)
 		ui.open()
-=======
-/obj/item/depth_scanner/attack_self(var/mob/living/user)
-	interact(user)
 
-/obj/item/depth_scanner/interact(var/mob/user as mob)
-	var/dat = "<b>Coordinates with positive matches</b><br>"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
-
-/obj/item/device/depth_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/depth_scanner/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["current"] = list()
@@ -196,7 +178,6 @@
 		)
 		data["current"]["material"] = "Unknown"
 		var/index = responsive_carriers.Find(current.material)
-<<<<<<< HEAD
 		if(index > 0 && index <= LAZYLEN(finds_as_strings))
 			data["current"]["material"] = finds_as_strings[index]
 
@@ -212,7 +193,7 @@
 
 	return data
 
-/obj/item/device/depth_scanner/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/depth_scanner/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -235,54 +216,6 @@
 				positive_locations = list()
 				QDEL_NULL(current)
 			return TRUE
-=======
-		if(index > 0 && index <= finds_as_strings.len)
-			dat += "Anomaly material: [finds_as_strings[index]]<br>"
-		else
-			dat += "Anomaly material: Unknown<br>"
-		dat += "<A href='?src=\ref[src];clear=[current.record_index]'>clear entry</a><br>"
-	else
-		dat += "Select an entry from the list<br>"
-		dat += "<br><br><br><br>"
-	dat += "<hr>"
-	if(positive_locations.len)
-		for(var/index = 1 to positive_locations.len)
-			var/datum/depth_scan/D = positive_locations[index]
-			dat += "<A href='?src=\ref[src];select=[index]'>[D.time], coords: [D.coords]</a><br>"
-	else
-		dat += "No entries recorded."
-
-	dat += "<hr>"
-	dat += "<A href='?src=\ref[src];refresh=1'>Refresh</a><br>"
-	dat += "<A href='?src=\ref[src];close=1'>Close</a><br>"
-	user << browse(dat,"window=depth_scanner;size=300x500")
-	onclose(user, "depth_scanner")
-
-/obj/item/depth_scanner/Topic(href, href_list)
-	..()
-	usr.set_machine(src)
-
-	if(href_list["select"])
-		var/index = text2num(href_list["select"])
-		if(index && index <= positive_locations.len)
-			current = positive_locations[index]
-	else if(href_list["clear"])
-		var/index = text2num(href_list["clear"])
-		if(index)
-			if(index <= positive_locations.len)
-				var/datum/depth_scan/D = positive_locations[index]
-				positive_locations.Remove(D)
-				qdel(D)
-		else
-			//GC will hopefully pick them up before too long
-			positive_locations = list()
-			qdel(current)
-	else if(href_list["close"])
-		usr.unset_machine()
-		usr << browse(null, "window=depth_scanner")
-
-	updateSelfDialog()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/beacon_locator
 	name = "locater device"
@@ -298,13 +231,8 @@
 	var/scan_ticks = 0
 	var/obj/item/radio/target_radio
 
-<<<<<<< HEAD
-/obj/item/device/beacon_locator/New()
-	..()
-=======
 /obj/item/beacon_locator/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 
 /obj/item/beacon_locator/Destroy()
@@ -349,20 +277,19 @@
 		else
 			icon_state = "pinoff"
 
-<<<<<<< HEAD
-/obj/item/device/beacon_locator/attack_self(mob/user)
+/obj/item/beacon_locator/attack_self(mob/user)
 	return tgui_interact(user)
 
-/obj/item/device/beacon_locator/tgui_state(mob/user)
+/obj/item/beacon_locator/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/beacon_locator/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/beacon_locator/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "BeaconLocator", name)
 		ui.open()
 
-/obj/item/device/beacon_locator/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/beacon_locator/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["scan_ticks"] = scan_ticks
@@ -373,34 +300,10 @@
 	data["rawfreq"] = frequency
 	data["minFrequency"] = RADIO_LOW_FREQ
 	data["maxFrequency"] = RADIO_HIGH_FREQ
-=======
-/obj/item/beacon_locator/attack_self(var/mob/user as mob)
-	return src.interact(user)
-
-/obj/item/beacon_locator/interact(var/mob/user as mob)
-	var/dat = "<b>Radio frequency tracker</b><br>"
-	dat += {"
-				<A href='byond://?src=\ref[src];reset_tracking=1'>Reset tracker</A><BR>
-				Frequency:
-				<A href='byond://?src=\ref[src];freq=-10'>-</A>
-				<A href='byond://?src=\ref[src];freq=-2'>-</A>
-				[format_frequency(frequency)]
-				<A href='byond://?src=\ref[src];freq=2'>+</A>
-				<A href='byond://?src=\ref[src];freq=10'>+</A><BR>
-				"}
-
-	dat += "<A href='?src=\ref[src];close=1'>Close</a><br>"
-	user << browse(dat,"window=locater;size=300x150")
-	onclose(user, "locater")
-
-/obj/item/beacon_locator/Topic(href, href_list)
-	..()
-	usr.set_machine(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	return data
 
-/obj/item/device/beacon_locator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/beacon_locator/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -429,14 +332,6 @@
 	var/obj/item/ano_scanner/anomaly_scanner = null
 	var/obj/item/depth_scanner/depth_scanner = null
 
-<<<<<<< HEAD
-/obj/item/device/xenoarch_multi_tool/New()
-	anomaly_scanner = new/obj/item/device/ano_scanner(src)
-	depth_scanner = new/obj/item/device/depth_scanner(src)
-
-/obj/item/device/xenoarch_multi_tool/attack_self(var/mob/living/user)
-	depth_scanner.tgui_interact(user)
-=======
 /obj/item/xenoarch_multi_tool/Initialize()
 	anomaly_scanner = new/obj/item/ano_scanner(src)
 	depth_scanner = new/obj/item/depth_scanner(src)
@@ -444,7 +339,6 @@
 
 /obj/item/xenoarch_multi_tool/attack_self(var/mob/living/user)
 	depth_scanner.interact(user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/xenoarch_multi_tool/verb/swap_settings(var/mob/living/user)
 	set name = "Swap Functionality"
@@ -459,4 +353,3 @@
 	set name = "Scan for Anomalies"
 	set desc = "Scan for artifacts and anomalies within your vicinity."
 	anomaly_scanner.interact(user)
-

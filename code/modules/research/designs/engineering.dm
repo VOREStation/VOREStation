@@ -9,13 +9,8 @@
 	desc = "A welding tool that generate fuel for itself."
 	id = "expwelder"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_PHORON = 3, TECH_MATERIAL = 4)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 70, MAT_GLASS = 120, MAT_PHORON = 100)
-	build_path = /obj/item/weapon/weldingtool/experimental
-=======
-	materials = list(MAT_STEEL = 70, "glass" = 120, "phoron" = 100)
 	build_path = /obj/item/weldingtool/experimental
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "NAAAA"
 
 /datum/design/item/tool/hand_drill
@@ -23,13 +18,8 @@
 	desc = "A simple powered hand drill."
 	id = "handdrill"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
-	build_path = /obj/item/weapon/tool/screwdriver/power
-=======
-	materials = list(MAT_STEEL = 300, "silver" = 100)
 	build_path = /obj/item/tool/screwdriver/power
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "NAAAB"
 
 /datum/design/item/tool/jaws_life
@@ -37,13 +27,8 @@
 	desc = "A set of jaws of life, compressed through the magic of science."
 	id = "jawslife"
 	req_tech = list(TECH_ENGINEERING = 3, TECH_MATERIAL = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 300, MAT_SILVER = 100)
-	build_path = /obj/item/weapon/tool/crowbar/power
-=======
-	materials = list(MAT_STEEL = 300, "silver" = 100)
 	build_path = /obj/item/tool/crowbar/power
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "NAAAC"
 
 /datum/design/item/tool/rpd
@@ -52,7 +37,7 @@
 	id = "rapidpipedispenser"
 	req_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000)
-	build_path = /obj/item/weapon/pipe_dispenser
+	build_path = /obj/item/pipe_dispenser
 	sort_string = "NAAAD"
 
 /datum/design/item/tool/qpad_booster
@@ -61,7 +46,7 @@
 	id = "qpad_booster"
 	req_tech = list(TECH_ENGINEERING = 7, TECH_MATERIAL = 7, TECH_BLUESPACE = 6)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 2000, MAT_SILVER = 2000, MAT_GOLD = 2000, MAT_VERDANTIUM = 1000)
-	build_path = /obj/item/device/quantum_pad_booster
+	build_path = /obj/item/quantum_pad_booster
 	sort_string = "NAAAF"
 
 // Other devices
@@ -84,13 +69,8 @@
 	desc = "An upgraded version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
 	id = "upgradedtscanner"
 	req_tech = list(TECH_MAGNET = 3, TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_PHORON = 150)
-	build_path = /obj/item/device/t_scanner/upgraded
-=======
-	materials = list(MAT_STEEL = 500, "phoron" = 150)
 	build_path = /obj/item/t_scanner/upgraded
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "NBAAB"
 
 /datum/design/item/engineering/t_scanner_adv
@@ -98,13 +78,8 @@
 	desc = "An advanced version of the terahertz-ray emitter and scanner used to detect underfloor objects such as cables and pipes."
 	id = "advancedtscanner"
 	req_tech = list(TECH_MAGNET = 6, TECH_ENGINEERING = 6, TECH_MATERIAL = 6)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 1250, MAT_PHORON = 500, MAT_SILVER = 50)
-	build_path = /obj/item/device/t_scanner/advanced
-=======
-	materials = list(MAT_STEEL = 1250, "phoron" = 500, "silver" = 50)
 	build_path = /obj/item/t_scanner/advanced
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "NBAAC"
 
 /datum/design/item/engineering/atmosanalyzer
@@ -112,11 +87,6 @@
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	id = "atmosanalyzer"
 	req_tech = list(TECH_ENGINEERING = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 200, MAT_GLASS = 100)
-	build_path = /obj/item/device/analyzer
-=======
-	materials = list(MAT_STEEL = 200, "glass" = 100)
 	build_path = /obj/item/analyzer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "NBABA"

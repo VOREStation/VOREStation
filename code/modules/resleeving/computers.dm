@@ -9,7 +9,7 @@
 	icon_keyboard = "med_key"
 	icon_screen = "dna"
 	light_color = "#315ab4"
-	circuit = /obj/item/weapon/circuitboard/resleeving_control
+	circuit = /obj/item/circuitboard/resleeving_control
 	req_access = list(access_heads) //Only used for record deletion right now.
 	var/list/pods = null //Linked grower pods.
 	var/list/spods = null
@@ -20,7 +20,7 @@
 	var/datum/transhuman/mind_record/active_mr = null
 	var/organic_capable = 1
 	var/synthetic_capable = 1
-	var/obj/item/weapon/disk/transcore/disk
+	var/obj/item/disk/transcore/disk
 	var/obj/machinery/clonepod/transhuman/selected_pod
 	var/obj/machinery/transhuman/synthprinter/selected_printer
 	var/obj/machinery/transhuman/resleever/selected_sleever
@@ -80,21 +80,21 @@
 			P.name = "[initial(P.name)] #[num++]"
 
 /obj/machinery/computer/transhuman/resleeving/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/multitool))
-		var/obj/item/device/multitool/M = W
+	if(istype(W, /obj/item/multitool))
+		var/obj/item/multitool/M = W
 		var/obj/machinery/clonepod/transhuman/P = M.connecting
 		if(istype(P) && !(P in pods))
 			pods += P
 			P.connected = src
 			P.name = "[initial(P.name)] #[pods.len]"
 			to_chat(user, "<span class='notice'>You connect [P] to [src].</span>")
-	else if(istype(W, /obj/item/weapon/disk/transcore) && !our_db.core_dumped)
+	else if(istype(W, /obj/item/disk/transcore) && !our_db.core_dumped)
 		user.unEquip(W)
 		disk = W
 		disk.forceMove(src)
 		to_chat(user, "<span class='notice'>You insert \the [W] into \the [src].</span>")
-	if(istype(W, /obj/item/weapon/disk/body_record))
-		var/obj/item/weapon/disk/body_record/brDisk = W
+	if(istype(W, /obj/item/disk/body_record))
+		var/obj/item/disk/body_record/brDisk = W
 		if(!brDisk.stored)
 			to_chat(user, "<span class='warning'>\The [W] does not contain a stored body record.</span>")
 			return
@@ -139,7 +139,7 @@
 /obj/machinery/computer/transhuman/resleeving/tgui_data(mob/user)
 	var/data[0]
 	data["menu"] = menu
-	
+
 	var/list/temppods[0]
 	for(var/obj/machinery/clonepod/transhuman/pod in pods)
 		var/status = "idle"
@@ -184,7 +184,7 @@
 	data["selected_pod"] = "\ref[selected_pod]"
 	data["selected_printer"] = "\ref[selected_printer]"
 	data["selected_sleever"] = "\ref[selected_sleever]"
-	
+
 	var/bodyrecords_list_ui[0]
 	for(var/N in our_db.body_scans)
 		var/datum/transhuman/body_record/BR = our_db.body_scans[N]
@@ -208,8 +208,8 @@
 	switch(tgui_modal_act(src, action, params))
 		if(TGUI_MODAL_ANSWER)
 			// if(params["id"] == "del_rec" && active_record)
-			// 	var/obj/item/weapon/card/id/C = usr.get_active_hand()
-			// 	if(!istype(C) && !istype(C, /obj/item/device/pda))
+			// 	var/obj/item/card/id/C = usr.get_active_hand()
+			// 	if(!istype(C) && !istype(C, /obj/item/pda))
 			// 		set_temp("ID not in hand.", "danger")
 			// 		return
 			// 	if(check_access(C))
@@ -448,7 +448,7 @@
 			return FALSE
 
 // In here because only relevant to computer
-/obj/item/weapon/cmo_disk_holder
+/obj/item/cmo_disk_holder
 	name = "cmo emergency packet"
 	desc = "A small paper packet with printing on one side. \"Tear open in case of Code Delta or Emergency Evacuation ONLY. Use in any other case is UNLAWFUL.\""
 	catalogue_data = list(/datum/category_item/catalogue/technology/resleeving)
@@ -456,15 +456,15 @@
 	icon_state = "cmoemergency"
 	item_state = "card-id"
 
-/obj/item/weapon/cmo_disk_holder/attack_self(var/mob/attacker)
+/obj/item/cmo_disk_holder/attack_self(var/mob/attacker)
 	playsound(src, 'sound/items/poster_ripped.ogg', 50)
 	to_chat(attacker, "<span class='warning'>You tear open \the [name].</span>")
 	attacker.unEquip(src)
-	var/obj/item/weapon/disk/transcore/newdisk = new(get_turf(src))
+	var/obj/item/disk/transcore/newdisk = new(get_turf(src))
 	attacker.put_in_any_hand_if_possible(newdisk)
 	qdel(src)
 
-/obj/item/weapon/disk/transcore
+/obj/item/disk/transcore
 	name = "TransCore Dump Disk"
 	desc = "It has a small label. \n\
 	\"1.INSERT DISK INTO RESLEEVING CONSOLE\n\

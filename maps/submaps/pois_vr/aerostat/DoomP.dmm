@@ -337,26 +337,26 @@
 /area/submap/virgo2/DoomP)
 "bn" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/syndie_kit/spy,
-/obj/item/weapon/card/id/syndicate,
+/obj/item/storage/box/syndie_kit/spy,
+/obj/item/card/id/syndicate,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "bo" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/smokes,
+/obj/item/storage/box/smokes,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "bp" = (
 /obj/structure/table/rack,
-/obj/item/weapon/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "bq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "br" = (
@@ -366,14 +366,14 @@
 /area/submap/virgo2/DoomP)
 "bs" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/contender,
+/obj/item/gun/projectile/contender,
 /obj/item/ammo_magazine/s357,
 /obj/item/ammo_magazine/s357,
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/virgo2/DoomP)
 "bt" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/item/toy/plushie/spider,
 /obj/effect/floor_decal/corner/lime/full{
 	dir = 8
@@ -389,7 +389,7 @@
 /area/submap/virgo2/DoomP)
 "bv" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/effect/floor_decal/corner/lime{
 	dir = 5
 	},
@@ -397,7 +397,7 @@
 /area/submap/virgo2/DoomP)
 "bw" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/effect/floor_decal/corner/lime{
 	dir = 5
 	},

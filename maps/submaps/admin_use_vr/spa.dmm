@@ -15,7 +15,7 @@
 /area/submap/spa)
 "ad" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/everburn,
+/obj/item/flame/candle/everburn,
 /turf/simulated/floor/wood,
 /area/submap/spa)
 "ae" = (
@@ -34,9 +34,9 @@
 /area/submap/spa)
 "ah" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
-/obj/item/weapon/towel,
+/obj/item/towel,
+/obj/item/towel,
+/obj/item/towel,
 /turf/simulated/floor/wood,
 /area/submap/spa)
 "ai" = (
@@ -235,7 +235,7 @@
 /area/submap/spa)
 "aP" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/flame/candle/candelabra/everburn,
+/obj/item/flame/candle/candelabra/everburn,
 /turf/simulated/floor/wood,
 /area/submap/spa)
 "aQ" = (
@@ -260,7 +260,7 @@
 /area/submap/spa)
 "aU" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "aV" = (
@@ -279,17 +279,17 @@
 /area/submap/spa)
 "aW" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/greendouble,
+/obj/item/bedsheet/greendouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "aX" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/purpledouble,
+/obj/item/bedsheet/purpledouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "aY" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/reddouble,
+/obj/item/bedsheet/reddouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "aZ" = (
@@ -356,7 +356,7 @@
 /turf/simulated/floor/reinforced,
 /area/submap/spa)
 "bj" = (
-/obj/item/device/radio/beacon{
+/obj/item/radio/beacon{
 	anchored = 1
 	},
 /turf/simulated/floor/reinforced,
@@ -410,7 +410,7 @@
 /area/submap/spa)
 "br" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "bs" = (
@@ -429,17 +429,17 @@
 /area/submap/spa)
 "bt" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/orangedouble,
+/obj/item/bedsheet/orangedouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "bu" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/rainbowdouble,
+/obj/item/bedsheet/rainbowdouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "bv" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/yellowdouble,
+/obj/item/bedsheet/yellowdouble,
 /turf/simulated/floor/carpet/bcarpet,
 /area/submap/spa)
 "bw" = (

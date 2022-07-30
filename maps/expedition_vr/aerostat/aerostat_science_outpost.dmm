@@ -633,7 +633,7 @@
 	pixel_x = -26;
 	pixel_y = -8
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/white,
@@ -1014,10 +1014,10 @@
 /area/offmap/aerostat/inside/arm/sw)
 "cM" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/lockbox/vials,
-/obj/item/weapon/storage/fancy/vials,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
-/obj/item/weapon/reagent_containers/syringe/antiviral,
+/obj/item/storage/lockbox/vials,
+/obj/item/storage/fancy/vials,
+/obj/item/reagent_containers/syringe/antiviral,
+/obj/item/reagent_containers/syringe/antiviral,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
@@ -1398,19 +1398,19 @@
 /area/offmap/aerostat/solars)
 "dH" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/backpack/parachute{
+/obj/item/storage/backpack/parachute{
 	pixel_x = 6;
 	pixel_y = -6
 	},
-/obj/item/weapon/storage/backpack/parachute{
+/obj/item/storage/backpack/parachute{
 	pixel_x = -6;
 	pixel_y = -6
 	},
-/obj/item/weapon/storage/backpack/parachute{
+/obj/item/storage/backpack/parachute{
 	pixel_x = 6;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/backpack/parachute{
+/obj/item/storage/backpack/parachute{
 	pixel_x = -6;
 	pixel_y = 6
 	},
@@ -1669,8 +1669,8 @@
 /area/offmap/aerostat/inside/southchamb)
 "ev" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/monkeycubes,
-/obj/item/weapon/storage/box/monkeycubes/wolpincubes,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes/wolpincubes,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
@@ -2513,8 +2513,8 @@
 /area/offmap/aerostat/inside/drillstorage)
 "hw" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/dropper,
-/obj/item/weapon/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
@@ -3045,11 +3045,11 @@
 /area/offmap/aerostat/solars)
 "jT" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/wrench{
+/obj/item/tool/wrench{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/item/weapon/tool/wrench{
+/obj/item/tool/wrench{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -3187,7 +3187,7 @@
 /area/offmap/aerostat/solars)
 "kq" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenobiolab)
 "ks" = (
@@ -3812,9 +3812,9 @@
 /area/offmap/aerostat/inside/miscstorage)
 "mI" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/item/stack/nanopaste,
-/obj/item/device/flashlight/lamp{
+/obj/item/flashlight/lamp{
 	pixel_x = 5;
 	pixel_y = 9
 	},
@@ -4251,9 +4251,9 @@
 "ou" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/blue,
 /obj/structure/table/standard,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/device/analyzer,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/screwdriver,
+/obj/item/analyzer,
+/obj/item/tool/wrench,
 /obj/item/clothing/glasses/welding,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
@@ -4375,14 +4375,14 @@
 /area/offmap/aerostat/inside/toxins)
 "oY" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/anodevice{
+/obj/item/tool/crowbar,
+/obj/item/anodevice{
 	pixel_x = 1
 	},
-/obj/item/weapon/anodevice{
+/obj/item/anodevice{
 	pixel_x = -2
 	},
-/obj/item/device/multitool,
+/obj/item/multitool,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
@@ -5015,10 +5015,10 @@
 /area/offmap/aerostat/inside/northchamb)
 "rz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/tool/wirecutters,
+/obj/item/tool/wirecutters,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/toxins)
 "rC" = (
@@ -5288,7 +5288,7 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/ore/bluespace_crystal,
+/obj/item/ore/bluespace_crystal,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "sQ" = (
@@ -5400,7 +5400,7 @@
 	dir = 8
 	},
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
 "tq" = (
@@ -5745,8 +5745,8 @@
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/machinery/camera/network/research_outpost,
 /obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
 "uK" = (
@@ -5886,8 +5886,8 @@
 	},
 /obj/structure/cable,
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/disks,
-/obj/item/weapon/storage/box/disks,
+/obj/item/storage/box/disks,
+/obj/item/storage/box/disks,
 /obj/item/toy/figure/geneticist,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/genetics)
@@ -7087,10 +7087,10 @@
 /area/offmap/aerostat/inside/xenoarch)
 "An" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/monkeycubes,
-/obj/item/weapon/storage/box/monkeycubes,
-/obj/item/weapon/storage/pill_bottle/dylovene,
-/obj/item/weapon/storage/pill_bottle/dylovene,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/box/monkeycubes,
+/obj/item/storage/pill_bottle/dylovene,
+/obj/item/storage/pill_bottle/dylovene,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -7222,11 +7222,11 @@
 /turf/simulated/floor,
 /area/offmap/aerostat/inside/arm/ne)
 "AE" = (
-/obj/item/weapon/virusdish/random,
-/obj/item/weapon/virusdish/random,
-/obj/item/weapon/virusdish/random,
-/obj/item/weapon/virusdish/random,
-/obj/item/weapon/virusdish/random,
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
 /obj/structure/closet/crate/medical{
 	name = "Virus Samples"
 	},
@@ -7555,13 +7555,13 @@
 /area/offmap/aerostat/inside/atmos)
 "Ca" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen/fountain,
-/obj/item/device/assembly_holder/timer_igniter,
+/obj/item/folder/white,
+/obj/item/pen/fountain,
+/obj/item/assembly_holder/timer_igniter,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/weapon/weldingtool,
+/obj/item/weldingtool,
 /obj/structure/extinguisher_cabinet{
 	pixel_x = 30
 	},
@@ -8127,8 +8127,8 @@
 /area/offmap/aerostat/inside/xenobiolab)
 "EC" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker,
-/obj/item/weapon/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
+/obj/item/reagent_containers/glass/beaker,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
 "ED" = (
@@ -8167,19 +8167,19 @@
 /area/offmap/aerostat/inside/airlock/west)
 "EP" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = 4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 5;
 	pixel_y = 4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = -5;
 	pixel_y = -4
 	},
-/obj/item/weapon/reagent_containers/food/drinks/cup{
+/obj/item/reagent_containers/food/drinks/cup{
 	pixel_x = 5;
 	pixel_y = -4
 	},
@@ -8685,7 +8685,7 @@
 	pixel_y = -5
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/syringes,
+/obj/item/storage/box/syringes,
 /obj/machinery/button/remote/driver{
 	id = "xenobiolauncher";
 	pixel_y = 27
@@ -8697,7 +8697,7 @@
 	pixel_x = 25;
 	pixel_y = 5
 	},
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenobiolab)
 "GN" = (
@@ -8714,10 +8714,10 @@
 /area/offmap/aerostat/inside/zorrenoffice)
 "GO" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/hand_labeler,
+/obj/item/folder/white,
+/obj/item/pen,
+/obj/item/paper_bin,
+/obj/item/hand_labeler,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
 "GP" = (
@@ -8794,9 +8794,9 @@
 "Hh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /obj/machinery/reagentgrinder,
 /obj/structure/reagent_dispensers/acid{
 	pixel_x = 31
@@ -9594,7 +9594,7 @@
 /area/shuttle/aerostat)
 "Kj" = (
 /obj/structure/table/standard,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /obj/machinery/camera/network/research_outpost{
 	dir = 1
 	},
@@ -10048,13 +10048,13 @@
 /area/offmap/aerostat/inside/zorrenoffice)
 "Ml" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/melee/baton/slime/loaded,
+/obj/item/melee/baton/slime/loaded,
 /obj/machinery/power/apc{
 	dir = 1;
 	pixel_y = 24
 	},
-/obj/item/weapon/gun/energy/taser/xeno,
-/obj/item/weapon/storage/box/monkeycubes,
+/obj/item/gun/energy/taser/xeno,
+/obj/item/storage/box/monkeycubes,
 /obj/structure/cable{
 	icon_state = "0-8"
 	},
@@ -10306,7 +10306,7 @@
 	},
 /obj/structure/table/standard,
 /obj/random/firstaid,
-/obj/item/weapon/storage/firstaid,
+/obj/item/storage/firstaid,
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
@@ -10577,15 +10577,15 @@
 	dir = 4
 	},
 /obj/structure/table/standard,
-/obj/item/device/gps{
+/obj/item/gps{
 	pixel_x = -5;
 	pixel_y = 5
 	},
-/obj/item/device/gps{
+/obj/item/gps{
 	pixel_x = -2;
 	pixel_y = 2
 	},
-/obj/item/device/gps{
+/obj/item/gps{
 	pixel_x = 1;
 	pixel_y = -1
 	},
@@ -10719,15 +10719,15 @@
 "Pi" = (
 /obj/structure/closet/walllocker_double/medical/west,
 /obj/structure/table/reinforced,
-/obj/item/weapon/soap,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/masks,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/storage/fancy/vials,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/device/antibody_scanner,
-/obj/item/weapon/storage/box/syringes,
+/obj/item/soap,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/masks,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/beakers,
+/obj/item/storage/fancy/vials,
+/obj/item/storage/box/syringes,
+/obj/item/antibody_scanner,
+/obj/item/storage/box/syringes,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -10925,7 +10925,7 @@
 "Qh" = (
 /obj/machinery/vending/phoronresearch{
 	name = "Toximate 2556";
-	products = list(/obj/item/device/transfer_valve = 3, /obj/item/device/assembly/timer = 6, /obj/item/device/assembly/signaler = 6, /obj/item/device/assembly/prox_sensor = 6, /obj/item/device/assembly/igniter = 12)
+	products = list(/obj/item/transfer_valve = 3, /obj/item/assembly/timer = 6, /obj/item/assembly/signaler = 6, /obj/item/assembly/prox_sensor = 6, /obj/item/assembly/igniter = 12)
 	},
 /obj/machinery/camera/network/research_outpost{
 	dir = 8
@@ -11022,20 +11022,20 @@
 /area/offmap/aerostat/inside/westhall)
 "QA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/anobattery,
-/obj/item/weapon/anobattery{
+/obj/item/anobattery,
+/obj/item/anobattery{
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/obj/item/weapon/anobattery{
+/obj/item/anobattery{
 	pixel_x = -4;
 	pixel_y = 3
 	},
-/obj/item/weapon/anobattery{
+/obj/item/anobattery{
 	pixel_x = -5;
 	pixel_y = -3
 	},
-/obj/item/weapon/tool/screwdriver,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
 "QE" = (
@@ -11574,7 +11574,7 @@
 /obj/machinery/computer/scan_consolenew{
 	dir = 8
 	},
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "out of order"
 	},
 /turf/simulated/floor/tiled/white,
@@ -12538,12 +12538,12 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/anomaly/heat,
 /obj/item/clothing/head/helmet/space/anomaly/heat,
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/storage/excavation,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/pickaxe,
-/obj/item/device/measuring_tape,
-/obj/item/weapon/storage/belt/archaeology,
+/obj/item/suit_cooling_unit,
+/obj/item/storage/excavation,
+/obj/item/tool/wrench,
+/obj/item/pickaxe,
+/obj/item/measuring_tape,
+/obj/item/storage/belt/archaeology,
 /obj/item/stack/flag/yellow,
 /obj/item/clothing/mask/breath,
 /obj/machinery/alarm{
@@ -12620,8 +12620,8 @@
 /area/offmap/aerostat/inside/toxins)
 "WR" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/book/manual/virology,
-/obj/item/device/antibody_scanner,
+/obj/item/book/manual/virology,
+/obj/item/antibody_scanner,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
 "WS" = (
@@ -12772,8 +12772,8 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/device/multitool,
-/obj/item/weapon/tool/screwdriver,
+/obj/item/multitool,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/telesci)
 "XA" = (
@@ -13075,12 +13075,12 @@
 /area/offmap/aerostat/inside/atmos)
 "YC" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen,
+/obj/item/folder/white,
+/obj/item/pen,
 /obj/machinery/light{
 	dir = 4
 	},
@@ -13264,12 +13264,12 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/anomaly/heat,
 /obj/item/clothing/head/helmet/space/anomaly/heat,
-/obj/item/device/suit_cooling_unit,
-/obj/item/weapon/storage/excavation,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/pickaxe,
-/obj/item/device/measuring_tape,
-/obj/item/weapon/storage/belt/archaeology,
+/obj/item/suit_cooling_unit,
+/obj/item/storage/excavation,
+/obj/item/tool/wrench,
+/obj/item/pickaxe,
+/obj/item/measuring_tape,
+/obj/item/storage/belt/archaeology,
 /obj/item/stack/flag/yellow,
 /obj/item/clothing/mask/breath,
 /turf/simulated/floor/tiled/white,

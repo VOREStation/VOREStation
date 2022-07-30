@@ -136,12 +136,8 @@ var/list/_cat_default_emotes = list(
 	icon_state = "cat"
 	item_state = "cat"
 	named = TRUE
-<<<<<<< HEAD
-	holder_type = /obj/item/weapon/holder/cat/runtime
-	makes_dirt = 0 //Vorestation Edit
-=======
 	holder_type = /obj/item/holder/cat/runtime
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	makes_dirt = 0 //Vorestation Edit
 
 /mob/living/simple_mob/animal/passive/cat/kitten
 	name = "kitten"
@@ -149,7 +145,7 @@ var/list/_cat_default_emotes = list(
 	icon_state = "kitten"
 	item_state = "kitten"
 	gender = NEUTER
-	holder_type = /obj/item/weapon/holder/cat/kitten //VOREStation Edit
+	holder_type = /obj/item/holder/cat/kitten //VOREStation Edit
 
 /mob/living/simple_mob/animal/passive/cat/kitten/Initialize()
 	if(gender == NEUTER)
@@ -157,17 +153,6 @@ var/list/_cat_default_emotes = list(
 	return ..()
 
 /mob/living/simple_mob/animal/passive/cat/black
-<<<<<<< HEAD
-=======
-	icon_state = "cat"
-	item_state = "cat"
-
-// Leaving this here for now.
-/obj/item/holder/cat/fluff/bones
-	name = "Bones"
-	desc = "It's Bones! Meow."
-	gender = MALE
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "cat3"
 	item_state = "cat3"
 
@@ -190,7 +175,7 @@ var/list/_cat_default_emotes = list(
 	icon_rest = null
 	icon_dead = null
 	makes_dirt = 0
-	holder_type = /obj/item/weapon/holder/cat/bluespace
+	holder_type = /obj/item/holder/cat/bluespace
 
 /mob/living/simple_mob/animal/passive/cat/bluespace/death()
 	animate(src, alpha = 0, color = "#0000FF", time = 0.5 SECOND)
@@ -207,7 +192,7 @@ var/list/_cat_default_emotes = list(
 	icon_dead = "breadcat_dead"
 	//icon_sit = "breadcat_sit"
 	makes_dirt = 0
-	holder_type = /obj/item/weapon/holder/cat/breadcat
+	holder_type = /obj/item/holder/cat/breadcat
 
 /mob/living/simple_mob/animal/passive/cat/original
 	name = "original cat"
@@ -219,7 +204,7 @@ var/list/_cat_default_emotes = list(
 	icon_dead = "original_dead"
 	//icon_sit = "original_sit"
 	makes_dirt = 0
-	holder_type = /obj/item/weapon/holder/cat/original
+	holder_type = /obj/item/holder/cat/original
 
 /mob/living/simple_mob/animal/passive/cat/cak
 	name = "cak"
@@ -231,7 +216,7 @@ var/list/_cat_default_emotes = list(
 	icon_dead = "cak_dead"
 	//icon_sit = "cak_sit"
 	makes_dirt = 0
-	holder_type = /obj/item/weapon/holder/cat/cak
+	holder_type = /obj/item/holder/cat/cak
 
 /mob/living/simple_mob/animal/passive/cat/space
 	name = "space cat"
@@ -242,7 +227,7 @@ var/list/_cat_default_emotes = list(
 	icon_rest = "spacecat_rest"
 	icon_dead = "spacecat_dead"
 	//icon_sit = "spacecat_sit"
-	holder_type = /obj/item/weapon/holder/cat/spacecat
+	holder_type = /obj/item/holder/cat/spacecat
 	makes_dirt = 0
 
 	minbodytemp = 0				// Minimum "okay" temperature in kelvin
@@ -296,10 +281,5 @@ var/list/_cat_default_emotes = list(
 	new /obj/item/stack/material/cardboard(catturf) //if i fits i sits
 	qdel(src)
 
-<<<<<<< HEAD
-/obj/item/weapon/cat_box/black
-	cattype = /mob/living/simple_mob/animal/passive/cat/black
-=======
 /obj/item/cat_box/black
 	cattype = /mob/living/simple_mob/animal/passive/cat/black
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

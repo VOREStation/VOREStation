@@ -17,13 +17,8 @@
 	var/obj/machinery/camera/bug/camera
 	var/camtype = /obj/machinery/camera/bug
 
-<<<<<<< HEAD
-/obj/item/device/camerabug/New()
-	..()
-=======
 /obj/item/camerabug/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 //	radio = new(src)
 	camera = new camtype(src)
 
@@ -165,11 +160,7 @@
 	var/obj/machinery/camera/bug/selected_camera
 	var/list/obj/machinery/camera/bug/cameras = new()
 /*
-<<<<<<< HEAD
-/obj/item/device/bug_monitor/New()
-=======
 /obj/item/bug_monitor/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	radio = new(src)
 */
 /obj/item/bug_monitor/attack_self(mob/user)

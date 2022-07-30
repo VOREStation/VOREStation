@@ -45,19 +45,11 @@
 	force = 12
 	var/datum/material/material = null
 
-<<<<<<< HEAD
-/obj/item/weapon/oar/sifwood/New(newloc, material_name)
-	..(newloc, MAT_SIFWOOD)
-
-/obj/item/weapon/oar/New(newloc, material_name)
-	..(newloc)
-=======
 /obj/item/oar/sifwood/Initialize(var/ml, material_name)
 	. = ..(ml, MAT_SIFWOOD)
 
 /obj/item/oar/Initialize(var/ml, material_name)
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!material_name)
 		material_name = "wood"
 	material = get_material_by_name("[material_name]")

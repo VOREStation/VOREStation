@@ -301,13 +301,8 @@ var/last_chew = 0
 	if(user) //A ranged legcuff, until proper implementation as items it remains a projectile-only thing.
 		return 1
 
-<<<<<<< HEAD
-/obj/item/weapon/handcuffs/legcuffs/bola/dropped()
-	visible_message("<b>\The [src]</b> falls apart!")
-=======
 /obj/item/handcuffs/legcuffs/bola/dropped()
 	visible_message("<span class='notice'>\The [src] falls apart!</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	qdel(src)
 
 /obj/item/handcuffs/legcuffs/bola/place_legcuffs(var/mob/living/carbon/target, var/mob/user)

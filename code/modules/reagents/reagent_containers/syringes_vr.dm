@@ -1,6 +1,6 @@
 #define SYRINGE_CAPPED 10
 
-/obj/item/weapon/reagent_containers/syringe
+/obj/item/reagent_containers/syringe
 	icon = 'icons/goonstation/objects/syringe_vr.dmi'
 	mode = SYRINGE_CAPPED //Override
 	var/used = FALSE
@@ -8,22 +8,22 @@
 	var/list/targets
 	var/list/datum/disease2/disease/viruses
 
-/obj/item/weapon/reagent_containers/syringe/Initialize()
+/obj/item/reagent_containers/syringe/Initialize()
 	. = ..()
 	update_icon()
 
-/obj/item/weapon/reagent_containers/syringe/Destroy()
+/obj/item/reagent_containers/syringe/Destroy()
 	QDEL_LIST_NULL(viruses)
 	LAZYCLEARLIST(targets)
 	return ..()
 
-/obj/item/weapon/reagent_containers/syringe/process()
+/obj/item/reagent_containers/syringe/process()
 	dirtiness = min(dirtiness + targets.len,75)
 	if(dirtiness >= 75)
 		STOP_PROCESSING(SSobj, src)
 	return 1
 
-/obj/item/weapon/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
+/obj/item/reagent_containers/syringe/proc/dirty(var/mob/living/carbon/human/target, var/obj/item/organ/external/eo)
 	if(!ishuman(loc))
 		return //Avoid borg syringe problems.
 	LAZYINITLIST(targets)
@@ -61,7 +61,7 @@
 	if(!used)
 		START_PROCESSING(SSobj, src)
 
-/obj/item/weapon/reagent_containers/syringe/proc/infect_limb(var/obj/item/organ/external/eo)
+/obj/item/reagent_containers/syringe/proc/infect_limb(var/obj/item/organ/external/eo)
 	src = null
 	var/weakref/limb_ref = weakref(eo)
 	spawn(rand(5 MINUTES,10 MINUTES))
@@ -70,7 +70,7 @@
 			eo.germ_level += INFECTION_LEVEL_ONE+30
 
 //Allow for capped syringe mode
-/obj/item/weapon/reagent_containers/syringe/attack_self(mob/user as mob)
+/obj/item/reagent_containers/syringe/attack_self(mob/user as mob)
 	switch(mode)
 		if(SYRINGE_CAPPED)
 			mode = SYRINGE_DRAW
@@ -84,7 +84,7 @@
 	update_icon()
 
 //Allow for capped syringes
-/obj/item/weapon/reagent_containers/syringe/update_icon()
+/obj/item/reagent_containers/syringe/update_icon()
 	cut_overlays(src)
 
 	var/matrix/tf = matrix()

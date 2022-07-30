@@ -14,20 +14,20 @@
 /area/survivalpod)
 "d" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/device/fbp_backup_cell,
-/obj/item/device/fbp_backup_cell,
-/obj/item/device/fbp_backup_cell,
-/obj/item/device/fbp_backup_cell,
-/obj/item/device/fbp_backup_cell,
-/obj/item/weapon/storage/pill_bottle/dice,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/menu11,
+/obj/item/fbp_backup_cell,
+/obj/item/fbp_backup_cell,
+/obj/item/fbp_backup_cell,
+/obj/item/fbp_backup_cell,
+/obj/item/fbp_backup_cell,
+/obj/item/storage/pill_bottle/dice,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "e" = (
-/obj/item/device/gps/computer,
+/obj/item/gps/computer,
 /turf/simulated/shuttle/floor/voidcraft,
 /area/survivalpod)
 "f" = (
@@ -45,7 +45,7 @@
 /area/survivalpod)
 "i" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/mime,
+/obj/item/bedsheet/mime,
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0

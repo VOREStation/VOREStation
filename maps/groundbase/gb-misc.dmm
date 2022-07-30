@@ -758,24 +758,24 @@
 /area/unknown/dorm1)
 "cq" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm1)
 "cr" = (
@@ -848,24 +848,24 @@
 /area/unknown/dorm2)
 "cD" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm2)
 "cE" = (
@@ -881,24 +881,24 @@
 /area/unknown/dorm3)
 "cH" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
 "cI" = (
@@ -930,7 +930,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm1)
 "cO" = (
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
 	tele_network = "unkone"
 	},
@@ -984,7 +984,7 @@
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_courtroom)
 "cV" = (
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm1)
@@ -993,14 +993,14 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm2)
 "cX" = (
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
 	tele_network = "unktwo"
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm2)
 "cY" = (
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm2)
@@ -1016,14 +1016,14 @@
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/source_picnicarea)
 "db" = (
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
 	tele_network = "unkthree"
 	},
 /turf/simulated/shuttle/floor/alienplating,
 /area/unknown/dorm3)
 "dc" = (
-/obj/item/weapon/bedsheet/rddouble,
+/obj/item/bedsheet/rddouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm3)
@@ -1310,7 +1310,7 @@
 /obj/item/clothing/head/helmet/thunderdome,
 /obj/item/clothing/suit/armor/tdome/red,
 /obj/item/clothing/under/color/red,
-/obj/item/weapon/holo/esword/red,
+/obj/item/holo/esword/red,
 /obj/effect/floor_decal/corner/red{
 	dir = 5
 	},
@@ -1539,7 +1539,7 @@
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_meetinghall)
 "eM" = (
-/obj/item/weapon/beach_ball,
+/obj/item/beach_ball,
 /turf/simulated/floor/holofloor/beach/sand,
 /area/holodeck/source_beach)
 "eN" = (
@@ -1632,7 +1632,7 @@
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
 "fa" = (
-/obj/item/weapon/beach_ball/holoball,
+/obj/item/beach_ball/holoball,
 /obj/effect/floor_decal/corner/red{
 	dir = 10
 	},
@@ -1645,7 +1645,7 @@
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
 "fc" = (
-/obj/item/weapon/inflatable_duck,
+/obj/item/inflatable_duck,
 /turf/simulated/floor/holofloor/beach/sand,
 /area/holodeck/source_beach)
 "fd" = (
@@ -1692,7 +1692,7 @@
 /turf/simulated/floor/holofloor/tiled/dark,
 /area/holodeck/source_gym)
 "fm" = (
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/privacy,
 /turf/simulated/floor/holofloor/tiled{
@@ -1865,7 +1865,7 @@
 /area/unknown/dorm6)
 "fN" = (
 /obj/structure/table/woodentable/holotable,
-/obj/item/weapon/dice/d8,
+/obj/item/dice/d8,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
 "fO" = (
@@ -1933,7 +1933,7 @@
 /obj/item/clothing/head/helmet/thunderdome,
 /obj/item/clothing/suit/armor/tdome/green,
 /obj/item/clothing/under/color/green,
-/obj/item/weapon/holo/esword/green,
+/obj/item/holo/esword/green,
 /obj/effect/floor_decal/corner/green{
 	dir = 10
 	},
@@ -2022,21 +2022,21 @@
 /area/beach)
 "gm" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/snacks/chips,
+/obj/item/reagent_containers/food/snacks/chips,
 /turf/unsimulated/beach/sand,
 /area/beach)
 "gn" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
-/obj/item/weapon/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
+/obj/item/reagent_containers/food/drinks/cans/cola,
 /turf/unsimulated/beach/sand,
 /area/beach)
 "go" = (
-/obj/item/weapon/beach_ball,
+/obj/item/beach_ball,
 /turf/unsimulated/beach/sand,
 /area/beach)
 "gp" = (
@@ -2118,24 +2118,24 @@
 /area/unknown/dorm4)
 "gE" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm4)
 "gF" = (
@@ -2151,24 +2151,24 @@
 /area/unknown/dorm5)
 "gI" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm5)
 "gJ" = (
@@ -2184,24 +2184,24 @@
 /area/unknown/dorm6)
 "gM" = (
 /obj/machinery/smartfridge/survival_pod,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu10,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/menu9,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/storage/mre/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu10,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/menu9,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm6)
 "gN" = (
@@ -2230,7 +2230,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm4)
 "gT" = (
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
 	tele_network = "unkfour"
 	},
@@ -2238,7 +2238,7 @@
 /area/unknown/dorm4)
 "gU" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm4)
 "gV" = (
@@ -2246,7 +2246,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm5)
 "gW" = (
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
 	tele_network = "unkfive"
 	},
@@ -2254,7 +2254,7 @@
 /area/unknown/dorm5)
 "gX" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm5)
 "gY" = (
@@ -2262,7 +2262,7 @@
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm6)
 "gZ" = (
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "Unknown";
 	tele_network = "unksix"
 	},
@@ -2270,7 +2270,7 @@
 /area/unknown/dorm6)
 "ha" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/shuttle/floor/alien,
 /area/unknown/dorm6)
 "hb" = (
@@ -2497,7 +2497,7 @@
 /area/space)
 "ml" = (
 /obj/structure/table/holotable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /obj/effect/floor_decal/corner/paleblue{
 	dir = 5
 	},
@@ -2537,8 +2537,8 @@
 /area/holodeck/source_gym)
 "ov" = (
 /obj/structure/table/woodentable/holotable,
-/obj/item/weapon/dice/d12,
-/obj/item/weapon/dice/d10,
+/obj/item/dice/d12,
+/obj/item/dice/d10,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
 "oJ" = (
@@ -2606,7 +2606,7 @@
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
 "rD" = (
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/privacy,
 /obj/effect/floor_decal/corner/paleblue{
@@ -2635,7 +2635,7 @@
 /turf/unsimulated/wall,
 /area/ai_multicam_room)
 "tR" = (
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/privacy,
 /obj/effect/floor_decal/corner/paleblue/full{
@@ -2763,8 +2763,8 @@
 /area/holodeck/source_patient_ward)
 "BR" = (
 /obj/structure/table/woodentable/holotable,
-/obj/item/weapon/dice/d100,
-/obj/item/weapon/dice/d20,
+/obj/item/dice/d100,
+/obj/item/dice/d20,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
 "BU" = (
@@ -2818,7 +2818,7 @@
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
 "Eq" = (
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/privacy,
 /obj/effect/floor_decal/corner/paleblue{
@@ -2907,7 +2907,7 @@
 	},
 /area/holodeck/source_patient_ward)
 "Lt" = (
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/privacy,
 /obj/effect/floor_decal/corner/paleblue/full{
@@ -2940,8 +2940,8 @@
 /area/holodeck/source_gym)
 "Nj" = (
 /obj/structure/table/woodentable/holotable,
-/obj/item/weapon/dice,
-/obj/item/weapon/dice/d4,
+/obj/item/dice,
+/obj/item/dice/d4,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_game_room)
 "NT" = (
@@ -2999,7 +2999,7 @@
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_game_room)
 "SJ" = (
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /obj/structure/bed/padded,
 /obj/structure/curtain/open/privacy,
 /obj/effect/floor_decal/corner/paleblue{

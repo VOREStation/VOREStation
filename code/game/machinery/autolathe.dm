@@ -10,17 +10,11 @@
 	clicksound = "keyboard"
 	clickvol = 30
 
-<<<<<<< HEAD
-	circuit = /obj/item/weapon/circuitboard/autolathe
-
-	var/static/datum/category_collection/autolathe/autolathe_recipes
-=======
 	circuit = /obj/item/circuitboard/autolathe
 	var/datum/category_collection/autolathe/machine_recipes
 	var/list/stored_material =  list(MAT_STEEL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
 	var/list/storage_capacity = list(MAT_STEEL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
 	var/datum/category_group/autolathe/current_category
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/hacked = 0
 	var/disabled = 0
@@ -112,7 +106,7 @@
 
 	if(shocked)
 		shock(user, 50)
-	
+
 	tgui_interact(user)
 
 /obj/machinery/autolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
@@ -143,7 +137,7 @@
 	if(istype(O,/obj/item/ammo_magazine/clip) || istype(O,/obj/item/ammo_magazine/s357) || istype(O,/obj/item/ammo_magazine/s38) || istype (O,/obj/item/ammo_magazine/s44)/* VOREstation Edit*/) // Prevents ammo recycling exploit with speedloaders.
 		to_chat(user, "\The [O] is too hazardous to recycle with the autolathe!")
 		return
-	
+
 	return ..()
 
 /obj/machinery/autolathe/attack_hand(mob/user as mob)
@@ -190,7 +184,7 @@
 
 			//Check if we still have the materials.
 			var/coeff = (making.no_scale ? 1 : mat_efficiency) //stacks are unaffected by production coefficient
-			
+
 			for(var/datum/material/used_material as anything in making.resources)
 				var/amount_needed = making.resources[used_material] * coeff * multiplier
 				materials_used[used_material] = amount_needed
@@ -198,7 +192,7 @@
 			if(LAZYLEN(materials_used))
 				if(!materials.has_materials(materials_used))
 					return
-				
+
 				materials.use_materials(materials_used)
 
 			busy = making.name

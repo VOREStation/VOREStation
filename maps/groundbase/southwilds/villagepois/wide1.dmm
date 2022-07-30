@@ -72,7 +72,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide1)
 "p" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/carpet/sblucarpet,
@@ -89,7 +89,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide1)
 "s" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp/green{
+/obj/item/flashlight/lamp/green{
 	pixel_y = 8
 	},
 /turf/simulated/floor/wood,
@@ -198,7 +198,7 @@
 /area/submap/groundbase/poi/wildvillage/wide/wide1)
 "N" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"
 	},

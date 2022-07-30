@@ -12,15 +12,9 @@
 /mob/living/silicon/robot/gravekeeper/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
-<<<<<<< HEAD
-	mmi = new /obj/item/device/mmi/digital/robot(src) // Explicitly a drone.
-	module = new /obj/item/weapon/robot_module/robot/gravekeeper(src)
-	cut_overlays()
-=======
 	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
 	module = new /obj/item/robot_module/robot/gravekeeper(src)
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	init_id()
 
 	updatename("Gravekeeper")

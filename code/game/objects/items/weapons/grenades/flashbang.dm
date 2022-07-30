@@ -135,14 +135,8 @@
 	can_repeat = FALSE
 	banglet = TRUE
 
-<<<<<<< HEAD
-/obj/item/weapon/grenade/flashbang/clusterbang/segment/New()//Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
-	..()
-
-=======
 /obj/item/grenade/flashbang/clusterbang/segment/Initialize() //Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "clusterbang_segment_active"
 
 	var/stepdist = rand(1,4)//How far to step
@@ -156,14 +150,8 @@
 /obj/item/grenade/flashbang/cluster
 	banglet = TRUE
 
-<<<<<<< HEAD
-/obj/item/weapon/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
-	..()
-
-=======
 /obj/item/grenade/flashbang/cluster/Initialize() //Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "flashbang_active"
 
 	var/stepdist = rand(1,3)

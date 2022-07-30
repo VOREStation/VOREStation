@@ -232,22 +232,13 @@
 	icon_state = "medicalkit"
 
 /obj/random/firstaid/item_to_spawn()
-<<<<<<< HEAD
-	return pick(prob(10);/obj/item/weapon/storage/firstaid/regular,
-				prob(8);/obj/item/weapon/storage/firstaid/toxin,
-				prob(8);/obj/item/weapon/storage/firstaid/o2,
-				prob(6);/obj/item/weapon/storage/firstaid/adv,
-				prob(8);/obj/item/weapon/storage/firstaid/fire,
-				prob(1);/obj/item/device/denecrotizer/medical, //VOREStation Add,
-				prob(1);/obj/item/weapon/storage/firstaid/combat)
-=======
 	return pick(prob(10);/obj/item/storage/firstaid/regular,
 				prob(8);/obj/item/storage/firstaid/toxin,
 				prob(8);/obj/item/storage/firstaid/o2,
 				prob(6);/obj/item/storage/firstaid/adv,
 				prob(8);/obj/item/storage/firstaid/fire,
+				prob(1);/obj/item/denecrotizer/medical, //VOREStation Add,
 				prob(1);/obj/item/storage/firstaid/combat)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/random/contraband
 	name = "Random Illegal Item"
@@ -255,23 +246,14 @@
 	icon_state = "sus"
 	spawn_nothing_percentage = 50
 /obj/random/contraband/item_to_spawn()
-<<<<<<< HEAD
-	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol, //VOREStation Edit,
-				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
-				prob(4);/obj/item/weapon/storage/pill_bottle/zoom,
-				prob(4);/obj/item/weapon/material/butterfly,
-				prob(6);/obj/item/weapon/material/butterflyblade,
-				prob(6);/obj/item/weapon/material/butterflyhandle,
-				prob(2);/obj/item/weapon/material/butterfly/switchblade,
-=======
-	return pick(prob(6);/obj/item/storage/pill_bottle/tramadol,
+	return pick(prob(6);/obj/item/storage/pill_bottle/paracetamol, //VOREStation Edit,
+				prob(6);/obj/item/storage/pill_bottle/tramadol,
 				prob(4);/obj/item/storage/pill_bottle/happy,
 				prob(4);/obj/item/storage/pill_bottle/zoom,
 				prob(4);/obj/item/material/butterfly,
 				prob(6);/obj/item/material/butterflyblade,
 				prob(6);/obj/item/material/butterflyhandle,
 				prob(2);/obj/item/material/butterfly/switchblade,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				prob(2);/obj/item/clothing/gloves/knuckledusters,
 				prob(1);/obj/item/material/knife/tacknife,
 				prob(1);/obj/item/clothing/suit/storage/vest/heavy/merc,
@@ -777,15 +759,9 @@
 	icon_state = "mousetrap"
 
 /obj/random/mouseremains/item_to_spawn()
-<<<<<<< HEAD
-	return pick(/obj/item/device/assembly/mousetrap,
-				/obj/item/device/assembly/mousetrap/armed,
-				/obj/effect/decal/cleanable/bug_remains,
-=======
 	return pick(/obj/item/assembly/mousetrap,
 				/obj/item/assembly/mousetrap/armed,
-				/obj/effect/decal/cleanable/spiderling_remains,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				/obj/effect/decal/cleanable/bug_remains,
 				/obj/effect/decal/cleanable/ash,
 				/obj/item/trash/cigbutt,
 				/obj/item/trash/cigbutt/cigarbutt,
@@ -868,21 +844,12 @@
 	drop_get_turf = FALSE
 
 /obj/random/mre/dessert/item_to_spawn()
-<<<<<<< HEAD
-	return pick(/obj/item/weapon/reagent_containers/food/snacks/candy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-				/obj/item/weapon/reagent_containers/food/snacks/donut/plain,
-				/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly,
-				/obj/item/weapon/reagent_containers/food/snacks/chocolatebar,
-				/obj/item/weapon/reagent_containers/food/snacks/cookie)
-=======
 	return pick(/obj/item/reagent_containers/food/snacks/candy,
 				/obj/item/reagent_containers/food/snacks/candy/proteinbar,
 				/obj/item/reagent_containers/food/snacks/donut/plain,
 				/obj/item/reagent_containers/food/snacks/donut/plain/jelly,
 				/obj/item/reagent_containers/food/snacks/chocolatebar,
 				/obj/item/reagent_containers/food/snacks/cookiesnack)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/random/mre/dessert/vegan
 	name = "random vegan MRE dessert"
@@ -1010,14 +977,14 @@
 
 /obj/random/flashlight/item_to_spawn()
 	return pick(
-		prob(8);/obj/item/device/flashlight,
-		prob(6);/obj/item/device/flashlight/color,
-		prob(6);/obj/item/device/flashlight/color/green,
-		prob(6);/obj/item/device/flashlight/color/purple,
-		prob(6);/obj/item/device/flashlight/color/red,
-		prob(6);/obj/item/device/flashlight/color/orange,
-		prob(6);/obj/item/device/flashlight/color/yellow,
-		prob(2);/obj/item/device/flashlight/maglight
+		prob(8);/obj/item/flashlight,
+		prob(6);/obj/item/flashlight/color,
+		prob(6);/obj/item/flashlight/color/green,
+		prob(6);/obj/item/flashlight/color/purple,
+		prob(6);/obj/item/flashlight/color/red,
+		prob(6);/obj/item/flashlight/color/orange,
+		prob(6);/obj/item/flashlight/color/yellow,
+		prob(2);/obj/item/flashlight/maglight
 	)
 
 /obj/random/mug
@@ -1027,52 +994,6 @@
 	icon_state = "coffeecup_spawner"
 
 /obj/random/mug/item_to_spawn()
-<<<<<<< HEAD
-	return pick(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/sol,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/fleet,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/fivearrows,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/psc,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/alma,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/almp,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/nt,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/metal/wulf,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/gilthari,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/zeng,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/wt,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/aether,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/bishop,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/oculum,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/one,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/puni,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/heart,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/pawn,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/diona,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/britcup,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/flame,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/blue,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/black,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/green,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/green/dark,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/rainbow,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/metal,
-			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/talon)
-
-/obj/random/donkpocketbox
-	name = "Random Donk-pocket Box"
-	desc = "This is a random Donk-pocket Box."
-	icon = 'icons/obj/boxes.dmi'
-	icon_state = "donkpocket_spawner"
-
-/obj/random/donkpocketbox/item_to_spawn()
-	return pick(/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets/spicy,
-				/obj/item/weapon/storage/box/donkpockets/teriyaki,
-				/obj/item/weapon/storage/box/donkpockets/pizza,
-				/obj/item/weapon/storage/box/donkpockets/honk,
-				/obj/item/weapon/storage/box/donkpockets/gondola,
-				/obj/item/weapon/storage/box/donkpockets/berry)
-=======
 	return pick(/obj/item/reagent_containers/food/drinks/glass2/coffeemug,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/sol,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/fleet,
@@ -1102,4 +1023,18 @@
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/green/dark,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/rainbow,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/metal)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+
+/obj/random/donkpocketbox
+	name = "Random Donk-pocket Box"
+	desc = "This is a random Donk-pocket Box."
+	icon = 'icons/obj/boxes.dmi'
+	icon_state = "donkpocket_spawner"
+
+/obj/random/donkpocketbox/item_to_spawn()
+	return pick(/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets/spicy,
+				/obj/item/storage/box/donkpockets/teriyaki,
+				/obj/item/storage/box/donkpockets/pizza,
+				/obj/item/storage/box/donkpockets/honk,
+				/obj/item/storage/box/donkpockets/gondola,
+				/obj/item/storage/box/donkpockets/berry)

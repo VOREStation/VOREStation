@@ -8,10 +8,6 @@
 "h" = (/obj/random/junk,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
 "i" = (/obj/random/powercell,/obj/random/unidentified_medicine/old_medicine,/obj/random/trash,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
 "j" = (/obj/random/humanoidremains,/obj/random/coin,/obj/random/contraband,/obj/random/projectile/random,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
-<<<<<<< HEAD
-=======
-"P" = (/obj/random/mob/sif/kururak,/obj/item/cell/device/weapon/recharge,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/KururakDen)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aaaaaaaaaa

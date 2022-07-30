@@ -227,7 +227,7 @@
 				/obj/item/clothing/suit/space/void/refurb/pilot,
 				/obj/item/clothing/head/helmet/space/void/refurb/pilot
 			),
-			
+
 			prob(10);list(
 				/obj/item/clothing/suit/space/void/refurb/pilot,
 				/obj/item/clothing/head/helmet/space/void/refurb/pilot/alt
@@ -257,22 +257,13 @@
 	icon_state = "generic"
 
 /obj/random/rigsuit/item_to_spawn()
-<<<<<<< HEAD
-	return pick(prob(4);/obj/item/weapon/rig/light/hacker,
-				prob(5);/obj/item/weapon/rig/industrial,
-				prob(5);/obj/item/weapon/rig/eva,
-				prob(4);/obj/item/weapon/rig/light/stealth,
-				prob(3);/obj/item/weapon/rig/hazard,
-				prob(1);/obj/item/weapon/rig/merc/empty)
-//VOREStation Add Start
-/obj/random/rigsuit/chancetofail
-	spawn_nothing_percentage = 50
-//VOREStation Add End
-=======
 	return pick(prob(4);/obj/item/rig/light/hacker,
 				prob(5);/obj/item/rig/industrial,
 				prob(5);/obj/item/rig/eva,
 				prob(4);/obj/item/rig/light/stealth,
 				prob(3);/obj/item/rig/hazard,
 				prob(1);/obj/item/rig/merc/empty)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+//VOREStation Add Start
+/obj/random/rigsuit/chancetofail
+	spawn_nothing_percentage = 50
+//VOREStation Add End

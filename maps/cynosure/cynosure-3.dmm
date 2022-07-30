@@ -23333,12 +23333,8 @@
 /area/surface/station/medical/patient_wing)
 "pmw" = (
 /obj/structure/table/woodentable,
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/donut,
-=======
 /obj/item/storage/box/donut,
 /obj/random/mug,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/carpet,
 /area/surface/station/crew_quarters/captain)
 "pmL" = (
@@ -34265,12 +34261,8 @@
 /obj/item/clipboard,
 /obj/item/pen,
 /obj/item/sticky_pad/random,
-<<<<<<< HEAD
-/obj/item/weapon/storage/firstaid,
-=======
 /obj/item/storage/firstaid/regular,
 /obj/random/mug,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/wood/sif,
 /area/surface/station/rnd/research)
 "wzs" = (
@@ -35654,21 +35646,12 @@
 /obj/item/storage/firstaid/adv{
 	pixel_x = -2
 	},
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/machinery/light,
-=======
 /obj/item/reagent_containers/blood/empty,
 /obj/item/reagent_containers/blood/empty,
 /obj/item/reagent_containers/blood/empty,
 /obj/item/reagent_containers/blood/empty,
 /obj/item/reagent_containers/blood/empty,
 /obj/machinery/light/no_nightshift,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/shuttle/floor/white,
 /area/shuttle/large_escape_pod2/station)
 "xmF" = (

@@ -37,7 +37,7 @@
 /turf/simulated/floor/tiled/eris/dark/techfloor,
 /area/om_adventure/poi/shippart1)
 "r" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/template_noop,
 /area/template_noop)
 "s" = (
@@ -80,7 +80,7 @@
 /turf/template_noop,
 /area/template_noop)
 "M" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating/eris/under,
 /area/om_adventure/poi/shippart1)
@@ -89,7 +89,7 @@
 /turf/template_noop,
 /area/template_noop)
 "Q" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/om_adventure/poi/shippart1)
 "R" = (
@@ -97,11 +97,11 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/om_adventure/poi/shippart1)
 "T" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shippart1)
 "X" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/template_noop)
 "Z" = (

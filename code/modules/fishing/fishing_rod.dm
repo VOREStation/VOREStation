@@ -77,13 +77,8 @@
 		update_bait()
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/material/fishing_rod/update_icon()
-	cut_overlays()
-=======
 /obj/item/material/fishing_rod/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	..()
 	if(strung)
 		add_overlay("[icon_state]_string")

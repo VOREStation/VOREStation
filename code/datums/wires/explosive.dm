@@ -30,11 +30,5 @@
 	return FALSE
 
 /datum/wires/explosive/c4/explode()
-<<<<<<< HEAD
-	var/obj/item/weapon/plastique/P = holder
-	P.explode(get_turf(P))
-=======
 	var/obj/item/plastique/P = holder
-	P.set_target(get_turf(P))
-	P.detonate()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	P.explode(get_turf(P))

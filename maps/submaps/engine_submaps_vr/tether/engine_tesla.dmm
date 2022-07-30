@@ -114,8 +114,8 @@
 	},
 /obj/structure/table/standard,
 /obj/item/stack/cable_coil/random,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/tool/screwdriver,
+/obj/item/tool/wrench,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "ar" = (
@@ -291,8 +291,8 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/circuitboard/tesla_coil,
-/obj/item/weapon/circuitboard/tesla_coil,
+/obj/item/circuitboard/tesla_coil,
+/obj/item/circuitboard/tesla_coil,
 /turf/simulated/floor,
 /area/engineering/engine_gas)
 "aB" = (
@@ -368,7 +368,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "aI" = (
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
 /turf/space,
 /area/space)
 "aJ" = (
@@ -827,11 +827,11 @@
 /turf/simulated/floor/tiled,
 /area/submap/pa_room)
 "bu" = (
-/obj/item/weapon/book/manual/engineering_particle_accelerator{
+/obj/item/book/manual/engineering_particle_accelerator{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/book/manual/tesla_engine,
+/obj/item/book/manual/tesla_engine,
 /turf/template_noop,
 /area/template_noop)
 "bv" = (
@@ -1128,8 +1128,8 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals8,
 /obj/structure/table/standard,
-/obj/item/weapon/book/manual/tesla_engine,
-/obj/item/weapon/book/manual/engineering_particle_accelerator{
+/obj/item/book/manual/tesla_engine,
+/obj/item/book/manual/engineering_particle_accelerator{
 	pixel_x = 5;
 	pixel_y = 5
 	},
@@ -1388,7 +1388,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "cs" = (
-/obj/item/weapon/weldingtool,
+/obj/item/weldingtool,
 /turf/simulated/floor/airless,
 /area/space)
 "ct" = (
@@ -1614,7 +1614,7 @@
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
 "cJ" = (
-/obj/item/weapon/tool/wirecutters,
+/obj/item/tool/wirecutters,
 /turf/simulated/floor/airless,
 /area/space)
 "cK" = (

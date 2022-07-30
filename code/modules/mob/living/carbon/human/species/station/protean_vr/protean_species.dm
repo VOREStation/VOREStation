@@ -113,7 +113,7 @@
 			abilities += new path()
 
 /datum/species/protean/create_organs(var/mob/living/carbon/human/H)
-	var/obj/item/device/nif/saved_nif = H.nif
+	var/obj/item/nif/saved_nif = H.nif
 	if(saved_nif)
 		H.nif.unimplant(H) //Needs reference to owner to unimplant right.
 		H.nif.moveToNullspace()
@@ -147,7 +147,7 @@
 		if(!H) //Human could have been deleted in this amount of time. Observing does this, mannequins, etc.
 			return
 		if(!H.nif)
-			var/obj/item/device/nif/protean/new_nif = new()
+			var/obj/item/nif/protean/new_nif = new()
 			new_nif.quick_implant(H)
 		else
 			H.nif.durability = 25

@@ -54,13 +54,8 @@
 	var/wight_check_index = 1
 	var/list/shadow_wights = list()
 
-<<<<<<< HEAD
-/obj/item/weapon/vampiric/New()
-	..()
-=======
 /obj/item/vampiric/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 
 /obj/item/vampiric/process()

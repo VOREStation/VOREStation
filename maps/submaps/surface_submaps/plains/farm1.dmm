@@ -25,13 +25,8 @@
 "y" = (/obj/structure/table/woodentable,/obj/item/storage/box/matches,/obj/item/flame/match,/turf/simulated/floor/wood,/area/submap/farm1)
 "z" = (/obj/structure/table/woodentable,/turf/simulated/floor/wood,/area/submap/farm1)
 "A" = (/obj/item/clothing/shoes/boots/winter/hydro,/obj/item/clothing/suit/storage/hooded/wintercoat/hydro,/turf/simulated/floor/wood,/area/submap/farm1)
-<<<<<<< HEAD
-"B" = (/obj/structure/bed/chair/wood{ icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/wood,/area/submap/farm1)
-"C" = (/obj/structure/table/woodentable,/obj/item/weapon/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/farm1)
-=======
 "B" = (/obj/structure/bed/chair/wood{dir = 8; icon_state = "wooden_chair"},/turf/simulated/floor/wood,/area/submap/farm1)
 "C" = (/obj/structure/table/woodentable,/obj/item/storage/fancy/candle_box,/turf/simulated/floor/wood,/area/submap/farm1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "D" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/item/seeds/wheatseed,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/farm1)
 "E" = (/obj/structure/closet/crate/bin,/turf/simulated/floor/wood,/area/submap/farm1)
 "F" = (/obj/machinery/space_heater,/turf/simulated/floor/wood,/area/submap/farm1)

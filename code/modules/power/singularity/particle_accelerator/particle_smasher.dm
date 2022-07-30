@@ -271,12 +271,8 @@
 
 /datum/particle_smasher_recipe
 	var/list/reagents	// example: = list("pacid" = 5)
-<<<<<<< HEAD
-	var/list/items		// example: = list(/obj/item/weapon/tool/crowbar, /obj/item/weapon/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
-	var/recipe_type = PS_RESULT_STACK			// Are we producing a stack or an item?
-=======
 	var/list/items		// example: = list(/obj/item/tool/crowbar, /obj/item/welder) Place /foo/bar before /foo. Do not include fruit. Maximum of 3 items.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/recipe_type = PS_RESULT_STACK			// Are we producing a stack or an item?
 
 	var/result = /obj/item/stack/material/iron		// The sheet this will produce.
 	var/required_material = /obj/item/stack/material/iron	// The required material sheet.
@@ -392,11 +388,11 @@
 	probability = 1
 
 /datum/particle_smasher_recipe/donkpockets_coal
-	items = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket)
+	items = list(/obj/item/reagent_containers/food/snacks/donkpocket)
 
 	recipe_type = PS_RESULT_ITEM
 
-	result = /obj/item/weapon/ore/coal
+	result = /obj/item/ore/coal
 	required_material = null
 
 	required_energy_min = 1
@@ -407,12 +403,12 @@
 	probability = 90
 
 /datum/particle_smasher_recipe/donkpockets_ascend
-	items = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket)
+	items = list(/obj/item/reagent_containers/food/snacks/donkpocket)
 	reagents = list("phoron" = 120)
 
 	recipe_type = PS_RESULT_ITEM
 
-	result = /obj/item/weapon/reagent_containers/food/snacks/donkpocket/ascended
+	result = /obj/item/reagent_containers/food/snacks/donkpocket/ascended
 	required_material = /obj/item/stack/material/uranium
 
 	required_energy_min = 501

@@ -1,7 +1,7 @@
 #define SIZE_SHRINK 0
 #define SIZE_GROW 1
 
-/obj/item/device/slow_sizegun
+/obj/item/slow_sizegun
 	name = "gradual size gun"
 	desc = "A highly advanced ray gun, designed for progressive and gradual changing of size."
 	icon = 'icons/obj/gun_vr.dmi'
@@ -18,13 +18,13 @@
 	var/size_increment = 0.01
 	var/current_target
 
-/obj/item/device/slow_sizegun/update_icon()
+/obj/item/slow_sizegun/update_icon()
 	icon_state = "[base_icon_state]-[sizeshift_mode]"
 
 	if(busy)
 		icon_state = "[icon_state]-active"
 
-/obj/item/device/slow_sizegun/proc/should_stop(var/mob/living/target, var/mob/living/user, var/active_hand)
+/obj/item/slow_sizegun/proc/should_stop(var/mob/living/target, var/mob/living/user, var/active_hand)
 	if(!target || !user || !active_hand || !istype(target) || !istype(user) || !busy)
 		return TRUE
 
@@ -64,7 +64,7 @@
 
 	return FALSE
 
-/obj/item/device/slow_sizegun/afterattack(atom/target, mob/user, proximity_flag)
+/obj/item/slow_sizegun/afterattack(atom/target, mob/user, proximity_flag)
 	// Things that invalidate the scan immediately.
 	if(isturf(target))
 		for(var/atom/A as anything in target) // If we can't scan the turf, see if we can scan anything on it, to help with aiming.
@@ -138,7 +138,7 @@
 	if(user.client) // If for some reason they logged out mid-scan the box will be gone anyways.
 		delete_box(box_segments, user.client)
 
-/obj/item/device/slow_sizegun/attack_self(mob/living/user)
+/obj/item/slow_sizegun/attack_self(mob/living/user)
 	if(busy)
 		busy = !busy
 	else
@@ -155,7 +155,7 @@
 
 // Draws a box showing the limits of movement while scanning something.
 // Only the client supplied will see the box.
-/obj/item/device/slow_sizegun/proc/draw_box(atom/A, box_size, client/C)
+/obj/item/slow_sizegun/proc/draw_box(atom/A, box_size, client/C)
 	. = list()
 	// Things moved with pixel_[x|y] will move the box, so this is to correct that.
 	var/pixel_x_correction = -A.pixel_x
@@ -200,7 +200,7 @@
 #undef ICON_SIZE
 
 // Draws an individual segment of the box.
-/obj/item/device/slow_sizegun/proc/draw_line(atom/A, line_dir, line_pixel_x, line_pixel_y, client/C)
+/obj/item/slow_sizegun/proc/draw_line(atom/A, line_dir, line_pixel_x, line_pixel_y, client/C)
 	var/image/line = image(icon = 'icons/effects/effects.dmi', loc = A, icon_state = "stripes", dir = line_dir)
 	line.pixel_x = line_pixel_x
 	line.pixel_y = line_pixel_y
@@ -211,11 +211,11 @@
 	return line
 
 // Removes the box that was generated before from the client.
-/obj/item/device/slow_sizegun/proc/delete_box(list/box_segments, client/C)
+/obj/item/slow_sizegun/proc/delete_box(list/box_segments, client/C)
 	for(var/i in box_segments)
 		C.images -= i
 		qdel(i)
 
-/obj/item/device/slow_sizegun/proc/color_box(list/box_segments, new_color, new_time)
+/obj/item/slow_sizegun/proc/color_box(list/box_segments, new_color, new_time)
 	for(var/i in box_segments)
 		animate(i, color = new_color, time = new_time)

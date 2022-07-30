@@ -26,15 +26,10 @@
 /datum/gear/lighter/zippo/New()
 	..()
 	var/list/zippos = list()
-<<<<<<< HEAD
-	for(var/zippo in typesof(/obj/item/weapon/flame/lighter/zippo))
-		if(zippo in typesof(/obj/item/weapon/flame/lighter/zippo/fluff))	//VOREStation addition
-			continue														//VOREStation addition
-		var/obj/item/weapon/flame/lighter/zippo/zippo_type = zippo
-=======
 	for(var/zippo in typesof(/obj/item/flame/lighter/zippo))
+		if(zippo in typesof(/obj/item/flame/lighter/zippo/fluff))	//VOREStation addition
+			continue														//VOREStation addition
 		var/obj/item/flame/lighter/zippo/zippo_type = zippo
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		zippos[initial(zippo_type.name)] = zippo_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(zippos))
 
@@ -53,11 +48,7 @@
 /datum/gear/cigarettes/New()
 	..()
 	var/list/cigarettes = list()
-<<<<<<< HEAD
-	for(var/obj/item/weapon/storage/fancy/cigarettes/cigarette_brand as anything in (typesof(/obj/item/weapon/storage/fancy/cigarettes) - typesof(/obj/item/weapon/storage/fancy/cigarettes/killthroat)))
-=======
 	for(var/cigarette in (typesof(/obj/item/storage/fancy/cigarettes) - typesof(/obj/item/storage/fancy/cigarettes/killthroat)))
 		var/obj/item/storage/fancy/cigarettes/cigarette_brand = cigarette
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		cigarettes[initial(cigarette_brand.name)] = cigarette_brand
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cigarettes))

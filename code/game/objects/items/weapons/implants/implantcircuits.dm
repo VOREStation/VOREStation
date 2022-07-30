@@ -8,13 +8,8 @@
 /obj/item/implant/integrated_circuit/islegal()
 	return TRUE
 
-<<<<<<< HEAD
-/obj/item/weapon/implant/integrated_circuit/New()
-	..()
-=======
 /obj/item/implant/integrated_circuit/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	IC = new(src)
 	IC.implant = src
 

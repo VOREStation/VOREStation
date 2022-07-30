@@ -82,18 +82,18 @@
 		num2text(EXP_FREQ) = list(access_explorer)
 	)
 
-/obj/item/device/multitool/sd_buffered
+/obj/item/multitool/sd_buffered
 	name = "pre-linked multitool (sd hub)"
 	desc = "This multitool has already been linked to the SD telecomms hub and can be used to configure one (1) relay."
 
-/obj/item/device/multitool/sd_buffered/Initialize()
+/obj/item/multitool/sd_buffered/Initialize()
 	. = ..()
 	buffer = locate(/obj/machinery/telecomms/hub/preset/sd)
 
-/obj/item/device/bluespaceradio/sd_prelinked
+/obj/item/bluespaceradio/sd_prelinked
 	name = "bluespace radio (Stellar Delight)"
-	handset = /obj/item/device/radio/bluespacehandset/linked/sd_prelinked
+	handset = /obj/item/radio/bluespacehandset/linked/sd_prelinked
 
-/obj/item/device/radio/bluespacehandset/linked/sd_prelinked
+/obj/item/radio/bluespacehandset/linked/sd_prelinked
 	bs_tx_preload_id = "sd_rx" //Transmit to a receiver
 	bs_rx_preload_id = "sd_tx" //Recveive from a transmitter

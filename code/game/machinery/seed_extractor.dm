@@ -14,21 +14,12 @@
 		user.remove_from_mob(O)
 
 		var/datum/seed/new_seed_type
-<<<<<<< HEAD
-		if(istype(O, /obj/item/weapon/grown))
-			var/obj/item/weapon/grown/F = O
-			new_seed_type = SSplants.seeds[F.plantname]
-		else
-			var/obj/item/weapon/reagent_containers/food/snacks/grown/F = O
-			new_seed_type = SSplants.seeds[F.plantname]
-=======
 		if(istype(O, /obj/item/grown))
 			var/obj/item/grown/F = O
 			new_seed_type = plant_controller.seeds[F.plantname]
 		else
 			var/obj/item/reagent_containers/food/snacks/grown/F = O
 			new_seed_type = plant_controller.seeds[F.plantname]
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		if(new_seed_type)
 			to_chat(user, "<span class='notice'>You extract some seeds from [O].</span>")

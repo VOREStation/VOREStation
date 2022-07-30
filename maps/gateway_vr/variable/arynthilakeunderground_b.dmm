@@ -91,7 +91,7 @@
 /obj/structure/noticeboard{
 	pixel_x = 32
 	},
-/obj/item/weapon/paper/gateway/arynthilake,
+/obj/item/paper/gateway/arynthilake,
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/gateway/arynthilake/engine)
 "iR" = (
@@ -216,7 +216,7 @@
 /area/gateway/arynthilake/engine)
 "xP" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/mapping_unit,
+/obj/item/mapping_unit,
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/gateway/arynthilake/engine)
 "yv" = (
@@ -396,7 +396,7 @@
 /area/gateway/arynthilake/engine)
 "Wd" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/cell/void,
+/obj/item/cell/void,
 /obj/random/tool,
 /obj/random/tool,
 /obj/random/tech_supply,

@@ -40,15 +40,9 @@
 				to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [2 * src.excavation_level]cm.</span>")
 			return
 
-<<<<<<< HEAD
-	if(istype(I, /obj/item/device/measuring_tape))
-		var/obj/item/device/measuring_tape/P = I
-		user.visible_message("<b>\The [user]</b> extends \the [P] towards \the [src].", "<span class='notice'>You extend \the [P] towards \the [src].</span>")
-=======
 	if(istype(I, /obj/item/measuring_tape))
 		var/obj/item/measuring_tape/P = I
 		user.visible_message("<span class='notice'>\The [user] extends \the [P] towards \the [src].</span>", "<span class='notice'>You extend \the [P] towards \the [src].</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(do_after(user, 15))
 			to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [2 * src.excavation_level]cm.</span>")
 		return

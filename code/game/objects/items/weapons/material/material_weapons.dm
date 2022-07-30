@@ -8,14 +8,9 @@
 	throw_speed = 3
 	throw_range = 7
 	w_class = ITEMSIZE_NORMAL
-<<<<<<< HEAD
 	sharp = FALSE
 	edge = FALSE
-=======
-	sharp = 0
-	edge = 0
 	icon = 'icons/obj/weapons.dmi'
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	item_icons = list(
 			slot_l_hand_str = 'icons/mob/items/lefthand_material.dmi',
 			slot_r_hand_str = 'icons/mob/items/righthand_material.dmi',
@@ -33,13 +28,8 @@
 	var/datum/material/material
 	var/drops_debris = 1
 
-<<<<<<< HEAD
-/obj/item/weapon/material/New(var/newloc, var/material_key)
-	..(newloc)
-=======
 /obj/item/material/Initialize(var/ml, var/material_key)
 	. = ..(ml)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!material_key)
 		material_key = default_material
 	set_material(material_key)

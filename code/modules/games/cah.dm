@@ -14,13 +14,8 @@
 	icon_state = "cag_black"
 	blanks = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/deck/cah/New()
-	..()
-=======
 /obj/item/deck/cah/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/datum/playingcard/P
 	for(var/cardtext in card_text_list)
 		P = new()

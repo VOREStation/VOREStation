@@ -26,11 +26,7 @@ var/global/list/cached_icons = list()
 	else
 		return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/glass/paint/New()
-=======
 /obj/item/reagent_containers/glass/paint/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(paint_type && length(paint_type) > 0)
 		name = paint_type + " " + name
 	..()
@@ -71,4 +67,3 @@ var/global/list/cached_icons = list()
 /obj/item/reagent_containers/glass/paint/white
 	icon_state = "paint_white"
 	paint_type = "white"
-

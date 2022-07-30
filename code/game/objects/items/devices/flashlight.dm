@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /*
  * Contains:
  *		Flashlights
@@ -12,10 +11,7 @@
  * Flashlights
  */
 
-/obj/item/device/flashlight
-=======
 /obj/item/flashlight
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "flashlight"
 	desc = "A hand-held emergency light."
 	icon = 'icons/obj/lighting.dmi'
@@ -32,12 +28,6 @@
 	light_cone_y_offset = -7
 
 	var/on = 0
-<<<<<<< HEAD
-
-	var/obj/item/weapon/cell/cell
-	var/cell_type = /obj/item/weapon/cell/device
-	var/power_usage = 1
-=======
 	var/brightness_on = 4 //luminosity when on
 	var/flashlight_power = 0.8	//lighting power when on
 	var/flashlight_colour = LIGHT_COLOR_INCANDESCENT_FLASHLIGHT	//lighting colour when on
@@ -46,7 +36,6 @@
 	var/list/brightness_levels
 	var/brightness_level = "medium"
 	var/power_usage
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/power_use = 1
 
 /obj/item/flashlight/Initialize()
@@ -54,17 +43,12 @@
 
 	if(power_use && cell_type)
 		cell = new cell_type(src)
-<<<<<<< HEAD
-
-	update_brightness()
-=======
 		brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
 		power_usage = brightness_levels[brightness_level]
 	else
 		verbs -= /obj/item/flashlight/verb/toggle
-	
+
 	update_icon()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/flashlight/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -74,9 +58,6 @@
 /obj/item/flashlight/get_cell()
 	return cell
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/process()
-=======
 /obj/item/flashlight/verb/toggle()
 	set name = "Toggle Flashlight Brightness"
 	set category = "Object"
@@ -92,7 +73,6 @@
 		update_icon()
 
 /obj/item/flashlight/process()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!on || !cell)
 		return PROCESS_KILL
 
@@ -104,11 +84,7 @@
 			update_brightness()
 			return PROCESS_KILL
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/proc/update_brightness()
-=======
 /obj/item/flashlight/update_icon()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 	else
@@ -269,8 +245,7 @@
 	else
 		..()
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+/obj/item/flashlight/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
 	. = ..()
 	if(!on)
 		return
@@ -281,10 +256,7 @@
 		var/turf/T = get_turf(target)
 		OL.place_directional_light(T)
 
-/obj/item/device/flashlight/pen
-=======
 /obj/item/flashlight/pen
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "penlight"
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
@@ -296,30 +268,22 @@
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/color	//Default color is blue
-=======
-/obj/item/flashlight/color	//Default color is blue, just roll with it.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/flashlight/color	//Default color is blue
 	name = "blue flashlight"
 	desc = "A small flashlight. This one is blue."
 	icon_state = "flashlight_blue"
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/color/green
+/obj/item/flashlight/color/green
 	name = "green flashlight"
 	desc = "A small flashlight. This one is green."
 	icon_state = "flashlight_green"
 
-/obj/item/device/flashlight/color/purple
+/obj/item/flashlight/color/purple
 	name = "purple flashlight"
 	desc = "A small flashlight. This one is purple."
 	icon_state = "flashlight_purple"
 
-/obj/item/device/flashlight/color/red
-=======
 /obj/item/flashlight/color/red
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "red flashlight"
 	desc = "A small flashlight. This one is red."
 	icon_state = "flashlight_red"
@@ -355,17 +319,12 @@
 	w_class = ITEMSIZE_TINY
 	power_use = 0
 
-<<<<<<< HEAD
 /*
  * Lamps
  */
 
 // pixar desk lamp
-/obj/item/device/flashlight/lamp
-=======
-// the desk lamps are a bit special
 /obj/item/flashlight/lamp
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "desk lamp"
 	desc = "A desk lamp with an adjustable mount."
 	icon_state = "lamp"
@@ -377,7 +336,7 @@
 	on = 1
 	light_system = STATIC_LIGHT
 
-/obj/item/device/flashlight/lamp/verb/toggle_light()
+/obj/item/flashlight/lamp/verb/toggle_light()
 	set name = "Toggle light"
 	set category = "Object"
 	set src in oview(1)
@@ -392,19 +351,11 @@
 	center_of_mass = list("x" = 15,"y" = 11)
 	light_color = "#FFC58F"
 
-<<<<<<< HEAD
 // clown lamp
-/obj/item/device/flashlight/lamp/clown
+/obj/item/flashlight/lamp/clown
 	desc = "A whacky banana peel shaped lamp."
 	icon_state = "bananalamp"
 	center_of_mass = list("x" = 15,"y" = 11)
-=======
-/obj/item/flashlight/lamp/verb/toggle_light()
-	set name = "Toggle light"
-	set category = "Object"
-	set src in oview(1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
-
 
 /*
  * Flares
@@ -428,11 +379,7 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/flare/New()
-=======
 /obj/item/flashlight/flare/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
@@ -495,11 +442,7 @@
 	var/fuel = 0
 	power_use = 0
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/glowstick/New()
-=======
 /obj/item/flashlight/glowstick/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	fuel = rand(1600, 2000)
 	..()
 
@@ -556,8 +499,7 @@
 	icon_state = "glowstick_yellow"
 	item_state = "glowstick_yellow"
 
-<<<<<<< HEAD
-/obj/item/device/flashlight/glowstick/radioisotope
+/obj/item/flashlight/glowstick/radioisotope
 	name = "radioisotope glowstick"
 	desc = "A radioisotope powered chemical light. Escaping particles light up the area far brighter on similar levels to flares and for longer"
 	icon_state = "glowstick_isotope"
@@ -566,27 +508,3 @@
 	light_range = 8
 	light_power = 0.1
 	light_color = "#49F37C"
-=======
-/obj/item/flashlight/slime
-	gender = PLURAL
-	name = "glowing slime extract"
-	desc = "A slimy ball that appears to be glowing from bioluminesence."
-	icon = 'icons/obj/lighting.dmi'
-	icon_state = "floor1" //not a slime extract sprite but... something close enough!
-	item_state = "slime"
-	flashlight_colour = "#FFF423"
-	w_class = ITEMSIZE_TINY
-	brightness_on = 6
-	on = 1 //Bio-luminesence has one setting, on.
-	power_use = 0
-
-/obj/item/flashlight/slime/Initialize()
-	. = ..()
-	set_light(brightness_on, flashlight_power, flashlight_colour)
-
-/obj/item/flashlight/slime/update_icon()
-	return
-
-/obj/item/flashlight/slime/attack_self(mob/user)
-	return //Bio-luminescence does not toggle.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

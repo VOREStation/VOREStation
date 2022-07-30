@@ -1419,17 +1419,10 @@
 			to_chat(usr, "<span class='filter_adminlog'>This can only be used on instances of type /mob/living/carbon/human</span>")
 			return
 
-<<<<<<< HEAD
-		H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_l_hand )
-		if(!(istype(H.l_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/weapon/reagent_containers/food/snacks/cookie(H), slot_r_hand )
-			if(!(istype(H.r_hand,/obj/item/weapon/reagent_containers/food/snacks/cookie)))
-=======
 		H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/cookiesnack(H), slot_l_hand )
 		if(!(istype(H.l_hand,/obj/item/reagent_containers/food/snacks/cookiesnack)))
 			H.equip_to_slot_or_del( new /obj/item/reagent_containers/food/snacks/cookiesnack(H), slot_r_hand )
 			if(!(istype(H.r_hand,/obj/item/reagent_containers/food/snacks/cookiesnack)))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
@@ -1507,19 +1500,11 @@
 
 	else if(href_list["AdminFaxView"])
 		var/obj/item/fax = locate(href_list["AdminFaxView"])
-<<<<<<< HEAD
-		if (istype(fax, /obj/item/weapon/paper))
-			var/obj/item/weapon/paper/P = fax
-			P.show_content(usr,1)
-		else if (istype(fax, /obj/item/weapon/photo))
-			var/obj/item/weapon/photo/H = fax
-=======
 		if (istype(fax, /obj/item/paper))
 			var/obj/item/paper/P = fax
 			P.show_content(usr, TRUE)
 		else if (istype(fax, /obj/item/photo))
 			var/obj/item/photo/H = fax
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			H.show(usr)
 		else if (istype(fax, /obj/item/paper_bundle))
 			//having multiple people turning pages on a paper_bundle can cause issues
@@ -1541,21 +1526,12 @@
 
 		if (!bundle) return
 
-<<<<<<< HEAD
-		if (istype(bundle.pages[page], /obj/item/weapon/paper))
-			var/obj/item/weapon/paper/P = bundle.pages[page]
-			P.show_content(src.owner, 1)
-		else if (istype(bundle.pages[page], /obj/item/weapon/photo))
-			var/obj/item/weapon/photo/H = bundle.pages[page]
-			H.show(src.owner)
-=======
 		if (istype(bundle.pages[page], /obj/item/paper))
 			var/obj/item/paper/P = bundle.pages[page]
 			P.show_content(owner, TRUE)
 		else if (istype(bundle.pages[page], /obj/item/photo))
 			var/obj/item/photo/H = bundle.pages[page]
 			H.show(owner)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		return
 
 	else if(href_list["FaxReply"])

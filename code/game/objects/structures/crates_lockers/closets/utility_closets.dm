@@ -31,35 +31,21 @@
 				/obj/item/tank/emergency/oxygen,
 				/obj/item/storage/toolbox/emergency,
 				/obj/item/clothing/mask/breath,
-<<<<<<< HEAD
-=======
 				/obj/item/storage/firstaid/o2,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/suit/space/emergency,
 				/obj/item/clothing/head/helmet/space/emergency)
 		if ("tank")
 			starts_with = list(
-<<<<<<< HEAD
-				/obj/item/weapon/tank/emergency/oxygen/engi = 2,
+				/obj/item/tank/emergency/oxygen/engi = 2,
 				/obj/item/clothing/mask/breath = 2,
 				/obj/item/clothing/suit/space/emergency = 2,
 				/obj/item/clothing/head/helmet/space/emergency = 2)
 		if ("both")
 			starts_with = list(
-				/obj/item/weapon/storage/toolbox/emergency,
-				/obj/item/weapon/storage/firstaid/o2,
-				/obj/item/weapon/tank/emergency/oxygen/engi = 2,
-				/obj/item/clothing/mask/breath = 2,
-=======
-				/obj/item/tank/emergency/oxygen/engi = 2,
-				/obj/item/clothing/mask/breath = 2)
-		if ("both")
-			starts_with = list(
 				/obj/item/storage/toolbox/emergency,
-				/obj/item/tank/emergency/oxygen/engi,
-				/obj/item/clothing/mask/breath,
 				/obj/item/storage/firstaid/o2,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				/obj/item/tank/emergency/oxygen/engi = 2,
+				/obj/item/clothing/mask/breath = 2,
 				/obj/item/clothing/suit/space/emergency = 2,
 				/obj/item/clothing/head/helmet/space/emergency = 2)
 	//VOREStation Block Edit End
@@ -113,7 +99,7 @@
 		/obj/item/clothing/suit/fire/heavy,
 		/obj/item/weapon/tank/oxygen/red,
 		/obj/item/weapon/extinguisher/atmo,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/clothing/head/hardhat/firefighter/atmos)
 
 /*

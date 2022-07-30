@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 /*
  * M1911
  */
-/obj/item/weapon/gun/projectile/colt
-=======
 /obj/item/gun/projectile/colt
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/unique_reskin
 	name = ".45 pistol"
 	desc = "A typical modern handgun produced for law enforcement. Uses .45 rounds."
@@ -29,14 +25,10 @@
 		else
 			icon_state = "[initial(icon_state)]-e"
 
-<<<<<<< HEAD
 /*
  * Detective M1911
  */
-/obj/item/weapon/gun/projectile/colt/detective
-=======
 /obj/item/gun/projectile/colt/detective
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "A standard law enforcement issue pistol. Uses .45 rounds."
 	magazine_type = /obj/item/ammo_magazine/m45/rubber
 
@@ -80,22 +72,10 @@
 		to_chat(M, "Your gun is now sprited as [choice]. Say hello to your new friend.")
 		return 1
 
-<<<<<<< HEAD
 /*
  * Security Sidearm
  */
-/obj/item/weapon/gun/projectile/sec
-=======
-/*//apart of reskins that have two sprites, touching may result in frustration and breaks
-/obj/item/gun/projectile/colt/detective/attack_hand(var/mob/living/user)
-	if(!unique_reskin && loc == user)
-		reskin_gun(user)
-		return
-	..()
-*/
-
 /obj/item/gun/projectile/sec
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = ".45 pistol"
 	desc = "The MT Mk58 is a cheap, ubiquitous sidearm, produced by MarsTech. Found pretty much everywhere humans are. Uses .45 rounds."
 	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, \
@@ -115,19 +95,11 @@
 	else
 		icon_state = "secgun-e"
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/sec/flash
-	magazine_type = /obj/item/ammo_magazine/m45/flash
-
-/obj/item/weapon/gun/projectile/sec/wood
-	name = "custom .45 pistol"
-=======
 /obj/item/gun/projectile/sec/flash
-	name = ".45 signal pistol"
 	magazine_type = /obj/item/ammo_magazine/m45/flash
 
 /obj/item/gun/projectile/sec/wood
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "custom .45 pistol"
 	desc = "The MT Mk58 is a cheap, ubiquitous sidearm, produced by MarsTech. This one has a sweet wooden grip. Uses .45 rounds."
 	icon_state = "secgunb"
 
@@ -138,14 +110,10 @@
 	else
 		icon_state = "secgunb-e"
 
-<<<<<<< HEAD
 /*
  * Silenced Pistol
  */
-/obj/item/weapon/gun/projectile/silenced
-=======
 /obj/item/gun/projectile/silenced
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "silenced pistol"
 	desc = "A small, quiet, easily concealable gun with a built-in silencer. Uses .45 rounds."
 	icon_state = "silenced_pistol"
@@ -163,8 +131,7 @@
 /obj/item/gun/projectile/silenced/empty
 	magazine_type = null
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/silenced/update_icon()
+/obj/item/gun/projectile/silenced/update_icon()
 	..()
 	if(ammo_magazine)
 		icon_state = "silenced_pistol"
@@ -174,10 +141,7 @@
 /*
  * Deagle
  */
-/obj/item/weapon/gun/projectile/deagle
-=======
 /obj/item/gun/projectile/deagle
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "hand cannon"
 	desc = "The PCA-55 Rarkajar perfect handgun for shooters with a need to hit targets through a wall and behind a fridge in your neighbor's house. Uses .44 rounds."
 	description_fluff = "Pearlshield Consolidated Armories are far from the most cutting edge firearm manufacturer, but the Tajaran’s long tradition of war is rivaled only by humanity, \
@@ -209,14 +173,10 @@
 	icon_state = "deaglecamo"
 	item_state = "deagleg"
 
-<<<<<<< HEAD
 /*
  * Gyro Pistol (Admin Abuse in gun form)
  */
-/obj/item/weapon/gun/projectile/gyropistol
-=======
-/obj/item/gun/projectile/gyropistol // Does this even appear anywhere outside of admin abuse?
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/gun/projectile/gyropistol
 	name = "gyrojet pistol"
 	desc = "Speak softly, and carry a big gun. Fires rare .75 caliber self-propelled exploding bolts--because fuck you and everything around you."
 	icon_state = "gyropistol"
@@ -238,11 +198,10 @@
 	else
 		icon_state = "gyropistol"
 
-<<<<<<< HEAD
 /*
  * Silencer
  */
-/obj/item/weapon/silencer
+/obj/item/silencer
 	name = "silencer"
 	desc = "a silencer"
 	icon = 'icons/obj/gun.dmi'
@@ -252,10 +211,7 @@
 /*
  * Compact Pistol
  */
-/obj/item/weapon/gun/projectile/pistol
-=======
 /obj/item/gun/projectile/pistol
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "compact pistol"
 	desc = "The Lumoco Arms P3 \"Whisper\". A compact, easily concealable gun, though it's only compatible with compact magazines. Uses 9mm rounds."
 	icon_state = "pistol"
@@ -269,12 +225,8 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm/compact)
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/pistol/flash
-=======
 /obj/item/gun/projectile/pistol/flash
 	name = "compact signal pistol"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	magazine_type = /obj/item/ammo_magazine/m9mm/compact/flash
 
 /obj/item/gun/projectile/pistol/attack_hand(mob/living/user as mob)
@@ -305,19 +257,12 @@
 		return
 	..()
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/pistol/update_icon()
+/obj/item/gun/projectile/pistol/update_icon()
 	if(ammo_magazine)
 		if(silenced)
 			icon_state = "pistol-s"
 		else
 			icon_state = "pistol"
-=======
-/obj/item/gun/projectile/pistol/update_icon()
-	..()
-	if(silenced)
-		icon_state = "pistol-silencer"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	else
 		if(silenced)
 			icon_state = "pistol-s-e"
@@ -327,7 +272,7 @@
 /*
  * Pistol
  */
-/obj/item/weapon/gun/projectile/aps
+/obj/item/gun/projectile/aps
 	name = "pistol"
 	desc = "The Lumoco Arms P6 \"Rustle\". A standard self-defense pistol that takes standard magazines. Uses 9mm rounds."
 	icon_state = "aps"
@@ -340,8 +285,7 @@
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 	projectile_type = /obj/item/projectile/bullet/pistol
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/aps/attack_hand(mob/living/user as mob)
+/obj/item/gun/projectile/aps/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
 		if(silenced)
 			if(!user.item_is_in_hands(src))
@@ -354,8 +298,8 @@
 			return
 	..()
 
-/obj/item/weapon/gun/projectile/aps/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/silencer))
+/obj/item/gun/projectile/aps/attackby(obj/item/I as obj, mob/living/user as mob)
+	if(istype(I, /obj/item/silencer))
 		if(!user.item_is_in_hands(src))	//if we're not in his hands
 			to_chat(user, "<span class='notice'>You'll need [src] in your hands to do that.</span>")
 			return
@@ -367,7 +311,7 @@
 		return
 	..()
 
-/obj/item/weapon/gun/projectile/aps/update_icon()
+/obj/item/gun/projectile/aps/update_icon()
 	if(ammo_magazine)
 		if(silenced)
 			icon_state = "aps-s"
@@ -382,17 +326,7 @@
 /*
  * Zip Gun (yar har)
  */
-/obj/item/weapon/gun/projectile/pirate
-=======
-/obj/item/silencer
-	name = "silencer"
-	desc = "a silencer"
-	icon = 'icons/obj/gun.dmi'
-	icon_state = "silencer"
-	w_class = ITEMSIZE_SMALL
-
 /obj/item/gun/projectile/pirate
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "zip gun"
 	desc = "Little more than a barrel, handle, and firing mechanism, cheap makeshift firearms like this one are not uncommon in frontier systems."
 	icon_state = "zipgun"
@@ -418,11 +352,7 @@
 		/obj/item/ammo_casing/a545              = "5.45mm"
 		)
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/pirate/New()
-=======
 /obj/item/gun/projectile/pirate/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	ammo_type = pick(ammo_types)
 	desc += " Uses [ammo_types[ammo_type]] rounds."
 
@@ -430,14 +360,10 @@
 	caliber = initial(ammo.caliber)
 	..()
 
-<<<<<<< HEAD
 /*
  * Derringer
  */
-/obj/item/weapon/gun/projectile/derringer
-=======
 /obj/item/gun/projectile/derringer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "derringer"
 	desc = "It's not size of your gun that matters, just the size of your load. Uses .357 rounds." //OHHH MYYY~
 	icon_state = "derringer"
@@ -450,19 +376,13 @@
 	ammo_type = /obj/item/ammo_casing/a357
 	projectile_type = /obj/item/projectile/bullet/pistol/strong
 
-<<<<<<< HEAD
 /*
  * Luger
  */
-/obj/item/weapon/gun/projectile/luger
+/obj/item/gun/projectile/luger
 	name = "\improper Jindal T15 \"Mäuse\""
 	desc = "Almost seventy percent guaranteed not to be a cheap rimworld knockoff! Accuracy, easy handling, and its distinctive appearance \
 	make it popular among gun collectors. Uses 9mm rounds."
-=======
-/obj/item/gun/projectile/luger
-	name = "\improper Jindal T15 Chooha"
-	desc = "Almost seventy percent guaranteed not to be a cheap rimworld knockoff! Accuracy, easy handling, and its distinctive appearance make it popular among gun collectors. Uses 9mm rounds."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	description_fluff = "While Jindal’s rugged, affordable weapons intended for the colonial sector are a major export of Tau Ceti, \
 	the Jindal Arms company is perhaps best known for its liberal sale of production licenses to just about any fledgling rimworld \
 	venture who asks, and has cash to spare. While Jindal’s 'authentic' Binma-built weapons are renowned for their reliability, the \
@@ -483,26 +403,17 @@
 	else
 		icon_state = "[initial(icon_state)]-e"
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/luger/brown
-	name = "\improper Jindal T15b \"Mäuse\""
-=======
 /obj/item/gun/projectile/luger/brown
-	name = "\improper Jindal KP-45W"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "\improper Jindal T15b \"Mäuse\""
 	description_fluff = "While wholly owned by Hephaestus Industries, the Jindal Arms brand does not appear prominently in most company catalogues \
 	(Perhaps owing to its less than prestigious image), instead being sold almost exclusively through retailers and advertising platforms targeting \
 	the 'independent roughneck' demographic."
 	icon_state = "p08b"
 
-<<<<<<< HEAD
 /*
  * P92X (9mm Pistol)
  */
-/obj/item/weapon/gun/projectile/p92x
-=======
 /obj/item/gun/projectile/p92x
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "9mm pistol"
 	desc = "A widespread MarsTech sidearm called the P92X which is used by military, police, and security forces across the galaxy. Uses 9mm rounds."
 	icon_state = "p92x"
@@ -519,26 +430,25 @@
 	else
 		icon_state = "[initial(icon_state)]-e"
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/p92x/rubber
+/obj/item/gun/projectile/p92x/rubber
 	magazine_type = /obj/item/ammo_magazine/m9mm/rubber
 
-/obj/item/weapon/gun/projectile/p92x/brown
+/obj/item/gun/projectile/p92x/brown
 	icon_state = "p92xb"
 
-/obj/item/weapon/gun/projectile/p92x/large
+/obj/item/gun/projectile/p92x/large
 	magazine_type = /obj/item/ammo_magazine/m9mm/large // Spawns with illegal magazines.
 
-/obj/item/weapon/gun/projectile/p92x/large/preban
+/obj/item/gun/projectile/p92x/large/preban
 	magazine_type = /obj/item/ammo_magazine/m9mm/large/preban // Spawns with big magazines that are legal.
 
-/obj/item/weapon/gun/projectile/p92x/large/preban/hp
+/obj/item/gun/projectile/p92x/large/preban/hp
 	magazine_type = /obj/item/ammo_magazine/m9mm/large/preban/hp // Spawns with legal hollow-point mag
 
 /*
  * Giskard (Eris Port)
  */
-/obj/item/weapon/gun/projectile/giskard
+/obj/item/gun/projectile/giskard
 	name = "\improper \"Giskard\" holdout pistol"
 	desc = "The FS HG .38 \"Giskard\" can even fit into the pocket! Uses .38 rounds."
 	icon_state = "giskardcivil"
@@ -551,14 +461,14 @@
 	fire_sound = 'sound/weapons/gunshot_pathetic.ogg'
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 3)
 
-/obj/item/weapon/gun/projectile/giskard/update_icon()
+/obj/item/gun/projectile/giskard/update_icon()
 	..()
 	if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		icon_state = "giskardcivil"
 	else
 		icon_state = "giskardcivil_empty"
 
-/obj/item/weapon/gun/projectile/giskard/olivaw
+/obj/item/gun/projectile/giskard/olivaw
 	name = "\improper \"Olivaw\" holdout burst-pistol"
 	desc = "The FS HG .38 \"Olivaw\" is a more advanced version of the \"Giskard\". \
 	This one seems to have a two-round burst-fire mode. Uses .38 rounds."
@@ -569,7 +479,7 @@
 		list(mode_name="2-round bursts", burst=2, fire_delay=0.2, move_delay=4,    burst_accuracy=list(0,-15),       dispersion=list(1.2, 1.8)),
 		)
 
-/obj/item/weapon/gun/projectile/giskard/olivaw/update_icon()
+/obj/item/gun/projectile/giskard/olivaw/update_icon()
 	..()
 	if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		icon_state = "olivawcivil"
@@ -579,7 +489,7 @@
 /*
  * Makarov
  */
-/obj/item/weapon/gun/projectile/makarov
+/obj/item/gun/projectile/makarov
 	name = "makarov"
 	desc = "A small, rugged pistol from a bygone era. Uses .38 rounds."
 	icon_state = "makarov"
@@ -592,7 +502,7 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
-/obj/item/weapon/gun/projectile/makarov/update_icon()
+/obj/item/gun/projectile/makarov/update_icon()
 	if(ammo_magazine)
 		icon_state = "Makarov"
 	else
@@ -601,7 +511,7 @@
 /*
  * N99 (Fallout)
  */
-/obj/item/weapon/gun/projectile/n99
+/obj/item/gun/projectile/n99
 	name = "promotional pistol"
 	desc = "A very robust looking pistol that was made to promote 'Radius: Legend of the Demon Core', a popular \
 	post-apocolyptic TV series. It's rare to come across as marketing swiftly switched to a toy version as \
@@ -616,16 +526,16 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
-/obj/item/weapon/gun/projectile/n99/update_icon()
+/obj/item/gun/projectile/n99/update_icon()
 	if(ammo_magazine)
 		icon_state = "n99"
 	else
 		icon_state = "n99-e"
 
-/obj/item/weapon/gun/projectile/n80
+/obj/item/gun/projectile/n80
 	icon_state = "n80"
 
-/obj/item/weapon/gun/projectile/n80/update_icon()
+/obj/item/gun/projectile/n80/update_icon()
 	if(ammo_magazine)
 		icon_state = "n80"
 	else
@@ -634,7 +544,7 @@
 /*
  * Écureuil 10mm Pistol (Skyrat Port)
  */
-/obj/item/weapon/gun/projectile/ecureuil
+/obj/item/gun/projectile/ecureuil
 	name = "\improper \"Écureuil\" 10mm pistol"
 	desc = "The 10mm MarsTech sidearm \"Écureuil\" is a well known military grade pistol. \
 	It's mostly used by ranking members of NanoTrasen as a means of self defense. Uses 10mm rounds."
@@ -648,27 +558,27 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 
-/obj/item/weapon/gun/projectile/ecureuil/update_icon()
+/obj/item/gun/projectile/ecureuil/update_icon()
 	if(ammo_magazine)
 		icon_state = "ecureuil"
 	else
 		icon_state = "ecureuil-e"
 
-/obj/item/weapon/gun/projectile/ecureuil/tac
+/obj/item/gun/projectile/ecureuil/tac
 	name = "\improper Tactical \"Écureuil\" 10mm pistol"
 	icon_state = "tac_ecureuil"
 
-/obj/item/weapon/gun/projectile/ecureuil/tac/update_icon()
+/obj/item/gun/projectile/ecureuil/tac/update_icon()
 	if(ammo_magazine)
 		icon_state = "tac_ecureuil"
 	else
 		icon_state = "tac_ecureuil-e"
 
-/obj/item/weapon/gun/projectile/ecureuil/tac2
+/obj/item/gun/projectile/ecureuil/tac2
 	name = "\improper Tactical \"Écureuil\" 10mm pistol"
 	icon_state = "tac_ecureuil"
 
-/obj/item/weapon/gun/projectile/ecureuil/tac2/update_icon()
+/obj/item/gun/projectile/ecureuil/tac2/update_icon()
 	if(ammo_magazine)
 		icon_state = "tac2_ecureuil"
 	else
@@ -677,7 +587,7 @@
 /*
  * Lamia (Eris Port)
  */
-/obj/item/weapon/gun/projectile/lamia
+/obj/item/gun/projectile/lamia
 	name = "\improper FS HG .44 \"Lamia\""
 	desc = "The FS HG .44 \"Lamia\" is the epitome of power in a handheld device. Uses .44 rounds."
 	icon_state = "lamia"
@@ -690,17 +600,10 @@
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 4)
 
-/obj/item/weapon/gun/projectile/lamia/update_icon()
+/obj/item/gun/projectile/lamia/update_icon()
 	cut_overlays()
 	if(!ammo_magazine)
 		return
 	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
 	ratio = round(ratio, 33)
 	add_overlay("lamia_[ratio]")
-=======
-/obj/item/gun/projectile/p92x/brown
-	icon_state = "p92x-brown"
-
-/obj/item/gun/projectile/p92x/large
-	magazine_type = /obj/item/ammo_magazine/m9mm/large // Spawns with illegal magazines.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

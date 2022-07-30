@@ -15,15 +15,10 @@
 	includes_tail = 1
 	unavailable_to_build = 1
 
-<<<<<<< HEAD
-/obj/item/weapon/disk/limb/eggnerdltd
+/obj/item/disk/limb/eggnerdltd
 	company = "Eggnerd Prototyping Ltd."
 //	icon = 'icons/obj/items_vr.dmi'
 //	icon_state = "verkdisk"
-=======
-/obj/item/disk/limb/uesseka
-	company = "Uesseka Prototyping Ltd."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 //////////////// General VS-only ones /////////////////
 /datum/robolimb/talon //They're buildable by default due to being extremely basic.
@@ -31,14 +26,8 @@
 	desc = "This metallic limb is sleek and featuresless apart from some exposed motors"
 	icon = 'icons/mob/human_races/cyberlimbs/talon/talon_main.dmi' //Sprited by: Viveret
 
-<<<<<<< HEAD
-/obj/item/weapon/disk/limb/talon
+/obj/item/disk/limb/talon
 	company = "Talon LLC"
-=======
-/obj/item/disk/limb/nanotrasen_metro
-	company = "NanoTrasen - Metro"
-	catalogue_data = list(/datum/category_item/catalogue/information/organization/nanotrasen)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /datum/robolimb/zenghu_taj //This wasn't indented. At all. It's a miracle this didn't break literally everything.
 	company = "Zeng-Hu - Tajaran"
@@ -55,15 +44,10 @@
 	includes_tail = 1
 	unavailable_to_build = 1
 
-<<<<<<< HEAD
-/obj/item/weapon/disk/limb/eggnerdltdred
+/obj/item/disk/limb/eggnerdltdred
 	company = "Eggnerd Prototyping Ltd. (Red)"
 	icon = 'icons/obj/items_vr.dmi'	//VOREStation add. Use the right sprites
 	icon_state = "verkdisk"			//VOREStation add. Use the right sprites
-=======
-/obj/item/disk/limb/uessekared
-	company = "Uesseka Prototyping Ltd. (Red)"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 
 //Darkside Incorperated synthetic augmentation list! Many current most used fuzzy and notsofuzzy races made into synths here.

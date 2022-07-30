@@ -191,7 +191,7 @@
 /area/offmap/aerostat/surface/outpost/airlock)
 "fZ" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/officerone)
 "gb" = (
@@ -215,7 +215,7 @@
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/offmap/aerostat/surface/outpost/backroom)
 "gx" = (
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/structure/bed/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/wood,
@@ -232,7 +232,7 @@
 /area/offmap/aerostat/surface/outpost/guardpost)
 "gU" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/officertwo)
 "hi" = (
@@ -625,18 +625,18 @@
 /obj/structure/closet/crate{
 	dir = 1
 	},
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/kitchen/utensil/fork,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/knife/table,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
-/obj/item/weapon/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/kitchen/utensil/fork,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/knife/table,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
+/obj/item/material/kitchen/utensil/spoon,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/offmap/aerostat/surface/outpost/cafe)
 "sA" = (
@@ -914,7 +914,7 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor_grid,
 /area/offmap/aerostat/surface/outpost/cafe)
 "zG" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/tiled/eris/dark,
@@ -946,7 +946,7 @@
 /area/offmap/aerostat/surface/outpost/cafe)
 "AQ" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/officertwo)
 "Bb" = (
@@ -1054,7 +1054,7 @@
 /area/offmap/aerostat/surface/explored)
 "ET" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/hopdouble,
+/obj/item/bedsheet/hopdouble,
 /turf/simulated/floor/wood,
 /area/offmap/aerostat/surface/outpost/officerone)
 "EV" = (
@@ -1441,7 +1441,7 @@
 /area/offmap/aerostat/surface/outpost/hallway)
 "ON" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/glasses,
+/obj/item/storage/box/glasses,
 /obj/item/paint_brush,
 /obj/item/paint_palette,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
@@ -1554,17 +1554,17 @@
 /area/offmap/aerostat/surface/outpost/backroom)
 "Sr" = (
 /obj/structure/closet/walllocker_double/kitchen/west,
-/obj/item/weapon/storage/box/tgmc_mre,
-/obj/item/weapon/storage/box/tgmc_mre{
+/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/tgmc_mre{
 	pixel_x = -4;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/box/tgmc_mre,
-/obj/item/weapon/storage/box/tgmc_mre{
+/obj/item/storage/box/tgmc_mre,
+/obj/item/storage/box/tgmc_mre{
 	pixel_x = -3;
 	pixel_y = 5
 	},
-/obj/item/weapon/storage/box/tgmc_mre{
+/obj/item/storage/box/tgmc_mre{
 	pixel_x = 4;
 	pixel_y = -4
 	},
@@ -1608,7 +1608,7 @@
 /area/offmap/aerostat/surface/outpost/backroom)
 "Ur" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/glasses/pint,
+/obj/item/storage/box/glasses/pint,
 /obj/item/canvas/twentyfour_twentyfour,
 /obj/item/canvas/nineteen_nineteen,
 /turf/simulated/floor/tiled/eris/dark/monofloor,

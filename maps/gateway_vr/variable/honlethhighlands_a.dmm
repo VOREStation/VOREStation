@@ -270,7 +270,7 @@
 	},
 /area/gateway/honlethhighlands/caves)
 "bi" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/simulated/floor/outdoors/newdirt{
 	temperature = 253.15
 	},
@@ -321,10 +321,10 @@
 	dir = 8;
 	pixel_x = -28
 	},
-/obj/item/device/flash,
-/obj/item/weapon/reagent_containers/spray/pepper,
-/obj/item/weapon/stamp,
-/obj/item/weapon/stamp/denied,
+/obj/item/flash,
+/obj/item/reagent_containers/spray/pepper,
+/obj/item/stamp,
+/obj/item/stamp/denied,
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
 "by" = (
@@ -419,10 +419,10 @@
 /area/gateway/honlethhighlands/town/supply)
 "cT" = (
 /obj/structure/closet/secure_closet/freezer/fridge,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
 /turf/simulated/floor/lino,
@@ -456,7 +456,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/obj/item/weapon/stool{
+/obj/item/stool{
 	dir = 4
 	},
 /turf/simulated/floor/wood,
@@ -489,7 +489,7 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
 "ef" = (
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/outdoors/grass/forest,
 /area/gateway/honlethhighlands/town/garden)
 "em" = (
@@ -528,7 +528,7 @@
 /area/gateway/honlethhighlands/caves)
 "fi" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/book/manual/bar_guide,
+/obj/item/book/manual/bar_guide,
 /obj/random/drinkbottle,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
@@ -677,7 +677,7 @@
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands)
 "is" = (
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /turf/simulated/mineral/floor/ignore_cavegen/cave{
 	temperature = 253.15
 	},
@@ -748,30 +748,30 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "kL" = (
-/obj/item/weapon/stool{
+/obj/item/stool{
 	dir = 1
 	},
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/bar)
 "kS" = (
 /obj/structure/closet/secure_closet/freezer/kitchen,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/storage/box/beakers{
+/obj/item/storage/box/beakers{
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
+	starts_with = list(/obj/item/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /obj/machinery/power/apc/alarms_hidden{
 	dir = 4;
@@ -917,7 +917,7 @@
 	},
 /area/gateway/honlethhighlands/town/garden)
 "nx" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
@@ -1097,7 +1097,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "qB" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /obj/random/junk,
@@ -1162,13 +1162,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
 "rz" = (
 /obj/structure/table/marble,
 /obj/machinery/reagentgrinder,
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/reagent_containers/dropper,
 /obj/structure/cable/pink{
 	d1 = 2;
 	d2 = 8;
@@ -1209,7 +1209,7 @@
 /area/gateway/honlethhighlands/gate)
 "rP" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask,
+/obj/item/reagent_containers/food/drinks/flask/vacuumflask,
 /obj/random/drinkbottle,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
@@ -1359,7 +1359,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "uu" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /obj/random/junk,
@@ -1412,7 +1412,7 @@
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/xenobio)
 "vt" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/wood,
@@ -1425,8 +1425,8 @@
 /area/gateway/honlethhighlands/town/engineering)
 "vL" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/drinks/jar,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/jar,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "vU" = (
@@ -1547,7 +1547,7 @@
 /area/gateway/honlethhighlands/caves)
 "wY" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "xo" = (
@@ -1630,7 +1630,7 @@
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/bar)
 "yX" = (
-/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/material/knife/machete/hatchet,
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/garden)
 "zh" = (
@@ -1675,7 +1675,7 @@
 	},
 /area/gateway/honlethhighlands/caves)
 "zP" = (
-/obj/item/weapon/bedsheet/pirate,
+/obj/item/bedsheet/pirate,
 /obj/structure/bed/padded,
 /turf/simulated/floor/carpet/purcarpet,
 /area/gateway/honlethhighlands)
@@ -1742,7 +1742,7 @@
 /area/gateway/honlethhighlands)
 "AF" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/drinks/cup,
+/obj/item/reagent_containers/food/drinks/cup,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
 "AK" = (
@@ -1803,12 +1803,12 @@
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/kitchen)
 "BS" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
 "BW" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
 /turf/simulated/floor/lino,
 /area/gateway/honlethhighlands/town/bar)
 "Ca" = (
@@ -1827,8 +1827,8 @@
 /area/gateway/honlethhighlands/town/garden)
 "Cl" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/kitchen/rollingpin,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -2008,7 +2008,7 @@
 	d2 = 4;
 	icon_state = "0-4"
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
@@ -2021,9 +2021,9 @@
 /area/gateway/honlethhighlands/beach)
 "EP" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/newspaper,
-/obj/item/weapon/pen/multi,
+/obj/item/paper_bin,
+/obj/item/newspaper,
+/obj/item/pen/multi,
 /turf/simulated/floor/tiled/techfloor,
 /area/gateway/honlethhighlands/gate)
 "Fb" = (
@@ -2058,7 +2058,7 @@
 /area/gateway/honlethhighlands)
 "FR" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass,
+/obj/item/reagent_containers/food/drinks/drinkingglass,
 /obj/random/awayloot,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
@@ -2087,7 +2087,7 @@
 /obj/structure/closet,
 /obj/random/contraband,
 /obj/random/tech_supply/component,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/supply)
 "Gz" = (
@@ -2219,7 +2219,7 @@
 	},
 /area/gateway/honlethhighlands/town/garden)
 "JI" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/lino,
@@ -2580,7 +2580,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/tool/crowbar,
+/obj/item/tool/crowbar,
 /obj/item/broken_device/random,
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/supply)
@@ -2602,7 +2602,7 @@
 /turf/simulated/floor/plating,
 /area/gateway/honlethhighlands/town/xenobio)
 "Rx" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /obj/move_trader_landmark{
@@ -2749,8 +2749,8 @@
 "Vl" = (
 /obj/effect/floor_decal/techfloor,
 /obj/structure/table/glass,
-/obj/item/weapon/folder/blue,
-/obj/item/weapon/folder/red{
+/obj/item/folder/blue,
+/obj/item/folder/red{
 	pixel_x = 5;
 	pixel_y = -4
 	},
@@ -2949,7 +2949,7 @@
 /turf/simulated/floor/tiled,
 /area/gateway/honlethhighlands/town/command)
 "Ze" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /obj/random/mob/semirandom_mob_spawner/humanoid/retaliate,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands/town/bar)
@@ -2981,7 +2981,7 @@
 /obj/item/stack/material/wood,
 /obj/item/stack/material/wood,
 /obj/item/stack/material/wood,
-/obj/item/weapon/flame/lighter/random,
+/obj/item/flame/lighter/random,
 /turf/simulated/floor/wood,
 /area/gateway/honlethhighlands)
 "ZZ" = (

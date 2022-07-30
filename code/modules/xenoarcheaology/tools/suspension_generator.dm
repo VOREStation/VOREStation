@@ -5,21 +5,14 @@
 	icon_state = "suspension2"
 	density = TRUE
 	req_access = list(access_research)
-<<<<<<< HEAD
-	var/obj/item/weapon/cell/cell
-	var/locked = TRUE
-=======
 	var/obj/item/cell/cell
-	var/obj/item/card/id/auth_card
-	var/locked = 1
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/locked = TRUE
 	var/power_use = 5
 	var/obj/effect/suspension_field/suspension_field
 
 /obj/machinery/suspension_gen/Initialize()
 	. = ..()
-<<<<<<< HEAD
-	cell = new /obj/item/weapon/cell/high(src)
+	cell = new /obj/item/cell/high(src)
 	power_change()
 
 /obj/machinery/suspension_gen/power_change()
@@ -29,9 +22,6 @@
 	else
 		stat |= NOPOWER
 	return (stat != oldstat)
-=======
-	src.cell = new /obj/item/cell/high(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -67,7 +57,6 @@
 
 	tgui_interact(user)
 
-<<<<<<< HEAD
 /obj/machinery/suspension_gen/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
@@ -100,34 +89,6 @@
 						activate()
 					else
 						to_chat(usr, "<span class='warning'>You are unable to activate [src] until it is properly secured on the ground.</span>")
-=======
-	if(href_list["toggle_field"])
-		if(!suspension_field)
-			if(cell.charge > 0)
-				if(anchored)
-					activate()
-				else
-					to_chat(usr, "<span class='warning'>You are unable to activate [src] until it is properly secured on the ground.</span>")
-		else
-			deactivate()
-	else if(href_list["insertcard"])
-		var/obj/item/I = usr.get_active_hand()
-		if (istype(I, /obj/item/card))
-			usr.drop_item()
-			I.loc = src
-			auth_card = I
-			if(attempt_unlock(I, usr))
-				to_chat(usr, "<span class='info'>You insert [I], the console flashes \'<i>Access granted.</i>\'</span>")
-			else
-				to_chat(usr, "<span class='warning'>You insert [I], the console flashes \'<i>Access denied.</i>\'</span>")
-	else if(href_list["ejectcard"])
-		if(auth_card)
-			if(ishuman(usr))
-				auth_card.loc = usr.loc
-				if(!usr.get_active_hand())
-					usr.put_in_hands(auth_card)
-				auth_card = null
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			else
 				deactivate()
 			return TRUE
@@ -137,23 +98,7 @@
 				locked = !locked
 				return TRUE
 
-<<<<<<< HEAD
 /obj/machinery/suspension_gen/attackby(obj/item/W, mob/user)
-=======
-/obj/machinery/suspension_gen/attack_hand(var/mob/user)
-	if(!panel_open)
-		interact(user)
-	else if(cell)
-		cell.loc = loc
-		cell.add_fingerprint(user)
-		cell.update_icon()
-
-		icon_state = "suspension0"
-		cell = null
-		to_chat(user, "<span class='info'>You remove the power cell</span>")
-
-/obj/machinery/suspension_gen/attackby(obj/item/W as obj, mob/user as mob)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!locked && !suspension_field && default_deconstruction_screwdriver(user, W))
 		return
 	else if(W.is_wrench())
@@ -169,13 +114,8 @@
 			else
 				desc = "It has stubby legs bolted up against it's body for stabilising."
 		else
-<<<<<<< HEAD
 			to_chat(user, "<span class='warning'>You are unable to unsecure [src] while it is active!</span>")
-	else if(istype(W, /obj/item/weapon/cell))
-=======
-			to_chat(user, "<span class='warning'>You are unable to secure [src] while it is active!</span>")
-	else if (istype(W, /obj/item/cell))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	else if(istype(W, /obj/item/cell))
 		if(panel_open)
 			if(cell)
 				to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
@@ -185,8 +125,7 @@
 				cell = W
 				to_chat(user, "<span class='notice'>You insert [cell].</span>")
 				icon_state = "suspension1"
-<<<<<<< HEAD
-	else if(istype(W, /obj/item/weapon/card/emag))
+	else if(istype(W, /obj/item/card/emag))
 		return W.resolve_attackby(src, user)
 	else
 		if(check_access(W))
@@ -195,26 +134,6 @@
 		else
 			to_chat(user, "<span class='warning'>[src] flashes \'<i>Access denied.</i>\'</span>")
 		return
-=======
-	else if(istype(W, /obj/item/card))
-		var/obj/item/card/I = W
-		if(!auth_card)
-			if(attempt_unlock(I, user))
-				to_chat(user, "<span class='info'>You swipe [I], the console flashes \'<i>Access granted.</i>\'</span>")
-			else
-				to_chat(user, "<span class='warning'>You swipe [I], console flashes \'<i>Access denied.</i>\'</span>")
-		else
-			to_chat(user, "<span class='warning'>Remove [auth_card] first.</span>")
-
-/obj/machinery/suspension_gen/proc/attempt_unlock(var/obj/item/card/C, var/mob/user)
-	if(!panel_open)
-		if(istype(C, /obj/item/card/emag))
-			C.resolve_attackby(src, user)
-		else if(istype(C, /obj/item/card/id) && check_access(C))
-			locked = 0
-		if(!locked)
-			return 1
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/suspension_gen/emag_act(var/remaining_charges, var/mob/user)
 	if(locked)

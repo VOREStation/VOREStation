@@ -308,11 +308,7 @@
 		/obj/item/reagent_containers/food/snacks/cheesewedge
 	)
 	reagents = list("spacespice" = 1)
-<<<<<<< HEAD
-	result = /obj/item/weapon/reagent_containers/food/snacks/cheesetoast
-=======
 	result = /obj/item/reagent_containers/food/snacks/cheese_cracker
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	result_quantity = 4
 
 /datum/recipe/bacongrill
@@ -329,8 +325,4 @@
 		/obj/item/reagent_containers/food/snacks/chickenkatsu,
 		/obj/item/reagent_containers/food/snacks/bun
 	)
-<<<<<<< HEAD
-	result = /obj/item/weapon/reagent_containers/food/snacks/chickenfillet
-=======
 	result = /obj/item/reagent_containers/food/snacks/chickenfillet
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

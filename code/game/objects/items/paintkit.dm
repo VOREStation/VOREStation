@@ -199,12 +199,8 @@
 		return
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/device/kit/suit/rig/debug/Initialize()
-=======
 /obj/item/kit/suit/rig/debug/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_info("debug suit", "This is a test", "debug", CUSTOM_ITEM_OBJ, CUSTOM_ITEM_MOB)
 
 /obj/item/kit/paint
@@ -269,7 +265,7 @@
 	var/showpilot = TRUE
 	var/showpilot_lift = 5
 
-/obj/item/device/kit/paint/ripley/customize(obj/mecha/M, mob/user)
+/obj/item/kit/paint/ripley/customize(obj/mecha/M, mob/user)
 	if(showpilot)
 		M.show_pilot = TRUE
 		M.pilot_lift = 5

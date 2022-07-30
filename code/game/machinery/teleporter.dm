@@ -24,7 +24,7 @@
 	teleport_control = new(src)
 	var/obj/machinery/teleport/station/station = null
 	var/obj/machinery/teleport/hub/hub = null
-	
+
 	// Search surrounding turfs for the station, and then search the station's surrounding turfs for the hub.
 	for(var/direction in cardinal)
 		station = locate(/obj/machinery/teleport/station, get_step(src, direction))
@@ -102,106 +102,7 @@
 	add_fingerprint(user)
 	if(stat & (BROKEN|NOPOWER))
 		return
-<<<<<<< HEAD
 	teleport_control.tgui_interact(user)
-=======
-	ui_interact(user)
-
-/obj/machinery/computer/teleporter/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
-	teleport_control.ui_interact(user, ui_key, ui, force_open)
-
-/obj/machinery/computer/teleporter/interact(mob/user)
-	teleport_control.ui_interact(user)
-
-//////
-//////  Nano-module for teleporter
-//////
-/datum/nano_module/program/teleport_control
-	name = "Teleporter Control"
-	var/locked_name = "Not Locked"
-	var/obj/item/locked = null
-	var/obj/machinery/teleport/station/station = null
-	var/obj/machinery/teleport/hub/hub = null
-
-/datum/nano_module/program/teleport_control/Topic(href, href_list)
-	if(..()) return 1
-	
-	if(href_list["select_target"])
-		var/list/L = list()
-		var/list/areaindex = list()
-
-		for(var/obj/item/radio/beacon/R in all_beacons)
-			var/turf/T = get_turf(R)
-			if(!T)
-				continue
-			if(!(T.z in using_map.player_levels))
-				continue
-			var/tmpname = T.loc.name
-			if(areaindex[tmpname])
-				tmpname = "[tmpname] ([++areaindex[tmpname]])"
-			else
-				areaindex[tmpname] = 1
-			L[tmpname] = R
-
-		for (var/obj/item/implant/tracking/I in all_tracking_implants)
-			if(!I.implanted || !ismob(I.loc))
-				continue
-			else
-				var/mob/M = I.loc
-				if(M.stat == 2)
-					if(M.timeofdeath + 6000 < world.time)
-						continue
-				var/turf/T = get_turf(M)
-				if(T)	continue
-				if(T.z == 2)	continue
-				var/tmpname = M.real_name
-				if(areaindex[tmpname])
-					tmpname = "[tmpname] ([++areaindex[tmpname]])"
-				else
-					areaindex[tmpname] = 1
-				L[tmpname] = I
-
-		var/desc = input("Please select a location to lock in.", "Locking Menu") in L|null
-		if(!desc)
-			return 0
-		if(get_dist(host, usr) > 1 && !issilicon(usr))
-			return 0
-
-		locked = L[desc]
-		locked_name = desc
-		return 1
-
-	if(href_list["test_fire"])
-		station?.testfire()
-		return 1
-
-	if(href_list["toggle_on"])
-		if(!station)
-			return 0
-		
-		if(station.engaged)
-			station.disengage()
-		else
-			station.engage()
-		
-		return 1
-
-/datum/nano_module/program/teleport_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1, var/datum/topic_state/state = default_state)
-	var/list/data = host.initial_data()
-
-	data["locked_name"] = locked_name ? locked_name : "No Target"
-	data["station_connected"] = station ? 1 : 0
-	data["hub_connected"] = hub ? 1 : 0
-	data["calibrated"] = hub ? hub.accurate : 0
-	data["teleporter_on"] = station ? station.engaged : 0
-
-	ui = SSnanoui.try_update_ui(user, src, ui_key, ui, data, force_open)
-	if(!ui)
-		ui = new(user, src, ui_key, "teleport_control.tmpl", "Teleport Control Console", 400, 500, state = state)
-		ui.set_initial_data(data)
-		ui.open()
-		ui.set_auto_update(1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/teleporter/verb/set_id(t as text)
 	set category = "Object"

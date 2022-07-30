@@ -250,13 +250,8 @@
 	max_uses = 1
 	desc = "This template spellbook was never meant for the eyes of man..."
 
-<<<<<<< HEAD
-/obj/item/weapon/spellbook/oneuse/New()
-	..()
-=======
 /obj/item/spellbook/oneuse/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name += spellname
 
 /obj/item/spellbook/oneuse/attack_self(mob/user as mob)

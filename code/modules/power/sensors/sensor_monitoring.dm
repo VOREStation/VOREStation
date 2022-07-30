@@ -11,15 +11,9 @@
 	light_color = "#ffcc33"
 
 	//computer stuff
-<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/powermonitor
-=======
-	density = 1
-	anchored = 1.0
 	circuit = /obj/item/circuitboard/powermonitor
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/alerting = 0
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 300

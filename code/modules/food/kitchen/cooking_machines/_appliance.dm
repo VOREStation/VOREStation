@@ -458,12 +458,8 @@
 			results += TR
 
 
-<<<<<<< HEAD
-		for(var/obj/item/weapon/reagent_containers/food/snacks/R as anything in results)
-=======
 		for (var/r in results)
 			var/obj/item/reagent_containers/food/snacks/R = r
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			R.forceMove(C) //Move everything from the buffer back to the container
 			R.cooked |= cook_type
 
@@ -600,7 +596,7 @@
 /obj/machinery/appliance/attack_hand(var/mob/user)
 	if(..())
 		return
-	
+
 	if(cooking_objs.len)
 		removal_menu(user)
 

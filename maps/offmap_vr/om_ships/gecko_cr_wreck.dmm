@@ -76,7 +76,7 @@
 /area/shuttle/gecko_cr_cockpit_wreck)
 "bL" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "bN" = (
@@ -91,7 +91,7 @@
 	dir = 8
 	},
 /obj/structure/closet/crate,
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb/marine,
 /obj/item/clothing/head/helmet/space/void/refurb/marine,
 /turf/simulated/floor/tiled/techfloor,
@@ -118,7 +118,7 @@
 	},
 /obj/machinery/light,
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "dh" = (
@@ -144,7 +144,7 @@
 "dO" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/closet/crate/engineering/electrical,
-/obj/item/weapon/tank/oxygen/yellow,
+/obj/item/tank/oxygen/yellow,
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/techfloor{
 	nitrogen = 0;
@@ -454,7 +454,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
 	},
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /obj/random/empty_or_lootable_crate,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
@@ -504,7 +504,7 @@
 /area/shuttle/gecko_cr_cockpit_wreck)
 "kF" = (
 /obj/structure/catwalk,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_engineering_wreck)
 "kI" = (
@@ -619,7 +619,7 @@
 /obj/structure/closet/crate{
 	dir = 1
 	},
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -1003,7 +1003,7 @@
 	dir = 1
 	},
 /obj/structure/railing/grey,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_wreck)
 "tD" = (
@@ -1062,7 +1062,7 @@
 	dir = 8
 	},
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /obj/machinery/alarm/alarms_hidden{
 	pixel_y = 26
 	},
@@ -1171,7 +1171,7 @@
 /obj/structure/closet/crate{
 	dir = 1
 	},
-/obj/item/weapon/tank/air,
+/obj/item/tank/air,
 /obj/item/clothing/suit/space/void/refurb,
 /obj/item/clothing/head/helmet/space/void/refurb,
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -1205,7 +1205,7 @@
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_wreck)
 "xo" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "xT" = (
@@ -1606,7 +1606,7 @@
 /area/shuttle/gecko_cr_wreck)
 "Ff" = (
 /obj/structure/lattice,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/template_noop,
 /area/shuttle/gecko_cr_engineering_wreck)
 "Fq" = (
@@ -1680,7 +1680,7 @@
 /turf/simulated/floor/plating,
 /area/shuttle/gecko_cr_engineering_wreck)
 "FV" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/template_noop)
 "FX" = (
@@ -1757,7 +1757,7 @@
 	dir = 8
 	},
 /obj/structure/closet/crate,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "HI" = (
@@ -1776,7 +1776,7 @@
 /area/shuttle/gecko_cr_cockpit_wreck)
 "HK" = (
 /obj/structure/closet/walllocker/emerglocker/north,
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_wreck)
 "Id" = (
@@ -1871,7 +1871,7 @@
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Kn" = (
@@ -2174,7 +2174,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "Oz" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/shuttle/gecko_cr_wreck)
 "OA" = (
@@ -2221,7 +2221,7 @@
 /turf/simulated/floor/reinforced/airless,
 /area/shuttle/gecko_cr_wreck)
 "OU" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/template_noop,
 /area/template_noop)
 "OX" = (
@@ -2322,7 +2322,7 @@
 "PI" = (
 /obj/effect/floor_decal/industrial/warning,
 /obj/structure/closet/crate/engineering,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/structure/cable{
 	d1 = 4;
 	d2 = 8;
@@ -2351,7 +2351,7 @@
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "PW" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/shuttle/gecko_cr_engineering_wreck)
 "Ql" = (
@@ -2565,7 +2565,7 @@
 	pixel_x = 27
 	},
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/blue,
+/obj/item/bedsheet/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/shuttle/gecko_cr_cockpit_wreck)
 "Tx" = (
@@ -2628,7 +2628,7 @@
 	},
 /area/shuttle/gecko_cr_engineering_wreck)
 "UY" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/airless,
 /area/shuttle/gecko_cr_engineering_wreck)
 "Va" = (
@@ -2832,7 +2832,7 @@
 	dir = 8
 	},
 /obj/structure/table/steel,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/light{
 	dir = 4
 	},

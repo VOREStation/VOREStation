@@ -37,7 +37,7 @@
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "A" = (
-/obj/item/weapon/material/minihoe,
+/obj/item/material/minihoe,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "E" = (
@@ -58,7 +58,7 @@
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "Y" = (
-/obj/item/weapon/reagent_containers/glass/bucket/wood,
+/obj/item/reagent_containers/glass/bucket/wood,
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/poi/wildvillage/square/square6)
 "Z" = (

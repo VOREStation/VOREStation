@@ -1,11 +1,7 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/wall/log_sif,/area/submap/ButcherShack)
 "c" = (/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-<<<<<<< HEAD
-"d" = (/obj/structure/closet,/obj/effect/decal/cleanable/cobweb,/obj/item/weapon/beartrap,/obj/item/weapon/beartrap,/obj/item/weapon/packageWrap,/obj/item/weapon/material/knife/hook,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-=======
-"d" = (/obj/structure/closet,/obj/effect/decal/cleanable/cobweb,/obj/item/beartrap{start_anomalous = 1},/obj/item/beartrap,/obj/item/packageWrap,/obj/item/material/knife/hook,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"d" = (/obj/structure/closet,/obj/effect/decal/cleanable/cobweb,/obj/item/beartrap,/obj/item/beartrap,/obj/item/packageWrap,/obj/item/material/knife/hook,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
 "e" = (/obj/structure/closet/secure_closet/freezer/meat,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
 "f" = (/obj/structure/closet/crate/freezer,/obj/effect/decal/cleanable/blood/gibs,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/obj/random/meat,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
 "g" = (/obj/machinery/gibber/autogibber,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
@@ -17,15 +13,9 @@
 "m" = (/obj/structure/kitchenspike,/obj/effect/decal/cleanable/blood,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
 "n" = (/obj/structure/kitchenspike,/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
 "o" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-<<<<<<< HEAD
 "p" = (/obj/structure/table/standard,/obj/item/clothing/suit/chef/classic,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"q" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/blood,/obj/item/weapon/material/knife/butch,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
-"r" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/cutlet,/obj/item/weapon/reagent_containers/food/snacks/sausage,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-=======
-"p" = (/obj/structure/table/standard,/obj/item/clothing/suit/chef/classic{start_anomalous = 1},/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
-"q" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/blood,/obj/item/material/knife/butch{start_anomalous = 1},/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
+"q" = (/obj/structure/table/standard,/obj/effect/decal/cleanable/blood,/obj/item/material/knife/butch,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)
 "r" = (/obj/structure/table/standard,/obj/item/reagent_containers/food/snacks/cutlet,/obj/item/reagent_containers/food/snacks/cutlet,/obj/item/reagent_containers/food/snacks/cutlet,/obj/item/reagent_containers/food/snacks/sausage,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "s" = (/obj/structure/coatrack,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
 "t" = (/obj/structure/bed/padded,/obj/item/bedsheet/brown,/turf/simulated/floor/wood/sif,/area/submap/ButcherShack)
 "u" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/floor/wood/sif/broken,/area/submap/ButcherShack)

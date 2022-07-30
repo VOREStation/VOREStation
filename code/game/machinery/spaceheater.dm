@@ -10,21 +10,15 @@
 	icon_state = "sheater0"
 	name = "space heater"
 	desc = "Made by Space Amish using traditional space techniques, this heater is guaranteed not to set the station on fire."
-<<<<<<< HEAD
-	
+
 	light_system = MOVABLE_LIGHT
 	light_range = 3
 	light_power = 1
 	light_on = FALSE
-	
-	var/obj/item/weapon/cell/cell
-	var/cell_type = /obj/item/weapon/cell/high
-	var/state = 0
-=======
+
 	var/obj/item/cell/cell
 	var/cell_type = /obj/item/cell/high
-	var/on = 0
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/state = 0
 	var/set_temperature = T0C + 20	//K
 	var/heating_power = 40000
 	clicksound = "switch"

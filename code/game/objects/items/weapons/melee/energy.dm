@@ -23,25 +23,6 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/energy/sword/green/New()
-	colorable = FALSE
-	lcolor = "#008000"
-
-/obj/item/weapon/melee/energy/sword/red/New()
-	colorable = FALSE
-	lcolor = "#FF0000"
-
-/obj/item/weapon/melee/energy/sword/blue/New()
-	colorable = FALSE
-	lcolor = "#0000FF"
-
-/obj/item/weapon/melee/energy/sword/purple/New()
-	colorable = FALSE
-	lcolor = "#800080"
-
-/obj/item/weapon/melee/energy/sword/white/New()
-=======
 /obj/item/melee/energy/sword/green/Initialize()
 	. = ..()
 	colorable = FALSE
@@ -64,7 +45,6 @@
 
 /obj/item/melee/energy/sword/white/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	colorable = FALSE
 	lcolor = "#FFFFFF"
 
@@ -266,15 +246,9 @@
 	use_cell = TRUE
 	hitcost = 120
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/energy/axe/charge/loaded/New()
-	..()
-	bcell = new/obj/item/weapon/cell/device/weapon(src)
-=======
 /obj/item/melee/energy/axe/charge/loaded/Initialize()
 	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /*
  * Energy Sword
@@ -432,15 +406,9 @@
 
 	hitcost = 75
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/energy/sword/charge/loaded/New()
-	..()
-	bcell = new/obj/item/weapon/cell/device/weapon(src)
-=======
 /obj/item/melee/energy/sword/charge/loaded/Initialize()
 	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 //Energy Blade (ninja uses this)
 
@@ -466,12 +434,8 @@
 	projectile_parry_chance = 60
 	lcolor = "#00FF00"
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/energy/blade/New()
-=======
 /obj/item/melee/energy/blade/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)

@@ -487,18 +487,10 @@
 	always_process = TRUE
 	var/obj/item/weldpack/mounted_pack = null
 
-<<<<<<< HEAD
-/obj/item/weapon/weldingtool/tubefed/New(location)
-	..()
-	if(istype(location, /obj/item/weapon/weldpack))
-		var/obj/item/weapon/weldpack/holder = location
-		mounted_pack = holder
-=======
 /obj/item/weldingtool/tubefed/Initialize(var/ml)
 	. = ..()
 	if(istype(loc, /obj/item/weldpack))
 		mounted_pack = loc
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	else
 		qdel(src)
 
@@ -557,19 +549,11 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/weldingtool/electric/unloaded/New()
-	cell_type = null
-
-/obj/item/weapon/weldingtool/electric/New()
-	..()
-=======
 /obj/item/weldingtool/electric/unloaded
 	cell_type = null
 
 /obj/item/weldingtool/electric/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(cell_type == null)
 		update_icon()
 	else if(cell_type)

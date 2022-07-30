@@ -18,13 +18,8 @@
 	fire_sound = 'sound/weapons/bladeslice.ogg'
 	fire_sound_text = "a strange noise"
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/launcher/spikethrower/New()
-	..()
-=======
 /obj/item/gun/launcher/spikethrower/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 

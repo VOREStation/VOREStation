@@ -21,7 +21,7 @@
 /area/submap/Rockb1)
 "g" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
 /obj/item/ammo_magazine/m9mm/compact,
 /turf/simulated/floor/lino,
 /area/submap/Rockb1)
@@ -60,10 +60,7 @@
 /area/submap/Rockb1)
 "p" = (
 /obj/structure/bed,
-<<<<<<< HEAD
-=======
 /obj/item/bedsheet/mime,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/lino,
 /area/submap/Rockb1)
 "q" = (
@@ -210,12 +207,12 @@
 /area/submap/Rockb1)
 "M" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "N" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/tiled,
 /area/submap/Rockb1)
 "O" = (

@@ -23,14 +23,8 @@
 /obj/item/blobcore_chunk/is_open_container()
 	return 1
 
-<<<<<<< HEAD
-/obj/item/weapon/blobcore_chunk/New(var/atom/newloc, var/datum/blob_type/parentblob = null)
-	..(newloc)
-
-=======
 /obj/item/blobcore_chunk/Initialize(var/ml, var/datum/blob_type/parentblob = null)
 	. = ..(ml)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	create_reagents(120)
 	setup_blobtype(parentblob)
 

@@ -117,13 +117,8 @@
 		to_chat(user, "<span class='warning'>\The [src] flashes an error light. You might need to reconfigure it.</span>")
 		return
 
-<<<<<<< HEAD
-/obj/item/device/closet_painter/attack_self(var/mob/user)
-	var/choice = tgui_alert(usr, "Do you wish to change the regular closet color or the secure closet color?", "Color Selection", list("Regular Closet Colour","Cancel","Secure Closet Colour"))
-=======
 /obj/item/closet_painter/attack_self(var/mob/user)
-	var/choice = input("Do you wish to change the regular closet colour or the secure closet colour?") as null|anything in list("Regular Closet Colour","Secure Closet Colour")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/choice = tgui_alert(usr, "Do you wish to change the regular closet color or the secure closet color?", "Color Selection", list("Regular Closet Colour","Cancel","Secure Closet Colour"))
 	if(choice == "Regular Closet Colour")
 		choose_colour()
 	else if(choice == "Secure Closet Colour")

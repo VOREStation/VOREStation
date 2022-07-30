@@ -44,7 +44,7 @@
 	desc = "A complex machine which shoots concentrated material beams.\
 		<br>A sign on it reads: <i>STAY CLEAR! DO NOT BLOCK!</i>"
 	icon_state = "front"
-	circuit = /obj/item/weapon/circuitboard/disperserfront
+	circuit = /obj/item/circuitboard/disperserfront
 
 /obj/machinery/disperser/middle
 	name = "obstruction removal ballista fusor"
@@ -52,14 +52,14 @@
 		from the material deconstructor to the particle beam generator.\
 		<br>A sign on it reads: <i>EXPLOSIVE! DO NOT OVERHEAT!</i>"
 	icon_state = "middle"
-	circuit = /obj/item/weapon/circuitboard/dispersermiddle
-	// maximum_component_parts = list(/obj/item/weapon/stock_parts = 15)
+	circuit = /obj/item/circuitboard/dispersermiddle
+	// maximum_component_parts = list(/obj/item/stock_parts = 15)
 
 /obj/machinery/disperser/back
 	name = "obstruction removal ballista material deconstructor"
 	desc = "A prototype machine which can deconstruct materials atom by atom.\
 		<br>A sign on it reads: <i>KEEP AWAY FROM LIVING MATERIAL!</i>"
 	icon_state = "back"
-	circuit = /obj/item/weapon/circuitboard/disperserback
+	circuit = /obj/item/circuitboard/disperserback
 	density = FALSE
 	layer = UNDER_JUNK_LAYER //So the charges go above us.

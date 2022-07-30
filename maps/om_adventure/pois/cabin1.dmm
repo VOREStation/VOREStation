@@ -42,7 +42,7 @@
 /area/om_adventure/poi/cabin1)
 "k" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/simulated/floor/bmarble,
 /area/om_adventure/poi/cabin1)
 "r" = (
@@ -61,7 +61,7 @@
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/cabin1)
 "v" = (
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/bed/double/padded,
 /obj/structure/curtain/black,
 /turf/simulated/floor/carpet,
@@ -92,7 +92,7 @@
 "F" = (
 /obj/structure/table/darkglass,
 /obj/random/awayloot/looseloot,
-/obj/item/weapon/flame/candle,
+/obj/item/flame/candle,
 /turf/simulated/floor/wood,
 /area/om_adventure/poi/cabin1)
 "G" = (

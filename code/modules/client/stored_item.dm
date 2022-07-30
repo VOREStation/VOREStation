@@ -35,7 +35,7 @@
 
 	var/savefile/F = new /savefile(path)
 
-	if(!F) return 0 
+	if(!F) return 0
 
 	var/persist_item
 	F["persist item"] >> persist_item
@@ -170,17 +170,17 @@
 
 /////LIST OF STUFF WE DON'T WANT PEOPLE STORING/////
 
-/obj/item/device/pda
+/obj/item/pda
 	persist_storable = FALSE
-/obj/item/device/communicator
+/obj/item/communicator
 	persist_storable = FALSE
 /obj/item/weapon/card
 	persist_storable = FALSE
 /obj/item/weapon/holder
 	persist_storable = FALSE
-/obj/item/device/radio
+/obj/item/radio
 	persist_storable = FALSE
-/obj/item/device/encryptionkey
+/obj/item/encryptionkey
 	persist_storable = FALSE
 /obj/item/weapon/storage			//There are lots of things that have stuff that we may not want people to just have. And this is mostly intended for a single thing.
 	persist_storable = FALSE		//And it would be annoying to go through and consider all of them, so default to disabled.
@@ -190,7 +190,7 @@
 	persist_storable = FALSE
 /obj/item/weapon/cmo_disk_holder
 	persist_storable = FALSE
-/obj/item/device/defib_kit/compact/combat
+/obj/item/defib_kit/compact/combat
 	persist_storable = FALSE
 /obj/item/clothing/glasses/welding/superior
 	persist_storable = FALSE
@@ -216,7 +216,7 @@
 	persist_storable = FALSE
 /obj/item/weapon/gun/energy/locked		//These are guns with security measures on them, so let's say the box won't let you put them in there.
 	persist_storable = FALSE			//(otherwise explo will just put their locker/vendor guns into it every round)
-/obj/item/device/retail_scanner
+/obj/item/retail_scanner
 	persist_storable = FALSE
 /obj/item/weapon/telecube
 	persist_storable = FALSE
@@ -234,15 +234,15 @@
 	persist_storable = FALSE
 /obj/item/weapon/circuitboard/mecha/imperion
 	persist_storable = FALSE
-/obj/item/device/paicard
+/obj/item/paicard
 	persist_storable = FALSE
 /obj/item/organ
 	persist_storable = FALSE
-/obj/item/device/soulstone
+/obj/item/soulstone
 	persist_storable = FALSE
-/obj/item/device/aicard
+/obj/item/aicard
 	persist_storable = FALSE
-/obj/item/device/mmi
+/obj/item/mmi
 	persist_storable = FALSE
 /obj/item/seeds
 	persist_storable = FALSE

@@ -24,15 +24,9 @@ var/global/list/default_medbay_channels = list(
 )
 //VOREStation Edit End
 
-<<<<<<< HEAD
-/obj/item/device/radio
+/obj/item/radio
 	icon = 'icons/obj/radio_vr.dmi' //VOREStation Edit
 	name = "shortwave radio" //VOREStation Edit
-=======
-/obj/item/radio
-	icon = 'icons/obj/radio.dmi'
-	name = "station bounced radio"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "Used to talk to people when headsets don't function. Range is limited."
 	suffix = "\[3\]"
 	icon_state = "walkietalkie"
@@ -79,17 +73,13 @@ var/global/list/default_medbay_channels = list(
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-<<<<<<< HEAD
-/obj/item/device/radio/New()
+/obj/item/radio/New()
 	..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
 	listening_objects += src
 
-/obj/item/device/radio/Destroy()
-=======
 /obj/item/radio/Destroy()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	qdel(wires)
 	wires = null
 	listening_objects -= src
@@ -99,12 +89,7 @@ var/global/list/default_medbay_channels = list(
 			radio_controller.remove_object(src, radiochannels[ch_name])
 	return ..()
 
-<<<<<<< HEAD
-
-/obj/item/device/radio/Initialize()
-=======
 /obj/item/radio/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 	if(frequency < RADIO_LOW_FREQ || frequency > RADIO_HIGH_FREQ)
 		frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)
@@ -165,19 +150,7 @@ var/global/list/default_medbay_channels = list(
 
 	return tgui_interact(user)
 
-<<<<<<< HEAD
-/obj/item/device/radio/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
-=======
-/obj/item/radio/ui_interact(mob/user, ui_key, datum/nanoui/ui, force_open, datum/nanoui/master_ui, datum/topic_state/state)
-	log_runtime(EXCEPTION("Warning: [user] attempted to call ui_interact on radio [src] [type]. This is deprecated. Please update the caller to tgui_interact."))
-
-/obj/item/radio/Topic(href, href_list)
-	if(href_list["track"])
-		log_runtime(EXCEPTION("Warning: Topic() was improperly called on radio [src] [type], with the track href and \[[href] [json_encode(href_list)]]. Please update the caller to use tgui_act."))
-	. = ..()
-
 /obj/item/radio/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "Radio", name, parent_ui)
@@ -324,12 +297,8 @@ var/global/list/default_medbay_channels = list(
 
 GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 
-<<<<<<< HEAD
-/obj/item/device/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels, var/states)	//VOREStation Edit
+/obj/item/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels, var/states)	//VOREStation Edit
 
-=======
-/obj/item/radio/proc/autosay(var/message, var/from, var/channel, var/list/zlevels)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!GLOB.autospeaker)
 		return
 	var/datum/radio_frequency/connection = null
@@ -787,11 +756,6 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 /obj/item/radio/phone/medbay
 	frequency = MED_I_FREQ
 
-<<<<<<< HEAD
-/obj/item/device/radio/phone/medbay/New()
-	..()
-=======
 /obj/item/radio/phone/medbay/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	internal_channels = default_medbay_channels.Copy()

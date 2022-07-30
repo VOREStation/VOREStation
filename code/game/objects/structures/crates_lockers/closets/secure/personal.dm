@@ -6,24 +6,16 @@
 
 	/* //VOREStation Removal
 	starts_with = list(
-<<<<<<< HEAD
-		/obj/item/device/radio/headset)
-	*/
-=======
 		/obj/item/radio/headset)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	*/
 
 /obj/structure/closet/secure_closet/personal/Initialize()
 	/* //VOREStation Removal
 	if(prob(50))
 		starts_with += /obj/item/storage/backpack
 	else
-<<<<<<< HEAD
-		starts_with += /obj/item/weapon/storage/backpack/satchel/norm
-	*/
-=======
 		starts_with += /obj/item/storage/backpack/satchel/norm
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	*/
 	return ..()
 
 /obj/structure/closet/secure_closet/personal/patient

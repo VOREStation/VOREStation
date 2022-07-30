@@ -25,7 +25,7 @@
 	if(!src.can_open())
 		return 0
 
-	if(rigged && locate(/obj/item/device/radio/electropack) in src)
+	if(rigged && locate(/obj/item/radio/electropack) in src)
 		if(isliving(usr))
 			var/mob/living/L = usr
 			if(L.electrocute_act(17, src))
@@ -111,7 +111,7 @@
 			to_chat(user , "<span class='notice'>You rig [src].</span>")
 			rigged = 1
 			return
-	else if(istype(W, /obj/item/device/radio/electropack))
+	else if(istype(W, /obj/item/radio/electropack))
 		if(rigged)
 			to_chat(user , "<span class='notice'>You attach [W] to [src].</span>")
 			user.drop_item()
@@ -210,7 +210,7 @@
 		src.toggle(user)
 
 /obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/device/radio/electropack, /obj/item/weapon/tool/wirecutters)))
+	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/weapon/tool/wirecutters)))
 		return ..()
 	if(istype(W, /obj/item/weapon/melee/energy/blade))
 		emag_act(INFINITY, user)

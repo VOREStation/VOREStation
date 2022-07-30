@@ -39,7 +39,7 @@
 /obj/effect/decal/cleanable/filth,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/bone,
+/obj/item/bone,
 /obj/random/maintenance/security,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
@@ -53,7 +53,7 @@
 /turf/simulated/floor,
 /area/submap/DogBase)
 "bw" = (
-/obj/item/weapon/storage/belt/janitor,
+/obj/item/storage/belt/janitor,
 /obj/effect/floor_decal/corner/purple/diagonal,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
@@ -157,7 +157,7 @@
 /obj/effect/decal/cleanable/filth,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/bone/ribs,
+/obj/item/bone/ribs,
 /obj/random/maintenance/research,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
@@ -255,7 +255,7 @@
 /area/submap/DogBase)
 "np" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "oW" = (
@@ -265,7 +265,7 @@
 /area/template_noop)
 "pR" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/effect/floor_decal/borderfloor{
 	dir = 9
 	},
@@ -293,13 +293,13 @@
 /obj/structure/dogbed,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/bone,
+/obj/item/bone,
 /obj/random/maintenance/security,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
 "qO" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
 	},
@@ -478,7 +478,7 @@
 /area/submap/DogBase)
 "BA" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "BB" = (
@@ -493,7 +493,7 @@
 /area/submap/DogBase)
 "Ce" = (
 /obj/structure/janitorialcart,
-/obj/item/weapon/storage/bag/trash,
+/obj/item/storage/bag/trash,
 /obj/effect/floor_decal/corner/purple/diagonal,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
@@ -507,7 +507,7 @@
 /obj/structure/dogbed,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/bone,
+/obj/item/bone,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/DogBase)
@@ -677,13 +677,13 @@
 /area/submap/DogBase)
 "Ok" = (
 /obj/structure/table/woodentable,
-/obj/item/device/radio/phone,
+/obj/item/radio/phone,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
 "Ol" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/bone/leg,
+/obj/item/bone/leg,
 /mob/living/simple_mob/animal/wolf/direwolf/dog/sec{
 	desc = "The biggest and baddest guard dog around.";
 	faction = "syndicate";
@@ -762,7 +762,7 @@
 /area/template_noop)
 "Rz" = (
 /obj/structure/table/woodentable,
-/obj/item/device/radio/phone,
+/obj/item/radio/phone,
 /obj/random/contraband/nofail,
 /turf/simulated/floor/tiled/dark,
 /area/submap/DogBase)
@@ -826,7 +826,7 @@
 /area/submap/DogBase)
 "Wu" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
 	},
@@ -888,7 +888,7 @@
 /area/submap/DogBase)
 "ZK" = (
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "Unknown APC";
 	pixel_x = -24

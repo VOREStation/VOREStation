@@ -61,11 +61,7 @@
 	organ_names = /decl/mob_organ_names/hare
 
 
-<<<<<<< HEAD
 	meat_amount = 1
-=======
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	say_list_type = /datum/say_list/hare
 

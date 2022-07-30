@@ -10,16 +10,8 @@
 	max_complexity = IC_COMPLEXITY_BASE / 2
 	var/obj/item/implant/integrated_circuit/implant = null
 
-<<<<<<< HEAD
-/obj/item/device/electronic_assembly/implant/tgui_host()
+/obj/item/electronic_assembly/implant/tgui_host()
 	return implant.tgui_host()
-=======
-/obj/item/electronic_assembly/implant/nano_host()
-	return implant
-
-/obj/item/electronic_assembly/implant/resolve_nano_host()
-	return implant
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/electronic_assembly/implant/update_icon()
 	..()

@@ -123,12 +123,7 @@
 			return																		//VOREStation Edit: unable to open doors
 		else
 			bumpopen(M)
-<<<<<<< HEAD
-	if(istype(AM, /obj/item/device/uav))
-=======
-
 	if(istype(AM, /obj/item/uav))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(check_access(null))
 			open()
 		else

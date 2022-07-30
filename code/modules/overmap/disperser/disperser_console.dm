@@ -4,7 +4,7 @@
 	name = "obstruction removal ballista control"
 	icon = 'icons/obj/computer.dmi'
 	icon_state = "computer"
-	circuit = /obj/item/weapon/circuitboard/disperser
+	circuit = /obj/item/circuitboard/disperser
 
 	core_skill = /datum/skill/pilot
 	var/skill_offset = SKILL_ADEPT - 1 //After which skill level it starts to matter. -1, because we have to index from zero

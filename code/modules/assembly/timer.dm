@@ -52,13 +52,8 @@
 		timer_end()
 		time = 10
 
-<<<<<<< HEAD
-/obj/item/device/assembly/timer/update_icon()
-	cut_overlays()
-=======
 /obj/item/assembly/timer/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	attached_overlays = list()
 	if(timing)
 		add_overlay("timer_timing")

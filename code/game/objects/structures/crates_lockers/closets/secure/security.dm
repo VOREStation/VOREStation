@@ -25,24 +25,14 @@
 	starts_with = list(
 		/obj/item/clothing/suit/storage/vest,
 		/obj/item/clothing/head/helmet,
-<<<<<<< HEAD
-		/obj/item/weapon/cartridge/hop,
-		/obj/item/device/radio/headset/heads/hop,
-		/obj/item/device/radio/headset/heads/hop/alt,
-		/obj/item/weapon/storage/box/ids = 2,
-		/obj/item/weapon/gun/energy/gun/compact,
-		/obj/item/weapon/storage/box/commandkeys,
-		/obj/item/weapon/storage/box/servicekeys,
-		/obj/item/device/flash)
-=======
 		/obj/item/cartridge/hop,
 		/obj/item/radio/headset/heads/hop,
 		/obj/item/radio/headset/heads/hop/alt,
 		/obj/item/storage/box/ids = 2,
-		/obj/item/gun/energy/gun,
-		/obj/item/gun/projectile/sec/flash,
+		/obj/item/gun/energy/gun/compact,
+		/obj/item/storage/box/commandkeys,
+		/obj/item/storage/box/servicekeys,
 		/obj/item/flash)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/structure/closet/secure_closet/hop2
 	name = "head of personnel's attire"
@@ -196,15 +186,9 @@
 		/obj/item/clothing/accessory/storage/black_vest,
 		/obj/item/clothing/head/soft/sec/corp,
 		/obj/item/clothing/under/rank/security/corp,
-<<<<<<< HEAD
 		///obj/item/ammo_magazine/m45/rubber, //VOREStation Removal,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/cell/device/weapon,
-=======
-		/obj/item/ammo_magazine/m45/rubber,
 		/obj/item/gun/energy/taser,
 		/obj/item/cell/device/weapon,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
 		/obj/item/clothing/shoes/boots/winter/security,
 		/obj/item/flashlight/maglight)
@@ -252,21 +236,12 @@
 	starts_with = list(
 		/obj/item/clothing/accessory/badge/holo/detective,
 		/obj/item/clothing/gloves/black,
-<<<<<<< HEAD
 		///obj/item/gunbox, // VOREStation Removal
 		/obj/item/gunbox/stun,
-		/obj/item/weapon/storage/belt/detective,
-		/obj/item/weapon/storage/box/evidence,
-		/obj/item/device/radio/headset/headset_sec,
-		/obj/item/device/radio/headset/headset_sec/alt,
-=======
-		/obj/item/gunbox,
-		/obj/item/gun/energy/stunrevolver/vintage,
 		/obj/item/storage/belt/detective,
 		/obj/item/storage/box/evidence,
 		/obj/item/radio/headset/headset_sec,
 		/obj/item/radio/headset/headset_sec/alt,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/suit/storage/vest/detective,
 		/obj/item/taperoll/police,
 		/obj/item/clothing/accessory/holster/armpit,

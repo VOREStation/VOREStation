@@ -17,13 +17,8 @@
 	var/build_stage = 0
 	var/obj/item/cell/cell = null
 
-<<<<<<< HEAD
-/obj/item/weapon/vehicle_assembly/New()
-	..()
-=======
 /obj/item/vehicle_assembly/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "[initial(icon_state)][build_stage]"
 	update_icon()
 

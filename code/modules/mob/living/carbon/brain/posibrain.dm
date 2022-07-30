@@ -100,12 +100,7 @@
 				src.brainmob.emp_damage += rand(0,5)
 	..()
 
-<<<<<<< HEAD
-/obj/item/device/mmi/digital/posibrain/New()
-	..()
-=======
 /obj/item/mmi/digital/posibrain/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	src.brainmob.real_name = src.brainmob.name

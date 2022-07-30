@@ -10,13 +10,8 @@
 	var/locked = 1
 	var/emagged = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/circuitboard/security/New()
-	..()
-=======
 /obj/item/circuitboard/security/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")
@@ -27,13 +22,8 @@
 	build_path = /obj/machinery/computer/security/engineering
 	req_access = list()
 
-<<<<<<< HEAD
-/obj/item/weapon/circuitboard/security/engineering/New()
-	..()
-=======
 /obj/item/circuitboard/security/engineering/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	network = engineering_networks
 
 /obj/item/circuitboard/security/mining
@@ -48,13 +38,8 @@
 	board_type = new /datum/frame/frame_types/display
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
-<<<<<<< HEAD
-/obj/item/weapon/circuitboard/security/telescreen/entertainment/New()
-	..()
-=======
 /obj/item/circuitboard/security/telescreen/entertainment/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	network = NETWORK_THUNDER
 
 /obj/item/circuitboard/security/construct(var/obj/machinery/computer/security/C)

@@ -232,11 +232,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(panel_open)
 			attack_hand(user)
 		return
-<<<<<<< HEAD
-	else if(istype(W, /obj/item/weapon/coin) && has_premium)
-=======
 	else if(istype(W, /obj/item/coin) && premium.len > 0)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		user.drop_item()
 		W.forceMove(src)
 		coin = W

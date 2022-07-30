@@ -23,13 +23,8 @@
 /obj/item/reagent_containers/food/snacks/grown/sif/sifpod
 	plantname = "sifbulb"
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wabback
+/obj/item/reagent_containers/food/snacks/grown/sif/wabback
 	plantname = "wabback"
-=======
-/obj/item/reagent_containers/food/snacks/grown/sif/whitewabback
-	plantname = "whitewabback"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/reagent_containers/food/snacks/grown/sif/blackwabback
 	plantname = "blackwabback"

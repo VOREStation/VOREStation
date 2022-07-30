@@ -66,12 +66,12 @@
 
 	var/agony = 60 // Copied from stun batons
 	var/stun = 0 // ... same
-	
+
 	var/obj/item/organ/external/affecting = null
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		affecting = H.get_organ(hit_zone)
-	
+
 	if(user.a_intent == I_HURT)
 		// Parent handles messages
 		. = ..()
@@ -91,7 +91,7 @@
 		var/mob/living/silicon/robot/R = loc
 		if(R.cell?.use(charge_cost) == charge_cost)
 			stunning = TRUE
-	
+
 	if(stunning)
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
@@ -100,7 +100,7 @@
 			H.forcesay(hit_appends)
 
 //Boop //New and improved, now a simple reagent sniffer.
-/obj/item/device/dogborg/boop_module
+/obj/item/dogborg/boop_module
 	name = "boop module"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "nose"
@@ -110,11 +110,11 @@
 	attack_verb = list("nuzzled", "nosed", "booped")
 	w_class = ITEMSIZE_TINY
 
-/obj/item/device/dogborg/boop_module/New()
+/obj/item/dogborg/boop_module/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 
-/obj/item/device/dogborg/boop_module/attack_self(mob/user)
+/obj/item/dogborg/boop_module/attack_self(mob/user)
 	if (!( istype(user.loc, /turf) ))
 		return
 
@@ -136,7 +136,7 @@
 			to_chat(user, "<span class='notice'>[gas_data.name[g]]: [round((environment.gas[g] / total_moles) * 100)]%</span>")
 		to_chat(user, "<span class='notice'>Temperature: [round(environment.temperature-T0C,0.1)]&deg;C ([round(environment.temperature,0.1)]K)</span>")
 
-/obj/item/device/dogborg/boop_module/afterattack(obj/O, mob/user as mob, proximity)
+/obj/item/dogborg/boop_module/afterattack(obj/O, mob/user as mob, proximity)
 	if(!proximity)
 		return
 	if (user.stat)
@@ -218,7 +218,7 @@
 
 
 //Tongue stuff
-/obj/item/device/dogborg/tongue
+/obj/item/dogborg/tongue
 	name = "synthetic tongue"
 	desc = "Useful for slurping mess off the floor before affectionately licking the crew members in the face."
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -227,11 +227,11 @@
 	var/emagged = 0
 	var/datum/matter_synth/water = null
 
-/obj/item/device/dogborg/tongue/New()
+/obj/item/dogborg/tongue/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 
-/obj/item/device/dogborg/tongue/examine(user)
+/obj/item/dogborg/tongue/examine(user)
 	. = ..()
 	if(Adjacent(user))
 		if(water.energy)
@@ -239,7 +239,7 @@
 		if(water.energy < 5)
 			. += "<span class='notice'>[src] is dry.</span>"
 
-/obj/item/device/dogborg/tongue/attack_self(mob/user)
+/obj/item/dogborg/tongue/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
@@ -255,7 +255,7 @@
 			icon_state = "synthtongue"
 		update_icon()
 
-/obj/item/device/dogborg/tongue/afterattack(atom/target, mob/user, proximity)
+/obj/item/dogborg/tongue/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 
@@ -386,7 +386,7 @@
 	attack_verb = list("slashed", "stabbed", "jabbed", "mauled", "sliced")
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/device/lightreplacer/dogborg
+/obj/item/lightreplacer/dogborg
 	name = "light replacer"
 	desc = "A device to automatically replace lights. This version is capable to produce a few replacements using your internal matter reserves."
 	max_uses = 16
@@ -394,7 +394,7 @@
 	var/cooldown = 0
 	var/datum/matter_synth/glass = null
 
-/obj/item/device/lightreplacer/dogborg/attack_self(mob/user)//Recharger refill is so last season. Now we recycle without magic!
+/obj/item/lightreplacer/dogborg/attack_self(mob/user)//Recharger refill is so last season. Now we recycle without magic!
 	if(uses >= max_uses)
 		to_chat(user, "<span class='warning'>[src.name] is full.</span>")
 		return

@@ -369,7 +369,7 @@
 	Sa.build_step = 1
 	Sa.add_overlay("hs_hole")
 	Sa.created_name = name
-	new /obj/item/device/assembly/prox_sensor(Tsec)
+	new /obj/item/assembly/prox_sensor(Tsec)
 	new used_weapon(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_arm(Tsec)
@@ -402,7 +402,7 @@
 
 //Secbot Construction
 
-/obj/item/clothing/head/helmet/attackby(var/obj/item/device/assembly/signaler/S, mob/user as mob)
+/obj/item/clothing/head/helmet/attackby(var/obj/item/assembly/signaler/S, mob/user as mob)
 	..()
 	if(!issignaler(S))
 		..()

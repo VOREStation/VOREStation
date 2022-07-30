@@ -1,5 +1,4 @@
 "a" = (/turf/template_noop,/area/template_noop)
-<<<<<<< HEAD
 "b" = (/turf/template_noop,/area/submap/Cavelake)
 "c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Cavelake)
 "d" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
@@ -14,26 +13,8 @@
 "m" = (/obj/random/mob/sif,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
 "n" = (/obj/item/clothing/mask/snorkel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
 "o" = (/obj/effect/decal/remains/mouse,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/Cavelake)
-"p" = (/obj/structure/table/woodentable,/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
-"q" = (/obj/item/weapon/stool/padded,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
-=======
-"b" = (/turf/template_noop,/area/submap/CaveTrench)
-"c" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/CaveTrench)
-"d" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
-"e" = (/turf/simulated/floor/outdoors/rocks,/area/submap/CaveTrench)
-"f" = (/turf/simulated/floor/water{outdoors = 0},/area/submap/CaveTrench)
-"g" = (/obj/random/mob/robotic/drone,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
-"h" = (/mob/living/simple_mob/animal/passive/fish/trout{faction = "malf_drone"},/turf/simulated/floor/water{outdoors = 0},/area/submap/CaveTrench)
-"i" = (/obj/effect/decal/remains/human,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
-"j" = (/turf/simulated/wall,/area/submap/CaveTrench)
-"k" = (/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
-"l" = (/mob/living/simple_mob/animal/passive/fish/trout,/turf/simulated/floor/water{outdoors = 0},/area/submap/CaveTrench)
-"m" = (/turf/simulated/wall/wood,/area/submap/CaveTrench)
-"n" = (/obj/structure/table/woodentable,/obj/item/flashlight/lantern,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
-"o" = (/obj/structure/table/woodentable,/obj/random/projectile/shotgun,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
-"p" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/bottle/whiskey,/obj/item/reagent_containers/food/drinks/glass2/rocks,/obj/item/reagent_containers/food/drinks/glass2/rocks,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
+"p" = (/obj/structure/table/woodentable,/obj/item/reagent_containers/food/drinks/bottle/whiskey,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "q" = (/obj/item/stool/padded,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "r" = (/obj/structure/table/steel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "s" = (/obj/structure/table/steel,/obj/item/paper{info = "Rellek's telling me that we're in deep shit if the townies found out I'm cooking up drones out here. Like I give a fuck, We're minning our asses off only to dig into some bug nest to get our legs chewed. Well I'm not looking a gift horse in the mouth. Those drone dudes out in the wild hooked us up with these machines so long as they get some of the metal we dig up. Win win for us, Guess we're retiring early after all."; name = "Note"},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "t" = (/obj/structure/table/steel,/obj/item/robot_parts/robot_component/actuator,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
@@ -48,11 +29,7 @@
 "C" = (/obj/structure/closet/cabinet,/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/obj/item/clothing/suit/storage/hooded/wintercoat/miner,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "D" = (/obj/structure/coatrack,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
 "E" = (/obj/structure/closet/secure_closet/miner,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
-<<<<<<< HEAD
 "F" = (/obj/item/ammo_magazine/ammo_box/b12g,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
-=======
-"F" = (/obj/item/storage/box/shotgunammo,/turf/simulated/floor/holofloor/wood,/area/submap/CaveTrench)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "G" = (/obj/structure/table/steel,/obj/item/robot_parts/l_leg,/obj/item/robot_parts/head,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "H" = (/obj/effect/decal/cleanable/blood/gibs/robot,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/CaveTrench)
 "I" = (/obj/machinery/power/port_gen/pacman,/turf/simulated/shuttle/plating,/area/submap/CaveTrench)

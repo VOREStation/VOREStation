@@ -26,14 +26,8 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/security,
-<<<<<<< HEAD
 		/obj/item/clothing/head/bio_hood/security)
-		///obj/item/weapon/gun/energy/taser/xeno/sec) //VOREStation Removal
-=======
-		/obj/item/clothing/head/bio_hood/security,
-		/obj/item/gun/energy/taser/xeno/sec)
-
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		///obj/item/gun/energy/taser/xeno/sec) //VOREStation Removal
 
 /obj/structure/closet/l3closet/janitor
 	closet_appearance = /decl/closet_appearance/bio/janitor

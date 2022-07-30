@@ -19,7 +19,7 @@
 /area/mine/explored/underdark)
 "f" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/mime,
+/obj/item/bedsheet/mime,
 /turf/simulated/shuttle/floor/voidcraft/virgo3b,
 /area/mine/explored/underdark)
 "g" = (

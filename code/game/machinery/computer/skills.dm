@@ -14,15 +14,9 @@
 	icon_keyboard = "pcu_key"
 	light_color = "#5284e7"
 	req_one_access = list(access_heads)
-<<<<<<< HEAD
-	circuit = /obj/item/weapon/circuitboard/skills/pcu
-	density = FALSE
-	var/obj/item/weapon/card/id/scan = null
-=======
 	circuit = /obj/item/circuitboard/skills/pcu
-	density = 0
+	density = FALSE
 	var/obj/item/card/id/scan = null
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/authenticated = null
 	var/rank = null
 	var/screen = null

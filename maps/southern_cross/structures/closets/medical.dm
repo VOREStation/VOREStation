@@ -13,12 +13,8 @@
 		/obj/item/clothing/under/rank/chief_medical_officer/skirt,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmo,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,
-<<<<<<< HEAD
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern/cmo,
-		/obj/item/weapon/cartridge/cmo,
-=======
 		/obj/item/cartridge/cmo,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/gloves/sterile/latex,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/radio/headset/heads/cmo,

@@ -41,15 +41,9 @@
 
 /obj/item/holowarrant/attackby(obj/item/W, mob/user)
 	if(active)
-<<<<<<< HEAD
-		var/obj/item/weapon/card/id/I = W.GetIdCard()
+		var/obj/item/card/id/I = W.GetIdCard()
 		if(access_hos in I.access) // VOREStation edit
 			var/choice = tgui_alert(user, "Would you like to authorize this warrant?","Warrant authorization",list("Yes","No"))
-=======
-		var/obj/item/card/id/I = W.GetIdCard()
-		if(I)
-			var/choice = alert(user, "Would you like to authorize this warrant?","Warrant authorization","Yes","No")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if(choice == "Yes")
 				active.fields["auth"] = "[I.registered_name] - [I.assignment ? I.assignment : "(Unknown)"]"
 			user.visible_message("<span class='notice'>You swipe \the [I] through the [src].</span>", \
@@ -127,4 +121,4 @@
 /obj/item/weapon/storage/box/holowarrants/New()
 	..()
 	for(var/i = 0 to 3)
-		new /obj/item/device/holowarrant(src) // VOREStation addition ends
+		new /obj/item/holowarrant(src) // VOREStation addition ends

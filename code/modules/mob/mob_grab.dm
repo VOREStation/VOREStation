@@ -37,16 +37,9 @@
 	destroy_on_drop = TRUE	//VOREStation Edit
 
 
-<<<<<<< HEAD
-/obj/item/weapon/grab/New(mob/user, mob/victim)
-	..()
-	loc = user
-	assailant = user
-=======
 /obj/item/grab/Initialize(var/ml, mob/victim)
 	. = ..()
 	assailant = loc
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	affecting = victim
 
 	if(affecting.anchored || !assailant.Adjacent(victim))

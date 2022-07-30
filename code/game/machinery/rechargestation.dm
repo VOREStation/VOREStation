@@ -3,16 +3,10 @@
 	desc = "A heavy duty rapid charging system, designed to quickly recharge cyborg power reserves."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "borgcharger0"
-<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
-	circuit = /obj/item/weapon/circuitboard/recharge_station
-=======
-	density = 1
-	anchored = 1
 	circuit = /obj/item/circuitboard/recharge_station
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 50
 	var/mob/occupant = null

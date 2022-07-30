@@ -45,13 +45,8 @@
 	return
 
 
-<<<<<<< HEAD
-/obj/item/weapon/flamethrower/update_icon()
-	cut_overlays()
-=======
 /obj/item/flamethrower/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(igniter)
 		add_overlay("+igniter[status]")
 	if(ptank)
@@ -198,15 +193,9 @@
 	//location.hotspot_expose(1000,500,1)
 	return
 
-<<<<<<< HEAD
-/obj/item/weapon/flamethrower/full/New(var/loc)
-	..()
-	weldtool = new /obj/item/weapon/weldingtool(src)
-=======
 /obj/item/flamethrower/full/Initialize(var/ml)
 	. = ..(ml)
 	weldtool = new /obj/item/weldingtool(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	weldtool.status = 0
 	igniter = new /obj/item/assembly/igniter(src)
 	igniter.secured = 0

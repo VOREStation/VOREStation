@@ -19,15 +19,9 @@
 	var/volume_rate = 500              //Needed for borg jetpack transfer
 	action_button_name = "Toggle Jetpack"
 
-<<<<<<< HEAD
-/obj/item/weapon/tank/jetpack/New()
-	..()
-	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
-=======
 /obj/item/tank/jetpack/Initialize()
 	. = ..()
 	ion_trail = new /datum/effect_system/ion_trail_follow()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	ion_trail.set_up(src)
 
 /obj/item/tank/jetpack/Destroy()

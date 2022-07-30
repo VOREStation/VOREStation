@@ -364,7 +364,7 @@
 /turf/simulated/floor/virgo3b,
 /area/tether/outpost/solars_outside)
 "aM" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 2;
@@ -1033,7 +1033,7 @@
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/mixing)
 "cr" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
@@ -1098,7 +1098,7 @@
 /obj/machinery/door/window/eastleft,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/structure/window/basic{
 	dir = 1
 	},
@@ -1119,8 +1119,8 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/toolbox/emergency,
-/obj/item/device/radio/intercom{
+/obj/item/storage/toolbox/emergency,
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = 24
 	},
@@ -1269,14 +1269,14 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen/fountain,
+/obj/item/folder/white,
+/obj/item/pen/fountain,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "cR" = (
@@ -1289,7 +1289,7 @@
 	},
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/tool/wirecutters,
+/obj/item/tool/wirecutters,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "cS" = (
@@ -1334,7 +1334,7 @@
 /obj/machinery/door/window/eastright,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/suit/storage/hooded/wintercoat/science,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/structure/window/basic,
 /obj/structure/window/basic{
 	dir = 8
@@ -1351,11 +1351,11 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = -1;
 	pixel_y = -2
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 2;
 	pixel_y = 1
 	},
@@ -1373,7 +1373,7 @@
 /obj/machinery/vending/phoronresearch{
 	dir = 8;
 	name = "Toximate 2556";
-	products = list(/obj/item/device/transfer_valve = 3, /obj/item/device/assembly/timer = 6, /obj/item/device/assembly/signaler = 6, /obj/item/device/assembly/prox_sensor = 6, /obj/item/device/assembly/igniter = 12)
+	products = list(/obj/item/transfer_valve = 3, /obj/item/assembly/timer = 6, /obj/item/assembly/signaler = 6, /obj/item/assembly/prox_sensor = 6, /obj/item/assembly/igniter = 12)
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
@@ -1513,7 +1513,7 @@
 /area/rnd/outpost/testing)
 "ds" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
 "dt" = (
@@ -1707,7 +1707,7 @@
 	dir = 4
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/weldingtool,
+/obj/item/weldingtool,
 /obj/item/clothing/glasses/welding,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/testing)
@@ -1716,8 +1716,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/weapon/tool/screwdriver,
-/obj/item/device/assembly_holder/timer_igniter,
+/obj/item/tool/screwdriver,
+/obj/item/assembly_holder/timer_igniter,
 /obj/machinery/camera/network/research_outpost{
 	dir = 4
 	},
@@ -2081,9 +2081,9 @@
 /area/mine/explored)
 "eC" = (
 /obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/radio/intercom{
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
@@ -2799,7 +2799,7 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /obj/machinery/camera/network/research_outpost{
 	dir = 1
 	},
@@ -2816,14 +2816,14 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/tool/wrench{
+/obj/item/tool/wrench{
 	pixel_x = 2;
 	pixel_y = 2
 	},
 /obj/effect/floor_decal/corner/purple{
 	dir = 10
 	},
-/obj/item/weapon/tool/wrench{
+/obj/item/tool/wrench{
 	pixel_x = -2;
 	pixel_y = -2
 	},
@@ -2843,7 +2843,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /obj/effect/floor_decal/corner/purple{
@@ -3361,11 +3361,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/standard,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/camera/network/research_outpost{
 	dir = 8
 	},
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/heating)
 "gA" = (
@@ -3374,12 +3374,12 @@
 /obj/effect/floor_decal/corner/purple{
 	dir = 5
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/heating)
 "gB" = (
@@ -3425,7 +3425,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -24
 	},
@@ -3728,7 +3728,7 @@
 	icon_state = "0-2"
 	},
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
@@ -4077,7 +4077,7 @@
 /area/rnd/outpost/chamber)
 "hF" = (
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
@@ -4289,7 +4289,7 @@
 	pixel_x = -26;
 	pixel_y = -8
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/white,
 /area/rnd/outpost/heating)
 "hZ" = (
@@ -5348,7 +5348,7 @@
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -5734,7 +5734,7 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
@@ -5956,11 +5956,11 @@
 /area/rnd/outpost/anomaly_lab)
 "lk" = (
 /obj/structure/table/steel,
-/obj/item/device/measuring_tape,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/excavation,
+/obj/item/measuring_tape,
+/obj/item/tool/wrench,
+/obj/item/storage/excavation,
 /obj/item/stack/flag/yellow,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /obj/structure/cable/green{
 	d2 = 8;
 	icon_state = "0-8"
@@ -6038,7 +6038,7 @@
 /obj/item/clothing/gloves/sterile/latex,
 /obj/item/clothing/glasses/science,
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
@@ -6386,11 +6386,11 @@
 /area/rnd/outpost/anomaly_lab)
 "lQ" = (
 /obj/structure/table/steel,
-/obj/item/device/measuring_tape,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/excavation,
+/obj/item/measuring_tape,
+/obj/item/tool/wrench,
+/obj/item/storage/excavation,
 /obj/item/stack/flag/yellow,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /obj/machinery/alarm{
 	dir = 8;
 	pixel_x = 22
@@ -6553,13 +6553,13 @@
 /obj/item/clothing/suit/space/anomaly,
 /obj/item/clothing/head/helmet/space/anomaly,
 /obj/item/clothing/mask/breath,
-/obj/item/weapon/storage/belt/archaeology,
+/obj/item/storage/belt/archaeology,
 /obj/machinery/light_switch{
 	dir = 1;
 	pixel_x = 4;
 	pixel_y = -24
 	},
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "mf" = (
@@ -6567,12 +6567,12 @@
 /obj/item/clothing/suit/space/anomaly,
 /obj/item/clothing/head/helmet/space/anomaly,
 /obj/item/clothing/mask/breath,
-/obj/item/weapon/storage/belt/archaeology,
+/obj/item/storage/belt/archaeology,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_y = -26
 	},
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenoarch_storage)
 "mg" = (
@@ -6621,7 +6621,7 @@
 /area/rnd/outpost/anomaly_lab)
 "mm" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /obj/machinery/light_switch{
 	dir = 4;
 	pixel_x = -28
@@ -6683,7 +6683,7 @@
 "mr" = (
 /obj/structure/table/standard,
 /obj/item/stack/nanopaste,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -6937,16 +6937,16 @@
 /area/rnd/outpost/anomaly_lab/analysis)
 "mN" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/dark,
 /area/rnd/outpost/anomaly_lab/analysis)
 "mO" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/anodevice{
+/obj/item/tool/crowbar,
+/obj/item/anodevice{
 	pixel_x = -2
 	},
-/obj/item/weapon/anodevice{
+/obj/item/anodevice{
 	pixel_x = 1
 	},
 /obj/structure/window/reinforced{
@@ -6976,7 +6976,7 @@
 	icon_state = "0-4"
 	},
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
@@ -7130,7 +7130,7 @@
 /area/rnd/outpost/anomaly_lab)
 "nm" = (
 /obj/structure/table/standard,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -7140,24 +7140,24 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /turf/simulated/floor,
 /area/rnd/outpost/anomaly_lab/storage)
 "no" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/anobattery{
+/obj/item/tool/screwdriver,
+/obj/item/anobattery{
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/obj/item/weapon/anobattery,
-/obj/item/weapon/anobattery{
+/obj/item/anobattery,
+/obj/item/anobattery{
 	pixel_x = -4;
 	pixel_y = 3
 	},
-/obj/item/weapon/anobattery{
+/obj/item/anobattery{
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -7254,7 +7254,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nx" = (
@@ -7277,17 +7277,17 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "ny" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nz" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen,
+/obj/item/folder/white,
+/obj/item/pen,
 /obj/machinery/light,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
@@ -7336,7 +7336,7 @@
 /area/rnd/outpost/anomaly_lab)
 "nD" = (
 /obj/structure/table/standard,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "nE" = (
@@ -7548,7 +7548,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "oc" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 24
 	},
@@ -7779,7 +7779,7 @@
 /area/rnd/outpost/breakroom)
 "oB" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/box/donut,
+/obj/item/storage/box/donut,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/breakroom)
 "oC" = (
@@ -7797,9 +7797,9 @@
 "oH" = (
 /obj/structure/table/standard,
 /obj/machinery/light,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/anomaly_lab)
 "oI" = (

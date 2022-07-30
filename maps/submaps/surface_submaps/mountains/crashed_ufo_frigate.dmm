@@ -55,25 +55,14 @@
 "bc" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/fresh_medicine,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "bd" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/viral,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "be" = (/obj/machinery/door/blast/puzzle,/obj/machinery/door/airlock/alien/locked,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-<<<<<<< HEAD
-"bf" = (/obj/structure/table/alien,/obj/item/weapon/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
+"bf" = (/obj/structure/table/alien,/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "bg" = (/obj/structure/prop/lock/projectile,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
 "bh" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/old_medicine,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
 "bi" = (/obj/structure/prop/alien/dispenser,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "bj" = (/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "bk" = (/mob/living/simple_mob/animal/space/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "bl" = (/obj/effect/decal/remains/xeno,/obj/item/clothing/under/psysuit,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bm" = (/obj/structure/table/alien,/obj/item/weapon/paper/alien,/obj/item/weapon/paper/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-=======
-"bf" = (/obj/structure/table/alien,/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bg" = (/obj/structure/prop/lock/projectile,/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/crashed_ufo_frigate)
-"bh" = (/obj/structure/closet/alien,/obj/random/unidentified_medicine/old_medicine,/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/crashed_ufo_frigate)
-"bi" = (/obj/structure/prop/alien/dispenser,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bj" = (/obj/effect/decal/remains/xeno,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bk" = (/mob/living/simple_mob/animal/space/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bl" = (/obj/effect/decal/remains/xeno,/obj/item/clothing/under/psysuit,/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/crashed_ufo_frigate)
 "bm" = (/obj/structure/table/alien,/obj/item/paper/alien,/obj/item/paper/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "bn" = (/obj/structure/foamedmetal,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
 "bo" = (/obj/machinery/porta_turret/alien{faction = "xeno"},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
 "bp" = (/obj/structure/foamedmetal,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
@@ -106,15 +95,9 @@
 "bQ" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced{dir = 4},/obj/item/paper/alien{icon_state = "alienpaper_words"; info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"},/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
 "bR" = (/obj/structure/table/alien,/obj/structure/foamedmetal,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "bS" = (/obj/structure/closet/alien,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-<<<<<<< HEAD
-"bT" = (/obj/structure/window/phoronreinforced{icon_state = "phoronrwindow"; dir = 8},/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
-"bU" = (/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{dir = 4},/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)
-"bV" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced,/obj/item/weapon/paper/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
-=======
 "bT" = (/obj/structure/window/phoronreinforced{dir = 8; icon_state = "phoronrwindow"},/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alienplating,/area/submap/cave/crashed_ufo_frigate)
 "bU" = (/obj/structure/window/phoronreinforced,/obj/structure/window/phoronreinforced{dir = 4},/turf/simulated/floor/outdoors/ice{outdoors = 0},/area/submap/cave/crashed_ufo_frigate)
 "bV" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced,/obj/item/paper/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "bW" = (/obj/structure/table/alien,/obj/structure/window/phoronreinforced{dir = 4},/obj/structure/window/phoronreinforced,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
 "bX" = (/mob/living/simple_mob/animal/space/alien,/turf/simulated/shuttle/floor/alien,/area/submap/cave/crashed_ufo_frigate)
 "bY" = (/obj/structure/foamedmetal,/obj/machinery/door/airlock/alien/locked,/turf/simulated/floor/outdoors/ice,/area/submap/cave/crashed_ufo_frigate)

@@ -24,7 +24,7 @@
 
 /*
 	var/message = "[H] has activated \a [src] in [get_area(T)] at position [T.x],[T.y],[T.z], giving them full access for medical rescue."
-	var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
+	var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
 	a.icon = icon
 	a.icon_state = icon_state
 	a.autosay(message, "Security Subsystem", "Command")

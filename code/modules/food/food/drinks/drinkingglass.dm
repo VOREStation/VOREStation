@@ -87,21 +87,12 @@
 		price_tag = null
 
 // for /obj/machinery/vending/sovietsoda
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/soda/New()
-	..()
-	reagents.add_reagent("sodawater", 50)
-
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/cola/New()
-	..()
-=======
 /obj/item/reagent_containers/food/drinks/drinkingglass/soda/Initialize()
 	. = ..()
 	reagents.add_reagent("sodawater", 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/cola/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("cola", 50)
 
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass
@@ -112,13 +103,8 @@
 	volume = 10
 	matter = list(MAT_GLASS = 175)
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
-	cut_overlays()
-=======
 /obj/item/reagent_containers/food/drinks/drinkingglass/shotglass/on_reagent_change()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "shot glass"
 
 	if(!reagents.total_volume)
@@ -145,13 +131,8 @@
 	. = ..()
 	icon_state = pick("fitness-cup_black", "fitness-cup_red", "fitness-cup_black")
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
-	cut_overlays()
-=======
 /obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/on_reagent_change()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	if(reagents.total_volume)
 		var/image/filling = image('icons/obj/reagentfillings.dmi', src, "fitness-cup10")

@@ -69,7 +69,7 @@
 	else
 		data["has_id"] = FALSE
 
-	
+
 	var/list/ores = list()
 	for(var/ore in machine.ores_processing)
 		if(!machine.ores_stored[ore] && !show_all_ores)
@@ -129,14 +129,8 @@
 					machine.points = 0
 				else
 					to_chat(usr, "<span class='warning'>Required access not found.</span>")
-<<<<<<< HEAD
-			. = TRUE
-		if("insert")
-			var/obj/item/weapon/card/id/I = usr.get_active_hand()
-=======
 		else if(href_list["choice"] == "insert")
 			var/obj/item/card/id/I = usr.get_active_hand()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if(istype(I))
 				usr.drop_item()
 				I.forceMove(src)
@@ -199,7 +193,7 @@
 		var/ore/OD = GLOB.ore_data[ore]
 		ores_processing[OD.name] = 0
 		ores_stored[OD.name] = 0
-	
+
 	// TODO - Eschew input/output machinery and just use dirs ~Leshana
 	//Locate our output and input machinery.
 	for (var/dir in cardinal)
@@ -335,4 +329,3 @@
 #undef PROCESS_SMELT
 #undef PROCESS_COMPRESS
 #undef PROCESS_ALLOY
-

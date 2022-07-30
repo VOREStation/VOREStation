@@ -40,13 +40,8 @@
 				to_chat(user, "<span class='cult'>\The [src] looks like it could be adapted to forge advanced materials via particle acceleration, somehow..</span>")
 		else
 			to_chat(user, "<span class='notice'>\The [src]'s mechanisms look secure.</span>")
-<<<<<<< HEAD
-	if(istype(W, /obj/item/weapon/smes_coil/super_io) && panel_open)
-		visible_message("<b>\The [user]</b> begins to modify \the [src] with \the [W].")
-=======
 	if(istype(W, /obj/item/smes_coil/super_io) && panel_open)
 		visible_message("<span class='notice'>\The [user] begins to modify \the [src] with \the [W].</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(do_after(user, 300))
 			user.drop_from_inventory(W)
 			visible_message("<b>\The [user]</b> installs \the [W] onto \the [src].")

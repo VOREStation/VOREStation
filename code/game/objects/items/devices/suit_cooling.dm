@@ -20,11 +20,7 @@
 
 	var/on = 0				//is it turned on?
 	var/cover_open = 0		//is the cover open?
-<<<<<<< HEAD
-	var/obj/item/weapon/cell/cell = /obj/item/weapon/cell/high
-=======
 	var/obj/item/cell/cell
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/max_cooling = 15				// in degrees per second - probably don't need to mess with heat capacity here
 	var/charge_consumption = 3			// charge per second at max_cooling
 	var/thermostat = T20C
@@ -36,12 +32,7 @@
 
 /obj/item/suit_cooling_unit/Initialize()
 	. = ..()
-<<<<<<< HEAD
-	if(ispath(cell))
-		cell = new cell(src)
-=======
 	cell = new/obj/item/cell/high(src)	//comes not with the crappy default power cell - because this is dedicated EVA equipment
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/suit_cooling_unit/Destroy()
 	qdel_null(cell)
@@ -213,20 +204,20 @@
 		else
 			. += "It doesn't have a power cell installed."
 
-/obj/item/device/suit_cooling_unit/emergency
+/obj/item/suit_cooling_unit/emergency
 	icon_state = "esuitcooler"
 	cell = /obj/item/weapon/cell
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/device/suit_cooling_unit/emergency/updateicon()
+/obj/item/suit_cooling_unit/emergency/updateicon()
 	return
 
-/obj/item/device/suit_cooling_unit/emergency/get_cell()
+/obj/item/suit_cooling_unit/emergency/get_cell()
 	if(on)
 		return null // Don't let recharging happen while we're on
 	return cell
 
-/obj/item/device/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (W.is_screwdriver())
 		to_chat(user, "<span class='warning'>This model has the cell permanently installed!</span>")
 		return

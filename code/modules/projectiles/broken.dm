@@ -9,30 +9,19 @@
 
 	var/do_rotation = TRUE
 
-<<<<<<< HEAD
-/obj/item/weapon/broken_gun/New(var/newloc, var/path)
-	..()
-=======
 /obj/item/broken_gun/Initialize(var/ml, var/path)
 	. = ..(ml)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(path)
 		if(!setup_gun(path))
 			qdel(src)
 			return
 		setup_repair_needs()
 
-<<<<<<< HEAD
-/obj/item/weapon/broken_gun/Initialize()
+/obj/item/broken_gun/Initialize()
 	. = ..()
 	spawn(30 SECONDS)
 		if(!my_guntype && !QDELETED(src))
 			qdel(src)
-=======
-/obj/item/broken_gun/proc/validate_gun_type()
-	if(!my_guntype && !QDELETED(src))
-		qdel(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/broken_gun/examine(mob/user)
 	. = ..()

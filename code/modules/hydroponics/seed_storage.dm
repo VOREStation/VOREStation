@@ -245,7 +245,7 @@
 
 /obj/machinery/seed_storage/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	if(smart)
 		scanner = list("stats", "produce", "soil", "temperature", "light", "pressure")
 	else
@@ -412,13 +412,8 @@
 		playsound(src, O.usesound, 50, 1)
 		cut_overlays()
 		if(panel_open)
-<<<<<<< HEAD
-			add_overlay("[initial(icon_state)]-panel")
-	else if((O.is_wirecutter() || istype(O, /obj/item/device/multitool)) && panel_open)
-=======
 			overlays += image(icon, "[initial(icon_state)]-panel")
 	else if((O.is_wirecutter() || istype(O, /obj/item/multitool)) && panel_open)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		wires.Interact(user)
 
 /obj/machinery/seed_storage/emag_act(var/remaining_charges, var/mob/user)

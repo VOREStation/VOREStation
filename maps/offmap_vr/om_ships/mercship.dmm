@@ -421,10 +421,10 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/item/device/flashlight/maglight,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
-/obj/item/weapon/gun/projectile/silenced,
+/obj/item/flashlight/maglight,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/backpack/dufflebag/syndie,
+/obj/item/gun/projectile/silenced,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/barracks)
 "aT" = (
@@ -745,7 +745,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 9
 	},
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/med1)
 "bB" = (
@@ -842,10 +842,10 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/item/device/flashlight/maglight,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
-/obj/item/weapon/gun/projectile/silenced,
+/obj/item/flashlight/maglight,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/backpack/dufflebag/syndie,
+/obj/item/gun/projectile/silenced,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/barracks)
 "bJ" = (
@@ -941,10 +941,10 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
 	},
-/obj/item/device/flashlight/maglight,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/backpack/dufflebag/syndie,
-/obj/item/weapon/gun/projectile/silenced,
+/obj/item/flashlight/maglight,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/backpack/dufflebag/syndie,
+/obj/item/gun/projectile/silenced,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/barracks)
 "bR" = (
@@ -1023,7 +1023,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/item/weapon/storage/secure/briefcase,
+/obj/item/storage/secure/briefcase,
 /obj/machinery/alarm{
 	pixel_y = 30
 	},
@@ -1118,9 +1118,9 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1
 	},
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/weapon/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
+/obj/item/storage/belt/utility,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/med1)
 "cf" = (
@@ -1412,7 +1412,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
 	},
-/obj/item/weapon/storage/secure/briefcase,
+/obj/item/storage/secure/briefcase,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/med1)
 "cE" = (
@@ -1425,7 +1425,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
 	},
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/med1)
 "cF" = (
@@ -2554,9 +2554,9 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 5
 	},
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
 /turf/simulated/floor/tiled/white,
 /area/ship/mercenary/armoury)
 "eH" = (
@@ -2598,7 +2598,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/item/weapon/storage/secure/briefcase,
+/obj/item/storage/secure/briefcase,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/med1)
 "eL" = (
@@ -2841,8 +2841,8 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8
 	},
-/obj/item/weapon/storage/belt/medical,
-/obj/item/weapon/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
 /turf/simulated/floor/tiled/white,
 /area/ship/mercenary/fighter)
 "fc" = (
@@ -3835,7 +3835,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 10
 	},
-/obj/item/weapon/storage/toolbox/syndicate,
+/obj/item/storage/toolbox/syndicate,
 /turf/simulated/floor/tiled/dark,
 /area/ship/mercenary/med1)
 "gL" = (
@@ -4114,7 +4114,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
 	},
-/obj/item/weapon/storage/box/freezer,
+/obj/item/storage/box/freezer,
 /turf/simulated/floor/tiled/white,
 /area/ship/mercenary/fighter)
 "hk" = (
@@ -4332,7 +4332,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 6
 	},
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white,
 /area/ship/mercenary/fighter)
 "hH" = (
@@ -4340,7 +4340,7 @@
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 10
 	},
-/obj/item/weapon/storage/box/bodybags,
+/obj/item/storage/box/bodybags,
 /turf/simulated/floor/tiled/white,
 /area/ship/mercenary/fighter)
 "hI" = (

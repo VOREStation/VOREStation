@@ -3,15 +3,9 @@
 	desc = "A machine that reacts to unstable conditions in the powernet, by safely shutting everything down.  Probably better \
 	than the alternative."
 	icon_state = "gridchecker_on"
-<<<<<<< HEAD
-	circuit = /obj/item/weapon/circuitboard/grid_checker
+	circuit = /obj/item/circuitboard/grid_checker
 	density = TRUE
 	anchored = TRUE
-=======
-	circuit = /obj/item/circuitboard/grid_checker
-	density = 1
-	anchored = 1
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/power_failing = FALSE // Turns to TRUE when the grid check event is fired by the Game Master, or perhaps a cheeky antag.
 	// Wire stuff below.
 	var/datum/wires/grid_checker/wires

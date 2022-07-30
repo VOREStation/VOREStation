@@ -14,13 +14,8 @@
 	aspect = ASPECT_UNSTABLE
 	spawner_type = /obj/effect/temporary_effect/destablize
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/spawner/destablize/New()
-	..()
-=======
 /obj/item/spell/spawner/destablize/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#C26DDE")
 
 /obj/item/spell/spawner/destablize/on_ranged_cast(atom/hit_atom, mob/user)

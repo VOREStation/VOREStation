@@ -4,12 +4,7 @@
 "d" = (/obj/structure/boulder,/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky1)
 "e" = (/turf/simulated/mineral,/area/submap/Rocky1)
 "f" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rocky1)
-<<<<<<< HEAD
-"g" = (/obj/random/handgun/sec,/obj/effect/decal/remains/human,/obj/item/weapon/spacecash/c200,/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky1)
-=======
 "g" = (/obj/random/handgun/sec,/obj/effect/decal/remains/human,/obj/item/spacecash/c200,/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky1)
-"V" = (/obj/random/material/anom,/turf/simulated/floor/outdoors/dirt,/area/submap/Rocky1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa

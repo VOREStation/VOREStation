@@ -230,15 +230,10 @@
 
 //		dirty(target,affected) //VOREStation Add -- Removed by Request
 
-<<<<<<< HEAD
 	return
 /* VOREStation Edit - See syringes_vr.dm
-/obj/item/weapon/reagent_containers/syringe/update_icon()
-	cut_overlays()
-=======
 /obj/item/reagent_containers/syringe/update_icon()
-	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	cut_overlays()
 
 	if(mode == SYRINGE_BROKEN)
 		icon_state = "broken"
@@ -262,15 +257,9 @@
 		filling.icon_state = "syringe[rounded_vol]"
 
 		filling.color = reagents.get_color()
-<<<<<<< HEAD
 		add_overlay(filling)
 */
-/obj/item/weapon/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
-=======
-		overlays += filling
-
 /obj/item/reagent_containers/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(istype(target, /mob/living/carbon/human))
 
 		var/mob/living/carbon/human/H = target
@@ -397,13 +386,7 @@
 	name = "Syringe (anabolic steroids)"
 	desc = "Contains drugs for muscle growth."
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/syringe/steroid/Initialize()
+/obj/item/reagent_containers/syringe/steroid/Initialize()
 	..()
 	//reagents.add_reagent("adrenaline",5) //VOREStation Edit - No thanks.
-=======
-/obj/item/reagent_containers/syringe/steroid/Initialize()
-	. = ..()
-	reagents.add_reagent("adrenaline",5)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("hyperzine",10)

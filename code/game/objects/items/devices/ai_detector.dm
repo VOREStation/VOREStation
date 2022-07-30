@@ -13,11 +13,7 @@
 	var/detect_state = PROXIMITY_NONE
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
 
-<<<<<<< HEAD
-/obj/item/device/multitool/ai_detector/New()
-=======
 /obj/item/multitool/ai_detector/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	// It's really really unlikely for the view range to change.  But why not be futureproof anyways?
 	range_alert = world.view
 	range_warning = world.view * 2

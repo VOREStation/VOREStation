@@ -5,9 +5,9 @@
 			/obj/item/weapon/gun/energy/particle = 2,
 			/obj/item/weapon/cell/device/weapon = 2,
 			/obj/item/weapon/storage/firstaid/regular = 1,
-			/obj/item/device/gps = 2,
+			/obj/item/gps = 2,
 			/obj/item/weapon/storage/box/traumainjectors = 1,
-			/obj/item/device/binoculars = 1
+			/obj/item/binoculars = 1
 			)
 	cost = 60
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -154,7 +154,7 @@
 /datum/supply_pack/misc/music_players
 	name = "music players (3)"
 	contains = list(
-		/obj/item/device/walkpod = 3
+		/obj/item/walkpod = 3
 	)
 	cost = 150
 	containertype = /obj/structure/closet/crate
@@ -163,7 +163,7 @@
 /datum/supply_pack/misc/juke_remotes
 	name = "jukebox remote speakers (2)"
 	contains = list(
-		/obj/item/device/juke_remote = 2
+		/obj/item/juke_remote = 2
 	)
 	cost = 300
 	containertype = /obj/structure/closet/crate

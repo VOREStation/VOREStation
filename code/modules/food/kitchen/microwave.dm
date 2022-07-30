@@ -60,7 +60,7 @@
 		// impure carbon. ~Z
 		acceptable_items |= /obj/item/weapon/holder
 		acceptable_items |= /obj/item/weapon/reagent_containers/food/snacks/grown
-		acceptable_items |= /obj/item/device/soulstone
+		acceptable_items |= /obj/item/soulstone
 		acceptable_items |= /obj/item/weapon/fuel_assembly/supermatter
 
 	soundloop = new(list(src), FALSE)
@@ -211,7 +211,7 @@
 				to_chat(user, "<span class='notice'>You decide not to do that.</span>")
 	else if(default_part_replacement(user, O))
 		return
-	else if(istype(O, /obj/item/device/paicard))
+	else if(istype(O, /obj/item/paicard))
 		if(!paicard)
 			insertpai(user, O)
 	else

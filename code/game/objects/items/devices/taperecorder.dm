@@ -21,13 +21,8 @@
 	throw_speed = 4
 	throw_range = 20
 
-<<<<<<< HEAD
-/obj/item/device/taperecorder/New()
-	..()
-=======
 /obj/item/taperecorder/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(ispath(mytape))
 		mytape = new mytape(src)
 		update_icon()
@@ -382,13 +377,8 @@
 	var/ruined = 0
 
 
-<<<<<<< HEAD
-/obj/item/device/tape/update_icon()
-	cut_overlays()
-=======
 /obj/item/tape/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(ruined)
 		add_overlay("ribbonoverlay")
 
@@ -447,10 +437,6 @@
 
 
 //Random colour tapes
-<<<<<<< HEAD
-/obj/item/device/tape/random/New()
-=======
 /obj/item/tape/random/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"

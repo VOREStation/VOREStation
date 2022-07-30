@@ -12,16 +12,8 @@
 	max_complexity = IC_COMPLEXITY_BASE
 	var/obj/item/clothing/clothing = null
 
-<<<<<<< HEAD
-/obj/item/device/electronic_assembly/clothing/tgui_host()
+/obj/item/electronic_assembly/clothing/tgui_host()
 	return clothing.tgui_host()
-=======
-/obj/item/electronic_assembly/clothing/nano_host()
-	return clothing
-
-/obj/item/electronic_assembly/clothing/resolve_nano_host()
-	return clothing
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/electronic_assembly/clothing/update_icon()
 	..()

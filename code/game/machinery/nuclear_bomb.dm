@@ -410,13 +410,8 @@ var/bomb_set
 				return
 	return
 
-<<<<<<< HEAD
-/obj/item/weapon/disk/nuclear/New()
-	..()
-=======
 /obj/item/disk/nuclear/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	nuke_disks |= src
 
 /obj/item/disk/nuclear/Destroy()

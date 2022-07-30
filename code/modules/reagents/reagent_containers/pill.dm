@@ -119,13 +119,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 //Pills
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/pill/antitox
-	name = "Dylovene (30u)" //VOREStation Edit
-=======
 /obj/item/reagent_containers/pill/antitox
-	name = "Dylovene (25u)"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "Dylovene (30u)" //VOREStation Edit
 	desc = "Neutralizes many common toxins."
 	icon_state = "pill1"
 
@@ -174,13 +169,8 @@
 	reagents.add_reagent("stoxin", 15)
 	color = reagents.get_color()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/pill/kelotane
-	name = "Kelotane (20u)" //VOREStation Edit
-=======
 /obj/item/reagent_containers/pill/kelotane
-	name = "Kelotane (15u)"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "Kelotane (20u)" //VOREStation Edit
 	desc = "Used to treat burns."
 	icon_state = "pill3"
 
@@ -229,13 +219,8 @@
 	reagents.add_reagent("citalopram", 15)
 	color = reagents.get_color()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/pill/dexalin
-	name = "Dexalin (7.5u)" //VOREstation Edit
-=======
 /obj/item/reagent_containers/pill/dexalin
-	name = "Dexalin (15u)"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "Dexalin (7.5u)" //VOREstation Edit
 	desc = "Used to treat oxygen deprivation."
 	icon_state = "pill1"
 
@@ -294,13 +279,8 @@
 	reagents.add_reagent("bicaridine", 20)
 	color = reagents.get_color()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/pill/spaceacillin
-	name = "Spaceacillin (15u)" //VOREStation Edit
-=======
 /obj/item/reagent_containers/pill/spaceacillin
-	name = "Spaceacillin (10u)"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "Spaceacillin (15u)" //VOREStation Edit
 	desc = "A theta-lactam antibiotic. Effective against many diseases likely to be encountered in space."
 	icon_state = "pill3"
 
@@ -309,13 +289,8 @@
 	reagents.add_reagent("spaceacillin", 15)
 	color = reagents.get_color()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/pill/carbon
-	name = "Carbon (30u)" //VOREStation Edit
-=======
 /obj/item/reagent_containers/pill/carbon
-	name = "Carbon (15u)"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "Carbon (30u)" //VOREStation Edit
 	desc = "Used to neutralise chemicals in the stomach."
 	icon_state = "pill3"
 
@@ -324,13 +299,8 @@
 	reagents.add_reagent("carbon", 30) //VOREStation Edit
 	color = reagents.get_color()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/pill/iron
-	name = "Iron (30u)" //VOREStation Edit
-=======
 /obj/item/reagent_containers/pill/iron
-	name = "Iron (15u)"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "Iron (30u)" //VOREStation Edit
 	desc = "Used to aid in blood regeneration after bleeding."
 	icon_state = "pill1"
 

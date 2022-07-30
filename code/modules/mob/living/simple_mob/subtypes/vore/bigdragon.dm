@@ -253,7 +253,7 @@ I think I covered everything.
 	build_icons(1)
 	add_language(LANGUAGE_DRUDAKAR)
 	add_language(LANGUAGE_UNATHI)
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)	//We always give radios to spawned mobs anyway
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)	//We always give radios to spawned mobs anyway
 
 /mob/living/simple_mob/vore/bigdragon/MouseDrop_T(mob/living/M, mob/living/user)
 	return

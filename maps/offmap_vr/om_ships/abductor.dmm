@@ -23,18 +23,18 @@
 /area/abductor/interior)
 "dN" = (
 /obj/structure/closet/alien,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/bonemed,
-/obj/item/weapon/storage/firstaid/bonemed,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid,
-/obj/item/weapon/storage/firstaid,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/clotting,
+/obj/item/storage/firstaid/clotting,
+/obj/item/storage/firstaid/bonemed,
+/obj/item/storage/firstaid/bonemed,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "ed" = (
@@ -74,26 +74,26 @@
 /area/abductor/exterior)
 "fw" = (
 /obj/structure/table/alien,
-/obj/item/device/radio_jammer/admin,
-/obj/item/device/radio_jammer/admin,
+/obj/item/radio_jammer/admin,
+/obj/item/radio_jammer/admin,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "fz" = (
 /obj/structure/table/alien,
-/obj/item/weapon/implanter,
-/obj/item/weapon/implanter,
-/obj/item/weapon/implant/freedom,
-/obj/item/weapon/implant/adrenalin,
-/obj/item/weapon/implant/sizecontrol,
-/obj/item/weapon/implant/sizecontrol,
+/obj/item/implanter,
+/obj/item/implanter,
+/obj/item/implant/freedom,
+/obj/item/implant/adrenalin,
+/obj/item/implant/sizecontrol,
+/obj/item/implant/sizecontrol,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "fQ" = (
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/storage/box/teargas,
-/obj/item/weapon/grenade/flashbang/clusterbang,
-/obj/item/weapon/grenade/flashbang/clusterbang,
-/obj/item/weapon/storage/box/metalfoam,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/teargas,
+/obj/item/grenade/flashbang/clusterbang,
+/obj/item/grenade/flashbang/clusterbang,
+/obj/item/storage/box/metalfoam,
 /obj/item/clothing/mask/gas/wwii,
 /obj/item/clothing/mask/gas,
 /obj/structure/closet/alien,
@@ -132,7 +132,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/exterior)
 "iH" = (
-/obj/item/weapon/paper/alien/abductor,
+/obj/item/paper/alien/abductor,
 /obj/structure/table/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
@@ -183,8 +183,8 @@
 /obj/structure/table/alien,
 /obj/item/clothing/mask/gas/voice,
 /obj/item/clothing/mask/gas/voice,
-/obj/item/device/universal_translator/ear,
-/obj/item/device/universal_translator/ear,
+/obj/item/universal_translator/ear,
+/obj/item/universal_translator/ear,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "nw" = (
@@ -214,15 +214,15 @@
 /area/abductor/interior)
 "pa" = (
 /obj/structure/closet/alien,
-/obj/item/device/sleevemate,
-/obj/item/device/flash,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/sleevemate,
+/obj/item/flash,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/shuttle/floor/alien,
 /area/abductor/interior)
 "pc" = (
 /obj/structure/table/alien,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/netgun,
+/obj/item/gun/energy/netgun,
+/obj/item/gun/energy/netgun,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "pB" = (
@@ -285,14 +285,14 @@
 /area/abductor/interior)
 "rB" = (
 /obj/structure/table/alien,
-/obj/item/device/perfect_tele/alien,
-/obj/item/device/perfect_tele/alien,
+/obj/item/perfect_tele/alien,
+/obj/item/perfect_tele/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "rL" = (
 /obj/structure/table/alien,
-/obj/item/weapon/storage/belt/utility/alien/full,
-/obj/item/weapon/storage/belt/utility/alien/full,
+/obj/item/storage/belt/utility/alien/full,
+/obj/item/storage/belt/utility/alien/full,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "rP" = (
@@ -319,9 +319,9 @@
 /area/abductor/interior)
 "td" = (
 /obj/structure/table/alien,
-/obj/item/weapon/storage/box/handcuffs,
-/obj/item/weapon/storage/box/handcuffs,
-/obj/item/device/sleevemate,
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
+/obj/item/sleevemate,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "tl" = (
@@ -329,8 +329,8 @@
 /area/abductor/exterior)
 "tI" = (
 /obj/structure/table/alien,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "tQ" = (
@@ -373,14 +373,14 @@
 	pixel_y = 32
 	},
 /obj/item/clothing/shoes/magboots,
-/obj/item/weapon/gun/energy/gun/taser,
-/obj/item/device/flash,
+/obj/item/gun/energy/gun/taser,
+/obj/item/flash,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "vS" = (
 /obj/structure/table/alien,
-/obj/item/weapon/storage/belt/medical/alien,
-/obj/item/weapon/storage/belt/medical/alien,
+/obj/item/storage/belt/medical/alien,
+/obj/item/storage/belt/medical/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "wk" = (
@@ -420,8 +420,8 @@
 	dir = 1;
 	pixel_y = -32
 	},
-/obj/item/weapon/gun/energy/gun/taser,
-/obj/item/device/flash,
+/obj/item/gun/energy/gun/taser,
+/obj/item/flash,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "yB" = (
@@ -463,24 +463,24 @@
 /area/abductor/interior)
 "AZ" = (
 /obj/structure/table/alien,
-/obj/item/weapon/gun/energy/medigun,
-/obj/item/weapon/gun/energy/medigun,
-/obj/item/weapon/cell/infinite,
-/obj/item/weapon/cell/infinite,
+/obj/item/gun/energy/medigun,
+/obj/item/gun/energy/medigun,
+/obj/item/cell/infinite,
+/obj/item/cell/infinite,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "Bv" = (
 /obj/structure/table/alien,
-/obj/item/weapon/reagent_containers/glass/bottle/adminordrazine,
-/obj/item/weapon/reagent_containers/glass/bottle/adminordrazine,
-/obj/item/weapon/reagent_containers/glass/bottle/adminordrazine,
-/obj/item/weapon/reagent_containers/glass/bottle/adminordrazine,
+/obj/item/reagent_containers/glass/bottle/adminordrazine,
+/obj/item/reagent_containers/glass/bottle/adminordrazine,
+/obj/item/reagent_containers/glass/bottle/adminordrazine,
+/obj/item/reagent_containers/glass/bottle/adminordrazine,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "DG" = (
 /obj/structure/table/alien,
-/obj/item/weapon/bluespace_harpoon,
-/obj/item/weapon/bluespace_harpoon,
+/obj/item/bluespace_harpoon,
+/obj/item/bluespace_harpoon,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "DI" = (
@@ -502,8 +502,8 @@
 	pixel_x = 32
 	},
 /obj/item/clothing/shoes/magboots,
-/obj/item/weapon/gun/energy/gun/taser,
-/obj/item/device/flash,
+/obj/item/gun/energy/gun/taser,
+/obj/item/flash,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "Fl" = (
@@ -511,22 +511,22 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "Fq" = (
-/obj/item/weapon/bikehorn,
+/obj/item/bikehorn,
 /obj/item/toy/bosunwhistle,
-/obj/item/weapon/storage/bible,
-/obj/item/weapon/storage/photo_album,
-/obj/item/weapon/storage/trinketbox,
-/obj/item/weapon/storage/briefcase/clutch,
-/obj/item/weapon/storage/wallet/random,
-/obj/item/weapon/storage/wallet/womens,
-/obj/item/weapon/bananapeel,
-/obj/item/device/taperecorder,
-/obj/item/device/camera,
-/obj/item/device/binoculars,
-/obj/item/device/binoculars/spyglass,
-/obj/item/device/laser_pointer/red,
-/obj/item/device/healthanalyzer,
-/obj/item/weapon/stamp/chameleon,
+/obj/item/storage/bible,
+/obj/item/storage/photo_album,
+/obj/item/storage/trinketbox,
+/obj/item/storage/briefcase/clutch,
+/obj/item/storage/wallet/random,
+/obj/item/storage/wallet/womens,
+/obj/item/bananapeel,
+/obj/item/taperecorder,
+/obj/item/camera,
+/obj/item/binoculars,
+/obj/item/binoculars/spyglass,
+/obj/item/laser_pointer/red,
+/obj/item/healthanalyzer,
+/obj/item/stamp/chameleon,
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
@@ -578,10 +578,10 @@
 /obj/item/clothing/mask/muzzle/tape,
 /obj/item/clothing/mask/muzzle/tape,
 /obj/item/clothing/mask/muzzle/tape,
-/obj/item/weapon/tape_roll,
-/obj/item/weapon/tape_roll,
-/obj/item/weapon/tape_roll,
-/obj/item/weapon/tape_roll,
+/obj/item/tape_roll,
+/obj/item/tape_roll,
+/obj/item/tape_roll,
+/obj/item/tape_roll,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "Ji" = (
@@ -638,8 +638,8 @@
 /area/space)
 "KW" = (
 /obj/structure/table/alien,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/dropper,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "Lg" = (
@@ -689,8 +689,8 @@
 /area/abductor/interior)
 "Nq" = (
 /obj/structure/table/alien,
-/obj/item/weapon/melee/baton,
-/obj/item/weapon/melee/baton,
+/obj/item/melee/baton,
+/obj/item/melee/baton,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "ND" = (
@@ -703,8 +703,8 @@
 /area/abductor/interior)
 "Ov" = (
 /obj/structure/table/alien,
-/obj/item/weapon/gun/energy/sickshot,
-/obj/item/weapon/gun/energy/sickshot,
+/obj/item/gun/energy/sickshot,
+/obj/item/gun/energy/sickshot,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "Oz" = (
@@ -755,8 +755,8 @@
 	pixel_x = -32
 	},
 /obj/item/clothing/shoes/magboots,
-/obj/item/weapon/gun/energy/gun/taser,
-/obj/item/device/flash,
+/obj/item/gun/energy/gun/taser,
+/obj/item/flash,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "QI" = (
@@ -862,7 +862,7 @@
 /area/abductor/interior)
 "Wl" = (
 /obj/structure/table/alien,
-/obj/item/weapon/storage/box/gloves,
+/obj/item/storage/box/gloves,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "WB" = (
@@ -955,8 +955,8 @@
 /obj/item/ammo_magazine/cell_mag/advanced,
 /obj/item/ammo_magazine/cell_mag/advanced,
 /obj/item/ammo_magazine/cell_mag/advanced,
-/obj/item/weapon/gun/projectile/cell_loaded,
-/obj/item/weapon/gun/projectile/cell_loaded,
+/obj/item/gun/projectile/cell_loaded,
+/obj/item/gun/projectile/cell_loaded,
 /turf/simulated/shuttle/floor/alienplating,
 /area/abductor/interior)
 "Zk" = (

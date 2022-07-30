@@ -302,13 +302,8 @@
 		//create report
 		var/obj/item/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [scanned_item.name]"
-<<<<<<< HEAD
-		P.stamped = list(/obj/item/weapon/stamp)
-		P.add_overlay("paper_stamped")
-=======
 		P.stamped = list(/obj/item/stamp)
 		P.overlays = list("paper_stamped")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		//work out data
 		var/data = " - Mundane object: [scanned_item.desc ? scanned_item.desc : "No information on record."]<br>"

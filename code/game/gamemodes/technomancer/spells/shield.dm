@@ -18,13 +18,8 @@
 	var/damage_to_energy_multiplier = 30.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 600 energy cost
 	var/datum/effect/effect/system/spark_spread/spark_system = null
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/shield/New()
-	..()
-=======
 /obj/item/spell/shield/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#006AFF")
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)

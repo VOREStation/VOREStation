@@ -286,7 +286,7 @@ var/global/list/grub_machine_overlays = list()
 	idle_power_usages = split_into_3(total_idle_power_usage)
 
 
-/obj/item/device/multitool/afterattack(obj/O, mob/user, proximity)
+/obj/item/multitool/afterattack(obj/O, mob/user, proximity)
 	if(proximity)
 		if(istype(O, /obj/machinery))
 			var/mob/living/simple_mob/animal/solargrub_larva/grub = locate() in O

@@ -88,16 +88,10 @@
 	desc = "A stasis pod with built-in injectors, a dialysis machine, and a limited health scanner."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - Better icons
 	icon_state = "sleeper_0"
-<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
-	circuit = /obj/item/weapon/circuitboard/sleeper
-=======
-	density = 1
-	anchored = 1
 	circuit = /obj/item/circuitboard/sleeper
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/mob/living/carbon/human/occupant = null
 	var/list/available_chemicals = list()
 	var/list/base_chemicals = list("inaprovaline" = "Inaprovaline", "paracetamol" = "Paracetamol", "anti_toxin" = "Dylovene", "dexalin" = "Dexalin")
@@ -175,7 +169,7 @@
 /obj/machinery/sleeper/attack_hand(var/mob/user)
 	if(!controls_inside)
 		return FALSE
-	
+
 	if(user == occupant)
 		tgui_interact(user)
 

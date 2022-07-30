@@ -1,12 +1,8 @@
 /obj/item/storage/box/mixedglasses
 	name = "glassware box"
 	desc = "A box of assorted glassware"
-<<<<<<< HEAD
 	icon_state = "glass"
-	can_hold = list(/obj/item/weapon/reagent_containers/food/drinks/glass2)
-=======
 	can_hold = list(/obj/item/reagent_containers/food/drinks/glass2)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	starts_with = list(
 		/obj/item/reagent_containers/food/drinks/glass2/square,
 		/obj/item/reagent_containers/food/drinks/glass2/rocks,

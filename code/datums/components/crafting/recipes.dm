@@ -48,7 +48,7 @@
 /datum/crafting_recipe/proc/on_craft_completion(mob/user, atom/result)
 	return
 
-// Computes the total reagents volume 
+// Computes the total reagents volume
 /datum/crafting_recipe/proc/get_parts_reagents_volume()
 	. = 0
 	for(var/list/L in parts)
@@ -56,8 +56,6 @@
 			if(ispath(path, /datum/reagent))
 				. += L[path]
 
-<<<<<<< HEAD
-=======
 /datum/crafting_recipe/stunprod
 	name = "Stunprod"
 	result = /obj/item/melee/baton/cattleprod
@@ -82,7 +80,6 @@
 	category = CAT_WEAPONRY
 	subcategory = CAT_WEAPON
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 // Locate one of the things that set the material type, and update it from the default (glass)
 /datum/crafting_recipe/spear/on_craft_completion(mob/user, atom/result)
 	var/obj/item/material/M
@@ -99,8 +96,6 @@
 	var/obj/item/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
 	qdel(M)
-<<<<<<< HEAD
-=======
 
 /datum/crafting_recipe/shortbow
 	name = "Shortbow"
@@ -194,4 +189,3 @@
 		return
 	result.set_material(material_name)
 	qdel(insert)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

@@ -927,11 +927,7 @@
 			to_chat(U, "[src] has nothing stuck in their wounds that is large enough to remove.")
 		return
 
-<<<<<<< HEAD
-	var/obj/item/weapon/selection = tgui_input_list(usr, "What do you want to yank out?", "Embedded objects", valid_objects)
-=======
-	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/obj/item/selection = tgui_input_list(usr, "What do you want to yank out?", "Embedded objects", valid_objects)
 
 	if(self)
 		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")

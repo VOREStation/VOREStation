@@ -168,11 +168,7 @@
 					modify = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-<<<<<<< HEAD
-				if(istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
-=======
-				if (istype(I, /obj/item/card/id) && usr.unEquip(I))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				if(istype(I, /obj/item/card/id) && usr.unEquip(I))
 					I.forceMove(src)
 					modify = I
 			. = TRUE
@@ -189,11 +185,7 @@
 					scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-<<<<<<< HEAD
-				if(istype(I, /obj/item/weapon/card/id))
-=======
-				if (istype(I, /obj/item/card/id))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -261,13 +253,8 @@
 					printing = null
 					SStgui.update_uis(src)
 
-<<<<<<< HEAD
-					var/obj/item/weapon/paper/P = new(loc)
-					if(mode)
-=======
 					var/obj/item/paper/P = new(loc)
-					if (mode)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+					if(mode)
 						P.name = text("crew manifest ([])", stationtime2text())
 						P.info = {"<h4>Crew Manifest</h4>
 							<br>

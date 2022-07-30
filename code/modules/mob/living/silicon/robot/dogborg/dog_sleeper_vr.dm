@@ -1,7 +1,7 @@
 #define SLEEPER_INJECT_COST 600 // Note that this has unlimited supply unlike a borg hypo, so should be balanced accordingly
 
 //Sleeper
-/obj/item/device/dogborg/sleeper
+/obj/item/dogborg/sleeper
 	name = "Medbelly"
 	desc = "Equipment for medical hound. A mounted sleeper that stabilizes patients and can inject reagents in the borg's reserves."
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -43,26 +43,26 @@
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 
-/obj/item/device/dogborg/sleeper/New()
+/obj/item/dogborg/sleeper/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 	files = new /datum/research/techonly(src)
 
-/obj/item/device/dogborg/sleeper/Destroy()
+/obj/item/dogborg/sleeper/Destroy()
 	go_out()
 	..()
 
-/obj/item/device/dogborg/sleeper/Exit(atom/movable/O)
+/obj/item/dogborg/sleeper/Exit(atom/movable/O)
 	return 0
 
-/obj/item/device/dogborg/sleeper/return_air()
+/obj/item/dogborg/sleeper/return_air()
 	return return_air_for_internal_lifeform()
 
-/obj/item/device/dogborg/sleeper/return_air_for_internal_lifeform()
+/obj/item/dogborg/sleeper/return_air_for_internal_lifeform()
 	var/datum/gas_mixture/belly_air/air = new(1000)
 	return air
 
-/obj/item/device/dogborg/sleeper/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)
+/obj/item/dogborg/sleeper/afterattack(var/atom/movable/target, mob/living/silicon/user, proximity)
 	hound = loc
 	if(!istype(target))
 		return
@@ -162,7 +162,7 @@
 				message_admins("[key_name(hound)] has eaten [key_name(patient)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
 				playsound(src, gulpsound, vol = 100, vary = 1, falloff = 0.1, preference = /datum/client_preference/eating_noises)
 
-/obj/item/device/dogborg/sleeper/proc/go_out(var/target)
+/obj/item/dogborg/sleeper/proc/go_out(var/target)
 	hound = src.loc
 	items_preserved.Cut()
 	cleaning = 0
@@ -183,18 +183,18 @@
 	else //You clicked eject with nothing in you, let's just reset stuff to be sure.
 		update_patient()
 
-/obj/item/device/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
+/obj/item/dogborg/sleeper/proc/drain(var/amt = 3) //Slightly reduced cost (before, it was always injecting inaprov)
 	hound = src.loc
-	if(istype(hound,/obj/item/weapon/robot_module))
+	if(istype(hound,/obj/item/robot_module))
 		hound = hound.loc
 	hound.cell.charge = hound.cell.charge - amt
 
-/obj/item/device/dogborg/sleeper/attack_self(mob/user)
+/obj/item/dogborg/sleeper/attack_self(mob/user)
 	if(..())
 		return
 	sleeperUI(user)
 
-/obj/item/device/dogborg/sleeper/proc/sleeperUI(mob/user)
+/obj/item/dogborg/sleeper/proc/sleeperUI(mob/user)
 	var/dat = "<TITLE>[name] Console</TITLE><BR>"
 
 	if(islist(injection_chems)) //Only display this if we're a drug-dispensing doggo.
@@ -303,7 +303,7 @@
 	UI_open = TRUE
 	return
 
-/obj/item/device/dogborg/sleeper/Topic(href, href_list)
+/obj/item/dogborg/sleeper/Topic(href, href_list)
 	if(..() || usr == patient)
 		return
 	usr.set_machine(src)
@@ -398,7 +398,7 @@
 	sleeperUI(usr) //Needs a callback to boop the page to refresh.
 	return
 
-/obj/item/device/dogborg/sleeper/proc/inject_chem(mob/user, chem)
+/obj/item/dogborg/sleeper/proc/inject_chem(mob/user, chem)
 	if(patient && patient.reagents)
 		if(chem in injection_chems + "inaprovaline")
 			if(hound.cell.charge < 800) //This is so borgs don't kill themselves with it.
@@ -413,7 +413,7 @@
 			to_chat(hound, "<span class='notice'>Injecting [units] unit\s of [SSchemistry.chemical_reagents[chem]] into occupant.</span>") //If they were immersed, the reagents wouldn't leave with them.
 
 //For if the dogborg's existing patient uh, doesn't make it.
-/obj/item/device/dogborg/sleeper/proc/update_patient()
+/obj/item/dogborg/sleeper/proc/update_patient()
 	hound = src.loc
 	if(!istype(hound,/mob/living/silicon/robot))
 		return
@@ -486,7 +486,7 @@
 	return
 
 //Gurgleborg process
-/obj/item/device/dogborg/sleeper/proc/clean_cycle()
+/obj/item/dogborg/sleeper/proc/clean_cycle()
 
 	//Sanity? Maybe not required. More like if indigestible person OOC escapes.
 	for(var/I in items_preserved)
@@ -638,7 +638,7 @@
 		update_patient()
 	return
 
-/obj/item/device/dogborg/sleeper/process()
+/obj/item/dogborg/sleeper/process()
 	if(!istype(src.loc,/mob/living/silicon/robot))
 		return
 
@@ -662,14 +662,14 @@
 			STOP_PROCESSING(SSobj, src)
 			return
 
-/obj/item/device/dogborg/sleeper/K9 //The K9 portabrig
+/obj/item/dogborg/sleeper/K9 //The K9 portabrig
 	name = "Brig-Belly"
 	desc = "Equipment for a K9 unit. A mounted portable-brig that holds criminals."
 	icon_state = "sleeperb"
 	injection_chems = null //So they don't have all the same chems as the medihound!
 	medsensor = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor //Janihound gut.
+/obj/item/dogborg/sleeper/compactor //Janihound gut.
 	name = "Garbage Processor"
 	desc = "A mounted garbage compactor unit with fuel processor."
 	icon_state = "compactor"
@@ -679,7 +679,7 @@
 	max_item_count = 25
 	medsensor = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/analyzer //sci-borg gut.
+/obj/item/dogborg/sleeper/compactor/analyzer //sci-borg gut.
 	name = "Digestive Analyzer"
 	desc = "A mounted destructive analyzer unit with fuel processor."
 	icon_state = "analyzer"
@@ -688,7 +688,7 @@
 	analyzer = TRUE
 	recycles = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/decompiler
+/obj/item/dogborg/sleeper/compactor/decompiler
 	name = "Matter Decompiler"
 	desc = "A mounted matter decompiling unit with fuel processor."
 	icon_state = "decompiler"
@@ -696,7 +696,7 @@
 	decompiler = TRUE
 	recycles = TRUE
 
-/obj/item/device/dogborg/sleeper/compactor/delivery //Unfinished and unimplemented, still testing.
+/obj/item/dogborg/sleeper/compactor/delivery //Unfinished and unimplemented, still testing.
 	name = "Cargo Belly"
 	desc = "A mounted cargo bay unit for tagged deliveries."
 	icon_state = "decompiler"
@@ -704,7 +704,7 @@
 	delivery = TRUE
 	recycles = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/supply //Miner borg belly
+/obj/item/dogborg/sleeper/compactor/supply //Miner borg belly
 	name = "Supply Satchel"
 	desc = "A mounted survival unit with fuel processor."
 	icon_state = "sleeperc"
@@ -712,13 +712,13 @@
 	max_item_count = 10
 	recycles = FALSE
 
-/obj/item/device/dogborg/sleeper/compactor/brewer
+/obj/item/dogborg/sleeper/compactor/brewer
 	name = "Brew Belly"
 	desc = "A mounted drunk tank unit with fuel processor."
 	icon_state = "brewer"
 	injection_chems = null
 
-/obj/item/device/dogborg/sleeper/K9/ert
+/obj/item/dogborg/sleeper/K9/ert
 	name = "ERT Belly"
 	desc = "A mounted 'emergency containment cell'."
 	icon_state = "sleeperert"

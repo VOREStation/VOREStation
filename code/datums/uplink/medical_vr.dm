@@ -160,6 +160,6 @@
 /datum/uplink_item/item/medical/defib
 	name = "Combat Defibrilator"
 	item_cost = 90
-	path = /obj/item/device/defib_kit/compact/combat
+	path = /obj/item/defib_kit/compact/combat
 	antag_roles = list("mercenary", "ert")
 	blacklisted = 1

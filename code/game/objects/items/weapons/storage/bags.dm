@@ -101,17 +101,13 @@
 	var/stored_ore = list()
 	var/last_update = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/bag/ore/holding
+/obj/item/storage/bag/ore/holding
 	name = "mining satchel of holding"
 	desc = "Like a mining satchel, but when you put your hand in, you're pretty sure you can feel time itself."
 	icon_state = "satchel_bspace"
 	max_storage_space = ITEMSIZE_COST_NORMAL * 75 // 3x
 
-/obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
-=======
 /obj/item/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!istype(W)) return 0
 
 	if(new_location)
@@ -399,13 +395,8 @@
 	desc = "A bag for storing pills, patches, and bottles."
 	max_storage_space = 200
 	w_class = ITEMSIZE_LARGE
-<<<<<<< HEAD
 	slowdown = 3
 	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
-=======
-	slowdown = 1
-	can_hold = list(/obj/item/reagent_containers/pill,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	// -----------------------------
 	//           Food Bag
@@ -432,21 +423,3 @@
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/forensics/swab,/obj/item/sample/print,/obj/item/sample/fibers,/obj/item/evidencebag)
-
-<<<<<<< HEAD
-=======
-
-	// -----------------------------
-	//           Quiver (arrow bag)
-	// -----------------------------
-/obj/item/storage/bag/quiver
-	name = "quiver"
-	icon = 'icons/obj/storage.dmi'
-	icon_state = "quiver"
-	desc = "A quiver for storing arrows."
-	max_storage_space = 100 //holds 25 arrows
-	max_w_class = ITEMSIZE_NORMAL
-	w_class = ITEMSIZE_LARGE
-	slot_flags = SLOT_BACK
-	can_hold = list(/obj/item/arrow/wood)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

@@ -378,13 +378,8 @@ log transactions
 					stampoverlay.icon_state = "paper_stamp-cent"
 					if(!R.stamped)
 						R.stamped = new
-<<<<<<< HEAD
-					R.stamped += /obj/item/weapon/stamp
-					R.add_overlay(stampoverlay)
-=======
 					R.stamped += /obj/item/stamp
 					R.overlays += stampoverlay
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				if(prob(50))
@@ -425,13 +420,8 @@ log transactions
 					stampoverlay.icon_state = "paper_stamp-cent"
 					if(!R.stamped)
 						R.stamped = new
-<<<<<<< HEAD
-					R.stamped += /obj/item/weapon/stamp
-					R.add_overlay(stampoverlay)
-=======
 					R.stamped += /obj/item/stamp
 					R.overlays += stampoverlay
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 					R.stamps += "<HR><i>This paper has been stamped by the Automatic Teller Machine.</i>"
 
 				if(prob(50))

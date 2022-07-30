@@ -257,7 +257,7 @@
 
 /datum/surgery_step/dehusk/structinitial
 	allowed_tools = list(
-		/obj/item/weapon/surgical/bioregen = 100
+		/obj/item/surgical/bioregen = 100
 	)
 	min_duration = 90
 	max_duration = 120
@@ -286,9 +286,9 @@
 
 /datum/surgery_step/dehusk/relocateflesh
 	allowed_tools = list(
-		/obj/item/weapon/surgical/hemostat = 100,	\
+		/obj/item/surgical/hemostat = 100,	\
 		/obj/item/stack/cable_coil = 75, 	\
-		/obj/item/device/assembly/mousetrap = 20
+		/obj/item/assembly/mousetrap = 20
 	)
 	min_duration = 90
 	max_duration = 120
@@ -317,8 +317,8 @@
 
 /datum/surgery_step/dehusk/structfinish
 	allowed_tools = list(
-		/obj/item/weapon/surgical/bioregen = 100, \
-		/obj/item/weapon/surgical/FixOVein = 30
+		/obj/item/surgical/bioregen = 100, \
+		/obj/item/surgical/FixOVein = 30
 	)
 	min_duration = 90
 	max_duration = 120
@@ -327,10 +327,10 @@
 	return ..() && target.op_stage.dehusk == 2
 
 /datum/surgery_step/dehusk/structfinish/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	if(istype(tool,/obj/item/weapon/surgical/bioregen))
+	if(istype(tool,/obj/item/surgical/bioregen))
 		user.visible_message("<span class='notice'>[user] begins to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>", \
 	"<span class='notice'>You begin to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>")
-	else if(istype(tool,/obj/item/weapon/surgical/FixOVein))
+	else if(istype(tool,/obj/item/surgical/FixOVein))
 		user.visible_message("<span class='notice'>[user] attempts to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>", \
 	"<span class='notice'>You attempt to recreate blood vessels and fill in the gaps in [target]'s flesh with \the [tool].</span>")
 	..()
@@ -346,10 +346,10 @@
 
 /datum/surgery_step/dehusk/structfinish/fail_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	if(istype(tool,/obj/item/weapon/surgical/bioregen))
+	if(istype(tool,/obj/item/surgical/bioregen))
 		user.visible_message("<span class='danger'>[user]'s hand slips, causing \the [tool] to scrape [target]'s body.</span>", \
 	"<span class='danger'>Your hand slips, causing \the [tool] to scrape [target]'s body.</span>")
-	else if(istype(tool,/obj/item/weapon/surgical/FixOVein))
+	else if(istype(tool,/obj/item/surgical/FixOVein))
 		user.visible_message("<span class='danger'>[user] fails to finish the structure over the gaps in [target]'s flesh, doing more damage than good.</span>", \
 	"<span class='danger'>You fail to finish the structure over the gaps in [target]'s flesh, doing more damage than good.</span>")
 	affected.createwound(CUT, 15)
@@ -358,7 +358,7 @@
 
 /datum/surgery_step/internal/detoxify
 	blood_level = 1
-	allowed_tools = list(/obj/item/weapon/surgical/bioregen=100)
+	allowed_tools = list(/obj/item/surgical/bioregen=100)
 	min_duration = 90
 	max_duration = 120
 

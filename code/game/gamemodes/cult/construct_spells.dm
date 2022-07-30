@@ -441,8 +441,7 @@
 	cast_sound = null			// Sound file played when this is used.
 	var/last_castcheck = null	// The last time this spell was cast.
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/construct/New()
+/obj/item/spell/construct/New()
 	//..() //This kills the spell, because super on this calls the default spell's New, which checks for a core. Can't have that.
 	if(isliving(loc))
 		owner = loc
@@ -450,10 +449,7 @@
 		qdel(src)
 	update_icon()
 
-/obj/item/weapon/spell/construct/adjust_instability(var/amount) //The only drawback to the boons of the geometer is the use of a mortal's blood as fuel. Constructs have already paid that price long ago.
-=======
 /obj/item/spell/construct/adjust_instability(var/amount) //The only drawback to the boons of the geometer is the use of a mortal's blood as fuel. Constructs have already paid that price long ago.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	return
 
 /obj/item/spell/construct/run_checks()

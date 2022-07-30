@@ -6,14 +6,9 @@
 	starts_with = list(
 		/obj/item/storage/bag/plants,
 		/obj/item/clothing/under/rank/hydroponics,
-<<<<<<< HEAD
 		/obj/item/clothing/gloves/botanic_leather,
-		/obj/item/device/analyzer/plant_analyzer,
-		/obj/item/device/radio/headset/headset_service,
-=======
 		/obj/item/analyzer/plant_analyzer,
 		/obj/item/radio/headset/headset_service,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/head/greenbandana,
 		/obj/item/material/minihoe,
 		/obj/item/material/knife/machete/hatchet,

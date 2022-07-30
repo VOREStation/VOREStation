@@ -19,11 +19,7 @@
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/obj/item/radio/headset/mmi_radio/radio = null//Let's give it a radio.
 
-<<<<<<< HEAD
-/obj/item/device/mmi/New()
-=======
 /obj/item/mmi/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	radio = new(src)//Spawns a radio inside the MMI.
 
 /obj/item/mmi/verb/toggle_radio()
@@ -184,11 +180,7 @@
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/ghost_query_type = null
 
-<<<<<<< HEAD
-/obj/item/device/mmi/digital/New()
-=======
 /obj/item/mmi/digital/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.brainmob = new(src)
 //	src.brainmob.add_language("Robot Talk")//No binary without a binary communication device
 	src.brainmob.add_language(LANGUAGE_GALCOM)
@@ -217,7 +209,7 @@
 				. += "<span class='deadsay'>It appears to be completely inactive.</span>"
 	else
 		. += "<span class='deadsay'>It appears to be completely inactive.</span>"
-		
+
 /obj/item/mmi/digital/emp_act(severity)
 	if(!src.brainmob)
 		return
@@ -298,13 +290,8 @@
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	ghost_query_type = /datum/ghost_query/drone_brain
 
-<<<<<<< HEAD
-/obj/item/device/mmi/digital/robot/New()
-	..()
-=======
 /obj/item/mmi/digital/robot/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 
@@ -346,13 +333,8 @@
 	..()
 	icon_state = "posibrain"
 
-<<<<<<< HEAD
-/obj/item/device/mmi/digital/posibrain/New()
-	..()
-=======
 /obj/item/mmi/digital/posibrain/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	src.brainmob.real_name = src.brainmob.name
 

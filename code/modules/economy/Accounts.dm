@@ -68,13 +68,8 @@
 		stampoverlay.icon_state = "paper_stamp-cent"
 		if(!R.stamped)
 			R.stamped = new
-<<<<<<< HEAD
-		R.stamped += /obj/item/weapon/stamp
-		R.add_overlay(stampoverlay)
-=======
 		R.stamped += /obj/item/stamp
 		R.overlays += stampoverlay
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		R.stamps += "<HR><i>This paper has been stamped by the Accounts Database.</i>"
 
 	//add the account

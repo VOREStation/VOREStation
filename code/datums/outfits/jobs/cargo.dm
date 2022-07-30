@@ -5,7 +5,7 @@
 /decl/hierarchy/outfit/job/cargo/qm
 	name = OUTFIT_JOB_NAME("Cargo")
 	uniform = /obj/item/clothing/under/rank/cargo
-	l_ear = /obj/item/device/radio/headset/headset_qm //VOREStation Add
+	l_ear = /obj/item/radio/headset/headset_qm //VOREStation Add
 	shoes = /obj/item/clothing/shoes/brown
 	glasses = /obj/item/clothing/glasses/sunglasses
 	l_hand = /obj/item/clipboard

@@ -10,7 +10,7 @@
 	if (!ticker)
 		to_chat(src, "You can't commit suicide before the game starts!")
 		return
-	
+
 	to_chat(src, "<span class='warning'>No. Adminhelp if there is a legitimate reason, and please review our server rules.</span>")
 	message_admins("[ckey] has tried to trigger the suicide verb as human, but it is currently disabled.")
 
@@ -85,7 +85,7 @@
 	set name = "pAI Suicide"
 	var/answer = tgui_alert(usr, "REALLY kill yourself? This action can't be undone.", "Suicide", list("Yes","No"))
 	if(answer == "Yes")
-		var/obj/item/device/paicard/card = loc
+		var/obj/item/paicard/card = loc
 		card.removePersonality()
 		var/turf/T = get_turf_or_move(card.loc)
 		for (var/mob/M in viewers(T))

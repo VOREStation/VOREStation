@@ -30,15 +30,11 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//Linked bluespace radios
 	var/list/linked_radios_weakrefs = list()
 
-<<<<<<< HEAD
 /obj/machinery/telecomms/processor/Initialize()
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/device/radio/R)
-=======
 /obj/machinery/telecomms/broadcaster/proc/link_radio(var/obj/item/radio/R)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= weakref(R)
@@ -763,4 +759,3 @@ var/message_delay = 0 // To make sure restarting the recentmessages list is kept
 	//to_world_log("Level: [signal.data["level"]] - Done: [signal.data["done"]]")
 
 	return signal
-

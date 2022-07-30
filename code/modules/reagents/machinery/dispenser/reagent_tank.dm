@@ -14,13 +14,9 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
-<<<<<<< HEAD
-/obj/structure/reagent_dispensers/attackby(obj/item/weapon/W as obj, mob/user as mob)
-		return
-=======
 /obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	return
 
 /obj/structure/reagent_dispensers/Destroy()
 	QDEL_NULL(InputSocket)
@@ -174,7 +170,7 @@
 	icon_state = "barrel3"
 	modded = FALSE
 
-/obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/reagent_dispensers/fueltank/barrel/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.is_wrench()) //can't wrench it shut, it's always open
 		return
 	return ..()

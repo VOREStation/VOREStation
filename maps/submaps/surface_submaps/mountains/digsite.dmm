@@ -32,13 +32,8 @@
 "F" = (/obj/structure/boulder,/obj/effect/decal/mecha_wreckage/ripley,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
 "G" = (/obj/structure/boulder,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
 "H" = (/obj/structure/loot_pile/maint/junk,/turf/simulated/floor/plating/external,/area/submap/cave/digsite)
-<<<<<<< HEAD
-"I" = (/obj/structure/table/steel,/obj/item/weapon/tool/wrench,/obj/item/weapon/storage/box/samplebags,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
-"J" = (/obj/structure/table/steel,/obj/item/stack/flag/yellow,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
-=======
 "I" = (/obj/structure/table/steel,/obj/item/tool/wrench,/obj/item/storage/box/samplebags,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
 "J" = (/obj/structure/table/steel,/obj/item/stack/flag/yellow,/obj/random/coin/anom,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "K" = (/obj/random/toolbox,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
 "L" = (/obj/structure/closet/crate,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
 "M" = (/obj/machinery/floodlight,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/cave/digsite)
@@ -66,4 +61,3 @@ aaeeeeeeeeeeeeNeeeaa
 aaaaaeeeeeeeeeeeeaaa
 aaaaaaaaaaaaaaaaaaaa
 "}
-

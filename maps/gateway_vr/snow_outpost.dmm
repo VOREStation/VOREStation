@@ -637,7 +637,7 @@
 /turf/simulated/wall/sandstone,
 /area/awaymission/snow_outpost/dark)
 "cf" = (
-/obj/item/weapon/ore/diamond,
+/obj/item/ore/diamond,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "cg" = (
@@ -651,7 +651,7 @@
 /turf/simulated/floor/plating/external,
 /area/awaymission/snow_outpost/dark)
 "cj" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /turf/simulated/floor/plating/external,
 /area/awaymission/snow_outpost/dark)
 "ck" = (
@@ -687,7 +687,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/outside)
 "cs" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "ct" = (
@@ -703,7 +703,7 @@
 /area/awaymission/snow_outpost/dark)
 "cw" = (
 /obj/item/frame/apc,
-/obj/item/weapon/module/power_control,
+/obj/item/module/power_control,
 /turf/simulated/floor/plating/external,
 /area/awaymission/snow_outpost/dark)
 "cx" = (
@@ -714,8 +714,8 @@
 /area/awaymission/snow_outpost/dark)
 "cy" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/excavation,
-/obj/item/device/measuring_tape,
+/obj/item/storage/excavation,
+/obj/item/measuring_tape,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "cz" = (
@@ -741,12 +741,12 @@
 /area/awaymission/snow_outpost/dark)
 "cC" = (
 /obj/structure/table/steel,
-/obj/item/weapon/folder,
+/obj/item/folder,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "cD" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "cE" = (
@@ -764,7 +764,7 @@
 /area/awaymission/snow_outpost/dark)
 "cH" = (
 /obj/structure/table/rack,
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "cI" = (
@@ -782,8 +782,8 @@
 /area/awaymission/snow_outpost/dark)
 "cL" = (
 /obj/structure/table/steel,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/box/samplebags,
+/obj/item/tool/wrench,
+/obj/item/storage/box/samplebags,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "cM" = (
@@ -823,7 +823,7 @@
 /area/awaymission/snow_outpost/powered)
 "cV" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/powered)
 "cW" = (
@@ -832,7 +832,7 @@
 /area/awaymission/snow_outpost/powered)
 "cX" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 1
@@ -853,36 +853,36 @@
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "db" = (
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "dc" = (
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
-/obj/item/weapon/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
+/obj/item/ore/gold,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "dd" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/powered)
 "de" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/powered)
@@ -904,8 +904,8 @@
 /area/awaymission/snow_outpost/powered)
 "di" = (
 /obj/structure/table/standard,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
+/obj/item/cell/high,
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/powered)
 "dj" = (
@@ -951,7 +951,7 @@
 /area/awaymission/snow_outpost/powered)
 "ds" = (
 /obj/structure/table/rack,
-/obj/item/weapon/pickaxe/drill,
+/obj/item/pickaxe/drill,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/powered)
 "dt" = (
@@ -978,7 +978,7 @@
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/powered)
 "dy" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/powered)
 "dz" = (
@@ -1021,7 +1021,7 @@
 /obj/structure/closet/crate,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/storage/toolbox,
+/obj/item/storage/toolbox,
 /obj/random/toolbox,
 /turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
@@ -1039,7 +1039,7 @@
 /area/awaymission/snow_outpost/dark)
 "dJ" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/cell/void,
+/obj/item/cell/void,
 /turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
 "dK" = (
@@ -1185,8 +1185,8 @@
 /area/awaymission/snow_outpost/powered)
 "ed" = (
 /obj/structure/table/steel,
-/obj/item/weapon/gun/projectile/automatic/wt550,
-/obj/item/weapon/gun/projectile/automatic/p90,
+/obj/item/gun/projectile/automatic/wt550,
+/obj/item/gun/projectile/automatic/p90,
 /turf/simulated/floor/tiled/steel_grid,
 /area/awaymission/snow_outpost/powered)
 "ee" = (
@@ -1304,7 +1304,7 @@
 /area/awaymission/snow_outpost/powered)
 "ex" = (
 /obj/structure/table/steel,
-/obj/item/weapon/grenade/smokebomb,
+/obj/item/grenade/smokebomb,
 /turf/simulated/floor/tiled/steel_grid,
 /area/awaymission/snow_outpost/powered)
 "ey" = (
@@ -1328,7 +1328,7 @@
 /area/awaymission/snow_outpost/powered)
 "eB" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 10
@@ -1337,7 +1337,7 @@
 /area/awaymission/snow_outpost/powered)
 "eC" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tank/anesthetic,
+/obj/item/tank/anesthetic,
 /obj/effect/floor_decal/corner/green/border,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
@@ -1354,14 +1354,14 @@
 /area/awaymission/snow_outpost/powered)
 "eF" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/spray/sterilizine,
-/obj/item/weapon/reagent_containers/spray/sterilizine,
+/obj/item/reagent_containers/spray/sterilizine,
+/obj/item/reagent_containers/spray/sterilizine,
 /obj/effect/floor_decal/corner/green/border,
 /turf/simulated/floor/tiled/white,
 /area/awaymission/snow_outpost/powered)
 "eG" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/box/masks,
+/obj/item/storage/box/masks,
 /obj/effect/floor_decal/corner/green/border{
 	icon_state = "bordercolor";
 	dir = 6
@@ -1429,7 +1429,7 @@
 /area/awaymission/snow_outpost/powered)
 "eQ" = (
 /obj/structure/table/steel,
-/obj/item/weapon/material/knife,
+/obj/item/material/knife,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "eR" = (
@@ -1506,7 +1506,7 @@
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "fb" = (
-/obj/item/weapon/stool,
+/obj/item/stool,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "fc" = (
@@ -1620,7 +1620,7 @@
 /area/awaymission/snow_outpost/powered)
 "fu" = (
 /obj/structure/table/steel,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "We need to take a short stop. The engine's are in need of minor repairs due to turbulence, should be a week's time. We've got reserve food supplies but pleanty of locale fauna to subsist on too if need be. PCRC is keeping most of there assets near New Reykjavik and locale authorities are more mindful then most to travel in this kind of weather. Our outfit should be at the rendezvous point in less then ten days assuming the upper ecehelon hasn't dropped ties with us yet.";
 	name = "Operation Progress/M-53"
 	},
@@ -1628,7 +1628,7 @@
 /area/awaymission/snow_outpost/powered)
 "fv" = (
 /obj/structure/table/steel,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "fw" = (
@@ -1694,7 +1694,7 @@
 /area/awaymission/snow_outpost/powered)
 "fF" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
 "fG" = (
@@ -1710,7 +1710,7 @@
 /area/awaymission/snow_outpost/powered)
 "fJ" = (
 /obj/structure/table/steel,
-/obj/item/weapon/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
 /obj/machinery/light/small{
 	dir = 4;
 	pixel_y = 0
@@ -1725,7 +1725,7 @@
 /area/awaymission/snow_outpost/powered)
 "fL" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
@@ -1789,7 +1789,7 @@
 /area/awaymission/snow_outpost/powered)
 "fU" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)
@@ -1798,7 +1798,7 @@
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "fW" = (
-/obj/item/weapon/ore/gold,
+/obj/item/ore/gold,
 /obj/tether_away_spawner/aerostat_inside,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
@@ -1819,7 +1819,7 @@
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside)
 "gb" = (
-/obj/item/weapon/shovel,
+/obj/item/shovel,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/dark)
 "gc" = (
@@ -1840,7 +1840,7 @@
 /area/awaymission/snow_outpost/outside)
 "gg" = (
 /obj/item/ammo_casing/a45,
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
+/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside)
 "gh" = (
@@ -1881,7 +1881,7 @@
 	},
 /area/awaymission/snow_outpost/outside)
 "go" = (
-/obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat,
+/obj/item/reagent_containers/food/snacks/xenomeat/spidermeat,
 /turf/simulated/floor/snow/snow2,
 /area/awaymission/snow_outpost/outside)
 "gp" = (
@@ -1890,7 +1890,7 @@
 /area/awaymission/snow_outpost/outside)
 "gq" = (
 /obj/item/clothing/accessory/storage/webbing,
-/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
 /turf/simulated/floor/outdoors/dirt{
 	outdoors = 0
 	},
@@ -1977,13 +1977,13 @@
 /area/awaymission/snow_outpost/dark)
 "gE" = (
 /obj/structure/closet/crate,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/glass/bottle/stoxin,
-/obj/item/weapon/reagent_containers/glass/bottle/antitoxin,
-/obj/item/weapon/reagent_containers/pill/antitox,
-/obj/item/weapon/reagent_containers/pill/antitox,
-/obj/item/weapon/reagent_containers/pill/antitox,
-/obj/item/weapon/reagent_containers/pill/paracetamol,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/glass/bottle/stoxin,
+/obj/item/reagent_containers/glass/bottle/antitoxin,
+/obj/item/reagent_containers/pill/antitox,
+/obj/item/reagent_containers/pill/antitox,
+/obj/item/reagent_containers/pill/antitox,
+/obj/item/reagent_containers/pill/paracetamol,
 /obj/random/firstaid,
 /turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
@@ -2002,11 +2002,11 @@
 /obj/random/contraband,
 /obj/random/contraband,
 /obj/random/energy,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
-/obj/item/weapon/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
+/obj/item/material/star,
 /turf/simulated/shuttle/floor/alienplating,
 /area/awaymission/snow_outpost/dark)
 "gH" = (
@@ -2107,18 +2107,18 @@
 /area/awaymission/snow_outpost/dark)
 "ha" = (
 /obj/structure/closet/cabinet,
-/obj/item/weapon/lipstick/random,
+/obj/item/lipstick/random,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hb" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hc" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/pill/happy{
+/obj/item/reagent_containers/pill/happy{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -2144,7 +2144,7 @@
 /area/awaymission/snow_outpost/dark)
 "hi" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/pill/methylphenidate{
+/obj/item/reagent_containers/pill/methylphenidate{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -2157,7 +2157,7 @@
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hk" = (
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -2177,13 +2177,13 @@
 /area/awaymission/snow_outpost/dark)
 "ho" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/flashlight/lamp,
+/obj/item/reagent_containers/syringe/drugs,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hp" = (
 /obj/structure/bed/chair/comfy/beige,
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -2193,17 +2193,17 @@
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/dark)
 "hr" = (
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
-/obj/item/weapon/reagent_containers/pill/citalopram{
+/obj/item/reagent_containers/pill/citalopram{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hs" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/pill_bottle/happy,
+/obj/item/storage/pill_bottle/happy,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/dark)
 "ht" = (
@@ -2213,31 +2213,31 @@
 /area/awaymission/snow_outpost/dark)
 "hu" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/pill/citalopram,
-/obj/item/weapon/reagent_containers/pill/citalopram,
+/obj/item/reagent_containers/pill/citalopram,
+/obj/item/reagent_containers/pill/citalopram,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/dark)
 "hv" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/pill/tramadol,
-/obj/item/weapon/reagent_containers/pill/tramadol,
+/obj/item/reagent_containers/pill/tramadol,
+/obj/item/reagent_containers/pill/tramadol,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/dark)
 "hw" = (
 /obj/structure/closet/cabinet,
 /obj/item/clothing/accessory/jacket,
-/obj/item/weapon/material/butterfly/switchblade,
+/obj/item/material/butterfly/switchblade,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hx" = (
-/obj/item/weapon/reagent_containers/pill/zoom{
+/obj/item/reagent_containers/pill/zoom{
 	name = "pill"
 	},
 /obj/random/trash,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hy" = (
-/obj/item/weapon/reagent_containers/pill/zoom{
+/obj/item/reagent_containers/pill/zoom{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -2248,7 +2248,7 @@
 /area/awaymission/snow_outpost/dark)
 "hA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/surgical/scalpel,
+/obj/item/surgical/scalpel,
 /turf/simulated/floor/tiled,
 /area/awaymission/snow_outpost/dark)
 "hB" = (
@@ -2271,13 +2271,13 @@
 /area/awaymission/snow_outpost/dark)
 "hF" = (
 /obj/structure/table/standard,
-/obj/item/weapon/reagent_containers/pill/zoom,
-/obj/item/weapon/reagent_containers/pill/zoom,
+/obj/item/reagent_containers/pill/zoom,
+/obj/item/reagent_containers/pill/zoom,
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/dark)
 "hG" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/pill/tramadol{
+/obj/item/reagent_containers/pill/tramadol{
 	name = "pill"
 	},
 /turf/simulated/floor/carpet,
@@ -2291,17 +2291,17 @@
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/dark)
 "hJ" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor,
 /area/awaymission/snow_outpost/dark)
 "hK" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hL" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/syringe/drugs,
+/obj/item/reagent_containers/syringe/drugs,
 /turf/simulated/floor/carpet,
 /area/awaymission/snow_outpost/dark)
 "hM" = (
@@ -2313,8 +2313,8 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/outside)
 "hO" = (
-/obj/item/weapon/spacecash/c100,
-/obj/item/weapon/spacecash/c100,
+/obj/item/spacecash/c100,
+/obj/item/spacecash/c100,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
 "hP" = (
@@ -2322,9 +2322,9 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/outside)
 "hQ" = (
-/obj/item/weapon/spacecash/c100,
-/obj/item/weapon/spacecash/c100,
-/obj/item/weapon/spacecash/c100,
+/obj/item/spacecash/c100,
+/obj/item/spacecash/c100,
+/obj/item/spacecash/c100,
 /obj/effect/decal/remains,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
@@ -2333,7 +2333,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
 "hS" = (
-/obj/item/weapon/grenade/spawnergrenade/spider,
+/obj/item/grenade/spawnergrenade/spider,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/awaymission/snow_outpost/dark)
 "hT" = (
@@ -2439,7 +2439,7 @@
 	dir = 1
 	},
 /obj/structure/closet/walllocker/emerglocker/east,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	name = "Station Intercom (General)";
 	pixel_x = -28
@@ -2512,7 +2512,7 @@
 /obj/structure/closet/walllocker/emerglocker{
 	pixel_y = 28
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -26
 	},
 /turf/simulated/shuttle/floor,
@@ -2526,7 +2526,7 @@
 	pixel_y = 28
 	},
 /obj/machinery/light,
-/obj/item/weapon/weldingtool/largetank,
+/obj/item/weldingtool/largetank,
 /turf/simulated/shuttle/floor,
 /area/awaymission/snow_outpost/outside)
 "iz" = (
@@ -2631,7 +2631,7 @@
 /area/awaymission/snow_outpost/powered)
 "iT" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/item/toy/plushie/spider,
 /turf/simulated/floor/tiled/steel,
 /area/awaymission/snow_outpost/powered)

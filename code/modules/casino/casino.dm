@@ -404,7 +404,7 @@
 	if(usr.incapacitated())
 		return
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/pda))
 		if(!check_access(W))
 			to_chat(user, "<span class='warning'>Access Denied.</span>")
 			return
@@ -654,7 +654,7 @@
 				C.slaveckey = null
 				collar_list -= C
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
+	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/pda))
 		if(!check_access(W))
 			to_chat(user, "<span class='warning'>Access Denied.</span>")
 			return

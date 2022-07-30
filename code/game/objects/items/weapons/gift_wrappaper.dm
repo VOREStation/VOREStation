@@ -16,13 +16,8 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/a_gift/New()
-	..()
-=======
 /obj/item/a_gift/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_x = rand(-10,10)
 	pixel_y = rand(-10,10)
 	if(w_class > 0 && w_class < ITEMSIZE_LARGE)
@@ -90,13 +85,8 @@
 		/obj/item/beach_ball/holoball,
 		/obj/item/toy/balloon,
 		/obj/item/toy/blink,
-<<<<<<< HEAD
-		/obj/item/weapon/gun/projectile/revolver/toy/crossbow,
-		/obj/item/weapon/storage/box/capguntoy,
-=======
 		/obj/item/gun/projectile/revolver/toy/crossbow,
-		/obj/item/gun/projectile/revolver/capgun,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		/obj/item/storage/box/capguntoy,
 		/obj/item/toy/katana,
 		/obj/item/toy/mecha/deathripley,
 		/obj/item/toy/mecha/durand,
@@ -111,19 +101,11 @@
 		/obj/item/toy/mecha/seraph,
 		/obj/item/toy/spinningtoy,
 		/obj/item/toy/sword,
-<<<<<<< HEAD
-		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
-		/obj/item/device/paicard,
-		/obj/item/instrument/violin,
-		/obj/item/weapon/storage/belt/utility/full,
-=======
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
 		/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 		/obj/item/paicard,
 		/obj/item/instrument/violin,
 		/obj/item/storage/belt/utility/full,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/clothing/accessory/tie/horrible)
 
 	if(!ispath(gift_type,/obj/item))	return

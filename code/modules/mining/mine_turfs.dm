@@ -45,28 +45,6 @@ var/list/mining_overlay_cache = list()
 	var/ignore_mapgen
 
 	var/static/list/ore_types = list(
-<<<<<<< HEAD
-		"hematite" = /obj/item/weapon/ore/iron,
-		"uranium" = /obj/item/weapon/ore/uranium,
-		"gold" = /obj/item/weapon/ore/gold,
-		"silver" = /obj/item/weapon/ore/silver,
-		"diamond" = /obj/item/weapon/ore/diamond,
-		"phoron" = /obj/item/weapon/ore/phoron,
-		"osmium" = /obj/item/weapon/ore/osmium,
-		"hydrogen" = /obj/item/weapon/ore/hydrogen,
-		"silicates" = /obj/item/weapon/ore/glass,
-		"carbon" = /obj/item/weapon/ore/coal,
-		"verdantium" = /obj/item/weapon/ore/verdantium,
-		"marble" = /obj/item/weapon/ore/marble,
-		"lead" = /obj/item/weapon/ore/lead,
-//		"copper" = /obj/item/weapon/ore/copper,
-//		"tin" = /obj/item/weapon/ore/tin,
-//		"bauxite" = /obj/item/weapon/ore/bauxite,
-//		"void opal" = /obj/item/weapon/ore/void_opal,
-//		"painite" = /obj/item/weapon/ore/painite,
-//		"quartz" = /obj/item/weapon/ore/quartz,
-		"rutile" = /obj/item/weapon/ore/rutile
-=======
 		"hematite" = /obj/item/ore/iron,
 		"uranium" = /obj/item/ore/uranium,
 		"gold" = /obj/item/ore/gold,
@@ -80,14 +58,13 @@ var/list/mining_overlay_cache = list()
 		"verdantium" = /obj/item/ore/verdantium,
 		"marble" = /obj/item/ore/marble,
 		"lead" = /obj/item/ore/lead,
-		"copper" = /obj/item/ore/copper,
+//		"copper" = /obj/item/ore/copper,
 //		"tin" = /obj/item/ore/tin,
-		"bauxite" = /obj/item/ore/bauxite,
-		"magmellite" = /obj/item/ore/magmellite,
+//		"bauxite" = /obj/item/ore/bauxite,
+//		"void opal" = /obj/item/ore/void_opal,
 //		"painite" = /obj/item/ore/painite,
 //		"quartz" = /obj/item/ore/quartz,
 		"rutile" = /obj/item/ore/rutile
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 	has_resources = 1
@@ -448,15 +425,9 @@ var/list/mining_overlay_cache = list()
 			C.scan_atom(user, src)
 			return
 
-<<<<<<< HEAD
-		if (istype(W, /obj/item/device/measuring_tape))
-			var/obj/item/device/measuring_tape/P = W
-			user.visible_message("<b>\The [user]</b> extends \a [P] towards \the [src].","<span class='notice'>You extend \the [P] towards \the [src].</span>")
-=======
 		if (istype(W, /obj/item/measuring_tape))
 			var/obj/item/measuring_tape/P = W
 			user.visible_message("<span class='notice'>\The [user] extends \a [P] towards \the [src].</span>","<span class='notice'>You extend \the [P] towards \the [src].</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			if(do_after(user, 15))
 				to_chat(user, "<span class='notice'>\The [src] has been excavated to a depth of [excavation_level]cm.</span>")
 			return
@@ -655,15 +626,9 @@ var/list/mining_overlay_cache = list()
 	//otherwise, they come out inside a chunk of rock
 	var/obj/item/X
 	if(is_clean)
-<<<<<<< HEAD
-		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
+		X = new /obj/item/archaeological_find(src, new_item_type = F.find_type)
 	else
-		X = new /obj/item/weapon/strangerock(src, inside_item_type = F.find_type)
-=======
-		X = new /obj/item/archaeological_find(src, F.find_type)
-	else
-		X = new /obj/item/strangerock(src, F.find_type)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		X = new /obj/item/strangerock(src, inside_item_type = F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		var/obj/item/strangerock/SR = X
 		SR.geologic_data = geologic_data

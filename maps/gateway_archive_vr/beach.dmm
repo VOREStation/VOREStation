@@ -114,14 +114,14 @@
 /area/awaymission/beach)
 "v" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/manual/barman_recipes,
+/obj/item/book/manual/barman_recipes,
 /turf/unsimulated/floor{
 	 icon_state = "wood"
 	},
 /area/awaymission/beach)
 "w" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/shaker,
 /turf/unsimulated/floor{
 	 icon_state = "wood"
 	},
@@ -194,13 +194,13 @@
 /area/awaymission/beach)
 "I" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/beer,
+/obj/item/reagent_containers/food/drinks/beer,
 /turf/unsimulated/floor{
 	 icon_state = "wood"
 	},
 /area/awaymission/beach)
 "J" = (
-/obj/item/weapon/beach_ball,
+/obj/item/beach_ball,
 /turf/unsimulated/beach/sand,
 /area/awaymission/beach)
 "K" = (

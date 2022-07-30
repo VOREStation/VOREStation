@@ -2334,13 +2334,10 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 4
 	},
-<<<<<<< HEAD
-=======
 /obj/item/reagent_containers/food/snacks/beetsoup,
 /obj/item/reagent_containers/food/snacks/flowerchildsalad{
 	pixel_y = 9
 	},
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -3168,8 +3165,6 @@
 /obj/item/deck/cards,
 /turf/simulated/shuttle/floor/black,
 /area/skipjack_station/start)
-<<<<<<< HEAD
-=======
 "dNX" = (
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /obj/effect/floor_decal/corner/blue/diagonal{
@@ -3183,7 +3178,6 @@
 	icon_state = "steel"
 	},
 /area/centcom/living)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dOl" = (
 /obj/structure/table/steel,
 /obj/random/energy,
@@ -5571,8 +5565,6 @@
 	icon_state = "carpet"
 	},
 /area/centcom/living)
-<<<<<<< HEAD
-=======
 "gza" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/white/diagonal,
@@ -5588,7 +5580,6 @@
 	icon_state = "steel"
 	},
 /area/centcom/bar)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "gzc" = (
 /obj/machinery/body_scanconsole{
 	dir = 4
@@ -13403,13 +13394,9 @@
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_emptycourt)
 "pte" = (
-<<<<<<< HEAD
-/obj/item/weapon/stool/padded,
-=======
 /obj/item/stool/padded{
 	dir = 8
 	},
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/unsimulated/floor{
 	icon_state = "dark"
 	},
@@ -16101,12 +16088,9 @@
 /obj/effect/floor_decal/corner/blue/diagonal{
 	dir = 4
 	},
-<<<<<<< HEAD
-=======
 /obj/item/stool/padded{
 	dir = 4
 	},
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/unsimulated/floor{
 	icon = 'icons/turf/flooring/tiles.dmi';
 	icon_state = "steel"
@@ -19734,8 +19718,6 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/syndicate_station/start)
-<<<<<<< HEAD
-=======
 "wcg" = (
 /obj/item/stool/padded{
 	dir = 1
@@ -19744,7 +19726,6 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "wcv" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;

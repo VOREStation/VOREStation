@@ -118,12 +118,10 @@ var/list/global/tank_gauge_cache = list()
 	if (istype(src.loc, /obj/item/assembly))
 		icon = src.loc
 
-<<<<<<< HEAD
-=======
 	if ((istype(W, /obj/item/analyzer)) && get_dist(user, src) <= 1)
 		var/obj/item/analyzer/A = W
 		A.analyze_gases(src, user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+
 	else if (istype(W,/obj/item/latexballon))
 		var/obj/item/latexballon/LB = W
 		LB.blow(src)
@@ -344,13 +342,9 @@ var/list/global/tank_gauge_cache = list()
 
 	return remove_air(moles_needed)
 
-<<<<<<< HEAD
-/obj/item/weapon/tank/process()
+/obj/item/tank/process()
 	if(!air_contents)
 		return
-=======
-/obj/item/tank/process()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	//Allow for reactions
 	air_contents.react() //cooking up air tanks - add phoron and oxygen, then heat above PHORON_MINIMUM_BURN_TEMPERATURE
 	if(gauge_icon)
@@ -573,31 +567,6 @@ var/list/global/tank_gauge_cache = list()
 	add_overlay("bomb_assembly")
 
 
-<<<<<<< HEAD
-/obj/item/weapon/tank/phoron/onetankbomb/New()
-	..()
-	src.onetankbomb()
-
-/obj/item/weapon/tank/oxygen/onetankbomb/New()
-	..()
-	src.onetankbomb()
-
-
-/obj/item/weapon/tank/phoron/onetankbomb/full/New()
-	..()
-	src.onetankbomb(2)
-
-/obj/item/weapon/tank/oxygen/onetankbomb/full/New()
-	..()
-	src.onetankbomb(2)
-
-/obj/item/weapon/tank/phoron/onetankbomb/small/New()
-	..()
-	src.onetankbomb(0)
-
-/obj/item/weapon/tank/oxygen/onetankbomb/small/New()
-	..()
-=======
 /obj/item/tank/phoron/onetankbomb/Initialize()
 	. = ..()
 	src.onetankbomb()
@@ -621,7 +590,6 @@ var/list/global/tank_gauge_cache = list()
 
 /obj/item/tank/oxygen/onetankbomb/small/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.onetankbomb(0)
 
 /////////////////////////////////

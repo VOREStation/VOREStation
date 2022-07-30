@@ -97,7 +97,7 @@
 	character_name = list("Fifi The Magnificent")
 
 /datum/gear/fluff/lynn_penlight
-	path = /obj/item/device/flashlight/pen/fluff/lynn
+	path = /obj/item/flashlight/pen/fluff/lynn
 	display_name = "Lynn's Penlight"
 	ckeywhitelist = list("argobargsoup")
 	character_name = list("Lynn Shady")
@@ -591,13 +591,13 @@
 	character_name = list("Harmony Pretchl")
 
 /datum/gear/fluff/harmony_modkit
-	path = /obj/item/device/modkit_conversion/fluff/harmonysuit
+	path = /obj/item/modkit_conversion/fluff/harmonysuit
 	display_name = "Harmony's Modkit"
 	ckeywhitelist = list("john.wayne9392")
 	character_name = list("Harmony Pretchl")
 
 /datum/gear/fluff/harmony_spacemodkit
-	path = /obj/item/device/modkit_conversion/fluff/harmonyspace
+	path = /obj/item/modkit_conversion/fluff/harmonyspace
 	display_name = "Harmony's Modkit 2"
 	ckeywhitelist = list("john.wayne9392")
 	character_name = list("Harmony Pretchl")
@@ -994,7 +994,7 @@
 	character_name = list("Viktor Solothurn")
 
 /datum/gear/fluff/scree_modkit
-	path = /obj/item/device/modkit_conversion/fluff/screekit
+	path = /obj/item/modkit_conversion/fluff/screekit
 	display_name = "Scree's Modkit"
 	ckeywhitelist = list("scree")
 	character_name = list("Scree")
@@ -1028,14 +1028,14 @@
 	character_name = list("Alfonso Oak Telanor")
 
 /datum/gear/fluff/nthasd_modkit //Converts a Security suit's sprite
-	path = /obj/item/device/modkit_conversion/hasd
+	path = /obj/item/modkit_conversion/hasd
 	display_name = "NT-HASD 556's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("NT-HASD #556")
 	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
 /datum/gear/fluff/serdykov_modkit //Also converts a Security suit's sprite
-	path = /obj/item/device/modkit_conversion/fluff/serdykit
+	path = /obj/item/modkit_conversion/fluff/serdykit
 	display_name = "Serdykov Antoz's Modkit"
 	ckeywhitelist = list("silencedmp5a5")
 	character_name = list("Serdykov Antoz")
@@ -1056,7 +1056,7 @@
 	character_name = list("Tasy Ruffles")
 
 /datum/gear/fluff/tasy_clownPDA
-	path = /obj/item/device/pda/clown
+	path = /obj/item/pda/clown
 	display_name = "Tasy's Clown PDA"
 	ckeywhitelist = list("silvertalismen")
 	character_name = list("Tasy Ruffles")
@@ -1127,7 +1127,7 @@
 	character_name = list("Ascian")
 
 /datum/gear/fluff/ascian_shelterpod
-	path = /obj/item/device/survivalcapsule/tabiranth
+	path = /obj/item/survivalcapsule/tabiranth
 	display_name = "Ascian's Shelterpod"
 	ckeywhitelist = list("tabiranth")
 	character_name = list("Ascian")
@@ -1225,7 +1225,7 @@
 	character_name = list("Verin Raharra")
 
 /datum/gear/fluff/lucina_pda
-	path = /obj/item/device/pda/heads/cmo/fluff/lucinapda
+	path = /obj/item/pda/heads/cmo/fluff/lucinapda
 	display_name = "Lucina's PDA"
 	ckeywhitelist = list("vorrarkul")
 	character_name = list("Lucina Dakarim")
@@ -1401,7 +1401,7 @@
 	character_name = list("Zaoozaoo Xrimxuqmqixzix")
 
 /datum/gear/fluff/nehi_radio
-	path = /obj/item/device/radio/headset/fluff/zodiacshadow
+	path = /obj/item/radio/headset/fluff/zodiacshadow
 	display_name = "Nehi's 'phones"
 	ckeywhitelist = list("zodiacshadow")
 	character_name = list("Nehi Maximus")

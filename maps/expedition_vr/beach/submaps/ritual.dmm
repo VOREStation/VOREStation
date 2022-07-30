@@ -7,7 +7,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/submap/CorgiRitual)
 "c" = (
-/obj/item/weapon/flame/candle/everburn,
+/obj/item/flame/candle/everburn,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/submap/CorgiRitual)
 "d" = (

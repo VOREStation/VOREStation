@@ -11,8 +11,7 @@
 	hitsound = 'sound/weapons/whip.ogg'
 	reach = 2
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/chainofcommand/curator_whip
+/obj/item/melee/chainofcommand/curator_whip
 	name = "leather whip"
 	desc = "A fine weapon for some treasure hunting."
 	icon_state = "curator_whip"
@@ -20,16 +19,13 @@
 	throwforce = 5
 	origin_tech = list(TECH_COMBAT = 2)
 
-/obj/item/weapon/melee/chainofcommand/curator_whip/toy
+/obj/item/melee/chainofcommand/curator_whip/toy
 	name = "toy whip"
 	desc = "A fake whip. Perfect for fake treasure hunting"
 	force = 2
 	throwforce = 2
 
-/obj/item/weapon/melee/umbrella
-=======
 /obj/item/melee/umbrella
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "umbrella"
 	desc = "To keep the rain off you. Use with caution on windy days."
 	icon = 'icons/obj/items.dmi'
@@ -41,13 +37,8 @@
 	w_class = ITEMSIZE_NORMAL
 	var/open = FALSE
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/umbrella/New()
-	..()
-=======
 /obj/item/melee/umbrella/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	update_icon()
 
 /obj/item/melee/umbrella/attack_self()
@@ -65,11 +56,7 @@
 		H.update_inv_r_hand()
 
 // Randomizes color
-<<<<<<< HEAD
-/obj/item/weapon/melee/umbrella/random/New()
-=======
 /obj/item/melee/umbrella/random/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	color = "#"+get_random_colour()
 	..()
 

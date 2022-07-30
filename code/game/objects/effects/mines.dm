@@ -7,13 +7,8 @@
 	icon_state = "uglymine"
 	var/triggered = 0
 	var/smoke_strength = 3
-<<<<<<< HEAD
-	var/obj/item/weapon/mine/mineitemtype = /obj/item/weapon/mine
-	var/panel_open = FALSE
-=======
 	var/obj/item/mine/mineitemtype = /obj/item/mine
-	var/panel_open = 0
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/panel_open = FALSE
 	var/datum/wires/mines/wires = null
 	var/camo_net = FALSE	// Will the mine 'cloak' on deployment?
 

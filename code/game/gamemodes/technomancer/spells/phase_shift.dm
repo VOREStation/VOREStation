@@ -15,13 +15,8 @@
 	cast_methods = CAST_USE
 	aspect = ASPECT_TELE
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/phase_shift/New()
-	..()
-=======
 /obj/item/spell/phase_shift/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#FA58F4")
 
 /obj/effect/phase_shift

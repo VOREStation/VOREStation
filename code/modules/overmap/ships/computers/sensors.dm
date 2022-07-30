@@ -99,12 +99,11 @@
 		if("scan")
 			var/obj/effect/overmap/O = locate(params["scan"])
 			if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
-				new/obj/item/weapon/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
+				new/obj/item/paper/(get_turf(src), O.get_scan_data(usr), "paper (Sensor Scan - [O])")
 				playsound(src, "sound/machines/printer.ogg", 30, 1)
 			. = TRUE
 
 	if(sensors)
-<<<<<<< HEAD
 		switch(action)
 			if("range")
 				var/nrange = tgui_input_number(usr, "Set new sensors range", "Sensor range", sensors.range)
@@ -119,25 +118,6 @@
 
 	if(. && !issilicon(usr))
 		playsound(src, "terminal_type", 50, 1)
-=======
-		if (href_list["range"])
-			var/nrange = input("Set new sensors range", "Sensor range", sensors.range) as num|null
-			if(!CanInteract(user,state))
-				return TOPIC_NOACTION
-			if (nrange)
-				sensors.set_range(clamp(nrange, 1, world.view))
-			return TOPIC_REFRESH
-		if (href_list["toggle"])
-			sensors.toggle()
-			return TOPIC_REFRESH
-
-	if (href_list["scan"])
-		var/obj/effect/overmap/O = locate(href_list["scan"])
-		if(istype(O) && !QDELETED(O) && (O in view(7,linked)))
-			playsound(src, "sound/machines/printer.ogg", 30, 1)
-			new/obj/item/paper/(get_turf(src), O.get_scan_data(user), "paper (Sensor Scan - [O])")
-		return TOPIC_HANDLED
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/ship/sensors/process()
 	..()

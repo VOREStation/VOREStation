@@ -42,7 +42,7 @@
 /obj/random/tool,
 /obj/random/tool,
 /obj/random/tool,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0
@@ -50,7 +50,7 @@
 /area/maintenance/groundbase/poi/caves)
 "Y" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/healthanalyzer,
+/obj/item/healthanalyzer,
 /turf/simulated/floor/virgo3c{
 	edge_blending_priority = -1;
 	outdoors = 0

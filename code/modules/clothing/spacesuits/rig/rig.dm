@@ -6,12 +6,8 @@
  * Defines the behavior of hardsuits/rigs/power armour.
  */
 
-<<<<<<< HEAD
-/obj/item/weapon/rig
-=======
 /obj/item/rig
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "hardsuit control module"
 	icon = 'icons/obj/rig_modules.dmi'
 	desc = "A back-mounted hardsuit deployment and control mechanism."
@@ -102,13 +98,9 @@
 	var/datum/effect/effect/system/spark_spread/spark_system
 	var/datum/mini_hud/rig/minihud
 
-<<<<<<< HEAD
 	// Action button
 	action_button_name = "Hardsuit Interface"
 
-/obj/item/weapon/rig/New()
-	..()
-=======
 /obj/item/rig/examine()
 	. = ..()
 	if(wearer)
@@ -128,7 +120,6 @@
 
 /obj/item/rig/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	suit_state = icon_state
 	item_state = icon_state
@@ -644,11 +635,7 @@
 		wearer.update_inv_back()
 	return
 
-<<<<<<< HEAD
-/obj/item/weapon/rig/proc/check_suit_access(var/mob/living/carbon/human/user, var/do_message = TRUE)
-=======
-/obj/item/rig/proc/check_suit_access(var/mob/living/carbon/human/user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/rig/proc/check_suit_access(var/mob/living/carbon/human/user, var/do_message = TRUE)
 
 	if(!security_check_enabled)
 		return 1

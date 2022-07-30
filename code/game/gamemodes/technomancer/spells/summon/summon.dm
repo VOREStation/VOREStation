@@ -39,10 +39,5 @@
 			summoned_mob_type = summon_options[choice]
 
 // Called when a new mob is summoned, override for special behaviour.
-<<<<<<< HEAD
-/obj/item/weapon/spell/summon/proc/on_summon(var/mob/living/summoned)
-	return
-=======
 /obj/item/spell/summon/proc/on_summon(var/mob/living/summoned)
 	return
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

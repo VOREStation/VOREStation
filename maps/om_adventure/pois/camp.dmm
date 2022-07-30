@@ -39,7 +39,7 @@
 /area/om_adventure/poi/camp)
 "U" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/storage/box/matches,
+/obj/item/storage/box/matches,
 /turf/simulated/floor/outdoors/newdirt,
 /area/om_adventure/poi/camp)
 "Y" = (

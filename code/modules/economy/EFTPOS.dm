@@ -1,4 +1,4 @@
-/obj/item/device/eftpos
+/obj/item/eftpos
 	name = "\improper EFTPOS scanner"
 	desc = "Swipe your ID card to make purchases electronically."
 	icon = 'icons/obj/device.dmi'
@@ -12,7 +12,7 @@
 	var/access_code = 0
 	var/datum/money_account/linked_account
 
-/obj/item/device/eftpos/Initialize()
+/obj/item/eftpos/Initialize()
 	. = ..()
 	//by default, connect to the station account
 	//the user of the EFTPOS device can change the target account though, and no-one will be the wiser (except whoever's being charged)
@@ -47,11 +47,11 @@
 	R.add_overlay(stampoverlay)
 	R.stamps += "<HR><i>This paper has been stamped by the EFTPOS device.</i>"
 
-/obj/item/device/eftpos/Destroy()
+/obj/item/eftpos/Destroy()
 	linked_account = null
 	return ..()
 
-/obj/item/device/eftpos/proc/print_reference()
+/obj/item/eftpos/proc/print_reference()
 	var/obj/item/weapon/paper/R = new(src.loc)
 	R.name = "Reference: [eftpos_name]"
 	R.info = "<b>[eftpos_name] reference</b><br><br>"
@@ -71,7 +71,7 @@
 	D.wrapped = R
 	D.name = "small parcel - 'EFTPOS access code'"
 
-/obj/item/device/eftpos/attack_self(mob/user as mob)
+/obj/item/eftpos/attack_self(mob/user as mob)
 	if(get_dist(src,user) <= 1)
 		var/dat = "<b>[eftpos_name]</b><br>"
 		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting IT Support</i><br>"
@@ -99,7 +99,7 @@
 	else
 		user << browse(null,"window=eftpos")
 
-/obj/item/device/eftpos/attackby(obj/item/O as obj, user as mob)
+/obj/item/eftpos/attackby(obj/item/O as obj, user as mob)
 
 	var/obj/item/weapon/card/id/I = O.GetID()
 
@@ -141,7 +141,7 @@
 	else
 		..()
 
-/obj/item/device/eftpos/Topic(var/href, var/href_list)
+/obj/item/eftpos/Topic(var/href, var/href_list)
 	if(href_list["choice"])
 		switch(href_list["choice"])
 			if("change_code")
@@ -216,7 +216,7 @@
 
 	src.attack_self(usr)
 
-/obj/item/device/eftpos/proc/scan_card(var/obj/item/weapon/card/I, var/obj/item/ID_container)
+/obj/item/eftpos/proc/scan_card(var/obj/item/weapon/card/I, var/obj/item/ID_container)
 	if (istype(I, /obj/item/weapon/card/id))
 		var/obj/item/weapon/card/id/C = I
 		if(I==ID_container || ID_container == null)

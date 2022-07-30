@@ -62,22 +62,22 @@
 		/obj/item/weapon/storage/belt/explorer,
 		/obj/item/clothing/shoes/boots/winter/explorer,
 		/obj/item/clothing/gloves/black,
-		/obj/item/device/radio/headset/explorer,
-		/obj/item/device/radio/headset/explorer/alt,
+		/obj/item/radio/headset/explorer,
+		/obj/item/radio/headset/explorer/alt,
 		/obj/item/weapon/cartridge/explorer,
-		/obj/item/device/flashlight,
-		/obj/item/device/gps/explorer,
+		/obj/item/flashlight,
+		/obj/item/gps/explorer,
 		/obj/item/weapon/storage/box/flare,
-		/obj/item/device/geiger,
+		/obj/item/geiger,
 		/obj/item/weapon/cell/device,
-		/obj/item/device/radio,
+		/obj/item/radio,
 		/obj/item/stack/marker_beacon/thirty,
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/item/weapon/material/knife/machete,
 		/obj/item/clothing/accessory/holster/machete,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-		/obj/item/device/cataloguer)
+		/obj/item/cataloguer)
 
 /obj/structure/closet/secure_closet/explorer/Initialize()
 	if(prob(50))
@@ -103,16 +103,16 @@
 		/obj/item/weapon/storage/belt/explorer/pathfinder,
 		/obj/item/clothing/shoes/boots/winter/explorer,
 		/obj/item/clothing/gloves/black,
-		/obj/item/device/radio/headset/pathfinder,
-		/obj/item/device/radio/headset/pathfinder/alt,
+		/obj/item/radio/headset/pathfinder,
+		/obj/item/radio/headset/pathfinder/alt,
 		/obj/item/weapon/cartridge/explorer,
-		/obj/item/device/flashlight,
-		/obj/item/device/gps/explorer,
+		/obj/item/flashlight,
+		/obj/item/gps/explorer,
 		/obj/item/weapon/storage/box/flare,
 		/obj/item/weapon/storage/box/explorerkeys,
-		/obj/item/device/geiger,
+		/obj/item/geiger,
 		/obj/item/weapon/cell/device,
-		/obj/item/device/radio,
+		/obj/item/radio,
 		/obj/item/stack/marker_beacon/thirty,
 		/obj/item/weapon/material/knife/tacknife/survival,
 		/obj/item/weapon/material/knife/machete/deluxe,
@@ -120,8 +120,8 @@
 		/obj/random/explorer_shield,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
-		/obj/item/device/cataloguer/compact/pathfinder,
-		/obj/item/device/mapping_unit)
+		/obj/item/cataloguer/compact/pathfinder,
+		/obj/item/mapping_unit)
 
 /obj/structure/closet/secure_closet/pathfinder/Initialize()
 	if(prob(50))
@@ -152,14 +152,14 @@
 		/obj/item/clothing/suit/storage/hooded/explorer/medic,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar,
 		/obj/item/clothing/shoes/boots/winter/explorer,
-		/obj/item/device/radio/headset/sar,
-		/obj/item/device/radio/headset/sar/alt,
+		/obj/item/radio/headset/sar,
+		/obj/item/radio/headset/sar/alt,
 		/obj/item/weapon/cartridge/sar,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
 		/obj/item/clothing/glasses/hud/health,
-		/obj/item/device/healthanalyzer,
-		/obj/item/device/radio/off,
+		/obj/item/healthanalyzer,
+		/obj/item/radio/off,
 		/obj/random/medical,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood = 2,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein = 2,
@@ -168,10 +168,10 @@
 		/obj/item/weapon/storage/box/freezer,
 		/obj/item/clothing/accessory/storage/white_vest,
 		/obj/item/taperoll/medical,
-		/obj/item/device/gps/medical,
-		/obj/item/device/geiger,
+		/obj/item/gps/medical,
+		/obj/item/geiger,
 		/obj/item/bodybag/cryobag,
-		/obj/item/device/cataloguer/compact)
+		/obj/item/cataloguer/compact)
 
 /obj/structure/closet/secure_closet/sar/Initialize()
 	if(prob(50))
@@ -201,17 +201,17 @@
 		/obj/item/clothing/mask/gas/half,
 		/obj/item/clothing/shoes/black,
 		/obj/item/clothing/gloves/fingerless,
-		/obj/item/device/radio/headset/pilot,
-		/obj/item/device/radio/headset/pilot/alt,
-		/obj/item/device/flashlight,
+		/obj/item/radio/headset/pilot,
+		/obj/item/radio/headset/pilot/alt,
+		/obj/item/flashlight,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
 		/obj/item/weapon/reagent_containers/food/snacks/liquidprotein,
 		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 		/obj/item/weapon/storage/box/flare,
 		/obj/item/weapon/cell/device,
-		/obj/item/device/radio,
-		/obj/item/device/gps/explorer,
-		/obj/item/device/cataloguer/compact)
+		/obj/item/radio,
+		/obj/item/gps/explorer,
+		/obj/item/cataloguer/compact)
 
 /obj/structure/closet/secure_closet/pilot/Initialize()
 	if(prob(50))
@@ -253,7 +253,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/space/void/autolok,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
-		/obj/item/device/suit_cooling_unit/emergency
+		/obj/item/suit_cooling_unit/emergency
 	)
 
 /*
@@ -275,5 +275,5 @@
 		/obj/item/clothing/head/helmet/space/emergency,
 		/obj/item/clothing/suit/space/emergency,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
-		/obj/item/device/suit_cooling_unit/emergency
+		/obj/item/suit_cooling_unit/emergency
 	)

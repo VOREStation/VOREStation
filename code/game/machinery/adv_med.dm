@@ -6,16 +6,10 @@
 	name = "Body Scanner"
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scanner_0"
-<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
-	circuit = /obj/item/weapon/circuitboard/body_scanner
-=======
-	density = 1
-	anchored = 1
 	circuit = /obj/item/circuitboard/body_scanner
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 60
 	active_power_usage = 10000	//10 kW. It's a big all-body scanner.
@@ -263,10 +257,9 @@
 			var/implantData[0]
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
-<<<<<<< HEAD
 				var/obj/item/weapon/implant/I = thing
 			//VOREStation Block Edit Start
-				var/obj/item/device/nif/N = thing
+				var/obj/item/nif/N = thing
 				if(istype(I))
 					implantSubData["name"] =  I.name
 					implantSubData["known"] = istype(I) && I.known_implant
@@ -276,12 +269,6 @@
 					implantSubData["known"] = istype(N) && N.known_implant
 					implantData.Add(list(implantSubData))
 			//VOREStation Block Edit End
-=======
-				var/obj/item/implant/I = thing
-				implantSubData["name"] =  I.name
-				implantSubData["known"] = istype(I) && I.known_implant
-				implantData.Add(list(implantSubData))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 			organData["implants"] = implantData
 			organData["implants_len"] = implantData.len
@@ -488,13 +475,8 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-<<<<<<< HEAD
 			for(var/obj/item/weapon/implant/I as anything in e.implants)
-				var/obj/item/device/nif/N = I //VOREStation Add: NIFs
-=======
-			for(var/thing in e.implants)
-				var/obj/item/implant/I = thing
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				var/obj/item/nif/N = I //VOREStation Add: NIFs
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"
 				else if(istype(N) && N.known_implant) //VOREStation Add: NIFs
@@ -564,16 +546,10 @@
 	icon = 'icons/obj/Cryogenic2.dmi'
 	icon_state = "body_scannerconsole"
 	dir = 8
-<<<<<<< HEAD
 	density = FALSE
 	anchored = TRUE
 	unacidable = TRUE
-	circuit = /obj/item/weapon/circuitboard/scanner_console
-=======
-	density = 0
-	anchored = 1
 	circuit = /obj/item/circuitboard/scanner_console
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/printing = null
 
 /obj/machinery/body_scanconsole/New()

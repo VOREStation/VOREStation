@@ -45,11 +45,7 @@
 "wF" = (/obj/random/junk,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "wP" = (/obj/random/humanoidremains,/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "xt" = (/obj/effect/spider/stickyweb/dark,/turf/simulated/mineral/ignore_mapgen,/area/submap/Chasm)
-<<<<<<< HEAD
-"yq" = (/obj/item/weapon/bone/leg,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust/color_rusted,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
-=======
-"yq" = (/obj/item/bone/leg{start_anomalous = 1},/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust/color_rusted,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"yq" = (/obj/item/bone/leg,/obj/effect/floor_decal/rust,/obj/effect/floor_decal/rust/color_rusted,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
 "yD" = (/obj/effect/decal/cleanable/dirt,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
 "yL" = (/obj/structure/outcrop/platinum,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "zq" = (/obj/structure/outcrop/diamond,/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
@@ -67,12 +63,7 @@
 "DQ" = (/obj/structure/cliff/automatic{dir = 4},/obj/structure/ledge/ledge_stairs{dir = 1},/obj/structure/barricade,/turf/simulated/floor/plating,/area/submap/Chasm)
 "DS" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "DW" = (/obj/structure/cliff/automatic{dir = 4},/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
-<<<<<<< HEAD
-"Ea" = (/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/obj/item/weapon/pickaxe/excavationdrill,/turf/simulated/floor/plating,/area/submap/Chasm)
-=======
-"DY" = (/obj/random/maintenance/anom,/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Chasm)
 "Ea" = (/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/obj/item/pickaxe/excavationdrill,/turf/simulated/floor/plating,/area/submap/Chasm)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "Ec" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Chasm)
 "Ee" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Chasm)
 "Eh" = (/obj/structure/cliff/automatic/corner{dir = 6},/obj/structure/loot_pile/maint/boxfort,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
@@ -83,11 +74,7 @@
 "HE" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "HF" = (/obj/structure/cliff/automatic{dir = 5},/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "Ie" = (/obj/random/tool/power,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
-<<<<<<< HEAD
 "Ji" = (/obj/item/instrument/violin,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
-=======
-"Ji" = (/obj/item/instrument/violin{start_anomalous = 1},/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "JJ" = (/obj/structure/loot_pile/surface/bones,/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/effect/spider/stickyweb,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
 "Kv" = (/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Chasm)
 "Kz" = (/obj/random/trash,/obj/effect/spider/stickyweb/dark,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Chasm)
@@ -99,13 +86,8 @@
 "Oj" = (/obj/effect/floor_decal/rust,/turf/simulated/floor/plating,/area/submap/Chasm)
 "Ov" = (/obj/structure/loot_pile/surface/bones,/obj/effect/spider/stickyweb,/obj/random/outcrop,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "Pk" = (/obj/random/multiple/gun/projectile/rifle,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
-<<<<<<< HEAD
 "Pr" = (/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/obj/effect/map_effect/interval/sound_emitter/geiger/high,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
-"Qi" = (/obj/item/weapon/bone/skull/tajaran,/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
-=======
-"Pr" = (/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/obj/item/geiger{icon_state = "geiger_on_1"; scanning = 1},/obj/effect/map_effect/radiation_emitter,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
 "Qi" = (/obj/item/bone/skull/tajaran,/obj/effect/floor_decal/rust,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/asteroid_steel,/area/submap/Chasm)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "Qr" = (/obj/structure/cliff/automatic/corner{dir = 6},/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)
 "Rx" = (/obj/effect/spider/stickyweb,/turf/simulated/floor/outdoors/dirt,/area/submap/Chasm)
 "Rz" = (/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/Chasm)

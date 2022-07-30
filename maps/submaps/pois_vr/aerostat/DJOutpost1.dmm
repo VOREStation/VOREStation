@@ -7,8 +7,8 @@
 /area/submap/virgo2/DJOutpost1)
 "c" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard,
-/obj/item/weapon/material/shard{
+/obj/item/material/shard,
+/obj/item/material/shard{
 	icon_state = "shardmedium"
 	},
 /obj/item/stack/rods,
@@ -42,7 +42,7 @@
 /obj/effect/decal/remains,
 /obj/effect/decal/cleanable/blood,
 /obj/item/clothing/under/frontier,
-/obj/item/weapon/material/knife/tacknife/combatknife,
+/obj/item/material/knife/tacknife/combatknife,
 /obj/random_multi/single_item/sfr_headset,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
@@ -52,7 +52,7 @@
 /area/submap/virgo2/DJOutpost1)
 "l" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	icon_state = "intercom";
 	dir = 8
 	},
@@ -60,7 +60,7 @@
 /area/submap/virgo2/DJOutpost1)
 "m" = (
 /obj/machinery/computer/message_monitor,
-/obj/item/weapon/paper/monitorkey,
+/obj/item/paper/monitorkey,
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
@@ -98,7 +98,7 @@
 /obj/effect/decal/remains,
 /obj/item/clothing/under/dress/blacktango,
 /obj/effect/decal/cleanable/blood,
-/obj/item/device/universal_translator/ear,
+/obj/item/universal_translator/ear,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "s" = (
@@ -153,36 +153,36 @@
 /area/submap/virgo2/DJOutpost1)
 "x" = (
 /obj/structure/bookcase,
-/obj/item/weapon/book/codex/lore/vir,
-/obj/item/weapon/book/manual/excavation,
-/obj/item/weapon/book/manual/engineering_construction,
-/obj/item/weapon/storage/bible,
+/obj/item/book/codex/lore/vir,
+/obj/item/book/manual/excavation,
+/obj/item/book/manual/engineering_construction,
+/obj/item/storage/bible,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "y" = (
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "z" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/phone,
+/obj/item/radio/phone,
 /obj/random_multi/single_item/sfr_headset,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "A" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/intercom/syndicate{
+/obj/item/radio/intercom/syndicate{
 	desc = "Talk through this.";
 	name = "station intercom (General)"
 	},
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "B" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/machinery/power/apc{
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	environ = 1;
 	equipment = 1;
@@ -205,7 +205,7 @@
 /area/submap/virgo2/DJOutpost1)
 "D" = (
 /obj/machinery/door/airlock/glass,
-/obj/item/device/gps/internal/poi,
+/obj/item/gps/internal/poi,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "E" = (
@@ -214,7 +214,7 @@
 /area/submap/virgo2/DJOutpost1)
 "F" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+/obj/item/reagent_containers/food/snacks/unajerky,
 /obj/machinery/light{
 	icon_state = "tube1";
 	dir = 8
@@ -244,10 +244,10 @@
 /area/submap/virgo2/DJOutpost1)
 "J" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/material/knife/machete/hatchet,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/material/minihoe,
-/obj/item/device/analyzer/plant_analyzer,
+/obj/item/material/knife/machete/hatchet,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/material/minihoe,
+/obj/item/analyzer/plant_analyzer,
 /obj/random_multi/single_item/sfr_headset,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
@@ -276,19 +276,19 @@
 /area/submap/virgo2/DJOutpost1)
 "O" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/clown,
+/obj/item/bedsheet/clown,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "P" = (
 /obj/structure/table/rack,
 /obj/item/ammo_magazine/clip/c762/hunter,
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
+/obj/item/gun/projectile/shotgun/pump/rifle,
 /turf/simulated/floor/wood,
 /area/submap/virgo2/DJOutpost1)
 "Q" = (
 /obj/structure/table/rack,
-/obj/item/device/flashlight/lantern,
-/obj/item/device/gps{
+/obj/item/flashlight/lantern,
+/obj/item/gps{
 	gps_tag = "Sif Free Radio"
 	},
 /turf/simulated/floor/wood,

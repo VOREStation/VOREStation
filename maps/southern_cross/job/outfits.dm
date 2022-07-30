@@ -13,13 +13,8 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_ear = /obj/item/radio/headset/explorer
 	id_slot = slot_wear_id
 	pda_slot = slot_l_store
-<<<<<<< HEAD
-	pda_type = /obj/item/device/pda/explorer //VORESTation Edit - Better Brown
-	id_type = /obj/item/weapon/card/id/science/explorer
-=======
-	pda_type = /obj/item/pda/cargo // Brown looks more rugged
+	pda_type = /obj/item/pda/explorer //VORESTation Edit - Better Brown
 	id_type = /obj/item/card/id/science/explorer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	id_pda_assignment = "Explorer"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/planetside = 1)
@@ -52,13 +47,8 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	uniform_accessories = list(/obj/item/clothing/accessory/storage/webbing/pilot1 = 1)
 	id_slot = slot_wear_id
 	pda_slot = slot_belt
-<<<<<<< HEAD
-	pda_type = /obj/item/device/pda //VOREStation Edit - Civilian
-	id_type = /obj/item/weapon/card/id/civilian/pilot
-=======
-	pda_type = /obj/item/pda/cargo // Brown looks more rugged
+	pda_type = /obj/item/pda //VOREStation Edit - Civilian
 	id_type = /obj/item/card/id/civilian/pilot
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	id_pda_assignment = "Pilot"
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_COMPREHENSIVE_SURVIVAL
 
@@ -71,13 +61,7 @@ Keep outfits simple. Spawn with basic uniforms and minimal gear. Gear instead go
 	l_hand = /obj/item/storage/firstaid/regular
 	belt = /obj/item/storage/belt/medical/emt
 	pda_slot = slot_l_store
-<<<<<<< HEAD
-	id_type = /obj/item/weapon/card/id/medical/sar
-	pda_type = /obj/item/device/pda/sar //VOREStation Add
+	id_type = /obj/item/card/id/medical/sar
+	pda_type = /obj/item/pda/sar //VOREStation Add
 	id_pda_assignment = "Field Medic" //VOREStation Edit
 	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
-=======
-	id_type = /obj/item/card/id/medical/sar
-	id_pda_assignment = "Search and Rescue"
-	flags = OUTFIT_HAS_BACKPACK|OUTFIT_EXTENDED_SURVIVAL|OUTFIT_COMPREHENSIVE_SURVIVAL
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

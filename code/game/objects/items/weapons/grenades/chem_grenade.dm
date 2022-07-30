@@ -11,13 +11,9 @@
 	var/stage = 0
 	var/state = 0
 	var/path = 0
-<<<<<<< HEAD
 	/// If TRUE, grenade is permanently sealed when fully assembled, useful for things like off-the-shelf grenades.
 	var/sealed = FALSE
-	var/obj/item/device/assembly_holder/detonator = null
-=======
 	var/obj/item/assembly_holder/detonator = null
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/list/beakers = new/list()
 	var/list/allowed_containers = list(/obj/item/reagent_containers/glass/beaker, /obj/item/reagent_containers/glass/bottle)
 	var/affected_area = 3
@@ -58,15 +54,9 @@
 			var/mob/living/carbon/C = user
 			C.throw_mode_on()
 
-<<<<<<< HEAD
-/obj/item/weapon/grenade/chem_grenade/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && !detonator && path != 2)
-		var/obj/item/device/assembly_holder/det = W
-=======
 /obj/item/grenade/chem_grenade/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/assembly_holder) && (!stage || stage==1) && path != 2)
+	if(istype(W,/obj/item/assembly_holder) && (!stage || stage==1) && !detonator && path != 2)
 		var/obj/item/assembly_holder/det = W
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
 			to_chat(user, "<span class='warning'>Assembly must contain one igniter.</span>")
 			return

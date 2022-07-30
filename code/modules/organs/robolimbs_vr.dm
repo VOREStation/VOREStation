@@ -39,7 +39,7 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	suggested_species = SPECIES_VULPKANIN
 	whitelisted_to = list("arokha")
 
-/obj/item/weapon/disk/limb/kitsuhana
+/obj/item/disk/limb/kitsuhana
 	company = "Kitsuhana"
 
 // silencedmp5a5 : Serdykov Antoz
@@ -52,7 +52,7 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	includes_tail = 1
 	whitelisted_to = list("silencedmp5a5")
 
-/obj/item/weapon/disk/limb/white_kryten
+/obj/item/disk/limb/white_kryten
 	company = "White Kryten Cybernetics"
 
 // tucker0666 : Frost
@@ -66,7 +66,7 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
     unavailable_to_build = 1
     whitelisted_to = list("tucker0666")
 
-/obj/item/weapon/disk/limb/zenghu_frost
+/obj/item/disk/limb/zenghu_frost
     company = "Zeng-Hu (Modified)"
     catalogue_data = list(/datum/category_item/catalogue/information/organization/zeng_hu)
 
@@ -80,5 +80,5 @@ var/const/cyberbeast_monitor_styles = "blank=cyber_blank;\
 	monitor_icon = 'icons/mob/monitor_icons_vr.dmi'
 	monitor_styles = cyberbeast_monitor_styles
 
-/obj/item/weapon/disk/limb/cyber_beast
+/obj/item/disk/limb/cyber_beast
 	company = "Cyber Tech"

@@ -47,42 +47,24 @@
 				IC.power_fail()
 
 
-<<<<<<< HEAD
-/obj/item/device/electronic_assembly/proc/check_interactivity(mob/user)
-	return tgui_status(user, GLOB.tgui_physical_state) == STATUS_INTERACTIVE
-=======
-
-
-/obj/item/electronic_assembly/proc/resolve_nano_host()
-	return src
-
 /obj/item/electronic_assembly/proc/check_interactivity(mob/user)
-	if(!CanInteract(user, physical_state))
-		return 0
-	return 1
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	return tgui_status(user, GLOB.tgui_physical_state) == STATUS_INTERACTIVE
 
 /obj/item/electronic_assembly/get_cell()
 	return battery
 
-<<<<<<< HEAD
 // TGUI
-/obj/item/device/electronic_assembly/tgui_state(mob/user)
+/obj/item/electronic_assembly/tgui_state(mob/user)
 	return GLOB.tgui_physical_state
 
-/obj/item/device/electronic_assembly/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/electronic_assembly/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICAssembly", name, parent_ui)
 		ui.open()
 
-/obj/item/device/electronic_assembly/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/electronic_assembly/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-=======
-/obj/item/electronic_assembly/interact(mob/user)
-	if(!check_interactivity(user))
-		return
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/total_parts = 0
 	var/total_complexity = 0
@@ -115,23 +97,7 @@
 
 	return data
 
-<<<<<<< HEAD
-/obj/item/device/electronic_assembly/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
-=======
-	for(var/obj/item/integrated_circuit/circuit in contents)
-		if(circuit.removable)
-			HTML += "<a href=?src=\ref[circuit];examine=1;from_assembly=1>[circuit.displayed_name]</a> | "
-			HTML += "<a href=?src=\ref[circuit];rename=1;from_assembly=1>\[Rename\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];scan=1;from_assembly=1>\[Scan with Debugger\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];remove=1;from_assembly=1>\[Remove\]</a> | "
-			HTML += "<a href=?src=\ref[circuit];bottom=\ref[circuit];from_assembly=1>\[Move to Bottom\]</a>"
-			HTML += "<br>"
-
-	HTML += "</body></html>"
-	user << browse(jointext(HTML,null), "window=assembly-\ref[src];size=600x350;border=1;can_resize=1;can_close=1;can_minimize=1")
-
-/obj/item/electronic_assembly/Topic(href, href_list[])
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/electronic_assembly/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -173,8 +139,8 @@
 			var/obj/item/integrated_circuit/C = locate(params["ref"]) in contents
 			if(!istype(C))
 				return
-			if(istype(held_item, /obj/item/device/integrated_electronics/debugger))
-				var/obj/item/device/integrated_electronics/debugger/D = held_item
+			if(istype(held_item, /obj/item/integrated_electronics/debugger))
+				var/obj/item/integrated_electronics/debugger/D = held_item
 				if(D.accepting_refs)
 					D.afterattack(C, usr, TRUE)
 				else

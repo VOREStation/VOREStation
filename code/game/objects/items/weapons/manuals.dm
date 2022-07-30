@@ -13,13 +13,8 @@
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Station Repairs and Construction"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/engineering_construction/New()
-	..()
-=======
 /obj/item/book/manual/engineering_construction/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>
@@ -40,13 +35,8 @@
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Particle Accelerator User's Guide"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/engineering_particle_accelerator/New()
-	..()
-=======
 /obj/item/book/manual/engineering_particle_accelerator/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -93,13 +83,8 @@
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/supermatter_engine/New()
-	..()
-=======
 /obj/item/book/manual/supermatter_engine/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -252,13 +237,8 @@
 	author = "Cindy Crawfish"
 	title = "R-UST Operating Manual"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/rust_engine/New()
-	..()
-=======
 /obj/item/book/manual/rust_engine/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -298,13 +278,8 @@
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Hacking"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/engineering_hacking/New()
-	..()
-=======
 /obj/item/book/manual/engineering_hacking/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>
@@ -884,13 +859,8 @@
 	author = "The Company"
 	title = "Corporate Regulations"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/security_space_law/New()
-	..()
-=======
 /obj/item/book/manual/security_space_law/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>
@@ -914,13 +884,8 @@
 	author = "Medical Department"
 	title = "Medical Diagnostics Manual"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/medical_diagnostics_manual/New()
-	..()
-=======
 /obj/item/book/manual/medical_diagnostics_manual/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"<html>
 				<head>
 				<style>
@@ -967,13 +932,8 @@
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
 
-<<<<<<< HEAD
-/obj/item/weapon/book/manual/engineering_guide/New()
-	..()
-=======
 /obj/item/book/manual/engineering_guide/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	dat = {"
 
 		<html><head>

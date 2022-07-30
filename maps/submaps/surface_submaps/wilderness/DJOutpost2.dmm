@@ -1,12 +1,7 @@
 "a" = (/turf/template_noop,/area/template_noop)
 "b" = (/turf/simulated/wall/wood,/area/submap/DJOutpost1)
-<<<<<<< HEAD
-"c" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard,/obj/item/weapon/material/shard{ icon_state = "shardmedium"},/obj/item/stack/rods,/turf/simulated/floor,/area/submap/DJOutpost1)
-"d" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/DJOutpost1)
-=======
-"c" = (/obj/structure/grille/broken,/obj/item/material/shard,/obj/item/material/shard{icon_state = "shardmedium"},/obj/item/stack/rods,/turf/simulated/floor,/area/submap/DJOutpost1)
+"c" = (/obj/structure/grille/broken,/obj/item/material/shard,/obj/item/material/shard{ icon_state = "shardmedium"},/obj/item/stack/rods,/turf/simulated/floor,/area/submap/DJOutpost1)
 "d" = (/obj/structure/grille/broken,/obj/item/material/shard,/turf/simulated/floor,/area/submap/DJOutpost1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "e" = (/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "f" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "g" = (/obj/structure/sign/goldenplaque{desc = "An award given to Sif Free Radio for media excellency. It looks fake."; name = "Best Radio Station 2558"; pixel_y = 30},/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
@@ -18,36 +13,20 @@
 "n" = (/obj/item/stack/rods,/turf/template_noop,/area/template_noop)
 "o" = (/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
 "p" = (/obj/structure/loot_pile/surface/bones,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
-<<<<<<< HEAD
-"q" = (/obj/structure/table/steel_reinforced,/obj/item/device/radio,/obj/structure/cable/yellow,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
+"q" = (/obj/structure/table/steel_reinforced,/obj/item/radio,/obj/structure/cable/yellow,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "r" = (/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "s" = (/obj/effect/overlay/snow/floor,/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
 "u" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
-"w" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{ icon_state = "shardmedium"},/turf/simulated/floor,/area/submap/DJOutpost1)
-=======
-"q" = (/obj/structure/table/steel_reinforced,/obj/item/radio{start_anomalous = 1},/obj/structure/cable/yellow,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
-"r" = (/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
-"s" = (/obj/effect/overlay/snow/floor,/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
-"u" = (/obj/effect/decal/cleanable/ash,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
-"w" = (/obj/structure/grille/broken,/obj/item/material/shard{icon_state = "shardmedium"},/turf/simulated/floor,/area/submap/DJOutpost1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"w" = (/obj/structure/grille/broken,/obj/item/material/shard{ icon_state = "shardmedium"},/turf/simulated/floor,/area/submap/DJOutpost1)
 "x" = (/obj/structure/girder,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "y" = (/obj/structure/table/steel_reinforced,/obj/item/radio/intercom/syndicate{desc = "Talk through this."; name = "station intercom (General)"},/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
 "A" = (/obj/item/stack/rods,/turf/simulated/floor/outdoors/dirt,/area/submap/DJOutpost1)
 "B" = (/obj/structure/door_assembly/door_assembly_ext,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
-<<<<<<< HEAD
-"C" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{icon_state = "medium"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/submap/DJOutpost1)
-"D" = (/obj/item/weapon/material/shard{ icon_state = "shardmedium"},/turf/template_noop,/area/template_noop)
-"F" = (/obj/item/device/transfer_valve,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
-"G" = (/obj/structure/grille/broken,/obj/item/weapon/material/shard{icon_state = "medium"},/turf/simulated/floor,/area/submap/DJOutpost1)
-"H" = (/obj/item/weapon/material/shard{icon_state = "medium"},/turf/template_noop,/area/template_noop)
-=======
 "C" = (/obj/structure/grille/broken,/obj/item/material/shard{icon_state = "medium"},/obj/structure/cable/yellow{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor,/area/submap/DJOutpost1)
-"D" = (/obj/item/material/shard{icon_state = "shardmedium"},/turf/template_noop,/area/template_noop)
-"F" = (/obj/item/transfer_valve{start_anomalous = 1},/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
+"D" = (/obj/item/material/shard{ icon_state = "shardmedium"},/turf/template_noop,/area/template_noop)
+"F" = (/obj/item/transfer_valve,/turf/simulated/floor/outdoors/rocks,/area/submap/DJOutpost1)
 "G" = (/obj/structure/grille/broken,/obj/item/material/shard{icon_state = "medium"},/turf/simulated/floor,/area/submap/DJOutpost1)
 "H" = (/obj/item/material/shard{icon_state = "medium"},/turf/template_noop,/area/template_noop)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "I" = (/obj/machinery/door/airlock/external,/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)
 "J" = (/obj/item/material/shard,/turf/template_noop,/area/template_noop)
 "K" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 15},/turf/simulated/floor/wood/broken,/area/submap/DJOutpost1)

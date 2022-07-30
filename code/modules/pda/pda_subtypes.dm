@@ -43,11 +43,7 @@
 	default_cartridge = /obj/item/cartridge/mime
 	icon_state = "pda-mime"
 
-<<<<<<< HEAD
-/obj/item/device/pda/mime/New()
-=======
 /obj/item/pda/mime/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
 	if(M)
@@ -132,11 +128,7 @@
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
 	model_name = "Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant"
 
-<<<<<<< HEAD
-/obj/item/device/pda/librarian/New()
-=======
 /obj/item/pda/librarian/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
 	if(M)
@@ -179,79 +171,44 @@
 	)
 	var/list/cartridges_to_send_to = list()
 
-<<<<<<< HEAD
-/obj/item/device/pda/multicaster/command/New()
-	..()
-=======
 /obj/item/pda/multicaster/command/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	owner = "Command Department"
 	name = "Command Department (Relay)"
 	cartridges_to_send_to = command_cartridges
 
-<<<<<<< HEAD
-/obj/item/device/pda/multicaster/security/New()
-	..()
-=======
 /obj/item/pda/multicaster/security/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	owner = "Security Department"
 	name = "Security Department (Relay)"
 	cartridges_to_send_to = security_cartridges
 
-<<<<<<< HEAD
-/obj/item/device/pda/multicaster/engineering/New()
-	..()
-=======
 /obj/item/pda/multicaster/engineering/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	owner = "Engineering Department"
 	name = "Engineering Department (Relay)"
 	cartridges_to_send_to = engineering_cartridges
 
-<<<<<<< HEAD
-/obj/item/device/pda/multicaster/medical/New()
-	..()
-=======
 /obj/item/pda/multicaster/medical/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	owner = "Medical Department"
 	name = "Medical Department (Relay)"
 	cartridges_to_send_to = medical_cartridges
 
-<<<<<<< HEAD
-/obj/item/device/pda/multicaster/research/New()
-	..()
-=======
 /obj/item/pda/multicaster/research/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	owner = "Research Department"
 	name = "Research Department (Relay)"
 	cartridges_to_send_to = research_cartridges
 
-<<<<<<< HEAD
-/obj/item/device/pda/multicaster/cargo/New()
-	..()
-=======
 /obj/item/pda/multicaster/cargo/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	owner = "Cargo Department"
 	name = "Cargo Department (Relay)"
 	cartridges_to_send_to = cargo_cartridges
 
-<<<<<<< HEAD
-/obj/item/device/pda/multicaster/civilian/New()
-	..()
-=======
 /obj/item/pda/multicaster/civilian/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	owner = "Civilian Services Department"
 	name = "Civilian Services Department (Relay)"
 	cartridges_to_send_to = civilian_cartridges
@@ -273,21 +230,6 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/PDAs/New()
-	..()
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/device/pda(src)
-	new /obj/item/weapon/cartridge/head(src)
-
-	var/newcart = pick(	/obj/item/weapon/cartridge/engineering,
-						/obj/item/weapon/cartridge/security,
-						/obj/item/weapon/cartridge/medical,
-						/obj/item/weapon/cartridge/signal/science,
-						/obj/item/weapon/cartridge/quartermaster)
-=======
 /obj/item/storage/box/PDAs/Initialize()
 	. = ..()
 	new /obj/item/pda(src)
@@ -301,5 +243,4 @@
 						/obj/item/cartridge/medical,
 						/obj/item/cartridge/signal/science,
 						/obj/item/cartridge/quartermaster)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	new newcart(src)

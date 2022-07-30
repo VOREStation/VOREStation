@@ -10,7 +10,7 @@
 	id = "ore_holding"
 	req_tech = list(TECH_BLUESPACE = 2, TECH_MATERIAL = 3)
 	materials = list(MAT_GOLD = 1000, MAT_DIAMOND = 500, MAT_URANIUM = 250) // Less expensive since it can only hold ores
-	build_path = /obj/item/weapon/storage/bag/ore/holding
+	build_path = /obj/item/storage/bag/ore/holding
 	sort_string = "QAAAA"
 
 /datum/design/item/boh/bag_holding
@@ -18,13 +18,8 @@
 	desc = "Using localized pockets of bluespace this bag prototype offers incredible storage capacity with the contents weighting nothing. It's a shame the bag itself is pretty heavy."
 	id = "bag_holding"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
-<<<<<<< HEAD
 	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 1500, MAT_URANIUM = 250)
-	build_path = /obj/item/weapon/storage/backpack/holding
-=======
-	materials = list("gold" = 3000, "diamond" = 1500, "uranium" = 250)
 	build_path = /obj/item/storage/backpack/holding
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "QAAAA"
 
 /datum/design/item/boh/dufflebag_holding
@@ -32,9 +27,8 @@
 	desc = "A minaturized prototype of the popular Bag of Holding, the Dufflebag of Holding is, functionally, identical to the bag of holding, but comes in a more stylish and compact form."
 	id = "dufflebag_holding"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
-<<<<<<< HEAD
 	materials = list(MAT_GOLD = 3000, MAT_DIAMOND = 1500, MAT_URANIUM = 250)
-	build_path = /obj/item/weapon/storage/backpack/holding/duffle
+	build_path = /obj/item/storage/backpack/holding/duffle
 	sort_string = "QAAAB"
 
 /datum/design/item/boh/trashbag_holding
@@ -43,7 +37,7 @@
 	id = "trashbag_holding"
 	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 5)
 	materials = list("gold" = 2000, "diamond" = 1000, "uranium" = 250)
-	build_path = /obj/item/weapon/storage/bag/trash/holding
+	build_path = /obj/item/storage/bag/trash/holding
 	sort_string = "QAAAC"
 
 /datum/design/item/boh/pouch_holding
@@ -52,9 +46,9 @@
 	id = "pouch_holding"
 	req_tech = list(TECH_BLUESPACE = 3, TECH_MATERIAL = 5)
 	materials = list("gold" = 3000, "diamond" = 2000, "uranium" = 250)
-	build_path = /obj/item/weapon/storage/pouch/holding
+	build_path = /obj/item/storage/pouch/holding
 	sort_string = "QAAAD"
-	
+
 
 /datum/design/item/boh/belt_holding_med
 	name = "Medical Belt of Holding"
@@ -62,7 +56,7 @@
 	id = "belt_holding_med"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	materials = list("gold" = 3000, "diamond" = 2000, "titanium" = 500)
-	build_path = /obj/item/weapon/storage/belt/medical/holding
+	build_path = /obj/item/storage/belt/medical/holding
 	sort_string = "QAAAE"
 
 /datum/design/item/boh/belt_holding_utility
@@ -71,11 +65,5 @@
 	id = "belt_holding_utility"
 	req_tech = list(TECH_BLUESPACE = 4, TECH_MATERIAL = 6)
 	materials = list("gold" = 3000, "diamond" = 2000, "titanium" = 500)
-	build_path = /obj/item/weapon/storage/belt/utility/holding
+	build_path = /obj/item/storage/belt/utility/holding
 	sort_string = "QAAAF"
-	
-=======
-	materials = list("gold" = 3000, "diamond" = 1500, "uranium" = 250)
-	build_path = /obj/item/storage/backpack/holding/duffle
-	sort_string = "QAAAB"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

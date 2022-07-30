@@ -12,14 +12,14 @@
 	playsound(src,'sound/items/screwdriver.ogg', 50, 1)
 
 //Prescription kit
-/obj/item/device/glasses_kit
+/obj/item/glasses_kit
 	name = "prescription glasses kit"
 	desc = "A kit containing all the needed tools and parts to develop and apply a prescription for someone."
 	icon = 'icons/obj/device.dmi'
 	icon_state = "modkit"
 	var/scrip_loaded = 0
 
-/obj/item/device/glasses_kit/afterattack(var/target, var/mob/living/carbon/human/user, var/proximity)
+/obj/item/glasses_kit/afterattack(var/target, var/mob/living/carbon/human/user, var/proximity)
 	if(!proximity)
 		return
 	if(!istype(user))

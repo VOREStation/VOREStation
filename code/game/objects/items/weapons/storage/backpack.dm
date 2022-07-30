@@ -136,23 +136,7 @@
 /obj/item/storage/backpack/chemistry
 	name = "chemistry backpack"
 	desc = "It's an orange backpack which was designed to hold beakers, pill bottles and bottles."
-<<<<<<< HEAD
 	icon_state = "backpack_orange"
-=======
-	icon_state = "chempack"
-
-/obj/item/storage/backpack/white
-	name = "white backpack"
-	icon_state = "backpack_white"
-
-/obj/item/storage/backpack/fancy
-	name = "fancy backpack"
-	icon_state = "backpack_fancy"
-
-/obj/item/storage/backpack/military
-	name = "military backpack"
-	icon_state = "backpack_military"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /*
  * Duffle Types
@@ -293,23 +277,7 @@
 /obj/item/storage/backpack/satchel/cap
 	name = "site manager's satchel"
 	desc = "An exclusive satchel for officers."
-<<<<<<< HEAD
 	icon_state = "satchel_captain"
-=======
-	icon_state = "satchel-cap"
-
-/obj/item/storage/backpack/satchel/white
-	name = "white satchel"
-	icon_state = "satchel_white"
-
-/obj/item/storage/backpack/satchel/fancy
-	name = "fancy satchel"
-	icon_state = "satchel_fancy"
-
-/obj/item/storage/backpack/satchel/military
-	name = "military satchel"
-	icon_state = "satchel_military"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 //ERT backpacks.
 /obj/item/storage/backpack/ert
@@ -397,15 +365,9 @@
 	icon_state = "courier_security"
 	item_state_slots = list(slot_r_hand_str = "satchel_security", slot_l_hand_str = "satchel_security")
 
-<<<<<<< HEAD
 /obj/item/weapon/storage/backpack/messenger/black
 	icon_state = "courier_black"
 
-=======
-/obj/item/storage/backpack/messenger/black
-	icon_state = "courierbagblk"
-	item_state_slots = list(slot_r_hand_str = "satchel-sec", slot_l_hand_str = "satchel-sec")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /*
  * Sport Bags

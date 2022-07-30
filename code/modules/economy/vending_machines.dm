@@ -119,13 +119,13 @@
 	vending_sound = "machines/vending/vending_cans.ogg"
 
 /obj/machinery/vending/assist
-	products = list(	/obj/item/device/assembly/prox_sensor = 5,
-						/obj/item/device/assembly/igniter = 3,
-						/obj/item/device/assembly/signaler = 4,
+	products = list(	/obj/item/assembly/prox_sensor = 5,
+						/obj/item/assembly/igniter = 3,
+						/obj/item/assembly/signaler = 4,
 						/obj/item/weapon/tool/wirecutters = 1,
 						/obj/item/weapon/cartridge/signal = 4)
-	contraband = list(/obj/item/device/flashlight = 5,
-						/obj/item/device/assembly/timer = 2)
+	contraband = list(/obj/item/flashlight = 5,
+						/obj/item/assembly/timer = 2)
 	product_ads = "Only the finest!;Have some tools.;The most robust equipment.;The finest gear in space!"
 
 /obj/machinery/vending/coffee
@@ -308,7 +308,7 @@
 	icon_state = "cart"
 	req_access = list(access_hop)
 	products = list(/obj/item/weapon/cartridge/medical = 10,/obj/item/weapon/cartridge/engineering = 10,/obj/item/weapon/cartridge/security = 10,
-					/obj/item/weapon/cartridge/janitor = 10,/obj/item/weapon/cartridge/signal/science = 10,/obj/item/device/pda/heads = 10,
+					/obj/item/weapon/cartridge/janitor = 10,/obj/item/weapon/cartridge/signal/science = 10,/obj/item/pda/heads = 10,
 					/obj/item/weapon/cartridge/captain = 3,/obj/item/weapon/cartridge/quartermaster = 10)
 	req_log_access = access_hop
 	has_logs = 1
@@ -390,7 +390,7 @@
 					/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
 					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,
 					/obj/item/weapon/reagent_containers/syringe = 12,
-					/obj/item/device/healthanalyzer = 5,
+					/obj/item/healthanalyzer = 5,
 					/obj/item/weapon/reagent_containers/glass/beaker = 4,
 					/obj/item/weapon/reagent_containers/dropper = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 6,
@@ -411,11 +411,11 @@
 	products = list(/obj/item/clothing/under/rank/scientist = 6,
 					/obj/item/clothing/suit/bio_suit = 6,
 					/obj/item/clothing/head/bio_hood = 6,
-					/obj/item/device/transfer_valve = 6,
-					/obj/item/device/assembly/timer = 6,
-					/obj/item/device/assembly/signaler = 6,
-					/obj/item/device/assembly/prox_sensor = 6,
-					/obj/item/device/assembly/igniter = 6)
+					/obj/item/transfer_valve = 6,
+					/obj/item/assembly/timer = 6,
+					/obj/item/assembly/signaler = 6,
+					/obj/item/assembly/prox_sensor = 6,
+					/obj/item/assembly/igniter = 6)
 	req_log_access = access_rd
 	has_logs = 1
 
@@ -430,7 +430,7 @@
 	products = list(/obj/item/stack/medical/bruise_pack = 2,
 				/obj/item/stack/medical/ointment = 2,
 				/obj/item/weapon/reagent_containers/hypospray/autoinjector = 4,
-				/obj/item/device/healthanalyzer = 1)
+				/obj/item/healthanalyzer = 1)
 	contraband = list(/obj/item/weapon/reagent_containers/syringe/antitoxin = 4,
 				/obj/item/weapon/reagent_containers/syringe/antiviral = 4,
 				/obj/item/weapon/reagent_containers/pill/tox = 1)
@@ -449,14 +449,14 @@
 				/obj/item/weapon/reagent_containers/syringe/antitoxin = 3,
 				/obj/item/stack/medical/bruise_pack = 3,
 				/obj/item/stack/medical/ointment =3,
-				/obj/item/device/healthanalyzer = 3)
+				/obj/item/healthanalyzer = 3)
 	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3)
 	req_log_access = access_cmo
 	has_logs = 1
 	can_rotate = 0
 
 /obj/machinery/vending/wallmed1/public
-	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 16,/obj/item/device/healthanalyzer = 4)
+	products = list(/obj/item/stack/medical/bruise_pack = 8,/obj/item/stack/medical/ointment = 8,/obj/item/weapon/reagent_containers/hypospray/autoinjector = 16,/obj/item/healthanalyzer = 4)
 
 /obj/machinery/vending/security
 	name = "SecTech"
@@ -467,7 +467,7 @@
 	req_access = list(access_security)
 	products = list(/obj/item/weapon/handcuffs = 8,
 					/obj/item/weapon/grenade/flashbang = 4,
-					/obj/item/device/flash = 5,
+					/obj/item/flash = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/donut/plain = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/donut/plain/jelly = 6,
 					/obj/item/weapon/storage/box/evidence = 6)
@@ -626,15 +626,15 @@
 					/obj/item/weapon/weldingtool = 3,
 					/obj/item/weapon/tool/wirecutters = 5,
 					/obj/item/weapon/tool/wrench = 5,
-					/obj/item/device/analyzer = 5,
-					/obj/item/device/t_scanner = 5,
+					/obj/item/analyzer = 5,
+					/obj/item/t_scanner = 5,
 					/obj/item/weapon/tool/screwdriver = 5,
 					/obj/item/weapon/extinguisher/mini = 3,
-					/obj/item/device/flashlight/glowstick = 3,
-					/obj/item/device/flashlight/glowstick/red = 3,
-					/obj/item/device/flashlight/glowstick/blue = 3,
-					/obj/item/device/flashlight/glowstick/orange =3,
-					/obj/item/device/flashlight/glowstick/yellow = 3)
+					/obj/item/flashlight/glowstick = 3,
+					/obj/item/flashlight/glowstick/red = 3,
+					/obj/item/flashlight/glowstick/blue = 3,
+					/obj/item/flashlight/glowstick/orange =3,
+					/obj/item/flashlight/glowstick/yellow = 3)
 	contraband = list(/obj/item/weapon/weldingtool/hugetank = 2,
 					/obj/item/clothing/gloves/fyellow = 2)
 	premium = list(/obj/item/clothing/gloves/heavy_engineer = 1) //VOREStation Edit - yellow gloves are common in engineering, let's make "premium" actually mean something
@@ -646,9 +646,9 @@
 	desc = "Spare tool vending. What? Did you expect some witty description?"
 	icon_state = "engivend"
 	req_access = list(access_engine_equip)
-	products = list(/obj/item/device/geiger = 4,
+	products = list(/obj/item/geiger = 4,
 					/obj/item/clothing/glasses/meson = 2,
-					/obj/item/device/multitool = 4,
+					/obj/item/multitool = 4,
 					/obj/item/weapon/cell/high = 10,
 					/obj/item/weapon/airlock_electronics = 10,
 					/obj/item/weapon/module/power_control = 10,
@@ -699,9 +699,9 @@
 					/obj/item/weapon/tool/screwdriver = 12,
 					/obj/item/weapon/tool/crowbar = 12,
 					/obj/item/weapon/tool/wirecutters = 12,
-					/obj/item/device/multitool = 12,
+					/obj/item/multitool = 12,
 					/obj/item/weapon/tool/wrench = 12,
-					/obj/item/device/t_scanner = 12,
+					/obj/item/t_scanner = 12,
 					/obj/item/stack/cable_coil/heavyduty = 8,
 					/obj/item/weapon/cell = 8,
 					/obj/item/weapon/weldingtool = 8,
@@ -725,11 +725,11 @@
 	products = list(/obj/item/clothing/suit/storage/toggle/labcoat = 4,
 					/obj/item/clothing/under/rank/roboticist = 4,
 					/obj/item/stack/cable_coil = 4,
-					/obj/item/device/flash = 4,
+					/obj/item/flash = 4,
 					/obj/item/weapon/cell/high = 12,
-					/obj/item/device/assembly/prox_sensor = 3,
-					/obj/item/device/assembly/signaler = 3,
-					/obj/item/device/healthanalyzer = 3,
+					/obj/item/assembly/prox_sensor = 3,
+					/obj/item/assembly/signaler = 3,
+					/obj/item/healthanalyzer = 3,
 					/obj/item/weapon/surgical/scalpel = 2,
 					/obj/item/weapon/surgical/circular_saw = 2,
 					/obj/item/weapon/tank/anesthetic = 2,
@@ -771,7 +771,7 @@
 					/obj/item/toy/plushie/carp = 1,
 					/obj/item/toy/plushie/deer = 1,
 					/obj/item/toy/plushie/tabby_cat = 1,
-					/obj/item/device/threadneedle = 3,
+					/obj/item/threadneedle = 3,
 					//VOREStation Add Start
 					/obj/item/toy/plushie/lizardplushie/kobold = 1,
 					/obj/item/toy/plushie/slimeplushie = 1,
@@ -813,7 +813,7 @@
 					/obj/item/toy/plushie/carp = 50,
 					/obj/item/toy/plushie/deer = 50,
 					/obj/item/toy/plushie/tabby_cat = 50,
-					/obj/item/device/threadneedle = 2,
+					/obj/item/threadneedle = 2,
 					//VOREStation Add Start
 					/obj/item/toy/plushie/lizardplushie/kobold = 50,
 					/obj/item/toy/plushie/slimeplushie = 50,
@@ -1465,7 +1465,7 @@
 	req_access = list(access_hydroponics)
 	products = list(
 		/obj/item/clothing/under/rank/hydroponics = 5,
-		/obj/item/device/analyzer/plant_analyzer = 5,
+		/obj/item/analyzer/plant_analyzer = 5,
 		/obj/item/clothing/head/greenbandana = 5,
 		/obj/item/weapon/material/minihoe = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hydro = 5,
@@ -1519,7 +1519,7 @@
 		/obj/item/clothing/head/soft/purple = 5,
 		/obj/item/clothing/head/beret/purple = 5,
 		/obj/item/clothing/head/headband/maid = 5,
-		/obj/item/device/radio/headset/headset_service = 5,
+		/obj/item/radio/headset/headset_service = 5,
 		/obj/item/clothing/under/rank/janitor = 5,
 		/obj/item/clothing/under/dress/maid/janitor = 5,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/janitor = 5,
@@ -1556,7 +1556,7 @@
 		/obj/item/clothing/glasses/sunglasses/big = 5,
 		/obj/item/clothing/under/lawyer/blue = 5,
 		/obj/item/clothing/under/lawyer/blue/skirt = 5,
-		/obj/item/device/tape/random = 5
+		/obj/item/tape/random = 5
 	)
 	req_log_access = access_hop
 	has_logs = 1

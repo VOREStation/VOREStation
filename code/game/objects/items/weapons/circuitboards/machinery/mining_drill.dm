@@ -8,16 +8,10 @@
 	board_type = new /datum/frame/frame_types/machine
 	origin_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
 	req_components = list(
-<<<<<<< HEAD
-							/obj/item/weapon/stock_parts/capacitor = 1,
-							/obj/item/weapon/stock_parts/matter_bin = 1,
-							/obj/item/weapon/stock_parts/micro_laser = 1)
-=======
 							/obj/item/stock_parts/capacitor = 1,
 							/obj/item/cell = 1,
 							/obj/item/stock_parts/matter_bin = 1,
 							/obj/item/stock_parts/micro_laser = 1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/circuitboard/miningdrillbrace
 	name = T_BOARD("mining drill brace")

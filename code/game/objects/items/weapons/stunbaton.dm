@@ -23,13 +23,8 @@
 	var/hitcost = 240
 	var/use_external_power = FALSE //only used to determine if it's a cyborg baton
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/baton/New()
-	..()
-=======
 /obj/item/melee/baton/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	update_icon()
 	return
 
@@ -68,31 +63,14 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/baton/loaded/New() //this one starts with a cell pre-installed.
-	..()
-	bcell = new/obj/item/weapon/cell/device/weapon(src)
-=======
 /obj/item/melee/baton/loaded/Initialize() //this one starts with a cell pre-installed.
 	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	update_icon()
 	return
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/baton/proc/deductcharge(var/chrgdeductamt)
-	if(status == 1)		//Only deducts charge when it's on
-		if(bcell)
-			if(bcell.checked_use(chrgdeductamt))
-				return 1
-			else
-				return 0
-	return null
-=======
 /obj/item/melee/baton/proc/deductcharge(var/chrgdeductamt)
 	return (status == 1 && bcell?.checked_use(chrgdeductamt))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/melee/baton/proc/powercheck(var/chrgdeductamt)
 	if(bcell)

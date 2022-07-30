@@ -104,12 +104,8 @@ var/list/ai_verbs_default = list(
 	src.verbs -= ai_verbs_default
 	src.verbs -= silicon_subsystems
 
-<<<<<<< HEAD
-/mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
-=======
 /mob/living/silicon/ai/Initialize(var/ml, var/datum/ai_laws/L, var/obj/item/mmi/B, var/safety = 0)
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"

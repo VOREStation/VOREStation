@@ -38,13 +38,8 @@
 "aL" = (/obj/item/circuitboard/broken,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "aM" = (/obj/structure/frame,/obj/item/circuitboard/broken,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "aN" = (/obj/structure/table/steel_reinforced,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
-<<<<<<< HEAD
-"aO" = (/obj/structure/closet/walllocker/emerglocker/north,/obj/structure/frame,/obj/item/weapon/circuitboard/broken,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
-"aP" = (/turf/simulated/floor/outdoors/rocks,/area/submap/crashedcontainmentshuttle)
-=======
 "aO" = (/obj/structure/closet/walllocker/emerglocker/north,/obj/structure/frame,/obj/item/circuitboard/broken,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
 "aP" = (/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/crashedcontainmentshuttle)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "aQ" = (/obj/structure/grille{density = 0; icon_state = "brokengrille"},/obj/structure/lattice,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "aR" = (/obj/structure/shuttle/engine/heater{dir = 8},/obj/structure/window/reinforced{dir = 4; health = 1e+006},/turf/template_noop,/area/submap/crashedcontainmentshuttle)
 "aS" = (/obj/structure/door_assembly/door_assembly_highsecurity{anchored = 1},/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
@@ -59,21 +54,12 @@
 "bb" = (/obj/effect/decal/cleanable/blood/drip,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bc" = (/obj/structure/door_assembly,/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
 "bd" = (/obj/item/clothing/head/helmet/space/cult,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
-<<<<<<< HEAD
-"be" = (/obj/item/weapon/material/knife/ritual,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
-=======
 "be" = (/obj/item/material/knife/ritual{start_anomalous = 1},/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "bf" = (/obj/structure/bed/chair/office/dark{dir = 8},/obj/effect/decal/remains/human,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "bg" = (/obj/effect/gibspawner/generic,/turf/template_noop,/area/submap/crashedcontainmentshuttle)
 "bh" = (/obj/effect/decal/remains/human,/turf/simulated/shuttle/floor/yellow,/area/submap/crashedcontainmentshuttle)
-<<<<<<< HEAD
-"bi" = (/obj/item/weapon/circuitboard/broken,/obj/effect/decal/remains/human,/obj/item/weapon/gun/energy/laser,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
-"bj" = (/obj/item/device/gps/internal/poi,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
-=======
 "bi" = (/obj/item/circuitboard/broken,/obj/effect/decal/remains/human,/obj/random/energy/highend,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bj" = (/obj/item/gps/internal/poi,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "bk" = (/obj/effect/decal/cleanable/vomit,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
 "bl" = (/obj/effect/decal/remains/robot,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
 "bm" = (/obj/effect/decal/cleanable/liquid_fuel,/turf/template_noop,/area/submap/crashedcontainmentshuttle)
@@ -103,14 +89,9 @@
 "bK" = (/obj/random/landmine,/turf/simulated/shuttle/floor/yellow,/area/submap/crashedcontainmentshuttle)
 "bL" = (/obj/effect/decal/cleanable/blood,/obj/random/landmine,/turf/simulated/shuttle/floor/red,/area/submap/crashedcontainmentshuttle)
 "bM" = (/obj/structure/reagent_dispensers/fueltank,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
-<<<<<<< HEAD
-"bN" = (/obj/structure/toilet{dir = 8},/obj/effect/gibspawner/generic,/obj/effect/decal/remains/human,/obj/item/weapon/card/id/syndicate{age = "\\42"; blood_type = "\\O+"; desc = "A strange ID card."; dna_hash = "\[REDACTED]"; fingerprint_hash = "\\------"; name = "Aaron Presley's ID Card(Delivery Service) "; registered_name = "Aaron Presley"; sex = "\\Male"},/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
-"bO" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/remains/human,/obj/item/weapon/flame/lighter/random,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
-=======
 "bN" = (/obj/structure/toilet{dir = 8},/obj/effect/spawner/gibs/generic,/obj/effect/decal/remains/human,/obj/item/card/id/syndicate{age = "\\42"; blood_type = "\\O+"; desc = "A strange ID card."; dna_hash = "\[REDACTED]"; fingerprint_hash = "\\------"; name = "Aaron Presley's ID Card(Delivery Service) "; registered_name = "Aaron Presley"; sex = "\\Male"},/turf/simulated/shuttle/floor/white,/area/submap/crashedcontainmentshuttle)
 "bO" = (/obj/effect/decal/cleanable/liquid_fuel,/obj/effect/decal/remains/human,/obj/item/flame/lighter/random,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/crashedcontainmentshuttle)
 "ML" = (/obj/structure/table/steel_reinforced,/obj/random/maintenance/anom,/turf/simulated/shuttle/floor/black,/area/submap/crashedcontainmentshuttle)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

@@ -78,19 +78,14 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	light_color = "#FFEEDB"
 	light_range_on = 2
 	network = list(NETWORK_THUNDER)
-<<<<<<< HEAD
-	circuit = /obj/item/weapon/circuitboard/security/telescreen/entertainment
+	circuit = /obj/item/circuitboard/security/telescreen/entertainment
 	camera_datum_type = /datum/tgui_module/camera/bigscreen
-	
-	var/obj/item/device/radio/radio = null
+
+	var/obj/item/radio/radio = null
 	var/obj/effect/overlay/vis/pinboard
 	var/weakref/showing
 
 	var/enabled = TRUE // on or off
-=======
-	circuit = /obj/item/circuitboard/security/telescreen/entertainment
-	var/obj/item/radio/radio = null
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/computer/security/telescreen/entertainment/Initialize()
 	GLOB.entertainment_screens += src
@@ -98,7 +93,7 @@ GLOBAL_LIST_EMPTY(entertainment_screens)
 	var/static/icon/mask = icon('icons/obj/entertainment_monitor.dmi', "mask")
 
 	add_overlay("glass")
-	
+
 	pinboard = new()
 	pinboard.icon = icon
 	pinboard.icon_state = "pinboard"

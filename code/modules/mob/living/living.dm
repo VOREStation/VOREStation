@@ -1064,13 +1064,8 @@
 		return FALSE
 
 	var/throw_range = item.throw_range
-<<<<<<< HEAD
-	if (istype(item, /obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = item
-=======
 	if(istype(item, /obj/item/grab))
 		var/obj/item/grab/G = item
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		item = G.throw_held() //throw the person instead of the grab
 		if(ismob(item))
 			var/mob/M = item

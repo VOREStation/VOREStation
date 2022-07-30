@@ -144,7 +144,7 @@
 	var/mob/choice = tgui_input_list(usr, "Choose a player to play the pAI", "Spawn pAI", available)
 	if(!choice)
 		return 0
-	var/obj/item/device/paicard/typeb/card = new(T)
+	var/obj/item/paicard/typeb/card = new(T)
 	var/mob/living/silicon/pai/pai = new(card)
 	pai.real_name = pai.name
 	pai.key = choice.key
@@ -282,8 +282,8 @@
 		var/mob/living/carbon/human/H = M
 		if (H.wear_id)
 			var/obj/item/weapon/card/id/id = H.wear_id
-			if(istype(H.wear_id, /obj/item/device/pda))
-				var/obj/item/device/pda/pda = H.wear_id
+			if(istype(H.wear_id, /obj/item/pda))
+				var/obj/item/pda/pda = H.wear_id
 				id = pda.id
 			id.icon_state = "gold"
 			id.access = get_all_accesses().Copy()
@@ -374,7 +374,7 @@
 		if(A && !(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
 
-	for(var/obj/item/device/radio/intercom/I in machines)
+	for(var/obj/item/radio/intercom/I in machines)
 		var/area/A = get_area(I)
 		if(A && !(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)

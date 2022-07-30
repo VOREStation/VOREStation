@@ -115,19 +115,11 @@
 	desc = "This is a random shotgun-type weapon."
 	icon_state = "gun_shotgun"
 
-<<<<<<< HEAD
-/obj/random/projectile/item_to_spawn()
-	return pick(prob(4);/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
-				prob(3);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
-				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump,
-				prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat)
-=======
 /obj/random/projectile/shotgun/item_to_spawn()
 	return pick(prob(4);/obj/item/gun/projectile/shotgun/doublebarrel,
 				prob(3);/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
 				prob(3);/obj/item/gun/projectile/shotgun/pump,
 				prob(1);/obj/item/gun/projectile/shotgun/pump/combat)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/random/handgun
 	name = "Random Handgun"
@@ -162,17 +154,10 @@
 	icon_state = "ammo"
 
 /obj/random/ammo/item_to_spawn()
-<<<<<<< HEAD
 	return pick(prob(6);/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 				prob(2);/obj/item/ammo_magazine/ammo_box/b12g,
 				prob(4);/obj/item/ammo_magazine/ammo_box/b12g/pellet,
 				prob(1);/obj/item/ammo_magazine/ammo_box/b12g/stunshell,
-=======
-	return pick(prob(6);/obj/item/storage/box/beanbags,
-				prob(2);/obj/item/storage/box/shotgunammo,
-				prob(4);/obj/item/storage/box/shotgunshells,
-				prob(1);/obj/item/storage/box/stunshells,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				prob(2);/obj/item/ammo_magazine/m45,
 				prob(4);/obj/item/ammo_magazine/m45/rubber,
 				prob(4);/obj/item/ammo_magazine/m45/flash,
@@ -209,21 +194,12 @@
 	icon_state = "grenade_3"
 
 /obj/random/grenade/lethal/item_to_spawn()
-<<<<<<< HEAD
-	return pick(	prob(15);/obj/item/weapon/grenade/concussion,
-			prob(5);/obj/item/weapon/grenade/empgrenade,
-			prob(2);/obj/item/weapon/grenade/chem_grenade/incendiary,
-			prob(5);/obj/item/weapon/grenade/explosive,
-			prob(10);/obj/item/weapon/grenade/explosive/mini,
-			prob(2);/obj/item/weapon/grenade/explosive/frag
-=======
 	return pick(prob(15);/obj/item/grenade/concussion,
 			prob(5);/obj/item/grenade/empgrenade,
 			prob(2);/obj/item/grenade/chem_grenade/incendiary,
 			prob(5);/obj/item/grenade/explosive,
 			prob(10);/obj/item/grenade/explosive/mini,
 			prob(2);/obj/item/grenade/explosive/frag
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 
 /obj/random/grenade/less_lethal
@@ -338,15 +314,9 @@
 				/obj/item/ammo_magazine/clip/c762
 			),
 			prob(1);list(
-<<<<<<< HEAD
-				/obj/item/weapon/gun/projectile/garand,
+				/obj/item/gun/projectile/garand,
 				/obj/item/ammo_magazine/m762enbloc,
 				/obj/item/ammo_magazine/m762enbloc
-=======
-				/obj/item/gun/projectile/garand,
-				/obj/item/ammo_magazine/m762garand,
-				/obj/item/ammo_magazine/m762garand
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			),
 			prob(1);list(
 				/obj/item/gun/projectile/revolvingrifle,
@@ -408,15 +378,9 @@
 				/obj/item/ammo_magazine/s357
 			),
 			prob(5);list(
-<<<<<<< HEAD
-				/obj/item/weapon/gun/projectile/luger,
+				/obj/item/gun/projectile/luger,
 				/obj/item/ammo_magazine/m9mm/luger,
 				/obj/item/ammo_magazine/m9mm/luger
-=======
-				/obj/item/gun/projectile/luger,
-				/obj/item/ammo_magazine/m9mm/compact,
-				/obj/item/ammo_magazine/m9mm/compact
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			),
 			prob(4);list(
 				/obj/item/gun/projectile/luger/brown,
@@ -496,15 +460,9 @@
 				/obj/item/ammo_magazine/s44
 			),
 			prob(1);list(
-<<<<<<< HEAD
-				/obj/item/weapon/gun/projectile/revolver/consul,
+				/obj/item/gun/projectile/revolver/consul,
 				/obj/item/ammo_magazine/s44/rubber,
 				/obj/item/ammo_magazine/s44/rubber
-=======
-				/obj/item/gun/projectile/revolver/webley/auto,
-				/obj/item/ammo_magazine/s44,
-				/obj/item/ammo_magazine/s44
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 		)
 
@@ -530,21 +488,12 @@
 				/obj/item/ammo_magazine/clip/c12g/pellet
 			),
 			prob(3);list(
-<<<<<<< HEAD
-				/obj/item/weapon/gun/projectile/shotgun/pump/slug,
-				/obj/item/ammo_magazine/ammo_box/b12g
-			),
-			prob(1);list(
-				/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-				/obj/item/ammo_magazine/ammo_box/b12g
-=======
 				/obj/item/gun/projectile/shotgun/pump/slug,
-				/obj/item/storage/box/shotgunammo
+				/obj/item/ammo_magazine/ammo_box/b12g
 			),
 			prob(1);list(
 				/obj/item/gun/projectile/shotgun/pump/combat,
-				/obj/item/storage/box/shotgunammo
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				/obj/item/ammo_magazine/ammo_box/b12g
 			)
 		)
 

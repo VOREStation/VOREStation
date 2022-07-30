@@ -11,15 +11,9 @@
 	var/smoke_color
 	var/smoke_strength = 8
 
-<<<<<<< HEAD
-/obj/item/weapon/grenade/smokebomb/New()
-	..()
-	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
-=======
 /obj/item/grenade/smokebomb/Initialize()
 	. = ..()
 	src.smoke = new /datum/effect_system/smoke_spread/bad()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.smoke.attach(src)
 
 /obj/item/grenade/smokebomb/Destroy()

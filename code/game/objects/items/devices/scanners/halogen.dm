@@ -1,4 +1,4 @@
-/obj/item/device/halogen_counter
+/obj/item/halogen_counter
 	name = "halogen counter"
 	icon_state = "eftpos"
 	desc = "A hand-held halogen counter, used to detect the level of irradiation of living beings."
@@ -8,7 +8,7 @@
 	throw_speed = 3
 	throw_range = 7
 
-/obj/item/device/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
+/obj/item/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
 	if(!iscarbon(M))
 		to_chat(user, "<span class='warning'>This device can only scan organic beings!</span>")
 		return

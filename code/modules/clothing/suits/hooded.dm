@@ -377,12 +377,11 @@
 		/obj/item/flashlight,
 		/obj/item/gun,
 		/obj/item/ammo_magazine,
-<<<<<<< HEAD
-		/obj/item/weapon/melee,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/tank,
-		/obj/item/device/radio,
-		/obj/item/weapon/pickaxe
+		/obj/item/melee,
+		/obj/item/material/knife,
+		/obj/item/tank,
+		/obj/item/radio,
+		/obj/item/pickaxe
 		)
 
 /obj/item/clothing/suit/storage/hooded/techpriest
@@ -390,11 +389,3 @@
 	desc = "For those who REALLY love their toasters."
 	icon_state = "techpriest"
 	hoodtype = /obj/item/clothing/head/hood/techpriest
-=======
-		/obj/item/melee,
-		/obj/item/material/knife,
-		/obj/item/tank,
-		/obj/item/radio,
-		/obj/item/pickaxe
-		)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

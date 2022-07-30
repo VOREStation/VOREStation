@@ -226,12 +226,8 @@
 	. = list()
 	// Returns a list of mobs who can hear any of the radios given in @radios
 	var/list/speaker_coverage = list()
-<<<<<<< HEAD
-	for(var/obj/item/device/radio/R as anything in radios)
-=======
 	for(var/r in radios)
 		var/obj/item/radio/R = r // You better fucking be a radio.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		var/turf/speaker = get_turf(R)
 		if(speaker)
 			for(var/turf/T in hear(R.canhear_range,speaker))
@@ -253,13 +249,8 @@
 
 /mob/living/silicon/robot/can_hear_radio(var/list/hearturfs)
 	var/turf/T = get_turf(src)
-<<<<<<< HEAD
-	var/obj/item/device/radio/borg/R = hearturfs[T] // this should be an assoc list of turf-to-radio
-
-=======
 	var/obj/item/radio/borg/R = hearturfs[T] // this should be an assoc list of turf-to-radio
-	
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+
 	// We heard it on our own radio? We use power for that.
 	if(istype(R) && R.myborg == src)
 		var/datum/robot_component/CO = get_component("radio")

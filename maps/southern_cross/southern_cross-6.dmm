@@ -818,11 +818,7 @@
 "pL" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/item/stool/padded,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "pM" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/reagent_containers/food/snacks/candiedapple,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "pN" = (/obj/machinery/vending/cigarette,/turf/unsimulated/floor{icon_state = "wood"},/area/centcom/bar)
-<<<<<<< HEAD
-"pO" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker,/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/bar)
-=======
 "pO" = (/obj/structure/table/standard,/obj/item/reagent_containers/food/condiment/small/saltshaker,/obj/item/reagent_containers/food/condiment/small/peppershaker,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/bar)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "pP" = (/turf/unsimulated/wall,/area/centcom/bar)
 "pQ" = (/obj/structure/bed/chair{dir = 4},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "pR" = (/turf/unsimulated/floor{icon_state = "wood"},/area/centcom/bar)
@@ -833,13 +829,8 @@
 "pW" = (/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/living)
 "pX" = (/turf/unsimulated/wall,/area/centcom/living)
 "pY" = (/obj/effect/floor_decal/corner/yellow/diagonal,/obj/effect/floor_decal/corner/blue/diagonal{dir = 4},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/living)
-<<<<<<< HEAD
-"pZ" = (/obj/item/weapon/stool/padded,/obj/effect/floor_decal/corner/yellow/diagonal,/obj/effect/floor_decal/corner/blue/diagonal{dir = 4},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/living)
-"qa" = (/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{pixel_x = 2; pixel_y = 6},/obj/structure/table/standard,/obj/effect/floor_decal/corner/yellow/diagonal,/obj/effect/floor_decal/corner/blue/diagonal{dir = 4},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/living)
-=======
 "pZ" = (/obj/item/stool/padded,/obj/effect/floor_decal/corner/yellow/diagonal,/obj/effect/floor_decal/corner/blue/diagonal{dir = 4},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/living)
 "qa" = (/obj/item/reagent_containers/food/condiment/small/peppershaker{pixel_x = 2; pixel_y = 6},/obj/structure/table/standard,/obj/effect/floor_decal/corner/yellow/diagonal,/obj/effect/floor_decal/corner/blue/diagonal{dir = 4},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/living)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "qb" = (/obj/structure/table/holotable,/obj/machinery/readybutton{pixel_y = 0},/obj/effect/floor_decal/corner/red/full,/turf/simulated/floor/holofloor/tiled,/area/holodeck/source_thunderdomecourt)
 "qc" = (/obj/structure/shuttle/engine/heater{icon_state = "heater"; dir = 8},/obj/structure/window/reinforced{dir = 4},/turf/simulated/shuttle/plating/airless,/area/shuttle/administration/centcom)
 "qd" = (/obj/machinery/vending/snack,/turf/simulated/shuttle/floor/red,/area/shuttle/administration/centcom)
@@ -868,15 +859,9 @@
 "qA" = (/obj/structure/closet/secure_closet/personal,/turf/simulated/shuttle/floor,/area/centcom/evac)
 "qB" = (/turf/unsimulated/wall,/area/shuttle/trade)
 "qC" = (/obj/structure/table/standard,/obj/machinery/recharger{pixel_y = 4},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/tdome/tdome1)
-<<<<<<< HEAD
-"qD" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/weapon/paper_bin,/obj/item/weapon/pen,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
-"qE" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/weapon/reagent_containers/food/snacks/amanita_pie,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
-"qF" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{pixel_x = 4; pixel_y = -2},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
-=======
 "qD" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/paper_bin,/obj/item/pen,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "qE" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/reagent_containers/food/snacks/amanita_pie,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "qF" = (/obj/effect/floor_decal/corner/white/diagonal,/obj/structure/table/marble,/obj/item/reagent_containers/food/condiment/small/peppershaker,/obj/item/reagent_containers/food/condiment/small/saltshaker{pixel_x = 4; pixel_y = -2},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "qG" = (/obj/structure/bed/chair/wood/wings,/turf/unsimulated/floor{icon_state = "wood"},/area/centcom/bar)
 "qH" = (/obj/machinery/light,/turf/simulated/shuttle/floor/red,/area/shuttle/administration/centcom)
 "qI" = (/obj/machinery/computer/card{dir = 1},/turf/simulated/shuttle/floor{icon_state = "floor_red"},/area/centcom/evac)
@@ -910,13 +895,8 @@
 "rk" = (/obj/machinery/vending/cola,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "rl" = (/obj/machinery/vending/snack,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "rm" = (/obj/machinery/vending/coffee,/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/bar)
-<<<<<<< HEAD
-"rn" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/snacks/poppypretzel,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
-"ro" = (/obj/structure/table/standard,/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{pixel_x = 4; pixel_y = -2},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/bar)
-=======
 "rn" = (/obj/structure/table/standard,/obj/item/reagent_containers/food/snacks/poppypretzel,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/bar)
 "ro" = (/obj/structure/table/standard,/obj/item/reagent_containers/food/condiment/small/peppershaker,/obj/item/reagent_containers/food/condiment/small/saltshaker{pixel_x = 4; pixel_y = -2},/turf/unsimulated/floor{icon_state = "vault"; dir = 5},/area/centcom/bar)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "rp" = (/obj/machinery/floor_light,/obj/structure/window/reinforced{dir = 1},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/bar)
 "rq" = (/obj/machinery/door/airlock{name = "Unisex Restrooms"},/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/centcom/bar)
 "rr" = (/obj/effect/floor_decal/industrial/hatch/yellow,/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/main_hall)
@@ -949,11 +929,7 @@
 "rS" = (/obj/machinery/door/airlock/glass_centcom{name = "Bridge Access"; req_access = list(101)},/turf/unsimulated/floor{icon_state = "steel"},/area/centcom/main_hall)
 "rT" = (/obj/machinery/door/airlock{name = "Unit 2"},/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/centcom/bar)
 "rU" = (/obj/machinery/door/airlock{name = "Unit 1"},/turf/unsimulated/floor{icon_state = "freezerfloor"; dir = 2},/area/centcom/bar)
-<<<<<<< HEAD
-"rV" = (/obj/structure/table/woodentable{dir = 5},/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{pixel_x = 4; pixel_y = -2},/obj/item/weapon/reagent_containers/food/condiment/small/peppermill,/obj/item/weapon/flame/candle,/turf/unsimulated/floor{icon_state = "wood"},/area/centcom/bar)
-=======
 "rV" = (/obj/structure/table/woodentable{dir = 5},/obj/item/reagent_containers/food/condiment/small/saltshaker{pixel_x = 4; pixel_y = -2},/obj/item/reagent_containers/food/condiment/small/peppershaker,/obj/item/flame/candle,/turf/unsimulated/floor{icon_state = "wood"},/area/centcom/bar)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "rW" = (/obj/structure/bed/chair/wood/wings{icon_state = "wooden_chair_wings"; dir = 4},/turf/unsimulated/floor{icon_state = "wood"},/area/centcom/bar)
 "rX" = (/obj/machinery/optable,/turf/simulated/shuttle/floor/red,/area/shuttle/administration/centcom)
 "rY" = (/obj/structure/table/reinforced,/obj/machinery/librarycomp,/turf/simulated/shuttle/floor/red,/area/shuttle/administration/centcom)
@@ -2626,4 +2602,3 @@ aaaaRfababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

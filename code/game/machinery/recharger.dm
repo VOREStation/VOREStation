@@ -10,7 +10,7 @@
 	active_power_usage = 40000	//40 kW
 	var/efficiency = 40000 //will provide the modified power rate when upgraded
 	var/obj/item/charging = null
-	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/device/suit_cooling_unit/emergency, /obj/item/device/flashlight, /obj/item/device/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/device/flash, /obj/item/device/defib_kit, /obj/item/ammo_casing/microbattery, /obj/item/device/paicard)  //VOREStation Add - NSFW Batteries
+	var/list/allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/melee/baton, /obj/item/modular_computer, /obj/item/weapon/computer_hardware/battery_module, /obj/item/weapon/cell, /obj/item/suit_cooling_unit/emergency, /obj/item/flashlight, /obj/item/electronic_assembly, /obj/item/weapon/weldingtool/electric, /obj/item/ammo_magazine/smart, /obj/item/flash, /obj/item/defib_kit, /obj/item/ammo_casing/microbattery, /obj/item/paicard)  //VOREStation Add - NSFW Batteries
 	var/icon_state_charged = "recharger2"
 	var/icon_state_charging = "recharger1"
 	var/icon_state_idle = "recharger0" //also when unpowered
@@ -58,8 +58,8 @@
 			if(B.use_external_power)
 				to_chat(user, "<span class='notice'>\The [B] has no recharge port.</span>")
 				return
-		if(istype(G, /obj/item/device/flash))
-			var/obj/item/device/flash/F = G
+		if(istype(G, /obj/item/flash))
+			var/obj/item/flash/F = G
 			if(F.use_external_power)
 				to_chat(user, "<span class='notice'>\The [F] has no recharge port.</span>")
 				return
@@ -68,11 +68,11 @@
 			if(EW.use_external_power)
 				to_chat(user, "<span class='notice'>\The [EW] has no recharge port.</span>")
 				return
-		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery) && !istype(G, /obj/item/device/paicard))	//VOREStation Edit: NSFW charging
+		if(!G.get_cell() && !istype(G, /obj/item/ammo_casing/microbattery) && !istype(G, /obj/item/paicard))	//VOREStation Edit: NSFW charging
 			to_chat(user, "\The [G] does not have a battery installed.")
 			return
-		if(istype(G, /obj/item/device/paicard))
-			var/obj/item/device/paicard/ourcard = G
+		if(istype(G, /obj/item/paicard))
+			var/obj/item/paicard/ourcard = G
 			if(ourcard.panel_open)
 				to_chat(user, "<span class='warning'>\The [ourcard] won't fit in the recharger with its panel open.</span>")
 				return
@@ -135,8 +135,8 @@
 		update_use_power(USE_POWER_IDLE)
 		icon_state = icon_state_idle
 	//VOREStation Edit Start - pAI revival!
-	else if(istype(charging, /obj/item/device/paicard))
-		var/obj/item/device/paicard/pcard = charging
+	else if(istype(charging, /obj/item/paicard))
+		var/obj/item/paicard/pcard = charging
 		if(pcard.is_damage_critical())
 			pcard.forceMove(get_turf(src))
 			charging = null
@@ -210,7 +210,7 @@
 	layer = ABOVE_TURF_LAYER
 	active_power_usage = 60000	//60 kW , It's more specialized than the standalone recharger (guns, batons, and flashlights only) so make it more powerful
 	efficiency = 60000
-	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/gun/magnetic, /obj/item/weapon/melee/baton, /obj/item/device/flashlight, /obj/item/weapon/cell/device)
+	allowed_devices = list(/obj/item/weapon/gun/energy, /obj/item/weapon/gun/magnetic, /obj/item/weapon/melee/baton, /obj/item/flashlight, /obj/item/weapon/cell/device)
 	icon_state_charged = "wrecharger2"
 	icon_state_charging = "wrecharger1"
 	icon_state_idle = "wrecharger0"

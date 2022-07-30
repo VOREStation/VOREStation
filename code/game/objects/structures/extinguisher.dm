@@ -4,15 +4,9 @@
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "extinguisher" // map preview sprite
 	layer = ABOVE_WINDOW_LAYER
-<<<<<<< HEAD
 	anchored = TRUE
 	density = FALSE
-	var/obj/item/weapon/extinguisher/has_extinguisher
-=======
-	anchored = 1
-	density = 0
 	var/obj/item/extinguisher/has_extinguisher
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/opened = 0
 
 /obj/structure/extinguisher_cabinet/Initialize(var/mapload, var/dir, var/building = 0)
@@ -84,15 +78,10 @@
 /obj/structure/extinguisher_cabinet/update_icon()
 	var/suffix = "empty"
 	if(has_extinguisher)
-<<<<<<< HEAD
-		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
-			suffix = "mini"
-		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/atmo))
-			suffix = "advanced"
-=======
 		if(istype(has_extinguisher, /obj/item/extinguisher/mini))
-			icon_state = "extinguisher_mini"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			suffix = "mini"
+		if(istype(has_extinguisher, /obj/item/extinguisher/atmo))
+			suffix = "advanced"
 		else
 			suffix = "standard"
 

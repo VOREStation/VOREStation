@@ -64,13 +64,8 @@
 	defend_chance = 40	// The base chance for the weapon to parry.
 	projectile_parry_chance = 15	// The base chance for a projectile to be deflected.
 
-<<<<<<< HEAD
-/obj/item/weapon/melee/changeling/New(location)
-	..()
-=======
 /obj/item/melee/changeling/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 	if(ismob(loc))
 		visible_message("<span class='warning'>A grotesque weapon forms around [loc.name]\'s arm!</span>",

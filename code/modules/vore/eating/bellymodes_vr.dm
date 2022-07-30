@@ -244,14 +244,14 @@
 /obj/belly/proc/handle_digesting_item(obj/item/I)
 	var/did_an_item = FALSE
 	// We always contaminate IDs.
-	if(contaminates || istype(I, /obj/item/weapon/card/id))
+	if(contaminates || istype(I, /obj/item/card/id))
 		I.gurgle_contaminate(src, contamination_flavor, contamination_color)
 
 	switch(item_digest_mode)
 		if(IM_HOLD)
 			items_preserved |= I
 		if(IM_DIGEST_FOOD)
-			if(istype(I,/obj/item/weapon/reagent_containers/food) || istype(I, /obj/item/organ))
+			if(istype(I,/obj/item/reagent_containers/food) || istype(I, /obj/item/organ))
 				did_an_item = digest_item(I)
 			else
 				items_preserved |= I

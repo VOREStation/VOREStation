@@ -26,12 +26,8 @@
 /obj/item/lipstick/random
 	name = "lipstick"
 
-<<<<<<< HEAD
-/obj/item/weapon/lipstick/random/New()
-=======
 /obj/item/lipstick/random/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	colour = pick("red","purple","jade","black")
 	name = "[colour] lipstick"
 

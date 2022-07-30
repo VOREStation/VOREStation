@@ -10,11 +10,7 @@
 	var/wax = 2000
 	var/icon_type = "candle"
 
-<<<<<<< HEAD
-/obj/item/weapon/flame/candle/New()
-=======
 /obj/item/flame/candle/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	wax -= rand(800, 1000) // Enough for 27-33 minutes. 30 minutes on average.
 	..()
 

@@ -24,7 +24,7 @@
 	parachuting = TRUE
 
 	meat_amount = 1
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
 
 	attacktext = list("clawed", "pecked")
 	speak_emote = list("chirps", "caws")
@@ -42,8 +42,6 @@
 	emote_hear = list("chirps","caws")
 	emote_see = list("shakes their head", "ruffles their feathers")
 
-<<<<<<< HEAD
-=======
 /obj/item/holder/bird
 	name = "bird"
 	desc = "It's a bird!"
@@ -55,7 +53,6 @@
 	..()
 	icon_state = SM.icon_rest // Looks better if the bird isn't flapping constantly in the UI.
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 // Subtypes for birbs.
 /mob/living/simple_mob/animal/passive/bird/black_bird
 	name = "common blackbird"

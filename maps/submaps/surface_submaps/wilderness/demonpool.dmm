@@ -18,13 +18,7 @@
 /area/submap/DemonPool)
 "ay" = (
 /obj/structure/girder/cult,
-<<<<<<< HEAD
-/obj/item/weapon/material/twohanded/fireaxe/scythe,
-=======
-/obj/item/material/twohanded/fireaxe/scythe{
-	start_anomalous = 1
-	},
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/material/twohanded/fireaxe/scythe,
 /turf/simulated/floor/cult,
 /area/submap/DemonPool)
 "bb" = (
@@ -647,13 +641,8 @@
 /turf/simulated/floor,
 /area/submap/DemonPool)
 "Zc" = (
-<<<<<<< HEAD
 /obj/effect/gibspawner/human,
-/obj/item/weapon/beartrap/hunting{
-=======
-/obj/effect/spawner/gibs/human,
 /obj/item/beartrap/hunting{
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	anchored = 1;
 	deployed = 1
 	},

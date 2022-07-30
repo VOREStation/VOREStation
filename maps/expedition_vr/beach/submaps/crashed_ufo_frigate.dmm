@@ -239,7 +239,7 @@
 /area/submap/cave/crashed_ufo_frigate)
 "bf" = (
 /obj/structure/table/alien,
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	icon_state = "alienpaper_words";
 	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
 	},
@@ -273,8 +273,8 @@
 /area/submap/cave/crashed_ufo_frigate)
 "bm" = (
 /obj/structure/table/alien,
-/obj/item/weapon/paper/alien,
-/obj/item/weapon/paper/alien,
+/obj/item/paper/alien,
+/obj/item/paper/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "bn" = (
@@ -316,7 +316,7 @@
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "bv" = (
-/obj/item/weapon/surgical/bone_clamp/alien,
+/obj/item/surgical/bone_clamp/alien,
 /obj/structure/closet/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
@@ -330,7 +330,7 @@
 	desc = "It vaguely like a star. It looks like something an alien admiral might've worn. Probably.";
 	name = "alien admiral's medal"
 	},
-/obj/item/weapon/telecube/precursor/mated/zone,
+/obj/item/telecube/precursor/mated/zone,
 /obj/item/clothing/head/helmet/alien/tank,
 /turf/simulated/shuttle/floor/alien,
 /area/submap/cave/crashed_ufo_frigate)
@@ -399,11 +399,11 @@
 /area/submap/cave/crashed_ufo_frigate)
 "bL" = (
 /obj/structure/table/alien,
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	icon_state = "alienpaper_words";
 	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
 	},
-/obj/item/device/gps/internal/poi,
+/obj/item/gps/internal/poi,
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "bM" = (
@@ -417,7 +417,7 @@
 /obj/structure/window/phoronreinforced{
 	dir = 4
 	},
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	icon_state = "alienpaper_words";
 	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
 	},
@@ -429,7 +429,7 @@
 /area/submap/cave/crashed_ufo_frigate)
 "bP" = (
 /obj/structure/table/alien,
-/obj/item/weapon/weldingtool/alien,
+/obj/item/weldingtool/alien,
 /turf/simulated/shuttle/floor/alienplating,
 /area/submap/cave/crashed_ufo_frigate)
 "bQ" = (
@@ -437,7 +437,7 @@
 /obj/structure/window/phoronreinforced{
 	dir = 4
 	},
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	icon_state = "alienpaper_words";
 	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
 	},
@@ -470,7 +470,7 @@
 "bV" = (
 /obj/structure/table/alien,
 /obj/structure/window/phoronreinforced,
-/obj/item/weapon/paper/alien,
+/obj/item/paper/alien,
 /turf/simulated/shuttle/floor/alien,
 /area/submap/cave/crashed_ufo_frigate)
 "bW" = (
@@ -496,7 +496,7 @@
 /area/submap/cave/crashed_ufo_frigate)
 "ca" = (
 /obj/structure/table/alien,
-/obj/item/weapon/paper/alien{
+/obj/item/paper/alien{
 	icon_state = "alienpaper_words";
 	info = "\[i]This tablet has a large collection of symbols that you've never seen before outside this ship. You have no hope of figuring out what any of the mean...\[/i]"
 	},

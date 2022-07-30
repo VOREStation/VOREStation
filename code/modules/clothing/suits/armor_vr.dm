@@ -156,13 +156,13 @@
 	siemens_coefficient = 0.9
 	armor = list(melee = 30, bullet = 20, laser = 20, energy = 20, bomb = 35, bio = 75, rad = 35) // Inferior to sec vests in bullet/laser but better for environmental protection.
 	allowed = list(
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/gun,
 		/obj/item/ammo_magazine,
 		/obj/item/weapon/melee,
 		/obj/item/weapon/material/knife,
 		/obj/item/weapon/tank,
-		/obj/item/device/radio,
+		/obj/item/radio,
 		/obj/item/weapon/pickaxe
 		)
 

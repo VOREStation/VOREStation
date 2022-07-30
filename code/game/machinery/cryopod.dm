@@ -13,13 +13,8 @@
 	desc = "An interface between crew and the cryogenic storage oversight systems."
 	icon = 'icons/obj/Cryogenic2_vr.dmi' //VOREStation Edit - New Icon
 	icon_state = "cellconsole"
-<<<<<<< HEAD
-	circuit = /obj/item/weapon/circuitboard/cryopodcontrol
-	density = FALSE
-=======
 	circuit = /obj/item/circuitboard/cryopodcontrol
-	density = 0
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	density = FALSE
 	interact_offline = 1
 	var/mode = null
 
@@ -73,20 +68,8 @@
 /obj/machinery/computer/cryopod/gateway
 	name = "gateway oversight console"
 	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
-<<<<<<< HEAD
 	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
 
-=======
-	circuit = "/obj/item/circuitboard/robotstoragecontrol"
-	storage_type = "visitors"
-	storage_name = "Travel Oversight Control"
-	allow_items = 1
-
-/obj/machinery/computer/cryopod/checkpoint
-	name = "travel oversight console"
-	desc = "An interface between visitors and the checkpoint systems tasked with keeping track of all visitors who enter or exit from the area."
-	circuit = "/obj/item/circuitboard/robotstoragecontrol"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	storage_type = "visitors"
 	storage_name = "Travel Oversight Control"
 	allow_items = 1
@@ -306,26 +289,10 @@
 
 	time_till_despawn = 60 //1 second, because gateway.
 
-<<<<<<< HEAD
-/obj/machinery/cryopod/New()
-	announce = new /obj/item/device/radio/intercom(src)
-	..()
-=======
-/obj/machinery/cryopod/robot/door/checkpoint
-	name = "automated checkpoint"
-	desc = "A reinforced, automated checkpoint tracking arrivals and departures from the outpost. Beyond this vault is a small airstrip, then nothing but untamed wilderness."
-	on_store_message = "has departed from the colony."
-	on_store_name = "Travel Oversight"
-	on_enter_occupant_message = "The checkpoint unseals and grinds open, and you step through."
-	on_store_visible_message_1 = "grinds closed after"
-	on_store_visible_message_2 = "passes through it."
-	time_till_despawn = 10 // 1 second, because math
-
 /obj/machinery/cryopod/Initialize()
 	. = ..()
 	announce = new /obj/item/radio/intercom(src)
 	find_control_computer()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/cryopod/Destroy()
 	if(occupant)
@@ -456,13 +423,13 @@
 
 	for(var/obj/item/W in items)
 		//VOREStation Addition Start
-		if(istype(W, /obj/item/device/pda))
-			var/obj/item/device/pda/found_pda = W
+		if(istype(W, /obj/item/pda))
+			var/obj/item/pda/found_pda = W
 			found_pda.delete_id = TRUE
 		else
-			var/list/pdas_found = W.search_contents_for(/obj/item/device/pda)
+			var/list/pdas_found = W.search_contents_for(/obj/item/pda)
 			if(pdas_found.len)
-				for(var/obj/item/device/pda/found_pda in pdas_found)
+				for(var/obj/item/pda/found_pda in pdas_found)
 					found_pda.delete_id = TRUE
 		//VOREStation Addition End
 

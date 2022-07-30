@@ -12,12 +12,8 @@
 	var/obj/item/toppaper	//The topmost piece of paper.
 	slot_flags = SLOT_BELT
 
-<<<<<<< HEAD
-/obj/item/weapon/clipboard/New()
-=======
 /obj/item/clipboard/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	update_icon()
 
 /obj/item/clipboard/MouseDrop(obj/over_object as obj) //Quick clipboard fix. -Agouri
@@ -38,13 +34,8 @@
 			add_fingerprint(usr)
 			return
 
-<<<<<<< HEAD
-/obj/item/weapon/clipboard/update_icon()
-	cut_overlays()
-=======
 /obj/item/clipboard/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(toppaper)
 		add_overlay(toppaper.icon_state)
 		add_overlay(toppaper.overlays)

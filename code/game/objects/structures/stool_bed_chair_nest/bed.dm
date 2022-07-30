@@ -351,8 +351,7 @@
 /obj/structure/bed/alien/update_icon()
 	return // Doesn't care about material or anything else.
 
-<<<<<<< HEAD
-/obj/structure/bed/alien/attackby(obj/item/weapon/W, mob/user)
+/obj/structure/bed/alien/attackby(obj/item/W, mob/user)
 	return // No deconning.
 
 /*
@@ -369,7 +368,7 @@
 	buckle_dir = SOUTH
 	buckle_lying = 1
 
-/obj/structure/dirtybed/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/dirtybed/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench())
 		playsound(src, W.usesound, 100, 1)
 		if(anchored)
@@ -386,7 +385,3 @@
 	if(!anchored)
 		to_chat(user,"<span class='notice'> The bed isn't secured.</span>")
 		return
-=======
-/obj/structure/bed/alien/attackby(obj/item/W, mob/user)
-	return // No deconning.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

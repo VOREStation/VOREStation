@@ -40,16 +40,12 @@
 "aN" = (/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aO" = (/obj/structure/table/standard,/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,/obj/effect/floor_decal/corner/red/border{dir = 9; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aP" = (/obj/structure/table/standard,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aQ" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/pistol,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"aR" = (/obj/structure/table/rack,/obj/item/weapon/gun/energy/gun/taser,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aQ" = (/obj/structure/table/rack,/obj/item/gun/projectile/pistol,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"aR" = (/obj/structure/table/rack,/obj/item/gun/energy/gun/taser,/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aS" = (/obj/machinery/light{dir = 1},/obj/effect/floor_decal/corner/red/border{dir = 1; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aT" = (/obj/machinery/vending/coffee,/obj/effect/floor_decal/corner/red/border{dir = 5; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aU" = (/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
-<<<<<<< HEAD
-"aV" = (/obj/structure/table/rack,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/obj/item/weapon/gun/projectile/shotgun/pump/combat,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
-=======
-"aV" = (/obj/structure/table/rack,/obj/item/gun/projectile/shotgun/pump/combat,/obj/random/multiple/gun/projectile/shotgun,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"aV" = (/obj/structure/table/rack,/obj/item/gun/projectile/shotgun/pump/combat,/obj/item/gun/projectile/shotgun/pump/combat,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
 "aW" = (/obj/machinery/vending/hydronutrients,/obj/effect/floor_decal/corner/lime/border{dir = 9; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aX" = (/obj/structure/closet/crate/hydroponics,/obj/effect/floor_decal/corner/lime/border{dir = 5; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "aY" = (/obj/machinery/shower{dir = 4; icon_state = "shower"; pixel_x = 5; pixel_y = 0},/obj/structure/curtain/open/shower,/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
@@ -61,23 +57,14 @@
 "be" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bf" = (/mob/living/simple_mob/mechanical/viscerator,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bg" = (/obj/machinery/vending/security,/obj/effect/floor_decal/corner/red/border{dir = 4; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-<<<<<<< HEAD
-"bh" = (/obj/structure/table/rack,/obj/item/weapon/cell/device/weapon,/obj/item/ammo_magazine/ammo_box/b12g/pellet,/obj/item/ammo_magazine/ammo_box/b12g/pellet,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
-=======
-"bh" = (/obj/structure/table/rack,/obj/item/storage/box/shotgunshells,/obj/item/storage/box/shotgunshells,/obj/item/cell/device/weapon,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"bh" = (/obj/structure/table/rack,/obj/item/cell/device/weapon,/obj/item/ammo_magazine/ammo_box/b12g/pellet,/obj/item/ammo_magazine/ammo_box/b12g/pellet,/turf/simulated/floor/tiled/techfloor,/area/submap/Rockybase)
 "bi" = (/obj/effect/floor_decal/corner/lime/border{dir = 8; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bj" = (/obj/structure/sink{dir = 4; icon_state = "sink"; pixel_x = 11; pixel_y = 0},/obj/effect/floor_decal/corner/lime/border{dir = 4; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bk" = (/obj/machinery/shower{dir = 8; icon_state = "shower"; pixel_x = -5; pixel_y = 0},/obj/structure/curtain/open/shower,/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor/tiled/hydro,/area/submap/Rockybase)
 "bl" = (/obj/item/mecha_parts/part/gygax_left_leg,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
 "bm" = (/obj/machinery/light,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-<<<<<<< HEAD
-"bn" = (/obj/structure/bed,/obj/item/weapon/bedsheet,/obj/item/weapon/gun/projectile/pistol,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"bo" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-=======
 "bn" = (/obj/structure/bed,/obj/item/bedsheet,/obj/item/gun/projectile/pistol,/turf/simulated/floor/holofloor/lino,/area/submap/Rockybase)
-"bo" = (/obj/structure/closet/crate/trashcart,/obj/random/soap/anom,/turf/simulated/floor/tiled,/area/submap/Rockybase)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"bo" = (/obj/structure/closet/crate/trashcart,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bp" = (/obj/structure/loot_pile/maint/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "bq" = (/obj/structure/table/standard,/obj/item/storage/bag/trash,/obj/item/storage/bag/trash,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "br" = (/obj/structure/table/standard,/obj/item/paper_bin,/obj/effect/floor_decal/corner/red/border{dir = 10; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
@@ -121,25 +108,14 @@
 "cd" = (/obj/structure/table/standard,/obj/item/paper{info = "I've decided to go forward and start some small scale tests of the Vicerator delivery grenades, Might as wall make sure they work like the real ones. There are a few Fauna areas nearbye and we're working to make sure the kinks in the code are worked out. Once we've made sure they stay flying we'll work on the IFF signals."; name = "V-Grenade Notice 2"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ce" = (/obj/structure/table/standard,/obj/random/toolbox,/obj/machinery/light{dir = 1},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cf" = (/obj/structure/table/standard,/obj/random/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-<<<<<<< HEAD
-"cg" = (/obj/structure/table/standard,/obj/item/weapon/paper{info = "We've finally been able to get the Vicerator delivery grenades working, Took awhile to make sure the latching mechanism didn't fail but we're sure we've got it this time. Vel'Shem's worried about the miners having there own drone fab now but I say it's a small price to pay to keep the metal flowing, Especially since there telling us NT's starting to monopolize the metal rich parts."; name = "V-Grenade Notice 1"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ch" = (/obj/structure/table/standard,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ci" = (/obj/structure/table/standard,/obj/item/weapon/grenade/spawnergrenade/manhacks,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-=======
 "cg" = (/obj/structure/table/standard,/obj/item/paper{info = "We've finally been able to get the Vicerator delivery grenades working, Took awhile to make sure the latching mechanism didn't fail but we're sure we've got it this time. Vel'Shem's worried about the miners having there own drone fab now but I say it's a small price to pay to keep the metal flowing, Especially since there telling us NT's starting to monopolize the metal rich parts."; name = "V-Grenade Notice 1"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
-"ch" = (/obj/structure/table/standard,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond{start_anomalous = 1},/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/turf/simulated/floor/tiled,/area/submap/Rockybase)
+"ch" = (/obj/structure/table/standard,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/obj/item/stack/material/diamond,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ci" = (/obj/structure/table/standard,/obj/item/grenade/spawnergrenade/manhacks,/turf/simulated/floor/tiled,/area/submap/Rockybase)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "cj" = (/obj/structure/table/standard,/obj/item/stack/material/steel,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "ck" = (/obj/structure/table/standard,/obj/machinery/light{dir = 1},/obj/item/circuitboard/mecha/gygax/main,/obj/item/circuitboard/mecha/gygax/peripherals,/obj/item/circuitboard/mecha/gygax/targeting,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cl" = (/obj/structure/door_assembly,/obj/effect/floor_decal/rust,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-<<<<<<< HEAD
-"cm" = (/obj/item/weapon/material/shard,/turf/simulated/floor,/area/submap/Rockybase)
-"cn" = (/obj/structure/table/standard,/obj/fiftyspawner/rods,/turf/simulated/floor/tiled,/area/submap/Rockybase)
-=======
 "cm" = (/obj/item/material/shard,/turf/simulated/floor,/area/submap/Rockybase)
-"cn" = (/obj/structure/table/standard,/obj/fiftyspawner/rods,/obj/random/tech_supply/component,/obj/random/tech_supply/anom,/turf/simulated/floor/tiled,/area/submap/Rockybase)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"cn" = (/obj/structure/table/standard,/obj/fiftyspawner/rods,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "co" = (/obj/machinery/vending/engivend,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cp" = (/obj/machinery/vending/tool,/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "cq" = (/obj/structure/table/standard,/obj/item/storage/toolbox,/turf/simulated/floor/tiled,/area/submap/Rockybase)

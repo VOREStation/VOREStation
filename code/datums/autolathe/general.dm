@@ -119,13 +119,10 @@
 	name = "maglight"
 	path =/obj/item/flashlight/maglight
 
-<<<<<<< HEAD
-=======
 /datum/category_item/autolathe/general/ecigcartridge
 	name = "ecigarette cartridge"
 	path = /obj/item/reagent_containers/ecig_cartridge/blank
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /datum/category_item/autolathe/general/idcard
 	name = "ID Card"
 	path = /obj/item/card/id

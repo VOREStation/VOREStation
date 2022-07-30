@@ -4836,12 +4836,8 @@
 	name = "Medbay Emergency Radio Link";
 	pixel_y = 4
 	},
-<<<<<<< HEAD
-/obj/item/device/multitool,
-=======
 /obj/item/multitool,
 /obj/item/gps/medical,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/tiled/monotile,
 /area/surface/station/medical/emt_bay)
 "cnU" = (
@@ -11653,16 +11649,12 @@
 	pixel_y = -3;
 	req_one_access = list(2,4)
 	},
-<<<<<<< HEAD
-/obj/item/device/flashlight/lamp/green{
-=======
 /obj/item/radio/off,
 /obj/item/gps/security/hos,
 /obj/item/flashlight/lamp/green{
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_y = 6
 	},
-/obj/item/device/radio/off,
+/obj/item/radio/off,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/crew_quarters/heads/hos)
 "fnE" = (
@@ -12102,10 +12094,7 @@
 /obj/machinery/recharger/wallcharger{
 	pixel_x = 32
 	},
-<<<<<<< HEAD
-=======
 /obj/item/gps/security,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
 "fAm" = (
@@ -13602,11 +13591,6 @@
 /area/surface/outside/plains/station)
 "gmu" = (
 /obj/structure/table/marble,
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/donkpockets,
-/obj/item/weapon/reagent_containers/glass/beaker,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
-=======
 /obj/item/storage/box/donkpockets,
 /obj/item/reagent_containers/glass/beaker,
 /obj/item/reagent_containers/food/condiment/enzyme,
@@ -13614,7 +13598,6 @@
 	pixel_x = 10;
 	pixel_y = 4
 	},
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "gnA" = (
@@ -28932,14 +28915,9 @@
 /area/surface/station/rnd/xenobiology)
 "nmG" = (
 /obj/structure/table/marble,
-<<<<<<< HEAD
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
-=======
 /obj/item/material/knife/butch,
 /obj/item/material/kitchen/rollingpin,
 /obj/random/mug,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "nnd" = (
@@ -30647,8 +30625,6 @@
 /obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = 2
 	},
-<<<<<<< HEAD
-=======
 /obj/item/reagent_containers/food/condiment/ketchup{
 	pixel_x = 10;
 	pixel_y = 7
@@ -30657,7 +30633,6 @@
 	pixel_x = -11;
 	pixel_y = 7
 	},
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "obx" = (
@@ -35660,16 +35635,10 @@
 	dir = 8
 	},
 /obj/structure/table/standard,
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/donut,
-/obj/item/device/retail_scanner/security,
-/obj/item/device/retail_scanner/security,
-=======
 /obj/item/retail_scanner/security,
 /obj/item/storage/box/glasses/coffeecup,
 /obj/item/storage/box/donut,
 /obj/item/retail_scanner/security,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/tiled,
 /area/surface/station/security/briefing_room)
 "qhW" = (
@@ -38460,8 +38429,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 10
 	},
-<<<<<<< HEAD
-=======
 /obj/structure/closet/medical_wall{
 	pixel_y = 32
 	},
@@ -38469,7 +38436,6 @@
 /obj/item/storage/firstaid,
 /obj/item/roller,
 /obj/item/bodybag/cryobag,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway)
 "rnV" = (
@@ -51604,8 +51570,6 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/crew_quarters/cafeteria)
-<<<<<<< HEAD
-=======
 "xAC" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/item/bodybag/cryobag,
@@ -51617,7 +51581,6 @@
 /obj/item/storage/firstaid,
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/pool)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "xAM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8

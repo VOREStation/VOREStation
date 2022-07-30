@@ -55,7 +55,7 @@
 /obj/machinery/porta_turret/alien/ion
 	name = "interior anti-boarding turret"
 	desc = "A very tough looking turret made by alien hands."
-	installation = /obj/item/weapon/gun/energy/ionrifle/weak
+	installation = /obj/item/gun/energy/ionrifle/weak
 	enabled = TRUE
 	lethal = TRUE
 	ailock = TRUE
@@ -95,7 +95,7 @@
 	icon_state = "w2e"
 	teleport_on_mode = "w2e"
 
-/obj/item/weapon/reagent_containers/hypospray/autoinjector/alien
+/obj/item/reagent_containers/hypospray/autoinjector/alien
 	name = "alien injector(?)"
 	desc = "It appears to contain some sort of liquid and has a needle for injecting."
 	icon = 'alienship.dmi'
@@ -159,10 +159,10 @@
 		L.forceMove(pick(get_area_turfs(dump_area)))
 		if(!issilicon(L)) //Don't drop borg modules...
 			for(var/obj/item/I in L)
-				if(istype(I,/obj/item/weapon/implant) || istype(I,/obj/item/device/nif))
+				if(istype(I,/obj/item/implant) || istype(I,/obj/item/nif))
 					continue
-				if(istype(I,/obj/item/weapon/holder))
-					var/obj/item/weapon/holder/H = I
+				if(istype(I,/obj/item/holder))
+					var/obj/item/holder/H = I
 					var/mob/living/M = H.held_mob
 					M.forceMove(get_turf(H))
 					abduct(M)

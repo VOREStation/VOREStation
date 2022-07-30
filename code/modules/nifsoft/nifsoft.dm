@@ -6,7 +6,7 @@
 	var/name = "Prototype"
 	var/desc = "Contact a dev!"
 
-	var/obj/item/device/nif/nif	//The NIF that the software is stored in
+	var/obj/item/nif/nif	//The NIF that the software is stored in
 
 	var/list_pos				// List position in the nifsoft list
 
@@ -45,7 +45,7 @@
 	var/list/incompatible_with = null // List of NIFSofts that are disabled when this one is enabled
 
 //Constructor accepts the NIF it's being loaded into
-/datum/nifsoft/New(var/obj/item/device/nif/nif_load)
+/datum/nifsoft/New(var/obj/item/nif/nif_load)
 	ASSERT(nif_load)
 
 	nif = nif_load
@@ -162,7 +162,7 @@
 	wear = 0 //Packages don't cause wear themselves, the software does
 
 //Constructor accepts a NIF and loads all the software
-/datum/nifsoft/package/New(var/obj/item/device/nif/nif_load)
+/datum/nifsoft/package/New(var/obj/item/nif/nif_load)
 	ASSERT(nif_load)
 
 	for(var/P in software)
@@ -178,7 +178,7 @@
 
 /////////////////
 // A NIFSoft Uploader
-/obj/item/weapon/disk/nifsoft
+/obj/item/disk/nifsoft
 	name = "NIFSoft Uploader"
 	desc = "It has a small label: \n\
 	\"Portable NIFSoft Installation Media. \n\
@@ -194,7 +194,7 @@
 	var/datum/nifsoft/stored_organic = null
 	var/datum/nifsoft/stored_synthetic = null
 
-/obj/item/weapon/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
+/obj/item/disk/nifsoft/afterattack(var/A, mob/user, flag, params)
 	if(!in_range(user, A))
 		return
 
@@ -236,12 +236,12 @@
 		update_icon()
 
 //So disks can pass fancier stuff.
-/obj/item/weapon/disk/nifsoft/proc/extra_params()
+/obj/item/disk/nifsoft/proc/extra_params()
 	return null
 
 
 // Compliance Disk //
-/obj/item/weapon/disk/nifsoft/compliance
+/obj/item/disk/nifsoft/compliance
 	name = "NIFSoft Uploader (Compliance)"
 	desc = "Wow, adding laws to people? That seems illegal. It probably is. Okay, it really is."
 	icon_state = "compliance"
@@ -254,7 +254,7 @@
 	stored_synthetic = /datum/nifsoft/compliance
 	var/laws
 
-/obj/item/weapon/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
+/obj/item/disk/nifsoft/compliance/afterattack(var/A, mob/user, flag, params)
 	if(!ishuman(A))
 		return
 	if(!laws)
@@ -262,18 +262,18 @@
 		return
 	..(A,user,flag,params)
 
-/obj/item/weapon/disk/nifsoft/compliance/attack_self(mob/user)
+/obj/item/disk/nifsoft/compliance/attack_self(mob/user)
 	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
 	newlaws = sanitize(newlaws,2048)
 	if(newlaws)
 		to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
 		laws = newlaws
 
-/obj/item/weapon/disk/nifsoft/compliance/extra_params()
+/obj/item/disk/nifsoft/compliance/extra_params()
 	return laws
 
 // Security Disk //
-/obj/item/weapon/disk/nifsoft/security
+/obj/item/disk/nifsoft/security
 	name = "NIFSoft Uploader - Security"
 	desc = "Contains free NIFSofts useful for security members.\n\
 	It has a small label: \n\
@@ -287,19 +287,19 @@
 /datum/nifsoft/package/security
 	software = list(/datum/nifsoft/ar_sec,/datum/nifsoft/flashprot)
 
-/obj/item/weapon/storage/box/nifsofts_security
+/obj/item/storage/box/nifsofts_security
 	name = "security nifsoft uploaders"
 	desc = "A box of free nifsofts for security employees."
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_sec"
 
-/obj/item/weapon/storage/box/nifsofts_security/New()
+/obj/item/storage/box/nifsofts_security/New()
 	..()
 	for(var/i = 0 to 7)
-		new /obj/item/weapon/disk/nifsoft/security(src)
+		new /obj/item/disk/nifsoft/security(src)
 
 // Engineering Disk //
-/obj/item/weapon/disk/nifsoft/engineering
+/obj/item/disk/nifsoft/engineering
 	name = "NIFSoft Uploader - Engineering"
 	desc = "Contains free NIFSofts useful for engineering members.\n\
 	It has a small label: \n\
@@ -313,19 +313,19 @@
 /datum/nifsoft/package/engineering
 	software = list(/datum/nifsoft/ar_eng,/datum/nifsoft/alarmmonitor,/datum/nifsoft/uvblocker)
 
-/obj/item/weapon/storage/box/nifsofts_engineering
+/obj/item/storage/box/nifsofts_engineering
 	name = "engineering nifsoft uploaders"
 	desc = "A box of free nifsofts for engineering employees."
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_eng"
 
-/obj/item/weapon/storage/box/nifsofts_engineering/New()
+/obj/item/storage/box/nifsofts_engineering/New()
 	..()
 	for(var/i = 0 to 7)
-		new /obj/item/weapon/disk/nifsoft/engineering(src)
+		new /obj/item/disk/nifsoft/engineering(src)
 
 // Medical Disk //
-/obj/item/weapon/disk/nifsoft/medical
+/obj/item/disk/nifsoft/medical
 	name = "NIFSoft Uploader - Medical"
 	desc = "Contains free NIFSofts useful for medical members.\n\
 	It has a small label: \n\
@@ -338,19 +338,19 @@
 /datum/nifsoft/package/medical
 	software = list(/datum/nifsoft/ar_med,/datum/nifsoft/crewmonitor)
 
-/obj/item/weapon/storage/box/nifsofts_medical
+/obj/item/storage/box/nifsofts_medical
 	name = "medical nifsoft uploaders"
 	desc = "A box of free nifsofts for medical employees."
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_med"
 
-/obj/item/weapon/storage/box/nifsofts_medical/New()
+/obj/item/storage/box/nifsofts_medical/New()
 	..()
 	for(var/i = 0 to 7)
-		new /obj/item/weapon/disk/nifsoft/medical(src)
+		new /obj/item/disk/nifsoft/medical(src)
 
 // Mining Disk //
-/obj/item/weapon/disk/nifsoft/mining
+/obj/item/disk/nifsoft/mining
 	name = "NIFSoft Uploader - Mining"
 	desc = "Contains free NIFSofts useful for mining members.\n\
 	It has a small label: \n\
@@ -367,19 +367,19 @@
 /datum/nifsoft/package/mining_synth
 	software = list(/datum/nifsoft/material,/datum/nifsoft/pressure,/datum/nifsoft/heatsinks)
 
-/obj/item/weapon/storage/box/nifsofts_mining
+/obj/item/storage/box/nifsofts_mining
 	name = "mining nifsoft uploaders"
 	desc = "A box of free nifsofts for mining employees."
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_mining"
 
-/obj/item/weapon/storage/box/nifsofts_mining/New()
+/obj/item/storage/box/nifsofts_mining/New()
 	..()
 	for(var/i = 0 to 7)
-		new /obj/item/weapon/disk/nifsoft/mining(src)
+		new /obj/item/disk/nifsoft/mining(src)
 
 // Pilot Disk //
-/obj/item/weapon/disk/nifsoft/pilot
+/obj/item/disk/nifsoft/pilot
 	name = "NIFSoft Uploader - Pilot"
 	desc = "Contains free NIFSofts useful for pilot members.\n\
 	It has a small label: \n\
@@ -396,13 +396,13 @@
 /datum/nifsoft/package/pilot_synth
 	software = list(/datum/nifsoft/pressure,/datum/nifsoft/heatsinks)
 
-/obj/item/weapon/storage/box/nifsofts_pilot
+/obj/item/storage/box/nifsofts_pilot
 	name = "pilot nifsoft uploaders"
 	desc = "A box of free nifsofts for pilot employees."
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_pilot"
 
-/obj/item/weapon/storage/box/nifsofts_pilot/New()
+/obj/item/storage/box/nifsofts_pilot/New()
 	..()
 	for(var/i = 0 to 7)
-		new /obj/item/weapon/disk/nifsoft/pilot(src)
+		new /obj/item/disk/nifsoft/pilot(src)

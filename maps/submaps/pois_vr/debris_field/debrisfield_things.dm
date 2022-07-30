@@ -84,7 +84,7 @@
 				prob(1);/obj/item/slime_extract/grey,
 				prob(1);/obj/item/slime_extract/rainbow)
 
-/obj/item/weapon/paper/robo_escape_pod
+/obj/item/paper/robo_escape_pod
 	name = "faded note"
 	info = {"<i>This paper is old and the shaky writing has faded, rendering it difficult to read.</i><br>\
 whichever poor bastard finds this pod<br>\

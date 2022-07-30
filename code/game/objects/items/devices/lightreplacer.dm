@@ -59,11 +59,7 @@
 	// when we get this many shards, we get a free bulb.
 	var/shards_required = 4
 
-<<<<<<< HEAD
-/obj/item/device/lightreplacer/New()
-=======
 /obj/item/lightreplacer/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	failmsg = "The [name]'s refill light blinks red."
 	..()
 

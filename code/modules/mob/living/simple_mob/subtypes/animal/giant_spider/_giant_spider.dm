@@ -98,26 +98,15 @@
 
 	speak_emote = list("chitters")
 
-<<<<<<< HEAD
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/xenomeat/spidermeat
-=======
-	meat_amount = 1
 	meat_type = /obj/item/reagent_containers/food/snacks/xenomeat/spidermeat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	say_list_type = /datum/say_list/spider
 
 	tame_items = list(
-<<<<<<< HEAD
-	/obj/item/weapon/reagent_containers/food/snacks/xenomeat = 10,
-	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 40,
-	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
-=======
 	/obj/item/reagent_containers/food/snacks/xenomeat = 10,
-	/obj/item/reagent_containers/food/snacks/meat/crab = 40,
+	/obj/item/reagent_containers/food/snacks/crabmeat = 40,
 	/obj/item/reagent_containers/food/snacks/meat = 20
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 	var/poison_type = "spidertoxin"	// The reagent that gets injected when it attacks.

@@ -208,27 +208,19 @@
 				/obj/structure/closet/crate/hydroponics
 			),
 			prob(5);list(
-<<<<<<< HEAD
-				/obj/item/weapon/pickaxe,
+				/obj/item/pickaxe,
 				/obj/item/clothing/under/rank/miner,
 				/obj/item/clothing/head/hardhat,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
 				/obj/item/weapon/pickaxe/drill,
-=======
-				/obj/item/pickaxe/drill,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/suit/space/void/mining,
 				/obj/item/clothing/head/helmet/space/void/mining,
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-<<<<<<< HEAD
-				/obj/item/weapon/pickaxe/advdrill,
-=======
-				/obj/item/pickaxe/drill,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				/obj/item/pickaxe/advdrill,
 				/obj/item/clothing/suit/space/void/mining/alt,
 				/obj/item/clothing/head/helmet/space/void/mining/alt,
 				/obj/structure/closet/crate/engineering
@@ -263,11 +255,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-<<<<<<< HEAD
-				/obj/item/weapon/pickaxe,
-=======
-				/obj/item/pickaxe/drill,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				/obj/item/pickaxe,
 				/obj/item/clothing/glasses/material,
 				/obj/structure/ore_box,
 				/obj/structure/closet/crate
@@ -367,17 +355,10 @@
 			prob(2);list(
 				/obj/item/clothing/suit/armor/vest,
 				/obj/item/clothing/suit/armor/vest,
-<<<<<<< HEAD
-				/obj/item/weapon/gun/projectile/garand,
-				/obj/item/weapon/gun/projectile/garand,
-				/obj/item/ammo_magazine/m762enbloc,
-				/obj/item/ammo_magazine/m762enbloc,
-=======
 				/obj/item/gun/projectile/garand,
 				/obj/item/gun/projectile/garand,
-				/obj/item/ammo_magazine/m762garand,
-				/obj/item/ammo_magazine/m762garand,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				/obj/item/ammo_magazine/m762enbloc,
+				/obj/item/ammo_magazine/m762enbloc,
 				/obj/structure/closet/crate/plastic
 			),
 			prob(2);list(
@@ -393,13 +374,8 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(2);list(
-<<<<<<< HEAD
-				/obj/item/weapon/pickaxe/advdrill,
-				/obj/item/weapon/storage/bag/ore,
-=======
-				/obj/item/pickaxe/drill,
+				/obj/item/pickaxe/advdrill,
 				/obj/item/storage/bag/ore,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				/obj/item/clothing/glasses/material,
 				/obj/structure/closet/crate/engineering
 			),
@@ -544,21 +520,7 @@
 
 /obj/random/multiple/ore_pile/item_to_spawn()
 	return pick(
-<<<<<<< HEAD
 			/*prob(10);list(
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite,
-				/obj/item/weapon/ore/bauxite
-			),*/
-=======
-			prob(10);list(
 				/obj/item/ore/bauxite,
 				/obj/item/ore/bauxite,
 				/obj/item/ore/bauxite,
@@ -569,8 +531,7 @@
 				/obj/item/ore/bauxite,
 				/obj/item/ore/bauxite,
 				/obj/item/ore/bauxite
-			),
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			),*/
 			prob(10);list(
 				/obj/item/ore/coal,
 				/obj/item/ore/coal,
@@ -583,21 +544,7 @@
 				/obj/item/ore/coal,
 				/obj/item/ore/coal
 			),
-<<<<<<< HEAD
 			/*prob(10);list(
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper,
-				/obj/item/weapon/ore/copper
-			),*/
-=======
-			prob(10);list(
 				/obj/item/ore/copper,
 				/obj/item/ore/copper,
 				/obj/item/ore/copper,
@@ -608,8 +555,7 @@
 				/obj/item/ore/copper,
 				/obj/item/ore/copper,
 				/obj/item/ore/copper
-			),
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			),*/
 			prob(3);list(
 				/obj/item/ore/diamond,
 				/obj/item/ore/diamond,
@@ -706,23 +652,13 @@
 				/obj/item/ore/uranium
 			),
 			prob(2);list(
-<<<<<<< HEAD
-				/obj/item/weapon/ore/verdantium,
-				/obj/item/weapon/ore/verdantium
-			),/*
-			prob(2);list(
-				/obj/item/weapon/ore/void_opal,
-				/obj/item/weapon/ore/void_opal
-			),*/
-=======
 				/obj/item/ore/verdantium,
 				/obj/item/ore/verdantium
-			),
+			),/*
 			prob(2);list(
-				/obj/item/ore/magmellite,
-				/obj/item/ore/magmellite
-			),
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				/obj/item/ore/void_opal,
+				/obj/item/ore/void_opal
+			),*/
 		)
 
 /obj/random/multiple/corp_crate
@@ -1637,7 +1573,7 @@
 							/obj/item/weapon/ore/uranium,
 							/obj/item/weapon/ore/uranium),
 				prob(2);list(
-							/obj/item/device/flashlight/lantern,
+							/obj/item/flashlight/lantern,
 							/obj/item/clothing/glasses/material,
 							/obj/item/weapon/ore/diamond,
 							/obj/item/weapon/ore/diamond,

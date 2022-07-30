@@ -84,7 +84,7 @@
 	w_class = ITEMSIZE_SMALL
 
 //smolebrick case to make for easy bricks.
-/obj/item/weapon/storage/smolebrickcase
+/obj/item/storage/smolebrickcase
 	name = "smolebrick case"
 	desc = "You feel the power of imagination."
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -243,7 +243,7 @@
 	return
 
 //checks for items and does the same as dismaintle but spawns material instead.
-/obj/structure/smolebuilding/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/smolebuilding/attackby(obj/item/W as obj, mob/user as mob)
 	dismantle()
 	return
 //checks for projectile damage and does the same as dismaintle but spawns material instead.
@@ -272,7 +272,7 @@
 		qdel(src)
 
 //Ruins go asplode same as buildings if attacked
-/obj/structure/smoleruins/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/smoleruins/attackby(obj/item/W as obj, mob/user as mob)
 	displode()
 	return
 
@@ -389,13 +389,13 @@
 	name = "asteriod"
 	desc = "Several chunks of sugar crumbs that looks like asteriods."
 
-/obj/item/weapon/bikehorn/tinytether
+/obj/item/bikehorn/tinytether
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "tether_trash"
 	name = "tether"
 	desc = "Its a tiny bit of plastic in the shape of the tether. There seems to be a small button on top."
 
-/obj/item/weapon/bikehorn/tinytether/attack_self(mob/user as mob)
+/obj/item/bikehorn/tinytether/attack_self(mob/user as mob)
 	if(spam_flag == 0)
 		spam_flag = 1
 		playsound(src, 'sound/items/tinytether.ogg', 30, 1, volume_channel = VOLUME_CHANNEL_MASTER)
@@ -404,7 +404,7 @@
 			spam_flag = 0
 	return
 
-/obj/item/weapon/reagent_containers/food/snacks/snackplanet/moon
+/obj/item/reagent_containers/food/snacks/snackplanet/moon
 	name = "moon"
 	desc = "A firm solid mass of white powdery sugar in the shape of a moon!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -414,18 +414,18 @@
 	nutriment_desc = list("sugar" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
-/obj/item/weapon/reagent_containers/food/snacks/snackplanet/virgo3b
+/obj/item/reagent_containers/food/snacks/snackplanet/virgo3b
 	name = "Virgo 3B"
 	desc = "A sticky jelly jaw breaker in the shape of Virgo-3B, it even has a tiny tether!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
 	icon_state = "sp_Virgo3B"
 	bitesize = 3
-	trash = /obj/item/weapon/bikehorn/tinytether
+	trash = /obj/item/bikehorn/tinytether
 	nutriment_amt = 2
 	nutriment_desc = list("spicy" = 2, "tang" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
-/obj/item/weapon/reagent_containers/food/snacks/snackplanet/phoron
+/obj/item/reagent_containers/food/snacks/snackplanet/phoron
 	name = "phoron giant"
 	desc = "A spicy jaw breaker that seems to swirl in the light."
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -436,7 +436,7 @@
 	nutriment_desc = list("spicy" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
-/obj/item/weapon/reagent_containers/food/snacks/snackplanet/virgoprime
+/obj/item/reagent_containers/food/snacks/snackplanet/virgoprime
 	name = "Virgo Prime"
 	desc = "It's a orange jaw breaker in the shape of Virgo Prime!"
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -447,7 +447,7 @@
 	nutriment_desc = list("salty" = 2)
 	drop_sound = 'sound/items/drop/basketball.ogg'
 
-/obj/item/weapon/storage/bagoplanets
+/obj/item/storage/bagoplanets
 	name = "bag o' planets"
 	desc = "A cosmic bag of fist-sized candy planets."
 	icon = 'icons/vore/smoleworld_vr.dmi'
@@ -457,7 +457,7 @@
 	max_storage_space = ITEMSIZE_COST_SMALL * 7 // most code copied from toolbox
 	drop_sound = 'sound/items/drop/food.ogg'
 	pickup_sound = 'sound/items/pickup/food.ogg'
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/snackplanet/phoron,
-	/obj/item/weapon/reagent_containers/food/snacks/snackplanet/virgo3b,/obj/item/weapon/reagent_containers/food/snacks/snackplanet/moon,
-	/obj/item/weapon/reagent_containers/food/snacks/snackplanet/virgoprime
+	starts_with = list(/obj/item/reagent_containers/food/snacks/snackplanet/phoron,
+	/obj/item/reagent_containers/food/snacks/snackplanet/virgo3b,/obj/item/reagent_containers/food/snacks/snackplanet/moon,
+	/obj/item/reagent_containers/food/snacks/snackplanet/virgoprime
 	)

@@ -35,7 +35,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
 	icon_state = "intact";
-	
+
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -103,7 +103,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
 	icon_state = "map";
-	
+
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -221,7 +221,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
 	icon_state = "intact";
-	
+
 	},
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -437,7 +437,7 @@
 	dir = 1;
 	icon_state = "borderfloor";
 	pixel_y = 0;
-	
+
 	},
 /obj/effect/floor_decal/corner/yellow/border{
 	dir = 1
@@ -541,7 +541,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 5;
 	icon_state = "intact";
-	
+
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -613,7 +613,7 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
 	icon_state = "map";
-	
+
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -887,11 +887,11 @@
 /turf/simulated/floor/tiled,
 /area/submap/pa_room)
 "bu" = (
-/obj/item/weapon/book/manual/engineering_particle_accelerator{
+/obj/item/book/manual/engineering_particle_accelerator{
 	pixel_x = 5;
 	pixel_y = 5
 	},
-/obj/item/weapon/book/manual/engineering_singularity_safety,
+/obj/item/book/manual/engineering_singularity_safety,
 /turf/template_noop,
 /area/template_noop)
 "bv" = (
@@ -1345,7 +1345,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
 	icon_state = "intact";
-	
+
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engine_room)
@@ -1545,7 +1545,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 9;
 	icon_state = "intact";
-	
+
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/yellow/border,
@@ -1627,7 +1627,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "cE" = (
-/obj/item/weapon/weldingtool,
+/obj/item/weldingtool,
 /turf/space,
 /area/space)
 "cF" = (

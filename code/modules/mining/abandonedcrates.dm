@@ -27,13 +27,8 @@
 			new/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus(src)
 			new/obj/item/flame/lighter/zippo(src)
 		if(6 to 10)
-<<<<<<< HEAD
-			new/obj/item/weapon/pickaxe/advdrill(src)
-			new/obj/item/device/taperecorder(src)
-=======
-			new/obj/item/pickaxe/drill(src)
+			new/obj/item/pickaxe/advdrill(src)
 			new/obj/item/taperecorder(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			new/obj/item/clothing/suit/space(src)
 			new/obj/item/clothing/head/helmet/space(src)
 		if(11 to 15)
@@ -68,11 +63,7 @@
 		if(57 to 58)
 			new/obj/item/toy/syndicateballoon(src)
 		if(59 to 60)
-<<<<<<< HEAD
-			new/obj/item/weapon/rig/industrial(src)
-=======
-			new/obj/item/rig(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			new/obj/item/rig/industrial(src)
 		if(61 to 62)
 			for(var/i = 0, i < 12, ++i)
 				new/obj/item/clothing/head/kitty(src)
@@ -86,11 +77,7 @@
 		if(67 to 68)
 			var/t = rand(4,7)
 			for(var/i = 0, i < t, ++i)
-<<<<<<< HEAD
-				var/newitem = pick(subtypesof(/obj/item/weapon/stock_parts) - /obj/item/weapon/stock_parts/subspace)
-=======
-				var/newitem = pick(typesof(/obj/item/stock_parts) - /obj/item/stock_parts - /obj/item/stock_parts/subspace)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+				var/newitem = pick(subtypesof(/obj/item/stock_parts) - /obj/item/stock_parts/subspace)
 				new newitem(src)
 		if(69 to 70)
 			new/obj/item/pickaxe/silver(src)

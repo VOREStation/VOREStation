@@ -30,13 +30,8 @@
 
 /obj/vehicle/bike/Initialize()
 	. = ..()
-<<<<<<< HEAD
-	cell = new /obj/item/weapon/cell/high(src)
-	ion = new /datum/effect/effect/system/ion_trail_follow()
-=======
 	cell = new /obj/item/cell/high(src)
 	ion = new /datum/effect_system/ion_trail_follow()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	ion.set_up(src)
 	turn_off()
 	icon_state = "[bike_icon]_off"
@@ -51,15 +46,9 @@
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
 	..()
 
-<<<<<<< HEAD
-/obj/vehicle/bike/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/device/multitool) && open)
-		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
-=======
 /obj/vehicle/bike/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && open)
-		var/new_paint = input("Please select paint color.", "Paint Color", paint_color) as color|null
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		var/new_paint = input(usr, "Please select paint color.", "Paint Color", paint_color) as color|null
 		if(new_paint)
 			paint_color = new_paint
 			update_icon()

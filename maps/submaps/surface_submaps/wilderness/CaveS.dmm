@@ -25,18 +25,14 @@
 "y" = (/obj/structure/flora/tree/sif,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
 "z" = (/obj/random/landmine,/turf/simulated/floor/outdoors/grass/sif/forest,/area/submap/CaveS)
 "A" = (/turf/simulated/floor,/area/submap/CaveS)
-"B" = (/obj/structure/closet/crate,/obj/item/stack/cable_coil,/obj/item/stack/cable_coil,/obj/item/weapon/storage/toolbox,/obj/random/toolbox,/turf/simulated/floor,/area/submap/CaveS)
+"B" = (/obj/structure/closet/crate,/obj/item/stack/cable_coil,/obj/item/stack/cable_coil,/obj/item/storage/toolbox,/obj/random/toolbox,/turf/simulated/floor,/area/submap/CaveS)
 "C" = (/obj/structure/loot_pile/maint/technical,/turf/simulated/floor,/area/submap/CaveS)
 "D" = (/obj/structure/table/woodentable,/turf/simulated/floor,/area/submap/CaveS)
 "E" = (/obj/machinery/power/port_gen/pacman,/obj/structure/cable{icon_state = "0-2"; d2 = 2},/turf/simulated/floor,/area/submap/CaveS)
 "F" = (/turf/simulated/wall,/area/submap/CaveS)
 "G" = (/obj/structure/closet/crate,/obj/item/reagent_containers/hypospray,/obj/item/reagent_containers/glass/bottle/stoxin,/obj/item/reagent_containers/glass/bottle/antitoxin,/obj/item/reagent_containers/pill/antitox,/obj/item/reagent_containers/pill/antitox,/obj/item/reagent_containers/pill/antitox,/obj/item/reagent_containers/pill/paracetamol,/obj/random/firstaid,/turf/simulated/floor,/area/submap/CaveS)
 "H" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"; pixel_y = 0},/turf/simulated/floor,/area/submap/CaveS)
-<<<<<<< HEAD
-"I" = (/obj/structure/closet/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/contraband,/obj/random/energy,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/obj/item/weapon/material/star,/turf/simulated/floor,/area/submap/CaveS)
-=======
-"I" = (/obj/structure/closet/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/contraband,/obj/random/energy,/obj/item/material/star,/obj/item/material/star,/obj/item/material/star,/obj/item/material/star,/obj/item/material/star,/obj/random/energy/highend,/turf/simulated/floor,/area/submap/CaveS)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+"I" = (/obj/structure/closet/crate,/obj/random/contraband,/obj/random/contraband,/obj/random/contraband,/obj/random/energy,/obj/item/material/star,/obj/item/material/star,/obj/item/material/star,/obj/item/material/star,/obj/item/material/star,/turf/simulated/floor,/area/submap/CaveS)
 "J" = (/obj/effect/spider/stickyweb,/mob/living/simple_mob/animal/giant_spider/lurker,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/CaveS)
 "K" = (/obj/structure/cable{d1 = 1; d2 = 4; icon_state = "1-4"},/turf/simulated/floor,/area/submap/CaveS)
 "L" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor,/area/submap/CaveS)

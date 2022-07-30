@@ -1,7 +1,7 @@
-/obj/item/device/cataloguer
+/obj/item/cataloguer
 	credit_sharing_range = 280
 
-/obj/item/device/cataloguer/compact
+/obj/item/cataloguer/compact
 	name = "compact cataloguer"
 	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
@@ -12,16 +12,16 @@
 	scan_range = 1
 	toolspeed = 1.2
 
-/obj/item/device/cataloguer/compact/update_icon()
+/obj/item/cataloguer/compact/update_icon()
 	if(busy)
 		icon_state = "[initial(icon_state)]_s"
 	else
 		icon_state = initial(icon_state)
 
-/obj/item/device/cataloguer/compact/ui_action_click()
+/obj/item/cataloguer/compact/ui_action_click()
 	toggle()
 
-/obj/item/device/cataloguer/compact/verb/toggle()
+/obj/item/cataloguer/compact/verb/toggle()
 	set name = "Toggle Cataloguer"
 	set category = "Object"
 
@@ -42,19 +42,19 @@
 		var/mob/M = usr
 		M.update_action_buttons()
 
-/obj/item/device/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
+/obj/item/cataloguer/compact/afterattack(atom/target, mob/user, proximity_flag)
 	if(!deployed)
 		to_chat(user, span("warning", "\The [src] is closed."))
 		return
 	return ..()
 
-/obj/item/device/cataloguer/compact/pulse_scan(mob/user)
+/obj/item/cataloguer/compact/pulse_scan(mob/user)
 	if(!deployed)
 		to_chat(user, span("warning", "\The [src] is closed."))
 		return
 	return ..()
 
-/obj/item/device/cataloguer/compact/pathfinder
+/obj/item/cataloguer/compact/pathfinder
 	name = "pathfinder's cataloguer"
 	desc = "A compact hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
@@ -63,7 +63,7 @@
 	scan_range = 3
 	toolspeed = 1
 
-/obj/item/device/cataloguer
+/obj/item/cataloguer
 	desc = "A hand-held device, used for compiling information about an object by scanning it. \
 	Alt+click to highlight scannable objects around you."
 	icon = 'icons/obj/device_vr.dmi'

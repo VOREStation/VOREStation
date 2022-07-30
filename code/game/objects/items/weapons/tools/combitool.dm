@@ -31,13 +31,8 @@
 		for(var/obj/item/tool in tools)
 			. += "\icon[tool][bicon(tool)] - [tool.name][tools[current_tool]==tool?" (selected)":""]")
 
-<<<<<<< HEAD
-/obj/item/weapon/combitool/New()
-	..()
-=======
 /obj/item/combitool/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/type in spawn_tools)
 		tools |= new type(src)
 

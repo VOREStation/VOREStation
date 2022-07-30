@@ -9,77 +9,47 @@
 	name = "basic hard drive"
 	id = "hdd_basic"
 	req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 100)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/
-=======
-	materials = list(MAT_STEEL = 2000, "glass" = 100)
 	build_path = /obj/item/computer_hardware/hard_drive/
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VAAAA"
 
 /datum/design/item/modularcomponent/disk/advanced
 	name = "advanced hard drive"
 	id = "hdd_advanced"
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 200)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/advanced
-=======
-	materials = list(MAT_STEEL = 4000, "glass" = 200)
 	build_path = /obj/item/computer_hardware/hard_drive/advanced
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VAAAB"
 
 /datum/design/item/modularcomponent/disk/super
 	name = "super hard drive"
 	id = "hdd_super"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 8000, MAT_GLASS = 400)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/super
-=======
-	materials = list(MAT_STEEL = 8000, "glass" = 400)
 	build_path = /obj/item/computer_hardware/hard_drive/super
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VAAAC"
 
 /datum/design/item/modularcomponent/disk/cluster
 	name = "cluster hard drive"
 	id = "hdd_cluster"
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 4)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 16000, MAT_GLASS = 800)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/cluster
-=======
-	materials = list(MAT_STEEL = 16000, "glass" = 800)
 	build_path = /obj/item/computer_hardware/hard_drive/cluster
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VAAAD"
 
 /datum/design/item/modularcomponent/disk/small
 	name = "small hard drive"
 	id = "hdd_small"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 200)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/small
-=======
-	materials = list(MAT_STEEL = 4000, "glass" = 200)
 	build_path = /obj/item/computer_hardware/hard_drive/small
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VAAAE"
 
 /datum/design/item/modularcomponent/disk/micro
 	name = "micro hard drive"
 	id = "hdd_micro"
 	req_tech = list(TECH_DATA = 1, TECH_ENGINEERING = 1)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 100)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/micro
-=======
-	materials = list(MAT_STEEL = 2000, "glass" = 100)
 	build_path = /obj/item/computer_hardware/hard_drive/micro
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VAAAF"
 
 // Network cards
@@ -88,39 +58,24 @@
 	name = "basic network card"
 	id = "netcard_basic"
 	req_tech = list(TECH_DATA = 2, TECH_ENGINEERING = 1)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 100)
-	build_path = /obj/item/weapon/computer_hardware/network_card
-=======
-	materials = list(MAT_STEEL = 500, "glass" = 100)
 	build_path = /obj/item/computer_hardware/network_card
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VBAAA"
 
 /datum/design/item/modularcomponent/netcard/advanced
 	name = "advanced network card"
 	id = "netcard_advanced"
 	req_tech = list(TECH_DATA = 4, TECH_ENGINEERING = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 1000, MAT_GLASS = 200)
-	build_path = /obj/item/weapon/computer_hardware/network_card/advanced
-=======
-	materials = list(MAT_STEEL = 1000, "glass" = 200)
 	build_path = /obj/item/computer_hardware/network_card/advanced
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VBAAB"
 
 /datum/design/item/modularcomponent/netcard/wired
 	name = "wired network card"
 	id = "netcard_wired"
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 400)
-	build_path = /obj/item/weapon/computer_hardware/network_card/wired
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 400)
 	build_path = /obj/item/computer_hardware/network_card/wired
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VBAAC"
 
 // Batteries
@@ -243,37 +198,22 @@
 	name = "basic data crystal"
 	id = "portadrive_basic"
 	req_tech = list(TECH_DATA = 1)
-<<<<<<< HEAD
 	materials = list(MAT_GLASS = 8000)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable
-=======
-	materials = list("glass" = 8000)
 	build_path = /obj/item/computer_hardware/hard_drive/portable
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VFAAA"
 
 /datum/design/item/modularcomponent/portabledrive/advanced
 	name = "advanced data crystal"
 	id = "portadrive_advanced"
 	req_tech = list(TECH_DATA = 2)
-<<<<<<< HEAD
 	materials = list(MAT_GLASS = 16000)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/advanced
-=======
-	materials = list("glass" = 16000)
 	build_path = /obj/item/computer_hardware/hard_drive/portable/advanced
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VFAAB"
 
 /datum/design/item/modularcomponent/portabledrive/super
 	name = "super data crystal"
 	id = "portadrive_super"
 	req_tech = list(TECH_DATA = 4)
-<<<<<<< HEAD
 	materials = list(MAT_GLASS = 32000)
-	build_path = /obj/item/weapon/computer_hardware/hard_drive/portable/super
-=======
-	materials = list("glass" = 32000)
 	build_path = /obj/item/computer_hardware/hard_drive/portable/super
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "VFAAC"

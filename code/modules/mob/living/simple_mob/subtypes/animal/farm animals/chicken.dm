@@ -26,13 +26,8 @@ GLOBAL_VAR_INIT(chicken_count, 0)	// How mant chickens DO we have?
 
 	say_list_type = /datum/say_list/chicken
 
-<<<<<<< HEAD
 	meat_amount = 4
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
-=======
-	meat_amount = 2
 	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/eggsleft = 0
 	var/body_color

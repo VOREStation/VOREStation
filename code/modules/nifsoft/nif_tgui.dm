@@ -4,7 +4,7 @@
 /**
  * Etc variables on the NIF to keep this self contained
  */
-/obj/item/device/nif
+/obj/item/nif
 	var/static/list/valid_ui_themes = list(
 		"abductor",
 		"cardtable",
@@ -84,20 +84,20 @@
 	set category = "IC"
 	set desc = "Open the NIF user interface."
 
-	var/obj/item/device/nif/N = nif
+	var/obj/item/nif/N = nif
 	if(istype(N))
 		N.tgui_interact(usr)
 
 /**
  * The NIF State ensures that only our authorized implanted user can touch us.
  */
-/obj/item/device/nif/tgui_state(mob/user)
+/obj/item/nif/tgui_state(mob/user)
 	return GLOB.tgui_nif_main_state
 
 /**
  * Standard TGUI stub to open the NIF.js template.
  */
-/obj/item/device/nif/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/nif/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "NIF", name)
@@ -107,7 +107,7 @@
  * tgui_data gives the UI any relevant data it needs.
  * In our case, that's basically everything from our statpanel.
  */
-/obj/item/device/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/nif/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["theme"] = save_data["ui_theme"]
@@ -147,7 +147,7 @@
 /**
  * tgui_act handles all user input in the UI.
  */
-/obj/item/device/nif/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/nif/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 

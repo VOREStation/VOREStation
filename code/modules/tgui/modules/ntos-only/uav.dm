@@ -30,14 +30,9 @@
 	var/list/paired_map = list()
 	var/obj/item/modular_computer/mc_host = tgui_host()
 	if(istype(mc_host))
-<<<<<<< HEAD
-		for(var/weakref/wr as anything in mc_host.paired_uavs)
-			var/obj/item/device/uav/U = wr.resolve()
-=======
 		for(var/puav in mc_host.paired_uavs)
 			var/weakref/wr = puav
 			var/obj/item/uav/U = wr.resolve()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			paired_map.Add(list(list("name" = "[U ? U.nickname : "!!Missing!!"]", "uavref" = "\ref[U]")))
 
 	data["paired_uavs"] = paired_map
@@ -46,7 +41,7 @@
 /datum/tgui_module/uav/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("switch_uav")
 			var/obj/item/uav/U = locate(params["switch_uav"]) //This is a \ref to the UAV itself

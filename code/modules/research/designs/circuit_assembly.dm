@@ -26,26 +26,16 @@
 	name = "Custom wirer tool"
 	id = "wirer"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
-	build_path = /obj/item/device/integrated_electronics/wirer
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 2500)
 	build_path = /obj/item/integrated_electronics/wirer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "UCAAA"
 
 /datum/design/item/integrated_circuitry/debugger
 	name = "Custom circuit debugger tool"
 	id = "debugger"
 	req_tech = list(TECH_MATERIAL = 2, TECH_ENGINEERING = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2500)
-	build_path = /obj/item/device/integrated_electronics/debugger
-=======
-	materials = list(MAT_STEEL = 5000, "glass" = 2500)
 	build_path = /obj/item/integrated_electronics/debugger
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "UCBBB"
 
 // Assemblies

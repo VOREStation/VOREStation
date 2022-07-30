@@ -6,7 +6,7 @@
 	icon_state = "pad-idle"
 	anchored = TRUE
 	use_power = USE_POWER_IDLE
-	circuit = /obj/item/weapon/circuitboard/telesci_pad
+	circuit = /obj/item/circuitboard/telesci_pad
 	idle_power_usage = 200
 	active_power_usage = 5000
 	var/efficiency
@@ -14,17 +14,17 @@
 /obj/machinery/telepad/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/weapon/ore/bluespace_crystal(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/capacitor(src)
-	component_parts += new /obj/item/weapon/stock_parts/console_screen(src)
+	component_parts += new /obj/item/ore/bluespace_crystal(src)
+	component_parts += new /obj/item/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stock_parts/capacitor(src)
+	component_parts += new /obj/item/stock_parts/console_screen(src)
 	component_parts += new /obj/item/stack/cable_coil(src, 5)
 	RefreshParts()
 	update_icon()
 
 /obj/machinery/telepad/RefreshParts()
 	var/E
-	for(var/obj/item/weapon/stock_parts/capacitor/C in component_parts)
+	for(var/obj/item/stock_parts/capacitor/C in component_parts)
 		E += C.rating
 	efficiency = E
 
@@ -38,8 +38,8 @@
 	if(default_part_replacement(user, W))
 		return
 	if(panel_open)
-		if(istype(W, /obj/item/device/multitool))
-			var/obj/item/device/multitool/M = W
+		if(istype(W, /obj/item/multitool))
+			var/obj/item/multitool/M = W
 			M.connectable = src
 			to_chat(user, "<span class='caution'>You save the data in the [M.name]'s buffer.</span>")
 			return 1

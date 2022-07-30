@@ -5,7 +5,7 @@
 	icon_state = "stockmarket"
 	icon_screen = "stocks"
 	icon_keyboard = "stockmarket_key"
-	circuit = /obj/item/weapon/circuitboard/stockexchange
+	circuit = /obj/item/circuitboard/stockexchange
 	var/logged_in = "Cargo Department"
 	var/vmode = 1
 
@@ -99,7 +99,7 @@
 	data["stationName"] = using_map.station_name
 	data["balance"] = balance()
 	data["screen"] = screen
-	
+
 	switch(screen)
 		// Main Stocks List
 		if("stocks")
@@ -187,7 +187,7 @@
 		// Stocks Logs Screen
 		if("logs")
 			data["logs"] = list()
-			
+
 			for(var/D in GLOB.stockExchange.logs)
 				var/datum/stock_log/L = D
 

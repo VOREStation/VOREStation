@@ -65,20 +65,6 @@
 		/obj/item/pda,
 		/obj/item/megaphone,
 		/obj/item/taperoll,
-<<<<<<< HEAD
-		/obj/item/device/radio/headset,
-		/obj/item/device/robotanalyzer,
-		/obj/item/weapon/material/minihoe,
-		/obj/item/weapon/material/knife/machete/hatchet,
-		/obj/item/device/analyzer/plant_analyzer,
-		/obj/item/weapon/extinguisher/mini,
-		/obj/item/weapon/tape_roll,
-		/obj/item/device/integrated_electronics/wirer,
-		/obj/item/device/integrated_electronics/debugger, //Vorestation edit adding debugger to toolbelt can hold list
-		/obj/item/weapon/shovel/spade, //VOREStation edit. If it can hold minihoes and hatchers, why not the gardening spade?
-		/obj/item/stack/nanopaste, //VOREStation edit. Think of it as a tube of superglue. Belts hold that all the time.
-		/obj/item/device/geiger //VOREStation edit. Engineers work with rad-slinging stuff sometimes too
-=======
 		/obj/item/radio/headset,
 		/obj/item/robotanalyzer,
 		/obj/item/material/minihoe,
@@ -87,7 +73,10 @@
 		/obj/item/extinguisher/mini,
 		/obj/item/tape_roll,
 		/obj/item/integrated_electronics/wirer,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		/obj/item/integrated_electronics/debugger, //Vorestation edit adding debugger to toolbelt can hold list
+		/obj/item/shovel/spade, //VOREStation edit. If it can hold minihoes and hatchers, why not the gardening spade?
+		/obj/item/stack/nanopaste, //VOREStation edit. Think of it as a tube of superglue. Belts hold that all the time.
+		/obj/item/geiger //VOREStation edit. Engineers work with rad-slinging stuff sometimes too
 		)
 
 /obj/item/storage/belt/utility/full
@@ -113,21 +102,13 @@
 
 /obj/item/storage/belt/utility/atmostech
 	starts_with = list(
-<<<<<<< HEAD
-		/obj/item/weapon/tool/screwdriver,
-		/obj/item/weapon/tool/wrench,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/tool/wirecutters,
-		/obj/item/device/analyzer, //Vorestation edit. Gives atmos techs a few extra tools fitting their job from the start
-		/obj/item/weapon/extinguisher/mini //Vorestation edit. As above, the mini's much more handy to have rather than lugging a big one around
-=======
 		/obj/item/tool/screwdriver,
 		/obj/item/tool/wrench,
 		/obj/item/weldingtool,
 		/obj/item/tool/crowbar,
-		/obj/item/tool/wirecutters
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		/obj/item/tool/wirecutters,
+		/obj/item/analyzer, //Vorestation edit. Gives atmos techs a few extra tools fitting their job from the start
+		/obj/item/extinguisher/mini //Vorestation edit. As above, the mini's much more handy to have rather than lugging a big one around
 	)
 
 /obj/item/storage/belt/utility/chief
@@ -147,74 +128,57 @@
 		/obj/item/analyzer
 	)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/belt/utility/holding
+/obj/item/storage/belt/utility/holding
 	name = "tool-belt of holding"
 	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
 	icon_state = "utility_holding"
 	storage_slots = 14 //twice the amount as a normal belt
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14
 	can_hold = list(
-	/obj/item/weapon/tool/crowbar,
-		/obj/item/weapon/tool/screwdriver,
-		/obj/item/weapon/weldingtool,
-		/obj/item/weapon/tool/wirecutters,
-		/obj/item/weapon/tool/wrench,
-		/obj/item/device/multitool,
-		/obj/item/device/flashlight,
-		/obj/item/weapon/cell/device,
+	/obj/item/tool/crowbar,
+		/obj/item/tool/screwdriver,
+		/obj/item/weldingtool,
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/wrench,
+		/obj/item/multitool,
+		/obj/item/flashlight,
+		/obj/item/cell/device,
 		/obj/item/stack/cable_coil,
-		/obj/item/device/t_scanner,
-		/obj/item/device/analyzer,
+		/obj/item/t_scanner,
+		/obj/item/analyzer,
 		/obj/item/clothing/glasses,
 		/obj/item/clothing/gloves,
-		/obj/item/device/pda,
-		/obj/item/device/megaphone,
+		/obj/item/pda,
+		/obj/item/megaphone,
 		/obj/item/taperoll,
-		/obj/item/device/radio/headset,
-		/obj/item/device/robotanalyzer,
-		/obj/item/weapon/material/minihoe,
-		/obj/item/weapon/material/knife/machete/hatchet,
-		/obj/item/device/analyzer/plant_analyzer,
-		/obj/item/weapon/extinguisher/mini,
-		/obj/item/weapon/tape_roll,
-		/obj/item/device/integrated_electronics/wirer,
-		/obj/item/device/integrated_electronics/debugger,
-		/obj/item/weapon/shovel/spade,
+		/obj/item/radio/headset,
+		/obj/item/robotanalyzer,
+		/obj/item/material/minihoe,
+		/obj/item/material/knife/machete/hatchet,
+		/obj/item/analyzer/plant_analyzer,
+		/obj/item/extinguisher/mini,
+		/obj/item/tape_roll,
+		/obj/item/integrated_electronics/wirer,
+		/obj/item/integrated_electronics/debugger,
+		/obj/item/shovel/spade,
 		/obj/item/stack/nanopaste,
-		/obj/item/weapon/cell, //this is a bigger belt, might as well make it hold bigger cells too
-		/obj/item/weapon/pipe_dispenser, //bigger belt for bigger tools
-		/obj/item/weapon/rcd, //see above
-		/obj/item/device/quantum_pad_booster,
-		/obj/item/weapon/inducer,
+		/obj/item/cell, //this is a bigger belt, might as well make it hold bigger cells too
+		/obj/item/pipe_dispenser, //bigger belt for bigger tools
+		/obj/item/rcd, //see above
+		/obj/item/quantum_pad_booster,
+		/obj/item/inducer,
 		/obj/item/stack/material/steel,
 		/obj/item/stack/material/glass,
-		/obj/item/device/lightreplacer,
-		/obj/item/weapon/pickaxe/plasmacutter
+		/obj/item/lightreplacer,
+		/obj/item/pickaxe/plasmacutter
 	)
 
 
-/obj/item/weapon/storage/belt/medical
-=======
 /obj/item/storage/belt/medical
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "medical belt"
 	desc = "Can hold various medical equipment."
 	icon_state = "medical"
 	can_hold = list(
-<<<<<<< HEAD
-		/obj/item/device/healthanalyzer,
-		/obj/item/weapon/dnainjector,
-		/obj/item/weapon/reagent_containers/dropper,
-		/obj/item/weapon/reagent_containers/glass/beaker,
-		/obj/item/weapon/reagent_containers/glass/bottle,
-		/obj/item/weapon/reagent_containers/pill,
-		/obj/item/weapon/reagent_containers/syringe,
-		/obj/item/weapon/storage/quickdraw/syringe_case, //VOREStation Addition - Adds syringe cases,
-		/obj/item/weapon/flame/lighter/zippo,
-		/obj/item/weapon/storage/fancy/cigarettes,
-		/obj/item/weapon/storage/pill_bottle,
-=======
 		/obj/item/healthanalyzer,
 		/obj/item/dnainjector,
 		/obj/item/reagent_containers/dropper,
@@ -222,10 +186,10 @@
 		/obj/item/reagent_containers/glass/bottle,
 		/obj/item/reagent_containers/pill,
 		/obj/item/reagent_containers/syringe,
+		/obj/item/storage/quickdraw/syringe_case, //VOREStation Addition - Adds syringe cases,
 		/obj/item/flame/lighter/zippo,
 		/obj/item/storage/fancy/cigarettes,
 		/obj/item/storage/pill_bottle,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		/obj/item/stack/medical,
 		/obj/item/radio/headset,
 		/obj/item/pda,
@@ -248,18 +212,14 @@
 	desc = "A sturdy black webbing belt with attached pouches."
 	icon_state = "ems"
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/belt/medical/holding
+/obj/item/storage/belt/medical/holding
 	name = "medical belt of holding"
 	desc = "A belt that uses localized bluespace pockets to hold more items than expected!"
 	icon_state = "med_holding"
 	storage_slots = 14 //twice the amount as a normal belt
 	max_storage_space = ITEMSIZE_COST_NORMAL * 14
 
-/obj/item/weapon/storage/belt/security
-=======
 /obj/item/storage/belt/security
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "security belt"
 	desc = "Can hold security gear like handcuffs and flashes."
 	icon_state = "security"
@@ -435,8 +395,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 7
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/belt/bandolier
+/obj/item/storage/belt/bandolier
 	name = "shotgun bandolier"
 	desc = "Designed to hold shotgun shells. Can't really hold more than that."
 	icon_state = "bandolier1"
@@ -454,12 +413,8 @@
 		/obj/item/ammo_casing/a12g/flechette
 		)
 
-/obj/item/weapon/storage/belt/security/tactical/bandolier
-	name = "combat bandolier"
-=======
 /obj/item/storage/belt/security/tactical/bandolier
-	name = "combat belt"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	name = "combat bandolier"
 	desc = "Can hold security gear like handcuffs and flashes, with more pouches for more storage."
 	icon_state = "bandolier2"
 
@@ -484,14 +439,9 @@
 		/obj/item/flame/lighter,
 		/obj/item/megaphone,
 		/obj/item/taperoll,
-<<<<<<< HEAD
-		/obj/item/weapon/reagent_containers/spray,
-		/obj/item/weapon/soap,
-		/obj/item/device/lightreplacer //VOREStation edit
-=======
 		/obj/item/reagent_containers/spray,
-		/obj/item/soap
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		/obj/item/soap,
+		/obj/item/lightreplacer //VOREStation edit
 		)
 
 /obj/item/storage/belt/archaeology

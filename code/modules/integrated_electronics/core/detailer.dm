@@ -35,23 +35,22 @@
 	detail_overlay.color = detail_color
 	add_overlay(detail_overlay)
 
-<<<<<<< HEAD
-/obj/item/device/integrated_electronics/detailer/tgui_state(mob/user)
+/obj/item/integrated_electronics/detailer/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/device/integrated_electronics/detailer/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
+/obj/item/integrated_electronics/detailer/tgui_interact(mob/user, datum/tgui/ui, datum/tgui/parent_ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "ICDetailer", name)
 		ui.open()
 
-/obj/item/device/integrated_electronics/detailer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/integrated_electronics/detailer/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 	data["detail_color"] = detail_color
 	data["color_list"] = color_list
 	return data
 
-/obj/item/device/integrated_electronics/detailer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/integrated_electronics/detailer/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -63,7 +62,7 @@
 			update_icon()
 			return TRUE
 
-/obj/item/device/integrated_electronics/detailer/attack_self(mob/user)
+/obj/item/integrated_electronics/detailer/attack_self(mob/user)
 	tgui_interact(user)
 
 	// Leaving this commented out in case someone decides that this would be better as an "any color" selection system
@@ -75,13 +74,3 @@
 	// 	return
 	// detail_color = new_color
 	// update_icon()
-=======
-/obj/item/integrated_electronics/detailer/attack_self(mob/user)
-	var/color_choice = input(user, "Select color.", "Assembly Detailer", detail_color) as null|anything in color_list
-	if(!color_list[color_choice])
-		return
-	if(!in_range(src, user))
-		return
-	detail_color = color_list[color_choice]
-	update_icon()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

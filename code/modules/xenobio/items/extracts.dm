@@ -92,11 +92,7 @@
 
 /decl/chemical_reaction/instant/slime/grey_monkey/on_reaction(var/datum/reagents/holder)
 	for(var/i = 1 to 4)
-<<<<<<< HEAD
-		new /obj/item/weapon/reagent_containers/food/snacks/monkeycube(get_turf(holder.my_atom))
-=======
-		new /obj/item/reagent_containers/food/snacks/cube/monkeycube(get_turf(holder.my_atom))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		new /obj/item/reagent_containers/food/snacks/monkeycube(get_turf(holder.my_atom))
 	..()
 
 /decl/chemical_reaction/instant/slime/grey_slimejelly
@@ -992,6 +988,3 @@
 /decl/chemical_reaction/instant/slime/rainbow_unity/on_reaction(var/datum/reagents/holder)
 	new /obj/item/slimepotion/unity(get_turf(holder.my_atom))
 	..()
-
-
-

@@ -783,13 +783,8 @@
 	req_tech = list(TECH_MAGNET = 3, TECH_COMBAT = 2)
 	build_type = MECHFAB
 	materials = list(MAT_STEEL = 562, MAT_GLASS = 562)
-<<<<<<< HEAD
-	build_path = /obj/item/device/flash/synthetic
-	category = list("Misc")
-=======
 	build_path = /obj/item/flash/synthetic
-	category = "Misc"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	category = list("Misc")
 
 /*
  * Non-Mech Vehicles

@@ -31,13 +31,6 @@
 	var/id
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/syndicate/New(var/mob/living/silicon/robot/R)
-	..()
-	loc = R
-	src.modules += new /obj/item/weapon/pinpointer/shuttle/merc(src)
-	src.modules += new /obj/item/weapon/melee/energy/sword(src)
-=======
 /obj/item/robot_module/robot/syndicate/Initialize()
 
 	. = ..()
@@ -46,7 +39,6 @@
 
 	src.modules += new /obj/item/pinpointer/shuttle/merc(src)
 	src.modules += new /obj/item/melee/energy/sword(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/datum/matter_synth/cloth = new /datum/matter_synth/cloth(40000)
 	synths += cloth
@@ -76,17 +68,12 @@
 		"XI-ALP" = "syndi-heavy"
 		)
 
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/syndicate/protector/New(var/mob/living/silicon/robot/R)
-	..()
-=======
 /obj/item/robot_module/robot/syndicate/protector/Initialize()
 
 	. = ..()
 	if(. != INITIALIZE_HINT_NORMAL)
 		return
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.modules += new /obj/item/shield_projector/rectangle/weak(src)
 	src.modules += new /obj/item/gun/energy/dakkalaser(src)
 	src.modules += new /obj/item/handcuffs/cyborg(src)
@@ -100,17 +87,12 @@
 		"WTOperator" = "sleekhos"
 		)
 
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/syndicate/mechanist/New(var/mob/living/silicon/robot/R)
-	..()
-=======
 /obj/item/robot_module/robot/syndicate/mechanist/Initialize()
 
 	. = ..()
 	if(. != INITIALIZE_HINT_NORMAL)
 		return
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	// General engineering/hacking.
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
@@ -177,17 +159,12 @@
 		"Telemachus" = "toiletbotantag"
 		)
 
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/syndicate/combat_medic/New(var/mob/living/silicon/robot/R)
-	..()
-=======
 /obj/item/robot_module/robot/syndicate/combat_medic/Initialize()
 
 	. = ..()
 	if(. != INITIALIZE_HINT_NORMAL)
 		return
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/healthanalyzer/advanced(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/merc(src)

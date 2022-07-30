@@ -39,13 +39,8 @@
 	desc = "A hand-held scanner able to diagnose robotic injuries."
 	id = "robot_scanner"
 	req_tech = list(TECH_MAGNET = 3, TECH_BIO = 2, TECH_ENGINEERING = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 200)
-	build_path = /obj/item/device/robotanalyzer
-=======
-	materials = list(MAT_STEEL = 500, "glass" = 200)
 	build_path = /obj/item/robotanalyzer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "JAACA"
 
 /datum/design/item/biotech/nanopaste
@@ -60,12 +55,6 @@
 	desc = "A device capable of quickly scanning all relevant data about a plant."
 	id = "plant_analyzer"
 	req_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
-	build_path = /obj/item/device/analyzer/plant_analyzer
-=======
-	materials = list(MAT_STEEL = 500, "glass" = 500)
 	build_path = /obj/item/analyzer/plant_analyzer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "JAADA"
-

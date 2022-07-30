@@ -23,13 +23,8 @@
 /obj/item/defib_kit/get_cell()
 	return bcell
 
-<<<<<<< HEAD
-/obj/item/device/defib_kit/New() //starts without a cell for rnd
-	..()
-=======
 /obj/item/defib_kit/Initialize() //starts without a cell for rnd
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(ispath(paddles))
 		paddles = new paddles(src, src)
 	else
@@ -48,13 +43,9 @@
 	bcell = /obj/item/cell/apc
 
 
-<<<<<<< HEAD
-/obj/item/device/defib_kit/update_icon()
-	cut_overlays()
-=======
 /obj/item/defib_kit/update_icon()
+	cut_overlays()
 	var/list/new_overlays = list()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
 		add_overlay("[initial(icon_state)]-paddles")
@@ -600,11 +591,7 @@
 /obj/item/shockpaddles/linked
 	var/obj/item/defib_kit/base_unit
 
-<<<<<<< HEAD
-/obj/item/weapon/shockpaddles/linked/New(newloc, obj/item/device/defib_kit/defib)
-=======
 /obj/item/shockpaddles/linked/Initialize(var/ml, obj/item/defib_kit/defib)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	base_unit = defib
 	..(newloc)
 

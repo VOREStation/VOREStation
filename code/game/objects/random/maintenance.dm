@@ -99,11 +99,10 @@ something, make sure it's not in one of the other lists.*/
 				prob(3);/obj/item/camera_assembly,
 				prob(4);/obj/item/clothing/suit/caution,
 				prob(3);/obj/item/clothing/head/cone,
-<<<<<<< HEAD
 				prob(1);/obj/item/weapon/card/emag_broken,
-				prob(2);/obj/item/device/camera,
-				prob(3);/obj/item/device/pda,
-				prob(3);/obj/item/device/radio/headset,
+				prob(2);/obj/item/camera,
+				prob(3);/obj/item/pda,
+				prob(3);/obj/item/radio/headset,
 				/* VOREStation Edit Start */
 				prob(2);/obj/item/toy/tennis,
 				prob(2);/obj/item/toy/tennis/red,
@@ -115,12 +114,6 @@ something, make sure it's not in one of the other lists.*/
 				prob(1);/obj/item/pizzavoucher
 				/* VOREStation Edit End */
 				)
-=======
-				prob(1);/obj/item/card/emag_broken,
-				prob(2);/obj/item/camera,
-				prob(3);/obj/item/pda,
-				prob(3);/obj/item/radio/headset)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/random/maintenance/security
 /*Maintenance loot list. This one is for around security areas*/
@@ -292,22 +285,9 @@ something, make sure it's not in one of the other lists.*/
 
 /obj/random/maintenance/cargo/item_to_spawn()
 	return pick(prob(320);/obj/random/maintenance/clean,
-<<<<<<< HEAD
-				prob(3);/obj/item/device/flashlight/lantern,
-				prob(4);/obj/item/weapon/pickaxe,
-				prob(3);/obj/item/weapon/pickaxe/drill,
-				prob(5);/obj/item/weapon/storage/backpack/industrial,
-				prob(5);/obj/item/weapon/storage/backpack/satchel/norm,
-				prob(3);/obj/item/weapon/storage/backpack/dufflebag,
-				prob(1);/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-				prob(1);/obj/item/weapon/storage/toolbox/syndicate,
-				prob(1);/obj/item/weapon/storage/belt/utility/full,
-				prob(2);/obj/item/weapon/storage/belt/utility,
-				prob(4);/obj/item/device/toner,
-				prob(1);/obj/item/device/destTagger,
-=======
 				prob(3);/obj/item/flashlight/lantern,
 				prob(4);/obj/item/pickaxe,
+				prob(3);/obj/item/pickaxe/drill,
 				prob(5);/obj/item/storage/backpack/industrial,
 				prob(5);/obj/item/storage/backpack/satchel/norm,
 				prob(3);/obj/item/storage/backpack/dufflebag,
@@ -317,7 +297,6 @@ something, make sure it's not in one of the other lists.*/
 				prob(2);/obj/item/storage/belt/utility,
 				prob(4);/obj/item/toner,
 				prob(1);/obj/item/destTagger,
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 				prob(3);/obj/item/clothing/glasses/material,
 				prob(3);/obj/item/clothing/head/soft/yellow,
 				prob(4);/obj/item/clothing/suit/storage/hazardvest,

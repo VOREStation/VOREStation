@@ -13,22 +13,6 @@
 	slot_flags = SLOT_BACK
 
 //Predefined materials go here.
-<<<<<<< HEAD
-/obj/item/weapon/material/twohanded/baseballbat/metal/New(var/newloc)
-	..(newloc,"steel")
-
-/obj/item/weapon/material/twohanded/baseballbat/uranium/New(var/newloc)
-	..(newloc,"uranium")
-
-/obj/item/weapon/material/twohanded/baseballbat/gold/New(var/newloc)
-	..(newloc,"gold")
-
-/obj/item/weapon/material/twohanded/baseballbat/platinum/New(var/newloc)
-	..(newloc,"platinum")
-
-/obj/item/weapon/material/twohanded/baseballbat/diamond/New(var/newloc)
-	..(newloc,"diamond")
-=======
 /obj/item/material/twohanded/baseballbat/metal/Initialize(var/ml)
 	. = ..(ml, MAT_STEEL)
 
@@ -43,4 +27,3 @@
 
 /obj/item/material/twohanded/baseballbat/diamond/Initialize(var/ml)
 	. = ..(ml, MAT_DIAMOND)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

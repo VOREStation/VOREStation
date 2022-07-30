@@ -21,13 +21,8 @@
 	drop_sound = 'sound/items/drop/paper.ogg'
 	pickup_sound = 'sound/items/pickup/paper.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/deck/cards/New()
-	..()
-=======
 /obj/item/deck/cards/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/datum/playingcard/P
 	for(var/suit in list("spades","clubs","diamonds","hearts"))
 

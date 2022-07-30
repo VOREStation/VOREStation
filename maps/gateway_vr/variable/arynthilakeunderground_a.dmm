@@ -48,7 +48,7 @@
 /area/gateway/arynthilake/underground)
 "hB" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/mapping_unit,
+/obj/item/mapping_unit,
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/gateway/arynthilake/engine)
 "hK" = (
@@ -359,7 +359,7 @@
 /obj/structure/noticeboard{
 	pixel_x = -32
 	},
-/obj/item/weapon/paper/gateway/arynthilake,
+/obj/item/paper/gateway/arynthilake,
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/gateway/arynthilake/engine)
 "WN" = (
@@ -383,7 +383,7 @@
 /area/gateway/arynthilake/underground)
 "ZY" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/cell/void,
+/obj/item/cell/void,
 /obj/random/tool,
 /obj/random/tool,
 /obj/random/tech_supply,

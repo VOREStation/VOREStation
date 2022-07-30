@@ -271,7 +271,7 @@
 /area/mothership/breakroom)
 "aE" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/codex,
+/obj/item/book/codex,
 /turf/simulated/floor/carpet/blue,
 /area/mothership/breakroom)
 "aF" = (
@@ -512,13 +512,13 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/hydroponics)
 "bm" = (
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/knife,
-/obj/item/weapon/material/knife,
+/obj/item/material/minihoe,
+/obj/item/material/minihoe,
+/obj/item/material/knife,
+/obj/item/material/knife,
 /obj/machinery/power/apc{
 	alarms_hidden = 1;
 	dir = 1;
@@ -635,10 +635,10 @@
 /area/mothership/kitchen)
 "bz" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3;
 	pixel_y = 0
 	},
@@ -649,15 +649,15 @@
 /area/mothership/kitchen)
 "bA" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/book/manual/chef_recipes,
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/knife/butch,
+/obj/item/material/kitchen/rollingpin,
 /obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
@@ -669,7 +669,7 @@
 "bB" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/reagentgrinder,
-/obj/item/weapon/storage/box/beakers,
+/obj/item/storage/box/beakers,
 /obj/machinery/button/remote/blast_door{
 	id = "ship-kitchen";
 	name = "Blast Doors Controls";
@@ -1066,34 +1066,34 @@
 "cw" = (
 /obj/item/clothing/suit/space/void/security/alt,
 /obj/item/clothing/head/helmet/space/void/security/alt,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/machinery/alarm{
 	pixel_y = 22
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cx" = (
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/head/helmet/space/void/atmos,
-/obj/item/weapon/tank/oxygen/red,
+/obj/item/tank/oxygen/red,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cy" = (
 /obj/item/clothing/suit/space/void/medical/alt,
 /obj/item/clothing/head/helmet/space/void/medical/emt,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cz" = (
@@ -1102,8 +1102,8 @@
 /area/mothership/eva)
 "cA" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/toolbox/syndicate/powertools,
-/obj/item/device/multitool,
+/obj/item/storage/toolbox/syndicate/powertools,
+/obj/item/multitool,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -1152,13 +1152,13 @@
 /area/mothership/eva)
 "cG" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
-/obj/item/device/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
+/obj/item/radio/off,
 /obj/machinery/firealarm{
 	dir = 2;
 	layer = 3.3;
@@ -1376,28 +1376,28 @@
 "cU" = (
 /obj/item/clothing/suit/space/void/security/alt,
 /obj/item/clothing/head/helmet/space/void/security/alt,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cV" = (
 /obj/item/clothing/suit/space/void/engineering/salvage,
 /obj/item/clothing/head/helmet/space/void/engineering/salvage,
-/obj/item/weapon/tank/oxygen/red,
+/obj/item/tank/oxygen/red,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/machinery/light,
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cW" = (
 /obj/item/clothing/suit/space/void/exploration,
 /obj/item/clothing/head/helmet/space/void/exploration,
-/obj/item/weapon/tank/oxygen,
+/obj/item/tank/oxygen,
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/machinery/firealarm{
@@ -1406,7 +1406,7 @@
 	pixel_y = -25
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "cX" = (
@@ -1421,9 +1421,9 @@
 /area/mothership/eva)
 "cZ" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/eva)
 "da" = (
@@ -1888,12 +1888,12 @@
 /area/mothership/security)
 "dW" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu11,
-/obj/item/weapon/storage/mre/menu13,
-/obj/item/weapon/storage/mre/menu13,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu11,
+/obj/item/storage/mre/menu13,
+/obj/item/storage/mre/menu13,
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "dX" = (
@@ -1929,12 +1929,12 @@
 /area/mothership/dorm1)
 "eb" = (
 /obj/structure/closet/wardrobe/ert,
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm1)
 "ec" = (
@@ -2002,12 +2002,12 @@
 /area/mothership/teleporter)
 "ei" = (
 /obj/structure/closet/wardrobe/ert,
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
 "ej" = (
@@ -2058,12 +2058,12 @@
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
 /obj/item/stack/nanopaste/advanced,
-/obj/item/device/mmi/digital/posibrain,
-/obj/item/device/mmi,
-/obj/item/weapon/book/manual/robotics_cyborgs,
-/obj/item/device/robotanalyzer,
-/obj/item/weapon/storage/toolbox/syndicate/powertools,
-/obj/item/weapon/reagent_containers/spray/cleaner{
+/obj/item/mmi/digital/posibrain,
+/obj/item/mmi,
+/obj/item/book/manual/robotics_cyborgs,
+/obj/item/robotanalyzer,
+/obj/item/storage/toolbox/syndicate/powertools,
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner";
 	pixel_x = 2;
@@ -2094,7 +2094,7 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/surgery)
 "er" = (
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
 /obj/machinery/firealarm{
 	dir = 8;
@@ -2305,7 +2305,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm2)
 "eF" = (
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
 /obj/machinery/firealarm{
 	dir = 4;
@@ -2323,14 +2323,14 @@
 /area/mothership/dorm2)
 "eG" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/flashbangs{
+/obj/item/storage/box/flashbangs{
 	pixel_x = -2;
 	pixel_y = -2
 	},
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -23;
@@ -2416,7 +2416,7 @@
 /area/mothership/teleporter)
 "eQ" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
-/obj/item/device/perfect_tele_beacon/stationary{
+/obj/item/perfect_tele_beacon/stationary{
 	tele_name = "Daedalus";
 	tele_network = "centcom"
 	},
@@ -2485,13 +2485,13 @@
 	},
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/clothing/mask/gas,
-/obj/item/device/flashlight,
-/obj/item/weapon/tank/oxygen/red,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/extinguisher,
+/obj/item/flashlight,
+/obj/item/tank/oxygen/red,
+/obj/item/tank/emergency/oxygen/double,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
 /obj/item/clothing/head/hardhat/red,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fc" = (
@@ -2532,18 +2532,18 @@
 	},
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/clothing/mask/gas,
-/obj/item/device/flashlight,
-/obj/item/weapon/tank/oxygen/red,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/extinguisher,
+/obj/item/flashlight,
+/obj/item/tank/oxygen/red,
+/obj/item/tank/emergency/oxygen/double,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
 /obj/item/clothing/head/hardhat/red,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "fg" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/lockbox,
+/obj/item/storage/lockbox,
 /obj/item/clothing/mask/gas{
 	pixel_x = -3;
 	pixel_y = -3
@@ -2571,10 +2571,10 @@
 /obj/item/clothing/accessory/storage/black_drop_pouches,
 /obj/item/clothing/accessory/storage/black_drop_pouches,
 /obj/item/clothing/accessory/storage/black_drop_pouches,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
+/obj/item/storage/backpack/dufflebag/syndie/ammo,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
@@ -2604,7 +2604,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "fm" = (
-/obj/item/device/holowarrant,
+/obj/item/holowarrant,
 /obj/structure/closet/secure_closet/nanotrasen_security,
 /obj/machinery/light{
 	dir = 4;
@@ -2641,9 +2641,9 @@
 /area/mothership/chemistry)
 "ft" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /turf/simulated/floor/tiled/white,
 /area/mothership/chemistry)
 "fu" = (
@@ -2779,7 +2779,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "fH" = (
-/obj/item/device/holowarrant,
+/obj/item/holowarrant,
 /obj/structure/closet/secure_closet/nanotrasen_security,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -2955,8 +2955,8 @@
 /area/mothership/hallway)
 "fW" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/evidence,
-/obj/item/weapon/storage/box/handcuffs{
+/obj/item/storage/box/evidence,
+/obj/item/storage/box/handcuffs{
 	pixel_x = 6;
 	pixel_y = -2
 	},
@@ -2979,14 +2979,14 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "ga" = (
-/obj/item/device/holowarrant,
+/obj/item/holowarrant,
 /obj/structure/closet/secure_closet/nanotrasen_security,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "gb" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/item/weapon/reagent_containers/spray/cleaner{
+/obj/item/storage/firstaid/surgery,
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner";
 	pixel_x = 2;
@@ -2996,7 +2996,7 @@
 /area/mothership/surgery)
 "gc" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/gloves,
+/obj/item/storage/box/gloves,
 /obj/machinery/firealarm{
 	dir = 1;
 	pixel_x = 0;
@@ -3021,14 +3021,14 @@
 /area/mothership/surgery)
 "ge" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/storage/box/syringes,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/syringes,
+/obj/item/storage/box/syringes,
+/obj/item/tool/screwdriver,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
 /obj/machinery/alarm{
 	dir = 4;
 	pixel_x = -23;
@@ -3106,7 +3106,7 @@
 /area/mothership/security)
 "go" = (
 /obj/structure/closet/secure_closet/nanotrasen_commander,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos,
+/obj/item/storage/secure/briefcase/nsfw_pack_hos,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/security)
 "gp" = (
@@ -3615,8 +3615,8 @@
 /area/mothership/security)
 "hm" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/retail_scanner/security,
-/obj/item/device/retail_scanner/security,
+/obj/item/retail_scanner/security,
+/obj/item/retail_scanner/security,
 /obj/structure/reagent_dispensers/peppertank{
 	pixel_x = 0;
 	pixel_y = -30
@@ -3716,7 +3716,7 @@
 "hE" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/recharger,
-/obj/item/weapon/tool/screwdriver,
+/obj/item/tool/screwdriver,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "hF" = (
@@ -3732,7 +3732,7 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "hH" = (
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
 /obj/machinery/firealarm{
 	dir = 8;
@@ -3873,7 +3873,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
 "hP" = (
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
 /obj/machinery/firealarm{
 	dir = 4;
@@ -3908,11 +3908,11 @@
 /area/mothership/processing)
 "hT" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder/red{
+/obj/item/folder/red{
 	pixel_x = 2;
 	pixel_y = 4
 	},
-/obj/item/weapon/folder/red,
+/obj/item/folder/red,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/processing)
 "hU" = (
@@ -3924,7 +3924,7 @@
 /area/mothership/processing)
 "hV" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/evidence,
+/obj/item/storage/box/evidence,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
@@ -3939,7 +3939,7 @@
 /area/mothership/processing)
 "hX" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/defib_kit/compact/combat/loaded,
+/obj/item/defib_kit/compact/combat/loaded,
 /turf/simulated/floor/tiled/white,
 /area/mothership/treatment)
 "hY" = (
@@ -4000,26 +4000,26 @@
 /area/mothership/dorm3)
 "ig" = (
 /obj/structure/closet/wardrobe/ert,
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm3)
 "ih" = (
 /obj/structure/closet/wardrobe/ert,
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm4)
 "ii" = (
@@ -4054,8 +4054,8 @@
 /area/mothership/processing)
 "im" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/camera,
-/obj/item/device/retail_scanner/security,
+/obj/item/camera,
+/obj/item/retail_scanner/security,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/processing)
 "in" = (
@@ -4188,7 +4188,7 @@
 /area/mothership/processing)
 "iD" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/processing)
 "iE" = (
@@ -4223,8 +4223,8 @@
 /area/mothership/treatment)
 "iI" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/bodybags,
-/obj/item/weapon/storage/box/bodybags{
+/obj/item/storage/box/bodybags,
+/obj/item/storage/box/bodybags{
 	pixel_x = 2;
 	pixel_y = 2
 	},
@@ -4263,7 +4263,7 @@
 /area/mothership/sechallway)
 "iM" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/effect/floor_decal/corner/lightorange{
 	dir = 5;
 	icon_state = "corner_white"
@@ -4358,7 +4358,7 @@
 	},
 /obj/machinery/power/apc{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
@@ -4425,14 +4425,14 @@
 /area/mothership/resleeving)
 "jb" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
+/obj/item/reagent_containers/glass/bottle/biomass,
 /obj/machinery/light{
 	dir = 1
 	},
@@ -4454,7 +4454,7 @@
 "jf" = (
 /obj/machinery/power/apc{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
@@ -4525,11 +4525,11 @@
 /area/mothership/processing)
 "jm" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/processing)
 "jn" = (
@@ -4664,20 +4664,20 @@
 	name = "Janitor Locker";
 	pixel_x = 32
 	},
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/mop,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/grenade/chem_grenade/cleaner,
-/obj/item/weapon/soap/nanotrasen,
-/obj/item/weapon/soap/deluxe,
-/obj/item/weapon/soap,
-/obj/item/weapon/rig/ert/janitor,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/mop,
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/soap/nanotrasen,
+/obj/item/soap/deluxe,
+/obj/item/soap,
+/obj/item/rig/ert/janitor,
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "jA" = (
@@ -4802,7 +4802,7 @@
 /area/mothership/sechallway)
 "jO" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/effect/floor_decal/borderfloor/shifted{
 	dir = 1;
 	icon_state = "borderfloor_shifted"
@@ -4950,7 +4950,7 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
 "jY" = (
-/obj/item/weapon/storage/firstaid/regular{
+/obj/item/storage/firstaid/regular{
 	pixel_x = -2;
 	pixel_y = 4
 	},
@@ -4960,44 +4960,44 @@
 /obj/item/bodybag/cryobag{
 	pixel_x = 5
 	},
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	layer = 2.8;
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/weapon/storage/box/masks{
+/obj/item/storage/box/masks{
 	pixel_x = 0;
 	pixel_y = 0
 	},
-/obj/item/weapon/storage/box/gloves{
+/obj/item/storage/box/gloves{
 	pixel_x = 3;
 	pixel_y = 4
 	},
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/fire{
 	layer = 2.9;
 	pixel_x = 2;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = -2
 	},
-/obj/item/weapon/reagent_containers/blood/empty,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /obj/structure/closet/medical_wall{
 	pixel_y = -32
 	},
-/obj/item/weapon/storage/box/body_record_disk,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/bonemed,
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/box/body_record_disk,
+/obj/item/storage/firstaid/clotting,
+/obj/item/storage/firstaid/bonemed,
+/obj/item/storage/firstaid/adv{
 	pixel_x = -2
 	},
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
-/obj/item/weapon/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
+/obj/item/reagent_containers/food/drinks/drinkingglass/fitnessflask/glucose,
 /turf/simulated/floor/tiled/white,
 /area/mothership/resleeving)
 "jZ" = (
@@ -5174,8 +5174,8 @@
 /area/mothership/warden)
 "kt" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/stamp/ward,
-/obj/item/weapon/stamp/denied{
+/obj/item/stamp/ward,
+/obj/item/stamp/denied{
 	pixel_x = 5
 	},
 /turf/simulated/floor/tiled/steel_grid,
@@ -5199,11 +5199,11 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "ky" = (
-/obj/item/weapon/storage/firstaid/adv{
+/obj/item/storage/firstaid/adv{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /obj/structure/table/steel_reinforced,
 /obj/machinery/light{
 	dir = 1
@@ -5214,20 +5214,20 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "kz" = (
-/obj/item/weapon/storage/firstaid/toxin{
+/obj/item/storage/firstaid/toxin{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "kA" = (
-/obj/item/weapon/storage/firstaid/combat{
+/obj/item/storage/firstaid/combat{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
@@ -5263,12 +5263,12 @@
 /area/mothership/dorm5)
 "kF" = (
 /obj/structure/closet/wardrobe/ert,
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm5)
 "kG" = (
@@ -5279,12 +5279,12 @@
 /area/mothership/dorm6)
 "kI" = (
 /obj/structure/closet/wardrobe/ert,
-/obj/item/weapon/storage/box/survival/comp{
-	starts_with = list(/obj/item/weapon/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/weapon/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/device/flashlight/glowstick,/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/weapon/tank/emergency/oxygen/engi)
+/obj/item/storage/box/survival/comp{
+	starts_with = list(/obj/item/tool/prybar/red,/obj/item/clothing/glasses/goggles,/obj/item/reagent_containers/hypospray/autoinjector,/obj/item/stack/medical/bruise_pack,/obj/item/flashlight/glowstick,/obj/item/reagent_containers/food/snacks/candy/proteinbar,/obj/item/clothing/mask/breath,/obj/item/tank/emergency/oxygen/engi)
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/toolbox/emergency,
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "kJ" = (
@@ -5300,16 +5300,16 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "kL" = (
-/obj/item/weapon/gun/projectile/shotgun/pump/combat{
+/obj/item/gun/projectile/shotgun/pump/combat{
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag;
 	desc = "Built for close quarters combat, the Hesphaistos Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. This one has 'Property of the Warden' inscribed on the stock.";
 	name = "warden's shotgun"
 	},
-/obj/item/weapon/book/manual/security_space_law,
+/obj/item/book/manual/security_space_law,
 /obj/structure/closet/secure_closet/nanotrasen_warden,
 /obj/machinery/power/apc{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/super;
+	cell_type = /obj/item/cell/super;
 	dir = 8;
 	name = "west bump";
 	pixel_x = -28
@@ -5325,18 +5325,18 @@
 /area/mothership/warden)
 "kN" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/weapon/clipboard,
-/obj/item/weapon/folder/red,
-/obj/item/weapon/pen,
-/obj/item/device/radio{
+/obj/item/clipboard,
+/obj/item/folder/red,
+/obj/item/pen,
+/obj/item/radio{
 	pixel_x = -4
 	},
-/obj/item/weapon/hand_labeler,
-/obj/item/weapon/tool/wrench,
+/obj/item/hand_labeler,
+/obj/item/tool/wrench,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -5400,7 +5400,7 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "kU" = (
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
 /obj/machinery/firealarm{
 	dir = 8;
@@ -5543,7 +5543,7 @@
 /turf/simulated/floor/wood,
 /area/mothership/dorm6)
 "lc" = (
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/structure/bed/double/padded,
 /obj/machinery/firealarm{
 	dir = 4;
@@ -5561,7 +5561,7 @@
 /area/mothership/dorm6)
 "ld" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/retail_scanner/security,
+/obj/item/retail_scanner/security,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/warden)
 "le" = (
@@ -5586,29 +5586,29 @@
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "li" = (
-/obj/item/weapon/storage/firstaid/fire{
+/obj/item/storage/firstaid/fire{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "lj" = (
-/obj/item/weapon/storage/firstaid/o2{
+/obj/item/storage/firstaid/o2{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/firstaid/o2,
+/obj/item/storage/firstaid/o2,
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "lk" = (
-/obj/item/weapon/storage/firstaid/regular{
+/obj/item/storage/firstaid/regular{
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /obj/structure/table/steel_reinforced,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
@@ -5797,10 +5797,10 @@
 /obj/item/ammo_magazine/m9mm/large/preban,
 /obj/item/ammo_magazine/m9mm/large/preban,
 /obj/item/ammo_magazine/m9mm/large/preban,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
-/obj/item/weapon/gun/projectile/p92x,
+/obj/item/gun/projectile/p92x,
+/obj/item/gun/projectile/p92x,
+/obj/item/gun/projectile/p92x,
+/obj/item/gun/projectile/p92x,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -5825,23 +5825,23 @@
 /obj/item/ammo_magazine/m9mm/compact/practice,
 /obj/item/ammo_magazine/m9mm/compact/practice,
 /obj/item/ammo_magazine/m9mm/compact/practice,
-/obj/item/weapon/gun/projectile/pistol,
-/obj/item/weapon/gun/projectile/pistol,
-/obj/item/weapon/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
+/obj/item/gun/projectile/pistol,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "lF" = (
-/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/carbine/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
-/obj/item/weapon/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/gun/energy/locked/frontier/carbine/unlocked,
+/obj/item/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/gun/energy/locked/frontier/holdout/unlocked,
+/obj/item/gun/energy/locked/frontier/holdout/unlocked,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -5862,14 +5862,14 @@
 "lI" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/cell_charger,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
-/obj/item/weapon/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
+/obj/item/cell/hyper,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "lJ" = (
@@ -5893,32 +5893,32 @@
 /obj/item/clothing/accessory/storage/white_drop_pouches,
 /obj/item/clothing/accessory/storage/white_drop_pouches,
 /obj/item/clothing/accessory/storage/white_drop_pouches,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
-/obj/item/weapon/storage/backpack/dufflebag/syndie/med,
+/obj/item/storage/backpack/dufflebag/syndie/med,
+/obj/item/storage/backpack/dufflebag/syndie/med,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "lM" = (
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/device/healthanalyzer/advanced,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
-/obj/item/weapon/reagent_containers/hypospray,
+/obj/item/healthanalyzer/advanced,
+/obj/item/healthanalyzer/advanced,
+/obj/item/healthanalyzer/advanced,
+/obj/item/healthanalyzer/advanced,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
+/obj/item/reagent_containers/hypospray,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/white,
 /area/mothership/medical)
 "lN" = (
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/weapon/storage/belt/medical/emt,
-/obj/item/device/defib_kit/compact/combat/loaded,
-/obj/item/device/defib_kit/compact/combat/loaded,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/storage/belt/medical/emt,
+/obj/item/defib_kit/compact/combat/loaded,
+/obj/item/defib_kit/compact/combat/loaded,
 /obj/structure/table/rack/shelf/steel,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
@@ -6027,9 +6027,9 @@
 /area/mothership/armory)
 "lX" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/crowbar,
+/obj/item/tool/screwdriver,
+/obj/item/tool/wrench,
 /obj/machinery/light{
 	dir = 4;
 	icon_state = "tube1"
@@ -6067,8 +6067,8 @@
 /obj/item/ammo_magazine/ammo_box/b12g/stunshell,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
-/obj/item/weapon/storage/box/empshells/large,
-/obj/item/weapon/storage/box/empshells/large,
+/obj/item/storage/box/empshells/large,
+/obj/item/storage/box/empshells/large,
 /obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/ammo_magazine/ammo_box/b12g,
@@ -6077,8 +6077,8 @@
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
-/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+/obj/item/gun/projectile/shotgun/pump/combat,
+/obj/item/gun/projectile/shotgun/pump/combat,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -6090,28 +6090,28 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "me" = (
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/baton/loaded,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/melee/energy/sword,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/shield/energy,
-/obj/item/weapon/material/knife/tacknife/survival,
-/obj/item/weapon/material/knife/tacknife/survival,
-/obj/item/weapon/material/knife/tacknife/survival,
-/obj/item/weapon/material/knife/tacknife/survival,
-/obj/item/weapon/material/knife/tacknife/survival,
-/obj/item/weapon/material/knife/machete,
-/obj/item/weapon/material/knife/machete,
-/obj/item/weapon/material/knife/machete,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/baton/loaded,
+/obj/item/melee/energy/sword,
+/obj/item/melee/energy/sword,
+/obj/item/melee/energy/sword,
+/obj/item/melee/energy/sword,
+/obj/item/melee/energy/sword,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
+/obj/item/shield/energy,
+/obj/item/material/knife/tacknife/survival,
+/obj/item/material/knife/tacknife/survival,
+/obj/item/material/knife/tacknife/survival,
+/obj/item/material/knife/tacknife/survival,
+/obj/item/material/knife/tacknife/survival,
+/obj/item/material/knife/machete,
+/obj/item/material/knife/machete,
+/obj/item/material/knife/machete,
 /obj/item/clothing/accessory/holster/machete,
 /obj/item/clothing/accessory/holster/machete,
 /obj/item/clothing/accessory/holster/machete,
@@ -6122,18 +6122,18 @@
 /obj/structure/closet/crate/secure/weapon{
 	req_one_access = list(108)
 	},
-/obj/item/weapon/storage/box/frags,
-/obj/item/weapon/storage/box/frags,
-/obj/item/weapon/storage/box/teargas,
-/obj/item/weapon/storage/box/teargas,
-/obj/item/weapon/storage/box/empslite,
-/obj/item/weapon/storage/box/empslite,
-/obj/item/weapon/storage/box/smokes,
-/obj/item/weapon/storage/box/smokes,
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/gun/launcher/grenade,
-/obj/item/weapon/gun/launcher/grenade,
+/obj/item/storage/box/frags,
+/obj/item/storage/box/frags,
+/obj/item/storage/box/teargas,
+/obj/item/storage/box/teargas,
+/obj/item/storage/box/empslite,
+/obj/item/storage/box/empslite,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/smokes,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs,
+/obj/item/gun/launcher/grenade,
+/obj/item/gun/launcher/grenade,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "mg" = (
@@ -6224,10 +6224,10 @@
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
 /obj/item/ammo_magazine/m545,
-/obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/item/weapon/gun/projectile/automatic/sts35,
-/obj/item/weapon/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
+/obj/item/gun/projectile/automatic/sts35,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -6241,7 +6241,7 @@
 "mv" = (
 /obj/item/clothing/suit/armor/vest/ert/command,
 /obj/item/clothing/head/helmet/ert/command,
-/obj/item/weapon/storage/backpack/ert/commander,
+/obj/item/storage/backpack/ert/commander,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
@@ -6249,18 +6249,18 @@
 /obj/structure/closet/crate/secure/weapon{
 	req_one_access = list(108)
 	},
-/obj/item/weapon/rig/ert/assetprotection,
-/obj/item/weapon/rig/ert/assetprotection,
+/obj/item/rig/ert/assetprotection,
+/obj/item/rig/ert/assetprotection,
 /obj/item/clothing/glasses/thermal,
 /obj/item/clothing/glasses/thermal,
 /obj/item/clothing/suit/armor/pcarrier/merc,
 /obj/item/clothing/suit/armor/pcarrier/merc,
 /obj/item/clothing/head/helmet/merc,
 /obj/item/clothing/head/helmet/merc,
-/obj/item/weapon/storage/box/syndie_kit/combat_armor,
-/obj/item/weapon/storage/box/syndie_kit/combat_armor,
-/obj/item/weapon/storage/box/syndie_kit/combat_armor,
-/obj/item/weapon/storage/box/syndie_kit/combat_armor,
+/obj/item/storage/box/syndie_kit/combat_armor,
+/obj/item/storage/box/syndie_kit/combat_armor,
+/obj/item/storage/box/syndie_kit/combat_armor,
+/obj/item/storage/box/syndie_kit/combat_armor,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "mx" = (
@@ -6278,7 +6278,7 @@
 /obj/structure/window/reinforced/survival_pod{
 	dir = 1
 	},
-/obj/item/weapon/rig/ert,
+/obj/item/rig/ert,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "mz" = (
@@ -6337,8 +6337,8 @@
 /obj/item/ammo_magazine/m9mmp90,
 /obj/item/ammo_magazine/m9mmp90,
 /obj/item/ammo_magazine/m9mmp90,
-/obj/item/weapon/gun/projectile/automatic/p90,
-/obj/item/weapon/gun/projectile/automatic/p90,
+/obj/item/gun/projectile/automatic/p90,
+/obj/item/gun/projectile/automatic/p90,
 /obj/item/ammo_magazine/m9mmt/flash,
 /obj/item/ammo_magazine/m9mmt/flash,
 /obj/item/ammo_magazine/m9mmt/flash,
@@ -6364,9 +6364,9 @@
 /obj/item/clothing/head/helmet/ert/security,
 /obj/item/clothing/head/helmet/ert/security,
 /obj/item/clothing/head/helmet/ert/security,
-/obj/item/weapon/storage/backpack/ert/security,
-/obj/item/weapon/storage/backpack/ert/security,
-/obj/item/weapon/storage/backpack/ert/security,
+/obj/item/storage/backpack/ert/security,
+/obj/item/storage/backpack/ert/security,
+/obj/item/storage/backpack/ert/security,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
@@ -6374,8 +6374,8 @@
 /obj/structure/closet/crate/secure/weapon{
 	req_one_access = list(108)
 	},
-/obj/item/weapon/gun/projectile/automatic/l6_saw,
-/obj/item/weapon/gun/projectile/automatic/l6_saw,
+/obj/item/gun/projectile/automatic/l6_saw,
+/obj/item/gun/projectile/automatic/l6_saw,
 /obj/item/ammo_magazine/m545saw,
 /obj/item/ammo_magazine/m545saw,
 /obj/item/ammo_magazine/m545saw,
@@ -6402,15 +6402,15 @@
 	dir = 8;
 	req_one_access = list(103)
 	},
-/obj/item/weapon/rig/ert/security,
-/obj/item/weapon/rig/ert/security,
-/obj/item/weapon/rig/ert/security,
-/obj/item/weapon/rig/ert/security,
+/obj/item/rig/ert/security,
+/obj/item/rig/ert/security,
+/obj/item/rig/ert/security,
+/obj/item/rig/ert/security,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "mO" = (
 /obj/machinery/r_n_d/circuit_imprinter,
-/obj/item/weapon/reagent_containers/glass/beaker/sulphuric,
+/obj/item/reagent_containers/glass/beaker/sulphuric,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/rnd)
 "mP" = (
@@ -6508,18 +6508,18 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/bridge)
 "mZ" = (
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/gun/energy/laser,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/gun/energy/laser,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -6535,8 +6535,8 @@
 /obj/item/clothing/suit/armor/vest/ert/engineer,
 /obj/item/clothing/head/helmet/ert/engineer,
 /obj/item/clothing/head/helmet/ert/engineer,
-/obj/item/weapon/storage/backpack/ert/engineer,
-/obj/item/weapon/storage/backpack/ert/engineer,
+/obj/item/storage/backpack/ert/engineer,
+/obj/item/storage/backpack/ert/engineer,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
@@ -6544,20 +6544,20 @@
 /obj/structure/closet/crate/secure/weapon{
 	req_one_access = list(108)
 	},
-/obj/item/weapon/gun/energy/pulse_rifle,
-/obj/item/weapon/gun/energy/pulse_rifle,
-/obj/item/weapon/gun/energy/pulse_rifle,
-/obj/item/weapon/gun/energy/pulse_rifle,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/gun/energy/gun/protector,
-/obj/item/weapon/gun/energy/gun/protector,
+/obj/item/gun/energy/pulse_rifle,
+/obj/item/gun/energy/pulse_rifle,
+/obj/item/gun/energy/pulse_rifle,
+/obj/item/gun/energy/pulse_rifle,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/gun/energy/gun/protector,
+/obj/item/gun/energy/gun/protector,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "nc" = (
@@ -6574,8 +6574,8 @@
 	dir = 8;
 	req_one_access = list(103)
 	},
-/obj/item/weapon/rig/ert/engineer,
-/obj/item/weapon/rig/ert/engineer,
+/obj/item/rig/ert/engineer,
+/obj/item/rig/ert/engineer,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "nf" = (
@@ -6598,8 +6598,8 @@
 /obj/structure/closet{
 	name = "mechanical equipment"
 	},
-/obj/item/weapon/storage/toolbox/syndicate/powertools,
-/obj/item/weapon/storage/toolbox/syndicate/powertools,
+/obj/item/storage/toolbox/syndicate/powertools,
+/obj/item/storage/toolbox/syndicate/powertools,
 /obj/item/clothing/head/welding{
 	pixel_x = -3;
 	pixel_y = 5
@@ -6610,55 +6610,55 @@
 	},
 /obj/item/clothing/glasses/welding,
 /obj/item/clothing/glasses/welding,
-/obj/item/weapon/storage/belt/utility,
-/obj/item/device/multitool{
+/obj/item/storage/belt/utility,
+/obj/item/multitool{
 	pixel_x = 3
 	},
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/device/assembly/prox_sensor{
+/obj/item/assembly/prox_sensor{
 	pixel_x = -8;
 	pixel_y = 4
 	},
-/obj/item/device/assembly/prox_sensor{
+/obj/item/assembly/prox_sensor{
 	pixel_x = -8;
 	pixel_y = 4
 	},
-/obj/item/device/flash/synthetic,
-/obj/item/device/flash/synthetic,
-/obj/item/device/flash/synthetic,
-/obj/item/device/flash/synthetic,
-/obj/item/device/healthanalyzer,
-/obj/item/device/healthanalyzer,
-/obj/item/weapon/storage/firstaid/regular{
+/obj/item/flash/synthetic,
+/obj/item/flash/synthetic,
+/obj/item/flash/synthetic,
+/obj/item/flash/synthetic,
+/obj/item/healthanalyzer,
+/obj/item/healthanalyzer,
+/obj/item/storage/firstaid/regular{
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/weapon/storage/firstaid/regular{
+/obj/item/storage/firstaid/regular{
 	empty = 1;
 	name = "First-Aid (empty)"
 	},
-/obj/item/weapon/cell/high{
+/obj/item/cell/high{
 	charge = 100;
 	maxcharge = 15000;
 	pixel_x = 5;
 	pixel_y = -5
 	},
-/obj/item/weapon/cell/high{
+/obj/item/cell/high{
 	charge = 100;
 	maxcharge = 15000;
 	pixel_x = 5;
 	pixel_y = -5
 	},
-/obj/item/weapon/cell/high{
+/obj/item/cell/high{
 	charge = 100;
 	maxcharge = 15000;
 	pixel_x = 5;
 	pixel_y = -5
 	},
-/obj/item/weapon/cell/high{
+/obj/item/cell/high{
 	charge = 100;
 	maxcharge = 15000;
 	pixel_x = 5;
@@ -6761,10 +6761,10 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/mothership/hallway)
 "nv" = (
-/obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/gun/energy/gun/nuclear,
-/obj/item/weapon/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
+/obj/item/gun/energy/gun/nuclear,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -6780,8 +6780,8 @@
 /obj/item/clothing/suit/armor/vest/ert/medical,
 /obj/item/clothing/head/helmet/ert/medical,
 /obj/item/clothing/head/helmet/ert/medical,
-/obj/item/weapon/storage/backpack/ert/medical,
-/obj/item/weapon/storage/backpack/ert/medical,
+/obj/item/storage/backpack/ert/medical,
+/obj/item/storage/backpack/ert/medical,
 /obj/structure/table/rack/shelf/steel,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
@@ -6789,9 +6789,9 @@
 /obj/structure/closet/crate/secure/weapon{
 	req_one_access = list(108)
 	},
-/obj/item/weapon/gun/projectile/automatic/z8,
-/obj/item/weapon/gun/projectile/automatic/z8,
-/obj/item/weapon/gun/projectile/heavysniper,
+/obj/item/gun/projectile/automatic/z8,
+/obj/item/gun/projectile/automatic/z8,
+/obj/item/gun/projectile/heavysniper,
 /obj/item/ammo_magazine/ammo_box/b145,
 /obj/item/ammo_magazine/ammo_box/b145,
 /obj/item/ammo_magazine/m762,
@@ -6825,8 +6825,8 @@
 	req_one_access = list(103)
 	},
 /obj/structure/window/reinforced/survival_pod,
-/obj/item/weapon/rig/ert/medical,
-/obj/item/weapon/rig/ert/medical,
+/obj/item/rig/ert/medical,
+/obj/item/rig/ert/medical,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "nA" = (
@@ -6894,18 +6894,18 @@
 /turf/simulated/floor/tiled/steel_ridged,
 /area/mothership/bridge)
 "nI" = (
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
-/obj/item/weapon/cell/device/weapon,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
+/obj/item/cell/device/weapon,
 /obj/structure/closet/secure_closet/guncabinet{
 	req_one_access = list(103)
 	},
@@ -6924,10 +6924,10 @@
 /obj/item/clothing/glasses/night,
 /obj/item/clothing/glasses/night,
 /obj/item/clothing/glasses/night,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/belt/security/tactical,
-/obj/item/weapon/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
+/obj/item/storage/belt/security/tactical,
 /obj/item/clothing/mask/gas/explorer,
 /obj/item/clothing/mask/gas/explorer,
 /obj/item/clothing/mask/gas/explorer,
@@ -6945,19 +6945,19 @@
 /obj/structure/closet/crate/secure/weapon{
 	req_one_access = list(108)
 	},
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid,
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat,
-/obj/item/weapon/gun/energy/ionrifle/pistol,
-/obj/item/weapon/gun/energy/ionrifle/pistol,
-/obj/item/weapon/gun/energy/ionrifle,
-/obj/item/weapon/gun/energy/ionrifle,
-/obj/item/weapon/gun/energy/netgun,
-/obj/item/weapon/gun/energy/xray,
-/obj/item/weapon/gun/energy/xray,
-/obj/item/weapon/gun/energy/gun/burst,
-/obj/item/weapon/gun/energy/gun/burst,
-/obj/item/weapon/gun/energy/sniperrifle,
-/obj/item/weapon/gun/energy/sniperrifle,
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid,
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat,
+/obj/item/gun/energy/ionrifle/pistol,
+/obj/item/gun/energy/ionrifle/pistol,
+/obj/item/gun/energy/ionrifle,
+/obj/item/gun/energy/ionrifle,
+/obj/item/gun/energy/netgun,
+/obj/item/gun/energy/xray,
+/obj/item/gun/energy/xray,
+/obj/item/gun/energy/gun/burst,
+/obj/item/gun/energy/gun/burst,
+/obj/item/gun/energy/sniperrifle,
+/obj/item/gun/energy/sniperrifle,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/armory)
 "nL" = (
@@ -6989,9 +6989,9 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/rnd)
 "nO" = (
-/obj/item/device/defib_kit/jumper_kit,
+/obj/item/defib_kit/jumper_kit,
 /obj/structure/table/steel_reinforced,
-/obj/item/device/robotanalyzer,
+/obj/item/robotanalyzer,
 /obj/machinery/light,
 /obj/machinery/alarm{
 	dir = 1;
@@ -7687,7 +7687,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 9
 	},
-/obj/item/weapon/storage/box/survival/space,
+/obj/item/storage/box/survival/space,
 /turf/simulated/floor/tiled/techfloor,
 /area/mothership/holodeck)
 "pe" = (
@@ -8542,14 +8542,14 @@
 	dir = 1
 	},
 /obj/structure/closet/emcloset/legacy,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/box/survival/space,
-/obj/item/weapon/storage/box/syndie_kit/space,
-/obj/item/weapon/storage/box/syndie_kit/space,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/box/survival/space,
+/obj/item/storage/box/syndie_kit/space,
+/obj/item/storage/box/syndie_kit/space,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)
 "rl" = (
@@ -8687,12 +8687,12 @@
 /area/mothership/engineering)
 "rF" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin{
+/obj/item/paper_bin{
 	pixel_x = -3;
 	pixel_y = 7
 	},
-/obj/item/weapon/pen/multi,
-/obj/item/weapon/folder/yellow_ce,
+/obj/item/pen/multi,
+/obj/item/folder/yellow_ce,
 /turf/simulated/floor/carpet/oracarpet,
 /area/mothership/engineering)
 "rG" = (
@@ -8808,16 +8808,16 @@
 /area/mothership/engineering)
 "rY" = (
 /obj/structure/closet/secure_closet/engineering_chief,
-/obj/item/weapon/rcd,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rcd_ammo,
-/obj/item/weapon/rig/ce/equipped,
+/obj/item/rcd,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rcd_ammo,
+/obj/item/rig/ce/equipped,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10;
 	icon_state = "intact"
@@ -8970,13 +8970,13 @@
 	},
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/clothing/mask/gas,
-/obj/item/device/flashlight,
-/obj/item/weapon/tank/oxygen/red,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/extinguisher,
+/obj/item/flashlight,
+/obj/item/tank/oxygen/red,
+/obj/item/tank/emergency/oxygen/double,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
 /obj/item/clothing/head/hardhat/red,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 6
 	},
@@ -9054,19 +9054,19 @@
 /obj/item/stack/material/glass/reinforced{
 	amount = 50
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/briefcase/inflatable{
+/obj/item/storage/briefcase/inflatable{
 	pixel_x = 3;
 	pixel_y = 3
 	},
@@ -9106,13 +9106,13 @@
 	},
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/clothing/mask/gas,
-/obj/item/device/flashlight,
-/obj/item/weapon/tank/oxygen/red,
-/obj/item/weapon/tank/emergency/oxygen/double,
-/obj/item/weapon/extinguisher,
-/obj/item/weapon/extinguisher,
+/obj/item/flashlight,
+/obj/item/tank/oxygen/red,
+/obj/item/tank/emergency/oxygen/double,
+/obj/item/extinguisher,
+/obj/item/extinguisher,
 /obj/item/clothing/head/hardhat/red,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /obj/machinery/atmospherics/pipe/manifold/hidden{
 	dir = 4;
 	icon_state = "map"
@@ -9133,7 +9133,7 @@
 /area/mothership/engineering)
 "sA" = (
 /obj/structure/bed/pod,
-/obj/item/weapon/bedsheet/ce,
+/obj/item/bedsheet/ce,
 /obj/structure/curtain/open/bed,
 /turf/simulated/floor/tiled/steel_grid,
 /area/mothership/engineering)

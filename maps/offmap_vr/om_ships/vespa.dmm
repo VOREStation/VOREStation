@@ -691,7 +691,7 @@
 /obj/structure/cable{
 	icon_state = "4-8"
 	},
-/obj/item/weapon/handcuffs/fuzzy,
+/obj/item/handcuffs/fuzzy,
 /turf/simulated/floor,
 /area/ship/expe/maintenancerim)
 "bM" = (
@@ -998,7 +998,7 @@
 	pixel_y = 22
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin1)
 "cD" = (
@@ -1151,7 +1151,7 @@
 	pixel_y = 22
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/soap/nanotrasen,
+/obj/item/soap/nanotrasen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin6)
 "cS" = (
@@ -1365,7 +1365,7 @@
 /turf/simulated/floor,
 /area/ship/expe/maintenance2)
 "dn" = (
-/obj/item/weapon/handcuffs/fuzzy,
+/obj/item/handcuffs/fuzzy,
 /obj/machinery/atmospherics/pipe/simple/hidden/aux{
 	dir = 9;
 	icon_state = "intact-aux"
@@ -1386,7 +1386,7 @@
 /obj/structure/table/rack,
 /obj/item/clothing/suit/space/void/medical,
 /obj/item/clothing/head/helmet/space/void/medical,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
@@ -1411,7 +1411,7 @@
 /obj/structure/table/rack,
 /obj/item/clothing/head/helmet/space/void/security,
 /obj/item/clothing/suit/space/void/security,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
@@ -1431,7 +1431,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin1)
 "dy" = (
@@ -1461,7 +1461,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin2)
 "dB" = (
@@ -1491,7 +1491,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin3)
 "dE" = (
@@ -1521,7 +1521,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin4)
 "dH" = (
@@ -1551,7 +1551,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin5)
 "dK" = (
@@ -1581,7 +1581,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin6)
 "dN" = (
@@ -1611,7 +1611,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin7)
 "dQ" = (
@@ -1641,7 +1641,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin8)
 "dT" = (
@@ -1671,7 +1671,7 @@
 	dir = 4
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/double,
+/obj/item/bedsheet/double,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/cabin9)
 "dW" = (
@@ -2589,7 +2589,7 @@
 /obj/item/clothing/head/helmet/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
@@ -2607,7 +2607,7 @@
 /obj/item/clothing/head/helmet/space/void/exploration,
 /obj/item/clothing/head/helmet/space/void/exploration,
 /obj/item/clothing/head/helmet/space/void/exploration,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
@@ -3584,7 +3584,7 @@
 /obj/item/clothing/suit/space/void/engineering,
 /obj/item/clothing/head/helmet/space/void/engineering,
 /obj/item/clothing/head/helmet/space/void/engineering,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
@@ -3594,7 +3594,7 @@
 /obj/item/clothing/suit/space/void/atmos,
 /obj/item/clothing/head/helmet/space/void/atmos,
 /obj/item/clothing/head/helmet/space/void/atmos,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/hangarcontrol)
@@ -4395,8 +4395,8 @@
 	dir = 9;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seceq)
 "iF" = (
@@ -4521,9 +4521,9 @@
 /area/ship/expe/secmain)
 "iM" = (
 /obj/structure/closet/secure_closet,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/storage/backpack/satchel/sec,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
+/obj/item/storage/backpack/satchel/sec,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1;
 	icon_state = "borderfloor_black"
@@ -4542,10 +4542,10 @@
 /obj/item/clothing/accessory/storage/black_drop_pouches,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/badge/corporate_tag/hephaestus,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/megaphone,
-/obj/item/device/radio,
-/obj/item/weapon/melee/baton,
+/obj/item/flashlight/maglight,
+/obj/item/megaphone,
+/obj/item/radio,
+/obj/item/melee/baton,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/secmain)
 "iN" = (
@@ -4745,7 +4745,7 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalmain)
 "jc" = (
@@ -4773,8 +4773,8 @@
 	dir = 9;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/o2,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/o2,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "jf" = (
@@ -4788,9 +4788,9 @@
 	dir = 1;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/regular,
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "jg" = (
@@ -4807,9 +4807,9 @@
 	dir = 1;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "jh" = (
@@ -4824,9 +4824,9 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/closet/crate,
-/obj/item/weapon/storage/box/bloodpacks,
-/obj/item/weapon/storage/box/backup_kit,
-/obj/item/weapon/storage/box/gloves,
+/obj/item/storage/box/bloodpacks,
+/obj/item/storage/box/backup_kit,
+/obj/item/storage/box/gloves,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "ji" = (
@@ -5287,8 +5287,8 @@
 	dir = 8;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/gun/energy/gun,
-/obj/item/weapon/gun/energy/gun,
+/obj/item/gun/energy/gun,
+/obj/item/gun/energy/gun,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seceq)
 "ke" = (
@@ -5537,8 +5537,8 @@
 	dir = 8;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "kB" = (
@@ -5964,7 +5964,7 @@
 /area/ship/expe/hangar)
 "lo" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/box/holobadge,
+/obj/item/storage/box/holobadge,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 8;
 	icon_state = "borderfloor_black"
@@ -5977,14 +5977,14 @@
 /area/ship/expe/seceq)
 "lp" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/flashbangs,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seceq)
 "lq" = (
 /obj/structure/table/rack/shelf,
-/obj/item/weapon/storage/box/handcuffs,
-/obj/item/weapon/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
+/obj/item/storage/box/handcuffs,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4;
 	icon_state = "borderfloor_black"
@@ -6131,8 +6131,8 @@
 	dir = 8;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /obj/machinery/light{
 	dir = 8;
 	icon_state = "tube1";
@@ -6156,7 +6156,7 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/soap/syndie,
+/obj/item/soap/syndie,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "lI" = (
@@ -6673,7 +6673,7 @@
 	dir = 4;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/box/pillbottles,
+/obj/item/storage/box/pillbottles,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
 "mz" = (
@@ -6848,7 +6848,7 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/box/cdeathalarm_kit,
+/obj/item/storage/box/cdeathalarm_kit,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicaleq)
 "mK" = (
@@ -7512,7 +7512,7 @@
 	dir = 4;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/box/syringes,
+/obj/item/storage/box/syringes,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
 "nS" = (
@@ -8263,9 +8263,9 @@
 /area/ship/expe/medicalchem)
 "pc" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/dropper,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/glass/beaker/large,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
 "pd" = (
@@ -8618,8 +8618,8 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/closet,
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
+/obj/item/cell/high,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "pL" = (
@@ -8632,10 +8632,10 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/closet,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/flashlight/maglight,
+/obj/item/flashlight/maglight,
+/obj/item/flashlight/maglight,
+/obj/item/flashlight/maglight,
+/obj/item/flashlight/maglight,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "pM" = (
@@ -8659,9 +8659,9 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/rack/shelf,
-/obj/item/device/geiger,
-/obj/item/device/geiger,
-/obj/item/device/geiger,
+/obj/item/geiger,
+/obj/item/geiger,
+/obj/item/geiger,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "pO" = (
@@ -8674,11 +8674,11 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/rack/shelf,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "pP" = (
@@ -8912,7 +8912,7 @@
 /area/ship/expe/seclobby2)
 "qc" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/regular,
+/obj/item/storage/firstaid/regular,
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/red/border,
 /turf/simulated/floor/tiled/techfloor,
@@ -8927,8 +8927,8 @@
 	dir = 1;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/secmain)
 "qe" = (
@@ -8951,8 +8951,8 @@
 	dir = 10;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/storage/box/beakers,
+/obj/item/storage/box/beakers,
+/obj/item/storage/box/beakers,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
 "qh" = (
@@ -8987,7 +8987,7 @@
 	dir = 6;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalchem)
 "qk" = (
@@ -9022,9 +9022,9 @@
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/storage/box/masks,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/storage/box/gloves,
+/obj/item/storage/box/masks,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalmain)
@@ -9044,7 +9044,7 @@
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/paleblue/border,
-/obj/item/weapon/storage/quickdraw/syringe_case,
+/obj/item/storage/quickdraw/syringe_case,
 /obj/machinery/light,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalmain)
@@ -9504,7 +9504,7 @@
 	dir = 1;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/folder/red,
+/obj/item/folder/red,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/secmain)
 "rk" = (
@@ -9594,8 +9594,8 @@
 /area/ship/expe/medical1)
 "rx" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/toolbox/mechanical,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 10;
 	icon_state = "borderfloor_black"
@@ -9608,8 +9608,8 @@
 /area/ship/expe/engineeringequipment)
 "ry" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/toolbox/electrical,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/yellow/border,
 /turf/simulated/floor/tiled/techfloor,
@@ -10274,7 +10274,7 @@
 	dir = 9;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/box/freezer,
+/obj/item/storage/box/freezer,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
 "sF" = (
@@ -10351,7 +10351,7 @@
 	dir = 5;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/box/freezer,
+/obj/item/storage/box/freezer,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
 "sJ" = (
@@ -10559,7 +10559,7 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin,
+/obj/item/paper_bin,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "tq" = (
@@ -10568,7 +10568,7 @@
 	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "tr" = (
@@ -10577,7 +10577,7 @@
 	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder/white,
+/obj/item/folder/white,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "ts" = (
@@ -10586,7 +10586,7 @@
 	icon_state = "intact-supply"
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/device/universal_translator,
+/obj/item/universal_translator,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "tt" = (
@@ -10726,7 +10726,7 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/reinforced,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
 "tJ" = (
@@ -10734,7 +10734,7 @@
 /area/ship/expe/medicalsur)
 "tK" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/spray/sterilizine,
+/obj/item/reagent_containers/spray/sterilizine,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
 "tL" = (
@@ -10747,7 +10747,7 @@
 	dir = 4;
 	icon_state = "bordercolor"
 	},
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled/white,
 /area/ship/expe/medicalsur)
 "tM" = (
@@ -11181,7 +11181,7 @@
 /area/ship/expe/expedition)
 "uy" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder/blue,
+/obj/item/folder/blue,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "uz" = (
@@ -11190,7 +11190,7 @@
 /area/ship/expe/expedition)
 "uA" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/universal_translator,
+/obj/item/universal_translator,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "uB" = (
@@ -11641,7 +11641,7 @@
 /area/ship/expe/captqua)
 "vx" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/captaindouble,
+/obj/item/bedsheet/captaindouble,
 /obj/effect/floor_decal/corner/blue/border{
 	dir = 6;
 	icon_state = "bordercolor"
@@ -11813,9 +11813,9 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/rack/shelf,
-/obj/item/device/gps/explorer,
-/obj/item/device/gps/explorer,
-/obj/item/device/gps/explorer,
+/obj/item/gps/explorer,
+/obj/item/gps/explorer,
+/obj/item/gps/explorer,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "vZ" = (
@@ -12125,14 +12125,14 @@
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/pen,
+/obj/item/pen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "wE" = (
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/purple/border,
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/folder/red,
+/obj/item/folder/red,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "wF" = (
@@ -12173,9 +12173,9 @@
 	icon_state = "bordercolor"
 	},
 /obj/structure/table/rack/shelf,
-/obj/item/device/gps/explorer,
-/obj/item/device/gps/explorer,
-/obj/item/device/gps/explorer,
+/obj/item/gps/explorer,
+/obj/item/gps/explorer,
+/obj/item/gps/explorer,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/expedition)
 "wK" = (
@@ -12707,15 +12707,15 @@
 	icon_state = "1-2"
 	},
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/bridge)
 "yQ" = (
 /obj/structure/closet/secure_closet,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/handcuffs,
-/obj/item/weapon/storage/backpack/satchel/sec,
+/obj/item/handcuffs,
+/obj/item/handcuffs,
+/obj/item/storage/backpack/satchel/sec,
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 1;
 	icon_state = "borderfloor_black"
@@ -12734,16 +12734,16 @@
 /obj/item/clothing/accessory/storage/black_drop_pouches,
 /obj/item/clothing/accessory/storage/black_vest,
 /obj/item/clothing/accessory/badge/corporate_tag/hephaestus,
-/obj/item/device/flashlight/maglight,
-/obj/item/device/radio,
-/obj/item/weapon/melee/baton,
+/obj/item/flashlight/maglight,
+/obj/item/radio,
+/obj/item/melee/baton,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/secmain)
 "yR" = (
 /obj/structure/table/reinforced,
 /obj/effect/floor_decal/borderfloorblack,
 /obj/effect/floor_decal/corner/red/border,
-/obj/item/weapon/folder,
+/obj/item/folder,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seclobby2)
 "yS" = (
@@ -12752,7 +12752,7 @@
 /obj/machinery/door/window/northright,
 /obj/effect/floor_decal/borderfloorblack/full,
 /obj/effect/floor_decal/corner/red/borderfull,
-/obj/item/weapon/deskbell,
+/obj/item/deskbell,
 /turf/simulated/floor/tiled/techfloor,
 /area/ship/expe/seclobby)
 

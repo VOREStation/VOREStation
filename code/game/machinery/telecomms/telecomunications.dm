@@ -265,15 +265,11 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	var/list/linked_radios_weakrefs = list()
 
-<<<<<<< HEAD
 /obj/machinery/telecomms/receiver/Initialize()
 	. = ..()
 	default_apply_parts()
 
-/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/device/radio/R)
-=======
 /obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/radio/R)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= weakref(R)

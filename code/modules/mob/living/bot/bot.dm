@@ -17,7 +17,7 @@
 	var/emagged = 0
 	var/light_strength = 3
 	var/busy = 0
-	var/obj/item/device/paicard/paicard = null
+	var/obj/item/paicard/paicard = null
 	var/obj/access_scanner = null
 	var/list/req_access = list()
 	var/list/req_one_access = list()
@@ -155,7 +155,7 @@
 			qdel(O)
 		else
 			to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
-	else if(istype(O, /obj/item/device/paicard))
+	else if(istype(O, /obj/item/paicard))
 		if(open)
 			insertpai(user, O)
 			to_chat(user, span_notice("You slot the card into \the [initial(src.name)]."))
@@ -491,7 +491,7 @@
 	canmove = on
 	return canmove
 
-/mob/living/bot/proc/insertpai(mob/user, obj/item/device/paicard/card)
+/mob/living/bot/proc/insertpai(mob/user, obj/item/paicard/card)
 	//var/obj/item/paicard/card = I
 	var/mob/living/silicon/pai/AI = card.pai
 	if(paicard)

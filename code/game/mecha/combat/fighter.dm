@@ -268,15 +268,9 @@
 		stripe2_overlay.color = stripe2_color
 		add_overlay(stripe2_overlay)
 
-<<<<<<< HEAD
-/obj/mecha/combat/fighter/gunpod/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W,/obj/item/device/multitool) && state == 1)
-		var/new_paint_location = tgui_input_list(usr, "Please select a target zone.", "Paint Zone", list("Fore Stripe", "Aft Stripe", "CANCEL"))
-=======
 /obj/mecha/combat/fighter/gunpod/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/multitool) && state == 1)
-		var/new_paint_location = input("Please select a target zone.", "Paint Zone", null) as null|anything in list("Fore Stripe", "Aft Stripe", "CANCEL")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		var/new_paint_location = tgui_input_list(usr, "Please select a target zone.", "Paint Zone", list("Fore Stripe", "Aft Stripe", "CANCEL"))
 		if(new_paint_location && new_paint_location != "CANCEL")
 			var/new_paint_color = input(usr, "Please select a paint color.", "Paint Color", null) as color|null
 			if(new_paint_color)

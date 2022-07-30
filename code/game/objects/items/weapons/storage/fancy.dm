@@ -47,12 +47,8 @@
 /*
  * Egg Box
  */
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/egg_box
-=======
 
 /obj/item/storage/fancy/egg_box
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon = 'icons/obj/food.dmi'
 	icon_state = "eggbox"
 	icon_type = "egg"
@@ -96,12 +92,8 @@
 /*
  * Candle Boxes
  */
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/candle_box
-=======
 
 /obj/item/storage/fancy/candle_box
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "red candle pack"
 	desc = "A pack of red candles."
 	icon = 'icons/obj/candle.dmi'
@@ -110,14 +102,9 @@
 	item_state = "candlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
-<<<<<<< HEAD
 	max_storage_space = ITEMSIZE_COST_TINY * 5
-	can_hold = list(/obj/item/weapon/flame/candle)
-	starts_with = list(/obj/item/weapon/flame/candle = 5)
-=======
-	max_storage_space = ITEMSIZE_COST_SMALL * 5
+	can_hold = list(/obj/item/flame/candle)
 	starts_with = list(/obj/item/flame/candle = 5)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/storage/fancy/whitecandle_box
 	name = "white candle pack"
@@ -128,14 +115,9 @@
 	item_state = "whitecandlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
-<<<<<<< HEAD
 	max_storage_space = ITEMSIZE_COST_TINY * 5
-	can_hold = list(/obj/item/weapon/flame/candle)
-	starts_with = list(/obj/item/weapon/flame/candle/white = 5)
-=======
-	max_storage_space = ITEMSIZE_COST_SMALL * 5
+	can_hold = list(/obj/item/flame/candle)
 	starts_with = list(/obj/item/flame/candle/white = 5)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/storage/fancy/blackcandle_box
 	name = "black candle pack"
@@ -146,25 +128,16 @@
 	item_state = "blackcandlebox5"
 	throwforce = 2
 	slot_flags = SLOT_BELT
-<<<<<<< HEAD
 	max_storage_space = ITEMSIZE_COST_TINY * 5
-	can_hold = list(/obj/item/weapon/flame/candle)
-	starts_with = list(/obj/item/weapon/flame/candle/black = 5)
-=======
-	max_storage_space = ITEMSIZE_COST_SMALL * 5
+	can_hold = list(/obj/item/flame/candle)
 	starts_with = list(/obj/item/flame/candle/black = 5)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 
 /*
  * Crayon Box
  */
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/crayons
-=======
 
 /obj/item/storage/fancy/crayons
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "box of crayons"
 	desc = "A box of crayons for all your rune drawing needs."
 	icon = 'icons/obj/crayons.dmi'
@@ -189,15 +162,9 @@
 
 /obj/item/storage/fancy/crayons/update_icon()
 	var/mutable_appearance/ma = new(src)
-<<<<<<< HEAD
 	ma.cut_overlays()
-	for(var/obj/item/weapon/pen/crayon/crayon in contents)
-		add_overlay(image('icons/obj/crayons.dmi',crayon.colourName))
-=======
-	ma.overlays = list()
 	for(var/obj/item/pen/crayon/crayon in contents)
-		ma.overlays += image('icons/obj/crayons.dmi',crayon.colourName)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		add_overlay(image('icons/obj/crayons.dmi',crayon.colourName))
 	appearance = ma
 
 /obj/item/storage/fancy/crayons/attackby(obj/item/W as obj, mob/user as mob)
@@ -237,15 +204,9 @@
 
 /obj/item/storage/fancy/markers/update_icon()
 	var/mutable_appearance/ma = new(src)
-<<<<<<< HEAD
 	ma.cut_overlays()
-	for(var/obj/item/weapon/pen/crayon/marker/marker in contents)
-		ma.add_overlay(image('icons/obj/crayons.dmi',"m"+marker.colourName))
-=======
-	ma.overlays = list()
 	for(var/obj/item/pen/crayon/marker/marker in contents)
-		ma.overlays += image('icons/obj/crayons.dmi',"m"+marker.colourName)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		ma.add_overlay(image('icons/obj/crayons.dmi',"m"+marker.colourName))
 	appearance = ma
 
 /obj/item/storage/fancy/markers/attackby(obj/item/W as obj, mob/user as mob)
@@ -262,12 +223,8 @@
 /*
  * Cracker Pack
  */
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/crackers
-=======
 
 /obj/item/storage/fancy/crackers
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\improper Getmore Crackers"
 	icon = 'icons/obj/food.dmi'
 	icon_state = "crackerbox"
@@ -278,17 +235,10 @@
 	can_hold = list(/obj/item/reagent_containers/food/snacks/cracker)
 	starts_with = list(/obj/item/reagent_containers/food/snacks/cracker = 6)
 
-<<<<<<< HEAD
-/*
- * Cigarette Pack
- */
-/obj/item/weapon/storage/fancy/cigarettes
-=======
 ////////////
 //CIG PACK//
 ////////////
 /obj/item/storage/fancy/cigarettes
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\improper pack of Trans-Stellar Duty-frees"
 	desc = "A ubiquitous brand of cigarettes, found in every major spacefaring corporation in the universe. As mild and flavorless as it gets."
 	description_fluff = "The Trans-Stellar Duty-Free Cigarette Company was created as an imprint of NanoTrasen.  They are the most boring, tasteless, dry cigarettes on the market, but due to just how unremarkable (not to mention cheap to produce) they are, they sold in vending machines in almost every corner of the galaxy."
@@ -314,15 +264,14 @@
 			C.brand = brand
 			C.desc += " This one is \a [brand]."
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/cigarettes/New()
+/obj/item/storage/fancy/cigarettes/New()
 	if(!open_state)
 		open_state = "[initial(icon_state)]_open"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
 	..()
 
-/obj/item/weapon/storage/fancy/cigarettes/update_icon()
+/obj/item/storage/fancy/cigarettes/update_icon()
 	cut_overlays()
 	if(open)
 		icon_state = open_state
@@ -331,7 +280,7 @@
 	else
 		icon_state = closed_state
 
-/obj/item/weapon/storage/fancy/cigarettes/open(mob/user as mob)
+/obj/item/storage/fancy/cigarettes/open(mob/user as mob)
 	if(open)
 		return
 	open = TRUE
@@ -341,18 +290,13 @@
 		update_icon()
 	..()
 
-/obj/item/weapon/storage/fancy/cigarettes/close(mob/user as mob)
+/obj/item/storage/fancy/cigarettes/close(mob/user as mob)
 	open = FALSE
 	if(contents.len == 0)
 		icon_state = "[initial(icon_state)]_empty"
 	else
 		update_icon()
 	..()
-=======
-/obj/item/storage/fancy/cigarettes/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
-	return
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
 	// Don't try to transfer reagents to lighters
@@ -403,13 +347,7 @@
 	icon_state = "Apacket"
 	brand = "\improper Acme Co. cigarette"
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/cigarettes/luckystars
-=======
-// New exciting ways to kill your lungs! - Earthcrusher //
-
 /obj/item/storage/fancy/cigarettes/luckystars
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\improper pack of Lucky Stars"
 	desc = "A mellow blend made from synthetic, pod-grown tobacco. The commercial jingle is guaranteed to get stuck in your head."
 	description_fluff = "Lucky Stars are some of the most prolific advertisers in the business, with Gilthari Exports plastering the name and slogan on everything from workplace safety videos to racing bikes. 'Feel the gentle warmth of your Lucky Star'."
@@ -443,14 +381,10 @@
 	icon_state = "P100packet"
 	brand = "\improper Professional 120"
 
-<<<<<<< HEAD
 /*
  * Cigar Box
  */
-/obj/item/weapon/storage/fancy/cigar
-=======
 /obj/item/storage/fancy/cigar
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "cigar case"
 	desc = "A case for holding your cigars when you are not smoking them."
 	description_fluff = "The tastefully engraved palm tree tells you that these 'Palma Grande' premium cigars are only sold on the luxury cruises and resorts of Oasis, though ten separate companies produce them for that purpose galaxy-wide. The standard is however very high."
@@ -469,15 +403,7 @@
 	flags |= NOREACT
 	create_reagents(15 * storage_slots)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
-=======
-/obj/item/storage/fancy/cigar/update_icon()
-	icon_state = "[initial(icon_state)][contents.len]"
-	return
-
 /obj/item/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/obj/item/clothing/mask/smokable/cigarette/cigar/C = W
 	if(!istype(C)) return
 	reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
@@ -506,8 +432,7 @@
 	update_icon()
 	..()
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/cigar/close(mob/user as mob)
+/obj/item/storage/fancy/cigar/close(mob/user as mob)
 	open = FALSE
 	update_icon()
 	..()
@@ -515,10 +440,7 @@
 /*
  * Tobacco Bits
  */
-/obj/item/weapon/storage/rollingpapers
-=======
 /obj/item/storage/rollingpapers
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "rolling paper pack"
 	desc = "A small cardboard pack containing several folded rolling papers."
 	icon_state = "paperbox"
@@ -541,12 +463,8 @@
 /*
  * Vial Box
  */
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/vials
-=======
 
 /obj/item/storage/fancy/vials
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon = 'icons/obj/vialbox.dmi'
 	icon_state = "vialbox6"
 	icon_type = "vial"
@@ -590,12 +508,8 @@
 /*
  * Box of Chocolates
  */
-<<<<<<< HEAD
-/obj/item/weapon/storage/fancy/heartbox
-=======
 
 /obj/item/storage/fancy/heartbox
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "heartbox"
 	name = "box of chocolates"
 	icon_type = "chocolate"

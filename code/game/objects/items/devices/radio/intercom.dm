@@ -8,15 +8,11 @@
 	w_class = ITEMSIZE_LARGE
 	canhear_range = 7 //VOREStation Edit
 	flags = NOBLOODY
-<<<<<<< HEAD
 	light_color = "#00ff00"
 	light_power = 0.25
 	blocks_emissive = NONE
 	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
-	var/circuit = /obj/item/weapon/circuitboard/intercom
-=======
 	var/circuit = /obj/item/circuitboard/intercom
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/number = 0
 	var/wiresexposed = 0
 
@@ -79,18 +75,6 @@
 	channels = radiochannels.Copy()
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/device/radio/intercom/New()
-	..()
-	circuit = new circuit(src)
-
-/obj/item/device/radio/intercom/department/medbay/New()
-	..()
-	internal_channels = default_medbay_channels.Copy()
-
-/obj/item/device/radio/intercom/department/security/New()
-	..()
-=======
 /obj/item/radio/intercom/Initialize()
 	. = ..()
 	circuit = new circuit(src)
@@ -101,19 +85,13 @@
 
 /obj/item/radio/intercom/department/security/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	internal_channels = list(
 		num2text(PUB_FREQ) = list(),
 		num2text(SEC_I_FREQ) = list(access_security)
 	)
 
-<<<<<<< HEAD
-/obj/item/device/radio/intercom/entertainment/New()
-	..()
-=======
 /obj/item/radio/intercom/entertainment/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	internal_channels = list(
 		num2text(PUB_FREQ) = list(),
 		num2text(ENT_FREQ) = list()
@@ -126,13 +104,8 @@
 	subspace_transmission = 1
 	syndie = 1
 
-<<<<<<< HEAD
-/obj/item/device/radio/intercom/syndicate/New()
-	..()
-=======
 /obj/item/radio/intercom/syndicate/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	internal_channels[num2text(SYND_FREQ)] = list(access_syndicate)
 
 /obj/item/radio/intercom/raider
@@ -142,13 +115,8 @@
 	subspace_transmission = 1
 	syndie = 1
 
-<<<<<<< HEAD
-/obj/item/device/radio/intercom/raider/New()
-	..()
-=======
 /obj/item/radio/intercom/raider/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	internal_channels[num2text(RAID_FREQ)] = list(access_syndicate)
 
 /obj/item/radio/intercom/attack_ai(mob/user as mob)
@@ -205,7 +173,7 @@
 /obj/item/radio/intercom/update_icon()
 	var/area/A = get_area(src)
 	on = A?.powered(EQUIP)
-	
+
 	cut_overlays()
 
 	if(!on)
@@ -222,18 +190,17 @@
 			set_light_on(FALSE)
 		else
 			icon_state = initial(icon_state)
-<<<<<<< HEAD
 			add_overlay(mutable_appearance(icon, "[icon_state]_ov"))
 			add_overlay(emissive_appearance(icon, "[icon_state]_ov"))
 			set_light(2)
 			set_light_on(TRUE)
 
 //VOREStation Add Start
-/obj/item/device/radio/intercom/AICtrlClick(var/mob/user)
+/obj/item/radio/intercom/AICtrlClick(var/mob/user)
 	ToggleBroadcast()
 	to_chat(user, "<span class='notice'>\The [src]'s microphone is now <b>[broadcasting ? "enabled" : "disabled"]</b>.</span>")
 
-/obj/item/device/radio/intercom/AIAltClick(var/mob/user)
+/obj/item/radio/intercom/AIAltClick(var/mob/user)
 	if(frequency == AI_FREQ)
 		set_frequency(initial(frequency))
 		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='green'><b>Default</b></font>.</span>")
@@ -241,11 +208,7 @@
 		set_frequency(AI_FREQ)
 		to_chat(user, "<span class='notice'>\The [src]'s frequency is now set to <font color='pink'><b>AI Private</b></font>.</span>")
 //VOREStation Add End
-/obj/item/device/radio/intercom/locked
-=======
-
 /obj/item/radio/intercom/locked
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
     var/locked_frequency
 
 /obj/item/radio/intercom/locked/set_frequency(var/frequency)

@@ -21,13 +21,8 @@
 			increment_construction_stage()
 			return
 
-<<<<<<< HEAD
-	if(istype(thing, /obj/item/weapon/tape_roll) && construction_stage == 2)
-		user.visible_message("<b>\The [user]</b> secures \the [src] together with \the [thing].")
-=======
 	if(istype(thing, /obj/item/tape_roll) && construction_stage == 2)
 		user.visible_message("<span class='notice'>\The [user] secures \the [src] together with \the [thing].</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		increment_construction_stage()
 		return
 
@@ -64,13 +59,8 @@
 		increment_construction_stage()
 		return
 
-<<<<<<< HEAD
-	if(istype(thing, /obj/item/weapon/smes_coil) && construction_stage >= 6 && construction_stage <= 8)
-		user.visible_message("<b>\The [user]</b> installs \a [thing] into \the [src].")
-=======
 	if(istype(thing, /obj/item/smes_coil) && construction_stage >= 6 && construction_stage <= 8)
 		user.visible_message("<span class='notice'>\The [user] installs \a [thing] into \the [src].</span>")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		user.drop_from_inventory(thing)
 		qdel(thing)
 		increment_construction_stage()

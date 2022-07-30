@@ -10,7 +10,7 @@
 	w_class = ITEMSIZE_SMALL
 	var/repair_amount = 5
 	var/repair_time = 40
-	
+
 /obj/item/whetstone/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/stack/material))
 		var/obj/item/stack/material/M = I
@@ -62,15 +62,9 @@
 			to_chat(user, "You add a [S.material.name] [S.material.sheet_singular_name] to [src].")
 			return
 
-<<<<<<< HEAD
-	if(istype(W, /obj/item/weapon/material))
-		if(istype(W, /obj/item/weapon/material/sharpeningkit))
-			to_chat(user, "As much as you'd like to sharpen [W] with [src], the logistics just don't work out.")
-=======
 	if(istype(W, /obj/item/material))
 		if(istype(W, /obj/item/material/sharpeningkit))
 			to_chat(user, "Really? Sharpening a [W] with [src]? You goofball.")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			return
 		var/obj/item/material/M = W
 		if(uses >= M.w_class*2)
@@ -81,4 +75,4 @@
 			to_chat(user, "There's not enough spare sheets to sharpen [M]. You need [M.w_class*2] [M.material.sheet_plural_name].")
 			return
 	else
-		to_chat(user, "You can't sharpen [W] with [src]!") 
+		to_chat(user, "You can't sharpen [W] with [src]!")

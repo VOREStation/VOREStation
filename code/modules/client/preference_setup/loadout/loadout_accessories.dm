@@ -31,22 +31,14 @@
 
 /datum/gear/accessory/wallet_poly
 	display_name = "wallet, polychromic"
-<<<<<<< HEAD
-	path = /obj/item/weapon/storage/wallet/poly
-	cost = 0 //VOREStation Edit
-
-
-/datum/gear/accessory/wallet/womens
-	display_name = "wallet, womens"
-	path = /obj/item/weapon/storage/wallet/womens
-	cost = 0 //VOREStation Edit
-=======
 	path = /obj/item/storage/wallet/poly
+	cost = 0 //VOREStation Edit
+
 
 /datum/gear/accessory/wallet/womens
 	display_name = "wallet, womens"
 	path = /obj/item/storage/wallet/womens
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	cost = 0 //VOREStation Edit
 
 /datum/gear/accessory/wallet/womens/New()
 	..()
@@ -193,12 +185,8 @@
 /datum/gear/accessory/fannypack/New()
 	..()
 	var/list/fannys = list()
-<<<<<<< HEAD
-	for(var/obj/item/weapon/storage/belt/fannypack/fanny_type as anything in typesof(/obj/item/weapon/storage/belt/fannypack))
-=======
 	for(var/fanny in typesof(/obj/item/storage/belt/fannypack))
 		var/obj/item/storage/belt/fannypack/fanny_type = fanny
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		fannys[initial(fanny_type.name)] = fanny_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(fannys))
 

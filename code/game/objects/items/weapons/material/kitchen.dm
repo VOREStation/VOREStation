@@ -121,12 +121,8 @@
 /obj/item/material/kitchen/utensil/spork/plastic
 	default_material = "plastic"
 
-<<<<<<< HEAD
-/obj/item/weapon/material/kitchen/utensil/spoon
-=======
 
 /obj/item/material/kitchen/utensil/spoon
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "spoon"
 	desc = "It's a spoon. You can see your own upside-down face in it."
 	icon_state = "spoon"

@@ -210,23 +210,13 @@
 // setup the PDA and its name
 /mob/living/silicon/robot/proc/setup_PDA()
 	if (!rbPDA)
-<<<<<<< HEAD
-		rbPDA = new/obj/item/device/pda/ai(src)
+		rbPDA = new/obj/item/pda/ai(src)
 	rbPDA.set_name_and_job(name,"[modtype] [braintype]")
 
 /mob/living/silicon/robot/proc/setup_communicator()
 	if (!communicator)
-		communicator = new/obj/item/device/communicator/integrated(src)
-	communicator.register_device(name, "[modtype] [braintype]")
-=======
-		rbPDA = new/obj/item/pda/ai(src)
-	rbPDA.set_name_and_job(custom_name,"[modtype] [braintype]")
-
-/mob/living/silicon/robot/proc/setup_communicator()
-	if (!communicator)
 		communicator = new/obj/item/communicator/integrated(src)
-	communicator.register_device(src.name, "[modtype] [braintype]")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	communicator.register_device(name, "[modtype] [braintype]")
 
 //If there's an MMI in the robot, have it ejected when the mob goes away. --NEO
 //Improved /N

@@ -163,7 +163,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 /datum/digest_mode/egg/handle_atoms(obj/belly/B, list/touchable_atoms)
 	var/list/egg_contents = list()
 	for(var/E in touchable_atoms)
-		if(istype(E, /obj/item/weapon/storage/vore_egg)) // Don't egg other eggs.
+		if(istype(E, /obj/item/storage/vore_egg)) // Don't egg other eggs.
 			continue
 		if(isliving(E))
 			var/mob/living/L = E
@@ -191,9 +191,9 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				return list("to_update" = TRUE)
 			if(isliving(C))
 				var/mob/living/M = C
-				var/mob_holder_type = M.holder_type || /obj/item/weapon/holder
+				var/mob_holder_type = M.holder_type || /obj/item/holder
 				B.ownegg.w_class = M.size_multiplier * 4 //Egg size and weight scaled to match occupant.
-				var/obj/item/weapon/holder/H = new mob_holder_type(B.ownegg, M)
+				var/obj/item/holder/H = new mob_holder_type(B.ownegg, M)
 				B.ownegg.max_storage_space = H.w_class
 				B.ownegg.icon_scale_x = 0.25 * B.ownegg.w_class
 				B.ownegg.icon_scale_y = 0.25 * B.ownegg.w_class

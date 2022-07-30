@@ -155,7 +155,7 @@
 	else
 		wear += rand(5,20)
 
-/obj/structure/shuttle/engine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/shuttle/engine/attackby(obj/item/W as obj, mob/user as mob)
 	src.add_fingerprint(user)
 	if(repair_welder(user, W))
 		return
@@ -163,7 +163,7 @@
 
 //TODO require a multitool to diagnose and open engine panels or something
 
-/obj/structure/shuttle/engine/proc/repair_welder(var/mob/user, var/obj/item/weapon/weldingtool/WT)
+/obj/structure/shuttle/engine/proc/repair_welder(var/mob/user, var/obj/item/weldingtool/WT)
 	if(!istype(WT))
 		return 0
 	if(wear <= 20)

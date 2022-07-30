@@ -74,13 +74,8 @@
 	desc = "A gift card with a heart on the cover."
 	icon_state = "greetingcard_heart"
 
-<<<<<<< HEAD
-/obj/item/weapon/paper/card/New()
-	..()
-=======
 /obj/item/paper/card/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	stamps = null
@@ -111,13 +106,8 @@
 
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
-<<<<<<< HEAD
-/obj/item/weapon/paper/Initialize(mapload, var/text, var/title)
-    . = ..()
-=======
 /obj/item/paper/Initialize(mapload, var/text, var/title)
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
     if(istext(title))
         name = title
@@ -127,19 +117,13 @@
     if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
         was_maploaded = TRUE
 
-/obj/item/weapon/paper/New(var/newloc, var/text, var/title)
+/obj/item/paper/New(var/newloc, var/text, var/title)
 	..()
 	pixel_y = rand(-8, 8)
 	pixel_x = rand(-9, 9)
 	stamps = ""
 
-<<<<<<< HEAD
-	if(!isnull(title))
-		name = title
-
-=======
 /obj/item/paper/proc/update_info(var/sanitize = TRUE)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(name != "paper")
 		desc = "This is a paper titled '" + name + "'."
 
@@ -178,38 +162,13 @@
 	else
 		. += "<span class='notice'>You have to go closer if you want to read it.</span>"
 
-<<<<<<< HEAD
-/obj/item/weapon/paper/proc/show_content(var/mob/user, var/forceshow=0)
+/obj/item/paper/proc/show_content(var/mob/user, var/forceshow=0)
 	if(!(istype(user, /mob/living/carbon/human) || istype(user, /mob/observer/dead) || istype(user, /mob/living/silicon) || user.universal_understand) && !forceshow)
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[stars(info)][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
 	else
 		user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 		onclose(user, "[name]")
-=======
-
-/obj/item/paper/proc/show_content(mob/user, force_show)
-	if (!user)
-		return
-	var/user_is_client = isclient(user)
-	if (!user_is_client && !ismob(user))
-		return
-	var/understands = force_show
-	if (!understands)
-		if (user_is_client)
-			understands = TRUE
-		else if (user.universal_understand)
-			understands = TRUE
-		else if (isobserver(user))
-			understands = TRUE
-		else if (ishuman(user))
-			understands = TRUE
-		else if (issilicon(user))
-			understands = TRUE
-	user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[understands ? info : stars(info)][stamps]</BODY></HTML>", "window=[name]")
-	onclose(user, "[name]")
-
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/paper/verb/rename()
 	set name = "Rename paper"
@@ -473,20 +432,15 @@
 		var/raw = tgui_input_text(usr, "Enter what you want to write:", "Write", multiline = TRUE, prevent_enter = TRUE)
 		if(!raw)
 			return
-		
+
 		var/t =  sanitize(raw, MAX_PAPER_MESSAGE_LEN, extra = 0)
 		if(!t)
 			return
 
 		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
-<<<<<<< HEAD
-		if(!istype(i, /obj/item/weapon/pen))
-			tgui_alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "No Pen!") // Should remain tgui_alert() (blocking)
-=======
 		if(!istype(i, /obj/item/pen))
-			alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "", "Okay")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			tgui_alert(usr, "You aren't holding a pen anymore! If you want to keep your work, grab one.", "No Pen!") // Should remain tgui_alert() (blocking)
 			i = usr.get_active_hand()
 
 		if(!istype(i, /obj/item/pen))
@@ -506,14 +460,7 @@
 
 
 		// if paper is not in usr, then it must be near them, or in a clipboard or folder, which must be in or near usr
-<<<<<<< HEAD
-		if(istype(loc, /obj/item/weapon/clipboard) || istype(loc, /obj/structure/noticeboard) || istype(loc, /obj/item/weapon/folder))
-			if(loc.loc != usr && !in_range(loc, usr))
-				return
-		else if(loc != usr && !Adjacent(usr))
-=======
 		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/clipboard) || istype(src.loc, /obj/item/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			return
 
 /*
@@ -633,10 +580,9 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info_links][stamps]</BODY></HTML>", "window=[name]")
 		return
 
-<<<<<<< HEAD
-	else if(istype(P, /obj/item/weapon/stamp) || istype(P, /obj/item/clothing/gloves/ring/seal))
-		if(istype(P, /obj/item/weapon/stamp))
-			var/obj/item/weapon/stamp/the_stamp = P
+	else if(istype(P, /obj/item/stamp) || istype(P, /obj/item/clothing/gloves/ring/seal))
+		if(istype(P, /obj/item/stamp))
+			var/obj/item/stamp/the_stamp = P
 			if(the_stamp.stamptext)
 				stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>[the_stamp.stamptext]</i>"
 			else
@@ -647,11 +593,7 @@
 				stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>[the_stamp.stamptext]</i>"
 			else
 				stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [the_stamp.name].</i>"
-		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/weapon/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
-=======
-	else if(istype(P, /obj/item/stamp) || istype(P, /obj/item/clothing/gloves/ring/seal))
 		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			return
 		var/image/stampoverlay = image('icons/obj/bureaucracy.dmi')
 		var/x, y

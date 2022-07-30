@@ -8,13 +8,8 @@
 	name = "Communicator"
 	id = "communicator"
 	req_tech = list(TECH_DATA = 2, TECH_MAGNET = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 500, MAT_GLASS = 500)
-	build_path = /obj/item/device/communicator
-=======
-	materials = list(MAT_STEEL = 500, "glass" = 500)
 	build_path = /obj/item/communicator
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "TAAAA"
 
 /datum/design/item/general/laserpointer
@@ -22,39 +17,24 @@
 	desc = "Don't shine it in your eyes!"
 	id = "laser_pointer"
 	req_tech = list(TECH_MAGNET = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 100, MAT_GLASS = 50)
-	build_path = /obj/item/device/laser_pointer
-=======
-	materials = list(MAT_STEEL = 100, "glass" = 50)
 	build_path = /obj/item/laser_pointer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "TAABA"
 
 /datum/design/item/general/translator
 	name = "handheld translator"
 	id = "translator"
 	req_tech = list(TECH_DATA = 3, TECH_ENGINEERING = 3)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 3000, MAT_GLASS = 3000)
-	build_path = /obj/item/device/universal_translator
-=======
-	materials = list(MAT_STEEL = 3000, "glass" = 3000)
 	build_path = /obj/item/universal_translator
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "TAACA"
 
 /datum/design/item/general/ear_translator
 	name = "earpiece translator"
 	id = "ear_translator"
 	req_tech = list(TECH_DATA = 5, TECH_ENGINEERING = 5)	//It's been hella miniaturized.
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 2000, MAT_GLASS = 2000, MAT_GOLD = 1000)
-	build_path = /obj/item/device/universal_translator/ear
-=======
-	materials = list(MAT_STEEL = 2000, "glass" = 2000, "gold" = 1000)
 	build_path = /obj/item/universal_translator/ear
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "TAACB"
 
 /datum/design/item/general/light_replacer
@@ -62,13 +42,8 @@
 	desc = "A device to automatically replace lights. Refill with working lightbulbs."
 	id = "light_replacer"
 	req_tech = list(TECH_MAGNET = 3, TECH_MATERIAL = 4)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 1500, MAT_SILVER = 150, MAT_GLASS = 3000)
-	build_path = /obj/item/device/lightreplacer
-=======
-	materials = list(MAT_STEEL = 1500, "silver" = 150, "glass" = 3000)
 	build_path = /obj/item/lightreplacer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "TAADA"
 
 /datum/design/item/general/binaryencrypt
@@ -76,13 +51,8 @@
 	desc = "Allows for deciphering the binary channel on-the-fly."
 	id = "binaryencrypt"
 	req_tech = list(TECH_ILLEGAL = 2)
-<<<<<<< HEAD
 	materials = list(MAT_STEEL = 300, MAT_GLASS = 300)
-	build_path = /obj/item/device/encryptionkey/binary
-=======
-	materials = list(MAT_STEEL = 300, "glass" = 300)
 	build_path = /obj/item/encryptionkey/binary
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sort_string = "TBAAA"
 
 /datum/design/item/general/chameleon
@@ -109,7 +79,7 @@
 	id = "riflescope"
 	req_tech = list(TECH_ILLEGAL = 2, TECH_MATERIAL = 2)
 	materials = list(MAT_STEEL = 4000, MAT_GLASS = 4000)
-	build_path = /obj/item/device/binoculars/scope
+	build_path = /obj/item/binoculars/scope
 	sort_string = "TBAAD"
 
 /datum/design/item/general/advmop
@@ -118,5 +88,5 @@
 	id = "advmop"
 	req_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 5, TECH_BIO = 1)
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 2000, MAT_GOLD = 1000)
-	build_path = /obj/item/weapon/mop/advanced
+	build_path = /obj/item/mop/advanced
 	sort_string = "TBAAE"

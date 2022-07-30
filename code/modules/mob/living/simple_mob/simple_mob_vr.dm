@@ -48,7 +48,7 @@
 	var/mount_offset_x = 5				// Horizontal riding offset.
 	var/mount_offset_y = 8				// Vertical riding offset
 
-	var/obj/item/device/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
+	var/obj/item/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
 	does_spin = FALSE
 	can_be_drop_pred = TRUE				// Mobs are pred by default.
 	var/damage_threshold  = 0 //For some mobs, they have a damage threshold required to deal damage to them.
@@ -374,16 +374,16 @@
 	if(mob_radio)
 		switch(message_mode)
 			if("intercom")
-				for(var/obj/item/device/radio/intercom/I in view(1, null))
+				for(var/obj/item/radio/intercom/I in view(1, null))
 					I.talk_into(src, message, verb, speaking)
 					used_radios += I
 			if("headset")
-				if(mob_radio && istype(mob_radio,/obj/item/device/radio/headset/mob_headset))
+				if(mob_radio && istype(mob_radio,/obj/item/radio/headset/mob_headset))
 					mob_radio.talk_into(src,message,null,verb,speaking)
 					used_radios += mob_radio
 			else
 				if(message_mode)
-					if(mob_radio && istype(mob_radio,/obj/item/device/radio/headset/mob_headset))
+					if(mob_radio && istype(mob_radio,/obj/item/radio/headset/mob_headset))
 						mob_radio.talk_into(src,message, message_mode, verb, speaking)
 						used_radios += mob_radio
 	else

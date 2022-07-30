@@ -101,9 +101,9 @@
 			add_overlay("[module_sprites[icontype]]-sleeper_g")
 		if(sleeper_r == TRUE)
 			add_overlay("[module_sprites[icontype]]-sleeper_r")
-		if(istype(module_active,/obj/item/weapon/gun/energy/laser/mounted))
+		if(istype(module_active,/obj/item/gun/energy/laser/mounted))
 			add_overlay("laser")
-		if(istype(module_active,/obj/item/weapon/gun/energy/taser/mounted/cyborg))
+		if(istype(module_active,/obj/item/gun/energy/taser/mounted/cyborg))
 			add_overlay("taser")
 		if(lights_on)
 			add_overlay("eyes-[module_sprites[icontype]]-lights")
@@ -171,7 +171,7 @@
 	set name = "Refill Extinguisher"
 	set category = "Object"
 	var/datum/matter_synth/water = water_res
-	for(var/obj/item/weapon/extinguisher/E in module.modules)
+	for(var/obj/item/extinguisher/E in module.modules)
 		if(E.reagents.total_volume < E.max_water)
 			if(water && water.energy > 0)
 				var/amount = E.max_water - E.reagents.total_volume
@@ -185,7 +185,7 @@
 
 //RIDING
 /datum/riding/dogborg
-	keytype = /obj/item/weapon/material/twohanded/riding_crop // Crack!
+	keytype = /obj/item/material/twohanded/riding_crop // Crack!
 	nonhuman_key_exemption = FALSE	// If true, nonhumans who can't hold keys don't need them, like borgs and simplemobs.
 	key_name = "a riding crop"		// What the 'keys' for the thing being rided on would be called.
 	only_one_driver = TRUE			// If true, only the person in 'front' (first on list of riding mobs) can drive.

@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 /*
  *	Toolboxes
  */
-/obj/item/weapon/storage/toolbox
-=======
 /obj/item/storage/toolbox
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "toolbox"
 	desc = "Danger. Very robust."
 	icon = 'icons/obj/storage_vr.dmi'
@@ -25,12 +21,7 @@
 	drop_sound = 'sound/items/drop/toolbox.ogg'
 	pickup_sound = 'sound/items/pickup/toolbox.ogg'
 
-<<<<<<< HEAD
-//Emergency
-/obj/item/weapon/storage/toolbox/emergency
-=======
 /obj/item/storage/toolbox/emergency
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "emergency toolbox"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "red"
@@ -47,12 +38,7 @@
 		new /obj/item/flashlight/flare(src)
 	. = ..()
 
-<<<<<<< HEAD
-//Mechanical
-/obj/item/weapon/storage/toolbox/mechanical
-=======
 /obj/item/storage/toolbox/mechanical
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "mechanical toolbox"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "blue"
@@ -66,12 +52,7 @@
 		/obj/item/tool/wirecutters
 	)
 
-<<<<<<< HEAD
-//Electrical
-/obj/item/weapon/storage/toolbox/electrical
-=======
 /obj/item/storage/toolbox/electrical
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "electrical toolbox"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "yellow"
@@ -92,12 +73,7 @@
 		new /obj/item/stack/cable_coil/random(src,30)
 	calibrate_size()
 
-<<<<<<< HEAD
-//Syndicate
-/obj/item/weapon/storage/toolbox/syndicate
-=======
 /obj/item/storage/toolbox/syndicate
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "black and red toolbox"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "syndicate"
@@ -125,44 +101,38 @@
 		/obj/item/analyzer
 	)
 
-<<<<<<< HEAD
-//Brass
-/obj/item/weapon/storage/toolbox/brass
+/obj/item/storage/toolbox/brass
 	name = "brass toolbox"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "brass"
 	item_state_slots = list(slot_r_hand_str = "toolbox_yellow", slot_l_hand_str = "toolbox_yellow")
 	starts_with = list(
-		/obj/item/weapon/tool/crowbar/brass,
-		/obj/item/weapon/tool/wirecutters/brass,
-		/obj/item/weapon/tool/screwdriver/brass,
-		/obj/item/weapon/tool/wrench/brass,
-		/obj/item/weapon/weldingtool/brass
+		/obj/item/tool/crowbar/brass,
+		/obj/item/tool/wirecutters/brass,
+		/obj/item/tool/screwdriver/brass,
+		/obj/item/tool/wrench/brass,
+		/obj/item/weldingtool/brass
 	)
 
-//Hydro
-/obj/item/weapon/storage/toolbox/hydro
+/obj/item/storage/toolbox/hydro
 	name = "hydroponic toolbox"
 	icon = 'icons/obj/storage_vr.dmi'
 	icon_state = "green"
 	item_state_slots = list(slot_r_hand_str = "toolbox_green", slot_l_hand_str = "toolbox_green")
 	starts_with = list(
-		/obj/item/device/analyzer/plant_analyzer,
-		/obj/item/weapon/material/minihoe,
-		/obj/item/weapon/material/knife/machete/hatchet,
-		/obj/item/weapon/tool/wirecutters/clippers/trimmers,
-		/obj/item/weapon/reagent_containers/spray/plantbgone,
-		/obj/item/weapon/reagent_containers/glass/beaker
+		/obj/item/analyzer/plant_analyzer,
+		/obj/item/material/minihoe,
+		/obj/item/material/knife/machete/hatchet,
+		/obj/item/tool/wirecutters/clippers/trimmers,
+		/obj/item/reagent_containers/spray/plantbgone,
+		/obj/item/reagent_containers/glass/beaker
 	)
 
 /*
  *	Lunchboxes
  */
 
-/obj/item/weapon/storage/toolbox/lunchbox
-=======
 /obj/item/storage/toolbox/lunchbox
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	max_storage_space = ITEMSIZE_COST_SMALL * 4 //slightly smaller than a toolbox
 	name = "rainbow lunchbox"
 	icon = 'icons/obj/storage.dmi'

@@ -8,15 +8,9 @@
 	desc = "A machine for cutting up slimes to get to their cores."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "scanner_0old"
-<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/slimeextractor
-=======
-	density = 1
-	anchored = 1
 	circuit = /obj/item/circuitboard/slimeextractor
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/inuse
 	var/mob/living/simple_mob/xeno/slime/occupant = null
 	var/occupiedcolor = "#22FF22"

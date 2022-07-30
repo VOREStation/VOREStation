@@ -22,13 +22,8 @@
 	say_list_type = /datum/say_list/goat
 	ai_holder_type = /datum/ai_holder/simple_mob/retaliate
 
-<<<<<<< HEAD
 	meat_amount = 6
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
-=======
-	meat_amount = 4
 	meat_type = /obj/item/reagent_containers/food/snacks/meat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/datum/reagents/udder = null
 

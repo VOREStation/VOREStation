@@ -45,7 +45,7 @@
 			mode = 3
 			if(!isbelly(H.loc)) //Not notified in case of vore, for gameplay purposes.
 				var/turf/T = get_turf(H)
-				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset/heads/captain(null)
+				var/obj/item/radio/headset/a = new /obj/item/radio/headset/heads/captain(null)
 				a.autosay("[H.real_name] has been put in emergency stasis, located at ([T.x],[T.y],[T.z])!", "[H.real_name]'s NIF", "Medical")
 				qdel(a)
 

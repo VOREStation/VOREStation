@@ -37,7 +37,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_tele)
 "g" = (
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_tele)
 "h" = (
@@ -63,7 +63,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_tele)
 "m" = (
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/old_tele)
 "n" = (

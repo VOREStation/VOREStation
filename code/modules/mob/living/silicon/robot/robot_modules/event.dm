@@ -8,17 +8,12 @@
 					"Drone" = "drone-lost"
 				)
 
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/lost/New(var/mob/living/silicon/robot/R)
-	..()
-=======
 /obj/item/robot_module/robot/lost/Initialize(var/ml)
 
 	. = ..()
 	if(. != INITIALIZE_HINT_NORMAL)
 		return
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	// Sec
 	src.modules += new /obj/item/melee/baton/shocker/robot(src)
 	src.modules += new /obj/item/handcuffs/cyborg(src)
@@ -56,17 +51,12 @@
 					"Sleek" = "sleek-gravekeeper"
 				)
 
-<<<<<<< HEAD
-/obj/item/weapon/robot_module/robot/gravekeeper/New(var/mob/living/silicon/robot/R)
-	..()
-=======
 /obj/item/robot_module/robot/gravekeeper/Initialize(var/ml)
 
 	. = ..()
 	if(. != INITIALIZE_HINT_NORMAL)
 		return
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	// For fending off animals and looters
 	src.modules += new /obj/item/melee/baton/shocker/robot(src)
 	src.modules += new /obj/item/borg/combat/shield(src)

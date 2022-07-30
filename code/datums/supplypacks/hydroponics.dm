@@ -163,8 +163,6 @@
 	contains = list(/obj/machinery/portable_atmospherics/hydroponics{anchored = FALSE} = 3)
 	access = access_hydroponics
 
-<<<<<<< HEAD
-=======
 /datum/supply_pack/hydro/fish
 	name = "Seafood supply crate"
 	contains = list(
@@ -175,4 +173,3 @@
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer/centauri
 	containername = "Fresh fish crate"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

@@ -149,13 +149,8 @@
 	throw_range = 3
 	throw_speed = 1
 
-<<<<<<< HEAD
-/obj/item/weapon/shreddedp/New()
-	..()
-=======
 /obj/item/shreddedp/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 	if(prob(65)) color = pick("#BABABA","#7F7F7F")

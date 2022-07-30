@@ -20,13 +20,13 @@
 /datum/tgui_module/teleport_control/tgui_act(action, params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("select_target")
 			var/list/L = list()
 			var/list/areaindex = list()
 
-			for(var/obj/item/device/radio/beacon/R in all_beacons)
+			for(var/obj/item/radio/beacon/R in all_beacons)
 				var/turf/T = get_turf(R)
 				if(!T)
 					continue
@@ -39,7 +39,7 @@
 					areaindex[tmpname] = 1
 				L[tmpname] = R
 
-			for(var/obj/item/weapon/implant/tracking/I in all_tracking_implants)
+			for(var/obj/item/implant/tracking/I in all_tracking_implants)
 				if(!I.implanted || !ismob(I.loc))
 					continue
 				else
@@ -76,10 +76,10 @@
 		if("toggle_on")
 			if(!station)
 				return FALSE
-			
+
 			if(station.engaged)
 				station.disengage()
 			else
 				station.engage()
-			
+
 			return TRUE

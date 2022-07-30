@@ -83,16 +83,11 @@
 			if(carded_ai.control_disabled && carded_ai.deployed_shell)
 				carded_ai.disconnect_shell("Disconnecting from remote shell due to [src] wireless access interface being disabled.")
 			update_icon()
-	
+
 	return TRUE
 
-<<<<<<< HEAD
-/obj/item/device/aicard/update_icon()
-	cut_overlays()
-=======
 /obj/item/aicard/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(carded_ai)
 		if (!carded_ai.control_disabled)
 			add_overlay("aicard-on")

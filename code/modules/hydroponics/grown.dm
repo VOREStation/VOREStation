@@ -14,12 +14,7 @@
 	var/datum/seed/seed
 	var/potency = -1
 
-<<<<<<< HEAD
-
-/obj/item/weapon/reagent_containers/food/snacks/grown/Initialize(var/mapload, var/planttype)
-=======
 /obj/item/reagent_containers/food/snacks/grown/Initialize(var/mapload, var/planttype)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 
 	if(!dried_type)
@@ -66,12 +61,8 @@
 		if(seed.get_trait(TRAIT_STINGS))
 			force = 1
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/grown/proc/update_desc()
-=======
 /obj/item/reagent_containers/food/snacks/grown/proc/update_desc()
 
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!seed)
 		return
 
@@ -131,13 +122,8 @@
 		SSplants.product_descs["[seed.uid]"] = desc
 	desc += ". Delicious! Probably."
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/grown/update_icon()
-	if(!seed || !SSplants || !SSplants.plant_icon_cache)
-=======
 /obj/item/reagent_containers/food/snacks/grown/update_icon()
 	if(!seed || !plant_controller || !plant_controller.plant_icon_cache)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		return
 	cut_overlays()
 	var/image/plant_icon
@@ -389,13 +375,8 @@
 
 var/list/fruit_icon_cache = list()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/fruit_slice/New(var/newloc, var/datum/seed/S)
-	..(newloc)
-=======
 /obj/item/reagent_containers/food/snacks/fruit_slice/Initialize(var/ml, var/datum/seed/S)
 	. = ..(ml)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	// Need to go through and make a general image caching controller. Todo.
 	if(!istype(S))
 		qdel(src)

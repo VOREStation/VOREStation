@@ -12,12 +12,8 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 10
 	active_power_usage = 500
-<<<<<<< HEAD
-	circuit = /obj/item/weapon/circuitboard/station_map
-	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
-=======
 	circuit = /obj/item/circuitboard/station_map
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	vis_flags = VIS_HIDE // They have an emissive that looks bad in openspace due to their wall-mounted nature
 
 	// TODO - Port use_auto_lights from /vg - for now declare here
 	var/use_auto_lights = 1
@@ -167,7 +163,7 @@
 /obj/machinery/station_map/update_icon()
 	if(!holomap_datum)
 		return //Not yet.
-		
+
 	cut_overlays()
 	if(stat & BROKEN)
 		icon_state = "station_mapb"

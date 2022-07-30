@@ -51,7 +51,7 @@
 	customize_usr = TRUE
 
 /datum/tgui_module/appearance_changer/cocoon/tgui_status(mob/user, datum/tgui_state/state)
-	//if(!istype(owner.loc, /obj/item/weapon/storage/vore_egg/bugcocoon))
+	//if(!istype(owner.loc, /obj/item/storage/vore_egg/bugcocoon))
 	if(!owner.transforming)
 		return STATUS_CLOSE
 	return ..()

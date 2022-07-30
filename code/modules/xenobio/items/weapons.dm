@@ -28,14 +28,9 @@
 				H.apply_damage(agony_to_apply, HALLOSS)
 
 	..()
-<<<<<<< HEAD
-/obj/item/weapon/melee/baton/slime/loaded/Initialize()
-	bcell = new/obj/item/weapon/cell/device(src)
-=======
 
 /obj/item/melee/baton/slime/loaded/Initialize()
 	bcell = new/obj/item/cell/device(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	update_icon()
 	return ..()
 
@@ -63,14 +58,9 @@
 	self_recharge = 1
 	use_external_power = 1
 	recharge_time = 3
-<<<<<<< HEAD
 /*
 VORESTATION REMOVAL
-/obj/item/weapon/gun/energy/taser/xeno/sec //NT's corner-cutting option for their on-station security.
-=======
-
 /obj/item/gun/energy/taser/xeno/sec //NT's corner-cutting option for their on-station security.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "An NT Mk30 NL retrofitted to fire beams for subduing non-humanoid slimy xeno life forms."
 	icon_state = "taserblue"
 	item_state = "taser"

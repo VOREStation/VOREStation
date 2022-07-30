@@ -226,8 +226,8 @@
 	if(opened)
 		..()
 	else //Allows the bag to respond to a health analyzer by analyzing the mob inside without needing to open it.
-		if(istype(W,/obj/item/device/healthanalyzer))
-			var/obj/item/device/healthanalyzer/analyzer = W
+		if(istype(W,/obj/item/healthanalyzer))
+			var/obj/item/healthanalyzer/analyzer = W
 			for(var/mob/living/L in contents)
 				analyzer.attack(L,user)
 

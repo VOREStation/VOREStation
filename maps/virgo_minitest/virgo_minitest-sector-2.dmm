@@ -22,7 +22,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/space)
 "ag" = (
-/obj/item/weapon/pickaxe/jackhammer,
+/obj/item/pickaxe/jackhammer,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/space)
 "ah" = (
@@ -130,7 +130,7 @@
 /turf/simulated/floor/lino,
 /area/awaymission)
 "av" = (
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /obj/structure/cable,
 /obj/machinery/power/apc{
 	dir = 8;
@@ -181,7 +181,7 @@
 /turf/simulated/floor/tiled/white,
 /area/awaymission)
 "aD" = (
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed/padded,
 /turf/simulated/floor/lino,
 /area/awaymission)
@@ -193,8 +193,8 @@
 /obj/item/clothing/suit/space/void/mining,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/head/helmet/space/void/mining,
-/obj/item/weapon/mining_scanner,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/mining_scanner,
+/obj/item/tank/jetpack/oxygen,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/awaymission)
@@ -203,7 +203,7 @@
 /area/awaymission)
 "aH" = (
 /obj/structure/closet/toolcloset,
-/obj/item/weapon/pickaxe/jackhammer,
+/obj/item/pickaxe/jackhammer,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/plating,
 /area/awaymission)
@@ -345,9 +345,9 @@
 	dir = 8
 	},
 /obj/structure/closet/crate/internals,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
@@ -356,9 +356,9 @@
 /area/awaymission)
 "bh" = (
 /obj/structure/closet/crate/internals,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
@@ -391,7 +391,7 @@
 /area/awaymission)
 "bn" = (
 /obj/item/mecha_parts/mecha_equipment/tool/drill,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/structure/table/steel,
 /turf/simulated/floor/tiled,
 /area/awaymission)
@@ -468,7 +468,7 @@
 /area/awaymission)
 "bz" = (
 /obj/structure/closet/crate/secure/weapon,
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
+/obj/item/gun/projectile/shotgun/pump/rifle,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled/dark,
 /area/awaymission)
@@ -579,13 +579,13 @@
 /turf/simulated/floor/tiled,
 /area/awaymission)
 "bO" = (
-/obj/item/weapon/reagent_containers/food/snacks/cubancarp,
+/obj/item/reagent_containers/food/snacks/cubancarp,
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled,
 /area/awaymission)
 "bP" = (
-/obj/item/weapon/reagent_containers/food/snacks/carpmeat,
+/obj/item/reagent_containers/food/snacks/carpmeat,
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/structure/table/glass,
 /turf/simulated/floor/tiled,
@@ -634,7 +634,7 @@
 /area/awaymission)
 "bT" = (
 /obj/structure/closet/emcloset,
-/obj/item/weapon/storage/toolbox/emergency,
+/obj/item/storage/toolbox/emergency,
 /obj/machinery/airlock_sensor{
 	frequency = 1375;
 	id_tag = "carp_sensor";

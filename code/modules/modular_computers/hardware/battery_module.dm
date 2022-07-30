@@ -56,27 +56,16 @@
 	hardware_size = 1
 	battery_rating = 30000
 
-<<<<<<< HEAD
-/obj/item/weapon/computer_hardware/battery_module/lambda/New()
-	..()
-	battery = new/obj/item/weapon/cell/infinite(src)
-=======
 /obj/item/computer_hardware/battery_module/lambda/Initialize()
 	. = ..()
 	battery = new/obj/item/cell/infinite(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/computer_hardware/battery_module/diagnostics(var/mob/user)
 	..()
 	to_chat(user, "Internal battery charge: [battery.charge]/[battery.maxcharge] CU")
 
-<<<<<<< HEAD
-/obj/item/weapon/computer_hardware/battery_module/New()
-	battery = new/obj/item/weapon/cell(src)
-=======
 /obj/item/computer_hardware/battery_module/Initialize()
 	battery = new/obj/item/cell(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	battery.maxcharge = battery_rating
 	battery.charge = 0
 	..()

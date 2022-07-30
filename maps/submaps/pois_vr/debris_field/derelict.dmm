@@ -171,7 +171,7 @@
 	icon_state = "1-2";
 	pixel_y = 0
 	},
-/obj/item/weapon/grenade/empgrenade,
+/obj/item/grenade/empgrenade,
 /turf/simulated/floor/bluegrid,
 /area/submap/debrisfield/derelict/interior)
 "aB" = (
@@ -331,7 +331,7 @@
 /area/submap/debrisfield/derelict/interior)
 "ba" = (
 /obj/random/humanoidremains,
-/obj/item/weapon/gun/energy/ionrifle,
+/obj/item/gun/energy/ionrifle,
 /turf/simulated/floor/tiled/steel_ridged,
 /area/submap/debrisfield/derelict/interior)
 "bb" = (
@@ -357,7 +357,7 @@
 /turf/space,
 /area/space)
 "bg" = (
-/obj/item/weapon/gun/energy/ionrifle,
+/obj/item/gun/energy/ionrifle,
 /turf/space,
 /area/space)
 "bh" = (
@@ -583,9 +583,9 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/debrisfield/derelict/interior)
 "bO" = (
-/obj/item/weapon/grenade/empgrenade,
-/obj/item/weapon/grenade/empgrenade,
-/obj/item/weapon/grenade/empgrenade,
+/obj/item/grenade/empgrenade,
+/obj/item/grenade/empgrenade,
+/obj/item/grenade/empgrenade,
 /turf/space,
 /area/space)
 "bP" = (

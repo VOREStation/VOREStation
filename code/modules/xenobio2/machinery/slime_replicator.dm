@@ -8,15 +8,9 @@
 	desc = "A machine for creating slimes from cores. Amazing!"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "restruct_0"
-<<<<<<< HEAD
 	density = TRUE
 	anchored = TRUE
-	circuit = /obj/item/weapon/circuitboard/slimereplicator
-=======
-	density = 1
-	anchored = 1
 	circuit = /obj/item/circuitboard/slimereplicator
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/obj/item/xenoproduct/slime/core/core = null
 	var/inuse
 	var/occupiedcolor = "#22FF22"
@@ -146,4 +140,3 @@
 							/obj/item/stock_parts/matter_bin = 1,
 							/obj/item/stock_parts/micro_laser = 1
 							)
-

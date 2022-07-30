@@ -61,7 +61,7 @@
 /area/itglight/readyroom)
 "af" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/card/id/event/accessset/itg/crew/captain,
+/obj/item/card/id/event/accessset/itg/crew/captain,
 /obj/machinery/computer/ship/navigation/telescreen{
 	pixel_y = -32
 	},
@@ -81,9 +81,9 @@
 /obj/item/clothing/under/utility/grey,
 /obj/item/clothing/shoes/boots/winter,
 /obj/item/clothing/shoes/boots/duty,
-/obj/item/device/communicator,
-/obj/item/weapon/storage/backpack/messenger/hyd,
-/obj/item/device/radio/headset{
+/obj/item/communicator,
+/obj/item/storage/backpack/messenger/hyd,
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
@@ -93,7 +93,7 @@
 /obj/item/clothing/suit/chef/classic,
 /obj/item/clothing/head/chefhat,
 /obj/item/clothing/suit/storage/solgov/service/army/service,
-/obj/item/weapon/card/id/event/accessset/itg/crew/service,
+/obj/item/card/id/event/accessset/itg/crew/service,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "ah" = (
@@ -110,9 +110,9 @@
 /obj/item/clothing/under/utility/grey,
 /obj/item/clothing/shoes/boots/winter,
 /obj/item/clothing/shoes/boots/duty,
-/obj/item/device/communicator,
-/obj/item/weapon/storage/backpack/messenger/engi,
-/obj/item/device/radio/headset{
+/obj/item/communicator,
+/obj/item/storage/backpack/messenger/engi,
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
@@ -120,7 +120,7 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/engineering,
 /obj/item/taperoll/engineering,
 /obj/item/clothing/suit/storage/solgov/service/army/engineering,
-/obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
+/obj/item/card/id/event/accessset/itg/crew/engineer,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "ai" = (
@@ -137,16 +137,16 @@
 /obj/item/clothing/under/utility/grey,
 /obj/item/clothing/shoes/boots/winter,
 /obj/item/clothing/shoes/boots/duty,
-/obj/item/device/communicator,
-/obj/item/weapon/storage/backpack/messenger/med,
-/obj/item/device/radio/headset{
+/obj/item/communicator,
+/obj/item/storage/backpack/messenger/med,
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
 /obj/item/clothing/suit/storage/hooded/wintercoat/medical,
 /obj/item/clothing/suit/storage/solgov/service/army/medical,
-/obj/item/weapon/card/id/event/accessset/itg/crew/medical,
+/obj/item/card/id/event/accessset/itg/crew/medical,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "aj" = (
@@ -163,9 +163,9 @@
 /obj/item/clothing/under/utility/grey,
 /obj/item/clothing/shoes/boots/winter,
 /obj/item/clothing/shoes/boots/duty,
-/obj/item/device/communicator,
-/obj/item/weapon/storage/backpack/messenger/sec,
-/obj/item/device/radio/headset{
+/obj/item/communicator,
+/obj/item/storage/backpack/messenger/sec,
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
@@ -173,13 +173,13 @@
 /obj/item/clothing/suit/storage/hooded/wintercoat/security,
 /obj/item/clothing/suit/storage/trench,
 /obj/item/clothing/suit/storage/solgov/service/army/security,
-/obj/item/weapon/card/id/event/accessset/itg/crew/security,
+/obj/item/card/id/event/accessset/itg/crew/security,
 /obj/item/clothing/accessory/holster/hip,
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/metingroom)
 "ak" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/curtain{
 	color = "#2e1604"
 	},
@@ -189,11 +189,11 @@
 /obj/structure/closet/autolok_wall{
 	pixel_x = -24
 	},
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/structure/bed/chair/bay/chair/padded/brown{
 	dir = 4
 	},
-/obj/item/device/flash,
+/obj/item/flash,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "as" = (
@@ -463,10 +463,10 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -509,7 +509,7 @@
 "cp" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -518,7 +518,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew4)
 "cv" = (
@@ -533,10 +533,10 @@
 /area/itglight/shuttlebay)
 "cx" = (
 /obj/structure/table/wooden_reinforced,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/light{
@@ -567,7 +567,7 @@
 	},
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	pixel_y = -25
 	},
 /obj/structure/cable/pink,
@@ -633,13 +633,13 @@
 	dir = 1;
 	pixel_y = -23
 	},
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
-/obj/item/weapon/pen/blade/blue{
+/obj/item/paper_bin,
+/obj/item/pen,
+/obj/item/pen/blade/blue{
 	pixel_x = 4;
 	pixel_y = 3
 	},
-/obj/item/weapon/pen/blade/red{
+/obj/item/pen/blade/red{
 	pixel_x = -4;
 	pixel_y = -3
 	},
@@ -684,7 +684,7 @@
 /obj/structure/bed/chair/bay/chair/padded/brown{
 	dir = 8
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 25
 	},
@@ -728,17 +728,17 @@
 	dir = 8
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
 /obj/random/plushie,
 /obj/random/contraband/nofail,
 /obj/random/drinksoft,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew1)
 "ed" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	pixel_y = -25
 	},
 /obj/structure/cable/pink,
@@ -852,15 +852,15 @@
 /area/itglight/kitchen)
 "eI" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/material/kitchen/rollingpin,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/material/kitchen/rollingpin,
+/obj/item/book/manual/chef_recipes,
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "eJ" = (
@@ -898,7 +898,7 @@
 "eW" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/item/weapon/rig/eva,
+/obj/item/rig/eva,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "eZ" = (
@@ -927,7 +927,7 @@
 /area/itglight/cockpit)
 "fc" = (
 /obj/machinery/chem_master,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -25
 	},
@@ -961,8 +961,8 @@
 	},
 /obj/item/clothing/under/rank/medical/scrubs,
 /obj/item/clothing/under/rank/medical/scrubs,
-/obj/item/weapon/storage/belt/medical,
-/obj/item/weapon/storage/belt/medical,
+/obj/item/storage/belt/medical,
+/obj/item/storage/belt/medical,
 /obj/item/clothing/suit/storage/toggle/labcoat,
 /obj/item/clothing/suit/storage/toggle/labcoat,
 /turf/simulated/floor/tiled/eris/white/cargo,
@@ -1085,7 +1085,7 @@
 	icon_state = "4-8"
 	},
 /obj/structure/table/wooden_reinforced,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
@@ -1149,7 +1149,7 @@
 /area/itglight/captain)
 "gS" = (
 /obj/structure/bed/chair/sofa/right/brown,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 25
 	},
@@ -1213,7 +1213,7 @@
 "hk" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/weapon/paper/Dauntless,
+/obj/item/paper/Dauntless,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "hm" = (
@@ -1441,11 +1441,11 @@
 	dir = 8
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
 /obj/random/plushie,
 /obj/random/contraband/nofail,
 /obj/random/drinksoft,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew2)
 "iq" = (
@@ -1603,24 +1603,24 @@
 /area/itglight/shuttlebay)
 "jg" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/flashbangs,
-/obj/item/weapon/storage/box/metalfoam,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/device/flash,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/weapon/gun/energy/taser,
-/obj/item/device/assembly/prox_sensor,
+/obj/item/storage/box/flashbangs,
+/obj/item/storage/box/metalfoam,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/flash,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/gun/energy/taser,
+/obj/item/assembly/prox_sensor,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/suit/armor/vest,
 /obj/item/clothing/suit/armor/vest,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -25
 	},
@@ -1634,11 +1634,11 @@
 /obj/structure/closet/autolok_wall{
 	pixel_x = 24
 	},
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/structure/bed/chair/bay/chair/padded/brown{
 	dir = 8
 	},
-/obj/item/device/flash,
+/obj/item/flash,
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "jo" = (
@@ -1659,8 +1659,8 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
 	},
-/obj/item/weapon/tank/jetpack/oxygen,
-/obj/item/weapon/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
+/obj/item/tank/jetpack/oxygen,
 /obj/structure/table/rack/steel,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
@@ -1669,7 +1669,7 @@
 /obj/machinery/photocopier/faxmachine/itglight,
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 8;
 	nightshift_setting = 3;
 	pixel_x = -25
@@ -1685,7 +1685,7 @@
 /area/itglight/kitchen)
 "jG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -25
 	},
@@ -1696,10 +1696,10 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "jQ" = (
@@ -1750,7 +1750,7 @@
 /area/itglight/cockpit)
 "ko" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 25
 	},
@@ -1775,8 +1775,8 @@
 /turf/simulated/floor/tiled/eris/dark/monofloor,
 /area/itglight/cockpit)
 "ky" = (
-/obj/item/device/radio,
-/obj/item/device/flash,
+/obj/item/radio,
+/obj/item/flash,
 /obj/structure/bed/chair/bay/shuttle{
 	dir = 1
 	},
@@ -1843,7 +1843,7 @@
 "kU" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -1876,7 +1876,7 @@
 "lh" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -1985,43 +1985,43 @@
 /turf/simulated/floor,
 /area/itglight/portengi)
 "lO" = (
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/material/knife/butch,
+/obj/item/material/minihoe,
+/obj/item/material/knife/machete/hatchet,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/structure/closet,
 /obj/item/robot_parts/l_arm,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
 /turf/simulated/floor/tiled/eris/cafe,
@@ -2053,7 +2053,7 @@
 /area/itglight/portengi)
 "mf" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/storage/box/sinpockets,
+/obj/item/storage/box/sinpockets,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/metingroom)
 "mg" = (
@@ -2150,7 +2150,7 @@
 "mZ" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 8;
 	nightshift_setting = 3;
 	pixel_x = -25
@@ -2242,10 +2242,10 @@
 	dir = 8
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
-/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "nH" = (
@@ -2501,7 +2501,7 @@
 	},
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 8;
 	nightshift_setting = 3;
 	pixel_x = -25
@@ -2586,7 +2586,7 @@
 "pL" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -2737,59 +2737,59 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "qW" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
 	},
-/obj/item/device/radio/headset{
+/obj/item/radio/headset{
 	adhoc_fallback = 1;
 	desc = "An updated, modular intercom that fits over the head. Takes encryption keys, also works as a shortwave radio.";
 	name = "dauntless headset"
@@ -2943,7 +2943,7 @@
 	},
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -3071,10 +3071,10 @@
 	pixel_x = -16;
 	pixel_y = 30
 	},
-/obj/item/weapon/storage/box/masks,
-/obj/item/weapon/storage/box/gloves,
-/obj/item/weapon/reagent_containers/blood/OMinus,
-/obj/item/weapon/reagent_containers/blood/OMinus,
+/obj/item/storage/box/masks,
+/obj/item/storage/box/gloves,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
 /turf/simulated/floor/tiled/eris/white/techfloor_grid,
 /area/itglight/medbay)
 "tz" = (
@@ -3300,13 +3300,13 @@
 "vr" = (
 /obj/structure/table/rack/shelf/steel,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/device/lightreplacer,
-/obj/item/device/lightreplacer,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/storage/box/lights/mixed,
+/obj/item/lightreplacer,
+/obj/item/lightreplacer,
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardhighsec)
 "vy" = (
@@ -3378,7 +3378,7 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/porthighsec)
 "wm" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/structure/curtain/black,
 /obj/structure/bed/padded,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -3411,7 +3411,7 @@
 /turf/simulated/floor/tiled/eris/steel/gray_platform,
 /area/itglight/starboardcargo)
 "ww" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 25
 	},
@@ -3421,7 +3421,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 8;
 	pixel_x = -25
 	},
@@ -3456,7 +3456,7 @@
 	d2 = 8;
 	icon_state = "2-8"
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 25
 	},
@@ -3628,7 +3628,7 @@
 /obj/structure/handrail{
 	dir = 1
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 4;
 	pixel_x = 25
 	},
@@ -3648,31 +3648,31 @@
 /obj/structure/closet/secure_closet/personal{
 	req_access = list(778)
 	},
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/random/drinksoft,
 /obj/random/contraband/nofail,
 /obj/random/plushie,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
 /obj/item/clothing/suit/space/void/captain,
 /obj/item/clothing/head/helmet/space/void/captain,
-/obj/item/weapon/card/id/event/accessset/itg/crew,
-/obj/item/weapon/card/id/event/accessset/itg/crew,
-/obj/item/weapon/card/id/event/accessset/itg/crew,
-/obj/item/weapon/card/id/event/accessset/itg/crew,
-/obj/item/weapon/card/id/event/accessset/itg/crew,
-/obj/item/weapon/card/id/event/accessset/itg/crew/passengerliason,
-/obj/item/weapon/card/id/event/accessset/itg/crew/pilot,
-/obj/item/weapon/card/id/event/accessset/itg/crew/research,
-/obj/item/weapon/card/id/event/accessset/itg/crew/research,
-/obj/item/weapon/card/id/event/accessset/itg/crew/security,
-/obj/item/weapon/card/id/event/accessset/itg/crew/service,
-/obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
-/obj/item/weapon/card/id/event/accessset/itg/crew/engineer,
-/obj/item/weapon/card/id/event/accessset/itg/crew/medical,
-/obj/item/weapon/card/id/event/accessset/itg/crew/medical,
+/obj/item/card/id/event/accessset/itg/crew,
+/obj/item/card/id/event/accessset/itg/crew,
+/obj/item/card/id/event/accessset/itg/crew,
+/obj/item/card/id/event/accessset/itg/crew,
+/obj/item/card/id/event/accessset/itg/crew,
+/obj/item/card/id/event/accessset/itg/crew/passengerliason,
+/obj/item/card/id/event/accessset/itg/crew/pilot,
+/obj/item/card/id/event/accessset/itg/crew/research,
+/obj/item/card/id/event/accessset/itg/crew/research,
+/obj/item/card/id/event/accessset/itg/crew/security,
+/obj/item/card/id/event/accessset/itg/crew/service,
+/obj/item/card/id/event/accessset/itg/crew/engineer,
+/obj/item/card/id/event/accessset/itg/crew/engineer,
+/obj/item/card/id/event/accessset/itg/crew/medical,
+/obj/item/card/id/event/accessset/itg/crew/medical,
 /obj/item/clothing/suit/storage/hooded/wintercoat/cargo{
 	name = "dauntless winter coat"
 	},
@@ -3681,10 +3681,10 @@
 	name = "captain's coat"
 	},
 /obj/item/clothing/suit/storage/solgov/service/army/command,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/weapon/reagent_containers/food/snacks/candy/proteinbar,
-/obj/item/weapon/gun/energy/taser,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/reagent_containers/food/snacks/candy/proteinbar,
+/obj/item/gun/energy/taser,
 /obj/item/clothing/accessory/holster/hip,
 /turf/simulated/floor/carpet/sblucarpet,
 /area/itglight/captain)
@@ -3700,7 +3700,7 @@
 "xE" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -3918,7 +3918,7 @@
 "yY" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -4050,7 +4050,7 @@
 "zL" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	nightshift_setting = 3;
 	pixel_x = 25
@@ -4189,16 +4189,16 @@
 /area/itglight/passengersleeping)
 "AH" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/item/device/healthanalyzer,
-/obj/item/weapon/reagent_containers/spray/cleaner{
+/obj/item/storage/firstaid/surgery,
+/obj/item/healthanalyzer,
+/obj/item/reagent_containers/spray/cleaner{
 	desc = "Someone has crossed out the Space from Space Cleaner and written in Surgery. 'Do not remove under punishment of death!!!' is scrawled on the back.";
 	name = "Surgery Cleaner";
 	pixel_x = 2;
 	pixel_y = 2
 	},
-/obj/item/device/defib_kit/loaded,
-/obj/item/device/robotanalyzer{
+/obj/item/defib_kit/loaded,
+/obj/item/robotanalyzer{
 	pixel_y = -8
 	},
 /obj/item/stack/nanopaste/advanced,
@@ -4207,7 +4207,7 @@
 "AJ" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -4277,7 +4277,7 @@
 	},
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -4386,17 +4386,17 @@
 	dir = 8
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
 /obj/random/plushie,
 /obj/random/contraband/nofail,
 /obj/random/drinksoft,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew4)
 "BU" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -4405,7 +4405,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew1)
 "BW" = (
@@ -4489,8 +4489,8 @@
 /turf/simulated/floor,
 /area/itglight/portdocking)
 "Ct" = (
-/obj/item/weapon/stool/baystool/padded,
-/obj/item/device/radio/intercom{
+/obj/item/stool/baystool/padded,
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 25
 	},
@@ -4672,11 +4672,11 @@
 	dir = 8
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/storage/mre/random,
+/obj/item/storage/mre/random,
 /obj/random/plushie,
 /obj/random/contraband/nofail,
 /obj/random/drinksoft,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew3)
 "Dy" = (
@@ -5281,23 +5281,23 @@
 /area/shuttle/itglightshuttle)
 "Gm" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = -4;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = 6;
 	pixel_y = 8
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = -7;
 	pixel_y = 4
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/biomass{
+/obj/item/reagent_containers/glass/bottle/biomass{
 	pixel_x = 4;
 	pixel_y = 6
 	},
-/obj/item/device/flashlight/pen{
+/obj/item/flashlight/pen{
 	pixel_x = -3;
 	pixel_y = -3
 	},
@@ -5322,15 +5322,15 @@
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
 /obj/item/bodybag/cryobag,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/adv,
-/obj/item/weapon/storage/firstaid/clotting,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/fire,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/o2,
-/obj/item/weapon/storage/firstaid/toxin,
-/obj/item/weapon/storage/firstaid/toxin,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
+/obj/item/storage/firstaid/clotting,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/fire,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/o2,
+/obj/item/storage/firstaid/toxin,
+/obj/item/storage/firstaid/toxin,
 /obj/item/stack/medical/advanced/bruise_pack,
 /obj/item/stack/medical/advanced/bruise_pack,
 /obj/item/stack/medical/advanced/bruise_pack,
@@ -5711,7 +5711,7 @@
 "IM" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -5762,7 +5762,7 @@
 "Jc" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 1;
 	nightshift_setting = 3;
 	pixel_y = 25
@@ -5918,7 +5918,7 @@
 "JR" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -5927,7 +5927,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew3)
 "JT" = (
@@ -5973,7 +5973,7 @@
 "Kh" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 1;
 	nightshift_setting = 3;
 	pixel_y = 25
@@ -6037,7 +6037,7 @@
 "KB" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	nightshift_setting = 3;
 	pixel_x = 25
@@ -6246,7 +6246,7 @@
 "Mk" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -6255,7 +6255,7 @@
 	icon_state = "0-8"
 	},
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/itglight/crew2)
 "Ml" = (
@@ -6277,12 +6277,12 @@
 /area/itglight/common)
 "Mm" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
-/obj/item/device/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
+/obj/item/radio,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
@@ -6568,7 +6568,7 @@
 "NY" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 4;
 	pixel_x = 25
 	},
@@ -6585,7 +6585,7 @@
 	},
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -6606,7 +6606,7 @@
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/afthall)
 "Oi" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/structure/curtain/black,
 /obj/structure/bed/padded,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -6915,7 +6915,7 @@
 /turf/simulated/floor/airless,
 /area/itglight/starboardsolars)
 "PO" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/structure/curtain/black,
 /obj/structure/bed/padded,
 /obj/machinery/alarm/angled/hidden{
@@ -6954,7 +6954,7 @@
 	},
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 1;
 	pixel_y = 25
 	},
@@ -7081,7 +7081,7 @@
 "QR" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
 "QW" = (
@@ -7102,12 +7102,12 @@
 /area/itglight/medbay)
 "Ra" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/device/sleevemate,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
+/obj/item/sleevemate,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "Rb" = (
@@ -7370,13 +7370,13 @@
 	dir = 8
 	},
 /obj/machinery/recharger,
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -25
 	},
 /turf/simulated/floor/tiled/eris/steel/brown_platform,
 /area/itglight/common)
 "SL" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/structure/curtain/black,
 /obj/structure/bed/padded,
 /turf/simulated/floor/tiled/dark,
@@ -7410,7 +7410,7 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
-/obj/item/device/radio,
+/obj/item/radio,
 /obj/machinery/alarm/angled/hidden{
 	dir = 8;
 	pixel_x = 26
@@ -7449,7 +7449,7 @@
 /turf/simulated/floor,
 /area/itglight/portengi)
 "Tm" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/structure/curtain/black,
 /obj/structure/bed/padded,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -7642,13 +7642,13 @@
 /area/itglight/portengi)
 "UY" = (
 /obj/structure/table/glass,
-/obj/item/device/sleevemate,
-/obj/item/weapon/book/manual/resleeving,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
-/obj/item/weapon/storage/box/khcrystal,
+/obj/item/sleevemate,
+/obj/item/book/manual/resleeving,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
+/obj/item/storage/box/khcrystal,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "UZ" = (
@@ -7671,7 +7671,7 @@
 "Ve" = (
 /obj/structure/closet/secure_closet/personal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
 "Vi" = (
@@ -7708,7 +7708,7 @@
 /turf/simulated/floor,
 /area/itglight/starboardengi)
 "Vt" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/eris/cafe,
@@ -7787,13 +7787,13 @@
 /area/itglight/afthall)
 "VK" = (
 /obj/structure/table/standard,
-/obj/item/weapon/bikehorn/rubberducky,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
-/obj/item/weapon/towel/random,
+/obj/item/bikehorn/rubberducky,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
+/obj/item/towel/random,
 /turf/simulated/floor/tiled/white,
 /area/itglight/showers)
 "VM" = (
@@ -7862,9 +7862,9 @@
 /area/itglight/starboardsolars)
 "Wh" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
-/obj/item/weapon/storage/box/beakers,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
+/obj/item/storage/box/beakers,
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
 /obj/item/stack/material/phoron,
@@ -7891,7 +7891,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/itglight/passengersleeping)
 "WC" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/structure/curtain/black,
 /obj/structure/bed/padded,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -7927,7 +7927,7 @@
 /obj/random/plushie,
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	pixel_y = -25
 	},
 /obj/structure/cable/pink,
@@ -7942,7 +7942,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/tiled/monotile,
 /area/itglight/lockers)
 "WP" = (
@@ -8015,7 +8015,7 @@
 "Xl" = (
 /obj/machinery/power/apc/angled{
 	alarms_hidden = 1;
-	cell_type = /obj/item/weapon/cell/hyper;
+	cell_type = /obj/item/cell/hyper;
 	dir = 8;
 	pixel_x = -25
 	},
@@ -8482,7 +8482,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/itglight/kitchen)
 "Zp" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 8
 	},
 /turf/simulated/floor/tiled/eris/cafe,
@@ -8541,11 +8541,11 @@
 	pixel_x = -32;
 	pixel_y = 27
 	},
-/obj/item/weapon/storage/bag/chemistry,
+/obj/item/storage/bag/chemistry,
 /obj/item/clothing/under/rank/chemist,
 /obj/item/clothing/suit/storage/toggle/labcoat/chemist,
-/obj/item/weapon/storage/box/pillbottles,
-/obj/item/weapon/storage/box/beakers,
+/obj/item/storage/box/pillbottles,
+/obj/item/storage/box/beakers,
 /turf/simulated/floor/tiled/eris/white/cargo,
 /area/itglight/medbay)
 "ZL" = (

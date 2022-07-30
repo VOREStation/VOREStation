@@ -20,18 +20,11 @@
 		/obj/item/module/power_control,
 		/obj/item/stock_parts,
 		/obj/item/frame,
-<<<<<<< HEAD
-		/obj/item/weapon/camera_assembly,
-		/obj/item/weapon/tank,
-		/obj/item/weapon/circuitboard,
-		/obj/item/weapon/smes_coil,
-		/obj/item/weapon/fuel_assembly
-=======
 		/obj/item/camera_assembly,
 		/obj/item/tank,
 		/obj/item/circuitboard,
-		/obj/item/smes_coil
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		/obj/item/smes_coil,
+		/obj/item/fuel_assembly
 		)
 
 	var/obj/item/wrapped = null // Item currently being held.
@@ -133,11 +126,7 @@
 		/obj/item/disposable_teleporter/slime,
 		/obj/item/slimepotion,
 		/obj/item/slime_extract,
-<<<<<<< HEAD
-		/obj/item/weapon/reagent_containers/food/snacks/monkeycube
-=======
-		/obj/item/reagent_containers/food/snacks/cube
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+		/obj/item/reagent_containers/food/snacks/monkeycube
 
 		)
 

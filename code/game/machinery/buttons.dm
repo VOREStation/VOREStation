@@ -14,10 +14,5 @@
 /obj/machinery/button/attack_ai(mob/user as mob)
 	return attack_hand(user)
 
-<<<<<<< HEAD
-/obj/machinery/button/attackby(obj/item/weapon/W, mob/user as mob)
-	return attack_hand(user)
-=======
 /obj/machinery/button/attackby(obj/item/W, mob/user as mob)
 	return attack_hand(user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

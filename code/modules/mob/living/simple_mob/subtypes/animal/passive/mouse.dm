@@ -34,14 +34,9 @@
 
 	has_langs = list("Mouse")
 
-<<<<<<< HEAD
-	holder_type = /obj/item/weapon/holder/mouse
+	holder_type = /obj/item/holder/mouse
 	meat_amount = 1
 	butchery_loot = list()
-=======
-	holder_type = /obj/item/holder/mouse
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	say_list_type = /datum/say_list/mouse
 
@@ -66,17 +61,17 @@
 	icon_rest = "mouse_[body_color]_sleep"
 	if (body_color != "rat")
 		desc = "A small [body_color] rodent, often seen hiding in maintenance areas and making a nuisance of itself."
-		holder_type = /obj/item/weapon/holder/mouse/rat
+		holder_type = /obj/item/holder/mouse/rat
 	if (body_color == "operative")
-		holder_type = /obj/item/weapon/holder/mouse/operative
+		holder_type = /obj/item/holder/mouse/operative
 	if (body_color == "brown")
-		holder_type = /obj/item/weapon/holder/mouse/brown
+		holder_type = /obj/item/holder/mouse/brown
 	if (body_color == "gray")
-		holder_type = /obj/item/weapon/holder/mouse/gray
+		holder_type = /obj/item/holder/mouse/gray
 	if (body_color == "white")
-		holder_type = /obj/item/weapon/holder/mouse/white
+		holder_type = /obj/item/holder/mouse/white
 	if (body_color == "black")
-		holder_type = /obj/item/weapon/holder/mouse/black
+		holder_type = /obj/item/holder/mouse/black
 
 /mob/living/simple_mob/animal/passive/mouse/Crossed(atom/movable/AM as mob|obj)
 	if(AM.is_incorporeal())
@@ -115,19 +110,19 @@
 	body_color = "white"
 	icon_state = "mouse_white"
 	icon_rest = "mouse_white_sleep"
-	holder_type = /obj/item/weapon/holder/mouse/white
+	holder_type = /obj/item/holder/mouse/white
 
 /mob/living/simple_mob/animal/passive/mouse/gray
 	body_color = "gray"
 	icon_state = "mouse_gray"
 	icon_rest = "mouse_gray_sleep"
-	holder_type = /obj/item/weapon/holder/mouse/gray
+	holder_type = /obj/item/holder/mouse/gray
 
 /mob/living/simple_mob/animal/passive/mouse/brown
 	body_color = "brown"
 	icon_state = "mouse_brown"
 	icon_rest = "mouse_brown_sleep"
-	holder_type = /obj/item/weapon/holder/mouse/brown
+	holder_type = /obj/item/holder/mouse/brown
 
 //TOM IS ALIVE! SQUEEEEEEEE~K :)
 /mob/living/simple_mob/animal/passive/mouse/brown/Tom
@@ -143,7 +138,7 @@
 	body_color = "black"
 	icon_state = "mouse_black"
 	icon_rest = "mouse_black_sleep"
-	holder_type = /obj/item/weapon/holder/mouse/black
+	holder_type = /obj/item/holder/mouse/black
 
 /mob/living/simple_mob/animal/passive/mouse/rat
 	name = "rat"
@@ -152,7 +147,7 @@
 	body_color = "rat"
 	icon_state = "mouse_rat"
 	icon_rest = "mouse_rat_sleep"
-	holder_type = /obj/item/weapon/holder/mouse/rat
+	holder_type = /obj/item/holder/mouse/rat
 	maxHealth = 20
 	health = 20
 
@@ -164,7 +159,7 @@
 	body_color = "operative"
 	icon_state = "mouse_operative"
 	icon_rest = "mouse_operative_sleep"
-	holder_type = /obj/item/weapon/holder/mouse/operative
+	holder_type = /obj/item/holder/mouse/operative
 	maxHealth = 35
 
 	//It's wearing a void suit, it don't care about atmos

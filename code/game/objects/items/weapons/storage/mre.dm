@@ -286,12 +286,11 @@ MRE Stuff
 /obj/item/storage/mrebag/dessert/menu9
 	starts_with = list(/obj/item/reagent_containers/food/snacks/plumphelmetbiscuit)
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/mrebag/dessert/menu11
-	starts_with = list(/obj/item/weapon/pen/crayon/rainbow)
+/obj/item/storage/mrebag/dessert/menu11
+	starts_with = list(/obj/item/pen/crayon/rainbow)
 
 // TGMC MREs - Smaller, less trash
-/obj/item/weapon/storage/box/tgmc_mre
+/obj/item/storage/box/tgmc_mre
 	name = "\improper CRS MRE"
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, prepared by the Commonwealth Ration Service. It says it's government property..."
 	icon = 'icons/obj/food.dmi'
@@ -303,17 +302,17 @@ MRE Stuff
 	foldable = null
 	var/isopened = 0
 
-/obj/item/weapon/storage/box/tgmc_mre/Initialize()
+/obj/item/storage/box/tgmc_mre/Initialize()
 	. = ..()
 	pickflavor()
 
-/obj/item/weapon/storage/box/tgmc_mre/Destroy()
+/obj/item/storage/box/tgmc_mre/Destroy()
 	var/turf/T = get_turf(src)
 	if(T)
 		new /obj/item/trash/tgmc_mre(T)
 	return ..()
 
-/obj/item/weapon/storage/box/tgmc_mre/proc/pickflavor()
+/obj/item/storage/box/tgmc_mre/proc/pickflavor()
 	var/entree = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders")
 	var/side = pick("meatballs", "cheese spread", "beef turnover", "mashed potatoes")
 	var/snack = pick("biscuit", "pretzels", "peanuts", "cracker")
@@ -321,41 +320,41 @@ MRE Stuff
 
 	name = "[initial(name)] ([entree])"
 
-	new /obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component(src, entree)
-	new /obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component(src, side)
-	new /obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component(src, snack)
-	new /obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component(src, desert)
+	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, entree)
+	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, side)
+	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, snack)
+	new /obj/item/reagent_containers/food/snacks/tgmc_mre_component(src, desert)
 	new /obj/random/mre/drink(src)
 
-/obj/item/weapon/storage/box/tgmc_mre/remove_from_storage()
+/obj/item/storage/box/tgmc_mre/remove_from_storage()
 	. = ..()
 	if(. && !contents.len && !gc_destroyed)
 		qdel(src)
 
-/obj/item/weapon/storage/box/tgmc_mre/update_icon()
+/obj/item/storage/box/tgmc_mre/update_icon()
 	if(!isopened)
 		isopened = 1
 		icon_state = "tgmc_mre_opened"
 
 // The sneaky food-looks-like-a-package items
-/obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component
+/obj/item/reagent_containers/food/snacks/tgmc_mre_component
 	name = "\improper MRE component"
 	package = TRUE
 	bitesize = 1
 	icon_state = "tgmcmre_entree"
 	var/flavor = "boneless pork ribs"
 
-/obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component/Initialize(mapload, newflavor)
+/obj/item/reagent_containers/food/snacks/tgmc_mre_component/Initialize(mapload, newflavor)
 	determinetype(newflavor)
 	desc = "A packaged [flavor] from a Meal Ready-to-Eat, there is a lengthy list of [pick("obscure", "arcane", "unintelligible", "revolutionary", "sophisticated", "unspellable")] ingredients and addictives printed on the back."
 	. = ..()
 
-/obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component/unpackage(mob/user as mob)
+/obj/item/reagent_containers/food/snacks/tgmc_mre_component/unpackage(mob/user as mob)
 	. = ..()
 	name = "\improper" + flavor
 	desc = "The contents of a standard issue CRS MRE. This one is " + flavor + "."
 
-/obj/item/weapon/reagent_containers/food/snacks/tgmc_mre_component/proc/determinetype(newflavor)
+/obj/item/reagent_containers/food/snacks/tgmc_mre_component/proc/determinetype(newflavor)
 	name = "\improper MRE component" + " (" + newflavor + ")"
 	flavor = newflavor
 	var/static/tastes = list("something scrumptious","nothing","the usual grub","something mediocre","hell","heaven","tentalization","disgust","dog food","cat food","fish food","recycled pizza","junk","trash","rubbish","sawdust","nutraloafs","gourmand food","gourmet food","moistness","squalidness","old grub","actually good food","bleach","soap","sand","synthetic grub","blandness","prison food","Discount Dan's","Discount Dan's Special","Discount Dan's leftovers","yesterday leftovers","microwaved leftovers","leftovers","UPP rations","uncooked grub","overcooked grub","not-so-bad grub","pinapple pizza flavored grub","mystery food","burnt food","frozen food","lukewarm food","rancidness","processed grub","crunchiness","faux meat","something false","low-calorie food","high-carb food","transfat-free food","gluten-free food","delictableness","acid","mintiness","sauciness","saltiness","extreme saltiness","spiced grub","crispness","questionable grub","something untastable","bitterness","savoriness","sourness","sweetness","umami","chewing gum","shoe polish","the jungle","indigestion","oldberries","butter","lard","oil","grass","cough syrup","water","iron","rubber","lead","bronze","wood","paper","plastic","kevlar","cloth","buckshot","gunpowder","black powder","petroleum","gasoline","diesel","biofuel","paint","jelly","slime","sludge","tofu","dietetic food","counterfeit food","grossness","dryness","tartiness","cryogenic juice","the secret ingredient","the ninth element","compressed matter","deep-fried food","double-fried food","a culinary apocalypse","experimental post-modern cuisine","a disaster","muckiness","mustard","mordant","citruses","crayon dust")
@@ -378,10 +377,6 @@ MRE Stuff
 			icon_state = "tgmcmre_dessert"
 			nutriment_amt = 2
 			starts_with = list("sugar" = 1)
-	
+
 	package_open_state = "tgmcmre_[flavor]"
 	nutriment_desc = list("[new_taste]" = nutriment_amt)
-=======
-/obj/item/storage/mrebag/dessert/menu11
-	starts_with = list(/obj/item/pen/crayon/rainbow)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

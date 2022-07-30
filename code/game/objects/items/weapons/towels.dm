@@ -29,11 +29,6 @@
 	else if(user.fire_stacks < 0)
 		user.fire_stacks = (min(0, user.fire_stacks + 1.5))
 
-<<<<<<< HEAD
-/obj/item/weapon/towel/random/New()
-	..()
-=======
 /obj/item/towel/random/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	color = "#"+get_random_colour()

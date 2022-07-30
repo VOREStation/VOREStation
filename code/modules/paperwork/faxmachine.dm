@@ -17,15 +17,10 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	active_power_usage = 200
 	circuit = /obj/item/circuitboard/fax
 
-<<<<<<< HEAD
-	var/obj/item/weapon/card/id/scan = null
+	var/obj/item/card/id/scan = null
 	var/authenticated = null
 	var/rank = null
 
-=======
-	var/obj/item/card/id/scan = null // identification
-	var/authenticated = 0
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/sendcooldown = 0 // to avoid spamming fax messages
 	var/department = "Unknown" // our department
 	var/destination = null // the department we're sending to
@@ -76,7 +71,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				scan = null
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id))
+				if(istype(I, /obj/item/card/id))
 					usr.drop_item()
 					I.forceMove(src)
 					scan = I
@@ -101,7 +96,6 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				if(ishuman(usr) && !usr.get_active_hand())
 					usr.put_in_hands(scan)
 				scan = null
-<<<<<<< HEAD
 			authenticated = null
 			return TRUE
 		if("remove")
@@ -116,7 +110,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	if(!authenticated)
 		return
-	
+
 	switch(action)
 		if("send")
 			if(copyitem)
@@ -136,29 +130,6 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 				destination = lastdestination
 
 	return TRUE
-=======
-		else
-			var/obj/item/I = usr.get_active_hand()
-			if (istype(I, /obj/item/card/id) && usr.unEquip(I))
-				I.loc = src
-				scan = I
-		authenticated = 0
-
-	if(href_list["dept"])
-		var/lastdestination = destination
-		destination = input(usr, "Which department?", "Choose a department", "") as null|anything in (alldepartments + admin_departments)
-		if(!destination) destination = lastdestination
-
-	if(href_list["auth"])
-		if ( (!( authenticated ) && (scan)) )
-			if (check_access(scan))
-				authenticated = 1
-
-	if(href_list["logout"])
-		authenticated = 0
-
-	SSnanoui.update_uis(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
 	if(O.is_multitool() && panel_open)
@@ -282,7 +253,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	var/faxid = export_fax(sent)
 	message_chat_admins(sender, faxname, sent, faxid, font_colour)
 	// VoreStation Edit End
-	
+
 	// Webhooks don't parse the HTML on the paper, so we gotta strip them out so it's still readable.
 	var/summary = make_summary(sent)
 	summary = paper_html_to_plaintext(summary)
@@ -302,4 +273,3 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			"body" = summary
 		)
 	)
-	

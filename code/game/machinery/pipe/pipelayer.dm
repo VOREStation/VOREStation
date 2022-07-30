@@ -2,13 +2,8 @@
 	name = "automatic pipe layer"
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "pipe_d"
-<<<<<<< HEAD
 	density = TRUE
-	circuit = /obj/item/weapon/circuitboard/pipelayer
-=======
-	density = 1
 	circuit = /obj/item/circuitboard/pipelayer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/turf/old_turf		// Last turf we were on.
 	var/old_dir				// Last direction we were facing.
 	var/on = 0				// Pipelaying online?

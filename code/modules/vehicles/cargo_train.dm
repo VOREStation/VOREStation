@@ -42,15 +42,9 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-<<<<<<< HEAD
-/obj/vehicle/train/engine/New()
-	..()
-	cell = new /obj/item/weapon/cell/high(src)
-=======
 /obj/vehicle/train/engine/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/high(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles_vr.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs		//VOREStation edit
 	add_overlay(I)

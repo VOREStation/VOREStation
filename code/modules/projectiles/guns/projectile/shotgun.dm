@@ -34,11 +34,7 @@
 		pump(user)
 		recentpump = world.time
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/shotgun/pump/proc/pump(mob/M as mob)
-=======
 /obj/item/gun/projectile/shotgun/pump/proc/pump(mob/M)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	playsound(src, action_sound, 60, 1)
 
 	// We have a shell in the chamber
@@ -78,14 +74,10 @@
 	ammo_type = /obj/item/ammo_casing/a12g
 	pump_animation = null
 
-<<<<<<< HEAD
 /*
  * Combat Shotgun
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/combat
-=======
 /obj/item/gun/projectile/shotgun/pump/combat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "combat shotgun"
 	desc = "Built for close quarters combat, the Hephaestus Industries KS-40 is widely regarded as a weapon of choice for repelling boarders. Uses 12g rounds."
 	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' \
@@ -101,14 +93,10 @@
 /obj/item/gun/projectile/shotgun/pump/combat/empty
 	ammo_type = null
 
-<<<<<<< HEAD
 /*
  * Double-Barreled Shotgun
  */
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel
-=======
 /obj/item/gun/projectile/shotgun/doublebarrel
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "double-barreled shotgun"
 	desc = "A truely classic weapon. No need to change what works. Uses 12g rounds."
 	icon_state = "dshotgun"
@@ -145,8 +133,7 @@
 /obj/item/gun/projectile/shotgun/doublebarrel/unload_ammo(user, allow_dump)
 	..(user, allow_dump=1)
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/verb/rename_gun()
+/obj/item/gun/projectile/shotgun/doublebarrel/verb/rename_gun()
 	set name = "Name Gun"
 	set category = "Object"
 	set desc = "Rename your gun."
@@ -159,7 +146,7 @@
 		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/verb/reskin_gun()
+/obj/item/gun/projectile/shotgun/doublebarrel/verb/reskin_gun()
 	set name = "Resprite gun"
 	set category = "Object"
 	set desc = "Click to choose a sprite for your gun."
@@ -185,16 +172,11 @@
 		return 1
 
 //this is largely hacky and bad :(	-Pete //less hacky and bad now :) -Ghost
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
+/obj/item/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(sawn_off)
 		to_chat(user, "<span class='warning'>The [src] is already shortened!</span>")
 		return
-	if(istype(A, /obj/item/weapon/surgical/circular_saw) || istype(A, /obj/item/weapon/melee/energy) || istype(A, /obj/item/weapon/pickaxe/plasmacutter))
-=======
-//this is largely hacky and bad :(	-Pete
-/obj/item/gun/projectile/shotgun/doublebarrel/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/surgical/circular_saw) || istype(A, /obj/item/melee/energy) || istype(A, /obj/item/pickaxe/plasmacutter))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		to_chat(user, "<span class='notice'>You begin to shorten the barrel of \the [src].</span>")
 		if(loaded.len)
 			var/burstsetting = burst
@@ -223,14 +205,10 @@
 	else
 		..()
 
-<<<<<<< HEAD
 /*
  * Sawn-Off Shotgun
  */
-/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
-=======
 /obj/item/gun/projectile/shotgun/doublebarrel/sawn
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "sawn-off shotgun"
 	desc = "Omar's coming!" // I'm not gonna add "Uses 12g rounds." to this one. I'll just let this reference go undisturbed.
 	icon_state = "dshotgun_sawn"

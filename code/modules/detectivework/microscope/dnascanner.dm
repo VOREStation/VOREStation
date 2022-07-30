@@ -4,15 +4,9 @@
 	desc = "A high tech machine that is designed to read DNA samples properly."
 	icon = 'icons/obj/forensics.dmi'
 	icon_state = "dnaopen"
-<<<<<<< HEAD
 	anchored = TRUE
 	density = TRUE
-	circuit = /obj/item/weapon/circuitboard/dna_analyzer
-=======
-	anchored = 1
-	density = 1
 	circuit = /obj/item/circuitboard/dna_analyzer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/obj/item/forensics/swab/bloodsamp = null
 	var/scanning = 0
@@ -116,14 +110,8 @@
 	if(bloodsamp)
 		var/obj/item/paper/P = new(src)
 		P.name = "[src] report #[++report_num]: [bloodsamp.name]"
-<<<<<<< HEAD
-		P.stamped = list(/obj/item/weapon/stamp)
-		P.cut_overlays()
-		P.add_overlay("paper_stamped")
-=======
 		P.stamped = list(/obj/item/stamp)
 		P.overlays = list("paper_stamped")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		//dna data itself
 		var/data = "No scan information available."
 		if(bloodsamp.dna != null)

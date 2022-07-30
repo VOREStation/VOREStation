@@ -1,29 +1,29 @@
-/obj/item/device/pda
+/obj/item/pda
 	var/delete_id = FALSE			//Guaranteed deletion of ID upon deletion of PDA
 
-/obj/item/device/pda/multicaster/exploration/New()
+/obj/item/pda/multicaster/exploration/New()
 	..()
 	owner = "Exploration Department"
 	name = "Exploration Department (Relay)"
 	cartridges_to_send_to = exploration_cartridges
 
-/obj/item/device/pda/centcom
-	default_cartridge = /obj/item/weapon/cartridge/captain
+/obj/item/pda/centcom
+	default_cartridge = /obj/item/cartridge/captain
 	icon_state = "pda-h"
 	detonate = 0
 //	hidden = 1
 
-/obj/item/device/pda/pathfinder
-	default_cartridge = /obj/item/weapon/cartridge/explorer
+/obj/item/pda/pathfinder
+	default_cartridge = /obj/item/cartridge/explorer
 	icon_state = "pda-transp"			//Might as well let this sprite actually get seen, otherwise it's going to be hidden forever.
 
-/obj/item/device/pda/explorer
-	default_cartridge = /obj/item/weapon/cartridge/explorer
+/obj/item/pda/explorer
+	default_cartridge = /obj/item/cartridge/explorer
 	icon_state = "pda-explore"			//Explorer's can get the PF's old style instead, rather than re-using the detective PDA
 
-/obj/item/device/pda/sar
-	default_cartridge = /obj/item/weapon/cartridge/sar
+/obj/item/pda/sar
+	default_cartridge = /obj/item/cartridge/sar
 	icon_state = "pda-sar"			//Gives FM's a distinct PDA of their own, rather than sharing with the bridge-secretary & CCO's.
 
-/obj/item/device/pda/pilot
+/obj/item/pda/pilot
 	icon_state = "pda-pilot"		//New sprites, but still no ROM cartridge or anything

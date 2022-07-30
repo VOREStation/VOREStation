@@ -29,26 +29,15 @@
 	var/window_type = /obj/structure/window/reinforced/full
 	var/material_to_use = DEFAULT_WALL_MATERIAL // So badmins can make RCDs that print diamond walls.
 	var/make_rwalls = FALSE // If true, when building walls, they will be reinforced.
-<<<<<<< HEAD
 /* VOREStation Removal - Unused
-/obj/item/weapon/rcd/Initialize()
-	
+/obj/item/rcd/Initialize()
+
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	return ..()
 */
-/obj/item/weapon/rcd/Destroy()
-=======
-
-/obj/item/rcd/Initialize()
-	src.spark_system = new /datum/effect_system/spark_spread
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
-	return ..()
-
 /obj/item/rcd/Destroy()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	QDEL_NULL(spark_system)
 	spark_system = null
 	return ..()
@@ -62,16 +51,10 @@
 	return "It currently holds [stored_matter]/[max_stored_matter] matter-units."
 
 // Used to add new cartridges.
-<<<<<<< HEAD
 /* VOREStation Tweak - Wow this is annoying, moved to _vr file for overhaul
-/obj/item/weapon/rcd/attackby(obj/item/weapon/W, mob/user)
-	if(istype(W, /obj/item/weapon/rcd_ammo))
-		var/obj/item/weapon/rcd_ammo/cartridge = W
-=======
 /obj/item/rcd/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/rcd_ammo))
 		var/obj/item/rcd_ammo/cartridge = W
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if((stored_matter + cartridge.remaining) > max_stored_matter)
 			to_chat(user, span("warning", "The RCD can't hold that many additional matter-units."))
 			return FALSE
@@ -84,12 +67,8 @@
 	return ..()
 */
 // Changes which mode it is on.
-<<<<<<< HEAD
-/obj/item/weapon/rcd/attack_self(mob/living/user)
-/* VOREStation Removal - Moved to VR
-=======
 /obj/item/rcd/attack_self(mob/living/user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/* VOREStation Removal - Moved to VR
 	if(mode_index >= modes.len) // Shouldn't overflow unless someone messes with it in VV poorly but better safe than sorry.
 		mode_index = 1
 	else

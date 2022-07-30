@@ -27,11 +27,7 @@
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/card/New()
-=======
 /obj/item/card/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 	reset_icon()
 
@@ -107,11 +103,7 @@
 	origin_tech = list(TECH_MAGNET = 2, TECH_ILLEGAL = 2)
 	var/uses = 10
 
-<<<<<<< HEAD
-/obj/item/weapon/card/emag/resolve_attackby(atom/A, mob/user, var/click_parameters)
-=======
-/obj/item/card/emag/resolve_attackby(atom/A, mob/user, attack_modifier, var/click_parameters)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+/obj/item/card/emag/resolve_attackby(atom/A, mob/user, var/click_parameters)
 	var/used_uses = A.emag_act(uses, user, src)
 	if(used_uses < 0)
 		return ..(A, user, click_parameters)

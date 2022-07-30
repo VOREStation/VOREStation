@@ -154,18 +154,14 @@
 	if(istype(teleatom, /obj/item/storage/backpack/holding))
 		precision = rand(1,100)
 
-<<<<<<< HEAD
-	var/list/bagholding = teleatom.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+	var/list/bagholding = teleatom.search_contents_for(/obj/item/storage/backpack/holding)
 	//VOREStation Addition Start: Prevent taurriding abuse
 	if(istype(teleatom, /mob/living))
 		var/mob/living/L = teleatom
 		if(LAZYLEN(L.buckled_mobs))
 			for(var/mob/rider in L.buckled_mobs)
-				bagholding += rider.search_contents_for(/obj/item/weapon/storage/backpack/holding)
+				bagholding += rider.search_contents_for(/obj/item/storage/backpack/holding)
 	//VOREStation Addition End: Prevent taurriding abuse
-=======
-	var/list/bagholding = teleatom.search_contents_for(/obj/item/storage/backpack/holding)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(bagholding.len)
 		precision = max(rand(1,100)*bagholding.len,100)
 		if(istype(teleatom, /mob/living))

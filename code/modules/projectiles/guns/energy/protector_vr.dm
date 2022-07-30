@@ -1,5 +1,5 @@
 // -------------- Protector -------------
-/obj/item/weapon/gun/energy/gun/protector
+/obj/item/gun/energy/gun/protector
 	name = "secure small energy gun"
 	desc = "The LAEP95 'Protector' is another firearm from Lawson Arms and "+TSC_HEPH+", unlike the Perun this is designed for issue to non-security staff. It contains a detachable cell, and an alert-level-locked lethal mode, only usable on code blue and higher. It also features an integrated flashlight!"
 
@@ -37,7 +37,7 @@
 
 	var/emagged = FALSE
 
-/obj/item/weapon/gun/energy/gun/protector/special_check(mob/user)
+/obj/item/gun/energy/gun/protector/special_check(mob/user)
 	if(!emagged && mode_name == "lethal" && get_security_level() == "green")
 		to_chat(user,"<span class='warning'>The trigger refuses to depress while on the lethal setting under security level green!</span>")
 		return FALSE
@@ -45,7 +45,7 @@
 	return ..()
 
 
-/obj/item/weapon/gun/energy/gun/protector/emag_act(var/remaining_charges,var/mob/user)
+/obj/item/gun/energy/gun/protector/emag_act(var/remaining_charges,var/mob/user)
 	..()
 	if(!emagged)
 		emagged = TRUE
@@ -54,7 +54,7 @@
 	return TRUE
 
 //Update icons from /tg/, so fancy! Use this more!
-/obj/item/weapon/gun/energy/gun/protector/update_icon()
+/obj/item/gun/energy/gun/protector/update_icon()
 	cut_overlays()
 	var/ratio = 0
 
@@ -98,7 +98,7 @@
 		item_state = itemState
 	*/
 
-/obj/item/weapon/gun/energy/gun/protector/unlocked
+/obj/item/gun/energy/gun/protector/unlocked
 	emagged = TRUE
 	name = "small energy gun"
 	desc = "The LAEP95 'Protector' is another firearm from Lawson Arms and "+TSC_HEPH+", unlike the Perun this is designed for issue to non-security staff. It contains a detachable cell. It also features an integrated flashlight!"

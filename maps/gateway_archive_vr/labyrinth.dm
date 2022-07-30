@@ -133,7 +133,7 @@
 	name = "Banana Mortar"
 	icon = 'icons/mecha/mecha_equipment_vr.dmi'
 	icon_state = "mecha_bananamrtr"
-	projectile = /obj/item/weapon/bananapeel
+	projectile = /obj/item/bananapeel
 	fire_sound = 'sound/items/bikehorn.ogg'
 	projectiles = 15
 	missile_speed = 1.5
@@ -195,7 +195,7 @@
 	corpsesuit = /obj/item/clothing/suit/storage/hooded/chaplain_hoodie
 	corpsegloves = /obj/item/clothing/gloves/black
 	corpsemask = /obj/item/clothing/mask/gas/clown_hat
-	corpsepocket1 = /obj/item/weapon/bikehorn
+	corpsepocket1 = /obj/item/bikehorn
 
 /obj/effect/landmark/mobcorpse/tunnelclown/sentinel
 	name = "dead clown sentinel"
@@ -220,7 +220,7 @@
 //	speak_chance = 1
 	a_intent = "harm"
 	var/corpse = /obj/effect/landmark/mobcorpse/tunnelclown
-	var/weapon1 = /obj/item/weapon/twohanded/fireaxe
+	var/weapon1 = /obj/item/twohanded/fireaxe
 	stop_when_pulled = 0
 	maxHealth = 100
 	health = 100
@@ -253,7 +253,7 @@
 	icon_living = "sentinelclown"
 	icon_dead = "clown_dead"
 	corpse = /obj/effect/landmark/mobcorpse/tunnelclown/sentinel
-	weapon1 = /obj/item/weapon/material/twohanded/spear
+	weapon1 = /obj/item/material/twohanded/spear
 	maxHealth = 150
 	health = 150
 	melee_damage_lower = 15
@@ -320,7 +320,7 @@
 					prob(2);/mob/living/simple_mob/hostile/tunnelclown/sentinel,
 					prob(1);/mob/living/simple_mob/hostile/tunnelclown)
 
-/obj/item/weapon/paper/awaygate/labyrinth/calypso
+/obj/item/paper/awaygate/labyrinth/calypso
 	name = "copy of the Final Flight of Calypso"
 	info = {"<h3>THIS IS A COPY OF THE LOGBOOKS AS COPIED BY GREYSON MAXIMUS, CAPTAIN V.O.R.E. NANOTRASEN.</h3>
 			<p><b>//BEGIN//</b>
@@ -353,7 +353,7 @@
 			</p><p>HONK</p>
 			<b>//END//</b>"}
 
-/obj/item/weapon/paper/awaygate/labyrinth/research
+/obj/item/paper/awaygate/labyrinth/research
 	name = "research notes"
 	info = {"This must be the location of the alleged dig site mentioned in the Calypso's logs. These are the coordinates recovered from the wreck, and everything checks out.
 			My excavation team discovered two monoliths; one near the surface, and another at an underground shrine. I think this is it, but Dr. Madison hasn't come back with his team

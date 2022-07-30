@@ -27,7 +27,7 @@
 /area/tether_away/beach/powershed)
 "ag" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/cell/apc,
+/obj/item/cell/apc,
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "ah" = (
@@ -172,7 +172,7 @@
 /area/tether_away/beach/resort/janibar)
 "aM" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/book/manual/barman_recipes,
+/obj/item/book/manual/barman_recipes,
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "aN" = (
@@ -214,7 +214,7 @@
 /area/tether_away/beach/resort/janibar)
 "aU" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/ale,
+/obj/item/reagent_containers/food/drinks/bottle/small/ale,
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "aV" = (
@@ -223,11 +223,11 @@
 /area/tether_away/beach/resort/janibar)
 "aW" = (
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "aX" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -236,7 +236,7 @@
 /area/tether_away/beach/resort)
 "aY" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/greendouble,
+/obj/item/bedsheet/greendouble,
 /turf/simulated/floor/wood,
 /area/tether_away/beach)
 "ba" = (
@@ -247,11 +247,11 @@
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/tether_away/beach)
 "bc" = (
-/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/tether_away/beach)
 "bd" = (
-/obj/item/weapon/beach_ball,
+/obj/item/beach_ball,
 /turf/simulated/floor/beach/sand/desert/outdoors,
 /area/tether_away/beach)
 "be" = (
@@ -363,7 +363,7 @@
 	},
 /area/tether_away/beach/resort)
 "di" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 8
 	},
 /turf/simulated/mineral/floor/cave{
@@ -375,7 +375,7 @@
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/lockermed)
 "dt" = (
-/obj/item/weapon/bedsheet/pirate,
+/obj/item/bedsheet/pirate,
 /obj/machinery/button/remote/airlock{
 	id = "LoveShack4";
 	name = "Door Bolt Control";
@@ -387,7 +387,7 @@
 /area/tether_away/beach/resort/dorm4)
 "dP" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet/medical,
+/obj/item/bedsheet/medical,
 /turf/simulated/floor/tiled/kafel_full/white,
 /area/tether_away/beach/resort/lockermed)
 "dY" = (
@@ -446,16 +446,16 @@
 /area/tether_away/beach/resort)
 "eW" = (
 /obj/structure/table/glass,
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = 9
 	},
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = 2
 	},
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = -5
 	},
-/obj/item/weapon/backup_implanter{
+/obj/item/backup_implanter{
 	pixel_y = -12
 	},
 /obj/machinery/light/small{
@@ -483,7 +483,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
 "fJ" = (
-/obj/item/weapon/bedsheet/ian,
+/obj/item/bedsheet/ian,
 /obj/machinery/button/remote/airlock{
 	id = "LoveShack3";
 	name = "Door Bolt Control";
@@ -547,7 +547,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -743,10 +743,10 @@
 /area/tether_away/beach/resort/dorm2)
 "la" = (
 /obj/structure/table/rack,
-/obj/item/weapon/material/fishing_net,
-/obj/item/weapon/material/fishing_net,
-/obj/item/weapon/material/fishing_net,
-/obj/item/weapon/material/fishing_net,
+/obj/item/material/fishing_net,
+/obj/item/material/fishing_net,
+/obj/item/material/fishing_net,
+/obj/item/material/fishing_net,
 /obj/item/stack/cable_coil/pink,
 /obj/item/stack/cable_coil/pink,
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -886,7 +886,7 @@
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/dorm1)
 "oq" = (
-/obj/item/weapon/bedsheet/rainbow,
+/obj/item/bedsheet/rainbow,
 /obj/machinery/button/remote/airlock{
 	id = "LoveShack1";
 	name = "Door Bolt Control";
@@ -907,7 +907,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/floor/tiled/asteroid_steel{
@@ -916,10 +916,10 @@
 /area/tether_away/beach/resort)
 "pd" = (
 /obj/structure/table/rack,
-/obj/item/weapon/material/fishing_rod/modern/cheap,
-/obj/item/weapon/material/fishing_rod/modern/cheap,
-/obj/item/weapon/material/fishing_rod/modern/cheap,
-/obj/item/weapon/material/fishing_rod/modern/cheap,
+/obj/item/material/fishing_rod/modern/cheap,
+/obj/item/material/fishing_rod/modern/cheap,
+/obj/item/material/fishing_rod/modern/cheap,
+/obj/item/material/fishing_rod/modern/cheap,
 /obj/item/stack/cable_coil/pink,
 /obj/item/stack/cable_coil/pink,
 /turf/simulated/floor/tiled/asteroid_steel,
@@ -996,7 +996,7 @@
 	},
 /area/tether_away/beach/resort)
 "pM" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 1
 	},
 /turf/simulated/mineral/floor/cave{
@@ -1193,7 +1193,7 @@
 /area/tether_away/beach/cavebase)
 "vU" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/floor/wood,
 /area/tether_away/beach)
 "wv" = (
@@ -1263,7 +1263,7 @@
 /turf/simulated/floor/outdoors/grass,
 /area/tether_away/beach/resort/janibar)
 "yz" = (
-/obj/item/weapon/stool/padded{
+/obj/item/stool/padded{
 	dir = 4
 	},
 /turf/simulated/mineral/floor/cave{
@@ -1331,7 +1331,7 @@
 /turf/simulated/floor/outdoors/grass/forest,
 /area/tether_away/beach/jungle)
 "Aw" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/mineral/floor/cave{
 	name = "dirt"
 	},
@@ -1349,54 +1349,54 @@
 /turf/simulated/floor/beach/sand/outdoors,
 /area/tether_away/beach/resort)
 "Bk" = (
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/small/sugar,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/spacespice,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/reagent_containers/food/condiment/carton/flour,
-/obj/item/weapon/material/knife/butch,
-/obj/item/weapon/material/minihoe,
-/obj/item/weapon/material/knife/machete/hatchet,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/small/sugar,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/spacespice,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/reagent_containers/food/condiment/carton/flour,
+/obj/item/material/knife/butch,
+/obj/item/material/minihoe,
+/obj/item/material/knife/machete/hatchet,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/random/drinkbottle,
 /obj/structure/closet,
-/obj/item/weapon/reagent_containers/glass/bucket,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/device/analyzer/plant_analyzer,
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/analyzer/plant_analyzer,
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
-/obj/item/weapon/reagent_containers/glass/bottle/eznutrient,
+/obj/item/reagent_containers/glass/bottle/eznutrient,
+/obj/item/reagent_containers/glass/bottle/eznutrient,
+/obj/item/reagent_containers/glass/bottle/eznutrient,
+/obj/item/reagent_containers/glass/bottle/eznutrient,
+/obj/item/reagent_containers/glass/bottle/eznutrient,
 /obj/random/donkpocketbox,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
 "By" = (
-/obj/item/weapon/stool/baystool/padded{
+/obj/item/stool/baystool/padded{
 	dir = 4
 	},
 /turf/simulated/floor/lino,
@@ -1600,12 +1600,12 @@
 /area/tether_away/beach/jungle)
 "Hv" = (
 /obj/structure/table/steel_reinforced,
-/obj/item/weapon/material/kitchen/rollingpin,
-/obj/item/weapon/book/manual/chef_recipes,
-/obj/item/weapon/reagent_containers/food/condiment/enzyme{
+/obj/item/material/kitchen/rollingpin,
+/obj/item/book/manual/chef_recipes,
+/obj/item/reagent_containers/food/condiment/enzyme{
 	layer = 5
 	},
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
 "HO" = (
@@ -1812,7 +1812,7 @@
 	},
 /area/tether_away/beach/resort)
 "MZ" = (
-/obj/item/weapon/bedsheet/brown,
+/obj/item/bedsheet/brown,
 /obj/machinery/button/remote/airlock{
 	id = "LoveShack2";
 	name = "Door Bolt Control";
@@ -1905,9 +1905,9 @@
 /area/tether_away/beach/resort/lockermed)
 "QL" = (
 /obj/structure/table/rack/steel,
-/obj/item/weapon/mop,
+/obj/item/mop,
 /obj/random/soap,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/janibar)
 "QY" = (
@@ -1937,11 +1937,11 @@
 	pixel_y = 26
 	},
 /obj/structure/table/woodentable,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
-/obj/item/weapon/reagent_containers/food/drinks/shaker,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/obj/item/reagent_containers/food/drinks/shaker,
 /obj/item/clothing/glasses/sunglasses,
-/obj/item/weapon/reagent_containers/glass/rag,
+/obj/item/reagent_containers/glass/rag,
 /turf/simulated/floor/wood,
 /area/tether_away/beach/resort/janibar)
 "Rv" = (
@@ -2022,8 +2022,8 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/tether_away/beach/resort/kitchen)
 "SK" = (
-/obj/item/weapon/reagent_containers/spray/cleaner,
-/obj/item/weapon/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
+/obj/item/reagent_containers/spray/cleaner,
 /obj/structure/table/rack/steel,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/tether_away/beach/resort/janibar)
@@ -2254,7 +2254,7 @@
 /area/tether_away/beach/resort/dorm2)
 "YY" = (
 /obj/structure/table/woodentable,
-/obj/item/device/flashlight/lamp/green,
+/obj/item/flashlight/lamp/green,
 /turf/simulated/mineral/floor/cave{
 	name = "dirt"
 	},

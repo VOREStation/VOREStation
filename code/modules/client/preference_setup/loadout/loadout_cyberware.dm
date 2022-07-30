@@ -9,13 +9,8 @@
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
-<<<<<<< HEAD
-	path = /obj/item/weapon/implant/tracking/weak
-	cost = 0 //VOREStation Edit. Changed cost to 0
-=======
 	path = /obj/item/implant/tracking/weak
-	cost = 10
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	cost = 0 //VOREStation Edit. Changed cost to 0
 
 /datum/gear/utility/implant/generic
 	display_name = "implant, generic, primary"

@@ -3,11 +3,7 @@ CONTAINS:
 THAT STUPID GAME KIT
 
 */
-<<<<<<< HEAD
-/obj/item/weapon/game_kit/New()
-=======
 /obj/item/game_kit/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.board_stat = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
 	src.selected = "CR"
 

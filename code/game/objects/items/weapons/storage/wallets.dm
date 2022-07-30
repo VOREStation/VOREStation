@@ -46,13 +46,9 @@
 	drop_sound = 'sound/items/drop/leather.ogg'
 	pickup_sound = 'sound/items/pickup/leather.ogg'
 
-<<<<<<< HEAD
 	var/original_name // Due to loadout customizations and such
 
-/obj/item/weapon/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
-=======
 /obj/item/storage/wallet/remove_from_storage(obj/item/W as obj, atom/new_location)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..(W, new_location)
 	if(.)
 		if(W == front_id)
@@ -70,13 +66,8 @@
 			name = "[original_name] ([front_id])"
 			update_icon()
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/wallet/update_icon()
-	cut_overlays()
-=======
 /obj/item/storage/wallet/update_icon()
 	overlays.Cut()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(front_id)
 		var/tiny_state = "id-generic"
 		if("id-[front_id.icon_state]" in cached_icon_states(icon))
@@ -95,13 +86,8 @@
 	else
 		return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/wallet/random/New()
-	..()
-=======
 /obj/item/storage/wallet/random/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/amount = rand(50, 100) + rand(50, 100) // Triangular distribution from 100 to 200
 	var/obj/item/spacecash/SC = null
 	SC = new(src)
@@ -118,15 +104,9 @@
 	desc = "You can recolor it! Fancy! The future is NOW!"
 	icon_state = "wallet-white"
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/wallet/poly/New()
-	..()
-	verbs |= /obj/item/weapon/storage/wallet/poly/proc/change_color
-=======
 /obj/item/storage/wallet/poly/Initialize()
 	. = ..()
 	verbs |= /obj/item/storage/wallet/poly/proc/change_color
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	color = "#"+get_random_colour()
 	update_icon()
 
@@ -171,10 +151,10 @@
 		/obj/item/weapon/spacecash,
 		/obj/item/weapon/card,
 		/obj/item/clothing/mask/smokable/cigarette/,
-		/obj/item/device/flashlight/pen,
-		/obj/item/device/tape,
+		/obj/item/flashlight/pen,
+		/obj/item/tape,
 		/obj/item/weapon/cartridge,
-		/obj/item/device/encryptionkey,
+		/obj/item/encryptionkey,
 		/obj/item/seeds,
 		/obj/item/stack/medical,
 		/obj/item/weapon/coin,

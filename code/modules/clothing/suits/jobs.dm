@@ -171,15 +171,24 @@
 	desc = "A high-visibility vest used in work zones."
 	icon_state = "hazard"
 	blood_overlay_type = "armor"
-<<<<<<< HEAD
-	allowed = list (/obj/item/device/analyzer, /obj/item/device/flashlight, /obj/item/device/multitool, /obj/item/device/pipe_painter, /obj/item/device/radio, /obj/item/device/t_scanner,
-	/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency/oxygen,
-	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering, /obj/item/taperoll/atmos, /obj/item/device/analyzer, /obj/item/weapon/extinguisher/mini) //VOREStation edit. Few more tools that can be put on vests
-=======
-	allowed = list (/obj/item/analyzer, /obj/item/flashlight, /obj/item/multitool, /obj/item/pipe_painter, /obj/item/radio, /obj/item/t_scanner,
-	/obj/item/tool/crowbar, /obj/item/tool/screwdriver, /obj/item/weldingtool, /obj/item/tool/wirecutters, /obj/item/tool/wrench, /obj/item/tank/emergency/oxygen,
-	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	allowed = list (
+		/obj/item/analyzer,
+		/obj/item/flashlight,
+		/obj/item/multitool,
+		/obj/item/pipe_painter,
+		/obj/item/radio,
+		/obj/item/t_scanner,
+		/obj/item/tool/crowbar,
+		/obj/item/tool/screwdriver,
+		/obj/item/weldingtool,
+		/obj/item/tool/wirecutters,
+		/obj/item/tool/wrench,
+		/obj/item/tank/emergency/oxygen,
+		/obj/item/clothing/mask/gas,
+		/obj/item/taperoll/engineering,
+		/obj/item/taperoll/atmos,
+		/obj/item/analyzer,
+		/obj/item/extinguisher/mini) //VOREStation edit. Few more tools that can be put on vests
 	body_parts_covered = UPPER_TORSO
 
 /obj/item/clothing/suit/storage/hazardvest/blue

@@ -72,12 +72,8 @@
 	attack_edge = TRUE
 	melee_attack_delay = 1 SECOND
 
-<<<<<<< HEAD
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/crabmeat
+	meat_type = /obj/item/reagent_containers/food/snacks/crabmeat
 	meat_amount = 6
-=======
-	meat_type = /obj/item/reagent_containers/food/snacks/meat/crab
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	response_help  = "pets"
 	response_disarm = "gently pushes aside"

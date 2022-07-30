@@ -167,10 +167,6 @@
 	stored_files = null
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/computer_hardware/hard_drive/New()
-=======
 /obj/item/computer_hardware/hard_drive/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	install_default_programs()
 	..()

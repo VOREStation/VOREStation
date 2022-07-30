@@ -57,7 +57,7 @@
 
 	can_enter_vent_with = list(
 		/obj/item/weapon/implant,
-		/obj/item/device/radio/borg,
+		/obj/item/radio/borg,
 		/obj/item/weapon/holder,
 		/obj/machinery/camera,
 		/obj/belly,
@@ -74,19 +74,19 @@
 		/obj/item/weapon/disk/nuclear,
 		/obj/item/toy,
 		/obj/item/weapon/card,
-		/obj/item/device/radio,
-		/obj/item/device/perfect_tele_beacon,
+		/obj/item/radio,
+		/obj/item/perfect_tele_beacon,
 		/obj/item/weapon/clipboard,
 		/obj/item/weapon/paper,
 		/obj/item/weapon/pen,
 		/obj/item/canvas,
 		/obj/item/paint_palette,
 		/obj/item/paint_brush,
-		/obj/item/device/camera,
+		/obj/item/camera,
 		/obj/item/weapon/photo,
-		/obj/item/device/camera_film,
-		/obj/item/device/taperecorder,
-		/obj/item/device/tape
+		/obj/item/camera_film,
+		/obj/item/taperecorder,
+		/obj/item/tape
 		)
 
 	vore_active = 1
@@ -703,10 +703,10 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/capslug/Initialize() 		//This is such an awful proc, but if someone wants it better they're welcome to have a go at it.
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = PUB_FREQ
-	mob_radio.ks2type = /obj/item/device/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
-	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/heads/captain(mob_radio)
+	mob_radio.ks2type = /obj/item/encryptionkey/heads/captain 		//Might not be able to speak, but the catslug can listen.
+	mob_radio.keyslot2 = new /obj/item/encryptionkey/heads/captain(mob_radio)
 	mob_radio.recalculateChannels(1)
 	mobcard.access |= get_all_station_access()
 
@@ -714,7 +714,7 @@
 //Admin-spawn only catslugs below - Expect overpowered things & silliness below
 //=============================================================================
 
-//Deathsquad catslug 
+//Deathsquad catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug
 	name = "Asset Purrtection"
 	desc = "What are you doing staring at this angry little fella? <b>Run.</b>"
@@ -739,7 +739,7 @@
 		"bomb" = 40,
 		"bio" = 100,
 		"rad" = 100
-		)	
+		)
 
 	minbodytemp = 0
 	maxbodytemp = 5000
@@ -748,11 +748,11 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug/Initialize()
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
 	mobcard.access |= get_all_station_access()
-	
-//Syndicate catslug 
+
+//Syndicate catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug
 	name = "Mercenyary"
 	desc = "What are you doing staring at this crimson-hardsuit wearing angry little fella? <b>Run.</b>"
@@ -769,7 +769,7 @@
 	health = 100
 	taser_kill = 0
 	melee_damage_lower = 15
-	melee_damage_upper = 20	
+	melee_damage_upper = 20
 	mob_size = MOB_MEDIUM		//Something something hardsuits are heavy.
 	siemens_coefficient = 0
 	armor = list(
@@ -780,7 +780,7 @@
 		"bomb" = 80,
 		"bio" = 100,
 		"rad" = 60
-		)	
+		)
 
 	minbodytemp = 0
 	maxbodytemp = 5000
@@ -789,15 +789,15 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug/Initialize()
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
 	mob_radio.frequency = SYND_FREQ
 	mob_radio.syndie = 1
-	mob_radio.ks2type = /obj/item/device/encryptionkey/syndicate
-	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/syndicate(mob_radio)
+	mob_radio.ks2type = /obj/item/encryptionkey/syndicate
+	mob_radio.keyslot2 = new /obj/item/encryptionkey/syndicate(mob_radio)
 	mob_radio.recalculateChannels(1)
 	mobcard.access |= get_all_station_access()
 
-//ERT catslug 
+//ERT catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug
 	name = "Emeowgency Responder"
 	desc = "The cavalry has arrived."
@@ -822,7 +822,7 @@
 		"bomb" = 30,
 		"bio" = 100,
 		"rad" = 100
-		)	
+		)
 
 	minbodytemp = 0
 	maxbodytemp = 5000
@@ -833,11 +833,11 @@
 
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/Initialize()
 	. = ..()
-	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
-	mob_radio.frequency = ERT_FREQ 
+	mob_radio = new /obj/item/radio/headset/mob_headset(src)
+	mob_radio.frequency = ERT_FREQ
 	mob_radio.centComm = 1
-	mob_radio.ks2type = /obj/item/device/encryptionkey/ert
-	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/ert(mob_radio)
+	mob_radio.ks2type = /obj/item/encryptionkey/ert
+	mob_radio.keyslot2 = new /obj/item/encryptionkey/ert(mob_radio)
 	mob_radio.recalculateChannels(1)
 	mobcard.access |= get_all_station_access()
 

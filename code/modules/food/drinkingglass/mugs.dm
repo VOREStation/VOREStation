@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* Warm Mugs!
  *
  * Contains:
@@ -11,10 +10,7 @@
 /*
  * Britcup
  */
-/obj/item/weapon/reagent_containers/food/drinks/britcup
-=======
 /obj/item/reagent_containers/food/drinks/britcup
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "cup"
 	desc = "A cup with the British flag emblazoned on it."
 	icon_state = "britcup"
@@ -24,11 +20,10 @@
 /obj/item/reagent_containers/food/drinks/britcup/on_reagent_change()
 	..()
 
-<<<<<<< HEAD
 /*
  * Text Mug
  */
-/obj/item/weapon/reagent_containers/food/drinks/textmug
+/obj/item/reagent_containers/food/drinks/textmug
 	name = "mug with text"
 	desc = "A mug with something written on it."
 	icon = 'icons/obj/drinks_vr.dmi'
@@ -39,10 +34,7 @@
 /*
  * Coffee Mugs
  */
-/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug
-=======
 /obj/item/reagent_containers/food/drinks/glass2/coffeemug
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "coffee mug"
 	base_name = "mug"
 	desc = "A plain white coffee mug."
@@ -180,14 +172,6 @@
 	desc = "A coffee cup with the a flame emblazoned on it."
 	icon_state = "coffeecup_flame"
 
-<<<<<<< HEAD
-=======
-/obj/item/reagent_containers/food/drinks/glass2/coffeemug/tourist
-	name = "\improper Northern Star coffee mug"
-	desc = "A novelty coffee mug depicting the NCS Northern Star."
-	base_icon = "coffeecup_northstar"
-
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 // Pure colors & other
 /obj/item/reagent_containers/food/drinks/glass2/coffeemug/black
 	name = "black coffee mug"
@@ -224,16 +208,10 @@
 	base_icon = "glasscoffeecup"
 	fillsource = "glasscoffeecup"
 
-<<<<<<< HEAD
 /*
  * Tall Mugs
  */
-/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/tall
-=======
-
-// Tall coffee mugs
 /obj/item/reagent_containers/food/drinks/glass2/coffeemug/tall
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "tall coffee mug"
 	desc = "An unreasonably tall coffee mug, for when you really need to wake up in the morning."
 	icon = 'icons/obj/drinks_mugs_tall.dmi'

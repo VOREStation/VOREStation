@@ -241,10 +241,6 @@
 	compresses_to = "void opal"
 	result_amount = 5
 	spread_chance = 1
-<<<<<<< HEAD
-	ore = /obj/item/weapon/ore/void_opal
-=======
-	ore = /obj/item/ore/magmellite
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	ore = /obj/item/ore/void_opal
 	scan_icon = "mineral_rare"
 */

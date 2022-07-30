@@ -37,13 +37,8 @@
 	contains = list(
 			/obj/item/gun/projectile/sec/flash,
 			/obj/item/ammo_magazine/m45/flash,
-<<<<<<< HEAD
-			/obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare,
-			/obj/item/ammo_magazine/ammo_box/b12g/flash
-=======
 			/obj/item/gun/projectile/shotgun/doublebarrel/flare,
-			/obj/item/storage/box/flashshells
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			/obj/item/ammo_magazine/ammo_box/b12g/flash
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -62,11 +57,7 @@
 
 /datum/supply_pack/munitions/energyweapons
 	name = "Weapons - Laser rifle crate"
-<<<<<<< HEAD
-	contains = list(/obj/item/weapon/gun/energy/laser = 2) //VOREStation Edit - Made to be consistent with the energy guns crate.
-=======
-	contains = list(/obj/item/gun/energy/laser = 3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	contains = list(/obj/item/gun/energy/laser = 2) //VOREStation Edit - Made to be consistent with the energy guns crate.
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/heph
 	containername = "Energy weapons crate"
@@ -75,15 +66,9 @@
 /datum/supply_pack/munitions/shotgun
 	name = "Weapons - Shotgun crate"
 	contains = list(
-<<<<<<< HEAD
 			/obj/item/ammo_magazine/ammo_box/b12g,
 			/obj/item/ammo_magazine/ammo_box/b12g/pellet,
-			/obj/item/weapon/gun/projectile/shotgun/pump/combat = 2
-=======
-			/obj/item/storage/box/shotgunammo,
-			/obj/item/storage/box/shotgunshells,
 			/obj/item/gun/projectile/shotgun/pump/combat = 2
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -224,13 +209,8 @@
 /datum/supply_pack/munitions/shotgunammo
 	name = "Ammunition - Shotgun shells"
 	contains = list(
-<<<<<<< HEAD
 			/obj/item/ammo_magazine/ammo_box/b12g = 2,
 			/obj/item/ammo_magazine/ammo_box/b12g/pellet = 2
-=======
-			/obj/item/storage/box/shotgunammo = 2,
-			/obj/item/storage/box/shotgunshells = 2
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure/weapon
@@ -239,11 +219,7 @@
 
 /datum/supply_pack/munitions/beanbagammo
 	name = "Ammunition - Beanbag shells"
-<<<<<<< HEAD
 	contains = list(/obj/item/ammo_magazine/ammo_box/b12g/beanbag = 3)
-=======
-	contains = list(/obj/item/storage/box/beanbags = 3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	cost = 25
 	containertype = /obj/structure/closet/crate
 	containername = "Ballistic ammunition crate"

@@ -1,5 +1,5 @@
 // The Gun //
-/obj/item/weapon/gun/projectile/cell_loaded //this one can load both medical and security cells! for ERT/admin use.
+/obj/item/gun/projectile/cell_loaded //this one can load both medical and security cells! for ERT/admin use.
 	name = "multipurpose cell-loaded revolver"
 	desc = "Variety is the spice of life! This weapon is a hybrid of the KHI-102b 'Nanotech Selectable-Fire Weapon' and the Vey-Med ML-3 'Medigun', dubbed the 'NSFW-ML3M'. \
 	It can fire both harmful and healing cells with an internal nanite fabricator and energy weapon cell loader. Up to three combinations of \
@@ -27,7 +27,7 @@
 	var/max_charge = 0
 	charge_sections = 5
 
-/obj/item/weapon/gun/projectile/cell_loaded/consume_next_projectile()
+/obj/item/gun/projectile/cell_loaded/consume_next_projectile()
 	if(chambered && ammo_magazine)
 		var/obj/item/ammo_casing/microbattery/batt = chambered
 		if(batt.shots_left)
@@ -40,7 +40,7 @@
 
 	return null
 
-/obj/item/weapon/gun/projectile/cell_loaded/proc/update_charge()
+/obj/item/gun/projectile/cell_loaded/proc/update_charge()
 	charge_left = 0
 	max_charge = 0
 
@@ -55,7 +55,7 @@
 				charge_left += bullet.shots_left
 				max_charge += initial(bullet.shots_left)
 
-/obj/item/weapon/gun/projectile/cell_loaded/proc/switch_to(obj/item/ammo_casing/microbattery/new_batt)
+/obj/item/gun/projectile/cell_loaded/proc/switch_to(obj/item/ammo_casing/microbattery/new_batt)
 	if(ishuman(loc))
 		if(chambered && new_batt.type == chambered.type)
 			to_chat(loc,"<span class='warning'>\The [src] is now using the next [new_batt.type_name] power cell.</span>")
@@ -65,11 +65,11 @@
 	chambered = new_batt
 	update_charge()
 	update_icon()
-	var/mob/living/M = loc // TGMC Ammo HUD 
-	if(istype(M)) // TGMC Ammo HUD 
+	var/mob/living/M = loc // TGMC Ammo HUD
+	if(istype(M)) // TGMC Ammo HUD
 		M?.hud_used.update_ammo_hud(M, src)
 
-/obj/item/weapon/gun/projectile/cell_loaded/attack_self(mob/user)
+/obj/item/gun/projectile/cell_loaded/attack_self(mob/user)
 	if(!chambered)
 		return
 
@@ -88,7 +88,7 @@
 			switch_to(next_batt)
 			break
 /*
-/obj/item/weapon/gun/projectile/cell_loaded/special_check(mob/user)
+/obj/item/gun/projectile/cell_loaded/special_check(mob/user)
 	if(!chambered)
 		return
 
@@ -98,16 +98,16 @@
 
 	return TRUE
 */
-/obj/item/weapon/gun/projectile/cell_loaded/load_ammo(var/obj/item/A, mob/user)
+/obj/item/gun/projectile/cell_loaded/load_ammo(var/obj/item/A, mob/user)
 	. = ..()
 	if(ammo_magazine && ammo_magazine.stored_ammo.len)
 		switch_to(ammo_magazine.stored_ammo[1])
 
-/obj/item/weapon/gun/projectile/cell_loaded/unload_ammo(mob/user, var/allow_dump=1)
+/obj/item/gun/projectile/cell_loaded/unload_ammo(mob/user, var/allow_dump=1)
 	chambered = null
 	return ..()
 
-/obj/item/weapon/gun/projectile/cell_loaded/update_icon()
+/obj/item/gun/projectile/cell_loaded/update_icon()
 	update_charge()
 
 	cut_overlays()
@@ -155,7 +155,7 @@
 
 	var/list/modes = list()
 
-/obj/item/ammo_magazine/cell_mag/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/ammo_magazine/cell_mag/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/ammo_casing/microbattery))
 		var/obj/item/ammo_casing/microbattery/B = W
 		if(!istype(B, ammo_type))
@@ -170,8 +170,8 @@
 		update_icon()
 	playsound(src, 'sound/weapons/flipblade.ogg', 50, 1)
 	update_icon()
-	if(istype(loc, /obj/item/weapon/gun/projectile/cell_loaded)) // Update the HUD if we're in a gun + have a user. Not that one should be able to reload the mag while it's in a gun, but just in caaaaase.
-		var/obj/item/weapon/gun/projectile/cell_loaded/cell_load = loc
+	if(istype(loc, /obj/item/gun/projectile/cell_loaded)) // Update the HUD if we're in a gun + have a user. Not that one should be able to reload the mag while it's in a gun, but just in caaaaase.
+		var/obj/item/gun/projectile/cell_loaded/cell_load = loc
 		var/mob/living/M = cell_load.loc
 		if(istype(M))
 			M?.hud_used.update_ammo_hud(M, cell_load)
@@ -241,16 +241,16 @@
 
 
 // The Pack //
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid
 	name = "hybrid cell-loaded gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
+	can_hold = list(/obj/item/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid/New()
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid/New()
 	..()
-	new /obj/item/weapon/gun/projectile/cell_loaded(src)
+	new /obj/item/gun/projectile/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/stun(src)
 	new /obj/item/ammo_casing/microbattery/combat/stun(src)
@@ -263,16 +263,16 @@
 	new /obj/item/ammo_casing/microbattery/medical/toxin3(src)
 	new /obj/item/ammo_casing/microbattery/medical/omni3(src)
 
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat
 	name = "military cell-loaded gun kit"
 	desc = "A storage case for a multi-purpose handgun. Variety hour!"
 	w_class = ITEMSIZE_NORMAL
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/weapon/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
+	can_hold = list(/obj/item/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
-/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hybrid_combat/New()
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat/New()
 	..()
-	new /obj/item/weapon/gun/projectile/cell_loaded(src)
+	new /obj/item/gun/projectile/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/shotstun(src)
 	new /obj/item/ammo_casing/microbattery/combat/shotstun(src)
@@ -284,22 +284,22 @@
 	new /obj/item/ammo_casing/microbattery/medical/stabilize2(src)
 	new /obj/item/ammo_casing/microbattery/medical/haste(src)
 	new /obj/item/ammo_casing/microbattery/medical/resist(src)
-	
+
 // TGMC Ammo HUD: Custom handling for cell-loaded weaponry.
 /*
-/obj/item/weapon/gun/projectile/cell_loaded/get_ammo_type()
+/obj/item/gun/projectile/cell_loaded/get_ammo_type()
 	if(!projectile_type)
 		return list("unknown", "unknown")
 	else
 		var/obj/item/projectile/P = projectile_type
 		return list(initial(P.hud_state), initial(P.hud_state_empty))
 */
-/obj/item/weapon/gun/projectile/cell_loaded/get_ammo_count()
+/obj/item/gun/projectile/cell_loaded/get_ammo_count()
 	if(!chambered)
 		return 0 // We're not chambered, so we have 0 rounds loaded.
 
 	var/obj/item/ammo_casing/microbattery/batt = chambered
-	
+
 	var/shots
 	if(ammo_magazine) // Check how much ammo we have
 		for(var/obj/item/ammo_casing/microbattery/bullet as anything in ammo_magazine.stored_ammo)

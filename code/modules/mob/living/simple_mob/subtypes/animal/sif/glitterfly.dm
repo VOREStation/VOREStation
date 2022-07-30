@@ -55,15 +55,9 @@
 	organ_names = /decl/mob_organ_names/smallflying
 
 	tame_items = list(
-<<<<<<< HEAD
-	/obj/item/weapon/reagent_containers/food/snacks/grown = 90,
-	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 10,
-	/obj/item/weapon/reagent_containers/food/snacks/meat = 5
-=======
 	/obj/item/reagent_containers/food/snacks/grown = 90,
-	/obj/item/reagent_containers/food/snacks/meat/crab = 10,
+	/obj/item/reagent_containers/food/snacks/crabmeat = 10,
 	/obj/item/reagent_containers/food/snacks/meat = 5
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 	say_list_type = /datum/say_list/glitterfly

@@ -25,11 +25,7 @@
 	tool_qualities = list(TOOL_SCREWDRIVER)
 	var/random_color = TRUE
 
-<<<<<<< HEAD
-/obj/item/weapon/tool/screwdriver/New()
-=======
 /obj/item/tool/screwdriver/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(random_color)
 		switch(pick("red","blue","purple","brown","green","cyan","yellow"))
 			if ("red")
@@ -129,13 +125,8 @@
 	random_color = FALSE
 	var/obj/item/tool/wrench/power/counterpart = null
 
-<<<<<<< HEAD
-/obj/item/weapon/tool/screwdriver/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
-=======
 /obj/item/tool/screwdriver/power/Initialize(var/ml, no_counterpart = TRUE)
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

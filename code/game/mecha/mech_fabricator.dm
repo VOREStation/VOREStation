@@ -106,13 +106,8 @@
 	var/T = 0
 	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		T += M.rating
-<<<<<<< HEAD
-	component_coeff = max(1 - (T - 1) / 4, 0.2) // 1 -> 0.2
-	for(var/obj/item/weapon/stock_parts/micro_laser/M in component_parts) // Not resetting T is intended; time_coeff is affected by both
-=======
 	mat_efficiency = max(1 - (T - 1) / 4, 0.2) // 1 -> 0.2
 	for(var/obj/item/stock_parts/micro_laser/M in component_parts) // Not resetting T is intended; speed is affected by both
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		T += M.rating
 	time_coeff = T / 2 // 1 -> 3
 	update_tgui_static_data(usr)

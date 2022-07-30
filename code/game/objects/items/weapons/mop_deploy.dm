@@ -15,11 +15,7 @@
 	var/mopcount = 0
 
 
-<<<<<<< HEAD
-/obj/item/weapon/mop_deploy/New()
-=======
 /obj/item/mop_deploy/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	create_reagents(5)
 	START_PROCESSING(SSobj, src)
 

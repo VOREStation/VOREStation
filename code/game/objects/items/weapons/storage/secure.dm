@@ -35,13 +35,8 @@
 
 /obj/item/storage/secure/attackby(obj/item/W as obj, mob/user as mob)
 	if(locked)
-<<<<<<< HEAD
-		if (istype(W, /obj/item/weapon/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
-			var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread()
-=======
 		if (istype(W, /obj/item/melee/energy/blade) && emag_act(INFINITY, user, "You slice through the lock of \the [src]"))
 			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			spark_system.set_up(5, 0, src.loc)
 			spark_system.start()
 			playsound(src, 'sound/weapons/blade1.ogg', 50, 1)
@@ -90,11 +85,11 @@
 	tgui_interact(user)
 
 /obj/item/storage/secure/tgui_interact(mob/user, datum/tgui/ui = null)
-	ui = SStgui.try_update_ui(user, src, ui)	
+	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SecureSafe", name)
 		ui.open()
-		
+
 /obj/item/storage/secure/tgui_data(mob/user)
 	var/list/data = list()
 	data["locked"] = locked
@@ -191,15 +186,9 @@
 	force = 8.0
 	w_class = ITEMSIZE_NO_CONTAINER
 	max_w_class = ITEMSIZE_LARGE // This was 8 previously...
-<<<<<<< HEAD
 	anchored = TRUE
 	density = FALSE
-	cant_hold = list(/obj/item/weapon/storage/secure/briefcase)
-=======
-	anchored = 1.0
-	density = 0
 	cant_hold = list(/obj/item/storage/secure/briefcase)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	starts_with = list(
 		/obj/item/paper,
 		/obj/item/pen

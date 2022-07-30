@@ -14,18 +14,18 @@
 /datum/uplink_item/item/tools/suitcooler
 	name = "Emergency Suit Cooler"
 	item_cost = 2
-	path = /obj/item/device/suit_cooling_unit/emergency
+	path = /obj/item/suit_cooling_unit/emergency
 
 /datum/uplink_item/item/tools/beacon_op
 	name = "Holomap Beacon-M"
 	item_cost = 2
-	path = /obj/item/device/holomap_beacon/operative
+	path = /obj/item/holomap_beacon/operative
 	antag_roles = list("mercenary")
 
 /datum/uplink_item/item/tools/beacon_ert
 	name = "Holomap Beacon-E"
 	item_cost = 2
-	path = /obj/item/device/holomap_beacon/ert
+	path = /obj/item/holomap_beacon/ert
 	antag_roles = list("ert")
 
 /datum/uplink_item/item/tools/basiclaptop
@@ -36,12 +36,12 @@
 /datum/uplink_item/item/tools/survivalcapsule
 	name = "Survival Capsule"
 	item_cost = 5
-	path = /obj/item/device/survivalcapsule
+	path = /obj/item/survivalcapsule
 
 /datum/uplink_item/item/tools/popcabin
 	name = "Cabin Capsule"
 	item_cost = 5
-	path = /obj/item/device/survivalcapsule/popcabin
+	path = /obj/item/survivalcapsule/popcabin
 
 /datum/uplink_item/item/tools/nanopaste
 	name = "Nanopaste (Advanced)"
@@ -91,31 +91,31 @@
 /datum/uplink_item/item/tools/mappingunit_op
 	name = "Mapping Unit-M"
 	item_cost = 20
-	path = /obj/item/device/mapping_unit/operative
+	path = /obj/item/mapping_unit/operative
 	antag_roles = list("mercenary")
 
 /datum/uplink_item/item/tools/mappingunit_ert
 	name = "Mapping Unit-E"
 	item_cost = 20
-	path = /obj/item/device/mapping_unit/ert
+	path = /obj/item/mapping_unit/ert
 	antag_roles = list("ert")
 
 /datum/uplink_item/item/tools/luxurycapsule
 	name = "Survival Capsule (Luxury)"
 	item_cost = 40
-	path = /obj/item/device/survivalcapsule/luxury
+	path = /obj/item/survivalcapsule/luxury
 
 /datum/uplink_item/item/tools/translocator
 	name = "Translocator"
 	item_cost = 40
-	path = /obj/item/device/perfect_tele
+	path = /obj/item/perfect_tele
 
 /datum/uplink_item/item/tools/uav
 	name = "Recon Skimmer"
 	item_cost = 40
-	path = /obj/item/device/uav
+	path = /obj/item/uav
 
 /datum/uplink_item/item/tools/barcapsule
 	name = "Survival Capsule (Bar)"
 	item_cost = 80
-	path = /obj/item/device/survivalcapsule/luxurybar
+	path = /obj/item/survivalcapsule/luxurybar

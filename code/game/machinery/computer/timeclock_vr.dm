@@ -19,11 +19,11 @@
 	var/channel = "Common" //Radio channel to announce on
 
 	var/obj/item/weapon/card/id/card // Inserted Id card
-	var/obj/item/device/radio/intercom/announce	// Integreated announcer
+	var/obj/item/radio/intercom/announce	// Integreated announcer
 
 
 /obj/machinery/computer/timeclock/New()
-	announce = new /obj/item/device/radio/intercom(src)
+	announce = new /obj/item/radio/intercom(src)
 	..()
 
 /obj/machinery/computer/timeclock/Destroy()

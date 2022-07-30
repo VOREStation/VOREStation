@@ -103,7 +103,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "u" = (
-/obj/item/weapon/newspaper{
+/obj/item/newspaper{
 	pixel_x = 4
 	},
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
@@ -159,7 +159,7 @@
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "E" = (
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/mine/explored/underdark)
 "F" = (
@@ -202,11 +202,11 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "R" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "S" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/mineral/floor/virgo3b{
 	ignore_mapgen = 1
 	},
@@ -216,7 +216,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/mine/explored/underdark)
 "W" = (
-/obj/item/weapon/bone/skull,
+/obj/item/bone/skull,
 /turf/simulated/mineral/floor/virgo3b{
 	ignore_mapgen = 1
 	},

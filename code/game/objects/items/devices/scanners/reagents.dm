@@ -1,4 +1,4 @@
-/obj/item/device/reagent_scanner
+/obj/item/reagent_scanner
 	name = "reagent scanner"
 	desc = "A hand-held reagent scanner which identifies chemical agents."
 	icon_state = "spectrometer"
@@ -14,7 +14,7 @@
 	var/details = 0
 	var/recent_fail = 0
 
-/obj/item/device/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
+/obj/item/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
 	if(!proximity || user.stat || !istype(O))
 		return
 	if(!istype(user))
@@ -39,7 +39,7 @@
 
 	return
 
-/obj/item/device/reagent_scanner/adv
+/obj/item/reagent_scanner/adv
 	name = "advanced reagent scanner"
 	icon_state = "adv_spectrometer"
 	details = 1

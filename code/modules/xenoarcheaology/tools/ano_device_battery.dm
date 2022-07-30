@@ -11,16 +11,12 @@
 	name = "advanced anomaly battery"
 	capacity = 3000
 
-<<<<<<< HEAD
 /*
-/obj/item/weapon/anobattery/New()
+/obj/item/anobattery/New()
 	battery_effect = new()
 */
 
-/obj/item/weapon/anobattery/proc/UpdateSprite()
-=======
 /obj/item/anobattery/proc/UpdateSprite()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/p = (stored_charge/capacity)*100
 	p = min(p, 100)
 	icon_state = "anobattery[round(p,25)]"
@@ -42,13 +38,8 @@
 	var/turf/archived_loc
 	var/energy_consumed_on_touch = 100
 
-<<<<<<< HEAD
-/obj/item/weapon/anodevice/New()
-	..()
-=======
 /obj/item/anodevice/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	START_PROCESSING(SSobj, src)
 
 /obj/item/anodevice/attackby(var/obj/I as obj, var/mob/user as mob)
@@ -62,20 +53,19 @@
 	else
 		return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/anodevice/attack_self(var/mob/user as mob)
+/obj/item/anodevice/attack_self(var/mob/user as mob)
 	return tgui_interact(user)
 
-/obj/item/weapon/anodevice/tgui_state(mob/user)
+/obj/item/anodevice/tgui_state(mob/user)
 	return GLOB.tgui_inventory_state
 
-/obj/item/weapon/anodevice/tgui_interact(mob/user, datum/tgui/ui)
+/obj/item/anodevice/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "XenoarchHandheldPowerUtilizer", name)
 		ui.open()
 
-/obj/item/weapon/anodevice/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/anodevice/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
 
 	data["inserted_battery"] = inserted_battery
@@ -86,13 +76,6 @@
 	data["activated"] = null
 	data["duration"] = null
 	data["interval"] = null
-=======
-/obj/item/anodevice/attack_self(var/mob/user as mob)
-	return src.interact(user)
-
-/obj/item/anodevice/interact(var/mob/user)
-	var/dat = "<b>Anomalous Materials Energy Utiliser</b><br>"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(inserted_battery)
 		data["anomaly"] = inserted_battery?.battery_effect?.artifact_id
 		data["charge"] = inserted_battery.stored_charge
@@ -104,7 +87,7 @@
 
 	return data
 
-/obj/item/weapon/anodevice/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
+/obj/item/anodevice/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())
 		return TRUE
 
@@ -208,47 +191,7 @@
 		if(inserted_battery?.battery_effect?.activated)
 			inserted_battery.battery_effect.ToggleActivate(1)
 
-<<<<<<< HEAD
-/obj/item/weapon/anodevice/proc/UpdateSprite()
-=======
-/obj/item/anodevice/Topic(href, href_list)
-
-	if(href_list["changetime"])
-		var/timedif = text2num(href_list["changetime"])
-		if(href_list["duration"])
-			duration += timedif
-			//max 30 sec duration
-			duration = min(max(duration, 0), 300)
-			if(activated)
-				time_end += timedif
-		else if(href_list["interval"])
-			interval += timedif
-			//max 10 sec interval
-			interval = min(max(interval, 0), 100)
-	if(href_list["startup"])
-		if(inserted_battery && inserted_battery.battery_effect && (inserted_battery.stored_charge > 0) )
-			activated = 1
-			src.visible_message("<font color='blue'>[bicon(src)] [src] whirrs.</font>", "[bicon(src)]<font color='blue'>You hear something whirr.</font>")
-			if(!inserted_battery.battery_effect.activated)
-				inserted_battery.battery_effect.ToggleActivate(1)
-			time_end = world.time + duration
-			last_process = world.time
-	if(href_list["shutdown"])
-		activated = 0
-	if(href_list["ejectbattery"])
-		shutdown_emission()
-		inserted_battery.loc = get_turf(src)
-		inserted_battery = null
-		UpdateSprite()
-	if(href_list["close"])
-		usr << browse(null, "window=anodevice")
-	else if(ismob(src.loc))
-		var/mob/M = src.loc
-		src.interact(M)
-	..()
-
 /obj/item/anodevice/proc/UpdateSprite()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!inserted_battery)
 		icon_state = "anodev"
 		return

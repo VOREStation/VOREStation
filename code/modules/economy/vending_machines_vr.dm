@@ -20,7 +20,7 @@
 
 /obj/machinery/vending/medical/New()
 	products += list(/obj/item/weapon/storage/box/khcrystal = 4,/obj/item/weapon/backup_implanter = 3,
-					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/device/glasses_kit = 1,  /obj/item/weapon/storage/quickdraw/syringe_case = 4)
+					/obj/item/clothing/glasses/omnihud/med = 4, /obj/item/glasses_kit = 1,  /obj/item/weapon/storage/quickdraw/syringe_case = 4)
 	..()
 
 // Food Machines (for event/away maps)
@@ -335,18 +335,18 @@
 					/obj/item/weapon/storage/box/syndie_kit/chameleon = 1,
 					/obj/item/clothing/mask/bandana = 1,
 					/obj/item/clothing/glasses/sunglasses = 1,
-					/obj/item/device/radio/headset/syndicate/alt = 1,
-					/obj/item/device/pda = 1,
-					/obj/item/device/communicator = 1,
+					/obj/item/radio/headset/syndicate/alt = 1,
+					/obj/item/pda = 1,
+					/obj/item/communicator = 1,
 					/obj/item/weapon/tape_roll = 2,
 					/obj/item/weapon/handcuffs = 4,
 					/obj/item/weapon/handcuffs/legcuffs = 4,
 					/obj/item/weapon/cell/device/weapon/recharge/alien = 2,
-					/obj/item/device/chameleon = 1,
+					/obj/item/chameleon = 1,
 					/obj/item/weapon/storage/mre/menu11 = 2,
-					/obj/item/device/flash = 2,
+					/obj/item/flash = 2,
 					/obj/item/weapon/pen/reagent/paralysis = 4,
-					/obj/item/device/perfect_tele/alien = 1
+					/obj/item/perfect_tele/alien = 1
 					)
 	vend_delay = 15
 
@@ -491,8 +491,8 @@
 	product_ads = "Don't get caught naked!;Pick up your uniform!;Using compressed matter cartridges and VERY ETHICAL labor practices, we bring you the uniforms you need!;No uniform? No problem!;We've got your covered!;The Basics is not responsible for being crushed under the amount of things inside our machines. DO NOT VEND IN EXCESS!!"
 	icon_state = "loadout"
 	vend_delay = 16
-	products = list(/obj/item/device/pda = 50,
-					/obj/item/device/radio/headset = 50,
+	products = list(/obj/item/pda = 50,
+					/obj/item/radio/headset = 50,
 					/obj/item/weapon/storage/backpack/ = 10,
 					/obj/item/weapon/storage/backpack/messenger = 10,
 					/obj/item/weapon/storage/backpack/satchel = 10,
@@ -638,7 +638,7 @@
 					/obj/item/clothing/mask/surgical = 5,
 					/obj/item/clothing/accessory/pride/bi = 5,
 					/obj/item/clothing/accessory/pride/trans = 5,
-					/obj/item/clothing/accessory/pride/ace = 5, 
+					/obj/item/clothing/accessory/pride/ace = 5,
 					/obj/item/clothing/accessory/pride/enby = 5,
 					/obj/item/clothing/accessory/pride/pan = 5,
 					/obj/item/clothing/accessory/pride/lesbian = 5,
@@ -763,7 +763,7 @@
 					/obj/item/clothing/mask/surgical = 50,
 					/obj/item/clothing/accessory/pride/bi = 50,
 					/obj/item/clothing/accessory/pride/trans = 50,
-					/obj/item/clothing/accessory/pride/ace = 50, 
+					/obj/item/clothing/accessory/pride/ace = 50,
 					/obj/item/clothing/accessory/pride/enby = 50,
 					/obj/item/clothing/accessory/pride/pan = 50,
 					/obj/item/clothing/accessory/pride/lesbian = 50,
@@ -1513,21 +1513,21 @@
 					/obj/item/clothing/under/circuitry = 1,
 					/obj/item/clothing/glasses/circuitry = 1,
 					/obj/item/clothing/ears/circuitry = 1,
-					/obj/item/device/text_to_speech = 5,
-					/obj/item/device/paicard = 5,
-					/obj/item/device/communicator = 10,
-					/obj/item/device/communicator/watch = 10,
-					/obj/item/device/radio = 10,
-					/obj/item/device/camera = 5,
-					/obj/item/device/taperecorder = 5,
+					/obj/item/text_to_speech = 5,
+					/obj/item/paicard = 5,
+					/obj/item/communicator = 10,
+					/obj/item/communicator/watch = 10,
+					/obj/item/radio = 10,
+					/obj/item/camera = 5,
+					/obj/item/taperecorder = 5,
 					/obj/item/modular_computer/tablet/preset/custom_loadout/cheap = 5,
-					/obj/item/device/pda = 10,
-					/obj/item/device/radio/headset = 10,
-					/obj/item/device/flashlight = 5,
-					/obj/item/device/laser_pointer = 3,
+					/obj/item/pda = 10,
+					/obj/item/radio/headset = 10,
+					/obj/item/flashlight = 5,
+					/obj/item/laser_pointer = 3,
 					/obj/item/clothing/glasses/omnihud = 10,
-					/obj/item/device/walkpod = 5,
-					/obj/item/device/juke_remote = 1,
+					/obj/item/walkpod = 5,
+					/obj/item/juke_remote = 1,
 					/obj/item/instrument/piano_synth/headphones = 2, // You're making a subsystem do work, I don't want it TOO busy
 					/obj/item/instrument/piano_synth/headphones/spacepods = 2,
 					/obj/item/clothing/gloves/bluespace = 5)
@@ -1538,25 +1538,25 @@
 					/obj/item/clothing/under/circuitry = 100,
 					/obj/item/clothing/glasses/circuitry = 100,
 					/obj/item/clothing/ears/circuitry = 100,
-					/obj/item/device/text_to_speech = 300,
-					/obj/item/device/paicard = 100,
-					/obj/item/device/communicator = 100,
-					/obj/item/device/communicator/watch = 100,
-					/obj/item/device/radio = 100,
-					/obj/item/device/camera = 100,
-					/obj/item/device/taperecorder = 100,
+					/obj/item/text_to_speech = 300,
+					/obj/item/paicard = 100,
+					/obj/item/communicator = 100,
+					/obj/item/communicator/watch = 100,
+					/obj/item/radio = 100,
+					/obj/item/camera = 100,
+					/obj/item/taperecorder = 100,
 					/obj/item/modular_computer/tablet/preset/custom_loadout/cheap = 1000,
-					/obj/item/device/pda = 50,
-					/obj/item/device/radio/headset = 50,
-					/obj/item/device/flashlight = 100,
-					/obj/item/device/laser_pointer = 200,
+					/obj/item/pda = 50,
+					/obj/item/radio/headset = 50,
+					/obj/item/flashlight = 100,
+					/obj/item/laser_pointer = 200,
 					/obj/item/clothing/glasses/omnihud = 100,
-					/obj/item/device/walkpod = 300,
-					/obj/item/device/juke_remote = 1000,
+					/obj/item/walkpod = 300,
+					/obj/item/juke_remote = 1000,
 					/obj/item/instrument/piano_synth/headphones = 200,
 					/obj/item/instrument/piano_synth/headphones/spacepods = 600,
 					/obj/item/clothing/gloves/bluespace = 500)
-	premium = list(/obj/item/device/perfect_tele/one_beacon = 1)
+	premium = list(/obj/item/perfect_tele/one_beacon = 1)
 	contraband = list(/obj/item/weapon/disk/nifsoft/compliance = 1)
 
 // Loadout Vending Machines End
@@ -1567,7 +1567,7 @@
 	product_ads = "Don't let your art be stifled!;Remember, practice makes perfect!;Break a leg!;Don't make me get the cane!;Thespian's Delight entering stage right!;Costumes for your acting needs!"
 	icon = 'icons/obj/vending.dmi'
 	icon_state = "theater"
-	products = list(/obj/item/device/radio/headset = 5,
+	products = list(/obj/item/radio/headset = 5,
 					/obj/item/weapon/storage/backpack/ = 5,
 					/obj/item/weapon/storage/backpack/messenger = 5,
 					/obj/item/weapon/storage/backpack/satchel = 5,
@@ -1729,9 +1729,9 @@
 	product_ads = "Don't get caught naked!;Pick up your uniform!;Using compressed matter cartridges and VERY ETHICAL labor practices, we bring you the uniforms you need!;No uniform? No problem!;We've got your covered!;The Basics is not responsible for being crushed under the amount of things inside our machines. DO NOT VEND IN EXCESS!!"
 	icon_state = "loadout"
 	vend_delay = 16
-	products = list(/obj/item/device/pda = 50,
-					/obj/item/device/radio/headset = 50,
-					/obj/item/device/radio = 50,
+	products = list(/obj/item/pda = 50,
+					/obj/item/radio/headset = 50,
+					/obj/item/radio = 50,
 					/obj/item/weapon/storage/backpack/ = 10,
 					/obj/item/weapon/storage/backpack/messenger = 10,
 					/obj/item/weapon/storage/backpack/satchel = 10,
@@ -2339,22 +2339,22 @@
 					/obj/item/clothing/under/circuitry = 1,
 					/obj/item/clothing/glasses/circuitry = 1,
 					/obj/item/clothing/ears/circuitry = 1,
-					/obj/item/device/text_to_speech = 5,
-					/obj/item/device/paicard = 5,
-					/obj/item/device/communicator = 10,
-					/obj/item/device/communicator/watch = 10,
-					/obj/item/device/radio = 10,
-					/obj/item/device/camera = 5,
-					/obj/item/device/taperecorder = 5,
+					/obj/item/text_to_speech = 5,
+					/obj/item/paicard = 5,
+					/obj/item/communicator = 10,
+					/obj/item/communicator/watch = 10,
+					/obj/item/radio = 10,
+					/obj/item/camera = 5,
+					/obj/item/taperecorder = 5,
 					/obj/item/modular_computer/tablet/preset/custom_loadout/cheap = 5,
-					/obj/item/device/pda = 10,
-					/obj/item/device/radio/headset = 10,
-					/obj/item/device/flashlight = 5,
-					/obj/item/device/laser_pointer = 3,
+					/obj/item/pda = 10,
+					/obj/item/radio/headset = 10,
+					/obj/item/flashlight = 5,
+					/obj/item/laser_pointer = 3,
 					/obj/item/clothing/glasses/omnihud = 10,
-					/obj/item/device/perfect_tele/one_beacon = 1,
+					/obj/item/perfect_tele/one_beacon = 1,
 					/obj/item/weapon/disk/nifsoft/compliance = 1,
-					/obj/item/device/perfect_tele/alien = 10)
+					/obj/item/perfect_tele/alien = 10)
 
 /obj/machinery/vending/event/costume //FOR FACILITATING AND EQUIPPING EVENTS, DO NOT PLACE ON THE NORMAL MAP//
 	name = "Thespian's Delight"

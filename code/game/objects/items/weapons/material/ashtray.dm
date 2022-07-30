@@ -10,13 +10,8 @@ var/global/list/ashtray_cache = list()
 	var/image/base_image
 	var/max_butts = 10
 
-<<<<<<< HEAD
-/obj/item/weapon/material/ashtray/New(var/newloc, var/material_name)
-	..(newloc, material_name)
-=======
 /obj/item/material/ashtray/Initialize(var/ml, var/material_name)
 	. = ..(ml, material_name)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!material)
 		qdel(src)
 		return
@@ -97,16 +92,6 @@ var/global/list/ashtray_cache = list()
 		update_icon()
 	return ..()
 
-<<<<<<< HEAD
-/obj/item/weapon/material/ashtray/plastic/New(var/newloc)
-	..(newloc, "plastic")
-
-/obj/item/weapon/material/ashtray/bronze/New(var/newloc)
-	..(newloc, "bronze")
-
-/obj/item/weapon/material/ashtray/glass/New(var/newloc)
-	..(newloc, "glass")
-=======
 /obj/item/material/ashtray/plastic/Initialize(var/ml)
 	. = ..(ml, MAT_PLASTIC)
 
@@ -115,4 +100,3 @@ var/global/list/ashtray_cache = list()
 
 /obj/item/material/ashtray/glass/Initialize(var/ml)
 	. = ..(ml, MAT_GLASS)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

@@ -6,18 +6,18 @@
 /turf/template_noop,
 /area/submap/virgo2/DecoupledEngine)
 "ac" = (
-/obj/item/weapon/fuel_assembly/deuterium,
+/obj/item/fuel_assembly/deuterium,
 /turf/template_noop,
 /area/submap/virgo2/DecoupledEngine)
 "ad" = (
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DecoupledEngine)
 "ae" = (
-/obj/item/weapon/extinguisher,
+/obj/item/extinguisher,
 /turf/template_noop,
 /area/submap/virgo2/DecoupledEngine)
 "af" = (
-/obj/item/weapon/material/shard/phoron,
+/obj/item/material/shard/phoron,
 /turf/template_noop,
 /area/submap/virgo2/DecoupledEngine)
 "ag" = (
@@ -25,7 +25,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DecoupledEngine)
 "ah" = (
-/obj/item/weapon/arrow/rod,
+/obj/item/arrow/rod,
 /obj/item/stack/material/steel,
 /turf/simulated/floor/outdoors/rocks,
 /area/submap/virgo2/DecoupledEngine)
@@ -43,11 +43,11 @@
 /area/submap/virgo2/DecoupledEngine)
 "al" = (
 /obj/effect/floor_decal/rust,
-/obj/item/weapon/fuel_assembly/supermatter,
+/obj/item/fuel_assembly/supermatter,
 /turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
 "am" = (
-/obj/item/weapon/arrow/rod,
+/obj/item/arrow/rod,
 /turf/template_noop,
 /area/submap/virgo2/DecoupledEngine)
 "an" = (
@@ -195,7 +195,7 @@
 	icon_state = "phoronrwindow";
 	dir = 4
 	},
-/obj/item/weapon/material/shard/phoron,
+/obj/item/material/shard/phoron,
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
@@ -431,7 +431,7 @@
 "bq" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
-/obj/item/weapon/rcd,
+/obj/item/rcd,
 /turf/simulated/floor,
 /area/submap/virgo2/DecoupledEngine)
 "br" = (
@@ -493,15 +493,15 @@
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/template_noop)
 "bA" = (
-/obj/item/weapon/arrow/rod,
+/obj/item/arrow/rod,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DecoupledEngine)
 "bB" = (
-/obj/item/weapon/fuel_assembly/deuterium,
+/obj/item/fuel_assembly/deuterium,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DecoupledEngine)
 "bC" = (
-/obj/item/weapon/material/shard/phoron,
+/obj/item/material/shard/phoron,
 /turf/simulated/mineral/floor/ignore_mapgen/virgo2,
 /area/submap/virgo2/DecoupledEngine)
 "bD" = (

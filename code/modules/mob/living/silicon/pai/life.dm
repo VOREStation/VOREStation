@@ -38,7 +38,7 @@
 	if(health <= 0)
 		card.death_damage()
 		death(null,"fizzles out and clatters to the floor...")
-	else if(health < maxHealth && istype(src.loc , /obj/item/device/paicard))
+	else if(health < maxHealth && istype(src.loc , /obj/item/paicard))
 		adjustBruteLoss(-0.5)
 		adjustFireLoss(-0.5)
 

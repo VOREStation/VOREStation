@@ -27,30 +27,11 @@
 	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
-<<<<<<< HEAD
-/obj/item/weapon/tool/wirecutters/New()
-	if(random_color)
-		switch(pick("red","blue","yellow"))
-			if ("red")
-				icon_state = "cutters"
-				item_state = "cutters"
-			if ("blue")
-				icon_state = "cutters-b"
-				item_state = "cutters_blue"
-			if ("yellow")
-				icon_state = "cutters-y"
-				item_state = "cutters_yellow"
-
-	if (prob(75))
-		src.pixel_y = rand(0, 16)
-	..()
-=======
 /obj/item/tool/wirecutters/Initialize()
 	if(random_color && prob(50))
 		icon_state = "cutters-y"
 		item_state = "cutters_yellow"
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/handcuffs/cable)))
@@ -118,13 +99,8 @@
 	random_color = FALSE
 	var/obj/item/tool/crowbar/power/counterpart = null
 
-<<<<<<< HEAD
-/obj/item/weapon/tool/wirecutters/power/New(newloc, no_counterpart = TRUE)
-	..(newloc)
-=======
 /obj/item/tool/wirecutters/power/Initialize(var/ml, no_counterpart = TRUE)
 	. = ..(ml)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

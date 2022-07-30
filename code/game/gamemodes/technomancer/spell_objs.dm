@@ -110,13 +110,8 @@
 // Proc: New()
 // Parameters: 0
 // Description: Sets owner to equal its loc, links to the owner's core, then applies overlays if needed.
-<<<<<<< HEAD
-/obj/item/weapon/spell/New()
-	..()
-=======
 /obj/item/spell/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(isliving(loc))
 		owner = loc
 	if(owner)

@@ -182,13 +182,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/backpack/chameleon/New()
-	..()
-=======
 /obj/item/storage/backpack/chameleon/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!clothing_choices)
 		var/blocked = list(src.type, /obj/item/storage/backpack/satchel/withwallet)
 		clothing_choices = generate_chameleon_choices(/obj/item/storage/backpack, blocked)
@@ -343,13 +338,8 @@
 	origin_tech = list(TECH_ILLEGAL = 3)
 	var/global/list/clothing_choices
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/belt/chameleon/New()
-	..()
-=======
 /obj/item/storage/belt/chameleon/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(!clothing_choices)
 		clothing_choices = generate_chameleon_choices(/obj/item/storage/belt, list(src.type))
 
@@ -432,13 +422,8 @@
 	var/obj/item/projectile/copy_projectile
 	var/global/list/gun_choices
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/energy/chameleon/New()
-	..()
-=======
 /obj/item/gun/energy/chameleon/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	if(!gun_choices)
 		gun_choices = list()

@@ -212,13 +212,8 @@
 //
 // Includes normal radio uplink, multitool uplink,
 // implant uplink (not the implant tool) and a preset headset uplink.
-<<<<<<< HEAD
-/obj/item/device/radio/uplink/New()
-	..()
-=======
 /obj/item/radio/uplink/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	hidden_uplink = new(src)
 	icon_state = "radio"
 
@@ -226,13 +221,8 @@
 	if(hidden_uplink)
 		hidden_uplink.trigger(user)
 
-<<<<<<< HEAD
-/obj/item/device/multitool/uplink/New()
-	..()
-=======
 /obj/item/multitool/uplink/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	hidden_uplink = new(src)
 
 /obj/item/multitool/uplink/attack_self(mob/user as mob)
@@ -242,11 +232,6 @@
 /obj/item/radio/headset/uplink
 	traitor_frequency = 1445
 
-<<<<<<< HEAD
-/obj/item/device/radio/headset/uplink/New()
-	..()
-=======
 /obj/item/radio/headset/uplink/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	hidden_uplink = new(src)

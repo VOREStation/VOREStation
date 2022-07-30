@@ -6,11 +6,7 @@
 
 	var/obj/item/electronic_assembly/device/EA
 
-<<<<<<< HEAD
-/obj/item/device/assembly/electronic_assembly/New()
-=======
 /obj/item/assembly/electronic_assembly/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	EA = new(src)
 	EA.holder = src
 	..()
@@ -74,25 +70,14 @@
 	max_complexity = IC_COMPLEXITY_BASE * 3/4
 
 
-<<<<<<< HEAD
-/obj/item/device/electronic_assembly/device/New()
-	..()
-=======
 /obj/item/electronic_assembly/device/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	var/obj/item/integrated_circuit/built_in/device_input/input = new(src)
 	var/obj/item/integrated_circuit/built_in/device_output/output = new(src)
 	input.assembly = src
 	output.assembly = src
 
-<<<<<<< HEAD
-/obj/item/device/electronic_assembly/device/check_interactivity(mob/user)
-	if(!CanInteract(user, state = GLOB.tgui_deep_inventory_state))
-=======
 /obj/item/electronic_assembly/device/check_interactivity(mob/user)
-	if(!CanInteract(user, state = deep_inventory_state))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	if(!CanInteract(user, state = GLOB.tgui_deep_inventory_state))
 		return 0
 	return 1
-

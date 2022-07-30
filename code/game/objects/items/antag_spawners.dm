@@ -5,15 +5,9 @@
 	var/searching = FALSE
 	var/datum/effect/effect/system/spark_spread/sparks
 
-<<<<<<< HEAD
-/obj/item/weapon/antag_spawner/New()
-	..()
-	sparks = new /datum/effect/effect/system/spark_spread()
-=======
 /obj/item/antag_spawner/Initialize()
 	. = ..()
 	sparks = new /datum/effect_system/spark_spread()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 
@@ -85,13 +79,8 @@
 		used = 1
 		qdel(src)
 
-<<<<<<< HEAD
-/obj/item/weapon/antag_spawner/technomancer_apprentice/equip_antag(mob/technomancer_mob)
-	var/datum/antagonist/technomancer/antag_datum = all_antag_types[MODE_TECHNOMANCER]
-=======
 /obj/item/antag_spawner/technomancer_apprentice/equip_antag(mob/technomancer_mob)
-	var/datum/antagonist/technomancer/antag_datum = SSantags.antag_datums[MODE_TECHNOMANCER]
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/datum/antagonist/technomancer/antag_datum = all_antag_types[MODE_TECHNOMANCER]
 	antag_datum.equip_apprentice(technomancer_mob)
 
 

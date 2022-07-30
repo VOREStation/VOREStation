@@ -6,7 +6,7 @@
 	desc = "A heavy-duty shield generator and capacitor, capable of generating energy shields at large distances."
 	icon = 'icons/obj/machines/shielding_vr.dmi'
 	icon_state = "generator0"
-	circuit = /obj/item/weapon/circuitboard/shield_generator
+	circuit = /obj/item/circuitboard/shield_generator
 	density = TRUE
 	var/datum/wires/shield_generator/wires = null
 	var/list/field_segments = list()    // List of all shield segments owned by this generator.
@@ -77,12 +77,12 @@
 /obj/machinery/power/shield_generator/RefreshParts()
 	max_energy = 0
 	full_shield_strength = 0
-	for(var/obj/item/weapon/smes_coil/S in component_parts)
+	for(var/obj/item/smes_coil/S in component_parts)
 		full_shield_strength += (S.ChargeCapacity * 5)
 	max_energy = full_shield_strength * 20
 	current_energy = between(0, current_energy, max_energy)
 
-	mitigation_max = MAX_MITIGATION_BASE + MAX_MITIGATION_RESEARCH * total_component_rating_of_type(/obj/item/weapon/stock_parts/capacitor)
+	mitigation_max = MAX_MITIGATION_BASE + MAX_MITIGATION_RESEARCH * total_component_rating_of_type(/obj/item/stock_parts/capacitor)
 	mitigation_em = between(0, mitigation_em, mitigation_max)
 	mitigation_physical = between(0, mitigation_physical, mitigation_max)
 	mitigation_heat = between(0, mitigation_heat, mitigation_max)
@@ -362,7 +362,7 @@
 		return TRUE
 	if(default_deconstruction_screwdriver(user, O))
 		return
-	if(O?.is_crowbar() || O?.is_wrench() || istype(O, /obj/item/weapon/storage/part_replacer))
+	if(O?.is_crowbar() || O?.is_wrench() || istype(O, /obj/item/storage/part_replacer))
 		if(offline_for)
 			to_chat(user, "<span class='warning'>Wait until \the [src] cools down from emergency shutdown first!</span>")
 			return
@@ -702,16 +702,16 @@
 // Starts with the best SMES coil and capacitor (and fully charged)
 /obj/machinery/power/shield_generator/upgraded/Initialize()
 	. = ..()
-	for(var/obj/item/weapon/smes_coil/sc in component_parts)
+	for(var/obj/item/smes_coil/sc in component_parts)
 		component_parts -= sc
 		qdel(sc)
 
-	for(var/obj/item/weapon/stock_parts/capacitor/cap in component_parts)
+	for(var/obj/item/stock_parts/capacitor/cap in component_parts)
 		component_parts -= cap
 		qdel(cap)
 
-	component_parts += new /obj/item/weapon/stock_parts/capacitor/hyper(src)
-	component_parts += new /obj/item/weapon/smes_coil/super_capacity(src)
+	component_parts += new /obj/item/stock_parts/capacitor/hyper(src)
+	component_parts += new /obj/item/smes_coil/super_capacity(src)
 	RefreshParts()
 	current_energy = max_energy
 

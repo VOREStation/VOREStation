@@ -582,13 +582,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	activation_sound = 'sound/items/zippo_on.ogg'
 	deactivation_sound = 'sound/items/zippo_off.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/flame/lighter/random
-/obj/item/weapon/flame/lighter/random/New()
-=======
 /obj/item/flame/lighter/random/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "lighter-[pick("r","c","y","g")]"
 	item_state = icon_state
 	base_state = icon_state

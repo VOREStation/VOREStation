@@ -41,7 +41,7 @@ var/list/outfits_decls_by_type_
 	var/l_hand = null
 	// In the list(path=count,otherpath=count) format
 	var/list/uniform_accessories = list() // webbing, armbands etc - fits in slot_tie
-	var/list/backpack_contents = list() 
+	var/list/backpack_contents = list()
 
 	var/id_type
 	var/id_desc
@@ -52,20 +52,12 @@ var/list/outfits_decls_by_type_
 
 	var/id_pda_assignment
 
-<<<<<<< HEAD
-	var/backpack = /obj/item/weapon/storage/backpack
-	var/satchel_one  = /obj/item/weapon/storage/backpack/satchel/norm
-	var/satchel_two  = /obj/item/weapon/storage/backpack/satchel
-	var/messenger_bag = /obj/item/weapon/storage/backpack/messenger
-	var/sports_bag = /obj/item/weapon/storage/backpack/sport
-	var/satchel_three = /obj/item/weapon/storage/backpack/satchel/strapless
-=======
 	var/backpack = /obj/item/storage/backpack
 	var/satchel_one  = /obj/item/storage/backpack/satchel/norm
 	var/satchel_two  = /obj/item/storage/backpack/satchel
 	var/messenger_bag = /obj/item/storage/backpack/messenger
 	var/sports_bag = /obj/item/storage/backpack/sport
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	var/satchel_three = /obj/item/storage/backpack/satchel/strapless
 
 	var/flags // Specific flags
 

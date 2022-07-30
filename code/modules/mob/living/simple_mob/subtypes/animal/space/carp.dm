@@ -53,13 +53,8 @@
 
 	organ_names = /decl/mob_organ_names/fish
 
-<<<<<<< HEAD
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat
-=======
-	meat_amount = 1
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
@@ -160,5 +155,3 @@
 /mob/living/simple_mob/animal/space/carp/holographic/death()
 	..()
 	derez()
-
-

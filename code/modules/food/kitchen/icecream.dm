@@ -177,12 +177,8 @@
 	var/ice_creamed = 0
 	var/cone_type
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/snacks/icecream/New()
-=======
 /obj/item/reagent_containers/food/snacks/icecream/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	create_reagents(20)
 	reagents.add_reagent("nutriment", 5)
 

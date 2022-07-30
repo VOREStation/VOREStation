@@ -9,16 +9,12 @@
 	if(wearer && (wearer.back == src || wearer.belt == src))
 		tgui_interact(usr)
 
-<<<<<<< HEAD
 // So the UI button clicks come here
-/obj/item/weapon/rig/ui_action_click()
+/obj/item/rig/ui_action_click()
 	if(usr == wearer && (wearer.back == src || wearer.belt == src))
 		tgui_interact(usr)
 
-/obj/item/weapon/rig/verb/toggle_vision()
-=======
 /obj/item/rig/verb/toggle_vision()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	set name = "Toggle Visor"
 	set desc = "Turns your rig visor off or on."

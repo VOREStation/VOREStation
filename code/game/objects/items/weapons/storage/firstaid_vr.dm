@@ -66,7 +66,7 @@
 		/obj/item/weapon/storage/pill_bottle/corophizine,
 		/obj/item/weapon/storage/pill_bottle/combat,
 		/obj/item/stack/medical/splint,
-		/obj/item/device/healthanalyzer/advanced
+		/obj/item/healthanalyzer/advanced
 	)
 
 /obj/item/weapon/storage/firstaid/surgery
@@ -82,7 +82,7 @@
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
 		/obj/item/stack/nanopaste,
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/weapon/autopsy_scanner,
 		/obj/item/weapon/surgical/bioregen
 		)
@@ -98,7 +98,7 @@
 		/obj/item/weapon/surgical/bonegel,
 		/obj/item/weapon/surgical/FixOVein,
 		/obj/item/stack/medical/advanced/bruise_pack,
-		/obj/item/device/healthanalyzer,
+		/obj/item/healthanalyzer,
 		/obj/item/weapon/autopsy_scanner,
 		/obj/item/weapon/surgical/bioregen
 		)

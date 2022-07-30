@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "a" = (
 /turf/template_noop,
@@ -18,7 +17,7 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
 "f" = (
-/obj/item/device/radio,
+/obj/item/radio,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
 "g" = (
@@ -30,21 +29,9 @@
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
 "i" = (
-/obj/item/device/flashlight,
+/obj/item/flashlight,
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Field1)
-=======
-"a" = (/turf/template_noop,/area/template_noop)
-"b" = (/turf/template_noop,/area/submap/Field1)
-"c" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Field1)
-"d" = (/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"e" = (/obj/structure/ore_box,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"f" = (/obj/item/radio,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"g" = (/obj/vehicle/train/trolley,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"h" = (/obj/vehicle/train/engine,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"i" = (/obj/item/flashlight,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
-"B" = (/obj/random/tech_supply/anom,/turf/simulated/floor/outdoors/dirt,/area/submap/Field1)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 (1,1,1) = {"
 a

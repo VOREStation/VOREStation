@@ -83,11 +83,11 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/structure/table/standard,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /obj/machinery/camera/network/research_outpost{
 	dir = 8
 	},
-/obj/item/device/analyzer,
+/obj/item/analyzer,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "bt" = (
@@ -206,7 +206,7 @@
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
 "cK" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -256,7 +256,7 @@
 "dc" = (
 /obj/structure/table/standard,
 /obj/item/stack/nanopaste,
-/obj/item/weapon/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
 /obj/structure/window/reinforced{
 	dir = 4
 	},
@@ -1027,11 +1027,11 @@
 /area/groundbase/engineering/solarshed)
 "mx" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/anodevice{
+/obj/item/tool/crowbar,
+/obj/item/anodevice{
 	pixel_x = -2
 	},
-/obj/item/weapon/anodevice{
+/obj/item/anodevice{
 	pixel_x = 1
 	},
 /obj/structure/window/reinforced{
@@ -1107,8 +1107,8 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
-/obj/item/weapon/tool/screwdriver,
-/obj/item/device/assembly_holder/timer_igniter,
+/obj/item/tool/screwdriver,
+/obj/item/assembly_holder/timer_igniter,
 /obj/machinery/camera/network/research_outpost{
 	dir = 4
 	},
@@ -1193,7 +1193,7 @@
 	dir = 4
 	},
 /obj/structure/table/standard,
-/obj/item/weapon/weldingtool,
+/obj/item/weldingtool,
 /obj/item/clothing/glasses/welding,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
@@ -1524,17 +1524,17 @@
 /area/groundbase/science/outpost)
 "sS" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/anobattery{
+/obj/item/tool/screwdriver,
+/obj/item/anobattery{
 	pixel_x = 5;
 	pixel_y = 2
 	},
-/obj/item/weapon/anobattery,
-/obj/item/weapon/anobattery{
+/obj/item/anobattery,
+/obj/item/anobattery{
 	pixel_x = -4;
 	pixel_y = 3
 	},
-/obj/item/weapon/anobattery{
+/obj/item/anobattery{
 	pixel_x = -5;
 	pixel_y = -3
 	},
@@ -1722,7 +1722,7 @@
 /obj/machinery/vending/phoronresearch{
 	dir = 8;
 	name = "Toximate 2556";
-	products = list(/obj/item/device/transfer_valve=3,/obj/item/device/assembly/timer=6,/obj/item/device/assembly/signaler=6,/obj/item/device/assembly/prox_sensor=6,/obj/item/device/assembly/igniter=12)
+	products = list(/obj/item/transfer_valve=3,/obj/item/assembly/timer=6,/obj/item/assembly/signaler=6,/obj/item/assembly/prox_sensor=6,/obj/item/assembly/igniter=12)
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
@@ -2005,7 +2005,7 @@
 /area/submap/groundbase/wilderness/west)
 "yZ" = (
 /obj/structure/table/standard,
-/obj/item/device/multitool,
+/obj/item/multitool,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/anomaly_lab)
 "zl" = (
@@ -2034,7 +2034,7 @@
 /area/submap/groundbase/wilderness/west)
 "zs" = (
 /obj/structure/table/standard,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /obj/machinery/vending/wallmed1{
 	pixel_x = 30
 	},
@@ -2102,9 +2102,9 @@
 "zX" = (
 /obj/structure/table/standard,
 /obj/machinery/light,
-/obj/item/weapon/storage/box/beakers,
-/obj/item/weapon/reagent_containers/glass/beaker/large,
-/obj/item/weapon/reagent_containers/dropper,
+/obj/item/storage/box/beakers,
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/item/reagent_containers/dropper,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "An" = (
@@ -2157,8 +2157,8 @@
 /area/groundbase/engineering/solarshed)
 "AJ" = (
 /obj/structure/table/rack,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
 "AK" = (
@@ -2207,7 +2207,7 @@
 /area/groundbase/science/outpost/atmos)
 "Bh" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tank/phoron,
+/obj/item/tank/phoron,
 /obj/machinery/requests_console/preset/research{
 	pixel_x = -30
 	},
@@ -2289,11 +2289,11 @@
 /area/groundbase/science/outpost)
 "BQ" = (
 /obj/structure/table/steel,
-/obj/item/device/measuring_tape,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/excavation,
+/obj/item/measuring_tape,
+/obj/item/tool/wrench,
+/obj/item/storage/excavation,
 /obj/item/stack/flag/yellow,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /obj/machinery/light,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
@@ -2370,11 +2370,11 @@
 /area/groundbase/science/outpost)
 "Dj" = (
 /obj/structure/table/steel,
-/obj/item/device/measuring_tape,
-/obj/item/weapon/tool/wrench,
-/obj/item/weapon/storage/excavation,
+/obj/item/measuring_tape,
+/obj/item/tool/wrench,
+/obj/item/storage/excavation,
 /obj/item/stack/flag/yellow,
-/obj/item/weapon/pickaxe,
+/obj/item/pickaxe,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
 "Dk" = (
@@ -2806,8 +2806,8 @@
 /area/groundbase/science/outpost/toxing_gasworks)
 "HN" = (
 /obj/structure/table/standard,
-/obj/item/weapon/folder/white,
-/obj/item/weapon/pen/fountain,
+/obj/item/folder/white,
+/obj/item/pen/fountain,
 /obj/machinery/light{
 	dir = 8
 	},
@@ -2949,7 +2949,7 @@
 	pixel_x = -26;
 	pixel_y = -8
 	},
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "IZ" = (
@@ -3349,8 +3349,8 @@
 /obj/item/clothing/suit/space/anomaly,
 /obj/item/clothing/head/helmet/space/anomaly,
 /obj/item/clothing/mask/breath,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/storage/belt/archaeology,
+/obj/item/melee/umbrella/random,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost)
 "MY" = (
@@ -3748,7 +3748,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
@@ -3766,8 +3766,8 @@
 /obj/item/clothing/suit/space/anomaly,
 /obj/item/clothing/head/helmet/space/anomaly,
 /obj/item/clothing/mask/breath,
-/obj/item/weapon/storage/belt/archaeology,
-/obj/item/weapon/melee/umbrella/random,
+/obj/item/storage/belt/archaeology,
+/obj/item/melee/umbrella/random,
 /obj/machinery/alarm{
 	dir = 1
 	},
@@ -3858,7 +3858,7 @@
 	},
 /obj/item/stack/cable_coil,
 /obj/item/stack/cable_coil,
-/obj/item/weapon/tool/wirecutters,
+/obj/item/tool/wirecutters,
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
 "SW" = (
@@ -3924,7 +3924,7 @@
 /turf/simulated/wall,
 /area/submap/groundbase/wilderness/west)
 "TC" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
@@ -4031,7 +4031,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/black{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	pixel_y = -24
 	},
 /obj/machinery/pipedispenser,
@@ -4068,12 +4068,12 @@
 /obj/effect/floor_decal/corner/purple{
 	dir = 5
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
 	},
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/wrench,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
 "VA" = (
@@ -4260,11 +4260,11 @@
 /area/groundbase/science/outpost/toxins_hallway)
 "XD" = (
 /obj/structure/table/standard,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/anodevice{
+/obj/item/tool/crowbar,
+/obj/item/anodevice{
 	pixel_x = -2
 	},
-/obj/item/weapon/anodevice{
+/obj/item/anodevice{
 	pixel_x = 1
 	},
 /obj/structure/window/reinforced{

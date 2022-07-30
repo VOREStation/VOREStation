@@ -25,12 +25,8 @@
 
 	has_langs = list("Bird")
 
-<<<<<<< HEAD
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
 	meat_amount = 3
-=======
-	meat_type = /obj/item/reagent_containers/food/snacks/meat
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /datum/say_list/goose
 	speak = list("HONK!")

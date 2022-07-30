@@ -3,7 +3,7 @@
 	active_power_usage = 500
 	density = TRUE
 	anchored = TRUE
-	
+
 	var/working = FALSE
 	var/negative_dir = null	//VOREStation Addition
 
@@ -22,7 +22,7 @@
 /obj/machinery/recycling/attackby(obj/item/O, mob/user)
 	if(!isliving(user) || !Adjacent(user))
 		return
-	
+
 	if(working)
 		to_chat("<span class='warning'>\The [src] is busy! Wait until it's idle.</span>")
 		return
@@ -33,7 +33,7 @@
 		return
 	if(default_part_replacement(user, O))
 		return
-	
+
 	var/mob/living/M = user
 	if(can_accept_item(O))
 		M.drop_from_inventory(O)
@@ -66,7 +66,7 @@
 	description_info = "This machine is the first step in turning things back into their materials. There's a bit of loss, depending on how upgraded it is. The output of this machine goes into the sorter."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "crusher"
-	circuit = /obj/item/weapon/circuitboard/recycler_crusher
+	circuit = /obj/item/circuitboard/recycler_crusher
 
 	working = FALSE
 	var/effic_factor = 0.5
@@ -74,9 +74,9 @@
 /obj/machinery/recycling/crusher/RefreshParts()
 	. = ..()
 	var/total_rating = 0
-	for(var/obj/item/weapon/stock_parts/matter_bin/M in component_parts)
+	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
 		total_rating += M.rating
-	for(var/obj/item/weapon/stock_parts/manipulator/M in component_parts)
+	for(var/obj/item/stock_parts/manipulator/M in component_parts)
 		total_rating += M.rating
 
 	total_rating *= 0.1
@@ -117,7 +117,7 @@
 	description_info = "The output of the recycling crusher should go into this machine, and it will output material dust, which can go into the sheet stamper to make sheets."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "sorter"
-	circuit = /obj/item/weapon/circuitboard/recycler_sorter
+	circuit = /obj/item/circuitboard/recycler_sorter
 
 	var/list/materials = list()
 	working = FALSE
@@ -163,7 +163,7 @@
 	description_info = "This machine is the last step in the recycling process. The output of a debris sorter should be fed into this machine and it will produce material sheets."
 	icon = 'icons/obj/recycling.dmi'
 	icon_state = "stamper"
-	circuit = /obj/item/weapon/circuitboard/recycler_stamper
+	circuit = /obj/item/circuitboard/recycler_stamper
 
 /obj/machinery/recycling/stamper/can_accept_item(obj/item/O)
 	if(istype(O, /obj/item/material_dust))
@@ -190,7 +190,7 @@
 		playsound(src, 'sound/machines/buzz-sigh.ogg', 50, 0)
 		warning("Dust in [src] had material_name [D.material_name], which can't be made into stacks")
 		return
-	
+
 	var/stacktype = M.stack_type
 	var/turf/T = get_step(src, dir)
 	var/obj/item/stack/S = locate(stacktype) in T

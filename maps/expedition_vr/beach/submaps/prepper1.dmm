@@ -31,7 +31,7 @@
 /area/submap/cave/prepper1)
 "g" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/glasses,
+/obj/item/storage/box/glasses,
 /turf/simulated/floor/plating,
 /area/submap/cave/prepper1)
 "h" = (
@@ -44,7 +44,7 @@
 /area/submap/cave/prepper1)
 "j" = (
 /obj/structure/table/steel,
-/obj/item/weapon/tape_roll,
+/obj/item/tape_roll,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/plating,
 /area/submap/cave/prepper1)
@@ -77,8 +77,8 @@
 /area/submap/cave/prepper1)
 "q" = (
 /obj/structure/table/rack,
-/obj/item/weapon/tank/emergency/oxygen/engi,
-/obj/item/weapon/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
+/obj/item/tank/emergency/oxygen/engi,
 /obj/item/clothing/mask/gas,
 /obj/item/clothing/suit/armor/material/makeshift,
 /obj/item/clothing/head/helmet/bucket,
@@ -86,17 +86,17 @@
 /area/submap/cave/prepper1)
 "r" = (
 /obj/structure/bed,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /turf/simulated/floor/plating,
 /area/submap/cave/prepper1)
 "s" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lantern,
+/obj/item/flashlight/lantern,
 /turf/simulated/floor/plating,
 /area/submap/cave/prepper1)
 "t" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
+/obj/item/gun/projectile/shotgun/pump/rifle/lever,
 /obj/item/ammo_magazine/clip/c762,
 /obj/item/ammo_magazine/clip/c762,
 /turf/simulated/floor/plating,

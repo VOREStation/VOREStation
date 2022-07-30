@@ -4,12 +4,8 @@ var/global/list/active_radio_jammers = list()
 	var/turf/Tr = get_turf(radio)
 	if(!Tr) return 0 //Nullspace radios don't get jammed.
 
-<<<<<<< HEAD
-	for(var/obj/item/device/radio_jammer/J as anything in active_radio_jammers)
-=======
 	for(var/jammer in active_radio_jammers)
 		var/obj/item/radio_jammer/J = jammer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		var/turf/Tj = get_turf(J)
 
 		if(J.on && Tj.z == Tr.z) //If we're on the same Z, it's worth checking.
@@ -29,22 +25,13 @@ var/global/list/active_radio_jammers = list()
 
 	var/on = 0
 	var/jam_range = 7
-<<<<<<< HEAD
-	var/obj/item/weapon/cell/device/weapon/power_source
-	var/tick_cost = 5 //VOREStation Edit - For the ERPs.
-
-	origin_tech = list(TECH_ILLEGAL = 7, TECH_BLUESPACE = 5) //Such technology! Subspace jamming!
-
-/obj/item/device/radio_jammer/New()
-=======
 	var/obj/item/cell/device/weapon/power_source
-	var/tick_cost = 8 // Will last for roughly ten minutes, as process() ticks every 2 seconds.
+	var/tick_cost = 5 //VOREStation Edit - For the ERPs.
 
 	origin_tech = list(TECH_ILLEGAL = 7, TECH_BLUESPACE = 5) //Such technology! Subspace jamming!
 
 /obj/item/radio_jammer/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	power_source = new(src)
 	update_icon() // So it starts with the full overlay.
 
@@ -128,4 +115,3 @@ var/global/list/active_radio_jammers = list()
 		cut_overlays()
 		add_overlay("jammer_overlay_[overlay_percent]")
 		last_overlay_percent = overlay_percent
-

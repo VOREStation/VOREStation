@@ -588,15 +588,9 @@
 	max_harvests = 3
 	min_harvests = 0
 	harvest_loot = list(
-<<<<<<< HEAD
-		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wabback = 15,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/blackwabback = 1,
-		/obj/item/weapon/reagent_containers/food/snacks/grown/sif/wildwabback = 30
-=======
 		/obj/item/reagent_containers/food/snacks/grown/sif/whitewabback = 15,
 		/obj/item/reagent_containers/food/snacks/grown/sif/blackwabback = 1,
 		/obj/item/reagent_containers/food/snacks/grown/sif/wildwabback = 30
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 /obj/structure/flora/sif/tendrils/Initialize()

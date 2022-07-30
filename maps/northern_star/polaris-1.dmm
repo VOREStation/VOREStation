@@ -32,11 +32,7 @@
 "aaF" = (/obj/machinery/power/solar{id = "portsolar"; name = "Port Solar Array"},/obj/structure/cable/yellow{d2 = 4; icon_state = "0-4"},/turf/simulated/floor/airless{icon_state = "solarpanel"},/area/solar/auxstarboard)
 "aaG" = (/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/airless,/area/solar/auxstarboard)
 "aaH" = (/obj/machinery/power/solar{id = "portsolar"; name = "Port Solar Array"},/obj/structure/cable/yellow{d2 = 8; icon_state = "0-8"},/turf/simulated/floor/airless{icon_state = "solarpanel"},/area/solar/auxstarboard)
-<<<<<<< HEAD
-"aaI" = (/obj/item/clothing/head/cone,/turf/simulated/floor,/area/maintenance/locker)
-=======
 "aaI" = (/obj/item/caution/cone,/turf/simulated/floor,/area/maintenance/locker)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "aaJ" = (/obj/structure/cable/yellow{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/structure/cable/yellow{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable/yellow{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/floor/airless,/area/solar/auxstarboard)
 "aaK" = (/turf/simulated/floor,/area/maintenance/locker)
 "aaL" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/maintenance/auxsolarstarboard)
@@ -1604,11 +1600,7 @@
 "aEN" = (/obj/effect/floor_decal/spline/plain{dir = 1},/turf/simulated/floor/water/deep/pool,/area/crew_quarters/pool)
 "aEO" = (/obj/effect/floor_decal/spline/plain{dir = 5},/turf/simulated/floor/water/deep/pool,/area/crew_quarters/pool)
 "aEP" = (/obj/structure/bed/chair{dir = 8},/turf/simulated/floor/tiled/freezer,/area/crew_quarters/pool)
-<<<<<<< HEAD
-"aEQ" = (/obj/item/clothing/head/cone,/turf/simulated/floor,/area/maintenance/pool)
-=======
 "aEQ" = (/obj/item/caution/cone,/turf/simulated/floor,/area/maintenance/pool)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "aER" = (/obj/effect/decal/cleanable/blood,/turf/simulated/floor,/area/maintenance/pool)
 "aES" = (/obj/machinery/light/small{dir = 4; pixel_y = 0},/turf/simulated/floor,/area/maintenance/pool)
 "aET" = (/obj/structure/table/rack,/obj/item/clothing/shoes/magboots,/obj/item/clothing/mask/breath,/obj/item/clothing/suit/space/void/security,/obj/item/clothing/head/helmet/space/void/security,/obj/item/suit_cooling_unit,/obj/item/tank/oxygen,/obj/structure/window/reinforced{dir = 2; health = 1e+006},/obj/structure/window/reinforced{dir = 8},/obj/effect/floor_decal/corner/white{icon_state = "corner_white"; dir = 1},/obj/effect/floor_decal/corner/blue{dir = 8},/obj/machinery/door/window/brigdoor/eastright{name = "EVA Suit"},/turf/simulated/floor/tiled/dark,/area/security/armoury)
@@ -2422,11 +2414,7 @@
 "aUv" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/crew_quarters/recreation_area_hallway)
 "aUw" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/crew_quarters/recreation_area_hallway)
 "aUx" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/crew_quarters/recreation_area_hallway)
-<<<<<<< HEAD
-"aUy" = (/obj/item/clothing/head/cone,/turf/simulated/floor/tiled/dark,/area/crew_quarters/recreation_area_hallway)
-=======
 "aUy" = (/obj/item/caution/cone,/turf/simulated/floor/tiled/dark,/area/crew_quarters/recreation_area_hallway)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "aUz" = (/obj/machinery/power/apc{dir = 2; name = "south bump"; pixel_y = -24},/obj/machinery/light_switch{pixel_x = -26; pixel_y = 0},/obj/structure/cable{icon_state = "0-4"; d2 = 4},/turf/simulated/floor/tiled,/area/storage/tools)
 "aUA" = (/obj/item/radio/intercom{name = "Station Intercom (General)"; pixel_y = -21},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/floor/tiled,/area/storage/tools)
 "aUB" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled,/area/storage/tools)
@@ -4693,13 +4681,8 @@
 "bMa" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bMb" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,/obj/machinery/atmospherics/pipe/manifold/hidden/supply{dir = 1},/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bMc" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/machinery/mecha_part_fabricator,/turf/simulated/floor/tiled,/area/assembly/robotics)
-<<<<<<< HEAD
-"bMd" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/machinery/mecha_part_fabricator/pros,/turf/simulated/floor/tiled,/area/assembly/robotics)
-"bMe" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/structure/table/standard,/obj/item/device/robotanalyzer,/obj/item/device/robotanalyzer,/obj/item/device/mmi/digital/robot,/turf/simulated/floor/tiled,/area/assembly/robotics)
-=======
 "bMd" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/machinery/pros_fabricator,/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bMe" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/structure/table/standard,/obj/item/robotanalyzer,/obj/item/robotanalyzer,/obj/item/mmi/digital/robot,/turf/simulated/floor/tiled,/area/assembly/robotics)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "bMf" = (/obj/structure/cable/green{d1 = 4; d2 = 8; icon_state = "4-8"},/obj/structure/cable/green{d1 = 1; d2 = 8; icon_state = "1-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 4},/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bMg" = (/obj/structure/cable/green{d1 = 2; d2 = 8; icon_state = "2-8"},/obj/machinery/atmospherics/pipe/simple/hidden/supply{dir = 10},/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{dir = 10},/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled,/area/assembly/robotics)
 "bMh" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/storage/toolbox/mechanical,/obj/item/storage/toolbox/mechanical{pixel_x = -2; pixel_y = -1},/obj/effect/floor_decal/corner/pink{dir = 6},/obj/item/storage/toolbox/mechanical,/obj/item/multitool{pixel_x = 3},/obj/item/multitool{pixel_x = 3},/obj/item/tool/crowbar,/obj/item/tool/crowbar,/obj/item/storage/belt/utility,/obj/item/storage/belt/utility,/obj/item/storage/toolbox/electrical{pixel_x = 1; pixel_y = 6},/obj/effect/floor_decal/industrial/warning{dir = 1},/obj/item/storage/toolbox/electrical{pixel_x = 1; pixel_y = 6},/turf/simulated/floor/tiled,/area/assembly/robotics)
@@ -5623,17 +5606,10 @@
 "cdP" = (/obj/machinery/newscaster{pixel_x = 30},/turf/simulated/floor/tiled,/area/hallway/primary/central_two)
 "cdQ" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/hallway/secondary/medical_emergency_hallway)
 "cdR" = (/obj/machinery/atmospherics/unary/vent_scrubber/on,/obj/effect/floor_decal/corner/pink{dir = 9},/turf/simulated/floor/tiled,/area/hallway/secondary/medical_emergency_hallway)
-<<<<<<< HEAD
-"cdS" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/item/device/radio/intercom{dir = 4; name = "Station Intercom (General)"; pixel_x = 26},/obj/effect/floor_decal/corner/pink{dir = 6},/turf/simulated/floor/tiled,/area/hallway/secondary/medical_emergency_hallway)
-"cdT" = (/obj/item/clothing/head/cone,/turf/simulated/floor,/area/maintenance/medbay_aft)
-"cdU" = (/obj/item/weapon/broken_bottle,/turf/simulated/floor,/area/maintenance/medbay_aft)
-"cdV" = (/obj/structure/table/woodentable,/obj/item/weapon/material/ashtray/plastic,/obj/item/weapon/cigbutt/cigarbutt,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/turf/simulated/floor,/area/maintenance/medbay_aft)
-=======
 "cdS" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/item/radio/intercom{dir = 4; name = "Station Intercom (General)"; pixel_x = 26},/obj/effect/floor_decal/corner/pink{dir = 6},/turf/simulated/floor/tiled,/area/hallway/secondary/medical_emergency_hallway)
 "cdT" = (/obj/item/caution/cone,/turf/simulated/floor,/area/maintenance/medbay_aft)
 "cdU" = (/obj/item/broken_bottle,/turf/simulated/floor,/area/maintenance/medbay_aft)
 "cdV" = (/obj/structure/table/woodentable,/obj/item/material/ashtray/plastic,/obj/item/cigbutt/cigarbutt,/obj/random/maintenance/clean,/obj/random/maintenance/clean,/turf/simulated/floor,/area/maintenance/medbay_aft)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "cdW" = (/obj/machinery/door/blast/shutters{density = 0; dir = 2; icon_state = "shutter0"; id = "medbayquar"; name = "Medbay Emergency Lockdown Shutters"; opacity = 0},/turf/simulated/floor,/area/maintenance/medbay_aft)
 "cdX" = (/obj/machinery/door/blast/shutters{density = 0; dir = 2; icon_state = "shutter0"; id = "medbayquar"; name = "Medbay Emergency Lockdown Shutters"; opacity = 0},/obj/effect/decal/cleanable/dirt,/turf/simulated/floor,/area/maintenance/medbay_aft)
 "cdY" = (/obj/machinery/door/airlock/glass_external{frequency = 1380; icon_state = "door_locked"; id_tag = "large_escape_pod_1_berth_hatch"; locked = 1; name = "Large Escape Pod 1"; req_access = list(13)},/turf/simulated/floor,/area/hallway/secondary/escape/medical_escape_pod_hallway)
@@ -8539,11 +8515,7 @@
 "dhM" = (/obj/machinery/light,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/starboard)
 "dhN" = (/obj/machinery/atmospherics/unary/vent_pump/on{dir = 1},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/starboard)
 "dhO" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/starboard)
-<<<<<<< HEAD
-"dhP" = (/obj/machinery/firealarm{dir = 1; pixel_y = -24},/obj/item/clothing/head/cone,/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/starboard)
-=======
 "dhP" = (/obj/machinery/firealarm{dir = 1; pixel_y = -24},/obj/item/caution/cone,/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/starboard)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dhQ" = (/obj/structure/disposalpipe/segment{dir = 4; icon_state = "pipe-c"},/turf/simulated/floor/tiled,/area/vacant/vacant_site2)
 "dhR" = (/obj/item/stool/padded,/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled,/area/vacant/vacant_site2)
 "dhS" = (/obj/structure/disposalpipe/segment{dir = 4},/turf/simulated/floor/tiled,/area/vacant/vacant_site2)
@@ -9045,11 +9017,7 @@
 "dru" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced{dir = 8},/obj/structure/sign/securearea{desc = "A warning sign which reads 'KEEP CLEAR OF DOCKING AREA'."; name = "KEEP CLEAR: DOCKING AREA"; pixel_y = 0},/turf/simulated/floor/plating,/area/space)
 "drv" = (/obj/structure/grille,/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/hallway/secondary/entry/D3)
 "drw" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/hallway/secondary/entry/D3)
-<<<<<<< HEAD
-"drx" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 8},/obj/machinery/door/firedoor/border_only,/obj/item/clothing/head/cone,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
-=======
 "drx" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 8},/obj/machinery/door/firedoor/border_only,/obj/item/caution/cone,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dry" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "drz" = (/obj/effect/floor_decal/industrial/warning/corner,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "drA" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/plating,/area/hallway/secondary/entry/D3)
@@ -9111,11 +9079,7 @@
 "dsE" = (/obj/effect/floor_decal/industrial/warning/cee{icon_state = "warningcee"; dir = 8},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dsF" = (/obj/machinery/light/small,/obj/effect/floor_decal/industrial/warning/cee{icon_state = "warningcee"; dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dsG" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/airlock/glass_external{icon_state = "door_locked"; locked = 1; name = "Arrival Airlock"},/obj/item/tape/engineering,/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D3)
-<<<<<<< HEAD
-"dsH" = (/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 8; icon_state = "map"},/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/obj/item/clothing/head/cone,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
-=======
 "dsH" = (/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 8; icon_state = "map"},/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/obj/item/caution/cone,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dsI" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden{icon_state = "intact"; dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dsJ" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden{icon_state = "intact"; dir = 4},/obj/machinery/access_button{command = "cycle_interior"; frequency = 1379; master_tag = "dock_three_fore_airlock"; name = "interior access button"; pixel_x = 26; pixel_y = 26; req_one_access = list(13)},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dsK" = (/obj/machinery/atmospherics/pipe/simple/hidden{icon_state = "intact"; dir = 4},/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "dock_three_fore_inner"; locked = 1; name = "Dock Three Internal Access"; req_access = list(13)},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D3)
@@ -9163,11 +9127,7 @@
 "dtA" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner{dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D2)
 "dtB" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/hallway/secondary/entry/D2)
 "dtC" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/hallway/secondary/entry/D3)
-<<<<<<< HEAD
-"dtD" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner{dir = 1},/obj/item/clothing/head/cone,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
-=======
 "dtD" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner{dir = 1},/obj/item/caution/cone,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dtE" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dtF" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "dock_three_fore_inner"; locked = 1; name = "Dock Three Internal Access"; req_access = list(13)},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D3)
 "dtG" = (/obj/effect/floor_decal/industrial/loading{dir = 4},/obj/machinery/light/small,/obj/machinery/atmospherics/pipe/simple/hidden{dir = 5; icon_state = "intact"},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
@@ -9179,11 +9139,7 @@
 "dtM" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "dock_four_fore_inner"; locked = 1; name = "Dock Four Internal Access"; req_access = list(13)},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D4)
 "dtN" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning{icon_state = "warning"; dir = 8},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D4)
 "dtO" = (/obj/machinery/vending/coffee,/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D4)
-<<<<<<< HEAD
-"dtP" = (/obj/item/clothing/head/cone,/turf/simulated/floor,/area/maintenance/atmos_control)
-=======
 "dtP" = (/obj/item/caution/cone,/turf/simulated/floor,/area/maintenance/atmos_control)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dtQ" = (/obj/machinery/drone_fabricator/derelict,/turf/simulated/floor/plating,/area/engineering/drone_fabrication)
 "dtR" = (/obj/item/storage/box/matches,/obj/item/storage/fancy/cigarettes,/obj/item/deck/cards,/obj/structure/table/steel,/obj/random/maintenance/engineering,/turf/simulated/floor/plating,/area/engineering/drone_fabrication)
 "dtS" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/camera/network/engineering{c_tag = "ENG - Hallway Aft"; dir = 8},/turf/simulated/floor/tiled,/area/engineering)
@@ -9381,11 +9337,7 @@
 "dxC" = (/obj/effect/floor_decal/industrial/loading{icon_state = "loadingarea"; dir = 8},/obj/machinery/atmospherics/pipe/simple/hidden{dir = 10; icon_state = "intact"},/obj/machinery/light/small{dir = 1},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D2)
 "dxD" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/airlock/glass_external{frequency = 1380; icon_state = "door_locked"; id_tag = "escape_dock_south_starboard_inner"; locked = 1; name = "Docking Port Airlock"; req_access = list(13)},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D2)
 "dxE" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/effect/floor_decal/industrial/warning/corner,/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D2)
-<<<<<<< HEAD
-"dxF" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/item/clothing/head/cone,/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 8},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
-=======
 "dxF" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/item/caution/cone,/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 8},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dxG" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "dock_three_mid_inner"; locked = 1; name = "Dock Three Internal Access"; req_access = list(13)},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D3)
 "dxH" = (/obj/machinery/light/small{dir = 1},/obj/machinery/atmospherics/pipe/simple/hidden{dir = 6},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dxI" = (/obj/effect/floor_decal/industrial/loading{icon_state = "loadingarea"; dir = 8},/obj/machinery/atmospherics/unary/vent_pump/high_volume{dir = 8; frequency = 1379; id_tag = "dock_three_mid_pump"},/obj/machinery/airlock_sensor{frequency = 1379; id_tag = "dock_three_mid_sensor"; pixel_x = 0; pixel_y = 25},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
@@ -9445,11 +9397,7 @@
 "dyK" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/shield_diffuser,/obj/machinery/door/airlock/external{icon_state = "door_locked"; locked = 1; name = "Arrival Airlock"},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D3)
 "dyL" = (/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/industrial/warning/cee{icon_state = "warningcee"; dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dyM" = (/obj/effect/floor_decal/industrial/hatch/yellow,/obj/item/tape/engineering,/obj/machinery/door/airlock/glass_external{icon_state = "door_locked"; locked = 1; name = "Arrival Airlock"},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D3)
-<<<<<<< HEAD
-"dyN" = (/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 8; icon_state = "map"},/obj/item/clothing/head/cone,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
-=======
 "dyN" = (/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 8; icon_state = "map"},/obj/item/caution/cone,/obj/effect/floor_decal/industrial/warning{dir = 8},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dyO" = (/obj/effect/floor_decal/industrial/warning{dir = 4},/obj/machinery/atmospherics/pipe/simple/hidden{icon_state = "intact"; dir = 4},/obj/machinery/access_button{command = "cycle_interior"; frequency = 1379; master_tag = "dock_three_mid_airlock"; name = "interior access button"; pixel_x = 26; pixel_y = -26; req_one_access = list(13)},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dyP" = (/obj/machinery/atmospherics/pipe/simple/hidden{icon_state = "intact"; dir = 4},/obj/effect/floor_decal/industrial/hatch/yellow,/obj/machinery/door/airlock/glass_external{frequency = 1379; icon_state = "door_locked"; id_tag = "dock_three_mid_inner"; locked = 1; name = "Dock Three Internal Access"; req_access = list(13)},/turf/simulated/floor/tiled/dark,/area/hallway/secondary/entry/D3)
 "dyQ" = (/obj/machinery/atmospherics/pipe/manifold/hidden,/obj/effect/floor_decal/industrial/loading{dir = 4},/obj/machinery/embedded_controller/radio/airlock/airlock_controller{frequency = 1379; id_tag = "dock_three_mid_airlock"; name = "Airlock Console"; pixel_y = -30; req_access = list(13); tag_airpump = "dock_three_mid_pump"; tag_chamber_sensor = "dock_three_mid_sensor"; tag_exterior_door = "dock_three_mid_outer"; tag_interior_door = "dock_three_mid_inner"},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
@@ -9501,11 +9449,7 @@
 "dzK" = (/obj/machinery/atmospherics/portables_connector{dir = 8},/obj/machinery/portable_atmospherics/canister/air/airlock,/obj/effect/floor_decal/industrial/outline/yellow,/obj/structure/sign/securearea{desc = "A warning sign which reads 'EXTERNAL AIRLOCK'"; icon_state = "space"; layer = 4; name = "EXTERNAL AIRLOCK"; pixel_x = 0; pixel_y = -32},/turf/simulated/floor/tiled/steel,/area/engineering/aft_hallway)
 "dzL" = (/obj/effect/floor_decal/industrial/warning/corner{dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D1)
 "dzM" = (/obj/effect/floor_decal/industrial/warning/corner{dir = 1},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D2)
-<<<<<<< HEAD
-"dzN" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/item/clothing/head/cone,/obj/effect/floor_decal/industrial/warning/corner{dir = 1},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
-=======
 "dzN" = (/obj/machinery/atmospherics/pipe/simple/hidden,/obj/item/caution/cone,/obj/effect/floor_decal/industrial/warning/corner{dir = 1},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 "dzO" = (/obj/effect/floor_decal/industrial/warning/corner{dir = 4},/turf/simulated/floor/tiled,/area/hallway/secondary/entry/D3)
 "dzP" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/machinery/door/firedoor/border_only,/obj/structure/window/reinforced,/turf/simulated/floor/plating,/area/hallway/secondary/entry/D4)
 "dzQ" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/hallway/secondary/entry/D4)
@@ -10231,4 +10175,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

@@ -57,13 +57,8 @@
 				src.authorized.len = 0
 				src.authorized = list(  )
 
-<<<<<<< HEAD
-	else if (istype(W, /obj/item/weapon/card/emag) && !emagged)
-		var/choice = tgui_alert(user, "Would you like to launch the shuttle?", "Shuttle control", list("Launch", "Cancel"))
-=======
 	else if (istype(W, /obj/item/card/emag) && !emagged)
 		var/choice = alert(user, "Would you like to launch the shuttle?","Shuttle control", "Launch", "Cancel")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		if(!emagged && !emergency_shuttle.location() && user.get_active_hand() == W)
 			switch(choice)

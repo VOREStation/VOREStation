@@ -252,21 +252,12 @@
 /datum/supply_pack/security/riot_gear
 	name = "Gear - Riot"
 	contains = list(
-<<<<<<< HEAD
-			/obj/item/weapon/melee/baton = 3,
-			/obj/item/weapon/shield/riot = 3,
-			/obj/item/weapon/handcuffs = 3,
-			/obj/item/weapon/storage/box/flashbangs,
-			/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
-			/obj/item/weapon/storage/box/handcuffs
-=======
 			/obj/item/melee/baton = 3,
 			/obj/item/shield/riot = 3,
 			/obj/item/handcuffs = 3,
 			/obj/item/storage/box/flashbangs,
-			/obj/item/storage/box/beanbags,
+			/obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 			/obj/item/storage/box/handcuffs
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson

@@ -14,13 +14,8 @@
 	aspect = ASPECT_FIRE
 	var/obj/item/weldingtool/spell/welder = null
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/flame_tongue/New()
-	..()
-=======
 /obj/item/spell/flame_tongue/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(3, 2, l_color = "#FF6A00")
 	visible_message("<span class='warning'>\The [loc]'s hand begins to emit a flame.</span>")
 	welder = new /obj/item/weldingtool/spell(src)

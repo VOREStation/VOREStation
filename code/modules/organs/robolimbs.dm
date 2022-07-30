@@ -475,13 +475,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon_state = "data-white" //VOREStation Edit
 	var/company = ""
 
-<<<<<<< HEAD
-/obj/item/weapon/disk/limb/New(var/newloc)
-	..()
-=======
 /obj/item/disk/limb/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(company)
 		name = "[company] [initial(name)]"
 

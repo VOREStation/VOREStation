@@ -412,7 +412,7 @@
 /area/aro3/function)
 "cn" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/metalfoam,
+/obj/item/storage/box/metalfoam,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/atmos)
 "cr" = (
@@ -443,7 +443,7 @@
 	dir = 8
 	},
 /obj/structure/table/glass,
-/obj/item/weapon/storage/box/metalfoam,
+/obj/item/storage/box/metalfoam,
 /obj/effect/floor_decal/milspec/color/blue/half{
 	dir = 9
 	},
@@ -489,7 +489,7 @@
 /area/aro3/atmos)
 "cL" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/knife/butch,
+/obj/item/material/knife/butch,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
@@ -581,10 +581,10 @@
 /area/space)
 "dp" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -769,7 +769,7 @@
 /turf/simulated/floor/tiled/eris/steel/bar_dance,
 /area/aro3/bar)
 "en" = (
-/obj/item/weapon/reagent_containers/food/condiment/enzyme,
+/obj/item/reagent_containers/food/condiment/enzyme,
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -836,7 +836,7 @@
 /area/aro3/suite_starboard_wc)
 "eL" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
@@ -1185,8 +1185,8 @@
 /area/aro3/flight_deck)
 "hb" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/box/lights/mixed,
-/obj/item/weapon/reagent_containers/spray/sterilizine,
+/obj/item/storage/box/lights/mixed,
+/obj/item/reagent_containers/spray/sterilizine,
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/hallway_port)
@@ -1226,13 +1226,13 @@
 /obj/structure/closet/crate{
 	name = "qpad parts"
 	},
-/obj/item/weapon/ore/bluespace_crystal,
-/obj/item/weapon/stock_parts/capacitor/hyper,
-/obj/item/weapon/stock_parts/manipulator/hyper,
+/obj/item/ore/bluespace_crystal,
+/obj/item/stock_parts/capacitor/hyper,
+/obj/item/stock_parts/manipulator/hyper,
 /obj/item/stack/cable_coil{
 	amount = 15
 	},
-/obj/item/weapon/circuitboard/quantumpad,
+/obj/item/circuitboard/quantumpad,
 /obj/item/stack/material/steel{
 	amount = 20
 	},
@@ -1249,7 +1249,7 @@
 /area/aro3/suite_starboard_wc)
 "hw" = (
 /obj/structure/table/glass,
-/obj/item/device/sleevemate,
+/obj/item/sleevemate,
 /obj/effect/floor_decal/milspec_sterile/green/corner{
 	dir = 1
 	},
@@ -1469,7 +1469,7 @@
 /area/aro3/hallway_port)
 "iP" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/blucarpet,
 /area/aro3/bunkrooms)
 "iQ" = (
@@ -1572,10 +1572,10 @@
 /area/aro3/park)
 "jx" = (
 /obj/structure/closet/crate/medical/blood,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
+/obj/item/reagent_containers/blood/prelabeled/OMinus,
+/obj/item/reagent_containers/blood/prelabeled/OMinus,
+/obj/item/reagent_containers/blood/prelabeled/OMinus,
+/obj/item/reagent_containers/blood/prelabeled/OMinus,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "jy" = (
@@ -1799,7 +1799,7 @@
 /area/aro3/medical)
 "kI" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/electrical{
+/obj/item/storage/toolbox/electrical{
 	pixel_x = 1;
 	pixel_y = 6
 	},
@@ -1891,7 +1891,7 @@
 /turf/simulated/floor/plating/eris/under/airless,
 /area/space)
 "lo" = (
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed/padded,
 /turf/simulated/floor/carpet/oracarpet,
 /area/aro3/bunkrooms)
@@ -2301,10 +2301,10 @@
 /area/aro3/suite_starboard)
 "nW" = (
 /obj/structure/table/fancyblack,
-/obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
+/obj/item/reagent_containers/food/condiment/small/saltshaker{
 	pixel_x = -3
 	},
-/obj/item/weapon/reagent_containers/food/condiment/small/peppermill{
+/obj/item/reagent_containers/food/condiment/small/peppermill{
 	pixel_x = 3
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -2344,7 +2344,7 @@
 /area/aro3/bar)
 "on" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/combat,
+/obj/item/storage/firstaid/combat,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
 	},
@@ -2583,7 +2583,7 @@
 /area/aro3/power)
 "px" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
@@ -2598,7 +2598,7 @@
 /area/aro3/workshop)
 "pH" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/curtain/open/privacy,
 /obj/effect/floor_decal/milspec_sterile/green/corner,
 /turf/simulated/floor/tiled/milspec/sterile,
@@ -2657,7 +2657,7 @@
 /area/aro3/hallway_bunkrooms)
 "qk" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/atmos)
 "qm" = (
@@ -2845,7 +2845,7 @@
 /area/aro3/function)
 "rA" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/belt/utility,
+/obj/item/storage/belt/utility,
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/workshop)
@@ -3181,7 +3181,7 @@
 /area/aro3/power)
 "tL" = (
 /obj/structure/table/glass,
-/obj/item/weapon/paper{
+/obj/item/paper{
 	info = "I guess you can use this body while I'm in another one, but I'll charge you for anything you blow up or steal! -Aro"
 	},
 /obj/effect/floor_decal/milspec/color/blue/half{
@@ -3228,7 +3228,7 @@
 /area/aro3/repair_bay)
 "ug" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/oracarpet,
 /area/aro3/bunkrooms)
 "uE" = (
@@ -3403,7 +3403,7 @@
 /area/aro3/workshop)
 "vL" = (
 /obj/structure/table/marble,
-/obj/item/weapon/material/kitchen/rollingpin,
+/obj/item/material/kitchen/rollingpin,
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/aro3/kitchen)
@@ -3432,7 +3432,7 @@
 /area/aro3/eva_hall)
 "vQ" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro3/bunkrooms)
 "vT" = (
@@ -3505,7 +3505,7 @@
 /area/aro3/function)
 "wl" = (
 /obj/structure/bed/padded,
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/curtain/open/privacy,
 /obj/effect/floor_decal/milspec_sterile/green/corner{
 	dir = 4
@@ -4125,7 +4125,7 @@
 /area/aro3/repair_bay)
 "zB" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/device/nif/authentic,
+/obj/item/nif/authentic,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "zD" = (
@@ -4817,7 +4817,7 @@
 /area/aro3/atmos)
 "Er" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/box/metalfoam,
+/obj/item/storage/box/metalfoam,
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /obj/effect/floor_decal/milspec/monotile,
 /turf/simulated/floor/tiled/milspec,
@@ -4965,7 +4965,7 @@
 /area/aro3/function)
 "Ff" = (
 /obj/structure/table/glass,
-/obj/item/device/defib_kit/loaded,
+/obj/item/defib_kit/loaded,
 /obj/effect/floor_decal/milspec_sterile/green/corner,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/medical)
@@ -4982,7 +4982,7 @@
 /area/aro3/eva_hall)
 "Fl" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_starboard)
 "Fn" = (
@@ -5051,8 +5051,8 @@
 /area/aro3/eva_hall)
 "FH" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/blood/prelabeled/OMinus,
-/obj/item/weapon/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/prelabeled/OMinus,
+/obj/item/reagent_containers/blood/empty,
 /obj/machinery/firealarm/angled/hidden{
 	dir = 8
 	},
@@ -5101,7 +5101,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/aro3/atmos)
 "Go" = (
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed/padded,
 /turf/simulated/floor/carpet/blucarpet,
 /area/aro3/bunkrooms)
@@ -5135,7 +5135,7 @@
 	dir = 1;
 	pixel_y = -24
 	},
-/obj/item/device/uav/loaded{
+/obj/item/uav/loaded{
 	nickname = "FoxBot Beta"
 	},
 /turf/simulated/floor/tiled/milspec,
@@ -5172,7 +5172,7 @@
 /area/aro3/medical)
 "GG" = (
 /obj/structure/table/rack/shelf/steel,
-/obj/item/device/sleevemate,
+/obj/item/sleevemate,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "GI" = (
@@ -5181,9 +5181,9 @@
 /area/aro3/surfluid)
 "GV" = (
 /obj/structure/closet/crate/medical,
-/obj/item/weapon/storage/firstaid/surgery,
-/obj/item/weapon/storage/firstaid/combat,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/surgery,
+/obj/item/storage/firstaid/combat,
+/obj/item/storage/firstaid/adv,
 /turf/simulated/floor/tiled/techmaint,
 /area/aro3/medical)
 "Hb" = (
@@ -6149,7 +6149,7 @@
 /area/aro3/atmos)
 "NV" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
@@ -6288,7 +6288,7 @@
 /area/space)
 "ON" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/electrical,
+/obj/item/storage/toolbox/electrical,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/power)
 "OP" = (
@@ -6370,7 +6370,7 @@
 /area/aro3/power)
 "Pu" = (
 /obj/structure/bed/double/padded,
-/obj/item/weapon/bedsheet/bluedouble,
+/obj/item/bedsheet/bluedouble,
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
 "Pw" = (
@@ -6805,9 +6805,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/obj/item/weapon/inducer/hybrid,
-/obj/item/device/perfect_tele/alien/bluefo,
-/obj/item/device/mapping_unit,
+/obj/item/inducer/hybrid,
+/obj/item/perfect_tele/alien/bluefo,
+/obj/item/mapping_unit,
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/repair_bay)
 "Ta" = (
@@ -7127,7 +7127,7 @@
 /area/aro3/park)
 "Vl" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /obj/effect/floor_decal/milspec_sterile/green/corner{
 	dir = 4
 	},
@@ -7212,7 +7212,7 @@
 /area/aro3/hallway_starboard)
 "Wg" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_port)
 "Wk" = (
@@ -7337,7 +7337,7 @@
 /obj/effect/floor_decal/steeldecal/steel_decals10{
 	dir = 8
 	},
-/obj/item/device/healthanalyzer/phasic,
+/obj/item/healthanalyzer/phasic,
 /turf/simulated/floor/tiled/milspec/sterile,
 /area/aro3/medical)
 "Xj" = (
@@ -7562,7 +7562,7 @@
 /area/aro3/surfluid)
 "YN" = (
 /obj/structure/table/steel,
-/obj/item/device/flashlight/lamp,
+/obj/item/flashlight/lamp,
 /turf/simulated/floor/carpet/turcarpet,
 /area/aro3/suite_starboard)
 "YQ" = (
@@ -7724,7 +7724,7 @@
 /area/aro3/suite_starboard)
 "ZM" = (
 /obj/structure/table/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 4
 	},
@@ -7744,7 +7744,7 @@
 /turf/simulated/floor/tiled/milspec,
 /area/aro3/surfluid)
 "ZO" = (
-/obj/item/weapon/bedsheet,
+/obj/item/bedsheet,
 /obj/structure/bed/padded,
 /turf/simulated/floor/carpet/purcarpet,
 /area/aro3/bunkrooms)

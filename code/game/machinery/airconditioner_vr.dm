@@ -46,7 +46,7 @@
 			disconnect_from_network()
 			turn_off()
 		return
-	if(istype(I, /obj/item/device/multitool))
+	if(istype(I, /obj/item/multitool))
 		var/new_temp = tgui_input_number(usr, "Input a new target temperature, in degrees C.","Target Temperature", 20)
 		if(!Adjacent(user) || user.incapacitated())
 			return

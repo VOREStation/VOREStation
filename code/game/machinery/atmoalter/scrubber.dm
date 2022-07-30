@@ -20,15 +20,9 @@
 
 	var/list/scrubbing_gas = list("phoron", "carbon_dioxide", "nitrous_oxide", "volatile_fuel")
 
-<<<<<<< HEAD
-/obj/machinery/portable_atmospherics/powered/scrubber/New()
-	..()
-	cell = new/obj/item/weapon/cell/apc(src)
-=======
 /obj/machinery/portable_atmospherics/powered/scrubber/Initialize()
 	. = ..()
 	cell = new/obj/item/cell/apc(src)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/machinery/portable_atmospherics/powered/scrubber/emp_act(severity)
 	if(stat & (BROKEN|NOPOWER))
@@ -115,7 +109,7 @@
 	data["on"] = on ? 1 : 0
 	data["connected"] = connected_port ? 1 : 0
 	data["pressure"] = round(air_contents.return_pressure() > 0 ? air_contents.return_pressure() : 0)
-	
+
 	data["rate"] = round(volume_rate)
 	data["minrate"] = round(minrate)
 	data["maxrate"] = round(maxrate)
@@ -207,7 +201,7 @@
 		update_use_power(new_use_power)
 	if(!on)
 		return
-	
+
 	var/power_draw = -1
 
 	var/datum/gas_mixture/environment = loc.return_air()

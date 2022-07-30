@@ -32,12 +32,8 @@
 	icon_state = "electric_hand"
 	show_examine = FALSE
 
-<<<<<<< HEAD
-/obj/item/weapon/finger_lockpick/New()
-=======
 /obj/item/finger_lockpick/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(ismob(loc))
 		to_chat(loc, "<span class='notice'>We shape our finger to fit inside electronics, and are ready to force them open.</span>")
 

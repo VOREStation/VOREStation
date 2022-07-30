@@ -1063,7 +1063,7 @@
 	name = "wide building 6"
 	mappath = 'southwilds/villagepois/wide6.dmm'
 /area/submap/groundbase/poi/wildvillage/wide/wide6
-/obj/item/weapon/paper/wide6
+/obj/item/paper/wide6
 	name = "\improper hand written letter"
 	info = {"It is hard for me to write this out, and I hope you will be back soon, but I fear that by the time you return I will already be gone. I will try my best to hold on, but even as I write this, I can feel myself slipping.<BR><BR>
 	I know that you all do not believe me but I really can see them, just beyond the walls, and they're even closer now than they were before. I can see them even when I close my eyes. Seven golden eyes watch me, and I can feel their heat pouring into me. As they come closer, I can feel myself being tugged in. Like I'm a little lost moon being tugged into the embrace of a passing star. <BR><BR>It still doesn't hurt. It's getting hard to see anything else, and I can't move anymore. I feel like everything is going to be okay. If you see seven eyes, don't be afraid. Just promise you'll come find me, okay?<BR><BR>

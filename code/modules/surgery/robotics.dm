@@ -405,12 +405,8 @@
 
 /datum/surgery_step/robotics/install_mmi
 	allowed_tools = list(
-<<<<<<< HEAD
-	/obj/item/device/mmi = 100
-=======
 		/obj/item/mmi = 100
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
-	)
+		)
 
 	min_duration = 60
 	max_duration = 80
@@ -493,11 +489,7 @@
 
 /datum/surgery_step/robotics/install_nymph
 	allowed_tools = list(
-<<<<<<< HEAD
-	/obj/item/weapon/holder/diona = 100
-=======
 		/obj/item/holder/diona = 100
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 	min_duration = 60

@@ -77,19 +77,15 @@
 	name = "\improper Sol Government rubber stamp"
 	icon_state = "stamp-sg"
 
-<<<<<<< HEAD
-/obj/item/weapon/stamp/solgov
+/obj/item/stamp/solgov
 	name = "\improper Sol Government rubber stamp"
 	icon_state = "stamp-sg"
 
-/obj/item/weapon/stamp/solgovlogo
+/obj/item/stamp/solgovlogo
 	name = "\improper Sol Government logo stamp"
 	icon_state = "stamp-sol"
 
-/obj/item/weapon/stamp/solgovlogo
-=======
 /obj/item/stamp/solgovlogo
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\improper Sol Government logo stamp"
 	icon_state = "stamp-sol"
 

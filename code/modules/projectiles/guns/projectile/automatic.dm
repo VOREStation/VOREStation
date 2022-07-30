@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 /*
  * Daka SMG (Code Base)
  */
-/obj/item/weapon/gun/projectile/automatic //This should never be spawned in, it is just here because of code necessities.
-=======
 /obj/item/gun/projectile/automatic //This should never be spawned in, it is just here because of code necessities.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "daka SMG"
 	desc = "A small SMG. You really shouldn't be able to get this gun. Uses 9mm rounds."
 	icon_state = "c05r"	//Used because it's not used anywhere else
@@ -20,14 +16,10 @@
 		list(mode_name="semiauto",       burst=1, fire_delay=0,    move_delay=null, burst_accuracy=null, dispersion=null),
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0)))
 
-<<<<<<< HEAD
 /*
  * Advanced SMG
  */
-/obj/item/weapon/gun/projectile/automatic/advanced_smg
-=======
 /obj/item/gun/projectile/automatic/advanced_smg
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "advanced SMG"
 	desc = "An advanced submachine gun with a reflective laser optic that makes burst fire less inaccurate than other SMGs. Uses 9mm rounds."
 	icon = 'icons/obj/gun.dmi'
@@ -55,14 +47,10 @@
 /obj/item/gun/projectile/automatic/advanced_smg/loaded
 	magazine_type = /obj/item/ammo_magazine/m9mmAdvanced
 
-<<<<<<< HEAD
 /*
  * C-20r
  */
-/obj/item/weapon/gun/projectile/automatic/c20r
-=======
 /obj/item/gun/projectile/automatic/c20r
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "submachine gun"
 	desc = "The C-20r is a lightweight and rapid firing SMG, for when you REALLY need someone dead. It has 'Scarborough Arms - Per falcis, per pravitas', inscribed on the stock. Uses 10mm rounds."
 	description_fluff = "The C-20r is produced by Scarborough Arms, a specialist high-end weapons manufacturer based out of Titan, Sol. Scarborough has resisted numerous efforts by Trans-Stellars to acquire the brand since its founding in 2511, and has gained a dedicated following among a certain flavor of private operative."
@@ -80,7 +68,7 @@
 	auto_eject = 1
 	auto_eject_sound = 'sound/weapons/smg_empty_alarm.ogg'
 
-/obj/item/weapon/gun/projectile/automatic/c20r/rubber
+/obj/item/gun/projectile/automatic/c20r/rubber
 	magazine_type = /obj/item/ammo_magazine/m10mm/rubber
 
 /obj/item/gun/projectile/automatic/c20r/empty
@@ -94,14 +82,10 @@
 		icon_state = "c20r"
 	return
 
-<<<<<<< HEAD
 /*
  * Assault Carbine (STS-35)
  */
-/obj/item/weapon/gun/projectile/automatic/sts35
-=======
 /obj/item/gun/projectile/automatic/sts35
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "assault rifle"
 	desc = "The rugged Jindal Arms STS-35 is a durable automatic weapon of a make popular on the frontier worlds. Uses 5.45mm rounds."
 	description_fluff = "A subsidiary of Hephaestus Industries, While Jindal’s rugged, affordable weapons intended for the colonial sector are a major export of Tau Ceti, \
@@ -137,11 +121,10 @@
 		icon_state = (ammo_magazine)? "arifle" : "arifle-empty"
 	if(!ignore_inhands) update_held_icon()
 
-<<<<<<< HEAD
 /*
  * X-9mm (PDW)
  */
-/obj/item/weapon/gun/projectile/automatic/pdw
+/obj/item/gun/projectile/automatic/pdw
 	name = "personal defense weapon"
 	desc = "The X-9mm is a select-fire personal defense weapon designed in-house by Xing Private Security. It was made to compete with the WT550 Saber, \
 	but never caught on with NanoTrasen. Uses 9mm rounds."
@@ -160,7 +143,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=6,    burst_accuracy=list(0,-15,-30), dispersion=list(0.0, 0.6, 0.6))
 		)
 
-/obj/item/weapon/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
+/obj/item/gun/projectile/automatic/pdw/update_icon(var/ignore_inhands)
 	..()
 	if(ammo_magazine)
 		icon_state = "pdw"
@@ -171,10 +154,7 @@
 /*
  * Machine Pistol (WT550)
  */
-/obj/item/weapon/gun/projectile/automatic/wt550
-=======
 /obj/item/gun/projectile/automatic/wt550
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "machine pistol"
 	desc = "The WT550 Saber is a cheap self-defense weapon mass-produced by Ward-Takahashi for paramilitary and private use. Uses 9mm rounds."
 	icon_state = "wt550"
@@ -197,14 +177,10 @@
 		icon_state = "wt550"
 	return
 
-<<<<<<< HEAD
 /*
  * Battle Rifle (Z8)
  */
-/obj/item/weapon/gun/projectile/automatic/z8
-=======
 /obj/item/gun/projectile/automatic/z8
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "battle rifle"
 	desc = "The Z8 Bulldog is an older model battle rifle, made by the now defunct Zendai Foundries. Makes you feel like an old-school badass when you hold it, \
 	even though it can only hold 10 round magazines. Uses 7.62mm rounds and has an under barrel grenade launcher."
@@ -238,13 +214,8 @@
 	var/use_launcher = 0
 	var/obj/item/gun/launcher/grenade/underslung/launcher
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/automatic/z8/New()
-	..()
-=======
 /obj/item/gun/projectile/automatic/z8/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	launcher = new(src)
 
 /obj/item/gun/projectile/automatic/z8/attackby(obj/item/I, mob/user)
@@ -286,14 +257,10 @@
 /obj/item/gun/projectile/automatic/z8/empty
 	magazine_type = null
 
-<<<<<<< HEAD
 /*
  * LMG (L6 SAW)
  */
-/obj/item/weapon/gun/projectile/automatic/l6_saw
-=======
 /obj/item/gun/projectile/automatic/l6_saw
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "light machine gun"
 	desc = "A rather sturdily made L6 SAW with a reassuringly ergonomic pistol grip. 'Hephaestus Industries' is engraved on the reciever. Uses 5.45mm rounds. It's also compatible with magazines from STS-35 assault rifles."
 	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by professional armed forces across human space."
@@ -367,14 +334,10 @@
 		return
 	..()
 
-<<<<<<< HEAD
 /*
  * Automatic Shotgun (AS-24)
  */
-/obj/item/weapon/gun/projectile/automatic/as24
-=======
 /obj/item/gun/projectile/automatic/as24
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "automatic shotgun"
 	desc = "The AS-24 is a rugged looking automatic shotgun produced exclusively for the SCG Fleet by Hephaestus \
 	Industries. For very obvious reasons, it's illegal to own in many juristictions. Uses 12g rounds."
@@ -408,14 +371,10 @@
 		icon_state = "ashot-empty"
 	return
 
-<<<<<<< HEAD
 /*
  * Uzi
  */
-/obj/item/weapon/gun/projectile/automatic/mini_uzi
-=======
 /obj/item/gun/projectile/automatic/mini_uzi
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "micro-smg"
 	desc = "The infamous ProTek Spitz is a lightweight, compact, fast firing machine pistol. Cheaply produced under the ProTek consumer brand, the Spitz seems to find its way into every corner of the galaxy. Uses .45 rounds."
 	description_fluff = "Budget-grade weapons for the budget-grade consumer! Hephaestus’ low-end brand of cheaply made, low-maintenance personal defense weapons for those who just need a handgun with absolutely no frills. \
@@ -441,14 +400,10 @@
 	else
 		icon_state = "uzi-e"
 
-<<<<<<< HEAD
 /*
  * P90 (H90K)
  */
-/obj/item/weapon/gun/projectile/automatic/p90
-=======
 /obj/item/gun/projectile/automatic/p90
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "personal defense weapon"
 	desc = "The H90K is a compact, large capacity submachine gun produced by MarsTech. Despite its fierce reputation, it still manages to feel like a toy. Uses 9mm rounds."
 	description_fluff = "The leading civilian-sector high-quality small arms brand of Hephaestus Industries, MarsTech has been the provider of choice for law enforcement and security forces for over 300 years."
@@ -470,14 +425,10 @@
 /obj/item/gun/projectile/automatic/p90/update_icon()
 	icon_state = "p90smg-[ammo_magazine ? round(ammo_magazine.stored_ammo.len, 6) : "empty"]"
 
-<<<<<<< HEAD
 /*
  * Tommy Gun
  */
-/obj/item/weapon/gun/projectile/automatic/tommygun
-=======
 /obj/item/gun/projectile/automatic/tommygun
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\improper Tommy Gun"
 	desc = "This weapon was made famous by gangsters in the 20th century. Cybersun Industries is currently reproducing these for a target market of historic gun collectors and classy criminals. Uses .45 rounds."
 	description_fluff = "Cybersun Industries is a minor arms manufacturer specialising in replica firearms from eras past. Though they offer a wide selection of made-to-order models, their products are seen as little more than novelty items to most serious collectors."
@@ -496,8 +447,7 @@
 		list(mode_name="3-round bursts", burst=3, fire_delay=null, move_delay=4,    burst_accuracy=list(0,-15,-15), dispersion=list(0.0, 0.6, 1.0))
 		)
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/automatic/tommygun/update_icon()
+/obj/item/gun/projectile/automatic/tommygun/update_icon()
 	if(istype(ammo_magazine,/obj/item/ammo_magazine/m45tommy))
 		icon_state = "tommy-mag"
 	else if(istype(ammo_magazine,/obj/item/ammo_magazine/m45tommydrum))
@@ -509,15 +459,7 @@
 /*
  * Bullpup Rifle
  */
-/obj/item/weapon/gun/projectile/automatic/bullpup // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
-=======
-/obj/item/gun/projectile/automatic/tommygun/update_icon()
-	..()
-	icon_state = (ammo_magazine)? "tommygun" : "tommygun-empty"
-//	update_held_icon()
-
 /obj/item/gun/projectile/automatic/bullpup // Admin abuse assault rifle. ToDo: Make this less shit. Maybe remove its autofire, and make it spawn with only 10 rounds at start.
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "bullpup rifle"
 	desc = "The bullpup configured GP3000 is a battle rifle produced by Gurov Projectile Weapons LLC. It is sold almost exclusively to standing armies. Uses 7.62mm rounds."
 	icon_state = "bullpup-small"
@@ -551,15 +493,10 @@
 	if(!ignore_inhands)
 		update_held_icon()
 
-<<<<<<< HEAD
 /*
  * Combat SMG (PP3 Ten)
  */
-/obj/item/weapon/gun/projectile/automatic/combatsmg
-=======
-//Functionally a mini-uzi with slightly less terrible burst spread.
 /obj/item/gun/projectile/automatic/combatsmg
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "\improper PP3 Ten"
 	desc = "The Bishamonten PP3 Ten personal defense weapon is a rare design much sought after - though more for its looks than its functionality. Uses 9mm rounds."
 	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \

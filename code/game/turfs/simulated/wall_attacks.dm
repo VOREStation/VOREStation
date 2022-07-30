@@ -132,7 +132,7 @@
 	user.setClickCooldown(user.get_attack_speed(W))
 
 /*
-//As with the floors, only this time it works AND tries pushing the wall after it's done. 
+//As with the floors, only this time it works AND tries pushing the wall after it's done.
 	if(!construction_stage && user.a_intent == I_HELP)
 		if(try_graffiti(user,W))
 			return
@@ -409,12 +409,5 @@
 		F.try_build(src, user)
 		return
 
-<<<<<<< HEAD
-	else if(!istype(W,/obj/item/weapon/rcd) && !istype(W, /obj/item/weapon/reagent_containers))
-		return attack_hand(user)
-
-
-=======
 	else if(!istype(W,/obj/item/rcd) && !istype(W, /obj/item/reagent_containers))
 		return attack_hand(user)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

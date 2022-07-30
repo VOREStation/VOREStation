@@ -14,15 +14,9 @@
 	aspect = ASPECT_TELE
 	var/datum/effect/effect/system/spark_spread/sparks
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/warp_strike/New()
-	..()
-	sparks = new /datum/effect/effect/system/spark_spread()
-=======
 /obj/item/spell/warp_strike/Initialize()
 	. = ..()
 	sparks = new /datum/effect_system/spark_spread()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)
 
@@ -83,4 +77,3 @@
 		else
 			chosen_target.attack_hand(user)
 		add_attack_logs(user,chosen_target,"Warp striked")
-

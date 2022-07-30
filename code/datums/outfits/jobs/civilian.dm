@@ -1,11 +1,6 @@
 /decl/hierarchy/outfit/job/assistant
-<<<<<<< HEAD
 	name = OUTFIT_JOB_NAME(USELESS_JOB) //VOREStation Edit - Visitor not Assistant
-	id_type = /obj/item/weapon/card/id/generic	//VOREStation Edit
-=======
-	name = OUTFIT_JOB_NAME("Assistant")
-	id_type = /obj/item/card/id/assistant
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	id_type = /obj/item/card/id/generic	//VOREStation Edit
 
 /decl/hierarchy/outfit/job/assistant/visitor
 	name = OUTFIT_JOB_NAME("Visitor")
@@ -30,13 +25,8 @@
 /decl/hierarchy/outfit/job/service/bartender
 	name = OUTFIT_JOB_NAME("Bartender")
 	uniform = /obj/item/clothing/under/rank/bartender
-<<<<<<< HEAD
-	id_type = /obj/item/weapon/card/id/civilian/service/bartender		//VOREStation Edit
-	pda_type = /obj/item/device/pda/bar
-=======
-	id_type = /obj/item/card/id/civilian/bartender
+	id_type = /obj/item/card/id/civilian/service/bartender		//VOREStation Edit
 	pda_type = /obj/item/pda/bar
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	backpack_contents = list(/obj/item/clothing/accessory/permit/gun/bar = 1)
 
 /decl/hierarchy/outfit/job/service/bartender/post_equip(mob/living/carbon/human/H)
@@ -55,13 +45,8 @@
 	uniform = /obj/item/clothing/under/rank/chef
 	suit = /obj/item/clothing/suit/chef
 	head = /obj/item/clothing/head/chefhat
-<<<<<<< HEAD
-	id_type = /obj/item/weapon/card/id/civilian/service/chef		//VOREStation Edit
-	pda_type = /obj/item/device/pda/chef
-=======
-	id_type = /obj/item/card/id/civilian/chef
+	id_type = /obj/item/card/id/civilian/service/chef		//VOREStation Edit
 	pda_type = /obj/item/pda/chef
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /decl/hierarchy/outfit/job/service/chef/cook
 	name = OUTFIT_JOB_NAME("Cook")
@@ -80,34 +65,19 @@
 	uniform = /obj/item/clothing/under/rank/hydroponics
 	suit = /obj/item/clothing/suit/storage/apron
 	gloves = /obj/item/clothing/gloves/botanic_leather
-<<<<<<< HEAD
-	r_pocket = /obj/item/device/analyzer/plant_analyzer
-	backpack = /obj/item/weapon/storage/backpack/hydroponics
-	satchel_one = /obj/item/weapon/storage/backpack/satchel/hyd
-	messenger_bag = /obj/item/weapon/storage/backpack/messenger/hyd
-	sports_bag = /obj/item/weapon/storage/backpack/sport/hyd
-	id_type = /obj/item/weapon/card/id/civilian/service/botanist	//VOREStation Edit
-	pda_type = /obj/item/device/pda/botanist
-=======
 	r_pocket = /obj/item/analyzer/plant_analyzer
 	backpack = /obj/item/storage/backpack/hydroponics
 	satchel_one = /obj/item/storage/backpack/satchel/hyd
 	messenger_bag = /obj/item/storage/backpack/messenger/hyd
 	sports_bag = /obj/item/storage/backpack/sport/hyd
-	id_type = /obj/item/card/id/civilian/botanist
+	id_type = /obj/item/card/id/civilian/service/botanist
 	pda_type = /obj/item/pda/botanist
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /decl/hierarchy/outfit/job/service/janitor
 	name = OUTFIT_JOB_NAME("Janitor")
 	uniform = /obj/item/clothing/under/rank/janitor
-<<<<<<< HEAD
-	id_type = /obj/item/weapon/card/id/civilian/service/janitor		//VOREStation Edit
-	pda_type = /obj/item/device/pda/janitor
-=======
-	id_type = /obj/item/card/id/civilian/janitor
+	id_type = /obj/item/card/id/civilian/service/janitor		//VOREStation Edit
 	pda_type = /obj/item/pda/janitor
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /decl/hierarchy/outfit/job/librarian
 	name = OUTFIT_JOB_NAME("Librarian")
@@ -146,11 +116,7 @@
 	gloves = /obj/item/clothing/gloves/black
 	l_ear = /obj/item/radio/headset
 	id_slot = slot_wear_id
-<<<<<<< HEAD
-	id_type = /obj/item/weapon/card/id/exploration					//VOREStation Edit
-=======
-	id_type = /obj/item/card/id/science/explorer
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	id_type = /obj/item/card/id/exploration					//VOREStation Edit
 	pda_slot = slot_belt
 	pda_type = /obj/item/pda/cargo // Brown looks more rugged
 	r_pocket = /obj/item/gps/explorer

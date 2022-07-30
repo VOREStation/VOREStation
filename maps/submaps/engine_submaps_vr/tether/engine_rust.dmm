@@ -6,7 +6,7 @@
 /turf/space,
 /area/space)
 "ac" = (
-/obj/item/weapon/book/manual/rust_engine,
+/obj/item/book/manual/rust_engine,
 /turf/template_noop,
 /area/template_noop)
 "ad" = (
@@ -318,7 +318,7 @@
 /area/engineering/engine_room)
 "aV" = (
 /obj/structure/table/reinforced,
-/obj/item/weapon/book/manual/rust_engine,
+/obj/item/book/manual/rust_engine,
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "aW" = (
@@ -711,7 +711,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 10;
 	icon_state = "intact";
-	
+
 	},
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor,
@@ -725,7 +725,7 @@
 /obj/machinery/atmospherics/pipe/manifold/visible/red{
 	dir = 8;
 	icon_state = "map";
-	
+
 	},
 /turf/simulated/floor,
 /area/engineering/engine_room)
@@ -1207,7 +1207,7 @@
 	dir = 1;
 	icon_state = "extinguisher_closed";
 	pixel_y = 32;
-	
+
 	},
 /turf/simulated/floor,
 /area/engineering/engine_gas)
@@ -1263,7 +1263,7 @@
 /turf/simulated/floor,
 /area/engineering/engine_room)
 "de" = (
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 2;
 	pixel_y = -24
 	},

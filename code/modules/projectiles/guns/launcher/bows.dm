@@ -1,14 +1,7 @@
-<<<<<<< HEAD
-/obj/item/weapon/arrow/standard
+/obj/item/arrow/standard
 	name = "arrow"
 	desc = "It's got a tip for you - get the point?"
 	icon = 'icons/obj/guns/projectile/bows.dmi'
-=======
-/obj/item/arrow/wood
-	name = "wooden arrow"
-	desc = "A wooden arrow with a stone tip. Simple, but gets the job done."
-	icon = 'icons/obj/weapons.dmi'
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "arrow"
 	item_state = "bolt"
 	throwforce = 8
@@ -107,16 +100,8 @@
 		user.visible_message("<b>[user]</b> draws the string on [src] back fully!", "You draw the string on [src] back fully!")
 	update_icon()
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/launcher/crossbow/bow/attackby(obj/item/W as obj, mob/user)
-	if(!bolt && istype(W,/obj/item/weapon/arrow/standard))
-=======
-/obj/item/gun/launcher/crossbow/bow/handle_click_empty(mob/user)
-		return
-
 /obj/item/gun/launcher/crossbow/bow/attackby(obj/item/W as obj, mob/user)
-	if(!bolt && istype(W,/obj/item/arrow/wood))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	if(!bolt && istype(W,/obj/item/arrow/standard))
 		user.drop_from_inventory(W, src)
 		bolt = W
 		user.visible_message("[user] slides [bolt] into [src].","You slide [bolt] into [src].")
@@ -130,14 +115,6 @@
 	else
 		icon_state = "[initial(icon_state)]"
 
-<<<<<<< HEAD
-=======
-/obj/item/gun/launcher/crossbow/bow/dropped(mob/user)
-	if(drawn)
-		to_chat(user, "<span class='warning'>\The [src]'s tension is relaxed as you let go of it!</span>")
-		drawn = FALSE
-	update_icon()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 
 /obj/item/gun/launcher/crossbow/bow/hardlight

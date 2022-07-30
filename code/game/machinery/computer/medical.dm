@@ -500,13 +500,8 @@
 	icon_state = "pcu_med"
 	icon_keyboard = "pcu_key"
 	light_color = "#5284e7"
-<<<<<<< HEAD
-	circuit = /obj/item/weapon/circuitboard/med_data/pcu
-	density = FALSE
-=======
 	circuit = /obj/item/circuitboard/med_data/pcu
-	density = 0
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	density = FALSE
 
 #undef FIELD
 #undef MED_FIELD

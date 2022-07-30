@@ -69,13 +69,8 @@
 	var/container_type = /obj/item/reagent_containers/glass/beaker
 	var/list/starting_chems = null
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/projectile/dartgun/New()
-	..()
-=======
 /obj/item/gun/projectile/dartgun/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(starting_chems)
 		for(var/chem in starting_chems)
 			var/obj/B = new container_type(src)

@@ -7,14 +7,9 @@
 	base_icon = 'icons/obj/card_new.dmi'
 
 	// New sprite stacks can be defined here. You could theoretically change icon-states as well but right now this file compiles before station_ids.dm so those wouldn't be affected.
-<<<<<<< HEAD
-  
-/*
-/obj/item/weapon/card/id/generic
-=======
 
+/*
 /obj/item/card/id/generic
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	initial_sprite_stack = list("base-stamp", "top-generic", "stamp-silhouette", "clip")
 
 // CENTCOM
@@ -125,7 +120,7 @@
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-dark")
 
 /obj/item/card/id/civilian/chef
-	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-white")		
+	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-white")
 
 /obj/item/card/id/civilian/janitor
 	initial_sprite_stack = list("base-stamp", "top-green", "stamp-n", "pips-purple")
@@ -148,11 +143,6 @@
 /obj/item/card/id/syndicate
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s")
 
-<<<<<<< HEAD
-/obj/item/weapon/card/id/syndicate/officer
-	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s", "pips-gold", "stripe-gold")
-*/
-=======
 /obj/item/card/id/syndicate/officer
 	initial_sprite_stack = list("base-stamp-dark", "top-syndicate", "stamp-s", "pips-gold", "stripe-gold")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+*/

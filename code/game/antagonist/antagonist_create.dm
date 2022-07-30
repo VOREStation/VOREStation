@@ -41,15 +41,15 @@
 	return W
 
 /datum/antagonist/proc/create_radio(var/freq, var/mob/living/carbon/human/player)
-	var/obj/item/device/radio/R
+	var/obj/item/radio/R
 
 	switch(freq)
 		if(SYND_FREQ)
-			R = new/obj/item/device/radio/headset/syndicate(player)
+			R = new/obj/item/radio/headset/syndicate(player)
 		if(RAID_FREQ)
-			R = new/obj/item/device/radio/headset/raider(player)
+			R = new/obj/item/radio/headset/raider(player)
 		else
-			R = new/obj/item/device/radio/headset(player)
+			R = new/obj/item/radio/headset(player)
 			R.set_frequency(freq)
 
 	player.equip_to_slot_or_del(R, slot_l_ear)

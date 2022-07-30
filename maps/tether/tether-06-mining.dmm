@@ -277,7 +277,7 @@
 	},
 /obj/structure/table/woodentable,
 /obj/machinery/atmospherics/unary/vent_pump/on,
-/obj/item/weapon/storage/belt/utility,
+/obj/item/storage/belt/utility,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/break_room)
 "aN" = (
@@ -522,11 +522,11 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 8
 	},
-/obj/item/weapon/storage/box/cups{
+/obj/item/storage/box/cups{
 	pixel_x = 3;
 	pixel_y = 3
 	},
-/obj/item/weapon/storage/box/donkpockets,
+/obj/item/storage/box/donkpockets,
 /obj/machinery/vending/wallmed1{
 	pixel_y = -30
 	},
@@ -690,7 +690,7 @@
 /area/outpost/mining_main/maintenance)
 "bA" = (
 /obj/structure/table/standard,
-/obj/item/weapon/storage/briefcase/inflatable,
+/obj/item/storage/briefcase/inflatable,
 /turf/simulated/floor/plating,
 /area/outpost/mining_main/maintenance)
 "bB" = (
@@ -992,10 +992,10 @@
 /obj/effect/floor_decal/corner/brown/border{
 	dir = 4
 	},
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
-/obj/item/device/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
+/obj/item/suit_cooling_unit,
 /turf/simulated/floor/tiled,
 /area/outpost/mining_main/secondary_gear_storage)
 "cf" = (
@@ -1064,7 +1064,7 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 4
 	},
-/obj/item/device/radio/intercom{
+/obj/item/radio/intercom{
 	dir = 1;
 	pixel_y = 24;
 	req_access = list()
@@ -1108,8 +1108,8 @@
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
-/obj/item/weapon/cell/high,
-/obj/item/weapon/cell/high,
+/obj/item/cell/high,
+/obj/item/cell/high,
 /turf/simulated/floor/tiled/steel_dirty/virgo3b,
 /area/outpost/mining_main/drill_equipment)
 "ct" = (
@@ -1210,9 +1210,9 @@
 /area/outpost/mining_main/hangar)
 "cC" = (
 /obj/structure/table/steel,
-/obj/item/weapon/tool/screwdriver,
-/obj/item/weapon/tool/crowbar,
-/obj/item/weapon/tool/wrench,
+/obj/item/tool/screwdriver,
+/obj/item/tool/crowbar,
+/obj/item/tool/wrench,
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 8
 	},
@@ -1845,7 +1845,7 @@
 /turf/simulated/floor/outdoors/grass/sif/virgo3b,
 /area/mine/explored)
 "JA" = (
-/obj/item/weapon/bedsheet/orange,
+/obj/item/bedsheet/orange,
 /obj/structure/bed/padded,
 /turf/simulated/floor/wood,
 /area/outpost/mining_main/dorms)

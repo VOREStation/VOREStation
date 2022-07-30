@@ -177,10 +177,10 @@ var/global/list/robot_modules = list(
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/weapon/robot_module/robot/New()
 	..()
-	src.modules += new /obj/item/device/flash/robot(src)
+	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
-	src.modules += new /obj/item/device/gps/robot(src)
+	src.modules += new /obj/item/gps/robot(src)
 	vr_new() // Vorestation Edit: For modules in robot_modules_vr.dm
 
 /obj/item/weapon/robot_module/robot/standard
@@ -211,7 +211,7 @@ var/global/list/robot_modules = list(
 	..()
 	src.modules += new /obj/item/weapon/melee/baton/loaded(src)
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
-	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/healthanalyzer(src)
 	src.emag = new /obj/item/weapon/melee/energy/sword(src)
 
 /obj/item/weapon/robot_module/robot/medical
@@ -247,7 +247,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/medical/surgeon/New()
 	..()
-	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
 	src.modules += new /obj/item/weapon/autopsy_scanner(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
@@ -323,8 +323,8 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/medical/crisis/New()
 	..()
-	src.modules += new /obj/item/device/healthanalyzer(src)
-	src.modules += new /obj/item/device/reagent_scanner/adv(src)
+	src.modules += new /obj/item/healthanalyzer(src)
+	src.modules += new /obj/item/reagent_scanner/adv(src)
 	src.modules += new /obj/item/roller_holder(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/crisis(src)
 	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
@@ -408,20 +408,20 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/device/multitool(src)
-	src.modules += new /obj/item/device/t_scanner(src)
-	src.modules += new /obj/item/device/analyzer(src)
+	src.modules += new /obj/item/multitool(src)
+	src.modules += new /obj/item/t_scanner(src)
+	src.modules += new /obj/item/analyzer(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
-	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/lightreplacer(src)
 	// RPDs do this already
-	//src.modules += new /obj/item/device/pipe_painter(src)
+	//src.modules += new /obj/item/pipe_painter(src)
 	src.modules += new /obj/item/weapon/pipe_dispenser(src)
-	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/floor_painter(src)
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
 	src.emag = new /obj/item/weapon/melee/baton/robot/arm(src)
-	src.modules += new /obj/item/device/geiger(src)
+	src.modules += new /obj/item/geiger(src)
 	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
@@ -532,7 +532,7 @@ var/global/list/robot_modules = list(
 	src.emag = new /obj/item/weapon/gun/energy/laser/mounted(src)
 
 /obj/item/weapon/robot_module/robot/security/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/device/flash/F = locate() in src.modules
+	var/obj/item/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
 		F.times_used = 0
@@ -573,13 +573,13 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/soap/nanotrasen(src)
 	src.modules += new /obj/item/weapon/storage/bag/trash(src)
 	src.modules += new /obj/item/weapon/mop(src)
-	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/lightreplacer(src)
 	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
 	src.emag.reagents.add_reagent("lube", 250)
 	src.emag.name = "Lube spray"
 
 /obj/item/weapon/robot_module/robot/janitor/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/device/lightreplacer/LR = locate() in src.modules
+	var/obj/item/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	if(src.emag)
 		var/obj/item/weapon/reagent_containers/spray/S = src.emag
@@ -639,12 +639,12 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
 	src.modules += new /obj/item/weapon/material/minihoe(src)
 	src.modules += new /obj/item/weapon/material/knife/machete/hatchet(src)
-	src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
+	src.modules += new /obj/item/analyzer/plant_analyzer(src)
 	src.modules += new /obj/item/weapon/storage/bag/plants(src)
 	src.modules += new /obj/item/weapon/robot_harvester(src)
 	src.modules += new /obj/item/weapon/material/knife(src)
 	src.modules += new /obj/item/weapon/material/kitchen/rollingpin(src)
-	src.modules += new /obj/item/device/multitool(src) //to freeze trays
+	src.modules += new /obj/item/multitool(src) //to freeze trays
 
 	var/obj/item/weapon/rsf/M = new /obj/item/weapon/rsf(src)
 	M.stored_matter = 30
@@ -778,13 +778,13 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/gripper/no_use/organ/robotics(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/mech(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
-	src.modules += new /obj/item/device/robotanalyzer(src)
+	src.modules += new /obj/item/robotanalyzer(src)
 	src.modules += new /obj/item/weapon/card/robot(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/device/multitool(src)
+	src.modules += new /obj/item/multitool(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
 	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
@@ -793,9 +793,9 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/shockpaddles/robot/jumper(src)
 	src.modules += new /obj/item/weapon/melee/baton/slime/robot(src)
 	src.modules += new /obj/item/weapon/gun/energy/taser/xeno/robot(src)
-	src.modules += new /obj/item/device/xenoarch_multi_tool(src)
+	src.modules += new /obj/item/xenoarch_multi_tool(src)
 	src.modules += new /obj/item/weapon/pickaxe/excavationdrill(src)
-	//src.modules += new /obj/item/device/cataloguer(src) //VOREStation Removal
+	//src.modules += new /obj/item/cataloguer(src) //VOREStation Removal
 
 	src.emag = new /obj/item/weapon/hand_tele(src)
 
@@ -838,7 +838,7 @@ var/global/list/robot_modules = list(
 
 /obj/item/weapon/robot_module/robot/security/combat/New()
 	..()
-	src.modules += new /obj/item/device/flash(src)
+	src.modules += new /obj/item/flash(src)
 	//src.modules += new /obj/item/borg/sight/thermal(src) // VOREStation Edit
 	src.modules += new /obj/item/weapon/gun/energy/laser/mounted(src)
 	src.modules += new /obj/item/weapon/pickaxe/plasmacutter/borg(src)
@@ -863,15 +863,15 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/device/t_scanner(src)
-	src.modules += new /obj/item/device/multitool(src)
-	src.modules += new /obj/item/device/lightreplacer(src)
+	src.modules += new /obj/item/t_scanner(src)
+	src.modules += new /obj/item/multitool(src)
+	src.modules += new /obj/item/lightreplacer(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/soap(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/extinguisher(src)
-	src.modules += new /obj/item/device/pipe_painter(src)
-	src.modules += new /obj/item/device/floor_painter(src)
+	src.modules += new /obj/item/pipe_painter(src)
+	src.modules += new /obj/item/floor_painter(src)
 
 	robot.internals = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += robot.internals
@@ -944,7 +944,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/rcd/electric/mounted/borg/lesser(src)
 
 /obj/item/weapon/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/device/lightreplacer/LR = locate() in src.modules
+	var/obj/item/lightreplacer/LR = locate() in src.modules
 	LR.Charge(R, amount)
 	..()
 	return

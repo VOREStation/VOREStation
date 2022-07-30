@@ -15,12 +15,7 @@
 /*
  * Pens
  */
-<<<<<<< HEAD
-/obj/item/weapon/pen
-=======
 /obj/item/pen
-	desc = "It's a normal black ink pen."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "pen"
 	desc = "It's a normal black ink pen."
 	icon = 'icons/obj/bureaucracy.dmi'
@@ -44,14 +39,10 @@
 	to_chat(user, "<span class='notice'>Click.</span>")
 	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 
-<<<<<<< HEAD
 /*
  * Coloured Pens
  */
-/obj/item/weapon/pen/blue
-=======
 /obj/item/pen/blue
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "It's a normal blue ink pen."
 	icon_state = "pen_blue"
 	colour = "blue"
@@ -61,61 +52,20 @@
 	icon_state = "pen_red"
 	colour = "red"
 
-<<<<<<< HEAD
 /*
  * Fountain Pens
  */
-/obj/item/weapon/pen/fountain
-	desc = "A well made fountain pen, with a faux wood body."
-=======
-/obj/item/pen/multi
-	desc = "It's a pen with multiple colors of ink!"
-	var/selectedColor = 1
-	var/colors = list("black","blue","red")
-
-/obj/item/pen/AltClick(mob/user)
-	to_chat(user, "<span class='notice'>Click.</span>")
-	playsound(src, 'sound/items/penclick.ogg', 50, 1)
-	return
-
-/obj/item/pen/multi/attack_self(mob/user)
-	if(++selectedColor > 3)
-		selectedColor = 1
-
-	colour = colors[selectedColor]
-
-	if(colour == "black")
-		icon_state = "pen"
-	else
-		icon_state = "pen_[colour]"
-
-	to_chat(user, "<span class='notice'>Changed color to '[colour].'</span>")
-
-/obj/item/pen/invisible
-	desc = "It's an invisble pen marker."
-	icon_state = "pen"
-	colour = "white"
-
-//Fountain Pens
-
 /obj/item/pen/fountain
-	desc = "A well made fountain pen with a faux-wood finish."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
 
 /obj/item/pen/fountain2
 	desc = "A well made fountain pen, with a faux wood body. This one has golden accents."
 	icon_state = "pen_fountain"
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/fountain3
+/obj/item/pen/fountain3
 	desc = "A well made expesive rosewood pen with golden accents. Very pretty."
 	icon_state = "pen_fountain"
-=======
-/obj/item/pen/fountain3
-	desc = "A well made expensive rosewood pen with golden accents. Very pretty."
-	icon_state = "red_fountain"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /obj/item/pen/fountain4
 	desc = "A well made and expensive fountain pen. This one has silver accents."
@@ -145,17 +95,17 @@
 /*
  * Multi Pen
  */
-/obj/item/weapon/pen/multi
+/obj/item/pen/multi
 	desc = "It's a pen with multiple colors of ink!"
 	var/selectedColor = 1
 	var/colors = list("black","blue","red")
 
-/obj/item/weapon/pen/AltClick(mob/user)
+/obj/item/pen/AltClick(mob/user)
 	to_chat(user, "<span class='notice'>Click.</span>")
 	playsound(src, 'sound/items/penclick.ogg', 50, 1)
 	return
 
-/obj/item/weapon/pen/multi/attack_self(mob/user)
+/obj/item/pen/multi/attack_self(mob/user)
 	if(++selectedColor > 3)
 		selectedColor = 1
 
@@ -168,7 +118,7 @@
 
 	to_chat(user, "<span class='notice'>Changed color to '[colour].'</span>")
 
-/obj/item/weapon/pen/invisible
+/obj/item/pen/invisible
 	desc = "It's an invisble pen marker."
 	icon_state = "pen"
 	colour = "white"
@@ -181,13 +131,8 @@
 	flags = OPENCONTAINER
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/reagent/New()
-	..()
-=======
 /obj/item/pen/reagent/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	create_reagents(30)
 
 /obj/item/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
@@ -207,12 +152,7 @@
 /*
  * Blade Pens
  */
-<<<<<<< HEAD
-/obj/item/weapon/pen/blade
-=======
-
 /obj/item/pen/blade
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "It's a normal black ink pen."
 	description_antag = "This pen can be transformed into a dangerous melee and thrown assassination weapon with an Alt-Click.\
 	When active, it cannot be caught safely."
@@ -296,13 +236,8 @@
 	icon_state = "pen_red"
 	colour = "red"
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/blade/fountain
-	desc = "A well made fountain pen, with a faux wood body."
-=======
 /obj/item/pen/blade/fountain
-	desc = "A well made fountain pen."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	desc = "A well made fountain pen, with a faux wood body."
 	icon_state = "pen_fountain"
 
 /*
@@ -312,16 +247,10 @@
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/reagent/sleepy/New()
-	..()
-	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
-	reagents.add_reagent("stoxin", 14)	//VOREStation Add
-=======
 /obj/item/pen/reagent/sleepy/Initialize()
 	. = ..()
-	reagents.add_reagent("chloralhydrate", 22)	//Used to be 100 sleep toxin//30 Chloral seems to be fatal, reducing it to 22./N
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
+	reagents.add_reagent("stoxin", 14)	//VOREStation Add
 
 
 /*
@@ -330,13 +259,8 @@
 /obj/item/pen/reagent/paralysis
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/reagent/paralysis/New()
-	..()
-=======
 /obj/item/pen/reagent/paralysis/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	reagents.add_reagent("zombiepowder", 5)
 	reagents.add_reagent("cryptobiolin", 10)
 
@@ -399,12 +323,8 @@
 /*
  * Crayons
  */
-<<<<<<< HEAD
-/obj/item/weapon/pen/crayon
-=======
 
 /obj/item/pen/crayon
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "crayon"
 	desc = "A colourful crayon. Please refrain from eating it or putting it in your nose."
 	icon = 'icons/obj/crayons.dmi'
@@ -419,12 +339,8 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/crayon/New()
-=======
 /obj/item/pen/crayon/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "[colourName] crayon"
 
 /obj/item/pen/crayon/marker
@@ -432,10 +348,6 @@
 	desc = "A chisel-tip permanent marker. Hopefully non-toxic."
 	icon_state = "markerred"
 
-<<<<<<< HEAD
-/obj/item/weapon/pen/crayon/marker/New()
-=======
 /obj/item/pen/crayon/marker/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "[colourName] marker"

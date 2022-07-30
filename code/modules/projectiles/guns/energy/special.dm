@@ -49,7 +49,7 @@
 	battery_lock = 1
 
 	var/decl/plantgene/gene = null
-	var/obj/item/weapon/stock_parts/micro_laser/emitter
+	var/obj/item/stock_parts/micro_laser/emitter
 
 	firemodes = list(
 		list(mode_name="induce mutations", projectile_type=/obj/item/projectile/energy/floramut, modifystate="floramut"),
@@ -57,18 +57,17 @@
 		list(mode_name="induce specific mutations", projectile_type=/obj/item/projectile/energy/floramut/gene, modifystate="floramut"),
 		)
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/energy/floragun/Initialize()
+/obj/item/gun/energy/floragun/Initialize()
 	. = ..()
 	emitter = new(src)
 
-/obj/item/weapon/gun/energy/floragun/examine(var/mob/user)
+/obj/item/gun/energy/floragun/examine(var/mob/user)
 	. = ..()
 	if(Adjacent(user))
 		. += "It has [emitter ? emitter : "no micro laser"] installed."
 
-/obj/item/weapon/gun/energy/floragun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/weapon/stock_parts/micro_laser))
+/obj/item/gun/energy/floragun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/stock_parts/micro_laser))
 		if(!emitter)
 			user.drop_item()
 			W.loc = src
@@ -88,10 +87,7 @@
 			to_chat(user, "<span class='notice'>There is no micro laser in this [src].</span>")
 			return
 
-/obj/item/weapon/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
-=======
 /obj/item/gun/energy/floragun/afterattack(obj/target, mob/user, adjacent_flag)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	//allow shooting into adjacent hydrotrays regardless of intent
 	if(!emitter)
 		to_chat(user, "<span class='notice'>The [src] has no laser! </span>")

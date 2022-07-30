@@ -1,14 +1,14 @@
 /*
  * Lever-Action Rifle
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever
+/obj/item/gun/projectile/shotgun/pump/rifle/lever
 	name = "lever-action rifle"
 	desc = "The Weissen Company's version of an iconic manually operated lever action rifle, \
 	the Bushhog, offering adequate stopping power due to it's still powerful cartridge while at \
 	the same time having a rather respectable firing rate due to it's mechanism. It is very probable \
 	this is a replica instead of a museum piece, but rifles of this pattern still see usage as \
 	colonist guns in some far off regions. Uses 7.62mm rounds."
-	description_fluff = "The frontier’s largest home-grown firearms manufacturer, the Weissen \
+	description_fluff = "The frontierï¿½s largest home-grown firearms manufacturer, the Weissen \
 	Company offers a range of high-quality, high-cost hunting rifles and shotguns designed with \
 	the wild frontier wilderness - and its wildlife - in mind. The company operates just one \
 	production plant in the Mytis system, but their weapons have found popularity on garden \
@@ -24,14 +24,14 @@
 /*
  * Vintage Lever-Action
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever/vintage
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/vintage
 	name = "vintage lever-action rifle"
 	desc = "The Weissen Company's version of an iconic manually operated lever action rifle, \
 	the Bushhog, offering adequate stopping power due to it's still powerful cartridge while at \
 	the same time having a rather respectable firing rate due to it's mechanism. It is very probable \
 	this is a replica instead of a museum piece, but rifles of this pattern still see usage as \
 	colonist guns in some far off regions. Uses 7.62mm rounds."
-	description_fluff = "The frontier’s largest home-grown firearms manufacturer, the Weissen \
+	description_fluff = "The frontierï¿½s largest home-grown firearms manufacturer, the Weissen \
 	Company offers a range of high-quality, high-cost hunting rifles and shotguns designed with \
 	the wild frontier wilderness - and its wildlife - in mind. The company operates just one \
 	production plant in the Mytis system, but their weapons have found popularity on garden \
@@ -43,11 +43,11 @@
 /*
  * Cowboy Repeater
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever/repeater
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/repeater
 	name = "repeater"
 	desc = "The Weissen Company's answer to varmint shooting on frontier ranches, the T-7 Boone \
 	gives ranchers and farmers alike a perfect rider rifle for protecting the fenceline. Uses .357 rounds."
-	description_fluff = "The frontier’s largest home-grown firearms manufacturer, \
+	description_fluff = "The frontierï¿½s largest home-grown firearms manufacturer, \
 	the Weissen Arms Company are the leading manufacturer of - not only quality - \
 	but affordable rifles for the average frontiersman looking to protect his \
 	claim. The company operates just one production plant in the Mytis system, \
@@ -63,11 +63,11 @@
 /*
  * Brushgun
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever/brushgun
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/brushgun
 	name = "brushgun"
 	desc = "Weissen Company's newest budget caravan rifle for those that want a light yet effective rifle, \
 	the T-10 Cassidy Uses .44 rounds."
-	description_fluff = "The frontier’s largest home-grown firearms manufacturer, \
+	description_fluff = "The frontierï¿½s largest home-grown firearms manufacturer, \
 	the Weissen Arms Company are the leading manufacturer of - not only quality - \
 	but affordable rifles for the average frontiersman looking to protect his \
 	claim. The company operates just one production plant in the Mytis system, \
@@ -83,11 +83,11 @@
 /*
  * Trailgun
  */
-/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever/trailgun
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/trailgun
 	name = "brushgun"
 	desc = "Weissen Company's newest budget caravan rifle for those that want a light yet effective rifle, \
 	the T-10 Cassidy Uses .44 rounds."
-	description_fluff = "The frontier’s largest home-grown firearms manufacturer, \
+	description_fluff = "The frontierï¿½s largest home-grown firearms manufacturer, \
 	the Weissen Arms Company are the leading manufacturer of - not only quality - \
 	but affordable rifles for the average frontiersman looking to protect his \
 	claim. The company operates just one production plant in the Mytis system, \

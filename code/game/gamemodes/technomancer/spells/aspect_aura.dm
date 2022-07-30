@@ -41,13 +41,8 @@
 	aspect = ASPECT_CHROMATIC
 	var/glow_color = "#FFFFFF"
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/aura/New()
-	..()
-=======
 /obj/item/spell/aura/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(7, 4, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
 

@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 /*
  * Laser Rifle
  */
-/obj/item/weapon/gun/energy/laser
-=======
 /obj/item/gun/energy/laser
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "laser rifle"
 	desc = "A Hephaestus Industries G40E rifle, designed to kill with concentrated energy blasts.  This variant has the ability to \
 	switch between standard fire and a more efficent but weaker 'suppressive' fire."
@@ -60,60 +56,24 @@
 		list(mode_name="suppressive", projectile_type=/obj/item/projectile/beam/practice, charge_cost = 12),
 		)
 
-<<<<<<< HEAD
 /*
  * Sleek Laser Rifle
  */
-/obj/item/weapon/gun/energy/laser/sleek
-	name = "\improper LR1 \"Shishi\""
+/obj/item/gun/energy/laser/sleek
+	name = "\improper LR1 Shishi"
 	desc = "A Bishamonten Company LR1 \"Shishi\" rifle, a rare early 23rd century futurist design with a nonetheless timeless ability to kill."
 	description_fluff = "Bisamonten was arms company that operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for \
 	bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. Focused on sleek ‘futurist’ designs which have largely \
 	fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. Their weapons tended to be form \
 	over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms."
-=======
-//Functionally identical, but slightly higher tech due to rarer.
-/obj/item/gun/energy/laser/sleek
-	name = "\improper LR1 Shishi"
-	desc = "A Bishamonten Company LR1 Shishi rifle, a rare early 23rd century futurist design with a nonetheless timeless ability to kill."
-	description_fluff = "Bisamonten was arms company that operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
-	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
-	Their weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "lrifle"
 	item_state = "lrifle"
 	origin_tech = list(TECH_COMBAT = 4, TECH_MAGNET = 3)
 
-<<<<<<< HEAD
 /*
  * Retro Laser Rifle
  */
-/obj/item/weapon/gun/energy/retro
-=======
-/obj/item/gun/energy/mininglaser
-	name = "mining-laser rifle"
-	desc = "A Hephaestus Industries G22T rifle, now only produced for its impeccable ability to break stone with its pulsating blasts."
-	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade equipment used by armed forces across human space."
-	icon = 'icons/obj/gun2.dmi'
-	icon_state = "mininglaser"
-	item_state = "laser"
-	wielded_item_state = "laser-wielded"
-	fire_delay = 8
-	slot_flags = SLOT_BELT|SLOT_BACK
-	w_class = ITEMSIZE_LARGE
-	force = 15
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 2)
-	matter = list(MAT_STEEL = 2000)
-	projectile_type = /obj/item/projectile/beam/mininglaser
-	one_handed_penalty = 30
-
-	firemodes = list(
-		list(mode_name="mining", fire_delay=8, projectile_type=/obj/item/projectile/beam/mininglaser, charge_cost = 200),
-		list(mode_name="deter", fire_delay=5, projectile_type=/obj/item/projectile/beam/weaklaser, charge_cost = 80),
-		)
-
 /obj/item/gun/energy/retro
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "retro laser"
 	icon_state = "retro"
 	item_state = "retro"
@@ -134,7 +94,7 @@
 /*
  * Alien Pistol
  */
-/obj/item/weapon/gun/energy/alien
+/obj/item/gun/energy/alien
 	name = "alien pistol"
 	desc = "A weapon that works very similarly to a traditional energy weapon. How this came to be will likely be a mystery for the ages."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_pistol)
@@ -144,7 +104,7 @@
 	charge_cost = 480 // Five shots.
 
 	projectile_type = /obj/item/projectile/beam/cyan
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien // Self charges.
+	cell_type = /obj/item/cell/device/weapon/recharge/alien // Self charges.
 	origin_tech = list(TECH_COMBAT = 8, TECH_MAGNET = 7)
 	modifystate = "alienpistol"
 
@@ -176,29 +136,10 @@
 	may have caused it to degrade, yet still remain functional at a reduced capability."
 	value = CATALOGUER_REWARD_MEDIUM
 
-<<<<<<< HEAD
 /*
  * Antique Laser Gun
  */
-/obj/item/weapon/gun/energy/captain
-=======
-/obj/item/gun/energy/alien
-	name = "alien pistol"
-	desc = "A weapon that works very similarly to a traditional energy weapon. How this came to be will likely be a mystery for the ages."
-	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_pistol)
-	icon_state = "alienpistol"
-	item_state = "alienpistol"
-	fire_delay = 10 // Handguns should be inferior to two-handed weapons. Even alien ones I suppose.
-	charge_cost = 480 // Five shots.
-
-	projectile_type = /obj/item/projectile/beam/cyan
-	cell_type = /obj/item/cell/device/weapon/recharge/alien // Self charges.
-	origin_tech = list(TECH_COMBAT = 8, TECH_MAGNET = 7)
-	modifystate = "alienpistol"
-
-
 /obj/item/gun/energy/captain
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "antique laser gun"
 	icon_state = "caplaser"
 	item_state = "caplaser"
@@ -217,14 +158,10 @@
 	cell_type = /obj/item/cell/device/weapon/recharge/captain
 	battery_lock = 1
 
-<<<<<<< HEAD
 /*
  * Laser Cannon
  */
-/obj/item/weapon/gun/energy/lasercannon
-=======
 /obj/item/gun/energy/lasercannon
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "laser cannon"
 	desc = "With the laser cannon, the lasing medium is enclosed in a tube lined with uranium-235 and subjected to high neutron \
 	flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
@@ -252,14 +189,10 @@
 	charge_cost = 400
 	fire_delay = 20
 
-<<<<<<< HEAD
 /*
  * X-ray
  */
-/obj/item/weapon/gun/energy/xray
-=======
 /obj/item/gun/energy/xray
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "xray laser gun"
 	desc = "A high-power laser gun capable of expelling concentrated xray blasts, which are able to penetrate matter easier than \
 	standard photonic beams, resulting in an effective 'anti-armor' energy weapon."
@@ -269,14 +202,10 @@
 	projectile_type = /obj/item/projectile/beam/xray
 	charge_cost = 200
 
-<<<<<<< HEAD
 /*
  * Marksman Rifle
  */
-/obj/item/weapon/gun/energy/sniperrifle
-=======
 /obj/item/gun/energy/sniperrifle
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "marksman energy rifle"
 	desc = "The HI DMR 9E is an older design of Hephaestus Industries. A designated marksman rifle capable of shooting powerful \
 	ionized beams, this is a weapon to kill from a distance."
@@ -308,11 +237,10 @@
 
 	toggle_scope(2.0)
 
-<<<<<<< HEAD
 /*
  * Laser Scattergun (proof of concept)
  */
-/obj/item/weapon/gun/energy/lasershotgun
+/obj/item/gun/energy/lasershotgun
 	name = "laser scattergun"
 	icon = 'icons/obj/energygun.dmi'
 	item_state = "laser"
@@ -325,7 +253,7 @@
 /*
  * Imperial Pistol
  */
-/obj/item/weapon/gun/energy/imperial
+/obj/item/gun/energy/imperial
 	name = "imperial energy pistol"
 	desc = "An elegant weapon developed by the Imperium Auream. Their weaponsmiths have cleverly found a way to make a gun that \
 	is only about the size of an average energy pistol, yet with the fire power of a laser carbine."
@@ -344,7 +272,7 @@
 /*
  * Mining-Laser Rifle
  */
-/obj/item/weapon/gun/energy/mininglaser
+/obj/item/gun/energy/mininglaser
 	name = "mining-laser rifle"
 	desc = "An industrial grade mining laser. Comes with a built-in 'stun' mode for encounters with local wildlife."
 	icon = 'icons/obj/gun.dmi'
@@ -366,7 +294,7 @@
 /*
  * Old Laser Rifle
  */
-/obj/item/weapon/gun/energy/laser/old
+/obj/item/gun/energy/laser/old
 	name = "vintage laser rifle"
 	desc = "A Hephaestus Industries G32E rifle, designed to kill with concentrated energy blasts. This older model laser rifle only has one firemode."
 	description_fluff = "The leading arms producer in the SCG, Hephaestus typically only uses its 'top level' branding for its military-grade \
@@ -384,10 +312,7 @@
 /*
  * Mono-Rifle
  */
-/obj/item/weapon/gun/energy/monorifle
-=======
 /obj/item/gun/energy/monorifle
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "antique mono-rifle"
 	desc = "An old model laser rifle with a nice wood finish. This weapon was only designed to fire once before requiring a recharge."
 	description_fluff = "Modeled after ancient hunting rifles designs, this rifle was dubbed the 'Rainy Day Special' by some, due to its use as the \
@@ -427,55 +352,4 @@
 	charge_cost = 1200
 	force = 12
 	accuracy = 0
-<<<<<<< HEAD
 	scoped_accuracy = 20
-=======
-	scoped_accuracy = 20
-
-////////Laser Tag////////////////////
-
-/obj/item/gun/energy/lasertag
-	name = "laser tag gun"
-	item_state = "laser"
-	desc = "Standard issue weapon of the Imperial Guard"
-	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
-	matter = list(MAT_STEEL = 2000)
-	projectile_type = /obj/item/projectile/beam/lasertag/blue
-	cell_type = /obj/item/cell/device/weapon/recharge
-	battery_lock = 1
-	var/required_vest
-
-/obj/item/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)
-	if(ishuman(M))
-		if(!istype(M.wear_suit, required_vest))
-			to_chat(M, "<span class='warning'>You need to be wearing your laser tag vest!</span>")
-			return 0
-	return ..()
-
-/obj/item/gun/energy/lasertag/blue
-	icon_state = "bluetag"
-	item_state = "bluetag"
-	projectile_type = /obj/item/projectile/beam/lasertag/blue
-	required_vest = /obj/item/clothing/suit/bluetag
-
-/obj/item/gun/energy/lasertag/red
-	icon_state = "redtag"
-	item_state = "redtag"
-	projectile_type = /obj/item/projectile/beam/lasertag/red
-	required_vest = /obj/item/clothing/suit/redtag
-
-/obj/item/gun/energy/lasertag/omni
-	projectile_type = /obj/item/projectile/beam/lasertag/omni
-
-// Laser scattergun, proof of concept.
-
-/obj/item/gun/energy/lasershotgun
-	name = "laser scattergun"
-	icon = 'icons/obj/energygun.dmi'
-	item_state = "laser"
-	icon_state = "scatter"
-	desc = "A strange Almachi weapon, utilizing a refracting prism to turn a single laser blast into a diverging cluster."
-	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
-
-	projectile_type = /obj/item/projectile/scatter/laser
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

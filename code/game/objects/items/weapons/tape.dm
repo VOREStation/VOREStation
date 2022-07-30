@@ -16,7 +16,7 @@
 	for (var/obj/item/grab/G in H.grabbed_by)
 		if (G.loc == user && G.state >= GRAB_AGGRESSIVE)
 			return TRUE
-			
+
 	return FALSE
 
 /obj/item/tape_roll/attack(var/mob/living/carbon/human/H, var/mob/user)
@@ -122,13 +122,8 @@
 
 	var/obj/item/stuck = null
 
-<<<<<<< HEAD
-/obj/item/weapon/ducttape/New()
-	..()
-=======
 /obj/item/ducttape/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	flags |= NOBLUDGEON
 
 /obj/item/ducttape/examine(mob/user)

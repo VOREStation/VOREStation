@@ -15,12 +15,8 @@
 	drop_sound = 'sound/items/drop/ring.ogg'
 	pickup_sound = 'sound/items/pickup/ring.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/coin/New()
-=======
 /obj/item/coin/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	randpixel_xy()
 
 /obj/item/coin/gold

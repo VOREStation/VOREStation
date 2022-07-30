@@ -15,7 +15,7 @@
 	density = TRUE
 	anchored = TRUE
 	unacidable = TRUE
-	circuit = /obj/item/weapon/circuitboard/breakerbox
+	circuit = /obj/item/circuitboard/breakerbox
 	var/on = 0
 	var/busy = 0
 	var/directions = list(1,2,4,8,5,6,9,10)
@@ -91,8 +91,8 @@
 			update_locked = 0
 	busy = 0
 
-/obj/machinery/power/breakerbox/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
-	if(istype(W, /obj/item/device/multitool))
+/obj/machinery/power/breakerbox/attackby(var/obj/item/W as obj, var/mob/user as mob)
+	if(istype(W, /obj/item/multitool))
 		var/newtag = tgui_input_text(user, "Enter new RCON tag. Use \"NO_TAG\" to disable RCON or leave empty to cancel.", "SMES RCON system")
 		if(newtag)
 			RCon_tag = newtag

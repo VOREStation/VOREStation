@@ -98,10 +98,10 @@
 		to_chat(L, "<span class='notice'>\icon[src][bicon(src)] Message from [who]: <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[candidate]'>Reply</a>)</span>")
 
 // This is the only Topic the communicators really uses
-/obj/item/device/communicator/Topic(href, href_list)
+/obj/item/communicator/Topic(href, href_list)
 	switch(href_list["action"])
 		if("Reply")
-			var/obj/item/device/communicator/comm = locate(href_list["target"])
+			var/obj/item/communicator/comm = locate(href_list["target"])
 			var/message = tgui_input_text(usr, "Enter your message below.", "Reply")
 
 			if(message)

@@ -16,13 +16,8 @@
 	var/power = 250
 	toggled = 1
 
-<<<<<<< HEAD
-/obj/item/weapon/spell/radiance/New()
-	..()
-=======
 /obj/item/spell/radiance/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_light(7, 4, l_color = "#D9D900")
 	START_PROCESSING(SSobj, src)
 	log_and_message_admins("has casted [src].")

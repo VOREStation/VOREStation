@@ -22,12 +22,8 @@
 
 	holder_type = /obj/item/holder/fish
 
-<<<<<<< HEAD
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/fish
-	meat_amount = 3
-=======
 	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	meat_amount = 3
 
 	// By default they can be in any water turf.  Subtypes might restrict to deep/shallow etc
 	var/global/list/suitable_turf_types =  list(
@@ -326,11 +322,7 @@
 
 	catalogue_data = list(/datum/category_item/catalogue/fauna/murkin)
 
-<<<<<<< HEAD
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/carpmeat/sif/murkfish
-=======
-	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/fish/sif
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	meat_type = /obj/item/reagent_containers/food/snacks/carpmeat/sif/murkfish
 
 /decl/mob_organ_names/fish
 	hit_zones = list("head", "body", "dorsal fin", "left pectoral fin", "right pectoral fin", "tail fin")

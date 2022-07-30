@@ -1,15 +1,12 @@
 /obj/item/mapping_unit
 	name = "mapping unit"
 	desc = "A portable mapping unit, capable of locating other similar units on a map. Also has a short-range sonar mapping system."
-<<<<<<< HEAD
 	description_info = "Use the device in your hand to add the mapping HUD to your screen. You can then power it on and change mapping modes.\
 	<br>The device will show other powered-on mapping units on the map, as well as activated mapping beacons, but only of the same 'type' mapping unit.\
 	<br>Normal mapping units can only display other normal beacons and mapping units, ERT mapping units can display other ERT, etc."
-=======
 	icon = 'icons/obj/device.dmi'
 	pickup_sound = 'sound/items/pickup/device.ogg'
 	drop_sound = 'sound/items/drop/device.ogg'
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "mapping_unit"
 	item_state = null
 	w_class = ITEMSIZE_SMALL
@@ -75,7 +72,7 @@
 		"/obj/item/clothing/head/helmet/ert/engineer" = "erte",
 		"/obj/item/clothing/head/helmet/ert/medical" = "ertm",
 	)
-	
+
 	prefix_update_rig = list(
 		"/obj/item/rig/ert" = "ertc",
 		"/obj/item/rig/ert/security" = "erts",
@@ -89,9 +86,9 @@
 
 	if(!mask_icon)
 		mask_icon = icon('icons/effects/64x64.dmi', "mapper_mask")
-	
+
 	extras_holder = new()
-	
+
 	var/obj/screen/mapper/marker/mark = new()
 	mark.icon = 'icons/effects/64x64.dmi'
 	mark.icon_state = "mapper_none"
@@ -115,7 +112,7 @@
 	mapping_units -= src
 
 	last_run()
-	
+
 	map_image_cache.Cut()
 	icon_image_cache.Cut()
 	qdel_null(extras_holder)
@@ -138,7 +135,7 @@
 
 	if(!ishuman(loc) || user != loc)
 		to_chat(H, "<span class='warning'>This device needs to be on your person.</span>")
-	
+
 	if(hud_datum?.main_hud)
 		hide_device()
 		to_chat(H, "<span class='notice'>You put \the [src] away.</span>")
@@ -190,13 +187,8 @@
 	if(hud_item)
 		hud_item.off(FALSE)
 
-<<<<<<< HEAD
-/obj/item/device/mapping_unit/proc/hide_device()
-	hud_datum?.unapply_to_hud()
-=======
 /obj/item/mapping_unit/proc/hide_device()
-	hud_datum.unapply_to_hud()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	hud_datum?.unapply_to_hud()
 
 /obj/item/mapping_unit/proc/last_run()
 	stop_updates()
@@ -210,7 +202,7 @@
 	if(!updating || (uses_power && !cell))
 		stop_updates()
 		return
-	
+
 	if(uses_power)
 		var/power_to_use = pinging ? power_usage*2 : power_usage
 		if(cell.use(power_to_use) != power_to_use) // we weren't able to use our full power_usage amount!
@@ -291,12 +283,8 @@
 	extras_holder.pixel_y = bgmap.pixel_y = -1*T_y + offset_y
 
 	// Populate other mapper icons
-<<<<<<< HEAD
-	for(var/obj/item/device/mapping_unit/HC as anything in mapping_units)
-=======
 	for(var/hc in mapping_units)
 		var/obj/item/mapping_unit/HC = hc
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(HC.mapper_filter != mapper_filter)
 			continue
 		var/mob_indicator = HOLOMAP_ERROR
@@ -304,11 +292,11 @@
 		// Mapper not on a turf or elsewhere
 		if(!TU || (TU.z != T_z))
 			continue
-	
+
 		// We're the marker
 		if(HC == src)
 			mob_indicator = HOLOMAP_YOU
-		
+
 		// The marker is held by a borg
 		else if(isrobot(HC.loc))
 			var/mob/living/silicon/robot/R = HC.loc
@@ -316,7 +304,7 @@
 				mob_indicator = HOLOMAP_DEAD
 			else
 				mob_indicator = HOLOMAP_OTHER
-		
+
 		// The marker is worn by a human
 		else if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
@@ -324,11 +312,11 @@
 				mob_indicator = HOLOMAP_DEAD
 			else
 				mob_indicator = HOLOMAP_OTHER
-		
+
 		// It's not attached to anything useful
 		else
 			mob_indicator = HOLOMAP_DEAD
-		
+
 		// Ask it to update it's icon based on helmet (or whatever)
 		HC.update_marker()
 
@@ -355,27 +343,23 @@
 			extras += mark
 
 	// Marker beacon items
-<<<<<<< HEAD
-	for(var/obj/item/device/holomap_beacon/HB as anything in mapping_beacons)
-=======
 	for(var/hb in mapping_beacons)
 		var/obj/item/holomap_beacon/HB = hb
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		if(HB.mapper_filter != mapper_filter)
 			continue
-		
+
 		var/turf/TB = get_turf(HB)
 		// Marker beacon not on a turf or elsewhere
 		if(!TB || (TB.z != T_z))
 			continue
-		
+
 		var/marker_cache_key = "\ref[HB]_marker"
 		if(!(marker_cache_key in icon_image_cache))
 			var/obj/screen/mapper/marker/mark = new()
 			mark.icon_state = "beacon"
 			mark.layer = 1
 			icon_image_cache[marker_cache_key] = mark
-		
+
 		var/obj/screen/mapper/marker/mark = icon_image_cache[marker_cache_key]
 		handle_marker(mark,TB.x,TB.y)
 		extras += mark
@@ -390,7 +374,7 @@
 	extras_holder.vis_contents = extras
 
 	hud_item.update(bgmap, extras_holder, badmap ? FALSE : pinging)
-	
+
 /obj/item/mapping_unit/proc/update_marker()
 	marker_prefix = base_prefix
 	if (prefix_update_head)

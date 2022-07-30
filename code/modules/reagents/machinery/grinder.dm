@@ -76,20 +76,14 @@
 		if(default_deconstruction_crowbar(user, O))
 			return
 
-<<<<<<< HEAD
 	//VOREStation edit start - for solargrubs
-	if (istype(O, /obj/item/device/multitool))
+	if (istype(O, /obj/item/multitool))
 		return ..()
 	//VOREStation edit end
 
-	if (istype(O,/obj/item/weapon/reagent_containers/glass) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/glass2) || \
-		istype(O,/obj/item/weapon/reagent_containers/food/drinks/shaker))
-=======
 	if (istype(O,/obj/item/reagent_containers/glass) || \
 		istype(O,/obj/item/reagent_containers/food/drinks/glass2) || \
 		istype(O,/obj/item/reagent_containers/food/drinks/shaker))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 		if (beaker)
 			return 1

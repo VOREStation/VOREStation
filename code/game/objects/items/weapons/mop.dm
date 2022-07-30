@@ -1,14 +1,9 @@
 GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
-<<<<<<< HEAD
 /*
  * Mop
  */
-/obj/item/weapon/mop
-=======
 /obj/item/mop
-	desc = "The world of janitalia wouldn't be complete without a mop."
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "mop"
 	desc = "The world of janitalia wouldn't be complete without a mop."
 	icon = 'icons/obj/janitor.dmi'
@@ -23,11 +18,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	var/mopping = 0
 	var/mopcount = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/mop/New()
-=======
 /obj/item/mop/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	create_reagents(30)
 	..()
 

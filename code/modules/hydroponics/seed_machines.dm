@@ -8,13 +8,8 @@
 	var/list/genes = list()
 	var/genesource = "unknown"
 
-<<<<<<< HEAD
-/obj/item/weapon/disk/botany/New()
-	..()
-=======
 /obj/item/disk/botany/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	pixel_x = rand(-5,5)
 	pixel_y = rand(-5,5)
 
@@ -32,13 +27,8 @@
 	name = "flora disk box"
 	desc = "A box of flora data disks, apparently."
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/box/botanydisk/New()
-	..()
-=======
 /obj/item/storage/box/botanydisk/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	for(var/i = 0;i<7;i++)
 		new /obj/item/disk/botany(src)
 

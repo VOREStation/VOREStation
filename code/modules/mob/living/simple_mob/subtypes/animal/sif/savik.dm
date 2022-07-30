@@ -48,13 +48,8 @@
 
 	tame_items = list(
 	/obj/item/organ = 70,
-<<<<<<< HEAD
-	/obj/item/weapon/reagent_containers/food/snacks/crabmeat = 30,
-	/obj/item/weapon/reagent_containers/food/snacks/meat = 20
-=======
-	/obj/item/reagent_containers/food/snacks/meat/crab = 30,
+	/obj/item/reagent_containers/food/snacks/crabmeat = 30,
 	/obj/item/reagent_containers/food/snacks/meat = 20
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	)
 
 	say_list_type = /datum/say_list/savik

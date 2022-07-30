@@ -1,4 +1,4 @@
-/obj/item/weapon/robot_module
+/obj/item/robot_module
 	languages = list(LANGUAGE_SOL_COMMON= 1,
 					LANGUAGE_TRADEBAND	= 1,
 					LANGUAGE_UNATHI		= 0,
@@ -18,7 +18,7 @@
 	var/vr_sprites = list()
 	var/pto_type = null
 
-/obj/item/weapon/robot_module/robot/clerical
+/obj/item/robot_module/robot/clerical
 	languages = list(
 					LANGUAGE_SOL_COMMON	= 1,
 					LANGUAGE_TRADEBAND	= 1,
@@ -41,35 +41,35 @@
 					)
 
 /hook/startup/proc/robot_modules_vr()
-	robot_modules["Medihound"] = /obj/item/weapon/robot_module/robot/medihound
-	robot_modules["K9"] = /obj/item/weapon/robot_module/robot/knine
-	robot_modules["ERT"] = /obj/item/weapon/robot_module/robot/ert
-	robot_modules["Janihound"] = /obj/item/weapon/robot_module/robot/scrubpup
-	robot_modules["Sci-borg"] = /obj/item/weapon/robot_module/robot/science
-	robot_modules["Pupdozer"] = /obj/item/weapon/robot_module/robot/engiedog
-	robot_modules["Service-Hound"] = /obj/item/weapon/robot_module/robot/clerical/brodog
-	robot_modules["BoozeHound"] = /obj/item/weapon/robot_module/robot/booze
-	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
-	robot_modules["Stray"] = /obj/item/weapon/robot_module/robot/stray
+	robot_modules["Medihound"] = /obj/item/robot_module/robot/medihound
+	robot_modules["K9"] = /obj/item/robot_module/robot/knine
+	robot_modules["ERT"] = /obj/item/robot_module/robot/ert
+	robot_modules["Janihound"] = /obj/item/robot_module/robot/scrubpup
+	robot_modules["Sci-borg"] = /obj/item/robot_module/robot/science
+	robot_modules["Pupdozer"] = /obj/item/robot_module/robot/engiedog
+	robot_modules["Service-Hound"] = /obj/item/robot_module/robot/clerical/brodog
+	robot_modules["BoozeHound"] = /obj/item/robot_module/robot/booze
+	robot_modules["KMine"] = /obj/item/robot_module/robot/kmine
+	robot_modules["Stray"] = /obj/item/robot_module/robot/stray
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
-/obj/item/weapon/robot_module/proc/vr_new() // Any Global modules, just add them before the return (This will also affect all the borgs in this file)
+/obj/item/robot_module/proc/vr_new() // Any Global modules, just add them before the return (This will also affect all the borgs in this file)
 	return
 
-/obj/item/weapon/robot_module/proc/vr_add_sprites() // Adds sprites from this file into list of avialible ones for global modules
+/obj/item/robot_module/proc/vr_add_sprites() // Adds sprites from this file into list of avialible ones for global modules
 	sprites += vr_sprites
 	return
 
-/obj/item/weapon/robot_module/robot/medical/surgeon/vr_new() //Surgeon Bot
-	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
+/obj/item/robot_module/robot/medical/surgeon/vr_new() //Surgeon Bot
+	src.modules += new /obj/item/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
 
-/obj/item/weapon/robot_module/robot/medical/crisis/vr_new() //Crisis Bot
-	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
+/obj/item/robot_module/robot/medical/crisis/vr_new() //Crisis Bot
+	src.modules += new /obj/item/sleevemate(src) //Lets them scan people.
 	. = ..() //Any Global vore modules will come from here
 
-/obj/item/weapon/robot_module/robot/medical/surgeon
+/obj/item/robot_module/robot/medical/surgeon
 	pto_type = PTO_MEDICAL
 	vr_sprites = list(
 						"Acheron" = "mechoid-Medical",
@@ -78,7 +78,7 @@
 						"Feminine Humanoid" = "uptall-medical"
 					 )
 
-/obj/item/weapon/robot_module/robot/medical/crisis
+/obj/item/robot_module/robot/medical/crisis
 	pto_type = PTO_MEDICAL
 	vr_sprites = list(
 						"Handy" = "handy-med",
@@ -88,7 +88,7 @@
 						"Feminine Humanoid" = "uptall-crisis"
 					 )
 
-/obj/item/weapon/robot_module/robot/clerical/butler
+/obj/item/robot_module/robot/clerical/butler
 	pto_type = PTO_CIVILIAN
 	vr_sprites = list(
 						"Handy - Service" = "handy-service",
@@ -99,7 +99,7 @@
 						"Feminine Humanoid" = "uptall-service"
 					 )
 
-/obj/item/weapon/robot_module/robot/clerical/general
+/obj/item/robot_module/robot/clerical/general
 	pto_type = PTO_CIVILIAN
 	vr_sprites = list(
 						"Handy" = "handy-clerk",
@@ -109,7 +109,7 @@
 						"Feminine Humanoid" = "uptall-service"
 					 )
 
-/obj/item/weapon/robot_module/robot/janitor
+/obj/item/robot_module/robot/janitor
 	pto_type = PTO_CIVILIAN
 	vr_sprites = list(
 						"Handy" = "handy-janitor",
@@ -119,7 +119,7 @@
 						"Feminine Humanoid" = "uptall-janitor"
 					 )
 
-/obj/item/weapon/robot_module/robot/security/general
+/obj/item/robot_module/robot/security/general
 	pto_type = PTO_SECURITY
 	vr_sprites = list(
 						"Handy" = "handy-sec",
@@ -129,7 +129,7 @@
 						"Feminine Humanoid" = "uptall-security"
 					 )
 
-/obj/item/weapon/robot_module/robot/miner
+/obj/item/robot_module/robot/miner
 	pto_type = PTO_CARGO
 	vr_sprites = list(
 						"Handy" = "handy-miner",
@@ -139,7 +139,7 @@
 						"Feminine Humanoid" = "uptall-miner"
 					 )
 
-/obj/item/weapon/robot_module/robot/standard
+/obj/item/robot_module/robot/standard
 	pto_type = PTO_CIVILIAN
 	vr_sprites = list(
 						"Handy" = "handy-standard",
@@ -149,7 +149,7 @@
 						"Feminine Humanoid" = "uptall-standard",
 						"Feminine Humanoid, Variant 2" = "uptall-standard2"
 					 )
-/obj/item/weapon/robot_module/robot/engineering/general
+/obj/item/robot_module/robot/engineering/general
 	pto_type = PTO_ENGINEERING
 	vr_sprites = list(
 						"Acheron" = "mechoid-Engineering",
@@ -158,7 +158,7 @@
 						"Feminine Humanoid" = "uptall-engineering"
 					 )
 
-/obj/item/weapon/robot_module/robot/research
+/obj/item/robot_module/robot/research
 	pto_type = PTO_SCIENCE
 	vr_sprites = list(
 						"Acheron" = "mechoid-Science",
@@ -167,7 +167,7 @@
 						"Feminine Humanoid" = "uptall-science"
 					 )
 
-/obj/item/weapon/robot_module/robot/security/combat
+/obj/item/robot_module/robot/security/combat
 	pto_type = PTO_SECURITY
 	vr_sprites = list(
 						"Acheron" = "mechoid-Combat",
@@ -175,7 +175,7 @@
 						"Feminine Humanoid" = "uptall-security"
 					 )
 
-/obj/item/weapon/robot_module/robot/knine
+/obj/item/robot_module/robot/knine
 	name = "k9 robot module"
 	sprites = list(
 					"K9 hound" = "k9",
@@ -191,15 +191,15 @@
 	can_be_pushed = 0
 	supported_upgrades = list(/obj/item/borg/upgrade/tasercooler)
 
-/obj/item/weapon/robot_module/robot/knine/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/weapon/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!
-	src.modules += new /obj/item/weapon/dogborg/jaws/big(src) //In case there's some kind of hostile mob.
-	src.modules += new /obj/item/weapon/melee/baton/robot(src) //Since the pounce module refused to work, they get a stunbaton instead.
-	src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop people on the nose.
+/obj/item/robot_module/robot/knine/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/handcuffs/cyborg(src) //You need cuffs to be a proper sec borg!
+	src.modules += new /obj/item/dogborg/jaws/big(src) //In case there's some kind of hostile mob.
+	src.modules += new /obj/item/melee/baton/robot(src) //Since the pounce module refused to work, they get a stunbaton instead.
+	src.modules += new /obj/item/dogborg/boop_module(src) //Boop people on the nose.
 	src.modules += new /obj/item/taperoll/police(src) //Block out crime scenes.
-	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg(src) //They /are/ a security borg, after all.
-	src.modules += new /obj/item/weapon/dogborg/pounce(src) //Pounce
-	src.emag 	 = new /obj/item/weapon/gun/energy/laser/mounted(src) //Emag. Not a big problem.
+	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg(src) //They /are/ a security borg, after all.
+	src.modules += new /obj/item/dogborg/pounce(src) //Pounce
+	src.emag 	 = new /obj/item/gun/energy/laser/mounted(src) //Emag. Not a big problem.
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500) //Starts full and has a max of 500
 	water.name = "Water reserves"
@@ -207,11 +207,11 @@
 	R.water_res = water
 	synths += water
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
+	var/obj/item/dogborg/sleeper/K9/B = new /obj/item/dogborg/sleeper/K9(src) //Eat criminals. Bring them to the brig.
 	B.water = water
 	src.modules += B
 
@@ -231,26 +231,26 @@
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
-/obj/item/weapon/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
-	var/obj/item/device/flash/F = locate() in src.modules
+/obj/item/robot_module/robot/knine/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
+	var/obj/item/flash/F = locate() in src.modules
 	if(F.broken)
 		F.broken = 0
 		F.times_used = 0
 		F.icon_state = "flash"
 	else if(F.times_used)
 		F.times_used--
-	var/obj/item/weapon/gun/energy/taser/mounted/cyborg/T = locate() in src.modules
+	var/obj/item/gun/energy/taser/mounted/cyborg/T = locate() in src.modules
 	if(T.power_supply.charge < T.power_supply.maxcharge)
 		T.power_supply.give(T.charge_cost * amount)
 		T.update_icon()
 	else
 		T.charge_tick = 0
-	/*var/obj/item/weapon/melee/baton/robot/B = locate() in src.modules //Borg baton uses borg cell.
+	/*var/obj/item/melee/baton/robot/B = locate() in src.modules //Borg baton uses borg cell.
 	if(B && B.bcell)
 		B.bcell.give(amount)*/
 
 
-/obj/item/weapon/robot_module/robot/medihound
+/obj/item/robot_module/robot/medihound
 	name = "MediHound module"
 	channels = list("Medical" = 1)
 	networks = list(NETWORK_MEDICAL)
@@ -265,16 +265,16 @@
 					"Drake" = "drakemed"
 					)
 
-/obj/item/weapon/robot_module/robot/medihound/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/weapon/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
-	src.modules += new /obj/item/device/dogborg/boop_module(src) //Boop the crew.
-	src.modules += new /obj/item/device/healthanalyzer(src) // See who's hurt specificially.
-	src.modules += new /obj/item/weapon/reagent_containers/syringe(src) //In case the chemist is nice!
-	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
-	src.modules += new /obj/item/device/sleevemate(src) //Lets them scan people.
-	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src) //Paws of life
-	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src) //This is kinda important for rescuing people without making it worse for everyone
-	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
+/obj/item/robot_module/robot/medihound/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/dogborg/jaws/small(src) //In case a patient is being attacked by carp.
+	src.modules += new /obj/item/dogborg/boop_module(src) //Boop the crew.
+	src.modules += new /obj/item/healthanalyzer(src) // See who's hurt specificially.
+	src.modules += new /obj/item/reagent_containers/syringe(src) //In case the chemist is nice!
+	src.modules += new /obj/item/reagent_containers/glass/beaker(src)//For holding the chemicals when the chemist is nice
+	src.modules += new /obj/item/sleevemate(src) //Lets them scan people.
+	src.modules += new /obj/item/shockpaddles/robot/hound(src) //Paws of life
+	src.modules += new /obj/item/inflatable_dispenser/robot(src) //This is kinda important for rescuing people without making it worse for everyone
+	src.emag 	 = new /obj/item/dogborg/pounce(src) //Pounce
 
 	var/datum/matter_synth/medicine = new /datum/matter_synth/medicine(2000)
 	synths += medicine
@@ -291,15 +291,15 @@
 	R.water_res = water
 	synths += water
 
-	var/obj/item/weapon/reagent_containers/borghypo/hound/H = new /obj/item/weapon/reagent_containers/borghypo/hound(src)
+	var/obj/item/reagent_containers/borghypo/hound/H = new /obj/item/reagent_containers/borghypo/hound(src)
 	H.water = water
 	src.modules += H
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/B = new /obj/item/device/dogborg/sleeper(src) //So they can nom people and heal them
+	var/obj/item/dogborg/sleeper/B = new /obj/item/dogborg/sleeper(src) //So they can nom people and heal them
 	B.water = water
 	src.modules += B
 
@@ -319,7 +319,7 @@
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
-/obj/item/weapon/robot_module/robot/ert
+/obj/item/robot_module/robot/ert
 	name = "Emergency Responce module"
 	channels = list("Security" = 1)
 	networks = list(NETWORK_SECURITY)
@@ -331,13 +331,13 @@
 					"Borgi" = "borgi"
 					)
 
-/obj/item/weapon/robot_module/robot/ert/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
-	src.modules += new /obj/item/weapon/dogborg/jaws/ert(src)
+/obj/item/robot_module/robot/ert/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/handcuffs/cyborg(src)
+	src.modules += new /obj/item/dogborg/jaws/ert(src)
 	src.modules += new /obj/item/taperoll/police(src)
-	src.modules += new /obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun(src)
-	src.modules += new /obj/item/weapon/dogborg/swordtail(src)
-	src.emag     = new /obj/item/weapon/gun/energy/laser/mounted(src)
+	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg/ertgun(src)
+	src.modules += new /obj/item/dogborg/swordtail(src)
+	src.emag     = new /obj/item/gun/energy/laser/mounted(src)
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500)
 	water.name = "Water reserves"
@@ -345,11 +345,11 @@
 	R.water_res = water
 	synths += water
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9/ert(src)
+	var/obj/item/dogborg/sleeper/K9/B = new /obj/item/dogborg/sleeper/K9/ert(src)
 	B.water = water
 	src.modules += B
 
@@ -369,7 +369,7 @@
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
-/obj/item/weapon/robot_module/robot/scrubpup
+/obj/item/robot_module/robot/scrubpup
 	name = "Custodial Hound module"
 	sprites = list(
 					"Custodial Hound" = "scrubpup",
@@ -382,11 +382,11 @@
 	pto_type = PTO_CIVILIAN
 	can_be_pushed = 0
 
-/obj/item/weapon/robot_module/robot/scrubpup/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+/obj/item/robot_module/robot/scrubpup/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/dogborg/jaws/small(src)
+	src.modules += new /obj/item/dogborg/boop_module(src)
 	src.modules += new /obj/item/pupscrubber(src)
-	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
+	src.emag 	 = new /obj/item/dogborg/pounce(src) //Pounce
 
 	//Starts empty. Can only recharge with recycled material.
 	var/datum/matter_synth/metal = new /datum/matter_synth/metal()
@@ -408,15 +408,15 @@
 	synths += glass
 	synths += water
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/lightreplacer/dogborg/LR = new /obj/item/device/lightreplacer/dogborg(src)
+	var/obj/item/lightreplacer/dogborg/LR = new /obj/item/lightreplacer/dogborg(src)
 	LR.glass = glass
 	src.modules += LR
 
-	var/obj/item/device/dogborg/sleeper/compactor/C = new /obj/item/device/dogborg/sleeper/compactor(src)
+	var/obj/item/dogborg/sleeper/compactor/C = new /obj/item/dogborg/sleeper/compactor(src)
 	C.metal = metal
 	C.glass = glass
 	C.water = water
@@ -456,7 +456,7 @@
 	R.verbs |= /mob/living/silicon/robot/proc/rest_style
 	..()
 
-/obj/item/weapon/robot_module/robot/science
+/obj/item/robot_module/robot/science
 	name = "Research Hound Module"
 	sprites = list(
 					"Research Hound" = "science",
@@ -470,19 +470,19 @@
 	can_be_pushed = 0
 	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
 
-/obj/item/weapon/robot_module/robot/science/New(var/mob/living/silicon/robot/R)
-	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
-	src.modules += new /obj/item/weapon/gripper/research(src)
-	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
-	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
-	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
-	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
-	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/device/multitool(src)
-	src.modules += new /obj/item/weapon/reagent_containers/glass/beaker/large(src)
+/obj/item/robot_module/robot/science/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/dogborg/jaws/small(src)
+	src.modules += new /obj/item/dogborg/boop_module(src)
+	src.modules += new /obj/item/gripper/research(src)
+	src.modules += new /obj/item/gripper/no_use/loader(src)
+	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
+	src.modules += new /obj/item/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
+	src.modules += new /obj/item/multitool(src)
+	src.modules += new /obj/item/reagent_containers/glass/beaker/large(src)
 	src.modules += new /obj/item/weapon/storage/part_replacer(src)
-	src.modules += new /obj/item/device/robotanalyzer(src)
+	src.modules += new /obj/item/robotanalyzer(src)
 	src.modules += new /obj/item/weapon/card/robot(src)
 	//Added a circuit gripper
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
@@ -496,11 +496,11 @@
 	R.water_res = water
 	synths += water
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/compactor/analyzer/B = new /obj/item/device/dogborg/sleeper/compactor/analyzer(src)
+	var/obj/item/dogborg/sleeper/compactor/analyzer/B = new /obj/item/dogborg/sleeper/compactor/analyzer(src)
 	B.water = water
 	src.modules += B
 
@@ -557,21 +557,21 @@
 	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
-	src.modules += new /obj/item/device/multitool(src)
-	src.modules += new /obj/item/device/t_scanner(src)
-	src.modules += new /obj/item/device/analyzer(src)
-	src.modules += new /obj/item/device/geiger(src)
+	src.modules += new /obj/item/multitool(src)
+	src.modules += new /obj/item/t_scanner(src)
+	src.modules += new /obj/item/analyzer(src)
+	src.modules += new /obj/item/geiger(src)
 	src.modules += new /obj/item/taperoll/engineering(src)
 	src.modules += new /obj/item/weapon/inflatable_dispenser/robot(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/loader(src)
 	src.modules += new /obj/item/weapon/pickaxe(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/dogborg/boop_module(src)
 	src.modules += new /obj/item/weapon/gripper(src)
 	src.modules += new /obj/item/weapon/gripper/circuit(src)
 	// The RPD does the exact same thing, this just take space.
-	//src.modules += new /obj/item/device/pipe_painter(src)
-	src.modules += new /obj/item/device/floor_painter(src)
+	//src.modules += new /obj/item/pipe_painter(src)
+	src.modules += new /obj/item/floor_painter(src)
 	src.modules += new /obj/item/weapon/rms(src)
 	src.modules += new /obj/item/weapon/pipe_dispenser(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
@@ -616,15 +616,15 @@
 	synths += water
 	synths += plasteel
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/lightreplacer/dogborg/LR = new /obj/item/device/lightreplacer/dogborg(src)
+	var/obj/item/lightreplacer/dogborg/LR = new /obj/item/lightreplacer/dogborg(src)
 	LR.glass = glass
 	src.modules += LR
 
-	var/obj/item/device/dogborg/sleeper/compactor/decompiler/MD = new /obj/item/device/dogborg/sleeper/compactor/decompiler(src)
+	var/obj/item/dogborg/sleeper/compactor/decompiler/MD = new /obj/item/dogborg/sleeper/compactor/decompiler(src)
 	MD.metal = metal
 	MD.glass = glass
 	MD.wood = wood
@@ -709,14 +709,14 @@
 	src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
 	src.modules += new /obj/item/weapon/material/minihoe(src)
 	src.modules += new /obj/item/weapon/material/knife/machete/hatchet(src)
-	src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
+	src.modules += new /obj/item/analyzer/plant_analyzer(src)
 	src.modules += new /obj/item/weapon/storage/bag/dogborg(src)
 	src.modules += new /obj/item/weapon/robot_harvester(src)
 	src.modules += new /obj/item/weapon/material/knife(src)
 	src.modules += new /obj/item/weapon/material/kitchen/rollingpin(src)
-	src.modules += new /obj/item/device/multitool(src) //to freeze trays
+	src.modules += new /obj/item/multitool(src) //to freeze trays
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/dogborg/boop_module(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src) //Pounce
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500) // buffy fix, was 0
@@ -727,7 +727,7 @@
 	synths += water
 
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
@@ -745,7 +745,7 @@
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/service(src)
 
 /* // I don't know what kind of sleeper to put here, but also no need if you already have "Robot Nom" verb. - revisit later
-	var/obj/item/device/dogborg/sleeper/K9/B = new /obj/item/device/dogborg/sleeper/K9(src)
+	var/obj/item/dogborg/sleeper/K9/B = new /obj/item/dogborg/sleeper/K9(src)
 	B.water = water
 	src.modules += B
 */
@@ -802,11 +802,11 @@
 	R.water_res = water
 	synths += water
 
-	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	var/obj/item/dogborg/tongue/T = new /obj/item/dogborg/tongue(src)
 	T.water = water
 	src.modules += T
 
-	var/obj/item/device/dogborg/sleeper/B = new /obj/item/device/dogborg/sleeper/compactor/supply(src)
+	var/obj/item/dogborg/sleeper/B = new /obj/item/dogborg/sleeper/compactor/supply(src)
 	B.water = water
 	src.modules += B
 
@@ -864,16 +864,16 @@
 	src.modules += new /obj/item/weapon/gripper/service(src)
 	//src.modules += new /obj/item/weapon/reagent_containers/glass/bucket(src)
 	//src.modules += new /obj/item/weapon/material/minihoe(src)
-	//src.modules += new /obj/item/device/analyzer/plant_analyzer(src)
+	//src.modules += new /obj/item/analyzer/plant_analyzer(src)
 	//src.modules += new /obj/item/weapon/storage/bag/plants(src)
 	//src.modules += new /obj/item/weapon/robot_harvester(src)
 	src.modules += new /obj/item/weapon/material/knife(src)
 	src.modules += new /obj/item/weapon/material/kitchen/rollingpin(src)
-	src.modules += new /obj/item/device/multitool(src) //to freeze trays
+	src.modules += new /obj/item/multitool(src) //to freeze trays
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/weapon/tray/robotray
-	src.modules += new /obj/item/device/dogborg/boop_module(src)
-	src.modules += new /obj/item/device/dogborg/sleeper/compactor/brewer(src)
+	src.modules += new /obj/item/dogborg/boop_module(src)
+	src.modules += new /obj/item/dogborg/sleeper/compactor/brewer(src)
 	src.emag 	 = new /obj/item/weapon/dogborg/pounce(src)
 	R.verbs += /mob/living/silicon/robot/proc/reskin_booze
 

@@ -1,25 +1,13 @@
-<<<<<<< HEAD
-/*
- * This is a playing card deck based off of the Rider-Waite Tarot Deck.
- */
-/obj/item/weapon/deck/tarot
-=======
 /* this is a playing card deck based off of the Rider-Waite Tarot Deck.
 */
 
 /obj/item/deck/tarot
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "deck of tarot cards"
 	desc = "For all your occult needs!"
 	icon_state = "deck_tarot"
 
-<<<<<<< HEAD
-/obj/item/weapon/deck/tarot/New()
-	..()
-=======
 /obj/item/deck/tarot/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 	var/datum/playingcard/P
 	for(var/name in list("Fool","Magician","High Priestess","Empress","Emperor","Hierophant","Lovers","Chariot","Strength","Hermit","Wheel of Fortune","Justice","Hanged Man","Death","Temperance","Devil","Tower","Star","Moon","Sun","Judgement","World"))

@@ -4,12 +4,8 @@
 	icon_state = "ano01"
 	var/find_type = 0
 
-<<<<<<< HEAD
-/obj/item/weapon/archaeological_find/New(loc, var/new_item_type)
-=======
 /obj/item/archaeological_find/Initialize(var/ml, var/new_item_type)
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	if(new_item_type)
 		find_type = new_item_type
 	else
@@ -597,26 +593,7 @@
 			new_item.name = pick("great-club","club","billyclub","mace","tenderizer","maul","bat")
 			item_type = new_item.name
 
-<<<<<<< HEAD
-	if(istype(new_item, /obj/item/weapon/material))
-=======
-		if(ARCHAEO_METEOR)
-			// A rock! From space! But, a long time ago.
-			apply_prefix = FALSE
-			apply_image_decorations = FALSE
-			apply_material_decorations = FALSE
-			if(prob(30))
-				if(prob(30))
-					apply_prefix = TRUE
-				if(prob(20))
-					apply_image_decorations = TRUE
-
-			new_item = new /obj/item/meteor_chunk(src.loc)
-			new_item.name = pick("meteorite", "chunk", "lump", "stone")
-			item_type = new_item.name
-
 	if(istype(new_item, /obj/item/material))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 		var/new_item_mat = pickweight(list(
 			MAT_STEEL = 80,
 			MAT_WOOD = 20,

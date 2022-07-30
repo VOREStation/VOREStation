@@ -1,6 +1,6 @@
 //Pretty small file, mostly just for storage.
 /datum/preferences
-	var/obj/item/device/nif/nif_path
+	var/obj/item/nif/nif_path
 	var/nif_durability
 	var/list/nif_savedata
 

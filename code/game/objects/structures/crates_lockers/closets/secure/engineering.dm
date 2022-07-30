@@ -15,16 +15,16 @@
 		/obj/item/clothing/gloves/heavy_engineer,	//VOREStation Edit: chief gets the good shit
 		/obj/item/clothing/shoes/brown,
 		/obj/item/weapon/cartridge/ce,
-		/obj/item/device/radio/headset/heads/ce,
-		/obj/item/device/radio/headset/heads/ce/alt,
+		/obj/item/radio/headset/heads/ce,
+		/obj/item/radio/headset/heads/ce/alt,
 		/obj/item/weapon/storage/toolbox/mechanical,
 		/obj/item/clothing/suit/storage/hazardvest,
 		///obj/item/clothing/mask/gas,	//VOREStation Removal: Locker bloat, grr. The fancy one below functions as a mask & helmet combined.
 		/obj/item/clothing/head/hardhat/firefighter/chief, //VOREStation Add: replaces the bog-standard gas mask
-		///obj/item/device/multitool,	//VOREStation Removal: The belt they get, both standard and the fancy one, both come with one already, why stick another in here too?
+		///obj/item/multitool,	//VOREStation Removal: The belt they get, both standard and the fancy one, both come with one already, why stick another in here too?
 		/obj/item/weapon/storage/belt/utility/chief/full,
-		/obj/item/device/flash,
-		/obj/item/device/t_scanner/upgraded,
+		/obj/item/flash,
+		/obj/item/t_scanner/upgraded,
 		/obj/item/taperoll/engineering,
 		///obj/item/clothing/suit/storage/hooded/wintercoat/engineering,	//VOREStation Removal: Locker bloat, grr. They can grab from the engi-clothes vendor if they want the standard one.
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce,
@@ -52,14 +52,14 @@
 		/obj/item/clothing/gloves/yellow = 2,
 		/obj/item/weapon/storage/toolbox/electrical = 3,
 		/obj/item/weapon/module/power_control = 3,
-		/obj/item/device/multitool = 3)
+		/obj/item/multitool = 3)
 
 /obj/structure/closet/secure_closet/engineering_electrical/double
 	starts_with = list(
 		/obj/item/clothing/gloves/yellow = 4,
 		/obj/item/weapon/storage/toolbox/electrical = 6,
 		/obj/item/weapon/module/power_control = 6,
-		/obj/item/device/multitool = 6)
+		/obj/item/multitool = 6)
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
@@ -87,8 +87,8 @@
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
 		/obj/item/weapon/storage/toolbox/mechanical,
-		/obj/item/device/radio/headset/headset_eng,
-		/obj/item/device/radio/headset/headset_eng/alt,
+		/obj/item/radio/headset/headset_eng,
+		/obj/item/radio/headset/headset_eng/alt,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
@@ -120,11 +120,11 @@
 		/obj/item/clothing/accessory/storage/brown_vest,
 		/obj/item/clothing/suit/fire/heavy,
 		/obj/item/clothing/head/hardhat/firefighter/atmos,
-		/obj/item/device/flashlight,
+		/obj/item/flashlight,
 		/obj/item/weapon/extinguisher/atmo,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
-		/obj/item/device/radio/headset/headset_eng,
-		/obj/item/device/radio/headset/headset_eng/alt,
+		/obj/item/radio/headset/headset_eng,
+		/obj/item/radio/headset/headset_eng/alt,
 		/obj/item/clothing/suit/storage/hazardvest/atmos,	//VOREStation edit. Eng locker gets regular haz-vest, atmos gets the themed one of their own
 		/obj/item/clothing/mask/gas,
 		/obj/item/weapon/cartridge/atmos,

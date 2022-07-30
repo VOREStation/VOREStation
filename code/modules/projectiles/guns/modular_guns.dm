@@ -28,13 +28,8 @@
 	//Excessively long because it won't accept subtypes for some reason!
 
 
-<<<<<<< HEAD
-/obj/item/weapon/gun/energy/modular/New() //Initialize our components.
-	..()
-=======
 /obj/item/gun/energy/modular/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	guncomponents = list()
 	guncomponents += new /obj/item/stock_parts/capacitor
 	guncomponents += new /obj/item/stock_parts/micro_laser

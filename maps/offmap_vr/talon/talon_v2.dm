@@ -144,7 +144,7 @@ var/global/list/latejoin_talon = list()
 /obj/machinery/telecomms/allinone/talon
 	freq_listening = list(PUB_FREQ, TALON_FREQ)
 
-/obj/item/weapon/paper/talon_shields
+/obj/item/paper/talon_shields
 	name = "to whatever asshole"
 	info = {"to whatever <b>asshole</b> keeps resetting the shield generator,<br>\
 please stop fucking around before you get us all killed. thanks.<br>\
@@ -159,7 +159,7 @@ good luck<br>\
 <br>\
 <i>Harry Townes</i>"}
 
-/obj/item/weapon/paper/talon_power
+/obj/item/paper/talon_power
 	name = "new power setup"
 	info = {"to whoever's saddled with running this rustbucket this week,<br>\
 good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
@@ -179,7 +179,7 @@ alternately maybe you can trade some off those nanotrasen corpos down on 3B. atm
 <br>\
 p.s. speaking of shit that's bad for your health for the love of <i>fuck</i> do not smoke in the main engineering compartments, and <b>definitely</b> don't smoke in the engine rooms! if the ass-end of the ship ends up blown off because you went for a smoke break in a room full of crazy-flammable phoron they'll stick your reconstituted atoms so far in debt-prison you won't see daylight for a century."}
 
-/obj/item/weapon/paper/talon_doctor
+/obj/item/paper/talon_doctor
 	name = "new medical bay"
 	info = {"to whoever's stuck babysitting everyone's booboos,<br>\
 good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
@@ -190,7 +190,7 @@ whatever. enjoy the change of scenery. or don't.<br>\
 <br>\
 <i>Harry Townes</i>"}
 
-/obj/item/weapon/paper/talon_guard
+/obj/item/paper/talon_guard
 	name = "new brig"
 	info = {"to whoever's stuck enforcing some semblance of order on this hulk,<br>\
 good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
@@ -203,7 +203,7 @@ so stay sharp eh?<br>\
 <br>\
 <i>Harry Townes</i>"}
 
-/obj/item/weapon/paper/talon_captain
+/obj/item/paper/talon_captain
 	name = "storage space"
 	info = {"to whoever's stuck at the helm of this farce of an operation,<br>\
 good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
@@ -214,7 +214,7 @@ have fun!<br>\
 <br>\
 <i>Harry Townes</i>"}
 
-/obj/item/weapon/paper/talon_pilot
+/obj/item/paper/talon_pilot
 	name = "new shuttle"
 	info = {"to whoever's stuck flying this ungreased beast,<br>\
 good news! you may have noticed the entire ship was replaced pretty much overnight.<br>\
@@ -231,7 +231,7 @@ speaking of, if some dumbass does take it and fly off solo then get themselves k
 <br>\
 <i>Harry Townes</i>"}
 
-/obj/item/weapon/paper/talon_cannon
+/obj/item/paper/talon_cannon
 	name = "ITV Talon OFD Console"
 	info = {"to whoever's got the itchiest trigger finger,<br>\
 as a reward for recent good performance, the lads upstairs have seen fit to have our ship retrofitted with an Obstruction Field Disperser. This fancy bit of hardware can be used to, well, 'disperse' 'obstructions'. asteroids or carp shoals in the way? no problem! load her up and fire! range is pretty short though.<br>\
@@ -244,7 +244,7 @@ oh, and it's not a weapon. don't try to shoot other ships with it or anything, i
 <br>\
 <i>Harry Townes</i>"}
 
-/obj/item/weapon/paper/talon_escape_pod
+/obj/item/paper/talon_escape_pod
 	name = "ITV Talon Escape Pod"
 	info = {"to whoever's stuck bailing out,<br>\
 after some extensive retrofits to comply with starfaring vessel regulations, our lovely little ship has been outfitted with a proper escape pod, which you are now standing in if you are reading this paper! congratulations!<br>\
@@ -271,16 +271,16 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /mob/living/silicon/robot/drone/talon
 	foreign_droid = TRUE
-	idcard_type = /obj/item/weapon/card/id/synthetic/talon
+	idcard_type = /obj/item/card/id/synthetic/talon
 
-/obj/item/weapon/card/id/synthetic/talon
+/obj/item/card/id/synthetic/talon
 	name = "\improper Talon synthetic ID"
 	desc = "Access module for Talon synthetics"
 	icon_state = "id-robot"
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/weapon/card/id/synthetic/talon/Initialize()
+/obj/item/card/id/synthetic/talon/Initialize()
 	. = ..()
 	access = list(access_talon, access_synth)
 
@@ -297,7 +297,7 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	req_one_access = list(access_talon)
 
 /obj/machinery/power/apc/talon/hyper
-	cell_type = /obj/item/weapon/cell/hyper
+	cell_type = /obj/item/cell/hyper
 
 /obj/machinery/alarm/talon
 	req_access = list()
@@ -355,17 +355,17 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/item/clothing/suit/space/void/mining/talon
 	name = "talon miner's voidsuit"
 
-/obj/item/device/gps/command/taloncap
+/obj/item/gps/command/taloncap
 	gps_tag = "TALC"
-/obj/item/device/gps/security/talonguard
+/obj/item/gps/security/talonguard
 	gps_tag = "TALG"
-/obj/item/device/gps/medical/talonmed
+/obj/item/gps/medical/talonmed
 	gps_tag = "TALM"
-/obj/item/device/gps/engineering/taloneng
+/obj/item/gps/engineering/taloneng
 	gps_tag = "TALE"
-/obj/item/device/gps/explorer/talonpilot
+/obj/item/gps/explorer/talonpilot
 	gps_tag = "TALP"
-/obj/item/device/gps/mining/talonminer
+/obj/item/gps/mining/talonminer
 	gps_tag = "TALM"
 
 /obj/structure/closet/secure_closet/talon_captain
@@ -374,16 +374,16 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	closet_appearance = /decl/closet_appearance/secure_closet/talon/captain
 
 	starts_with = list(
-		/obj/item/weapon/storage/backpack/dufflebag/captain,
+		/obj/item/storage/backpack/dufflebag/captain,
 		/obj/item/clothing/suit/storage/vest,
-		/obj/item/weapon/melee/telebaton,
-		/obj/item/device/flash,
-		/obj/item/device/radio/headset/talon,
+		/obj/item/melee/telebaton,
+		/obj/item/flash,
+		/obj/item/radio/headset/talon,
 		/obj/item/clothing/head/helmet/space/void/refurb/officer/talon,
 		/obj/item/clothing/suit/space/void/refurb/officer/talon,
-		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/device/gps/command/taloncap
+		/obj/item/tank/oxygen,
+		/obj/item/suit_cooling_unit,
+		/obj/item/gps/command/taloncap
 	)
 
 /obj/structure/closet/secure_closet/talon_guard
@@ -396,21 +396,21 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/clothing/under/utility,
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/shoes/boots/jackboots/toeless,
-		/obj/item/weapon/handcuffs = 2,
-		/obj/item/weapon/gun/energy/stunrevolver,
+		/obj/item/handcuffs = 2,
+		/obj/item/gun/energy/stunrevolver,
 		/obj/item/clothing/accessory/armor/tag/sec,
-		/obj/item/device/flash,
-		/obj/item/device/flashlight/maglight,
+		/obj/item/flash,
+		/obj/item/flashlight/maglight,
 		/obj/item/clothing/glasses/sunglasses,
-		/obj/item/weapon/storage/belt/security,
-		/obj/item/device/radio/headset/talon,
+		/obj/item/storage/belt/security,
+		/obj/item/radio/headset/talon,
 		/obj/item/clothing/accessory/solgov/department/security/army,
 		/obj/item/clothing/head/helmet/space/void/refurb/marine/talon,
 		/obj/item/clothing/suit/space/void/refurb/marine/talon,
-		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/device/gps/security/talonguard,
-		/obj/item/weapon/melee/baton
+		/obj/item/tank/oxygen,
+		/obj/item/suit_cooling_unit,
+		/obj/item/gps/security/talonguard,
+		/obj/item/melee/baton
 	)
 
 /obj/structure/closet/secure_closet/talon_doctor
@@ -425,12 +425,12 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern,
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/shoes/white,
-		/obj/item/device/radio/headset/talon,
+		/obj/item/radio/headset/talon,
 		/obj/item/clothing/head/helmet/space/void/refurb/medical/alt/talon,
 		/obj/item/clothing/suit/space/void/refurb/medical/talon,
-		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/device/gps/medical/talonmed
+		/obj/item/tank/oxygen,
+		/obj/item/suit_cooling_unit,
+		/obj/item/gps/medical/talonmed
 	)
 
 /obj/structure/closet/secure_closet/talon_engineer
@@ -440,19 +440,19 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
-		/obj/item/device/flashlight,
-		/obj/item/weapon/extinguisher,
+		/obj/item/flashlight,
+		/obj/item/extinguisher,
 		/obj/item/clamp,
-		/obj/item/device/radio/headset/talon,
+		/obj/item/radio/headset/talon,
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/taperoll/atmos,
-		/obj/item/weapon/tank/emergency/oxygen/engi,
+		/obj/item/tank/emergency/oxygen/engi,
 		/obj/item/clothing/head/helmet/space/void/refurb/engineering/talon,
 		/obj/item/clothing/suit/space/void/refurb/engineering/talon,
-		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/device/gps/engineering/taloneng
+		/obj/item/tank/oxygen,
+		/obj/item/suit_cooling_unit,
+		/obj/item/gps/engineering/taloneng
 	)
 
 /obj/structure/closet/secure_closet/talon_pilot
@@ -461,25 +461,25 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	closet_appearance = /decl/closet_appearance/secure_closet/talon/pilot
 
 	starts_with = list(
-		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/item/material/knife/tacknife/survival,
 		/obj/item/clothing/head/pilot,
 		/obj/item/clothing/under/rank/pilot1,
 		/obj/item/clothing/suit/storage/toggle/bomber/pilot,
 		/obj/item/clothing/gloves/fingerless,
-		/obj/item/weapon/reagent_containers/food/snacks/liquidfood,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
-		/obj/item/device/radio,
+		/obj/item/reagent_containers/food/snacks/liquidfood,
+		/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+		/obj/item/radio,
 		/obj/item/clothing/under/utility/blue,
 		/obj/item/clothing/accessory/solgov/specialty/pilot,
 		/obj/item/clothing/shoes/boots/jackboots,
 		/obj/item/clothing/shoes/boots/jackboots/toeless,
-		/obj/item/device/radio/headset/talon,
-		/obj/item/device/flashlight/color/orange,
+		/obj/item/radio/headset/talon,
+		/obj/item/flashlight/color/orange,
 		/obj/item/clothing/head/helmet/space/void/refurb/pilot/talon,
 		/obj/item/clothing/suit/space/void/refurb/pilot/talon,
-		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/device/gps/explorer/talonpilot
+		/obj/item/tank/oxygen,
+		/obj/item/suit_cooling_unit,
+		/obj/item/gps/explorer/talonpilot
 	)
 
 /obj/structure/closet/secure_closet/talon_miner
@@ -488,19 +488,19 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	closet_appearance = /decl/closet_appearance/secure_closet/talon/miner
 
 	starts_with = list(
-		/obj/item/device/radio/headset/talon,
+		/obj/item/radio/headset/talon,
 		/obj/item/clothing/head/helmet/space/void/refurb/mining/talon,
 		/obj/item/clothing/suit/space/void/refurb/mining/talon,
-		/obj/item/weapon/tank/oxygen,
-		/obj/item/device/suit_cooling_unit,
-		/obj/item/device/gps/mining/talonminer,
+		/obj/item/tank/oxygen,
+		/obj/item/suit_cooling_unit,
+		/obj/item/gps/mining/talonminer,
 		/obj/item/clothing/gloves/black,
-		/obj/item/device/analyzer,
-		/obj/item/weapon/storage/bag/ore,
-		/obj/item/device/flashlight/lantern,
-		/obj/item/weapon/shovel,
-		/obj/item/weapon/pickaxe,
-		/obj/item/weapon/mining_scanner,
+		/obj/item/analyzer,
+		/obj/item/storage/bag/ore,
+		/obj/item/flashlight/lantern,
+		/obj/item/shovel,
+		/obj/item/pickaxe,
+		/obj/item/mining_scanner,
 		/obj/item/clothing/glasses/material,
 		/obj/item/clothing/glasses/meson
 	)
@@ -511,14 +511,14 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	icon_state = "med"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;Natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
 	req_access = list(access_talon)
-	products = list(/obj/item/weapon/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/inaprovaline = 4,
-					/obj/item/weapon/reagent_containers/glass/bottle/stoxin = 4,/obj/item/weapon/reagent_containers/glass/bottle/toxin = 4,
-					/obj/item/weapon/reagent_containers/syringe/antiviral = 4,/obj/item/weapon/reagent_containers/syringe = 12,
-					/obj/item/device/healthanalyzer = 5,/obj/item/weapon/reagent_containers/glass/beaker = 4, /obj/item/weapon/reagent_containers/dropper = 2,
+	products = list(/obj/item/reagent_containers/glass/bottle/antitoxin = 4,/obj/item/reagent_containers/glass/bottle/inaprovaline = 4,
+					/obj/item/reagent_containers/glass/bottle/stoxin = 4,/obj/item/reagent_containers/glass/bottle/toxin = 4,
+					/obj/item/reagent_containers/syringe/antiviral = 4,/obj/item/reagent_containers/syringe = 12,
+					/obj/item/healthanalyzer = 5,/obj/item/reagent_containers/glass/beaker = 4, /obj/item/reagent_containers/dropper = 2,
 					/obj/item/stack/medical/advanced/bruise_pack = 6, /obj/item/stack/medical/advanced/ointment = 6, /obj/item/stack/medical/splint = 4,
-					/obj/item/weapon/storage/pill_bottle/carbon = 2, /obj/item/weapon/storage/box/khcrystal = 4, /obj/item/clothing/glasses/omnihud/med = 4,
-					/obj/item/device/glasses_kit = 1,  /obj/item/weapon/storage/quickdraw/syringe_case = 4)
-	contraband = list(/obj/item/weapon/reagent_containers/pill/tox = 3,/obj/item/weapon/reagent_containers/pill/stox = 4,/obj/item/weapon/reagent_containers/pill/antitox = 6)
+					/obj/item/storage/pill_bottle/carbon = 2, /obj/item/storage/box/khcrystal = 4, /obj/item/clothing/glasses/omnihud/med = 4,
+					/obj/item/glasses_kit = 1,  /obj/item/storage/quickdraw/syringe_case = 4)
+	contraband = list(/obj/item/reagent_containers/pill/tox = 3,/obj/item/reagent_containers/pill/stox = 4,/obj/item/reagent_containers/pill/antitox = 6)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	req_log_access = access_talon
 	has_logs = 1
@@ -621,11 +621,11 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 
 /obj/item/modular_computer/console/preset/talon/install_default_hardware()
 	..()
-	processor_unit = new/obj/item/weapon/computer_hardware/processor_unit(src)
-	tesla_link = new/obj/item/weapon/computer_hardware/tesla_link(src)
-	hard_drive = new/obj/item/weapon/computer_hardware/hard_drive/super(src)
-	network_card = new/obj/item/weapon/computer_hardware/network_card/wired(src)
-	nano_printer = new/obj/item/weapon/computer_hardware/nano_printer(src)
+	processor_unit = new/obj/item/computer_hardware/processor_unit(src)
+	tesla_link = new/obj/item/computer_hardware/tesla_link(src)
+	hard_drive = new/obj/item/computer_hardware/hard_drive/super(src)
+	network_card = new/obj/item/computer_hardware/network_card/wired(src)
+	nano_printer = new/obj/item/computer_hardware/nano_printer(src)
 
 /obj/item/modular_computer/console/preset/talon/install_default_programs()
 	..()
@@ -677,97 +677,97 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 /obj/random/multiple/ore_pile/talon/item_to_spawn()
 	return pick(
 			prob(10);list(
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal,
-				/obj/item/weapon/ore/coal
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal,
+				/obj/item/ore/coal
 			),
 			prob(3);list(
-				/obj/item/weapon/ore/diamond,
-				/obj/item/weapon/ore/diamond
+				/obj/item/ore/diamond,
+				/obj/item/ore/diamond
 			),
 			prob(15);list(
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass,
-				/obj/item/weapon/ore/glass
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass,
+				/obj/item/ore/glass
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold,
-				/obj/item/weapon/ore/gold
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold,
+				/obj/item/ore/gold
 			),
 			prob(2);list(
-				/obj/item/weapon/ore/hydrogen
+				/obj/item/ore/hydrogen
 			),
 			prob(10);list(
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron,
-				/obj/item/weapon/ore/iron
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron,
+				/obj/item/ore/iron
 			),
 			prob(10);list(
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead,
-				/obj/item/weapon/ore/lead
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead,
+				/obj/item/ore/lead
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/marble,
-				/obj/item/weapon/ore/marble,
-				/obj/item/weapon/ore/marble,
-				/obj/item/weapon/ore/marble
+				/obj/item/ore/marble,
+				/obj/item/ore/marble,
+				/obj/item/ore/marble,
+				/obj/item/ore/marble
 			),
 			prob(3);list(
-				/obj/item/weapon/ore/osmium,
-				/obj/item/weapon/ore/osmium
+				/obj/item/ore/osmium,
+				/obj/item/ore/osmium
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/phoron,
-				/obj/item/weapon/ore/phoron,
-				/obj/item/weapon/ore/phoron,
-				/obj/item/weapon/ore/phoron
+				/obj/item/ore/phoron,
+				/obj/item/ore/phoron,
+				/obj/item/ore/phoron,
+				/obj/item/ore/phoron
 			),
 			prob(5);list(
-				/obj/item/weapon/ore/silver,
-				/obj/item/weapon/ore/silver,
-				/obj/item/weapon/ore/silver,
-				/obj/item/weapon/ore/silver
+				/obj/item/ore/silver,
+				/obj/item/ore/silver,
+				/obj/item/ore/silver,
+				/obj/item/ore/silver
 			),
 			prob(3);list(
-				/obj/item/weapon/ore/uranium,
-				/obj/item/weapon/ore/uranium
+				/obj/item/ore/uranium,
+				/obj/item/ore/uranium
 			),
 		)
 
@@ -816,11 +816,11 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
 			),
 			prob(10);list(
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
 				/obj/structure/closet/crate/freezer/centauri //CENTAURI DONK-POCKETS
 			),
 			prob(10);list(
@@ -831,16 +831,16 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/einstein //EINSTEIN BATTERYPACK
 			),
 			prob(5);list(
-				/obj/item/weapon/circuitboard/smes,
+				/obj/item/circuitboard/smes,
 				/obj/random/smes_coil,
 				/obj/random/smes_coil,
 				/obj/structure/closet/crate/focalpoint //FOCAL SMES
 			),
 			prob(10);list(
-				/obj/item/weapon/module/power_control,
+				/obj/item/module/power_control,
 				/obj/item/stack/cable_coil,
 				/obj/item/frame/apc,
-				/obj/item/weapon/cell/apc,
+				/obj/item/cell/apc,
 				/obj/structure/closet/crate/focalpoint //FOCAL APC
 			),
 			prob(5);list(
@@ -941,67 +941,67 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 				/obj/structure/closet/crate/zenghu //ZENGHU PILLS
 			),
 			prob(10);list(
-				/obj/item/device/toner,
-				/obj/item/device/toner,
-				/obj/item/device/toner,
-				/obj/item/weapon/clipboard,
-				/obj/item/weapon/clipboard,
-				/obj/item/weapon/pen/red,
-				/obj/item/weapon/pen/blue,
-				/obj/item/weapon/pen/blue,
-				/obj/item/device/camera_film,
-				/obj/item/weapon/folder/blue,
-				/obj/item/weapon/folder/red,
-				/obj/item/weapon/folder/yellow,
-				/obj/item/weapon/hand_labeler,
-				/obj/item/weapon/tape_roll,
-				/obj/item/weapon/paper_bin,
+				/obj/item/toner,
+				/obj/item/toner,
+				/obj/item/toner,
+				/obj/item/clipboard,
+				/obj/item/clipboard,
+				/obj/item/pen/red,
+				/obj/item/pen/blue,
+				/obj/item/pen/blue,
+				/obj/item/camera_film,
+				/obj/item/folder/blue,
+				/obj/item/folder/red,
+				/obj/item/folder/yellow,
+				/obj/item/hand_labeler,
+				/obj/item/tape_roll,
+				/obj/item/paper_bin,
 				/obj/item/sticky_pad/random,
 				/obj/structure/closet/crate/ummarcar //UMMARCAR OFFICE TRASH
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
-				/obj/item/weapon/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
+				/obj/item/reagent_containers/food/snacks/unajerky,
 				/obj/structure/closet/crate/unathi //UNAJERKY
 			),
 			prob(10);list(
-				/obj/item/weapon/reagent_containers/glass/bucket,
-				/obj/item/weapon/mop,
+				/obj/item/reagent_containers/glass/bucket,
+				/obj/item/mop,
 				/obj/item/clothing/under/rank/janitor,
-				/obj/item/weapon/cartridge/janitor,
+				/obj/item/cartridge/janitor,
 				/obj/item/clothing/gloves/black,
 				/obj/item/clothing/head/soft/purple,
-				/obj/item/weapon/storage/belt/janitor,
+				/obj/item/storage/belt/janitor,
 				/obj/item/clothing/shoes/galoshes,
-				/obj/item/weapon/storage/bag/trash,
-				/obj/item/device/lightreplacer,
-				/obj/item/weapon/reagent_containers/spray/cleaner,
-				/obj/item/weapon/reagent_containers/glass/rag,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
-				/obj/item/weapon/grenade/chem_grenade/cleaner,
+				/obj/item/storage/bag/trash,
+				/obj/item/lightreplacer,
+				/obj/item/reagent_containers/spray/cleaner,
+				/obj/item/reagent_containers/glass/rag,
+				/obj/item/grenade/chem_grenade/cleaner,
+				/obj/item/grenade/chem_grenade/cleaner,
+				/obj/item/grenade/chem_grenade/cleaner,
 				/obj/structure/closet/crate/galaksi //GALAKSI JANITOR SUPPLIES
 			),
 			prob(5);list(
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
-				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
+				/obj/item/reagent_containers/food/snacks/candy/gummy,
 				/obj/structure/closet/crate/allico //GUMMIES
 			),
 			prob(2);list(
-				/obj/item/weapon/tank/phoron/pressurized,
-				/obj/item/weapon/tank/phoron/pressurized,
+				/obj/item/tank/phoron/pressurized,
+				/obj/item/tank/phoron/pressurized,
 				/obj/structure/closet/crate/secure/phoron //HQ FUEL TANKS
 			)
 		)

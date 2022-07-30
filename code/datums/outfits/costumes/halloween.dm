@@ -25,12 +25,8 @@
 	var/obj/item/storage/briefcase/new_briefcase = new(H)
 	for(var/obj/item/briefcase_item in new_briefcase)
 		qdel(briefcase_item)
-<<<<<<< HEAD
-	new_briefcase.contents += new /obj/item/weapon/gun/projectile/pistol/toy
-	new_briefcase.contents += new /obj/item/ammo_magazine/mfoam_dart/pistol
-=======
 	new_briefcase.contents += new /obj/item/gun/projectile/pistol/toy
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	new_briefcase.contents += new /obj/item/ammo_magazine/mfoam_dart/pistol
 	new_briefcase.contents += new /obj/item/clothing/mask/gas/clown_hat
 	H.equip_to_slot_or_del(new_briefcase, slot_l_hand)
 
@@ -106,13 +102,8 @@
 	suit = /obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless
 	shoes = /obj/item/clothing/shoes/boots/jackboots
 	gloves = /obj/item/clothing/gloves/fingerless
-<<<<<<< HEAD
-	l_pocket = /obj/item/weapon/gun/projectile/revolver/toy/crossbow/halloween
-	r_pocket = /obj/item/device/flashlight/color/red
-=======
-	l_pocket = /obj/item/gun/projectile/revolver/toy/crossbow
+	l_pocket = /obj/item/gun/projectile/revolver/toy/crossbow/halloween
 	r_pocket = /obj/item/flashlight/color/red
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 
 /decl/hierarchy/outfit/costume/pirate
 	name = OUTFIT_COSTUME("Pirate")

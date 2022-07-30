@@ -68,7 +68,7 @@
 	dir = 4
 	},
 /obj/item/trash/bowl,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "hk" = (
@@ -88,7 +88,7 @@
 /area/submap/OtieShelter)
 "iv" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/surgery,
+/obj/item/storage/firstaid/surgery,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "iC" = (
@@ -120,7 +120,7 @@
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/OtieShelter)
 "jI" = (
-/obj/item/weapon/material/shard{
+/obj/item/material/shard{
 	icon_state = "medium"
 	},
 /obj/effect/decal/cleanable/blood/tracks{
@@ -181,7 +181,7 @@
 	},
 /mob/living/simple_mob/otie/friendly/chubby,
 /obj/item/trash/bowl,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "mC" = (
@@ -205,8 +205,8 @@
 /area/submap/OtieShelter)
 "nR" = (
 /obj/structure/table/marble,
-/obj/item/weapon/newspaper,
-/obj/item/weapon/paper/card/heart,
+/obj/item/newspaper,
+/obj/item/paper/card/heart,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/OtieShelter)
 "ob" = (
@@ -219,7 +219,7 @@
 /area/submap/OtieShelter)
 "od" = (
 /obj/machinery/door/window,
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "op" = (
@@ -283,7 +283,7 @@
 	dir = 4
 	},
 /obj/item/trash/bowl,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "uD" = (
@@ -297,14 +297,14 @@
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "vA" = (
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "vB" = (
 /obj/machinery/door/window{
 	dir = 8
 	},
-/obj/item/weapon/bone,
+/obj/item/bone,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "vV" = (
@@ -340,7 +340,7 @@
 /area/submap/OtieShelter)
 "yD" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid/adv,
+/obj/item/storage/firstaid/adv,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "Aa" = (
@@ -352,8 +352,8 @@
 /area/submap/OtieShelter)
 "At" = (
 /obj/structure/table/marble,
-/obj/item/weapon/paper_bin,
-/obj/item/weapon/pen,
+/obj/item/paper_bin,
+/obj/item/pen,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/OtieShelter)
 "AO" = (
@@ -361,7 +361,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "BM" = (
-/obj/item/weapon/melee/baton/cattleprod,
+/obj/item/melee/baton/cattleprod,
 /obj/effect/decal/cleanable/blood/tracks{
 	color = "red";
 	desc = "Your instincts say you shouldn't be following these.";
@@ -377,7 +377,7 @@
 /area/submap/OtieShelter)
 "Cw" = (
 /obj/structure/table/glass,
-/obj/item/weapon/storage/firstaid,
+/obj/item/storage/firstaid,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "CM" = (
@@ -406,7 +406,7 @@
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "Ih" = (
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "Ij" = (
@@ -474,11 +474,11 @@
 "Nd" = (
 /obj/structure/table/marble,
 /obj/structure/table/marble,
-/obj/item/device/radio/phone,
+/obj/item/radio/phone,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/OtieShelter)
 "Nh" = (
-/obj/item/weapon/bedsheet/browndouble,
+/obj/item/bedsheet/browndouble,
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/carpet/turcarpet,
 /area/submap/OtieShelter)
@@ -525,7 +525,7 @@
 	dir = 8
 	},
 /obj/item/trash/bowl,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "Px" = (
@@ -571,7 +571,7 @@
 	dir = 8
 	},
 /obj/item/trash/bowl,
-/obj/item/weapon/reagent_containers/food/snacks/meat/human,
+/obj/item/reagent_containers/food/snacks/meat/human,
 /turf/simulated/floor/tiled,
 /area/submap/OtieShelter)
 "VE" = (
@@ -614,7 +614,7 @@
 	dir = 1
 	},
 /obj/structure/table/rack/shelf/steel,
-/obj/item/weapon/storage/toolbox/mechanical,
+/obj/item/storage/toolbox/mechanical,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},

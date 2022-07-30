@@ -26,13 +26,8 @@
 	max_capacity = 256
 	origin_tech = list(TECH_DATA = 4)
 
-<<<<<<< HEAD
-/obj/item/weapon/computer_hardware/hard_drive/portable/New()
-	..()
-=======
 /obj/item/computer_hardware/hard_drive/portable/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	stored_files = list()
 	recalculate_size()
 

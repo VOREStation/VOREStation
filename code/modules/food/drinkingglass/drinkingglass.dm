@@ -73,13 +73,8 @@
 	..()
 	update_icon()
 
-<<<<<<< HEAD
-/obj/item/weapon/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/weapon/glass_extra/GE)
-	if(!("[base_icon]_[GE.glass_addition]left" in cached_icon_states(icon))) //VOREStation Edit
-=======
 /obj/item/reagent_containers/food/drinks/glass2/proc/can_add_extra(obj/item/glass_extra/GE)
-	if(!("[base_icon]_[GE.glass_addition]left" in icon_states(DRINK_ICON_FILE)))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	if(!("[base_icon]_[GE.glass_addition]left" in cached_icon_states(icon))) //VOREStation Edit
 		return 0
 	if(!("[base_icon]_[GE.glass_addition]right" in cached_icon_states(icon))) //VOREStation Edit
 		return 0
@@ -131,15 +126,9 @@
 
 	var/side = "left"
 	for(var/item in extras)
-<<<<<<< HEAD
-		if(istype(item, /obj/item/weapon/glass_extra))
-			var/obj/item/weapon/glass_extra/GE = item
-			var/image/I = image(icon, src, "[base_icon]_[GE.glass_addition][side]") //VOREStation Edit
-=======
 		if(istype(item, /obj/item/glass_extra))
 			var/obj/item/glass_extra/GE = item
-			var/image/I = image(DRINK_ICON_FILE, src, "[base_icon]_[GE.glass_addition][side]")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+			var/image/I = image(icon, src, "[base_icon]_[GE.glass_addition][side]") //VOREStation Edit
 			if(GE.glass_color)
 				I.color = GE.glass_color
 			underlays += I

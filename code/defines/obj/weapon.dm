@@ -47,11 +47,7 @@
 /obj/item/soap/deluxe
 	icon_state = "soapdeluxe"
 
-<<<<<<< HEAD
-/obj/item/weapon/soap/deluxe/New()
-=======
 /obj/item/soap/deluxe/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
 	..()
 
@@ -335,30 +331,17 @@
 
 /obj/item/storage/part_replacer/adv
 	name = "advanced rapid part exchange device"
-<<<<<<< HEAD
 	desc = "A special mechanical module made to store, sort, and apply standard machine parts. This one has a greatly upgraded storage capacity, \
 	and the ability to hold beakers."
-	can_hold = list(/obj/item/weapon/stock_parts, /obj/item/weapon/reagent_containers/glass/beaker)
-=======
-	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a greatly upgraded storage capacity."
-	icon_state = "RPED"
-	w_class = ITEMSIZE_HUGE
-	can_hold = list(/obj/item/stock_parts)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	can_hold = list(/obj/item/stock_parts, /obj/item/reagent_containers/glass/beaker)
 	storage_slots = 200
 	max_storage_space = 400
 
-<<<<<<< HEAD
 /obj/item/weapon/storage/part_replacer/adv/discount_bluespace
 	name = "prototype bluespace rapid part exchange device"
 	icon_state = "DBRPED"
 	item_state = "DBRPED"
 	desc = "A special mechanical module made to store, sort, and apply standard machine parts. This one has a further increased storage capacity, \
-=======
-/obj/item/storage/part_replacer/adv/discount_bluespace
-	name = "discount bluespace rapid part exchange device"
-	desc = "A special mechanical module made to store, sort, and apply standard machine parts.  This one has a further increased storage capacity, \
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	and the ability to work on machines with closed maintenance panels."
 	storage_slots = 400
 	max_storage_space = 800
@@ -414,13 +397,8 @@
 		if(B.rped_rating() > lowest_rating)
 			continue
 		remove_from_storage(B, T)
-<<<<<<< HEAD
 
-/obj/item/weapon/stock_parts
-=======
-	
 /obj/item/stock_parts
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	name = "stock part"
 	desc = "What?"
 	gender = PLURAL
@@ -430,11 +408,7 @@
 	drop_sound = 'sound/items/drop/component.ogg'
 	pickup_sound = 'sound/items/pickup/component.ogg'
 
-<<<<<<< HEAD
-/obj/item/weapon/stock_parts/New()
-=======
 /obj/item/stock_parts/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
 	..()
@@ -462,11 +436,7 @@
 	var/charge = 0
 	var/max_charge = 1000
 
-<<<<<<< HEAD
-/obj/item/weapon/stock_parts/capacitor/New()
-=======
 /obj/item/stock_parts/capacitor/Initialize()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	. = ..()
 	max_charge *= rating
 

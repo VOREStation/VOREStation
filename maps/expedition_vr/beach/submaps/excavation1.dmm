@@ -58,11 +58,11 @@
 "m" = (
 /obj/structure/table/sifwoodentable,
 /obj/item/mecha_parts/mecha_equipment/tool/drill/bore,
-/obj/item/weapon/ore/marble,
+/obj/item/ore/marble,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "n" = (
-/obj/item/weapon/ore,
+/obj/item/ore,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "o" = (
@@ -88,15 +88,15 @@
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "s" = (
-/obj/item/weapon/ore/marble,
+/obj/item/ore/marble,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "t" = (
-/obj/item/weapon/ore/gold,
+/obj/item/ore/gold,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "u" = (
-/obj/item/weapon/ore/diamond,
+/obj/item/ore/diamond,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "v" = (
@@ -105,7 +105,7 @@
 /area/submap/Excavation)
 "w" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/weapon/pickaxe/jackhammer,
+/obj/item/pickaxe/jackhammer,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "x" = (
@@ -120,14 +120,14 @@
 /area/submap/Excavation)
 "z" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
-/obj/item/weapon/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
+/obj/item/grenade/chem_grenade/metalfoam,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "A" = (
 /obj/structure/table/sifwoodentable,
-/obj/item/weapon/mining_scanner,
+/obj/item/mining_scanner,
 /turf/simulated/floor/outdoors/rocks/caves,
 /area/submap/Excavation)
 "B" = (

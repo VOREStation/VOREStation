@@ -1,14 +1,8 @@
 // Inherits from /book/ so it can fit on bookshelves.
-<<<<<<< HEAD
-/obj/item/weapon/book/codex // Vorestation Edits throughout this object.
+/obj/item/book/codex // Vorestation Edits throughout this object.
 	name = "The Traveler's Guide to Human Space: Virgo-Erigone Edition"
 	desc = "Contains useful information about the world around you.  It seems to have been written for travelers to Virgo-Erigone, human or not. It also \
 	has the words 'Don't Panic' in small, friendly letters on the cover."
-=======
-/obj/item/book/codex
-	name = "Generic Codex: Electric Bugaloo"
-	desc = "If you can read this, something is broken!"
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	icon_state = "codex"
 	item_state = "book4"
 	unique = TRUE
@@ -25,15 +19,9 @@
 	icon_state = "[initial(icon_state)]-open"
 	tree.display(user)
 
-<<<<<<< HEAD
-/obj/item/weapon/book/codex/lore/vir // Vorestation Edits throughout this object.
+/obj/item/book/codex/lore/vir // Vorestation Edits throughout this object.
 	name = "The Traveler's Guide to Human Space: Virgo-Erigone Edition"
 	desc = "Contains useful information about the world around you.  It seems to have been written for travelers to Virgo-Erigone, human or not. It also \
-=======
-/obj/item/book/codex/lore/vir
-	name = "The Traveler's Guide to Human Space: Vir Edition"
-	desc = "Contains useful information about the world around you.  It seems to have been written for travelers to Vir, human or not.   It also \
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	has the words 'Don't Panic' in small, friendly letters on the cover."
 	icon_state = "codex"
 	root_type = /datum/lore/codex/category/main_virgo_lore

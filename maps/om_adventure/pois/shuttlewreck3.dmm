@@ -17,15 +17,15 @@
 /turf/simulated/shuttle/wall,
 /area/om_adventure/poi/shuttlewreck3)
 "m" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/template_noop,
 /area/template_noop)
 "p" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck3)
 "u" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /obj/random/awayloot/looseloot,
 /turf/simulated/shuttle/floor/white,
 /area/om_adventure/poi/shuttlewreck3)
@@ -39,7 +39,7 @@
 /area/om_adventure/poi/shuttlewreck3)
 "F" = (
 /obj/structure/grille/broken,
-/obj/item/weapon/material/shard,
+/obj/item/material/shard,
 /turf/simulated/floor/plating,
 /area/om_adventure/poi/shuttlewreck3)
 "H" = (
@@ -59,7 +59,7 @@
 /turf/simulated/floor/weird_things/dark,
 /area/om_adventure/poi/shuttlewreck3)
 "Q" = (
-/obj/item/weapon/material/shard/shrapnel,
+/obj/item/material/shard/shrapnel,
 /obj/effect/gibspawner/human,
 /obj/random/contraband/nofail,
 /turf/simulated/shuttle/floor/white,

@@ -12,11 +12,7 @@
 	var/radioactivity = 0
 	var/const/initial_amount = 3000000
 
-<<<<<<< HEAD
-/obj/item/weapon/fuel_assembly/New(var/newloc, var/_material, var/_colour)
-=======
 /obj/item/fuel_assembly/Initialize(var/ml, var/_material, var/_colour)
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	fuel_type = _material
 	fuel_colour = _colour
 	..(newloc)
@@ -57,19 +53,6 @@
 	return ..()
 
 // Mapper shorthand.
-<<<<<<< HEAD
-/obj/item/weapon/fuel_assembly/deuterium/New(var/newloc)
-	..(newloc, "deuterium")
-
-/obj/item/weapon/fuel_assembly/tritium/New(var/newloc)
-	..(newloc, "tritium")
-
-/obj/item/weapon/fuel_assembly/phoron/New(var/newloc)
-	..(newloc, "phoron")
-
-/obj/item/weapon/fuel_assembly/supermatter/New(var/newloc)
-	..(newloc, "supermatter")
-=======
 /obj/item/fuel_assembly/deuterium/Initialize(var/ml)
 	. = ..(ml, "deuterium")
 
@@ -81,4 +64,3 @@
 
 /obj/item/fuel_assembly/supermatter/Initialize(var/ml)
 	. = ..(ml, "supermatter")
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon

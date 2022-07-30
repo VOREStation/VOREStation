@@ -66,25 +66,15 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 // Proc: bind_to_owner()
 // Parameters: 1 (new_owner - mob that the book is trying to bind to)
 // Description: Links the catalog to hopefully the technomancer, so that only they can access it.
-<<<<<<< HEAD
-/obj/item/weapon/technomancer_catalog/proc/bind_to_owner(var/mob/living/carbon/human/new_owner)
-	if(!owner && (technomancers.is_antagonist(new_owner.mind) || universal)) //VOREStation Edit - Universal catalogs
-=======
 /obj/item/technomancer_catalog/proc/bind_to_owner(var/mob/living/carbon/human/new_owner)
-	if(!owner && technomancers.is_antagonist(new_owner.mind))
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
+	if(!owner && (technomancers.is_antagonist(new_owner.mind) || universal)) //VOREStation Edit - Universal catalogs
 		owner = new_owner
 
 // Proc: New()
 // Parameters: 0
 // Description: Sets up the catalog, as shown below.
-<<<<<<< HEAD
-/obj/item/weapon/technomancer_catalog/New()
-	..()
-=======
 /obj/item/technomancer_catalog/Initialize()
 	. = ..()
->>>>>>> 61084723c7b... Merge pull request #8317 from Atermonera/remove_weapon
 	set_up()
 
 // Proc: set_up()
@@ -395,4 +385,3 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 				qdel(AM)
 				return
 	to_chat(user, "<span class='warn'>\The [src] is unable to refund \the [AM].</span>")
-
