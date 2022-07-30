@@ -45,8 +45,6 @@
 
 /obj/item/defib_kit/update_icon()
 	cut_overlays()
-	var/list/new_overlays = list()
-
 	if(paddles && paddles.loc == src) //in case paddles got destroyed somehow.
 		add_overlay("[initial(icon_state)]-paddles")
 	if(bcell && paddles)
@@ -593,7 +591,7 @@
 
 /obj/item/shockpaddles/linked/Initialize(var/ml, obj/item/defib_kit/defib)
 	base_unit = defib
-	..(newloc)
+	. = ..()
 
 /obj/item/shockpaddles/linked/Destroy()
 	if(base_unit)

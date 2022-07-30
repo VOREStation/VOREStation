@@ -107,6 +107,9 @@
 
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
+	var/can_cleave = FALSE // If true, a 'cleaving' attack will occur.
+	var/cleaving = FALSE // Used to avoid infinite cleaving.
+
 	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
 
 /obj/item/New()

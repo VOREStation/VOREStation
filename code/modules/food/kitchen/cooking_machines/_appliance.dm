@@ -458,8 +458,7 @@
 			results += TR
 
 
-		for (var/r in results)
-			var/obj/item/reagent_containers/food/snacks/R = r
+		for(var/obj/item/reagent_containers/food/snacks/R as anything in results)
 			R.forceMove(C) //Move everything from the buffer back to the container
 			R.cooked |= cook_type
 

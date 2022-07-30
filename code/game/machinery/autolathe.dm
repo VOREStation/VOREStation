@@ -11,10 +11,8 @@
 	clickvol = 30
 
 	circuit = /obj/item/circuitboard/autolathe
-	var/datum/category_collection/autolathe/machine_recipes
-	var/list/stored_material =  list(MAT_STEEL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
-	var/list/storage_capacity = list(MAT_STEEL = 0, MAT_GLASS = 0, MAT_PLASTEEL = 0, MAT_PLASTIC = 0)
-	var/datum/category_group/autolathe/current_category
+
+	var/static/datum/category_collection/autolathe/autolathe_recipes
 
 	var/hacked = 0
 	var/disabled = 0

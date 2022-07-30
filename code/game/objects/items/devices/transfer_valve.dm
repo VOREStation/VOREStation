@@ -5,7 +5,7 @@
 	icon_state = "valve_1"
 	var/obj/item/tank/tank_one
 	var/obj/item/tank/tank_two
-	var/obj/item/attached_device
+	var/obj/item/assembly/attached_device
 	var/mob/attacher = null
 	var/valve_open = 0
 	var/toggle = 1

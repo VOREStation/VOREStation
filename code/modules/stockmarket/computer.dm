@@ -188,8 +188,7 @@
 		if("logs")
 			data["logs"] = list()
 
-			for(var/D in GLOB.stockExchange.logs)
-				var/datum/stock_log/L = D
+			for(var/datum/stock_log/L as anything in GLOB.stockExchange.logs)
 
 				if (istype(L, /datum/stock_log/buy))
 					data["logs"] += list(list(

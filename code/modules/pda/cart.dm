@@ -69,11 +69,9 @@ var/list/civilian_cartridges = list(
 	return ..()
 
 /obj/item/cartridge/proc/update_programs(obj/item/pda/pda)
-	for(var/A in programs)
-		var/datum/data/pda/P = A
+	for(var/datum/data/pda/P as anything in programs)
 		P.pda = pda
-	for(var/A in messenger_plugins)
-		var/datum/data/pda/messenger_plugin/P = A
+	for(var/datum/data/pda/messenger_plugin/P as anything in messenger_plugins)
 		P.pda = pda
 
 /obj/item/cartridge/engineering

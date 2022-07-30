@@ -15,7 +15,7 @@
 /obj/item/fuel_assembly/Initialize(var/ml, var/_material, var/_colour)
 	fuel_type = _material
 	fuel_colour = _colour
-	..(newloc)
+	. = ..(ml)
 
 /obj/item/fuel_assembly/Initialize()
 	. = ..()

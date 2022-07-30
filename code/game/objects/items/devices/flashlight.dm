@@ -28,14 +28,10 @@
 	light_cone_y_offset = -7
 
 	var/on = 0
-	var/brightness_on = 4 //luminosity when on
-	var/flashlight_power = 0.8	//lighting power when on
-	var/flashlight_colour = LIGHT_COLOR_INCANDESCENT_FLASHLIGHT	//lighting colour when on
+
 	var/obj/item/cell/cell
 	var/cell_type = /obj/item/cell/device
-	var/list/brightness_levels
-	var/brightness_level = "medium"
-	var/power_usage
+	var/power_usage = 1
 	var/power_use = 1
 
 /obj/item/flashlight/Initialize()
@@ -43,12 +39,8 @@
 
 	if(power_use && cell_type)
 		cell = new cell_type(src)
-		brightness_levels = list("low" = 0.25, "medium" = 0.5, "high" = 1)
-		power_usage = brightness_levels[brightness_level]
-	else
-		verbs -= /obj/item/flashlight/verb/toggle
 
-	update_icon()
+	update_brightness()
 
 /obj/item/flashlight/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -57,20 +49,6 @@
 
 /obj/item/flashlight/get_cell()
 	return cell
-
-/obj/item/flashlight/verb/toggle()
-	set name = "Toggle Flashlight Brightness"
-	set category = "Object"
-	set src in usr
-	set_brightness(usr)
-
-/obj/item/flashlight/proc/set_brightness(mob/user as mob)
-	var/choice = input("Choose a brightness level.") as null|anything in brightness_levels
-	if(choice)
-		brightness_level = choice
-		power_usage = brightness_levels[choice]
-		to_chat(user, "<span class='notice'>You set the brightness level on \the [src] to [brightness_level].</span>")
-		update_icon()
 
 /obj/item/flashlight/process()
 	if(!on || !cell)
@@ -84,7 +62,7 @@
 			update_brightness()
 			return PROCESS_KILL
 
-/obj/item/flashlight/update_icon()
+/obj/item/flashlight/proc/update_brightness()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 	else
@@ -357,6 +335,7 @@
 	icon_state = "bananalamp"
 	center_of_mass = list("x" = 15,"y" = 11)
 
+
 /*
  * Flares
  */
@@ -379,7 +358,7 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/flashlight/flare/Initialize()
+/obj/item/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
@@ -442,7 +421,7 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/flashlight/glowstick/Initialize()
+/obj/item/flashlight/glowstick/New()
 	fuel = rand(1600, 2000)
 	..()
 

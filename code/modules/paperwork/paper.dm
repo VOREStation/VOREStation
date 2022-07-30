@@ -107,15 +107,15 @@
 //lipstick wiping is in code/game/objects/items/weapons/cosmetics.dm!
 
 /obj/item/paper/Initialize(mapload, var/text, var/title)
-	. = ..()
+    . = ..()
 
-	if(istext(title))
-		name = title
-	if(istext(text))
-		info = text
+    if(istext(title))
+        name = title
+    if(istext(text))
+        info = text
 
-	if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
-		was_maploaded = TRUE
+    if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
+        was_maploaded = TRUE
 
 /obj/item/paper/New(var/newloc, var/text, var/title)
 	..()
@@ -123,7 +123,9 @@
 	pixel_x = rand(-9, 9)
 	stamps = ""
 
-/obj/item/paper/proc/update_info(var/sanitize = TRUE)
+	if(!isnull(title))
+		name = title
+
 	if(name != "paper")
 		desc = "This is a paper titled '" + name + "'."
 
@@ -460,7 +462,10 @@
 
 
 		// if paper is not in usr, then it must be near them, or in a clipboard or folder, which must be in or near usr
-		if(src.loc != usr && !src.Adjacent(usr) && !((istype(src.loc, /obj/item/clipboard) || istype(src.loc, /obj/item/folder)) && (src.loc.loc == usr || src.loc.Adjacent(usr)) ) )
+		if(istype(loc, /obj/item/clipboard) || istype(loc, /obj/structure/noticeboard) || istype(loc, /obj/item/folder))
+			if(loc.loc != usr && !in_range(loc, usr))
+				return
+		else if(loc != usr && !Adjacent(usr))
 			return
 
 /*

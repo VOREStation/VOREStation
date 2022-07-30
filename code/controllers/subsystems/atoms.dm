@@ -18,8 +18,8 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
-	if(!plant_controller) // Initialize seed repo for /obj/item/seed and /obj/item/grown
-		plant_controller = new
+	if(!SSplants) // Initialize seed repo for /obj/item/seed and /obj/item/grown
+		SSplants = new
 	setupgenetics() //to set the mutations' place in structural enzymes, so initializers know where to put mutations.
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	to_world_log("Initializing objects")

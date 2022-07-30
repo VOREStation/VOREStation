@@ -4,23 +4,22 @@
 	icon_state = "arcade1"
 	icon_keyboard = null
 	clicksound = null	//Gets too spammy and makes no sense for arcade to have the console keyboard noise anyway
-	var/list/prizes = list(	/obj/item/storage/box/snappops                       = 2,
+	var/list/prizes = list(	/obj/item/storage/box/snappops								= 2,
 							/obj/item/toy/blink                                         = 2,
 							/obj/item/clothing/under/syndicate/tacticool                = 2,
 							/obj/item/toy/sword                                         = 2,
-							/obj/item/gun/projectile/revolver/capgun             = 2,
-							/obj/item/gun/projectile/revolver/toy/crossbow       = 2,
+							/obj/item/gun/projectile/revolver/capgun					= 2,
+							/obj/item/gun/projectile/revolver/toy/crossbow				= 2,
 							/obj/item/clothing/suit/syndicatefake                       = 2,
-							/obj/item/storage/fancy/crayons                      = 2,
+							/obj/item/storage/fancy/crayons								= 2,
 							/obj/item/toy/spinningtoy                                   = 2,
 							/obj/random/mech_toy                                        = 1,
-							/obj/item/reagent_containers/spray/waterflower       = 1,
+							/obj/item/reagent_containers/spray/waterflower				= 1,
 							/obj/random/action_figure                                   = 1,
 							/obj/random/plushie                                         = 1,
 							/obj/item/toy/cultsword                                     = 1,
 							/obj/item/toy/bouquet/fake                                  = 1,
 							/obj/item/clothing/accessory/badge/sheriff                  = 2,
-							/obj/item/clothing/head/cowboy_hat/small                    = 2,
 							/obj/item/toy/stickhorse                                    = 2
 							)
 	var/list/special_prizes = list() // Holds instanced objects, intended for admins to shove surprises inside or something.

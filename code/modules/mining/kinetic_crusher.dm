@@ -108,8 +108,7 @@
 	. += "<span class='notice'>Mark a[emagged ? "nything": " creature"] with the destabilizing force, then hit them in melee to do <b>[force + detonation_damage]</b> damage.</span>"
 	. += "<span class='notice'>Does <b>[force + detonation_damage + backstab_bonus]</b> damage if the target is backstabbed, instead of <b>[force + detonation_damage]</b>.</span>"
 /*
-	for(var/t in trophies)
-		var/obj/item/crusher_trophy/T = t
+	for(var/obj/item/crusher_trophy/T as anything in trophies)
 		. += "<span class='notice'>It has \a [T] attached, which causes [T.effect_desc()].</span>"
 */
 
@@ -119,8 +118,7 @@
 		if(LAZYLEN(trophies))
 			to_chat(user, "<span class='notice'>You remove [src]'s trophies.</span>")
 			I.play_tool_sound(src)
-			for(var/t in trophies)
-				var/obj/item/crusher_trophy/T = t
+			for(var/obj/item/crusher_trophy/T as anything in trophies)
 				T.remove_from(src, user)
 		else
 			to_chat(user, "<span class='warning'>There are no trophies on [src].</span>")
@@ -152,8 +150,7 @@
 			return
 		var/obj/item/projectile/destabilizer/D = new /obj/item/projectile/destabilizer(proj_turf)
 /*
-		for(var/t in trophies)
-			var/obj/item/crusher_trophy/T = t
+		for(var/obj/item/crusher_trophy/T as anything in trophies)
 			T.on_projectile_fire(D, user)
 */
 		D.preparePixelProjectile(target, user, clickparams)

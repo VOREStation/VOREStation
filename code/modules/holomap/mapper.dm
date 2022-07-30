@@ -283,8 +283,7 @@
 	extras_holder.pixel_y = bgmap.pixel_y = -1*T_y + offset_y
 
 	// Populate other mapper icons
-	for(var/hc in mapping_units)
-		var/obj/item/mapping_unit/HC = hc
+	for(var/obj/item/mapping_unit/HC as anything in mapping_units)
 		if(HC.mapper_filter != mapper_filter)
 			continue
 		var/mob_indicator = HOLOMAP_ERROR
@@ -343,8 +342,7 @@
 			extras += mark
 
 	// Marker beacon items
-	for(var/hb in mapping_beacons)
-		var/obj/item/holomap_beacon/HB = hb
+	for(var/obj/item/holomap_beacon/HB as anything in mapping_beacons)
 		if(HB.mapper_filter != mapper_filter)
 			continue
 

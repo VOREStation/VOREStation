@@ -167,8 +167,7 @@ SUBSYSTEM_DEF(throwing)
 		return
 	thrownthing.throwing = null
 	if (!hit)
-		for (var/thing in get_turf(thrownthing)) //looking for our target on the turf we land on.
-			var/atom/A = thing
+		for(var/atom/A as anything in get_turf(thrownthing)) //looking for our target on the turf we land on.
 			if (A == target)
 				hit = TRUE
 				thrownthing.throw_impact(A, speed)
@@ -196,8 +195,7 @@ SUBSYSTEM_DEF(throwing)
 
 /datum/thrownthing/proc/hitcheck(var/turf/T)
 	var/atom/movable/hit_thing
-	for (var/thing in T)
-		var/atom/movable/AM = thing
+	for(var/atom/movable/AM as anything in T)
 		if (AM == thrownthing || (AM == thrower && !ismob(thrownthing)))
 			continue
 		if (!AM.density || AM.throwpass)//check if ATOM_FLAG_CHECKS_BORDER as an atom_flag is needed

@@ -45,9 +45,9 @@
 	if(nutriment_amt)
 		reagents.add_reagent("nutriment",(nutriment_amt*2),nutriment_desc)		//VOREStation Edit: Undoes global nutrition nerf
 
-	//Placeholder for effect that trigger on eating that aren't tied to reagents.
-/obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/M)
-	if(!usr)
+//Placeholder for effect that trigger on eating that aren't tied to reagents.
+/obj/item/reagent_containers/food/snacks/proc/On_Consume(var/mob/living/M)
+	if(!usr) // what
 		usr = M
 	if(!reagents.total_volume)
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>","<span class='notice'>You finish eating \the [src].</span>")

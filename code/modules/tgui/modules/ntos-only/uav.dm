@@ -30,8 +30,7 @@
 	var/list/paired_map = list()
 	var/obj/item/modular_computer/mc_host = tgui_host()
 	if(istype(mc_host))
-		for(var/puav in mc_host.paired_uavs)
-			var/weakref/wr = puav
+		for(var/weakref/wr as anything in mc_host.paired_uavs)
 			var/obj/item/uav/U = wr.resolve()
 			paired_map.Add(list(list("name" = "[U ? U.nickname : "!!Missing!!"]", "uavref" = "\ref[U]")))
 

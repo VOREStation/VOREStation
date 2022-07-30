@@ -103,28 +103,8 @@
 		user.setClickCooldown(user.get_attack_speed(I))
 		var/obj/item/grab/G = I
 
-	var/obj/item/grab/G = I
-
-	if(isliving(G.affecting))
-		var/mob/living/GM = G.affecting
-
-		if(G.state>1)
-			if(!GM.loc == get_turf(src))
-				to_chat(user, "<span class='notice'>[GM.name] needs to be on the toilet.</span>")
-				return
-			if(open && !swirlie)
-				user.visible_message("<span class='danger'>[user] starts to give [GM.name] a swirlie!</span>", "<span class='notice'>You start to give [GM.name] a swirlie!</span>")
-				swirlie = GM
-				if(do_after(user, 30, GM))
-					user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
-					if(!GM.internal)
-						GM.adjustOxyLoss(5)
-				swirlie = null
-			else
-				user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
-				GM.adjustBruteLoss(5)
-		else
-			to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
+		if(isliving(G.affecting))
+			var/mob/living/GM = G.affecting
 
 			if(G.state>1)
 				if(!GM.loc == get_turf(src))

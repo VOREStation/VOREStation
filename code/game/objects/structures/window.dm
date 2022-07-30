@@ -84,14 +84,13 @@
 		updateSilicate()
 
 /obj/structure/window/proc/updateSilicate()
-	if (overlays)
-		overlays.Cut()
+	cut_overlays()
 	update_icon()
 
 	var/image/img = image(src)
 	img.color = "#ffffff"
 	img.alpha = silicate * 255 / 100
-	overlays += img
+	add_overlay(img)
 
 /obj/structure/window/proc/shatter(var/display_message = 1)
 	playsound(src, "shatter", 70, 1)
@@ -139,7 +138,15 @@
 		return TRUE
 	if(is_fulltile())
 		return FALSE	//full tile window, you can't move into it!
-	if((get_dir(loc, target) & dir) || (get_dir(mover, target) == turn(dir, 180)))
+	if(get_dir(mover, target) == reverse_dir[dir]) // From elsewhere to here, can't move against our dir
+		return !density
+	else
+		return TRUE
+
+/obj/structure/window/Uncross(atom/movable/mover, turf/target)
+	if(istype(mover) && mover.checkpass(PASSGLASS))
+		return TRUE
+	if(get_dir(mover, target) == dir) // From here to elsewhere, can't move in our dir
 		return !density
 	else
 		return TRUE
@@ -148,13 +155,6 @@
 	if(is_fulltile() || get_dir(T, loc) == turn(dir, 180)) // Make sure we're handling the border correctly.
 		return !anchored // If it's anchored, it'll block air.
 	return TRUE // Don't stop airflow from the other sides.
-
-/obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
-	if(istype(O) && O.checkpass(PASSGLASS))
-		return TRUE
-	if(get_dir(O.loc, target) == dir)
-		return FALSE
-	return TRUE
 
 /obj/structure/window/hitby(AM as mob|obj)
 	..()
@@ -215,7 +215,7 @@
 			damage = damage / 2
 		take_damage(damage)
 	else
-		visible_message("<span class='notice'>\The [user] bonks \the [src] harmlessly.</span>")
+		visible_message("<b>\The [user]</b> bonks \the [src] harmlessly.")
 	user.do_attack_animation(src)
 	return 1
 
@@ -273,12 +273,14 @@
 			to_chat(user, "<span class='notice'>You have [state == 1 ? "un" : ""]fastened the window [state ? "from" : "to"] the frame.</span>")
 		else if(reinf && state == 0)
 			anchored = !anchored
+			update_nearby_tiles(need_rebuild=1)
 			update_nearby_icons()
 			update_verbs()
 			playsound(src, W.usesound, 75, 1)
 			to_chat(user, "<span class='notice'>You have [anchored ? "" : "un"]fastened the frame [anchored ? "to" : "from"] the floor.</span>")
 		else if(!reinf)
 			anchored = !anchored
+			update_nearby_tiles(need_rebuild=1)
 			update_nearby_icons()
 			update_verbs()
 			playsound(src, W.usesound, 75, 1)
@@ -295,14 +297,14 @@
 			visible_message("<span class='notice'>[user] dismantles \the [src].</span>")
 			var/obj/item/stack/material/mats = new glasstype(loc)
 			if(is_fulltile())
-				mats.amount = 4
+				mats.set_amount(4)
 			qdel(src)
 	else if(istype(W, /obj/item/stack/cable_coil) && reinf && state == 0 && !istype(src, /obj/structure/window/reinforced/polarized))
 		var/obj/item/stack/cable_coil/C = W
 		if (C.use(1))
 			playsound(src, 'sound/effects/sparks1.ogg', 75, 1)
 			user.visible_message( \
-				"<span class='notice'>\The [user] begins to wire \the [src] for electrochromic tinting.</span>", \
+				"<b>\The [user]</b> begins to wire \the [src] for electrochromic tinting.", \
 				"<span class='notice'>You begin to wire \the [src] for electrochromic tinting.</span>", \
 				"You hear sparks.")
 			if(do_after(user, 20 * C.toolspeed, src) && state == 0)
@@ -403,9 +405,6 @@
 	update_nearby_tiles(need_rebuild=1)
 	update_nearby_icons()
 
-	for(var/obj/structure/table/T in view(src, 1))
-		T.update_connections()
-		T.update_icon()
 
 /obj/structure/window/Destroy()
 	density = FALSE
@@ -414,28 +413,20 @@
 	. = ..()
 	for(var/obj/structure/window/W in orange(location, 1))
 		W.update_icon()
-	for(var/obj/structure/table/T in view(location, 1))
-		T.update_connections()
-		T.update_icon()
 
 /obj/structure/window/Move()
 	var/ini_dir = dir
 	update_nearby_tiles(need_rebuild=1)
-	var/oldloc = loc
 	. = ..()
 	set_dir(ini_dir)
 	update_nearby_tiles(need_rebuild=1)
-	if(loc != oldloc)
-		for(var/obj/structure/table/T in view(oldloc, 1) | view(loc, 1))
-			T.update_connections()
-			T.update_icon()
 
 //checks if this window is full-tile one
 /obj/structure/window/proc/is_fulltile()
 	return fulltile
 
 /obj/structure/window/is_between_turfs(var/turf/origin, var/turf/target)
-	if(fulltile)
+	if(is_fulltile())
 		return TRUE
 	return ..()
 
@@ -458,7 +449,7 @@
 /obj/structure/window/update_icon()
 	//A little cludge here, since I don't know how it will work with slim windows. Most likely VERY wrong.
 	//this way it will only update full-tile ones
-	overlays.Cut()
+	cut_overlays()
 	if(!is_fulltile())
 		// Rotate the sprite somewhat so non-fulltiled windows can be seen as needing repair.
 		var/full_tilt_degrees = 15
@@ -469,6 +460,8 @@
 
 		icon_state = "[basestate]"
 		return
+	else
+		flags = 0 // Removes ON_BORDER and OPPOSITE_OPACITY
 	var/list/dirs = list()
 	if(anchored)
 		for(var/obj/structure/window/W in orange(src,1))
@@ -480,7 +473,7 @@
 	icon_state = ""
 	for(var/i = 1 to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
-		overlays += I
+		add_overlay(I)
 
 	// Damage overlays.
 	var/ratio = health / maxhealth
@@ -489,7 +482,7 @@
 	if(ratio > 75)
 		return
 	var/image/I = image(icon, "damage[ratio]", layer = layer + 0.1)
-	overlays += I
+	add_overlay(I)
 
 	return
 
@@ -514,6 +507,7 @@
 	icon_state = "window-full"
 	maxhealth = 24
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/phoronbasic
 	name = "phoron window"
@@ -531,6 +525,7 @@
 	icon_state = "phoronwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/phoronreinforced
 	name = "reinforced borosilicate window"
@@ -549,6 +544,7 @@
 	icon_state = "phoronrwindow-full"
 	maxhealth = 160
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/reinforced
 	name = "reinforced window"
@@ -566,6 +562,7 @@
 	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/reinforced/tinted
 	name = "tinted window"
@@ -603,6 +600,7 @@
 	icon_state = "rwindow-full"
 	maxhealth = 80
 	fulltile = TRUE
+	flags = 0
 
 /obj/structure/window/reinforced/polarized/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/multitool) && !anchored) // Only allow programming if unanchored!
@@ -628,8 +626,8 @@
 	else
 		animate(src, color="#222222", time=5)
 		set_opacity(1)
-
-
+	var/turf/T = get_turf(src)
+	T.recalculate_directional_opacity()
 
 /obj/machinery/button/windowtint
 	name = "window tint control"

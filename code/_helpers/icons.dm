@@ -224,8 +224,7 @@
 		// Dimensions of overlay being added
 		var/list/add_size[4]
 
-		for(var/V in layers)
-			var/image/I = V
+		for(var/image/I as anything in layers)
 			if(I.alpha == 0)
 				continue
 
@@ -359,8 +358,7 @@
 //For photo camera.
 /proc/build_composite_icon(atom/A)
 	var/icon/composite = icon(A.icon, A.icon_state, A.dir, 1)
-	for(var/O in A.overlays)
-		var/image/I = O
+	for(var/image/I as anything in A.overlays)
 		composite.Blend(icon(I.icon, I.icon_state, I.dir, 1), ICON_OVERLAY)
 	return composite
 

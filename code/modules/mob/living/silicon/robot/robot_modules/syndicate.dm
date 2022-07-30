@@ -48,6 +48,7 @@
 
 	var/jetpack = new/obj/item/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
+	var/mob/living/silicon/robot/R = loc
 	R.internals = jetpack
 
 	id = R.idcard

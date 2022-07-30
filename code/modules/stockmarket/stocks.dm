@@ -181,8 +181,7 @@
 	last_unification = world.time
 
 /datum/stock/process()
-	for (var/B in borrows)
-		var/datum/borrow/borrow = B
+	for(var/datum/borrow/borrow as anything in borrows)
 		if (world.time > borrow.grace_expires)
 			modifyAccount(borrow.borrower, -max(current_value * borrow.share_debt, 0), 1)
 			borrows -= borrow
@@ -207,8 +206,7 @@
 					borrow.share_debt -= amt
 	if (bankrupt)
 		return
-	for (var/B in borrow_brokers)
-		var/datum/borrow/borrow = B
+	for(var/datum/borrow/borrow as anything in borrow_brokers)
 		if (borrow.offer_expires < world.time)
 			borrow_brokers -= borrow
 			qdel(borrow)
@@ -216,8 +214,7 @@
 		generateBrokers()
 	fluctuation_counter++
 	if (fluctuation_counter >= fluctuation_rate)
-		for (var/E in events)
-			var/datum/stockEvent/EV = E
+		for(var/datum/stockEvent/EV as anything in events)
 			EV.process()
 		fluctuation_counter = 0
 		fluctuate()

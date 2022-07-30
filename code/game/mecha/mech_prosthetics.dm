@@ -78,17 +78,8 @@
 		for(var/i in I.matter)
 			I.matter[i] = I.matter[i] * component_coeff
 
-/obj/machinery/pros_fabricator/RefreshParts()
-	res_max_amount = 0
-	for(var/obj/item/stock_parts/matter_bin/M in component_parts)
-		res_max_amount += M.rating * 100000 // 200k -> 600k
-	var/T = 0
-	for(var/obj/item/stock_parts/manipulator/M in component_parts)
-		T += M.rating
-	mat_efficiency = max(0.2, 1 - (T - 1) / 4) // 1 -> 0.2
-	for(var/obj/item/stock_parts/micro_laser/M in component_parts) // Not resetting T is intended; speed is affected by both
-		T += M.rating
-	speed = T / 2 // 1 -> 3
+/obj/machinery/mecha_part_fabricator/pros/tgui_data(mob/user)
+	var/list/data = ..()
 
 	data["species_types"] = species_types
 	data["species"] = species
@@ -107,9 +98,6 @@
 	data["manufacturer"] = manufacturer
 
 	return data
-
-/obj/machinery/mecha_part_fabricator/pros/tgui_data(mob/user)
-	var/list/data = ..()
 
 /obj/machinery/mecha_part_fabricator/pros/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	if(..())

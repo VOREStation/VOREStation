@@ -107,8 +107,7 @@
 		last_read[S] = list()
 
 /datum/stockMarket/process()
-	for (var/stock in stocks)
-		var/datum/stock/S = stock
+	for(var/datum/stock/S as anything in stocks)
 		S.process()
 
 /datum/stockMarket/proc/add_log(var/log_type, var/user, var/company_name, var/stocks, var/shareprice, var/money)

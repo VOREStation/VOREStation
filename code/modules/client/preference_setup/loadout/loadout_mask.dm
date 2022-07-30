@@ -65,7 +65,6 @@
 /datum/gear/mask/gaiter/New()
 	..()
 	var/list/gaiters = list()
-	for(var/gaiter in typesof(/obj/item/clothing/accessory/gaiter))
-		var/obj/item/clothing/accessory/gaiter_type = gaiter
+	for(var/obj/item/clothing/accessory/gaiter_type as anything in typesof(/obj/item/clothing/accessory/gaiter))
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))

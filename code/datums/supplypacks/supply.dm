@@ -9,7 +9,7 @@
 /datum/supply_pack/supply/food
 	name = "Kitchen supply crate"
 	contains = list(
-			/obj/item/reagent_containers/food/condiment/flour = 6,
+			/obj/item/reagent_containers/food/condiment/carton/flour = 6,
 			/obj/item/reagent_containers/food/drinks/milk = 3,
 			/obj/item/reagent_containers/food/drinks/soymilk = 2,
 			/obj/item/storage/fancy/egg_box = 2,

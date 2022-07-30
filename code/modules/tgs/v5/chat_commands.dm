@@ -9,8 +9,7 @@
 	var/active = 0
 	var/bellied = 0
 
-	for(var/X in GLOB.clients)
-		var/client/C = X
+	for(var/client/C as anything in GLOB.clients)
 		if(C)
 			counts++
 		if(C && !(istype(C.mob,/mob/new_player) || istype(C.mob, /mob/observer)))

@@ -99,8 +99,7 @@
 	. = ..()
 	if(max_mod_capacity)
 		. += "<b>[get_remaining_mod_capacity()]%</b> mod capacity remaining."
-		for(var/A in get_modkits())
-			var/obj/item/borg/upgrade/modkit/M = A
+		for(var/obj/item/borg/upgrade/modkit/M as anything in get_modkits())
 			. += "<span class='notice'>There is \a [M] installed, using <b>[M.cost]%</b> capacity.</span>"
 
 /obj/item/gun/energy/kinetic_accelerator/Exited(atom/movable/AM)
@@ -126,8 +125,7 @@
 
 /obj/item/gun/energy/kinetic_accelerator/proc/get_remaining_mod_capacity()
 	var/current_capacity_used = 0
-	for(var/A in get_modkits())
-		var/obj/item/borg/upgrade/modkit/M = A
+	for(var/obj/item/borg/upgrade/modkit/M as anything in get_modkits())
 		current_capacity_used += M.cost
 	return max_mod_capacity - current_capacity_used
 
@@ -138,8 +136,7 @@
 
 /obj/item/gun/energy/kinetic_accelerator/proc/modify_projectile(obj/item/projectile/kinetic/K)
 	K.kinetic_gun = src //do something special on-hit, easy!
-	for(var/A in get_modkits())
-		var/obj/item/borg/upgrade/modkit/M = A
+	for(var/obj/item/borg/upgrade/modkit/M as anything in get_modkits())
 		M.modify_projectile(K)
 
 /obj/item/gun/energy/kinetic_accelerator/cyborg
@@ -391,8 +388,7 @@
 	// 	return FALSE
 	if(denied_type)
 		var/number_of_denied = 0
-		for(var/A in KA.get_modkits())
-			var/obj/item/borg/upgrade/modkit/M = A
+		for(var/obj/item/borg/upgrade/modkit/M as anything in KA.get_modkits())
 			if(istype(M, denied_type))
 				number_of_denied++
 			if(number_of_denied >= maximum_of_type)
@@ -614,8 +610,7 @@
 	if(isliving(target))
 		var/mob/living/L = target
 		var/list/existing_marks = L.has_status_effect_list(STATUS_EFFECT_SYPHONMARK)
-		for(var/i in existing_marks)
-			var/datum/status_effect/syphon_mark/SM = i
+		for(var/datum/status_effect/syphon_mark/SM as anything in existing_marks)
 			if(SM.reward_target == src) //we want to allow multiple people with bounty modkits to use them, but we need to replace our own marks so we don't multi-reward
 				SM.reward_target = null
 				qdel(SM)

@@ -175,7 +175,7 @@
 						held_card = C
 
 			if("view_account_detail")
-				var/index = text2num(href_list["account_index"])
+				var/index = text2num(params["account_index"])
 				if(index && index <= all_money_accounts.len)
 					detailed_account_view = all_money_accounts[index]
 

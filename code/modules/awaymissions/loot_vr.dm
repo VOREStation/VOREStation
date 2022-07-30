@@ -267,7 +267,7 @@
 			/obj/item/reagent_containers/food/drinks/dry_ramen, \
 			/obj/item/reagent_containers/food/snacks/candiedapple, \
 			/obj/item/reagent_containers/food/snacks/chocolatebar, \
-			/obj/item/reagent_containers/food/snacks/cookie, \
+			/obj/item/reagent_containers/food/snacks/cookiesnack, \
 			/obj/item/reagent_containers/food/snacks/meatball, \
 			/obj/item/reagent_containers/food/snacks/plump_pie, \
 			/obj/item/reagent_containers/food/snacks/liquidfood)

@@ -4,9 +4,13 @@
 
 /obj/item/robot_module/drone/swarm/Initialize(var/ml)
 
-	id = robot.idcard
-	src.modules += id
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
 
+	var/mob/living/silicon/robot/R = loc
+	id = R.idcard
+	src.modules += id
 	src.modules += new /obj/item/rcd/electric/mounted/borg/swarm(src)
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/handcuffs/cable/tape/cyborg(src)

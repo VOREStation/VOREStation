@@ -14,7 +14,7 @@ var/list/lunchables_lunches_ = list(/obj/item/reagent_containers/food/snacks/san
                                   /obj/item/reagent_containers/food/snacks/bagelraisin,
                                   /obj/item/reagent_containers/food/snacks/bagelpoppy,
                                   /obj/item/reagent_containers/food/snacks/croissant,
-                                  /obj/item/reagent_containers/food/snacks/cheese_cracker,
+                                  /obj/item/reagent_containers/food/snacks/cheesetoast,
                                   /obj/item/reagent_containers/food/snacks/corn_dog,
                                   /obj/item/reagent_containers/food/snacks/liquidfood,
                                   /obj/item/reagent_containers/food/snacks/liquidprotein,

@@ -123,7 +123,7 @@
 	desc += ". Delicious! Probably."
 
 /obj/item/reagent_containers/food/snacks/grown/update_icon()
-	if(!seed || !plant_controller || !plant_controller.plant_icon_cache)
+	if(!seed || !SSplants || !SSplants.plant_icon_cache)
 		return
 	cut_overlays()
 	var/image/plant_icon

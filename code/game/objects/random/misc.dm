@@ -1015,7 +1015,6 @@
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/pawn,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/diona,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/britcup,
-				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/tourist,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/flame,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/blue,
 				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/black,
