@@ -33,18 +33,18 @@ var/datum/antagonist/highlander/highlanders
 		return
 
 	for (var/obj/item/I in player)
-		if (istype(I, /obj/item/weapon/implant))
+		if (istype(I, /obj/item/implant))
 			continue
 		qdel(I)
 
 	player.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(player), slot_w_uniform)
 	player.equip_to_slot_or_del(new /obj/item/radio/headset/heads/captain(player), slot_l_ear)
 	player.equip_to_slot_or_del(new /obj/item/clothing/head/beret(player), slot_head)
-	player.equip_to_slot_or_del(new /obj/item/weapon/material/sword(player), slot_l_hand)
+	player.equip_to_slot_or_del(new /obj/item/material/sword(player), slot_l_hand)
 	player.equip_to_slot_or_del(new /obj/item/clothing/shoes/boots/combat(player), slot_shoes)
-	player.equip_to_slot_or_del(new /obj/item/weapon/pinpointer(get_turf(player)), slot_l_store)
+	player.equip_to_slot_or_del(new /obj/item/pinpointer(get_turf(player)), slot_l_store)
 
-	var/obj/item/weapon/card/id/W = new(player)
+	var/obj/item/card/id/W = new(player)
 	W.name = "[player.real_name]'s ID Card"
 	W.icon_state = "centcom"
 	W.access = get_all_station_access().Copy()

@@ -144,13 +144,13 @@
 	icon_state = "plushie_ipc"
 	var/cooldown = 0
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/bread
+/obj/item/reagent_containers/food/snacks/slice/bread
 	var/toasted = FALSE
 
-/obj/item/weapon/reagent_containers/food/snacks/tastybread
+/obj/item/reagent_containers/food/snacks/tastybread
 	var/toasted = FALSE
 
-/obj/item/weapon/reagent_containers/food/snacks/slice/bread/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/reagent_containers/food/snacks/slice/bread/afterattack(atom/A, mob/user as mob, proximity)
 	if(istype(A, /obj/item/toy/plushie/ipc) && !toasted)
 		toasted = TRUE
 		icon = 'icons/obj/toy_vr.dmi'
@@ -158,7 +158,7 @@
 		to_chat(user, "<span class='notice'> You insert bread into the toaster. </span>")
 		playsound(loc, 'sound/machines/ding.ogg', 50, 1)
 
-/obj/item/weapon/reagent_containers/food/snacks/tastybread/afterattack(atom/A, mob/user as mob, proximity)
+/obj/item/reagent_containers/food/snacks/tastybread/afterattack(atom/A, mob/user as mob, proximity)
 	if(istype(A, /obj/item/toy/plushie/ipc) && !toasted)
 		toasted = TRUE
 		icon = 'icons/obj/toy_vr.dmi'
@@ -167,7 +167,7 @@
 		playsound(loc, 'sound/machines/ding.ogg', 50, 1)
 
 /obj/item/toy/plushie/ipc/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/material/kitchen/utensil))
+	if(istype(I, /obj/item/material/kitchen/utensil))
 		to_chat(user, "<span class='notice'> You insert the [I] into the toaster. </span>")
 		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 		s.set_up(5, 1, src)
@@ -224,7 +224,7 @@
 
 /obj/item/toy/plushie/marketable_pip/attackby(obj/item/I, mob/user)
 	var/responses = list("I'm not giving you all-access.", "Do you want an ID modification?", "Where are you swiping that!?", "Congratulations! You've been promoted to unemployed!")
-	var/obj/item/weapon/card/id/id = I.GetID()
+	var/obj/item/card/id/id = I.GetID()
 	if(istype(id))
 		if(!cooldown)
 			user.visible_message("<span class='notice'>[user] swipes \the [I] against \the [src].</span>")
@@ -343,7 +343,7 @@
 
 /obj/item/toy/rock/attackby(obj/item/I as obj, mob/living/user as mob, proximity)
 	if(!proximity) return
-	if(istype(I, /obj/item/weapon/pen))
+	if(istype(I, /obj/item/pen))
 		var/drawtype = tgui_alert(user, "Choose what you'd like to draw.", "Faces", list("fred","roxie","rock","Cancel"))
 		switch(drawtype)
 			if("fred")
@@ -534,7 +534,7 @@
 /*
  * Toy cuffs
  */
-/obj/item/weapon/handcuffs/fake
+/obj/item/handcuffs/fake
 	name = "plastic handcuffs"
 	desc = "Use this to keep plastic prisoners in line."
 	matter = list(PLASTIC = 500)
@@ -544,19 +544,19 @@
 	use_time = 60
 	sprite_sheets = list(SPECIES_TESHARI = 'icons/mob/species/teshari/handcuffs.dmi')
 
-/obj/item/weapon/handcuffs/legcuffs/fake
+/obj/item/handcuffs/legcuffs/fake
 	name = "plastic legcuffs"
 	desc = "Use this to keep plastic prisoners in line."
 	breakouttime = 30	//Deciseconds = 30s = 0.5 minute
 	use_time = 120
 
-/obj/item/weapon/storage/box/handcuffs/fake
+/obj/item/storage/box/handcuffs/fake
 	name = "box of plastic handcuffs"
 	desc = "A box full of plastic handcuffs."
 	icon_state = "handcuff"
-	starts_with = list(/obj/item/weapon/handcuffs/fake = 1, /obj/item/weapon/handcuffs/legcuffs/fake = 1)
+	starts_with = list(/obj/item/handcuffs/fake = 1, /obj/item/handcuffs/legcuffs/fake = 1)
 	foldable = null
-	can_hold = list(/obj/item/weapon/handcuffs/fake, /obj/item/weapon/handcuffs/legcuffs/fake)
+	can_hold = list(/obj/item/handcuffs/fake, /obj/item/handcuffs/legcuffs/fake)
 
 /*
  * Toy nuke
@@ -584,7 +584,7 @@
 		to_chat(user, "<span class='alert'>Nothing happens, and '</span>[round(timeleft/10)]<span class='alert'>' appears on a small display.</span>")
 
 /obj/item/toy/nuke/attackby(obj/item/I as obj, mob/living/user as mob)
-	if(istype(I, /obj/item/weapon/disk/nuclear))
+	if(istype(I, /obj/item/disk/nuclear))
 		to_chat(user, "<span class='alert'>Nice try. Put that disk back where it belongs.</span>")
 
 /*
@@ -894,7 +894,7 @@
 /*
  * Professor Who sonic driver
  */
-/obj/item/weapon/tool/screwdriver/sdriver
+/obj/item/tool/screwdriver/sdriver
 	name = "sonic driver"
 	desc = "A novelty screwdriver that uses tiny magnets to manipulate screws."
 	icon = 'icons/obj/toy_vr.dmi'
@@ -907,7 +907,7 @@
 /*
  * Professor Who time capsule
  */
-/obj/item/weapon/storage/box/timecap
+/obj/item/storage/box/timecap
 	name = "action time capsule"
 	desc = "A toy recreation of the Time Capsule from Professor Who. Can hold up to two action figures."
 	icon = 'icons/obj/toy_vr.dmi'
@@ -974,30 +974,30 @@
 /*
  * Desk toys
  */
-/obj/item/weapon/toy/desk
+/obj/item/toy/desk
 	icon = 'icons/obj/toy_vr.dmi'
 	var/on = FALSE
 	var/activation_sound = 'sound/machines/click.ogg'
 
-/obj/item/weapon/toy/desk/update_icon()
+/obj/item/toy/desk/update_icon()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 	else
 		icon_state = "[initial(icon_state)]"
 
-/obj/item/weapon/toy/desk/proc/activate(mob/user as mob)
+/obj/item/toy/desk/proc/activate(mob/user as mob)
 	on = !on
 	playsound(src.loc, activation_sound, 75, 1)
 	update_icon()
 	return 1
 
-/obj/item/weapon/toy/desk/attack_self(mob/user)
+/obj/item/toy/desk/attack_self(mob/user)
 	activate(user)
 
-/obj/item/weapon/toy/desk/AltClick(mob/user)
+/obj/item/toy/desk/AltClick(mob/user)
 	activate(user)
 
-/obj/item/weapon/toy/desk/MouseDrop(mob/user as mob) // Code from Paper bin, so you can still pick up the deck
+/obj/item/toy/desk/MouseDrop(mob/user as mob) // Code from Paper bin, so you can still pick up the deck
 	if((user == usr && (!( usr.restrained() ) && (!( usr.stat ) && (usr.contents.Find(src) || in_range(src, usr))))))
 		if(!istype(usr, /mob/living/simple_mob))
 			if( !usr.get_active_hand() )		//if active hand is empty
@@ -1015,27 +1015,27 @@
 
 	return
 
-/obj/item/weapon/toy/desk/newtoncradle
+/obj/item/toy/desk/newtoncradle
 	name = "\improper Newton's cradle"
 	desc = "A ancient 21th century super-weapon model demonstrating that Sir Isaac Newton is the deadliest sonuvabitch in space."
 	description_fluff = "Aside from car radios, Eridanian Dregs are reportedly notorious for stealing these things. It is often \
 	theorized that the very same ball bearings are used in black-market cybernetics."
 	icon_state = "newtoncradle"
 
-/obj/item/weapon/toy/desk/fan
+/obj/item/toy/desk/fan
 	name = "office fan"
 	desc = "Your greatest fan."
 	description_fluff = "For weeks, the atmospherics department faced a conundrum on how to lower temperatures in a localized \
 	area through complicated pipe channels and ventilation systems. The problem was promptly solved by ordering several desk fans."
 	icon_state = "fan"
 
-/obj/item/weapon/toy/desk/officetoy
+/obj/item/toy/desk/officetoy
 	name = "office toy"
 	desc = "A generic microfusion powered office desk toy. Only generates magnetism and ennui."
 	description_fluff = "The mechanism inside is a Hephasteus trade secret. No peeking!"
 	icon_state = "desktoy"
 
-/obj/item/weapon/toy/desk/dippingbird
+/obj/item/toy/desk/dippingbird
 	name = "dipping bird toy"
 	desc = "Engineers marvel at this scale model of a primitive thermal engine. It's highly debated why the majority of owners \
 	were in low-level bureaucratic jobs."
@@ -1043,7 +1043,7 @@
 	of these things."
 	icon_state = "dippybird"
 
-/obj/item/weapon/toy/desk/stellardelight
+/obj/item/toy/desk/stellardelight
 	name = "\improper Stellar Delight model"
 	desc = "A scale model of the Stellar Delight. Includes flashing lights!"
 	icon_state = "stellar_delight"
@@ -1051,7 +1051,7 @@
 /*
  * Party popper
  */
-/obj/item/weapon/toy/partypopper
+/obj/item/toy/partypopper
 	name = "party popper"
 	desc = "Instructions : Aim away from face. Wait for appropriate timing. Pull cord, enjoy confetti."
 	icon = 'icons/obj/toy_vr.dmi'
@@ -1060,7 +1060,7 @@
 	drop_sound = 'sound/items/drop/cardboardbox.ogg'
 	pickup_sound = 'sound/items/pickup/cardboardbox.ogg'
 
-/obj/item/weapon/toy/partypopper/attack_self(mob/user as mob)
+/obj/item/toy/partypopper/attack_self(mob/user as mob)
 	if(icon_state == "partypopper")
 		user.visible_message("<span class='notice'>[user] pulls on the string, releasing a burst of confetti!</span>", "<span class='notice'>You pull on the string, releasing a burst of confetti!</span>")
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)

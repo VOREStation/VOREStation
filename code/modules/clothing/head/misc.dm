@@ -442,7 +442,7 @@
 /obj/item/clothing/head/fedora/brown
 	desc = "A brown fedora. Perfect for detectives or those trying to pilfer artifacts."
 	icon_state = "fedora_brown"
-	allowed = list(/obj/item/weapon/reagent_containers/food/snacks/candy_corn, /obj/item/weapon/pen)
+	allowed = list(/obj/item/reagent_containers/food/snacks/candy_corn, /obj/item/pen)
 
 /obj/item/clothing/head/fedora/white
 	desc = "A white fedora, really cool hat if you're a mobster. A really lame hat if you're not."

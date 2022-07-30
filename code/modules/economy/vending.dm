@@ -193,7 +193,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 	if(I || istype(W, /obj/item/spacecash))
 		attack_hand(user)
 		return
-	else if(istype(W, /obj/item/weapon/refill_cartridge))
+	else if(istype(W, /obj/item/refill_cartridge))
 		if(stat & (BROKEN|NOPOWER))
 			to_chat(user, "<span class='notice'>You cannot refill [src] while it is not functioning.</span>")
 			return
@@ -206,7 +206,7 @@ GLOBAL_LIST_EMPTY(vending_products)
 		if(!refillable)
 			to_chat(user, "<span class='notice'>\the [src] does not have a refill port.</span>")
 			return
-		var/obj/item/weapon/refill_cartridge/RC = W
+		var/obj/item/refill_cartridge/RC = W
 		if(RC.can_refill(src))
 			to_chat(user, "<span class='notice'>You refill [src] using [RC].</span>")
 			user.drop_from_inventory(RC)

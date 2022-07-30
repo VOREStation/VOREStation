@@ -5,7 +5,7 @@
 	desc = "An oxygen generator using algae to convert carbon dioxide to oxygen."
 	icon = 'icons/obj/machines/algae_vr.dmi'
 	icon_state = "algae-off"
-	circuit = /obj/item/weapon/circuitboard/algae_farm
+	circuit = /obj/item/circuitboard/algae_farm
 	anchored = TRUE
 	density = TRUE
 	power_channel = EQUIP
@@ -123,7 +123,7 @@
 		icon_state = "algae-on"
 	return 1
 
-/obj/machinery/atmospherics/binary/algae_farm/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospherics/binary/algae_farm/attackby(obj/item/W as obj, mob/user as mob)
 	add_fingerprint(user)
 	if(default_deconstruction_screwdriver(user, W))
 		return
@@ -149,12 +149,12 @@
 	var/bin_rating = 0
 	var/manip_rating = 0
 
-	for(var/obj/item/weapon/stock_parts/P in component_parts)
-		if(istype(P, /obj/item/weapon/stock_parts/capacitor))
+	for(var/obj/item/stock_parts/P in component_parts)
+		if(istype(P, /obj/item/stock_parts/capacitor))
 			cap_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/matter_bin))
+		if(istype(P, /obj/item/stock_parts/matter_bin))
 			bin_rating += P.rating
-		if(istype(P, /obj/item/weapon/stock_parts/manipulator))
+		if(istype(P, /obj/item/stock_parts/manipulator))
 			manip_rating += P.rating
 
 	power_per_mole = round(initial(power_per_mole) / cap_rating)

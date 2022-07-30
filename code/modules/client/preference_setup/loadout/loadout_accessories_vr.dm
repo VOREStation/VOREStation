@@ -98,7 +98,7 @@
 
 /datum/gear/accessory/khcrystal
 	display_name = "KH Life Crystal"
-	path = /obj/item/weapon/storage/box/khcrystal
+	path = /obj/item/storage/box/khcrystal
 	description = "A small necklace device that will notify an offsite cloning facility should you expire after activating it."
 
 /datum/gear/accessory/tronket
@@ -123,7 +123,7 @@
 
 /datum/gear/accessory/dosimeter
 	display_name = "Dosimeter"
-	path = /obj/item/weapon/storage/box/dosimeter
+	path = /obj/item/storage/box/dosimeter
 	description = "A small device that will display dangerous levels of radiation."
 
 /*

@@ -5,5 +5,5 @@
 	alloy = 1
 	result_amount = 5
 	spread_chance = 10
-	ore = /obj/item/weapon/ore/rutile
+	ore = /obj/item/ore/rutile
 	scan_icon = "mineral_rare"

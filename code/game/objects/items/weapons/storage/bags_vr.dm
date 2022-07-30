@@ -1,7 +1,7 @@
-/obj/item/weapon/storage/bag/chemistry
+/obj/item/storage/bag/chemistry
 	slot_flags = null
 
-/obj/item/weapon/storage/bag/xeno
+/obj/item/storage/bag/xeno
 	name = "xenobiology bag"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "chembag"
@@ -11,5 +11,5 @@
 	can_hold = list(
 		/obj/item/slime_extract,
 		/obj/item/slimepotion,
-		/obj/item/weapon/reagent_containers/food/snacks/monkeycube
+		/obj/item/reagent_containers/food/snacks/monkeycube
 		)

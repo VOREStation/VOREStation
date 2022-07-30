@@ -158,7 +158,7 @@
 	if(!istype(S, /obj/item/assembly/infra))
 		..()
 		return
-	var/obj/item/weapon/TVAssembly/A = new(user)
+	var/obj/item/TVAssembly/A = new(user)
 	qdel(S)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the infrared sensor to the robot head.</span>")
@@ -166,7 +166,7 @@
 	qdel(src)
 
 
-/obj/item/weapon/TVAssembly
+/obj/item/TVAssembly
 	name = "\improper TV Camera Assembly"
 	desc = "A robotic head with an infrared sensor inside."
 	icon = 'icons/obj/robot_parts.dmi'
@@ -175,7 +175,7 @@
 	var/buildstep = 0
 	w_class = ITEMSIZE_LARGE
 
-/obj/item/weapon/TVAssembly/attackby(W, mob/user)
+/obj/item/TVAssembly/attackby(W, mob/user)
 	switch(buildstep)
 		if(0)
 			if(istype(W, /obj/item/robot_parts/robot_component/camera))
@@ -205,7 +205,7 @@
 				desc = "This TV camera assembly has wires sticking out"
 				return
 		if(3)
-			if(istype(W, /obj/item/weapon/tool/wirecutters))
+			if(istype(W, /obj/item/tool/wirecutters))
 				to_chat(user, "<span class='notice'> You trim the wires.</span>")
 				buildstep++
 				desc = "This TV camera assembly needs casing."

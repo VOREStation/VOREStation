@@ -1,4 +1,4 @@
-/obj/item/weapon/plastique
+/obj/item/plastique
 	name = "plastic explosives"
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
@@ -18,17 +18,17 @@
 	var/blast_light = 2
 	var/blast_flash = 3
 
-/obj/item/weapon/plastique/New()
+/obj/item/plastique/New()
 	wires = new(src)
 	image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")
 	..()
 
-/obj/item/weapon/plastique/Destroy()
+/obj/item/plastique/Destroy()
 	qdel(wires)
 	wires = null
 	return ..()
 
-/obj/item/weapon/plastique/attackby(var/obj/item/I, var/mob/user)
+/obj/item/plastique/attackby(var/obj/item/I, var/mob/user)
 	if(I.is_screwdriver())
 		open_panel = !open_panel
 		to_chat(user, "<span class='notice'>You [open_panel ? "open" : "close"] the wire panel.</span>")
@@ -38,17 +38,17 @@
 	else
 		..()
 
-/obj/item/weapon/plastique/attack_self(mob/user as mob)
+/obj/item/plastique/attack_self(mob/user as mob)
 	var/newtime = tgui_input_number(usr, "Please set the timer.", "Timer", 10, 60000, 10)
 	if(user.get_active_hand() == src)
 		newtime = CLAMP(newtime, 10, 60000)
 		timer = newtime
 		to_chat(user, "Timer set for [timer] seconds.")
 
-/obj/item/weapon/plastique/afterattack(atom/movable/target, mob/user, flag)
+/obj/item/plastique/afterattack(atom/movable/target, mob/user, flag)
 	if (!flag)
 		return
-	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/weapon/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
+	if (ismob(target) || istype(target, /turf/unsimulated) || istype(target, /turf/simulated/shuttle) || istype(target, /obj/item/storage/) || istype(target, /obj/item/clothing/accessory/storage/) || istype(target, /obj/item/clothing/under))
 		return
 	to_chat(user, "Planting explosives...")
 	user.do_attack_animation(target)
@@ -70,7 +70,7 @@
 		spawn(timer*10)
 			explode(get_turf(target))
 
-/obj/item/weapon/plastique/proc/explode(var/location)
+/obj/item/plastique/proc/explode(var/location)
 	if(!target)
 		target = get_atom_on_turf(src)
 	if(!target)
@@ -90,10 +90,10 @@
 		target.cut_overlay(image_overlay, TRUE)
 	qdel(src)
 
-/obj/item/weapon/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
+/obj/item/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
 
-/obj/item/weapon/plastique/seismic
+/obj/item/plastique/seismic
 	name = "seismic charge"
 	desc = "Used to dig holes in specific areas without too much extra hole."
 
@@ -101,11 +101,11 @@
 	blast_light = 4
 	blast_flash = 7
 
-/obj/item/weapon/plastique/seismic/attackby(var/obj/item/I, var/mob/user)
+/obj/item/plastique/seismic/attackby(var/obj/item/I, var/mob/user)
 	. = ..()
 	if(open_panel)
-		if(istype(I, /obj/item/weapon/stock_parts/micro_laser))
-			var/obj/item/weapon/stock_parts/SP = I
+		if(istype(I, /obj/item/stock_parts/micro_laser))
+			var/obj/item/stock_parts/SP = I
 			var/new_blast_power = max(1, round(SP.rating / 2) + 1)
 			if(new_blast_power > blast_heavy)
 				to_chat(user, "<span class='notice'>You install \the [I] into \the [src].</span>")

@@ -5,7 +5,7 @@
 	icon_state = "medical_stand_empty"
 
 	//gas stuff
-	var/obj/item/weapon/tank/tank
+	var/obj/item/tank/tank
 	var/mob/living/carbon/human/breather
 	var/obj/item/clothing/mask/breath/contained
 
@@ -17,7 +17,7 @@
 	//blood stuff
 	var/mob/living/carbon/attached
 	var/mode = 1 // 1 is injecting, 0 is taking blood.
-	var/obj/item/weapon/reagent_containers/beaker
+	var/obj/item/reagent_containers/beaker
 	var/list/transfer_amounts = list(REM, 1, 2)
 	var/transfer_amount = 1
 
@@ -36,15 +36,15 @@
 			add_overlay("tube_active")
 		else
 			add_overlay("tube")
-		if(istype(tank,/obj/item/weapon/tank/anesthetic))
+		if(istype(tank,/obj/item/tank/anesthetic))
 			add_overlay("tank_anest")
-		else if(istype(tank,/obj/item/weapon/tank/nitrogen))
+		else if(istype(tank,/obj/item/tank/nitrogen))
 			add_overlay("tank_nitro")
-		else if(istype(tank,/obj/item/weapon/tank/oxygen))
+		else if(istype(tank,/obj/item/tank/oxygen))
 			add_overlay("tank_oxyg")
-		else if(istype(tank,/obj/item/weapon/tank/phoron))
+		else if(istype(tank,/obj/item/tank/phoron))
 			add_overlay("tank_plasma")
-		//else if(istype(tank,/obj/item/weapon/tank/hydrogen))
+		//else if(istype(tank,/obj/item/tank/hydrogen))
 		//	add_overlay("tank_hydro")
 		else
 			add_overlay("tank_other")
@@ -289,8 +289,8 @@
 		return
 	return 1
 
-/obj/structure/medical_stand/attackby(var/obj/item/weapon/W, var/mob/user)
-	if(istype (W, /obj/item/weapon/tool))
+/obj/structure/medical_stand/attackby(var/obj/item/W, var/mob/user)
+	if(istype (W, /obj/item/tool))
 		if (valve_opened)
 			to_chat(user, "<span class='warning'>Close the valve first.</span>")
 			return
@@ -310,7 +310,7 @@
 		else
 			to_chat(user, "<span class='warning'>There is no tank in \the [src].</span>")
 
-	else if(istype(W, /obj/item/weapon/tank))
+	else if(istype(W, /obj/item/tank))
 		if(tank)
 			to_chat(user, "<span class='warning'>\The [src] already has a tank installed!</span>")
 		else if(!is_loosen)
@@ -323,7 +323,7 @@
 			src.add_fingerprint(user)
 			update_icon()
 
-	else if (istype(W, /obj/item/weapon/reagent_containers))
+	else if (istype(W, /obj/item/reagent_containers))
 		if(!isnull(src.beaker))
 			to_chat(user, "There is already a reagent container loaded!")
 			return
@@ -438,7 +438,6 @@
 		return PROCESS_KILL
 
 /obj/structure/medical_stand/anesthetic
-	spawn_type = /obj/item/weapon/tank/anesthetic
+	spawn_type = /obj/item/tank/anesthetic
 	mask_type = /obj/item/clothing/mask/breath/medical
 	is_loosen = FALSE
-

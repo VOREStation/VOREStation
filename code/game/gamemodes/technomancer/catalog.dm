@@ -53,7 +53,7 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 	max_budget = 2000
 
 //VOREStation Add
-/obj/item/weapon/technomancer_catalog/universal
+/obj/item/technomancer_catalog/universal
 	name = "universal catalog"
 	desc = "A catalog to be used with the KHI 'Universal Core', shamelessly \
 	copied by a Kitsuhana designer from some group of 'technomancers' or another.<br>\

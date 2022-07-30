@@ -511,7 +511,7 @@ Class Procs:
 	var/list/surviving_parts = list()
 	// Deleting IDs is lame, unless this is like nuclear severity
 	if(severity != 1)
-		for(var/obj/item/weapon/card/id/I in contents)
+		for(var/obj/item/card/id/I in contents)
 			surviving_parts |= I
 
 	// May populate some items to throw around

@@ -14,7 +14,7 @@
 	active_power_usage = 150 KILOWATTS  //BIG POWER
 	idle_power_usage = 500
 
-	circuit = /obj/item/weapon/circuitboard/thermoregulator
+	circuit = /obj/item/circuitboard/thermoregulator
 
 	var/on = 0
 	var/target_temp = T20C

@@ -30442,7 +30442,7 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 5
 	},
-/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/item/reagent_containers/food/drinks/britcup,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/office)
 "tUU" = (

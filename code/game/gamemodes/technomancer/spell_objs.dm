@@ -120,7 +120,7 @@
 			to_chat(owner, "<span class='warning'>You need a Core to do that.</span>")
 			qdel(src)
 			return
-//		if(istype(/obj/item/weapon/technomancer_core, owner.back))
+//		if(istype(/obj/item/technomancer_core, owner.back))
 //			core = owner.back
 	update_icon()
 

@@ -10,7 +10,7 @@
 //VOREStation Add - Interns
 /decl/hierarchy/outfit/job/assistant/intern
 	name = OUTFIT_JOB_NAME("Intern")
-	id_type = /obj/item/weapon/card/id/civilian
+	id_type = /obj/item/card/id/civilian
 //VOREStation Add End - Interns
 
 /decl/hierarchy/outfit/job/assistant/resident

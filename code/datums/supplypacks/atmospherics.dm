@@ -111,8 +111,8 @@
 	name = "Firefighting equipment"
 	contains = list(
 		/obj/item/clothing/suit/fire/heavy = 2,
-		/obj/item/weapon/tank/oxygen/red = 2,
-		/obj/item/weapon/watertank/atmos = 2,
+		/obj/item/tank/oxygen/red = 2,
+		/obj/item/watertank/atmos = 2,
 		/obj/item/flashlight = 2,
 		/obj/item/clothing/head/hardhat/firefighter/atmos = 2
 			)

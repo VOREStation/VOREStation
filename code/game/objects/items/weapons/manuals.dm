@@ -627,14 +627,14 @@
 			</html>
 			"}
 
-/obj/item/weapon/book/manual/robotics_manual
+/obj/item/book/manual/robotics_manual
 	name = "Guide to Robotics"
 	icon_state ="evabook"
 	item_state = "book3"
 	author = "Simple Robotics"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Guide to Robotics"
 
-/obj/item/weapon/book/manual/robotics_manual/New()
+/obj/item/book/manual/robotics_manual/New()
 	..()
 	dat = {"
 		<html><head>
@@ -1395,7 +1395,7 @@
 			</html>
 			"}
 
-/obj/item/weapon/book/manual/virology
+/obj/item/book/manual/virology
 	name = "Sneezes and Coughs: A Guide To Virology, 1st Edition"
 	icon_state = "bookvirology"
 	item_state = "book5"

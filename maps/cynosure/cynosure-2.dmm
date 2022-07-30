@@ -4581,7 +4581,7 @@
 /area/surface/station/medical/ward)
 "cgM" = (
 /obj/structure/table/glass,
-/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/item/reagent_containers/food/drinks/britcup,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/medical/hallway/gnd)
 "cgV" = (
@@ -34384,7 +34384,7 @@
 	name = "Medical Reception";
 	req_access = list(5)
 	},
-/obj/item/weapon/reagent_containers/food/drinks/britcup,
+/obj/item/reagent_containers/food/drinks/britcup,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/reception)
 "pzA" = (

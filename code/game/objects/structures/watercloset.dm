@@ -101,7 +101,7 @@
 /obj/structure/toilet/prison/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/grab))
 		user.setClickCooldown(user.get_attack_speed(I))
-		var/obj/item/weapon/grab/G = I
+		var/obj/item/grab/G = I
 
 	var/obj/item/grab/G = I
 

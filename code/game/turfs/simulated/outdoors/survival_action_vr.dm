@@ -43,7 +43,7 @@
 		return
 
 /turf/simulated/floor/outdoors/attackby(var/obj/item/O as obj, var/mob/user as mob)
-	if(istype(O, /obj/item/weapon/shovel) && rock_chance)
+	if(istype(O, /obj/item/shovel) && rock_chance)
 		rock_gathering(user)
 	else
 		return ..()

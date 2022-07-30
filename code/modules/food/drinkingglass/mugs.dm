@@ -131,7 +131,7 @@
 	desc = "A black and blue coffee mug decorated with the logo of Oculum Broadcast."
 	base_icon = "coffeecup_oculum"
 
-/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/talon
+/obj/item/reagent_containers/food/drinks/glass2/coffeemug/talon
 	name = "\improper Talon coffee mug"
 	desc = "A teal colored coffee mug with the Talon star logo on its face."
 	base_icon = "coffeecup_talon"

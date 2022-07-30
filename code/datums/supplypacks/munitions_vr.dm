@@ -1,8 +1,8 @@
 /datum/supply_pack/munitions/expeditionguns
 	name = "Frontier phaser (station-locked) crate"
 	contains = list(
-			/obj/item/weapon/gun/energy/locked/frontier = 2,
-			/obj/item/weapon/gun/energy/locked/frontier/holdout = 2,
+			/obj/item/gun/energy/locked/frontier = 2,
+			/obj/item/gun/energy/locked/frontier/holdout = 2,
 			)
 	cost = 35
 	containertype = /obj/structure/closet/crate/secure
@@ -12,7 +12,7 @@
 /datum/supply_pack/munitions/expeditionbows
 	name = "Frontier bows (station-locked) crate"
 	contains = list(
-			/obj/item/weapon/gun/energy/locked/frontier/handbow=2
+			/obj/item/gun/energy/locked/frontier/handbow=2
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
@@ -62,7 +62,7 @@
 /datum/supply_pack/munitions/longsword
 	name = "Weapons - Melee -Longsword (Steel)"
 	contains = list(
-			/obj/item/weapon/material/twohanded/longsword=2
+			/obj/item/material/twohanded/longsword=2
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate/secure

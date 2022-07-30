@@ -207,7 +207,7 @@
 				accesses.Cut()
 			else
 				var/obj/item/I = usr.get_active_hand()
-				if(istype(I, /obj/item/weapon/card/id) && usr.unEquip(I))
+				if(istype(I, /obj/item/card/id) && usr.unEquip(I))
 					I.loc = src
 					giver = I
 
@@ -217,7 +217,7 @@
 				dat += "[entry]<br><hr>"
 			//to_chat(usr, "Printing the log, standby...")
 			//sleep(50)
-			var/obj/item/weapon/paper/P = new/obj/item/weapon/paper( loc )
+			var/obj/item/paper/P = new/obj/item/paper( loc )
 			P.name = "activity log"
 			P.info = dat
 
@@ -233,7 +233,7 @@
 				entry += ". Expires at [worldtime2stationtime(world.time + duration*10*60)]."
 				internal_log.Add(entry)
 
-				var/obj/item/weapon/card/id/guest/pass = new(src.loc)
+				var/obj/item/card/id/guest/pass = new(src.loc)
 				pass.temp_access = accesses.Copy()
 				pass.registered_name = giv_name
 				pass.expiration_time = world.time + duration*10*60

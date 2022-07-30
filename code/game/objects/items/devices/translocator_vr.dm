@@ -7,8 +7,8 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5, TECH_ILLEGAL = 7)
 
-	var/cell_type = /obj/item/weapon/cell/device/weapon
-	var/obj/item/weapon/cell/power_source
+	var/cell_type = /obj/item/cell/device/weapon
+	var/obj/item/cell/power_source
 	var/charge_cost = 800 // cell/device/weapon has 2400
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
 
@@ -38,7 +38,7 @@
 	if(cell_type)
 		power_source = new cell_type(src)
 	else
-		power_source = new /obj/item/weapon/cell/device(src)
+		power_source = new /obj/item/cell/device(src)
 	spk = new(src)
 	spk.set_up(5, 0, src)
 	spk.attach(src)
@@ -315,7 +315,7 @@ This device records all warnings given and teleport events for admin review in c
 	phase_in(target,get_turf(target))
 
 	//And any friends!
-	for(var/obj/item/weapon/grab/G in target.contents)
+	for(var/obj/item/grab/G in target.contents)
 		if(G.affecting && (G.state >= GRAB_AGGRESSIVE))
 
 			//Phase-out effect for grabbed person
@@ -421,7 +421,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	desc = "A more limited translocator with a single beacon, useful for some things, like setting the mining department on fire accidentally."
 	icon_state = "minitrans"
 	beacons_left = 1 //Just one
-	cell_type = /obj/item/weapon/cell/device
+	cell_type = /obj/item/cell/device
 	origin_tech = list(TECH_MAGNET = 5, TECH_BLUESPACE = 5)
 
 /*
@@ -438,7 +438,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	desc = "This strange device allows one to teleport people and objects across large distances."
 	icon_state = "alientele"
 
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
+	cell_type = /obj/item/cell/device/weapon/recharge/alien
 	charge_cost = 400
 	beacons_left = 6
 	failure_chance = 0 //Percent
@@ -450,7 +450,7 @@ GLOBAL_LIST_BOILERPLATE(premade_tele_beacons, /obj/item/perfect_tele_beacon/stat
 	desc = "This strange device allows one to teleport people and objects across large distances. It has only a single preprogrammed destination, though."
 	icon_state = "alientele"
 
-	cell_type = /obj/item/weapon/cell/device/weapon/recharge/alien
+	cell_type = /obj/item/cell/device/weapon/recharge/alien
 	charge_cost = 400
 	beacons_left = 0
 	failure_chance = 0

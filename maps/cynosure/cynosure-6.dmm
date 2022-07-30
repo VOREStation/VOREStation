@@ -16083,7 +16083,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "rZv" = (
-/obj/item/weapon/stool/padded,
+/obj/item/stool/padded,
 /obj/effect/floor_decal/corner/yellow/diagonal,
 /obj/effect/floor_decal/corner/blue/diagonal{
 	dir = 4

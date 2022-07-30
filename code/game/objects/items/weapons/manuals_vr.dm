@@ -1,4 +1,4 @@
-/obj/item/weapon/book/manual/standard_operating_procedure
+/obj/item/book/manual/standard_operating_procedure
 	name = "Standard Operating Procedure"
 	desc = "A set of corporate guidelines for keeping space stations running smoothly."
 	icon_state = "sop"
@@ -6,7 +6,7 @@
 	author = "NanoTrasen"
 	title = "Standard Operating Procedure"
 
-/obj/item/weapon/book/manual/standard_operating_procedure/New()
+/obj/item/book/manual/standard_operating_procedure/New()
 	..()
 	dat = {"
 
@@ -21,7 +21,7 @@
 
 		"}
 
-/obj/item/weapon/book/manual/command_guide
+/obj/item/book/manual/command_guide
 	name = "The Chain of Command"
 	desc = "A set of corporate guidelines outlining the entire command structure of NanoTrasen from top to bottom."
 	icon_state = "commandGuide"
@@ -29,7 +29,7 @@
 	author = "Jeremiah Acacius"
 	title = "Corporate Regulations"
 
-/obj/item/weapon/book/manual/command_guide/New()
+/obj/item/book/manual/command_guide/New()
 	..()
 	dat = {"
 
@@ -45,7 +45,7 @@
 		"}
 
 //accurate as of 2/17/21 Extra credit to document editting and proofreading editing to Luna
-/obj/item/weapon/book/manual/cook_guide
+/obj/item/book/manual/cook_guide
 	name = "Food for Dummies 2"
 	desc = "A helpful guide to the world of cooking."
 	icon_state = "cook-guide"
@@ -53,7 +53,7 @@
 	author = "Ali Big"
 	title = "Food for Dummies 2"
 
-/obj/item/weapon/book/manual/cook_guide/New()
+/obj/item/book/manual/cook_guide/New()
 	..()
 	dat = {"
 		<html>
@@ -129,7 +129,7 @@
 		"}
 
 //accurate as of 2/23/21
-/obj/item/weapon/book/manual/bar_guide
+/obj/item/book/manual/bar_guide
 	name = "How to Alcohol (And other Drinks)"
 	desc = "A helpful guide to the world of barkeeping."
 	icon_state = "bar-guide"
@@ -137,7 +137,7 @@
 	author = "Ali Big"
 	title = "How to Alcohol (And other Drinks)"
 
-/obj/item/weapon/book/manual/bar_guide/New()
+/obj/item/book/manual/bar_guide/New()
 	..()
 	dat = {"
 			<html>
@@ -343,14 +343,14 @@
                 </body>
             </html> "}
 
-/obj/item/weapon/book/manual/rotary_electric_generator
+/obj/item/book/manual/rotary_electric_generator
 	name = "Rotary Electric Generator Manual"
 	icon_state ="rulebook"
 	item_state = "book15"
 	author = "Engineering Encyclopedia"
 	title = "Rotary Electric Generator Manual"
 
-/obj/item/weapon/book/manual/rotary_electric_generator/New()
+/obj/item/book/manual/rotary_electric_generator/New()
 	..()
 	dat = {"<html>
 				<head>
@@ -440,14 +440,14 @@
 			</html>
 			"}
 
-/obj/item/weapon/book/manual/synthetic_life
+/obj/item/book/manual/synthetic_life
 	name = "Synthetic Life: A Comprehensive Guide"
 	desc = "The basc history of synthetic life as the galaxy knows it."
 	icon_state = "evabook"
 	author = "Pontifex Publishing"
 	title = "Synthetics"
 
-/obj/item/weapon/book/manual/synthetic_life/New()
+/obj/item/book/manual/synthetic_life/New()
 	..()
 	dat = {"
 <html lang="en">

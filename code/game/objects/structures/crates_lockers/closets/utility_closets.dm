@@ -97,8 +97,8 @@
 
 	starts_with = list(
 		/obj/item/clothing/suit/fire/heavy,
-		/obj/item/weapon/tank/oxygen/red,
-		/obj/item/weapon/extinguisher/atmo,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher/atmo,
 		/obj/item/flashlight,
 		/obj/item/clothing/head/hardhat/firefighter/atmos)
 
@@ -143,7 +143,7 @@
 	if(prob(40))
 		starts_with += /obj/item/clothing/head/hardhat
 	if(prob(30))
-		starts_with += /obj/item/weapon/reagent_containers/spray/windowsealant //VOREStation Add
+		starts_with += /obj/item/reagent_containers/spray/windowsealant //VOREStation Add
 	return ..()
 
 /*

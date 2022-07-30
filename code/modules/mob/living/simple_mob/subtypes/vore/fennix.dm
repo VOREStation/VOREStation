@@ -13,7 +13,7 @@
 	health = 60
 
 	meat_amount = 5
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/fox
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/fox
 
 	response_help = "pats"
 	response_disarm = "gently pushes aside"

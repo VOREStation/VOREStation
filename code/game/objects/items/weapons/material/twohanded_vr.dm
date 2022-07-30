@@ -1,5 +1,5 @@
 //1R1S: Malady Blanche
-/obj/item/weapon/material/twohanded/riding_crop/malady
+/obj/item/material/twohanded/riding_crop/malady
 	name = "Malady's riding crop"
 	icon = 'icons/vore/custom_items_vr.dmi'
 	item_icons = list(
@@ -8,7 +8,7 @@
 				)
 	desc = "An infernum made riding crop with Malady Blanche engraved in the shaft. It's a little worn from how many butts it has spanked."
 
-/obj/item/weapon/material/twohanded/longsword
+/obj/item/material/twohanded/longsword
     w_class = ITEMSIZE_NORMAL
     name = "longsword"
     desc = "a more elegant weapon from a more civilised age"
@@ -27,7 +27,7 @@
     sharp = TRUE
 
 
-/obj/item/weapon/material/twohanded/saber/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
+/obj/item/material/twohanded/saber/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if (src.wielded == 1)
 		if(unique_parry_check(user, attacker, damage_source) && prob(50))
 			user.visible_message("<span class='danger'>\The [user] parries [attack_text] with \the [src]!</span>")

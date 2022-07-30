@@ -206,7 +206,7 @@
 
 /obj/item/suit_cooling_unit/emergency
 	icon_state = "esuitcooler"
-	cell = /obj/item/weapon/cell
+	cell = /obj/item/cell
 	w_class = ITEMSIZE_NORMAL
 
 /obj/item/suit_cooling_unit/emergency/updateicon()
@@ -217,7 +217,7 @@
 		return null // Don't let recharging happen while we're on
 	return cell
 
-/obj/item/suit_cooling_unit/emergency/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/suit_cooling_unit/emergency/attackby(obj/item/W as obj, mob/user as mob)
 	if (W.is_screwdriver())
 		to_chat(user, "<span class='warning'>This model has the cell permanently installed!</span>")
 		return

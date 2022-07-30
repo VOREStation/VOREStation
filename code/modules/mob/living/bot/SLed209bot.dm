@@ -15,7 +15,7 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = HEAVY
 
-	used_weapon = /obj/item/weapon/gun/energy/taser/xeno
+	used_weapon = /obj/item/gun/energy/taser/xeno
 
 	stun_strength = 10
 	xeno_harm_strength = 9
@@ -57,7 +57,7 @@
 
 // Assembly
 
-/obj/item/weapon/secbot_assembly/ed209_assembly/slime
+/obj/item/secbot_assembly/ed209_assembly/slime
 	name = "SL-ED-209 assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -65,8 +65,8 @@
 	item_state = "buildpipe"
 	created_name = "SL-ED-209 Security Robot"
 
-/obj/item/weapon/secbot_assembly/ed209_assembly/slime/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob) // Here in the event it's added into a PoI or some such. Standard construction relies on the standard ED up until taser.
-	if(istype(W, /obj/item/weapon/pen))
+/obj/item/secbot_assembly/ed209_assembly/slime/attackby(var/obj/item/W as obj, var/mob/user as mob) // Here in the event it's added into a PoI or some such. Standard construction relies on the standard ED up until taser.
+	if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
@@ -99,8 +99,8 @@
 				icon_state = "ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(istype(W, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "shielded frame assembly"
@@ -140,7 +140,7 @@
 				return
 
 		if(7)
-			if(istype(W, /obj/item/weapon/gun/energy/taser/xeno))
+			if(istype(W, /obj/item/gun/energy/taser/xeno))
 				name = "xenotaser SL-ED-209 assembly"
 				item_state = "sled209_taser"
 				icon_state = "sled209_taser"
@@ -161,7 +161,7 @@
 					to_chat(user, "<span class='notice'>Taser gun attached.</span>")
 
 		if(9)
-			if(istype(W, /obj/item/weapon/cell))
+			if(istype(W, /obj/item/cell))
 				build_step++
 				to_chat(user, "<span class='notice'>You complete the ED-209.</span>")
 				var/turf/T = get_turf(src)
@@ -170,4 +170,3 @@
 				qdel(W)
 				user.drop_from_inventory(src)
 				qdel(src)
-

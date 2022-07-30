@@ -100,7 +100,7 @@
 	user.drop_item()
 	src.throw_at(target, throw_range, throw_speed, user)
 
-/obj/item/weapon/beach_ball/dodgeball
+/obj/item/beach_ball/dodgeball
 	icon = 'icons/obj/balls_vr.dmi'
 	icon_state = "dodgeball"
 	item_state = "dodgeball"

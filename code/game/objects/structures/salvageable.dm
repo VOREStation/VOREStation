@@ -254,10 +254,10 @@
 		/obj/item/stack/material/glass{amount = 5} = 70,
 		/obj/item/trash/material/circuit = 60,
 		/obj/item/trash/material/metal = 60,
-		/obj/item/weapon/stock_parts/capacitor = 40,
-		/obj/item/weapon/stock_parts/capacitor = 40,
-		/obj/item/weapon/stock_parts/scanning_module = 40,
-		/obj/item/weapon/stock_parts/scanning_module = 40
+		/obj/item/stock_parts/capacitor = 40,
+		/obj/item/stock_parts/capacitor = 40,
+		/obj/item/stock_parts/scanning_module = 40,
+		/obj/item/stock_parts/scanning_module = 40
 	)
 
 /obj/structure/salvageable/personal/Initialize()
@@ -272,10 +272,10 @@
 		/obj/item/stack/material/glass{amount = 5} = 70,
 		/obj/item/trash/material/circuit = 60,
 		/obj/item/trash/material/metal = 60,
-		/obj/item/weapon/stock_parts/capacitor = 40,
-		/obj/item/weapon/stock_parts/capacitor = 40,
-		/obj/item/weapon/stock_parts/scanning_module = 40,
-		/obj/item/weapon/stock_parts/scanning_module = 40
+		/obj/item/stock_parts/capacitor = 40,
+		/obj/item/stock_parts/capacitor = 40,
+		/obj/item/stock_parts/scanning_module = 40,
+		/obj/item/stock_parts/scanning_module = 40
 	)
 
 //////////////////
@@ -407,12 +407,12 @@
 	icon_state = "slot1"
 	salvageable_parts = list(
 		/obj/item/stack/cable_coil{amount = 5} = 90,
-		/obj/item/weapon/stock_parts/console_screen = 90,
+		/obj/item/stock_parts/console_screen = 90,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
 		/obj/item/stack/material/glass{amount = 5} = 90,
-		/obj/item/weapon/stock_parts/capacitor = 60,
-		/obj/item/weapon/stock_parts/capacitor = 60,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+		/obj/item/stock_parts/capacitor = 60,
+		/obj/item/stock_parts/capacitor = 60,
+		/obj/item/computer_hardware/network_card/advanced = 40
 	)
 
 /obj/structure/salvageable/slotmachine2
@@ -420,10 +420,10 @@
 	icon_state = "slot2"
 	salvageable_parts = list(
 		/obj/item/stack/cable_coil{amount = 5} = 90,
-		/obj/item/weapon/stock_parts/console_screen = 90,
+		/obj/item/stock_parts/console_screen = 90,
 		/obj/item/stack/cable_coil{amount = 5} = 90,
 		/obj/item/stack/material/glass{amount = 5} = 90,
-		/obj/item/weapon/stock_parts/capacitor = 60,
-		/obj/item/weapon/stock_parts/capacitor = 60,
-		/obj/item/weapon/computer_hardware/network_card/advanced = 40
+		/obj/item/stock_parts/capacitor = 60,
+		/obj/item/stock_parts/capacitor = 60,
+		/obj/item/computer_hardware/network_card/advanced = 40
 	)

@@ -174,21 +174,21 @@
 	persist_storable = FALSE
 /obj/item/communicator
 	persist_storable = FALSE
-/obj/item/weapon/card
+/obj/item/card
 	persist_storable = FALSE
-/obj/item/weapon/holder
+/obj/item/holder
 	persist_storable = FALSE
 /obj/item/radio
 	persist_storable = FALSE
 /obj/item/encryptionkey
 	persist_storable = FALSE
-/obj/item/weapon/storage			//There are lots of things that have stuff that we may not want people to just have. And this is mostly intended for a single thing.
+/obj/item/storage			//There are lots of things that have stuff that we may not want people to just have. And this is mostly intended for a single thing.
 	persist_storable = FALSE		//And it would be annoying to go through and consider all of them, so default to disabled.
-/obj/item/weapon/storage/backpack	//But we can enable some where it makes sense. Backpacks and their variants basically never start with anything in them, as an example.
+/obj/item/storage/backpack	//But we can enable some where it makes sense. Backpacks and their variants basically never start with anything in them, as an example.
 	persist_storable = TRUE
-/obj/item/weapon/reagent_containers/hypospray/vial
+/obj/item/reagent_containers/hypospray/vial
 	persist_storable = FALSE
-/obj/item/weapon/cmo_disk_holder
+/obj/item/cmo_disk_holder
 	persist_storable = FALSE
 /obj/item/defib_kit/compact/combat
 	persist_storable = FALSE
@@ -196,43 +196,43 @@
 	persist_storable = FALSE
 /obj/item/clothing/shoes/magboots/adv
 	persist_storable = FALSE
-/obj/item/weapon/rig
+/obj/item/rig
 	persist_storable = FALSE
 /obj/item/clothing/head/helmet/space/void
 	persist_storable = FALSE
 /obj/item/clothing/suit/space/void
 	persist_storable = FALSE
-/obj/item/weapon/grab
+/obj/item/grab
 	persist_storable = FALSE
-/obj/item/weapon/grenade
+/obj/item/grenade
 	persist_storable = FALSE
-/obj/item/weapon/hand_tele
+/obj/item/hand_tele
 	persist_storable = FALSE
-/obj/item/weapon/paper
+/obj/item/paper
 	persist_storable = FALSE
-/obj/item/weapon/backup_implanter
+/obj/item/backup_implanter
 	persist_storable = FALSE
-/obj/item/weapon/disk/nuclear
+/obj/item/disk/nuclear
 	persist_storable = FALSE
-/obj/item/weapon/gun/energy/locked		//These are guns with security measures on them, so let's say the box won't let you put them in there.
+/obj/item/gun/energy/locked		//These are guns with security measures on them, so let's say the box won't let you put them in there.
 	persist_storable = FALSE			//(otherwise explo will just put their locker/vendor guns into it every round)
 /obj/item/retail_scanner
 	persist_storable = FALSE
-/obj/item/weapon/telecube
+/obj/item/telecube
 	persist_storable = FALSE
-/obj/item/weapon/reagent_containers/glass/bottle/adminordrazine
+/obj/item/reagent_containers/glass/bottle/adminordrazine
 	persist_storable = FALSE
-/obj/item/weapon/gun/energy/sizegun/admin
+/obj/item/gun/energy/sizegun/admin
 	persist_storable = FALSE
-/obj/item/weapon/gun/energy/sizegun/abductor
+/obj/item/gun/energy/sizegun/abductor
 	persist_storable = FALSE
 /obj/item/stack
 	persist_storable = FALSE
-/obj/item/weapon/book
+/obj/item/book
 	persist_storable = FALSE
-/obj/item/weapon/melee/cursedblade
+/obj/item/melee/cursedblade
 	persist_storable = FALSE
-/obj/item/weapon/circuitboard/mecha/imperion
+/obj/item/circuitboard/mecha/imperion
 	persist_storable = FALSE
 /obj/item/paicard
 	persist_storable = FALSE
@@ -246,9 +246,9 @@
 	persist_storable = FALSE
 /obj/item/seeds
 	persist_storable = FALSE
-/obj/item/weapon/reagent_containers/food/snacks/grown
+/obj/item/reagent_containers/food/snacks/grown
 	persist_storable = FALSE
-/obj/item/weapon/stock_parts
+/obj/item/stock_parts
 	persist_storable = FALSE
-/obj/item/weapon/rcd
+/obj/item/rcd
 	persist_storable = FALSE

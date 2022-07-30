@@ -55,7 +55,7 @@
 	healthcheck()
 	return
 
-/obj/structure/alien/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/alien/attackby(obj/item/W as obj, mob/user as mob)
 
 	user.setClickCooldown(user.get_attack_speed(W))
 	var/aforce = W.force

@@ -1,4 +1,4 @@
-/obj/machinery/button/attack_hand(obj/item/weapon/W, mob/user as mob)
+/obj/machinery/button/attack_hand(obj/item/W, mob/user as mob)
 	if(..()) return 1
 	playsound(src, 'sound/machines/button.ogg', 100, 1)
 

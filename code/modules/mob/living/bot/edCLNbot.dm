@@ -55,14 +55,14 @@
 	visible_message("<span class='danger'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
+	new /obj/item/secbot_assembly/ed209_assembly(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/l_leg(Tsec)
 	if(prob(50))
 		new /obj/item/robot_parts/r_leg(Tsec)
 	if(prob(50))
 		if(prob(50))
-			new /obj/item/weapon/reagent_containers/glass/bucket(Tsec)
+			new /obj/item/reagent_containers/glass/bucket(Tsec)
 		else
 			new /obj/item/assembly/prox_sensor(Tsec)
 
@@ -109,7 +109,7 @@
 
 // Assembly
 
-/obj/item/weapon/secbot_assembly/edCLN_assembly
+/obj/item/secbot_assembly/edCLN_assembly
 	name = "ED-CLN assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -117,10 +117,10 @@
 	item_state = "buildpipe"
 	created_name = "ED-CLN Security Robot"
 
-/obj/item/weapon/secbot_assembly/edCLN_assembly/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/item/secbot_assembly/edCLN_assembly/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()
 
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
@@ -143,7 +143,7 @@
 					icon_state = "ed209_legs"
 
 		if(2)
-			if(istype(W, /obj/item/weapon/reagent_containers/glass/bucket))
+			if(istype(W, /obj/item/reagent_containers/glass/bucket))
 				user.drop_item()
 				qdel(W)
 				build_step++
@@ -153,8 +153,8 @@
 				icon_state = "edCLN_bucket"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(istype(W, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "bucketed frame assembly"
@@ -184,7 +184,7 @@
 				return
 
 		if(6)
-			if(istype(W, /obj/item/weapon/mop))
+			if(istype(W, /obj/item/mop))
 				name = "mop ED-CLN assembly"
 				build_step++
 				to_chat(user, "<span class='notice'>You add \the [W] to \the [src].</span>")
@@ -204,7 +204,7 @@
 					to_chat(user, "<span class='notice'>Mop attached.</span>")
 
 		if(8)
-			if(istype(W, /obj/item/weapon/cell))
+			if(istype(W, /obj/item/cell))
 				build_step++
 				to_chat(user, "<span class='notice'>You complete the ED-CLN.</span>")
 				var/turf/T = get_turf(src)

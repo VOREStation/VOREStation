@@ -165,7 +165,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	else
 		icon_state = initial(icon_state)
 
-/obj/machinery/power/pointdefense/default_unfasten_wrench(var/mob/user, var/obj/item/weapon/W, var/time)
+/obj/machinery/power/pointdefense/default_unfasten_wrench(var/mob/user, var/obj/item/W, var/time)
 	if((. = ..()))
 		src.transform = null // Reset rotation if we're anchored/unanchored
 
@@ -295,7 +295,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	var/obj/machinery/pointdefense_control/PC = get_controller()
 	if(!istype(PC))
 		return
-	
+
 	// Compile list of known targets
 	var/list/existing_targets = list()
 	for(var/weakref/WR in PC.targets)
@@ -319,7 +319,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 			engaging = target
 			Shoot(target)
 			return
-		
+
 /obj/machinery/power/pointdefense/proc/targeting_check(var/obj/effect/meteor/M)
 	// Target in range
 	var/list/connected_z_levels = GetConnectedZlevels(get_z(src))
@@ -330,7 +330,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	// If we can shoot it, then shoot
 	if(emagged || !space_los(M))
 		return FALSE
-	
+
 	return TRUE
 
 /obj/machinery/power/pointdefense/RefreshParts()

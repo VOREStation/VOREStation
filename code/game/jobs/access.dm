@@ -242,7 +242,7 @@
 	var/obj/item/card/id/I = GetID()
 
 	if(I)
-		if(istype(I,/obj/item/weapon/card/id/centcom))
+		if(istype(I,/obj/item/card/id/centcom))
 			return "Centcom"
 
 		var/job_icons = get_all_job_icons()

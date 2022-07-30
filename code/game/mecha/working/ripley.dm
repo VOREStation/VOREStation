@@ -10,7 +10,7 @@
 	maxhealth = 200		//Don't forget to update the /old variant if  you change this number.
 	wreckage = /obj/effect/decal/mecha_wreckage/ripley
 	cargo_capacity = 10
-	var/obj/item/weapon/mining_scanner/orescanner // vorestation addition
+	var/obj/item/mining_scanner/orescanner // vorestation addition
 
 	minimum_penetration = 10
 
@@ -127,7 +127,7 @@
 
 /obj/mecha/working/ripley/New()
 	..()
-	orescanner = new /obj/item/weapon/mining_scanner
+	orescanner = new /obj/item/mining_scanner
 
 /obj/mecha/working/ripley/verb/detect_ore()
 	set category = "Exosuit Interface"

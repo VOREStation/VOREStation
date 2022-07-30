@@ -12,7 +12,7 @@
 	response_disarm = "gently pushes aside"
 	response_harm   = "kicks"
 
-	holder_type = /obj/item/weapon/holder/fennec
+	holder_type = /obj/item/holder/fennec
 	mob_size = MOB_SMALL
 
 	has_langs = list("Cat, Dog") //they're similar, why not.

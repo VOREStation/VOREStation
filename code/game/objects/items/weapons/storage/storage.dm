@@ -52,18 +52,18 @@
 	/// If you can use this storage while in a pocket
 	var/pocketable = FALSE
 
-/obj/item/weapon/storage/Initialize()
+/obj/item/storage/Initialize()
 	. = ..()
 
 	if(allow_quick_empty)
-		verbs += /obj/item/weapon/storage/verb/quick_empty
+		verbs += /obj/item/storage/verb/quick_empty
 	else
-		verbs -= /obj/item/weapon/storage/verb/quick_empty
+		verbs -= /obj/item/storage/verb/quick_empty
 
 	if(allow_quick_gather)
-		verbs += /obj/item/weapon/storage/verb/toggle_gathering_mode
+		verbs += /obj/item/storage/verb/toggle_gathering_mode
 	else
-		verbs -= /obj/item/weapon/storage/verb/toggle_gathering_mode
+		verbs -= /obj/item/storage/verb/toggle_gathering_mode
 
 	if(storage_slots)
 		src.boxes = new /obj/screen/storage(  )
@@ -158,7 +158,7 @@
 				usr.put_in_l_hand(src)
 		src.add_fingerprint(usr)
 
-/obj/item/weapon/storage/AltClick(mob/user)
+/obj/item/storage/AltClick(mob/user)
 	if(user in is_seeing)
 		src.close(user)
 	// I would think there should be some incap check here or something
@@ -263,7 +263,7 @@
 			LAZYREMOVE(is_seeing,M)
 	return cansee
 
-/obj/item/weapon/storage/proc/create_slot_catchers()
+/obj/item/storage/proc/create_slot_catchers()
 	clear_slot_catchers()
 	var/list/new_catchers = list()
 	for(var/obj/item/I in contents)
@@ -273,7 +273,7 @@
 		new_catchers += SS
 	box_catchers = new_catchers
 
-/obj/item/weapon/storage/proc/clear_slot_catchers()
+/obj/item/storage/proc/clear_slot_catchers()
 	if(box_catchers)
 		for(var/mob/M in is_seeing)
 			M.client?.screen -= box_catchers
@@ -556,11 +556,11 @@
 	return 1
 
 /// Called before insertion completes, allowing you to delay or cancel it
-/obj/item/weapon/storage/proc/stall_insertion(obj/item/W, mob/user)
+/obj/item/storage/proc/stall_insertion(obj/item/W, mob/user)
 	return TRUE
 
 /// Called before removal completes, allowing you to delay or cancel it
-/obj/item/weapon/storage/proc/stall_removal(obj/item/W, mob/user)
+/obj/item/storage/proc/stall_removal(obj/item/W, mob/user)
 	return TRUE
 
 //This proc is called when you want to place an item into the storage item.
@@ -934,7 +934,7 @@
 	return 1
 
 // Allows micros to drag themselves into storage items
-/obj/item/weapon/storage/MouseDrop_T(mob/living/target, mob/living/user)
+/obj/item/storage/MouseDrop_T(mob/living/target, mob/living/user)
 	if(!istype(user)) return // If the user passed in isn't a living mob, exit
 	if(target != user) return // If the user didn't drag themselves, exit
 	if(user.incapacitated() || user.buckled) return // If user is incapacitated or buckled, exit
@@ -943,7 +943,7 @@
 	if(ismouse(user) && user.get_effective_size(TRUE) > 1) return // Only normal sized mice or less
 
 	// Create a dummy holder with user's size to test insertion
-	var/obj/item/weapon/holder/D = new/obj/item/weapon/holder
+	var/obj/item/holder/D = new/obj/item/holder
 	if(ismouse(user))
 		D.w_class = ITEMSIZE_TINY // Mouse smol
 	else if(ishuman(user))
@@ -957,7 +957,7 @@
 	qdel(D)
 
 	// Scoop and insert target into storage
-	var/obj/item/weapon/holder/H = new user.holder_type(get_turf(user), user)
+	var/obj/item/holder/H = new user.holder_type(get_turf(user), user)
 	src.handle_item_insertion(H, 1)
 	to_chat(user, "<span class='notice'>You climb into \the [src].</span>")
 	return ..()

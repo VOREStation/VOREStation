@@ -89,7 +89,7 @@
 
 	src.set_dir(turn(src.dir, 90))
 
-/obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_wrench() && istype(src,/obj/structure/closet/crate/bin))
 		return ..()
 	else if(opened)
@@ -100,7 +100,7 @@
 		user.drop_item()
 		if(W)
 			W.forceMove(src.loc)
-	else if(istype(W, /obj/item/weapon/packageWrap))
+	else if(istype(W, /obj/item/packageWrap))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
@@ -209,10 +209,10 @@
 	else
 		src.toggle(user)
 
-/obj/structure/closet/crate/secure/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(is_type_in_list(W, list(/obj/item/weapon/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/weapon/tool/wirecutters)))
+/obj/structure/closet/crate/secure/attackby(obj/item/W as obj, mob/user as mob)
+	if(is_type_in_list(W, list(/obj/item/packageWrap, /obj/item/stack/cable_coil, /obj/item/radio/electropack, /obj/item/tool/wirecutters)))
 		return ..()
-	if(istype(W, /obj/item/weapon/melee/energy/blade))
+	if(istype(W, /obj/item/melee/energy/blade))
 		emag_act(INFINITY, user)
 	if(!opened)
 		src.togglelock(user)
@@ -281,17 +281,17 @@
 	desc = "A crate with rapid construction device."
 
 	starts_with = list(
-		/obj/item/weapon/rcd_ammo = 3,
-		/obj/item/weapon/rcd)
+		/obj/item/rcd_ammo = 3,
+		/obj/item/rcd)
 
 /obj/structure/closet/crate/solar
 	name = "solar pack crate"
 
 	starts_with = list(
 		/obj/item/solar_assembly = 21,
-		/obj/item/weapon/circuitboard/solar_control,
-		/obj/item/weapon/tracker_electronics,
-		/obj/item/weapon/paper/solar)
+		/obj/item/circuitboard/solar_control,
+		/obj/item/tracker_electronics,
+		/obj/item/paper/solar)
 
 /obj/structure/closet/crate/freezer
 	name = "freezer"
@@ -695,8 +695,8 @@
 
 /obj/structure/closet/crate/hydroponics/prespawned
 	starts_with = list(
-		/obj/item/weapon/reagent_containers/spray/plantbgone = 2,
-		/obj/item/weapon/material/minihoe)
+		/obj/item/reagent_containers/spray/plantbgone = 2,
+		/obj/item/material/minihoe)
 
 //Laundry Cart
 /obj/structure/closet/crate/laundry

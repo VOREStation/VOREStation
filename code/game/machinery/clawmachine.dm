@@ -90,7 +90,7 @@
 			ispowered = 0
 			update_icon()
 
-/obj/machinery/clawmachine/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/clawmachine/attackby(obj/item/W as obj, mob/user as mob)
 	if(busy)
 		to_chat(user,"<span class='notice'>The claw machine is currently running.</span> ")
 		return
@@ -114,8 +114,8 @@
 	var/handled = 0
 	var/paid = 0
 
-	if(istype(W, /obj/item/weapon/spacecash))
-		var/obj/item/weapon/spacecash/C = W
+	if(istype(W, /obj/item/spacecash))
+		var/obj/item/spacecash/C = W
 		paid = insert_cash(C, user)
 		handled = 1
 		if(paid)
@@ -135,7 +135,7 @@
 		var/prizeselect = pickweight(prizes)
 		new prizeselect(src.loc)
 
-/obj/machinery/clawmachine/proc/insert_cash(var/obj/item/weapon/spacecash/cashmoney, mob/user)
+/obj/machinery/clawmachine/proc/insert_cash(var/obj/item/spacecash/cashmoney, mob/user)
 	if (ispowered == 0)
 		return
 	if (isbroken)

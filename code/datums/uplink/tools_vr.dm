@@ -4,12 +4,12 @@
 /datum/uplink_item/item/tools/oxygen
 	name = "Emergency Oxygen Tank"
 	item_cost = 2
-	path = /obj/item/weapon/tank/emergency/oxygen/double
+	path = /obj/item/tank/emergency/oxygen/double
 
 /datum/uplink_item/item/tools/phoron
 	name = "Emergency Phoron Tank"
 	item_cost = 2
-	path = /obj/item/weapon/tank/emergency/phoron/double
+	path = /obj/item/tank/emergency/phoron/double
 
 /datum/uplink_item/item/tools/suitcooler
 	name = "Emergency Suit Cooler"
@@ -56,7 +56,7 @@
 /datum/uplink_item/item/tools/inflatable
 	name = "Inflatables"
 	item_cost = 10
-	path = /obj/item/weapon/storage/briefcase/inflatable
+	path = /obj/item/storage/briefcase/inflatable
 
 /datum/uplink_item/item/tools/elitetablet
 	name = "Tablet (Advanced)"
@@ -76,7 +76,7 @@
 /datum/uplink_item/item/tools/holdingpouch
 	name = "Pouch of Holding"
 	item_cost = 20
-	path = /obj/item/weapon/storage/pouch/holding
+	path = /obj/item/storage/pouch/holding
 
 /datum/uplink_item/item/tools/elitelaptop
 	name = "Laptop (Advanced)"
@@ -86,7 +86,7 @@
 /datum/uplink_item/item/tools/inducer
 	name = "Inducer"
 	item_cost = 20
-	path = /obj/item/weapon/inducer/syndicate
+	path = /obj/item/inducer/syndicate
 
 /datum/uplink_item/item/tools/mappingunit_op
 	name = "Mapping Unit-M"

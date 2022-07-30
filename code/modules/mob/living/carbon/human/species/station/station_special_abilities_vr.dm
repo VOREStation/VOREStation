@@ -428,7 +428,7 @@
 	if(!ishuman(src))
 		return //If you're not a human you don't have permission to do this.
 	var/mob/living/carbon/human/C = src
-	var/obj/item/weapon/grab/G = src.get_active_hand()
+	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
 		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to absorb them.</span>")
 		return
@@ -491,7 +491,7 @@
 	if(!ishuman(src))
 		return //If you're not a human you don't have permission to do this.
 
-	var/obj/item/weapon/grab/G = src.get_active_hand()
+	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
 		to_chat(src, "<span class='warning'>You must be grabbing a creature in your active hand to drain them.</span>")
 		return
@@ -583,7 +583,7 @@
 	if(!ishuman(src))
 		return //If you're not a human you don't have permission to do this.
 	var/mob/living/carbon/human/C = src
-	var/obj/item/weapon/grab/G = src.get_active_hand()
+	var/obj/item/grab/G = src.get_active_hand()
 	if(!istype(G))
 		to_chat(C, "<span class='warning'>You must be grabbing a creature in your active hand to feed them.</span>")
 		return
@@ -673,7 +673,7 @@
 /mob/living/carbon/human/vore_shred_time = 10 SECONDS
 /mob/living/carbon/human/can_shred()
 	//Humans need a grab
-	var/obj/item/weapon/grab/G = get_active_hand()
+	var/obj/item/grab/G = get_active_hand()
 	if(!istype(G))
 		to_chat(src,"<span class='warning'>You have to have a very strong grip on someone first!</span>")
 		return FALSE
@@ -1048,15 +1048,15 @@
 		return
 
 	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
-		var/obj/item/weapon/storage/vore_egg/bugcocoon/C = new(loc)
+		var/obj/item/storage/vore_egg/bugcocoon/C = new(loc)
 		forceMove(C)
 		transforming = TRUE
 		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
 		V.tgui_interact(src)
 
-		var/mob_holder_type = src.holder_type || /obj/item/weapon/holder
+		var/mob_holder_type = src.holder_type || /obj/item/holder
 		C.w_class = src.size_multiplier * 4 //Egg size and weight scaled to match occupant.
-		var/obj/item/weapon/holder/H = new mob_holder_type(C, src)
+		var/obj/item/holder/H = new mob_holder_type(C, src)
 		C.max_storage_space = H.w_class
 		C.icon_scale_x = 0.25 * C.w_class
 		C.icon_scale_y = 0.25 * C.w_class

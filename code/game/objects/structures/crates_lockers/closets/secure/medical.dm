@@ -132,7 +132,7 @@
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmo,
 		/obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,
 		/obj/item/clothing/suit/storage/toggle/labcoat/modern/cmo,
-		/obj/item/weapon/cartridge/cmo,
+		/obj/item/cartridge/cmo,
 		/obj/item/clothing/gloves/sterile/latex,
 		/obj/item/clothing/shoes/brown,
 		/obj/item/radio/headset/heads/cmo,
@@ -201,7 +201,7 @@
 		/obj/item/storage/box/syringes,
 		/obj/item/reagent_containers/dropper = 2,
 		/obj/item/reagent_containers/glass/bottle/inaprovaline = 2,
-		/obj/item/reagent_containers/glass/bottle/antitoxin = 2
+		/obj/item/reagent_containers/glass/bottle/antitoxin = 2,
 		/obj/item/storage/fancy/vials) //VOREStation Add
 
 

@@ -43,14 +43,14 @@ GLOBAL_LIST_INIT(ocean_fishing_rare_list, list(
 
 GLOBAL_LIST_INIT(ocean_fishing_uncommon_list, list(
 		/mob/living/simple_mob/animal/passive/crab/sif = 1,
-		/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish = 10
+		/obj/item/reagent_containers/food/snacks/sliceable/monkfish = 10
 		))
 
 GLOBAL_LIST_INIT(ocean_fishing_common_list, list(
 		/mob/living/simple_mob/animal/passive/fish/rockfish = 5,
 		/mob/living/simple_mob/animal/passive/crab = 1,
-		/obj/item/weapon/reagent_containers/food/snacks/cuttlefish = 10,
-		/obj/item/weapon/reagent_containers/food/snacks/lobster = 8
+		/obj/item/reagent_containers/food/snacks/cuttlefish = 10,
+		/obj/item/reagent_containers/food/snacks/lobster = 8
 		))
 
 /turf/simulated/floor/water/ocean

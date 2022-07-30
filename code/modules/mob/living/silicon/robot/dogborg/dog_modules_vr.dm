@@ -1,4 +1,4 @@
-/obj/item/weapon/dogborg/jaws/big
+/obj/item/dogborg/jaws/big
 	name = "combat jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "jaws"
@@ -9,7 +9,7 @@
 	attack_verb = list("chomped", "bit", "ripped", "mauled", "enforced")
 	w_class = ITEMSIZE_NORMAL
 
-/obj/item/weapon/dogborg/jaws/small
+/obj/item/dogborg/jaws/small
 	name = "puppy jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "smalljaws"
@@ -21,7 +21,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/emagged = 0
 
-/obj/item/weapon/dogborg/jaws/small/attack_self(mob/user)
+/obj/item/dogborg/jaws/small/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
 	if(R.emagged || R.emag_items)
 		emagged = !emagged
@@ -48,7 +48,7 @@
 		update_icon()
 
 // Baton chompers
-/obj/item/weapon/dogborg/jaws/ert
+/obj/item/dogborg/jaws/ert
 	name = "ert jaws"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "ertjaws"
@@ -60,7 +60,7 @@
 	w_class = ITEMSIZE_NORMAL
 	var/charge_cost = 15
 
-/obj/item/weapon/dogborg/jaws/ert/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
+/obj/item/dogborg/jaws/ert/apply_hit_effect(mob/living/target, mob/living/user, var/hit_zone)
 	if(isrobot(target))
 		return ..()
 
@@ -165,7 +165,7 @@
 
 //Delivery
 /*
-/obj/item/weapon/storage/bag/borgdelivery
+/obj/item/storage/bag/borgdelivery
 	name = "fetching storage"
 	desc = "Fetch the thing!"
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -176,10 +176,10 @@
 	storage_slots = 1
 	collection_mode = 0
 	can_hold = list() // any
-	cant_hold = list(/obj/item/weapon/disk/nuclear)
+	cant_hold = list(/obj/item/disk/nuclear)
 */
 
-/obj/item/weapon/shockpaddles/robot/hound
+/obj/item/shockpaddles/robot/hound
 	name = "paws of life"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "defibpaddles0"
@@ -188,19 +188,19 @@
 	attack_verb = list("batted", "pawed", "bopped", "whapped")
 	chargecost = 500
 
-/obj/item/weapon/shockpaddles/robot/hound/jumper
+/obj/item/shockpaddles/robot/hound/jumper
 	name = "jumper paws"
 	desc = "Zappy paws. For rebooting a full body prostetic."
 	use_on_synthetic = 1
 
-/obj/item/weapon/reagent_containers/borghypo/hound
+/obj/item/reagent_containers/borghypo/hound
 	name = "MediHound hypospray"
 	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves, designed for heavy-duty medical equipment."
 	charge_cost = 10
 	reagent_ids = list("inaprovaline", "dexalin", "bicaridine", "kelotane", "anti_toxin", "spaceacillin", "paracetamol")
 	var/datum/matter_synth/water = null
 
-/obj/item/weapon/reagent_containers/borghypo/hound/process() //Recharges in smaller steps and uses the water reserves as well.
+/obj/item/reagent_containers/borghypo/hound/process() //Recharges in smaller steps and uses the water reserves as well.
 	if(isrobot(loc))
 		var/mob/living/silicon/robot/R = loc
 		if(R && R.cell)
@@ -211,7 +211,7 @@
 					reagent_volumes[T] = min(reagent_volumes[T] + 1, volume)
 	return 1
 
-/obj/item/weapon/reagent_containers/borghypo/hound/lost
+/obj/item/reagent_containers/borghypo/hound/lost
 	name = "Hound hypospray"
 	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
 	reagent_ids = list("tricordrazine", "inaprovaline", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
@@ -289,13 +289,13 @@
 				R.cell.charge += 250
 				water.use_charge(5)
 			return
-		if(istype(target,/obj/item/weapon/cell))
+		if(istype(target,/obj/item/cell))
 			user.visible_message("[user] begins cramming \the [target.name] down its throat.", "<span class='notice'>You begin cramming \the [target.name] down your throat...</span>")
 			if(do_after (user, 50))
 				user.visible_message("[user] finishes gulping down \the [target.name].", "<span class='notice'>You finish swallowing \the [target.name].</span>")
 				to_chat(user, "<span class='notice'>You finish off \the [target.name], and gain some charge!</span>")
 				var/mob/living/silicon/robot/R = user
-				var/obj/item/weapon/cell/C = target
+				var/obj/item/cell/C = target
 				R.cell.charge += C.charge / 3
 				water.use_charge(5)
 				qdel(target)
@@ -362,7 +362,7 @@
 		enabled = FALSE
 		icon_state = "scrub0"
 
-/obj/item/weapon/gun/energy/taser/mounted/cyborg/ertgun //Not a taser, but it's being used as a base so it takes energy and actually works.
+/obj/item/gun/energy/taser/mounted/cyborg/ertgun //Not a taser, but it's being used as a base so it takes energy and actually works.
 	name = "disabler"
 	desc = "A small and nonlethal gun produced by NT.."
 	icon = 'icons/mob/dogborg_vr.dmi'
@@ -373,7 +373,7 @@
 	recharge_time = 10 //Takes ten ticks to recharge a shot, so don't waste them all!
 	//cell_type = null //Same cell as a taser until edits are made.
 
-/obj/item/weapon/dogborg/swordtail
+/obj/item/dogborg/swordtail
 	name = "sword tail"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "swordtail"
@@ -415,7 +415,7 @@
 		return
 
 //Pounce stuff for K-9
-/obj/item/weapon/dogborg/pounce
+/obj/item/dogborg/pounce
 	name = "pounce"
 	icon = 'icons/mob/dogborg_vr.dmi'
 	icon_state = "pounce"
@@ -423,11 +423,11 @@
 	force = 0
 	throwforce = 0
 
-/obj/item/weapon/dogborg/pounce/New()
+/obj/item/dogborg/pounce/New()
 	..()
 	flags |= NOBLUDGEON
 
-/obj/item/weapon/dogborg/pounce/attack_self(mob/user)
+/obj/item/dogborg/pounce/attack_self(mob/user)
 	var/mob/living/silicon/robot/R = user
 	R.leap()
 

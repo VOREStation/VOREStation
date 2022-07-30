@@ -5,7 +5,7 @@
 			/obj/item/clothing/head/helmet/space/void/exploration = 2,
 			/obj/item/clothing/mask/breath = 2,
 			/obj/item/clothing/shoes/magboots = 2,
-			/obj/item/weapon/tank/oxygen = 2
+			/obj/item/tank/oxygen = 2
 			)
 	cost = 45
 	containertype = /obj/structure/closet/crate/secure
@@ -19,7 +19,7 @@
 			/obj/item/clothing/head/helmet/space/void/exploration = 2,
 			/obj/item/clothing/mask/breath = 2,
 			/obj/item/clothing/shoes/magboots = 2,
-			/obj/item/weapon/tank/oxygen = 2
+			/obj/item/tank/oxygen = 2
 			)
 	cost = 45
 	containertype = /obj/structure/closet/crate/secure
@@ -33,7 +33,7 @@
 			/obj/item/clothing/head/helmet/space/void/pilot = 1,
 			/obj/item/clothing/mask/breath = 1,
 			/obj/item/clothing/shoes/magboots = 1,
-			/obj/item/weapon/tank/oxygen = 1
+			/obj/item/tank/oxygen = 1
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/secure
@@ -52,7 +52,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth mining voidsuit crate"
 	access = access_mining
-	
+
 /datum/supply_pack/voidsuits/com_anomaly
 	name = "Commonwealth anomaly suit"
 	contains = list(
@@ -63,7 +63,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth anomaly suit crate"
 	access = access_xenoarch
-	
+
 /datum/supply_pack/voidsuits/com_riot
 	name = "Commonwealth riot voidsuit"
 	contains = list(
@@ -74,7 +74,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth riot voidsuit crate"
 	access = access_brig
-	
+
 /datum/supply_pack/voidsuits/com_pilot
 	name = "Commonwealth pilot voidsuit"
 	contains = list(
@@ -85,7 +85,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth pilot voidsuit crate"
 	access = access_pilot
-	
+
 /datum/supply_pack/voidsuits/com_medical
 	name = "Commonwealth medical voidsuit"
 	contains = list(
@@ -106,7 +106,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth exploration voidsuit crate"
 	access = access_explorer
-	
+
 /datum/supply_pack/voidsuits/com_engineer
 	name = "Commonwealth engineering voidsuit"
 	contains = list(
@@ -117,7 +117,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth engineering voidsuit crate"
 	access = access_engine
-	
+
 /datum/supply_pack/voidsuits/com_atmos
 	name = "Commonwealth atmos voidsuit"
 	contains = list(
@@ -128,7 +128,7 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth atmos voidsuit crate"
 	access = access_atmospherics
-	
+
 /datum/supply_pack/voidsuits/com_captain
 	name = "Commonwealth captain voidsuit"
 	contains = list(
@@ -139,4 +139,3 @@
 	containertype = /obj/structure/closet/crate/secure
 	name = "Commonwealth captain voidsuit crate"
 	access = access_captain
-	

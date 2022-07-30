@@ -31,5 +31,5 @@
 	icon_keyboard = "mining_key"
 	icon_screen = "mining"
 	network = list(NETWORK_XENOBIO)
-	circuit = /obj/item/weapon/circuitboard/security/xenobio
+	circuit = /obj/item/circuitboard/security/xenobio
 	light_color = "#F9BBFC"

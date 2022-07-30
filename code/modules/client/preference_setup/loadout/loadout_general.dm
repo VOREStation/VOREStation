@@ -125,7 +125,7 @@
 
 /datum/gear/towel
 	display_name = "towel"
-	path = /obj/item/weapon/towel
+	path = /obj/item/towel
 
 /datum/gear/towel/New()
 	..()
@@ -133,21 +133,21 @@
 
 /datum/gear/cahwhite
 	display_name = "Cards Against The Galaxy (white deck)"
-	path = /obj/item/weapon/deck/cah
+	path = /obj/item/deck/cah
 	description = "The ever-popular Cards Against The Galaxy word game. Warning: may include traces of broken fourth wall. This is the white deck."
 
 /datum/gear/cahblack
 	display_name = "Cards Against The Galaxy (black deck)"
-	path = /obj/item/weapon/deck/cah/black
+	path = /obj/item/deck/cah/black
 	description = "The ever-popular Cards Against The Galaxy word game. Warning: may include traces of broken fourth wall. This is the black deck."
 
 /datum/gear/wizoff
 	display_name = "WizOff"
-	path = /obj/item/weapon/deck/wizoff
+	path = /obj/item/deck/wizoff
 
 /datum/gear/wizoffguide
 	display_name = "WizOff Guide"
-	path = /obj/item/weapon/book/manual/wizzoffguide
+	path = /obj/item/book/manual/wizzoffguide
 	description = "The guide to playing the ever popular card game: Wiz-Off!"
 
 /datum/gear/coffeemug

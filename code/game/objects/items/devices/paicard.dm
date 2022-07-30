@@ -39,7 +39,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 /obj/item/paicard/relaymove(var/mob/user, var/direction)
 	if(user.stat || user.stunned)
 		return
-	var/obj/item/weapon/rig/rig = src.get_rig()
+	var/obj/item/rig/rig = src.get_rig()
 	if(istype(rig))
 		rig.forced_move(direction, user)
 
@@ -503,7 +503,7 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	icon_state = "radio"
 	loudspeaker = FALSE
 
-/obj/item/radio/borg/pai/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/item/radio/borg/pai/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
 /obj/item/radio/borg/pai/recalculateChannels()

@@ -69,7 +69,7 @@
 
 		return TRUE
 
-	if(reinforcing && istype(I, /obj/item/weapon/weldingtool))
+	if(reinforcing && istype(I, /obj/item/weldingtool))
 		if(!density)
 			to_chat(user, "<span class='warning'>\The [src] must be closed before you can reinforce it.</span>")
 			return TRUE
@@ -78,7 +78,7 @@
 			to_chat(user, "<span class='warning'>You will need more plasteel to reinforce \the [src].</span>")
 			return TRUE
 
-		var/obj/item/weapon/weldingtool/welder = I
+		var/obj/item/weldingtool/welder = I
 		if(welder.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start weld \the plasteel into place.</span>")
 			playsound(src, welder.usesound, 50, 1)

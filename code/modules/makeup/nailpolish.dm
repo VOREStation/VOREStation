@@ -1,6 +1,6 @@
 /obj/item/organ/external/var/datum/nail_polish/nail_polish
 
-/obj/item/weapon/nailpolish
+/obj/item/nailpolish
 	name = "nail polish"
 	desc = "to paint your nails with. Or someone else's!"
 	icon = 'icons/obj/nailpolish_vr.dmi'
@@ -12,24 +12,24 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-/obj/item/weapon/nailpolish/Initialize()
+/obj/item/nailpolish/Initialize()
 	. = ..()
 	desc = "<font color='[colour]'>Nail polish,</font> " + initial(desc)
 	top_underlay = image(icon, "top")
 	color_underlay = image(icon, "color")
 	update_icon()
 
-/obj/item/weapon/nailpolish/proc/set_colour(var/_colour)
+/obj/item/nailpolish/proc/set_colour(var/_colour)
 	colour = _colour
 	desc = "<font color='[colour]'>Nail polish,</font> " + initial(desc)
 	update_icon()
 
-/obj/item/weapon/nailpolish/attack_self(var/mob/user)
+/obj/item/nailpolish/attack_self(var/mob/user)
 	open = !open
 	to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] \the [src]."))
 	update_icon()
 
-/obj/item/weapon/nailpolish/update_icon()
+/obj/item/nailpolish/update_icon()
 	. = ..()
 	icon_state = "[initial(icon_state)][open ? "-open" : ""]"
 	top_underlay.icon_state = "top[open ? "-open" : ""]"
@@ -57,13 +57,13 @@
 		icostate = organ_tag
 	return new /datum/nail_polish(ico, icostate, colour)
 
-/obj/item/weapon/nailpolish/attack(var/mob/user, var/mob/living/carbon/human/target)
+/obj/item/nailpolish/attack(var/mob/user, var/mob/living/carbon/human/target)
 	if(!open)
 		return
 
 	if(!istype(target))
 		return
-	
+
 	var/bp = user.zone_sel.selecting
 	var/obj/item/organ/external/body_part = target.get_organ(bp)
 	if(!body_part)
@@ -90,7 +90,7 @@
 	nail_polish = polish
 	owner?.update_icons_body()
 
-/obj/item/weapon/nailpolish_remover
+/obj/item/nailpolish_remover
 	name = "nail polish remover"
 	desc = "Paint thinner, acetone, nail polish remover; whatever you call it, it gets the job done."
 	drop_sound = 'sound/items/drop/helm.ogg'
@@ -99,22 +99,22 @@
 	icon_state = "nailpolishremover"
 	var/open = FALSE
 
-/obj/item/weapon/nailpolish_remover/attack_self(var/mob/user)
+/obj/item/nailpolish_remover/attack_self(var/mob/user)
 	open = !open
 	to_chat(user, SPAN_NOTICE("You [open ? "open" : "close"] \the [src]."))
 	update_icon()
 
-/obj/item/weapon/nailpolish_remover/update_icon()
+/obj/item/nailpolish_remover/update_icon()
 	. = ..()
 	icon_state = "[initial(icon_state)][open ? "-open" : ""]"
 
-/obj/item/weapon/nailpolish_remover/attack(var/mob/user, var/mob/living/carbon/human/target)
+/obj/item/nailpolish_remover/attack(var/mob/user, var/mob/living/carbon/human/target)
 	if(!open)
 		return
 
 	if(!istype(target))
 		return
-	
+
 	var/bp = user.zone_sel.selecting
 	var/obj/item/organ/external/body_part = target.get_organ(bp)
 	if(!body_part)
@@ -142,4 +142,3 @@
 	icon = _icon
 	icon_state = _icon_state
 	color = _color
-	

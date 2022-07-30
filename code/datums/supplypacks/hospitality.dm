@@ -47,7 +47,7 @@
 	cost = 10
 	containertype = /obj/structure/closet/crate/gilthari
 	containername = "crate of bar supplies"
-	
+
 /datum/supply_pack/hospitality/cookingoil
 	name = "Cooking oil tank crate"
 	contains = list(/obj/structure/reagent_dispensers/cookingoil)
@@ -84,7 +84,7 @@
 	contains = list(
 		/obj/item/paint_brush = 2,
 		/obj/item/paint_palette = 2,
-		/obj/item/weapon/reagent_containers/glass/rag = 2,
+		/obj/item/reagent_containers/glass/rag = 2,
 		/obj/structure/easel = 1, // How does that even fit
 		/obj/item/canvas = 1,
 		/obj/item/canvas/nineteen_nineteen = 1,
@@ -98,4 +98,3 @@
 
 /datum/supply_pack/randomised/hospitality/
 	group = "Hospitality"
-

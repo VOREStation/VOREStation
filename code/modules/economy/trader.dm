@@ -142,15 +142,15 @@
 	. = ..()
 	switch(accepts)
 		if("coin")
-			if(istype(O, /obj/item/weapon/aliencoin))
-				var/obj/item/weapon/aliencoin/a = O
+			if(istype(O, /obj/item/aliencoin))
+				var/obj/item/aliencoin/a = O
 				coinbalance += a.value
 				visible_message("<span class='notice'>\The [src] accepts \the [user]'s [O].</span>")
 				qdel(a)
 		if("money")
-			if(istype(O, /obj/item/weapon/spacecash))
-				var/obj/item/weapon/spacecash/w = O
-				for(var/obj/item/weapon/spacecash/c in bank)
+			if(istype(O, /obj/item/spacecash))
+				var/obj/item/spacecash/w = O
+				for(var/obj/item/spacecash/c in bank)
 					var/loadsamoney = w.worth
 					qdel(w)
 					c.worth += loadsamoney
@@ -176,8 +176,8 @@
 			value = coinbalance
 		if("money")
 			for(var/obj/c in bank)
-				if(istype(c, /obj/item/weapon/spacecash))
-					var/obj/item/weapon/spacecash/a = c
+				if(istype(c, /obj/item/spacecash))
+					var/obj/item/spacecash/a = c
 					value += a.worth
 				else
 					c.forceMove(get_turf(src))
@@ -197,8 +197,8 @@
 			coinbalance -= amount
 		if("money")
 			for(var/obj/c in bank)
-				if(istype(c, /obj/item/weapon/spacecash))
-					var/obj/item/weapon/spacecash/a = c
+				if(istype(c, /obj/item/spacecash))
+					var/obj/item/spacecash/a = c
 					a.worth -= amount
 					a.update_icon()
 					if(a.worth <= 0)
@@ -221,16 +221,16 @@
 				u_get_refund = TRUE
 			while(coinbalance > 0)
 				if(coinbalance >= 20)
-					new /obj/item/weapon/aliencoin/phoron(get_turf(loc))
+					new /obj/item/aliencoin/phoron(get_turf(loc))
 					coinbalance -= 20
 				else if(coinbalance >= 10)
-					new /obj/item/weapon/aliencoin/gold(get_turf(loc))
+					new /obj/item/aliencoin/gold(get_turf(loc))
 					coinbalance -= 10
 				else if(coinbalance >= 5)
-					new /obj/item/weapon/aliencoin/silver(get_turf(loc))
+					new /obj/item/aliencoin/silver(get_turf(loc))
 					coinbalance -= 5
 				else
-					new /obj/item/weapon/aliencoin/basic(get_turf(loc))
+					new /obj/item/aliencoin/basic(get_turf(loc))
 					coinbalance --
 		if("money")
 			for(var/obj/c in bank)
@@ -324,20 +324,20 @@
 		/obj/item/capture_crystal/random = 50,
 		/obj/item/perfect_tele = 10,
 		/obj/item/chameleon = 25,
-		/obj/item/weapon/gun/energy/sizegun = 25,
+		/obj/item/gun/energy/sizegun = 25,
 		/obj/item/slow_sizegun = 25,
-		/obj/item/weapon/implant/sizecontrol = 25,
+		/obj/item/implant/sizecontrol = 25,
 		/obj/item/clothing/under/hyperfiber/bluespace = 25,
 		/obj/item/nif/authentic = 1,
 		/obj/item/toy/bosunwhistle = 50,
-		/obj/item/weapon/cell/infinite = 10,
-		/obj/item/weapon/cell/void = 15,
-		/obj/item/weapon/cell/device/weapon/recharge/alien = 10,
-		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 50,
+		/obj/item/cell/infinite = 10,
+		/obj/item/cell/void = 15,
+		/obj/item/cell/device/weapon/recharge/alien = 10,
+		/obj/item/reagent_containers/food/snacks/jellyfishcore = 50,
 		/obj/item/denecrotizer = 10,
 		/obj/item/clothing/shoes/boots/speed = 15,
-		/obj/item/weapon/bluespace_harpoon = 20,
-		/obj/item/weapon/telecube/randomized = 5,
+		/obj/item/bluespace_harpoon = 20,
+		/obj/item/telecube/randomized = 5,
 		/obj/item/bodysnatcher = 20,
 		/obj/item/survivalcapsule = 25,
 		/obj/item/survivalcapsule/luxury = 20,
@@ -350,20 +350,20 @@
 		/obj/item/capture_crystal/random = 15,
 		/obj/item/perfect_tele = 20,
 		/obj/item/chameleon = 20,
-		/obj/item/weapon/gun/energy/sizegun = 10,
+		/obj/item/gun/energy/sizegun = 10,
 		/obj/item/slow_sizegun = 10,
-		/obj/item/weapon/implant/sizecontrol = 10,
+		/obj/item/implant/sizecontrol = 10,
 		/obj/item/clothing/under/hyperfiber/bluespace = 10,
 		/obj/item/nif/authentic = 100,
 		/obj/item/toy/bosunwhistle = 1,
-		/obj/item/weapon/cell/infinite = 20,
-		/obj/item/weapon/cell/void = 20,
-		/obj/item/weapon/cell/device/weapon/recharge/alien = 20,
-		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 3,
+		/obj/item/cell/infinite = 20,
+		/obj/item/cell/void = 20,
+		/obj/item/cell/device/weapon/recharge/alien = 20,
+		/obj/item/reagent_containers/food/snacks/jellyfishcore = 3,
 		/obj/item/denecrotizer = 20,
 		/obj/item/clothing/shoes/boots/speed = 20,
-		/obj/item/weapon/bluespace_harpoon = 20,
-		/obj/item/weapon/telecube/randomized = 50,
+		/obj/item/bluespace_harpoon = 20,
+		/obj/item/telecube/randomized = 50,
 		/obj/item/bodysnatcher = 20,
 		/obj/item/survivalcapsule = 10,
 		/obj/item/survivalcapsule/luxury = 20,
@@ -374,9 +374,9 @@
 	multiple = list(
 		/obj/item/capture_crystal/basic = 10,
 		/obj/item/capture_crystal/random = 2,
-		/obj/item/weapon/gun/energy/sizegun = 2,
+		/obj/item/gun/energy/sizegun = 2,
 		/obj/item/slow_sizegun = 2,
-		/obj/item/weapon/implant/sizecontrol = 2,
+		/obj/item/implant/sizecontrol = 2,
 		/obj/item/clothing/under/hyperfiber/bluespace = 2,
-		/obj/item/weapon/reagent_containers/food/snacks/jellyfishcore = 10
+		/obj/item/reagent_containers/food/snacks/jellyfishcore = 10
 		)

@@ -7,28 +7,28 @@
 
 /datum/supply_pack/hydro/sobaka
 	name = "Sobaka crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/sobakacubes)
+	contains = list (/obj/item/storage/box/monkeycubes/sobakacubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Sobaka crate"
 
 /datum/supply_pack/hydro/saru
 	name = "Saru crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/sarucubes)
+	contains = list (/obj/item/storage/box/monkeycubes/sarucubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Saru crate"
 
 /datum/supply_pack/hydro/sparra
 	name = "Sparra crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/sparracubes)
+	contains = list (/obj/item/storage/box/monkeycubes/sparracubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Sparra crate"
 
 /datum/supply_pack/hydro/wolpin
 	name = "Wolpin crate"
-	contains = list (/obj/item/weapon/storage/box/monkeycubes/wolpincubes)
+	contains = list (/obj/item/storage/box/monkeycubes/wolpincubes)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
 	containername = "Wolpin crate"
@@ -42,9 +42,9 @@
 /datum/supply_pack/hydro/fish
 	name = "Fish supply crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/snacks/lobster = 6,
-			/obj/item/weapon/reagent_containers/food/snacks/cuttlefish = 8,
-			/obj/item/weapon/reagent_containers/food/snacks/sliceable/monkfish = 1
+			/obj/item/reagent_containers/food/snacks/lobster = 6,
+			/obj/item/reagent_containers/food/snacks/cuttlefish = 8,
+			/obj/item/reagent_containers/food/snacks/sliceable/monkfish = 1
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/freezer
@@ -53,14 +53,14 @@
 /datum/supply_pack/hydro/fennec_food
 	name = "Fennec treats crate"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/snacks/locust = 6,
-			/obj/item/weapon/storage/box/wings/bucket = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/grub_pink = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/grub_blue = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/grub_purple = 2,
-			/obj/item/weapon/reagent_containers/food/snacks/honey_candy = 4,
-			/obj/item/weapon/reagent_containers/food/snacks/scorpion = 4,
-			/obj/item/weapon/reagent_containers/food/snacks/ant = 4
+			/obj/item/reagent_containers/food/snacks/locust = 6,
+			/obj/item/storage/box/wings/bucket = 2,
+			/obj/item/reagent_containers/food/snacks/grub_pink = 2,
+			/obj/item/reagent_containers/food/snacks/grub_blue = 2,
+			/obj/item/reagent_containers/food/snacks/grub_purple = 2,
+			/obj/item/reagent_containers/food/snacks/honey_candy = 4,
+			/obj/item/reagent_containers/food/snacks/scorpion = 4,
+			/obj/item/reagent_containers/food/snacks/ant = 4
 			)
 	cost = 20
 	containertype = /obj/structure/closet/crate/fennec

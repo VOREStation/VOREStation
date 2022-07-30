@@ -13,7 +13,7 @@
 	clicksound = "button"
 	clickvol = "30"
 	flags = OPENCONTAINER | NOREACT
-	circuit = /obj/item/weapon/circuitboard/microwave
+	circuit = /obj/item/circuitboard/microwave
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -58,10 +58,10 @@
 		// This will do until I can think of a fun recipe to use dionaea in -
 		// will also allow anything using the holder item to be microwaved into
 		// impure carbon. ~Z
-		acceptable_items |= /obj/item/weapon/holder
-		acceptable_items |= /obj/item/weapon/reagent_containers/food/snacks/grown
+		acceptable_items |= /obj/item/holder
+		acceptable_items |= /obj/item/reagent_containers/food/snacks/grown
 		acceptable_items |= /obj/item/soulstone
-		acceptable_items |= /obj/item/weapon/fuel_assembly/supermatter
+		acceptable_items |= /obj/item/fuel_assembly/supermatter
 
 	soundloop = new(list(src), FALSE)
 
@@ -108,7 +108,7 @@
 			return 1
 
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
-		if(istype(O, /obj/item/weapon/reagent_containers/spray/cleaner) || istype(O, /obj/item/weapon/soap)) // If they're trying to clean it then let them
+		if(istype(O, /obj/item/reagent_containers/spray/cleaner) || istype(O, /obj/item/soap)) // If they're trying to clean it then let them
 			user.visible_message( \
 				"<b>\The [user]</b> starts to clean the microwave.", \
 				"<span class='notice'>You start to clean the microwave.</span>" \
@@ -147,8 +147,8 @@
 				"<span class='notice'>You add \the [O] to \the [src].</span>")
 			SStgui.update_uis(src)
 			return
-	else if (istype(O,/obj/item/weapon/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
-		var/obj/item/weapon/storage/bag/plants/bag = O
+	else if (istype(O,/obj/item/storage/bag/plants)) // There might be a better way about making plant bags dump their contents into a microwave, but it works.
+		var/obj/item/storage/bag/plants/bag = O
 		var/failed = 1
 		for(var/obj/item/G in O.contents)
 			if(!G.reagents || !G.reagents.total_volume)
@@ -175,9 +175,9 @@
 		SStgui.update_uis(src)
 		return 0
 
-	else if(istype(O,/obj/item/weapon/reagent_containers/glass) || \
-			istype(O,/obj/item/weapon/reagent_containers/food/drinks) || \
-			istype(O,/obj/item/weapon/reagent_containers/food/condiment) \
+	else if(istype(O,/obj/item/reagent_containers/glass) || \
+			istype(O,/obj/item/reagent_containers/food/drinks) || \
+			istype(O,/obj/item/reagent_containers/food/condiment) \
 		)
 		if (!O.reagents)
 			return 1
@@ -186,8 +186,8 @@
 				to_chat(user, "<span class='warning'>Your [O] contains components unsuitable for cookery.</span>")
 				return 1
 		return
-	else if(istype(O,/obj/item/weapon/grab))
-		var/obj/item/weapon/grab/G = O
+	else if(istype(O,/obj/item/grab))
+		var/obj/item/grab/G = O
 		to_chat(user, "<span class='warning'>This is ridiculous. You can not fit \the [G.affecting] in this [src].</span>")
 		return 1
 	else if(O.is_screwdriver())
@@ -261,20 +261,20 @@
 	//for(var/obj/O in ((contents - component_parts) - circuit))
 	for(var/obj/O in cookingContents())
 		var/display_name = O.name
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
+		if(istype(O,/obj/item/reagent_containers/food/snacks/egg))
 			items_measures[display_name] = "egg"
 			items_measures_p[display_name] = "eggs"
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/tofu))
+		if(istype(O,/obj/item/reagent_containers/food/snacks/tofu))
 			items_measures[display_name] = "tofu chunk"
 			items_measures_p[display_name] = "tofu chunks"
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/meat)) //any meat
+		if(istype(O,/obj/item/reagent_containers/food/snacks/meat)) //any meat
 			items_measures[display_name] = "slab of meat"
 			items_measures_p[display_name] = "slabs of meat"
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
+		if(istype(O,/obj/item/reagent_containers/food/snacks/donkpocket))
 			display_name = "Turnovers"
 			items_measures[display_name] = "turnover"
 			items_measures_p[display_name] = "turnovers"
-		if(istype(O,/obj/item/weapon/reagent_containers/food/snacks/carpmeat))
+		if(istype(O,/obj/item/reagent_containers/food/snacks/carpmeat))
 			items_measures[display_name] = "fillet of meat"
 			items_measures_p[display_name] = "fillets of meat"
 		items_counts[display_name]++
@@ -337,20 +337,20 @@
 		var/list/items_measures_p = new
 		for (var/obj/O in ((contents - component_parts) - circuit))
 			var/display_name = O.name
-			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/egg))
+			if (istype(O,/obj/item/reagent_containers/food/snacks/egg))
 				items_measures[display_name] = "egg"
 				items_measures_p[display_name] = "eggs"
-			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/tofu))
+			if (istype(O,/obj/item/reagent_containers/food/snacks/tofu))
 				items_measures[display_name] = "tofu chunk"
 				items_measures_p[display_name] = "tofu chunks"
-			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/meat)) //any meat
+			if (istype(O,/obj/item/reagent_containers/food/snacks/meat)) //any meat
 				items_measures[display_name] = "slab of meat"
 				items_measures_p[display_name] = "slabs of meat"
-			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/donkpocket))
+			if (istype(O,/obj/item/reagent_containers/food/snacks/donkpocket))
 				display_name = "Turnovers"
 				items_measures[display_name] = "turnover"
 				items_measures_p[display_name] = "turnovers"
-			if (istype(O,/obj/item/weapon/reagent_containers/food/snacks/carpmeat))
+			if (istype(O,/obj/item/reagent_containers/food/snacks/carpmeat))
 				items_measures[display_name] = "fillet of meat"
 				items_measures_p[display_name] = "fillets of meat"
 			items_counts[display_name]++
@@ -469,10 +469,10 @@
 
 	//Any leftover reagents are divided amongst the foods
 	var/total = reagents.total_volume
-	for(var/obj/item/weapon/reagent_containers/food/snacks/S in cooked_items)
+	for(var/obj/item/reagent_containers/food/snacks/S in cooked_items)
 		reagents.trans_to_holder(S.reagents, total/cooked_items.len)
 
-	for(var/obj/item/weapon/reagent_containers/food/snacks/S in cookingContents())
+	for(var/obj/item/reagent_containers/food/snacks/S in cookingContents())
 		S.cook()
 
 	dispose(0) //clear out anything left
@@ -492,16 +492,16 @@
 	if(item_level == 0)
 		for (var/obj/O in cookingContents())
 			if ( \
-					!istype(O,/obj/item/weapon/reagent_containers/food) && \
-					!istype(O, /obj/item/weapon/grown) \
+					!istype(O,/obj/item/reagent_containers/food) && \
+					!istype(O, /obj/item/grown) \
 				)
 				return 1
 		return 0
 	if(item_level == 1)
 		for (var/obj/O in cookingContents())
 			if ( \
-					!istype(O, /obj/item/weapon/reagent_containers/food) && \
-					!istype(O, /obj/item/weapon/grown) && \
+					!istype(O, /obj/item/reagent_containers/food) && \
+					!istype(O, /obj/item/grown) && \
 					!istype(O, /obj/item/slime_extract) && \
 					!istype(O, /obj/item/organ) && \
 					!istype(O, /obj/item/stack/material) \
@@ -569,7 +569,7 @@
 	src.ejectpai() // If it broke, time to yeet the PAI.
 
 /obj/machinery/microwave/proc/fail()
-	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
+	var/obj/item/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
 	var/amount = 0
 	for (var/obj/O in cookingContents() - ffuu)
 		amount++
@@ -577,8 +577,8 @@
 			var/id = O.reagents.get_master_reagent_id()
 			if(id)
 				amount+=O.reagents.get_reagent_amount(id)
-		if(istype(O, /obj/item/weapon/holder))
-			var/obj/item/weapon/holder/H = O
+		if(istype(O, /obj/item/holder))
+			var/obj/item/holder/H = O
 			if(H.held_mob)
 				qdel(H.held_mob)
 		qdel(O)
@@ -621,7 +621,7 @@
 	name = "deluxe microwave"
 	icon = 'icons/obj/deluxemicrowave.dmi'
 	icon_state = "mw"
-	circuit = /obj/item/weapon/circuitboard/microwave/advanced
+	circuit = /obj/item/circuitboard/microwave/advanced
 	circuit_item_capacity = 100
 	item_level = 1
 
@@ -631,7 +631,7 @@
 
 /datum/recipe/splat // We use this to handle cooking micros (or mice, etc) in a microwave. Janky but it works better than snowflake code to handle the same thing.
 	items = list(
-		/obj/item/weapon/holder
+		/obj/item/holder
 	)
 	result = /obj/effect/decal/cleanable/blood/gibs
 
@@ -643,7 +643,7 @@
 	. = ..()
 
 /datum/recipe/splat/make_food(obj/container)
-	for(var/obj/item/weapon/holder/H in container)
+	for(var/obj/item/holder/H in container)
 		if(H.held_mob)
 			to_chat(H.held_mob, "<span class='danger'>You hear an earsplitting humming and your head aches!</span>")
 			qdel(H.held_mob)

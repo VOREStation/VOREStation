@@ -109,13 +109,13 @@
 /obj/item/paper/Initialize(mapload, var/text, var/title)
 	. = ..()
 
-    if(istext(title))
-        name = title
-    if(istext(text))
-        info = text
+	if(istext(title))
+		name = title
+	if(istext(text))
+		info = text
 
-    if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
-        was_maploaded = TRUE
+	if(mapload) // Jank, but we do this to prevent maploaded papers from somehow stacking across rounds if re-added to the board by a player.
+		was_maploaded = TRUE
 
 /obj/item/paper/New(var/newloc, var/text, var/title)
 	..()

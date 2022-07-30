@@ -171,7 +171,7 @@
 	var/open_state
 	var/closed_state
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/New()
+/obj/item/storage/box/fancy/chewables/tobacco/nico/New()
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
@@ -197,7 +197,7 @@
 		update_icon()
 	..()
 
-/obj/item/weapon/storage/box/fancy/chewables/tobacco/nico/close(mob/user as mob)
+/obj/item/storage/box/fancy/chewables/tobacco/nico/close(mob/user as mob)
 	open = FALSE
 	if(contents.len == 0)
 		icon_state = "[initial(icon_state)]_empty"

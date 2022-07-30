@@ -27,9 +27,9 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 /obj/structure/janitorialcart/proc/equip_janicart_item(mob/user, obj/item/I)
 	if(!equippable_item_whitelist)
 		equippable_item_whitelist = typecacheof(list(
-			/obj/item/weapon/storage/bag/trash,
-			/obj/item/weapon/mop,
-			/obj/item/weapon/reagent_containers/spray,
+			/obj/item/storage/bag/trash,
+			/obj/item/mop,
+			/obj/item/reagent_containers/spray,
 			/obj/item/lightreplacer,
 			/obj/item/clothing/suit/caution,
 		))
@@ -42,21 +42,21 @@ GLOBAL_LIST_BOILERPLATE(all_janitorial_carts, /obj/structure/janitorialcart)
 		to_chat(user, "<span class='warning'>[I] is stuck to your hand.</span>")
 		return FALSE
 
-	if(istype(I, /obj/item/weapon/storage/bag/trash))
+	if(istype(I, /obj/item/storage/bag/trash))
 		if(mybag)
 			to_chat(user, "<span class='warning'>[src] already has \an [I].</span>")
 			return FALSE
 		mybag = I
 		setTguiIcon("mybag", mybag)
 
-	else if(istype(I, /obj/item/weapon/mop))
+	else if(istype(I, /obj/item/mop))
 		if(mymop)
 			to_chat(user, "<span class='warning'>[src] already has \an [I].</span>")
 			return FALSE
 		mymop = I
 		setTguiIcon("mymop", mymop)
 
-	else if(istype(I, /obj/item/weapon/reagent_containers/spray))
+	else if(istype(I, /obj/item/reagent_containers/spray))
 		if(myspray)
 			to_chat(user, "<span class='warning'>[src] already has \an [I].</span>")
 			return FALSE

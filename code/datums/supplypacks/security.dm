@@ -291,7 +291,7 @@
 /datum/supply_pack/security/riot_sprayer
 	name = "Gear - Riot sprayer"
 	contains = list(
-			/obj/item/weapon/watertank/pepperspray
+			/obj/item/watertank/pepperspray
 			)
 	cost = 40
 	containertype = /obj/structure/closet/crate/secure/lawson

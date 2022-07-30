@@ -61,14 +61,14 @@
 		)
 	starts_with = list(/obj/item/reagent_containers/food/snacks/egg = 12)
 
-/obj/item/weapon/storage/fancy/egg_box/New()
+/obj/item/storage/fancy/egg_box/New()
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
 	..()
 
-/obj/item/weapon/storage/fancy/egg_box/update_icon()
+/obj/item/storage/fancy/egg_box/update_icon()
 	cut_overlays()
 	if(open)
 		icon_state = open_state
@@ -77,14 +77,14 @@
 	else
 		icon_state = closed_state
 
-/obj/item/weapon/storage/fancy/egg_box/open(mob/user as mob)
+/obj/item/storage/fancy/egg_box/open(mob/user as mob)
 	if(open)
 		return
 	open = TRUE
 	update_icon()
 	..()
 
-/obj/item/weapon/storage/fancy/egg_box/close(mob/user as mob)
+/obj/item/storage/fancy/egg_box/close(mob/user as mob)
 	open = FALSE
 	update_icon()
 	..()
@@ -409,14 +409,14 @@
 	reagents.trans_to_obj(C, (reagents.total_volume/contents.len))
 	return ..()
 
-/obj/item/weapon/storage/fancy/cigar/New()
+/obj/item/storage/fancy/cigar/New()
 	if(!open_state)
 		open_state = "[initial(icon_state)]0"
 	if(!closed_state)
 		closed_state = "[initial(icon_state)]"
 	..()
 
-/obj/item/weapon/storage/fancy/cigar/update_icon()
+/obj/item/storage/fancy/cigar/update_icon()
 	cut_overlays()
 	if(open)
 		icon_state = open_state
@@ -425,7 +425,7 @@
 	else
 		icon_state = closed_state
 
-/obj/item/weapon/storage/fancy/cigar/open(mob/user as mob)
+/obj/item/storage/fancy/cigar/open(mob/user as mob)
 	if(open)
 		return
 	open = TRUE

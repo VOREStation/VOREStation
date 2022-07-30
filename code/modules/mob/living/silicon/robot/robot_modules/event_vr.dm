@@ -1,34 +1,34 @@
-/obj/item/weapon/robot_module/robot/stray
+/obj/item/robot_module/robot/stray
 	name = "stray robot module"
 	hide_on_manifest = 1
 	sprites = list(
 					"Stray" = "stray"
 				)
 
-/obj/item/weapon/robot_module/robot/stray/New(var/mob/living/silicon/robot/R)
+/obj/item/robot_module/robot/stray/New(var/mob/living/silicon/robot/R)
 	..()
 	// General
 	src.modules += new /obj/item/dogborg/boop_module(src)
 
 	// Sec
-	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
-	src.modules += new /obj/item/weapon/dogborg/jaws/big(src)
-	src.modules += new /obj/item/weapon/melee/baton/robot(src)
-	src.modules += new /obj/item/weapon/dogborg/pounce(src)
+	src.modules += new /obj/item/handcuffs/cyborg(src)
+	src.modules += new /obj/item/dogborg/jaws/big(src)
+	src.modules += new /obj/item/melee/baton/robot(src)
+	src.modules += new /obj/item/dogborg/pounce(src)
 
 	// Med
 	src.modules += new /obj/item/healthanalyzer(src)
-	src.modules += new /obj/item/weapon/shockpaddles/robot/hound(src)
+	src.modules += new /obj/item/shockpaddles/robot/hound(src)
 
 	// Engi
-	src.modules += new /obj/item/weapon/weldingtool/electric/mounted(src)
-	src.modules += new /obj/item/weapon/tool/screwdriver/cyborg(src)
-	src.modules += new /obj/item/weapon/tool/wrench/cyborg(src)
-	src.modules += new /obj/item/weapon/tool/wirecutters/cyborg(src)
+	src.modules += new /obj/item/weldingtool/electric/mounted(src)
+	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
+	src.modules += new /obj/item/tool/wrench/cyborg(src)
+	src.modules += new /obj/item/tool/wirecutters/cyborg(src)
 	src.modules += new /obj/item/multitool(src)
 
 	// Boof
-	src.emag 	 = new /obj/item/weapon/gun/energy/retro/mounted(src)
+	src.emag 	 = new /obj/item/gun/energy/retro/mounted(src)
 
 	var/datum/matter_synth/water = new /datum/matter_synth(500) //Starts full and has a max of 500
 	water.name = "Water reserves"
@@ -36,7 +36,7 @@
 	R.water_res = water
 	synths += water
 
-	var/obj/item/weapon/reagent_containers/borghypo/hound/lost/H = new /obj/item/weapon/reagent_containers/borghypo/hound/lost(src)
+	var/obj/item/reagent_containers/borghypo/hound/lost/H = new /obj/item/reagent_containers/borghypo/hound/lost(src)
 	H.water = water
 	src.modules += H
 

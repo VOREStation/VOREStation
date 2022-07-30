@@ -30,8 +30,8 @@
 	icon = null
 	icon_state = ""
 	. = ..()
-	
-	dress_up()	
+
+	dress_up()
 	turntable()
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/proc/dress_up()
@@ -42,9 +42,9 @@
 			var/obj/item/clothing/C = I
 			C.species_restricted = null
 		equip_to_appropriate_slot(I)
-	
-	if(istype(back, /obj/item/weapon/rig))
-		var/obj/item/weapon/rig/rig = back
+
+	if(istype(back, /obj/item/rig))
+		var/obj/item/rig/rig = back
 		rig.toggle_seals(src)
 
 /mob/living/carbon/human/dummy/mannequin/autoequip/proc/turntable()

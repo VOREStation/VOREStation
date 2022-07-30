@@ -33,7 +33,7 @@
 	movement_cooldown = 0
 
 	meat_amount = 4
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
+	meat_type = /obj/item/reagent_containers/food/snacks/meat/chicken
 
 	melee_damage_lower = 2
 	melee_damage_upper = 10

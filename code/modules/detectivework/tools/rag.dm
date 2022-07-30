@@ -141,7 +141,7 @@
 	if(!proximity)
 		return
 
-	if(istype(A, /obj/structure/reagent_dispensers) || istype(A, /obj/item/weapon/reagent_containers/glass/bucket) || istype(A, /obj/structure/mopbucket))  //VOREStation Edit - "Allows rags to be used on buckets and mopbuckets"
+	if(istype(A, /obj/structure/reagent_dispensers) || istype(A, /obj/item/reagent_containers/glass/bucket) || istype(A, /obj/structure/mopbucket))  //VOREStation Edit - "Allows rags to be used on buckets and mopbuckets"
 		if(!reagents.get_free_space())
 			to_chat(user, "<span class='warning'>\The [src] is already soaked.</span>")
 			return

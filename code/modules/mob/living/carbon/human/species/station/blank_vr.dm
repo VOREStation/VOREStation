@@ -69,14 +69,14 @@
 	. = ..()
 	if(breath_type != "oxygen")
 		H.equip_to_slot_or_del(new /obj/item/clothing/mask/breath(H), slot_wear_mask)
-		var/obj/item/weapon/tank/tankpath
+		var/obj/item/tank/tankpath
 		if(breath_type == "phoron")
-			tankpath = /obj/item/weapon/tank/vox
+			tankpath = /obj/item/tank/vox
 		else
-			tankpath = text2path("/obj/item/weapon/tank/" + breath_type)
+			tankpath = text2path("/obj/item/tank/" + breath_type)
 
 		if(tankpath)
 			H.equip_to_slot_or_del(new tankpath(H), slot_r_hand)
 			H.internal = H.r_hand
-			if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
+			if(istype(H.internal,/obj/item/tank) && H.internals)
 				H.internals.icon_state = "internal1"

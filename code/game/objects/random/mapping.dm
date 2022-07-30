@@ -214,7 +214,7 @@
 				/obj/structure/closet/crate/engineering
 			),
 			prob(5);list(
-				/obj/item/weapon/pickaxe/drill,
+				/obj/item/pickaxe/drill,
 				/obj/item/clothing/suit/space/void/mining,
 				/obj/item/clothing/head/helmet/space/void/mining,
 				/obj/structure/closet/crate/engineering
@@ -712,11 +712,11 @@
 				/obj/structure/closet/crate/freezer/centauri //CENTAURI SNACKS
 			),
 			prob(10);list(
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
-				/obj/item/weapon/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
+				/obj/item/storage/box/donkpockets,
 				/obj/structure/closet/crate/freezer/centauri //CENTAURI DONK-POCKETS
 			),
 			prob(10);list(
@@ -1497,14 +1497,14 @@
 
 /obj/random/multiple/underdark/miningdrills/item_to_spawn()
 	return pick(
-				prob(10);list(/obj/item/weapon/pickaxe/silver),
-				prob(8);list(/obj/item/weapon/pickaxe/drill),
-				prob(6);list(/obj/item/weapon/pickaxe/advdrill),
-				prob(6);list(/obj/item/weapon/pickaxe/jackhammer),
-				prob(5);list(/obj/item/weapon/pickaxe/gold),
-				prob(4);list(/obj/item/weapon/pickaxe/plasmacutter),
-				prob(2);list(/obj/item/weapon/pickaxe/diamond),
-				prob(1);list(/obj/item/weapon/pickaxe/diamonddrill)
+				prob(10);list(/obj/item/pickaxe/silver),
+				prob(8);list(/obj/item/pickaxe/drill),
+				prob(6);list(/obj/item/pickaxe/advdrill),
+				prob(6);list(/obj/item/pickaxe/jackhammer),
+				prob(5);list(/obj/item/pickaxe/gold),
+				prob(4);list(/obj/item/pickaxe/plasmacutter),
+				prob(2);list(/obj/item/pickaxe/diamond),
+				prob(1);list(/obj/item/pickaxe/diamonddrill)
 				)
 
 /obj/random/multiple/underdark/ores
@@ -1516,84 +1516,84 @@
 /obj/random/multiple/underdark/ores/item_to_spawn()
 	return pick(
 				prob(9);list(
-							/obj/item/weapon/storage/bag/ore,
-							/obj/item/weapon/shovel,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/glass,
-							/obj/item/weapon/ore/hydrogen,
-							/obj/item/weapon/ore/hydrogen,
-							/obj/item/weapon/ore/hydrogen,
-							/obj/item/weapon/ore/hydrogen,
-							/obj/item/weapon/ore/hydrogen,
-							/obj/item/weapon/ore/hydrogen
+							/obj/item/storage/bag/ore,
+							/obj/item/shovel,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/glass,
+							/obj/item/ore/hydrogen,
+							/obj/item/ore/hydrogen,
+							/obj/item/ore/hydrogen,
+							/obj/item/ore/hydrogen,
+							/obj/item/ore/hydrogen,
+							/obj/item/ore/hydrogen
 							),
 				prob(7);list(
-							/obj/item/weapon/storage/bag/ore,
-							/obj/item/weapon/pickaxe,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium,
-							/obj/item/weapon/ore/osmium
+							/obj/item/storage/bag/ore,
+							/obj/item/pickaxe,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium,
+							/obj/item/ore/osmium
 							),
 				prob(4);list(
 							/obj/item/clothing/suit/radiation,
 							/obj/item/clothing/head/radiation,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium,
-							/obj/item/weapon/ore/uranium),
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium,
+							/obj/item/ore/uranium),
 				prob(2);list(
 							/obj/item/flashlight/lantern,
 							/obj/item/clothing/glasses/material,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond,
-							/obj/item/weapon/ore/diamond
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond,
+							/obj/item/ore/diamond
 							),
 				prob(1);list(
-							/obj/item/weapon/mining_scanner,
-							/obj/item/weapon/shovel/spade,
-							/obj/item/weapon/ore/verdantium,
-							/obj/item/weapon/ore/verdantium,
-							/obj/item/weapon/ore/verdantium,
-							/obj/item/weapon/ore/verdantium,
-							/obj/item/weapon/ore/verdantium
+							/obj/item/mining_scanner,
+							/obj/item/shovel/spade,
+							/obj/item/ore/verdantium,
+							/obj/item/ore/verdantium,
+							/obj/item/ore/verdantium,
+							/obj/item/ore/verdantium,
+							/obj/item/ore/verdantium
 							)
 				)
 
@@ -1614,10 +1614,10 @@
 							/obj/item/clothing/head/pirate
 							),
 				prob(4);list(
-							/obj/item/weapon/storage/bag/cash,
-							/obj/item/weapon/spacecash/c500,
-							/obj/item/weapon/spacecash/c100,
-							/obj/item/weapon/spacecash/c50
+							/obj/item/storage/bag/cash,
+							/obj/item/spacecash/c500,
+							/obj/item/spacecash/c100,
+							/obj/item/spacecash/c50
 							),
 				prob(3);list(
 							/obj/item/clothing/head/hardhat/orange,

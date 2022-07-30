@@ -14,16 +14,16 @@
 	var/isactive = FALSE
 	var/wasactive = FALSE		//controls automatic reboot after power-loss
 	var/alwaysactive = FALSE	//for a special subtype
-	
+
 	//how long it takes us to reboot if we're shut down by an EMP
 	var/reboot_delay_min = 50
 	var/reboot_delay_max = 75
-	
+
 	var/hatch_open = FALSE
 	var/wires_intact = TRUE
 	var/list/areas_added
 	var/field_type = /obj/structure/atmospheric_retention_field
-	circuit = /obj/item/weapon/circuitboard/arf_generator
+	circuit = /obj/item/circuitboard/arf_generator
 
 /obj/machinery/atmospheric_field_generator/impassable
 	desc = "An older model of ARF-G that generates an impassable retention field. Works just as well as the modern variety, but is slightly more energy-efficient.<br><br>Note: prolonged immersion in active atmospheric retention fields may have negative long-term health consequences."
@@ -40,7 +40,7 @@
 	active_power_usage = 1500
 	field_type = /obj/structure/atmospheric_retention_field/impassable
 
-/obj/machinery/atmospheric_field_generator/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/atmospheric_field_generator/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.is_crowbar() && isactive)
 		if(!src) return
 		to_chat(user, "<span class='warning'>You can't open the ARF-G whilst it's running!</span>")
@@ -65,9 +65,9 @@
 		wires_intact = !wires_intact
 		update_icon()
 		return
-	if(hatch_open && istype(W,/obj/item/weapon/weldingtool))
+	if(hatch_open && istype(W,/obj/item/weldingtool))
 		if(!src) return
-		var/obj/item/weapon/weldingtool/WT = W
+		var/obj/item/weldingtool/WT = W
 		if(!WT.isOn()) return
 		if(WT.get_fuel() < 5) // uses up 5 fuel.
 			to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
@@ -140,7 +140,7 @@
 		src.visible_message("<span class='warning'>The ARF-G crackles to life!</span>","<span class='warning'>You hear an ARF-G coming online!</span>")
 		update_use_power(USE_POWER_ACTIVE)
 	return
-	
+
 /obj/machinery/atmospheric_field_generator/proc/disable_field()
 	if(isactive)
 		icon_state = "arfg_off"
@@ -150,7 +150,7 @@
 		update_use_power(USE_POWER_IDLE)
 		isactive = 0
 	return
-	
+
 /obj/machinery/atmospheric_field_generator/Initialize()
 	. = ..()
 	//Delete ourselves if we find extra mapped in arfgs
@@ -158,7 +158,7 @@
 		if(F != src)
 			log_debug("Duplicate ARFGS at [x],[y],[z]")
 			return INITIALIZE_HINT_QDEL
-	
+
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
@@ -202,11 +202,11 @@
 	for(var/i = 1 to 4)
 		var/image/I = image(icon, "[basestate][connections[i]]", dir = 1<<(i-1))
 		add_overlay(I)
-	
+
 	return
 
 /obj/structure/atmospheric_retention_field/Initialize()
-	. = ..()	
+	. = ..()
 	update_nearby_tiles() //Force ZAS update
 	update_connections(1)
 	update_icon()

@@ -331,7 +331,7 @@ var/last_chew = 0
 			target.hud_used.move_intent.icon_state = "walking"
 	return 1
 
-/obj/item/weapon/handcuffs/cable/plantfiber
+/obj/item/handcuffs/cable/plantfiber
 	name = "rope bindings"
 	desc = "A length of rope fashioned to hold someone's hands together."
 	color = "#7e6442"

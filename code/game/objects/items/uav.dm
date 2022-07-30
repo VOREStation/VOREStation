@@ -9,7 +9,7 @@
 	icon = 'icons/obj/uav.dmi'
 	icon_state = "uav"
 
-	var/obj/item/weapon/cell/cell
+	var/obj/item/cell/cell
 	var/cell_type = null //Can put a starting cell here
 
 	density = TRUE //Is dense, but not anchored, so you can swap with it
@@ -44,7 +44,7 @@
 	var/no_masters_time = 0
 
 /obj/item/uav/loaded
-	cell_type = /obj/item/weapon/cell/high
+	cell_type = /obj/item/cell/high
 
 /obj/item/uav/Initialize()
 	. = ..()
@@ -126,7 +126,7 @@
 			cell.forceMove(get_turf(src))
 			cell = null
 
-	else if(istype(I, /obj/item/weapon/cell) && !cell)
+	else if(istype(I, /obj/item/cell) && !cell)
 		if(do_after(user, 3 SECONDS, src))
 			to_chat(user, "<span class='notice'>You insert [I] into [nickname].</span>")
 			playsound(src, 'sound/items/deconstruct.ogg', 50, 1)
@@ -135,7 +135,7 @@
 			I.forceMove(src)
 			cell = I
 
-	else if(istype(I, /obj/item/weapon/pen) || istype(I, /obj/item/flashlight/pen))
+	else if(istype(I, /obj/item/pen) || istype(I, /obj/item/flashlight/pen))
 		var/tmp_label = sanitizeSafe(tgui_input_text(user, "Enter a nickname for [src]", "Nickname", nickname, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(length(tmp_label) > 50 || length(tmp_label) < 3)
 			to_chat(user, "<span class='notice'>The nickname must be between 3 and 50 characters.</span>")

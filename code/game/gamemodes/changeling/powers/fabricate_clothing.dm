@@ -264,7 +264,7 @@ var/global/list/changeling_fabricated_clothing = list(
 	access = null
 	canremove = FALSE
 
-/obj/item/weapon/card/id/syndicate/changeling/New(mob/user as mob)
+/obj/item/card/id/syndicate/changeling/New(mob/user as mob)
 	..()
 	registered_user = user
 

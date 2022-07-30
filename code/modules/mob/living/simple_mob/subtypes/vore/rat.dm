@@ -46,7 +46,7 @@
 	friendly = list("nuzzles", "licks", "noses softly at", "noseboops", "headbumps against", "leans on", "nibbles affectionately on")
 
 	meat_amount = 6
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	old_x = -16
 	old_y = 0
@@ -105,7 +105,7 @@
 
 	if(hunger > 0 && life_since_foodscan++ > 5) //Only look for floor food when hungry.
 		life_since_foodscan = 0
-		for(var/obj/item/weapon/reagent_containers/food/snacks/S in oview(src,3)) //Accept thrown offerings and scavenge surroundings.
+		for(var/obj/item/reagent_containers/food/snacks/S in oview(src,3)) //Accept thrown offerings and scavenge surroundings.
 			if(get_dist(src,S) <=1)
 				visible_emote("hungrily devours \the [S].")
 				playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
@@ -170,7 +170,7 @@
 			food = null
 
 /mob/living/simple_mob/vore/aggressive/rat/tame/attackby(var/obj/item/O, var/mob/user) // Feed the rat your food to satisfy it.
-	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks))
+	if(istype(O, /obj/item/reagent_containers/food/snacks))
 		qdel(O)
 		playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 		hunger = 0
@@ -183,7 +183,7 @@
 		return null
 	else if(ishuman(found_atom) && will_eat(found_atom))
 		var/mob/living/carbon/human/H = found_atom
-		for(var/obj/item/weapon/reagent_containers/food/snacks/S in H)
+		for(var/obj/item/reagent_containers/food/snacks/S in H)
 			if(!food)
 				visible_emote("sniffs around the air intently, seeming to have caught a whiff of food!")
 			if(resting)

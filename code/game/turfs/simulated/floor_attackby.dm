@@ -213,9 +213,9 @@
 		return FALSE
 	return TRUE
 
-/turf/simulated/floor/proc/do_remove_plating(obj/item/weapon/W, mob/user, base_type)
-	if(istype(W, /obj/item/weapon/weldingtool))
-		var/obj/item/weapon/weldingtool/WT = W
+/turf/simulated/floor/proc/do_remove_plating(obj/item/W, mob/user, base_type)
+	if(istype(W, /obj/item/weldingtool))
+		var/obj/item/weldingtool/WT = W
 		if(!WT.remove_fuel(5,user))
 			to_chat(user, "<span class='warning'>You don't have enough fuel in [WT] finish cutting through [src].</span>")
 			return

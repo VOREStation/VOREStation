@@ -13,14 +13,14 @@
 	contains = list(
 			/obj/item/clothing/mask/muzzle,
 			/obj/item/clothing/glasses/sunglasses/blindfold,
-			/obj/item/weapon/handcuffs/fuzzy,
-			/obj/item/weapon/tape_roll,
+			/obj/item/handcuffs/fuzzy,
+			/obj/item/tape_roll,
 			/obj/item/stack/cable_coil/random,
 			/obj/item/clothing/accessory/collar/shock,
 			/obj/item/clothing/suit/straight_jacket,
-			/obj/item/weapon/handcuffs/legcuffs/fuzzy,
-			/obj/item/weapon/melee/fluff/holochain/mass,
-			/obj/item/weapon/material/twohanded/riding_crop,
+			/obj/item/handcuffs/legcuffs/fuzzy,
+			/obj/item/melee/fluff/holochain/mass,
+			/obj/item/material/twohanded/riding_crop,
 			/obj/item/clothing/under/fluff/latexmaid
 			)
 	containertype = /obj/structure/closet/crate
@@ -33,8 +33,8 @@
 			/obj/item/clothing/head/fluff/wolfgirl = 1,
 			/obj/item/clothing/shoes/fluff/wolfgirl = 1,
 			/obj/item/clothing/under/fluff/wolfgirl = 1,
-			/obj/item/weapon/melee/fluffstuff/wolfgirlsword = 1,
-			/obj/item/weapon/shield/fluff/wolfgirlshield = 1
+			/obj/item/melee/fluffstuff/wolfgirlsword = 1,
+			/obj/item/shield/fluff/wolfgirlshield = 1
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate
@@ -91,7 +91,7 @@
 /datum/supply_pack/recreation/smoleworld
 	name = "Smole Bulding Bricks"
 	contains = list(
-			/obj/item/weapon/storage/smolebrickcase, /obj/item/weapon/storage/smolebrickcase,
+			/obj/item/storage/smolebrickcase, /obj/item/storage/smolebrickcase,
 			)
 	cost = 50
 	containertype = /obj/structure/closet/crate
@@ -101,7 +101,7 @@
 	name = "Snack planets pack"
 	num_contained = 4
 	contains = list(
-			/obj/item/weapon/storage/bagoplanets, /obj/item/weapon/storage/bagoplanets
+			/obj/item/storage/bagoplanets, /obj/item/storage/bagoplanets
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate

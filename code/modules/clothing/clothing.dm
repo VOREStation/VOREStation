@@ -589,6 +589,7 @@
 		SPECIES_VOX = 'icons/inventory/face/mob_vox.dmi',
 		SPECIES_TAJ = 'icons/inventory/face/mob_tajaran.dmi',
 		SPECIES_UNATHI = 'icons/inventory/face/mob_unathi.dmi'
+		)
 
 
 	var/voicechange = 0
@@ -1022,10 +1023,11 @@
 		to_chat(usr, "This suit does not have any sensors.")
 		return 0
 
-	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
-	var/switchMode = tgui_input_list(usr, "Select a sensor mode:", "Suit Sensor Mode", modes)	if(get_dist(usr, src) > 1)
-		to_chat(usr, "You have moved too far away.")
-		return
+		var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
+		var/switchMode = tgui_input_list(usr, "Select a sensor mode:", "Suit Sensor Mode", modes)
+		if(get_dist(usr, src) > 1)
+			to_chat(usr, "You have moved too far away.")
+			return
 	sensor_mode = modes.Find(switchMode) - 1
 
 	if (src.loc == usr)

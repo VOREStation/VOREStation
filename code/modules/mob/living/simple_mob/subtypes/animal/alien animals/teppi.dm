@@ -65,7 +65,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	health = 600
 	movement_cooldown = 2
 	meat_amount = 12
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	response_help = "pets"
 	response_disarm = "rudely paps"
@@ -131,7 +131,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	has_langs = list("Teppi")
 	say_list_type = /datum/say_list/teppi
 	player_msg = "Teppi are large omnivorous quadrupeds. You have four toes on each paw, a long, strong tail, and are quite tough and powerful. You’re a lot more intimidating than you are actually harmful though. Your kind are ordinarily rather passive, only really rising to violence when someone does violence to you or others like you. You’re not stupid though, you can commiunicate with others of your kind, and form bonds with those who are kind to you, be they Teppi or otherwise. <br>- - - - -<br><span class='notice'>While you may have access to galactic common, this is purely meant for making it so you can understand people in an OOC manner, for facilitating roleplay. You almost certainly should not be speaking to people or roleplaying as though you understand everything everyone says perfectly, but it's not unreasonable to be able to intuit intent and such through people's tones when they speak. Teppi are kind of smart, but they are animals, and should be roleplayed as such.</span> <span class='warning'>ADDITIONALLY, you have the ability to produce offspring if you're well fed enough every once in a while, and the ability to disable this from happening to you. These verbs exist for to preserve the mechanical functionality of the mob you are playing. You should be aware of your surroundings when you use this verb, and NEVER use it to prefbreak or be disruptive. If in doubt, don't use it.</span> <span class='notice'>Also, to note, AI Teppi will never initiate breeding with player Teppi.</span>"
-	loot_list = list(/obj/item/weapon/bone/horn = 100)
+	loot_list = list(/obj/item/bone/horn = 100)
 	internal_organs = list(\
 		/obj/item/organ/internal/brain,\
 		/obj/item/organ/internal/heart,\
@@ -143,7 +143,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 	butchery_loot = list(\
 		/obj/item/stack/animalhide = 3,\
-		/obj/item/weapon/bone/horn = 1\
+		/obj/item/bone/horn = 1\
 		)
 
 /////////////////////////////////////// Vore stuff///////////////////////////////////////////
@@ -486,9 +486,9 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	if(stat == DEAD)
 		return ..()
 	/////GRABS AND HOLDERS/////
-	if(istype(O, /obj/item/weapon/grab))
+	if(istype(O, /obj/item/grab))
 		return ..()
-	if(istype(O, /obj/item/weapon/holder))
+	if(istype(O, /obj/item/holder))
 		return ..()
 	if(user.a_intent != I_HELP) //be gentle
 		if(resting)
@@ -501,7 +501,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 		if(teppi_shear(user, O))
 			return
 	/////FOOD/////
-	if(istype(O, /obj/item/weapon/reagent_containers/food))
+	if(istype(O, /obj/item/reagent_containers/food))
 		if(resting)
 			to_chat(user, "<span class='notice'>\The [src] is napping, and doesn't respond to \the [O].</span>")
 			return
@@ -552,7 +552,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			to_chat(user, "<span class='notice'>\The [src] seems satisfied.</span>")
 		return
 	/////WEAPONS/////
-	if(istype(O, /obj/item/weapon/material/knife))
+	if(istype(O, /obj/item/material/knife))
 		if(client)
 			return ..()
 		if(resting)
@@ -727,8 +727,8 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 
 /mob/living/simple_mob/vore/alienanimals/teppi/proc/teppi_shear(var/mob/user as mob, tool)
 	var/sheartime = 3 SECONDS
-	if(istype(tool, /obj/item/weapon/material/knife))
-		var/obj/item/weapon/material/knife/K = tool
+	if(istype(tool, /obj/item/material/knife))
+		var/obj/item/material/knife/K = tool
 		if(K.default_material == MAT_PLASTIC || K.default_material == MAT_FLINT)
 			sheartime *= 2
 		if(K.dulled)
@@ -737,7 +737,7 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 			sheartime *= 2
 		if(K.edge)
 			sheartime *= 0.5
-	else if(istype(tool, /obj/item/weapon/tool/wirecutters))
+	else if(istype(tool, /obj/item/tool/wirecutters))
 		sheartime *= 2
 	else
 		return FALSE

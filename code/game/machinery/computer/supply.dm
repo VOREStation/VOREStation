@@ -160,7 +160,7 @@
 
 /obj/machinery/computer/supplycomp/tgui_static_data(mob/user)
 	var/list/data = ..()
-	
+
 	var/list/pack_list = list()
 	for(var/pack_name in SSsupply.supply_pack)
 		var/datum/supply_pack/P = SSsupply.supply_pack[pack_name]
@@ -246,7 +246,7 @@
 				idname = usr.real_name
 				idrank = "Stationbound synthetic"
 
-			var/obj/item/weapon/paper/reqform = new /obj/item/weapon/paper(loc)
+			var/obj/item/paper/reqform = new /obj/item/paper(loc)
 			reqform.name = "Requisition Form - [S.name]"
 			reqform.info += "<h3>[station_name()] Supply Requisition Form</h3><hr>"
 			reqform.info += "INDEX: #[SSsupply.ordernum]<br>"

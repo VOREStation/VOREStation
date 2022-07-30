@@ -46,7 +46,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 /*
  * Advanced Mop
  */
-/obj/item/weapon/mop/advanced
+/obj/item/mop/advanced
 	name = "advanced mop"
 	desc = "No stain will go unclean."
 	icon = 'icons/obj/janitor.dmi'
@@ -59,11 +59,11 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 	flags = NOCONDUCT
 	attack_verb = list("mopped", "bashed", "bludgeoned", "whacked")
 
-/obj/item/weapon/mop/advanced/New()
+/obj/item/mop/advanced/New()
 	create_reagents(30)
 	..()
 
-/obj/item/weapon/mop/advanced/afterattack(atom/A, mob/user, proximity)
+/obj/item/mop/advanced/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return
 	if(istype(A, /turf) || istype(A, /obj/effect/decal/cleanable) || istype(A, /obj/effect/overlay) || istype(A, /obj/effect/rune))
 		if(reagents.total_volume < 1)

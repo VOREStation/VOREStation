@@ -142,49 +142,49 @@
 
 //Casino Wallet
 
-/obj/item/weapon/storage/wallet/casino
+/obj/item/storage/wallet/casino
 	name = "casino wallet"
 	desc = "A fancy casino wallet with flashy lights, oooh~"
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "casinowallet_black"
 	can_hold = list(
-		/obj/item/weapon/spacecash,
-		/obj/item/weapon/card,
+		/obj/item/spacecash,
+		/obj/item/card,
 		/obj/item/clothing/mask/smokable/cigarette/,
 		/obj/item/flashlight/pen,
 		/obj/item/tape,
-		/obj/item/weapon/cartridge,
+		/obj/item/cartridge,
 		/obj/item/encryptionkey,
 		/obj/item/seeds,
 		/obj/item/stack/medical,
-		/obj/item/weapon/coin,
-		/obj/item/weapon/dice,
-		/obj/item/weapon/disk,
-		/obj/item/weapon/implanter,
-		/obj/item/weapon/flame/lighter,
-		/obj/item/weapon/flame/match,
-		/obj/item/weapon/forensics,
-		/obj/item/weapon/glass_extra,
-		/obj/item/weapon/haircomb,
-		/obj/item/weapon/hand,
-		/obj/item/weapon/key,
-		/obj/item/weapon/lipstick,
-		/obj/item/weapon/paper,
-		/obj/item/weapon/pen,
-		/obj/item/weapon/photo,
-		/obj/item/weapon/reagent_containers/dropper,
-		/obj/item/weapon/sample,
-		/obj/item/weapon/tool/screwdriver,
-		/obj/item/weapon/stamp,
+		/obj/item/coin,
+		/obj/item/dice,
+		/obj/item/disk,
+		/obj/item/implanter,
+		/obj/item/flame/lighter,
+		/obj/item/flame/match,
+		/obj/item/forensics,
+		/obj/item/glass_extra,
+		/obj/item/haircomb,
+		/obj/item/hand,
+		/obj/item/key,
+		/obj/item/lipstick,
+		/obj/item/paper,
+		/obj/item/pen,
+		/obj/item/photo,
+		/obj/item/reagent_containers/dropper,
+		/obj/item/sample,
+		/obj/item/tool/screwdriver,
+		/obj/item/stamp,
 		/obj/item/clothing/accessory/permit,
 		/obj/item/clothing/accessory/badge,
-		/obj/item/weapon/makeover,
-		/obj/item/weapon/spacecasinocash,
-		/obj/item/weapon/casino_platinum_chip,
-		/obj/item/weapon/deck
+		/obj/item/makeover,
+		/obj/item/spacecasinocash,
+		/obj/item/casino_platinum_chip,
+		/obj/item/deck
 		)
 
-/obj/item/weapon/storage/wallet/casino/verb/toggle_design()
+/obj/item/storage/wallet/casino/verb/toggle_design()
 	set category = "Object"
 	set name = "Toggle design"
 	set src in usr

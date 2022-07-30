@@ -27,7 +27,7 @@
 	icon_state = "red_crowbar"
 	item_state = "crowbar_red"
 
-/obj/item/weapon/tool/crowbar/old
+/obj/item/tool/crowbar/old
 	icon = 'icons/obj/tools.dmi'
 	icon_state = "old_crowbar"
 	item_state = "crowbar"

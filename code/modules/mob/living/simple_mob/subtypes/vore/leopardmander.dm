@@ -9,7 +9,7 @@
 	icon_state = "leopardmander"
 	faction = "neutral"
 	meat_amount = 40 //I mean...
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 	old_x = -48
 	old_y = 0
 	melee_damage_lower = 10

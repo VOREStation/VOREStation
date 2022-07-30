@@ -1,4 +1,4 @@
-/obj/item/weapon/melee/energy/sword/imperial
+/obj/item/melee/energy/sword/imperial
 	name = "energy gladius"
 	desc = "A broad, short energy blade.  You'll be glad to have this in a fight."
 	icon_state = "impsword"

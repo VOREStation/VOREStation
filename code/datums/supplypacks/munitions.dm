@@ -132,7 +132,7 @@
 /datum/supply_pack/munitions/bolt_rifles_lethal
  	name = "Weapons - Bolt-Action Rifles"
  	contains = list(
- 			/obj/item/weapon/gun/projectile/shotgun/pump/rifle = 2,
+ 			/obj/item/gun/projectile/shotgun/pump/rifle = 2,
  			/obj/item/ammo_magazine/ammo_box/b762 = 4,
  			)
  	cost = 60
@@ -200,7 +200,7 @@
 
 /datum/supply_pack/munitions/claymore
 	name = "Weapons - Melee - Claymores"
-	contains = list(/obj/item/weapon/material/sword = 2)
+	contains = list(/obj/item/material/sword = 2)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Claymore crate"

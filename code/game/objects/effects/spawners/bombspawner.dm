@@ -53,8 +53,8 @@
 /obj/effect/spawner/newbomb/Initialize(newloc)
 	..(newloc)
 	var/obj/item/transfer_valve/V = new(src.loc)
-	var/obj/item/weapon/tank/phoron/PT = new(V)
-	var/obj/item/weapon/tank/oxygen/OT = new(V)
+	var/obj/item/tank/phoron/PT = new(V)
+	var/obj/item/tank/oxygen/OT = new(V)
 
 	V.tank_one = PT
 	V.tank_two = OT

@@ -41,7 +41,7 @@
 				//coins
 				var/amount = rand(2,6)
 				var/list/possible_spawns = list()
-				for(var/coin_type in typesof(/obj/item/weapon/coin))
+				for(var/coin_type in typesof(/obj/item/coin))
 					possible_spawns += coin_type
 				var/coin_type = pick(possible_spawns)
 				for(var/i=0,i<amount,i++)
@@ -62,7 +62,7 @@
 				//credits
 				var/amount = rand(2,6)
 				var/list/possible_spawns = list()
-				for(var/cash_type in subtypesof(/obj/item/weapon/spacecash))
+				for(var/cash_type in subtypesof(/obj/item/spacecash))
 					possible_spawns += cash_type
 
 				var/cash_type = pick(possible_spawns)
@@ -83,7 +83,7 @@
 				new /obj/item/clothing/head/soft/rainbow(C)
 				new /obj/item/clothing/gloves/rainbow(C)
 			else if(prob(5))
-				new /obj/item/weapon/storage/box/syndie_kit/chameleon(C)
+				new /obj/item/storage/box/syndie_kit/chameleon(C)
 			else
 				new /obj/item/clothing/under/syndicate/combat(C)
 				new /obj/item/clothing/shoes/boots/swat(C)
@@ -103,75 +103,75 @@
 			if(prob(50))
 				var/new_gun = pick( // Copied from Random.dm
 					prob(11);/obj/random/ammo_all,\
-					prob(11);/obj/item/weapon/gun/energy/laser,\
-					prob(11);/obj/item/weapon/gun/projectile/pirate,\
-					prob(10);/obj/item/weapon/material/twohanded/spear,\
-					prob(10);/obj/item/weapon/gun/energy/stunrevolver,\
-					prob(10);/obj/item/weapon/gun/energy/taser,\
-					prob(10);/obj/item/weapon/gun/launcher/crossbow,\
-					prob(10);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/pellet,\
-					prob(10);/obj/item/weapon/material/knife,\
-					prob(10);/obj/item/weapon/material/knife/tacknife/combatknife,\
-					prob(10);/obj/item/weapon/material/butterfly/switchblade,\
-					prob(10);/obj/item/weapon/gun/projectile/luger,\
-					prob(10);/obj/item/weapon/gun/projectile/luger/brown,\
-				/*	prob(10);/obj/item/weapon/gun/projectile/pipegun,\ */
-					prob(10);/obj/item/weapon/gun/projectile/revolver,\
-					prob(10);/obj/item/weapon/gun/projectile/revolver/detective,\
-					prob(10);/obj/item/weapon/gun/projectile/revolver/mateba,\
-					prob(10);/obj/item/weapon/gun/projectile/revolver/judge,\
-					prob(10);/obj/item/weapon/gun/projectile/colt,\
-					prob(10);/obj/item/weapon/gun/projectile/shotgun/pump,\
-					prob(10);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,\
-				/*	prob(10);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/mosin,\ */
-					prob(10);/obj/item/weapon/melee/baton,\
-					prob(10);/obj/item/weapon/melee/telebaton,\
-					prob(10);/obj/item/weapon/melee/classic_baton,\
-					prob(10);/obj/item/weapon/melee/energy/sword,\
-					prob(9);/obj/item/weapon/gun/projectile/automatic/wt550/lethal,\
-					prob(9);/obj/item/weapon/gun/projectile/automatic/pdw,\
-					prob(9);/obj/item/weapon/gun/projectile/derringer,\
-					prob(9);/obj/item/weapon/gun/energy/crossbow/largecrossbow,\
-					prob(9);/obj/item/weapon/gun/projectile/automatic/mini_uzi,\
-					prob(9);/obj/item/weapon/gun/projectile/pistol,\
-					prob(9);/obj/item/weapon/gun/projectile/shotgun/pump/combat,\
-					prob(9);/obj/item/weapon/twohanded/fireaxe,\
-					prob(9);/obj/item/weapon/cane/concealed,\
-					prob(9);/obj/item/weapon/gun/energy/gun,\
-					prob(8);/obj/item/weapon/gun/energy/ionrifle,\
-					prob(8);/obj/item/weapon/gun/energy/retro,\
-					prob(8);/obj/item/weapon/gun/energy/gun/eluger,\
-					prob(8);/obj/item/weapon/gun/energy/xray,\
-					prob(8);/obj/item/weapon/gun/projectile/automatic/c20r,\
-					prob(8);/obj/item/weapon/gun/projectile/automatic/stg,\
-					prob(8);/obj/item/weapon/melee/energy/sword,\
-					prob(7);/obj/item/weapon/gun/energy/captain,\
-					prob(7);/obj/item/weapon/gun/energy/sniperrifle,\
-					prob(7);/obj/item/weapon/gun/projectile/automatic/p90,\
-					prob(7);/obj/item/weapon/gun/projectile/automatic/as24,\
-					prob(7);/obj/item/weapon/gun/projectile/automatic/sts35,\
-					prob(7);/obj/item/weapon/gun/projectile/automatic/z8,\
-					prob(7);/obj/item/weapon/gun/energy/gun/burst,\
-					prob(7);/obj/item/weapon/gun/projectile/shotgun/pump/USDF,\
-					prob(7);/obj/item/weapon/gun/projectile/deagle,\
-					prob(7);/obj/item/weapon/gun/launcher/grenade,\
-				/*	prob(6);/obj/item/weapon/gun/projectile/SVD,\*/
-					prob(6);/obj/item/weapon/gun/projectile/automatic/l6_saw,\
-					prob(6);/obj/item/weapon/gun/energy/lasercannon,\
-					prob(5);/obj/item/weapon/gun/projectile/automatic/bullpup,\
-					prob(5);/obj/item/weapon/gun/energy/pulse_rifle,\
-				/*	prob(4);/obj/item/weapon/gun/projectile/automatic/battlerifle,\ */
-					prob(3);/obj/item/weapon/gun/projectile/deagle/camo,\
-					prob(3);/obj/item/weapon/gun/energy/gun/nuclear,\
-					prob(2);/obj/item/weapon/gun/projectile/deagle/gold,\
-					prob(1);/obj/item/weapon/gun/launcher/rocket,\
-					prob(1);/obj/item/weapon/gun/launcher/grenade,\
-					prob(1);/obj/item/weapon/gun/projectile/gyropistol,\
-					prob(1);/obj/item/weapon/gun/projectile/heavysniper,\
-					prob(1);/obj/item/weapon/plastique,\
-					prob(1);/obj/item/weapon/material/sword,\
-					prob(1);/obj/item/weapon/cane/concealed,\
-					prob(1);/obj/item/weapon/material/sword/katana)
+					prob(11);/obj/item/gun/energy/laser,\
+					prob(11);/obj/item/gun/projectile/pirate,\
+					prob(10);/obj/item/material/twohanded/spear,\
+					prob(10);/obj/item/gun/energy/stunrevolver,\
+					prob(10);/obj/item/gun/energy/taser,\
+					prob(10);/obj/item/gun/launcher/crossbow,\
+					prob(10);/obj/item/gun/projectile/shotgun/doublebarrel/pellet,\
+					prob(10);/obj/item/material/knife,\
+					prob(10);/obj/item/material/knife/tacknife/combatknife,\
+					prob(10);/obj/item/material/butterfly/switchblade,\
+					prob(10);/obj/item/gun/projectile/luger,\
+					prob(10);/obj/item/gun/projectile/luger/brown,\
+				/*	prob(10);/obj/item/gun/projectile/pipegun,\ */
+					prob(10);/obj/item/gun/projectile/revolver,\
+					prob(10);/obj/item/gun/projectile/revolver/detective,\
+					prob(10);/obj/item/gun/projectile/revolver/mateba,\
+					prob(10);/obj/item/gun/projectile/revolver/judge,\
+					prob(10);/obj/item/gun/projectile/colt,\
+					prob(10);/obj/item/gun/projectile/shotgun/pump,\
+					prob(10);/obj/item/gun/projectile/shotgun/pump/rifle,\
+				/*	prob(10);/obj/item/gun/projectile/shotgun/pump/rifle/mosin,\ */
+					prob(10);/obj/item/melee/baton,\
+					prob(10);/obj/item/melee/telebaton,\
+					prob(10);/obj/item/melee/classic_baton,\
+					prob(10);/obj/item/melee/energy/sword,\
+					prob(9);/obj/item/gun/projectile/automatic/wt550/lethal,\
+					prob(9);/obj/item/gun/projectile/automatic/pdw,\
+					prob(9);/obj/item/gun/projectile/derringer,\
+					prob(9);/obj/item/gun/energy/crossbow/largecrossbow,\
+					prob(9);/obj/item/gun/projectile/automatic/mini_uzi,\
+					prob(9);/obj/item/gun/projectile/pistol,\
+					prob(9);/obj/item/gun/projectile/shotgun/pump/combat,\
+					prob(9);/obj/item/twohanded/fireaxe,\
+					prob(9);/obj/item/cane/concealed,\
+					prob(9);/obj/item/gun/energy/gun,\
+					prob(8);/obj/item/gun/energy/ionrifle,\
+					prob(8);/obj/item/gun/energy/retro,\
+					prob(8);/obj/item/gun/energy/gun/eluger,\
+					prob(8);/obj/item/gun/energy/xray,\
+					prob(8);/obj/item/gun/projectile/automatic/c20r,\
+					prob(8);/obj/item/gun/projectile/automatic/stg,\
+					prob(8);/obj/item/melee/energy/sword,\
+					prob(7);/obj/item/gun/energy/captain,\
+					prob(7);/obj/item/gun/energy/sniperrifle,\
+					prob(7);/obj/item/gun/projectile/automatic/p90,\
+					prob(7);/obj/item/gun/projectile/automatic/as24,\
+					prob(7);/obj/item/gun/projectile/automatic/sts35,\
+					prob(7);/obj/item/gun/projectile/automatic/z8,\
+					prob(7);/obj/item/gun/energy/gun/burst,\
+					prob(7);/obj/item/gun/projectile/shotgun/pump/USDF,\
+					prob(7);/obj/item/gun/projectile/deagle,\
+					prob(7);/obj/item/gun/launcher/grenade,\
+				/*	prob(6);/obj/item/gun/projectile/SVD,\*/
+					prob(6);/obj/item/gun/projectile/automatic/l6_saw,\
+					prob(6);/obj/item/gun/energy/lasercannon,\
+					prob(5);/obj/item/gun/projectile/automatic/bullpup,\
+					prob(5);/obj/item/gun/energy/pulse_rifle,\
+				/*	prob(4);/obj/item/gun/projectile/automatic/battlerifle,\ */
+					prob(3);/obj/item/gun/projectile/deagle/camo,\
+					prob(3);/obj/item/gun/energy/gun/nuclear,\
+					prob(2);/obj/item/gun/projectile/deagle/gold,\
+					prob(1);/obj/item/gun/launcher/rocket,\
+					prob(1);/obj/item/gun/launcher/grenade,\
+					prob(1);/obj/item/gun/projectile/gyropistol,\
+					prob(1);/obj/item/gun/projectile/heavysniper,\
+					prob(1);/obj/item/plastique,\
+					prob(1);/obj/item/material/sword,\
+					prob(1);/obj/item/cane/concealed,\
+					prob(1);/obj/item/material/sword/katana)
 				new new_gun(C)
 			if(prob(50))
 				var/new_ammo = pick( // Copied from Random.dm
@@ -183,7 +183,7 @@
 					prob(5);/obj/item/ammo_magazine/m45/rubber,\
 					prob(5);/obj/item/ammo_magazine/s38,\
 					prob(5);/obj/item/ammo_magazine/s38/rubber,\
-					prob(5);/obj/item/weapon/storage/box/flashbangs,\
+					prob(5);/obj/item/storage/box/flashbangs,\
 					prob(5);/obj/item/ammo_magazine/m545,\
 					prob(4);/obj/item/ammo_magazine/clip/c545,\
 					prob(4);/obj/item/ammo_magazine/clip/c45,\
@@ -207,7 +207,7 @@
 					prob(3);/obj/item/ammo_magazine/m545,\
 					prob(2);/obj/item/ammo_magazine/m44,\
 					prob(2);/obj/item/ammo_magazine/m545,\
-					prob(1);/obj/item/weapon/storage/box/frags,\
+					prob(1);/obj/item/storage/box/frags,\
 				/*	prob(1);/obj/item/ammo_magazine/m95,\ */
 					prob(1);/obj/item/ammo_casing/rocket,\
 					prob(1);/obj/item/ammo_magazine/ammo_box/b145,\
@@ -225,52 +225,52 @@
 			if(prob(25))
 				new /obj/item/clothing/suit/space/syndicate/black(C)
 				new /obj/item/clothing/head/helmet/space/syndicate/black(C)
-				new /obj/item/weapon/tank/oxygen/red(C)
+				new /obj/item/tank/oxygen/red(C)
 				new /obj/item/clothing/mask/breath(C)
 			else if(prob(33))
 				new /obj/item/clothing/suit/space/syndicate/blue(C)
 				new /obj/item/clothing/head/helmet/space/syndicate/blue(C)
-				new /obj/item/weapon/tank/oxygen/red(C)
+				new /obj/item/tank/oxygen/red(C)
 				new /obj/item/clothing/mask/breath(C)
 			else if(prob(50))
 				new /obj/item/clothing/suit/space/syndicate/green(C)
 				new /obj/item/clothing/head/helmet/space/syndicate/green(C)
-				new /obj/item/weapon/tank/oxygen/red(C)
+				new /obj/item/tank/oxygen/red(C)
 				new /obj/item/clothing/mask/breath(C)
 			else
 				new /obj/item/clothing/suit/space/syndicate/orange(C)
 				new /obj/item/clothing/head/helmet/space/syndicate/orange(C)
-				new /obj/item/weapon/tank/oxygen/red(C)
+				new /obj/item/tank/oxygen/red(C)
 				new /obj/item/clothing/mask/breath(C)
 		if("health")
 			//hopefully won't be necessary, but there were an awful lot of hazards to get through...
 			var/obj/structure/closet/crate/medical/C = new(src.loc)
 			if(prob(50))
-				new /obj/item/weapon/storage/firstaid/regular(C)
+				new /obj/item/storage/firstaid/regular(C)
 			if(prob(50))
-				new /obj/item/weapon/storage/firstaid/fire(C)
+				new /obj/item/storage/firstaid/fire(C)
 			if(prob(50))
-				new /obj/item/weapon/storage/firstaid/o2(C)
+				new /obj/item/storage/firstaid/o2(C)
 			if(prob(50))
-				new /obj/item/weapon/storage/firstaid/toxin(C)
+				new /obj/item/storage/firstaid/toxin(C)
 			if(prob(25))
-				new /obj/item/weapon/storage/firstaid/combat(C)
+				new /obj/item/storage/firstaid/combat(C)
 			if(prob(25))
-				new /obj/item/weapon/storage/firstaid/adv(C)
+				new /obj/item/storage/firstaid/adv(C)
 		if("snacks")
 			//you're come so far, you must be in need of refreshment
 			var/obj/structure/closet/crate/freezer/C = new(src.loc)
 			var/num = rand(2,6)
 			var/new_type = pick(
-			/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer, \
-			/obj/item/weapon/reagent_containers/food/drinks/tea, \
-			/obj/item/weapon/reagent_containers/food/drinks/dry_ramen, \
-			/obj/item/weapon/reagent_containers/food/snacks/candiedapple, \
-			/obj/item/weapon/reagent_containers/food/snacks/chocolatebar, \
-			/obj/item/weapon/reagent_containers/food/snacks/cookie, \
-			/obj/item/weapon/reagent_containers/food/snacks/meatball, \
-			/obj/item/weapon/reagent_containers/food/snacks/plump_pie, \
-			/obj/item/weapon/reagent_containers/food/snacks/liquidfood)
+			/obj/item/reagent_containers/food/drinks/bottle/small/beer, \
+			/obj/item/reagent_containers/food/drinks/tea, \
+			/obj/item/reagent_containers/food/drinks/dry_ramen, \
+			/obj/item/reagent_containers/food/snacks/candiedapple, \
+			/obj/item/reagent_containers/food/snacks/chocolatebar, \
+			/obj/item/reagent_containers/food/snacks/cookie, \
+			/obj/item/reagent_containers/food/snacks/meatball, \
+			/obj/item/reagent_containers/food/snacks/plump_pie, \
+			/obj/item/reagent_containers/food/snacks/liquidfood)
 			for(var/i=0,i<num,i++)
 				new new_type(C)
 		if("alien")
@@ -300,8 +300,8 @@
 			for(var/i=0,i<num,i++)
 				var/spawn_type = pick(
 					/obj/item/flashlight/flare, \
-					/obj/item/weapon/flame/candle, \
-					/obj/item/weapon/storage/box/matches, \
+					/obj/item/flame/candle, \
+					/obj/item/storage/box/matches, \
 					/obj/item/flashlight/glowstick, \
 					/obj/item/flashlight/glowstick/red, \
 					/obj/item/flashlight/glowstick/blue, \
@@ -313,17 +313,17 @@
 
 			//chance to have any combination of up to two electrical/mechanical toolboxes and one cell
 			if(prob(33))
-				new /obj/item/weapon/storage/toolbox/electrical(C)
+				new /obj/item/storage/toolbox/electrical(C)
 			else if(prob(50))
-				new /obj/item/weapon/storage/toolbox/mechanical(C)
+				new /obj/item/storage/toolbox/mechanical(C)
 
 			if(prob(33))
-				new /obj/item/weapon/storage/toolbox/mechanical(C)
+				new /obj/item/storage/toolbox/mechanical(C)
 			else if(prob(50))
-				new /obj/item/weapon/storage/toolbox/electrical(C)
+				new /obj/item/storage/toolbox/electrical(C)
 
 			if(prob(25))
-				new /obj/item/weapon/cell(C)
+				new /obj/item/cell(C)
 
 		if("coffin")
 			new /obj/structure/closet/coffin(src.loc)
@@ -336,12 +336,12 @@
 			// var/mob/living/simple_mob/hostile/mimic/crate/mimic = new(src.loc)
 			// mimic.faction = spawned_faction
 			var/obj/structure/closet/crate/secure/gear/C = new(src.loc) //VORESTATION AI TEMPORARY EDIT
-			new /obj/item/weapon/storage/toolbox/electrical(C) //Placeholder to prevent errors. //VORESTATION AI TEMPORARY EDIT
+			new /obj/item/storage/toolbox/electrical(C) //Placeholder to prevent errors. //VORESTATION AI TEMPORARY EDIT
 		if("viscerator")
 			//more tomb guardians!
 			//var/num = rand(1,3) //VORESTATION AI TEMPORARY REMOVAL
 			var/obj/structure/closet/crate/secure/gear/C = new(src.loc) //VORESTATION AI TEMPORARY EDIT
-			new /obj/item/weapon/storage/toolbox/electrical(C) //Placeholder to prevent errors. //VORESTATION AI TEMPORARY EDIT
+			new /obj/item/storage/toolbox/electrical(C) //Placeholder to prevent errors. //VORESTATION AI TEMPORARY EDIT
 			//for(var/i=0,i<num,i++) //VORESTATION AI TEMPORARY REMOVAL
 				//new /mob/living/simple_mob/hostile/viscerator(C)  //VORESTATION AI TEMPORARY REMOVAL
 

@@ -321,7 +321,7 @@
 	var/unique_reskin = list("Soulless" = "RPED",
 							"Soulful" = "RPED_old")
 
-/obj/item/weapon/storage/part_replacer/proc/play_rped_sound()
+/obj/item/storage/part_replacer/proc/play_rped_sound()
 	//Plays the sound for RPED exhanging or installing parts.
 /*	if(alt_sound && prob(1))
 		playsound(src, alt_sound, 40, 1)
@@ -337,7 +337,7 @@
 	storage_slots = 200
 	max_storage_space = 400
 
-/obj/item/weapon/storage/part_replacer/adv/discount_bluespace
+/obj/item/storage/part_replacer/adv/discount_bluespace
 	name = "prototype bluespace rapid part exchange device"
 	icon_state = "DBRPED"
 	item_state = "DBRPED"
@@ -350,17 +350,17 @@
 	unique_reskin = list("Soulless" = "DBRPED",
 						"Soulful" = "DBRPED_old")
 
-/obj/item/weapon/storage/part_replacer/examine(mob/user)
+/obj/item/storage/part_replacer/examine(mob/user)
 	. = ..()
 	if(!reskin_ran)
 		. += "<span class='notice'>[src]'s external casing can be modified via alt-click.</span>"
 
-/obj/item/weapon/storage/part_replacer/AltClick(mob/user)
+/obj/item/storage/part_replacer/AltClick(mob/user)
 	. = ..()
 	if(!reskin_ran)
 		reskin_radial(user)
 
-/obj/item/weapon/storage/part_replacer/proc/reskin_radial(mob/M)
+/obj/item/storage/part_replacer/proc/reskin_radial(mob/M)
 	if(!LAZYLEN(unique_reskin))
 		return
 
@@ -757,53 +757,53 @@
 	name = "basic parts bundle"
 	desc = "5 of each T1 part, no more and no less."
 	items = list(
-		/obj/item/weapon/stock_parts/matter_bin,
-		/obj/item/weapon/stock_parts/manipulator,
-		/obj/item/weapon/stock_parts/capacitor,
-		/obj/item/weapon/stock_parts/scanning_module,
-		/obj/item/weapon/stock_parts/micro_laser
+		/obj/item/stock_parts/matter_bin,
+		/obj/item/stock_parts/manipulator,
+		/obj/item/stock_parts/capacitor,
+		/obj/item/stock_parts/scanning_module,
+		/obj/item/stock_parts/micro_laser
 	)
 
 /obj/effect/spawner/parts/t2
 	name = "advanced parts bundle"
 	desc = "5 of each T2 part, no more and no less."
 	items = list(
-		/obj/item/weapon/stock_parts/matter_bin/adv,
-		/obj/item/weapon/stock_parts/manipulator/nano,
-		/obj/item/weapon/stock_parts/capacitor/adv,
-		/obj/item/weapon/stock_parts/scanning_module/adv,
-		/obj/item/weapon/stock_parts/micro_laser/high
+		/obj/item/stock_parts/matter_bin/adv,
+		/obj/item/stock_parts/manipulator/nano,
+		/obj/item/stock_parts/capacitor/adv,
+		/obj/item/stock_parts/scanning_module/adv,
+		/obj/item/stock_parts/micro_laser/high
 	)
 
 /obj/effect/spawner/parts/t3
 	name = "super parts bundle"
 	desc = "5 of each T3 part, no more and no less."
 	items = list(
-		/obj/item/weapon/stock_parts/matter_bin/super,
-		/obj/item/weapon/stock_parts/manipulator/pico,
-		/obj/item/weapon/stock_parts/capacitor/super,
-		/obj/item/weapon/stock_parts/scanning_module/phasic,
-		/obj/item/weapon/stock_parts/micro_laser/ultra
+		/obj/item/stock_parts/matter_bin/super,
+		/obj/item/stock_parts/manipulator/pico,
+		/obj/item/stock_parts/capacitor/super,
+		/obj/item/stock_parts/scanning_module/phasic,
+		/obj/item/stock_parts/micro_laser/ultra
 	)
 
 /obj/effect/spawner/parts/t4
 	name = "hyper parts bundle"
 	desc = "5 of each T4 part, no more and no less."
 	items = list(
-		/obj/item/weapon/stock_parts/matter_bin/hyper,
-		/obj/item/weapon/stock_parts/manipulator/hyper,
-		/obj/item/weapon/stock_parts/capacitor/hyper,
-		/obj/item/weapon/stock_parts/scanning_module/hyper,
-		/obj/item/weapon/stock_parts/micro_laser/hyper
+		/obj/item/stock_parts/matter_bin/hyper,
+		/obj/item/stock_parts/manipulator/hyper,
+		/obj/item/stock_parts/capacitor/hyper,
+		/obj/item/stock_parts/scanning_module/hyper,
+		/obj/item/stock_parts/micro_laser/hyper
 	)
 
 /obj/effect/spawner/parts/t5
 	name = "omni parts bundle"
 	desc = "5 of each T5 part, no more and no less."
 	items = list(
-		/obj/item/weapon/stock_parts/matter_bin/omni,
-		/obj/item/weapon/stock_parts/manipulator/omni,
-		/obj/item/weapon/stock_parts/capacitor/omni,
-		/obj/item/weapon/stock_parts/scanning_module/omni,
-		/obj/item/weapon/stock_parts/micro_laser/omni
+		/obj/item/stock_parts/matter_bin/omni,
+		/obj/item/stock_parts/manipulator/omni,
+		/obj/item/stock_parts/capacitor/omni,
+		/obj/item/stock_parts/scanning_module/omni,
+		/obj/item/stock_parts/micro_laser/omni
 	)

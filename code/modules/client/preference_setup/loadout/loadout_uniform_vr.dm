@@ -170,12 +170,12 @@ Swimsuits
 
 /datum/gear/uniform/swimsuits
 	display_name = "swimsuits selection"
-	path = /obj/item/weapon/storage/box/fluff/swimsuit
+	path = /obj/item/storage/box/fluff/swimsuit
 
 /datum/gear/uniform/swimsuits/New()
 	..()
 	var/list/swimsuits = list()
-	for(var/obj/item/weapon/storage/box/fluff/swimsuit/swimsuit_type as anything in typesof(/obj/item/weapon/storage/box/fluff/swimsuit))
+	for(var/obj/item/storage/box/fluff/swimsuit/swimsuit_type as anything in typesof(/obj/item/storage/box/fluff/swimsuit))
 		swimsuits[initial(swimsuit_type.name)] = swimsuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(swimsuits))
 

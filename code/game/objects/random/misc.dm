@@ -954,19 +954,19 @@
 
 /obj/random/pouch/item_to_spawn()
 	return pick(
-		prob(10);/obj/item/weapon/storage/pouch, // medium
-		prob(3);/obj/item/weapon/storage/pouch/large,
-		prob(8);/obj/item/weapon/storage/pouch/small,
-		prob(5);/obj/item/weapon/storage/pouch/ammo,
-		prob(5);/obj/item/weapon/storage/pouch/eng_tool,
-		prob(5);/obj/item/weapon/storage/pouch/eng_supply,
-		prob(5);/obj/item/weapon/storage/pouch/eng_parts,
-		prob(5);/obj/item/weapon/storage/pouch/medical,
-		prob(5);/obj/item/weapon/storage/pouch/flares/full_flare,
-		prob(5);/obj/item/weapon/storage/pouch/flares/full_glow,
-		prob(5);/obj/item/weapon/storage/pouch/holster,
-		prob(5);/obj/item/weapon/storage/pouch/baton/full,
-		prob(1);/obj/item/weapon/storage/pouch/holding
+		prob(10);/obj/item/storage/pouch, // medium
+		prob(3);/obj/item/storage/pouch/large,
+		prob(8);/obj/item/storage/pouch/small,
+		prob(5);/obj/item/storage/pouch/ammo,
+		prob(5);/obj/item/storage/pouch/eng_tool,
+		prob(5);/obj/item/storage/pouch/eng_supply,
+		prob(5);/obj/item/storage/pouch/eng_parts,
+		prob(5);/obj/item/storage/pouch/medical,
+		prob(5);/obj/item/storage/pouch/flares/full_flare,
+		prob(5);/obj/item/storage/pouch/flares/full_glow,
+		prob(5);/obj/item/storage/pouch/holster,
+		prob(5);/obj/item/storage/pouch/baton/full,
+		prob(1);/obj/item/storage/pouch/holding
 	)
 
 /obj/random/flashlight

@@ -656,7 +656,7 @@ GLOBAL_LIST_BOILERPLATE(allCasters, /obj/machinery/newscaster)
 /obj/machinery/newscaster/proc/tgui_user_name(mob/user)
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		var/obj/item/weapon/card/id/I = H.GetIdCard()
+		var/obj/item/card/id/I = H.GetIdCard()
 		if(I)
 			return GetNameAndAssignmentFromId(I)
 

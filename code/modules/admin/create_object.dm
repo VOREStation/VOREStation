@@ -21,12 +21,12 @@
 	"/obj/item/reagent_containers",
 	"/obj/item/reagent_containers/food",
 	"/obj/item/clothing",
-	"/obj/item/weapon/storage/box/fluff", //VOREStation Edit,
+	"/obj/item/storage/box/fluff", //VOREStation Edit,
 	"/obj/machinery",
 	"/obj/mecha",
 	"/obj/item/mecha_parts",
 	"/obj/item/mecha_parts/mecha_equipment")
-	
+
 	pathtext = tgui_input_list(usr, "Select the path of the object you wish to create.", "Path", choices, "/obj")
 
 	if(!pathtext)

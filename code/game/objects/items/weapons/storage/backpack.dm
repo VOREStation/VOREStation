@@ -81,15 +81,15 @@
 	desc = "It's a backpack made by Honk! Co."
 	icon_state = "backpack_clown"
 
-/obj/item/weapon/storage/backpack/white
+/obj/item/storage/backpack/white
 	name = "white backpack"
 	icon_state = "backpack_white"
 
-/obj/item/weapon/storage/backpack/fancy
+/obj/item/storage/backpack/fancy
 	name = "fancy backpack"
 	icon_state = "backpack_fancy"
 
-/obj/item/weapon/storage/backpack/military
+/obj/item/storage/backpack/military
 	name = "military backpack"
 	icon_state = "backpack_military"
 
@@ -222,15 +222,15 @@
 	desc = "A trendy looking satchel."
 	icon_state = "satchel_grey"
 
-/obj/item/weapon/storage/backpack/satchel/white
+/obj/item/storage/backpack/satchel/white
 	name = "white satchel"
 	icon_state = "satchel_white"
 
-/obj/item/weapon/storage/backpack/satchel/fancy
+/obj/item/storage/backpack/satchel/fancy
 	name = "fancy satchel"
 	icon_state = "satchel_fancy"
 
-/obj/item/weapon/storage/backpack/satchel/military
+/obj/item/storage/backpack/satchel/military
 	name = "military satchel"
 	icon_state = "satchel_military"
 
@@ -365,7 +365,7 @@
 	icon_state = "courier_security"
 	item_state_slots = list(slot_r_hand_str = "satchel_security", slot_l_hand_str = "satchel_security")
 
-/obj/item/weapon/storage/backpack/messenger/black
+/obj/item/storage/backpack/messenger/black
 	icon_state = "courier_black"
 
 

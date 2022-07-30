@@ -14,7 +14,7 @@
 	icon_state = "kiosk_off"
 	idle_power_usage = 5
 	active_power_usage = 200
-	circuit = /obj/item/weapon/circuitboard/medical_kiosk
+	circuit = /obj/item/circuitboard/medical_kiosk
 	anchored = TRUE
 	density = TRUE
 
@@ -76,14 +76,14 @@
 	if(!choice || choice == "Cancel" || !Adjacent(user) || inoperable() || panel_open)
 		suspend()
 		return
-	
+
 	// Service begins, delay
 	visible_message("<b>\The [src]</b> scans [user] thoroughly!")
 	flick("kiosk_active", src)
 	if(!do_after(user, 10 SECONDS, src, exclusive = TASK_ALL_EXCLUSIVE) || inoperable())
 		suspend()
 		return
-	
+
 	// Service completes
 	switch(choice)
 		if("Health Scan")
@@ -95,7 +95,7 @@
 			else
 				var/scan_report = do_backup_scan(user)
 				to_chat(user, "<span class='notice'><b>Backup scan results:</b></span>"+scan_report)
-	
+
 	// Standby
 	suspend()
 
@@ -104,7 +104,7 @@
 		return "<br><span class='warning'>Unable to perform diagnosis on this type of life form.</span>"
 	if(user.isSynthetic())
 		return "<br><span class='warning'>Unable to perform diagnosis on synthetic life forms.</span>"
-	
+
 	var/problems = 0
 	for(var/obj/item/organ/external/E in user)
 		if(E.status & ORGAN_BROKEN)
@@ -119,13 +119,13 @@
 					problems |= INTERNAL_BLEEDING
 				else
 					problems |= EXTERNAL_BLEEDING
-	
+
 	for(var/obj/item/organ/internal/I in user)
 		if(I.status & (ORGAN_BROKEN|ORGAN_DEAD|ORGAN_DESTROYED))
 			problems |= SERIOUS_INTERNAL_DAMAGE
 		if(I.status & ORGAN_BLEEDING)
 			problems |= INTERNAL_BLEEDING
-	
+
 	if(user.getToxLoss() > 0)
 		problems |= TOXIN_DAMAGE
 	if(user.getOxyLoss() > 0)
@@ -134,13 +134,13 @@
 		problems |= RADIATION_DAMAGE
 	if(user.getFireLoss() > 40 || user.getBruteLoss() > 40)
 		problems |= SERIOUS_EXTERNAL_DAMAGE
-	
+
 	if(!problems)
 		if(user.getHalLoss() > 0)
 			return "<br><span class='warning'>Mild concussion detected - advising bed rest until patient feels well. No other anatomical issues detected.</span>"
 		else
 			return "<br><span class='notice'>No anatomical issues detected.</span>"
-	
+
 	var/problem_text = ""
 	if(problems & BROKEN_BONES)
 		problem_text += "<br><span class='warning'>Broken bones detected - see a medical professional and move as little as possible.</span>"
@@ -166,11 +166,11 @@
 		return "<br><span class='warning'>Unable to perform full scan. Please see a medical professional.</span>"
 	if(!user.mind)
 		return "<br><span class='warning'>Unable to perform full scan. Please see a medical professional.</span>"
-	
+
 	var/nif = user.nif
 	if(nif)
 		persist_nif_data(user)
-	
+
 	our_db.m_backup(user.mind,nif,one_time = TRUE)
 	var/datum/transhuman/body_record/BR = new()
 	BR.init_from_mob(user, TRUE, TRUE, database_key = db_key)

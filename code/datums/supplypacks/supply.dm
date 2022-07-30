@@ -15,7 +15,7 @@
 			/obj/item/storage/fancy/egg_box = 2,
 			/obj/item/reagent_containers/food/snacks/tofu = 4,
 			/obj/item/reagent_containers/food/snacks/meat = 4,
-			/obj/item/reagent_containers/food/condiment/yeast = 3
+			/obj/item/reagent_containers/food/condiment/yeast = 3,
 			/obj/item/reagent_containers/food/condiment/sprinkles = 1
 			)
 	cost = 10
@@ -25,8 +25,8 @@
 /datum/supply_pack/supply/fancyfood
 	name = "Artisanal food delivery"
 	contains = list(
-			/obj/item/weapon/reagent_containers/food/condiment/carton/flour/rustic = 6,
-			/obj/item/weapon/reagent_containers/food/condiment/carton/sugar/rustic = 6
+			/obj/item/reagent_containers/food/condiment/carton/flour/rustic = 6,
+			/obj/item/reagent_containers/food/condiment/carton/sugar/rustic = 6
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/freezer/centauri
@@ -165,15 +165,15 @@
 					/obj/item/flashlight/glowstick,
 					/obj/item/flashlight,
 					/obj/item/stack/marker_beacon/thirty,
-					/obj/item/weapon/storage/belt/explorer,
+					/obj/item/storage/belt/explorer,
 					/obj/item/clothing/mask/gas/explorer,
-					/obj/item/weapon/cartridge/explorer,
+					/obj/item/cartridge/explorer,
 			 		/obj/item/gps/explorer,
 			 		/obj/item/clothing/under/explorer,
 			 		/obj/item/radio/headset/explorer,
 			 		/obj/item/clothing/shoes/boots/winter/explorer,
-					/obj/item/weapon/material/knife/tacknife/survival,
-					/obj/item/weapon/material/knife/machete,
+					/obj/item/material/knife/tacknife/survival,
+					/obj/item/material/knife/machete,
 			 		/obj/item/clothing/accessory/holster/machete,
 					)
 	cost=25
@@ -184,7 +184,7 @@
 /datum/supply_pack/pilotgear
 	name= "Pilot gear"
 	contains = list (
-					/obj/item/weapon/storage/backpack/parachute,
+					/obj/item/storage/backpack/parachute,
 					/obj/item/radio/headset/pilot,
 					/obj/item/radio/headset/pilot/alt,
 					/obj/item/clothing/mask/gas/half,
@@ -196,7 +196,7 @@
 					/obj/item/clothing/suit/storage/toggle/bomber/pilot,
 			 		/obj/item/clothing/shoes/boots/winter/explorer,
 					/obj/item/flashlight,
-					/obj/item/weapon/material/knife/tacknife/survival,
+					/obj/item/material/knife/tacknife/survival,
 					/obj/item/clothing/head/pilot_vr,
 					/obj/item/clothing/under/rank/pilot1,
 					)

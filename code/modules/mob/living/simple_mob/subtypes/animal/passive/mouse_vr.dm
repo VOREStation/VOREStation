@@ -12,7 +12,7 @@
 	movement_cooldown = 5
 	universal_understand = 1
 
-/obj/item/weapon/holder/mouse/attack_self(var/mob/U)
+/obj/item/holder/mouse/attack_self(var/mob/U)
 	for(var/mob/living/simple_mob/M in src.contents)
 		if((I_HELP) && U.checkClickCooldown()) //a little snowflakey, but makes it use the same cooldown as interacting with non-inventory objects
 			U.setClickCooldown(U.get_attack_speed()) //if there's a cleaner way in baycode, I'll change this
@@ -37,7 +37,7 @@
 	else
 		if(grabber.incapacitated()) return
 
-	var/obj/item/weapon/holder/H = new holder_type(get_turf(src), src)
+	var/obj/item/holder/H = new holder_type(get_turf(src), src)
 	grabber.put_in_hands(H)
 
 	if(self_grab)
@@ -62,10 +62,9 @@
 	name = initial(name)
 	desc = initial(desc)
 
-/obj/item/weapon/holder/mouse/attack_self(mob/living/carbon/user)
+/obj/item/holder/mouse/attack_self(mob/living/carbon/user)
 	user.setClickCooldown(user.get_attack_speed())
 	for(var/L in contents)
 		if(isanimal(L))
 			var/mob/living/simple_mob/S = L
 			user.visible_message("<span class='notice'>[user] [S.response_help] \the [S].</span>")
-

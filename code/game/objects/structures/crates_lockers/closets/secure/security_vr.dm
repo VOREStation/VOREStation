@@ -17,7 +17,7 @@
 		/obj/item/radio/headset/heads/hos,
 		/obj/item/radio/headset/heads/hos/alt,
 		/obj/item/clothing/glasses/sunglasses/sechud,
-		/obj/item/weapon/storage/belt/security,
+		/obj/item/storage/belt/security,
 		/obj/item/clothing/accessory/holster/waist,
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
@@ -31,18 +31,18 @@
 	storage_capacity = 2.5 * MOB_MEDIUM
 
 	starts_with = list(
-		/obj/item/weapon/cartridge/hos,
+		/obj/item/cartridge/hos,
 		/obj/item/taperoll/police,
-		/obj/item/weapon/shield/riot/tele,
-		/obj/item/weapon/storage/box/holobadge/hos,
+		/obj/item/shield/riot/tele,
+		/obj/item/storage/box/holobadge/hos,
 		/obj/item/clothing/accessory/badge/holo/hos,
-		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/tool/crowbar/red,
-		/obj/item/weapon/storage/box/flashbangs,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/tool/crowbar/red,
+		/obj/item/storage/box/flashbangs,
 		/obj/item/flash,
-		/obj/item/weapon/melee/baton/loaded,
-		/obj/item/weapon/storage/secure/briefcase/nsfw_pack_hos,
-		/obj/item/weapon/melee/telebaton,
+		/obj/item/melee/baton/loaded,
+		/obj/item/storage/secure/briefcase/nsfw_pack_hos,
+		/obj/item/melee/telebaton,
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/security,
 		/obj/item/clothing/shoes/boots/winter/security,
@@ -58,21 +58,21 @@
 	starts_with = list(
 		/obj/item/clothing/suit/storage/vest/nanotrasen,
 		/obj/item/clothing/head/helmet,
-		/obj/item/weapon/cartridge/security,
+		/obj/item/cartridge/security,
 		/obj/item/radio/headset/headset_sec,
 		/obj/item/radio/headset/headset_sec/alt,
-		/obj/item/weapon/storage/belt/security,
+		/obj/item/storage/belt/security,
 		/obj/item/flash,
-		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/grenade/flashbang,
-		/obj/item/weapon/melee/baton/loaded,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/grenade/flashbang,
+		/obj/item/melee/baton/loaded,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
 		/obj/item/hailer,
 		/obj/item/flashlight/flare,
 		/obj/item/clothing/accessory/storage/black_vest,
-		/obj/item/weapon/gun/energy/taser,
-		/obj/item/weapon/cell/device/weapon,
+		/obj/item/gun/energy/taser,
+		/obj/item/cell/device/weapon,
 		/obj/item/flashlight/maglight,
 		/obj/item/clothing/head/soft/nanotrasen,
 		/obj/item/clothing/head/beret/nanotrasen,
@@ -83,11 +83,11 @@
 
 /obj/structure/closet/secure_closet/nanotrasen_security/Initialize()
 	if(prob(25))
-		starts_with += /obj/item/weapon/storage/backpack/security
+		starts_with += /obj/item/storage/backpack/security
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/sec
+		starts_with += /obj/item/storage/backpack/satchel/sec
 	if(prob(75))
-		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sec
+		starts_with += /obj/item/storage/backpack/dufflebag/sec
 	return ..()
 
 /obj/structure/closet/secure_closet/nanotrasen_commander
@@ -104,25 +104,25 @@
 		/obj/item/clothing/suit/storage/vest/hoscoat/jensen,
 		/obj/item/clothing/suit/storage/vest/hoscoat,
 		/obj/item/clothing/head/helmet/dermal,
-		/obj/item/weapon/cartridge/hos,
+		/obj/item/cartridge/hos,
 		/obj/item/radio/headset/heads/hos,
 		/obj/item/radio/headset/heads/hos/alt,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
-		/obj/item/weapon/shield/riot,
-		/obj/item/weapon/shield/riot/tele,
-		/obj/item/weapon/storage/box/holobadge/hos,
+		/obj/item/shield/riot,
+		/obj/item/shield/riot/tele,
+		/obj/item/storage/box/holobadge/hos,
 		/obj/item/clothing/accessory/badge/holo/hos,
-		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/tool/crowbar/red,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/belt/security,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/tool/crowbar/red,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/belt/security,
 		/obj/item/flash,
-		/obj/item/weapon/melee/baton/loaded,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/cell/device/weapon,
+		/obj/item/melee/baton/loaded,
+		/obj/item/gun/energy/gun,
+		/obj/item/cell/device/weapon,
 		/obj/item/clothing/accessory/holster/waist,
-		/obj/item/weapon/melee/telebaton,
+		/obj/item/melee/telebaton,
 		/obj/item/clothing/head/beret/sec/corporate/hos,
 		/obj/item/flashlight/maglight,
 		/obj/item/clothing/gloves/black,
@@ -132,11 +132,11 @@
 
 /obj/structure/closet/secure_closet/nanotrasen_commander/Initialize()
 	if(prob(25))
-		starts_with += /obj/item/weapon/storage/backpack/security
+		starts_with += /obj/item/storage/backpack/security
 	else
-		starts_with += /obj/item/weapon/storage/backpack/satchel/sec
+		starts_with += /obj/item/storage/backpack/satchel/sec
 	if(prob(75))
-		starts_with += /obj/item/weapon/storage/backpack/dufflebag/sec
+		starts_with += /obj/item/storage/backpack/dufflebag/sec
 	return ..()
 
 /obj/structure/closet/secure_closet/nanotrasen_warden
@@ -151,19 +151,19 @@
 		/obj/item/clothing/suit/storage/vest/wardencoat/alt,
 		/obj/item/clothing/suit/storage/vest/wardencoat/alt2,
 		/obj/item/clothing/head/helmet/warden,
-		/obj/item/weapon/cartridge/security,
+		/obj/item/cartridge/security,
 		/obj/item/radio/headset/headset_sec,
 		/obj/item/radio/headset/headset_sec/alt,
 		/obj/item/clothing/glasses/sunglasses/sechud,
 		/obj/item/taperoll/police,
 		/obj/item/clothing/accessory/badge/holo/warden,
-		/obj/item/weapon/storage/box/flashbangs,
-		/obj/item/weapon/storage/belt/security,
-		/obj/item/weapon/reagent_containers/spray/pepper,
-		/obj/item/weapon/melee/baton/loaded,
-		/obj/item/weapon/gun/energy/gun,
-		/obj/item/weapon/cell/device/weapon,
-		/obj/item/weapon/storage/box/holobadge,
+		/obj/item/storage/box/flashbangs,
+		/obj/item/storage/belt/security,
+		/obj/item/reagent_containers/spray/pepper,
+		/obj/item/melee/baton/loaded,
+		/obj/item/gun/energy/gun,
+		/obj/item/cell/device/weapon,
+		/obj/item/storage/box/holobadge,
 		/obj/item/clothing/head/beret/sec/corporate/warden,
 		/obj/item/flashlight/maglight,
 		/obj/item/megaphone,
@@ -173,25 +173,25 @@
 
 /obj/structure/closet/secure_closet/nanotrasen_warden/Initialize()
 	if(prob(25))
-		new /obj/item/weapon/storage/backpack/security(src)
+		new /obj/item/storage/backpack/security(src)
 	else
-		new /obj/item/weapon/storage/backpack/satchel/sec(src)
+		new /obj/item/storage/backpack/satchel/sec(src)
 	if(prob(75))
-		new /obj/item/weapon/storage/backpack/dufflebag/sec(src)
+		new /obj/item/storage/backpack/dufflebag/sec(src)
 	return ..()
 
 /obj/structure/closet/secure_closet/captains
 	starts_with = list(
-		/obj/item/weapon/storage/backpack/dufflebag/captain,
+		/obj/item/storage/backpack/dufflebag/captain,
 		/obj/item/clothing/head/helmet,
 		/obj/item/clothing/suit/storage/vest,
-		/obj/item/weapon/cartridge/captain,
-		/obj/item/weapon/storage/lockbox/medal,
+		/obj/item/cartridge/captain,
+		/obj/item/storage/lockbox/medal,
 		/obj/item/radio/headset/heads/captain,
 		/obj/item/radio/headset/heads/captain/alt,
 		/obj/item/gunbox/captain,
-		/obj/item/weapon/melee/telebaton,
+		/obj/item/melee/telebaton,
 		/obj/item/flash,
-		/obj/item/weapon/storage/box/ids,
-		/obj/item/weapon/melee/rapier,
+		/obj/item/storage/box/ids,
+		/obj/item/melee/rapier,
 		/obj/item/clothing/accessory/holster/machete/rapier)

@@ -69,7 +69,7 @@
 		attack_self(user)
 		return TRUE
 
-	if(istype(O,/obj/item/weapon/disk/integrated_circuit/upgrade/advanced))
+	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/advanced))
 		if(upgraded)
 			to_chat(user, span("warning", "\The [src] already has this upgrade."))
 			return TRUE
@@ -79,7 +79,7 @@
 		attack_self(user)
 		return TRUE
 
-	if(istype(O,/obj/item/weapon/disk/integrated_circuit/upgrade/illegal))
+	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/illegal))
 		if(illegal_upgraded)
 			to_chat(user, span("warning", "\The [src] already has this upgrade."))
 			return TRUE
@@ -89,7 +89,7 @@
 		attack_self(user)
 		return TRUE
 
-	if(istype(O,/obj/item/weapon/disk/integrated_circuit/upgrade/clone))
+	if(istype(O,/obj/item/disk/integrated_circuit/upgrade/clone))
 		if(can_clone)
 			to_chat(user, span("warning", "\The [src] already has this upgrade."))
 			return TRUE
@@ -222,7 +222,7 @@
 			return TRUE
 
 // FUKKEN UPGRADE DISKS
-/obj/item/weapon/disk/integrated_circuit/upgrade
+/obj/item/disk/integrated_circuit/upgrade
 	name = "integrated circuit printer upgrade disk"
 	desc = "Install this into your integrated circuit printer to enhance it."
 	icon = 'icons/obj/integrated_electronics/electronic_tools.dmi'
@@ -231,18 +231,18 @@
 	w_class = ITEMSIZE_SMALL
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4)
 
-/obj/item/weapon/disk/integrated_circuit/upgrade/advanced
+/obj/item/disk/integrated_circuit/upgrade/advanced
 	name = "integrated circuit printer upgrade disk - advanced designs"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, advanced designs to the printer."
 
-/obj/item/weapon/disk/integrated_circuit/upgrade/illegal
+/obj/item/disk/integrated_circuit/upgrade/illegal
 	name = "integrated circuit printer upgrade disk - illegal designs"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one adds new, but illegal designs to the printer."
 	icon_state = "upgrade_disk_illegal"
 	origin_tech = list(TECH_ENGINEERING = 3, TECH_DATA = 4, TECH_ILLEGAL = 1)
 
 // To be implemented later.
-/obj/item/weapon/disk/integrated_circuit/upgrade/clone
+/obj/item/disk/integrated_circuit/upgrade/clone
 	name = "integrated circuit printer upgrade disk - circuit cloner"
 	desc = "Install this into your integrated circuit printer to enhance it.  This one allows the printer to duplicate assemblies."
 	icon_state = "upgrade_disk_clone"

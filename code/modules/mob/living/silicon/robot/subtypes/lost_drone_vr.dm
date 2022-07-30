@@ -5,21 +5,21 @@
 	modtype = "Stray"
 	lawchannel = "State"
 	braintype = "Drone"
-	idcard_type = /obj/item/weapon/card/id
+	idcard_type = /obj/item/card/id
 	icon_selected = FALSE
 
 /mob/living/silicon/robot/stray/init()
 	aiCamera = new/obj/item/camera/siliconcam/robot_camera(src)
 
 	mmi = new /obj/item/mmi/digital/robot(src) // Explicitly a drone.
-	module = new /obj/item/weapon/robot_module/robot/stray(src)
+	module = new /obj/item/robot_module/robot/stray(src)
 	cut_overlays()
 	init_id()
 
 	updatename("Stray")
 
 	if(!cell)
-		cell = new /obj/item/weapon/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
+		cell = new /obj/item/cell/high(src) // 15k cell, as recharging stations are a lot more rare on the Surface.
 
 	playsound(src, 'sound/mecha/nominalsyndi.ogg', 75, 0)
 

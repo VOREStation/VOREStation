@@ -368,9 +368,9 @@
 /datum/supply_pack/costumes/taurbags
 	name = "Saddlebags crate"
 	contains = list(
-			/obj/item/weapon/storage/backpack/saddlebag_common,
-			/obj/item/weapon/storage/backpack/saddlebag_common/robust,
-			/obj/item/weapon/storage/backpack/saddlebag_common/vest
+			/obj/item/storage/backpack/saddlebag_common,
+			/obj/item/storage/backpack/saddlebag_common/robust,
+			/obj/item/storage/backpack/saddlebag_common/vest
 			)
 	cost = 60
 	containertype = /obj/structure/closet/crate

@@ -1,11 +1,11 @@
-/obj/item/weapon/shield/energy/imperial
+/obj/item/shield/energy/imperial
 	name = "energy scutum"
 	desc = "It's really easy to mispronounce the name of this shield if you've only read it in books."
 	icon = 'icons/obj/weapons_vr.dmi'
 	icon_state = "impshield" // eshield1 for expanded
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi')
 
-/obj/item/weapon/shield/fluff/wolfgirlshield
+/obj/item/shield/fluff/wolfgirlshield
 	name = "Autumn Shield"
 	desc = "A shiny silvery shield with a large red leaf symbol in the center."
 	icon = 'icons/obj/weapons_vr.dmi'
@@ -18,10 +18,10 @@
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_melee_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_melee_vr.dmi', slot_back_str = 'icons/vore/custom_items_vr.dmi', slot_wear_suit_str = 'icons/vore/custom_items_vr.dmi')
 	attack_verb = list("shoved", "bashed")
 	var/cooldown = 0 //shield bash cooldown. based on world.time
-	allowed = list(/obj/item/weapon/melee/fluffstuff/wolfgirlsword)
+	allowed = list(/obj/item/melee/fluffstuff/wolfgirlsword)
 
 
-/obj/item/weapon/shield/riot/explorer
+/obj/item/shield/riot/explorer
 	name = "green explorer shield"
 	desc = "A shield issued to exploration teams to help protect them when advancing into the unknown. It is lighter and cheaper but less protective than some of its counterparts. It has a flashlight straight in the middle to help draw attention."
 	icon = 'icons/obj/weapons_vr.dmi'
@@ -40,7 +40,7 @@
 
 //POURPEL WHY U NO COVER
 
-/obj/item/weapon/shield/riot/explorer/attack_self(mob/user)
+/obj/item/shield/riot/explorer/attack_self(mob/user)
 	if(brightness_on)
 		if(!isturf(user.loc))
 			to_chat(user, "You cannot turn the light on while in this [user.loc]")
@@ -56,7 +56,7 @@
 	else
 		return ..(user)
 
-/obj/item/weapon/shield/riot/explorer/proc/update_flashlight(var/mob/user = null)
+/obj/item/shield/riot/explorer/proc/update_flashlight(var/mob/user = null)
 	if(on && !light_applied)
 		set_light(brightness_on)
 		light_applied = 1
@@ -67,19 +67,19 @@
 	user.update_action_buttons()
 	playsound(src, 'sound/weapons/empty.ogg', 15, 1, -3)
 
-/obj/item/weapon/shield/riot/explorer/update_icon()
+/obj/item/shield/riot/explorer/update_icon()
 	if(on)
 		icon_state = "explorer_shield_lighted"
 	else
 		icon_state = "explorer_shield"
 
-/obj/item/weapon/shield/riot/explorer/purple
+/obj/item/shield/riot/explorer/purple
 	name = "purple explorer shield"
 	desc = "A shield issued to exploration teams to help protect them when advancing into the unknown. It is lighter and cheaper but less protective than some of its counterparts. It has a flashlight straight in the middle to help draw attention. This one is POURPEL"
 	icon_state = "explorer_shield_P"
 
-/obj/item/weapon/shield/riot/explorer/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/weapon/material/knife/machete))
+/obj/item/shield/riot/explorer/attackby(obj/item/W as obj, mob/user as mob)
+	if(istype(W, /obj/item/material/knife/machete))
 		if(cooldown < world.time - 25)
 			user.visible_message("<span class='warning'>[user] bashes [src] with [W]!</span>")
 			playsound(src, 'sound/effects/shieldbash.ogg', 50, 1)
@@ -87,13 +87,13 @@
 	else
 		..()
 
-/obj/item/weapon/shield/riot/explorer/purple/update_icon()
+/obj/item/shield/riot/explorer/purple/update_icon()
 	if(on)
 		icon_state = "explorer_shield_P_lighted"
 	else
 		icon_state = "explorer_shield_P"
 
-/obj/item/weapon/shield/primitive
+/obj/item/shield/primitive
 	name = "primitive shield"
 	desc = "A defensive object that is little more than planks strapped your arm"
 	icon = 'icons/obj/weapons.dmi'

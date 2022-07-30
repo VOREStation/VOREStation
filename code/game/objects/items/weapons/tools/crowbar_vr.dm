@@ -2,7 +2,7 @@
  * Prybar
  */
 
-/obj/item/weapon/tool/prybar
+/obj/item/tool/prybar
 	name = "pry bar"
 	desc = "A steel bar with a wedge, designed specifically for opening unpowered doors in an emergency. It comes in a variety of configurations - collect them all!"
 	icon = 'icons/obj/tools_vr.dmi'
@@ -20,12 +20,12 @@
 	toolspeed = 1
 	var/random_color = TRUE
 
-/obj/item/weapon/tool/prybar/red
+/obj/item/tool/prybar/red
 	icon_state = "prybar_red"
 	item_state = "crowbar_red"
 	random_color = FALSE
 
-/obj/item/weapon/tool/prybar/New()
+/obj/item/tool/prybar/New()
 	if(random_color)
 		icon_state = "prybar[pick("","_green","_aubergine","_blue")]"
 	. = ..()

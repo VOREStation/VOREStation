@@ -15,7 +15,7 @@
 	mob_swap_flags = ~HEAVY
 	mob_push_flags = HEAVY
 
-	used_weapon = /obj/item/weapon/gun/energy/taser
+	used_weapon = /obj/item/gun/energy/taser
 
 	var/shot_delay = 4
 	var/last_shot = 0
@@ -30,9 +30,9 @@
 	visible_message("<span class='warning'>[src] blows apart!</span>")
 	var/turf/Tsec = get_turf(src)
 
-	new /obj/item/weapon/secbot_assembly/ed209_assembly(Tsec)
+	new /obj/item/secbot_assembly/ed209_assembly(Tsec)
 
-	var/obj/item/weapon/gun/energy/taser/G = new used_weapon(Tsec)
+	var/obj/item/gun/energy/taser/G = new used_weapon(Tsec)
 	G.power_supply.charge = 0
 	if(prob(50))
 		new /obj/item/robot_parts/l_leg(Tsec)
@@ -74,7 +74,7 @@
 
 // Assembly
 
-/obj/item/weapon/secbot_assembly/ed209_assembly
+/obj/item/secbot_assembly/ed209_assembly
 	name = "ED-209 assembly"
 	desc = "Some sort of bizarre assembly."
 	icon = 'icons/obj/aibots.dmi'
@@ -83,10 +83,10 @@
 	created_name = "ED-209 Security Robot"
 	var/lasercolor = ""
 
-/obj/item/weapon/secbot_assembly/ed209_assembly/attackby(var/obj/item/weapon/W as obj, var/mob/user as mob)
+/obj/item/secbot_assembly/ed209_assembly/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()
 
-	if(istype(W, /obj/item/weapon/pen))
+	if(istype(W, /obj/item/pen))
 		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
@@ -119,8 +119,8 @@
 				icon_state = "ed209_shell"
 
 		if(3)
-			if(istype(W, /obj/item/weapon/weldingtool))
-				var/obj/item/weapon/weldingtool/WT = W
+			if(istype(W, /obj/item/weldingtool))
+				var/obj/item/weldingtool/WT = W
 				if(WT.remove_fuel(0, user))
 					build_step++
 					name = "shielded frame assembly"
@@ -160,7 +160,7 @@
 				return
 
 		if(7)
-			if(istype(W, /obj/item/weapon/gun/energy/taser/xeno))
+			if(istype(W, /obj/item/gun/energy/taser/xeno))
 				name = "xenotaser SL-ED-209 assembly"
 				item_state = "sled209_taser"
 				icon_state = "sled209_taser"
@@ -169,7 +169,7 @@
 				user.drop_item()
 				qdel(W)
 				var/turf/T = get_turf(src)
-				var/obj/item/weapon/secbot_assembly/ed209_assembly/slime/S = new /obj/item/weapon/secbot_assembly/ed209_assembly/slime(T)
+				var/obj/item/secbot_assembly/ed209_assembly/slime/S = new /obj/item/secbot_assembly/ed209_assembly/slime(T)
 				S.name = name
 				S.item_state = item_state
 				S.icon_state = icon_state
@@ -178,7 +178,7 @@
 				user.drop_from_inventory(src)
 				qdel(src)
 
-			else if(istype(W, /obj/item/weapon/gun/energy/taser))
+			else if(istype(W, /obj/item/gun/energy/taser))
 				name = "taser ED-209 assembly"
 				item_state = "ed209_taser"
 				icon_state = "ed209_taser"
@@ -199,7 +199,7 @@
 					to_chat(user, "<span class='notice'>Taser gun attached.</span>")
 
 		if(9)
-			if(istype(W, /obj/item/weapon/cell))
+			if(istype(W, /obj/item/cell))
 				build_step++
 				to_chat(user, "<span class='notice'>You complete the ED-209.</span>")
 				var/turf/T = get_turf(src)

@@ -1,12 +1,12 @@
 /datum/supply_pack/eng/modern_shield
 	name = "Modern Shield Construction Kit"
 	contains = list(
-		/obj/item/weapon/circuitboard/shield_generator,
-		/obj/item/weapon/stock_parts/capacitor,
-		/obj/item/weapon/stock_parts/micro_laser,
-		/obj/item/weapon/smes_coil,
-		/obj/item/weapon/stock_parts/console_screen,
-		/obj/item/weapon/stock_parts/subspace/amplifier
+		/obj/item/circuitboard/shield_generator,
+		/obj/item/stock_parts/capacitor,
+		/obj/item/stock_parts/micro_laser,
+		/obj/item/smes_coil,
+		/obj/item/stock_parts/console_screen,
+		/obj/item/stock_parts/subspace/amplifier
 		)
 	cost = 80
 	containertype = /obj/structure/closet/crate/focalpoint
@@ -27,7 +27,7 @@
 			)
 
 /datum/supply_pack/eng/dosimeter
-	contains = list(/obj/item/weapon/storage/box/dosimeter = 6)
+	contains = list(/obj/item/storage/box/dosimeter = 6)
 	name = "Dosimeters"
 	cost = 10
 	containertype = /obj/structure/closet/crate
@@ -48,7 +48,7 @@
 	access = access_ce
 
 /datum/supply_pack/eng/inducer
-	contains = list(/obj/item/weapon/inducer = 3)
+	contains = list(/obj/item/inducer = 3)
 	name = "inducer"
 	cost = 90	//Relatively expensive
 	containertype = /obj/structure/closet/crate/xion

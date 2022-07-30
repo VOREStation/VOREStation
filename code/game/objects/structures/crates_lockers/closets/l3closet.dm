@@ -50,7 +50,7 @@
 	starts_with = list(
 		/obj/item/clothing/suit/bio_suit/scientist = 2,
 		/obj/item/clothing/head/bio_hood/scientist = 2,
-		/obj/item/weapon/storage/bag/xeno = 2) // VOREEdit, adding the xenobag to xenobio.
+		/obj/item/storage/bag/xeno = 2) // VOREEdit, adding the xenobag to xenobio.
 
 
 /obj/structure/closet/l3closet/medical

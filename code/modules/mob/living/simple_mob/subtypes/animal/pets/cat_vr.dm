@@ -38,7 +38,7 @@
 	icon_state = "kitten"
 	item_state = "kitten"
 	gender = MALE
-	holder_type = /obj/item/weapon/holder/cat/fluff/tabiranth
+	holder_type = /obj/item/holder/cat/fluff/tabiranth
 	friend_name = "Ascian"
 	digestable = 0
 	meat_amount = 0
@@ -74,4 +74,3 @@
 		qdel(src) //Back from whence you came!
 
 	. = ..(FALSE, deathmessage)
-

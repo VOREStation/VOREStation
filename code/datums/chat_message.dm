@@ -34,7 +34,7 @@ var/list/runechat_image_cache = list()
 
 	var/image/emote_image = image('icons/UI_Icons/chat/chat_icons.dmi', icon_state = "emote")
 	runechat_image_cache["emote"] = emote_image
-	
+
 	return TRUE
 
 /datum/chatmessage
@@ -99,7 +99,7 @@ var/list/runechat_image_cache = list()
 	if(!target || !owner)
 		qdel(src)
 		return
-	
+
 	// Register client who owns this message
 	owned_by = owner.client
 	RegisterSignal(owned_by, COMSIG_PARENT_QDELETING, .proc/qdel_self)
@@ -147,10 +147,10 @@ var/list/runechat_image_cache = list()
 		// Icon on both ends?
 		//var/image/I = runechat_image_cache["emote"]
 		//text = "\icon[I][text]\icon[I]"
-		
+
 		// Icon on one end?
 		//LAZYADD(prefixes, "\icon[runechat_image_cache["emote"]]")
-		
+
 		// Asterisks instead?
 		text = "*&nbsp;[text]&nbsp;*"
 
@@ -255,7 +255,7 @@ var/list/runechat_image_cache = list()
 	if(!message)
 		return
 	*/
- 
+
 	var/list/extra_classes = list()
 	extra_classes += existing_extra_classes
 
@@ -366,6 +366,6 @@ var/list/runechat_image_cache = list()
 	return src
 
 /mob/runechat_holder(datum/chatmessage/CM)
-	if(istype(loc, /obj/item/weapon/holder))
+	if(istype(loc, /obj/item/holder))
 		return loc
 	return ..()

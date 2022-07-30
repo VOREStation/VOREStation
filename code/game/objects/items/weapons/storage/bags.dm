@@ -53,7 +53,7 @@
 		icon_state = "trashbag2"
 	else icon_state = "trashbag3"
 
-/obj/item/weapon/storage/bag/trash/holding
+/obj/item/storage/bag/trash/holding
 	name = "trash bag of holding"
 	desc = "The latest and greatest in custodial convenience, a trashbag that is capable of holding vast quantities of garbage."
 	icon_state = "bluetrashbag"
@@ -61,7 +61,7 @@
 	max_w_class = ITEMSIZE_NORMAL
 	max_storage_space = ITEMSIZE_COST_NORMAL * 10 // Slightly less than BoH
 
-/obj/item/weapon/storage/bag/trash/holding/update_icon()
+/obj/item/storage/bag/trash/holding/update_icon()
 	return
 
 // -----------------------------
@@ -359,7 +359,7 @@
 // -----------------------------
 //    Food Bag (Service Hound)
 // -----------------------------
-/obj/item/weapon/storage/bag/dogborg
+/obj/item/storage/bag/dogborg
 	name = "dog bag"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "foodbag"
@@ -367,9 +367,9 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/weapon/reagent_containers/food/snacks,/obj/item/weapon/reagent_containers/food/condiment,
-	/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle,/obj/item/weapon/coin,/obj/item/weapon/spacecash,
-	/obj/item/weapon/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/weapon/grown,/obj/item/weapon/reagent_containers/pill)
+	can_hold = list(/obj/item/reagent_containers/food/snacks,/obj/item/reagent_containers/food/condiment,
+	/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle,/obj/item/coin,/obj/item/spacecash,
+	/obj/item/reagent_containers/food/snacks/grown,/obj/item/seeds,/obj/item/grown,/obj/item/reagent_containers/pill)
 
 // -----------------------------
 //           Cash Bag
@@ -396,7 +396,7 @@
 	max_storage_space = 200
 	w_class = ITEMSIZE_LARGE
 	slowdown = 3
-	can_hold = list(/obj/item/weapon/reagent_containers/pill,/obj/item/weapon/reagent_containers/glass/beaker,/obj/item/weapon/reagent_containers/glass/bottle)
+	can_hold = list(/obj/item/reagent_containers/pill,/obj/item/reagent_containers/glass/beaker,/obj/item/reagent_containers/glass/bottle)
 
 	// -----------------------------
 	//           Food Bag

@@ -353,7 +353,7 @@
 	to_chat(usr, "<span class='notice'>You [canremove ? "de" : ""]activate the locking mechanism on \the [src].</span>")
 
 //For the adminbuse! VOREStation Add
-/obj/item/weapon/technomancer_core/universal
+/obj/item/technomancer_core/universal
 	name = "universal core"
 	desc = "A bewilderingly complex 'black box' that allows the wearer to accomplish amazing feats. \
 	This one is a copy of a 'technomancer' core, shamelessly ripped off by a Kitsuhana pattern designer \

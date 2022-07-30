@@ -29,16 +29,16 @@
 			/obj/item/clothing/suit/bio_suit/security = 3,
 			/obj/item/clothing/shoes/white = 3,
 			/obj/item/clothing/mask/gas = 3,
-			/obj/item/weapon/tank/oxygen = 3,
+			/obj/item/tank/oxygen = 3,
 			/obj/item/clothing/gloves/sterile/latex,
-			/obj/item/weapon/storage/box/gloves
+			/obj/item/storage/box/gloves
 			)
 	cost = 40
 
 /datum/supply_pack/security/trackingimplant
 	name = "Implants - Tracking"
 	contains = list(
-			/obj/item/weapon/storage/box/trackimp = 1
+			/obj/item/storage/box/trackimp = 1
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure
@@ -48,7 +48,7 @@
 /datum/supply_pack/security/chemicalimplant
 	name = "Implants - Chemical"
 	contains = list(
-			/obj/item/weapon/storage/box/chemimp = 1
+			/obj/item/storage/box/chemimp = 1
 			)
 	cost = 25
 	containertype = /obj/structure/closet/crate/secure

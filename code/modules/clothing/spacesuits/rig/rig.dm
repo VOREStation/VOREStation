@@ -189,7 +189,7 @@
 	spark_system = null
 	return ..()
 
-/obj/item/weapon/rig/examine()
+/obj/item/rig/examine()
 	. = ..()
 	if(wearer)
 		for(var/obj/item/piece in list(helmet,gloves,chest,boots))

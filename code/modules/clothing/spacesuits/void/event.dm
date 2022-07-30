@@ -277,13 +277,13 @@
 	item_state_slots = list(slot_r_hand_str = "sec_voidsuitTG", slot_l_hand_str = "sec_voidsuitTG")
 	armor = list(melee = 30, bullet = 15, laser = 15,energy = 5, bomb = 20, bio = 100, rad = 50)
 	allowed = list(/obj/item/flashlight,
-			/obj/item/weapon/tank,
+			/obj/item/tank,
 			/obj/item/suit_cooling_unit,
-			/obj/item/weapon/storage/briefcase/inflatable,
+			/obj/item/storage/briefcase/inflatable,
 			/obj/item/gps,
 			/obj/item/radio/beacon,
-			/obj/item/weapon/pickaxe,
-			/obj/item/weapon/shovel
+			/obj/item/pickaxe,
+			/obj/item/shovel
 			)
 
 //Mercenary Crewsuit (RED, CROSS)
@@ -323,5 +323,5 @@
 			/obj/item/spaceflare,
 			/obj/item/powersink,
 			/obj/item/radio_jammer,
-			/obj/item/weapon/cell
+			/obj/item/cell
 			)

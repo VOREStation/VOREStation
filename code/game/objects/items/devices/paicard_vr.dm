@@ -15,7 +15,7 @@ var/global/list/paikeys = list()
 	var/speech_synthesizer = PP_FUNCTIONAL	//non-critical- affects speech
 
 /obj/item/paicard/attackby(var/obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/weapon/tool/screwdriver))
+	if(istype(I,/obj/item/tool/screwdriver))
 		if(panel_open)
 			panel_open = FALSE
 			user.visible_message("<span class ='notice'>\The [user] secured \the [src]'s maintenance panel.</span>")

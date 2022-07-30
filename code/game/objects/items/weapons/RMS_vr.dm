@@ -5,7 +5,7 @@
 #define RMS_STONE 5
 #define RMS_RAND 6
 
-/obj/item/weapon/rms
+/obj/item/rms
 	name = "Rapid Material Synthesizer"
 	desc = "A tool that converts battery charge to materials."
 	icon = 'icons/obj/tools_vr.dmi'
@@ -44,33 +44,33 @@
 	var/static/image/radial_image_random = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-random")
 
 
-/obj/item/weapon/rms/Initialize()
+/obj/item/rms/Initialize()
 	. = ..()
 	src.spark_system = new /datum/effect/effect/system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	add_overlay("rms_charge[charge_stage]")
 
-/obj/item/weapon/pipe_dispenser/Destroy()
+/obj/item/pipe_dispenser/Destroy()
 	qdel_null(spark_system)
 	return ..()
 
-/obj/item/weapon/rms/update_icon()
+/obj/item/rms/update_icon()
 	charge_stage = round((stored_charge/max_charge)*4)
 	if(charge_stage >= 4)
 		charge_stage = 4
 	cut_overlays()
 	add_overlay("rms_charge[charge_stage]")
 
-/obj/item/weapon/rms/examine(mob/user)
+/obj/item/rms/examine(mob/user)
 	. = ..()
 	. += display_resources()
 
-/obj/item/weapon/rms/proc/display_resources()
+/obj/item/rms/proc/display_resources()
 	return "It currently holds [round(stored_charge/1000)]/[max_charge/1000] kW charge."
 
-/obj/item/weapon/rms/proc/drain_battery(user, battery)
-	var/obj/item/weapon/cell/C = battery
+/obj/item/rms/proc/drain_battery(user, battery)
+	var/obj/item/cell/C = battery
 	if(stored_charge == max_charge)
 		to_chat(user, "<span class='notice'>The Rapid Material Synthesizer is full on charge!.</span>")
 	if(C.charge == 0)
@@ -85,19 +85,19 @@
 	stored_charge = CLAMP(stored_charge, 0, max_charge)
 	update_icon()
 
-/obj/item/weapon/rms/proc/consume_resources(amount)
+/obj/item/rms/proc/consume_resources(amount)
 	stored_charge -= amount
 	update_icon()
 	return
 
 
-/obj/item/weapon/rms/proc/can_afford(amount)
+/obj/item/rms/proc/can_afford(amount)
 	if(stored_charge < amount)
 		return FALSE
 	else
 		return TRUE
 
-/obj/item/weapon/rms/proc/use_rms(atom/A, mob/living/user)
+/obj/item/rms/proc/use_rms(atom/A, mob/living/user)
 	var/obj/product
 	if(!overcharge)
 		if(!can_afford(charge_cost))
@@ -147,7 +147,7 @@
 			if(RMS_RAND)
 				if(!overcharge && !emagged)
 					product = pick(10;new /obj/item/trash/material/metal,
-									10;new /obj/item/weapon/material/shard,
+									10;new /obj/item/material/shard,
 									10;new /obj/item/stack/cable_coil/random,
 									10;new /obj/item/stack/material/wood,
 									10;new /obj/item/stack/material/wood/sif,
@@ -161,7 +161,7 @@
 					spark_system.start()
 				if(!overcharge && emagged)
 					product = pick(10;new /obj/item/trash/material/metal,
-									10;new /obj/item/weapon/material/shard,
+									10;new /obj/item/material/shard,
 									10;new /obj/item/stack/cable_coil/random,
 									10;new /obj/item/stack/material/wood,
 									10;new /obj/item/stack/material/wood/sif,
@@ -176,9 +176,9 @@
 									5;new /obj/item/trash/rkibble,
 									10;new /obj/item/stack/tile/grass,
 									10;new /obj/item/stack/tile/carpet,
-									10;new /obj/item/weapon/reagent_containers/spray/waterflower,
-									10;new /obj/item/weapon/bikehorn,
-									10;new /obj/item/weapon/storage/backpack/clown,
+									10;new /obj/item/reagent_containers/spray/waterflower,
+									10;new /obj/item/bikehorn,
+									10;new /obj/item/storage/backpack/clown,
 									10;new /obj/item/clothing/under/rank/clown,
 									10;new /obj/item/clothing/shoes/clown_shoes,
 									10;new /obj/item/clothing/mask/gas/clown_hat,
@@ -187,7 +187,7 @@
 					spark_system.start()
 	product.loc = get_turf(A)
 
-/obj/item/weapon/rms/proc/check_menu(mob/living/user)
+/obj/item/rms/proc/check_menu(mob/living/user)
 	if(!istype(user))
 		return FALSE
 	if(user.incapacitated() || !user.Adjacent(src))
@@ -196,10 +196,10 @@
 
 //Start of attack functions
 
-/obj/item/weapon/rms/afterattack(atom/target, mob/user, proximity)
+/obj/item/rms/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
-	if(istype(target, /obj/item/weapon/cell)) //Check for a battery on-click
+	if(istype(target, /obj/item/cell)) //Check for a battery on-click
 		drain_battery(user, target)
 		return
 	if(istype(target, /turf/simulated)) // Check for a proper area on-click to spawn items
@@ -209,7 +209,7 @@
 		to_chat(user, "<span class='notice'>Invalid target for the device.</span>")
 		return
 
-/obj/item/weapon/rms/attack_self(mob/user)
+/obj/item/rms/attack_self(mob/user)
 	var/list/choices = list(
 		"Steel" = radial_image_steel,
 		"Glass" = radial_image_glass,
@@ -242,12 +242,12 @@
 	playsound(src.loc, 'sound/effects/pop.ogg', 50, 0)
 	return ..()
 
-/obj/item/weapon/rms/emag_act(var/remaining_charges, var/mob/user)
+/obj/item/rms/emag_act(var/remaining_charges, var/mob/user)
 	emagged = !emagged
 	playsound(src.loc, "sparks", 100, 1)
 	return 1
 
-/obj/item/weapon/rms/attackby(obj/item/W, mob/user)
+/obj/item/rms/attackby(obj/item/W, mob/user)
 	if(W.is_multitool())
 		overcharge = !overcharge
 	if(overcharge)

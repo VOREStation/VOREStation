@@ -62,4 +62,4 @@
 
 /datum/category_item/autolathe/tools/rsf
 	name = "rapid service fabricator"
-	path = /obj/item/weapon/rsf
+	path = /obj/item/rsf

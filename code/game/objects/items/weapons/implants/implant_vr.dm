@@ -1,9 +1,9 @@
-/obj/item/weapon/implant/vrlanguage
+/obj/item/implant/vrlanguage
 	name = "language"
 	desc = "Allows the user to understand and speak almost all known languages.."
 	var/uses = 1
 
-/obj/item/weapon/implant/vrlanguage/get_data()
+/obj/item/implant/vrlanguage/get_data()
 	var/dat = {"
 		<b>Implant Specifications:</b><BR>
 		<b>Name:</b> Language Implant<BR>
@@ -16,7 +16,7 @@
 		<b>Integrity:</b> Implant can only be used once before the nanobots are depleted."}
 	return dat
 
-/obj/item/weapon/implant/vrlanguage/trigger(emote, mob/source as mob)
+/obj/item/implant/vrlanguage/trigger(emote, mob/source as mob)
 	if (src.uses < 1)
 		return 0
 	if (emote == "smile")
@@ -35,9 +35,9 @@
 		source.add_language(LANGUAGE_CANILUNZT)
 		source.add_language(LANGUAGE_SLAVIC)
 		source.add_language(LANGUAGE_SOL_COMMON) //In case they're giving a xenomorph an implant or something.
-		source.add_language(LANGUAGE_TAVAN) 
+		source.add_language(LANGUAGE_TAVAN)
 
-/obj/item/weapon/implant/vrlanguage/post_implant(mob/source)
+/obj/item/implant/vrlanguage/post_implant(mob/source)
 	source.mind.store_memory("A implant can be activated by using the smile emote, <B>say *smile</B> to attempt to activate.", 0, 0)
 	to_chat(source,"The implanted language implant can be activated by using the smile emote, <B>say *smile</B> to attempt to activate.")
 	return 1
@@ -45,14 +45,14 @@
 //////////////////////////////
 //	Size Control Implant
 //////////////////////////////
-/obj/item/weapon/implant/sizecontrol
+/obj/item/implant/sizecontrol
 	name = "size control implant"
 	desc = "Implant which allows to control host size via voice commands."
 	icon_state = "implant_evil"
 	var/owner
 	var/active = TRUE
 
-/obj/item/weapon/implant/sizecontrol/get_data()
+/obj/item/implant/sizecontrol/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
 <b>Name:</b>L3-WD Size Controlling Implant<BR>
@@ -61,7 +61,7 @@
 <b>Function:</b> Resizes the host whenever specific verbal command is received<BR>"}
 	return dat
 
-/obj/item/weapon/implant/sizecontrol/hear_talk(mob/M, list/message_pieces)
+/obj/item/implant/sizecontrol/hear_talk(mob/M, list/message_pieces)
 	if(M == imp_in)
 		return
 	if(owner)
@@ -75,7 +75,7 @@
 	hear(msg)
 	return
 
-/obj/item/weapon/implant/sizecontrol/see_emote(mob/living/M, message, m_type)
+/obj/item/implant/sizecontrol/see_emote(mob/living/M, message, m_type)
 	if(M == imp_in)
 		return
 	if(owner)
@@ -90,7 +90,7 @@
 		hear(say_in_me.group[2])
 
 
-/obj/item/weapon/implant/sizecontrol/hear(var/msg)
+/obj/item/implant/sizecontrol/hear(var/msg)
 	if (malfunction)
 		return
 
@@ -111,18 +111,18 @@
 
 
 
-/obj/item/weapon/implant/sizecontrol/post_implant(mob/source, mob/living/user = usr)
+/obj/item/implant/sizecontrol/post_implant(mob/source, mob/living/user = usr)
 	if(source != user)
 		owner = user
 
 
-/obj/item/weapon/implant/sizecontrol/emp_act(severity)
+/obj/item/implant/sizecontrol/emp_act(severity)
 	if(istype(imp_in, /mob/living))
 		var/newsize = pick(RESIZE_HUGE,RESIZE_BIG,RESIZE_NORMAL,RESIZE_SMALL,RESIZE_TINY,RESIZE_A_HUGEBIG,RESIZE_A_BIGNORMAL,RESIZE_A_NORMALSMALL,RESIZE_A_SMALLTINY)
 		var/mob/living/H = imp_in
 		H.resize(newsize)
 
-/obj/item/weapon/implanter/sizecontrol
+/obj/item/implanter/sizecontrol
 	name = "size control implant"
 	desc = "Implant which allows to control host size via voice commands."
 	description_info = {"Only accessable by those who implanted the victim. Self-implanting allows everyone to change host size. The following special commands are available:
@@ -132,8 +132,8 @@
 'Ignore' - keywords in the speech won't have any effect.
 'Implant-toggle' - toggles implant."}
 
-/obj/item/weapon/implanter/sizecontrol/New()
-	src.imp = new /obj/item/weapon/implant/sizecontrol( src )
+/obj/item/implanter/sizecontrol/New()
+	src.imp = new /obj/item/implant/sizecontrol( src )
 	..()
 	update()
 	return

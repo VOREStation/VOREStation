@@ -75,7 +75,7 @@
 	desc = "A survival box issued to crew members for use in emergency situations."
 	icon_state = "survival"
 	starts_with = list(
-		/obj/item/weapon/tool/prybar/red,
+		/obj/item/tool/prybar/red,
 		/obj/item/clothing/glasses/goggles,
 		/obj/item/clothing/mask/breath
 	)
@@ -85,7 +85,7 @@
 	desc = "A survival box issued to synthetic crew members for use in emergency situations."
 	icon_state = "survival_synth"
 	starts_with = list(
-		/obj/item/weapon/tool/prybar/red,
+		/obj/item/tool/prybar/red,
 		/obj/item/clothing/glasses/goggles
 	)
 
@@ -420,7 +420,7 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 5 // Formally 21.  Odd numbers are bad.
 	use_to_pickup = TRUE // for picking up broken bulbs, not that most people will try
 
-/obj/item/weapon/storage/box/freezer/red
+/obj/item/storage/box/freezer/red
 	icon_state = "portafreezer_red"
 
 /obj/item/storage/box/freezer/Entered(var/atom/movable/AM)
@@ -457,51 +457,51 @@
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	storage_slots = 2
 	max_w_class = ITEMSIZE_NORMAL
-	can_hold = list(/obj/item/weapon/gun/projectile/revolver/capgun, /obj/item/ammo_magazine/ammo_box/cap)
+	can_hold = list(/obj/item/gun/projectile/revolver/capgun, /obj/item/ammo_magazine/ammo_box/cap)
 	starts_with = list(
-		/obj/item/weapon/gun/projectile/revolver/capgun = 1,
+		/obj/item/gun/projectile/revolver/capgun = 1,
 		/obj/item/ammo_magazine/ammo_box/cap = 1
 	)
 
 //Donk-pockets
-/obj/item/weapon/storage/box/donkpockets
+/obj/item/storage/box/donkpockets
 	name = "box of donk-pockets"
 	desc = "<B>Instructions:</B> <I>Heat in microwave. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donkpocketbox"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket = 7)
 
-/obj/item/weapon/storage/box/donkpockets/spicy
+/obj/item/storage/box/donkpockets/spicy
 	name = "box of spicy-flavoured donk-pockets"
 	icon_state = "donkpocketboxspicy"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/spicy = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/spicy = 7)
 
-/obj/item/weapon/storage/box/donkpockets/teriyaki
+/obj/item/storage/box/donkpockets/teriyaki
 	name = "box of teriyaki-flavoured donk-pockets"
 	icon_state = "donkpocketboxteriyaki"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/teriyaki = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/teriyaki = 7)
 
-/obj/item/weapon/storage/box/donkpockets/pizza
+/obj/item/storage/box/donkpockets/pizza
 	name = "box of pizza-flavoured donk-pockets"
 	icon_state = "donkpocketboxpizza"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/pizza = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/pizza = 7)
 
-/obj/item/weapon/storage/box/donkpockets/honk
+/obj/item/storage/box/donkpockets/honk
 	name = "box of banana-flavoured donk-pockets"
 	icon_state = "donkpocketboxbanana"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/honk = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/honk = 7)
 
-/obj/item/weapon/storage/box/donkpockets/gondola
+/obj/item/storage/box/donkpockets/gondola
 	name = "box of gondola-flavoured donk-pockets"
 	icon_state = "donkpocketboxgondola"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/gondola = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/gondola = 7)
 
-/obj/item/weapon/storage/box/donkpockets/berry
+/obj/item/storage/box/donkpockets/berry
 	name = "box of berry-flavoured donk-pockets"
 	icon_state = "donkpocketboxberry"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/berry = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/berry = 7)
 
-/obj/item/weapon/storage/box/sinpockets
+/obj/item/storage/box/sinpockets
 	name = "box of sin-pockets"
 	desc = "<B>Instructions:</B> <I>Crush bottom of package to initiate chemical heating. Wait for 20 seconds before consumption. Product will cool if not eaten within seven minutes.</I>"
 	icon_state = "donk_kit"
-	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/donkpocket/sinpocket = 7)
+	starts_with = list(/obj/item/reagent_containers/food/snacks/donkpocket/sinpocket = 7)

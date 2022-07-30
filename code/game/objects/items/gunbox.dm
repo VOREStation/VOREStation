@@ -39,7 +39,7 @@
 		var/list/things_to_spawn = options[choice]
 		for(var/new_type in things_to_spawn) // Spawn all the things, the gun and the ammo.
 			var/atom/movable/AM = new new_type(get_turf(src))
-			if(istype(AM, /obj/item/weapon/gun))
+			if(istype(AM, /obj/item/gun))
 				to_chat(user, "You have chosen \the [AM]. Say hello to your new friend.")
 		qdel(src)
 

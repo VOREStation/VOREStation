@@ -233,12 +233,12 @@
 	icon_rest = "hotiesc_rest"
 
 /mob/living/simple_mob/otie/attackby(var/obj/item/O, var/mob/user) // Trade donuts for bellybrig victims.
-	if(istype(O, /obj/item/weapon/reagent_containers/food))
+	if(istype(O, /obj/item/reagent_containers/food))
 		qdel(O)
 		playsound(src,'sound/items/eatfood.ogg', rand(10,50), 1)
 		if(!has_AI())//No autobarf on player control.
 			return
-		if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/otie/security))
+		if(istype(O, /obj/item/reagent_containers/food/snacks/donut) && istype(src, /mob/living/simple_mob/otie/security))
 			to_chat(user,"<span class='notice'>The guard pup accepts your offer for their catch.</span>")
 			release_vore_contents()
 		else if(prob(2)) //Small chance to get prey out from non-sec oties.

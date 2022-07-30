@@ -30,7 +30,7 @@
 	health = 25
 
 	meat_amount = 2
-	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
+	meat_type = /obj/item/reagent_containers/food/snacks/meat
 
 	movement_cooldown = 0
 
@@ -64,4 +64,3 @@
 	speak = list("Awrr?", "Aowrl!", "Worrl.")
 	emote_see = list("sniffs the air cautiously","looks around")
 	emote_hear = list("snuffles")
-

@@ -205,7 +205,7 @@
 	ball_desc = "a small glass ball"
 	icon_state = "roulette_ball_glass"
 
-	var/obj/item/weapon/holder/trapped
+	var/obj/item/holder/trapped
 
 /obj/item/roulette_ball/hollow/examine(mob/user)
 	.=..()
@@ -224,8 +224,8 @@
 	if(trapped)
 		to_chat(user, "<span class='notice'>This ball already has something trapped in it!</span>")
 		return
-	if(istype(W, /obj/item/weapon/holder))
-		var/obj/item/weapon/holder/H = W
+	if(istype(W, /obj/item/holder))
+		var/obj/item/holder/H = W
 		if(!H.held_mob)
 			to_chat(user, "<span class='warning'>This holder has nobody in it? Yell at a developer!</span>")
 			return
@@ -396,7 +396,7 @@
 				setinterval()
 
 
-/obj/machinery/wheel_of_fortune/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/wheel_of_fortune/attackby(obj/item/W as obj, mob/user as mob)
 	if (busy)
 		to_chat(user,"<span class='notice'>The wheel of fortune is already spinning!</span> ")
 		return
@@ -404,7 +404,7 @@
 	if(usr.incapacitated())
 		return
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(!check_access(W))
 			to_chat(user, "<span class='warning'>Access Denied.</span>")
 			return
@@ -442,7 +442,7 @@
 							lottery_tickets = list()
 							lottery_tickets_ckeys = list()
 
-	if(istype(W, /obj/item/weapon/spacecasinocash))
+	if(istype(W, /obj/item/spacecasinocash))
 		if(lottery_sale == "disabled")
 			to_chat(user, "<span class='warning'>Lottery sales are currently disabled.</span>")
 			return
@@ -451,10 +451,10 @@
 				to_chat(user, "<span class='warning'>The scanner beeps in an upset manner, you already have a ticket!</span>")
 				return
 
-			var/obj/item/weapon/spacecasinocash/C = W
+			var/obj/item/spacecasinocash/C = W
 			insert_chip(C, user)
 
-/obj/machinery/wheel_of_fortune/proc/insert_chip(var/obj/item/weapon/spacecasinocash/cashmoney, mob/user)
+/obj/machinery/wheel_of_fortune/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user)
 	if (busy)
 		to_chat(user,"<span class='notice'>The Wheel of Fortune is busy, wait for it to be done to buy a lottery ticket.</span> ")
 		return
@@ -610,16 +610,16 @@
 
 				spawn_casinochips(casinoslave_price, src.loc)
 
-/obj/machinery/casinoslave_handler/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/casinoslave_handler/attackby(obj/item/W as obj, mob/user as mob)
 	if(usr.incapacitated())
 		return
 
-	if(istype(W, /obj/item/weapon/spacecasinocash))
+	if(istype(W, /obj/item/spacecasinocash))
 		if(casinoslave_sale == "disabled")
 			to_chat(user, "<span class='warning'>Sentient Prize sales are currently disabled.</span>")
 			return
 		if(!selected_collar.ownername)
-			var/obj/item/weapon/spacecasinocash/C = W
+			var/obj/item/spacecasinocash/C = W
 			if(user.client.ckey == selected_collar.slaveckey)
 				insert_chip(C, user, "selfbuy")
 				return
@@ -654,7 +654,7 @@
 				C.slaveckey = null
 				collar_list -= C
 
-	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/pda))
+	if(istype(W, /obj/item/card/id)||istype(W, /obj/item/pda))
 		if(!check_access(W))
 			to_chat(user, "<span class='warning'>Access Denied.</span>")
 			return
@@ -707,7 +707,7 @@
 					if("Change Prize Value")
 						setprice(user)
 
-/obj/machinery/casinoslave_handler/proc/insert_chip(var/obj/item/weapon/spacecasinocash/cashmoney, mob/user, var/buystate)
+/obj/machinery/casinoslave_handler/proc/insert_chip(var/obj/item/spacecasinocash/cashmoney, mob/user, var/buystate)
 	if(cashmoney.worth < casinoslave_price)
 		to_chat(user,"<span class='notice'>You dont have enough chips to pay for the sentient prize!</span> ")
 		return

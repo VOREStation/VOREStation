@@ -51,7 +51,7 @@
 					var/obj/item/circuitboard/B = P
 					if(B.board_type == "machine")
 					//VOREStation Addition End
-						if(istype(B, /obj/item/weapon/circuitboard/quantumpad) && istype(get_area(src), /area/shuttle))
+						if(istype(B, /obj/item/circuitboard/quantumpad) && istype(get_area(src), /area/shuttle))
 							to_chat(user, "<span class='warning'>This is too unstable a platform for a quantum pad to operate on!</span>")
 							return
 					//VOREStation Addition End

@@ -32,14 +32,14 @@
 						update_examine_panel(src)
 						return
 					else
-						E |= M	
+						E |= M
 		if(E.len == 0)
 			return
 	else
 		var/my_turf = get_turf(src)
 		for(var/atom/M in view(world.view, my_turf))
 			if(ismob(M) && M != src && !istype(M, /mob/observer) && !M.invisibility)
-				E |= M	
+				E |= M
 		for(var/turf/T in view(world.view, my_turf))
 			if(!isopenspace(T))
 				continue
@@ -53,7 +53,7 @@
 				checked = checking
 				if(!isopenspace(checked))
 					keepgoing = FALSE
-	
+
 	if(E.len == 0)
 		to_chat(src, SPAN_NOTICE("There are no mobs to examine."))
 		return
@@ -64,7 +64,7 @@
 		B = tgui_input_list(src, "What would you like to examine?", "Examine", E)
 	if(!B)
 		return
-	if(!isbelly(loc) && !istype(loc, /obj/item/weapon/holder) && !isAI(src))
+	if(!isbelly(loc) && !istype(loc, /obj/item/holder) && !isAI(src))
 		if(B.z == src.z)
 			face_atom(B)
 	var/list/results = B.examine(src)

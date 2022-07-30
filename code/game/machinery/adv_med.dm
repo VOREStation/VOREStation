@@ -257,7 +257,7 @@
 			var/implantData[0]
 			for(var/obj/thing in E.implants)
 				var/implantSubData[0]
-				var/obj/item/weapon/implant/I = thing
+				var/obj/item/implant/I = thing
 			//VOREStation Block Edit Start
 				var/obj/item/nif/N = thing
 				if(istype(I))
@@ -475,7 +475,7 @@
 					infected = "Gangrene Detected:"
 
 			var/unknown_body = 0
-			for(var/obj/item/weapon/implant/I as anything in e.implants)
+			for(var/obj/item/implant/I as anything in e.implants)
 				var/obj/item/nif/N = I //VOREStation Add: NIFs
 				if(istype(I) && I.known_implant)
 					imp += "[I] implanted:"

@@ -2,11 +2,11 @@
 /datum/supply_pack/misc/beltminer
 	name = "Belt-miner gear crate"
 	contains = list(
-			/obj/item/weapon/gun/energy/particle = 2,
-			/obj/item/weapon/cell/device/weapon = 2,
-			/obj/item/weapon/storage/firstaid/regular = 1,
+			/obj/item/gun/energy/particle = 2,
+			/obj/item/cell/device/weapon = 2,
+			/obj/item/storage/firstaid/regular = 1,
 			/obj/item/gps = 2,
-			/obj/item/weapon/storage/box/traumainjectors = 1,
+			/obj/item/storage/box/traumainjectors = 1,
 			/obj/item/binoculars = 1
 			)
 	cost = 60
@@ -19,7 +19,7 @@
 /datum/supply_pack/misc/eva_rig
 	name = "eva hardsuit (empty)"
 	contains = list(
-			/obj/item/weapon/rig/eva = 1
+			/obj/item/rig/eva = 1
 			)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -33,7 +33,7 @@
 /datum/supply_pack/misc/mining_rig
 	name = "industrial hardsuit (empty)"
 	contains = list(
-			/obj/item/weapon/rig/industrial = 1
+			/obj/item/rig/industrial = 1
 			)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -45,7 +45,7 @@
 /datum/supply_pack/misc/medical_rig
 	name = "medical hardsuit (empty)"
 	contains = list(
-			/obj/item/weapon/rig/medical = 1
+			/obj/item/rig/medical = 1
 			)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -55,7 +55,7 @@
 /datum/supply_pack/misc/security_rig
 	name = "hazard hardsuit (empty)"
 	contains = list(
-			/obj/item/weapon/rig/hazard = 1
+			/obj/item/rig/hazard = 1
 			)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -65,7 +65,7 @@
 /datum/supply_pack/misc/science_rig
 	name = "ami hardsuit (empty)"
 	contains = list(
-			/obj/item/weapon/rig/hazmat = 1
+			/obj/item/rig/hazmat = 1
 			)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -75,7 +75,7 @@
 /datum/supply_pack/misc/ce_rig
 	name = "advanced hardsuit (empty)"
 	contains = list(
-			/obj/item/weapon/rig/ce = 1
+			/obj/item/rig/ce = 1
 			)
 	cost = 150
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -85,7 +85,7 @@
 /datum/supply_pack/misc/com_medical_rig
 	name = "commonwealth medical hardsuit (loaded)"
 	contains = list(
-			/obj/item/weapon/rig/baymed/equipped = 1
+			/obj/item/rig/baymed/equipped = 1
 			)
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -95,7 +95,7 @@
 /datum/supply_pack/misc/com_engineering_rig
 	name = "commonwealth engineering hardsuit (loaded)"
 	contains = list(
-			/obj/item/weapon/rig/bayeng/equipped = 1
+			/obj/item/rig/bayeng/equipped = 1
 			)
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -105,7 +105,7 @@
 /datum/supply_pack/misc/breacher_rig
 	name = "unathi breacher hardsuit (empty)"
 	contains = list(
-			/obj/item/weapon/rig/breacher = 1
+			/obj/item/rig/breacher = 1
 			)
 	cost = 250
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -115,7 +115,7 @@
 /datum/supply_pack/misc/zero_rig
 	name = "null hardsuit (jets)"
 	contains = list(
-			/obj/item/weapon/rig/zero = 1
+			/obj/item/rig/zero = 1
 			)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -124,7 +124,7 @@
 /datum/supply_pack/misc/jetpack
 	name = "jetpack (empty)"
 	contains = list(
-			/obj/item/weapon/tank/jetpack = 1
+			/obj/item/tank/jetpack = 1
 			)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear
@@ -140,8 +140,8 @@
 	name = "Explorer shield"
 	num_contained = 2
 	contains = list(
-			/obj/item/weapon/shield/riot/explorer,
-			/obj/item/weapon/shield/riot/explorer/purple
+			/obj/item/shield/riot/explorer,
+			/obj/item/shield/riot/explorer/purple
 			)
 	cost = 75
 	containertype = /obj/structure/closet/crate/secure/gear

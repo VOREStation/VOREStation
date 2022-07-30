@@ -5,10 +5,10 @@
 	anchored = TRUE
 	density = FALSE
 	unacidable = TRUE
-	var/falling_type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
+	var/falling_type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita
 	var/crushing = TRUE
 
-/obj/effect/falling_effect/Initialize(mapload, type = /obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita)
+/obj/effect/falling_effect/Initialize(mapload, type = /obj/item/reagent_containers/food/snacks/sliceable/pizza/margherita)
 	..()
 	falling_type = type
 	return INITIALIZE_HINT_LATELOAD

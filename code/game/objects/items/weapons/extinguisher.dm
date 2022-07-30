@@ -37,7 +37,7 @@
 	sprite_name = "miniFE"
 	rand_overlays = 0
 
-/obj/item/weapon/extinguisher/atmo
+/obj/item/extinguisher/atmo
 	name = "atmospheric fire extinguisher"
 	desc = "A heavy duty fire extinguisher meant to fight large fires."
 	icon_state = "atmos_extinguisher0"

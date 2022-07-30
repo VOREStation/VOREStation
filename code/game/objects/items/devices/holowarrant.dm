@@ -114,11 +114,11 @@
 		"}
 		show_browser(user, output, "window=Search warrant for [active.fields["namewarrant"]]")
 
-/obj/item/weapon/storage/box/holowarrants // VOREStation addition starts
+/obj/item/storage/box/holowarrants // VOREStation addition starts
 	name = "holowarrant devices"
 	desc = "A box of holowarrant diplays for security use."
 
-/obj/item/weapon/storage/box/holowarrants/New()
+/obj/item/storage/box/holowarrants/New()
 	..()
 	for(var/i = 0 to 3)
 		new /obj/item/holowarrant(src) // VOREStation addition ends

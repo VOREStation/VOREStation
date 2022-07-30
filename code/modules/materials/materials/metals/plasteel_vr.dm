@@ -18,5 +18,5 @@
 /datum/material/plastitanium/generate_recipes()
 	..()
 	recipes += list(
-		new /datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 20),
+		new /datum/stack_recipe("whetstone", /obj/item/whetstone, 2, time = 20),
 	)

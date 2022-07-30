@@ -68,7 +68,7 @@
 /obj/machinery/computer/cryopod/gateway
 	name = "gateway oversight console"
 	desc = "An interface between visitors and the gateway oversight systems tasked with keeping track of all visitors who enter or exit from the gateway."
-	circuit = "/obj/item/weapon/circuitboard/robotstoragecontrol"
+	circuit = "/obj/item/circuitboard/robotstoragecontrol"
 
 	storage_type = "visitors"
 	storage_name = "Travel Oversight Control"
@@ -391,7 +391,7 @@
 				W.forceMove(src)
 				if(W.contents.len)
 					for(var/obj/item/O in W.contents)
-						if(istype(O,/obj/item/weapon/storage/internal))
+						if(istype(O,/obj/item/storage/internal))
 							continue
 						O.forceMove(src)
 		if(ishuman(to_despawn))

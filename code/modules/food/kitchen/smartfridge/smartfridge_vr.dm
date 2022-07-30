@@ -18,7 +18,7 @@
 	. = ..()
 	if(accept_check(A) && A.thrower)
 		//Try to find what job they are via ID
-		var/obj/item/weapon/card/id/thrower_id
+		var/obj/item/card/id/thrower_id
 		if(ismob(A.thrower))
 			var/mob/T = A.thrower
 			thrower_id = T.GetIdCard()

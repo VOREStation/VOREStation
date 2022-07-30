@@ -206,14 +206,14 @@
 		/obj/item/clothing/suit/space/emergency,
 		/obj/item/clothing/head/helmet/space/emergency,
 		/obj/item/clothing/mask/breath,
-		/obj/item/weapon/tank/oxygen,
+		/obj/item/tank/oxygen,
 		/obj/item/suit_cooling_unit/emergency,
 		/obj/item/gps,
-		/obj/item/weapon/material/knife/tacknife/survival,
+		/obj/item/material/knife/tacknife/survival,
 		/obj/random/mre,
 		/obj/item/flashlight/color/yellow,
 		/obj/item/flashlight/flare,
-		/obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle)
+		/obj/item/reagent_containers/food/drinks/cans/waterbottle)
 
 /obj/structure/closet/walllocker_double/survival/north
 	pixel_y = 32

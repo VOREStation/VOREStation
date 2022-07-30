@@ -12,12 +12,12 @@
 	idle_power_usage = 50
 	active_power_usage = 1.5 KILOWATTS
 
-	circuit = /obj/item/weapon/circuitboard/bomb_tester
+	circuit = /obj/item/circuitboard/bomb_tester
 
 	var/icon_name = "generic"
 
-	var/obj/item/weapon/tank/tank1
-	var/obj/item/weapon/tank/tank2
+	var/obj/item/tank/tank1
+	var/obj/item/tank/tank2
 	var/obj/machinery/portable_atmospherics/canister/test_canister
 
 	var/sim_mode = MODE_SINGLE
@@ -81,7 +81,7 @@
 /obj/machinery/bomb_tester/RefreshParts()
 	..()
 	var/scan_rating = 0
-	for(var/obj/item/weapon/stock_parts/scanning_module/S in component_parts)
+	for(var/obj/item/stock_parts/scanning_module/S in component_parts)
 		scan_rating += S.rating
 	simulation_delay = 25 SECONDS - scan_rating SECONDS
 
@@ -92,7 +92,7 @@
 		return
 	if(default_part_replacement(user, I))
 		return
-	if(istype(I, /obj/item/weapon/tank))
+	if(istype(I, /obj/item/tank))
 		if(!tank1 || !tank2)
 			user.drop_item(I)
 			I.forceMove(src)
@@ -128,7 +128,7 @@
 		data["tank2ref"] = REF(tank2)
 		data["canister"] = test_canister
 		data["sim_canister_output"] = sim_canister_output
-	
+
 	return data
 
 /obj/machinery/bomb_tester/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
@@ -151,10 +151,10 @@
 					text_mode = "canister-assisted single gas tank detonation"
 			to_chat(usr, "<span class='notice'>[src] set to simulate a [text_mode].</span>")
 			return TRUE
-		
+
 		if("add_tank")
-			if(istype(usr.get_active_hand(), /obj/item/weapon/tank))
-				var/obj/item/weapon/tank/T = usr.get_active_hand()
+			if(istype(usr.get_active_hand(), /obj/item/tank))
+				var/obj/item/tank/T = usr.get_active_hand()
 				var/slot = params["slot"]
 				if(slot == 1 && !tank1)
 					tank1 = T
@@ -163,7 +163,7 @@
 				else
 					to_chat(usr, "<span class='warning'>Slot [slot] is full.</span>")
 					return
-				
+
 				usr.drop_item(T)
 				T.forceMove(src)
 				return TRUE
@@ -171,7 +171,7 @@
 				to_chat(usr, "<span class='warning'>You must be wielding a tank to insert it!</span>")
 
 		if("remove_tank")
-			var/obj/item/weapon/tank/T = locate(params["ref"]) in list(tank1, tank2)
+			var/obj/item/tank/T = locate(params["ref"]) in list(tank1, tank2)
 			if(istype(T))
 				if(T == tank1)
 					tank1 = null
@@ -358,7 +358,7 @@
 	else
 		ping("Simulation complete!")
 		playsound(src, "sound/machines/printer.ogg", 50, 1)
-		var/obj/item/weapon/paper/P = new(get_turf(src))
+		var/obj/item/paper/P = new(get_turf(src))
 		P.name = "Explosive Simulator printout"
 		P.info = simulation_results
 

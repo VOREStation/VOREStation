@@ -42,13 +42,13 @@
 /obj/item/borg/upgrade/sizegun/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	var/obj/item/weapon/gun/energy/sizegun/mounted/T = locate() in R.module
+	var/obj/item/gun/energy/sizegun/mounted/T = locate() in R.module
 	if(!T)
 		T = locate() in R.module.contents
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		R.module.modules += new/obj/item/weapon/gun/energy/sizegun/mounted(R.module)
+		R.module.modules += new/obj/item/gun/energy/sizegun/mounted(R.module)
 		return 1
 	if(T)
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -103,7 +103,7 @@
 /obj/item/borg/upgrade/advrped/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	var/obj/item/weapon/storage/part_replacer/adv/T = locate() in R.module
+	var/obj/item/storage/part_replacer/adv/T = locate() in R.module
 
 	if(!R.module || !(type in R.module.supported_upgrades))
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -114,7 +114,7 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		R.module.modules += new/obj/item/weapon/storage/part_replacer/adv(R.module)
+		R.module.modules += new/obj/item/storage/part_replacer/adv(R.module)
 		return 1
 	if(T)
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -133,7 +133,7 @@
 /obj/item/borg/upgrade/diamonddrill/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	var/obj/item/weapon/pickaxe/diamonddrill/T = locate() in R.module
+	var/obj/item/pickaxe/diamonddrill/T = locate() in R.module
 
 	if(!R.module || !(type in R.module.supported_upgrades))
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -144,7 +144,7 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		R.module.modules += new/obj/item/weapon/pickaxe/diamonddrill(R.module)
+		R.module.modules += new/obj/item/pickaxe/diamonddrill(R.module)
 		return 1
 	if(T)
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -163,7 +163,7 @@
 /obj/item/borg/upgrade/pka/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	var/obj/item/weapon/gun/energy/kinetic_accelerator/cyborg/T = locate() in R.module
+	var/obj/item/gun/energy/kinetic_accelerator/cyborg/T = locate() in R.module
 
 	if(!R.module || !(type in R.module.supported_upgrades))
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -174,7 +174,7 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		R.module.modules += new/obj/item/weapon/gun/energy/kinetic_accelerator/cyborg(R.module)
+		R.module.modules += new/obj/item/gun/energy/kinetic_accelerator/cyborg(R.module)
 		return 1
 	if(T)
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
@@ -192,13 +192,13 @@
 /obj/item/borg/upgrade/toygun/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
 
-	var/obj/item/weapon/gun/projectile/cyborgtoy/T = locate() in R.module
+	var/obj/item/gun/projectile/cyborgtoy/T = locate() in R.module
 	if(!T)
 		T = locate() in R.module.contents
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		R.module.modules += new/obj/item/weapon/gun/projectile/cyborgtoy(R.module)
+		R.module.modules += new/obj/item/gun/projectile/cyborgtoy(R.module)
 		return 1
 	if(T)
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
