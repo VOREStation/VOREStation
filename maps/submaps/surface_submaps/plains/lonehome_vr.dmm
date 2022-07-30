@@ -592,7 +592,7 @@
 /obj/structure/bed/chair/wood/wings{
 	dir = 1
 	},
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/carpet/sblucarpet/virgo3b,
 /area/submap/lonehome)
 "bM" = (

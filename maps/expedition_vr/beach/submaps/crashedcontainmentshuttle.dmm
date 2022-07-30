@@ -139,7 +139,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/submap/crashedcontainmentshuttle)
 "aE" = (
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/shuttle/floor/black,
 /area/submap/crashedcontainmentshuttle)
 "aF" = (
@@ -156,7 +156,7 @@
 /area/submap/crashedcontainmentshuttle)
 "aI" = (
 /obj/effect/decal/remains/human,
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/submap/crashedcontainmentshuttle)
 "aJ" = (
@@ -383,7 +383,7 @@
 /obj/structure/toilet{
 	dir = 8
 	},
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /obj/effect/decal/remains/human,
 /obj/item/card/id/syndicate{
 	age = "\\42";
@@ -425,7 +425,7 @@
 /turf/simulated/floor/plating,
 /area/submap/crashedcontainmentshuttle)
 "bH" = (
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/template_noop,
 /area/submap/crashedcontainmentshuttle)
 "bI" = (

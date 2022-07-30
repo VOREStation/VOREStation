@@ -33,7 +33,7 @@
 
 /obj/effect/temporary_effect/eruption/testing/on_eruption(var/turf/Target)
 	if(Target)
-		new /obj/effect/explosion(Target)
+		new /obj/effect/vfx/explosion(Target)
 	return TRUE
 
 /*

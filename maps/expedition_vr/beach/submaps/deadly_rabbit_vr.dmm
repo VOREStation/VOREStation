@@ -44,7 +44,7 @@
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "t" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/mineral/floor/ignore_mapgen/cave,
 /area/template_noop)
 "u" = (

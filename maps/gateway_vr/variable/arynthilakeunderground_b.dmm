@@ -8,7 +8,7 @@
 /turf/simulated/floor/plating/eris/under,
 /area/gateway/arynthilake/underground/maintenance)
 "aN" = (
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/gateway/arynthilake/engine)
 "aZ" = (

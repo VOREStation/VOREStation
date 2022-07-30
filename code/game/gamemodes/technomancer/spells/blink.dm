@@ -49,8 +49,8 @@
 		AM.forceMove(destination)
 		AM.visible_message("<b>\The [AM]</b> vanishes!")
 		to_chat(AM, "<span class='notice'>You suddenly appear somewhere else!</span>")
-		new /obj/effect/effect/sparks(destination)
-		new /obj/effect/effect/sparks(starting)
+		new /obj/effect/vfx/sparks(destination)
+		new /obj/effect/vfx/sparks(starting)
 	return
 
 /obj/item/spell/blink/on_ranged_cast(atom/hit_atom, mob/user)

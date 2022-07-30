@@ -286,7 +286,7 @@
 					spawn(15)
 						audible_message("<span class='critical'>\The [src]'s power supply begins to overload as the device crumples!</span>", runemessage = "VWRRRRRRRR") //Why are you still holding this?
 						playsound(src, 'sound/effects/grillehit.ogg', 10, 1)
-						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+						var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 						var/turf/T = get_turf(src)
 						sparks.set_up(2, 1, T)
 						sparks.start()

@@ -2,12 +2,12 @@
 //	Gravity Pull effect which draws in movable objects to its center.
 //	In this case, "number" refers to the range.  directions is ignored.
 //
-/datum/effect/effect/system/grav_pull
+/datum/effect_system/grav_pull
 	var/pull_radius = 3
 	var/pull_anchored = 0
 	var/break_windows = 0
 
-/datum/effect/effect/system/grav_pull/set_up(range, num, loca)
+/datum/effect_system/grav_pull/set_up(range, num, loca)
 	pull_radius = range
 	number = num
 	if(istype(loca, /turf/))
@@ -15,7 +15,7 @@
 	else
 		location = get_turf(loca)
 
-/datum/effect/effect/system/grav_pull/start()
+/datum/effect_system/grav_pull/start()
 	spawn(0)
 		if(holder)
 			location = get_turf(holder)
@@ -23,7 +23,7 @@
 			do_pull()
 			sleep(25)
 
-/datum/effect/effect/system/grav_pull/proc/do_pull()
+/datum/effect_system/grav_pull/proc/do_pull()
 	//following is adapted from supermatter and singulo code
 	if(defer_powernet_rebuild != 2)
 		defer_powernet_rebuild = 1

@@ -6,7 +6,7 @@
 	usable = 1
 	active = 1
 	permanent = 1
-	var/datum/effect/effect/system/smoke_spread/bad/smoke
+	var/datum/effect_system/smoke_spread/bad/smoke
 	var/smoke_strength = 8
 
 	engage_string = "Detonate"
@@ -16,7 +16,7 @@
 
 /obj/item/rig_module/self_destruct/New()
 	..()
-	src.smoke = new /datum/effect/effect/system/smoke_spread/bad()
+	src.smoke = new /datum/effect_system/smoke_spread/bad()
 	src.smoke.attach(src)
 
 /obj/item/rig_module/self_destruct/Destroy()

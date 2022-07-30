@@ -23,7 +23,7 @@
 			user.buckled = null
 		user.forceMove(T)
 
-		var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
+		var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
 		smoke.set_up(3, 0, starting)
 		smoke.start()
 

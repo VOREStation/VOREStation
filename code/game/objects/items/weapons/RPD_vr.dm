@@ -25,7 +25,7 @@
 	w_class = ITEMSIZE_NORMAL
 	matter = list(MAT_STEEL = 50000, MAT_GLASS = 25000)
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 2)
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect_system/spark_spread/spark_system
 	var/p_dir = NORTH 			// Next pipe will be built with this dir
 	var/p_flipped = FALSE		// If the next pipe should be built flipped
 	var/paint_color = "grey"	// Pipe color index for next pipe painted/built.
@@ -46,7 +46,7 @@
 
 /obj/item/pipe_dispenser/Initialize()
 	. = ..()
-	src.spark_system = new /datum/effect/effect/system/spark_spread
+	src.spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	tool = new /obj/item/tool/wrench/cyborg(src) // RPDs have wrenches inside of them, so that they can wrench down spawned pipes without being used as superior wrenches themselves.

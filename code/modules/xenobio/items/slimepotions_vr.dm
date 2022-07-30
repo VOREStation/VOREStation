@@ -133,7 +133,7 @@
 		to_chat(user, "<span class='warning'>You apply the mimic to the mimic, resulting a mimic that copies a mimic that copies a mimic that copies a mimic that-</span>")
 		var/location = get_turf(src)
 		playsound(location, 'sound/weapons/gauss_shoot.ogg', 50, 1)
-		var/datum/effect/effect/system/grav_pull/s = new /datum/effect/effect/system/grav_pull
+		var/datum/effect_system/grav_pull/s = new /datum/effect_system/grav_pull
 		s.set_up(3, 3, location)
 		s.start()
 		qdel(O)

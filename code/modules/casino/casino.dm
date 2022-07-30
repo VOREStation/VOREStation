@@ -370,7 +370,7 @@
 	var/lottery_tickets = list()
 	var/lottery_tickets_ckeys = list()
 
-	var/datum/effect/effect/system/confetti_spread
+	var/datum/effect_system/confetti_spread
 	var/confetti_strength = 15
 
 
@@ -485,7 +485,7 @@
 
 		spawn(5 SECONDS)
 			visible_message("<span class='notice'>The wheel of fortune stops spinning, the number is [result]!</span>")
-			src.confetti_spread = new /datum/effect/effect/system/confetti_spread()
+			src.confetti_spread = new /datum/effect_system/confetti_spread()
 			src.confetti_spread.attach(src) //If somehow people start dragging slot machine
 			spawn(0)
 				for(var/i = 1 to confetti_strength)
@@ -507,7 +507,7 @@
 
 		spawn(5 SECONDS)
 			visible_message("<span class='notice'>The wheel of fortune stops spinning, and the winner is [result]!</span>")
-			src.confetti_spread = new /datum/effect/effect/system/confetti_spread()
+			src.confetti_spread = new /datum/effect_system/confetti_spread()
 			src.confetti_spread.attach(src) //If somehow people start dragging slot machine
 			spawn(0)
 				for(var/i = 1 to confetti_strength)

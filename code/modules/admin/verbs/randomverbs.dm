@@ -490,7 +490,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(showy == "Telesparks")
 		anim(spawnloc,new_character,'icons/mob/mob.dmi',,"phasein",,new_character.dir)
 		playsound(spawnloc, "sparks", 50, 1)
-		var/datum/effect/effect/system/spark_spread/spk = new(new_character)
+		var/datum/effect_system/spark_spread/spk = new(new_character)
 		spk.set_up(5, 0, new_character)
 		spk.attach(new_character)
 		spk.start()

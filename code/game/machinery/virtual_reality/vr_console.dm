@@ -12,7 +12,7 @@
 	var/mob/living/carbon/human/occupant = null
 	var/mob/living/carbon/human/avatar = null
 	var/datum/mind/vr_mind = null
-	var/datum/effect/effect/system/smoke_spread/bad/smoke
+	var/datum/effect_system/smoke_spread/bad/smoke
 
 	var/eject_dead = TRUE
 

@@ -68,7 +68,7 @@
 	var/maint_access = 1
 	var/dna								//Dna-locking the mech
 	var/list/proc_res = list() 			//Stores proc owners, like proc_res["functionname"] = owner reference
-	var/datum/effect/effect/system/spark_spread/spark_system = new
+	var/datum/effect_system/spark_spread/spark_system = new
 	var/lights = 0
 	var/lights_power = 6
 	var/force = 0
@@ -177,7 +177,7 @@
 	var/smoke_reserve = 5			//How many shots you have. Might make a reload later on. MIGHT.
 	var/smoke_ready = 1				//This is a check for the whether or not the cooldown is ongoing.
 	var/smoke_cooldown = 100		//How long you have between uses.
-	var/datum/effect/effect/system/smoke_spread/smoke_system = new
+	var/datum/effect_system/smoke_spread/smoke_system = new
 
 	var/cloak_possible = FALSE		// Can this exosuit innately cloak?
 

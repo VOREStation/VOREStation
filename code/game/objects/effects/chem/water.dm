@@ -1,18 +1,18 @@
-/obj/effect/effect/water
+/obj/effect/vfx/water
 	name = "water"
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "extinguish"
 	mouse_opacity = 0
 	pass_flags = PASSTABLE | PASSGRILLE | PASSBLOB
 
-/obj/effect/effect/water/Initialize()
+/obj/effect/vfx/water/Initialize()
 	. = ..()
 	QDEL_IN(src, 15 SECONDS)
 
-/obj/effect/effect/water/proc/set_color() // Call it after you move reagents to it
+/obj/effect/vfx/water/proc/set_color() // Call it after you move reagents to it
 	icon += reagents.get_color()
 
-/obj/effect/effect/water/proc/set_up(var/turf/target, var/step_count = 5, var/delay = 5)
+/obj/effect/vfx/water/proc/set_up(var/turf/target, var/step_count = 5, var/delay = 5)
 	if(!target)
 		return
 	for(var/i = 1 to step_count)
@@ -37,18 +37,18 @@
 	sleep(10)
 	qdel(src)
 
-/obj/effect/effect/water/Move(turf/newloc)
+/obj/effect/vfx/water/Move(turf/newloc)
 	if(newloc.density)
 		return 0
 	. = ..()
 
-/obj/effect/effect/water/Bump(atom/A)
+/obj/effect/vfx/water/Bump(atom/A)
 	if(reagents)
 		reagents.touch(A)
 	return ..()
 
 //Used by spraybottles.
-/obj/effect/effect/water/chempuff
+/obj/effect/vfx/water/chempuff
 	name = "chemicals"
 	icon = 'icons/obj/chempuff.dmi'
 	icon_state = ""

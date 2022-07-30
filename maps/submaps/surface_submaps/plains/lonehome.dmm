@@ -134,7 +134,7 @@
 "RI" = (/obj/structure/window/reinforced{dir = 8; health = 1e+006},/turf/simulated/floor/outdoors/dirt,/area/submap/lonehome)
 "Sd" = (/obj/structure/fence/corner,/turf/template_noop,/area/submap/lonehome)
 "Sp" = (/obj/item/material/shard,/obj/item/material/shard{pixel_x = 5; pixel_y = 3},/turf/simulated/floor/outdoors/dirt,/area/submap/lonehome)
-"SN" = (/obj/structure/bed/chair/wood/wings{dir = 1},/obj/effect/gibspawner/human,/turf/simulated/floor/carpet/sblucarpet,/area/submap/lonehome)
+"SN" = (/obj/structure/bed/chair/wood/wings{dir = 1},/obj/effect/spawner/gibs/human,/turf/simulated/floor/carpet/sblucarpet,/area/submap/lonehome)
 "Tg" = (/obj/item/material/kitchen/utensil/fork,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/wood,/area/submap/lonehome)
 "Tw" = (/obj/item/cell/high/empty,/turf/simulated/floor/carpet/sblucarpet,/area/submap/lonehome)
 "TX" = (/obj/item/clothing/suit/storage/apron/white,/obj/effect/decal/cleanable/dirt,/turf/simulated/floor/tiled/white,/area/submap/lonehome)

@@ -17,7 +17,7 @@
 "B" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/floor/tiled/techmaint,/area/template_noop)
 "F" = (/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled/techmaint,/area/template_noop)
 "G" = (/obj/machinery/light/poi{dir = 4},/turf/simulated/floor/tiled/techmaint,/area/template_noop)
-"I" = (/obj/effect/graffitispawner{color = "#DA0000"; color_secondary = "#810C0C"; graffiti_type = "matt"},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
+"I" = (/obj/effect/spawner/graffiti{color = "#DA0000"; color_secondary = "#810C0C"; graffiti_type = "matt"},/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)
 "L" = (/obj/random/crate,/obj/item/clothing/ears/earmuffs,/obj/item/clothing/glasses/sunglasses/big,/obj/item/clothing/ears/earmuffs{pixel_x = -3; pixel_y = -2},/obj/random/maintenance/security,/obj/random/maintenance/security,/obj/random/maintenance/security,/turf/simulated/floor/plating,/area/template_noop)
 "M" = (/obj/machinery/door/window/northleft,/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled/techmaint,/area/template_noop)
 "N" = (/turf/simulated/floor/tiled/steel_dirty,/area/template_noop)

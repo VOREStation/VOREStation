@@ -25,7 +25,7 @@
 
 	paint_color = "#ffffff"
 
-	var/datum/effect/effect/system/ion_trail_follow/ion
+	var/datum/effect_system/ion_trail_follow/ion
 	var/kickstand = 1
 
 /obj/vehicle/bike/Initialize()

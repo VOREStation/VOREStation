@@ -56,10 +56,10 @@
 
 	user.visible_message("<span class='warning'>[user] fires \the [src]!</span>","<span class='warning'>You fire \the [src]!</span>")
 
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(4, 1, A)
 	s.start()
-	s = new /datum/effect/effect/system/spark_spread
+	s = new /datum/effect_system/spark_spread
 	s.set_up(4, 1, user)
 	s.start()
 

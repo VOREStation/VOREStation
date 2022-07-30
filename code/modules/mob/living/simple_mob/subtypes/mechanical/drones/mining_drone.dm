@@ -60,7 +60,7 @@
 	/obj/item/ore = 5
 	)
 
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail = null
+	var/datum/effect_system/ion_trail_follow/ion_trail = null
 	var/obj/item/shield_projector/shields = null
 	var/obj/item/storage/bag/ore/my_storage = null
 

@@ -69,7 +69,7 @@
 	if(timer == 20)
 		reveal()
 		if(corpse)
-			new /obj/effect/effect/smoke/chem(corpse.loc)
+			new /obj/effect/vfx/smoke/chem(corpse.loc)
 			qdel(corpse)
 	if(timer == 0)
 		icon_state = "deadringer"

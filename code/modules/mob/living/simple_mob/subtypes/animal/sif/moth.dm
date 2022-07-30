@@ -59,7 +59,7 @@
 	var/energy = 100
 	var/max_energy = 100
 
-	var/datum/effect/effect/system/smoke_spread/mothspore/smoke_spore
+	var/datum/effect_system/smoke_spread/mothspore/smoke_spore
 
 	say_list_type = /datum/say_list/tymisian
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly //Uses frostfly AI, since so similar mechanically
@@ -80,12 +80,12 @@
 	threaten_sound = 'sound/effects/spray3.ogg'
 	stand_down_sound = 'sound/effects/squelch1.ogg'
 
-/obj/effect/effect/smoke/elemental/mothspore
+/obj/effect/vfx/smoke/elemental/mothspore
 	name = "spore cloud"
 	desc = "A dust cloud filled with disorienting bacterial spores."
 	color = "#80AB82"
 
-/obj/effect/effect/smoke/elemental/mothspore/affect(mob/living/L) //Similar to a very weak flash, but depends on breathing instead of eye protection.
+/obj/effect/vfx/smoke/elemental/mothspore/affect(mob/living/L) //Similar to a very weak flash, but depends on breathing instead of eye protection.
 	if(iscarbon(L))
 		var/mob/living/carbon/C = L
 		if(C.stat != DEAD)
@@ -97,8 +97,8 @@
 					H.eye_blurry = max(H.eye_blurry, spore_strength)
 					H.adjustHalLoss(10 * (spore_strength / 5))
 
-/datum/effect/effect/system/smoke_spread/mothspore
-	smoke_type = /obj/effect/effect/smoke/elemental/mothspore
+/datum/effect_system/smoke_spread/mothspore
+	smoke_type = /obj/effect/vfx/smoke/elemental/mothspore
 
 /mob/living/simple_mob/animal/sif/tymisian/do_special_attack(atom/A)
 	. = TRUE

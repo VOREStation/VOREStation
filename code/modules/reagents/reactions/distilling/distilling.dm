@@ -186,7 +186,7 @@
 
 	if(prob(1))
 		var/turf/T = get_turf(holder.my_atom)
-		var/datum/effect/effect/system/smoke_spread/frost/F = new (holder.my_atom)
+		var/datum/effect_system/smoke_spread/frost/F = new (holder.my_atom)
 		F.set_up(6, 0, T)
 		F.start()
 	return

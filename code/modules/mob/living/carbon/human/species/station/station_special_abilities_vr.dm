@@ -160,7 +160,7 @@
 	var/T = get_turf(src)
 	var/blood_color = species.blood_color
 	var/flesh_color = species.flesh_color
-	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
+	new /obj/effect/spawner/gibs/human/xenochimera(T, null, flesh_color, blood_color)
 
 	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
@@ -169,7 +169,7 @@
 /mob/living/carbon/human/proc/revivingreset() // keep this as a debug proc or potential future use
 		revive_ready = REVIVING_READY
 
-/obj/effect/gibspawner/human/xenochimera
+/obj/effect/spawner/gibs/human/xenochimera
 	fleshcolor = "#14AD8B"
 	bloodcolor = "#14AD8B"
 

@@ -48,12 +48,12 @@
 	playsound(src, 'sound/effects/snap.ogg', 50, 1)
 	src.visible_message("<span class='warning'>\The [src] explodes in a bright flash!</span>")
 
-	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 	sparks.set_up(2, 1, T)
 	sparks.start()
 
 	new /obj/effect/decal/cleanable/ash(src.loc) //always use src.loc so that ash doesn't end up inside windows
-	new /obj/effect/effect/smoke/illumination(T, 5, brightness, brightness, light_colour)
+	new /obj/effect/vfx/smoke/illumination(T, 5, brightness, brightness, light_colour)
 
 //blinds people like the flash round, but can also be used for temporary illumination
 /obj/item/projectile/energy/flash/flare
@@ -70,7 +70,7 @@
 	..() //initial flash
 
 	//residual illumination
-	new /obj/effect/effect/smoke/illumination(src.loc, rand(190,240) SECONDS, range=8, power=3, color=light_colour) //same lighting power as flare
+	new /obj/effect/vfx/smoke/illumination(src.loc, rand(190,240) SECONDS, range=8, power=3, color=light_colour) //same lighting power as flare
 
 /obj/item/projectile/energy/electrode
 	name = "electrode"

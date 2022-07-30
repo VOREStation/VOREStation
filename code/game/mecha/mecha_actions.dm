@@ -195,7 +195,7 @@
 		return
 	if(!chassis.selected)
 		chassis.selected = available_equipment[1]
-		chassis.occupant_message("You select [chassis.selected]") 
+		chassis.occupant_message("You select [chassis.selected]")
 		send_byjax(chassis.occupant,"exosuit.browser","eq_list",chassis.get_equipment_list())
 		button_icon_state = "mech_cycle_equip_on"
 		button.UpdateIcon()
@@ -334,7 +334,7 @@
 		smoke_reserve--	//Remove ammo
 		src.occupant_message("<font color='red'>Smoke fired. [smoke_reserve] usages left.</font>")
 
-		var/datum/effect/effect/system/smoke_spread/smoke = new /datum/effect/effect/system/smoke_spread()
+		var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
 		smoke.attach(src)
 		smoke.set_up(10, 0, usr.loc)
 		smoke.start()

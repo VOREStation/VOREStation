@@ -7,13 +7,13 @@
 
 	var/obj/effect/spawner/newbomb/proto = /obj/effect/spawner/newbomb/radio/custom
 
-	var/p = tgui_input_number(usr, "Enter phoron amount (mol):","Phoron", initial(proto.phoron_amt))
+	var/p = input("Enter phoron amount (mol):","Phoron", initial(proto.phoron_amt)) as num|null
 	if(p == null) return
 
-	var/o = tgui_input_number(usr, "Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt))
+	var/o = input("Enter oxygen amount (mol):","Oxygen", initial(proto.oxygen_amt)) as num|null
 	if(o == null) return
 
-	var/c = tgui_input_number(usr, "Enter carbon dioxide amount (mol):","Carbon Dioxide", initial(proto.carbon_amt))
+	var/c = input("Enter carbon dioxide amount (mol):","Carbon Dioxide", initial(proto.carbon_amt)) as num|null
 	if(c == null) return
 
 	new /obj/effect/spawner/newbomb/radio/custom(get_turf(mob), p, o, c)
@@ -44,14 +44,14 @@
 	name = "TTV bomb - proximity"
 	assembly_type = /obj/item/assembly/prox_sensor
 
-/obj/effect/spawner/newbomb/radio/custom/New(var/newloc, ph, ox, co)
+/obj/effect/spawner/newbomb/radio/custom/Initialize(var/ml, ph, ox, co)
 	if(ph != null) phoron_amt = ph
 	if(ox != null) oxygen_amt = ox
 	if(co != null) carbon_amt = co
-	..()
+	. = ..()
 
-/obj/effect/spawner/newbomb/Initialize(newloc)
-	..(newloc)
+/obj/effect/spawner/newbomb/Initialize()
+	..()
 	var/obj/item/transfer_valve/V = new(src.loc)
 	var/obj/item/tank/phoron/PT = new(V)
 	var/obj/item/tank/oxygen/OT = new(V)
@@ -104,8 +104,7 @@
 	..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb, /obj/item/tank/oxygen/onetankbomb)
 	new type(src.loc)
-
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/onetankbomb/full
 	name = "Single-tank bomb"
@@ -119,8 +118,7 @@
 	. = ..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb/full, /obj/item/tank/oxygen/onetankbomb/full)
 	new type(src.loc)
-
-	qdel(src)
+	return INITIALIZE_HINT_QDEL
 
 /obj/effect/spawner/onetankbomb/frag
 	name = "Single-tank bomb"
@@ -133,5 +131,5 @@
 /obj/effect/spawner/onetankbomb/frag/Initialize() //just needs an assembly.
 	. = ..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb/full, /obj/item/tank/oxygen/onetankbomb/full)
-	new type(src.loc)
+	new type(src.loc)	
 	return INITIALIZE_HINT_QDEL

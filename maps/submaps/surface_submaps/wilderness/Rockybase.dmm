@@ -5,7 +5,7 @@
 "ae" = (/obj/effect/decal/remains,/turf/template_noop,/area/submap/Rockybase)
 "af" = (/turf/template_noop,/area/submap/Rockybase)
 "ag" = (/obj/structure/flora/tree/sif,/turf/template_noop,/area/submap/Rockybase)
-"ah" = (/obj/effect/gibspawner/robot,/turf/template_noop,/area/submap/Rockybase)
+"ah" = (/obj/effect/spawner/gibs/robot,/turf/template_noop,/area/submap/Rockybase)
 "ai" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/Rockybase)
 "aj" = (/obj/effect/decal/remains/robot,/turf/template_noop,/area/template_noop)
 "ak" = (/mob/living/simple_mob/mechanical/combat_drone/lesser,/turf/template_noop,/area/submap/Rockybase)
@@ -184,8 +184,8 @@
 "dC" = (/obj/machinery/vending/hydroseeds,/obj/effect/floor_decal/corner/lime/border{dir = 10; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "dD" = (/obj/structure/closet/crate/secure/hydrosec,/obj/effect/floor_decal/corner/lime/border{dir = 6; icon_state = "bordercolor"},/turf/simulated/floor/tiled,/area/submap/Rockybase)
 "dE" = (/obj/machinery/portable_atmospherics/hydroponics/soil,/obj/structure/gravemarker{dir = 1},/turf/template_noop,/area/template_noop)
-"dF" = (/obj/effect/gibspawner/robot,/turf/template_noop,/area/template_noop)
-"dG" = (/obj/effect/gibspawner/human,/turf/template_noop,/area/template_noop)
+"dF" = (/obj/effect/spawner/gibs/robot,/turf/template_noop,/area/template_noop)
+"dG" = (/obj/effect/spawner/gibs/human,/turf/template_noop,/area/template_noop)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

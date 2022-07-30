@@ -90,20 +90,20 @@
 		user.visible_message("<span class='warning'>\The [user] fires \the [src], but the shot fizzles in the air!</span>", "<span class='danger'>You fire \the [src], but the shot fizzles in the air!</span>")
 		power_supply.charge -= charge_cost
 		playsound(src, fire_sound, 100, 1)
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(2, 1, T)
 		sparks.start()
 		update_icon()
 	else if (severity <= 80) //20% chance of shorting out and emptying the cell
 		user.visible_message("<span class='warning'>\The [user] pulls the trigger, but \the [src] shorts out!</span>", "<span class='danger'>You pull the trigger, but \the [src] shorts out!</span>")
 		power_supply.charge = 0
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(2, 1, T)
 		sparks.start()
 		update_icon()
 	else if (severity <= 90) //10% chance of breaking the gun
 		user.visible_message("<span class='warning'>\The [user] pulls the trigger, but \the [src] erupts in a shower of sparks!</span>", "<span class='danger'>You pull the trigger, but \the [src] bursts into a shower of sparks!</span>")
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(2, 1, T)
 		sparks.start()
 		power_supply.charge = 0

@@ -16,14 +16,14 @@
 "m" = (
 /obj/structure/bed/chair/bay/shuttle,
 /obj/effect/decal/cleanable/blood/oil,
-/obj/effect/gibspawner/robot,
+/obj/effect/spawner/gibs/robot,
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield/misc_debris)
 "q" = (
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield/misc_debris)
 "r" = (
-/obj/effect/gibspawner/robot,
+/obj/effect/spawner/gibs/robot,
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield/misc_debris)
 "v" = (
@@ -31,7 +31,7 @@
 	dir = 1
 	},
 /obj/effect/decal/cleanable/blood/oil,
-/obj/effect/gibspawner/robot,
+/obj/effect/spawner/gibs/robot,
 /turf/simulated/floor/reinforced/airless,
 /area/submap/debrisfield/misc_debris)
 "y" = (

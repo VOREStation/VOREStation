@@ -3,7 +3,7 @@
 	new /datum/teleport/instant/science/noeffect(arglist(args))
 	return
 
-/datum/teleport/instant/science/noeffect/setEffects(datum/effect/effect/system/aeffectin,datum/effect/effect/system/aeffectout)
+/datum/teleport/instant/science/noeffect/setEffects(datum/effect_system/aeffectin,datum/effect_system/aeffectout)
 	return 1
 
 /datum/teleport/proc/try_televore()

@@ -258,7 +258,7 @@ GLOBAL_LIST_BOILERPLATE(pointdefense_turrets, /obj/machinery/power/pointdefense)
 	if(!istype(M))
 		return
 	if(use_power_oneoff(active_power_usage) < active_power_usage)
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
 		visible_message("[src] sputters as browns out while attempting to fire.")

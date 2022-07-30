@@ -235,7 +235,7 @@
 		new /obj/item/stack/rods(Tsec)
 		new /obj/item/stack/rods(Tsec)
 		new /obj/item/stack/cable_coil/cut(Tsec)
-		new /obj/effect/gibspawner/robot(Tsec)
+		new /obj/effect/spawner/gibs/robot(Tsec)
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 
 		if(cell)

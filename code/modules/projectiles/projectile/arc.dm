@@ -114,7 +114,7 @@
 // This is a test projectile in the sense that its testing the code to make sure it works,
 // as opposed to a 'can I hit this thing' projectile.
 /obj/item/projectile/arc/test/on_impact(turf/T)
-	new /obj/effect/explosion(T)
+	new /obj/effect/vfx/explosion(T)
 	T.color = "#FF0000"
 
 // Generic, Hivebot related
@@ -187,7 +187,7 @@
 		T.visible_message("<span class='warning'>\The [src] covers \the [T] in a corrosive paste!</span>")
 		for(var/turf/simulated/floor/F in view(2, T))
 			spawn()
-				var/obj/effect/effect/water/splash = new(T)
+				var/obj/effect/vfx/water/splash = new(T)
 				splash.create_reagents(15)
 				splash.reagents.add_reagent("stomacid", 5)
 				splash.reagents.add_reagent("blood", 10,list("blood_colour" = "#ec4940"))

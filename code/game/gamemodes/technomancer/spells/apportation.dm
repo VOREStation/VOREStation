@@ -32,8 +32,8 @@
 		if(istype(hit_atom, /obj/item))
 			var/obj/item/I = hit_atom
 
-			var/datum/effect/effect/system/spark_spread/s1 = new /datum/effect/effect/system/spark_spread
-			var/datum/effect/effect/system/spark_spread/s2 = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s1 = new /datum/effect_system/spark_spread
+			var/datum/effect_system/spark_spread/s2 = new /datum/effect_system/spark_spread
 			s1.set_up(2, 1, user)
 			s2.set_up(2, 1, I)
 			s1.start()
@@ -50,8 +50,8 @@
 		else if(istype(hit_atom, /mob/living))
 			var/mob/living/L = hit_atom
 			to_chat(L, "<span class='danger'>You are teleported towards \the [user].</span>")
-			var/datum/effect/effect/system/spark_spread/s1 = new /datum/effect/effect/system/spark_spread
-			var/datum/effect/effect/system/spark_spread/s2 = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s1 = new /datum/effect_system/spark_spread
+			var/datum/effect_system/spark_spread/s2 = new /datum/effect_system/spark_spread
 			s1.set_up(2, 1, user)
 			s2.set_up(2, 1, L)
 			s1.start()
@@ -77,4 +77,3 @@
 				G.icon_state = "grabbed1"
 				G.synch()
 				qdel(src)
-

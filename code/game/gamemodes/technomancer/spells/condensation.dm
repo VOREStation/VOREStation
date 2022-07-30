@@ -25,7 +25,7 @@
 				spawn(1)
 					var/turf/desired_turf = get_step(T,direction)
 					if(desired_turf) // This shouldn't fail but...
-						var/obj/effect/effect/water/W = new /obj/effect/effect/water(get_turf(T))
+						var/obj/effect/vfx/water/W = new /obj/effect/vfx/water(get_turf(T))
 						W.create_reagents(60)
 						W.reagents.add_reagent(id = "water", amount = 60, data = null, safety = 0)
 						W.set_color()

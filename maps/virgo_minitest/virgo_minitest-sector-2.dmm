@@ -732,7 +732,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "ci" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/airless,
 /area/space)
 "cj" = (

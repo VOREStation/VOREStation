@@ -229,14 +229,14 @@ var/global/list/obj/item/pda/PDAs = list()
 		empulse(P.loc, 1, 2, 4, 6, 1)
 		message += "Your [P] emits a wave of electromagnetic energy!"
 	if(i>=25 && i<=40) //Smoke
-		var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
+		var/datum/effect_system/smoke_spread/chem/S = new /datum/effect_system/smoke_spread/chem
 		S.attach(P.loc)
 		S.set_up(P, 10, 0, P.loc)
 		playsound(P, 'sound/effects/smoke.ogg', 50, 1, -3)
 		S.start()
 		message += "Large clouds of smoke billow forth from your [P]!"
 	if(i>=40 && i<=45) //Bad smoke
-		var/datum/effect/effect/system/smoke_spread/bad/B = new /datum/effect/effect/system/smoke_spread/bad
+		var/datum/effect_system/smoke_spread/bad/B = new /datum/effect_system/smoke_spread/bad
 		B.attach(P.loc)
 		B.set_up(P, 10, 0, P.loc)
 		playsound(P, 'sound/effects/smoke.ogg', 50, 1, -3)
@@ -251,7 +251,7 @@ var/global/list/obj/item/pda/PDAs = list()
 			M.apply_effects(1,0,0,0,1)
 		message += "Your [P] flashes with a blinding white light! You feel weaker."
 	if(i>=85) //Sparks
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(2, 1, P.loc)
 		s.start()
 		message += "Your [P] begins to spark violently!"

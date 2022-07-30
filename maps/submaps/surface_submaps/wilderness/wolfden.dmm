@@ -1,6 +1,6 @@
 "a" = (/turf/simulated/floor/outdoors/dirt,/area/submap/WolfDen)
 "b" = (/mob/living/simple_mob/animal/sif/shantak,/turf/template_noop,/area/submap/WolfDen)
-"c" = (/obj/item/bone,/obj/effect/decal/cleanable/dirt,/obj/effect/gibspawner/human,/obj/random/maintenance/engineering,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
+"c" = (/obj/item/bone,/obj/effect/decal/cleanable/dirt,/obj/effect/spawner/gibs/human,/obj/random/maintenance/engineering,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "e" = (/obj/effect/decal/cleanable/dirt,/obj/effect/decal/cleanable/dirt,/obj/random/junk,/obj/random/maintenance/cargo,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "i" = (/obj/random/maintenance/security,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/WolfDen)
 "j" = (/obj/random/gun/random,/obj/random/junk,/turf/simulated/floor/outdoors/rocks{outdoors = 0},/area/submap/WolfDen)

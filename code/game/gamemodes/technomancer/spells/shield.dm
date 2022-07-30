@@ -16,12 +16,12 @@
 	aspect = ASPECT_FORCE
 	toggled = 1
 	var/damage_to_energy_multiplier = 30.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 600 energy cost
-	var/datum/effect/effect/system/spark_spread/spark_system = null
+	var/datum/effect_system/spark_spread/spark_system = null
 
 /obj/item/spell/shield/Initialize()
 	. = ..()
 	set_light(3, 2, l_color = "#006AFF")
-	spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 
 /obj/item/spell/shield/Destroy()

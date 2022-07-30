@@ -95,7 +95,7 @@
 
 	// Wiring! How exciting.
 	var/datum/wires/rig/wires
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect_system/spark_spread/spark_system
 	var/datum/mini_hud/rig/minihud
 
 	// Action button

@@ -102,7 +102,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/submap/DemonPool)
 "hF" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/outdoors/dirt{
@@ -143,7 +143,7 @@
 /turf/simulated/floor/outdoors/dirt,
 /area/template_noop)
 "jG" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /obj/effect/rune,
 /turf/simulated/floor/cult,
 /area/submap/DemonPool)
@@ -199,7 +199,7 @@
 	},
 /area/submap/DemonPool)
 "mO" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /obj/item/clothing/head/culthood/alt,
 /turf/simulated/floor/cult,
 /area/submap/DemonPool)
@@ -398,7 +398,7 @@
 	},
 /area/submap/DemonPool)
 "CY" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/outdoors/rocks{
 	outdoors = 0
 	},
@@ -475,7 +475,7 @@
 	},
 /area/submap/DemonPool)
 "KR" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/cult,
 /area/submap/DemonPool)
 "Lh" = (
@@ -512,7 +512,7 @@
 	},
 /area/submap/DemonPool)
 "NI" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /obj/fire,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/cult,
@@ -641,7 +641,7 @@
 /turf/simulated/floor,
 /area/submap/DemonPool)
 "Zc" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /obj/item/beartrap/hunting{
 	anchored = 1;
 	deployed = 1

@@ -339,7 +339,7 @@ GLOBAL_LIST_EMPTY(smeses)
 				playsound(src, 'sound/items/Deconstruct.ogg', 50, 1)
 				if(do_after(user, 50 * W.toolspeed))
 					if (prob(50) && electrocute_mob(usr, term.powernet, term))
-						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+						var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 						s.set_up(5, 1, src)
 						s.start()
 						building_terminal = FALSE

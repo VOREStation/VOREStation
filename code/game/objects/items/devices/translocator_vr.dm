@@ -21,7 +21,7 @@
 	var/beacons_left = 3
 	var/failure_chance = 5 //Percent
 	var/obj/item/perfect_tele_beacon/destination
-	var/datum/effect/effect/system/spark_spread/spk
+	var/datum/effect_system/spark_spread/spk
 	var/list/warned_users = list()
 	var/list/logged_events = list()
 

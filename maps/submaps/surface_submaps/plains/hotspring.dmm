@@ -45,7 +45,7 @@
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/hotspring)
 "k" = (
-/obj/effect/effect/steam,
+/obj/effect/vfx/steam,
 /obj/effect/map_effect/interval/effect_emitter/steam,
 /turf/simulated/floor/water/virgo3b,
 /area/submap/hotspring)
@@ -106,7 +106,7 @@
 /area/submap/hotspring)
 "L" = (
 /obj/item/inflatable_duck,
-/obj/effect/effect/steam,
+/obj/effect/vfx/steam,
 /turf/simulated/floor/water/virgo3b,
 /area/submap/hotspring)
 "M" = (
@@ -140,7 +140,7 @@
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/hotspring)
 "V" = (
-/obj/effect/effect/steam,
+/obj/effect/vfx/steam,
 /turf/simulated/floor/water/virgo3b,
 /area/submap/hotspring)
 "X" = (

@@ -58,7 +58,7 @@
 /turf/simulated/floor/tiled/eris/steel/techfloor,
 /area/gateway/arynthilake/engine)
 "jv" = (
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/floor/tiled/eris/steel/orangecorner,
 /area/gateway/arynthilake/engine)
 "jO" = (

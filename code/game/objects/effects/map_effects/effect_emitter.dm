@@ -1,6 +1,6 @@
 // Creates effects like smoke clouds every so often.
 /obj/effect/map_effect/interval/effect_emitter
-	var/datum/effect/effect/system/effect_system = null
+	var/datum/effect_system/effect_system = null
 	var/effect_system_type = null // Which effect system to attach.
 
 	var/effect_amount = 10				// How many effect objects to create on each interval.  Note that there's a hard cap on certain effect_systems.
@@ -30,7 +30,7 @@
 /obj/effect/map_effect/interval/effect_emitter/smoke
 	name = "smoke emitter"
 	icon_state = "smoke_emitter"
-	effect_system_type = /datum/effect/effect/system/smoke_spread
+	effect_system_type = /datum/effect_system/smoke_spread
 
 	interval_lower_bound = 1 SECOND
 	interval_upper_bound = 1 SECOND
@@ -38,30 +38,30 @@
 
 /obj/effect/map_effect/interval/effect_emitter/smoke/bad
 	name = "bad smoke emitter"
-	effect_system_type = /datum/effect/effect/system/smoke_spread/bad
+	effect_system_type = /datum/effect_system/smoke_spread/bad
 
 /obj/effect/map_effect/interval/effect_emitter/smoke/fire
 	name = "fire smoke emitter"
-	effect_system_type = /datum/effect/effect/system/smoke_spread/fire
+	effect_system_type = /datum/effect_system/smoke_spread/fire
 
 /obj/effect/map_effect/interval/effect_emitter/smoke/frost
 	name = "frost smoke emitter"
-	effect_system_type = /datum/effect/effect/system/smoke_spread/frost
+	effect_system_type = /datum/effect_system/smoke_spread/frost
 
 /obj/effect/map_effect/interval/effect_emitter/smoke/shock
 	name = "shock smoke emitter"
-	effect_system_type = /datum/effect/effect/system/smoke_spread/shock
+	effect_system_type = /datum/effect_system/smoke_spread/shock
 
 /obj/effect/map_effect/interval/effect_emitter/smoke/mist
 	name = "mist smoke emitter"
-	effect_system_type = /datum/effect/effect/system/smoke_spread/mist
+	effect_system_type = /datum/effect_system/smoke_spread/mist
 
 
 // Makes sparks.
 /obj/effect/map_effect/interval/effect_emitter/sparks
 	name = "spark emitter"
 	icon_state = "spark_emitter"
-	effect_system_type = /datum/effect/effect/system/spark_spread
+	effect_system_type = /datum/effect_system/spark_spread
 
 	interval_lower_bound = 3 SECONDS
 	interval_upper_bound = 7 SECONDS
@@ -75,4 +75,4 @@
 /obj/effect/map_effect/interval/effect_emitter/steam
 	name = "steam emitter"
 	icon_state = "smoke_emitter"
-	effect_system_type = /datum/effect/effect/system/steam_spread
+	effect_system_type = /datum/effect_system/steam_spread

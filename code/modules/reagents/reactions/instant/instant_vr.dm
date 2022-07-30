@@ -42,7 +42,7 @@
 /decl/chemical_reaction/instant/dontcrossthebeams/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
 	playsound(location, 'sound/weapons/gauss_shoot.ogg', 50, 1)
-	var/datum/effect/effect/system/grav_pull/s = new /datum/effect/effect/system/grav_pull
+	var/datum/effect_system/grav_pull/s = new /datum/effect_system/grav_pull
 	s.set_up(3, 3, location)
 	s.start()
 	holder.clear_reagents()

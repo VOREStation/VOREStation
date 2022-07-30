@@ -12,7 +12,7 @@
 	icon_state = "warp_strike"
 	cast_methods = CAST_RANGED
 	aspect = ASPECT_TELE
-	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/effect_system/spark_spread/sparks
 
 /obj/item/spell/warp_strike/Initialize()
 	. = ..()

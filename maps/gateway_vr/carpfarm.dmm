@@ -717,7 +717,7 @@
 /turf/simulated/floor/airless,
 /area/space)
 "cm" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/airless,
 /area/space)
 "cn" = (

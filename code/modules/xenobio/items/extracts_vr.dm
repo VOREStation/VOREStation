@@ -416,7 +416,7 @@
 
 /decl/chemical_reaction/instant/slime/orange_smoke/on_reaction(var/datum/reagents/holder)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect/effect/system/smoke_spread/chem/S = new /datum/effect/effect/system/smoke_spread/chem
+	var/datum/effect_system/smoke_spread/chem/S = new /datum/effect_system/smoke_spread/chem
 	S.attach(location)
 	S.set_up(holder, 120, 0, location)
 	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
@@ -1136,13 +1136,13 @@
 		if(M.buckled)
 			M.buckled.unbuckle_mob()
 
-		var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(3, 0, get_turf(M))
 		sparks.start()
 
 		M.forceMove(pick(trange(50, get_turf(holder.my_atom))))
 
-		sparks = new /datum/effect/effect/system/spark_spread()
+		sparks = new /datum/effect_system/spark_spread()
 		sparks.set_up(3, 0, M.loc)
 		sparks.start()
 	..()
@@ -1399,7 +1399,7 @@
 /decl/chemical_reaction/instant/slime/ruby_pull/on_reaction(var/datum/reagents/holder)
 	var/location = get_turf(holder.my_atom)
 	playsound(location, 'sound/weapons/gauss_shoot.ogg', 50, 1)
-	var/datum/effect/effect/system/grav_pull/s = new /datum/effect/effect/system/grav_pull
+	var/datum/effect_system/grav_pull/s = new /datum/effect_system/grav_pull
 	s.set_up(3, 3, location)
 	s.start()
 	..()

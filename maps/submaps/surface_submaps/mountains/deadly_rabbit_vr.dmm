@@ -8,7 +8,7 @@
 "q" = (/obj/effect/decal/cleanable/blood,/obj/item/bone,/obj/item/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
 "r" = (/obj/item/bone,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
 "s" = (/obj/item/bone/ribs,/obj/effect/decal/cleanable/blood,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
-"t" = (/obj/effect/gibspawner/human,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
+"t" = (/obj/effect/spawner/gibs/human,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
 "u" = (/obj/effect/decal/cleanable/blood,/obj/item/bone/skull,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
 "v" = (/obj/item/grenade/explosive/frag,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)
 "y" = (/obj/item/bone,/obj/item/bone/ribs,/turf/simulated/mineral/floor/ignore_mapgen/cave,/area/template_noop)

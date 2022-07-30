@@ -642,7 +642,7 @@ var/global/list/light_type_cache = list()
 
 		to_chat(user, "You stick \the [W] into the light socket!")
 		if(has_power() && !(W.flags & NOCONDUCT))
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
 			//if(!user.mutations & COLD_RESISTANCE)
@@ -828,7 +828,7 @@ var/global/list/light_type_cache = list()
 		if(status == LIGHT_OK || status == LIGHT_BURNED)
 			playsound(src, 'sound/effects/Glasshit.ogg', 75, 1)
 		if(on)
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
 	status = LIGHT_BROKEN

@@ -18,7 +18,7 @@
 "G" = (/obj/item/frame/apc,/obj/structure/sign/poster{pixel_y = -32; poster_decl = /decl/poster/bay_6},/turf/simulated/floor/plating,/area/template_noop)
 "H" = (/obj/structure/girder,/turf/simulated/floor/plating,/area/template_noop)
 "L" = (/obj/machinery/vending/snix{dir = 4},/turf/simulated/floor/wood,/area/template_noop)
-"O" = (/obj/effect/floor_decal/spline/plain,/obj/structure/curtain{color = "#B00000"},/obj/effect/graffitispawner{color = "#A8E61D"; color_secondary = "#61840F"; graffiti_type = "face"},/turf/simulated/floor/wood,/area/template_noop)
+"O" = (/obj/effect/floor_decal/spline/plain,/obj/structure/curtain{color = "#B00000"},/obj/effect/spawner/graffiti{color = "#A8E61D"; color_secondary = "#61840F"; graffiti_type = "face"},/turf/simulated/floor/wood,/area/template_noop)
 "P" = (/obj/item/stack/tile/wood{amount = 12},/turf/simulated/floor/plating,/area/template_noop)
 "Q" = (/turf/template_noop,/area/template_noop)
 "U" = (/obj/effect/decal/cleanable/fruit_smudge{color = "#D10000"},/obj/machinery/light_construct{dir = 1},/turf/simulated/floor/wood,/area/template_noop)

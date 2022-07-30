@@ -186,7 +186,7 @@
 	//also copied from matches
 	if(reagents.get_reagent_amount("phoron")) // the phoron explodes when exposed to fire
 		visible_message("<span class='danger'>\The [src] conflagrates violently!</span>")
-		var/datum/effect/effect/system/reagents_explosion/e = new()
+		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount("phoron") / 2.5, 1), get_turf(src), 0, 0)
 		e.start()
 		qdel(src)

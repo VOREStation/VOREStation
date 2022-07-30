@@ -559,7 +559,7 @@
 /turf/simulated/floor,
 /area/awaymission/wwrefine)
 "ef" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/tiled/asteroid_steel,
 /area/awaymission/wwmines)
 "eg" = (
@@ -1149,7 +1149,7 @@
 /turf/simulated/floor/grass,
 /area/awaymission/wwgov)
 "lY" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/outdoors/ironsand,
 /area/awaymission/wwmines)
 "lZ" = (

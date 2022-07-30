@@ -16,7 +16,7 @@
 
 /obj/item/ore/bluespace_crystal/attack_self(mob/user)
 	user.visible_message("<span class='warning'>[user] crushes [src]!</span>", "<span class='danger'>You crush [src]!</span>")
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	s.set_up(5, 1, get_turf(src))
 	s.start()
 	blink_mob(user)
@@ -30,7 +30,7 @@
 	if(!..()) // not caught in mid-air
 		visible_message("<span class='notice'>[src] fizzles and disappears upon impact!</span>")
 		var/turf/T = get_turf(hit_atom)
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 		s.set_up(5, 1, T)
 		s.start()
 		if(isliving(hit_atom))

@@ -169,7 +169,7 @@
 /obj/item/toy/plushie/ipc/attackby(obj/item/I as obj, mob/living/user as mob)
 	if(istype(I, /obj/item/material/kitchen/utensil))
 		to_chat(user, "<span class='notice'> You insert the [I] into the toaster. </span>")
-		var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(5, 1, src)
 		s.start()
 		user.electrocute_act(15,src,0.75)
@@ -750,7 +750,7 @@
 /obj/item/toy/russian_revolver/trick_revolver/post_shot(user)
 	to_chat(user, "<span class='danger'>[src] did look pretty dodgy!</span>")
 	playsound(src, 'sound/items/confetti.ogg', 50, 1)
-	var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
+	var/datum/effect_system/confetti_spread/s = new /datum/effect_system/confetti_spread
 	s.set_up(5, 1, src)
 	s.start()
 	icon_state = "shoot"
@@ -831,7 +831,7 @@
 		popped = 1
 		user.Stun(1)
 
-		var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
+		var/datum/effect_system/confetti_spread/s = new /datum/effect_system/confetti_spread
 		s.set_up(5, 1, src)
 		s.start()
 
@@ -864,7 +864,7 @@
 			popped = 1
 			user.Stun(1)
 
-			var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
+			var/datum/effect_system/confetti_spread/s = new /datum/effect_system/confetti_spread
 			s.set_up(5, 1, src)
 			s.start()
 
@@ -1064,7 +1064,7 @@
 	if(icon_state == "partypopper")
 		user.visible_message("<span class='notice'>[user] pulls on the string, releasing a burst of confetti!</span>", "<span class='notice'>You pull on the string, releasing a burst of confetti!</span>")
 		playsound(src, 'sound/effects/snap.ogg', 50, TRUE)
-		var/datum/effect/effect/system/confetti_spread/s = new /datum/effect/effect/system/confetti_spread
+		var/datum/effect_system/confetti_spread/s = new /datum/effect_system/confetti_spread
 		s.set_up(5, 1, src)
 		s.start()
 		icon_state = "partypopper_e"

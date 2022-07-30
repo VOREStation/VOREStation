@@ -14,12 +14,12 @@
 	toggled = 1
 	var/reflecting = 0
 	var/damage_to_energy_multiplier = 60.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 1200 energy cost
-	var/datum/effect/effect/system/spark_spread/spark_system = null
+	var/datum/effect_system/spark_spread/spark_system = null
 
 /obj/item/spell/reflect/Initialize()
 	. = ..()
 	set_light(3, 2, l_color = "#006AFF")
-	spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	to_chat(owner, "<span class='notice'>Your shield will expire in 5 seconds!</span>")
 	QDEL_IN(src, 5 SECONDS)

@@ -50,7 +50,7 @@
 		die_off()
 		return 0
 
-	for(var/obj/effect/effect/smoke/chem/smoke in view(1, src))
+	for(var/obj/effect/vfx/smoke/chem/smoke in view(1, src))
 		if(smoke.reagents.has_reagent("plantbgone"))
 			die_off()
 			return
@@ -118,7 +118,7 @@
 /obj/effect/plant/proc/spread_to(turf/target_turf)
 	//VOREStation Edit Start - Vines can go up/down stairs, but don't register that they have done this, so do so infinitely, which is annoying and laggy.
 	if(istype(target_turf, /turf/simulated/open))
-		return			
+		return
 	//VOREStation Edit End
 	var/obj/effect/plant/child = new(get_turf(src),seed,parent)
 

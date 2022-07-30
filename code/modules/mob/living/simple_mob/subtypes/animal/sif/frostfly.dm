@@ -74,7 +74,7 @@
 		"rad" = 0
 		)
 
-	var/datum/effect/effect/system/smoke_spread/frost/smoke_special
+	var/datum/effect_system/smoke_spread/frost/smoke_special
 
 	say_list_type = /datum/say_list/frostfly
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/kiting/threatening/frostfly

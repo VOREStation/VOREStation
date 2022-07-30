@@ -73,7 +73,7 @@ List of things solar grubs should be able to do:
 			if(prob(2))
 				src.visible_message("<b>\The [src]</b> begins to sink power from the net.")
 			if(prob(5))
-				var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+				var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 				sparks.set_up(5, 0, get_turf(src))
 				sparks.start()
 			anchored = TRUE
@@ -108,7 +108,7 @@ List of things solar grubs should be able to do:
 			L.Weaken(4)
 			L.Stun(4)
 			L.stuttering = max(L.stuttering, 4)
-			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(5, 1, L)
 			s.start()
 			visible_message("<span class='danger'>The grub releases a powerful shock!</span>")

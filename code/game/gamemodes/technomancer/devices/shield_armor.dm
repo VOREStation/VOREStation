@@ -21,12 +21,12 @@
 	action_button_name = "Toggle Shield Projector"
 	var/active = 0
 	var/damage_to_energy_multiplier = 50.0 //Determines how much energy to charge for blocking, e.g. 20 damage attack = 750 energy cost
-	var/datum/effect/effect/system/spark_spread/spark_system = null
+	var/datum/effect_system/spark_spread/spark_system = null
 	var/block_percentage = 75
 
 /obj/item/clothing/suit/armor/shield/New()
 	..()
-	spark_system = new /datum/effect/effect/system/spark_spread()
+	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 
 /obj/item/clothing/suit/armor/shield/Destroy()

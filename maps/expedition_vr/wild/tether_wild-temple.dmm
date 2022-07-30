@@ -10,7 +10,7 @@
 "j" = (/obj/effect/step_trigger/teleporter/wild/to_wild_6,/turf/simulated/floor/outdoors/grass/sif/virgo3b{icon_state = "grass_sif_dark"; name = "passage"; tree_chance = 0},/area/tether/surfacebase/outside/wilderness)
 "k" = (/obj/item/material/star,/turf/simulated/floor/outdoors/dirt{desc = "Quite dirty!"; icon = 'icons/turf/outdoors.dmi'; icon_state = "dirt-dark"; name = "dirt"},/area/tether/surfacebase/temple)
 "l" = (/obj/effect/decal/mecha_wreckage/phazon{anchored = 1; name = "rusted Phazon wreckage"},/turf/simulated/floor/outdoors/dirt{desc = "Quite dirty!"; icon = 'icons/turf/outdoors.dmi'; icon_state = "dirt-dark"; name = "dirt"},/area/tether/surfacebase/temple)
-"m" = (/obj/item/cell/infinite,/obj/effect/gibspawner/human,/turf/simulated/floor/outdoors/dirt{desc = "Quite dirty!"; icon = 'icons/turf/outdoors.dmi'; icon_state = "dirt-dark"; name = "dirt"},/area/tether/surfacebase/temple)
+"m" = (/obj/item/cell/infinite,/obj/effect/spawner/gibs/human,/turf/simulated/floor/outdoors/dirt{desc = "Quite dirty!"; icon = 'icons/turf/outdoors.dmi'; icon_state = "dirt-dark"; name = "dirt"},/area/tether/surfacebase/temple)
 "n" = (/obj/item/material/sword/katana,/turf/simulated/floor/outdoors/dirt{desc = "Quite dirty!"; icon = 'icons/turf/outdoors.dmi'; icon_state = "dirt-dark"; name = "dirt"},/area/tether/surfacebase/temple)
 "o" = (/obj/effect/step_trigger/teleporter/wild/to_wild_4,/turf/simulated/floor/outdoors/grass/sif/virgo3b{icon_state = "grass_sif_dark"; name = "passage"; tree_chance = 0},/area/tether/surfacebase/outside/wilderness)
 

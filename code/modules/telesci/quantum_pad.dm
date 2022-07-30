@@ -167,7 +167,7 @@
 	doteleport(user)
 
 /obj/machinery/power/quantumpad/proc/sparks()
-	var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 	sparks.set_up(5, 1, get_turf(src))
 	sparks.start()
 

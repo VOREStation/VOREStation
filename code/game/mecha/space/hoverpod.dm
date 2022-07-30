@@ -14,7 +14,7 @@
 	wreckage = /obj/effect/decal/mecha_wreckage/hoverpod
 	cargo_capacity = 5
 	max_equip = 3
-	var/datum/effect/effect/system/ion_trail_follow/ion_trail
+	var/datum/effect_system/ion_trail_follow/ion_trail
 	var/stabilization_enabled = 1
 
 	stomp_sound = 'sound/machines/hiss.ogg'
@@ -28,7 +28,7 @@
 
 /obj/mecha/working/hoverpod/Initialize()
 	. = ..()
-	ion_trail = new /datum/effect/effect/system/ion_trail_follow()
+	ion_trail = new /datum/effect_system/ion_trail_follow()
 	ion_trail.set_up(src)
 
 /obj/mecha/working/hoverpod/moved_inside(var/mob/living/carbon/human/H as mob)

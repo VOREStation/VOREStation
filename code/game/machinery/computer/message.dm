@@ -10,7 +10,7 @@
 	//Server linked to.
 	var/obj/machinery/message_server/linkedServer = null
 	//Sparks effect - For emag
-	var/datum/effect/effect/system/spark_spread/spark_system = new /datum/effect/effect/system/spark_spread
+	var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread
 	//Messages - Saves me time if I want to change something.
 	var/noserver = list("text" = "ALERT: No server detected.", "style" = "alert")
 	var/incorrectkey = list("text" = "ALERT: Incorrect decryption key!", "style" = "warning")
@@ -101,7 +101,7 @@
 	if(linkedServer && auth)
 		data["linkedServer"]["active"] = linkedServer.active
 		data["linkedServer"]["broke"] = linkedServer.stat & (NOPOWER|BROKEN)
-		
+
 		var/list/pda_msgs = list()
 		for(var/datum/data_pda_msg/pda in linkedServer.pda_msgs)
 			pda_msgs.Add(list(list(
@@ -111,7 +111,7 @@
 				"message" = pda.message,
 			)))
 		data["linkedServer"]["pda_msgs"] = pda_msgs
-		
+
 		var/list/rc_msgs = list()
 		for(var/datum/data_rc_msg/rc in linkedServer.rc_msgs)
 			rc_msgs.Add(list(list(
@@ -182,7 +182,7 @@
 /obj/machinery/computer/message_monitor/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("cleartemp")
 			temp = null
@@ -218,14 +218,14 @@
 				spawn(100*length(linkedServer.decryptkey))
 					if(src && linkedServer && usr)
 						BruteForce(usr)
-	
+
 	if(!auth)
 		return
-	
+
 	if(!linkedServer || linkedServer.stat & (NOPOWER|BROKEN))
 		temp = noserver
 		return TRUE
-	
+
 	switch(action)
 		//Turn the server on/off.
 		if("active")
@@ -277,7 +277,7 @@
 			var/obj/item/pda/P = locate(ref)
 			if(!istype(P) || !P.owner || P.hidden)
 				return FALSE
-				
+
 			var/datum/data/pda/app/messenger/M = P.find_program(/datum/data/pda/app/messenger)
 			if(!M || M.toff)
 				return FALSE
@@ -316,7 +316,7 @@
 			//Sender is faking as someone who exists
 			else
 				linkedServer.send_pda_message("[customrecepient.owner]", "[PDARec.owner]","[custommessage]")
-				
+
 				var/datum/data/pda/app/messenger/M = customrecepient.find_program(/datum/data/pda/app/messenger)
 				if(M)
 					M.receive_message(list("sent" = 0, "owner" = "[PDARec.owner]", "job" = "[customjob]", "message" = "[custommessage]", "target" = "\ref[PDARec]"), "\ref[PDARec]")

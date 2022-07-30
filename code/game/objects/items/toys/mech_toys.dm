@@ -288,12 +288,12 @@
 					combat_health--
 					attacker.combat_health--
 					// This is sloppy but we don't have do_sparks.
-					var/datum/effect/effect/system/spark_spread/sparksrc = new(src)
+					var/datum/effect_system/spark_spread/sparksrc = new(src)
 					playsound(src, "sparks", 50, 1)
 					sparksrc.set_up(2, 0, src)
 					sparksrc.attach(src)
 					sparksrc.start()
-					var/datum/effect/effect/system/spark_spread/sparkatk = new(attacker)
+					var/datum/effect_system/spark_spread/sparkatk = new(attacker)
 					playsound(attacker, "sparks", 50, 1)
 					sparkatk.set_up(2, 0, attacker)
 					sparkatk.attach(attacker)

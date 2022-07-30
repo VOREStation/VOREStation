@@ -153,7 +153,7 @@
 		else
 			user.audible_message("<span class='critical'>*BZZZZzzzzzt*</span>")
 			if(prob(40) && insults <= 0)
-				var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, get_turf(user))
 				s.start()
 				user.visible_message("<span class='warning'>\The [src] sparks violently!</span>")

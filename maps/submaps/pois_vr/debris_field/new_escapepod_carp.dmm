@@ -39,7 +39,7 @@
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/misc_debris)
 "Z" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/airless,
 /area/submap/debrisfield/misc_debris)
 

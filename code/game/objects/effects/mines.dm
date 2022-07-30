@@ -42,7 +42,7 @@
 			new_turf.register_dangerous_object(src)
 
 /obj/effect/mine/proc/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -127,7 +127,7 @@
 	mineitemtype = /obj/item/mine/dnascramble
 
 /obj/effect/mine/dnascramble/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -145,7 +145,7 @@
 
 /obj/effect/mine/stun/explode(var/mob/living/M)
 	triggered = 1
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
 	if(istype(M))
@@ -184,7 +184,7 @@
 	mineitemtype = /obj/item/mine/kick
 
 /obj/effect/mine/kick/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -205,7 +205,7 @@
 	var/spread_range = 7
 
 /obj/effect/mine/frag/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()
@@ -234,7 +234,7 @@
 	mineitemtype = /obj/item/mine/emp
 
 /obj/effect/mine/emp/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
 	visible_message("\The [src.name] flashes violently before disintegrating!")
@@ -250,7 +250,7 @@
 
 /obj/effect/mine/incendiary/explode(var/mob/living/M)
 	triggered = 1
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	s.set_up(3, 1, src)
 	s.start()
 	if(istype(M))
@@ -264,7 +264,7 @@
 	mineitemtype = /obj/item/mine/gadget
 
 /obj/effect/mine/gadget/explode(var/mob/living/M)
-	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread()
+	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread()
 	triggered = 1
 	s.set_up(3, 1, src)
 	s.start()

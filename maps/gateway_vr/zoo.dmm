@@ -7182,7 +7182,7 @@
 /area/awaymission/zoo)
 "sN" = (
 /obj/effect/decal/remains,
-/obj/effect/gibspawner/generic,
+/obj/effect/spawner/gibs/generic,
 /turf/simulated/floor/tiled/neutral,
 /area/awaymission/zoo)
 "sO" = (
@@ -7564,7 +7564,7 @@
 /turf/simulated/floor/holofloor/desert,
 /area/awaymission/zoo)
 "tM" = (
-/obj/effect/gibspawner/human,
+/obj/effect/spawner/gibs/human,
 /turf/simulated/floor/holofloor/grass,
 /area/awaymission/zoo)
 "tN" = (

@@ -13,7 +13,7 @@
 "u" = (/obj/item/stack/tile/wood,/turf/simulated/floor/plating,/area/template_noop)
 "v" = (/obj/structure/sign/poster/custom{dir = 1; pixel_y = 32; poster_decl = /decl/poster/pol_15},/turf/simulated/floor/wood,/area/template_noop)
 "x" = (/obj/structure/table/gamblingtable,/obj/item/storage/pill_bottle/dice,/obj/item/coin/silver{pixel_x = 7; pixel_y = 12},/obj/item/coin/silver{pixel_x = 12; pixel_y = 7},/turf/simulated/floor/wood,/area/template_noop)
-"y" = (/obj/effect/graffitispawner{color = "#2D2D2D"; color_secondary = "#000000"; graffiti_type = "uboa"},/turf/simulated/floor/wood,/area/template_noop)
+"y" = (/obj/effect/spawner/graffiti{color = "#2D2D2D"; color_secondary = "#000000"; graffiti_type = "uboa"},/turf/simulated/floor/wood,/area/template_noop)
 "A" = (/obj/structure/sign/poster{pixel_y = -32; poster_decl = /decl/poster/bay_13},/turf/simulated/floor/plating,/area/template_noop)
 "B" = (/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"},/turf/simulated/floor/plating,/area/template_noop)
 "C" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/wood,/area/template_noop)

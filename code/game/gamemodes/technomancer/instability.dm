@@ -106,7 +106,7 @@
 				rng = rand(0,1)
 				switch(rng)
 					if(0)
-						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+						var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 						sparks.set_up(5, 0, src)
 						sparks.attach(loc)
 						sparks.start()
@@ -171,7 +171,7 @@
 				rng = rand(0,1)
 				switch(rng)
 					if(0)
-						var/datum/effect/effect/system/spark_spread/sparks = new /datum/effect/effect/system/spark_spread()
+						var/datum/effect_system/spark_spread/sparks = new /datum/effect_system/spark_spread()
 						sparks.set_up(5, 0, src)
 						sparks.attach(loc)
 						sparks.start()
@@ -287,4 +287,3 @@
 		else
 			to_chat(src, "<span class='cult'><font size='4'>The purple glow makes you feel strange...</font></span>")
 	adjust_instability(amount)
-

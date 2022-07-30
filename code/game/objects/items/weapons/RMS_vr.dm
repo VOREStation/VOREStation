@@ -34,7 +34,7 @@
 	var/charge_stage = 0
 	var/overcharge = 0
 	var/emagged = 0
-	var/datum/effect/effect/system/spark_spread/spark_system
+	var/datum/effect_system/spark_spread/spark_system
 
 	var/static/image/radial_image_steel = image(icon = 'icons/mob/radial_vr.dmi', icon_state = "sheet-metal")
 	var/static/image/radial_image_glass = image(icon= 'icons/mob/radial_vr.dmi', icon_state = "sheet-glass")
@@ -46,7 +46,7 @@
 
 /obj/item/rms/Initialize()
 	. = ..()
-	src.spark_system = new /datum/effect/effect/system/spark_spread
+	src.spark_system = new /datum/effect_system/spark_spread
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	add_overlay("rms_charge[charge_stage]")

@@ -27,7 +27,7 @@
 	var/symbol2 = null
 	var/symbol3 = null
 
-	var/datum/effect/effect/system/confetti_spread
+	var/datum/effect_system/confetti_spread
 	var/confetti_strength = 8
 
 /obj/machinery/slot_machine/update_icon()
@@ -223,7 +223,7 @@
 				icon_state = "slotmachine"
 
 		if(celebrate) // Happy celebrations!
-			src.confetti_spread = new /datum/effect/effect/system/confetti_spread()
+			src.confetti_spread = new /datum/effect_system/confetti_spread()
 			src.confetti_spread.attach(src) //If somehow people start dragging slot machine
 			spawn(0)
 				for(var/i = 1 to confetti_strength)
@@ -257,7 +257,7 @@
 	var/symbol2 = null
 	var/symbol3 = null
 
-	var/datum/effect/effect/system/confetti_spread
+	var/datum/effect_system/confetti_spread
 	var/confetti_strength = 8
 
 /obj/machinery/station_slot_machine/update_icon()
@@ -452,7 +452,7 @@
 				icon_state = "ntslotmachine"
 
 		if(celebrate) // Happy celebrations!
-			src.confetti_spread = new /datum/effect/effect/system/confetti_spread()
+			src.confetti_spread = new /datum/effect_system/confetti_spread()
 			src.confetti_spread.attach(src) //If somehow people start dragging slot machine
 			spawn(0)
 				for(var/i = 1 to confetti_strength)

@@ -3,7 +3,7 @@
 	var/used = 0
 	var/ghost_query_type = null
 	var/searching = FALSE
-	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/effect_system/spark_spread/sparks
 
 /obj/item/antag_spawner/Initialize()
 	. = ..()

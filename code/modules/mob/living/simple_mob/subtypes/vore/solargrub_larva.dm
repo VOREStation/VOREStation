@@ -41,7 +41,7 @@ var/global/list/grub_machine_overlays = list()
 		/obj/machinery/button/windowtint
 		)
 
-	var/datum/effect/effect/system/spark_spread/sparks
+	var/datum/effect_system/spark_spread/sparks
 	var/image/machine_effect
 
 	var/obj/machinery/abstract_grub_machine/powermachine
