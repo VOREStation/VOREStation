@@ -106,7 +106,7 @@
 
 	if(emote_active)
 		var/list/EL = emote_lists[digest_mode]
-		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD]))) && next_emote <= world.time)
+		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD])) || (digest_mode == DM_SELECT && (LAZYLEN(emote_lists[DM_HOLD])||LAZYLEN(emote_lists[DM_DIGEST])||LAZYLEN(emote_lists[DM_ABSORB])) )) && next_emote <= world.time)
 			var/living_count = 0
 			var/absorbed_count = 0
 			for(var/mob/living/L in contents)
@@ -127,7 +127,14 @@
 					if(formatted_message)
 						to_chat(M, "<span class='notice'>[formatted_message]</span>")
 				else
-					if(digest_mode == DM_DIGEST && !M.digestable)
+					if (digest_mode == DM_SELECT)
+						if (M.digestable)
+							EL = emote_lists[DM_DIGEST]
+						else if (M.absorbable)
+							EL = emote_lists[DM_ABSORB]
+						else
+							EL = emote_lists[DM_HOLD]
+					else if(digest_mode == DM_DIGEST && !M.digestable)
 						EL = emote_lists[DM_HOLD]					// Use Hold's emote list if we're indigestible
 
 					var/raw_message = pick(EL)
