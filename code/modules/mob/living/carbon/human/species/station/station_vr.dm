@@ -566,8 +566,8 @@
 /datum/species/altevian
 	name = SPECIES_ALTEVIAN
 	name_plural = "Altevians"
-	icobase = 'icons/mob/human_races/r_sergal.dmi'
-	deform = 'icons/mob/human_races/r_def_sergal.dmi'
+	icobase = 'icons/mob/human_races/r_altevian.dmi'
+	deform = 'icons/mob/human_races/r_def_altevian.dmi'
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	language = LANGUAGE_TAVAN
 	num_alternate_languages = 3

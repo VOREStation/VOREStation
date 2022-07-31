@@ -3,7 +3,7 @@
 
 /datum/sprite_accessory/marking //Override for base markings
 	color_blend_mode = ICON_ADD
-	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW) //This lets all races use
+	species_allowed = list(SPECIES_HUMAN, SPECIES_SKRELL, SPECIES_UNATHI, SPECIES_TAJ, SPECIES_TESHARI, SPECIES_NEVREAN, SPECIES_AKULA, SPECIES_SERGAL, SPECIES_FENNEC, SPECIES_ZORREN_HIGH, SPECIES_VULPKANIN, SPECIES_XENOCHIMERA, SPECIES_XENOHYBRID, SPECIES_VASILISSAN, SPECIES_RAPALA, SPECIES_PROTEAN, SPECIES_ALRAUNE, SPECIES_WEREBEAST, SPECIES_SHADEKIN, SPECIES_SHADEKIN_CREW, SPECIES_ALTEVIAN) //This lets all races use
 
 /datum/sprite_accessory/marking/vr_vulp_belly
 	name = "belly fur (Vulp)"
@@ -851,3 +851,38 @@
 	icon_state = "thunderthighs"
 	color_blend_mode = ICON_MULTIPLY
 	body_parts = list(BP_L_LEG,BP_R_LEG)
+
+/datum/sprite_accessory/marking/vr_altevian_snout
+	name = "Altevian Snout"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-snout"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_chin
+	name = "Altevian Chin"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-chin"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_nose
+	name = "Altevian Nose"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-nose"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_fangs
+	name = "Altevian Fangs"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-fangs"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)
+
+/datum/sprite_accessory/marking/vr_altevian_incisors
+	name = "Altevian Incisors"
+	icon = 'icons/mob/human_races/markings_vr.dmi'
+	icon_state = "altevian-incisors"
+	color_blend_mode = ICON_MULTIPLY
+	body_parts = list(BP_HEAD)

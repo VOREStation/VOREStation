@@ -851,3 +851,12 @@
 	extra_overlay = "bunny-tall-inner"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+
+/datum/sprite_accessory/ears/altevian
+	name = "Altevian Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "altevian"
+	extra_overlay = "altevian-inner"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
