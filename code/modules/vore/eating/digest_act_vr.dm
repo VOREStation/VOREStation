@@ -9,6 +9,9 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+
+		for(var/mob/living/voice/V in possessed_voice) // Delete voices.
+			V.Destroy() //Destroy the voice.
 		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
 			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
@@ -40,6 +43,8 @@
 			var/obj/item/device/pda/P = src
 			if(P.id)
 				P.id = null
+		for(var/mob/living/voice/V in possessed_voice) // Delete voices.
+			V.Destroy() //Destroy the voice.
 		for(var/mob/living/M in contents)//Drop mobs from objects(shoes) before deletion
 			M.forceMove(item_storage)
 		for(var/obj/item/O in contents)
