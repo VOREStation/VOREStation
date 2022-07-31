@@ -218,3 +218,20 @@ GLOBAL_LIST_INIT(digest_modes, list())
 		B.ownegg = null
 		return list("to_update" = TRUE)
 	return
+
+/datum/digest_mode/selective //unselectable, "smart" digestion mode for mobs only
+	id = DM_SELECT
+
+/datum/digest_mode/selective/process_mob(obj/belly/B, mob/living/L)
+	var/datum/digest_mode/tempmode = GLOB.digest_modes["Hold"]
+	//if not absorbed, see if they're food
+	if(L.digestable)
+		tempmode = GLOB.digest_modes["Digest"]
+	//if they're indigestible, then try to absorb them
+	else if(L.absorbable)
+		tempmode = GLOB.digest_modes["Absorb"]
+	//if they're not absorbable, just drain
+	else
+		tempmode = GLOB.digest_modes["Drain"]
+	//finally, process the mob as if they were subject to the chosen mode
+	return tempmode.process_mob(B, L)

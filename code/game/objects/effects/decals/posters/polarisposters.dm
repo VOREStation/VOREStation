@@ -332,14 +332,6 @@
 	name = "Regulations and You"
 	desc = "This SifGov poster showcases an NT security guard reading from her PDA. The blurb advocates for the reader to keep corporate regulations in mind at all times, as an emergency can occur at any time."
 	listing_name = "Safety - Corporate Regulations"
-<<<<<<< HEAD
-=======
-
-/decl/poster/nanotrasen/vore_17
-	icon_state = "dwposter4"
-	name = "We Know Genes"
-	desc = "A poster purporting the infallibility of NanoTrasen's in-house forensics department."
-	listing_name = "Safety - Forensics"
 
 //Selective VORE ports
 
@@ -354,6 +346,12 @@
 	name = "Productivity implant"
 	desc = "A poster describing the benefits of Ward-Takahashi brand 'Energy Plus' implants on alertness and productivity in work and leisure."
 	listing_name = "Ad - Implants"
+
+/decl/poster/vore_17
+	icon_state = "dwposter4"
+	name = "We Know Genes"
+	desc = "A poster purporting the infallibility of NanoTrasen's in-house forensics department."
+	listing_name = "Safety - Forensics"
 
 /decl/poster/vore_18
 	icon_state = "dwposter5"
@@ -696,4 +694,3 @@
 	name = "Jim Norton's Coffee"
 	desc = "An advertisement for Jim Norton's, the coffee joint that's taken the galaxy by storm."
 	listing_name = "Ad - Jim Norton Coffee"
->>>>>>> de1377c1dab... deco stuff (#8667)
