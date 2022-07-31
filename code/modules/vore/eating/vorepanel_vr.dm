@@ -181,6 +181,7 @@
 			"shrink_grow_size" = selected.shrink_grow_size,
 			"emote_time" = selected.emote_time,
 			"emote_active" = selected.emote_active,
+			"selective_preference" = selected.selective_preference,
 			"nutrition_ex" = host.nutrition_message_visible,
 			"weight_ex" = host.weight_message_visible,
 			"belly_fullscreen" = selected.belly_fullscreen,
@@ -485,6 +486,14 @@
 			return TRUE
 		if("toggle_stumble_vore")
 			host.stumble_vore = !host.stumble_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("switch_selective_mode_pref")
+			host.selective_preference = tgui_input_list(usr, "What would you prefer happen to you with selective bellymode?","Selective Bellymode", list(DM_DEFAULT, DM_DIGEST, DM_ABSORB, DM_DRAIN))
+			if(!(host.selective_preference))
+				host.selective_preference = DM_DEFAULT
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.selective_preference = host.selective_preference
 			unsaved_changes = TRUE
 			return TRUE
 		if("toggle_nutrition_ex")
@@ -1078,6 +1087,12 @@
 			. = TRUE
 		if("b_emoteactive")
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
+			. = TRUE
+		if("b_selective_mode_pref_toggle")
+			if(host.vore_selected.selective_preference == DM_DIGEST)
+				host.vore_selected.selective_preference = DM_ABSORB
+			else
+				host.vore_selected.selective_preference = DM_DIGEST
 			. = TRUE
 		if("b_emotetime")
 			var/new_time = tgui_input_number(user, "Choose the period it takes for idle belly emotes to be shown to prey. Measured in seconds, Minimum 1 minute, Maximum 10 minutes.", "Set Belly Emote Delay.", host.vore_selected.digest_brute, 600, 60)
