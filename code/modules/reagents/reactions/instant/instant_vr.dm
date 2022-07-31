@@ -213,7 +213,7 @@
 	result_amount = 1
 
 /decl/chemical_reaction/instant/slime_food/on_reaction(var/datum/reagents/holder)
-	var/list/borks = subtypesof(/obj/item/weapon/reagent_containers/food/snacks)
+	var/list/borks = subtypesof(/obj/item/reagent_containers/food/snacks)
 
 	playsound(holder.my_atom, 'sound/effects/phasein.ogg', 100, 1)
 
@@ -242,7 +242,7 @@
 			playsound(holder.my_atom, 'sound/items/Welder2.ogg', 100, 1)
 			for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 				O.show_message(text("<span class='warning'>The reaction begins to rapidly sizzle and swell outwards!</span>"), 1)
-			
+
 			spawn(20)
 				explosion(get_turf(holder.my_atom), 0 ,4, 8) //Enough to cause severe damage in the area, but not so much that it'll instantly gib the person.
 				empulse(get_turf(holder.my_atom), 3, 7) //Uh oh, it produced some uranium, too! EMP blast!
@@ -288,7 +288,7 @@
 /decl/chemical_reaction/instant/slimelight/on_reaction(var/datum/reagents/holder)
 	for(var/mob/O in viewers(get_turf(holder.my_atom), null))
 		O.show_message(text("<span class='warning'> The contents of the slime core harden and begin to emit a warm, bright light.</span>"), 1)
-	var/obj/item/device/flashlight/slime/F = new /obj/item/device/flashlight/slime
+	var/obj/item/flashlight/slime/F = new /obj/item/flashlight/slime
 	F.loc = get_turf(holder.my_atom)
 
 
