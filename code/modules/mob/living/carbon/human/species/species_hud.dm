@@ -34,8 +34,8 @@
 		"belt" =         list("loc" = ui_belt,      "name" = "Belt",         "slot" = slot_belt,      "state" = "belt")
 		)
 
-/datum/hud_data/Initialize()
-	. = ..()
+/datum/hud_data/New()
+	..()
 	for(var/slot in gear)
 		equip_slots |= gear[slot]["slot"]
 

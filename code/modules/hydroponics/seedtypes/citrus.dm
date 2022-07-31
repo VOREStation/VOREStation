@@ -5,8 +5,8 @@
 	kitchen_tag = "lime"
 	chems = list("nutriment" = list(1,20), "limejuice" = list(10,20))
 
-/datum/seed/citrus/Initialize()
-	. = ..()
+/datum/seed/citrus/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_JUICY,1)
 	set_trait(TRAIT_MATURATION,6)
@@ -25,8 +25,8 @@
 	kitchen_tag = "lemon"
 	chems = list("nutriment" = list(1,20), "lemonjuice" = list(10,20))
 
-/datum/seed/citrus/lemon/Initialize()
-	. = ..()
+/datum/seed/citrus/lemon/New()
+	..()
 	set_trait(TRAIT_PRODUCES_POWER,1)
 	set_trait(TRAIT_PRODUCT_ICON,"lemon")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#F0E226")
@@ -40,7 +40,7 @@
 	kitchen_tag = "orange"
 	chems = list("nutriment" = list(1,20), "orangejuice" = list(10,20))
 
-/datum/seed/citrus/orange/Initialize()
-	. = ..()
+/datum/seed/citrus/orange/New()
+	..()
 	set_trait(TRAIT_PRODUCT_COLOUR,"#FFC20A")
 	set_trait(TRAIT_FLESH_COLOUR,"#FFC20A")

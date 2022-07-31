@@ -4,8 +4,8 @@
 
 	effect_state = "empdisable"
 
-/datum/artifact_effect/emp/Initialize()
-	. = ..()
+/datum/artifact_effect/emp/New()
+	..()
 	effect = EFFECT_PULSE
 
 /datum/artifact_effect/emp/DoEffectPulse()

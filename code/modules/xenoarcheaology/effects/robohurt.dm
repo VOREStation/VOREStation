@@ -4,8 +4,8 @@
 
 	effect_color = "#5432cf"
 
-/datum/artifact_effect/robohurt/Initialize()
-	. = ..()
+/datum/artifact_effect/robohurt/New()
+	..()
 	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
 
 /datum/artifact_effect/robohurt/DoEffectTouch(var/mob/user)

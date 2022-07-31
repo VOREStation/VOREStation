@@ -33,8 +33,8 @@ var/datum/antagonist/ert/ert
 	var/mob/living/carbon/human/M = ..()
 	if(istype(M)) M.age = rand(25,45)
 
-/datum/antagonist/ert/Initialize()
-	. = ..()
+/datum/antagonist/ert/New()
+	..()
 	ert = src
 
 /datum/antagonist/ert/greet(var/datum/mind/player)

@@ -172,8 +172,8 @@ Swimsuits
 	display_name = "swimsuits selection"
 	path = /obj/item/storage/box/fluff/swimsuit
 
-/datum/gear/uniform/swimsuits/Initialize()
-	. = ..()
+/datum/gear/uniform/swimsuits/New()
+	..()
 	var/list/swimsuits = list()
 	for(var/obj/item/storage/box/fluff/swimsuit/swimsuit_type as anything in typesof(/obj/item/storage/box/fluff/swimsuit))
 		swimsuits[initial(swimsuit_type.name)] = swimsuit_type
@@ -233,8 +233,8 @@ Talon jumpsuit
 	display_name = "summer dress selection"
 	path = /obj/item/clothing/under/summerdress
 
-/datum/gear/uniform/summerdress/Initialize()
-	. = ..()
+/datum/gear/uniform/summerdress/New()
+	..()
 	var/list/dresses = list(
 		"black and white" = /obj/item/clothing/under/summerdress,
 		"blue and white" = /obj/item/clothing/under/summerdress/blue,
@@ -247,8 +247,8 @@ Talon jumpsuit
 	display_name = "undersuit selection"
 	path = /obj/item/clothing/under/undersuit/
 
-/datum/gear/uniform/undersuit/Initialize()
-	. = ..()
+/datum/gear/uniform/undersuit/New()
+	..()
 	var/list/suits = list()
 	var/list/blacklisted_types = list(/obj/item/clothing/under/undersuit/sec,
 									  /obj/item/clothing/under/undersuit/sec/hos,

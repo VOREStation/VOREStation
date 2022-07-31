@@ -8,8 +8,8 @@
 	mutants = list("spineapple")
 	chems = list("nutriment" = list(1,5), "pineapplejuice" = list(1, 20))
 
-/datum/seed/pineapple/Initialize()
-	. = ..()
+/datum/seed/pineapple/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,10)
 	set_trait(TRAIT_PRODUCTION,6)
@@ -32,8 +32,8 @@
 	kitchen_tag = "spineapple"
 	chems = list("nutriment" = list(1,5), "enzyme" = list(1,5), "pineapplejuice" = list(1, 20))
 
-/datum/seed/spineapple/Initialize()
-	. = ..()
+/datum/seed/spineapple/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,10)
 	set_trait(TRAIT_PRODUCTION,6)

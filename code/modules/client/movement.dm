@@ -1,6 +1,6 @@
 
-/client/Initialize()
-	. = ..()
+/client/New()
+	..()
 	dir = NORTH
 
 /client/verb/spinleft()

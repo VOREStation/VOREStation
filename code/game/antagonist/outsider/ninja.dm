@@ -18,8 +18,8 @@ var/datum/antagonist/ninja/ninjas
 
 	id_type = /obj/item/card/id/syndicate
 
-/datum/antagonist/ninja/Initialize()
-	. = ..()
+/datum/antagonist/ninja/New()
+	..()
 	ninjas = src
 
 /datum/antagonist/ninja/attempt_random_spawn()

@@ -14,8 +14,8 @@ var/datum/antagonist/traitor/traitors
 	hard_cap = 4
 	initial_spawn_target = 4
 
-/datum/antagonist/traitor/Initialize()
-	. = ..()
+/datum/antagonist/traitor/New()
+	..()
 	traitors = src
 
 /datum/antagonist/traitor/get_extra_panel_options(var/datum/mind/player)

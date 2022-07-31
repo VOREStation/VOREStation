@@ -168,7 +168,7 @@ SUBSYSTEM_DEF(skybox)
 
 	var/use_overmap_details = TRUE //Do we try to draw overmap visitables in our sector on the map?
 
-/datum/skybox_settings/Initialize()
-	. = ..()
+/datum/skybox_settings/New()
+	..()
 	if(random_color)
 		color = rgb(rand(0,255), rand(0,255), rand(0,255))

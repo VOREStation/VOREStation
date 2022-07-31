@@ -19,8 +19,8 @@ var/datum/antagonist/mercenary/mercs
 	initial_spawn_req = 3
 	initial_spawn_target = 3
 
-/datum/antagonist/mercenary/Initialize()
-	. = ..()
+/datum/antagonist/mercenary/New()
+	..()
 	mercs = src
 
 /datum/antagonist/mercenary/create_global_objectives()

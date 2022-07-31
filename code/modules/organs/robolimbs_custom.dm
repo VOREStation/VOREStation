@@ -187,7 +187,7 @@ VS Edit - anyone can select these. */
 	skin_tone = 1
 	suggested_species = "Zorren"
 
-/obj/item/weapon/disk/limb/dsi_zorren
+/obj/item/disk/limb/dsi_zorren
 	company = "DSI - Zorren"
 
 /datum/robolimb/dsi_fennec
@@ -201,5 +201,5 @@ VS Edit - anyone can select these. */
 	skin_tone = 1
 	suggested_species = "Fennec"
 
-/obj/item/weapon/disk/limb/dsi_fennec
+/obj/item/disk/limb/dsi_fennec
 	company = "DSI - Fennec"

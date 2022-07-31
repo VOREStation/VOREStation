@@ -3,8 +3,8 @@
 	name = "sleepy"
 	effect_color = "#a36fa1"
 
-/datum/artifact_effect/sleepy/Initialize()
-	. = ..()
+/datum/artifact_effect/sleepy/New()
+	..()
 	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
 
 /datum/artifact_effect/sleepy/DoEffectTouch(var/mob/toucher)

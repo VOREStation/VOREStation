@@ -7,8 +7,8 @@
 	apply_color_to_mob = FALSE
 	has_mob_product = /mob/living/carbon/alien/diona
 
-/datum/seed/diona/Initialize()
-	. = ..()
+/datum/seed/diona/New()
+	..()
 	set_trait(TRAIT_IMMUTABLE,1)
 	set_trait(TRAIT_ENDURANCE,8)
 	set_trait(TRAIT_MATURATION,5)

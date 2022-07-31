@@ -5,8 +5,8 @@
 	kitchen_tag = "wheat"
 	chems = list("nutriment" = list(1,25), "flour" = list(10,30))
 
-/datum/seed/wheat/Initialize()
-	. = ..()
+/datum/seed/wheat/New()
+	..()
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,1)
 	set_trait(TRAIT_YIELD,4)

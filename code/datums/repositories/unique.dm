@@ -3,8 +3,8 @@ var/repository/unique/uniqueness_repository = new()
 /repository/unique
 	var/list/generators
 
-/repository/unique/Initialize()
-	. = ..()
+/repository/unique/New()
+	..()
 	generators = list()
 
 /repository/unique/proc/Generate()
@@ -23,8 +23,8 @@ var/repository/unique/uniqueness_repository = new()
 /datum/uniqueness_generator/id_sequential
 	var/list/ids_by_key
 
-/datum/uniqueness_generator/id_sequential/Initialize()
-	. = ..()
+/datum/uniqueness_generator/id_sequential/New()
+	..()
 	ids_by_key = list()
 
 /datum/uniqueness_generator/id_sequential/Generate(var/key, var/default_id = 100)
@@ -40,8 +40,8 @@ var/repository/unique/uniqueness_repository = new()
 /datum/uniqueness_generator/id_random
 	var/list/ids_by_key
 
-/datum/uniqueness_generator/id_random/Initialize()
-	. = ..()
+/datum/uniqueness_generator/id_random/New()
+	..()
 	ids_by_key = list()
 
 /datum/uniqueness_generator/id_random/Generate(var/key, var/min, var/max)

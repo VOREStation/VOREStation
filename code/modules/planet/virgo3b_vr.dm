@@ -12,8 +12,8 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 //	expected_z_levels = list(1) // This is defined elsewhere.
 	planetary_wall_type = /turf/unsimulated/wall/planetary/virgo3b
 
-/datum/planet/virgo3b/Initialize()
-	. = ..()
+/datum/planet/virgo3b/New()
+	..()
 	planet_virgo3b = src
 	weather_holder = new /datum/weather_holder/virgo3b(src)
 

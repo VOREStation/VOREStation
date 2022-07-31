@@ -5,8 +5,8 @@
 	kitchen_tag = "vale"
 	chems = list("paracetamol" = list(1,5),"dexalin" = list(1,2),"nutriment"= list(1,5))
 
-/datum/seed/vale/Initialize()
-	. = ..()
+/datum/seed/vale/New()
+	..()
 	set_trait(TRAIT_PLANT_ICON,"flower4")
 	set_trait(TRAIT_ENDURANCE,15)
 	set_trait(TRAIT_MATURATION,8)

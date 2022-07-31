@@ -7,8 +7,8 @@
 	chems = list("capsaicin" = list(3,5), "nutriment" = list(1,25))
 	mutants = list("icechili", "ghostchili")
 
-/datum/seed/chili/Initialize()
-	. = ..()
+/datum/seed/chili/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,5)
 	set_trait(TRAIT_PRODUCTION,5)
@@ -28,8 +28,8 @@
 	mutants = null
 	chems = list("frostoil" = list(3,5), "nutriment" = list(1,50))
 
-/datum/seed/chili/ice/Initialize()
-	. = ..()
+/datum/seed/chili/ice/New()
+	..()
 	set_trait(TRAIT_MATURATION,4)
 	set_trait(TRAIT_PRODUCTION,4)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#00EDC6")
@@ -42,8 +42,8 @@
 	mutants = null
 	chems = list("condensedcapsaicin" = list (3,10), "nutriment" = list (1,25))
 
-/datum/seed/chili/ghost/Initialize()
-	. = ..()
+/datum/seed/chili/ghost/New()
+	..()
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,3)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#eaecec")

@@ -824,8 +824,8 @@ var/global/list/all_objectives = list()
 	explanation_text = "Our knowledge must live on."
 	target_amount = 5
 
-/datum/objective/cult/survive/Initialize()
-	. = ..()
+/datum/objective/cult/survive/New()
+	..()
 	explanation_text = "Our knowledge must live on. Make sure at least [target_amount] acolytes escape on the shuttle to spread their work on an another station."
 
 /datum/objective/cult/survive/check_completion()

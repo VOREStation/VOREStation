@@ -128,8 +128,8 @@ var/datum/species/shapeshifter/promethean/prometheans
 		/decl/emote/visible/vibrate
 	)
 
-/datum/species/shapeshifter/promethean/Initialize()
-	. = ..()
+/datum/species/shapeshifter/promethean/New()
+	..()
 	prometheans = src
 
 /datum/species/shapeshifter/promethean/equip_survival_gear(var/mob/living/carbon/human/H)

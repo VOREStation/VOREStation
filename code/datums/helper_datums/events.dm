@@ -6,8 +6,8 @@
 /datum/events
 	var/list/events
 
-/datum/events/Initialize()
-	. = ..()
+/datum/events/New()
+	..()
 	events = new
 
 /datum/events/proc/addEventType(event_type as text)

@@ -5,8 +5,8 @@
 	kitchen_tag = "whitebeet"
 	chems = list("nutriment" = list(0,20), "sugar" = list(1,5))
 
-/datum/seed/whitebeets/Initialize()
-	. = ..()
+/datum/seed/whitebeets/New()
+	..()
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)
 	set_trait(TRAIT_YIELD,6)

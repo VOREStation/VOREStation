@@ -155,7 +155,7 @@
 		var/T = get_turf(src)
 		var/blood_color = species.blood_color
 		var/flesh_color = species.flesh_color
-		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
+		new /obj/effect/spawner/gibs/human/xenochimera(T, null, flesh_color, blood_color)
 		visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
 		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 	else //lower cost for doing a quick cosmetic revive

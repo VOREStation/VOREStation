@@ -258,8 +258,8 @@ var/list/gear_datums = list()
 	var/exploitable = 0		//Does it go on the exploitable information list?
 	var/type_category = null
 
-/datum/gear/Initialize()
-	. = ..()
+/datum/gear/New()
+	..()
 	if(!description)
 		var/obj/O = path
 		description = initial(O.desc)

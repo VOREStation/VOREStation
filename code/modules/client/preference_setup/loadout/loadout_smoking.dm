@@ -3,8 +3,8 @@
 	display_name = "pipe"
 	path = /obj/item/clothing/mask/smokable/pipe
 
-/datum/gear/pipe/Initialize()
-	. = ..()
+/datum/gear/pipe/New()
+	..()
 	var/list/pipes = list()
 	for(var/pipe_style in typesof(/obj/item/clothing/mask/smokable/pipe))
 		var/obj/item/clothing/mask/smokable/pipe/pipe = pipe_style
@@ -23,8 +23,8 @@
 	display_name = "Zippo selection"
 	path = /obj/item/flame/lighter/zippo
 
-/datum/gear/lighter/zippo/Initialize()
-	. = ..()
+/datum/gear/lighter/zippo/New()
+	..()
 	var/list/zippos = list()
 	for(var/zippo in typesof(/obj/item/flame/lighter/zippo))
 		if(zippo in typesof(/obj/item/flame/lighter/zippo/fluff))	//VOREStation addition
@@ -45,8 +45,8 @@
 	display_name = "cigarette selection"
 	path = /obj/item/storage/fancy/cigarettes
 
-/datum/gear/cigarettes/Initialize()
-	. = ..()
+/datum/gear/cigarettes/New()
+	..()
 	var/list/cigarettes = list()
 	for(var/obj/item/storage/fancy/cigarettes/cigarette_brand as anything in (typesof(/obj/item/storage/fancy/cigarettes) - typesof(/obj/item/storage/fancy/cigarettes/killthroat)))
 		cigarettes[initial(cigarette_brand.name)] = cigarette_brand

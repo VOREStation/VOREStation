@@ -7,8 +7,8 @@
 	p_drain = 0.025
 	var/datum/tgui_module/crew_monitor/nif/arscreen
 
-/datum/nifsoft/crewmonitor/Initialize()
-	. = ..()
+/datum/nifsoft/crewmonitor/New()
+	..()
 	arscreen = new(nif)
 
 /datum/nifsoft/crewmonitor/Destroy()
@@ -36,8 +36,8 @@
 	p_drain = 0.025
 	var/datum/tgui_module/alarm_monitor/engineering/nif/tgarscreen
 
-/datum/nifsoft/alarmmonitor/Initialize()
-	. = ..()
+/datum/nifsoft/alarmmonitor/New()
+	..()
 	tgarscreen = new(nif)
 
 /datum/nifsoft/alarmmonitor/Destroy()

@@ -5,8 +5,8 @@
 	kitchen_tag = "pumpkin"
 	chems = list("nutriment" = list(1,6))
 
-/datum/seed/pumpkin/Initialize()
-	. = ..()
+/datum/seed/pumpkin/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)

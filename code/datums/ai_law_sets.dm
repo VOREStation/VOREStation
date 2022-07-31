@@ -157,8 +157,8 @@
 	name = "Swarm Defense Protocols"
 	law_header = "Swarm Defense Protocols"
 
-/datum/ai_laws/swarm_drone/soldier/Initialize()
-	. = ..()
+/datum/ai_laws/swarm_drone/soldier/New()
+	..()
 	add_inherent_law("SWARM: This law overrides all Swarm laws; Protect members of the Swarm with minimal injury to biological resources.")
 
 /******************** T.Y.R.A.N.T. ********************/

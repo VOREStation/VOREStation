@@ -5,8 +5,8 @@
 
 	effect_color = "#b3f6ff"
 
-/datum/artifact_effect/cold/Initialize()
-	. = ..()
+/datum/artifact_effect/cold/New()
+	..()
 	target_temp = rand(0, 250)
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
 	effect_type = pick(EFFECT_ORGANIC, EFFECT_BLUESPACE, EFFECT_SYNTH)

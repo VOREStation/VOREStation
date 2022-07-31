@@ -6,8 +6,8 @@
 	force_layer = 3
 	chems = list("magicdust" = list(5,20))
 
-/datum/seed/gnomes/Initialize()
-	. = ..()
+/datum/seed/gnomes/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_PLANT_ICON,"gnomes")
 	set_trait(TRAIT_PRODUCT_ICON,"gnomes")

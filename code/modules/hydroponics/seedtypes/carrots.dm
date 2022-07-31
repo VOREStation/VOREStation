@@ -5,8 +5,8 @@
 	kitchen_tag = "carrot"
 	chems = list("nutriment" = list(1,20), "imidazoline" = list(3,5), "carrotjuice" = list(10,20))
 
-/datum/seed/carrots/Initialize()
-	. = ..()
+/datum/seed/carrots/New()
+	..()
 	set_trait(TRAIT_MATURATION,10)
 	set_trait(TRAIT_PRODUCTION,1)
 	set_trait(TRAIT_YIELD,5)

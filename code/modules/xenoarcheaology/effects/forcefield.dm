@@ -6,8 +6,8 @@
 	effect_state = "shield-old"
 	effect_color = "#00b7ff"
 
-/datum/artifact_effect/forcefield/Initialize()
-	. = ..()
+/datum/artifact_effect/forcefield/New()
+	..()
 	trigger = TRIGGER_TOUCH
 
 /datum/artifact_effect/forcefield/ToggleActivate()

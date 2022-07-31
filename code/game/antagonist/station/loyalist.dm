@@ -31,8 +31,8 @@ var/datum/antagonist/loyalists/loyalists
 	faction_invisible = 1
 	avoid_silicons = TRUE
 
-/datum/antagonist/loyalists/Initialize()
-	. = ..()
+/datum/antagonist/loyalists/New()
+	..()
 	loyalists = src
 
 /datum/antagonist/loyalists/create_global_objectives()

@@ -12,8 +12,8 @@ var/datum/antagonist/highlander/highlanders
 	initial_spawn_req = 3
 	initial_spawn_target = 5
 
-/datum/antagonist/highlander/Initialize()
-	. = ..()
+/datum/antagonist/highlander/New()
+	..()
 	highlanders = src
 
 /datum/antagonist/highlander/create_objectives(var/datum/mind/player)

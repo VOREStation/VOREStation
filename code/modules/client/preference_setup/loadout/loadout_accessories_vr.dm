@@ -6,8 +6,8 @@
 	slot = slot_tie
 	sort_category = "Accessories"
 
-/datum/gear/choker/Initialize()
-	. = ..()
+/datum/gear/choker/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/collar
@@ -16,8 +16,8 @@
 	slot = slot_tie
 	sort_category = "Accessories"
 
-/datum/gear/collar/Initialize()
-	. = ..()
+/datum/gear/collar/New()
+	..()
 	gear_tweaks += gear_tweak_collar_tag
 
 /datum/gear/collar/golden
@@ -117,8 +117,8 @@
 	description = "Wearing suspenders over shoulders? That's been so out for centuries and you know better."
 	path = /obj/item/clothing/accessory/flops
 
-/datum/gear/accessory/flops/Initialize()
-	. = ..()
+/datum/gear/accessory/flops/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/dosimeter

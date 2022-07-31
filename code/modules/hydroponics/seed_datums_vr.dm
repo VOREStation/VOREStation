@@ -9,8 +9,8 @@
 	kitchen_tag = "microm"
 	chems = list("microcillin" = list(1,20))
 
-/datum/seed/size/Initialize()
-	. = ..()
+/datum/seed/size/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)
@@ -29,8 +29,8 @@
 	kitchen_tag = "megam"
 	chems = list("macrocillin" = list(1,20))
 
-/datum/seed/size/megam/Initialize()
-	. = ..()
+/datum/seed/size/megam/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)

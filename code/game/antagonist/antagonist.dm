@@ -85,8 +85,8 @@
 	var/can_hear_aooc = TRUE		// If FALSE, the antag can neither speak nor hear AOOC. If TRUE, they can at least hear it.
 	var/can_speak_aooc = TRUE		// If TRUE, the antag can freely spean in AOOC.
 
-/datum/antagonist/Initialize()
-	. = ..()
+/datum/antagonist/New()
+	..()
 	cur_max = hard_cap
 	get_starting_locations()
 	if(!role_text_plural)

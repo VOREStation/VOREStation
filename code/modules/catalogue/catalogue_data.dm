@@ -298,8 +298,8 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	value = CATALOGUER_REWARD_TRIVIAL
 	var/datum_to_copy = null
 
-/datum/category_item/catalogue/information/organization/Initialize()
-	. = ..()
+/datum/category_item/catalogue/information/organization/New()
+	..()
 	if(datum_to_copy)
 		// I'd just access the loremaster object but it might not exist because its ugly.
 		var/datum/lore/organization/O = new datum_to_copy()

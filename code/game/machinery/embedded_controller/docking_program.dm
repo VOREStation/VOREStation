@@ -73,8 +73,8 @@
 	var/docking_codes			//would only allow docking when receiving signal with these, if set
 	var/display_name			//Override the name shown on docking monitoring program; defaults to area name + coordinates if unset
 
-/datum/embedded_program/docking/Initialize()
-	. = ..()
+/datum/embedded_program/docking/New()
+	..()
 	if(id_tag)
 		if(SSshuttles.docking_registry[id_tag])
 			stack_trace("Docking controller tag [id_tag] had multiple associated programs.")

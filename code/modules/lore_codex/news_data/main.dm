@@ -114,8 +114,8 @@
 
 	var/newsindex
 
-/datum/lore/codex/category/main_news/Initialize()
-	. = ..()
+/datum/lore/codex/category/main_news/New()
+	..()
 	newsindex = LAZYLEN(children)
 
 /datum/lore/codex/page/about_news

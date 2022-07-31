@@ -10,8 +10,8 @@
 	active = null
 	supermatters = null
 
-/datum/tgui_module/supermatter_monitor/Initialize()
-	. = ..()
+/datum/tgui_module/supermatter_monitor/New()
+	..()
 	refresh()
 
 // Refreshes list of active supermatter crystals

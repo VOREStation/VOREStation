@@ -9,8 +9,8 @@ GLOBAL_DATUM_INIT(news_data, /datum/lore/news, new)
 	var/datum/lore/codex/category/main_news/news_codex = new()
 	var/newsindex
 
-/datum/lore/news/Initialize()
-	. = ..()
+/datum/lore/news/New()
+	..()
 	spawn(50) //Give it a second or it gets fucky.
 		for(var/datum/feed_channel/F in news_network.network_channels)
 			if(F.channel_name == "Vir News Network")

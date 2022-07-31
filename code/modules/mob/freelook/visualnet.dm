@@ -10,8 +10,8 @@
 	var/ready = 0
 	var/chunk_type = /datum/chunk
 
-/datum/visualnet/Initialize()
-	. = ..()
+/datum/visualnet/New()
+	..()
 	visual_nets += src
 
 /datum/visualnet/Destroy()

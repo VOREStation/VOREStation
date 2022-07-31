@@ -10,8 +10,8 @@
 	display_name = "gloves, colorable"
 	path = /obj/item/clothing/gloves/color
 
-/datum/gear/gloves/colored/Initialize()
-	. = ..()
+/datum/gear/gloves/colored/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 
@@ -19,8 +19,8 @@
 	display_name = "gloves, latex, colorable"
 	path = /obj/item/clothing/gloves/sterile/latex
 
-/datum/gear/gloves/latex/colorable/Initialize()
-	. = ..()
+/datum/gear/gloves/latex/colorable/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/gloves/siren

@@ -6,8 +6,8 @@
 	kitchen_tag = "peanut"
 	chems = list("nutriment" = list(1,10), "peanutoil" = list(3,10))
 
-/datum/seed/peanuts/Initialize()
-	. = ..()
+/datum/seed/peanuts/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)

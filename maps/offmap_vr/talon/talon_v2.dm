@@ -15,8 +15,8 @@ var/global/list/latejoin_talon = list()
 	msg = "has come out of cryostasis"
 	announce_channel = "Talon"
 
-/datum/spawnpoint/talon/Initialize()
-	. = ..()
+/datum/spawnpoint/talon/New()
+	..()
 	turfs = latejoin_talon
 
 /obj/machinery/cryopod/talon
@@ -280,8 +280,8 @@ personally I recommend using the ship's boat if you need to evacuate, but if you
 	item_state = "tdgreen"
 	assignment = "Talon synthetic"
 
-/obj/item/card/id/synthetic/talon/Initialize()
-	. = ..()
+/obj/item/card/id/synthetic/talon/New()
+	..()
 	access = list(access_talon, access_synth)
 
 /obj/machinery/power/smes/buildable/offmap_spawn/New()

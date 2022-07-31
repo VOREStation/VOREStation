@@ -34,8 +34,8 @@
 	..()
 	pacify()
 
-/datum/ai_holder/simple_mob/xenobio_slime/Initialize()
-	. = ..()
+/datum/ai_holder/simple_mob/xenobio_slime/New()
+	..()
 	ASSERT(istype(holder, /mob/living/simple_mob/slime/xenobio))
 
 // Checks if disciplining the slime would be 'justified' right now.

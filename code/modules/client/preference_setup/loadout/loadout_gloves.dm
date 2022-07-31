@@ -60,8 +60,8 @@
 	display_name = "evening gloves"
 	path = /obj/item/clothing/gloves/evening
 
-/datum/gear/gloves/evening/Initialize()
-	. = ..()
+/datum/gear/gloves/evening/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/gloves/duty
@@ -84,8 +84,8 @@
 	path = /obj/item/clothing/gloves/ring
 	cost = 1
 
-/datum/gear/gloves/ring/Initialize()
-	. = ..()
+/datum/gear/gloves/ring/New()
+	..()
 	var/ringtype = list()
 	ringtype["CTI ring"] = /obj/item/clothing/gloves/ring/cti
 	ringtype["Mariner University ring"] = /obj/item/clothing/gloves/ring/mariner

@@ -11,8 +11,8 @@
 	slot = slot_glasses
 	sort_category = "Glasses and Eyewear"
 
-/datum/gear/eyes/eyepatchwhite/Initialize()
-	. = ..()
+/datum/gear/eyes/eyepatchwhite/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/eyes/blindfold
@@ -23,16 +23,16 @@
 	display_name = "blindfold, white (recolorable)"
 	path = /obj/item/clothing/glasses/sunglasses/blindfold/whiteblindfold
 
-/datum/gear/eyes/whiteblindfold/Initialize()
-	. = ..()
+/datum/gear/eyes/whiteblindfold/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/eyes/thinblindfold
 	display_name = "blindfold, thin white (recolorable)"
 	path = /obj/item/clothing/glasses/sunglasses/thinblindfold
 
-/datum/gear/eyes/thinblindfold/Initialize()
-	. = ..()
+/datum/gear/eyes/thinblindfold/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/eyes/glasses

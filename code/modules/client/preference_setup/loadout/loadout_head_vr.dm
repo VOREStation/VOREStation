@@ -15,8 +15,8 @@
 	display_name = "maid headband"
 	path = /obj/item/clothing/head/headband/maid
 
-/datum/gear/head/headbando/Initialize()
-	. = ..()
+/datum/gear/head/headbando/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 //Detective alternative

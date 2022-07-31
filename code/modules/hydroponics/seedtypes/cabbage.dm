@@ -5,8 +5,8 @@
 	kitchen_tag = "cabbage"
 	chems = list("nutriment" = list(1,10))
 
-/datum/seed/cabbage/Initialize()
-	. = ..()
+/datum/seed/cabbage/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,3)
 	set_trait(TRAIT_PRODUCTION,5)

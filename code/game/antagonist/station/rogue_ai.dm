@@ -18,8 +18,8 @@ var/datum/antagonist/rogue_ai/malf
 	initial_spawn_target = 1
 	antaghud_indicator = "hudmalai"
 
-/datum/antagonist/rogue_ai/Initialize()
-	. = ..()
+/datum/antagonist/rogue_ai/New()
+	..()
 	malf = src
 
 

@@ -6,8 +6,8 @@
 	kitchen_tag = "durian"
 	chems = list("nutriment" = list(1,5), "durianpaste" = list(1, 20))
 
-/datum/seed/durian/Initialize()
-	. = ..()
+/datum/seed/durian/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,5)

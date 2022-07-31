@@ -19,8 +19,8 @@
 	description = "A selection of eye-catching earrings."
 	path = /obj/item/clothing/ears/earring
 
-/datum/gear/ears/earrings/Initialize()
-	. = ..()
+/datum/gear/ears/earrings/New()
+	..()
 	var/earrings = list()
 	earrings["stud, pearl"] = /obj/item/clothing/ears/earring/stud
 	earrings["stud, glass"] = /obj/item/clothing/ears/earring/stud/glass

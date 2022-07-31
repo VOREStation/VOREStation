@@ -3,8 +3,8 @@
 	description = "Choose from a num- BALL!"
 	path = /obj/item/toy/tennis
 
-/datum/gear/ball/Initialize()
-	. = ..()
+/datum/gear/ball/New()
+	..()
 	var/list/balls = list()
 	for(var/obj/item/toy/tennis/ball_type as anything in typesof(/obj/item/toy/tennis/))
 		balls[initial(ball_type.name)] = ball_type
@@ -15,8 +15,8 @@
 	description = "Choose from a number of miniatures. From Battlemace 40 million to Grottos and Ghouls."
 	path = /obj/item/toy/character/alien
 
-/datum/gear/character/Initialize()
-	. = ..()
+/datum/gear/character/New()
+	..()
 	var/list/characters = list()
 	for(var/obj/item/toy/character/character_type as anything in subtypesof(/obj/item/toy/character))
 		characters[initial(character_type.name)] = character_type
@@ -27,15 +27,15 @@
 	description = "Choose from a number of mech toys."
 	path = /obj/item/toy/mecha/ripley
 
-/datum/gear/mechtoy/Initialize()
-	. = ..()
+/datum/gear/mechtoy/New()
+	..()
 	var/list/mechs = list()
 	for(var/obj/item/toy/mecha/mech_type as anything in subtypesof(/obj/item/toy/mecha))
 		mechs[initial(mech_type.name)] = mech_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(mechs))
 
-/datum/gear/toy/Initialize()
-	. = ..()
+/datum/gear/toy/New()
+	..()
 	var/toytype = list()
 	toytype["Blink toy"] = /obj/item/toy/blink
 	toytype["Foam dart crossbow"] = /obj/item/toy/blink
@@ -66,8 +66,8 @@
 	display_name = "animal toy selection"
 	path = /obj/item/toy/chewtoy
 
-/datum/gear/chewtoy/Initialize()
-	. = ..()
+/datum/gear/chewtoy/New()
+	..()
 	var/toytype = list()
 	toytype["Bone"] = /obj/item/toy/chewtoy
 	toytype["Classic"] = /obj/item/toy/chewtoy/tall
@@ -79,8 +79,8 @@
 	display_name = "animal toy selection, colorable"
 	path = /obj/item/toy/chewtoy/poly
 
-/datum/gear/chewtoy_poly/Initialize()
-	. = ..()
+/datum/gear/chewtoy_poly/New()
+	..()
 	var/toytype = list()
 	toytype["Bone"] = /obj/item/toy/chewtoy/poly
 	toytype["Classic"] = /obj/item/toy/chewtoy/tall/poly

@@ -195,8 +195,8 @@
 
 	var/slogans = list("This is a placeholder slogan, ding dong!")			//Advertising slogans. Who doesn't want more obnoxiousness on the radio? Picked at random each time the slogan event fires. This has a placeholder so it doesn't runtime on trying to draw from a 0-length list in the event that new corps are added without full support.
 
-/datum/lore/organization/Initialize()
-	. = ..()
+/datum/lore/organization/New()
+	..()
 	if(autogenerate_destination_names) // Lets pad out the destination names.
 		var/i = rand(15, 30) //significantly increased from original values due to the greater length of rounds on YW
 
@@ -377,8 +377,8 @@
 			"Vir Interstellar Spaceport"
 			)
 
-/datum/lore/organization/tsc/nanotrasen/Initialize()
-	. = ..()
+/datum/lore/organization/tsc/nanotrasen/New()
+	..()
 	spawn(1) // BYOND shenanigans means using_map is not initialized yet.  Wait a tick.
 		// Get rid of the current map from the list, so ships flying in don't say they're coming to the current map.
 		var/string_to_test = "[using_map.station_name] in [using_map.starsys_name]"
@@ -2229,8 +2229,8 @@
 			)
 	*/
 
-/datum/lore/organization/other/marauders/Initialize()
-	. = ..()
+/datum/lore/organization/other/marauders/New()
+	..()
 	var/i = 20 //give us twenty random names, marauders get tactical designations from SDF
 	var/list/letters = list(
 			"Alpha",
@@ -2595,8 +2595,8 @@
 			)
 	*/
 
-/datum/lore/organization/gov/fyrds/Initialize()
-	. = ..()
+/datum/lore/organization/gov/fyrds/New()
+	..()
 	var/fyrdsgen = rand(8, 16) //significantly increased from original values due to the greater length of rounds on YW
 	var/list/location = list(
 			"Base","Outpost","Installation","Station","Waypoint","Nav Point"
@@ -3001,8 +3001,8 @@
 			"a SAARE-held shipyard"
 			)
 
-/datum/lore/organization/mil/saare/Initialize()
-	. = ..()
+/datum/lore/organization/mil/saare/New()
+	..()
 	var/i = 20 //give us twenty random names, saare uses tacticool designations
 	var/list/letters = list(
 			"King",

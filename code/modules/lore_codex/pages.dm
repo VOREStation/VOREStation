@@ -50,8 +50,8 @@
 /datum/lore/codex/category
 	var/list/children = list() // Pages or more categories relevant to this category.  Self initializes from types to refs in New()
 
-/datum/lore/codex/category/Initialize()
-	. = ..()
+/datum/lore/codex/category/New()
+	..()
 	var/list/new_children_list = list()
 	for(var/type in children)
 		new_children_list.Add(new type(holder, src))

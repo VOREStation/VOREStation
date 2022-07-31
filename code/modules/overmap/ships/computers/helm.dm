@@ -4,7 +4,7 @@ GLOBAL_LIST_EMPTY(all_waypoints)
 	var/list/fields
 	filetype = "WPT"
 
-/datum/computer_file/data/waypoint/Initialize()
+/datum/computer_file/data/waypoint/New()
 	. = ..()
 	fields = list()
 	GLOB.all_waypoints.Add(src)

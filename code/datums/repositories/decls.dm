@@ -21,8 +21,8 @@ var/repository/decls/decls_repository // Initialiozed in /datum/global_init/New(
 	var/list/fetched_decl_types
 	var/list/fetched_decl_subtypes
 
-/repository/decls/Initialize()
-	. = ..()
+/repository/decls/New()
+	..()
 	fetched_decls = list()
 	fetched_decl_types = list()
 	fetched_decl_subtypes = list()

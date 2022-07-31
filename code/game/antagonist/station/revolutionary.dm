@@ -33,8 +33,8 @@ var/datum/antagonist/revolutionary/revs
 	protected_jobs = list("Security Officer", "Warden", "Detective", "Internal Affairs Agent", "Site Manager", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
 	roundstart_restricted = list("Internal Affairs Agent", "Site Manager", "Head of Personnel", "Head of Security", "Chief Engineer", "Research Director", "Chief Medical Officer")
 
-/datum/antagonist/revolutionary/Initialize()
-	. = ..()
+/datum/antagonist/revolutionary/New()
+	..()
 	revs = src
 
 /datum/antagonist/revolutionary/create_global_objectives()

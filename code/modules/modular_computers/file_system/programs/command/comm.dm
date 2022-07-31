@@ -48,8 +48,8 @@ var/last_message_id = 0
 /datum/comm_message_listener
 	var/list/messages
 
-/datum/comm_message_listener/Initialize()
-	. = ..()
+/datum/comm_message_listener/New()
+	..()
 	messages = list()
 	comm_message_listeners.Add(src)
 

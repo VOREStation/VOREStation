@@ -113,32 +113,32 @@
 	display_name = "flip flops"
 	path = /obj/item/clothing/shoes/flipflop
 
-/datum/gear/shoes/flipflops/Initialize()
-	. = ..()
+/datum/gear/shoes/flipflops/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/athletic
 	display_name = "athletic shoes"
 	path = /obj/item/clothing/shoes/athletic
 
-/datum/gear/shoes/athletic/Initialize()
-	. = ..()
+/datum/gear/shoes/athletic/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/skater
 	display_name = "skater shoes"
 	path = /obj/item/clothing/shoes/skater
 
-/datum/gear/shoes/skater/Initialize()
-	. = ..()
+/datum/gear/shoes/skater/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/flats
 	display_name = "flats"
 	path = /obj/item/clothing/shoes/flats/white/color
 
-/datum/gear/shoes/flats/Initialize()
-	. = ..()
+/datum/gear/shoes/flats/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/cowboy
@@ -199,8 +199,8 @@
 	display_name = "high heels"
 	path = /obj/item/clothing/shoes/heels
 
-/datum/gear/shoes/heels/Initialize()
-	. = ..()
+/datum/gear/shoes/heels/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/slippers

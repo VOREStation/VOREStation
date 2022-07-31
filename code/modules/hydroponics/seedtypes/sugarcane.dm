@@ -5,8 +5,8 @@
 	kitchen_tag = "sugarcanes"
 	chems = list("sugar" = list(4,5))
 
-/datum/seed/sugarcane/Initialize()
-	. = ..()
+/datum/seed/sugarcane/New()
+	..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,3)
 	set_trait(TRAIT_PRODUCTION,6)

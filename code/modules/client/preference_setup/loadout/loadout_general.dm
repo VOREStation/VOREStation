@@ -50,8 +50,8 @@
 	display_name = "plushie selection"
 	path = /obj/item/toy/plushie/
 
-/datum/gear/plushie/Initialize()
-	. = ..()
+/datum/gear/plushie/New()
+	..()
 	var/list/plushies = list()
 	var/list/blacklisted_types = list()
 	// look if theres a better way to do this im all ears
@@ -66,8 +66,8 @@
 	description = "A \"Space Life\" brand action figure."
 	path = /obj/item/toy/figure/
 
-/datum/gear/figure/Initialize()
-	. = ..()
+/datum/gear/figure/New()
+	..()
 	var/list/figures = list()
 	for(var/obj/item/toy/figure/figure_type as anything in subtypesof(/obj/item/toy/figure))
 		figures[initial(figure_type.name)] = figure_type
@@ -79,8 +79,8 @@
 	path = /obj/item/toy/
 
 /* VOREStation removal
-/datum/gear/toy/Initialize()
-	. = ..()
+/datum/gear/toy/New()
+	..()
 	var/toytype = list()
 	toytype["Blink toy"] = /obj/item/toy/blink
 	toytype["Gravitational singularity"] = /obj/item/toy/spinningtoy
@@ -95,16 +95,16 @@
 	display_name = "flask"
 	path = /obj/item/reagent_containers/food/drinks/flask/barflask
 
-/datum/gear/flask/Initialize()
-	. = ..()
+/datum/gear/flask/New()
+	..()
 	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_ethanol_reagents())
 
 /datum/gear/vacflask
 	display_name = "vacuum-flask"
 	path = /obj/item/reagent_containers/food/drinks/flask/vacuumflask
 
-/datum/gear/vacflask/Initialize()
-	. = ..()
+/datum/gear/vacflask/New()
+	..()
 	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_drink_reagents())
 
 /datum/gear/lunchbox
@@ -113,8 +113,8 @@
 	cost = 2
 	path = /obj/item/storage/toolbox/lunchbox
 
-/datum/gear/lunchbox/Initialize()
-	. = ..()
+/datum/gear/lunchbox/New()
+	..()
 	var/list/lunchboxes = list()
 	for(var/lunchbox_type in typesof(/obj/item/storage/toolbox/lunchbox))
 		var/obj/item/storage/toolbox/lunchbox/lunchbox = lunchbox_type
@@ -127,8 +127,8 @@
 	display_name = "towel"
 	path = /obj/item/towel
 
-/datum/gear/towel/Initialize()
-	. = ..()
+/datum/gear/towel/New()
+	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/cahwhite
@@ -156,8 +156,8 @@
 	cost = 1
 	path = /obj/item/reagent_containers/food/drinks/glass2/coffeemug
 
-/datum/gear/coffeemug/Initialize()
-	. = ..()
+/datum/gear/coffeemug/New()
+	..()
 	var/list/coffeemugs = list()
 	coffeemugs["plain coffee mug"] = /obj/item/reagent_containers/food/drinks/glass2/coffeemug
 	coffeemugs["SCG coffee mug"] = /obj/item/reagent_containers/food/drinks/glass2/coffeemug/sol

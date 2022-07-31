@@ -3,8 +3,8 @@
 	seed_name = "weed"
 	display_name = "weeds"
 
-/datum/seed/weeds/Initialize()
-	. = ..()
+/datum/seed/weeds/New()
+	..()
 	set_trait(TRAIT_MATURATION,5)
 	set_trait(TRAIT_PRODUCTION,1)
 	set_trait(TRAIT_YIELD,-1)

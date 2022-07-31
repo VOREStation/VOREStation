@@ -28,8 +28,8 @@
 	var/moon_name = null // Purely for flavor. Null means no moon exists.
 	var/moon_phase = null // Set if above is defined.
 
-/datum/planet/Initialize()
-	. = ..()
+/datum/planet/New()
+	..()
 	weather_holder = new(src)
 	sun_holder = new(src)
 	current_time = current_time.make_random_time()

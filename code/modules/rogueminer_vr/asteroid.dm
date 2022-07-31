@@ -92,8 +92,8 @@
 	type_wall	= /turf/simulated/wall
 	type_under	= /turf/simulated/floor/plating
 
-/datum/rogue/asteroid/predef/cargo/Initialize()
-	. = ..()
+/datum/rogue/asteroid/predef/cargo/New()
+	..()
 	spot_add(1,1,type_wall) //Bottom left corner
 	spot_add(1,2,type_wall)
 	spot_add(1,3,type_wall)
@@ -110,8 +110,8 @@
 	type_wall	= /turf/simulated/wall
 	type_under	= /turf/simulated/floor/plating
 
-/datum/rogue/asteroid/predef/cargo/angry/Initialize()
-	. = ..()
+/datum/rogue/asteroid/predef/cargo/angry/New()
+	..()
 	spot_add(2,2,/obj/random/roguemineloot) //EXTRA loot!
 	spot_add(2,2,/mob/living/simple_mob/animal/space/alien) //GRRR
 
@@ -121,8 +121,8 @@
 	type_wall	= /turf/simulated/wall
 	type_under	= /turf/simulated/floor/plating
 
-/datum/rogue/asteroid/predef/cargo_large/Initialize()
-	. = ..()
+/datum/rogue/asteroid/predef/cargo_large/New()
+	..()
 	spot_add(1,2,type_wall) //--
 	spot_add(1,3,type_wall) //Left end of cargo container
 	spot_add(1,4,type_wall) //--

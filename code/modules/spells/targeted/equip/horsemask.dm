@@ -17,8 +17,8 @@
 
 	hud_state = "wiz_horse"
 
-/spell/targeted/equip_item/horsemask/Initialize()
-	. = ..()
+/spell/targeted/equip_item/horsemask/New()
+	..()
 	equipped_summons = list("[slot_wear_mask]" = /obj/item/clothing/mask/horsehead)
 
 /spell/targeted/equip_item/horsemask/cast(list/targets, mob/user = usr)

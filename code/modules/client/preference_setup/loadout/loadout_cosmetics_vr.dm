@@ -3,8 +3,8 @@
 	description = "Nail polish, available in every color of the rainbow! Doesn't come with nail polish remover."
 	path = /obj/item/nailpolish
 
-/datum/gear/cosmetic/nailpolish/Initialize()
-	. = ..()
+/datum/gear/cosmetic/nailpolish/New()
+	..()
 	// can't set description, it'll look funny
 	gear_tweaks = list(gear_tweak_free_color_choice, gear_tweak_free_name)
 
