@@ -248,8 +248,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid/Initialize()
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/stun(src)
@@ -270,8 +270,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded,/obj/item/ammo_magazine/cell_mag,/obj/item/ammo_casing/microbattery)
 
-/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat/New()
-	..()
+/obj/item/storage/secure/briefcase/nsfw_pack_hybrid_combat/Initialize()
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded(src)
 	new /obj/item/ammo_magazine/cell_mag/advanced(src)
 	new /obj/item/ammo_casing/microbattery/combat/shotstun(src)

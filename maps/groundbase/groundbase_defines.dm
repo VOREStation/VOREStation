@@ -22,8 +22,8 @@
 //Camera networks
 #define NETWORK_HALLS "Halls"
 
-/datum/map/groundbase/New()
-	..()
+/datum/map/groundbase/Initialize()
+	. = ..()
 	var/choice = pickweight(list(
 		"virgo3C" = 200,
 		"logo1" = 20,

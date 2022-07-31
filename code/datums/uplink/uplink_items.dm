@@ -36,8 +36,8 @@ var/datum/uplink/uplink = new()
 /datum/uplink_item/item
 	var/path = null
 
-/datum/uplink_item/New()
-	..()
+/datum/uplink_item/Initialize()
+	. = ..()
 	if(!antag_roles)
 		antag_roles = list()
 

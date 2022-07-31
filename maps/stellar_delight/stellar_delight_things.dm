@@ -45,8 +45,8 @@
 	author = "Central Command"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Stellar Delight User's Guide"
 
-/obj/item/book/manual/sd_guide/New()
-	..()
+/obj/item/book/manual/sd_guide/Initialize()
+	. = ..()
 	dat = {"<html>
 				<head>
 				<style>

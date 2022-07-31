@@ -15,8 +15,8 @@
 	var/list/monitored_alarm_ids = null
 	var/datum/tgui_module/atmos_control/atmos_control
 
-/obj/machinery/computer/atmoscontrol/New()
-	..()
+/obj/machinery/computer/atmoscontrol/Initialize()
+	. = ..()
 
 /obj/machinery/computer/atmoscontrol/laptop //[TO DO] Change name to PCU and update mapdata to include replacement computers
 	name = "\improper Atmospherics PCU"

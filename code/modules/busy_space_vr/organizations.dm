@@ -11,12 +11,12 @@
 
 	var/list/ship_prefixes = list()	//Some might have more than one! Like NanoTrasen. Value is the mission they perform, e.g. ("ABC" = "mission desc")
 	var/complex_tasks = FALSE	//enables complex task generation
-	
+
 	//how does it work? simple: if you have complex tasks enabled, it goes; PREFIX + TASK_TYPE + FLIGHT_TYPE
 	//e.g. NDV = Asset Protection + Patrol + Flight
 	//this overrides the standard PREFIX = TASK logic and allows you to use the ship prefix for subfactions (warbands, religions, whatever) within a faction, and define task_types at the faction level
 	//task_types are picked from completely at random in air_traffic.dm, much like flight_types, so be careful not to potentially create combos that make no sense!
-	
+
 	var/list/task_types = list(
 			"logistics",
 			"patrol",
@@ -192,11 +192,11 @@
 	var/org_type = "neutral"		//Valid options are "neutral", "corporate", "government", "system defense", "military, "smuggler", & "pirate"
 	var/sysdef = FALSE			//Are we the space cops?
 	var/autogenerate_destination_names = TRUE //Pad the destination lists with some extra random ones? see the proc below for info on that
-	
+
 	var/slogans = list("This is a placeholder slogan, ding dong!")			//Advertising slogans. Who doesn't want more obnoxiousness on the radio? Picked at random each time the slogan event fires. This has a placeholder so it doesn't runtime on trying to draw from a 0-length list in the event that new corps are added without full support.
 
-/datum/lore/organization/New()
-	..()
+/datum/lore/organization/Initialize()
+	. = ..()
 	if(autogenerate_destination_names) // Lets pad out the destination names.
 		var/i = rand(15, 30) //significantly increased from original values due to the greater length of rounds on YW
 
@@ -377,8 +377,8 @@
 			"Vir Interstellar Spaceport"
 			)
 
-/datum/lore/organization/tsc/nanotrasen/New()
-	..()
+/datum/lore/organization/tsc/nanotrasen/Initialize()
+	. = ..()
 	spawn(1) // BYOND shenanigans means using_map is not initialized yet.  Wait a tick.
 		// Get rid of the current map from the list, so ships flying in don't say they're coming to the current map.
 		var/string_to_test = "[using_map.station_name] in [using_map.starsys_name]"
@@ -1620,7 +1620,7 @@
 			"Vampir",
 			"Wendigo",
 			"Werewolf",
-			"Wraith"			
+			"Wraith"
 			)
 	destination_names = list (
 			"Chimera HQ, Titan",
@@ -2229,8 +2229,8 @@
 			)
 	*/
 
-/datum/lore/organization/other/marauders/New()
-	..()
+/datum/lore/organization/other/marauders/Initialize()
+	. = ..()
 	var/i = 20 //give us twenty random names, marauders get tactical designations from SDF
 	var/list/letters = list(
 			"Alpha",
@@ -2595,8 +2595,8 @@
 			)
 	*/
 
-/datum/lore/organization/gov/fyrds/New()
-	..()
+/datum/lore/organization/gov/fyrds/Initialize()
+	. = ..()
 	var/fyrdsgen = rand(8, 16) //significantly increased from original values due to the greater length of rounds on YW
 	var/list/location = list(
 			"Base","Outpost","Installation","Station","Waypoint","Nav Point"
@@ -2666,7 +2666,7 @@
 			)
 
 /datum/lore/organization/gov/altevian_hegemony
-	name = "The Altevian Hegemony" 
+	name = "The Altevian Hegemony"
 	short_name = "Altevian Hegemony "
 	acronym = "AH"
 	desc = "The Altevians are a space-faring race of rodents that resemble Earth-like rats. \
@@ -3001,8 +3001,8 @@
 			"a SAARE-held shipyard"
 			)
 
-/datum/lore/organization/mil/saare/New()
-	..()
+/datum/lore/organization/mil/saare/Initialize()
+	. = ..()
 	var/i = 20 //give us twenty random names, saare uses tacticool designations
 	var/list/letters = list(
 			"King",

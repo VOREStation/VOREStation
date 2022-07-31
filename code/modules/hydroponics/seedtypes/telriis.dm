@@ -5,8 +5,8 @@
 	kitchen_tag = "telriis"
 	chems = list("pwine" = list(1,5), "nutriment" = list(1,6))
 
-/datum/seed/telriis/New()
-	..()
+/datum/seed/telriis/Initialize()
+	. = ..()
 	set_trait(TRAIT_PLANT_ICON,"ambrosia")
 	set_trait(TRAIT_PRODUCT_ICON,"ambrosia")
 	set_trait(TRAIT_ENDURANCE,50)

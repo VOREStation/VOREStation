@@ -141,8 +141,8 @@
 	var/turf/target_turf
 	var/loc_last_process
 
-/obj/effect/decal/cleanable/blood/splatter/animated/New()
-	..()
+/obj/effect/decal/cleanable/blood/splatter/animated/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 	loc_last_process = src.loc
 

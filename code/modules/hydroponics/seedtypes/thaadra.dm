@@ -5,8 +5,8 @@
 	kitchen_tag = "thaadra"
 	chems = list("frostoil" = list(1,5),"nutriment" = list(1,5))
 
-/datum/seed/thaadra/New()
-	..()
+/datum/seed/thaadra/Initialize()
+	. = ..()
 	set_trait(TRAIT_PLANT_ICON,"grass")
 	set_trait(TRAIT_PLANT_COLOUR,"#ABC7D2")
 	set_trait(TRAIT_ENDURANCE,10)

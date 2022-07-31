@@ -18,8 +18,8 @@ var/global/list/navbeacons = list()	// no I don't like putting this in, but it w
 	var/list/codes = list()	// assoc. list of transponder codes
 	req_access = list(access_engine)
 
-/obj/machinery/navbeacon/New()
-	..()
+/obj/machinery/navbeacon/Initialize()
+	. = ..()
 	set_codes_from_txt(codes_txt)
 	if(freq)
 		warning("[src] at [x],[y],[z] has deprecated var freq=[freq].  Replace it with proper type.")

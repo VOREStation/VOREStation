@@ -1,5 +1,5 @@
-/datum/category_item/autolathe/New()
-	..()
+/datum/category_item/autolathe/Initialize()
+	. = ..()
 	var/obj/item/I
 	if(path)
 		I = new path()
@@ -39,8 +39,8 @@
 	category_item_type = /datum/category_item/autolathe
 
 // Copypasted from materials, they should show in All
-/datum/category_group/autolathe/all/New()
-	..()
+/datum/category_group/autolathe/all/Initialize()
+	. = ..()
 
 	for(var/Name in name_to_material)
 		var/datum/material/M = name_to_material[Name]
@@ -90,8 +90,8 @@
 	name = "Materials"
 	category_item_type = /datum/category_item/autolathe/materials
 
-/datum/category_group/autolathe/materials/New()
-	..()
+/datum/category_group/autolathe/materials/Initialize()
+	. = ..()
 
 	for(var/Name in name_to_material)
 		var/datum/material/M = name_to_material[Name]

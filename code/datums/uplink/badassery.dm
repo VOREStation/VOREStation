@@ -73,8 +73,8 @@
 	item_cost = DEFAULT_TELECRYSTAL_AMOUNT * 6
 	item_worth = 1980
 
-/datum/uplink_item/item/badassery/surplus/New()
-	..()
+/datum/uplink_item/item/badassery/surplus/Initialize()
+	. = ..()
 	desc = "A crate containing [item_worth] telecrystal\s worth of surplus leftovers."
 
 /datum/uplink_item/item/badassery/surplus/get_goods(var/obj/item/uplink/U, var/loc)

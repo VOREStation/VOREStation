@@ -11,8 +11,8 @@
 	..()
 	find_target()
 
-/datum/artifact_effect/animate_anomaly/New()
-	..()
+/datum/artifact_effect/animate_anomaly/Initialize()
+	. = ..()
 	effectrange = max(3, effectrange)
 
 /datum/artifact_effect/animate_anomaly/proc/find_target()

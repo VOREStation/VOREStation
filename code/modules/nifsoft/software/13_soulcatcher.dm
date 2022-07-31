@@ -21,8 +21,8 @@
 	var/list/brainmobs = list()
 	var/inside_flavor = "A small completely white room with a couch, and a window to what seems to be the outside world. A small sign in the corner says 'Configure Me'."
 
-/datum/nifsoft/soulcatcher/New()
-	..()
+/datum/nifsoft/soulcatcher/Initialize()
+	. = ..()
 	load_settings()
 
 /datum/nifsoft/soulcatcher/Destroy()

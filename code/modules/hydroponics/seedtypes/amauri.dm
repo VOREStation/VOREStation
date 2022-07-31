@@ -5,8 +5,8 @@
 	kitchen_tag = "amauri"
 	chems = list("zombiepowder" = list(1,10),"condensedcapsaicin" = list(1,5),"nutriment" = list(1,5))
 
-/datum/seed/amauri/New()
-	..()
+/datum/seed/amauri/Initialize()
+	. = ..()
 	set_trait(TRAIT_PLANT_ICON,"bush4")
 	set_trait(TRAIT_ENDURANCE,10)
 	set_trait(TRAIT_MATURATION,8)

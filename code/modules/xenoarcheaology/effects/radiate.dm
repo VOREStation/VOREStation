@@ -4,8 +4,8 @@
 
 	effect_color = "#007006"
 
-/datum/artifact_effect/radiate/New()
-	..()
+/datum/artifact_effect/radiate/Initialize()
+	. = ..()
 	radiation_amount = rand(1, 10)
 	effect_type = pick(EFFECT_PARTICLE, EFFECT_ORGANIC)
 

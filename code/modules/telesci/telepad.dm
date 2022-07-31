@@ -11,8 +11,8 @@
 	active_power_usage = 5000
 	var/efficiency
 
-/obj/machinery/telepad/New()
-	..()
+/obj/machinery/telepad/Initialize()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/ore/bluespace_crystal(src)
 	component_parts += new /obj/item/stock_parts/capacitor(src)

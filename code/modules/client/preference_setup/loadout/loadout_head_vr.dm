@@ -15,8 +15,8 @@
 	display_name = "maid headband"
 	path = /obj/item/clothing/head/headband/maid
 
-/datum/gear/head/headbando/New()
-	..()
+/datum/gear/head/headbando/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 //Detective alternative
@@ -59,4 +59,3 @@ Talon hats
 /datum/gear/head/beret/talon
 	display_name = "beret, Talon"
 	path = /obj/item/clothing/head/beret
-

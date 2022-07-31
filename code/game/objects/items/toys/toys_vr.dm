@@ -676,8 +676,8 @@
 	var/bullets_left = 0
 	var/max_shots = 6
 
-/obj/item/toy/russian_revolver/New()
-	..()
+/obj/item/toy/russian_revolver/Initialize()
+	. = ..()
 	spin_cylinder()
 
 /obj/item/toy/russian_revolver/attack_self(mob/user)
@@ -738,8 +738,8 @@
 	max_shots = 1
 	var/fake_bullets = 0
 
-/obj/item/toy/russian_revolver/trick_revolver/New()
-	..()
+/obj/item/toy/russian_revolver/trick_revolver/Initialize()
+	. = ..()
 	fake_bullets = rand(2, 7)
 
 /obj/item/toy/russian_revolver/trick_revolver/examine(mob/user)
@@ -806,8 +806,8 @@
 	var/popped = 0
 	var/real = 0
 
-/obj/item/toy/snake_popper/New()
-	..()
+/obj/item/toy/snake_popper/Initialize()
+	. = ..()
 	if(prob(0.1))
 		real = 1
 

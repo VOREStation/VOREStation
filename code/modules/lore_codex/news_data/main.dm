@@ -114,8 +114,8 @@
 
 	var/newsindex
 
-/datum/lore/codex/category/main_news/New()
-	..()
+/datum/lore/codex/category/main_news/Initialize()
+	. = ..()
 	newsindex = LAZYLEN(children)
 
 /datum/lore/codex/page/about_news
@@ -548,9 +548,9 @@
 	<br><br>\
 	Mason Keldow says, 'People working in orbit say 'Don't go to the surface, Spiders are down there.''\
 	<br><br>\
-	Mason Keldow says, 'And apparently there was a big ol' purple one sitting right by a camp we had set up. A giant mother who'd - if I hadn't met that lovely mass of fur and ice instead - would have probably said its “hello” in the worst possible way.'\
+	Mason Keldow says, 'And apparently there was a big ol' purple one sitting right by a camp we had set up. A giant mother who'd - if I hadn't met that lovely mass of fur and ice instead - would have probably said its ï¿½helloï¿½ in the worst possible way.'\
 	<br><br>\
-	Mason Keldow says, 'They are a species that prevents anyone from actually working or otherwise making use of all that land. If I were in office, I'd make an effort to clear out the dangerous species that surround the outer regions of Sif – relocate them if possible - and use that territory for something productive.'\
+	Mason Keldow says, 'They are a species that prevents anyone from actually working or otherwise making use of all that land. If I were in office, I'd make an effort to clear out the dangerous species that surround the outer regions of Sif ï¿½ relocate them if possible - and use that territory for something productive.'\
 	<br><br>\
 	Mason Keldow says, 'New forms of Transit, new buildings, new jobs.'\
 	<br><br>\
@@ -990,7 +990,7 @@
 	name = "04/22/64 - Skrell Impose New Regime in Relan"
 	data = "As agreed upon in the Treaty of Whythe, the Far Kingdoms have occupied the Relan system, putting an end to the Free Relan Federation. How the system will be organized is not entirely clear at this point. Despite the effective abolition of the Relanian government, Skrell presence in the system appears relatively light, and many of the scattered stations have no Skrell presence at all.\
 	<br><br>\
-	Former President Nia Fischer gave the following statement to a crowd gathered outside the Capitol Section of Carter: 'This is a dark time for all of us. I promise to you that, in my continued service to you, I will work with the Far Kingdoms to ensure that all of our people are treated well and our rights respected, and that we will arrive at a form of government that is acceptable to you.' The gathered crowd began to shout questions and accusations, and Fischer was quickly escorted back into the capitol by Skrellian guards without answering questions from the press or others. The crowd was quickly dispersed by Skrellian military police and Carter’s own police force.\
+	Former President Nia Fischer gave the following statement to a crowd gathered outside the Capitol Section of Carter: 'This is a dark time for all of us. I promise to you that, in my continued service to you, I will work with the Far Kingdoms to ensure that all of our people are treated well and our rights respected, and that we will arrive at a form of government that is acceptable to you.' The gathered crowd began to shout questions and accusations, and Fischer was quickly escorted back into the capitol by Skrellian guards without answering questions from the press or others. The crowd was quickly dispersed by Skrellian military police and Carterï¿½s own police force.\
 	<br><br>\
 	In the meantime, the governing of the system remains in the hands of the sparse occupation forces, aided by parts of the former Federation government.\
 	<br><br>\
@@ -998,7 +998,7 @@
 
 /datum/lore/codex/page/article86
 	name = "04/27/64 - Chaos in Relan"
-	data = "Simmering tensions in the Relan system have boiled over, with riots erupting on Carter, Abhayaranya, and New Busan. Since former President Fischer’s brief address, small demonstrations against both the Skrell occupation and the collaborating elements of the former Federation government have taken place on many stations, but within the last day full-blown riots have broken out. While accurate information on the situation within the stations is rare, it is currently believed that the deaths of two protesters on Abhayaranya were the catalyst.\
+	data = "Simmering tensions in the Relan system have boiled over, with riots erupting on Carter, Abhayaranya, and New Busan. Since former President Fischerï¿½s brief address, small demonstrations against both the Skrell occupation and the collaborating elements of the former Federation government have taken place on many stations, but within the last day full-blown riots have broken out. While accurate information on the situation within the stations is rare, it is currently believed that the deaths of two protesters on Abhayaranya were the catalyst.\
 	<br><br>\
 	Damage to the three stations has been relatively light, with one major exception. A large fire broke out in the Capitol Section of Carter, killing at least 22, including former President Fischer, and wounding at least 74 more. Other casualties among rioters, police, and the populations of the stations are unknown at this point.\
 	<br><br>\
@@ -1018,7 +1018,7 @@
 
 /datum/lore/codex/page/article88
 	name = "05/13/64 - Agreement Signed at Ithaca Station, New Government In Place"
-	data = "In an effort to end the ongoing violence in the Relan system and regain the cooperation of 'insubordinate' stations, the Far Kingdoms Skrell have negotiated an agreement with community leaders and former Assemblypersons from a number of stations, including insubordinates, meeting at the largest of the insubordinates, Ithaca. Under these agreements, the Skrell will vacate most stations in the system, but will maintain a fleet base in Relan’s Outer Belt for mutual defence, first at Carter and later at a dedicated station. Relan will have harsh restrictions placed on its military and will agree to formal diplomatic neutrality, but will be free to organize its own government under supervision and military occupation will end.\
+	data = "In an effort to end the ongoing violence in the Relan system and regain the cooperation of 'insubordinate' stations, the Far Kingdoms Skrell have negotiated an agreement with community leaders and former Assemblypersons from a number of stations, including insubordinates, meeting at the largest of the insubordinates, Ithaca. Under these agreements, the Skrell will vacate most stations in the system, but will maintain a fleet base in Relanï¿½s Outer Belt for mutual defence, first at Carter and later at a dedicated station. Relan will have harsh restrictions placed on its military and will agree to formal diplomatic neutrality, but will be free to organize its own government under supervision and military occupation will end.\
 	<br><br>\
 	The mood on Ithaca has been tense as negotiations have gone on, but with the announcement of the results, crowds have packed the main thoroughfares and public spaces of the station in celebration. Francis Harp Yong, governor of Ithaca and a leading figure in the talks, addressed a crowd outside the Administration Section of Ithaca today. \
 	<br><br>\

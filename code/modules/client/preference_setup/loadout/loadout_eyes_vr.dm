@@ -13,8 +13,8 @@
 	display_name = "AR visor"
 	path = /obj/item/clothing/glasses/omnihud/visor
 
-/datum/gear/eyes/arglasses/visor/New()
-	..()
+/datum/gear/eyes/arglasses/visor/Initialize()
+	. = ..()
 	gear_tweaks = list(gear_tweak_free_color_choice)
 /datum/gear/eyes/arglassespres
 	display_name = "AR glasses, prescription"

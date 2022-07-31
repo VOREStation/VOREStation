@@ -371,8 +371,8 @@ This device records all warnings given and teleport events for admin review in c
 	var/warned_users = list()
 	var/tele_network = null
 
-/obj/item/perfect_tele_beacon/New()
-	..()
+/obj/item/perfect_tele_beacon/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON
 
 /obj/item/perfect_tele_beacon/Destroy()

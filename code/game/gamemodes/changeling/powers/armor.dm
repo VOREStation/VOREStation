@@ -41,8 +41,8 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0) //No armor at all.
 	canremove = FALSE
 
-/obj/item/clothing/suit/space/changeling/New()
-	..()
+/obj/item/clothing/suit/space/changeling/Initialize()
+	. = ..()
 	if(ismob(loc))
 		loc.visible_message("<span class='warning'>[loc.name]\'s flesh rapidly inflates, forming a bloated mass around their body!</span>",
 		"<span class='warning'>We inflate our flesh, creating a spaceproof suit!</span>",
@@ -105,8 +105,8 @@
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE
 	slowdown = 1.5
 
-/obj/item/clothing/suit/space/changeling/armored/New()
-	..()
+/obj/item/clothing/suit/space/changeling/armored/Initialize()
+	. = ..()
 	if(ismob(loc))
 		loc.visible_message("<span class='warning'>[loc.name]\'s flesh turns black, quickly transforming into a hard, chitinous mass!</span>",
 		"<span class='warning'>We harden our flesh, creating a suit of armor!</span>",

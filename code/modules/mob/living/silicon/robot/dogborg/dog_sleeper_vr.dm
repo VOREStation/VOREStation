@@ -43,8 +43,8 @@
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
 
-/obj/item/dogborg/sleeper/New()
-	..()
+/obj/item/dogborg/sleeper/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON //No more attack messages
 	files = new /datum/research/techonly(src)
 

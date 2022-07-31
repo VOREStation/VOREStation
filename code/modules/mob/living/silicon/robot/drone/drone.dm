@@ -102,8 +102,8 @@ var/list/mob_hat_cache = list()
 	can_pick_shell = FALSE
 	shell_accessories = list("eyes-miningdrone")
 
-/mob/living/silicon/robot/drone/New()
-	..()
+/mob/living/silicon/robot/drone/Initialize()
+	. = ..()
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
 	remove_language("Robot Talk")
@@ -124,12 +124,12 @@ var/list/mob_hat_cache = list()
 		C.max_damage = 10
 
 	verbs -= /mob/living/silicon/robot/verb/Namepick
-	
+
 	if(can_pick_shell)
 		var/random = pick(shell_types)
 		icon_state = shell_types[random]
 		shell_accessories = list("[icon_state]-eyes-blue")
-	
+
 	updateicon()
 	updatename()
 
@@ -177,9 +177,9 @@ var/list/mob_hat_cache = list()
 	if(!can_pick_shell)
 		to_chat(src, "<span class='warning'>You already selected a shell or this drone type isn't customizable.</span>")
 		return
-	
+
 	var/list/choices = shell_types.Copy()
-	
+
 	if(can_blitz)
 		choices["Blitz"] = "blitzshell"
 
@@ -199,7 +199,7 @@ var/list/mob_hat_cache = list()
 			var/armor_color = tgui_input_list(src, "Select plating color:", "Eye Color", list("blue", "red", "orange", "green", "brown"))
 			if(armor_color)
 				LAZYADD(shell_accessories, "[icon_state]-shell-[armor_color]")
-	
+
 	can_pick_shell = FALSE
 	updateicon()
 

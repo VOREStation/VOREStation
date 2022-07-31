@@ -27,8 +27,8 @@
 #define NETWORK_TETHER "Tether"
 #define NETWORK_OUTSIDE "Outside"
 
-/datum/map/tether/New()
-	..()
+/datum/map/tether/Initialize()
+	. = ..()
 	var/choice = pickweight(list(
 		"title" = 10,
 		"tether" = 50,

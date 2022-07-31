@@ -56,8 +56,8 @@
 	desc = "Dainty, well groomed and cared for, her eyes glitter with untold knowledge..."
 	gender = FEMALE
 
-/mob/living/simple_mob/animal/passive/mouse/white/apple/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/white/apple/Initialize()
+	. = ..()
 	// Change my name back, don't want to be named Apple (666)
 	name = initial(name)
 	desc = initial(desc)

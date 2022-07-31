@@ -5,8 +5,8 @@
 	kitchen_tag = "potato"
 	chems = list("nutriment" = list(1,10), "potatojuice" = list(10,10))
 
-/datum/seed/potato/New()
-	..()
+/datum/seed/potato/Initialize()
+	. = ..()
 	set_trait(TRAIT_PRODUCES_POWER,1)
 	set_trait(TRAIT_MATURATION,10)
 	set_trait(TRAIT_PRODUCTION,1)

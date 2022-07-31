@@ -22,8 +22,8 @@ var/datum/antagonist/technomancer/technomancers
 
 	id_type = /obj/item/card/id/syndicate
 
-/datum/antagonist/technomancer/New()
-	..()
+/datum/antagonist/technomancer/Initialize()
+	. = ..()
 	technomancers = src
 
 /datum/antagonist/technomancer/update_antag_mob(var/datum/mind/technomancer)

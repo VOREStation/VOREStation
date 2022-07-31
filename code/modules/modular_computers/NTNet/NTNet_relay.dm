@@ -95,8 +95,8 @@
 			ntnet_global.add_log("Manual override: Network blacklist cleared.")
 			. = TRUE
 
-/obj/machinery/ntnet_relay/New()
-	..()
+/obj/machinery/ntnet_relay/Initialize()
+	. = ..()
 	assign_uid()
 	default_apply_parts()
 

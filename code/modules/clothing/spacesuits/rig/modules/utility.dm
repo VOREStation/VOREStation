@@ -107,8 +107,8 @@
 
 	device_type = /obj/item/pickaxe/excavationdrill
 
-/obj/item/rig_module/device/New()
-	..()
+/obj/item/rig_module/device/Initialize()
+	. = ..()
 	if(device_type) device = new device_type(src)
 
 /obj/item/rig_module/device/engage(atom/target)
@@ -310,8 +310,8 @@
 
 	var/obj/item/voice_changer/voice_holder
 
-/obj/item/rig_module/voice/New()
-	..()
+/obj/item/rig_module/voice/Initialize()
+	. = ..()
 	voice_holder = new(src)
 	voice_holder.active = 0
 
@@ -399,8 +399,8 @@
 		jets.toggle()
 	return 1
 
-/obj/item/rig_module/maneuvering_jets/New()
-	..()
+/obj/item/rig_module/maneuvering_jets/Initialize()
+	. = ..()
 	jets = new(src)
 
 /obj/item/rig_module/maneuvering_jets/installed()

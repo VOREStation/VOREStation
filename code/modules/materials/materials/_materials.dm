@@ -251,8 +251,8 @@ var/list/name_to_material
 	user.put_in_hands(product)
 
 // Make sure we have a display name and shard icon even if they aren't explicitly set.
-/datum/material/New()
-	..()
+/datum/material/Initialize()
+	. = ..()
 	if(!display_name)
 		display_name = name
 	if(!use_name)

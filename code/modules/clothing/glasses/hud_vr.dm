@@ -14,8 +14,8 @@
 	enables_planes = list(VIS_CH_ID,VIS_CH_HEALTH_VR,VIS_AUGMENTED)
 	plane_slots = list(slot_glasses)
 
-/obj/item/clothing/glasses/omnihud/New()
-	..()
+/obj/item/clothing/glasses/omnihud/Initialize()
+	. = ..()
 	if(tgarscreen_path)
 		tgarscreen = new tgarscreen_path(src)
 

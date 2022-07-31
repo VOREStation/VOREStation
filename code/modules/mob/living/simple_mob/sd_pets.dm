@@ -38,8 +38,8 @@
 	desc = "Don't make fun, they have a condition."
 	digestable = 0
 
-/mob/living/simple_mob/animal/passive/mouse/jerboa/leggy/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/jerboa/leggy/Initialize()
+	. = ..()
 	name = initial(name)
 	desc = initial(desc)
 
@@ -48,8 +48,8 @@
 	desc = "Heading out west wasn't far enough, so he's going to space!"
 	digestable = 0
 
-/mob/living/simple_mob/animal/passive/mouse/brown/feivel/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/brown/feivel/Initialize()
+	. = ..()
 	name = initial(name)
 	desc = initial(desc)
 

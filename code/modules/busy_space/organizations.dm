@@ -44,8 +44,8 @@
 	var/list/destination_names = list()	//Names of static holdings that the organization's ships visit regularly.
 	var/autogenerate_destination_names = TRUE
 
-/datum/lore/organization/New()
-	..()
+/datum/lore/organization/Initialize()
+	. = ..()
 	if(autogenerate_destination_names) // Lets pad out the destination names.
 		var/i = rand(6, 10)
 		var/list/star_names = list(
@@ -126,8 +126,8 @@
 		"Vir Interstellar Spaceport"
 		)
 
-/datum/lore/organization/tsc/nanotrasen/New()
-	..()
+/datum/lore/organization/tsc/nanotrasen/Initialize()
+	. = ..()
 	spawn(1) // BYOND shenanigans means using_map is not initialized yet.  Wait a tick.
 		// Get rid of the current map from the list, so ships flying in don't say they're coming to the current map.
 		var/string_to_test = "[using_map.station_name] in [using_map.starsys_name]"

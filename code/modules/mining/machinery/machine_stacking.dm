@@ -37,7 +37,7 @@
 /obj/machinery/mineral/stacking_unit_console/tgui_data(mob/user)
 	var/list/data = ..()
 
-	
+
 	var/list/stacktypes = list()
 	for(var/stacktype in machine.stack_storage)
 		if(machine.stack_storage[stacktype] > 0)
@@ -84,8 +84,8 @@
 	var/list/stack_paths[0]
 	var/stack_amt = 50; // Amount to stack before releassing
 
-/obj/machinery/mineral/stacking_machine/New()
-	..()
+/obj/machinery/mineral/stacking_machine/Initialize()
+	. = ..()
 
 	for(var/obj/item/stack/material/S as anything in (subtypesof(/obj/item/stack/material) - typesof(/obj/item/stack/material/cyborg)))
 		var/s_matname = initial(S.default_type)
@@ -136,8 +136,7 @@
 			var/stacktype = stack_paths[sheet]
 			new stacktype (get_turf(output), stack_amt)
 			stack_storage[sheet] -= stack_amt
-	
+
 	if(console)
 		console.updateUsrDialog()
 	return
-

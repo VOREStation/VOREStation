@@ -125,8 +125,8 @@
 
 //Vorestation Edit Start
 
-/obj/mecha/working/ripley/New()
-	..()
+/obj/mecha/working/ripley/Initialize()
+	. = ..()
 	orescanner = new /obj/item/mining_scanner
 
 /obj/mecha/working/ripley/verb/detect_ore()
@@ -143,8 +143,8 @@
 /obj/mecha/working/ripley/mining/old
 	desc = "An old, dusty mining ripley."
 
-/obj/mecha/working/ripley/mining/old/New()
-	..()
+/obj/mecha/working/ripley/mining/old/Initialize()
+	. = ..()
 	health = 25
 	maxhealth = 190	//Just slightly worse.
 	cell.charge = rand(0, cell.charge)

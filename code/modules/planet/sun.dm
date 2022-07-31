@@ -79,8 +79,8 @@
 	var/turfs_providing_spreads = list()
 	var/spreads = list()
 
-/atom/movable/sun_visuals/New()
-	..()
+/atom/movable/sun_visuals/Initialize()
+	. = ..()
 	spreads["1"] = new /atom/movable/sun_visuals_overlap(src, NORTH, "white_gradient")
 	spreads["2"] = new /atom/movable/sun_visuals_overlap(src, SOUTH, "white_gradient")
 	spreads["4"] = new /atom/movable/sun_visuals_overlap(src, EAST, "white_gradient")

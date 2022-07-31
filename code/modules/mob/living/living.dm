@@ -1,5 +1,5 @@
-/mob/living/New()
-	..()
+/mob/living/Initialize()
+	. = ..()
 
 	//Prime this list if we need it.
 	if(has_huds)

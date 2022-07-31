@@ -6,8 +6,8 @@
 	kitchen_tag = "cherries"
 	chems = list("nutriment" = list(1,15), "sugar" = list(1,15), "cherryjelly" = list(10,15))
 
-/datum/seed/cherries/New()
-	..()
+/datum/seed/cherries/Initialize()
+	. = ..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_JUICY,1)
 	set_trait(TRAIT_MATURATION,5)

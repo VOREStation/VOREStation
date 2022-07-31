@@ -5,8 +5,8 @@
 	kitchen_tag = "rhubarb"
 	chems = list("nutriment" = list(1,15))
 
-/datum/seed/rhubarb/New()
-	..()
+/datum/seed/rhubarb/Initialize()
+	. = ..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,3)
 	set_trait(TRAIT_PRODUCTION,5)

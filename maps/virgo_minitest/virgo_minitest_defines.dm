@@ -62,8 +62,8 @@
 
 	allowed_spawns = list("Arrivals Shuttle","Gateway","Cryogenic Storage","Cyborg Storage")
 
-/datum/map/virgo_minitest/New()
-	..()
+/datum/map/virgo_minitest/Initialize()
+	. = ..()
 	SSticker.start_immediately = TRUE
 
 /datum/map_z_level/minitest/station

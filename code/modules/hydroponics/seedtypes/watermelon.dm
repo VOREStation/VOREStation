@@ -5,8 +5,8 @@
 	kitchen_tag = "watermelon"
 	chems = list("nutriment" = list(1,6), "watermelonjuice" = list(10,6))
 
-/datum/seed/watermelon/New()
-	..()
+/datum/seed/watermelon/Initialize()
+	. = ..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_JUICY,1)
 	set_trait(TRAIT_MATURATION,6)

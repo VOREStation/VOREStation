@@ -118,7 +118,7 @@
 	name = "holowarrant devices"
 	desc = "A box of holowarrant diplays for security use."
 
-/obj/item/storage/box/holowarrants/New()
-	..()
+/obj/item/storage/box/holowarrants/Initialize()
+	. = ..()
 	for(var/i = 0 to 3)
 		new /obj/item/holowarrant(src) // VOREStation addition ends

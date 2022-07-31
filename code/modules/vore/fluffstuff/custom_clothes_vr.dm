@@ -743,8 +743,8 @@
 
 	storage_slots = 9
 
-/obj/item/storage/belt/utility/fluff/vulpine/New()
-	..()
+/obj/item/storage/belt/utility/fluff/vulpine/Initialize()
+	. = ..()
 	new /obj/item/tool/screwdriver(src)
 	new /obj/item/tool/wrench(src)
 	new /obj/item/weldingtool(src)

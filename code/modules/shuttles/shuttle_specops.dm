@@ -18,8 +18,8 @@
 	var/cancel_countdown = 0
 	category = /datum/shuttle/autodock/ferry/specops
 
-/datum/shuttle/autodock/ferry/specops/New()
-	..()
+/datum/shuttle/autodock/ferry/specops/Initialize()
+	. = ..()
 	announcer = new /obj/item/radio/intercom(null)//We need a fake AI to announce some stuff below. Otherwise it will be wonky.
 	announcer.config(list("Response Team" = 0))
 

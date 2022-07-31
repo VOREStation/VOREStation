@@ -2,8 +2,8 @@
 	name = "stun"
 	effect_color = "#00eeff"
 
-/datum/artifact_effect/stun/New()
-	..()
+/datum/artifact_effect/stun/Initialize()
+	. = ..()
 	effect_type = pick(EFFECT_PSIONIC, EFFECT_ORGANIC)
 
 /datum/artifact_effect/stun/DoEffectTouch(var/mob/toucher)

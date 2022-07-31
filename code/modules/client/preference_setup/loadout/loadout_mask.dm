@@ -62,8 +62,8 @@
 	path = /obj/item/clothing/accessory/gaiter
 	cost = 1
 
-/datum/gear/mask/gaiter/New()
-	..()
+/datum/gear/mask/gaiter/Initialize()
+	. = ..()
 	var/list/gaiters = list()
 	for(var/obj/item/clothing/accessory/gaiter_type as anything in typesof(/obj/item/clothing/accessory/gaiter))
 		gaiters[initial(gaiter_type.name)] = gaiter_type

@@ -5,8 +5,8 @@
 	kitchen_tag = "shand"
 	chems = list("bicaridine" = list(0,10))
 
-/datum/seed/shand/New()
-	..()
+/datum/seed/shand/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,3)
 	set_trait(TRAIT_PRODUCTION,5)
 	set_trait(TRAIT_YIELD,4)

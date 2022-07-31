@@ -109,8 +109,8 @@
 		return
 	..()
 
-/obj/item/rig_module/New()
-	..()
+/obj/item/rig_module/Initialize()
+	. = ..()
 	if(suit_overlay_inactive)
 		suit_overlay = suit_overlay_inactive
 
@@ -316,8 +316,8 @@
 /stat_rig_module/engage/CanUse()
 	return module.usable
 
-/stat_rig_module/select/New()
-	..()
+/stat_rig_module/select/Initialize()
+	. = ..()
 	name = "Select"
 	module_mode = "select"
 
@@ -327,8 +327,8 @@
 		return 1
 	return 0
 
-/stat_rig_module/charge/New()
-	..()
+/stat_rig_module/charge/Initialize()
+	. = ..()
 	name = "Change Charge"
 	module_mode = "select_charge_type"
 

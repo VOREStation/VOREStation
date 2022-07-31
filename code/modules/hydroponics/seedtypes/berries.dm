@@ -7,8 +7,8 @@
 	mutants = list("glowberries","poisonberries")
 	chems = list("nutriment" = list(1,10), "berryjuice" = list(10,10))
 
-/datum/seed/berry/New()
-	..()
+/datum/seed/berry/Initialize()
+	. = ..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_JUICY,1)
 	set_trait(TRAIT_MATURATION,5)
@@ -28,8 +28,8 @@
 	mutants = null
 	chems = list("nutriment" = list(1,10), "uranium" = list(3,5))
 
-/datum/seed/berry/glow/New()
-	..()
+/datum/seed/berry/glow/Initialize()
+	. = ..()
 	set_trait(TRAIT_SPREAD,1)
 	set_trait(TRAIT_BIOLUM,1)
 	set_trait(TRAIT_BIOLUM_COLOUR,"#006622")
@@ -49,8 +49,8 @@
 	mutants = list("deathberries")
 	chems = list("nutriment" = list(1), "toxin" = list(3,5), "poisonberryjuice" = list(10,5))
 
-/datum/seed/berry/poison/New()
-	..()
+/datum/seed/berry/poison/Initialize()
+	. = ..()
 	set_trait(TRAIT_PRODUCT_COLOUR,"#6DC961")
 	set_trait(TRAIT_WATER_CONSUMPTION, 3)
 	set_trait(TRAIT_NUTRIENT_CONSUMPTION, 0.25)
@@ -62,8 +62,8 @@
 	mutants = null
 	chems = list("nutriment" = list(1), "toxin" = list(3,3), "lexorin" = list(1,5))
 
-/datum/seed/berry/poison/death/New()
-	..()
+/datum/seed/berry/poison/death/Initialize()
+	. = ..()
 	set_trait(TRAIT_YIELD,3)
 	set_trait(TRAIT_POTENCY,50)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#7A5454")

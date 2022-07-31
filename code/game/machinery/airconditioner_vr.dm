@@ -20,8 +20,8 @@
 	var/target_temp = T20C
 	var/mode = MODE_IDLE
 
-/obj/machinery/power/thermoregulator/New()
-	..()
+/obj/machinery/power/thermoregulator/Initialize()
+	. = ..()
 	default_apply_parts()
 
 /obj/machinery/power/thermoregulator/examine(mob/user)

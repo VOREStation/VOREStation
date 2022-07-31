@@ -28,8 +28,8 @@
 /obj/effect/phase_shift/ex_act()
 	return
 
-/obj/effect/phase_shift/New()
-	..()
+/obj/effect/phase_shift/Initialize()
+	. = ..()
 	set_light(3, 5, l_color = "#FA58F4")
 	START_PROCESSING(SSobj, src)
 

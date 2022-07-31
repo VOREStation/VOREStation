@@ -10,8 +10,8 @@
 	display_name = "apron, colorable"
 	path = /obj/item/clothing/suit/storage/apron/white
 
-/datum/gear/suit/apron_white/New()
-	..()
+/datum/gear/suit/apron_white/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/greatcoat
@@ -82,8 +82,8 @@
 	display_name = "military jacket selection"
 	path = /obj/item/clothing/suit/storage/miljacket
 
-/datum/gear/suit/mil/New()
-	..()
+/datum/gear/suit/mil/Initialize()
+	. = ..()
 	var/list/mil_jackets = list()
 	for(var/military_style in typesof(/obj/item/clothing/suit/storage/miljacket))
 		var/obj/item/clothing/suit/storage/miljacket/miljacket = military_style
@@ -106,16 +106,16 @@
 	display_name = "cowboy duster, colorable"
 	path = /obj/item/clothing/suit/storage/duster
 
-/datum/gear/suit/duster/New()
-	..()
+/datum/gear/suit/duster/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/hazard_vest
 	display_name = "hazard vest selection"
 	path = /obj/item/clothing/suit/storage/hazardvest
 
-/datum/gear/suit/hazard_vest/New()
-	..()
+/datum/gear/suit/hazard_vest/Initialize()
+	. = ..()
 	var/list/hazards = list()
 	for(var/hazard_style in typesof(/obj/item/clothing/suit/storage/hazardvest))
 		if(hazard_style in typesof(/obj/item/clothing/suit/storage/hazardvest/fluff))	//VOREStation addition
@@ -128,8 +128,8 @@
 	display_name = "hoodie selection"
 	path = /obj/item/clothing/suit/storage/toggle/hoodie
 
-/datum/gear/suit/hoodie/New()
-	..()
+/datum/gear/suit/hoodie/Initialize()
+	. = ..()
 	var/list/hoodies = list()
 	for(var/hoodie_style in typesof(/obj/item/clothing/suit/storage/toggle/hoodie))
 		var/obj/item/clothing/suit/storage/toggle/hoodie/hoodie = hoodie_style
@@ -140,8 +140,8 @@
 	display_name = "labcoat selection, public"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
 
-/datum/gear/suit/labcoat/New()
-	..()
+/datum/gear/suit/labcoat/Initialize()
+	. = ..()
 	var/list/labcoats = list(
 	"White labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat,
 	"Blue-edge labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/blue_edge,
@@ -159,8 +159,8 @@
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/cmo
 	allowed_roles = list("Chief Medical Officer")
 
-/datum/gear/suit/labcoat_cmo/New()
-	..()
+/datum/gear/suit/labcoat_cmo/Initialize()
+	. = ..()
 	var/list/labcoats = list(
 	"CMO labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/cmo,
 	"CMO labcoat (alt)" = /obj/item/clothing/suit/storage/toggle/labcoat/cmoalt,
@@ -214,8 +214,8 @@
 	path = /obj/item/clothing/accessory/poncho
 	cost = 1
 
-/datum/gear/suit/poncho/New()
-	..()
+/datum/gear/suit/poncho/Initialize()
+	. = ..()
 	var/list/ponchos = list()
 	for(var/poncho_style in (typesof(/obj/item/clothing/accessory/poncho) - typesof(/obj/item/clothing/accessory/poncho/roles)))
 		var/obj/item/clothing/accessory/poncho/poncho = poncho_style
@@ -227,8 +227,8 @@
 	path = /obj/item/clothing/accessory/poncho/roles/cargo
 	cost = 1
 
-/datum/gear/suit/roles/poncho/New()
-	..()
+/datum/gear/suit/roles/poncho/Initialize()
+	. = ..()
 	var/list/ponchos = list(
 		"Cargo poncho" = /obj/item/clothing/accessory/poncho/roles/cargo,
 		"Security poncho" = /obj/item/clothing/accessory/poncho/roles/security,
@@ -243,8 +243,8 @@
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cargo
 	cost = 1
 
-/datum/gear/suit/roles/cloak/New()
-	..()
+/datum/gear/suit/roles/cloak/Initialize()
+	. = ..()
 	var/list/cloaks = list(
 		"Cargo cloak" = /obj/item/clothing/accessory/poncho/roles/cloak/cargo,
 		"Mining cloak" = /obj/item/clothing/accessory/poncho/roles/cloak/mining,
@@ -304,8 +304,8 @@
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom
 	cost = 1
 
-/datum/gear/suit/cloak_custom/New()
-	..()
+/datum/gear/suit/cloak_custom/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/unathi_robe
@@ -317,8 +317,8 @@
 	display_name = "suit jacket selection"
 	path = /obj/item/clothing/suit/storage/toggle/internalaffairs
 
-/datum/gear/suit/lawyer_jackets/New()
-	..()
+/datum/gear/suit/lawyer_jackets/Initialize()
+	. = ..()
 	var/list/jackets = list(
 		"Black suit jacket" = /obj/item/clothing/suit/storage/toggle/internalaffairs,
 		"Blue suit jacket" = /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket,
@@ -335,8 +335,8 @@
 	path = /obj/item/clothing/suit/storage/forensics/red/long
 	allowed_roles = list("Detective")
 
-/datum/gear/suit/forensics/New()
-	..()
+/datum/gear/suit/forensics/Initialize()
+	. = ..()
 	var/list/uniforms = list(
 		"Red, long uniform" = /obj/item/clothing/suit/storage/forensics/red/long,
 		"Blue, long uniform" = /obj/item/clothing/suit/storage/forensics/blue/long,
@@ -496,8 +496,8 @@
 	display_name = "varsity jacket selection"
 	path = /obj/item/clothing/suit/varsity
 
-/datum/gear/suit/varsity/New()
-	..()
+/datum/gear/suit/varsity/Initialize()
+	. = ..()
 	var/list/varsities = list()
 	for(var/varsity_style in typesof(/obj/item/clothing/suit/varsity))
 		var/obj/item/clothing/suit/varsity/varsity = varsity_style
@@ -508,8 +508,8 @@
 	display_name = "track jacket selection"
 	path = /obj/item/clothing/suit/storage/toggle/track
 
-/datum/gear/suit/track/New()
-	..()
+/datum/gear/suit/track/Initialize()
+	. = ..()
 	var/list/tracks = list()
 	for(var/track_style in typesof(/obj/item/clothing/suit/storage/toggle/track))
 		var/obj/item/clothing/suit/storage/toggle/track/track = track_style
@@ -520,8 +520,8 @@
 	display_name = "flannel jacket selection"
 	path = /obj/item/clothing/suit/storage/flannel
 
-/datum/gear/suit/flannel/New()
-	..()
+/datum/gear/suit/flannel/Initialize()
+	. = ..()
 	var/list/flannel = list(
 		"Grey flannel" = /obj/item/clothing/suit/storage/flannel,
 		"Red flannel" = /obj/item/clothing/suit/storage/flannel/red,
@@ -550,8 +550,8 @@
 	display_name = "department jacket selection"
 	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
 
-/datum/gear/suit/miscellaneous/dep_jacket/New()
-	..()
+/datum/gear/suit/miscellaneous/dep_jacket/Initialize()
+	. = ..()
 	var/list/jacket = list(
 		"Security department jacket" = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket,
 		"Engineering department jacket" = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket,
@@ -565,8 +565,8 @@
 	display_name = "light jacket selection"
 	path = /obj/item/clothing/suit/storage/toggle/light_jacket
 
-/datum/gear/suit/miscellaneous/light_jacket/New()
-	..()
+/datum/gear/suit/miscellaneous/light_jacket/Initialize()
+	. = ..()
 	var/list/jacket = list(
 		"grey light jacket" = /obj/item/clothing/suit/storage/toggle/light_jacket,
 		"dark blue light jacket" = /obj/item/clothing/suit/storage/toggle/light_jacket/blue
@@ -577,8 +577,8 @@
 	display_name = "peacoat, colorable"
 	path = /obj/item/clothing/suit/storage/toggle/peacoat
 
-/datum/gear/suit/miscellaneous/peacoat/New()
-	..()
+/datum/gear/suit/miscellaneous/peacoat/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/snowsuit
@@ -619,8 +619,8 @@
 	display_name = "cardigan, colorable"
 	path = /obj/item/clothing/suit/storage/toggle/cardigan
 
-/datum/gear/suit/miscellaneous/cardigan/New()
-	..()
+/datum/gear/suit/miscellaneous/cardigan/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/cmddressjacket
@@ -632,24 +632,24 @@
 	display_name = "traditional kimono, colorable"
 	path = /obj/item/clothing/suit/kimono
 
-/datum/gear/suit/miscellaneous/kimono/New()
-	..()
+/datum/gear/suit/miscellaneous/kimono/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/miscellaneous/kamishimo
 	display_name = "traditional kamishimo, colorable"
 	path = /obj/item/clothing/suit/kamishimo
 
-/datum/gear/suit/miscellaneous/kamishimo/New()
-	..()
+/datum/gear/suit/miscellaneous/kamishimo/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/miscellaneous/kimono
 	display_name = "kimono selection"
 	path = /obj/item/clothing/suit/kimono/red
 
-/datum/gear/suit/miscellaneous/kimono/New()
-	..()
+/datum/gear/suit/miscellaneous/kimono/Initialize()
+	. = ..()
 	var/list/kimonos = list(
 	"Red kimono" = /obj/item/clothing/suit/kimono/red,
 	"Orange kimono" = /obj/item/clothing/suit/kimono/orange,

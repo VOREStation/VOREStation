@@ -26,8 +26,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/lasers
 	name = "Laser Warfare"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/lasers/New()
-	..()
+/datum/supply_drop_loot/lasers/Initialize()
+	. = ..()
 	contents = list(
 		/obj/item/clothing/gloves/arm_guard/laserproof,
 		/obj/item/clothing/shoes/leg_guard/laserproof,
@@ -47,8 +47,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/ballistics
 	name = "Ballistic Warfare"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/ballistics/New()
-	..()
+/datum/supply_drop_loot/ballistics/Initialize()
+	. = ..()
 	contents = list(
 		/obj/item/clothing/head/helmet/bulletproof,
 		/obj/item/clothing/suit/armor/bulletproof,
@@ -71,8 +71,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/heavy_warfare
 	name = "Heavy Warfare"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/heavy_warfare/New()
-	..()
+/datum/supply_drop_loot/heavy_warfare/Initialize()
+	. = ..()
 	contents = list(
 		/obj/item/clothing/head/helmet/combat,
 		/obj/item/clothing/suit/armor/combat,
@@ -99,8 +99,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/riot
 	name = "Riot Gear"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/riot/New()
-	..()
+/datum/supply_drop_loot/riot/Initialize()
+	. = ..()
 	contents = list(
 		/obj/item/clothing/head/helmet/riot,
 		/obj/item/clothing/suit/armor/riot,
@@ -123,8 +123,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/seeds
 	name = "Plant Growing"
 	container = /obj/structure/closet/crate
-/datum/supply_drop_loot/seeds/New()
-	..()
+/datum/supply_drop_loot/seeds/Initialize()
+	. = ..()
 	contents = list(
 		/obj/item/seeds/chiliseed,
 		/obj/item/seeds/icepepperseed,
@@ -177,8 +177,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/food
 	name = "Emergency Provisions For Two"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/food/New()
-	..()
+/datum/supply_drop_loot/food/Initialize()
+	. = ..()
 	contents = list(
 		/obj/item/reagent_containers/food/snacks/liquidfood,
 		/obj/item/reagent_containers/food/snacks/liquidfood,
@@ -205,8 +205,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/plushie
 	name = "Cuddly Fun!"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/plushie/New()
-	..()
+/datum/supply_drop_loot/plushie/Initialize()
+	. = ..()
 	contents = list(
 		/obj/structure/plushie/drone,
 		/obj/structure/plushie/carp,
@@ -235,8 +235,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/christmas
 	name = "Surplus Christmas Supplies"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/christmas/New()
-	..()
+/datum/supply_drop_loot/christmas/Initialize()
+	. = ..()
 	contents = list(
 		/obj/structure/flora/pottedplant/xmas,
 		/obj/structure/flora/pottedplant/xmas,
@@ -263,8 +263,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/materials
 	name = "Materials"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/materials/New()
-	..()
+/datum/supply_drop_loot/materials/Initialize()
+	. = ..()
 	contents = list(
 		/obj/fiftyspawner/steel,
 		/obj/fiftyspawner/steel,
@@ -279,8 +279,8 @@ var/global/list/datum/supply_drop_loot/supply_drop
 /datum/supply_drop_loot/materials_advanced
 	name = "Advanced Materials"
 	container = /obj/structure/largecrate
-/datum/supply_drop_loot/materials_advanced/New()
-	..()
+/datum/supply_drop_loot/materials_advanced/Initialize()
+	. = ..()
 	contents = list(
 		/obj/fiftyspawner/steel,
 		/obj/fiftyspawner/glass,
@@ -299,15 +299,15 @@ var/global/list/datum/supply_drop_loot/supply_drop
 
 /datum/supply_drop_loot/supermatter
 	name = "Supermatter"
-/datum/supply_drop_loot/supermatter/New()
-	..()
+/datum/supply_drop_loot/supermatter/Initialize()
+	. = ..()
 	contents = list(/obj/machinery/power/supermatter)
 
 /datum/supply_drop_loot/medical
 	name = "Medical"
 	container = /obj/structure/closet/crate/medical
-/datum/supply_drop_loot/medical/New()
-	..()
+/datum/supply_drop_loot/medical/Initialize()
+	. = ..()
 	contents = list(
 		/obj/item/storage/firstaid/regular,
 		/obj/item/storage/firstaid/fire,

@@ -13,8 +13,8 @@
 	description = "Various color variations of an old earth dress style. They are pretty close fitting around the waist."
 	display_name = "cheongsam selection"
 
-/datum/gear/uniform/cheongsam/New()
-	..()
+/datum/gear/uniform/cheongsam/Initialize()
+	. = ..()
 	var/list/cheongasms = list()
 	for(var/obj/item/clothing/under/cheongsam/cheongasm_type as anything in typesof(/obj/item/clothing/under/cheongsam))
 		cheongasms[initial(cheongasm_type.name)] = cheongasm_type
@@ -24,8 +24,8 @@
 	description = "Light shirts which shows the midsection of the wearer."
 	display_name = "croptop selection"
 
-/datum/gear/uniform/croptop/New()
-	..()
+/datum/gear/uniform/croptop/Initialize()
+	. = ..()
 	var/list/croptops = list()
 	for(var/obj/item/clothing/under/croptop/croptop_type as anything in typesof(/obj/item/clothing/under/croptop))
 		croptops[initial(croptop_type.name)] = croptop_type
@@ -47,8 +47,8 @@
 	display_name = "jumpclothes selection"
 	path = /obj/item/clothing/under/color/grey
 
-/datum/gear/uniform/jumpsuit/New()
-	..()
+/datum/gear/uniform/jumpsuit/Initialize()
+	. = ..()
 	var/list/jumpclothes = list()
 	for(var/obj/item/clothing/under/color/jumps as anything in typesof(/obj/item/clothing/under/color))
 		jumpclothes[initial(jumps.name)] = jumps
@@ -58,24 +58,24 @@
 	display_name = "qipao, colorable"
 	path = /obj/item/clothing/under/qipao_colorable
 
-/datum/gear/uniform/qipao_colorable/New()
-	..()
+/datum/gear/uniform/qipao_colorable/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/qipao2_colorable
 	display_name = "qipao, colorable, slim"
 	path = /obj/item/clothing/under/qipao2_colorable
 
-/datum/gear/uniform/qipao2_colorable/New()
-	..()
+/datum/gear/uniform/qipao2_colorable/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/skirt
 	display_name = "skirt selection"
 	path = /obj/item/clothing/under/skirt
 
-/datum/gear/uniform/skirt/New()
-	..()
+/datum/gear/uniform/skirt/Initialize()
+	. = ..()
 	var/list/skirts = list()
 	for(var/skirt in (typesof(/obj/item/clothing/under/skirt)))
 		if((skirt in typesof(/obj/item/clothing/under/skirt/fluff)) || (skirt in typesof(/obj/item/clothing/under/skirt/outfit/fluff)))	//VOREStation addition
@@ -88,8 +88,8 @@
 	display_name = "pants selection"
 	path = /obj/item/clothing/under/pants/white
 
-/datum/gear/uniform/pants/New()
-	..()
+/datum/gear/uniform/pants/Initialize()
+	. = ..()
 	var/list/pants = list()
 	for(var/obj/item/clothing/under/pants/pant_type as anything in typesof(/obj/item/clothing/under/pants))
 		pants[initial(pant_type.name)] = pant_type
@@ -99,8 +99,8 @@
 	display_name = "shorts selection"
 	path = /obj/item/clothing/under/shorts/jeans
 
-/datum/gear/uniform/shorts/New()
-	..()
+/datum/gear/uniform/shorts/Initialize()
+	. = ..()
 	var/list/shorts = list()
 	for(var/obj/item/clothing/under/pants/short_type as anything in typesof(/obj/item/clothing/under/shorts))
 		shorts[initial(short_type.name)] = short_type
@@ -220,8 +220,8 @@
 	display_name = "suit, one-piece selection"
 	path = /obj/item/clothing/under/lawyer
 
-/datum/gear/uniform/suit/lawyer/New()
-	..()
+/datum/gear/uniform/suit/lawyer/Initialize()
+	. = ..()
 	var/list/lsuits = list()
 	for(var/obj/item/clothing/suit/lsuit_type as anything in typesof(/obj/item/clothing/under/lawyer))
 		lsuits[initial(lsuit_type.name)] = lsuit_type
@@ -231,8 +231,8 @@
 	display_name = "suit, modular selection"
 	path = /obj/item/clothing/under/suit_jacket
 
-/datum/gear/uniform/suit/suit_jacket/New()
-	..()
+/datum/gear/uniform/suit/suit_jacket/Initialize()
+	. = ..()
 	var/list/msuits = list()
 	for(var/msuit in typesof(/obj/item/clothing/under/suit_jacket))
 		if(msuit in typesof(/obj/item/clothing/under/suit_jacket/female/fluff))	//VOREStation addition
@@ -280,8 +280,8 @@
 	display_name = "scrubs selection"
 	path = /obj/item/clothing/under/rank/medical/scrubs
 
-/datum/gear/uniform/scrub/New()
-	..()
+/datum/gear/uniform/scrub/Initialize()
+	. = ..()
 	var/list/scrubs = list()
 	for(var/obj/item/clothing/under/rank/medical/scrubs/scrub_type as anything in typesof(/obj/item/clothing/under/rank/medical/scrubs))
 		scrubs[initial(scrub_type.name)] = scrub_type
@@ -358,24 +358,24 @@
 	display_name = "plain dress"
 	path = /obj/item/clothing/under/dress/white3
 
-/datum/gear/uniform/shortplaindress/New()
-	..()
+/datum/gear/uniform/shortplaindress/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/longdress
 	display_name = "long dress"
 	path = /obj/item/clothing/under/dress/white2
 
-/datum/gear/uniform/longdress/New()
-	..()
+/datum/gear/uniform/longdress/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/longwidedress
 	display_name = "long wide dress"
 	path = /obj/item/clothing/under/dress/white4
 
-/datum/gear/uniform/longwidedress/New()
-	..()
+/datum/gear/uniform/longwidedress/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/reddress
@@ -402,8 +402,8 @@
 	display_name = "maid uniform selection"
 	path = /obj/item/clothing/under/dress/maid
 
-/datum/gear/uniform/dresses/maid/New()
-	..()
+/datum/gear/uniform/dresses/maid/Initialize()
+	. = ..()
 	var/list/maids = list()
 	for(var/obj/item/clothing/under/dress/maid/maid_type as anything in typesof(/obj/item/clothing/under/dress/maid))
 		maids[initial(maid_type.name)] = maid_type
@@ -433,8 +433,8 @@
 	display_name = "yoga pants"
 	path = /obj/item/clothing/under/pants/yogapants
 
-/datum/gear/uniform/yogapants/New()
-	..()
+/datum/gear/uniform/yogapants/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/black_corset
@@ -489,8 +489,8 @@
 	display_name = "pleated skirt"
 	path = /obj/item/clothing/under/skirt/pleated
 
-/datum/gear/uniform/pleated/New()
-	..()
+/datum/gear/uniform/pleated/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/lilacdress
@@ -577,8 +577,8 @@
 	display_name = "floofy dress"
 	path = /obj/item/clothing/under/wedding/floofdress
 
-/datum/gear/uniform/floofdress/New()
-	..()
+/datum/gear/uniform/floofdress/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/blackngold
@@ -629,8 +629,8 @@
 	display_name = "flower skirt"
 	path = /obj/item/clothing/under/flower_skirt
 
-/datum/gear/uniform/flowerskirt/New()
-	..()
+/datum/gear/uniform/flowerskirt/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/countess
@@ -645,8 +645,8 @@
 	display_name = "fashionable miniskirt"
 	path = /obj/item/clothing/under/fashionminiskirt
 
-/datum/gear/uniform/fashionminiskirt/New()
-	..()
+/datum/gear/uniform/fashionminiskirt/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/paramedunidark
@@ -681,8 +681,8 @@
 	display_name = "cowboy outfit selection"
 	path = /obj/item/clothing/under/cowboy
 
-/datum/gear/uniform/cowboy_outfits/New()
-	..()
+/datum/gear/uniform/cowboy_outfits/Initialize()
+	. = ..()
 	var/list/cowboy_outfits = list(
 	"Patterned Cowboy Outfit" = /obj/item/clothing/under/cowboy,
 	"Tan Cowboy Outfit" = /obj/item/clothing/under/cowboy/tan,

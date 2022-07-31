@@ -4,8 +4,8 @@
 
 	effect_color = "#3879ad"
 
-/datum/artifact_effect/roboheal/New()
-	..()
+/datum/artifact_effect/roboheal/Initialize()
+	. = ..()
 	effect_type = pick(EFFECT_ELECTRO, EFFECT_PARTICLE)
 
 /datum/artifact_effect/roboheal/DoEffectTouch(var/mob/user)

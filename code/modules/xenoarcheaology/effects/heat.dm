@@ -4,8 +4,8 @@
 	var/target_temp
 	effect_color = "#ff6600"
 
-/datum/artifact_effect/heat/New()
-	..()
+/datum/artifact_effect/heat/Initialize()
+	. = ..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
 	effect_type = pick(EFFECT_ORGANIC, EFFECT_BLUESPACE, EFFECT_SYNTH)
 	target_temp = rand(300, 600)

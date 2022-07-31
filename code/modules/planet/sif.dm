@@ -12,8 +12,8 @@ var/datum/planet/sif/planet_sif = null
 	sun_name = "Vir"
 	moon_name = "Thor"
 
-/datum/planet/sif/New()
-	..()
+/datum/planet/sif/Initialize()
+	. = ..()
 	planet_sif = src
 	weather_holder = new /datum/weather_holder/sif(src) // Cold weather is also nice.
 

@@ -300,8 +300,8 @@
 	var/toysay = "What the fuck did you do?"
 	drop_sound = 'sound/items/drop/accessory.ogg'
 
-/obj/item/toy/figure/New()
-	..()
+/obj/item/toy/figure/Initialize()
+	. = ..()
 	desc = "A \"Space Life\" brand [name]"
 
 /obj/item/toy/figure/attack_self(mob/user as mob)

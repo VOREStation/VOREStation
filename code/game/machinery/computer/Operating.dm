@@ -20,8 +20,8 @@
 	var/healthAlarm = 50
 	var/oxy = 1 //oxygen beeping toggle
 
-/obj/machinery/computer/operating/New()
-	..()
+/obj/machinery/computer/operating/Initialize()
+	. = ..()
 	for(var/direction in list(NORTH,EAST,SOUTH,WEST))
 		table = locate(/obj/machinery/optable, get_step(src, direction))
 		if(table)
@@ -184,7 +184,7 @@
 /obj/machinery/computer/operating/proc/build_surgery_list(mob/user)
 	if(!istype(victim))
 		return null
-	
+
 	. = list()
 
 	for(var/limb in victim.organs_by_name)

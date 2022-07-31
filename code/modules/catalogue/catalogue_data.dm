@@ -139,7 +139,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	<br><br>\
 	Humanity is the primary driving force for rapid space expansion, owing to their strong, expansionist central \
 	government and opportunistic Trans-Stellar Corporations. The prejudices of the 21st century have mostly \
-	given way to bitter divides on the most important issue of the times– technological expansionism, \
+	given way to bitter divides on the most important issue of the timesï¿½ technological expansionism, \
 	with the major human factions squabbling over their approach to technology in the face of a \
 	looming singularity.\
 	<br><br>\
@@ -170,7 +170,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	desc = "The Unathi are a species of large reptilian humanoids hailing from Moghes, in the \
 	Uueoa-Esa binary star system. Most Unathi live in a semi-rigid clan system, and clan \
 	enclaves dot the surface of their homeworld. Proud and long-lived, Unathi of all \
-	walks of life display a tendency towards perfectionism, and mastery of one’s craft \
+	walks of life display a tendency towards perfectionism, and mastery of oneï¿½s craft \
 	is greatly respected among them. Despite the aggressive nature of their contact, \
 	Unathi seem willing, if not eager, to reconcile with humanity, though mutual \
 	distrust runs rampant among individuals of both groups."
@@ -181,7 +181,7 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	desc = "Tajaran are a race of humanoid mammalian aliens from Meralar, the fourth planet \
 	of the Rarkajar star system. Thickly furred and protected from cold, they thrive on \
 	their subartic planet, where the only terran temperate areas spread across the \
-	equator and “tropical belt.”\
+	equator and ï¿½tropical belt.ï¿½\
 	<br><br>\
 	With their own share of bloody wars and great technological advances, the Tajaran are a \
 	proud kind. They fiercely believe they belong among the stars and consider themselves \
@@ -273,11 +273,11 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	desc = "A Positronic being, often an Android, Gynoid, or Robot, is an individual with a positronic brain, \
 	manufactured and fostered amongst organic life Positronic brains enjoy the same legal status as a humans, \
 	although discrimination is still common, are considered sapient on all accounts, and can be considered \
-	the “synthetic species”. Half-developed and half-discovered in the 2280’s by a black lab studying alien \
+	the ï¿½synthetic speciesï¿½. Half-developed and half-discovered in the 2280ï¿½s by a black lab studying alien \
 	artifacts, the first positronic brain was an inch-wide cube of palladium-iridium alloy, nano-etched with \
 	billions upon billions of conduits and connections. Upon activation, hard-booted by way of an emitter \
 	laser, the brain issued a single sentence before the neural pathways collapsed and it became an inert \
-	lump of platinum: “What is my purpose?”."
+	lump of platinum: ï¿½What is my purpose?ï¿½."
 	value = CATALOGUER_REWARD_TRIVIAL
 
 /datum/category_item/catalogue/technology/cyborgs
@@ -298,8 +298,8 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 	value = CATALOGUER_REWARD_TRIVIAL
 	var/datum_to_copy = null
 
-/datum/category_item/catalogue/information/organization/New()
-	..()
+/datum/category_item/catalogue/information/organization/Initialize()
+	. = ..()
 	if(datum_to_copy)
 		// I'd just access the loremaster object but it might not exist because its ugly.
 		var/datum/lore/organization/O = new datum_to_copy()
@@ -435,5 +435,3 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 
 /datum/category_item/catalogue/material
-
-

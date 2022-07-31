@@ -86,8 +86,8 @@
 	var/list/engines = list()
 	var/obj/machinery/computer/shuttle_control/tether_backup/computer
 
-/datum/shuttle/ferry/tether_backup/New()
-	..()
+/datum/shuttle/ferry/tether_backup/Initialize()
+	. = ..()
 	var/area/current_area = get_location_area(location)
 	for(var/obj/structure/shuttle/engine/propulsion/E in current_area)
 		engines += E

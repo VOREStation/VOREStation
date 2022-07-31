@@ -227,8 +227,8 @@
 
 	return cell.drain_power(drain_check)
 
-/obj/mecha/New()
-	..()
+/obj/mecha/Initialize()
+	. = ..()
 	icon_state += "-open"
 	add_radio()
 	add_cabin()

@@ -63,8 +63,8 @@ var/list/outfits_decls_by_type_
 
 	var/undress = 1	//Does the outfit undress the mob upon equp?
 
-/decl/hierarchy/outfit/New()
-	..()
+/decl/hierarchy/outfit/Initialize()
+	. = ..()
 
 	if(is_hidden_category())
 		return

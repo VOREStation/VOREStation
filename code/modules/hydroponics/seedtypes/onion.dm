@@ -5,8 +5,8 @@
 	kitchen_tag = "onion"
 	chems = list("nutriment" = list(1,10))
 
-/datum/seed/onion/New()
-	..()
+/datum/seed/onion/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,10)
 	set_trait(TRAIT_PRODUCTION,1)
 	set_trait(TRAIT_YIELD,4)

@@ -8,8 +8,8 @@
 
 
 
-/obj/item/deck/egy/New()
-	..()
+/obj/item/deck/egy/Initialize()
+	. = ..()
 	var/datum/playingcard/P
 	//Universal cards
 	for(var/i=0; i<=3; i++)

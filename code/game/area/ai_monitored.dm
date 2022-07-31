@@ -3,8 +3,8 @@
 	var/obj/machinery/camera/motioncamera = null
 
 
-/area/ai_monitored/New()
-	..()
+/area/ai_monitored/Initialize()
+	. = ..()
 	// locate and store the motioncamera
 	spawn (20) // spawn on a delay to let turfs/objs load
 		for (var/obj/machinery/camera/M in src)
@@ -22,5 +22,3 @@
 /area/ai_monitored/Exited(atom/movable/O)
 	if (ismob(O) && motioncamera)
 		motioncamera.lostTarget(O)
-
-

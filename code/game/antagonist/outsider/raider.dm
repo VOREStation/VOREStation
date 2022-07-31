@@ -106,8 +106,8 @@ var/datum/antagonist/raider/raiders
 		/obj/item/clothing/accessory/holster/hip
 		)
 
-/datum/antagonist/raider/New()
-	..()
+/datum/antagonist/raider/Initialize()
+	. = ..()
 	raiders = src
 
 /datum/antagonist/raider/update_access(var/mob/living/player)

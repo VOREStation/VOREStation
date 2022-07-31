@@ -51,8 +51,8 @@ var/global/list/grub_machine_overlays = list()
 
 	ai_holder_type = /datum/ai_holder/simple_mob/solargrub_larva
 
-/mob/living/simple_mob/animal/solargrub_larva/New()
-	..()
+/mob/living/simple_mob/animal/solargrub_larva/Initialize()
+	. = ..()
 	existing_solargrubs += src
 	powermachine = new(src)
 	sparks = new(src)
@@ -248,8 +248,8 @@ var/global/list/grub_machine_overlays = list()
 		ignored_targets += A
 
 
-/obj/machinery/abstract_grub_machine/New()
-	..()
+/obj/machinery/abstract_grub_machine/Initialize()
+	. = ..()
 	shuffle_power_usages()
 	grub = loc
 	if(!istype(grub))

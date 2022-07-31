@@ -19,8 +19,8 @@
 //Camera networks
 #define NETWORK_HALLS "Halls"
 
-/datum/map/stellar_delight/New()
-	..()
+/datum/map/stellar_delight/Initialize()
+	. = ..()
 	var/choice = pickweight(list(
 		"logo1" = 50,
 		"logo2" = 50,

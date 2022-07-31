@@ -42,8 +42,8 @@
 
 	var/body_color //brown, gray and white, leave blank for random
 
-/mob/living/simple_mob/animal/passive/mouse/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/Initialize()
+	. = ..()
 
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -129,8 +129,8 @@
 	name = "Tom"
 	desc = "Jerry the cat is not amused."
 
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize()
+	. = ..()
 	// Change my name back, don't want to be named Tom (666)
 	name = initial(name)
 
@@ -181,8 +181,8 @@
 	name = "Agent Cheese"
 	desc = "I like my cheese Swiss... not American."
 
-/mob/living/simple_mob/animal/passive/mouse/operative/agent_cheese/New()
-	..()
+/mob/living/simple_mob/animal/passive/mouse/operative/agent_cheese/Initialize()
+	. = ..()
 	// Change my name back, don't want to be named agent_cheese (666)
 	name = initial(name)
 

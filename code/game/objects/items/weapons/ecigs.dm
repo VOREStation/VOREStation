@@ -18,8 +18,8 @@
 	var/icon_empty
 	var/ecig_colors = list(null, COLOR_DARK_GRAY, COLOR_RED_GRAY, COLOR_BLUE_GRAY, COLOR_GREEN_GRAY, COLOR_PURPLE_GRAY)
 
-/obj/item/clothing/mask/smokable/ecig/New()
-	..()
+/obj/item/clothing/mask/smokable/ecig/Initialize()
+	. = ..()
 	ec_cartridge = new cartridge_type(src)
 
 /obj/item/clothing/mask/smokable/ecig/examine(mob/user)
@@ -61,8 +61,8 @@
 	icon_off = "ecigoff1"
 	icon_empty = "ecigoff1"
 	icon_on = "ecigon"
-/obj/item/clothing/mask/smokable/ecig/util/New()
-	..()
+/obj/item/clothing/mask/smokable/ecig/util/Initialize()
+	. = ..()
 	color = pick(ecig_colors)
 
 /obj/item/clothing/mask/smokable/ecig/deluxe

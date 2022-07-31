@@ -15,8 +15,8 @@ var/global/list/latejoin_talon = list()
 	msg = "has come out of cryostasis"
 	announce_channel = "Talon"
 
-/datum/spawnpoint/talon/New()
-	..()
+/datum/spawnpoint/talon/Initialize()
+	. = ..()
 	turfs = latejoin_talon
 
 /obj/machinery/cryopod/talon

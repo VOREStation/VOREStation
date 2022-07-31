@@ -4,8 +4,8 @@ var/datum/admin_secrets/admin_secrets = new()
 	var/list/datum/admin_secret_category/categories
 	var/list/datum/admin_secret_item/items
 
-/datum/admin_secrets/New()
-	..()
+/datum/admin_secrets/Initialize()
+	. = ..()
 	categories = init_subtypes(/datum/admin_secret_category)
 	items = list()
 	var/list/category_assoc = list()

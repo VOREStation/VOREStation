@@ -151,8 +151,8 @@
 	GLOB.meteor_list -= src
 	return ..()
 
-/obj/effect/meteor/New()
-	..()
+/obj/effect/meteor/Initialize()
+	. = ..()
 	SpinAnimation()
 
 /obj/effect/meteor/Bump(atom/A)

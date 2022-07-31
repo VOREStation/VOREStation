@@ -22,8 +22,8 @@
 			fire_sound		= 'sound/weapons/pulse3.ogg'
 		))
 
-/obj/item/gun/energy/sizegun/New()
-	..()
+/obj/item/gun/energy/sizegun/Initialize()
+	. = ..()
 	verbs += .proc/select_size
 
 /obj/item/gun/energy/sizegun/attack_self(mob/user)

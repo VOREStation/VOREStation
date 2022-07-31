@@ -5,8 +5,8 @@
 	kitchen_tag = "soybeans"
 	chems = list("nutriment" = list(1,20), "soymilk" = list(10,20))
 
-/datum/seed/soybean/New()
-	..()
+/datum/seed/soybean/Initialize()
+	. = ..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,4)
 	set_trait(TRAIT_PRODUCTION,4)

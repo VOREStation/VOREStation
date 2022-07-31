@@ -175,8 +175,8 @@ var/global/list/robot_modules = list(
 			)
 
 // Cyborgs (non-drones), default loadout. This will be given to every module.
-/obj/item/robot_module/robot/New()
-	..()
+/obj/item/robot_module/robot/Initialize()
+	. = ..()
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/extinguisher(src)
@@ -207,8 +207,8 @@ var/global/list/robot_modules = list(
 					)
 
 
-/obj/item/robot_module/robot/standard/New()
-	..()
+/obj/item/robot_module/robot/standard/Initialize()
+	. = ..()
 	src.modules += new /obj/item/melee/baton/loaded(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/healthanalyzer(src)
@@ -245,8 +245,8 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Surgeon"
 					)
 
-/obj/item/robot_module/robot/medical/surgeon/New()
-	..()
+/obj/item/robot_module/robot/medical/surgeon/Initialize()
+	. = ..()
 	src.modules += new /obj/item/healthanalyzer(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/surgeon(src)
 	src.modules += new /obj/item/autopsy_scanner(src)
@@ -321,8 +321,8 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Crisis"
 					)
 
-/obj/item/robot_module/robot/medical/crisis/New()
-	..()
+/obj/item/robot_module/robot/medical/crisis/Initialize()
+	. = ..()
 	src.modules += new /obj/item/healthanalyzer(src)
 	src.modules += new /obj/item/reagent_scanner/adv(src)
 	src.modules += new /obj/item/roller_holder(src)
@@ -401,8 +401,8 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Engineering"
 					)
 
-/obj/item/robot_module/robot/engineering/general/New()
-	..()
+/obj/item/robot_module/robot/engineering/general/Initialize()
+	. = ..()
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
@@ -520,8 +520,8 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Security"
 					)
 
-/obj/item/robot_module/robot/security/general/New()
-	..()
+/obj/item/robot_module/robot/security/general/Initialize()
+	. = ..()
 	src.modules += new /obj/item/handcuffs/cyborg(src)
 	src.modules += new /obj/item/melee/baton/robot(src)
 	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg(src)
@@ -568,8 +568,8 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Janitor"
 					)
 
-/obj/item/robot_module/robot/janitor/New()
-	..()
+/obj/item/robot_module/robot/janitor/Initialize()
+	. = ..()
 	src.modules += new /obj/item/soap/nanotrasen(src)
 	src.modules += new /obj/item/storage/bag/trash(src)
 	src.modules += new /obj/item/mop(src)
@@ -633,8 +633,8 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Service"
 				  	)
 
-/obj/item/robot_module/robot/clerical/butler/New()
-	..()
+/obj/item/robot_module/robot/clerical/butler/Initialize()
+	. = ..()
 	src.modules += new /obj/item/gripper/service(src)
 	src.modules += new /obj/item/reagent_containers/glass/bucket(src)
 	src.modules += new /obj/item/material/minihoe(src)
@@ -690,8 +690,8 @@ var/global/list/robot_modules = list(
 					"Tower" = "drider-Clerical"
 					)
 
-/obj/item/robot_module/robot/clerical/general/New()
-	..()
+/obj/item/robot_module/robot/clerical/general/Initialize()
+	. = ..()
 	src.modules += new /obj/item/pen/robopen(src)
 	src.modules += new /obj/item/form_printer(src)
 	src.modules += new /obj/item/gripper/paperwork(src)
@@ -732,8 +732,8 @@ var/global/list/robot_modules = list(
 				)
 	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
 
-/obj/item/robot_module/robot/miner/New()
-	..()
+/obj/item/robot_module/robot/miner/Initialize()
+	. = ..()
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
@@ -770,8 +770,8 @@ var/global/list/robot_modules = list(
 					)
 	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
 
-/obj/item/robot_module/robot/research/New()
-	..()
+/obj/item/robot_module/robot/research/Initialize()
+	. = ..()
 	src.modules += new /obj/item/portable_destructive_analyzer(src)
 	src.modules += new /obj/item/gripper/research(src)
 	src.modules += new /obj/item/gripper/circuit(src)
@@ -836,8 +836,8 @@ var/global/list/robot_modules = list(
 					"Decapod" = "decapod-Combat"
 					)
 
-/obj/item/robot_module/robot/security/combat/New()
-	..()
+/obj/item/robot_module/robot/security/combat/Initialize()
+	. = ..()
 	src.modules += new /obj/item/flash(src)
 	//src.modules += new /obj/item/borg/sight/thermal(src) // VOREStation Edit
 	src.modules += new /obj/item/gun/energy/laser/mounted(src)
@@ -939,8 +939,8 @@ var/global/list/robot_modules = list(
 	channels = list("Engineering" = 1)
 	languages = list()
 
-/obj/item/robot_module/drone/construction/New()
-	..()
+/obj/item/robot_module/drone/construction/Initialize()
+	. = ..()
 	src.modules += new /obj/item/rcd/electric/mounted/borg/lesser(src)
 
 /obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -954,8 +954,8 @@ var/global/list/robot_modules = list(
 	channels = list("Supply" = 1)
 	networks = list(NETWORK_MINE)
 
-/obj/item/robot_module/drone/mining/New()
-	..()
+/obj/item/robot_module/drone/mining/Initialize()
+	. = ..()
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/pickaxe/borgdrill(src)
 	src.modules += new /obj/item/storage/bag/ore(src)

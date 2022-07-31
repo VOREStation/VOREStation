@@ -39,8 +39,8 @@
 		if(robot)
 			robot.SetLockDown(0)
 
-/obj/machinery/transformer/conveyor/New()
-	..()
+/obj/machinery/transformer/conveyor/Initialize()
+	. = ..()
 	var/turf/T = loc
 	if(T)
 		// Spawn Conveyour Belts

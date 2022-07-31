@@ -14,8 +14,8 @@
 	var/weakref/showing
 	var/showing_name
 
-/obj/item/tvcamera/New()
-	..()
+/obj/item/tvcamera/Initialize()
+	. = ..()
 	listening_objects += src
 
 /obj/item/tvcamera/Destroy()

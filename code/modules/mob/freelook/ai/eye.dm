@@ -7,10 +7,10 @@
 	name = "Inactive AI Eye"
 	icon_state = "AI-eye"
 
-/mob/observer/eye/aiEye/New()
-	..()
+/mob/observer/eye/aiEye/Initialize()
+	. = ..()
 	visualnet = cameranet
-	
+
 /mob/observer/eye/aiEye/Destroy()
 	if(owner)
 		var/mob/living/silicon/ai/ai = owner

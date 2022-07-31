@@ -15,8 +15,8 @@
 	var/obj/machinery/power/am_engine/injector/connected_I = null
 	var/state = STATE_DEFAULT
 
-/obj/machinery/computer/am_engine/New()
-	..()
+/obj/machinery/computer/am_engine/Initialize()
+	. = ..()
 	spawn( 24 )
 		for(var/obj/machinery/power/am_engine/engine/E in world)
 			if(E.engine_id == src.engine_id)
@@ -92,4 +92,3 @@
 	dat += "<BR>\[ [(src.state != STATE_DEFAULT) ? "<A HREF='?src=\ref[src];operation=main'>Main Menu</A> | " : ""]<A HREF='?src=\ref[user];mach_close=communications'>Close</A> \]"
 	user << browse(dat, "window=communications;size=400x500")
 	onclose(user, "communications")
-

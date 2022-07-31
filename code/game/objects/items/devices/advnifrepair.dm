@@ -16,8 +16,8 @@
 	var/efficiency = 15 //How many units reagent per 1 unit nanopaste
 
 
-/obj/item/nifrepairer/New()
-	..()
+/obj/item/nifrepairer/Initialize()
+	. = ..()
 
 	supply = new(max = 60, A = src)
 

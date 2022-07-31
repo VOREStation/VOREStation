@@ -1,8 +1,8 @@
 /obj/item/pda
 	var/delete_id = FALSE			//Guaranteed deletion of ID upon deletion of PDA
 
-/obj/item/pda/multicaster/exploration/New()
-	..()
+/obj/item/pda/multicaster/exploration/Initialize()
+	. = ..()
 	owner = "Exploration Department"
 	name = "Exploration Department (Relay)"
 	cartridges_to_send_to = exploration_cartridges

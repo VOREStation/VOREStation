@@ -634,8 +634,8 @@
 	author = "Simple Robotics"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Guide to Robotics"
 
-/obj/item/book/manual/robotics_manual/New()
-	..()
+/obj/item/book/manual/robotics_manual/Initialize()
+	. = ..()
 	dat = {"
 		<html><head>
 		</head>

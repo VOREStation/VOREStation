@@ -138,8 +138,8 @@ var/list/all_maps = list()
 
 	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.
 
-/datum/map/New()
-	..()
+/datum/map/Initialize()
+	. = ..()
 	if(zlevel_datum_type)
 		for(var/type in subtypesof(zlevel_datum_type))
 			new type(src)

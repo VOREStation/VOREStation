@@ -41,8 +41,8 @@
 	var/frustration = 0
 	var/max_frustration = 0
 
-/mob/living/bot/New()
-	..()
+/mob/living/bot/Initialize()
+	. = ..()
 	update_icons()
 
 	default_language = GLOB.all_languages[LANGUAGE_GALCOM]

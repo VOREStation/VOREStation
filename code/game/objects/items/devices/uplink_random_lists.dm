@@ -17,8 +17,8 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 	var/list/datum/uplink_random_item/items
 	var/list/datum/uplink_random_item/all_items
 
-/datum/uplink_random_selection/New()
-	..()
+/datum/uplink_random_selection/Initialize()
+	. = ..()
 	items = list()
 	all_items = list()
 
@@ -42,16 +42,16 @@ var/datum/uplink_random_selection/all_uplink_selection = new/datum/uplink_random
 			continue
 		return I
 
-/datum/uplink_random_selection/all/New()
-	..()
+/datum/uplink_random_selection/all/Initialize()
+	. = ..()
 	for(var/datum/uplink_item/item in uplink.items)
 		if(item.blacklisted)
 			continue
 		else
 			all_items += new/datum/uplink_random_item(item.type)
 
-/datum/uplink_random_selection/default/New()
-	..()
+/datum/uplink_random_selection/default/Initialize()
+	. = ..()
 
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/visible_weapons/silenced_45)
 	items += new/datum/uplink_random_item(/datum/uplink_item/item/ammo/mc9mm)

@@ -17,15 +17,15 @@
 	var/verb_name = "Transfer From Reagent Implant"
 	var/verb_desc = "Remove reagents from an internal reagent into a container"
 
-/obj/item/implant/reagent_generator/New()
-	..()
+/obj/item/implant/reagent_generator/Initialize()
+	. = ..()
 	create_reagents(usable_volume)
 
 /obj/item/implanter/reagent_generator
 	var/implant_type = /obj/item/implant/reagent_generator
 
-/obj/item/implanter/reagent_generator/New()
-	..()
+/obj/item/implanter/reagent_generator/Initialize()
+	. = ..()
 	imp = new implant_type(src)
 	update()
 	return

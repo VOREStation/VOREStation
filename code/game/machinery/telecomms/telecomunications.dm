@@ -556,8 +556,8 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 							// would add up to md5("password123comsat")
 	var/obj/item/radio/headset/server_radio = null
 
-/obj/machinery/telecomms/server/New()
-	..()
+/obj/machinery/telecomms/server/Initialize()
+	. = ..()
 	Compiler = new()
 	Compiler.Holder = src
 	server_radio = new()

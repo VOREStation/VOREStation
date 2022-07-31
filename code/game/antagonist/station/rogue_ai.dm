@@ -18,8 +18,8 @@ var/datum/antagonist/rogue_ai/malf
 	initial_spawn_target = 1
 	antaghud_indicator = "hudmalai"
 
-/datum/antagonist/rogue_ai/New()
-	..()
+/datum/antagonist/rogue_ai/Initialize()
+	. = ..()
 	malf = src
 
 
@@ -101,4 +101,3 @@ var/datum/antagonist/rogue_ai/malf
 	if (newname)
 		player.SetName(newname)
 	if(player.mind) player.mind.name = player.name
-

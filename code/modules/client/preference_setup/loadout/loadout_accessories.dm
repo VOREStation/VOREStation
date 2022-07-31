@@ -10,8 +10,8 @@
 	display_name = "armband selection"
 	path = /obj/item/clothing/accessory/armband
 
-/datum/gear/accessory/armband/New()
-	..()
+/datum/gear/accessory/armband/Initialize()
+	. = ..()
 	var/list/armbands = list()
 	for(var/obj/item/clothing/accessory/armband_type as anything in (typesof(/obj/item/clothing/accessory/armband) - typesof(/obj/item/clothing/accessory/armband/med/color)))
 		armbands[initial(armband_type.name)] = armband_type
@@ -21,8 +21,8 @@
 	display_name = "armband"
 	path = /obj/item/clothing/accessory/armband/med/color
 
-/datum/gear/accessory/armband/colored/New()
-	..()
+/datum/gear/accessory/armband/colored/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/wallet
@@ -40,8 +40,8 @@
 	path = /obj/item/storage/wallet/womens
 	cost = 0 //VOREStation Edit
 
-/datum/gear/accessory/wallet/womens/New()
-	..()
+/datum/gear/accessory/wallet/womens/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/clutch
@@ -49,8 +49,8 @@
 	path = /obj/item/storage/briefcase/clutch
 	cost = 2
 
-/datum/gear/accessory/clutch/New()
-	..()
+/datum/gear/accessory/clutch/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/purse
@@ -58,8 +58,8 @@
 	path = /obj/item/storage/backpack/purse
 	cost = 3
 
-/datum/gear/accessory/purse/New()
-	..()
+/datum/gear/accessory/purse/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/wcoat
@@ -67,8 +67,8 @@
 	path = /obj/item/clothing/accessory/wcoat
 	cost = 1
 
-/datum/gear/accessory/wcoat/New()
-	..()
+/datum/gear/accessory/wcoat/Initialize()
+	. = ..()
 	var/list/wcoats = list()
 	for(var/obj/item/clothing/accessory/wcoat_type as anything in typesof(/obj/item/clothing/accessory/wcoat))
 		wcoats[initial(wcoat_type.name)] = wcoat_type
@@ -79,8 +79,8 @@
 	path = /obj/item/clothing/accessory/holster
 	allowed_roles = list("Site Manager", "Head of Personnel", "Security Officer", "Warden", "Head of Security","Detective")
 
-/datum/gear/accessory/holster/New()
-	..()
+/datum/gear/accessory/holster/Initialize()
+	. = ..()
 	var/list/holsters = list()
 	for(var/obj/item/clothing/accessory/holster_type as anything in typesof(/obj/item/clothing/accessory/holster))
 		holsters[initial(holster_type.name)] = holster_type
@@ -91,8 +91,8 @@
 	path = /obj/item/clothing/accessory/tie
 	cost = 1
 
-/datum/gear/accessory/tie/New()
-	..()
+/datum/gear/accessory/tie/Initialize()
+	. = ..()
 	var/list/ties = list()
 	for(var/obj/item/clothing/accessory/tie_type as anything in typesof(/obj/item/clothing/accessory/tie))
 		ties[initial(tie_type.name)] = tie_type
@@ -103,8 +103,8 @@
 	path = /obj/item/clothing/accessory/bowtie
 	cost = 1
 
-/datum/gear/accessory/bowtie/New()
-	..()
+/datum/gear/accessory/bowtie/Initialize()
+	. = ..()
 	var/list/bowties = list()
 	for(var/obj/item/clothing/accessory/bowtie_type as anything in typesof(/obj/item/clothing/accessory/bowtie))
 		bowties[initial(bowtie_type.name)] = bowtie_type
@@ -115,8 +115,8 @@
 	path = /obj/item/clothing/accessory/scarf
 	cost = 1
 
-/datum/gear/accessory/scarf/New()
-	..()
+/datum/gear/accessory/scarf/Initialize()
+	. = ..()
 	var/list/scarfs = list()
 	for(var/obj/item/clothing/accessory/scarf_type as anything in typesof(/obj/item/clothing/accessory/scarf))
 		scarfs[initial(scarf_type.name)] = scarf_type
@@ -127,8 +127,8 @@
 	path = /obj/item/clothing/accessory/scarf/white
 	cost = 1
 
-/datum/gear/accessory/scarfcolor/New()
-	..()
+/datum/gear/accessory/scarfcolor/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/jacket
@@ -136,8 +136,8 @@
 	path = /obj/item/clothing/accessory/jacket
 	cost = 1
 
-/datum/gear/accessory/jacket/New()
-	..()
+/datum/gear/accessory/jacket/Initialize()
+	. = ..()
 	var/list/jackets = list()
 	for(var/obj/item/clothing/accessory/jacket_type as anything in typesof(/obj/item/clothing/accessory/jacket))
 		jackets[initial(jacket_type.name)] = jacket_type
@@ -182,8 +182,8 @@
 	cost = 2
 	path = /obj/item/storage/belt/fannypack
 
-/datum/gear/accessory/fannypack/New()
-	..()
+/datum/gear/accessory/fannypack/Initialize()
+	. = ..()
 	var/list/fannys = list()
 	for(var/obj/item/storage/belt/fannypack/fanny_type as anything in typesof(/obj/item/storage/belt/fannypack))
 		fannys[initial(fanny_type.name)] = fanny_type
@@ -206,8 +206,8 @@
 	display_name = "sweater selection"
 	path = /obj/item/clothing/accessory/sweater
 
-/datum/gear/accessory/sweater/New()
-	..()
+/datum/gear/accessory/sweater/Initialize()
+	. = ..()
 	var/list/sweaters = list()
 	for(var/sweater in typesof(/obj/item/clothing/accessory/sweater))
 		if(sweater in typesof(/obj/item/clothing/accessory/sweater/fluff))	//VOREStation addition
@@ -220,8 +220,8 @@
 	display_name = "virgin killer sweater (colorable)"
 	path = /obj/item/clothing/accessory/sweater/virgin
 
-/datum/gear/accessory/virginkiller/New()
-	..()
+/datum/gear/accessory/virginkiller/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/bracelet/material
@@ -230,8 +230,8 @@
 	path = /obj/item/clothing/accessory/bracelet
 	cost = 1
 
-/datum/gear/accessory/bracelet/material/New()
-	..()
+/datum/gear/accessory/bracelet/material/Initialize()
+	. = ..()
 	var/bracelettype = list()
 	bracelettype["bracelet, steel"] = /obj/item/clothing/accessory/bracelet/material/steel
 	bracelettype["bracelet, iron"] = /obj/item/clothing/accessory/bracelet/material/iron
@@ -268,8 +268,8 @@
 	display_name = "sash (colorable)"
 	path = /obj/item/clothing/accessory/sash
 
-/datum/gear/accessory/sash/New()
-	..()
+/datum/gear/accessory/sash/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/asym
@@ -277,8 +277,8 @@
 	path = /obj/item/clothing/accessory/asymmetric
 	cost = 1
 
-/datum/gear/accessory/asym/New()
-	..()
+/datum/gear/accessory/asym/Initialize()
+	. = ..()
 	var/list/asyms = list()
 	for(var/obj/item/clothing/accessory/asymmetric_type as anything in typesof(/obj/item/clothing/accessory/asymmetric))
 		asyms[initial(asymmetric_type.name)] = asymmetric_type
@@ -296,8 +296,8 @@
 	display_name = "hawaiian shirt selection"
 	path = /obj/item/clothing/accessory/hawaiian
 
-/datum/gear/accessory/hawaiian_shirt/New()
-	..()
+/datum/gear/accessory/hawaiian_shirt/Initialize()
+	. = ..()
 	var/list/hawaiian_shirts = list(
 	"Cyan Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian,
 	"Blue Hawaiian shirt" = /obj/item/clothing/accessory/hawaiian/blue,
@@ -311,8 +311,8 @@
 	display_name = "cowboy selection"
 	path = /obj/item/clothing/accessory/cowboy_vest
 
-/datum/gear/accessory/cowboy_vest/New()
-	..()
+/datum/gear/accessory/cowboy_vest/Initialize()
+	. = ..()
 	var/list/cowboy_vests = list(
 	"Ranger Vest" = /obj/item/clothing/accessory/cowboy_vest,
 	"Brown Vest" = /obj/item/clothing/accessory/cowboy_vest/brown,
@@ -324,8 +324,8 @@
 	display_name = "pride pin selection"
 	path = /obj/item/clothing/accessory/pride
 
-/datum/gear/accessory/pride/New()
-	..()
+/datum/gear/accessory/pride/Initialize()
+	. = ..()
 	var/list/pridepins = list()
 	for(var/obj/item/clothing/accessory/pridepin_type as anything in typesof(/obj/item/clothing/accessory/pride))
 		pridepins[initial(pridepin_type.name)] = pridepin_type

@@ -5,8 +5,8 @@
 	kitchen_tag = "kudzu"
 	chems = list("nutriment" = list(1,50), "anti_toxin" = list(1,25))
 
-/datum/seed/kudzu/New()
-	..()
+/datum/seed/kudzu/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,6)
 	set_trait(TRAIT_YIELD,4)

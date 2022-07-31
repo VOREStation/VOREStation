@@ -31,8 +31,8 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	current_time = new /datum/time/virgo3c()
 	planetary_wall_type = /turf/unsimulated/wall/planetary/virgo3c
 
-/datum/planet/virgo3c/New()
-	..()
+/datum/planet/virgo3c/Initialize()
+	. = ..()
 	planet_virgo3c = src
 	weather_holder = new /datum/weather_holder/virgo3c(src)
 

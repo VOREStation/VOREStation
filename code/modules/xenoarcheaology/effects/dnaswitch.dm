@@ -7,8 +7,8 @@
 	effect_state = "smoke"
 	effect_color = "#77ff83"
 
-/datum/artifact_effect/dnaswitch/New()
-	..()
+/datum/artifact_effect/dnaswitch/Initialize()
+	. = ..()
 	if(effect == EFFECT_AURA)
 		severity = rand(5,30)
 	else

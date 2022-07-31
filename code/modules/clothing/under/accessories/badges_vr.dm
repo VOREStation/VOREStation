@@ -15,8 +15,8 @@
 
 	var/obj/item/dosimeter_film/current_film = null
 
-/obj/item/clothing/accessory/dosimeter/New()
-	..()
+/obj/item/clothing/accessory/dosimeter/Initialize()
+	. = ..()
 	current_film = new /obj/item/dosimeter_film(src)
 	update_state(current_film.state)
 	START_PROCESSING(SSobj, src)
@@ -123,8 +123,8 @@
 	max_storage_space = (ITEMSIZE_COST_SMALL * 2) + (ITEMSIZE_COST_TINY * 3)
 	w_class = ITEMSIZE_SMALL
 
-/obj/item/storage/box/dosimeter/New()
-	..()
+/obj/item/storage/box/dosimeter/Initialize()
+	. = ..()
 	new /obj/item/paper/dosimeter_manual(src)
 	new /obj/item/clothing/accessory/dosimeter(src)
 	new /obj/item/dosimeter_film(src)

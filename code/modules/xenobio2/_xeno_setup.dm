@@ -99,8 +99,8 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	target.chems = chems
 	target.source = source
 
-/datum/xeno/traits/New()
-	..()
+/datum/xeno/traits/Initialize()
+	. = ..()
 	set_trait(TRAIT_XENO_COLOR,	"#CACACA")
 	set_trait(TRAIT_XENO_CHEMVOL, 100)
 	set_trait(TRAIT_XENO_HEALTH, 20)
@@ -212,5 +212,3 @@ var/global/list/xenoChemList = list("mutationtoxin",
 	var/genetype	//Label for specifying what gene is used.
 	var/list/values	//What's going to be put into specific traits
 	var/list/chems
-
-

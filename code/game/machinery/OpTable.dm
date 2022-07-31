@@ -15,8 +15,8 @@
 	var/strapped = 0.0
 	var/obj/machinery/computer/operating/computer = null
 
-/obj/machinery/optable/New()
-	..()
+/obj/machinery/optable/Initialize()
+	. = ..()
 	for(var/direction in list(NORTH,EAST,SOUTH,WEST))
 		computer = locate(/obj/machinery/computer/operating, get_step(src, direction))
 		if(computer)
@@ -100,12 +100,12 @@
 
 	if(!Adjacent(target) || !Adjacent(user))
 		return ..()
-	
+
 	if(user.incapacitated() || !check_table(target, user))
 		return ..()
 
 	take_victim(target, user)
-	
+
 /obj/machinery/optable/verb/climb_on()
 	set name = "Climb On Table"
 	set category = "Object"

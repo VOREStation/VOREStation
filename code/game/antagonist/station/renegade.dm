@@ -62,8 +62,8 @@ var/datum/antagonist/renegade/renegades
 		list(/obj/item/gun/projectile/luger,/obj/item/gun/projectile/luger/brown)
 		)
 
-/datum/antagonist/renegade/New()
-	..()
+/datum/antagonist/renegade/Initialize()
+	. = ..()
 	renegades = src
 
 /datum/antagonist/renegade/create_objectives(var/datum/mind/player)

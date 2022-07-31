@@ -179,8 +179,8 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 	animate(src, color = fire_color(air_contents.temperature), 5)
 	set_light(l_color = color)
 
-/obj/fire/New(newLoc,fl)
-	..()
+/obj/fire/Initialize(var/ml,fl)
+	. = ..()
 
 	if(!istype(loc, /turf))
 		qdel(src)

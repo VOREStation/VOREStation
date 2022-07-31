@@ -59,8 +59,8 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/rover/engine/New()
-	..()
+/obj/vehicle/train/rover/engine/Initialize()
+	. = ..()
 	cell = new /obj/item/cell/high(src)
 	key = new(src)
 	turn_off()	//so engine verbs are correctly set

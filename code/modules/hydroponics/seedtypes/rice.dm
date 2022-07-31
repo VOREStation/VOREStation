@@ -5,8 +5,8 @@
 	kitchen_tag = "rice"
 	chems = list("nutriment" = list(1,25), "rice" = list(10,15))
 
-/datum/seed/rice/New()
-	..()
+/datum/seed/rice/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCTION,1)
 	set_trait(TRAIT_YIELD,4)

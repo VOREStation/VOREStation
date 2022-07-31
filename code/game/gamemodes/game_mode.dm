@@ -37,8 +37,8 @@ var/global/list/additional_antag_types = list()
 	var/event_delay_mod_moderate             // Modifies the timing of random events.
 	var/event_delay_mod_major                // As above.
 
-/datum/game_mode/New()
-	..()
+/datum/game_mode/Initialize()
+	. = ..()
 
 /datum/game_mode/Topic(href, href_list[])
 	if(..())
@@ -369,11 +369,11 @@ var/global/list/additional_antag_types = list()
 
 	send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
 	SSwebhooks.send(
-		WEBHOOK_ROUNDEND, 
+		WEBHOOK_ROUNDEND,
 		list(
-			"survivors" = surviving_total, 
-			"escaped" = escaped_total, 
-			"ghosts" = ghosts, 
+			"survivors" = surviving_total,
+			"escaped" = escaped_total,
+			"ghosts" = ghosts,
 			"clients" = clients
 		)
 	)

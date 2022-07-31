@@ -14,8 +14,8 @@
 
 	var/debug_ai = AI_LOG_OFF						// The level of debugging information to display to people who can see log_debug().
 
-/datum/ai_holder/New()
-	..()
+/datum/ai_holder/Initialize()
+	. = ..()
 	path_overlay = new(path_icon,path_icon_state)
 	last_turf_overlay = new(path_icon, last_turf_icon_state)
 
@@ -86,4 +86,3 @@
 	path_display = TRUE
 	last_turf_display = TRUE
 	debug_ai = AI_LOG_INFO
-

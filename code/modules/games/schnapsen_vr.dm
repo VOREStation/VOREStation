@@ -8,8 +8,8 @@
 	desc = "An ancient trick-taking card game from a bygone-Earth country. For 2 players!"
 	icon_state = "deck"
 
-/obj/item/deck/schnapsen/New()
-	..()
+/obj/item/deck/schnapsen/Initialize()
+	. = ..()
 	var/datum/playingcard/P
 	var/colour
 	for(var/suit in list("acorns","leaves","bells","hearts"))

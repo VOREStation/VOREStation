@@ -122,8 +122,8 @@
 	display_name = "cap (colorable)"
 	path = /obj/item/clothing/head/soft/mime
 
-/datum/gear/head/cap/white/New()
-	..()
+/datum/gear/head/cap/white/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/cap/mbill
@@ -194,16 +194,16 @@
 	display_name = "hair flower pin (colorable)"
 	path = /obj/item/clothing/head/pin/flower/white
 
-/datum/gear/head/hairflower/New()
-	..()
+/datum/gear/head/hairflower/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/pin
 	display_name = "pin selection"
 	path = /obj/item/clothing/head/pin
 
-/datum/gear/head/pin/New()
-	..()
+/datum/gear/head/pin/Initialize()
+	. = ..()
 	var/list/pins = list()
 	for(var/obj/item/clothing/head/pin/pin_type as anything in typesof(/obj/item/clothing/head/pin))
 		pins[initial(pin_type.name)] = pin_type
@@ -214,8 +214,8 @@
 	path = /obj/item/clothing/head/hardhat
 	cost = 2
 
-/datum/gear/head/hardhat/New()
-	..()
+/datum/gear/head/hardhat/Initialize()
+	. = ..()
 	var/list/hardhats = list()
 	for(var/obj/item/clothing/head/hardhat/hardhat_type as anything in typesof(/obj/item/clothing/head/hardhat))
 		hardhats[initial(hardhat_type.name)] = hardhat_type
@@ -254,8 +254,8 @@
 	path = /obj/item/clothing/head/santa
 	cost = 2
 
-/datum/gear/head/santahat/New()
-	..()
+/datum/gear/head/santahat/Initialize()
+	. = ..()
 	var/list/santahats = list()
 	for(var/obj/item/clothing/head/santa/santahat_type as anything in typesof(/obj/item/clothing/head/santa))
 		santahats[initial(santahat_type.name)] = santahat_type
@@ -265,32 +265,32 @@
 	display_name = "hijab"
 	path = /obj/item/clothing/head/hijab
 
-/datum/gear/head/hijab/New()
-	..()
+/datum/gear/head/hijab/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/kippa
 	display_name = "kippa"
 	path = /obj/item/clothing/head/kippa
 
-/datum/gear/head/kippa/New()
-	..()
+/datum/gear/head/kippa/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/turban
 	display_name = "turban"
 	path = /obj/item/clothing/head/turban
 
-/datum/gear/head/turban/New()
-	..()
+/datum/gear/head/turban/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/taqiyah
 	display_name = "taqiyah"
 	path = /obj/item/clothing/head/taqiyah
 
-/datum/gear/head/taqiyah/New()
-	..()
+/datum/gear/head/taqiyah/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/kitty
@@ -305,24 +305,24 @@
 	display_name = "beanie"
 	path = /obj/item/clothing/head/beanie
 
-/datum/gear/head/beanie/New()
-	..()
+/datum/gear/head/beanie/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/loose_beanie
 	display_name = "loose beanie"
 	path = /obj/item/clothing/head/beanie_loose
 
-/datum/gear/head/loose_beanie/New()
-	..()
+/datum/gear/head/loose_beanie/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/beretg
 	display_name = "beret"
 	path = /obj/item/clothing/head/beretg
 
-/datum/gear/head/beretg/New()
-	..()
+/datum/gear/head/beretg/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/sombrero
@@ -333,16 +333,16 @@
 	display_name = "flat cap"
 	path = /obj/item/clothing/head/flatcap/grey
 
-/datum/gear/head/flatcapg/New()
-	..()
+/datum/gear/head/flatcapg/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/bow/small
 	display_name = "hair bow, small (colorable)"
 	path = /obj/item/clothing/head/pin/bow
 
-/datum/gear/head/bow/small/New()
-	..()
+/datum/gear/head/bow/small/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/head/welding/
@@ -371,8 +371,8 @@
 	display_name = "beret government, selection"
 	path = /obj/item/clothing/head/beret/solgov
 
-/datum/gear/head/beret/solgov/New()
-	..()
+/datum/gear/head/beret/solgov/Initialize()
+	. = ..()
 	var/list/sols = list()
 	for(var/sol_style in typesof(/obj/item/clothing/head/beret/solgov))
 		var/obj/item/clothing/head/beret/solgov/sol = sol_style
@@ -384,8 +384,8 @@
 	description = "Choose from a number of rings of different caps."
 	path = /obj/item/clothing/head/surgery
 
-/datum/gear/head/surgery/New()
-	..()
+/datum/gear/head/surgery/Initialize()
+	. = ..()
 	var/cap_type = list()
 	cap_type["Purple cap"] = /obj/item/clothing/head/surgery/purple
 	cap_type["Blue cap"] = /obj/item/clothing/head/surgery/blue

@@ -14,8 +14,8 @@
 	var/gpstag = "COM0"
 	emped = 0
 
-/obj/item/gps/advanced/New()
-	..()
+/obj/item/gps/advanced/Initialize()
+	. = ..()
 	GPS_list.Add(src)
 	name = "global positioning system ([gpstag])"
 	add_overlay("working")

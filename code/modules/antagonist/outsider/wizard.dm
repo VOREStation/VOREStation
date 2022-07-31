@@ -17,8 +17,8 @@ var/datum/antagonist/wizard/wizards
 	initial_spawn_target = 1
 
 
-/datum/antagonist/wizard/New()
-	..()
+/datum/antagonist/wizard/Initialize()
+	. = ..()
 	wizards = src
 
 /datum/antagonist/wizard/create_objectives(var/datum/mind/wizard)

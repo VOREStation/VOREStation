@@ -110,8 +110,8 @@
 	attack_verb = list("nuzzled", "nosed", "booped")
 	w_class = ITEMSIZE_TINY
 
-/obj/item/dogborg/boop_module/New()
-	..()
+/obj/item/dogborg/boop_module/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON //No more attack messages
 
 /obj/item/dogborg/boop_module/attack_self(mob/user)
@@ -227,8 +227,8 @@
 	var/emagged = 0
 	var/datum/matter_synth/water = null
 
-/obj/item/dogborg/tongue/New()
-	..()
+/obj/item/dogborg/tongue/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON //No more attack messages
 
 /obj/item/dogborg/tongue/examine(user)
@@ -347,8 +347,8 @@
 	icon_state = "scrub0"
 	var/enabled = FALSE
 
-/obj/item/pupscrubber/New()
-	..()
+/obj/item/pupscrubber/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON
 
 /obj/item/pupscrubber/attack_self(mob/user)
@@ -423,8 +423,8 @@
 	force = 0
 	throwforce = 0
 
-/obj/item/dogborg/pounce/New()
-	..()
+/obj/item/dogborg/pounce/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON
 
 /obj/item/dogborg/pounce/attack_self(mob/user)

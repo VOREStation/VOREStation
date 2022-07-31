@@ -33,8 +33,8 @@ var/global/const/base_law_type = /datum/ai_laws/nanotrasen
 	var/list/state_inherent = list()
 	var/list/state_supplied = list()
 
-/datum/ai_laws/New()
-	..()
+/datum/ai_laws/Initialize()
+	. = ..()
 	sort_laws()
 
 /* General ai_law functions */

@@ -152,8 +152,8 @@ var/sc_safecode5 = "[rand(0,9)]"
 /obj/item/storage/secure/safe/sc_ssafe
 	name = "Captain's secure safe"
 
-/obj/item/storage/secure/safe/sc_ssafe/New()
-	..()
+/obj/item/storage/secure/safe/sc_ssafe/Initialize()
+	. = ..()
 	l_code = "[sc_safecode1][sc_safecode2][sc_safecode3][sc_safecode4][sc_safecode5]"
 	l_set = 1
 	new /obj/item/gun/energy/mindflayer(src)

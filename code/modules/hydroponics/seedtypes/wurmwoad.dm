@@ -7,8 +7,8 @@
 	chems = list("nutriment" = list(1,10), "spacespice" = list(5,15))
 	kitchen_tag = "wurmwoad"
 
-/datum/seed/wurmwoad/New()
-	..()
+/datum/seed/wurmwoad/Initialize()
+	. = ..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,7)
 	set_trait(TRAIT_PRODUCTION,6)

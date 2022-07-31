@@ -10,8 +10,8 @@
 	matter = list(MAT_STEEL = 200)
 	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2, TECH_ILLEGAL = 1)
 
-/obj/item/bodysnatcher/New()
-	..()
+/obj/item/bodysnatcher/Initialize()
+	. = ..()
 	flags |= NOBLUDGEON //So borgs don't spark.
 
 /obj/item/bodysnatcher/attack(mob/living/M, mob/living/user)

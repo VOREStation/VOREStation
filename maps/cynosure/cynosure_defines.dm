@@ -225,28 +225,28 @@
 
 //Teleport to Mine
 
-/obj/effect/step_trigger/teleporter/mine/to_mining/New()
-	..()
+/obj/effect/step_trigger/teleporter/mine/to_mining/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_STATION_ONE
 
-/obj/effect/step_trigger/teleporter/mine/from_mining/New()
-	..()
+/obj/effect/step_trigger/teleporter/mine/from_mining/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_STATION_TWO
 
 //Teleport to Wild
 
-/obj/effect/step_trigger/teleporter/wild/to_wild/New()
-	..()
+/obj/effect/step_trigger/teleporter/wild/to_wild/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = 2
 	teleport_z = Z_LEVEL_SURFACE_WILD
 
-/obj/effect/step_trigger/teleporter/wild/from_wild/New()
-	..()
+/obj/effect/step_trigger/teleporter/wild/from_wild/Initialize()
+	. = ..()
 	teleport_x = src.x
 	teleport_y = world.maxy - 1
 	teleport_z = Z_LEVEL_STATION_TWO

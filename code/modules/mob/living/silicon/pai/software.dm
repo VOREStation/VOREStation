@@ -34,8 +34,8 @@ var/global/list/default_pai_software = list()
 			default_pai_software[P.id] = P
 	return r
 
-/mob/living/silicon/pai/New()
-	..()
+/mob/living/silicon/pai/Initialize()
+	. = ..()
 	software = default_pai_software.Copy()
 
 /mob/living/silicon/pai/verb/paiInterface()
@@ -55,7 +55,7 @@ var/global/list/default_pai_software = list()
 
 /mob/living/silicon/pai/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	// Software we have bought
 	var/list/bought_software = list()
 	// Software we have not bought

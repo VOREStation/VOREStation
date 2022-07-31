@@ -26,8 +26,8 @@
 
 var/datum/report_topic_handler/report_topic_handler
 
-world/New()
-	..()
+world/Initialize()
+	. = ..()
 	report_topic_handler = new
 
 // add a new news datums
@@ -149,7 +149,7 @@ world/New()
 	for(var/datum/admin_report/N in reports)
 		if(N.ID == ID)
 			found = N
-	if(!found) 
+	if(!found)
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
 	found.done = 1
@@ -171,7 +171,7 @@ world/New()
 	for(var/datum/admin_report/N in reports)
 		if(N.ID == ID)
 			found = N
-	if(!found) 
+	if(!found)
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
 	var/body = tgui_input_text(src.mob, "Enter a body for the news", "Body", multiline = TRUE, prevent_enter = TRUE)

@@ -5,8 +5,8 @@ var/warrant_uid = 0
 /datum/data/record/warrant
 	var/warrant_id
 
-/datum/data/record/warrant/New()
-	..()
+/datum/data/record/warrant/Initialize()
+	. = ..()
 	warrant_id = warrant_uid++
 
 /datum/computer_file/program/digitalwarrant

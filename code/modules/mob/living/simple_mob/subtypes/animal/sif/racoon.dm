@@ -205,8 +205,8 @@
 	var/search_delay = 2 SECONDS	// How often can we look for item targets?
 	var/last_search = 0
 
-/datum/ai_holder/simple_mob/intentional/sakimm/New()
-	..()
+/datum/ai_holder/simple_mob/intentional/sakimm/Initialize()
+	. = ..()
 	original_home_distance = max_home_distance
 
 /datum/ai_holder/simple_mob/intentional/sakimm/post_melee_attack(atom/A)

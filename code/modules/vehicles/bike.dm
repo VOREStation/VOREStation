@@ -37,8 +37,8 @@
 	icon_state = "[bike_icon]_off"
 	update_icon()
 
-/obj/vehicle/bike/built/New()
-	..()
+/obj/vehicle/bike/built/Initialize()
+	. = ..()
 	qdel(cell)
 	cell = null
 

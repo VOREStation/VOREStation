@@ -23,8 +23,8 @@
 /datum/gear/fluff/collar //Use this as a base path for collars if you'd like to set tags in loadout. Make sure you don't use apostrophes in the display name or this breaks!
 	slot = slot_tie
 
-/datum/gear/fluff/collar/New()
-	..()
+/datum/gear/fluff/collar/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_collar_tag
 
 //  0-9 CKEYS

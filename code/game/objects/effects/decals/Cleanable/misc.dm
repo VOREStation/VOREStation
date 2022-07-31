@@ -24,8 +24,8 @@
 
 /obj/effect/decal/cleanable/greenglow
 
-/obj/effect/decal/cleanable/greenglow/New()
-	..()
+/obj/effect/decal/cleanable/greenglow/Initialize()
+	. = ..()
 	QDEL_IN(src, 2 MINUTES)
 
 /obj/effect/decal/cleanable/dirt

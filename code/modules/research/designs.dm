@@ -34,8 +34,8 @@ other types of metals and chemistry for reagents).
 	/// Optional string that interfaces can use as part of search filters. See- item/borg/upgrade/ai and the Exosuit Fabs.
 	var/search_metadata
 
-/datum/design/New()
-	..()
+/datum/design/Initialize()
+	. = ..()
 	if(!islist(category))
 		log_runtime(EXCEPTION("Warning: Design [type] defined a non-list category. Please fix this."))
 		category = list(category)

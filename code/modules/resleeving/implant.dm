@@ -68,8 +68,8 @@
 
 	var/db_key // To give to the baby implants
 
-/obj/item/backup_implanter/New()
-	..()
+/obj/item/backup_implanter/Initialize()
+	. = ..()
 	for(var/i = 1 to max_implants)
 		var/obj/item/implant/backup/imp = new(src, db_key)
 		imps |= imp
@@ -148,8 +148,8 @@
 	icon_state = "implant"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 
-/obj/item/storage/box/backup_kit/New()
-	..()
+/obj/item/storage/box/backup_kit/Initialize()
+	. = ..()
 	for(var/i = 1 to 7)
 		new /obj/item/implantcase/backup(src)
 	new /obj/item/implanter(src)

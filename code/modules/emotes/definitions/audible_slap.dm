@@ -8,8 +8,8 @@
 	check_restraints = TRUE
 	check_range = 1
 
-/decl/emote/audible/slap/New()
-	..()
+/decl/emote/audible/slap/Initialize()
+	. = ..()
 	emote_message_1p_target = SPAN_DANGER(emote_message_1p_target)
 	emote_message_1p =        SPAN_DANGER(emote_message_1p)
 	emote_message_3p_target = SPAN_DANGER(emote_message_3p_target)

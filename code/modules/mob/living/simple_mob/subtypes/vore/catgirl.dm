@@ -35,8 +35,8 @@
 		"catgirlbrown"
 	)
 
-/mob/living/simple_mob/vore/catgirl/New()
-	..()
+/mob/living/simple_mob/vore/catgirl/Initialize()
+	. = ..()
 	if(random_skin)
 		icon_living = pick(skins)
 		icon_rest = "[icon_living]asleep"

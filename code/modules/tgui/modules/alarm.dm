@@ -4,13 +4,13 @@
 	var/list_cameras = 0						// Whether or not to list camera references. A future goal would be to merge this with the enginering/security camera console. Currently really only for AI-use.
 	var/list/datum/alarm_handler/alarm_handlers // The particular list of alarm handlers this alarm monitor should present to the user.
 
-/datum/tgui_module/alarm_monitor/New()
-	..()
+/datum/tgui_module/alarm_monitor/Initialize()
+	. = ..()
 	alarm_handlers = list()
 
 /datum/tgui_module/alarm_monitor/all
-/datum/tgui_module/alarm_monitor/all/New()
-	..()
+/datum/tgui_module/alarm_monitor/all/Initialize()
+	. = ..()
 	alarm_handlers = SSalarm.all_handlers
 
 // Subtype for glasses_state
@@ -23,8 +23,8 @@
 	return GLOB.tgui_self_state
 
 /datum/tgui_module/alarm_monitor/engineering
-/datum/tgui_module/alarm_monitor/engineering/New()
-	..()
+/datum/tgui_module/alarm_monitor/engineering/Initialize()
+	. = ..()
 	alarm_handlers = list(atmosphere_alarm, fire_alarm, power_alarm)
 
 // Subtype for glasses_state
@@ -42,8 +42,8 @@
 	ntos = TRUE
 
 /datum/tgui_module/alarm_monitor/security
-/datum/tgui_module/alarm_monitor/security/New()
-	..()
+/datum/tgui_module/alarm_monitor/security/Initialize()
+	. = ..()
 	alarm_handlers = list(camera_alarm, motion_alarm)
 
 // Subtype for glasses_state
@@ -99,7 +99,7 @@
 /datum/tgui_module/alarm_monitor/tgui_act(action, params)
 	if(..())
 		return TRUE
-	
+
 	// Camera stuff is AI only.
 	// If you're not an AI, this is a read-only UI.
 	if(!isAI(usr))

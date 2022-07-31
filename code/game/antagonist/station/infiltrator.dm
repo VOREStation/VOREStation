@@ -15,8 +15,8 @@ var/datum/antagonist/traitor/infiltrator/infiltrators
 	flags = ANTAG_SUSPICIOUS | ANTAG_RANDSPAWN | ANTAG_VOTABLE
 	can_speak_aooc = TRUE
 
-/datum/antagonist/traitor/infiltrator/New()
-	..()
+/datum/antagonist/traitor/infiltrator/Initialize()
+	. = ..()
 	infiltrators = src
 
 /datum/antagonist/traitor/infiltrator/equip(var/mob/living/carbon/human/traitor_mob)

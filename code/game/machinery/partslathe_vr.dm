@@ -43,8 +43,8 @@
 	// type -> /datum/category_item/partslathe/
 	var/static/list/partslathe_recipies
 
-/obj/machinery/partslathe/New()
-	..()
+/obj/machinery/partslathe/Initialize()
+	. = ..()
 	default_apply_parts()
 	update_icon()
 	update_recipe_list()

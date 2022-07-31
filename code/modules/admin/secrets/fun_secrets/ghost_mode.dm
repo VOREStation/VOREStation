@@ -2,8 +2,8 @@
 	name = "Ghost Mode"
 	var/list/affected_mobs
 
-/datum/admin_secret_item/fun_secret/ghost_mode/New()
-	..()
+/datum/admin_secret_item/fun_secret/ghost_mode/Initialize()
+	. = ..()
 	affected_mobs = list()
 
 /datum/admin_secret_item/fun_secret/ghost_mode/execute(var/mob/user)

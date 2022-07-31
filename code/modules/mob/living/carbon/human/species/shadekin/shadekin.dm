@@ -111,8 +111,8 @@
 	var/energy_light = 0.25
 	var/energy_dark = 0.75
 
-/datum/species/shadekin/New()
-	..()
+/datum/species/shadekin/Initialize()
+	. = ..()
 	for(var/power in shadekin_abilities)
 		var/datum/power/shadekin/SKP = new power(src)
 		shadekin_ability_datums.Add(SKP)

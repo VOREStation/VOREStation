@@ -1,4 +1,4 @@
-// /decl is a subtype used for singletons that should never have more than one instance 
+// /decl is a subtype used for singletons that should never have more than one instance
 // in existence at a time. If you want to use a /decl you should use a pattern like:
 //     var/decl/somedecl/mydecl = GET_DECL(/decl/somedecl)
 
@@ -21,8 +21,8 @@ var/repository/decls/decls_repository // Initialiozed in /datum/global_init/New(
 	var/list/fetched_decl_types
 	var/list/fetched_decl_subtypes
 
-/repository/decls/New()
-	..()
+/repository/decls/Initialize()
+	. = ..()
 	fetched_decls = list()
 	fetched_decl_types = list()
 	fetched_decl_subtypes = list()

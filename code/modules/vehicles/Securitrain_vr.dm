@@ -59,8 +59,8 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/train/security/engine/New()
-	..()
+/obj/vehicle/train/security/engine/Initialize()
+	. = ..()
 	cell = new /obj/item/cell/high(src)
 	key = new key_type(src)
 	var/image/I = new(icon = 'icons/obj/vehicles.dmi', icon_state = "cargo_engine_overlay", layer = src.layer + 0.2) //over mobs

@@ -38,8 +38,8 @@ var/datum/antagonist/cultist/cult
 	var/list/sacrificed = list()
 	var/list/harvested = list()
 
-/datum/antagonist/cultist/New()
-	..()
+/datum/antagonist/cultist/Initialize()
+	. = ..()
 	cult = src
 
 /datum/antagonist/cultist/create_global_objectives()

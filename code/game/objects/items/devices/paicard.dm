@@ -43,8 +43,8 @@ GLOBAL_LIST_BOILERPLATE(all_pai_cards, /obj/item/paicard)
 	if(istype(rig))
 		rig.forced_move(direction, user)
 
-/obj/item/paicard/New()
-	..()
+/obj/item/paicard/Initialize()
+	. = ..()
 	add_overlay("pai-off")
 
 /obj/item/paicard/Destroy()

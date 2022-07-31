@@ -23,8 +23,8 @@
 	icon_state = "large"
 	anchored = TRUE
 
-/obj/effect/meteor_falling/New()
-	..()
+/obj/effect/meteor_falling/Initialize()
+	. = ..()
 	SpinAnimation()
 	meteor_fall()
 
@@ -76,8 +76,8 @@
 	density = TRUE
 	climbable = TRUE
 
-/obj/structure/meteorite/New()
-	..()
+/obj/structure/meteorite/Initialize()
+	. = ..()
 	icon = turn(icon, 90)
 	switch(rand(1,100))
 		if(1 to 60)

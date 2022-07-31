@@ -31,8 +31,8 @@ var/datum/antagonist/trader/traders
 	var/mob/living/carbon/human/M = ..()
 	if(istype(M)) M.age = rand(25,45)
 
-/datum/antagonist/trader/New()
-	..()
+/datum/antagonist/trader/Initialize()
+	. = ..()
 	traders = src
 
 /datum/antagonist/trader/greet(var/datum/mind/player)

@@ -5,8 +5,8 @@
 	display_name = "labcoat, colorable"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
 
-/datum/gear/suit/labcoat_colorable/New()
-	..()
+/datum/gear/suit/labcoat_colorable/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/labcoat_old
@@ -24,8 +24,8 @@
 	cost = 2
 
 
-/datum/gear/suit/roles/labcoat_old/New()
-	..()
+/datum/gear/suit/roles/labcoat_old/Initialize()
+	. = ..()
 	var/list/labcoats = list(
 	"Oldschool Scientist's Labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/old/tox,
 	"Oldschool Virologist's Labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/old/vir,
@@ -37,8 +37,8 @@
 	display_name = "jacket, modular"
 	path = /obj/item/clothing/suit/storage/fluff/jacket
 
-/datum/gear/suit/jacket_modular/New()
-	..()
+/datum/gear/suit/jacket_modular/Initialize()
+	. = ..()
 	var/list/the_jackets = list()
 	for(var/the_jacket in typesof(/obj/item/clothing/suit/storage/fluff/jacket))
 		var/obj/item/clothing/suit/jacket_type = the_jacket
@@ -60,8 +60,8 @@
 	path = /obj/item/clothing/suit/storage/det_trench/alt
 	allowed_roles = list("Head of Security", "Detective")
 
-/datum/gear/suit/detective_alt/New()
-	..()
+/datum/gear/suit/detective_alt/Initialize()
+	. = ..()
 	var/list/coats = list(
 		"Modern coat (tan)" = /obj/item/clothing/suit/storage/det_trench/alt,
 		"Modern coat (long, tan)" = /obj/item/clothing/suit/storage/det_trench/alt2,
@@ -98,8 +98,8 @@
 	display_name = "oversized t-shirt (colorable)"
 	path = /obj/item/clothing/suit/oversize
 
-/datum/gear/suit/oversize/New()
-	..()
+/datum/gear/suit/oversize/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /*

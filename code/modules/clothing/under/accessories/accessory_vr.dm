@@ -18,8 +18,8 @@
 		)
 
 //Forces different sprite sheet on equip
-/obj/item/clothing/accessory/choker/New()
-	..()
+/obj/item/clothing/accessory/choker/Initialize()
+	. = ..()
 	icon_previous_override = icon_override
 
 /obj/item/clothing/accessory/choker/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.
@@ -68,8 +68,8 @@
 	)
 
 //Forces different sprite sheet on equip
-/obj/item/clothing/accessory/collar/New()
-	..()
+/obj/item/clothing/accessory/collar/Initialize()
+	. = ..()
 	icon_previous_override = icon_override
 
 /obj/item/clothing/accessory/collar/equipped() //Solution for race-specific sprites for an accessory which is also a suit. Suit icons break if you don't use icon override which then also overrides race-specific sprites.

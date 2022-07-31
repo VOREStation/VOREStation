@@ -51,8 +51,8 @@
 		jets.toggle()
 	return 1
 
-/obj/item/rig_module/maneuvering_jets/New()
-	..()
+/obj/item/rig_module/maneuvering_jets/Initialize()
+	. = ..()
 	jets = new(src)
 
 /obj/item/rig_module/maneuvering_jets/installed()

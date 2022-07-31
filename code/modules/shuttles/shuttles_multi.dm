@@ -22,8 +22,8 @@
 	var/return_warning = 0
 	var/legit = FALSE
 
-/datum/shuttle/autodock/multi/New()
-	..()
+/datum/shuttle/autodock/multi/Initialize()
+	. = ..()
 	start_location = current_location
 	last_location = current_location
 

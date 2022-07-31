@@ -2,8 +2,8 @@
 	var/name = ""
 	var/list/datum/uplink_item/items
 
-/datum/uplink_category/New()
-	..()
+/datum/uplink_category/Initialize()
+	. = ..()
 	items = list()
 
 /datum/uplink_category/ammunition

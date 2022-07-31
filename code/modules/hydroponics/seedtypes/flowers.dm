@@ -6,8 +6,8 @@
 	kitchen_tag = "harebell"
 	chems = list("nutriment" = list(1,20))
 
-/datum/seed/flower/New()
-	..()
+/datum/seed/flower/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,7)
 	set_trait(TRAIT_PRODUCTION,1)
 	set_trait(TRAIT_YIELD,2)
@@ -24,8 +24,8 @@
 	kitchen_tag = "poppy"
 	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
 
-/datum/seed/flower/poppy/New()
-	..()
+/datum/seed/flower/poppy/Initialize()
+	. = ..()
 	set_trait(TRAIT_POTENCY,20)
 	set_trait(TRAIT_MATURATION,8)
 	set_trait(TRAIT_PRODUCTION,6)
@@ -43,8 +43,8 @@
 	display_name = "sunflowers"
 	kitchen_tag = "sunflower"
 
-/datum/seed/flower/sunflower/New()
-	..()
+/datum/seed/flower/sunflower/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,6)
 	set_trait(TRAIT_PRODUCT_ICON,"flower2")
 	set_trait(TRAIT_PRODUCT_COLOUR,"#FFF700")
@@ -60,8 +60,8 @@
 	kitchen_tag = "lavender"
 	chems = list("nutriment" = list(1,20), "bicaridine" = list(1,10))
 
-/datum/seed/flower/lavender/New()
-	..()
+/datum/seed/flower/lavender/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,7)
 	set_trait(TRAIT_PRODUCTION,5)
 	set_trait(TRAIT_YIELD,5)
@@ -81,8 +81,8 @@
 	mutants = list("bloodrose")
 	chems = list("nutriment" = list(1,5), "stoxin" = list(0,2))
 
-/datum/seed/flower/rose/New()
-	..()
+/datum/seed/flower/rose/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,7)
 	set_trait(TRAIT_PRODUCTION,5)
 	set_trait(TRAIT_YIELD,3)
@@ -101,8 +101,8 @@
 	mutants = null
 	chems = list("nutriment" = list(1,5), "stoxin" = list(1,5), "blood" = list(0,2))
 
-/datum/seed/flower/rose/blood/New()
-	..()
+/datum/seed/flower/rose/blood/Initialize()
+	. = ..()
 	set_trait(TRAIT_IDEAL_LIGHT, 1)
 	set_trait(TRAIT_PLANT_COLOUR,"#5e0303")
 	set_trait(TRAIT_CARNIVOROUS,1)

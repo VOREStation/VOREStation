@@ -134,8 +134,8 @@
 
 	glow_toggle = !glow_toggle
 
-/mob/living/simple_mob/vore/leopardmander/exotic/New()
-	..()
+/mob/living/simple_mob/vore/leopardmander/exotic/Initialize()
+	. = ..()
 	verbs |= /mob/living/simple_mob/vore/leopardmander/exotic/proc/toggle_glow
 
 /mob/living/simple_mob/vore/leopardmander/exotic/init_vore()

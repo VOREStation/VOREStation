@@ -7,8 +7,8 @@
 	time_to_live = 300
 	pass_flags = PASSTABLE | PASSGRILLE | PASSGLASS //PASSGLASS is fine here, it's just so the visual effect can "flow" around glass
 
-/obj/effect/vfx/smoke/chem/New()
-	..()
+/obj/effect/vfx/smoke/chem/Initialize()
+	. = ..()
 	create_reagents(500)
 	return
 
@@ -42,8 +42,8 @@
 	show_log = 0
 	smoke_type = /obj/effect/vfx/smoke/chem/transparent
 
-/datum/effect_system/smoke_spread/chem/New()
-	..()
+/datum/effect_system/smoke_spread/chem/Initialize()
+	. = ..()
 	chemholder = new/obj()
 	chemholder.create_reagents(500)
 

@@ -73,8 +73,8 @@ var/global/list/default_medbay_channels = list(
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/radio/New()
-	..()
+/obj/item/radio/Initialize()
+	. = ..()
 	wires = new(src)
 	internal_channels = default_internal_channels.Copy()
 	listening_objects += src

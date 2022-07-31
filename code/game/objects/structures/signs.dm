@@ -128,8 +128,8 @@
 	name = "\improper WARNING"
 	icon_state = "securearea"
 
-/obj/structure/sign/warning/New()
-	..()
+/obj/structure/sign/warning/Initialize()
+	. = ..()
 	desc = "A warning sign which reads '[name]'."
 
 /obj/structure/sign/warning/airlock
@@ -185,8 +185,8 @@
 	name = "\improper LETHAL TURRETS"
 	icon_state = "turrets"
 
-/obj/structure/sign/warning/lethal_turrets/New()
-	..()
+/obj/structure/sign/warning/lethal_turrets/Initialize()
+	. = ..()
 	desc += " Enter at own risk!."
 
 /obj/structure/sign/warning/mail_delivery
@@ -337,8 +337,8 @@
 //disabled this proc, it serves no purpose except to overwrite the description that already exists. may have been intended for making your own signs?
 //seems to defeat the point of having a generic directional sign that mappers could edit and use in POIs? left it here in case something breaks.
 /*
-/obj/structure/sign/directions/New()
-	..()
+/obj/structure/sign/directions/Initialize()
+	. = ..()
 	desc = "A direction sign, pointing out the way to \the [src]."
 */
 

@@ -24,8 +24,8 @@
 /datum/gear/utility/implant/generic/third
 	display_name = "implant, generic, tertiary"
 
-/datum/gear/utility/implant/generic/New()
-	..()
+/datum/gear/utility/implant/generic/Initialize()
+	. = ..()
 	gear_tweaks += global.gear_tweak_implant_location
 
 /datum/gear/utility/implant/language

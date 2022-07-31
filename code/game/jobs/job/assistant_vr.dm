@@ -74,8 +74,8 @@
 	title_blurb = "An assistant helps out wherever they might be needed. They have no authority, but can volunteer to help if help is needed."
 	title_outfit = /decl/hierarchy/outfit/job/service/server
 
-/datum/job/intern/New()
-	..()
+/datum/job/intern/Initialize()
+	. = ..()
 	if(config)
 		total_positions = config.limit_interns
 		spawn_positions = config.limit_interns
@@ -98,8 +98,8 @@
 	timeoff_factor = 0
 	alt_titles = list("Guest" = /datum/alt_title/guest, "Traveler" = /datum/alt_title/traveler)
 
-/datum/job/assistant/New()
-	..()
+/datum/job/assistant/Initialize()
+	. = ..()
 	if(config)
 		total_positions = config.limit_visitors
 		spawn_positions = config.limit_visitors

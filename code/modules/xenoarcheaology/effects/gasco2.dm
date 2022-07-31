@@ -3,8 +3,8 @@
 
 	effect_color = "#a5a5a5"
 
-/datum/artifact_effect/gasco2/New()
-	..()
+/datum/artifact_effect/gasco2/Initialize()
+	. = ..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
 	effect_type = pick(EFFECT_BLUESPACE, EFFECT_SYNTH)
 

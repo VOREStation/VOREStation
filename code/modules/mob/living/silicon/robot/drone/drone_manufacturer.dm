@@ -34,8 +34,8 @@
 	fabricator_tag = "Upper Level Mining"
 	drone_type = /mob/living/silicon/robot/drone/mining
 
-/obj/machinery/drone_fabricator/New()
-	..()
+/obj/machinery/drone_fabricator/Initialize()
+	. = ..()
 
 /obj/machinery/drone_fabricator/power_change()
 	..()

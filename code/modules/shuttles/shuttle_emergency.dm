@@ -2,8 +2,8 @@
 /datum/shuttle/autodock/ferry/emergency
 	category = /datum/shuttle/autodock/ferry/emergency
 
-/datum/shuttle/autodock/ferry/emergency/New()
-	..()
+/datum/shuttle/autodock/ferry/emergency/Initialize()
+	. = ..()
 	if(emergency_shuttle.shuttle)
 		CRASH("An emergency shuttle has already been defined.")
 	emergency_shuttle.shuttle = src

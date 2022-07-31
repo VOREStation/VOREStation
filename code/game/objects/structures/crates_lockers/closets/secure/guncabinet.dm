@@ -54,8 +54,8 @@
 	name = "expedition weaponry cabinet"
 	req_one_access = list(access_explorer,access_armory)
 
-/obj/structure/closet/secure_closet/guncabinet/excursion/New()
-	..()
+/obj/structure/closet/secure_closet/guncabinet/excursion/Initialize()
+	. = ..()
 	for(var/i = 1 to 2)
 		new /obj/item/gun/energy/locked/frontier(src)
 	for(var/i = 1 to 2)

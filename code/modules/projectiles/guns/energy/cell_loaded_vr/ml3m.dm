@@ -50,8 +50,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded/medical,/obj/item/ammo_magazine/cell_mag/medical,/obj/item/ammo_casing/microbattery/medical)
 
-/obj/item/storage/secure/briefcase/ml3m_pack_med/New()
-	..()
+/obj/item/storage/secure/briefcase/ml3m_pack_med/Initialize()
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/medical(src)
 	new /obj/item/ammo_magazine/cell_mag/medical(src)
 	new /obj/item/ammo_casing/microbattery/medical/brute(src)
@@ -66,8 +66,8 @@
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/gun/projectile/cell_loaded/medical,/obj/item/ammo_magazine/cell_mag/medical,/obj/item/ammo_casing/microbattery/medical)
 
-/obj/item/storage/secure/briefcase/ml3m_pack_cmo/New()
-	..()
+/obj/item/storage/secure/briefcase/ml3m_pack_cmo/Initialize()
+	. = ..()
 	new /obj/item/gun/projectile/cell_loaded/medical/cmo(src)
 	new /obj/item/ammo_magazine/cell_mag/medical(src)
 	new /obj/item/ammo_casing/microbattery/medical/brute(src)

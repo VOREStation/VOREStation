@@ -100,8 +100,8 @@
 	name = "Ivy's Courier"
 	desc = "A bag resembling something used by college students. Contains items for ''MooMoo''."
 
-/obj/item/storage/backpack/messenger/sec/fluff/ivymoomoo/New()
-	..()
+/obj/item/storage/backpack/messenger/sec/fluff/ivymoomoo/Initialize()
+	. = ..()
 	new /obj/item/clothing/head/beretg(src)
 	new /obj/item/fluff/id_kit_ivy(src)
 	new /obj/item/storage/fancy/cigarettes/dromedaryco(src)
@@ -139,8 +139,8 @@
 	item_state = "duffle_med"
 	slowdown = 0
 
-/obj/item/storage/backpack/dufflebag/sec/fluff/joanrisu/New()
-	..()
+/obj/item/storage/backpack/dufflebag/sec/fluff/joanrisu/Initialize()
+	. = ..()
 	new /obj/item/clothing/accessory/holster/hip(src)
 	new /obj/item/clothing/suit/storage/fluff/modernfedcoat(src)
 	new /obj/item/clothing/head/caphat/formal/fedcover(src)
@@ -156,8 +156,8 @@
 	desc = "A duffle bag Katarina uses to carry her tools."
 	slowdown = 0
 
-/obj/item/storage/backpack/dufflebag/sec/fluff/katarina/New()
-	..()
+/obj/item/storage/backpack/dufflebag/sec/fluff/katarina/Initialize()
+	. = ..()
 	new /obj/item/clothing/accessory/holster/hip(src)
 	new /obj/item/clothing/suit/storage/fluff/fedcoat(src)
 	new /obj/item/clothing/suit/armor/det_suit(src)

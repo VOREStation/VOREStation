@@ -6,8 +6,8 @@
 	var/list/datum/category_group/categories         // List of initialized categories
 	var/list/datum/category_group/categories_by_name // Associative list of initialized categories, keyed by name
 
-/datum/category_collection/New()
-	..()
+/datum/category_collection/Initialize()
+	. = ..()
 	categories = new()
 	categories_by_name = new()
 	for(var/category_type in typesof(category_group_type))

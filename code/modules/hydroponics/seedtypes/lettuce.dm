@@ -6,8 +6,8 @@
 	kitchen_tag = "lettuce"
 	chems = list("nutriment" = list(1,15))
 
-/datum/seed/lettuce/New()
-	..()
+/datum/seed/lettuce/Initialize()
+	. = ..()
 	set_trait(TRAIT_HARVEST_REPEAT,1)
 	set_trait(TRAIT_MATURATION,4)
 	set_trait(TRAIT_PRODUCTION,5)
@@ -28,7 +28,7 @@
 	kitchen_tag = "icelettuce"
 	chems = list("nutriment" = list(1,5), "paracetamol" = list(0,2))
 
-/datum/seed/lettuce/ice/New()
-	..()
+/datum/seed/lettuce/ice/Initialize()
+	. = ..()
 	set_trait(TRAIT_ALTER_TEMP, -5)
 	set_trait(TRAIT_PRODUCT_COLOUR,"#9ABCC9")

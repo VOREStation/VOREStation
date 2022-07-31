@@ -3,8 +3,8 @@
 
 	effect_color = "#c2d3d8"
 
-/datum/artifact_effect/gasnitro/New()
-	..()
+/datum/artifact_effect/gasnitro/Initialize()
+	. = ..()
 	effect = pick(EFFECT_TOUCH, EFFECT_AURA)
 	effect_type = pick(EFFECT_BLUESPACE, EFFECT_SYNTH)
 

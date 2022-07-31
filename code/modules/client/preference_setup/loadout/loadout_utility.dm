@@ -18,8 +18,8 @@
 	path = /obj/item/communicator
 	cost = 0
 
-/datum/gear/utility/communicator/New()
-	..()
+/datum/gear/utility/communicator/Initialize()
+	. = ..()
 	var/list/communicators = list()
 	for(var/obj/item/communicator_type as anything in typesof(/obj/item/communicator) - list(/obj/item/communicator/integrated,/obj/item/communicator/commlink)) //VOREStation Edit - Remove Commlink
 		communicators[initial(communicator_type.name)] = communicator_type
@@ -102,8 +102,8 @@
 	display_name = "flashlight, small (selection)"
 	path = /obj/item/flashlight/color
 
-/datum/gear/utility/flashlight/color/New()
-	..()
+/datum/gear/utility/flashlight/color/Initialize()
+	. = ..()
 	var/list/flashlights = list(
 	"Blue Flashlight" = /obj/item/flashlight/color,
 	"Red Flashlight" = /obj/item/flashlight/color/red,
@@ -127,8 +127,8 @@
 	path = /obj/item/melee/umbrella
 	cost = 3
 
-/datum/gear/utility/umbrella/New()
-	..()
+/datum/gear/utility/umbrella/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/utility/wheelchair
@@ -136,8 +136,8 @@
 	path = /obj/item/wheelchair
 	cost = 4
 
-/datum/gear/utility/wheelchair/New()
-	..()
+/datum/gear/utility/wheelchair/Initialize()
+	. = ..()
 	gear_tweaks += gear_tweak_free_color_choice
 	var/list/wheelchairs = list(
 		"wheelchair" = /obj/item/wheelchair,
@@ -167,8 +167,8 @@ modular computers
 	path = /obj/item/modular_computer/tablet
 	cost = 4
 
-/datum/gear/utility/customtablet/New()
-	..()
+/datum/gear/utility/customtablet/Initialize()
+	. = ..()
 	gear_tweaks += new /datum/gear_tweak/tablet()
 
 /datum/gear/utility/cheaplaptop
@@ -186,6 +186,6 @@ modular computers
 	path = /obj/item/modular_computer/laptop/preset/
 	cost = 6 //VOREStation Edit
 
-/datum/gear/utility/customlaptop/New()
-	..()
+/datum/gear/utility/customlaptop/Initialize()
+	. = ..()
 	gear_tweaks += new /datum/gear_tweak/laptop()

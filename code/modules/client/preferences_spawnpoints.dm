@@ -41,24 +41,24 @@ var/list/spawntypes = list()
 	display_name = "Arrivals Shuttle"
 	msg = "will arrive to the station shortly by shuttle"
 
-/datum/spawnpoint/arrivals/New()
-	..()
+/datum/spawnpoint/arrivals/Initialize()
+	. = ..()
 	turfs = latejoin
 
 /datum/spawnpoint/gateway
 	display_name = "Gateway"
 	msg = "has completed translation from offsite gateway"
 
-/datum/spawnpoint/gateway/New()
-	..()
+/datum/spawnpoint/gateway/Initialize()
+	. = ..()
 	turfs = latejoin_gateway
 /* VOREStation Edit
 /datum/spawnpoint/elevator
 	display_name = "Elevator"
 	msg = "has arrived from the residential district"
 
-/datum/spawnpoint/elevator/New()
-	..()
+/datum/spawnpoint/elevator/Initialize()
+	. = ..()
 	turfs = latejoin_elevator
 */
 /datum/spawnpoint/cryo
@@ -66,8 +66,8 @@ var/list/spawntypes = list()
 	msg = "has completed cryogenic revival"
 	allowed_mob_types = JOB_CARBON
 
-/datum/spawnpoint/cryo/New()
-	..()
+/datum/spawnpoint/cryo/Initialize()
+	. = ..()
 	turfs = latejoin_cryo
 
 /datum/spawnpoint/cyborg
@@ -75,8 +75,8 @@ var/list/spawntypes = list()
 	msg = "has been activated from storage"
 	allowed_mob_types = JOB_SILICON
 
-/datum/spawnpoint/cyborg/New()
-	..()
+/datum/spawnpoint/cyborg/Initialize()
+	. = ..()
 	turfs = latejoin_cyborg
 
 /obj/effect/landmark/arrivals
@@ -101,6 +101,6 @@ var/global/list/latejoin_tram   = list()
 	display_name = "Tram Station"
 	msg = "will arrive to the station shortly by shuttle"
 
-/datum/spawnpoint/tram/New()
-	..()
+/datum/spawnpoint/tram/Initialize()
+	. = ..()
 	turfs = latejoin_tram

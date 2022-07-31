@@ -39,8 +39,8 @@
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/trinary/atmos_filter/New()
-	..()
+/obj/machinery/atmospherics/trinary/atmos_filter/Initialize()
+	. = ..()
 	switch(filter_type)
 		if(0) //removing hydrocarbons
 			filtered_out = list("phoron")
@@ -157,7 +157,7 @@
 
 	// user << browse("<HEAD><TITLE>[src.name] control</TITLE></HEAD><TT>[dat]</TT>", "window=atmos_filter")
 	// onclose(user, "atmos_filter")
-	
+
 
 
 /obj/machinery/atmospherics/trinary/atmos_filter/tgui_interact(mob/user, datum/tgui/ui)

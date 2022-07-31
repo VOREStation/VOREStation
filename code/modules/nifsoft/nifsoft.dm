@@ -293,8 +293,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_sec"
 
-/obj/item/storage/box/nifsofts_security/New()
-	..()
+/obj/item/storage/box/nifsofts_security/Initialize()
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/security(src)
 
@@ -319,8 +319,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_eng"
 
-/obj/item/storage/box/nifsofts_engineering/New()
-	..()
+/obj/item/storage/box/nifsofts_engineering/Initialize()
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/engineering(src)
 
@@ -344,8 +344,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_med"
 
-/obj/item/storage/box/nifsofts_medical/New()
-	..()
+/obj/item/storage/box/nifsofts_medical/Initialize()
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/medical(src)
 
@@ -373,8 +373,8 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_mining"
 
-/obj/item/storage/box/nifsofts_mining/New()
-	..()
+/obj/item/storage/box/nifsofts_mining/Initialize()
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/mining(src)
 
@@ -402,7 +402,7 @@
 	icon = 'icons/obj/boxes.dmi'
 	icon_state = "nifsoft_kit_pilot"
 
-/obj/item/storage/box/nifsofts_pilot/New()
-	..()
+/obj/item/storage/box/nifsofts_pilot/Initialize()
+	. = ..()
 	for(var/i = 0 to 7)
 		new /obj/item/disk/nifsoft/pilot(src)

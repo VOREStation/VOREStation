@@ -105,8 +105,8 @@
 
 	var/monochromatic = FALSE //IGNORE ME
 
-/datum/species/protean/New()
-	..()
+/datum/species/protean/Initialize()
+	. = ..()
 	if(!LAZYLEN(abilities))
 		var/list/powertypes = subtypesof(/obj/effect/protean_ability)
 		for(var/path in powertypes)

@@ -5,8 +5,8 @@
 	kitchen_tag = "mtear"
 	chems = list("honey" = list(1,10), "kelotane" = list(3,5))
 
-/datum/seed/mtear/New()
-	..()
+/datum/seed/mtear/Initialize()
+	. = ..()
 	set_trait(TRAIT_MATURATION,3)
 	set_trait(TRAIT_PRODUCTION,5)
 	set_trait(TRAIT_YIELD,4)
