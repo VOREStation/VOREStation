@@ -18,6 +18,8 @@
 	if(can_flee)
 		if(special_flee_check())
 			return TRUE
+		if(isbelly(holder.loc))	//VOREStation Add - Don't flee while you're in a tummy, silly
+			return FALSE		//VOREStation Add
 		if(!hostile && !retaliate)
 			return TRUE // We're not hostile and someone attacked us first.
 		if(flee_when_dying && (holder.health / holder.getMaxHealth()) <= dying_threshold)
