@@ -342,17 +342,24 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 
-//zodiacshadow: ?
+//zodiacshadow: Nehi Maximus
 /obj/item/device/radio/headset/fluff/zodiacshadow
 	name = "Nehi's 'phones"
 	desc = "A pair of old-fashioned purple headphones for listening to music that also double as an NT-approved headset; they connect nicely to any standard PDA. One side is engraved with the letters NEHI, the other having an elaborate inscription of the words \"My voice is my weapon of choice\" in a fancy font. A modern polymer allows switching between modes to either allow one to hear one's surroundings or to completely block them out."
 
 	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "headphones"
+	icon_state = "nehiphones"
 
-	icon_override = 'icons/vore/custom_items_vr.dmi'
-	item_state = "headphones_mob"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "nehiphones"
 
+//zodiacshadow: Nehi Maximus
+/obj/item/clothing/accessory/medal/silver/fluff/zodiacshadow
+	name = "Health Service Achievement medal"
+	desc = "A small silver medal with the inscription \"For going above and beyond in the field.\" on it, along with the name Nehi Maximus."
+
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "silver"
 
 // OrbisA: Richard D'angelo
 /obj/item/weapon/melee/fluff/holochain

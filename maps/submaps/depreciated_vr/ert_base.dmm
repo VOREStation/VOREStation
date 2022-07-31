@@ -456,16 +456,16 @@
 /obj/item/weapon/gun/energy/sniperrifle{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
-/obj/item/weapon/gun/energy/gun/martin{
+/obj/item/weapon/gun/energy/gun/compact{
 	battery_lock = 0
 	},
 /obj/item/weapon/cell/device/weapon,

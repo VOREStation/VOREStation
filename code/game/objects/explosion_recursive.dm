@@ -6,16 +6,6 @@
 /obj
 	var/explosion_resistance
 
-<<<<<<< HEAD
-
-
-var/list/explosion_turfs = list()
-
-var/explosion_in_progress = 0
-
-
-=======
->>>>>>> 1d8141bda3d... Merge pull request #8645 from Verkister/patch-91
 /proc/explosion_rec(turf/epicenter, power)
 	var/list/explosion_turfs = list()
 	var/explosion_in_progress = 0

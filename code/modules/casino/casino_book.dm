@@ -5,7 +5,6 @@
 //
 //Casino Manual - NEEDS EDITING
 //
-
 /obj/item/weapon/book/manual/casino
 	name = "A dummy guide to losing your thalers"
 	icon = 'icons/obj/casino.dmi'

@@ -812,8 +812,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	standing.alpha = alpha
 	standing.color = color
 	standing.layer = layer2use
-	if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
-		standing.filters += filter(type = "alpha", icon = clip_mask)
 
 	if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
 		standing.filters += filter(type = "alpha", icon = clip_mask)
@@ -992,4 +990,7 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 // this gets called when the item gets chucked by the vending machine
 /obj/item/proc/vendor_action(var/obj/machinery/vending/V)
+	return
+
+/obj/item/proc/on_holder_escape(var/obj/item/weapon/holder/H)
 	return

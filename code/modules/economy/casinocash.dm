@@ -112,7 +112,7 @@
 	return worth
 
 /obj/item/weapon/spacecasinocash/attack_self()
-	var/amount = input(usr, "How much credits worth of chips do you want to take? (0 to [src.worth])", "Take chips", 20) as num
+	var/amount = tgui_input_number(usr, "How much credits worth of chips do you want to take? (0 to [src.worth])", "Take chips", 20)
 	if(!src || QDELETED(src))
 		return
 	amount = round(CLAMP(amount, 0, src.worth))

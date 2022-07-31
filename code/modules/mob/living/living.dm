@@ -32,13 +32,34 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
+	//VOREStation Addition Start
+	if(tf_mob_holder && tf_mob_holder.loc == src)
+		tf_mob_holder.ckey = ckey
+		if(isbelly(loc))
+			tf_mob_holder.loc = loc
+			tf_mob_holder.forceMove(loc)
+		else
+			var/turf/get_dat_turf = get_turf(src)
+			tf_mob_holder.loc = get_dat_turf
+			tf_mob_holder.forceMove(get_dat_turf)
+		QDEL_LIST_NULL(tf_mob_holder.vore_organs)
+		tf_mob_holder.vore_organs = list()
+		for(var/obj/belly/B as anything in vore_organs)
+			B.loc = tf_mob_holder
+			B.forceMove(tf_mob_holder)
+			B.owner = tf_mob_holder
+			tf_mob_holder.vore_organs |= B
+			vore_organs -= B
+
+	if(tf_mob_holder)
+		tf_mob_holder = null
+	//VOREStation Addition End
 
 	qdel(selected_image)
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
 	temp_language_sources = null //VOREStation Add
 	temp_languages = null //VOREStation Add
-
 
 	if(LAZYLEN(organs))
 		organs_by_name.Cut()
@@ -179,6 +200,13 @@
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 
+	//VOREStation Additon Start
+	if(tf_mob_holder && tf_mob_holder.loc == src)
+		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		dmgmultiplier *= amount
+		tf_mob_holder.adjustBruteLoss(dmgmultiplier)
+	//VOREStation Additon End
+
 	bruteloss = min(max(bruteloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
@@ -252,7 +280,12 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
-
+	//VOREStation Additon Start
+	if(tf_mob_holder && tf_mob_holder.loc == src)
+		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		dmgmultiplier *= amount
+		tf_mob_holder.adjustFireLoss(dmgmultiplier)
+	//VOREStation Additon End
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 

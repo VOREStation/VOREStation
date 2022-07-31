@@ -529,6 +529,11 @@
 	fancy_shuttle_tag = "tram"
 	},
 /obj/structure/closet/walllocker/medical/east,
+/obj/item/stack/medical/crude_pack,
+/obj/item/stack/medical/crude_pack,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/ointment,
+/obj/item/stack/medical/splint,
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -826,7 +831,9 @@
 /obj/effect/floor_decal/fancy_shuttle{
 	fancy_shuttle_tag = "tram"
 	},
-/obj/structure/closet/walllocker/medical/west,
+/obj/machinery/vending/wallmed1/public{
+	pixel_x = -28
+	},
 /turf/simulated/floor/tiled,
 /area/shuttle/escape{
 	base_turf = /turf/simulated/floor/tiled/techfloor/grid
@@ -1124,8 +1131,8 @@
 /area/centcom/specops)
 "dv" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled/dark,
@@ -1888,7 +1895,7 @@
 /obj/machinery/vending/cigarette{
 	name = "hacked cigarette machine";
 	prices = list();
-	products = list(/obj/item/weapon/storage/fancy/cigarettes = 10, /obj/item/weapon/storage/box/matches = 10, /obj/item/weapon/flame/lighter/zippo = 4, /obj/item/clothing/mask/smokable/cigarette/cigar/havana = 2)
+	products = list(/obj/item/weapon/storage/fancy/cigarettes=10,/obj/item/weapon/storage/box/matches=10,/obj/item/weapon/flame/lighter/zippo=4,/obj/item/clothing/mask/smokable/cigarette/cigar/havana=2)
 	},
 /turf/simulated/floor/wood,
 /area/centcom/specops)
@@ -2258,8 +2265,8 @@
 /area/centcom/control)
 "hq" = (
 /obj/structure/table/rack,
-/obj/item/weapon/gun/energy/gun/martin,
-/obj/item/weapon/gun/energy/gun/martin,
+/obj/item/weapon/gun/energy/gun/compact,
+/obj/item/weapon/gun/energy/gun/compact,
 /obj/item/device/flash,
 /obj/item/device/flash,
 /turf/simulated/floor/tiled{

@@ -285,6 +285,11 @@
 	suit_sprites = 'icons/mob/taursuits_slug.dmi'
 	icon_sprite_tag = "slug"
 
+/datum/sprite_accessory/tail/taur/slug/snail
+	name = "Snail (Taur)"
+	icon_state = "slug_s"
+	extra_overlay = "snail_shell_marking"
+
 /datum/sprite_accessory/tail/taur/frog
 	name = "Frog (Taur)"
 	icon_state = "frog_s"

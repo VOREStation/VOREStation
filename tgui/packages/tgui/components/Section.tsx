@@ -11,7 +11,7 @@ import { BoxProps, computeBoxClassName, computeBoxProps } from './Box';
 
 interface SectionProps extends BoxProps {
   className?: string;
-  title?: string;
+  title?: string | InfernoElement<string>;
   buttons?: InfernoNode;
   fill?: boolean;
   fitted?: boolean;
@@ -40,7 +40,11 @@ export class Section extends Component<SectionProps> {
       addScrollableNode(this.scrollableRef.current);
     }
     if (this.props.autoFocus) {
-      setTimeout(() => this.scrollableRef.current.focus(), 1);
+      setTimeout(() => {
+        if (this.scrollableRef.current) {
+          return this.scrollableRef.current.focus();
+        }
+      }, 1);
     }
   }
 
@@ -80,21 +84,19 @@ export class Section extends Component<SectionProps> {
         {...computeBoxProps(rest)}>
         {hasTitle && (
           <div className="Section__title">
-            <span className="Section__titleText">
-              {title}
-            </span>
-            <div className="Section__buttons">
-              {buttons}
-            </div>
+            <span className="Section__titleText">{title}</span>
+            <div className="Section__buttons">{buttons}</div>
           </div>
         )}
         <div className="Section__rest">
           {/* Vorestation Edit Start */}
-          <div ref={this.scrollableRef} className={classes([
-            "Section__content",
-            !!stretchContents && "Section__content--stretchContents",
-            !!noTopPadding && "Section__content--noTopPadding",
-          ])}>
+          <div
+            ref={this.scrollableRef}
+            className={classes([
+              'Section__content',
+              !!stretchContents && 'Section__content--stretchContents',
+              !!noTopPadding && 'Section__content--noTopPadding',
+            ])}>
             {children}
           </div>
           {/* Vorestation Edit End */}

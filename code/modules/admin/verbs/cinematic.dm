@@ -12,7 +12,7 @@
 		if("explosion")
 			if(tgui_alert(usr, "The game will be over. Are you really sure?", "Confirmation", list("Continue","Cancel")) == "Cancel")
 				return
-			var/parameter = input(src,"station_missed = ?","Enter Parameter",0) as num
+			var/parameter = tgui_input_number(src,"station_missed = ?","Enter Parameter",0,1,0)
 			var/override
 			switch(parameter)
 				if(1)

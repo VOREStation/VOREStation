@@ -127,7 +127,7 @@ world/New()
 	if(M.client)
 		CID = M.client.computer_id
 
-	var/body = input(src.mob, "Describe in detail what you're reporting [M] for", "Report") as null|text
+	var/body = tgui_input_text(src.mob, "Describe in detail what you're reporting [M] for", "Report")
 	if(!body) return
 
 
@@ -174,7 +174,7 @@ world/New()
 	if(!found) 
 		to_chat(src, "<b>* An error occured, sorry.</b>")
 
-	var/body = input(src.mob, "Enter a body for the news", "Body") as null|message
+	var/body = tgui_input_text(src.mob, "Enter a body for the news", "Body", multiline = TRUE, prevent_enter = TRUE)
 	if(!body) return
 
 	found.body = body

@@ -163,4 +163,4 @@
 	desc = "A handmade blindfold that covers the eyes, preventing sight."
 
 /obj/item/clothing/accessory/collar/craftable/attack_self(mob/living/user as mob)
-	given_name = sanitizeSafe(input(usr, "What would you like to label the collar?", "Collar Labelling", null)  as text, MAX_NAME_LEN)
+	given_name = sanitizeSafe(tgui_input_text(usr, "What would you like to label the collar?", "Collar Labelling", null, MAX_NAME_LEN), MAX_NAME_LEN)

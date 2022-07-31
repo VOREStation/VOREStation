@@ -10172,9 +10172,15 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "apL" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "apM" = (
@@ -10184,18 +10190,28 @@
 	req_one_access = list()
 	},
 /obj/machinery/door/firedoor,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "apN" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/evastorage)
 "apO" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/structure/cable/green{
 	d1 = 1;
 	d2 = 2;
 	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 4
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/evastorage)
@@ -10703,6 +10719,9 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
+/obj/machinery/atmospherics/unary/vent_scrubber/on{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
 "aqM" = (
@@ -10710,6 +10729,9 @@
 /obj/item/device/retail_scanner/security,
 /obj/item/device/radio{
 	pixel_x = -4
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 4
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/warden)
@@ -11238,6 +11260,8 @@
 /obj/effect/floor_decal/corner/red/border{
 	dir = 8
 	},
+/obj/item/clothing/shoes/magboots,
+/obj/item/clothing/shoes/magboots,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/evastorage)
 "arK" = (
@@ -32894,6 +32918,15 @@
 /obj/structure/table/rack,
 /turf/simulated/floor/plating,
 /area/maintenance/lower/south)
+"dea" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/security/evastorage)
 "dio" = (
 /obj/structure/closet/crate,
 /obj/random/maintenance/clean,
@@ -32974,6 +33007,15 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"dXC" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/warden)
 "dXJ" = (
 /obj/structure/railing,
 /obj/structure/railing{
@@ -33764,6 +33806,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/rnd)
+"lGN" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/warden)
 "lJc" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -34972,6 +35023,12 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai)
+"wEf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 9
+	},
+/turf/simulated/floor/tiled/dark,
+/area/tether/surfacebase/security/warden)
 "wIA" = (
 /obj/structure/cable/cyan,
 /obj/machinery/power/apc{
@@ -44152,8 +44209,8 @@ alo
 amr
 anq
 aox
-apL
-apL
+dXC
+wEf
 arH
 asH
 ann
@@ -44294,7 +44351,7 @@ alp
 ams
 ano
 aoy
-apL
+lGN
 aqN
 arI
 asI
@@ -44578,7 +44635,7 @@ alr
 amu
 anr
 aoz
-apN
+dea
 aqO
 arJ
 asJ

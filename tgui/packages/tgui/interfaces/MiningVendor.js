@@ -1,7 +1,7 @@
 import { createSearch } from 'common/string';
-import { useBackend, useLocalState } from "../backend";
+import { useBackend, useLocalState } from '../backend';
 import { Box, Button, Collapsible, Dropdown, Flex, Input, Section } from '../components';
-import { Window } from "../layouts";
+import { Window } from '../layouts';
 import { refocusLayout } from '../layouts';
 import { MiningUser } from './common/Mining';
 
@@ -23,28 +23,14 @@ export const MiningVendor = (props, context) => {
   );
 };
 
-
 const MiningVendorItems = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    has_id,
-    id,
-    items,
-  } = data;
+  const { has_id, id, items } = data;
   // Search thingies
-  const [
-    searchText,
-    _setSearchText,
-  ] = useLocalState(context, 'search', '');
-  const [
-    sortOrder,
-    _setSortOrder,
-  ] = useLocalState(context, 'sort', 'Alphabetical');
-  const [
-    descending,
-    _setDescending,
-  ] = useLocalState(context, 'descending', false);
-  const searcher = createSearch(searchText, item => {
+  const [searchText, _setSearchText] = useLocalState(context, 'search', '');
+  const [sortOrder, _setSortOrder] = useLocalState(context, 'sort', 'Alphabetical');
+  const [descending, _setDescending] = useLocalState(context, 'descending', false);
+  const searcher = createSearch(searchText, (item) => {
     return item[0];
   });
 
@@ -52,7 +38,7 @@ const MiningVendorItems = (props, context) => {
   let contents = Object.entries(items).map((kv, _i) => {
     let items_in_cat = Object.entries(kv[1])
       .filter(searcher)
-      .map(kv2 => {
+      .map((kv2) => {
         kv2[1].affordable = has_id && id.points >= kv2[1].price;
         return kv2[1];
       })
@@ -65,50 +51,26 @@ const MiningVendorItems = (props, context) => {
     }
 
     has_contents = true;
-    return (
-      <MiningVendorItemsCategory
-        key={kv[0]}
-        title={kv[0]}
-        items={items_in_cat}
-      />
-    );
+    return <MiningVendorItemsCategory key={kv[0]} title={kv[0]} items={items_in_cat} />;
   });
   return (
     <Flex.Item grow="1" overflow="auto">
-      <Section onClick={e => refocusLayout()}>
-        {has_contents
-          ? contents : (
-            <Box color="label">
-              No items matching your criteria was found!
-            </Box>
-          )}
+      <Section onClick={(e) => refocusLayout()}>
+        {has_contents ? contents : <Box color="label">No items matching your criteria was found!</Box>}
       </Section>
     </Flex.Item>
   );
 };
 
 const MiningVendorSearch = (props, context) => {
-  const [
-    _searchText,
-    setSearchText,
-  ] = useLocalState(context, 'search', '');
-  const [
-    _sortOrder,
-    setSortOrder,
-  ] = useLocalState(context, 'sort', '');
-  const [
-    descending,
-    setDescending,
-  ] = useLocalState(context, 'descending', false);
+  const [_searchText, setSearchText] = useLocalState(context, 'search', '');
+  const [_sortOrder, setSortOrder] = useLocalState(context, 'sort', '');
+  const [descending, setDescending] = useLocalState(context, 'descending', false);
   return (
     <Box mb="0.5rem">
       <Flex width="100%">
         <Flex.Item grow="1" mr="0.5rem">
-          <Input
-            placeholder="Search by item name.."
-            width="100%"
-            onInput={(_e, value) => setSearchText(value)}
-          />
+          <Input placeholder="Search by item name.." width="100%" onInput={(_e, value) => setSearchText(value)} />
         </Flex.Item>
         <Flex.Item basis="30%">
           <Dropdown
@@ -116,13 +78,14 @@ const MiningVendorSearch = (props, context) => {
             options={Object.keys(sortTypes)}
             width="100%"
             lineHeight="19px"
-            onSelected={v => setSortOrder(v)} />
+            onSelected={(v) => setSortOrder(v)}
+          />
         </Flex.Item>
         <Flex.Item>
           <Button
-            icon={descending ? "arrow-down" : "arrow-up"}
+            icon={descending ? 'arrow-down' : 'arrow-up'}
             height="19px"
-            tooltip={descending ? "Descending order" : "Ascending order"}
+            tooltip={descending ? 'Descending order' : 'Ascending order'}
             tooltipPosition="bottom-end"
             ml="0.5rem"
             onClick={() => setDescending(!descending)}
@@ -135,14 +98,10 @@ const MiningVendorSearch = (props, context) => {
 
 const MiningVendorItemsCategory = (properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    title,
-    items,
-    ...rest
-  } = properties;
+  const { title, items, ...rest } = properties;
   return (
     <Collapsible open title={title} {...rest}>
-      {items.map(item => (
+      {items.map((item) => (
         <Box key={item.name}>
           <Box
             display="inline-block"
@@ -161,14 +120,16 @@ const MiningVendorItemsCategory = (properties, context) => {
             style={{
               float: 'right',
             }}
-            onClick={() => act('purchase', {
-              cat: title,
-              name: item.name,
-            })}
+            onClick={() =>
+              act('purchase', {
+                cat: title,
+                name: item.name,
+              })
+            }
           />
           <Box
             style={{
-              clear: "both",
+              clear: 'both',
             }}
           />
         </Box>

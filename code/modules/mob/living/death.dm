@@ -17,6 +17,10 @@
 		//VOREStation Edit End
 		nest = null
 
+	if(isbelly(loc) && tf_mob_holder)
+		mind?.vore_death = TRUE
+		tf_mob_holder.mind?.vore_death = TRUE
+
 	for(var/datum/soul_link/S as anything in owned_soul_links)
 		S.owner_died(gibbed)
 	for(var/datum/soul_link/S as anything in shared_soul_links)

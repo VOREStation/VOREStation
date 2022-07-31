@@ -7,6 +7,7 @@
 	var/shortname
 	var/max_space = 20//Maximum sum of w-classes of foods in this container at once
 	var/max_reagents = 80//Maximum units of reagents
+	var/food_items = 0 // Used for icon updates
 	flags = OPENCONTAINER | NOREACT
 	var/list/insertable = list(
 		/obj/item/weapon/reagent_containers/food/snacks,
@@ -59,6 +60,8 @@
 				return
 			I.forceMove(src)
 			to_chat(user, "<span class='notice'>You put the [I] into the [src].</span>")
+			food_items += 1
+			update_icon()
 			return
 
 /obj/item/weapon/reagent_containers/cooking_container/verb/empty()
@@ -102,6 +105,8 @@
 
 /obj/item/weapon/reagent_containers/cooking_container/AltClick(var/mob/user)
 	do_empty(user)
+	food_items = 0
+	update_icon()
 
 //Deletes contents of container.
 //Used when food is burned, before replacing it with a burned mess
@@ -158,6 +163,22 @@
 			if (weights[I])
 				holder.trans_to(I, weights[I] / total)
 
+/obj/item/weapon/reagent_containers/cooking_container/update_icon()
+	overlays.Cut()
+
+	if(food_items)
+		var/image/filling = image('icons/obj/cooking_machines.dmi', src, "[icon_state]10")
+
+		var/percent = round((food_items / max_space) * 100)
+		switch(percent)
+			if(0 to 2)	        filling.icon_state = "[icon_state]"
+			if(3 to 24)         filling.icon_state = "[icon_state]1"
+			if(25 to 49)        filling.icon_state = "[icon_state]2"
+			if(50 to 74)        filling.icon_state = "[icon_state]3"
+			if(75 to 79)        filling.icon_state = "[icon_state]4"
+			if(80 to INFINITY)  filling.icon_state = "[icon_state]5"
+
+		overlays += filling
 
 /obj/item/weapon/reagent_containers/cooking_container/oven
 	name = "oven dish"

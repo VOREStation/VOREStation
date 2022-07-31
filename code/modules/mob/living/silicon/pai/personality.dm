@@ -60,5 +60,6 @@
 	F["eyecolor"] >> src.eye_color
 	F["chassis"] >> src.chassis
 	F["emotion"] >> src.ouremotion
+	F["gender"] >> src.gender
 
 	return 1

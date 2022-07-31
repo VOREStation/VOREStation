@@ -28,7 +28,9 @@ var/list/preferences_datums = list()
 
 	var/tgui_fancy = TRUE
 	var/tgui_lock = FALSE
-	var/tgui_input_mode = FALSE			// Say, Me, Whisper, Subtle Input Mode; Disabled by default; FALSE = BYOND, TRUE = TGUI
+	var/tgui_input_mode = FALSE			// All the Input Boxes (Text,Number,List,Alert)
+	var/tgui_large_buttons = TRUE
+	var/tgui_swapped_buttons = FALSE
 
 	//character preferences
 	var/real_name						//our character's name

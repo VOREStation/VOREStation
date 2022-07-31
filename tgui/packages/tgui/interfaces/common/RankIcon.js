@@ -1,4 +1,4 @@
-import { Icon } from "../../components";
+import { Icon } from '../../components';
 
 const rank2icon = {
   // Command
@@ -101,18 +101,13 @@ const rank2icon = {
 };
 
 export const RankIcon = (props, context) => {
-  const {
-    rank,
-    color = 'label',
-  } = props;
+  const { rank, color = 'label' } = props;
 
   let rankObj = rank2icon[rank];
-  if (typeof rankObj === "string") {
+  if (typeof rankObj === 'string') {
     return <Icon inline color={color} name={rankObj} size={2} />;
   } else if (Array.isArray(rankObj)) {
-    return rankObj.map(icon => (
-      <Icon inline key={icon} color={color} name={icon} size={2} />
-    ));
+    return rankObj.map((icon) => <Icon inline key={icon} color={color} name={icon} size={2} />);
   } else {
     return <Icon inline color={color} name="user" size={2} />;
   }

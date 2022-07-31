@@ -40,6 +40,7 @@
 	size = 12
 	available_on_ntnet = 1
 	requires_ntnet = 1
+	category = PROG_MONITOR
 
 // ERT Variant of the program
 /datum/computer_file/program/camera_monitor/ert

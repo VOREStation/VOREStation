@@ -5,21 +5,12 @@ import { round } from 'common/math';
 
 export const PortableGenerator = (props, context) => {
   const { act, data } = useBackend(context);
-  const stack_percent = (data.fuel_stored / data.fuel_capacity);
-  const stackPercentState = (
-    stack_percent >= 0.5 && 'good'
-    || stack_percent > 0.15 && 'average'
-    || 'bad'
-  );
+  const stack_percent = data.fuel_stored / data.fuel_capacity;
+  const stackPercentState = (stack_percent >= 0.5 && 'good') || (stack_percent > 0.15 && 'average') || 'bad';
   return (
-    <Window
-      width={450}
-      height={340}
-      resizable>
+    <Window width={450} height={340} resizable>
       <Window.Content scrollable>
-        {!data.anchored && (
-          <NoticeBox>Generator not anchored.</NoticeBox>
-        )}
+        {!data.anchored && <NoticeBox>Generator not anchored.</NoticeBox>}
         <Section title="Status">
           <LabeledList>
             <LabeledList.Item label="Power switch">
@@ -33,15 +24,13 @@ export const PortableGenerator = (props, context) => {
             </LabeledList.Item>
             <LabeledList.Item
               label="Fuel Type"
-              buttons={data.fuel_stored >= 1 && (
-                <Button
-                  ml={1}
-                  icon="eject"
-                  disabled={data.active}
-                  onClick={() => act('eject')}>
-                  Eject
-                </Button>
-              )}>
+              buttons={
+                data.fuel_stored >= 1 && (
+                  <Button ml={1} icon="eject" disabled={data.active} onClick={() => act('eject')}>
+                    Eject
+                  </Button>
+                )
+              }>
               <Box color={stackPercentState}>
                 {data.fuel_stored}cm&sup3; {data.sheet_name}
               </Box>
@@ -57,14 +46,12 @@ export const PortableGenerator = (props, context) => {
                 {data.fuel_stored}cm&sup3; / {data.fuel_capacity}cm&sup3;
               </ProgressBar>
             </LabeledList.Item>
-            <LabeledList.Item label="Fuel Usage">
-              {data.fuel_usage} cm&sup3;/s
-            </LabeledList.Item>
+            <LabeledList.Item label="Fuel Usage">{data.fuel_usage} cm&sup3;/s</LabeledList.Item>
             <LabeledList.Item label="Temperature">
               <ProgressBar
                 value={data.temperature_current}
                 maxValue={data.temperature_max + 30}
-                color={data.temperature_overheat ? "bad" : "good"}>
+                color={data.temperature_overheat ? 'bad' : 'good'}>
                 {round(data.temperature_current)}&deg;C
               </ProgressBar>
             </LabeledList.Item>
@@ -72,26 +59,20 @@ export const PortableGenerator = (props, context) => {
         </Section>
         <Section title="Output">
           <LabeledList>
-            <LabeledList.Item
-              label="Current output"
-              color={data.unsafe_output ? "bad" : null}>
+            <LabeledList.Item label="Current output" color={data.unsafe_output ? 'bad' : null}>
               {data.power_output}
             </LabeledList.Item>
             <LabeledList.Item label="Adjust output">
-              <Button
-                icon="minus"
-                onClick={() => act('lower_power')}>
+              <Button icon="minus" onClick={() => act('lower_power')}>
                 {data.power_generated}
               </Button>
-              <Button
-                icon="plus"
-                onClick={() => act('higher_power')}>
+              <Button icon="plus" onClick={() => act('higher_power')}>
                 {data.power_generated}
               </Button>
             </LabeledList.Item>
             <LabeledList.Item label="Power available">
               <Box inline color={!data.connected && 'bad'}>
-                {data.connected ? data.power_available : "Unconnected"}
+                {data.connected ? data.power_available : 'Unconnected'}
               </Box>
             </LabeledList.Item>
           </LabeledList>

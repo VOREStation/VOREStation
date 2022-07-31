@@ -9,6 +9,7 @@
 		"dbaeumer.vscode-eslint",
 		"editorconfig.editorconfig",
 		"donkie.vscode-tgstation-test-adapter",
-		"icrawl.discord-vscode"
+		"icrawl.discord-vscode",
+		"esbenp.prettier-vscode"
 	]
 }

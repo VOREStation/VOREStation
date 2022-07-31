@@ -96,13 +96,13 @@
 	switch(type_to_use)
 		if("string")
 			accepting_refs = 0
-			new_data = input(usr, "Now type in a string.","[src] string writing") as null|text
+			new_data = tgui_input_text(usr, "Now type in a string.","[src] string writing")
 			if(istext(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				O.data = new_data
 				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data(O.data)].</span>")
 		if("number")
 			accepting_refs = 0
-			new_data = input(usr, "Now type in a number.","[src] number writing") as null|num
+			new_data = tgui_input_number(usr, "Now type in a number.","[src] number writing")
 			if(isnum(new_data) && CanInteract(user, GLOB.tgui_physical_state))
 				O.data = new_data
 				to_chat(user, "<span class='notice'>You set \the [src]'s memory to [O.display_data(O.data)].</span>")

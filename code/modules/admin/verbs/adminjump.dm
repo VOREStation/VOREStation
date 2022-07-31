@@ -210,13 +210,13 @@
 
 	if(config.allow_admin_jump)
 		if(isnull(tx))
-			tx = input(usr, "Select X coordinate", "Move Atom", null, null) as null|num
+			tx = tgui_input_number(usr, "Select X coordinate", "Move Atom", null, null)
 			if(!tx) return
 		if(isnull(ty))
-			ty = input(usr, "Select Y coordinate", "Move Atom", null, null) as null|num
+			ty = tgui_input_number(usr, "Select Y coordinate", "Move Atom", null, null)
 			if(!ty) return
 		if(isnull(tz))
-			tz = input(usr, "Select Z coordinate", "Move Atom", null, null) as null|num
+			tz = tgui_input_number(usr, "Select Z coordinate", "Move Atom", null, null)
 			if(!tz) return
 		var/turf/T = locate(tx, ty, tz)
 		if(!T)

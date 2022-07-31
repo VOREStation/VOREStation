@@ -72,11 +72,11 @@
 /datum/nifsoft/soulcatcher/proc/notify_into(var/message)
 	var/sound = nif.good_sound
 
-	to_chat(nif.human,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
+	to_chat(nif.human,"<b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
 	nif.human << sound
 
 	for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
-		to_chat(CS,"<b>\[[bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
+		to_chat(CS,"<b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>Soulcatcher</b> displays, \"<span class='notice nif'>[message]</span>\"")
 		CS << sound
 
 /datum/nifsoft/soulcatcher/proc/say_into(var/message, var/mob/living/sender, var/mob/eyeobj)
@@ -88,9 +88,9 @@
 
 	//Not AR Projecting
 	else
-		to_chat(nif.human,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+		to_chat(nif.human,"<span class='game say nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
-			to_chat(CS,"<span class='game say nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
+			to_chat(CS,"<span class='game say nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> speaks, \"[message]\"</span>")
 
 	log_nsay(message,nif.human.real_name,sender)
 
@@ -103,9 +103,9 @@
 
 	//Not AR Projecting
 	else
-		to_chat(nif.human,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+		to_chat(nif.human,"<span class='emote nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 		for(var/mob/living/carbon/brain/caught_soul/CS as anything in brainmobs)
-			to_chat(CS,"<span class='emote nif'><b>\[[bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
+			to_chat(CS,"<span class='emote nif'><b>\[\icon[nif.big_icon][bicon(nif.big_icon)]NIF\]</b> <b>[sender_name]</b> [message]</span>")
 
 	log_nme(message,nif.human.real_name,sender)
 
@@ -125,10 +125,10 @@
 		switch(choice)
 
 			if("Design Inside")
-				var/new_flavor = input(nif.human, "Type what the prey sees after being 'caught'. This will be \
+				var/new_flavor = tgui_input_text(nif.human, "Type what the prey sees after being 'caught'. This will be \
 				printed after an intro ending with: \"Around you, you see...\" to the prey. If you already \
 				have prey, this will be printed to them after \"Your surroundings change to...\". Limit 2048 char.", \
-				"VR Environment", html_decode(inside_flavor)) as message
+				"VR Environment", html_decode(inside_flavor), MAX_MESSAGE_LEN*2, TRUE, prevent_enter = TRUE)
 				new_flavor = sanitize(new_flavor, MAX_MESSAGE_LEN*2)
 				inside_flavor = new_flavor
 				nif.notify("Updating VR environment...")
@@ -326,7 +326,7 @@
 /mob/living/carbon/brain/caught_soul/hear_say()
 	if(ext_deaf || !client)
 		return FALSE
-	..()
+	.=..()
 
 /mob/living/carbon/brain/caught_soul/show_message(msg, type, alt, alt_type)
 	if(ext_blind || !client)
@@ -494,7 +494,7 @@
 		to_chat(src,SPAN_WARNING("You need a loaded mind to use NSay."))
 		return
 	if(!message)
-		message = input(usr, "Type a message to say.","Speak into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.say_into(sane_message,src)
@@ -503,7 +503,7 @@
 	set name = "NMe"
 	set desc = "Emote into your NIF's Soulcatcher."
 	set category = "IC"
-	
+
 	src.nme_act(message)
 
 /mob/proc/nme_act(message as text|null)
@@ -525,7 +525,7 @@
 		return
 
 	if(!message)
-		message = input(usr, "Type an action to perform.","Emote into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		SC.emote_into(sane_message,src)
@@ -580,7 +580,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = input(usr, "Type a message to say.","Speak into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type a message to say.","Speak into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.say_into(sane_message,src,null)
@@ -591,7 +591,7 @@
 	set category = "Soulcatcher"
 
 	if(!message)
-		message = input(usr, "Type an action to perform.","Emote into Soulcatcher") as text|null
+		message = tgui_input_text(usr, "Type an action to perform.","Emote into Soulcatcher")
 	if(message)
 		var/sane_message = sanitize(message)
 		soulcatcher.emote_into(sane_message,src,null)

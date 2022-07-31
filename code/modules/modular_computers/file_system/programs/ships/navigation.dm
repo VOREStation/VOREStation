@@ -7,6 +7,6 @@
 	program_menu_icon = "pin-s"
 	extended_desc = "Displays a ship's location in the sector."
 	required_access = null
-	requires_ntnet = 1
+	requires_ntnet = TRUE
 	network_destination = "ship position sensors"
 	size = 4
