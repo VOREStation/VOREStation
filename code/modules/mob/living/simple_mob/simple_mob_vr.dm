@@ -51,12 +51,14 @@
 	var/obj/item/device/radio/headset/mob_headset/mob_radio		//Adminbus headset for simplemob shenanigans.
 	does_spin = FALSE
 	can_be_drop_pred = TRUE				// Mobs are pred by default.
+	var/damage_threshold  = 0 //For some mobs, they have a damage threshold required to deal damage to them.
 
 
 // Release belly contents before being gc'd!
 /mob/living/simple_mob/Destroy()
 	release_vore_contents()
-	prey_excludes.Cut()
+	if(prey_excludes)
+		prey_excludes.Cut()
 	return ..()
 
 //For all those ID-having mobs

@@ -17,11 +17,12 @@ var/warrant_uid = 0
 	program_icon_state = "warrant"
 	program_key_state = "security_key"
 	program_menu_icon = "star"
-	requires_ntnet = 1
-	available_on_ntnet = 1
+	requires_ntnet = TRUE
+	available_on_ntnet = TRUE
 	required_access = access_security
 	usage_flags = PROGRAM_ALL
 	tgui_id = "NtosDigitalWarrant"
+	category = PROG_SEC
 
 	var/datum/data/record/warrant/activewarrant
 

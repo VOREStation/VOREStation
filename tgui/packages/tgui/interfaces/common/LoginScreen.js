@@ -25,55 +25,47 @@ import { FullscreenNotice } from './FullscreenNotice';
  */
 export const LoginScreen = (_properties, context) => {
   const { act, data } = useBackend(context);
-  const {
-    scan,
-    isAI,
-    isRobot,
-  } = data;
+  const { scan, isAI, isRobot } = data;
   return (
     <FullscreenNotice title="Welcome">
       <Box fontSize="1.5rem" bold>
-        <Icon
-          name="user-circle"
-          verticalAlign="middle"
-          size={3}
-          mr="1rem"
-        />
+        <Icon name="user-circle" verticalAlign="middle" size={3} mr="1rem" />
         Guest
       </Box>
       <Box color="label" my="1rem">
         ID:
-        <Button
-          icon="id-card"
-          content={scan ? scan : "----------"}
-          ml="0.5rem"
-          onClick={() => act('scan')}
-        />
+        <Button icon="id-card" content={scan ? scan : '----------'} ml="0.5rem" onClick={() => act('scan')} />
       </Box>
       <Button
         icon="sign-in-alt"
         disabled={!scan}
         content="Login"
-        onClick={() => act('login', {
-          login_type: 1,
-        })}
+        onClick={() =>
+          act('login', {
+            login_type: 1,
+          })
+        }
       />
       {!!isAI && (
         <Button
           icon="sign-in-alt"
           content="Login as AI"
-          onClick={() => act('login', {
-            login_type: 2,
-          })}
+          onClick={() =>
+            act('login', {
+              login_type: 2,
+            })
+          }
         />
       )}
       {!!isRobot && (
         <Button
           icon="sign-in-alt"
           content="Login as Cyborg"
-          onClick={() => act('login', {
-            login_type: 3,
-          })}
+          onClick={() =>
+            act('login', {
+              login_type: 3,
+            })
+          }
         />
       )}
     </FullscreenNotice>

@@ -13,6 +13,8 @@
 
 	var/open_file
 	var/error
+	usage_flags = PROGRAM_ALL
+	category = PROG_UTIL
 
 /datum/computer_file/program/filemanager/tgui_act(action, list/params, datum/tgui/ui)
 	if(..())
@@ -63,7 +65,7 @@
 			var/oldtext = html_decode(F.stored_data)
 			oldtext = replacetext(oldtext, "\[br\]", "\n")
 
-			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
+			var/newtext = sanitize(replacetext(tgui_input_text(usr, "Editing file [open_file]. You may use most tags used in paper formatting:", "Text Editor", oldtext, MAX_TEXTFILE_LENGTH, TRUE, prevent_enter = TRUE), "\n", "\[br\]"), MAX_TEXTFILE_LENGTH)
 			if(!newtext)
 				return
 
@@ -151,7 +153,7 @@
 		data["error"] = error
 	if(!computer || !HDD)
 		data["error"] = "I/O ERROR: Unable to access hard drive."
-	
+
 	data["filedata"] = null
 	data["filename"] = null
 	data["files"] = list()

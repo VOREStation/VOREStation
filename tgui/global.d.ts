@@ -27,12 +27,11 @@ type TguiMessage = {
   [key: string]: any;
 };
 
-
 type ByondType = {
   /**
-    * ID of the Byond window this script is running on.
-    * Can be used as a parameter to winget/winset.
-    */
+   * ID of the Byond window this script is running on.
+   * Can be used as a parameter to winget/winset.
+   */
   windowId: string;
 
   /**
@@ -41,8 +40,8 @@ type ByondType = {
   IS_BYOND: boolean;
 
   /**
-    * Version of Trident engine of Internet Explorer. Null if N/A.
-    */
+   * Version of Trident engine of Internet Explorer. Null if N/A.
+   */
   TRIDENT: number | null;
 
   /**
@@ -145,20 +144,20 @@ type ByondType = {
   parseJson(text: string): any;
 
   /**
-    * Sends a message to `/datum/tgui_window` which hosts this window instance.
-    */
+   * Sends a message to `/datum/tgui_window` which hosts this window instance.
+   */
   sendMessage(type: string, payload?: any): void;
   sendMessage(message: TguiMessage): void;
 
   /**
-    * Subscribe to incoming messages that were sent from `/datum/tgui_window`.
-    */
+   * Subscribe to incoming messages that were sent from `/datum/tgui_window`.
+   */
   subscribe(listener: (type: string, payload: any) => void): void;
 
   /**
-    * Subscribe to incoming messages *of some specific type*
-    * that were sent from `/datum/tgui_window`.
-    */
+   * Subscribe to incoming messages *of some specific type*
+   * that were sent from `/datum/tgui_window`.
+   */
   subscribeTo(type: string, listener: (payload: any) => void): void;
 
   /**

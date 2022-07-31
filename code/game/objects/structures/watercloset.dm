@@ -123,7 +123,7 @@
 					GM.adjustBruteLoss(5)
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
-	
+
 
 /obj/structure/urinal
 	name = "urinal"
@@ -151,7 +151,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2550s by the Hygiene Division."
+	desc = "The HS-451. Installed in the 2250s by the Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE

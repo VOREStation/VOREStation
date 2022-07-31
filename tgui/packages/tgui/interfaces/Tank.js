@@ -17,23 +17,23 @@ export const Tank = (props, context) => {
   } = data;
 
   return (
-    <Window
-      width={400}
-      height={320}
-      resizable>
+    <Window width={400} height={320} resizable>
       <Window.Content>
-        <Section title="Status" buttons={!!showToggle && (
-          <Button
-            icon={connected ? "air-freshener" : "lock-open"}
-            selected={connected}
-            disabled={!maskConnected}
-            content="Mask Release Valve"
-            onClick={() => act("toggle")} />
-        )}>
+        <Section
+          title="Status"
+          buttons={
+            !!showToggle && (
+              <Button
+                icon={connected ? 'air-freshener' : 'lock-open'}
+                selected={connected}
+                disabled={!maskConnected}
+                content="Mask Release Valve"
+                onClick={() => act('toggle')}
+              />
+            )
+          }>
           <LabeledList>
-            <LabeledList.Item label="Mask Connected">
-              {maskConnected ? "Yes" : "No"}
-            </LabeledList.Item>
+            <LabeledList.Item label="Mask Connected">{maskConnected ? 'Yes' : 'No'}</LabeledList.Item>
           </LabeledList>
         </Section>
         <Section>
@@ -53,9 +53,12 @@ export const Tank = (props, context) => {
               <Button
                 icon="fast-backward"
                 disabled={releasePressure === minReleasePressure}
-                onClick={() => act('pressure', {
-                  pressure: 'min',
-                })} />
+                onClick={() =>
+                  act('pressure', {
+                    pressure: 'min',
+                  })
+                }
+              />
               <NumberInput
                 animated
                 value={parseFloat(releasePressure)}
@@ -63,22 +66,31 @@ export const Tank = (props, context) => {
                 unit="kPa"
                 minValue={minReleasePressure}
                 maxValue={maxReleasePressure}
-                onChange={(e, value) => act('pressure', {
-                  pressure: value,
-                })} />
+                onChange={(e, value) =>
+                  act('pressure', {
+                    pressure: value,
+                  })
+                }
+              />
               <Button
                 icon="fast-forward"
                 disabled={releasePressure === maxReleasePressure}
-                onClick={() => act('pressure', {
-                  pressure: 'max',
-                })} />
+                onClick={() =>
+                  act('pressure', {
+                    pressure: 'max',
+                  })
+                }
+              />
               <Button
                 icon="undo"
                 content=""
                 disabled={releasePressure === defaultReleasePressure}
-                onClick={() => act('pressure', {
-                  pressure: 'reset',
-                })} />
+                onClick={() =>
+                  act('pressure', {
+                    pressure: 'reset',
+                  })
+                }
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>

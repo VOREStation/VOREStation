@@ -316,7 +316,7 @@ GLOBAL_LIST_EMPTY(bicon_cache) // Cache of the <img> tag results, not the icons
 	if(use_class)
 		class = "class='icon [A.icon_state] [custom_classes]'"
 
-	return "<img [class] src='data:image/png;base64,[base64]'>"
+	return "<IMG [class] src='data:image/png;base64,[base64]'>"
 
 //Checks if the message content is a valid to_chat message
 /proc/is_valid_tochat_message(message)

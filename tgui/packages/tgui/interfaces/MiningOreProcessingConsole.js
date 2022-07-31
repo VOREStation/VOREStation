@@ -1,60 +1,48 @@
 import { toTitleCase } from 'common/string';
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
+import { useBackend } from '../backend';
 import { Box, Button, Dropdown, Section, LabeledList, AnimatedNumber } from '../components';
-import { Window } from "../layouts";
+import { Window } from '../layouts';
 import { MiningUser } from './common/Mining';
 
 export const MiningOreProcessingConsole = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    unclaimedPoints,
-    ores,
-    showAllOres,
-    power,
-    speed,
-  } = data;
+  const { unclaimedPoints, ores, showAllOres, power, speed } = data;
 
   return (
     <Window width={400} height={500} resizable>
       <Window.Content>
-        <MiningUser insertIdText={(
-          <Box>
-            <Button
-              icon="arrow-right"
-              mr={1}
-              onClick={() => act("insert")}>
-              Insert ID
-            </Button>
-            in order to claim points.
-          </Box>
-        )} />
-        <Section title="Status" buttons={
-          <Fragment>
-            <Button
-              icon="bolt"
-              selected={speed}
-              onClick={() => act("speed_toggle")}>
-              {speed ? "High-Speed Active" : "High-Speed Inactive"}
-            </Button>
-            <Button
-              icon="power-off"
-              selected={power}
-              onClick={() => act("power")}>
-              {power ? "Smelting" : "Not Smelting"}
-            </Button>
-          </Fragment>
-        }>
-          <LabeledList>
-            <LabeledList.Item label="Current unclaimed points" buttons={
-              <Button
-                disabled={unclaimedPoints < 1}
-                icon="download"
-                onClick={() => act("claim")}>
-                Claim
+        <MiningUser
+          insertIdText={
+            <Box>
+              <Button icon="arrow-right" mr={1} onClick={() => act('insert')}>
+                Insert ID
               </Button>
-            }>
+              in order to claim points.
+            </Box>
+          }
+        />
+        <Section
+          title="Status"
+          buttons={
+            <Fragment>
+              <Button icon="bolt" selected={speed} onClick={() => act('speed_toggle')}>
+                {speed ? 'High-Speed Active' : 'High-Speed Inactive'}
+              </Button>
+              <Button icon="power-off" selected={power} onClick={() => act('power')}>
+                {power ? 'Smelting' : 'Not Smelting'}
+              </Button>
+            </Fragment>
+          }>
+          <LabeledList>
+            <LabeledList.Item
+              label="Current unclaimed points"
+              buttons={
+                <Button disabled={unclaimedPoints < 1} icon="download" onClick={() => act('claim')}>
+                  Claim
+                </Button>
+              }>
               <AnimatedNumber value={unclaimedPoints} />
             </LabeledList.Item>
           </LabeledList>
@@ -66,31 +54,26 @@ export const MiningOreProcessingConsole = (props, context) => {
 };
 
 // ORDER IS IMPORTANT HERE.
-const processingOptions = [
-  "Not Processing",
-  "Smelting",
-  "Compressing",
-  "Alloying",
-];
+const processingOptions = ['Not Processing', 'Smelting', 'Compressing', 'Alloying'];
 
 // Higher in the list == closer to top
 // This is just kind of an arbitrary list to sort by because the machine has no predictable ore order in it's list
 // and alphabetizing them doesn't really make sense
 const oreOrder = [
-  "verdantium",
-  "mhydrogen",
-  "diamond",
-  "platinum",
-  "uranium",
-  "gold",
-  "silver",
-  "rutile",
-  "phoron",
-  "marble",
-  "lead",
-  "sand",
-  "carbon",
-  "hematite",
+  'verdantium',
+  'mhydrogen',
+  'diamond',
+  'platinum',
+  'uranium',
+  'gold',
+  'silver',
+  'rutile',
+  'phoron',
+  'marble',
+  'lead',
+  'sand',
+  'carbon',
+  'hematite',
 ];
 
 const oreSorter = (a, b) => {
@@ -105,43 +88,48 @@ const oreSorter = (a, b) => {
 
 const MOPCOres = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    ores,
-    showAllOres,
-    power,
-  } = data;
+  const { ores, showAllOres, power } = data;
   return (
-    <Section title="Ore Processing Controls" buttons={
-      <Button
-        icon={showAllOres ? "toggle-on" : "toggle-off"}
-        selected={showAllOres}
-        onClick={() => act("showAllOres")}>
-        {showAllOres ? "All Ores" : "Ores in Machine"}
-      </Button>
-    }>
+    <Section
+      title="Ore Processing Controls"
+      buttons={
+        <Button
+          icon={showAllOres ? 'toggle-on' : 'toggle-off'}
+          selected={showAllOres}
+          onClick={() => act('showAllOres')}>
+          {showAllOres ? 'All Ores' : 'Ores in Machine'}
+        </Button>
+      }>
       <LabeledList>
-        {ores.length && ores.sort(oreSorter).map(ore => (
-          <LabeledList.Item key={ore.ore} label={toTitleCase(ore.name)} buttons={
-            <Dropdown
-              width="120px"
-              color={
-                ore.processing === 0 && 'red'
-                || ore.processing === 1 && 'green'
-                || ore.processing === 2 && 'blue'
-                || ore.processing === 3 && 'yellow'
-              }
-              options={processingOptions}
-              selected={processingOptions[ore.processing]}
-              onSelected={val => act("toggleSmelting", {
-                ore: ore.ore,
-                set: processingOptions.indexOf(val),
-              })} />
-          }>
-            <Box inline>
-              <AnimatedNumber value={ore.amount} />
-            </Box>
-          </LabeledList.Item>
-        )) || (
+        {(ores.length &&
+          ores.sort(oreSorter).map((ore) => (
+            <LabeledList.Item
+              key={ore.ore}
+              label={toTitleCase(ore.name)}
+              buttons={
+                <Dropdown
+                  width="120px"
+                  color={
+                    (ore.processing === 0 && 'red') ||
+                    (ore.processing === 1 && 'green') ||
+                    (ore.processing === 2 && 'blue') ||
+                    (ore.processing === 3 && 'yellow')
+                  }
+                  options={processingOptions}
+                  selected={processingOptions[ore.processing]}
+                  onSelected={(val) =>
+                    act('toggleSmelting', {
+                      ore: ore.ore,
+                      set: processingOptions.indexOf(val),
+                    })
+                  }
+                />
+              }>
+              <Box inline>
+                <AnimatedNumber value={ore.amount} />
+              </Box>
+            </LabeledList.Item>
+          ))) || (
           <Box color="bad" textAlign="center">
             No ores in machine.
           </Box>

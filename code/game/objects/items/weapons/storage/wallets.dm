@@ -104,17 +104,10 @@
 	desc = "You can recolor it! Fancy! The future is NOW!"
 	icon_state = "wallet-white"
 
-<<<<<<< HEAD
-/obj/item/weapon/storage/wallet/poly/New()
-	..()
-	verbs |= /obj/item/weapon/storage/wallet/poly/proc/change_color
-	color = "#"+get_random_colour()
-=======
-/obj/item/storage/wallet/poly/Initialize()
+/obj/item/weapon/storage/wallet/poly/Initialize()
 	. = ..()
-	verbs |= /obj/item/storage/wallet/poly/proc/change_color
+	verbs |= /obj/item/weapon/storage/wallet/poly/proc/change_color
 	color = get_random_colour()
->>>>>>> a9c08ab5f5f... Merge pull request #8657 from MistakeNot4892/randcol
 	update_icon()
 
 /obj/item/weapon/storage/wallet/poly/proc/change_color()

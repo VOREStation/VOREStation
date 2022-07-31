@@ -60,6 +60,8 @@
 				hood.canremove = FALSE
 				icon_state = "[toggleicon]_t"
 				H.update_inv_wear_suit()
+				if(color != hood.color)
+					hood.color = color
 	else
 		RemoveHood()
 

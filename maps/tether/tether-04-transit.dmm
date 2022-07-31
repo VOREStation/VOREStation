@@ -419,6 +419,10 @@
 "Dz" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/tether_midpoint)
+"El" = (
+/obj/structure/closet/firecloset,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "Et" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -9356,7 +9360,7 @@ Dz
 iK
 pM
 pM
-pM
+El
 Dz
 oN
 yi

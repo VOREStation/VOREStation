@@ -147,11 +147,11 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 /datum/weather/virgo3c/clear
 	name = "clear"
 	transition_chances = list(
-		WEATHER_CLEAR = 60,
-		WEATHER_OVERCAST = 20,
-		WEATHER_LIGHT_SNOW = 1,
-		WEATHER_BLOODMOON = 1,
-		WEATHER_EMBERFALL = 0.5)
+		WEATHER_CLEAR = 120,
+		WEATHER_OVERCAST = 40,
+		WEATHER_LIGHT_SNOW = 2,
+		WEATHER_BLOOD_MOON = 2,
+		WEATHER_EMBERFALL = 1)
 	transition_messages = list(
 		"The sky clears up.",
 		"The sky is visible.",
@@ -294,7 +294,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	effect_message = "<span class='warning'>Rain falls on you, drenching you in water.</span>"
 
 	var/next_lightning_strike = 0 // world.time when lightning will strike.
-	var/min_lightning_cooldown = 1 SECONDS
+	var/min_lightning_cooldown = 1 MINUTE
 	var/max_lightning_cooldown = 5 MINUTE
 	observed_message = "An intense storm pours down over the region."
 	transition_messages = list(
@@ -410,7 +410,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 	temp_low = 273.15  // 0c
 	flight_failure_modifier = 25
 	transition_chances = list(
-		WEATHER_BLOODMOON = 25,
+		WEATHER_BLOOD_MOON = 25,
 		WEATHER_CLEAR = 75
 		)
 	observed_message = "Everything is red. Something really ominous is going on."
@@ -601,7 +601,7 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/asteroid_steel/outdoors)
 		/mob/living/simple_mob/vore/bigdragon/friendly = 1,
 		/mob/living/simple_mob/vore/alienanimals/dustjumper = 20
 		)
-	
+
 
 /turf/simulated/floor/outdoors/grass/forest/virgo3c/Initialize()
 	if(tree_chance && prob(tree_chance) && !check_density())

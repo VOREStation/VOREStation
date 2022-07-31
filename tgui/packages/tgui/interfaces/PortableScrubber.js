@@ -6,16 +6,10 @@ import { PortableBasicInfo } from './common/PortableAtmos';
 export const PortableScrubber = (props, context) => {
   const { act, data } = useBackend(context);
 
-  const {
-    rate,
-    minrate,
-    maxrate,
-  } = data;
+  const { rate, minrate, maxrate } = data;
 
   return (
-    <Window
-      width={320}
-      height={350}>
+    <Window width={320} height={350}>
       <Window.Content>
         <PortableBasicInfo />
         <Section title="Power Regulator">
@@ -28,7 +22,8 @@ export const PortableScrubber = (props, context) => {
                 maxValue={maxrate}
                 value={rate}
                 unit="L/s"
-                onChange={(e, val) => act("volume_adj", { vol: val })} />
+                onChange={(e, val) => act('volume_adj', { vol: val })}
+              />
             </LabeledList.Item>
           </LabeledList>
         </Section>

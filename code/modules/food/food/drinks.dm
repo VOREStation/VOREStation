@@ -23,18 +23,18 @@
 			price_tag = null
 	return
 
-/obj/item/weapon/reagent_containers/food/drinks/proc/On_Consume(var/mob/M)
-	if(!usr)
-		usr = M
-	if(!reagents.total_volume)
+/obj/item/weapon/reagent_containers/food/drinks/proc/On_Consume(var/mob/M, var/mob/user, var/changed = FALSE)
+	if(!user)
+		user = M
+	if(!reagents.total_volume && changed)
 		M.visible_message("<span class='notice'>[M] finishes drinking \the [src].</span>","<span class='notice'>You finish drinking \the [src].</span>")
 		if(trash)
-			usr.drop_from_inventory(src)	//so icons update :[
+			user.drop_from_inventory(src)	//so icons update :[
 			if(ispath(trash,/obj/item))
-				var/obj/item/TrashItem = new trash(usr)
-				usr.put_in_hands(TrashItem)
+				var/obj/item/TrashItem = new trash(user)
+				user.put_in_hands(TrashItem)
 			else if(istype(trash,/obj/item))
-				usr.put_in_hands(trash)
+				user.put_in_hands(trash)
 			qdel(src)
 	return
 
@@ -73,8 +73,11 @@
 	if(!is_open_container())
 		to_chat(user, "<span class='notice'>You need to open [src]!</span>")
 		return 1
-	On_Consume(target,user)
-	return ..()
+	var/original_volume = reagents.total_volume
+	.=..()
+	var/changed = !(reagents.total_volume == original_volume)
+	On_Consume(target,user,changed)
+	return
 
 /obj/item/weapon/reagent_containers/food/drinks/standard_dispenser_refill(var/mob/user, var/obj/structure/reagent_dispensers/target)
 	if(!is_open_container())

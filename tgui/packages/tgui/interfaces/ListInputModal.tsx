@@ -14,31 +14,12 @@ type ListInputData = {
   title: string;
 };
 
-export const ListInputModal = (_, context) => {
+export const ListInputModal = (props, context) => {
   const { act, data } = useBackend<ListInputData>(context);
-  const {
-    items = [],
-    message = "",
-    init_value,
-    large_buttons,
-    timeout,
-    title,
-  } = data;
-  const [selected, setSelected] = useLocalState<number>(
-    context,
-    'selected',
-    items.indexOf(init_value)
-  );
-  const [searchBarVisible, setSearchBarVisible] = useLocalState<boolean>(
-    context,
-    'searchBarVisible',
-    items.length > 9
-  );
-  const [searchQuery, setSearchQuery] = useLocalState<string>(
-    context,
-    'searchQuery',
-    ''
-  );
+  const { items = [], message = '', init_value, large_buttons, timeout, title } = data;
+  const [selected, setSelected] = useLocalState<number>(context, 'selected', items.indexOf(init_value));
+  const [searchBarVisible, setSearchBarVisible] = useLocalState<boolean>(context, 'searchBarVisible', items.length > 9);
+  const [searchQuery, setSearchQuery] = useLocalState<string>(context, 'searchQuery', '');
   // User presses up or down on keyboard
   // Simulates clicking an item
   const onArrowKey = (key: number) => {
@@ -99,12 +80,9 @@ export const ListInputModal = (_, context) => {
     setSearchBarVisible(!searchBarVisible);
     setSearchQuery('');
   };
-  const filteredItems = items.filter((item) =>
-    item?.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredItems = items.filter((item) => item?.toLowerCase().includes(searchQuery.toLowerCase()));
   // Dynamically changes the window height based on the message.
-  const windowHeight
-    = 325 + Math.ceil(message.length / 3) + (large_buttons ? 5 : 0);
+  const windowHeight = 325 + Math.ceil(message.length / 3) + (large_buttons ? 5 : 0);
   // Grabs the cursor when no search bar is visible.
   if (!searchBarVisible) {
     setTimeout(() => document!.getElementById(selected.toString())?.focus(), 1);
@@ -185,8 +163,7 @@ export const ListInputModal = (_, context) => {
  */
 const ListDisplay = (props, context) => {
   const { act } = useBackend<ListInputData>(context);
-  const { filteredItems, onClick, onFocusSearch, searchBarVisible, selected }
-    = props;
+  const { filteredItems, onClick, onFocusSearch, searchBarVisible, selected } = props;
 
   return (
     <Section fill scrollable tabIndex={0}>

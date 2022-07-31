@@ -116,12 +116,12 @@
 
 /datum/tgui_input_text/tgui_static_data(mob/user)
 	var/list/data = list()
-	data["large_buttons"] = usr.client.prefs.tgui_large_buttons
+	data["large_buttons"] = user.client.prefs.tgui_large_buttons
 	data["max_length"] = max_length
 	data["message"] = message
 	data["multiline"] = multiline
 	data["placeholder"] = default // Default is a reserved keyword
-	data["swapped_buttons"] = !usr.client.prefs.tgui_swapped_buttons
+	data["swapped_buttons"] = !user.client.prefs.tgui_swapped_buttons
 	data["title"] = title
 	data["prevent_enter"] = prevent_enter
 	return data
@@ -129,7 +129,7 @@
 /datum/tgui_input_text/tgui_data(mob/user)
 	var/list/data = list()
 	if(timeout)
-		.["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
+		data["timeout"] = clamp((timeout - (world.time - start_time) - 1 SECONDS) / (timeout - 1 SECONDS), 0, 1)
 	return data
 
 /datum/tgui_input_text/tgui_act(action, list/params)

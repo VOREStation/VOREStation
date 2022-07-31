@@ -113,11 +113,11 @@
 /datum/tgui_input_number/tgui_static_data(mob/user)
 	var/list/data = list()
 	data["init_value"] = default // Default is a reserved keyword
-	data["large_buttons"] = usr.client.prefs.tgui_large_buttons
+	data["large_buttons"] = user.client.prefs.tgui_large_buttons
 	data["max_value"] = max_value
 	data["message"] = message
 	data["min_value"] = min_value
-	data["swapped_buttons"] = !usr.client.prefs.tgui_swapped_buttons
+	data["swapped_buttons"] = !user.client.prefs.tgui_swapped_buttons
 	data["title"] = title
 	return data
 

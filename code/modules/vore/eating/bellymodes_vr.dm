@@ -106,7 +106,7 @@
 
 	if(emote_active)
 		var/list/EL = emote_lists[digest_mode]
-		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD]))) && next_emote <= world.time)
+		if((LAZYLEN(EL) || LAZYLEN(emote_lists[DM_HOLD_ABSORBED]) || (digest_mode == DM_DIGEST && LAZYLEN(emote_lists[DM_HOLD])) || (digest_mode == DM_SELECT && (LAZYLEN(emote_lists[DM_HOLD])||LAZYLEN(emote_lists[DM_DIGEST])||LAZYLEN(emote_lists[DM_ABSORB])) )) && next_emote <= world.time)
 			var/living_count = 0
 			var/absorbed_count = 0
 			for(var/mob/living/L in contents)
@@ -127,7 +127,14 @@
 					if(formatted_message)
 						to_chat(M, "<span class='notice'>[formatted_message]</span>")
 				else
-					if(digest_mode == DM_DIGEST && !M.digestable)
+					if (digest_mode == DM_SELECT)
+						if (M.digestable)
+							EL = emote_lists[DM_DIGEST]
+						else if (M.absorbable)
+							EL = emote_lists[DM_ABSORB]
+						else
+							EL = emote_lists[DM_HOLD]
+					else if(digest_mode == DM_DIGEST && !M.digestable)
 						EL = emote_lists[DM_HOLD]					// Use Hold's emote list if we're indigestible
 
 					var/raw_message = pick(EL)
@@ -283,6 +290,8 @@
 	if(M.ckey)
 		GLOB.prey_digested_roundstat++
 
+	var/personal_nutrition_modifier = M.get_digestion_nutrition_modifier()
+
 	if((mode_flags & DM_FLAG_LEAVEREMAINS) && M.digest_leave_remains)
 		handle_remains_leaving(M)
 	digestion_death(M)
@@ -290,9 +299,9 @@
 		owner.update_icons()
 	if(isrobot(owner))
 		var/mob/living/silicon/robot/R = owner
-		R.cell.charge += (nutrition_percent / 100) * compensation * 25
+		R.cell.charge += (nutrition_percent / 100) * compensation * 25 * personal_nutrition_modifier
 	else
-		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5)
+		owner.adjust_nutrition((nutrition_percent / 100) * compensation * 4.5 * personal_nutrition_modifier)
 
 /obj/belly/proc/steal_nutrition(mob/living/L)
 	if(L.nutrition >= 100)

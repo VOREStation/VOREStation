@@ -79,7 +79,8 @@ Run `.\bin\tgui.bat` with any of the options listed below.
 
 **Available commands:**
 
-- `bin/tgui` - Build the project in production mode.
+- `bin/tgui` - (Recommended build option) Build the project in production mode.
+- `bin/tgui --pretty` - Check/Prettify all files inside of the packages folder (Mainly Interfaces/Components). Build the project in production mode afterwards.
 - `bin/tgui --dev` - Launch a development server.
   - tgui development server provides you with incremental compilation,
   hot module replacement and logging facilities in all running instances
@@ -90,9 +91,9 @@ Run `.\bin\tgui.bat` with any of the options listed below.
   in the lobby. Start tgui dev server, and once it has finished building,
   press F5 on any tgui window. You'll know that it's hooked correctly if
   you see a green bug icon in titlebar and data gets dumped to the console.
-- `bin/tgui --dev --reload` - Reload byond cache once.
-- `bin/tgui --dev --debug` - Run server with debug logging enabled.
-- `bin/tgui --dev --no-hot` - Disable hot module replacement (helps when
+  - `bin/tgui --dev --reload` - Reload byond cache once.
+  - `bin/tgui --dev --debug` - Run server with debug logging enabled.
+  - `bin/tgui --dev --no-hot` - Disable hot module replacement (helps when
 doing development on IE8).
 - `bin/tgui --lint` - Show problems with the code.
 - `bin/tgui --fix` - Auto-fix problems with the code.
@@ -106,7 +107,8 @@ options.
 
 You can double-click these batch files to achieve the same thing:
 
-- `bin\tgui.bat` - Build the project in production mode.
+- `bin\tgui.bat` - (Recommended build option) Build the project in production mode.
+- `bin\tgui-prettybuild.bat` - Prettify all the files inside the packages folder. Build the project in production mode afterwards.
 - `bin\tgui-dev-server.bat` - Launch a development server.
 
 > Remember to always run a full build before submitting a PR. It creates
@@ -165,6 +167,23 @@ playground to test various tgui components.
 Press `F11` to toggle the *layout debugger*. It will show outlines of
 all tgui elements, which makes it easy to understand how everything comes
 together, and can reveal certain layout bugs which are not normally visible.
+
+## Browser Developer Tools
+
+To debug TGUI interfaces with browser-style developer tools, there exists a utility
+that Microsoft bundles with Windows to debug any Internet Explorer/Trident-using interface,
+which BYOND uses.
+
+This provides invaluable tools such as a local console, a DOM viewer, an interactive debugger, and more.
+
+The 64-bit version that we use is located at `%windir%\SysWOW64\F12\IEChooser.exe`.
+There's also a 32-bit one in `system32\`.
+
+Simply launch the application after you've opened a TGUI window, and choose the .html name.
+This is likely to be something like `tgui-window-1`. There's a refresh button in the top right.
+
+Unfortunately, it seems this program doesn't have a new target chooser if your window is fully closed
+so you'll need to restart it if it disconnects from the window.
 
 ## Project Structure
 

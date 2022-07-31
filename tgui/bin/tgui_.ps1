@@ -54,6 +54,14 @@ function task-bench {
   yarn tgui:bench @Args
 }
 
+function task-prettier {
+  yarn tgui:prettier @Args
+}
+
+function task-prettify {
+  yarn prettierx --write packages @Args
+}
+
 ## Run a linter through all packages
 function task-lint {
   yarn run tsc
@@ -130,6 +138,16 @@ if ($Args.Length -gt 0) {
     exit 0
   }
 
+  if ($Args[0] -eq "--pretty") {
+    $Rest = $Args | Select-Object -Skip 1
+    task-install
+    task-prettify
+    task-prettier
+    task-lint
+    task-webpack --mode=production
+    exit 0
+  }
+
   ## Analyze the bundle
   if ($Args[0] -eq "--analyze") {
     task-install
@@ -148,6 +166,7 @@ if ($Args.Length -gt 0) {
 ## Make a production webpack build
 if ($Args.Length -eq 0) {
   task-install
+  task-prettier
   task-lint
   task-webpack --mode=production
   exit 0

@@ -392,7 +392,7 @@ var/datum/planet/virgo4/planet_virgo4 = null
 	temp_low = 283.15	// 10c
 	flight_failure_modifier = 25
 	transition_chances = list(
-		WEATHER_BLOODMOON = 100
+		WEATHER_BLOOD_MOON = 100
 		)
 	observed_message = "Everything is red. Something really ominous is going on."
 	transition_messages = list(
