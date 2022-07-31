@@ -162,6 +162,7 @@
 /*
 /obj/item/bug_monitor/Initialize()
 	radio = new(src)
+	. = ..()
 */
 /obj/item/bug_monitor/attack_self(mob/user)
 	if(operating)

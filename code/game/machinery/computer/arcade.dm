@@ -95,9 +95,6 @@
 
 /obj/machinery/computer/arcade/battle/Initialize()
 	. = ..()
-	randomize_characters()
-
-/obj/machinery/computer/arcade/battle/proc/randomize_characters()
 	var/name_action
 	var/name_part1
 	var/name_part2
@@ -190,7 +187,6 @@
 		turtle = 0
 
 		if(emagged)
-			randomize_characters()
 			emagged = 0
 
 	add_fingerprint(usr)
@@ -209,7 +205,6 @@
 				new /obj/item/clothing/head/collectable/petehat(src.loc)
 				message_admins("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
 				log_game("[key_name_admin(usr)] has outbombed Cuban Pete and been awarded a bomb.")
-				randomize_characters()
 				emagged = 0
 			else if(!contents.len)
 				feedback_inc("arcade_win_normal")

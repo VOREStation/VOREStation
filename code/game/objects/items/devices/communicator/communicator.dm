@@ -271,12 +271,8 @@ var/global/list/obj/item/communicator/all_communicators = list()
 	var/datum/exonet_protocol/exonet = null
 	var/list/exonet_messages = list()
 
-// Proc: New()
-// Parameters: None
-// Description: Gives ghosts an exonet address based on their key and ghost name.
-/mob/observer/dead/Initialize()
-	. = ..()
-	exonet = new(src)
+/mob/observer/dead/proc/init_exonet()
+	set waitfor = FALSE
 	if(client)
 		exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
 	else

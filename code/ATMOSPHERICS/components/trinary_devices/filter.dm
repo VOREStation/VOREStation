@@ -56,6 +56,8 @@
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air3.volume = ATMOS_DEFAULT_VOLUME_FILTER
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/atmos_filter/Destroy()
 	unregister_radio(src, frequency)
@@ -105,11 +107,6 @@
 		use_power(power_draw)
 
 	return 1
-
-/obj/machinery/atmospherics/trinary/atmos_filter/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/atmos_filter/attack_hand(user) // -- TLE
 	if(..())

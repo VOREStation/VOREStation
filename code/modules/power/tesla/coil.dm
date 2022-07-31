@@ -24,9 +24,6 @@
 /obj/machinery/power/tesla_coil/Initialize()
 	. = ..()
 	wires = new(src)
-
-/obj/machinery/power/tesla_coil/Initialize()
-	. = ..()
 	default_apply_parts()
 
 /obj/machinery/power/tesla_coil/Destroy()

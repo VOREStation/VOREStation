@@ -233,6 +233,6 @@ Transponder Codes:<UL>"}
 /obj/machinery/navbeacon/patrol
 	var/next_patrol
 
-/obj/machinery/navbeacon/patrol/New()
+/obj/machinery/navbeacon/patrol/Initialize()
 	codes = list("patrol" = 1, "next_patrol" = next_patrol)
-	..()
+	. = ..()

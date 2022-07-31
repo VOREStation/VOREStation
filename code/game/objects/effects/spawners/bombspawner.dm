@@ -51,7 +51,7 @@
 	. = ..()
 
 /obj/effect/spawner/newbomb/Initialize()
-	..()
+	. = ..()
 	var/obj/item/transfer_valve/V = new(src.loc)
 	var/obj/item/tank/phoron/PT = new(V)
 	var/obj/item/tank/oxygen/OT = new(V)
@@ -131,5 +131,5 @@
 /obj/effect/spawner/onetankbomb/frag/Initialize() //just needs an assembly.
 	. = ..()
 	var/type = pick(/obj/item/tank/phoron/onetankbomb/full, /obj/item/tank/oxygen/onetankbomb/full)
-	new type(src.loc)	
+	new type(src.loc)
 	return INITIALIZE_HINT_QDEL

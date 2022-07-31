@@ -428,14 +428,11 @@
 		if(keyslot2.syndie)
 			src.syndie = 1
 
+	if(!radio_controller)
+		src.name = "broken radio headset"
+		return
 
 	for (var/ch_name in channels)
-		if(!radio_controller)
-			sleep(30) // Waiting for the radio_controller to be created.
-		if(!radio_controller)
-			src.name = "broken radio headset"
-			return
-
 		secure_radio_connections[ch_name] = radio_controller.add_object(src, radiochannels[ch_name],  RADIO_CHAT)
 
 	if(setDescription)

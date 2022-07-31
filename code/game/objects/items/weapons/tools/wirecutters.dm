@@ -28,9 +28,20 @@
 	var/random_color = TRUE
 
 /obj/item/tool/wirecutters/Initialize()
-	if(random_color && prob(50))
-		icon_state = "cutters-y"
-		item_state = "cutters_yellow"
+	if(random_color)
+		switch(pick("red","blue","yellow"))
+			if ("red")
+				icon_state = "cutters"
+				item_state = "cutters"
+			if ("blue")
+				icon_state = "cutters-b"
+				item_state = "cutters_blue"
+			if ("yellow")
+				icon_state = "cutters-y"
+				item_state = "cutters_yellow"
+
+	if (prob(75))
+		src.pixel_y = rand(0, 16)
 	. = ..()
 
 /obj/item/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)

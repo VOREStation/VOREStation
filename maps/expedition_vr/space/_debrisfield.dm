@@ -43,6 +43,7 @@
 	name = "away mission initializer - debrisfield"
 
 /obj/away_mission_init/debrisfield/Initialize()
+	. = ..()
 	initialized = TRUE
 	return INITIALIZE_HINT_QDEL
 

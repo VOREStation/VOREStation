@@ -18,10 +18,10 @@
 	var/blast_light = 2
 	var/blast_flash = 3
 
-/obj/item/plastique/New()
+/obj/item/plastique/Initialize()
 	wires = new(src)
 	image_overlay = image('icons/obj/assemblies.dmi', "plastic-explosive2")
-	..()
+	. = ..()
 
 /obj/item/plastique/Destroy()
 	qdel(wires)

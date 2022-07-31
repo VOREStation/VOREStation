@@ -9,7 +9,7 @@
 /obj/item/assembly/electronic_assembly/Initialize()
 	EA = new(src)
 	EA.holder = src
-	..()
+	. = ..()
 
 /obj/item/assembly/electronic_assembly/attackby(obj/item/I as obj, mob/user as mob)
 	if (I.is_crowbar())

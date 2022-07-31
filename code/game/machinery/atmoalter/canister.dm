@@ -407,10 +407,8 @@ update_flag
 		air_contents = new
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/nitrogen/New()
-
-	..()
-
+/obj/machinery/portable_atmospherics/canister/nitrogen/Initialize()
+	. = ..()
 	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
 	src.update_icon()
 	return 1
@@ -420,7 +418,6 @@ update_flag
 	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
 	src.update_icon()
 	return 1
-
 
 /obj/machinery/portable_atmospherics/canister/air/Initialize()
 	. = ..()

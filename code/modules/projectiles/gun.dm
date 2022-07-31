@@ -337,6 +337,7 @@
 		src.add_fingerprint(usr)
 
 /obj/item/gun/proc/Fire(atom/target, mob/living/user, clickparams, pointblank=0, reflex=0)
+	set waitfor = FALSE
 	if(!user || !target) return
 	if(target.z != user.z) return
 

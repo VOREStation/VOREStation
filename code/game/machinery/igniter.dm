@@ -58,9 +58,6 @@
 	idle_power_usage = 2
 	active_power_usage = 4
 
-/obj/machinery/sparker/Initialize()
-	. = ..()
-
 /obj/machinery/sparker/power_change()
 	..()
 	if(!(stat & NOPOWER) && disable == 0)

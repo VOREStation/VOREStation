@@ -8,8 +8,7 @@
 	hidden_uplink = new(src)
 	//hidden_uplink.uses = 5
 	//Code currently uses a mind var for telecrystals, balancing is currently an issue. Will investigate.
-	..()
-	return
+	. = ..()
 
 /obj/item/implant/uplink/post_implant(mob/source)
 	var/choices = list("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
@@ -22,4 +21,3 @@
 /obj/item/implant/uplink/trigger(emote, mob/source as mob)
 	if(hidden_uplink && usr == source) // Let's not have another people activate our uplink
 		hidden_uplink.check_trigger(source, emote, activation_emote)
-	return

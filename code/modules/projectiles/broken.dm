@@ -16,12 +16,11 @@
 			qdel(src)
 			return
 		setup_repair_needs()
+	addtimer(CALLBACK(src, .proc/validate_gun_type), 30 SECONDS)
 
-/obj/item/broken_gun/Initialize()
-	. = ..()
-	spawn(30 SECONDS)
-		if(!my_guntype && !QDELETED(src))
-			qdel(src)
+/obj/item/broken_gun/proc/validate_gun_type()
+	if(!my_guntype && !QDELETED(src))
+		qdel(src)
 
 /obj/item/broken_gun/examine(mob/user)
 	. = ..()

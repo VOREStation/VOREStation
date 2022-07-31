@@ -174,6 +174,9 @@
 	max_n2 = 0
 	maxbodytemp = 700
 
+/mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize()
+	. = ..()
+	// Change my name back, don't want to be named Tom (666)
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 //The names Cheese... Agent Cheese

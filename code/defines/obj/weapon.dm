@@ -49,7 +49,7 @@
 
 /obj/item/soap/deluxe/Initialize()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
-	..()
+	. = ..()
 
 /obj/item/soap/syndie
 	desc = "An untrustworthy bar of soap. Smells of fear."
@@ -411,7 +411,7 @@
 /obj/item/stock_parts/Initialize()
 	src.pixel_x = rand(-5.0, 5)
 	src.pixel_y = rand(-5.0, 5)
-	..()
+	. = ..()
 
 /obj/item/stock_parts/get_rating()
 	return rating

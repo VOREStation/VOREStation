@@ -289,11 +289,6 @@
 
 /obj/item/integrated_circuit/output/video_camera/Initialize()
 	. = ..()
-	extended_desc = list()
-	extended_desc += "Network choices are; "
-	extended_desc += jointext(networks, ", ")
-	extended_desc += "."
-	extended_desc = jointext(extended_desc, null)
 	camera = new(src)
 	on_data_written()
 

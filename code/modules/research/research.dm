@@ -211,6 +211,7 @@ GLOBAL_LIST_INIT(design_datums, list())
 
 /obj/item/disk/tech_disk/Initialize()
 	randpixel_xy()
+	. = ..()
 
 /obj/item/disk/design_disk
 	name = "component design disk"
@@ -225,3 +226,4 @@ GLOBAL_LIST_INIT(design_datums, list())
 
 /obj/item/disk/design_disk/Initialize()
 	randpixel_xy()
+	. = ..()

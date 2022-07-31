@@ -33,15 +33,12 @@
 
 	update()
 
-	return
-
 /obj/item/implanter/proc/update()
 	if (src.imp)
 		src.icon_state = "implanter1"
 	else
 		src.icon_state = "implanter0"
 	src.icon_state += "_[active]"
-	return
 
 /obj/item/implanter/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob/living/carbon))
@@ -77,39 +74,35 @@
 /obj/item/implanter/loyalty
 	name = "implanter-loyalty"
 
-/obj/item/implanter/loyalty/New()
+/obj/item/implanter/loyalty/Initialize()
 	src.imp = new /obj/item/implant/loyalty( src )
-	..()
+	. = ..()
 	update()
-	return
 
 /obj/item/implanter/explosive
 	name = "implanter (E)"
 
-/obj/item/implanter/explosive/New()
+/obj/item/implanter/explosive/Initialize()
 	src.imp = new /obj/item/implant/explosive( src )
-	..()
+	. = ..()
 	update()
-	return
 
 /obj/item/implanter/adrenalin
 	name = "implanter-adrenalin"
 
-/obj/item/implanter/adrenalin/New()
+/obj/item/implanter/adrenalin/Initialize()
 	src.imp = new /obj/item/implant/adrenalin(src)
-	..()
+	. = ..()
 	update()
-	return
 
 /obj/item/implanter/compressed
 	name = "implanter (C)"
 	icon_state = "cimplanter1"
 
-/obj/item/implanter/compressed/New()
+/obj/item/implanter/compressed/Initialize()
 	imp = new /obj/item/implant/compressed( src )
-	..()
+	. = ..()
 	update()
-	return
 
 /obj/item/implanter/compressed/update()
 	if (imp)
@@ -120,7 +113,6 @@
 			icon_state = "cimplanter2"
 	else
 		icon_state = "cimplanter0"
-	return
 
 /obj/item/implanter/compressed/attack(mob/M as mob, mob/user as mob)
 	var/obj/item/implant/compressed/c = imp
@@ -158,8 +150,7 @@
 /obj/item/implanter/restrainingbolt
 	name = "implanter (bolt)"
 
-/obj/item/implanter/restrainingbolt/New()
+/obj/item/implanter/restrainingbolt/Initialize()
 	src.imp = new /obj/item/implant/restrainingbolt( src )
-	..()
+	. = ..()
 	update()
-	return

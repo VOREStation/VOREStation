@@ -11,11 +11,6 @@
 	name = "advanced anomaly battery"
 	capacity = 3000
 
-/*
-/obj/item/anobattery/New()
-	battery_effect = new()
-*/
-
 /obj/item/anobattery/proc/UpdateSprite()
 	var/p = (stored_charge/capacity)*100
 	p = min(p, 100)

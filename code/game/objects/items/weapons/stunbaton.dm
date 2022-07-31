@@ -67,7 +67,6 @@
 	. = ..()
 	bcell = new/obj/item/cell/device/weapon(src)
 	update_icon()
-	return
 
 /obj/item/melee/baton/proc/deductcharge(var/chrgdeductamt)
 	return (status == 1 && bcell?.checked_use(chrgdeductamt))

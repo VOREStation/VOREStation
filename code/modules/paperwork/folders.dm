@@ -40,7 +40,8 @@
 	desc = "A white folder with RD markings."
 	icon_state = "folder_rd"
 
-/obj/item/folder/white_rd/New()
+/obj/item/folder/white_rd/Initialize()
+	. = ..()
 	//add some memos
 	var/obj/item/paper/P = new()
 	P.name = "Memo RE: proper analysis procedure"

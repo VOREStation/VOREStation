@@ -358,6 +358,7 @@ var/global/list/narsie_list = list()
 		consume(T)
 
 /obj/singularity/narsie/proc/narsie_spawn_animation()
+	set waitfor = FALSE
 	icon = 'icons/obj/narsie_spawn_anim.dmi'
 	dir = SOUTH
 	move_self = 0

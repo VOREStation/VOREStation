@@ -14,10 +14,6 @@
 	var/weakref/showing
 	var/showing_name
 
-/obj/item/tvcamera/Initialize()
-	. = ..()
-	listening_objects += src
-
 /obj/item/tvcamera/Destroy()
 	listening_objects -= src
 	qdel(camera)
@@ -33,6 +29,7 @@
 
 /obj/item/tvcamera/Initialize()
 	. = ..()
+	listening_objects += src
 	camera = new(src)
 	camera.c_tag = channel
 	camera.status = FALSE

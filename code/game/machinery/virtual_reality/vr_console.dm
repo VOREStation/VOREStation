@@ -26,9 +26,6 @@
 /obj/machinery/vr_sleeper/Initialize()
 	. = ..()
 	default_apply_parts()
-
-/obj/machinery/vr_sleeper/Initialize()
-	. = ..()
 	smoke = new
 	update_icon()
 
@@ -179,6 +176,9 @@
 	return
 
 /obj/machinery/vr_sleeper/proc/go_out(var/forced = TRUE)
+	
+	set waitfor = FALSE
+	
 	if(!occupant)
 		return
 

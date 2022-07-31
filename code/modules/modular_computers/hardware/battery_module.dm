@@ -68,7 +68,7 @@
 	battery = new/obj/item/cell(src)
 	battery.maxcharge = battery_rating
 	battery.charge = 0
-	..()
+	. = ..()
 
 /obj/item/computer_hardware/battery_module/Destroy()
 	qdel_null(battery)

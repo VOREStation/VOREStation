@@ -201,4 +201,3 @@
 	igniter.secured = 0
 	status = 1
 	update_icon()
-	return

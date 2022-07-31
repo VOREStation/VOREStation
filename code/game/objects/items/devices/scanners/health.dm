@@ -1,4 +1,15 @@
 #define DEFIB_TIME_LIMIT (10 MINUTES) //VOREStation addition- past this many seconds, defib is useless.
+/*
+CONTAINS:
+T-RAY
+DETECTIVE SCANNER
+HEALTH ANALYZER
+GAS ANALYZER	- Analyzes atmosphere, container
+MASS SPECTROMETER
+REAGENT SCANNER
+HALOGEN COUNTER	- Radcount on mobs
+*/
+
 
 /obj/item/healthanalyzer
 	name = "health analyzer"
@@ -17,9 +28,9 @@
 	var/showadvscan = 1
 
 /obj/item/healthanalyzer/Initialize()
-	. = ..()
 	if(advscan >= 1)
-		src.verbs += /obj/item/healthanalyzer/proc/toggle_adv
+		verbs += /obj/item/healthanalyzer/proc/toggle_adv
+	. = ..()
 
 /obj/item/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool
@@ -41,7 +52,7 @@
 		dat += "Body Temperature: ???"
 		user.show_message("<span class='notice'>[dat]</span>", 1)
 		return
-	if (!user.IsAdvancedToolUser())
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
@@ -229,7 +240,7 @@
 				continue
 			// Broken limbs
 			if(e.status & ORGAN_BROKEN)
-				if((e.name in list(BP_L_ARM, BP_R_ARM, BP_L_LEG, BP_R_LEG, BP_HEAD, BP_TORSO, BP_GROIN)) && (!e.splinted))
+				if((e.name in list("l_arm", "r_arm", "l_leg", "r_leg", "head", "chest", "groin")) && (!e.splinted))
 					fracture_dat += "<span class='warning'>Unsecured fracture in subject [e.name]. Splinting recommended for transport.</span><br>"
 				else if(advscan >= 1 && showadvscan == 1)
 					fracture_dat += "<span class='warning'>Bone fractures detected in subject [e.name].</span><br>"
@@ -323,5 +334,215 @@
 	advscan = 3
 	origin_tech = list(TECH_MAGNET = 7, TECH_BIO = 8)
 	icon_state = "health3"
+
+/obj/item/analyzer
+	name = "analyzer"
+	desc = "A hand-held environmental scanner which reports current gas levels."
+	icon_state = "atmos"
+	item_state = "analyzer"
+	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_BELT
+	throwforce = 5
+	throw_speed = 4
+	throw_range = 20
+
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
+
+	origin_tech = list(TECH_MAGNET = 1, TECH_ENGINEERING = 1)
+
+/obj/item/analyzer/atmosanalyze(var/mob/user)
+	var/air = user.return_air()
+	if (!air)
+		return
+
+	return atmosanalyzer_scan(src, air, user)
+
+/obj/item/analyzer/attack_self(mob/user as mob)
+	if (user.stat)
+		return
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return
+
+	analyze_gases(src, user)
+	return
+
+/obj/item/analyzer/afterattack(var/obj/O, var/mob/user, var/proximity)
+	if(proximity)
+		analyze_gases(O, user)
+	return
+
+
+/obj/item/mass_spectrometer
+	name = "mass spectrometer"
+	desc = "A hand-held mass spectrometer which identifies trace chemicals in a blood sample."
+	icon_state = "spectrometer"
+	w_class = ITEMSIZE_SMALL
+	flags = OPENCONTAINER
+	slot_flags = SLOT_BELT
+	throwforce = 5
+	throw_speed = 4
+	throw_range = 20
+
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
+
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	var/details = 0
+	var/recent_fail = 0
+
+/obj/item/mass_spectrometer/Initialize()
+	. = ..()
+	var/datum/reagents/R = new/datum/reagents(5)
+	reagents = R
+	R.my_atom = src
+
+/obj/item/mass_spectrometer/on_reagent_change()
+	if(reagents.total_volume)
+		icon_state = initial(icon_state) + "_s"
+	else
+		icon_state = initial(icon_state)
+
+/obj/item/mass_spectrometer/attack_self(mob/user as mob)
+	if (user.stat)
+		return
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return
+	if(reagents.total_volume)
+		var/list/blood_traces = list()
+		for(var/datum/reagent/R in reagents.reagent_list)
+			if(R.id != "blood")
+				reagents.clear_reagents()
+				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample</span>")
+				return
+			else
+				blood_traces = params2list(R.data["trace_chem"])
+				break
+		var/dat = "Trace Chemicals Found: "
+		for(var/R in blood_traces)
+			if(details)
+				dat += "[R] ([blood_traces[R]] units) "
+			else
+				dat += "[R] "
+		to_chat(user, "[dat]")
+		reagents.clear_reagents()
+	return
+
+/obj/item/mass_spectrometer/adv
+	name = "advanced mass spectrometer"
+	icon_state = "adv_spectrometer"
+	details = 1
+	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
+
+/obj/item/reagent_scanner
+	name = "reagent scanner"
+	desc = "A hand-held reagent scanner which identifies chemical agents."
+	icon_state = "spectrometer"
+	item_state = "analyzer"
+	w_class = ITEMSIZE_SMALL
+	slot_flags = SLOT_BELT
+	throwforce = 5
+	throw_speed = 4
+	throw_range = 20
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
+
+	origin_tech = list(TECH_MAGNET = 2, TECH_BIO = 2)
+	var/details = 0
+	var/recent_fail = 0
+
+/obj/item/reagent_scanner/afterattack(obj/O, mob/living/user, proximity)
+	if(!proximity || user.stat || !istype(O))
+		return
+	if(!istype(user))
+		return
+
+	if(!isnull(O.reagents))
+		if(!(O.flags & OPENCONTAINER)) // The idea is that the scanner has to touch the reagents somehow. This is done to prevent cheesing unidentified autoinjectors.
+			to_chat(user, span("warning", "\The [O] is sealed, and cannot be scanned by \the [src] until unsealed."))
+			return
+
+		var/dat = ""
+		if(O.reagents.reagent_list.len > 0)
+			var/one_percent = O.reagents.total_volume / 100
+			for (var/datum/reagent/R in O.reagents.reagent_list)
+				dat += "\n \t " + span("notice", "[R][details ? ": [R.volume / one_percent]%" : ""]")
+		if(dat)
+			to_chat(user, span("notice", "Chemicals found: [dat]"))
+		else
+			to_chat(user, span("notice", "No active chemical agents found in [O]."))
+	else
+		to_chat(user, span("notice", "No significant chemical agents found in [O]."))
+
+	return
+
+/obj/item/reagent_scanner/adv
+	name = "advanced reagent scanner"
+	icon_state = "adv_spectrometer"
+	details = 1
+	origin_tech = list(TECH_MAGNET = 4, TECH_BIO = 2)
+
+/obj/item/slime_scanner
+	name = "slime scanner"
+	icon_state = "xenobio"
+	item_state = "xenobio"
+	origin_tech = list(TECH_BIO = 1)
+	w_class = ITEMSIZE_SMALL
+	throwforce = 0
+	throw_speed = 3
+	throw_range = 7
+	matter = list(MAT_STEEL = 30,MAT_GLASS = 20)
+
+/obj/item/slime_scanner/attack(mob/living/M as mob, mob/living/user as mob)
+	if(!istype(M, /mob/living/simple_mob/slime/xenobio))
+		to_chat(user, "<B>This device can only scan lab-grown slimes!</B>")
+		return
+	var/mob/living/simple_mob/slime/xenobio/S = M
+	user.show_message("Slime scan results:<br>[S.slime_color] [S.is_adult ? "adult" : "baby"] slime<br>Health: [S.health]<br>Mutation Probability: [S.mutation_chance]")
+
+	var/list/mutations = list()
+	for(var/potential_color in S.slime_mutation)
+		var/mob/living/simple_mob/slime/xenobio/slime = potential_color
+		mutations.Add(initial(slime.slime_color))
+	user.show_message("Potental to mutate into [english_list(mutations)] colors.<br>Extract potential: [S.cores]<br>Nutrition: [S.nutrition]/[S.max_nutrition]")
+
+	if (S.nutrition < S.get_starve_nutrition())
+		user.show_message("<span class='alert'>Warning: Subject is starving!</span>")
+	else if (S.nutrition < S.get_hunger_nutrition())
+		user.show_message("<span class='warning'>Warning: Subject is hungry.</span>")
+	user.show_message("Electric change strength: [S.power_charge]")
+
+	if(S.has_AI())
+		var/datum/ai_holder/simple_mob/xenobio_slime/AI = S.ai_holder
+		if(AI.resentment)
+			user.show_message("<span class='warning'>Warning: Subject is harboring resentment.</span>")
+		if(AI.rabid)
+			user.show_message("<span class='danger'>Subject is enraged and extremely dangerous!</span>")
+	if(S.harmless)
+		user.show_message("Subject has been pacified.")
+	if(S.unity)
+		user.show_message("Subject is friendly to other slime colors.")
+
+	user.show_message("Growth progress: [S.amount_grown]/10")
+
+/obj/item/halogen_counter
+	name = "halogen counter"
+	icon_state = "eftpos"
+	desc = "A hand-held halogen counter, used to detect the level of irradiation of living beings."
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_MAGNET = 1, TECH_BIO = 2)
+	throwforce = 0
+	throw_speed = 3
+	throw_range = 7
+
+/obj/item/halogen_counter/attack(mob/living/M as mob, mob/living/user as mob)
+	if(!iscarbon(M))
+		to_chat(user, "<span class='warning'>This device can only scan organic beings!</span>")
+		return
+	user.visible_message("<span class='warning'>\The [user] has analyzed [M]'s radiation levels!</span>", "<span class='notice'>Analyzing Results for [M]:</span>")
+	if(M.radiation)
+		to_chat(user, "<span class='notice'>Radiation Level: [M.radiation]</span>")
+	else
+		to_chat(user, "<span class='notice'>No radiation detected.</span>")
+	return
 
 #undef DEFIB_TIME_LIMIT //VOREStation addition

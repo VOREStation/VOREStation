@@ -45,7 +45,7 @@
 "aS" = (/obj/effect/overlay/snow/floor,/turf/simulated/floor{outdoors = 1},/area/submap/DJOutpost1)
 "aT" = (/obj/effect/overlay/snow/floor,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aU" = (/obj/machinery/media/jukebox,/obj/effect/overlay/snow/floor,/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
-"aV" = (/obj/item/clothing/under/pcrc,/obj/random/humanoidremains{spawn_nothing_percentage = 60},/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
+"aV" = (/obj/item/clothing/under/corp/pcrc,/obj/random/humanoidremains{spawn_nothing_percentage = 60},/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aW" = (/obj/item/gps/internal/poi,/obj/machinery/door/airlock/maintenance/int,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DJOutpost1)
 "aX" = (/obj/structure/table/bench/padded,/obj/random/humanoidremains{spawn_nothing_percentage = 60},/turf/simulated/floor/tiled/techfloor,/area/submap/DJOutpost1)
 "aY" = (/obj/machinery/door/airlock/maintenance/common,/turf/simulated/floor/tiled/techfloor/grid,/area/submap/DJOutpost1)

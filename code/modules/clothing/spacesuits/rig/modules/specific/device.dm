@@ -7,7 +7,7 @@
 	disruptive = 0
 
 	var/device_type
-	var/obj/item/device
+	var/obj/item/device //We need to keep this one
 
 /obj/item/rig_module/device/Initialize()
 	. = ..()

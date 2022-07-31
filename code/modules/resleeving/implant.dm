@@ -136,10 +136,9 @@
 	desc = "A case containing a backup implant."
 	icon_state = "implantcase-b"
 
-/obj/item/implantcase/backup/New()
+/obj/item/implantcase/backup/Initialize()
 	src.imp = new /obj/item/implant/backup(src)
-	..()
-	return
+	. = ..()
 
 //The box of backup implants
 /obj/item/storage/box/backup_kit

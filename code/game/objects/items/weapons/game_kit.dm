@@ -6,6 +6,7 @@ THAT STUPID GAME KIT
 /obj/item/game_kit/Initialize()
 	src.board_stat = "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
 	src.selected = "CR"
+	. = ..()
 
 /obj/item/game_kit/attack_paw(mob/user as mob)
 	return src.attack_hand(user)

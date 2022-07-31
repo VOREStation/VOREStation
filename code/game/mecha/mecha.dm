@@ -202,6 +202,7 @@
 	var/weapons_only_cycle = FALSE	//So combat mechs don't switch to their equipment at times.
 
 /obj/mecha/Initialize()
+
 	. = ..()
 
 	for(var/path in starting_components)
@@ -217,18 +218,6 @@
 
 	update_transform()
 
-/obj/mecha/drain_power(var/drain_check)
-
-	if(drain_check)
-		return 1
-
-	if(!cell)
-		return 0
-
-	return cell.drain_power(drain_check)
-
-/obj/mecha/Initialize()
-	. = ..()
 	icon_state += "-open"
 	add_radio()
 	add_cabin()
@@ -248,7 +237,16 @@
 	log_message("[src.name] created.")
 	loc.Entered(src)
 	mechas_list += src //global mech list
-	return
+
+/obj/mecha/drain_power(var/drain_check)
+
+	if(drain_check)
+		return 1
+
+	if(!cell)
+		return 0
+
+	return cell.drain_power(drain_check)
 
 /obj/mecha/Exit(atom/movable/O)
 	if(O in cargo)

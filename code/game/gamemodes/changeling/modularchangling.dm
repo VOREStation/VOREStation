@@ -344,7 +344,7 @@ var/list/datum/power/changeling/powerinstances = list()
 
 	if(Thepower.make_hud_button && Thepower.isVerb)
 		if(!M.current.ability_master)
-			M.current.ability_master = new /obj/screen/movable/ability_master(M.current)
+			M.current.ability_master = new /obj/screen/movable/ability_master(null, M.current)
 		M.current.ability_master.add_ling_ability(
 			object_given = M.current,
 			verb_given = Thepower.verbpath,

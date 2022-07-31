@@ -10,18 +10,16 @@ var/list/floor_decals = list()
 	layer = DECAL_LAYER
 	var/supplied_dir
 
-/obj/effect/floor_decal/New(var/newloc, var/newdir, var/newcolour)
-	supplied_dir = newdir
-	if(newcolour)
-		color = newcolour
-	..(newloc)
-
 // TODO: identify what is causing these atoms to be qdeleted in New()/Initialize()
 // somewhere in this chain. Alternatively repath to /obj/floor_decal or some other
 // abstract handler that explicitly doesn't invoke any obj behavior.
-/obj/effect/floor_decal/Initialize()
-	add_to_turf_decals()
+/obj/effect/floor_decal/Initialize(var/ml, var/newdir, var/newcolour)
+	SHOULD_CALL_PARENT(FALSE)
 	initialized = TRUE
+	supplied_dir = newdir
+	if(newcolour)
+		color = newcolour
+	add_to_turf_decals()
 	return INITIALIZE_HINT_QDEL
 
 // This is a separate proc from initialize() to facilitiate its caching and other stuff.  Look into it someday.
@@ -620,9 +618,9 @@ var/list/floor_decals = list()
 	name = "random asteroid rubble"
 	icon_state = "asteroid0"
 
-/obj/effect/floor_decal/asteroid/New()
+/obj/effect/floor_decal/asteroid/Initialize()
 	icon_state = "asteroid[rand(0,9)]"
-	..()
+	. = ..()
 
 /obj/effect/floor_decal/chapel
 	name = "chapel"

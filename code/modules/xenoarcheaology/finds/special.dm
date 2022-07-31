@@ -21,7 +21,8 @@
 	var/last_twitch = 0
 	var/max_stored_messages = 100
 
-/obj/item/clothing/mask/gas/poltergeist/New()
+/obj/item/clothing/mask/gas/poltergeist/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/gas/poltergeist/process()
@@ -172,7 +173,8 @@
 	icon_state = "shade"
 	density = TRUE
 
-/obj/effect/shadow_wight/New()
+/obj/effect/shadow_wight/Initialize()
+	. = ..()
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/process()

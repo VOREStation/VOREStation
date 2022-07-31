@@ -52,7 +52,7 @@
 
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
-	..()
+	. = ..()
 
 /obj/item/tool/screwdriver/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M) || user.a_intent == "help")

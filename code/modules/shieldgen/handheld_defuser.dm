@@ -10,8 +10,8 @@
 
 
 /obj/item/shield_diffuser/Initialize()
-	. = ..()
 	cell = new(src)
+	. = ..()
 
 /obj/item/shield_diffuser/Destroy()
 	qdel(cell)

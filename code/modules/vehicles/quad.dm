@@ -28,15 +28,17 @@
 /obj/vehicle/train/engine/quadbike/Initialize()
 	cell = new /obj/item/cell/high(src)
 	key = new key_type(src)
+	. = ..()
 	turn_off()
 
-/obj/vehicle/train/engine/quadbike/built/New()
+/obj/vehicle/train/engine/quadbike/built/Initialize()
 	key = new key_type(src)
+	. = ..()
 	turn_off()
 
-/obj/vehicle/train/engine/quadbike/random/New()
+/obj/vehicle/train/engine/quadbike/random/Initialize()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
-	..()
+	. = ..()
 
 /obj/item/key/quadbike
 	name = "key"
@@ -174,9 +176,9 @@
 
 	paint_color = "#ffffff"
 
-/obj/vehicle/train/trolley/trailer/random/New()
+/obj/vehicle/train/trolley/trailer/random/Initialize()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
-	..()
+	. = ..()
 
 /obj/vehicle/train/trolley/trailer/proc/update_load()
 	if(load)

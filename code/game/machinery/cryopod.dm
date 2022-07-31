@@ -289,6 +289,16 @@
 
 	time_till_despawn = 60 //1 second, because gateway.
 
+/obj/machinery/cryopod/robot/door/checkpoint
+	name = "automated checkpoint"
+	desc = "A reinforced, automated checkpoint tracking arrivals and departures from the outpost. Beyond this vault is a small airstrip, then nothing but untamed wilderness."
+	on_store_message = "has departed from the colony."
+	on_store_name = "Travel Oversight"
+	on_enter_occupant_message = "The checkpoint unseals and grinds open, and you step through."
+	on_store_visible_message_1 = "grinds closed after"
+	on_store_visible_message_2 = "passes through it."
+	time_till_despawn = 10 // 1 second, because math
+
 /obj/machinery/cryopod/Initialize()
 	. = ..()
 	announce = new /obj/item/radio/intercom(src)
@@ -299,11 +309,6 @@
 		occupant.forceMove(loc)
 		occupant.resting = 1
 	return ..()
-
-/obj/machinery/cryopod/Initialize()
-	. = ..()
-
-	find_control_computer()
 
 /obj/machinery/cryopod/proc/find_control_computer(urgent=0)
 	control_computer = null

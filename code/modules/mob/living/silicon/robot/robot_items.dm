@@ -356,13 +356,13 @@
 	var/overload_time = 0			//Stores the time of overload
 	var/last_flash = 0				//Stores the time of last flash
 
-/obj/item/borg/combat/shield/New()
+/obj/item/borg/combat/shield/Initialize()
 	START_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/borg/combat/shield/Destroy()
 	STOP_PROCESSING(SSobj, src)
-	..()
+	. = ..()
 
 /obj/item/borg/combat/shield/attack_self(var/mob/living/user)
 	set_shield_level()

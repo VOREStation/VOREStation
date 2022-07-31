@@ -766,7 +766,7 @@
 	return FALSE
 
 /mob/living/proc/slip(var/slipped_on,stun_duration=8)
-	return 0
+	return FALSE
 
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in internal_organs)

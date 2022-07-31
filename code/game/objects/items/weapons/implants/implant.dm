@@ -112,7 +112,7 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/implant/tracking)
 
 /obj/item/implant/tracking/New()
 	id = rand(1, 1000)
-	..()
+	. = ..()
 
 /obj/item/implant/tracking/post_implant(var/mob/source)
 	START_PROCESSING(SSobj, src)

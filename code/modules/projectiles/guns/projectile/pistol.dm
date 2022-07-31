@@ -358,7 +358,7 @@
 
 	var/obj/item/ammo_casing/ammo = ammo_type
 	caliber = initial(ammo.caliber)
-	..()
+	. = ..()
 
 /*
  * Derringer

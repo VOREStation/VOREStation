@@ -8,8 +8,6 @@
 	src.imp = new /obj/item/implant/exile( src )
 	. = ..()
 	update()
-	return
-
 
 /obj/item/implant/exile
 	name = "exile"

@@ -20,7 +20,7 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/mop)
 
 /obj/item/mop/Initialize()
 	create_reagents(30)
-	..()
+	. = ..()
 
 /obj/item/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return

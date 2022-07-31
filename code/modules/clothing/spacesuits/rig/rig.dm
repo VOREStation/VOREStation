@@ -101,23 +101,6 @@
 	// Action button
 	action_button_name = "Hardsuit Interface"
 
-/obj/item/rig/examine()
-	. = ..()
-	if(wearer)
-		for(var/obj/item/piece in list(helmet,gloves,chest,boots))
-			if(!piece || piece.loc != wearer)
-				continue
-			. += "[bicon(piece)] \The [piece] [piece.gender == PLURAL ? "are" : "is"] deployed."
-
-	if(src.loc == usr)
-		. += "The access panel is [locked? "locked" : "unlocked"]."
-		. += "The maintenance panel is [open ? "open" : "closed"]."
-		. += "Hardsuit systems are [offline ? "<span class='warning'>offline</span>" : "<span class='notice'>online</span>"]."
-		. += "The cooling stystem is [cooling_on ? "active" : "inactive"]."
-
-		if(open)
-			. += "It's equipped with [english_list(installed_modules)]."
-
 /obj/item/rig/Initialize()
 	. = ..()
 

@@ -27,6 +27,8 @@
 /obj/machinery/atmospherics/unary/outlet_injector/Initialize()
 	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP + 500	//Give it a small reservoir for injecting. Also allows it to have a higher flow rate limit than vent pumps, to differentiate injectors a bit more.
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/unary/outlet_injector/Destroy()
 	unregister_radio(src, frequency)
@@ -121,11 +123,6 @@
 	radio_connection.post_signal(src, signal)
 
 	return 1
-
-/obj/machinery/atmospherics/unary/outlet_injector/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/unary/outlet_injector/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))

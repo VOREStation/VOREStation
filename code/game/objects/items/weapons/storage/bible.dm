@@ -89,8 +89,6 @@ GLOBAL_LIST_INIT(bibleitemstates, list(
 	name = "bible"
 	desc = "To be applied to the head repeatedly."
 	icon_state ="bible"
-
-/obj/item/storage/bible/booze/New()
 	starts_with = list(
 		/obj/item/reagent_containers/food/drinks/bottle/small/beer,
 		/obj/item/reagent_containers/food/drinks/bottle/small/beer,

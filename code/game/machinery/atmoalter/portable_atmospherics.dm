@@ -21,10 +21,6 @@
 		air_contents.temperature = T20C
 	//VOREStation Edit End
 
-	return 1
-
-/obj/machinery/portable_atmospherics/Initialize()
-	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/portable_atmospherics/LateInitialize()

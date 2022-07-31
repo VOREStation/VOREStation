@@ -45,10 +45,13 @@ var/global/list/robot_modules = list(
 /obj/item/robot_module/proc/hide_on_manifest()
 	. = hide_on_manifest
 
-/obj/item/robot_module/New(var/mob/living/silicon/robot/R)
-	..()
-	R.module = src
+/obj/item/robot_module/Initialize(var/ml)
+	. = ..()
+	var/mob/living/silicon/robot/R = loc
+	if(!istype(R))
+		return INITIALIZE_HINT_QDEL
 
+	R.module = src
 	add_camera_networks(R)
 	add_languages(R)
 	add_subsystems(R)
@@ -58,12 +61,12 @@ var/global/list/robot_modules = list(
 	if(R.radio)
 		if(R.shell)
 			channels = R.mainframe.aiRadio.channels
-		R.radio.recalculateChannels()
+		addtimer(CALLBACK(R.radio, /obj/item/radio/proc/recalculateChannels), 0)
 
 	vr_add_sprites() //Vorestation Edit: For vorestation only sprites
 
 	R.set_module_sprites(sprites)
-	R.choose_icon(R.module_sprites.len + 1, R.module_sprites)
+	addtimer(CALLBACK(R, /mob/living/silicon/robot/proc/choose_icon, R.module_sprites.len + 1, R.module_sprites), 0)
 
 	for(var/obj/item/I in modules)
 		I.canremove = FALSE
@@ -176,7 +179,11 @@ var/global/list/robot_modules = list(
 
 // Cyborgs (non-drones), default loadout. This will be given to every module.
 /obj/item/robot_module/robot/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/flash/robot(src)
 	src.modules += new /obj/item/tool/crowbar/cyborg(src)
 	src.modules += new /obj/item/extinguisher(src)
@@ -208,7 +215,11 @@ var/global/list/robot_modules = list(
 
 
 /obj/item/robot_module/robot/standard/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/melee/baton/loaded(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/healthanalyzer(src)
@@ -246,7 +257,11 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/robot_module/robot/medical/surgeon/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/healthanalyzer(src)
 	src.modules += new /obj/item/reagent_containers/borghypo/surgeon(src)
 	src.modules += new /obj/item/autopsy_scanner(src)
@@ -322,7 +337,11 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/robot_module/robot/medical/crisis/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/healthanalyzer(src)
 	src.modules += new /obj/item/reagent_scanner/adv(src)
 	src.modules += new /obj/item/roller_holder(src)
@@ -402,7 +421,11 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/robot_module/robot/engineering/general/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
@@ -521,7 +544,11 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/robot_module/robot/security/general/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/handcuffs/cyborg(src)
 	src.modules += new /obj/item/melee/baton/robot(src)
 	src.modules += new /obj/item/gun/energy/taser/mounted/cyborg(src)
@@ -569,7 +596,11 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/robot_module/robot/janitor/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/soap/nanotrasen(src)
 	src.modules += new /obj/item/storage/bag/trash(src)
 	src.modules += new /obj/item/mop(src)
@@ -634,7 +665,11 @@ var/global/list/robot_modules = list(
 				  	)
 
 /obj/item/robot_module/robot/clerical/butler/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/gripper/service(src)
 	src.modules += new /obj/item/reagent_containers/glass/bucket(src)
 	src.modules += new /obj/item/material/minihoe(src)
@@ -691,7 +726,11 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/robot_module/robot/clerical/general/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/pen/robopen(src)
 	src.modules += new /obj/item/form_printer(src)
 	src.modules += new /obj/item/gripper/paperwork(src)
@@ -733,7 +772,11 @@ var/global/list/robot_modules = list(
 	supported_upgrades = list(/obj/item/borg/upgrade/pka, /obj/item/borg/upgrade/diamonddrill)
 
 /obj/item/robot_module/robot/miner/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/tool/wrench/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
@@ -771,7 +814,11 @@ var/global/list/robot_modules = list(
 	supported_upgrades = list(/obj/item/borg/upgrade/advrped)
 
 /obj/item/robot_module/robot/research/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/portable_destructive_analyzer(src)
 	src.modules += new /obj/item/gripper/research(src)
 	src.modules += new /obj/item/gripper/circuit(src)
@@ -837,7 +884,11 @@ var/global/list/robot_modules = list(
 					)
 
 /obj/item/robot_module/robot/security/combat/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/flash(src)
 	//src.modules += new /obj/item/borg/sight/thermal(src) // VOREStation Edit
 	src.modules += new /obj/item/gun/energy/laser/mounted(src)
@@ -855,8 +906,12 @@ var/global/list/robot_modules = list(
 	no_slip = 1
 	networks = list(NETWORK_ENGINEERING)
 
-/obj/item/robot_module/drone/New(var/mob/living/silicon/robot/robot)
-	..()
+/obj/item/robot_module/drone/Initialize(var/ml)
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weldingtool/electric/mounted/cyborg(src)
 	src.modules += new /obj/item/tool/screwdriver/cyborg(src)
@@ -873,8 +928,9 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/pipe_painter(src)
 	src.modules += new /obj/item/floor_painter(src)
 
-	robot.internals = new/obj/item/tank/jetpack/carbondioxide(src)
-	src.modules += robot.internals
+	var/mob/living/silicon/robot/robit = loc
+	robit.internals = new/obj/item/tank/jetpack/carbondioxide(src)
+	src.modules += robit.internals
 
 	src.emag = new /obj/item/pickaxe/plasmacutter/borg(src)
 	src.emag.name = "Plasma Cutter"
@@ -940,7 +996,11 @@ var/global/list/robot_modules = list(
 	languages = list()
 
 /obj/item/robot_module/drone/construction/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/rcd/electric/mounted/borg/lesser(src)
 
 /obj/item/robot_module/drone/respawn_consumable(var/mob/living/silicon/robot/R, var/amount)
@@ -955,7 +1015,11 @@ var/global/list/robot_modules = list(
 	networks = list(NETWORK_MINE)
 
 /obj/item/robot_module/drone/mining/Initialize()
+
 	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/borg/sight/material(src)
 	src.modules += new /obj/item/pickaxe/borgdrill(src)
 	src.modules += new /obj/item/storage/bag/ore(src)

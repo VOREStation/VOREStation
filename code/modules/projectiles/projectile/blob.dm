@@ -14,16 +14,16 @@
 /obj/item/projectile/energy/blob/splattering
 	splatter = TRUE
 
-/obj/item/projectile/energy/blob/New()
+/obj/item/projectile/energy/blob/Initialize()
 	if(splatter)
 		create_reagents(splatter_volume)
 		ready_chemicals()
-	..()
+	. = ..()
 
 /obj/item/projectile/energy/blob/Destroy()
 	qdel(reagents)
 	reagents = null
-	..()
+	. = ..()
 
 /obj/item/projectile/energy/blob/on_impact(var/atom/A)
 	if(splatter)

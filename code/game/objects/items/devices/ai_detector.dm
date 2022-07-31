@@ -18,7 +18,7 @@
 	range_alert = world.view
 	range_warning = world.view * 2
 	START_PROCESSING(SSobj, src)
-	..()
+	return ..()
 
 /obj/item/multitool/ai_detector/Destroy()
 	STOP_PROCESSING(SSobj, src)

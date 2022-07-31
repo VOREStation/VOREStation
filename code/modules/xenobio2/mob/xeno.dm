@@ -74,13 +74,13 @@ Also includes Life and New
 
 		return 1	//Everything worked okay.
 
-/mob/living/simple_mob/xeno/New()
+/mob/living/simple_mob/xeno/Initialize()
 
 	traitdat = new()
 
 	ProcessTraits()
 
-	..()
+	. = ..()
 	if(colored)
 		color = traitdat.get_trait(TRAIT_XENO_COLOR)
 	create_reagents(internal_vol)
@@ -101,6 +101,6 @@ Also includes Life and New
 		stasis += hit.stasisforce
 	..()
 
-/mob/living/simple_animal/xeno/Destroy()
+/mob/living/simple_mob/xeno/Destroy()
 	QDEL_NULL(traitdat)
 	..()

@@ -26,3 +26,38 @@
 /obj/structure/table/rack/holorack/dismantle(obj/item/tool/wrench/W, mob/user)
 	to_chat(user, "<span class='warning'>You cannot dismantle \the [src].</span>")
 	return
+
+/obj/structure/table/rack/steel
+	color = "#666666"
+
+/obj/structure/table/rack/steel/Initialize()
+	material = get_material_by_name(MAT_STEEL)
+	. = ..()
+
+//Shelves
+
+/obj/structure/table/rack/shelf
+	name = "shelving"
+	desc = "Some nice metal shelves."
+	icon_state = "shelf"
+
+/obj/structure/table/rack/shelf/steel
+	color = "#666666"
+
+/obj/structure/table/rack/shelf/steel/Initialize()
+	material = get_material_by_name(MAT_STEEL)
+	. = ..()
+
+//Gunrack
+// SOMEONE should add cool overlay stuff to this
+/obj/structure/table/rack/gun_rack
+	name = "gun rack"
+	desc = "Seems like you could prop up some rifles here."
+	icon_state = "gunrack"
+
+/obj/structure/table/rack/gun_rack/steel
+	color = "#666666"
+
+/obj/structure/table/rack/gun_rack/steel/Initialize()
+	material = get_material_by_name(MAT_STEEL)
+	. = ..()

@@ -83,8 +83,6 @@
 	. = ..()
 	//soundloop = new(list(src), FALSE)
 
-/obj/machinery/atmospherics/unary/vent_pump/Initialize()
-	. = ..()
 	air_contents.volume = ATMOS_DEFAULT_VOLUME_PUMP
 
 	icon = null

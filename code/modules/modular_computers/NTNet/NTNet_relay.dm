@@ -99,9 +99,6 @@
 	. = ..()
 	assign_uid()
 	default_apply_parts()
-
-/obj/machinery/ntnet_relay/Initialize()
-	. = ..()
 	if(ntnet_global)
 		ntnet_global.relays.Add(src)
 		NTNet = ntnet_global

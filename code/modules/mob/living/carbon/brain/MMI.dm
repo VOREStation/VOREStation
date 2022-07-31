@@ -21,6 +21,7 @@
 
 /obj/item/mmi/Initialize()
 	radio = new(src)//Spawns a radio inside the MMI.
+	. = ..()
 
 /obj/item/mmi/verb/toggle_radio()
 	set name = "Toggle Brain Radio"
@@ -191,6 +192,7 @@
 	src.brainmob.silent = 0
 	radio = new(src)
 	dead_mob_list -= src.brainmob
+	. = ..()
 
 /obj/item/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these

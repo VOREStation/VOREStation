@@ -492,7 +492,7 @@
 	if(istype(loc, /obj/item/weldpack))
 		mounted_pack = loc
 	else
-		qdel(src)
+		return INITIALIZE_HINT_QDEL
 
 /obj/item/weldingtool/tubefed/Destroy()
 	mounted_pack.nozzle = null

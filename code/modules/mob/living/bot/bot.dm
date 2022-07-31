@@ -57,9 +57,6 @@
 	if(!using_map.bot_patrolling)
 		will_patrol = FALSE
 
-// Make sure mapped in units start turned on.
-/mob/living/bot/Initialize()
-	. = ..()
 	if(on)
 		turn_on() // Update lights and other stuff
 

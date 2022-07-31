@@ -149,3 +149,22 @@ var/global/list/stool_cache = list() //haha stool
 		remove_padding()
 	else
 		..()
+
+/obj/item/stool/barstool
+	name = "bar stool"
+	desc = "Apply butt."
+	icon = 'icons/obj/furniture.dmi'
+	icon_state = "bar_stool_preview" //set for the map
+	randpixel = 0
+	center_of_mass = null
+	force = 10
+	throwforce = 10
+	w_class = ITEMSIZE_HUGE
+	base_icon = "bar_stool_base"
+	anchored = 1
+
+/obj/item/stool/barstool/padded
+	icon_state = "bar_stool_padded_preview" //set for the map
+
+/obj/item/stool/barstool/padded/Initialize(var/ml, var/new_material)
+	. = ..(ml, MAT_STEEL, "carpet")

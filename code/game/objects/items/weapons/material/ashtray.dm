@@ -13,12 +13,10 @@ var/global/list/ashtray_cache = list()
 /obj/item/material/ashtray/Initialize(var/ml, var/material_name)
 	. = ..(ml, material_name)
 	if(!material)
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 	max_butts = round(material.hardness/5) //This is arbitrary but whatever.
 	randpixel_xy()
 	update_icon()
-	return
 
 /obj/item/material/ashtray/update_icon()
 	color = null

@@ -12,7 +12,11 @@
 	layer = STAIRS_LAYER
 
 /obj/structure/stairs/Initialize()
-	. = ..()
+	..()
+	return INITIALIZE_HINT_LATELOAD
+	
+/obj/structure/stairs/LateInitialize()
+	..()
 	if(check_integrity())
 		update_icon()
 
@@ -73,8 +77,8 @@
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/middle/middle = null
 
-/obj/structure/stairs/bottom/Initialize()
-	. = ..()
+/obj/structure/stairs/bottom/LateInitialize()
+	..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
@@ -243,8 +247,8 @@
 	var/obj/structure/stairs/top/top = null
 	var/obj/structure/stairs/bottom/bottom = null
 
-/obj/structure/stairs/middle/Initialize()
-	. = ..()
+/obj/structure/stairs/middle/LateInitialize()
+	..()
 	if(!GetAbove(src))
 		warning("Stair created without level above: ([loc.x], [loc.y], [loc.z])")
 		return INITIALIZE_HINT_QDEL
@@ -495,7 +499,7 @@
 	icon = 'icons/obj/structures/stairs_64x64.dmi'
 	icon_state = ""
 
-/obj/structure/stairs/spawner/Initialize()
+/obj/structure/stairs/spawner/LateInitialize()
 	..()
 	var/turf/B1 = get_step(get_turf(src), turn(dir, 180))
 	var/turf/B2 = get_turf(src)

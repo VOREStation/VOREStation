@@ -36,7 +36,8 @@
 	icon_state = "waterballoon-e"
 	drop_sound = 'sound/items/drop/rubber.ogg'
 
-/obj/item/toy/balloon/New()
+/obj/item/toy/balloon/Initialize()
+	. = ..()
 	var/datum/reagents/R = new/datum/reagents(10)
 	reagents = R
 	R.my_atom = src

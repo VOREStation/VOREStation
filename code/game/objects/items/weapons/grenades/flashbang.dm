@@ -138,14 +138,10 @@
 /obj/item/grenade/flashbang/clusterbang/segment/Initialize() //Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
 	. = ..()
 	icon_state = "clusterbang_segment_active"
-
 	var/stepdist = rand(1,4)//How far to step
 	var/temploc = src.loc//Saves the current location to know where to step away from
 	walk_away(src,temploc,stepdist)//I must go, my people need me
-
-	var/dettime = rand(15,60)
-	spawn(dettime)
-		detonate()
+	addtimer(CALLBACK(src, .proc/detonate), rand(15, 60))
 
 /obj/item/grenade/flashbang/cluster
 	banglet = TRUE
@@ -153,11 +149,7 @@
 /obj/item/grenade/flashbang/cluster/Initialize() //Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
 	. = ..()
 	icon_state = "flashbang_active"
-
 	var/stepdist = rand(1,3)
 	var/temploc = src.loc
 	walk_away(src,temploc,stepdist)
-
-	var/dettime = rand(15,60)
-	spawn(dettime)
-		detonate()
+	addtimer(CALLBACK(src, .proc/detonate), rand(15, 60))

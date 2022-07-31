@@ -32,8 +32,8 @@
 	secure = "secure_"
 	icon_state = "l_secure_windoor_assembly01"
 
-/obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
-	..()
+/obj/structure/windoor_assembly/Initialize(var/ml, start_dir=NORTH, constructed=0)
+	. = ..()
 	if(constructed)
 		state = "01"
 		anchored = FALSE
@@ -43,7 +43,6 @@
 		else //If the user is facing northeast. northwest, southeast, southwest or north, default to north
 			set_dir(NORTH)
 	update_state()
-
 	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/windoor_assembly/Destroy()

@@ -18,6 +18,7 @@
 /obj/item/mop_deploy/Initialize()
 	create_reagents(5)
 	START_PROCESSING(SSobj, src)
+	. = ..()
 
 /turf/proc/clean_deploy(atom/source)
 	if(source.reagents.has_reagent("water", 1))

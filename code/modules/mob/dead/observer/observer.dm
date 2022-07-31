@@ -88,8 +88,9 @@
 	var/last_revive_notification = null // world.time of last notification, used to avoid spamming players from defibs or cloners.
 	var/cleanup_timer // Refernece to a timer that will delete this mob if no client returns
 
-/mob/observer/dead/New(mob/body)
+/mob/observer/dead/Initialize()
 
+	var/mob/body = loc
 	appearance = body
 	invisibility = INVISIBILITY_OBSERVER
 	layer = BELOW_MOB_LAYER
@@ -137,7 +138,11 @@
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
 	observer_mob_list += src
-	..()
+
+	. = ..()
+
+	exonet = new(src)
+	init_exonet()
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
