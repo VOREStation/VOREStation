@@ -13,7 +13,7 @@
 "m" = (/obj/structure/table/steel,/obj/item/paper{desc = "This is some bullshit. First chance we got to knick something that looks half decent turns out to be mostly junk. And now we're getting calls that the other stash we've got has got a spider problem. Fuck this, Between the shitty weather, The pissed of bugs, And now apparently some NT goon running around in the area there's hardly enough reason to stick around. I'm telling Carl I'm out tommorow."; name = "Note"},/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
 "n" = (/obj/vehicle/train/trolley,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
 "o" = (/obj/structure/closet/crate,/obj/item/cell/device/weapon,/obj/item/cell/device/weapon,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
-"p" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/ammo_box/b12g,/obj/item/storage/box/practiceshells,/obj/random/projectile/scrapped_gun,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
+"p" = (/obj/structure/closet/crate,/obj/item/ammo_magazine/ammo_box/b12g,/obj/item/ammo_magazine/ammo_box/b12g/practice,/obj/random/projectile/scrapped_gun,/turf/simulated/floor/outdoors/dirt{outdoors = 0},/area/submap/Thiefc)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaa

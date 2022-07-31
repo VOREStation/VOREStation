@@ -119,7 +119,7 @@
 /area/submap/Thiefc)
 "p" = (
 /obj/structure/closet/crate,
-/obj/item/storage/box/practiceshells,
+/obj/item/ammo_magazine/ammo_box/b12g/practice,
 /turf/simulated/floor/outdoors/dirt/virgo3b{
 	outdoors = 0
 	},

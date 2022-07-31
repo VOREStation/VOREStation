@@ -1,4 +1,5 @@
 // Normal digestion modes
+#define DM_DEFAULT								"Default"				// Not a real bellymode, used for handling on 'selective' bellymode prefs.
 #define DM_HOLD									"Hold"
 #define DM_HOLD_ABSORBED						"Hold Absorbed"			// Not a real bellymode, used for handling different idle messages for absorbed prey.
 #define DM_DIGEST								"Digest"
