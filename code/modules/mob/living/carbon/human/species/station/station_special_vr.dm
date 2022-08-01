@@ -55,13 +55,13 @@
 
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 
-	has_organ = list(    //Same organ list as tajarans.
+	has_organ = list(    //Same organ list as tajarans, except for their SPECIAL BRAIN.
 		O_HEART =    /obj/item/organ/internal/heart,
 		O_LUNGS =    /obj/item/organ/internal/lungs,
 		O_VOICE = 		/obj/item/organ/internal/voicebox,
 		O_LIVER =    /obj/item/organ/internal/liver,
 		O_KIDNEYS =  /obj/item/organ/internal/kidneys,
-		O_BRAIN =    /obj/item/organ/internal/brain,
+		O_BRAIN =    /obj/item/organ/internal/brain/xenochimera,
 		O_EYES =     /obj/item/organ/internal/eyes,
 		O_STOMACH =		/obj/item/organ/internal/stomach,
 		O_INTESTINE =	/obj/item/organ/internal/intestine
@@ -108,17 +108,24 @@
 			H.shock_stage = min(H.shock_stage + (temp_diff/20), 160) // Divided by 20 is the same as previous numbers, but a full scale
 			H.eye_blurry = max(5,H.eye_blurry)
 
+/obj/item/organ/internal/brain/xenochimera
+	var/laststress = 0
 
 /datum/species/xenochimera/proc/handle_feralness(var/mob/living/carbon/human/H)
+	//first, calculate how stressed the chimera is
+	var/laststress = 0
+	var/obj/item/organ/internal/brain/xenochimera/B = H.internal_organs_by_name[O_BRAIN]
+	if(B) //if you don't have a chimera brain in a chimera body somehow, you don't get the feraless protection
+		laststress = B.laststress
 
-	//Low-ish nutrition has messages and eventually feral
-	var/hungry = H.nutrition <= 200
+	//Low-ish nutrition has messages and can eventually cause feralness
+	var/hunger = max(0, 150 - H.nutrition)
 
-	//At 360 nutrition, this is 30 brute/burn, or 18 halloss. Capped at 50 brute/30 halloss - if they take THAT much, no amount of satiation will help them. Also they're fat.
-	var/shock = H.traumatic_shock > min(60, H.nutrition/10)
+	//pain makes feralness a thing
+	var/shock = 0.75*H.traumatic_shock
 
-	//Caffeinated xenochimera can become feral and have special messages
-	var/jittery = H.jitteriness >= 100
+	//Caffeinated or otherwise overexcited xenochimera can become feral and have special messages
+	var/jittery = max(0, H.jitteriness - 100)
 
 	//To reduce distant object references
 	var/feral = H.feral
@@ -127,11 +134,25 @@
 	var/danger = FALSE
 	var/feral_state = FALSE
 
-	//Handle feral triggers and pre-feral messages
-	if(!feral && (hungry || shock || jittery))
+	//finally, calculate the current stress total the chimera is operating under, and the cause
+	var/currentstress = (hunger + shock + jittery)
+	var/cause = "stress"
+	if(hunger > shock && hunger > jittery)
+		cause = "hunger"
+	else if (shock > hunger && shock > jittery)
+		cause = "shock"
+	else if (jittery > shock && jittery > hunger)
+		cause = "jittery"
 
-		// If they're hungry, give nag messages (when not bellied)
-		if(H.nutrition >= 100 && prob(0.5) && !isbelly(H.loc))
+	//check to see if they go feral if they weren't before
+	if(!feral)
+		// if stress is below 15, no chance of snapping. Also if they weren't feral before, they won't suddenly become feral unless they get MORE stressed
+		if((currentstress > laststress) && prob(clamp(currentstress-15, 0, 100)) )
+			go_feral(H, currentstress, cause)
+			feral = currentstress //update the local var
+
+		//they didn't go feral, give 'em a chance of hunger messages
+		else if(H.nutrition <= 200 && prob(0.5) && !isbelly(H.loc))
 			switch(H.nutrition)
 				if(150 to 200)
 					to_chat(H,"<span class='info'>You feel rather hungry. It might be a good idea to find some some food...</span>")
@@ -139,81 +160,26 @@
 					to_chat(H,"<span class='warning'>You feel like you're going to snap and give in to your hunger soon... It would be for the best to find some [pick("food","prey")] to eat...</span>")
 					danger = TRUE
 
-		// Going feral due to hunger
-		else if(H.nutrition < 100 && !isbelly(H.loc))
-			to_chat(H,"<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>")
-			log_and_message_admins("has gone feral due to hunger.", H)
-			feral = 5
-			danger = TRUE
-			feral_state = TRUE
-			if(!H.stat)
-				H.emote("twitch")
-
-		// If they're hurt, chance of snapping.
-		else if(shock)
-
-			//If the majority of their shock is due to halloss, greater chance of snapping.
-			if(2.5*H.halloss >= H.traumatic_shock)
-				if(prob(min(10,(0.2 * H.traumatic_shock))))
-					to_chat(H,"<span class='danger'><big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...</big></span>")
-					log_and_message_admins("has gone feral due to halloss.", H)
-					feral = 5
-					danger = TRUE
-					feral_state = TRUE
-					if(!H.stat)
-						H.emote("twitch")
-
-			//Majority due to other damage sources
-			else if(prob(min(10,(0.1 * H.traumatic_shock))))
-				to_chat(H,"<span class='danger'><big>Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.</big></span>")
-				feral = 5
-				danger = TRUE
-				feral_state = TRUE
-				log_and_message_admins("has gone feral due to injury.", H)
-				if(!H.stat)
-					H.emote("twitch")
-
-		//No hungry or shock, but jittery
-		else if(jittery)
-			to_chat(H,"<span class='warning'><big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big></span>")
-			feral = 5
-			danger = TRUE
-			feral_state = TRUE
-			log_and_message_admins("has gone feral due to jitteriness.", H)
-			if(!H.stat)
-				H.emote("twitch")
+	//now the check's done, update their brain so it remembers how stressed they were
+	B.laststress = currentstress
 
 	// Handle being feral
 	if(feral)
 		//We're feral
 		feral_state = TRUE
 
-		//Shock due to mostly halloss. More feral.
-		if(shock && 2.5*H.halloss >= H.traumatic_shock)
+		//If they're still stressed, they stay feral
+		if(currentstress >= 15)
 			danger = TRUE
-			feral = max(feral, H.halloss)
+			feral = max(feral, currentstress)
 
-		//Shock due to mostly injury. More feral.
-		else if(shock)
-			danger = TRUE
-			feral = max(feral, H.traumatic_shock * 2)
-
-		//Still jittery? More feral.
-		if(jittery)
-			danger = TRUE
-			feral = max(feral, H.jitteriness-100)
-
-		//Still hungry? More feral.
-		if(H.feral + H.nutrition < 150)
-			danger = TRUE
-			feral++
 		else
 			feral = max(0,--feral)
 
-		// Being in a belly or in the darkness decreases stress further. Helps mechanically reward players for staying in darkness + RP'ing appropriately. :9
-		var/turf/T = get_turf(H)
-		if(feral && (isbelly(H.loc) || T.get_lumcount() <= 0.1))
-			feral = max(0,--feral)
+			// Being in a belly or in the darkness decreases stress further. Helps mechanically reward players for staying in darkness + RP'ing appropriately. :9
+			var/turf/T = get_turf(H)
+			if(feral && (isbelly(H.loc) || T.get_lumcount() <= 0.1))
+				feral = max(0,--feral)
 
 		//Set our real mob's var to our temp var
 		H.feral = feral
@@ -230,7 +196,7 @@
 		H.shock_stage = max(H.shock_stage-(feral/20), 0)
 
 		//Handle light/dark areas
-		// var/turf/T = get_turf(H) // Moved up to before the in-belly/dark combined check, should still safely reach here just fine.
+		var/turf/T = get_turf(H)
 		if(!T)
 			update_xenochimera_hud(H, danger, feral_state)
 			return //Nullspace
@@ -260,15 +226,15 @@
 		// In the darkness, or "hidden", or in a belly. No need for custom scene-protection checks as it's just an occational infomessage.
 		if(darkish || !isturf(H.loc) || isbelly(H.loc)) // Specific check for if in belly. !isturf should do this, but JUST in case.
 			// If hurt, tell 'em to heal up
-			if (shock)
+			if (cause == "shock")
 				to_chat(H,"<span class='info'>This place seems safe, secure, hidden, a place to lick your wounds and recover...</span>")
 
 			//If hungry, nag them to go and find someone or something to eat.
-			else if(hungry)
+			else if(cause == "hunger")
 				to_chat(H,"<span class='info'>Secure in your hiding place, your hunger still gnaws at you. You need to catch some food...</span>")
 
 			//If jittery, etc
-			else if(jittery)
+			else if(cause == "jittery")
 				to_chat(H,"<span class='info'>sneakysneakyyesyesyescleverhidingfindthingsyessssss</span>")
 
 			//Otherwise, just tell them to keep hiding.
@@ -287,22 +253,53 @@
 			// Someone/something nearby
 			if(nearby.len)
 				var/M = pick(nearby)
-				if(shock)
+				if(cause == "shock")
 					to_chat(H,"<span class='danger'>You're hurt, in danger, exposed, and [M] looks to be a little too close for comfort...</span>")
-				else if(hungry || jittery)
+				else
 					to_chat(H,"<span class='danger'>Every movement, every flick, every sight and sound has your full attention, your hunting instincts on high alert... In fact, [M] looks extremely appetizing...</span>")
 
 			// Nobody around
 			else
-				if(hungry)
+				if(cause == "hunger")
 					to_chat(H,"<span class='danger'>Confusing sights and sounds and smells surround you - scary and disorienting it may be, but the drive to hunt, to feed, to survive, compels you.</span>")
-				else if(jittery)
+				else if(cause == "jittery")
 					to_chat(H,"<span class='danger'>yesyesyesyesyesyesgetthethingGETTHETHINGfindfoodsfindpreypounceyesyesyes</span>")
 				else
 					to_chat(H,"<span class='danger'>Confusing sights and sounds and smells surround you, this place is wrong, confusing, frightening. You need to hide, go to ground...</span>")
 
 	// HUD update time
 	update_xenochimera_hud(H, danger, feral_state)
+
+/datum/species/xenochimera/proc/go_feral(var/mob/living/carbon/human/H, var/stress, var/cause)
+	// Going feral due to hunger
+	if(cause == "hunger")
+		to_chat(H,"<span class='danger'><big>Something in your mind flips, your instincts taking over, no longer able to fully comprehend your surroundings as survival becomes your primary concern - you must feed, survive, there is nothing else. Hunt. Eat. Hide. Repeat.</big></span>")
+		log_and_message_admins("has gone feral due to hunger.", H)
+
+	// If they're hurt, chance of snapping.
+	else if(cause == "shock")
+		//If the majority of their shock is due to halloss, give them a different message (3x multiplier on check as halloss is 2x - meaning t_s must be at least 3x for other damage sources to be the greater part)
+		if(3*H.halloss >= H.traumatic_shock)
+			to_chat(H,"<span class='danger'><big>The pain! It stings! Got to get away! Your instincts take over, urging you to flee, to hide, to go to ground, get away from here...</big></span>")
+			log_and_message_admins("has gone feral due to halloss.", H)
+
+		//Majority due to other damage sources
+		else
+			to_chat(H,"<span class='danger'><big>Your fight-or-flight response kicks in, your injuries too much to simply ignore - you need to flee, to hide, survive at all costs - or destroy whatever is threatening you.</big></span>")
+			log_and_message_admins("has gone feral due to injury.", H)
+
+	//No hungry or shock, but jittery
+	else if(cause == "jittery")
+		to_chat(H,"<span class='warning'><big>Suddenly, something flips - everything that moves is... potential prey. A plaything. This is great! Time to hunt!</big></span>")
+		log_and_message_admins("has gone feral due to jitteriness.", H)
+
+	else // catch-all just in case something weird happens
+		to_chat(H,"<span class='warning'><big>The stress of your situation is too much for you, and your survival instincts kick in!</big></span>")
+		log_and_message_admins("has gone feral for unknown reasons.", H)
+	//finally, set their feral var
+	H.feral = stress
+	if(!H.stat)
+		H.emote("twitch")
 
 /datum/species/xenochimera/get_race_key()
 	var/datum/species/real = GLOB.all_species[base_species]

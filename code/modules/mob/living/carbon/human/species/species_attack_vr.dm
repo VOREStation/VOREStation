@@ -61,15 +61,17 @@
 
 /datum/unarmed_attack/claws/chimera //special feral attack that gets stronger as they get angrier
 
+/datum/unarmed_attack/claws/chimera/get_unarmed_damage(var/mob/living/carbon/human/user)
+	return user.feral/5
+
 /datum/unarmed_attack/claws/chimera/apply_effects(var/mob/living/carbon/human/user,var/mob/living/carbon/human/target,var/armour,var/attack_damage,var/zone)
 	..()
 	if(user.feral && !(target == user))
-		var/bonusdamage = user.feral/5
-		target.apply_damage(bonusdamage, damage_type, zone, armour, 0, sharp=src.sharp, edge=src.edge) //they get their armour soak already against the regular attack
-		if (bonusdamage > 15)
+		var/selfdamage = ((user.feral/10)-7.5)
+		if(selfdamage > 0)
 			var/selfdamagezone = null
 			if (user.hand)
 				selfdamagezone=pick(BP_L_ARM, BP_L_HAND)
 			else
 				selfdamagezone=pick(BP_R_ARM, BP_R_HAND)
-			user.apply_damage(max(0, (bonusdamage-15)/2), BRUTE, selfdamagezone, 0, 0, sharp=FALSE, edge=FALSE)
+			user.apply_damage(selfdamage, BRUTE, selfdamagezone, 0, 0, sharp=FALSE, edge=FALSE)
