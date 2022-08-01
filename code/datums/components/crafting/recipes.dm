@@ -56,6 +56,33 @@
 			if(ispath(path, /datum/reagent))
 				. += L[path]
 
+<<<<<<< HEAD
+=======
+/datum/crafting_recipe/stunprod
+	name = "Stunprod"
+	result = /obj/item/melee/baton/cattleprod
+	reqs = list(list(/obj/item/handcuffs/cable = 1),
+				list(/obj/item/stack/rods = 1),
+				list(/obj/item/tool/wirecutters = 1))
+	time = 40
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+/datum/crafting_recipe/spear
+	name = "Spear"
+	result = /obj/item/material/twohanded/spear
+	reqs = list(list(/obj/item/handcuffs/cable = 1),
+				list(/obj/item/stack/rods = 1),
+				list(/obj/item/material/shard = 1,
+					/obj/item/material/butterflyblade = 1)
+				)
+	parts = list(/obj/item/material/shard = 1,
+				/obj/item/material/butterflyblade = 1)
+	time = 40
+	category = CAT_WEAPONRY
+	subcategory = CAT_WEAPON
+
+>>>>>>> e072e147a41... Archery Tweaks (#8670)
 // Locate one of the things that set the material type, and update it from the default (glass)
 /datum/crafting_recipe/spear/on_craft_completion(mob/user, atom/result)
 	var/obj/item/weapon/material/M
@@ -72,3 +99,65 @@
 	var/obj/item/weapon/material/twohanded/spear/S = result
 	S.set_material(M.material.name)
 	qdel(M)
+<<<<<<< HEAD
+=======
+
+/datum/crafting_recipe/material_armor
+	name = "Material Armor Plate"
+	result = /obj/item/clothing/accessory/material/advanced
+	reqs = list(
+		list(/obj/item/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	parts = list(
+		/obj/item/material/armor_plating/insert = 1
+	)
+	machinery = list(
+		/obj/machinery/r_n_d/protolathe = CRAFTING_MACHINERY_USE
+	)
+	always_available = FALSE
+	time = 80
+	category = CAT_CLOTHING
+
+
+/datum/crafting_recipe/material_armor/chestplate
+	name = "Material armor plate"
+	result = /obj/item/clothing/accessory/material/advanced
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/legguards
+	name = "Material armor arm-guards"
+	result = /obj/item/clothing/accessory/material/advanced/armguards
+	reqs = list(
+		list(/obj/item/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/armguards
+	name = "Material armor leg-guards"
+	result = /obj/item/clothing/accessory/material/advanced/legguards
+	reqs = list(
+		list(/obj/item/material/armor_plating/insert = 1),
+		list(/datum/reagent/toxin/plasticide = 5),
+		list(/datum/reagent/glycerol = 10),
+		list(/datum/reagent/silicon = 10)
+	)
+	always_available = TRUE
+
+
+/datum/crafting_recipe/material_armor/on_craft_completion(mob/user, obj/item/clothing/result)
+	var/obj/item/material/armor_plating/insert/insert = locate() in result
+	var/material_name = insert?.material?.name
+	if (!material_name)
+		qdel(result)
+		return
+	result.set_material(material_name)
+	qdel(insert)
+>>>>>>> e072e147a41... Archery Tweaks (#8670)

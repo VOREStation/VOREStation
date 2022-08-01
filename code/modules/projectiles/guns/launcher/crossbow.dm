@@ -13,7 +13,13 @@
 	sharp = TRUE
 	edge = FALSE
 
+<<<<<<< HEAD
 /obj/item/weapon/arrow/proc/removed() //Helper for metal rods falling apart.
+=======
+	var/list/knock_point = list(6,6)
+
+/obj/item/arrow/proc/removed() //Helper for metal rods falling apart.
+>>>>>>> e072e147a41... Archery Tweaks (#8670)
 	return
 
 /obj/item/weapon/spike
@@ -37,7 +43,13 @@
 	item_state = "quill"
 	throwforce = 5
 
+<<<<<<< HEAD
 /obj/item/weapon/arrow/rod
+=======
+	knock_point = list(10,11)
+
+/obj/item/arrow/rod
+>>>>>>> e072e147a41... Archery Tweaks (#8670)
 	name = "metal rod"
 	desc = "Don't cry for me, Orithena."
 	icon_state = "metal-rod"
@@ -59,6 +71,11 @@
 	fire_sound_text = "a solid thunk"
 	fire_delay = 25
 	slot_flags = SLOT_BACK
+
+	// Pixel location the arrow should rest on.
+	var/list/drawn_knock = list(10,9)
+	var/list/ready_knock = list(4,3)
+	var/bolt_rotation_transform = 180	// Crossbows point 'southwest' in their ground icon, so the arrows have to be flipped around.
 
 	var/obj/item/bolt
 	var/tension = 0                         // Current draw on the bow.
@@ -139,7 +156,11 @@
 
 /obj/item/weapon/gun/launcher/crossbow/attackby(obj/item/W as obj, mob/user as mob)
 	if(!bolt)
+<<<<<<< HEAD
 		if (istype(W,/obj/item/weapon/arrow))
+=======
+		if (istype(W,/obj/item/arrow) || istype(W, /obj/item/material/arrow))
+>>>>>>> e072e147a41... Archery Tweaks (#8670)
 			user.drop_from_inventory(W, src)
 			bolt = W
 			user.visible_message("[user] slides [bolt] into [src].","You slide [bolt] into [src].")
@@ -179,7 +200,19 @@
 	else
 		..()
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/launcher/crossbow/proc/superheat_rod(var/mob/user)
+=======
+/obj/item/gun/launcher/crossbow/attack_hand(mob/living/user)
+	. = ..()
+	update_icon()
+
+/obj/item/gun/launcher/crossbow/dropped(mob/user)
+	. = ..()
+	update_icon()
+
+/obj/item/gun/launcher/crossbow/proc/superheat_rod(var/mob/user)
+>>>>>>> e072e147a41... Archery Tweaks (#8670)
 	if(!user || !cell || !bolt) return
 	if(cell.charge < 500) return
 	if(bolt.throwforce >= 15) return
@@ -190,7 +223,33 @@
 	bolt.icon_state = "metal-rod-superheated"
 	cell.use(500)
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/launcher/crossbow/update_icon()
+=======
+/obj/item/gun/launcher/crossbow/proc/update_bolt_transform()
+	if(!(istype(bolt,/obj/item/arrow) || istype(bolt, /obj/item/material/arrow)))
+		return
+
+	var/obj/item/arrow/dart = bolt
+
+	if(LAZYLEN(drawn_knock) && LAZYLEN(ready_knock) && LAZYLEN(dart.knock_point))
+		dart.SetTransform(rotation = bolt_rotation_transform)
+
+		if(!tension)
+			dart.SetTransform(offset_x = ready_knock[1] - dart?.knock_point[1], offset_y = ready_knock[2] - dart?.knock_point[2])
+
+		else
+			dart.SetTransform(offset_x = drawn_knock[1] - dart?.knock_point[1], offset_y = drawn_knock[2] - dart?.knock_point[2])
+
+		var/image/dart_image = image(dart)
+		dart_image.plane = plane	// Make sure it's the same plane as the parent, otherwise we get phantom bolts.
+		dart.ClearTransform()
+
+		return dart_image
+
+/obj/item/gun/launcher/crossbow/update_icon()
+	cut_overlays()
+>>>>>>> e072e147a41... Archery Tweaks (#8670)
 	if(tension > 1)
 		icon_state = "crossbow-drawn"
 	else if(bolt)
@@ -198,6 +257,8 @@
 	else
 		icon_state = "crossbow"
 
+	if((istype(bolt,/obj/item/arrow) || istype(bolt, /obj/item/material/arrow)))
+		add_overlay(update_bolt_transform())
 
 // Crossbow construction.
 /obj/item/weapon/crossbowframe

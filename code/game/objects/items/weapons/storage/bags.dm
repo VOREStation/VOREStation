@@ -424,3 +424,20 @@
 	w_class = ITEMSIZE_SMALL
 	can_hold = list(/obj/item/weapon/forensics/swab,/obj/item/weapon/sample/print,/obj/item/weapon/sample/fibers,/obj/item/weapon/evidencebag)
 
+<<<<<<< HEAD
+=======
+
+	// -----------------------------
+	//           Quiver (arrow bag)
+	// -----------------------------
+/obj/item/storage/bag/quiver
+	name = "quiver"
+	icon = 'icons/obj/storage.dmi'
+	icon_state = "quiver"
+	desc = "A quiver for storing arrows."
+	max_storage_space = 100 //holds 25 arrows
+	max_w_class = ITEMSIZE_NORMAL
+	w_class = ITEMSIZE_LARGE
+	slot_flags = SLOT_BACK
+	can_hold = list(/obj/item/arrow, /obj/item/material/arrow)
+>>>>>>> e072e147a41... Archery Tweaks (#8670)

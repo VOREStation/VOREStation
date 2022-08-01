@@ -31,13 +31,20 @@
 	icon_state = "rock"
 	item_state = "rock"
 	attack_verb = list("chopped", "torn", "cut")
+	applies_material_colour = TRUE
+	default_material = MAT_SANDSTONE	// Rocks from the earth are not typically high carbon steel.
 
 /obj/item/weapon/material/knife/machete/hatchet/stone/set_material(var/new_material)
 	var/old_name = name
 	. = ..()
 	name = old_name
+<<<<<<< HEAD
 */
 /obj/item/weapon/material/knife/machete/hatchet/unathiknife
+=======
+
+/obj/item/material/knife/machete/hatchet/unathiknife
+>>>>>>> e072e147a41... Archery Tweaks (#8670)
 	name = "duelling knife"
 	desc = "A length of leather-bound wood studded with razor-sharp teeth. How crude."
 	icon = 'icons/obj/weapons.dmi'
