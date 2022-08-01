@@ -41,7 +41,7 @@
 		dat += "Body Temperature: ???"
 		user.show_message("<span class='notice'>[dat]</span>", 1)
 		return
-	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+	if (!user.IsAdvancedToolUser())
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 

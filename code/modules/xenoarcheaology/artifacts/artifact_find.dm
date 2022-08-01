@@ -13,6 +13,7 @@
 	25;/obj/machinery/power/supermatter/shard,
 	100;/obj/machinery/auto_cloner,
 	100;/obj/machinery/giga_drill,
-	100;/obj/machinery/replicator,
+	100;/obj/machinery/replicator/clothing, 	//VOREStation Edit: use virgo-specific subtype that allows TF into items.
+	100;/obj/machinery/replicator/vore, 		//VOREStation Edit: use virgo-specific subtype that allows TF into mobs.
 	150;/obj/structure/crystal,
 	1000;/obj/machinery/artifact)

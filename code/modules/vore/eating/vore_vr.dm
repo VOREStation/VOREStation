@@ -70,11 +70,13 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/vore_taste = "nothing in particular"
 	var/vore_smell = "nothing in particular"
 
+	var/selective_preference = DM_DEFAULT
+
 
 	var/nutrition_message_visible = TRUE
 	var/list/nutrition_messages = list(
-							"They are starving! You can hear their stomach snarling from across the room!" = 1,
-							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach." = 2,
+							"They are starving! You can hear their stomach snarling from across the room!",
+							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach.",
 							"",
 							"They have a stuffed belly, bloated fat and round from eating too much.",
 							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
@@ -168,6 +170,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	vore_smell = json_from_file["vore_smell"]
 	permit_healbelly = json_from_file["permit_healbelly"]
 	noisy = json_from_file["noisy"]
+	selective_preference = json_from_file["selective_preference"]
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
 	can_be_drop_pred = json_from_file["can_be_drop_pred"]
@@ -201,6 +204,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		allowmobvore = TRUE
 	if(isnull(permit_healbelly))
 		permit_healbelly = TRUE
+	if(isnull(selective_preference))
+		selective_preference = DM_DEFAULT
 	if (isnull(noisy))
 		noisy = FALSE
 	if(isnull(show_vore_fx))
@@ -274,6 +279,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"vore_smell"			= vore_smell,
 			"permit_healbelly"		= permit_healbelly,
 			"noisy" 				= noisy,
+			"selective_preference"	= selective_preference,
 			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,
 			"can_be_drop_pred"		= can_be_drop_pred,

@@ -45,6 +45,7 @@
 	var/adminbus_eat_minerals = FALSE	// This creature subsists on a diet of pure adminium.
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
+	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
 	var/regen_sounds = list(
 		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
@@ -55,8 +56,8 @@
 
 	var/nutrition_message_visible = TRUE
 	var/list/nutrition_messages = list(
-							"They are starving! You can hear their stomach snarling from across the room!" = 1,
-							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach." = 2,
+							"They are starving! You can hear their stomach snarling from across the room!",
+							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach.",
 							"",
 							"They have a stuffed belly, bloated fat and round from eating too much.",
 							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
@@ -263,6 +264,7 @@
 	P.vore_smell = src.vore_smell
 	P.permit_healbelly = src.permit_healbelly
 	P.noisy = src.noisy
+	P.selective_preference = src.selective_preference
 	P.show_vore_fx = src.show_vore_fx
 	P.can_be_drop_prey = src.can_be_drop_prey
 	P.can_be_drop_pred = src.can_be_drop_pred
@@ -307,6 +309,7 @@
 	vore_taste = P.vore_taste
 	vore_smell = P.vore_smell
 	permit_healbelly = P.permit_healbelly
+	selective_preference = P.selective_preference
 	noisy = P.noisy
 	show_vore_fx = P.show_vore_fx
 	can_be_drop_prey = P.can_be_drop_prey
@@ -508,8 +511,23 @@
 		crystal.bound_mob = null
 		crystal.bound_mob = capture_crystal = 0
 		log_and_message_admins("[key_name(src)] used the OOC escape button to get out of [crystal] owned by [crystal.owner]. [ADMIN_FLW(src)]")
+
+	//You've been turned into an item!
+	else if(tf_mob_holder && istype(src, /mob/living/voice) && istype(src.loc, /obj/item))
+		var/obj/item/item_to_destroy = src.loc //If so, let's destroy the item they just TF'd out of.
+		if(istype(src.loc, /obj/item/clothing)) //Are they in clothes? Delete the item then revert them.
+			qdel(item_to_destroy)
+			log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
+			revert_mob_tf()
+		else //Are they in any other type of object? If qdel is done first, the mob is deleted from the world.
+			forceMove(get_turf(src))
+			qdel(item_to_destroy)
+			log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into an object.")
+			revert_mob_tf()
+
+	//You've been turned into a mob!
 	else if(tf_mob_holder)
-		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob. [ADMIN_FLW(src)]")
+		log_and_message_admins("[key_name(src)] used the OOC escape button to revert back to their original form from being TFed into another mob.")
 		revert_mob_tf()
 	//Don't appear to be in a vore situation
 	else
@@ -1013,6 +1031,7 @@
 	dispvoreprefs += "<b>Leaves Remains:</b> [digest_leave_remains ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Mob Vore:</b> [allowmobvore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Healbelly permission:</b> [permit_healbelly ? "Allowed" : "Disallowed"]<br>"
+	dispvoreprefs += "<b>Selective Mode Pref:</b> [src.selective_preference]<br>"
 	dispvoreprefs += "<b>Spontaneous vore prey:</b> [can_be_drop_prey ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Drop Vore:</b> [drop_vore ? "Enabled" : "Disabled"]<br>"

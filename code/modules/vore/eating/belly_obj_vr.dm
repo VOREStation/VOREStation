@@ -50,6 +50,7 @@
 	var/emote_time = 60						// How long between stomach emotes at prey (in seconds)
 	var/emote_active = TRUE					// Are we even giving emotes out at all or not?
 	var/next_emote = 0						// When we're supposed to print our next emote, as a world.time
+	var/selective_preference = DM_DIGEST	// Which type of selective bellymode do we default to?
 
 	// Generally just used by AI
 	var/autotransferchance = 0 				// % Chance of prey being autotransferred to transfer location
@@ -58,7 +59,7 @@
 
 	//I don't think we've ever altered these lists. making them static until someone actually overrides them somewhere.
 	//Actual full digest modes
-	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
+	var/tmp/static/list/digest_modes = list(DM_HOLD,DM_DIGEST,DM_ABSORB,DM_DRAIN,DM_SELECT,DM_UNABSORB,DM_HEAL,DM_SHRINK,DM_GROW,DM_SIZE_STEAL,DM_EGG)
 	//Digest mode addon flags
 	var/tmp/static/list/mode_flag_list = list("Numbing" = DM_FLAG_NUMBING, "Stripping" = DM_FLAG_STRIPPING, "Leave Remains" = DM_FLAG_LEAVEREMAINS, "Muffles" = DM_FLAG_THICKBELLY, "Affect Worn Items" = DM_FLAG_AFFECTWORN, "Jams Sensors" = DM_FLAG_JAMSENSORS, "Complete Absorb" = DM_FLAG_FORCEPSAY)
 	//Item related modes
@@ -200,6 +201,7 @@
 	"emote_lists",
 	"emote_time",
 	"emote_active",
+	"selective_preference",
 	"mode_flags",
 	"item_digest_mode",
 	"contaminates",
@@ -1128,6 +1130,7 @@
 	dupe.egg_type = egg_type
 	dupe.emote_time = emote_time
 	dupe.emote_active = emote_active
+	dupe.selective_preference = selective_preference
 	dupe.save_digest_mode = save_digest_mode
 
 	//// Object-holding variables
