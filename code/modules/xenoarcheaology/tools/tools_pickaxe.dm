@@ -17,7 +17,7 @@
 	name = "2cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick1"
-	item_state = "syringe_0"
+	item_state = "xenoarch_pick"
 	force = 2
 	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (2 centimetre excavation depth)."
@@ -30,7 +30,7 @@
 	name = "4cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick2"
-	item_state = "syringe_0"
+	item_state = "xenoarch_pick"
 	force = 2
 	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (4 centimetre excavation depth)."
@@ -43,7 +43,7 @@
 	name = "6cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick3"
-	item_state = "syringe_0"
+	item_state = "xenoarch_pick"
 	force = 3
 	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (6 centimetre excavation depth)."
@@ -56,7 +56,7 @@
 	name = "8cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick4"
-	item_state = "syringe_0"
+	item_state = "xenoarch_pick"
 	force = 3
 	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (8 centimetre excavation depth)."
@@ -69,7 +69,7 @@
 	name = "10cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick5"
-	item_state = "syringe_0"
+	item_state = "xenoarch_pick"
 	force = 5
 	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (10 centimetre excavation depth)."
@@ -82,7 +82,7 @@
 	name = "12cm pick"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick6"
-	item_state = "syringe_0"
+	item_state = "xenoarch_pick"
 	force = 5
 	digspeed = 20
 	desc = "A miniature excavation tool for precise digging (12 centimetre excavation depth)."
@@ -95,7 +95,7 @@
 	name = "hand pickaxe"
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "pick_hand"
-	item_state = "syringe_0"
+	item_state = "pickaxe"
 	force = 10
 	digspeed = 30
 	desc = "A smaller, more precise version of the pickaxe (30 centimetre excavation depth)."
@@ -111,10 +111,11 @@
 	name = "excavation pick set"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "excavation"
-	desc = "A set of picks for excavation."
+	desc = "A rugged metal case containing a set of standardized picks used in archaeological digs."
 	item_state = "syringe_kit"
 	storage_slots = 7
 	w_class = ITEMSIZE_SMALL
+<<<<<<< HEAD
 	can_hold = list(/obj/item/weapon/pickaxe/brush,
 	/obj/item/weapon/pickaxe/one_pick,
 	/obj/item/weapon/pickaxe/two_pick,
@@ -123,6 +124,17 @@
 	/obj/item/weapon/pickaxe/five_pick,
 	/obj/item/weapon/pickaxe/six_pick,
 	/obj/item/weapon/pickaxe/hand)
+=======
+	origin_tech = list(TECH_MATERIAL = 3, TECH_ENGINEERING = 2)
+	can_hold = list(/obj/item/pickaxe/brush,
+	/obj/item/pickaxe/one_pick,
+	/obj/item/pickaxe/two_pick,
+	/obj/item/pickaxe/three_pick,
+	/obj/item/pickaxe/four_pick,
+	/obj/item/pickaxe/five_pick,
+	/obj/item/pickaxe/six_pick,
+	/obj/item/pickaxe/hand)
+>>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 	max_storage_space = ITEMSIZE_COST_SMALL * 9
 	max_w_class = ITEMSIZE_SMALL
 	use_to_pickup = TRUE
@@ -172,6 +184,7 @@
 	force = 5
 	w_class = 2
 	attack_verb = list("drilled")
+	origin_tech = list(TECH_MATERIAL = 4, TECH_ENGINEERING = 5)
 
 /obj/item/weapon/pickaxe/excavationdrill/attack_self(mob/user as mob)
 	var/depth = tgui_input_number(usr, "Put the desired depth (1-30 centimeters).", "Set Depth", 30, 30, 1)
@@ -197,3 +210,4 @@
 /obj/item/weapon/pickaxe/excavationdrill/examine(mob/user)
 	. = ..()
 	. += "<span class='info'>It is currently set at [excavation_amount]cms.</span>"
+

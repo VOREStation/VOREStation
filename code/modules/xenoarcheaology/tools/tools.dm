@@ -34,8 +34,13 @@
 	name = "Alden-Saraspova counter"
 	desc = "Aids in triangulation of exotic particles."
 	icon = 'icons/obj/xenoarchaeology.dmi'
+<<<<<<< HEAD
 	icon_state = "flashgun"
 	item_state = "lampgreen"
+=======
+	icon_state = "xenoarch_scanner"
+	item_state = "analyzer"
+>>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 	origin_tech = list(TECH_BLUESPACE = 3, TECH_MAGNET = 3)
 	matter = list(MAT_STEEL = 10000,MAT_GLASS = 5000)
 	w_class = ITEMSIZE_SMALL
@@ -83,6 +88,7 @@
 			to_chat(user, "Small anomaly detected in a radius of [nearestSimpleTargetDist]m.")
 		else
 			to_chat(user, "Background radiation levels detected.")
+		playsound(loc, 'sound/machines/boop2.ogg', 40)
 	else
 		to_chat(user, "Scanning array is recharging.")
 
@@ -91,7 +97,7 @@
 	desc = "Used to check spatial depth and density of rock outcroppings."
 	icon = 'icons/obj/xenoarchaeology.dmi'
 	icon_state = "depth_scanner"
-	item_state = "analyzer"
+	item_state = "xenoarch_device"
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_BLUESPACE = 2)
 	matter = list(MAT_STEEL = 1000,MAT_GLASS = 1000)
 	w_class = ITEMSIZE_SMALL
@@ -131,7 +137,12 @@
 
 			positive_locations.Add(D)
 
+<<<<<<< HEAD
 			to_chat(user, "<span class='notice'>\icon[src][bicon(src)] [src] pings.</span>")
+=======
+			to_chat(user, "<span class='notice'>[bicon(src)] [src] pings.</span>")
+			playsound(loc, 'sound/machines/twobeep.ogg', 40)
+>>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 
 	else if(istype(A, /obj/structure/boulder))
 		var/obj/structure/boulder/B = A
@@ -149,7 +160,12 @@
 
 			positive_locations.Add(D)
 
+<<<<<<< HEAD
 			to_chat(user, "<span class='notice'>\icon[src][bicon(src)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
+=======
+			to_chat(user, "<span class='notice'>[bicon(src)] [src] pings [pick("madly","wildly","excitedly","crazily")]!</span>")
+			playsound(loc, 'sound/machines/triple_beep.ogg', 40)
+>>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 
 /obj/item/device/depth_scanner/attack_self(var/mob/living/user)
 	tgui_interact(user)

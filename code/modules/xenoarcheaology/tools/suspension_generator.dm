@@ -1,9 +1,14 @@
 /obj/machinery/suspension_gen
 	name = "suspension field generator"
-	desc = "It has stubby legs bolted up against it's body for stabilising."
+	desc = "It has stubby bolts up against it's treads for stabilising."
 	icon = 'icons/obj/xenoarchaeology.dmi'
+<<<<<<< HEAD
 	icon_state = "suspension2"
 	density = TRUE
+=======
+	icon_state = "suspension"
+	density = 1
+>>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 	req_access = list(access_research)
 	var/obj/item/weapon/cell/cell
 	var/locked = TRUE
@@ -108,11 +113,19 @@
 			else
 				anchored = TRUE
 			playsound(src, W.usesound, 50, 1)
+<<<<<<< HEAD
 			to_chat(user, "<span class='notice'>You wrench the stabilising legs [anchored ? "into place" : "up against the body"].</span>")
+=======
+			to_chat(user, "<span class='info'>You wrench the stabilising bolts [anchored ? "into place" : "loose"].</span>")
+>>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 			if(anchored)
-				desc = "It is resting securely on four stubby legs."
+				desc = "Its tracks are held firmly in place with securing bolts."
+				icon_state = "suspension_wrenched"
 			else
-				desc = "It has stubby legs bolted up against it's body for stabilising."
+				desc = "It has stubby bolts aligned along it's tracks for stabilising."
+				icon_state = "suspension"
+			playsound(loc, 'sound/items/Ratchet.ogg', 40)
+			update_icon()
 		else
 			to_chat(user, "<span class='warning'>You are unable to unsecure [src] while it is active!</span>")
 	else if(istype(W, /obj/item/weapon/cell))
@@ -150,8 +163,15 @@
 		M.visible_message("<span class='notice'>\icon[M][bicon(M)] [M] begins to float in the air!</span>","You feel tingly and light, but it is difficult to move.")
 
 	suspension_field = new(T)
+<<<<<<< HEAD
 	visible_message("<span class='notice'>\icon[src][bicon(src)] [src] activates with a low hum.</span>")
 	icon_state = "suspension3"
+=======
+	src.visible_message("<font color='blue'>[bicon(src)] [src] activates with a low hum.</font>")
+	icon_state = "suspension_on"
+	playsound(loc, 'sound/machines/quiet_beep.ogg', 40)
+	update_icon()
+>>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 
 	for(var/obj/item/I in T)
 		I.loc = suspension_field
@@ -178,7 +198,9 @@
 	visible_message("<span class='notice'>\icon[src][bicon(src)] [src] deactivates with a gentle shudder.</span>")
 	qdel(suspension_field)
 	suspension_field = null
-	icon_state = "suspension2"
+	icon_state = "suspension_wrenched"
+	playsound(loc, 'sound/machines/quiet_beep.ogg', 40)
+	update_icon()
 
 /obj/machinery/suspension_gen/Destroy()
 	deactivate()
@@ -203,6 +225,14 @@
 		to_chat(usr, "<span class='warning'>You cannot rotate [src], it has been firmly fixed to the floor.</span>")
 		return
 	set_dir(turn(dir, 270))
+
+/obj/machinery/suspension_gen/update_icon()
+	cut_overlays()
+	if(panel_open)
+		add_overlay("suspension_panel")
+	else
+		cut_overlay("suspension_panel")
+	. = ..()
 
 /obj/effect/suspension_field
 	name = "energy field"
