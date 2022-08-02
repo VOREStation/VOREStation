@@ -144,7 +144,6 @@
 					if(isbelly(M.loc))	//VOREEdit, Stop the slip if we're in a belly. Inspired by a chompedit, cleaned it up with isbelly instead of a variable since the var was resetting too fast.
 						return
 					step(M, M.dir)
-					sleep(1)
 			else
 				M.inertia_dir = 0
 		else
