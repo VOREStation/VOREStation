@@ -87,6 +87,10 @@
 /obj/item/integrated_circuit/illegal/EPv2_Discoverer/Initialize()
 	. = ..()
 	exonet = new(src)
+	init_address()
+
+/obj/item/integrated_circuit/illegal/EPv2_Discoverer/init_address()
+	set waitfor = FALSE
 	exonet.make_address("EPv2_Discovery_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
 	node = get_exonet_node()

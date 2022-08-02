@@ -28,7 +28,7 @@
 	pixel_x = rand(0,16)-8
 	pixel_y = rand(0,8)-8
 	if(inside_item_type)
-		new /obj/item/archaeological_find(src, new_item_type = inside_item_type)
+		new /obj/item/archaeological_find(src, inside_item_type)
 
 /obj/item/strangerock/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I, /obj/item/pickaxe/brush))

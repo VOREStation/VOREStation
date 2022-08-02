@@ -77,8 +77,8 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 // Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
 /atom/proc/Initialize(mapload, ...)
-	SHOULD_CALL_PARENT(TRUE)
 	SHOULD_NOT_SLEEP(TRUE)
+	SHOULD_CALL_PARENT(TRUE)
 	if(QDELETED(src))
 		stack_trace("GC: -- [type] had initialize() called after qdel() --")
 	if(initialized)
@@ -91,11 +91,23 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 		QDEL_NULL(reagents)
 	if(light)
 		QDEL_NULL(light)
+
+	LAZYCLEARLIST(overlays)
 	return ..()
 
-// Called after all object's normal initialize() if initialize() returns INITIALIZE_HINT_LATELOAD
+/**
+ * Late Intialization, for code that should run after all atoms have run Intialization
+ *
+ * To have your LateIntialize proc be called, your atoms [Initalization][/atom/proc/Initialize]
+ *  proc must return the hint
+ * [INITIALIZE_HINT_LATELOAD] otherwise you will never be called.
+ *
+ * useful for doing things like finding other machines on GLOB.machines because you can guarantee
+ * that all atoms will actually exist in the "WORLD" at this time and that all their Intialization
+ * code has been run
+ */
 /atom/proc/LateInitialize()
-	return
+	set waitfor = FALSE
 
 /atom/proc/reveal_blood()
 	return

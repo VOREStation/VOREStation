@@ -158,119 +158,124 @@
 				station_account.transaction_log.Add(trx)
 
 				creating_new_account = 0
-			if("insert_card")
-				if(held_card)
-					held_card.loc = src.loc
 
-					if(ishuman(usr) && !usr.get_active_hand())
-						usr.put_in_hands(held_card)
-					held_card = null
+			creating_new_account = 0
+		if("insert_card")
+			if(held_card)
+				held_card.loc = src.loc
 
-				else
-					var/obj/item/I = usr.get_active_hand()
-					if (istype(I, /obj/item/card/id))
-						var/obj/item/card/id/C = I
-						usr.drop_item()
-						C.loc = src
-						held_card = C
+				if(ishuman(usr) && !usr.get_active_hand())
+					usr.put_in_hands(held_card)
+				held_card = null
 
-			if("view_account_detail")
-				var/index = text2num(params["account_index"])
-				if(index && index <= all_money_accounts.len)
-					detailed_account_view = all_money_accounts[index]
+			else
+				var/obj/item/I = usr.get_active_hand()
+				if(istype(I, /obj/item/card/id))
+					var/obj/item/card/id/C = I
+					usr.drop_item()
+					C.loc = src
+					held_card = C
 
-			if("view_accounts_list")
-				detailed_account_view = null
-				creating_new_account = 0
+		if("view_account_detail")
+			var/index = text2num(params["account_index"])
+			if(index && index <= all_money_accounts.len)
+				detailed_account_view = all_money_accounts[index]
 
-			if("revoke_payroll")
-				var/funds = detailed_account_view.money
-				var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([funds])")
-				var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", funds)
+		if("view_accounts_list")
+			detailed_account_view = null
+			creating_new_account = 0
 
-				station_account.money += funds
-				detailed_account_view.money = 0
+		if("revoke_payroll")
+			var/funds = detailed_account_view.money
+			var/account_trx = create_transation(station_account.owner_name, "Revoke payroll", "([funds])")
+			var/station_trx = create_transation(detailed_account_view.owner_name, "Revoke payroll", funds)
 
-				detailed_account_view.transaction_log.Add(account_trx)
-				station_account.transaction_log.Add(station_trx)
+			station_account.money += funds
+			detailed_account_view.money = 0
 
-				callHook("revoke_payroll", list(detailed_account_view))
+			detailed_account_view.transaction_log.Add(account_trx)
+			station_account.transaction_log.Add(station_trx)
 
-			if("print")
-				var/text
-				var/obj/item/paper/P = new(loc)
-				if (detailed_account_view)
-					P.name = "account #[detailed_account_view.account_number] details"
-					var/title = "Account #[detailed_account_view.account_number] Details"
-					text = {"
-						[accounting_letterhead(title)]
-						<u>Holder:</u> [detailed_account_view.owner_name]<br>
-						<u>Balance:</u> $[detailed_account_view.money]<br>
-						<u>Status:</u> [detailed_account_view.suspended ? "Suspended" : "Active"]<br>
-						<u>Transactions:</u> ([detailed_account_view.transaction_log.len])<br>
-						<table>
-							<thead>
-								<tr>
-									<td>Timestamp</td>
-									<td>Target</td>
-									<td>Reason</td>
-									<td>Value</td>
-									<td>Terminal</td>
-								</tr>
-							</thead>
-							<tbody>
-						"}
+			callHook("revoke_payroll", list(detailed_account_view))
 
-					for (var/datum/transaction/T in detailed_account_view.transaction_log)
-						text += {"
-									<tr>
-										<td>[T.date] [T.time]</td>
-										<td>[T.target_name]</td>
-										<td>[T.purpose]</td>
-										<td>[T.amount]</td>
-										<td>[T.source_terminal]</td>
-									</tr>
-							"}
-
-					text += {"
-							</tbody>
-						</table>
-						"}
-
-				else
-					P.name = "financial account list"
-					text = {"
-						[accounting_letterhead("Financial Account List")]
-
-						<table>
-							<thead>
-								<tr>
-									<td>Account Number</td>
-									<td>Holder</td>
-									<td>Balance</td>
-									<td>Status</td>
-								</tr>
-							</thead>
-							<tbody>
-					"}
-
-					for(var/i=1, i<=all_money_accounts.len, i++)
-						var/datum/money_account/D = all_money_accounts[i]
-						text += {"
-								<tr>
-									<td>#[D.account_number]</td>
-									<td>[D.owner_name]</td>
-									<td>$[D.money]</td>
-									<td>[D.suspended ? "Suspended" : "Active"]</td>
-								</tr>
-						"}
-
-					text += {"
-							</tbody>
-						</table>
-					"}
-
-				P.info = text
-				state("The terminal prints out a report.")
+		if("print")
+			print()
 
 	return TRUE
+
+/obj/machinery/account_database/proc/print()
+	var/text
+	var/obj/item/paper/P = new(loc)
+	if(detailed_account_view)
+		P.name = "account #[detailed_account_view.account_number] details"
+		var/title = "Account #[detailed_account_view.account_number] Details"
+		text = {"
+			[accounting_letterhead(title)]
+			<u>Holder:</u> [detailed_account_view.owner_name]<br>
+			<u>Balance:</u> $[detailed_account_view.money]<br>
+			<u>Status:</u> [detailed_account_view.suspended ? "Suspended" : "Active"]<br>
+			<u>Transactions:</u> ([detailed_account_view.transaction_log.len])<br>
+			<table>
+				<thead>
+					<tr>
+						<td>Timestamp</td>
+						<td>Target</td>
+						<td>Reason</td>
+						<td>Value</td>
+						<td>Terminal</td>
+					</tr>
+				</thead>
+				<tbody>
+			"}
+
+		for (var/datum/transaction/T in detailed_account_view.transaction_log)
+			text += {"
+						<tr>
+							<td>[T.date] [T.time]</td>
+							<td>[T.target_name]</td>
+							<td>[T.purpose]</td>
+							<td>[T.amount]</td>
+							<td>[T.source_terminal]</td>
+						</tr>
+				"}
+
+		text += {"
+				</tbody>
+			</table>
+			"}
+
+	else
+		P.name = "financial account list"
+		text = {"
+			[accounting_letterhead("Financial Account List")]
+
+			<table>
+				<thead>
+					<tr>
+						<td>Account Number</td>
+						<td>Holder</td>
+						<td>Balance</td>
+						<td>Status</td>
+					</tr>
+				</thead>
+				<tbody>
+		"}
+
+		for(var/i=1, i<=all_money_accounts.len, i++)
+			var/datum/money_account/D = all_money_accounts[i]
+			text += {"
+					<tr>
+						<td>#[D.account_number]</td>
+						<td>[D.owner_name]</td>
+						<td>$[D.money]</td>
+						<td>[D.suspended ? "Suspended" : "Active"]</td>
+					</tr>
+			"}
+
+		text += {"
+				</tbody>
+			</table>
+		"}
+
+	P.info = text
+	state("The terminal prints out a report.")
