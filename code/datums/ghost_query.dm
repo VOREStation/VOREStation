@@ -63,7 +63,7 @@
 	if(query_sound)
 		SEND_SOUND(C, sound(query_sound))
 
-	tgui_alert_async(D, question, "[role_name] request", list("Yes", "No", "Never for this round"), CALLBACK(src, .proc/get_reply), wait_time SECONDS)
+	tgui_alert_async(D, question, "[role_name] request", list("Yes", "No", "Never for this round"), CALLBACK(src, .proc/get_reply), wait_time)
 
 /// Process an async alert response
 /datum/ghost_query/proc/get_reply(response)
