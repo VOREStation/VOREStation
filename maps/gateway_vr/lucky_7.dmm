@@ -48,7 +48,7 @@
 "aV" = (/obj/machinery/light/floortube{dir = 8},/obj/structure/casino_table/roulette_chart,/turf/simulated/floor/carpet/brown,/area/awaymission/lucky7/casinofloor)
 "aW" = (/obj/structure/cable/green,/obj/machinery/power/fractal_reactor/fluff/smes,/turf/simulated/floor/plating,/area/awaymission/lucky7/maint2)
 "aX" = (/obj/effect/floor_decal/borderfloor{dir = 10},/obj/effect/floor_decal/corner/yellow/border{dir = 10},/obj/machinery/telecomms/allinone/casino,/turf/simulated/floor/tiled,/area/awaymission/lucky7/workshop)
-"aY" = (/obj/machinery/firealarm{dir = 4; pixel_x = 24},/obj/item/weapon/storage/box/roulette_balls_normal,/obj/item/weapon/storage/box/roulette_balls_fancy,/obj/item/weapon/storage/box/roulette_balls_cheat,/obj/structure/table/rack/shelf,/turf/simulated/floor/tiled/dark,/area/awaymission/lucky7/breakroom)
+"aY" = (/obj/machinery/firealarm{dir = 4; pixel_x = 24},/obj/item/storage/box/roulette_balls_normal,/obj/item/storage/box/roulette_balls_fancy,/obj/item/storage/box/roulette_balls_cheat,/obj/structure/table/rack/shelf,/turf/simulated/floor/tiled/dark,/area/awaymission/lucky7/breakroom)
 "ba" = (/obj/structure/table/borosilicate,/turf/simulated/floor/wood,/area/awaymission/lucky7/lounge)
 "bc" = (/obj/structure/cable/green{icon_state = "1-4"},/turf/simulated/floor/tiled/dark,/area/awaymission/lucky7/gateway)
 "be" = (/obj/machinery/atmospherics/pipe/simple/hidden{dir = 4},/obj/effect/floor_decal/industrial/warning/cee{dir = 8},/turf/simulated/floor/tiled/dark,/area/awaymission/lucky7/dock1)
