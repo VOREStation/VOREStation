@@ -409,7 +409,7 @@
 	// harvested yet and it's safe to assume it's restricted to this tray.
 	if(!isnull(SSplants.seeds[seed.name]))
 		seed = seed.diverge()
-	seed.mutate(severity,get_turf(src))
+		seed.mutate(severity,get_turf(src))
 
 	return
 

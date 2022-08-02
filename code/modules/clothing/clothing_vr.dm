@@ -35,6 +35,8 @@
 	if(istype(I,/obj/item/holder/micro))
 		var/full = 0
 		for(var/mob/M in src)
+			if(istype(M,/mob/living/voice)) //Don't count voices as people!
+				continue
 			full++
 		if(full >= 2)
 			to_chat(user, "<span class='warning'>You can't fit anyone else into \the [src]!</span>")
@@ -51,6 +53,8 @@
 
 /obj/item/clothing/shoes/attack_self(var/mob/user)
 	for(var/mob/M in src)
+		if(istype(M,/mob/living/voice)) //Don't knock voices out!
+			continue
 		M.forceMove(get_turf(user))
 		to_chat(M, "<span class='warning'>[user] shakes you out of \the [src]!</span>")
 		to_chat(user, "<span class='notice'>You shake [M] out of \the [src]!</span>")
@@ -59,6 +63,8 @@
 
 /obj/item/clothing/shoes/container_resist(mob/living/micro)
 	var/mob/living/carbon/human/macro = loc
+	if(istype(micro,/mob/living/voice)) //Voices shouldn't be able to resist but we have this here just in case.
+		return
 	if(!istype(macro))
 		to_chat(micro, "<span class='notice'>You start to climb out of [src]!</span>")
 		if(do_after(micro, 50, src))
@@ -106,14 +112,20 @@
 	spawn(100)
 		recent_struggle = 0
 
-	if(ishuman(src.loc))
+	if(ishuman(src.loc)) //Is this on a person?
 		var/mob/living/carbon/human/H = src.loc
-		if(H.shoes == src)
+		if(istype(user,/mob/living/voice)) //Is this a possessed item? Spooky. It can move on it's own!
+			to_chat(H, "<font color='red'>The [src] shifts about, almost as if squirming!</font>")
+			to_chat(user, "<font color='red'>You cause the [src] to shift against [H]'s form! Well, what little you can get to, given your current state!</font>")
+		else if(H.shoes == src)
 			to_chat(H, "<font color='red'>[user]'s tiny body presses against you in \the [src], squirming!</font>")
 			to_chat(user, "<font color='red'>Your body presses out against [H]'s form! Well, what little you can get to!</font>")
 		else
 			to_chat(H, "<font color='red'>[user]'s form shifts around in the \the [src], squirming!</font>")
 			to_chat(user, "<font color='red'>You move around inside the [src], to no avail.</font>")
+	else if(istype(user,/mob/living/voice)) //Possessed!
+		src.visible_message("<font color='red'>The [src] shifts about!</font>")
+		to_chat(user, "<font color='red'>You cause the [src] to shift about!</font>")
 	else
 		src.visible_message("<font color='red'>\The [src] moves a little!</font>")
 		to_chat(user, "<font color='red'>You throw yourself against the inside of \the [src]!</font>")
