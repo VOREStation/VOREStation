@@ -148,7 +148,7 @@
 	},
 /area/tether_away/beach/resort)
 "aI" = (
-/obj/structure/closet/athletic_mixed,
+/obj/structure/closet/athletic_swimwear,
 /turf/simulated/floor/tiled/asteroid_steel{
 	outdoors = 1
 	},
