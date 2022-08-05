@@ -1028,7 +1028,7 @@
 	character_name = list("Alfonso Oak Telanor")
 
 /datum/gear/fluff/cerise_secbelt
-	path = /obj/weapon/storage/belt/security/fluff/cerise
+	path = /obj/item/weapon/storage/belt/security/fluff/cerise
 	display_name = "Cerise's Champion's Belt"
 	ckeywhitelist = list("shalax")
 	character_name = list("Cerise Duelliste")
