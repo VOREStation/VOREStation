@@ -142,6 +142,9 @@
 
 /datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(isrobot(user) && istype(tool, /obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/G = tool
+		tool = G.wrapped
 	user.visible_message("<span class='notice'>[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
 	"<span class='notice'>You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" ) //Nobody will probably ever see this, but I made these two blue. ~CK
 	target.custom_pain("The pain in your chest is living hell!",1)
@@ -149,7 +152,7 @@
 
 /datum/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-	if(isrobot(user) && istype(tool, /obj/item/weapon/gripper)) //to_world("1 [to")
+	if(isrobot(user) && istype(tool, /obj/item/weapon/gripper))
 		var/obj/item/weapon/gripper/G = tool
 		tool = G.wrapped
 		G.drop_item()
