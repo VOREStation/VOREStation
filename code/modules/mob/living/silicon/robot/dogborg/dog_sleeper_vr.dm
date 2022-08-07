@@ -726,8 +726,8 @@
 
 /obj/item/device/dogborg/sleeper/compactor/trauma //Trauma borg belly
 	name = "Recovery Belly"
-	desc = "A mounted survival unit with fuel processor."
-	icon_state = "sleeperc"
+	desc = "A downgraded model of the medihound sleeper."
+	icon_state = "sleeper"
 	injection_chems = list("inaprovaline","tricordrazine")
 	max_item_count = 1
 

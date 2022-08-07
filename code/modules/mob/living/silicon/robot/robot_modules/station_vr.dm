@@ -51,6 +51,7 @@
 	robot_modules["BoozeHound"] = /obj/item/weapon/robot_module/robot/booze
 	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
 	robot_modules["Stray"] = /obj/item/weapon/robot_module/robot/stray
+	robot_modules["TraumaHound"] = /obj/item/weapon/robot_module/robot/medical/trauma
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -341,7 +342,6 @@
 	src.modules += new /obj/item/weapon/surgical/FixOVein/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/bonesetter/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
-	src.modules += new /obj/item/weapon/surgical/surgicaldrill/cyborg(src)
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
 	src.modules += new /obj/item/weapon/gripper/medical(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
