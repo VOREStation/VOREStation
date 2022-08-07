@@ -1990,7 +1990,7 @@
 /obj/effect/floor_decal/spline/plain{
 	dir = 5
 	},
-/obj/structure/flora/pottedplant/stoutbush,
+/obj/structure/closet/athletic_swimwear,
 /turf/simulated/floor/tiled/freezer,
 /area/crew_quarters/pool)
 "acZ" = (
@@ -42489,6 +42489,13 @@
 /obj/machinery/vending/fitness,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cafeteria)
+"rwb" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 1
+	},
+/obj/structure/flora/pottedplant/stoutbush,
+/turf/simulated/floor/tiled/freezer,
+/area/crew_quarters/pool)
 "rxh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/yellow{
 	dir = 10
@@ -52117,7 +52124,7 @@ fkn
 aWF
 aiJ
 akT
-alE
+rwb
 sSK
 amN
 amN

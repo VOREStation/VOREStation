@@ -62,6 +62,7 @@ export const VorePanel = (props, context) => {
 
       // Descriptions
       verb,
+      release_verb,
       desc,
       absorbed_desc,
     } = data.selected;
@@ -73,6 +74,7 @@ export const VorePanel = (props, context) => {
     result += 'Item Mode:\n' + item_mode + '\n\n';
     result += '== Descriptions ==\n\n';
     result += 'Verb:\n' + verb + '\n\n';
+    result += 'Release Verb:\n' + release_verb + '\n\n';
     result += 'Description:\n"' + desc + '"\n\n';
     result += 'Absorbed Description:\n"' + absorbed_desc + '"\n\n';
 
@@ -352,7 +354,7 @@ const VoreSelectedBellyDescriptions = (props, context) => {
   const { act } = useBackend(context);
 
   const { belly } = props;
-  const { verb, desc, absorbed_desc } = belly;
+  const { verb, release_verb, desc, absorbed_desc } = belly;
 
   return (
     <LabeledList>
@@ -368,6 +370,9 @@ const VoreSelectedBellyDescriptions = (props, context) => {
       </LabeledList.Item>
       <LabeledList.Item label="Vore Verb">
         <Button onClick={() => act('set_attribute', { attribute: 'b_verb' })} content={verb} />
+      </LabeledList.Item>
+      <LabeledList.Item label="Release Verb">
+        <Button onClick={() => act('set_attribute', { attribute: 'b_release_verb' })} content={release_verb} />
       </LabeledList.Item>
       <LabeledList.Item label="Examine Messages">
         <Button

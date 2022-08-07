@@ -16,6 +16,8 @@
 	var/base_species = null // Unused outside of a few species
 	var/selects_bodytype = FALSE // Allows the species to choose from body types like custom species can, affecting suit fitting and etcetera as you would expect.
 
+	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
+
 	var/is_weaver = FALSE
 	var/silk_production = FALSE
 	var/silk_reserve = 100

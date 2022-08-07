@@ -16,6 +16,7 @@
 	desc = "It's a belly! You're in it!"	// Flavor text description of inside sight/sound/smells/feels.
 	var/vore_sound = "Gulp"					// Sound when ingesting someone
 	var/vore_verb = "ingest"				// Verb for eating with this in messages
+	var/release_verb = "expels"				// Verb for releasing something from a stomach
 	var/human_prey_swallow_time = 100		// Time in deciseconds to swallow /mob/living/carbon/human
 	var/nonhuman_prey_swallow_time = 30		// Time in deciseconds to swallow anything else
 	var/nutrition_percent = 100				// Nutritional percentage per tick in digestion mode
@@ -30,7 +31,7 @@
 	var/escapechance = 0 					// % Chance of prey beginning to escape if prey struggles.
 	var/transferchance = 0 					// % Chance of prey being trasnsfered, goes from 0-100%
 	var/transferchance_secondary = 0 		// % Chance of prey being transfered to transferchance_secondary, also goes 0-100%
-	var/save_digest_mode = TRUE			// Whether this belly's digest mode persists across rounds
+	var/save_digest_mode = TRUE				// Whether this belly's digest mode persists across rounds
 	var/can_taste = FALSE					// If this belly prints the flavor of prey when it eats someone.
 	var/bulge_size = 0.25					// The minimum size the prey has to be in order to show up on examine.
 	var/display_absorbed_examine = FALSE	// Do we display absorption examine messages for this belly at all?
@@ -165,6 +166,7 @@
 	"absorbed_desc",
 	"vore_sound",
 	"vore_verb",
+	"release_verb",
 	"human_prey_swallow_time",
 	"nonhuman_prey_swallow_time",
 	"emote_time",
@@ -345,7 +347,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent && count)
-		owner.visible_message("<font color='green'><b>[owner] expels everything from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] [release_verb] everything from their [lowertext(name)]!</b></font>")
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
@@ -413,7 +415,7 @@
 
 	//Print notifications/sound if necessary
 	if(!silent)
-		owner.visible_message("<font color='green'><b>[owner] expels [M] from their [lowertext(name)]!</b></font>")
+		owner.visible_message("<font color='green'><b>[owner] [release_verb] [M] from their [lowertext(name)]!</b></font>")
 		var/soundfile
 		if(!fancy_vore)
 			soundfile = classic_release_sounds[release_sound]
@@ -1096,6 +1098,7 @@
 	dupe.absorbed_desc = absorbed_desc
 	dupe.vore_sound = vore_sound
 	dupe.vore_verb = vore_verb
+	dupe.release_verb = release_verb
 	dupe.human_prey_swallow_time = human_prey_swallow_time
 	dupe.nonhuman_prey_swallow_time = nonhuman_prey_swallow_time
 	dupe.emote_time = emote_time

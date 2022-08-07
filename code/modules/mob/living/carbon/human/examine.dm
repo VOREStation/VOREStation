@@ -370,7 +370,7 @@
 					wound_flavor_text["[temp.name]"] = "<span class='warning'>[T.He] [T.has] [temp.get_wounds_desc()] on [T.his] [temp.name].</span>"
 			else
 				wound_flavor_text["[temp.name]"] = ""
-			if(temp.dislocated == 2)
+			if(temp.dislocated == 1) //VOREStation Edit Bugfix
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.joint] is dislocated!</span>"
 			if(temp.brute_dam > temp.min_broken_damage || (temp.status & (ORGAN_BROKEN | ORGAN_MUTATED)))
 				wound_flavor_text["[temp.name]"] += "<span class='warning'>[T.His] [temp.name] is dented and swollen!</span>"

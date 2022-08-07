@@ -347,7 +347,7 @@ emp_act
 	return 1
 
 /mob/living/carbon/human/proc/attack_joint(var/obj/item/organ/external/organ, var/obj/item/W, var/effective_force, var/dislocate_mult, var/blocked, var/soaked)
-	if(!organ || (organ.dislocated == 2) || (organ.dislocated == -1) || blocked >= 100)
+	if(!organ || (organ.dislocated == 1) || (organ.dislocated == -1) || blocked >= 100) //VOREStation Edit Bugfix
 		return 0
 
 	if(W.damtype != BRUTE)

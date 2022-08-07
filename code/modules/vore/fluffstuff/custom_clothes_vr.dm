@@ -2502,3 +2502,10 @@ Departamental Swimsuits, for general use
 	icon_override = 'icons/vore/custom_clothes_vr.dmi'
 	item_state = "foxflightsuit_mob"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+//Shalax: Cerise Duelliste
+/obj/item/weapon/storage/belt/security/fluff/cerise
+	name = "champion's belt"
+	desc = "Cerise's hard-won belt from her glory days. Her skill might have waned since then, but her renown lives on."
+	icon_state = "champion"
+	item_state = null // i swear to god this works - hatterhat
