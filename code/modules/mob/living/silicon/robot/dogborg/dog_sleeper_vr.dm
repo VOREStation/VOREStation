@@ -724,4 +724,11 @@
 	icon_state = "sleeperert"
 	injection_chems = list("inaprovaline", "paracetamol") // short list
 
+/obj/item/device/dogborg/sleeper/compactor/trauma //Trauma borg belly
+	name = "Recovery Belly"
+	desc = "A mounted survival unit with fuel processor."
+	icon_state = "sleeperc"
+	injection_chems = list("inaprovaline","tricordrazine")
+	max_item_count = 1
+
 #undef SLEEPER_INJECT_COST
