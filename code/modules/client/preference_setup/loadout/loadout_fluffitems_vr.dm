@@ -1032,6 +1032,7 @@
 	display_name = "Cerise's Champion's Belt"
 	ckeywhitelist = list("shalax")
 	character_name = list("Cerise Duelliste")
+	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Detective")
 
 /datum/gear/fluff/nthasd_modkit //Converts a Security suit's sprite
 	path = /obj/item/device/modkit_conversion/hasd
