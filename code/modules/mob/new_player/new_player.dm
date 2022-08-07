@@ -519,8 +519,7 @@
 	var/deferred = ""
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
-			// Checks for jobs with minimum age requirements
-			if((job.minimum_character_age || job.min_age_by_species) && (client.prefs.age < job.get_min_age(client.prefs.species, client.prefs.organ_data["brain"])))
+			if(!job.passes_standard_join_checks(src, job.title))
 				continue
 			// Checks for jobs set to "Never" in preferences	//TODO: Figure out a better way to check for this
 			if(!(client.prefs.GetJobDepartment(job, 1) & job.flag))

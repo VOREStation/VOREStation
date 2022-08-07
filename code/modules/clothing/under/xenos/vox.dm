@@ -4,16 +4,16 @@
 	starting_accessories = list(/obj/item/clothing/accessory/storage/vox)	// Dont' start with a backback, so free webbing
 	flags = PHORONGUARD
 
-/obj/item/clothing/under/vox/vox_casual
+/obj/item/clothing/under/vox/vox_utility
 	name = "alien clothing"
-	desc = "This doesn't look very comfortable."
+	desc = "A set of oddly textured straps and wraps making up some kind of alien clothing. It's not cloth, and it's not leather."
 	icon_state = "vox-casual-1"
 	item_state = "vox-casual-1"
 	body_parts_covered = LEGS
 
 /obj/item/clothing/under/vox/vox_robes
 	name = "alien robes"
-	desc = "Weird and flowing!"
+	desc = "A complex wrap of some kind of shed reptile skin or synthetic textile."
 	icon_state = "vox-casual-2"
 	item_state = "vox-casual-2"
 

@@ -48,12 +48,6 @@
 	pda_type = /obj/item/device/pda/chef //cause I like the look
 	id_pda_assignment = "Merchant"
 
-/decl/hierarchy/outfit/merchant/vox
-	name = "Merchant - Vox"
-	shoes = /obj/item/clothing/shoes/boots/jackboots/toeless
-	uniform = /obj/item/clothing/under/vox/vox_robes
-	suit = /obj/item/clothing/suit/armor/vox_scrap
-
 /decl/hierarchy/outfit/zaddat
 	name = "Zaddat Suit"
 	suit = /obj/item/clothing/suit/space/void/zaddat/

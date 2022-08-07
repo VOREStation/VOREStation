@@ -92,9 +92,15 @@
 		src.loc = F
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.
 	name = "phoron tank"
 	desc = "Contains dangerous phoron. Do not inhale. Warning: extremely flammable."
+=======
+/obj/item/tank/vox	//Can't be a child of phoron or the gas amount gets screwey.
+	name = "alien nitrogen tank"
+	desc = "Contains nitrogen."
+>>>>>>> 994f58e3c59... Playable vox oh no. [MDB IGNORE] (#8674)
 	icon_state = "phoron_vox"
 	gauge_icon = null
 	distribute_pressure = ONE_ATMOSPHERE*O2STANDARD
@@ -102,7 +108,11 @@
 
 /obj/item/weapon/tank/vox/Initialize()
 	. = ..()
+<<<<<<< HEAD
 	air_contents.adjust_gas("phoron", (10*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C)) //VOREStation Edit
+=======
+	air_contents.adjust_gas("nitrogen", (6*ONE_ATMOSPHERE)*volume/(R_IDEAL_GAS_EQUATION*T20C))
+>>>>>>> 994f58e3c59... Playable vox oh no. [MDB IGNORE] (#8674)
 
 /obj/item/weapon/tank/phoron/pressurized
 	name = "fuel can"

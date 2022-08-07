@@ -243,14 +243,15 @@ GLOBAL_DATUM_INIT(catalogue_data, /datum/category_collection/catalogue, new)
 
 /datum/category_item/catalogue/fauna/vox
 	name = "Sapients - Vox"
-	desc = "Probably the best known of these aliens are the Vox, a bird-like species \
+	desc = "Probably the best known of these aliens are the Vox, a repto-avian species \
 	with a very rough comprehension of Galactic Common and an even looser understanding \
 	of property rights. Vox raiders have plagued human merchants for centuries, \
 	and Skrell for even longer, but remain poorly understood. \
 	They have no desire to partake in diplomacy or trade with the rest of the galaxy, \
-	or even to conquer planets and stations to live in. They breathe phoron \
+	or even to conquer planets and stations to live in. They are adapted for a pure nitrogen \
+	atmosphere, though the exact mechanism of how they 'breathe' an inert gas is unclear, \
 	and appear to be well adapted to their role as space-faring raiders, \
-	leading many to speculate that they're heavily bioengineered, \
+	leading many to speculate that they're heavily bioengineered; \
 	an assumption which is at odds with their ramshackle technological level."
 	value = CATALOGUER_REWARD_MEDIUM // Since Vox are much rarer.
 

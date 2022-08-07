@@ -85,7 +85,7 @@ var/const/access_explorer = 43
 	economic_modifier = 4
 	access = list(access_explorer, access_research)
 	minimal_access = list(access_explorer, access_research)
-	banned_job_species = list(SPECIES_ZADDAT)
+	banned_job_species = list(SPECIES_VOX, SPECIES_ZADDAT)
 
 	outfit_type = /decl/hierarchy/outfit/job/explorer2
 	job_description = "An Explorer searches for interesting things on the surface of Sif, and returns them to the station."

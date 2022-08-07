@@ -481,6 +481,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 
 #define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait before assuming the docking controller is broken or blown up.
 
+<<<<<<< HEAD
 #define SMES_TGUI_INPUT 1
 #define SMES_TGUI_OUTPUT 2
 
@@ -492,3 +493,6 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define SPECIES_SORT_WHITELISTED 2
 #define SPECIES_SORT_RESTRICTED 3
 #define SPECIES_SORT_CUSTOM 4
+=======
+#define CRASH_SURVIVOR_TITLE "Crash Survivor"
+>>>>>>> 994f58e3c59... Playable vox oh no. [MDB IGNORE] (#8674)

@@ -25,7 +25,7 @@
 	var/list/min_age_by_species = null
 	var/ideal_character_age = 30
 	var/list/ideal_age_by_species = null
-	var/list/banned_job_species = null
+	var/list/banned_job_species = list(SPECIES_VOX)
 	var/has_headset = TRUE                //Do people with this job need to be given headsets and told how to use them?  E.g. Cyborgs don't.
 
 	var/account_allowed = 1				  // Does this job type come with a station account?
@@ -182,4 +182,29 @@
 		return TRUE
 	if(brain_type in banned_job_species)
 		return TRUE
+<<<<<<< HEAD
 	*/
+=======
+
+/datum/job/proc/get_latejoin_spawn_locations(var/mob/spawning, var/rank)
+	return // If this proc does not return a list, spawn point prefs are checked instead.
+
+/datum/job/proc/get_spawn_locations(var/mob/spawning, var/rank)
+	for(var/obj/effect/landmark/start/sloc in landmarks_list)
+		if(sloc.name != rank)
+			continue
+		if(locate(/mob/living) in sloc.loc)
+			continue
+		LAZYADD(., sloc)
+
+/datum/job/proc/passes_standard_join_checks(var/mob/player, var/rank)
+	if((minimum_character_age || min_age_by_species) && (player.client.prefs.age < get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
+		return FALSE
+	if(is_species_banned(player.client.prefs.species, player.client.prefs.organ_data["brain"]))
+		return FALSE
+	if(jobban_isbanned(player, rank))
+		return FALSE
+	if(!player_old_enough(player.client))
+		return FALSE
+	return TRUE
+>>>>>>> 994f58e3c59... Playable vox oh no. [MDB IGNORE] (#8674)

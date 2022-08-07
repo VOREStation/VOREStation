@@ -288,4 +288,12 @@
 /obj/effect/landmark/costume/sexymime/New()
 	new /obj/item/clothing/mask/gas/sexymime(src.loc)
 	new /obj/item/clothing/under/sexymime(src.loc)
+<<<<<<< HEAD
 	delete_me = 1
+=======
+	return INITIALIZE_HINT_QDEL
+
+/obj/effect/landmark/crashed_pod
+	name = "Crash Survivor Spawn"
+	delete_me = FALSE
+>>>>>>> 994f58e3c59... Playable vox oh no. [MDB IGNORE] (#8674)

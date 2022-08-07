@@ -204,7 +204,7 @@ var/const/CE_STABLE_THRESHOLD = 0.5
 		blood_splatter(src,src)
 
 /mob/living/carbon/human/proc/remove_blood(var/amt)
-	if(!should_have_organ(O_HEART)) //TODO: Make drips come from the reagents instead.
+	if(!should_have_organ(O_HEART) || !vessel) //TODO: Make drips come from the reagents instead.
 		return 0
 
 	if(!amt)

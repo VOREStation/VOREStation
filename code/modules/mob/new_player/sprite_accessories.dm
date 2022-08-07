@@ -1983,6 +1983,10 @@ shaved
 	name = "Kingly Vox Quills"
 	icon_state = "vox_kingly"
 
+/datum/sprite_accessory/hair/vox/quills_stubble
+	name = "Vox Stubble"
+	icon_state = "vox_stubble"
+
 /datum/sprite_accessory/hair/vox/quills_mohawk
 	name = "Quill Mohawk"
 	icon_state = "vox_mohawk"
