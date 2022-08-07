@@ -330,7 +330,7 @@
 					"Traumahound" = "traumavale",
 					)
 
-/obj/item/weapon/robot_module/robot/medical/trauma/New()
+/obj/item/weapon/robot_module/robot/medical/trauma/New(var/mob/living/silicon/robot/R)
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/surgeon(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
