@@ -1062,6 +1062,7 @@
 			to_chat(src, "<span class='notice'><b>Belly desc:</b> [B.desc]</span>")
 			to_chat(src, "<span class='notice'><b>Belly absorbed desc:</b> [B.absorbed_desc]</span>")
 			to_chat(src, "<span class='notice'><b>Vore verb:</b> [B.vore_verb]</span>")
+			to_chat(src, "<span class='notice'><b>Release verb:</b> [B.release_verb]</span>")
 			to_chat(src, "<span class='notice'><b>Struggle messages (outside):</b></span>")
 			for(var/msg in B.struggle_messages_outside)
 				to_chat(src, "<span class='notice'>[msg]</span>")

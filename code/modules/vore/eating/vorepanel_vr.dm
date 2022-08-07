@@ -163,6 +163,7 @@
 			"mode" = selected.digest_mode,
 			"item_mode" = selected.item_digest_mode,
 			"verb" = selected.vore_verb,
+			"release_verb" = selected.release_verb,
 			"desc" = selected.desc,
 			"absorbed_desc" = selected.absorbed_desc,
 			"fancy" = selected.fancy_vore,
@@ -978,6 +979,15 @@
 				return FALSE
 
 			host.vore_selected.vore_verb = new_verb
+			. = TRUE
+		if("b_release_verb")
+			var/new_release_verb = html_encode(tgui_input_text(usr,"New verb when releasing from stomach (e.g. expels or coughs or drops):","New Release Verb"))
+
+			if(length(new_release_verb) > BELLIES_NAME_MAX || length(new_release_verb) < BELLIES_NAME_MIN)
+				tgui_alert_async(usr, "Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
+				return FALSE
+
+			host.vore_selected.release_verb = new_release_verb
 			. = TRUE
 		if("b_fancy_sound")
 			host.vore_selected.fancy_vore = !host.vore_selected.fancy_vore
