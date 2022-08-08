@@ -728,7 +728,7 @@
 	name = "Recovery Belly"
 	desc = "A downgraded model of the medihound sleeper."
 	icon_state = "sleeper"
-	injection_chems = list("inaprovaline","tricordrazine")
+	injection_chems = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
 	max_item_count = 1
 
 #undef SLEEPER_INJECT_COST
