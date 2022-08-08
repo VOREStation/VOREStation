@@ -572,7 +572,6 @@
 
 /obj/mecha/proc/show_radial_occupant(var/mob/user)
 	var/list/choices = list(
-		"Eject" = radial_image_eject,
 		"Toggle Airtank" = radial_image_airtoggle,
 		"Toggle Light" = radial_image_lighttoggle,
 		"View Stats" = radial_image_statpanel
@@ -584,9 +583,6 @@
 	if(!choice)
 		return
 	switch(choice)
-		if("Eject")
-			go_out()
-			add_fingerprint(usr)
 		if("Toggle Airtank")
 			use_internal_tank = !use_internal_tank
 			occupant_message("Now taking air from [use_internal_tank?"internal airtank":"environment"].")
