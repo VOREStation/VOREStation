@@ -594,6 +594,8 @@ This function completely restores a damaged organ to perfect condition.
 		return 1
 	else
 		last_dam = brute_dam + burn_dam
+	if (number_wounds != 0)
+		return 1
 	if(germ_level)
 		return 1
 	return 0
