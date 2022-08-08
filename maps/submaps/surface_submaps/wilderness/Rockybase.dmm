@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "aa" = (/turf/template_noop,/area/template_noop)
 "ab" = (/obj/effect/decal/remains,/turf/template_noop,/area/template_noop)
 "ac" = (/obj/item/weapon/grenade/chem_grenade/metalfoam,/turf/template_noop,/area/template_noop)
@@ -224,4 +225,3314 @@ aaaaaaadaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadaaaaaaaaaaaaabaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaadEaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadraaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaadFaaaaaaaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaadFaaaaaaaaaaaaaaaaaaaaaaabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaadGaaaaaaaaaaaaabaa
+=======
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aa" = (
+/turf/template_noop,
+/area/template_noop)
+"ab" = (
+/obj/effect/decal/remains,
+/turf/template_noop,
+/area/template_noop)
+"ac" = (
+/obj/item/grenade/chem_grenade/metalfoam,
+/turf/template_noop,
+/area/template_noop)
+"ad" = (
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/template_noop,
+/area/template_noop)
+"ae" = (
+/obj/effect/decal/remains,
+/turf/template_noop,
+/area/submap/Rockybase)
+"af" = (
+/turf/template_noop,
+/area/submap/Rockybase)
+"ag" = (
+/obj/structure/flora/tree/sif,
+/turf/template_noop,
+/area/submap/Rockybase)
+"ah" = (
+/obj/effect/spawner/gibs/robot,
+/turf/template_noop,
+/area/submap/Rockybase)
+"ai" = (
+/turf/simulated/mineral/ignore_mapgen,
+/area/submap/Rockybase)
+"aj" = (
+/obj/effect/decal/remains/robot,
+/turf/template_noop,
+/area/template_noop)
+"ak" = (
+/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/turf/template_noop,
+/area/submap/Rockybase)
+"al" = (
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"am" = (
+/obj/effect/decal/remains/posi,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"an" = (
+/obj/machinery/porta_turret/poi,
+/turf/simulated/floor,
+/area/submap/Rockybase)
+"ao" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"ap" = (
+/obj/structure/flora/tree/sif,
+/turf/template_noop,
+/area/template_noop)
+"aq" = (
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"ar" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"as" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/floor_decal/industrial/danger,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"at" = (
+/turf/simulated/wall/r_concrete,
+/area/submap/Rockybase)
+"au" = (
+/obj/structure/sign/securearea,
+/turf/simulated/wall/r_concrete,
+/area/submap/Rockybase)
+"av" = (
+/obj/machinery/door/airlock/external,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aw" = (
+/obj/effect/decal/remains/deer,
+/turf/template_noop,
+/area/template_noop)
+"ax" = (
+/obj/machinery/shower{
+	dir = 4;
+	icon_state = "shower";
+	pixel_x = 5;
+	pixel_y = 0
+	},
+/obj/structure/curtain/open/shower,
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"ay" = (
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"az" = (
+/obj/machinery/shower{
+	dir = 8;
+	icon_state = "shower";
+	pixel_x = -5;
+	pixel_y = 0
+	},
+/obj/structure/curtain/open/shower,
+/obj/item/soap,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"aA" = (
+/obj/structure/table/woodentable,
+/obj/effect/decal/cleanable/cobweb,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aB" = (
+/obj/structure/table/woodentable,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aC" = (
+/obj/structure/table/woodentable,
+/obj/item/flashlight/lamp,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aD" = (
+/obj/structure/closet/cabinet,
+/obj/item/pickaxe/plasmacutter,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aE" = (
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aF" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aG" = (
+/obj/structure/table/woodentable,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aH" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aI" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/toy/plushie/spider,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"aJ" = (
+/obj/structure/closet/l3closet/janitor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aK" = (
+/mob/living/bot/cleanbot{
+	faction = "malf_drone"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aL" = (
+/obj/item/stool,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aM" = (
+/obj/item/storage/belt/janitor,
+/obj/structure/table/standard,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aN" = (
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aO" = (
+/obj/structure/table/standard,
+/obj/item/modular_computer/laptop/preset/custom_loadout/cheap,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 9;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aP" = (
+/obj/structure/table/standard,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aQ" = (
+/obj/structure/table/rack,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1;
+	icon_state = "bordercolor"
+	},
+/obj/random/multiple/gun/projectile/handgun,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aR" = (
+/obj/structure/table/rack,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1;
+	icon_state = "bordercolor"
+	},
+/obj/random/energy/anom,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aS" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 1;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aT" = (
+/obj/machinery/vending/coffee,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 5;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aU" = (
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Rockybase)
+"aV" = (
+/obj/structure/table/rack,
+/obj/item/gun/projectile/shotgun/pump/combat,
+/obj/random/multiple/gun/projectile/shotgun,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Rockybase)
+"aW" = (
+/obj/machinery/vending/hydronutrients,
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 9;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aX" = (
+/obj/structure/closet/crate/hydroponics,
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 5;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"aY" = (
+/obj/machinery/shower{
+	dir = 4;
+	icon_state = "shower";
+	pixel_x = 5;
+	pixel_y = 0
+	},
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"aZ" = (
+/obj/machinery/shower{
+	dir = 8;
+	icon_state = "shower";
+	pixel_x = -5;
+	pixel_y = 0
+	},
+/obj/structure/curtain/open/shower,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"ba" = (
+/obj/structure/janitorialcart,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bb" = (
+/obj/structure/table/standard,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/item/grenade/chem_grenade/cleaner,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bc" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bd" = (
+/obj/structure/table/standard,
+/obj/item/paper{
+	info = "Carl's absolutly fucked in the head. He's trying to squeeze as much drone production out as he can since he's worried we're gonna get found out but he's getting sloppier with each batch. Now's he's telling us he can speed the time on the IFF encoding. I already have a hard enough time getting these damn things not to stare at walls and now he's gonna shortchange the only part of these tincans that tells em not to turn us into paste on a wall. I told Richter to get out while he can, We're counting days before either some Sif task force shows up at our door or these things decide we aren't there friends anymore.";
+	name = "Note"
+	},
+/obj/effect/floor_decal/corner/red/border{
+	dir = 8;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"be" = (
+/obj/structure/bed/chair{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bf" = (
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bg" = (
+/obj/machinery/vending/security,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 4;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bh" = (
+/obj/structure/table/rack,
+/obj/item/storage/box/shotgunshells,
+/obj/item/storage/box/shotgunshells,
+/obj/item/cell/device/weapon,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Rockybase)
+"bi" = (
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 8;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bj" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 4;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bk" = (
+/obj/machinery/shower{
+	dir = 8;
+	icon_state = "shower";
+	pixel_x = -5;
+	pixel_y = 0
+	},
+/obj/structure/curtain/open/shower,
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"bl" = (
+/obj/item/mecha_parts/part/gygax_left_leg,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"bm" = (
+/obj/machinery/light,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"bn" = (
+/obj/structure/bed,
+/obj/item/bedsheet,
+/obj/item/gun/projectile/pistol,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+"bo" = (
+/obj/structure/closet/crate/trashcart,
+/obj/random/soap/anom,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bp" = (
+/obj/structure/loot_pile/maint/trash,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bq" = (
+/obj/structure/table/standard,
+/obj/item/storage/bag/trash,
+/obj/item/storage/bag/trash,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"br" = (
+/obj/structure/table/standard,
+/obj/item/paper_bin,
+/obj/effect/floor_decal/corner/red/border{
+	dir = 10;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bs" = (
+/obj/machinery/light,
+/obj/structure/table/standard,
+/obj/item/pen,
+/obj/effect/floor_decal/corner/red/border,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bt" = (
+/obj/effect/floor_decal/corner/red/border,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bu" = (
+/obj/effect/floor_decal/corner/red/border,
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bv" = (
+/obj/machinery/door/airlock/security{
+	icon_state = "door_locked";
+	locked = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Rockybase)
+"bw" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Rockybase)
+"bx" = (
+/obj/structure/table/rack,
+/obj/item/gun/energy/ionrifle/pistol,
+/turf/simulated/floor/tiled/techfloor,
+/area/submap/Rockybase)
+"by" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 4;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bz" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bA" = (
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 8;
+	icon_state = "bordercolor"
+	},
+/mob/living/bot/farmbot{
+	faction = "malf_drone";
+	name = "Mr. Weddleton"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bB" = (
+/obj/machinery/portable_atmospherics/hydroponics,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 4;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bC" = (
+/obj/effect/decal/remains/posi,
+/turf/template_noop,
+/area/template_noop)
+"bD" = (
+/obj/random/vendordrink,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bE" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bF" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bG" = (
+/obj/structure/door_assembly,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bI" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/cobweb2,
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bJ" = (
+/obj/effect/decal/mecha_wreckage/hoverpod,
+/turf/template_noop,
+/area/template_noop)
+"bK" = (
+/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bL" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bM" = (
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bN" = (
+/obj/effect/decal/remains,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bO" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"bP" = (
+/obj/random/vendorfood,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bQ" = (
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bS" = (
+/obj/item/stack/rods,
+/obj/structure/girder,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bT" = (
+/obj/effect/decal/remains,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bU" = (
+/obj/machinery/light,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bV" = (
+/obj/effect/decal/cleanable/blood,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bW" = (
+/obj/item/mecha_parts/part/gygax_right_arm,
+/obj/effect/floor_decal/borderfloor,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"bX" = (
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"bY" = (
+/mob/living/simple_mob/mechanical/viscerator,
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"bZ" = (
+/obj/machinery/door/airlock/engineering,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"ca" = (
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cb" = (
+/turf/simulated/wall/concrete,
+/area/submap/Rockybase)
+"cc" = (
+/obj/structure/table/standard,
+/obj/item/kit/paint/gygax/darkgygax,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cd" = (
+/obj/structure/table/standard,
+/obj/item/paper{
+	info = "I've decided to go forward and start some small scale tests of the Vicerator delivery grenades, Might as wall make sure they work like the real ones. There are a few Fauna areas nearbye and we're working to make sure the kinks in the code are worked out. Once we've made sure they stay flying we'll work on the IFF signals.";
+	name = "V-Grenade Notice 2"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"ce" = (
+/obj/structure/table/standard,
+/obj/random/toolbox,
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cf" = (
+/obj/structure/table/standard,
+/obj/random/toolbox,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cg" = (
+/obj/structure/table/standard,
+/obj/item/paper{
+	info = "We've finally been able to get the Vicerator delivery grenades working, Took awhile to make sure the latching mechanism didn't fail but we're sure we've got it this time. Vel'Shem's worried about the miners having there own drone fab now but I say it's a small price to pay to keep the metal flowing, Especially since there telling us NT's starting to monopolize the metal rich parts.";
+	name = "V-Grenade Notice 1"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"ch" = (
+/obj/structure/table/standard,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond{
+	start_anomalous = 1
+	},
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/obj/item/stack/material/diamond,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"ci" = (
+/obj/structure/table/standard,
+/obj/item/grenade/spawnergrenade/manhacks,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cj" = (
+/obj/structure/table/standard,
+/obj/item/stack/material/steel,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"ck" = (
+/obj/structure/table/standard,
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/item/circuitboard/mecha/gygax/main,
+/obj/item/circuitboard/mecha/gygax/peripherals,
+/obj/item/circuitboard/mecha/gygax/targeting,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cl" = (
+/obj/structure/door_assembly,
+/obj/effect/floor_decal/rust,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cm" = (
+/obj/item/material/shard,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"cn" = (
+/obj/structure/table/standard,
+/obj/fiftyspawner/rods,
+/obj/random/tech_supply/component,
+/obj/random/tech_supply/anom,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"co" = (
+/obj/machinery/vending/engivend,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cp" = (
+/obj/machinery/vending/tool,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cq" = (
+/obj/structure/table/standard,
+/obj/item/storage/toolbox,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cr" = (
+/obj/structure/table/standard,
+/obj/item/storage/toolbox/mechanical,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cs" = (
+/obj/item/mecha_parts/part/gygax_torso,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"ct" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/structure/closet/crate/medical,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cu" = (
+/obj/structure/table/standard,
+/obj/structure/table/standard,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/reagent_containers/hypospray/autoinjector/biginjector/burn,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cv" = (
+/obj/structure/table/standard,
+/obj/item/clothing/mask/breath/medical,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cw" = (
+/obj/structure/closet/secure_closet/medical2,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cx" = (
+/obj/structure/toilet{
+	dir = 4
+	},
+/obj/machinery/light/small{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"cy" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"cz" = (
+/obj/structure/table/standard,
+/obj/item/mmi/digital/robot,
+/obj/item/stock_parts/capacitor/adv,
+/obj/item/stock_parts/scanning_module/adv,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cA" = (
+/obj/structure/cable{
+	d1 = 2;
+	d2 = 4;
+	icon_state = "2-4"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cB" = (
+/obj/structure/cable{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8";
+	pixel_x = 0
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cC" = (
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/obj/machinery/power/port_gen/pacman,
+/turf/simulated/floor,
+/area/submap/Rockybase)
+"cD" = (
+/obj/structure/door_assembly,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cE" = (
+/obj/item/stack/rods,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cF" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/girder,
+/turf/simulated/floor,
+/area/submap/Rockybase)
+"cG" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"cH" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"cI" = (
+/obj/structure/girder,
+/turf/simulated/floor,
+/area/submap/Rockybase)
+"cJ" = (
+/obj/structure/closet/secure_closet/medical1,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cK" = (
+/obj/machinery/light/small{
+	dir = 4;
+	pixel_y = 0
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"cL" = (
+/mob/living/simple_mob/mechanical/mecha/combat/gygax/dark/advanced{
+	faction = "malf_drone"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cM" = (
+/obj/machinery/drone_fabricator{
+	fabricator_tag = "Unknown"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cN" = (
+/obj/machinery/mecha_part_fabricator,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cO" = (
+/obj/machinery/pros_fabricator,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cP" = (
+/obj/structure/table/standard,
+/obj/item/mecha_parts/mecha_equipment/repair_droid,
+/obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cQ" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cR" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cS" = (
+/obj/machinery/power/terminal{
+	dir = 4
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cT" = (
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable/green{
+	d2 = 2;
+	icon_state = "0-2"
+	},
+/turf/simulated/floor,
+/area/submap/Rockybase)
+"cU" = (
+/obj/machinery/vending/medical,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cV" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"cW" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"cX" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/item/material/shard,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"cY" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"cZ" = (
+/obj/item/mecha_parts/part/gygax_armour,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"da" = (
+/obj/item/mecha_parts/chassis/gygax,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dc" = (
+/obj/effect/floor_decal/industrial/hatch/yellow,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dd" = (
+/obj/machinery/vending/robotics,
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"de" = (
+/obj/machinery/power/apc{
+	cell_type = /obj/item/cell/super;
+	dir = 8;
+	name = "Unknown APC";
+	pixel_x = -24
+	},
+/obj/structure/cable/green{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"df" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dg" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2";
+	pixel_y = 0
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dh" = (
+/obj/machinery/light{
+	dir = 4;
+	icon_state = "tube1"
+	},
+/obj/structure/cable/green{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/structure/cable/green{
+	d1 = 2;
+	d2 = 8;
+	icon_state = "2-8"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"di" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/blood,
+/turf/simulated/floor/concrete,
+/area/submap/Rockybase)
+"dj" = (
+/obj/item/mecha_parts/part/gygax_right_leg,
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 4;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dk" = (
+/obj/structure/sink{
+	dir = 4;
+	icon_state = "sink";
+	pixel_x = 11;
+	pixel_y = 0
+	},
+/obj/item/mecha_parts/part/gygax_left_arm{
+	start_anomalous = 1
+	},
+/turf/simulated/floor/tiled/hydro,
+/area/submap/Rockybase)
+"dl" = (
+/obj/machinery/vending,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dm" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 4;
+	icon_state = "1-4"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dn" = (
+/obj/machinery/power/smes/buildable/point_of_interest,
+/obj/structure/cable/green,
+/turf/simulated/floor,
+/area/submap/Rockybase)
+"do" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/structure/closet/secure_closet/medical3,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dp" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/mob/living/simple_mob/mechanical/combat_drone/lesser,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dq" = (
+/obj/structure/closet/secure_closet/hydroponics,
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 4;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dr" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/template_noop,
+/area/template_noop)
+"ds" = (
+/obj/machinery/light,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dt" = (
+/obj/machinery/mech_recharger,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"du" = (
+/obj/structure/table/standard,
+/obj/item/stack/material/plasteel,
+/obj/item/stack/material/glass/reinforced,
+/obj/item/stack/material/phoron{
+	amount = 25
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dv" = (
+/obj/structure/table/standard,
+/obj/item/stack/material/glass,
+/obj/item/stack/material/steel,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dw" = (
+/obj/structure/table/standard,
+/obj/item/mecha_parts/part/gygax_head,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dx" = (
+/obj/structure/closet/toolcloset,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dy" = (
+/obj/structure/closet/secure_closet/medical3,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dz" = (
+/obj/item/surgical/surgicaldrill,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dA" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dB" = (
+/obj/effect/decal/cleanable/dirt,
+/mob/living/bot/medbot{
+	faction = "malf_drone"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dC" = (
+/obj/machinery/vending/hydroseeds,
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 10;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dD" = (
+/obj/structure/closet/crate/secure/hydrosec,
+/obj/effect/floor_decal/corner/lime/border{
+	dir = 6;
+	icon_state = "bordercolor"
+	},
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"dE" = (
+/obj/machinery/portable_atmospherics/hydroponics/soil,
+/obj/structure/gravemarker{
+	dir = 1
+	},
+/turf/template_noop,
+/area/template_noop)
+"dF" = (
+/obj/effect/spawner/gibs/robot,
+/turf/template_noop,
+/area/template_noop)
+"dG" = (
+/obj/effect/spawner/gibs/human,
+/turf/template_noop,
+/area/template_noop)
+"fp" = (
+/obj/random/tech_supply/component,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"kv" = (
+/obj/random/maintenance/anom,
+/turf/simulated/floor/tiled,
+/area/submap/Rockybase)
+"mD" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/submap/Rockybase)
+"yB" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Rockybase)
+"AA" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/plating,
+/area/submap/Rockybase)
+"LQ" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/structure/table,
+/turf/simulated/floor/plating,
+/area/submap/Rockybase)
+"QX" = (
+/obj/structure/table/woodentable,
+/obj/random/maintenance/anom,
+/turf/simulated/floor/holofloor/lino,
+/area/submap/Rockybase)
+
+(1,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(2,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(3,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ab
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(4,1,1) = {"
+aa
+aa
+aa
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ap
+aa
+aa
+aa
+aa
+ab
+aa
+yB
+yB
+ai
+ai
+ai
+ai
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+ad
+aa
+dF
+aa
+"}
+(5,1,1) = {"
+aa
+aa
+aa
+aa
+ae
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ai
+ai
+ai
+yB
+yB
+ai
+ai
+ai
+ai
+ai
+ai
+af
+af
+af
+af
+af
+af
+af
+aa
+aa
+aa
+aa
+"}
+(6,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
+ag
+ab
+aa
+aa
+aa
+"}
+(7,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+ai
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(8,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(9,1,1) = {"
+aa
+aa
+aa
+aa
+ag
+af
+af
+af
+af
+ai
+ai
+ai
+at
+ax
+aY
+aY
+ay
+at
+bc
+at
+bX
+cb
+cx
+cb
+cx
+cb
+cx
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(10,1,1) = {"
+aa
+ab
+aa
+aa
+af
+af
+af
+af
+ai
+ai
+ai
+ai
+at
+ay
+ay
+ay
+ay
+bz
+aN
+bO
+ay
+cb
+bO
+cb
+bO
+cb
+bO
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(11,1,1) = {"
+aa
+ac
+aa
+aa
+af
+af
+af
+af
+ai
+ai
+ai
+ai
+at
+az
+aZ
+bk
+ay
+at
+aN
+at
+bY
+ay
+cy
+cK
+ay
+dk
+ay
+at
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(12,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+ai
+ai
+ai
+at
+at
+at
+at
+at
+at
+aN
+at
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+ai
+af
+aa
+dE
+aa
+aa
+"}
+(13,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+ak
+ai
+ai
+at
+aA
+aE
+aE
+at
+bD
+aN
+bP
+at
+cc
+aN
+aN
+cQ
+aN
+fp
+at
+ai
+ai
+ai
+ai
+aa
+aa
+aa
+aa
+"}
+(14,1,1) = {"
+aa
+aa
+aa
+aa
+ag
+af
+af
+af
+af
+af
+ai
+ai
+at
+QX
+aE
+bl
+at
+bE
+aN
+bQ
+at
+cd
+aN
+cM
+aN
+cM
+aN
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(15,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+aC
+aE
+aE
+bz
+bE
+aN
+bQ
+at
+ce
+aN
+aN
+aN
+aN
+aN
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(16,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+at
+aD
+aE
+aE
+at
+bE
+bK
+bR
+at
+cf
+aN
+aN
+da
+aN
+aN
+at
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(17,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+at
+aE
+aE
+bm
+at
+bE
+bL
+bR
+at
+cg
+aN
+cM
+aN
+al
+aN
+at
+ai
+ai
+ai
+ai
+aa
+aa
+aa
+aa
+"}
+(18,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+aE
+aE
+aE
+at
+bF
+bL
+bR
+at
+ch
+aN
+aN
+cL
+al
+aN
+at
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(19,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+aB
+aE
+aB
+at
+bE
+aN
+bQ
+at
+ci
+aN
+aN
+aN
+bL
+ds
+at
+ai
+ai
+ak
+af
+aa
+aa
+ab
+aa
+"}
+(20,1,1) = {"
+aa
+aa
+aa
+aa
+ae
+af
+af
+ag
+af
+af
+af
+ai
+at
+aF
+aE
+bn
+at
+bE
+bM
+bQ
+at
+cj
+aN
+cN
+dc
+bL
+dt
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(21,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+at
+aG
+aE
+aB
+at
+bE
+bN
+bQ
+at
+ck
+aN
+aN
+bL
+bL
+aN
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(22,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+at
+aH
+aE
+aH
+at
+bE
+aN
+bS
+at
+cl
+ca
+cO
+dc
+bL
+dt
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(23,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+aB
+aE
+aB
+at
+bG
+aN
+aN
+al
+al
+ca
+ca
+ca
+aN
+aN
+at
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(24,1,1) = {"
+aa
+aa
+aa
+ad
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+aI
+aE
+aF
+at
+bE
+aN
+al
+al
+cm
+al
+al
+ca
+aN
+aN
+at
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(25,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+at
+at
+at
+at
+bF
+aN
+bT
+at
+cn
+cz
+cP
+dd
+dl
+cp
+at
+ai
+ai
+ai
+af
+ad
+aa
+aa
+aa
+"}
+(26,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+at
+at
+at
+at
+bE
+aN
+bU
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(27,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+aq
+at
+aJ
+ba
+bo
+at
+bE
+aN
+bQ
+at
+co
+aN
+cQ
+de
+aN
+du
+at
+ai
+ai
+ai
+af
+aa
+aa
+dF
+aa
+"}
+(28,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+an
+aq
+at
+aK
+aN
+aN
+bz
+bE
+aN
+bV
+at
+cp
+aN
+bL
+df
+aN
+dv
+at
+ai
+ai
+ai
+af
+aa
+aa
+aa
+aa
+"}
+(29,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+al
+ar
+at
+aL
+aN
+bp
+at
+bE
+aN
+bQ
+bZ
+aN
+cA
+cR
+dg
+dm
+dw
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(30,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+al
+al
+aq
+at
+aM
+bb
+bq
+at
+bE
+aN
+bR
+at
+cq
+cB
+cS
+df
+cS
+aN
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(31,1,1) = {"
+ab
+aa
+aa
+aa
+af
+af
+af
+af
+af
+al
+ao
+aq
+au
+at
+at
+at
+at
+bE
+aN
+bR
+at
+cr
+cC
+cT
+dh
+dn
+dx
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(32,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+am
+al
+aq
+av
+aN
+bc
+aN
+av
+bE
+bL
+bR
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+af
+af
+ab
+aa
+aa
+aa
+"}
+(33,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+al
+al
+aq
+av
+aN
+aN
+aN
+av
+bE
+aN
+bQ
+at
+cs
+cD
+cU
+aN
+do
+dy
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(34,1,1) = {"
+aa
+aa
+aa
+aa
+ag
+af
+af
+af
+af
+al
+al
+aq
+au
+at
+at
+at
+at
+bE
+aN
+bQ
+ca
+ca
+aN
+aN
+aN
+aN
+aN
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(35,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+al
+al
+as
+at
+aO
+bd
+br
+at
+bE
+aN
+bQ
+at
+aN
+bL
+bL
+bL
+aN
+dz
+at
+ai
+af
+af
+af
+aa
+aa
+aa
+aa
+"}
+(36,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+al
+ar
+at
+aP
+be
+bs
+at
+bF
+aN
+bQ
+at
+ct
+bL
+cV
+di
+dp
+aN
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(37,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+an
+aq
+at
+aQ
+bf
+bt
+at
+bE
+aN
+bQ
+at
+cu
+cE
+cW
+cY
+cW
+kv
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(38,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+aq
+at
+aR
+aN
+bt
+at
+bE
+aN
+bU
+at
+cv
+cF
+cX
+mD
+cG
+dA
+at
+ai
+af
+af
+af
+aa
+aa
+aa
+aa
+"}
+(39,1,1) = {"
+aa
+aa
+aa
+aa
+af
+ah
+af
+af
+af
+af
+af
+ai
+at
+aS
+aN
+bu
+bz
+bE
+aN
+bQ
+at
+bL
+cG
+cY
+AA
+cG
+cI
+at
+ai
+af
+af
+af
+aa
+dr
+ab
+aa
+"}
+(40,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+aT
+bg
+bt
+at
+bE
+aN
+bQ
+at
+aN
+cH
+cW
+LQ
+cG
+dA
+at
+ai
+af
+af
+af
+aa
+aa
+aa
+aa
+"}
+(41,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+at
+at
+at
+bv
+at
+bH
+bK
+bQ
+at
+aN
+cI
+cZ
+al
+cG
+bL
+at
+ai
+af
+af
+af
+aa
+aa
+aa
+aa
+"}
+(42,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+ag
+af
+af
+ai
+at
+aU
+aU
+bw
+at
+bH
+bL
+bQ
+at
+aN
+aN
+al
+cm
+al
+bL
+at
+ai
+ai
+af
+af
+ap
+aa
+aa
+aa
+"}
+(43,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+at
+aV
+bh
+bx
+at
+bI
+bL
+bW
+at
+cw
+cJ
+aN
+aN
+bL
+dB
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(44,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+ai
+ai
+at
+at
+at
+at
+at
+at
+bz
+at
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(45,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+ai
+ai
+ai
+at
+aW
+bi
+bi
+bA
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+bi
+dC
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(46,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+ai
+ai
+ai
+at
+aX
+bj
+by
+bB
+by
+by
+bB
+by
+by
+bB
+by
+dj
+dq
+dD
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(47,1,1) = {"
+aa
+aa
+aa
+aa
+ae
+af
+af
+af
+af
+ai
+ai
+ai
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+af
+af
+aa
+aa
+aa
+aa
+"}
+(48,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+ak
+ai
+ai
+ai
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+at
+ai
+ai
+ai
+af
+af
+aa
+aa
+aa
+dG
+"}
+(49,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+ai
+af
+af
+af
+ab
+aa
+aa
+aa
+"}
+(50,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+af
+ai
+ai
+ai
+ai
+af
+af
+af
+af
+ai
+ai
+ai
+ai
+ai
+ak
+ai
+af
+af
+af
+af
+af
+aa
+aa
+aa
+aa
+"}
+(51,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+ag
+af
+af
+af
+af
+yB
+yB
+ai
+af
+af
+af
+af
+af
+ai
+ai
+ai
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ap
+aa
+aa
+aa
+"}
+(52,1,1) = {"
+aa
+aa
+aa
+aa
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+af
+ag
+af
+af
+af
+af
+af
+af
+af
+af
+af
+aa
+aa
+aa
+aa
+"}
+(53,1,1) = {"
+aa
+aa
+aa
+ad
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(54,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aw
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+"}
+(55,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aj
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bJ
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+dr
+bC
+aa
+aa
+aa
+dr
+aa
+aa
+aa
+aa
+ab
+"}
+(56,1,1) = {"
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+bC
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+aa
+>>>>>>> c0a490ac019... conk rete (#8671)
 "}

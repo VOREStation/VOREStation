@@ -7,6 +7,7 @@
 /turf/template_noop,
 /area/template_noop)
 "c" = (
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/rocks/virgo3b,
 /area/template_noop)
 "d" = (
@@ -23,10 +24,29 @@
 /area/template_noop)
 "g" = (
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor/outdoors/rocks,
+/area/template_noop)
+"d" = (
+/obj/structure/grille,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"e" = (
+/obj/structure/firedoor_assembly,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"f" = (
+/obj/structure/lattice,
+/turf/simulated/floor/outdoors/rocks,
+/area/template_noop)
+"g" = (
+/turf/simulated/floor/plating/external,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/construction1)
 "h" = (
 /obj/structure/firedoor_assembly,
 /obj/structure/grille,
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "i" = (
@@ -62,6 +82,43 @@
 "q" = (
 /obj/item/frame,
 /turf/simulated/floor/tiled/external/virgo3b,
+=======
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"i" = (
+/obj/item/clothing/gloves/black,
+/turf/simulated/floor/outdoors/rocks,
+/area/template_noop)
+"j" = (
+/turf/simulated/floor/tiled/external,
+/area/submap/construction1)
+"k" = (
+/obj/random/tool,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"l" = (
+/turf/simulated/wall/concrete,
+/area/submap/construction1)
+"m" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"n" = (
+/obj/item/pickaxe/drill,
+/turf/simulated/floor/outdoors/rocks,
+/area/template_noop)
+"o" = (
+/obj/structure/girder,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"p" = (
+/obj/item/clothing/head/hardhat,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"q" = (
+/obj/item/frame,
+/turf/simulated/floor/tiled/external,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/construction1)
 "r" = (
 /obj/item/clothing/head/orangebandana,
@@ -69,6 +126,7 @@
 /area/template_noop)
 "s" = (
 /obj/item/clothing/head/welding/engie,
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/construction1)
 "t" = (
@@ -82,6 +140,19 @@
 "v" = (
 /obj/item/weapon/airlock_electronics,
 /turf/simulated/floor/tiled/external/virgo3b,
+=======
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"t" = (
+/obj/structure/door_assembly/door_assembly_mai,
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+/area/submap/construction1)
+"v" = (
+/obj/item/airlock_electronics,
+/turf/simulated/floor/tiled/external,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/construction1)
 "w" = (
 /obj/item/clothing/suit/storage/hazardvest,
@@ -89,6 +160,7 @@
 /area/template_noop)
 "x" = (
 /obj/structure/windoor_assembly,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/external/virgo3b,
 /area/submap/construction1)
 "y" = (
@@ -122,6 +194,92 @@
 "F" = (
 /obj/item/clothing/suit/storage/hazardvest,
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor/tiled/external,
+/area/submap/construction1)
+"y" = (
+/obj/random/toolbox,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"z" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/tiled/external,
+/area/submap/construction1)
+"A" = (
+/obj/item/shovel,
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+/area/submap/construction1)
+"B" = (
+/obj/item/airlock_electronics,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"C" = (
+/obj/random/tool,
+/turf/simulated/floor/tiled/external,
+/area/submap/construction1)
+"D" = (
+/obj/item/tool/crowbar,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"E" = (
+/obj/item/clothing/glasses/welding,
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+/area/submap/construction1)
+"F" = (
+/obj/item/clothing/suit/storage/hazardvest,
+/turf/simulated/floor/plating/external,
+/area/submap/construction1)
+"G" = (
+/obj/random/toolbox,
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+/area/submap/construction1)
+"I" = (
+/obj/item/stack/material/concrete{
+	pixel_x = -8;
+	pixel_y = -5
+	},
+/turf/simulated/floor/tiled/external,
+/area/submap/construction1)
+"K" = (
+/obj/structure/firedoor_assembly,
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+/area/submap/construction1)
+"Q" = (
+/obj/item/stack/material/concrete{
+	pixel_x = -7;
+	pixel_y = 14
+	},
+/turf/simulated/floor/tiled/external,
+/area/submap/construction1)
+"S" = (
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+/area/submap/construction1)
+"V" = (
+/obj/random/tool/anom,
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+/area/submap/construction1)
+"X" = (
+/obj/fiftyspawner/concrete,
+/turf/simulated/floor/tiled/external,
+/area/submap/construction1)
+"Z" = (
+/obj/random/maintenance/clean,
+/turf/simulated/floor/concrete{
+	outdoors = 1
+	},
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/construction1)
 
 (1,1,1) = {"
@@ -186,9 +344,15 @@ a
 c
 c
 l
+<<<<<<< HEAD
 g
 s
 g
+=======
+Z
+s
+k
+>>>>>>> c0a490ac019... conk rete (#8671)
 l
 j
 B
@@ -204,11 +368,19 @@ c
 c
 c
 o
+<<<<<<< HEAD
 g
 g
 g
 l
 j
+=======
+V
+S
+g
+l
+X
+>>>>>>> c0a490ac019... conk rete (#8671)
 j
 D
 c
@@ -239,8 +411,13 @@ e
 g
 g
 m
+<<<<<<< HEAD
 j
 j
+=======
+I
+Q
+>>>>>>> c0a490ac019... conk rete (#8671)
 j
 v
 l
@@ -264,7 +441,11 @@ j
 x
 j
 C
+<<<<<<< HEAD
 g
+=======
+S
+>>>>>>> c0a490ac019... conk rete (#8671)
 F
 a
 "}
@@ -276,12 +457,21 @@ g
 k
 g
 g
+<<<<<<< HEAD
 g
 u
 g
 l
 j
 g
+=======
+S
+G
+S
+l
+j
+S
+>>>>>>> c0a490ac019... conk rete (#8671)
 E
 f
 a
@@ -294,6 +484,7 @@ f
 f
 f
 p
+<<<<<<< HEAD
 e
 f
 f
@@ -301,6 +492,15 @@ g
 A
 g
 g
+=======
+K
+f
+f
+S
+A
+S
+S
+>>>>>>> c0a490ac019... conk rete (#8671)
 f
 a
 "}

@@ -86,4 +86,9 @@
 		new /datum/stack_recipe("apc frame", /obj/item/frame/apc, 2, recycle_material = "[name]"),
 		new /datum/stack_recipe("desk bell", /obj/item/weapon/deskbell, 1, on_floor = 1, supplied_material = "[name]"),
 		new /datum/stack_recipe("tanning rack", /obj/structure/tanning_rack, 3, one_per_turf = TRUE, time = 20, on_floor = TRUE, supplied_material = "[name]")
+<<<<<<< HEAD
 	)
+=======
+	)
+
+>>>>>>> c0a490ac019... conk rete (#8671)

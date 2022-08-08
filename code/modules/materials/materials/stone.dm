@@ -33,6 +33,7 @@
 		new /datum/stack_recipe("light marble floor tile", /obj/item/stack/tile/wmarble, 1, 4, 20, recycle_material = "[name]"),
 		new /datum/stack_recipe("dark marble floor tile", /obj/item/stack/tile/bmarble, 1, 4, 20, recycle_material = "[name]")
 	)
+<<<<<<< HEAD
 //VOREStation Addition Start
 /datum/material/stone/flint
 	name = "flint"
@@ -48,3 +49,28 @@
 /datum/material/stone/flint/generate_recipes()
 	return
 //VOREStation Addition End
+=======
+
+/datum/material/stone/concrete
+	name = MAT_CONCRETE
+	stack_type = /obj/item/stack/material/concrete
+	icon_base = "brick"
+	icon_colour = COLOR_GRAY
+	integrity = 150
+	melting_point = 1550
+	protectiveness = 10
+	weight = 27
+	hardness = 60
+	var/image/texture
+
+/datum/material/stone/concrete/generate_recipes()
+	..()
+
+/datum/material/stone/concrete/New()
+	. = ..()
+	texture = image('icons/turf/wall_texture.dmi', "concrete")
+	texture.blend_mode = BLEND_MULTIPLY
+
+/datum/material/stone/concrete/get_wall_texture()
+	return texture
+>>>>>>> c0a490ac019... conk rete (#8671)

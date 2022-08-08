@@ -1,8 +1,13 @@
 //MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
 "ai" = (
 /obj/structure/table/steel_reinforced,
+<<<<<<< HEAD
 /obj/item/weapon/paper_bin,
 /obj/item/weapon/pen/fountain,
+=======
+/obj/item/paper_bin,
+/obj/item/pen/fountain,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "as" = (
@@ -10,11 +15,19 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/submap/methlab)
 "aY" = (
+<<<<<<< HEAD
 /obj/item/weapon/material/shard{
 	pixel_x = 5;
 	pixel_y = 3
 	},
 /obj/item/weapon/material/shard{
+=======
+/obj/item/material/shard{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/obj/item/material/shard{
+>>>>>>> c0a490ac019... conk rete (#8671)
 	pixel_x = 9
 	},
 /turf/template_noop,
@@ -24,12 +37,17 @@
 /turf/template_noop,
 /area/submap/methlab)
 "bA" = (
+<<<<<<< HEAD
 /obj/item/weapon/cell/hyper,
+=======
+/obj/item/cell/hyper,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "bJ" = (
 /obj/effect/floor_decal/rust,
 /obj/random/maintenance,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "bQ" = (
@@ -40,13 +58,30 @@
 	pixel_x = 9
 	},
 /obj/item/weapon/material/shard{
+=======
+/obj/random/medical/pillbottle,
+/turf/simulated/floor/tiled/steel_dirty,
+/area/submap/methlab)
+"bQ" = (
+/obj/item/material/shard{
+	icon_state = "medium"
+	},
+/obj/item/material/shard{
+	pixel_x = 9
+	},
+/obj/item/material/shard{
+>>>>>>> c0a490ac019... conk rete (#8671)
 	pixel_x = 5
 	},
 /turf/template_noop,
 /area/submap/methlab)
 "cg" = (
 /obj/structure/table/steel_reinforced,
+<<<<<<< HEAD
 /obj/item/device/radio{
+=======
+/obj/item/radio{
+>>>>>>> c0a490ac019... conk rete (#8671)
 	anchored = 1;
 	canhear_range = 1;
 	frequency = 1487;
@@ -60,7 +95,11 @@
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiadeusseed,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/white,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "dy" = (
 /obj/effect/floor_decal/industrial/warning/corner,
@@ -81,6 +120,7 @@
 "fY" = (
 /obj/item/stack/cable_coil,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/methlab)
 "hf" = (
@@ -89,6 +129,16 @@
 "hj" = (
 /obj/machinery/power/port_gen/pacman,
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor/concrete,
+/area/submap/methlab)
+"hf" = (
+/turf/simulated/floor,
+/area/submap/methlab)
+"hj" = (
+/obj/machinery/power/port_gen/pacman,
+/turf/simulated/floor/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "hE" = (
 /obj/machinery/door/airlock/vault/bolted,
@@ -104,6 +154,7 @@
 	},
 /obj/item/seeds/ambrosiavulgarisseed,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/methlab)
 "iz" = (
@@ -113,26 +164,53 @@
 "iN" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/reagent_containers/dropper,
+=======
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/methlab)
+"iz" = (
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete,
+/area/submap/methlab)
+"iN" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/reagent_containers/dropper,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "jm" = (
 /obj/structure/fence{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/methlab)
 "jo" = (
 /obj/machinery/vending/hydronutrients,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
+=======
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/methlab)
+"jo" = (
+/obj/machinery/vending/hydronutrients,
+/turf/simulated/floor/tiled/old_tile/white,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "kp" = (
 /obj/effect/floor_decal/rust/mono_rusted3,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
 "lb" = (
 /obj/machinery/biogenerator,
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+/area/submap/methlab)
+"lb" = (
+/obj/machinery/biogenerator,
+/turf/simulated/floor/tiled/old_tile/white,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "lt" = (
 /obj/item/frame/apc,
@@ -141,10 +219,18 @@
 	pixel_x = 11;
 	pixel_y = 22
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
 /area/submap/methlab)
 "lx" = (
 /turf/simulated/floor/outdoors/dirt/virgo3b,
+=======
+/obj/random/tool,
+/turf/simulated/floor/concrete,
+/area/submap/methlab)
+"lx" = (
+/turf/simulated/floor/outdoors/dirt,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "lJ" = (
 /obj/structure/fence/corner,
@@ -161,29 +247,53 @@
 /area/submap/methlab)
 "mi" = (
 /obj/effect/floor_decal/sign,
+<<<<<<< HEAD
 /turf/simulated/wall,
 /area/submap/methlab)
 "mw" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/storage/toolbox/syndicate,
+=======
+/turf/simulated/wall/concrete,
+/area/submap/methlab)
+"mw" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/storage/toolbox/syndicate,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "nq" = (
 /obj/random/junk,
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "oo" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiainfernusseed,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/white,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "oF" = (
 /obj/structure/fence/cut/large,
 /turf/template_noop,
 /area/submap/methlab)
 "oN" = (
+<<<<<<< HEAD
 /turf/simulated/wall/r_wall,
+=======
+/turf/simulated/wall/r_concrete,
+/area/submap/methlab)
+"pb" = (
+/obj/structure/sign/warning/lethal_turrets,
+/turf/simulated/wall/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "pq" = (
 /obj/structure/bed/chair{
@@ -196,9 +306,15 @@
 /turf/template_noop,
 /area/submap/methlab)
 "rK" = (
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/beaker/large,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "rU" = (
 /obj/item/clothing/under/suit_jacket,
@@ -217,7 +333,11 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "sW" = (
+<<<<<<< HEAD
 /obj/item/weapon/material/shard{
+=======
+/obj/item/material/shard{
+>>>>>>> c0a490ac019... conk rete (#8671)
 	pixel_x = 9
 	},
 /turf/template_noop,
@@ -239,7 +359,11 @@
 /area/submap/methlab)
 "tQ" = (
 /obj/structure/girder,
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "uA" = (
 /obj/structure/fence/cut/large{
@@ -252,10 +376,17 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "wd" = (
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
 "wI" = (
 /obj/item/weapon/reagent_containers/dropper,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+/area/submap/methlab)
+"wI" = (
+/obj/item/reagent_containers/dropper,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /obj/random/junk,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -277,7 +408,11 @@
 /area/submap/methlab)
 "yr" = (
 /obj/random/trash,
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "yM" = (
 /obj/item/clothing/under/suit_jacket/really_black,
@@ -296,7 +431,11 @@
 "zu" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "zG" = (
 /obj/random/junk,
@@ -316,7 +455,11 @@
 /area/submap/methlab)
 "AB" = (
 /obj/structure/table/steel_reinforced,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/beaker/large,
+=======
+/obj/item/reagent_containers/glass/beaker/large,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "AM" = (
@@ -337,12 +480,18 @@
 /area/submap/methlab)
 "BR" = (
 /obj/structure/table/steel_reinforced,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/bucket,
 /obj/item/weapon/reagent_containers/glass/bucket,
+=======
+/obj/item/reagent_containers/glass/bucket,
+/obj/item/reagent_containers/glass/bucket,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "BT" = (
 /obj/structure/safe/floor,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiavulgaris,
@@ -356,6 +505,21 @@
 /obj/item/weapon/storage/bag/cash,
 /obj/item/weapon/storage/bag/cash,
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiavulgaris,
+/obj/item/storage/bag/cash,
+/obj/item/storage/bag/cash,
+/turf/simulated/floor,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "CH" = (
 /obj/item/seeds/ambrosiavulgarisseed,
@@ -368,6 +532,7 @@
 /obj/item/seeds/ambrosiadeusseed,
 /obj/item/seeds/ambrosiadeusseed,
 /obj/structure/table/rack,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/methlab)
 "CL" = (
@@ -376,6 +541,16 @@
 	icon_state = "medium"
 	},
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/methlab)
+"CL" = (
+/obj/structure/grille/rustic,
+/obj/item/material/shard{
+	icon_state = "medium"
+	},
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "CW" = (
 /obj/machinery/light{
@@ -385,10 +560,17 @@
 /area/submap/methlab)
 "DG" = (
 /obj/structure/fence,
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/methlab)
 "DP" = (
 /obj/item/weapon/reagent_containers/dropper,
+=======
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/methlab)
+"DP" = (
+/obj/item/reagent_containers/dropper,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
@@ -397,6 +579,7 @@
 /obj/item/seeds/ambrosiadeusseed,
 /obj/effect/floor_decal/rust,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/methlab)
 "EW" = (
@@ -407,6 +590,18 @@
 "Fg" = (
 /obj/machinery/door/airlock,
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/methlab)
+"EW" = (
+/obj/item/stool,
+/obj/effect/decal/cleanable/dirt,
+/turf/simulated/floor/concrete,
+/area/submap/methlab)
+"Fg" = (
+/obj/machinery/door/airlock,
+/turf/simulated/floor/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Gs" = (
 /obj/structure/table/steel_reinforced,
@@ -422,13 +617,21 @@
 "HA" = (
 /obj/structure/window/reinforced/full,
 /obj/structure/grille/rustic,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "HN" = (
 /obj/machinery/porta_turret/lasertag/red{
 	name = "REAL turret"
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "HX" = (
 /obj/machinery/light,
@@ -445,14 +648,22 @@
 /area/submap/methlab)
 "IH" = (
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "IQ" = (
 /obj/item/clothing/accessory/stethoscope,
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "JQ" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -466,7 +677,11 @@
 /obj/structure/fence/cut/medium{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/dirt/virgo3b,
+=======
+/turf/simulated/floor/outdoors/dirt,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "KK" = (
 /obj/machinery/chem_master,
@@ -484,14 +699,25 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "LX" = (
+<<<<<<< HEAD
 /obj/item/weapon/stool,
+=======
+/obj/item/stool,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "Mn" = (
 /obj/structure/barricade,
+<<<<<<< HEAD
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/turf/simulated/floor/concrete,
+/area/submap/methlab)
+"MJ" = (
+/turf/simulated/floor/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Of" = (
 /obj/effect/wingrille_spawn/reinforced,
@@ -502,7 +728,11 @@
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Oq" = (
 /obj/structure/fence{
@@ -512,6 +742,7 @@
 /area/submap/methlab)
 "Py" = (
 /obj/random/trash,
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/methlab)
 "PH" = (
@@ -521,20 +752,45 @@
 "PO" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/weapon/module/power_control,
+=======
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/methlab)
+"PH" = (
+/obj/machinery/seed_extractor,
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/methlab)
+"PO" = (
+/obj/structure/table/steel_reinforced,
+/obj/item/module/power_control,
+/obj/random/contraband/anom,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "PZ" = (
 /obj/effect/floor_decal/rust,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
 /area/submap/methlab)
 "QP" = (
 /obj/structure/table/steel_reinforced,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+/area/submap/methlab)
+"QP" = (
+/obj/structure/table/steel_reinforced,
+/obj/random/contraband,
+/obj/random/medical/pillbottle,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /turf/simulated/floor/tiled/steel_dirty,
 /area/submap/methlab)
 "QW" = (
 /obj/effect/floor_decal/rust,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Sn" = (
 /obj/structure/barricade,
@@ -555,10 +811,17 @@
 	},
 /obj/item/seeds/ambrosiadeusseed,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/methlab)
 "Tr" = (
 /obj/item/weapon/stool,
+=======
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/methlab)
+"Tr" = (
+/obj/item/stool,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /obj/effect/floor_decal/rust,
 /obj/random/maintenance/engineering,
 /turf/simulated/floor/tiled/steel_dirty,
@@ -578,6 +841,7 @@
 /area/submap/methlab)
 "TU" = (
 /obj/structure/safe/floor,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
 /obj/item/weapon/reagent_containers/food/snacks/grown/ambrosiadeus,
@@ -591,6 +855,21 @@
 /obj/item/weapon/storage/bag/cash,
 /obj/item/weapon/storage/bag/cash,
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/reagent_containers/food/snacks/grown/ambrosiadeus,
+/obj/item/storage/bag/cash,
+/obj/item/storage/bag/cash,
+/turf/simulated/floor,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Uy" = (
 /obj/structure/fence/corner{
@@ -608,7 +887,11 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/submap/methlab)
 "UO" = (
+<<<<<<< HEAD
 /obj/item/weapon/material/shard{
+=======
+/obj/item/material/shard{
+>>>>>>> c0a490ac019... conk rete (#8671)
 	icon_state = "medium"
 	},
 /turf/template_noop,
@@ -617,7 +900,11 @@
 /obj/effect/decal/cleanable/dirt,
 /obj/effect/decal/cleanable/dirt,
 /obj/random/maintenance/cargo,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Vu" = (
 /obj/structure/fence/cut/medium{
@@ -642,12 +929,20 @@
 /turf/template_noop,
 /area/submap/methlab)
 "Xi" = (
+<<<<<<< HEAD
 /turf/simulated/wall,
+=======
+/turf/simulated/wall/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Xo" = (
 /obj/effect/floor_decal/rust,
 /obj/random/maintenance/engineering,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Xr" = (
 /obj/item/stack/material/phoron{
@@ -656,14 +951,21 @@
 /obj/item/stack/material/phoron{
 	amount = 5
 	},
+<<<<<<< HEAD
 /obj/item/weapon/extinguisher,
 /obj/item/weapon/storage/box/lights/mixed,
 /turf/simulated/floor/plating/external/virgo3b,
+=======
+/obj/item/extinguisher,
+/obj/item/storage/box/lights/mixed,
+/turf/simulated/floor/concrete,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Yz" = (
 /obj/machinery/portable_atmospherics/hydroponics,
 /obj/item/seeds/ambrosiavulgarisseed,
 /obj/effect/floor_decal/industrial/hatch/yellow,
+<<<<<<< HEAD
 /turf/simulated/floor/tiled/old_tile/white/virgo3b,
 /area/submap/methlab)
 "Zp" = (
@@ -673,6 +975,17 @@
 	pixel_y = 3
 	},
 /turf/simulated/floor/tiled/old_tile/green/virgo3b,
+=======
+/turf/simulated/floor/tiled/old_tile/white,
+/area/submap/methlab)
+"Zp" = (
+/obj/structure/grille/rustic,
+/obj/item/material/shard{
+	pixel_x = 5;
+	pixel_y = 3
+	},
+/turf/simulated/floor/tiled/old_tile/green,
+>>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/methlab)
 "Zt" = (
 /obj/structure/salvageable/autolathe,
@@ -752,7 +1065,11 @@ ps
 HN
 hf
 hf
+<<<<<<< HEAD
 Ih
+=======
+pb
+>>>>>>> c0a490ac019... conk rete (#8671)
 Xi
 mw
 BR
@@ -776,7 +1093,11 @@ ps
 ps
 Xi
 Zt
+<<<<<<< HEAD
 hf
+=======
+MJ
+>>>>>>> c0a490ac019... conk rete (#8671)
 Lh
 Xi
 HA
@@ -821,7 +1142,11 @@ Py
 Of
 tt
 Lh
+<<<<<<< HEAD
 hf
+=======
+MJ
+>>>>>>> c0a490ac019... conk rete (#8671)
 Xi
 HA
 HA
@@ -977,7 +1302,11 @@ uY
 AW
 Sn
 as
+<<<<<<< HEAD
 hf
+=======
+MJ
+>>>>>>> c0a490ac019... conk rete (#8671)
 Mn
 as
 yr
@@ -999,10 +1328,17 @@ IQ
 JQ
 lN
 as
+<<<<<<< HEAD
 hf
 Mn
 as
 hf
+=======
+MJ
+Mn
+as
+MJ
+>>>>>>> c0a490ac019... conk rete (#8671)
 lx
 ps
 lx
@@ -1024,7 +1360,11 @@ Xi
 Xi
 Xi
 Xi
+<<<<<<< HEAD
 Ih
+=======
+pb
+>>>>>>> c0a490ac019... conk rete (#8671)
 hf
 HN
 ps
@@ -1089,7 +1429,11 @@ oN
 Xi
 Xi
 Xi
+<<<<<<< HEAD
 hf
+=======
+MJ
+>>>>>>> c0a490ac019... conk rete (#8671)
 ps
 ps
 ps

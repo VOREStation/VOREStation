@@ -604,3 +604,11 @@ var/list/flooring_types
 		'sound/effects/footstep/lava1.ogg',
 		'sound/effects/footstep/lava2.ogg',
 		'sound/effects/footstep/lava3.ogg'))
+
+/decl/flooring/concrete
+	name = "concrete"
+	desc = "A flat area of concrete flooring."
+	icon = 'icons/turf/concrete.dmi'
+	icon_base = "concrete"
+	is_plating = TRUE
+	plating_type = /decl/flooring/concrete

@@ -369,8 +369,19 @@ var/list/name_to_material
 		))
 	if(hardness>50)
 		recipes += list(
+<<<<<<< HEAD
 			new /datum/stack_recipe("[display_name] fork", /obj/item/weapon/material/kitchen/utensil/fork/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] knife", /obj/item/weapon/material/knife/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] blade", /obj/item/weapon/material/butterflyblade, 6, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
 			new /datum/stack_recipe("[display_name] defense wire", /obj/item/weapon/material/barbedwire, 10, time = 1 MINUTE, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
 		)
+=======
+			new /datum/stack_recipe("[display_name] fork", /obj/item/material/kitchen/utensil/fork/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] knife", /obj/item/material/knife/plastic, 1, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] blade", /obj/item/material/butterflyblade, 6, time = 20, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE),
+			new /datum/stack_recipe("[display_name] defense wire", /obj/item/material/barbedwire, 10, time = 1 MINUTE, one_per_turf = 0, on_floor = 1, supplied_material = "[name]", pass_stack_color = TRUE)
+		)
+
+/datum/material/proc/get_wall_texture()
+	return
+>>>>>>> c0a490ac019... conk rete (#8671)

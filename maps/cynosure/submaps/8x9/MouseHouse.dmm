@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 "a" = (/turf/simulated/wall,/area/template_noop)
 "b" = (/obj/effect/decal/remains/mouse,/turf/simulated/floor/carpet/bcarpet,/area/template_noop)
 "c" = (/turf/simulated/wall{can_open = 1},/area/template_noop)
@@ -31,15 +32,297 @@
 "W" = (/obj/structure/loot_pile/maint/trash,/obj/machinery/power/apc{coverlocked = 0; locked = 0; name = "south bump"; operating = 0; pixel_y = -24},/turf/simulated/floor/wood,/area/template_noop)
 "X" = (/turf/simulated/floor/carpet/bcarpet,/area/template_noop)
 "Z" = (/turf/simulated/floor/wood,/area/template_noop)
+=======
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"a" = (
+/turf/simulated/wall/concrete,
+/area/template_noop)
+"b" = (
+/obj/effect/decal/remains/mouse,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"c" = (
+/turf/simulated/wall/concrete{
+	can_open = 1
+	},
+/area/template_noop)
+"e" = (
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/structure/bedsheetbin,
+/obj/random/plushie,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"f" = (
+/obj/structure/dogbed,
+/obj/effect/decal/remains/mouse,
+/obj/item/shreddedp,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"k" = (
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/random/maintenance/engineering,
+/obj/random/maintenance/engineering,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/obj/random/powercell,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"l" = (
+/obj/random/plushielarge,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"m" = (
+/turf/template_noop,
+/area/template_noop)
+"n" = (
+/obj/structure/dogbed,
+/obj/machinery/light/small{
+	dir = 1
+	},
+/obj/item/reagent_containers/glass/rag,
+/mob/living/simple_mob/animal/passive/mouse,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"o" = (
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/random/maintenance,
+/obj/random/drinksoft,
+/obj/random/snack,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"p" = (
+/obj/machinery/door/window/westright,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"t" = (
+/obj/item/trash/cookiesnack,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"u" = (
+/obj/structure/flora/pottedplant/overgrown,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"v" = (
+/obj/structure/disposalpipe/trunk,
+/obj/structure/disposaloutlet{
+	dir = 4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"w" = (
+/obj/machinery/door/window/northleft,
+/obj/structure/window/basic{
+	dir = 8
+	},
+/turf/simulated/floor/wood/broken,
+/area/template_noop)
+"y" = (
+/turf/simulated/floor/wood/broken,
+/area/template_noop)
+"z" = (
+/obj/machinery/papershredder,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"B" = (
+/obj/structure/dogbed,
+/obj/random/plushie,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"F" = (
+/obj/item/reagent_containers/food/snacks/wishsoup{
+	pixel_y = -6
+	},
+/obj/structure/sink/generic{
+	dir = 4;
+	pixel_x = -12;
+	pixel_y = -4
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"G" = (
+/obj/item/trash/semki,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"H" = (
+/obj/structure/sign/poster{
+	dir = 8;
+	pixel_x = -32;
+	poster_decl = /decl/poster/bay_49
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"J" = (
+/obj/item/beach_ball,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"K" = (
+/obj/structure/bed/chair/office/dark{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"L" = (
+/obj/item/trash/candy,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"M" = (
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/machinery/disposal,
+/obj/structure/disposalpipe/trunk{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"O" = (
+/obj/machinery/light/small,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"R" = (
+/obj/structure/dogbed,
+/mob/living/simple_mob/animal/passive/mouse,
+/obj/structure/sign/poster{
+	dir = 1;
+	pixel_y = 32;
+	poster_decl = /decl/poster/vore_91
+	},
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"S" = (
+/obj/item/shreddedp,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"T" = (
+/obj/structure/window/basic{
+	dir = 1
+	},
+/obj/structure/table/standard,
+/obj/item/flashlight/lamp/green,
+/obj/item/paper_bin{
+	pixel_x = 1;
+	pixel_y = 9
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"V" = (
+/obj/structure/dogbed,
+/mob/living/simple_mob/animal/passive/mouse,
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"W" = (
+/obj/structure/loot_pile/maint/trash,
+/obj/machinery/power/apc{
+	coverlocked = 0;
+	locked = 0;
+	name = "south bump";
+	operating = 0;
+	pixel_y = -24
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"X" = (
+/turf/simulated/floor/carpet/bcarpet,
+/area/template_noop)
+"Z" = (
+/turf/simulated/floor/wood,
+/area/template_noop)
+>>>>>>> c0a490ac019... conk rete (#8671)
 
 (1,1,1) = {"
-aaaaaaaa
-aVBnRfVa
-aGXXXXXa
-aFSXXlXa
-avbLJSta
-aMTkoewa
-aHKyKZpa
-azWZOuaa
-aaacaaam
+a
+a
+a
+a
+a
+a
+a
+a
+a
+"}
+(2,1,1) = {"
+a
+V
+G
+F
+v
+M
+H
+z
+a
+"}
+(3,1,1) = {"
+a
+B
+X
+S
+b
+T
+K
+W
+a
+"}
+(4,1,1) = {"
+a
+n
+X
+X
+L
+k
+y
+Z
+c
+"}
+(5,1,1) = {"
+a
+R
+X
+X
+J
+o
+K
+O
+a
+"}
+(6,1,1) = {"
+a
+f
+X
+l
+S
+e
+Z
+u
+a
+"}
+(7,1,1) = {"
+a
+V
+X
+X
+t
+w
+p
+a
+a
+"}
+(8,1,1) = {"
+a
+a
+a
+a
+a
+a
+a
+a
+m
 "}
