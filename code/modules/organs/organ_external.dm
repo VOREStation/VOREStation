@@ -732,8 +732,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	for(var/datum/wound/W in wounds)
-		// wounds can disappear after 10 minutes at the earliest
-		if(W.damage <= 0 && W.created + 10 * 10 * 60 <= world.time)
+		// wounds used to be able to disappear after 10 minutes at the earliest, for now just remove them as soon as there is no damage
+		if(W.damage <= 0)
 			wounds -= W
 			continue
 			// let the GC handle the deletion of the wound
