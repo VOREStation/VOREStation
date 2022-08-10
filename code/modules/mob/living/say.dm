@@ -18,6 +18,7 @@ var/list/department_radio_keys = list(
 	":p" = "AI Private",	".p" = "AI Private",
 	":y" = "Explorer",	".y" = "Explorer",
 	":a" = "Talon",		".a" = "Talon", //VOREStation Add,
+	":g" = "Casino",	".g" = "Casino",
 
 	":R" = "right ear",	".R" = "right ear",
 	":L" = "left ear",	".L" = "left ear",
@@ -37,6 +38,7 @@ var/list/department_radio_keys = list(
 	":P" = "AI Private",	".P" = "AI Private",
 	":Y" = "Explorer",	".Y" = "Explorer",
 	":A" = "Talon",		".A" = "Talon", //VOREStation Add,
+	":G" = "Casino",	".G" = "Casino",
 
 	// Cyrillic characters on the same keys on the Russian QWERTY (phonetic) layout
 	":к" = "right ear",    ".к" = "right ear",
@@ -57,7 +59,8 @@ var/list/department_radio_keys = list(
 	":м" = "Service",        ".м" = "Service",
 	":з" = "AI Private",    ".з" = "AI Private",
 	":н" = "Explorer",    ".н" = "Explorer",
-	":ф" = "Talon",        ".ф" = "Talon" //VOREStation Add
+	":ф" = "Talon",        ".ф" = "Talon", //VOREStation Add
+	":п" = "Casino",	".п" = "Casino",
 )
 
 
@@ -254,6 +257,9 @@ var/list/channel_to_radio_key = new
 	//Default range and italics, may be overridden past here
 	var/message_range = world.view
 	var/italics = 0
+	var/do_sound = TRUE
+	if(!voice_sounds_list || !voice_sounds_list.len)
+		do_sound = FALSE
 
 	//Speaking into radios
 	if(used_radios.len)
@@ -297,6 +303,7 @@ var/list/channel_to_radio_key = new
 	for(var/datum/multilingual_say_piece/S in message_pieces)
 		if((S.speaking.flags & NONVERBAL) || (S.speaking.flags & INAUDIBLE))
 			custom_emote(1, "[pick(S.speaking.signlang_verb)].")
+			do_sound = FALSE
 
 	//These will contain the main receivers of the message
 	var/list/listening = list()
@@ -393,12 +400,20 @@ var/list/channel_to_radio_key = new
 					C.images -= I
 			qdel(I)
 
+	var/ourfreq = null
+	if(voice_freq > 0 )
+		ourfreq = voice_freq
 	//Log the message to file
 	if(message_mode)
 		message = "([message_mode == "headset" ? "Common" : capitalize(message_mode)]) [message]" //Adds radio keys used if available
 	if(whispering)
+		if(do_sound && message)
+			playsound(T, pick(voice_sounds_list), 25, TRUE, extrarange = -6, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/whisper_sounds)
+
 		log_whisper(message, src)
 	else
+		if(do_sound && message)
+			playsound(T, pick(voice_sounds_list), 75, TRUE, falloff = 1 , is_global = TRUE, frequency = ourfreq, ignore_walls = FALSE, preference = /datum/client_preference/say_sounds)
 		log_say(message, src)
 	return 1
 

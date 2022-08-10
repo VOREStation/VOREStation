@@ -16,6 +16,8 @@
 	var/base_species = null // Unused outside of a few species
 	var/selects_bodytype = FALSE // Allows the species to choose from body types like custom species can, affecting suit fitting and etcetera as you would expect.
 
+	var/bloodsucker = FALSE // Allows safely getting nutrition from blood.
+
 	var/is_weaver = FALSE
 	var/silk_production = FALSE
 	var/silk_reserve = 100
@@ -26,6 +28,10 @@
 	//Vars that need to be copied when producing a copy of species.
 	var/list/copy_vars = list("base_species", "icobase", "deform", "tail", "tail_animation", "icobase_tail", "color_mult", "primitive_form", "appearance_flags", "flesh_color", "base_color", "blood_mask", "damage_mask", "damage_overlays", "move_trail", "has_floating_eyes")
 	var/trait_points = 0
+
+	var/micro_size_mod = 0		// How different is our size for interactions that involve us being small?
+	var/macro_size_mod = 0		// How different is our size for interactions that involve us being big?
+	var/digestion_nutrition_modifier = 1
 
 
 /datum/species/proc/give_numbing_bite() //Holy SHIT this is hacky, but it works. Updating a mob's attacks mid game is insane.

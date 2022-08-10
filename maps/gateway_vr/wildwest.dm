@@ -125,7 +125,7 @@
 
 	if(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey))
 		for(var/mob/O in viewers(world.view, src.loc))
-			to_chat(O, "<font color='red'>[M] triggered the [bicon(src)] [src]</font>")
+			to_chat(O, "<font color='red'>[M] triggered the \icon[src][bicon(src)] [src]</font>")
 		triggered = 1
 		call(src,triggerproc)(M)
 
@@ -187,7 +187,7 @@
 	in_space = 1
 	unknown_state = "field"
 	known = FALSE
-	
+
 	skybox_icon = 'icons/skybox/anomaly.dmi'
 	skybox_icon_state = "shimmer_r"
 	skybox_pixel_x = 0

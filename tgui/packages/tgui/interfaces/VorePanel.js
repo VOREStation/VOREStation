@@ -13,6 +13,7 @@ const digestModeToColor = {
   'Absorb': 'purple',
   'Unabsorb': 'purple',
   'Drain': 'orange',
+  'Selective': 'orange',
   'Shrink': 'teal',
   'Grow': 'teal',
   'Size Steal': 'teal',
@@ -26,6 +27,7 @@ const digestModeToPreyMode = {
   'Absorb': 'being absorbed.',
   'Unabsorb': 'being unabsorbed.',
   'Drain': 'being drained.',
+  'Selective': 'being processed.',
   'Shrink': 'being shrunken.',
   'Grow': 'being grown.',
   'Size Steal': 'having your size stolen.',
@@ -60,6 +62,7 @@ export const VorePanel = (props, context) => {
 
       // Descriptions
       verb,
+      release_verb,
       desc,
       absorbed_desc,
     } = data.selected;
@@ -71,6 +74,7 @@ export const VorePanel = (props, context) => {
     result += 'Item Mode:\n' + item_mode + '\n\n';
     result += '== Descriptions ==\n\n';
     result += 'Verb:\n' + verb + '\n\n';
+    result += 'Release Verb:\n' + release_verb + '\n\n';
     result += 'Description:\n"' + desc + '"\n\n';
     result += 'Absorbed Description:\n"' + absorbed_desc + '"\n\n';
 
@@ -350,7 +354,7 @@ const VoreSelectedBellyDescriptions = (props, context) => {
   const { act } = useBackend(context);
 
   const { belly } = props;
-  const { verb, desc, absorbed_desc } = belly;
+  const { verb, release_verb, desc, absorbed_desc } = belly;
 
   return (
     <LabeledList>
@@ -366,6 +370,9 @@ const VoreSelectedBellyDescriptions = (props, context) => {
       </LabeledList.Item>
       <LabeledList.Item label="Vore Verb">
         <Button onClick={() => act('set_attribute', { attribute: 'b_verb' })} content={verb} />
+      </LabeledList.Item>
+      <LabeledList.Item label="Release Verb">
+        <Button onClick={() => act('set_attribute', { attribute: 'b_release_verb' })} content={release_verb} />
       </LabeledList.Item>
       <LabeledList.Item label="Examine Messages">
         <Button
@@ -497,6 +504,7 @@ const VoreSelectedBellyOptions = (props, context) => {
     contaminate_flavor,
     contaminate_color,
     egg_type,
+    selective_preference,
     save_digest_mode,
   } = belly;
 
@@ -606,6 +614,12 @@ const VoreSelectedBellyOptions = (props, context) => {
               onClick={() => act('set_attribute', { attribute: 'b_egg_type' })}
               icon="pen"
               content={capitalize(egg_type)}
+            />
+          </LabeledList.Item>
+          <LabeledList.Item label="Selective Mode Preference">
+            <Button
+              onClick={() => act('set_attribute', { attribute: 'b_selective_mode_pref_toggle' })}
+              content={capitalize(selective_preference)}
             />
           </LabeledList.Item>
         </LabeledList>
@@ -1254,6 +1268,9 @@ const VoreUserPreferences = (props, context) => {
         </Flex.Item>
         <Flex.Item basis="32%">
           <VoreUserPreferenceItem spec={preferences.spontaneous_tf} />
+        </Flex.Item>
+        <Flex.Item basis="32%">
+          <Button fluid content="Slective Mode Preference" onClick={() => act('switch_selective_mode_pref')} />
         </Flex.Item>
       </Flex>
       <Section title="Aesthetic Preferences">

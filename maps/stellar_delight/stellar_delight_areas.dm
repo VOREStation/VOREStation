@@ -130,6 +130,7 @@
 	limit_mob_size = FALSE
 	block_suit_sensors = TRUE
 	forbid_events = TRUE
+	forbid_singulo = TRUE
 
 /area/stellardelight/deck1/dorms/dorm1
 	name = "Dormitory One"
@@ -273,9 +274,11 @@
 /area/stellardelight/deck3/transitgateway
 	name = "Transit Gateway"
 	forbid_events = TRUE
+	forbid_singulo = TRUE
 /area/stellardelight/deck3/cryo
 	name = "Cryogenic Storage"
 	forbid_events = TRUE
+	forbid_singulo = TRUE
 
 /area/stellardelight/deck3/readingroom
 	name = "Reading Rooms"

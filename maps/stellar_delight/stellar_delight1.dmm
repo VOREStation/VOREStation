@@ -6150,6 +6150,7 @@
 /area/stellardelight/deck1/lowermed)
 "mK" = (
 /obj/structure/table/sifwooden_reinforced,
+/obj/item/weapon/storage/box/nifsofts_pilot,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/stellardelight/deck1/pilot)
 "mL" = (
@@ -8379,6 +8380,7 @@
 	pixel_x = -3;
 	pixel_y = -2
 	},
+/obj/item/weapon/book/manual/robotics_manual,
 /obj/item/weapon/book/manual/robotics_cyborgs,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/assembly/robotics)
@@ -10622,12 +10624,18 @@
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/mask/breath,
 /obj/item/clothing/mask/breath,
+/obj/item/device/suit_cooling_unit{
+	pixel_y = -5
+	},
+/obj/item/device/suit_cooling_unit{
+	pixel_y = -5
+	},
+/obj/item/weapon/tank/oxygen,
+/obj/item/weapon/tank/oxygen,
 /obj/item/clothing/suit/space/void/pilot,
 /obj/item/clothing/suit/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
 /obj/item/clothing/head/helmet/space/void/pilot,
-/obj/item/weapon/tank/oxygen,
-/obj/item/weapon/tank/oxygen,
 /turf/simulated/floor/tiled/eris/steel/panels,
 /area/stellardelight/deck1/pilot)
 "wu" = (
@@ -22368,6 +22376,7 @@
 /obj/item/weapon/book/manual/resleeving,
 /obj/item/weapon/book/manual/ripley_build_and_repair,
 /obj/item/weapon/book/manual/robotics_cyborgs,
+/obj/item/weapon/book/manual/robotics_manual,
 /obj/item/weapon/book/manual/rust_engine,
 /obj/item/weapon/book/manual/security_space_law,
 /obj/item/weapon/book/manual/standard_operating_procedure,

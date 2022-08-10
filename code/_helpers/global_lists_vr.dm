@@ -65,6 +65,7 @@ var/global/list/classic_vore_sounds = list(
 		"Rustle 3 (cloth)"	= 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)"	= 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)"	= 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"None" = null)
 
 var/global/list/classic_release_sounds = list(
@@ -73,6 +74,7 @@ var/global/list/classic_release_sounds = list(
 		"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)" = 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)" = 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"Splatter" = 'sound/effects/splat.ogg',
 		"None" = null
 		)
@@ -95,6 +97,7 @@ var/global/list/fancy_vore_sounds = list(
 		"Rustle 3 (cloth)"	= 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)"	= 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)"	= 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"None" = null
 		)
 
@@ -104,6 +107,7 @@ var/global/list/fancy_release_sounds = list(
 		"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)" = 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)" = 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"Stomach Move" = 'sound/vore/sunesound/pred/stomachmove.ogg',
 		"Pred Escape" = 'sound/vore/sunesound/pred/escape.ogg',
 		"Splatter" = 'sound/effects/splat.ogg',
@@ -232,7 +236,8 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/wallet,
 				/obj/item/weapon/storage/vore_egg,
 				/obj/item/weapon/bikehorn/tinytether,
-				/obj/item/capture_crystal
+				/obj/item/capture_crystal,
+				/obj/item/roulette_ball
 				)
 
 var/global/list/contamination_flavors = list(

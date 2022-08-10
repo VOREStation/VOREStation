@@ -813,6 +813,12 @@
 	ckeywhitelist = list("pandora029")
 	character_name = list("Evelyn Tareen", "Velyn Tareen")
 
+/datum/gear/fluff/seona_flightsuit
+	path = /obj/item/clothing/under/fluff/foxoflightsuit/
+	display_name = "padded flightsuit"
+	ckeywhitelist = list("pandora029")
+	character_name = list("Seona Young")
+
 /datum/gear/fluff/lily_medal
 	path = /obj/item/clothing/accessory/medal/silver/unity
 	display_name = "Lily's Unity Medal"
@@ -1020,6 +1026,13 @@
 	slot = slot_glasses
 	ckeywhitelist = list("seiga")
 	character_name = list("Alfonso Oak Telanor")
+
+/datum/gear/fluff/cerise_secbelt
+	path = /obj/item/weapon/storage/belt/security/fluff/cerise
+	display_name = "Cerise's Champion's Belt"
+	ckeywhitelist = list("shalax")
+	character_name = list("Cerise Duelliste")
+	allowed_roles = list("Security Officer", "Warden", "Head of Security", "Detective")
 
 /datum/gear/fluff/nthasd_modkit //Converts a Security suit's sprite
 	path = /obj/item/device/modkit_conversion/hasd

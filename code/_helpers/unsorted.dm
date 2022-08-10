@@ -1161,7 +1161,7 @@ var/list/WALLITEMS = list(
 			if(length(temp_col )<2)
 				temp_col  = "0[temp_col]"
 			colour += temp_col
-	return colour
+	return "#[colour]"
 
 /proc/color_square(red, green, blue, hex)
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
@@ -1178,7 +1178,7 @@ var/mob/dview/dview_mob = new
 		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
-	
+
 	dview_mob.see_invisible = invis_flags
 
 	. = view(range, dview_mob)
@@ -1497,7 +1497,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	. += new /obj/screen/plane_master/lighting							//Lighting system (but different!)
 	. += new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
 	. += new /obj/screen/plane_master/emissive							//Emissive overlays
-	
+
 	. += new /obj/screen/plane_master/ghosts							//Ghosts!
 	. += new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 

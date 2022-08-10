@@ -163,6 +163,7 @@
 			"mode" = selected.digest_mode,
 			"item_mode" = selected.item_digest_mode,
 			"verb" = selected.vore_verb,
+			"release_verb" = selected.release_verb,
 			"desc" = selected.desc,
 			"absorbed_desc" = selected.absorbed_desc,
 			"fancy" = selected.fancy_vore,
@@ -181,6 +182,7 @@
 			"shrink_grow_size" = selected.shrink_grow_size,
 			"emote_time" = selected.emote_time,
 			"emote_active" = selected.emote_active,
+			"selective_preference" = selected.selective_preference,
 			"nutrition_ex" = host.nutrition_message_visible,
 			"weight_ex" = host.weight_message_visible,
 			"belly_fullscreen" = selected.belly_fullscreen,
@@ -487,6 +489,14 @@
 			host.stumble_vore = !host.stumble_vore
 			unsaved_changes = TRUE
 			return TRUE
+		if("switch_selective_mode_pref")
+			host.selective_preference = tgui_input_list(usr, "What would you prefer happen to you with selective bellymode?","Selective Bellymode", list(DM_DEFAULT, DM_DIGEST, DM_ABSORB, DM_DRAIN))
+			if(!(host.selective_preference))
+				host.selective_preference = DM_DEFAULT
+			if(host.client.prefs_vr)
+				host.client.prefs_vr.selective_preference = host.selective_preference
+			unsaved_changes = TRUE
+			return TRUE
 		if("toggle_nutrition_ex")
 			host.nutrition_message_visible = !host.nutrition_message_visible
 			unsaved_changes = TRUE
@@ -580,7 +590,7 @@
 
 	//Handle the [All] choice. Ugh inelegant. Someone make this pretty.
 	if(params["pickall"])
-		intent = tgui_alert(usr, "Eject all, Move all?","Query",list("Eject all","Cancel","Move all"))
+		intent = tgui_alert(user, "Eject all, Move all?","Query",list("Eject all","Cancel","Move all"))
 		switch(intent)
 			if("Cancel")
 				return TRUE
@@ -598,7 +608,7 @@
 					to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 					return TRUE
 
-				var/obj/belly/choice = tgui_input_list(usr, "Move all where?","Select Belly", host.vore_organs)
+				var/obj/belly/choice = tgui_input_list(user, "Move all where?","Select Belly", host.vore_organs)
 				if(!choice)
 					return FALSE
 
@@ -611,10 +621,10 @@
 	var/atom/movable/target = locate(params["pick"])
 	if(!(target in host.vore_selected))
 		return TRUE // Not in our X anymore, update UI
-	var/list/available_options = list("Examine", "Eject", "Move")
+	var/list/available_options = list("Examine", "Eject", "Move", "Transfer")
 	if(ishuman(target))
 		available_options += "Transform"
-	intent = tgui_alert(user, "What would you like to do with [target]?", "Vore Pick", available_options, strict_byond = TRUE)
+	intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", available_options)
 	switch(intent)
 		if("Examine")
 			var/list/results = target.examine(host)
@@ -635,13 +645,51 @@
 			if(host.stat)
 				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
 				return TRUE
-
 			var/obj/belly/choice = tgui_input_list(usr, "Move [target] where?","Select Belly", host.vore_organs)
 			if(!choice || !(target in host.vore_selected))
 				return TRUE
-
 			to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
 			host.vore_selected.transfer_contents(target, choice)
+
+
+		if("Transfer")
+			if(host.stat)
+				to_chat(user,"<span class='warning'>You can't do that in your state!</span>")
+				return TRUE
+
+			var/mob/living/belly_owner = host
+
+			var/list/viable_candidates = list()
+			for(var/mob/living/candidate in range(1, host))
+				if(istype(candidate) && !(candidate == host))
+					if(candidate.vore_organs.len && candidate.feeding && !candidate.no_vore)
+						viable_candidates += candidate
+			if(!viable_candidates.len)
+				to_chat(user, "<span class='notice'>There are no viable candidates around you!</span>")
+				return TRUE
+			belly_owner = tgui_input_list(user, "Who do you want to recieve the target?", "Select Predator", viable_candidates)
+
+			if(!belly_owner || !(belly_owner in range(1, host)))
+				return TRUE
+
+			var/obj/belly/choice = tgui_input_list(user, "Move [target] where?","Select Belly", belly_owner.vore_organs)
+			if(!choice || !(target in host.vore_selected) || !belly_owner || !(belly_owner in range(1, host)))
+				return TRUE
+
+			if(belly_owner != host)
+				to_chat(user, "<span class='notice'>Transfer offer sent. Await their response.</span>")
+				var/accepted = tgui_alert(belly_owner, "[host] is trying to transfer [target] from their [lowertext(host.vore_selected.name)] into your [lowertext(choice.name)]. Do you accept?", "Feeding Offer", list("Yes", "No"))
+				if(accepted != "Yes")
+					to_chat(user, "<span class='warning'>[belly_owner] refused the transfer!!</span>")
+					return TRUE
+				if(!belly_owner || !(belly_owner in range(1, host)))
+					return TRUE
+				to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to [belly_owner]'s [lowertext(choice.name)]!</span>")
+				to_chat(belly_owner,"<span class='warning'>[target] is squished from [host]'s [lowertext(host.vore_selected.name)] to your [lowertext(choice.name)]!</span>")
+				host.vore_selected.transfer_contents(target, choice)
+			else
+				to_chat(target,"<span class='warning'>You're squished from [host]'s [lowertext(host.vore_selected.name)] to their [lowertext(choice.name)]!</span>")
+				host.vore_selected.transfer_contents(target, choice)
 			return TRUE
 
 		if("Transform")
@@ -932,6 +980,15 @@
 
 			host.vore_selected.vore_verb = new_verb
 			. = TRUE
+		if("b_release_verb")
+			var/new_release_verb = html_encode(tgui_input_text(usr,"New verb when releasing from stomach (e.g. expels or coughs or drops):","New Release Verb"))
+
+			if(length(new_release_verb) > BELLIES_NAME_MAX || length(new_release_verb) < BELLIES_NAME_MIN)
+				tgui_alert_async(usr, "Entered verb length invalid (must be longer than [BELLIES_NAME_MIN], no longer than [BELLIES_NAME_MAX]).","Error")
+				return FALSE
+
+			host.vore_selected.release_verb = new_release_verb
+			. = TRUE
 		if("b_fancy_sound")
 			host.vore_selected.fancy_vore = !host.vore_selected.fancy_vore
 			host.vore_selected.vore_sound = "Gulp"
@@ -1040,6 +1097,12 @@
 			. = TRUE
 		if("b_emoteactive")
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
+			. = TRUE
+		if("b_selective_mode_pref_toggle")
+			if(host.vore_selected.selective_preference == DM_DIGEST)
+				host.vore_selected.selective_preference = DM_ABSORB
+			else
+				host.vore_selected.selective_preference = DM_DIGEST
 			. = TRUE
 		if("b_emotetime")
 			var/new_time = tgui_input_number(user, "Choose the period it takes for idle belly emotes to be shown to prey. Measured in seconds, Minimum 1 minute, Maximum 10 minutes.", "Set Belly Emote Delay.", host.vore_selected.digest_brute, 600, 60)
