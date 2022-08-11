@@ -160,7 +160,7 @@
 	else
 		to_chat(user, "<span class='notice'>\The [src] takes a bite of \the [O].</span>")
 		if(user != src)
-			to_chat(user, "<span class='notice'>\The [user] feeds \the [O] to you.</span>")
+			to_chat(src, "<span class='notice'>\The [user] feeds \the [O] to you.</span>")
 	playsound(src, 'sound/items/eatfood.ogg', 75, 1)
 
 /mob/living/simple_mob/vore/alienanimals/catslug/attack_hand(mob/living/carbon/human/M as mob)
@@ -714,7 +714,7 @@
 //Admin-spawn only catslugs below - Expect overpowered things & silliness below
 //=============================================================================
 
-//Deathsquad catslug 
+//Deathsquad catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/deathslug
 	name = "Asset Purrtection"
 	desc = "What are you doing staring at this angry little fella? <b>Run.</b>"
@@ -739,7 +739,7 @@
 		"bomb" = 40,
 		"bio" = 100,
 		"rad" = 100
-		)	
+		)
 
 	minbodytemp = 0
 	maxbodytemp = 5000
@@ -751,8 +751,8 @@
 	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
 	mob_radio.frequency = DTH_FREQ 			//Can't tell if bugged, deathsquad freq in general seems broken
 	mobcard.access |= get_all_station_access()
-	
-//Syndicate catslug 
+
+//Syndicate catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/syndislug
 	name = "Mercenyary"
 	desc = "What are you doing staring at this crimson-hardsuit wearing angry little fella? <b>Run.</b>"
@@ -769,7 +769,7 @@
 	health = 100
 	taser_kill = 0
 	melee_damage_lower = 15
-	melee_damage_upper = 20	
+	melee_damage_upper = 20
 	mob_size = MOB_MEDIUM		//Something something hardsuits are heavy.
 	siemens_coefficient = 0
 	armor = list(
@@ -780,7 +780,7 @@
 		"bomb" = 80,
 		"bio" = 100,
 		"rad" = 60
-		)	
+		)
 
 	minbodytemp = 0
 	maxbodytemp = 5000
@@ -797,7 +797,7 @@
 	mob_radio.recalculateChannels(1)
 	mobcard.access |= get_all_station_access()
 
-//ERT catslug 
+//ERT catslug
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug
 	name = "Emeowgency Responder"
 	desc = "The cavalry has arrived."
@@ -822,7 +822,7 @@
 		"bomb" = 30,
 		"bio" = 100,
 		"rad" = 100
-		)	
+		)
 
 	minbodytemp = 0
 	maxbodytemp = 5000
@@ -834,7 +834,7 @@
 /mob/living/simple_mob/vore/alienanimals/catslug/custom/spaceslug/responseslug/Initialize()
 	. = ..()
 	mob_radio = new /obj/item/device/radio/headset/mob_headset(src)
-	mob_radio.frequency = ERT_FREQ 
+	mob_radio.frequency = ERT_FREQ
 	mob_radio.centComm = 1
 	mob_radio.ks2type = /obj/item/device/encryptionkey/ert
 	mob_radio.keyslot2 = new /obj/item/device/encryptionkey/ert(mob_radio)
