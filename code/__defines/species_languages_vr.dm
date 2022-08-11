@@ -13,6 +13,7 @@
 #define LANGUAGE_CLOWNISH "Coulrian"
 #define LANGUAGE_TAVAN "Tavan"
 #define LANGUAGE_ECHOSONG "Echo Song"
+#define LANGUAGE_KISUN "Kisun"
 
 #define LANGUAGE_CHIMPANZEE "Chimpanzee"
 #define LANGUAGE_NEAERA "Neaera"

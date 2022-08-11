@@ -119,6 +119,7 @@ h1.alert, h2.alert		{color: #000000;}
 .interface				{color: #330033;}
 .spacer					{color: #9c660b;} /* VOREStation Add */
 .blob					{color: #ff950d; font-weight: bold; font-style: italic;}
+.kisun					{color: #d31d81; font-family: "Courier New", Courier, monospace; word-spacing:0pt;}
 
 BIG IMG.icon 			{width: 32px; height: 32px;}
 

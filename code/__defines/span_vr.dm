@@ -73,6 +73,7 @@
 #define span_interface(str) ("<span class='interface'>" + str + "</span>")
 #define span_spacer(str) ("<span class='spacer'>" + str + "</span>")
 #define span_blob(str) ("<span class='blob'>" + str + "</span>")
+#define span_kisun(str) ("<span class='kisun'>" + str + "</span>")
 
 #define span_debug_error(str) ("<span class='debug_error'>" + str + "</span>")
 #define span_debug_warning(str) ("<span class='debug_warning'>" + str + "</span>")

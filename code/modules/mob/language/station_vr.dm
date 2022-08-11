@@ -17,6 +17,24 @@
 	key = "G"
 	syllables = list ("cheep", "peep", "tweet")
 
+/datum/language/kisun
+	name = LANGUAGE_KISUN
+	desc = "An esoteric language almost exclusively spoken by traditional Kitsune, most sentences are composed of a series of rather identical short-vowels who's meaning can only be put into contexts by subtle ear and multi-tail ruffling. Making the language rather hard for non-native speakers to decipher."
+	speech_verb = "skitters"
+	whisper_verb = "murmurs"
+	exclaim_verb = "screeches"
+	ask_verb = "queries"
+	colour = "kisun"
+	key = "e" //This is the last lowercase letter in the game that can be used for languages!
+	syllables = list ("Mofu", "Mofu", "Mofu", "Mofu", "Mofu", "Mofu", "Mofu", "Mofu", "Mofu", "Mofu", "Fuwa", "Fuwa", \
+	"Fuwa", "Fuwa", "Fuwa", "Fuwa", "Fuwa", "Fuwa", "Fuwa", "Fuwa", "Mofuwa", "Mofuwa", "Mofuwa", "Mofuwa", \
+	"Mofuwa", "Mofuwa", "Mofuwa", "Mofuwa", "Momofu", "Momofu", "Momofu", "Momofu", "Momofu", "Momofu", "Momofu", \
+	"Momofu", "Fufuwa", "Fufuwa", "Fufuwa", "Fufuwa", "Fufuwa", "Fufuwa", "Fufuwa", "Fufuwa", "Kofuwa", "Kofuwa", \
+	"Kofuwa", "Kofuwa", "Kofuwa", "Kofuwa", "Kokon", "Kokon", "Kokon", "Kokon", "Kokon", "Kokon", "Kon", "Kon", "Kon", \
+	"Kon", "Kon", "Kon", "Ki", "Ki", "Ki", "Ki", "Ki", "Ki", "KiKira", "KiKira", "KiKira", "KiKira", "Mickon", "Mickon", "AraAra", "Mofuck")
+	partial_understanding = list(LANGUAGE_TRADEBAND = 20, LANGUAGE_CANILUNZT = 50)
+	machine_understands = FALSE
+
 /datum/language/sergal
 	name = LANGUAGE_SAGARU
 	desc = "The dominant language of the Sergal homeworld, Vilous. It consists of aggressive low-pitched hissing and throaty growling."
@@ -37,6 +55,7 @@
 	"ist","ein","entch","zwichs","tut","mir","wo","bis","es","vor","nic","gro","lll","enem","zandt","tzch","noch", \
 	"hel","ischt","far","wa","baram","iereng","tech","lach","sam","mak","lich","gen","or","ag","eck","gec","stag","onn", \
 	"bin","ket","jarl","vulf","einech","cresthz","azunein","ghzth")
+	partial_understanding = list(LANGUAGE_KISUN = 50)
 
 /datum/language/squirrel
 	name = LANGUAGE_ECUREUILIAN

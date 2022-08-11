@@ -50,6 +50,7 @@
 "hie","zei","zie","ize","ehy","uy","oya","dor","di","ja","ej","er","um","in","qu","is","re",
 "nt","ti","us","it","en","at","tu","te","ri","es","et","ra","ta","an","ni","li","on","or","se",
 "am","ae","ia","di","ue","em","ar","ui","st","si","de","ci","iu","ne","pe","co","os","ur","ru")
+	partial_understanding = list(LANGUAGE_KISUN = 20) //VOREStation Edit
 
 /datum/language/terminus
 	name = LANGUAGE_TERMINUS
