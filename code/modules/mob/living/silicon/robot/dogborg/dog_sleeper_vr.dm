@@ -42,12 +42,13 @@
 	var/digest_multiplier = 1
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
-	var/obj/item/device/healthanalyzer/med_analyzer = new /obj/item/device/healthanalyzer //Used for detailed analysis
+	var/obj/item/device/healthanalyzer/med_analyzer = null
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 	files = new /datum/research/techonly(src)
+	med_analyzer = new /obj/item/device/healthanalyzer
 
 /obj/item/device/dogborg/sleeper/Destroy()
 	go_out()
