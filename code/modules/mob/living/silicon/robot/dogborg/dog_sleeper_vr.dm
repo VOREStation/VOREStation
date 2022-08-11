@@ -554,7 +554,8 @@
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
 				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
-				water.add_charge(damage_gain)
+				if(water)
+					water.add_charge(damage_gain)
 				if(T.stat == DEAD)
 					if(ishuman(T))
 						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
@@ -591,10 +592,12 @@
 					if(ishuman(T))
 						var/mob/living/carbon/human/Prey = T
 						volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
-						water.add_charge(volume)
+						if(water)
+							water.add_charge(volume)
 					if(T.reagents)
 						volume = T.reagents.total_volume
-						water.add_charge(volume)
+						if(water)
+							water.add_charge(volume)
 					if(patient == T)
 						patient_laststat = null
 						patient = null
@@ -618,7 +621,7 @@
 						for(var/tech in tech_item.origin_tech)
 							files.UpdateTech(tech, tech_item.origin_tech[tech])
 							synced = FALSE
-					if(volume)
+					if(volume && water)
 						water.add_charge(volume)
 					if(recycles && T.matter)
 						for(var/material in T.matter)
@@ -626,14 +629,14 @@
 							if(istype(T,/obj/item/stack))
 								var/obj/item/stack/stack = T
 								total_material *= stack.get_amount()
-							if(material == MAT_STEEL)
+							if(material == MAT_STEEL && metal)
 								metal.add_charge(total_material)
-							if(material == "glass")
+							if(material == "glass" && glass)
 								glass.add_charge(total_material)
 							if(decompiler)
-								if(material == "plastic")
+								if(material == "plastic" && plastic)
 									plastic.add_charge(total_material)
-								if(material == "wood")
+								if(material == "wood" && wood)
 									wood.add_charge(total_material)
 					drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
