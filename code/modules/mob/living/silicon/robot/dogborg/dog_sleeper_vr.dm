@@ -42,6 +42,7 @@
 	var/digest_multiplier = 1
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
+	var/obj/item/device/healthanalyzer/med_analyzer = new /obj/item/device/healthanalyzer //Used for detailed analysis
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
@@ -216,6 +217,8 @@
 	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
 	if(!cleaning)
 		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
+	if(medsensor)
+		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	else
 		dat += "<span class='linkOff'>Self-Clean</span>"
 	if(delivery)
@@ -336,6 +339,8 @@
 		if(cleaning)
 			sleeperUI(usr)
 			return
+	if(href_list["analyze"]) //DO HEALTH ANALYZER STUFF HERE.
+		med_analyzer.scan_mob(patient,hound)
 	if(href_list["port"])
 		switch(eject_port)
 			if("ingestion")
