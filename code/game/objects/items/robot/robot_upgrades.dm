@@ -208,7 +208,6 @@
 	R.add_language(LANGUAGE_SIIK, 1)
 	R.add_language(LANGUAGE_AKHANI, 1)
 	R.add_language(LANGUAGE_SKRELLIAN, 1)
-	R.add_language(LANGUAGE_SKRELLIANFAR, 0)
 	R.add_language(LANGUAGE_GUTTER, 1)
 	R.add_language(LANGUAGE_SCHECHI, 1)
 	R.add_language(LANGUAGE_ROOTLOCAL, 1)

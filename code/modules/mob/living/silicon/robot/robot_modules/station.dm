@@ -597,7 +597,6 @@ var/global/list/robot_modules = list(
 					LANGUAGE_SIIK		= 1,
 					LANGUAGE_AKHANI		= 1,
 					LANGUAGE_SKRELLIAN	= 1,
-					LANGUAGE_SKRELLIANFAR = 0,
 					LANGUAGE_ROOTLOCAL	= 0,
 					LANGUAGE_TRADEBAND	= 1,
 					LANGUAGE_GUTTER		= 1,
