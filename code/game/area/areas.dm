@@ -451,6 +451,8 @@ var/list/mob/living/forced_ambiance_list = new
 			return
 		if(H.incorporeal_move) // VOREstation edit - Phaseshifted beings should not be affected by gravity
 			return
+		if(H.species.can_zero_g_move || H.species.can_space_freemove)
+			return
 
 		if(H.m_intent == "run")
 			H.AdjustStunned(6)

@@ -11,7 +11,8 @@ SPECIES_SERGAL = 'icons/inventory/suit/mob_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/suit/mob_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/suit/mob_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/suit/mob_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/suit/mob_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/suit/mob_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/suit/mob_vr_altevian.dmi')
 #define VR_SPECIES_SPRITE_SHEETS_HEAD_MOB list(\
 SPECIES_HUMAN = 'icons/inventory/head/mob.dmi',\
 SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',\
@@ -24,7 +25,8 @@ SPECIES_SERGAL = 'icons/inventory/head/mob_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/head/mob_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/head/mob_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/head/mob_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/head/mob_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/head/mob_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/head/mob_vr_altevian.dmi')
 #define VR_SPECIES_SPRITE_SHEETS_HANDS_MOB list(\
 SPECIES_HUMAN = 'icons/inventory/hands/mob.dmi',\
 SPECIES_TAJ = 'icons/inventory/hands/mob_tajaran.dmi',\
@@ -64,7 +66,8 @@ SPECIES_SERGAL = 'icons/inventory/suit/item_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/suit/item_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/suit/item_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/suit/item_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/suit/item_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/suit/item_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/suit/item_vr_altevian.dmi')
 #define VR_SPECIES_SPRITE_SHEETS_HEAD_ITEM list(\
 SPECIES_HUMAN = 'icons/inventory/head/item.dmi',\
 SPECIES_TAJ = 'icons/inventory/head/item_tajaran.dmi',\
@@ -77,7 +80,8 @@ SPECIES_SERGAL = 'icons/inventory/head/item_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/head/item_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/head/item_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/head/item_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/head/item_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/head/item_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/head/item_vr_altevian.dmi')
 #define VR_SPECIES_SPRITE_SHEETS_HANDS_ITEM list(\
 SPECIES_HUMAN = 'icons/inventory/hands/item.dmi',\
 SPECIES_TAJ = 'icons/inventory/hands/item_tajaran.dmi',\
@@ -118,7 +122,8 @@ SPECIES_SERGAL = 'icons/inventory/suit/mob_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/suit/mob_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/suit/mob_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/suit/mob_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/suit/mob_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/suit/mob_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/suit/mob_vr_altevian.dmi')
 #define ALL_VR_SPRITE_SHEETS_HEAD_MOB list(\
 SPECIES_HUMAN = 'icons/inventory/head/mob_vr.dmi',\
 SPECIES_TAJ = 'icons/inventory/head/mob_vr_tajaran.dmi',\
@@ -131,7 +136,8 @@ SPECIES_SERGAL = 'icons/inventory/head/mob_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/head/mob_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/head/mob_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/head/mob_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/head/mob_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/head/mob_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/head/mob_vr_altevian.dmi')
 #define ALL_VR_SPRITE_SHEETS_HANDS_MOB list(\
 SPECIES_HUMAN = 'icons/inventory/hands/mob_vr.dmi',\
 SPECIES_TAJ = 'icons/inventory/hands/mob_vr_tajaran.dmi',\
@@ -171,7 +177,8 @@ SPECIES_SERGAL = 'icons/inventory/suit/item_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/suit/item_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/suit/item_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/suit/item_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/suit/item_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/suit/item_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/suit/item_vr_altevian.dmi')
 #define ALL_VR_SPRITE_SHEETS_HEAD_ITEM list(\
 SPECIES_HUMAN = 'icons/inventory/head/item_vr.dmi',\
 SPECIES_TAJ = 'icons/inventory/head/item_vr_tajaran.dmi',\
@@ -184,7 +191,8 @@ SPECIES_SERGAL = 'icons/inventory/head/item_vr_sergal.dmi',\
 SPECIES_NEVREAN = 'icons/inventory/head/item_vr_sergal.dmi',\
 SPECIES_VULPKANIN = 'icons/inventory/head/item_vr_vulpkanin.dmi',\
 SPECIES_ZORREN_HIGH = 'icons/inventory/head/item_vr_vulpkanin.dmi',\
-SPECIES_FENNEC = 'icons/inventory/head/item_vr_vulpkanin.dmi')
+SPECIES_FENNEC = 'icons/inventory/head/item_vr_vulpkanin.dmi',\
+SPECIES_ALTEVIAN = 'icons/inventory/head/item_vr_altevian.dmi')
 #define ALL_VR_SPRITE_SHEETS_HANDS_ITEM list(\
 SPECIES_HUMAN = 'icons/inventory/hands/item_vr.dmi',\
 SPECIES_TAJ = 'icons/inventory/hands/item_vr_tajaran.dmi',\

@@ -202,7 +202,13 @@
 	if(restrained())	return 0
 
 	if(..()) //Can move due to other reasons, don't use jetpack fuel
-		return 1
+		return TRUE
+
+	if(species.can_space_freemove || (species.can_zero_g_move && !istype(get_turf(src), /turf/space))) //VOREStation Edit.
+		return TRUE  //VOREStation Edit.
+
+	if(flying) //VOREStation Edit. If you're flying, you glide around!
+		return TRUE  //VOREStation Edit.
 
 	//Do we have a working jetpack?
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
@@ -210,22 +216,23 @@
 	if(thrust)
 		if(((!check_drift) || (check_drift && thrust.stabilization_on)) && (!lying) && (thrust.do_thrust(0.01, src)))
 			inertia_dir = 0
-			return 1
-	if(flying) //VOREStation Edit. If you're flying, you glide around!
-		return 0  //VOREStation Edit.
+			return TRUE
 
-	return 0
+	return FALSE
 
 
 /mob/living/carbon/human/Process_Spaceslipping(var/prob_slip = 5)
 	//If knocked out we might just hit it and stop.  This makes it possible to get dead bodies and such.
 
 	if(species.flags & NO_SLIP)
-		return 0
+		return FALSE
+
+	if(species.can_space_freemove || species.can_zero_g_move)
+		return FALSE
 
 	var/obj/item/weapon/tank/jetpack/thrust = get_jetpack()
 	if(thrust?.can_thrust(0.01))
-		return 0
+		return FALSE
 
 	if(stat)
 		prob_slip = 0 // Changing this to zero to make it line up with the comment, and also, make more sense.
