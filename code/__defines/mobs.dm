@@ -330,7 +330,7 @@
 #define SPECIES_SHADOW			"Shadow"
 #define SPECIES_SKELETON		"Skeleton"
 #define SPECIES_GOLEM			"Golem"
-#define SPECIES_EVENT1			"X Anomalous"
+#define SPECIES_EVENT1			"X Occursus"
 #define SPECIES_EVENT2			"X Anomalous"
 #define SPECIES_EVENT3			"X Unowas"
 
