@@ -78,6 +78,7 @@ var/list/gamemode_cache = list()
 	var/static/kick_inactive = 0				//force disconnect for inactive players after this many minutes, if non-0
 	var/static/show_mods = 0
 	var/static/show_devs = 0
+	var/static/show_mentors = 0
 	var/static/show_event_managers = 0
 	var/static/mods_can_tempban = 0
 	var/static/mods_can_job_tempban = 0
@@ -216,7 +217,7 @@ var/list/gamemode_cache = list()
 	var/python_path = "" //Path to the python executable.  Defaults to "python" on windows and "/usr/bin/env python2" on unix
 	var/use_lib_nudge = 0 //Use the C library nudge instead of the python nudge.
 	var/use_overmap = 0
-	
+
 	var/static/list/engine_map = list("Supermatter Engine", "Edison's Bane")	// Comma separated list of engines to choose from.  Blank means fully random.
 
 	// Event settings
@@ -289,7 +290,7 @@ var/list/gamemode_cache = list()
 
 	// How strictly the loadout enforces object species whitelists
 	var/loadout_whitelist = LOADOUT_WHITELIST_LAX
-	
+
 	var/static/vgs_access_identifier = null	// VOREStation Edit - VGS
 	var/static/vgs_server_port = null	// VOREStation Edit - VGS
 
@@ -652,6 +653,9 @@ var/list/gamemode_cache = list()
 				if("show_devs")
 					config.show_devs = 1
 
+				if("show_mentors")
+					config.show_mentors = 1
+
 				if("show_event_managers")
 					config.show_event_managers = 1
 
@@ -955,10 +959,10 @@ var/list/gamemode_cache = list()
 
 				if("suggested_byond_version")
 					config.suggested_byond_version = text2num(value)
-				
+
 				if("suggested_byond_build")
 					config.suggested_byond_build = text2num(value)
-				
+
 				// VOREStation Edit Start - Can't be in _vr file because it is loaded too late.
 				if("vgs_access_identifier")
 					config.vgs_access_identifier = value
