@@ -52,13 +52,14 @@ var/list/mentor_verbs_default = list(
 	var/target = tgui_input_list(src,"Who do you want to make a mentor?","Make Mentor", sortList(targets))
 	if(!target)
 		return
-	if(targets[target].holder)
+	var/client/C = targets[target]
+	if(C.holder)
 		to_chat(src, "<span class='pm warning'>Error: You cannot make a mentor an admin.</span>")
-	var/datum/mentor/M = new /datum/mentor(targets[target].key)
-	M.associate(targets[target])
-	to_chat(targets[target], "<span class='mentor_channel'>You have been granted mentorship.</span>")
-	to_chat(src, "<span class='mentor_channel'>You have made [target] a mentor.</span>")
-	log_admin("[key_name(src)] made[key_name(target)] a mentor.")
+	var/datum/mentor/M = new /datum/mentor(C.key)
+	M.associate(C)
+	to_chat(C, "<span class='mentor_channel'>You have been granted mentorship.</span>")
+	to_chat(src, "<span class='mentor_channel'>You have made [C] a mentor.</span>")
+	log_admin("[key_name(src)] made[key_name(C)] a mentor.")
 	feedback_add_details("admin_verb","Make Mentor") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/unmake_mentor()
@@ -73,10 +74,11 @@ var/list/mentor_verbs_default = list(
 	var/target = tgui_input_list(src,"Which mentor do you want to unmake?","Unmake Mentor", sortList(targets))
 	if(!target)
 		return
-	targets[target].mentorholder.disassociate()
-	to_chat(targets[target], "<span class='mentor_channel'>Your mentorship has been revoked.</span>")
-	to_chat(src, "<span class='mentor_channel'>You have revoked [target]'s mentorship.</span>")
-	log_admin("[key_name(src)] revoked [key_name(target)]'s mentorship.")
+	var/client/C = targets[target]
+	C.mentorholder.disassociate()
+	to_chat(C, "<span class='mentor_channel'>Your mentorship has been revoked.</span>")
+	to_chat(src, "<span class='mentor_channel'>You have revoked [C]'s mentorship.</span>")
+	log_admin("[key_name(src)] revoked [key_name(C)]'s mentorship.")
 	feedback_add_details("admin_verb","Unmake Mentor") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_mentor_say(msg as text)

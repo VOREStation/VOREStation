@@ -204,6 +204,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	for (var/client/C in GLOB.admins)
 		if (C.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
 			C << 'sound/effects/mentorhelp.mp3'
+	log_admin("Mentorhelp: [key_name(src)] sent [msg]")
 	message_mentors(chat_msg)
 
 //Reopen a closed ticket
@@ -397,8 +398,6 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	GLOB.mhelp_tickets.BrowseTickets(browse_to)
 
 /proc/message_mentors(var/msg)
-	log_admin("Moderator chat: [key_name(src)] sent [msg]")
-
 	msg = "<span class='mentor_channel'><span class='prefix'>Mentor:</span> <span class=\"message\">[msg]</span></span>"
 
 	for(var/client/C in GLOB.mentors)
