@@ -211,8 +211,8 @@ var/list/mentor_verbs_default = list(
 		if (src.current_mentorhelp)
 			src.current_mentorhelp.AddInteraction(interaction_message)
 
-	to_chat(recipient, "<span class='pm notice'>Mentor-PM from-<b><a href='?mentorhelp_msg=\ref[src]'>[src]</a></b>: [msg]")
-	to_chat(src, "<span class='pm notice'>Mentor-PM to-<b>[recipient]</b>: [msg]")
+	to_chat(recipient, "<span class='pm notice'>Mentor-PM from-<b><a href='?mentorhelp_msg=\ref[src]'>[src]</a></b>: [msg]</span>")
+	to_chat(src, "<span class='pm notice'>Mentor-PM to-<b>[recipient]</b>: [msg]</span>")
 
 	log_admin("[key_name(src)] sent [msg] to [key_name(recipient)]")
 
