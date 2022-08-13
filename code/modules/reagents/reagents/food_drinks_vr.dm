@@ -536,6 +536,7 @@
 				H.feral = 0
 				to_chat(H, "<span class='info'>Your mind starts to clear, soothed into a state of clarity as your senses return.</span>")
 				log_and_message_admins("is no longer feral.", H)
+	..()
 
 /datum/reagent/nutriment/protein/brainzsnax/red
 	id = "red_brain_protein"
