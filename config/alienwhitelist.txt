@@ -54,6 +54,7 @@ idcaboutaname - Protean
 idcaboutaname - Black-Eyed Shadekin
 inuzari - Diona
 jademanique - Black-Eyed Shadekin
+jademanique - Protean
 jademanique - Teppi
 jademanique - Xenochimera
 joltze - Black-Eyed Shadekin
