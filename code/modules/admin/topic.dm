@@ -24,6 +24,17 @@
 	else if(href_list["ahelp_tickets"])
 		GLOB.ahelp_tickets.BrowseTickets(text2num(href_list["ahelp_tickets"]))
 
+	if(href_list["mhelp"])
+		var/mhelp_ref = href_list["mhelp"]
+		var/datum/mentor_help/MH = locate(mhelp_ref)
+		if (MH)
+			MH.Action(href_list["mhelp_action"])
+		else
+			to_chat(usr, "Ticket [mhelp_ref] has been deleted!")
+
+	if (href_list["mhelp_tickets"])
+		GLOB.mhelp_tickets.BrowseTickets(text2num(href_list["mhelp_tickets"]))
+
 	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
 
 		var/adminckey = href_list["dbsearchadmin"]
