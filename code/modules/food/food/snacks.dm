@@ -6922,10 +6922,11 @@
 	filling_color = "#caa3c9"
 	center_of_mass = list("x"=15, "y"=9)
 	bitesize = 2
+	var/brainmeat = "brain_protein"
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/Initialize()
 	. = ..()
-	reagents.add_reagent("brain_protein", 10)
+	reagents.add_reagent(brainmeat, 10)
 
 /obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red
 	name = "\improper BrainzSnax RED"
@@ -6939,10 +6940,7 @@
 	filling_color = "#a6898d"
 	center_of_mass = list("x"=15, "y"=9)
 	bitesize = 2
-
-/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red/Initialize()
-	. = ..()
-	reagents.add_reagent("red_brain_protein", 10)
+	brainmeat = "red_brain_protein"
 
 //////////////Packaged Food - break open and eat//////////////
 
