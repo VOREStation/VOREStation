@@ -51,6 +51,7 @@
 	robot_modules["BoozeHound"] = /obj/item/weapon/robot_module/robot/booze
 	robot_modules["KMine"] = /obj/item/weapon/robot_module/robot/kmine
 	robot_modules["Stray"] = /obj/item/weapon/robot_module/robot/stray
+	robot_modules["TraumaHound"] = /obj/item/weapon/robot_module/robot/medical/trauma
 	return 1
 
 //Just add a new proc with the robot_module type if you wish to run some other vore code
@@ -312,6 +313,72 @@
 
 	R.icon = 'icons/mob/widerobot_med_vr.dmi'
 	R.wideborg_dept = 'icons/mob/widerobot_med_vr.dmi'
+	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
+	R.ui_style_vr = TRUE
+	R.pixel_x 	 = -16
+	R.old_x  	 = -16
+	R.default_pixel_x = -16
+	R.dogborg = TRUE
+	R.wideborg = TRUE
+	R.verbs |= /mob/living/silicon/robot/proc/ex_reserve_refill
+	R.verbs |= /mob/living/silicon/robot/proc/robot_mount
+	R.verbs |= /mob/living/proc/toggle_rider_reins
+	R.verbs |= /mob/living/proc/shred_limb
+	R.verbs |= /mob/living/silicon/robot/proc/rest_style
+	..()
+
+/obj/item/weapon/robot_module/robot/medical/trauma
+	name = "traumahound robot module"
+	channels = list("Medical" = 1)
+	networks = list(NETWORK_MEDICAL)
+	subsystems = list(/mob/living/silicon/proc/subsystem_crew_monitor)
+	pto_type = PTO_MEDICAL
+	can_be_pushed = 0
+	sprites = list(
+					"Traumahound" = "traumavale",
+					)
+
+/obj/item/weapon/robot_module/robot/medical/trauma/New(var/mob/living/silicon/robot/R)
+	src.modules += new /obj/item/device/healthanalyzer(src)
+	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
+	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/cautery/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/bonegel/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/FixOVein/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/bonesetter/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
+	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
+	src.modules += new /obj/item/weapon/gripper/medical(src)
+	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
+	src.modules += new /obj/item/weapon/reagent_containers/dropper(src) // Allows surgeon borg to fix necrosis
+	src.modules += new /obj/item/weapon/reagent_containers/syringe(src)
+	src.emag = new /obj/item/weapon/reagent_containers/spray(src)
+	src.emag.reagents.add_reagent("pacid", 250)
+	src.emag.name = "Polyacid spray"
+
+	var/datum/matter_synth/water = new /datum/matter_synth(500)
+	water.name = "Water reserves"
+	water.recharge_rate = 0
+	R.water_res = water
+	synths += water
+
+	var/obj/item/device/dogborg/tongue/T = new /obj/item/device/dogborg/tongue(src)
+	T.water = water
+	src.modules += T
+
+	var/obj/item/weapon/reagent_containers/borghypo/hound/H = new /obj/item/weapon/reagent_containers/borghypo/hound/trauma(src)
+	H.water = water
+	src.modules += H
+
+	var/obj/item/device/dogborg/sleeper/compactor/trauma/B = new /obj/item/device/dogborg/sleeper/compactor/trauma(src) //So they can nom people and heal them
+	B.water = water
+	src.modules += B
+
+	R.icon = 'icons/mob/widerobot_trauma_vr.dmi'
+	R.wideborg_dept = 'icons/mob/widerobot_trauma_vr.dmi'
 	R.hands.icon = 'icons/mob/screen1_robot_vr.dmi'
 	R.ui_style_vr = TRUE
 	R.pixel_x 	 = -16
