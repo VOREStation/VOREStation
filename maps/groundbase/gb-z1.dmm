@@ -3920,10 +3920,19 @@
 /turf/simulated/floor,
 /area/groundbase/engineering/storage)
 "iN" = (
-/obj/effect/floor_decal/industrial/danger/corner{
-	dir = 4
+/obj/structure/grille,
+/obj/structure/window/reinforced/full,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "engine_public_access";
+	layer = 3.1;
+	name = "Engine Public Access Shutters";
+	opacity = 0
 	},
-/turf/simulated/floor/tiled,
+/turf/simulated/floor,
 /area/groundbase/engineering/engine)
 "iO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -5614,6 +5623,22 @@
 	},
 /turf/simulated/floor/carpet/oracarpet,
 /area/groundbase/engineering/ce)
+"mp" = (
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock/glass{
+	name = "Crew Access"
+	},
+/obj/machinery/door/blast/shutters{
+	density = 0;
+	dir = 8;
+	icon_state = "shutter0";
+	id = "engine_public_access";
+	layer = 3.1;
+	name = "Engine Public Access Shutters";
+	opacity = 0
+	},
+/turf/simulated/floor/bmarble,
+/area/groundbase/engineering/engine)
 "mq" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -5643,6 +5668,20 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"mu" = (
+/obj/effect/floor_decal/industrial/danger/corner{
+	dir = 4
+	},
+/obj/machinery/button/remote/blast_door{
+	dir = 4;
+	id = "engine_public_access";
+	name = "Public Access Shutters";
+	pixel_x = -25;
+	pixel_y = 0;
+	req_access = list(10)
+	},
+/turf/simulated/floor/tiled,
+/area/groundbase/engineering/engine)
 "mv" = (
 /obj/structure/cable/yellow{
 	icon_state = "2-8"
@@ -10266,12 +10305,6 @@
 /obj/machinery/firealarm,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/iaa2)
-"xN" = (
-/obj/structure/grille,
-/obj/structure/window/reinforced/full,
-/obj/machinery/door/firedoor,
-/turf/simulated/floor,
-/area/groundbase/engineering/engine)
 "xO" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -17716,13 +17749,6 @@
 "QD" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/groundbase/level1/westspur)
-"QE" = (
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock/glass{
-	name = "Crew Access"
-	},
-/turf/simulated/floor/bmarble,
-/area/groundbase/engineering/engine)
 "QF" = (
 /obj/effect/floor_decal/techfloor/orange{
 	dir = 10
@@ -34263,9 +34289,9 @@ aw
 aw
 aw
 aw
-xN
-QE
-xN
+iN
+mp
+iN
 aw
 aw
 Lt
@@ -34408,7 +34434,7 @@ xD
 ME
 ME
 ME
-iN
+mu
 aw
 Lt
 Lt
