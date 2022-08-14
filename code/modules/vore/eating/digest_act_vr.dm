@@ -101,7 +101,8 @@
 		icon = 'icons/obj/card_vr.dmi'
 		icon_state = "[initial(icon_state)]_digested"
 	else
-		sprite_stack += "digested"
+		if(!sprite_stack.Find("digested"))
+			sprite_stack += "digested"
 	update_icon()
 	return FALSE
 
