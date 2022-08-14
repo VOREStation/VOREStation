@@ -144,6 +144,17 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	var/matrix/M = matrix()
 	var/anim_time = 3
 
+	// VOREStation Edit Start: Porting Taur Loafing
+	if(tail_style?.can_loaf && resting) // Only call these if we're resting?
+		update_tail_showing()
+		return // No need to do the rest, we return early
+	/* // Commenting this out as sleeping is fucky
+	if(tail_style?.can_loaf && lying && sleeping) // If we're put under by anesthetic or fainting
+		update_tail_showing()
+		// return // No need to do the rest, we return early
+	*/
+	// VOREStation Edit End
+
 	//Due to some involuntary means, you're laying now
 	if(lying && !resting && !sleeping)
 		anim_time = 1 //Thud
@@ -163,6 +174,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	else
 		M.Scale(desired_scale_x, desired_scale_y)//VOREStation Edit
 		M.Translate(0, (vis_height/2)*(desired_scale_y-1)) //VOREStation edit
+		if(tail_style?.can_loaf) // VOREStation Edit: Taur Loafing
+			update_tail_showing() // VOREStation Edit: Taur Loafing
 		layer = MOB_LAYER // Fix for a byond bug where turf entry order no longer matters
 
 	animate(src, transform = M, time = anim_time)
@@ -1233,11 +1246,12 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 	//If you have a custom tail selected
 	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)))
-		var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)
+		var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = (tail_style.can_loaf && resting) ? "[tail_style.icon_state]_loaf" : (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)) // VOREStation Edit: Taur Loafing
+		pixel_y = (tail_style.can_loaf && resting) ? -tail_style.loaf_offset : 0 //move player down, then taur up, to fit the overlays correctly // VOREStation Edit: Taur Loafing
 		if(tail_style.do_colouration)
 			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
 		if(tail_style.extra_overlay)
-			var/icon/overlay = new/icon("icon" = tail_style.icon, "icon_state" = tail_style.extra_overlay)
+			var/icon/overlay = new/icon("icon" = tail_style.icon, "icon_state" = (tail_style?.can_loaf && resting) ? "[tail_style.extra_overlay]_loaf" : tail_style.extra_overlay) // VOREStation Edit: Taur Loafing
 			if(wagging && tail_style.ani_state)
 				overlay = new/icon("icon" = tail_style.icon, "icon_state" = tail_style.extra_overlay_w)
 				overlay.Blend(rgb(src.r_tail2, src.g_tail2, src.b_tail2), tail_style.color_blend_mode)
@@ -1267,6 +1281,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		if(istaurtail(tail_style))
 			var/datum/sprite_accessory/tail/taur/taurtype = tail_style
 			working.pixel_x = -16
+			working.pixel_y = (tail_style.can_loaf && resting) ? tail_style.loaf_offset : 0 // VOREStation Edit: Taur Loafing
 			if(taurtype.can_ride && !riding_datum)
 				riding_datum = new /datum/riding/taur(src)
 				verbs |= /mob/living/carbon/human/proc/taur_mount
