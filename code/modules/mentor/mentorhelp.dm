@@ -163,7 +163,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	log_admin("Mentorhelp: [key_name(C)] sent [msg]")
 	MessageNoRecipient(msg)
 	//show it to the person adminhelping too
-	to_chat(C, "<span class='notice'><span class='mentor_channel'>PM to-<b>Mentors</b>:</span> [name]</span>")
+	to_chat(C, "<i><span class='mentor'>PM to-<b>Mentors</b>: [name]</span></i>")
 
 	GLOB.mhelp_tickets.active_tickets += src
 
@@ -197,7 +197,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 //message from the initiator without a target, all admins will see this
 /datum/mentor_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
-	var/chat_msg = "<span class='notice'><span class='adminhelp'>Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
+	var/chat_msg = "<span class='notice'>Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
 	for (var/client/C in GLOB.mentors)
 		if (C.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))

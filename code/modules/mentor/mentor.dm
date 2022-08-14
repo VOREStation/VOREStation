@@ -31,6 +31,8 @@ var/list/mentor_verbs_default = list(
 		GLOB.mentors -= owner
 		owner.remove_mentor_verbs()
 		owner.mentorholder = null
+		mentor_datums[owner.ckey] = null
+		qdel(src)
 
 /client/proc/add_mentor_verbs()
 	if(mentorholder)
@@ -56,7 +58,7 @@ var/list/mentor_verbs_default = list(
 	if(C.holder)
 		to_chat(src, "<span class='pm warning'>Error: You cannot make an admin a mentor.</span>")
 		return
-	var/datum/mentor/M = new /datum/mentor(C.key)
+	var/datum/mentor/M = new /datum/mentor(C.ckey)
 	M.associate(C)
 	to_chat(C, "<span class='pm notice'>You have been granted mentorship.</span>")
 	to_chat(src, "<span class='pm notice'>You have made [C] a mentor.</span>")
@@ -121,7 +123,9 @@ var/list/mentor_verbs_default = list(
 /client/proc/cmd_dementor()
 	set category = "Admin"
 	set name = "De-mentor"
-	src.mentorholder.disassociate()
+
+	if(tgui_alert(usr, "Confirm self-dementor for the round? You can't re-mentor yourself without someone promoting you.","Dementor",list("Yes","No")) == "Yes")
+		src.mentorholder.disassociate()
 
 /client/proc/cmd_mhelp_reply(whom)
 	if(prefs.muted & MUTE_ADMINHELP)
@@ -204,7 +208,7 @@ var/list/mentor_verbs_default = list(
 	if(!msg)
 		return
 
-	var/interaction_message = "<span class='pm notice'><span class='mentor_channel'>Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>:</span> [msg]</span>"
+	var/interaction_message = "<span class='pm notice'>Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]</span>"
 
 	if (recipient.current_mentorhelp && !(recipient.mentorholder || recipient.holder))
 		recipient.current_mentorhelp.AddInteraction(interaction_message)
@@ -218,8 +222,8 @@ var/list/mentor_verbs_default = list(
 		if (src.current_mentorhelp)
 			src.current_mentorhelp.AddInteraction(interaction_message)
 
-	to_chat(recipient, "<span class='pm notice'><span class='mentor_channel'>Mentor-PM from-<b><a href='?mentorhelp_msg=\ref[src]'>[src]</a></b>:</span> [msg]</span>")
-	to_chat(src, "<span class='pm notice'><span class='mentor_channel'>Mentor-PM to-<b>[recipient]</b>:</span> [msg]</span>")
+	to_chat(recipient, "<i><span class='mentor'>Mentor-PM from-<b><a href='?mentorhelp_msg=\ref[src]'>[src]</a></b>: [msg]</span></i>")
+	to_chat(src, "<i><span class='mentor'>Mentor-PM to-<b>[recipient]</b>: [msg]</span></i>")
 
 	log_admin("[key_name(src)] sent [msg] to [key_name(recipient)]")
 
