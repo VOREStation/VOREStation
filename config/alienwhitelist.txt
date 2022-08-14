@@ -125,7 +125,6 @@ tastypred - Black-Eyed Shadekin
 tastypred - Protean
 tastypred - Xenochimera
 terrestris - Common Skrellian
-terrestris - High Skrellian
 terrestris - Vox
 thedavestdave - Protean
 timidvi - Diona

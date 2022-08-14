@@ -6,7 +6,6 @@
 		R.add_language(LANGUAGE_ECUREUILIAN,	1)
 		R.add_language(LANGUAGE_DAEMON,			1)
 		R.add_language(LANGUAGE_ENOCHIAN,		1)
-		R.add_language(LANGUAGE_SLAVIC,			1)
 		R.add_language(LANGUAGE_DRUDAKAR, 		1)
 		R.add_language(LANGUAGE_TAVAN,			1)
 		return 1

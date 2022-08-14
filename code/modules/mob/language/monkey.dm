@@ -1,57 +1,12 @@
-/datum/language/human/monkey
-	name = "Chimpanzee"
+/datum/language/human/animal
+	name = LANGUAGE_ANIMAL
 	desc = "A collection of ooking noises made by monkeys"
-	speech_verb = "chimpers"
-	ask_verb = "chimpers"
-	exclaim_verb = "screeches"
+	speech_verb = "says"
+	ask_verb = "inquires"
+	exclaim_verb = "yells"
 	key = "C"
-	syllables = list("ook","eek")
+	syllables = list("chrp","tweet","squick","croak","hiss","gronk","meow","mew","bark", "woof", "bowwow", "yap", "arf") //This is a generalized animal language. If spoken by an animal, it comes out with the mob noises. This only occurs when spoken by a carbon (human).
 	machine_understands = 0
-
-/datum/language/skrell/monkey
-	name = "Neaera"
-	desc = "A collection of squiking noises made by naera."
-	key = "8"
-	syllables = list("squick","croak")
-	machine_understands = 0
-
-/datum/language/unathi/monkey
-	name = "Stok"
-	desc = "A collection of hissing noises made by stok."
-	key = "7"
-	syllables = list("hiss","gronk")
-	machine_understands = 0
-
-/datum/language/tajaran/monkey
-	name = "Farwa"
-	desc = "A collection of meowing noises made by farwa."
-	key = "9"
-	syllables = list("meow","mew")
-	machine_understands = 0
-
-/datum/language/corgi
-	name = "Dog"
-	desc = "A set of barks and woofs that only dogs can understand."
-	speech_verb = "barks"
-	ask_verb = "woofs"
-	exclaim_verb = "howls"
-	key = "n"
-	flags = RESTRICTED
-	machine_understands = 0
-	space_chance = 100
-	syllables = list("bark", "woof", "bowwow", "yap", "arf")
-
-/datum/language/cat
-	name = "Cat"
-	desc = "A set of meows and mrowls that only cats can understand."
-	speech_verb = "meows"
-	ask_verb = "mrowls"
-	exclaim_verb = "yowls"
-	key = "c"
-	flags = RESTRICTED
-	machine_understands = 0
-	space_chance = 100
-	syllables = list("meow", "mrowl", "purr", "meow", "meow", "meow")
 
 /datum/language/mouse
 	name = "Mouse"
@@ -64,18 +19,6 @@
 	machine_understands = 0
 	space_chance = 100
 	syllables = list("squeak")	// , "gripes", "oi", "meow")
-
-/datum/language/bird
-	name = "Bird"
-	desc = "A set of chirps and squawks that only birds can understand."
-	speech_verb = "chirps"
-	ask_verb = "tweets"
-	exclaim_verb = "squawks"
-	key = "B"
-	flags = RESTRICTED
-	machine_understands = 0
-	space_chance = 100
-	syllables = list("chirp", "squawk", "tweet")
 
 /datum/language/teppi
 	name = "Teppi"
