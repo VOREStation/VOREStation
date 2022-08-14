@@ -6,7 +6,7 @@
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
 	slowdown = 0.5
 	siemens_coefficient = 0.5
-	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI)	//this thing can autoadapt
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI,SPECIES_ALTEVIAN)	//this thing can autoadapt
 	icon = 'icons/inventory/suit/item_vr.dmi'
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	w_class = ITEMSIZE_NORMAL //the mark vii packs itself down when not in use, thanks future-materials
@@ -107,7 +107,7 @@
 	desc = "As a vital part of the Mark VII suit, the integral helmet cannot be removed - so don't try."
 	icon_state = "erthelmet"
 	item_state = "erthelmet"
-	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI)	//this thing can autoadapt too
+	species_restricted = list("exclude",SPECIES_DIONA,SPECIES_VOX,SPECIES_TESHARI,SPECIES_ALTEVIAN)	//this thing can autoadapt too
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 100, rad = 100)
 	siemens_coefficient = 0.5
 	icon = 'icons/inventory/head/item_vr.dmi'

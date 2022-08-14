@@ -422,7 +422,7 @@
 	. = ..()
 //	seed_submaps(list(Z_LEVEL_MINING), 60, /area/gb_mine/unexplored, /datum/map_template/space_rocks)	//POI seeding
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_MINING, world.maxx - 4, world.maxy - 4)
-	new /datum/random_map/noise/ore/mining(null, 1, 1, Z_LEVEL_MINING, 64, 64)
+	new /datum/random_map/noise/ore/gb_mining(null, 1, 1, Z_LEVEL_MINING, 64, 64)
 
 /datum/map_z_level/gb_lateload/mining
 	z = Z_LEVEL_MINING

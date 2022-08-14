@@ -66,12 +66,12 @@
 
 	var/agony = 60 // Copied from stun batons
 	var/stun = 0 // ... same
-	
+
 	var/obj/item/organ/external/affecting = null
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		affecting = H.get_organ(hit_zone)
-	
+
 	if(user.a_intent == I_HURT)
 		// Parent handles messages
 		. = ..()
@@ -91,7 +91,7 @@
 		var/mob/living/silicon/robot/R = loc
 		if(R.cell?.use(charge_cost) == charge_cost)
 			stunning = TRUE
-	
+
 	if(stunning)
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
@@ -215,6 +215,11 @@
 	name = "Hound hypospray"
 	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
 	reagent_ids = list("tricordrazine", "inaprovaline", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
+
+/obj/item/weapon/reagent_containers/borghypo/hound/trauma
+	name = "Hound hypospray"
+	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
+	reagent_ids = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
 
 
 //Tongue stuff

@@ -87,16 +87,20 @@
 	attack_verb = list("beeped", "booped", "pinged")
 
 /obj/item/toy/plushie/borgplushie/medihound
+	name = "medihound plushie"
 	icon_state = "medihound"
 
 /obj/item/toy/plushie/borgplushie/scrubpuppy
+	name = "janihound plushie"
 	icon_state = "scrubpuppy"
 
 /obj/item/toy/plushie/borgplushie/drakiesec
+	name = "security drake plushie"
 	icon = 'icons/obj/drakietoy_vr.dmi'
 	icon_state = "secdrake"
 
 /obj/item/toy/plushie/borgplushie/drakiemed
+	name = "medical drake plushie"
 	icon = 'icons/obj/drakietoy_vr.dmi'
 	icon_state = "meddrake"
 

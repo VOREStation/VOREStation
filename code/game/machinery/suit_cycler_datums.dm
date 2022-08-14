@@ -346,3 +346,5 @@ GLOBAL_LIST_EMPTY(suit_cycler_emagged)
 	name = SPECIES_SERGAL
 /datum/suit_cycler_choice/species/vulpkanin
 	name = SPECIES_VULPKANIN
+/datum/suit_cycler_choice/species/altevian
+	name = SPECIES_ALTEVIAN
