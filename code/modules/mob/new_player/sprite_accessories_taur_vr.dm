@@ -419,6 +419,8 @@
 	extra_overlay = "drake_markings"
 	suit_sprites = 'icons/mob/taursuits_drake_vr.dmi'
 	icon_sprite_tag = "drake"
+	can_loaf = TRUE // VOREStation Edit: Taur Loafing
+	loaf_offset = 6 // VOREStation Edit: Taur Loafing
 
 /datum/sprite_accessory/tail/taur/ch/fatdrake
 	name = "Drake (Fat Taur dual-color)"
