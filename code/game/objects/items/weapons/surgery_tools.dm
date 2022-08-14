@@ -244,6 +244,9 @@
 /obj/item/weapon/surgical/bonesetter/cyborg
 	toolspeed = 0.5
 
+/obj/item/weapon/surgical/bioregen/cyborg //VoreStation edit: let the borgs S U C C
+	toolspeed = 0.5
+
 
 // Alien Tools
 /obj/item/weapon/surgical/retractor/alien

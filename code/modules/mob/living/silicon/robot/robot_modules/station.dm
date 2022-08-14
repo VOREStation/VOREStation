@@ -259,6 +259,7 @@ var/global/list/robot_modules = list(
 	src.modules += new /obj/item/weapon/surgical/bonesetter/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/surgicaldrill/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/bioregen/cyborg(src) //VoreStation Edit: LET ME SUCC
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
 	src.modules += new /obj/item/weapon/gripper/medical(src)
 	src.modules += new /obj/item/weapon/shockpaddles/robot(src)
