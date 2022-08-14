@@ -11,7 +11,7 @@
 			"uranium" = 10,
 			"platinum" = 10,
 			"hematite" = 20,
-			"carbon" = 5,
+			"carbon" = 20,
 			"diamond" = 1,
 			"gold" = 8,
 			"silver" = 8,
@@ -24,7 +24,7 @@
 			"uranium" = 5,
 			"platinum" = 5,
 			"hematite" = 35,
-			"carbon" = 5,
+			"carbon" = 35,
 			"gold" = 3,
 			"silver" = 3,
 			"phoron" = 25,
@@ -35,15 +35,7 @@
 		UpdateMineral()
 	update_icon()
 
-/datum/random_map/noise/ore/spacerocks
-	descriptor = "asteroid field ore distribution map"
-	deep_val = 0.2
-	rare_val = 0.1
-
-/datum/random_map/noise/ore/spacerocks/check_map_sanity()
-	return 1 //Totally random, but probably beneficial.
-
-/area/sdmine/
+/area/sdmine
 	ambience = list('sound/ambience/ambimine.ogg', 'sound/ambience/song_game.ogg')
 	base_turf = /turf/simulated/mineral/floor/vacuum
 /area/sdmine/unexplored

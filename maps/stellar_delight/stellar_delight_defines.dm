@@ -339,7 +339,7 @@
 	. = ..()
 	seed_submaps(list(Z_LEVEL_SPACE_ROCKS), 60, /area/sdmine/unexplored, /datum/map_template/space_rocks)
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_SPACE_ROCKS, world.maxx - 4, world.maxy - 4)
-	new /datum/random_map/noise/ore/spacerocks(null, 1, 1, Z_LEVEL_SPACE_ROCKS, 64, 64)
+	new /datum/random_map/noise/ore(null, 1, 1, Z_LEVEL_SPACE_ROCKS, 64, 64)
 
 /datum/map_z_level/ship_lateload/space_rocks
 	z = Z_LEVEL_SPACE_ROCKS

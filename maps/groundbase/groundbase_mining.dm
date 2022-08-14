@@ -8,7 +8,7 @@
 			"uranium" = 10,
 			"platinum" = 10,
 			"hematite" = 20,
-			"carbon" = 5,
+			"carbon" = 20,
 			"diamond" = 1,
 			"gold" = 8,
 			"silver" = 8,
@@ -21,7 +21,7 @@
 			"uranium" = 5,
 			"platinum" = 5,
 			"hematite" = 35,
-			"carbon" = 5,
+			"carbon" = 35,
 			"gold" = 3,
 			"silver" = 3,
 			"phoron" = 25,
@@ -32,10 +32,10 @@
 		UpdateMineral()
 	update_icon()
 
-/datum/random_map/noise/ore/mining
-	descriptor = "asteroid field ore distribution map"
-	deep_val = 0.2
-	rare_val = 0.1
+/datum/random_map/noise/ore/gb_mining
+	descriptor = "groundbase underground ore distribution map"
+	deep_val = 0.7
+	rare_val = 0.5
 
 /datum/random_map/noise/ore/mining/check_map_sanity()
 	return 1 //Totally random, but probably beneficial.
