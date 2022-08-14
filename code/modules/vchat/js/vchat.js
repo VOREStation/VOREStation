@@ -203,6 +203,14 @@ function start_vue() {
 					admin: false
 				},
 				{
+					matches: ".mentor, .mentor_channel",
+					becomes: "vc_mentor",
+					pretty: "Mentor Messages",
+					tooltip: "Mentorchat and mentor pms",
+					required: false,
+					admin: false
+				},
+				{
 					matches: ".filter_ASAY, .admin_channel",
 					becomes: "vc_adminchat",
 					pretty: "Admin Chat",

@@ -8,19 +8,15 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 /datum/mentor_help_tickets
 	var/list/active_tickets = list()
-	var/list/closed_tickets = list()
 	var/list/resolved_tickets = list()
 
 	var/obj/effect/statclick/mticket_list/astatclick = new(null, null, AHELP_ACTIVE)
-	var/obj/effect/statclick/mticket_list/cstatclick = new(null, null, AHELP_CLOSED)
 	var/obj/effect/statclick/mticket_list/rstatclick = new(null, null, AHELP_RESOLVED)
 
 /datum/mentor_help_tickets/Destroy()
 	QDEL_LIST(active_tickets)
-	QDEL_LIST(closed_tickets)
 	QDEL_LIST(resolved_tickets)
 	QDEL_NULL(astatclick)
-	QDEL_NULL(cstatclick)
 	QDEL_NULL(rstatclick)
 	return ..()
 
@@ -30,8 +26,6 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	switch(new_ticket.state)
 		if(AHELP_ACTIVE)
 			mticket_list = active_tickets
-		if(AHELP_CLOSED)
-			mticket_list = closed_tickets
 		if(AHELP_RESOLVED)
 			mticket_list = resolved_tickets
 		else
@@ -163,13 +157,12 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	log_admin("Mentorhelp: [key_name(C)] sent [msg]")
 	MessageNoRecipient(msg)
 	//show it to the person adminhelping too
-	to_chat(C, "<i><span class='mentor'>PM to-<b>Mentors</b>: [name]</span></i>")
+	to_chat(C, "<i><span class='mentor'>Mentor-PM to-<b>Mentors</b>: [name]</span></i>")
 
 	GLOB.mhelp_tickets.active_tickets += src
 
 /datum/mentor_help/Destroy()
 	RemoveActive()
-	GLOB.mhelp_tickets.closed_tickets -= src
 	GLOB.mhelp_tickets.resolved_tickets -= src
 	return ..()
 
@@ -194,16 +187,16 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 		ref_src = "\ref[src]"
 	return "<A HREF='?_src_=mentorholder;mhelp=[ref_src];mhelp_action=[action]'>[msg]</A>"
 
-//message from the initiator without a target, all admins will see this
+//message from the initiator without a target, all people with mentor powers will see this
 /datum/mentor_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
 	var/chat_msg = "<span class='notice'>Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
 	for (var/client/C in GLOB.mentors)
-		if (C.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+		if (C.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
 			C << 'sound/effects/mentorhelp.mp3'
 	for (var/client/C in GLOB.admins)
-		if (C.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+		if (C.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
 			C << 'sound/effects/mentorhelp.mp3'
 	message_mentors(chat_msg)
 
@@ -219,11 +212,8 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 	statclick = new(null, src)
 	GLOB.mhelp_tickets.active_tickets += src
-	GLOB.mhelp_tickets.closed_tickets -= src
 	GLOB.mhelp_tickets.resolved_tickets -= src
 	switch(state)
-		if(AHELP_CLOSED)
-			feedback_dec("mhelp_close")
 		if(AHELP_RESOLVED)
 			feedback_dec("mhelp_resolve")
 	state = AHELP_ACTIVE
@@ -278,8 +268,6 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			dat += "<font color='red'>OPEN</font>"
 		if(AHELP_RESOLVED)
 			dat += "<font color='green'>RESOLVED</font>"
-		if(AHELP_CLOSED)
-			dat += "CLOSED"
 		else
 			dat += "UNKNOWN"
 	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)]"
@@ -290,7 +278,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [(world.time - closed_at) / 600] minutes ago)"
 	dat += "<br><br>"
 	if(initiator)
-		dat += "<b>Actions:</b> [FullMonty(ref_src)]<br>"
+		dat += "<b>Actions:</b> [Context(ref_src)]<br>"
 	else
 		dat += "<b>DISCONNECTED</b>[GLOB.TAB][ClosureLinks(ref_src)]<br>"
 	dat += "<br><b>Log:</b><br><br>"
@@ -299,7 +287,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 	usr << browse(dat.Join(), "window=mhelp[id];size=620x480")
 
-/datum/mentor_help/proc/FullMonty(ref_src)
+/datum/mentor_help/proc/Context(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
 	if(state == AHELP_ACTIVE)
@@ -371,7 +359,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			if(current_mentorhelp)
 				log_admin("Mentorhelp: [key_name(src)] sent [msg]")
 				current_mentorhelp.MessageNoRecipient(msg)
-				to_chat(usr, "<span class='adminnotice'><span class='mentor_channel'>PM to-<b>Mentors</b>:</span> [msg]</span>")
+				to_chat(usr, "<span class='adminnotice'><span class='mentor_channel'>Mentor-PM to-<b>Mentors</b>:</span> [msg]</span>")
 				return
 			else
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
