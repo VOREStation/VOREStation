@@ -138,6 +138,70 @@ var/list/all_maps = list()
 
 	var/list/planet_datums_to_make = list() // Types of `/datum/planet`s that will be instantiated by SSPlanets.
 
+<<<<<<< HEAD
+=======
+	// CENTCOM Areas
+	var/list/centcom_areas = list (
+	/area/centcom,
+	/area/shuttle/escape/centcom,
+	/area/shuttle/escape_pod1/centcom,
+	/area/shuttle/escape_pod2/centcom,
+	/area/shuttle/escape_pod3/centcom,
+	/area/shuttle/escape_pod5/centcom,
+	/area/shuttle/transport1/centcom,
+	/area/shuttle/administration/centcom,
+	/area/shuttle/specops/centcom,
+	)
+
+	//Station Areas
+	var/list/the_station_areas = list (
+	/area/shuttle/arrival,
+	/area/shuttle/escape/station,
+	/area/shuttle/escape_pod1/station,
+	/area/shuttle/escape_pod2/station,
+	/area/shuttle/escape_pod3/station,
+	/area/shuttle/escape_pod5/station,
+	/area/shuttle/mining/station,
+	/area/shuttle/transport1/station,
+	/area/shuttle/prison/station,
+	/area/shuttle/administration/station,
+	/area/shuttle/specops/station,
+	/area/maintenance,
+	/area/hallway,
+	/area/bridge,
+	/area/crew_quarters,
+	/area/holodeck,
+	/area/mint,
+	/area/library,
+	/area/chapel,
+	/area/lawoffice,
+	/area/engineering,
+	/area/solar,
+	/area/assembly,
+	/area/teleporter,
+	/area/medical,
+	/area/security,
+	/area/quartermaster,
+	/area/janitor,
+	/area/hydroponics,
+	/area/rnd,
+	/area/storage,
+	/area/construction,
+	/area/ai_monitored/storage/eva,
+	/area/ai_monitored/storage/secure,
+	/area/ai_monitored/storage/emergency,
+	/area/ai_upload,
+	/area/ai_upload_foyer,
+	/area/ai
+	)
+
+	//Hallway Areas
+	var/hallway_areas = /area/hallway
+	//Maintenance Areas
+	var/maintenance_areas = /area/maintenance
+
+
+>>>>>>> a604f0a295f... Merge pull request #8677 from Cerebulon/stowaway2022
 /datum/map/New()
 	..()
 	if(zlevel_datum_type)
@@ -355,3 +419,27 @@ var/list/all_maps = list()
 
 /datum/map/proc/get_map_info()
 	return "No map information available"
+<<<<<<< HEAD
+=======
+
+/datum/map/proc/show_titlescreen(client/C)
+	winset(C, "lobbybrowser", "is-disabled=false;is-visible=true")
+
+	show_browser(C, current_lobby_screen, "file=titlescreen.png;display=0")
+	show_browser(C, file('html/lobby_titlescreen.html'), "window=lobbybrowser")
+
+/datum/map/proc/hide_titlescreen(client/C)
+	if(C.mob) // Check if the client is still connected to something
+		// Hide title screen, allowing player to see the map
+		winset(C, "lobbybrowser", "is-disabled=true;is-visible=false")
+
+/datum/map/proc/get_lobby_track(var/exclude)
+	var/lobby_track_type
+	if(LAZYLEN(lobby_tracks) == 1)
+		lobby_track_type = lobby_tracks[1]
+	else if(LAZYLEN(lobby_tracks))
+		lobby_track_type = pickweight(lobby_tracks - exclude)
+	else
+		lobby_track_type = pick(subtypesof(/decl/music_track) - exclude)
+	return GET_DECL(lobby_track_type)
+>>>>>>> a604f0a295f... Merge pull request #8677 from Cerebulon/stowaway2022

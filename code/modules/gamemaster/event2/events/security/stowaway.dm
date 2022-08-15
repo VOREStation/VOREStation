@@ -35,7 +35,6 @@
 
 /datum/event2/event/ghost_pod_spawner/stowaway
 	pod_type = /obj/structure/ghost_pod/ghost_activated/human
-	desired_turf_areas = list(/area/maintenance)
 	announce_delay_lower_bound = 15 MINUTES
 	announce_delay_upper_bound = 30 MINUTES
 	var/antag_type = MODE_STOWAWAY

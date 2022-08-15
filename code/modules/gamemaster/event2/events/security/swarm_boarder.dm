@@ -39,7 +39,6 @@
 	announce_delay_lower_bound = 5 MINUTES
 	announce_delay_upper_bound = 15 MINUTES
 	pod_type = /obj/structure/ghost_pod/ghost_activated/swarm_drone/event
-	desired_turf_areas = list(/area/maintenance)
 	var/announce_odds = 80
 
 /datum/event2/event/ghost_pod_spawner/swarm_boarder/melee

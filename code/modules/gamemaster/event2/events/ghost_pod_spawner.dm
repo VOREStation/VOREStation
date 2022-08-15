@@ -2,19 +2,21 @@
 
 /datum/event2/event/ghost_pod_spawner
 	var/pod_type = null
-	var/list/desired_turf_areas = list() // If this is left empty, it will default to a global list of 'station' turfs.
-	var/list/free_turfs = list()
+	var/list/open_turfs = list()
 
 /datum/event2/event/ghost_pod_spawner/set_up()
-	free_turfs = find_random_turfs(5, desired_turf_areas)
+	for(var/areapath in typesof(using_map.maintenance_areas))
+		var/area/A = locate(areapath)
+		for(var/turf/simulated/floor/F in A.contents)
+			if(!F.check_density())
+				open_turfs += F
 
-	if(!free_turfs.len)
+	if(!open_turfs.len)
 		log_debug("Ghost Pod Spawning event failed to find a place to spawn. Aborting.")
 		abort()
-		return
 
 /datum/event2/event/ghost_pod_spawner/start()
-	var/obj/structure/ghost_pod/pod = new pod_type(pick(free_turfs))
+	var/obj/structure/ghost_pod/pod = new pod_type(pick(open_turfs))
 	post_pod_creation(pod)
 
 // Override to do things to the pod after it's spawned.
