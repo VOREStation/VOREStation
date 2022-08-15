@@ -185,6 +185,7 @@
 	GLOB.directory[ckey] = src
 
 	GLOB.ahelp_tickets.ClientLogin(src)
+	GLOB.mhelp_tickets.ClientLogin(src)
 
 	//Admin Authorisation
 	holder = admin_datums[ckey]
@@ -277,6 +278,7 @@
 		mentorholder.owner = null
 		GLOB.mentors -= src
 	GLOB.ahelp_tickets.ClientLogout(src)
+	GLOB.mhelp_tickets.ClientLogout(src)
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	return ..()
