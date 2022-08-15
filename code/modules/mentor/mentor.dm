@@ -55,8 +55,8 @@ var/list/mentor_verbs_default = list(
 	if(!target)
 		return
 	var/client/C = targets[target]
-	if(C.holder)
-		to_chat(src, "<span class='pm warning'>Error: You cannot make an admin a mentor.</span>")
+	if(has_mentor_powers(C) || C.deadmin_holder) // If an admin is deadminned you could mentor them and that will cause fuckery if they readmin
+		to_chat(src, "<span class='pm warning'>Error: They already have mentor powers.</span>")
 		return
 	var/datum/mentor/M = new /datum/mentor(C.ckey)
 	M.associate(C)
@@ -89,7 +89,7 @@ var/list/mentor_verbs_default = list(
 	set name ="Mentorsay"
 
 	//check rights
-	if (!src.mentorholder && !src.holder)
+	if (!has_mentor_powers(src))
 		return
 
 	msg = sanitize(msg)
@@ -103,22 +103,27 @@ var/list/mentor_verbs_default = list(
 	for(var/client/C in GLOB.admins)
 		to_chat(C, create_text_tag("mentor", "MENTOR:", C) + " <span class='mentor_channel'><span class='name'>[src]</span>: <span class='message'>[msg]</span></span>")
 
-/datum/mentor/Topic(href, href_list)
-	if (usr.client != src.owner || (!usr.client.mentorholder))
-		log_admin("[key_name(usr)] tried to illegally use mentor functions.")
-		message_admins("[usr.key] tried to illegally use mentor functions.")
-		return
-
+/proc/mentor_commands(href, href_list, client/C)
 	if(href_list["mhelp"])
 		var/mhelp_ref = href_list["mhelp"]
 		var/datum/mentor_help/MH = locate(mhelp_ref)
 		if (MH)
 			MH.Action(href_list["mhelp_action"])
 		else
-			to_chat(usr, "Ticket [mhelp_ref] has been deleted!")
+			to_chat(C, "Ticket [mhelp_ref] has been deleted!")
 
 	if (href_list["mhelp_tickets"])
 		GLOB.mhelp_tickets.BrowseTickets(text2num(href_list["mhelp_tickets"]))
+
+
+/datum/mentor/Topic(href, href_list)
+	..()
+	if (usr.client != src.owner || (!usr.client.mentorholder))
+		log_admin("[key_name(usr)] tried to illegally use mentor functions.")
+		message_admins("[usr.key] tried to illegally use mentor functions.")
+		return
+
+	mentor_commands(href, href_list, usr)
 
 /client/proc/cmd_dementor()
 	set category = "Admin"
@@ -137,7 +142,7 @@ var/list/mentor_verbs_default = list(
 	else if(istype(whom,/client))
 		C = whom
 	if(!C)
-		if(holder)
+		if(has_mentor_powers(src))
 			to_chat(src, "<span class='pm warning'>Error: Mentor-PM: Client not found.</span>")
 		return
 
@@ -151,6 +156,9 @@ var/list/mentor_verbs_default = list(
 		return
 	cmd_mentor_pm(whom, msg, MH)
 
+/proc/has_mentor_powers(client/C)
+	return C.holder || C.mentorholder
+
 /client/proc/cmd_mentor_pm(whom, msg, datum/mentor_help/MH)
 	set category = "Admin"
 	set name = "Mentor-PM"
@@ -160,7 +168,7 @@ var/list/mentor_verbs_default = list(
 		to_chat(src, "<span class='pm warning'>Error: Mentor-PM: You are unable to use admin PM-s (muted).</span>")
 		return
 
-	if(!(mentorholder || holder) && !current_mentorhelp)
+	if(!(has_mentor_powers(src)) && !current_mentorhelp)
 		to_chat(src, "<span class='pm warning'>You can no longer reply to this ticket, please open another one by using the Mentorhelp verb if need be.</span>")
 		to_chat(src, "<span class='pm notice'>Message: [msg]</span>")
 		return
@@ -174,7 +182,7 @@ var/list/mentor_verbs_default = list(
 		recipient = whom
 
 	if(!recipient)
-		if(mentorholder)
+		if(has_mentor_powers(src))
 			to_chat(src, "<span class='pm warning'>Error: Mentor-PM: Client not found.</span>")
 			to_chat(src, msg)
 		else
@@ -194,7 +202,7 @@ var/list/mentor_verbs_default = list(
 			return
 
 		if(!recipient)
-			if(holder)
+			if(has_mentor_powers(src))
 				to_chat(src, "<span class='pm warning'>Error:Mentor-PM: Client not found.</span>")
 			else
 				log_admin("Mentorhelp: [key_name(src)] sent [msg]")
@@ -210,13 +218,13 @@ var/list/mentor_verbs_default = list(
 
 	var/interaction_message = "<span class='pm notice'>Mentor-PM from-<b>[src]</b> to-<b>[recipient]</b>: [msg]</span>"
 
-	if (recipient.current_mentorhelp && !(recipient.mentorholder || recipient.holder))
+	if (recipient.current_mentorhelp && !has_mentor_powers(recipient))
 		recipient.current_mentorhelp.AddInteraction(interaction_message)
-	if (src.current_mentorhelp && !(src.mentorholder || src.holder))
+	if (src.current_mentorhelp && !has_mentor_powers(src))
 		src.current_mentorhelp.AddInteraction(interaction_message)
 
 	// It's a little fucky if they're both mentors, but while admins may need to adminhelp I don't really see any reason a mentor would have to mentorhelp since you can literally just ask any other mentors online
-	if ((recipient.mentorholder || recipient.holder) && (src.mentorholder || src.holder))
+	if (has_mentor_powers(recipient) && has_mentor_powers(src))
 		if (recipient.current_mentorhelp)
 			recipient.current_mentorhelp.AddInteraction(interaction_message)
 		if (src.current_mentorhelp)
@@ -227,7 +235,7 @@ var/list/mentor_verbs_default = list(
 
 	log_admin("[key_name(src)] sent [msg] to [key_name(recipient)]")
 
-	if(recipient.is_preference_enabled(/datum/client_preference/holder/play_adminhelp_ping))
+	if(recipient.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
 		recipient << 'sound/effects/mentorhelp.mp3'
 
 	for(var/client/C in GLOB.mentors)
