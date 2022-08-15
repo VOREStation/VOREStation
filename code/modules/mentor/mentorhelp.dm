@@ -364,7 +364,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			else
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
 		else
-			current_mentorhelp.AddInteraction("[usr] opened a new ticket.")
+			current_mentorhelp.AddInteraction("[usr.ckey] opened a new ticket.")
 			current_mentorhelp.Resolve()
 
 	new /datum/mentor_help(msg, src, FALSE)
