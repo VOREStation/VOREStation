@@ -20,6 +20,7 @@
 	if(holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
+<<<<<<< HEAD
 			if(T.z != C.z)
 				continue
 			if(get_dist(T, C) > 200)
@@ -42,6 +43,21 @@
 				if(world.time - last_message > 200)
 					to_chat(M, "<font color='blue'>SYSTEM ALERT: Energy boost detected!</font>")
 					last_message = world.time
+=======
+			if(get_dist(holder, C) <= 200)
+				for (var/obj/item/cell/B in C.contents)
+					B.charge += 25
+		for (var/obj/machinery/power/smes/S in GLOB.smeses)
+			if(get_dist(holder, S) <= src.effectrange)
+				S.charge += 25
+		for (var/mob/living/silicon/robot/M in global.silicon_mob_list)
+			if(get_dist(holder, M) < 50)
+				for (var/obj/item/cell/D in M.contents)
+					D.charge += 25
+					if(world.time - last_message > 200)
+						to_chat(M, "<font color='blue'>SYSTEM ALERT: Energy boost detected!</font>")
+						last_message = world.time
+>>>>>>> b50ad202b42... Merge pull request #8672 from Atermonera/cellcharge-iteration
 		return 1
 
 /datum/artifact_effect/cellcharge/DoEffectPulse()
