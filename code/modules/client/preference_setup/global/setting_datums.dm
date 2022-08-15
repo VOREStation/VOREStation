@@ -362,6 +362,12 @@ var/list/_client_preferences_by_type
 	enabled_description = "Popup New On Login"
 	disabled_description = "Do Nothing"
 
+/datum/client_preference/play_mentorhelp_ping
+	description = "Mentorhelps"
+	key = "SOUND_MENTORHELP"
+	enabled_description = "Hear"
+	disabled_description = "Silent"
+
 /********************
 * Staff Preferences *
 ********************/
