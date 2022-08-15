@@ -1270,7 +1270,7 @@ const VoreUserPreferences = (props, context) => {
           <VoreUserPreferenceItem spec={preferences.spontaneous_tf} />
         </Flex.Item>
         <Flex.Item basis="32%">
-          <Button fluid content="Slective Mode Preference" onClick={() => act('switch_selective_mode_pref')} />
+          <Button fluid content="Selective Mode Preference" onClick={() => act('switch_selective_mode_pref')} />
         </Flex.Item>
       </Flex>
       <Section title="Aesthetic Preferences">
