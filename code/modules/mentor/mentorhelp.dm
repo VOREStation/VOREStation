@@ -157,7 +157,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	log_admin("Mentorhelp: [key_name(C)] sent [msg]")
 	MessageNoRecipient(msg)
 	//show it to the person adminhelping too
-	to_chat(C, "<i><span class='mentor'>Mentor-PM to-<b>Mentors</b>: [name]</span></i>")
+	to_chat(C, "<i><span class='mentor'>PM to-<b>Mentors</b>: [name]</span></i>")
 
 	GLOB.mhelp_tickets.active_tickets += src
 
@@ -359,7 +359,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			if(current_mentorhelp)
 				log_admin("Mentorhelp: [key_name(src)] sent [msg]")
 				current_mentorhelp.MessageNoRecipient(msg)
-				to_chat(usr, "<span class='adminnotice'><span class='mentor_channel'>Mentor-PM to-<b>Mentors</b>:</span> [msg]</span>")
+				to_chat(usr, "<span class='adminnotice'><span class='mentor_channel'>PM to-<b>Mentors</b>:</span> [msg]</span>")
 				return
 			else
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
