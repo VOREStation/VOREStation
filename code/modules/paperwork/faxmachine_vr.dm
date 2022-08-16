@@ -53,7 +53,7 @@ var/global/last_fax_role_request
  * Call the chat webhook to transmit a notification of a job request
  */
 /obj/machinery/photocopier/faxmachine/proc/message_chat_rolerequest(var/font_colour="#006100", var/role_to_ping, var/reason, var/jobname)
-	if(config.chat_webhook_url || 1)
+	if(config.chat_webhook_url)
 		spawn(0)
 			var/query_string = "type=rolerequest"
 			query_string += "&key=[url_encode(config.chat_webhook_key)]"
@@ -62,7 +62,6 @@ var/global/last_fax_role_request
 			query_string += "&reason=[url_encode(reason)]"
 			query_string += "&job=[url_encode(jobname)]"
 			world.Export("[config.chat_webhook_url]?[query_string]")
-			to_world(query_string)
 
 //
 // Overrides/additions to stock defines go here, as well as hooks. Sort them by
@@ -99,17 +98,20 @@ var/global/last_fax_role_request
 	for(var/datum/department/dept as anything in SSjob.get_all_department_datums())
 		if(!dept.assignable || dept.centcom_only)
 			continue
-		jobs |= SSjob.get_job_titles_in_department(dept.name)
+		for(var/job in SSjob.get_job_titles_in_department(dept.name))
+			var/datum/job/J = SSjob.get_job(job)
+			if(J.requestable)
+				jobs |= job
 
 	var/role = tgui_input_list(L, "Pick the job to request.", "Job Request", jobs)
 	if(!role)
 		return
 
-	var/reason = ""
-	reason = tgui_input_text(L, "Reason (maximum 100 symbols):","Reason")
-	if(length(reason) > 110)
-		to_chat(L, "<span class='warning'>The reason you've input is too long. Try again briefer.</span>")
-		return
+	var/datum/job/job_to_request = SSjob.get_job(role)
+	var/reason = "Unspecified"
+	var/list/possible_reasons = list("Unspecified", "General duties", "Emergency situation")
+	possible_reasons += job_to_request.get_request_reasons()
+	reason = tgui_input_list(L, "Pick request reason.", "Request reason", possible_reasons)
 
 	var/final_conf = tgui_alert(L, "You are about to request [role]. Are you sure?", "Confirmation", list("Yes", "No", "Cancel"))
 	if(final_conf != "Yes")

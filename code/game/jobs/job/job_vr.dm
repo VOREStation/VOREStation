@@ -61,3 +61,6 @@
 			remaining_time_needed = max(0, remaining_time_needed - C.play_hours[PTO_EXPLORATION])
 		return remaining_time_needed
 	return 0
+
+/datum/job/proc/get_request_reasons()
+	return list()
