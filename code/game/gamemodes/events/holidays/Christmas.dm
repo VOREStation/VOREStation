@@ -3,9 +3,13 @@
 		if(isNotStationLevel(xmas.z))	continue
 		for(var/turf/simulated/floor/T in orange(1,xmas))
 			for(var/i=1,i<=rand(1,5),i++)
+<<<<<<< HEAD
 				new /obj/item/weapon/a_gift(T)
 	//for(var/mob/living/simple_mob/corgi/Ian/Ian in mob_list)
 	//	Ian.place_on_head(new /obj/item/clothing/head/helmet/space/santahat(Ian))
+=======
+				new /obj/item/a_gift(T)
+>>>>>>> c96fbfa5193... Merge pull request #8680 from MistakeNot4892/simpleanimal
 
 /proc/ChristmasEvent()
 	for(var/obj/structure/flora/tree/pine/xmas in world)
@@ -60,4 +64,3 @@
 	flags_inv = 0
 	body_parts_covered = 0
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-

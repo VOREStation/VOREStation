@@ -309,11 +309,14 @@
 	if(!MP)
 		return 0	//Sanity, this should never happen.
 
+<<<<<<< HEAD
 /*
 	if(ispath(MP, /mob/living/simple_mob/space_worm))
 		return 0 //Unfinished. Very buggy, they seem to just spawn additional space worms everywhere and eating your own tail results in new worms spawning.
 */
 
+=======
+>>>>>>> c96fbfa5193... Merge pull request #8680 from MistakeNot4892/simpleanimal
 //Good mobs!
 	if(ispath(MP, /mob/living/simple_mob/animal/passive/cat))
 		return 1
@@ -336,6 +339,3 @@
 
 	//Not in here? Must be untested!
 	return 0
-
-
-
