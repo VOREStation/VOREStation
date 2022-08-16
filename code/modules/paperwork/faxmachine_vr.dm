@@ -151,3 +151,4 @@ var/global/last_fax_role_request
 
 	message_chat_rolerequest(message_color, ping_name, reason, role)
 	last_fax_role_request = world.time
+	to_chat(L, "<span class='notice'>Your request was transmitted.</span>")
