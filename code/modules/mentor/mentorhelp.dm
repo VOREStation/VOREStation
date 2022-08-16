@@ -143,7 +143,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	name = msg
 
 	initiator = C
-	initiator_ckey = initiator.ckey
+	initiator_ckey = C.ckey
 	initiator_key_name = key_name(initiator, FALSE, TRUE)
 	if(initiator.current_mentorhelp)	//This is a bug
 		log_debug("Ticket erroneously left open by code")
@@ -154,7 +154,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	statclick = new(null, src)
 	_interactions = list()
 
-	log_admin("Mentorhelp: [key_name(C)] sent [msg]")
+	log_admin("Mentorhelp: [key_name(C)]: [msg]")
 	MessageNoRecipient(msg)
 	//show it to the person adminhelping too
 	to_chat(C, "<i><span class='mentor'>Mentor-PM to-<b>Mentors</b>: [name]</span></i>")
@@ -190,7 +190,7 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 //message from the initiator without a target, all people with mentor powers will see this
 /datum/mentor_help/proc/MessageNoRecipient(msg)
 	var/ref_src = "\ref[src]"
-	var/chat_msg = "<span class='notice'>Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
+	var/chat_msg = "<span class='notice'>(<A HREF='?_src_=mentorholder;mhelp=[ref_src];mhelp_action=escalate'>ESCALATE</A>) Ticket [TicketHref("#[id]", ref_src)]<b>: [LinkedReplyName(ref_src)]:</b> [msg]</span>"
 	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
 	for (var/client/C in GLOB.mentors)
 		if (C.is_preference_enabled(/datum/client_preference/play_mentorhelp_ping))
@@ -287,11 +287,29 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 
 	usr << browse(dat.Join(), "window=mhelp[id];size=620x480")
 
+//Kick ticket to admins
+/datum/mentor_help/proc/Escalate()
+	if(tgui_alert(usr, "Really escalate this ticket to admins? No mentors will ever be able to interact with it again if you do.","Escalate",list("Yes","No")) != "Yes")
+		return
+	if (src.initiator == null) // You can't escalate a mentorhelp of someone who's logged out because it won't create the adminhelp properly
+		to_chat(usr, "<span class='pm warning'>Error: client not found, unable to escalate.</span>")
+		return
+	var/datum/admin_help/AH = new /datum/admin_help(src.name, src.initiator, FALSE)
+	message_mentors("[usr.ckey] escalated Ticket [TicketHref("#[id]")]")
+	log_admin("[key_name(usr)] escalated mentorhelp [src.name]")
+	to_chat(src.initiator, "<span class='mentor'>[usr.ckey] escalated your mentorhelp to admins.</span>")
+	AH._interactions = src._interactions
+	GLOB.mhelp_tickets.active_tickets -= src
+	GLOB.mhelp_tickets.resolved_tickets -= src
+	qdel(src)
+
 /datum/mentor_help/proc/Context(ref_src)
 	if(!ref_src)
 		ref_src = "\ref[src]"
 	if(state == AHELP_ACTIVE)
 		. += ClosureLinks(ref_src)
+	if(state != AHELP_RESOLVED)
+		. += " (<A HREF='?_src_=mentorholder;mhelp=[ref_src];mhelp_action=escalate'>ESCALATE</A>)"
 
 //Forwarded action from admin/Topic OR mentor/Topic depending on which rank the caller has
 /datum/mentor_help/proc/Action(action)
@@ -304,6 +322,8 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 			Resolve()
 		if("reopen")
 			Reopen()
+		if("escalate")
+			Escalate()
 
 //
 // TICKET STATCLICK
@@ -357,9 +377,9 @@ GLOBAL_DATUM_INIT(mhelp_tickets, /datum/mentor_help_tickets, new)
 	if(current_mentorhelp)
 		if(tgui_alert(usr, "You already have a ticket open. Is this for the same issue?","Duplicate?",list("Yes","No")) != "No")
 			if(current_mentorhelp)
-				log_admin("Mentorhelp: [key_name(src)] sent [msg]")
+				log_admin("Mentorhelp: [key_name(src)]: [msg]")
 				current_mentorhelp.MessageNoRecipient(msg)
-				to_chat(usr, "<span class='adminnotice'><span class='mentor_channel'>Mentor-PM to-<b>Mentors</b>:</span> [msg]</span>")
+				to_chat(usr, "<span class='adminnotice'><span class='mentor'>Mentor-PM to-<b>Mentors</b>: [msg]</span></span>")
 				return
 			else
 				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")

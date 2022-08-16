@@ -16,6 +16,9 @@
 /datum/alt_title/security_manager
 	title = "Security Manager"
 
+/datum/job/hos/get_request_reasons()
+	return list("Wildlife management", "Forensic investigation")
+
 
 /datum/job/warden
 	pto_type = PTO_SECURITY
@@ -28,6 +31,9 @@
 /datum/alt_title/armory_superintendent
 	title = "Armory Superintendent"
 
+/datum/job/warden/get_request_reasons()
+	return list("Wildlife management")
+
 
 /datum/job/detective
 	pto_type = PTO_SECURITY
@@ -38,6 +44,9 @@
 
 /datum/alt_title/security_inspector
 	title = "Security Inspector"
+
+/datum/job/detective/get_request_reasons()
+	return list("Forensic investigation")
 
 
 /datum/job/officer
@@ -58,3 +67,6 @@
 
 /datum/alt_title/security_contractor
 	title = "Security Contractor"
+
+/datum/job/officer/get_request_reasons()
+	return list("Wildlife management")
