@@ -1207,6 +1207,7 @@
 /mob/living/proc/disable_spoiler_vision()
 	handle_vision()
 
+<<<<<<< HEAD
 /**
  * Small helper component to manage the character setup HUD icon
  */
@@ -1262,3 +1263,33 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"
 	screen_loc = ui_smallquad
+=======
+/mob/living/proc/get_player_regions()
+	// A living player is always in a universal region
+	. = list(EVENT_REGION_UNIVERSAL)
+
+	var/turf/T = get_turf(src)
+	var/obj/effect/overmap/visitable/M = get_overmap_sector(T.z)
+
+	if(istype(M))
+		if(M.in_space)
+			if(T.z in using_map.station_levels)
+				. |= EVENT_REGION_SPACESTATION
+			else
+				. |= EVENT_REGION_DEEPSPACE
+		else
+			. |= EVENT_REGION_PLANETSURFACE
+
+	var/datum/map_z_level/zlevel = using_map.zlevels["[T.z]"]
+	if(istype(zlevel))
+		. |= zlevel.event_regions
+
+// kali maaaaa
+/mob/living/proc/rip_out_internal_organ(var/zone, var/skip_wounding = FALSE, var/damage_descriptor)
+	if(length(internal_organs))
+		. = pick_n_take(internal_organs)
+		if(ispath(.))
+			. = new .(src)
+		if(!skip_wounding)
+			take_damage(rand(10,20))
+>>>>>>> 94cbe4de8dd... Merge pull request #8679 from MistakeNot4892/doggo

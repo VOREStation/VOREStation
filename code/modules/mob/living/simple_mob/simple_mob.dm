@@ -120,6 +120,7 @@
 	var/special_attack_charges = null		// If set, special attacks will work off of a charge system, and won't be usable if all charges are expended. Good for grenades.
 	var/special_attack_cooldown = null		// If set, special attacks will have a cooldown between uses.
 	var/last_special_attack = null			// world.time when a special attack occured last, for cooldown calculations.
+	var/projectileverb = "fires"
 
 	//Damage resistances
 	var/grab_resist = 0				// Chance for a grab attempt to fail. Note that this is not a true resist and is just a prob() of failure.
@@ -304,6 +305,7 @@
 
 /decl/mob_organ_names
 	var/list/hit_zones = list("body") //When in doubt, it's probably got a body.
+<<<<<<< HEAD
 
 //VOREStation Add Start 	For allowing mobs with ID's door access
 /mob/living/simple_mob/Bump(var/atom/A)
@@ -314,3 +316,5 @@
 	else
 		..()
 //Vorestation Add End
+=======
+>>>>>>> 94cbe4de8dd... Merge pull request #8679 from MistakeNot4892/doggo

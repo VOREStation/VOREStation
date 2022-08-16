@@ -29,8 +29,8 @@ var/global/list/emotes_by_key
 	var/emote_message_radio_synthetic                   // As above, but for synthetics.
 	var/emote_message_muffled                           // A message to show if the emote is audible and the user is muzzled.
 
-	var/list/emote_sound                                // A sound for the emote to play. 
-	                                                    // Can either be a single sound, a list of sounds to pick from, or an 
+	var/list/emote_sound                                // A sound for the emote to play.
+	                                                    // Can either be a single sound, a list of sounds to pick from, or an
 	                                                    // associative array of gender to single sounds/a list of sounds.
 	var/list/emote_sound_synthetic                      // As above, but used when check_synthetic() is true.
 	var/emote_volume = 50                               // Volume of sound to play.
@@ -86,7 +86,7 @@ var/global/list/emotes_by_key
 		var/mob/M = user
 		if(M.restrained())
 			to_chat(user, SPAN_WARNING("You are restrained and cannot do that."))
-			return
+			return FALSE
 
 	var/atom/target
 	if(can_target() && extra_params)
@@ -107,7 +107,7 @@ var/global/list/emotes_by_key
 
 		if(!target)
 			to_chat(user, SPAN_WARNING("You cannot see a '[extra_params]' within range."))
-			return
+			return FALSE
 
 	var/use_1p = get_emote_message_1p(user, target, extra_params)
 	if(use_1p)
@@ -139,7 +139,7 @@ var/global/list/emotes_by_key
 				var/mob/living/L = user
 				if(L.silent)
 					M.visible_message(message = "[user] opens their mouth silently!", self_message = "You cannot say anything!", blind_message = emote_message_impaired, runemessage = "opens their mouth silently!")
-					return
+					return FALSE
 				else
 					M.audible_message(message = use_3p, self_message = use_1p, deaf_message = emote_message_impaired, hearing_distance = use_range, radio_message = use_radio, runemessage = prefinal_3p)
 		else
@@ -147,6 +147,7 @@ var/global/list/emotes_by_key
 
 	do_extra(user, target)
 	do_sound(user)
+	return TRUE
 
 /decl/emote/proc/replace_target_tokens(var/msg, var/atom/target)
 	. = msg

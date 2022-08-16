@@ -277,14 +277,22 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
-	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
+	if(isanimal(user))
+		var/mob/living/simple_mob/animal/critter = user
+		critter.eat_food_item(src, bitesize)
+	else
+		user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
+		if(reagents)
+			reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
 	bitecount++
-	if(reagents)
-		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
 	spawn(5)
 		if(!src && !user.client)
 			user.custom_emote(1,"[pick("burps", "cries for more", "burps twice", "looks at the area where the food was")]")
 			qdel(src)
+	if(!QDELETED(src))
+		On_Consume(user)
+
+/obj/item/reagent_containers/food/snacks/animal_consumed(var/mob/user)
 	On_Consume(user)
 
 //////////////////////////////////////////////////

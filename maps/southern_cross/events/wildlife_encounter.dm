@@ -81,6 +81,8 @@
 				prob(45);/mob/living/simple_mob/animal/sif/shantak,
 				prob(15);/mob/living/simple_mob/animal/sif/kururak/hibernate,
 				prob(10);/mob/living/simple_mob/animal/sif/kururak,
+				prob(5);/mob/living/simple_mob/animal/sif/grafadreka/wild/hibernate,
+				prob(3);/mob/living/simple_mob/animal/sif/grafadreka/wild,
 				prob(3);/mob/living/simple_mob/animal/giant_spider,
 				prob(8);/mob/living/simple_mob/animal/giant_spider/hunter,
 				prob(3);/mob/living/simple_mob/animal/giant_spider/webslinger,

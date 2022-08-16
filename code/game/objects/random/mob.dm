@@ -123,6 +123,15 @@
 	return pick(prob(1);/mob/living/simple_mob/animal/sif/kururak/hibernate,
 				prob(20);/mob/living/simple_mob/animal/sif/kururak)
 
+/obj/random/mob/sif/grafadreka
+	name = "Random Grafadreka"
+	desc = "This is a random grafadreka, either waking or hibernating."
+	icon_state = "frost"
+
+/obj/random/mob/sif/grafadreka/item_to_spawn()
+	return pick(prob(3);/mob/living/simple_mob/animal/sif/grafadreka/wild/hibernate,
+				prob(12);/mob/living/simple_mob/animal/sif/grafadreka/wild)
+
 /obj/random/mob/spider
 	name = "Random Spider" //Spiders should patrol where they spawn.
 	desc = "This is a random boring spider."
@@ -397,6 +406,11 @@
 				/mob/living/simple_mob/animal/sif/kururak/leader,
 				/mob/living/simple_mob/animal/sif/kururak,
 				/mob/living/simple_mob/animal/sif/kururak
+			),
+			prob(3);list(
+				/mob/living/simple_mob/animal/sif/grafadreka/wild,
+				/mob/living/simple_mob/animal/sif/grafadreka/wild,
+				/mob/living/simple_mob/animal/sif/grafadreka/wild
 			),
 			prob(5);list(
 				/mob/living/simple_mob/animal/sif/glitterfly,

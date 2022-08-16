@@ -224,6 +224,12 @@
 	mappath = 'maps/submaps/surface_submaps/wilderness/kururakden.dmm'
 	cost = 5
 
+/datum/map_template/surface/wilderness/normal/GrafadrekaDen
+	name = "Grafadreka Den"
+	desc = "The den of a Grafadreka pack. May contain hibernating members."
+	mappath = 'maps/submaps/surface_submaps/wilderness/grafadreka_den.dmm'
+	cost = 5
+
 /datum/map_template/surface/wilderness/normal/DecoupledEngine
 	name = "Decoupled Engine"
 	desc = "A damaged fission engine jettisoned from a starship long ago."
@@ -349,6 +355,7 @@
 	desc = "Gathering of acolytes gone wrong."
 	mappath = 'maps/submaps/surface_submaps/wilderness/deathden.dmm'
 	cost = 15
+<<<<<<< HEAD
 
 /datum/map_template/surface/wilderness/deep/leopardmanderden
 	name = "Leopardmander Den"
@@ -397,3 +404,5 @@
 	desc = "A dangerous plateu of cliffs home to a rampant gold hoarding dragon"
 	mappath = 'maps/submaps/surface_submaps/wilderness/drgnplateu.dmm'
 	cost = 15
+=======
+>>>>>>> 94cbe4de8dd... Merge pull request #8679 from MistakeNot4892/doggo

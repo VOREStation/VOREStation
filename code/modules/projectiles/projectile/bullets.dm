@@ -383,6 +383,7 @@
 	range_step = 1
 	spread_step = 10
 	silenced = TRUE
+<<<<<<< HEAD
 	hud_state = "pistol_light"
 
 /* toy projectiles */
@@ -459,3 +460,5 @@
 	var/turf/T = get_turf(loc)
 	if(istype(T))
 		new /obj/item/ammo_casing/afoam_dart/riot(get_turf(loc))
+=======
+>>>>>>> 94cbe4de8dd... Merge pull request #8679 from MistakeNot4892/doggo

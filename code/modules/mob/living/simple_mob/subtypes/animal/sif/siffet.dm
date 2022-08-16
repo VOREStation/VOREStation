@@ -40,6 +40,7 @@
 
 	say_list_type = /datum/say_list/siffet
 	ai_holder_type = /datum/ai_holder/simple_mob/siffet
+	burrower = TRUE
 
 /datum/say_list/siffet
 	speak = list("Yap!", "Heh!", "Huff.")
@@ -59,3 +60,7 @@
 	. = ..()
 	if(!. && L.mob_size > 10) //Attacks things it considers small enough to take on, otherwise only attacks if attacked.
 		return TRUE
+
+/obj/structure/animal_den/ghost_join/siffet
+	name = "siffet den"
+	critter = /mob/living/simple_mob/animal/sif/siffet

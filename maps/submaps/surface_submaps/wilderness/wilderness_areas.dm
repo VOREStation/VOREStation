@@ -100,6 +100,10 @@
 	name = "POI - Kururak Den"
 	ambience = AMBIENCE_SIF
 
+/area/submap/GrafadrekaDen
+	name = "POI - Grafadreka Den"
+	ambience = AMBIENCE_SIF
+
 /area/submap/DecoupledEngine
 	name = "POI - Decoupled Engine"
 	ambience = AMBIENCE_FOREBODING

@@ -576,3 +576,10 @@ var/list/organ_cache = list()
 					return TRUE
 
 	return FALSE
+
+/obj/item/organ/attack_generic(mob/user)
+	if(isanimal(user))
+		var/mob/living/simple_mob/animal/critter = user
+		critter.eat_food_item(src)
+		return TRUE
+	return ..()

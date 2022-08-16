@@ -33,6 +33,10 @@
 	emote_message_3p = "chokes."
 	conscious = FALSE
 
+/decl/emote/audible/snarl
+	key = "snarl"
+	emote_message_3p = "snarls menacingly."
+
 /decl/emote/audible/gnarl
 	key = "gnarl"
 	emote_message_3p = "gnarls and shows USER_THEIR teeth."

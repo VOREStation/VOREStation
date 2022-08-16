@@ -39,6 +39,31 @@ var/list/turf_edge_cache = list()
 	if(can_dig && prob(33))
 		loot_count = rand(1,3)
 
+/turf/simulated/floor/outdoors/attack_generic(mob/user)
+	if(isanimal(user) && user.loc == src && user.a_intent == I_HELP)
+		var/mob/living/simple_mob/animal/critter = user
+		if(critter.burrower)
+			if(locate(/obj/structure/animal_den) in contents)
+				to_chat(critter, SPAN_WARNING("There is already a den here."))
+				return TRUE
+			critter.visible_message(SPAN_NOTICE("\The [critter] begins digging industriously."))
+			critter.setClickCooldown(10 SECONDS)
+			if(!do_after(critter, 10 SECONDS, src))
+				return TRUE
+			if(locate(/obj/structure/animal_den) in contents)
+				to_chat(critter, SPAN_WARNING("There is already a den here."))
+				return TRUE
+			critter.visible_message(SPAN_NOTICE("\The [critter] finishes digging a den!"))
+			new /obj/structure/animal_den(src)
+			if(prob(66))
+				var/worms = 0
+				for(var/worm in 1 to rand(3))
+					new /obj/item/reagent_containers/food/snacks/worm(src)
+					worms++
+				to_chat(critter, SPAN_NOTICE("You unearthed [worms] worm\s!"))
+			return TRUE
+	. = ..()
+
 /turf/simulated/floor/outdoors/attackby(obj/item/C, mob/user)
 
 	if(can_dig && istype(C, /obj/item/weapon/shovel))

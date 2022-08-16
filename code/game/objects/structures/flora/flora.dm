@@ -72,11 +72,8 @@
 
 	..(W, user)
 
-/obj/structure/flora/proc/can_harvest(var/obj/item/I)
-	. = FALSE
-	if(harvest_tool && istype(I, harvest_tool) && harvest_loot && harvest_loot.len && harvest_count < max_harvests)
-		. = TRUE
-	return .
+/obj/structure/flora/proc/can_harvest(var/obj/item/I, var/ignore_tool = FALSE)
+	return ((ignore_tool || (harvest_tool && istype(I, harvest_tool))) && harvest_loot && harvest_loot.len && harvest_count < max_harvests)
 
 /obj/structure/flora/proc/spawn_harvest(var/path = null, var/mob/user = null)
 	if(!ispath(path))
@@ -90,6 +87,37 @@
 
 	harvest_count++
 	return AM
+
+/obj/structure/flora/attack_generic(mob/user, damage, attack_verb)
+	if(istype(user, /mob/living/simple_mob/animal) && user.a_intent != I_HURT)
+		var/mob/living/simple_mob/animal/critter = user
+		if(!critter.forager)
+			return ..()
+		if(!can_forage(critter))
+			to_chat(critter, SPAN_WARNING("You cannot see any edible fruit on \the [src]."))
+			return TRUE
+		critter.set_AI_busy(TRUE)
+		show_animal_foraging_message(critter)
+		critter.setClickCooldown(5 SECONDS)
+		if(!do_after(critter, 5 SECONDS, src) || QDELETED(src) || !can_forage(user))
+			critter.set_AI_busy(FALSE)
+			return TRUE
+		critter.set_AI_busy(FALSE)
+		show_animal_eating_message(critter)
+		playsound(critter, 'sound/items/eatfood.ogg', rand(10,50), 1)
+		harvest_count++
+		critter.eat_food_item(spawn_harvest(pickweight(harvest_loot)))
+		return TRUE
+	return ..()
+
+/obj/structure/flora/proc/can_forage(var/mob/critter)
+	return can_harvest(ignore_tool = TRUE)
+
+/obj/structure/flora/proc/show_animal_foraging_message(var/mob/critter)
+	critter.visible_message(SPAN_NOTICE("\The [critter] begins sniffing at \the [src]."))
+
+/obj/structure/flora/proc/show_animal_eating_message(var/mob/critter)
+	critter.visible_message(SPAN_NOTICE("\The [critter] rips away some of the fruit from \the [src]."))
 
 //bushes
 /obj/structure/flora/bush

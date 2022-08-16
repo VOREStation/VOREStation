@@ -63,9 +63,12 @@
 			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE) //VOREStation EDIT Somebody set this to burn instead of brute.
 			L.visible_message("<span class='warning'>\The [L] [response_harm] \the [src]!</span>")
 			L.do_attack_animation(src)
+			IWasAttackedBy(L)
 
 	return
 
+/mob/living/simple_mob/proc/IWasAttackedBy(var/mob/living/attacker)
+	return
 
 // When somoene clicks us with an item in hand
 /mob/living/simple_mob/attackby(var/obj/item/O, var/mob/user)
@@ -311,4 +314,3 @@
 	if(ignore_thickness)
 		return TRUE
 	return !thick_armor
-

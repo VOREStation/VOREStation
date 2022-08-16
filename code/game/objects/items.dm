@@ -1005,5 +1005,12 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 /obj/item/proc/vendor_action(var/obj/machinery/vending/V)
 	return
 
+<<<<<<< HEAD
 /obj/item/proc/on_holder_escape(var/obj/item/weapon/holder/H)
 	return
+=======
+// Called when a simple animal finishes eating the item.
+/obj/item/proc/animal_consumed(var/mob/user)
+	user.visible_message(SPAN_NOTICE("\The [user] finishes eating \the [src]."), SPAN_NOTICE("You finish eating \the [src]."))
+	qdel(src)
+>>>>>>> 94cbe4de8dd... Merge pull request #8679 from MistakeNot4892/doggo

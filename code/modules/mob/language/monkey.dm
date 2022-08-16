@@ -30,4 +30,20 @@
 	flags = WHITELISTED
 	machine_understands = 0
 	space_chance = 100
+<<<<<<< HEAD
 	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh")
+=======
+	syllables = list("chirp", "squawk", "tweet")
+
+/datum/language/drake
+	name = "Drake"
+	desc = "Hiss hiss, feed me siffets."
+	speech_verb = "hisses"
+	ask_verb = "chirps"
+	exclaim_verb = "rumbles"
+	key = "D"
+	flags = RESTRICTED
+	machine_understands = 0
+	space_chance = 30
+	syllables = list("hss", "ssh", "khs", "hrr", "rrr", "rrn")
+>>>>>>> 94cbe4de8dd... Merge pull request #8679 from MistakeNot4892/doggo

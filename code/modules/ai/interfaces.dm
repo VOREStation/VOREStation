@@ -98,5 +98,10 @@
 		set_dir(get_dir(old_T, newloc))
 		// Apply movement delay.
 		// Player movement has more factors but its all in the client and fixing that would be its own project.
+<<<<<<< HEAD
 		setMoveCooldown(delay_will_be)
 	return
+=======
+		setMoveCooldown(movement_delay())
+	return
+>>>>>>> 94cbe4de8dd... Merge pull request #8679 from MistakeNot4892/doggo
