@@ -36,7 +36,7 @@
 /datum/gear/uniform/job_khi/med
 	display_name = "khi uniform, med"
 	path = /obj/item/clothing/under/rank/khi/med
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Field Medic","Psychiatrist")
 
 /datum/gear/uniform/job_khi/eng
 	display_name = "khi uniform, eng"
@@ -280,3 +280,38 @@ Talon jumpsuit
 	display_name = "undersuit, command (SM/HoP)"
 	allowed_roles = list("Site Manager", "Head of Personnel")
 	path = /obj/item/clothing/under/undersuit/command
+
+//Altevian Uniforms
+/datum/gear/uniform/job_altevian/cmd
+	display_name = "altevian uniform, cmd"
+	path = /obj/item/clothing/under/pants/altevian/command
+	allowed_roles = list("Head of Security","Site Manager","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
+
+/datum/gear/uniform/job_altevian/sec
+	display_name = "altevian uniform, sec"
+	path = /obj/item/clothing/under/pants/altevian/security
+	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
+
+/datum/gear/uniform/job_altevian/med
+	display_name = "altevian uniform, med"
+	path = /obj/item/clothing/under/pants/altevian/medical
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Field Medic","Psychiatrist")
+
+/datum/gear/uniform/job_altevian/eng
+	display_name = "altevian uniform, eng"
+	path = /obj/item/clothing/under/pants/altevian/engineering
+	allowed_roles = list("Chief Engineer","Atmospheric Technician","Engineer")
+
+/datum/gear/uniform/job_altevian/sci
+	display_name = "altevian uniform, sci"
+	path = /obj/item/clothing/under/pants/altevian/science
+	allowed_roles = list("Research Director", "Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
+
+/datum/gear/uniform/job_altevian/crg
+	display_name = "altevian uniform, cargo"
+	path = /obj/item/clothing/under/pants/altevian/cargo
+	allowed_roles = list("Quartermaster", "Cargo Technician", "Shaft Miner")
+
+/datum/gear/uniform/job_altevian/civ
+	display_name = "altevian uniform, civ"
+	path = /obj/item/clothing/under/pants/altevian
