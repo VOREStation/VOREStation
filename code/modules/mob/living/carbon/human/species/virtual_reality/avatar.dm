@@ -35,7 +35,7 @@
 		/mob/living/carbon/human/proc/shapeshifter_select_hair_colors,
 		/mob/living/carbon/human/proc/shapeshifter_select_gender,
 		/mob/living/carbon/human/proc/regenerate,
-		/mob/living/carbon/human/proc/shapeshifter_change_opacity,
+		/mob/living/carbon/human/proc/promethean_select_opaqueness,
 		/mob/living/carbon/human/proc/exit_vr
 		)
 
