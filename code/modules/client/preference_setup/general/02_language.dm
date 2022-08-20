@@ -139,7 +139,7 @@
 
 	else if(href_list["set_custom_key"])
 		var/lang = href_list["set_custom_key"]
-		if(!lang in GLOB.all_languages)
+		if(!(lang in GLOB.all_languages))
 			return TOPIC_REFRESH
 
 		var/oldkey = ""
@@ -157,7 +157,7 @@
 					pref.language_custom_keys -= key
 					break
 		else if(contains_az09(char))
-			if(!char in pref.language_custom_keys)
+			if(!(char in pref.language_custom_keys))
 				pref.language_custom_keys += char
 			pref.language_custom_keys[char] = lang
 		else
