@@ -288,11 +288,17 @@
 		var/datum/language/L = locate(href_list["set_lang_key"])
 		if(L && (L in languages))
 			var/old_key = get_custom_prefix_by_lang(src, L)
-			var/custom_key = tgui_input_text(src, "Input a new key for [L.name]", "Language Key", null)
+			var/custom_key = tgui_input_text(src, "Input a new key for [L.name]", "Language Key", old_key)
 			if(custom_key && length(custom_key) == 1)
-				language_keys[custom_key] = L
-				if(old_key && old_key != custom_key)
-					language_keys.Remove(old_key)
+				if(contains_az09(custom_key))
+					language_keys[custom_key] = L
+					if(old_key && old_key != custom_key)
+						language_keys.Remove(old_key)
+				else if(custom_key == " ")
+					if(old_key && old_key != custom_key)
+						language_keys.Remove(old_key)
+				else
+					tgui_alert_async(src, "Improper language key. Rejected.", "Error")
 		check_languages()
 	else
 		return ..()
