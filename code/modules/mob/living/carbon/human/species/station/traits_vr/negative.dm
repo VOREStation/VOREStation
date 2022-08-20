@@ -146,13 +146,6 @@
 /datum/trait/negative/monolingual
 	name = "Monolingual"
 	desc = "You are not good at learning languages."
-	cost = -3
-	var_changes = list("num_alternate_languages" = 0)
-	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
-
-/datum/trait/negative/monolingual
-	name = "Monolingual"
-	desc = "You are not good at learning languages."
 	cost = -1
 	var_changes = list("num_alternate_languages" = 0)
 	var_changes_pref = list("extra_languages" = -3)
