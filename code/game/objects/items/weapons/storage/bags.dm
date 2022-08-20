@@ -383,7 +383,7 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	w_class = ITEMSIZE_SMALL
-	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash)
+	can_hold = list(/obj/item/weapon/coin,/obj/item/weapon/spacecash,/obj/item/weapon/spacecasinocash)
 
 	// -----------------------------
 	//           Chemistry Bag

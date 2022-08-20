@@ -10,7 +10,7 @@
 	anchored = 1
 
 /obj/machinery/chipmachine/attackby(obj/item/I as obj, mob/user as mob)
-	if(istype(I,/obj/item/weapon/spacecash))
+	if(istype(I,/obj/item/weapon/spacecash) && (I:worth >= 5))
 		//consume the money
 		if(prob(50))
 			playsound(loc, 'sound/items/polaroid1.ogg', 50, 1)
@@ -30,7 +30,7 @@
 			playsound(loc, 'sound/items/polaroid2.ogg', 50, 1)
 
 		user << "<span class='info'>You insert [I] into [src].</span>"
-		spawn_money(round(I:worth/5), src.loc)
+		spawn_money(round(I:worth*5), src.loc)
 		src.attack_hand(user)
 		qdel(I)
 

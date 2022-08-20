@@ -534,27 +534,27 @@
 	return
 
 //
-//Slave Terminal
+//Sentient Prize Terminal
 //
-/obj/machinery/casinoslave_handler
+/obj/machinery/casinosentientprize_handler
 	name = "Sentient Prize Automated Sales Machinery"
 	desc = "The Sentient Prize Automated Sales Machinery, also known as SPASM! Here one can see who is on sale as sentinet prizes, as well as selling self and also buying prizes."
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "casinoslave_hub_off"
 	density = 1
 	anchored = 1
-	req_access = list(300)
+	req_access = list(101)
 
-	var/casinoslave_sale = "disabled"
-	var/casinoslave_price = 100
+	var/casinosentientprize_sale = "disabled"
+	var/casinosentientprize_price = 500
 	var/collar_list = list()
-	var/slaves_ckeys_list = list() //Same trick as lottery, to keep life simple
-	var/obj/item/clothing/accessory/collar/casinoslave/selected_collar = null
+	var/sentientprizes_ckeys_list = list() //Same trick as lottery, to keep life simple
+	var/obj/item/clothing/accessory/collar/casinosentientprize/selected_collar = null
 
-/obj/machinery/casinoslave_handler/attack_hand(mob/living/user as mob)
+/obj/machinery/casinosentientprize_handler/attack_hand(mob/living/user as mob)
 	if(usr.incapacitated())
 		return
-	if(casinoslave_sale == "disabled")
+	if(casinosentientprize_sale == "disabled")
 		to_chat(user,"<span class='notice'>The SPASM is disabled.</span> ")
 		return
 
@@ -565,14 +565,14 @@
 			if("Show selected Prize")
 				if(QDELETED(selected_collar))
 					collar_list -= selected_collar
-					slaves_ckeys_list -= selected_collar.slaveckey
+					sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
 					to_chat(user, "<span class='warning'>No collar is currently selected or the currently selected one has been destroyed or disabled.</span>")
 					selected_collar = null
 					return
 				to_chat(user, "<span class='warning'>Sentient Prize information</span>")
-				to_chat(user, "<span class='notice'>Name: [selected_collar.slavename]</span>")
-				to_chat(user, "<span class='notice'>Description: [selected_collar.slaveflavor]</span>")
-				to_chat(user, "<span class='notice'>OOC: [selected_collar.slaveooc]</span>")
+				to_chat(user, "<span class='notice'>Name: [selected_collar.sentientprizename]</span>")
+				to_chat(user, "<span class='notice'>Description: [selected_collar.sentientprizeflavor]</span>")
+				to_chat(user, "<span class='notice'>OOC: [selected_collar.sentientprizeooc]</span>")
 				if(selected_collar.ownername != null)
 					to_chat(user, "<span class='warning'>This prize is already owned by [selected_collar.ownername]</span>")
 
@@ -580,47 +580,50 @@
 				selected_collar = tgui_input_list(user, "Select a prize", "Chose a collar", collar_list)
 				if(QDELETED(selected_collar))
 					collar_list -= selected_collar
-					slaves_ckeys_list -= selected_collar.slaveckey
+					sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
 					to_chat(user, "<span class='warning'>No collars to chose, or selected collar has been destroyed or deactived, selection has been removed from list.</span>")
 					selected_collar = null
 					return
 
 			if("Become Prize (Please examine yourself first)") //Its awkward, but no easy way to obtain flavor_text due to server not loading text of mob until its been examined at least once.
 				var/safety_ckey = user.client.ckey
-				if(safety_ckey in slaves_ckeys_list)
+				if(safety_ckey in sentientprizes_ckeys_list)
 					to_chat(user, "<span class='warning'>The SPASM beeps in an upset manner, you already have a collar!</span>")
 					return
 				var/confirm = tgui_alert(usr, "Are you sure you want to become a sentient prize?", "Confirm Sentient Prize", list("Yes", "No"))
 				if(confirm == "Yes")
 					to_chat(user, "<span class='warning'>You are now a prize!</span>")
-				if(safety_ckey in slaves_ckeys_list)
+				if(safety_ckey in sentientprizes_ckeys_list)
 					to_chat(user, "<span class='warning'>The SPASM beeps in an upset manner, you already have a collar!</span>")
 					return
-				slaves_ckeys_list += user.ckey
-				var/obj/item/clothing/accessory/collar/casinoslave/C = new(src.loc)
-				C.slavename = "[user.name]"
-				C.slaveckey = "[user.ckey]"
-				C.slaveflavor = user.flavor_text
-				C.slaveooc = user.ooc_notes
+				sentientprizes_ckeys_list += user.ckey
+				var/obj/item/clothing/accessory/collar/casinosentientprize/C = new(src.loc)
+				C.sentientprizename = "[user.name]"
+				C.sentientprizeckey = "[user.ckey]"
+				C.sentientprizeflavor = user.flavor_text
+				C.sentientprizeooc = user.ooc_notes
 				C.name = "Sentient Prize Collar: Available! [user.name] purchaseable at the SPASM!"
 				C.desc = "SPASM collar. The tags shows in flashy colorful text the wearer is [user.name] and is currently available to buy at the Sentient Prize Automated Sales Machinery!"
-				C.icon_state = "casinoslave_available"
+				C.icon_state = "casinosentientprize_available"
 				C.update_icon()
 				collar_list += C
 
-				spawn_casinochips(casinoslave_price, src.loc)
+				spawn_casinochips(casinosentientprize_price, src.loc)
 
-/obj/machinery/casinoslave_handler/attackby(obj/item/weapon/W as obj, mob/user as mob)
+/obj/machinery/casinosentientprize_handler/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(usr.incapacitated())
 		return
 
 	if(istype(W, /obj/item/weapon/spacecasinocash))
-		if(casinoslave_sale == "disabled")
+		if(casinosentientprize_sale == "disabled")
 			to_chat(user, "<span class='warning'>Sentient Prize sales are currently disabled.</span>")
+			return
+		if(!selected_collar)
+			to_chat(user, "<span class='warning'>Select a prize first.</span>")
 			return
 		if(!selected_collar.ownername)
 			var/obj/item/weapon/spacecasinocash/C = W
-			if(user.client.ckey == selected_collar.slaveckey)
+			if(user.client.ckey == selected_collar.sentientprizeckey)
 				insert_chip(C, user, "selfbuy")
 				return
 			else
@@ -630,12 +633,12 @@
 			to_chat(user, "<span class='warning'>This Sentient Prize is already owned! If you are the owner you can release the prize by swiping the collar on the SPASM!</span>")
 			return
 
-	if(istype(W, /obj/item/clothing/accessory/collar/casinoslave))
-		var/obj/item/clothing/accessory/collar/casinoslave/C = W
-		if(user.name != C.slavename && user.name != C.ownername)
+	if(istype(W, /obj/item/clothing/accessory/collar/casinosentientprize))
+		var/obj/item/clothing/accessory/collar/casinosentientprize/C = W
+		if(user.name != C.sentientprizename && user.name != C.ownername)
 			to_chat(user, "<span class='warning'>This Sentient Prize collar isn't yours, please give it to the one it tagged for, belongs to, or a casino staff member!</span>")
 			return
-		if(user.name == C.slavename)
+		if(user.name == C.sentientprizename)
 			if(!C.ownername)
 				to_chat(user,"<span class='notice'>If collar isn't disabled and entry removed, please select your entry and insert chips. Or contact staff if you need assistance.</span> ")
 				return
@@ -643,15 +646,15 @@
 				to_chat(user,"<span class='notice'>If collar isn't disabled and entry removed, please ask your owner to free you with collar swipe on the SPASM, or contact staff if you need assistance.</span> ")
 				return
 		if(user.name == C.ownername)
-			var/confirm = tgui_alert(usr, "Are you sure you want to wipe [C.slavename] entry?", "Confirm Sentient Prize Release", list("Yes", "No"))
+			var/confirm = tgui_alert(usr, "Are you sure you want to wipe [C.sentientprizename] entry?", "Confirm Sentient Prize Release", list("Yes", "No"))
 			if(confirm == "Yes")
-				to_chat(user, "<span class='warning'>[C.slavename] collar has been deleted from registry!</span>")
-				C.icon_state = "casinoslave"
+				to_chat(user, "<span class='warning'>[C.sentientprizename] collar has been deleted from registry!</span>")
+				C.icon_state = "casinosentientprize"
 				C.update_icon()
-				C.name = "a disabled Sentient Prize Collar: [C.slavename]"
-				C.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [C.slavename], but harsh red text informs you its been disabled."
-				slaves_ckeys_list -= C.slaveckey
-				C.slaveckey = null
+				C.name = "a disabled Sentient Prize Collar: [C.sentientprizename]"
+				C.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [C.sentientprizename], but harsh red text informs you its been disabled."
+				sentientprizes_ckeys_list -= C.sentientprizeckey
+				C.sentientprizeckey = null
 				collar_list -= C
 
 	if(istype(W, /obj/item/weapon/card/id)||istype(W, /obj/item/device/pda))
@@ -666,13 +669,13 @@
 						return
 
 					if("Toggle Sentient Prize Sales")
-						if(casinoslave_sale == "disabled")
-							casinoslave_sale = "enabled"
+						if(casinosentientprize_sale == "disabled")
+							casinosentientprize_sale = "enabled"
 							icon_state = "casinoslave_hub_on"
 							update_icon()
 							to_chat(user,"<span class='notice'>Prize sale has been enabled.</span> ")
 						else
-							casinoslave_sale = "disabled"
+							casinosentientprize_sale = "disabled"
 							icon_state = "casinoslave_hub_off"
 							update_icon()
 							to_chat(user,"<span class='notice'>Prize sale has been disabled.</span> ")
@@ -683,21 +686,21 @@
 							return
 						if(QDELETED(selected_collar))
 							collar_list -= selected_collar
-							slaves_ckeys_list -= selected_collar.slaveckey
+							sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
 							to_chat(user, "<span class='warning'>Collar has been destroyed!</span>")
 							selected_collar = null
 							return
-						var/safety_ckey = selected_collar.slaveckey
-						var/confirm = tgui_alert(usr, "Are you sure you want to wipe [selected_collar.slavename] entry?", "Confirm Sentient Prize", list("Yes", "No"))
+						var/safety_ckey = selected_collar.sentientprizeckey
+						var/confirm = tgui_alert(usr, "Are you sure you want to wipe [selected_collar.sentientprizename] entry?", "Confirm Sentient Prize", list("Yes", "No"))
 						if(confirm == "Yes")
-							if(safety_ckey == selected_collar.slaveckey)
-								to_chat(user, "<span class='warning'>[selected_collar.slavename] collar has been deleted from registry!</span>")
-								selected_collar.icon_state = "casinoslave"
+							if(safety_ckey == selected_collar.sentientprizeckey)
+								to_chat(user, "<span class='warning'>[selected_collar.sentientprizename] collar has been deleted from registry!</span>")
+								selected_collar.icon_state = "casinosentientprize"
 								selected_collar.update_icon()
-								selected_collar.name = "a disabled Sentient Prize Collar: [selected_collar.slavename]"
-								selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.slavename], but harsh red text informs you its been disabled."
-								slaves_ckeys_list -= selected_collar.slaveckey
-								selected_collar.slaveckey = null
+								selected_collar.name = "a disabled Sentient Prize Collar: [selected_collar.sentientprizename]"
+								selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.sentientprizename], but harsh red text informs you its been disabled."
+								sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
+								selected_collar.sentientprizeckey = null
 								collar_list -= selected_collar
 								selected_collar = null
 							else
@@ -707,12 +710,12 @@
 					if("Change Prize Value")
 						setprice(user)
 
-/obj/machinery/casinoslave_handler/proc/insert_chip(var/obj/item/weapon/spacecasinocash/cashmoney, mob/user, var/buystate)
-	if(cashmoney.worth < casinoslave_price)
+/obj/machinery/casinosentientprize_handler/proc/insert_chip(var/obj/item/weapon/spacecasinocash/cashmoney, mob/user, var/buystate)
+	if(cashmoney.worth < casinosentientprize_price)
 		to_chat(user,"<span class='notice'>You dont have enough chips to pay for the sentient prize!</span> ")
 		return
 
-	cashmoney.worth -= casinoslave_price
+	cashmoney.worth -= casinosentientprize_price
 	cashmoney.update_icon()
 
 	if(cashmoney.worth <= 0)
@@ -721,31 +724,31 @@
 		cashmoney.update_icon()
 
 	if(buystate == "selfbuy")
-		to_chat(user,"<span class='notice'>You put [casinoslave_price] credits worth of chips into the SPASM and nullify your collar!</span> ")
-		selected_collar.icon_state = "casinoslave"
+		to_chat(user,"<span class='notice'>You put [casinosentientprize_price] credits worth of chips into the SPASM and nullify your collar!</span> ")
+		selected_collar.icon_state = "casinosentientprize"
 		selected_collar.update_icon()
-		selected_collar.name = "a disabled Sentient Prize Collar: [selected_collar.slavename]"
-		selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.slavename], but harsh red text informs you its been disabled."
-		slaves_ckeys_list -= selected_collar.slaveckey
-		selected_collar.slaveckey = null
+		selected_collar.name = "a disabled Sentient Prize Collar: [selected_collar.sentientprizename]"
+		selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.sentientprizename], but harsh red text informs you its been disabled."
+		sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
+		selected_collar.sentientprizeckey = null
 		collar_list -= selected_collar
 		selected_collar = null
 
 	if(buystate == "buy")
-		to_chat(user,"<span class='notice'>You put [casinoslave_price] credits worth of chips into the SPASM and it pings to inform you bought [selected_collar.slavename]!</span> ")
-		selected_collar.icon_state = "casinoslave_owned"
+		to_chat(user,"<span class='notice'>You put [casinosentientprize_price] credits worth of chips into the SPASM and it pings to inform you bought [selected_collar.sentientprizename]!</span> ")
+		selected_collar.icon_state = "casinosentientprize_owned"
 		selected_collar.update_icon()
 		selected_collar.ownername = user.name
-		selected_collar.name =  "Sentient Prize Collar: [selected_collar.slavename] owned by [selected_collar.ownername]!"
-		selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.slavename] and they are owned by [selected_collar.ownername]."
+		selected_collar.name =  "Sentient Prize Collar: [selected_collar.sentientprizename] owned by [selected_collar.ownername]!"
+		selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.sentientprizename] and they are owned by [selected_collar.ownername]."
 		selected_collar = null
 
-/obj/machinery/casinoslave_handler/proc/setprice(mob/living/user as mob)
+/obj/machinery/casinosentientprize_handler/proc/setprice(mob/living/user as mob)
 	if(usr.incapacitated())
 		return
 	if(ishuman(usr) || istype(usr, /mob/living/silicon/robot))
-		casinoslave_price = tgui_input_number(usr, "Select the desired price (1-1000)", "Set Price", null, null, 1000, 1)
-		if(casinoslave_price>1000 || casinoslave_price<1)
+		casinosentientprize_price = tgui_input_number(usr, "Select the desired price (1-1000)", "Set Price", null, null, 1000, 1)
+		if(casinosentientprize_price>1000 || casinosentientprize_price<1)
 			to_chat(user,"<span class='notice'>Invalid price.</span> ")
 			return
-		to_chat(user,"<span class='notice'>You set the price to [casinoslave_price]</span> ")
+		to_chat(user,"<span class='notice'>You set the price to [casinosentientprize_price]</span> ")
