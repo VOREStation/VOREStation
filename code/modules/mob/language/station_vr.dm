@@ -102,7 +102,7 @@
 	exclaim_verb = "GAOS"
 	whisper_verb = "gaos"
 	colour = "drudakar"
-	key = "K"
+	key = "X"
 	syllables = list(
 		"gok", "rha", "rou", "gao", "do", "ra", "bo", "lah", "draz", "khi", "zah", "lah", "ora", "ille",
 		"ghlas", "ghlai", "tyur", "vah", "bao", "raag", "drag", "zhi", "dahl", "tiyr", "vahl", "nyem",
