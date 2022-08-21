@@ -162,11 +162,15 @@ var/list/mentor_verbs_default = list(
 // This not really a great place to put it, but this verb replaces adminhelp in hotkeys so that people requesting help can select the type they need
 // You can still directly adminhelp if necessary, this ONLY replaces the inbuilt hotkeys
 
-/client/verb/requesthelp(msg as text)
+/client/verb/requesthelp()
 	set category = "Admin"
 	set name = "Request help"
+	set hidden = 1
 
-	if(tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp")) == "Mentorhelp")
+	var/mhelp = tgui_alert(usr, "Select the help you need.","Request for Help",list("Adminhelp","Mentorhelp")) == "Mentorhelp"
+	var/msg = tgui_input_text(usr, "Input your request for help.", "Request for Help")
+
+	if (mhelp)
 		mentorhelp(msg)
 		return
 
