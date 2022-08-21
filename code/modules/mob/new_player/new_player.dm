@@ -604,6 +604,11 @@
 		if(chosen_language)
 			if(is_lang_whitelisted(src,chosen_language) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language(lang)
+	for(var/key in client.prefs.language_custom_keys)
+		if(client.prefs.language_custom_keys[key])
+			var/datum/language/keylang = GLOB.all_languages[client.prefs.language_custom_keys[key]]
+			if(keylang)
+				new_character.language_keys[key] = keylang
 	// And uncomment this, too.
 	//new_character.dna.UpdateSE()
 
