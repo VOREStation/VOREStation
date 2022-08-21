@@ -420,6 +420,7 @@
 		user.add_language(LANGUAGE_ALAI)
 		user.add_language(LANGUAGE_PROMETHEAN)
 		user.add_language(LANGUAGE_GIBBERISH)
+		user.add_language("Mouse")
 		user.add_language("Animal")
 		user.add_language("Teppi")
 	else
@@ -446,6 +447,7 @@
 		user.remove_language(LANGUAGE_ALAI)
 		user.remove_language(LANGUAGE_PROMETHEAN)
 		user.remove_language(LANGUAGE_GIBBERISH)
+		user.remove_language("Mouse")
 		user.remove_language("Animal")
 		user.remove_language("Teppi")
 

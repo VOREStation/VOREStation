@@ -2,7 +2,7 @@
 	name = "Casino Creature Container (Cat)"
 	desc = "It is set to detonate in 5 seconds. It will release a cat won from the casino prize vendor!"
 	icon = 'icons/obj/casino.dmi'
-	icon_state = "casino"
+	icon_state = "casino_delivery"
 	item_state = "flashbang"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 2)
 	spawner_type = /mob/living/simple_mob/animal/passive/cat
@@ -74,6 +74,11 @@
 	desc = "It is set to detonate in 5 seconds. It will release a otie won from the casino prize vendor!"
 	name = "Casino Creature Container (Otie)"
 	spawner_type = /mob/living/simple_mob/otie/friendly
+
+/obj/item/weapon/grenade/spawnergrenade/casino/goldcrest
+	desc = "It is set to detonate in 5 seconds. It will release a bird won from the casino prize vendor!"
+	name = "Casino Creature Container (Bird)"
+	spawner_type = /mob/living/simple_mob/animal/passive/bird/goldcrest
 
 //
 // Mecha

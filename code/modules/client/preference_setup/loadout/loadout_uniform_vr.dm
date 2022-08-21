@@ -282,36 +282,13 @@ Talon jumpsuit
 	path = /obj/item/clothing/under/undersuit/command
 
 //Altevian Uniforms
-/datum/gear/uniform/job_altevian/cmd
-	display_name = "altevian uniform, cmd"
-	path = /obj/item/clothing/under/pants/altevian/command
-	allowed_roles = list("Head of Security","Site Manager","Head of Personnel","Chief Engineer","Research Director","Chief Medical Officer")
+/datum/gear/uniform/altevian
+	description = "An extremely comfortable set of clothing that's made to help people handle their day to day work around the fleets with little to no discomfort."
+	display_name = "altevian uniform selection"
 
-/datum/gear/uniform/job_altevian/sec
-	display_name = "altevian uniform, sec"
-	path = /obj/item/clothing/under/pants/altevian/security
-	allowed_roles = list("Head of Security", "Warden", "Detective", "Security Officer")
-
-/datum/gear/uniform/job_altevian/med
-	display_name = "altevian uniform, med"
-	path = /obj/item/clothing/under/pants/altevian/medical
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Field Medic","Psychiatrist")
-
-/datum/gear/uniform/job_altevian/eng
-	display_name = "altevian uniform, eng"
-	path = /obj/item/clothing/under/pants/altevian/engineering
-	allowed_roles = list("Chief Engineer","Atmospheric Technician","Engineer")
-
-/datum/gear/uniform/job_altevian/sci
-	display_name = "altevian uniform, sci"
-	path = /obj/item/clothing/under/pants/altevian/science
-	allowed_roles = list("Research Director", "Scientist", "Roboticist", "Xenobiologist", "Xenobotanist")
-
-/datum/gear/uniform/job_altevian/crg
-	display_name = "altevian uniform, cargo"
-	path = /obj/item/clothing/under/pants/altevian/cargo
-	allowed_roles = list("Quartermaster", "Cargo Technician", "Shaft Miner")
-
-/datum/gear/uniform/job_altevian/civ
-	display_name = "altevian uniform, civ"
-	path = /obj/item/clothing/under/pants/altevian
+/datum/gear/uniform/altevian/New()
+	..()
+	var/list/pants = list()
+	for(var/obj/item/clothing/under/pants/altevian/pants_type as anything in typesof(/obj/item/clothing/under/pants/altevian))
+		pants[initial(pants_type.name)] = pants_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))

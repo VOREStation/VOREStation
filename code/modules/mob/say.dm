@@ -180,6 +180,8 @@
 			// Okay, we're definitely now trying to invoke a language (probably)
 			// This "[]" is probably unnecessary but BYOND will runtime if a number is used
 			var/datum/language/L = GLOB.language_keys["[language_key]"]
+			if((language_key in language_keys) && language_keys[language_key])
+				L = language_keys[language_key]
 
 			// MULTILINGUAL_SPACE enforces a space after the language key
 			if(client && (client.prefs.multilingual_mode == MULTILINGUAL_SPACE) && (text2ascii(copytext(selection, 3, 4)) != 32)) // If we're looking for a space and we don't find one
