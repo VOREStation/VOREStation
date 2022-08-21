@@ -21,7 +21,7 @@
 
 	var/health_deficiency = (getMaxHealth() - health)
 	if(health_deficiency >= 40) //VOREStation Edit Start
-		if(chem_effects[CE_PAINKILLER] > 0) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
+		if(chem_effects[CE_PAINKILLER]) //On painkillers? Reduce pain! On anti-painkillers? Increase pain!
 			health_deficiency = max(0, health_deficiency - src.chem_effects[CE_PAINKILLER])
 		if(health_deficiency >= 40) //Still in enough pain for it to be significant?
 			. += (health_deficiency / 25) //VOREStation Edit End
