@@ -176,7 +176,7 @@
 /proc/spawn_casinochips(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	var/obj/item/weapon/spacecasinocash/SC = new (spawnloc)
 
-	SC.set_worth(sum)
+	SC.set_worth(sum, TRUE)
 	if (ishuman(human_user) && !human_user.get_active_hand())
 		human_user.put_in_hands(SC)
 	return
