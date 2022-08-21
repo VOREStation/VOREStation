@@ -1528,7 +1528,7 @@
 		return
 
 	// Puke if toxloss is too high
-	if(!stat)
+	if(!stat && !isbelly(loc))
 		if (getToxLoss() >= 30 && isSynthetic())
 			if(!confused)
 				if(prob(5))
