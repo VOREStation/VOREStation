@@ -219,7 +219,7 @@
 /obj/item/weapon/reagent_containers/borghypo/hound/trauma
 	name = "Hound hypospray"
 	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
-	reagent_ids = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
+	reagent_ids = list("tricordrazine", "inaprovaline", "oxycodone", "dexalin" ,"spaceacillin")
 
 
 //Tongue stuff
