@@ -323,7 +323,7 @@
 	name = "random drink"
 	desc = "This is a random drink."
 	icon = 'icons/obj/drinks.dmi'
-	icon_state = "whiskeybottle"
+	icon_state = "whiskeybottle1"
 
 /obj/random/drinkbottle/item_to_spawn()
 	return pick(/obj/item/weapon/reagent_containers/food/drinks/bottle/whiskey,
