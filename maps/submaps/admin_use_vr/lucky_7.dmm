@@ -25,7 +25,7 @@
 "ay" = (/obj/structure/flora/pottedplant/tall,/obj/effect/floor_decal/spline/plain{dir = 4},/turf/simulated/floor/carpet/turcarpet,/area/submap/casino_event)
 "az" = (/turf/simulated/floor/carpet/brown,/area/submap/casino_event)
 "aA" = (/obj/structure/table/woodentable,/obj/machinery/light{dir = 8},/obj/effect/floor_decal/spline/plain{dir = 4},/turf/simulated/floor/carpet/turcarpet,/area/submap/casino_event)
-"aB" = (/obj/machinery/door/airlock{name = "Arcade"},/obj/item/tape/engineering,/turf/simulated/floor/carpet/retro,/area/submap/casino_event)
+"aB" = (/obj/machinery/door/airlock{name = "Arcade"},/turf/simulated/floor/carpet/retro,/area/submap/casino_event)
 "aC" = (/obj/structure/bed/chair/comfy/black{dir = 4},/turf/simulated/floor/carpet/retro,/area/submap/casino_event)
 "aD" = (/obj/structure/table/gamblingtable,/turf/simulated/floor/carpet/retro,/area/submap/casino_event)
 "aE" = (/obj/structure/bed/chair/comfy/black{dir = 8},/turf/simulated/floor/carpet/retro,/area/submap/casino_event)
@@ -454,6 +454,7 @@
 "iL" = (/turf/space,/area/submap/casino_event)
 "iM" = (/obj/structure/casino_table/craps,/obj/machinery/light/floortube{dir = 8},/obj/item/weapon/dice{pixel_x = 4; pixel_y = 6},/obj/item/weapon/storage/dicecup,/turf/simulated/floor/carpet/brown,/area/submap/casino_event)
 "iN" = (/obj/structure/sink{pixel_y = 20},/obj/structure/mirror{pixel_y = 38},/turf/simulated/floor/tiled/white,/area/submap/casino_event)
+"iO" = (/obj/effect/floor_decal/spline/plain{dir = 1},/turf/simulated/floor/wood,/area/submap/casino_event)
 "iP" = (/obj/structure/casino_table/blackjack_m{dir = 1},/obj/item/weapon/deck/cards/casino,/turf/simulated/floor/carpet/bcarpet,/area/submap/casino_event)
 "iQ" = (/obj/structure/casino_table/blackjack_m{dir = 1},/obj/item/weapon/deck/cards/casino,/turf/simulated/floor/carpet/gaycarpet,/area/submap/casino_event)
 "iR" = (/obj/structure/casino_table/blackjack_m{dir = 1},/obj/item/weapon/deck/cards/casino,/turf/simulated/floor/carpet/turcarpet,/area/submap/casino_event)
@@ -468,6 +469,8 @@
 "ja" = (/obj/structure/closet/walllocker_double{dir = 8; name = "Game Cabinet"; pixel_x = -28},/obj/item/weapon/deck/cards/casino,/obj/item/weapon/deck/cards,/turf/simulated/floor/carpet/bcarpet,/area/submap/casino_event)
 "jb" = (/obj/structure/closet/walllocker_double{dir = 8; name = "Game Cabinet"; pixel_x = -28},/obj/item/weapon/deck/cards/casino,/obj/item/weapon/deck/cards,/turf/simulated/floor/carpet/gaycarpet,/area/submap/casino_event)
 "jc" = (/obj/structure/closet/walllocker_double{dir = 8; name = "Game Cabinet"; pixel_x = -28},/obj/item/weapon/deck/cards/casino,/obj/item/weapon/deck/cards,/turf/simulated/floor/carpet/turcarpet,/area/submap/casino_event)
+"jd" = (/obj/effect/floor_decal/spline/plain{dir = 5},/turf/simulated/floor/wood,/area/submap/casino_event)
+"je" = (/obj/machinery/door/airlock{id_tag = "L7 Room 5"; name = "Private Room 5"},/turf/simulated/floor/wood,/area/submap/casino_event)
 "jn" = (/obj/machinery/door/airlock{name = "Tournament Room"},/turf/simulated/floor/carpet/blue2,/area/submap/casino_event)
 "jq" = (/obj/structure/flora/pottedplant/tall,/turf/simulated/floor/carpet/brown,/area/submap/casino_event)
 "jx" = (/obj/machinery/vending/foodasian,/turf/simulated/floor/lino,/area/submap/casino_event)
@@ -551,7 +554,7 @@ iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaeePeQeP
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaecncncncnaeeVcGcGffaefgcGfhcGfiaeaSaOaeaiaiaiaejAjGjBjAjBjHazazazazazazazazeffjdQazazazazazazazazazazazazdOaefkflfmflflaefofpfqfpfpaefsftfuftftaeiLiLiLiLiLiLaefYiziAiBisfYiziAiBisbqbqaeiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaeaeaeaeaeaeaeeLeLcncnaefyfzcGfAaefBcGfCfDfEaeaPaOaefFfGfHaejCjDjEjIjJjKazdiaUfIdjdOaeaIazerdQdOaeaIazazeffJazazazdPdQazaeflfKfLfKflaefpfMfNfMfpaeftfOfPfOftaeiLiLiLiLiLiLaebqbqiCbqbqbqbqiCbqbqbqbqaeiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaecGcGfQiKiJaeaeaefRaeaeaefSfTaeaeaeezaeaeaeaeaeaeaeaeaeaeaeeNeNeNeNeNeNazdifUaUdjazcOazazazazazcTazazazeffVdQazeffjdQazaefWfXiPfZgaaegbgciQgegfaeggghiRgjgkaeiLiLiLiLiLiLaeaeaeaeaeaeaeaeaeaeaeaeaeaeiLiLiLiLiLiLiLiLiLiLiL
-iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaecGcGcGcGcGcGcGcGcGcGglgmgngngogpgqcGgrgpgsglgtgtgtgugvgwgTgtgtgtgtgtgtazazazazazazazazazazazazazazazazefgxazazazerdQazaejaflgyflflaejbfpgzfpfpaejcftgAftftaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
+iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaecGcGcGcGcGcGcGcGcGcGglgmgngngogpgqcGgrgpgsglgtgtgtgugvgwgTiOiOiOiOiOjdazazazazazazazazazazazazazazazazefgxazazazerdQazaejaflgyflflaejbfpgzfpfpaejcftgAftftaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaecGcGcGcGcGcGcGcGcGcGglcGcGcGcGcGcGcGcGcGcGglgtgtgtgtgtgtgtgtgtgtgtgtgBazbababababaazazgCazazbababababaazazazgCazazazazaeaeiHaeaeaeaeaeiHaeaeaeaeaeiHaeaeaeaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaecGcGcGcGcGcGcGgDcGcGglgEgFgGgFgFgFgFgGgFgHglgtgtgtgtgtgtgtgtgtgtgtgtgBazbhbhbhbhbhazgIgJgKazbhbhbhbhbhazazgIgJgKazazdOaehxgtgthEhQaehxgtgthEiDaehxgtgthEiEaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaecGcGgDcGcGaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaeaegtgLgLgLgtgLgLgLgtgLgLgLgBazbvbvbvbvbvazgMgMgMazbvbvbvbvbvazazgMgMgMazazcZaehFgtgWgtgtaehFgtgWgtgtaehFgtgWgtgtaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
@@ -568,7 +571,7 @@ iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaeayazazazazhqhqhqazaJazazazaJazazazazazazazazhqhqaJazaKaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaeaAazazazazazazazazazazazazazazazazazazazazazazazazazaRaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaeayazazgXazazazazazazazgXazazazazazazazgXazazazazazazaKaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
-iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaeaehraeaeaehsaeaeaehtaeaeaehuaeaeaehuaeaeaehvaeaeaeaeaeaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
+iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaeaehraeaeaehsaeaeaehtaeaeaehuaeaeaejeaeaeaehvaeaeaeaeaeaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaegthzhxaegthAhxaegthBhxaegthChxaegtiFhxaegtiXgtgtgthDgtaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaehEgthFaehEgthFaehEgthFaehEgthFaehEgthFaehGgthHhIdDdDhJaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL
 iLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLaehKgtgtaehKgtgtaehKgtgtaehKgtgtaehKgtgtaehLgthMhNdDdDhOaeiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiLiL

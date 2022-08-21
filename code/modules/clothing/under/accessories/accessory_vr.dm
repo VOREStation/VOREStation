@@ -394,7 +394,7 @@
 //Casino Sentient Prize Collar
 
 /obj/item/clothing/accessory/collar/casinosentientprize
-	name = "a disabled Sentient Prize Collar"
+	name = "disabled Sentient Prize Collar"
 	desc = "A collar worn by sentient prizes registered to a SPASM. Although the red text on it shows its disconnected and nonfunctional."
 
 	icon_state = "casinoslave"
@@ -411,7 +411,7 @@
 	//keeping it blank so people don't tag and reset collar status
 
 /obj/item/clothing/accessory/collar/casinosentientprize_fake
-	name = "a Sentient Prize Collar"
+	name = "Sentient Prize Collar"
 	desc = "A collar worn by sentient prizes registered to a SPASM. This one has been disconnected from the system and is now an accessory!"
 
 	icon_state = "casinoslave_owned"

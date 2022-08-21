@@ -541,7 +541,7 @@
 	desc = "The Sentient Prize Automated Sales Machinery, also known as SPASM! Here one can see who is on sale as sentinet prizes, as well as selling self and also buying prizes."
 	icon = 'icons/obj/casino.dmi'
 	icon_state = "casinoslave_hub_off"
-	density = 1
+	density = 0
 	anchored = 1
 	req_access = list(101)
 
@@ -604,7 +604,7 @@
 				C.sentientprizeooc = user.ooc_notes
 				C.name = "Sentient Prize Collar: Available! [user.name] purchaseable at the SPASM!"
 				C.desc = "SPASM collar. The tags shows in flashy colorful text the wearer is [user.name] and is currently available to buy at the Sentient Prize Automated Sales Machinery!"
-				C.icon_state = "casinosentientprize_available"
+				C.icon_state = "casinoslave_available"
 				C.update_icon()
 				collar_list += C
 
@@ -649,9 +649,9 @@
 			var/confirm = tgui_alert(usr, "Are you sure you want to wipe [C.sentientprizename] entry?", "Confirm Sentient Prize Release", list("Yes", "No"))
 			if(confirm == "Yes")
 				to_chat(user, "<span class='warning'>[C.sentientprizename] collar has been deleted from registry!</span>")
-				C.icon_state = "casinosentientprize"
+				C.icon_state = "casinoslave"
 				C.update_icon()
-				C.name = "a disabled Sentient Prize Collar: [C.sentientprizename]"
+				C.name = "disabled Sentient Prize Collar: [C.sentientprizename]"
 				C.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [C.sentientprizename], but harsh red text informs you its been disabled."
 				sentientprizes_ckeys_list -= C.sentientprizeckey
 				C.sentientprizeckey = null
@@ -695,9 +695,9 @@
 						if(confirm == "Yes")
 							if(safety_ckey == selected_collar.sentientprizeckey)
 								to_chat(user, "<span class='warning'>[selected_collar.sentientprizename] collar has been deleted from registry!</span>")
-								selected_collar.icon_state = "casinosentientprize"
+								selected_collar.icon_state = "casinoslave"
 								selected_collar.update_icon()
-								selected_collar.name = "a disabled Sentient Prize Collar: [selected_collar.sentientprizename]"
+								selected_collar.name = "disabled Sentient Prize Collar: [selected_collar.sentientprizename]"
 								selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.sentientprizename], but harsh red text informs you its been disabled."
 								sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
 								selected_collar.sentientprizeckey = null
@@ -725,9 +725,9 @@
 
 	if(buystate == "selfbuy")
 		to_chat(user,"<span class='notice'>You put [casinosentientprize_price] credits worth of chips into the SPASM and nullify your collar!</span> ")
-		selected_collar.icon_state = "casinosentientprize"
+		selected_collar.icon_state = "casinoslave"
 		selected_collar.update_icon()
-		selected_collar.name = "a disabled Sentient Prize Collar: [selected_collar.sentientprizename]"
+		selected_collar.name = "disabled Sentient Prize Collar: [selected_collar.sentientprizename]"
 		selected_collar.desc = "A collar worn by sentient prizes registered to a SPASM. The tag says its registered to [selected_collar.sentientprizename], but harsh red text informs you its been disabled."
 		sentientprizes_ckeys_list -= selected_collar.sentientprizeckey
 		selected_collar.sentientprizeckey = null
@@ -736,7 +736,7 @@
 
 	if(buystate == "buy")
 		to_chat(user,"<span class='notice'>You put [casinosentientprize_price] credits worth of chips into the SPASM and it pings to inform you bought [selected_collar.sentientprizename]!</span> ")
-		selected_collar.icon_state = "casinosentientprize_owned"
+		selected_collar.icon_state = "casinoslave_owned"
 		selected_collar.update_icon()
 		selected_collar.ownername = user.name
 		selected_collar.name =  "Sentient Prize Collar: [selected_collar.sentientprizename] owned by [selected_collar.ownername]!"
