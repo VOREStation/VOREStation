@@ -342,6 +342,7 @@
 	src.modules += new /obj/item/device/healthanalyzer(src)
 	src.modules += new /obj/item/weapon/dogborg/jaws/small(src)
 	src.modules += new /obj/item/device/dogborg/boop_module(src)
+	src.modules += new /obj/item/weapon/autopsy_scanner(src)
 	src.modules += new /obj/item/weapon/surgical/scalpel/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/hemostat/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/retractor/cyborg(src)
