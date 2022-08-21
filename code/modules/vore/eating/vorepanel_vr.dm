@@ -176,6 +176,8 @@
 			"digest_brute" = selected.digest_brute,
 			"digest_burn" = selected.digest_burn,
 			"digest_oxy" = selected.digest_oxy,
+			"digest_tox" = selected.digest_tox,
+			"digest_clone" = selected.digest_clone,
 			"bulge_size" = selected.bulge_size,
 			"save_digest_mode" = selected.save_digest_mode,
 			"display_absorbed_examine" = selected.display_absorbed_examine,
@@ -1094,6 +1096,20 @@
 				return FALSE
 			var/new_new_damage = CLAMP(new_damage, 0, 12)
 			host.vore_selected.digest_oxy = new_new_damage
+			. = TRUE
+		if("b_tox_dmg")
+			var/new_damage = tgui_input_number(user, "Choose the amount of toxins damage prey will take per tick. Ranges from 0 to 6", "Set Belly Toxins Damage.", host.vore_selected.digest_tox, 6, 0)
+			if(new_damage == null)
+				return FALSE
+			var/new_new_damage = CLAMP(new_damage, 0, 6)
+			host.vore_selected.digest_tox = new_new_damage
+			. = TRUE
+		if("b_clone_dmg")
+			var/new_damage = tgui_input_number(user, "Choose the amount of brute DNA damage (clone) prey will take per tick. Ranges from 0 to 6", "Set Belly Clone Damage.", host.vore_selected.digest_clone, 6, 0)
+			if(new_damage == null)
+				return FALSE
+			var/new_new_damage = CLAMP(new_damage, 0, 6)
+			host.vore_selected.digest_clone = new_new_damage
 			. = TRUE
 		if("b_emoteactive")
 			host.vore_selected.emote_active = !host.vore_selected.emote_active
