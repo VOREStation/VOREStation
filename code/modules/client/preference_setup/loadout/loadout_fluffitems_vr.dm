@@ -326,6 +326,13 @@
 	ckeywhitelist = list("coolcrow420")
 	character_name = list("Jade Davis")
 
+/datum/gear/fluff/m4il_hdd
+	path = /obj/item/weapon/implant/language/fluff/m41l
+	display_name = "dusty hard drive"
+	slot = "implant"
+	ckeywhitelist = list("coolcrow420")
+	character_name = list("M41L")
+
 //  D CKEYS
 /datum/gear/fluff/dhaeleena_medal
 	path = /obj/item/clothing/accessory/medal/silver/security/fluff/dhael
