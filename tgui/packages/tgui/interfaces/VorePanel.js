@@ -495,6 +495,8 @@ const VoreSelectedBellyOptions = (props, context) => {
     digest_brute,
     digest_burn,
     digest_oxy,
+    digest_tox,
+    digest_clone,
     bulge_size,
     display_absorbed_examine,
     shrink_grow_size,
@@ -602,6 +604,12 @@ const VoreSelectedBellyOptions = (props, context) => {
           </LabeledList.Item>
           <LabeledList.Item label="Digest Suffocation Damage">
             <Button onClick={() => act('set_attribute', { attribute: 'b_oxy_dmg' })} content={digest_oxy} />
+          </LabeledList.Item>
+          <LabeledList.Item label="Digest Toxins Damage">
+            <Button onClick={() => act('set_attribute', { attribute: 'b_tox_dmg' })} content={digest_tox} />
+          </LabeledList.Item>
+          <LabeledList.Item label="Digest Clone Damage">
+            <Button onClick={() => act('set_attribute', { attribute: 'b_clone_dmg' })} content={digest_clone} />
           </LabeledList.Item>
           <LabeledList.Item label="Shrink/Grow Size">
             <Button
