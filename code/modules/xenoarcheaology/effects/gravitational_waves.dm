@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-
-/datum/artifact_effect/gravity_wave
-=======
 /datum/artifact_effect/extreme/gravity_wave
->>>>>>> d7f2f2b100a... Merge pull request #8626 from Atermonera/singunomaly
 	name = "gravity wave"
 	effect_type = EFFECT_ENERGY
 
@@ -13,12 +8,6 @@
 	effect_state = "gravisphere"
 	effect_color = "#d8c3ff"
 
-<<<<<<< HEAD
-/datum/artifact_effect/gravity_wave/DoEffectTouch(var/mob/user)
-	gravwave(user, effectrange, STAGE_TWO)
-
-/datum/artifact_effect/gravity_wave/DoEffectAura()
-=======
 /datum/artifact_effect/extreme/gravity_wave/New()
 	..()
 	effect_type = pick(EFFECT_ENERGY, EFFECT_BLUESPACE, EFFECT_PSIONIC)
@@ -35,7 +24,6 @@
 	gravwave(user, effectrange, pull_power)
 
 /datum/artifact_effect/extreme/gravity_wave/DoEffectAura()
->>>>>>> d7f2f2b100a... Merge pull request #8626 from Atermonera/singunomaly
 	var/atom/holder = get_master_holder()
 	var/seconds_since_last_pull = max(0, round((last_wave_pull - world.time) / 10))
 
@@ -44,11 +32,7 @@
 		last_wave_pull = world.time
 		gravwave(get_turf(holder), effectrange, pull_power)
 
-<<<<<<< HEAD
-/datum/artifact_effect/gravity_wave/DoEffectPulse()
-=======
 /datum/artifact_effect/extreme/gravity_wave/DoEffectPulse()
->>>>>>> d7f2f2b100a... Merge pull request #8626 from Atermonera/singunomaly
 	var/atom/holder = get_master_holder()
 	holder.visible_message("<span class='alien'>\The [holder] distorts as local gravity intensifies, and shifts toward it.</span>")
 	gravwave(get_turf(holder), effectrange, pull_power)
