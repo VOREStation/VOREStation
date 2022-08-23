@@ -20,7 +20,23 @@
 				qdel(src)
 	return
 
+<<<<<<< HEAD
 /obj/effect/spider/attackby(var/obj/item/weapon/W, var/mob/user)
+=======
+/obj/effect/spider/attack_generic(mob/user)
+	if(isanimal(user))
+		var/mob/living/simple_mob/animal/critter = user
+		if(critter.melee_damage_lower > 0)
+			critter.do_attack_animation(src)
+			critter.setClickCooldown(critter.base_attack_cooldown)
+			visible_message(SPAN_WARNING("\The [src] has been [pick(critter.attacktext)] by \the [critter]!"))
+			health -= rand(critter.melee_damage_lower, critter.melee_damage_upper)
+			healthcheck()
+			return TRUE
+	. = ..()
+
+/obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
+>>>>>>> 7c2e983f42d... Merge pull request #8681 from MistakeNot4892/doggo
 	user.setClickCooldown(user.get_attack_speed(W))
 
 	if(LAZYLEN(W.attack_verb))

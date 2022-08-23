@@ -17,6 +17,7 @@
 
 /mob/living/simple_mob/examine(mob/user)
 	. = ..()
+<<<<<<< HEAD
 	if(stat != DEAD && user && harvest_tool && (get_dist(user, src) <= 3))
 		. += "<span class='notice'>\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.</span>"
 		var/time_to_harvest = (harvest_recent + harvest_cooldown) - world.time
@@ -24,6 +25,52 @@
 			. += "<span class='notice'>It can be [harvest_verb] in [time_to_harvest / (1 MINUTE)] second(s).</span>"
 		else
 			. += "<span class='notice'>It can be [harvest_verb] now.</span>"
+=======
+	if(user && (isobserver(user) || get_dist(user, src) <= 3))
+
+		var/datum/gender/G = gender_datums[get_visible_gender()]
+		if(stat == DEAD)
+			. += "<b><span class='cult'>[G.He] [G.is] dead.</span></b>"
+			return
+
+		if(harvest_tool)
+			. += SPAN_NOTICE("\The [src] can be [harvest_verb] with a [initial(harvest_tool.name)] every [round(harvest_cooldown, 0.1)] minutes.")
+			var/time_to_harvest = (harvest_recent + harvest_cooldown) - world.time
+			if(time_to_harvest > 0)
+				. += SPAN_NOTICE("It can be [harvest_verb] in [time_to_harvest / (1 MINUTE)] second(s).")
+			else
+				. += SPAN_NOTICE("It can be [harvest_verb] now.")
+
+		var/damage_strings = list()
+		var/percent_brute = getBruteLoss() / getMaxHealth()
+		if(percent_brute > 0.6)
+			damage_strings += SPAN_DANGER("maimed bloody")
+		else if(percent_brute > 0.3)
+			damage_strings += SPAN_WARNING("cut and bruised")
+		else if(percent_brute > 0)
+			damage_strings += "lightly bruised"
+
+		var/percent_burn =  getFireLoss() / getMaxHealth()
+		if(percent_burn > 0.6)
+			damage_strings += SPAN_DANGER("severely burned")
+		else if(percent_burn > 0.3)
+			damage_strings += SPAN_WARNING("covered in burns")
+		else if(percent_burn > 0)
+			damage_strings += "mildly burned"
+
+		if(!length(damage_strings))
+			var/percent_health = health / getMaxHealth()
+			if(percent_health >= 1)
+				damage_strings += SPAN_NOTICE("uninjured")
+			else if(percent_health >= 0.7)
+				damage_strings += "mildly injured"
+			else if(percent_health >= 0.4)
+				damage_strings += SPAN_WARNING("moderately injured")
+			else
+				damage_strings += SPAN_DANGER("badly injured")
+
+		. += "[G.He] [G.is] [english_list(damage_strings)]."
+>>>>>>> 7c2e983f42d... Merge pull request #8681 from MistakeNot4892/doggo
 
 /mob/living/simple_mob/proc/livestock_harvest(var/obj/item/tool, var/mob/living/user)
 	if(!LAZYLEN(harvest_results))	// Might be a unique interaction of an object using the proc to do something weird, or just someone's a donk.

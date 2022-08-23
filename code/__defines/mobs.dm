@@ -348,7 +348,6 @@
 // More refined version of SA_* ""intelligence"" seperators.
 // Now includes bitflags, so to target two classes you just do 'MOB_CLASS_ANIMAL|MOB_CLASS_HUMANOID'
 #define MOB_CLASS_NONE 			0	// Default value, and used to invert for _ALL.
-
 #define MOB_CLASS_PLANT			1	// Unused at the moment.
 #define MOB_CLASS_ANIMAL		2	// Animals and beasts like spiders, saviks, and bears.
 #define MOB_CLASS_HUMANOID		4	// Non-robotic humanoids, including /simple_mob and /carbon/humans and their alien variants.

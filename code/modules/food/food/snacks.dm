@@ -277,7 +277,20 @@
 /obj/item/weapon/reagent_containers/food/snacks/attack_generic(var/mob/living/user)
 	if(!isanimal(user) && !isalien(user))
 		return
+<<<<<<< HEAD
 	user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
+=======
+	if(isanimal(user))
+		var/mob/living/simple_mob/animal/critter = user
+		if(!critter.has_appetite())
+			to_chat(critter, SPAN_WARNING("You don't have much of an appetite at the moment."))
+			return TRUE
+		critter.eat_food_item(src, bitesize)
+	else
+		user.visible_message("<b>[user]</b> nibbles away at \the [src].","You nibble away at \the [src].")
+		if(reagents)
+			reagents.trans_to_mob(user, bitesize, CHEM_INGEST)
+>>>>>>> 7c2e983f42d... Merge pull request #8681 from MistakeNot4892/doggo
 	bitecount++
 	if(reagents)
 		reagents.trans_to_mob(user, bitesize, CHEM_INGEST)

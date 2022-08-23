@@ -397,7 +397,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		overlays_standing[SKIN_LAYER] = skin
 		apply_layer(SKIN_LAYER)
 
-/mob/living/carbon/human/proc/update_bloodied()
+/mob/living/carbon/human/update_bloodied()
 	if(QDESTROYING(src))
 		return
 

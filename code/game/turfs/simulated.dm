@@ -91,31 +91,31 @@
 			// Dirt overlays.
 			update_dirt()
 
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			// Tracking blood
+		// Tracking blood
+		var/track_type = M.leaves_tracks_type()
+		if(track_type)
+
 			var/list/bloodDNA = null
 			var/bloodcolor=""
-			if(H.shoes)
+
+			var/mob/living/carbon/human/H = M
+			if(istype(H) && istype(H.shoes, /obj/item/clothing/shoes))
 				var/obj/item/clothing/shoes/S = H.shoes
-				if(istype(S))
-					S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
-					if(S.track_blood && S.blood_DNA)
-						bloodDNA = S.blood_DNA
-						bloodcolor=S.blood_color
-						S.track_blood--
-			else
-				if(H.track_blood && H.feet_blood_DNA)
-					bloodDNA = H.feet_blood_DNA
-					bloodcolor = H.feet_blood_color
-					H.track_blood--
+				S.handle_movement(src,(H.m_intent == "run" ? 1 : 0))
+				if(S.track_blood && S.blood_DNA)
+					bloodDNA = S.blood_DNA
+					bloodcolor=S.blood_color
+					S.track_blood--
+			else if(M.track_blood && M.feet_blood_DNA)
+				bloodDNA = M.feet_blood_DNA
+				bloodcolor = M.feet_blood_color
+				M.track_blood--
 
-			if (bloodDNA)
-				src.AddTracks(H.species.get_move_trail(H),bloodDNA,H.dir,0,bloodcolor) // Coming
-				var/turf/simulated/from = get_step(H,reverse_direction(H.dir))
+			if(bloodDNA)
+				src.AddTracks(track_type, bloodDNA , M.dir, 0, bloodcolor) // Coming
+				var/turf/simulated/from = get_step(M, reverse_direction(M.dir))
 				if(istype(from) && from)
-					from.AddTracks(H.species.get_move_trail(H),bloodDNA,0,H.dir,bloodcolor) // Going
-
+					from.AddTracks(track_type, bloodDNA, 0, M.dir, bloodcolor) // Going
 				bloodDNA = null
 
 		if(src.wet)

@@ -514,16 +514,26 @@
 /turf/simulated/floor/snow/Entered(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
-		if(L.hovering) // Flying things shouldn't make footprints.
+		var/footprint_state = L.get_snow_footprint_state()
+		if(!footprint_state)
 			return ..()
 		var/mdir = "[A.dir]"
-		crossed_dirs[mdir] = 1
+		crossed_dirs[mdir] = footprint_state
 		update_icon()
 	. = ..()
 
 /turf/simulated/floor/snow/update_icon()
 	..()
 	for(var/d in crossed_dirs)
-		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
+		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = crossed_dirs[d], dir = text2num(d)))
 
 //**** Here ends snow ****
+<<<<<<< HEAD
+=======
+
+/turf/simulated/floor/concrete
+	name = "concrete"
+	icon = 'icons/turf/concrete.dmi'
+	icon_state = "concrete"
+	initial_flooring = /decl/flooring/concrete
+>>>>>>> 7c2e983f42d... Merge pull request #8681 from MistakeNot4892/doggo

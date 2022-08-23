@@ -264,7 +264,7 @@
 /mob/living/simple_mob/Stat()
 	..()
 	if(statpanel("Status") && show_stat_health)
-		stat(null, "Health: [round((health / getMaxHealth()) * 100)]%")
+		stat("Health:", "[round((health / getMaxHealth()) * 100)]%")
 
 /mob/living/simple_mob/lay_down()
 	..()

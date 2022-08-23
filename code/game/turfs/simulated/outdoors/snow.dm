@@ -10,21 +10,21 @@
 		)
 	var/list/crossed_dirs = list()
 
-
 /turf/simulated/floor/outdoors/snow/Entered(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
-		if(L.hovering) // Flying things shouldn't make footprints.
+		var/footprint_state = L.get_snow_footprint_state()
+		if(!footprint_state)
 			return ..()
 		var/mdir = "[A.dir]"
-		crossed_dirs[mdir] = 1
+		crossed_dirs[mdir] = footprint_state
 		update_icon()
 	. = ..()
 
 /turf/simulated/floor/outdoors/snow/update_icon()
 	..()
 	for(var/d in crossed_dirs)
-		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
+		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = crossed_dirs[d], dir = text2num(d)))
 
 /turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/weapon/shovel))

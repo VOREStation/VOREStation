@@ -109,9 +109,9 @@
 			if(COMM_SAY)
 				holder.ISay(safepick(holder.say_list.speak))
 			if(COMM_AUDIBLE_EMOTE)
-				holder.audible_emote(safepick(holder.say_list.emote_hear))
+				holder.audible_emote("[safepick(holder.say_list.emote_hear)].")
 			if(COMM_VISUAL_EMOTE)
-				holder.visible_emote(safepick(holder.say_list.emote_see))
+				holder.visible_emote("[safepick(holder.say_list.emote_see)].")
 
 #undef COMM_SAY
 #undef COMM_AUDIBLE_EMOTE

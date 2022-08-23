@@ -1218,6 +1218,7 @@
 		return COMPONENT_INCOMPATIBLE
 	. = ..()
 
+<<<<<<< HEAD
 /datum/component/character_setup/RegisterWithParent()
 	. = ..()
 	RegisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN, .proc/create_mob_button)
@@ -1262,3 +1263,45 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"
 	screen_loc = ui_smallquad
+=======
+	if(istype(M))
+		if(M.in_space)
+			if(T.z in using_map.station_levels)
+				. |= EVENT_REGION_SPACESTATION
+			else
+				. |= EVENT_REGION_DEEPSPACE
+		else
+			. |= EVENT_REGION_PLANETSURFACE
+
+	var/datum/map_z_level/zlevel = using_map.zlevels["[T.z]"]
+	if(istype(zlevel))
+		. |= zlevel.event_regions
+
+// kali maaaaa
+/mob/living/proc/rip_out_internal_organ(var/zone, var/skip_wounding = FALSE, var/damage_descriptor)
+	if(length(internal_organs))
+		. = pick_n_take(internal_organs)
+		if(ispath(.))
+			. = new .(src)
+		if(!skip_wounding)
+			take_damage(rand(10,20))
+
+/mob/living/proc/leaves_tracks_type()
+	return
+
+/mob/living/proc/update_bloodied()
+	return
+
+/mob/living/proc/walk_through_blood(var/obj/effect/decal/cleanable/blood/blood)
+	if(!leaves_tracks_type())
+		return FALSE
+	feet_blood_color = blood.basecolor
+	track_blood = max(blood.amount, track_blood)
+	LAZYINITLIST(feet_blood_DNA)
+	feet_blood_DNA |= blood.blood_DNA.Copy()
+	update_bloodied()
+
+/mob/living/proc/get_snow_footprint_state()
+	if(!hovering) // Flying things shouldn't make footprints.
+		return "snow_footprints"
+>>>>>>> 7c2e983f42d... Merge pull request #8681 from MistakeNot4892/doggo

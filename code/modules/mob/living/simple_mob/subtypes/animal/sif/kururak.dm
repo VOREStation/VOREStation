@@ -425,5 +425,19 @@
 	bleeding_rate_percent = 0.7
 	attack_speed_percent = 0.8
 
+/datum/modifier/ace/on_applied()
+	var/health_percent = holder.health / holder.maxHealth
+	. = ..()
+	holder.health = round(holder.getMaxHealth() * health_percent)
+	holder.updatehealth()
+
+/datum/modifier/ace/expire(silent)
+	var/mob/living/old_holder = holder
+	var/health_percent = old_holder ? (old_holder.health / old_holder.getMaxHealth()) : 0
+	. = ..()
+	if(health_percent && old_holder)
+		old_holder.health = round(old_holder.getMaxHealth() * health_percent)
+		old_holder.updatehealth()
+
 /decl/mob_organ_names/kururak
 	hit_zones = list("head", "chest", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "far left tail", "far right tail", "left middle tail", "right middle tail")

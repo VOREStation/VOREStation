@@ -1661,3 +1661,35 @@
 
 /mob/living/carbon/human/get_mob_riding_slots()
 	return list(back, head, wear_suit)
+<<<<<<< HEAD
+=======
+
+/mob/living/carbon/human/get_sound_volume_multiplier()
+	. = ..()
+	for(var/obj/item/clothing/C in list(l_ear, r_ear, head))
+		. = min(., C.volume_multiplier)
+
+/mob/living/carbon/human/rip_out_internal_organ(var/zone, var/skip_wounding = FALSE, var/damage_descriptor)
+
+	var/obj/item/organ/organ
+	var/obj/item/organ/external/limb
+	if(zone)
+		limb = organs_by_name[zone]
+		if(limb && length(limb.internal_organs))
+			organ = pick_n_take(limb.internal_organs)
+	if(!organ)
+		organ = ..(skip_wounding = TRUE)
+
+	if(organ)
+		organ.removed()
+		if(organ.parent_organ && !limb)
+			limb = organs_by_name[organ.parent_organ]
+		if(limb)
+			limb.take_damage(rand(10,20), 0, TRUE, TRUE, damage_descriptor)
+		else
+			take_damage(rand(10, 20))
+		return organ
+
+/mob/living/carbon/human/leaves_tracks_type()
+	return species.get_move_trail(src)
+>>>>>>> 7c2e983f42d... Merge pull request #8681 from MistakeNot4892/doggo

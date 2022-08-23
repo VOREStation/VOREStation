@@ -45,13 +45,22 @@
 /obj/machinery/door/attack_generic(var/mob/user, var/damage)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
-		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
-			visible_message("<span class='danger'>\The [user] smashes into [src]!</span>")
+		if(S.a_intent == I_HURT && damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
+			visible_message(SPAN_DANGER("\The [user] smashes into [src]!"))
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
+		else if(user.a_intent == I_HELP)
+			user.visible_message(SPAN_NOTICE("\The [user] scratches at the bottom of \the [src]."))
 		else
+<<<<<<< HEAD
 			visible_message("<b>\The [user]</b> bonks \the [src] harmlessly.")
 	user.do_attack_animation(src)
+=======
+			visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
+		user.do_attack_animation(src)
+		return
+	..()
+>>>>>>> 7c2e983f42d... Merge pull request #8681 from MistakeNot4892/doggo
 
 /obj/machinery/door/New()
 	. = ..()
