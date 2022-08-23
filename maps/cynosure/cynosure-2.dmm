@@ -18484,7 +18484,8 @@
 "iJn" = (
 /obj/structure/table/woodentable,
 /obj/machinery/photocopier/faxmachine{
-	department = "Public Office"
+	department = "Public Office";
+	req_one_access = null
 	},
 /obj/machinery/light,
 /turf/simulated/floor/wood,
