@@ -774,3 +774,55 @@
 	. = ..()
 	reagents.add_reagent("uranium", 3)
 	reagents.add_reagent("pyrotoxin", 3)
+
+// Altevian Foobs
+
+/obj/item/weapon/reagent_containers/food/snacks/ratprotein
+	name = "AN Flavor Unit C"
+	desc = "A snack made from a group of space-faring rodents that is packed with the maximized potential of caloric intake to cubic inch. This one seems to be flavored of smoked cheddar and salami."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_cheese_block"
+	package_open_state = "altevian_cheese_block-open"
+	package = TRUE
+	trash = /obj/item/trash/ratcheese
+	nutriment_amt = 5
+	nutriment_desc = list("smoked cheese" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratveggies
+	name = "Premium Ration Packet - VEG"
+	desc = "A package of a mixture of somehow still fresh from day 1 greens with a light hint of vinegar dressing to add extra kick."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_veggies"
+	package_open_state = "altevian_veggies-open"
+	package = TRUE
+	trash = /obj/item/trash/ratveg
+	nutriment_amt = 3
+	nutriment_desc = list("fresh mixed veggies" = 3, "vinegar" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratliquid
+	name = "Admiral's Choice Space-Safe Meal"
+	desc = "A vacuum sealed pouch of a liquid meal. This one seems to be flavored with the accent of steak."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_juice"
+	package_open_state = "altevian_juice-open"
+	package = TRUE
+	trash = /obj/item/trash/ratjuice
+	nutriment_amt = 2
+	nutriment_desc = list("essence of steak" = 6)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratliquid/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratsteak
+	name = "altevian traditional steak"
+	desc = "This abomination of processed foods resembles a steak plate. Probably contains nothing a normal steak does, but mimics its flavor and nutrition well-enough."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_steak"
+	trash = /obj/item/trash/plate
+	nutriment_amt = 8
+	nutriment_desc = list("steak" = 5, "smoked cheese" = 2, "veggies" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratsteak/Initialize()
+	. = ..()
+	reagents.add_reagent("protein", 3)

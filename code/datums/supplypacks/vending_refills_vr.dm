@@ -48,6 +48,11 @@
 	name = "Ration Station Vendor Refill Cartridge"
 	cost = 10
 
+/datum/supply_pack/vending_refills/altevian
+	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/altevian)
+	name = "Altevian Vendor Refill Cartridge"
+	cost = 10
+
 /datum/supply_pack/vending_refills/coffee
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/drink/coffee)
 	name = "Hot Drinks Vendor Refill Cartridge"

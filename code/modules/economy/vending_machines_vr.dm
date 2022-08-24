@@ -638,7 +638,7 @@
 					/obj/item/clothing/mask/surgical = 5,
 					/obj/item/clothing/accessory/pride/bi = 5,
 					/obj/item/clothing/accessory/pride/trans = 5,
-					/obj/item/clothing/accessory/pride/ace = 5, 
+					/obj/item/clothing/accessory/pride/ace = 5,
 					/obj/item/clothing/accessory/pride/enby = 5,
 					/obj/item/clothing/accessory/pride/pan = 5,
 					/obj/item/clothing/accessory/pride/lesbian = 5,
@@ -763,7 +763,7 @@
 					/obj/item/clothing/mask/surgical = 50,
 					/obj/item/clothing/accessory/pride/bi = 50,
 					/obj/item/clothing/accessory/pride/trans = 50,
-					/obj/item/clothing/accessory/pride/ace = 50, 
+					/obj/item/clothing/accessory/pride/ace = 50,
 					/obj/item/clothing/accessory/pride/enby = 50,
 					/obj/item/clothing/accessory/pride/pan = 50,
 					/obj/item/clothing/accessory/pride/lesbian = 50,
@@ -3440,3 +3440,18 @@
 					/obj/item/weapon/reagent_containers/food/drinks/cans/root_beer = 1)
 	idle_power_usage = 211 //refrigerator - believe it or not, this is actually the average power consumption of a refrigerated vending machine according to NRCan.
 	vending_sound = "machines/vending/vending_cans.ogg"
+
+/obj/machinery/vending/altevian
+	name = "Altevian Imported Meals"
+	desc = "A vending machine containing imported foods from Altevian Hegemony. Delicious and nutritious. No natural ingridients guaranteed!"
+	icon = 'icons/obj/vending_vr.dmi'
+	icon_state = "rattevendor"
+	product_slogans = "Spacer's choice!;Voidborn food for voidborn people!;Most processed foods ever!"
+	product_ads = "Perfectly edible!;Squeaky clean foods!;Cheesed to meet you!;Made for spacers, by spacers, of spacers!"
+	products = list(/obj/item/weapon/reagent_containers/food/snacks/ratprotein = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/ratveggies = 15,
+					/obj/item/weapon/reagent_containers/food/snacks/ratliquid = 15)
+
+	prices = list(/obj/item/weapon/reagent_containers/food/snacks/ratprotein = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/ratveggies = 8,
+					/obj/item/weapon/reagent_containers/food/snacks/ratliquid = 8)
