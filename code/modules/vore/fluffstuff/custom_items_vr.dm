@@ -1444,7 +1444,7 @@
 	M.add_language(LANGUAGE_DAEMON)
 	M.add_language(LANGUAGE_ENOCHIAN)
 	M.add_language(LANGUAGE_VESPINAE)
-	M.add_language(LANGUAGE_SLAVIC)
+//	M.add_language(LANGUAGE_SLAVIC)
 	M.add_language(LANGUAGE_DRUDAKAR)
 	M.add_language(LANGUAGE_SPACER)
 	M.add_language(LANGUAGE_TAVAN)
