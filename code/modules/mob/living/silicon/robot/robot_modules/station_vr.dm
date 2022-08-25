@@ -336,6 +336,7 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Traumahound" = "traumavale",
+					"Drake" = "draketrauma"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/trauma/New(var/mob/living/silicon/robot/R)
@@ -351,6 +352,7 @@
 	src.modules += new /obj/item/weapon/surgical/FixOVein/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/bonesetter/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/circular_saw/cyborg(src)
+	src.modules += new /obj/item/weapon/surgical/surgicaldrill/cyborg(src)
 	src.modules += new /obj/item/weapon/surgical/bioregen/cyborg(src) //let them succ
 	src.modules += new /obj/item/weapon/gripper/no_use/organ(src)
 	src.modules += new /obj/item/weapon/gripper/medical(src)

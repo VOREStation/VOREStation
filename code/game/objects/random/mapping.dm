@@ -97,7 +97,8 @@
 				/obj/machinery/vending/weeb,
 				/obj/machinery/vending/sol,
 				/obj/machinery/vending/snix,
-				/obj/machinery/vending/snlvend)
+				/obj/machinery/vending/snlvend,
+				/obj/machinery/vending/altevian)
 
 /obj/random/vendordrink //Random drink vendors for station use
 	name = "random drink vending machine"

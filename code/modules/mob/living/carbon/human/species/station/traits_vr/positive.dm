@@ -164,11 +164,16 @@
 	H.verbs |= /mob/living/carbon/human/proc/weave_item
 	H.verbs |= /mob/living/carbon/human/proc/set_silk_color
 
-/datum/trait/positive/water_breather
-	name = "Water Breather"
-	desc = "You can breathe under water."
+/datum/trait/positive/aquatic
+	name = "Aquatic"
+	desc = "You can breathe under water and can traverse water more efficiently. Additionally, you can eat others in the water."
 	cost = 1
-	var_changes = list("water_breather" = 1)
+	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
+
+/datum/trait/positive/aquatic/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/water_stealth
+	H.verbs |= /mob/living/carbon/human/proc/underwater_devour
 
 /datum/trait/positive/cocoon_tf
 	name = "Cocoon Spinner"
