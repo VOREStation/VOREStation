@@ -59,7 +59,7 @@
 	layer = 3.3;
 	pixel_y = 30
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "j" = (
 /obj/structure/bed/chair/office/light{
@@ -138,7 +138,7 @@
 /turf/simulated/floor/bmarble,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "u" = (
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "v" = (
 /turf/simulated/floor/bmarble,
@@ -150,7 +150,7 @@
 /obj/structure/curtain/open/bed{
 	color = "#5e0c1d"
 	},
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "y" = (
 /obj/machinery/light/small{
@@ -170,14 +170,14 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "B" = (
 /turf/simulated/wall,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "C" = (
 /obj/structure/undies_wardrobe,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "D" = (
 /obj/structure/table/rack/shelf,
@@ -284,7 +284,7 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/misc,
 /obj/random/maintenance/misc,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "V" = (
 /obj/structure/bed/chair/sofa/corp/left,
@@ -297,7 +297,7 @@
 	color = "#4287f5"
 	},
 /obj/machinery/light/small,
-/turf/simulated/floor/carpet/deco,
+/turf/simulated/floor/carpet/geo,
 /area/submap/groundbase/poi/wildvillage/wide/wide5)
 "X" = (
 /obj/machinery/door/airlock/silver{

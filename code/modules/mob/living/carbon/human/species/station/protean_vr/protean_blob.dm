@@ -483,3 +483,20 @@ var/global/list/disallowed_protean_accessories = list(
 
 	//Return ourselves in case someone wants it
 	return src
+
+/mob/living/simple_mob/protean_blob/CanStumbleVore(mob/living/target)
+	if(target == humanform)
+		return FALSE
+	return ..()
+
+/mob/living/simple_mob/protean_blob/CanStumbleVore(mob/living/target)
+	if(target == humanform)
+		return FALSE
+	return ..()
+
+/mob/living/carbon/human/CanStumbleVore(mob/living/target)
+	if(istype(target, /mob/living/simple_mob/protean_blob))
+		var/mob/living/simple_mob/protean_blob/PB = target
+		if(PB.humanform == src)
+			return FALSE
+	return ..()

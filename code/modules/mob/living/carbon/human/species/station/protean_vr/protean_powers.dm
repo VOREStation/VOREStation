@@ -215,7 +215,7 @@
 		to_chat(src,"<span class='warning'>You can't process [substance]!</span>")
 		return //Only a few things matter, the rest are best not cluttering the lists.
 
-	var/howmuch = input(src,"How much do you want to store? (0-[matstack.get_amount()])","Select amount") as null|num
+	var/howmuch = tgui_input_number(src,"How much do you want to store? (0-[matstack.get_amount()])","Select amount",null,matstack.get_amount(),0)
 	if(!howmuch || matstack != get_active_hand() || howmuch > matstack.get_amount())
 		return //Quietly fail
 
@@ -295,7 +295,7 @@
 		return
 
 	var/nagmessage = "Adjust your mass to be a size between 25 to 200% (or between 1 to 600% in dorms area). Up-sizing consumes metal, downsizing returns metal."
-	var/new_size = input(user, nagmessage, "Pick a Size", user.size_multiplier*100) as num|null
+	var/new_size = tgui_input_number(user, nagmessage, "Pick a Size", user.size_multiplier*100, 600, 1)
 	if(!new_size || !size_range_check(new_size))
 		return
 

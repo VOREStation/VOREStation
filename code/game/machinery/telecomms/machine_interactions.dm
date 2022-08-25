@@ -288,14 +288,14 @@
 			. = TRUE
 
 		if("id")
-			var/newid = copytext(reject_bad_text(input(usr, "Specify the new ID for this machine", src, id) as null|text),1,MAX_MESSAGE_LEN)
+			var/newid = copytext(reject_bad_text(tgui_input_text(usr, "Specify the new ID for this machine", src, id)),1,MAX_MESSAGE_LEN)
 			if(newid && canAccess(usr))
 				id = newid
 				set_temp("-% New ID assigned: \"[id]\" %-", "average")
 				. = TRUE
 
 		if("network")
-			var/newnet = input(usr, "Specify the new network for this machine. This will break all current links.", src, network) as null|text
+			var/newnet = tgui_input_text(usr, "Specify the new network for this machine. This will break all current links.", src, network)
 			if(newnet && canAccess(usr))
 
 				if(length(newnet) > 15)

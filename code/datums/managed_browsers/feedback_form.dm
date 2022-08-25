@@ -99,7 +99,7 @@ GENERAL_PROTECT_DATUM(/datum/managed_browser/feedback_form)
 	if(href_list["feedback_edit_body"])
 		// This is deliberately not sanitized here, and is instead checked when hitting the submission button,
 		// as we want to give the user a chance to fix it without needing to rewrite the whole thing.
-		feedback_body = input(my_client, "Please write your feedback here.", "Feedback Body", feedback_body) as null|message
+		feedback_body = tgui_input_text(my_client, "Please write your feedback here.", "Feedback Body", feedback_body, multiline = TRUE, prevent_enter = TRUE)
 		display() // Refresh the window with new information.
 		return
 

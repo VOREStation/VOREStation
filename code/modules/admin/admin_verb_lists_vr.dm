@@ -7,6 +7,8 @@ var/list/admin_verbs_default = list(
 	/client/proc/cmd_admin_say,			//VOREStation Add,
 	/client/proc/cmd_mod_say,			//VOREStation Add,
 	/client/proc/cmd_event_say,			//VOREStation Add,
+	/client/proc/cmd_mentor_ticket_panel,
+	/client/proc/cmd_mentor_say
 //	/client/proc/hide_verbs,			//hides all our adminverbs, //VOREStation Remove,
 //	/client/proc/hide_most_verbs,		//hides all our hideable adminverbs, //VOREStation Remove,
 //	/client/proc/debug_variables,		//allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify, //VOREStation Remove,
@@ -112,7 +114,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/change_human_appearance_self,	// Allows the human-based mob itself change its basic appearance ,
 	/client/proc/change_security_level,
 	/client/proc/view_chemical_reaction_logs,
-	/client/proc/makePAI,
+	/client/proc/makepAI,
 	/client/proc/toggle_debug_logs,
 	/client/proc/toggle_attack_logs,
 	/datum/admins/proc/paralyze_mob,
@@ -121,7 +123,9 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/set_uplink, //VOREStation Add,
 	/datum/admins/proc/sendFax,
 	/client/proc/despawn_player,
-	/datum/admins/proc/view_feedback
+	/datum/admins/proc/view_feedback,
+	/client/proc/make_mentor,
+	/client/proc/unmake_mentor
 	)
 
 var/list/admin_verbs_ban = list(
@@ -519,7 +523,7 @@ var/list/admin_verbs_event_manager = list(
 	/client/proc/change_human_appearance_admin,     // Allows an admin to change the basic appearance of human-based mobs ,
 	/client/proc/change_human_appearance_self,      // Allows the human-based mob itself change its basic appearance ,
 	/client/proc/change_security_level,
-	/client/proc/makePAI,
+	/client/proc/makepAI,
 	/client/proc/toggle_debug_logs,
 	/client/proc/toggle_attack_logs,
 	/datum/admins/proc/paralyze_mob,

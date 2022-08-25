@@ -19,7 +19,7 @@
 
 	if(!holder)	return
 
-	var/choice = input(usr, "Which Z-level do you wish to set the base turf for?") as num|null
+	var/choice = tgui_input_number(usr, "Which Z-level do you wish to set the base turf for?")
 	if(!choice)
 		return
 

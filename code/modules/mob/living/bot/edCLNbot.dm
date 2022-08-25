@@ -11,6 +11,7 @@
 
 	patrol_speed = 3
 	target_speed = 6
+	cTimeMult = 0.3 // Big bois should be big fast :3
 
 	vocal = 1
 	cleaning = 0
@@ -68,8 +69,8 @@
 	var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	qdel(src)
-	return
+	//qdel(src)
+	return ..()
 
 /mob/living/bot/cleanbot/edCLN/tgui_data(mob/user)
 	var/list/data = ..()
@@ -120,7 +121,7 @@
 	..()
 
 	if(istype(W, /obj/item/weapon/pen))
-		var/t = sanitizeSafe(input(user, "Enter new robot name", name, created_name), MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new robot name", name, created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && src.loc != usr)

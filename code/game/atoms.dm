@@ -222,7 +222,7 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 		else
 			f_name += "oil-stained [name][infix]."
 
-	var/list/output = list("[bicon(src)] That's [f_name] [suffix]", desc)
+	var/list/output = list("\icon[src.examine_icon()][bicon(src)] That's [f_name] [suffix]", desc)
 
 	if(user.client?.prefs.examine_text_mode == EXAMINE_MODE_INCLUDE_USAGE)
 		output += description_info
@@ -713,7 +713,7 @@ var/global/list/pre_init_created_atoms // atom creation ordering means some stuf
 	. = ..()
 	SEND_SIGNAL(src, COMSIG_ATOM_EXITED, AM, new_loc)
 
-/atom/proc/get_visible_gender()
+/atom/proc/get_visible_gender(mob/user, force)
 	return gender
 
 /atom/proc/interact(mob/user)

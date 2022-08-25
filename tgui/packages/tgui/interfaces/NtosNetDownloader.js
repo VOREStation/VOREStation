@@ -15,51 +15,35 @@ export const NtosNetDownloader = (props, context) => {
     hackedavailable,
   } = data;
   return (
-    <NtosWindow
-      theme={PC_device_theme}
-      width={480}
-      height={735}
-      resizable>
+    <NtosWindow theme={PC_device_theme} width={480} height={735} resizable>
       <NtosWindow.Content scrollable>
         {!!error && (
           <NoticeBox>
-            <Box mb={1}>
-              {error}
-            </Box>
-            <Button
-              content="Reset"
-              onClick={() => act('PRG_reseterror')} />
+            <Box mb={1}>{error}</Box>
+            <Button content="Reset" onClick={() => act('PRG_reseterror')} />
           </NoticeBox>
         )}
         <Section>
           <LabeledList>
             <LabeledList.Item label="Disk usage">
-              <ProgressBar
-                value={disk_used}
-                minValue={0}
-                maxValue={disk_size}>
+              <ProgressBar value={disk_used} minValue={0} maxValue={disk_size}>
                 {`${disk_used} GQ / ${disk_size} GQ`}
               </ProgressBar>
             </LabeledList.Item>
           </LabeledList>
         </Section>
         <Section>
-          {downloadable_programs.map(program => (
-            <Program
-              key={program.filename}
-              program={program} />
+          {downloadable_programs.map((program) => (
+            <Program key={program.filename} program={program} />
           ))}
         </Section>
         {!!hackedavailable && (
           <Section title="UNKNOWN Software Repository">
             <NoticeBox mb={1}>
-              Please note that Nanotrasen does not recommend download
-              of software from non-official servers.
+              Please note that Nanotrasen does not recommend download of software from non-official servers.
             </NoticeBox>
-            {hacked_programs.map(program => (
-              <Program
-                key={program.filename}
-                program={program} />
+            {hacked_programs.map((program) => (
+              <Program key={program.filename} program={program} />
             ))}
           </Section>
         )}
@@ -92,33 +76,35 @@ const Program = (props, context) => {
           {program.size} GQ
         </Flex.Item>
         <Flex.Item ml={2} width="94px" textAlign="center">
-          {program.filename === downloadname && (
-            <ProgressBar
-              color="green"
-              minValue={0}
-              maxValue={downloadsize}
-              value={downloadcompletion}>
+          {(program.filename === downloadname && (
+            <ProgressBar color="green" minValue={0} maxValue={downloadsize} value={downloadcompletion}>
               {round((downloadcompletion / downloadsize) * 100, 1)}% ({downloadspeed}GQ/s)
             </ProgressBar>
-          ) || downloads_queue.indexOf(program.filename) !== -1 && (
-            <Button
-              icon="ban"
-              color="bad"
-              onClick={() => act("PRG_removequeued", {
-                filename: program.filename,
-              })}>
-              Queued...
-            </Button>
-          ) || (
-            <Button
-              fluid
-              icon="download"
-              content="Download"
-              disabled={program.size > disk_free}
-              onClick={() => act('PRG_downloadfile', {
-                filename: program.filename,
-              })} />
-          )}
+          )) ||
+            (downloads_queue.indexOf(program.filename) !== -1 && (
+              <Button
+                icon="ban"
+                color="bad"
+                onClick={() =>
+                  act('PRG_removequeued', {
+                    filename: program.filename,
+                  })
+                }>
+                Queued...
+              </Button>
+            )) || (
+              <Button
+                fluid
+                icon="download"
+                content="Download"
+                disabled={program.size > disk_free}
+                onClick={() =>
+                  act('PRG_downloadfile', {
+                    filename: program.filename,
+                  })
+                }
+              />
+            )}
         </Flex.Item>
       </Flex>
       {program.compatibility !== 'Compatible' && (

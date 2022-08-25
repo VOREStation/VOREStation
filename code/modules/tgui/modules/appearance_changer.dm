@@ -38,6 +38,7 @@
 	map_name = "appearance_changer_[REF(src)]_map"
 	// Initialize map objects
 	cam_screen = new
+
 	cam_screen.name = "screen"
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
@@ -92,8 +93,8 @@
 			if(can_change(APPEARANCE_RACE) && (params["race"] in valid_species))
 				if(target.change_species(params["race"]))
 					if(params["race"] == "Custom Species")
-						target.custom_species = sanitize(input(usr, "Input custom species name:",
-							"Custom Species Name") as null|text, MAX_NAME_LEN)
+						target.custom_species = sanitize(tgui_input_text(usr, "Input custom species name:",
+							"Custom Species Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 					cut_data()
 					generate_data(usr)
 					changed_hook(APPEARANCECHANGER_CHANGED_RACE)
@@ -112,7 +113,7 @@
 				return 1
 		if("skin_tone")
 			if(can_change_skin_tone())
-				var/new_s_tone = input(usr, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35) as num|null
+				var/new_s_tone = tgui_input_number(usr, "Choose your character's skin-tone:\n(Light 1 - 220 Dark)", "Skin Tone", -target.s_tone + 35, 220, 1)
 				if(isnum(new_s_tone) && can_still_topic(usr, state))
 					new_s_tone = 35 - max(min( round(new_s_tone), 220),1)
 					changed_hook(APPEARANCECHANGER_CHANGED_SKINTONE)
@@ -407,6 +408,11 @@
 	return data
 
 /datum/tgui_module/appearance_changer/proc/update_active_camera_screen()
+	cam_screen.vis_contents = list(owner) // Copied from the vore version.
+	cam_background.icon_state = "clear"
+	cam_background.fill_rect(1, 1, 1, 1)
+	local_skybox.cut_overlays()
+	/*
 	var/turf/newturf = get_turf(customize_usr ? tgui_host() : owner)
 	if(newturf == last_camera_turf)
 		return
@@ -425,6 +431,7 @@
 	local_skybox.add_overlay(SSskybox.get_skybox(get_z(newturf)))
 	local_skybox.scale_to_view(3)
 	local_skybox.set_position("CENTER", "CENTER", (world.maxx>>1) - newturf.x, (world.maxy>>1) - newturf.y)
+	*/
 
 /datum/tgui_module/appearance_changer/proc/update_dna()
 	var/mob/living/carbon/human/target = owner
@@ -544,7 +551,7 @@
 
 // VOREStation Add - Ears/Tails/Wings
 /datum/tgui_module/appearance_changer/proc/can_use_sprite(datum/sprite_accessory/X, mob/living/carbon/human/target, mob/user)
-	if(!isnull(X.species_allowed) && !(target.species.name in X.species_allowed))
+	if(!isnull(X.species_allowed) && !(target.species.name in X.species_allowed) && (!istype(target.species, /datum/species/custom))) // Letting custom species access wings/ears/tails.
 		return FALSE
 
 	if(LAZYLEN(X.ckeys_allowed) && !(user?.ckey in X.ckeys_allowed) && !(target.ckey in X.ckeys_allowed))

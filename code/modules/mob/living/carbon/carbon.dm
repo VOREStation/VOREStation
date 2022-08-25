@@ -236,7 +236,7 @@
 					status += "MISSING"
 				if(org.status & ORGAN_MUTATED)
 					status += "weirdly shapen"
-				if(org.dislocated == 2)
+				if(org.dislocated == 1) //VOREStation Edit Bugfix
 					status += "dislocated"
 				if(org.status & ORGAN_BROKEN)
 					status += "hurts when touched"

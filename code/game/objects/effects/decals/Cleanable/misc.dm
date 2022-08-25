@@ -38,6 +38,12 @@
 	icon_state = "dirt"
 	mouse_opacity = 0
 
+/obj/effect/decal/cleanable/Initialize(var/mapload, var/_age)
+	.=..()
+	var/turf/simulated/our_turf = src.loc
+	if(our_turf && istype(our_turf) && our_turf.can_dirty && _age)
+		our_turf.dirt = 101
+
 /obj/effect/decal/cleanable/flour
 	name = "flour"
 	desc = "It's still good. Four second rule!"

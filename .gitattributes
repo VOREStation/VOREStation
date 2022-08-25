@@ -1,3 +1,9 @@
+## Enforce binary mode
+*.dll binary
+*.exe binary
+*.so binary
+*.zip binary
+
 # dmm map merger hook
 # needs additional setup, see tools/mapmerge/install.txt
 # *.dmm merge=merge-dmm

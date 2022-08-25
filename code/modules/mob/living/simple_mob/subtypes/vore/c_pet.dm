@@ -39,7 +39,7 @@
 				"rad" = 0
 				)
 
-	has_langs = list("Coulrian")
+	has_langs = list("Animal")
 
 /mob/living/simple_mob/animal/passive/honkpet/attack_hand(mob/living/user as mob)
 	if(user.a_intent == I_DISARM)

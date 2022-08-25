@@ -32,13 +32,34 @@
 		nest = null
 	if(buckled)
 		buckled.unbuckle_mob(src, TRUE)
+	//VOREStation Addition Start
+	if(tf_mob_holder && tf_mob_holder.loc == src)
+		tf_mob_holder.ckey = ckey
+		if(isbelly(loc))
+			tf_mob_holder.loc = loc
+			tf_mob_holder.forceMove(loc)
+		else
+			var/turf/get_dat_turf = get_turf(src)
+			tf_mob_holder.loc = get_dat_turf
+			tf_mob_holder.forceMove(get_dat_turf)
+		QDEL_LIST_NULL(tf_mob_holder.vore_organs)
+		tf_mob_holder.vore_organs = list()
+		for(var/obj/belly/B as anything in vore_organs)
+			B.loc = tf_mob_holder
+			B.forceMove(tf_mob_holder)
+			B.owner = tf_mob_holder
+			tf_mob_holder.vore_organs |= B
+			vore_organs -= B
+
+	if(tf_mob_holder)
+		tf_mob_holder = null
+	//VOREStation Addition End
 
 	qdel(selected_image)
 	QDEL_NULL(vorePanel) //VOREStation Add
 	QDEL_LIST_NULL(vore_organs) //VOREStation Add
 	temp_language_sources = null //VOREStation Add
 	temp_languages = null //VOREStation Add
-
 
 	if(LAZYLEN(organs))
 		organs_by_name.Cut()
@@ -79,14 +100,21 @@
 	return 1
 
 /mob/living/verb/succumb()
-	set hidden = 1
-//	if ((src.health < 0 && src.health > (5-src.getMaxHealth()))) // Health below Zero but above 5-away-from-death, as before, but variable
-	if (src.health < 0 && stat != DEAD)
+	set name = "Succumb to death"
+	set category = "IC"
+	set desc = "Press this button if you are in crit and wish to die. Use this sparingly (ending a scene, no medical, etc.)"
+	var/confirm1 = tgui_alert(usr, "Pressing this button will kill you instantenously! Are you sure you wish to proceed?", "Confirm wish to succumb", list("No","Yes"))
+	var/confirm2 = "No"
+	if(confirm1 == "Yes")
+		confirm2 = tgui_alert(usr, "Pressing this buttom will really kill you, no going back", "Are you sure?", list("Yes", "No")) //Swapped answers to protect from accidental double clicks.
+	if (src.health < 0 && stat != DEAD && confirm1 == "Yes" && confirm2 == "Yes") // Checking both confirm1 and confirm2 for good measure. I don't trust TGUI.
 		src.death()
 		to_chat(src, "<font color='blue'>You have given up life and succumbed to death.</font>")
 	else
 		if(stat == DEAD)
 			to_chat(src, "<font color='blue'>As much as you'd like, you can't die when already dead</font>")
+		else if(confirm1 == "No" || confirm2 == "No")
+			to_chat(src, "<font color='blue'>You chose to live another day.</font>")
 		else
 			to_chat(src, "<font color='blue'>You are not injured enough to succumb to death!</font>")
 
@@ -172,6 +200,13 @@
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
 
+	//VOREStation Additon Start
+	if(tf_mob_holder && tf_mob_holder.loc == src)
+		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		dmgmultiplier *= amount
+		tf_mob_holder.adjustBruteLoss(dmgmultiplier)
+	//VOREStation Additon End
+
 	bruteloss = min(max(bruteloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
@@ -245,7 +280,12 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_healing_percent))
 				amount *= M.incoming_healing_percent
-
+	//VOREStation Additon Start
+	if(tf_mob_holder && tf_mob_holder.loc == src)
+		var/dmgmultiplier = tf_mob_holder.maxHealth / maxHealth
+		dmgmultiplier *= amount
+		tf_mob_holder.adjustFireLoss(dmgmultiplier)
+	//VOREStation Additon End
 	fireloss = min(max(fireloss + amount, 0),(getMaxHealth()*2))
 	updatehealth()
 
@@ -1199,9 +1239,13 @@
 	if(!screen_icon)
 		screen_icon = new()
 		RegisterSignal(screen_icon, COMSIG_CLICK, .proc/character_setup_click)
-	screen_icon.icon = HUD.ui_style
-	screen_icon.color = HUD.ui_color
-	screen_icon.alpha = HUD.ui_alpha
+	if(ispAI(user))
+		screen_icon.icon = 'icons/mob/pai_hud.dmi'
+		screen_icon.screen_loc = ui_acti
+	else
+		screen_icon.icon = HUD.ui_style
+		screen_icon.color = HUD.ui_color
+		screen_icon.alpha = HUD.ui_alpha
 	LAZYADD(HUD.other_important, screen_icon)
 	user.client?.screen += screen_icon
 

@@ -257,7 +257,7 @@
 				if("max")
 					target_pressure = max_pressure_setting
 				if("set")
-					var/new_pressure = input(usr,"Enter new output pressure (0-[max_pressure_setting]kPa)","Pressure Control",src.target_pressure) as num
+					var/new_pressure = tgui_input_number(usr,"Enter new output pressure (0-[max_pressure_setting]kPa)","Pressure Control",src.target_pressure,max_pressure_setting,0)
 					src.target_pressure = between(0, new_pressure, max_pressure_setting)
 
 		if("set_flow_rate")
@@ -268,7 +268,7 @@
 				if("max")
 					set_flow_rate = air1.volume
 				if("set")
-					var/new_flow_rate = input(usr,"Enter new flow rate limit (0-[air1.volume]L/s)","Flow Rate Control",src.set_flow_rate) as num
+					var/new_flow_rate = tgui_input_number(usr,"Enter new flow rate limit (0-[air1.volume]L/s)","Flow Rate Control",src.set_flow_rate,air1.volume,0)
 					src.set_flow_rate = between(0, new_flow_rate, air1.volume)
 
 	update_icon()

@@ -35,7 +35,7 @@
 
 	var/savefile/F = new /savefile(path)
 
-	if(!F) return 0 
+	if(!F) return 0
 
 	var/persist_item
 	F["persist item"] >> persist_item
@@ -224,8 +224,6 @@
 	persist_storable = FALSE
 /obj/item/weapon/gun/energy/sizegun/admin
 	persist_storable = FALSE
-/obj/item/weapon/gun/energy/sizegun/abductor
-	persist_storable = FALSE
 /obj/item/stack
 	persist_storable = FALSE
 /obj/item/weapon/book
@@ -251,4 +249,8 @@
 /obj/item/weapon/stock_parts
 	persist_storable = FALSE
 /obj/item/weapon/rcd
+	persist_storable = FALSE
+/obj/item/weapon/spacecash
+	persist_storable = FALSE
+/obj/item/weapon/spacecasinocash
 	persist_storable = FALSE

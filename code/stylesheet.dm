@@ -34,6 +34,8 @@ em						{font-style: normal;font-weight: bold;}
 .pm  .other				{color: #0000ff;}
 
 /* Admin: Channels */
+.mentor_channel			{color: #808000;	font-weight: bold;}
+.mentor					{color: #808000;}
 .mod_channel			{color: #735638;	font-weight: bold;}
 .mod_channel .admin		{color: #b82e00;	font-weight: bold;}
 .admin_channel			{color: #9611D4;	font-weight: bold;}
@@ -105,6 +107,8 @@ h1.alert, h2.alert		{color: #000000;}
 .sergal					{color: #0077FF;}
 .birdsongc				{color: #CC9900;}
 .vulpkanin				{color: #B97A57;}
+.tavan					{color: #f54298; font-family: Arial}
+.echosong				{color: #826D8C;}
 .enochian				{color: #848A33; letter-spacing:-1pt; word-spacing:4pt; font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;}
 .daemon					{color: #5E339E; letter-spacing:-1pt; word-spacing:0pt; font-family: "Courier New", Courier, monospace;}
 .bug                                    {color: #9e9e39;}

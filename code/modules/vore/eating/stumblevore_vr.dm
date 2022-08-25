@@ -37,7 +37,7 @@
 	else if(M.CanStumbleVore(src))
 		visible_message("<span class='warning'>[M] flops carlessly into [src]!</span>")
 		perform_the_nom(M,src,M,M.vore_selected,1)
-	else if(S.species.lightweight == 1)
+	else if(istype(S) && S.species.lightweight == 1)
 		visible_message("<span class='warning'>[M] carelessly bowls [src] over!</span>")
 		M.forceMove(get_turf(src))
 		M.apply_damage(0.5, BRUTE)

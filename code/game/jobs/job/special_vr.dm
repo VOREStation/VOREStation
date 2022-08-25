@@ -64,6 +64,7 @@
 	job_description = "A Clown is there to entertain the crew and keep high morale using various harmless pranks and ridiculous jokes!"
 	whitelist_only = 1
 	latejoin_only = 0
+	requestable = FALSE
 	outfit_type = /decl/hierarchy/outfit/job/clown
 	pto_type = PTO_CIVILIAN
 	alt_titles = list("Jester" = /datum/alt_title/jester, "Fool" = /datum/alt_title/fool)
@@ -95,6 +96,7 @@
 	alt_titles = list("Poseur" = /datum/alt_title/poseur)
 	whitelist_only = 1
 	latejoin_only = 0
+	requestable = FALSE
 	outfit_type = /decl/hierarchy/outfit/job/mime
 	pto_type = PTO_CIVILIAN
 

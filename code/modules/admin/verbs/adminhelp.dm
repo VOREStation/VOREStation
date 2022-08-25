@@ -459,7 +459,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	usr << browse(dat.Join(), "window=ahelp[id];size=620x480")
 
 /datum/admin_help/proc/Retitle()
-	var/new_title = input(usr, "Enter a title for the ticket", "Rename Ticket", name) as text|null
+	var/new_title = tgui_input_text(usr, "Enter a title for the ticket", "Rename Ticket", name)
 	if(new_title)
 		name = new_title
 		//not saying the original name cause it could be a long ass message

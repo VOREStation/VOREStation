@@ -3,7 +3,10 @@
 	requires_power = 0
 	dynamic_lighting = 0
 
-
+/area/submap/casino_event
+	name = "\improper Space Casino"
+	requires_power = 0
+	dynamic_lighting = 0
 
 
 // NEVER EVER use these on an actual included map.

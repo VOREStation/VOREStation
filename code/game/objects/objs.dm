@@ -41,7 +41,7 @@
 /obj/CanUseTopic(var/mob/user, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	to_chat(user, "<span class='danger'>[bicon(src)]Access Denied!</span>")
+	to_chat(user, "<span class='danger'>\icon[src][bicon(src)]Access Denied!</span>")
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)

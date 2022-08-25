@@ -31,4 +31,4 @@
 
 /obj/item/weapon/towel/random/Initialize()
 	. = ..()
-	color = "#"+get_random_colour()
+	color = get_random_colour()

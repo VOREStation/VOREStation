@@ -965,6 +965,7 @@
 	ambience = AMBIENCE_OUTPOST
 	flags = AREA_FLAG_IS_NOT_PERSISTENT
 	requires_power = 0
+	base_turf = /turf/simulated/mineral/floor/virgo3c
 
 /area/submap/groundbase/poi/wildvillage/plot
 	icon_state = "grewhisqu"
@@ -1062,7 +1063,11 @@
 	name = "wide building 6"
 	mappath = 'southwilds/villagepois/wide6.dmm'
 /area/submap/groundbase/poi/wildvillage/wide/wide6
-
+/obj/item/weapon/paper/wide6
+	name = "\improper hand written letter"
+	info = {"It is hard for me to write this out, and I hope you will be back soon, but I fear that by the time you return I will already be gone. I will try my best to hold on, but even as I write this, I can feel myself slipping.<BR><BR>
+	I know that you all do not believe me but I really can see them, just beyond the walls, and they're even closer now than they were before. I can see them even when I close my eyes. Seven golden eyes watch me, and I can feel their heat pouring into me. As they come closer, I can feel myself being tugged in. Like I'm a little lost moon being tugged into the embrace of a passing star. <BR><BR>It still doesn't hurt. It's getting hard to see anything else, and I can't move anymore. I feel like everything is going to be okay. If you see seven eyes, don't be afraid. Just promise you'll come find me, okay?<BR><BR>
+	I'll keep hol"}
 
 /datum/map_template/groundbase/wildvillage/long/long1
 	name = "long building 1"
@@ -1072,11 +1077,11 @@
 	name = "long building 2"
 	mappath = 'southwilds/villagepois/long2.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long2
-/datum/map_template/groundbase/wildvillage/wide/long3
+/datum/map_template/groundbase/wildvillage/long/long3
 	name = "wide building 3"
 	mappath = 'southwilds/villagepois/long3.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long3
-/datum/map_template/groundbase/wildvillage/wide/long4
+/datum/map_template/groundbase/wildvillage/long/long4
 	name = "wide building 4"
 	mappath = 'southwilds/villagepois/long4.dmm'
 /area/submap/groundbase/poi/wildvillage/long/long4

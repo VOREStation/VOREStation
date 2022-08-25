@@ -208,6 +208,20 @@
 	item_state = "greatcoat_mob"
 
 //For general use
+/obj/item/clothing/suit/storage/vest/hoscoat/russofurcoat
+	name = "long fur coat"
+	desc = "A sophisticated long coat made of fur."
+
+	icon = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "russofurcoat"
+
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	item_state = "russofurcoat"
+
+	allowed = list (/obj/item/weapon/pen, /obj/item/weapon/paper, /obj/item/device/flashlight, /obj/item/weapon/tank/emergency/oxygen, /obj/item/weapon/storage/fancy/cigarettes, /obj/item/weapon/storage/box/matches, /obj/item/weapon/reagent_containers/food/drinks/flask)
+	flags_inv = HIDETIE|HIDEHOLSTER
+
+//For general use
 /obj/item/clothing/suit/storage/fluff/fedcoat
 	name = "Federation Uniform Jacket (Red)"
 	desc = "A uniform jacket from the United Federation. Starfleet still uses this uniform and there are variations of it. Set phasers to awesome."
@@ -2082,14 +2096,14 @@ Departamental Swimsuits, for general use
 		translocator_unequip(translocator, user)
 		T.forceMove(src)
 		translocator = T
-		user.show_message("[bicon(src)]*click!*")
+		user.show_message("\icon[src][bicon(src)]*click!*")
 		playsound(src, 'sound/machines/click.ogg', 30, 1)
 
 /obj/item/clothing/head/fluff/nikki/proc/translocator_unequip(var/obj/item/device/perfect_tele/T, var/mob/living/carbon/human/user)
 	if (translocator)
 		if (user)
 			user.put_in_hands(T)
-			user.show_message("[bicon(src)]*click!*")
+			user.show_message("\icon[src][bicon(src)]*click!*")
 		else
 			translocator.forceMove(get_turf(src))
 		translocator = null
@@ -2433,6 +2447,39 @@ Departamental Swimsuits, for general use
 	else
 		RemoveHood_evelyn()
 
+//Allweek:Fifi the Magnificent
+/obj/item/clothing/head/fluff/fifi_hat
+	name = "fifi's hat"
+	desc = "It's a colorful hat for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_hat"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_hat"
+
+/obj/item/clothing/under/fluff/fifi_jumpsuit
+	name = "fifi's jumpsuit"
+	desc = "It's a colorful outfit for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_jumpsuit"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_jumpsuit"
+
+/obj/item/clothing/shoes/fluff/fifi_socks
+	name = "fifi's socks"
+	desc = "A pair of colorful socks for an eccentric entertaining cat."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "fifi_socks"
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "fifi_socks"
+
+
+
 //Uncle_Fruit_VEVO - Bradley Khatibi
 /obj/item/clothing/shoes/fluff/airjordans
     name = "A pair of Air Jordan 1 Mid 'Black Gym Red's"
@@ -2440,3 +2487,25 @@ Departamental Swimsuits, for general use
     icon_state = "airjordans"
     icon = 'icons/vore/custom_clothes_vr.dmi'
     icon_override = 'icons/vore/custom_onmob_vr.dmi'
+
+//Pandora029:Seona Young
+/obj/item/clothing/under/fluff/foxoflightsuit
+	name = "padded flightsui"
+	desc = "A ruddy-orange combination immersion-and-flight suit, fitted with extra padding across the front of its legs. Warm, waterproof and practical, seveal patches are scattered across it alongside a hard-wearing harness."
+
+	icon = 'icons/vore/custom_clothes_vr.dmi'
+	icon_state = "foxflightsuit"
+	worn_state = "foxflightsuit_mob"
+	rolled_sleeves = 0
+	rolled_down = 0
+
+	icon_override = 'icons/vore/custom_clothes_vr.dmi'
+	item_state = "foxflightsuit_mob"
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+
+//Shalax: Cerise Duelliste
+/obj/item/weapon/storage/belt/security/fluff/cerise
+	name = "champion's belt"
+	desc = "Cerise's hard-won belt from her glory days. Her skill might have waned since then, but her renown lives on."
+	icon_state = "champion"
+	item_state = null // i swear to god this works - hatterhat

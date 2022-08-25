@@ -5,8 +5,10 @@
 var/global/list/hair_accesories_list= list()// Stores /datum/sprite_accessory/hair_accessory indexed by type
 var/global/list/negative_traits = list()	// Negative custom species traits, indexed by path
 var/global/list/neutral_traits = list()		// Neutral custom species traits, indexed by path
-var/global/list/everyone_traits = list()	// Neutral traits available to all species, indexed by path
 var/global/list/positive_traits = list()	// Positive custom species traits, indexed by path
+var/global/list/everyone_traits_positive = list()	// Neutral traits available to all species, indexed by path
+var/global/list/everyone_traits_neutral = list()	// Neutral traits available to all species, indexed by path
+var/global/list/everyone_traits_negative = list()	// Neutral traits available to all species, indexed by path
 var/global/list/traits_costs = list()		// Just path = cost list, saves time in char setup
 var/global/list/all_traits = list()			// All of 'em at once (same instances)
 var/global/list/active_ghost_pods = list()
@@ -63,6 +65,7 @@ var/global/list/classic_vore_sounds = list(
 		"Rustle 3 (cloth)"	= 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)"	= 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)"	= 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"None" = null)
 
 var/global/list/classic_release_sounds = list(
@@ -71,6 +74,7 @@ var/global/list/classic_release_sounds = list(
 		"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)" = 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)" = 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"Splatter" = 'sound/effects/splat.ogg',
 		"None" = null
 		)
@@ -93,6 +97,7 @@ var/global/list/fancy_vore_sounds = list(
 		"Rustle 3 (cloth)"	= 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)"	= 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)"	= 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"None" = null
 		)
 
@@ -102,6 +107,7 @@ var/global/list/fancy_release_sounds = list(
 		"Rustle 3 (cloth)" = 'sound/effects/rustle3.ogg',
 		"Rustle 4 (cloth)" = 'sound/effects/rustle4.ogg',
 		"Rustle 5 (cloth)" = 'sound/effects/rustle5.ogg',
+		"Zipper" = 'sound/items/zip.ogg',
 		"Stomach Move" = 'sound/vore/sunesound/pred/stomachmove.ogg',
 		"Pred Escape" = 'sound/vore/sunesound/pred/escape.ogg',
 		"Splatter" = 'sound/effects/splat.ogg',
@@ -230,7 +236,8 @@ var/global/list/edible_trash = list(/obj/item/broken_device,
 				/obj/item/weapon/storage/wallet,
 				/obj/item/weapon/storage/vore_egg,
 				/obj/item/weapon/bikehorn/tinytether,
-				/obj/item/capture_crystal
+				/obj/item/capture_crystal,
+				/obj/item/roulette_ball
 				)
 
 var/global/list/contamination_flavors = list(
@@ -539,12 +546,16 @@ var/global/list/remainless_species = list(SPECIES_PROMETHEAN,
 		switch(category)
 			if(-INFINITY to -0.1)
 				negative_traits[traitpath] = T
+				if(!(T.custom_only))
+					everyone_traits_negative[traitpath] = T
 			if(0)
 				neutral_traits[traitpath] = T
 				if(!(T.custom_only))
-					everyone_traits[traitpath] = T
+					everyone_traits_neutral[traitpath] = T
 			if(0.1 to INFINITY)
 				positive_traits[traitpath] = T
+				if(!(T.custom_only))
+					everyone_traits_positive[traitpath] = T
 
 
 	// Weaver recipe stuff

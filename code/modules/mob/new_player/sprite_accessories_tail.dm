@@ -25,6 +25,10 @@
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 	var/icon/clip_mask = null //Instantiated clip mask of given icon and state
 
+	// VOREStation Edit: Taur Loafing
+	var/can_loaf = FALSE
+	var/loaf_offset = 0
+
 	//species_allowed = list(SPECIES_EVENT1, SPECIES_EVENT2, SPECIES_EVENT3)			//Removing Polaris whitelits, ones we need are defined in our files
 
 /datum/sprite_accessory/tail/New()
