@@ -8,6 +8,10 @@
 	requires_power = 0
 	dynamic_lighting = 0
 
+/datum/map_template/admin_use/casino
+	name = "Lucky 7 Casino"
+	desc = "A casino to gamble your life away."
+	mappath = 'maps/submaps/admin_use_vr/lucky_7.dmm'
 
 // NEVER EVER use these on an actual included map.
 // These are for admins to use when they make quick maps and upload the .dmm files for loading
