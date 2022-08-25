@@ -2697,6 +2697,7 @@
 #include "code\modules\mob\_modifiers\medical.dm"
 #include "code\modules\mob\_modifiers\modifiers.dm"
 #include "code\modules\mob\_modifiers\modifiers_misc.dm"
+#include "code\modules\mob\_modifiers\modifiers_vr.dm"
 #include "code\modules\mob\_modifiers\traits.dm"
 #include "code\modules\mob\_modifiers\traits_phobias.dm"
 #include "code\modules\mob\_modifiers\unholy.dm"

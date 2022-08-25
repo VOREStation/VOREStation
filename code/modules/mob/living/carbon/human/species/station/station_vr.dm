@@ -81,7 +81,7 @@
 	name_language = LANGUAGE_SKRELLIAN
 	color_mult = 1
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
-	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/carbon/human/proc/water_stealth, /mob/living/carbon/human/proc/underwater_devour)
 	min_age = 18
 	max_age = 80
 
@@ -105,6 +105,7 @@
 	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
 
 	water_breather = TRUE
+	water_movement = -4 //Negates shallow. Halves deep.
 
 	flesh_color = "#AFA59E"
 	base_color = "#777777"
@@ -284,12 +285,15 @@
 	deform = 'icons/mob/human_races/r_def_skrell_vr.dmi'
 	color_mult = 1
 	min_age = 18
-	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair, /mob/living/carbon/human/proc/water_stealth, /mob/living/carbon/human/proc/underwater_devour)
 	reagent_tag = null
 	allergens = null
 	assisted_langs = list(LANGUAGE_EAL, LANGUAGE_ROOTLOCAL, LANGUAGE_ROOTGLOBAL, LANGUAGE_VOX)
 	genders = list(MALE, FEMALE, PLURAL, NEUTER)
 	wikilink="https://wiki.vore-station.net/Skrell"
+
+	water_breather = TRUE
+	water_movement = -4 //Negates shallow. Halves deep.
 
 /datum/species/zaddat
 	spawn_flags = SPECIES_CAN_JOIN
