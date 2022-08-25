@@ -1239,13 +1239,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 /mob/living/carbon/human/proc/get_tail_image()
 	//If you are FBP with tail style and didn't set a custom one
 	var/datum/robolimb/model = isSynthetic()
-	if(istype(model) && model.includes_tail && !tail_style)
+	if(istype(model) && model.includes_tail && !tail_style && !tail_hidden)
 		var/icon/tail_s = new/icon("icon" = synthetic.icon, "icon_state" = "tail")
 		tail_s.Blend(rgb(src.r_skin, src.g_skin, src.b_skin), species.color_mult ? ICON_MULTIPLY : ICON_ADD)
 		return image(tail_s)
 
 	//If you have a custom tail selected
-	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)))
+	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
 		var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = (tail_style.can_loaf && resting) ? "[tail_style.icon_state]_loaf" : (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)) // VOREStation Edit: Taur Loafing
 		if(tail_style.can_loaf && !is_shifted)
 			pixel_y = (resting) ? -tail_style.loaf_offset : 0 //move player down, then taur up, to fit the overlays correctly // VOREStation Edit: Taur Loafing
