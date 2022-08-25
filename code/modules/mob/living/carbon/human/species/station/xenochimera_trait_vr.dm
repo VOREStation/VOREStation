@@ -60,6 +60,14 @@
 	desc = "You can breathe under water and can traverse water more efficiently. Additionally, you can eat others in the water."
 	cost = 0
 	category = 0
+	excludes = list(/datum/trait/positive/winged_flight/xenochimera)
+	custom_only = FALSE
+
+/datum/trait/positive/winged_flight/xenochimera
+	name = "Xenochhimera: Winged Flight"
+	desc = "Allows you to fly by using your wings. Don't forget to bring them!"
+	cost = 0
+	excludes = list(/datum/trait/positive/aquatic/xenochimera)
 	custom_only = FALSE
 
 /* // Commented out in lieu of finding a better solution.
