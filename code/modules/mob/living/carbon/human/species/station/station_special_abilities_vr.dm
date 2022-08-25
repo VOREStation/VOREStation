@@ -1065,3 +1065,91 @@
 		C.update_transform()
 		//egg_contents -= src
 		C.contents -= src
+
+/mob/living/carbon/human/proc/water_stealth()
+	set name = "Dive under water / Resurface"
+	set desc = "Dive under water, allowing for you to be stealthy and move faster."
+	set category = "Abilities"
+
+	if(last_special > world.time)
+		return
+	last_special = world.time + 50 //No spamming!
+
+	if(has_modifier_of_type(/datum/modifier/underwater_stealth))
+		to_chat(src, "You resurface!")
+		remove_modifiers_of_type(/datum/modifier/underwater_stealth)
+		return
+
+	if(!isturf(loc)) //We have no turf.
+		to_chat(src, "There is no water for you to dive into!")
+		return
+
+	if(istype(src.loc, /turf/simulated/floor/water))
+		var/turf/simulated/floor/water/water_floor = src.loc
+		if(water_floor.depth >= 1) //Is it deep enough?
+			add_modifier(/datum/modifier/underwater_stealth) //No duration. It'll remove itself when they exit the water!
+			to_chat(src, "You dive into the water!")
+			visible_message("[src] dives into the water!")
+		else
+			to_chat(src, "The water here is not deep enough to dive into!")
+			return
+
+	else
+		to_chat(src, "There is no water for you to dive into!")
+		return
+
+/mob/living/carbon/human/proc/underwater_devour()
+	set name = "Devour From Water"
+	set desc = "Grab something in the water with you and devour them with your selected stomach."
+	set category = "Abilities"
+
+	if(last_special > world.time)
+		return
+	last_special = world.time + 50 //No spamming!
+
+	if(stat == DEAD || paralysis || weakened || stunned)
+		to_chat(src, "<span class='notice'>You cannot do that while in your current state.</span>")
+		return
+
+	if(!(src.vore_selected))
+		to_chat(src, "<span class='notice'>No selected belly found.</span>")
+		return
+
+
+	if(!has_modifier_of_type(/datum/modifier/underwater_stealth))
+		to_chat(src, "You must be underwater to do this!!")
+		return
+
+	var/list/targets = list() //Shameless copy and paste. If it ain't broke don't fix it!
+
+	for(var/turf/T in range(1, src))
+		if(istype(T, /turf/simulated/floor/water))
+			for(var/mob/living/L in T)
+				if(L == src) //no eating yourself. 1984.
+					continue
+				if(L.devourable)
+					targets += L
+
+	if(!(targets.len))
+		to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+		return
+
+	var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+	if(!target)
+		return
+
+	to_chat(target, "<span class='critical'>Something begins to circle around you in the water!</span>") //Dun dun...
+	var/starting_loc = target.loc
+
+	if(do_after(src, 50))
+		if(target.loc != starting_loc)
+			to_chat(target, "<span class='warning'>You got away from whatever that was...</span>")
+			to_chat(src, "<span class='notice'>They got away.</span>")
+			return
+		if(target.buckled) //how are you buckled in the water?!
+			target.buckled.unbuckle_mob()
+		target.visible_message("<span class='warning'>\The [target] suddenly disappears, being dragged into the water!</span>",\
+			"<span class='danger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
+		to_chat(src, "<span class='notice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
+		target.forceMove(src.vore_selected)

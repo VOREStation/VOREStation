@@ -25,10 +25,7 @@
 	inherent_verbs = list(
 		/mob/living/carbon/human/proc/reconstitute_form,
 		/mob/living/carbon/human/proc/sonar_ping,
-		/mob/living/carbon/human/proc/tie_hair,
-		/mob/living/proc/flying_toggle,
-		/mob/living/proc/flying_vore_toggle,
-		/mob/living/proc/start_wings_hovering)		//Xenochimera get all the special verbs since they can't select traits.
+		/mob/living/carbon/human/proc/tie_hair)
 
 	virus_immune = 1 // They practically ARE one.
 	min_age = 18
