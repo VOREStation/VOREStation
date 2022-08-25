@@ -124,6 +124,9 @@
 	default_skybox = /datum/skybox_settings/groundbase
 
 	unit_test_exempt_areas = list(		//These are all outside
+		/area/groundbase/cargo/bay,
+		/area/groundbase/civilian/bar/upper,
+		/area/groundbase/exploration/shuttlepad,
 		/area/groundbase/level1,
 		/area/groundbase/level1/ne,
 		/area/groundbase/level1/nw,
@@ -140,11 +143,20 @@
 		/area/groundbase/level2/nw,
 		/area/groundbase/level2/se,
 		/area/groundbase/level2/sw,
+		/area/groundbase/level2/northspur,
+		/area/groundbase/level2/eastspur,
+		/area/groundbase/level2/westspur,
+		/area/groundbase/level2/southeastspur,
+		/area/groundbase/level2/southwestspur,
 		/area/groundbase/level3,
 		/area/groundbase/level3/ne,
 		/area/groundbase/level3/nw,
 		/area/groundbase/level3/se,
 		/area/groundbase/level3/sw,
+		/area/groundbase/level3/ne/open,
+		/area/groundbase/level3/nw/open,
+		/area/groundbase/level3/se/open,
+		/area/groundbase/level3/sw/open,
 		/area/maintenance/groundbase/level1/netunnel,
 		/area/maintenance/groundbase/level1/nwtunnel,
 		/area/maintenance/groundbase/level1/setunnel,
@@ -165,6 +177,11 @@
 
 	unit_test_exempt_from_atmos = list()
 
+	unit_test_z_levels = list(
+		Z_LEVEL_GB_BOTTOM,
+		Z_LEVEL_GB_MIDDLE,
+		Z_LEVEL_GB_TOP
+	)
 
 	lateload_z_levels = list(
 		list("Groundbase - Central Command"),
@@ -393,7 +410,7 @@
 	name = "Misc"
 	flags = MAP_LEVEL_ADMIN|MAP_LEVEL_SEALED|MAP_LEVEL_CONTACT|MAP_LEVEL_XENOARCH_EXEMPT
 
-#include "gb-mining.dm"
+#include "groundbase_mining.dm"
 /datum/map_template/gb_lateload/mining
 	name = "V3c Underground"
 	desc = "The caves underneath the survace of Virgo 3C"
@@ -405,7 +422,7 @@
 	. = ..()
 //	seed_submaps(list(Z_LEVEL_MINING), 60, /area/gb_mine/unexplored, /datum/map_template/space_rocks)	//POI seeding
 	new /datum/random_map/automata/cave_system/no_cracks(null, 3, 3, Z_LEVEL_MINING, world.maxx - 4, world.maxy - 4)
-	new /datum/random_map/noise/ore/mining(null, 1, 1, Z_LEVEL_MINING, 64, 64)
+	new /datum/random_map/noise/ore/gb_mining(null, 1, 1, Z_LEVEL_MINING, 64, 64)
 
 /datum/map_z_level/gb_lateload/mining
 	z = Z_LEVEL_MINING
@@ -534,4 +551,3 @@
 */
 
 ////////////////////////////////////////////////////////////////////////
-

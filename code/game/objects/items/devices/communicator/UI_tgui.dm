@@ -85,7 +85,7 @@
 	cam_screen.vis_contents = visible_turfs
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, (video_range * 2), (video_range * 2))
-	
+
 	local_skybox.cut_overlays()
 	local_skybox.add_overlay(SSskybox.get_skybox(get_z(last_camera_turf)))
 	local_skybox.scale_to_view(video_range * 2)
@@ -322,7 +322,7 @@
 	. = TRUE
 	switch(action)
 		if("rename")
-			var/new_name = sanitizeSafe(input(usr,"Please enter your name.","Communicator",usr.name) )
+			var/new_name = sanitizeSafe(tgui_input_text(usr,"Please enter your name.","Communicator",usr.name) )
 			if(new_name)
 				register_device(new_name)
 
@@ -339,6 +339,11 @@
 
 		if("toggle_ringer")
 			ringer = !ringer
+
+		if("set_ringer_tone")
+			var/ringtone = tgui_input_text(usr, "Set Ringer Tone", "Ringer")
+			if(ringtone)
+				ttone = ringtone
 
 		if("selfie_mode")
 			selfie_mode = !selfie_mode
@@ -371,11 +376,13 @@
 				to_chat(usr, "<span class='danger'>Error: Cannot connect to Exonet node.</span>")
 				return FALSE
 			var/their_address = params["message"]
-			var/text = sanitizeSafe(input(usr,"Enter your message.","Text Message"))
+			var/text = sanitizeSafe(tgui_input_text(usr,"Enter your message.","Text Message"))
 			if(text)
 				exonet.send_message(their_address, "text", text)
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
 				log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", usr)
+				var/obj/item/device/communicator/comm = exonet.get_atom_from_address(their_address)
+				to_chat(usr, "<span class='notice'>\icon[src][bicon(src)] Sent message to [comm.owner], <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
 				for(var/mob/M in player_list)
 					if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 						if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)
@@ -419,7 +426,7 @@
 			selected_tab = params["switch_tab"]
 
 		if("edit")
-			var/n = input(usr, "Please enter message", name, notehtml) as message|null
+			var/n = tgui_input_text(usr, "Please enter message", name, notehtml, multiline = TRUE, prevent_enter = TRUE)
 			n = sanitizeSafe(n, extra = 0)
 			if(n)
 				note = html_decode(n)

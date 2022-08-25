@@ -3,16 +3,12 @@
 	desc = "A small device used to measure body radiation and warning one after a certain threshold. \
 	Read manual before use! Can be held, attached to the uniform or worn around the neck."
 	w_class = ITEMSIZE_SMALL
-
 	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_override = 'icons/inventory/accessory/item_vr.dmi'
-
 	icon_state = "dosimeter"
 	item_state = "dosimeter"
 	overlay_state = "dosimeter"
-
 	slot_flags = SLOT_TIE
-
 	var/obj/item/weapon/dosimeter_film/current_film = null
 
 /obj/item/clothing/accessory/dosimeter/New()
@@ -80,19 +76,15 @@
 		current_film.icon_state = "dosimeter_film[tostate]"
 	else
 		icon_state = "[initial(icon_state)]-empty"
-		
 	update_icon()
 
 /obj/item/weapon/dosimeter_film
 	name = "dosimeter film"
 	desc = "These films can be inserted into dosimeters. It turns from white to black, depending on how much radiation it endured."
 	w_class = ITEMSIZE_SMALL
-
 	icon = 'icons/inventory/accessory/item_vr.dmi'
 	icon_override = 'icons/inventory/accessory/item_vr.dmi'
-
 	icon_state = "dosimeter_film0"
-
 	var/state = 0 //0 - White, 1 - Darker, 2 - Black (same as iconstates)
 
 /obj/item/weapon/dosimeter_film/proc/update_state(var/tostate)
@@ -117,10 +109,13 @@
 /obj/item/weapon/storage/box/dosimeter
 	name = "dosimeter case"
 	desc = "This case can only hold the Dosimeter, a few films and a manual."
+	icon = 'icons/inventory/accessory/item_vr.dmi'
+	icon_override = 'icons/inventory/accessory/item_vr.dmi'
+	icon_state = "dosimeter_case"
 	item_state_slots = list(slot_r_hand_str = "syringe_kit", slot_l_hand_str = "syringe_kit")
 	storage_slots = 5
 	can_hold = list(/obj/item/weapon/paper/dosimeter_manual, /obj/item/clothing/accessory/dosimeter, /obj/item/weapon/dosimeter_film)
-	max_storage_space = (ITEMSIZE_COST_SMALL * 2) + (ITEMSIZE_COST_TINY * 3)
+	max_storage_space = (ITEMSIZE_COST_SMALL * 4) + (ITEMSIZE_COST_TINY * 1)
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/weapon/storage/box/dosimeter/New()

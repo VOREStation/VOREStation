@@ -57,7 +57,7 @@
 
 // Randomizes color
 /obj/item/weapon/melee/umbrella/random/Initialize()
-	color = "#"+get_random_colour()
+	color = get_random_colour()
 	. = ..()
 
 /obj/item/weapon/melee/cursedblade

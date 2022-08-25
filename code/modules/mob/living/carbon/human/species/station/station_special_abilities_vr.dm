@@ -3,10 +3,18 @@
 	set category = "Abilities"
 
 	// Sanity is mostly handled in chimera_regenerate()
-
-	var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
-	if(confirm == "Yes")
-		chimera_regenerate()
+	if(stat == DEAD)
+		var/confirm = tgui_alert(usr, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
+	else if (quickcheckuninjured())
+		var/confirm = tgui_alert(usr, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and match your appearance to your character slot.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
+	else
+		var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
 
 /mob/living/carbon/human/proc/chimera_regenerate()
 	//If they're already regenerating
@@ -21,40 +29,40 @@
 		to_chat(src, "You can't use that ability again so soon!")
 		return
 
-	var/nutrition_used = nutrition * 0.5
-	var/time = (240+960/(1 + nutrition_used/75))
+	var/time = min(900, (120+780/(1 + nutrition/100))) //capped at 15 mins, roughly 6 minutes at 250 (yellow) nutrition, 4.1 minutes at 500 (grey), cannot be below 2 mins
+	if (quickcheckuninjured()) //if you're completely uninjured, then you get a speedymode - check health first for quickness
+		time = 30
 
 	//Clicked regen while dead.
 	if(stat == DEAD)
 
-		//Has nutrition and dead, allow regen.
-		if(hasnutriment())
-			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+		//reviving from dead takes extra nutriment to be provided from outside OR takes twice as long and consumes extra at the end
+		if(!hasnutriment())
+			time = time*2
 
-			//Scary spawnerization.
-			revive_ready = REVIVING_NOW
-			revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
-			throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
-			spawn(time SECONDS)
-				// Was dead, now not dead.
-				if(stat != DEAD)
-					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
-					revive_ready = REVIVING_READY //reset their cooldown
-					clear_alert("regen")
-					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
-				// Was dead, still dead.
-				else
-					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
-					verbs |= /mob/living/carbon/human/proc/hatch
-					revive_ready = REVIVING_DONE
-					src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-					clear_alert("regen")
-					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		//Scary spawnerization.
+		revive_ready = REVIVING_NOW
+		revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		spawn(time SECONDS)
+			// check to see if they've been fixed by outside forces in the meantime such as defibbing
+			if(stat != DEAD)
+				to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
+				revive_ready = REVIVING_READY //reset their cooldown
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
-		//Dead until nutrition injected.
-		else
-			to_chat(src, "<span class='warning'>Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain.</span>")
+			// Was dead, still dead.
+			else
+				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
+				verbs |= /mob/living/carbon/human/proc/hatch
+				revive_ready = REVIVING_DONE
+				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+
 
 	//Clicked regen while NOT dead
 	else
@@ -66,29 +74,17 @@
 		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		spawn(time SECONDS)
 
-			//If they're still alive after regenning.
-			if(stat != DEAD)
+			//Slightly different flavour messages
+			if(stat != DEAD || hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				verbs |= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_DONE
-				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-				clear_alert("regen")
-				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
-
-			//Was alive, now dead
-			else if(hasnutriment())
-				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				verbs |= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_DONE
-				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-				clear_alert("regen")
-				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
-
-			//Dead until nutrition injected.
 			else
-				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
-				revive_ready = REVIVING_READY //reset their cooldown
-				clear_alert("regen")
+				to_chat(src, "<span class='warning'>Consciousness begins to stir as your battered body struggles to recover from its ordeal..</span>")
+			verbs |= /mob/living/carbon/human/proc/hatch
+			revive_ready = REVIVING_DONE
+			src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+			clear_alert("regen")
+			throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
@@ -97,6 +93,16 @@
 		return TRUE
 	else return FALSE
 
+/mob/living/carbon/human/proc/quickcheckuninjured()
+	if (getBruteLoss() || getFireLoss() || getHalLoss() || getToxLoss() || getOxyLoss() || getBrainLoss()) //fails if they have any of the main damage types
+		return FALSE
+	for (var/obj/item/organ/O in organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
+		if (O.damage)
+			return FALSE
+	for (var/obj/item/organ/O in internal_organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
+		if (O.damage)
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
@@ -112,57 +118,53 @@
 
 		//Dead when hatching
 		if(stat == DEAD)
-			//Check again for nutriment (necessary?)
-			if(hasnutriment())
-				chimera_hatch()
-				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
-				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
-				clear_alert("hatch")
-				return
-
-			//Don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
-			else
-				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
-				verbs -= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_READY //reset their cooldown they can try again when they're given a kickstart
-				clear_alert("hatch")
+			//Reviving from ded takes extra nutrition - if it isn't provided from outside sources, it comes from you
+			if(!hasnutriment())
+				nutrition=nutrition * 0.75
+			chimera_hatch()
+			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
+			visible_message("<span class='warning'><p><font size=4>The former corpse staggers to its feet, all its former wounds having vanished...</font></p></span>") //Bloody hell...
+			clear_alert("hatch")
+			return
 
 		//Alive when hatching
 		else
 			chimera_hatch()
-			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+
+			visible_message("<span class='warning'><p><font size=4>[src] rises to \his feet.</font></p></span>") //Bloody hell...
 			clear_alert("hatch")
 
 /mob/living/carbon/human/proc/chimera_hatch()
 	verbs -= /mob/living/carbon/human/proc/hatch
 	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
-
 	//Modify and record values (half nutrition and braindamage)
-	var/old_nutrition = nutrition * 0.5
-	var/braindamage = (brainloss * 0.5) //Can only heal half brain damage.
-
+	var/old_nutrition = nutrition
+	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
+	var/uninjured=quickcheckuninjured()
 	//I did have special snowflake code, but this is easier.
 	revive()
 	mutations.Remove(HUSK)
-	nutrition = old_nutrition
 	setBrainLoss(braindamage)
 
-	//Drop everything
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+	if(!uninjured)
+		nutrition = old_nutrition * 0.5
+		//Drop everything
+		for(var/obj/item/W in src)
+			drop_from_inventory(W)
+		//Visual effects
+		var/T = get_turf(src)
+		var/blood_color = species.blood_color
+		var/flesh_color = species.flesh_color
+		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
+		visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
+	else //lower cost for doing a quick cosmetic revive
+		nutrition = old_nutrition * 0.9
 
 	//Unfreeze some things
 	does_not_breathe = FALSE
 	update_canmove()
 	weakened = 2
-
-	//Visual effects
-	var/T = get_turf(src)
-	var/blood_color = species.blood_color
-	var/flesh_color = species.flesh_color
-	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-
-	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
 	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
@@ -1037,3 +1039,29 @@
 	species.has_glowing_eyes = !species.has_glowing_eyes
 	update_eyes()
 	to_chat(src, "Your eyes [species.has_glowing_eyes ? "are now" : "are no longer"] glowing.")
+
+
+
+/mob/living/carbon/human/proc/enter_cocoon()
+	set name = "Spin Cocoon"
+	set category = "Abilities"
+	if(!isturf(loc))
+		to_chat(src, "You don't have enough space to spin a cocoon!")
+		return
+
+	if(do_after(src, 25, exclusive = TASK_USER_EXCLUSIVE))
+		var/obj/item/weapon/storage/vore_egg/bugcocoon/C = new(loc)
+		forceMove(C)
+		transforming = TRUE
+		var/datum/tgui_module/appearance_changer/cocoon/V = new(src, src)
+		V.tgui_interact(src)
+
+		var/mob_holder_type = src.holder_type || /obj/item/weapon/holder
+		C.w_class = src.size_multiplier * 4 //Egg size and weight scaled to match occupant.
+		var/obj/item/weapon/holder/H = new mob_holder_type(C, src)
+		C.max_storage_space = H.w_class
+		C.icon_scale_x = 0.25 * C.w_class
+		C.icon_scale_y = 0.25 * C.w_class
+		C.update_transform()
+		//egg_contents -= src
+		C.contents -= src

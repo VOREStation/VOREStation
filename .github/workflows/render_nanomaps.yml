@@ -14,10 +14,10 @@ on:
 jobs:
   generate_maps:
     name: 'Generate NanoMaps'
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - name: Clone
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Branch
       run: |

@@ -60,7 +60,7 @@
 
 	var/new_bearing
 	if(free_rotate)
-		new_bearing = input(usr, "What bearing do you want to rotate \the [src] to?", "[name]") as num
+		new_bearing = tgui_input_number(usr, "What bearing do you want to rotate \the [src] to?", "[name]")
 		new_bearing = round(new_bearing)
 		if(new_bearing <= -1 || new_bearing > 360)
 			to_chat(user, "<span class='warning'>Rotating \the [src] [new_bearing] degrees would be a waste of time.</span>")
@@ -177,7 +177,7 @@
 
 	var/new_bearing
 	if(free_rotate)
-		new_bearing = input(usr, "What bearing do you want to rotate \the [src] to?", "[name]") as num
+		new_bearing = tgui_input_number(usr, "What bearing do you want to rotate \the [src] to?", "[name]")
 		new_bearing = round(new_bearing)
 		if(new_bearing <= -1 || new_bearing > 360)
 			to_chat(user, "<span class='warning'>Rotating \the [src] [new_bearing] degrees would be a waste of time.</span>")

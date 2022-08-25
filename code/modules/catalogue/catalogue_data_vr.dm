@@ -93,6 +93,14 @@
 	comparable conditions as wealthy members of the Diaspora."
 	value = CATALOGUER_REWARD_TRIVIAL
 
+/datum/category_item/catalogue/fauna/altevian
+	name = "Sapients - Altevian"
+	desc = "The Altevian are a species of tall, rodent humanoids that are akin to rats for their features. \
+	The Altevian, unlike most species, do not have a home planet, nor system, adopting a fully nomadic lifestyle \
+	for their survival across the stars. Instead, they have opted to live in massive super capital-class colony-ships \
+	with a flagship as their place they would call home."
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /datum/category_item/catalogue/fauna/shadekin
 	name = "Sapients - Shadekin"
 	desc = "ERROR : No DNA found. ERROR : Ambient energy signature detected. Likely origin from attempt of scanning \

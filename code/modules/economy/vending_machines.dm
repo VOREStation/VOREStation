@@ -194,7 +194,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cb10 = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/tuna = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12)
+					/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax = 6)
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy = 2,
 				/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,
@@ -487,7 +488,6 @@
 					/obj/item/weapon/plantspray/pests = 20,
 					/obj/item/weapon/reagent_containers/syringe = 5,
 					/obj/item/weapon/reagent_containers/glass/beaker = 4,
-					/obj/item/weapon/watertank = 1,
 					/obj/item/weapon/storage/bag/plants = 5)
 	premium = list(/obj/item/weapon/reagent_containers/glass/bottle/ammonia = 10,
 					/obj/item/weapon/reagent_containers/glass/bottle/diethylamine = 5)
@@ -629,6 +629,7 @@
 					/obj/item/device/analyzer = 5,
 					/obj/item/device/t_scanner = 5,
 					/obj/item/weapon/tool/screwdriver = 5,
+					/obj/item/weapon/extinguisher/mini = 3,
 					/obj/item/device/flashlight/glowstick = 3,
 					/obj/item/device/flashlight/glowstick/red = 3,
 					/obj/item/device/flashlight/glowstick/blue = 3,
@@ -1055,7 +1056,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/driedfish = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 8
 					)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/unajerky = 1)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/unajerky = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
 
 	prices = list(	/obj/item/weapon/reagent_containers/food/snacks/tuna = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/semki = 5,
@@ -1524,8 +1526,7 @@
 		/obj/item/clothing/gloves/black = 5,
 		/obj/item/weapon/storage/belt/janitor = 5,
 		/obj/item/clothing/shoes/galoshes = 5,
-		/obj/item/weapon/cartridge/janitor = 5,
-		/obj/item/weapon/watertank/janitor = 1
+		/obj/item/weapon/cartridge/janitor = 5
 	)
 	req_log_access = access_hop
 	has_logs = 1

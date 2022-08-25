@@ -139,13 +139,7 @@
 					slip_dist = 2
 
 
-			if(M.slip("the [floor_type] floor", slip_stun))
-				for(var/i = 1 to slip_dist)
-					if(isbelly(M.loc))	//VOREEdit, Stop the slip if we're in a belly. Inspired by a chompedit, cleaned it up with isbelly instead of a variable since the var was resetting too fast.
-						return
-					step(M, M.dir)
-					sleep(1)
-			else
+			if(!M.slip("the [floor_type] floor", slip_stun, slip_dist))
 				M.inertia_dir = 0
 		else
 			M.inertia_dir = 0

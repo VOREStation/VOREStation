@@ -42,16 +42,6 @@
 	drop_sound = 'sound/items/drop/herb.ogg'
 	pickup_sound = 'sound/items/pickup/herb.ogg'
 
-/obj/item/stack/tile/grass/sif
-	name = "sivian grass tile"
-	singular_name = "sivian grass floor tile"
-	desc = "A patch of grass like those that decorate the plains of Sif."
-
-/obj/item/stack/tile/grass/sif/forest
-	name = "sivian overgrowth tile"
-	singular_name = "sivian overgrowth floor tile"
-	desc = "A patch of dark overgrowth like those that decorate the plains of Sif."
-
 /*
  * Wood
  */
@@ -75,6 +65,26 @@
 	desc = "An easy to fit wooden floor tile. It's blue!"
 	icon_state = "tile-sifwood"
 
+/obj/item/stack/tile/wood/alt
+	name = "wood floor tile"
+	singular_name = "wood floor tile"
+	icon_state = "tile-wood_tile"
+
+/obj/item/stack/tile/wood/parquet
+	name = "parquet wood floor tile"
+	singular_name = "parquet wood floor tile"
+	icon_state = "tile-wood_parquet"
+
+/obj/item/stack/tile/wood/panel
+	name = "large wood floor tile"
+	singular_name = "large wood floor tile"
+	icon_state = "tile-wood_large"
+
+/obj/item/stack/tile/wood/tile
+	name = "tiled wood floor tile"
+	singular_name = "tiled wood floor tile"
+	icon_state = "tile-wood_tile"
+
 /obj/item/stack/tile/wood/cyborg
 	name = "wood floor tile synthesizer"
 	desc = "A device that makes wood floor tiles."
@@ -82,6 +92,8 @@
 	charge_costs = list(250)
 	stacktype = /obj/item/stack/tile/wood
 	build_type = /obj/item/stack/tile/wood
+
+
 
 /*
  * Carpets
@@ -107,6 +119,23 @@
 	icon_state = "tile-tealcarpet"
 	no_variants = FALSE
 
+/obj/item/stack/tile/carpet/geo
+	icon_state = "tile-carpet-deco"
+	desc = "A piece of carpet with a gnarly geometric design. It is the same size as a normal floor tile!"
+
+/obj/item/stack/tile/carpet/retro
+	icon_state = "tile-carpet-retro"
+	desc = "A piece of carpet with totally wicked blue space patterns. It is the same size as a normal floor tile!"
+
+/obj/item/stack/tile/carpet/retro_red
+	icon_state = "tile-carpet-retro-red"
+	desc = "A piece of carpet with red-ical space patterns. It is the same size as a normal floor tile!"
+
+/obj/item/stack/tile/carpet/happy
+	icon_state = "tile-carpet-happy"
+	desc = "A piece of carpet with happy patterns. It is the same size as a normal floor tile!"
+
+// TODO - Add descriptions to these
 /obj/item/stack/tile/carpet/bcarpet
 	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/blucarpet
@@ -121,10 +150,14 @@
 	icon_state = "tile-carpet"
 /obj/item/stack/tile/carpet/oracarpet
 	icon_state = "tile-carpet"
-/obj/item/stack/tile/carpet/deco
-	icon_state = "tile-carpet-deco"
-/obj/item/stack/tile/carpet/retro
-	icon_state = "tile-carpet-retro"
+/obj/item/stack/tile/carpet/brncarpet
+	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/blucarpet2
+	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/greencarpet
+	icon_state = "tile-carpet"
+/obj/item/stack/tile/carpet/purplecarpet
+	icon_state = "tile-carpet"
 
 /obj/item/stack/tile/floor
 	name = "floor tile"

@@ -314,7 +314,7 @@
 				if(speed <= 0)
 					speed = 1
 			if("setpath")
-				var/newpath = sanitize(input(usr, "Please define a new path!",,path) as text|null)
+				var/newpath = sanitize(tgui_input_text(usr, "Please define a new path!",,path))
 				if(newpath && newpath != "")
 					moving = 0 // stop moving
 					path = newpath

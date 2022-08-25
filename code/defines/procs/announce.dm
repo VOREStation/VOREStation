@@ -40,7 +40,7 @@
 
 	if(!msg_sanitized)
 		message = sanitize(message, extra = 0)
-	message_title = sanitizeSafe(message_title)
+		message_title = sanitizeSafe(message_title)
 
 	var/list/zlevels
 	if(zlevel)

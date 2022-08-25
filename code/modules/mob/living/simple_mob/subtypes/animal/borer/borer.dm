@@ -62,12 +62,7 @@
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
 	
-	//VOREStation Add Start
 	if(!roundstart && antag)
-		request_player()
-	//VOREStation Add End
-		
-	if(!roundstart)
 		addtimer(CALLBACK(src, .proc/request_player), 0)
 
 	return ..()

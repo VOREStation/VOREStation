@@ -377,7 +377,7 @@
 				droplimb(0, DROPLIMB_EDGE)
 			else if(spread_dam && owner && parent && (brute_overflow || burn_overflow) && (brute_overflow >= 5 || burn_overflow >= 5) && !permutation) //No infinite damage loops.
 				var/brute_third = brute_overflow * 0.33
-				var/burn_third = burn_overflow * 0.33	
+				var/burn_third = burn_overflow * 0.33
 				if(children && children.len)
 					var/brute_on_children = brute_third / children.len
 					var/burn_on_children = burn_third / children.len
@@ -593,6 +593,8 @@ This function completely restores a damaged organ to perfect condition.
 		return 1
 	else
 		last_dam = brute_dam + burn_dam
+	if (number_wounds != 0)
+		return 1
 	if(germ_level)
 		return 1
 	return 0
@@ -729,8 +731,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	for(var/datum/wound/W in wounds)
-		// wounds can disappear after 10 minutes at the earliest
-		if(W.damage <= 0 && W.created + 10 * 10 * 60 <= world.time)
+		// wounds used to be able to disappear after 10 minutes at the earliest, for now just remove them as soon as there is no damage
+		if(W.damage <= 0)
 			wounds -= W
 			continue
 			// let the GC handle the deletion of the wound
@@ -1062,14 +1064,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if((status & ORGAN_BROKEN) || cannot_break)
 		return
 
-	if(owner)
-		owner.visible_message(\
-			"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
-			"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
-			"<span class='danger'>You hear a sickening crack.</span>")
-		jostle_bone()
-		if(organ_can_feel_pain() && !isbelly(owner.loc))
+	if(owner)	//VOREStation Edit Start
+		if(organ_can_feel_pain() && !isbelly(owner.loc) && !isliving(owner.loc))
+			owner.visible_message(\
+				"<span class='danger'>You hear a loud cracking sound coming from \the [owner].</span>",\
+				"<span class='danger'>Something feels like it shattered in your [name]!</span>",\
+				"<span class='danger'>You hear a sickening crack.</span>")
 			owner.emote("scream")
+		jostle_bone()	//VOREStation Edit End
 
 	playsound(src, "fracture", 10, 1, -2)
 	status |= ORGAN_BROKEN

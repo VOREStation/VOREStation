@@ -1,10 +1,9 @@
 import { round } from 'common/math';
 import { Fragment } from 'inferno';
-import { useBackend } from "../backend";
-import { Box, Button, Dimmer, Flex, Icon, LabeledList, NoticeBox, ProgressBar, Section, Tabs } from "../components";
-import { COLORS } from '../constants';
+import { useBackend } from '../backend';
+import { Box, Button, Dimmer, Flex, Icon, LabeledList, NoticeBox, ProgressBar, Section, Tabs } from '../components';
 import { ComplexModal, modalRegisterBodyOverride } from '../interfaces/common/ComplexModal';
-import { Window } from "../layouts";
+import { Window } from '../layouts';
 
 const MENU_MAIN = 1;
 const MENU_BODY = 2;
@@ -12,49 +11,38 @@ const MENU_MIND = 3;
 
 const viewMindRecordModalBodyOverride = (modal, context) => {
   const { act, data } = useBackend(context);
-  const {
-    activerecord,
-    realname,
-    obviously_dead,
-    oocnotes,
-    can_sleeve_active,
-  } = modal.args;
+  const { activerecord, realname, obviously_dead, oocnotes, can_sleeve_active } = modal.args;
   return (
     <Section
       level={2}
       m="-1rem"
       pb="1rem"
-      title={"Mind Record (" + realname + ")"}
-      buttons={
-        <Button
-          icon="times"
-          color="red"
-          onClick={() => act('modal_close')} />
-      }>
+      title={'Mind Record (' + realname + ')'}
+      buttons={<Button icon="times" color="red" onClick={() => act('modal_close')} />}>
       <LabeledList>
-        <LabeledList.Item label="Name">
-          {realname}
-        </LabeledList.Item>
-        <LabeledList.Item label="Status">
-          {obviously_dead}
-        </LabeledList.Item>
+        <LabeledList.Item label="Name">{realname}</LabeledList.Item>
+        <LabeledList.Item label="Status">{obviously_dead}</LabeledList.Item>
         <LabeledList.Item label="Actions">
           <Button
             disabled={!can_sleeve_active}
             icon="user-plus"
             content="Sleeve"
-            onClick={() => act('sleeve', {
-              ref: activerecord,
-              mode: 1,
-            })}
+            onClick={() =>
+              act('sleeve', {
+                ref: activerecord,
+                mode: 1,
+              })
+            }
           />
           <Button
             icon="user-plus"
             content="Card"
-            onClick={() => act('sleeve', {
-              ref: activerecord,
-              mode: 2,
-            })}
+            onClick={() =>
+              act('sleeve', {
+                ref: activerecord,
+                mode: 2,
+              })
+            }
           />
         </LabeledList.Item>
         <LabeledList.Item label="OOC Notes">
@@ -69,44 +57,20 @@ const viewMindRecordModalBodyOverride = (modal, context) => {
 
 const viewBodyRecordModalBodyOverride = (modal, context) => {
   const { act, data } = useBackend(context);
-  const {
-    activerecord,
-    realname,
-    species,
-    sex,
-    mind_compat,
-    synthetic,
-    oocnotes,
-    can_grow_active,
-  } = modal.args;
+  const { activerecord, realname, species, sex, mind_compat, synthetic, oocnotes, can_grow_active } = modal.args;
   return (
     <Section
       level={2}
       m="-1rem"
       pb="1rem"
-      title={"Body Record (" + realname + ")"}
-      buttons={
-        <Button
-          icon="times"
-          color="red"
-          onClick={() => act('modal_close')} />
-      }>
+      title={'Body Record (' + realname + ')'}
+      buttons={<Button icon="times" color="red" onClick={() => act('modal_close')} />}>
       <LabeledList>
-        <LabeledList.Item label="Name">
-          {realname}
-        </LabeledList.Item>
-        <LabeledList.Item label="Species">
-          {species}
-        </LabeledList.Item>
-        <LabeledList.Item label="Bio. Sex">
-          {sex}
-        </LabeledList.Item>
-        <LabeledList.Item label="Mind Compat">
-          {mind_compat}
-        </LabeledList.Item>
-        <LabeledList.Item label="Synthetic">
-          {synthetic ? "Yes" : "No"}
-        </LabeledList.Item>
+        <LabeledList.Item label="Name">{realname}</LabeledList.Item>
+        <LabeledList.Item label="Species">{species}</LabeledList.Item>
+        <LabeledList.Item label="Bio. Sex">{sex}</LabeledList.Item>
+        <LabeledList.Item label="Mind Compat">{mind_compat}</LabeledList.Item>
+        <LabeledList.Item label="Synthetic">{synthetic ? 'Yes' : 'No'}</LabeledList.Item>
         <LabeledList.Item label="OOC Notes">
           <Section style={{ 'word-break': 'break-all', 'height': '100px' }} scrollable>
             {oocnotes}
@@ -116,10 +80,12 @@ const viewBodyRecordModalBodyOverride = (modal, context) => {
           <Button
             disabled={!can_grow_active}
             icon="user-plus"
-            content={synthetic ? "Build" : "Grow"}
-            onClick={() => act('create', {
-              ref: activerecord,
-            })}
+            content={synthetic ? 'Build' : 'Grow'}
+            onClick={() =>
+              act('create', {
+                ref: activerecord,
+              })
+            }
           />
         </LabeledList.Item>
       </LabeledList>
@@ -129,11 +95,7 @@ const viewBodyRecordModalBodyOverride = (modal, context) => {
 
 export const ResleevingConsole = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    menu,
-    coredumped,
-    emergency,
-  } = data;
+  const { menu, coredumped, emergency } = data;
   let body = (
     <Fragment>
       <ResleevingConsoleTemp />
@@ -153,47 +115,46 @@ export const ResleevingConsole = (props, context) => {
   modalRegisterBodyOverride('view_b_rec', viewBodyRecordModalBodyOverride);
   modalRegisterBodyOverride('view_m_rec', viewMindRecordModalBodyOverride);
   return (
-    <Window
-      width={640}
-      height={520}
-      resizable>
+    <Window width={640} height={520} resizable>
       <ComplexModal maxWidth="75%" maxHeight="75%" />
-      <Window.Content className="Layout__content--flexColumn">
-        {body}
-      </Window.Content>
+      <Window.Content className="Layout__content--flexColumn">{body}</Window.Content>
     </Window>
   );
 };
 
 const ResleevingConsoleNavigation = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    menu,
-  } = data;
+  const { menu } = data;
   return (
     <Tabs>
       <Tabs.Tab
         selected={menu === MENU_MAIN}
         icon="home"
-        onClick={() => act('menu', {
-          num: MENU_MAIN,
-        })}>
+        onClick={() =>
+          act('menu', {
+            num: MENU_MAIN,
+          })
+        }>
         Main
       </Tabs.Tab>
       <Tabs.Tab
         selected={menu === MENU_BODY}
         icon="folder"
-        onClick={() => act('menu', {
-          num: MENU_BODY,
-        })}>
+        onClick={() =>
+          act('menu', {
+            num: MENU_BODY,
+          })
+        }>
         Body Records
       </Tabs.Tab>
       <Tabs.Tab
         selected={menu === MENU_MIND}
         icon="folder"
-        onClick={() => act('menu', {
-          num: MENU_MIND,
-        })}>
+        onClick={() =>
+          act('menu', {
+            num: MENU_MIND,
+          })
+        }>
         Mind Records
       </Tabs.Tab>
     </Tabs>
@@ -202,24 +163,14 @@ const ResleevingConsoleNavigation = (props, context) => {
 
 const ResleevingConsoleBody = (props, context) => {
   const { data } = useBackend(context);
-  const {
-    menu,
-    bodyrecords,
-    mindrecords,
-  } = data;
+  const { menu, bodyrecords, mindrecords } = data;
   let body;
   if (menu === MENU_MAIN) {
     body = <ResleevingConsoleMain />;
   } else if (menu === MENU_BODY) {
-    body = (<ResleevingConsoleRecords
-      records={bodyrecords}
-      actToDo="view_b_rec"
-    />);
+    body = <ResleevingConsoleRecords records={bodyrecords} actToDo="view_b_rec" />;
   } else if (menu === MENU_MIND) {
-    body = (<ResleevingConsoleRecords
-      records={mindrecords}
-      actToDo="view_m_rec"
-    />);
+    body = <ResleevingConsoleRecords records={mindrecords} actToDo="view_m_rec" />;
   }
   return body;
 };
@@ -243,20 +194,18 @@ const ResleevingConsoleDiskPrep = (props, context) => {
   const { act } = useBackend(context);
   return (
     <Dimmer textAlign="center">
-      <Box color="bad"><h1>TRANSCORE DUMP</h1></Box>
-      <Box color="bad"><h2>!!WARNING!!</h2></Box>
       <Box color="bad">
-        This will transfer all minds to the dump disk,
-        and the TransCore will be made unusable until post-shift
+        <h1>TRANSCORE DUMP</h1>
+      </Box>
+      <Box color="bad">
+        <h2>!!WARNING!!</h2>
+      </Box>
+      <Box color="bad">
+        This will transfer all minds to the dump disk, and the TransCore will be made unusable until post-shift
         maintenance! This should only be used in emergencies!
       </Box>
       <Box mt={4}>
-        <Button
-          icon="eject"
-          content="Eject Disk"
-          color="good"
-          onClick={() => act('ejectdisk')}
-        />
+        <Button icon="eject" content="Eject Disk" color="good" onClick={() => act('ejectdisk')} />
       </Box>
       <Box mt={4}>
         <Button.Confirm
@@ -274,16 +223,7 @@ const ResleevingConsoleDiskPrep = (props, context) => {
 
 const ResleevingConsoleMain = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    loading,
-    scantemp,
-    occupant,
-    locked,
-    can_brainscan,
-    scan_mode,
-    pods,
-    selected_pod,
-  } = data;
+  const { loading, scantemp, occupant, locked, can_brainscan, scan_mode, pods, selected_pod } = data;
   const isLocked = locked && !!occupant;
   return (
     <Section title="Pods" level="2">
@@ -296,16 +236,12 @@ const ResleevingConsoleMain = (props, context) => {
 
 const ResleevingConsolePodGrowers = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    pods,
-    spods,
-    selected_pod,
-  } = data;
+  const { pods, spods, selected_pod } = data;
 
   if (pods && pods.length) {
     return pods.map((pod, i) => {
       let podAction;
-      if (pod.status === "cloning") {
+      if (pod.status === 'cloning') {
         podAction = (
           <ProgressBar
             min="0"
@@ -317,12 +253,10 @@ const ResleevingConsolePodGrowers = (props, context) => {
               bad: [-Infinity, 0.25],
             }}
             mt="0.5rem">
-            <Box textAlign="center">
-              {round(pod.progress, 0) + "%"}
-            </Box>
+            <Box textAlign="center">{round(pod.progress, 0) + '%'}</Box>
           </ProgressBar>
         );
-      } else if (pod.status === "mess") {
+      } else if (pod.status === 'mess') {
         podAction = (
           <Box bold color="bad" mt="0.5rem">
             ERROR
@@ -332,40 +266,31 @@ const ResleevingConsolePodGrowers = (props, context) => {
         podAction = (
           <Button
             selected={selected_pod === pod.pod}
-            icon={selected_pod === pod.pod && "check"}
+            icon={selected_pod === pod.pod && 'check'}
             content="Select"
-            mt={(spods && spods.length) ? "2rem" : "0.5rem"}
-            onClick={() => act('selectpod', {
-              ref: pod.pod,
-            })}
+            mt={spods && spods.length ? '2rem' : '0.5rem'}
+            onClick={() =>
+              act('selectpod', {
+                ref: pod.pod,
+              })
+            }
           />
         );
       }
 
       return (
-        <Box
-          key={i}
-          width="64px"
-          textAlign="center"
-          display="inline-block"
-          mr="0.5rem">
+        <Box key={i} width="64px" textAlign="center" display="inline-block" mr="0.5rem">
           <img
-            src={"pod_" + pod.status + ".gif"}
+            src={'pod_' + pod.status + '.gif'}
             style={{
-              width: "100%",
-              "-ms-interpolation-mode": "nearest-neighbor",
+              width: '100%',
+              '-ms-interpolation-mode': 'nearest-neighbor',
             }}
           />
-          <Box color="label">
-            {pod.name}
-          </Box>
-          <Box
-            bold
-            color={pod.biomass >= 150 ? "good" : "bad"}
-            inline>
-            <Icon
-              name={pod.biomass >= 150 ? "circle" : "circle-o"}
-            />&nbsp;
+          <Box color="label">{pod.name}</Box>
+          <Box bold color={pod.biomass >= 150 ? 'good' : 'bad'} inline>
+            <Icon name={pod.biomass >= 150 ? 'circle' : 'circle-o'} />
+            &nbsp;
             {pod.biomass}
           </Box>
           {podAction}
@@ -379,39 +304,30 @@ const ResleevingConsolePodGrowers = (props, context) => {
 
 const ResleevingConsolePodSleevers = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    sleevers,
-    spods,
-    selected_sleever,
-  } = data;
+  const { sleevers, spods, selected_sleever } = data;
 
   if (sleevers && sleevers.length) {
     return sleevers.map((pod, i) => {
       return (
-        <Box
-          key={i}
-          width="64px"
-          textAlign="center"
-          display="inline-block"
-          mr="0.5rem">
+        <Box key={i} width="64px" textAlign="center" display="inline-block" mr="0.5rem">
           <img
-            src={"sleeve_" + (pod.occupied ? "occupied" : "empty") + ".gif"}
+            src={'sleeve_' + (pod.occupied ? 'occupied' : 'empty') + '.gif'}
             style={{
-              width: "100%",
-              "-ms-interpolation-mode": "nearest-neighbor",
+              width: '100%',
+              '-ms-interpolation-mode': 'nearest-neighbor',
             }}
           />
-          <Box color={pod.occupied ? "label" : "bad"}>
-            {pod.name}
-          </Box>
+          <Box color={pod.occupied ? 'label' : 'bad'}>{pod.name}</Box>
           <Button
             selected={selected_sleever === pod.sleever}
-            icon={selected_sleever === pod.sleever && "check"}
+            icon={selected_sleever === pod.sleever && 'check'}
             content="Select"
-            mt={(spods && spods.length) ? "3rem" : "1.5rem"}
-            onClick={() => act('selectsleever', {
-              ref: pod.sleever,
-            })}
+            mt={spods && spods.length ? '3rem' : '1.5rem'}
+            onClick={() =>
+              act('selectsleever', {
+                ref: pod.sleever,
+              })
+            }
           />
         </Box>
       );
@@ -423,15 +339,12 @@ const ResleevingConsolePodSleevers = (props, context) => {
 
 const ResleevingConsolePodSpods = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    spods,
-    selected_printer,
-  } = data;
+  const { spods, selected_printer } = data;
 
   if (spods && spods.length) {
     return spods.map((pod, i) => {
       let podAction;
-      if (pod.status === "cloning") {
+      if (pod.status === 'cloning') {
         podAction = (
           <ProgressBar
             min="0"
@@ -443,12 +356,10 @@ const ResleevingConsolePodSpods = (props, context) => {
               bad: [-Infinity, 0.25],
             }}
             mt="0.5rem">
-            <Box textAlign="center">
-              {round(pod.progress, 0) + "%"}
-            </Box>
+            <Box textAlign="center">{round(pod.progress, 0) + '%'}</Box>
           </ProgressBar>
         );
-      } else if (pod.status === "mess") {
+      } else if (pod.status === 'mess') {
         podAction = (
           <Box bold color="bad" mt="0.5rem">
             ERROR
@@ -458,49 +369,36 @@ const ResleevingConsolePodSpods = (props, context) => {
         podAction = (
           <Button
             selected={selected_printer === pod.spod}
-            icon={selected_printer === pod.spod && "check"}
+            icon={selected_printer === pod.spod && 'check'}
             content="Select"
             mt="0.5rem"
-            onClick={() => act('selectprinter', {
-              ref: pod.spod,
-            })}
+            onClick={() =>
+              act('selectprinter', {
+                ref: pod.spod,
+              })
+            }
           />
         );
       }
 
       return (
-        <Box
-          key={i}
-          width="64px"
-          textAlign="center"
-          display="inline-block"
-          mr="0.5rem">
+        <Box key={i} width="64px" textAlign="center" display="inline-block" mr="0.5rem">
           <img
-            src={"synthprinter" + (pod.busy ? "_working" : "") + ".gif"}
+            src={'synthprinter' + (pod.busy ? '_working' : '') + '.gif'}
             style={{
-              width: "100%",
-              "-ms-interpolation-mode": "nearest-neighbor",
+              width: '100%',
+              '-ms-interpolation-mode': 'nearest-neighbor',
             }}
           />
-          <Box color="label">
-            {pod.name}
-          </Box>
-          <Box
-            bold
-            color={pod.steel >= 15000 ? "good" : "bad"}
-            inline>
-            <Icon
-              name={pod.steel >= 15000 ? "circle" : "circle-o"}
-            />&nbsp;
+          <Box color="label">{pod.name}</Box>
+          <Box bold color={pod.steel >= 15000 ? 'good' : 'bad'} inline>
+            <Icon name={pod.steel >= 15000 ? 'circle' : 'circle-o'} />
+            &nbsp;
             {pod.steel}
           </Box>
-          <Box
-            bold
-            color={pod.glass >= 15000 ? "good" : "bad"}
-            inline>
-            <Icon
-              name={pod.glass >= 15000 ? "circle" : "circle-o"}
-            />&nbsp;
+          <Box bold color={pod.glass >= 15000 ? 'good' : 'bad'} inline>
+            <Icon name={pod.glass >= 15000 ? 'circle' : 'circle-o'} />
+            &nbsp;
             {pod.glass}
           </Box>
           {podAction}
@@ -514,23 +412,13 @@ const ResleevingConsolePodSpods = (props, context) => {
 
 const ResleevingConsoleRecords = (props, context) => {
   const { act } = useBackend(context);
-  const {
-    records,
-    actToDo,
-  } = props;
+  const { records, actToDo } = props;
   if (!records.length) {
     return (
       <Flex height="100%" mt="0.5rem">
-        <Flex.Item
-          grow="1"
-          align="center"
-          textAlign="center"
-          color="label">
-          <Icon
-            name="user-slash"
-            mb="0.5rem"
-            size="5"
-          /><br />
+        <Flex.Item grow="1" align="center" textAlign="center" color="label">
+          <Icon name="user-slash" mb="0.5rem" size="5" />
+          <br />
           No records found.
         </Flex.Item>
       </Flex>
@@ -544,9 +432,11 @@ const ResleevingConsoleRecords = (props, context) => {
           icon="user"
           mb="0.5rem"
           content={record.name}
-          onClick={() => act(actToDo, {
-            ref: record.recref,
-          })}
+          onClick={() =>
+            act(actToDo, {
+              ref: record.recref,
+            })
+          }
         />
       ))}
     </Box>
@@ -555,9 +445,7 @@ const ResleevingConsoleRecords = (props, context) => {
 
 const ResleevingConsoleTemp = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    temp,
-  } = data;
+  const { temp } = data;
   if (!temp || !temp.text || temp.text.length <= 0) {
     return;
   }
@@ -568,11 +456,7 @@ const ResleevingConsoleTemp = (props, context) => {
       <Box display="inline-block" verticalAlign="middle">
         {temp.text}
       </Box>
-      <Button
-        icon="times-circle"
-        float="right"
-        onClick={() => act('cleartemp')}
-      />
+      <Button icon="times-circle" float="right" onClick={() => act('cleartemp')} />
       <Box clear="both" />
     </NoticeBox>
   );
@@ -580,48 +464,29 @@ const ResleevingConsoleTemp = (props, context) => {
 
 const ResleevingConsoleStatus = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    pods,
-    spods,
-    sleevers,
-    autoallowed,
-    autoprocess,
-    disk,
-  } = data;
+  const { pods, spods, sleevers, autoallowed, autoprocess, disk } = data;
   return (
     <Section title="Status">
       <LabeledList>
         <LabeledList.Item label="Pods">
           {pods && pods.length ? (
-            <Box color="good">
-              {pods.length} connected
-            </Box>
+            <Box color="good">{pods.length} connected</Box>
           ) : (
-            <Box color="bad">
-              None connected!
-            </Box>
+            <Box color="bad">None connected!</Box>
           )}
         </LabeledList.Item>
         <LabeledList.Item label="SynthFabs">
           {spods && spods.length ? (
-            <Box color="good">
-              {spods.length} connected
-            </Box>
+            <Box color="good">{spods.length} connected</Box>
           ) : (
-            <Box color="bad">
-              None connected!
-            </Box>
+            <Box color="bad">None connected!</Box>
           )}
         </LabeledList.Item>
         <LabeledList.Item label="Sleevers">
           {sleevers && sleevers.length ? (
-            <Box color="good">
-              {sleevers.length} Connected
-            </Box>
+            <Box color="good">{sleevers.length} Connected</Box>
           ) : (
-            <Box color="bad">
-              None connected!
-            </Box>
+            <Box color="bad">None connected!</Box>
           )}
         </LabeledList.Item>
       </LabeledList>

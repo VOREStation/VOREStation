@@ -50,9 +50,9 @@ var/global/datum/controller/subsystem/ticker/ticker
 	pregame_timeleft = config.pregame_time
 	send2mainirc("Server lobby is loaded and open at byond://[config.serverurl ? config.serverurl : (config.server ? config.server : "[world.address]:[world.port]")]")
 	SSwebhooks.send(
-		WEBHOOK_ROUNDPREP, 
+		WEBHOOK_ROUNDPREP,
 		list(
-			"map" = station_name(), 
+			"map" = station_name(),
 			"url" = get_world_url()
 		)
 	)
@@ -397,14 +397,19 @@ var/global/datum/controller/subsystem/ticker/ticker
 		if(player && player.ready && player.mind?.assigned_role)
 			var/datum/job/J = SSjob.get_job(player.mind.assigned_role)
 
+			// Ask their new_player mob to spawn them
+			if(!player.spawn_checks_vr(player.mind.assigned_role))
+				var/datum/job/job_datum = job_master.GetJob(J.title)
+				job_datum.current_positions--
+				player.mind.assigned_role = null
+				continue //VOREStation Add
+
 			// Snowflakey AI treatment
 			if(J?.mob_type & JOB_SILICON_AI)
 				player.close_spawn_windows()
 				player.AIize(move = TRUE)
 				continue
 
-			// Ask their new_player mob to spawn them
-			if(!player.spawn_checks_vr(player.mind.assigned_role)) continue //VOREStation Add
 			var/mob/living/carbon/human/new_char = player.create_character()
 
 			// Created their playable character, delete their /mob/new_player

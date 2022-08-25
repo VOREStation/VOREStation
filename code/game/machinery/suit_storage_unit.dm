@@ -519,7 +519,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 		/datum/suit_cycler_choice/department/sec/riot,
 		/datum/suit_cycler_choice/department/sec/eva
 	)
-	
+
 	/// Species that the cycler can refit suits for. Null assumes all except specially excluded ones.
 	var/list/limit_species
 
@@ -544,13 +544,13 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	species = load_species()
 	emagged_departments = load_emagged()
 	limit_departments = null // just for mem
-	
+
 	target_department = departments["No Change"]
 	target_species = species["No Change"]
 
 	if(!target_department || !target_species)
 		stat |= BROKEN
-	
+
 	wires = new(src)
 
 /obj/machinery/suit_cycler/Destroy()
@@ -704,7 +704,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler/vintage/rugged
 	name = "Vintage Ruggedized suit cycler"
 	model_text = "Vintage Ruggedized"
-	
+
 	limit_departments = list(
 		/datum/suit_cycler_choice/department/vintage/eng,
 		/datum/suit_cycler_choice/department/vintage/marine,
@@ -925,17 +925,17 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 /obj/machinery/suit_cycler/tgui_static_data(mob/user)
 	var/list/data = list()
-	
+
 	// tgui gets angy if you pass values too
 	var/list/department_keys = list()
 	for(var/key in departments)
 		department_keys += key
-	
+
 	// emagged at the bottom
 	if(emagged)
 		for(var/key in emagged_departments)
 			department_keys += key
-	
+
 	var/list/species_keys = list()
 	for(var/key in species)
 		species_keys += key
@@ -943,7 +943,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	data["departments"] = department_keys
 	data["species"] = species_keys
 
-	return data	
+	return data
 
 /obj/machinery/suit_cycler/tgui_act(action, params)
 	if(..())
@@ -1063,7 +1063,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 
 /obj/machinery/suit_cycler/proc/finished_job()
 	var/turf/T = get_turf(src)
-	T.visible_message("[bicon(src)]<span class='notice'>The [src] beeps several times.</span>")
+	T.visible_message("\icon[src][bicon(src)]<span class='notice'>The [src] beeps several times.</span>")
 	icon_state = initial(icon_state)
 	active = 0
 	playsound(src, 'sound/machines/boobeebeep.ogg', 50)
@@ -1114,7 +1114,7 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler/proc/apply_paintjob()
 	if(!target_species || !target_department)
 		return
-	
+
 	// Helmet to new paint
 	if(target_department.can_refit_helmet(helmet))
 		target_department.do_refit_helmet(helmet)
@@ -1129,6 +1129,5 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 	if(target_species.can_refit_to(helmet, suit, suit?.helmet))
 		target_species.do_refit_to(helmet, suit, suit?.helmet)
 	else
-		visible_message("[bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
+		visible_message("\icon[src][bicon(src)]<span class='warning'>Unable to apply specified cosmetics with specified species. Please try again with a different species or cosmetic option selected.</span>")
 		return
-	

@@ -870,18 +870,6 @@ GLOBAL_VAR_INIT(teppi_count, 0)	// How mant teppi DO we have?
 	speak_chance = 0.5
 	wander = TRUE
 
-/datum/language/teppi
-	name = "Teppi"
-	desc = "The language of the meat things."
-	speech_verb = "rumbles"
-	ask_verb = "tilts"
-	exclaim_verb = "roars"
-	key = "i"
-	flags = WHITELISTED
-	machine_understands = 0
-	space_chance = 100
-	syllables = list("gyoh", "snoof", "gyoooooOOOooh", "iuuuuh", "gyuuuuh")
-
 ////////////////// Da babby //////////////
 
 /mob/living/simple_mob/vore/alienanimals/teppi/baby

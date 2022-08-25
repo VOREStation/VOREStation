@@ -147,7 +147,7 @@ var/global/vs_control/vsc = new
 	var/newvar = vw
 	switch(how)
 		if("Numeric")
-			newvar = input(user,"Enter a number:","Settings",newvar) as num
+			newvar = tgui_input_number(user,"Enter a number:","Settings",newvar)
 		if("Bit Flag")
 			var/flag = tgui_input_list(user,"Toggle which bit?","Settings", bitflags)
 			flag = text2num(flag)
@@ -158,9 +158,9 @@ var/global/vs_control/vsc = new
 		if("Toggle")
 			newvar = !newvar
 		if("Text")
-			newvar = input(user,"Enter a string:","Settings",newvar) as text
+			newvar = tgui_input_text(user,"Enter a string:","Settings",newvar)
 		if("Long Text")
-			newvar = input(user,"Enter text:","Settings",newvar) as message
+			newvar = tgui_input_text(user,"Enter text:","Settings",newvar, multiline = TRUE)
 	vw = newvar
 	if(ch in plc.settings)
 		plc.vars[ch] = vw

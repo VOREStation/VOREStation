@@ -220,6 +220,7 @@
 	mappath = 'maps/gateway_vr/wildwest.dmm'
 	associated_map_datum = /datum/map_z_level/common_lateload/gateway_destination
 
+#include "../gateway_vr/lucky_7.dm"
 
 /////////////////////////////////////////////////////////////////////////////////////
 

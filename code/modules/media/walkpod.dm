@@ -16,13 +16,14 @@
 
 	var/playing = 0
 	var/volume = 1
-	
+
 	var/media_url = ""
 	var/media_start_time
 
 	var/obj/item/device/headpods/deployed_headpods
 
 	w_class = ITEMSIZE_COST_SMALL
+	slot_flags = SLOT_BELT
 
 /obj/item/device/walkpod/Destroy()
 	remove_listener()
@@ -56,7 +57,7 @@
 	to_chat(listener, "<span class='notice'>You are no longer wearing the [src]'s headphones.</span>")
 	listener = null
 	update_icon()
-	
+
 /obj/item/device/walkpod/proc/set_listener(mob/living/L)
 	if(listener)
 		remove_listener()
@@ -170,7 +171,7 @@
 
 /obj/item/device/walkpod/tgui_data(mob/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	data["playing"] = playing
 	data["loop_mode"] = loop_mode
 	data["volume"] = volume

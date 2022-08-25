@@ -27,6 +27,7 @@
 	job_description = "An Intern does whatever is requested of them, often doing so in process of learning \
 						another job. Though they are part of the crew, they have no real authority."
 	timeoff_factor = 0 // Interns, noh
+	requestable = FALSE
 
 /datum/alt_title/intern_eng
 	title = "Apprentice Engineer"
@@ -96,6 +97,7 @@
 	supervisors = "nobody! You don't work here"
 	job_description = "A Visitor is just there to visit the place. They have no real authority or responsibility."
 	timeoff_factor = 0
+	requestable = FALSE
 	alt_titles = list("Guest" = /datum/alt_title/guest, "Traveler" = /datum/alt_title/traveler)
 
 /datum/job/assistant/New()

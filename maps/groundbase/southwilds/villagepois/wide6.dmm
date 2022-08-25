@@ -53,10 +53,7 @@
 /obj/item/weapon/bedsheet/double,
 /obj/random/plushie,
 /obj/structure/curtain/open/privacy,
-/obj/item/weapon/paper{
-	info = "<font face="Verdana" color=black>It is hard for me to write this out, and I hope you will be back soon, but I fear that by the time you return I will already be gone. I will try my best to hold on, but even as I write this, I can feel myself slipping.<BR><BR>I know that you all do not believe me but I really can see them, just beyond the walls, and they&#39;re even closer now than they were before. I can see them even when I close my eyes. Seven golden eyes watch me, and I can feel their heat pouring into me. As they come closer, I can feel myself being tugged in. Like I&#39;m a little lost moon being tugged into the embrace of a passing star. <BR><BR>It still doesn&#39;t hurt. It&#39;s getting hard to see anything else, and I can&#39;t move anymore. I feel like everything is going to be okay. If you see seven eyes, don&#39;t be afraid. Just promise you&#39;ll come find me, okay?<BR><BR>I&#39;ll keep hol</font>";
-	name = "A hand written letter"
-	},
+/obj/item/weapon/paper/wide6,
 /turf/simulated/floor/tiled/white,
 /area/submap/groundbase/poi/wildvillage/wide/wide6)
 "n" = (

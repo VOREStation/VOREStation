@@ -277,6 +277,9 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	for(var/obj/effect/step_trigger/teleporter/planetary_fall/virgo3b/F in src)
 		qdel(F)
 
+/turf/space/v3b_midpoint/CanZPass(atom, direction)
+	return 0			// We're not Space
+
 // Tram transit floor
 /turf/simulated/floor/tiled/techfloor/grid/transit
 	icon = 'icons/turf/transit_vr.dmi'

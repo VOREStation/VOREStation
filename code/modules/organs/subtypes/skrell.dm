@@ -25,7 +25,7 @@
 
 /obj/item/organ/internal/voicebox/skrell
 	icon_state = "skrell_larynx"
-	will_assist_languages = list(LANGUAGE_SKRELLIAN, LANGUAGE_SKRELLIANFAR)
+	will_assist_languages = list(LANGUAGE_SKRELLIAN)
 
 /obj/item/organ/internal/appendix/skrell
 	icon_state = "skrell_appendix"

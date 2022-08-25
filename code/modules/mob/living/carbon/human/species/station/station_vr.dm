@@ -535,7 +535,7 @@
 	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
 	darksight = 4 //Better hunters in the dark.
 	hunger_factor = 0.1 //In exchange, they get hungry a tad faster.
-	num_alternate_languages = 2
+	num_alternate_languages = 3
 
 	min_age = 18
 	max_age = 80
@@ -561,4 +561,61 @@
 		"Your chitin feels extremely warm.",
 		"You feel uncomfortably warm.",
 		"Your chitin feels hot."
+		)
+
+/datum/species/altevian
+	name = SPECIES_ALTEVIAN
+	name_plural = "Altevians"
+	icobase = 'icons/mob/human_races/r_altevian.dmi'
+	deform = 'icons/mob/human_races/r_def_altevian.dmi'
+	unarmed_types = list(/datum/unarmed_attack/stomp, /datum/unarmed_attack/kick, /datum/unarmed_attack/claws, /datum/unarmed_attack/bite/sharp)
+	language = LANGUAGE_TAVAN
+	num_alternate_languages = 3
+	secondary_langs = list(LANGUAGE_TAVAN)
+	name_language = null
+	color_mult = 1
+	inherent_verbs = list(/mob/living/carbon/human/proc/tie_hair)
+
+	min_age = 18
+	max_age = 80
+
+	blurb = "The Altevian are a species of tall, rodent humanoids that are akin to rats for their features. \
+	The Altevian, unlike most species, do not have a home planet, nor system, adopting a fully nomadic lifestyle \
+	for their survival across the stars. Instead, they have opted to live in massive super capital-class colony-ships \
+	with a flagship as their place they would call home."
+
+	wikilink="https://wiki.vore-station.net/Altevian"
+
+	catalogue_data = list(/datum/category_item/catalogue/fauna/altevian)
+
+	spawn_flags = SPECIES_CAN_JOIN
+	appearance_flags = HAS_HAIR_COLOR | HAS_LIPS | HAS_UNDERWEAR | HAS_SKIN_COLOR | HAS_EYE_COLOR
+
+	flesh_color = "#AFA59E"
+	base_color = "#777777"
+
+	genders = list(MALE, FEMALE, PLURAL, NEUTER)
+
+	burn_mod =  1.15
+	hunger_factor = 0.04
+	can_zero_g_move = TRUE
+
+	heat_discomfort_strings = list(
+		"Your fur prickles in the heat.",
+		"You feel uncomfortably warm.",
+		"Your overheated skin itches."
+		)
+
+	has_limbs = list(
+		BP_TORSO =  list("path" = /obj/item/organ/external/chest),
+		BP_GROIN =  list("path" = /obj/item/organ/external/groin),
+		BP_HEAD =   list("path" = /obj/item/organ/external/head),
+		BP_L_ARM =  list("path" = /obj/item/organ/external/arm),
+		BP_R_ARM =  list("path" = /obj/item/organ/external/arm/right),
+		BP_L_LEG =  list("path" = /obj/item/organ/external/leg),
+		BP_R_LEG =  list("path" = /obj/item/organ/external/leg/right),
+		BP_L_HAND = list("path" = /obj/item/organ/external/hand),
+		BP_R_HAND = list("path" = /obj/item/organ/external/hand/right),
+		BP_L_FOOT = list("path" = /obj/item/organ/external/foot),
+		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right)
 		)

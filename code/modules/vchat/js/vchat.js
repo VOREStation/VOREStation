@@ -195,6 +195,14 @@ function start_vue() {
 				},
 				//VOREStation Add End
 				{
+					matches: ".mentor_channel, .mentor",
+					becomes: "vc_mentor",
+					pretty: "Mentor messages",
+					tooltip: "Mentorchat and mentor pms",
+					required: false,
+					admin: false
+				},
+				{
 					matches: ".filter_pm, .pm",
 					becomes: "vc_adminpm",
 					pretty: "Admin PMs",
