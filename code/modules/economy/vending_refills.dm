@@ -54,7 +54,8 @@
 					   /obj/machinery/vending/sol,
 					   /obj/machinery/vending/snix,
 					   /obj/machinery/vending/snlvend,
-					   /obj/machinery/vending/sovietvend)
+					   /obj/machinery/vending/sovietvend,
+					   /obj/machinery/vending/altevian)
 
 /obj/item/weapon/refill_cartridge/multitype/drink
 	name = "drinks vendor refill cartridge"
@@ -120,6 +121,9 @@
 
 /obj/item/weapon/refill_cartridge/autoname/food/sovietvend
 	refill_type = /obj/machinery/vending/sovietvend
+
+/obj/item/weapon/refill_cartridge/autoname/food/altevian
+	refill_type = /obj/machinery/vending/altevian
 
 /obj/item/weapon/refill_cartridge/autoname/drink
 	icon_state = "rc_drink"

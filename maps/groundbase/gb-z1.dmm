@@ -5709,6 +5709,10 @@
 /obj/machinery/meter,
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
+"mA" = (
+/obj/machinery/vending/altevian,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/foodplace)
 "mC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -36432,7 +36436,7 @@ Lt
 Lt
 Uf
 Uf
-Aq
+mA
 pA
 Aq
 Uf

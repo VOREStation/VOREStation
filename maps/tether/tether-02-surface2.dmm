@@ -25415,6 +25415,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
+"aSZ" = (
+/obj/machinery/vending/altevian,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "aTa" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -48094,7 +48098,7 @@ aVp
 aWl
 aXg
 aVP
-aZr
+aSZ
 ayY
 aZr
 aZr
