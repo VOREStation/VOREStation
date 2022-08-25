@@ -415,11 +415,11 @@
 /mob/living/carbon/cannot_use_vents()
 	return
 
-/mob/living/carbon/slip(var/slipped_on, var/stun_duration = 8, var/slip_dist = 1)
-	if(buckled)
+/mob/living/carbon/slip(slipped_on, stun_duration = 8, slip_dist = 1)
+	if(buckled || isbelly(loc))
 		return FALSE
 	stop_pulling()
-	to_chat(src, "<span class='warning'>You slipped on [slipped_on]!</span>")
+	to_chat(src, SPAN_WARNING("You slipped on [slipped_on]!"))
 	playsound(src, 'sound/misc/slip.ogg', 50, 1, -3)
 	Weaken(FLOOR(stun_duration/2, 1))
 	slide_for(slip_dist)

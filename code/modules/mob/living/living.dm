@@ -725,7 +725,7 @@
 
 	return FALSE
 
-/mob/living/proc/slip(var/slipped_on,stun_duration=8)
+/mob/living/proc/slip(slipped_on, stun_duration = 8, slip_dist = 1)
 	return FALSE
 
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
