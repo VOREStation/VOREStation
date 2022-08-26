@@ -7,8 +7,9 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/machinery/mineral/input/New()
+/obj/machinery/mineral/input/Initialize()
 	icon_state = "blank"
+	. = ..()
 
 /obj/machinery/mineral/output
 	icon = 'icons/mob/screen1.dmi'
@@ -17,5 +18,6 @@
 	density = FALSE
 	anchored = TRUE
 
-/obj/machinery/mineral/output/New()
+/obj/machinery/mineral/output/Initialize()
 	icon_state = "blank"
+	. = ..()

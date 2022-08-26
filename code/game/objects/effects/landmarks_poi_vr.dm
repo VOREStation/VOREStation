@@ -13,7 +13,8 @@ var/global/list/global_used_pois = list()
 INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
 
 /obj/effect/landmark/poi_loader/Initialize()
-	src.load_poi()
+	// LINTER FIX NOTE: would suggest moving this to a queue on a subsystem that can be expected to init appropriately
+	addtimer(CALLBACK(src, .proc/load_poi), 0) 
 	return ..()
 
 /obj/effect/landmark/poi_loader/proc/get_turfs_to_clean()

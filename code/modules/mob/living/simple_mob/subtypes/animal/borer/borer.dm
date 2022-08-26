@@ -61,9 +61,9 @@
 	verbs += /mob/living/proc/hide
 
 	true_name = "[pick("Primary","Secondary","Tertiary","Quaternary")] [rand(1000,9999)]"
-
+	
 	if(!roundstart && antag)
-		request_player()
+		addtimer(CALLBACK(src, .proc/request_player), 0)
 
 	return ..()
 

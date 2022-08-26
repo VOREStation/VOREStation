@@ -37,7 +37,8 @@
 	light_impact = 7
 	flash_range = 7
 
-/obj/item/weapon/syndie/c4explosive/New()
+/obj/item/weapon/syndie/c4explosive/Initialize()
+	. = ..()
 	var/K = rand(1,2000)
 	K = md5(num2text(K)+name)
 	K = copytext(K,1,7)

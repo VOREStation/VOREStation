@@ -352,6 +352,29 @@
 	icon_state = "colorcloak"
 	item_state = "colorcloak"
 
+/obj/item/clothing/accessory/hawaii
+	name = "flower-pattern shirt"
+	desc = "You probably need some welder googles to look at this."
+	icon_state = "hawaii"
+	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
+	slot_flags = SLOT_OCLOTHING | SLOT_TIE
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	siemens_coefficient = 0.9
+	w_class = ITEMSIZE_NORMAL
+	slot = ACCESSORY_SLOT_OVER
+
+/obj/item/clothing/accessory/hawaii/red
+	icon_state = "hawaii2"
+
+/obj/item/clothing/accessory/hawaii/random
+	name = "flower-pattern shirt"
+
+/obj/item/clothing/accessory/hawaii/random/Initialize()
+	if(prob(50))
+		icon_state = "hawaii2"
+	color = color_rotation(rand(-11,12)*15)
+	. = ..()
+
 /obj/item/clothing/accessory/wcoat
 	name = "waistcoat"
 	desc = "For some classy, murderous fun."

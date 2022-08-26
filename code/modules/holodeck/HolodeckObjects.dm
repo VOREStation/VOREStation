@@ -298,11 +298,11 @@
 	unacidable = TRUE
 	var/active = 0
 
-/obj/item/weapon/holo/esword/green/New()
-		lcolor = "#008000"
+/obj/item/weapon/holo/esword/green
+	lcolor = "#008000"
 
-/obj/item/weapon/holo/esword/red/New()
-		lcolor = "#FF0000"
+/obj/item/weapon/holo/esword/red
+	lcolor = "#FF0000"
 
 /obj/item/weapon/holo/esword/handle_shield(mob/user, var/damage, atom/damage_source = null, mob/attacker = null, var/def_zone = null, var/attack_text = "the attack")
 	if(active && default_parry_check(user, attacker, damage_source) && prob(50))
@@ -428,8 +428,8 @@
 	to_chat(user, "The station AI is not to interact with these devices!")
 	return
 
-/obj/machinery/readybutton/New()
-	..()
+/obj/machinery/readybutton/Initialize()
+	. = ..()
 
 
 /obj/machinery/readybutton/attackby(obj/item/weapon/W as obj, mob/user as mob)
@@ -498,8 +498,8 @@
 	meat_amount = 0
 	meat_type = null
 
-/mob/living/simple_mob/animal/space/carp/holodeck/New()
-	..()
+/mob/living/simple_mob/animal/space/carp/holodeck/Initialize()
+	. = ..()
 	set_light(2) //hologram lighting
 
 /mob/living/simple_mob/animal/space/carp/holodeck/proc/set_safety(var/safe)

@@ -15,10 +15,6 @@
 	req_access = list(access_rd) //Only the R&D can change server settings.
 	circuit = /obj/item/weapon/circuitboard/rdserver
 
-/obj/machinery/r_n_d/server/Initialize()
-	. = ..()
-	default_apply_parts()
-
 /obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	..()
@@ -31,6 +27,7 @@
 
 /obj/machinery/r_n_d/server/Initialize()
 	. = ..()
+	default_apply_parts()
 	if(!files)
 		files = new /datum/research(src)
 	var/list/temp_list

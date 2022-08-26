@@ -6,8 +6,8 @@
 	w_class = ITEMSIZE_NORMAL
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 
-/obj/item/device/mmi/digital/robot/New()
-	..()
+/obj/item/device/mmi/digital/robot/Initialize()
+	. = ..()
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN"))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 	src.name = "robotic intelligence circuit ([src.brainmob.name])"

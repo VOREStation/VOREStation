@@ -15,12 +15,12 @@ var/admin_weight = 5 // admins are more likely to join a server with less admins
 var/player_substr = "players=" // search for this substring to locate # of players
 var/admin_substr  = "admins=" // search for this to locate # of admins
 
-world
+/world
 	name = "TGstation Redirector"
 
-	New()
-		..()
-		gen_configs()
+/world/New()
+	..()
+	gen_configs()
 
 /datum/server
 	var/players = 0

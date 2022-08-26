@@ -223,6 +223,7 @@
 									"radio_broken")
 
 /obj/item/broken_device/random/Initialize()
+	. = ..()
 	icon_state = pick(possible_icons)
 
 /obj/item/robot_parts/robot_component

@@ -108,7 +108,7 @@
 	name = "hypo belt"
 	desc = "A medical belt designed to carry autoinjectors and other medical equipment."
 
-/obj/item/weapon/storage/belt/medical/technomancer/New()
+/obj/item/weapon/storage/belt/medical/technomancer/Initialize()
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/brute(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/burn(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/toxin(src)
@@ -117,7 +117,7 @@
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/pain(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/organ(src)
 	new /obj/item/weapon/reagent_containers/hypospray/autoinjector/biginjector/combat(src)
-	..()
+	. = ..()
 
 /datum/technomancer/equipment/belt_of_holding
 	name = "Belt of Holding"

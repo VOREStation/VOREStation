@@ -448,9 +448,13 @@
 		return can_telecomm(src,node)
 	return 0
 
-/obj/item/integrated_circuit/input/EPv2/New()
-	..()
+/obj/item/integrated_circuit/input/EPv2/Initialize()
+	. = ..()
 	exonet = new(src)
+	init_address()
+
+/obj/item/integrated_circuit/input/EPv2/proc/init_address()
+	set waitfor = FALSE
 	exonet.make_address("EPv2_circuit-\ref[src]")
 	desc += "<br>This circuit's EPv2 address is: [exonet.address]"
 	node = get_exonet_node()
@@ -532,8 +536,8 @@
 	spawn_flags = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 	power_draw_per_use = 15
 
-/obj/item/integrated_circuit/input/microphone/New()
-	..()
+/obj/item/integrated_circuit/input/microphone/Initialize()
+	. = ..()
 	listening_objects |= src
 
 /obj/item/integrated_circuit/input/microphone/Destroy()

@@ -130,6 +130,7 @@
 	. = ..()
 	z_original = z
 	GLOB.meteor_list += src
+	SpinAnimation()
 
 /obj/effect/meteor/Move()
 	if(z != z_original || loc == dest)
@@ -150,10 +151,6 @@
 	walk(src,FALSE) //this cancels the walk_towards() proc
 	GLOB.meteor_list -= src
 	return ..()
-
-/obj/effect/meteor/New()
-	..()
-	SpinAnimation()
 
 /obj/effect/meteor/Bump(atom/A)
 	if(attempt_vr(src,"Bump_vr",list(A))) return //VOREStation Edit - allows meteors to be deflected by baseball bats

@@ -39,8 +39,8 @@
 	if(frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/atmospherics/trinary/atmos_filter/New()
-	..()
+/obj/machinery/atmospherics/trinary/atmos_filter/Initialize()
+	. = ..()
 	switch(filter_type)
 		if(0) //removing hydrocarbons
 			filtered_out = list("phoron")
@@ -56,6 +56,8 @@
 	air1.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air2.volume = ATMOS_DEFAULT_VOLUME_FILTER
 	air3.volume = ATMOS_DEFAULT_VOLUME_FILTER
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/atmos_filter/Destroy()
 	unregister_radio(src, frequency)
@@ -105,11 +107,6 @@
 		use_power(power_draw)
 
 	return 1
-
-/obj/machinery/atmospherics/trinary/atmos_filter/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/trinary/atmos_filter/attack_hand(user) // -- TLE
 	if(..())

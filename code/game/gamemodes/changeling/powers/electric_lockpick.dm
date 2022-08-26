@@ -32,7 +32,8 @@
 	icon_state = "electric_hand"
 	show_examine = FALSE
 
-/obj/item/weapon/finger_lockpick/New()
+/obj/item/weapon/finger_lockpick/Initialize()
+	. = ..()
 	if(ismob(loc))
 		to_chat(loc, "<span class='notice'>We shape our finger to fit inside electronics, and are ready to force them open.</span>")
 

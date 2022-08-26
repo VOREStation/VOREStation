@@ -40,7 +40,7 @@ var/global/datum/ntnet/ntnet_global = new()
 /datum/ntnet/New()
 	if(ntnet_global && (ntnet_global != src))
 		ntnet_global = src // There can be only one.
-	if (SSatoms && SSatoms.initialized > INITIALIZATION_INSSATOMS)
+	if(SSatoms?.atom_init_stage > INITIALIZATION_INSSATOMS)
 		for(var/obj/machinery/ntnet_relay/R in machines)
 			relays.Add(R)
 			R.NTNet = src

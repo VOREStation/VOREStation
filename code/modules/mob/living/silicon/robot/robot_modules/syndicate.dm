@@ -30,9 +30,12 @@
 	var/id
 
 // All syndie modules get these, and the base borg items (flash, crowbar, etc).
-/obj/item/weapon/robot_module/robot/syndicate/New(var/mob/living/silicon/robot/R)
-	..()
-	loc = R
+/obj/item/weapon/robot_module/robot/syndicate/Initialize()
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/weapon/pinpointer/shuttle/merc(src)
 	src.modules += new /obj/item/weapon/melee/energy/sword(src)
 
@@ -44,6 +47,7 @@
 
 	var/jetpack = new/obj/item/weapon/tank/jetpack/carbondioxide(src)
 	src.modules += jetpack
+	var/mob/living/silicon/robot/R = loc
 	R.internals = jetpack
 
 	id = R.idcard
@@ -64,8 +68,12 @@
 		"XI-ALP" = "syndi-heavy"
 		)
 
-/obj/item/weapon/robot_module/robot/syndicate/protector/New(var/mob/living/silicon/robot/R)
-	..()
+/obj/item/weapon/robot_module/robot/syndicate/protector/Initialize()
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/shield_projector/rectangle/weak(src)
 	src.modules += new /obj/item/weapon/gun/energy/dakkalaser(src)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
@@ -79,8 +87,12 @@
 		"WTOperator" = "sleekhos"
 		)
 
-/obj/item/weapon/robot_module/robot/syndicate/mechanist/New(var/mob/living/silicon/robot/R)
-	..()
+/obj/item/weapon/robot_module/robot/syndicate/mechanist/Initialize()
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	// General engineering/hacking.
 	src.modules += new /obj/item/borg/sight/meson(src)
 	src.modules += new /obj/item/weapon/weldingtool/electric/mounted/cyborg(src)
@@ -147,8 +159,12 @@
 		"Telemachus" = "toiletbotantag"
 		)
 
-/obj/item/weapon/robot_module/robot/syndicate/combat_medic/New(var/mob/living/silicon/robot/R)
-	..()
+/obj/item/weapon/robot_module/robot/syndicate/combat_medic/Initialize()
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	src.modules += new /obj/item/borg/sight/hud/med(src)
 	src.modules += new /obj/item/device/healthanalyzer/advanced(src)
 	src.modules += new /obj/item/weapon/reagent_containers/borghypo/merc(src)

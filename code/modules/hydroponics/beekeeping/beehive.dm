@@ -215,8 +215,8 @@
 	desc = "A frame for the beehive that the bees have filled with honeycombs."
 	honey = 20
 
-/obj/item/honey_frame/filled/New()
-	..()
+/obj/item/honey_frame/filled/Initialize()
+	. = ..()
 	add_overlay("honeycomb")
 
 /obj/item/beehive_assembly
@@ -267,8 +267,8 @@ var/global/list/datum/stack_recipe/wax_recipes = list( \
 	icon_state = "beepack"
 	var/full = 1
 
-/obj/item/bee_pack/New()
-	..()
+/obj/item/bee_pack/Initialize()
+	. = ..()
 	add_overlay("beepack-full")
 
 /obj/item/bee_pack/proc/empty()
