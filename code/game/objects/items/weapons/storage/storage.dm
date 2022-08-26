@@ -852,7 +852,8 @@
 	alpha = 200
 	var/weakref/held_item
 
-/atom/movable/storage_slot/New(newloc, obj/item/held_item)
+/atom/movable/storage_slot/Initialize(ml, obj/item/held_item)
+	. = ..()
 	ASSERT(held_item)
 	name += held_item.name
 	src.held_item = weakref(held_item)
