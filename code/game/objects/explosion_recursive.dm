@@ -93,6 +93,7 @@ var/explosion_in_progress = 0
 /turf/proc/explosion_spread(power, direction)
 	if(power <= 0)
 		return
+<<<<<<< HEAD
 
 	/*
 	sleep(2)
@@ -101,6 +102,11 @@ var/explosion_in_progress = 0
 
 	if(explosion_turfs[src] >= power)
 		return //The turf already sustained and spread a power greated than what we are dealing with. No point spreading again.
+=======
+	if(src in explosion_turfs)
+		if(explosion_turfs[src] >= power)
+			return //The turf already sustained and spread a power greated than what we are dealing with. No point spreading again.
+>>>>>>> 94785f2c849... Merge pull request #8689 from Verkister/patch-93
 	explosion_turfs[src] = power
 
 	var/spread_power = power - src.explosion_resistance //This is the amount of power that will be spread to the tile in the direction of the blast
@@ -113,7 +119,11 @@ var/explosion_in_progress = 0
 	T = get_step(src, turn(direction,90))
 	T.explosion_spread(spread_power, turn(direction,90))
 	T = get_step(src, turn(direction,-90))
+<<<<<<< HEAD
 	T.explosion_spread(spread_power, turn(direction,90))
+=======
+	T.explosion_spread(spread_power, turn(direction,-90), explosion_turfs)
+>>>>>>> 94785f2c849... Merge pull request #8689 from Verkister/patch-93
 
 /turf/unsimulated/explosion_spread(power)
 	return //So it doesn't get to the parent proc, which simulates explosions
