@@ -529,10 +529,18 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//If desired, apply equipment.
 	if(equipment)
 		if(charjob)
+			var/datum/mind/player_mind = new_character.mind
 			job_master.EquipRank(new_character, charjob, 1)
+<<<<<<< HEAD
 			new_character.mind.assigned_role = charjob
 			new_character.mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
 		//equip_custom_items(new_character)	//VOREStation Removal
+=======
+			if(player_mind)
+				player_mind.assigned_role = charjob
+				player_mind.role_alt_title = job_master.GetPlayerAltTitle(new_character, charjob)
+		equip_custom_items(new_character)
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo
 
 	//If desired, add records.
 	if(records)

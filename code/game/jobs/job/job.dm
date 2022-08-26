@@ -182,4 +182,35 @@
 		return TRUE
 	if(brain_type in banned_job_species)
 		return TRUE
+<<<<<<< HEAD
 	*/
+=======
+
+/datum/job/proc/get_latejoin_spawn_locations(var/mob/spawning, var/rank)
+	return // If this proc does not return a list, spawn point prefs are checked instead.
+
+/datum/job/proc/get_spawn_locations(var/mob/spawning, var/rank)
+	for(var/obj/effect/landmark/start/sloc in landmarks_list)
+		if(sloc.name != rank)
+			continue
+		if(locate(/mob/living) in sloc.loc)
+			continue
+		LAZYADD(., sloc)
+
+/datum/job/proc/passes_standard_join_checks(var/mob/player, var/rank)
+	if((minimum_character_age || min_age_by_species) && (player.client.prefs.age < get_min_age(player.client.prefs.species, player.client.prefs.organ_data["brain"])))
+		return FALSE
+	if(is_species_banned(player.client.prefs.species, player.client.prefs.organ_data["brain"]))
+		return FALSE
+	if(jobban_isbanned(player, rank))
+		return FALSE
+	if(!player_old_enough(player.client))
+		return FALSE
+	return TRUE
+
+/datum/job/proc/handle_nonhuman_mob(var/mob/living/carbon/human/player, var/alt_title)
+	if(mob_type & JOB_SILICON_ROBOT)
+		return player.Robotize()
+	if(mob_type & JOB_SILICON_AI)
+		return player
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo

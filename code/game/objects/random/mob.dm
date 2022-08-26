@@ -123,6 +123,18 @@
 	return pick(prob(1);/mob/living/simple_mob/animal/sif/kururak/hibernate,
 				prob(20);/mob/living/simple_mob/animal/sif/kururak)
 
+<<<<<<< HEAD
+=======
+/obj/random/mob/sif/grafadreka
+	name = "Random Grafadreka"
+	desc = "This is a random grafadreka, either waking or hibernating."
+	icon_state = "frost"
+
+/obj/random/mob/sif/grafadreka/item_to_spawn()
+	return pick(prob(3);/mob/living/simple_mob/animal/sif/grafadreka/hatchling,
+				prob(12);/mob/living/simple_mob/animal/sif/grafadreka)
+
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo
 /obj/random/mob/spider
 	name = "Random Spider" //Spiders should patrol where they spawn.
 	desc = "This is a random boring spider."
@@ -398,6 +410,14 @@
 				/mob/living/simple_mob/animal/sif/kururak,
 				/mob/living/simple_mob/animal/sif/kururak
 			),
+<<<<<<< HEAD
+=======
+			prob(3);list(
+				/mob/living/simple_mob/animal/sif/grafadreka,
+				/mob/living/simple_mob/animal/sif/grafadreka,
+				/mob/living/simple_mob/animal/sif/grafadreka
+			),
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo
 			prob(5);list(
 				/mob/living/simple_mob/animal/sif/glitterfly,
 				/mob/living/simple_mob/animal/sif/glitterfly,

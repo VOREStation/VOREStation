@@ -480,6 +480,7 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #endif
 
 #define DOCK_ATTEMPT_TIMEOUT 200	//how long in ticks we wait before assuming the docking controller is broken or blown up.
+<<<<<<< HEAD
 
 #define SMES_TGUI_INPUT 1
 #define SMES_TGUI_OUTPUT 2
@@ -492,3 +493,5 @@ GLOBAL_LIST_INIT(all_volume_channels, list(
 #define SPECIES_SORT_WHITELISTED 2
 #define SPECIES_SORT_RESTRICTED 3
 #define SPECIES_SORT_CUSTOM 4
+=======
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo

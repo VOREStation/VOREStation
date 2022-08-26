@@ -1,0 +1,26 @@
+"a" = (/turf/template_noop,/area/template_noop)
+"b" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/GrafadrekaDen)
+"c" = (/obj/random/junk,/obj/random/medical/pillbottle,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"d" = (/obj/random/junk,/obj/random/humanoidremains,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"e" = (/obj/random/mob/sif/grafadreka,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"f" = (/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"g" = (/obj/structure/animal_den/ghost_join/grafadreka_hatchling,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"h" = (/obj/random/junk,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"i" = (/obj/random/outcrop,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"j" = (/obj/random/humanoidremains,/obj/random/coin,/obj/random/contraband,/obj/random/projectile/random,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"o" = (/obj/random/humanoidremains,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"D" = (/obj/structure/animal_den/ghost_join/grafadreka,/turf/simulated/mineral/floor/sif,/area/submap/GrafadrekaDen)
+"P" = (/turf/simulated/mineral/ignore_mapgen,/area/submap/GrafadrekaDen)
+
+(1,1,1) = {"
+aaaaaaaaaa
+aaabbbbaaa
+aabbDbffaa
+abbgoifbba
+abbiffecba
+abhffffdba
+abbDfffbba
+abbPjfbbba
+aabbbffaaa
+aaaaaaaaaa
+"}

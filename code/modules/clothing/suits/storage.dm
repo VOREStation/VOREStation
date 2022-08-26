@@ -110,4 +110,3 @@
 		to_chat(usr, "\The [src] does not have a badge.")
 		return
 	update_clothing_icon()
-

@@ -43,6 +43,11 @@
 	cam_screen.assigned_map = map_name
 	cam_screen.del_on_map_removal = FALSE
 	cam_screen.screen_loc = "[map_name]:1,1"
+<<<<<<< HEAD
+=======
+
+	cam_plane_masters = get_plane_masters()
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo
 
 	cam_plane_masters = get_tgui_plane_masters()
 

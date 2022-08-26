@@ -46,7 +46,8 @@ var/global/datum/controller/occupations/job_master
 	return null
 
 /datum/controller/occupations/proc/GetPlayerAltTitle(mob/new_player/player, rank)
-	return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
+	if(!QDELETED(player) && player.client)
+		return player.client.prefs.GetPlayerAltTitle(GetJob(rank))
 
 /datum/controller/occupations/proc/AssignRole(var/mob/new_player/player, var/rank, var/latejoin = 0)
 	Debug("Running AR, Player: [player], Rank: [rank], LJ: [latejoin]")
@@ -487,11 +488,10 @@ var/global/datum/controller/occupations/job_master
 		H.mind.assigned_role = rank
 		alt_title = H.mind.role_alt_title
 
-		// If we're a silicon, we may be done at this point
-		if(job.mob_type & JOB_SILICON_ROBOT)
-			return H.Robotize()
-		if(job.mob_type & JOB_SILICON_AI)
-			return H
+		// If we're not a human mob, we may be done at this point
+		var/variant_mob = job.handle_nonhuman_mob(H, alt_title)
+		if(variant_mob)
+			return variant_mob
 
 		// TWEET PEEP
 		if(rank == "Site Manager")

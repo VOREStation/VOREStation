@@ -81,6 +81,11 @@
 				prob(45);/mob/living/simple_mob/animal/sif/shantak,
 				prob(15);/mob/living/simple_mob/animal/sif/kururak/hibernate,
 				prob(10);/mob/living/simple_mob/animal/sif/kururak,
+<<<<<<< HEAD
+=======
+				prob(10);/mob/living/simple_mob/animal/sif/grafadreka,
+				prob(1);/mob/living/simple_mob/animal/sif/grafadreka/hatchling,
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo
 				prob(3);/mob/living/simple_mob/animal/giant_spider,
 				prob(8);/mob/living/simple_mob/animal/giant_spider/hunter,
 				prob(3);/mob/living/simple_mob/animal/giant_spider/webslinger,

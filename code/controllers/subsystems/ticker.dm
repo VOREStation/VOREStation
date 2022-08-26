@@ -437,9 +437,16 @@ var/global/datum/controller/subsystem/ticker/ticker
 				captainless=0
 			if(!player_is_antag(player.mind, only_offstation_roles = 1))
 				job_master.EquipRank(player, player.mind.assigned_role, 0)
+<<<<<<< HEAD
 				UpdateFactionList(player)
 				//equip_custom_items(player)	//VOREStation Removal
 				//player.apply_traits() //VOREStation Removal
+=======
+				if(!QDELETED(player))
+					UpdateFactionList(player)
+					equip_custom_items(player)
+					player.apply_traits()
+>>>>>>> 7aa6f14ab0c... Merge pull request #8688 from MistakeNot4892/doggo
 	if(captainless)
 		for(var/mob/M in player_list)
 			if(!istype(M,/mob/new_player))
