@@ -28,17 +28,26 @@ var/list/turf_edge_cache = list()
 	var/loot_count
 
 /turf/simulated/floor/outdoors/proc/get_loot_type()
+<<<<<<< HEAD
 	if(loot_count && prob(60))
 		return pick( \
 			12;/obj/item/weapon/reagent_containers/food/snacks/worm, \
 			1;/obj/item/weapon/material/knife/machete/hatchet/stone  \
 		)
+=======
+	if(loot_count)
+		return pickweight(list(
+			/obj/item/reagent_containers/food/snacks/worm = 6,
+			/obj/item/material/knife/machete/hatchet/stone = 1
+		))
+>>>>>>> 18fee333fdf... Merge pull request #8690 from MistakeNot4892/diggydiggyhole
 
 /turf/simulated/floor/outdoors/Initialize(mapload)
 	. = ..()
 	if(can_dig && prob(33))
 		loot_count = rand(1,3)
 
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/attackby(obj/item/C, mob/user)
 
 	if(can_dig && istype(C, /obj/item/weapon/shovel))
@@ -61,6 +70,8 @@ var/list/turf_edge_cache = list()
 
 	. = ..()
 
+=======
+>>>>>>> 18fee333fdf... Merge pull request #8690 from MistakeNot4892/diggydiggyhole
 /turf/simulated/floor/Initialize(mapload)
 	if(is_outdoors())
 		SSplanets.addTurf(src)

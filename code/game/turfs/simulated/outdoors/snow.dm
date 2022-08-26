@@ -27,16 +27,30 @@
 		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
 
 /turf/simulated/floor/outdoors/snow/attackby(var/obj/item/W, var/mob/user)
+<<<<<<< HEAD
 	if(istype(W, /obj/item/weapon/shovel))
 		to_chat(user, "<span class='notice'>You begin to remove \the [src] with your [W].</span>")
 		if(do_after(user, 4 SECONDS * W.toolspeed))
 			to_chat(user, "<span class='notice'>\The [src] has been dug up, and now lies in a pile nearby.</span>")
 			new /obj/item/stack/material/snow(src, 10)
+=======
+	if(istype(W, /obj/item/shovel))
+		to_chat(user, SPAN_NOTICE("You begin to remove \the [src] with your [W.name]."))
+		if(do_after(user, 4 SECONDS * W.toolspeed))
+			to_chat(user, SPAN_NOTICE("\The [src] has been dug up, and now lies in a pile nearby."))
+			var/obj/item/stack/material/snow/S = new(src)
+			S.amount = 10
+>>>>>>> 18fee333fdf... Merge pull request #8690 from MistakeNot4892/diggydiggyhole
 			demote()
 		else
-			to_chat(user, "<span class='notice'>You decide to not finish removing \the [src].</span>")
-	else
-		..()
+			to_chat(user, SPAN_NOTICE("You decide to not finish removing \the [src]."))
+		return TRUE
+
+	if(istype(W, /obj/item/stack/tile/floor))
+		to_chat(user, SPAN_WARNING("Remove the snow with a shovel first!"))
+		return TRUE
+
+	return ..()
 
 /turf/simulated/floor/outdoors/snow/attack_hand(mob/user as mob)
 	visible_message("[user] starts scooping up some snow.", "You start scooping up some snow.")
@@ -44,7 +58,6 @@
 		var/obj/S = new /obj/item/stack/material/snow(user.loc)
 		user.put_in_hands(S)
 		visible_message("[user] scoops up a pile of snow.", "You scoop up a pile of snow.")
-	return
 
 /turf/simulated/floor/outdoors/ice
 	name = "ice"
