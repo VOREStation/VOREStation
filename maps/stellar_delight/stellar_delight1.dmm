@@ -23668,7 +23668,7 @@
 	dir = 4
 	},
 /obj/machinery/camera/network/mining,
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /turf/simulated/floor/tiled/eris/steel/cargo,
 /area/stellardelight/deck1/shuttlebay)
 "XX" = (
