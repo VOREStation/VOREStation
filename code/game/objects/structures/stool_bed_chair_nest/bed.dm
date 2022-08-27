@@ -24,7 +24,6 @@
 
 /obj/structure/bed/Initialize(var/ml, var/new_material, var/new_padding_material)
 	. = ..(ml)
-	color = null
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
