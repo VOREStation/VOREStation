@@ -7,9 +7,9 @@
 	vital = 1
 	var/defib_timer = 1 // This sits in the brain organ slot, but is not a brain.
 
-/obj/item/organ/internal/cell/New()
+/obj/item/organ/internal/cell/Initialize()
 	robotize()
-	..()
+	. = ..()
 
 /obj/item/organ/internal/cell/replaced()
 	..()
@@ -46,13 +46,14 @@
 		stored_mmi = null
 	return ..()
 
-/obj/item/organ/internal/mmi_holder/New(var/mob/living/carbon/human/new_owner, var/internal)
-	..(new_owner, internal)
-	var/mob/living/carbon/human/dummy/mannequin/M = new_owner
-	if(istype(M))
-		return
-	stored_mmi = new brain_type(src)
-	sleep(-1)
+/obj/item/organ/internal/mmi_holder/Initialize()
+	. = ..()
+	if(ishuman(loc) && !istype(loc, /mob/living/carbon/human/dummy/mannequin))
+		stored_mmi = new brain_type(src)
+		return INITIALIZE_HINT_LATELOAD
+
+/obj/item/organ/internal/mmi_holder/LateInitialize()
+	. = ..()
 	update_from_mmi()
 
 // This sits in the brain organ slot, but is not a brain. Posibrains and dronecores aren't brains either.

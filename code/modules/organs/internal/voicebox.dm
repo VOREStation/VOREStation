@@ -12,8 +12,8 @@
 	will_assist_languages = list(LANGUAGE_GALCOM)
 	var/mute = FALSE
 
-/obj/item/organ/internal/voicebox/New()
-	..()
+/obj/item/organ/internal/voicebox/Initialize()
+	. = ..()
 	amend_assist_langs()
 
 /obj/item/organ/internal/voicebox/proc/amend_assist_langs()	// Adds the list of language datums assisted by the voicebox to the list used in speaking
@@ -30,14 +30,14 @@
 
 /obj/item/organ/internal/voicebox/assist	// In the off chance we get a species that doesn't speak GalCom by default
 
-/obj/item/organ/internal/voicebox/assist/New()
-	..()
+/obj/item/organ/internal/voicebox/assist/Initialize()
+	. = ..()
 	mechassist()
 
 /obj/item/organ/internal/voicebox/robot
 	name = "vocal synthesizer"
 	will_assist_languages = list(LANGUAGE_GALCOM, LANGUAGE_EAL) // Synthetics spawn with this by default
 
-/obj/item/organ/internal/voicebox/robot/New()
-	..()
+/obj/item/organ/internal/voicebox/robot/Initialize()
+	. = ..()
 	robotize()

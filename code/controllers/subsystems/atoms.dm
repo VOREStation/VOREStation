@@ -8,52 +8,54 @@ SUBSYSTEM_DEF(atoms)
 	init_order = INIT_ORDER_ATOMS
 	flags = SS_NO_FIRE
 
-	var/static/initialized = INITIALIZATION_INSSATOMS
-	// var/list/created_atoms // This is never used, so don't bother. ~Leshana
-	var/static/old_initialized
+	// override and GetArguments() exists for mod-override/downstream hook functionality.
+	// Useful for total-overhaul type modifications.
+	var/adjust_init_arguments = FALSE
+
+	var/atom_init_stage = INITIALIZATION_INSSATOMS
+	var/old_init_stage
 
 	var/list/late_loaders
-	var/list/created_atoms
-
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	setupgenetics() //to set the mutations' place in structural enzymes, so initializers know where to put mutations.
-	initialized = INITIALIZATION_INNEW_MAPLOAD
-	to_world_log("Initializing objects")
-	admin_notice("<span class='danger'>Initializing objects</span>", R_DEBUG)
+	atom_init_stage = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 	return ..()
 
-/datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
-	if(initialized == INITIALIZATION_INSSATOMS)
+/datum/controller/subsystem/atoms/proc/InitializeAtoms(var/list/supplied_atoms)
+
+	if(atom_init_stage <= INITIALIZATION_INSSATOMS_LATE)
 		return
 
-	initialized = INITIALIZATION_INNEW_MAPLOAD
+	atom_init_stage = INITIALIZATION_INNEW_MAPLOAD
 
 	LAZYINITLIST(late_loaders)
 
-	var/count
 	var/list/mapload_arg = list(TRUE)
-	if(atoms)
-		created_atoms = list()
-		count = atoms.len
-		for(var/atom/A as anything in atoms)
+	var/count = LAZYLEN(supplied_atoms)
+	if(count)
+		while(supplied_atoms.len)
+			var/atom/A = supplied_atoms[supplied_atoms.len]
+			supplied_atoms.len--
 			if(!A.initialized)
-				if(InitAtom(A, mapload_arg))
-					atoms -= A
+				InitAtom(A, GetArguments(A, mapload_arg))
 				CHECK_TICK
-	else
-		count = 0
-		for(var/atom/A in world) // This must be world, since this operation adds all the atoms to their specific lists.
+	else if(!subsystem_initialized)
+		// If wondering why not just store all atoms in a list and use the block above: that turns out unbearably expensive.
+		// Instead, atoms without extra arguments in New created on server start are fished out of world directly.
+		// We do this exactly once.
+
+		for(var/atom/A in world)
 			if(!A.initialized)
-				InitAtom(A, mapload_arg)
+				InitAtom(A, GetArguments(A, mapload_arg, FALSE))
 				++count
 				CHECK_TICK
 
-	log_world("Initialized [count] atoms")
+	report_progress("Initialized [count] atom\s")
 
-	initialized = INITIALIZATION_INNEW_REGULAR
+	atom_init_stage = INITIALIZATION_INNEW_REGULAR
 
 	if(late_loaders.len)
 		for(var/atom/A as anything in late_loaders)
@@ -62,12 +64,8 @@ SUBSYSTEM_DEF(atoms)
 		testing("Late initialized [late_loaders.len] atoms")
 		late_loaders.Cut()
 
-	// Nothing ever checks return value of this proc, so don't bother.  If this ever changes fix code in /atom/New() ~Leshana
-	// if(atoms)
-	// 	. = created_atoms + atoms
-	// 	created_atoms = null
-
 /datum/controller/subsystem/atoms/proc/InitAtom(atom/A, list/arguments)
+	LAZYREMOVE(global.pre_init_created_atoms, A)
 	var/the_type = A.type
 	if(QDELING(A))
 		BadInitializeCalls[the_type] |= BAD_INIT_QDEL_BEFORE
@@ -86,9 +84,9 @@ SUBSYSTEM_DEF(atoms)
 		switch(result)
 			if(INITIALIZE_HINT_LATELOAD)
 				if(arguments[1])	//mapload
-					late_loaders += A
+					late_loaders[A] = arguments
 				else
-					A.LateInitialize()
+					A.LateInitialize(arglist(arguments))
 			if(INITIALIZE_HINT_QDEL)
 				qdel(A)
 				qdeleted = TRUE
@@ -102,18 +100,37 @@ SUBSYSTEM_DEF(atoms)
 
 	return qdeleted || QDELING(A)
 
+// override and GetArguments() exists for mod-override/downstream hook functionality.
+// Useful for total-overhaul type modifications.
+/atom/proc/AdjustInitializeArguments(list/arguments)
+	// Lists are passed by reference so can simply modify the arguments list without returning it
+
+/datum/controller/subsystem/atoms/proc/GetArguments(atom/A, list/mapload_arg, created=TRUE)
+	if(!created && !adjust_init_arguments)
+		return mapload_arg // Performance optimization. Nothing to do.
+	var/list/arguments = mapload_arg.Copy()
+	var/extra_args = LAZYACCESS(global.pre_init_created_atoms, A)
+	if(created && extra_args)
+		arguments += extra_args
+	if(adjust_init_arguments)
+		A.AdjustInitializeArguments(arguments)
+	return arguments
+
+/datum/controller/subsystem/atoms/stat_entry(msg)
+	..("Bad Initialize Calls:[BadInitializeCalls.len]")
+
 /datum/controller/subsystem/atoms/proc/map_loader_begin()
-	old_initialized = initialized
-	initialized = INITIALIZATION_INSSATOMS
+	old_init_stage = atom_init_stage
+	atom_init_stage = INITIALIZATION_INSSATOMS_LATE
 
 /datum/controller/subsystem/atoms/proc/map_loader_stop()
-	initialized = old_initialized
+	atom_init_stage = old_init_stage
 
 /datum/controller/subsystem/atoms/Recover()
-	initialized = SSatoms.initialized
-	if(initialized == INITIALIZATION_INNEW_MAPLOAD)
+	atom_init_stage = SSatoms.atom_init_stage
+	if(atom_init_stage == INITIALIZATION_INNEW_MAPLOAD)
 		InitializeAtoms()
-	old_initialized = SSatoms.old_initialized
+	old_init_stage = SSatoms.old_init_stage
 	BadInitializeCalls = SSatoms.BadInitializeCalls
 
 /datum/controller/subsystem/atoms/proc/InitLog()

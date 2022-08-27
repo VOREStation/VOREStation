@@ -362,9 +362,9 @@
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 	light_system = MOVABLE_LIGHT
 
-/obj/item/device/flashlight/flare/New()
+/obj/item/device/flashlight/flare/Initialize()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
+	. = ..()
 
 /obj/item/device/flashlight/flare/process()
 	var/turf/pos = get_turf(src)
@@ -425,9 +425,9 @@
 	var/fuel = 0
 	power_use = 0
 
-/obj/item/device/flashlight/glowstick/New()
+/obj/item/device/flashlight/glowstick/Initialize()
 	fuel = rand(1600, 2000)
-	..()
+	. = ..()
 
 /obj/item/device/flashlight/glowstick/process()
 	fuel = max(fuel - 1, 0)
@@ -491,3 +491,30 @@
 	light_range = 8
 	light_power = 0.1
 	light_color = "#49F37C"
+
+/*
+ * Slime Extract
+ */
+
+/obj/item/device/flashlight/slime
+	gender = PLURAL
+	name = "glowing slime extract"
+	desc = "A slimy ball that appears to be glowing from bioluminesence."
+	icon = 'icons/obj/lighting.dmi'
+	icon_state = "floor1" //not a slime extract sprite but... something close enough!
+	item_state = "slime"
+	light_color = "#FFF423"
+	w_class = ITEMSIZE_TINY
+	light_range = 6
+	on = 1 //Bio-luminesence has one setting, on.
+	power_use = 0
+
+/obj/item/device/flashlight/slime/Initialize()
+	. = ..()
+	set_light(light_range, light_power, light_color)
+
+/obj/item/device/flashlight/slime/update_brightness()
+	return
+
+/obj/item/device/flashlight/slime/attack_self(mob/user)
+	return //Bio-luminescence does not toggle.

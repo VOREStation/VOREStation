@@ -37,10 +37,9 @@ var/global/photo_count = 0
 	var/icon/tiny
 	var/photo_size = 3
 
-/obj/item/weapon/photo/New()
+/obj/item/weapon/photo/Initialize()
+	. = ..()
 	id = photo_count++
-
-
 
 /obj/item/weapon/photo/attack_self(mob/user as mob)
 	user.examinate(src)

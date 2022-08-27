@@ -21,12 +21,9 @@
 /obj/machinery/power/tesla_coil/pre_mapped
 	anchored = TRUE
 
-/obj/machinery/power/tesla_coil/New()
-	..()
-	wires = new(src)
-
 /obj/machinery/power/tesla_coil/Initialize()
 	. = ..()
+	wires = new(src)
 	default_apply_parts()
 
 /obj/machinery/power/tesla_coil/Destroy()

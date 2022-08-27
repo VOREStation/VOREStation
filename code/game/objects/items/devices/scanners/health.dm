@@ -16,10 +16,10 @@
 	var/advscan = 0
 	var/showadvscan = 1
 
-/obj/item/device/healthanalyzer/New()
+/obj/item/device/healthanalyzer/Initialize()
 	if(advscan >= 1)
 		verbs += /obj/item/device/healthanalyzer/proc/toggle_adv
-	..()
+	. = ..()
 
 /obj/item/device/healthanalyzer/do_surgery(mob/living/M, mob/living/user)
 	if(user.a_intent != I_HELP) //in case it is ever used as a surgery tool

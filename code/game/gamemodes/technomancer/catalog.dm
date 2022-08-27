@@ -73,8 +73,8 @@ var/list/all_technomancer_assistance = subtypesof(/datum/technomancer/assistance
 // Proc: New()
 // Parameters: 0
 // Description: Sets up the catalog, as shown below.
-/obj/item/weapon/technomancer_catalog/New()
-	..()
+/obj/item/weapon/technomancer_catalog/Initialize()
+	. = ..()
 	set_up()
 
 // Proc: set_up()

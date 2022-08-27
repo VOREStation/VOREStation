@@ -59,8 +59,8 @@
 /obj/item/organ/internal/liver/grey
 	icon_state = "liver_grey"
 
-/obj/item/organ/internal/liver/grey/colormatch/New()
-	..()
+/obj/item/organ/internal/liver/grey/colormatch/Initialize()
+	. = ..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)
 		if(ishuman(owner))

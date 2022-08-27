@@ -67,245 +67,213 @@
 	desc = "A case containing a tracking implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/tracking/New()
+/obj/item/weapon/implantcase/tracking/Initialize()
 	src.imp = new /obj/item/weapon/implant/tracking( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/explosive
 	name = "glass case - 'explosive'"
 	desc = "A case containing an explosive implant."
 	icon_state = "implantcase-r"
 
-/obj/item/weapon/implantcase/explosive/New()
+/obj/item/weapon/implantcase/explosive/Initialize()
 	src.imp = new /obj/item/weapon/implant/explosive( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/chem
 	name = "glass case - 'chem'"
 	desc = "A case containing a chemical implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/chem/New()
+/obj/item/weapon/implantcase/chem/Initialize()
 	src.imp = new /obj/item/weapon/implant/chem( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/loyalty
 	name = "glass case - 'loyalty'"
 	desc = "A case containing a loyalty implant."
 	icon_state = "implantcase-r"
 
-/obj/item/weapon/implantcase/loyalty/New()
+/obj/item/weapon/implantcase/loyalty/Initialize()
 	src.imp = new /obj/item/weapon/implant/loyalty( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/death_alarm
 	name = "glass case - 'death alarm'"
 	desc = "A case containing a death alarm implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/death_alarm/New()
+/obj/item/weapon/implantcase/death_alarm/Initialize()
 	src.imp = new /obj/item/weapon/implant/death_alarm( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/freedom
 	name = "glass case - 'freedom'"
 	desc = "A case containing a freedom implant."
 	icon_state = "implantcase-r"
 
-/obj/item/weapon/implantcase/freedom/New()
+/obj/item/weapon/implantcase/freedom/Initialize()
 	src.imp = new /obj/item/weapon/implant/freedom( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/adrenalin
 	name = "glass case - 'adrenalin'"
 	desc = "A case containing an adrenalin implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/adrenalin/New()
+/obj/item/weapon/implantcase/adrenalin/Initialize()
 	src.imp = new /obj/item/weapon/implant/adrenalin( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/dexplosive
 	name = "glass case - 'explosive'"
 	desc = "A case containing an explosive."
 	icon_state = "implantcase-r"
 
-/obj/item/weapon/implantcase/dexplosive/New()
+/obj/item/weapon/implantcase/dexplosive/Initialize()
 	src.imp = new /obj/item/weapon/implant/dexplosive( src )
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implantcase/health
 	name = "glass case - 'health'"
 	desc = "A case containing a health tracking implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/health/New()
+/obj/item/weapon/implantcase/health/Initialize()
 	src.imp = new /obj/item/weapon/implant/health( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/language
 	name = "glass case - 'GalCom'"
 	desc = "A case containing a GalCom language implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/language/New()
+/obj/item/weapon/implantcase/language/Initialize()
 	src.imp = new /obj/item/weapon/implant/language( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/language/eal
 	name = "glass case - 'EAL'"
 	desc = "A case containing an Encoded Audio Language implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/language/eal/New()
+/obj/item/weapon/implantcase/language/eal/Initialize()
 	src.imp = new /obj/item/weapon/implant/language/eal( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/shades
 	name = "glass case - 'Integrated Shades'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/shades/New()
+/obj/item/weapon/implantcase/shades/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/taser
 	name = "glass case - 'Taser'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/taser/New()
+/obj/item/weapon/implantcase/taser/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/laser
 	name = "glass case - 'Laser'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/laser/New()
+/obj/item/weapon/implantcase/laser/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/laser( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/dart
 	name = "glass case - 'Dart'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/dart/New()
+/obj/item/weapon/implantcase/dart/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/dart( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/toolkit
 	name = "glass case - 'Toolkit'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/toolkit/New()
+/obj/item/weapon/implantcase/toolkit/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/medkit
 	name = "glass case - 'Toolkit'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/medkit/New()
+/obj/item/weapon/implantcase/medkit/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm/medkit( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/surge
 	name = "glass case - 'Muscle Overclocker'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/surge/New()
+/obj/item/weapon/implantcase/surge/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm/surge( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/analyzer
 	name = "glass case - 'Scanner'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/analyzer/New()
+/obj/item/weapon/implantcase/analyzer/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/sword
 	name = "glass case - 'Scanner'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/sword/New()
+/obj/item/weapon/implantcase/sword/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist/sword( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/sprinter
 	name = "glass case - 'Sprinter'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/sprinter/New()
+/obj/item/weapon/implantcase/sprinter/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/pelvic( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/armblade
 	name = "glass case - 'Armblade'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/armblade/New()
+/obj/item/weapon/implantcase/armblade/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/upperarm/blade( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/handblade
 	name = "glass case - 'Handblade'"
 	desc = "A case containing a nanite fabricator implant."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/handblade/New()
+/obj/item/weapon/implantcase/handblade/Initialize()
 	src.imp = new /obj/item/weapon/implant/organ/limbaugment/wrist/blade( src )
-	..()
-	return
+	. = ..()
 
 /obj/item/weapon/implantcase/restrainingbolt
 	name = "glass case - 'Restraining Bolt'"
 	desc = "A case containing a restraining bolt."
 	icon_state = "implantcase-b"
 
-/obj/item/weapon/implantcase/restrainingbolt/New()
+/obj/item/weapon/implantcase/restrainingbolt/Initialize()
 	src.imp = new /obj/item/weapon/implant/restrainingbolt( src )
-	..()
-	return
+	. = ..()

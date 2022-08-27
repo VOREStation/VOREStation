@@ -109,8 +109,8 @@
 
 	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
 
-/obj/item/New()
-	..()
+/obj/item/Initialize()
+	. = ..()
 	if(embed_chance < 0)
 		if(sharp)
 			embed_chance = max(5, round(force/w_class))

@@ -88,8 +88,8 @@
 
 /obj/item/weapon/moneybag/vault
 
-/obj/item/weapon/moneybag/vault/New()
-	..()
+/obj/item/weapon/moneybag/vault/Initialize()
+	. = ..()
 	new /obj/item/weapon/coin/silver(src)
 	new /obj/item/weapon/coin/silver(src)
 	new /obj/item/weapon/coin/silver(src)

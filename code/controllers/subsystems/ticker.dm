@@ -416,7 +416,7 @@ var/global/datum/controller/subsystem/ticker/ticker
 			if(new_char)
 				qdel(player)
 				if(new_char.client)
-					var/obj/screen/splash/S = new(new_char.client, TRUE)
+					var/obj/screen/splash/S = new(null, new_char.client, TRUE)
 					S.Fade(TRUE)
 
 			// If they're a carbon, they can get manifested

@@ -186,8 +186,8 @@ GLOBAL_LIST_EMPTY(apcs)
 
 	return drained_energy
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	..()
+/obj/machinery/power/apc/Initialize(var/ml, var/ndir, var/building=0)
+	. = ..(ml)
 	wires = new(src)
 	GLOB.apcs += src
 

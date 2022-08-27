@@ -18,6 +18,7 @@
 	var/toggled = 0					// Mainly used for overlays.
 	var/cooldown = 0 				// If set, will add a cooldown overlay and adjust click delay.  Must be a multiple of 5 for overlays.
 	var/cast_sound = null			// Sound file played when this is used.
+	var/needs_core = TRUE           // Does this spell need a core to be usable?
 
 // Proc: on_use_cast()
 // Parameters: 1 (user - the technomancer casting the spell)
@@ -110,18 +111,18 @@
 // Proc: New()
 // Parameters: 0
 // Description: Sets owner to equal its loc, links to the owner's core, then applies overlays if needed.
-/obj/item/weapon/spell/New()
-	..()
+/obj/item/weapon/spell/Initialize()
+	. = ..()
 	if(isliving(loc))
 		owner = loc
 	if(owner)
 		core = owner.get_technomancer_core()
-		if(!core)
+		if(!core && needs_core)
 			to_chat(owner, "<span class='warning'>You need a Core to do that.</span>")
-			qdel(src)
-			return
-//		if(istype(/obj/item/weapon/technomancer_core, owner.back))
-//			core = owner.back
+			return INITIALIZE_HINT_QDEL
+	else
+		return INITIALIZE_HINT_QDEL
+
 	update_icon()
 
 // Proc: Destroy()

@@ -661,8 +661,9 @@
 	plane = PLANE_PLAYER_HUD_ABOVE
 	var/client/holder
 
-/obj/screen/splash/New(client/C, visible)
-	. = ..()
+INITIALIZE_IMMEDIATE(/obj/screen/splash)
+/obj/screen/splash/Initialize(var/ml, client/C, visible)
+	. = ..(ml)
 
 	holder = C
 
@@ -730,6 +731,9 @@
 	var/obj/screen/mapper/extras_holder/extras_holder
 
 /obj/screen/movable/mapper_holder/Initialize(mapload, newowner)
+
+	. = ..()
+
 	owner = newowner
 
 	mask_full = new(src) // Full white square mask
@@ -817,8 +821,8 @@
 	mouse_opacity = 0
 	var/obj/screen/movable/mapper_holder/parent
 
-/obj/screen/mapper/New()
-	..()
+/obj/screen/mapper/Initialize()
+	. = ..()
 	parent = loc
 
 /obj/screen/mapper/Destroy()

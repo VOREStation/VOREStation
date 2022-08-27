@@ -8,12 +8,10 @@
 	var/uses = 1.0
 
 
-/obj/item/weapon/implant/freedom/New()
+/obj/item/weapon/implant/freedom/Initialize()
 	src.activation_emote = pick("blink", "blink_r", "eyebrow", "chuckle", "twitch", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")
 	src.uses = rand(1, 5)
-	..()
-	return
-
+	. = ..()
 
 /obj/item/weapon/implant/freedom/trigger(emote, mob/living/carbon/source as mob)
 	if (src.uses < 1)

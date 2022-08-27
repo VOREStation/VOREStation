@@ -8,8 +8,12 @@
 					"Drone" = "drone-lost"
 				)
 
-/obj/item/weapon/robot_module/robot/lost/New(var/mob/living/silicon/robot/R)
-	..()
+/obj/item/weapon/robot_module/robot/lost/Initialize(var/ml)
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	// Sec
 	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)
 	src.modules += new /obj/item/weapon/handcuffs/cyborg(src)
@@ -47,8 +51,12 @@
 					"Sleek" = "sleek-gravekeeper"
 				)
 
-/obj/item/weapon/robot_module/robot/gravekeeper/New(var/mob/living/silicon/robot/R)
-	..()
+/obj/item/weapon/robot_module/robot/gravekeeper/Initialize(var/ml)
+
+	. = ..()
+	if(. != INITIALIZE_HINT_NORMAL)
+		return
+
 	// For fending off animals and looters
 	src.modules += new /obj/item/weapon/melee/baton/shocker/robot(src)
 	src.modules += new /obj/item/borg/combat/shield(src)

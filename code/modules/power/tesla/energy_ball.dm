@@ -23,12 +23,9 @@
 	var/energy_to_raise = 32
 	var/energy_to_lower = -20
 
-/obj/singularity/energy_ball/New(loc, starting_energy = 50, is_miniball = FALSE)
-	..()
-	miniball = is_miniball
-
-/obj/singularity/energy_ball/Initialize()
+/obj/singularity/energy_ball/Initialize(var/ml, starting_energy = 50, is_miniball = FALSE)
 	. = ..()
+	miniball = is_miniball
 	if(!miniball)
 		set_light(10, 7, "#EEEEFF")
 
