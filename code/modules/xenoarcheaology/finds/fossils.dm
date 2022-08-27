@@ -9,18 +9,12 @@
 	desc = "It's a fossil."
 	var/animal = 1
 
-/obj/item/weapon/fossil/base
-	var/static/list/l = list(
-		/obj/item/weapon/fossil/bone = 9,
-		/obj/item/weapon/fossil/skull = 3,
-		/obj/item/weapon/fossil/skull/horned = 2
-	)
-
-/obj/item/weapon/fossil/base/Initialize()
-	..()
+/obj/item/weapon/fossil/base/New()
+	var/list/l = list(/obj/item/weapon/fossil/bone = 9,/obj/item/weapon/fossil/skull = 3,
+	/obj/item/weapon/fossil/skull/horned = 2)
 	var/t = pickweight(l)
 	new t(src.loc)
-	return INITIALIZE_HINT_QDEL
+	qdel(src)
 
 /obj/item/weapon/fossil/bone
 	name = "Fossilised bone"
@@ -56,8 +50,7 @@
 	var/bstate = 0
 	var/plaque_contents = "Unnamed alien creature"
 
-/obj/skeleton/Initialize()
-	. = ..()
+/obj/skeleton/New()
 	src.breq = rand(6)+3
 	src.desc = "An incomplete skeleton, looks like it could use [src.breq-src.bnum] more bones."
 
@@ -104,6 +97,5 @@
 	desc = "It's fossilised plant remains."
 	animal = 0
 
-/obj/item/weapon/fossil/plant/Initialize()
-	. = ..()
+/obj/item/weapon/fossil/plant/New()
 	icon_state = "plant[rand(1,4)]"

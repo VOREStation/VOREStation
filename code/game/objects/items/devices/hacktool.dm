@@ -7,8 +7,8 @@
 	var/list/supported_types
 	var/datum/tgui_state/default/must_hack/hack_state
 
-/obj/item/device/multitool/hacktool/Initialize()
-	. = ..()
+/obj/item/device/multitool/hacktool/New()
+	..()
 	known_targets = list()
 	max_known_targets = 5 + rand(1,3)
 	supported_types = list(/obj/machinery/door/airlock)

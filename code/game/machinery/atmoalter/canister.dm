@@ -368,30 +368,30 @@ update_flag
 	add_fingerprint(usr)
 	update_icon()
 
-/obj/machinery/portable_atmospherics/canister/phoron/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/phoron/New()
+	..()
 
 	src.air_contents.adjust_gas("phoron", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/oxygen/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/oxygen/New()
+	..()
 
 	src.air_contents.adjust_gas("oxygen", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/oxygen/prechilled/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/oxygen/prechilled/New()
+	..()
 
 	src.air_contents.adjust_gas("oxygen", MolesForPressure())
 	src.air_contents.temperature = 80
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/nitrous_oxide/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/nitrous_oxide/New()
+	..()
 
 	air_contents.adjust_gas("nitrous_oxide", MolesForPressure())
 	src.update_icon()
@@ -407,20 +407,23 @@ update_flag
 		air_contents = new
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/nitrogen/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/nitrogen/New()
+
+	..()
+
 	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide/New()
+	..()
 	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/air/Initialize()
-	. = ..()
+
+/obj/machinery/portable_atmospherics/canister/air/New()
+	..()
 	var/list/air_mix = StandardAirMix()
 	src.air_contents.adjust_multi("oxygen", air_mix["oxygen"], "nitrogen", air_mix["nitrogen"])
 
@@ -429,20 +432,20 @@ update_flag
 
 //R-UST port
 // Special types used for engine setup admin verb, they contain double amount of that of normal canister.
-/obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/nitrogen/engine_setup/New()
+	..()
 	src.air_contents.adjust_gas("nitrogen", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/carbon_dioxide/engine_setup/New()
+	..()
 	src.air_contents.adjust_gas("carbon_dioxide", MolesForPressure())
 	src.update_icon()
 	return 1
 
-/obj/machinery/portable_atmospherics/canister/phoron/engine_setup/Initialize()
-	. = ..()
+/obj/machinery/portable_atmospherics/canister/phoron/engine_setup/New()
+	..()
 	src.air_contents.adjust_gas("phoron", MolesForPressure())
 	src.update_icon()
 	return 1

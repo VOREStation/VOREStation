@@ -17,6 +17,10 @@
 	atmosphere = new(CELL_VOLUME)
 	atmosphere.adjust_gas_temp("oxygen", MOLES_O2STANDARD, 273)
 	atmosphere.adjust_gas_temp("nitrogen", MOLES_N2STANDARD, 273)
+
+	. = ..()
+
+/obj/effect/overmap/visitable/planet/Sif/Initialize()
 	. = ..()
 	docking_codes = null
 
@@ -35,3 +39,7 @@
 	start_y =  10
 	map_z = list(Z_LEVEL_STATION_ONE, Z_LEVEL_STATION_TWO, Z_LEVEL_STATION_THREE)
 	extra_z_levels = list(Z_LEVEL_TRANSIT) // Hopefully temporary, so arrivals announcements work.
+
+/obj/effect/overmap/visitable/planet/Sif/Initialize()
+	. = ..()
+	docking_codes = null

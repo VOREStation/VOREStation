@@ -76,13 +76,12 @@
 /obj/effect/plant/single
 	spread_chance = 0
 
-/obj/effect/plant/Initialize(var/ml, var/datum/seed/newseed, var/obj/effect/plant/newparent)
-	. = ..(ml)
-
+/obj/effect/plant/New(var/newloc, var/datum/seed/newseed, var/obj/effect/plant/newparent)
 	//VOREStation Edit Start
 	if(istype(loc, /turf/simulated/open))
 		qdel(src)
 	//VOREStation Edit End
+	..()
 
 	if(!newparent)
 		parent = src
@@ -90,8 +89,11 @@
 		parent = newparent
 
 	if(!SSplants)
+		sleep(250) // ugly hack, should mean roundstart plants are fine. TODO initialize perhaps?
+	if(!SSplants)
 		to_world("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 
 	if(!istype(newseed))
 		newseed = SSplants.seeds[DEFAULT_SEED]

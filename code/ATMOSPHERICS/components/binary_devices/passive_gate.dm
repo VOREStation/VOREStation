@@ -27,12 +27,10 @@
 	var/id = null
 	var/datum/radio_frequency/radio_connection
 
-/obj/machinery/atmospherics/binary/passive_gate/Initialize()
-	. = ..()
+/obj/machinery/atmospherics/binary/passive_gate/New()
+	..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP * 2.5
-	if(frequency)
-		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/passive_gate/Destroy()
 	unregister_radio(src, frequency)
@@ -168,7 +166,13 @@
 	)
 
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
+
 	return 1
+
+/obj/machinery/atmospherics/binary/passive_gate/Initialize()
+	. = ..()
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/passive_gate/receive_signal(datum/signal/signal)
 	if(!signal.data["tag"] || (signal.data["tag"] != id) || (signal.data["sigtype"]!="command"))

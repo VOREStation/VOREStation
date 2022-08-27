@@ -62,35 +62,37 @@ var/list/organ_cache = list()
 /obj/item/organ/proc/update_health()
 	return
 
-/obj/item/organ/Initialize(var/ml, var/internal)
-	. = ..(ml)
+/obj/item/organ/New(var/mob/living/holder, var/internal)
+	..(holder)
 	create_reagents(5)
 
-	if(isliving(loc))
-		owner = loc
-		w_class = max(src.w_class + mob_size_difference(owner.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
+	if(isliving(holder))
+		src.owner = holder
+		src.w_class = max(src.w_class + mob_size_difference(holder.mob_size, MOB_MEDIUM), 1) //smaller mobs have smaller organs.
 		if(internal)
-			if(!LAZYLEN(owner.internal_organs))
-				owner.internal_organs = list()
-			if(!LAZYLEN(owner.internal_organs_by_name))
-				owner.internal_organs_by_name = list()
-			owner.internal_organs |= src
-			owner.internal_organs_by_name[organ_tag] = src
-		else
-			if(!LAZYLEN(owner.organs))
-				owner.organs = list()
-			if(!LAZYLEN(owner.organs_by_name))
-				owner.organs_by_name = list()
+			if(!LAZYLEN(holder.internal_organs))
+				holder.internal_organs = list()
+			if(!LAZYLEN(holder.internal_organs_by_name))
+				holder.internal_organs_by_name = list()
 
-			owner.organs |= src
-			owner.organs_by_name[organ_tag] = src
+			holder.internal_organs |= src
+			holder.internal_organs_by_name[organ_tag] = src
+
+		else
+			if(!LAZYLEN(holder.organs))
+				holder.organs = list()
+			if(!LAZYLEN(holder.organs_by_name))
+				holder.organs_by_name = list()
+
+			holder.organs |= src
+			holder.organs_by_name[organ_tag] = src
 
 	if(!max_damage)
 		max_damage = min_broken_damage * 2
-	if(iscarbon(owner))
-		var/mob/living/carbon/C = owner
+	if(iscarbon(holder))
+		var/mob/living/carbon/C = holder
 		species = GLOB.all_species[SPECIES_HUMAN]
-		if(owner.dna)
+		if(holder.dna)
 			dna = C.dna.Clone()
 			species = C.species //VOREStation Edit - For custom species
 		else
@@ -112,6 +114,8 @@ var/list/organ_cache = list()
 
 	handle_organ_mod_special()
 
+/obj/item/organ/Initialize()
+	. = ..()
 	if(owner)
 		if(!meat_type)
 			if(owner.isSynthetic())

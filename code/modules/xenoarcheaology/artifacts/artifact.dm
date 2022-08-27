@@ -12,8 +12,8 @@
 
 	var/being_used = 0
 
-/obj/machinery/artifact/Initialize()
-	. = ..()
+/obj/machinery/artifact/New()
+	..()
 
 	if(ispath(artifact_master))
 		AddComponent(artifact_master)

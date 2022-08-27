@@ -8,10 +8,9 @@
 	var/max_cable = 100
 	var/on = 0
 
-/obj/machinery/cablelayer/Initialize()
-	cable = new(src)
-	cable.amount = 100
-	. = ..()
+/obj/machinery/cablelayer/New()
+	cable = new(src, 100)
+	..()
 
 /obj/machinery/cablelayer/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()

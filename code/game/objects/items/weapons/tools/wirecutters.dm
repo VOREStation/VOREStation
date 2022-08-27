@@ -27,7 +27,7 @@
 	tool_qualities = list(TOOL_WIRECUTTER)
 	var/random_color = TRUE
 
-/obj/item/weapon/tool/wirecutters/Initialize()
+/obj/item/weapon/tool/wirecutters/New()
 	if(random_color)
 		switch(pick("red","blue","yellow"))
 			if ("red")
@@ -42,7 +42,7 @@
 
 	if (prob(75))
 		src.pixel_y = rand(0, 16)
-	. = ..()
+	..()
 
 /obj/item/weapon/tool/wirecutters/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(istype(C) && user.a_intent == I_HELP && (C.handcuffed) && (istype(C.handcuffed, /obj/item/weapon/handcuffs/cable)))
@@ -110,8 +110,8 @@
 	random_color = FALSE
 	var/obj/item/weapon/tool/crowbar/power/counterpart = null
 
-/obj/item/weapon/tool/wirecutters/power/Initialize(var/ml, no_counterpart = TRUE)
-	. = ..(ml)
+/obj/item/weapon/tool/wirecutters/power/New(newloc, no_counterpart = TRUE)
+	..(newloc)
 	if(!counterpart && no_counterpart)
 		counterpart = new(src, FALSE)
 		counterpart.counterpart = src

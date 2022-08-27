@@ -1,3 +1,4 @@
+
 //The advanced pea-green monochrome lcd of tomorrow.
 
 var/global/list/obj/item/device/pda/PDAs = list()
@@ -115,8 +116,8 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		close(usr)
 	return 0
 
-/obj/item/device/pda/Initialize()
-	. = ..()
+/obj/item/device/pda/New(var/mob/living/carbon/human/H)
+	..()
 	PDAs += src
 	PDAs = sortAtom(PDAs)
 	update_programs()
@@ -124,13 +125,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		cartridge = new default_cartridge(src)
 		cartridge.update_programs(src)
 	new /obj/item/weapon/pen(src)
-
-	if(ishuman(loc))
-		var/mob/living/carbon/human/H = loc
-		pdachoice = H.pdachoice
-	else
-		pdachoice = 1
-
+	pdachoice = isnull(H) ? 1 : (ishuman(H) ? H.pdachoice : 1)
 	switch(pdachoice)
 		if(1) icon = 'icons/obj/pda_vr.dmi'			//VOREStation edit
 		if(2) icon = 'icons/obj/pda_slim.dmi'

@@ -338,8 +338,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/arithmetic/all // Don't believe this will ever be needed.
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/arithmetic/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/arithmetic/New()
+	..()
 	for(var/obj/item/integrated_circuit/arithmetic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -355,8 +355,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/trig/all // Ditto
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/trig/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/trig/New()
+	..()
 	for(var/obj/item/integrated_circuit/trig/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -372,8 +372,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/input/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/input/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/input/New()
+	..()
 	for(var/obj/item/integrated_circuit/input/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -389,8 +389,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/output/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/output/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/output/New()
+	..()
 	for(var/obj/item/integrated_circuit/output/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -406,8 +406,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/memory/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/memory/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/memory/New()
+	..()
 	for(var/obj/item/integrated_circuit/memory/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -423,8 +423,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/logic/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/logic/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/logic/New()
+	..()
 	for(var/obj/item/integrated_circuit/logic/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -440,8 +440,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/time/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/time/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/time/New()
+	..()
 	for(var/obj/item/integrated_circuit/time/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -457,8 +457,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/reagents/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/reagents/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/reagents/New()
+	..()
 	for(var/obj/item/integrated_circuit/reagent/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -474,8 +474,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/transfer/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/transfer/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/transfer/New()
+	..()
 	for(var/obj/item/integrated_circuit/transfer/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -491,8 +491,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/converter/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/converter/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/converter/New()
+	..()
 	for(var/obj/item/integrated_circuit/converter/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -507,8 +507,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/smart/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/smart/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/smart/New()
+	..()
 	for(var/obj/item/integrated_circuit/smart/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -523,8 +523,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/manipulation/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/manipulation/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/manipulation/New()
+	..()
 	for(var/obj/item/integrated_circuit/manipulation/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)
@@ -540,8 +540,8 @@
 /obj/item/weapon/storage/bag/circuits/mini/power/all
 	spawn_flags_to_use = IC_SPAWN_DEFAULT|IC_SPAWN_RESEARCH
 
-/obj/item/weapon/storage/bag/circuits/mini/power/Initialize()
-	. = ..()
+/obj/item/weapon/storage/bag/circuits/mini/power/New()
+	..()
 	for(var/obj/item/integrated_circuit/passive/power/IC in all_integrated_circuits)
 		if(IC.spawn_flags & spawn_flags_to_use)
 			for(var/i = 1 to 4)

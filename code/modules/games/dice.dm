@@ -8,8 +8,7 @@
 	var/result = 6
 	attack_verb = list("diced")
 
-/obj/item/weapon/dice/Initialize()
-	. = ..()
+/obj/item/weapon/dice/New()
 	icon_state = "[name][rand(1,sides)]"
 
 /obj/item/weapon/dice/d4
@@ -84,8 +83,8 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-/obj/item/weapon/storage/pill_bottle/dice/Initialize()
-	. = ..()
+/obj/item/weapon/storage/pill_bottle/dice/New()
+	..()
 	for(var/i = 1 to 7)
 		new /obj/item/weapon/dice( src )
 
@@ -97,8 +96,8 @@
 	drop_sound = 'sound/items/drop/hat.ogg'
 	pickup_sound = 'sound/items/pickup/hat.ogg'
 
-/obj/item/weapon/storage/pill_bottle/dice_nerd/Initialize()
-	. = ..()
+/obj/item/weapon/storage/pill_bottle/dice_nerd/New()
+	..()
 	new /obj/item/weapon/dice/d4( src )
 	new /obj/item/weapon/dice( src )
 	new /obj/item/weapon/dice/d8( src )
@@ -156,7 +155,7 @@
 		revealDice(player)
 
 
-/obj/item/weapon/storage/dicecup/loaded/Initialize()
-	. = ..()
+/obj/item/weapon/storage/dicecup/loaded/New()
+	..()
 	for(var/i = 1 to 5)
 		new /obj/item/weapon/dice( src )

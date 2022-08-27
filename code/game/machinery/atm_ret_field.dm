@@ -81,7 +81,6 @@
 		return
 
 /obj/machinery/atmospheric_field_generator/perma/Initialize()
-	. = ..()
 	generate_field()
 
 /obj/machinery/atmospheric_field_generator/update_icon()

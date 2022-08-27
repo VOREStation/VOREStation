@@ -13,8 +13,8 @@
 	var/datum/material/material = null
 	var/riding_datum_type = /datum/riding/boat/small
 
-/obj/vehicle/boat/sifwood/Initialize(var/ml, material_name)
-	. = ..(ml, MAT_SIFWOOD)
+/obj/vehicle/boat/sifwood/New(newloc, material_name)
+	..(newloc, MAT_SIFWOOD)
 
 /obj/vehicle/boat/dragon
 	name = "dragon boat"
@@ -27,13 +27,13 @@
 	max_buckled_mobs = 5
 	riding_datum_type = /datum/riding/boat/big
 
-/obj/vehicle/boat/dragon/Initialize(var/ml, material_name)
-	. = ..(ml, material_name)
+/obj/vehicle/boat/dragon/New(newloc, material_name)
+	..(newloc, material_name)
 	var/image/I = image(icon, src, "dragon_boat_underlay", BELOW_MOB_LAYER)
 	underlays += I
 
-/obj/vehicle/boat/dragon/sifwood/Initialize(var/ml, material_name)
-	. = ..(ml, MAT_SIFWOOD)
+/obj/vehicle/boat/dragon/sifwood/New(newloc, material_name)
+	..(newloc, MAT_SIFWOOD)
 
 // Oars, which must be held inhand while in a boat to move it.
 /obj/item/weapon/oar
@@ -45,20 +45,21 @@
 	force = 12
 	var/datum/material/material = null
 
-/obj/item/weapon/oar/sifwood/Initialize(var/ml, material_name)
-	. = ..(ml, MAT_SIFWOOD)
+/obj/item/weapon/oar/sifwood/New(newloc, material_name)
+	..(newloc, MAT_SIFWOOD)
 
-/obj/item/weapon/oar/Initialize(var/ml, material_name)
-	. = ..()
+/obj/item/weapon/oar/New(newloc, material_name)
+	..(newloc)
 	if(!material_name)
 		material_name = "wood"
 	material = get_material_by_name("[material_name]")
 	if(!material)
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
+		return
 	color = material.icon_colour
 
-/obj/vehicle/boat/Initialize(var/ml, material_name)
-	. = ..()
+/obj/vehicle/boat/New(newloc, material_name)
+	..(newloc)
 	if(!material_name)
 		material_name = "wood"
 	material = get_material_by_name("[material_name]")

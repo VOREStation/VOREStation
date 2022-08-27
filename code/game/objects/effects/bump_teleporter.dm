@@ -11,8 +11,8 @@ var/list/obj/effect/bump_teleporter/BUMP_TELEPORTERS = list()
 	density = TRUE
 	opacity = 0
 
-/obj/effect/bump_teleporter/Initialize()
-	. = ..()
+/obj/effect/bump_teleporter/New()
+	..()
 	BUMP_TELEPORTERS += src
 
 /obj/effect/bump_teleporter/Destroy()

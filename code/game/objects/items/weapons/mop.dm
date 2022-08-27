@@ -18,9 +18,9 @@ GLOBAL_LIST_BOILERPLATE(all_mops, /obj/item/weapon/mop)
 	var/mopping = 0
 	var/mopcount = 0
 
-/obj/item/weapon/mop/Initialize()
+/obj/item/weapon/mop/New()
 	create_reagents(30)
-	. = ..()
+	..()
 
 /obj/item/weapon/mop/afterattack(atom/A, mob/user, proximity)
 	if(!proximity) return

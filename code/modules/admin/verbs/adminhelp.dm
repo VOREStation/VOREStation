@@ -109,9 +109,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ticket_list
 	var/current_state
 
-/obj/effect/statclick/ticket_list/Initialize(ml, text, target)
-	current_state = target
-	. = ..()
+/obj/effect/statclick/ticket_list/New(loc, name, state)
+	current_state = state
+	..()
 
 /obj/effect/statclick/ticket_list/Click()
 	GLOB.ahelp_tickets.BrowseTickets(current_state)
@@ -498,9 +498,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /obj/effect/statclick/ahelp
 	var/datum/admin_help/ahelp_datum
 
-/obj/effect/statclick/ahelp/Initialize(ml, text, target)
-	ahelp_datum = target
-	. = ..()
+/obj/effect/statclick/ahelp/New(loc, datum/admin_help/AH)
+	ahelp_datum = AH
+	..(loc)
 
 /obj/effect/statclick/ahelp/update()
 	return ..(ahelp_datum.name)

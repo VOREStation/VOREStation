@@ -56,8 +56,9 @@
 			M.loc = src
 			M.gib()
 
-/obj/machinery/gibber/Initialize()
-	. = ..()
+
+/obj/machinery/gibber/New()
+	..()
 	add_overlay("grjam")
 
 /obj/machinery/gibber/update_icon()

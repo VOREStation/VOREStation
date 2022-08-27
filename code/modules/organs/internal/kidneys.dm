@@ -44,8 +44,8 @@
 /obj/item/organ/internal/kidneys/grey
 	icon_state = "kidneys_grey"
 
-/obj/item/organ/internal/kidneys/grey/colormatch/Initialize()
-	. = ..()
+/obj/item/organ/internal/kidneys/grey/colormatch/New()
+	..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)
 		if(ishuman(owner))

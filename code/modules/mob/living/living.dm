@@ -1,5 +1,5 @@
-/mob/living/Initialize()
-	. = ..()
+/mob/living/New()
+	..()
 
 	//Prime this list if we need it.
 	if(has_huds)
@@ -765,8 +765,8 @@
 
 	return FALSE
 
-/mob/living/proc/slip(slipped_on, stun_duration = 8, slip_dist = 1)
-	return FALSE
+/mob/living/proc/slip(var/slipped_on,stun_duration=8)
+	return 0
 
 /mob/living/carbon/drop_from_inventory(var/obj/item/W, var/atom/Target = null)
 	if(W in internal_organs)

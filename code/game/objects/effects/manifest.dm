@@ -4,9 +4,10 @@
 	icon_state = "x"
 	unacidable = TRUE//Just to be sure.
 
-/obj/effect/manifest/Initialize()
-	. = ..()
-	invisibility = 101
+/obj/effect/manifest/New()
+
+	src.invisibility = 101
+	return
 
 /obj/effect/manifest/proc/manifest()
 	var/dat = "<B>Crew Manifest</B>:<BR>"
@@ -17,3 +18,4 @@
 	P.name = "paper- 'Crew Manifest'"
 	//SN src = null
 	qdel(src)
+	return

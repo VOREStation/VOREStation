@@ -64,15 +64,11 @@
 	desc = "Dark rock that has been smoothened to be perfectly even. It's coated in a layer of slippey ice"
 
 /turf/simulated/floor/outdoors/ice/Entered(var/mob/living/M)
-	..()
-	if(istype(M))
-		M.SetStunned(1)
-		addtimer(CALLBACK(src, .proc/slip_mob, M), 1 * world.tick_lag)
-
-/turf/simulated/floor/outdoors/ice/proc/slip_mob(var/mob/living/M)
-	if(istype(M, /mob/living) && M.loc == src)
+	sleep(1 * world.tick_lag)
+	if(istype(M, /mob/living))
 		if(M.stunned == 0)
 			to_chat(M, "<span class='warning'>You slide across the ice!</span>")
+		M.SetStunned(1)
 		step(M,M.dir)
 
 // Ice that is used for, say, areas floating on water or similar.

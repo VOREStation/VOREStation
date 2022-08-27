@@ -24,8 +24,8 @@
 	var/datum/effect/effect/system/spark_spread/spark_system = null
 	var/block_percentage = 75
 
-/obj/item/clothing/suit/armor/shield/Initialize()
-	. = ..()
+/obj/item/clothing/suit/armor/shield/New()
+	..()
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)
 

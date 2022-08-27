@@ -10,9 +10,9 @@
 	circuit = /obj/item/weapon/circuitboard/crew
 	var/datum/tgui_module/crew_monitor/crew_monitor
 
-/obj/machinery/computer/crew/Initialize()
+/obj/machinery/computer/crew/New()
 	crew_monitor = new(src)
-	. = ..()
+	..()
 
 /obj/machinery/computer/crew/Destroy()
 	qdel(crew_monitor)

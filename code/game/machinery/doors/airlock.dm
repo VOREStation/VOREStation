@@ -1444,15 +1444,8 @@ About the new airlock wires panel:
 		return 0
 	return ..(M)
 
-/obj/machinery/door/airlock/Initialize(var/ml, var/obj/structure/door_assembly/assembly=null)
-	if(src.closeOtherId != null)
-		for (var/obj/machinery/door/airlock/A in machines)
-			if(A.closeOtherId == src.closeOtherId && A != src)
-				src.closeOther = A
-				break
-	name = "\improper [name]"
-
-	. = ..()
+/obj/machinery/door/airlock/New(var/newloc, var/obj/structure/door_assembly/assembly=null)
+	..()
 
 	//if assembly is given, create the new door from the assembly
 	if (assembly && istype(assembly))
@@ -1480,17 +1473,22 @@ About the new airlock wires panel:
 		set_dir(assembly.dir)
 
 	//wires
-	var/turf/T = get_turf(src)
+	var/turf/T = get_turf(newloc)
 	if(T && (T.z in using_map.admin_levels))
 		secured_wires = 1
 	if (secured_wires)
 		wires = new/datum/wires/airlock/secure(src)
 	else
 		wires = new/datum/wires/airlock(src)
-	
-	if(frequency)
-		set_frequency(frequency)
-	update_icon()
+
+/obj/machinery/door/airlock/Initialize()
+	if(src.closeOtherId != null)
+		for (var/obj/machinery/door/airlock/A in machines)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+	name = "\improper [name]"
+	. = ..()
 
 /obj/machinery/door/airlock/Destroy()
 	qdel(wires)

@@ -20,10 +20,10 @@
 
 	// Then wait awhile.
 	while(!finished)
-		spawn(1 SECOND)
-			wait_time -= 1 SECOND
-			if(wait_time <= 0)
-				finished = TRUE
+		sleep(1 SECOND)
+		wait_time -= 1 SECOND
+		if(wait_time <= 0)
+			finished = TRUE
 
 	// Prune the list after the wait, incase any candidates logged out.
 	for(var/mob/observer/dead/D as anything in candidates)

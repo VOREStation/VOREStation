@@ -37,8 +37,8 @@
 	w_class = ITEMSIZE_NORMAL
 	var/open = FALSE
 
-/obj/item/weapon/melee/umbrella/Initialize()
-	. = ..()
+/obj/item/weapon/melee/umbrella/New()
+	..()
 	update_icon()
 
 /obj/item/weapon/melee/umbrella/attack_self()
@@ -56,9 +56,9 @@
 		H.update_inv_r_hand()
 
 // Randomizes color
-/obj/item/weapon/melee/umbrella/random/Initialize()
+/obj/item/weapon/melee/umbrella/random/New()
 	color = get_random_colour()
-	. = ..()
+	..()
 
 /obj/item/weapon/melee/cursedblade
 	name = "crystal blade"

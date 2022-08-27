@@ -1337,7 +1337,7 @@
 			return 1
 	return 0
 
-/mob/living/carbon/human/slip(slipped_on, stun_duration = 8, slip_dist = 1)
+/mob/living/carbon/human/slip(var/slipped_on, stun_duration=8)
 	var/list/equipment = list(src.w_uniform,src.wear_suit,src.shoes)
 	var/footcoverage_check = FALSE
 	for(var/obj/item/clothing/C in equipment)
@@ -1345,8 +1345,9 @@
 			footcoverage_check = TRUE
 			break
 	if((species.flags & NO_SLIP && !footcoverage_check) || (shoes && (shoes.item_flags & NOSLIP))) //Footwear negates a species' natural traction.
-		return FALSE
-	return ..()
+		return 0
+	if(..(slipped_on,stun_duration))
+		return 1
 
 /mob/living/carbon/human/proc/relocate()
 	set category = "Object"

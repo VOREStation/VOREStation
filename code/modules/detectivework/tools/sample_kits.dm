@@ -4,14 +4,14 @@
 	w_class = ITEMSIZE_TINY
 	var/list/evidence = list()
 
-/obj/item/weapon/sample/Initialize(var/ml, var/atom/supplied)
-	. = ..(ml)
+/obj/item/weapon/sample/New(var/newloc, var/atom/supplied)
+	..(newloc)
 	if(supplied)
 		copy_evidence(supplied)
 		name = "[initial(name)] (\the [supplied])"
 
-/obj/item/weapon/sample/print/Initialize()
-	. = ..()
+/obj/item/weapon/sample/print/New(var/newloc, var/atom/supplied)
+	..(newloc, supplied)
 	if(evidence && evidence.len)
 		icon_state = "fingerprint1"
 

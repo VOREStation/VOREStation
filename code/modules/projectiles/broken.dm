@@ -9,18 +9,19 @@
 
 	var/do_rotation = TRUE
 
-/obj/item/weapon/broken_gun/Initialize(var/ml, var/path)
-	. = ..(ml)
+/obj/item/weapon/broken_gun/New(var/newloc, var/path)
+	..()
 	if(path)
 		if(!setup_gun(path))
 			qdel(src)
 			return
 		setup_repair_needs()
-	addtimer(CALLBACK(src, .proc/validate_gun_type), 30 SECONDS)
 
-/obj/item/weapon/broken_gun/proc/validate_gun_type()
-	if(!my_guntype && !QDELETED(src))
-		qdel(src)
+/obj/item/weapon/broken_gun/Initialize()
+	. = ..()
+	spawn(30 SECONDS)
+		if(!my_guntype && !QDELETED(src))
+			qdel(src)
 
 /obj/item/weapon/broken_gun/examine(mob/user)
 	. = ..()

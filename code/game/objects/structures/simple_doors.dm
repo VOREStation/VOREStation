@@ -22,26 +22,11 @@
 	hardness -= material.combustion_effect(get_turf(src),temperature, 0.3)
 	CheckHardness()
 
-/obj/structure/simple_door/Initialize(var/material_name)
+/obj/structure/simple_door/Initialize(mapload, var/material_name)
 	. = ..()
-	if(material_name && !material)
-		material = material_name
-	else if(!material)
-		material = DEFAULT_WALL_MATERIAL
+	set_material(material_name)
 	if(!material)
 		return INITIALIZE_HINT_QDEL
-	material = get_material_by_name(material)
-	hardness = max(1,round(material.integrity/10))
-	icon_state = material.door_icon_base
-	name = "[material.display_name] door"
-	color = material.icon_colour
-	if(material.opacity < 0.5)
-		set_opacity(0)
-	else
-		set_opacity(1)
-	if(material.products_need_process())
-		START_PROCESSING(SSobj, src)
-	update_nearby_tiles(need_rebuild=1)
 
 /obj/structure/simple_door/Destroy()
 	STOP_PROCESSING(SSobj, src)
@@ -227,59 +212,49 @@
 		if(3)
 			hardness -= 0.1
 			CheckHardness()
+	return
 
 /obj/structure/simple_door/process()
 	if(!material.radioactivity)
 		return
 	SSradiation.radiate(src, round(material.radioactivity/3))
 
-/obj/structure/simple_door/wood/Initialize()
-	. = ..()
+/obj/structure/simple_door/iron/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "iron")
+
+/obj/structure/simple_door/silver/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "silver")
+
+/obj/structure/simple_door/gold/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "gold")
+
+/obj/structure/simple_door/uranium/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "uranium")
+
+/obj/structure/simple_door/sandstone/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "sandstone")
+
+/obj/structure/simple_door/phoron/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "phoron")
+
+/obj/structure/simple_door/diamond/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "diamond")
+
+/obj/structure/simple_door/wood/Initialize(mapload,var/material_name)
+	..(mapload, material_name || MAT_WOOD)
 	knock_sound = 'sound/machines/door/knock_wood.wav'
 
-/obj/structure/simple_door/hardwood/Initialize()
-	. = ..()
-	knock_sound = 'sound/machines/door/knock_wood.wav'
+/obj/structure/simple_door/hardwood/Initialize(mapload,var/material_name)
+	..(mapload, material_name || MAT_HARDWOOD)
 
-/obj/structure/simple_door/sifwood/Initialize()
-	. = ..()
-	knock_sound = 'sound/machines/door/knock_wood.wav'
+/obj/structure/simple_door/sifwood/Initialize(mapload,var/material_name)
+	..(mapload, material_name || MAT_SIFWOOD)
 
-/obj/structure/simple_door/iron
-	material = MAT_IRON
+/obj/structure/simple_door/resin/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "resin")
 
-/obj/structure/simple_door/silver
-	material = MAT_SILVER
-
-/obj/structure/simple_door/gold
-	material = MAT_GOLD
-
-/obj/structure/simple_door/uranium
-	material = MAT_URANIUM
-
-/obj/structure/simple_door/sandstone
-	material = MAT_SANDSTONE
-
-/obj/structure/simple_door/phoron
-	material = MAT_PHORON
-
-/obj/structure/simple_door/diamond
-	material = MAT_DIAMOND
-
-/obj/structure/simple_door/wood
-	material = MAT_WOOD
-
-/obj/structure/simple_door/hardwood
-	material = MAT_HARDWOOD
-
-/obj/structure/simple_door/sifwood
-	material = MAT_SIFWOOD
-
-/obj/structure/simple_door/resin
-	material = "resin"
-
-/obj/structure/simple_door/cult
-	material = "cult"
+/obj/structure/simple_door/cult/Initialize(mapload,var/material_name)
+	..(mapload, material_name || "cult")
 
 /obj/structure/simple_door/cult/TryToSwitchState(atom/user)
 	if(isliving(user))

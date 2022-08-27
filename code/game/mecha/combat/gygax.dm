@@ -115,8 +115,8 @@
 
 	var/obj/item/clothing/glasses/hud/health/mech/hud
 
-/obj/mecha/combat/gygax/serenity/Initialize()
-	. = ..()
+/obj/mecha/combat/gygax/serenity/New()
+	..()
 	hud = new /obj/item/clothing/glasses/hud/health/mech(src)
 	return
 
@@ -144,8 +144,8 @@
 /obj/mecha/combat/gygax/old
 	desc = "A lightweight, security exosuit. Popular among private and corporate security. This one is particularly worn looking and likely isn't as sturdy."
 
-/obj/mecha/combat/gygax/old/Initialize()
-	. = ..()
+/obj/mecha/combat/gygax/old/New()
+	..()
 	health = 25
 	maxhealth = 250	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

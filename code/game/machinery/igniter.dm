@@ -30,8 +30,8 @@
 			location.hotspot_expose(1000,500,1)
 	return 1
 
-/obj/machinery/igniter/Initialize()
-	. = ..()
+/obj/machinery/igniter/New()
+	..()
 	icon_state = "igniter[on]"
 
 /obj/machinery/igniter/power_change()
@@ -57,6 +57,9 @@
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 2
 	active_power_usage = 4
+
+/obj/machinery/sparker/New()
+	..()
 
 /obj/machinery/sparker/power_change()
 	..()

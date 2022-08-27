@@ -43,7 +43,7 @@
 	default_cartridge = /obj/item/weapon/cartridge/mime
 	icon_state = "pda-mime"
 
-/obj/item/device/pda/mime/Initialize()
+/obj/item/device/pda/mime/New()
 	. = ..()
 	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
 	if(M)
@@ -128,7 +128,7 @@
 	desc = "A portable microcomputer by Thinktronic Systems, LTD. This is model is a WGW-11 series e-reader."
 	model_name = "Thinktronic 5290 WGW-11 Series E-reader and Personal Data Assistant"
 
-/obj/item/device/pda/librarian/Initialize()
+/obj/item/device/pda/librarian/New()
 	. = ..()
 	var/datum/data/pda/app/M = find_program(/datum/data/pda/app/messenger)
 	if(M)
@@ -171,44 +171,44 @@
 	)
 	var/list/cartridges_to_send_to = list()
 
-/obj/item/device/pda/multicaster/command/Initialize()
-	. = ..()
+/obj/item/device/pda/multicaster/command/New()
+	..()
 	owner = "Command Department"
 	name = "Command Department (Relay)"
 	cartridges_to_send_to = command_cartridges
 
-/obj/item/device/pda/multicaster/security/Initialize()
-	. = ..()
+/obj/item/device/pda/multicaster/security/New()
+	..()
 	owner = "Security Department"
 	name = "Security Department (Relay)"
 	cartridges_to_send_to = security_cartridges
 
-/obj/item/device/pda/multicaster/engineering/Initialize()
-	. = ..()
+/obj/item/device/pda/multicaster/engineering/New()
+	..()
 	owner = "Engineering Department"
 	name = "Engineering Department (Relay)"
 	cartridges_to_send_to = engineering_cartridges
 
-/obj/item/device/pda/multicaster/medical/Initialize()
-	. = ..()
+/obj/item/device/pda/multicaster/medical/New()
+	..()
 	owner = "Medical Department"
 	name = "Medical Department (Relay)"
 	cartridges_to_send_to = medical_cartridges
 
-/obj/item/device/pda/multicaster/research/Initialize()
-	. = ..()
+/obj/item/device/pda/multicaster/research/New()
+	..()
 	owner = "Research Department"
 	name = "Research Department (Relay)"
 	cartridges_to_send_to = research_cartridges
 
-/obj/item/device/pda/multicaster/cargo/Initialize()
-	. = ..()
+/obj/item/device/pda/multicaster/cargo/New()
+	..()
 	owner = "Cargo Department"
 	name = "Cargo Department (Relay)"
 	cartridges_to_send_to = cargo_cartridges
 
-/obj/item/device/pda/multicaster/civilian/Initialize()
-	. = ..()
+/obj/item/device/pda/multicaster/civilian/New()
+	..()
 	owner = "Civilian Services Department"
 	name = "Civilian Services Department (Relay)"
 	cartridges_to_send_to = civilian_cartridges
@@ -230,8 +230,8 @@
 	icon = 'icons/obj/pda.dmi'
 	icon_state = "pdabox"
 
-/obj/item/weapon/storage/box/PDAs/Initialize()
-	. = ..()
+/obj/item/weapon/storage/box/PDAs/New()
+	..()
 	new /obj/item/device/pda(src)
 	new /obj/item/device/pda(src)
 	new /obj/item/device/pda(src)

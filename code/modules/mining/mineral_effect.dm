@@ -9,8 +9,8 @@
 	var/image/scanner_image
 	var/ore_reagent	// Reagent from pumping water near this ore.
 
-/obj/effect/mineral/Initialize(var/ml, var/ore/M)
-	. = ..(ml)
+/obj/effect/mineral/New(var/newloc, var/ore/M)
+	..(newloc)
 	name = "[M.display_name] deposit"
 	ore_key = M.name
 	if(M.reagent)

@@ -20,8 +20,8 @@
 	var/healthAlarm = 50
 	var/oxy = 1 //oxygen beeping toggle
 
-/obj/machinery/computer/operating/Initialize()
-	. = ..()
+/obj/machinery/computer/operating/New()
+	..()
 	for(var/direction in list(NORTH,EAST,SOUTH,WEST))
 		table = locate(/obj/machinery/optable, get_step(src, direction))
 		if(table)

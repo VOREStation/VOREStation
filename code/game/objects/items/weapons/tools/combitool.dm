@@ -31,8 +31,8 @@
 		for(var/obj/item/tool in tools)
 			. += "\icon[tool][bicon(tool)] - [tool.name][tools[current_tool]==tool?" (selected)":""]")
 
-/obj/item/weapon/combitool/Initialize()
-	. = ..()
+/obj/item/weapon/combitool/New()
+	..()
 	for(var/type in spawn_tools)
 		tools |= new type(src)
 

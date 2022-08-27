@@ -4,13 +4,19 @@
 	desc = "Oh shit!"
 	icon_state = "pool"
 	icon = 'icons/effects/64x64.dmi'
+
 	pixel_x = -16
 
-/obj/effect/temporary_effect/eruption/Initialize(var/ml, var/ttd = 10 SECONDS, var/newcolor)
+/obj/effect/temporary_effect/eruption/New(var/turf/T, var/ttd = 10 SECONDS, var/newcolor)
 	if(ttd)
 		time_to_die = ttd
+
 	if(newcolor)
 		color = newcolor
+
+	..()
+
+/obj/effect/temporary_effect/eruption/Initialize()
 	. = ..()
 	flick("[icon_state]_create",src)
 

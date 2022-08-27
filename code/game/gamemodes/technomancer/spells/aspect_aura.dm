@@ -41,8 +41,8 @@
 	aspect = ASPECT_CHROMATIC
 	var/glow_color = "#FFFFFF"
 
-/obj/item/weapon/spell/aura/Initialize()
-	. = ..()
+/obj/item/weapon/spell/aura/New()
+	..()
 	set_light(7, 4, l_color = glow_color)
 	START_PROCESSING(SSobj, src)
 

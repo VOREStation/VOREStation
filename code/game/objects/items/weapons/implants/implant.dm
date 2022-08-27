@@ -110,9 +110,9 @@ GLOBAL_LIST_BOILERPLATE(all_tracking_implants, /obj/item/weapon/implant/tracking
 /obj/item/weapon/implant/tracking/weak	//This is for the loadout
 	degrade_time = 2.5 MINUTES
 
-/obj/item/weapon/implant/tracking/Initialize()
+/obj/item/weapon/implant/tracking/New()
 	id = rand(1, 1000)
-	. = ..()
+	..()
 
 /obj/item/weapon/implant/tracking/post_implant(var/mob/source)
 	START_PROCESSING(SSobj, src)
@@ -375,8 +375,8 @@ Can only be loaded while still in its original case.<BR>
 the implant may become unstable and either pre-maturely inject the subject or simply break."}
 	return dat
 
-/obj/item/weapon/implant/chem/Initialize()
-	. = ..()
+/obj/item/weapon/implant/chem/New()
+	..()
 	var/datum/reagents/R = new/datum/reagents(50)
 	reagents = R
 	R.my_atom = src

@@ -104,16 +104,12 @@
 	var/translator_on = 0 // keeps track of the translator module
 
 	var/current_pda_messaging = null
+
 	var/our_icon_rotation = 0
 
-/mob/living/silicon/pai/Initialize()
-
-	. = ..()
-
-	card = loc
-	if(!istype(card))
-		return INITIALIZE_HINT_QDEL
-
+/mob/living/silicon/pai/New(var/obj/item/device/paicard)
+	src.loc = paicard
+	card = paicard
 	sradio = new(src)
 	communicator = new(src)
 	if(card)
@@ -132,12 +128,9 @@
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
 
+	//PDA
 	pda = new(src)
-	addtimer(CALLBACK(src, .proc/init_pda), 5)
-
-/mob/living/silicon/pai/proc/init_pda()
-	set waitfor = FALSE
-	if(pda)
+	spawn(5)
 		pda.ownjob = "Personal Assistant"
 		pda.owner = text("[]", src)
 		pda.name = pda.owner + " (" + pda.ownjob + ")"
@@ -145,6 +138,7 @@
 		var/datum/data/pda/app/messenger/M = pda.find_program(/datum/data/pda/app/messenger)
 		if(M)
 			M.toff = FALSE
+	..()
 
 /mob/living/silicon/pai/Login()
 	..()

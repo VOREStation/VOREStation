@@ -50,5 +50,4 @@
 
 /obj/structure/ghost_pod/ghost_activated/Initialize()
 	. = ..()
-	// LINTER FIX NOTE: as with poi_loader, would suggest queing this, or possibly having it occur on LateInitialize or something with a set waitfor = FALSE
-	addtimer(CALLBACK(src, .proc/ghostpod_startup, spawn_active), 0)
+	ghostpod_startup(spawn_active)

@@ -45,8 +45,8 @@
 //-------------------------------------------
 // Standard procs
 //-------------------------------------------
-/obj/vehicle/Initialize()
-	. = ..()
+/obj/vehicle/New()
+	..()
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/Destroy()

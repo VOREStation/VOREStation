@@ -18,9 +18,9 @@
 	pipe_flags = PIPING_DEFAULT_LAYER_ONLY
 	density = TRUE
 
-/obj/machinery/atmospherics/pipe/tank/Initialize()
+/obj/machinery/atmospherics/pipe/tank/New()
 	icon_state = "air"
-	. = ..()
+	..()
 
 /obj/machinery/atmospherics/pipe/tank/init_dir()
 	initialize_directions = dir
@@ -74,25 +74,30 @@
 	name = "Pressure Tank (Air)"
 	icon_state = "air_map"
 
-/obj/machinery/atmospherics/pipe/tank/air/Initialize()
+/obj/machinery/atmospherics/pipe/tank/air/New()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
+
 	air_temporary.adjust_multi("oxygen",  (start_pressure*O2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature), \
 	                           "nitrogen",(start_pressure*N2STANDARD)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-	. = ..()
+
+
+	..()
 	icon_state = "air"
 
 /obj/machinery/atmospherics/pipe/tank/oxygen
 	name = "Pressure Tank (Oxygen)"
 	icon_state = "o2_map"
 
-/obj/machinery/atmospherics/pipe/tank/oxygen/Initialize()
+/obj/machinery/atmospherics/pipe/tank/oxygen/New()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
+
 	air_temporary.adjust_gas("oxygen", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-	. = ..()
+
+	..()
 	icon_state = "o2"
 
 /obj/machinery/atmospherics/pipe/tank/nitrogen
@@ -100,24 +105,28 @@
 	icon_state = "n2_map"
 	volume = 40000 //Vorestation edit
 
-/obj/machinery/atmospherics/pipe/tank/nitrogen/Initialize()
+/obj/machinery/atmospherics/pipe/tank/nitrogen/New()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
+
 	air_temporary.adjust_gas("nitrogen", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-	. = ..()
+
+	..()
 	icon_state = "n2"
 
 /obj/machinery/atmospherics/pipe/tank/carbon_dioxide
 	name = "Pressure Tank (Carbon Dioxide)"
 	icon_state = "co2_map"
 
-/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/Initialize()
+/obj/machinery/atmospherics/pipe/tank/carbon_dioxide/New()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
+
 	air_temporary.adjust_gas("carbon_dioxide", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-	. = ..()
+
+	..()
 	icon_state = "co2"
 
 /obj/machinery/atmospherics/pipe/tank/phoron
@@ -125,22 +134,26 @@
 	icon_state = "phoron_map"
 	connect_types = CONNECT_TYPE_REGULAR|CONNECT_TYPE_FUEL
 
-/obj/machinery/atmospherics/pipe/tank/phoron/Initialize()
+/obj/machinery/atmospherics/pipe/tank/phoron/New()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T20C
+
 	air_temporary.adjust_gas("phoron", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-	. = ..()
+
+	..()
 	icon_state = "phoron"
 
 /obj/machinery/atmospherics/pipe/tank/nitrous_oxide
 	name = "Pressure Tank (Nitrous Oxide)"
 	icon_state = "n2o_map"
 
-/obj/machinery/atmospherics/pipe/tank/nitrous_oxide/Initialize()
+/obj/machinery/atmospherics/pipe/tank/nitrous_oxide/New()
 	air_temporary = new
 	air_temporary.volume = volume
 	air_temporary.temperature = T0C
+
 	air_temporary.adjust_gas("nitrous_oxide", (start_pressure)*(air_temporary.volume)/(R_IDEAL_GAS_EQUATION*air_temporary.temperature))
-	. = ..()
+
+	..()
 	icon_state = "n2o"

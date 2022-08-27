@@ -17,8 +17,8 @@
 	can_atmos_pass = ATMOS_PASS_PROC
 	air_properties_vary_with_direction = 1
 
-/obj/machinery/door/window/Initialize()
-	. = ..()
+/obj/machinery/door/window/New()
+	..()
 	update_nearby_tiles()
 	if(LAZYLEN(req_access))
 		src.icon_state = "[src.icon_state]"

@@ -123,7 +123,10 @@
 	if(!frequency)
 		return
 	if(!radio_controller)
+		sleep(20)
+	if(!radio_controller)
 		return
+
 	radio_controller.remove_object(src, frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)

@@ -109,8 +109,8 @@
 		return
 	..()
 
-/obj/item/rig_module/Initialize()
-	. = ..()
+/obj/item/rig_module/New()
+	..()
 	if(suit_overlay_inactive)
 		suit_overlay = suit_overlay_inactive
 

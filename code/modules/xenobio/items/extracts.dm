@@ -17,8 +17,8 @@
 	flags = OPENCONTAINER
 
 
-/obj/item/slime_extract/Initialize()
-	. = ..()
+/obj/item/slime_extract/New()
+	..()
 	create_reagents(60)
 
 /obj/item/slime_extract/attackby(obj/item/O, mob/user)

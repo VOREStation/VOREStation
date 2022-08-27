@@ -36,8 +36,8 @@
 
 	var/global/amount = 0
 
-/mob/living/bot/mulebot/Initialize()
-	. = ..()
+/mob/living/bot/mulebot/New()
+	..()
 
 	var/turf/T = get_turf(loc)
 	var/obj/machinery/navbeacon/N = locate() in T

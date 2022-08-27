@@ -35,8 +35,8 @@ Protectiveness | Armor %
 	var/material_slowdown_modifier = 0
 	var/material_slowdown_multiplier = 0.5
 
-/obj/item/clothing/Initialize(var/ml, var/material_key)
-	. = ..(ml)
+/obj/item/clothing/New(var/newloc, var/material_key)
+	..(newloc)
 	if(!material_key)
 		material_key = default_material
 	if(material_key) // May still be null if a material was not specified as a default.

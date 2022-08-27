@@ -487,12 +487,13 @@
 	always_process = TRUE
 	var/obj/item/weapon/weldpack/mounted_pack = null
 
-/obj/item/weapon/weldingtool/tubefed/Initialize(var/ml)
-	. = ..()
-	if(istype(loc, /obj/item/weapon/weldpack))
-		mounted_pack = loc
+/obj/item/weapon/weldingtool/tubefed/New(location)
+	..()
+	if(istype(location, /obj/item/weapon/weldpack))
+		var/obj/item/weapon/weldpack/holder = location
+		mounted_pack = holder
 	else
-		return INITIALIZE_HINT_QDEL
+		qdel(src)
 
 /obj/item/weapon/weldingtool/tubefed/Destroy()
 	mounted_pack.nozzle = null
@@ -549,11 +550,11 @@
 	acti_sound = 'sound/effects/sparks4.ogg'
 	deac_sound = 'sound/effects/sparks4.ogg'
 
-/obj/item/weapon/weldingtool/electric/unloaded
+/obj/item/weapon/weldingtool/electric/unloaded/New()
 	cell_type = null
 
-/obj/item/weapon/weldingtool/electric/Initialize()
-	. = ..()
+/obj/item/weapon/weldingtool/electric/New()
+	..()
 	if(cell_type == null)
 		update_icon()
 	else if(cell_type)

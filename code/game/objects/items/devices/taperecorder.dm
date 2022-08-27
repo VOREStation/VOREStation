@@ -18,8 +18,8 @@
 	throw_speed = 4
 	throw_range = 20
 
-/obj/item/device/taperecorder/Initialize()
-	. = ..()
+/obj/item/device/taperecorder/New()
+	..()
 	if(ispath(mytape))
 		mytape = new mytape(src)
 		update_icon()
@@ -431,6 +431,5 @@
 
 
 //Random colour tapes
-/obj/item/device/tape/random/Initialize()
-	. = ..()
+/obj/item/device/tape/random/New()
 	icon_state = "tape_[pick("white", "blue", "red", "yellow", "purple")]"

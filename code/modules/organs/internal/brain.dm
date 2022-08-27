@@ -78,8 +78,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 		tmp_owner.internal_organs_by_name[organ_tag] = new replace_path(tmp_owner, 1)
 		tmp_owner = null
 
-/obj/item/organ/internal/brain/Initialize()
-	. = ..()
+/obj/item/organ/internal/brain/New()
+	..()
 	health = config.default_brain_health
 	defib_timer = (config.defib_timer MINUTES) / 20				// Time vars measure things in ticks. Life tick happens every ~2 seconds, therefore dividing by 20
 	spawn(5)
@@ -190,8 +190,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 /obj/item/organ/internal/brain/slime/is_open_container()
 	return 1
 
-/obj/item/organ/internal/brain/slime/Initialize()
-	. = ..()
+/obj/item/organ/internal/brain/slime/New()
+	..()
 	create_reagents(50)
 	var/mob/living/carbon/human/H = null
 	spawn(15) //Match the core to the Promethean's starting color.
@@ -306,8 +306,8 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 	desc = "A piece of juicy meat found in a person's head. This one is strange."
 	icon_state = "brain_grey"
 
-/obj/item/organ/internal/brain/grey/colormatch/Initialize()
-	. = ..()
+/obj/item/organ/internal/brain/grey/colormatch/New()
+	..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)
 		if(ishuman(owner))

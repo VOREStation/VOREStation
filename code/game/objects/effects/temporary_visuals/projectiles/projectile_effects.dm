@@ -54,7 +54,7 @@
 /obj/effect/projectile_lighting
 	var/owner
 
-/obj/effect/projectile_lighting/Initialize(var/ml, color, range, intensity, owner_key)
-	. = ..(ml)
+/obj/effect/projectile_lighting/New(loc, color, range, intensity, owner_key)
+	. = ..()
 	set_light(range, intensity, color)
 	owner = owner_key

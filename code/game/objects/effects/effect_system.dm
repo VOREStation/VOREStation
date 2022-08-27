@@ -178,8 +178,8 @@ steam.start() -- spawns the effect
 	pixel_x = -32
 	pixel_y = -32
 
-/obj/effect/effect/smoke/Initialize()
-	. = ..()
+/obj/effect/effect/smoke/New()
+	..()
 	if(time_to_live)
 		spawn (time_to_live)
 			if(!QDELETED(src))
@@ -213,9 +213,9 @@ steam.start() -- spawns the effect
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "sparks"
 
-/obj/effect/effect/smoke/illumination/Initialize(var/ml, var/lifetime=10, var/range=null, var/power=null, var/color=null)
+/obj/effect/effect/smoke/illumination/New(var/newloc, var/lifetime=10, var/range=null, var/power=null, var/color=null)
 	time_to_live=lifetime
-	. = ..()
+	..()
 	set_light(range, power, color)
 
 /////////////////////////////////////////////

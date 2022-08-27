@@ -8,10 +8,9 @@
 	sharp = TRUE
 	var/datum/geosample/geological_data
 
-/obj/item/weapon/rocksliver/Initialize()
+/obj/item/weapon/rocksliver/New()
 	icon_state = "sliver[rand(1, 3)]"
 	randpixel_xy()
-	. = ..()
 
 /datum/geosample
 	var/age = 0
