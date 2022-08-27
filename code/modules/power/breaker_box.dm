@@ -39,7 +39,8 @@
 // Enabled on server startup. Used in substations to keep them in bypass mode.
 /obj/machinery/power/breakerbox/activated/Initialize()
 	. = ..()
-	set_state(1)
+	spawn(0)
+		set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
 	. = ..()
