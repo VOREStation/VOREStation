@@ -252,7 +252,6 @@
 	icon_state = "stamper_on"
 
 /obj/structure/prop/machine/stamper/starts_on/Initialize()
-	. = ..()
 	add_overlay("stamper_proc")
 	add_overlay("stamper_but")
 
@@ -581,7 +580,6 @@
 	var/contents_original_pixel_y = 0
 
 /obj/structure/prop/machine/nt_pod/Initialize(mapload)
-	. = ..()
 	// Our non-map-preview state
 	icon_state = "nt_pod"
 	

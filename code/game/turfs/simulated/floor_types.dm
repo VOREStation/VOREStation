@@ -14,11 +14,9 @@
 	var/image/turf_image
 	var/list/decals
 
-/obj/landed_holder/Initialize(var/ml)
-	. = ..()
-	if(loc)
-		my_turf = get_turf(src)
-		moveToNullspace()
+/obj/landed_holder/New(var/location = null, var/turf/simulated/shuttle/turf)
+	..(null)
+	my_turf = turf
 
 /obj/landed_holder/proc/land_on(var/turf/T)
 	//Gather destination information

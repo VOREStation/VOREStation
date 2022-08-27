@@ -23,8 +23,8 @@
 /obj/item/device/defib_kit/get_cell()
 	return bcell
 
-/obj/item/device/defib_kit/Initialize() //starts without a cell for rnd
-	. = ..()
+/obj/item/device/defib_kit/New() //starts without a cell for rnd
+	..()
 	if(ispath(paddles))
 		paddles = new paddles(src, src)
 	else
@@ -590,9 +590,9 @@
 /obj/item/weapon/shockpaddles/linked
 	var/obj/item/device/defib_kit/base_unit
 
-/obj/item/weapon/shockpaddles/linked/Initialize(var/ml, obj/item/device/defib_kit/defib)
+/obj/item/weapon/shockpaddles/linked/New(newloc, obj/item/device/defib_kit/defib)
 	base_unit = defib
-	. = ..()
+	..(newloc)
 
 /obj/item/weapon/shockpaddles/linked/Destroy()
 	if(base_unit)

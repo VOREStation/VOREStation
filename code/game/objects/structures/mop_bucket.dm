@@ -12,9 +12,9 @@
 
 GLOBAL_LIST_BOILERPLATE(all_mopbuckets, /obj/structure/mopbucket)
 
-/obj/structure/mopbucket/Initialize()
+/obj/structure/mopbucket/New()
 	create_reagents(300)
-	. = ..()
+	..()
 
 /obj/structure/mopbucket/examine(mob/user)
 	. = ..()

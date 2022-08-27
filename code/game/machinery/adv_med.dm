@@ -552,8 +552,8 @@
 	circuit = /obj/item/weapon/circuitboard/scanner_console
 	var/printing = null
 
-/obj/machinery/body_scanconsole/Initialize()
-	. = ..()
+/obj/machinery/body_scanconsole/New()
+	..()
 	findscanner()
 
 /obj/machinery/body_scanconsole/Destroy()

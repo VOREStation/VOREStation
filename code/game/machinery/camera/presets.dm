@@ -112,8 +112,8 @@ var/global/list/engineering_networks = list(
 
 // EMP
 
-/obj/machinery/camera/emp_proof/Initialize()
-	. = ..()
+/obj/machinery/camera/emp_proof/New()
+	..()
 	upgradeEmpProof()
 
 // X-RAY
@@ -133,14 +133,14 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/xray/research
 	network = list(NETWORK_RESEARCH)
 
-/obj/machinery/camera/xray/Initialize()
-	. = ..()
+/obj/machinery/camera/xray/New()
+	..()
 	upgradeXRay()
 
 // MOTION
 
-/obj/machinery/camera/motion/Initialize()
-	. = ..()
+/obj/machinery/camera/motion/New()
+	..()
 	upgradeMotion()
 
 /obj/machinery/camera/motion/engineering_outpost
@@ -155,8 +155,8 @@ var/global/list/engineering_networks = list(
 /obj/machinery/camera/all/command
 	network = list(NETWORK_COMMAND)
 
-/obj/machinery/camera/all/Initialize()
-	. = ..()
+/obj/machinery/camera/all/New()
+	..()
 	upgradeEmpProof()
 	upgradeXRay()
 	upgradeMotion()

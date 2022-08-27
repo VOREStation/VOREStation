@@ -131,8 +131,8 @@
 	flags = OPENCONTAINER
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/weapon/pen/reagent/Initialize()
-	. = ..()
+/obj/item/weapon/pen/reagent/New()
+	..()
 	create_reagents(30)
 
 /obj/item/weapon/pen/reagent/attack(mob/living/M as mob, mob/user as mob)
@@ -247,8 +247,8 @@
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/weapon/pen/reagent/sleepy/Initialize()
-	. = ..()
+/obj/item/weapon/pen/reagent/sleepy/New()
+	..()
 	reagents.add_reagent("chloralhydrate", 1)	//VOREStation Edit
 	reagents.add_reagent("stoxin", 14)	//VOREStation Add
 
@@ -259,8 +259,8 @@
 /obj/item/weapon/pen/reagent/paralysis
 	origin_tech = list(TECH_MATERIAL = 2, TECH_ILLEGAL = 5)
 
-/obj/item/weapon/pen/reagent/paralysis/Initialize()
-	. = ..()
+/obj/item/weapon/pen/reagent/paralysis/New()
+	..()
 	reagents.add_reagent("zombiepowder", 5)
 	reagents.add_reagent("cryptobiolin", 10)
 
@@ -338,8 +338,7 @@
 	drop_sound = 'sound/items/drop/gloves.ogg'
 	pickup_sound = 'sound/items/pickup/gloves.ogg'
 
-/obj/item/weapon/pen/crayon/Initialize()
-	. = ..()
+/obj/item/weapon/pen/crayon/New()
 	name = "[colourName] crayon"
 
 /obj/item/weapon/pen/crayon/marker
@@ -347,6 +346,5 @@
 	desc = "A chisel-tip permanent marker. Hopefully non-toxic."
 	icon_state = "markerred"
 
-/obj/item/weapon/pen/crayon/marker/Initialize()
-	. = ..()
+/obj/item/weapon/pen/crayon/marker/New()
 	name = "[colourName] marker"

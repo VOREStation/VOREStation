@@ -29,9 +29,9 @@
 
 	var/hudmode = null
 
-/mob/living/silicon/Initialize()
+/mob/living/silicon/New()
 	silicon_mob_list |= src
-	. = ..()
+	..()
 	add_language(LANGUAGE_GALCOM)
 	set_default_language(GLOB.all_languages[LANGUAGE_GALCOM])
 	init_id()

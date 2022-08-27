@@ -10,8 +10,8 @@
 	var/maxhealth = 100
 	var/datum/material/material
 
-/obj/structure/barricade/Initialize(var/ml, var/material_name)
-	. = ..()
+/obj/structure/barricade/New(var/newloc, var/material_name)
+	..(newloc)
 	if(!material_name)
 		material_name = "wood"
 	material = get_material_by_name("[material_name]")
@@ -116,10 +116,10 @@
 	icon = 'icons/obj/sandbags.dmi'
 	icon_state = "blank"
 
-/obj/structure/barricade/sandbag/Initialize(var/ml, var/material_name)
+/obj/structure/barricade/sandbag/New(var/newloc, var/material_name)
 	if(!material_name)
 		material_name = "cloth"
-	. = ..()
+	..(newloc, material_name)
 	material = get_material_by_name("[material_name]")
 	if(!material)
 		qdel(src)

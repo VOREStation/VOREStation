@@ -42,10 +42,8 @@
 	//2: Do not pass input_pressure_min
 	//4: Do not pass output_pressure_max
 
-/obj/machinery/atmospherics/binary/dp_vent_pump/Initialize()
-	. = ..()
-	if(frequency)
-		set_frequency(frequency)
+/obj/machinery/atmospherics/binary/dp_vent_pump/New()
+	..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP
 	icon = null
@@ -57,8 +55,8 @@
 /obj/machinery/atmospherics/binary/dp_vent_pump/high_volume
 	name = "Large Dual Port Air Vent"
 
-/obj/machinery/atmospherics/binary/dp_vent_pump/high_volume/Initialize()
-	. = ..()
+/obj/machinery/atmospherics/binary/dp_vent_pump/high_volume/New()
+	..()
 	air1.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 	air2.volume = ATMOS_DEFAULT_VOLUME_PUMP + 800
 
@@ -195,6 +193,11 @@
 	radio_connection.post_signal(src, signal, radio_filter = RADIO_ATMOSIA)
 
 	return 1
+
+/obj/machinery/atmospherics/binary/dp_vent_pump/Initialize()
+	. = ..()
+	if(frequency)
+		set_frequency(frequency)
 
 /obj/machinery/atmospherics/binary/dp_vent_pump/examine(mob/user)
 	. = ..()

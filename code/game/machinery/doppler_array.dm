@@ -9,8 +9,8 @@ var/list/doppler_arrays = list()
 
 	icon_state = "doppler"
 
-/obj/machinery/doppler_array/Initialize()
-	. = ..()
+/obj/machinery/doppler_array/New()
+	..()
 	doppler_arrays += src
 
 /obj/machinery/doppler_array/Destroy()

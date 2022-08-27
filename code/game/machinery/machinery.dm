@@ -121,12 +121,15 @@ Class Procs:
 
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
-/obj/machinery/Initialize(var/ml, d=0)
-	. = ..()
-	if(isnum(d))	//VOREStation Edit - bugfix
+/obj/machinery/New(l, d=0)
+	..()
+	if(isnum(d))
 		set_dir(d)
 	if(ispath(circuit))
 		circuit = new circuit(src)
+
+/obj/machinery/Initialize(var/mapload)
+	. = ..()
 	global.machines += src
 	if(ispath(circuit))
 		circuit = new circuit(src)
@@ -134,7 +137,7 @@ Class Procs:
 		START_MACHINE_PROCESSING(src)
 	else
 		START_PROCESSING(SSfastprocess, src)
-	if(!ml)
+	if(!mapload)
 		power_change()
 
 /obj/machinery/Destroy()

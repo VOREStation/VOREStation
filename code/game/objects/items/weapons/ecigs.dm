@@ -18,8 +18,8 @@
 	var/icon_empty
 	var/ecig_colors = list(null, COLOR_DARK_GRAY, COLOR_RED_GRAY, COLOR_BLUE_GRAY, COLOR_GREEN_GRAY, COLOR_PURPLE_GRAY)
 
-/obj/item/clothing/mask/smokable/ecig/Initialize()
-	. = ..()
+/obj/item/clothing/mask/smokable/ecig/New()
+	..()
 	ec_cartridge = new cartridge_type(src)
 
 /obj/item/clothing/mask/smokable/ecig/examine(mob/user)
@@ -61,8 +61,8 @@
 	icon_off = "ecigoff1"
 	icon_empty = "ecigoff1"
 	icon_on = "ecigon"
-/obj/item/clothing/mask/smokable/ecig/util/Initialize()
-	. = ..()
+/obj/item/clothing/mask/smokable/ecig/util/New()
+	..()
 	color = pick(ecig_colors)
 
 /obj/item/clothing/mask/smokable/ecig/deluxe
@@ -153,8 +153,7 @@
 	volume = 20
 	flags = OPENCONTAINER
 
-/obj/item/weapon/reagent_containers/ecig_cartridge/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/New()
 	create_reagents(volume)
 
 /obj/item/weapon/reagent_containers/ecig_cartridge/examine(mob/user as mob)//to see how much left
@@ -169,32 +168,32 @@
 /obj/item/weapon/reagent_containers/ecig_cartridge/blanknico
 	name = "flavorless nicotine cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says you can add whatever flavoring agents you want."
-/obj/item/weapon/reagent_containers/ecig_cartridge/blanknico/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/blanknico/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 
 /obj/item/weapon/reagent_containers/ecig_cartridge/med_nicotine
 	name = "tobacco flavour cartridge"
 	desc =  "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its tobacco flavored."
-/obj/item/weapon/reagent_containers/ecig_cartridge/med_nicotine/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/med_nicotine/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 15)
 
 /obj/item/weapon/reagent_containers/ecig_cartridge/high_nicotine
 	name = "high nicotine tobacco flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its tobacco flavored, with extra nicotine."
-/obj/item/weapon/reagent_containers/ecig_cartridge/high_nicotine/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/high_nicotine/New()
+	..()
 	reagents.add_reagent("nicotine", 10)
 	reagents.add_reagent("water", 10)
 
 /obj/item/weapon/reagent_containers/ecig_cartridge/orange
 	name = "orange flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its orange flavored."
-/obj/item/weapon/reagent_containers/ecig_cartridge/orange/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/orange/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("orangejuice", 5)
@@ -202,8 +201,8 @@
 /obj/item/weapon/reagent_containers/ecig_cartridge/mint
 	name = "mint flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its mint flavored."
-/obj/item/weapon/reagent_containers/ecig_cartridge/mint/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/mint/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("menthol", 5)
@@ -211,8 +210,8 @@
 /obj/item/weapon/reagent_containers/ecig_cartridge/watermelon
 	name = "watermelon flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its watermelon flavored."
-/obj/item/weapon/reagent_containers/ecig_cartridge/watermelon/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/watermelon/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("watermelonjuice", 5)
@@ -220,8 +219,8 @@
 /obj/item/weapon/reagent_containers/ecig_cartridge/grape
 	name = "grape flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its grape flavored."
-/obj/item/weapon/reagent_containers/ecig_cartridge/grape/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/grape/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("grapejuice", 5)
@@ -229,8 +228,8 @@
 /obj/item/weapon/reagent_containers/ecig_cartridge/lemonlime
 	name = "lemon-lime flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its lemon-lime flavored."
-/obj/item/weapon/reagent_containers/ecig_cartridge/lemonlime/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/lemonlime/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("lemon_lime", 5)
@@ -238,8 +237,8 @@
 /obj/item/weapon/reagent_containers/ecig_cartridge/coffee
 	name = "coffee flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label says its coffee flavored."
-/obj/item/weapon/reagent_containers/ecig_cartridge/coffee/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/coffee/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("coffee", 5)
@@ -247,8 +246,8 @@
 /obj/item/weapon/reagent_containers/ecig_cartridge/cannabis
 	name = "herb flavour cartridge"
 	desc = "A small metal cartridge which contains an atomizing coil and a solution to be atomized. The label seems to be suspiciously scuffed off..."
-/obj/item/weapon/reagent_containers/ecig_cartridge/cannabis/Initialize()
-	. = ..()
+/obj/item/weapon/reagent_containers/ecig_cartridge/cannabis/New()
+	..()
 	reagents.add_reagent("nicotine", 5)
 	reagents.add_reagent("water", 10)
 	reagents.add_reagent("cannabis", 5)

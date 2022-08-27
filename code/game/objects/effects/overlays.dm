@@ -10,9 +10,9 @@
 	plane = ABOVE_OBJ_PLANE
 	var/tmp/atom/BeamSource
 
-/obj/effect/overlay/beam/Initialize()
-	. = ..()
-	QDEL_IN(src, 10)
+/obj/effect/overlay/beam/New()
+	..()
+	spawn(10) qdel(src)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
@@ -53,8 +53,8 @@
 	layer = ABOVE_MOB_LAYER
 	mouse_opacity = 0
 
-/obj/effect/overlay/wallrot/Initialize()
-	. = ..()
+/obj/effect/overlay/wallrot/New()
+	..()
 	pixel_x += rand(-10, 10)
 	pixel_y += rand(-10, 10)
 

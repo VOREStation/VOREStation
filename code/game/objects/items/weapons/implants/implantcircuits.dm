@@ -8,8 +8,8 @@
 /obj/item/weapon/implant/integrated_circuit/islegal()
 	return TRUE
 
-/obj/item/weapon/implant/integrated_circuit/Initialize()
-	. = ..()
+/obj/item/weapon/implant/integrated_circuit/New()
+	..()
 	IC = new(src)
 	IC.implant = src
 

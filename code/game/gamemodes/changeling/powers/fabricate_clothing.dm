@@ -264,10 +264,12 @@ var/global/list/changeling_fabricated_clothing = list(
 	access = null
 	canremove = FALSE
 
+/obj/item/weapon/card/id/syndicate/changeling/New(mob/user as mob)
+	..()
+	registered_user = user
+
 /obj/item/weapon/card/id/syndicate/changeling/Initialize()
 	. = ..()
-	if(ismob(loc))
-		registered_user = loc
 	access = null
 
 /obj/item/weapon/card/id/syndicate/changeling/verb/shred()

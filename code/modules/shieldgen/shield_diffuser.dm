@@ -16,6 +16,11 @@
 
 /obj/machinery/shield_diffuser/Initialize()
 	. = ..()
+	// TODO - Remove this bit once machines are converted to Initialize
+	if(ispath(circuit))
+		circuit = new circuit(src)
+	default_apply_parts()
+
 	var/turf/T = get_turf(src)
 	hide(!T.is_plating())
 

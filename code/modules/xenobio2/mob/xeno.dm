@@ -74,13 +74,13 @@ Also includes Life and New
 
 		return 1	//Everything worked okay.
 
-/mob/living/simple_mob/xeno/Initialize()
+/mob/living/simple_mob/xeno/New()
 
 	traitdat = new()
 
 	ProcessTraits()
 
-	. = ..()
+	..()
 	if(colored)
 		color = traitdat.get_trait(TRAIT_XENO_COLOR)
 	create_reagents(internal_vol)
@@ -101,6 +101,12 @@ Also includes Life and New
 		stasis += hit.stasisforce
 	..()
 
+<<<<<<< HEAD
 /mob/living/simple_mob/xeno/Destroy()
+	traitdat.Destroy()	//Let's clean up after ourselves.
+	traitdat = null
+=======
+/mob/living/simple_animal/xeno/Destroy()
 	QDEL_NULL(traitdat)
+>>>>>>> a7877d86e50... Merge pull request #8341 from MistakeNot4892/qdel
 	..()

@@ -27,8 +27,7 @@ var/global/list/active_radio_jammers = list()
 
 	origin_tech = list(TECH_ILLEGAL = 7, TECH_BLUESPACE = 5) //Such technology! Subspace jamming!
 
-/obj/item/device/radio_jammer/Initialize()
-	. = ..()
+/obj/item/device/radio_jammer/New()
 	power_source = new(src)
 	update_icon() // So it starts with the full overlay.
 

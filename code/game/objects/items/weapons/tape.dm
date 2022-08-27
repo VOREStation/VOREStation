@@ -122,8 +122,8 @@
 
 	var/obj/item/weapon/stuck = null
 
-/obj/item/weapon/ducttape/Initialize()
-	. = ..()
+/obj/item/weapon/ducttape/New()
+	..()
 	flags |= NOBLUDGEON
 
 /obj/item/weapon/ducttape/examine(mob/user)

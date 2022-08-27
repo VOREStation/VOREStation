@@ -34,8 +34,8 @@ var/global/list/default_pai_software = list()
 			default_pai_software[P.id] = P
 	return r
 
-/mob/living/silicon/pai/Initialize()
-	. = ..()
+/mob/living/silicon/pai/New()
+	..()
 	software = default_pai_software.Copy()
 
 /mob/living/silicon/pai/verb/paiInterface()

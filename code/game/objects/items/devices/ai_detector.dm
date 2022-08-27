@@ -13,12 +13,12 @@
 	var/detect_state = PROXIMITY_NONE
 	origin_tech = list(TECH_MAGNET = 2, TECH_ENGINEERING = 2, TECH_ILLEGAL = 2)
 
-/obj/item/device/multitool/ai_detector/Initialize()
+/obj/item/device/multitool/ai_detector/New()
 	// It's really really unlikely for the view range to change.  But why not be futureproof anyways?
 	range_alert = world.view
 	range_warning = world.view * 2
 	START_PROCESSING(SSobj, src)
-	return ..()
+	..()
 
 /obj/item/device/multitool/ai_detector/Destroy()
 	STOP_PROCESSING(SSobj, src)

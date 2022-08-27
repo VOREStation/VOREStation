@@ -33,12 +33,15 @@
 
 	update()
 
+	return
+
 /obj/item/weapon/implanter/proc/update()
 	if (src.imp)
 		src.icon_state = "implanter1"
 	else
 		src.icon_state = "implanter0"
 	src.icon_state += "_[active]"
+	return
 
 /obj/item/weapon/implanter/attack(mob/M as mob, mob/user as mob)
 	if (!istype(M, /mob/living/carbon))
@@ -74,35 +77,39 @@
 /obj/item/weapon/implanter/loyalty
 	name = "implanter-loyalty"
 
-/obj/item/weapon/implanter/loyalty/Initialize()
+/obj/item/weapon/implanter/loyalty/New()
 	src.imp = new /obj/item/weapon/implant/loyalty( src )
-	. = ..()
+	..()
 	update()
+	return
 
 /obj/item/weapon/implanter/explosive
 	name = "implanter (E)"
 
-/obj/item/weapon/implanter/explosive/Initialize()
+/obj/item/weapon/implanter/explosive/New()
 	src.imp = new /obj/item/weapon/implant/explosive( src )
-	. = ..()
+	..()
 	update()
+	return
 
 /obj/item/weapon/implanter/adrenalin
 	name = "implanter-adrenalin"
 
-/obj/item/weapon/implanter/adrenalin/Initialize()
+/obj/item/weapon/implanter/adrenalin/New()
 	src.imp = new /obj/item/weapon/implant/adrenalin(src)
-	. = ..()
+	..()
 	update()
+	return
 
 /obj/item/weapon/implanter/compressed
 	name = "implanter (C)"
 	icon_state = "cimplanter1"
 
-/obj/item/weapon/implanter/compressed/Initialize()
+/obj/item/weapon/implanter/compressed/New()
 	imp = new /obj/item/weapon/implant/compressed( src )
-	. = ..()
+	..()
 	update()
+	return
 
 /obj/item/weapon/implanter/compressed/update()
 	if (imp)
@@ -113,6 +120,7 @@
 			icon_state = "cimplanter2"
 	else
 		icon_state = "cimplanter0"
+	return
 
 /obj/item/weapon/implanter/compressed/attack(mob/M as mob, mob/user as mob)
 	var/obj/item/weapon/implant/compressed/c = imp
@@ -150,7 +158,8 @@
 /obj/item/weapon/implanter/restrainingbolt
 	name = "implanter (bolt)"
 
-/obj/item/weapon/implanter/restrainingbolt/Initialize()
+/obj/item/weapon/implanter/restrainingbolt/New()
 	src.imp = new /obj/item/weapon/implant/restrainingbolt( src )
-	. = ..()
+	..()
 	update()
+	return

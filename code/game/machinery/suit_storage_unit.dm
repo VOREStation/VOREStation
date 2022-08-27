@@ -41,6 +41,7 @@
 		HELMET = new helmet_type(src)
 	if(mask_type)
 		MASK = new mask_type(src)
+	update_icon()
 
 /obj/machinery/suit_storage_unit/update_icon()
 	var/hashelmet = 0
@@ -539,7 +540,6 @@ GLOBAL_LIST_EMPTY(suit_cycler_typecache)
 /obj/machinery/suit_cycler/Initialize()
 	. = ..()
 
-	wires = new(src)
 	departments = load_departments()
 	species = load_species()
 	emagged_departments = load_emagged()

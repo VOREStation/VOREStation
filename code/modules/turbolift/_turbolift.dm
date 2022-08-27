@@ -8,3 +8,5 @@
  * elevator shaft in properly before runtime, but ultimately you're just avoiding a
  * bunch of ChangeTurf() calls.
  */
+
+var/list/turbolifts = list()

@@ -18,8 +18,8 @@
 		adjust_instability(4)
 		..()
 
-/obj/item/weapon/spell/spawner/darkness/Initialize()
-	. = ..()
+/obj/item/weapon/spell/spawner/darkness/New()
+	..()
 	set_light(6, -20, l_color = "#FFFFFF")
 
 /obj/effect/temporary_effect/darkness

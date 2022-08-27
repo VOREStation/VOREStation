@@ -386,15 +386,15 @@
 	update_nearby_tiles(need_rebuild=1)
 	return
 
-/obj/structure/window/Initialize(var/ml, start_dir=null, constructed=0)
-	. = ..()
+/obj/structure/window/New(Loc, start_dir=null, constructed=0)
+	..()
 
 	if (start_dir)
 		set_dir(start_dir)
 
 	//player-constructed windows
 	if (constructed)
-		anchored = 0
+		anchored = FALSE
 		state = 0
 		update_verbs()
 
@@ -405,9 +405,6 @@
 	update_nearby_tiles(need_rebuild=1)
 	update_nearby_icons()
 
-	for(var/obj/structure/table/T in view(src, 1))
-		T.update_connections()
-		T.update_icon()
 
 /obj/structure/window/Destroy()
 	density = FALSE

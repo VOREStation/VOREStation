@@ -262,8 +262,12 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 	var/datum/exonet_protocol/exonet = null
 	var/list/exonet_messages = list()
 
-/mob/observer/dead/proc/init_exonet()
-	set waitfor = FALSE
+// Proc: New()
+// Parameters: None
+// Description: Gives ghosts an exonet address based on their key and ghost name.
+/mob/observer/dead/Initialize()
+	. = ..()
+	exonet = new(src)
 	if(client)
 		exonet.make_address("communicator-[src.client]-[src.client.prefs.real_name]")
 	else
@@ -344,8 +348,8 @@ var/global/list/obj/item/device/communicator/all_communicators = list()
 /obj/machinery/camera/communicator
 	network = list(NETWORK_COMMUNICATORS)
 
-/obj/machinery/camera/communicator/Initialize()
-	. = ..()
+/obj/machinery/camera/communicator/New()
+	..()
 	client_huds |= global_hud.whitense
 	client_huds |= global_hud.darkMask
 

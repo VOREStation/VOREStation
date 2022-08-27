@@ -21,8 +21,8 @@ Deployable items
 	var/locked = 0.0
 //	req_access = list(access_maint_tunnels)
 
-/obj/machinery/deployable/barrier/Initialize()
-	. = ..()
+/obj/machinery/deployable/barrier/New()
+	..()
 
 	icon_state = "barrier[locked]"
 

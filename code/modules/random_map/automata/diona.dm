@@ -51,8 +51,8 @@
 	desc = "A glowing bulb of some sort."
 	icon_state = "glowbulb"
 
-/obj/structure/diona/bulb/Initialize()
-	. = ..()
+/obj/structure/diona/bulb/New(var/newloc)
+	..()
 	set_light(3,3,"#557733")
 
 /datum/random_map/automata/diona

@@ -156,12 +156,6 @@ GLOBAL_LIST_EMPTY(solars_list)
 				broken()
 	return
 
-/obj/machinery/power/solar/fake/Initialize(mapload, glass_type)
-	. = ..(mapload, glass_type, 0)
-
-/obj/machinery/power/solar/fake/process()
-	return PROCESS_KILL
-
 //trace towards SSsun.sun to see if we're in shadow
 /obj/machinery/power/solar/proc/occlusion()
 

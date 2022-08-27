@@ -9,10 +9,10 @@
 	var/toggleicon
 	action_button_name = "Toggle Hood"
 
-/obj/item/clothing/suit/storage/hooded/Initialize()
+/obj/item/clothing/suit/storage/hooded/New()
 	toggleicon = "[initial(icon_state)]"
 	MakeHood()
-	. = ..()
+	..()
 
 /obj/item/clothing/suit/storage/hooded/Destroy()
 	qdel(hood)

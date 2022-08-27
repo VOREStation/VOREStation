@@ -9,8 +9,8 @@ var/list/blob_nodes = list()
 	health_regen = 3
 	point_return = 50
 
-/obj/structure/blob/node/Initialize()
-	. = ..()
+/obj/structure/blob/node/New(var/newloc)
+	..()
 	blob_nodes += src
 	START_PROCESSING(SSobj, src)
 	update_icon()

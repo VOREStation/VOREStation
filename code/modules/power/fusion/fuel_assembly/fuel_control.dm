@@ -10,8 +10,8 @@
 	var/scan_range = 25
 	var/datum/tgui_module/rustfuel_control/monitor
 
-/obj/machinery/computer/fusion_fuel_control/Initialize()
-	. = ..()
+/obj/machinery/computer/fusion_fuel_control/New()
+	..()
 	monitor = new(src)
 	monitor.fuel_tag = id_tag
 

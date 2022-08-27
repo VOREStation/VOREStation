@@ -143,8 +143,8 @@
 /obj/mecha/working/ripley/mining/old
 	desc = "An old, dusty mining ripley."
 
-/obj/mecha/working/ripley/mining/old/Initialize()
-	. = ..()
+/obj/mecha/working/ripley/mining/old/New()
+	..()
 	health = 25
 	maxhealth = 190	//Just slightly worse.
 	cell.charge = rand(0, cell.charge)

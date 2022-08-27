@@ -42,8 +42,8 @@
 
 	var/body_color //brown, gray and white, leave blank for random
 
-/mob/living/simple_mob/animal/passive/mouse/Initialize()
-	. = ..()
+/mob/living/simple_mob/animal/passive/mouse/New()
+	..()
 
 	verbs += /mob/living/proc/ventcrawl
 	verbs += /mob/living/proc/hide
@@ -174,9 +174,6 @@
 	max_n2 = 0
 	maxbodytemp = 700
 
-/mob/living/simple_mob/animal/passive/mouse/brown/Tom/Initialize()
-	. = ..()
-	// Change my name back, don't want to be named Tom (666)
 	ai_holder_type = /datum/ai_holder/simple_mob/melee/evasive
 
 //The names Cheese... Agent Cheese
@@ -184,8 +181,8 @@
 	name = "Agent Cheese"
 	desc = "I like my cheese Swiss... not American."
 
-/mob/living/simple_mob/animal/passive/mouse/operative/agent_cheese/Initialize()
-	. = ..()
+/mob/living/simple_mob/animal/passive/mouse/operative/agent_cheese/New()
+	..()
 	// Change my name back, don't want to be named agent_cheese (666)
 	name = initial(name)
 

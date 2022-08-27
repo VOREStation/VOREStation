@@ -4,8 +4,8 @@
 	unacidable = TRUE
 	origin_tech = list(TECH_ENGINEERING = 2, TECH_DATA = 2, TECH_BIO = 2)
 
-/obj/item/integrated_circuit/reagent/Initialize()
-	. = ..()
+/obj/item/integrated_circuit/reagent/New()
+	..()
 	if(volume)
 		create_reagents(volume)
 

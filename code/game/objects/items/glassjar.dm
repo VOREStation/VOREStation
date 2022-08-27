@@ -17,8 +17,8 @@
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
-/obj/item/glass_jar/Initialize()
-	. = ..()
+/obj/item/glass_jar/New()
+	..()
 	update_icon()
 
 /obj/item/glass_jar/afterattack(var/atom/A, var/mob/user, var/proximity)

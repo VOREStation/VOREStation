@@ -15,8 +15,8 @@
 	var/current_tag = null
 	var/datum/tgui_module/rcon/rcon
 
-/obj/machinery/computer/rcon/Initialize()
-	. = ..()
+/obj/machinery/computer/rcon/New()
+	..()
 	rcon = new(src)
 
 /obj/machinery/computer/rcon/Destroy()

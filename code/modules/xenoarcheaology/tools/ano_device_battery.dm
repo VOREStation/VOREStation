@@ -11,6 +11,11 @@
 	name = "advanced anomaly battery"
 	capacity = 3000
 
+/*
+/obj/item/weapon/anobattery/New()
+	battery_effect = new()
+*/
+
 /obj/item/weapon/anobattery/proc/UpdateSprite()
 	var/p = (stored_charge/capacity)*100
 	p = min(p, 100)
@@ -33,8 +38,8 @@
 	var/turf/archived_loc
 	var/energy_consumed_on_touch = 100
 
-/obj/item/weapon/anodevice/Initialize()
-	. = ..()
+/obj/item/weapon/anodevice/New()
+	..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/anodevice/attackby(var/obj/I as obj, var/mob/user as mob)

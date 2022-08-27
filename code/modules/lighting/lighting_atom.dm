@@ -92,9 +92,6 @@
 			light = new/datum/light_source(src, .)
 
 
-/atom/Initialize()
-	. = ..()
-
 /**
  * Updates the atom's opacity value.
  *

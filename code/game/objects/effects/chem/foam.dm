@@ -142,8 +142,8 @@
 	can_atmos_pass = ATMOS_PASS_NO
 	var/metal = 1 // 1 = aluminum, 2 = iron
 
-/obj/structure/foamedmetal/Initialize()
-	. = ..()
+/obj/structure/foamedmetal/New()
+	..()
 	update_nearby_tiles(1)
 
 /obj/structure/foamedmetal/Destroy()

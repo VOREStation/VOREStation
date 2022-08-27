@@ -22,8 +22,8 @@
 			damage *= B.overmind.blob_type.burn_multiplier
 		B.adjust_integrity(-damage)
 
-	new /obj/effect/effect/sparks(src.loc)
-	new /obj/effect/effect/smoke/illumination(src.loc, 5, 30, 30, "#FFFFFF")
+	new/obj/effect/effect/sparks(src.loc)
+	new/obj/effect/effect/smoke/illumination(src.loc, 5, range=30, power=30, color="#FFFFFF")
 
 	qdel(src)
 
@@ -135,21 +135,31 @@
 	can_repeat = FALSE
 	banglet = TRUE
 
-/obj/item/weapon/grenade/flashbang/clusterbang/segment/Initialize() //Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
-	. = ..()
+/obj/item/weapon/grenade/flashbang/clusterbang/segment/New()//Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
+	..()
+
 	icon_state = "clusterbang_segment_active"
+
 	var/stepdist = rand(1,4)//How far to step
 	var/temploc = src.loc//Saves the current location to know where to step away from
 	walk_away(src,temploc,stepdist)//I must go, my people need me
-	addtimer(CALLBACK(src, .proc/detonate), rand(15, 60))
+
+	var/dettime = rand(15,60)
+	spawn(dettime)
+		detonate()
 
 /obj/item/weapon/grenade/flashbang/cluster
 	banglet = TRUE
 
-/obj/item/weapon/grenade/flashbang/cluster/Initialize() //Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
-	. = ..()
+/obj/item/weapon/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
+	..()
+
 	icon_state = "flashbang_active"
+
 	var/stepdist = rand(1,3)
 	var/temploc = src.loc
 	walk_away(src,temploc,stepdist)
-	addtimer(CALLBACK(src, .proc/detonate), rand(15, 60))
+
+	var/dettime = rand(15,60)
+	spawn(dettime)
+		detonate()

@@ -6,12 +6,13 @@
 	lawchannel = "State"
 	idcard_type = /obj/item/weapon/card/id/syndicate
 
-/mob/living/silicon/robot/syndicate/Initialize()
+/mob/living/silicon/robot/syndicate/New()
 	if(!cell)
 		cell = new /obj/item/weapon/cell(src)
 		cell.maxcharge = 25000
 		cell.charge = 25000
-	. = ..()
+
+	..()
 
 /mob/living/silicon/robot/syndicate/init()
 	aiCamera = new/obj/item/device/camera/siliconcam/robot_camera(src)

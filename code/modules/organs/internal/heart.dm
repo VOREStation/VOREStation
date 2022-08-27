@@ -28,8 +28,8 @@
 	icon_state = "heart_grey-on"
 	dead_icon = "heart_grey-off"
 
-/obj/item/organ/internal/heart/grey/colormatch/Initialize()
-	. = ..()
+/obj/item/organ/internal/heart/grey/colormatch/New()
+	..()
 	var/mob/living/carbon/human/H = null
 	spawn(15)
 		if(ishuman(owner))

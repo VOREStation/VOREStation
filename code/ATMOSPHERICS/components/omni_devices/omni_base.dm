@@ -25,8 +25,8 @@
 
 	var/list/ports = new()
 
-/obj/machinery/atmospherics/omni/Initialize()
-	. = ..()
+/obj/machinery/atmospherics/omni/New()
+	..()
 	icon_state = "base"
 
 	ports = new()
