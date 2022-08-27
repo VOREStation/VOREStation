@@ -12,8 +12,8 @@
 	var/toggle = 1	// If we /should/ be active or not,
 	var/list/internal_PDAs = list() // Assoc list of PDAs inside of this, with the department name being the index,
 
-/obj/machinery/pda_multicaster/New()
-	..()
+/obj/machinery/pda_multicaster/Initialize()
+	. = ..()
 	internal_PDAs = list("command" = new /obj/item/device/pda/multicaster/command(src),
 		"security" = new /obj/item/device/pda/multicaster/security(src),
 		"engineering" = new /obj/item/device/pda/multicaster/engineering(src),

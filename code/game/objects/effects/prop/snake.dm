@@ -22,14 +22,12 @@
 // Is the snake hunting a specific atom? (Will always try to meander toward this target.)
 	var/atom/hunting
 
-/obj/effect/temporary_effect/pulse/snake/New(var/turf/T, var/atom/hunt_target, var/atom/Creator)
+/obj/effect/temporary_effect/pulse/snake/Initialize(var/ml, var/atom/hunt_target, var/atom/Creator)
 	if(hunt_target)
 		hunting = hunt_target
-
 	if(Creator)
 		creator = Creator
-
-	..()
+	. = ..()
 
 /obj/effect/temporary_effect/pulse/snake/pulse_loop()	// Override needed unfortunately to handle the possibility of not finding a target turf.
 	set waitfor = FALSE

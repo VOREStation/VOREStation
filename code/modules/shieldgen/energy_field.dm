@@ -24,8 +24,8 @@
 	var/ticks_recovering = 10
 	var/max_strength = 10
 
-/obj/effect/energy_field/New(var/newloc, var/new_gen)
-	..(newloc)
+/obj/effect/energy_field/Initialize(var/ml, var/new_gen)
+	. = ..(ml)
 	my_gen = new_gen
 	update_nearby_tiles()
 

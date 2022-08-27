@@ -97,6 +97,7 @@
 	duration = 15
 
 /obj/effect/temp_visual/heal/Initialize(mapload)
+	. = ..()
 	pixel_x = rand(-12, 12)
 	pixel_y = rand(-9, 0)
 // VOREStation Add End

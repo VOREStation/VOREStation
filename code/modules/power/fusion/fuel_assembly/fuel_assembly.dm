@@ -12,10 +12,10 @@
 	var/radioactivity = 0
 	var/const/initial_amount = 3000000
 
-/obj/item/weapon/fuel_assembly/New(var/newloc, var/_material, var/_colour)
+/obj/item/weapon/fuel_assembly/Initialize(var/ml, var/_material, var/_colour)
 	fuel_type = _material
 	fuel_colour = _colour
-	..(newloc)
+	. = ..(ml)
 
 /obj/item/weapon/fuel_assembly/Initialize()
 	. = ..()
@@ -53,14 +53,14 @@
 	return ..()
 
 // Mapper shorthand.
-/obj/item/weapon/fuel_assembly/deuterium/New(var/newloc)
-	..(newloc, "deuterium")
+/obj/item/weapon/fuel_assembly/deuterium/Initialize(var/ml)
+	. = ..(ml, "deuterium")
 
-/obj/item/weapon/fuel_assembly/tritium/New(var/newloc)
-	..(newloc, "tritium")
+/obj/item/weapon/fuel_assembly/tritium/Initialize(var/ml)
+	. = ..(ml, "tritium")
 
-/obj/item/weapon/fuel_assembly/phoron/New(var/newloc)
-	..(newloc, "phoron")
+/obj/item/weapon/fuel_assembly/phoron/Initialize(var/ml)
+	. = ..(ml, MAT_PHORON)
 
-/obj/item/weapon/fuel_assembly/supermatter/New(var/newloc)
-	..(newloc, "supermatter")
+/obj/item/weapon/fuel_assembly/supermatter/Initialize(var/ml)
+	. = ..(ml, "supermatter")

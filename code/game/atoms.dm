@@ -50,27 +50,22 @@
 	/// The chat color var, without alpha.
 	var/chat_color_hover
 
+var/global/list/pre_init_created_atoms // atom creation ordering means some stuff is trying to init before SSatoms exists, temp workaround
 /atom/New(loc, ...)
-	// Don't call ..() unless /datum/New() ever exists
-
-	// During dynamic mapload (reader.dm) this assigns the var overrides from the .dmm file
-	// Native BYOND maploading sets those vars before invoking New(), by doing this FIRST we come as close to that behavior as we can.
+	//atom creation method that preloads variables at creation
 	if(GLOB.use_preloader && (src.type == GLOB._preloader.target_path))//in case the instanciated atom is creating other atoms in New()
 		GLOB._preloader.load(src)
 
-	// Pass our arguments to InitAtom so they can be passed to initialize(), but replace 1st with if-we're-during-mapload.
-	var/do_initialize = SSatoms.initialized
-	if(do_initialize > INITIALIZATION_INSSATOMS)
-		args[1] = (do_initialize == INITIALIZATION_INNEW_MAPLOAD)
-		if(SSatoms.InitAtom(src, args))
-			// We were deleted. No sense continuing
-			return
-
-	// Uncomment if anything ever uses the return value of SSatoms.InitializeAtoms ~Leshana
-	// If a map is being loaded, it might want to know about newly created objects so they can be handled.
-	// var/list/created = SSatoms.created_atoms
-	// if(created)
-	// 	created += src
+	var/do_initialize = SSatoms?.atom_init_stage
+	if(do_initialize > INITIALIZATION_INSSATOMS_LATE)
+		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
+		SSatoms.InitAtom(src, args)
+	else
+		var/list/argument_list
+		if(length(args) > 1)
+			argument_list = args.Copy(2)
+		if(length(argument_list))
+			LAZYSET(global.pre_init_created_atoms, src, argument_list)
 
 // Note: I removed "auto_init" feature (letting types disable auto-init) since it shouldn't be needed anymore.
 // 	You can replicate the same by checking the value of the first parameter to initialize() ~Leshana
@@ -82,6 +77,8 @@
 // Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
 // Must return an Initialize hint. Defined in code/__defines/subsystems.dm
 /atom/proc/Initialize(mapload, ...)
+	SHOULD_CALL_PARENT(TRUE)
+	SHOULD_NOT_SLEEP(TRUE)
 	if(QDELETED(src))
 		stack_trace("GC: -- [type] had initialize() called after qdel() --")
 	if(initialized)

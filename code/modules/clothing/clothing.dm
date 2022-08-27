@@ -33,8 +33,8 @@
 	gunshot_residue = null
 
 
-/obj/item/clothing/New()
-	..()
+/obj/item/clothing/Initialize()
+	. = ..()
 	if(starting_accessories)
 		for(var/T in starting_accessories)
 			var/obj/item/clothing/accessory/tie = new T(src)

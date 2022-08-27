@@ -41,8 +41,8 @@
 	var/frustration = 0
 	var/max_frustration = 0
 
-/mob/living/bot/New()
-	..()
+/mob/living/bot/Initialize()
+	. = ..()
 	update_icons()
 
 	default_language = GLOB.all_languages[LANGUAGE_GALCOM]
@@ -57,9 +57,6 @@
 	if(!using_map.bot_patrolling)
 		will_patrol = FALSE
 
-// Make sure mapped in units start turned on.
-/mob/living/bot/Initialize()
-	. = ..()
 	if(on)
 		turn_on() // Update lights and other stuff
 

@@ -7,8 +7,8 @@
 	icon_state = "card_pack_spaceball"
 	parentdeck = "spaceball"
 
-/obj/item/weapon/pack/spaceball/New()
-	..()
+/obj/item/weapon/pack/spaceball/Initialize()
+	. = ..()
 	var/datum/playingcard/P
 	var/i
 	var/year = 300 + text2num(time2text(world.timeofday, "YYYY")) //VOREStation Edit

@@ -393,8 +393,8 @@
 /obj/item/clothing/accessory/bracelet/material
 	icon_state = "materialbracelet"
 
-/obj/item/clothing/accessory/bracelet/material/New(var/newloc, var/new_material)
-	..(newloc)
+/obj/item/clothing/accessory/bracelet/material/Initialize(var/ml, var/new_material)
+	. = ..(ml)
 	if(!new_material)
 		new_material = MAT_STEEL
 	material = get_material_by_name(new_material)
@@ -408,34 +408,32 @@
 /obj/item/clothing/accessory/bracelet/material/get_material()
 	return material
 
-/obj/item/clothing/accessory/bracelet/material/wood/New(var/newloc)
-	..(newloc, "wood")
+/obj/item/clothing/accessory/bracelet/material/wood/Initialize(var/ml)
+	..(ml, MAT_WOOD)
 
-/obj/item/clothing/accessory/bracelet/material/plastic/New(var/newloc)
-	..(newloc, "plastic")
+/obj/item/clothing/accessory/bracelet/material/plastic/Initialize(var/ml)
+	..(ml, MAT_PLASTIC)
 
-/obj/item/clothing/accessory/bracelet/material/iron/New(var/newloc)
-	..(newloc, "iron")
+/obj/item/clothing/accessory/bracelet/material/iron/Initialize(var/ml)
+	..(ml, MAT_IRON)
 
-/obj/item/clothing/accessory/bracelet/material/steel/New(var/newloc)
-	..(newloc, "steel")
+/obj/item/clothing/accessory/bracelet/material/steel/Initialize(var/ml)
+	..(ml, MAT_STEEL)
 
-/obj/item/clothing/accessory/bracelet/material/silver/New(var/newloc)
-	..(newloc, "silver")
+/obj/item/clothing/accessory/bracelet/material/silver/Initialize(var/ml)
+	..(ml, MAT_SILVER)
 
-/obj/item/clothing/accessory/bracelet/material/gold/New(var/newloc)
-	..(newloc, "gold")
+/obj/item/clothing/accessory/bracelet/material/gold/Initialize(var/ml)
+	..(ml, MAT_GOLD)
 
-/obj/item/clothing/accessory/bracelet/material/platinum/New(var/newloc)
-	..(newloc, "platinum")
+/obj/item/clothing/accessory/bracelet/material/platinum/Initialize(var/ml)
+	..(ml, MAT_PLATINUM)
 
-/obj/item/clothing/accessory/bracelet/material/phoron/New(var/newloc)
-	..(newloc, "phoron")
+/obj/item/clothing/accessory/bracelet/material/phoron/Initialize(var/ml)
+	..(ml, MAT_PHORON)
 
-/obj/item/clothing/accessory/bracelet/material/glass/New(var/newloc)
-	..(newloc, "glass")
-
-	..()
+/obj/item/clothing/accessory/bracelet/material/glass/Initialize(var/ml)
+	..(ml, MAT_GLASS)
 
 /obj/item/clothing/accessory/halfcape
 	name = "half cape"

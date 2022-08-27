@@ -345,7 +345,7 @@ var/list/mining_overlay_cache = list()
 
 /turf/simulated/mineral/proc/UpdateMineral()
 	clear_ore_effects()
-	if(mineral)
+	if(initialized && istype(mineral))
 		new /obj/effect/mineral(src, mineral)
 	update_icon()
 
@@ -626,9 +626,9 @@ var/list/mining_overlay_cache = list()
 	//otherwise, they come out inside a chunk of rock
 	var/obj/item/weapon/X
 	if(is_clean)
-		X = new /obj/item/weapon/archaeological_find(src, new_item_type = F.find_type)
+		X = new /obj/item/weapon/archaeological_find(src, F.find_type)
 	else
-		X = new /obj/item/weapon/strangerock(src, inside_item_type = F.find_type)
+		X = new /obj/item/weapon/strangerock(src, F.find_type)
 		geologic_data.UpdateNearbyArtifactInfo(src)
 		var/obj/item/weapon/strangerock/SR = X
 		SR.geologic_data = geologic_data
@@ -688,5 +688,6 @@ var/list/mining_overlay_cache = list()
 
 	if(mineral_name && (mineral_name in GLOB.ore_data))
 		mineral = GLOB.ore_data[mineral_name]
-		UpdateMineral()
+		if(initialized)
+			UpdateMineral()
 	update_icon()

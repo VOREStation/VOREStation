@@ -19,8 +19,8 @@
 
 	var/datum/material/material
 
-/obj/structure/gravemarker/New(var/newloc, var/material_name)
-	..(newloc)
+/obj/structure/gravemarker/Initialize(var/ml, var/material_name)
+	. = ..(ml)
 	if(!material_name)
 		material_name = "wood"
 	material = get_material_by_name("[material_name]")

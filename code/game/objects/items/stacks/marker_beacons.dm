@@ -89,7 +89,7 @@ var/list/marker_beacon_colors = list(
 	var/perma = FALSE
 	var/mapped_in_color
 
-/obj/structure/marker_beacon/New(newloc, set_color)
+/obj/structure/marker_beacon/Initialize(var/ml, set_color)
 	. = ..()
 	if(set_color)
 		picked_color = set_color

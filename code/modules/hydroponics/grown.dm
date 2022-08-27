@@ -66,6 +66,11 @@
 	if(!seed)
 		return
 
+	if(!SSplants)
+		testing("<span class='danger'>Plant controller does not exist and [src] requires it. Aborting.</span>")
+		qdel(src)
+		return
+
 	if(SSplants.product_descs["[seed.uid]"])
 		desc = SSplants.product_descs["[seed.uid]"]
 	else
@@ -375,12 +380,11 @@
 
 var/list/fruit_icon_cache = list()
 
-/obj/item/weapon/reagent_containers/food/snacks/fruit_slice/New(var/newloc, var/datum/seed/S)
-	..(newloc)
+/obj/item/weapon/reagent_containers/food/snacks/fruit_slice/Initialize(var/ml, var/datum/seed/S)
+	. = ..(ml)
 	// Need to go through and make a general image caching controller. Todo.
 	if(!istype(S))
-		qdel(src)
-		return
+		return INITIALIZE_HINT_QDEL
 
 	name = "[S.seed_name] slice"
 	desc = "A slice of \a [S.seed_name]. Tasty, probably."

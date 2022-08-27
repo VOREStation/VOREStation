@@ -47,8 +47,8 @@
 	var/last_range
 	var/last_power
 
-/obj/effect/fusion_em_field/New(loc, var/obj/machinery/power/fusion_core/new_owned_core)
-	..()
+/obj/effect/fusion_em_field/Initialize(var/ml, var/obj/machinery/power/fusion_core/new_owned_core)
+	. = ..()
 
 	set_light(light_min_range,light_min_power)
 	last_range = light_min_range

@@ -13,8 +13,8 @@
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Station Repairs and Construction"
 
-/obj/item/weapon/book/manual/engineering_construction/New()
-	..()
+/obj/item/weapon/book/manual/engineering_construction/Initialize()
+	. = ..()
 	dat = {"
 
 		<html><head>
@@ -35,8 +35,8 @@
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Particle Accelerator User's Guide"
 
-/obj/item/weapon/book/manual/engineering_particle_accelerator/New()
-	..()
+/obj/item/weapon/book/manual/engineering_particle_accelerator/Initialize()
+	. = ..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -83,8 +83,8 @@
 	author = "Central Engineering Division"
 	title = "Supermatter Engine Operating Manual"
 
-/obj/item/weapon/book/manual/supermatter_engine/New()
-	..()
+/obj/item/weapon/book/manual/supermatter_engine/Initialize()
+	. = ..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -237,8 +237,8 @@
 	author = "Cindy Crawfish"
 	title = "R-UST Operating Manual"
 
-/obj/item/weapon/book/manual/rust_engine/New()
-	..()
+/obj/item/weapon/book/manual/rust_engine/Initialize()
+	. = ..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -278,8 +278,8 @@
 	author = "Engineering Encyclopedia"		 // Who wrote the thing, can be changed by pen or PC. It is not automatically assigned
 	title = "Hacking"
 
-/obj/item/weapon/book/manual/engineering_hacking/New()
-	..()
+/obj/item/weapon/book/manual/engineering_hacking/Initialize()
+	. = ..()
 	dat = {"
 
 		<html><head>
@@ -859,8 +859,8 @@
 	author = "The Company"
 	title = "Corporate Regulations"
 
-/obj/item/weapon/book/manual/security_space_law/New()
-	..()
+/obj/item/weapon/book/manual/security_space_law/Initialize()
+	. = ..()
 	dat = {"
 
 		<html><head>
@@ -884,8 +884,8 @@
 	author = "Medical Department"
 	title = "Medical Diagnostics Manual"
 
-/obj/item/weapon/book/manual/medical_diagnostics_manual/New()
-	..()
+/obj/item/weapon/book/manual/medical_diagnostics_manual/Initialize()
+	. = ..()
 	dat = {"<html>
 				<head>
 				<style>
@@ -932,8 +932,8 @@
 	author = "Engineering Encyclopedia"
 	title = "Engineering Textbook"
 
-/obj/item/weapon/book/manual/engineering_guide/New()
-	..()
+/obj/item/weapon/book/manual/engineering_guide/Initialize()
+	. = ..()
 	dat = {"
 
 		<html><head>

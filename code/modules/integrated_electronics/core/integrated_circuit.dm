@@ -31,14 +31,14 @@ a creative player the means to solve many problems.  Circuits are held inside an
 /obj/item/integrated_circuit/proc/any_examine(mob/user)
 	return
 
-/obj/item/integrated_circuit/New()
+/obj/item/integrated_circuit/Initialize()
 	displayed_name = name
 	if(!size) size = w_class
 	if(size == -1) size = 0
 	setup_io(inputs, /datum/integrated_io, inputs_default)
 	setup_io(outputs, /datum/integrated_io, outputs_default)
 	setup_io(activators, /datum/integrated_io/activate)
-	..()
+	. = ..()
 
 /obj/item/integrated_circuit/proc/on_data_written() //Override this for special behaviour when new data gets pushed to the circuit.
 	return

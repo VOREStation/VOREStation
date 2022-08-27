@@ -303,7 +303,7 @@
 
 	return new projectile_type(src)
 
-/obj/item/weapon/gun/magnetic/fuelrod/New()
+/obj/item/weapon/gun/magnetic/fuelrod/Initialize()
 	cell = new /obj/item/weapon/cell/high
 	capacitor = new /obj/item/weapon/stock_parts/capacitor
 	. = ..()

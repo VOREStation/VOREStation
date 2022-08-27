@@ -7,24 +7,24 @@
 	new_alien.set_species("Xenomorph [alien_caste]")
 	return new_alien
 
-/mob/living/carbon/human/xdrone/New(var/new_loc)
+/mob/living/carbon/human/xdrone/Initialize(var/ml)
 	h_style = "Bald"
 	faction = "xeno"
-	..(new_loc, SPECIES_XENO_DRONE)
+	. = ..(ml, SPECIES_XENO_DRONE)
 
-/mob/living/carbon/human/xsentinel/New(var/new_loc)
+/mob/living/carbon/human/xsentinel/Initialize(var/ml)
 	h_style = "Bald"
 	faction = "xeno"
-	..(new_loc, SPECIES_XENO_SENTINEL)
+	. = ..(ml, SPECIES_XENO_SENTINEL)
 
-/mob/living/carbon/human/xhunter/New(var/new_loc)
+/mob/living/carbon/human/xhunter/Initialize(var/ml)
 	h_style = "Bald"
 	faction = "xeno"
-	..(new_loc, SPECIES_XENO_HUNTER)
+	. = ..(ml, SPECIES_XENO_HUNTER)
 
-/mob/living/carbon/human/xqueen/New(var/new_loc)
+/mob/living/carbon/human/xqueen/Initialize(var/ml)
 	h_style = "Bald"
 	faction = "xeno"
-	..(new_loc, SPECIES_XENO_QUEEN)
+	. = ..(ml, SPECIES_XENO_QUEEN)
 
 //Removed AddInfectionImages, no longer required.

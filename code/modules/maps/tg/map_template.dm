@@ -36,7 +36,7 @@
 	return bounds
 
 /datum/map_template/proc/initTemplateBounds(var/list/bounds)
-	if (SSatoms.initialized == INITIALIZATION_INSSATOMS)
+	if (SSatoms.atom_init_stage == INITIALIZATION_INSSATOMS)
 		return // let proper initialisation handle it later
 
 	var/prev_shuttle_queue_state = SSshuttles.block_init_queue
