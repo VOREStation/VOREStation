@@ -120,9 +120,6 @@
 	if(!pixel_x && !pixel_y)
 		offset_airalarm()
 	first_run()
-	set_frequency(frequency)
-	if(!master_is_operating())
-		elect_master()
 
 /obj/machinery/alarm/Destroy()
 	unregister_radio(src, frequency)
@@ -156,6 +153,12 @@
 	TLV["temperature"] =	list(T0C - 26, T0C, T0C + 40, T0C + 66) // K
 
 	update_icon()
+
+/obj/machinery/alarm/Initialize()
+	. = ..()
+	set_frequency(frequency)
+	if(!master_is_operating())
+		elect_master()
 
 /obj/machinery/alarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted)

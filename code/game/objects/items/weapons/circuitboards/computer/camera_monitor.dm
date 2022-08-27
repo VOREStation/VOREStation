@@ -10,8 +10,8 @@
 	var/locked = 1
 	var/emagged = 0
 
-/obj/item/weapon/circuitboard/security/Initialize()
-	. = ..()
+/obj/item/weapon/circuitboard/security/New()
+	..()
 
 /obj/item/weapon/circuitboard/security/tv
 	name = T_BOARD("security camera monitor - television")
@@ -22,8 +22,8 @@
 	build_path = /obj/machinery/computer/security/engineering
 	req_access = list()
 
-/obj/item/weapon/circuitboard/security/engineering/Initialize()
-	. = ..()
+/obj/item/weapon/circuitboard/security/engineering/New()
+	..()
 	network = engineering_networks
 
 /obj/item/weapon/circuitboard/security/mining
@@ -38,8 +38,8 @@
 	board_type = new /datum/frame/frame_types/display
 	matter = list(MAT_STEEL = 50, MAT_GLASS = 50)
 
-/obj/item/weapon/circuitboard/security/telescreen/entertainment/Initialize()
-	. = ..()
+/obj/item/weapon/circuitboard/security/telescreen/entertainment/New()
+	..()
 	network = NETWORK_THUNDER
 
 /obj/item/weapon/circuitboard/security/construct(var/obj/machinery/computer/security/C)

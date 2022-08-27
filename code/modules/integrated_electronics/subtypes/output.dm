@@ -180,8 +180,8 @@
 	power_draw_per_use = 20
 	var/list/sounds = list()
 
-/obj/item/integrated_circuit/output/sound/Initialize()
-	. = ..()
+/obj/item/integrated_circuit/output/sound/New()
+	..()
 	extended_desc = list()
 	extended_desc += "The first input pin determines which sound is used. The choices are; "
 	extended_desc += jointext(sounds, ", ")
@@ -287,8 +287,8 @@
 	power_draw_idle = 5 // Raises to 80 when on.
 	var/obj/machinery/camera/network/circuits/camera
 
-/obj/item/integrated_circuit/output/video_camera/Initialize()
-	. = ..()
+/obj/item/integrated_circuit/output/video_camera/New()
+	..()
 	extended_desc = list()
 	extended_desc += "Network choices are; "
 	extended_desc += jointext(networks, ", ")

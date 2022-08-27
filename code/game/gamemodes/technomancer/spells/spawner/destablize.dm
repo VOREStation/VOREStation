@@ -14,8 +14,8 @@
 	aspect = ASPECT_UNSTABLE
 	spawner_type = /obj/effect/temporary_effect/destablize
 
-/obj/item/weapon/spell/spawner/destablize/Initialize()
-	. = ..()
+/obj/item/weapon/spell/spawner/destablize/New()
+	..()
 	set_light(3, 2, l_color = "#C26DDE")
 
 /obj/item/weapon/spell/spawner/destablize/on_ranged_cast(atom/hit_atom, mob/user)

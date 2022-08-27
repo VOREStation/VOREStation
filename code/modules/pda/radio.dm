@@ -17,8 +17,8 @@
 	var/on = 0 //Are we currently active??
 	var/menu_message = ""
 
-/obj/item/radio/integrated/Initialize()
-	. = ..()
+/obj/item/radio/integrated/New()
+	..()
 	if(istype(loc.loc, /obj/item/device/pda))
 		hostpda = loc.loc
 	if(bot_filter)

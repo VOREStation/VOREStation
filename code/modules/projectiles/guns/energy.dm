@@ -25,8 +25,8 @@
 
 	var/battery_lock = 0	//If set, weapon cannot switch batteries
 
-/obj/item/weapon/gun/energy/Initialize()
-	. = ..()
+/obj/item/weapon/gun/energy/New()
+	..()
 	if(self_recharge)
 		power_supply = new /obj/item/weapon/cell/device/weapon(src)
 		START_PROCESSING(SSobj, src)

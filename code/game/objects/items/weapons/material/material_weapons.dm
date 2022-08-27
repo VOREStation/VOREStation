@@ -27,8 +27,8 @@
 	var/datum/material/material
 	var/drops_debris = 1
 
-/obj/item/weapon/material/Initialize(var/ml, var/material_key)
-	. = ..(ml)
+/obj/item/weapon/material/New(var/newloc, var/material_key)
+	..(newloc)
 	if(!material_key)
 		material_key = default_material
 	set_material(material_key)

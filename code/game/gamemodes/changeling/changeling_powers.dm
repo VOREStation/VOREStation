@@ -88,7 +88,7 @@ var/global/list/possible_changeling_IDs = list("Alpha","Beta","Gamma","Delta","E
 				verbs.Add(P.verbpath)
 			if(P.make_hud_button)
 				if(!src.ability_master)
-					src.ability_master = new /obj/screen/movable/ability_master(null, src)
+					src.ability_master = new /obj/screen/movable/ability_master(src)
 				src.ability_master.add_ling_ability(
 					object_given = src,
 					verb_given = P.verbpath,

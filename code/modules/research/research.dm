@@ -209,9 +209,8 @@ GLOBAL_LIST_INIT(design_datums, list())
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/tech/stored
 
-/obj/item/weapon/disk/tech_disk/Initialize()
+/obj/item/weapon/disk/tech_disk/New()
 	randpixel_xy()
-	. = ..()
 
 /obj/item/weapon/disk/design_disk
 	name = "component design disk"
@@ -224,6 +223,5 @@ GLOBAL_LIST_INIT(design_datums, list())
 	matter = list(MAT_STEEL = 30, MAT_GLASS = 10)
 	var/datum/design/blueprint
 
-/obj/item/weapon/disk/design_disk/Initialize()
+/obj/item/weapon/disk/design_disk/New()
 	randpixel_xy()
-	. = ..()

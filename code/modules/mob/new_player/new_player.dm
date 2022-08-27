@@ -19,13 +19,14 @@
 
 	var/created_for
 
-/mob/new_player/Initialize()
-	. = ..()
+/mob/new_player/New()
 	mob_list += src
+	initialized = TRUE // Explicitly don't use Initialize().  New players join super early and use New()
 
 /mob/new_player/verb/new_player_panel()
 	set src = usr
 	new_player_panel_proc()
+
 
 /mob/new_player/proc/new_player_panel_proc()
 	var/output = "<div align='center'>"
@@ -443,7 +444,7 @@
 	character = job_master.EquipRank(character, rank, 1)					//equips the human
 	UpdateFactionList(character)
 	if(character && character.client)
-		var/obj/screen/splash/Spl = new(null, character.client, TRUE)
+		var/obj/screen/splash/Spl = new(character.client, TRUE)
 		Spl.Fade(TRUE)
 
 	var/datum/job/J = SSjob.get_job(rank)

@@ -25,20 +25,18 @@
 
 	var/outdoors_speed_mod = 0.7 //The general 'outdoors' speed. I.E., the general difference you'll be at when driving outside.
 
-/obj/vehicle/train/engine/quadbike/Initialize()
+/obj/vehicle/train/engine/quadbike/New()
 	cell = new /obj/item/weapon/cell/high(src)
 	key = new key_type(src)
-	. = ..()
 	turn_off()
 
-/obj/vehicle/train/engine/quadbike/built/Initialize()
+/obj/vehicle/train/engine/quadbike/built/New()
 	key = new key_type(src)
-	. = ..()
 	turn_off()
 
-/obj/vehicle/train/engine/quadbike/random/Initialize()
+/obj/vehicle/train/engine/quadbike/random/New()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
-	. = ..()
+	..()
 
 /obj/item/weapon/key/quadbike
 	name = "key"
@@ -176,9 +174,9 @@
 
 	paint_color = "#ffffff"
 
-/obj/vehicle/train/trolley/trailer/random/Initialize()
+/obj/vehicle/train/trolley/trailer/random/New()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
-	. = ..()
+	..()
 
 /obj/vehicle/train/trolley/trailer/proc/update_load()
 	if(load)
@@ -190,8 +188,8 @@
 		return 1
 	return 0
 
-/obj/vehicle/train/trolley/trailer/Initialize()
-	. = ..()
+/obj/vehicle/train/trolley/trailer/New()
+	..()
 	update_icon()
 
 /obj/vehicle/train/trolley/trailer/Moved(atom/old_loc, direction, forced = FALSE)

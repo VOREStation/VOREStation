@@ -19,11 +19,9 @@
 
 /obj/structure/catwalk/Initialize()
 	. = ..()
-	//Delete ourselves if we find extra mapped in catwalks
-	for(var/obj/structure/catwalk/C in loc)
+	for(var/obj/structure/catwalk/C in get_turf(src))
 		if(C != src)
-			log_debug("Duplicate catwalks at [x],[y],[z]")
-			return INITIALIZE_HINT_QDEL
+			qdel(C)
 	update_connections(1)
 	update_icon()
 

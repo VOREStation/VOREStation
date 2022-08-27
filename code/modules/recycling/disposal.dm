@@ -765,8 +765,8 @@
 	var/subtype = 0
 
 // new pipe, set the icon_state as on map
-/obj/structure/disposalpipe/Initialize()
-	. = ..()
+/obj/structure/disposalpipe/New()
+	..()
 	base_icon_state = icon_state
 	return
 
@@ -1070,8 +1070,8 @@
 /obj/structure/disposalpipe/segment
 	icon_state = "pipe-s"
 
-/obj/structure/disposalpipe/segment/Initialize()
-	. = ..()
+/obj/structure/disposalpipe/segment/New()
+	..()
 	if(icon_state == "pipe-s")
 		dpdir = dir | turn(dir, 180)
 	else
@@ -1084,8 +1084,8 @@
 /obj/structure/disposalpipe/up
 	icon_state = "pipe-u"
 
-/obj/structure/disposalpipe/up/Initialize()
-	. = ..()
+/obj/structure/disposalpipe/up/New()
+	..()
 	dpdir = dir
 	update()
 	return
@@ -1134,8 +1134,8 @@
 /obj/structure/disposalpipe/down
 	icon_state = "pipe-d"
 
-/obj/structure/disposalpipe/down/Initialize()
-	. = ..()
+/obj/structure/disposalpipe/down/New()
+	..()
 	dpdir = dir
 	update()
 	return
@@ -1189,8 +1189,8 @@
 /obj/structure/disposalpipe/junction
 	icon_state = "pipe-j1"
 
-/obj/structure/disposalpipe/junction/Initialize()
-	. = ..()
+/obj/structure/disposalpipe/junction/New()
+	..()
 	if(icon_state == "pipe-j1")
 		dpdir = dir | turn(dir, -90) | turn(dir,180)
 	else if(icon_state == "pipe-j2")
@@ -1247,7 +1247,7 @@
 	else
 		name = initial(name)
 
-/obj/structure/disposalpipe/tagger/Initialize()
+/obj/structure/disposalpipe/tagger/New()
 	. = ..()
 	dpdir = dir | turn(dir, 180)
 	if(sort_tag) GLOB.tagger_locations |= sort_tag
@@ -1314,7 +1314,7 @@
 
 	dpdir = sortdir | posdir | negdir
 
-/obj/structure/disposalpipe/sortjunction/Initialize()
+/obj/structure/disposalpipe/sortjunction/New()
 	. = ..()
 	if(sortType) GLOB.tagger_locations |= sortType
 
@@ -1504,8 +1504,8 @@
 					// i.e. will be treated as an empty turf
 	desc = "A broken piece of disposal pipe."
 
-/obj/structure/disposalpipe/broken/Initialize()
-	. = ..()
+/obj/structure/disposalpipe/broken/New()
+	..()
 	update()
 	return
 

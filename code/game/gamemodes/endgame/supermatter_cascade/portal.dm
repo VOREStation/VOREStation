@@ -14,9 +14,8 @@
 
 	consume_range = 6
 
-
-/obj/singularity/narsie/large/exit/Initialize()
-	. = ..()
+/obj/singularity/narsie/large/exit/New()
+	..()
 	START_PROCESSING(SSobj, src)
 
 /obj/singularity/narsie/large/exit/update_icon()

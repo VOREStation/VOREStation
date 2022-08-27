@@ -20,8 +20,11 @@
 	var/rock_side = "rock_side"
 	block_tele = TRUE
 
-/turf/simulated/wall/solidrock/Initialize(mapload, var/override_type)
-	. = ..(mapload, override_type || "bedrock")
+/turf/simulated/wall/solidrock/Initialize(mapload)
+	. = ..(mapload, "bedrock")
+
+/turf/simulated/wall/solidrock/Initialize()
+	. = ..()
 	update_icon(1)
 
 /turf/simulated/wall/solidrock/update_material()
@@ -78,7 +81,7 @@
 	desc = "An old, yet impressively durably rock wall."
 	var/mossyrock_side = "mossyrock_side"
 
-/turf/simulated/wall/solidrock/mossyrockpoi/Initialize(mapload)
+/turf/simulated/wall/solidrock/Initialize(mapload)
 	. = ..(mapload, "mossyrock")
 
 /turf/simulated/wall/solidrock/mossyrockpoi/update_icon(var/update_neighbors)

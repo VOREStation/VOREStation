@@ -14,8 +14,8 @@
 	var/cooldown_on = 0
 	req_access = list(access_ai_upload)
 
-/obj/machinery/ai_slipper/Initialize()
-	. = ..()
+/obj/machinery/ai_slipper/New()
+	..()
 	update_icon()
 
 /obj/machinery/ai_slipper/power_change()

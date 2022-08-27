@@ -27,8 +27,8 @@
 	var/center_y = 0
 	var/max_dist = 20 // absolute value of center_x,y cannot exceed this integer
 
-/obj/machinery/magnetic_module/Initialize()
-	. = ..()
+/obj/machinery/magnetic_module/New()
+	..()
 	var/turf/T = loc
 	hide(!T.is_plating())
 	center = T
@@ -209,8 +209,8 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/machinery/magnetic_controller/Initialize()
-	. = ..()
+/obj/machinery/magnetic_controller/New()
+	..()
 
 	if(autolink)
 		for(var/obj/machinery/magnetic_module/M in machines)

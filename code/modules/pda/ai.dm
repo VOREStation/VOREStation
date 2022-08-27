@@ -44,10 +44,10 @@
 	ttone = "assist"
 	var/our_owner = null // Ref to a pAI
 
-/obj/item/device/pda/ai/pai/Initialize()
-	if(istype(loc, /mob/living/silicon/pai))
-		our_owner = REF(loc)
-	. = ..()
+/obj/item/device/pda/ai/pai/New(mob/living/silicon/pai/P)
+	if(istype(P))
+		our_owner = REF(P)
+	return ..()
 
 /obj/item/device/pda/ai/pai/tgui_status(mob/living/silicon/pai/user, datum/tgui_state/state)
 	if(!istype(user) || REF(user) != our_owner) // Only allow our pAI to interface with us

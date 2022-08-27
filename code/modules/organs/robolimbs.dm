@@ -475,8 +475,8 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	icon_state = "data-white" //VOREStation Edit
 	var/company = ""
 
-/obj/item/weapon/disk/limb/Initialize()
-	. = ..()
+/obj/item/weapon/disk/limb/New(var/newloc)
+	..()
 	if(company)
 		name = "[company] [initial(name)]"
 

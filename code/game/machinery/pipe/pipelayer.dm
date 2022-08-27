@@ -21,9 +21,9 @@
 		"heat exchange pipes" = /obj/machinery/atmospherics/pipe/simple/heat_exchanging
 	)
 
-/obj/machinery/pipelayer/Initialize()
+/obj/machinery/pipelayer/New()
 	W = new(src)
-	. = ..()
+	..()
 	default_apply_parts()
 	update_icon()
 

@@ -7,8 +7,8 @@
 	icon_state = "card_pack_cardemon"
 	parentdeck = "cardemon"
 
-/obj/item/weapon/pack/cardemon/Initialize()
-	. = ..()
+/obj/item/weapon/pack/cardemon/New()
+	..()
 	var/datum/playingcard/P
 	var/i
 	for(i=0; i<5; i++)

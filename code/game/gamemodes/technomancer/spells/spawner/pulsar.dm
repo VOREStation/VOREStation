@@ -13,8 +13,8 @@
 	aspect = ASPECT_EMP
 	spawner_type = /obj/effect/temporary_effect/pulse/pulsar
 
-/obj/item/weapon/spell/spawner/pulsar/Initialize()
-	. = ..()
+/obj/item/weapon/spell/spawner/pulsar/New()
+	..()
 	set_light(3, 2, l_color = "#2ECCFA")
 
 /obj/item/weapon/spell/spawner/pulsar/on_ranged_cast(atom/hit_atom, mob/user)

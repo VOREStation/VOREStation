@@ -20,8 +20,8 @@
 
 	level = 1
 
-/obj/machinery/atmospherics/pipe/manifold4w/Initialize()
-	. = ..()
+/obj/machinery/atmospherics/pipe/manifold4w/New()
+	..()
 	alpha = 255
 	icon = null
 

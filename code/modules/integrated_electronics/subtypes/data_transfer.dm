@@ -16,12 +16,12 @@
 	power_draw_per_use = 4
 	var/number_of_inputs = 2
 
-/obj/item/integrated_circuit/transfer/multiplexer/Initialize()
+/obj/item/integrated_circuit/transfer/multiplexer/New()
 	for(var/i = 1 to number_of_inputs)
 		inputs["input [i]"] = IC_PINTYPE_ANY // This is just a string since pins don't get built until ..() is called.
 //		inputs += "input [i]"
 	complexity = number_of_inputs
-	. = ..()
+	..()
 	desc += " It has [number_of_inputs] input pins."
 	extended_desc += " This multiplexer has a range from 1 to [inputs.len - 1]."
 
@@ -64,12 +64,13 @@
 	power_draw_per_use = 4
 	var/number_of_outputs = 2
 
-/obj/item/integrated_circuit/transfer/demultiplexer/Initialize()
+/obj/item/integrated_circuit/transfer/demultiplexer/New()
 	for(var/i = 1 to number_of_outputs)
 	//	outputs += "output [i]"
 		outputs["output [i]"] = IC_PINTYPE_ANY
 	complexity = number_of_outputs
-	. = ..()
+
+	..()
 	desc += " It has [number_of_outputs] output pins."
 	extended_desc += " This demultiplexer has a range from 1 to [outputs.len]."
 
@@ -111,12 +112,13 @@
 	power_draw_per_use = 4
 	var/number_of_outputs = 2
 
-/obj/item/integrated_circuit/transfer/pulsedemultiplexer/Initialize()
+/obj/item/integrated_circuit/transfer/pulsedemultiplexer/New()
 	for(var/i = 1 to number_of_outputs)
 	//	outputs += "output [i]"
 		activators["output [i]"] = IC_PINTYPE_PULSE_OUT
 	complexity = number_of_outputs
-	. = ..()
+
+	..()
 	desc += " It has [number_of_outputs] output pins."
 	extended_desc += " This pulse demultiplexer has a range from 1 to [activators.len - 1]."
 

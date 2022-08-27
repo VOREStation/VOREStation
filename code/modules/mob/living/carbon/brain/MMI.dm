@@ -19,9 +19,8 @@
 	var/obj/mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/obj/item/device/radio/headset/mmi_radio/radio = null//Let's give it a radio.
 
-/obj/item/device/mmi/Initialize()
+/obj/item/device/mmi/New()
 	radio = new(src)//Spawns a radio inside the MMI.
-	. = ..()
 
 /obj/item/device/mmi/verb/toggle_radio()
 	set name = "Toggle Brain Radio"
@@ -181,7 +180,7 @@
 	mecha = null//This does not appear to be used outside of reference in mecha.dm.
 	var/ghost_query_type = null
 
-/obj/item/device/mmi/digital/Initialize()
+/obj/item/device/mmi/digital/New()
 	src.brainmob = new(src)
 //	src.brainmob.add_language("Robot Talk")//No binary without a binary communication device
 	src.brainmob.add_language(LANGUAGE_GALCOM)
@@ -192,7 +191,6 @@
 	src.brainmob.silent = 0
 	radio = new(src)
 	dead_mob_list -= src.brainmob
-	. = ..()
 
 /obj/item/device/mmi/digital/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	return	//Doesn't do anything right now because none of the things that can be done to a regular MMI make any sense for these
@@ -292,8 +290,8 @@
 	origin_tech = list(TECH_ENGINEERING = 4, TECH_MATERIAL = 3, TECH_DATA = 4)
 	ghost_query_type = /datum/ghost_query/drone_brain
 
-/obj/item/device/mmi/digital/robot/Initialize()
-	. = ..()
+/obj/item/device/mmi/digital/robot/New()
+	..()
 	src.brainmob.name = "[pick(list("ADA","DOS","GNU","MAC","WIN","NJS","SKS","DRD","IOS","CRM","IBM","TEX","LVM","BSD",))]-[rand(1000, 9999)]"
 	src.brainmob.real_name = src.brainmob.name
 
@@ -335,8 +333,8 @@
 	..()
 	icon_state = "posibrain"
 
-/obj/item/device/mmi/digital/posibrain/Initialize()
-	. = ..()
+/obj/item/device/mmi/digital/posibrain/New()
+	..()
 	src.brainmob.name = "[pick(list("PBU","HIU","SINA","ARMA","OSI"))]-[rand(100, 999)]"
 	src.brainmob.real_name = src.brainmob.name
 

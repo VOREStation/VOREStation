@@ -142,8 +142,8 @@
 			return
 
 // Preset types - left here for the code that uses them
-/obj/item/weapon/material/shard/shrapnel/Initialize(var/ml)
-	. = ..(ml, MAT_STEEL)
+/obj/item/weapon/material/shard/shrapnel/New(loc)
+	..(loc, "steel")
 
-/obj/item/weapon/material/shard/phoron/Initialize(var/ml)
-	. = ..(ml, "borosilicate glass")
+/obj/item/weapon/material/shard/phoron/New(loc)
+	..(loc, "borosilicate glass")

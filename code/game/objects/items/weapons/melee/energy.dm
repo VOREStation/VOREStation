@@ -23,28 +23,23 @@
 			slot_r_hand_str = 'icons/mob/items/righthand_melee.dmi',
 			)
 
-/obj/item/weapon/melee/energy/sword/green/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/sword/green/New()
 	colorable = FALSE
 	lcolor = "#008000"
 
-/obj/item/weapon/melee/energy/sword/red/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/sword/red/New()
 	colorable = FALSE
 	lcolor = "#FF0000"
 
-/obj/item/weapon/melee/energy/sword/blue/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/sword/blue/New()
 	colorable = FALSE
 	lcolor = "#0000FF"
 
-/obj/item/weapon/melee/energy/sword/purple/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/sword/purple/New()
 	colorable = FALSE
 	lcolor = "#800080"
 
-/obj/item/weapon/melee/energy/sword/white/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/sword/white/New()
 	colorable = FALSE
 	lcolor = "#FFFFFF"
 
@@ -246,8 +241,8 @@
 	use_cell = TRUE
 	hitcost = 120
 
-/obj/item/weapon/melee/energy/axe/charge/loaded/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/axe/charge/loaded/New()
+	..()
 	bcell = new/obj/item/weapon/cell/device/weapon(src)
 
 /*
@@ -406,8 +401,8 @@
 
 	hitcost = 75
 
-/obj/item/weapon/melee/energy/sword/charge/loaded/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/sword/charge/loaded/New()
+	..()
 	bcell = new/obj/item/weapon/cell/device/weapon(src)
 
 //Energy Blade (ninja uses this)
@@ -434,8 +429,7 @@
 	projectile_parry_chance = 60
 	lcolor = "#00FF00"
 
-/obj/item/weapon/melee/energy/blade/Initialize()
-	. = ..()
+/obj/item/weapon/melee/energy/blade/New()
 
 	spark_system = new /datum/effect/effect/system/spark_spread()
 	spark_system.set_up(5, 0, src)

@@ -144,8 +144,8 @@
 
 	starting_equipment = null
 
-/obj/mecha/combat/marauder/old/Initialize()
-	. = ..()
+/obj/mecha/combat/marauder/old/New()
+	..()
 	health = 25
 	maxhealth = 300	//Just slightly worse.
 	cell.charge = rand(0, (cell.charge/2))

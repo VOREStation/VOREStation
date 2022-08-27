@@ -15,10 +15,9 @@
 	var/mopcount = 0
 
 
-/obj/item/weapon/mop_deploy/Initialize()
+/obj/item/weapon/mop_deploy/New()
 	create_reagents(5)
 	START_PROCESSING(SSobj, src)
-	. = ..()
 
 /turf/proc/clean_deploy(atom/source)
 	if(source.reagents.has_reagent("water", 1))

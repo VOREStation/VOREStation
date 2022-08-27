@@ -27,7 +27,6 @@
 	interaction_message = "<span class='notice'>The prismatic turret seems to be able to rotate.</span>"
 
 /obj/structure/prop/prism/Initialize()
-	. = ..()
 	if(degrees_from_north)
 		animate(src, transform = turn(NORTH, degrees_from_north), time = 3)
 

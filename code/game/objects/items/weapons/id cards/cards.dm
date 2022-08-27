@@ -27,7 +27,7 @@
 	drop_sound = 'sound/items/drop/card.ogg'
 	pickup_sound = 'sound/items/pickup/card.ogg'
 
-/obj/item/weapon/card/Initialize()
+/obj/item/weapon/card/New()
 	. = ..()
 	reset_icon()
 

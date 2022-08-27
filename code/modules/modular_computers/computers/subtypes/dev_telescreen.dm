@@ -19,8 +19,8 @@
 	broken_damage = 150
 	w_class = ITEMSIZE_HUGE
 
-/obj/item/modular_computer/telescreen/Initialize()
-	. = ..()
+/obj/item/modular_computer/telescreen/New()
+	..()
 	// Allows us to create "north bump" "south bump" etc. named objects, for more comfortable mapping.
 	name = "telescreen"
 

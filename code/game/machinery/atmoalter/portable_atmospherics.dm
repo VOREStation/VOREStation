@@ -13,14 +13,18 @@
 	var/start_pressure = ONE_ATMOSPHERE
 	var/maximum_pressure = 90 * ONE_ATMOSPHERE
 
-/obj/machinery/portable_atmospherics/Initialize()
+/obj/machinery/portable_atmospherics/New()
 	..()
 	//VOREStation Edit - Fix runtime
 	if(air_contents)
 		air_contents.volume = volume
 		air_contents.temperature = T20C
 	//VOREStation Edit End
-  
+
+	return 1
+
+/obj/machinery/portable_atmospherics/Initialize()
+	..()
 	return INITIALIZE_HINT_LATELOAD
 
 /obj/machinery/portable_atmospherics/LateInitialize()

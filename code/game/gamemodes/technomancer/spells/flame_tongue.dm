@@ -14,8 +14,8 @@
 	aspect = ASPECT_FIRE
 	var/obj/item/weapon/weldingtool/spell/welder = null
 
-/obj/item/weapon/spell/flame_tongue/Initialize()
-	. = ..()
+/obj/item/weapon/spell/flame_tongue/New()
+	..()
 	set_light(3, 2, l_color = "#FF6A00")
 	visible_message("<span class='warning'>\The [loc]'s hand begins to emit a flame.</span>")
 	welder = new /obj/item/weapon/weldingtool/spell(src)

@@ -34,8 +34,8 @@
 	name = "biological disk box"
 	desc = "A box of biological data disks, apparently."
 
-/obj/item/weapon/storage/box/xenobiodisk/Initialize()
-	. = ..()
+/obj/item/weapon/storage/box/xenobiodisk/New()
+	..()
 	for(var/i = 0 to 7)
 		new /obj/item/weapon/disk/xenobio(src)
 

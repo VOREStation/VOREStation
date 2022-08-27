@@ -10,8 +10,8 @@
 
 
 /obj/item/weapon/shield_diffuser/Initialize()
-	cell = new(src)
 	. = ..()
+	cell = new(src)
 
 /obj/item/weapon/shield_diffuser/Destroy()
 	QDEL_NULL(cell)

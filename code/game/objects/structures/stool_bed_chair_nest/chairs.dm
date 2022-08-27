@@ -99,38 +99,38 @@
 	icon_state = "comfychair"
 	base_icon = "comfychair"
 
-/obj/structure/bed/chair/comfy/brown/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, MAT_LEATHER)
+/obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","leather")
 
-/obj/structure/bed/chair/comfy/red/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "carpet")
+/obj/structure/bed/chair/comfy/red/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","carpet")
 
-/obj/structure/bed/chair/comfy/teal/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "teal")
+/obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","teal")
 
-/obj/structure/bed/chair/comfy/black/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "black")
+/obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","black")
 
-/obj/structure/bed/chair/comfy/green/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "green")
+/obj/structure/bed/chair/comfy/green/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","green")
 
-/obj/structure/bed/chair/comfy/purp/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "purple")
+/obj/structure/bed/chair/comfy/purp/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","purple")
 
-/obj/structure/bed/chair/comfy/blue/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "blue")
+/obj/structure/bed/chair/comfy/blue/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","blue")
 
-/obj/structure/bed/chair/comfy/beige/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "beige")
+/obj/structure/bed/chair/comfy/beige/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","beige")
 
-/obj/structure/bed/chair/comfy/lime/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "lime")
+/obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","lime")
 
-/obj/structure/bed/chair/comfy/yellow/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "yellow")
+/obj/structure/bed/chair/comfy/yellow/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","yellow")
 
-/obj/structure/bed/chair/comfy/orange/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "orange")
+/obj/structure/bed/chair/comfy/orange/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","orange")
 
 /obj/structure/bed/chair/office
 	anchored = FALSE
@@ -210,8 +210,8 @@
 		return
 	..()
 
-/obj/structure/bed/chair/wood/Initialize(var/ml, var/newmaterial)
-	. = ..(ml, MAT_WOOD)
+/obj/structure/bed/chair/wood/New(var/newloc)
+	..(newloc, "wood")
 
 /obj/structure/bed/chair/wood/wings
 	icon_state = "wooden_chair_wings"

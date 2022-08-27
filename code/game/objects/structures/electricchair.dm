@@ -8,7 +8,7 @@
 
 /obj/structure/bed/chair/e_chair/Initialize()
 	. = ..()
-	overlays += image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir)
+	add_overlay(image('icons/obj/objects.dmi', src, "echair_over", MOB_LAYER + 1, dir))
 	return
 
 /obj/structure/bed/chair/e_chair/attackby(obj/item/weapon/W as obj, mob/user as mob)

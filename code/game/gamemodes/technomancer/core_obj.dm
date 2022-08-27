@@ -37,8 +37,8 @@
 	var/max_summons = 10			// Maximum allowed summoned entities.  Some cores will have different caps.
 	var/universal = FALSE			// Allows non-technomancers to use the core - VOREStation Add
 
-/obj/item/weapon/technomancer_core/Initialize()
-	. = ..()
+/obj/item/weapon/technomancer_core/New()
+	..()
 	START_PROCESSING(SSobj, src)
 
 /obj/item/weapon/technomancer_core/Destroy()
@@ -142,10 +142,9 @@
 	var/obj/item/weapon/technomancer_core/core = null
 	var/ability_icon_state = null
 
-/obj/spellbutton/Initialize(var/ml, var/path, var/new_name, var/new_icon_state)
-	. = ..()
+/obj/spellbutton/New(loc, var/path, var/new_name, var/new_icon_state)
 	if(!path || !ispath(path))
-		message_admins("ERROR: /obj/spellbutton/Initialize() was not given a proper path!")
+		message_admins("ERROR: /obj/spellbutton/New() was not given a proper path!")
 		qdel(src)
 	src.name = new_name
 	src.spellpath = path

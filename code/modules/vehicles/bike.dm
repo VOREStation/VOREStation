@@ -37,14 +37,14 @@
 	icon_state = "[bike_icon]_off"
 	update_icon()
 
-/obj/vehicle/bike/built/Initialize()
-	. = ..()
+/obj/vehicle/bike/built/New()
+	..()
 	qdel(cell)
 	cell = null
 
-/obj/vehicle/bike/random/Initialize()
+/obj/vehicle/bike/random/New()
 	paint_color = rgb(rand(1,255),rand(1,255),rand(1,255))
-	. = ..()
+	..()
 
 /obj/vehicle/bike/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/device/multitool) && open)

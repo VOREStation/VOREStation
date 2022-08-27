@@ -225,8 +225,8 @@
 	icon_state = "grille-b"
 	density = FALSE
 
-/obj/structure/grille/broken/Initialize()
-	. = ..()
+/obj/structure/grille/broken/New()
+	..()
 	health = rand(-5, -1) //In the destroyed but not utterly threshold.
 	healthcheck() //Send this to healthcheck just in case we want to do something else with it.
 

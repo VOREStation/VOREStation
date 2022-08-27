@@ -19,7 +19,7 @@
 
 	var/debug = 0
 	var/requires_power = 1
-	var/always_unpowered = 0	//this gets overriden to 1 for space in area/Initialize()
+	var/always_unpowered = 0	//this gets overriden to 1 for space in area/New()
 
 	// Power channel status - Is it currently energized?
 	var/power_equip = TRUE
@@ -55,13 +55,10 @@
 	var/no_spoilers = FALSE // If true, makes it much more difficult to see what is inside an area with things like mesons.
 	var/soundproofed = FALSE // If true, blocks sounds from other areas and prevents hearers on other areas from hearing the sounds within.
 
-/area/New()
-	icon_state = ""
-	luminosity = !dynamic_lighting
-	..()
-
 /area/Initialize()
 	. = ..()
+	luminosity = !(dynamic_lighting)
+	icon_state = ""
 	return INITIALIZE_HINT_LATELOAD // Areas tradiationally are initialized AFTER other atoms.
 
 /area/LateInitialize()
@@ -72,10 +69,6 @@
 	power_change()		// all machines set to current power level, also updates lighting icon
 	if(no_spoilers)
 		set_spoiler_obfuscation(TRUE)
-
-	icon = 'icons/turf/areas.dmi'
-	icon_state = "white"
-	blend_mode = BLEND_MULTIPLY
 
 // Changes the area of T to A. Do not do this manually.
 // Area is expected to be a non-null instance.

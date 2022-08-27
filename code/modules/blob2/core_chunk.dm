@@ -23,8 +23,9 @@
 /obj/item/weapon/blobcore_chunk/is_open_container()
 	return 1
 
-/obj/item/weapon/blobcore_chunk/Initialize(var/ml, var/datum/blob_type/parentblob = null)
-	. = ..(ml)
+/obj/item/weapon/blobcore_chunk/New(var/atom/newloc, var/datum/blob_type/parentblob = null)
+	..(newloc)
+
 	create_reagents(120)
 	setup_blobtype(parentblob)
 

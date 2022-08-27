@@ -5,8 +5,8 @@
 	var/searching = FALSE
 	var/datum/effect/effect/system/spark_spread/sparks
 
-/obj/item/weapon/antag_spawner/Initialize()
-	. = ..()
+/obj/item/weapon/antag_spawner/New()
+	..()
 	sparks = new /datum/effect/effect/system/spark_spread()
 	sparks.set_up(5, 0, src)
 	sparks.attach(loc)

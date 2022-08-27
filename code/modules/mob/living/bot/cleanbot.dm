@@ -17,8 +17,8 @@
 	var/spray_blood = 0
 	var/list/target_types = list()
 
-/mob/living/bot/cleanbot/Initialize()
-	. = ..()
+/mob/living/bot/cleanbot/New()
+	..()
 	get_targets()
 
 /mob/living/bot/cleanbot/Destroy()

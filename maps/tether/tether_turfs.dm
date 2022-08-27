@@ -185,7 +185,6 @@ VIRGO3B_TURF_CREATE(/turf/simulated/mineral/floor)
 	color = "#FFBBBB"
 
 /turf/simulated/sky/virgo3b/Initialize()
-	. = ..()
 	SSplanets.addTurf(src)
 	set_light(2, 2, "#FFBBBB")
 

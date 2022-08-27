@@ -37,13 +37,15 @@
 	destroy_on_drop = TRUE	//VOREStation Edit
 
 
-/obj/item/weapon/grab/Initialize(var/ml, mob/victim)
-	. = ..()
-	assailant = loc
+/obj/item/weapon/grab/New(mob/user, mob/victim)
+	..()
+	loc = user
+	assailant = user
 	affecting = victim
 
-	if(!istype(assailant) || !istype(affecting) || affecting.anchored || !assailant.Adjacent(victim))
-		return INITIALIZE_HINT_QDEL
+	if(affecting.anchored || !assailant.Adjacent(victim))
+		qdel(src)
+		return
 
 	affecting.grabbed_by += src
 	affecting.reveal("<span class='warning'>You are revealed as [assailant] grabs you.</span>")
