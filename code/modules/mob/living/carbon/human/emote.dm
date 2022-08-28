@@ -382,6 +382,6 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/new_flapping = isnull(setting) ? !flapping : setting
 	if(new_flapping != flapping)
-		flapping = setting
+		flapping = new_flapping
 		update_wing_showing()
 	return 1
