@@ -3214,6 +3214,7 @@
 #include "code\modules\mob\new_player\sprite_accessories_taur_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_wing.dm"
+#include "code\modules\mob\new_player\sprite_accessories_wing_large_vr.dm"
 #include "code\modules\mob\new_player\sprite_accessories_wing_vr.dm"
 #include "code\modules\modular_computers\laptop_vendor.dm"
 #include "code\modules\modular_computers\computers\modular_computer\core.dm"
