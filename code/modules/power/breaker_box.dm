@@ -38,10 +38,18 @@
 
 // Enabled on server startup. Used in substations to keep them in bypass mode.
 /obj/machinery/power/breakerbox/activated/Initialize()
+<<<<<<< HEAD
 	. = ..()
 	return INITIALIZE_HINT_LATELOAD
 		
 /obj/machinery/power/breakerbox/activated/LateInitialize()
+=======
+	..()
+	return INITIALIZE_HINT_LATELOAD // Lateload due to problems with powernet initialization and ordering
+
+/obj/machinery/power/breakerbox/activated/LateInitialize()
+	..()
+>>>>>>> 59bcd710205... Merge pull request #8692 from MistakeNot4892/breaker
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
