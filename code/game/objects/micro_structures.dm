@@ -7,7 +7,7 @@
 	anchored = TRUE
 	density = FALSE
 
-	var/max_accepted_scale = 0.3
+	var/max_accepted_scale = 0.5
 	var/magic = FALSE	//For events and stuff, if true, this tunnel will show up in the list regardless of whether it's in valid range, of if you're in a tunnel with this var, all tunnels of the same faction will show up redardless of range
 
 /obj/structure/micro_tunnel/Initialize()
@@ -149,7 +149,7 @@
 	enter_tunnel(user)
 
 /obj/structure/micro_tunnel/proc/can_enter(var/mob/living/user)
-	if(user.mob_size <= MOB_TINY || user.size_multiplier <= max_accepted_scale)
+	if(user.mob_size <= MOB_TINY || user.get_effective_size(TRUE) <= max_accepted_scale)
 		return TRUE
 
 	return FALSE
