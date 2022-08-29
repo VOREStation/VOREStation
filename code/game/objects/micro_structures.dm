@@ -12,9 +12,9 @@
 
 /obj/structure/micro_tunnel/Initialize()
 	. = ..()
-	if(name == "mouse hole")
+	if(name == initial(name))
 		var/area/our_area = get_area(src)
-		name = "[our_area.name] mouse hole"
+		name = "[our_area.name] [name]"
 	if(pixel_x || pixel_y)
 		return
 	offset_tunnel()
