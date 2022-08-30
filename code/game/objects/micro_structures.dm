@@ -7,8 +7,8 @@
 	anchored = TRUE
 	density = FALSE
 
-	var/max_accepted_scale = 0.5
 	var/magic = FALSE	//For events and stuff, if true, this tunnel will show up in the list regardless of whether it's in valid range, of if you're in a tunnel with this var, all tunnels of the same faction will show up redardless of range
+	micro_target = TRUE
 
 /obj/structure/micro_tunnel/Initialize()
 	. = ..()
@@ -50,7 +50,7 @@
 	if(!isliving(user))
 		return ..()
 	if(user.loc == src)
-		var/choice = tgui_alert(user,"It's dark and gloomy in here. What would you like to do?","Tunnel",list("Exit", "Move"))
+		var/choice = tgui_alert(user,"It's dark and gloomy in here. What would you like to do?","Tunnel",list("Exit", "Move", "Cancel"))
 		switch(choice)
 			if("Exit")
 				user.forceMove(get_turf(src.loc))
@@ -90,7 +90,10 @@
 				if(!destinations.len)
 					to_chat(user, "<span class = 'warning'>There are no other tunnels connected to this one!</span>")
 					return
-				choice = tgui_input_list(user, "Where would you like to go?", "Pick a tunnel", destinations)
+				else if(destinations.len == 1)
+					choice = pick(destinations)
+				else
+					choice = tgui_input_list(user, "Where would you like to go?", "Pick a tunnel", destinations)
 				if(!choice)
 					return
 				to_chat(user,"<span class = 'notice'>You begin moving...</span>")
@@ -99,6 +102,8 @@
 				user.forceMove(choice)
 				var/obj/structure/micro_tunnel/da_oddawun = choice
 				da_oddawun.tunnel_notify(user)
+				return
+			if("Cancel")
 				return
 
 	if(!can_enter(user))
@@ -149,7 +154,7 @@
 	enter_tunnel(user)
 
 /obj/structure/micro_tunnel/proc/can_enter(var/mob/living/user)
-	if(user.mob_size <= MOB_TINY || user.get_effective_size(TRUE) <= max_accepted_scale)
+	if(user.mob_size <= MOB_TINY || user.get_effective_size(TRUE) <= micro_accepted_scale)
 		return TRUE
 
 	return FALSE
@@ -199,3 +204,151 @@
 
 /obj/structure/micro_tunnel/magic
 	magic = TRUE
+
+/obj
+	var/micro_accepted_scale = 0.5
+	var/micro_target = FALSE
+
+/obj/Initialize(mapload)
+	. = ..()
+	if(micro_target)
+		verbs += /obj/proc/micro_interact
+
+/obj/proc/micro_interact()
+	set name = "Micro Interact"
+	set desc = "Micros can enter, or move between objects with this! Non-micros can reach into objects to search for micros!"
+	set category = "Object"
+	set src in oview(1)
+
+	if(!isliving(usr))
+		return
+
+	var/list/contained_mobs = list()
+	for(var/mob/living/issamob in src.contents)
+		if(isliving(issamob))
+			contained_mobs |= issamob
+
+	if(usr.loc == src)
+		var/choice = tgui_alert(usr,"What would you like to do?","[src]",list("Exit", "Move", "Cancel"))
+		switch(choice)
+			if("Exit")
+				usr.forceMove(get_turf(src.loc))
+				usr.visible_message("<span class = 'notice'>\The [usr] climbs out of \the [src]!</span>")
+				return
+
+			if("Move")
+				var/list/destinations = list()
+				var/turf/myturf = get_turf(src.loc)
+				for(var/obj/o in range(1,myturf))
+					if(!istype(o,/obj))
+						continue
+					if(o == src)
+						continue
+					if(o.micro_target)
+						destinations |= o
+
+				if(!destinations.len)
+					to_chat(usr, "<span class = 'warning'>There is nowhere to move to!</span>")
+					return
+				else if(destinations.len == 1)
+					choice = pick(destinations)
+				else
+					choice = tgui_input_list(usr, "Where would you like to go?", "Pick a destination", destinations)
+				if(!choice)
+					return
+				to_chat(usr,"<span class = 'notice'>You begin moving...</span>")
+				if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
+					return
+				var/obj/our_choice = choice
+
+				var/list/new_contained_mobs = list()
+				for(var/mob/living/issamob in src.contents)
+					if(isliving(issamob))
+						contained_mobs |= issamob
+
+				usr.forceMove(our_choice)
+
+				to_chat(usr,"<span class = 'notice'>You are inside of \the [our_choice]. You can click upon the thing you are in to exit, or travel to a nearby thing if there are other tunnels linked to it.</span>")
+
+				var/our_message = "You can see "
+				var/found_stuff = FALSE
+				for(var/thing in new_contained_mobs)
+					if(thing == usr)
+						continue
+					found_stuff = TRUE
+					our_message = "[our_message] [thing], "
+					if(isliving(thing))
+						var/mob/living/t = thing
+						to_chat(t, "<span class = 'notice'>\The [usr] enters \the [src]!</span>")
+				if(found_stuff)
+					to_chat(usr, "<span class = 'notice'>[our_message]inside of \the [src]!</span>")
+				if(prob(25))
+					our_choice.visible_message("<span class = 'warning'>Something moves inside of \the [src]. . .</span>")
+				return
+			if("Cancel")
+				return
+
+	if(!(usr.mob_size <= MOB_TINY || usr.get_effective_size(TRUE) <= micro_accepted_scale))
+		usr.visible_message("<span class = 'warning'>\The [usr] reaches into \the [src]. . .</span>","<span class = 'warning'>You reach into \the [src]. . .</span>")
+		if(!do_after(usr, 3 SECONDS, exclusive = TRUE))
+			usr.visible_message("<span class = 'notice'>\The [usr] pulls their hand out of \the [src].</span>","<span class = 'warning'>You pull your hand out of \the [src]</span>")
+			return
+
+		if(!contained_mobs.len)
+			to_chat(usr, "<span class = 'warning'>There was nothing inside.</span>")
+			usr.visible_message("<span class = 'notice'>\The [usr] pulls their hand out of \the [src].</span>","<span class = 'warning'>You pull your hand out of \the [src]</span>")
+			return
+		var/grabbed = pick(contained_mobs)
+		if(!grabbed)
+			to_chat(usr, "<span class = 'warning'>There was nothing inside.</span>")
+			usr.visible_message("<span class = 'notice'>\The [usr] pulls their hand out of \the [src].</span>","<span class = 'warning'>You pull your hand out of \the [src]</span>")
+			return
+
+		if(ishuman(usr))
+			var/mob/living/carbon/human/h = usr
+			var/mob/living/l = grabbed
+			if(isliving(grabbed))
+				l.attempt_to_scoop(h)
+			else
+				var/atom/movable/whatever = grabbed
+				whatever.forceMove(get_turf(src.loc))
+
+			usr.visible_message("<span class = 'warning'>\The [usr] pulls \the [grabbed] out of \the [src]! ! !</span>")
+			return
+
+		else if(isanimal(usr))
+			var/mob/living/simple_mob/a = usr
+			var/mob/living/l = grabbed
+			if(!a.has_hands || isliving(grabbed))
+				l.attempt_to_scoop(usr)
+			else
+				var/atom/movable/whatever = grabbed
+				whatever.forceMove(get_turf(src.loc))
+			usr.visible_message("<span class = 'warning'>\The [usr] pulls \the [grabbed] out of \the [src]! ! !</span>")
+			return
+
+	if(tgui_alert(usr,"Do you want to go into \the [src]?","Enter [src]",list("Yes", "No")) != "Yes")
+		return
+	usr.visible_message("<span class = 'notice'>\The [usr] begins climbing into \the [src]!</span>")
+	if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
+		to_chat(usr, "<span class = 'warning'>You didn't go into \the [src]!</span>")
+		return
+
+	usr.visible_message("<span class = 'notice'>\The [usr] climbs into \the [src]!</span>")
+	usr.forceMove(src)
+	to_chat(usr,"<span class = 'notice'>You are inside of \the [src]. You can click upon the tunnel to exit, or travel to another tunnel if there are other tunnels linked to it.</span>")
+
+	var/our_message = "You can see "
+	var/found_stuff = FALSE
+	for(var/thing in contained_mobs)
+		if(thing == usr)
+			continue
+		found_stuff = TRUE
+		our_message = "[our_message] [thing], "
+		if(isliving(thing))
+			var/mob/living/t = thing
+			to_chat(t, "<span class = 'notice'>\The [usr] enters \the [src]!</span>")
+	if(found_stuff)
+		to_chat(usr, "<span class = 'notice'>[our_message]inside of \the [src]!</span>")
+	if(prob(25))
+		visible_message("<span class = 'warning'>Something moves inside of \the [src]. . .</span>")
