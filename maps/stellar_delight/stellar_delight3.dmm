@@ -1580,6 +1580,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "gh" = (
@@ -2437,6 +2440,13 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/heads/chief)
+"jo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/starboardaft)
 "jp" = (
 /obj/structure/closet,
 /obj/random/contraband,
@@ -4853,6 +4863,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/open,
 /area/stellardelight/deck2/port)
+"rW" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/portfore)
 "rX" = (
 /obj/machinery/light{
 	dir = 1
@@ -5173,6 +5189,9 @@
 "tc" = (
 /obj/structure/cable/blue{
 	icon_state = "1-4"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
@@ -10286,6 +10305,12 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
+"Lo" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/portaft)
 "Lr" = (
 /obj/effect/shuttle_landmark/premade/sd/deck3/starboardairlock,
 /turf/space,
@@ -11380,6 +11405,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "OI" = (
@@ -12211,6 +12239,9 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
@@ -13680,6 +13711,9 @@
 	icon_state = "1-2"
 	},
 /obj/effect/landmark/vermin,
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "Xd" = (
@@ -21615,7 +21649,7 @@ pf
 Ns
 Ns
 Ns
-Ns
+rW
 Ns
 eF
 IP
@@ -21654,7 +21688,7 @@ IN
 xi
 dE
 dE
-dE
+Lo
 dE
 Sw
 dE
@@ -27049,7 +27083,7 @@ if
 if
 Ne
 iS
-iS
+jo
 Kz
 Dk
 qY

@@ -892,6 +892,18 @@
 	},
 /turf/simulated/floor/tiled/eris,
 /area/stellardelight/deck1/researchhall)
+"bO" = (
+/obj/structure/cable/green{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/port)
 "bP" = (
 /obj/machinery/light{
 	dir = 4
@@ -1811,6 +1823,9 @@
 /obj/structure/disposalpipe/segment{
 	dir = 1;
 	icon_state = "pipe-c"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
@@ -3384,6 +3399,12 @@
 "hg" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
+"hh" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/portcent)
 "hi" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -4611,6 +4632,9 @@
 "jw" = (
 /obj/structure/cable/pink{
 	icon_state = "1-2"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardfore)
@@ -6066,6 +6090,9 @@
 	icon_state = "4-8"
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/aft)
 "mE" = (
@@ -6786,6 +6813,12 @@
 /obj/structure/flora/pottedplant/stoutbush,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
+"og" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/security_port)
 "oh" = (
 /obj/structure/cable/white{
 	icon_state = "4-8"
@@ -11829,6 +11862,16 @@
 	},
 /turf/simulated/floor/lino,
 /area/chapel/office)
+"yW" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/milspec/color/emerald/half{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/aft)
 "yX" = (
 /obj/effect/shuttle_landmark/premade/sd/deck1/aft,
 /turf/space,
@@ -12439,6 +12482,9 @@
 /obj/structure/cable/green{
 	color = "#42038a";
 	icon_state = "1-8"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
@@ -13974,6 +14020,18 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/port)
+"Dr" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/portaft)
 "Ds" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/angled_bay/standard/color{
@@ -15730,6 +15788,9 @@
 /obj/structure/cable/green{
 	icon_state = "1-2"
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
 "Hy" = (
@@ -16345,6 +16406,9 @@
 "IG" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
@@ -18083,6 +18147,18 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/stellardelight/deck1/fore)
+"Mn" = (
+/obj/structure/cable{
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/exploration)
 "Mq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -18159,6 +18235,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/security/security_cell_hallway)
+"MC" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/stellardelight/deck1/starboard)
 "MD" = (
 /obj/structure/cable/green{
 	icon_state = "2-4"
@@ -21928,6 +22010,23 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/starboardcent)
+"Uv" = (
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/green{
+	color = "#42038a";
+	icon_state = "1-4"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck1/starboardaft)
 "Uw" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-4"
@@ -31458,7 +31557,7 @@ pP
 qq
 UQ
 Tb
-qq
+Mn
 PL
 DQ
 XM
@@ -31861,7 +31960,7 @@ RL
 Ib
 To
 bQ
-To
+Dr
 aO
 Ib
 To
@@ -32554,7 +32653,7 @@ fc
 eC
 eE
 gY
-gY
+hh
 km
 QB
 zi
@@ -32677,7 +32776,7 @@ Ii
 ks
 Te
 vx
-wf
+og
 Bf
 Yv
 yV
@@ -33125,7 +33224,7 @@ Vw
 ug
 ob
 nS
-Ov
+bO
 zM
 GX
 Fv
@@ -36111,7 +36210,7 @@ LE
 xx
 id
 yx
-ei
+MC
 ou
 Yt
 ei
@@ -36136,7 +36235,7 @@ kv
 jg
 XJ
 DK
-XJ
+yW
 XJ
 Hp
 RA
@@ -37254,7 +37353,7 @@ Dv
 Dv
 Dv
 Dv
-Qz
+Uv
 Dv
 lT
 Dv
