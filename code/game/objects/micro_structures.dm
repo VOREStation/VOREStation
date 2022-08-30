@@ -128,7 +128,8 @@
 			var/mob/living/carbon/human/h = user
 			var/mob/living/l = grabbed
 			if(isliving(grabbed))
-				l.attempt_to_scoop(h)
+				if(!l.attempt_to_scoop(h))
+					l.forceMove(get_turf(src.loc))
 			else
 				var/atom/movable/whatever = grabbed
 				whatever.forceMove(get_turf(src.loc))
@@ -140,7 +141,8 @@
 			var/mob/living/simple_mob/a = user
 			var/mob/living/l = grabbed
 			if(!a.has_hands || isliving(grabbed))
-				l.attempt_to_scoop(user)
+				if(!l.attempt_to_scoop(a))
+					l.forceMove(get_turf(src.loc))
 			else
 				var/atom/movable/whatever = grabbed
 				whatever.forceMove(get_turf(src.loc))
@@ -316,6 +318,8 @@
 			var/mob/living/l = grabbed
 			if(isliving(grabbed))
 				l.attempt_to_scoop(h)
+				if(!l.attempt_to_scoop(h))
+					l.forceMove(get_turf(src.loc))
 			else
 				var/atom/movable/whatever = grabbed
 				whatever.forceMove(get_turf(src.loc))
@@ -327,7 +331,8 @@
 			var/mob/living/simple_mob/a = usr
 			var/mob/living/l = grabbed
 			if(!a.has_hands || isliving(grabbed))
-				l.attempt_to_scoop(usr)
+				if(!l.attempt_to_scoop(a))
+					l.forceMove(get_turf(src.loc))
 			else
 				var/atom/movable/whatever = grabbed
 				whatever.forceMove(get_turf(src.loc))
