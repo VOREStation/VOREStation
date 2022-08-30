@@ -194,8 +194,10 @@
 	density = TRUE
 	anchored = TRUE
 	color = "#ffffff"
+	micro_target = TRUE	//Now micros can enter and navigate these things!!!
 	var/health = 75
 	var/damage
+
 //makes it so buildings can be dismaintaled or GodZilla style attacked
 /obj/structure/smolebuilding/attack_hand(mob/user)
 	if(user.a_intent == I_DISARM)

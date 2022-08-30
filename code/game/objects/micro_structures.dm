@@ -339,8 +339,6 @@
 			usr.visible_message("<span class = 'warning'>\The [usr] pulls \the [grabbed] out of \the [src]! ! !</span>")
 			return
 
-	if(tgui_alert(usr,"Do you want to go into \the [src]?","Enter [src]",list("Yes", "No")) != "Yes")
-		return
 	usr.visible_message("<span class = 'notice'>\The [usr] begins climbing into \the [src]!</span>")
 	if(!do_after(usr, 10 SECONDS, exclusive = TRUE))
 		to_chat(usr, "<span class = 'warning'>You didn't go into \the [src]!</span>")
