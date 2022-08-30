@@ -34,7 +34,7 @@
 				m.forceMove(src.loc)
 			else
 				m.forceMove(get_turf(src.loc))
-			m.visible_message("span class = 'notice'>\The [m] tumbles out of \the [src]!</span>")
+			m.visible_message("<span class = 'notice'>\The [m] tumbles out of \the [src]!</span>")
 	//VOREStation Add End
 
 	return ..()
