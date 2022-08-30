@@ -29491,6 +29491,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor,
 /area/vacant/vacant_shop)
 "aYf" = (
@@ -37522,6 +37525,9 @@
 /obj/effect/floor_decal/techfloor/corner{
 	dir = 4
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/medsec_maintenance)
 "boe" = (
@@ -37842,6 +37848,24 @@
 "bzK" = (
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/processing)
+"bCV" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "bEd" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 4
@@ -38461,6 +38485,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/shuttle_pad)
+"dDI" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "dDQ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -38632,6 +38672,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/iaa/officeb)
+"eiR" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "ely" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -40369,6 +40415,22 @@
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/lower/third_south)
+"knW" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "kqo" = (
 /turf/simulated/wall,
 /area/tether/surfacebase/security/iaa/officea)
@@ -40974,6 +41036,21 @@
 	},
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
+"mmk" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
 "mwz" = (
 /obj/effect/floor_decal/corner/red{
 	dir = 9
@@ -42279,6 +42356,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/grass,
 /area/hydroponics)
+"qGC" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/monotile,
+/area/tether/surfacebase/shuttle_pad)
 "qGK" = (
 /obj/structure/table/reinforced,
 /obj/item/device/radio{
@@ -42330,6 +42413,16 @@
 /obj/machinery/portable_atmospherics/hydroponics,
 /turf/simulated/floor/grass,
 /area/hydroponics)
+"qQF" = (
+/obj/machinery/alarm{
+	pixel_y = 28
+	},
+/obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/southhall)
 "qQZ" = (
 /obj/effect/floor_decal/techfloor,
 /obj/machinery/firealarm{
@@ -42943,6 +43036,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/barrestroom)
+"sUZ" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/barbackmaintenance)
 "sVC" = (
 /obj/machinery/door/firedoor/glass/hidden/shuttle,
 /obj/machinery/door/blast/shuttle/open{
@@ -44190,6 +44289,27 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_three_hall)
+"xna" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 9
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 6
+	},
+/obj/effect/floor_decal/borderfloor/corner2{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/bordercorner2{
+	dir = 1
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_three_hall)
@@ -50842,7 +50962,7 @@ eCg
 agw
 agw
 agw
-air
+knW
 aWF
 akn
 akS
@@ -54266,7 +54386,7 @@ aoX
 aqJ
 aoX
 aoX
-aix
+dDI
 avG
 apX
 alP
@@ -55262,7 +55382,7 @@ agw
 arF
 aix
 ajR
-apX
+mmk
 agw
 ats
 atH
@@ -55818,7 +55938,7 @@ aWV
 ali
 ali
 ali
-ali
+bCV
 ali
 uiW
 ali
@@ -57289,7 +57409,7 @@ aKg
 aKg
 aKe
 aOc
-aKe
+qGC
 aKg
 aKg
 aLA
@@ -57303,7 +57423,7 @@ bhm
 fsd
 qbo
 ome
-beU
+eiR
 gRG
 laB
 beU
@@ -58932,7 +59052,7 @@ asA
 aNy
 aNI
 aSb
-agp
+xna
 keg
 ycf
 ail
@@ -59265,7 +59385,7 @@ beh
 ayM
 aya
 bcd
-bcd
+sUZ
 ayE
 bfP
 aAl
@@ -59860,7 +59980,7 @@ aac
 aac
 aac
 aPs
-bhv
+qQF
 bhA
 bhC
 pSu
