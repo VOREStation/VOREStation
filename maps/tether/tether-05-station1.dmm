@@ -16579,6 +16579,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/quartermaster/delivery)
+"cCM" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/station/exploration)
 "cDf" = (
 /obj/machinery/atmospherics/portables_connector/aux{
 	dir = 1
@@ -17358,6 +17364,9 @@
 	dir = 10
 	},
 /obj/structure/disposalpipe/segment,
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_one)
 "doi" = (
@@ -21645,6 +21654,18 @@
 	},
 /turf/simulated/floor/tiled/steel,
 /area/shuttle/excursion/general)
+"hFL" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "hFV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
@@ -25530,6 +25551,25 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
+"lcy" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "lfI" = (
 /obj/machinery/access_button{
 	command = "cycle_interior";
@@ -26902,6 +26942,12 @@
 	fancy_shuttle_tag = "explo"
 	},
 /area/shuttle/excursion/cockpit)
+"mmt" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor,
+/area/maintenance/station/exploration)
 "mmJ" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -27431,6 +27477,9 @@
 "mKL" = (
 /obj/structure/bed/chair/bar_stool,
 /obj/random/plushie,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
 /turf/simulated/floor,
 /area/maintenance/station/eng_lower)
 "mKM" = (
@@ -47659,7 +47708,7 @@ jOH
 acn
 mnT
 vYJ
-vYJ
+lcy
 wRJ
 tRn
 lSs
@@ -50075,7 +50124,7 @@ lIB
 lIB
 lIB
 xdE
-pMf
+mmt
 gGC
 etY
 aac
@@ -50350,7 +50399,7 @@ etY
 hrw
 pMf
 pMf
-pMf
+cCM
 biX
 lUV
 xdE
@@ -53498,7 +53547,7 @@ aaa
 fLT
 wMe
 kOK
-klo
+hFL
 fLT
 aaa
 aaa

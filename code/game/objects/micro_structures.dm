@@ -24,6 +24,7 @@
 	for(var/mob/thing in src.contents)
 		visible_message("<span class = 'warning'>\The [thing] tumbles out!</span>")
 		thing.forceMove(get_turf(src.loc))
+		thing.cancel_camera()
 
 	return ..()
 
@@ -54,6 +55,7 @@
 		switch(choice)
 			if("Exit")
 				user.forceMove(get_turf(src.loc))
+				user.cancel_camera()
 				user.visible_message("<span class = 'notice'>\The [user] climbs out of \the [src]!</span>")
 				return
 			if("Move")
@@ -100,6 +102,7 @@
 				if(!do_after(user, 10 SECONDS, exclusive = TRUE))
 					return
 				user.forceMove(choice)
+				user.cancel_camera()
 				var/obj/structure/micro_tunnel/da_oddawun = choice
 				da_oddawun.tunnel_notify(user)
 				return
@@ -183,10 +186,12 @@
 /obj/structure/micro_tunnel/proc/enter_tunnel(mob/living/k)
 	k.visible_message("<span class = 'notice'>\The [k] climbs into \the [src]!</span>")
 	k.forceMove(src)
+	k.cancel_camera()
 	to_chat(k,"<span class = 'notice'>You are inside of \the [src]. It's dark and gloomy inside of here. You can click upon the tunnel to exit, or travel to another tunnel if there are other tunnels linked to it.</span>")
 	tunnel_notify(k)
 
 /obj/structure/micro_tunnel/proc/tunnel_notify(var/mob/living/user)
+	to_chat(user, "<span class = 'notice'>You arrive inside \the [src].</span>")
 	var/our_message = "You can see "
 	var/found_stuff = FALSE
 	for(var/thing in src.contents)
@@ -233,6 +238,7 @@
 		switch(choice)
 			if("Exit")
 				usr.forceMove(get_turf(src.loc))
+				usr.cancel_camera()
 				usr.visible_message("<span class = 'notice'>\The [usr] climbs out of \the [src]!</span>")
 				return
 
@@ -267,6 +273,7 @@
 						contained_mobs |= issamob
 
 				usr.forceMove(our_choice)
+				usr.cancel_camera()
 
 				to_chat(usr,"<span class = 'notice'>You are inside of \the [our_choice]. You can click upon the thing you are in to exit, or travel to a nearby thing if there are other tunnels linked to it.</span>")
 
@@ -283,7 +290,7 @@
 				if(found_stuff)
 					to_chat(usr, "<span class = 'notice'>[our_message]inside of \the [src]!</span>")
 				if(prob(25))
-					our_choice.visible_message("<span class = 'warning'>Something moves inside of \the [src]. . .</span>")
+					our_choice.visible_message("<span class = 'warning'>Something moves inside of \the [our_choice]. . .</span>")
 				return
 			if("Cancel")
 				return
@@ -336,6 +343,7 @@
 
 	usr.visible_message("<span class = 'notice'>\The [usr] climbs into \the [src]!</span>")
 	usr.forceMove(src)
+	usr.cancel_camera()
 	to_chat(usr,"<span class = 'notice'>You are inside of \the [src]. You can click upon the tunnel to exit, or travel to another tunnel if there are other tunnels linked to it.</span>")
 
 	var/our_message = "You can see "
@@ -352,3 +360,20 @@
 		to_chat(usr, "<span class = 'notice'>[our_message]inside of \the [src]!</span>")
 	if(prob(25))
 		visible_message("<span class = 'warning'>Something moves inside of \the [src]. . .</span>")
+
+/obj/effect/mouse_hole_spawner
+	name = "mouse hole spawner"
+	icon = 'icons/obj/landmark_vr.dmi'
+	icon_state = "blue-x"
+	invisibility = 101
+
+	var/chance_to_spawn = 25
+
+/obj/effect/mouse_hole_spawner/Initialize()
+	. = ..()
+
+	if(prob(chance_to_spawn))
+		var/obj/structure/micro_tunnel/tunnel = new (get_turf(src.loc))
+		tunnel.set_dir(dir)
+
+	qdel(src)

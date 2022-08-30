@@ -3157,6 +3157,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/effect/mouse_hole_spawner,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/north_stairs_one)
 "afb" = (
@@ -7105,6 +7106,9 @@
 	},
 /obj/machinery/camera/network/civilian{
 	dir = 1
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/public_garden_one)
@@ -13056,6 +13060,9 @@
 	d1 = 1;
 	d2 = 4;
 	icon_state = "1-4"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/solars)
@@ -28493,6 +28500,9 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_lodging)
 "aWm" = (
@@ -31820,6 +31830,12 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"bXC" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/xenoflora)
 "bZC" = (
 /turf/simulated/floor/looking_glass,
 /area/looking_glass/lg_1)
@@ -32507,6 +32523,18 @@
 /obj/item/weapon/soap/nanotrasen,
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)
+"elf" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/lowernorthhall)
 "emK" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -32586,6 +32614,13 @@
 	},
 /turf/simulated/floor,
 /area/tether/surfacebase/security/gasstorage)
+"eyq" = (
+/obj/structure/catwalk,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/xenoflora)
 "ezn" = (
 /obj/machinery/power/apc{
 	dir = 1;
@@ -33335,6 +33370,25 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/carpet/gaycarpet,
 /area/tether/surfacebase/funny/clownoffice)
+"gHx" = (
+/obj/structure/cable{
+	icon_state = "4-8"
+	},
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/floor_decal/rust,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/visible/supply{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/research)
 "gIa" = (
 /obj/structure/railing{
 	dir = 8
@@ -34102,6 +34156,11 @@
 	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/lowerhall)
+"izF" = (
+/obj/structure/flora/pottedplant/stoutbush,
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "iEk" = (
 /obj/machinery/button/remote/blast_door{
 	dir = 8;
@@ -34386,6 +34445,9 @@
 	dir = 8
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
+	dir = 8
+	},
+/obj/effect/mouse_hole_spawner{
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
@@ -35062,6 +35124,14 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig)
+"lma" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/research)
 "loc" = (
 /obj/structure/catwalk,
 /obj/machinery/atmospherics/pipe/manifold/visible/scrubbers{
@@ -36528,6 +36598,13 @@
 	},
 /turf/simulated/floor/tiled/freezer,
 /area/tether/surfacebase/security/brig/bathroom)
+"oDt" = (
+/obj/structure/flora/pottedplant/stoutbush,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/tram)
 "oId" = (
 /obj/structure/closet{
 	desc = "Dents and old flaky paint blanket this old storage unit.";
@@ -36769,6 +36846,22 @@
 "pCj" = (
 /turf/simulated/wall/r_wall,
 /area/tether/surfacebase/security/brig)
+"pDY" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/lower/first_west)
 "pFF" = (
 /obj/structure/catwalk,
 /obj/structure/cable/green{
@@ -38392,6 +38485,24 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/visitor_laundry)
+"uku" = (
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 10
+	},
+/obj/effect/floor_decal/corner/lightgrey{
+	dir = 5
+	},
+/obj/effect/floor_decal/borderfloor/shifted{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border/shifted{
+	dir = 1
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
 "ulr" = (
 /obj/effect/map_helper/airlock/door/int_door,
 /obj/machinery/access_button/airlock_interior{
@@ -39096,6 +39207,24 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/mining_eva)
+"wDf" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled,
+/area/tether/surfacebase/surface_one_hall)
 "wOK" = (
 /obj/effect/floor_decal/rust,
 /obj/machinery/light/small{
@@ -39436,6 +39565,26 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/tiled/dark,
 /area/tether/surfacebase/security/brig/storage)
+"xJs" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/orange{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/steel_dirty,
+/area/maintenance/lower/atmos)
 "xOH" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
@@ -47215,7 +47364,7 @@ aah
 aah
 aah
 ahl
-ahL
+pDY
 anP
 adu
 ahl
@@ -47962,7 +48111,7 @@ awn
 awn
 aBP
 aCw
-aLv
+lma
 aCY
 aCZ
 aLv
@@ -49073,7 +49222,7 @@ aru
 aoH
 bcd
 apu
-aqb
+eyq
 ate
 apu
 bcd
@@ -49797,7 +49946,7 @@ ayH
 azN
 agM
 agM
-aAw
+gHx
 aBO
 aah
 aah
@@ -50782,7 +50931,7 @@ apu
 ahc
 agM
 bcp
-atL
+bXC
 atL
 atL
 atj
@@ -52030,7 +52179,7 @@ adP
 aao
 cPX
 afO
-aBB
+elf
 aCr
 dYd
 aEh
@@ -52959,7 +53108,7 @@ aUW
 aWf
 aWE
 aUb
-aXr
+xJs
 aXJ
 aYe
 aYe
@@ -53326,7 +53475,7 @@ anZ
 aol
 aoT
 apE
-aqh
+wDf
 aqL
 doa
 aqL
@@ -53355,7 +53504,7 @@ aCJ
 aCJ
 agM
 yaA
-vrS
+uku
 ayG
 qBb
 aJR
@@ -55465,7 +55614,7 @@ aah
 aah
 aah
 atx
-atW
+oDt
 auA
 auS
 avA
@@ -56197,7 +56346,7 @@ lsh
 wek
 pvL
 hOH
-atW
+izF
 atx
 aad
 aad

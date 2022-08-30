@@ -97,6 +97,15 @@
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
+"hW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "it" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/door/firedoor/glass/hidden{
@@ -151,6 +160,10 @@
 "kz" = (
 /turf/space/v3b_midpoint,
 /area/tether/transit)
+"lG" = (
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "lL" = (
 /obj/effect/blocker,
 /turf/space/v3b_midpoint,
@@ -252,6 +265,12 @@
 	},
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/tiled/monotile,
+/area/tether/midpoint)
+"rW" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "sw" = (
 /obj/effect/floor_decal/corner/lightgrey{
@@ -9076,7 +9095,7 @@ pK
 pK
 Pz
 Wc
-pK
+rW
 pK
 Wc
 Pz
@@ -9923,7 +9942,7 @@ mT
 mT
 pK
 pK
-pK
+lG
 Dz
 Qv
 Hs
@@ -10502,7 +10521,7 @@ Hs
 Hs
 Dz
 PF
-Or
+hW
 pK
 pK
 mT
