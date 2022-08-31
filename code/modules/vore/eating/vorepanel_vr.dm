@@ -357,6 +357,23 @@
 				to_chat(usr,"<span class='notice'>Virgo-specific preferences applied from active slot!</span>")
 				unsaved_changes = FALSE
 			return TRUE
+		if("exportpanel")
+			var/mob/living/user = usr
+			if(!user)
+				to_chat(usr,"<span class='notice'>Mob undefined: [user]</span>")
+				return FALSE
+
+			var/datum/vore_look/export_panel/exportPanel
+			if(!exportPanel)
+				exportPanel = new(usr)
+
+			if(!exportPanel)
+				to_chat(user,"<span class='notice'>Export panel undefined: [exportPanel]</span>")
+				return FALSE
+
+			exportPanel.open_export_panel(user)
+
+			return TRUE
 		if("setflavor")
 			var/new_flavor = html_encode(tgui_input_text(usr,"What your character tastes like (400ch limit). This text will be printed to the pred after 'X tastes of...' so just put something like 'strawberries and cream':","Character Flavor",host.vore_taste))
 			if(!new_flavor)
