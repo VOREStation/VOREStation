@@ -98,18 +98,19 @@ var/datum/planet/virgo4/planet_virgo4 = null
 /datum/weather_holder/virgo4
 	temperature = T0C
 	allowed_weather_types = list(
-		WEATHER_CLEAR		= new /datum/weather/virgo4/clear(),
-		WEATHER_OVERCAST	= new /datum/weather/virgo4/overcast(),
-		WEATHER_LIGHT_SNOW	= new /datum/weather/virgo4/light_snow(),
-		WEATHER_SNOW		= new /datum/weather/virgo4/snow(),
-		WEATHER_BLIZZARD	= new /datum/weather/virgo4/blizzard(),
-		WEATHER_RAIN		= new /datum/weather/virgo4/rain(),
-		WEATHER_STORM		= new /datum/weather/virgo4/storm(),
-		WEATHER_HAIL		= new /datum/weather/virgo4/hail(),
-		WEATHER_BLOOD_MOON	= new /datum/weather/virgo4/blood_moon(),
-		WEATHER_EMBERFALL	= new /datum/weather/virgo4/emberfall(),
-		WEATHER_ASH_STORM	= new /datum/weather/virgo4/ash_storm(),
-		WEATHER_FALLOUT		= new /datum/weather/virgo4/fallout()
+		WEATHER_CLEAR			= new /datum/weather/virgo4/clear(),
+		WEATHER_OVERCAST		= new /datum/weather/virgo4/overcast(),
+		WEATHER_LIGHT_SNOW		= new /datum/weather/virgo4/light_snow(),
+		WEATHER_SNOW			= new /datum/weather/virgo4/snow(),
+		WEATHER_BLIZZARD		= new /datum/weather/virgo4/blizzard(),
+		WEATHER_RAIN			= new /datum/weather/virgo4/rain(),
+		WEATHER_STORM			= new /datum/weather/virgo4/storm(),
+		WEATHER_HAIL			= new /datum/weather/virgo4/hail(),
+		WEATHER_BLOOD_MOON		= new /datum/weather/virgo4/blood_moon(),
+		WEATHER_EMBERFALL		= new /datum/weather/virgo4/emberfall(),
+		WEATHER_ASH_STORM		= new /datum/weather/virgo4/ash_storm(),
+		WEATHER_ASH_STORM_SAFE	= new /datum/weather/virgo4/ash_storm_safe(),
+		WEATHER_FALLOUT			= new /datum/weather/virgo4/fallout()
 		)
 	roundstart_weather_chances = list(
 		WEATHER_CLEAR		= 50,
@@ -451,6 +452,28 @@ var/datum/planet/virgo4/planet_virgo4 = null
 				continue // They're indoors, so no need to burn them with ash.
 
 			L.inflict_heat_damage(rand(1, 3))
+
+//A non-lethal variant of the ash_storm. Stays on indefinitely.
+/datum/weather/virgo4/ash_storm_safe
+	name = "ash storm (Safe)"
+	icon_state = "ashfall_moderate"
+	light_modifier = 0.1
+	light_color = "#FF0000"
+	temp_high = 323.15	// 50c
+	temp_low = 313.15	// 40c
+	wind_high = 6
+	wind_low = 3
+	flight_failure_modifier = 50
+	transition_chances = list(
+		WEATHER_ASH_STORM_SAFE = 100
+		)
+	observed_message = "All that can be seen is black smoldering ash."
+	transition_messages = list(
+		"Smoldering clouds of scorching ash billow down around you!"
+	)
+	// Lets recycle.
+	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
+	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
 
 
 // Totally radical.
