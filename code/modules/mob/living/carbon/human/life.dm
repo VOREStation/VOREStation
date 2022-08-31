@@ -1364,7 +1364,9 @@
 		else
 			clear_alert("high")
 
-		if(!isbelly(loc)) clear_fullscreen("belly") //VOREStation Add - Belly fullscreens safety
+		if(!isbelly(loc)) //VOREStation Add - Belly fullscreens safety
+			clear_fullscreen("belly")
+			//clear_fullscreen("belly2") //For multilayered stomachs. Not currently implemented.
 
 		if(config.welder_vision)
 			var/found_welder
