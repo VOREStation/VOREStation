@@ -13,9 +13,11 @@
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/sound/S = sound(get_sfx(soundin))
 	var/maxdistance = (world.view + extrarange) * 2  //VOREStation Edit - 3 to 2
-	var/list/listeners = player_list
+	var/list/listeners = player_list.Copy()
 	if(!ignore_walls) //these sounds don't carry through walls
-		listeners = listeners & hearers(maxdistance,turf_source)
+		for(var/mob/listen in listeners)
+			if(!(get_turf(listen) in hear(maxdistance,source)))
+				listeners -= listen
 	for(var/mob/M as anything in listeners)
 		if(!M || !M.client)
 			continue
