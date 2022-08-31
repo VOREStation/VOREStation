@@ -480,7 +480,7 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 
 //A non-lethal variant of the ash_storm. Stays on indefinitely.
 /datum/weather/virgo3c/ash_storm_safe
-	name = "ash storm (Safe)"
+	name = "light ash storm"
 	icon_state = "ashfall_moderate"
 	light_modifier = 0.1
 	light_color = "#FF0000"

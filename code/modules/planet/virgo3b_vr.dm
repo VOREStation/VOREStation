@@ -481,7 +481,7 @@ var/datum/planet/virgo3b/planet_virgo3b = null
 			L.inflict_heat_damage(rand(1, 3))
 
 /datum/weather/virgo3b/ash_storm_safe
-	name = "ash storm (Safe)"
+	name = "light ash storm"
 	icon_state = "ashfall_moderate"
 	light_modifier = 0.1
 	light_color = "#FF0000"
