@@ -4,8 +4,13 @@
 	var/hostile = FALSE						// Do we try to hurt others?
 	var/retaliate = FALSE					// Attacks whatever struck it first. Mobs will still attack back if this is false but hostile is true.
 	var/mauling = FALSE						// Attacks unconscious mobs
+<<<<<<< HEAD
 	var/unconscious_vore = FALSE			//VOREStation Add - allows a mob to go for unconcious targets IF their vore prefs align
 	var/handle_corpse = FALSE				// Allows AI to acknowledge corpses (e.g. nurse spiders)
+=======
+	var/ignore_incapacitated = FALSE		// If it's interested in attacking targets that are STUNNED.
+	var/handle_corpse = FALSE					// Allows AI to acknowledge corpses (e.g. nurse spiders)
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 
 	var/atom/movable/target = null			// The thing (mob or object) we're trying to kill.
 	var/atom/movable/preferred_target = null// If set, and if given the chance, we will always prefer to target this over other options.
@@ -140,6 +145,12 @@
 				//VOREStation Add End
 				else
 					return FALSE
+<<<<<<< HEAD
+=======
+		if(L.incapacitated(INCAPACITATION_STUNNED)) // Are they stunned and do we care?
+			if(ignore_incapacitated)
+				return FALSE
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 		if(holder.IIsAlly(L))
 			return FALSE
 		return TRUE
@@ -172,6 +183,13 @@
 /datum/ai_holder/proc/lose_target()
 	ai_log("lose_target() : Entering.", AI_LOG_TRACE)
 	if(target)
+<<<<<<< HEAD
+=======
+		ai_log("lose_target() : Had a target, checking if still valid.", AI_LOG_DEBUG)
+		if(!can_attack(target, FALSE)) /// If it's not valid to chase, don't keep looking.
+			remove_target()
+			return find_target()
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 		ai_log("lose_target() : Had a target, setting to null and LTT.", AI_LOG_DEBUG)
 		target = null
 		lose_target_time = world.time
@@ -256,6 +274,7 @@
 	if(holder.IIsAlly(attacker)) // I'll overlook it THIS time...
 		ai_log("react_to_attack() : Was attacked by [attacker], but they were an ally.", AI_LOG_TRACE)
 		return FALSE
+<<<<<<< HEAD
 	if(target && !ignore_timers && (world.time < last_target_time + 8 SECONDS)) // Already fighting someone. Switching every time we get hit would impact our combat performance.
 		ai_log("react_to_attack() : Was attacked by [attacker], but we switched targets too recently to change.", AI_LOG_TRACE)
 		on_attacked(attacker)
@@ -264,6 +283,18 @@
 	if(holder.resting)	// I can't kill someone while I'm laying down!
 		ai_log("react_to_attack() : AI is resting. Getting up.", AI_LOG_TRACE)
 		holder.lay_down()
+=======
+	holder.IWasAttackedBy(attacker)
+	if(target) // Already fighting someone. Switching every time we get hit would impact our combat performance.
+		if(!retaliate)	// If we don't get to fight back, we don't fight back...
+			ai_log("react_to_attack() : Was attacked by [attacker], but we already have a target.", AI_LOG_TRACE)
+			on_attacked(attacker) // So we attack immediately and not threaten.
+			return FALSE
+		else if(check_attacker(attacker) && world.time > last_target_time + 3 SECONDS)	// Otherwise, let 'er rip
+			ai_log("react_to_attack() : Was attacked by [attacker]. Can retaliate, waited 3 seconds.", AI_LOG_INFO)
+			on_attacked(attacker) // So we attack immediately and not threaten.
+			return give_target(attacker) // Also handles setting the appropiate stance.
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 
 	if(stance == STANCE_SLEEP) // If we're asleep, try waking up if someone's wailing on us.
 		ai_log("react_to_attack() : AI is asleep. Waking up.", AI_LOG_TRACE)

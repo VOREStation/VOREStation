@@ -37,6 +37,11 @@ var/global/list/emotes_by_key
 	var/emote_volume_synthetic = 50                     // As above, but used when check_synthetic() is true.
 	var/emote_delay = 1.2 SECONDS                       // Time in ds that this emote will block further emote use (spam prevention). // VOREStation Edit
 
+	var/broadcast_sound                                 // This sound will be passed to the entire connected z-chunk if set.
+	var/broadcast_sound_synthetic                       // As above but for synthetics.
+	var/broadcast_volume = 15                           // Volume for broadcast sound.
+	var/broadcast_distance                              // How far does the sound broadcast.
+
 	var/message_type = VISIBLE_MESSAGE                  // Audible/visual flag
 	var/check_restraints                                // Can this emote be used while restrained?
 	var/check_range                                     // falsy, or a range outside which the emote will not work
@@ -45,6 +50,9 @@ var/global/list/emotes_by_key
 	
 	var/sound_preferences = list(/datum/client_preference/emote_noises) // Default emote sound_preferences is just emote_noises. Belch emote overrides this list for pref-checks.
 	var/sound_vary = FALSE
+
+	var/emote_cooldown                                  // How long will we be on cooldown for this emote.
+	var/list/emote_cooldowns = list()                   // Assoc list of weakref to mob to next emote.
 
 /decl/emote/Initialize()
 	. = ..()
@@ -70,23 +78,40 @@ var/global/list/emotes_by_key
 	return emote_message_3p
 
 /decl/emote/proc/get_emote_sound(var/atom/user)
-	if(check_synthetic(user) && emote_sound_synthetic)
-		return list(
+	var/synth = check_synthetic(user)
+	if(synth && emote_sound_synthetic)
+		. = list(
 			"sound" = emote_sound_synthetic,
 			"vol" =   emote_volume_synthetic
 		)
-	if(emote_sound)
-		return list(
+	else if(emote_sound)
+		. = list(
 			"sound" = emote_sound,
 			"vol" =   emote_volume
 		)
 
+	if(synth && broadcast_sound_synthetic)
+		LAZYINITLIST(.)
+		.["broadcast"] = broadcast_sound_synthetic
+	else if(broadcast_sound)
+		LAZYINITLIST(.)
+		.["broadcast"] = broadcast_sound
+
 /decl/emote/proc/do_emote(var/atom/user, var/extra_params)
+
 	if(ismob(user) && check_restraints)
 		var/mob/M = user
 		if(M.restrained())
 			to_chat(user, SPAN_WARNING("You are restrained and cannot do that."))
 			return
+
+	if(emote_cooldown)
+		var/user_ref = "\ref[user]"
+		var/next_emote = emote_cooldowns[user_ref]
+		if(world.time < next_emote)
+			to_chat(user, SPAN_WARNING("You cannot use this emote again for another [round((next_emote - world.time)/(1 SECOND))] second\s."))
+			return FALSE
+		emote_cooldowns[user_ref] = (world.time + emote_cooldown)
 
 	var/atom/target
 	if(can_target() && extra_params)
@@ -175,19 +200,69 @@ var/global/list/emotes_by_key
 	return
 
 /decl/emote/proc/do_sound(var/atom/user)
+
+	var/turf/user_turf = get_turf(user)
+	if(!istype(user_turf))
+		return
+
 	var/list/use_sound = get_emote_sound(user)
 	if(!islist(use_sound) || length(use_sound) < 2)
 		return
+
 	var/sound_to_play = use_sound["sound"]
-	if(!sound_to_play)
-		return
-	if(islist(sound_to_play))
-		if(sound_to_play[user.gender])
-			sound_to_play = sound_to_play[user.gender]
-		if(islist(sound_to_play) && length(sound_to_play))
-			sound_to_play = pick(sound_to_play)
 	if(sound_to_play)
+<<<<<<< HEAD
 		playsound(user.loc, sound_to_play, use_sound["vol"], sound_vary, frequency = null, preference = sound_preferences) //VOREStation Add - Preference
+=======
+		if(islist(sound_to_play))
+			if(sound_to_play[user.gender])
+				sound_to_play = sound_to_play[user.gender]
+			if(islist(sound_to_play) && length(sound_to_play))
+				sound_to_play = pick(sound_to_play)
+		if(sound_to_play)
+			playsound(user.loc, sound_to_play, use_sound["vol"], 0)
+
+	var/sound_to_broadcast = use_sound["broadcast"]
+	if(!sound_to_broadcast)
+		return
+
+	// We can't always use GetConnectedZlevels() here because it includes horizontally connected z-levels, which don't work well with our distance checking.
+	var/list/affected_levels
+	if(isnull(broadcast_distance))
+		affected_levels = GetConnectedZlevels(user_turf.z)
+	else
+		affected_levels = list(user_turf.z)
+		// Climb to the top of the stack.
+		var/turf/checking = user_turf
+		while(checking && HasAbove(checking.z))
+			checking = GetAbove(checking)
+			affected_levels += checking.z
+		// Fall to the bottom of the stack.
+		checking = user_turf
+		while(checking && HasBelow(checking.z))
+			checking = GetBelow(checking)
+			affected_levels += checking.z
+
+	var/list/close_listeners = hearers(world.view, user_turf)
+	for(var/listener in player_list)
+		var/turf/T = get_turf(listener)
+		if(!istype(T) || !(T.z in affected_levels) || (listener in close_listeners))
+			continue
+		var/turf/reference_point = locate(T.x, T.y, user_turf.z)
+		if(!reference_point)
+			continue
+		var/direction = get_dir(reference_point, user_turf)
+		if(!direction)
+			continue
+		if(!isnull(broadcast_distance) && get_dist(reference_point, user_turf) > broadcast_distance)
+			continue
+		broadcast_emote_to(sound_to_broadcast, listener, direction)
+
+/decl/emote/proc/broadcast_emote_to(var/send_sound, var/mob/target, var/direction)
+	var/turf/sound_origin = get_turf(target)
+	target.playsound_local(get_step(sound_origin, direction) || sound_origin, send_sound, broadcast_volume)
+	return TRUE
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 
 /decl/emote/proc/mob_can_use(var/mob/user)
 	return istype(user) && user.stat != DEAD && (type in user.get_available_emotes())

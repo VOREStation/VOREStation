@@ -28,9 +28,17 @@
 
 /decl/emote/audible/whistle/summon
 	key = "swhistle"
-	emote_message_1p = "You whistle a tune."
-	emote_message_3p = "whistles a tune."
+	emote_message_1p = "You give an ear-piercing whistle."
+	emote_message_3p = "gives an ear-piercing whistle."
 	emote_sound = 'sound/voice/summon_whistle.ogg'
-	emote_message_synthetic_1p = "You whistle a robotic tune."
-	emote_message_synthetic_3p = "whistles a robotic tune."
+	emote_message_synthetic_1p = "You synthesise an ear-piercing whistle."
+	emote_message_synthetic_3p = "synthesises an ear-piercing whistle."
 	emote_sound_synthetic = 'sound/voice/summon_whistle_robot.ogg'
+	broadcast_sound = 'sound/voice/summon_whistle.ogg'
+	broadcast_sound_synthetic = 'sound/voice/summon_whistle_robot.ogg'
+	emote_cooldown = 20 SECONDS
+	broadcast_distance = 65
+
+/decl/emote/audible/whistle/summon/broadcast_emote_to(var/send_sound, var/mob/target, var/direction)
+	if((. = ..()))
+		to_chat(target, SPAN_NOTICE("You hear a piercing whistle from somewhere to the [dir2text(direction)]."))

@@ -222,7 +222,7 @@
 				update_icon()
 
 			if(trans)
-				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
+				to_chat(user, SPAN_NOTICE("You inject [trans] unit\s of the solution. The syringe now contains [src.reagents.total_volume] unit\s."))
 				if(ismob(target))
 					add_attack_logs(user,target,"Injected with [src.name] containing [contained], trasferred [trans] units")
 			else

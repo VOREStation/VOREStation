@@ -37,6 +37,12 @@
 			if(data[taste]/totalFlavor < 0.1)
 				data -= taste
 
+#define ANIMAL_NUTRITION_MULTIPLIER 0.5
+/datum/reagent/nutriment/affect_animal(var/mob/living/simple_mob/animal/M, var/removed)
+	M.add_nutrition(nutriment_factor * removed * M.get_dietary_food_modifier(src) * ANIMAL_NUTRITION_MULTIPLIER)
+	return ..()
+#undef ANIMAL_NUTRITION_MULTIPLIER
+
 /datum/reagent/nutriment/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(!injectable && alien != IS_SLIME && alien != IS_CHIMERA && !M.isSynthetic()) //VOREStation Edit
 		M.adjustToxLoss(0.1 * removed)
@@ -50,6 +56,7 @@
 
 /datum/reagent/nutriment/affect_ingest(var/mob/living/carbon/M, var/alien, var/removed)
 	switch(alien)
+<<<<<<< HEAD
 		if(IS_DIONA) return
 		if(IS_UNATHI) removed *= 0.5
 		if(IS_CHIMERA) removed *= 0.25 //VOREStation Edit
@@ -62,6 +69,18 @@
 			M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
 	else
 		M.adjust_nutrition((nutriment_factor * removed) * M.species.synthetic_food_coeff)
+=======
+		if(IS_DIONA)
+			return
+		if(IS_UNATHI)
+			removed *= 0.5
+	if(issmall(M))
+		removed *= 2 // Small bodymass, more effect from lower volume.
+	if(!(M.species.allergens & allergen_type))	//assuming it doesn't cause a horrible reaction, we'll be ok!
+		M.heal_organ_damage(0.5 * removed, 0)
+		M.adjust_nutrition(nutriment_factor * removed)
+		M.add_chemical_effect(CE_BLOODRESTORE, 4 * removed)
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 
 	//VOREStation Edits Stop
 

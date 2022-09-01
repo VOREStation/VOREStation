@@ -221,11 +221,19 @@
 "em" = (/obj/machinery/atmospherics/pipe/simple{ icon_state = "intact"; dir = 2; level = 2},/obj/structure/disposalpipe/segment,/turf/simulated/floor{ icon_state = "floorgrime"; dir = 6},/area/ship/scrap/crew)
 "en" = (/obj/machinery/light/small{ icon_state = "bulb1"; dir = 8},/obj/machinery/light_switch{pixel_x = -25},/turf/simulated/floor{ icon_state = "bot"; dir = 2},/area/ship/scrap/cargo)
 "eo" = (/obj/effect/decal/cleanable/dirt,/obj/structure/cable,/obj/machinery/power/apc{dir = 4; name = "Cargo Hold APC"},/turf/simulated/floor{ icon_state = "bot"; dir = 2},/area/ship/scrap/cargo)
+<<<<<<< HEAD
 "ep" = (/obj/structure/table/standard,/obj/item/weapon/storage/pill_bottle/kelotane,/obj/item/weapon/storage/box/syringes,/obj/structure/cable,/obj/machinery/power/apc{name = "Medical Bay APC"},/obj/machinery/light_switch{pixel_x = -25},/turf/simulated/floor{icon_state = "white"},/area/ship/scrap/crew/medbay)
 "eq" = (/obj/structure/table/standard,/obj/item/weapon/storage/pill_bottle/antitox,/obj/item/weapon/storage/pill_bottle/kelotane,/obj/item/clothing/tie/stethoscope,/turf/simulated/floor{icon_state = "white"},/area/ship/scrap/crew/medbay)
 "er" = (/obj/structure/table/standard,/obj/item/weapon/storage/firstaid,/obj/item/device/healthanalyzer,/turf/simulated/floor{icon_state = "white"},/area/ship/scrap/crew/medbay)
 "es" = (/obj/item/device/radio,/turf/simulated/floor/plating,/area)
 "et" = (/obj/machinery/light/small{ icon_state = "bulb1"; dir = 1},/obj/item/weapon/coin/gold,/obj/item/weapon/coin/silver,/turf/simulated/floor/plating{dir = 2; icon_state = "warnplate"},/area/ship/scrap/maintenance/engine)
+=======
+"ep" = (/obj/structure/table/standard,/obj/item/storage/pill_bottle/kelotane,/obj/item/storage/box/syringes,/obj/structure/cable,/obj/machinery/power/apc{name = "Medical Bay APC"},/obj/machinery/light_switch{pixel_x = -25},/turf/simulated/floor{icon_state = "white"},/area/ship/scrap/crew/medbay)
+"eq" = (/obj/structure/table/standard,/obj/item/storage/pill_bottle/antitox,/obj/item/storage/pill_bottle/kelotane,/obj/item/clothing/tie/stethoscope,/turf/simulated/floor{icon_state = "white"},/area/ship/scrap/crew/medbay)
+"er" = (/obj/structure/table/standard,/obj/item/storage/firstaid/regular,/obj/item/healthanalyzer,/turf/simulated/floor{icon_state = "white"},/area/ship/scrap/crew/medbay)
+"es" = (/obj/item/radio,/turf/simulated/floor/plating,/area)
+"et" = (/obj/machinery/light/small{ icon_state = "bulb1"; dir = 1},/obj/item/coin/gold,/obj/item/coin/silver,/turf/simulated/floor/plating{dir = 2; icon_state = "warnplate"},/area/ship/scrap/maintenance/engine)
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 "eu" = (/turf/simulated/floor/plating{dir = 2; icon_state = "warnplate"},/area/ship/scrap/maintenance/engine)
 "ev" = (/obj/structure/window/reinforced{dir = 1},/turf/simulated/floor/plating/airless,/area/ship/scrap/maintenance/engine)
 "ew" = (/obj/structure/window/reinforced{dir = 1},/obj/machinery/light/small{ icon_state = "bulb1"; dir = 1},/turf/simulated/floor/plating/airless,/area/ship/scrap/maintenance/engine)

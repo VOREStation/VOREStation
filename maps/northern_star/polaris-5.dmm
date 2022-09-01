@@ -323,7 +323,11 @@
 "gk" = (/obj/structure/table/reinforced,/obj/structure/cable/blue{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/industrial/warning,/obj/machinery/button/remote/blast_door{id = "xenobio2"; name = "Containment Blast Doors"; pixel_x = 0; pixel_y = 4; req_access = list(55)},/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/tiled/white,/area/outpost/research/xenobiology)
 "gl" = (/obj/machinery/disposal,/obj/structure/disposalpipe/trunk{dir = 1},/obj/structure/cable/blue{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/effect/floor_decal/industrial/warning{dir = 6},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/tiled/white,/area/outpost/research/xenobiology)
 "gm" = (/obj/machinery/camera/network/research_outpost{c_tag = "OPR - Xenobiology Fore Starboard"; dir = 2},/obj/machinery/light{dir = 1},/obj/structure/cable/blue{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/tiled,/area/outpost/research/xenobiology)
+<<<<<<< HEAD
 "gn" = (/obj/structure/table/standard,/obj/item/clothing/suit/storage/hooded/wintercoat/science,/obj/item/clothing/suit/storage/hooded/wintercoat/science,/obj/item/weapon/storage/firstaid,/turf/simulated/floor/tiled/dark,/area/outpost/research/xenobiology)
+=======
+"gn" = (/obj/structure/table/standard,/obj/item/clothing/suit/storage/hooded/wintercoat/science,/obj/item/clothing/suit/storage/hooded/wintercoat/science,/obj/item/storage/firstaid/regular,/turf/simulated/floor/tiled/dark,/area/outpost/research/xenobiology)
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 "go" = (/obj/structure/window/reinforced{dir = 4},/turf/simulated/floor/airless,/area/mine/explored)
 "gp" = (/obj/structure/window/reinforced{dir = 8},/obj/machinery/light/small{dir = 1},/obj/effect/floor_decal/industrial/warning/corner{icon_state = "warningcorner"; dir = 4},/turf/simulated/floor/tiled,/area/outpost/research/hallway/catwalk)
 "gq" = (/obj/structure/cable/blue{d1 = 1; d2 = 4; icon_state = "1-4"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/effect/floor_decal/industrial/warning{dir = 1},/turf/simulated/floor/tiled,/area/outpost/research/hallway/catwalk)
@@ -2170,4 +2174,3 @@ aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
 "}
-

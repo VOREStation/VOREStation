@@ -444,14 +444,21 @@
 	color = "#C6E2FF"
 	strength = 2
 	overdose = 20
+	ingest_met = REM
+	var/sap_regen_power = 7
 
 /datum/reagent/toxin/sifslurry/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA) // Symbiotic bacteria.
 		M.adjust_nutrition(strength * removed)
 		return
-	else
-		M.add_modifier(/datum/modifier/slow_pulse, 30 SECONDS)
+	M.add_modifier(/datum/modifier/slow_pulse, 30 SECONDS)
 	..()
+
+/datum/reagent/toxin/sifslurry/affect_animal(var/mob/living/simple_mob/animal/M, var/removed)
+	if(istype(M, /mob/living/simple_mob/animal/sif/grafadreka))
+		var/mob/living/simple_mob/animal/sif/grafadreka/drake = M
+		drake.add_sap(removed * sap_regen_power)
+	return ..()
 
 /datum/reagent/toxin/sifslurry/overdose(var/mob/living/carbon/M, var/alien, var/removed) // Overdose effect.
 	if(alien == IS_DIONA)

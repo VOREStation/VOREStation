@@ -13296,6 +13296,14 @@
 /obj/structure/closet/secure_closet/security/cynosure,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
+<<<<<<< HEAD
+=======
+"gdi" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/floor/wood/sif,
+/area/surface/outpost/checkpoint)
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 "gdn" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -15447,7 +15455,11 @@
 /area/surface/station/hallway/primary/groundfloor/west/elevator)
 "hbD" = (
 /obj/structure/table/reinforced,
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid,
+=======
+/obj/item/storage/firstaid/regular,
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 /obj/item/glass_jar{
 	pixel_x = 2;
 	pixel_y = 2
@@ -38411,6 +38423,16 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/red{
 	dir = 10
 	},
+<<<<<<< HEAD
+=======
+/obj/structure/closet/medical_wall{
+	pixel_y = 32
+	},
+/obj/item/storage/pill_bottle/spaceacillin,
+/obj/item/storage/firstaid/regular,
+/obj/item/roller,
+/obj/item/bodybag/cryobag,
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway)
 "rnV" = (

@@ -23819,8 +23819,13 @@
 	},
 /obj/item/roller,
 /obj/item/bodybag/cryobag,
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid,
 /obj/item/weapon/storage/pill_bottle/spaceacillin,
+=======
+/obj/item/storage/firstaid/regular,
+/obj/item/storage/pill_bottle/spaceacillin,
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/secondfloor/civilian)
 "pFH" = (

@@ -548,3 +548,14 @@
 		if(src.wear_mask)						//if the mob is not human, it cleans the mask without asking for bitflags
 			if(src.wear_mask.clean_blood())
 				src.update_inv_wear_mask(0)
+<<<<<<< HEAD
+=======
+
+/mob/living/carbon/handle_reagent_transfer(var/datum/reagents/holder, var/amount = 1, var/chem_type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0)
+	if(chem_type == CHEM_BLOOD)
+		return holder.trans_to_holder(reagents, amount, multiplier, copy)
+	if(chem_type == CHEM_INGEST)
+		return ingest(holder, ingested, amount, multiplier, copy)
+	if(chem_type == CHEM_TOUCH)
+		return holder.trans_to_holder(touching, amount, multiplier, copy)
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo

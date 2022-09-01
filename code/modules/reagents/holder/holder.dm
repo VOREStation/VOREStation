@@ -388,24 +388,9 @@
 		perm = L.reagent_permeability()
 	return trans_to_mob(target, amount, CHEM_TOUCH, perm, copy)
 
-/datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
-	if(!target || !istype(target))
-		return
-	if(iscarbon(target))
-		var/mob/living/carbon/C = target
-		if(type == CHEM_BLOOD)
-			var/datum/reagents/R = C.reagents
-			return trans_to_holder(R, amount, multiplier, copy)
-		if(type == CHEM_INGEST)
-			var/datum/reagents/R = C.ingested
-			return C.ingest(src, R, amount, multiplier, copy)
-		if(type == CHEM_TOUCH)
-			var/datum/reagents/R = C.touching
-			return trans_to_holder(R, amount, multiplier, copy)
-	else
-		var/datum/reagents/R = new /datum/reagents(amount)
-		. = trans_to_holder(R, amount, multiplier, copy)
-		R.touch_mob(target)
+/datum/reagents/proc/trans_to_mob(var/mob/target, var/amount = 1, var/chem_type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0) // Transfer after checking into which holder...
+	if(istype(target))
+		return target.handle_reagent_transfer(src, amount, chem_type, multiplier, copy)
 
 /datum/reagents/proc/trans_to_turf(var/turf/target, var/amount = 1, var/multiplier = 1, var/copy = 0) // Turfs don't have any reagents (at least, for now). Just touch it.
 	if(!target)

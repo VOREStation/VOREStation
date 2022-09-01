@@ -5,7 +5,10 @@
 	//	if(!P.SA_vulnerability || P.SA_vulnerability == intelligence_level)
 		if(P.SA_vulnerability & mob_class)
 			P.damage += P.SA_bonus_damage
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 	. = ..()
 
 
@@ -63,8 +66,11 @@
 			apply_damage(damage = harm_intent_damage, damagetype = BRUTE, def_zone = null, blocked = armor, blocked = resistance, used_weapon = null, sharp = FALSE, edge = FALSE) //VOREStation EDIT Somebody set this to burn instead of brute.
 			L.visible_message("<span class='warning'>\The [L] [response_harm] \the [src]!</span>")
 			L.do_attack_animation(src)
+<<<<<<< HEAD
 
 	return
+=======
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 
 
 // When somoene clicks us with an item in hand

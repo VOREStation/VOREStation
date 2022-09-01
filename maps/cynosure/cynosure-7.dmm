@@ -21,7 +21,17 @@
 "fy" = (
 /obj/structure/cliff/automatic,
 /turf/simulated/floor/outdoors/mask,
+<<<<<<< HEAD
 /area/surface/outside/wilderness/normal)
+=======
+/area/surface/outside/wilderness/mountains)
+"fP" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/storage/firstaid/regular,
+/obj/item/stack/medical/splint,
+/turf/simulated/floor/wood/sif,
+/area/surface/wilderness/shack)
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo
 "gl" = (
 /obj/structure/cliff/automatic{
 	dir = 9

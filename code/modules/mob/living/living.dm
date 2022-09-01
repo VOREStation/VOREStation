@@ -1225,6 +1225,7 @@
 	if(owner.client)
 		create_mob_button(parent)
 
+<<<<<<< HEAD
 /datum/component/character_setup/UnregisterFromParent()
 	. = ..()
 	UnregisterSignal(parent, COMSIG_MOB_CLIENT_LOGIN)
@@ -1262,3 +1263,20 @@
 	icon = 'icons/mob/screen/midnight.dmi'
 	icon_state = "character"
 	screen_loc = ui_smallquad
+=======
+/mob/living/proc/walk_through_blood(var/obj/effect/decal/cleanable/blood/blood)
+	if(!leaves_tracks_type())
+		return FALSE
+	feet_blood_color = blood.basecolor
+	track_blood = max(blood.amount, track_blood)
+	LAZYINITLIST(feet_blood_DNA)
+	feet_blood_DNA |= blood.blood_DNA.Copy()
+	update_bloodied()
+
+/mob/living/proc/get_snow_footprint_state()
+	if(!hovering) // Flying things shouldn't make footprints.
+		return "snow_footprints"
+
+/mob/living/proc/IWasAttackedBy(var/mob/living/attacker)
+	return
+>>>>>>> 8ce2659f02a... Merge pull request #8693 from MistakeNot4892/doggo

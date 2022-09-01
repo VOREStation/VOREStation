@@ -52,6 +52,13 @@
 	overdose_mod = 0.25
 	scannable = 1
 
+/datum/reagent/bicaridine/affect_animal(var/mob/living/simple_mob/animal/M, var/removed)
+	if(istype(M, /mob/living/simple_mob/animal/sif/grafadreka))
+		var/mob/living/simple_mob/animal/sif/grafadreka/drake = M
+		drake.sap_heal_threshold = clamp(drake.sap_heal_threshold + (0.1 * removed), 0, 1)
+	M.heal_organ_damage(6 * removed, 0)
+	return ..()
+
 /datum/reagent/bicaridine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	var/chem_effective = 1 * M.species.chem_strength_heal
 	if(alien == IS_SLIME)
