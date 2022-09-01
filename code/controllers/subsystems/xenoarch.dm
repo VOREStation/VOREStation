@@ -1,8 +1,8 @@
 #define XENOARCH_SPAWN_CHANCE 0.5
 #define DIGSITESIZE_LOWER 4
 #define DIGSITESIZE_UPPER 12
-#define ARTIFACTSPAWNNUM_LOWER 6
-#define ARTIFACTSPAWNNUM_UPPER 12
+#define ARTIFACTSPAWNNUM_LOWER 12
+#define ARTIFACTSPAWNNUM_UPPER 24
 
 //
 // Xenoarch subsystem handles initialization of Xenoarcheaology artifacts and digsites.
