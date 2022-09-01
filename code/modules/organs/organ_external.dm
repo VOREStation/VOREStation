@@ -114,6 +114,9 @@
 	return ..()
 
 /obj/item/organ/external/emp_act(severity)
+	for(var/obj/O as anything in src.contents)
+		O.emp_act(severity)
+
 	if(!(robotic >= ORGAN_ROBOT))
 		return
 	var/burn_damage = 0

@@ -368,6 +368,9 @@ var/list/organ_cache = list()
 	robotize()
 
 /obj/item/organ/emp_act(severity)
+	for(var/obj/O as anything in src.contents)
+		O.emp_act(severity)
+
 	if(!(robotic >= ORGAN_ASSISTED))
 		return
 	for(var/i = 1; i <= robotic; i++)
