@@ -1,26 +1,34 @@
+<<<<<<< HEAD
 //todo
 /datum/artifact_effect/celldrain
+=======
+/datum/artifact_effect/uncommon/celldrain
+>>>>>>> 37cfcfc45fa... Merge pull request #8685 from Spookerton/spkrtn/cng/tweak-effect-aura
 	name = "cell drain"
 	effect_type = EFFECT_ELECTRO
-	var/last_message
-
 	effect_state = "pulsing"
 	effect_color = "#fbff02"
+	var/last_message
 
+<<<<<<< HEAD
 /datum/artifact_effect/celldrain/DoEffectTouch(var/mob/user)
 	if(user)
 		if(istype(user, /mob/living/silicon/robot))
+=======
+
+/datum/artifact_effect/uncommon/celldrain/DoEffectTouch(mob/living/user)
+	if (user)
+		if (istype(user, /mob/living/silicon/robot))
+>>>>>>> 37cfcfc45fa... Merge pull request #8685 from Spookerton/spkrtn/cng/tweak-effect-aura
 			var/mob/living/silicon/robot/R = user
 			for (var/obj/item/weapon/cell/D in R.contents)
 				D.charge = max(D.charge - rand() * 100, 0)
 				to_chat(R, "<font color='blue'>SYSTEM ALERT: Energy drain detected!</font>")
-			return 1
 
-		return 1
 
 /datum/artifact_effect/celldrain/DoEffectAura()
 	var/atom/holder = get_master_holder()
-	if(holder)
+	if (holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
 			if(T.z != C.z)
@@ -42,14 +50,14 @@
 				continue
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge = max(D.charge - 50,0)
-				if(world.time - last_message > 200)
+				if (world.time - last_message > 200)
 					to_chat(M, "<font color='red'>SYSTEM ALERT: Energy drain detected!</font>")
 					last_message = world.time
-	return 1
+
 
 /datum/artifact_effect/celldrain/DoEffectPulse()
 	var/atom/holder = get_master_holder()
-	if(holder)
+	if (holder)
 		var/turf/T = get_turf(holder)
 		for (var/obj/machinery/power/apc/C in GLOB.apcs)
 			if(T.z != C.z)
@@ -71,7 +79,6 @@
 				continue
 			for (var/obj/item/weapon/cell/D in M.contents)
 				D.charge = max(D.charge - rand() * 150,0)
-				if(world.time - last_message > 200)
+				if (world.time - last_message > 200)
 					to_chat(M, "<font color='red'>SYSTEM ALERT: Energy drain detected!</font>")
 					last_message = world.time
-	return 1

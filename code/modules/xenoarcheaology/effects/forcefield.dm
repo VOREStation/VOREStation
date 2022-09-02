@@ -1,25 +1,30 @@
 /datum/artifact_effect/forcefield
 	name = "force field"
-	var/list/created_field = list()
 	effect_type = EFFECT_PARTICLE
-
 	effect_state = "shield-old"
 	effect_color = "#00b7ff"
+	var/list/created_field = list()
+
 
 /datum/artifact_effect/forcefield/New()
 	..()
 	trigger = TRIGGER_TOUCH
 
+<<<<<<< HEAD
 /datum/artifact_effect/forcefield/ToggleActivate()
+=======
+
+/datum/artifact_effect/uncommon/forcefield/ToggleActivate()
+>>>>>>> 37cfcfc45fa... Merge pull request #8685 from Spookerton/spkrtn/cng/tweak-effect-aura
 	var/atom/holder = get_master_holder()
 	..()
-	if(created_field.len)
-		for(var/obj/effect/energy_field/F in created_field)
+	if (created_field.len)
+		for (var/obj/effect/energy_field/F in created_field)
 			created_field.Remove(F)
 			qdel(F)
-	else if(holder)
+	else if (holder)
 		var/turf/T = get_turf(holder)
-		while(created_field.len < 16)
+		while (created_field.len < 16)
 			var/obj/effect/energy_field/E = new (locate(T.x,T.y,T.z))
 			created_field.Add(E)
 			E.strength = 1
@@ -30,26 +35,34 @@
 			UpdateMove()
 	return 1
 
+<<<<<<< HEAD
 /datum/artifact_effect/forcefield/process()
+=======
+
+/datum/artifact_effect/uncommon/forcefield/process()
+>>>>>>> 37cfcfc45fa... Merge pull request #8685 from Spookerton/spkrtn/cng/tweak-effect-aura
 	..()
-	for(var/obj/effect/energy_field/E in created_field)
-		if(E.strength < 1)
+	for (var/obj/effect/energy_field/E in created_field)
+		if (E.strength < 1)
 			E.adjust_strength(0.15, 0)
-		else if(E.strength < 5)
+		else if (E.strength < 5)
 			E.adjust_strength(0.25, 0)
 
+<<<<<<< HEAD
 /datum/artifact_effect/forcefield/UpdateMove()
+=======
+
+/datum/artifact_effect/uncommon/forcefield/UpdateMove()
+>>>>>>> 37cfcfc45fa... Merge pull request #8685 from Spookerton/spkrtn/cng/tweak-effect-aura
 	var/atom/holder = get_master_holder()
-	if(created_field.len && holder)
+	if (created_field.len && holder)
 		var/turf/T = get_turf(holder)
-		while(created_field.len < 16)
-			//for now, just instantly respawn the fields when they get destroyed
+		while (created_field.len < 16)
 			var/obj/effect/energy_field/E = new (locate(T.x,T.y,T))
 			created_field.Add(E)
 			E.anchored = TRUE
 			E.density = TRUE
 			E.invisibility = 0
-
 		var/obj/effect/energy_field/E = created_field[1]
 		E.loc = locate(T.x + 2,T.y + 2,T.z)
 		E = created_field[2]
