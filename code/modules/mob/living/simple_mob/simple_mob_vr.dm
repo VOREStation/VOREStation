@@ -84,6 +84,7 @@
 			voremob_awake = TRUE
 		update_fullness()
 		if(!vore_fullness)
+			update_transform()
 			return 0
 		else if((stat == CONSCIOUS) && (!icon_rest || !resting || !incapacitated(INCAPACITATION_DISABLED)) && (vore_icons & SA_ICON_LIVING))
 			icon_state = "[icon_living]-[vore_fullness]"
