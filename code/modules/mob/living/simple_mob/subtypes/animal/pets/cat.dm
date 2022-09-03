@@ -46,7 +46,7 @@ var/list/_cat_default_emotes = list(
 	holder_type = /obj/item/weapon/holder/cat
 	mob_size = MOB_SMALL
 
-	has_langs = list("Cat")
+	has_langs = list(LANGUAGE_ANIMAL)
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. Meow.
 	var/named = FALSE //have I been named yet?

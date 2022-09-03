@@ -54,11 +54,19 @@
 		var/choice = tgui_alert(user,"It's dark and gloomy in here. What would you like to do?","Tunnel",list("Exit", "Move", "Cancel"))
 		switch(choice)
 			if("Exit")
+				if(user.loc != src)
+					to_chat(user, "<span class = 'warning'>You can't do that unless you're in \the [src].</span>")
+					return
+
 				user.forceMove(get_turf(src.loc))
 				user.cancel_camera()
 				user.visible_message("<span class = 'notice'>\The [user] climbs out of \the [src]!</span>")
 				return
 			if("Move")
+				if(user.loc != src)
+					to_chat(user, "<span class = 'warning'>You can't do that unless you're in \the [src].</span>")
+					return
+
 				var/list/destinations = list()
 				var/turf/myturf = get_turf(src.loc)
 				var/datum/planet/planet
@@ -239,12 +247,19 @@
 		var/choice = tgui_alert(usr,"What would you like to do?","[src]",list("Exit", "Move", "Cancel"))
 		switch(choice)
 			if("Exit")
+				if(usr.loc != src)
+					to_chat(usr, "<span class = 'warning'>You can't do that unless you're in \the [src].</span>")
+					return
+
 				usr.forceMove(get_turf(src.loc))
 				usr.cancel_camera()
 				usr.visible_message("<span class = 'notice'>\The [usr] climbs out of \the [src]!</span>")
 				return
 
 			if("Move")
+				if(usr.loc != src)
+					to_chat(usr, "<span class = 'warning'>You can't do that unless you're in \the [src].</span>")
+					return
 				var/list/destinations = list()
 				var/turf/myturf = get_turf(src.loc)
 				for(var/obj/o in range(1,myturf))

@@ -9,7 +9,7 @@
 	machine_understands = 0
 
 /datum/language/mouse
-	name = "Mouse"
+	name = LANGUAGE_MOUSE
 	desc = "A set of squeaks that only mice can understand."
 	speech_verb = "squeaks"
 	ask_verb = "squeaks"
@@ -21,7 +21,7 @@
 	syllables = list("squeak")	// , "gripes", "oi", "meow")
 
 /datum/language/teppi
-	name = "Teppi"
+	name = LANGUAGE_TEPPI
 	desc = "A set of gyohs that only teppi can understand."
 	speech_verb = "rumbles"
 	ask_verb = "tilts"

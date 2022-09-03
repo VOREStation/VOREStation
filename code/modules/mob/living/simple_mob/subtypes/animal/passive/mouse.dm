@@ -32,7 +32,7 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
 
-	has_langs = list("Mouse")
+	has_langs = list(LANGUAGE_MOUSE)
 
 	holder_type = /obj/item/weapon/holder/mouse
 	meat_amount = 1

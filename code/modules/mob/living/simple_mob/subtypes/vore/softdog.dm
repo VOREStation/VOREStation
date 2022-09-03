@@ -50,7 +50,7 @@
 
 	mob_size = MOB_SMALL
 
-	has_langs = list("Dog", "Canilunzt", "Galactic Common")
+	has_langs = list(LANGUAGE_ANIMAL, LANGUAGE_CANILUNZT, LANGUAGE_GALCOM)
 	say_list_type = /datum/say_list/softdog
 	swallowTime = 0.1 SECONDS
 

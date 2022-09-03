@@ -42,7 +42,7 @@
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "y" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "B" = (
 /obj/effect/landmark{

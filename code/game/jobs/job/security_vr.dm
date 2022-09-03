@@ -17,7 +17,7 @@
 	title = "Security Manager"
 
 /datum/job/hos/get_request_reasons()
-	return list("Wildlife management", "Forensic investigation")
+	return list("Wildlife management", "Forensic investigation", "Training crew")
 
 
 /datum/job/warden
