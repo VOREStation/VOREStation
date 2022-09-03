@@ -26,7 +26,7 @@
 	},
 /area/submap/groundbase/wilderness/east)
 "r" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "t" = (
 /turf/simulated/floor/water/deep/virgo3c,
