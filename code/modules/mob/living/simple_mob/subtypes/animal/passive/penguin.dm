@@ -24,8 +24,6 @@
 	melee_damage_upper = 15
 	attacktext = list("pecked")
 
-	has_langs = list("Bird")
-
 /mob/living/simple_mob/animal/passive/penguin/tux
 	name = "Tux"
 	desc = "A penguin that has been known to associate with gnus."

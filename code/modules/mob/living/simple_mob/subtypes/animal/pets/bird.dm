@@ -28,7 +28,6 @@
 
 	attacktext = list("clawed", "pecked")
 	speak_emote = list("chirps", "caws")
-	has_langs = list("Bird")
 	response_help  = "pets"
 	response_disarm = "gently moves aside"
 	response_harm   = "swats"
