@@ -67,7 +67,8 @@
 		if(response == "Select Type")
 			icon_state = select_portal_subtype(user)
 			return
-		message_admins("The [src]([x],[y],[z]) was given [target]([target.x],[target.y],[target.z]) as a target, and should be ready to use.")
+		if(target)
+			message_admins("The [src]([x],[y],[z]) was given [target]([target.x],[target.y],[target.z]) as a target, and should be ready to use.")
 	else if(user?.client?.holder)
 		src.teleport(user)
 	else return
@@ -146,7 +147,7 @@
 			P.target = null
 		qdel_null(target)
 	. = ..()
-	
+
 /obj/structure/portal_target
 	name = "portal destination"
 	desc = "you shouldn't see this unless you're a ghost"
