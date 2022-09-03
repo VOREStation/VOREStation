@@ -5,9 +5,9 @@ GLOBAL_LIST_INIT(vchatFiles, list(
 	"code/modules/vchat/css/vchat-font-embedded.css",
 	"code/modules/vchat/css/semantic.min.css",
 	"code/modules/vchat/css/ss13styles.css",
-	"code/modules/vchat/js/polyfills.js",
+	"code/modules/vchat/js/polyfills.min.js",
 	"code/modules/vchat/js/vue.min.js",
-	"code/modules/vchat/js/vchat.js"
+	"code/modules/vchat/js/vchat.min.js"
 ))
 
 // The to_chat() macro calls this proc
