@@ -156,7 +156,8 @@
 	for(var/obj/O in T)
 		if(O.simulated)
 			O.loc = X
-			O.update_light()
+			if(O.light_system == STATIC_LIGHT)
+				O.update_light()
 			if(z_level_change) // The objects still need to know if their z-level changed.
 				O.onTransitZ(T.z, X.z)
 
