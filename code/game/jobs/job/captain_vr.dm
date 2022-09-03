@@ -14,6 +14,9 @@
 /datum/alt_title/captain
 	title = "Captain"
 
+/datum/job/captain/get_request_reasons()
+	return list("Training crew")
+
 /datum/job/hop
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
@@ -45,6 +48,9 @@
 
 /datum/alt_title/facility_steward
 	title = "Facility Steward"
+
+/datum/job/hop/get_request_reasons()
+	return list("ID modification", "Training crew")
 
 
 /datum/job/secretary
