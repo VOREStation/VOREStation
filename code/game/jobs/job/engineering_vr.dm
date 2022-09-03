@@ -24,7 +24,7 @@
 	title = "Maintenance Manager"
 
 /datum/job/chief_engineer/get_request_reasons()
-	return list("Engine setup", "Construction project", "Repairs necessary")
+	return list("Engine setup", "Construction project", "Repairs necessary", "Training crew")
 
 
 /datum/job/engineer
