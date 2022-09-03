@@ -23,7 +23,7 @@
 
 	organ_names = /decl/mob_organ_names/goose
 
-	has_langs = list("Bird")
+	has_langs = list(LANGUAGE_ANIMAL)
 
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat/chicken
 	meat_amount = 3
