@@ -2085,7 +2085,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
 "zM" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/west)
 "zP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,

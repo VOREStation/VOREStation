@@ -446,7 +446,7 @@
 	},
 /area/submap/groundbase/wilderness/west)
 "fM" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/west)
 "fQ" = (
 /obj/machinery/chem_master,
