@@ -1,6 +1,12 @@
 //wrapper
+//This teleport effect means that bluespace items will cause a teleport location variation of 1 to 100 tiles.
 /proc/do_noeffect_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=FALSE)
 	new /datum/teleport/instant/science/noeffect(arglist(args))
+	return
+
+//This teleport effect does not interact with bluespace items.
+/proc/do_safe_teleport(ateleatom, adestination, aprecision=0, afteleport=1, aeffectin=null, aeffectout=null, asoundin=null, asoundout=null, local=FALSE)
+	new /datum/teleport/instant(arglist(args))
 	return
 
 /datum/teleport/instant/science/noeffect/setEffects(datum/effect/effect/system/aeffectin,datum/effect/effect/system/aeffectout)

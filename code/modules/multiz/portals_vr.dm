@@ -132,9 +132,9 @@
 			to_chat(M, "<span class='notice'>Something blocks your way.</span>")
 			return
 		temptarg = pick(possible_turfs)
-		do_noeffect_teleport(M, temptarg, 0)
+		do_safe_teleport(M, temptarg, 0)
 	else if (istype(M, /atom/movable))
-		do_noeffect_teleport(M, target, 0)
+		do_safe_teleport(M, target, 0)
 
 /obj/structure/portal_event/Destroy()
 	if(target)
@@ -146,7 +146,7 @@
 			P.target = null
 		qdel_null(target)
 	. = ..()
-	
+
 /obj/structure/portal_target
 	name = "portal destination"
 	desc = "you shouldn't see this unless you're a ghost"
