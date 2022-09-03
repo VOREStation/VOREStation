@@ -26,9 +26,15 @@
 	data["network"] = network
 	data["temp"] = temp
 
+<<<<<<< HEAD
 	var/list/serverData = list()
 	for(var/obj/machinery/telecomms/T in servers)
 		serverData.Add(list(list(
+=======
+	var/list/servers = list()
+	for(var/obj/machinery/telecomms/T in src.servers)
+		servers.Add(list(list(
+>>>>>>> a5403d6ba05... Merge pull request #8699 from Atermonera/tcomms-monitor-fix
 			"id" = T.id,
 			"name" = T.name,
 		)))
@@ -46,7 +52,7 @@
 		for(var/c in SelectedServer.log_entries)
 			i++
 			var/datum/comm_log_entry/C = c
-			
+
 			// This is necessary to prevent leaking information to the clientside
 			var/static/list/acceptable_params = list("uspeech", "intelligible", "message", "name", "race", "job", "timecode")
 			var/list/parameters = list()
@@ -74,7 +80,7 @@
 	if(!ui)
 		ui = new(user, src, "TelecommsLogBrowser", name)
 		ui.open()
-	
+
 /obj/machinery/computer/telecomms/server/tgui_act(action, params)
 	if(..())
 		return TRUE
@@ -139,7 +145,7 @@
 				set_temp("NEW NETWORK TAG SET IN ADDRESS \[[network]\]", "good")
 
 			. = TRUE
-		
+
 		if("cleartemp")
 			temp = null
 			. = TRUE

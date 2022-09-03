@@ -26,9 +26,15 @@
 	data["network"] = network
 	data["temp"] = temp
 
+<<<<<<< HEAD
 	var/list/machinelistData = list()
 	for(var/obj/machinery/telecomms/T in machinelist)
 		machinelistData.Add(list(list(
+=======
+	var/list/machinelist = list()
+	for(var/obj/machinery/telecomms/T in src.machinelist)
+		machinelist.Add(list(list(
+>>>>>>> a5403d6ba05... Merge pull request #8699 from Atermonera/tcomms-monitor-fix
 			"id" = T.id,
 			"name" = T.name,
 		)))
@@ -108,7 +114,7 @@
 				network = newnet
 				machinelist = list()
 				set_temp("NEW NETWORK TAG SET IN ADDRESS \[[network]\]", "good")
-			
+
 			. = TRUE
 
 		if("cleartemp")
