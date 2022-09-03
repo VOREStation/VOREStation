@@ -162,7 +162,7 @@
 
 /datum/trait/neutral/synth_chemfurnace
 	name = "Biofuel Processor"
-	desc = "You are able to gain energy through consuming and processing normal food. Energy-dense foods such as protein bars and survival food will yield the best results."
+	desc = "You are able to gain energy through consuming and processing normal food. Energy-dense foods such as protein bars and survival food will yield the best results. NOTE: Only affects normal food, not alternate (vore, blood, succubusdrain)"
 	cost = 0
 	custom_only = FALSE
 	can_take = SYNTHETICS
@@ -586,7 +586,7 @@
 
 /datum/trait/neutral/food_value_down
 	name = "Insatiable"
-	desc = "You need to eat a third of a plate more to be sated."
+	desc = "You need to eat a third of a plate more to be sated. NOTE: Only affects normal food, not alternate (vore, blood, succubusdrain)"
 	cost = 0
 	custom_only = FALSE
 	can_take = ORGANICS
@@ -595,7 +595,7 @@
 
 /datum/trait/neutral/food_value_down_plus
 	name = "Insatiable, Greater"
-	desc = "You need to eat three times as much to feel sated."
+	desc = "You need to eat three times as much to feel sated. NOTE: Only affects normal food, not alternate (vore, blood, succubusdrain)"
 	cost = 0
 	custom_only = FALSE
 	can_take = ORGANICS
@@ -604,7 +604,7 @@
 
 /datum/trait/neutral/biofuel_value_down
 	name = "Discount Biofuel processor"
-	desc = "You are able to gain energy through consuming and processing normal food. Unfortunately, it is half as effective as premium models."
+	desc = "You are able to gain energy through consuming and processing normal food. Unfortunately, it is half as effective as premium models. NOTE: Only affects normal food, not alternate (vore, blood, succubusdrain)"
 	cost = 0
 	custom_only = FALSE
 	can_take = SYNTHETICS
