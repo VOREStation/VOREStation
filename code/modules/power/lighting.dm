@@ -415,6 +415,7 @@ var/global/list/light_type_cache = list()
 	if(!shows_alerts)
 		return
 	current_alert = "atmos"
+	light_color = "#6D6DFC"
 	brightness_color = "#6D6DFC"
 	update()
 
@@ -422,6 +423,7 @@ var/global/list/light_type_cache = list()
 	if(!shows_alerts)
 		return
 	current_alert = "fire"
+	light_color = "#FF3030"
 	brightness_color = "#FF3030"
 	update()
 
@@ -455,6 +457,10 @@ var/global/list/light_type_cache = list()
 		var/correct_range = nightshift_enabled ? brightness_range_ns : brightness_range
 		var/correct_power = nightshift_enabled ? brightness_power_ns : brightness_power
 		var/correct_color = nightshift_enabled ? brightness_color_ns : brightness_color
+		if(current_alert) //Oh no, we're on fire! Or the atmos is bad! Let's change the color
+			correct_range = brightness_range
+			correct_power = brightness_power
+			correct_color = brightness_color
 		if(light_range != correct_range || light_power != correct_power || light_color != correct_color)
 			if(!auto_flicker)
 				switchcount++
@@ -483,7 +489,7 @@ var/global/list/light_type_cache = list()
 	else
 		update_use_power(USE_POWER_IDLE)
 		set_light(0)
-
+	update_light() //VOREStation Edit - Makes lights update when their color is changed.
 	update_active_power_usage((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
 /obj/machinery/light/proc/nightshift_mode(var/state)
