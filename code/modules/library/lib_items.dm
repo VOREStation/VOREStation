@@ -309,6 +309,8 @@ Book Cart End
 	var/list/pages = list() //the contents of each page
 
 /obj/item/weapon/book/bundle/proc/show_content(mob/user as mob)
+	if(!pages.len)
+		return
 	var/dat
 	var/obj/item/weapon/W = pages[page]
 	// first
