@@ -415,6 +415,7 @@ var/global/list/light_type_cache = list()
 	if(!shows_alerts)
 		return
 	current_alert = "atmos"
+	light_color = "#6D6DFC"
 	brightness_color = "#6D6DFC"
 	update()
 
@@ -422,6 +423,7 @@ var/global/list/light_type_cache = list()
 	if(!shows_alerts)
 		return
 	current_alert = "fire"
+	light_color = "#FF3030"
 	brightness_color = "#FF3030"
 	update()
 
@@ -455,6 +457,10 @@ var/global/list/light_type_cache = list()
 		var/correct_range = nightshift_enabled ? brightness_range_ns : brightness_range
 		var/correct_power = nightshift_enabled ? brightness_power_ns : brightness_power
 		var/correct_color = nightshift_enabled ? brightness_color_ns : brightness_color
+		if(current_alert) //Oh no, we're on fire! Or the atmos is bad! Let's change the color
+			correct_range = brightness_range
+			correct_power = brightness_power
+			correct_color = brightness_color
 		if(light_range != correct_range || light_power != correct_power || light_color != correct_color)
 			if(!auto_flicker)
 				switchcount++
@@ -483,7 +489,7 @@ var/global/list/light_type_cache = list()
 	else
 		update_use_power(USE_POWER_IDLE)
 		set_light(0)
-
+	update_light() //VOREStation Edit - Makes lights update when their color is changed.
 	update_active_power_usage((light_range * light_power) * LIGHTING_POWER_FACTOR)
 
 /obj/machinery/light/proc/nightshift_mode(var/state)
@@ -944,6 +950,13 @@ var/global/list/light_type_cache = list()
 	drop_sound = 'sound/items/drop/glass.ogg'
 	pickup_sound = 'sound/items/pickup/glass.ogg'
 
+	//VOREStation Edit Start - Modifiable Lighting
+	var/init_brightness_range = 8
+	var/init_brightness_power = 1
+	var/init_nightshift_range = 8
+	var/init_nightshift_power = 0.45
+	//VOREStation Edit End - Modifiable Lighting
+
 /obj/item/weapon/light/tube
 	name = "light tube"
 	desc = "A replacement light tube."
@@ -953,6 +966,8 @@ var/global/list/light_type_cache = list()
 	matter = list(MAT_GLASS = 100)
 	brightness_range = 7
 	brightness_power = 2
+	init_brightness_range = 7
+	init_brightness_power = 2
 
 /obj/item/weapon/light/tube/large
 	w_class = ITEMSIZE_SMALL
@@ -962,6 +977,11 @@ var/global/list/light_type_cache = list()
 
 	nightshift_range = 10
 	nightshift_power = 1.5
+
+	init_brightness_range = 15
+	init_brightness_power = 4
+	init_nightshift_range = 10
+	init_nightshift_power = 1.5
 
 /obj/item/weapon/light/bulb
 	name = "light bulb"
@@ -977,6 +997,11 @@ var/global/list/light_type_cache = list()
 	nightshift_range = 3
 	nightshift_power = 0.5
 
+	init_brightness_range = 5
+	init_brightness_power = 1
+	init_nightshift_range = 3
+	init_nightshift_power = 0.5
+
 // For 'floor lamps' in outdoor use and such
 /obj/item/weapon/light/bulb/large
 	name = "large light bulb"
@@ -986,6 +1011,11 @@ var/global/list/light_type_cache = list()
 	nightshift_range = 4
 	nightshift_power = 0.75
 
+	init_brightness_range = 7
+	init_brightness_power = 1.5
+	init_nightshift_range = 4
+	init_nightshift_power = 0.75
+
 /obj/item/weapon/light/throw_impact(atom/hit_atom)
 	..()
 	shatter()
@@ -994,6 +1024,7 @@ var/global/list/light_type_cache = list()
 	brightness_range = 4
 	color = "#da0205"
 	brightness_color = "#da0205"
+	init_brightness_range = 4
 
 /obj/item/weapon/light/bulb/fire
 	name = "fire bulb"
@@ -1036,7 +1067,56 @@ var/global/list/light_type_cache = list()
 // if a syringe, can inject phoron to make it explode
 /obj/item/weapon/light/attackby(var/obj/item/I, var/mob/user)
 	..()
-	if(istype(I, /obj/item/weapon/reagent_containers/syringe))
+
+	//VOREStation Edit Start - Multitool Lighting!
+	if(istype(I,/obj/item/device/multitool))
+		var/list/menu_list = list(
+		"Normal Range",
+		"Normal Brightness",
+		"Normal Color",
+		"Nightshift Range",
+		"Nightshift Brightness",
+		"Nightshift Color",
+		)
+
+		var/modification_decision = tgui_input_list(usr, "What do you wish to change about this light?", "Light Adjustment", menu_list)
+		if(!modification_decision)
+			return //They didn't select anything!
+		switch(modification_decision)
+			if("Normal Range")
+				var/new_range = tgui_input_number(usr, "Choose the new range of the light! (1-[init_brightness_range])", "", init_brightness_range, init_brightness_range, 1, 0)
+				if(new_range)
+					brightness_range = new_range
+
+			if("Normal Brightness")
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_brightness_power])", "", init_brightness_power, init_brightness_power, 0.01, 0)
+				if(new_power)
+					brightness_power = new_power
+
+			if("Normal Color")
+				var/new_color = input(usr, "Choose a color to set the light to!", "", brightness_color) as color|null
+				if(new_color)
+					brightness_color = new_color
+
+			if("Nightshift Range")
+				var/new_range = tgui_input_number(usr, "Choose the new range of the light! (1-[init_nightshift_range])", "", init_nightshift_range, init_nightshift_range, 1)
+				if(new_range)
+					nightshift_range = new_range
+
+			if("Nightshift Brightness")
+				var/new_power = tgui_input_number(usr, "Choose the new brightness of the light! (0.01 - [init_nightshift_power])", "", init_nightshift_power, init_nightshift_power, 0.01)
+				if(new_power)
+					nightshift_power = new_power
+
+			if("Nightshift Color")
+				var/new_color = input(usr, "Choose a color to set the light to!", "", nightshift_color) as color|null
+				if(new_color)
+					nightshift_color = new_color
+
+			else //Should never happen.
+				return
+
+	else if(istype(I, /obj/item/weapon/reagent_containers/syringe))
 		var/obj/item/weapon/reagent_containers/syringe/S = I
 
 		to_chat(user, "You inject the solution into the [src].")

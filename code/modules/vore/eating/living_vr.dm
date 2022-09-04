@@ -727,6 +727,9 @@
 /mob/living/proc/get_digestion_nutrition_modifier()
 	return 1
 
+/mob/living/proc/get_digestion_efficiency_modifier()
+	return 1
+
 /mob/living/proc/eat_trash()
 	set name = "Eat Trash"
 	set category = "Abilities"
@@ -1049,6 +1052,9 @@
 /obj/screen/fullscreen/belly
 	icon = 'icons/mob/screen_full_vore.dmi'
 	icon_state = ""
+
+/obj/screen/fullscreen/belly/colorized
+	icon = 'icons/mob/screen_full_colorized_vore.dmi'
 
 /mob/living/proc/vorebelly_printout() //Spew the vorepanel belly messages into chat window for copypasting.
 	set name = "X-Print Vorebelly Settings"

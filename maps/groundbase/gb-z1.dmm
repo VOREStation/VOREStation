@@ -4191,6 +4191,9 @@
 	charge = 100;
 	maxcharge = 15000
 	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "jq" = (
@@ -4894,6 +4897,9 @@
 	},
 /obj/item/device/gps/security{
 	pixel_x = -3
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
@@ -21253,6 +21259,9 @@
 	layer = 2.6
 	},
 /obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Zc" = (
