@@ -1053,6 +1053,9 @@
 	icon = 'icons/mob/screen_full_vore.dmi'
 	icon_state = ""
 
+/obj/screen/fullscreen/belly/colorized
+	icon = 'icons/mob/screen_full_colorized_vore.dmi'
+
 /mob/living/proc/vorebelly_printout() //Spew the vorepanel belly messages into chat window for copypasting.
 	set name = "X-Print Vorebelly Settings"
 	set category = "Preferences"
