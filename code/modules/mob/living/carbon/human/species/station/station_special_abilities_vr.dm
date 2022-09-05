@@ -1153,3 +1153,16 @@
 			"<span class='danger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
 		to_chat(src, "<span class='notice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
 		target.forceMove(src.vore_selected)
+
+
+/mob/living/carbon/human/proc/toggle_pain_module()
+	set name = "Toggle pain simulation."
+	set desc = "Turn on your pain simulation for that organic experience! Or turn it off for repairs, or if it's too much."
+	set category = "Abilities"
+
+	if(synth_cosmetic_pain)
+		to_chat(src, "<span class='notice'> You turn off your pain simulators.</span>")
+	else
+		to_chat(src, "<span class='danger'> You turn on your pain simulators </span>")
+
+	synth_cosmetic_pain = !synth_cosmetic_pain
