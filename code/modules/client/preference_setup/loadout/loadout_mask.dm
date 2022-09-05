@@ -18,7 +18,7 @@
 	path = /obj/item/clothing/mask/bandana/red
 
 /datum/gear/mask/sterile
-	display_name = "sterile mask"
+	display_name = "mask, sterile"
 	path = /obj/item/clothing/mask/surgical
 	cost = 2
 
@@ -27,12 +27,26 @@
 	path = /obj/item/clothing/mask/surgical/white
 	cost = 2
 
+<<<<<<< HEAD
 /datum/gear/mask/sterile/white/dust
 	display_name = "dust mask"
 	path = /obj/item/clothing/mask/surgical/dust
 
 /datum/gear/mask/sterile/white/cloth
 	display_name = "cloth face mask"
+=======
+/datum/gear/mask/gasmasks/New()
+	..()
+	var/masks = list()
+	masks["gas mask"] = /obj/item/clothing/mask/gas
+	masks["clear gas mask"] = /obj/item/clothing/mask/gas/clear
+	masks["plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor
+	masks["gold plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor/gold
+	gear_tweaks += new/datum/gear_tweak/path(masks)
+
+/datum/gear/mask/cloth
+	display_name = "mask, cloth (recolorable)"
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 	path = /obj/item/clothing/mask/surgical/cloth
 
 /datum/gear/mask/plaguedoctor
@@ -40,6 +54,7 @@
 	path = /obj/item/clothing/mask/gas/plaguedoctor
 	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
 
+<<<<<<< HEAD
 /datum/gear/mask/plaguedoctor2
 	display_name = "golden plague doctor's mask"
 	path = /obj/item/clothing/mask/gas/plaguedoctor/gold
@@ -69,3 +84,9 @@
 		var/obj/item/clothing/accessory/gaiter_type = gaiter
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))
+=======
+/datum/gear/mask/dust
+	display_name = "mask, dust"
+	path = /obj/item/clothing/mask/surgical/dust
+	cost = 2
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks

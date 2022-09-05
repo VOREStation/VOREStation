@@ -16,12 +16,21 @@
 	path = /obj/item/weapon/storage/box/matches
 
 /datum/gear/lighter
+<<<<<<< HEAD
 	display_name = "cheap lighter"
 	path = /obj/item/weapon/flame/lighter
 
 /datum/gear/lighter/zippo
 	display_name = "Zippo selection"
 	path = /obj/item/weapon/flame/lighter/zippo
+=======
+	display_name = "lighter, cheap"
+	path = /obj/item/flame/lighter
+
+/datum/gear/lighter/zippo
+	display_name = "lighter, zippo selection"
+	path = /obj/item/flame/lighter/zippo
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 
 /datum/gear/lighter/zippo/New()
 	..()
@@ -51,3 +60,15 @@
 	for(var/obj/item/weapon/storage/fancy/cigarettes/cigarette_brand as anything in (typesof(/obj/item/weapon/storage/fancy/cigarettes) - typesof(/obj/item/weapon/storage/fancy/cigarettes/killthroat)))
 		cigarettes[initial(cigarette_brand.name)] = cigarette_brand
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cigarettes))
+<<<<<<< HEAD
+=======
+
+/datum/gear/ecig
+	display_name = "electronic cigarette"
+	path = /obj/item/clothing/mask/smokable/ecig/util
+
+/datum/gear/ecig/deluxe
+	display_name = "electronic cigarette, deluxe"
+	path = /obj/item/clothing/mask/smokable/ecig/deluxe
+	cost = 2
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks

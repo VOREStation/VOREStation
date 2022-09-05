@@ -80,8 +80,13 @@
 	path = /obj/item/device/paicard/typeb
 
 /datum/gear/utility/securecase
+<<<<<<< HEAD
 	display_name = "secure briefcase"
 	path =/obj/item/weapon/storage/secure/briefcase
+=======
+	display_name = "briefcase, secure"
+	path =/obj/item/storage/secure/briefcase
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 	cost = 2
 
 /datum/gear/utility/laserpointer
@@ -120,12 +125,21 @@
 
 /datum/gear/utility/pen
 	display_name = "fountain pen"
+<<<<<<< HEAD
 	path = /obj/item/weapon/pen/fountain
 
 /datum/gear/utility/umbrella
 	display_name = "umbrella"
 	path = /obj/item/weapon/melee/umbrella
 	cost = 3
+=======
+	path = /obj/item/pen/fountain
+
+/datum/gear/utility/umbrella
+	display_name = "umbrella"
+	path = /obj/item/melee/umbrella
+	cost = 1
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 
 /datum/gear/utility/umbrella/New()
 	..()
@@ -150,19 +164,16 @@ modular computers
 ****************/
 
 /datum/gear/utility/cheaptablet
-	display_name = "tablet computer: cheap"
 	display_name = "tablet computer, cheap"
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/cheap
 	cost = 3
 
 /datum/gear/utility/normaltablet
-	display_name = "tablet computer: advanced"
 	display_name = "tablet computer, advanced"
 	path = /obj/item/modular_computer/tablet/preset/custom_loadout/advanced
 	cost = 4
 
 /datum/gear/utility/customtablet
-	display_name = "tablet computer: custom"
 	display_name = "tablet computer, custom"
 	path = /obj/item/modular_computer/tablet
 	cost = 4
@@ -184,7 +195,11 @@ modular computers
 /datum/gear/utility/customlaptop
 	display_name = "laptop computer, custom"
 	path = /obj/item/modular_computer/laptop/preset/
+<<<<<<< HEAD
 	cost = 6 //VOREStation Edit
+=======
+	cost = 5
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 
 /datum/gear/utility/customlaptop/New()
 	..()

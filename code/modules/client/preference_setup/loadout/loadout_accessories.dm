@@ -36,9 +36,14 @@
 
 
 /datum/gear/accessory/wallet/womens
+<<<<<<< HEAD
 	display_name = "wallet, womens"
 	path = /obj/item/weapon/storage/wallet/womens
 	cost = 0 //VOREStation Edit
+=======
+	display_name = "wallet, women's"
+	path = /obj/item/storage/wallet/womens
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 
 /datum/gear/accessory/wallet/womens/New()
 	..()
@@ -225,7 +230,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/bracelet/material
-	display_name = "bracelet selection"
+	display_name = "bracelet, selection"
 	description = "Choose from a number of bracelets."
 	path = /obj/item/clothing/accessory/bracelet
 	cost = 1
@@ -244,9 +249,28 @@
 	gear_tweaks += new/datum/gear_tweak/path(bracelettype)
 
 /datum/gear/accessory/bracelet/friendship
-	display_name = "friendship bracelet"
+	display_name = "bracelet, friendship"
 	path = /obj/item/clothing/accessory/bracelet/friendship
 
+<<<<<<< HEAD
+=======
+/datum/gear/accessory/bracelet/slap
+	display_name = "bracelet, slap (recolorable)"
+	path = /obj/item/clothing/accessory/bracelet/slap
+
+/datum/gear/accessory/bracelet/slap/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/bracelet/beaded
+	display_name = "bracelet, beaded (recolorable)"
+	path = /obj/item/clothing/accessory/bracelet/beaded
+
+/datum/gear/accessory/bracelet/beaded/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 /datum/gear/accessory/stethoscope
 	display_name = "stethoscope"
 	path = /obj/item/clothing/accessory/stethoscope
@@ -257,11 +281,11 @@
 	path = /obj/item/clothing/accessory/locket
 
 /datum/gear/accessory/halfcape
-	display_name = "half cape"
+	display_name = "cape, half"
 	path = /obj/item/clothing/accessory/halfcape
 
 /datum/gear/accessory/fullcape
-	display_name = "full cape"
+	display_name = "cape, full"
 	path = /obj/item/clothing/accessory/fullcape
 
 /datum/gear/accessory/sash
@@ -348,4 +372,58 @@
 
 /datum/gear/accessory/pressbadge
 	display_name = "freelance press pass"
+<<<<<<< HEAD
 	path = /obj/item/clothing/accessory/badge/press/independent
+=======
+	path = /obj/item/clothing/accessory/badge/press/independent
+
+/datum/gear/accessory/legbrace
+	display_name = "leg braces"
+	path = /obj/item/clothing/accessory/legbrace
+
+/datum/gear/accessory/neckerchief
+	display_name = "neckerchief, color select"
+	path = /obj/item/clothing/accessory/neckerchief
+
+/datum/gear/accessory/necklace
+	display_name = "necklace selection"
+	description = "Choose from a number of neclkaces."
+	path = /obj/item/clothing/accessory/necklace
+	cost = 1
+
+/datum/gear/accessory/necklace/New()
+	..()
+	var/necklacetype = list()
+	necklacetype["necklace, steel"] = /obj/item/clothing/accessory/necklace/steel
+	necklacetype["necklace, iron"] = /obj/item/clothing/accessory/necklace/iron
+	necklacetype["necklace, silver"] = /obj/item/clothing/accessory/necklace/silver
+	necklacetype["necklace, gold"] = /obj/item/clothing/accessory/necklace/gold
+	necklacetype["necklace, platinum"] = /obj/item/clothing/accessory/necklace/platinum
+	necklacetype["necklace, glass"] = /obj/item/clothing/accessory/necklace/glass
+	necklacetype["necklace, wood"] = /obj/item/clothing/accessory/necklace/wood
+	necklacetype["necklace, sivian wood"] = /obj/item/clothing/accessory/necklace/sifwood
+	necklacetype["necklace, plastic"] = /obj/item/clothing/accessory/necklace/plastic
+	necklacetype["necklace, copper"] = /obj/item/clothing/accessory/necklace/copper
+	necklacetype["necklace, bronze"] = /obj/item/clothing/accessory/necklace/bronze
+	gear_tweaks += new/datum/gear_tweak/path(necklacetype)
+
+/datum/gear/accessory/neckerchief/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/watch
+	display_name = "watch selection"
+	description = "Choose from a number of wristwatches."
+	path = /obj/item/clothing/accessory/watch
+	cost = 1
+
+/datum/gear/accessory/watch/New()
+	..()
+	var/watchtype = list()
+	watchtype["watch"] = /obj/item/clothing/accessory/watch
+	watchtype["watch, silver"] = /obj/item/clothing/accessory/watch/silver
+	watchtype["watch, gold"] = /obj/item/clothing/accessory/watch/gold
+	watchtype["watch, holographic"] = /obj/item/clothing/accessory/watch/holo
+	watchtype["watch, leather"] = /obj/item/clothing/accessory/watch/leather
+	gear_tweaks += new/datum/gear_tweak/path(watchtype)
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks

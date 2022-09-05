@@ -36,15 +36,15 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/eyes/glasses
-	display_name = "Glasses, prescription"
+	display_name = "glasses, prescription"
 	path = /obj/item/clothing/glasses/regular
 
 /datum/gear/eyes/glasses/green
-	display_name = "Glasses, green"
+	display_name = "glasses, green"
 	path = /obj/item/clothing/glasses/gglasses
 
 /datum/gear/eyes/glasses/prescriptionhipster
-	display_name = "Glasses, hipster"
+	display_name = "glasses, hipster"
 	path = /obj/item/clothing/glasses/regular/hipster
 
 /datum/gear/eyes/glasses/threedglasses
@@ -56,100 +56,100 @@
 	path = /obj/item/clothing/glasses/monocle
 
 /datum/gear/eyes/goggles
-	display_name = "plain goggles"
+	display_name = "goggles, plain"
 	path = /obj/item/clothing/glasses/goggles
 
 /datum/gear/eyes/goggles/scanning
-	display_name = "scanning goggles"
+	display_name = "goggles, scanning"
 	path = /obj/item/clothing/glasses/regular/scanners
 
 /datum/gear/eyes/goggles/science
-	display_name = "Science Goggles"
+	display_name = "goggles, science"
 	path = /obj/item/clothing/glasses/science
 
 /datum/gear/eyes/security
-	display_name = "Security HUD (Security)"
+	display_name = "security HUD (Security)"
 	path = /obj/item/clothing/glasses/hud/security
 	allowed_roles = list("Security Officer","Head of Security","Warden", "Detective")
 
 /datum/gear/eyes/security/prescriptionsec
-	display_name = "Security HUD, prescription (Security)"
+	display_name = "security HUD, prescription (Security)"
 	path = /obj/item/clothing/glasses/hud/security/prescription
 
 /datum/gear/eyes/security/sunglasshud
-	display_name = "Security HUD, sunglasses (Security)"
+	display_name = "security HUD, sunglasses (Security)"
 	path = /obj/item/clothing/glasses/sunglasses/sechud
 
 /datum/gear/eyes/security/aviator
-	display_name = "Security HUD Aviators (Security)"
+	display_name = "security HUD Aviators (Security)"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/aviator
 
 /datum/gear/eyes/security/aviator/prescription
-	display_name = "Security HUD Aviators, prescription (Security)"
+	display_name = "security HUD Aviators, prescription (Security)"
 	path = /obj/item/clothing/glasses/sunglasses/sechud/aviator/prescription
 
 /datum/gear/eyes/medical
-	display_name = "Medical HUD (Medical)"
+	display_name = "medical HUD (Medical)"
 	path = /obj/item/clothing/glasses/hud/health
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist", "Search and Rescue")
 
 /datum/gear/eyes/medical/prescriptionmed
-	display_name = "Medical HUD, prescription (Medical)"
+	display_name = "medical HUD, prescription (Medical)"
 	path = /obj/item/clothing/glasses/hud/health/prescription
 
 /datum/gear/eyes/medical/aviator
-	display_name = "Medical HUD Aviators (Medical)"
+	display_name = "medical HUD Aviators (Medical)"
 	path = /obj/item/clothing/glasses/hud/health/aviator
 
 /datum/gear/eyes/medical/aviator/prescription
-	display_name = "Medical HUD Aviators, prescription (Medical)"
+	display_name = "medical HUD Aviators, prescription (Medical)"
 	path = /obj/item/clothing/glasses/hud/health/aviator/prescription
 
 /datum/gear/eyes/meson
-	display_name = "Optical Meson Scanners (Engineering, Science, Mining)"
+	display_name = "optical meson scanners (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson
 	allowed_roles = list("Engineer","Chief Engineer","Atmospheric Technician", "Scientist", "Research Director", "Shaft Miner")
 
 /datum/gear/eyes/meson/prescription
-	display_name = "Optical Meson Scanners, prescription (Engineering, Science, Mining)"
+	display_name = "optical meson scanners, prescription (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson/prescription
 
 /datum/gear/eyes/material
-	display_name = "Optical Material Scanners (Mining)"
+	display_name = "optical material scanners (Mining)"
 	path = /obj/item/clothing/glasses/material
 	allowed_roles = list("Shaft Miner","Quartermaster")
 
 /datum/gear/eyes/material/prescription
-	display_name = "Prescription Optical Material Scanners (Mining)"
+	display_name = "optical material scanners, prescription (Mining)"
 	path = /obj/item/clothing/glasses/material/prescription
 
 /datum/gear/eyes/meson/aviator
-	display_name = "Optical Meson Aviators, (Engineering, Science, Mining)"
+	display_name = "optical meson aviators (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson/aviator
 
 /datum/gear/eyes/meson/aviator/prescription
-	display_name = "Optical Meson Aviators, prescription (Engineering, Science, Mining)"
+	display_name = "optical meson aviators, prescription (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson/aviator/prescription
 
 /datum/gear/eyes/glasses/fakesun
-	display_name = "Sunglasses, stylish"
+	display_name = "sunglasses, stylish"
 	path = /obj/item/clothing/glasses/fakesunglasses
 
 /datum/gear/eyes/glasses/fakeaviator
-	display_name = "Sunglasses, stylish aviators"
+	display_name = "sunglasses, stylish aviators"
 	path = /obj/item/clothing/glasses/fakesunglasses/aviator
 
 /datum/gear/eyes/sun
-	display_name = "Sunglasses (Security/Command)"
+	display_name = "sunglasses (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses
 	allowed_roles = list("Security Officer","Head of Security","Warden","Site Manager","Head of Personnel","Quartermaster","Internal Affairs Agent","Detective")
 
 /datum/gear/eyes/sun/shades
-	display_name = "Sunglasses, fat (Security/Command)"
+	display_name = "sunglasses, fat (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses/big
 
 /datum/gear/eyes/sun/aviators
-	display_name = "Sunglasses, aviators (Security/Command)"
+	display_name = "sunglasses, aviators (Security/Command)"
 	path = /obj/item/clothing/glasses/sunglasses/aviator
 
 /datum/gear/eyes/sun/prescriptionsun
@@ -161,17 +161,21 @@
 	path = /obj/item/clothing/glasses/circuitry
 
 /datum/gear/eyes/glasses/rimless
-	display_name = "Glasses, rimless"
+	display_name = "glasses, rimless"
 	path = /obj/item/clothing/glasses/rimless
 
 /datum/gear/eyes/glasses/prescriptionrimless
-	display_name = "Glasses, prescription rimless"
+	display_name = "glasses, prescription rimless"
 	path = /obj/item/clothing/glasses/regular/rimless
 
 /datum/gear/eyes/glasses/thin
-	display_name = "Glasses, thin frame"
+	display_name = "glasses, thin frame"
 	path = /obj/item/clothing/glasses/thin
 
 /datum/gear/eyes/glasses/prescriptionthin
+<<<<<<< HEAD
 	display_name = "Glasses, prescription thin frame"
+=======
+	display_name = "glasses, prescription thin frame"
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 	path = /obj/item/clothing/glasses/regular/thin

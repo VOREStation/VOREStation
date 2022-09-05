@@ -3,12 +3,21 @@
 	path = /obj/item/weapon/cane
 
 /datum/gear/cane/white
+<<<<<<< HEAD
 	display_name = "white cane"
 	path = /obj/item/weapon/cane/white
 
 /datum/gear/cane/white2
 	display_name = "telescopic white cane"
 	path = /obj/item/weapon/cane/white/collapsible
+=======
+	display_name = "cane, white"
+	path = /obj/item/cane/white
+
+/datum/gear/cane/white2
+	display_name = "cane, white, telescopic"
+	path = /obj/item/cane/white/collapsible
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 
 /datum/gear/crutch
 	display_name = "crutch"
@@ -92,16 +101,26 @@
 */
 
 /datum/gear/flask
+<<<<<<< HEAD
 	display_name = "flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/barflask
+=======
+	display_name = "flask, standard"
+	path = /obj/item/reagent_containers/food/drinks/flask/barflask
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 
 /datum/gear/flask/New()
 	..()
 	gear_tweaks += new/datum/gear_tweak/reagents(lunchables_ethanol_reagents())
 
 /datum/gear/vacflask
+<<<<<<< HEAD
 	display_name = "vacuum-flask"
 	path = /obj/item/weapon/reagent_containers/food/drinks/flask/vacuumflask
+=======
+	display_name = "flask, vacuum"
+	path = /obj/item/reagent_containers/food/drinks/flask/vacuumflask
+>>>>>>> db9d6679502... Merge pull request #8695 from Frenjo/loadout-tweaks
 
 /datum/gear/vacflask/New()
 	..()
