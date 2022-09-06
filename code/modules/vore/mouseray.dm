@@ -234,6 +234,7 @@
 	new_mob.drop_vore = drop_vore
 	new_mob.stumble_vore = stumble_vore
 	new_mob.slip_vore = slip_vore
+	new_mob.throw_vore = throw_vore
 	new_mob.resizable = resizable
 	new_mob.show_vore_fx = show_vore_fx
 	new_mob.step_mechanics_pref = step_mechanics_pref
