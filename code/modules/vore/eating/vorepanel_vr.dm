@@ -278,6 +278,7 @@
 		"drop_vore" = host.drop_vore,
 		"slip_vore" = host.slip_vore,
 		"stumble_vore" = host.stumble_vore,
+		"throw_vore" = host.throw_vore,
 		"nutrition_message_visible" = host.nutrition_message_visible,
 		"nutrition_messages" = host.nutrition_messages,
 		"weight_message_visible" = host.weight_message_visible,
@@ -526,6 +527,10 @@
 			return TRUE
 		if("toggle_stumble_vore")
 			host.stumble_vore = !host.stumble_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_throw_vore")
+			host.throw_vore = !host.throw_vore
 			unsaved_changes = TRUE
 			return TRUE
 		if("switch_selective_mode_pref")

@@ -1088,6 +1088,7 @@
 				src.inertia_dir = get_dir(target, src)
 				step(src, inertia_dir)
 			item.throw_at(target, throw_range, item.throw_speed, src)
+			item.throwing = 1 //Small edit so thrown interactions actually work!
 			return TRUE
 		else
 			return FALSE
