@@ -1185,6 +1185,13 @@
 	color_blend_mode = ICON_MULTIPLY
 	lower_layer_dirs = list(SOUTH, WEST)
 
+/datum/sprite_accessory/tail/shark_finless
+	name = "shark tail, finless (colorable)"
+	desc = ""
+	icon_state = "sharktail_finless"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+
 /datum/sprite_accessory/tail/tentacle
 	name = "Tentacle, colorable (vwag)"
 	desc = ""
