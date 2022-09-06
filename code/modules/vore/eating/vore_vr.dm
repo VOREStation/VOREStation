@@ -60,6 +60,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/drop_vore = TRUE
 	var/stumble_vore = TRUE
 	var/slip_vore = TRUE
+	var/throw_vore = TRUE
 
 	var/resizable = TRUE
 	var/show_vore_fx = TRUE
@@ -181,6 +182,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	belly_prefs = json_from_file["belly_prefs"]
 	drop_vore = json_from_file["drop_vore"]
 	slip_vore = json_from_file["slip_vore"]
+	throw_vore = json_from_file["throw_vore"]
 	stumble_vore = json_from_file["stumble_vore"]
 	nutrition_message_visible = json_from_file["nutrition_message_visible"]
 	nutrition_messages = json_from_file["nutrition_messages"]
@@ -228,6 +230,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		drop_vore = TRUE
 	if(isnull(slip_vore))
 		slip_vore = TRUE
+	if(isnull(throw_vore))
+		throw_vore = TRUE
 	if(isnull(stumble_vore))
 		stumble_vore = TRUE
 	if(isnull(nutrition_message_visible))
@@ -291,6 +295,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"drop_vore"				= drop_vore,
 			"slip_vore"				= slip_vore,
 			"stumble_vore"			= stumble_vore,
+			"throw_vore" 			= throw_vore,
 			"nutrition_message_visible"	= nutrition_message_visible,
 			"nutrition_messages"		= nutrition_messages,
 			"weight_message_visible"	= weight_message_visible,
