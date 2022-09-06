@@ -610,3 +610,15 @@
 	can_take = SYNTHETICS
 	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.3, digestion_efficiency = 0.5)
 	excludes = list(/datum/trait/neutral/synth_chemfurnace)
+
+/datum/trait/neutral/synth_cosmetic_pain
+	name = "Pain simulation"
+	desc = "You have added modules in your synthetic shell that simulates the sensation of pain. You are able to turn this on and off for repairs as needed or convenience at will."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+
+
+/datum/trait/neutral/synth_cosmetic_pain/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/toggle_pain_module
