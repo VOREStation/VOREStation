@@ -184,8 +184,8 @@
 /obj/machinery/particle_accelerator/control_box/proc/toggle_power()
 	active = !active
 	investigate_log("turned [active?"<font color='red'>ON</font>":"<font color='green'>OFF</font>"] by [usr ? usr.key : "outside forces"]","singulo")
-	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [key_name(usr, usr.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-	log_game("PACCEL([x],[y],[z]) [key_name(usr)] turned [active?"ON":"OFF"].")
+	message_admins("PA Control Computer turned [active ?"ON":"OFF"] by [usr ? key_name(usr, usr.client) : "outside forces"](<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) in ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
+	log_game("PACCEL([x],[y],[z]) [usr ? key_name(usr, usr.client) : "outside forces"] turned [active?"ON":"OFF"].")
 	if(active)
 		update_use_power(USE_POWER_ACTIVE)
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
