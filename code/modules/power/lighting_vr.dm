@@ -14,6 +14,9 @@
 // create a new lighting fixture
 /obj/machinery/light/New()
 	..()
+	installed_light = new light_type
+	installed_light.status = status //This is just in case RNG decides to break the light at round start!
+	installed_light.update_icon() //Give it the proper sprite!
 	//Vorestation addition, so large mobs stop looking stupid in front of lights.
 	if (dir == SOUTH) // Lights are backwards, SOUTH lights face north (they are on south wall)
 		layer = ABOVE_MOB_LAYER
