@@ -201,7 +201,7 @@
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
 
-/datum/trait/negative/pain_tolerance
+/datum/trait/positive/pain_tolerance
 	name = "Grit"
 	desc = "You can keep going a little longer, a little harder when you get hurt, Injuries only inflict 85% as much pain, and slowdown from pain is 85% as effective."
 	cost = 2
