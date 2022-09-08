@@ -108,6 +108,8 @@
 	M.add_chemical_effect(CE_PAINKILLER, 80) //Same as Tramadol
 	M.reagents.add_reagent("metanephrine", removed * 1.5)
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	if(volume < 2)
+		M.metanephrine_lasteffect = world.time //edge case where painkiller runs out before either overdose or metanephrine clearing.
 
 /datum/reagent/epinephrine/overdose(var/mob/living/carbon/M, var/alien)
 	if(ishuman(M))

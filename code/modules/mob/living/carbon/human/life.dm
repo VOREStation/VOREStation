@@ -1964,6 +1964,8 @@
 		var/realPain = traumatic_shock - halloss * 2
 		if(realPain > 20) //this way, getting tased doesn't trigger adrenaline
 			bloodstr.add_reagent("epinephrine",min(realPain,60))
+	if(bloodstr.has_reagent("metanephrine", 1) && (resting || buckled || sleeping))
+		bloodstr.remove_reagent("metanephrine", 0.4,0) //Sitting/laying down helps clear over-exertion. Triples effective metabolism rate
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS
