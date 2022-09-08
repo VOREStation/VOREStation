@@ -134,6 +134,8 @@
 	if(volume < 2)
 		M.metanephrine_overexerted = FALSE //we can tear muscles again, yay!
 		M.metanephrine_lasteffect = world.time
+	if(volume > 20 && world.time > M.metanephrine_lasteffect + 60)
+		to_chat(M, "<span class='warning' You are starting to get winded. Better find somewhere safe to rest!</span>")
 
 
 
