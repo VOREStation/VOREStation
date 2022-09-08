@@ -1960,11 +1960,11 @@
 	brain.tick_defib_timer()
 
 /mob/living/carbon/human/proc/handle_adrenaline()
-	if(traumatic_shock > 20 && world.time > HUMAN_ADRENALINE_DELAY + metanephrine_lasteffect && fight_or_flight) //traumatic shock > 20 occurs at 15 brute or 15 burn or 20 oxloss or a combination of
+	if(traumatic_shock > 30 && world.time > HUMAN_ADRENALINE_DELAY + metanephrine_lasteffect && !isbelly(loc)) //traumatic shock > 20 occurs at 15 brute or 15 burn or 20 oxloss or a combination of
 		var/realPain = traumatic_shock - halloss * 2
 		if(realPain > 20) //this way, getting tased doesn't trigger adrenaline
-			bloodstr.add_reagent("epinephrine",min(realPain,60))
-	if(bloodstr.has_reagent("metanephrine", 1) && (resting || buckled || sleeping))
+			bloodstr.add_reagent("epinephrine",min(realPain * 0.75,60))
+	if(bloodstr.has_reagent("metanephrine", 1) && (resting || buckled || sleeping || isbelly(loc)))
 		bloodstr.remove_reagent("metanephrine", 0.4,0) //Sitting/laying down helps clear over-exertion. Triples effective metabolism rate
 
 #undef HUMAN_MAX_OXYLOSS
