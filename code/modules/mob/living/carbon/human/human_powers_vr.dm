@@ -43,7 +43,7 @@
 	set category = "Abilities"
 
 	if(fight_or_flight)
-		to_chat(src, "span class='notice'> You relax, not expecting trouble. </span>")
+		to_chat(src, "<span class='notice'> You relax, not expecting trouble. </span>")
 	else
 		to_chat(src, "<span class='danger'> You mentally prepare for trouble! </span>")
 

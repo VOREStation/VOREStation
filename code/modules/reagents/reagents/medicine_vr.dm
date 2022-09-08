@@ -100,7 +100,7 @@
 	taste_description = "bitterness"
 	color = "#C8A5DC" //Same as the other adrenaline reagent
 	mrate_static = TRUE
-	overdose = REAGENTS_OVERDOSE * 2 //same as inaprovaline
+	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
 /datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
@@ -112,9 +112,9 @@
 /datum/reagent/epinephrine/overdose(var/mob/living/carbon/M, var/alien)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(volume > 15 && prob(5))
-			to_chat(src, "<span class='danger'> You feel lightheaded from over-exertion!</span>")
-			H.eye_blurry += 5  //A warning to get to safety, as the crash that will come from metaneprhine WILL hurt.
+		to_chat(src, "<span class='warning'> You feel lightheaded from over-exertion!</span>")
+		if(prob(15))
+			H.eye_blurry += 5  //A warning to get to safety, as the crash that will come from metaneprhine WILL hurt at this point
 
 
 
