@@ -118,6 +118,16 @@
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_finalize
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
 
+/datum/trait/neutral/long_vore
+	name = "Long Predatorial Reach"
+	desc = "Makes you able to use your tongue to grab creatures."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/long_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/long_vore
+
 /datum/trait/neutral/feeder
 	name = "Feeder"
 	desc = "Allows you to feed your prey using your own body."
