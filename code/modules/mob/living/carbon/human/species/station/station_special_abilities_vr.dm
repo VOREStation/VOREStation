@@ -1171,7 +1171,7 @@
 //It can also be recolored via the proc, which persists between rounds.
 
 /mob/living/proc/long_vore() // Allows the user to tongue grab a creature in range. Made a /living proc so frogs can frog you.
-	set name = "Grab Prey with appendage"
+	set name = "Grab Prey With Appendage"
 	set category = "Abilities"
 	set desc = "Grab a target with any of your appendages!"
 
@@ -1212,7 +1212,7 @@
 			return
 
 		if(!istype(target, /mob/living)) //Safety.
-			to_chat(src, "<span class='warning'>You need to select a living tarrget!</span>")
+			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
 			return
 
 		if (get_dist(src,target) >= 6)
