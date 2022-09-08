@@ -1154,6 +1154,17 @@
 		to_chat(src, "<span class='notice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
 		target.forceMove(src.vore_selected)
 
+/mob/living/carbon/human/proc/toggle_pain_module()
+	set name = "Toggle pain simulation."
+	set desc = "Turn on your pain simulation for that organic experience! Or turn it off for repairs, or if it's too much."
+	set category = "Abilities"
+
+	if(synth_cosmetic_pain)
+		to_chat(src, "<span class='notice'> You turn off your pain simulators.</span>")
+	else
+		to_chat(src, "<span class='danger'> You turn on your pain simulators </span>")
+
+	synth_cosmetic_pain = !synth_cosmetic_pain
 
 //This is the 'long vore' ability. Also known as "Grab Prey with appendage" or "Long Predatorial Reach". Or simply "Tongue Vore"
 //It involves projectiles (which means it can be VV'd onto a gun for shenanigans)

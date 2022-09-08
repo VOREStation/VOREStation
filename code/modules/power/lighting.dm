@@ -215,6 +215,7 @@ var/global/list/light_type_cache = list()
 	idle_power_usage = 2
 	active_power_usage = 10
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
+	var/obj/item/weapon/light/installed_light //What light is currently in the socket! Updated in new()
 	var/on = 0					// 1 if on, 0 if off
 	var/brightness_range
 	var/brightness_power
@@ -339,7 +340,7 @@ var/global/list/light_type_cache = list()
 	else
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/weapon/cell/emergency_light(src)
-		var/obj/item/weapon/light/L = get_light_type_instance(light_type)
+		var/obj/item/weapon/light/L = get_light_type_instance(light_type) //This is fine, but old code.
 		update_from_bulb(L)
 		if(prob(L.broken_chance))
 			broken(1)
@@ -432,7 +433,7 @@ var/global/list/light_type_cache = list()
 		return
 
 	current_alert = null
-	var/obj/item/weapon/light/L = get_light_type_instance(light_type)
+	var/obj/item/weapon/light/L = installed_light //This ensures any special bulbs will stay special!
 
 	if(L)
 		update_from_bulb(L)
@@ -457,11 +458,12 @@ var/global/list/light_type_cache = list()
 		var/correct_range = nightshift_enabled ? brightness_range_ns : brightness_range
 		var/correct_power = nightshift_enabled ? brightness_power_ns : brightness_power
 		var/correct_color = nightshift_enabled ? brightness_color_ns : brightness_color
+		var/correct_overlay = nightshift_enabled ? brightness_color_ns : brightness_color //Gives lights the correct overlay if NS is enabled.
 		if(current_alert) //Oh no, we're on fire! Or the atmos is bad! Let's change the color
 			correct_range = brightness_range
 			correct_power = brightness_power
 			correct_color = brightness_color
-		if(light_range != correct_range || light_power != correct_power || light_color != correct_color)
+		if(light_range != correct_range || light_power != correct_power || light_color != correct_color || overlay_color != correct_overlay)
 			if(!auto_flicker)
 				switchcount++
 			if(rigged)
@@ -480,6 +482,7 @@ var/global/list/light_type_cache = list()
 			else
 				update_use_power(USE_POWER_ACTIVE)
 				set_light(correct_range, correct_power, correct_color)
+				overlay_color = correct_overlay
 		if(cell?.charge < cell?.maxcharge)
 			START_PROCESSING(SSobj, src)
 	else if(has_emergency_power(LIGHT_EMERGENCY_POWER_USE) && !turned_off())
@@ -563,6 +566,7 @@ var/global/list/light_type_cache = list()
 	brightness_range = L.brightness_range
 	brightness_power = L.brightness_power
 	brightness_color = L.brightness_color
+	overlay_color = L.brightness_color
 
 	brightness_range_ns = L.nightshift_range
 	brightness_power_ns = L.nightshift_power
@@ -572,7 +576,8 @@ var/global/list/light_type_cache = list()
 
 /obj/machinery/light/proc/insert_bulb(obj/item/weapon/light/L)
 	update_from_bulb(L)
-	qdel(L)
+	installed_light = L
+	L.loc = src //Move it into the socket!
 
 	on = powered()
 	update()
@@ -585,16 +590,17 @@ var/global/list/light_type_cache = list()
 		explode()
 
 /obj/machinery/light/proc/remove_bulb()
-	. = new light_type(src.loc, src)
+	//. = new light_type(src.loc, src)
 
 	switchcount = 0
+	installed_light = null
 	status = LIGHT_EMPTY
 	update()
 
 /obj/machinery/light/attackby(obj/item/W, mob/user)
 
 	//Light replacer code
-	if(istype(W, /obj/item/device/lightreplacer))
+	if(istype(W, /obj/item/device/lightreplacer)) //These will never be modified, so it's fine to use old code.
 		var/obj/item/device/lightreplacer/LR = W
 		if(isliving(user))
 			var/mob/living/U = user
@@ -611,7 +617,9 @@ var/global/list/light_type_cache = list()
 			return
 
 		to_chat(user, "You insert [W].")
+		user.drop_item()
 		insert_bulb(W)
+		update() //Like other places, this is done later down the line but this is essential to updating the overlay when nightmode is involved. Again, I have no idea WHY.
 		src.add_fingerprint(user)
 
 		// attempt to break the light
@@ -716,6 +724,7 @@ var/global/list/light_type_cache = list()
 	if(cell.charge > 300) //it's meant to handle 120 W, ya doofus
 		visible_message("<span class='warning'>[src] short-circuits from too powerful of a power cell!</span>")
 		status = LIGHT_BURNED
+		installed_light.status = status
 		return FALSE
 	cell.use(pwr)
 	set_light(brightness_range * bulb_emergency_brightness_mul, max(bulb_emergency_pow_min, bulb_emergency_pow_mul * (cell.charge / cell.maxcharge)), bulb_emergency_colour)
@@ -797,8 +806,11 @@ var/global/list/light_type_cache = list()
 	else
 		to_chat(user, "You remove the light [get_fitting_name()].")
 
-	// create a light tube/bulb item and put it in the user's hand
-	user.put_in_active_hand(remove_bulb())	//puts it in our active hand
+	//Let's actually put the real bulb in their hand.
+	installed_light.status = status //Update the bulb they're being given. If it's broken, the bulb should be as well!
+	user.put_in_active_hand(installed_light)	//puts it in our active hand
+	installed_light.update_icon()
+	remove_bulb()
 
 /obj/machinery/light/flamp/attack_hand(mob/user)
 	if(lamp_shade)
@@ -837,13 +849,16 @@ var/global/list/light_type_cache = list()
 			var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
-	status = LIGHT_BROKEN
+	status = LIGHT_BROKEN //This occasionally runtimes when it occurs midround after build mode spawns a broken light. No idea why.
+	installed_light.status = status
 	update()
 
 /obj/machinery/light/proc/fix()
 	if(status == LIGHT_OK)
 		return
 	status = LIGHT_OK
+	if(installed_light)
+		installed_light.status = LIGHT_OK
 	on = 1
 	update()
 
