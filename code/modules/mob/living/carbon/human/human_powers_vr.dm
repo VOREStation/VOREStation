@@ -36,3 +36,15 @@
 			to_chat(src, "<span class='notice'>You reconfigure the rendering order of your facial display.</span>")
 
 	return TRUE
+
+/mob/living/carbon/human/verb/toggle_adrenaline_response()
+	set name = "Toggle adrenaline response."
+	set desc = "Toggle fight or flight reflexes. Enabling this before combat might save your life - but over-exertion may cause injury."
+	set category = "Abilities"
+
+	if(fight_or_flight)
+		to_chat(src, "span class='notice'> You relax, not expecting trouble. </span>")
+	else
+		to_chat(src, "<span class='danger'> You mentally prepare for trouble! </span>")
+
+	fight_or_flight = !fight_or_flight

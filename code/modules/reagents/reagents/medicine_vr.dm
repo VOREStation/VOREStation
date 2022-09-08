@@ -106,13 +106,13 @@
 /datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.SetWeakened(0) //Countering early shock_stages' random knockdown
 	M.add_chemical_effect(CE_PAINKILLER, 80) //Same as Tramadol
-	M.reagents.add_reagent("metanephrine", removed * 2.5)
+	M.reagents.add_reagent("metanephrine", removed * 1.5)
 	M.add_chemical_effect(CE_SPEEDBOOST, 1)
 
 /datum/reagent/epinephrine/overdose(var/mob/living/carbon/M, var/alien)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(prob(15))
+		if(volume > 15 && prob(5))
 			to_chat(src, "<span class='danger'> You feel lightheaded from over-exertion!</span>")
 			H.eye_blurry += 5  //A warning to get to safety, as the crash that will come from metaneprhine WILL hurt.
 
@@ -146,6 +146,7 @@
 			to_chat(H,"<span class='warning'>Your legs give out from over-exertion!</span>")
 			H.AdjustWeakened(20)
 			H.Confuse(15)
+			remove_self(10) //Laying down a little helps us catch our breath!
 			last_effect = world.time
 		if(prob(5) && !exerted)
 			H.take_organ_damage(10, 0)
@@ -161,8 +162,8 @@
 			H.eye_blurry += 20
 			M.make_dizzy(5)
 			last_effect = world.time
-		if(prob(10) && worldtime > last_effect + 60)
-			to_chat(H,"<span_class='warning'>Your hands shake uncontrollably!</span>")
+		if(prob(10) && world.time > last_effect + 60)
+			to_chat(H,"<span class='warning'>Your hands shake uncontrollably!</span>")
 			M.make_jittery(10)
 		M.metanephrine_lasteffect = last_effect
 

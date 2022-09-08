@@ -33,6 +33,7 @@
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
 #define HUMAN_COMBUSTION_TEMP 524 //524k is the sustained combustion temperature of human fat
+#define HUMAN_ADRENALINE_DELAY			300 //5 minutes after over-exertion to get adrenaline pumping!
 
 /mob/living/carbon/human
 	var/in_stasis = 0
@@ -82,6 +83,8 @@
 		weightgain() 			//VOREStation Addition
 		process_weaver_silk()	//VOREStation Addition
 		handle_shock()
+
+		handle_adrenaline()
 
 		handle_pain()
 
@@ -1955,6 +1958,12 @@
 		return // Still no brain.
 
 	brain.tick_defib_timer()
+
+/mob/living/carbon/human/proc/handle_adrenaline()
+	if(traumatic_shock > 20 && world.time > HUMAN_ADRENALINE_DELAY + metanephrine_lasteffect && fight_or_flight) //traumatic shock > 20 occurs at 15 brute or 15 burn or 20 oxloss or a combination of
+		var/realPain = traumatic_shock - halloss * 2
+		if(realPain > 20) //this way, getting tased doesn't trigger adrenaline
+			bloodstr.add_reagent("epinephrine",min(realPain,60))
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS
