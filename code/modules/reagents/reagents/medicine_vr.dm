@@ -92,3 +92,80 @@
 /datum/reagent/sleevingcure/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.remove_a_modifier_of_type(/datum/modifier/resleeving_sickness)
 	M.remove_a_modifier_of_type(/datum/modifier/faux_resleeving_sickness)
+
+/datum/reagent/epinephrine
+	name = "Epinephrine" //Named because we already got an adrenaline reagent and I don't want to touch it.
+	id = "epinephrine"
+	description = "A natural drug produced by organics as part of Fight and Flight response. May cause injuries from over-exertion. Metabolises to metanephrine."
+	taste_description = "bitterness"
+	color = "#C8A5DC" //Same as the other adrenaline reagent
+	mrate_static = TRUE
+	overdose = REAGENTS_OVERDOSE * 2 //same as inaprovaline
+	scannable = 1
+
+/datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.SetWeakened(0) //Countering early shock_stages' random knockdown
+	M.add_chemical_effect(CE_PAINKILLER, 80) //Same as Tramadol
+	M.reagents.add_reagent("metanephrine", removed * 2.5)
+	M.add_chemical_effect(CE_SPEEDBOOST, 1)
+
+/datum/reagent/epinephrine/overdose(var/mob/living/carbon/M, var/alien)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(prob(15))
+			to_chat(src, "<span class='danger'> You feel lightheaded from over-exertion!</span>")
+			H.eye_blurry += 5  //A warning to get to safety, as the crash that will come from metaneprhine WILL hurt.
+
+
+
+
+/datum/reagent/metanephrine
+	name = "Metanephrine"
+	id = "metanephrine"
+	description = "Natural metabolite of epinephrine. Acts as a weak painkiller in low doses. Accompanies severe side effects when found in large amounts in the bloodstream."
+	taste_description = "bitterness"
+	color = "#C8A5DC" //Same as the other adrenaline reagent
+	mrate_static = TRUE
+	overdose = REAGENTS_OVERDOSE
+	scannable = 1
+
+/datum/reagent/metanephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	M.add_chemical_effect(CE_PAINKILLER, 10) //Same as Inaprovaline
+	if(volume < 2)
+		M.metanephrine_overexerted = FALSE //we can tear muscles again, yay!
+		M.metanephrine_lasteffect = world.time
+
+
+
+/datum/reagent/metanephrine/overdose(var/mob/living/carbon/M, var/alien) //technically it's not an overdose, but rather indicative of over-exerted state
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/last_effect = M.metanephrine_lasteffect
+		var/exerted = M.metanephrine_overexerted
+		if(prob(25) && world.time > last_effect + 60)
+			to_chat(H,"<span class='warning'>Your legs give out from over-exertion!</span>")
+			H.AdjustWeakened(20)
+			H.Confuse(15)
+			last_effect = world.time
+		if(prob(5) && !exerted)
+			H.take_organ_damage(10, 0)
+			to_chat(H,"<span class='warning'>It feels like you pulled a muscle!</span>")
+			last_effect = world.time
+			M.metanephrine_overexerted = TRUE
+		if(prob(10) && world.time > last_effect + 60)
+			to_chat(H,"<span class='warning'>You feel butterflies in your stomach</span>")
+			H.vomit(1)
+			last_effect = world.time
+		if(prob(50) && world.time > last_effect + 60)
+			to_chat(H,"<span class='warning'>You feel lightheaded!</span>")
+			H.eye_blurry += 20
+			M.make_dizzy(5)
+			last_effect = world.time
+		if(prob(10) && worldtime > last_effect + 60)
+			to_chat(H,"<span_class='warning'>Your hands shake uncontrollably!</span>")
+			M.make_jittery(10)
+		M.metanephrine_lasteffect = last_effect
+
+
+
+

@@ -81,5 +81,11 @@
 
 
 /mob/living/carbon
-	var/synth_cosmetic_pain = FALSE
+
+
+	var/synth_cosmetic_pain = FALSE //toggle-able pain messages for synths
+
+	//Adrenaline system variables
+	var/metanephrine_overexerted = FALSE //determines whether metanephrine can hurt you. Set to TRUE during overdose, resets to FALSE at reagent clearing
+	var/metanephrine_lasteffect = 0 //Controls adrenline production and over-exertion side effects
 
