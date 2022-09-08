@@ -104,19 +104,22 @@
 	scannable = 1
 
 /datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.SetWeakened(0) //Countering early shock_stages' random knockdown
-	M.add_chemical_effect(CE_PAINKILLER, 80) //Same as Tramadol
-	M.reagents.add_reagent("metanephrine", removed * 1.5)
-	M.add_chemical_effect(CE_SPEEDBOOST, 1)
-	if(volume < 2)
-		M.metanephrine_lasteffect = world.time //edge case where painkiller runs out before either overdose or metanephrine clearing.
+	if(alien != IS_CHIMERA && alien != IS_DIONA) //Chimera got unique "if in pain" code
+		M.SetWeakened(0) //Countering early shock_stages' random knockdown
+		M.add_chemical_effect(CE_PAINKILLER, 80) //Same as Tramadol
+		M.reagents.add_reagent("metanephrine", removed * 1.5)
+		M.add_chemical_effect(CE_SPEEDBOOST, 1)
+		if(volume < 2)
+			M.metanephrine_lasteffect = world.time //edge case where painkiller runs out before either overdose or metanephrine clearing.
+
 
 /datum/reagent/epinephrine/overdose(var/mob/living/carbon/M, var/alien)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		to_chat(src, "<span class='warning'> You feel lightheaded from over-exertion!</span>")
-		if(prob(15))
-			H.eye_blurry += 5  //A warning to get to safety, as the crash that will come from metaneprhine WILL hurt at this point
+	if(alien != IS_CHIMERA && alien != IS_DIONA && ishuman(M))
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			to_chat(src, "<span class='warning'> You feel lightheaded from over-exertion!</span>")
+			if(prob(15))
+				H.eye_blurry += 5  //A warning to get to safety, as the crash that will come from metaneprhine WILL hurt at this point
 
 
 
