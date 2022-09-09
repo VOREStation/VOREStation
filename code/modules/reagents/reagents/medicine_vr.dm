@@ -104,22 +104,29 @@
 	scannable = 1
 
 /datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	if(alien != IS_CHIMERA && alien != IS_DIONA) //Chimera got unique "if in pain" code
-		M.SetWeakened(0) //Countering early shock_stages' random knockdown
-		M.add_chemical_effect(CE_PAINKILLER, 80) //Same as Tramadol
-		M.reagents.add_reagent("metanephrine", removed * 1.5)
-		M.add_chemical_effect(CE_SPEEDBOOST, 1)
-		if(volume < 2)
-			M.metanephrine_lasteffect = world.time //edge case where painkiller runs out before either overdose or metanephrine clearing.
-
+	if(alien == IS_CHIMERA || alien == IS_DIONA) return
+	switch(volume)
+		if(4 to 15)
+			M.add_chemical_effect(CE_PAINKILLER, 25) //paracetamol level painkiller. Prevents pain slowdown while in effect. Almost counters broken bone
+		if(16 to 30)
+			M.add_chemical_effect(CE_PAINKILLER, 50) //Twice the strength of paracetamol. Counters pain from broken bone and some more
+			if(M.exertionLevel < 15)
+				M.add_chemical_effect(CE_SPEEDBOOST, 1) //Counters slowdown from broken bone. Only works if we aren't already exhausted
+		if(31 to INFINITY) //we're overdosed at this point
+			M.SetWeakened(0) //
+			M.add_chemical_effect(CE_PAINKILLER, 80) //Tramadol strength painkiller
+			if(M.exertionLevel < 30)
+				M.add_chemical_effect(CE_SPEEDBOOST, 1)
+	M.reagents.add_reagent("metanephrine", removed * 1) //Add 0.2 metanephrine.
 
 /datum/reagent/epinephrine/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien != IS_CHIMERA && alien != IS_DIONA && ishuman(M))
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
+		var/mob/living/carbon/human/H = M
+		if(prob(10))
 			to_chat(src, "<span class='warning'> You feel lightheaded from over-exertion!</span>")
-			if(prob(15))
-				H.eye_blurry += 5  //A warning to get to safety, as the crash that will come from metaneprhine WILL hurt at this point
+			H.eye_blurry += 1
+			M.make_jittery(10)
+		M.reagents.add_reagent("metanephrine", 0.2) //Double metanephrine build up while in OD!
 
 
 
@@ -131,48 +138,101 @@
 	taste_description = "bitterness"
 	color = "#C8A5DC" //Same as the other adrenaline reagent
 	mrate_static = TRUE
-	overdose = REAGENTS_OVERDOSE
+	metabolism = REM * 0.5 //Slow metabolism. Sit down to clear it faster! 0.1 per tick.
+	overdose = REAGENTS_OVERDOSE * 0.5 //tiered overdose, weak effects starting at 15
 	scannable = 1
 
 /datum/reagent/metanephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
-	M.add_chemical_effect(CE_PAINKILLER, 10) //Same as Inaprovaline
+	M.add_chemical_effect(CE_PAINKILLER, 10) //weak painkiller
 	if(volume < 2)
 		M.metanephrine_overexerted = FALSE //we can tear muscles again, yay!
-		M.metanephrine_lasteffect = world.time
-	if(volume > 20 && world.time > M.metanephrine_lasteffect + 60)
-		to_chat(M, "<span class='warning' You are starting to get winded. Better find somewhere safe to rest!</span>")
+	if(volume < 15)
+		if(M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
+			M.remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
+		if(M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
+			M.remove_a_modifier_of_type(/datum/modifier/adrenaline_jittery)
+
+
 
 
 
 /datum/reagent/metanephrine/overdose(var/mob/living/carbon/M, var/alien) //technically it's not an overdose, but rather indicative of over-exerted state
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/last_effect = M.metanephrine_lasteffect
-		var/exerted = M.metanephrine_overexerted
-		if(prob(25) && world.time > last_effect + 60)
-			to_chat(H,"<span class='warning'>Your legs give out from over-exertion!</span>")
-			H.AdjustWeakened(20)
-			H.Confuse(15)
-			remove_self(10) //Laying down a little helps us catch our breath!
-			last_effect = world.time
-		if(prob(5) && !exerted)
-			H.take_organ_damage(10, 0)
-			to_chat(H,"<span class='warning'>It feels like you pulled a muscle!</span>")
-			last_effect = world.time
-			M.metanephrine_overexerted = TRUE
-		if(prob(10) && world.time > last_effect + 60)
-			to_chat(H,"<span class='warning'>You feel butterflies in your stomach</span>")
-			H.vomit(1)
-			last_effect = world.time
-		if(prob(50) && world.time > last_effect + 60)
-			to_chat(H,"<span class='warning'>You feel lightheaded!</span>")
-			H.eye_blurry += 20
-			M.make_dizzy(5)
-			last_effect = world.time
-		if(prob(10) && world.time > last_effect + 60)
-			to_chat(H,"<span class='warning'>Your hands shake uncontrollably!</span>")
-			M.make_jittery(10)
-		M.metanephrine_lasteffect = last_effect
+	switch(volume)
+		if(15 to 25)
+			if(world.time > M.metanephrine_lasteffect + 200)
+				to_chat(M, "<span class='warning'> You are starting to get winded. Better find somewhere safe to rest!</span>")
+				if(M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
+					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_jittery)
+				if(!M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
+					M.add_modifier(/datum/modifier/adrenaline_unsteady)
+				M.metanephrine_lasteffect = world.time
+		if(26 to 35)
+			if(world.time > M.metanephrine_lasteffect + 200)
+				to_chat(M, "<span class='warning'> It's becoming hard to keep a steady hand! You really need to rest a few moments.</span>")
+				if(M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
+					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
+				if(!M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
+					M.add_modifier(/datum/modifier/adrenaline_jittery)
+				M.metanephrine_lasteffect = world.time
+		if(36 to 60)
+			if(world.time > M.metanephrine_lasteffect + 150)
+				if(M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
+					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
+				if(!M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
+					M.add_modifier(/datum/modifier/adrenaline_jittery)
+				to_chat(M, "<span class='warning'> Sit down or even lie down! Keep pushing, and you may pull a muscle!</span>")
+				var/exhaustion = rand(0,100)
+				switch(exhaustion)
+					if(0 to 30)
+						to_chat(M, "<span class='warning'> You feel light headed!</span>")
+						M.make_dizzy(10)
+						M.eye_blurry += 10
+					if(31 to 60)
+						to_chat(M, "<span class='warning'> Your muscles burn from breathlessness!</span>")
+						M.SetLosebreath(2) //For 2 ticks, be unable to catch their breath
+						M.adjustOxyLoss(5)
+					if(61 to 90)
+						to_chat(M, "<span class='warning'> Controlling your muscles is becoming a challenge!</span>")
+						M.Confuse(2)
+					if(91 to 99)
+						if(!M.metanephrine_overexerted)
+							to_chat(M, "<span class='warning'> You dull sensation has you realize you pulled a muscle!</span>")
+							M.take_organ_damage(5, 0)
+					if(100)
+						to_chat(M, "<span class='warning'> Nausea overtakes you!</span>")
+						if(prob(25))
+							M.vomit(1)
+				M.metanephrine_lasteffect = world.time
+		if(61 to INFINITY) //severe build up
+			if(world.time > M.metanephrine_lasteffect + 100)
+				if(M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
+					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
+				if(!M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
+					M.add_modifier(/datum/modifier/adrenaline_jittery)
+				to_chat(M, "<span class='warning'> Over-exertion is tearing your body apart! Find somewhere to sit or lie down, or suffer.</span>")
+				var/exhaustion = rand(0,100)
+				switch(exhaustion)
+					if(0 to 30)
+						to_chat(M, "<span class='warning'> Your muscles burn from breathlessness!</span>")
+						M.SetLosebreath(8) //For 8 ticks, be unable to catch their breath
+					if(31 to 70)
+						to_chat(M, "<span class='warning'> Controlling your muscles is becoming a challenge!</span>")
+						M.Confuse(10)
+					if(71 to 90)
+						if(!M.metanephrine_overexerted)
+							to_chat(M, "<span class='warning'> You dull sensation has you realize you pulled multiple muscles!</span>")
+							M.take_organ_damage(15, 0)
+					if(91 to 95)
+						to_chat(M, "<span class='warning'> Nausea overtakes you!</span>")
+						M.vomit(1)
+					if(96 to 100)
+						to_chat(M, "<span class='warning'> Your give legs out!</span>")
+						M.AdjustWeakened(5)
+				M.metanephrine_lasteffect = world.time
+
+
+
+
 
 
 

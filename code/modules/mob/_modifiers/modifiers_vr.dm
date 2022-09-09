@@ -31,3 +31,30 @@
 			expire(silent = FALSE)
 	else
 		expire(silent = FALSE)
+
+
+//Adrenaline system begin//
+/datum/modifier/adrenaline_unsteady
+	name = "Unsteady hands"
+	desc =" Over-exertion is making it difficult to keep a steady hand!"
+
+	on_created_text = "<span class='warning'> Over-exertion is making it hard to keep a steady hand! </span>"
+	on_expired_text = "<span class='notice'>Your muscles and breathing returns to normal.</span>"
+
+	stacks = MODIFIER_STACK_FORBID
+
+	accuracy = -15
+	outgoing_melee_damage_percent = 0.8
+
+/datum/modifier/adrenaline_jittery
+	name = "Jittery hands"
+	desc = "Over-worked muscles make it very difficult to keep a steady hand!"
+
+	on_created_text = "<span class='warning'> Over-exertion is making it almost impossible to keep a steady hand! </span>"
+	on_expired_text = "<span class='notice'> Keeping aim is still difficult, but it's not as bad now.</span>"
+
+	stacks = MODIFIER_STACK_FORBID
+
+	accuracy = -70
+	outgoing_melee_damage_percent = 0.6
+

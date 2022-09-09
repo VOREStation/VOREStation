@@ -87,6 +87,10 @@
 
 	//Adrenaline system variables
 	var/metanephrine_overexerted = FALSE //determines whether metanephrine can hurt you. Set to TRUE during overdose, resets to FALSE at reagent clearing
-	var/metanephrine_lasteffect = 0 //Controls adrenline production and over-exertion side effects
+	var/metanephrine_lasteffect = 0 //over-exertion side effects
+	var/epinephrine_sleep = 0 //Prevents epinephrine from being injected repeatedly
+	var/adrenaline_broken = FALSE //We only get a boost from a broken bone only once
 	var/fight_or_flight = FALSE //Toggles whether adrenaline system is active for the mob
+	var/injurySeverity = 0
+	var/exertionLevel = 0
 

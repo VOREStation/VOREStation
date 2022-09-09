@@ -1960,12 +1960,51 @@
 	brain.tick_defib_timer()
 
 /mob/living/carbon/human/proc/handle_adrenaline()
-	if(traumatic_shock > 30 && world.time > HUMAN_ADRENALINE_DELAY + metanephrine_lasteffect && !isbelly(loc)) //traumatic shock > 20 occurs at 15 brute or 15 burn or 20 oxloss or a combination of
-		var/realPain = traumatic_shock - halloss * 2
-		if(realPain > 20) //this way, getting tased doesn't trigger adrenaline
-			bloodstr.add_reagent("epinephrine",min(realPain * 0.75,60))
+	if(!fight_or_flight || !can_feel_pain()) return
+	if(traumatic_shock > 5 && !isbelly(loc)) //Adrenaline can only trigger if not under painkiller and not in a belly
+		injurySeverity = (getMaxHealth() - health)
+		for(var/obj/item/organ/external/organ in organs)
+			if(organ.is_broken() && organ.organ_can_feel_pain() && !adrenaline_broken)
+				injurySeverity += 55
+				adrenaline_broken = TRUE
+			else if(organ.is_dislocated() && organ.organ_can_feel_pain() && !adrenaline_broken)
+				injurySeverity += 40
+				adrenaline_broken = TRUE
+		injurySeverity *= species.trauma_mod
+		injurySeverity -= chem_effects[CE_PAINKILLER]
+		exertionLevel = reagents.get_reagent_amount("metanephrine") //metanephrine build up indicates we've over-exerted ourselves
+
+		if(world.time > epinephrine_sleep + 180)
+			switch(injurySeverity)
+				if(40 to 50)
+					if(exertionLevel < 5)
+						bloodstr.add_reagent("epinephrine",injurySeverity * 0.2) //Tiny amount of painkiller to mitigate slowdown from being hit.
+					epinephrine_sleep = world.time
+				if(51 to 80) //Build up of metanephrine indicates too tired to trigger a stronger reaction.
+					if(exertionLevel < 15)
+						bloodstr.add_reagent("epinephrine",injurySeverity * 0.4) //Large dose of painkiller to counter broken bones. Gives a burst of speed, but causes screen shake.
+					epinephrine_sleep = world.time
+				if(81 to INFINITY) //Life or death, the body will push itself unless completely exhausted
+					if(exertionLevel < 30)
+						bloodstr.add_reagent("epinephrine",35) //Full power adrenaline. Reduces chance of further injury for a while.
+					epinephrine_sleep = world.time
+
+
+
+
+
+
 	if(bloodstr.has_reagent("metanephrine", 1) && (resting || buckled || sleeping || isbelly(loc)))
-		bloodstr.remove_reagent("metanephrine", 0.4,0) //Sitting/laying down helps clear over-exertion. Triples effective metabolism rate
+		var/realInjury = (getMaxHealth() - health)
+		bloodstr.remove_reagent("metanephrine", 0.9,0) //Sitting/laying down helps clear over-exertion. Significantly increases metabolism rate.
+		if(adrenaline_broken && realInjury < 5)
+			adrenaline_broken = !adrenaline_broken //If we break a bone again, adrenaline will save us.
+
+
+
+
+
+
 
 #undef HUMAN_MAX_OXYLOSS
 #undef HUMAN_CRIT_MAX_OXYLOSS

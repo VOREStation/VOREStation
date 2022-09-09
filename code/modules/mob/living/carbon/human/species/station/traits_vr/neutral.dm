@@ -622,3 +622,12 @@
 /datum/trait/neutral/synth_cosmetic_pain/apply(var/datum/species/S,var/mob/living/carbon/human/H)
 	..(S,H)
 	H.verbs |= /mob/living/carbon/human/proc/toggle_pain_module
+
+
+/datum/trait/neutral/fight_or_flight
+	name = "Heightened adrenal response."
+	desc = "This trait enables the adrenaline subsystem with its pros and cons."
+	cost = 0
+	custom_only = FALSE
+	can_take = ORGANICS
+	var_changes = list(fight_or_flight = TRUE)
