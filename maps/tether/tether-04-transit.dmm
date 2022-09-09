@@ -57,6 +57,12 @@
 	},
 /turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
+"dF" = (
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "dU" = (
 /obj/structure/table/woodentable,
 /obj/random/plushie,
@@ -96,6 +102,11 @@
 /obj/structure/table/woodentable,
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/midpoint_glass/reinf,
+/area/tether/midpoint)
+"hw" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/computer/timeclock/premade/west,
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "hW" = (
 /obj/structure/disposalpipe/segment{
@@ -494,6 +505,15 @@
 	hard_corner = 1
 	},
 /area/tether/elevator)
+"Hv" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "Hy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -9091,7 +9111,7 @@ pK
 pK
 pK
 pK
-pK
+dF
 pK
 Pz
 Wc
@@ -9243,7 +9263,7 @@ PF
 PF
 PF
 PF
-Or
+Hv
 pK
 pK
 mT
@@ -10662,7 +10682,7 @@ jt
 cR
 JB
 XO
-Nt
+hw
 KH
 pK
 pK

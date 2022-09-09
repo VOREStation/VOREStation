@@ -2370,6 +2370,9 @@
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 5
 	},
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
 /turf/simulated/floor/tiled/white,
 /area/tether/station/dock_two)
 "adP" = (
@@ -2435,6 +2438,10 @@
 	},
 /obj/machinery/camera/network/tether{
 	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
@@ -4940,6 +4947,10 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/pathfinder_office)
@@ -10192,6 +10203,10 @@
 	d2 = 2;
 	icon_state = "1-2"
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "ayT" = (
@@ -12367,6 +12382,10 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
 "aKN" = (
@@ -13564,7 +13583,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -14368,6 +14387,9 @@
 	},
 /obj/structure/disposalpipe/segment{
 	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
@@ -15691,6 +15713,9 @@
 /area/tcommsat/chamber)
 "bTZ" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway/prep_room)
 "bUz" = (
@@ -18150,6 +18175,25 @@
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/hallway)
+"eeB" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 4
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/hallway)
 "egy" = (
 /obj/machinery/gateway,
 /obj/effect/floor_decal/industrial/warning,
@@ -18987,6 +19031,9 @@
 /obj/machinery/door/firedoor/glass/hidden/steel{
 	dir = 1
 	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/docks)
 "fjP" = (
@@ -19774,6 +19821,25 @@
 	},
 /turf/simulated/floor/tiled,
 /area/gateway/prep_room)
+"gav" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_one)
 "gaW" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -20523,6 +20589,9 @@
 "gLW" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 5
+	},
+/obj/machinery/newscaster{
+	pixel_y = 30
 	},
 /turf/simulated/floor/tiled,
 /area/ai_monitored/storage/eva)
@@ -21670,6 +21739,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 10
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "hGm" = (
@@ -22365,6 +22438,10 @@
 	},
 /obj/effect/floor_decal/corner/green/border{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	pixel_y = 24
 	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/crew)
@@ -23128,6 +23205,9 @@
 /obj/effect/floor_decal/corner/brown/bordercorner2{
 	dir = 9
 	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/delivery)
 "iWB" = (
@@ -23239,6 +23319,10 @@
 	},
 /obj/structure/closet/emcloset,
 /obj/structure/window/reinforced,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/dark,
 /area/gateway)
 "jgU" = (
@@ -25193,6 +25277,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/quartermaster/qm)
+"kPJ" = (
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/steel,
+/area/quartermaster/warehouse)
 "kPM" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -25698,6 +25788,9 @@
 	pixel_x = 26
 	},
 /obj/random/tech_supply,
+/obj/machinery/light{
+	dir = 4
+	},
 /turf/simulated/floor/tiled,
 /area/storage/tools)
 "ljB" = (
@@ -26863,6 +26956,10 @@
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 5
 	},
+/obj/item/device/radio/intercom{
+	dir = 8;
+	pixel_x = -24
+	},
 /turf/simulated/floor/tiled,
 /area/tether/exploration/equipment)
 "mdh" = (
@@ -27503,6 +27600,10 @@
 	dir = 8
 	},
 /obj/structure/disposalpipe/segment,
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_airlock)
 "mKT" = (
@@ -28584,6 +28685,9 @@
 	id = "QMLoad"
 	},
 /obj/structure/sign/poster,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/storage)
 "nKT" = (
@@ -28788,6 +28892,10 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/border{
 	dir = 6
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/station/dock_two)
@@ -29038,6 +29146,13 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/substation/civilian)
+"owP" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/structure/closet/firecloset,
+/turf/simulated/floor,
+/area/maintenance/cargo)
 "owQ" = (
 /obj/structure/table/steel,
 /obj/item/weapon/module/power_control,
@@ -29896,6 +30011,26 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor/plating,
 /area/maintenance/station/cargo)
+"pJk" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "pJm" = (
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/wood,
@@ -31074,6 +31209,7 @@
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2{
 	dir = 9
 	},
+/obj/machinery/computer/timeclock/premade/south,
 /turf/simulated/floor/tiled,
 /area/tether/station/dock_two)
 "rci" = (
@@ -31117,6 +31253,25 @@
 /obj/structure/catwalk,
 /turf/simulated/floor,
 /area/maintenance/cargo)
+"rgo" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "rgE" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -31220,6 +31375,9 @@
 	},
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/office)
 "rnM" = (
@@ -32517,6 +32675,9 @@
 /obj/effect/floor_decal/corner/lightgrey/bordercorner2{
 	dir = 9
 	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
 "sKB" = (
@@ -32689,6 +32850,25 @@
 /area/tcommsat/entrance{
 	name = "\improper Telecomms Entrance"
 	})
+"sSR" = (
+/obj/machinery/atmospherics/pipe/simple/hidden{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/machinery/computer/timeclock/premade/south,
+/turf/simulated/floor/tiled,
+/area/hallway/station/docks)
 "sUt" = (
 /obj/effect/fancy_shuttle/medbus{
 	dir = 1;
@@ -33227,6 +33407,9 @@
 	},
 /obj/effect/floor_decal/corner/paleblue/bordercorner2{
 	dir = 9
+	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/foyer)
@@ -33795,6 +33978,24 @@
 /obj/machinery/camera/network/tether,
 /turf/simulated/mineral/floor/vacuum,
 /area/mine/explored/upper_level)
+"tZs" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/effect/floor_decal/corner/green/border{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
+/turf/simulated/floor/tiled,
+/area/tether/exploration/hallway)
 "tZw" = (
 /obj/structure/ore_box,
 /obj/effect/floor_decal/industrial/outline/yellow,
@@ -34682,6 +34883,20 @@
 /obj/structure/bed/chair/shuttle,
 /turf/simulated/shuttle/floor/yellow,
 /area/shuttle/mining_outpost/shuttle)
+"vaR" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/lightgrey/border,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 8
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled,
+/area/tether/station/dock_two)
 "vbm" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/pen,
@@ -35282,6 +35497,9 @@
 /obj/random/tech_supply,
 /obj/random/tech_supply,
 /obj/random/tech_supply,
+/obj/machinery/light{
+	dir = 8
+	},
 /turf/simulated/floor/tiled,
 /area/storage/tools)
 "vMe" = (
@@ -35420,6 +35638,27 @@
 /obj/effect/floor_decal/rust,
 /turf/simulated/floor,
 /area/maintenance/station/cargo)
+"vWb" = (
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/effect/floor_decal/borderfloor{
+	dir = 1
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7,
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 30
+	},
+/turf/simulated/floor/tiled,
+/area/hallway/station/docks)
 "vWt" = (
 /obj/effect/shuttle_landmark{
 	base_area = /area/space;
@@ -35493,6 +35732,9 @@
 	},
 /obj/effect/floor_decal/steeldecal/steel_decals7{
 	dir = 9
+	},
+/obj/machinery/newscaster{
+	pixel_x = 28
 	},
 /turf/simulated/floor/tiled,
 /area/hallway/station/atrium)
@@ -36689,6 +36931,9 @@
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/corner/brown/border,
 /obj/structure/sign/poster,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/gear)
 "xBF" = (
@@ -36768,6 +37013,23 @@
 /area/tcomsat{
 	name = "\improper Telecomms Lobby"
 	})
+"xGo" = (
+/obj/structure/disposalpipe/segment,
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/floor_decal/corner/lightgrey/border{
+	dir = 4
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 10
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals7{
+	dir = 9
+	},
+/obj/machinery/computer/timeclock/premade/east,
+/turf/simulated/floor/tiled,
+/area/hallway/station/atrium)
 "xHf" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/cargo{
@@ -37083,6 +37345,11 @@
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
+	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	name = "Station Intercom (General)";
+	pixel_x = 24
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/surface_mining_outpost_shuttle_hangar)
@@ -40907,7 +41174,7 @@ bqU
 xDU
 lwq
 snG
-mra
+gav
 xkZ
 mra
 gLJ
@@ -40927,7 +41194,7 @@ nRU
 mra
 xkZ
 mra
-mra
+gav
 rOV
 fDN
 mra
@@ -42749,7 +43016,7 @@ aRV
 klO
 aVG
 aRb
-oYN
+vWb
 lLz
 hyl
 vCj
@@ -43745,7 +44012,7 @@ aCb
 alv
 kZW
 xQD
-qFi
+sSR
 vCj
 aaa
 aaa
@@ -46166,7 +46433,7 @@ axE
 cgq
 xyw
 sya
-cZU
+owP
 cZU
 cZU
 nCa
@@ -47180,7 +47447,7 @@ jTV
 azL
 azV
 aEC
-aEC
+kPJ
 aBe
 bYr
 bYr
@@ -47707,7 +47974,7 @@ nFZ
 jOH
 acn
 mnT
-vYJ
+pJk
 lcy
 wRJ
 tRn
@@ -47716,7 +47983,7 @@ vYJ
 dPx
 adM
 kts
-vYJ
+xGo
 pjJ
 aba
 abm
@@ -47982,8 +48249,8 @@ acU
 ibM
 kWH
 sOc
-wHC
-wHC
+eeB
+tZs
 wHC
 hIK
 apd
@@ -52997,7 +53264,7 @@ sHo
 lRe
 odW
 lhv
-odW
+rgo
 odW
 odW
 tgr
@@ -53689,7 +53956,7 @@ aaa
 fLT
 wMe
 kOK
-klo
+vaR
 fLT
 aaa
 aaa
