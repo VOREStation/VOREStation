@@ -1960,7 +1960,20 @@
 	brain.tick_defib_timer()
 
 /mob/living/carbon/human/proc/handle_adrenaline()
+	if(resting || buckled || sleeping || isbelly(loc))
+		if(!bloodstr.has_reagent("metanephrine", 1)) //Removing debuffs once all metanephrine is metabolized. Catching edge case of instant removal as well.
+			if(has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
+				remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
+			if(has_modifier_of_type(/datum/modifier/adrenaline_jittery))
+				remove_a_modifier_of_type(/datum/modifier/adrenaline_jittery)
+			if(adrenaline_broken)
+				adrenaline_broken = !adrenaline_broken
+		else
+			bloodstr.remove_reagent("metanephrine", 0.9,0) //Sitting/laying down helps clear over-exertion. Significantly increases metabolism rate (1 removed per life tick)
+
+
 	if(!fight_or_flight || !can_feel_pain()) return
+
 	if(traumatic_shock > 5 && !isbelly(loc) && !sleeping) //Adrenaline can only trigger if not under painkiller and not in a belly. Must also be awake!
 
 		injurySeverity = (getMaxHealth() - health)
@@ -1990,11 +2003,6 @@
 						bloodstr.add_reagent("epinephrine",35) //Full power adrenaline. Reduces chance of further injury for a while.
 					epinephrine_sleep = world.time
 
-	if(bloodstr.has_reagent("metanephrine", 1) && (resting || buckled || sleeping || isbelly(loc)))
-		var/realInjury = (getMaxHealth() - health)
-		bloodstr.remove_reagent("metanephrine", 0.9,0) //Sitting/laying down helps clear over-exertion. Significantly increases metabolism rate (1 removed per life tick)
-		if(adrenaline_broken && realInjury < 5)
-			adrenaline_broken = !adrenaline_broken //If we break a bone again, adrenaline will save us.
 
 
 
