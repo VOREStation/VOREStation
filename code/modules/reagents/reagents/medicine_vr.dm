@@ -159,7 +159,7 @@
 /datum/reagent/metanephrine/overdose(var/mob/living/carbon/M, var/alien) //technically it's not an overdose, but rather indicative of over-exerted state
 	switch(volume)
 		if(15 to 25)
-			if(world.time > M.metanephrine_lasteffect + 200)
+			if(world.time > M.metanephrine_lasteffect + 30 SECONDS)
 				to_chat(M, "<span class='warning'> You are starting to get winded. Better find somewhere safe to rest!</span>")
 				if(M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
 					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_jittery)
@@ -167,7 +167,7 @@
 					M.add_modifier(/datum/modifier/adrenaline_unsteady)
 				M.metanephrine_lasteffect = world.time
 		if(26 to 35)
-			if(world.time > M.metanephrine_lasteffect + 200)
+			if(world.time > M.metanephrine_lasteffect + 30 SECONDS)
 				to_chat(M, "<span class='warning'> It's becoming hard to keep a steady hand! You really need to rest a few moments.</span>")
 				if(M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
 					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
@@ -175,12 +175,12 @@
 					M.add_modifier(/datum/modifier/adrenaline_jittery)
 				M.metanephrine_lasteffect = world.time
 		if(36 to 60)
-			if(world.time > M.metanephrine_lasteffect + 150)
+			if(world.time > M.metanephrine_lasteffect + 60 SECONDS) //triggers more rarely due to severity
 				if(M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
 					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
 				if(!M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
 					M.add_modifier(/datum/modifier/adrenaline_jittery)
-				to_chat(M, "<span class='warning'> Sit down or even lie down! Keep pushing, and you may pull a muscle!</span>")
+				to_chat(M, "<span class='warning'> Unless you take a moment to rest or sit down, you're going to tear your muscles!</span>")
 				var/exhaustion = rand(0,100)
 				switch(exhaustion)
 					if(0 to 30)
@@ -204,12 +204,12 @@
 							M.vomit(1)
 				M.metanephrine_lasteffect = world.time
 		if(61 to INFINITY) //severe build up
-			if(world.time > M.metanephrine_lasteffect + 100)
+			if(world.time > M.metanephrine_lasteffect + 15 SECONDS) //We're grossly overdosed. Spamminess is a feature, not a bug.
 				if(M.has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
 					M.remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
 				if(!M.has_modifier_of_type(/datum/modifier/adrenaline_jittery))
 					M.add_modifier(/datum/modifier/adrenaline_jittery)
-				to_chat(M, "<span class='warning'> Over-exertion is tearing your body apart! Find somewhere to sit or lie down, or suffer.</span>")
+				to_chat(M, "<span class='warning'> Over-exertion is tearing your body apart! Find somewhere safe to rest, or suffer the effects of pushing yourself to the limit!</span>")
 				var/exhaustion = rand(0,100)
 				switch(exhaustion)
 					if(0 to 30)

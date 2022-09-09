@@ -33,7 +33,7 @@
 
 #define RADIATION_SPEED_COEFFICIENT 0.1
 #define HUMAN_COMBUSTION_TEMP 524 //524k is the sustained combustion temperature of human fat
-#define HUMAN_ADRENALINE_DELAY			300 //5 minutes after over-exertion to get adrenaline pumping!
+#define HUMAN_ADRENALINE_DELAY			30 //given in seconds
 
 /mob/living/carbon/human
 	var/in_stasis = 0
@@ -1961,7 +1961,8 @@
 
 /mob/living/carbon/human/proc/handle_adrenaline()
 	if(!fight_or_flight || !can_feel_pain()) return
-	if(traumatic_shock > 5 && !isbelly(loc)) //Adrenaline can only trigger if not under painkiller and not in a belly
+	if(traumatic_shock > 5 && !isbelly(loc) && !sleeping) //Adrenaline can only trigger if not under painkiller and not in a belly. Must also be awake!
+
 		injurySeverity = (getMaxHealth() - health)
 		for(var/obj/item/organ/external/organ in organs)
 			if(organ.is_broken() && organ.organ_can_feel_pain() && !adrenaline_broken)
@@ -1974,7 +1975,7 @@
 		injurySeverity -= chem_effects[CE_PAINKILLER]
 		exertionLevel = reagents.get_reagent_amount("metanephrine") //metanephrine build up indicates we've over-exerted ourselves
 
-		if(world.time > epinephrine_sleep + 180)
+		if(world.time > epinephrine_sleep + HUMAN_ADRENALINE_DELAY SECONDS)
 			switch(injurySeverity)
 				if(40 to 50)
 					if(exertionLevel < 5)
@@ -1989,14 +1990,9 @@
 						bloodstr.add_reagent("epinephrine",35) //Full power adrenaline. Reduces chance of further injury for a while.
 					epinephrine_sleep = world.time
 
-
-
-
-
-
 	if(bloodstr.has_reagent("metanephrine", 1) && (resting || buckled || sleeping || isbelly(loc)))
 		var/realInjury = (getMaxHealth() - health)
-		bloodstr.remove_reagent("metanephrine", 0.9,0) //Sitting/laying down helps clear over-exertion. Significantly increases metabolism rate.
+		bloodstr.remove_reagent("metanephrine", 0.9,0) //Sitting/laying down helps clear over-exertion. Significantly increases metabolism rate (1 removed per life tick)
 		if(adrenaline_broken && realInjury < 5)
 			adrenaline_broken = !adrenaline_broken //If we break a bone again, adrenaline will save us.
 
