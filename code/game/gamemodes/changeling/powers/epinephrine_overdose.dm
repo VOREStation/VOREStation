@@ -36,7 +36,7 @@
 	C.lying = 0
 	C.update_canmove()
 //	C.reagents.add_reagent("toxin", 10)
-	C.reagents.add_reagent("epinephrine", 20)
+	C.reagents.add_reagent("epinephrine_ling", 20)
 
 	if(src.mind.changeling.recursive_enhancement)
 		C.add_modifier(/datum/modifier/unstoppable, 30 SECONDS)
@@ -44,16 +44,16 @@
 	feedback_add_details("changeling_powers","UNS")
 	return 1
 
-/datum/reagent/epinephrine
+/datum/reagent/epinephrine_ling
 	name = "Epinephrine"
-	id = "epinephrine"
+	id = "epinephrine_ling"
 	description = "Reduces stun times, but causing toxicity due to high concentration."
 	reagent_state = LIQUID
 	color = "#C8A5DC"
 	metabolism = REM * 2
 	overdose = 5 //This is intentionally low, as we want the ling to take some tox damage, to discourage spamming the ability.
 
-/datum/reagent/epinephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+/datum/reagent/epinephrine_ling/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	if(alien == IS_DIONA)
 		return
 	M.add_chemical_effect(CE_SPEEDBOOST, 3)
