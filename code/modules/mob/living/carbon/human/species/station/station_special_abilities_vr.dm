@@ -1346,3 +1346,20 @@
 /obj/item/weapon/gun/energy/gun/tongue/update_icon() //No updating the icon.
 	icon_state = "synthtongue"
 	return
+
+/obj/item/weapon/gun/energy/bfgtaser/tongue
+	name = "9000-series Ball Tongue Taser"
+	desc = "A banned riot control device."
+	slot_flags = SLOT_BELT|SLOT_BACK
+	projectile_type = /obj/item/projectile/bullet/BFGtaser/tongue
+	fire_delay = 20
+	w_class = ITEMSIZE_LARGE
+	one_handed_penalty = 90 // The thing's heavy and huge.
+	accuracy = 45
+	charge_cost = 2400 //yes, this bad boy empties an entire weapon cell in one shot. What of it?
+
+/obj/item/projectile/bullet/BFGtaser/tongue
+	name = "tongue ball"
+	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
+	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
+	zaptype = /obj/item/projectile/beam/appendage
