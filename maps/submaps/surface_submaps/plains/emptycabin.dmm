@@ -34,9 +34,23 @@
 /obj/item/weapon/bedsheet/purpledouble,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
+"h" = (
+/obj/structure/loot_pile/surface/bones,
+/turf/template_noop,
+/area/template_noop)
 "i" = (
 /obj/structure/bed/chair/sofa/left/blue{
 	dir = 1
+	},
+/turf/simulated/floor/wood/sif/virgo3b,
+/area/submap/EmptyCabin)
+"j" = (
+/obj/effect/decal/cleanable/blood,
+/mob/living/simple_mob/otie/friendly/chubby{
+	desc = "The classic bioengineered longdog. This one still probably won't tolerate you. What an absolute unit";
+	faction = "spiders";
+	max_co2 = 0;
+	max_tox = 0
 	},
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
@@ -113,16 +127,6 @@
 "D" = (
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
-"F" = (
-/mob/living/simple_mob/otie/friendly/chubby{
-	desc = "The classic bioengineered longdog. This one still probably won't tolerate you. What an absolute unit";
-	faction = "spiders";
-	max_co2 = 0;
-	max_tox = 0
-	},
-/obj/effect/decal/cleanable/blood,
-/turf/simulated/floor/wood/sif/virgo3b,
-/area/submap/EmptyCabin)
 "G" = (
 /obj/structure/bed/chair/sofa/blue{
 	dir = 1
@@ -172,10 +176,6 @@
 /obj/effect/decal/cleanable/blood,
 /turf/simulated/floor/wood/sif/virgo3b,
 /area/submap/EmptyCabin)
-"R" = (
-/obj/structure/loot_pile/surface,
-/turf/template_noop,
-/area/template_noop)
 "T" = (
 /obj/structure/railing/grey{
 	dir = 8
@@ -210,10 +210,10 @@
 a
 q
 e
-k
-l
-l
 O
+l
+l
+k
 C
 e
 a
@@ -259,7 +259,7 @@ a
 a
 e
 g
-F
+j
 X
 L
 i
@@ -305,7 +305,7 @@ a
 (9,1,1) = {"
 a
 a
-R
+h
 e
 e
 A
@@ -318,7 +318,7 @@ a
 a
 a
 a
-R
+h
 e
 e
 e
