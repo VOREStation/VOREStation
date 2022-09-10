@@ -338,6 +338,7 @@ var/global/list/light_type_cache = list()
 		construct.transfer_fingerprints_to(src)
 		set_dir(construct.dir)
 	else
+		installed_light = new light_type(src)
 		if(start_with_cell && !no_emergency)
 			cell = new/obj/item/weapon/cell/emergency_light(src)
 		var/obj/item/weapon/light/L = get_light_type_instance(light_type) //This is fine, but old code.
@@ -851,6 +852,7 @@ var/global/list/light_type_cache = list()
 			s.start()
 	status = LIGHT_BROKEN //This occasionally runtimes when it occurs midround after build mode spawns a broken light. No idea why.
 	installed_light.status = status
+	installed_light.update_icon()
 	update()
 
 /obj/machinery/light/proc/fix()
