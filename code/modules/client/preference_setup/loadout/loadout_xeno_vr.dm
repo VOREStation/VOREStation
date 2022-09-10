@@ -94,5 +94,14 @@
 
 /datum/gear/suit/taur/white_dress
 	display_name = "white wedding dress (Wolf/Horse-taur)"
-	path = /obj/item/clothing/suit/taur_dress/white
+	path = /obj/item/clothing/suit/taur/dress
 	sort_category = "Xenowear"
+
+/datum/gear/uniform/taur/colorable_skirt
+	display_name = "colorable skirt (Wolf/Horse-taur)"
+	path = /obj/item/clothing/under/taur/skirt
+	sort_category = "Xenowear"
+
+/datum/gear/uniform/taur/colorable_skirt/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
