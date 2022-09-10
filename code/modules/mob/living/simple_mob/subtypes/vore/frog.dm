@@ -29,6 +29,7 @@
 	icon = 'icons/mob/vore.dmi'
 
 	movement_cooldown = 4 //fast as fucc boie.
+	can_be_drop_pred = 1 //They can tongue vore.
 
 	meat_amount = 4
 	meat_type = /obj/item/weapon/reagent_containers/food/snacks/meat
@@ -39,12 +40,31 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/melee
 
+	special_attack_min_range = 1
+	special_attack_max_range = 5
+	special_attack_cooldown = 100
+
 // Pepe is love, not hate.
 /mob/living/simple_mob/vore/aggressive/frog/New()
 	if(rand(1,1000000) == 1)
 		name = "rare Pepe"
 		desc = "You found a rare Pepe. Screenshot for good luck."
 	..()
+
+/mob/living/simple_mob/vore/aggressive/frog/do_special_attack(atom/A)
+	set_AI_busy(TRUE)
+	do_windup_animation(A, 20)
+	addtimer(CALLBACK(src, .proc/chargeend, A), 20)
+
+/mob/living/simple_mob/vore/aggressive/frog/proc/chargeend(atom/A)
+	if(stat) //you are dead
+		set_AI_busy(FALSE)
+		return
+	playsound(src, 'sound/vore/sunesound/pred/schlorp.ogg', 25)
+	var/obj/item/projectile/beam/appendage/appendage_attack = new /obj/item/projectile/beam/appendage(get_turf(loc))
+	appendage_attack.old_style_target(A, src)
+	appendage_attack.launch_projectile(A, BP_TORSO, src)
+	set_AI_busy(FALSE)
 
 // Activate Noms!
 /mob/living/simple_mob/vore/aggressive/frog

@@ -26,6 +26,7 @@
 	permit_healbelly = client.prefs_vr.permit_healbelly
 	noisy = client.prefs_vr.noisy
 	selective_preference = client.prefs_vr.selective_preference
+	appendage_color = client.prefs_vr.appendage_color
 
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore
