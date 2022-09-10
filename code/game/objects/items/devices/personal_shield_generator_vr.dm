@@ -21,6 +21,7 @@
 	var/has_weapon = 1
 	var/shield_active = 0 					// If the shield gen is active.
 	var/energy_modifier = 25				// 40 damage absorbed per 1000 charge. If the charge used is > the cell's remaining charge, the excess is dealt to the user!
+	var/modifier_type = /datum/modifier/shield_projection //What type of modifier will it add? Used for variant modifiers!
 
 /obj/item/device/personal_shield_generator/get_cell()
 	return bcell
@@ -119,6 +120,8 @@
 				return
 			W.forceMove(src)
 			bcell = W
+			if(active_weapon)
+				active_weapon.power_supply = bcell
 			to_chat(user, "<span class='notice'>You install a cell in \the [src].</span>")
 			update_icon()
 
@@ -131,6 +134,9 @@
 				bcell.update_icon()
 				bcell.forceMove(get_turf(src.loc))
 				bcell = null
+				if(active_weapon)
+					reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
+					active_weapon.power_supply = null //No power cell anymore!
 				to_chat(user, "<span class='notice'>You remove the cell from \the [src].</span>")
 				update_icon()
 	else
@@ -173,7 +179,8 @@
 		else
 			shield_active = !shield_active
 			to_chat(user, "<span class='warning'>You activate the shield!</span>")
-			user.add_modifier(/datum/modifier/shield_projection)
+			user.remove_modifiers_of_type(/datum/modifier/shield_projection) //Just to make sure they aren't using two at once!
+			user.add_modifier(modifier_type) //TESTING.
 			START_PROCESSING(SSobj, src) //Let's only bother draining power when we're being used!
 	update_icon()
 
@@ -186,8 +193,13 @@
 	if(user.last_special > world.time)
 		return
 	user.last_special = world.time + 10 //No spamming!
+
 	if(!active_weapon)
 		to_chat(user, "<span class='warning'>The gun is missing!</span>")
+		return
+
+	if(!bcell)
+		to_chat(user, "<span class='warning'>The gun requires a power supply!</span>")
 		return
 
 	if(active_weapon.loc != src)
