@@ -88,9 +88,9 @@
 
 
 
-/obj/machinery/sleeper/relaymove(var/mob/user)
+/obj/machinery/vr_sleeper/relaymove(var/mob/user)
 	..()
-	if(usr.incapacitated())
+	if(user.incapacitated())
 		return
 	go_out()
 
