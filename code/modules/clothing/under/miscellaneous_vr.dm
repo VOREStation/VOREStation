@@ -377,14 +377,3 @@
 	desc = "A very descript undersuit, intended for wearing under a voidsuit or other EVA equipment. This one is specifically made for NanoTrasen Central Command officers, and comes with a swanky gold trim and other fancy markings."
 	icon_state = "bodysuit_cent"
 	item_state = "bodysuit_cent"
-
-/obj/item/clothing/under/taur
-	icon = 'icons/mob/taursuits_horse_vr.dmi'
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO
-	pixel_x = -16
-
-/obj/item/clothing/under/taur/skirt
-	name = "black skirt"
-	desc = "A fancy black skirt with white corset."
-	icon_state = "skirt_colorable"
-	flags_inv = HIDESHOES
