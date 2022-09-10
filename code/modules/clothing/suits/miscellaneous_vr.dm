@@ -85,6 +85,12 @@
 	icon_state = "whitedress1"
 	flags_inv = HIDESHOES
 
+/obj/item/clothing/suit/taur/skirt
+	name = "taur skirt"
+	desc = "A skirt with a corset, fit for those with four legs."
+	icon_state = "skirt_colorable"
+	flags_inv = HIDESHOES
+
 /obj/item/clothing/suit/storage/det_trench/alt
 	name = "sleek modern coat"
 	desc = "A sleek overcoat made of neo-laminated fabric. Has a reasonably sized pocket on the inside."
