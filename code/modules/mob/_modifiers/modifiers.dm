@@ -64,6 +64,10 @@
 	var/siemens_coefficient = null		// Similar to above two vars but 0 = full protection, to be consistant with siemens numbers everywhere else.
 
 	var/vision_flags					// Vision flags to add to the mob. SEE_MOB, SEE_OBJ, etc.
+	var/energy_based					// Sees if the modifier is based on something electronic based.
+	var/energy_cost						// How much the modifier uses per action/special effect blocked. For base values.
+	var/energy_modifier					// How much energy is used when numbers are involed. For values, such as taking damage. Ex: (Damage*energy_modifier)
+	var/obj/item/weapon/cell/energy_source = null	// The source of the above.
 
 /datum/modifier/New(var/new_holder, var/new_origin)
 	holder = new_holder

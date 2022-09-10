@@ -37,6 +37,18 @@ emp_act
 		var/armor = getarmor_organ(organ, "bullet")
 		if(!prob(armor/2))		//Even if the armor doesn't stop the bullet from hurting you, it might stop it from embedding.
 			var/hit_embed_chance = P.embed_chance + (P.damage - armor)	//More damage equals more chance to embed
+
+			//Modifiers can make bullets less likely to embed!
+			for(var/datum/modifier/M in modifiers)
+				if(!isnull(M.incoming_damage_percent))
+					if(M.energy_based)
+						M.energy_source.use(M.energy_cost) //We use energy_cost here for special effects, such as embedding.
+					hit_embed_chance = hit_embed_chance*M.incoming_damage_percent
+				if(P.damage_type == BRUTE && (!isnull(M.incoming_brute_damage_percent)))
+					if(M.energy_based)
+						M.energy_source.use(M.energy_cost)
+					hit_embed_chance = hit_embed_chance*M.incoming_brute_damage_percent
+
 			if(prob(max(hit_embed_chance, 0)))
 				var/obj/item/weapon/material/shard/shrapnel/SP = new()
 				SP.name = (P.name != "shrapnel")? "[P.name] shrapnel" : "shrapnel"
