@@ -97,7 +97,11 @@
 	path = /obj/item/clothing/suit/taur/dress
 	sort_category = "Xenowear"
 
-/datum/gear/suit/taur/black_skirt
-	display_name = "black skirt (Wolf/Horse-taur)"
+/datum/gear/under/taur/colorable_skirt
+	display_name = "colorable skirt (Wolf/Horse-taur)"
 	path = /obj/item/clothing/under/taur/skirt
 	sort_category = "Xenowear"
+
+/datum/gear/under/taur/colorable_skirt/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
