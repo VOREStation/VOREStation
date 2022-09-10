@@ -114,6 +114,9 @@
 	return ..()
 
 /obj/item/organ/external/emp_act(severity)
+	for(var/obj/O as anything in src.contents)
+		O.emp_act(severity)
+
 	if(!(robotic >= ORGAN_ROBOT))
 		return
 	var/burn_damage = 0
@@ -732,8 +735,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 
 	for(var/datum/wound/W in wounds)
-		// wounds used to be able to disappear after 10 minutes at the earliest, for now just remove them as soon as there is no damage
-		if(W.damage <= 0)
+		// wounds can disappear after 10 minutes at the earliest
+		if(W.damage <= 0 && W.created + 10 MINUTES <= world.time)
 			wounds -= W
 			continue
 			// let the GC handle the deletion of the wound

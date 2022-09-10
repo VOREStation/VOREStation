@@ -63,6 +63,7 @@
 /turf/simulated/floor,
 /area/stellardelight/deck3/portdock)
 "aj" = (
+/obj/effect/landmark/free_ai_shell,
 /turf/simulated/floor/carpet/turcarpet,
 /area/ai)
 "ak" = (

@@ -324,6 +324,26 @@
 					src.anchored = TRUE
 					src.pinned += O
 
+	//VORESTATION EDIT START - Allows for thrown vore!
+	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
+	if(istype(AM, /mob/living))
+		var/mob/living/thrown_mob = AM
+		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
+			vore_selected.nom_mob(thrown_mob) //Eat them!!!
+			visible_message("<span class='warning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
+			if(thrown_mob.loc != vore_selected)
+				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
+			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
+		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore)) //Pred thrown into prey.
+			visible_message("<span class='warning'>[src] suddenly slips inside of [thrown_mob]'s [lowertext(thrown_mob.vore_selected.name)] as [thrown_mob] flies into them!</span>")
+			thrown_mob.vore_selected.nom_mob(src) //Eat them!!!
+			if(src.loc != thrown_mob.vore_selected)
+				src.forceMove(thrown_mob.vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
+			return
+	//VORESTATION EDIT END - Allows for thrown vore!
+
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
 	O.loc = src
 	src.embedded += O
