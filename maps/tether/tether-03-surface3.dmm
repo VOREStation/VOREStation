@@ -11346,10 +11346,10 @@
 /turf/simulated/floor/tiled,
 /area/rnd/xenobiology/xenoflora)
 "arZ" = (
-/mob/living/simple_mob/vore/rabbit/brown/george,
 /obj/machinery/light{
 	dir = 1
 	},
+/mob/living/simple_mob/vore/rabbit/brown/george,
 /turf/simulated/floor/grass,
 /area/hydroponics)
 "asa" = (
@@ -25153,6 +25153,23 @@
 	},
 /turf/simulated/floor/wood,
 /area/rnd/outpost/xenobiology/outpost_office)
+"aQd" = (
+/obj/structure/disposalpipe/segment,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/door/firedoor,
+/obj/machinery/door/airlock{
+	name = "Entertainment Backroom";
+	req_access = list();
+	req_one_access = list(72)
+	},
+/turf/simulated/floor/plating,
+/area/tether/surfacebase/entertainment/backstage)
 "aQe" = (
 /obj/machinery/light_switch{
 	dir = 4;
@@ -25964,6 +25981,25 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/carpet/blue,
 /area/tether/surfacebase/security/breakroom)
+"aRK" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	d1 = 4;
+	d2 = 8;
+	icon_state = "4-8"
+	},
+/obj/machinery/door/airlock/silver{
+	name = "Entertainment Backroom";
+	req_one_access = list(72)
+	},
+/obj/machinery/door/firedoor,
+/turf/simulated/floor/lino,
+/area/tether/surfacebase/entertainment/stage)
 "aRL" = (
 /obj/machinery/washing_machine,
 /turf/simulated/floor/tiled/white,
@@ -32961,22 +32997,6 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/barbackmaintenance)
-"bed" = (
-/obj/structure/disposalpipe/segment,
-/obj/structure/cable{
-	d1 = 1;
-	d2 = 2;
-	icon_state = "1-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/door/firedoor,
-/obj/machinery/door/airlock{
-	name = "Entertainment Backroom";
-	req_access = list(72,20,57)
-	},
-/turf/simulated/floor/plating,
-/area/tether/surfacebase/entertainment/backstage)
 "bee" = (
 /obj/structure/disposalpipe/segment,
 /obj/machinery/computer/arcade/orion_trail,
@@ -34181,7 +34201,7 @@
 	name = "box of measuring cups";
 	pixel_x = 2;
 	pixel_y = 3;
-	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup=7)
+	starts_with = list(/obj/item/weapon/reagent_containers/glass/beaker/measuring_cup = 7)
 	},
 /turf/simulated/floor/tiled/white,
 /area/crew_quarters/kitchen)
@@ -34411,25 +34431,6 @@
 /obj/machinery/door/firedoor,
 /turf/simulated/floor/tiled/steel_grid,
 /area/tether/surfacebase/entertainment)
-"bgL" = (
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 4
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 4
-	},
-/obj/structure/cable/green{
-	d1 = 4;
-	d2 = 8;
-	icon_state = "4-8"
-	},
-/obj/machinery/door/airlock/silver{
-	name = "Entertainment Backroom";
-	req_one_access = list(72,20,57)
-	},
-/obj/machinery/door/firedoor,
-/turf/simulated/floor/lino,
-/area/tether/surfacebase/entertainment/stage)
 "bgM" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/wood,
@@ -57530,7 +57531,7 @@ aXB
 bbF
 aEq
 apE
-bed
+aQd
 bbd
 bci
 bbd
@@ -57820,7 +57821,7 @@ aYC
 bcI
 bcI
 bcI
-bgL
+aRK
 bcI
 bcI
 aYC
