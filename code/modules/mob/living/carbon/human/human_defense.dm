@@ -38,7 +38,7 @@ emp_act
 		if(!prob(armor/2))		//Even if the armor doesn't stop the bullet from hurting you, it might stop it from embedding.
 			var/hit_embed_chance = P.embed_chance + (P.damage - armor)	//More damage equals more chance to embed
 
-			//Modifiers can make bullets less likely to embed!
+			//Modifiers can make bullets less likely to embed! These are the normal modifiers and shouldn't be related to energy stuff, but they can be anyways!
 			for(var/datum/modifier/M in modifiers)
 				if(!isnull(M.incoming_damage_percent))
 					if(M.energy_based)

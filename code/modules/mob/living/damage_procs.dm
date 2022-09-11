@@ -13,6 +13,53 @@
 		to_world_log("## DEBUG: apply_damage() was called on [src], with [damage] damage, and an armor value of [blocked].")
 	if(!damage || (blocked >= 100))
 		return 0
+	for(var/datum/modifier/M in modifiers) //MODIFIER STUFF. It's best to do this RIGHT before armor is calculated, so it's done here! This is the 'forcefield' defence.
+		if(damagetype == BRUTE && (!isnull(M.effective_brute_resistance)))
+			if(M.energy_based)
+				M.energy_source.use(M.energy_modifier * damage)
+			damage = damage * M.effective_brute_resistance
+			continue
+		if((damagetype == BURN || damagetype == ELECTROCUTE)&& (!isnull(M.effective_fire_resistance)))
+			if(M.energy_based)
+				M.energy_source.use(M.energy_modifier * damage)
+			damage = damage * M.effective_fire_resistance
+			continue
+		if(damagetype == TOX && (!isnull(M.effective_tox_resistance)))
+			if(M.energy_based)
+				M.energy_source.use(M.energy_modifier * damage)
+			damage = damage * M.effective_tox_resistance
+			continue
+		if(damagetype == OXY && (!isnull(M.effective_oxy_resistance)))
+			if(M.energy_based)
+				M.energy_source.use(M.energy_modifier * damage)
+			damage = damage * M.effective_oxy_resistance
+			continue
+		if(damagetype == CLONE && (!isnull(M.effective_clone_resistance)))
+			if(M.energy_based)
+				M.energy_source.use(M.energy_modifier * damage)
+			damage = damage * M.effective_clone_resistance
+			continue
+		if(damagetype == HALLOSS && (!isnull(M.effective_hal_resistance)))
+			if(M.energy_based)
+				M.energy_source.use(M.energy_modifier * damage)
+			damage = damage * M.effective_hal_resistance
+			continue
+		if(damagetype == SEARING && (!isnull(M.effective_fire_resistance) || !isnull(M.effective_brute_resistance)))
+			if(M.energy_based)
+				M.energy_source.use(M.energy_modifier * damage)
+			var/damage_mitigation = 0//Used for dual calculations.
+			if(!isnull(M.effective_fire_resistance))
+				damage_mitigation += round((1/3)*damage * M.effective_fire_resistance)
+			if(!isnull(M.effective_brute_resistance))
+				damage_mitigation += round((2/3)*damage * M.effective_brute_resistance)
+			damage -= damage_mitigation
+			continue
+		if(damagetype == BIOACID && (isSynthetic() && (!isnull(M.effective_fire_resistance))) || (!isSynthetic() && M.effective_tox_resistance))
+			if(isSynthetic())
+				damage = damage * M.effective_fire_resistance
+			else
+				damage = damage * M.effective_tox_resistance
+			continue
 	if(soaked)
 		if(soaked >= round(damage*0.8))
 			damage -= round(damage*0.8)
@@ -55,6 +102,7 @@
 /mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
 	if(blocked >= 100)
 		return 0
+	// INSERT MODIFIER CODE HERE... But no, really, only two things in the game use it, quad and viruses. The former is admin-only and the latter wouldn't be affected logically, but would if shield code was inerted here. If you really want, you can copy&paste the above and modify it to adjust brute/burn/etc. I do not advise this however.
 	if(brute)	apply_damage(brute, BRUTE, def_zone, blocked)
 	if(burn)	apply_damage(burn, BURN, def_zone, blocked)
 	if(tox)		apply_damage(tox, TOX, def_zone, blocked)

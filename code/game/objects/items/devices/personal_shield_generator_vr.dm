@@ -16,9 +16,9 @@
 
 	var/obj/item/weapon/gun/energy/gun/generator/active_weapon
 	var/obj/item/weapon/cell/device/bcell = null
-	var/generator_hit_cost = 100			// Power used when a special effect (such as a bullet being blocked) is performed!
+	var/generator_hit_cost = 100			// Power used when a special effect (such as a bullet being blocked) is performed! Could also be expanded to other things.
 	var/generator_active_cost = 10			// Power used when turned on.
-	var/has_weapon = 1
+	var/has_weapon = 1						// Backpack units generally have weapons.
 	var/shield_active = 0 					// If the shield gen is active.
 	var/energy_modifier = 25				// 40 damage absorbed per 1000 charge. If the charge used is > the cell's remaining charge, the excess is dealt to the user!
 	var/modifier_type = /datum/modifier/shield_projection //What type of modifier will it add? Used for variant modifiers!
@@ -107,7 +107,7 @@
 		M.put_in_any_hand_if_possible(src)
 
 
-/obj/item/device/personal_shield_generator/attackby(obj/item/weapon/W, mob/user, params) //This should never happen unless admin spawns in an empty one.
+/obj/item/device/personal_shield_generator/attackby(obj/item/weapon/W, mob/user, params)
 	if(W == active_weapon)
 		reattach_gun(user)
 	else if(istype(W, /obj/item/weapon/cell))
@@ -260,38 +260,11 @@
 
 	update_icon()
 
-/*
-	Base Unit Subtypes
-*/
-
-/obj/item/device/personal_shield_generator/belt
-	name = "personal shield generator"
-	desc = "A personal shield generator."
-	icon_state = "shield_back_active"
-	item_state = "shield_pack"
-	w_class = ITEMSIZE_LARGE //No putting these in backpacks!
-	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BIO = 5, TECH_POWER = 3)
-	has_weapon = 0 //No gun with the belt!
-
-/obj/item/device/personal_shield_generator/belt/loaded
-	bcell = /obj/item/weapon/cell/device/weapon/recharge
-
-/obj/item/device/personal_shield_generator/belt/update_icon()
-	if(shield_active)
-		icon_state = "shield_back_active"
-	else
-		icon_state = "shield_pack"
-
-
 //The gun
 
 /obj/item/weapon/gun/energy/gun/generator //The gun attached to the personal shield generator.
-	name = "energy gun"
-	desc = "Another bestseller of Lawson Arms, the LAEP80 Thor is a versatile energy based pistol, capable of switching between low and high \
-	capacity projectile settings. In other words: Stun or Kill."
-	description_fluff = "Lawson Arms is Hephaestus Industries’ main personal-energy-weapon branding, often sold alongside MarsTech projectile \
-	weapons to security and law enforcement agencies."
+	name = "generator gun"
+	desc = "A gun that is attached to the battery of the personal shield generator."
 	icon_state = "egunstun"
 	item_state = null //so the human update icon uses the icon_state instead.
 	fire_delay = 8
@@ -304,7 +277,7 @@
 	firemodes = list(
 		list(mode_name="stun", projectile_type=/obj/item/projectile/beam/stun/med, modifystate="egunstun", fire_sound='sound/weapons/Taser.ogg', charge_cost = 240),
 		list(mode_name="lethal", projectile_type=/obj/item/projectile/beam, modifystate="egunkill", fire_sound='sound/weapons/Laser.ogg', charge_cost = 480),
-		) //Zero charge_cost since it's handled per shot.
+		)
 
 	var/obj/item/device/personal_shield_generator/shield_generator //The generator we are linked to!
 	var/wielded = 0
@@ -344,17 +317,7 @@
 	return 1
 
 /* //TODO: Emp act.
-/obj/item/weapon/shockpaddles/emp_act(severity)
-	var/new_safety = rand(0, 1)
-	if(safety != new_safety)
-		safety = new_safety
-		if(safety)
-			make_announcement("beeps, \"Safety protocols enabled!\"", "notice")
-			playsound(src, 'sound/machines/defib_safetyon.ogg', 50, 0)
-		else
-			make_announcement("beeps, \"Safety protocols disabled!\"", "warning")
-			playsound(src, 'sound/machines/defib_safetyoff.ogg', 50, 0)
-		update_icon()
+/obj/item/weapon/gun/energy/gun/generator/emp_act(severity)
 	..()
 */
 
@@ -374,3 +337,69 @@
 
 /obj/item/weapon/gun/energy/gun/generator/checked_use(var/charge_amt)
 	return (shield_generator.bcell && shield_generator.bcell.checked_use(charge_amt))
+
+
+
+//VARIANTS.
+
+/obj/item/device/personal_shield_generator/belt
+	name = "personal shield generator"
+	desc = "A personal shield generator."
+	icon_state = "shield_back_active"
+	item_state = "shield_pack"
+	w_class = ITEMSIZE_LARGE //No putting these in backpacks!
+	slot_flags = SLOT_BELT
+	origin_tech = list(TECH_BIO = 5, TECH_POWER = 3)
+	has_weapon = 0 //No gun with the belt!
+
+/obj/item/device/personal_shield_generator/belt/loaded
+	bcell = /obj/item/weapon/cell/device/weapon/recharge
+
+/obj/item/device/personal_shield_generator/belt/update_icon()
+	if(shield_active)
+		icon_state = "shield_back_active"
+	else
+		icon_state = "shield_pack"
+
+/obj/item/device/personal_shield_generator/belt/bruteburn //Example of a modified generator.
+	modifier_type = /datum/modifier/shield_projection/bruteburn
+/obj/item/device/personal_shield_generator/belt/bruteburn/loaded //If mapped in, ONLY put loaded ones down.
+	bcell = /obj/item/weapon/cell/device/weapon/recharge
+
+/obj/item/device/personal_shield_generator/belt/mining
+	name = "mining personal shield generator"
+	desc = "A personal shield generator designed for mining. It has a warning on the back: 'Do NOT expose the shield to stun-based weaponry.'"
+	modifier_type = /datum/modifier/shield_projection/mining
+
+/obj/item/device/personal_shield_generator/belt/mining/loaded
+	bcell = /obj/item/weapon/cell/device/weapon/recharge
+
+/obj/item/device/personal_shield_generator/belt/security
+	name = "security personal shield generator"
+	desc = "A personal shield generator designed for security."
+	modifier_type = /datum/modifier/shield_projection/security/weak
+
+/obj/item/device/personal_shield_generator/belt/security/loaded
+	bcell = /obj/item/weapon/cell/device/weapon/recharge
+
+/*
+/obj/item/device/personal_shield_generator/belt/mining/attackby(obj/item/weapon/W, mob/user, params)
+	if(modifier_type == /datum/modifier/shield_projection/mining/strong))
+		to_chat(user, "<span class='warning'>This shield generator is already upgraded!</span>")
+		return
+	if(istype(W, /obj/item/borg/upgrade/modkit/shield_upgrade))
+		modifier_type = /datum/modifier/shield_projection/mining/strong
+		drop_from_inventory(W)
+		qdel(W)
+	else
+		..()
+*/
+
+/obj/item/device/personal_shield_generator/belt/adminbus
+	desc = "You should not see this. You REALLY should not see this. If you do, you have either been blessed or are about to be the target of some sick prank."
+	modifier_type = /datum/modifier/shield_projection/admin
+	generator_hit_cost = 0
+	generator_active_cost = 0
+	shield_active = 0
+	energy_modifier = 0
+	bcell = /obj/item/weapon/cell/device/weapon/recharge
