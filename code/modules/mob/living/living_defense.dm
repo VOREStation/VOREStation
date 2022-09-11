@@ -327,7 +327,9 @@
 	//VORESTATION EDIT START - Allows for thrown vore!
 	//Throwing a prey into a pred takes priority. After that it checks to see if the person being thrown is a pred.
 	if(istype(AM, /mob/living))
-		var/mob/living/thrown_mob = AM
+		var/mob/living/thrown_mob = AM\
+		if(!client && !thrown_mob.allowmobvore)
+			return //The mob is AI controlled and the prey doesn't allow for mob vore allowed, don't even bother.
 		if((can_be_drop_pred && throw_vore) && (thrown_mob.devourable && thrown_mob.throw_vore && thrown_mob.can_be_drop_prey)) //Prey thrown into pred.
 			vore_selected.nom_mob(thrown_mob) //Eat them!!!
 			visible_message("<span class='warning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
