@@ -6891,7 +6891,7 @@
 	nutriment_desc = list("apple" = 1, "sweetness" = 1)
 	bitesize = 2
 
-/obj/item/weapon/reagent_containers/food/snacks/appleberry/Initialize()
+/obj/item/weapon/reagent_containers/food/snacks/canned/appleberry/Initialize()
 	. = ..()
 	reagents.add_reagent("milk", 8)
 	reagents.add_reagent("sugar", 5)
