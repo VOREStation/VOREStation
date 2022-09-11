@@ -128,6 +128,7 @@
 	cost = -1
 	var_changes = list("trauma_mod" = 2)
 	can_take = ORGANICS
+	excludes = list(/datum/trait/neutral/fight_or_flight)
 
 /datum/trait/negative/breathes
 	cost = -2

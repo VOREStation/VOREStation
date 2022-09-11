@@ -631,3 +631,5 @@
 	custom_only = FALSE
 	can_take = ORGANICS
 	var_changes = list(fight_or_flight = TRUE)
+	excludes = list(/datum/trait/negative/neural_hypersensitivity)
+
