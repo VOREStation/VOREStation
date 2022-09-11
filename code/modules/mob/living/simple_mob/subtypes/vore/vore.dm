@@ -1,6 +1,7 @@
 /mob/living/simple_mob/vore
 	mob_class = MOB_CLASS_ANIMAL
 	mob_bump_flag = 0
+	can_be_drop_pred = 1
 
 /mob/living/simple_mob
 	var/nameset
