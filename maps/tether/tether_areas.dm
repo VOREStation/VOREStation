@@ -480,11 +480,10 @@
 
 /area/tether/surfacebase/entertainment
 	name = "\improper Entertainment Auditorium"
-	icon_state = "library"
+	icon_state = "entertainment"
 
 /area/tether/surfacebase/entertainment/stage
 	name = "\improper Entertainment Stage"
-	icon_state = "library"
 
 /area/tether/surfacebase/funny/clownoffice
 	name = "\improper Clown's Office"
@@ -504,7 +503,6 @@
 
 /area/tether/surfacebase/entertainment/backstage
 	name = "\improper Entertainment Backstage"
-	icon_state = "library"
 
 /area/tether/surfacebase/botanystorage
 	name = "\improper Botany Storage"

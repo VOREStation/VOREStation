@@ -19720,7 +19720,7 @@
 /obj/random/maintenance/engineering,
 /obj/effect/floor_decal/rust,
 /obj/item/clothing/suit/storage/vest/hoscoat/jensen{
-	armor = list("melee"=0,"bullet"=0,"laser"=0,"energy"=0,"bomb"=0,"bio"=0,"rad"=0);
+	armor = list("melee" = 0, "bullet" = 0, "laser" = 0, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0);
 	desc = "Its an old, dusty trenchcoat... what a shame.";
 	name = "trenchcoat"
 	},
@@ -25582,6 +25582,18 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/south)
+"aTi" = (
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai_upload_foyer)
+"aTj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/effect/landmark/free_ai_shell,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai_upload)
 "aTl" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/research,
@@ -28068,7 +28080,7 @@
 	input_tag = "atmos_out";
 	name = "Atmos Intake Control";
 	output_tag = "atmos_in";
-	sensors = list("atmos_intake"="Tank")
+	sensors = list("atmos_intake" = "Tank")
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/atmos/monitoring)
@@ -33410,11 +33422,6 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload_foyer)
-"hCO" = (
-/obj/effect/landmark/free_ai_shell,
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/ai_upload_foyer)
 "hHc" = (
 /obj/machinery/turretid/stun{
 	control_area = /area/ai_upload;
@@ -34077,13 +34084,6 @@
 /obj/item/weapon/aiModule/antimov,
 /obj/item/weapon/aiModule/teleporterOffline,
 /turf/simulated/floor/bluegrid,
-/area/ai_upload)
-"nKV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
 "nOG" = (
 /obj/effect/mouse_hole_spawner{
@@ -47972,7 +47972,7 @@ aLY
 adt
 adt
 aJA
-hCO
+aTi
 klz
 mNZ
 nUS
@@ -48540,7 +48540,7 @@ aLY
 adt
 adt
 aJY
-nKV
+aTj
 kPR
 ndB
 oXH
