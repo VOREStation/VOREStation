@@ -140,7 +140,7 @@
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					new_mob.gender = H.identifying_gender
+					new_mob.gender = H.gender
 			else
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
