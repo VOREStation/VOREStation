@@ -630,6 +630,9 @@
 	cost = 0
 	custom_only = FALSE
 	can_take = ORGANICS
-	var_changes = list(fight_or_flight = TRUE)
 	excludes = list(/datum/trait/negative/neural_hypersensitivity)
+
+/datum/trait/neutral/fight_or_flight/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.fight_or_flight = TRUE
 

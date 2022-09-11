@@ -100,6 +100,7 @@
 	taste_description = "bitterness"
 	color = "#C8A5DC" //Same as the other adrenaline reagent
 	mrate_static = TRUE
+	metabolism = REM * 3 //Metabolism of 0.6. Should reduce 50 seconds of stage 3 to just 16 seconds
 	reagent_state = LIQUID
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
@@ -118,7 +119,7 @@
 			M.add_chemical_effect(CE_PAINKILLER, 80) //Tramadol strength painkiller
 			if(M.exertionLevel < 30)
 				M.add_chemical_effect(CE_SPEEDBOOST, 1)
-	M.reagents.add_reagent("metanephrine", removed * 1) //Add 0.2 metanephrine.
+	M.reagents.add_reagent("metanephrine", removed * 1) //Add 0.6 metanephrine.
 
 /datum/reagent/epinephrine/overdose(var/mob/living/carbon/M, var/alien)
 	if(alien != IS_CHIMERA && alien != IS_DIONA && ishuman(M))
