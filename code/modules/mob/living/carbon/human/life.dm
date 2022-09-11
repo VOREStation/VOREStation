@@ -1962,10 +1962,10 @@
 /mob/living/carbon/human/proc/handle_adrenaline()
 	if(resting || buckled || sleeping || isbelly(loc))
 		if(!bloodstr.has_reagent("metanephrine", 1)) //Removing debuffs once all metanephrine is metabolized. Catching edge case of instant removal as well.
-			if(has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
-				remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
 			if(has_modifier_of_type(/datum/modifier/adrenaline_jittery))
 				remove_a_modifier_of_type(/datum/modifier/adrenaline_jittery)
+			if(has_modifier_of_type(/datum/modifier/adrenaline_unsteady))
+				remove_a_modifier_of_type(/datum/modifier/adrenaline_unsteady)
 			if(adrenaline_broken)
 				adrenaline_broken = !adrenaline_broken
 		else

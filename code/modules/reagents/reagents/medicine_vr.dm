@@ -100,6 +100,7 @@
 	taste_description = "bitterness"
 	color = "#C8A5DC" //Same as the other adrenaline reagent
 	mrate_static = TRUE
+	reagent_state = LIQUID
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
@@ -141,6 +142,7 @@
 	metabolism = REM * 0.5 //Slow metabolism. Sit down to clear it faster! 0.1 per tick.
 	overdose = REAGENTS_OVERDOSE * 0.5 //tiered overdose, weak effects starting at 15
 	scannable = 1
+	reagent_state = LIQUID
 
 /datum/reagent/metanephrine/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.add_chemical_effect(CE_PAINKILLER, 10) //weak painkiller

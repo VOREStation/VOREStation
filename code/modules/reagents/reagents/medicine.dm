@@ -16,6 +16,8 @@
 		M.add_chemical_effect(CE_STABLE, 15)
 		M.add_chemical_effect(CE_PAINKILLER, 10 * M.species.chem_strength_pain)
 		M.remove_chemical_effect(CE_ALLERGEN)
+		if(M.bloodstr.has_reagent("epinephrine",1))
+			M.bloodstr.remove_reagent("epinephrine", removed * 30)
 
 /datum/reagent/inaprovaline/topical
 	name = "Inaprovalaze"
