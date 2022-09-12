@@ -505,7 +505,8 @@
 				/obj/item/stack/rods{amount = 10},
 				/obj/item/stack/material/sandstone{amount = 10},
 				/obj/item/stack/material/marble{amount = 10},
-				/obj/item/stack/material/plasteel{amount = 10})
+				/obj/item/stack/material/plasteel{amount = 10},
+				/obj/item/stack/material/concrete{amount = 10})
 
 /obj/random/material/refined //Random materials for building stuff
 	name = "random refined material"
@@ -535,7 +536,9 @@
 				/obj/item/stack/material/osmium{amount = 3},
 				/obj/item/stack/material/titanium{amount = 5},
 				/obj/item/stack/material/tritium{amount = 3},
-				/obj/item/stack/material/verdantium{amount = 2})
+				/obj/item/stack/material/verdantium{amount = 2},
+				/obj/item/stack/material/concrete{amount =10},
+				/obj/item/stack/material/plasteel/rebar{amount = 5})
 
 /obj/random/material/precious //Precious metals, go figure
 	name = "random precious metal"
@@ -993,6 +996,7 @@
 	icon_state = "coffeecup_spawner"
 
 /obj/random/mug/item_to_spawn()
+<<<<<<< HEAD
 	return pick(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug,
 			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/sol,
 			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/fleet,
@@ -1037,3 +1041,34 @@
 				/obj/item/weapon/storage/box/donkpockets/honk,
 				/obj/item/weapon/storage/box/donkpockets/gondola,
 				/obj/item/weapon/storage/box/donkpockets/berry)
+=======
+	return pick(/obj/item/reagent_containers/food/drinks/glass2/coffeemug,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/sol,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/fleet,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/fivearrows,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/psc,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/alma,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/almp,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/nt,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/metal/wulf,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/gilthari,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/zeng,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/wt,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/aether,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/bishop,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/oculum,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/one,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/puni,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/heart,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/pawn,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/diona,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/britcup,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/tourist,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/flame,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/blue,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/black,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/green,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/green/dark,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/rainbow,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/metal)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration

@@ -108,7 +108,7 @@
 	icon_state = "wilderness2";
 	pixel_y = -6
 	},
-/turf/simulated/wall/sifwood,
+/turf/simulated/wall/concrete,
 /area/surface/outside/wilderness/normal)
 "tM" = (
 /turf/simulated/floor/water,

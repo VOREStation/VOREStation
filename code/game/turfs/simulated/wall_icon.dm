@@ -133,6 +133,7 @@
 				if ((additional_dirs & diag_dir) == diag_dir)
 					dirs += diag_dir
 
+<<<<<<< HEAD
 /turf/simulated/wall/proc/can_join_with_wall(var/turf/simulated/wall/W)
 	//No blending if no material
 	if(!material || !W.material)
@@ -142,6 +143,12 @@
 		return 1
 	//Also blend if they have the same iconbase
 	if(material.icon_base == W.material.icon_base)
+=======
+	wall_connections = dirs_to_corner_states(dirs)
+
+/turf/simulated/wall/proc/can_join_with(var/turf/simulated/wall/W)
+	if (istype(material) && istype(W.material) && ((material.icon_base == W.material.icon_base) || (material.icon_base == "solid" && W.material.icon_base == "brick")))
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 		return 1
 	return 0
 

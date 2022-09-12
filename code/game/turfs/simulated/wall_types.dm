@@ -46,6 +46,7 @@
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "cult"
 
+<<<<<<< HEAD
 /turf/simulated/wall/iron/Initialize(mapload)
 	. = ..(mapload, "iron")
 /turf/simulated/wall/uranium/Initialize(mapload)
@@ -77,6 +78,46 @@
 
 /turf/simulated/wall/resin/Initialize(mapload)
 	. = ..(mapload, "resin",null,"resin")
+=======
+/turf/simulated/wall/phoron
+	material = MAT_PHORON
+
+/turf/simulated/wall/sandstone
+	material = MAT_SANDSTONE
+
+/turf/simulated/wall/ironphoron
+	material = MAT_IRON
+	reinf_material = MAT_PHORON
+
+/turf/simulated/wall/golddiamond
+	material = MAT_GOLD
+	reinf_material = MAT_DIAMOND
+
+/turf/simulated/wall/silvergold
+	material = MAT_SILVER
+	reinf_material = MAT_GOLD
+
+/turf/simulated/wall/sandstonediamond
+	material = MAT_SANDSTONE
+	reinf_material = MAT_DIAMOND
+
+/turf/simulated/wall/snowbrick
+	material = "packed snow"
+
+/turf/simulated/wall/resin
+	material = "resin"
+	girder_material = "resin"
+
+/turf/simulated/wall/concrete
+	desc = "A wall made out of concrete bricks"
+	material = MAT_CONCRETE
+	icon_state = "brick"
+/turf/simulated/wall/r_concrete
+	desc = "A sturdy wall made of concrete and reinforced with plasteel rebar"
+	material = MAT_CONCRETE
+	reinf_material = MAT_PLASTEELREBAR
+	icon_state = "rbrick"
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 
 // Kind of wondering if this is going to bite me in the butt.
 /turf/simulated/wall/skipjack/Initialize(mapload)

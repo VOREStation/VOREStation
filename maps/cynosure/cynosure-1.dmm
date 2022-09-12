@@ -441,7 +441,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "aY" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/research/bmt)
 "aZ" = (
 /obj/machinery/mineral/processing_unit_console{
@@ -473,7 +473,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "bc" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/bmt/west)
 "bd" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -835,6 +835,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/storage/emergency/bmtseast)
+"bM" = (
+/obj/structure/sign/warning/caution,
+/turf/simulated/wall/r_concrete,
+/area/surface/cave/explored/normal)
 "bN" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -1221,10 +1225,10 @@
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/vault)
 "cB" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction1)
 "cE" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/medical/south)
 "cF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -1320,7 +1324,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
 "cN" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/elevator)
 "cP" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -1554,7 +1558,7 @@
 /turf/simulated/wall,
 /area/surface/outpost/research/xenoarcheology/smes)
 "ds" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/rnd/server)
 "dt" = (
 /obj/structure/curtain/open/shower{
@@ -1675,7 +1679,7 @@
 	},
 /area/surface/station/rnd/test_area)
 "dE" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/secondary/bmt/weststairwell)
 "dF" = (
 /obj/effect/floor_decal/industrial/warning/dust,
@@ -1774,7 +1778,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/storage/emergency/bmtswest)
 "dP" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/construction/elevator)
 "dQ" = (
 /obj/structure/closet/emcloset,
@@ -2101,6 +2105,9 @@
 	},
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/engineering/auxiliary_engineering)
+"eE" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/hallway/primary/bmt/east)
 "eF" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -2252,7 +2259,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/rnd/hallway/bmt)
 "eY" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/research/east)
 "eZ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -2375,11 +2382,11 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
 "fj" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/research/east)
 "fk" = (
 /obj/structure/sign/warning/lethal_turrets,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/vault)
 "fl" = (
 /obj/effect/floor_decal/borderfloor{
@@ -2441,7 +2448,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/mining)
 "fr" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/bmt/north)
 "fs" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -2468,7 +2475,7 @@
 /area/surface/station/maintenance/eaststairwell)
 "fu" = (
 /obj/structure/sign/warning/secure_area,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/rnd/hallway/bmt)
 "fv" = (
 /obj/structure/safe,
@@ -2489,7 +2496,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/mining_main/refinery)
 "fx" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/storage/emergency/bmtswest)
 "fy" = (
 /turf/simulated/floor/tiled/dark,
@@ -2555,11 +2562,18 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/medical/hallway/bmt)
 "fG" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/construction/genetics)
+<<<<<<< HEAD
+=======
+"fH" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_nine_by_eight_maint,
+/turf/simulated/wall/concrete,
+/area/surface/station/construction/bmt/construction2)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "fI" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/engineering/auxiliary_engineering)
 "fJ" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -2768,7 +2782,7 @@
 /area/surface/station/maintenance/storage/emergency/bmtswest)
 "gk" = (
 /obj/structure/sign/directions/cargo/refinery,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/mining_main)
 "gl" = (
 /obj/structure/cable/cyan{
@@ -3115,10 +3129,10 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway/bmt)
 "gY" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/engineering/drone_fabrication)
 "ha" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/mining_main/storage)
 "hc" = (
 /turf/simulated/wall,
@@ -3184,7 +3198,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/bmt/west)
 "hh" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/research/south)
 "hi" = (
 /obj/structure/disposalpipe/segment{
@@ -3520,7 +3534,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/security)
 "hN" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/storage/tech)
 "hP" = (
 /obj/structure/closet/hydrant{
@@ -3622,6 +3636,9 @@
 	outdoors = 0
 	},
 /area/surface/cave/explored/normal)
+"id" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/medical/hallway/bmt)
 "ie" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -3819,7 +3836,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/incinerator)
 "iz" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -4321,7 +4338,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
 "jw" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/medical/west)
 "jx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -4427,6 +4444,9 @@
 /obj/structure/closet/emcloset,
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/rnd/hallway/bmt)
+"jG" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/maintenance/weststairwell/bmt)
 "jH" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/cargo,
@@ -4444,10 +4464,10 @@
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/drone_fabrication)
 "jK" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/cargo/bmt)
 "jL" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction4)
 "jN" = (
 /obj/structure/table/rack{
@@ -4758,7 +4778,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/construction/elevator)
 "ks" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/secondary/bmt/eaststairwell)
 "ku" = (
 /obj/machinery/portable_atmospherics/canister/empty,
@@ -5032,6 +5052,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/vault)
+<<<<<<< HEAD
+=======
+"kX" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_eight_by_nine_maint,
+/turf/simulated/wall/concrete,
+/area/surface/station/construction/bmt/construction1)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "kZ" = (
 /obj/structure/closet/l3closet/medical,
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -5127,6 +5154,9 @@
 /obj/effect/floor_decal/corner/green/border,
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/hallway/primary/bmt/east)
+"lk" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/maintenance/engineering/north)
 "lm" = (
 /obj/structure/disposalpipe/trunk{
 	dir = 8
@@ -5157,7 +5187,7 @@
 /area/surface/outpost/research/xenoarcheology/analysis)
 "lq" = (
 /obj/machinery/status_display,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/hallway/bmt)
 "lt" = (
 /obj/effect/floor_decal/techfloor{
@@ -5393,7 +5423,7 @@
 /area/surface/station/rnd/hallway/bmt)
 "lN" = (
 /obj/machinery/ai_status_display,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/construction/warehouse)
 "lO" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -6000,7 +6030,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/engineering/hallway/bmt)
 "mV" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/mining_main/exterior)
 "mW" = (
 /obj/structure/table/steel,
@@ -6051,7 +6081,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/mining_main/refinery)
 "nb" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/incineratormaint)
 "nc" = (
 /obj/effect/floor_decal/borderfloor,
@@ -6508,7 +6538,7 @@
 /area/surface/station/engineering/drone_fabrication)
 "oj" = (
 /obj/structure/sign/directions/cargo/mining,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/mining_main/locker)
 "ok" = (
 /obj/machinery/alarm{
@@ -6527,7 +6557,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
 "om" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/incinerator)
 "op" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
@@ -6598,7 +6628,7 @@
 /area/surface/station/hallway/primary/bmt/south)
 "ov" = (
 /obj/machinery/status_display,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/morgue)
 "ow" = (
 /obj/machinery/mineral/equipment_vendor,
@@ -6870,6 +6900,9 @@
 /obj/effect/catwalk_plated,
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/bmt/west)
+"oT" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/mining_main/refinery)
 "oU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -6934,7 +6967,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/hallway/primary/bmt/north)
 "pd" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction6)
 "pe" = (
 /obj/structure/bed/chair{
@@ -7003,7 +7036,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/east)
 "pj" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/morgue)
 "pl" = (
 /obj/machinery/mineral/unloading_machine,
@@ -7060,7 +7093,7 @@
 /area/surface/station/hallway/primary/bmt/north)
 "ps" = (
 /obj/machinery/status_display,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction1)
 "pt" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -7175,7 +7208,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/anomaly)
 "pF" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/construction/bmt/construction6)
 "pG" = (
 /obj/structure/disposalpipe/segment{
@@ -7349,7 +7382,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
 "qa" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/bmt/south)
 "qb" = (
 /obj/structure/cable/green{
@@ -7394,7 +7427,7 @@
 /area/surface/station/rnd/storage)
 "qf" = (
 /obj/structure/sign/warning/bomb_range,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/cave/explored/normal)
 "qg" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -7809,10 +7842,10 @@
 /turf/simulated/floor/plating,
 /area/surface/station/medical/hallway/bmt)
 "qU" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/security)
 "qV" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/mining_main/locker)
 "qW" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -7826,6 +7859,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/east)
+<<<<<<< HEAD
+=======
+"qX" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_eight_by_five_maint,
+/turf/simulated/wall/concrete,
+/area/surface/station/construction/bmt/construction6)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "qY" = (
 /obj/item/weapon/camera_assembly,
 /turf/simulated/floor/tiled/white,
@@ -8164,6 +8204,9 @@
 /obj/machinery/meter,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/research/south)
+"rH" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/rnd/hallway/bmt)
 "rJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -8512,7 +8555,7 @@
 /turf/simulated/wall,
 /area/surface/outpost/research/xenoarcheology/smes)
 "su" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/bmt/west/elevator)
 "sv" = (
 /obj/structure/grille,
@@ -9220,7 +9263,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/bar)
 "tR" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/security)
 "tS" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -9413,6 +9456,13 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/south)
+<<<<<<< HEAD
+=======
+"ui" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_nine_by_ten_maint,
+/turf/simulated/wall/concrete,
+/area/surface/station/construction/bmt/construction3)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "uk" = (
 /turf/simulated/floor/tiled,
 /area/surface/station/mining_main/storage)
@@ -9513,7 +9563,7 @@
 /turf/simulated/wall/r_wall,
 /area/surface/station/rnd/storage)
 "uC" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/medical/storage/second_storage)
 "uD" = (
 /obj/structure/reagent_dispensers/watertank,
@@ -9654,7 +9704,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology)
 "uQ" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/medbay/bmt)
 "uS" = (
 /obj/structure/disposalpipe/segment{
@@ -9719,6 +9769,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/mining)
+"uY" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/engineering/hallway/bmt)
 "uZ" = (
 /turf/simulated/wall/r_wall,
 /area/surface/outpost/research/xenoarcheology/entrance)
@@ -9743,7 +9796,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/east)
 "vd" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/mining)
 "ve" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -9856,6 +9909,13 @@
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
+<<<<<<< HEAD
+=======
+"vp" = (
+/obj/structure/sign/level/basement/large,
+/turf/simulated/wall/r_concrete,
+/area/surface/station/engineering/hallway/bmt)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "vq" = (
 /obj/structure/bed,
 /turf/simulated/floor/reinforced,
@@ -10268,7 +10328,7 @@
 /area/surface/station/engineering/hallway/bmt)
 "wi" = (
 /obj/structure/disposalpipe/segment,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/medical/west)
 "wj" = (
 /obj/structure/sign/warning/caution,
@@ -10413,7 +10473,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/west)
 "ww" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/storage/tech)
 "wx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -10496,7 +10556,7 @@
 /area/surface/station/rnd/hallway/bmt)
 "wF" = (
 /obj/machinery/ai_status_display,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/engineering/drone_fabrication)
 "wH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -10637,7 +10697,7 @@
 /area/surface/station/mining_main/storage)
 "wV" = (
 /obj/structure/sign/warning/secure_area,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/engineering/hallway/bmt)
 "wW" = (
 /obj/machinery/mech_recharger,
@@ -10768,7 +10828,7 @@
 /obj/structure/sign/directions/engineering/solars{
 	dir = 1
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/security)
 "xn" = (
 /obj/machinery/door/firedoor/border_only,
@@ -10916,7 +10976,7 @@
 /area/surface/station/medical/morgue)
 "xD" = (
 /obj/structure/sign/warning/moving_parts,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/mining_main/refinery)
 "xE" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -11046,7 +11106,7 @@
 /area/surface/station/maintenance/substation/research/bmt)
 "xT" = (
 /obj/machinery/status_display,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/hallway/primary/bmt/west/elevator)
 "xU" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central4,
@@ -11522,7 +11582,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/medical/hallway/bmt)
 "yN" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/engineering/auxiliary_engineering)
 "yO" = (
 /obj/effect/floor_decal/borderfloor,
@@ -11703,7 +11763,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
 "zg" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/research/south)
 "zh" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -11787,6 +11847,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway/bmt)
+"zr" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/outpost/research/xenoarcheology/entrance)
 "zt" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
@@ -11807,7 +11870,7 @@
 /area/surface/outpost/research/xenoarcheology)
 "zu" = (
 /obj/machinery/ai_status_display,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/storage/tech)
 "zv" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -11851,7 +11914,7 @@
 	dir = 1;
 	pixel_y = -6
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/rnd/hallway/bmt)
 "zz" = (
 /obj/structure/ladder/up,
@@ -11937,7 +12000,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/medical/storage/second_storage)
 "zL" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/weststairwell/bmt)
 "zM" = (
 /turf/simulated/floor/plating,
@@ -12288,7 +12351,7 @@
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/mining_main)
 "Az" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/storage/emergency/bmtseast)
 "AB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -12848,7 +12911,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/rnd/toxins_launch)
 "BA" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/bar)
 "BB" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
@@ -13786,6 +13849,9 @@
 	outdoors = 0
 	},
 /area/surface/station/rnd/test_area)
+"DD" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/medical/morgue)
 "DE" = (
 /obj/machinery/alarm{
 	dir = 8;
@@ -13953,6 +14019,9 @@
 /obj/machinery/light/small,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/substation/medbay/bmt)
+"DY" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/mining_main/refinery)
 "DZ" = (
 /obj/machinery/space_heater,
 /obj/effect/zone_divider,
@@ -14192,7 +14261,7 @@
 /turf/simulated/floor/tiled/old_tile/white,
 /area/surface/station/rnd/mixing)
 "EA" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/medbay/bmt)
 "EB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -14557,6 +14626,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/west/elevator)
+"Fp" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/cave/explored/normal)
 "Fq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden,
 /obj/effect/floor_decal/borderfloor/corner{
@@ -14591,7 +14663,7 @@
 /area/surface/station/rnd/hallway/bmt)
 "Ft" = (
 /obj/structure/sign/warning/server_room,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/rnd/server)
 "Fu" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -14605,7 +14677,7 @@
 /area/surface/station/mining_main/exterior)
 "Fw" = (
 /obj/machinery/ai_status_display,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/medbay/bmt)
 "FA" = (
 /obj/machinery/conveyor{
@@ -15301,7 +15373,7 @@
 /area/surface/station/engineering/auxiliary_engineering)
 "Hi" = (
 /obj/structure/disposalpipe/segment,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/incinerator)
 "Hj" = (
 /obj/machinery/door/firedoor/border_only,
@@ -15448,7 +15520,7 @@
 /turf/simulated/floor/tiled/old_tile/white,
 /area/surface/station/rnd/mixing)
 "HA" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/warehouse)
 "HB" = (
 /obj/machinery/door/blast/regular/open{
@@ -15588,7 +15660,7 @@
 /area/surface/station/mining_main/exterior)
 "HQ" = (
 /obj/structure/disposalpipe/segment,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/weststairwell/bmt)
 "HS" = (
 /obj/effect/decal/cleanable/cobweb2,
@@ -15657,7 +15729,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/hallway/primary/bmt/east)
 "HX" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/storage/second_storage)
 "HY" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -15720,7 +15792,7 @@
 /area/surface/outpost/research/xenoarcheology/isolation_c)
 "Ig" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/medbay/bmt)
 "Ih" = (
 /obj/structure/disposalpipe/segment{
@@ -15921,7 +15993,7 @@
 /area/surface/station/mining_main)
 "IG" = (
 /obj/structure/sign/warning/secure_area,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/storage/tech)
 "II" = (
 /obj/structure/ore_box,
@@ -16400,7 +16472,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/rnd/storage)
 "JL" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/engineering/bmt)
 "JM" = (
 /obj/structure/table/rack,
@@ -16456,6 +16528,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/rnd/toxins_launch)
+"JQ" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/hallway/primary/bmt/west)
 "JR" = (
 /obj/machinery/atmospherics/portables_connector{
 	dir = 4
@@ -16702,7 +16777,7 @@
 /area/surface/station/rnd/mixing)
 "Kv" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/engineering/south)
 "Kw" = (
 /obj/machinery/conveyor{
@@ -16866,7 +16941,7 @@
 	},
 /area/surface/station/mining_main/exterior)
 "KO" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bar)
 "KP" = (
 /obj/effect/floor_decal/borderfloor,
@@ -16918,7 +16993,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/mining_main/refinery)
 "KT" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/hallway/primary/bmt/west/elevator)
 "KU" = (
 /obj/machinery/conveyor_switch{
@@ -17272,7 +17347,7 @@
 /turf/simulated/wall/r_wall,
 /area/surface/station/engineering/reactor_room)
 "LF" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/eaststairwell)
 "LG" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -17546,7 +17621,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/hallway/bmt)
 "Mk" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/engineering/south)
 "Ml" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -17643,7 +17718,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/medical/south)
 "Mv" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/construction/warehouse)
 "Mw" = (
 /obj/machinery/conveyor_switch{
@@ -17686,6 +17761,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/bmt/east)
+"MA" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/rnd/hallway/bmt)
 "MB" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -17909,7 +17987,7 @@
 /area/surface/outpost/research/xenoarcheology)
 "MW" = (
 /obj/machinery/status_display,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/cargo/bmt)
 "MX" = (
 /obj/structure/closet/secure_closet/miner,
@@ -18180,8 +18258,11 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/outpost/research/xenoarcheology/analysis)
+"NC" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/vault)
 "ND" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/construction/bmt/construction4)
 "NE" = (
 /obj/structure/morgue{
@@ -18408,6 +18489,10 @@
 	},
 /obj/effect/map_helper/airlock/sensor/chamber_sensor,
 /turf/simulated/floor/tiled/techfloor/grid,
+/area/surface/station/rnd/hallway/bmt)
+"NX" = (
+/obj/structure/sign/science,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/rnd/hallway/bmt)
 "NY" = (
 /turf/simulated/wall/r_wall,
@@ -18682,7 +18767,7 @@
 /area/surface/station/mining_main/storage)
 "OA" = (
 /obj/structure/disposalpipe/segment,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/research/east)
 "OB" = (
 /obj/structure/cable{
@@ -19042,7 +19127,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/security)
 "Pf" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/engineering/drone_fabrication)
 "Pg" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -19229,7 +19314,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/research/east)
 "PA" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -19628,6 +19713,13 @@
 	name = "reinforced floor"
 	},
 /area/surface/station/rnd/mixing)
+<<<<<<< HEAD
+=======
+"Qk" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_medical_basement,
+/turf/simulated/wall/concrete,
+/area/surface/station/construction/bmt/construction4)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "Ql" = (
 /obj/machinery/ai_status_display,
 /turf/simulated/wall/r_wall,
@@ -19972,7 +20064,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/mining_main/locker)
 "QV" = (
 /obj/structure/cable/cyan{
@@ -20052,7 +20144,7 @@
 	},
 /area/surface/station/mining_main/exterior)
 "Rf" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/mining_main/storage)
 "Rg" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
@@ -20119,7 +20211,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/rnd/hallway/bmt)
 "Rl" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/hallway/bmt)
 "Rm" = (
 /obj/machinery/recharge_station,
@@ -20480,6 +20572,23 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/north)
+<<<<<<< HEAD
+=======
+"RW" = (
+/obj/structure/sign/levels/command{
+	dir = 1;
+	pixel_y = 6
+	},
+/obj/structure/sign/levels/dorms{
+	dir = 1
+	},
+/obj/structure/sign/levels/cargo{
+	dir = 5;
+	pixel_y = -6
+	},
+/turf/simulated/wall/r_concrete,
+/area/surface/station/hallway/primary/bmt/west/elevator)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "RY" = (
 /obj/structure/cable/green{
 	d2 = 2;
@@ -20713,7 +20822,7 @@
 /area/surface/station/hallway/primary/bmt/west)
 "Su" = (
 /obj/structure/sign/warning/secure_area,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/storage/tech)
 "Sv" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -20748,6 +20857,9 @@
 /obj/random/multiple/voidsuit/mining,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/mining_main/storage)
+"Sx" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/mining_main)
 "Sy" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 5
@@ -20796,7 +20908,7 @@
 /turf/simulated/floor/tiled/monofloor,
 /area/surface/station/engineering/hallway/bmt)
 "SD" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/cave/explored/normal)
 "SF" = (
 /obj/structure/cable{
@@ -20830,7 +20942,7 @@
 /area/surface/station/maintenance/substation/cargo/bmt)
 "SI" = (
 /obj/structure/sign/warning/secure_area,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/vault)
 "SJ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
@@ -20851,7 +20963,7 @@
 /area/surface/outpost/research/xenoarcheology/anomaly)
 "SL" = (
 /obj/machinery/status_display,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/storage/tech)
 "SM" = (
 /obj/machinery/atmospherics/pipe/tank/phoron{
@@ -20860,7 +20972,7 @@
 /turf/simulated/floor/tiled/old_tile/gray,
 /area/surface/station/maintenance/incinerator)
 "SO" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/medical/south)
 "SQ" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -21260,7 +21372,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/mining)
 "TQ" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction5)
 "TR" = (
 /obj/effect/floor_decal/industrial/hatch/yellow,
@@ -22044,7 +22156,7 @@
 /turf/simulated/floor/tiled/steel_dirty,
 /area/surface/station/hallway/primary/bmt/east)
 "Vy" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/engineering/bmt)
 "Vz" = (
 /obj/structure/grille,
@@ -22073,7 +22185,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/mining_main)
 "VC" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/cargo/bmt)
 "VE" = (
 /obj/effect/floor_decal/industrial/warning/dust{
@@ -22206,7 +22318,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/outpost/research/xenoarcheology/exp_prep)
 "VS" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction3)
 "VU" = (
 /obj/effect/floor_decal/industrial/warning{
@@ -22337,7 +22449,7 @@
 /area/surface/station/maintenance/incineratormaint)
 "Wh" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/storage/tech)
 "Wk" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -22945,6 +23057,9 @@
 /obj/effect/floor_decal/industrial/outline/grey,
 /turf/simulated/floor/tiled/dark,
 /area/surface/outpost/research/xenoarcheology/longtermstorage)
+"Xu" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/engineering/hallway/bmt)
 "Xv" = (
 /turf/simulated/floor/plating,
 /area/surface/station/construction/basement)
@@ -23108,7 +23223,7 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/bmt/west)
 "XR" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/bmt/construction2)
 "XS" = (
 /obj/machinery/sparker{
@@ -23231,7 +23346,7 @@
 /area/surface/station/rnd/mixing)
 "Yg" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/bmt/west)
 "Yh" = (
 /obj/structure/table/steel_reinforced,
@@ -23598,7 +23713,7 @@
 /area/surface/station/rnd/mixing)
 "Za" = (
 /obj/effect/zone_divider,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/engineering/south)
 "Zb" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -23925,8 +24040,15 @@
 /turf/simulated/floor/plating,
 /area/surface/station/storage/tech)
 "ZF" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/construction/basement)
+<<<<<<< HEAD
+=======
+"ZG" = (
+/obj/effect/landmark/submap_position/random_subtype/cynosure_ten_by_nine_maint,
+/turf/simulated/wall/r_concrete,
+/area/surface/station/construction/warehouse)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "ZH" = (
 /obj/structure/cable/green{
 	d1 = 4;
@@ -42276,7 +42398,7 @@ HE
 HE
 HE
 HE
-IV
+Fp
 HE
 HE
 HE
@@ -42533,7 +42655,7 @@ Kj
 Kj
 Kj
 Kj
-wj
+bM
 Kj
 Kj
 Kj
@@ -43304,7 +43426,7 @@ HE
 HE
 HE
 HE
-IV
+Fp
 HE
 HE
 HE
@@ -46618,11 +46740,11 @@ HE
 HE
 HE
 HE
-IV
+Fp
 qf
 lS
-wj
-IV
+bM
+Fp
 HE
 HE
 HE
@@ -46664,7 +46786,7 @@ Nj
 bZ
 wx
 nR
-Sc
+Sx
 Kp
 Yp
 fR
@@ -46908,7 +47030,7 @@ HE
 zL
 zL
 zL
-Vt
+jG
 sU
 Xp
 ug
@@ -46921,7 +47043,7 @@ Nj
 KT
 BJ
 Wo
-Sc
+Sx
 ii
 cS
 wp
@@ -47435,7 +47557,7 @@ Nj
 KT
 Se
 Ow
-Sc
+Sx
 Ax
 Gi
 ZV
@@ -47692,20 +47814,20 @@ KT
 KT
 XE
 Oc
-Sc
-Sc
+Sx
+Sx
 WE
 sX
 gk
-hc
+oT
 xD
-hc
+oT
 De
 aR
 KS
-hc
-NY
-NY
+oT
+DY
+DY
 HE
 HE
 HE
@@ -47961,7 +48083,7 @@ Kn
 cW
 Qf
 FK
-Sc
+Sx
 HE
 HE
 HE
@@ -48207,7 +48329,7 @@ nY
 hv
 Wg
 HB
-Sc
+Sx
 VB
 ZH
 KM
@@ -48218,7 +48340,7 @@ Ea
 FX
 IE
 Gb
-Sc
+Sx
 HE
 HE
 HE
@@ -48708,7 +48830,7 @@ sJ
 aY
 aY
 aY
-mB
+NX
 qK
 lv
 kx
@@ -48962,9 +49084,9 @@ ZA
 ZA
 iY
 aY
-JV
+MA
 jF
-JV
+MA
 yl
 MH
 vK
@@ -49730,13 +49852,13 @@ Dk
 eX
 mJ
 zx
-JV
+MA
 oK
-JV
-JV
-JV
-JV
-JV
+MA
+MA
+MA
+MA
+MA
 hh
 EQ
 hh
@@ -49986,11 +50108,11 @@ ds
 tO
 pZ
 WI
-JV
+MA
 Tr
 rW
 Tr
-KE
+rH
 EZ
 Rj
 oQ
@@ -50243,7 +50365,7 @@ ds
 qu
 bC
 eh
-JV
+MA
 lI
 HH
 WD
@@ -50423,15 +50545,24 @@ NK
 ZO
 Yq
 sD
+<<<<<<< HEAD
 Uv
 iL
 uZ
 uZ
 uZ
 uZ
+=======
+Rw
+XI
+zr
+zr
+zr
+zr
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 Al
-uZ
-uZ
+zr
+zr
 RM
 wl
 st
@@ -50500,7 +50631,7 @@ ds
 mG
 ok
 dQ
-JV
+MA
 PB
 KD
 gA
@@ -50682,13 +50813,13 @@ Qu
 Hm
 jd
 XI
-uZ
+zr
 Bj
 Bj
 Bj
 Bj
 ZZ
-uZ
+zr
 xM
 AB
 Vc
@@ -50754,10 +50885,10 @@ VW
 tl
 vG
 ds
-JV
-JV
-JV
-JV
+MA
+MA
+MA
+MA
 PB
 yN
 Be
@@ -50939,13 +51070,13 @@ NB
 sD
 OK
 oz
-uZ
+zr
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+zr
 DK
 eF
 Mr
@@ -50998,13 +51129,13 @@ mB
 JV
 JV
 JV
-JV
-JV
-JV
-JV
-JV
-JV
-JV
+MA
+MA
+MA
+MA
+MA
+MA
+MA
 iT
 ds
 jb
@@ -51196,13 +51327,13 @@ bJ
 sD
 Ec
 kH
-uZ
+zr
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+zr
 pR
 MG
 cj
@@ -51260,7 +51391,7 @@ HE
 HE
 HE
 HE
-JV
+MA
 Tr
 zY
 ds
@@ -51453,13 +51584,13 @@ wb
 sD
 Ec
 PS
-uZ
+zr
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+zr
 NI
 MG
 zw
@@ -51710,13 +51841,13 @@ lo
 Ql
 Ec
 af
-uZ
+zr
 Bj
 Bj
 Bj
 Bj
 Bj
-uZ
+zr
 cu
 lQ
 Ak
@@ -51967,13 +52098,13 @@ sD
 sD
 YU
 gE
-uZ
-uZ
+zr
+zr
 Kd
 Ms
 Xb
-uZ
-uZ
+zr
+zr
 MQ
 XP
 dM
@@ -55357,12 +55488,12 @@ HE
 jw
 yS
 GN
-Us
-Us
-Us
-Us
-Us
-Us
+id
+id
+id
+id
+id
+id
 ec
 ec
 ec
@@ -55395,9 +55526,9 @@ HE
 Kj
 Kj
 fk
-kx
+JQ
 qz
-kx
+JQ
 SI
 Kj
 Kj
@@ -55614,17 +55745,17 @@ jw
 jw
 tb
 GN
-Us
+id
 QG
 QG
 QG
 RB
-Us
-UE
+id
+DD
 hJ
 UE
-UE
-UE
+DD
+DD
 nI
 Ug
 cE
@@ -55650,13 +55781,13 @@ HE
 HE
 HE
 Kj
-EN
+NC
 EN
 EN
 Qy
 EN
 EN
-EN
+NC
 Kj
 HE
 HE
@@ -55876,12 +56007,12 @@ QG
 QG
 QG
 QG
-Us
+id
 iU
 Oa
 LK
 oX
-UE
+DD
 pa
 Ug
 cE
@@ -55906,7 +56037,7 @@ fr
 HE
 HE
 HE
-EN
+NC
 EN
 EN
 lu
@@ -55914,7 +56045,7 @@ og
 Nn
 EN
 EN
-EN
+NC
 HE
 HE
 HE
@@ -56128,17 +56259,17 @@ Zf
 jw
 VU
 VU
-Us
+id
 QG
 QG
 QG
 QG
-Us
+id
 iU
 dc
 dc
 oX
-UE
+DD
 oh
 Ug
 cE
@@ -56163,7 +56294,7 @@ fr
 HE
 HE
 HE
-EN
+NC
 EN
 sl
 GE
@@ -56171,7 +56302,7 @@ Pm
 mm
 nm
 EN
-EN
+NC
 HE
 HE
 HE
@@ -56380,22 +56511,22 @@ Nl
 Us
 Us
 Us
-Us
-Us
-Us
+id
+id
+id
 Cb
 Cb
-Us
+id
 QG
 QG
 QG
 QG
-Us
+id
 NE
 FS
 FS
 qw
-UE
+DD
 hj
 Ug
 cE
@@ -56420,7 +56551,7 @@ fr
 HE
 HE
 HE
-EN
+NC
 EN
 MY
 mK
@@ -56428,7 +56559,7 @@ sR
 mK
 jO
 EN
-EN
+NC
 HE
 HE
 HE
@@ -56641,18 +56772,18 @@ xu
 CZ
 Rl
 gz
-Us
-Us
-Us
+id
+id
+id
 vC
 fF
-Us
-Us
+id
+id
 ov
 sq
 gn
 pj
-UE
+DD
 uw
 zf
 cE
@@ -56677,7 +56808,7 @@ fr
 HE
 HE
 HE
-EN
+NC
 EN
 kW
 cA
@@ -56685,7 +56816,7 @@ Rz
 cA
 UW
 EN
-EN
+NC
 HE
 HE
 HE
@@ -56909,7 +57040,7 @@ wN
 CL
 iK
 jY
-UE
+DD
 dg
 Ug
 cE
@@ -56934,7 +57065,7 @@ fr
 HE
 HE
 HE
-EN
+NC
 EN
 lh
 mK
@@ -56942,7 +57073,7 @@ UW
 mK
 Uc
 EN
-EN
+NC
 HE
 HE
 HE
@@ -57166,7 +57297,7 @@ Dj
 Cr
 kd
 vk
-UE
+DD
 cM
 iv
 cE
@@ -57191,7 +57322,7 @@ fr
 HE
 HE
 HE
-EN
+NC
 EN
 jc
 mK
@@ -57199,7 +57330,7 @@ UW
 mK
 iS
 EN
-EN
+NC
 HE
 HE
 HE
@@ -57423,7 +57554,7 @@ yY
 rC
 Ee
 xB
-UE
+DD
 Lv
 Ug
 cE
@@ -57448,7 +57579,7 @@ fr
 HE
 HE
 HE
-EN
+NC
 EN
 EN
 UU
@@ -57456,7 +57587,7 @@ fv
 ID
 EN
 EN
-EN
+NC
 HE
 HE
 HE
@@ -57679,8 +57810,8 @@ pj
 pj
 pj
 pj
-UE
-UE
+DD
+DD
 pU
 Ug
 cE
@@ -57706,13 +57837,13 @@ HE
 HE
 HE
 HE
+NC
 EN
 EN
 EN
 EN
 EN
-EN
-EN
+NC
 HE
 HE
 HE
@@ -57964,11 +58095,11 @@ HE
 HE
 HE
 HE
-EN
-EN
-EN
-EN
-EN
+NC
+NC
+NC
+NC
+NC
 HE
 HE
 HE
@@ -58448,7 +58579,7 @@ Ih
 pS
 CZ
 Rl
-Us
+id
 SO
 SO
 SO
@@ -58705,7 +58836,7 @@ xg
 xU
 Ph
 Kc
-Us
+id
 Am
 GV
 cE
@@ -59501,21 +59632,21 @@ fr
 aH
 JH
 fr
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
-dX
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
+eE
 BA
 BA
 BA
@@ -59984,9 +60115,9 @@ HE
 HE
 HE
 HE
-Us
-Us
-Us
+id
+id
+id
 EA
 oL
 oU
@@ -62596,7 +62727,7 @@ LF
 LF
 LF
 LF
-dX
+eE
 rJ
 lO
 hN
@@ -62853,7 +62984,7 @@ HE
 HE
 HE
 HE
-dX
+eE
 rJ
 lj
 zu
@@ -63110,7 +63241,7 @@ HE
 HE
 HE
 HE
-dX
+eE
 rJ
 lj
 hN
@@ -64643,7 +64774,7 @@ HE
 HE
 HE
 HE
-XU
+lk
 QX
 ZF
 cs
@@ -64909,7 +65040,7 @@ Xv
 Pb
 Pb
 Lo
-Na
+uY
 Ap
 Ap
 wV
@@ -65157,7 +65288,7 @@ HE
 HE
 HE
 HE
-XU
+lk
 DQ
 ZF
 wq
@@ -65166,10 +65297,10 @@ Pb
 QK
 GM
 GM
-Na
+uY
 Da
 ti
-Na
+uY
 ww
 ww
 ww
@@ -65414,19 +65545,19 @@ HE
 HE
 HE
 HE
-XU
+lk
 DQ
-Na
-Na
-Na
-Na
-Na
-Na
-Na
-Na
+uY
+uY
+uY
+uY
+uY
+uY
+uY
+uY
 yh
 lE
-Na
+uY
 HE
 HE
 HE
@@ -65670,20 +65801,20 @@ HE
 HE
 HE
 HE
-XU
-XU
+lk
+lk
 DQ
-Na
+uY
 Nt
 Nt
 Nt
 Nt
 us
-Na
+uY
 mU
 Va
 Dp
-Na
+uY
 Pf
 Pf
 Pf
@@ -65927,10 +66058,10 @@ HE
 HE
 HE
 HE
-XU
+lk
 BR
 Me
-Na
+uY
 Nt
 Nt
 Nt
@@ -66184,7 +66315,7 @@ HE
 HE
 HE
 HE
-XU
+lk
 BR
 Me
 dz
@@ -66441,10 +66572,10 @@ HE
 HE
 HE
 HE
-XU
-XU
+lk
+lk
 DQ
-Na
+uY
 Nt
 Nt
 Nt
@@ -66699,15 +66830,15 @@ HE
 HE
 HE
 HE
-XU
+lk
 DQ
-Na
+uY
 Nt
 Nt
 Nt
 Nt
 Nt
-Na
+uY
 tX
 ZR
 ho
@@ -66956,15 +67087,15 @@ HE
 HE
 HE
 HE
-XU
+lk
 DQ
-Na
-Na
-Na
-Na
-Na
-Na
-Na
+uY
+uY
+uY
+uY
+uY
+uY
+uY
 iF
 bq
 Ls
@@ -67211,16 +67342,16 @@ HE
 HE
 HE
 HE
-XU
-XU
-XU
+lk
+lk
+lk
 Me
 JL
 GJ
 ak
 Yi
 Vy
-iF
+Xu
 lA
 ko
 oD
@@ -67468,7 +67599,7 @@ HE
 HE
 HE
 HE
-XU
+lk
 Ny
 Et
 RS
@@ -67725,7 +67856,7 @@ HE
 HE
 HE
 HE
-XU
+lk
 Jr
 cT
 Ff
@@ -67982,7 +68113,7 @@ HE
 HE
 HE
 HE
-XU
+lk
 za
 nF
 rK
@@ -67997,7 +68128,7 @@ Gm
 Bk
 zq
 BZ
-Na
+uY
 HE
 HE
 HE
@@ -68239,22 +68370,28 @@ HE
 HE
 HE
 HE
-XU
+lk
 ao
 Me
-XU
+lk
 JL
 JL
 JL
 JL
 JL
+<<<<<<< HEAD
 Na
 Na
 Na
+=======
+vp
+uY
+uY
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 uJ
 cK
 Fk
-Na
+uY
 HE
 HE
 HE
@@ -68486,20 +68623,20 @@ tR
 tR
 tR
 tR
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
-XU
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
+lk
 BR
 Me
-XU
+lk
 HE
 HE
 HE
@@ -68511,7 +68648,7 @@ Na
 kj
 ep
 JF
-Na
+uY
 HE
 HE
 HE
@@ -68756,7 +68893,7 @@ QY
 QY
 QY
 kQ
-XU
+lk
 HE
 HE
 HE
@@ -69000,20 +69137,20 @@ tR
 tR
 tR
 tR
-XU
-XU
-XU
-XU
-XU
-XU
+lk
+lk
+lk
+lk
+lk
+lk
 Dr
 Oe
 aS
 Sp
 zd
 qZ
-XU
-XU
+lk
+lk
 HE
 HE
 HE
@@ -69262,14 +69399,14 @@ HE
 HE
 HE
 HE
-XU
-XU
+lk
+lk
 tC
 QB
-XU
-XU
-XU
-XU
+lk
+lk
+lk
+lk
 HE
 HE
 HE
@@ -69520,10 +69657,10 @@ HE
 HE
 HE
 HE
-XU
-XU
-XU
-XU
+lk
+lk
+lk
+lk
 HE
 HE
 HE

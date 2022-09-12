@@ -533,7 +533,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/north/gnd)
 "asQ" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/solars/northeast)
 "asW" = (
 /obj/item/weapon/stool/padded{
@@ -1127,7 +1127,7 @@
 /obj/structure/sign/directions/cargo/mining{
 	dir = 4
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/groundfloor/east)
 "aFZ" = (
 /turf/simulated/wall/r_wall,
@@ -2034,7 +2034,7 @@
 /obj/structure/sign/directions/engineering/solars{
 	pixel_y = 6
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/solars/west)
 "aZL" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -2349,7 +2349,7 @@
 /turf/simulated/floor/carpet,
 /area/surface/station/security/detectives_office)
 "ben" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/atmospherics)
 "bes" = (
 /obj/machinery/atmospherics/binary/pump{
@@ -3353,6 +3353,9 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/etc)
+"bAZ" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/rnd/research_restroom)
 "bBp" = (
 /obj/effect/floor_decal/industrial/warning/corner,
 /obj/machinery/meter,
@@ -3509,7 +3512,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai/upload)
 "bEh" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/rnd/hallway/stairwell)
 "bEv" = (
 /obj/machinery/door/firedoor/border_only,
@@ -3602,7 +3605,7 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/rnd/research_restroom)
 "bHw" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/medical/hallway/gnd)
 "bIc" = (
 /obj/structure/railing{
@@ -3644,7 +3647,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/atmos)
 "bIC" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/etc)
 "bIK" = (
 /obj/structure/cable/cyan{
@@ -3930,7 +3933,7 @@
 /turf/simulated/floor/tiled/eris,
 /area/surface/station/rnd/xenobiology)
 "bOG" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/security/gnd)
 "bPE" = (
 /obj/effect/floor_decal/industrial/outline/grey,
@@ -4298,6 +4301,9 @@
 	},
 /turf/simulated/floor/wood/sif,
 /area/surface/station/chapel/main)
+"bZn" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/evidence_storage)
 "bZp" = (
 /obj/machinery/camera/network/security{
 	c_tag = "SEC - Evidence Storage";
@@ -4482,6 +4488,9 @@
 	dir = 8
 	},
 /turf/simulated/floor/tiled,
+/area/surface/station/hallway/primary/groundfloor/west/elevator)
+"cdD" = (
+/turf/simulated/wall/r_concrete,
 /area/surface/station/hallway/primary/groundfloor/west/elevator)
 "cdK" = (
 /obj/machinery/door/firedoor/glass,
@@ -4713,6 +4722,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/exploration/cargo)
+"ckl" = (
+/turf/simulated/wall/concrete,
+/area/surface/outpost/research/xenoarcheology/surface)
 "ckG" = (
 /obj/structure/cable/cyan{
 	d2 = 8;
@@ -4776,6 +4788,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/surface/station/park)
+"cmt" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/equiptment_storage/ses)
 "cmJ" = (
 /obj/structure/fence{
 	dir = 4
@@ -5146,7 +5161,7 @@
 /area/surface/station/hallway/primary/groundfloor/south)
 "cyo" = (
 /obj/structure/sign/warning/nosmoking_2,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/etc)
 "cyO" = (
 /obj/structure/cable/green{
@@ -5438,6 +5453,9 @@
 	},
 /turf/simulated/floor/tiled/old_cargo/gray,
 /area/shuttle/exploration/cockpit)
+"cHa" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/rnd/exploration)
 "cHj" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -5953,6 +5971,9 @@
 /obj/effect/map_helper/airlock/door/simple,
 /turf/simulated/floor/plating,
 /area/surface/station/quartermaster/storage)
+"cQG" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/rnd/research_restroom)
 "cQI" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 1
@@ -6382,7 +6403,7 @@
 /area/surface/station/ai/upload)
 "cXT" = (
 /obj/structure/sign/warning/radioactive,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/outside/plains/station)
 "cXY" = (
 /obj/structure/cable/cyan{
@@ -6455,7 +6476,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 10
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/groundfloor/west/elevator)
 "cZg" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -6494,6 +6515,9 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/reception)
+"cZL" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/briefing_room)
 "cZO" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -6939,7 +6963,7 @@
 /area/surface/station/hallway/primary/groundfloor/south)
 "dlf" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/cargo/gnd)
 "dln" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -6971,7 +6995,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/ward)
 "dlE" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/atmospherics)
 "dlI" = (
 /obj/effect/floor_decal/borderfloor{
@@ -7406,7 +7430,7 @@
 	dir = 8;
 	pixel_y = -6
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/hallway/primary/groundfloor/east)
 "duZ" = (
 /obj/machinery/atmospherics/unary/engine{
@@ -7442,12 +7466,18 @@
 /turf/simulated/floor/plating,
 /area/surface/station/quartermaster/storage)
 "dwo" = (
+<<<<<<< HEAD
 /obj/structure/sign/directions/security/interrogation{
 	dir = 4;
 	pixel_y = -6
 	},
 /turf/simulated/wall/r_wall,
 /area/surface/station/security/hallway/gnd)
+=======
+/obj/structure/sign/level/ground,
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/equiptment_storage/ses)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "dwr" = (
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
@@ -7521,7 +7551,7 @@
 /obj/structure/sign/directions/ladder_down{
 	pixel_y = 6
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/north/gnd)
 "dyI" = (
 /obj/structure/ladder/up,
@@ -8374,7 +8404,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/medical/emt_bay)
 "dTQ" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/arrivals/cynosure/cryo)
 "dUv" = (
 /obj/machinery/door/firedoor/glass,
@@ -8478,7 +8508,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/atmos)
 "dYh" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/cargo/gnd)
 "dYO" = (
 /obj/item/device/radio/intercom{
@@ -8577,6 +8607,9 @@
 /obj/machinery/light,
 /turf/simulated/floor/tiled/old_tile/white,
 /area/surface/station/rnd/research_restroom)
+"ebz" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/chapel/office)
 "ebH" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -9584,6 +9617,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/storage/primarytool)
+"ewo" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/maintenance/substation/engineering/gnd)
 "ewC" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/yellow{
 	dir = 1
@@ -10117,7 +10153,7 @@
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/security/lobby)
 "eHW" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/engineering/gnd)
 "eIB" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
@@ -10154,6 +10190,9 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/crew_quarters/heads/hop)
+"eIR" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/range)
 "eJn" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 4
@@ -10417,7 +10456,7 @@
 	dir = 1;
 	pixel_y = -6
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/solars/northeast)
 "eOB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/universal,
@@ -11002,6 +11041,9 @@
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
+"eZL" = (
+/turf/simulated/wall/concrete,
+/area/surface/outside/plains/station)
 "eZS" = (
 /obj/machinery/atmospherics/pipe/simple/visible/green{
 	dir = 10
@@ -12028,7 +12070,7 @@
 /area/surface/station/hydroponics)
 "fzQ" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/research/gnd)
 "fzX" = (
 /obj/effect/floor_decal/techfloor{
@@ -12878,7 +12920,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/storage/primary_storage)
 "fRF" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/hallway/primary/groundfloor/east)
 "fRI" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -12974,6 +13016,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai/upload)
+"fTD" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/outpost/research/xenoarcheology/surface)
 "fTV" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/effect/floor_decal/borderfloorwhite/corner,
@@ -13207,7 +13252,7 @@
 /area/surface/station/maintenance/atmos)
 "gbG" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/research/gnd)
 "gbK" = (
 /obj/effect/floor_decal/borderfloor,
@@ -13515,7 +13560,7 @@
 /turf/simulated/wall/r_wall,
 /area/surface/station/engineering/reactor_room)
 "gjW" = (
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/surface/outside/plains/station)
 "gkB" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -14358,7 +14403,7 @@
 /obj/structure/sign/directions/stairs_down{
 	pixel_y = -6
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/hallway/primary/groundfloor/west/elevator)
 "gDD" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -14963,7 +15008,7 @@
 	dir = 8;
 	pixel_y = 6
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/arrivals/cynosure/cryo)
 "gPO" = (
 /obj/effect/zone_divider,
@@ -15995,7 +16040,7 @@
 /area/surface/station/crew_quarters/pool)
 "hsL" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/solars/west)
 "hta" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -16728,6 +16773,9 @@
 /obj/effect/floor_decal/corner/yellow/bordercorner,
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/workshop)
+"hJJ" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/crew_quarters/pool)
 "hKf" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply{
 	dir = 4
@@ -17024,7 +17072,7 @@
 /area/surface/station/security/briefing_room)
 "hSr" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/medbay/gnd)
 "hSB" = (
 /obj/effect/floor_decal/borderfloor/corner{
@@ -17211,9 +17259,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/north)
-"hXy" = (
-/turf/simulated/wall/r_wall,
-/area/surface/station/maintenance/substation/civilian)
 "hYa" = (
 /obj/effect/floor_decal/borderfloor,
 /obj/effect/floor_decal/industrial/danger,
@@ -17250,6 +17295,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/rnd/xenobiology)
+"hZm" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/lobby)
 "hZG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/fuel{
 	dir = 10
@@ -17552,7 +17600,7 @@
 /area/surface/station/medical/surgeryobs)
 "ihE" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/medical/etc)
 "ihO" = (
 /obj/machinery/sleeper{
@@ -18698,6 +18746,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/ai/upload_foyer)
+"iMZ" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/medical/cloning)
 "iNb" = (
 /obj/effect/floor_decal/corner/white/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -18868,7 +18919,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/shuttle/exploration/cargo)
 "iSh" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/hallway/primary/groundfloor/east)
 "iSG" = (
 /turf/simulated/wall,
@@ -22304,6 +22355,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/arrivals/cynosure)
+"krp" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/maintenance/north/gnd)
 "krw" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging/junction{
 	dir = 1
@@ -23260,7 +23314,7 @@
 /turf/simulated/floor/carpet,
 /area/surface/station/security/detectives_office)
 "kPd" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/garage)
 "kPm" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -23857,6 +23911,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/engineering/storage)
+"lfc" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/maintenance/kitchen)
 "lfk" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/effect/floor_decal/borderfloorwhite,
@@ -25147,6 +25204,9 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/storage/primarytool)
+"lJS" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/hallway/gnd)
 "lKB" = (
 /obj/effect/floor_decal/borderfloor/corner{
 	dir = 1
@@ -25366,6 +25426,19 @@
 	},
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/rnd/xenobiology/xenoflora_isolation)
+<<<<<<< HEAD
+=======
+"lOS" = (
+/obj/structure/sign/directions/security/forensics/alt{
+	dir = 4
+	},
+/obj/structure/sign/directions/security/interrogation{
+	dir = 4;
+	pixel_y = 6
+	},
+/turf/simulated/wall/r_concrete,
+/area/surface/station/security/hallway/gnd)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "lOW" = (
 /obj/structure/ladder,
 /turf/simulated/floor/tiled/steel/sif/planetuse{
@@ -25566,6 +25639,9 @@
 /obj/item/device/flashlight/lamp,
 /turf/simulated/floor/lino,
 /area/surface/station/chapel/office)
+"lSJ" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/rnd/research_lockerroom)
 "lSV" = (
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/range)
@@ -26157,7 +26233,7 @@
 /area/surface/station/maintenance/surgery)
 "mdG" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/civilian)
 "meb" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -26262,7 +26338,7 @@
 /turf/simulated/floor/tiled/white,
 /area/surface/station/rnd/xenobiology)
 "mgC" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/arrivals)
 "mgM" = (
 /obj/item/modular_computer/console/preset/security{
@@ -27047,6 +27123,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai/upload)
+"mxb" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/security/interrogation)
 "mxf" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
@@ -27085,11 +27164,15 @@
 	dir = 8;
 	pixel_y = 6
 	},
+<<<<<<< HEAD
 /obj/structure/sign/directions/stairs_down{
 	dir = 8;
 	pixel_y = -6
 	},
 /turf/simulated/wall,
+=======
+/turf/simulated/wall/concrete,
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 /area/surface/station/rnd/hallway/stairwell)
 "mxT" = (
 /obj/effect/zone_divider,
@@ -27207,7 +27290,14 @@
 	dir = 1;
 	pixel_y = -6
 	},
+<<<<<<< HEAD
 /turf/simulated/wall,
+=======
+/obj/structure/sign/levels/medical/virology{
+	dir = 1
+	},
+/turf/simulated/wall/concrete,
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 /area/surface/station/medical/etc)
 "mAq" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -27380,6 +27470,9 @@
 /obj/structure/catwalk,
 /turf/simulated/floor/plating/sif/planetuse,
 /area/surface/outside/station/solar/westsolar)
+"mCs" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/quartermaster/storage)
 "mCR" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -28221,6 +28314,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/security/range)
+"mVg" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/hallway/primary/groundfloor/west)
 "mVp" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 6
@@ -28314,6 +28410,16 @@
 /obj/item/weapon/folder/red,
 /turf/simulated/floor/plating,
 /area/surface/station/security/briefing_room)
+<<<<<<< HEAD
+=======
+"mWA" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/maintenance/kitchen)
+"mWO" = (
+/obj/machinery/vending/coffee,
+/turf/simulated/floor/tiled/hydro,
+/area/surface/station/park)
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 "mXo" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -28337,6 +28443,9 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
+"mYb" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/engineering/hallway/reactor)
 "mYc" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -28489,7 +28598,7 @@
 /turf/simulated/floor/reinforced/supermatter_core,
 /area/surface/station/engineering/reactor_room)
 "nbV" = (
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/surface/outside/station/shuttle/pad4)
 "nck" = (
 /obj/random/obstruction,
@@ -29169,7 +29278,7 @@
 /turf/simulated/floor/tiled/freezer,
 /area/surface/station/crew_quarters/kitchen)
 "nvX" = (
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/shuttle/arrival/station{
 	dynamic_lighting = 1
 	})
@@ -29991,7 +30100,7 @@
 /area/shuttle/large_escape_pod1/station)
 "nNy" = (
 /obj/effect/shuttle_landmark/cynosure/escape/station,
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/shuttle/escape/station{
 	dynamic_lighting = 1
 	})
@@ -30081,6 +30190,9 @@
 	},
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/crew_quarters/caferestroom)
+"nPR" = (
+/turf/simulated/wall/concrete,
+/area/surface/outpost/checkpoint)
 "nQi" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 1
@@ -30604,6 +30716,9 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/engineering/hallway/reactor)
+"obq" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/medical/cloning)
 "obt" = (
 /obj/structure/table/marble,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -31351,6 +31466,9 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/hallway/primary/groundfloor/west/elevator)
+"ore" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/quartermaster/lockerroom)
 "orl" = (
 /obj/effect/floor_decal/steeldecal/steel_decals_central6{
 	dir = 1
@@ -31536,7 +31654,7 @@
 /area/surface/outside/river/gautelfr)
 "ouz" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/cargo/gnd)
 "ouC" = (
 /obj/effect/floor_decal/borderfloor{
@@ -31677,7 +31795,7 @@
 /area/surface/station/security/lobby)
 "owK" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/security/gnd)
 "owR" = (
 /obj/structure/closet/wardrobe/chaplain_black,
@@ -32456,6 +32574,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/janitor)
+"oQc" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/engineering/hallway)
 "oQg" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -32591,7 +32712,7 @@
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/medical/surgeryobs)
 "oTc" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/east/gnd)
 "oTe" = (
 /obj/random/crate{
@@ -33586,7 +33707,7 @@
 /turf/simulated/floor/outdoors/mask,
 /area/surface/outside/plains/station)
 "plP" = (
-/turf/simulated/wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/civilian)
 "plR" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -33999,12 +34120,12 @@
 /area/surface/station/medical/surgery)
 "psJ" = (
 /obj/effect/shuttle_landmark/cynosure/arrivals_station,
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/shuttle/arrival/station{
 	dynamic_lighting = 1
 	})
 "psP" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/weststairwell/gnd)
 "psX" = (
 /obj/machinery/lapvend,
@@ -34590,6 +34711,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled,
 /area/surface/station/crew_quarters/gym)
+"pGp" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/engineering/workshop)
 "pGM" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -36574,6 +36698,9 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/surface/station/ai/upload)
+"qyA" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/maintenance/solars/west)
 "qyR" = (
 /obj/structure/table/woodentable,
 /obj/item/device/paicard,
@@ -37815,6 +37942,9 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/shuttle/exploration/cargo)
+"qZp" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/rnd/xenobiology)
 "qZB" = (
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/etc)
@@ -38482,7 +38612,7 @@
 /area/surface/station/engineering/reactor_room)
 "roL" = (
 /obj/effect/zone_divider,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/crew_quarters/pool)
 "rpd" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
@@ -38499,6 +38629,9 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/reception)
+"rpI" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/maintenance/solars/northeast)
 "rpV" = (
 /obj/machinery/atmospherics/pipe/simple/visible/red,
 /obj/machinery/door/firedoor/glass,
@@ -39569,7 +39702,7 @@
 /area/surface/station/security/detectives_office/lab)
 "rPP" = (
 /obj/structure/sign/warning/nosmoking_2,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/atmospherics)
 "rPT" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
@@ -39772,6 +39905,9 @@
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/simulated/floor/grass,
 /area/surface/station/hydroponics/garden)
+"rVy" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/quartermaster/storage)
 "rVE" = (
 /turf/simulated/wall/r_wall,
 /area/surface/station/rnd/misc_lab)
@@ -39942,7 +40078,7 @@
 /area/surface/station/engineering/reactor_waste)
 "rZv" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/solars/northeast)
 "rZG" = (
 /obj/machinery/appliance/cooker/oven,
@@ -39955,7 +40091,7 @@
 /area/surface/station/crew_quarters/kitchen)
 "rZW" = (
 /obj/structure/sign/warning/high_voltage,
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/engineering/gnd)
 "sag" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -40196,7 +40332,7 @@
 /obj/structure/sign/directions/engineering/atmospherics{
 	pixel_y = -6
 	},
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/engineering/hallway)
 "sjj" = (
 /obj/structure/disposalpipe/segment{
@@ -40888,6 +41024,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/crew_quarters/heads/hop)
+"sAh" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/arrivals/cynosure)
 "sAl" = (
 /obj/effect/floor_decal/industrial/outline/grey,
 /obj/machinery/hologram/holopad,
@@ -41521,7 +41660,7 @@
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
 "sOv" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/research/gnd)
 "sOx" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -43105,7 +43244,7 @@
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/engineering/hallway)
 "tAm" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/maintenance/substation/medbay/gnd)
 "tAK" = (
 /obj/effect/floor_decal/borderfloorwhite,
@@ -43950,7 +44089,7 @@
 /turf/simulated/wall/r_wall,
 /area/surface/station/crew_quarters/heads/hos)
 "tVs" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/arrivals)
 "tVA" = (
 /obj/effect/floor_decal/industrial/warning,
@@ -44715,6 +44854,9 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/surface/station/ai/upload)
+"uoN" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/maintenance/chapel)
 "uoO" = (
 /obj/structure/cable{
 	d1 = 4;
@@ -45573,6 +45715,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/groundfloor/civilian)
+"uMS" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/janitor)
 "uNc" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -45722,6 +45867,9 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/groundfloor/west)
+"uPj" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/outside/plains/station)
 "uPB" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 6
@@ -46430,7 +46578,7 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/rnd/xenobiology)
 "vfO" = (
 /obj/structure/cable/green{
@@ -47448,7 +47596,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/chapel)
 "vBC" = (
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/shuttle/escape/station{
 	dynamic_lighting = 1
 	})
@@ -47857,7 +48005,18 @@
 	dir = 8;
 	pixel_y = -6
 	},
+<<<<<<< HEAD
 /turf/simulated/wall,
+=======
+/obj/structure/sign/levels/science/robotics{
+	dir = 1
+	},
+/obj/structure/sign/levels/science/rnd{
+	dir = 1;
+	pixel_y = 6
+	},
+/turf/simulated/wall/concrete,
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 /area/surface/station/rnd/hallway/stairwell)
 "vKa" = (
 /obj/effect/floor_decal/techfloor,
@@ -47874,7 +48033,7 @@
 /turf/simulated/floor/tiled/monotile,
 /area/surface/station/engineering/atmos)
 "vKC" = (
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/surface/outside/station/shuttle/pad3)
 "vKZ" = (
 /obj/structure/cable/green{
@@ -48353,7 +48512,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/north/gnd)
 "vYO" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/surface/station/security/restroom)
 "vYV" = (
 /obj/machinery/door/blast/regular/open{
@@ -49114,7 +49273,7 @@
 /area/surface/station/security/equiptment_storage/ses)
 "wuZ" = (
 /obj/effect/shuttle_landmark/cynosure/pads/pad3,
-/turf/simulated/floor/plating/sif/planetuse,
+/turf/simulated/floor/concrete/sif/planetuse,
 /area/surface/outside/station/shuttle/pad3)
 "wvm" = (
 /obj/machinery/holosign/bar,
@@ -50338,7 +50497,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/garage)
 "wUn" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/cargo/gnd)
 "wUu" = (
 /obj/machinery/atmospherics/pipe/manifold/visible/yellow{
@@ -51051,7 +51210,7 @@
 	name = "WARNING";
 	pixel_y = -6
 	},
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/outside/plains/station)
 "xod" = (
 /obj/structure/cable/green{
@@ -51311,6 +51470,9 @@
 	},
 /turf/simulated/floor/lino,
 /area/surface/station/chapel/office)
+"xuy" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/engineering/hallway)
 "xuX" = (
 /obj/effect/floor_decal/borderfloorwhite,
 /obj/effect/floor_decal/corner/purple/border,
@@ -51770,7 +51932,7 @@
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
 "xGi" = (
-/turf/simulated/wall,
+/turf/simulated/wall/concrete,
 /area/surface/station/maintenance/substation/security/gnd)
 "xGw" = (
 /obj/structure/cliff/automatic{
@@ -52045,6 +52207,9 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/hydro,
 /area/surface/station/rnd/xenobiology/xenoflora)
+"xMM" = (
+/turf/simulated/wall/r_concrete,
+/area/surface/station/maintenance/east/gnd)
 "xNj" = (
 /obj/structure/cliff/automatic,
 /obj/effect/zone_divider,
@@ -53207,6 +53372,9 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/north/gnd)
+"yiE" = (
+/turf/simulated/wall/concrete,
+/area/surface/station/chapel/main)
 "yjC" = (
 /obj/effect/floor_decal/industrial/outline{
 	color = "#D4D4D4"
@@ -53296,6 +53464,9 @@
 	amount = 20
 	},
 /obj/item/stack/rods{
+	amount = 50
+	},
+/obj/item/stack/material/concrete{
 	amount = 50
 	},
 /turf/simulated/floor/tiled,
@@ -55006,6 +55177,16 @@ vwy
 vwy
 vwy
 vwy
+<<<<<<< HEAD
+=======
+nPR
+bGA
+hMY
+hMY
+bGA
+nPR
+eKw
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 vwy
 vwy
 vwy
@@ -57062,6 +57243,16 @@ vwy
 vwy
 vwy
 vwy
+<<<<<<< HEAD
+=======
+nPR
+bGA
+hMY
+hMY
+bGA
+nPR
+eKw
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 vwy
 vwy
 vwy
@@ -72145,7 +72336,7 @@ xnL
 twu
 twu
 nCe
-sSy
+eZL
 nCe
 nCe
 nCe
@@ -73408,17 +73599,17 @@ nCe
 nCe
 nCe
 aqn
-fHJ
+hJJ
 szA
 ulS
 szA
-fHJ
+hJJ
 roL
-fHJ
+hJJ
 szA
 ulS
 szA
-fHJ
+hJJ
 aqn
 aqn
 nCe
@@ -73661,11 +73852,11 @@ nCe
 nCe
 nCe
 nCe
-fHJ
-fHJ
-fHJ
-fHJ
-fHJ
+hJJ
+hJJ
+hJJ
+hJJ
+hJJ
 aKd
 ldo
 yfz
@@ -73675,10 +73866,10 @@ iuv
 aKd
 ldo
 yfz
-fHJ
-fHJ
-fHJ
-fHJ
+hJJ
+hJJ
+hJJ
+hJJ
 nCe
 nCe
 nCe
@@ -73918,7 +74109,7 @@ nCe
 nCe
 nCe
 nCe
-fHJ
+hJJ
 ihg
 rHf
 qXW
@@ -73935,8 +74126,8 @@ lzq
 dPv
 lzq
 rHf
-fHJ
-fHJ
+hJJ
+hJJ
 nCe
 nCe
 nCe
@@ -74175,7 +74366,7 @@ nCe
 nCe
 nCe
 nCe
-fHJ
+hJJ
 wcF
 lzq
 sLL
@@ -74416,7 +74607,7 @@ aqn
 aqn
 aqn
 aqn
-wzX
+uPj
 fIk
 fIk
 fIk
@@ -74424,7 +74615,7 @@ fIk
 fIk
 fIk
 fIk
-wzX
+uPj
 aqn
 aqn
 aqn
@@ -74667,7 +74858,7 @@ nCe
 vLj
 miC
 hwh
-wzX
+uPj
 eSN
 eSN
 eSN
@@ -74681,8 +74872,8 @@ fIk
 fIk
 fIk
 fIk
-wzX
-wzX
+uPj
+uPj
 eSN
 fIk
 fIk
@@ -74919,7 +75110,7 @@ nCe
 nCe
 nCe
 nCe
-hwh
+qyA
 idS
 haN
 ewJ
@@ -74964,7 +75155,7 @@ syj
 qdF
 rtv
 xgE
-fHJ
+hJJ
 nCe
 nCe
 nCe
@@ -75176,7 +75367,7 @@ nCe
 nCe
 psP
 fdg
-hwh
+qyA
 mrO
 jlb
 kHv
@@ -75203,7 +75394,7 @@ fIk
 fIk
 fIk
 fIk
-fHJ
+hJJ
 btA
 jss
 wzJ
@@ -75221,8 +75412,8 @@ syj
 qdF
 lzq
 oBR
-fHJ
-fHJ
+hJJ
+hJJ
 nCe
 nCe
 nCe
@@ -75437,13 +75628,13 @@ aZD
 opT
 skd
 pIY
-pRP
-pRP
-pRP
-pRP
-pRP
-pRP
-pRP
+cdD
+cdD
+cdD
+cdD
+cdD
+cdD
+cdD
 idr
 idr
 idr
@@ -75452,8 +75643,8 @@ pXz
 pXz
 fIk
 fIk
-wzX
-wzX
+uPj
+uPj
 idr
 idr
 idr
@@ -75694,13 +75885,13 @@ bbT
 lBQ
 cTK
 gEG
-pRP
+cdD
 nPy
 nPy
 nPy
 nPy
 nPy
-pRP
+cdD
 aqn
 aqn
 aqn
@@ -75948,16 +76139,16 @@ fdg
 qXG
 ulb
 hsL
-hwh
-hwh
-hwh
-pRP
+qyA
+qyA
+qyA
+cdD
 nPy
 nPy
 nPy
 nPy
 nPy
-pRP
+cdD
 aqn
 dNR
 tYs
@@ -76208,13 +76399,13 @@ psP
 prA
 qKp
 xRE
-pRP
+cdD
 nPy
 nPy
 nPy
 nPy
 nPy
-pRP
+cdD
 aqn
 wCG
 aWW
@@ -76231,7 +76422,7 @@ aWW
 aWW
 fkd
 aqn
-fHJ
+hJJ
 lbL
 xig
 xig
@@ -76250,7 +76441,7 @@ bvY
 eni
 lzq
 dZT
-fHJ
+hJJ
 nCe
 nCe
 nCe
@@ -76465,13 +76656,13 @@ psP
 prA
 qYz
 owy
-pRP
+cdD
 nPy
 nPy
 nPy
 nPy
 nPy
-pRP
+cdD
 aqn
 wCG
 aWW
@@ -76488,7 +76679,7 @@ aWW
 aWW
 fkd
 aqn
-fHJ
+hJJ
 fHJ
 tWf
 tWf
@@ -76709,11 +76900,11 @@ nCe
 nCe
 nCe
 nCe
-mjQ
-mjQ
-mjQ
-mjQ
-mjQ
+cQG
+cQG
+cQG
+cQG
+cQG
 aqn
 psP
 sGM
@@ -76722,13 +76913,13 @@ wcG
 mqv
 mXo
 jfk
-pRP
+cdD
 nPy
 nPy
 nPy
 nPy
 nPy
-pRP
+cdD
 aqn
 wCG
 aWW
@@ -76966,11 +77157,11 @@ kzM
 kzM
 kzM
 mjQ
-mjQ
+cQG
 oyH
-cFh
+bAZ
 gXJ
-mjQ
+cQG
 sOv
 sOv
 sOv
@@ -76980,12 +77171,12 @@ cYW
 fQI
 tHt
 gDu
-pRP
+cdD
 mHU
 hby
 heZ
 pRP
-pRP
+cdD
 aqn
 wCG
 aWW
@@ -77227,7 +77418,7 @@ cFh
 bHr
 cFh
 vdB
-cFh
+bAZ
 rmN
 wYw
 tgD
@@ -77265,7 +77456,7 @@ vXK
 lSf
 oog
 kHo
-aTi
+ebz
 ayX
 ode
 waK
@@ -77484,7 +77675,7 @@ koY
 chs
 aJK
 hwP
-cFh
+bAZ
 mUu
 dKr
 tNf
@@ -77522,7 +77713,7 @@ bkk
 nhb
 xtS
 dPI
-aTi
+ebz
 jIZ
 mvE
 aOd
@@ -77741,7 +77932,7 @@ fEG
 jon
 soA
 ebn
-cFh
+bAZ
 oZO
 qpj
 dWF
@@ -77779,9 +77970,9 @@ aTi
 bUZ
 tCu
 kbn
-aTi
-bMx
-bMx
+ebz
+yiE
+yiE
 qtN
 sEZ
 stJ
@@ -77998,7 +78189,7 @@ iLk
 kDz
 kwo
 eWv
-cFh
+bAZ
 wIY
 eBp
 rVE
@@ -78255,7 +78446,7 @@ sOE
 aTx
 sOE
 sOE
-sOE
+lSJ
 vCi
 gbG
 rVE
@@ -78952,11 +79143,11 @@ nCe
 nCe
 nCe
 nCe
-jMb
-jMb
-jMb
-jMb
-jMb
+ckl
+ckl
+ckl
+ckl
+ckl
 nCe
 nCe
 nCe
@@ -79209,11 +79400,11 @@ nCe
 nCe
 nCe
 nCe
-jMb
+ckl
 xyV
 oar
 kDX
-jMb
+ckl
 sIs
 nCe
 nCe
@@ -79278,11 +79469,11 @@ kog
 qjg
 qjg
 bEM
-kzM
-sOE
+qZp
+lSJ
 eCn
-sOE
-sOE
+lSJ
+lSJ
 sOE
 hqG
 mNx
@@ -79297,12 +79488,12 @@ rVE
 dJf
 yeD
 jXg
-nub
+mVg
 dYh
 dYh
 dYh
 dYh
-wUn
+dYh
 doW
 joM
 gRB
@@ -79466,7 +79657,7 @@ nCe
 nCe
 nCe
 nCe
-jMb
+ckl
 dSx
 aWH
 bgJ
@@ -79721,13 +79912,13 @@ nCe
 nCe
 nCe
 nCe
-nwG
-nwG
-nwG
-nwG
-nwG
-nwG
-nwG
+fTD
+fTD
+fTD
+fTD
+fTD
+fTD
+fTD
 fqw
 nCe
 nCe
@@ -79825,11 +80016,11 @@ xfp
 oow
 vhL
 egk
-doc
-hXy
-hXy
-hXy
-hXy
+mCs
+plP
+plP
+plP
+plP
 qgI
 wao
 rKD
@@ -79862,7 +80053,7 @@ aqn
 aqn
 aqn
 aqn
-hAR
+sAh
 hAR
 owj
 sUk
@@ -79873,11 +80064,11 @@ hAR
 lzA
 sNQ
 hAR
-hAR
-hAR
-hAR
-hAR
-hAR
+sAh
+sAh
+sAh
+sAh
+sAh
 nCe
 nCe
 nCe
@@ -79978,13 +80169,13 @@ bsh
 bsh
 bsh
 bsh
-nwG
+fTD
 tAU
 tAU
 tAU
 tAU
 tAU
-nwG
+fTD
 dtm
 nCe
 nCe
@@ -80049,7 +80240,7 @@ kzM
 eSK
 spM
 gYe
-kzM
+qZp
 hMh
 aVL
 rnV
@@ -80082,7 +80273,7 @@ jTH
 vhL
 eXm
 dwK
-doc
+rVy
 oiM
 dOT
 jxK
@@ -80117,9 +80308,9 @@ hAR
 xyp
 xyp
 hAR
-hAR
-hAR
-hAR
+sAh
+sAh
+sAh
 pBE
 oTk
 bCh
@@ -80130,7 +80321,7 @@ rza
 qCW
 oav
 qvN
-hAR
+sAh
 ggd
 ggd
 epw
@@ -80235,13 +80426,13 @@ caC
 caC
 caC
 yaa
-nwG
+fTD
 tAU
 tAU
 tAU
 tAU
 tAU
-nwG
+fTD
 dtm
 nCe
 nCe
@@ -80306,7 +80497,7 @@ tzH
 wHU
 uEu
 nig
-kzM
+qZp
 mxK
 dsn
 iZQ
@@ -80339,7 +80530,7 @@ rHJ
 vhL
 eXm
 eQq
-doc
+rVy
 oqv
 kSp
 gLG
@@ -80492,13 +80683,13 @@ coN
 coN
 coN
 nNo
-nwG
+fTD
 tAU
 tAU
 tAU
 tAU
 tAU
-nwG
+fTD
 dtm
 twu
 nCe
@@ -80596,7 +80787,7 @@ rHJ
 vhL
 eXm
 egk
-doc
+rVy
 kdH
 idR
 xmn
@@ -80749,13 +80940,13 @@ cTj
 cGb
 uas
 nNo
-nwG
+fTD
 tAU
 tAU
 tAU
 tAU
 tAU
-nwG
+fTD
 dtm
 twu
 twu
@@ -80853,11 +81044,11 @@ ayH
 swE
 dZZ
 jWC
-doc
+rVy
 plP
 aIa
 mdG
-pgK
+uMS
 lZH
 pQA
 fAU
@@ -81006,13 +81197,13 @@ dCd
 qdT
 vzO
 nNo
-nwG
+fTD
 tAU
 tAU
 tAU
 tAU
 tAU
-nwG
+fTD
 dtm
 twu
 twu
@@ -81110,7 +81301,7 @@ vhL
 vhL
 vhL
 hSB
-doc
+rVy
 whp
 pIz
 dyI
@@ -81263,13 +81454,13 @@ git
 qdT
 auU
 gTs
-nwG
-nwG
+fTD
+fTD
 uBC
 tJk
 lag
-nwG
-nwG
+fTD
+fTD
 gNF
 pKW
 jMb
@@ -81323,10 +81514,10 @@ kzM
 kzM
 kzM
 kzM
-kzM
+qZp
 vfM
-kzM
-kzM
+qZp
+qZp
 cVm
 dKB
 jyy
@@ -81415,7 +81606,7 @@ bDr
 aGW
 wff
 mcO
-hAR
+sAh
 fus
 fus
 jMj
@@ -81583,7 +81774,7 @@ aOC
 kPd
 wTX
 aEj
-xHY
+cHa
 iUj
 uly
 xjm
@@ -81624,8 +81815,8 @@ oWU
 oay
 cRp
 iPB
-doc
-pWW
+rVy
+uoN
 eXX
 vam
 pgK
@@ -81672,11 +81863,11 @@ csg
 fKR
 vZZ
 csg
-hAR
-hAR
-hAR
-hAR
-hAR
+sAh
+sAh
+sAh
+sAh
+sAh
 nCe
 nCe
 nCe
@@ -81840,7 +82031,7 @@ lze
 aOr
 syY
 aOW
-xHY
+cHa
 cFP
 sMu
 iCU
@@ -81875,13 +82066,13 @@ bbi
 ehL
 rAx
 egk
-doc
-doc
+mCs
+mCs
 bSL
 oWj
 oNG
-doc
-doc
+mCs
+mCs
 hgC
 diD
 rMU
@@ -82097,7 +82288,7 @@ qZC
 kPd
 piz
 npd
-xHY
+cHa
 jPx
 sMu
 ayn
@@ -82132,13 +82323,13 @@ ehL
 jPE
 qwb
 lLE
-doc
+mCs
 nGD
 nGD
 nGD
 nGD
 gom
-doc
+mCs
 fuz
 eUO
 rMU
@@ -82354,7 +82545,7 @@ mbv
 kPd
 kPd
 kPd
-xHY
+cHa
 neZ
 vgP
 cGc
@@ -82389,13 +82580,13 @@ gWo
 blU
 sRR
 uTh
-doc
+mCs
 nGD
 nGD
 nGD
 nGD
 nGD
-doc
+mCs
 pIj
 pdg
 rMU
@@ -82646,10 +82837,10 @@ lRO
 tdH
 oov
 hNH
-doc
+mCs
 nGD
 nGD
-nGD
+rVy
 nGD
 nGD
 gDj
@@ -82903,13 +83094,13 @@ pKu
 pKu
 icE
 paJ
-doc
+mCs
 nGD
 nGD
 nGD
 nGD
 nGD
-doc
+mCs
 hMD
 mAt
 rMU
@@ -83153,20 +83344,20 @@ hez
 haB
 lWm
 idf
-imW
+ore
 xWG
 vYX
 msu
 bbk
 cOo
 cNb
-doc
+mCs
 nGD
 nGD
 nGD
 nGD
 nGD
-doc
+mCs
 rNP
 pWW
 rMU
@@ -83353,7 +83544,7 @@ nCe
 flO
 nCe
 nCe
-sSy
+eZL
 nCe
 nCe
 nCe
@@ -83410,20 +83601,20 @@ jtX
 gwo
 jjI
 imW
-imW
-imW
-imW
+ore
+ore
+ore
 imW
 vbc
 oMB
 vbc
-doc
-doc
-doc
-doc
-doc
-doc
-doc
+mCs
+mCs
+mCs
+mCs
+mCs
+mCs
+mCs
 gry
 kVp
 rMU
@@ -87741,7 +87932,7 @@ dSl
 dSl
 bac
 dSl
-dSl
+iMZ
 cyo
 eoN
 eoN
@@ -87998,7 +88189,7 @@ dSl
 eEs
 hpy
 afr
-dSl
+iMZ
 pPr
 pPr
 qEr
@@ -88255,7 +88446,7 @@ dSl
 gwp
 srP
 lip
-dSl
+iMZ
 ooa
 uUU
 naO
@@ -88512,7 +88703,7 @@ dSl
 qzv
 ltg
 hiw
-dSl
+iMZ
 mEz
 qIj
 eKt
@@ -88769,7 +88960,7 @@ oXl
 lBN
 ocq
 mje
-dSl
+iMZ
 bIC
 bIC
 bIC
@@ -89026,7 +89217,7 @@ dSl
 xVF
 vCf
 lVK
-dSl
+iMZ
 rEF
 sGR
 xYP
@@ -89283,7 +89474,7 @@ hfX
 dSl
 dSl
 dSl
-dSl
+iMZ
 hoR
 gQG
 byd
@@ -89540,7 +89731,7 @@ hfX
 rMr
 psl
 qmI
-dSl
+iMZ
 ulR
 pXL
 mnY
@@ -89797,7 +89988,7 @@ hfX
 meH
 rrj
 bDG
-hfX
+obq
 hSr
 kjy
 tAm
@@ -89820,7 +90011,7 @@ nCq
 aDA
 nCq
 ljP
-tgI
+hZm
 flZ
 oSo
 gAK
@@ -90077,7 +90268,7 @@ rBW
 rBW
 rBW
 uSO
-tgI
+hZm
 hAV
 mCR
 lQT
@@ -90334,7 +90525,7 @@ cdW
 cBd
 wnM
 aCw
-tgI
+hZm
 hAV
 mCR
 gLQ
@@ -90377,11 +90568,11 @@ xZB
 yft
 uCo
 oEi
-tew
-tew
+lfc
+lfc
 efj
-erl
-erl
+mWA
+mWA
 aqn
 aqn
 nCe
@@ -90571,9 +90762,9 @@ iLI
 tTa
 iQZ
 dyH
-caA
-caA
-jZP
+krp
+krp
+bZn
 xKl
 gTb
 bZp
@@ -90591,7 +90782,7 @@ eYr
 qBy
 ptC
 ruC
-tgI
+hZm
 oTc
 wSd
 oTc
@@ -90634,11 +90825,11 @@ yft
 yft
 aHL
 pzZ
-tew
+lfc
 xtG
 axx
 fAm
-erl
+mWA
 aqn
 nCe
 nCe
@@ -90830,7 +91021,7 @@ ezk
 arT
 asC
 cVI
-jZP
+bZn
 maD
 hUy
 pYq
@@ -90895,7 +91086,7 @@ dCe
 twb
 luk
 qaq
-erl
+mWA
 aqn
 nCe
 nCe
@@ -91084,10 +91275,10 @@ fIk
 iLI
 nLw
 tTa
-caA
+krp
 sEd
 vYM
-jZP
+bZn
 xXF
 vlK
 oam
@@ -91148,11 +91339,11 @@ efl
 toH
 bSs
 jdw
-tew
+lfc
 gww
 aug
-erl
-erl
+mWA
+mWA
 aqn
 nCe
 nCe
@@ -91341,10 +91532,10 @@ iLI
 iLI
 gPq
 eSX
-vvS
-vvS
-vvS
-jZP
+lJS
+lJS
+lJS
+bZn
 poz
 yfn
 poz
@@ -91370,7 +91561,7 @@ mam
 mam
 mam
 bef
-dBs
+pGp
 rRO
 bIc
 gBL
@@ -91405,10 +91596,10 @@ erl
 aQb
 hdo
 aQb
-erl
-erl
-erl
-erl
+mWA
+mWA
+mWA
+mWA
 aqn
 aqn
 nCe
@@ -91621,13 +91812,13 @@ bQr
 uFp
 ush
 sHJ
-vvS
-vvS
-vvS
+lJS
+lJS
+lJS
 krN
 gRF
 wmF
-dBs
+pGp
 muC
 kGK
 iWy
@@ -92137,7 +92328,7 @@ liB
 bbH
 wRs
 tIX
-vvS
+lJS
 jtd
 aWM
 lWt
@@ -92391,12 +92582,21 @@ tnh
 kNK
 bLZ
 moa
+<<<<<<< HEAD
 dwo
 vvS
 vvS
 vvS
 vvS
 vvS
+=======
+lJS
+lJS
+lJS
+lJS
+lJS
+lJS
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 vvJ
 apr
 hHn
@@ -92653,7 +92853,7 @@ pOC
 pOC
 pOC
 fxr
-vvS
+lJS
 iro
 bDy
 dBs
@@ -92910,7 +93110,7 @@ pOC
 pOC
 pOC
 pOC
-vvS
+lJS
 hSO
 bpJ
 swT
@@ -93419,12 +93619,12 @@ ehV
 iQt
 sPn
 pZo
-vvS
+lJS
 pOC
 pOC
 pOC
 pOC
-vvS
+lJS
 htw
 iQk
 swT
@@ -93676,12 +93876,12 @@ kOV
 jij
 xPr
 clv
-vvS
-vvS
-vvS
-vvS
-vvS
-vvS
+lJS
+lJS
+lJS
+lJS
+lJS
+lJS
 yag
 iPu
 swT
@@ -94704,7 +94904,7 @@ kwE
 rRE
 cia
 liB
-vbM
+mxb
 xGi
 xGi
 xGi
@@ -94712,13 +94912,13 @@ xGi
 bOG
 xGi
 qDs
-wYQ
-wYQ
-wYQ
-wYQ
-wYQ
-wYQ
-wYQ
+xuy
+xuy
+xuy
+xuy
+xuy
+xuy
+xuy
 sik
 owp
 lQi
@@ -94969,13 +95169,13 @@ qpK
 mFU
 qrd
 wOs
-wYQ
+xuy
 ktI
 ktI
 ktI
 ktI
 ktI
-wYQ
+xuy
 mUo
 ouC
 url
@@ -95226,7 +95426,7 @@ lFD
 mFU
 qyi
 ulf
-wYQ
+xuy
 ktI
 ktI
 ktI
@@ -95483,7 +95683,7 @@ rXg
 mFU
 sNB
 ezP
-wYQ
+xuy
 ktI
 ktI
 ktI
@@ -95714,9 +95914,9 @@ dpw
 svh
 vPD
 lsh
-rut
+cmt
 nUw
-uuk
+cZL
 vYO
 wZA
 jQE
@@ -95740,7 +95940,7 @@ dpJ
 mFU
 sNB
 ezP
-wYQ
+xuy
 ktI
 ktI
 ktI
@@ -95967,11 +96167,19 @@ nCe
 nCe
 nCe
 nCe
+<<<<<<< HEAD
 rut
 rut
 rut
 rut
 rut
+=======
+cmt
+cmt
+cmt
+cmt
+dwo
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 vSu
 hyZ
 vYO
@@ -95997,14 +96205,19 @@ iak
 mFU
 sNB
 iDu
-wYQ
+xuy
 ktI
 ktI
 ktI
 ktI
 ktI
+<<<<<<< HEAD
 wYQ
 lsu
+=======
+xuy
+vAs
+>>>>>>> 67dee1d311d... Merge pull request #8702 from Cerebulon/concreteintegration
 uFg
 kgL
 vyB
@@ -96224,14 +96437,14 @@ nCe
 nCe
 nCe
 nCe
-wyf
+rpI
 uaT
 fgg
 asQ
 rzv
 jlo
 gKX
-eCy
+eIR
 sPx
 fVP
 fVP
@@ -96254,14 +96467,14 @@ bFw
 mFU
 sNB
 dmr
-wYQ
-wYQ
-wYQ
-wYQ
-wYQ
-wYQ
-wYQ
-lXO
+xuy
+xuy
+xuy
+xuy
+xuy
+xuy
+xuy
+oQc
 pxZ
 qKr
 nQp
@@ -96488,7 +96701,7 @@ asQ
 rZv
 xmF
 cQJ
-eCy
+eIR
 tOC
 vZO
 vLa
@@ -96511,7 +96724,7 @@ pxp
 mFU
 qio
 cJR
-jyJ
+ewo
 vxR
 lMj
 qmG
@@ -96745,7 +96958,7 @@ iGD
 lrA
 mEG
 nTk
-eCy
+eIR
 tOC
 vLa
 hkX
@@ -96768,7 +96981,7 @@ wPl
 mFU
 xzw
 eYi
-jyJ
+ewo
 miy
 jLC
 dRY
@@ -96995,14 +97208,14 @@ nCe
 nCe
 nCe
 nCe
-wyf
+rpI
 cJQ
 plv
 hCV
 eOu
 tSD
 vjp
-eCy
+eIR
 tOC
 vZO
 vLa
@@ -97025,7 +97238,7 @@ mFU
 mFU
 xzL
 jyJ
-jyJ
+ewo
 prS
 rwH
 tmJ
@@ -97252,14 +97465,14 @@ nCe
 nCe
 nCe
 nCe
-wyf
+rpI
 wyf
 lsR
 qTo
-wyf
+rpI
 pkO
 pkO
-eCy
+eIR
 eCy
 pqe
 uko
@@ -97289,7 +97502,7 @@ wKC
 eHW
 eHW
 eHW
-lXO
+oQc
 bsA
 bMs
 lXO
@@ -97771,7 +97984,7 @@ eTc
 cVc
 ugC
 aqn
-wzX
+uPj
 eSN
 fIk
 fIk
@@ -97796,7 +98009,7 @@ mLd
 cKU
 tVA
 kYb
-jyJ
+ewo
 oeu
 gDR
 dBJ
@@ -98032,7 +98245,7 @@ aqn
 aqn
 aqn
 aqn
-wzX
+uPj
 eSN
 eSN
 eSN
@@ -98053,14 +98266,14 @@ xtH
 iPF
 rYh
 jyJ
-jyJ
-jyJ
-jyJ
-jyJ
-jyJ
-jyJ
-jyJ
-oSl
+ewo
+ewo
+ewo
+ewo
+ewo
+ewo
+ewo
+mYb
 scN
 obk
 oSl
@@ -98302,7 +98515,7 @@ aqn
 rYh
 lCL
 lCL
-rYh
+xMM
 xNJ
 jWf
 rYh
@@ -98559,7 +98772,7 @@ aqn
 aqn
 aqn
 aqn
-rYh
+xMM
 eYZ
 aSI
 rYh
@@ -98816,9 +99029,9 @@ eSN
 eSN
 aqn
 aqn
-rYh
-rYh
-rYh
+xMM
+xMM
+xMM
 rYh
 cVQ
 yjU
@@ -101656,7 +101869,7 @@ nCe
 nCe
 nCe
 nCe
-oSl
+mYb
 bEv
 oSl
 bKN
@@ -102684,7 +102897,7 @@ nCe
 nCe
 nCe
 nCe
-oSl
+mYb
 alK
 keP
 qvb
@@ -104729,7 +104942,7 @@ xBq
 xpd
 xpd
 xpd
-sSy
+eZL
 nCe
 twu
 nCe
@@ -104759,7 +104972,7 @@ nCe
 nCe
 twu
 nCe
-sSy
+eZL
 nCe
 nCe
 nCe
