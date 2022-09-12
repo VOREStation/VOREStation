@@ -1,4 +1,18 @@
-//backpack item
+// TO ANYBODY LOOKING AT THIS FILE:
+// Everything is mostly commented on to give as much detailed information as possible.
+// Some things may be difficult to understand, but every variable in here has a comment explaining what it is/does.
+// The base unit, the 'personal_shield_generator' is a backpack, comes with a gun, and has normal numbers for everything.
+// The belt units do NOT come with a gun and have a cell that is half the capacity of backpack units.
+// These can be VERY, VERY, VERY strong if too many are handed out, the cell is too strong, or the modifier is too strong.
+// Additionally, if you are mapping any of these in, ensure you map in the /loaded versions or else they won't have a battery.
+// I have also made it so you can modify everything about them, including the modifier they give and the cell, which can be changed via mapping.
+
+// In essence, these can be viewed as an extra layer of armor that has upsides and downsides with more extensive features.
+// Shield generators apply PRE armor. Ultimately this shouldn't matter too much, but it makes more sense this way.
+// There are a good amount of variants in here, ranging from mining to security to misc ones.
+// If you want to make a variant, you need to only change modifier_type and make the modifier desired.
+
+
 /obj/item/device/personal_shield_generator
 	name = "personal shield generator"
 	desc = "A personal shield generator."
@@ -11,17 +25,19 @@
 	preserve_item = 1
 	w_class = ITEMSIZE_HUGE //It's a giant shield generator!!!
 	unacidable = TRUE
-	origin_tech = list(TECH_BIO = 4, TECH_POWER = 2) //Set this to better stuff later.
+	origin_tech = list(TECH_MATERIAL = 6, TECH_COMBAT = 8, TECH_POWER = 6, TECH_DATA = 4) //These are limited AND high tech. Breaking one of them down is massive.
 	action_button_name = "Toggle Shield"
-
 	var/obj/item/weapon/gun/energy/gun/generator/active_weapon
 	var/obj/item/weapon/cell/device/bcell = null
-	var/generator_hit_cost = 100			// Power used when a special effect (such as a bullet being blocked) is performed! Could also be expanded to other things.
-	var/generator_active_cost = 10			// Power used when turned on.
-	var/has_weapon = 1						// Backpack units generally have weapons.
-	var/shield_active = 0 					// If the shield gen is active.
-	var/energy_modifier = 25				// 40 damage absorbed per 1000 charge. If the charge used is > the cell's remaining charge, the excess is dealt to the user!
-	var/modifier_type = /datum/modifier/shield_projection //What type of modifier will it add? Used for variant modifiers!
+
+
+	var/generator_hit_cost = 100							// Power used when a special effect (such as a bullet being blocked) is performed! Could also be expanded to other things.
+	var/generator_active_cost = 10							// Power used when turned on.
+	var/energy_modifier = 25								// 40 damage absorbed per 1000 charge.
+	var/modifier_type = /datum/modifier/shield_projection	// What type of modifier will it add? Used for variant modifiers!
+
+	var/has_weapon = 1										// Backpack units generally have weapons.
+	var/shield_active = 0 									// If the shield gen is active.
 
 /obj/item/device/personal_shield_generator/get_cell()
 	return bcell
@@ -48,7 +64,7 @@
 	QDEL_NULL(bcell)
 
 /obj/item/device/personal_shield_generator/loaded //starts with a cell
-	bcell = /obj/item/weapon/cell/device/weapon/recharge
+	bcell = /obj/item/weapon/cell/device/shield_generator/backpack
 
 
 /obj/item/device/personal_shield_generator/update_icon()
@@ -60,8 +76,9 @@
 /obj/item/device/personal_shield_generator/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "The installed cell has has a power rating of [bcell.maxcharge] and is [round(bcell.percent() )]% charged ."
-		. += "It reads that it can take [bcell.charge/energy_modifier] more damage before the shield goes down."
+		. += "The internal cell is [round(bcell.percent() )]% charged."
+		if(energy_modifier) //Prevention of dividing by 0 errors.
+			. += "It reads that it can take [bcell.charge/energy_modifier] more damage before the shield goes down."
 		if(bcell.self_recharge && bcell.charge_amount)
 			. += "This model is self charging and will take [bcell.maxcharge/bcell.charge_amount] seconds to fully charge from empty."
 
@@ -127,7 +144,7 @@
 
 	else if(W.is_screwdriver())
 		if(bcell)
-			if(istype(bcell, /obj/item/weapon/cell/device/weapon/recharge)) //No stealing self charging batteries!
+			if(istype(bcell, /obj/item/weapon/cell/device/shield_generator)) //No stealing self charging batteries!
 				to_chat(user, "<span class='notice'>You can not remove the cell from \the [src] without destroying the unit.</span>")
 				return
 			else
@@ -163,7 +180,7 @@
 		return
 	user.last_special = world.time + 10 //No spamming!
 
-	if(!bcell || !bcell.check_charge(generator_hit_cost))
+	if(!bcell || !bcell.check_charge(generator_hit_cost) || !bcell.check_charge(generator_active_cost))
 		to_chat(user, "<span class='warning'>You require a charged cell to do this!</span>")
 		return
 
@@ -216,13 +233,13 @@
 /obj/item/device/personal_shield_generator/process()
 	if(shield_active)
 		bcell.use(generator_active_cost)
-	if(bcell.charge < generator_hit_cost) //Out of charge...
+	if(bcell.charge < generator_hit_cost || bcell.charge < generator_active_cost) //Out of charge...
 		shield_active = 0
 		if(istype(loc, /mob/living/carbon/human)) //We on someone? Tell them it turned off.
 			var/mob/living/carbon/human/user = loc
 			to_chat(user, "<span class='warning'>The shield deactivates.!</span>")
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
-			STOP_PROCESSING(SSobj, src)
+		STOP_PROCESSING(SSobj, src)
 
 
 
@@ -349,11 +366,10 @@
 	item_state = "shield_pack"
 	w_class = ITEMSIZE_LARGE //No putting these in backpacks!
 	slot_flags = SLOT_BELT
-	origin_tech = list(TECH_BIO = 5, TECH_POWER = 3)
 	has_weapon = 0 //No gun with the belt!
 
 /obj/item/device/personal_shield_generator/belt/loaded
-	bcell = /obj/item/weapon/cell/device/weapon/recharge
+	bcell = /obj/item/weapon/cell/device/shield_generator
 
 /obj/item/device/personal_shield_generator/belt/update_icon()
 	if(shield_active)
@@ -364,23 +380,16 @@
 /obj/item/device/personal_shield_generator/belt/bruteburn //Example of a modified generator.
 	modifier_type = /datum/modifier/shield_projection/bruteburn
 /obj/item/device/personal_shield_generator/belt/bruteburn/loaded //If mapped in, ONLY put loaded ones down.
-	bcell = /obj/item/weapon/cell/device/weapon/recharge
+	bcell = /obj/item/weapon/cell/device/shield_generator
 
+// Mining belts
 /obj/item/device/personal_shield_generator/belt/mining
 	name = "mining personal shield generator"
 	desc = "A personal shield generator designed for mining. It has a warning on the back: 'Do NOT expose the shield to stun-based weaponry.'"
 	modifier_type = /datum/modifier/shield_projection/mining
 
 /obj/item/device/personal_shield_generator/belt/mining/loaded
-	bcell = /obj/item/weapon/cell/device/weapon/recharge
-
-/obj/item/device/personal_shield_generator/belt/security
-	name = "security personal shield generator"
-	desc = "A personal shield generator designed for security."
-	modifier_type = /datum/modifier/shield_projection/security/weak
-
-/obj/item/device/personal_shield_generator/belt/security/loaded
-	bcell = /obj/item/weapon/cell/device/weapon/recharge
+	bcell = /obj/item/weapon/cell/device/shield_generator
 
 /*
 /obj/item/device/personal_shield_generator/belt/mining/attackby(obj/item/weapon/W, mob/user, params)
@@ -389,11 +398,23 @@
 		return
 	if(istype(W, /obj/item/borg/upgrade/modkit/shield_upgrade))
 		modifier_type = /datum/modifier/shield_projection/mining/strong
-		drop_from_inventory(W)
+		user.drop_from_inventory(W)
 		qdel(W)
 	else
 		..()
 */
+
+//Security belts
+
+/obj/item/device/personal_shield_generator/belt/security
+	name = "security personal shield generator"
+	desc = "A personal shield generator designed for security."
+	modifier_type = /datum/modifier/shield_projection/security/weak
+
+/obj/item/device/personal_shield_generator/belt/security/loaded
+	bcell = /obj/item/weapon/cell/device/shield_generator
+
+//Misc belts. Admin-spawn only atm.
 
 /obj/item/device/personal_shield_generator/belt/adminbus
 	desc = "You should not see this. You REALLY should not see this. If you do, you have either been blessed or are about to be the target of some sick prank."
@@ -402,4 +423,56 @@
 	generator_active_cost = 0
 	shield_active = 0
 	energy_modifier = 0
-	bcell = /obj/item/weapon/cell/device/weapon/recharge
+	bcell = /obj/item/weapon/cell/device/shield_generator
+
+/obj/item/device/personal_shield_generator/belt/parry 	//The 'provides one second of pure immunity to brute/burn/halloss' belt.
+	name = "personal shield generator variant-P" 		//Not meant to be used in any serious capacity.
+	desc = "A personal shield generator that sacrifices long-term usability in exchange for a strong, short-lived shield projection, enabling the user to be nigh \
+	impervious for a second."
+	modifier_type = /datum/modifier/shield_projection/parry
+	generator_hit_cost = 0 //No cost for being hit.
+	energy_modifier = 0//No cost for blocking effects.
+	generator_active_cost = 100 //However, it disables the tick immediately after being turned on.
+	shield_active = 0
+	bcell = /obj/item/weapon/cell/device/shield_generator/parry
+
+// Backpacks. These are meant to be MUCH stronger in exchange for the fact that you are giving up a backpack slot.
+// HOWEVER, be careful with these. They come loaded with a gun in them, so they shouldn't be handed out willy-nilly.
+
+/obj/item/device/personal_shield_generator/security
+	name = "security personal shield generator"
+	desc = "A personal shield generator designed for security."
+	modifier_type = /datum/modifier/shield_projection/security
+
+/obj/item/device/personal_shield_generator/security/loaded
+	bcell = /obj/item/weapon/cell/device/shield_generator/backpack
+
+/obj/item/device/personal_shield_generator/security/strong
+	modifier_type = /datum/modifier/shield_projection/security/strong
+
+/obj/item/device/personal_shield_generator/security/strong/loaded
+	bcell = /obj/item/weapon/cell/device/shield_generator/backpack
+
+
+//Power cells.
+/obj/item/weapon/cell/device/shield_generator //The base power cell the shield gen comes with.
+	name = "shield generator battery"
+	desc = "A self charging battery which houses a micro-nuclear reactor. Takes a while to start charging."
+	maxcharge = 2400
+	self_recharge = TRUE
+	charge_amount = 80 //After the charge_delay is over, charges the cell over 30 seconds.
+	charge_delay = 600 //Takes a minute before it starts to recharge.
+
+/obj/item/weapon/cell/device/shield_generator/backpack //The base power cell the backpack units come with. Double the charge vs the belt.
+	maxcharge = 4800
+
+/obj/item/weapon/cell/device/shield_generator/upgraded //A stronger version of the normal cell. Double the maxcharge, halved charge time.
+	maxcharge = 4800
+	charge_amount = 320
+	charge_delay = 300
+
+/obj/item/weapon/cell/device/shield_generator/parry //The cell for the 'parry' shield gen.
+	maxcharge = 100
+	self_recharge = TRUE
+	charge_amount = 100
+	charge_delay = 20 //Starts charging two seconds after it's discharged.

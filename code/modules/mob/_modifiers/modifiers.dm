@@ -76,7 +76,7 @@
 	// 0 = immune || < 0 = heals || 1 = full damage || >1 = increased damage.
 	// It should never be below zero as it is not intended to do such, but you are free to experiment!
 	// Ex: Max_brute_resistance = 0. Min_brute resistance = 1. When started, provides 100% resistance to brute. When cell is dying, goes down to 0% resistance.
-	// Max is the MAXIMUM % multiplier that will be taken at a low charge. Min is the MINIMUM % multiplier that will be taken at a full charge.
+	// Max is the MAXIMUM % multiplier that will be taken at a MAX charge. Min is the MINIMUM % multiplier that will be taken at a MINIMUM charge.
 	// Think of it like this: Minimum = what happens at minimum charge. Max = what happens at maximum charge.
 	// Why do I mention this so much? Because even /I/ got confused, and I wrote this thing!
 	var/min_damage_resistance

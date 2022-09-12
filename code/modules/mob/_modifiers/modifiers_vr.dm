@@ -142,7 +142,7 @@
 
 //Shield variants.
 
-//Simple. Goes from 100% resistance to 0% resistance depending on charge.
+//Simple. Goes from 100% resistance to 0% resistance depending on charge. This is mostly an example of a shield variant.
 /datum/modifier/shield_projection/bruteburn
 	max_brute_resistance = 0
 	effective_brute_resistance = 1
@@ -154,19 +154,25 @@
 	max_brute_resistance = 0.5
 	max_fire_resistance = 0.5
 
-/datum/modifier/shield_projection/security // Security backpack.
+//SECURITY VARIANTS
+/datum/modifier/shield_projection/security // Security backpack. 50% resistance at full charge. 90% resistance for the last shot taken.
 	max_brute_resistance = 0.5
+	min_brute_resistance = 0.9
 	effective_brute_resistance = 1
 
 	max_fire_resistance = 0.5
+	min_fire_resistance = 0.9
 	effective_fire_resistance = 1
 
 	max_hal_resistance = 0.5
+	min_hal_resistance = 0.9
 	effective_hal_resistance = 1
 
 /datum/modifier/shield_projection/security/weak // Security belt.
 	max_brute_resistance = 0.75
+	min_brute_resistance = 0.95
 	max_fire_resistance = 0.75
+	min_fire_resistance = 0.95
 	max_hal_resistance = 0.75
 
 /datum/modifier/shield_projection/security/strong // Dunno. Upgraded variant of security backpack?
@@ -175,11 +181,15 @@
 	max_hal_resistance = 0.25
 	siemens_coefficient = 1.5 //Not as weak as normal, but still weak.
 
-/datum/modifier/shield_projection/mining //Base mining belt. 25% resistance.
-	max_brute_resistance = 0.75
+
+//MINING VARIANTS
+/datum/modifier/shield_projection/mining //Base mining belt. 45% resistance that fades to 15% resistance
+	max_brute_resistance = 0.55
+	min_brute_resistance = 0.85
 	effective_brute_resistance = 1
 
-	max_fire_resistance = 0.75
+	max_fire_resistance = 0.55
+	min_brute_resistance = 0.85
 	effective_fire_resistance = 1
 
 	max_hal_resistance = 1.5 // No mobs should be shooting you with halloss. If this happens, it means you're using it wrong!!!
@@ -188,13 +198,30 @@
 
 	disable_duration_percent = 0.75 //Miners often come into contact with things that can stun them.
 
-/datum/modifier/shield_projection/mining/strong // Mining belt, but upgraded. Even weaker to halloss! Tasers WILL destroy you. Don't try to be superman.
+/datum/modifier/shield_projection/mining/strong // Mining belt, but upgraded. Even weaker to halloss! It also scales from .5 to .75 instead of back to 1.0!
 	max_brute_resistance = 0.5
+	min_brute_resistance = 0.75
 	max_fire_resistance = 0.5
+	min_fire_resistance = 0.75
 	disable_duration_percent = 0.5
 
 	max_hal_resistance = 2
 	min_hal_resistance = 2
+
+//MISC VARIANTS
+
+/datum/modifier/shield_projection/biohazard //The odd-ball damage types. Provides near-complete immunity while it's up.
+	min_tox_resistance = 0.25
+	max_tox_resistance = 0
+	effective_tox_resistance = 1
+
+	min_oxy_resistance = 0.25
+	max_oxy_resistance = 0
+	effective_oxy_resistance = 1
+
+	min_clone_resistance = 0.25
+	max_clone_resistance = 0
+	effective_clone_resistance = 1
 
 /datum/modifier/shield_projection/admin // Adminbus.
 	on_created_text = "<span class='notice'>Your shield generator activates and you feel the power of the tesla buzzing around you.</span>"
@@ -231,3 +258,25 @@
 	max_fire_resistance = 2
 	min_fire_resistance = 2
 	effective_fire_resistance = 1
+
+/datum/modifier/shield_projection/inverted //Becomes stronger the weaker the cell is. Means the last shot taken will be the weakest. Example just to show it can be done.
+	max_brute_resistance = 1
+	min_brute_resistance = 0
+	effective_brute_resistance = 1
+
+	max_fire_resistance = 1
+	min_fire_resistance = 0
+	effective_fire_resistance = 1
+
+/datum/modifier/shield_projection/parry //Intended for 'parry' shields, which only last for a single second before running out of charge
+	max_brute_resistance = 0
+	min_brute_resistance = 0
+	effective_brute_resistance = 1
+
+	max_fire_resistance = 0
+	min_fire_resistance = 0
+	effective_fire_resistance = 1
+
+	max_hal_resistance = 0
+	min_hal_resistance = 0
+	effective_hal_resistance = 1
