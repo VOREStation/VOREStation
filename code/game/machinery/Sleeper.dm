@@ -423,6 +423,8 @@
 
 /obj/machinery/sleeper/relaymove(var/mob/user)
 	..()
+	if(user.incapacitated())
+		return
 	go_out()
 
 /obj/machinery/sleeper/emp_act(var/severity)

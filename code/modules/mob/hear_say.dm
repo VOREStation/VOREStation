@@ -92,7 +92,7 @@
 	var/list/combined = combine_message(message_pieces, verb, speaker)
 	var/message = combined["formatted"]
 	if(message == "")
-		return
+		return FALSE
 
 	if(sleeping || stat == UNCONSCIOUS)
 		hear_sleep(multilingual_to_message(message_pieces))
@@ -129,22 +129,24 @@
 			var/turf/source = speaker ? get_turf(speaker) : get_turf(src)
 			playsound_local(source, speech_sound, sound_vol, 1)
 
+	return TRUE
+
 // Done here instead of on_hear_say() since that is NOT called if the mob is clientless (which includes most AI mobs).
 /mob/living/hear_say(var/list/message_pieces, var/verb = "says", var/italics = 0, var/mob/speaker = null, var/sound/speech_sound, var/sound_vol)
-	..()
+	.=..()
 	if(has_AI()) // Won't happen if no ai_holder exists or there's a player inside w/o autopilot active.
 		ai_holder.on_hear_say(speaker, multilingual_to_message(message_pieces))
 
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
 	if(teleop)
-		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[message]")
+		to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[message]")
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
 	to_chat(src, "[time] [message]")
 	if(teleop)
-		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[time] [message]")
+		to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[time] [message]")
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)

@@ -109,7 +109,7 @@
 
 /obj/item/clothing/under/hyperfiber/bluespace/mob_can_unequip(mob/M, slot, disable_warning = 0)
 	. = ..()
-	if(. && ishuman(M) && original_size)
+	if(. && ishuman(M) && original_size && !disable_warning)
 		var/mob/living/carbon/human/H = M
 		H.resize(original_size, ignore_prefs = TRUE)
 		original_size = null
@@ -129,7 +129,7 @@
 
 /obj/item/clothing/gloves/bluespace/mob_can_equip(mob/M, gloves, disable_warning = 0)
 	. = ..()
-	if(. && ishuman(M))
+	if(. && ishuman(M) && !disable_warning)
 		var/mob/living/carbon/human/H = M
 		if(!H.resizable)
 			return
@@ -145,7 +145,7 @@
 
 /obj/item/clothing/gloves/bluespace/mob_can_unequip(mob/M, gloves, disable_warning = 0)
 	. = ..()
-	if(. && ishuman(M) && original_size)
+	if(. && ishuman(M) && original_size && !disable_warning)
 		var/mob/living/carbon/human/H = M
 		if(!H.resizable)
 			return

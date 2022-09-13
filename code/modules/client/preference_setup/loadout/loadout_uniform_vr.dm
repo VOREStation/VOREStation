@@ -36,7 +36,7 @@
 /datum/gear/uniform/job_khi/med
 	display_name = "khi uniform, med"
 	path = /obj/item/clothing/under/rank/khi/med
-	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Field Medic")
+	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Paramedic","Geneticist","Field Medic","Psychiatrist")
 
 /datum/gear/uniform/job_khi/eng
 	display_name = "khi uniform, eng"
@@ -280,3 +280,15 @@ Talon jumpsuit
 	display_name = "undersuit, command (SM/HoP)"
 	allowed_roles = list("Site Manager", "Head of Personnel")
 	path = /obj/item/clothing/under/undersuit/command
+
+//Altevian Uniforms
+/datum/gear/uniform/altevian
+	description = "An extremely comfortable set of clothing that's made to help people handle their day to day work around the fleets with little to no discomfort."
+	display_name = "altevian uniform selection"
+
+/datum/gear/uniform/altevian/New()
+	..()
+	var/list/pants = list()
+	for(var/obj/item/clothing/under/pants/altevian/pants_type as anything in typesof(/obj/item/clothing/under/pants/altevian))
+		pants[initial(pants_type.name)] = pants_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))

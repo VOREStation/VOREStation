@@ -8,7 +8,7 @@
 	size = 4
 	requires_ntnet = TRUE
 	available_on_ntnet = TRUE
-
+	usage_flags = PROGRAM_ALL
 	tgui_id = "NtosNewsBrowser"
 
 	var/datum/computer_file/data/news_article/loaded_article
@@ -118,4 +118,3 @@
 		if("PRG_toggle_archived")
 			. = TRUE
 			show_archived = !show_archived
-

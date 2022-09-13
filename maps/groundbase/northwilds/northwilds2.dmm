@@ -22,7 +22,7 @@
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/wilderness/north)
 "m" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/north)
 "o" = (
 /turf/simulated/mineral/cave/virgo3c,

@@ -124,7 +124,7 @@
 
 /datum/trait/negative/neural_hypersensitivity
 	name = "Neural Hypersensitivity"
-	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Doubles traumatic shock."
+	desc = "Your nerves are particularly sensitive to physical changes, leading to experiencing twice the intensity of pain and pleasure alike. Makes all pain effects twice as strong, and occur at half as much damage."
 	cost = -1
 	var_changes = list("trauma_mod" = 2)
 	can_take = ORGANICS
@@ -142,13 +142,6 @@
 	name = "Nitrogen Breather"
 	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
 	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen")
-
-/datum/trait/negative/monolingual
-	name = "Monolingual"
-	desc = "You are not good at learning languages."
-	cost = -3
-	var_changes = list("num_alternate_languages" = 0)
-	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
 
 /datum/trait/negative/monolingual
 	name = "Monolingual"

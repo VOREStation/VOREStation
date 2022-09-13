@@ -11,6 +11,7 @@
 #define WEATHER_BLOOD_MOON			"blood moon" // For admin fun or cult later on.
 #define WEATHER_EMBERFALL			"emberfall" // More adminbuse, from TG. Harmless.
 #define WEATHER_ASH_STORM			"ash storm" // Ripped from TG, like the above. Less harmless.
+#define WEATHER_ASH_STORM_SAFE		"light ash storm" //Safe version of the ash storm. Dimmer.
 #define WEATHER_FALLOUT				"fallout" // Modified emberfall, actually harmful. Admin only.
 
 #define MOON_PHASE_NEW_MOON			"new moon"

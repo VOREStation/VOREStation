@@ -400,11 +400,13 @@
 
 /obj/item/weapon/hand/update_icon(var/direction = 0)
 
-	if(!cards.len)
+	var/cardNumber = cards.len
+
+	if(!cardNumber)
 		qdel(src)
 		return
-	else if(cards.len > 1)
-		name = "hand of cards"
+	else if(cardNumber > 1)
+		name = "hand of cards ([cardNumber])"
 		desc = "Some playing cards."
 	else
 		name = "a playing card"
@@ -413,7 +415,7 @@
 	cut_overlays()
 
 
-	if(cards.len == 1)
+	if(cardNumber == 1)
 		var/datum/playingcard/P = cards[1]
 		var/image/I = new(src.icon, (concealed ? "[P.back_icon]" : "[P.card_icon]") )
 		I.pixel_x += (-5+rand(10))
@@ -421,7 +423,7 @@
 		add_overlay(I)
 		return
 
-	var/offset = FLOOR(20/cards.len, 1)
+	var/offset = FLOOR(20/cardNumber, 1)
 
 	var/matrix/M = matrix()
 	if(direction)
@@ -452,6 +454,7 @@
 		I.transform = M
 		add_overlay(I)
 		i++
+
 
 /obj/item/weapon/hand/dropped(mob/user as mob)
 	if(locate(/obj/structure/table, loc))

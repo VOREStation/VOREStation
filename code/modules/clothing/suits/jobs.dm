@@ -35,7 +35,7 @@
 	flags_inv = HIDEHOLSTER
 
 //Command
-/obj/item/clothing/suit/storage/cmddressjacket
+/obj/item/clothing/suit/storage/toggle/cmddressjacket
 	name = "command dress jacket"
 	desc = "A fancy dress jacket made for command staff. Makes you feel in charge."
 	icon_state = "cmddressjacket"

@@ -342,17 +342,24 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_override = 'icons/vore/custom_items_vr.dmi'
 
-//zodiacshadow: ?
+//zodiacshadow: Nehi Maximus
 /obj/item/device/radio/headset/fluff/zodiacshadow
 	name = "Nehi's 'phones"
 	desc = "A pair of old-fashioned purple headphones for listening to music that also double as an NT-approved headset; they connect nicely to any standard PDA. One side is engraved with the letters NEHI, the other having an elaborate inscription of the words \"My voice is my weapon of choice\" in a fancy font. A modern polymer allows switching between modes to either allow one to hear one's surroundings or to completely block them out."
 
 	icon = 'icons/vore/custom_items_vr.dmi'
-	icon_state = "headphones"
+	icon_state = "nehiphones"
 
-	icon_override = 'icons/vore/custom_items_vr.dmi'
-	item_state = "headphones_mob"
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+	item_state = "nehiphones"
 
+//zodiacshadow: Nehi Maximus
+/obj/item/clothing/accessory/medal/silver/fluff/zodiacshadow
+	name = "Health Service Achievement medal"
+	desc = "A small silver medal with the inscription \"For going above and beyond in the field.\" on it, along with the name Nehi Maximus."
+
+	icon = 'icons/inventory/accessory/item.dmi'
+	icon_state = "silver"
 
 // OrbisA: Richard D'angelo
 /obj/item/weapon/melee/fluff/holochain
@@ -1418,6 +1425,31 @@
 	icon = 'icons/vore/custom_items_vr.dmi'
 	icon_state = "stamp-midhorror"
 	stamptext = "This paper has been certified by The Council of Mid Horror"
+
+//Coolcrow420 - M41l
+/obj/item/weapon/implant/language/fluff/m41l
+	name = "dusty hard drive"
+	desc = "A hard drive containing knowledge of various languages."
+
+/obj/item/weapon/implant/language/fluff/m41l/post_implant(mob/M)
+	to_chat(M,"<span class='notice'>LANGUAGES - LOADING</span>")
+	M.add_language(LANGUAGE_SKRELLIAN)
+	M.add_language(LANGUAGE_UNATHI)
+	M.add_language(LANGUAGE_SIIK)
+	M.add_language(LANGUAGE_EAL)
+	M.add_language(LANGUAGE_SCHECHI)
+	M.add_language(LANGUAGE_ZADDAT)
+	M.add_language(LANGUAGE_BIRDSONG)
+	M.add_language(LANGUAGE_SAGARU)
+	M.add_language(LANGUAGE_DAEMON)
+	M.add_language(LANGUAGE_ENOCHIAN)
+	M.add_language(LANGUAGE_VESPINAE)
+//	M.add_language(LANGUAGE_SLAVIC)
+	M.add_language(LANGUAGE_DRUDAKAR)
+	M.add_language(LANGUAGE_SPACER)
+	M.add_language(LANGUAGE_TAVAN)
+	M.add_language(LANGUAGE_ECHOSONG)
+	to_chat(M,"<span class='notice'>LANGUAGES - INITIALISED</span>")
 
 //thedavestdave Lucky
 ///I know this is pretty bodgey but if it stupid and it works it isn't stupid

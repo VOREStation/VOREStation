@@ -99,7 +99,8 @@
 		/obj/item/weapon/storage/pill_bottle,
 		/obj/item/weapon/reagent_containers/pill,
 		/obj/item/weapon/reagent_containers/blood,
-		/obj/item/stack/material/phoron
+		/obj/item/stack/material/phoron,
+		/obj/item/weapon/disk/body_record //Vorestation Edit: this lets you get an empty sleeve or help someone else
 		)
 
 /obj/item/weapon/gripper/research //A general usage gripper, used for toxins/robotics/xenobio/etc
@@ -125,7 +126,6 @@
 		/obj/item/slimepotion,
 		/obj/item/slime_extract,
 		/obj/item/weapon/reagent_containers/food/snacks/monkeycube
-
 		)
 
 /obj/item/weapon/gripper/circuit
@@ -180,7 +180,8 @@
 	desc = "A specialized grasping tool used to preserve and manipulate organic material."
 
 	can_hold = list(
-		/obj/item/organ
+		/obj/item/organ,
+		/obj/item/device/nif //NIFs can be slapped in during surgery
 		)
 
 /obj/item/weapon/gripper/no_use/organ/Entered(var/atom/movable/AM)
@@ -208,7 +209,8 @@
 		/obj/item/organ/external,
 		/obj/item/organ/internal/brain, //to insert into MMIs,
 		/obj/item/organ/internal/cell,
-		/obj/item/organ/internal/eyes/robot
+		/obj/item/organ/internal/eyes/robot,
+		/obj/item/device/nif //NIFs can be slapped in during surgery
 		)
 
 /obj/item/weapon/gripper/no_use/mech

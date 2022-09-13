@@ -70,7 +70,7 @@
 	else
 		to_chat(src,msg)
 		if(teleop)
-			to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[msg]")
+			to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[msg]")
 	return
 
 // Show a message to all mobs and objects in sight of this one

@@ -123,7 +123,7 @@
 	add_language(LANGUAGE_GUTTER, 1)
 	add_language(LANGUAGE_EAL, 1)
 	add_language(LANGUAGE_TERMINUS, 1)
-	add_language(LANGUAGE_SIGN, 0)
+	add_language(LANGUAGE_SIGN, 1)
 
 	verbs += /mob/living/silicon/pai/proc/choose_chassis
 	verbs += /mob/living/silicon/pai/proc/choose_verbs
@@ -145,6 +145,7 @@
 	// Vorestation Edit: Meta Info for pAI
 	if (client.prefs)
 		ooc_notes = client.prefs.metadata
+	src << sound('sound/effects/pai_login.ogg', volume = 75)	//VOREStation Add
 
 // this function shows the information about being silenced as a pAI in the Status panel
 /mob/living/silicon/pai/proc/show_silenced()

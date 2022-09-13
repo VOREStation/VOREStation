@@ -587,9 +587,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
-"bt" = (
-/turf/simulated/wall/r_wall,
-/area/groundbase/science)
 "bu" = (
 /obj/machinery/door/airlock/freezer{
 	name = "Kitchen";
@@ -937,6 +934,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/item/device/retail_scanner/cargo,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "cs" = (
@@ -1489,6 +1487,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/item/weapon/storage/box/PDAs,
 /turf/simulated/floor/tiled,
 /area/groundbase/command/hop)
 "ei" = (
@@ -2236,6 +2235,13 @@
 	outdoors = 0
 	},
 /area/groundbase/cargo/office)
+"go" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/small/fairylights{
+	pixel_y = -2
+	},
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level2/nw)
 "gq" = (
 /obj/structure/table/woodentable,
 /obj/item/weapon/paper_bin{
@@ -2742,6 +2748,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/item/device/retail_scanner/medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
 "hL" = (
@@ -3240,6 +3247,10 @@
 /obj/structure/bed/double/padded,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room8)
+"jd" = (
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/se)
 "je" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level2/se)
@@ -3294,6 +3305,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/item/device/retail_scanner/civilian,
 /turf/simulated/floor/carpet,
 /area/groundbase/civilian/library)
 "jn" = (
@@ -4165,6 +4177,10 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/Chemistry)
+"lM" = (
+/obj/machinery/light/small/fairylights,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/nw)
 "lN" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-8"
@@ -5065,6 +5081,12 @@
 	outdoors = 0
 	},
 /area/groundbase/level2/se)
+"oG" = (
+/obj/machinery/light/small/fairylights{
+	pixel_y = -1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/nw)
 "oH" = (
 /turf/simulated/open/virgo3c,
 /area/groundbase/level2/eastspur)
@@ -5252,6 +5274,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/item/device/retail_scanner/command,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
 "pn" = (
@@ -7687,6 +7710,12 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/dorms/room1)
+"wl" = (
+/obj/machinery/light/small/fairylights{
+	pixel_y = -1
+	},
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/nw)
 "wm" = (
 /obj/machinery/computer/supplycomp/control{
 	dir = 8
@@ -7788,6 +7817,12 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/civilian/chapel)
+"wD" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/nw)
 "wE" = (
 /obj/structure/table/woodentable,
 /obj/machinery/camera/network/civilian,
@@ -9723,6 +9758,12 @@
 /obj/effect/landmark/start/chaplain,
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/chapel/office)
+"Co" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/se)
 "Cq" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -10637,6 +10678,12 @@
 /obj/machinery/alarm,
 /turf/simulated/floor/wood,
 /area/groundbase/dorms/room4)
+"EP" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/ne)
 "EQ" = (
 /obj/structure/filingcabinet,
 /obj/machinery/atmospherics/unary/vent_pump/on,
@@ -10690,6 +10737,10 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"EZ" = (
+/obj/machinery/light/small/fairylights,
+/turf/simulated/floor/outdoors/newdirt/virgo3c,
+/area/groundbase/level2/nw)
 "Fa" = (
 /obj/machinery/door/firedoor,
 /obj/machinery/door/airlock/command{
@@ -11385,6 +11436,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/triage)
+"GY" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/nw)
 "GZ" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4
@@ -11506,6 +11563,18 @@
 	},
 /turf/simulated/floor/bmarble,
 /area/groundbase/civilian/chapel)
+"Hr" = (
+/obj/structure/cable/yellow{
+	icon_state = "1-2"
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/light/small/fairylights{
+	pixel_y = -2
+	},
+/turf/simulated/floor/outdoors/sidewalk/virgo3c,
+/area/groundbase/level2/nw)
 "Hs" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -12433,6 +12502,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/dorms)
+"JS" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/ne)
 "JT" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -13556,6 +13631,14 @@
 	edge_blending_priority = -1
 	},
 /area/groundbase/level2/ne)
+"MU" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/virgo3c{
+	edge_blending_priority = -1
+	},
+/area/groundbase/level2/se)
 "MV" = (
 /obj/machinery/alarm{
 	dir = 8
@@ -14217,6 +14300,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/xenobot)
+"OM" = (
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/ne)
 "ON" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/groundbase/level2/sw)
@@ -14978,6 +15065,12 @@
 	edge_blending_priority = -1;
 	outdoors = 0
 	},
+/area/groundbase/level2/nw)
+"QS" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
 /area/groundbase/level2/nw)
 "QV" = (
 /obj/structure/bed/chair/office/dark{
@@ -16971,6 +17064,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/rnd)
+"WC" = (
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/sw)
 "WD" = (
 /obj/machinery/light/small,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -17748,6 +17845,12 @@
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
 /turf/simulated/floor/tiled/white,
 /area/medical/virology)
+"Zf" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level2/se)
 "Zg" = (
 /obj/machinery/light/bigfloorlamp,
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -20946,7 +21049,7 @@ qr
 Vb
 zb
 Do
-bY
+GY
 bY
 bY
 sN
@@ -21657,7 +21760,7 @@ bY
 bY
 bY
 bY
-bY
+wD
 bY
 Hn
 Ja
@@ -22850,7 +22953,7 @@ Rh
 EJ
 YI
 ng
-bt
+PD
 AH
 lO
 Ga
@@ -22992,7 +23095,7 @@ Rh
 bO
 AZ
 ff
-bt
+PD
 IO
 qW
 PZ
@@ -23134,7 +23237,7 @@ Rh
 ff
 AZ
 ff
-bt
+PD
 nw
 qW
 lw
@@ -23276,7 +23379,7 @@ Rh
 Fk
 AZ
 yw
-bt
+PD
 ws
 qW
 lw
@@ -23418,7 +23521,7 @@ Rh
 vh
 Nb
 Ys
-bt
+PD
 aB
 PR
 lw
@@ -23548,7 +23651,7 @@ jG
 jG
 RL
 jG
-jG
+WC
 Rh
 mZ
 kZ
@@ -23560,7 +23663,7 @@ Rh
 PD
 qU
 PD
-bt
+PD
 Ov
 PR
 lw
@@ -23903,7 +24006,7 @@ Ip
 IQ
 gR
 rP
-bY
+GY
 fI
 bY
 FF
@@ -24211,17 +24314,17 @@ bY
 sZ
 bY
 bY
-bY
+QS
 bY
 pw
 pw
-LT
+lM
 ml
 LT
-pw
+EZ
 pw
 bY
-bY
+lM
 bY
 bY
 bY
@@ -24357,13 +24460,13 @@ bY
 bY
 bY
 bY
-pw
+wl
 ml
 pw
+oG
 bY
 bY
-bY
-bY
+oG
 bY
 bY
 bY
@@ -24499,13 +24602,13 @@ Hm
 Hm
 Hm
 Hm
-Hm
+Hr
 pJ
 sF
-sF
+go
 sF
 vV
-sF
+go
 sF
 sF
 sF
@@ -24641,13 +24744,13 @@ bY
 bY
 bY
 bY
-pw
+wl
 sN
 pw
-bY
+oG
 bY
 Oa
-bY
+oG
 bY
 bY
 bY
@@ -24783,14 +24886,14 @@ bY
 bY
 bY
 bY
-yS
+lM
 sN
 bY
-bY
+lM
 bY
 Oa
-yS
-bY
+lM
+wD
 Aq
 bY
 bY
@@ -28037,16 +28140,16 @@ VR
 VR
 VR
 VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
 VR
 VR
 VR
@@ -28179,16 +28282,16 @@ VR
 VR
 VR
 VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
-VR
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
+fp
 VR
 VR
 VR
@@ -28321,10 +28424,10 @@ Wd
 VR
 VR
 VR
-VR
-VR
-VR
-VR
+fp
+fp
+fp
+fp
 to
 fp
 fp
@@ -28463,8 +28566,8 @@ BW
 VR
 to
 to
-VR
-VR
+fp
+fp
 to
 to
 to
@@ -29283,7 +29386,7 @@ ks
 to
 to
 to
-to
+OM
 Cz
 EQ
 ZD
@@ -30010,7 +30113,7 @@ Eq
 xP
 HJ
 Wj
-to
+JS
 to
 to
 to
@@ -30443,7 +30546,7 @@ to
 NC
 to
 to
-to
+OM
 sW
 sW
 sW
@@ -30779,7 +30882,7 @@ sx
 rK
 CK
 kU
-kU
+MU
 kU
 kU
 Bo
@@ -32019,7 +32122,7 @@ Nw
 KA
 Nw
 to
-to
+EP
 to
 to
 to
@@ -32467,7 +32570,7 @@ UE
 Bo
 cV
 Bo
-Bo
+jd
 ia
 Hc
 TX
@@ -33191,7 +33294,7 @@ SE
 gE
 hA
 an
-Bo
+Zf
 Bo
 Bo
 fk
@@ -35294,7 +35397,7 @@ Bo
 Bo
 Bo
 Bo
-Bo
+Co
 Bo
 Bo
 fk

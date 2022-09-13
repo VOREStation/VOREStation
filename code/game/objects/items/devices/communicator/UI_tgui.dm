@@ -85,7 +85,7 @@
 	cam_screen.vis_contents = visible_turfs
 	cam_background.icon_state = "clear"
 	cam_background.fill_rect(1, 1, (video_range * 2), (video_range * 2))
-	
+
 	local_skybox.cut_overlays()
 	local_skybox.add_overlay(SSskybox.get_skybox(get_z(last_camera_turf)))
 	local_skybox.scale_to_view(video_range * 2)
@@ -381,6 +381,8 @@
 				exonet.send_message(their_address, "text", text)
 				im_list += list(list("address" = exonet.address, "to_address" = their_address, "im" = text))
 				log_pda("(COMM: [src]) sent \"[text]\" to [exonet.get_atom_from_address(their_address)]", usr)
+				var/obj/item/device/communicator/comm = exonet.get_atom_from_address(their_address)
+				to_chat(usr, "<span class='notice'>\icon[src][bicon(src)] Sent message to [istype(comm, /obj/item/device/communicator) ? comm.owner : comm.name], <b>\"[text]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
 				for(var/mob/M in player_list)
 					if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
 						if(istype(M, /mob/new_player) || M.forbid_seeing_deadchat)

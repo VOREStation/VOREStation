@@ -49,6 +49,14 @@
 	display_name = "pink tiger pelt"
 	path = /obj/item/clothing/head/pelt/tigerpeltpink
 
+/datum/gear/head/magic_hat
+	display_name = "wizard hat, colorable"
+	path = /obj/item/clothing/head/wizard/fake/realistic/colorable
+
+/datum/gear/head/magic_hat/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
 /*
 Talon hats
 */

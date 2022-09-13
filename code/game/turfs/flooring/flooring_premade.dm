@@ -60,6 +60,26 @@
 	icon_state = "oracarpet"
 	initial_flooring = /decl/flooring/carpet/oracarpet
 
+/turf/simulated/floor/carpet/brown
+	name = "brown carpet"
+	icon_state = "brncarpet"
+	initial_flooring = /decl/flooring/carpet/browncarpet
+
+/turf/simulated/floor/carpet/blue2
+	name = "blue carpet"
+	icon_state = "blue1"
+	initial_flooring = /decl/flooring/carpet/blucarpet2
+
+/turf/simulated/floor/carpet/green
+	name = "green carpet"
+	icon_state = "green"
+	initial_flooring = /decl/flooring/carpet/greencarpet
+
+/turf/simulated/floor/carpet/purple
+	name = "purple carpet"
+	icon_state = "purple"
+	initial_flooring = /decl/flooring/carpet/purplecarpet
+
 /turf/simulated/floor/carpet/geo
 	name = "geometric carpet"
 	icon_state = "geocarpet"

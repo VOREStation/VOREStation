@@ -8,11 +8,12 @@ var/global/nttransfer_uid = 0
 	program_key_state = "generic_key"
 	program_menu_icon = "transferthick-e-w"
 	size = 7
-	requires_ntnet = 1
+	requires_ntnet = TRUE
 	requires_ntnet_feature = NTNET_PEERTOPEER
 	network_destination = "other device via P2P tunnel"
-	available_on_ntnet = 1
+	available_on_ntnet = TRUE
 	tgui_id = "NtosNetTransfer"
+	category = PROG_UTIL
 
 	var/error = ""										// Error screen
 	var/server_password = ""							// Optional password to download the file.
@@ -23,7 +24,7 @@ var/global/nttransfer_uid = 0
 	var/download_completion = 0							// Download progress in GQ
 	var/actual_netspeed = 0								// Displayed in the UI, this is the actual transfer speed.
 	var/unique_token 									// UID of this program
-	var/upload_menu = 0									// Whether we show the program list and upload menu
+	var/upload_menu = FALSE								// Whether we show the program list and upload menu
 
 /datum/computer_file/program/nttransfer/New()
 	unique_token = nttransfer_uid
@@ -86,14 +87,14 @@ var/global/nttransfer_uid = 0
 		data["download_progress"] = download_completion
 		data["download_netspeed"] = actual_netspeed
 		data["download_name"] = "[downloaded_file.filename].[downloaded_file.filetype]"
-	
+
 	data["uploading"] = !!provided_file
 	if(provided_file)
 		data["upload_uid"] = unique_token
 		data["upload_clients"] = connected_clients.len
 		data["upload_haspassword"] = server_password ? 1 : 0
 		data["upload_filename"] = "[provided_file.filename].[provided_file.filetype]"
-	
+
 	data["upload_filelist"] = list()
 	if(upload_menu)
 		var/list/all_files = list()
@@ -104,7 +105,7 @@ var/global/nttransfer_uid = 0
 			"size" = F.size
 			)))
 		data["upload_filelist"] = all_files
-	
+
 	data["servers"] = list()
 	if(!(downloaded_file || provided_file || upload_menu))
 		var/list/all_servers = list()

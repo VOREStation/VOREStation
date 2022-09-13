@@ -237,7 +237,7 @@ GLOBAL_LIST_BOILERPLATE(all_brain_organs, /obj/item/organ/internal/brain)
 					return 0
 
 	for(var/modifier_type in R.genetic_modifiers)	//Can't be revived. Probably won't happen...?
-		if(istype(modifier_type, /datum/modifier/no_clone))
+		if(ispath(modifier_type, /datum/modifier/no_clone))
 			return 0
 
 	var/mob/living/carbon/human/H = new /mob/living/carbon/human(get_turf(src), R.dna.species)

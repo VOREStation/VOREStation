@@ -9,7 +9,7 @@
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_monkey.dmi'
 	blood_mask = 'icons/mob/human_races/masks/blood_monkey.dmi'
 	language = null
-	default_language = "Chimpanzee"
+	default_language = LANGUAGE_ANIMAL
 	greater_form = SPECIES_HUMAN
 	mob_size = MOB_SMALL
 	has_fine_manipulation = 0
@@ -75,7 +75,7 @@
 	deform = 'icons/mob/human_races/monkeys/r_farwa.dmi'
 
 	greater_form = SPECIES_TAJ
-	default_language = "Farwa"
+	default_language = LANGUAGE_ANIMAL
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
 	tail = "farwatail"
@@ -88,7 +88,7 @@
 	deform = 'icons/mob/human_races/monkeys/r_neaera.dmi'
 
 	greater_form = SPECIES_SKRELL
-	default_language = "Neaera"
+	default_language = LANGUAGE_ANIMAL
 	flesh_color = "#8CD7A3"
 	blood_color = "#1D2CBF"
 	reagent_tag = IS_SKRELL
@@ -103,7 +103,7 @@
 
 	tail = "stoktail"
 	greater_form = SPECIES_UNATHI
-	default_language = "Stok"
+	default_language = LANGUAGE_ANIMAL
 	flesh_color = "#34AF10"
 	base_color = "#066000"
 	reagent_tag = IS_UNATHI

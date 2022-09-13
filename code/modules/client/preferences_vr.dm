@@ -105,3 +105,18 @@
 	SScharacter_setup.queue_preferences_save(prefs)
 
 	feedback_add_details("admin_verb","TCaptureCrystal") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/verb/toggle_mentorhelp_ping()
+	set name = "Toggle Mentorhelp Ping"
+	set category = "Preferences"
+	set desc = "Toggles the mentorhelp ping"
+
+	var/pref_path = /datum/client_preference/play_mentorhelp_ping
+
+	toggle_preference(pref_path)
+
+	to_chat(src, "Mentorhelp pings are now [ is_preference_enabled(pref_path) ? "enabled" : "disabled"]")
+
+	SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb", "TSoundMentorhelps")

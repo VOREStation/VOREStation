@@ -14,6 +14,9 @@
 /datum/alt_title/captain
 	title = "Captain"
 
+/datum/job/captain/get_request_reasons()
+	return list("Training crew")
+
 /datum/job/hop
 	disallow_jobhop = TRUE
 	pto_type = PTO_CIVILIAN
@@ -29,13 +32,13 @@
 			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
 			            access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_hydroponics, access_lawyer,
 			            access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
-			            access_hop, access_RC_announce, access_clown, access_tomfoolery, access_mime, access_keycard_auth, access_gateway)
+			            access_hop, access_RC_announce, access_clown, access_tomfoolery, access_mime, access_keycard_auth, access_gateway, access_entertainment)
 	minimal_access = list(access_security, access_sec_doors, access_brig, access_forensics_lockers,
 			            access_medical, access_engine, access_change_ids, access_ai_upload, access_eva, access_heads,
 			            access_all_personal_lockers, access_maint_tunnels, access_bar, access_janitor, access_construction, access_morgue,
 			            access_crematorium, access_kitchen, access_cargo, access_cargo_bot, access_mailsorting, access_qm, access_hydroponics, access_lawyer,
 			            access_chapel_office, access_library, access_research, access_mining, access_heads_vault, access_mining_station,
-			            access_hop, access_RC_announce, access_clown, access_tomfoolery, access_mime, access_keycard_auth, access_gateway)
+			            access_hop, access_RC_announce, access_clown, access_tomfoolery, access_mime, access_keycard_auth, access_gateway, access_entertainment)
 
 /datum/alt_title/deputy_manager
 	title = "Deputy Manager"
@@ -45,6 +48,9 @@
 
 /datum/alt_title/facility_steward
 	title = "Facility Steward"
+
+/datum/job/hop/get_request_reasons()
+	return list("ID modification", "Training crew")
 
 
 /datum/job/secretary

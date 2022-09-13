@@ -1942,8 +1942,8 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenobiolab)
@@ -2732,14 +2732,14 @@
 /area/offmap/aerostat/inside/airlock/east)
 "iz" = (
 /obj/machinery/door/airlock/glass_research{
-	name = "Xenobiology";
-	id_tag = "xenobio"
+	id_tag = "xenobio";
+	name = "Xenobiology"
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -3419,8 +3419,8 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
@@ -5721,7 +5721,7 @@
 /obj/machinery/camera/network/research_outpost{
 	dir = 4
 	},
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -5751,7 +5751,7 @@
 /area/offmap/aerostat/inside/drillstorage)
 "uK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -6744,8 +6744,8 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/structure/cable,
 /turf/simulated/floor/tiled,
@@ -8737,7 +8737,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -9228,7 +9228,7 @@
 	dir = 8;
 	pixel_x = -22
 	},
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -9342,6 +9342,9 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/rnd{
 	req_one_access = null
+	},
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/arm/se)
@@ -12595,8 +12598,8 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/structure/cable,
 /obj/machinery/shieldwallgen{

@@ -6,10 +6,11 @@
 	program_key_state = "generic_key"
 	program_menu_icon = "mail-open"
 	size = 12
-	requires_ntnet = 1
-	available_on_ntnet = 1
+	requires_ntnet = TRUE
+	available_on_ntnet = TRUE
 	tgui_id = "NtosEmailAdministration"
 	required_access = access_network
+	category = PROG_ADMIN
 
 	var/datum/computer_file/data/email_account/current_account = null
 	var/datum/computer_file/data/email_message/current_message = null

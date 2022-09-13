@@ -126,7 +126,11 @@
 			if(H.species.vision_organ)
 				vision = H.internal_organs_by_name[H.species.vision_organ]
 			if(!vision)
+				user.visible_message("<b>\The [user]</b> directs [src] at [M]'s face.", \
+								 	 "<span class='notice'>You direct [src] at [M]'s face.</span>")
 				to_chat(user, "<span class='warning'>You can't find any [H.species.vision_organ ? H.species.vision_organ : "eyes"] on [H]!</span>")
+				user.setClickCooldown(user.get_attack_speed(src))
+				return
 
 			user.visible_message("<b>\The [user]</b> directs [src] to [M]'s eyes.", \
 							 	 "<span class='notice'>You direct [src] to [M]'s eyes.</span>")

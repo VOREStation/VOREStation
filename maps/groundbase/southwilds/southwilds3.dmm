@@ -84,7 +84,7 @@
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/wilderness/south)
 "Q" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/south)
 "S" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/south,

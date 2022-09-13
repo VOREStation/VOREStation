@@ -18,6 +18,7 @@
 	default_pixel_x = -48
 	pixel_x = -48
 	pixel_y = 0
+	vis_height = 92
 	response_help = "pats"
 	response_disarm = "shoves"
 	response_harm = "bops"

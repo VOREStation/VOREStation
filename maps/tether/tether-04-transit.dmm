@@ -57,6 +57,12 @@
 	},
 /turf/simulated/floor/midpoint_glass/reinf,
 /area/tether/midpoint)
+"dF" = (
+/obj/machinery/newscaster{
+	pixel_x = 28
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "dU" = (
 /obj/structure/table/woodentable,
 /obj/random/plushie,
@@ -96,6 +102,20 @@
 /obj/structure/table/woodentable,
 /obj/machinery/camera/network/civilian,
 /turf/simulated/floor/midpoint_glass/reinf,
+/area/tether/midpoint)
+"hw" = (
+/obj/structure/disposalpipe/segment,
+/obj/machinery/computer/timeclock/premade/west,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
+"hW" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "it" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -151,6 +171,10 @@
 "kz" = (
 /turf/space/v3b_midpoint,
 /area/tether/transit)
+"lG" = (
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "lL" = (
 /obj/effect/blocker,
 /turf/space/v3b_midpoint,
@@ -252,6 +276,12 @@
 	},
 /obj/machinery/media/jukebox,
 /turf/simulated/floor/tiled/monotile,
+/area/tether/midpoint)
+"rW" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
 /area/tether/midpoint)
 "sw" = (
 /obj/effect/floor_decal/corner/lightgrey{
@@ -419,6 +449,10 @@
 "Dz" = (
 /turf/simulated/wall/r_wall,
 /area/maintenance/tether_midpoint)
+"El" = (
+/obj/structure/closet/firecloset,
+/turf/simulated/floor/plating,
+/area/maintenance/tether_midpoint)
 "Et" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
@@ -471,6 +505,15 @@
 	hard_corner = 1
 	},
 /area/tether/elevator)
+"Hv" = (
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/machinery/newscaster{
+	pixel_y = 30
+	},
+/turf/simulated/floor/wood,
+/area/tether/midpoint)
 "Hy" = (
 /obj/structure/disposalpipe/segment{
 	dir = 4;
@@ -9068,11 +9111,11 @@ pK
 pK
 pK
 pK
-pK
+dF
 pK
 Pz
 Wc
-pK
+rW
 pK
 Wc
 Pz
@@ -9220,7 +9263,7 @@ PF
 PF
 PF
 PF
-Or
+Hv
 pK
 pK
 mT
@@ -9356,7 +9399,7 @@ Dz
 iK
 pM
 pM
-pM
+El
 Dz
 oN
 yi
@@ -9919,7 +9962,7 @@ mT
 mT
 pK
 pK
-pK
+lG
 Dz
 Qv
 Hs
@@ -10498,7 +10541,7 @@ Hs
 Hs
 Dz
 PF
-Or
+hW
 pK
 pK
 mT
@@ -10639,7 +10682,7 @@ jt
 cR
 JB
 XO
-Nt
+hw
 KH
 pK
 pK

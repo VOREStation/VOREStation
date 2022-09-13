@@ -1,6 +1,7 @@
 /mob/living/simple_mob/vore
 	mob_class = MOB_CLASS_ANIMAL
 	mob_bump_flag = 0
+	can_be_drop_pred = 1
 
 /mob/living/simple_mob
 	var/nameset
@@ -10,6 +11,33 @@
 	. = ..()
 	verbs |= /mob/living/simple_mob/proc/set_name
 	verbs |= /mob/living/simple_mob/proc/set_desc
+
+	ooc_notes = client.prefs.metadata
+	digestable = client.prefs_vr.digestable
+	devourable = client.prefs_vr.devourable
+	absorbable = client.prefs_vr.absorbable
+	feeding = client.prefs_vr.feeding
+	can_be_drop_prey = client.prefs_vr.can_be_drop_prey
+	can_be_drop_pred = client.prefs_vr.can_be_drop_pred
+	throw_vore = client.prefs_vr.throw_vore
+	allow_inbelly_spawning = client.prefs_vr.allow_inbelly_spawning
+	allow_spontaneous_tf = client.prefs_vr.allow_spontaneous_tf
+	digest_leave_remains = client.prefs_vr.digest_leave_remains
+	allowmobvore = client.prefs_vr.allowmobvore
+	permit_healbelly = client.prefs_vr.permit_healbelly
+	noisy = client.prefs_vr.noisy
+	selective_preference = client.prefs_vr.selective_preference
+	appendage_color = client.prefs_vr.appendage_color
+
+	drop_vore = client.prefs_vr.drop_vore
+	stumble_vore = client.prefs_vr.stumble_vore
+	slip_vore = client.prefs_vr.slip_vore
+
+	resizable = client.prefs_vr.resizable
+	show_vore_fx = client.prefs_vr.show_vore_fx
+	step_mechanics_pref = client.prefs_vr.step_mechanics_pref
+	pickup_pref = client.prefs_vr.pickup_pref
+
 
 /mob/living/simple_mob/proc/set_name()
 	set name = "Set Name"
