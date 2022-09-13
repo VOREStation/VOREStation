@@ -481,7 +481,7 @@ This function restores all organs.
 				M.energy_source.use(M.energy_modifier * damage)
 			damage = damage * M.effective_brute_resistance
 			continue
-		if((damagetype == BURN || damagetype == ELECTROCUTE)&& (!isnull(M.effective_fire_resistance)))
+		if((damagetype == BURN || damagetype == ELECTROCUTE) && (!isnull(M.effective_fire_resistance)))
 			if(M.energy_based)
 				M.energy_source.use(M.energy_modifier * damage)
 			damage = damage * M.effective_fire_resistance
@@ -551,6 +551,7 @@ This function restores all organs.
 
 	if(Debug2)
 		to_world_log("## DEBUG: [src] was hit for [damage].")
+
 	switch(damagetype)
 		if(BRUTE)
 			damageoverlaytemp = 20
