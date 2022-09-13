@@ -38,6 +38,7 @@
 
 	var/has_weapon = 1										// Backpack units generally have weapons.
 	var/shield_active = 0 									// If the shield gen is active.
+	var/effect_color = "#99FFFF"							// Allows for changing shield colors. Default cyan.
 
 /obj/item/device/personal_shield_generator/get_cell()
 	return bcell
@@ -101,6 +102,18 @@
 		add_overlay("[initial(icon_state)]-nocell")
 */
 
+/obj/item/device/personal_shield_generator/emp_act(severity)
+	if(bcell)
+		switch(severity)
+			if(1) //Point blank EMP shots have a good chance of burning the cell charge."
+				if(prob(50))
+					bcell.emp_act(severity)
+					bcell.corrupt()
+			else
+				if(prob(25))
+					bcell.emp_act(severity)
+	..()
+
 /obj/item/device/personal_shield_generator/ui_action_click()
 	toggle_shield()
 
@@ -156,6 +169,10 @@
 					active_weapon.power_supply = null //No power cell anymore!
 				to_chat(user, "<span class='notice'>You remove the cell from \the [src].</span>")
 				update_icon()
+	else if(istype(W,/obj/item/device/multitool))
+		var/new_color = input(usr, "Choose a color to set the shield to!", "", effect_color) as color|null
+		if(new_color)
+			effect_color = new_color
 	else
 		return ..()
 
@@ -198,6 +215,7 @@
 			to_chat(user, "<span class='warning'>You activate the shield!</span>")
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection) //Just to make sure they aren't using two at once!
 			user.add_modifier(modifier_type) //TESTING.
+			user.update_modifier_visuals() //Forces coloration to WORK.
 			START_PROCESSING(SSobj, src) //Let's only bother draining power when we're being used!
 	update_icon()
 
@@ -240,6 +258,7 @@
 			to_chat(user, "<span class='warning'>The shield deactivates.!</span>")
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 		STOP_PROCESSING(SSobj, src)
+		update_icon()
 
 
 
@@ -384,30 +403,44 @@
 
 // Mining belts
 /obj/item/device/personal_shield_generator/belt/mining
-	name = "mining personal shield generator"
+	name = "mining PSG"
 	desc = "A personal shield generator designed for mining. It has a warning on the back: 'Do NOT expose the shield to stun-based weaponry.'"
 	modifier_type = /datum/modifier/shield_projection/mining
 
 /obj/item/device/personal_shield_generator/belt/mining/loaded
 	bcell = /obj/item/weapon/cell/device/shield_generator
 
-/*
+/obj/item/device/personal_shield_generator/belt/mining/update_icon()
+	if(shield_active)
+		icon_state = "shield_belt_mining_active"
+	else
+		icon_state = "shield_belt_mining"
+
+/obj/item/borg/upgrade/shield_upgrade
+	name = "mining PSG upgrade disk."
+	desc = "A upgrade disk that, when slotted into a mining shield generator, upgrades the efficiency of the internal software, providing a stronger shield \
+	in exchange for being weaker to stun-based weaponry."
+	icon = 'icons/obj/objects_vr.dmi'
+	icon_state = "modkit"
+	w_class = ITEMSIZE_SMALL
+
 /obj/item/device/personal_shield_generator/belt/mining/attackby(obj/item/weapon/W, mob/user, params)
-	if(modifier_type == /datum/modifier/shield_projection/mining/strong))
+	if(modifier_type == /datum/modifier/shield_projection/mining/strong)
 		to_chat(user, "<span class='warning'>This shield generator is already upgraded!</span>")
 		return
-	if(istype(W, /obj/item/borg/upgrade/modkit/shield_upgrade))
+	if(istype(W, /obj/item/borg/upgrade/shield_upgrade))
 		modifier_type = /datum/modifier/shield_projection/mining/strong
+		to_chat(user, "<span class='notice'>You upgrade the [src] with the [W]!</span>")
 		user.drop_from_inventory(W)
 		qdel(W)
 	else
 		..()
-*/
+
 
 //Security belts
 
 /obj/item/device/personal_shield_generator/belt/security
-	name = "security personal shield generator"
+	name = "security PSG"
 	desc = "A personal shield generator designed for security."
 	modifier_type = /datum/modifier/shield_projection/security/weak
 
@@ -426,7 +459,7 @@
 	bcell = /obj/item/weapon/cell/device/shield_generator
 
 /obj/item/device/personal_shield_generator/belt/parry 	//The 'provides one second of pure immunity to brute/burn/halloss' belt.
-	name = "personal shield generator variant-P" 		//Not meant to be used in any serious capacity.
+	name = "PSG variant-P" 		//Not meant to be used in any serious capacity.
 	desc = "A personal shield generator that sacrifices long-term usability in exchange for a strong, short-lived shield projection, enabling the user to be nigh \
 	impervious for a second."
 	modifier_type = /datum/modifier/shield_projection/parry
@@ -440,7 +473,7 @@
 // HOWEVER, be careful with these. They come loaded with a gun in them, so they shouldn't be handed out willy-nilly.
 
 /obj/item/device/personal_shield_generator/security
-	name = "security personal shield generator"
+	name = "security PSG"
 	desc = "A personal shield generator designed for security."
 	modifier_type = /datum/modifier/shield_projection/security
 
@@ -465,6 +498,7 @@
 
 /obj/item/weapon/cell/device/shield_generator/backpack //The base power cell the backpack units come with. Double the charge vs the belt.
 	maxcharge = 4800
+	charge_amount = 160
 
 /obj/item/weapon/cell/device/shield_generator/upgraded //A stronger version of the normal cell. Double the maxcharge, halved charge time.
 	maxcharge = 4800
@@ -473,6 +507,5 @@
 
 /obj/item/weapon/cell/device/shield_generator/parry //The cell for the 'parry' shield gen.
 	maxcharge = 100
-	self_recharge = TRUE
 	charge_amount = 100
 	charge_delay = 20 //Starts charging two seconds after it's discharged.

@@ -1,4 +1,7 @@
 /datum/modifier
+	var/effect_color					// Allows for coloring of modifiers.
+	var/coloration_applied = 0			// Tells the game is coloration has been applied already or not.
+	var/icon_override = 0				// Tells the game if it should use modifer_effects_vr.dmi or not.
 	// ENERGY CODE. Variables to allow for energy based modifiers.
 	var/energy_based					// Sees if the modifier is based on something electronic based.
 	var/energy_cost						// How much the modifier uses per action/special effect blocked. For base values.
@@ -91,9 +94,10 @@
 
 	on_created_text = "<span class='notice'>Your shield generator buzzes on.</span>"
 	on_expired_text = "<span class='warning'>Your shield generator buzzes off.</span>"
-	mob_overlay_state = "repel_missiles" 	//Looks actually pretty good. Could use a better sprite, but that'll work!
 	stacks = MODIFIER_STACK_FORBID //No stacking shields. If you put one one your belt and backpack it won't work.
 
+	icon_override = 1
+	mob_overlay_state = "deflect"
 	siemens_coefficient = 2 //Stun weapons drain 100% charge per point of damage. They're good at blocking lasers and bullets but not good at blocking stun beams!
 	energy_based = 1
 	energy_cost = 99999 //This is changed to the shield_generator's energy_cost.
@@ -128,7 +132,7 @@
 	var/obj/item/device/personal_shield_generator/shield_generator //This is the shield generator you're wearing!
 
 
-/datum/modifier/shield_projection/on_applied() //Don't need to modify this!
+/datum/modifier/shield_projection/on_applied()
 	return
 
 /datum/modifier/shield_projection/on_expire() //Don't need to modify this!
@@ -139,23 +143,23 @@
 		var/mob/living/carbon/human/H = holder
 		if(istype(H.get_equipped_item(slot_back), /obj/item/device/personal_shield_generator))
 			shield_generator = H.get_equipped_item(slot_back) //Sets the var on the modifier that the shield gen is their back shield gen.
-			energy_source = shield_generator.bcell
-			energy_cost = shield_generator.generator_hit_cost
-			energy_modifier = shield_generator.energy_modifier
 		else if(istype(H.get_equipped_item(slot_belt), /obj/item/device/personal_shield_generator))
 			shield_generator = H.get_equipped_item(slot_belt) //No need for other checks. If they got hit by this, they just turned it on.
-			energy_source = shield_generator.bcell
-			energy_cost = shield_generator.generator_hit_cost
-			energy_modifier = shield_generator.energy_modifier
 		else if(istype(H.get_equipped_item(slot_s_store), /obj/item/device/personal_shield_generator) ) //Rigsuits.
 			shield_generator = H.get_equipped_item(slot_s_store)
+		else
+			expire(silent = TRUE)
+		if(shield_generator) //Sanity.
 			energy_source = shield_generator.bcell
 			energy_cost = shield_generator.generator_hit_cost
 			energy_modifier = shield_generator.energy_modifier
-		else
-			expire(silent = TRUE)
+			effect_color = shield_generator.effect_color
+		if(!coloration_applied) //Does a check if colors have been applied. If not, updates the color.
+			H.update_modifier_visuals() //This can only happen on the next tick, unfortunately, not the same tick the modifier is applied. Thus, must be done here.
+			coloration_applied = 1
 	else
 		expire(silent = TRUE)
+
 
 /datum/modifier/shield_projection/tick() //When the shield generator runs out of charge, it'll remove this naturally.
 	if(holder.stat == DEAD)
@@ -200,8 +204,8 @@
 	max_fire_resistance = 0.5
 
 //SECURITY VARIANTS
-/datum/modifier/shield_projection/security // Security backpack. 50% resistance at full charge. 90% resistance for the last shot taken.
-	max_brute_resistance = 0.5
+/datum/modifier/shield_projection/security // Security backpack. 50% resistance at full charge. 10% resistance for the last shot taken.
+	max_brute_resistance = 0.50
 	min_brute_resistance = 0.9
 	effective_brute_resistance = 1
 
@@ -212,6 +216,8 @@
 	max_hal_resistance = 0.5
 	min_hal_resistance = 0.9
 	effective_hal_resistance = 1
+
+	disable_duration_percent = 0.75
 
 /datum/modifier/shield_projection/security/weak // Security belt.
 	max_brute_resistance = 0.75
@@ -225,15 +231,16 @@
 	max_fire_resistance = 0.25
 	max_hal_resistance = 0.25
 	siemens_coefficient = 1.5 //Not as weak as normal, but still weak.
+	disable_duration_percent = 0.5
 
 
 //MINING VARIANTS
-/datum/modifier/shield_projection/mining //Base mining belt. 45% resistance that fades to 15% resistance
-	max_brute_resistance = 0.55
+/datum/modifier/shield_projection/mining //Base mining belt. 30% resistance that fades to 15% resistance
+	max_brute_resistance = 0.70
 	min_brute_resistance = 0.85
 	effective_brute_resistance = 1
 
-	max_fire_resistance = 0.55
+	max_fire_resistance = 0.70
 	min_brute_resistance = 0.85
 	effective_fire_resistance = 1
 
@@ -243,10 +250,10 @@
 
 	disable_duration_percent = 0.75 //Miners often come into contact with things that can stun them.
 
-/datum/modifier/shield_projection/mining/strong // Mining belt, but upgraded. Even weaker to halloss! It also scales from .5 to .75 instead of back to 1.0!
-	max_brute_resistance = 0.5
+/datum/modifier/shield_projection/mining/strong // Mining belt, but upgraded. Even weaker to halloss!
+	max_brute_resistance = 0.55
 	min_brute_resistance = 0.75
-	max_fire_resistance = 0.5
+	max_fire_resistance = 0.55
 	min_fire_resistance = 0.75
 	disable_duration_percent = 0.5
 
