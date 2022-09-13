@@ -373,9 +373,9 @@
 
 /obj/item/device/personal_shield_generator/belt/update_icon()
 	if(shield_active)
-		icon_state = "shield_back_active"
+		icon_state = "shield_belt_active"
 	else
-		icon_state = "shield_pack"
+		icon_state = "shield_belt"
 
 /obj/item/device/personal_shield_generator/belt/bruteburn //Example of a modified generator.
 	modifier_type = /datum/modifier/shield_projection/bruteburn
