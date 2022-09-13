@@ -1,3 +1,48 @@
+/datum/modifier
+	// ENERGY CODE. Variables to allow for energy based modifiers.
+	var/energy_based					// Sees if the modifier is based on something electronic based.
+	var/energy_cost						// How much the modifier uses per action/special effect blocked. For base values.
+	var/energy_modifier					// How much energy is used when numbers are involed. For values, such as taking damage. Ex: (Damage*energy_modifier)
+	var/obj/item/weapon/cell/energy_source = null	// The source of the above.
+
+	// RESISTANCES CODE. Variable to enable external damage resistance modifiers. This is not unlike armor.
+	// 0 = immune || < 0 = heals || 1 = full damage || >1 = increased damage.
+	// It should never be below zero as it is not intended to do such, but you are free to experiment!
+	// Ex: Max_brute_resistance = 0. Min_brute resistance = 1. When started, provides 100% resistance to brute. When cell is dying, goes down to 0% resistance.
+	// Max is the MAXIMUM % multiplier that will be taken at a MAX charge. Min is the MINIMUM % multiplier that will be taken at a MINIMUM charge.
+	// Think of it like this: Minimum = what happens at minimum charge. Max = what happens at maximum charge.
+	// Why do I mention this so much? Because even /I/ got confused, and I wrote this thing!
+	var/min_damage_resistance
+	var/max_damage_resistance
+	var/effective_damage_resistance
+
+	var/min_brute_resistance
+	var/max_brute_resistance
+	var/effective_brute_resistance
+
+	var/min_fire_resistance
+	var/max_fire_resistance
+	var/effective_fire_resistance
+
+	var/min_tox_resistance
+	var/max_tox_resistance
+	var/effective_tox_resistance
+
+	var/min_oxy_resistance
+	var/max_oxy_resistance
+	var/effective_oxy_resistance
+
+	var/min_clone_resistance
+	var/max_clone_resistance
+	var/effective_clone_resistance
+
+	var/min_hal_resistance
+	var/max_hal_resistance
+	var/effective_hal_resistance
+	// Resistances end
+
+
+
 /datum/modifier/underwater_stealth
 	name = "underwater stealth"
 	desc = "You are currently underwater, rendering it more difficult to see you and enabling you to move quicker, thanks to your aquatic nature."
