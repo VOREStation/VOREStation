@@ -1078,3 +1078,26 @@
 		new /obj/effect/decal/cleanable/confetti(T)
 	else
 		to_chat(user, "<span class='notice'>The [src] is already spent!</span>")
+
+/*
+ * Snow Globes
+ */
+/obj/item/weapon/toy/snowglobe
+	name = "snowglobe"
+	icon = 'icons/obj/snowglobe_vr.dmi'
+
+/obj/item/weapon/toy/snowglobe/snowvillage
+	desc = "Depicts a small, quaint village buried in snow."
+	icon_state = "smolsnowvillage"
+
+/obj/item/weapon/toy/snowglobe/tether
+	desc = "Depicts a massive space elevator reaching to the sky."
+	icon_state = "smoltether"
+
+/obj/item/weapon/toy/snowglobe/stellardelight
+	desc = "Depicts an interstellar spacecraft."
+	icon_state = "smolstellardelight"
+
+/obj/item/weapon/toy/snowglobe/rascalspass
+	desc = "Depicts a nanotrasen facility on a temperate world."
+	icon_state = "smolrascalspass"
