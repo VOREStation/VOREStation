@@ -16,37 +16,37 @@
 	for(var/datum/modifier/M in modifiers) //MODIFIER STUFF. It's best to do this RIGHT before armor is calculated, so it's done here! This is the 'forcefield' defence.
 		if(damagetype == BRUTE && (!isnull(M.effective_brute_resistance)))
 			if(M.energy_based)
-				M.energy_source.use(M.energy_modifier * damage)
+				M.energy_source.use(M.damage_cost * damage)
 			damage = damage * M.effective_brute_resistance
 			continue
 		if((damagetype == BURN || damagetype == ELECTROCUTE)&& (!isnull(M.effective_fire_resistance)))
 			if(M.energy_based)
-				M.energy_source.use(M.energy_modifier * damage)
+				M.energy_source.use(M.damage_cost * damage)
 			damage = damage * M.effective_fire_resistance
 			continue
 		if(damagetype == TOX && (!isnull(M.effective_tox_resistance)))
 			if(M.energy_based)
-				M.energy_source.use(M.energy_modifier * damage)
+				M.energy_source.use(M.damage_cost * damage)
 			damage = damage * M.effective_tox_resistance
 			continue
 		if(damagetype == OXY && (!isnull(M.effective_oxy_resistance)))
 			if(M.energy_based)
-				M.energy_source.use(M.energy_modifier * damage)
+				M.energy_source.use(M.damage_cost * damage)
 			damage = damage * M.effective_oxy_resistance
 			continue
 		if(damagetype == CLONE && (!isnull(M.effective_clone_resistance)))
 			if(M.energy_based)
-				M.energy_source.use(M.energy_modifier * damage)
+				M.energy_source.use(M.damage_cost * damage)
 			damage = damage * M.effective_clone_resistance
 			continue
 		if(damagetype == HALLOSS && (!isnull(M.effective_hal_resistance)))
 			if(M.energy_based)
-				M.energy_source.use(M.energy_modifier * damage)
+				M.energy_source.use(M.damage_cost * damage)
 			damage = damage * M.effective_hal_resistance
 			continue
 		if(damagetype == SEARING && (!isnull(M.effective_fire_resistance) || !isnull(M.effective_brute_resistance)))
 			if(M.energy_based)
-				M.energy_source.use(M.energy_modifier * damage)
+				M.energy_source.use(M.damage_cost * damage)
 			var/damage_mitigation = 0//Used for dual calculations.
 			if(!isnull(M.effective_fire_resistance))
 				damage_mitigation += round((1/3)*damage * M.effective_fire_resistance)

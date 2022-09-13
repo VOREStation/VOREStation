@@ -5,7 +5,7 @@
 	// ENERGY CODE. Variables to allow for energy based modifiers.
 	var/energy_based					// Sees if the modifier is based on something electronic based.
 	var/energy_cost						// How much the modifier uses per action/special effect blocked. For base values.
-	var/energy_modifier					// How much energy is used when numbers are involed. For values, such as taking damage. Ex: (Damage*energy_modifier)
+	var/damage_cost						// How much energy is used when numbers are involed. For values, such as taking damage. Ex: (Damage*damage_cost)
 	var/obj/item/weapon/cell/energy_source = null	// The source of the above.
 
 	// RESISTANCES CODE. Variable to enable external damage resistance modifiers. This is not unlike armor.
@@ -101,7 +101,7 @@
 	siemens_coefficient = 2 //Stun weapons drain 100% charge per point of damage. They're good at blocking lasers and bullets but not good at blocking stun beams!
 	energy_based = 1
 	energy_cost = 99999 //This is changed to the shield_generator's energy_cost.
-	energy_modifier = 50 //This is how much battery is used per damage unit absorbed. Higher damage means higher charge use per damage absorbed. Changed below!
+	damage_cost = 50 //This is how much battery is used per damage unit absorbed. Higher damage means higher charge use per damage absorbed. Changed below!
 
 	//Not actually in use until effective resistances are set. Just here so it doesn't have to be placed down for all the variants. Less lines.
 	max_damage_resistance = 1
@@ -152,7 +152,7 @@
 		if(shield_generator) //Sanity.
 			energy_source = shield_generator.bcell
 			energy_cost = shield_generator.generator_hit_cost
-			energy_modifier = shield_generator.energy_modifier
+			damage_cost = shield_generator.damage_cost
 			effect_color = shield_generator.effect_color
 		if(!coloration_applied) //Does a check if colors have been applied. If not, updates the color.
 			H.update_modifier_visuals() //This can only happen on the next tick, unfortunately, not the same tick the modifier is applied. Thus, must be done here.

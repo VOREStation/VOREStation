@@ -193,11 +193,11 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_damage_percent
 			if(!isnull(M.incoming_brute_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_brute_damage_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
@@ -224,11 +224,11 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_damage_percent
 			if(!isnull(M.incoming_oxy_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_oxy_damage_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
@@ -252,11 +252,11 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_damage_percent
 			if(!isnull(M.incoming_tox_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_tox_damage_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
@@ -286,11 +286,11 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_damage_percent
 			if(!isnull(M.incoming_fire_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_fire_damage_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
@@ -315,11 +315,11 @@
 		for(var/datum/modifier/M in modifiers)
 			if(!isnull(M.incoming_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_damage_percent
 			if(!isnull(M.incoming_clone_damage_percent))
 				if(M.energy_based)
-					M.energy_source.use(M.energy_modifier*amount)
+					M.energy_source.use(M.damage_cost*amount)
 				amount *= M.incoming_clone_damage_percent
 	else if(amount < 0)
 		for(var/datum/modifier/M in modifiers)
@@ -352,7 +352,7 @@
 	if(amount > 0)
 		for(var/datum/modifier/M in modifiers)
 			if(M.energy_based && (!isnull(M.incoming_hal_damage_percent) || !isnull(M.disable_duration_percent)))
-				M.energy_source.use(M.energy_modifier*amount) // Cost of the Damage absorbed.
+				M.energy_source.use(M.damage_cost*amount) // Cost of the Damage absorbed.
 				M.energy_source.use(M.energy_cost) // Cost of the Effect absorbed.
 			if(!isnull(M.incoming_damage_percent))
 				amount *= M.incoming_damage_percent

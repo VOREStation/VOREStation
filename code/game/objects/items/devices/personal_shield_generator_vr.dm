@@ -33,7 +33,7 @@
 
 	var/generator_hit_cost = 100							// Power used when a special effect (such as a bullet being blocked) is performed! Could also be expanded to other things.
 	var/generator_active_cost = 10							// Power used when turned on.
-	var/energy_modifier = 25								// 40 damage absorbed per 1000 charge.
+	var/damage_cost = 25									// 40 damage absorbed per 1000 charge.
 	var/modifier_type = /datum/modifier/shield_projection	// What type of modifier will it add? Used for variant modifiers!
 
 	var/has_weapon = 1										// Backpack units generally have weapons.
@@ -78,8 +78,8 @@
 	. = ..()
 	if(Adjacent(user))
 		. += "The internal cell is [round(bcell.percent() )]% charged."
-		if(energy_modifier) //Prevention of dividing by 0 errors.
-			. += "It reads that it can take [bcell.charge/energy_modifier] more damage before the shield goes down."
+		if(damage_cost) //Prevention of dividing by 0 errors.
+			. += "It reads that it can take [bcell.charge/damage_cost] more damage before the shield goes down."
 		if(bcell.self_recharge && bcell.charge_amount)
 			. += "This model is self charging and will take [bcell.maxcharge/bcell.charge_amount] seconds to fully charge from empty."
 
@@ -447,6 +447,12 @@
 /obj/item/device/personal_shield_generator/belt/security/loaded
 	bcell = /obj/item/weapon/cell/device/shield_generator
 
+/obj/item/device/personal_shield_generator/belt/security/update_icon()
+	if(shield_active)
+		icon_state = "shield_belt_security_active"
+	else
+		icon_state = "shield_belt_security"
+
 //Misc belts. Admin-spawn only atm.
 
 /obj/item/device/personal_shield_generator/belt/adminbus
@@ -455,7 +461,7 @@
 	generator_hit_cost = 0
 	generator_active_cost = 0
 	shield_active = 0
-	energy_modifier = 0
+	damage_cost = 0
 	bcell = /obj/item/weapon/cell/device/shield_generator
 
 /obj/item/device/personal_shield_generator/belt/parry 	//The 'provides one second of pure immunity to brute/burn/halloss' belt.
@@ -464,7 +470,7 @@
 	impervious for a second."
 	modifier_type = /datum/modifier/shield_projection/parry
 	generator_hit_cost = 0 //No cost for being hit.
-	energy_modifier = 0//No cost for blocking effects.
+	damage_cost = 0//No cost for blocking effects.
 	generator_active_cost = 100 //However, it disables the tick immediately after being turned on.
 	shield_active = 0
 	bcell = /obj/item/weapon/cell/device/shield_generator/parry
@@ -474,7 +480,7 @@
 
 /obj/item/device/personal_shield_generator/security
 	name = "security PSG"
-	desc = "A personal shield generator designed for security."
+	desc = "A personal shield generator designed for security. Comes with a built in defense pistol."
 	modifier_type = /datum/modifier/shield_projection/security
 
 /obj/item/device/personal_shield_generator/security/loaded
@@ -486,6 +492,11 @@
 /obj/item/device/personal_shield_generator/security/strong/loaded
 	bcell = /obj/item/weapon/cell/device/shield_generator/backpack
 
+/obj/item/device/personal_shield_generator/belt/security/update_icon()
+	if(shield_active)
+		icon_state = "shield_pack_security_active"
+	else
+		icon_state = "shield_pack_security"
 
 //Power cells.
 /obj/item/weapon/cell/device/shield_generator //The base power cell the shield gen comes with.
