@@ -70,9 +70,9 @@
 
 /obj/item/device/personal_shield_generator/update_icon()
 	if(shield_active)
-		icon_state = "shield_back_active"
+		icon_state = "shieldpack_basic_on"
 	else
-		icon_state = "shield_pack"
+		icon_state = "shieldpack_basic"
 
 /obj/item/device/personal_shield_generator/examine(mob/user)
 	. = ..()
@@ -392,9 +392,9 @@
 
 /obj/item/device/personal_shield_generator/belt/update_icon()
 	if(shield_active)
-		icon_state = "shield_belt_active"
+		icon_state = "shieldpack_basic_on"
 	else
-		icon_state = "shield_belt"
+		icon_state = "shieldpack_basic"
 
 /obj/item/device/personal_shield_generator/belt/bruteburn //Example of a modified generator.
 	modifier_type = /datum/modifier/shield_projection/bruteburn
@@ -412,9 +412,9 @@
 
 /obj/item/device/personal_shield_generator/belt/mining/update_icon()
 	if(shield_active)
-		icon_state = "shield_belt_mining_active"
+		icon_state = "shieldpack_mining_on"
 	else
-		icon_state = "shield_belt_mining"
+		icon_state = "shieldpack_mining"
 
 /obj/item/borg/upgrade/shield_upgrade
 	name = "mining PSG upgrade disk."
@@ -449,9 +449,9 @@
 
 /obj/item/device/personal_shield_generator/belt/security/update_icon()
 	if(shield_active)
-		icon_state = "shield_belt_security_active"
+		icon_state = "shieldpack_security_on"
 	else
-		icon_state = "shield_belt_security"
+		icon_state = "shieldpack_security"
 
 //Misc belts. Admin-spawn only atm.
 
@@ -492,11 +492,11 @@
 /obj/item/device/personal_shield_generator/security/strong/loaded
 	bcell = /obj/item/weapon/cell/device/shield_generator/backpack
 
-/obj/item/device/personal_shield_generator/belt/security/update_icon()
+/obj/item/device/personal_shield_generator/security/update_icon()
 	if(shield_active)
-		icon_state = "shield_pack_security_active"
+		icon_state = "shieldpack_security_on"
 	else
-		icon_state = "shield_pack_security"
+		icon_state = "shieldpack_security"
 
 //Power cells.
 /obj/item/weapon/cell/device/shield_generator //The base power cell the shield gen comes with.
