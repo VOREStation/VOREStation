@@ -36,7 +36,7 @@
 	storage slot. It runs on an internal battery, which is usually self-charging. Some versions come with a gun. To active the shield, click the button in the upper \
 	right of the screen, use the 'Toggle Shield' command under your objects tab, or click the device itself while it is on you. Some units come with an active weapon \
 	which can be taken out at any time by Alt-clicking the device. If the device requires a cell, a screwdriver can be used. The shield slowly drains charge while \
-	active and becomes weaker with each individual strike taken."
+	active and becomes weaker with each individual strike taken. Additonally, the device can be colored via use of a multitool."
 
 	description_fluff = "A relatively new invention, made in a collaboration between Hephaestus Industries and a startup known as Kuznetsova Enterprise in the year \
 	2322. Numerous variants of the device have been made for specific tasks, ranging from riot control, mining, biohazard containment, and search and rescue, among \
