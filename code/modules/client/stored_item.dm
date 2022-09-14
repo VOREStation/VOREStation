@@ -254,3 +254,5 @@
 	persist_storable = FALSE
 /obj/item/weapon/spacecasinocash
 	persist_storable = FALSE
+/obj/item/device/personal_shield_generator
+	persist_storable = FALSE
