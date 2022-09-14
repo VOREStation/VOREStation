@@ -105,10 +105,11 @@
 /obj/item/device/personal_shield_generator/emp_act(severity)
 	if(bcell)
 		switch(severity)
-			if(1) //Point blank EMP shots have a good chance of burning the cell charge."
+			if(1) //Point blank EMP shots have a good chance of burning the cell charge.
 				if(prob(50))
 					bcell.emp_act(severity)
-					bcell.corrupt()
+					if(prob(5)) //1 in 20% chance to fry the battery completly, which has a 1/10 chance of making the battery explode on next use.
+						bcell.corrupt() //Not too bad if you slotted a battery in. Disasterous if it has a self-charging battery.
 			else
 				if(prob(25))
 					bcell.emp_act(severity)
@@ -158,8 +159,22 @@
 	else if(W.is_screwdriver())
 		if(bcell)
 			if(istype(bcell, /obj/item/weapon/cell/device/shield_generator)) //No stealing self charging batteries!
-				to_chat(user, "<span class='notice'>You can not remove the cell from \the [src] without destroying the unit.</span>")
-				return
+				var/choice = tgui_alert(user, "A popup appears on the device 'REMOVING THE INTERNAL CELL WILL DESTROY THE BATTERY. DO YOU WISH TO CONTINUE?'...Well, do you?", "Selection List", list("Cancel", "Remove"))
+				if(choice == "Remove") //Warned you...
+					var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+					s.set_up(5, 1, src)
+					s.start()
+					bcell.forceMove(get_turf(src.loc))
+					qdel(bcell)
+					bcell = null //Sanity.
+					if(active_weapon)
+						reattach_gun() //Put the gun back if it's out. No shooting if we don't have a cell!
+						active_weapon.power_supply = null //No power cell anymore!
+					to_chat(user, "<span class='notice'>You remove the cell from \the [src], destroying the battery.</span>")
+					update_icon()
+					return
+				else
+					return
 			else
 				bcell.update_icon()
 				bcell.forceMove(get_turf(src.loc))
