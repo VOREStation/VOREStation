@@ -28,6 +28,7 @@
 	noisy = client.prefs_vr.noisy
 	selective_preference = client.prefs_vr.selective_preference
 	appendage_color = client.prefs_vr.appendage_color
+	appendage_alt_setting = client.prefs_vr.appendage_alt_setting
 
 	drop_vore = client.prefs_vr.drop_vore
 	stumble_vore = client.prefs_vr.stumble_vore
