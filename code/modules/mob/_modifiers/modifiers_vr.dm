@@ -225,6 +225,7 @@
 	max_fire_resistance = 0.75
 	min_fire_resistance = 0.95
 	max_hal_resistance = 0.75
+	min_hal_resistance = 0.95
 
 /datum/modifier/shield_projection/security/strong // Dunno. Upgraded variant of security backpack?
 	max_brute_resistance = 0.25

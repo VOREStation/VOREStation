@@ -43,7 +43,7 @@
 /obj/item/device/personal_shield_generator/get_cell()
 	return bcell
 
-/obj/item/device/personal_shield_generator/New() //starts without a cell for rnd
+/obj/item/device/personal_shield_generator/New()
 	..()
 	if(ispath(bcell))
 		bcell = new bcell(src)
