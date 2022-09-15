@@ -57,6 +57,7 @@
 			active_weapon.power_supply = bcell
 	else
 		verbs -= /obj/item/device/personal_shield_generator/verb/weapon_toggle
+	STOP_PROCESSING(SSobj, src) //We do this so it doesn't start processing until it's first used.
 	update_icon()
 
 /obj/item/device/personal_shield_generator/Destroy()
@@ -77,11 +78,17 @@
 /obj/item/device/personal_shield_generator/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
-		. += "The internal cell is [round(bcell.percent() )]% charged."
+		if(bcell)
+			. += "The internal cell is [round(bcell.percent() )]% charged."
+		else
+			. += "The device has no cell installed."
+			return
 		if(damage_cost) //Prevention of dividing by 0 errors.
 			. += "It reads that it can take [bcell.charge/damage_cost] more damage before the shield goes down."
 		if(bcell.self_recharge && bcell.charge_amount)
 			. += "This model is self charging and will take [bcell.maxcharge/bcell.charge_amount] seconds to fully charge from empty."
+		if(bcell.rigged)
+			. += "A red flashing 'WARNING' is visible on the display, noting that the cell is unstable and requires replacement."
 
 
 /* //This would be cool, but we need sprites.
@@ -103,13 +110,26 @@
 */
 
 /obj/item/device/personal_shield_generator/emp_act(severity)
-	if(bcell)
+	if(bcell && shield_active)
 		switch(severity)
 			if(1) //Point blank EMP shots have a good chance of burning the cell charge.
 				if(prob(50))
 					bcell.emp_act(severity)
 					if(prob(5)) //1 in 20% chance to fry the battery completly, which has a 1/10 chance of making the battery explode on next use.
 						bcell.corrupt() //Not too bad if you slotted a battery in. Disasterous if it has a self-charging battery.
+					if(bcell.rigged) //Did the above just rig the cell? Turn it off. Don't immediately have it go boom. Instead have the cell blow soon-ish.
+						var/datum/effect/effect/system/spark_spread/s = new /datum/effect/effect/system/spark_spread
+						s.set_up(5, 1, src)
+						s.start()
+						shield_active = 0
+						if(bcell.charge_delay) //It WILL blow up soon. Downside of self-charging cells.
+							to_chat(src.loc, "<span class='critical'>Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
+							'WARNING, INTERNAL CELL MELTDOWN IMMINENT. TIME TILL EXPLOSION: [bcell.charge_delay/10] SECONDS. DISCARD UNIT IMMEDIATELY!'</span>")
+						else //It won't blow up unless you turn it back on again. Upside of using non-charging cells.
+							to_chat(src.loc, "<span class='critical'>Your shield generator sparks and suddenly goes down! A warning message pops up on screen: \
+							'WARNING, INTERNAL CELL CRITICALLY DAMAGED. REPLACE CELL IMMEDIATELY.'</span>")
+						STOP_PROCESSING(SSobj, src)
+						update_icon()
 			else
 				if(prob(25))
 					bcell.emp_act(severity)
@@ -264,16 +284,46 @@
 		update_icon() //success
 
 /obj/item/device/personal_shield_generator/process()
+	if(!bcell) //They removed the battery midway.
+		if(istype(loc, /mob/living/carbon/human)) //We on someone? Tell them it turned off.
+			var/mob/living/carbon/human/user = loc
+			to_chat(user, "<span class='warning'>The shield deactivates! An error message pops up on screen: 'Cell missing. Cell replacement required.'</span>")
+			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
+		shield_active = 0
+		STOP_PROCESSING(SSobj, src)
+		update_icon()
+		return
+
 	if(shield_active)
-		bcell.use(generator_active_cost)
+		if(bcell.rigged) //They turned it back on after it was rigged to go boom.
+			if(istype(loc, /mob/living/carbon/human)) //Deactivate the shield, first. You're not getting reduced damage...
+				var/mob/living/carbon/human/user = loc
+				to_chat(user, "<span class='warning'>The shield deactivates, an error message popping up on screen: 'Cell Reactor Critically damaged. Cell replacement required.'</span>")
+				user.remove_modifiers_of_type(/datum/modifier/shield_projection)
+
+			if(active_weapon) //Retract the gun. There's about to be no cell anymore.
+				reattach_gun()
+				active_weapon.power_supply = null
+
+			bcell.use(generator_active_cost) //Causes it to go boom.
+			bcell = null
+			shield_active = 0
+			STOP_PROCESSING(SSobj, src)
+			update_icon()
+			return
+
+		else //Normal operation.
+			bcell.use(generator_active_cost)
+
 	if(bcell.charge < generator_hit_cost || bcell.charge < generator_active_cost) //Out of charge...
 		shield_active = 0
 		if(istype(loc, /mob/living/carbon/human)) //We on someone? Tell them it turned off.
 			var/mob/living/carbon/human/user = loc
-			to_chat(user, "<span class='warning'>The shield deactivates.!</span>")
+			to_chat(user, "<span class='warning'>The shield deactivates, an error message popping up on screen: 'Cell out of charge.'</span>")
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 		STOP_PROCESSING(SSobj, src)
 		update_icon()
+		return
 
 
 
