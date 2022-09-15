@@ -420,3 +420,9 @@ var/list/_client_preferences_by_type
 	key = "CHAT_RLOOC"
 	enabled_description = "Show"
 	disabled_description = "Hide"
+
+/datum/client_preference/holder/show_staff_dsay
+	description ="Staff Deadchat"
+	key = "CHAT_ADSAY"
+	enabled_description = "Show"
+	disabled_description = "Hide"

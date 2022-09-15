@@ -509,7 +509,7 @@
 		to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive debug logs.")
 		SScharacter_setup.queue_preferences_save(prefs)
 
-	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","TADebugLogs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 //Mods
 /client/proc/toggle_attack_logs()
@@ -524,4 +524,33 @@
 		to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] receive attack logs.")
 		SScharacter_setup.queue_preferences_save(prefs)
 
-	feedback_add_details("admin_verb","TBeSpecial") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	feedback_add_details("admin_verb","TAAttackLogs") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+//General
+/client/proc/toggle_admin_global_looc()
+	set name = "Toggle Admin Global LOOC Visibility"
+	set category = "Preferences"
+	set desc = "Toggles seeing LOOC messages outside your actual LOOC range."
+
+	var/pref_path = /datum/client_preference/holder/show_rlooc
+
+	if(holder)
+		toggle_preference(pref_path)
+		to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear global LOOC.")
+		SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TAGlobalLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/toggle_admin_deadchat()
+	set name = "Toggle Admin Living Deadchat"
+	set category = "Preferences"
+	set desc = "Toggles seeing deadchat while not observing."
+
+	var/pref_path = /datum/client_preference/holder/show_staff_dsay
+
+	if(holder)
+		toggle_preference(pref_path)
+		to_chat(src,"You will [ (is_preference_enabled(pref_path)) ? "now" : "no longer"] hear deadchat while not observing.")
+		SScharacter_setup.queue_preferences_save(prefs)
+
+	feedback_add_details("admin_verb","TADeadchat") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
