@@ -19,4 +19,7 @@
 		kill()		// To prevent fake announcements
 		return
 
-	new /obj/structure/ghost_pod/ghost_activated/maintpred(get_turf(spawnspot))
+	var/obj/structure/ghost_pod/ghost_activated/maintpred/M = new /obj/structure/ghost_pod/ghost_activated/maintpred(get_turf(spawnspot))
+	
+	if(prob(35))
+		M.trigger(null,"A maint pred event has occurred and called for ghosts to activate it.")

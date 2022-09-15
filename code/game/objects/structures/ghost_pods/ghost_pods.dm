@@ -57,7 +57,7 @@
 		// VOREStation Addition Start
 		if(!used)
 			activated = TRUE
-			ghostpod_startup(FALSE)
+			ghostpod_startup()
 		// VOREStation Addition End
 
 /obj/structure/ghost_pod/manual/attack_ai(var/mob/living/silicon/user)

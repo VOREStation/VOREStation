@@ -19,4 +19,7 @@
 		kill()		// To prevent fake announcements
 		return
 
-	new /obj/structure/ghost_pod/ghost_activated/morphspawn(get_turf(spawnspot))
+	var/obj/structure/ghost_pod/ghost_activated/morphspawn/M = new /obj/structure/ghost_pod/ghost_activated/morphspawn(get_turf(spawnspot))
+	
+	if(prob(50))
+		M.trigger(null,"A morph spawn event has occurred and called for ghosts to activate it.")

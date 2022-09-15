@@ -10,7 +10,7 @@ var/global/list/global_used_pois = list()
 	var/remove_from_pool = TRUE
 
 /obj/effect/landmark/poi_loader/New()
-INITIALIZE_IMMEDIATE(/obj/effect/landmark/poi_loader)
+	LateInitialize(/obj/effect/landmark/poi_loader)
 
 /obj/effect/landmark/poi_loader/Initialize()
 	// LINTER FIX NOTE: would suggest moving this to a queue on a subsystem that can be expected to init appropriately
