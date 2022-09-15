@@ -146,7 +146,7 @@ var/redspace_abduction_z
 		redspace_abduction_z = -1
 		to_chat(user,"<span class='warning'>This is the first use of the verb this shift, it will take a minute to configure the abduction z-level. It will be z[world.maxz+1].</span>")
 		var/z = ++world.maxz
-		max_z_changed()
+		world.max_z_changed()
 		for(var/x = 1 to world.maxx)
 			for(var/y = 1 to world.maxy)
 				var/turf/T = locate(x,y,z)
