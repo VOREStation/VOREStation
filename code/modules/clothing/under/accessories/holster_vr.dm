@@ -45,9 +45,11 @@
 /obj/item/clothing/accessory/holster/machete/rapier/holster(var/obj/item/I, var/mob/living/user)
 	..()
 	occupied()
-	has_suit.update_clothing_icon()
+	if(has_suit)
+		has_suit.update_clothing_icon()
 
 /obj/item/clothing/accessory/holster/machete/rapier/unholster(var/obj/item/I, var/mob/living/user)
 	..()
 	occupied()
-	has_suit.update_clothing_icon()
+	if(has_suit)
+		has_suit.update_clothing_icon()

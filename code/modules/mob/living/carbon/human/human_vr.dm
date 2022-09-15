@@ -15,3 +15,7 @@
 
 /mob/living/carbon/human/get_digestion_nutrition_modifier()
 	return species.digestion_nutrition_modifier
+
+/mob/living/carbon/human/get_digestion_efficiency_modifier()
+	return species.digestion_efficiency
+

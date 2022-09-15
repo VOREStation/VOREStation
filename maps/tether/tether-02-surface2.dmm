@@ -14435,6 +14435,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 27
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "axp" = (
@@ -16260,6 +16265,10 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 6
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aBw" = (
@@ -17280,6 +17289,7 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 1
 	},
+/obj/machinery/computer/timeclock/premade/north,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_two_hall)
 "aDr" = (
@@ -17443,9 +17453,6 @@
 	icon_state = "4-8"
 	},
 /obj/item/device/radio/intercom{
-	broadcasting = 1;
-	frequency = 1473;
-	name = "Confession Intercom";
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/dark,
@@ -25575,6 +25582,18 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/south)
+"aTi" = (
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai_upload_foyer)
+"aTj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/effect/landmark/free_ai_shell,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai_upload)
 "aTl" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/research,
@@ -26265,6 +26284,11 @@
 	},
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 27
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
@@ -33082,6 +33106,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"eKi" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "eKn" = (
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
@@ -33388,11 +33419,6 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/ai_upload_foyer)
-"hCO" = (
-/obj/effect/landmark/free_ai_shell,
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload_foyer)
@@ -34059,13 +34085,6 @@
 /obj/item/weapon/aiModule/teleporterOffline,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
-"nKV" = (
-/obj/machinery/light{
-	dir = 1
-	},
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/ai_upload)
 "nOG" = (
 /obj/effect/mouse_hole_spawner{
 	dir = 8
@@ -34121,6 +34140,13 @@
 /obj/item/weapon/grenade/anti_photon,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"omM" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/machinery/computer/timeclock/premade/east,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "opK" = (
 /obj/move_trader_landmark{
 	dir = 4;
@@ -47946,7 +47972,7 @@ aLY
 adt
 adt
 aJA
-hCO
+aTi
 klz
 mNZ
 nUS
@@ -48514,7 +48540,7 @@ aLY
 adt
 adt
 aJY
-nKV
+aTj
 kPR
 ndB
 oXH
@@ -49328,7 +49354,7 @@ ayd
 aKA
 ayd
 rBf
-aMG
+eKi
 avD
 asm
 asx
@@ -49468,7 +49494,7 @@ ayd
 aJu
 aJP
 aKB
-ayl
+omM
 ayl
 aMI
 avD

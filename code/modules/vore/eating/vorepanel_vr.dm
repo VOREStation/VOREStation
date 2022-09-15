@@ -45,6 +45,7 @@
 /datum/vore_look/ui_assets(mob/user)
 	. = ..()
 	. += get_asset_datum(/datum/asset/spritesheet/vore)
+	. += get_asset_datum(/datum/asset/spritesheet/vore_colorized) //Either this isn't working or my cache is corrupted and won't show them.
 
 /datum/vore_look/tgui_interact(mob/user, datum/tgui/ui)
 	ui = SStgui.try_update_ui(user, src, ui)
@@ -188,6 +189,8 @@
 			"nutrition_ex" = host.nutrition_message_visible,
 			"weight_ex" = host.weight_message_visible,
 			"belly_fullscreen" = selected.belly_fullscreen,
+			"belly_fullscreen_color" = selected.belly_fullscreen_color,
+			"colorization_enabled" = selected.colorization_enabled,
 		)
 
 		var/list/addons = list()
@@ -217,7 +220,23 @@
 			selected_list["interacts"]["digestchance"] = selected.digestchance
 
 		selected_list["disable_hud"] = selected.disable_hud
-		selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi')
+		selected_list["colorization_enabled"] = selected.colorization_enabled
+		selected_list["belly_fullscreen_color"] = selected.belly_fullscreen_color
+
+		if(selected.colorization_enabled)
+			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_colorized_vore.dmi') //Makes any icons inside of here selectable.
+		else
+			selected_list["possible_fullscreens"] = icon_states('icons/mob/screen_full_vore.dmi') //Where all stomachs - colorable and not - are stored.
+			//INSERT COLORIZE-ONLY STOMACHS HERE.
+			//This manually removed color-only stomachs from the above list.
+			//For some reason, colorized stomachs have to be added to both colorized_vore(to be selected) and full_vore (to show the preview in tgui)
+			//Why? I have no flipping clue. As you can see above, vore_colorized is included in the assets but isn't working. It makes no sense.
+			//I can only imagine this is a BYOND/TGUI issue with the cache. If you can figure out how to fix this and make it so you only need to
+			//include things in full_colorized_vore, that would be great. For now, this is the only workaround that I could get to work.
+			selected_list["possible_fullscreens"] -= "a_synth_flesh_mono"
+			selected_list["possible_fullscreens"] -= "a_synth_flesh_mono_hole"
+			selected_list["possible_fullscreens"] -= "a_anim_belly"
+			//INSERT COLORIZE-ONLY STOMACHS HERE
 
 		var/list/selected_contents = list()
 		for(var/O in selected)
@@ -253,12 +272,14 @@
 		"can_be_drop_pred" = host.can_be_drop_pred,
 		"allow_inbelly_spawning" = host.allow_inbelly_spawning,
 		"allow_spontaneous_tf" = host.allow_spontaneous_tf,
+		"appendage_color" = host.appendage_color,
 		"step_mechanics_active" = host.step_mechanics_pref,
 		"pickup_mechanics_active" = host.pickup_pref,
 		"noisy" = host.noisy,
 		"drop_vore" = host.drop_vore,
 		"slip_vore" = host.slip_vore,
 		"stumble_vore" = host.stumble_vore,
+		"throw_vore" = host.throw_vore,
 		"nutrition_message_visible" = host.nutrition_message_visible,
 		"nutrition_messages" = host.nutrition_messages,
 		"weight_message_visible" = host.weight_message_visible,
@@ -488,6 +509,7 @@
 				host.client.prefs_vr.show_vore_fx = host.show_vore_fx
 			if(!host.show_vore_fx)
 				host.clear_fullscreen("belly")
+				//host.clear_fullscreen("belly2") //For multilayered stomachs. Not currently implemented.
 				if(!host.hud_used.hud_shown)
 					host.toggle_hud_vis()
 			unsaved_changes = TRUE
@@ -506,6 +528,10 @@
 			return TRUE
 		if("toggle_stumble_vore")
 			host.stumble_vore = !host.stumble_vore
+			unsaved_changes = TRUE
+			return TRUE
+		if("toggle_throw_vore")
+			host.throw_vore = !host.throw_vore
 			unsaved_changes = TRUE
 			return TRUE
 		if("switch_selective_mode_pref")
@@ -1210,6 +1236,27 @@
 			. = TRUE
 		if("b_disable_hud")
 			host.vore_selected.disable_hud = !host.vore_selected.disable_hud
+			. = TRUE
+		if("b_colorization_enabled") //ALLOWS COLORIZATION.
+			host.vore_selected.colorization_enabled = !host.vore_selected.colorization_enabled
+			host.vore_selected.belly_fullscreen = "dark" //This prevents you from selecting a belly that is not meant to be colored and then turning colorization on.
+			. = TRUE
+		/*
+		if("b_multilayered") //Allows for 'multilayered' stomachs. Currently not implemented. Add to TGUI.
+			host.vore_selected.multilayered = !host.vore_selected.multilayered 				//Add to stomach vars.
+			host.vore_selected.belly_fullscreen = "dark"
+			. = TRUE
+		*/
+		if("b_preview_belly")
+			host.vore_selected.vore_preview(host) //Gives them the stomach overlay. It fades away after ~2 seconds as human/life.dm removes the overlay if not in a gut.
+			. = TRUE
+		if("b_clear_preview")
+			host.vore_selected.clear_preview(host) //Clears the stomach overlay. This is a failsafe but shouldn't occur.
+			. = TRUE
+		if("b_fullscreen_color")
+			var/newcolor = input(usr, "Choose a color.", "", host.vore_selected.belly_fullscreen_color) as color|null
+			if(newcolor)
+				host.vore_selected.belly_fullscreen_color = newcolor
 			. = TRUE
 		if("b_save_digest_mode")
 			host.vore_selected.save_digest_mode = !host.vore_selected.save_digest_mode

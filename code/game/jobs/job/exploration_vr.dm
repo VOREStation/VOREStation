@@ -55,6 +55,9 @@
 /datum/alt_title/exploration_manager
 	title = "Exploration Manager"
 
+/datum/job/pathfinder/get_request_reasons()
+	return list("Training crew")
+
 /datum/job/explorer
 	title = "Explorer"
 	flag = EXPLORER

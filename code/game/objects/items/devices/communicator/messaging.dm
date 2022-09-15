@@ -108,7 +108,7 @@
 				exonet.send_message(comm.exonet.address, "text", message)
 				im_list += list(list("address" = exonet.address, "to_address" = comm.exonet.address, "im" = message))
 				log_pda("(COMM: [src]) sent \"[message]\" to [exonet.get_atom_from_address(comm.exonet.address)]", usr)
-				to_chat(usr, "<span class='notice'>\icon[src][bicon(src)] Sent message to [comm.owner], <b>\"[message]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
+				to_chat(usr, "<span class='notice'>\icon[src][bicon(src)] Sent message to [istype(comm, /obj/item/device/communicator) ? comm.owner : comm.name], <b>\"[message]\"</b> (<a href='?src=\ref[src];action=Reply;target=\ref[exonet.get_atom_from_address(comm.exonet.address)]'>Reply</a>)</span>")
 
 // Verb: text_communicator()
 // Parameters: None

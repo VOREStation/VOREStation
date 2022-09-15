@@ -3624,6 +3624,9 @@
 	dir = 4
 	},
 /obj/machinery/light,
+/obj/machinery/newscaster/security_unit{
+	pixel_x = -27
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/hos)
 "ie" = (
@@ -4190,6 +4193,9 @@
 /obj/item/weapon/cell/high{
 	charge = 100;
 	maxcharge = 15000
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
@@ -4894,6 +4900,9 @@
 	},
 /obj/item/device/gps/security{
 	pixel_x = -3
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
@@ -5712,6 +5721,11 @@
 /obj/machinery/vending/altevian,
 /turf/simulated/floor/tiled,
 /area/groundbase/civilian/foodplace)
+"mB" = (
+/obj/machinery/light,
+/obj/effect/landmark/free_ai_shell,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/groundbase/command/ai/upload)
 "mC" = (
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
@@ -9994,6 +10008,9 @@
 /obj/structure/table/reinforced,
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 1
+	},
+/obj/machinery/newscaster/security_unit{
+	pixel_y = -28
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
@@ -14689,10 +14706,6 @@
 	},
 /turf/simulated/floor/outdoors/sidewalk/slab/virgo3c,
 /area/groundbase/level1/centsquare)
-"IL" = (
-/obj/machinery/light,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/groundbase/command/ai/upload)
 "IM" = (
 /obj/structure/sign/painting/public{
 	pixel_y = 30
@@ -16025,6 +16038,12 @@
 	},
 /turf/simulated/floor,
 /area/groundbase/medical/office)
+"LZ" = (
+/obj/machinery/newscaster/security_unit{
+	pixel_x = -27
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/detective)
 "Ma" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
@@ -16571,6 +16590,12 @@
 	},
 /turf/simulated/wall/r_wall,
 /area/groundbase/engineering/eva)
+"Nn" = (
+/obj/machinery/newscaster/security_unit{
+	pixel_y = -28
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/warden)
 "No" = (
 /obj/machinery/computer/med_data/laptop{
 	dir = 8
@@ -18373,6 +18398,12 @@
 /obj/effect/landmark/vermin,
 /turf/simulated/floor/lino,
 /area/groundbase/civilian/bar)
+"Sb" = (
+/obj/machinery/newscaster/security_unit{
+	pixel_x = 27
+	},
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/briefing)
 "Sc" = (
 /obj/machinery/camera/network/command{
 	dir = 4
@@ -18502,6 +18533,9 @@
 /obj/item/device/taperecorder,
 /obj/item/device/retail_scanner/security,
 /obj/item/device/camera,
+/obj/machinery/newscaster/security_unit{
+	pixel_y = -29
+	},
 /turf/simulated/floor/tiled,
 /area/groundbase/security/processing)
 "Ss" = (
@@ -21253,6 +21287,9 @@
 	layer = 2.6
 	},
 /obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/equipment)
 "Zc" = (
@@ -24615,7 +24652,7 @@ yJ
 XU
 xA
 rM
-IL
+mB
 XY
 MO
 FF
@@ -26670,7 +26707,7 @@ Nu
 AZ
 cv
 px
-AN
+Sb
 fY
 SR
 AN
@@ -27111,7 +27148,7 @@ Jp
 zg
 mi
 VV
-Pl
+Nn
 qa
 zK
 uc
@@ -29788,7 +29825,7 @@ cB
 cB
 yb
 FD
-Uz
+LZ
 vR
 yL
 tg

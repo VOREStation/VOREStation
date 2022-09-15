@@ -8,6 +8,7 @@
 
 	var/organic_food_coeff = 1
 	var/synthetic_food_coeff = 0
+	var/digestion_efficiency = 1 //VORE specific digestion var
 	//var/vore_numbing = 0
 	var/metabolism = 0.0015
 	var/lightweight = FALSE //Oof! Nonhelpful bump stumbles.

@@ -37,6 +37,7 @@
 	var/stumble_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/slip_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/drop_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
+	var/throw_vore = TRUE				//Enabled by default since you have to enable drop pred/prey to do this anyway
 	var/can_be_drop_prey = FALSE
 	var/can_be_drop_pred = FALSE
 	var/allow_spontaneous_tf = FALSE	// Obviously.
@@ -46,6 +47,7 @@
 	var/vis_height = 32					// Sprite height used for resize features.
 	var/show_vore_fx = TRUE				// Show belly fullscreens
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
+	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
 	var/regen_sounds = list(
 		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
@@ -114,6 +116,10 @@
 		B.name = "Stomach"
 		B.desc = "It appears to be rather warm and wet. Makes sense, considering it's inside \the [name]."
 		B.can_taste = TRUE
+		if(ishuman(src))
+			var/mob/living/carbon/human/H = src
+			if(istype(H.species,/datum/species/monkey))
+				allow_spontaneous_tf = TRUE
 		return TRUE
 
 //
@@ -270,10 +276,12 @@
 	P.can_be_drop_pred = src.can_be_drop_pred
 	P.allow_inbelly_spawning = src.allow_inbelly_spawning
 	P.allow_spontaneous_tf = src.allow_spontaneous_tf
+	P.appendage_color = src.appendage_color
 	P.step_mechanics_pref = src.step_mechanics_pref
 	P.pickup_pref = src.pickup_pref
 	P.drop_vore = src.drop_vore
 	P.slip_vore = src.slip_vore
+	P.throw_vore = src.throw_vore
 	P.stumble_vore = src.stumble_vore
 
 	P.nutrition_message_visible = src.nutrition_message_visible
@@ -316,10 +324,12 @@
 	can_be_drop_pred = P.can_be_drop_pred
 	allow_inbelly_spawning = P.allow_inbelly_spawning
 	allow_spontaneous_tf = P.allow_spontaneous_tf
+	appendage_color = P.appendage_color
 	step_mechanics_pref = P.step_mechanics_pref
 	pickup_pref = P.pickup_pref
 	drop_vore = P.drop_vore
 	slip_vore = P.slip_vore
+	throw_vore = P.throw_vore
 	stumble_vore = P.stumble_vore
 
 	nutrition_message_visible = P.nutrition_message_visible
@@ -727,6 +737,9 @@
 /mob/living/proc/get_digestion_nutrition_modifier()
 	return 1
 
+/mob/living/proc/get_digestion_efficiency_modifier()
+	return 1
+
 /mob/living/proc/eat_trash()
 	set name = "Eat Trash"
 	set category = "Abilities"
@@ -1036,6 +1049,7 @@
 	dispvoreprefs += "<b>Spontaneous vore pred:</b> [can_be_drop_pred ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Drop Vore:</b> [drop_vore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Slip Vore:</b> [slip_vore ? "Enabled" : "Disabled"]<br>"
+	dispvoreprefs += "<b>Throw vore:</b> [throw_vore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Stumble Vore:</b> [stumble_vore ? "Enabled" : "Disabled"]<br>"
 	dispvoreprefs += "<b>Inbelly Spawning:</b> [allow_inbelly_spawning ? "Allowed" : "Disallowed"]<br>"
 	dispvoreprefs += "<b>Spontaneous transformation:</b> [allow_spontaneous_tf ? "Enabled" : "Disabled"]<br>"
@@ -1049,6 +1063,9 @@
 /obj/screen/fullscreen/belly
 	icon = 'icons/mob/screen_full_vore.dmi'
 	icon_state = ""
+
+/obj/screen/fullscreen/belly/colorized
+	icon = 'icons/mob/screen_full_colorized_vore.dmi'
 
 /mob/living/proc/vorebelly_printout() //Spew the vorepanel belly messages into chat window for copypasting.
 	set name = "X-Print Vorebelly Settings"

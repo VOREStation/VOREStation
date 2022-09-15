@@ -106,7 +106,7 @@
 		if(choice == "No")
 			return
 		var/basecolor = input(user, "Select a base color for the canvas:", "Base Color", canvas_color) as null|color
-		if(basecolor && Adjacent(user, src) && Adjacent(user, I))
+		if(basecolor && Adjacent(user) && user.get_active_hand() == I)
 			canvas_color = basecolor
 			reset_grid()
 			user.visible_message("[user] smears paint on [src], covering the entire thing in paint.", "You smear paint on [src], changing the color of the entire thing.", runemessage = "smears paint")

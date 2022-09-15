@@ -118,6 +118,16 @@
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_finalize
 	H.verbs |= /mob/living/carbon/human/proc/succubus_drain_lethal
 
+/datum/trait/neutral/long_vore
+	name = "Long Predatorial Reach"
+	desc = "Makes you able to use your tongue to grab creatures."
+	cost = 0
+	custom_only = FALSE
+
+/datum/trait/neutral/long_vore/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/proc/long_vore
+
 /datum/trait/neutral/feeder
 	name = "Feeder"
 	desc = "Allows you to feed your prey using your own body."
@@ -582,3 +592,43 @@
 	cost = 0
 	custom_only = FALSE
 	var_changes = list("digestion_nutrition_modifier" = 0.25)
+
+
+/datum/trait/neutral/food_value_down
+	name = "Insatiable"
+	desc = "You need to eat a third of a plate more to be sated."
+	cost = 0
+	custom_only = FALSE
+	can_take = ORGANICS
+	var_changes = list(organic_food_coeff = 0.67, digestion_efficiency = 0.66)
+	excludes = list(/datum/trait/neutral/bloodsucker)
+
+/datum/trait/neutral/food_value_down_plus
+	name = "Insatiable, Greater"
+	desc = "You need to eat three times as much to feel sated."
+	cost = 0
+	custom_only = FALSE
+	can_take = ORGANICS
+	var_changes = list(organic_food_coeff = 0.33, digestion_efficiency = 0.33)
+	excludes = list(/datum/trait/neutral/bloodsucker, /datum/trait/neutral/food_value_down)
+
+/datum/trait/neutral/biofuel_value_down
+	name = "Discount Biofuel processor"
+	desc = "You are able to gain energy through consuming and processing normal food. Unfortunately, it is half as effective as premium models."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+	var_changes = list("organic_food_coeff" = 0, "synthetic_food_coeff" = 0.3, digestion_efficiency = 0.5)
+	excludes = list(/datum/trait/neutral/synth_chemfurnace)
+
+/datum/trait/neutral/synth_cosmetic_pain
+	name = "Pain simulation"
+	desc = "You have added modules in your synthetic shell that simulates the sensation of pain. You are able to turn this on and off for repairs as needed or convenience at will."
+	cost = 0
+	custom_only = FALSE
+	can_take = SYNTHETICS
+
+
+/datum/trait/neutral/synth_cosmetic_pain/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/toggle_pain_module

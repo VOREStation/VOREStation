@@ -22,7 +22,7 @@
 	title = "Healthcare Manager"
 
 /datum/job/cmo/get_request_reasons()
-	return list("Surgery pending", "Viral outbreak")
+	return list("Surgery pending", "Viral outbreak", "Training crew")
 
 
 /datum/job/doctor

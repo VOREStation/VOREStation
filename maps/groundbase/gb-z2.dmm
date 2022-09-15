@@ -934,6 +934,7 @@
 /obj/structure/cable/yellow{
 	icon_state = "1-2"
 	},
+/obj/item/device/retail_scanner/cargo,
 /turf/simulated/floor/tiled,
 /area/groundbase/cargo/office)
 "cs" = (
@@ -1486,6 +1487,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 1
 	},
+/obj/item/weapon/storage/box/PDAs,
 /turf/simulated/floor/tiled,
 /area/groundbase/command/hop)
 "ei" = (
@@ -2746,6 +2748,7 @@
 /obj/machinery/firealarm{
 	dir = 4
 	},
+/obj/item/device/retail_scanner/medical,
 /turf/simulated/floor/tiled/white,
 /area/groundbase/medical/lobby)
 "hL" = (
@@ -3302,6 +3305,7 @@
 /obj/machinery/atmospherics/unary/vent_pump/on{
 	dir = 8
 	},
+/obj/item/device/retail_scanner/civilian,
 /turf/simulated/floor/carpet,
 /area/groundbase/civilian/library)
 "jn" = (
@@ -5270,6 +5274,7 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply{
 	dir = 4
 	},
+/obj/item/device/retail_scanner/command,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/command/meeting)
 "pn" = (

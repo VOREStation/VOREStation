@@ -74,15 +74,21 @@
 	desc = "Knightly armor for a mount who doesn't need any rider. This one is marked to the house of Mason."
 	icon_state = "Mason_barding"
 
-/obj/item/clothing/suit/taur_dress
+/obj/item/clothing/suit/taur
 	icon = 'icons/mob/taursuits_horse_vr.dmi'
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 	pixel_x = -16
 
-/obj/item/clothing/suit/taur_dress/white
+/obj/item/clothing/suit/taur/dress
 	name = "white wedding dress"
 	desc = "A fancy white dress with a blue underdress."
 	icon_state = "whitedress1"
+	flags_inv = HIDESHOES
+
+/obj/item/clothing/suit/taur/skirt
+	name = "taur skirt"
+	desc = "A skirt with a corset, fit for those with four legs."
+	icon_state = "skirt_colorable"
 	flags_inv = HIDESHOES
 
 /obj/item/clothing/suit/storage/det_trench/alt

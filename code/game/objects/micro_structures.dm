@@ -10,6 +10,13 @@
 	var/magic = FALSE	//For events and stuff, if true, this tunnel will show up in the list regardless of whether it's in valid range, of if you're in a tunnel with this var, all tunnels of the same faction will show up redardless of range
 	micro_target = TRUE
 
+	var/static/non_micro_types = list(
+		/mob/living/simple_mob/vore/alienanimals/catslug,
+		/mob/living/simple_mob/vore/hostile/morph,
+		/mob/living/simple_mob/protean_blob,
+		/mob/living/simple_mob/slime
+	)
+
 /obj/structure/micro_tunnel/Initialize()
 	. = ..()
 	if(name == initial(name))
@@ -47,11 +54,19 @@
 		if(8)
 			pixel_x = -32
 
-/obj/structure/micro_tunnel/attack_hand(mob/user)
+/obj/structure/micro_tunnel/attack_hand(mob/living/user)
 	if(!isliving(user))
 		return ..()
 	if(user.loc == src)
-		var/choice = tgui_alert(user,"It's dark and gloomy in here. What would you like to do?","Tunnel",list("Exit", "Move", "Cancel"))
+		var/list/our_options = list("Exit", "Move")
+
+		if(is_type_in_list(user, non_micro_types))
+			if(src.contents.len > 1)
+				our_options |= "Eat"
+
+		our_options |= "Cancel"
+
+		var/choice = tgui_alert(user,"It's dark and gloomy in here. What would you like to do?","Tunnel",our_options)
 		switch(choice)
 			if("Exit")
 				if(user.loc != src)
@@ -114,6 +129,28 @@
 				var/obj/structure/micro_tunnel/da_oddawun = choice
 				da_oddawun.tunnel_notify(user)
 				return
+			if("Eat")
+				var/list/our_targets = list()
+				for(var/mob/living/L in src.contents)
+					if(L == user)
+						continue
+					our_targets |= L
+				if(!our_targets.len)
+					to_chat(user, "<span class = 'warning'>There is no one in here except for you!</span>")
+					return
+				var/mob/our_choice
+				if(our_targets.len == 1)
+					our_choice = pick(our_targets)
+				else
+					our_choice = tgui_input_list(user, "Who would you like to eat?", "Pick a target to eat", our_targets)
+				if(user.loc != src)
+					to_chat(user, "<span class = 'warning'>You are no longer inside \the [src], and so cannot eat \the [our_choice].</span>")
+					return
+				if(our_choice.loc != src)
+					to_chat(user, "<span class = 'warning'>\The [our_choice] is no longer inside \the [src], and so cannot be eaten.</span>")
+					return
+				user.feed_grabbed_to_self(user,our_choice)
+				return
 			if("Cancel")
 				return
 
@@ -157,8 +194,6 @@
 			user.visible_message("<span class = 'warning'>\The [user] pulls \the [grabbed] out of \the [src]! ! !</span>")
 			return
 
-	if(tgui_alert(user,"Do you want to go into the tunnel?","Enter Tunnel",list("Yes", "No")) != "Yes")
-		return
 	user.visible_message("<span class = 'notice'>\The [user] begins climbing into \the [src]!</span>")
 	if(!do_after(user, 10 SECONDS, exclusive = TRUE))
 		to_chat(user, "<span class = 'warning'>You didn't go into \the [src]!</span>")
@@ -169,6 +204,10 @@
 /obj/structure/micro_tunnel/proc/can_enter(var/mob/living/user)
 	if(user.mob_size <= MOB_TINY || user.get_effective_size(TRUE) <= micro_accepted_scale)
 		return TRUE
+
+	if(is_type_in_list(user, non_micro_types))
+		if(tgui_alert(user, "Would you like to enter the tunnel, or reach inside it?", "Enter or reach", list("Enter","Reach")) == "Enter")
+			return TRUE
 
 	return FALSE
 

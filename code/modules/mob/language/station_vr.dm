@@ -15,7 +15,7 @@
 	speech_verb = "chirps"
 	colour = "birdsongc"
 	key = "G"
-	syllables = list ("cheep", "peep", "tweet")
+	syllables = list ("chee", "pee", "twee", "hoo", "ee", "oo", "ch", "ts", "sch", "twe", "too", "pha", "ewe", "shee", "shoo", "p", "tw", "aw", "caw", "c")
 
 /datum/language/sergal
 	name = LANGUAGE_SAGARU

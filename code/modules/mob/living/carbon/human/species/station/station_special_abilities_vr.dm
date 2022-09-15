@@ -1153,3 +1153,213 @@
 			"<span class='danger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
 		to_chat(src, "<span class='notice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
 		target.forceMove(src.vore_selected)
+
+/mob/living/carbon/human/proc/toggle_pain_module()
+	set name = "Toggle pain simulation."
+	set desc = "Turn on your pain simulation for that organic experience! Or turn it off for repairs, or if it's too much."
+	set category = "Abilities"
+
+	if(synth_cosmetic_pain)
+		to_chat(src, "<span class='notice'> You turn off your pain simulators.</span>")
+	else
+		to_chat(src, "<span class='danger'> You turn on your pain simulators </span>")
+
+	synth_cosmetic_pain = !synth_cosmetic_pain
+
+//This is the 'long vore' ability. Also known as "Grab Prey with appendage" or "Long Predatorial Reach". Or simply "Tongue Vore"
+//It involves projectiles (which means it can be VV'd onto a gun for shenanigans)
+//It can also be recolored via the proc, which persists between rounds.
+
+/mob/living/proc/long_vore() // Allows the user to tongue grab a creature in range. Made a /living proc so frogs can frog you.
+	set name = "Grab Prey With Appendage"
+	set category = "Abilities"
+	set desc = "Grab a target with any of your appendages!"
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		return
+
+	last_special = world.time + 10 //Anti-spam.
+
+	if (!istype(src, /mob/living))
+		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		return
+
+	var/choice = tgui_alert(src, "Do you wish to change the color of your appendage or use it?", "Selection List", list("Use it", "Color"))
+
+	if(choice == "Color") //Easy way to set color so we don't bloat up the menu with even more buttons.
+		var/new_color = input(usr, "Choose a color to set your appendage to!", "", appendage_color) as color|null
+		if(new_color)
+			appendage_color = new_color
+	else
+		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
+
+		for(var/mob/living/L in range(5, src))
+			if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+				continue
+			if(L == src) //no eating yourself. 1984.
+				continue
+			if(L.devourable && L.throw_vore && (L.can_be_drop_pred || L.can_be_drop_prey))
+				targets += L
+
+		if(!(targets.len))
+			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			return
+
+		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+		if(!target)
+			return
+
+		if(!istype(target, /mob/living)) //Safety.
+			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			return
+
+		if (get_dist(src,target) >= 6)
+			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			return
+
+		visible_message("<span class='notice'>\The [src] attempts to snatch up [target]!</span>", \
+						"<span class='notice'>You attempt to snatch up [target]!</span>" )
+		playsound(src, 'sound/vore/sunesound/pred/schlorp.ogg', 25)
+
+		//Code to shoot the beam here.
+		var/obj/item/projectile/beam/appendage/appendage_attack = new /obj/item/projectile/beam/appendage(get_turf(loc))
+		appendage_attack.launch_projectile(target, BP_TORSO, src) //Send it.
+		last_special = world.time + 100 //Cooldown for successful strike.
+
+
+
+
+/obj/item/projectile/beam/appendage //The tongue projecitle.
+	name = "appendage"
+	icon_state = "laser"
+	nodamage = 1
+	damage = 0
+	eyeblur = 0
+	check_armour = "bullet" //Not really needed, but whatever.
+	can_miss = FALSE //Let's not miss our tongue!
+	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
+	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
+	excavation_amount = 0
+	hitscan_light_intensity = 0
+	hitscan_light_range = 0
+	muzzle_flash_intensity = 0
+	muzzle_flash_range = 0
+	impact_light_intensity = 0
+	impact_light_range  = 0
+	light_range = 0 //No your tongue can not glow...For now.
+	light_power = 0
+	light_on = 0 //NO LIGHT
+	combustion = FALSE //No, your tongue can't set the room on fire.
+	pass_flags = PASSTABLE
+
+	muzzle_type = /obj/effect/projectile/muzzle/appendage
+	tracer_type = /obj/effect/projectile/tracer/appendage
+	impact_type = /obj/effect/projectile/impact/appendage
+
+/obj/item/projectile/beam/appendage/generate_hitscan_tracers()
+	if(firer) //This neat little code block allows for C O L O R A B L E tongues! Correction: 'Appendages'
+		if(istype(firer,/mob/living))
+			var/mob/living/originator = firer
+			color = originator.appendage_color
+	..()
+
+/obj/item/projectile/beam/appendage/on_hit(var/atom/target)
+	if(target == firer) //NO EATING YOURSELF
+		return
+	if(istype(target, /mob/living))
+		var/mob/living/M = target
+		var/throw_range = get_dist(firer,M)
+		if(istype(M))
+			M.throw_at(firer, throw_range, M.throw_speed, firer) //Fun fact: living things have a throw_speed of 2.
+			M.updateicon()
+		else //Anything that isn't a /living
+			return
+	if(istype(target, /obj/item/)) //We hit an object? Pull it. This can only happen via admin shenanigans such as a gun being VV'd with this projectile.
+		var/obj/item/hit_object = target
+		if(hit_object.density || hit_object.anchored)
+			if(istype(firer, /mob/living))
+				var/mob/living/originator = firer
+				originator.Weaken(2) //If you hit something dense or anchored, fall flat on your face.
+				originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
+								"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+				playsound(originator, "punch", 25, 1, -1)
+			return
+		else
+			hit_object.throw_at(firer, throw_range, hit_object.throw_speed, firer)
+	if(istype(target, /turf/simulated/wall) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/window)) //This can happen normally due to odd terrain. For some reason, it seems to not actually interact with walls.
+		if(istype(firer, /mob/living))
+			var/mob/living/originator = firer
+			originator.Weaken(2) //Hit a wall? Whoops!
+			originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
+							"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+			playsound(originator, "punch", 25, 1, -1)
+			return
+		else
+			return
+
+
+
+/obj/effect/projectile/muzzle/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "muzzle_appendage"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00"
+
+/obj/effect/projectile/tracer/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "appendage_beam"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00" //Doesn't matter. Not used.
+
+/obj/effect/projectile/impact/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "impact_appendage_combined"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00"
+//LONG VORE ABILITY END
+
+/obj/item/weapon/gun/energy/gun/tongue //This is the 'tongue' gun for admin memery.
+	name = "tongue"
+	desc = "A tongue that can be used to grab things."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "synthtongue"
+	item_state = "gun"
+	fire_delay = null
+	force = 0
+	fire_delay = 1 //Adminspawn. No delay.
+	charge_cost = 0 //This is an adminspawn gun...No reason to force it to have a charge state.
+
+	projectile_type = /obj/item/projectile/beam/appendage
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
+	modifystate = null
+
+
+	firemodes = list(
+		list(mode_name="vore", projectile_type=/obj/item/projectile/beam/appendage, modifystate=null, fire_sound='sound/vore/sunesound/pred/schlorp.ogg', charge_cost = 0),)
+
+/obj/item/weapon/gun/energy/gun/tongue/update_icon() //No updating the icon.
+	icon_state = "synthtongue"
+	return
+
+/obj/item/weapon/gun/energy/bfgtaser/tongue
+	name = "9000-series Ball Tongue Taser"
+	desc = "A banned riot control device."
+	slot_flags = SLOT_BELT|SLOT_BACK
+	projectile_type = /obj/item/projectile/bullet/BFGtaser/tongue
+	fire_delay = 20
+	w_class = ITEMSIZE_LARGE
+	one_handed_penalty = 90 // The thing's heavy and huge.
+	accuracy = 45
+	charge_cost = 2400 //yes, this bad boy empties an entire weapon cell in one shot. What of it?
+
+/obj/item/projectile/bullet/BFGtaser/tongue
+	name = "tongue ball"
+	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
+	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
+	zaptype = /obj/item/projectile/beam/appendage
