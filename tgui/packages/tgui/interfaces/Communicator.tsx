@@ -600,7 +600,7 @@ type MessagingTabData = {
   // THREAD
   targetAddressName: string;
   targetAddress: string;
-  imList: { im: string }[];
+  imList: { address: string; to_address: string; im: string }[];
 };
 
 /* Messaging */
@@ -718,11 +718,16 @@ const MessagingThreadTab = (props, context) => {
             'height': '95%',
             'overflow-y': 'auto',
           }}>
-          {imList.map((im, i) => (
-            <Box key={i} className={IsIMOurs(im, targetAddress) ? 'ClassicMessage_Sent' : 'ClassicMessage_Received'}>
-              {IsIMOurs(im, targetAddress) ? 'You' : 'Them'}: {im.im}
-            </Box>
-          ))}
+          {imList.map(
+            (im, i) =>
+              (im.to_address === targetAddress || im.address === targetAddress) && (
+                <Box
+                  key={i}
+                  className={IsIMOurs(im, targetAddress) ? 'ClassicMessage_Sent' : 'ClassicMessage_Received'}>
+                  {IsIMOurs(im, targetAddress) ? 'You' : 'Them'}: {im.im}
+                </Box>
+              )
+          )}
         </Section>
         <Button icon="comment" onClick={() => act('message', { 'message': targetAddress })} content="Message" />
       </Section>
@@ -758,13 +763,16 @@ const MessagingThreadTab = (props, context) => {
           'height': '95%',
           'overflow-y': 'auto',
         }}>
-        {imList.map((im, i, filterArr) => (
-          <Box textAlign={IsIMOurs(im, targetAddress) ? 'right' : 'left'} mb={1} key={i}>
-            <Box maxWidth="75%" className={findClassMessage(im, targetAddress, i - 1, filterArr)} inline>
-              {decodeHtmlEntities(im.im)}
-            </Box>
-          </Box>
-        ))}
+        {imList.map(
+          (im, i, filterArr) =>
+            (im.to_address === targetAddress || im.address === targetAddress) && (
+              <Box textAlign={IsIMOurs(im, targetAddress) ? 'right' : 'left'} mb={1} key={i}>
+                <Box maxWidth="75%" className={findClassMessage(im, targetAddress, i - 1, filterArr)} inline>
+                  {decodeHtmlEntities(im.im)}
+                </Box>
+              </Box>
+            )
+        )}
       </Section>
       <Button icon="comment" onClick={() => act('message', { 'message': targetAddress })} content="Message" />
     </Section>
