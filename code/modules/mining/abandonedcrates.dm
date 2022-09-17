@@ -19,7 +19,7 @@
 	generate_loot()
 
 /obj/structure/closet/crate/secure/loot/proc/generate_loot()
-	var/loot = rand(1, 99)
+	var/loot = rand(1, 100)
 	switch(loot)
 		if(1 to 5) // Common things go, 5%
 			new/obj/item/weapon/reagent_containers/food/drinks/bottle/rum(src)
@@ -140,6 +140,8 @@
 		if(99)
 			new/obj/item/weapon/storage/belt/champion(src)
 			new/obj/item/clothing/mask/luchador(src)
+		if(100)
+			new/obj/item/device/personal_shield_generator/belt/mining/loaded(src)
 
 /obj/structure/closet/crate/secure/loot/togglelock(mob/user as mob)
 	if(!locked)
