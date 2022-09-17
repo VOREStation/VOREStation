@@ -25,7 +25,7 @@
 
 	base_attack_cooldown = 5 SECONDS
 	projectiletype = /obj/item/projectile/beam/appendage
-	projectilesound = 'sound\effects\slime_squish.ogg'
+	projectilesound = 'sound/effects/slime_squish.ogg'
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/pakkun
 
