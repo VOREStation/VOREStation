@@ -1,7 +1,16 @@
+/datum/category_item/catalogue/fauna/pakkun
+	name = "Wildlife - Pakkun"
+	desc = "Classification: Mordens Lacerta\
+	<br><br>\
+	Their diet is primarily pescatarian, but they known to consume other species and even their own - this activity doesn't appear to be malicious \
+	or even borne out of hunger, but more of a form of playfighting among packmates."
+	value = CATALOGUER_REWARD_TRIVIAL
+
 /mob/living/simple_mob/vore/pakkun
 	name = "pakkun"
 	desc = "A small, blue, bipedal reptile. Its head and jaws are rather large in proportion to its body."
 	tt_desc = "Mordens Lacerta"
+	catalogue_data = list(/datum/category_item/catalogue/fauna/pakkun)
 
 	icon_dead = "pakkun-dead"
 	icon_living = "pakkun"
