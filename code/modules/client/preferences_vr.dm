@@ -100,7 +100,7 @@
 	else
 		to_chat(src, "You are now catchable.")
 		prefs.capture_crystal = 1
-	if(L)
+	if(L && istype(L))
 		L.capture_crystal = prefs.capture_crystal
 	SScharacter_setup.queue_preferences_save(prefs)
 
