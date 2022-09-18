@@ -826,3 +826,38 @@
 /obj/item/weapon/reagent_containers/food/snacks/ratsteak/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratfruitcake
+	name = "Premade Fruit Block"
+	desc = "A block of processed material that is infused with a mix of fruits and matter of such."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_fruitcake"
+	package_open_state = "altevian_fruitcake-open"
+	package = TRUE
+	trash = /obj/item/trash/ratfruitcake
+	nutriment_amt = 2
+	nutriment_desc = list("fruitiness" = 4)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpackburger
+	name = "Altevian Prepackaged Meal - Burger"
+	desc = "A unique twist on what most know as MREs. This seems to be made with using bluespace tech and other methods of preserving an items freshness that it's like someone just ordered this from a restaurant just minutes ago. This one seems to be of burger and fries!"
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_burger"
+	package_open_state = "altevian_pack_burger-open"
+	package_opening_state = "altevian_pack_burger-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpackburger
+	nutriment_amt = 2
+	nutriment_desc = list("fresh buns" = 2, "burger patty" = 4, "pickles" = 1)
+
+/obj/item/weapon/reagent_containers/food/snacks/ratpackcheese
+	name = "Generations Novelty Packaged Wedge"
+	desc = "Using the popular method of packaging that altevians use, they seemed to also use it for other methods. This one appears to have no real markings on it, save for its different coloring, and an image of the altevian emblem."
+	icon = 'icons/obj/food_vr.dmi'
+	icon_state = "altevian_pack_cheese"
+	package_open_state = "altevian_pack_cheese-open"
+	package_opening_state = "altevian_pack_cheese-opening"
+	package = TRUE
+	trash = /obj/item/trash/ratpackcheese
+	nutriment_amt = 2
+	nutriment_desc = list("gourmand cheese" = 4)

@@ -45,3 +45,18 @@
 	name = "\improper Space-Safe Meal package"
 	icon = 'icons/obj/trash_vr.dmi'
 	icon_state = "altevian_juice-trash"
+
+/obj/item/trash/ratfruitcake
+	name = "\improper Flavor Unit package"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_fruitcake-trash"
+
+/obj/item/trash/ratpackburger
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_burger-trash"
+
+/obj/item/trash/ratpackcheese
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_cheese-trash"
