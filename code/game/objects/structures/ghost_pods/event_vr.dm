@@ -9,7 +9,6 @@
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
-	var/announce_prob = 35
 	var/list/possible_mobs = list("Rabbit" = /mob/living/simple_mob/vore/rabbit,
 								  "Red Panda" = /mob/living/simple_mob/vore/redpanda,
 								  "Fennec" = /mob/living/simple_mob/vore/fennec,
@@ -82,9 +81,6 @@
 	newPred.visible_message("<span class='warning'>[newPred] emerges from somewhere!</span>")
 	qdel(src)
 
-/obj/structure/ghost_pod/ghost_activated/maintpred/no_announce
-	announce_prob = 0
-
 /obj/structure/ghost_pod/ghost_activated/morphspawn
 	name = "weird goo"
 	desc = "A pile of weird gunk... Wait, is it actually moving?"
@@ -96,7 +92,6 @@
 	anchored = TRUE
 	invisibility = INVISIBILITY_OBSERVER
 	spawn_active = TRUE
-	var/announce_prob = 50
 
 /obj/structure/ghost_pod/ghost_activated/morphspawn/create_occupant(var/mob/M)
 	..()
@@ -115,6 +110,3 @@
 	newMorph.ckey = M.ckey
 	newMorph.visible_message("<span class='warning'>A morph appears to crawl out of somewhere.</span>")
 	qdel(src)
-
-/obj/structure/ghost_pod/ghost_activated/morphspawn/no_announce
-	announce_prob = 0

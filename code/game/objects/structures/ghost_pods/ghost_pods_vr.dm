@@ -42,13 +42,10 @@
 
 	create_occupant(user)
 
-/obj/structure/ghost_pod/proc/ghostpod_startup(var/notify = FALSE)
+/obj/structure/ghost_pod/proc/ghostpod_startup()
 	if(!(src in active_ghost_pods))
 		active_ghost_pods += src
-	if(notify)
-		trigger()
 
 /obj/structure/ghost_pod/ghost_activated/Initialize()
 	. = ..()
-	// LINTER FIX NOTE: as with poi_loader, would suggest queing this, or possibly having it occur on LateInitialize or something with a set waitfor = FALSE
-	addtimer(CALLBACK(src, .proc/ghostpod_startup, spawn_active), 0)
+	ghostpod_startup()
