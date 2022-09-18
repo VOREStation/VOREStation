@@ -124,3 +124,12 @@
 		),
 	autohiss_exempt = list("Siik"))
 	excludes = list(/datum/trait/neutral/autohiss_unathi)
+
+/datum/trait/positive/cocoon_tf/xenochimera
+	sort = TRAIT_SORT_SPECIES
+	allowed_species = list(SPECIES_XENOCHIMERA)
+	custom_only = FALSE
+	name = "Xenochimera: Cocoon Spinner"
+	desc = "Allows you to build a cocoon around yourself, using it to transform your body if you desire."
+	cost = 0
+	category = 0
