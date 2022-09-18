@@ -71,6 +71,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	var/vore_taste = "nothing in particular"
 	var/vore_smell = "nothing in particular"
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
+	var/appendage_alt_setting = 0	//Decides if appendage user is thrown at target or not.
 
 	var/selective_preference = DM_DEFAULT
 
@@ -173,6 +174,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 	permit_healbelly = json_from_file["permit_healbelly"]
 	noisy = json_from_file["noisy"]
 	appendage_color = json_from_file["appendage_color"]
+	appendage_alt_setting = json_from_file["appendage_alt_setting"]
 	selective_preference = json_from_file["selective_preference"]
 	show_vore_fx = json_from_file["show_vore_fx"]
 	can_be_drop_prey = json_from_file["can_be_drop_prey"]
@@ -214,6 +216,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		noisy = FALSE
 	if (isnull(appendage_color))
 		appendage_color = "#e03997"
+	if (isnull(appendage_alt_setting))
+		appendage_alt_setting = 0
 	if(isnull(show_vore_fx))
 		show_vore_fx = TRUE
 	if(isnull(can_be_drop_prey))
@@ -288,6 +292,7 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 			"permit_healbelly"		= permit_healbelly,
 			"noisy" 				= noisy,
 			"appendage_color"		= appendage_color,
+			"appendage_alt_setting" = appendage_alt_setting,
 			"selective_preference"	= selective_preference,
 			"show_vore_fx"			= show_vore_fx,
 			"can_be_drop_prey"		= can_be_drop_prey,

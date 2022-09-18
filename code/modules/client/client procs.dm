@@ -206,6 +206,8 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 	prefs.client = src // Only relevant if we reloaded it from the global list, otherwise prefs/New sets it
 
+	hook_vr("client_new",list(src)) //VOREStation Code. For now this only loads vore prefs, so better put before mob.Login() call but after normal prefs are loaded.
+
 	. = ..()	//calls mob.Login()
 	prefs.sanitize_preferences()
 	if(prefs)
@@ -249,8 +251,6 @@
 		winset(src, "rpane.changelog", "background-color=#eaeaea;font-style=bold")
 		if(config.aggressive_changelog)
 			src.changes()
-
-	hook_vr("client_new",list(src)) //VOREStation Code
 
 	if(config.paranoia_logging)
 		var/alert = FALSE //VOREStation Edit start.

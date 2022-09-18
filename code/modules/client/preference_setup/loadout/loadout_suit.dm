@@ -192,6 +192,11 @@
 	path = /obj/item/clothing/suit/storage/apron/overalls
 	cost = 1
 
+/datum/gear/suit/altevian_apron
+	display_name = "crafters pride apron"
+	path = /obj/item/clothing/suit/storage/apron/altevian
+	cost = 1
+
 /datum/gear/suit/cyberpunk
 	display_name = "cyberpunk jacket"
 	path = /obj/item/clothing/suit/cyberpunk

@@ -18,7 +18,7 @@ var/global/list/prevent_respawns = list()
 
 	//Why are you clicking this button?
 	if(!mind || !mind.assigned_role)
-		to_chat(src,"<span class='warning'>Either you haven't played this round, or you already used this verb.</span>")
+		to_chat(src,"<span class='warning'>Either you haven't played this round, you already used this verb or you left round properly already.</span>")
 		return
 
 	//Add them to the nope list

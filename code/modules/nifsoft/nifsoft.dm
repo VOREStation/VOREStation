@@ -38,6 +38,8 @@
 	var/vision_flags_mob = 0
 	var/darkness_view = 0
 
+	var/can_uninstall = TRUE
+
 	var/list/planes_enabled = null	// List of vision planes this nifsoft enables when active
 
 	var/vision_exclusive = FALSE	//Whether or not this NIFSoft provides exclusive vision modifier
@@ -67,6 +69,8 @@
 
 //Called when the software is removed from the NIF
 /datum/nifsoft/proc/uninstall()
+	if(!can_uninstall)
+		return nif.uninstall(src)
 	if(nif)
 		if(active)
 			deactivate()

@@ -393,7 +393,7 @@ var/global/datum/controller/occupations/job_master
 		//Equip custom gear loadout.
 		var/list/custom_equip_slots = list()
 		var/list/custom_equip_leftovers = list()
-		if(H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
+		if(H.client && H.client.prefs && H.client.prefs.gear && H.client.prefs.gear.len && !(job.mob_type & JOB_SILICON))
 			for(var/thing in H.client.prefs.gear)
 				var/datum/gear/G = gear_datums[thing]
 				if(!G) //Not a real gear datum (maybe removed, as this is loaded from their savefile)

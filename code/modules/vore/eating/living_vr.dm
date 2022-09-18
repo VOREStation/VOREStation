@@ -48,6 +48,7 @@
 	var/show_vore_fx = TRUE				// Show belly fullscreens
 	var/selective_preference = DM_DEFAULT	// Preference for selective bellymode
 	var/appendage_color = "#e03997" //Default pink. Used for the 'long_vore' trait.
+	var/appendage_alt_setting = FALSE	// Dictates if 'long_vore' user pulls prey to them or not. 1 = user thrown towards target.
 	var/regen_sounds = list(
 		'sound/effects/mob_effects/xenochimera/regen_1.ogg',
 		'sound/effects/mob_effects/xenochimera/regen_2.ogg',
@@ -277,6 +278,7 @@
 	P.allow_inbelly_spawning = src.allow_inbelly_spawning
 	P.allow_spontaneous_tf = src.allow_spontaneous_tf
 	P.appendage_color = src.appendage_color
+	P.appendage_alt_setting = src.appendage_alt_setting
 	P.step_mechanics_pref = src.step_mechanics_pref
 	P.pickup_pref = src.pickup_pref
 	P.drop_vore = src.drop_vore
@@ -325,6 +327,7 @@
 	allow_inbelly_spawning = P.allow_inbelly_spawning
 	allow_spontaneous_tf = P.allow_spontaneous_tf
 	appendage_color = P.appendage_color
+	appendage_alt_setting = P.appendage_alt_setting
 	step_mechanics_pref = P.step_mechanics_pref
 	pickup_pref = P.pickup_pref
 	drop_vore = P.drop_vore
@@ -638,8 +641,6 @@
 		qdel(H)
 	else
 		belly.nom_mob(prey, user)
-	if(!ishuman(user))
-		user.update_icons()
 
 	// Inform Admins
 	if(pred == user)
@@ -703,6 +704,16 @@
     . = ..()
     gas = list(
         "oxygen" = 100)
+
+/datum/gas_mixture/belly_air/nitrogen_breather
+    volume = 2500
+    temperature = 293.150
+    total_moles = 104
+
+/datum/gas_mixture/belly_air/nitrogen_breather/New()
+    . = ..()
+    gas = list(
+        "nitrogen" = 100)
 
 
 /mob/living/proc/feed_grabbed_to_self_falling_nom(var/mob/living/user, var/mob/living/prey)

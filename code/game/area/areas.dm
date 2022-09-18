@@ -465,7 +465,7 @@ var/list/mob/living/forced_ambiance_list = new
 
 /area/proc/prison_break(break_lights = TRUE, open_doors = TRUE, open_blast_doors = TRUE)
 	var/obj/machinery/power/apc/theAPC = get_apc()
-	if(theAPC.operating)
+	if(theAPC && theAPC.operating)
 		if(break_lights)
 			for(var/obj/machinery/power/apc/temp_apc in src)
 				temp_apc.overload_lighting(70)
