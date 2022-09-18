@@ -16,8 +16,8 @@
 /obj/item/device/personal_shield_generator
 	name = "personal shield generator"
 	desc = "A personal shield generator."
-	icon = 'icons/obj/items_vr.dmi' //Placeholder
-	icon_state = "shield_pack" //Placeholder
+	icon = 'icons/obj/items_vr.dmi'
+	icon_state = "shield_pack"
 	item_state = "defibunit" //Placeholder
 	slot_flags = SLOT_BACK
 	force = 5
@@ -211,7 +211,14 @@
 	else
 		return ..()
 
-/* //TODO
+// TODO: EMAG ACT
+// Perhaps make it so emagging the generator gives two options: One to rig the cell (stealthily) and one to disable the safeties (supercharge it)
+// Disabling the safeties would make it a stronger variant but boost the 'damage_cost' perhaps. Dunno.
+// We're an RP server so emags don't come into play except for random trash finds. Meaning it'd be RNG if you could 'supercharge' your shield genrator.
+// This would kind of be like people being able to emag the NIFSoft for bloodletters & all the buffs that come with an emagged NIFSoft.
+// Making it so emagging the weapon it comes with would also be a good idea. Different modes, perhaps?
+
+/*
 /obj/item/device/personal_shield_generator/emag_act(var/remaining_charges, var/mob/user)
 	if(active_weapon)
 		. = active_weapon.emag_act(user)
@@ -245,13 +252,15 @@
 			to_chat(user, "<span class='warning'>You deactive the shield!</span>")
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 			STOP_PROCESSING(SSobj, src)
+			playsound(src, 'sound/weapons/saberoff.ogg', 50, 1) //Shield turning off! PLACEHOLDER
 		else
 			shield_active = !shield_active
 			to_chat(user, "<span class='warning'>You activate the shield!</span>")
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection) //Just to make sure they aren't using two at once!
-			user.add_modifier(modifier_type) //TESTING.
+			user.add_modifier(modifier_type)
 			user.update_modifier_visuals() //Forces coloration to WORK.
 			START_PROCESSING(SSobj, src) //Let's only bother draining power when we're being used!
+			playsound(src, 'sound/weapons/saberon.ogg', 50, 1) //Shield turning off! PLACEHOLDER
 	update_icon()
 
 /obj/item/device/personal_shield_generator/verb/weapon_toggle() //Make this work on Alt-Click
@@ -292,6 +301,7 @@
 		shield_active = 0
 		STOP_PROCESSING(SSobj, src)
 		update_icon()
+		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1) //Shield turning off! PLACEHOLDER
 		return
 
 	if(shield_active)
@@ -323,6 +333,7 @@
 			user.remove_modifiers_of_type(/datum/modifier/shield_projection)
 		STOP_PROCESSING(SSobj, src)
 		update_icon()
+		playsound(src, 'sound/weapons/saberoff.ogg', 50, 1) //Shield turning off! PLACEHOLDER
 		return
 
 
@@ -417,7 +428,10 @@
 		return 0
 	return 1
 
-/* //TODO: Emp act.
+// TODO: EMP ACT
+// The cell already gets hit and can have some nasty effects when EMP'd, so this isn't too much of a concern.
+
+/*
 /obj/item/weapon/gun/energy/gun/generator/emp_act(severity)
 	..()
 */
