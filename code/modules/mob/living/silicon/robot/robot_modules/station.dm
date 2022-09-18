@@ -669,7 +669,8 @@ var/global/list/robot_modules = list(
 	src.emag.reagents = R
 	R.my_atom = src.emag
 	R.add_reagent("beer2", 50)
-	src.emag.name = "Mickey Finn's Special Brew"
+	src.emag.name = "Auntie Hong's Final Sip"
+	src.emag.desc = "A bottle of very special mix of alcohol and poison. Some may argue that there's alcohol to die for, but Auntie Hong took it to next level."
 
 /obj/item/weapon/robot_module/robot/clerical/general
 	name = "clerical robot module"
