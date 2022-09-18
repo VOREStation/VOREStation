@@ -136,12 +136,12 @@
 /datum/trait/negative/breathes/phoron
 	name = "Phoron Breather"
 	desc = "You breathe phoron instead of oxygen (which is poisonous to you), much like a Vox."
-	var_changes = list("breath_type" = "phoron", "poison_type" = "oxygen")
+	var_changes = list("breath_type" = "phoron", "poison_type" = "oxygen", ideal_air_type = /datum/gas_mixture/belly_air/vox)
 
 /datum/trait/negative/breathes/nitrogen
 	name = "Nitrogen Breather"
 	desc = "You breathe nitrogen instead of oxygen (which is poisonous to you). Incidentally, phoron isn't poisonous to breathe to you."
-	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen")
+	var_changes = list("breath_type" = "nitrogen", "poison_type" = "oxygen", ideal_air_type = /datum/gas_mixture/belly_air/nitrogen_breather)
 
 /datum/trait/negative/monolingual
 	name = "Monolingual"
