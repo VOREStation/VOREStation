@@ -109,13 +109,6 @@
 			msg+="!"
 
 	var/list/listening = viewers(holder_atom)
-	for(var/mob/M in mob_list)
-		if (!M.client)
-			continue //skip monkeys and leavers
-		if (istype(M, /mob/new_player))
-			continue
-		if(M.stat == DEAD && M.is_preference_enabled(/datum/client_preference/ghost_ears))
-			listening|=M
 
 	for(var/mob/M in listening)
 		to_chat(M, "\icon[holder_atom][bicon(holder_atom)] <b>[holder_atom]</b> reverberates, \"<font color='blue'>[msg]</font>\"")
