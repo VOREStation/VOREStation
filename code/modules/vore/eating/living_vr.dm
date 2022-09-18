@@ -641,8 +641,6 @@
 		qdel(H)
 	else
 		belly.nom_mob(prey, user)
-	if(!ishuman(user))
-		user.update_icons()
 
 	// Inform Admins
 	if(pred == user)
