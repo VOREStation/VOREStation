@@ -455,6 +455,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	if(!NS || NS != old_soft)
 		return FALSE //what??
 
+	if(!NS.can_uninstall)
+		notify("The software \"[NS]\" refuses to be uninstalled.",TRUE)
+		return FALSE
+
 	nifsofts[old_soft.list_pos] = null
 	power_usage -= old_soft.p_drain
 
@@ -626,6 +630,18 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	durability = 25
 	bioadap = TRUE
 	gib_nodrop = TRUE
+
+/obj/item/device/nif/glitch
+	name = "weird NIF"
+	desc = "A NIF of a very dubious origin. It seems to be more durable than normal one... But are you sure about this?"
+	durability = 300
+	bioadap = TRUE
+	starting_software = list(
+		/datum/nifsoft/commlink,
+		/datum/nifsoft/soulcatcher,
+		/datum/nifsoft/ar_civ,
+		/datum/nifsoft/malware
+	)
 
 ////////////////////////////////
 // Special Promethean """surgery"""

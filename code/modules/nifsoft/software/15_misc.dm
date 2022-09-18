@@ -173,3 +173,29 @@
 			var/mob/living/carbon/human/H = human
 			H.hide_alt_appearance("animals", justme)
 			alt_farmanimals -= nif.human
+
+/datum/nifsoft/malware
+	name = "Cool Kidz Toolbar"
+	desc = "Best toolbar in business since 2098."
+	list_pos = NIF_MALWARE
+	cost = 1987
+	wear = 0
+	illegal = TRUE
+	vended = FALSE
+	tick_flags = NIF_ALWAYSTICK
+	var/last_ads
+	can_uninstall = FALSE
+
+/datum/nifsoft/malware/activate()
+	if((. = ..()))
+		to_chat(nif.human,"<span class='danger'>Runtime error in 15_misc.dm, line 189.</span>")
+
+/datum/nifsoft/malware/install()
+	if((. = ..()))
+		last_ads = world.time
+
+/datum/nifsoft/malware/life()
+	if((. = ..()))
+		if(nif.human.client && world.time - last_ads > rand(10 MINUTES, 15 MINUTES) && prob(1))
+			last_ads = world.time
+			nif.human.client.create_fake_ad_popup_multiple(/obj/screen/popup/default, 5)
