@@ -208,7 +208,8 @@
 
 /mob/living/simple_mob/vore/alienanimals/spooky_ghost/apply_melee_effects(var/atom/A)
 	var/mob/living/L = A
-	L.hallucination += rand(1,50)
+	if(L && istype(L))
+		L.hallucination += rand(1,50)
 
 /mob/living/simple_mob/vore/alienanimals/spooky_ghost/Life()
 	. = ..()
