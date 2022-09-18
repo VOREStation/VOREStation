@@ -123,14 +123,9 @@
 		if(ishuman(body))
 			var/mob/living/carbon/human/H = body
 			add_overlay(H.overlays_standing)
-<<<<<<< HEAD
-
-	if(!T)
-=======
 		default_pixel_x = body.default_pixel_x
 		default_pixel_y = body.default_pixel_y
-	if(!T && length(latejoin))	
->>>>>>> 37f30aeaf66... Merge pull request #8694 from Verkister/patch-94
+	if(!T && length(latejoin))
 		T = pick(latejoin)			//Safety in case we cannot find the body's position
 	if(T)
 		forceMove(T)
@@ -142,16 +137,9 @@
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
-<<<<<<< HEAD
+	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	observer_mob_list += src
 	..()
-=======
-	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
-	. = ..()
-
-	exonet = new(src)
-	init_exonet()
->>>>>>> 37f30aeaf66... Merge pull request #8694 from Verkister/patch-94
 
 /mob/observer/dead/Topic(href, href_list)
 	if (href_list["track"])
