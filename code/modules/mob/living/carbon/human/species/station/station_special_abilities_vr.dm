@@ -1185,12 +1185,18 @@
 		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
 		return
 
-	var/choice = tgui_alert(src, "Do you wish to change the color of your appendage or use it?", "Selection List", list("Use it", "Color"))
+	var/choice = tgui_alert(src, "Do you wish to change the color of your appendage, use it, or change its functionality?", "Selection List", list("Use it", "Color", "Functionality"))
 
 	if(choice == "Color") //Easy way to set color so we don't bloat up the menu with even more buttons.
 		var/new_color = input(usr, "Choose a color to set your appendage to!", "", appendage_color) as color|null
 		if(new_color)
 			appendage_color = new_color
+	if(choice == "Functionality") //Easy way to set color so we don't bloat up the menu with even more buttons.
+		var/choice2 = tgui_alert(usr, "Choose if you want to be pulled to the target or pull them to you!", "Functionality Setting", list("Pull target to self", "Pull self to target"))
+		if(choice2 == "Pull target to self")
+			appendage_alt_setting = 0
+		else
+			appendage_alt_setting = 1
 	else
 		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
 
@@ -1271,9 +1277,16 @@
 	if(istype(target, /mob/living))
 		var/mob/living/M = target
 		var/throw_range = get_dist(firer,M)
+		if(istype(firer, /mob/living)) //Let's check for any alt settings. Such as: User selected to be thrown at target.
+			var/mob/living/F = firer
+			if(F.appendage_alt_setting == 1)
+				F.throw_at(M, throw_range, firer.throw_speed, F) //Firer thrown at target.
+				F.updateicon()
+				return
 		if(istype(M))
 			M.throw_at(firer, throw_range, M.throw_speed, firer) //Fun fact: living things have a throw_speed of 2.
 			M.updateicon()
+			return
 		else //Anything that isn't a /living
 			return
 	if(istype(target, /obj/item/)) //We hit an object? Pull it. This can only happen via admin shenanigans such as a gun being VV'd with this projectile.
