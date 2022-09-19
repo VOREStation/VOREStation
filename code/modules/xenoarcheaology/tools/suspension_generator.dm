@@ -209,7 +209,7 @@
 	if(anchored)
 		to_chat(usr, "<font color='red'>You cannot rotate [src], it has been firmly fixed to the floor.</font>")
 		return
-	set_dir(turn(src.dir, 270))
+	set_dir(turn(dir, 270))
 
 /obj/machinery/suspension_gen/update_icon()
 	cut_overlays()
