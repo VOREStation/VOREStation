@@ -4103,7 +4103,6 @@
 #include "code\modules\xenoarcheaology\tools\tools.dm"
 #include "code\modules\xenoarcheaology\tools\tools_pickaxe.dm"
 #include "code\modules\xenoarcheaology\tools\tools_pickaxe_vr.dm"
-#include "code\modules\xenoarcheaology\tools\tools_vr.dm"
 #include "code\modules\xenobio\items\extracts_vr.dm"
 #include "code\modules\xenobio\items\slime_objects.dm"
 #include "code\modules\xenobio\items\slimepotions.dm"
