@@ -337,7 +337,8 @@
 /obj/item/device/xenoarch_multi_tool/attack_self(var/mob/living/user)
 	depth_scanner.tgui_interact(user)
 
-/obj/item/device/xenoarch_multi_tool/verb/swap_settings(var/mob/living/user)
+/obj/item/device/xenoarch_multi_tool/verb/swap_settings()
+	var/mob/living/user = usr
 	set name = "Swap Functionality"
 	set desc = "Swap between the scanning and measuring functionality.."
 	mode = !mode
@@ -346,7 +347,8 @@
 	else
 		to_chat(user, "The device will now measure depth dug.")
 
-/obj/item/device/xenoarch_multi_tool/verb/scan_for_anomalies(var/mob/living/user)
+/obj/item/device/xenoarch_multi_tool/verb/scan_for_anomalies()
+	var/mob/living/user = usr
 	set name = "Scan for Anomalies"
 	set desc = "Scan for artifacts and anomalies within your vicinity."
 	anomaly_scanner.interact(user)

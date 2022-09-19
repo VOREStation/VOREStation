@@ -13,7 +13,7 @@
 
 /obj/machinery/suspension_gen/Initialize()
 	. = ..()
-	src.cell = new /obj/item/weapon/cell/high(src)
+	cell = new /obj/item/weapon/cell/high(src)
 
 /obj/machinery/suspension_gen/process()
 	if(suspension_field)
@@ -153,7 +153,7 @@
 		M.visible_message("<font color='blue'>[bicon(M)] [M] begins to float in the air!</font>","You feel tingly and light, but it is difficult to move.")
 
 	suspension_field = new(T)
-	src.visible_message("<font color='blue'>[bicon(src)] [src] activates with a low hum.</font>")
+	visible_message("<font color='blue'>[bicon(src)] [src] activates with a low hum.</font>")
 	icon_state = "suspension_on"
 	playsound(loc, 'sound/machines/quiet_beep.ogg', 40)
 	update_icon()
@@ -165,7 +165,7 @@
 	if(collected)
 		suspension_field.icon_state = "energynet"
 		add_overlay("shield2")
-		src.visible_message("<font color='blue'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</font>")
+		visible_message("<font color='blue'>[bicon(suspension_field)] [suspension_field] gently absconds [collected > 1 ? "something" : "several things"].</font>")
 	else
 		if(istype(T,/turf/simulated/mineral) || istype(T,/turf/simulated/wall))
 			suspension_field.icon_state = "shieldsparkles"
@@ -180,7 +180,7 @@
 		to_chat(M, "<span class='info'>You no longer feel like floating.</span>")
 		M.Weaken(3)
 
-	src.visible_message("<font color='blue'>[bicon(src)] [src] deactivates with a gentle shudder.</font>")
+	visible_message("<font color='blue'>[bicon(src)] [src] deactivates with a gentle shudder.</font>")
 	qdel(suspension_field)
 	suspension_field = null
 	icon_state = "suspension_wrenched"
@@ -199,7 +199,7 @@
 	if(anchored)
 		to_chat(usr, "<font color='red'>You cannot rotate [src], it has been firmly fixed to the floor.</font>")
 		return
-	src.set_dir(turn(src.dir, 90))
+	set_dir(turn(dir, 90))
 
 /obj/machinery/suspension_gen/verb/rotate_clockwise()
 	set src in view(1)
@@ -209,7 +209,7 @@
 	if(anchored)
 		to_chat(usr, "<font color='red'>You cannot rotate [src], it has been firmly fixed to the floor.</font>")
 		return
-	src.set_dir(turn(src.dir, 270))
+	set_dir(turn(src.dir, 270))
 
 /obj/machinery/suspension_gen/update_icon()
 	cut_overlays()
