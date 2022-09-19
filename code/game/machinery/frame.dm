@@ -81,31 +81,6 @@
 	frame_class = FRAME_CLASS_MACHINE
 	frame_size = 4
 
-/datum/frame/frame_types/oven
-	name = "Oven"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/fryer
-	name = "Fryer"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/grill
-	name = "Grill"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/cerealmaker
-	name = "Cereal Maker"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
-/datum/frame/frame_types/candymachine
-	name = "Candy Machine"
-	frame_class = FRAME_CLASS_MACHINE
-	frame_size = 4
-
 /datum/frame/frame_types/fax
 	name = "Fax"
 	frame_class = FRAME_CLASS_MACHINE
@@ -221,7 +196,7 @@
 	frame_style = FRAME_STYLE_WALL
 	x_offset = 28
 	y_offset = 28
-	
+
 /datum/frame/frame_types/arfgs
 	name = "ARF Generator"
 	frame_class = FRAME_CLASS_MACHINE
