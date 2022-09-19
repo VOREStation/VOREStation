@@ -40,6 +40,7 @@
 
 /datum/ai_holder/simple_mob/ranged/pakkun
 	pointblank = TRUE
+	var/recent_target = null
 
 /datum/ai_holder/simple_mob/ranged/pakkun/list_targets()
 	var/list/our_targets = ..()
@@ -51,6 +52,9 @@
 		if(!(L.can_be_drop_prey && L.throw_vore && L.allowmobvore))
 			our_targets -= list_target
 			continue
+	if(istype(holder, /mob/living/simple_mob))
+		var/mob/living/simple_mob/SM = holder
+		our_targets -= SM.prey_excludes
 	return our_targets
 
 /datum/ai_holder/simple_mob/ranged/pakkun/can_attack(atom/movable/the_target, var/vision_required = TRUE)
@@ -59,5 +63,14 @@
 		var/mob/living/L = the_target
 		if(!(L.can_be_drop_prey && L.throw_vore && L.allowmobvore))
 			return FALSE
+		if(istype(holder, /mob/living/simple_mob))
+			var/mob/living/simple_mob/SM = holder
+			if(L in SM.prey_excludes)
+				return FALSE
 	else
 		return FALSE
+
+/mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
+	if(pred)
+		prey_excludes += target
+		addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(target)), 5 MINUTES)

@@ -335,6 +335,7 @@
 			visible_message("<span class='warning'>[thrown_mob] is thrown right into [src]'s [lowertext(vore_selected.name)]!</span>")
 			if(thrown_mob.loc != vore_selected)
 				thrown_mob.forceMove(vore_selected) //Double check. Should never happen but...Weirder things have happened!
+			on_throw_vore_special(TRUE, thrown_mob)
 			add_attack_logs(thrown_mob.thrower,src,"Devoured [thrown_mob.name] via throw vore.")
 			return //We can stop here. We don't need to calculate damage or anything else. They're eaten.
 		else if((can_be_drop_prey && throw_vore && devourable) && (thrown_mob.can_be_drop_pred && thrown_mob.throw_vore)) //Pred thrown into prey.
@@ -345,6 +346,9 @@
 			add_attack_logs(thrown_mob.LAssailant,src,"Was Devoured by [thrown_mob.name] via throw vore.")
 			return
 	//VORESTATION EDIT END - Allows for thrown vore!
+
+/mob/living/proc/on_throw_vore_special(var/pred = TRUE, var/mob/living/target)
+	return
 
 /mob/living/proc/embed(var/obj/O, var/def_zone=null)
 	O.loc = src
