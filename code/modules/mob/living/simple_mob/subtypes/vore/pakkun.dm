@@ -38,6 +38,8 @@
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/pakkun
 
+	var/extra_posessive = FALSE					// Enable if you want their tummy hugs to be inescapable
+
 /datum/ai_holder/simple_mob/ranged/pakkun
 	pointblank = TRUE
 	var/recent_target = null
@@ -71,6 +73,6 @@
 		return FALSE
 
 /mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
-	if(pred)
+	if(pred && !extra_posessive)
 		prey_excludes += target
 		addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(target)), 5 MINUTES)
