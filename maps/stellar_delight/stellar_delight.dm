@@ -7,6 +7,7 @@
 	#include "stellar_delight_telecomms.dm"
 	#include "stellar_delight_things.dm"
 	#include "stellar_delight_turfs.dm"
+	#include "stellar_delight_events.dm"
 	#include "..\offmap_vr\common_offmaps.dm"
 	#include "..\tether\tether_jobs.dm"
 
