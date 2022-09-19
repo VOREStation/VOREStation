@@ -11,7 +11,7 @@
 	var/obj/structure/ladder/target_up
 	var/obj/structure/ladder/target_down
 
-	var/const/climb_time = 2 SECONDS
+	var/climb_time = 2 SECONDS
 
 /obj/structure/ladder/Initialize()
 	. = ..()
