@@ -598,9 +598,12 @@
 						volume = T.reagents.total_volume
 						if(water)
 							water.add_charge(volume)
+					if(T.ckey)
+						GLOB.prey_digested_roundstat++
 					if(patient == T)
 						patient_laststat = null
 						patient = null
+					T.mind?.vore_death = TRUE
 					qdel(T)
 
 		//Pick a random item to deal with (if there are any)
