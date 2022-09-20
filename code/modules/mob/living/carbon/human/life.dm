@@ -355,7 +355,7 @@
 			if(!isSynthetic())
 				if(prob(5))
 					take_overall_damage(0, 5 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
-				if(prob(1)) //Cancer. TODO.
+				if(prob(1))
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
 				if(prob(5) && prob(100 * RADIATION_SPEED_COEFFICIENT))
@@ -371,7 +371,7 @@
 			if(!isSynthetic())
 				if(prob(15))
 					take_overall_damage(0, 10 * RADIATION_SPEED_COEFFICIENT, used_weapon = "Radiation Burns")
-				if(prob(2)) //Cancer. TODO.
+				if(prob(2))
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
 				if(prob(10) && prob(100 * RADIATION_SPEED_COEFFICIENT))
@@ -399,7 +399,7 @@
 							I.take_damage(damage * species.radiation_mod * RADIATION_SPEED_COEFFICIENT)
 							to_chat(src, "<span class='warning'>Your eyes burn!</span>")
 							eye_blurry += 10
-				if(prob(4)) //Cancer. TODO.
+				if(prob(4))
 					adjustCloneLoss(5 * RADIATION_SPEED_COEFFICIENT)
 					emote("gasp")
 				if(prob(25) && prob(100 * RADIATION_SPEED_COEFFICIENT))
