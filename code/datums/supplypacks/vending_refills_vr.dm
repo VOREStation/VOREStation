@@ -18,11 +18,6 @@
 	name = "SweatMAX Vendor Refill Cartridge"
 	cost = 10
 
-/datum/supply_pack/vending_refills/hotfood
-	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/hotfood)
-	name = "Hot Foods Vendor Refill Cartridge"
-	cost = 10
-
 /datum/supply_pack/vending_refills/weeb
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/weeb)
 	name = "Nippon-tan Vendor Refill Cartridge"
@@ -122,7 +117,6 @@
 	num_contained = 5
 	contains = list(/obj/item/weapon/refill_cartridge/autoname/food/snack,
 					/obj/item/weapon/refill_cartridge/autoname/food/fitness,
-					/obj/item/weapon/refill_cartridge/autoname/food/hotfood,
 					/obj/item/weapon/refill_cartridge/autoname/food/weeb,
 					/obj/item/weapon/refill_cartridge/autoname/food/sol,
 					/obj/item/weapon/refill_cartridge/autoname/food/snix,

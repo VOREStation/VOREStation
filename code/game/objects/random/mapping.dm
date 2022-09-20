@@ -77,7 +77,6 @@
 				prob(3);/obj/machinery/vending/fitness,
 				prob(4);/obj/machinery/vending/cigarette,
 				prob(3);/obj/machinery/vending/giftvendor,
-				prob(1);/obj/machinery/vending/hotfood,
 				prob(5);/obj/machinery/vending/weeb,
 				prob(5);/obj/machinery/vending/sol,
 				prob(5);/obj/machinery/vending/snix,
