@@ -102,7 +102,7 @@
 	taste_description = "salt"
 	reagent_state = SOLID
 	color = "#003153" //Blue!
-	metabolism = REM //5 ticks to do things per unit injected. This means injecting 30u will give you 2.5 minutes to do what you need.
+	metabolism = REM * 0.25//20 ticks to do things per unit injected. This means injecting 30u will give you 10 minutes to do what you need.
 	overdose = REAGENTS_OVERDOSE
 	scannable = 1
 
