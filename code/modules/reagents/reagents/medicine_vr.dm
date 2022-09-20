@@ -92,3 +92,22 @@
 /datum/reagent/sleevingcure/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
 	M.remove_a_modifier_of_type(/datum/modifier/resleeving_sickness)
 	M.remove_a_modifier_of_type(/datum/modifier/faux_resleeving_sickness)
+
+
+
+/datum/reagent/prussian_blue //We don't have iodine, so prussian blue we go.
+	name = "Prussian Blue"
+	id = "prussian_blue"
+	description = "Prussian Blue is an medication used to temporarily pause the effects of radiation poisoning to allow for treatment. Does not treat radiation sickness on its own."
+	taste_description = "salt"
+	reagent_state = SOLID
+	color = "#003153" //Blue!
+	metabolism = REM //5 ticks to do things per unit injected. This means injecting 30u will give you 2.5 minutes to do what you need.
+	overdose = REAGENTS_OVERDOSE
+	scannable = 1
+
+/datum/reagent/prussian_blue/affect_blood(var/mob/living/carbon/M, var/alien, var/removed)
+	if(alien == IS_DIONA)
+		return
+	if(prob(10)) //Miniscule chance of removing some toxins.
+		M.adjustToxLoss(-10 * removed)
