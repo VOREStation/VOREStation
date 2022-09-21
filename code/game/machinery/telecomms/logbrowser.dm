@@ -32,7 +32,7 @@
 			"id" = T.id,
 			"name" = T.name,
 		)))
-	data["servers"] = serverData
+	data["servers"] = servers
 
 	data["selectedServer"] = null
 	if(SelectedServer)
