@@ -527,12 +527,9 @@
 		add_overlay(image(icon = 'icons/turf/outdoors.dmi', icon_state = "snow_footprints", dir = text2num(d)))
 
 //**** Here ends snow ****
-<<<<<<< HEAD
-=======
 
 /turf/simulated/floor/concrete
 	name = "concrete"
 	icon = 'icons/turf/concrete.dmi'
 	icon_state = "concrete"
 	initial_flooring = /decl/flooring/concrete
->>>>>>> c0a490ac019... conk rete (#8671)
