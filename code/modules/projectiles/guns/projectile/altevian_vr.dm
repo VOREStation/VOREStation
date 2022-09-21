@@ -1,6 +1,6 @@
 /obj/item/weapon/gun/projectile/altevian
 	name = "Altevian Rivet Repeater"
-	desc = "An offensive designed by the altevians that is used for decompression and maximizes structural damage while also serving as a good method of personnel damage."
+	desc = "An offensive weapon designed by the altevians that is used for decompression and maximizes structural damage while also serving as a good method of personnel damage."
 	magazine_type = /obj/item/ammo_magazine/sam48
 	allowed_magazines = list(/obj/item/ammo_magazine/sam48)
 	projectile_type = /obj/item/projectile/bullet/sam48
