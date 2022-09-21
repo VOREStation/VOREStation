@@ -26,15 +26,9 @@
 	data["network"] = network
 	data["temp"] = temp
 
-<<<<<<< HEAD
-	var/list/serverData = list()
-	for(var/obj/machinery/telecomms/T in servers)
-		serverData.Add(list(list(
-=======
 	var/list/servers = list()
 	for(var/obj/machinery/telecomms/T in src.servers)
 		servers.Add(list(list(
->>>>>>> a5403d6ba05... Merge pull request #8699 from Atermonera/tcomms-monitor-fix
 			"id" = T.id,
 			"name" = T.name,
 		)))
