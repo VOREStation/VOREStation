@@ -19,19 +19,11 @@
 	var/broken = 0 // ={0,1,2} How broken is it???
 	var/circuit_item_capacity = 1 //how many items does the circuit add to max number of items
 	var/item_level = 0 // items microwave can handle, 0 foodstuff, 1 materials
-<<<<<<< HEAD
-	var/global/list/acceptable_items // List of the items you can put in
-	var/global/list/available_recipes // List of the recipes you can use
-	var/global/list/acceptable_reagents // List of the reagents you can put in
-
-	var/global/max_n_of_items = 20
-=======
 	var/static/list/acceptable_items // List of the items you can put in
 	var/static/list/available_recipes // List of the recipes you can use
 	var/static/list/acceptable_reagents // List of the reagents you can put in
 
 	var/static/max_n_of_items = 20
->>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 	var/appliancetype = MICROWAVE
 	var/datum/looping_sound/microwave/soundloop
 
@@ -52,16 +44,11 @@
 
 	if(!available_recipes)
 		available_recipes = new
-<<<<<<< HEAD
-		for(var/datum/recipe/typepath as anything in subtypesof(/datum/recipe))
-			if((initial(typepath.appliance) & appliancetype))
-				available_recipes += new typepath
-=======
+
 		for(var/T in (typesof(/datum/recipe)-/datum/recipe))
 			var/datum/recipe/type = T
 			if((initial(type.appliance) & appliancetype))
 				available_recipes += new type
->>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 
 		acceptable_items = new
 		acceptable_reagents = new
@@ -602,8 +589,6 @@
 	ffuu.reagents.add_reagent("toxin", amount/10)
 	return ffuu
 
-<<<<<<< HEAD
-=======
 /obj/machinery/microwave/Topic(href, href_list)
 	if(..())
 		return
@@ -622,7 +607,6 @@
 			dispose()
 	return
 
->>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
 /obj/machinery/microwave/verb/Eject()
 	set src in oview(1)
 	set category = "Object"
