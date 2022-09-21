@@ -261,16 +261,10 @@
 		/obj/item/clothing/under/rank/chemist/skirt = 2,
 		/obj/item/clothing/shoes/white = 2,
 		/obj/item/clothing/suit/storage/toggle/labcoat/chemist = 2,
-<<<<<<< HEAD
+		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist,
 		/obj/item/weapon/storage/backpack/chemistry = 2,
 		/obj/item/weapon/storage/backpack/satchel/chem = 2,
 		/obj/item/weapon/storage/bag/chemistry = 2,)
-=======
-		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/chemist,
-		/obj/item/storage/backpack/chemistry = 2,
-		/obj/item/storage/backpack/satchel/chem = 2,
-		/obj/item/storage/bag/chemistry = 2,)
->>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
 
 
 /obj/structure/closet/wardrobe/genetics_white
