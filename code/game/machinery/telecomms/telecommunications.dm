@@ -266,7 +266,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	var/list/linked_radios_weakrefs = list()
 
-/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/radio/R)
+/obj/machinery/telecomms/receiver/proc/link_radio(var/obj/item/device/radio/R)
 	if(!istype(R))
 		return
 	linked_radios_weakrefs |= weakref(R)
@@ -535,7 +535,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	var/encryption = "null" // encryption key: ie "password"
 	var/salt = "null"		// encryption salt: ie "123comsat"
 							// would add up to md5("password123comsat")
-	var/obj/item/radio/headset/server_radio = null
+	var/obj/item/device/radio/headset/server_radio = null
 
 /obj/machinery/telecomms/server/Initialize()
 	Compiler = new
