@@ -6,31 +6,19 @@
 /turf/template_noop,
 /area/submap/VRDen)
 "c" = (
-<<<<<<< HEAD
 /turf/simulated/wall,
-=======
-/turf/simulated/wall/concrete,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "d" = (
 /obj/structure/extinguisher_cabinet{
 	pixel_y = 28
 	},
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "e" = (
 /obj/machinery/power/apc{
 	dir = 1;
 	name = "north bump";
 	operating = 0;
-<<<<<<< HEAD
-=======
-	pixel_x = 0;
->>>>>>> c0a490ac019... conk rete (#8671)
 	pixel_y = 24
 	},
 /obj/effect/decal/cleanable/dirt,
@@ -38,11 +26,7 @@
 	d2 = 2;
 	icon_state = "0-2"
 	},
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "f" = (
 /obj/effect/decal/cleanable/dirt,
@@ -52,16 +36,9 @@
 	icon_state = "2-4"
 	},
 /obj/machinery/light{
-<<<<<<< HEAD
 	dir = 1
 	},
 /turf/simulated/floor/tiled/virgo3b,
-=======
-	dir = 1;
-	icon_state = "tube1"
-	},
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "g" = (
 /obj/machinery/power/port_gen/pacman,
@@ -69,42 +46,23 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "h" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/fiftyspawner/phoron,
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/concrete,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "i" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
 /obj/item/integrated_circuit/memory,
-<<<<<<< HEAD
 /obj/item/weapon/paper{
 	info = "To: Whoever reads it\[br]From: Simulant\[br]Went away to grab some spare parts, won't return for couple weeks. Can't support larger scale sims without machines I lost yesterday. Please don't touch my stuff, while I'm gone.";
 	name = "note"
 	},
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/obj/item/paper{
-	info = "To: Whoever reads it\[br]From: Simulant\[br]Went away to grab some spare parts, won't return for couple weeks. Can't support larger scale sims without machines I lost yesterday. Please don't touch my stuff, while I'm gone.";
-	name = "note"
-	},
-/turf/simulated/floor/tiled/steel,
-/area/submap/VRDen)
-"j" = (
-/turf/simulated/floor/concrete,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "k" = (
 /obj/effect/decal/cleanable/blood/oil,
@@ -113,11 +71,7 @@
 	d2 = 4;
 	icon_state = "1-4"
 	},
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "l" = (
 /obj/structure/cable/green{
@@ -133,11 +87,7 @@
 	d2 = 8;
 	icon_state = "1-8"
 	},
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel_dirty,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "m" = (
 /obj/machinery/power/smes/buildable/point_of_interest,
@@ -145,7 +95,6 @@
 	d2 = 8;
 	icon_state = "0-8"
 	},
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "n" = (
@@ -159,21 +108,6 @@
 "p" = (
 /obj/structure/cryofeed,
 /turf/simulated/floor/greengrid/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel_dirty,
-/area/submap/VRDen)
-"n" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/floor/greengrid,
-/area/submap/VRDen)
-"o" = (
-/obj/machinery/vr_sleeper,
-/turf/simulated/floor/greengrid,
-/area/submap/VRDen)
-"p" = (
-/obj/structure/cryofeed,
-/turf/simulated/floor/greengrid,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "q" = (
 /obj/effect/decal/cleanable/dirt,
@@ -186,88 +120,48 @@
 	brightness_range = 5;
 	dir = 8
 	},
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "r" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
-<<<<<<< HEAD
 /obj/item/weapon/paper{
 	info = "your maps suck";
 	name = "dissatisfied letter"
 	},
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/obj/item/paper{
-	info = "your maps suck";
-	name = "dissatisfied letter"
-	},
-/turf/simulated/floor/tiled/steel_dirty,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "s" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/integrated_circuit/logic/binary,
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "t" = (
 /turf/simulated/floor/tiled/steel,
 /area/submap/VRDen)
 "u" = (
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel_dirty,
-/area/submap/VRDen)
-"v" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "w" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/light{
-<<<<<<< HEAD
 	dir = 8
 	},
 /turf/simulated/floor/greengrid/virgo3b,
-=======
-	dir = 8;
-	icon_state = "tube1"
-	},
-/turf/simulated/floor/greengrid,
-/area/submap/VRDen)
-"x" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/tiled/steel_dirty,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "y" = (
 /obj/structure/table/standard{
 	name = "plastic table frame"
 	},
 /obj/item/broken_device/random,
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "z" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/steel,
 /area/submap/VRDen)
 "A" = (
-<<<<<<< HEAD
 /turf/simulated/floor/greengrid/virgo3b,
 /area/submap/VRDen)
 "B" = (
@@ -277,34 +171,18 @@
 "C" = (
 /obj/effect/decal/cleanable/dirt,
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/greengrid,
-/area/submap/VRDen)
-"B" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/greengrid,
-/area/submap/VRDen)
-"C" = (
-/obj/effect/decal/cleanable/dirt,
-/turf/simulated/floor/concrete,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "D" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/item/frame,
 /obj/item/integrated_circuit/logic/unary/not,
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "E" = (
 /obj/effect/decal/cleanable/dirt,
 /obj/machinery/telecomms/server{
 	name = "Server"
 	},
-<<<<<<< HEAD
 /obj/item/device/gps/internal/poi,
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
@@ -323,26 +201,6 @@
 "I" = (
 /obj/effect/decal/cleanable/blood/oil/streak,
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/obj/item/gps/internal/poi,
-/turf/simulated/floor/tiled/steel,
-/area/submap/VRDen)
-"F" = (
-/obj/item/integrated_circuit/logic/binary,
-/turf/simulated/floor/tiled/steel,
-/area/submap/VRDen)
-"G" = (
-/obj/machinery/light/small/flicker,
-/turf/simulated/floor/tiled/steel_dirty,
-/area/submap/VRDen)
-"H" = (
-/obj/machinery/telecomms/processor,
-/turf/simulated/floor/tiled/steel,
-/area/submap/VRDen)
-"I" = (
-/obj/effect/decal/cleanable/blood/oil/streak,
-/turf/simulated/floor/tiled/steel,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "J" = (
 /obj/machinery/door/airlock/glass,
@@ -350,28 +208,16 @@
 /area/submap/VRDen)
 "K" = (
 /obj/effect/decal/remains/posi,
-<<<<<<< HEAD
 /obj/item/weapon/paper{
-=======
-/obj/item/paper{
->>>>>>> c0a490ac019... conk rete (#8671)
 	info = "pain sim on your hardware is top-notch, 10/10, would be burned alive again";
 	name = "satisfied letter"
 	},
 /obj/machinery/light/small,
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "L" = (
 /obj/structure/closet/toolcloset,
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor,
-/area/submap/VRDen)
-"L" = (
-/obj/structure/closet/toolcloset,
-/turf/simulated/floor/concrete,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "M" = (
 /obj/item/integrated_circuit/smart/basic_pathfinder,
@@ -379,7 +225,6 @@
 /area/submap/VRDen)
 "N" = (
 /obj/structure/girder/displaced,
-<<<<<<< HEAD
 /turf/simulated/floor/tiled/virgo3b,
 /area/submap/VRDen)
 "O" = (
@@ -395,41 +240,15 @@
 	dir = 4
 	},
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/turf/simulated/floor/tiled/steel_dirty,
-/area/submap/VRDen)
-"O" = (
-/obj/structure/loot_pile/maint/technical,
-/turf/simulated/floor/concrete,
-/area/submap/VRDen)
-"P" = (
-/obj/effect/decal/cleanable/blood/oil,
-/turf/simulated/floor/tiled/steel,
-/area/submap/VRDen)
-"Q" = (
-/obj/machinery/light/small{
-	dir = 4;
-	pixel_y = 0
-	},
-/turf/simulated/floor/tiled/steel_dirty,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "R" = (
 /obj/structure/loot_pile/maint/junk,
 /turf/template_noop,
 /area/submap/VRDen)
-<<<<<<< HEAD
-=======
-"S" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/concrete,
-/area/submap/VRDen)
->>>>>>> c0a490ac019... conk rete (#8671)
 "T" = (
 /obj/structure/toilet{
 	dir = 8
 	},
-<<<<<<< HEAD
 /obj/item/device/integrated_electronics/debugger,
 /obj/machinery/light{
 	dir = 1
@@ -439,18 +258,6 @@
 "U" = (
 /obj/machinery/door/airlock,
 /turf/simulated/floor/tiled/virgo3b,
-=======
-/obj/item/integrated_electronics/debugger,
-/obj/machinery/light{
-	dir = 1;
-	icon_state = "tube1"
-	},
-/turf/simulated/floor/concrete,
-/area/submap/VRDen)
-"U" = (
-/obj/machinery/door/airlock,
-/turf/simulated/floor/tiled/steel_dirty,
->>>>>>> c0a490ac019... conk rete (#8671)
 /area/submap/VRDen)
 "V" = (
 /obj/effect/decal/remains/robot,
@@ -458,38 +265,10 @@
 /area/submap/VRDen)
 "W" = (
 /obj/machinery/light{
-<<<<<<< HEAD
 	dir = 1
 	},
 /turf/template_noop,
 /area/submap/VRDen)
-=======
-	dir = 1;
-	icon_state = "tube1"
-	},
-/turf/template_noop,
-/area/submap/VRDen)
-"X" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster{
-	pixel_y = 32;
-	poster_decl = /decl/poster/vore_16
-	},
-/turf/simulated/floor/tiled/steel,
-/area/submap/VRDen)
-"Y" = (
-/obj/random/tech_supply/anom,
-/turf/simulated/floor/tiled/steel,
-/area/submap/VRDen)
-"Z" = (
-/obj/effect/decal/cleanable/dirt,
-/obj/structure/sign/poster{
-	pixel_x = -32;
-	poster_decl = /decl/poster/vore_19
-	},
-/turf/simulated/floor/concrete,
-/area/submap/VRDen)
->>>>>>> c0a490ac019... conk rete (#8671)
 
 (1,1,1) = {"
 a
@@ -609,17 +388,10 @@ b
 c
 h
 q
-<<<<<<< HEAD
 C
 C
 C
 u
-=======
-x
-z
-Z
-j
->>>>>>> c0a490ac019... conk rete (#8671)
 I
 K
 c
@@ -639,11 +411,7 @@ c
 i
 r
 y
-<<<<<<< HEAD
 C
-=======
-x
->>>>>>> c0a490ac019... conk rete (#8671)
 u
 F
 c
@@ -662,21 +430,12 @@ b
 b
 c
 d
-<<<<<<< HEAD
 u
 s
 C
 u
 D
 u
-=======
-j
-s
-z
-t
-D
-t
->>>>>>> c0a490ac019... conk rete (#8671)
 c
 L
 O
@@ -694,25 +453,15 @@ b
 c
 e
 k
-<<<<<<< HEAD
 u
-=======
-t
->>>>>>> c0a490ac019... conk rete (#8671)
 u
 u
 u
 G
 c
-<<<<<<< HEAD
 u
 P
 u
-=======
-t
-P
-j
->>>>>>> c0a490ac019... conk rete (#8671)
 c
 W
 b
@@ -727,21 +476,12 @@ c
 f
 l
 u
-<<<<<<< HEAD
 u
 C
 u
 u
 J
 u
-=======
-t
-x
-u
-u
-J
-t
->>>>>>> c0a490ac019... conk rete (#8671)
 Q
 C
 U
@@ -757,25 +497,15 @@ b
 c
 g
 m
-<<<<<<< HEAD
 O
 u
 u
-=======
-v
-u
-t
->>>>>>> c0a490ac019... conk rete (#8671)
 E
 H
 c
 M
 c
-<<<<<<< HEAD
 U
-=======
-S
->>>>>>> c0a490ac019... conk rete (#8671)
 c
 W
 b
@@ -790,13 +520,8 @@ c
 c
 c
 c
-<<<<<<< HEAD
 z
 t
-=======
-X
-Y
->>>>>>> c0a490ac019... conk rete (#8671)
 c
 c
 c
