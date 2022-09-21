@@ -127,7 +127,7 @@
 
 /obj/machinery/chemical_dispenser/bar_coffee/full
 	spawn_cartridges = list(
-/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/hot_coco,
