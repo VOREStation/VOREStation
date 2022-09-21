@@ -205,7 +205,6 @@
 	result = "martini"
 	inhibitors = list("bitters" = 1)
 	required_reagents = list("gin" = 2, "vermouth" = 1)
-	inhibitors = list("bitters" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/vodkamartini
@@ -1265,13 +1264,3 @@
 	result = "fusionnaire"
 	required_reagents = list("lemonjuice" = 3, "vodka" = 2, "schnapps_pep" = 1, "schnapps_lem" = 1, "rum" = 1, "ice" = 1)
 	result_amount = 9
-<<<<<<< HEAD
-=======
-
-/decl/chemical_reaction/instant/drinks/ayahuasca
-	name = "Ayahuasca"
-	id = "ayahuasca"
-	result = "ayahuasca"
-	required_reagents = list("water" = 1, "dmt" = 2, "honey" = 1)
-	result_amount = 3
->>>>>>> fab45d385f5... Merge pull request #8633 from Sypsoti/bartendinggood

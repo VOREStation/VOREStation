@@ -127,7 +127,6 @@
 
 /obj/machinery/chemical_dispenser/bar_coffee/full
 	spawn_cartridges = list(
-<<<<<<< HEAD
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/coffee,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/cafe_latte,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/soy_latte,
@@ -143,25 +142,7 @@
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/lime,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/berry,
 			/obj/item/weapon/reagent_containers/chem_disp_cartridge/greentea,
-			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf
-=======
-			/obj/item/reagent_containers/chem_disp_cartridge/coffee,
-			/obj/item/reagent_containers/chem_disp_cartridge/cafe_latte,
-			/obj/item/reagent_containers/chem_disp_cartridge/soy_latte,
-			/obj/item/reagent_containers/chem_disp_cartridge/hot_coco,
-			/obj/item/reagent_containers/chem_disp_cartridge/milk,
-			/obj/item/reagent_containers/chem_disp_cartridge/cream,
-			/obj/item/reagent_containers/chem_disp_cartridge/sugar,
-			/obj/item/reagent_containers/chem_disp_cartridge/tea,
-			/obj/item/reagent_containers/chem_disp_cartridge/ice,
-			/obj/item/reagent_containers/chem_disp_cartridge/mint,
-			/obj/item/reagent_containers/chem_disp_cartridge/orange,
-			/obj/item/reagent_containers/chem_disp_cartridge/lemon,
-			/obj/item/reagent_containers/chem_disp_cartridge/lime,
-			/obj/item/reagent_containers/chem_disp_cartridge/berry,
-			/obj/item/reagent_containers/chem_disp_cartridge/greentea,
-			/obj/item/reagent_containers/chem_disp_cartridge/decaf,
-			/obj/item/reagent_containers/chem_disp_cartridge/chaitea,
-			/obj/item/reagent_containers/chem_disp_cartridge/decafchai
->>>>>>> fab45d385f5... Merge pull request #8633 from Sypsoti/bartendinggood
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/chaitea,
+			/obj/item/weapon/reagent_containers/chem_disp_cartridge/decafchai
 		)
