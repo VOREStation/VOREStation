@@ -24,11 +24,7 @@
 
 /obj/item/weapon/cane/concealed/Initialize()
 	. = ..()
-<<<<<<< HEAD
-	var/obj/item/weapon/material/butterfly/switchblade/temp_blade = new(src)
-=======
-	var/obj/item/material/sword/katana/caneblade/temp_blade = new(src)
->>>>>>> ce9cea6d676... Merge pull request #8652 from DemonPizza/Caneblade
+	var/obj/item/weapon/material/sword/katana/caneblade/temp_blade = new(src)
 	concealed_blade = temp_blade
 	temp_blade.active = TRUE
 	temp_blade.update_force()
@@ -50,10 +46,7 @@
 		..()
 
 <<<<<<< HEAD
-/obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/butterfly/W, var/mob/user)
-=======
-/obj/item/cane/concealed/attackby(var/obj/item/material/sword/katana/caneblade/W, var/mob/user)
->>>>>>> ce9cea6d676... Merge pull request #8652 from DemonPizza/Caneblade
+/obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/sword/katana/caneblade/W, var/mob/user)
 	if(!src.concealed_blade && istype(W))
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
 		user.visible_message("<span class='warning'>[user] has sheathed \a [W] into [T.his] [src]!</span>", "You sheathe \the [W] into \the [src].")
