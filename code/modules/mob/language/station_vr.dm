@@ -15,7 +15,7 @@
 	speech_verb = "chirps"
 	colour = "birdsongc"
 	key = "G"
-	syllables = list ("cheep", "peep", "tweet")
+	syllables = list ("chee", "pee", "twee", "hoo", "ee", "oo", "ch", "ts", "sch", "twe", "too", "pha", "ewe", "shee", "shoo", "p", "tw", "aw", "caw", "c")
 
 /datum/language/sergal
 	name = LANGUAGE_SAGARU
@@ -94,36 +94,6 @@
 	machine_understands = FALSE
 	flags = WHITELISTED | HIVEMIND
 
-/datum/language/slavic
-	name = LANGUAGE_SLAVIC
-	desc = "The official language of the Independent Colonial Confederation of Gilgamesh, originally established in 2122 by the short-lived United Slavic Confederation on Earth."
-	speech_verb = "govorit" // All Russian for "says" "asks" and "shouts". Mostly here as a joke.
-	ask_verb = "sprashivaet"
-	exclaim_verb = "krichit"
-	whisper_verb = "shepchet"
-	colour = "attack" // Red for slav!
-	key = "P"
-	syllables = list(
-		"rus", "zem", "ave", "blyat", "cyk", "groz", "ski", "ska", "ven", "konst", "pol", "lin", "svy",
-		"danya", "da", "mied", "kuz,", "zan", "das", "krem", "myka", "to", "st", "no", "na", "ni",
-		"ko", "ne", "en", "po", "tro", "ra", "li", "on", "byl", "cto", "eni", "ost", "ol", "ego",
-		"ver", "stv", "pro", "ski"
-	)
-
-/datum/language/clownish
-	name = LANGUAGE_CLOWNISH
-	desc = "A special elective language course for those studying at the Clown Planet Institute."
-	speech_verb = "honks"
-	ask_verb = "seins"
-	exclaim_verb = "crenks"
-	whisper_verb = "squeaks"
-	colour = "#F785F2" // Pink for the clown.
-	key = "<"
-	flags = WHITELISTED | CLOWN
-	syllables = list(
-		"honk", "knock", "salt", "slip", "lube", "banana", "flower", "pie", "did you hear", "🅱️", "haha", "bully", "going up",
-	)
-
 /datum/language/drudakar
 	name = LANGUAGE_DRUDAKAR
 	desc = "The native language of the D'Rudak'Ar, a loosely tied together community of dragons and demi-dragons based in the Diul system. Features include many hard consonants and rolling 'r's."
@@ -193,11 +163,5 @@
 	machine_understands = FALSE
 	desc = "A dialect of Tradeband not uncommon amongst traders in the Free Trade Union. The language is often difficult to translate due to changing frequently and being highly colloquial."
 	partial_understanding = list(LANGUAGE_TRADEBAND = 30, LANGUAGE_SOL_COMMON = 10)
-/datum/language/human/monkey
-	flags = RESTRICTED
-/datum/language/skrell/monkey
-	flags = RESTRICTED
-/datum/language/unathi/monkey
-	flags = RESTRICTED
-/datum/language/tajaran/monkey
+/datum/language/human/animal
 	flags = RESTRICTED

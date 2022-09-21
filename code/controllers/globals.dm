@@ -36,7 +36,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 
-	stat("GLOB:", statclick.update("Edit"))
+	stat("GLOB:", "Button Removed Due To Crashing") //VOREStation Edit
 
 /datum/controller/global_vars/vv_edit_var(var_name, var_value)
 	if(gvars_datum_protected_varlist[var_name])

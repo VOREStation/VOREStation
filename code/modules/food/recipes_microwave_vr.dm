@@ -185,3 +185,11 @@
 	reagents = list("sugar" = 5, "nutriment" = 5)
 	items = list()
 	result = /obj/item/weapon/reagent_containers/food/snacks/honey_candy
+
+/datum/recipe/altevian_steak
+	items = list(
+		/obj/item/weapon/reagent_containers/food/snacks/ratprotein,
+		/obj/item/weapon/reagent_containers/food/snacks/ratveggies,
+		/obj/item/weapon/reagent_containers/food/snacks/ratliquid
+	)
+	result = /obj/item/weapon/reagent_containers/food/snacks/ratsteak

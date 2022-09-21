@@ -66,12 +66,12 @@
 
 	var/agony = 60 // Copied from stun batons
 	var/stun = 0 // ... same
-	
+
 	var/obj/item/organ/external/affecting = null
 	if(ishuman(target))
 		var/mob/living/carbon/human/H = target
 		affecting = H.get_organ(hit_zone)
-	
+
 	if(user.a_intent == I_HURT)
 		// Parent handles messages
 		. = ..()
@@ -91,7 +91,7 @@
 		var/mob/living/silicon/robot/R = loc
 		if(R.cell?.use(charge_cost) == charge_cost)
 			stunning = TRUE
-	
+
 	if(stunning)
 		target.stun_effect_act(stun, agony, hit_zone, src)
 		msg_admin_attack("[key_name(user)] stunned [key_name(target)] with the [src].")
@@ -215,6 +215,11 @@
 	name = "Hound hypospray"
 	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
 	reagent_ids = list("tricordrazine", "inaprovaline", "bicaridine", "dexalin", "anti_toxin", "tramadol", "spaceacillin")
+
+/obj/item/weapon/reagent_containers/borghypo/hound/trauma
+	name = "Hound hypospray"
+	desc = "An advanced chemical synthesizer and injection system utilizing carrier's reserves."
+	reagent_ids = list("tricordrazine", "inaprovaline", "oxycodone", "dexalin" ,"spaceacillin")
 
 
 //Tongue stuff
@@ -395,24 +400,33 @@
 	var/datum/matter_synth/glass = null
 
 /obj/item/device/lightreplacer/dogborg/attack_self(mob/user)//Recharger refill is so last season. Now we recycle without magic!
-	if(uses >= max_uses)
-		to_chat(user, "<span class='warning'>[src.name] is full.</span>")
+
+	var/choice = tgui_alert(user, "Do you wish to check the reserves or change the color?", "Selection List", list("Reserves", "Color"))
+	if(choice == "Color")
+		var/new_color = input(usr, "Choose a color to set the light to! (Default is [LIGHT_COLOR_INCANDESCENT_TUBE])", "", selected_color) as color|null
+		if(new_color)
+			selected_color = new_color
+			to_chat(user, "The light color has been changed.")
 		return
-	if(uses < max_uses && cooldown == 0)
-		if(glass.energy < 125)
-			to_chat(user, "<span class='warning'>Insufficient material reserves.</span>")
-			return
-		to_chat(user, "It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still.")
-		cooldown = 1
-		if(do_after(user, 50))
-			glass.use_charge(125)
-			add_uses(1)
-			cooldown = 0
-		else
-			cooldown = 0
 	else
-		to_chat(user, "It has [uses] lights remaining.")
-		return
+		if(uses >= max_uses)
+			to_chat(user, "<span class='warning'>[src.name] is full.</span>")
+			return
+		if(uses < max_uses && cooldown == 0)
+			if(glass.energy < 125)
+				to_chat(user, "<span class='warning'>Insufficient material reserves.</span>")
+				return
+			to_chat(user, "It has [uses] lights remaining. Attempting to fabricate a replacement. Please stand still.")
+			cooldown = 1
+			if(do_after(user, 50))
+				glass.use_charge(125)
+				add_uses(1)
+				cooldown = 0
+			else
+				cooldown = 0
+		else
+			to_chat(user, "It has [uses] lights remaining.")
+			return
 
 //Pounce stuff for K-9
 /obj/item/weapon/dogborg/pounce

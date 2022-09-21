@@ -63,7 +63,8 @@ var/list/preferences_datums = list()
 	var/species = SPECIES_HUMAN         //Species datum to use.
 	var/species_preview                 //Used for the species selection window.
 	var/list/alternate_languages = list() //Secondary language(s)
-	var/list/language_prefixes = list() //Kanguage prefix keys
+	var/list/language_prefixes = list() //Language prefix keys
+	var/list/language_custom_keys = list() //Language custom call keys
 	var/list/gear						//Left in for Legacy reasons, will no longer save.
 	var/list/gear_list = list()			//Custom/fluff item loadouts.
 	var/gear_slot = 1					//The current gear save slot
@@ -426,12 +427,12 @@ var/list/preferences_datums = list()
 	selecting_slots = FALSE
 	if(!choice)
 		return
-	
+
 	var/slotnum = charlist[choice]
 	if(!slotnum)
 		error("Player picked [choice] slot to load, but that wasn't one we sent.")
 		return
-	
+
 	load_character(slotnum)
 	attempt_vr(user.client?.prefs_vr,"load_vore","") //VOREStation Edit
 	sanitize_preferences()
@@ -466,12 +467,12 @@ var/list/preferences_datums = list()
 	selecting_slots = FALSE
 	if(!choice)
 		return
-	
+
 	var/slotnum = charlist[choice]
 	if(!slotnum)
 		error("Player picked [choice] slot to copy to, but that wasn't one we sent.")
 		return
-	
+
 	overwrite_character(slotnum)
 	sanitize_preferences()
 	ShowChoices(user)

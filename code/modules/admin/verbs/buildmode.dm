@@ -364,7 +364,7 @@
 				if(ispath(holder.buildmode.objholder,/turf))
 					var/turf/T = get_turf(object)
 					T.ChangeTurf(holder.buildmode.objholder)
-				else
+				else if(ispath(holder.buildmode.objholder))
 					var/obj/A = new holder.buildmode.objholder (get_turf(object))
 					A.set_dir(holder.builddir.dir)
 			else if(pa.Find("right"))
@@ -626,6 +626,9 @@
 
 /obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
 	var/desired_path = tgui_input_text(usr, "Enter full or partial typepath.","Typepath","[default_path]")
+
+	if(!desired_path)	//VOREStation Add - If you don't give it anything it builds a list of every possible thing in the game and crashes your client.
+		return			//VOREStation Add - And the main way for it to do that is to push the cancel button, which should just do nothing. :U
 
 	var/list/types = typesof(/atom)
 	var/list/matches = list()

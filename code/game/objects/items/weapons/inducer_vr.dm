@@ -9,7 +9,7 @@
 		slot_r_hand_str = 'icons/mob/items/righthand_vr.dmi',
 	)
 	force = 7
-	
+
 	var/powertransfer = 1000 //Transfer per time when charging something
 	var/cell_type = /obj/item/weapon/cell/high //Type of cell to spawn in it
 	var/charge_guns = FALSE //Can it charge guns?
@@ -117,9 +117,10 @@
 		return TRUE
 	else
 		recharging = TRUE
-	
+
 	if(istype(A, /obj/item/weapon/gun/energy) && !charge_guns)
-		to_chat(user, "<span class='alert'>Error unable to interface with device.</span>")
+		to_chat(user, "<span class='alert'>Error: Device is unable to interface with weapons.</span>")
+		recharging = FALSE
 		return FALSE
 
 	//The cell we hopefully eventually find
@@ -138,7 +139,7 @@
 
 	//Can set different coefficients per item if you want
 	var/coefficient = 1
-	
+
 	//Last ditch effort
 	var/obj/O //For updating icons, just in case they have a battery meter icon
 	if(!C && isobj(A))
@@ -147,17 +148,17 @@
 
 	if(C)
 		var/done_any = FALSE
-		
+
 		if(C.charge >= C.maxcharge)
 			to_chat(user, "<span class='notice'>[A] is fully charged ([round(C.charge)] / [C.maxcharge])!</span>")
 			recharging = FALSE
 			return TRUE
 		user.visible_message("<span class='notice'>[user] starts recharging [A] with [src].</span>", "<span class='notice'>You start recharging [A] with [src].</span>")
-		
+
 		var/datum/beam/charge_beam = user.Beam(A, icon_state = "rped_upgrade", time = 20 SECONDS)
 		var/filter = filter(type = "outline", size = 1, color = "#22AAFF")
 		A.filters += filter
-	
+
 		spark_system = new /datum/effect/effect/system/spark_spread
 		spark_system.set_up(5, 0, get_turf(A))
 		spark_system.attach(A)
@@ -171,20 +172,20 @@
 					O.update_icon()
 			else
 				break
-		
+
 		QDEL_NULL(charge_beam)
 		QDEL_NULL(spark_system)
 		if(A)
 			A.filters -= filter
-		
+
 		if(done_any) // Only show a message if we succeeded at least once
 			user.visible_message("<span class='notice'>[user] recharged [A]!</span>", "<span class='notice'>You recharged [A]!</span>")
-		
+
 		recharging = FALSE
 		return TRUE
 	else //Couldn't find a cell
 		to_chat(user, "<span class='alert'>Error unable to interface with device.</span>")
-	
+
 	recharging = FALSE
 
 /obj/item/weapon/inducer/attack_self(mob/user)
@@ -206,7 +207,7 @@
 
 /obj/item/weapon/inducer/update_icon()
 	..()
-	cut_overlays()	
+	cut_overlays()
 	if(opened)
 		if(!cell)
 			add_overlay("inducer-nobat")

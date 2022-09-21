@@ -24,7 +24,7 @@
 	melee_damage_upper = 15
 	attacktext = list("pecked")
 
-	has_langs = list("Bird")
+	has_langs = list(LANGUAGE_ANIMAL)
 
 /mob/living/simple_mob/animal/passive/penguin/tux
 	name = "Tux"

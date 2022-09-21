@@ -21,14 +21,16 @@
 /datum/alt_title/healthcare_manager
 	title = "Healthcare Manager"
 
+/datum/job/cmo/get_request_reasons()
+	return list("Surgery pending", "Viral outbreak", "Training crew")
+
 
 /datum/job/doctor
 	spawn_positions = 5
 	pto_type = PTO_MEDICAL
 	alt_titles = list("Physician" = /datum/alt_title/physician, "Medical Practitioner" = /datum/alt_title/medical_practitioner, "Surgeon" = /datum/alt_title/surgeon,
 						"Emergency Physician" = /datum/alt_title/emergency_physician, "Nurse" = /datum/alt_title/nurse, "Orderly" = /datum/alt_title/orderly,
-						"Virologist" = /datum/alt_title/virologist)
-
+						"Virologist" = /datum/alt_title/virologist, "Medical Contractor" = /datum/alt_title/medical_contractor)
 
 /datum/alt_title/physician
 	title = "Physician"
@@ -41,6 +43,13 @@
 	title_blurb = "An Orderly acts as Medbay's general helping hand, assisting any doctor that might need some form of help, as well as handling manual \
 					and dirty labor around the department."
 	title_outfit = /decl/hierarchy/outfit/job/medical/doctor/nurse
+
+/datum/alt_title/medical_contractor
+	title = "Medical Contractor"
+	title_blurb = "A Medical Contractor can be anything from a full-blown doctor to the likes of a nurse or orderly, but isn't directly employed by NT proper."
+
+/datum/job/doctor/get_request_reasons()
+	return list("Surgery pending", "Viral outbreak")
 
 
 /datum/job/chemist

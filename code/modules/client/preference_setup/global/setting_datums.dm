@@ -95,7 +95,7 @@ var/list/_client_preferences_by_type
 	key = "DIGEST_NOISES"
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
-	
+
 /datum/client_preference/belch_noises // Belching noises - pref toggle for 'em
 	description = "Burping"
 	key = "BELCH_NOISES"
@@ -108,7 +108,7 @@ var/list/_client_preferences_by_type
 	enabled_description = "Noisy"
 	disabled_description = "Silent"
 /datum/client_preference/whisubtle_vis
-	description = "Whi/Subtles Ghost Visible" 
+	description = "Whi/Subtles Ghost Visible"
 	key = "WHISUBTLE_VIS"
 	enabled_description = "Visible"
 	disabled_description = "Hidden"
@@ -299,6 +299,30 @@ var/list/_client_preferences_by_type
 	enabled_description = "On"
 	disabled_description = "Off"
 
+/datum/client_preference/say_sounds
+	description = "Say Sounds"
+	key = "SAY_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/emote_sounds
+	description = "Me Sounds"
+	key = "EMOTE_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/whisper_sounds
+	description = "Whisper Sounds"
+	key = "WHISPER_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
+/datum/client_preference/subtle_sounds
+	description = "Subtle Sounds"
+	key = "SUBTLE_SOUNDS"
+	enabled_description = "On"
+	disabled_description = "Off"
+
 /datum/client_preference/runechat_mob
 	description = "Runechat (Mobs)"
 	key = "RUNECHAT_MOB"
@@ -337,6 +361,12 @@ var/list/_client_preferences_by_type
 	enabled_by_default = TRUE
 	enabled_description = "Popup New On Login"
 	disabled_description = "Do Nothing"
+
+/datum/client_preference/play_mentorhelp_ping
+	description = "Mentorhelps"
+	key = "SOUND_MENTORHELP"
+	enabled_description = "Hear"
+	disabled_description = "Silent"
 
 /********************
 * Staff Preferences *
@@ -388,5 +418,11 @@ var/list/_client_preferences_by_type
 /datum/client_preference/holder/show_rlooc
 	description ="Remote LOOC chat"
 	key = "CHAT_RLOOC"
+	enabled_description = "Show"
+	disabled_description = "Hide"
+
+/datum/client_preference/holder/show_staff_dsay
+	description ="Staff Deadchat"
+	key = "CHAT_ADSAY"
 	enabled_description = "Show"
 	disabled_description = "Hide"

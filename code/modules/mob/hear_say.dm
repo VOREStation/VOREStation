@@ -140,13 +140,13 @@
 /mob/proc/on_hear_say(var/message)
 	to_chat(src, message)
 	if(teleop)
-		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[message]")
+		to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[message]")
 
 /mob/living/silicon/on_hear_say(var/message)
 	var/time = say_timestamp()
 	to_chat(src, "[time] [message]")
 	if(teleop)
-		to_chat(teleop, create_text_tag("body", "BODY:", teleop) + "[time] [message]")
+		to_chat(teleop, create_text_tag("body", "BODY:", teleop.client) + "[time] [message]")
 
 // Checks if the mob's own name is included inside message.  Handles both first and last names.
 /mob/proc/check_mentioned(var/message)

@@ -18,6 +18,16 @@
 	desc = "It has WIZZARD written across it in sequins. Comes with a cool beard."
 	icon_state = "wizard-fake"
 	body_parts_covered = HEAD|FACE
+	siemens_coefficient = 1
+
+/obj/item/clothing/head/wizard/fake/realistic
+	desc = "A cool-looking 'magic' hat."
+	icon_state = "wizard"
+	body_parts_covered = HEAD
+
+/obj/item/clothing/head/wizard/fake/realistic/colorable
+	desc = "A cool-looking 'magic' hat."
+	icon_state = "wizard-white"
 
 /obj/item/clothing/head/wizard/marisa
 	name = "Witch Hat"

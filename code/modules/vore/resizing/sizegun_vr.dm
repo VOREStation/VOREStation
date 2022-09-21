@@ -5,8 +5,9 @@
 	name = "size gun" //I have no idea why this was called shrink ray when this increased and decreased size.
 	desc = "A highly advanced ray gun with a knob on the side to adjust the size you desire. Warning: Do not insert into mouth."
 	icon = 'icons/obj/gun_vr.dmi'
-	icon_state = "sizegun"
+	icon_state = "sizegun-shrink100"
 	item_state = "sizegun"
+	var/initial_icon_state = "sizegun"
 	item_icons = list(slot_l_hand_str = 'icons/mob/items/lefthand_guns_vr.dmi', slot_r_hand_str = 'icons/mob/items/righthand_guns_vr.dmi')
 	fire_sound = 'sound/weapons/wave.ogg'
 	charge_cost = 240
@@ -64,8 +65,8 @@
 		else
 			ratio = max(round(ratio, 0.25) * 100, 25)
 
-		icon_state = "[initial(icon_state)]-[grow_mode][ratio]"
-		item_state = "[initial(icon_state)]-[grow_mode]"
+		icon_state = "[initial_icon_state]-[grow_mode][ratio]"
+		item_state = "[initial_icon_state]-[grow_mode]"
 
 	if(!ignore_inhands) update_held_icon()
 
@@ -82,8 +83,9 @@
 	creature well beyond any conceivable size. Only a handfull of these \
 	exist in the known universe and they are \
 	exclusively owned by NanoTrasen for research purposes."
-	icon_state = "sizegun_admin"
+	icon_state = "sizegun_admin-shrink100"
 	item_state = "sizegun_admin"
+	initial_icon_state = "sizegun_admin"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin
 
@@ -105,8 +107,9 @@
 	name = "alien size gun"
 	desc = "A strange looking ray gun weapon with an adjustor knob on the side. The design is alien, but it bares a striking resemblence to the older model size guns that NT uses for research."
 	catalogue_data = list(/datum/category_item/catalogue/anomalous/precursor_a/alien_sizegun)
-	icon_state = "sizegun-abductor"
+	icon_state = "sizegun-abductor-shrink100"
 	item_state = "sizegun-abductor"
+	initial_icon_state = "sizegun-abductor"
 	charge_cost = 0
 	projectile_type = /obj/item/projectile/beam/sizelaser/admin/alien
 

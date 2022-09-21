@@ -199,7 +199,7 @@
 
 		if (symbol1 == "platinum coin" && symbol2 == "platinum coin" && symbol3 == "platinum coin")
 			output = "<span class='notice'>Three platinum coins! The slot machine deposits a platinum chip!</span>"
-			platinumwin = TRUE;
+			platinumwin = TRUE
 			celebrate = 1
 
 		icon_state = initial(icon_state) // Set it back to the original iconstate.

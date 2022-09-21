@@ -63,6 +63,7 @@
 /turf/simulated/floor,
 /area/stellardelight/deck3/portdock)
 "aj" = (
+/obj/effect/landmark/free_ai_shell,
 /turf/simulated/floor/carpet/turcarpet,
 /area/ai)
 "ak" = (
@@ -122,6 +123,10 @@
 	},
 /turf/simulated/floor/tiled,
 /area/holodeck_control)
+"ap" = (
+/obj/machinery/vending/altevian,
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/forestarroomb)
 "at" = (
 /obj/structure/table/darkglass,
 /turf/simulated/floor/tiled/dark,
@@ -1576,6 +1581,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "gh" = (
@@ -2433,6 +2441,13 @@
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/crew_quarters/heads/chief)
+"jo" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/starboardaft)
 "jp" = (
 /obj/structure/closet,
 /obj/random/contraband,
@@ -4849,6 +4864,12 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /turf/simulated/open,
 /area/stellardelight/deck2/port)
+"rW" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/portfore)
 "rX" = (
 /obj/machinery/light{
 	dir = 1
@@ -5169,6 +5190,9 @@
 "tc" = (
 /obj/structure/cable/blue{
 	icon_state = "1-4"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
@@ -7045,7 +7069,7 @@
 /obj/machinery/power/apc{
 	pixel_y = -28;
 	req_access = null;
-	req_one_access = list(11, 67)
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable/green,
 /obj/effect/floor_decal/fancy_shuttle{
@@ -9990,7 +10014,7 @@
 /obj/machinery/power/apc{
 	pixel_y = -28;
 	req_access = null;
-	req_one_access = list(11, 67)
+	req_one_access = list(11,67)
 	},
 /obj/structure/cable/green{
 	icon_state = "0-4"
@@ -10282,6 +10306,12 @@
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardfore)
+"Lo" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor,
+/area/maintenance/stellardelight/deck3/portaft)
 "Lr" = (
 /obj/effect/shuttle_landmark/premade/sd/deck3/starboardairlock,
 /turf/space,
@@ -11376,6 +11406,9 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
 	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/starboardcent)
 "OI" = (
@@ -11701,7 +11734,7 @@
 	layer = 3.1;
 	name = "HoP's Shutters"
 	},
-/obj/structure/low_wall/bay/reinforced/blue,
+/obj/structure/table/reinforced,
 /turf/simulated/floor/tiled,
 /area/crew_quarters/heads/hop)
 "PL" = (
@@ -12207,6 +12240,9 @@
 	},
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 8
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
 	},
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck3/portcent)
@@ -13676,6 +13712,9 @@
 	icon_state = "1-2"
 	},
 /obj/effect/landmark/vermin,
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
 /turf/simulated/open,
 /area/crew_quarters/bar)
 "Xd" = (
@@ -21611,7 +21650,7 @@ pf
 Ns
 Ns
 Ns
-Ns
+rW
 Ns
 eF
 IP
@@ -21650,7 +21689,7 @@ IN
 xi
 dE
 dE
-dE
+Lo
 dE
 Sw
 dE
@@ -26150,7 +26189,7 @@ tF
 Sb
 Nz
 Jx
-FE
+ap
 sR
 FE
 Ef
@@ -27045,7 +27084,7 @@ if
 if
 Ne
 iS
-iS
+jo
 Kz
 Dk
 qY

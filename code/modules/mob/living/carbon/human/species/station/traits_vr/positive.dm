@@ -164,11 +164,16 @@
 	H.verbs |= /mob/living/carbon/human/proc/weave_item
 	H.verbs |= /mob/living/carbon/human/proc/set_silk_color
 
-/datum/trait/positive/water_breather
-	name = "Water Breather"
-	desc = "You can breathe under water."
+/datum/trait/positive/aquatic
+	name = "Aquatic"
+	desc = "You can breathe under water and can traverse water more efficiently. Additionally, you can eat others in the water."
 	cost = 1
-	var_changes = list("water_breather" = 1)
+	var_changes = list("water_breather" = 1, "water_movement" = -4) //Negate shallow water. Half the speed in deep water.
+
+/datum/trait/positive/aquatic/apply(var/datum/species/S,var/mob/living/carbon/human/H)
+	..(S,H)
+	H.verbs |= /mob/living/carbon/human/proc/water_stealth
+	H.verbs |= /mob/living/carbon/human/proc/underwater_devour
 
 /datum/trait/positive/cocoon_tf
 	name = "Cocoon Spinner"
@@ -195,3 +200,12 @@
 	var_changes = list("gun_accuracy_mod" = 25)
 	custom_only = FALSE
 	varchange_type = TRAIT_VARCHANGE_MORE_BETTER
+
+/datum/trait/positive/pain_tolerance
+	name = "Grit"
+	desc = "You can keep going a little longer, a little harder when you get hurt, Injuries only inflict 85% as much pain, and slowdown from pain is 85% as effective."
+	cost = 2
+	var_changes = list("trauma_mod" = 0.85)
+	excludes = list(/datum/trait/negative/neural_hypersensitivity)
+	can_take = ORGANICS
+

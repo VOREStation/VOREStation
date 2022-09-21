@@ -30,3 +30,33 @@
 	name = "dirty fancy plate"
 	icon = 'icons/obj/trash_vr.dmi'
 	icon_state = "fancyplate"
+
+/obj/item/trash/ratcheese
+	name = "\improper Flavor Unit package"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_cheese_block-trash"
+
+/obj/item/trash/ratveg
+	name = "\improper Premium Ration packet"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_veggies-trash"
+
+/obj/item/trash/ratjuice
+	name = "\improper Space-Safe Meal package"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_juice-trash"
+
+/obj/item/trash/ratfruitcake
+	name = "\improper Flavor Unit package"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_fruitcake-trash"
+
+/obj/item/trash/ratpackburger
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_burger-trash"
+
+/obj/item/trash/ratpackcheese
+	name = "\improper Prepackaged Meal Tray"
+	icon = 'icons/obj/trash_vr.dmi'
+	icon_state = "altevian_pack_cheese-trash"

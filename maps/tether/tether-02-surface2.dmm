@@ -14435,6 +14435,11 @@
 /obj/structure/disposalpipe/segment{
 	dir = 4
 	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 27
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "axp" = (
@@ -16260,6 +16265,10 @@
 /obj/effect/floor_decal/borderfloor/corner2{
 	dir = 6
 	},
+/obj/item/device/radio/intercom{
+	dir = 4;
+	pixel_x = 24
+	},
 /turf/simulated/floor/tiled/techmaint,
 /area/tether/surfacebase/surface_two_hall)
 "aBw" = (
@@ -16387,6 +16396,9 @@
 	dir = 1
 	},
 /obj/machinery/atmospherics/unary/vent_pump/on,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_two_hall)
 "aBJ" = (
@@ -17277,6 +17289,7 @@
 /obj/effect/floor_decal/corner/lightgrey/border{
 	dir = 1
 	},
+/obj/machinery/computer/timeclock/premade/north,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/surface_two_hall)
 "aDr" = (
@@ -17440,9 +17453,6 @@
 	icon_state = "4-8"
 	},
 /obj/item/device/radio/intercom{
-	broadcasting = 1;
-	frequency = 1473;
-	name = "Confession Intercom";
 	pixel_y = -24
 	},
 /turf/simulated/floor/tiled/dark,
@@ -23644,6 +23654,9 @@
 	dir = 4
 	},
 /obj/effect/floor_decal/rust,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
 /turf/simulated/floor/plating,
 /area/maintenance/lower/public_garden_maintenence/upper)
 "aPw" = (
@@ -25415,6 +25428,10 @@
 	},
 /turf/simulated/floor/plating,
 /area/maintenance/engineering/pumpstation)
+"aSZ" = (
+/obj/machinery/vending/altevian,
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "aTa" = (
 /obj/effect/floor_decal/borderfloor{
 	dir = 8
@@ -25565,6 +25582,18 @@
 /obj/machinery/door/airlock/maintenance/common,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/maintenance/lower/south)
+"aTi" = (
+/obj/effect/floor_decal/techfloor,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai_upload_foyer)
+"aTj" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/obj/effect/floor_decal/techfloor,
+/obj/effect/landmark/free_ai_shell,
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/ai_upload)
 "aTl" = (
 /obj/structure/table/rack,
 /obj/random/maintenance/research,
@@ -26255,6 +26284,11 @@
 	},
 /obj/effect/floor_decal/corner/purple/border{
 	dir = 1
+	},
+/obj/item/device/radio/intercom{
+	dir = 1;
+	name = "Station Intercom (General)";
+	pixel_y = 27
 	},
 /turf/simulated/floor/tiled,
 /area/janitor)
@@ -33072,6 +33106,13 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"eKi" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "eKn" = (
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
@@ -33132,6 +33173,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"ftF" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 8
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "fxr" = (
 /obj/machinery/light{
 	dir = 8
@@ -33168,6 +33218,19 @@
 	},
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/fish_farm)
+"fYb" = (
+/obj/structure/catwalk,
+/obj/structure/disposalpipe/segment{
+	dir = 4
+	},
+/obj/structure/cable/green{
+	icon_state = "4-8"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/mining)
 "gaR" = (
 /obj/item/device/radio/intercom/locked/ai_private{
 	dir = 4;
@@ -33359,11 +33422,6 @@
 /obj/effect/floor_decal/techfloor,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload_foyer)
-"hCO" = (
-/obj/effect/landmark/free_ai_shell,
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/ai_upload_foyer)
 "hHc" = (
 /obj/machinery/turretid/stun{
 	control_area = /area/ai_upload;
@@ -33387,6 +33445,12 @@
 	},
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
+"idw" = (
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/yellow/border,
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "ilH" = (
 /obj/structure/table/standard,
 /obj/item/weapon/aiModule/reset,
@@ -34021,13 +34085,12 @@
 /obj/item/weapon/aiModule/teleporterOffline,
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
-"nKV" = (
-/obj/machinery/light{
-	dir = 1
+"nOG" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
 	},
-/obj/effect/floor_decal/techfloor,
-/turf/simulated/floor/tiled/techfloor/grid,
-/area/ai_upload)
+/turf/simulated/floor/tiled/techfloor,
+/area/tether/surfacebase/fish_farm)
 "nPO" = (
 /obj/effect/floor_decal/corner/paleblue/diagonal,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -34077,6 +34140,13 @@
 /obj/item/weapon/grenade/anti_photon,
 /turf/simulated/floor/plating,
 /area/tether/surfacebase/funny/hideyhole)
+"omM" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/machinery/computer/timeclock/premade/east,
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "opK" = (
 /obj/move_trader_landmark{
 	dir = 4;
@@ -34190,6 +34260,15 @@
 	},
 /turf/simulated/floor/bluegrid,
 /area/ai_upload)
+"pXo" = (
+/obj/effect/floor_decal/borderfloor{
+	dir = 4
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techmaint,
+/area/tether/surfacebase/surface_two_hall)
 "pYH" = (
 /obj/effect/floor_decal/techfloor/corner,
 /turf/simulated/floor/tiled/techfloor/grid,
@@ -34198,6 +34277,12 @@
 /obj/machinery/porta_turret,
 /turf/simulated/floor/tiled/techfloor/grid,
 /area/ai_upload)
+"qbq" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/asmaint2)
 "qia" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
@@ -34541,6 +34626,20 @@
 	},
 /turf/simulated/floor/water/indoors,
 /area/tether/surfacebase/fish_farm)
+"sLA" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/disposalpipe/segment,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor/grid,
+/area/maintenance/readingrooms)
 "sLP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 8
@@ -34656,6 +34755,18 @@
 /obj/effect/floor_decal/corner_techfloor_grid,
 /turf/simulated/floor/tiled/techfloor,
 /area/maintenance/lower/south)
+"tuZ" = (
+/obj/structure/railing{
+	dir = 8
+	},
+/obj/effect/floor_decal/corner_techfloor_grid{
+	dir = 6
+	},
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/techfloor,
+/area/maintenance/lower/south)
 "tyG" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 6
@@ -34704,6 +34815,21 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/ai_upload)
+"tMW" = (
+/obj/structure/catwalk,
+/obj/machinery/atmospherics/pipe/simple/visible/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/visible/supply,
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/obj/structure/disposalpipe/segment,
+/obj/effect/mouse_hole_spawner{
+	dir = 8
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "tPB" = (
 /turf/simulated/floor/grass,
 /area/chapel/main)
@@ -34920,6 +35046,13 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/chapel/main)
+"vok" = (
+/obj/structure/catwalk,
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/south)
 "voE" = (
 /obj/effect/floor_decal/corner_techfloor_grid,
 /obj/effect/floor_decal/corner_techfloor_grid{
@@ -35114,6 +35247,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/tether/surfacebase/medical/breakroom)
+"xem" = (
+/obj/structure/catwalk,
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/plating,
+/area/maintenance/lower/atmos)
 "xfa" = (
 /obj/structure/cable/cyan{
 	d1 = 4;
@@ -41106,7 +41246,7 @@ aBB
 aCm
 aDj
 aDV
-aCm
+nOG
 aBB
 aOM
 aJf
@@ -43974,7 +44114,7 @@ aTA
 aUo
 aPJ
 aQw
-aQw
+qbq
 aXv
 aYd
 aYD
@@ -44707,7 +44847,7 @@ baA
 baW
 bbf
 aJX
-baW
+xem
 aIn
 aJZ
 baX
@@ -45982,7 +46122,7 @@ baW
 baW
 baW
 baW
-baW
+xem
 baW
 beT
 baz
@@ -46221,7 +46361,7 @@ ayF
 aEK
 ayF
 aFZ
-ayF
+ftF
 aAh
 aHp
 aHK
@@ -47794,7 +47934,7 @@ aAG
 aKw
 aLj
 aLO
-aMv
+idw
 aNj
 aNR
 aOH
@@ -47832,7 +47972,7 @@ aLY
 adt
 adt
 aJA
-hCO
+aTi
 klz
 mNZ
 nUS
@@ -48094,7 +48234,7 @@ aVp
 aWl
 aXg
 aVP
-aZr
+aSZ
 ayY
 aZr
 aZr
@@ -48400,7 +48540,7 @@ aLY
 adt
 adt
 aJY
-nKV
+aTj
 kPR
 ndB
 oXH
@@ -49214,7 +49354,7 @@ ayd
 aKA
 ayd
 rBf
-aMG
+eKi
 avD
 asm
 asx
@@ -49331,7 +49471,7 @@ avI
 awk
 avD
 axG
-ayl
+pXo
 ayO
 azh
 azR
@@ -49354,7 +49494,7 @@ ayd
 aJu
 aJP
 aKB
-ayl
+omM
 ayl
 aMI
 avD
@@ -49385,7 +49525,7 @@ aLY
 aLY
 aLY
 aLY
-aLX
+vok
 bdQ
 bdb
 aIo
@@ -49752,7 +49892,7 @@ aiK
 aiK
 aiK
 aiK
-auX
+fYb
 asV
 atY
 anW
@@ -50089,7 +50229,7 @@ aSo
 aSo
 bdu
 aSo
-aSo
+tMW
 aSo
 aSo
 bbR
@@ -50242,7 +50382,7 @@ bIG
 bde
 bdE
 csF
-cMd
+sLA
 jWK
 cMd
 gus
@@ -50786,7 +50926,7 @@ aRc
 aRH
 aSp
 aTp
-aSp
+tuZ
 aSp
 aSp
 aWy

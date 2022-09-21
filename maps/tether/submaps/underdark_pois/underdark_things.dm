@@ -1,3 +1,8 @@
+/datum/random_map/noise/ore/underdark
+	descriptor = "Underdark ore distribution map"
+	deep_val = 0.7
+	rare_val = 0.5
+
 // Weakened version of Phoron spiders
 /mob/living/simple_mob/animal/giant_spider/phorogenic/weak
 	maxHealth = 100

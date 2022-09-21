@@ -140,7 +140,7 @@
 
 /datum/pai_software/med_records/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/records = list()
 	for(var/datum/data/record/general in sortRecord(data_core.general))
 		var/list/record = list()
@@ -196,7 +196,7 @@
 
 /datum/pai_software/sec_records/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/list/records = list()
 	for(var/datum/data/record/general in sortRecord(data_core.general))
 		var/list/record = list()
@@ -404,7 +404,6 @@
 		user.add_language(LANGUAGE_ZADDAT)
 		user.add_language(LANGUAGE_SCHECHI)
 		user.add_language(LANGUAGE_DRUDAKAR)
-		user.add_language(LANGUAGE_SLAVIC)
 		user.add_language(LANGUAGE_BIRDSONG)
 		user.add_language(LANGUAGE_SAGARU)
 		user.add_language(LANGUAGE_CANILUNZT)
@@ -413,24 +412,16 @@
 		user.add_language(LANGUAGE_ENOCHIAN)
 		user.add_language(LANGUAGE_VESPINAE)
 		user.add_language(LANGUAGE_SPACER)
-		user.add_language(LANGUAGE_CLOWNISH)
 		user.add_language(LANGUAGE_TAVAN)
 		user.add_language(LANGUAGE_ECHOSONG)
-		user.add_language(LANGUAGE_CHIMPANZEE)
-		user.add_language(LANGUAGE_NEAERA)
-		user.add_language(LANGUAGE_STOK)
-		user.add_language(LANGUAGE_FARWA)
 		user.add_language(LANGUAGE_ROOTLOCAL)
 		user.add_language(LANGUAGE_VOX)
-		user.add_language(LANGUAGE_SKRELLIANFAR)
 		user.add_language(LANGUAGE_MINBUS)
 		user.add_language(LANGUAGE_ALAI)
 		user.add_language(LANGUAGE_PROMETHEAN)
 		user.add_language(LANGUAGE_GIBBERISH)
 		user.add_language("Mouse")
-		user.add_language("Cat")
-		user.add_language("Bird")
-		user.add_language("Dog")
+		user.add_language("Animal")
 		user.add_language("Teppi")
 	else
 		user.remove_language(LANGUAGE_UNATHI)
@@ -440,7 +431,6 @@
 		user.remove_language(LANGUAGE_ZADDAT)
 		user.remove_language(LANGUAGE_SCHECHI)
 		user.remove_language(LANGUAGE_DRUDAKAR)
-		user.remove_language(LANGUAGE_SLAVIC)
 		user.remove_language(LANGUAGE_BIRDSONG)
 		user.remove_language(LANGUAGE_SAGARU)
 		user.remove_language(LANGUAGE_CANILUNZT)
@@ -449,24 +439,16 @@
 		user.remove_language(LANGUAGE_ENOCHIAN)
 		user.remove_language(LANGUAGE_VESPINAE)
 		user.remove_language(LANGUAGE_SPACER)
-		user.remove_language(LANGUAGE_CLOWNISH)
 		user.remove_language(LANGUAGE_TAVAN)
 		user.remove_language(LANGUAGE_ECHOSONG)
-		user.remove_language(LANGUAGE_CHIMPANZEE)
-		user.remove_language(LANGUAGE_NEAERA)
-		user.remove_language(LANGUAGE_STOK)
-		user.remove_language(LANGUAGE_FARWA)
 		user.remove_language(LANGUAGE_ROOTLOCAL)
 		user.remove_language(LANGUAGE_VOX)
-		user.remove_language(LANGUAGE_SKRELLIANFAR)
 		user.remove_language(LANGUAGE_MINBUS)
 		user.remove_language(LANGUAGE_ALAI)
 		user.remove_language(LANGUAGE_PROMETHEAN)
 		user.remove_language(LANGUAGE_GIBBERISH)
 		user.remove_language("Mouse")
-		user.remove_language("Cat")
-		user.remove_language("Bird")
-		user.remove_language("Dog")
+		user.remove_language("Animal")
 		user.remove_language("Teppi")
 
 /datum/pai_software/translator/is_active(mob/living/silicon/pai/user)
@@ -486,7 +468,7 @@
 
 /datum/pai_software/signaller/tgui_data(mob/living/silicon/pai/user, datum/tgui/ui, datum/tgui_state/state)
 	var/list/data = ..()
-	
+
 	var/obj/item/radio/integrated/signal/R = user.sradio
 
 	data["frequency"] = R.frequency
@@ -509,7 +491,7 @@
 				spawn(0)
 					R.send_signal("ACTIVATE")
 				for(var/mob/O in hearers(1, R.loc))
-					O.show_message("[bicon(R)] *beep* *beep*", 3, "*beep* *beep*", 2)
+					O.show_message("\icon[R][bicon(R)] *beep* *beep*", 3, "*beep* *beep*", 2)
 			if("freq")
 				var/frequency = unformat_frequency(params["freq"])
 				frequency = sanitize_frequency(frequency, RADIO_LOW_FREQ, RADIO_HIGH_FREQ)

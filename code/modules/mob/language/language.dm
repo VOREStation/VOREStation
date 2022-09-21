@@ -192,6 +192,9 @@
 /mob/proc/remove_language(var/rem_language)
 	var/datum/language/L = GLOB.all_languages[rem_language]
 	. = (L in languages)
+	var/prefix = get_custom_prefix_by_lang(src, L)
+	if(prefix)
+		language_keys.Remove(prefix)
 	languages.Remove(L)
 
 /mob/living/remove_language(rem_language)
@@ -240,7 +243,8 @@
 
 	for(var/datum/language/L in languages)
 		if(!(L.flags & NONGLOBAL))
-			. += "<b>[L.name] ([get_language_prefix()][L.key])</b><br/>[L.desc]<br/><br/>"
+			var/lang_key = get_custom_prefix_by_lang(src, L)
+			. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b><br/>[L.desc]<br/><br/>"
 
 /mob/living/check_lang_data()
 	. = ""
@@ -250,12 +254,13 @@
 
 	for(var/datum/language/L in languages)
 		if(!(L.flags & NONGLOBAL))
+			var/lang_key = get_custom_prefix_by_lang(src, L)
 			if(L == default_language)
-				. += "<b>[L.name] ([get_language_prefix()][L.key])</b> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
+				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - default - <a href='byond://?src=\ref[src];default_lang=reset'>reset</a><br/>[L.desc]<br/><br/>"
 			else if (can_speak(L))
-				. += "<b>[L.name] ([get_language_prefix()][L.key])</b> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
+				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - <a href='byond://?src=\ref[src];default_lang=\ref[L]'>set default</a><br/>[L.desc]<br/><br/>"
 			else
-				. += "<b>[L.name] ([get_language_prefix()][L.key])</b> - cannot speak!<br/>[L.desc]<br/><br/>"
+				. += "<b>[L.name] ([get_language_prefix()][L.key][lang_key ? " [get_language_prefix()][lang_key]" : ""])</b> <a href='byond://?src=\ref[src];set_lang_key=\ref[L]'>Edit Custom Key</a> - cannot speak!<br/>[L.desc]<br/><br/>"
 
 /mob/verb/check_languages()
 	set name = "Check Known Languages"
@@ -279,6 +284,22 @@
 				set_default_language(L)
 		check_languages()
 		return 1
+	else if(href_list["set_lang_key"])
+		var/datum/language/L = locate(href_list["set_lang_key"])
+		if(L && (L in languages))
+			var/old_key = get_custom_prefix_by_lang(src, L)
+			var/custom_key = tgui_input_text(src, "Input a new key for [L.name]", "Language Key", old_key)
+			if(custom_key && length(custom_key) == 1)
+				if(contains_az09(custom_key))
+					language_keys[custom_key] = L
+					if(old_key && old_key != custom_key)
+						language_keys.Remove(old_key)
+				else if(custom_key == " ")
+					if(old_key && old_key != custom_key)
+						language_keys.Remove(old_key)
+				else
+					tgui_alert_async(src, "Improper language key. Rejected.", "Error")
+		check_languages()
 	else
 		return ..()
 
@@ -287,5 +308,17 @@
 		if(L.flags & except_flags)
 			continue
 		target.add_language(L.name)
+		for(var/key in source.language_keys)
+			if(L == source.language_keys[key])
+				if(!(key in target.language_keys))
+					target.language_keys[key] = L
+
+/proc/get_custom_prefix_by_lang(var/mob/our_mob, var/language)
+	if(!our_mob || !our_mob.language_keys.len || !language)
+		return
+
+	for(var/key in our_mob.language_keys)
+		if(our_mob.language_keys[key] == language)
+			return key
 
 #undef SCRAMBLE_CACHE_LEN

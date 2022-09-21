@@ -2,6 +2,24 @@
 "aa" = (
 /turf/simulated/wall,
 /area/groundbase/exploration/equipment)
+"ab" = (
+/obj/machinery/suit_cycler/medical,
+/obj/structure/sign/scenery/fakefireaxe{
+	pixel_y = 32
+	},
+/turf/simulated/floor/tiled/white,
+/area/groundbase/medical/paramedic)
+"ac" = (
+/obj/effect/landmark/start/pilot,
+/obj/structure/closet/walllocker_double{
+	dir = 8;
+	name = "misc equipment cabinet";
+	pixel_x = -32
+	},
+/obj/item/weapon/storage/box/nifsofts_pilot,
+/obj/item/device/multitool/groundbase_buffered,
+/turf/simulated/floor/tiled,
+/area/groundbase/civilian/pilot)
 "ak" = (
 /obj/structure/table/glass,
 /obj/item/weapon/paper_bin,
@@ -425,6 +443,12 @@
 	},
 /turf/simulated/floor/wood,
 /area/groundbase/medical/cmo)
+"hb" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 4
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level3/nw)
 "hl" = (
 /turf/simulated/wall,
 /area/groundbase/level3/escapepad)
@@ -837,6 +861,10 @@
 /obj/effect/landmark/start/explorer,
 /turf/simulated/floor/tiled,
 /area/groundbase/exploration/equipment)
+"nR" = (
+/obj/effect/mouse_hole_spawner,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level3/nw)
 "nU" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
@@ -1097,6 +1125,12 @@
 	outdoors = 0
 	},
 /area/groundbase/level3/escapepad)
+"rh" = (
+/obj/effect/mouse_hole_spawner{
+	dir = 1
+	},
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/groundbase/level3/nw)
 "ro" = (
 /obj/structure/bed/padded,
 /obj/item/weapon/bedsheet/medical,
@@ -5599,7 +5633,7 @@ Qa
 qO
 fz
 bm
-Tk
+ac
 pd
 Tk
 bm
@@ -5880,7 +5914,7 @@ Xv
 Xv
 Xv
 qO
-qO
+nR
 fz
 dI
 dR
@@ -5888,7 +5922,7 @@ xO
 Nf
 TH
 fz
-qO
+rh
 qO
 qO
 qO
@@ -6456,7 +6490,7 @@ MF
 qO
 Qa
 Qa
-qO
+nR
 hl
 Rk
 ow
@@ -6588,7 +6622,7 @@ qO
 qO
 qO
 qO
-qO
+hb
 qO
 qO
 qO
@@ -16835,7 +16869,7 @@ ID
 lz
 Cv
 Vm
-og
+ab
 to
 to
 Qk

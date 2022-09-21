@@ -3,10 +3,18 @@
 	set category = "Abilities"
 
 	// Sanity is mostly handled in chimera_regenerate()
-
-	var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to twenty minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
-	if(confirm == "Yes")
-		chimera_regenerate()
+	if(stat == DEAD)
+		var/confirm = tgui_alert(usr, "Are you sure you want to regenerate your corpse? This process can take up to thirty minutes.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
+	else if (quickcheckuninjured())
+		var/confirm = tgui_alert(usr, "Are you sure you want to regenerate? As you are uninjured this will only take 30 seconds and match your appearance to your character slot.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
+	else
+		var/confirm = tgui_alert(usr, "Are you sure you want to completely reconstruct your form? This process can take up to fifteen minutes, depending on how hungry you are, and you will be unable to move.", "Confirm Regeneration", list("Yes", "No"))
+		if(confirm == "Yes")
+			chimera_regenerate()
 
 /mob/living/carbon/human/proc/chimera_regenerate()
 	//If they're already regenerating
@@ -21,40 +29,40 @@
 		to_chat(src, "You can't use that ability again so soon!")
 		return
 
-	var/nutrition_used = nutrition * 0.5
-	var/time = (240+960/(1 + nutrition_used/75))
+	var/time = min(900, (120+780/(1 + nutrition/100))) //capped at 15 mins, roughly 6 minutes at 250 (yellow) nutrition, 4.1 minutes at 500 (grey), cannot be below 2 mins
+	if (quickcheckuninjured()) //if you're completely uninjured, then you get a speedymode - check health first for quickness
+		time = 30
 
 	//Clicked regen while dead.
 	if(stat == DEAD)
 
-		//Has nutrition and dead, allow regen.
-		if(hasnutriment())
-			to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
+		//reviving from dead takes extra nutriment to be provided from outside OR takes twice as long and consumes extra at the end
+		if(!hasnutriment())
+			time = time*2
 
-			//Scary spawnerization.
-			revive_ready = REVIVING_NOW
-			revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
-			throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
-			spawn(time SECONDS)
-				// Was dead, now not dead.
-				if(stat != DEAD)
-					to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
-					revive_ready = REVIVING_READY //reset their cooldown
-					clear_alert("regen")
-					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		to_chat(src, "You begin to reconstruct your form. You will not be able to move during this time. It should take aproximately [round(time)] seconds.")
 
-				// Was dead, still dead.
-				else
-					to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
-					verbs |= /mob/living/carbon/human/proc/hatch
-					revive_ready = REVIVING_DONE
-					src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-					clear_alert("regen")
-					throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+		//Scary spawnerization.
+		revive_ready = REVIVING_NOW
+		revive_finished = (world.time + time SECONDS) // When do we finish reviving? Allows us to find out when we're done, called by the alert currently.
+		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
+		spawn(time SECONDS)
+			// check to see if they've been fixed by outside forces in the meantime such as defibbing
+			if(stat != DEAD)
+				to_chat(src, "<span class='notice'>Your body has recovered from its ordeal, ready to regenerate itself again.</span>")
+				revive_ready = REVIVING_READY //reset their cooldown
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
 
-		//Dead until nutrition injected.
-		else
-			to_chat(src, "<span class='warning'>Your body is too damaged to regenerate without additional nutrients to feed what few living cells remain.</span>")
+			// Was dead, still dead.
+			else
+				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch.</span>")
+				verbs |= /mob/living/carbon/human/proc/hatch
+				revive_ready = REVIVING_DONE
+				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+				clear_alert("regen")
+				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+
 
 	//Clicked regen while NOT dead
 	else
@@ -66,29 +74,17 @@
 		throw_alert("regen", /obj/screen/alert/xenochimera/reconstitution)
 		spawn(time SECONDS)
 
-			//If they're still alive after regenning.
-			if(stat != DEAD)
+			//Slightly different flavour messages
+			if(stat != DEAD || hasnutriment())
 				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				verbs |= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_DONE
-				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-				clear_alert("regen")
-				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
-
-			//Was alive, now dead
-			else if(hasnutriment())
-				to_chat(src, "<span class='notice'>Consciousness begins to stir as your new body awakens, ready to hatch..</span>")
-				verbs |= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_DONE
-				src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
-				clear_alert("regen")
-				throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
-
-			//Dead until nutrition injected.
 			else
-				to_chat(src, "<span class='warning'>Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.</span>")
-				revive_ready = REVIVING_READY //reset their cooldown
-				clear_alert("regen")
+				to_chat(src, "<span class='warning'>Consciousness begins to stir as your battered body struggles to recover from its ordeal..</span>")
+			verbs |= /mob/living/carbon/human/proc/hatch
+			revive_ready = REVIVING_DONE
+			src << sound('sound/effects/mob_effects/xenochimera/hatch_notification.ogg',0,0,0,30)
+			clear_alert("regen")
+			throw_alert("hatch", /obj/screen/alert/xenochimera/readytohatch)
+
 
 /mob/living/carbon/human/proc/hasnutriment()
 	if (bloodstr.has_reagent("nutriment", 30) || src.bloodstr.has_reagent("protein", 15)) //protein needs half as much. For reference, a steak contains 9u protein.
@@ -97,6 +93,16 @@
 		return TRUE
 	else return FALSE
 
+/mob/living/carbon/human/proc/quickcheckuninjured()
+	if (getBruteLoss() || getFireLoss() || getHalLoss() || getToxLoss() || getOxyLoss() || getBrainLoss()) //fails if they have any of the main damage types
+		return FALSE
+	for (var/obj/item/organ/O in organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
+		if (O.damage)
+			return FALSE
+	for (var/obj/item/organ/O in internal_organs) //check their organs just in case they're being sneaky and somehow have organ damage but no health damage
+		if (O.damage)
+			return FALSE
+	return TRUE
 
 /mob/living/carbon/human/proc/hatch()
 	set name = "Hatch"
@@ -112,57 +118,53 @@
 
 		//Dead when hatching
 		if(stat == DEAD)
-			//Check again for nutriment (necessary?)
-			if(hasnutriment())
-				chimera_hatch()
-				adjustBrainLoss(10) // if they're reviving from dead, they come back with 10 brainloss on top of whatever's unhealed.
-				visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
-				clear_alert("hatch")
-				return
-
-			//Don't have nutriment to hatch! Or you somehow died in between completing your revive and hitting hatch.
-			else
-				to_chat(src, "Your body was unable to regenerate, what few living cells remain require additional nutrients to complete the process.")
-				verbs -= /mob/living/carbon/human/proc/hatch
-				revive_ready = REVIVING_READY //reset their cooldown they can try again when they're given a kickstart
-				clear_alert("hatch")
+			//Reviving from ded takes extra nutrition - if it isn't provided from outside sources, it comes from you
+			if(!hasnutriment())
+				nutrition=nutrition * 0.75
+			chimera_hatch()
+			adjustBrainLoss(5) // if they're reviving from dead, they come back with 5 brainloss on top of whatever's unhealed.
+			visible_message("<span class='warning'><p><font size=4>The former corpse staggers to its feet, all its former wounds having vanished...</font></p></span>") //Bloody hell...
+			clear_alert("hatch")
+			return
 
 		//Alive when hatching
 		else
 			chimera_hatch()
-			visible_message("<span class='danger'><p><font size=4>The dormant husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+
+			visible_message("<span class='warning'><p><font size=4>[src] rises to \his feet.</font></p></span>") //Bloody hell...
 			clear_alert("hatch")
 
 /mob/living/carbon/human/proc/chimera_hatch()
 	verbs -= /mob/living/carbon/human/proc/hatch
 	to_chat(src, "<span class='notice'>Your new body awakens, bursting free from your old skin.</span>")
-
 	//Modify and record values (half nutrition and braindamage)
-	var/old_nutrition = nutrition * 0.5
-	var/braindamage = (brainloss * 0.5) //Can only heal half brain damage.
-
+	var/old_nutrition = nutrition
+	var/braindamage = min(5, max(0, (brainloss-1) * 0.5)) //brainloss is tricky to heal and might take a couple of goes to get rid of completely.
+	var/uninjured=quickcheckuninjured()
 	//I did have special snowflake code, but this is easier.
 	revive()
 	mutations.Remove(HUSK)
-	nutrition = old_nutrition
 	setBrainLoss(braindamage)
 
-	//Drop everything
-	for(var/obj/item/W in src)
-		drop_from_inventory(W)
+	if(!uninjured)
+		nutrition = old_nutrition * 0.5
+		//Drop everything
+		for(var/obj/item/W in src)
+			drop_from_inventory(W)
+		//Visual effects
+		var/T = get_turf(src)
+		var/blood_color = species.blood_color
+		var/flesh_color = species.flesh_color
+		new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
+		visible_message("<span class='danger'><p><font size=4>The lifeless husk of [src] bursts open, revealing a new, intact copy in the pool of viscera.</font></p></span>") //Bloody hell...
+		playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
+	else //lower cost for doing a quick cosmetic revive
+		nutrition = old_nutrition * 0.9
 
 	//Unfreeze some things
 	does_not_breathe = FALSE
 	update_canmove()
 	weakened = 2
-
-	//Visual effects
-	var/T = get_turf(src)
-	var/blood_color = species.blood_color
-	var/flesh_color = species.flesh_color
-	new /obj/effect/gibspawner/human/xenochimera(T, null, flesh_color, blood_color)
-
-	playsound(T, 'sound/effects/mob_effects/xenochimera/hatch.ogg', 50)
 
 	revive_ready = world.time + 10 MINUTES //set the cooldown CHOMPEdit: Reduced this to 10 minutes, you're playing with fire if you're reviving that often.
 
@@ -1063,3 +1065,314 @@
 		C.update_transform()
 		//egg_contents -= src
 		C.contents -= src
+
+/mob/living/carbon/human/proc/water_stealth()
+	set name = "Dive under water / Resurface"
+	set desc = "Dive under water, allowing for you to be stealthy and move faster."
+	set category = "Abilities"
+
+	if(last_special > world.time)
+		return
+	last_special = world.time + 50 //No spamming!
+
+	if(has_modifier_of_type(/datum/modifier/underwater_stealth))
+		to_chat(src, "You resurface!")
+		remove_modifiers_of_type(/datum/modifier/underwater_stealth)
+		return
+
+	if(!isturf(loc)) //We have no turf.
+		to_chat(src, "There is no water for you to dive into!")
+		return
+
+	if(istype(src.loc, /turf/simulated/floor/water))
+		var/turf/simulated/floor/water/water_floor = src.loc
+		if(water_floor.depth >= 1) //Is it deep enough?
+			add_modifier(/datum/modifier/underwater_stealth) //No duration. It'll remove itself when they exit the water!
+			to_chat(src, "You dive into the water!")
+			visible_message("[src] dives into the water!")
+		else
+			to_chat(src, "The water here is not deep enough to dive into!")
+			return
+
+	else
+		to_chat(src, "There is no water for you to dive into!")
+		return
+
+/mob/living/carbon/human/proc/underwater_devour()
+	set name = "Devour From Water"
+	set desc = "Grab something in the water with you and devour them with your selected stomach."
+	set category = "Abilities"
+
+	if(last_special > world.time)
+		return
+	last_special = world.time + 50 //No spamming!
+
+	if(stat == DEAD || paralysis || weakened || stunned)
+		to_chat(src, "<span class='notice'>You cannot do that while in your current state.</span>")
+		return
+
+	if(!(src.vore_selected))
+		to_chat(src, "<span class='notice'>No selected belly found.</span>")
+		return
+
+
+	if(!has_modifier_of_type(/datum/modifier/underwater_stealth))
+		to_chat(src, "You must be underwater to do this!!")
+		return
+
+	var/list/targets = list() //Shameless copy and paste. If it ain't broke don't fix it!
+
+	for(var/turf/T in range(1, src))
+		if(istype(T, /turf/simulated/floor/water))
+			for(var/mob/living/L in T)
+				if(L == src) //no eating yourself. 1984.
+					continue
+				if(L.devourable)
+					targets += L
+
+	if(!(targets.len))
+		to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+		return
+
+	var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+	if(!target)
+		return
+
+	to_chat(target, "<span class='critical'>Something begins to circle around you in the water!</span>") //Dun dun...
+	var/starting_loc = target.loc
+
+	if(do_after(src, 50))
+		if(target.loc != starting_loc)
+			to_chat(target, "<span class='warning'>You got away from whatever that was...</span>")
+			to_chat(src, "<span class='notice'>They got away.</span>")
+			return
+		if(target.buckled) //how are you buckled in the water?!
+			target.buckled.unbuckle_mob()
+		target.visible_message("<span class='warning'>\The [target] suddenly disappears, being dragged into the water!</span>",\
+			"<span class='danger'>You are dragged below the water and feel yourself slipping directly into \the [src]'s [vore_selected]!</span>")
+		to_chat(src, "<span class='notice'>You successfully drag \the [target] into the water, slipping them into your [vore_selected].</span>")
+		target.forceMove(src.vore_selected)
+
+/mob/living/carbon/human/proc/toggle_pain_module()
+	set name = "Toggle pain simulation."
+	set desc = "Turn on your pain simulation for that organic experience! Or turn it off for repairs, or if it's too much."
+	set category = "Abilities"
+
+	if(synth_cosmetic_pain)
+		to_chat(src, "<span class='notice'> You turn off your pain simulators.</span>")
+	else
+		to_chat(src, "<span class='danger'> You turn on your pain simulators </span>")
+
+	synth_cosmetic_pain = !synth_cosmetic_pain
+
+//This is the 'long vore' ability. Also known as "Grab Prey with appendage" or "Long Predatorial Reach". Or simply "Tongue Vore"
+//It involves projectiles (which means it can be VV'd onto a gun for shenanigans)
+//It can also be recolored via the proc, which persists between rounds.
+
+/mob/living/proc/long_vore() // Allows the user to tongue grab a creature in range. Made a /living proc so frogs can frog you.
+	set name = "Grab Prey With Appendage"
+	set category = "Abilities"
+	set desc = "Grab a target with any of your appendages!"
+
+	if(stat || paralysis || weakened || stunned || world.time < last_special) //No tongue flicking while stunned.
+		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		return
+
+	last_special = world.time + 10 //Anti-spam.
+
+	if (!istype(src, /mob/living))
+		to_chat(src, "<span class='warning'>It doesn't work that way.</span>")
+		return
+
+	var/choice = tgui_alert(src, "Do you wish to change the color of your appendage, use it, or change its functionality?", "Selection List", list("Use it", "Color", "Functionality"))
+
+	if(choice == "Color") //Easy way to set color so we don't bloat up the menu with even more buttons.
+		var/new_color = input(usr, "Choose a color to set your appendage to!", "", appendage_color) as color|null
+		if(new_color)
+			appendage_color = new_color
+	if(choice == "Functionality") //Easy way to set color so we don't bloat up the menu with even more buttons.
+		var/choice2 = tgui_alert(usr, "Choose if you want to be pulled to the target or pull them to you!", "Functionality Setting", list("Pull target to self", "Pull self to target"))
+		if(choice2 == "Pull target to self")
+			appendage_alt_setting = 0
+		else
+			appendage_alt_setting = 1
+	else
+		var/list/targets = list() //IF IT IS NOT BROKEN. DO NOT FIX IT.
+
+		for(var/mob/living/L in range(5, src))
+			if(!istype(L, /mob/living)) //Don't eat anything that isn't mob/living. Failsafe.
+				continue
+			if(L == src) //no eating yourself. 1984.
+				continue
+			if(L.devourable && L.throw_vore && (L.can_be_drop_pred || L.can_be_drop_prey))
+				targets += L
+
+		if(!(targets.len))
+			to_chat(src, "<span class='notice'>No eligible targets found.</span>")
+			return
+
+		var/mob/living/target = tgui_input_list(src, "Please select a target.", "Victim", targets)
+
+		if(!target)
+			return
+
+		if(!istype(target, /mob/living)) //Safety.
+			to_chat(src, "<span class='warning'>You need to select a living target!</span>")
+			return
+
+		if (get_dist(src,target) >= 6)
+			to_chat(src, "<span class='warning'>You need to be closer to do that.</span>")
+			return
+
+		visible_message("<span class='notice'>\The [src] attempts to snatch up [target]!</span>", \
+						"<span class='notice'>You attempt to snatch up [target]!</span>" )
+		playsound(src, 'sound/vore/sunesound/pred/schlorp.ogg', 25)
+
+		//Code to shoot the beam here.
+		var/obj/item/projectile/beam/appendage/appendage_attack = new /obj/item/projectile/beam/appendage(get_turf(loc))
+		appendage_attack.launch_projectile(target, BP_TORSO, src) //Send it.
+		last_special = world.time + 100 //Cooldown for successful strike.
+
+
+
+
+/obj/item/projectile/beam/appendage //The tongue projecitle.
+	name = "appendage"
+	icon_state = "laser"
+	nodamage = 1
+	damage = 0
+	eyeblur = 0
+	check_armour = "bullet" //Not really needed, but whatever.
+	can_miss = FALSE //Let's not miss our tongue!
+	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
+	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
+	excavation_amount = 0
+	hitscan_light_intensity = 0
+	hitscan_light_range = 0
+	muzzle_flash_intensity = 0
+	muzzle_flash_range = 0
+	impact_light_intensity = 0
+	impact_light_range  = 0
+	light_range = 0 //No your tongue can not glow...For now.
+	light_power = 0
+	light_on = 0 //NO LIGHT
+	combustion = FALSE //No, your tongue can't set the room on fire.
+	pass_flags = PASSTABLE
+
+	muzzle_type = /obj/effect/projectile/muzzle/appendage
+	tracer_type = /obj/effect/projectile/tracer/appendage
+	impact_type = /obj/effect/projectile/impact/appendage
+
+/obj/item/projectile/beam/appendage/generate_hitscan_tracers()
+	if(firer) //This neat little code block allows for C O L O R A B L E tongues! Correction: 'Appendages'
+		if(istype(firer,/mob/living))
+			var/mob/living/originator = firer
+			color = originator.appendage_color
+	..()
+
+/obj/item/projectile/beam/appendage/on_hit(var/atom/target)
+	if(target == firer) //NO EATING YOURSELF
+		return
+	if(istype(target, /mob/living))
+		var/mob/living/M = target
+		var/throw_range = get_dist(firer,M)
+		if(istype(firer, /mob/living)) //Let's check for any alt settings. Such as: User selected to be thrown at target.
+			var/mob/living/F = firer
+			if(F.appendage_alt_setting == 1)
+				F.throw_at(M, throw_range, firer.throw_speed, F) //Firer thrown at target.
+				F.updateicon()
+				return
+		if(istype(M))
+			M.throw_at(firer, throw_range, M.throw_speed, firer) //Fun fact: living things have a throw_speed of 2.
+			M.updateicon()
+			return
+		else //Anything that isn't a /living
+			return
+	if(istype(target, /obj/item/)) //We hit an object? Pull it. This can only happen via admin shenanigans such as a gun being VV'd with this projectile.
+		var/obj/item/hit_object = target
+		if(hit_object.density || hit_object.anchored)
+			if(istype(firer, /mob/living))
+				var/mob/living/originator = firer
+				originator.Weaken(2) //If you hit something dense or anchored, fall flat on your face.
+				originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
+								"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+				playsound(originator, "punch", 25, 1, -1)
+			return
+		else
+			hit_object.throw_at(firer, throw_range, hit_object.throw_speed, firer)
+	if(istype(target, /turf/simulated/wall) || istype(target, /obj/machinery/door) || istype(target, /obj/structure/window)) //This can happen normally due to odd terrain. For some reason, it seems to not actually interact with walls.
+		if(istype(firer, /mob/living))
+			var/mob/living/originator = firer
+			originator.Weaken(2) //Hit a wall? Whoops!
+			originator.visible_message("<span class='warning'>\The [originator] trips over their self and falls flat on their face!</span>", \
+							"<span class='warning'>You trip over yourself and fall flat on your face!</span>" )
+			playsound(originator, "punch", 25, 1, -1)
+			return
+		else
+			return
+
+
+
+/obj/effect/projectile/muzzle/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "muzzle_appendage"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00"
+
+/obj/effect/projectile/tracer/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "appendage_beam"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00" //Doesn't matter. Not used.
+
+/obj/effect/projectile/impact/appendage
+	icon = 'icons/obj/projectiles_vr.dmi'
+	icon_state = "impact_appendage_combined"
+	light_range = 0
+	light_power = 0
+	light_color = "#FF0D00"
+//LONG VORE ABILITY END
+
+/obj/item/weapon/gun/energy/gun/tongue //This is the 'tongue' gun for admin memery.
+	name = "tongue"
+	desc = "A tongue that can be used to grab things."
+	icon = 'icons/mob/dogborg_vr.dmi'
+	icon_state = "synthtongue"
+	item_state = "gun"
+	fire_delay = null
+	force = 0
+	fire_delay = 1 //Adminspawn. No delay.
+	charge_cost = 0 //This is an adminspawn gun...No reason to force it to have a charge state.
+
+	projectile_type = /obj/item/projectile/beam/appendage
+	cell_type = /obj/item/weapon/cell/device/weapon/recharge
+	battery_lock = 1
+	modifystate = null
+
+
+	firemodes = list(
+		list(mode_name="vore", projectile_type=/obj/item/projectile/beam/appendage, modifystate=null, fire_sound='sound/vore/sunesound/pred/schlorp.ogg', charge_cost = 0),)
+
+/obj/item/weapon/gun/energy/gun/tongue/update_icon() //No updating the icon.
+	icon_state = "synthtongue"
+	return
+
+/obj/item/weapon/gun/energy/bfgtaser/tongue
+	name = "9000-series Ball Tongue Taser"
+	desc = "A banned riot control device."
+	slot_flags = SLOT_BELT|SLOT_BACK
+	projectile_type = /obj/item/projectile/bullet/BFGtaser/tongue
+	fire_delay = 20
+	w_class = ITEMSIZE_LARGE
+	one_handed_penalty = 90 // The thing's heavy and huge.
+	accuracy = 45
+	charge_cost = 2400 //yes, this bad boy empties an entire weapon cell in one shot. What of it?
+
+/obj/item/projectile/bullet/BFGtaser/tongue
+	name = "tongue ball"
+	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
+	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
+	zaptype = /obj/item/projectile/beam/appendage

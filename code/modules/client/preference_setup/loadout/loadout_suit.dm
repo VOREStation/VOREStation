@@ -192,6 +192,11 @@
 	path = /obj/item/clothing/suit/storage/apron/overalls
 	cost = 1
 
+/datum/gear/suit/altevian_apron
+	display_name = "crafters pride apron"
+	path = /obj/item/clothing/suit/storage/apron/altevian
+	cost = 1
+
 /datum/gear/suit/cyberpunk
 	display_name = "cyberpunk jacket"
 	path = /obj/item/clothing/suit/cyberpunk
@@ -398,7 +403,7 @@
 /datum/gear/suit/wintercoat/medical/para
 	display_name = "winter coat, paramedic"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/para
-	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic")
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Paramedic","Field Medic")
 
 /datum/gear/suit/wintercoat/medical/chemist
 	display_name = "winter coat, chemist"
@@ -413,7 +418,7 @@
 /datum/gear/suit/wintercoat/medical/sar
 	display_name = "winter coat, search and rescue"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/medical/sar
-	allowed_roles = list("Chief Medical Officer", "Field Medic")
+	allowed_roles = list("Chief Medical Officer","Paramedic","Field Medic")
 
 /datum/gear/suit/wintercoat/science
 	display_name = "winter coat, science"
@@ -625,7 +630,7 @@
 
 /datum/gear/suit/cmddressjacket
 	display_name = "command dress jacket"
-	path = /obj/item/clothing/suit/storage/cmddressjacket
+	path = /obj/item/clothing/suit/storage/toggle/cmddressjacket
 	allowed_roles = list("Site Manager", "Head of Personnel", "Command Secretary")
 
 /datum/gear/suit/miscellaneous/kimono

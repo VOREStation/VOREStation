@@ -74,17 +74,6 @@
 		"gal'h'rfikk", "harfrandid", "mud'gib", "il", "fuu", "ma'jin", "dedo", "ol'btoh", "n'ath", "reth", "sh'yro", "eth", \
 		"d'rekkathnor", "khari'd", "gual'te", "nikka", "nikt'o", "barada", "kla'atu", "barhah", "hra" ,"zar'garis", "spiri", "malum")
 
-/datum/language/cult
-	name = LANGUAGE_OCCULT
-	desc = "The initiated can share their thoughts by means defying all reason."
-	speech_verb = "intones"
-	ask_verb = "intones"
-	exclaim_verb = "chants"
-	colour = "cult"
-	key = "y"
-	machine_understands = 0
-	flags = RESTRICTED | HIVEMIND
-
 /datum/language/xenocommon
 	name = "Xenomorph"
 	colour = "alien"
@@ -142,32 +131,6 @@
 	syllables = list("rus","zem","ave","groz","ski","ska","ven","konst","pol","lin","svy",
 	"danya","da","mied","zan","das","krem","myka","cyka","blyat","to","st","no","na","ni",
 	"ko","ne","en","po","ra","li","on","byl","cto","eni","ost","ol","ego","ver","stv","pro")
-
-//For your event purposes.
-/datum/language/occursus
-	name = LANGUAGE_EVENT1
-	desc = "The Powers That Be have seen it fit to grace you with a special language that sounds like... something. This description should be overridden by the time you see this."
-	speech_verb = "says"
-	ask_verb = "asks"
-	exclaim_verb = "shouts"
-	colour = "warning"
-	key = "]"
-	flags = RESTRICTED
-	syllables = list("chan","ange","thi","se")
-
-//Bloblang.
-/datum/language/blob
-	name = LANGUAGE_BLOB
-	desc = "The massive processing power of the Blob's core gives the overmind finely tuned abilities to transmit messages to nearby life-forms through chemical signals."
-	speech_verb = "resonates"
-	ask_verb = "reverberates"
-	exclaim_verb = "shudders"
-	colour = "blob"
-	key = "}"
-	machine_understands = TRUE
-	flags = RESTRICTED
-
-	syllables = list("^", "˅", "-", "°", "~")
 
 /datum/language/corticalborer/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 

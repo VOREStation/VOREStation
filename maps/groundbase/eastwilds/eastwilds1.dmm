@@ -2,6 +2,10 @@
 "a" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/submap/groundbase/wilderness/east)
+"b" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/submap/groundbase/wilderness/east/unexplored)
 "c" = (
 /turf/simulated/mineral/cave/virgo3c,
 /area/submap/groundbase/wilderness/east)
@@ -10,6 +14,16 @@
 	dir = 4
 	},
 /turf/simulated/floor/water/virgo3c,
+/area/submap/groundbase/wilderness/east)
+"e" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/wilderness/east/unexplored)
+"f" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/water/virgo3c{
+	outdoors = 0
+	},
 /area/submap/groundbase/wilderness/east)
 "l" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
@@ -42,7 +56,7 @@
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "y" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "B" = (
 /obj/effect/landmark{
@@ -3332,7 +3346,7 @@ r
 r
 r
 Q
-Q
+f
 Q
 Q
 U
@@ -3444,7 +3458,7 @@ Z
 Z
 V
 V
-F
+e
 F
 F
 F
@@ -13456,7 +13470,7 @@ r
 F
 F
 F
-l
+b
 l
 l
 l
@@ -13665,7 +13679,7 @@ Z
 V
 V
 F
-F
+e
 F
 F
 l
@@ -13704,7 +13718,7 @@ r
 Q
 Q
 Q
-Q
+f
 Q
 Q
 Q

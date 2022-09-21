@@ -28,3 +28,6 @@
 
 /datum/alt_title/master_at_arms
 	title = "Master-at-Arms"
+
+/datum/job/pilot/get_request_reasons()
+	return list("Moving Stellar Delight")

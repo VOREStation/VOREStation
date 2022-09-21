@@ -119,18 +119,19 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 /datum/weather_holder/virgo3c
 	temperature = T0C
 	allowed_weather_types = list(
-		WEATHER_CLEAR		= new /datum/weather/virgo3c/clear(),
-		WEATHER_OVERCAST	= new /datum/weather/virgo3c/overcast(),
-		WEATHER_LIGHT_SNOW	= new /datum/weather/virgo3c/light_snow(),
-		WEATHER_SNOW		= new /datum/weather/virgo3c/snow(),
-		WEATHER_BLIZZARD	= new /datum/weather/virgo3c/blizzard(),
-		WEATHER_RAIN		= new /datum/weather/virgo3c/rain(),
-		WEATHER_STORM		= new /datum/weather/virgo3c/storm(),
-		WEATHER_HAIL		= new /datum/weather/virgo3c/hail(),
-		WEATHER_BLOOD_MOON	= new /datum/weather/virgo3c/blood_moon(),
-		WEATHER_EMBERFALL	= new /datum/weather/virgo3c/emberfall(),
-		WEATHER_ASH_STORM	= new /datum/weather/virgo3c/ash_storm(),
-		WEATHER_FALLOUT		= new /datum/weather/virgo3c/fallout()
+		WEATHER_CLEAR			= new /datum/weather/virgo3c/clear(),
+		WEATHER_OVERCAST		= new /datum/weather/virgo3c/overcast(),
+		WEATHER_LIGHT_SNOW		= new /datum/weather/virgo3c/light_snow(),
+		WEATHER_SNOW			= new /datum/weather/virgo3c/snow(),
+		WEATHER_BLIZZARD		= new /datum/weather/virgo3c/blizzard(),
+		WEATHER_RAIN			= new /datum/weather/virgo3c/rain(),
+		WEATHER_STORM			= new /datum/weather/virgo3c/storm(),
+		WEATHER_HAIL			= new /datum/weather/virgo3c/hail(),
+		WEATHER_BLOOD_MOON		= new /datum/weather/virgo3c/blood_moon(),
+		WEATHER_EMBERFALL		= new /datum/weather/virgo3c/emberfall(),
+		WEATHER_ASH_STORM		= new /datum/weather/virgo3c/ash_storm(),
+		WEATHER_ASH_STORM_SAFE	= new /datum/weather/virgo3c/ash_storm_safe(),
+		WEATHER_FALLOUT			= new /datum/weather/virgo3c/fallout()
 		)
 	roundstart_weather_chances = list(
 		WEATHER_CLEAR		= 50,
@@ -147,11 +148,11 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 /datum/weather/virgo3c/clear
 	name = "clear"
 	transition_chances = list(
-		WEATHER_CLEAR = 60,
-		WEATHER_OVERCAST = 20,
-		WEATHER_LIGHT_SNOW = 1,
-		WEATHER_BLOOD_MOON = 1,
-		WEATHER_EMBERFALL = 0.5)
+		WEATHER_CLEAR = 120,
+		WEATHER_OVERCAST = 40,
+		WEATHER_LIGHT_SNOW = 2,
+		WEATHER_BLOOD_MOON = 2,
+		WEATHER_EMBERFALL = 1)
 	transition_messages = list(
 		"The sky clears up.",
 		"The sky is visible.",
@@ -475,6 +476,30 @@ var/datum/planet/virgo3c/planet_virgo3c = null
 			L.inflict_heat_damage(1)
 			to_chat(L, "<span class='warning'>Smoldering ash singes you!</span>")
 
+
+
+//A non-lethal variant of the ash_storm. Stays on indefinitely.
+/datum/weather/virgo3c/ash_storm_safe
+	name = "light ash storm"
+	icon_state = "ashfall_moderate"
+	light_modifier = 0.1
+	light_color = "#FF0000"
+	temp_high = 313.15	// 40c
+	temp_low = 303.15	// 30c
+	wind_high = 6
+	wind_low = 3
+	flight_failure_modifier = 50
+	transition_chances = list(
+		WEATHER_ASH_STORM_SAFE = 100
+		)
+	observed_message = "All that can be seen is black smoldering ash."
+	transition_messages = list(
+		"Smoldering clouds of scorching ash billow down around you!"
+	)
+	// Lets recycle.
+	outdoor_sounds_type = /datum/looping_sound/weather/outside_blizzard
+	indoor_sounds_type = /datum/looping_sound/weather/inside_blizzard
+
 // Totally radical.
 /datum/weather/virgo3c/fallout
 	name = "fallout"
@@ -543,6 +568,7 @@ VIRGO3C_TURF_CREATE(/turf/simulated/floor/reinforced)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/glass/reinforced)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/tiled/dark)
 VIRGO3C_TURF_CREATE(/turf/simulated/mineral)
+VIRGO3C_TURF_CREATE(/turf/simulated/mineral/ignore_cavegen)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/wood)
 VIRGO3C_TURF_CREATE(/turf/simulated/floor/wood/sif)

@@ -5,7 +5,6 @@
 //
 //Casino Manual - NEEDS EDITING
 //
-
 /obj/item/weapon/book/manual/casino
 	name = "A dummy guide to losing your thalers"
 	icon = 'icons/obj/casino.dmi'
@@ -121,141 +120,12 @@
 
 				EXCHANGE RATE <br>
 				FROM	=	TO <br>
-				5 Thalers = 1 casino chip <br>
-				1 casino chip = 5 Thalers <br> <br>
+				1 Thaler = 1 casino chip <br>
+				1 casino chip = 1 Thaler <br> <br>
 
-				The special sentient prize is 100 chips! More about it in section below! <br> <br>
+				The special sentient prize is 200 chips! More about it in section below! <br> <br>
 
-				Melee weapons
-				<ul>
-					<li>scepter 500</li>
-					<li>chain of command	250</li>
-				</ul>
-				Guns and 'guns' ((disclaimer, giving out guns will mean you get a weapons license as well with the shifts you have it, abusing these weapons will quickly get them removed!))
-				<ul>
-					<li>sizegun 100</li>
-					<li>advanced anti particle rifle 500</li>
-					<li>temperature gun 250</li>
-					<li>alien pistol 1000</li>
-					<li>floral somatoray 250</li>
-					<li>net gun 500</li>
-				</ul>
-				Gear
-				<ul>
-					<li>experimental welder 500</li>
-					<li>alien belt 750</li>
-					<li>alien enhancement vest 750</li>
-					<li>The monocoole 1000</li>
-					<li>chameleon black tie 250</li>
-					<li>cryostasis beaker 200</li>
-					<li>bluespace beaker 200</li>
-					<li>chem sprayer 250</li>
-				</ul>
-				Masks and hats - EVERYTHING IS 50 except chameleon!
-				<ul>
-					<li>assistant hat</li>
-					<li>Shark mask</li>
-					<li>Pig mask</li>
-					<li>Luchador mask</li>
-					<li>Horse mask</li>
-					<li>Goblin mask</li>
-					<li>Fake moustache</li>
-					<li>Dolphin mask</li>
-					<li>Demon mask</li>
-					<li>Chameleon gas mask 250</li>
-				</ul>
-				Costumes - All costumes are 100 except the hoodies which are 50!
-				<ul>
-					<li>Black bunny girl outfit (black suit and rabbit ears)</li>
-					<li>White bunny girl outfit (white suit and rabbit ears)</li>
-					<li>Corgi hoodie</li>
-					<li>Sexy clown</li>
-					<li>nyan girl</li>
-					<li>Wizard</li>
-					<li>Chicken</li>
-					<li>Carp hoodie</li>
-					<li>Sexy mime</li>
-					<li>Pirate</li>
-					<li>Commie</li>
-					<li>Plague doctor</li>
-					<li>Imperium monk</li>
-					<li>Cute witch</li>
-					<li>Gladiator</li>
-				</ul>
-				Toys and misc - ALL THESE ARE 50
-				<ul>
-					<li>Toy sword</li>
-					<li>Water flower</li>
-					<li>Stick horse</li>
-					<li>Replica katana</li>
-					<li>Magic conch</li>
-					<li>Magic 8-ball</li>
-					<li>Foam sword</li>
-					<li>Foam crossbow (with 5 bolts)</li>
-					<li>Bosun's whistle</li>
-					<li>Golden cup</li>
-					<li>Havana cigar case</li>
-					<li>Casino wallet (to keep after shift)</li>
-					<li>Casino card deck (to keep after shift)</li>
-				</ul>
-				Booze - ALL BOOZE IS 50
-				<ul>
-					<li>Redeemer brew</li>
-					<li>Warlock velvet</li>
-					<li>Wrapp artiste patron</li>
-					<li>Flask of holy water</li>
-					<li>College girl goldschlager</li>
-					<li>Gilthari luxury champagne</li>
-					<li>Bottle of nothing</li>
-					<li>Special blend whiskey</li>
-					<li>Akvavit</li>
-				</ul>
-				Pets
-				<ul>
-					<li>Armadillo 150</li>
-					<li>Cat 150</li>
-					<li>Goat 150</li>
-					<li>Fox 150</li>
-					<li>Lizard 150</li>
-					<li>Penguin 150</li>
-					<li>Goose 200</li>
-					<li>Chicken 200</li>
-					<li>Cow 200</li>
-					<li>Corgi 200</li>
-					<li>Snake 200</li>
-					<li>Yithian 200</li>
-					<li>Tindalos 200</li>
-					<li>Fennec 300</li>
-					<li>Red Panda 300</li>
-					<li>Horse 300</li>
-					<li>Otie 500</li>
-					<li>Chonker Otie 500</li>
-					<li>Zorgoia 500</li>
-				</ul>
-				Mechs
-				<ul>
-					<li>Mining Ripley 1000</li>
-					<li>Firefighter Ripley 750</li>
-					<li>Serenity 1500</li>
-					<li>Odysseus 1250</li>
-					<li>Phazon Scuttlebug 2000</li>
-					<li>Phazon Janus 3500</li>
-					<li>Scarab 500</li>
-					<li>Shuttlepod 250</li>
-					<li>´Shuttlecraft 500</li>
-				</ul>
-				Implants
-				<ul>
-					<li>Implanter 100 (A basic empty implanter, you are going to need this to implant yourself with cyberntic augments)</li>
-					<li>Implant: Tazer 1000 (A cybernetic implant that allows one to spawn a personal defense taser)</li>
-					<li>Implant: Medkit 500 (A cybernetic implant that allows you to spawn all the tools needed for surgery)</li>
-					<li>Implant: Shades 750 (A cybernetic implant that will spawn protective thermoshades upon your eyes, AR included!)</li>
-					<li>Implant: Sprinter 1500 (A cybernetic implant that will give you that extra kick of energy to run faster!)</li>
-					<li>Implant: Toolkit 500 (A cybernetic implant that allows you to spawn all the tools needed for engineering)</li>
-					<li>Implant: Language 1000 (A cybernetic implant that allows you to understand almost all languages)</li>
-					<li>Implant: Analyzer 500 (A cybernetic implant that allows one to spawn a Portable Resonant Analyzer for any science needs)</li>
-					<li>Implant: Size Control 500 (A cybernetic implant that allows one to change the size of others via specific voice commands)</li>
-				</ul>
+				This section was outdated, someone better write it.
 
 				Thats it for prizes! <br><br>
 

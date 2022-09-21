@@ -36,3 +36,6 @@
 
 /obj/item/weapon/storage/box/brainzsnax/red
 	starts_with = list(/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
+
+/obj/item/weapon/storage/box/freezer
+	can_hold = list(/obj/item/organ, /obj/item/weapon/reagent_containers/blood, /obj/item/weapon/reagent_containers/glass, /obj/item/weapon/reagent_containers/food)

@@ -140,7 +140,7 @@
 					N.gender = H.gender
 					N.identifying_gender = H.identifying_gender
 				else
-					new_mob.gender = H.identifying_gender
+					new_mob.gender = H.gender
 			else
 				new_mob.gender = M.gender
 				if(ishuman(new_mob))
@@ -230,9 +230,13 @@
 	new_mob.allowmobvore = allowmobvore
 	new_mob.permit_healbelly = permit_healbelly
 	new_mob.noisy = noisy
+	new_mob.selective_preference = selective_preference
+	new_mob.appendage_color = appendage_color
+	new_mob.appendage_alt_setting = appendage_alt_setting
 	new_mob.drop_vore = drop_vore
 	new_mob.stumble_vore = stumble_vore
 	new_mob.slip_vore = slip_vore
+	new_mob.throw_vore = throw_vore
 	new_mob.resizable = resizable
 	new_mob.show_vore_fx = show_vore_fx
 	new_mob.step_mechanics_pref = step_mechanics_pref
@@ -268,6 +272,22 @@
 	tf_admin_pref_override = FALSE
 
 /obj/item/projectile/beam/mouselaser/reversion/on_hit(var/atom/target)
+	if(istype(target,/obj/item)) //Are we shooting an item?
+		var/obj/item/O = target
+		if(O.possessed_voice.len) //Does the object have a voice? AKA, if someone inhabiting it?
+			for(var/mob/living/M in O.possessed_voice)
+				if(M.tf_mob_holder) //Is this item possessed by IC methods?
+					if(istype(M.loc, /obj/item/clothing)) //Are they in clothes? Delete the item then revert them.
+						qdel(O)
+						M.revert_mob_tf() //Voices can't eat, so this is the least intensive way to revert them.
+					else
+						M.forceMove(get_turf(O)) //Non-clothing items require a bit extra work since they don't drop contents when qdeleted.
+						qdel(O)
+						M.revert_mob_tf()
+				else
+					continue //In case they have multiple voices through adminbus.
+		else
+			return
 	var/mob/living/M = target
 	if(!istype(M))
 		return

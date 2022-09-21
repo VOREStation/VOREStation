@@ -255,13 +255,7 @@
 
 		M.clean_blood()
 
-	if(isturf(loc))
-		var/turf/tile = loc
-		for(var/obj/effect/E in tile)
-			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				qdel(E)
-
-	reagents.splash(O, 10)
+	reagents.splash(O, 10, min_spill = 0, max_spill = 0)
 
 /obj/machinery/shower/process()
 	if(!on) return
@@ -275,11 +269,10 @@
 	reagents.add_reagent("water", reagents.get_free_space())
 
 /obj/machinery/shower/proc/wash_floor()
-	if(!ismist && is_washing)
+	if(is_washing)
 		return
 	is_washing = 1
 	var/turf/T = get_turf(src)
-	reagents.splash(T, reagents.total_volume)
 	T.clean(src)
 	spawn(100)
 		is_washing = 0

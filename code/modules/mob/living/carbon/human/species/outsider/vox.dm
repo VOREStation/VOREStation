@@ -45,6 +45,7 @@
 
 	breath_type = "phoron"
 	poison_type = "oxygen"
+	ideal_air_type = /datum/gas_mixture/belly_air/vox
 	siemens_coefficient = 0.2
 
 	flags = NO_SCAN | NO_DEFIB
@@ -110,6 +111,3 @@
 	H.internal = locate(/obj/item/weapon/tank) in H.contents
 	if(istype(H.internal,/obj/item/weapon/tank) && H.internals)
 		H.internals.icon_state = "internal1"
-
-/datum/species/vox/get_perfect_belly_air_type()
-	return /datum/gas_mixture/belly_air/vox

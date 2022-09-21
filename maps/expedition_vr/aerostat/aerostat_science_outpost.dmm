@@ -22,6 +22,18 @@
 "ac" = (
 /turf/simulated/shuttle/wall/voidcraft/green/virgo2,
 /area/offmap/aerostat/inside/arm/nw)
+"ad" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/bluegrid,
+/area/offmap/aerostat/inside/powercontrol)
 "ae" = (
 /obj/effect/floor_decal/industrial/warning/dust{
 	dir = 9
@@ -40,6 +52,18 @@
 	},
 /turf/simulated/floor/plating/virgo2,
 /area/offmap/aerostat/solars)
+"ag" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/bluegrid,
+/area/offmap/aerostat/inside/powercontrol)
 "ah" = (
 /obj/structure/table/reinforced,
 /obj/machinery/recharger/wallcharger{
@@ -56,6 +80,13 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/firingrange)
+"ai" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/bluegrid,
+/area/offmap/aerostat/inside/powercontrol)
 "aj" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
 	id_tag = "anomaly_airlock_pump";
@@ -86,6 +117,13 @@
 	},
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/airlock/south)
+"am" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/structure/cable/heavyduty{
+	icon_state = "4-8"
+	},
+/turf/simulated/floor/bluegrid,
+/area/offmap/aerostat/inside/powercontrol)
 "an" = (
 /obj/machinery/atmospherics/pipe/simple/insulated{
 	dir = 5
@@ -1942,8 +1980,8 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenobiolab)
@@ -2261,7 +2299,7 @@
 	name = "Telescience"
 	},
 /obj/machinery/door/blast/regular/open{
-	id = telesci_blast;
+	id = "telesci_blast";
 	name = "Blast Door"
 	},
 /turf/simulated/floor/reinforced,
@@ -2382,7 +2420,7 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	id = telesci_blast;
+	id = "telesci_blast";
 	name = "Blast Door"
 	},
 /turf/simulated/floor/reinforced,
@@ -2476,24 +2514,6 @@
 /obj/machinery/atmospherics/unary/vent_pump/on,
 /turf/simulated/floor/tiled/techfloor,
 /area/offmap/aerostat/inside/northchamb)
-"hq" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/heavyduty{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/heavyduty{
-	icon_state = "0-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 10
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 9
-	},
-/turf/simulated/floor/bluegrid,
-/area/offmap/aerostat/inside/powercontrol)
 "hs" = (
 /obj/structure/sign/poster{
 	dir = 4;
@@ -2732,14 +2752,14 @@
 /area/offmap/aerostat/inside/airlock/east)
 "iz" = (
 /obj/machinery/door/airlock/glass_research{
-	name = "Xenobiology";
-	id_tag = "xenobio"
+	id_tag = "xenobio";
+	name = "Xenobiology"
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
 	dir = 1
@@ -3419,8 +3439,8 @@
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/structure/disposalpipe/segment,
 /turf/simulated/floor/tiled,
@@ -5490,7 +5510,7 @@
 /obj/structure/grille,
 /obj/structure/window/reinforced/full,
 /obj/machinery/door/blast/regular/open{
-	id = telesci_blast;
+	id = "telesci_blast";
 	name = "Blast Door"
 	},
 /turf/simulated/floor/reinforced,
@@ -5721,7 +5741,7 @@
 /obj/machinery/camera/network/research_outpost{
 	dir = 4
 	},
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -5751,7 +5771,7 @@
 /area/offmap/aerostat/inside/drillstorage)
 "uK" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -6744,23 +6764,12 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/structure/cable,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/xenobiolab)
-"yZ" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/heavyduty{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/heavyduty,
-/obj/machinery/atmospherics/pipe/simple/hidden/supply,
-/turf/simulated/floor/bluegrid,
-/area/offmap/aerostat/inside/powercontrol)
 "zb" = (
 /obj/structure/cable{
 	icon_state = "4-8"
@@ -7473,24 +7482,6 @@
 	},
 /turf/simulated/shuttle/wall/voidcraft/green,
 /area/offmap/aerostat/inside/airlock/east)
-"BO" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/heavyduty{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/heavyduty{
-	icon_state = "0-2"
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/supply{
-	dir = 5
-	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 6
-	},
-/turf/simulated/floor/bluegrid,
-/area/offmap/aerostat/inside/powercontrol)
 "BP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden{
 	dir = 4
@@ -8737,7 +8728,7 @@
 /obj/structure/cable{
 	icon_state = "1-2"
 	},
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -9228,7 +9219,7 @@
 	dir = 8;
 	pixel_x = -22
 	},
-/obj/machinery/mining/drill,
+/obj/machinery/mining/drill/loaded,
 /obj/effect/floor_decal/industrial/outline/yellow,
 /turf/simulated/floor/tiled,
 /area/offmap/aerostat/inside/drillstorage)
@@ -9342,6 +9333,9 @@
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/airlock/maintenance/rnd{
 	req_one_access = null
+	},
+/obj/structure/cable/heavyduty{
+	icon_state = "1-2"
 	},
 /turf/simulated/floor/tiled/steel_ridged,
 /area/offmap/aerostat/inside/arm/se)
@@ -9632,7 +9626,7 @@
 /area/shuttle/aerostat)
 "Kv" = (
 /obj/machinery/button/remote/blast_door{
-	id = telesci_blast;
+	id = "telesci_blast";
 	name = "Blast Door Control";
 	pixel_x = 25
 	},
@@ -11958,17 +11952,6 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/xenoarch)
-"Um" = (
-/obj/structure/cable/heavyduty{
-	icon_state = "0-8"
-	},
-/obj/structure/cable/heavyduty{
-	icon_state = "0-4"
-	},
-/obj/structure/cable/heavyduty,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
-/turf/simulated/floor/bluegrid,
-/area/offmap/aerostat/inside/powercontrol)
 "Uo" = (
 /turf/simulated/floor/tiled/white,
 /area/offmap/aerostat/inside/virology)
@@ -12595,8 +12578,8 @@
 	},
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/regular/open{
-	name = "Xenobiology Emergency Blast Door";
-	id = "xenobio_blast"
+	id = "xenobio_blast";
+	name = "Xenobiology Emergency Blast Door"
 	},
 /obj/structure/cable,
 /obj/machinery/shieldwallgen{
@@ -23037,8 +23020,8 @@ BG
 Az
 aJ
 Hz
-hq
-yZ
+ad
+ai
 nL
 lO
 GB
@@ -23747,8 +23730,8 @@ Kj
 GB
 aP
 nL
-BO
-Um
+ag
+am
 EQ
 yk
 GB
