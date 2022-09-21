@@ -155,11 +155,7 @@
 		bound_height = width * world.icon_size
 
 /obj/structure/door_assembly/proc/rename_door(mob/living/user)
-<<<<<<< HEAD
-	var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the windoor.", src.name, src.created_name, MAX_NAME_LEN), MAX_NAME_LEN)
-=======
-	var/t = sanitizeSafe(input(user, "Enter the name for the [base_name].", src.name, src.created_name), MAX_NAME_LEN)
->>>>>>> 593c87c505a... Merge pull request #8698 from Atermonera/airlock_assy_base_name
+	var/t = sanitizeSafe(tgui_input_text(user, "Enter the name for the [base_name].", src.name, src.created_name, MAX_NAME_LEN), MAX_NAME_LEN)
 	if(!in_range(src, user) && src.loc != user)	return
 	created_name = t
 	update_state()
