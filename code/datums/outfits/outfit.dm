@@ -57,6 +57,7 @@ var/list/outfits_decls_by_type_
 	var/satchel_two  = /obj/item/weapon/storage/backpack/satchel
 	var/messenger_bag = /obj/item/weapon/storage/backpack/messenger
 	var/sports_bag = /obj/item/weapon/storage/backpack/sport
+	var/satchel_three = /obj/item/weapon/storage/backpack/satchel/strapless
 	var/rucksack_black = /obj/item/weapon/storage/backpack/rucksack
 	var/rucksack_blue = /obj/item/weapon/storage/backpack/rucksack/blue
 	var/rucksack_green = /obj/item/weapon/storage/backpack/rucksack/green
