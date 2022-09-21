@@ -258,7 +258,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 1
 	produces_heat = 0
-	circuit = /obj/item/circuitboard/telecomms/receiver
+	circuit = /obj/item/weapon/circuitboard/telecomms/receiver
 	//Vars only used if you're using the overmap
 	var/overmap_range = 0
 	var/overmap_range_min = 0
@@ -293,7 +293,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 /obj/machinery/telecomms/receiver/proc/check_receive_level(datum/signal/signal)
 	// If it's a direct message from a bluespace radio, we eat it and convert it into a subspace signal locally
 	if(signal.transmission_method == TRANSMISSION_BLUESPACE)
-		var/obj/item/radio/R = signal.data["radio"]
+		var/obj/item/device/radio/R = signal.data["radio"]
 
 		//Who're you?
 		if(!(weakref(R) in linked_radios_weakrefs))
@@ -341,7 +341,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 1600
 	machinetype = 7
-	circuit = /obj/item/circuitboard/telecomms/hub
+	circuit = /obj/item/weapon/circuitboard/telecomms/hub
 	long_range_link = 1
 	netspeed = 40
 
@@ -430,7 +430,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 1000
 	machinetype = 2
-	circuit = /obj/item/circuitboard/telecomms/bus
+	circuit = /obj/item/weapon/circuitboard/telecomms/bus
 	netspeed = 40
 	var/change_frequency = 0
 
@@ -483,7 +483,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	idle_power_usage = 600
 	machinetype = 3
 	delay = 5
-	circuit = /obj/item/circuitboard/telecomms/processor
+	circuit = /obj/item/weapon/circuitboard/telecomms/processor
 	var/process_mode = 1 // 1 = Uncompress Signals, 0 = Compress Signals
 
 /obj/machinery/telecomms/processor/receive_information(datum/signal/signal, obj/machinery/telecomms/machine_from)
@@ -520,7 +520,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 	use_power = USE_POWER_IDLE
 	idle_power_usage = 300
 	machinetype = 4
-	circuit = /obj/item/circuitboard/telecomms/server
+	circuit = /obj/item/weapon/circuitboard/telecomms/server
 	var/list/log_entries = list()
 	var/list/stored_names = list()
 	var/list/TrafficActions = list()
