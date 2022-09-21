@@ -56,7 +56,6 @@
 	build_path = /obj/item/device/depth_scanner
 	sort_string = "FBAAA"
 
-<<<<<<< HEAD
 /datum/design/item/weapon/mining/upgradeAOE
 	name = "Mining Explosion Upgrade"
 	desc = "An area of effect upgrade for the Proto-Kinetic Accelerator."
@@ -65,7 +64,7 @@
 	materials = list(MAT_STEEL = 5000, MAT_GLASS = 5000, MAT_SILVER = 500, MAT_GOLD = 500, MAT_URANIUM = 2000, MAT_PHORON = 2000)
 	build_path = /obj/item/borg/upgrade/modkit/aoe/turfs
 	sort_string = "FAAF"
-=======
+
 /datum/design/item/mining/pick_set
 	desc = "A rugged case containing a set of standardized picks used in archaeological digs."
 	id = "pick_set"
@@ -73,4 +72,3 @@
 	materials = list(MAT_STEEL = 1700,"glass" = 200)
 	build_path = /obj/item/storage/excavation
 	sort_string = "FBAAB"
->>>>>>> d841b1452fe... Xenoarchaeology sprites n sounds (#8666)
