@@ -107,20 +107,12 @@
 		/obj/item/clothing/suit/storage/toggle/fr_jacket,
 		/obj/item/clothing/suit/storage/toggle/labcoat/emt,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/medical/para,
-<<<<<<< HEAD
+		/obj/item/clothing/shoes/boots/winter/medical,
 		/obj/item/device/radio/headset/headset_med/alt,
 		/obj/item/weapon/cartridge/medical,
 		/obj/item/weapon/storage/briefcase/inflatable,
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/emergency/oxygen/engi,
-=======
-		/obj/item/clothing/shoes/boots/winter/medical,
-		/obj/item/radio/headset/headset_med/alt,
-		/obj/item/cartridge/medical,
-		/obj/item/storage/briefcase/inflatable,
-		/obj/item/flashlight,
-		/obj/item/tank/emergency/oxygen/engi,
->>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
 		/obj/item/clothing/glasses/hud/health,
 		/obj/item/device/healthanalyzer,
 		/obj/item/device/radio/off,
