@@ -498,8 +498,8 @@
 				/obj/item/ammo_magazine/ammo_box/b12g
 			),
 			prob(1);list(
-				/obj/item/gun/projectile/shotgun/semi,
-				/obj/item/storage/box/shotgunammo
+				/obj/item/weapon/gun/projectile/shotgun/semi,
+				/obj/item/ammo_magazine/ammo_box/b12g
 			)
 		)
 
