@@ -79,9 +79,9 @@
 /datum/supply_pack/munitions/shotgunsemi
 	name = "Weapons - Semi-Automatic Shotgun crate"
 	contains = list(
-			/obj/item/storage/box/shotgunammo,
-			/obj/item/storage/box/shotgunshells,
-			/obj/item/gun/projectile/shotgun/semi = 2
+			/obj/item/ammo_magazine/ammo_box/b12g,
+			/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+			/obj/item/weapon/gun/projectile/shotgun/semi = 2
 			)
 	cost = 100
 	containertype = /obj/structure/closet/crate/secure/weapon
