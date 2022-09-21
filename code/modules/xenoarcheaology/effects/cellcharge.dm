@@ -6,7 +6,7 @@
 
 
 /datum/artifact_effect/cellcharge/DoEffectTouch(var/mob/living/user)
-	if (user)
+	if(user)
 		if (istype(user, /mob/living/silicon/robot))
 			var/mob/living/silicon/robot/R = user
 			for (var/obj/item/weapon/cell/D in R.contents)
@@ -22,23 +22,23 @@
 	if(!turf)
 		return
 	for (var/obj/machinery/power/apc/apc as anything in GLOB.apcs)
-		if (get_dist(turf, apc) <= 200)
+		if(get_dist(turf, apc) <= 200)
 			for (var/obj/item/weapon/cell/cell in apc.contents)
 				cell.charge += 25
 	for (var/obj/machinery/power/smes/smes as anything in GLOB.smeses)
-		if (get_dist(turf, smes) <= effectrange)
+		if(get_dist(turf, smes) <= effectrange)
 			smes.charge += 25
 	var/charged_robots
 	for (var/mob/living/silicon/robot/robot as anything in global.silicon_mob_list)
-		if (get_dist(turf, robot) < 50)
+		if(get_dist(turf, robot) < 50)
 			var/charged_cells
 			for (var/obj/item/weapon/cell/cell in robot.contents)
 				cell.charge += 25
 				charged_cells = TRUE
-			if (charged_cells)
+			if(charged_cells)
 				to_chat(robot, "<font color='blue'>SYSTEM ALERT: Energy boost detected!</font>")
 				charged_robots = TRUE
-	if (charged_robots)
+	if(charged_robots)
 		last_message = world.time
 
 
