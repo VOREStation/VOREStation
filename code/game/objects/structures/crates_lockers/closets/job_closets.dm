@@ -68,15 +68,10 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/janitor,
 		/obj/item/clothing/under/dress/maid/janitor,
-<<<<<<< HEAD
 		/obj/item/device/radio/headset/headset_service,
 		/obj/item/weapon/cartridge/janitor,
-=======
 		/obj/item/clothing/suit/storage/hooded/wintercoat/janitor,
 		/obj/item/clothing/mask/surgical/dust,
-		/obj/item/radio/headset/headset_service,
-		/obj/item/cartridge/janitor,
->>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/head/soft/purple,
 		/obj/item/clothing/head/beret/purple,
