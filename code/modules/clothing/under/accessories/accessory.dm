@@ -580,11 +580,11 @@
 	name = "intersex pride pin"
 	icon_state = "pride_intersex"
 
-<<<<<<< HEAD
+
 /obj/item/clothing/accessory/pride/vore
 	name = "vore pride pin"
 	icon_state = "pride_vore"
-=======
+
 //legbrace
 /obj/item/clothing/accessory/legbrace
 	name = "leg braces"
@@ -696,4 +696,3 @@
 	desc = "A Gilthari ZeitMeister classic, a finely tuned wristwatch with a fancy leather strap."
 	description_fluff = "Made from real synth leather."
 	icon_state = "watch_leather"
->>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22
