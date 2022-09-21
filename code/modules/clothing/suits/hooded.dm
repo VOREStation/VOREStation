@@ -375,7 +375,6 @@
 		/obj/item/device/flashlight,
 		/obj/item/weapon/gun,
 		/obj/item/ammo_magazine,
-<<<<<<< HEAD
 		/obj/item/weapon/melee,
 		/obj/item/weapon/material/knife,
 		/obj/item/weapon/tank,
@@ -388,11 +387,9 @@
 	desc = "For those who REALLY love their toasters."
 	icon_state = "techpriest"
 	hoodtype = /obj/item/clothing/head/hood/techpriest
-=======
-		/obj/item/melee,
-		/obj/item/material/knife,
-		/obj/item/tank,
-		/obj/item/radio,
-		/obj/item/pickaxe
+		/obj/item/weapon/melee,
+		/obj/item/weapon/material/knife,
+		/obj/item/weapon/tank,
+		/obj/item/device/radio,
+		/obj/item/weapon/pickaxe
 		)
->>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
