@@ -33,7 +33,7 @@
 			"id" = T.id,
 			"name" = T.name,
 		)))
-	data["machinelist"] = machinelistData
+	data["machinelist"] = machinelist
 
 	data["selectedMachine"] = null
 	if(SelectedMachine)
