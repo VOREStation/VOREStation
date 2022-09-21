@@ -910,13 +910,8 @@
 	var/warned = FALSE
 	var/static/list/ammo_screen_loc_list = list(ui_ammo_hud1, ui_ammo_hud2, ui_ammo_hud3 ,ui_ammo_hud4)
 
-<<<<<<< HEAD
 /obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/weapon/gun/G)
-	
-=======
-/obj/screen/ammo/proc/add_hud(var/mob/living/user, var/obj/item/gun/G)
 
->>>>>>> 830376f29da... Merge pull request #8598 from Atermonera/zone_sel_overlays
 	if(!user?.client)
 		return
 
