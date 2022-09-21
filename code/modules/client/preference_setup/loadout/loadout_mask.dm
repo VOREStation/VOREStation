@@ -35,16 +35,6 @@
 	display_name = "cloth face mask"
 	path = /obj/item/clothing/mask/surgical/cloth
 
-/datum/gear/mask/plaguedoctor
-	display_name = "plague doctor's mask"
-	path = /obj/item/clothing/mask/gas/plaguedoctor
-	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
-
-/datum/gear/mask/plaguedoctor2
-	display_name = "golden plague doctor's mask"
-	path = /obj/item/clothing/mask/gas/plaguedoctor/gold
-	cost = 3 ///Because it functions as a gas mask, and therefore has a mechanical advantage.
-
 /datum/gear/mask/mouthwheat
 	display_name = "mouth wheat"
 	path = /obj/item/clothing/mask/mouthwheat
@@ -64,13 +54,19 @@
 
 /datum/gear/mask/gaiter/New()
 	..()
-<<<<<<< HEAD
 	var/list/gaiters = list()
 	for(var/gaiter in typesof(/obj/item/clothing/accessory/gaiter))
 		var/obj/item/clothing/accessory/gaiter_type = gaiter
 		gaiters[initial(gaiter_type.name)] = gaiter_type
 	gear_tweaks += new/datum/gear_tweak/path(sortTim(gaiters, /proc/cmp_text_asc))
-=======
+
+/datum/gear/mask/gasmasks
+	display_name = "gas mask selection"
+	path = /obj/item/clothing/mask/gas
+	cost = 2
+
+/datum/gear/mask/gasmasks/New()
+	..()
 	var/masks = list()
 	masks["gas mask"] = /obj/item/clothing/mask/gas
 	masks["clear gas mask"] = /obj/item/clothing/mask/gas/clear
