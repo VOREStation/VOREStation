@@ -633,7 +633,6 @@
 	new /obj/item/stack/material/plastic(get_turf(holder.my_atom), created_volume)
 	return
 
-<<<<<<< HEAD
 /*Carpet Creation*/
 
 /decl/chemical_reaction/instant/carpetify
@@ -690,8 +689,6 @@
 	required_reagents = list("liquidcarpeto" = 2, "plasticide" = 1)
 	carpet_type = /obj/item/stack/tile/carpet/oracarpet
 
-
-=======
 /decl/chemical_reaction/instant/concrete
 	name = "Concrete"
 	id = "concretereagent"
@@ -702,7 +699,6 @@
 	new /obj/item/stack/material/concrete(get_turf(holder.my_atom), created_volume)
 	return
 
->>>>>>> c0a490ac019... conk rete (#8671)
 /* Grenade reactions */
 
 /decl/chemical_reaction/instant/explosion_potassium
