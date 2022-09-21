@@ -137,9 +137,9 @@
 	spawn_reagent = "greentea"
 /obj/item/weapon/reagent_containers/chem_disp_cartridge/decaf
 	spawn_reagent = "decaf"
-/obj/item/reagent_containers/chem_disp_cartridge/chaitea
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/chaitea
 	spawn_reagent = "chaitea"
-/obj/item/reagent_containers/chem_disp_cartridge/decafchai
+/obj/item/weapon/reagent_containers/chem_disp_cartridge/decafchai
 	spawn_reagent = "chaiteadecaf"
 
 // ERT
