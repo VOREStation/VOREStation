@@ -689,4 +689,3 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 		return TRUE
 
 	return src_z in using_map.get_map_levels(dst_z, TRUE, om_range = DEFAULT_OVERMAP_RANGE)
->>>>>>> a5403d6ba05... Merge pull request #8699 from Atermonera/tcomms-monitor-fix:code/game/machinery/telecomms/telecommunications.dm
