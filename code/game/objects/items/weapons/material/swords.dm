@@ -23,9 +23,6 @@
 	name = "katana"
 	desc = "Woefully underpowered in D20. This one looks pretty sharp."
 	icon_state = "katana"
-<<<<<<< HEAD
-	slot_flags = SLOT_BELT | SLOT_BACK
-=======
 	slot_flags = SLOT_BELT | SLOT_BACK
 
 /obj/item/material/sword/katana/caneblade
@@ -87,4 +84,3 @@
 	item_state = "gladius"
 	applies_material_colour = 0
 	slot_flags = SLOT_BELT
->>>>>>> ce9cea6d676... Merge pull request #8652 from DemonPizza/Caneblade
