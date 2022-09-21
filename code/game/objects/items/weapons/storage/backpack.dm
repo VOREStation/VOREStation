@@ -415,8 +415,6 @@
 	desc = "A green sports backpack for plant related work."
 	icon_state = "backsport_hydro"
 
-<<<<<<< HEAD
-=======
 /*
  * Rucksacks
  */
@@ -447,7 +445,6 @@
 	icon_state = "rucksack_tan"
 	item_state_slots = list(slot_r_hand_str = "rucksack_tan", slot_l_hand_str = "rucksack_tan")
 
->>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22
 //Purses
 /obj/item/weapon/storage/backpack/purse
 	name = "purse"
