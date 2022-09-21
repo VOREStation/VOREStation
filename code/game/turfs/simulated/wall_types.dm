@@ -286,12 +286,7 @@
 // Fake corners for making hulls look pretty
 /obj/structure/hull_corner
 	name = "hull corner"
-<<<<<<< HEAD
 	plane = OBJ_PLANE - 1
-	
-=======
-
->>>>>>> c0a490ac019... conk rete (#8671)
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "hull_corner"
 
