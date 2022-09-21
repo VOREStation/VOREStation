@@ -217,12 +217,10 @@
 	ammo_type = /obj/item/ammo_casing/a12g/pellet
 	w_class = ITEMSIZE_NORMAL
 	force = 5
-<<<<<<< HEAD
 	sawn_off = TRUE
-=======
 
 //Sjorgen Inertial Shotgun
-/obj/item/gun/projectile/shotgun/semi
+/obj/item/weapon/gun/projectile/shotgun/semi
 	name = "semi-automatic shotgun"
 	desc = "A shotgun with a simple, yet effective recoil inertia loading mechanism for semi-automatic fire. This gun uses 12 gauge ammunition."
 	description_fluff = "Looking back on yet another venerable design, Hedberg-Hammarstrom settled on a pattern of shotgun that both had the reliability of a well proven semi-automatic loading system in addition to a striking visual aesthetic that would be appealing to even the most discerning of firearm collectors."
@@ -236,4 +234,3 @@
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
 	
->>>>>>> e0e497187d9... Merge pull request #8588 from Doctress/sjorgenshotgun
