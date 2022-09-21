@@ -69,14 +69,9 @@
 	starts_with = list(
 		/obj/item/clothing/under/rank/janitor,
 		/obj/item/clothing/under/dress/maid/janitor,
-<<<<<<< HEAD
 		/obj/item/device/radio/headset/headset_service,
 		/obj/item/weapon/cartridge/janitor,
-=======
 		/obj/item/clothing/suit/storage/hooded/wintercoat/janitor,
-		/obj/item/radio/headset/headset_service,
-		/obj/item/cartridge/janitor,
->>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/head/soft/purple,
 		/obj/item/clothing/head/beret/purple,
