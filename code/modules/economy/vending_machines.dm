@@ -40,7 +40,7 @@
 	name = "Booze-O-Mat"
 	desc = "A technological marvel, the ads would have you believe this is able to mix just the mixture you'd like to drink the moment you ask for one."
 	icon_state = "boozeomat"
-	products = list(/obj/item/reagent_containers/food/drinks/glass2/square = 10,
+	products = list(/obj/item/weapon/reagent_containers/food/drinks/glass2/square = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/rocks = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/shake = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/cocktail = 10,
@@ -50,6 +50,8 @@
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/carafe = 2,	//VOREStation Add - Carafes and Pitchers
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/pitcher = 2,	//VOREStation Add - Carafes and Pitchers
 					/obj/item/weapon/reagent_containers/food/drinks/glass2/wine = 10,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/whitewine = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/grapejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass = 10,
 					/obj/item/weapon/reagent_containers/food/drinks/metaglass/metapint = 10,
 					/obj/item/weapon/reagent_containers/glass/beaker/stopperedbottle = 10,
@@ -58,6 +60,7 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/bluecuracao = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/cognac = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/grenadine = 5,
+					/obj/item/weapon/reagent_containers/food/condiment/cookingoil = 5,
 					/obj/item/weapon/reagent_containers/food/condiment/cornoil = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/kahlua = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/melonliquor = 5,
@@ -80,6 +83,8 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer/meteor = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/litebeer = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cider = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/beercan = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/cans/alecan = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/orangejuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/tomatojuice = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/limejuice = 5,
@@ -91,6 +96,11 @@
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/decaf_cola = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/space_up = 5,
 					/obj/item/weapon/reagent_containers/food/drinks/bottle/space_mountain_wind = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/dr_gibb = 5,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/cola = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/space_up = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/space_mountain_wind = 15,
+					/obj/item/weapon/reagent_containers/food/drinks/bottle/small/dr_gibb = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/sodawater = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/tonic = 15,
 					/obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 15,
