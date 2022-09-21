@@ -87,4 +87,3 @@
 	display_name = "dust mask"
 	path = /obj/item/clothing/mask/surgical/dust
 	cost = 2
->>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22
