@@ -110,7 +110,6 @@
 		/obj/item/clothing/glasses/sunglasses/big = 2,
 		/obj/item/clothing/under/lawyer/blue = 2,
 		/obj/item/clothing/under/lawyer/blue/skirt = 2,
-<<<<<<< HEAD
 		/obj/item/device/tape/random = 2
 		)
 
@@ -131,6 +130,3 @@
 		/obj/item/weapon/storage/box/mousetraps = 1,
 		/obj/item/weapon/grenade/chem_grenade/cleaner = 4
 		)
-=======
-		/obj/item/tape/random = 2)
->>>>>>> 41310d9ee92... Merge pull request #8606 from Cerebulon/winterlockers
