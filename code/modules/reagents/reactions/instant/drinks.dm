@@ -205,7 +205,6 @@
 	result = "martini"
 	inhibitors = list("bitters" = 1)
 	required_reagents = list("gin" = 2, "vermouth" = 1)
-	inhibitors = list("bitters" = 1)
 	result_amount = 3
 
 /decl/chemical_reaction/instant/drinks/vodkamartini
