@@ -33,7 +33,6 @@
 		new /datum/stack_recipe("light marble floor tile", /obj/item/stack/tile/wmarble, 1, 4, 20, recycle_material = "[name]"),
 		new /datum/stack_recipe("dark marble floor tile", /obj/item/stack/tile/bmarble, 1, 4, 20, recycle_material = "[name]")
 	)
-<<<<<<< HEAD
 //VOREStation Addition Start
 /datum/material/stone/flint
 	name = "flint"
@@ -49,7 +48,6 @@
 /datum/material/stone/flint/generate_recipes()
 	return
 //VOREStation Addition End
-=======
 
 /datum/material/stone/concrete
 	name = MAT_CONCRETE
@@ -73,4 +71,3 @@
 
 /datum/material/stone/concrete/get_wall_texture()
 	return texture
->>>>>>> c0a490ac019... conk rete (#8671)
