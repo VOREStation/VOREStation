@@ -280,12 +280,8 @@
 	damtype = HALLOSS
 	no_attack_log = 1
 
-<<<<<<< HEAD
 /obj/item/weapon/holo/esword
-=======
-/obj/item/holo/esword
 	name = "holographic energy sword"
->>>>>>> e69a92bcb7b... Merge pull request #8618 from Spookerton/cerebulon/swimwear
 	desc = "May the force be within you. Sorta."
 	icon_state = "esword"
 	var/lcolor
