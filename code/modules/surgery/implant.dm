@@ -124,7 +124,14 @@
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(istype(user,/mob/living/silicon/robot))
-			return
+			if(istype(tool, /obj/item/weapon/gripper))
+				var/obj/item/weapon/gripper/Gripper = tool
+				if(Gripper.wrapped)
+					tool = Gripper.wrapped
+				else
+					return
+			else
+				return
 		if(affected && affected.cavity)
 			var/total_volume = tool.w_class
 			for(var/obj/item/I in affected.implants)
@@ -135,6 +142,9 @@
 
 /datum/surgery_step/cavity/place_item/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(isrobot(user) && istype(tool, /obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/G = tool
+		tool = G.wrapped
 	user.visible_message("<span class='notice'>[user] starts putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
 	"<span class='notice'>You start putting \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" ) //Nobody will probably ever see this, but I made these two blue. ~CK
 	target.custom_pain("The pain in your chest is living hell!",1)
@@ -142,7 +152,12 @@
 
 /datum/surgery_step/cavity/place_item/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
-
+	if(isrobot(user) && istype(tool, /obj/item/weapon/gripper))
+		var/obj/item/weapon/gripper/G = tool
+		tool = G.wrapped
+		G.drop_item()
+	else
+		user.drop_item()
 	user.visible_message("<span class='notice'>[user] puts \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>", \
 	"<span class='notice'>You put \the [tool] inside [target]'s [get_cavity(affected)] cavity.</span>" )
 	if (tool.w_class > get_max_wclass(affected)/2 && prob(50) && (affected.robotic < ORGAN_ROBOT))
@@ -150,7 +165,6 @@
 		var/datum/wound/internal_bleeding/I = new (10)
 		affected.wounds += I
 		affected.owner.custom_pain("You feel something rip in your [affected.name]!", 1)
-	user.drop_item()
 	affected.implants += tool
 	tool.loc = affected
 	if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.implant(target)} //VOREStation Add - NIF support

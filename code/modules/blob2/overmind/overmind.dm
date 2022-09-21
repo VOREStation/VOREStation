@@ -25,7 +25,7 @@ var/list/overminds = list()
 
 	universal_understand = TRUE
 
-	var/list/has_langs = list(LANGUAGE_BLOB)
+	var/list/has_langs = list(LANGUAGE_ANIMAL)
 	var/datum/language/default_language = null
 
 /mob/observer/blob/get_default_language()

@@ -40,7 +40,7 @@
 	var/heldname = "default name"
 
 /obj/item/borg/upgrade/rename/attack_self(mob/user as mob)
-	heldname = sanitizeSafe(input(user, "Enter new robot name", "Robot Reclassification", heldname), MAX_NAME_LEN)
+	heldname = sanitizeSafe(tgui_input_text(user, "Enter new robot name", "Robot Reclassification", heldname, MAX_NAME_LEN), MAX_NAME_LEN)
 
 /obj/item/borg/upgrade/rename/action(var/mob/living/silicon/robot/R)
 	if(..()) return 0
@@ -69,6 +69,7 @@
 				R.key = ghost.key
 
 	R.set_stat(CONSCIOUS)
+	R.add_robot_verbs()
 	dead_mob_list -= R
 	living_mob_list |= R
 	R.notify_ai(ROBOT_NOTIFICATION_NEW_UNIT)
@@ -207,7 +208,6 @@
 	R.add_language(LANGUAGE_SIIK, 1)
 	R.add_language(LANGUAGE_AKHANI, 1)
 	R.add_language(LANGUAGE_SKRELLIAN, 1)
-	R.add_language(LANGUAGE_SKRELLIANFAR, 0)
 	R.add_language(LANGUAGE_GUTTER, 1)
 	R.add_language(LANGUAGE_SCHECHI, 1)
 	R.add_language(LANGUAGE_ROOTLOCAL, 1)

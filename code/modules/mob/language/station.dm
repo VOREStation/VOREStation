@@ -114,7 +114,7 @@
 
 /datum/language/skrell
 	name = LANGUAGE_SKRELLIAN
-	desc = "A set of warbles and hums, the language itself a complex mesh of both melodic and rhythmic components, exceptionally capable of conveying intent and emotion of the speaker."
+	desc = "A set of warbles and hums, the language itself a complex mesh of both melodic and rhythmic components, exceptionally capable of conveying intent and emotion of the speaker. Native to Skrell."
 	speech_verb = "warbles"
 	ask_verb = "warbles"
 	exclaim_verb = "sings"
@@ -125,19 +125,6 @@
 	flags = WHITELISTED
 	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix")
 
-/datum/language/skrellfar
-	name = LANGUAGE_SKRELLIANFAR
-	desc = "The most common language among the Skrellian Far Kingdoms. Has an even higher than usual concentration of inaudible phonemes."
-	speech_verb = "warbles"
-	ask_verb = "warbles"
-	exclaim_verb = "sings"
-	whisper_verb = "hums"
-	colour = "skrellfar"
-	key = "p"
-	space_chance = 30
-	flags = WHITELISTED
-	syllables = list("qr","qrr","xuq","qil","quum","xuqm","vol","xrim","zaoo","qu-uu","qix","qoo","zix", "...", "oo", "q", "nq", "x", "xq", "ll", "...", "...", "...") //should sound like there's holes in it
-
 /datum/language/skrell/get_random_name(var/gender)
 	var/list/first_names = file2list('config/names/first_name_skrell.txt')
 	var/list/last_names = file2list('config/names/last_name_skrell.txt')
@@ -145,7 +132,7 @@
 
 /datum/language/human
 	name = LANGUAGE_SOL_COMMON
-	desc = "A bastardized hybrid of many languages, including Chinese, English, French, and more; it is the common language of the Sol system."
+	desc = "A bastardized hybrid of many human languages, including Chinese, English, French, and more; it is the common language of the Sol system."
 	speech_verb = "says"
 	whisper_verb = "whispers"
 	colour = "solcom"
@@ -172,7 +159,7 @@
 
 /datum/language/machine
 	name = LANGUAGE_EAL
-	desc = "An efficient language of encoded tones developed by positronics."
+	desc = "An efficient language of encoded tones developed by positronics, although compatible with any synthetic lifeforms."
 	speech_verb = "whistles"
 	ask_verb = "chirps"
 	exclaim_verb = "whistles loudly"
@@ -190,7 +177,7 @@
 
 /datum/language/teshari
 	name = LANGUAGE_SCHECHI
-	desc = "A trilling language spoken by the diminutive Teshari."
+	desc = "A trilling language spoken by the Teshari."
 	speech_verb = "chirps"
 	ask_verb = "chirrups"
 	exclaim_verb = "trills"
@@ -222,7 +209,7 @@
 
 /datum/language/promethean
 	name = LANGUAGE_PROMETHEAN
-	desc = "A complex language composed of guttural noises and bioluminescent signals"
+	desc = "A complex language of prometheans, composed of guttural noises and bioluminescent signals."
 	signlang_verb = list("flickers","flashes","rapidly flashes a light","quickly flickers a light")
 	speech_verb = "gurgles"
 	ask_verb = "gurgles"

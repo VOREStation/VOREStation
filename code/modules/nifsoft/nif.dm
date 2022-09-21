@@ -377,7 +377,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 
 	last_notification = message // TGUI Hook
 
-	to_chat(human,"<b>\[[bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
+	to_chat(human,"<b>\[\icon[src.big_icon][bicon(src.big_icon)]NIF\]</b> displays, \"<span class='[alert ? "danger" : "notice"]'>[message]</span>\"")
 	if(prob(1)) human.visible_message("<span class='notice'>\The [human] [pick(look_messages)].</span>")
 	if(alert)
 		human << bad_sound
@@ -454,6 +454,10 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	var/datum/nifsoft/NS = nifsofts[old_soft.list_pos]
 	if(!NS || NS != old_soft)
 		return FALSE //what??
+
+	if(!NS.can_uninstall)
+		notify("The software \"[NS]\" refuses to be uninstalled.",TRUE)
+		return FALSE
 
 	nifsofts[old_soft.list_pos] = null
 	power_usage -= old_soft.p_drain
@@ -627,6 +631,18 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 	bioadap = TRUE
 	gib_nodrop = TRUE
 
+/obj/item/device/nif/glitch
+	name = "weird NIF"
+	desc = "A NIF of a very dubious origin. It seems to be more durable than normal one... But are you sure about this?"
+	durability = 300
+	bioadap = TRUE
+	starting_software = list(
+		/datum/nifsoft/commlink,
+		/datum/nifsoft/soulcatcher,
+		/datum/nifsoft/ar_civ,
+		/datum/nifsoft/malware
+	)
+
 ////////////////////////////////
 // Special Promethean """surgery"""
 /obj/item/device/nif/attack(mob/living/M, mob/living/user, var/target_zone)
@@ -666,7 +682,7 @@ You can also set the stat of a NIF to NIF_TEMPFAIL without any issues to disable
 		to_chat(src,"<span class='warning'>You don't have a NIF, not sure why this was here.</span>")
 		return
 
-	var/new_flavor = sanitize(input(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg) as null|text, max_length = 128)
+	var/new_flavor = sanitize(tgui_input_text(src,"Describe how your NIF alters your appearance, like glowy eyes or metal plate on your head, etc. Be sensible. Clear this for no examine text. 128ch max.","Describe NIF", nif.examine_msg, 128), max_length = 128)
 	//They clicked cancel or meanwhile lost their NIF
 	if(!nif || isnull(new_flavor))
 		return //No changes

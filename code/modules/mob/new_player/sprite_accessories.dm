@@ -56,7 +56,7 @@
 	var/flags
 
 /datum/sprite_accessory/hair/eighties
-	name = "80's"
+	name = "80s"
 	icon_state = "hair_80s"
 	flags = HAIR_TIEABLE
 

@@ -1,12 +1,14 @@
 var/list/_human_default_emotes = list(
 	/decl/emote/visible/blink,
 	/decl/emote/audible/synth,
-	/decl/emote/audible/synth/ping,
+	/decl/emote/audible/synth/beep,
 	/decl/emote/audible/synth/buzz,
 	/decl/emote/audible/synth/confirm,
 	/decl/emote/audible/synth/deny,
 	/decl/emote/audible/synth/scary,
 	/decl/emote/audible/synth/dwoop,
+	/decl/emote/audible/synth/boop,
+	/decl/emote/audible/synth/robochirp,
 	/decl/emote/visible/nod,
 	/decl/emote/visible/shake,
 	/decl/emote/visible/shiver,
@@ -94,6 +96,15 @@ var/list/_human_default_emotes = list(
 	/decl/emote/visible/floorspin,
 	/decl/emote/visible/flip,
 	//VOREStation Add
+	/decl/emote/audible/bug_hiss,
+	/decl/emote/audible/bug_buzz,
+	/decl/emote/audible/bug_chitter,
+	/decl/emote/audible/hiss,
+	/decl/emote/audible/chirp,
+	/decl/emote/audible/warble,
+	/decl/emote/audible/vox_shriek,
+	/decl/emote/audible/purr,
+	/decl/emote/audible/purrlong,
 	/decl/emote/audible/awoo,
 	/decl/emote/audible/awoo2,
 	/decl/emote/audible/belch,
@@ -141,7 +152,13 @@ var/list/_human_default_emotes = list(
 	/decl/emote/audible/coyawoo2,
 	/decl/emote/audible/coyawoo3,
 	/decl/emote/audible/coyawoo4,
-	/decl/emote/audible/coyawoo5
+	/decl/emote/audible/coyawoo5,
+	/decl/emote/audible/fennecscream,
+	/decl/emote/audible/zoom,
+	/decl/emote/audible/mothscream,
+	/decl/emote/audible/mothchitter,
+	/decl/emote/audible/mothlaugh
+
 	//VOREStation Add End
 )
 
@@ -271,7 +288,19 @@ var/list/_simple_mob_default_emotes = list(
 	/decl/emote/visible/blep,
 	/decl/emote/audible/prbt,
 	/decl/emote/audible/gyoh,
-	/decl/emote/audible/rumble
+	/decl/emote/audible/rumble,
+	/decl/emote/audible/fennecscream,
+	/decl/emote/audible/zoom,
+	/decl/emote/audible/bug_hiss,
+	/decl/emote/audible/bug_buzz,
+	/decl/emote/audible/bug_chitter,
+	/decl/emote/audible/hiss,
+	/decl/emote/audible/chirp,
+	/decl/emote/audible/warble,
+	/decl/emote/audible/vox_shriek,
+	/decl/emote/audible/purr,
+	/decl/emote/audible/purrlong
+
 	)
 	//VOREStation Add End
 
@@ -290,7 +319,7 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/datum/gender/T = gender_datums[get_visible_gender()]
 
-	pose = sanitize(input(usr, "This is [src]. [T.he]...", "Pose", null)  as text)
+	pose = sanitize(tgui_input_text(usr, "This is [src]. [T.he]...", "Pose", null))
 
 /mob/living/carbon/human/verb/set_flavor()
 	set name = "Set Flavour Text"
@@ -353,6 +382,6 @@ var/list/_simple_mob_default_emotes = list(
 
 	var/new_flapping = isnull(setting) ? !flapping : setting
 	if(new_flapping != flapping)
-		flapping = setting
+		flapping = new_flapping
 		update_wing_showing()
 	return 1

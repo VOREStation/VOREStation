@@ -107,6 +107,8 @@
 
 	var/tip_timer // reference to timer id for a tooltip we might open soon
 
+	var/no_random_knockdown = FALSE			//stops item from being able to randomly knock people down in combat
+
 /obj/item/New()
 	..()
 	if(embed_chance < 0)
@@ -157,6 +159,10 @@
 		var/obj/item/organ/external/hand = H.organs_by_name[check_hand]
 		if(istype(hand) && hand.is_usable())
 			return TRUE
+	var/mob/living/simple_mob/S = M
+	if(istype(S) && S.has_hands) //Are they a mob? And do they have hands?
+		return TRUE
+
 	return FALSE
 
 
@@ -252,6 +258,15 @@
 			var/obj/effect/temporary_effect/item_pickup_ghost/ghost = new(old_loc)
 			ghost.assumeform(src)
 			ghost.animate_towards(user)
+	//VORESTATION EDIT START. This handles possessed items.
+	if(src.possessed_voice && src.possessed_voice.len && !(user.ckey in warned_of_possession)) //Is this item possessed?
+		warned_of_possession |= user.ckey
+		tgui_alert_async(user,{"
+		THIS ITEM IS POSSESSED BY A PLAYER CURRENTLY IN THE ROUND. This could be by anomalous means or otherwise.
+		If this is not something you wish to partake in, it is highly suggested you place the item back down.
+		If this is fine to you, ensure that the other player is fine with you doing things to them beforehand!
+		"},"OOC Warning")
+	//VORESTATION EDIT END.
 	return
 
 /obj/item/attack_ai(mob/user as mob)
@@ -810,8 +825,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	standing.alpha = alpha
 	standing.color = color
 	standing.layer = layer2use
-	if(istype(clip_mask)) //VOREStation Edit - For taur bodies/tails clipping off parts of uniforms and suits.
-		standing.filters += filter(type = "alpha", icon = clip_mask)
 
 	if(istype(clip_mask)) //For taur bodies/tails clipping off parts of uniforms and suits.
 		standing.filters += filter(type = "alpha", icon = clip_mask)
@@ -990,4 +1003,7 @@ Note: This proc can be overwritten to allow for different types of auto-alignmen
 
 // this gets called when the item gets chucked by the vending machine
 /obj/item/proc/vendor_action(var/obj/machinery/vending/V)
+	return
+
+/obj/item/proc/on_holder_escape(var/obj/item/weapon/holder/H)
 	return

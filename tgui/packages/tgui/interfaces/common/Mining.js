@@ -1,16 +1,11 @@
 import { Fragment } from 'inferno';
-import { useBackend } from "../../backend";
-import { Box, Button, Input, NoticeBox } from '../../components';
+import { useBackend } from '../../backend';
+import { Box, Button, NoticeBox } from '../../components';
 
 export const MiningUser = (props, context) => {
   const { act, data } = useBackend(context);
-  const {
-    insertIdText,
-  } = props;
-  const {
-    has_id,
-    id,
-  } = data;
+  const { insertIdText } = props;
+  const { has_id, id } = data;
   return (
     <NoticeBox success={has_id}>
       {has_id ? (
@@ -34,11 +29,13 @@ export const MiningUser = (props, context) => {
           />
           <Box
             style={{
-              clear: "both",
+              clear: 'both',
             }}
           />
         </Fragment>
-      ) : insertIdText}
+      ) : (
+        insertIdText
+      )}
     </NoticeBox>
   );
 };

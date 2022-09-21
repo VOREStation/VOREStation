@@ -90,7 +90,9 @@
 	src.set_dir(turn(src.dir, 90))
 
 /obj/structure/closet/crate/attackby(obj/item/weapon/W as obj, mob/user as mob)
-	if(opened)
+	if(W.is_wrench() && istype(src,/obj/structure/closet/crate/bin))
+		return ..()
+	else if(opened)
 		if(isrobot(user))
 			return
 		if(W.loc != user) // This should stop mounted modules ending up outside the module.

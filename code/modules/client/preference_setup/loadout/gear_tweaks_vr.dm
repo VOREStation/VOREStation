@@ -5,7 +5,7 @@
 	return ""
 
 /datum/gear_tweak/collar_tag/get_metadata(var/user, var/metadata)
-	return sanitize( input(user, "Choose the tag text", "Character Preference", metadata) as text , MAX_NAME_LEN )
+	return sanitize( tgui_input_text(user, "Choose the tag text", "Character Preference", metadata, MAX_NAME_LEN), MAX_NAME_LEN )
 
 /datum/gear_tweak/collar_tag/tweak_item(var/obj/item/clothing/accessory/collar/C, var/metadata)
 	if(metadata == "")

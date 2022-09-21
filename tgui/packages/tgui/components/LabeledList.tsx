@@ -15,11 +15,7 @@ type LabeledListProps = {
 
 export const LabeledList = (props: LabeledListProps) => {
   const { children } = props;
-  return (
-    <table className="LabeledList">
-      {children}
-    </table>
-  );
+  return <table className="LabeledList">{children}</table>;
 };
 
 LabeledList.defaultHooks = pureComponentHooks;
@@ -31,9 +27,9 @@ type LabeledListItemProps = {
   color?: string | BooleanLike;
   textAlign?: string | BooleanLike;
   verticalAlign?: string | BooleanLike; // VOREStation Addition
-  buttons?: InfernoNode,
+  buttons?: InfernoNode;
   /** @deprecated */
-  content?: any,
+  content?: any;
   children?: InfernoNode;
 };
 
@@ -51,19 +47,12 @@ const LabeledListItem = (props: LabeledListItemProps) => {
     ...rest // VOREStation Addition
   } = props;
   return (
-    <tr
-      className={classes([
-        'LabeledList__row',
-        className,
-      ])}>
+    <tr className={classes(['LabeledList__row', className])}>
       <Box
         as="td"
         verticalAlign={verticalAlign} // VOREStation Addition
         color={labelColor}
-        className={classes([
-          'LabeledList__cell',
-          'LabeledList__label',
-        ])}>
+        className={classes(['LabeledList__cell', 'LabeledList__label'])}>
         {label ? label + ':' : null}
       </Box>
       <Box
@@ -71,20 +60,14 @@ const LabeledListItem = (props: LabeledListItemProps) => {
         color={color}
         textAlign={textAlign}
         verticalAlign={verticalAlign} // VOREStation Addition
-        className={classes([
-          'LabeledList__cell',
-          'LabeledList__content',
-        ])}
+        className={classes(['LabeledList__cell', 'LabeledList__content'])}
         colSpan={buttons ? undefined : 2}
-        {...rest} /* VOREStation Addition*/>
+        {...rest} /* VOREStation Addition*/
+      >
         {content}
         {children}
       </Box>
-      {buttons && (
-        <td className="LabeledList__cell LabeledList__buttons">
-          {buttons}
-        </td>
-      )}
+      {buttons && <td className="LabeledList__cell LabeledList__buttons">{buttons}</td>}
     </tr>
   );
 };
@@ -96,9 +79,7 @@ type LabeledListDividerProps = {
 };
 
 const LabeledListDivider = (props: LabeledListDividerProps) => {
-  const padding = props.size
-    ? unit(Math.max(0, props.size - 1))
-    : 0;
+  const padding = props.size ? unit(Math.max(0, props.size - 1)) : 0;
   return (
     <tr className="LabeledList__row">
       <td

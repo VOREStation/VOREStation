@@ -32,7 +32,7 @@
 	minbodytemp = 223		//Below -50 Degrees Celcius
 	maxbodytemp = 323	//Above 50 Degrees Celcius
 
-	has_langs = list("Mouse")
+	has_langs = list(LANGUAGE_MOUSE)
 
 	holder_type = /obj/item/weapon/holder/mouse
 	meat_amount = 1
@@ -79,7 +79,7 @@
 	if( ishuman(AM) )
 		if(!stat)
 			var/mob/M = AM
-			M.visible_message("<font color='blue'>[bicon(src)] Squeek!</font>")
+			M.visible_message("<font color='blue'>\icon[src][bicon(src)] Squeek!</font>")
 			playsound(src, 'sound/effects/mouse_squeak.ogg', 35, 1)
 	..()
 

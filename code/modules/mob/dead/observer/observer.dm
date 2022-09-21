@@ -123,14 +123,21 @@
 		if(ishuman(body))
 			var/mob/living/carbon/human/H = body
 			add_overlay(H.overlays_standing)
-
-	if(!T)	T = pick(latejoin)			//Safety in case we cannot find the body's position
-	forceMove(T)
+		default_pixel_x = body.default_pixel_x
+		default_pixel_y = body.default_pixel_y
+	if(!T && length(latejoin))
+		T = pick(latejoin)			//Safety in case we cannot find the body's position
+	if(T)
+		forceMove(T)
+	else
+		moveToNullspace()
+		to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
 
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
 	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 	observer_mob_list += src
 	..()
 
@@ -161,10 +168,10 @@
 		I = getFlatIcon(src, defdir = SOUTH, no_anim = TRUE)
 		set_cached_examine_icon(src, I, 200 SECONDS)
 	return I
-	
+
 /mob/observer/dead/examine(mob/user)
 	. = ..()
-	
+
 	if(is_admin(user))
 		. += "\t><span class='admin'>[ADMIN_FULLMONTY(src)]</span>"
 
@@ -337,7 +344,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/list/areas = return_sorted_areas()
 	if(client?.holder)
 		return areas
-	
+
 	for(var/key in areas)
 		var/area/A = areas[key]
 		if(A.z in using_map?.secret_levels)
@@ -371,7 +378,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	var/area/A
-	
+
 	if(!areaname)
 		var/list/areas = jumpable_areas()
 		var/input = tgui_input_list(usr, "Select an area:", "Ghost Teleport", areas)
@@ -413,29 +420,29 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	ManualFollow(M || jumpable_mobs()[mobname])
-	
+
 /mob/observer/dead/forceMove(atom/destination)
 	if(client?.holder)
 		return ..()
-	
+
 	if(get_z(destination) in using_map?.secret_levels)
 		to_chat(src,SPAN_WARNING("Sorry, that z-level does not allow ghosts."))
 		if(following)
 			stop_following()
 		return
-	
+
 	return ..()
 
 /mob/observer/dead/Move(atom/newloc, direct = 0, movetime)
 	if(client?.holder)
 		return ..()
-	
+
 	if(get_z(newloc) in using_map?.secret_levels)
 		to_chat(src,SPAN_WARNING("Sorry, that z-level does not allow ghosts."))
 		if(following)
 			stop_following()
 		return
-	
+
 	return ..()
 
 // This is the ghost's follow verb with an argument
@@ -500,10 +507,11 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 /mob/observer/dead/stop_orbit()
 	. = ..()
 	//restart our floating animation after orbit is done.
-	pixel_y = 0
-	pixel_x = 0
+	pixel_y = default_pixel_y
+	pixel_x = default_pixel_x
 	transform = null
 	animate(src, pixel_y = 2, time = 10, loop = -1)
+	animate(pixel_y = default_pixel_y, time = 10, loop = -1)
 
 /mob/observer/dead/proc/stop_following()
 	following = null
@@ -514,7 +522,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	for(var/mob/observer/dead/M in following_mobs)
 		if(!.)
 			M.stop_following()
-		
+
 		if(M.following != src)
 			following_mobs -= M
 		else
@@ -763,7 +771,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/max_length = 50
 
-	var/message = sanitize(input(usr, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", ""))
+	var/message = sanitize(tgui_input_text(usr, "Write a message. It cannot be longer than [max_length] characters.","Blood writing", "", max_length))
 
 	if (message)
 
@@ -867,7 +875,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Toggle Darkness"
 	set desc = "Toggles your ability to see lighting overlays, and the darkness they create."
 	set category = "Ghost"
-	
+
 	var/static/list/darkness_names = list("normal darkness levels", "30% darkness removed", "70% darkness removed", "no darkness")
 	var/static/list/darkness_levels = list(255, 178, 76, 0)
 
@@ -876,7 +884,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		index = 1
 	else
 		index++
-	
+
 	lighting_alpha = darkness_levels[index]
 	updateghostsight()
 	to_chat(src, "Your vision now has [darkness_names[index]].")
@@ -928,7 +936,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/mob/living/M = tgui_input_list(src, "Select who to whisper to:", "Whisper to?", options)
 		if(!M)
 			return 0
-		var/msg = sanitize(input(src, "Message:", "Spectral Whisper") as text|null)
+		var/msg = sanitize(tgui_input_text(src, "Message:", "Spectral Whisper"))
 		if(msg)
 			log_say("(SPECWHISP to [key_name(M)]): [msg]", src)
 			to_chat(M, "<span class='warning'> You hear a strange, unidentifiable voice in your head... <font color='purple'>[msg]</font></span>")
@@ -977,15 +985,29 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Blank pAI alert"
 	set desc = "Flash an indicator light on available blank pAI devices for a smidgen of hope."
-	
+
+	var/time_till_respawn = time_till_respawn()
+	if(time_till_respawn == -1) // Special case, never allowed to respawn
+		to_chat(usr, "<span class='warning'>Respawning is not allowed!</span>")
+	else if(time_till_respawn) // Nonzero time to respawn
+		to_chat(usr, "<span class='warning'>You can't do that yet! You died too recently. You need to wait another [round(time_till_respawn/10/60, 0.1)] minutes.</span>")
+		return
+
+	if(jobban_isbanned(usr, "pAI"))
+		to_chat(usr,"<span class='warning'>You cannot alert pAI cards when you are banned from playing as a pAI.</span>")
+		return
+
 	if(usr.client.prefs?.be_special & BE_PAI)
+		var/choice = tgui_alert(usr, "Would you like to submit yourself to the recruitment list too?", "Confirmation", list("No", "Yes"))
+		if(choice == "Yes")
+			paiController.recruitWindow(usr)
 		var/count = 0
 		for(var/obj/item/device/paicard/p in all_pai_cards)
 			var/obj/item/device/paicard/PP = p
 			if(PP.pai == null)
 				count++
-				PP.icon = 'icons/obj/pda_vr.dmi' // VOREStation Edit
 				PP.add_overlay("pai-ghostalert")
+				PP.alertUpdate()
 				spawn(54)
 					PP.cut_overlays()
 		to_chat(usr,"<span class='notice'>Flashing the displays of [count] unoccupied PAIs.</span>")

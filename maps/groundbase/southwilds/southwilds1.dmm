@@ -10,6 +10,12 @@
 	edge_blending_priority = -1
 	},
 /area/submap/groundbase/wilderness/south)
+"o" = (
+/obj/effect/landmark{
+	name = "carpspawn"
+	},
+/turf/simulated/floor/water/deep/virgo3c,
+/area/submap/groundbase/wilderness/south)
 "p" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/wilderness/south)
@@ -34,6 +40,12 @@
 "H" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
 /area/submap/groundbase/wilderness/south/unexplored)
+"I" = (
+/obj/effect/landmark{
+	name = "carpspawn"
+	},
+/turf/simulated/floor/water/virgo3c,
+/area/submap/groundbase/wilderness/south)
 "K" = (
 /obj/effect/map_effect/portal/line/side_b,
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
@@ -42,7 +54,7 @@
 /turf/simulated/mineral/cave/virgo3c,
 /area/submap/groundbase/wilderness/south/cave)
 "Q" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/south)
 "S" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/south,
@@ -1243,7 +1255,7 @@ d
 d
 c
 c
-F
+o
 c
 c
 c
@@ -4771,7 +4783,7 @@ H
 d
 d
 c
-c
+I
 c
 F
 F
@@ -4917,7 +4929,7 @@ c
 c
 F
 F
-F
+o
 c
 c
 c
@@ -6511,7 +6523,7 @@ d
 d
 c
 c
-c
+I
 c
 c
 c
@@ -7085,7 +7097,7 @@ c
 c
 c
 c
-F
+o
 F
 c
 c
@@ -10217,7 +10229,7 @@ d
 c
 c
 c
-F
+o
 c
 c
 c
@@ -11761,7 +11773,7 @@ d
 c
 F
 F
-c
+I
 c
 d
 d
@@ -12927,7 +12939,7 @@ d
 d
 c
 c
-c
+I
 c
 c
 c
@@ -13156,7 +13168,7 @@ c
 c
 c
 c
-c
+I
 c
 c
 d
@@ -13784,7 +13796,7 @@ d
 d
 c
 c
-c
+I
 c
 c
 c
@@ -13931,7 +13943,7 @@ d
 c
 c
 c
-F
+o
 F
 F
 c
@@ -14023,7 +14035,7 @@ F
 F
 F
 F
-F
+o
 F
 F
 F
@@ -14878,7 +14890,7 @@ c
 c
 F
 F
-F
+o
 F
 c
 c
@@ -15234,7 +15246,7 @@ d
 d
 c
 F
-F
+o
 c
 c
 c
@@ -16689,7 +16701,7 @@ d
 c
 c
 F
-F
+o
 c
 c
 d
@@ -17687,7 +17699,7 @@ H
 d
 c
 c
-F
+o
 c
 c
 d
@@ -18497,7 +18509,7 @@ d
 c
 c
 F
-F
+o
 F
 F
 F
@@ -18643,7 +18655,7 @@ F
 F
 F
 F
-F
+o
 F
 c
 c

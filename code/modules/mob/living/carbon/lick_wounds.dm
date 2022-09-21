@@ -1,7 +1,11 @@
-/mob/living/carbon/human/proc/lick_wounds(var/mob/living/carbon/M) // Allows the user to lick themselves. Given how rarely this trait is used, I don't see an issue with a slight buff.
+/mob/living/carbon/human/proc/lick_wounds(var/mob/living/carbon/M as mob in view(1)) // Allows the user to lick themselves. Given how rarely this trait is used, I don't see an issue with a slight buff.
 	set name = "Lick Wounds"
 	set category = "Abilities"
 	set desc = "Disinfect and heal small wounds with your saliva."
+
+	if(stat || paralysis || weakened || stunned)
+		to_chat(src, "<span class='warning'>You can't do that in your current state.</span>")
+		return
 
 	if(nutrition < 50)
 		to_chat(src, "<span class='warning'>You need more energy to produce antiseptic enzymes. Eat something and try again.</span>")
@@ -53,7 +57,7 @@
 		if(affecting.brute_dam > 20 || affecting.burn_dam > 20)
 			to_chat(src, "<span class='warning'>The wounds on [M]'s [affecting.name] are too severe to treat with just licking.</span>")
 			return
-			
+
 		else
 			visible_message("<b>\The [src]</b> starts licking the wounds on [M]'s [affecting.name] clean.", \
 					             "<span class='notice'>You start licking the wounds on [M]'s [affecting.name] clean.</span>" )
@@ -69,10 +73,10 @@
 
 				if(affecting.is_bandaged() && affecting.is_salved()) // We do a second check after the delay, in case it was bandaged after the first check.
 					to_chat(src, "<span class='warning'>The wounds on [M]'s [affecting.name] have already been treated.</span>")
-					return 
+					return
 
 				else
-					visible_message("<span class='notice'>\The [src] [pick("slathers \a [W.desc] on [M]'s [affecting.name] with their spit.", 
+					visible_message("<span class='notice'>\The [src] [pick("slathers \a [W.desc] on [M]'s [affecting.name] with their spit.",
 																			   "drags their tongue across \a [W.desc] on [M]'s [affecting.name].",
 																			   "drips saliva onto \a [W.desc] on [M]'s [affecting.name].",
 																			   "uses their tongue to disinfect \a [W.desc] on [M]'s [affecting.name].",

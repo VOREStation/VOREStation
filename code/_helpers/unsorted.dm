@@ -344,7 +344,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		var/newname
 
 		for(var/i=1,i<=3,i++)	//we get 3 attempts to pick a suitable name.
-			newname = input(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname) as text
+			//newname = tgui_input_text(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname)
+			newname = input(src,"You are \a [role]. Would you like to change your name to something else?", "Name change",oldname)
 			if((world.time-time_passed)>3000)
 				return	//took too long
 			newname = sanitizeName(newname, ,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
@@ -1160,7 +1161,7 @@ var/list/WALLITEMS = list(
 			if(length(temp_col )<2)
 				temp_col  = "0[temp_col]"
 			colour += temp_col
-	return colour
+	return "#[colour]"
 
 /proc/color_square(red, green, blue, hex)
 	var/color = hex ? hex : "#[num2hex(red, 2)][num2hex(green, 2)][num2hex(blue, 2)]"
@@ -1177,7 +1178,7 @@ var/mob/dview/dview_mob = new
 		log_error("Had to recreate the dview mob!")
 
 	dview_mob.loc = center
-	
+
 	dview_mob.see_invisible = invis_flags
 
 	. = view(range, dview_mob)
@@ -1364,7 +1365,7 @@ var/mob/dview/dview_mob = new
 
 /proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 	if (value == FALSE) //nothing should be calling us with a number, so this is safe
-		value = input(usr, "Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
+		value = tgui_input_text(usr, "Enter type to find (blank for all, cancel to cancel)", "Search for type")
 		if (isnull(value))
 			return
 	value = trim(value)
@@ -1496,7 +1497,7 @@ GLOBAL_REAL_VAR(list/stack_trace_storage)
 	. += new /obj/screen/plane_master/lighting							//Lighting system (but different!)
 	. += new /obj/screen/plane_master/o_light_visual					//Object lighting (using masks)
 	. += new /obj/screen/plane_master/emissive							//Emissive overlays
-	
+
 	. += new /obj/screen/plane_master/ghosts							//Ghosts!
 	. += new /obj/screen/plane_master{plane = PLANE_AI_EYE}			//AI Eye!
 

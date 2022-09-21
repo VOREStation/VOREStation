@@ -6,7 +6,6 @@
 		R.add_language(LANGUAGE_ECUREUILIAN,	1)
 		R.add_language(LANGUAGE_DAEMON,			1)
 		R.add_language(LANGUAGE_ENOCHIAN,		1)
-		R.add_language(LANGUAGE_SLAVIC,			1)
 		R.add_language(LANGUAGE_DRUDAKAR, 		1)
 		R.add_language(LANGUAGE_TAVAN,			1)
 		return 1
@@ -30,6 +29,30 @@
 
 	R.verbs += /mob/living/proc/set_size
 	return 1
+
+//Robot size gun
+/obj/item/borg/upgrade/sizegun
+	name = "robot mounted size gun"
+	desc = "A size gun adapted for installation in cyborgs, allows them to turn people pocket-sized among other uses. What could go wrong?"
+	icon_state = "cyborg_upgrade2"
+	item_state = "cyborg_upgrade"
+	require_module = 1
+
+/obj/item/borg/upgrade/sizegun/action(var/mob/living/silicon/robot/R)
+	if(..()) return 0
+
+	var/obj/item/weapon/gun/energy/sizegun/mounted/T = locate() in R.module
+	if(!T)
+		T = locate() in R.module.contents
+	if(!T)
+		T = locate() in R.module.modules
+	if(!T)
+		R.module.modules += new/obj/item/weapon/gun/energy/sizegun/mounted(R.module)
+		return 1
+	if(T)
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
 
 /obj/item/borg/upgrade/bellysizeupgrade
 	name = "robohound capacity expansion module"
@@ -151,6 +174,30 @@
 		T = locate() in R.module.modules
 	if(!T)
 		R.module.modules += new/obj/item/weapon/gun/energy/kinetic_accelerator/cyborg(R.module)
+		return 1
+	if(T)
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
+		return 0
+
+//cyborg foam dart gun
+/obj/item/borg/upgrade/toygun
+	name = "Donk-Soft Cyborg Blaster module" //Cyborg Blaster is capitalized because it's the brand name
+	desc = "A foam dart gun designed for mounting into cyborgs. It's Donk or Don't! DISCLAIMER: Donk-Soft bears no responsibility for incidents relating to cyborgs becoming too accustomed to shooting at crew. Installation of the Donk-Soft Cyborg Blaster must be performed only by a licensed roboticist."
+	icon_state = "cyborg_upgrade5"
+	item_state = "cyborg_upgrade"
+	require_module = 1
+
+/obj/item/borg/upgrade/toygun/action(var/mob/living/silicon/robot/R)
+	if(..()) return 0
+
+	var/obj/item/weapon/gun/projectile/cyborgtoy/T = locate() in R.module
+	if(!T)
+		T = locate() in R.module.contents
+	if(!T)
+		T = locate() in R.module.modules
+	if(!T)
+		R.module.modules += new/obj/item/weapon/gun/projectile/cyborgtoy(R.module)
 		return 1
 	if(T)
 		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")

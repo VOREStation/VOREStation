@@ -194,7 +194,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/cb10 = 6,
 					/obj/item/weapon/reagent_containers/food/snacks/tuna = 2)
 	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/syndicake = 6,
-					/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12)
+					/obj/item/weapon/reagent_containers/food/snacks/unajerky = 12,
+					/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax = 6)
 	prices = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 1,
 				/obj/item/weapon/reagent_containers/food/snacks/candy/gummy = 2,
 				/obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 5,
@@ -628,6 +629,7 @@
 					/obj/item/device/analyzer = 5,
 					/obj/item/device/t_scanner = 5,
 					/obj/item/weapon/tool/screwdriver = 5,
+					/obj/item/weapon/extinguisher/mini = 3,
 					/obj/item/device/flashlight/glowstick = 3,
 					/obj/item/device/flashlight/glowstick/red = 3,
 					/obj/item/device/flashlight/glowstick/blue = 3,
@@ -1054,7 +1056,8 @@
 					/obj/item/weapon/reagent_containers/food/snacks/driedfish = 8,
 					/obj/item/weapon/reagent_containers/food/snacks/cookiesnack = 8
 					)
-	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/unajerky = 1)
+	contraband = list(/obj/item/weapon/reagent_containers/food/snacks/unajerky = 1,
+					/obj/item/weapon/reagent_containers/food/snacks/canned/brainzsnax/red = 6)
 
 	prices = list(	/obj/item/weapon/reagent_containers/food/snacks/tuna = 5,
 					/obj/item/weapon/reagent_containers/food/snacks/semki = 5,

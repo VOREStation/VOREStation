@@ -286,16 +286,16 @@
 	if(new_amount < 0 || new_amount % 1)
 		stack_trace("Tried to set a bad stack amount: [new_amount]")
 		return 0
-	
+
 	// Clean up the new amount
 	new_amount = max(round(new_amount), 0)
-	
+
 	// Can exceed max if you really want
 	if(new_amount > max_amount && !no_limits)
 		new_amount = max_amount
-	
+
 	amount = new_amount
-	
+
 	// Can set it to 0 without qdel if you really want
 	if(amount == 0 && !no_limits)
 		qdel(src)
@@ -320,7 +320,7 @@
 
 	if (isnull(tamount))
 		tamount = src.get_amount()
-	
+
 	if(tamount < 0 || tamount % 1)
 		stack_trace("Tried to transfer a bad stack amount: [tamount]")
 		return 0
@@ -333,7 +333,10 @@
 		if (prob(transfer/orig_amount * 100))
 			transfer_fingerprints_to(S)
 			if(blood_DNA)
-				S.blood_DNA |= blood_DNA
+				if(S.blood_DNA)
+					S.blood_DNA |= blood_DNA
+				else
+					S.blood_DNA = blood_DNA.Copy()
 		return transfer
 	return 0
 
@@ -347,7 +350,7 @@
 	if(tamount < 0 || tamount % 1)
 		stack_trace("Tried to split a bad stack amount: [tamount]")
 		return null
-	
+
 	var/transfer = max(min(tamount, src.amount, initial(max_amount)), 0)
 
 	var/orig_amount = src.amount
@@ -399,7 +402,7 @@
 
 /obj/item/stack/attack_hand(mob/user as mob)
 	if (user.get_inactive_hand() == src)
-		var/N = input(usr, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1) as num|null
+		var/N = tgui_input_number(usr, "How many stacks of [src] would you like to split off?  There are currently [amount].", "Split stacks", 1, amount, 1)
 		if(N)
 			var/obj/item/stack/F = src.split(N)
 			if (F)

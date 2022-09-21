@@ -42,11 +42,13 @@
 	var/digest_multiplier = 1
 	var/recycles = FALSE
 	var/medsensor = TRUE //Does belly sprite come with patient ok/dead light?
+	var/obj/item/device/healthanalyzer/med_analyzer = null
 
 /obj/item/device/dogborg/sleeper/New()
 	..()
 	flags |= NOBLUDGEON //No more attack messages
 	files = new /datum/research/techonly(src)
+	med_analyzer = new /obj/item/device/healthanalyzer
 
 /obj/item/device/dogborg/sleeper/Destroy()
 	go_out()
@@ -216,6 +218,8 @@
 	dat += "<A href='?src=\ref[src];port=1'>Eject port: [eject_port]</A>"
 	if(!cleaning)
 		dat += "<A href='?src=\ref[src];clean=1'>Self-Clean</A>"
+	if(medsensor)
+		dat += "<A href='?src=\ref[src];analyze=1'>Analyze Patient</A>"
 	else
 		dat += "<span class='linkOff'>Self-Clean</span>"
 	if(delivery)
@@ -336,6 +340,8 @@
 		if(cleaning)
 			sleeperUI(usr)
 			return
+	if(href_list["analyze"]) //DO HEALTH ANALYZER STUFF HERE.
+		med_analyzer.scan_mob(patient,hound)
 	if(href_list["port"])
 		switch(eject_port)
 			if("ingestion")
@@ -548,7 +554,8 @@
 				var/actual_burn = T.getFireLoss() - old_burn
 				var/damage_gain = actual_brute + actual_burn
 				drain(-25 * damage_gain) //25*total loss as with voreorgan stats.
-				water.add_charge(damage_gain)
+				if(water)
+					water.add_charge(damage_gain)
 				if(T.stat == DEAD)
 					if(ishuman(T))
 						message_admins("[key_name(hound)] has digested [key_name(T)] as a dogborg. ([hound ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[hound.x];Y=[hound.y];Z=[hound.z]'>JMP</a>" : "null"])")
@@ -585,10 +592,12 @@
 					if(ishuman(T))
 						var/mob/living/carbon/human/Prey = T
 						volume = (Prey.bloodstr.total_volume + Prey.ingested.total_volume + Prey.touching.total_volume + Prey.weight) * Prey.size_multiplier
-						water.add_charge(volume)
+						if(water)
+							water.add_charge(volume)
 					if(T.reagents)
 						volume = T.reagents.total_volume
-						water.add_charge(volume)
+						if(water)
+							water.add_charge(volume)
 					if(patient == T)
 						patient_laststat = null
 						patient = null
@@ -612,7 +621,7 @@
 						for(var/tech in tech_item.origin_tech)
 							files.UpdateTech(tech, tech_item.origin_tech[tech])
 							synced = FALSE
-					if(volume)
+					if(volume && water)
 						water.add_charge(volume)
 					if(recycles && T.matter)
 						for(var/material in T.matter)
@@ -620,14 +629,14 @@
 							if(istype(T,/obj/item/stack))
 								var/obj/item/stack/stack = T
 								total_material *= stack.get_amount()
-							if(material == MAT_STEEL)
+							if(material == MAT_STEEL && metal)
 								metal.add_charge(total_material)
-							if(material == "glass")
+							if(material == "glass" && glass)
 								glass.add_charge(total_material)
 							if(decompiler)
-								if(material == "plastic")
+								if(material == "plastic" && plastic)
 									plastic.add_charge(total_material)
-								if(material == "wood")
+								if(material == "wood" && wood)
 									wood.add_charge(total_material)
 					drain(-50 * digested)
 			else if(istype(target,/obj/effect/decal/remains))
@@ -723,5 +732,12 @@
 	desc = "A mounted 'emergency containment cell'."
 	icon_state = "sleeperert"
 	injection_chems = list("inaprovaline", "paracetamol") // short list
+
+/obj/item/device/dogborg/sleeper/compactor/trauma //Trauma borg belly
+	name = "Recovery Belly"
+	desc = "A downgraded model of the medihound sleeper."
+	icon_state = "sleeper"
+	injection_chems = list("inaprovaline", "dexalin", "bicaridine", "anti_toxin", "spaceacillin", "paracetamol")
+	max_item_count = 1
 
 #undef SLEEPER_INJECT_COST

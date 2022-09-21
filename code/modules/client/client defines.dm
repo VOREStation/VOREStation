@@ -80,10 +80,15 @@
 	// Runechat messages
 	var/list/seen_messages
 
+	//Hide top bars
+	var/fullscreen = FALSE
+	//Hide status bar
+	var/show_status_bar = TRUE
+
 		///////////
 		// INPUT //
 		///////////
-	
+
 	/// Bitfield of modifier keys (Shift, Ctrl, Alt) held currently.
 	var/mod_keys_held = 0
 	/// Bitfield of movement keys (WASD/Cursor Keys) held currently.

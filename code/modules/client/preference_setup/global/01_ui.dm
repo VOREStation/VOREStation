@@ -3,28 +3,34 @@
 	sort_order = 1
 
 /datum/category_item/player_setup_item/player_global/ui/load_preferences(var/savefile/S)
-	S["UI_style"]		>> pref.UI_style
-	S["UI_style_color"]	>> pref.UI_style_color
-	S["UI_style_alpha"]	>> pref.UI_style_alpha
-	S["ooccolor"]		>> pref.ooccolor
-	S["tooltipstyle"]	>> pref.tooltipstyle
-	S["client_fps"]		>> pref.client_fps
-	S["ambience_freq"]	>> pref.ambience_freq
-	S["ambience_chance"] >> pref.ambience_chance
-	S["tgui_fancy"]		>> pref.tgui_fancy
-	S["tgui_lock"]		>> pref.tgui_lock
+	S["UI_style"]				>> pref.UI_style
+	S["UI_style_color"]			>> pref.UI_style_color
+	S["UI_style_alpha"]			>> pref.UI_style_alpha
+	S["ooccolor"]				>> pref.ooccolor
+	S["tooltipstyle"]			>> pref.tooltipstyle
+	S["client_fps"]				>> pref.client_fps
+	S["ambience_freq"]			>> pref.ambience_freq
+	S["ambience_chance"] 		>> pref.ambience_chance
+	S["tgui_fancy"]				>> pref.tgui_fancy
+	S["tgui_lock"]				>> pref.tgui_lock
+	S["tgui_input_mode"]		>> pref.tgui_input_mode
+	S["tgui_large_buttons"]		>> pref.tgui_large_buttons
+	S["tgui_swapped_buttons"]	>> pref.tgui_swapped_buttons
 
 /datum/category_item/player_setup_item/player_global/ui/save_preferences(var/savefile/S)
-	S["UI_style"]		<< pref.UI_style
-	S["UI_style_color"]	<< pref.UI_style_color
-	S["UI_style_alpha"]	<< pref.UI_style_alpha
-	S["ooccolor"]		<< pref.ooccolor
-	S["tooltipstyle"]	<< pref.tooltipstyle
-	S["client_fps"]		<< pref.client_fps
-	S["ambience_freq"]	<< pref.ambience_freq
-	S["ambience_chance"] << pref.ambience_chance
-	S["tgui_fancy"]		<< pref.tgui_fancy
-	S["tgui_lock"]		<< pref.tgui_lock
+	S["UI_style"]				<< pref.UI_style
+	S["UI_style_color"]			<< pref.UI_style_color
+	S["UI_style_alpha"]			<< pref.UI_style_alpha
+	S["ooccolor"]				<< pref.ooccolor
+	S["tooltipstyle"]			<< pref.tooltipstyle
+	S["client_fps"]				<< pref.client_fps
+	S["ambience_freq"]			<< pref.ambience_freq
+	S["ambience_chance"] 		<< pref.ambience_chance
+	S["tgui_fancy"]				<< pref.tgui_fancy
+	S["tgui_lock"]				<< pref.tgui_lock
+	S["tgui_input_mode"]		<< pref.tgui_input_mode
+	S["tgui_large_buttons"]		<< pref.tgui_large_buttons
+	S["tgui_swapped_buttons"]	<< pref.tgui_swapped_buttons
 
 /datum/category_item/player_setup_item/player_global/ui/sanitize_preferences()
 	pref.UI_style			= sanitize_inlist(pref.UI_style, all_ui_styles, initial(pref.UI_style))
@@ -35,8 +41,11 @@
 	pref.client_fps			= sanitize_integer(pref.client_fps, 0, MAX_CLIENT_FPS, initial(pref.client_fps))
 	pref.ambience_freq		= sanitize_integer(pref.ambience_freq, 0, 60, initial(pref.ambience_freq)) // No more than once per hour.
 	pref.ambience_chance 	= sanitize_integer(pref.ambience_chance, 0, 100, initial(pref.ambience_chance)) // 0-100 range.
-	pref.tgui_fancy		= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
-	pref.tgui_lock		= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
+	pref.tgui_fancy			= sanitize_integer(pref.tgui_fancy, 0, 1, initial(pref.tgui_fancy))
+	pref.tgui_lock			= sanitize_integer(pref.tgui_lock, 0, 1, initial(pref.tgui_lock))
+	pref.tgui_input_mode	= sanitize_integer(pref.tgui_input_mode, 0, 1, initial(pref.tgui_input_mode))
+	pref.tgui_large_buttons	= sanitize_integer(pref.tgui_large_buttons, 0, 1, initial(pref.tgui_large_buttons))
+	pref.tgui_swapped_buttons	= sanitize_integer(pref.tgui_swapped_buttons, 0, 1, initial(pref.tgui_swapped_buttons))
 
 /datum/category_item/player_setup_item/player_global/ui/content(var/mob/user)
 	. = "<b>UI Style:</b> <a href='?src=\ref[src];select_style=1'><b>[pref.UI_style]</b></a><br>"
@@ -49,6 +58,9 @@
 	. += "<b>Ambience Chance:</b> <a href='?src=\ref[src];select_ambience_chance=1'><b>[pref.ambience_chance]</b></a><br>"
 	. += "<b>tgui Window Mode:</b> <a href='?src=\ref[src];tgui_fancy=1'><b>[(pref.tgui_fancy) ? "Fancy (default)" : "Compatible (slower)"]</b></a><br>"
 	. += "<b>tgui Window Placement:</b> <a href='?src=\ref[src];tgui_lock=1'><b>[(pref.tgui_lock) ? "Primary Monitor" : "Free (default)"]</b></a><br>"
+	. += "<b>TGUI Input Framework:</b> <a href='?src=\ref[src];tgui_input_mode=1'><b>[(pref.tgui_input_mode) ? "Enabled" : "Disabled (default)"]</b></a><br>"
+	. += "<b>TGUI Large Buttons:</b> <a href='?src=\ref[src];tgui_large_buttons=1'><b>[(pref.tgui_large_buttons) ? "Enabled (default)" : "Disabled"]</b></a><br>"
+	. += "<b>TGUI Swapped Buttons:</b> <a href='?src=\ref[src];tgui_swapped_buttons=1'><b>[(pref.tgui_swapped_buttons) ? "Enabled" : "Disabled (default)"]</b></a><br>"
 	if(can_select_ooc_color(user))
 		. += "<b>OOC Color:</b>"
 		if(pref.ooccolor == initial(pref.ooccolor))
@@ -70,7 +82,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["select_alpha"])
-		var/UI_style_alpha_new = input(user, "Select UI alpha (transparency) level, between 50 and 255.", "Global Preference", pref.UI_style_alpha) as num|null
+		var/UI_style_alpha_new = tgui_input_number(user, "Select UI alpha (transparency) level, between 50 and 255.", "Global Preference", pref.UI_style_alpha, 255, 50)
 		if(isnull(UI_style_alpha_new) || (UI_style_alpha_new < 50 || UI_style_alpha_new > 255) || !CanUseTopic(user)) return TOPIC_NOACTION
 		pref.UI_style_alpha = UI_style_alpha_new
 		return TOPIC_REFRESH
@@ -88,7 +100,7 @@
 		return TOPIC_REFRESH
 
 	else if(href_list["select_client_fps"])
-		var/fps_new = input(user, "Input Client FPS (1-200, 0 uses server FPS)", "Global Preference", pref.client_fps) as null|num
+		var/fps_new = tgui_input_number(user, "Input Client FPS (1-200, 0 uses server FPS)", "Global Preference", pref.client_fps, 200, 0)
 		if(isnull(fps_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(fps_new < 0 || fps_new > MAX_CLIENT_FPS) return TOPIC_NOACTION
 		pref.client_fps = fps_new
@@ -97,14 +109,14 @@
 		return TOPIC_REFRESH
 		
 	else if(href_list["select_ambience_freq"])
-		var/ambience_new = input(user, "Input how often you wish to hear ambience repeated! (1-60 MINUTES, 0 for disabled)", "Global Preference", pref.ambience_freq) as null|num
+		var/ambience_new = tgui_input_number(user, "Input how often you wish to hear ambience repeated! (1-60 MINUTES, 0 for disabled)", "Global Preference", pref.ambience_freq, 60, 0)
 		if(isnull(ambience_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(ambience_new < 0 || ambience_new > 60) return TOPIC_NOACTION
 		pref.ambience_freq = ambience_new
 		return TOPIC_REFRESH
 		
 	else if(href_list["select_ambience_chance"])
-		var/ambience_chance_new = input(user, "Input the chance you'd like to hear ambience played to you (On area change, or by random ambience). 35 means a 35% chance to play ambience. This is a range from 0-100. 0 disables ambience playing entirely. This is also affected by Ambience Frequency.", "Global Preference", pref.ambience_freq) as null|num
+		var/ambience_chance_new = tgui_input_number(user, "Input the chance you'd like to hear ambience played to you (On area change, or by random ambience). 35 means a 35% chance to play ambience. This is a range from 0-100. 0 disables ambience playing entirely. This is also affected by Ambience Frequency.", "Global Preference", pref.ambience_freq, 100, 0)
 		if(isnull(ambience_chance_new) || !CanUseTopic(user)) return TOPIC_NOACTION
 		if(ambience_chance_new < 0 || ambience_chance_new > 100) return TOPIC_NOACTION
 		pref.ambience_chance = ambience_chance_new
@@ -116,6 +128,18 @@
 		
 	else if(href_list["tgui_lock"])
 		pref.tgui_lock = !pref.tgui_lock
+		return TOPIC_REFRESH
+
+	else if(href_list["tgui_input_mode"])
+		pref.tgui_input_mode = !pref.tgui_input_mode
+		return TOPIC_REFRESH
+
+	else if(href_list["tgui_large_buttons"])
+		pref.tgui_large_buttons = !pref.tgui_large_buttons
+		return TOPIC_REFRESH
+
+	else if(href_list["tgui_swapped_buttons"])
+		pref.tgui_swapped_buttons = !pref.tgui_swapped_buttons
 		return TOPIC_REFRESH
 
 	else if(href_list["reset"])

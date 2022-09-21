@@ -422,7 +422,7 @@
 		return
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
-		ui = new(user, src, "PortableTurret", name, 500, 400)
+		ui = new(user, src, "PortableTurret", name, ui_x = 500, ui_y = 400)
 		ui.open()
 
 /obj/machinery/porta_turret/tgui_data(mob/user)
@@ -1092,7 +1092,7 @@
 				return
 
 	if(istype(I, /obj/item/weapon/pen))	//you can rename turrets like bots!
-		var/t = sanitizeSafe(input(user, "Enter new turret name", name, finish_name) as text, MAX_NAME_LEN)
+		var/t = sanitizeSafe(tgui_input_text(user, "Enter new turret name", name, finish_name, MAX_NAME_LEN), MAX_NAME_LEN)
 		if(!t)
 			return
 		if(!in_range(src, usr) && loc != usr)

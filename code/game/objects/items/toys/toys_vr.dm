@@ -87,16 +87,20 @@
 	attack_verb = list("beeped", "booped", "pinged")
 
 /obj/item/toy/plushie/borgplushie/medihound
+	name = "medihound plushie"
 	icon_state = "medihound"
 
 /obj/item/toy/plushie/borgplushie/scrubpuppy
+	name = "janihound plushie"
 	icon_state = "scrubpuppy"
 
 /obj/item/toy/plushie/borgplushie/drakiesec
+	name = "security drake plushie"
 	icon = 'icons/obj/drakietoy_vr.dmi'
 	icon_state = "secdrake"
 
 /obj/item/toy/plushie/borgplushie/drakiemed
+	name = "medical drake plushie"
 	icon = 'icons/obj/drakietoy_vr.dmi'
 	icon_state = "meddrake"
 
@@ -613,7 +617,7 @@
 
 /obj/item/toy/minigibber/attackby(obj/O, mob/user, params)
 	if(istype(O,/obj/item/toy/figure) || istype(O,/obj/item/toy/character) && O.loc == user)
-		to_chat(user, "<span class='notice'>You start feeding \the [O] [bicon(O)] into \the [src]'s mini-input.</span>")
+		to_chat(user, "<span class='notice'>You start feeding \the [O] \icon[O][bicon(O)] into \the [src]'s mini-input.</span>")
 		if(do_after(user, 10, target = src))
 			if(O.loc != user)
 				to_chat(user, "<span class='alert'>\The [O] is too far away to feed into \the [src]!</span>")
@@ -1074,3 +1078,26 @@
 		new /obj/effect/decal/cleanable/confetti(T)
 	else
 		to_chat(user, "<span class='notice'>The [src] is already spent!</span>")
+
+/*
+ * Snow Globes
+ */
+/obj/item/weapon/toy/snowglobe
+	name = "snowglobe"
+	icon = 'icons/obj/snowglobe_vr.dmi'
+
+/obj/item/weapon/toy/snowglobe/snowvillage
+	desc = "Depicts a small, quaint village buried in snow."
+	icon_state = "smolsnowvillage"
+
+/obj/item/weapon/toy/snowglobe/tether
+	desc = "Depicts a massive space elevator reaching to the sky."
+	icon_state = "smoltether"
+
+/obj/item/weapon/toy/snowglobe/stellardelight
+	desc = "Depicts an interstellar spacecraft."
+	icon_state = "smolstellardelight"
+
+/obj/item/weapon/toy/snowglobe/rascalspass
+	desc = "Depicts a nanotrasen facility on a temperate world."
+	icon_state = "smolrascalspass"

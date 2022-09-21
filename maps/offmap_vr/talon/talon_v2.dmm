@@ -190,7 +190,7 @@
 /obj/machinery/light/small{
 	dir = 1
 	},
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/tiled/techfloor,
 /area/talon_v2/workroom)
 "aw" = (
@@ -15549,7 +15549,7 @@
 /area/talon_v2/crew_quarters/eng_room)
 "Xi" = (
 /obj/structure/table/woodentable,
-/obj/item/device/paicard,
+/obj/random/paicard,
 /turf/simulated/floor/wood,
 /area/talon_v2/crew_quarters/meditation)
 "Xl" = (

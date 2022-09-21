@@ -106,8 +106,8 @@
 
 // Job Cloaks
 /obj/item/clothing/suit/storage/teshari/cloak/jobs/cap
-	name = "facility director cloak"
-	desc = "A soft Teshari cloak made for the Facility Director"
+	name = "site manager cloak"
+	desc = "A soft Teshari cloak made for the Site Manager"
 	icon_state = "tesh_cloak_cap"
 
 //Cargo

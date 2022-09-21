@@ -44,6 +44,10 @@
 	display_name = "collar, cowbell"
 	path = /obj/item/clothing/accessory/collar/cowbell
 
+/datum/gear/collar/planet_earth
+	display_name = "collar, planet"
+	path = /obj/item/clothing/accessory/collar/collarplanet_earth
+
 /datum/gear/collar/holo
 	display_name = "collar, holo"
 	path = /obj/item/clothing/accessory/collar/holo

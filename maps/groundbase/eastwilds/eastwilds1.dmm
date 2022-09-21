@@ -2,6 +2,10 @@
 "a" = (
 /turf/unsimulated/wall/planetary/virgo3c,
 /area/submap/groundbase/wilderness/east)
+"b" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/submap/groundbase/wilderness/east/unexplored)
 "c" = (
 /turf/simulated/mineral/cave/virgo3c,
 /area/submap/groundbase/wilderness/east)
@@ -10,6 +14,16 @@
 	dir = 4
 	},
 /turf/simulated/floor/water/virgo3c,
+/area/submap/groundbase/wilderness/east)
+"e" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/outdoors/grass/virgo3c,
+/area/submap/groundbase/wilderness/east/unexplored)
+"f" = (
+/mob/living/simple_mob/vore/pakkun,
+/turf/simulated/floor/water/virgo3c{
+	outdoors = 0
+	},
 /area/submap/groundbase/wilderness/east)
 "l" = (
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
@@ -29,6 +43,12 @@
 "r" = (
 /turf/simulated/mineral/cave/virgo3c,
 /area/submap/groundbase/wilderness/east/cave)
+"u" = (
+/obj/effect/landmark{
+	name = "carpspawn"
+	},
+/turf/simulated/floor/water/deep/virgo3c,
+/area/submap/groundbase/wilderness/east)
 "w" = (
 /obj/effect/map_effect/portal/master/side_a/gb_wilds/east_west{
 	dir = 8
@@ -36,7 +56,13 @@
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "y" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
+/area/submap/groundbase/wilderness/east)
+"B" = (
+/obj/effect/landmark{
+	name = "carpspawn"
+	},
+/turf/simulated/floor/water/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "F" = (
 /turf/simulated/floor/outdoors/grass/virgo3c,
@@ -2383,7 +2409,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -2653,7 +2679,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -2972,7 +2998,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -3320,7 +3346,7 @@ r
 r
 r
 Q
-Q
+f
 Q
 Q
 U
@@ -3421,7 +3447,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -3432,7 +3458,7 @@ Z
 Z
 V
 V
-F
+e
 F
 F
 F
@@ -3513,7 +3539,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -4779,7 +4805,7 @@ Z
 U
 U
 U
-U
+u
 U
 U
 U
@@ -4839,7 +4865,7 @@ Z
 Z
 Z
 U
-U
+u
 U
 U
 U
@@ -5212,7 +5238,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -5245,7 +5271,7 @@ Z
 Z
 U
 U
-U
+u
 U
 U
 U
@@ -5414,7 +5440,7 @@ U
 U
 U
 U
-U
+u
 Z
 Z
 Z
@@ -6518,7 +6544,7 @@ F
 V
 V
 Z
-Z
+B
 Z
 Z
 Z
@@ -6908,7 +6934,7 @@ Z
 Z
 Z
 Z
-U
+u
 U
 U
 U
@@ -6971,7 +6997,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 Z
@@ -8192,7 +8218,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -8245,7 +8271,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -9461,7 +9487,7 @@ r
 r
 Z
 Z
-Z
+B
 Z
 U
 U
@@ -10186,7 +10212,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 Z
@@ -10322,7 +10348,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -10374,7 +10400,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -11219,7 +11245,7 @@ Z
 U
 U
 U
-U
+u
 U
 U
 U
@@ -11373,7 +11399,7 @@ U
 U
 U
 U
-U
+u
 U
 Z
 Z
@@ -11476,7 +11502,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -12337,7 +12363,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -12456,7 +12482,7 @@ Z
 Z
 Z
 U
-U
+u
 U
 U
 U
@@ -12778,7 +12804,7 @@ U
 U
 U
 U
-U
+u
 U
 U
 U
@@ -13444,7 +13470,7 @@ r
 F
 F
 F
-l
+b
 l
 l
 l
@@ -13653,7 +13679,7 @@ Z
 V
 V
 F
-F
+e
 F
 F
 l
@@ -13692,7 +13718,7 @@ r
 Q
 Q
 Q
-Q
+f
 Q
 Q
 Q
@@ -13757,7 +13783,7 @@ Z
 Z
 U
 U
-U
+u
 U
 U
 U
@@ -13767,7 +13793,7 @@ Z
 Z
 Z
 Z
-Z
+B
 Z
 Z
 Z
@@ -15893,7 +15919,7 @@ V
 V
 V
 Z
-Z
+B
 Z
 Z
 Z

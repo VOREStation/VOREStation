@@ -31,6 +31,12 @@
 	desc = "A banner with the symbol of the Solar Confederate Government."
 	catalogue_data = list(/datum/category_item/catalogue/information/organization/solgov)
 
+/obj/item/weapon/banner/altevian
+	name = "\improper Altevian Hegemony Banner"
+	icon_state = "banner-altevian"
+	desc = "A banner that flies for the pride of the hegemony."
+	//catalogue_data = list(/datum/category_item/catalogue/information/organization/altevian_hegemony) // TODO?
+
 /* //VOREStation Removal
 /obj/item/weapon/banner/virgov
 	name = "\improper VirGov banner"

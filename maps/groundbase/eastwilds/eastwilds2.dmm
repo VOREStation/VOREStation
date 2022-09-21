@@ -26,7 +26,7 @@
 	},
 /area/submap/groundbase/wilderness/east)
 "r" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "t" = (
 /turf/simulated/floor/water/deep/virgo3c,
@@ -34,6 +34,12 @@
 "y" = (
 /obj/effect/map_effect/portal/line/side_b{
 	dir = 4
+	},
+/turf/simulated/floor/water/deep/virgo3c,
+/area/submap/groundbase/wilderness/east)
+"B" = (
+/obj/effect/landmark{
+	name = "carpspawn"
 	},
 /turf/simulated/floor/water/deep/virgo3c,
 /area/submap/groundbase/wilderness/east)
@@ -45,6 +51,12 @@
 	dir = 8
 	},
 /turf/simulated/floor/outdoors/grass/forest/virgo3c,
+/area/submap/groundbase/wilderness/east)
+"I" = (
+/obj/effect/landmark{
+	name = "carpspawn"
+	},
+/turf/simulated/floor/water/virgo3c,
 /area/submap/groundbase/wilderness/east)
 "V" = (
 /obj/effect/map_effect/portal/master/side_b/gb_wilds/east{
@@ -949,7 +961,7 @@ Z
 Z
 Z
 t
-t
+B
 t
 t
 Z
@@ -3082,7 +3094,7 @@ l
 l
 Z
 Z
-Z
+I
 t
 t
 t
@@ -5071,7 +5083,7 @@ Z
 Z
 Z
 Z
-Z
+I
 n
 n
 F
@@ -5917,7 +5929,7 @@ F
 n
 Z
 Z
-Z
+I
 Z
 Z
 Z
@@ -6912,7 +6924,7 @@ t
 t
 t
 t
-Z
+I
 Z
 Z
 Z
@@ -7225,7 +7237,7 @@ Z
 t
 t
 t
-t
+B
 t
 t
 t
@@ -7515,7 +7527,7 @@ t
 t
 Z
 Z
-Z
+I
 Z
 n
 n
@@ -8044,7 +8056,7 @@ Z
 Z
 Z
 Z
-t
+B
 t
 t
 t
@@ -8128,7 +8140,7 @@ n
 n
 Z
 Z
-Z
+I
 Z
 Z
 Z
@@ -8341,7 +8353,7 @@ t
 t
 t
 t
-Z
+I
 Z
 Z
 Z
@@ -8695,7 +8707,7 @@ Z
 Z
 t
 t
-t
+B
 t
 t
 t
@@ -8904,7 +8916,7 @@ t
 t
 Z
 Z
-Z
+I
 Z
 Z
 Z
@@ -8992,7 +9004,7 @@ t
 t
 t
 t
-t
+B
 Z
 Z
 Z
@@ -9067,7 +9079,7 @@ n
 n
 Z
 Z
-Z
+I
 t
 Z
 Z
@@ -9412,7 +9424,7 @@ t
 t
 t
 t
-t
+B
 t
 t
 t
@@ -9689,7 +9701,7 @@ n
 Z
 Z
 Z
-Z
+I
 t
 t
 t
@@ -10688,7 +10700,7 @@ Z
 t
 t
 t
-t
+B
 t
 t
 t
@@ -11336,7 +11348,7 @@ n
 n
 n
 Z
-Z
+I
 Z
 n
 n
@@ -11513,7 +11525,7 @@ t
 t
 t
 t
-t
+B
 t
 t
 t
@@ -11532,7 +11544,7 @@ Z
 Z
 t
 t
-t
+B
 t
 t
 t
@@ -12521,7 +12533,7 @@ t
 t
 t
 t
-t
+B
 t
 t
 t
@@ -12787,7 +12799,7 @@ t
 t
 t
 t
-t
+B
 t
 t
 t
@@ -13531,7 +13543,7 @@ t
 t
 t
 t
-t
+B
 t
 Z
 Z
@@ -13953,7 +13965,7 @@ t
 t
 t
 t
-t
+B
 t
 t
 t
@@ -14303,7 +14315,7 @@ Z
 Z
 Z
 Z
-Z
+I
 Z
 Z
 Z
@@ -14620,30 +14632,31 @@ n
 n
 Z
 Z
+I
+Z
+Z
+Z
+Z
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
+n
 Z
 Z
 Z
 Z
 Z
-n
-n
-n
-n
-n
-n
-n
-n
-n
-n
-n
-n
-Z
-Z
-Z
-Z
-Z
 Z
 t
+B
 t
 t
 t
@@ -14655,8 +14668,7 @@ t
 t
 t
 t
-t
-t
+B
 t
 t
 t
@@ -16027,7 +16039,7 @@ Z
 Z
 Z
 Z
-Z
+I
 Z
 Z
 Z
@@ -16081,6 +16093,7 @@ t
 t
 t
 t
+B
 t
 t
 t
@@ -16090,8 +16103,7 @@ t
 t
 t
 t
-t
-t
+B
 t
 t
 t
@@ -16352,7 +16364,7 @@ Z
 Z
 t
 t
-t
+B
 t
 t
 t
@@ -16937,7 +16949,7 @@ t
 t
 t
 t
-t
+B
 t
 t
 t
@@ -17085,7 +17097,7 @@ t
 t
 t
 t
-t
+B
 Z
 Z
 Z

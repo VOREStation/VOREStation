@@ -15,18 +15,22 @@
 	to_chat(user, "<span class='notice'>You [active ? "" : "de"]activate \the [src].</span>")
 	update()
 
-/obj/item/weapon/implanter/verb/remove_implant(var/mob/user)
+/obj/item/weapon/implanter/verb/remove_implant()
 	set category = "Object"
 	set name = "Remove Implant"
 	set src in usr
 
 	if(!imp)
 		return
-	imp.loc = get_turf(src)
-	user.put_in_hands(imp)
-	to_chat(user, "<span class='notice'>You remove \the [imp] from \the [src].</span>")
-	name = "implanter"
-	imp = null
+	if(istype(usr, /mob))
+		var/mob/M = usr
+		imp.loc = get_turf(src)
+		if(M.get_active_hand() == null)
+			M.put_in_hands(imp)
+		to_chat(M, "<span class='notice'>You remove \the [imp] from \the [src].</span>")
+		name = "implanter"
+		imp = null
+
 	update()
 
 	return

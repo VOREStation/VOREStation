@@ -23,6 +23,20 @@
 
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
+
+	//VOREStation Add Start - I really am an idiot why did I make it this way
+	if(micro_target)
+		for(var/thing in src.contents)
+			if(!ismob(thing))
+				continue
+			var/mob/m = thing
+			if(isbelly(src.loc))
+				m.forceMove(src.loc)
+			else
+				m.forceMove(get_turf(src.loc))
+			m.visible_message("<span class = 'notice'>\The [m] tumbles out of \the [src]!</span>")
+	//VOREStation Add End
+
 	return ..()
 
 /obj/Topic(href, href_list, var/datum/tgui_state/state = GLOB.tgui_default_state)
@@ -41,7 +55,7 @@
 /obj/CanUseTopic(var/mob/user, var/datum/tgui_state/state = GLOB.tgui_default_state)
 	if(user.CanUseObjTopic(src))
 		return ..()
-	to_chat(user, "<span class='danger'>[bicon(src)]Access Denied!</span>")
+	to_chat(user, "<span class='danger'>\icon[src][bicon(src)]Access Denied!</span>")
 	return STATUS_CLOSE
 
 /mob/living/silicon/CanUseObjTopic(var/obj/O)

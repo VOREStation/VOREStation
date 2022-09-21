@@ -167,9 +167,9 @@
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/dept/undercoat/cap
-	display_name = "facility director undercoat (Teshari)"
+	display_name = "site manager undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/cap
-	allowed_roles = list("Facility Director")
+	allowed_roles = list("Site Manager")
 
 /datum/gear/uniform/dept/undercoat/hop
 	display_name = "head of personnel undercoat (Teshari)"
@@ -276,9 +276,9 @@
 	sort_category = "Xenowear"
 
 /datum/gear/suit/dept/cloak/cap
-	display_name = "facility director cloak (Teshari)"
+	display_name = "site manager cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs
-	allowed_roles = list("Facility Director")
+	allowed_roles = list("Site Manager")
 
 /datum/gear/suit/dept/cloak/hop
 	display_name = "head of personnel cloak (Teshari)"

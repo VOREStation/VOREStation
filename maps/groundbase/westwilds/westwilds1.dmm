@@ -691,7 +691,7 @@
 	name = "Burn Chamber Air Control";
 	output_tag = "burn_out";
 	pressure_setting = 0;
-	sensors = list("burn_sensor" = "Burn Chamber Sensor")
+	sensors = list("burn_sensor"="Burn Chamber Sensor")
 	},
 /turf/simulated/floor/tiled/white,
 /area/groundbase/science/outpost/toxins_mixing)
@@ -1722,7 +1722,7 @@
 /obj/machinery/vending/phoronresearch{
 	dir = 8;
 	name = "Toximate 2556";
-	products = list(/obj/item/device/transfer_valve = 3, /obj/item/device/assembly/timer = 6, /obj/item/device/assembly/signaler = 6, /obj/item/device/assembly/prox_sensor = 6, /obj/item/device/assembly/igniter = 12)
+	products = list(/obj/item/device/transfer_valve=3,/obj/item/device/assembly/timer=6,/obj/item/device/assembly/signaler=6,/obj/item/device/assembly/prox_sensor=6,/obj/item/device/assembly/igniter=12)
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/science/outpost/toxins_lab)
@@ -2038,7 +2038,7 @@
 /obj/machinery/vending/wallmed1{
 	pixel_x = 30
 	},
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "zz" = (
@@ -2085,7 +2085,7 @@
 /turf/simulated/floor,
 /area/groundbase/science/outpost/atmos)
 "zM" = (
-/turf/simulated/mineral/ignore_cavegen,
+/turf/simulated/mineral/ignore_cavegen/virgo3c,
 /area/submap/groundbase/wilderness/west)
 "zP" = (
 /obj/machinery/atmospherics/pipe/simple/hidden/black,
@@ -2144,7 +2144,6 @@
 /area/groundbase/science/outpost/atmos)
 "AD" = (
 /obj/machinery/artifact_scanpad,
-/obj/machinery/atmospherics/unary/vent_scrubber/on,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "AH" = (
@@ -4375,7 +4374,6 @@
 /area/groundbase/science/outpost/anomaly_storage)
 "YX" = (
 /obj/machinery/artifact_analyser,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/science/outpost/anomaly_lab)
 "Zk" = (

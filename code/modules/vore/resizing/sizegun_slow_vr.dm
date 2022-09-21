@@ -50,16 +50,16 @@
 	if(unresizable)
 		return TRUE
 
-	if(!(target.has_large_resize_bounds()) && (target.get_effective_size() >= RESIZE_MAXIMUM) && sizeshift_mode == SIZE_GROW)
+	if(!(target.has_large_resize_bounds()) && (target.size_multiplier >= RESIZE_MAXIMUM) && sizeshift_mode == SIZE_GROW)
 		return TRUE
 
-	if(target.get_effective_size() >= RESIZE_MAXIMUM_DORMS && sizeshift_mode == SIZE_GROW)
+	if(target.size_multiplier >= RESIZE_MAXIMUM_DORMS && sizeshift_mode == SIZE_GROW)
 		return TRUE
 
-	if(!(target.has_large_resize_bounds()) && (target.get_effective_size() <= RESIZE_MINIMUM) && sizeshift_mode == SIZE_SHRINK)
+	if(!(target.has_large_resize_bounds()) && (target.size_multiplier <= RESIZE_MINIMUM) && sizeshift_mode == SIZE_SHRINK)
 		return TRUE
 
-	if(target.get_effective_size() <= RESIZE_MINIMUM_DORMS && sizeshift_mode == SIZE_SHRINK)
+	if(target.size_multiplier <= RESIZE_MINIMUM_DORMS && sizeshift_mode == SIZE_SHRINK)
 		return TRUE
 
 	return FALSE
@@ -123,9 +123,9 @@
 		stoplag(3)
 
 		if(sizeshift_mode == SIZE_SHRINK)
-			L.resize((L.get_effective_size() - size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
+			L.resize((L.size_multiplier - size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
 		else if(sizeshift_mode == SIZE_GROW)
-			L.resize((L.get_effective_size() + size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
+			L.resize((L.size_multiplier + size_increment), uncapped = L.has_large_resize_bounds(), aura_animation = FALSE)
 
 	busy = FALSE
 	current_target = null

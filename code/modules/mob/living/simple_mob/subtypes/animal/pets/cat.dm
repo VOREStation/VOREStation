@@ -46,7 +46,7 @@ var/list/_cat_default_emotes = list(
 	holder_type = /obj/item/weapon/holder/cat
 	mob_size = MOB_SMALL
 
-	has_langs = list("Cat")
+	has_langs = list(LANGUAGE_ANIMAL)
 
 	var/mob/living/friend = null // Our best pal, who we'll follow. Meow.
 	var/named = FALSE //have I been named yet?
@@ -257,7 +257,7 @@ var/list/_cat_default_emotes = list(
 		if(named)
 			to_chat(user, "<span class='notice'>\The [name] already has a name!</span>")
 		else
-			var/tmp_name = sanitizeSafe(input(user, "Give \the [name] a name", "Name"), MAX_NAME_LEN)
+			var/tmp_name = sanitizeSafe(tgui_input_text(user, "Give \the [name] a name", "Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
 			if(length(tmp_name) > 50)
 				to_chat(user, "<span class='notice'>The name can be at most 50 characters long.</span>")
 			else

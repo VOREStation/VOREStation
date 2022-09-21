@@ -14,6 +14,9 @@ package-lock.json
 
 ## Build artifacts
 /public/.tmp/**/*
+/public/*.map
+/public/tgui-bench.bundle.js
+/public/tgui-bench.bundle.css
 
 ## Previously ignored locations that are kept to avoid confusing git
 ## while transitioning to a new project structure.

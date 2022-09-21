@@ -38,6 +38,8 @@
 	var/vision_flags_mob = 0
 	var/darkness_view = 0
 
+	var/can_uninstall = TRUE
+
 	var/list/planes_enabled = null	// List of vision planes this nifsoft enables when active
 
 	var/vision_exclusive = FALSE	//Whether or not this NIFSoft provides exclusive vision modifier
@@ -67,6 +69,8 @@
 
 //Called when the software is removed from the NIF
 /datum/nifsoft/proc/uninstall()
+	if(!can_uninstall)
+		return nif.uninstall(src)
 	if(nif)
 		if(active)
 			deactivate()
@@ -263,7 +267,7 @@
 	..(A,user,flag,params)
 
 /obj/item/weapon/disk/nifsoft/compliance/attack_self(mob/user)
-	var/newlaws = input(user,"Please Input Laws","Compliance Laws",laws) as message
+	var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", laws, multiline = TRUE, prevent_enter = TRUE)
 	newlaws = sanitize(newlaws,2048)
 	if(newlaws)
 		to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
