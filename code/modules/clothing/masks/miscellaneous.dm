@@ -315,7 +315,6 @@
 	body_parts_covered = FACE
 	icon_state = "veil"
 
-<<<<<<< HEAD
 /obj/item/clothing/mask/paper
 	name = "paper mask"
 	desc = "A neat, circular mask made out of paper. Perhaps you could try drawing on it with a pen!"
@@ -408,7 +407,7 @@
 	icon_state = "mouthwheat"
 	w_class = ITEMSIZE_SMALL
 	body_parts_covered = 0
-=======
+
 /obj/item/clothing/mask/surgical/cloth
 	name = "cloth mask"
 	desc = "A cloth mask designed to protect the wearer against allergens, illnesses, and social interaction."
@@ -418,4 +417,3 @@
 	name = "dust mask"
 	desc = "A dust mask designed to protect the wearer against construction and/or custodial particulate."
 	icon_state = "dust"
->>>>>>> 032c8992018... Merge pull request #8636 from Greenjoe12345/clothingmay22
