@@ -74,9 +74,7 @@
 	containertype = /obj/structure/closet/crate/secure/weapon
 	containername = "Shotgun crate"
 	access = access_armory
-<<<<<<< HEAD
 /* VOREStation edit -- This is a bad idea. -- So is this.
-=======
 	
 /datum/supply_pack/munitions/shotgunsemi
 	name = "Weapons - Semi-Automatic Shotgun crate"
@@ -90,7 +88,6 @@
 	containername = "Semi-Auto Shotgun crate"
 	access = access_armory
 
->>>>>>> e0e497187d9... Merge pull request #8588 from Doctress/sjorgenshotgun
 /datum/supply_pack/munitions/erifle
 	name = "Weapons - Energy marksman"
 	contains = list(/obj/item/weapon/gun/energy/sniperrifle = 2)
