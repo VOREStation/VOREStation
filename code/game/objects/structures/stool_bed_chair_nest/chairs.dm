@@ -113,6 +113,9 @@
 		I.color = padding_material.icon_colour
 		add_overlay(I)
 
+/obj/structure/bed/chair/comfy/brown/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","leather")
+
 /obj/structure/bed/chair/comfy/brown/Initialize(var/ml,var/newmaterial)
 	. = ..(ml, MAT_STEEL, MAT_LEATHER)
 
@@ -145,6 +148,30 @@
 
 /obj/structure/bed/chair/comfy/teal/New(var/newloc,var/newmaterial)
 	..(newloc,"steel","teal")
+
+/obj/structure/bed/chair/comfy/black/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","black")
+
+/obj/structure/bed/chair/comfy/green/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","green")
+
+/obj/structure/bed/chair/comfy/purp/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","purple")
+
+/obj/structure/bed/chair/comfy/blue/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","blue")
+
+/obj/structure/bed/chair/comfy/beige/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","beige")
+
+/obj/structure/bed/chair/comfy/lime/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","lime")
+
+/obj/structure/bed/chair/comfy/yellow/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","yellow")
+
+/obj/structure/bed/chair/comfy/orange/New(var/newloc,var/newmaterial)
+	..(newloc,"steel","orange")
 
 /obj/structure/bed/chair/comfy/rounded
 	name = "rounded chair"
@@ -182,9 +209,6 @@
 /obj/structure/bed/chair/comfy/rounded/yellow/Initialize(var/ml,var/newmaterial)
 	. = ..(ml, MAT_STEEL, "yellow")
 
-/obj/structure/bed/chair/comfy/rounded/orange/Initialize(var/ml,var/newmaterial)
-	. = ..(ml, MAT_STEEL, "orange")
-
 /obj/structure/bed/chair/office
 	anchored = FALSE
 	buckle_movable = 1
@@ -199,7 +223,7 @@
 
 /obj/structure/bed/chair/office/Moved(atom/old_loc, direction, forced = FALSE)
 	. = ..()
-
+	
 	playsound(src, 'sound/effects/roll.ogg', 100, 1)
 
 /obj/structure/bed/chair/office/handle_buckled_mob_movement(atom/new_loc, direction, movetime)
@@ -521,3 +545,7 @@
 
 /obj/structure/bed/chair/sofa/corner/orange
 	sofa_material = "orange"
+
+/obj/structure/bed/chair/sofa/orange/corner
+	icon_state = "sofacorner"
+
