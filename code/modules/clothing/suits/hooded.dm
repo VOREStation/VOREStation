@@ -387,9 +387,3 @@
 	desc = "For those who REALLY love their toasters."
 	icon_state = "techpriest"
 	hoodtype = /obj/item/clothing/head/hood/techpriest
-		/obj/item/weapon/melee,
-		/obj/item/weapon/material/knife,
-		/obj/item/weapon/tank,
-		/obj/item/device/radio,
-		/obj/item/weapon/pickaxe
-		)
