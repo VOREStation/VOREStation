@@ -45,7 +45,6 @@
 	else
 		..()
 
-<<<<<<< HEAD
 /obj/item/weapon/cane/concealed/attackby(var/obj/item/weapon/material/sword/katana/caneblade/W, var/mob/user)
 	if(!src.concealed_blade && istype(W))
 		var/datum/gender/T = gender_datums[user.get_visible_gender()]
