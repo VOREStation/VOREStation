@@ -670,6 +670,10 @@
 	var/list/available_options = list("Examine", "Eject", "Move", "Transfer")
 	if(ishuman(target))
 		available_options += "Transform"
+	if(isliving(target))
+		var/mob/living/datarget = target
+		if(datarget.client)
+			available_options += "Process"
 	intent = tgui_input_list(user, "What would you like to do with [target]?", "Vore Pick", available_options)
 	switch(intent)
 		if("Examine")
@@ -750,6 +754,59 @@
 			var/datum/tgui_module/appearance_changer/vore/V = new(host, H)
 			V.tgui_interact(user)
 			return TRUE
+
+		if("Process")
+			var/mob/living/ourtarget = target
+			var/list/process_options = list()
+
+			if(ourtarget.digestable)
+				process_options += "Digest"
+
+			if(ourtarget.absorbable)
+				process_options += "Absorb"
+
+			if(process_options.len)
+				process_options += "Cancel"
+			else
+				to_chat(usr, "<span class= 'warning'>You cannot instantly process [ourtarget].</span>")
+				return
+
+			var/ourchoice = tgui_input_list(usr, "How would you prefer to process \the [target]? This will perform the given action instantly if the prey accepts.","Instant Process", process_options)
+			if(!ourchoice)
+				return
+			if(!ourtarget.client)
+				to_chat(usr, "<span class= 'warning'>You cannot instantly process [ourtarget].</span>")
+				return
+			var/obj/belly/b = ourtarget.loc
+			switch(ourchoice)
+				if("Digest")
+					if(ourtarget.absorbed)
+						to_chat(usr, "<span class= 'warning'>\The [ourtarget] is absorbed, and cannot presently be digested.</span>")
+						return
+					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly digest you. Is this something you are okay with happening to you?","Instant Digest", list("No", "Yes")) != "Yes")
+						to_chat(usr, "<span class= 'warning'>\The [ourtarget] declined your digest attempt.</span>")
+						to_chat(ourtarget, "<span class= 'warning'>You declined the digest attempt.</span>")
+						return
+					if(ourtarget.loc != b)
+						to_chat(usr, "<span class= 'warning'>\The [ourtarget] is no longer in \the [b].</span>")
+						return
+					b.handle_digestion_death(ourtarget)
+				if("Absorb")
+					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
+						to_chat(usr, "<span class= 'warning'>\The [ourtarget] declined your absorb attempt.</span>")
+						to_chat(ourtarget, "<span class= 'warning'>You declined the absorb attempt.</span>")
+						return
+					if(ourtarget.loc != b)
+						to_chat(usr, "<span class= 'warning'>\The [ourtarget] is no longer in \the [b].</span>")
+						return
+					if(isliving(usr))
+						var/mob/living/l = usr
+						l.adjust_nutrition(ourtarget.nutrition)
+						var/n = 0 - ourtarget.nutrition
+						ourtarget.adjust_nutrition(n)
+					b.absorb_living(ourtarget)
+				if("Cancel")
+					return
 
 /datum/vore_look/proc/set_attr(mob/user, params)
 	if(!host.vore_selected)
