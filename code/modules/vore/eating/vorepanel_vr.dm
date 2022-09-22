@@ -792,7 +792,7 @@
 						return
 					if(isliving(usr))
 						var/mob/living/l = usr
-						var/thismuch = ourtarget.health
+						var/thismuch = ourtarget.health + 100
 						if(ishuman(l))
 							var/mob/living/carbon/human/h = l
 							thismuch = thismuch * h.species.digestion_nutrition_modifier
