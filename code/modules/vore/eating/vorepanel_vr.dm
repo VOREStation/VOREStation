@@ -790,6 +790,13 @@
 					if(ourtarget.loc != b)
 						to_chat(usr, "<span class= 'warning'>\The [ourtarget] is no longer in \the [b].</span>")
 						return
+					if(isliving(usr))
+						var/mob/living/l = usr
+						var/thismuch = ourtarget.health
+						if(ishuman(l))
+							var/mob/living/carbon/human/h = l
+							thismuch = thismuch * h.species.digestion_nutrition_modifier
+						l.adjust_nutrition(thismuch)
 					b.handle_digestion_death(ourtarget)
 				if("Absorb")
 					if(tgui_alert(ourtarget, "\The [usr] is attempting to instantly absorb you. Is this something you are okay with happening to you?","Instant Absorb", list("No", "Yes")) != "Yes")
