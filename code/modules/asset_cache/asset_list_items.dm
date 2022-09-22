@@ -154,10 +154,10 @@
 // 		/datum/asset/simple/fontawesome
 // 	)
 
-// /datum/asset/simple/jquery
-// 	assets = list(
-// 		"jquery.min.js"            = 'code/modules/goonchat/browserassets/js/jquery.min.js',
-// 	)
+/datum/asset/simple/jquery
+	assets = list(
+		"jquery.min.js"            = 'code/modules/tooltip/jquery.min.js',
+	)
 
 // /datum/asset/simple/goonchat
 // 	assets = list(
