@@ -28,7 +28,8 @@
 		. += "[charging ? "[charging]" : "Nothing"] is in [src]."
 		if(charging)
 			var/obj/item/weapon/cell/C = charging.get_cell()
-			. += "Current charge: [C.charge] / [C.maxcharge]"
+			if(C)				// Sometimes we get things without cells in it.
+				. += "Current charge: [C.charge] / [C.maxcharge]"
 
 /obj/machinery/recharger/attackby(obj/item/weapon/G as obj, mob/user as mob)
 	var/allowed = 0
