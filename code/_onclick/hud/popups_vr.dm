@@ -3,6 +3,7 @@
 	desc = "NOTICE ME!"
 
 	icon = 'icons/mob/screen1_popups.dmi'
+	plane = PLANE_PLAYER_HUD_ABOVE
 	layer = INFINITY
 
 	var/close_button_x_start
