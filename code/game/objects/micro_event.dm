@@ -71,9 +71,8 @@
 /obj/structure/timer_door/examine(mob/user, infix, suffix)
 	. = ..()
 
-	var/ourtime = (((start_time + time_til_open) - world.time) * 0.1)
-
-	. += "<span class ='notice'>It will open in [ourtime] seconds!</span>"
+	var/ourtime = (((start_time + time_til_open) - world.time) / 600)
+	. += "<span class ='notice'>It will open in [ourtime] minutes!</span>"
 
 /obj/structure/timer_door/Initialize()
 	START_PROCESSING(SSobj, src)
