@@ -322,7 +322,7 @@ GLOBAL_DATUM(autospeaker, /mob/living/silicon/ai/announcer)
 	GLOB.autospeaker.SetName(from)
 	Broadcast_Message(connection, GLOB.autospeaker,
 						0, "*garbled automated announcement*", src,
-						message_to_multilingual(message), from, "Automated Announcement", from, "synthesized voice",
+						message_to_multilingual(message, GLOB.all_languages[LANGUAGE_GALCOM]), from, "Automated Announcement", from, "synthesized voice",
 						DATA_FAKE, 0, zlevels, connection.frequency, states)	//VOREStation Edit
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum

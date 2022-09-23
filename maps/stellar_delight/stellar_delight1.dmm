@@ -269,6 +269,19 @@
 /obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
 /turf/simulated/floor,
 /area/maintenance/stellardelight/deck1/exploration)
+"aB" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.6
+	},
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/effect/floor_decal/milspec/color/red,
+/obj/item/device/personal_shield_generator/security/loaded,
+/turf/simulated/floor/tiled/dark,
+/area/security/tactical)
 "aC" = (
 /obj/structure/cable/green{
 	color = "#42038a";
@@ -435,6 +448,12 @@
 "aS" = (
 /turf/simulated/wall/bay/r_wall/steel,
 /area/security/security_equiptment_storage)
+"aT" = (
+/obj/item/weapon/storage/box/nifsofts_mining,
+/obj/structure/table/reinforced,
+/obj/item/device/personal_shield_generator/belt/mining/loaded,
+/turf/simulated/floor/tiled/eris/steel/cargo,
+/area/stellardelight/deck1/miningequipment)
 "aU" = (
 /obj/structure/cable/green{
 	icon_state = "1-4"
@@ -6032,18 +6051,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/security/detectives_office)
-"mx" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.6
-	},
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/effect/floor_decal/milspec/color/red,
-/turf/simulated/floor/tiled/dark,
-/area/security/tactical)
 "my" = (
 /obj/machinery/atmospherics/unary/freezer{
 	dir = 8
@@ -18484,11 +18491,6 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/stellardelight/deck1/shower)
-"Na" = (
-/obj/item/weapon/storage/box/nifsofts_mining,
-/obj/structure/table/reinforced,
-/turf/simulated/floor/tiled/eris/steel/cargo,
-/area/stellardelight/deck1/miningequipment)
 "Nb" = (
 /obj/machinery/door/firedoor/glass,
 /obj/machinery/door/blast/angled{
@@ -33830,7 +33832,7 @@ dl
 QK
 pV
 xf
-Na
+aT
 MG
 vC
 vi
@@ -36750,7 +36752,7 @@ Po
 HZ
 nv
 fn
-mx
+aB
 Gr
 sJ
 bx

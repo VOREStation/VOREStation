@@ -604,3 +604,13 @@ var/list/flooring_types
 		'sound/effects/footstep/lava1.ogg',
 		'sound/effects/footstep/lava2.ogg',
 		'sound/effects/footstep/lava3.ogg'))
+
+/decl/flooring/concrete
+	name = "concrete"
+	desc = "A flat area of concrete flooring."
+	icon = 'icons/turf/concrete.dmi'
+	icon_base = "concrete"
+	is_plating = FALSE 	//VOREStation edit. It's a lot cooler if it's actual tile.
+	can_paint = 1		//VOREStation edit. Let's allow for some fun.
+	can_engrave = 1		//VOREStation edit. Fun.
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR

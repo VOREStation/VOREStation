@@ -1605,27 +1605,27 @@ shaved
 	icon_state = "facial_dwarf"
 
 /datum/sprite_accessory/facial_hair/threeOclock
-	name = "3 O'clock Shadow"
+	name = "3 O-clock Shadow"
 	icon_state = "facial_3oclock"
 
 /datum/sprite_accessory/facial_hair/threeOclockstache
-	name = "3 O'clock Shadow and Moustache"
+	name = "3 O-clock Shadow and Moustache"
 	icon_state = "facial_3oclockmoustache"
 
 /datum/sprite_accessory/facial_hair/fiveOclock
-	name = "5 O'clock Shadow"
+	name = "5 O-clock Shadow"
 	icon_state = "facial_5oclock"
 
 /datum/sprite_accessory/facial_hair/fiveOclockstache
-	name = "5 O'clock Shadow and Moustache"
+	name = "5 O-clock Shadow and Moustache"
 	icon_state = "facial_5oclockmoustache"
 
 /datum/sprite_accessory/facial_hair/sevenOclock
-	name = "7 O'clock Shadow"
+	name = "7 O-clock Shadow"
 	icon_state = "facial_7oclock"
 
 /datum/sprite_accessory/facial_hair/sevenOclockstache
-	name = "7 O'clock Shadow and Moustache"
+	name = "7 O-clock Shadow and Moustache"
 	icon_state = "facial_7oclockmoustache"
 
 /datum/sprite_accessory/facial_hair/mutton

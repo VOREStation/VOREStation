@@ -11,8 +11,7 @@ const sortTypes = {
   'By price': (a, b) => a.price - b.price,
 };
 
-export const CasinoPrizeDispenser = (props, context) => {
-  const { act, data } = useBackend(context);
+export const CasinoPrizeDispenser = () => {
   return (
     <Window width={400} height={450} resizable>
       <Window.Content className="Layout__content--flexColumn" scrollable>

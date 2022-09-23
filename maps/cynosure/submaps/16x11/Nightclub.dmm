@@ -1,0 +1,718 @@
+//MAP CONVERTED BY dmm2tgm.py THIS HEADER COMMENT PREVENTS RECONVERSION, DO NOT REMOVE
+"aF" = (
+/obj/structure/bed/chair/sofa/black/left{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"bv" = (
+/obj/structure/table/marble,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 11
+	},
+/turf/simulated/floor/lino,
+/area/template_noop)
+"bB" = (
+/obj/structure/sign/poster/custom{
+	pixel_y = -32;
+	poster_decl = /decl/poster/pol_13
+	},
+/obj/structure/table,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"bI" = (
+/obj/structure/loot_pile/maint/technical,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"ca" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"dm" = (
+/obj/random/obstruction,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"eF" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/cap/hidden/scrubbers,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"eQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"fd" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"hu" = (
+/obj/structure/table/marble,
+/obj/random/drinkbottle,
+/obj/item/radio/intercom{
+	dir = 1;
+	pixel_y = 21
+	},
+/turf/simulated/floor/lino,
+/area/template_noop)
+"hS" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"jD" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"lq" = (
+/obj/machinery/floor_light/prebuilt,
+/obj/item/flashlight/glowstick,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"mE" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 9
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 10
+	},
+/obj/structure/sign/poster/custom{
+	dir = 4;
+	pixel_x = 32;
+	poster_decl = /decl/poster/nanotrasen/bay_52
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"nt" = (
+/obj/structure/window/reinforced,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"od" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/obj/structure/table/wooden_reinforced,
+/obj/random/maintenance/clean,
+/obj/random/maintenance/clean,
+/obj/random/maintenance,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"pj" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 2;
+	icon_state = "1-2"
+	},
+/turf/simulated/floor/plating,
+/area/template_noop)
+"qb" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/obj/machinery/light{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"qG" = (
+/obj/structure/windoor_assembly{
+	dir = 2
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"qP" = (
+/obj/structure/table/marble,
+/obj/item/frame,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"sf" = (
+/obj/machinery/vending/sol{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"su" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"sx" = (
+/obj/item/flashlight/glowstick/orange,
+/obj/machinery/atmospherics/unary/vent_scrubber,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"vL" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/obj/structure/device/piano/minimoog,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"vV" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"xf" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/obj/structure/table/wooden_reinforced,
+/obj/item/radio/intercom/entertainment{
+	dir = 1
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"xS" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 5
+	},
+/obj/structure/table,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"yf" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"zf" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 8
+	},
+/turf/simulated/floor/wood,
+/area/template_noop)
+"AP" = (
+/obj/machinery/atmospherics/pipe/manifold/hidden/supply,
+/obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Bj" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 8
+	},
+/turf/simulated/floor/lino,
+/area/template_noop)
+"BD" = (
+/obj/structure/extinguisher_cabinet{
+	dir = 8;
+	pixel_x = -30
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"BS" = (
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central7{
+	dir = 1
+	},
+/obj/machinery/light_switch{
+	pixel_x = 12;
+	pixel_y = 24
+	},
+/obj/item/stool{
+	dir = 8
+	},
+/obj/machinery/power/apc{
+	dir = 1;
+	name = "north bump";
+	operating = 0;
+	pixel_y = 24
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Cb" = (
+/obj/structure/table/marble,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"Dj" = (
+/turf/simulated/floor/plating,
+/area/template_noop)
+"DV" = (
+/turf/template_noop,
+/area/template_noop)
+"FE" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 4
+	},
+/obj/structure/table,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"GJ" = (
+/obj/structure/table/marble,
+/obj/machinery/newscaster{
+	pixel_y = 26
+	},
+/obj/item/reagent_containers/food/drinks/flask/barflask{
+	pixel_x = -4;
+	pixel_y = 8
+	},
+/obj/item/flame/lighter/random{
+	pixel_x = -9
+	},
+/obj/random/cigarettes,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"GM" = (
+/obj/item/stool{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"HN" = (
+/turf/simulated/floor/wood,
+/area/template_noop)
+"HY" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 1
+	},
+/obj/structure/table,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"IG" = (
+/obj/machinery/alarm{
+	dir = 1;
+	pixel_y = -22
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"IN" = (
+/obj/random/crate,
+/obj/item/stack/tile/floor/dark{
+	amount = 8
+	},
+/obj/item/stack/material/marble,
+/obj/random/material,
+/obj/random/tech_supply,
+/obj/random/tech_supply/nofail,
+/obj/random/maintenance/engineering,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"JC" = (
+/obj/structure/railing{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"JK" = (
+/obj/item/stool/padded{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"JT" = (
+/obj/machinery/atmospherics/unary/vent_pump{
+	dir = 1
+	},
+/obj/structure/railing{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Kk" = (
+/obj/machinery/atmospherics/unary/vent_scrubber{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"MG" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"MI" = (
+/obj/machinery/floor_light/prebuilt,
+/obj/item/flashlight/glowstick/yellow,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"MQ" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 6
+	},
+/turf/simulated/floor/lino,
+/area/template_noop)
+"Ot" = (
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/obj/machinery/atmospherics/pipe/simple/hidden/supply,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Pn" = (
+/obj/structure/table/marble,
+/obj/item/stack/material/marble,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"PO" = (
+/obj/machinery/floor_light/prebuilt,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"Qf" = (
+/obj/structure/table,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"Qv" = (
+/obj/effect/floor_decal/spline/fancy/wood{
+	dir = 9
+	},
+/obj/structure/table/wooden_reinforced,
+/obj/item/storage/wallet/random,
+/obj/random/cash,
+/obj/item/megaphone,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"QN" = (
+/turf/simulated/wall/concrete,
+/area/template_noop)
+"Rm" = (
+/obj/structure/bed/chair/comfy/black{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Ru" = (
+/obj/machinery/light_construct{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Sj" = (
+/obj/machinery/firealarm{
+	dir = 8;
+	pixel_x = -24
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 6
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"TQ" = (
+/turf/simulated/floor/lino,
+/area/template_noop)
+"Uk" = (
+/obj/structure/table/marble,
+/obj/structure/sign/poster/nanotrasen{
+	dir = 1;
+	pixel_y = 32;
+	poster_decl = /decl/poster/bay_44
+	},
+/obj/machinery/reagentgrinder,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"Ul" = (
+/obj/structure/cable{
+	d1 = 1;
+	d2 = 8;
+	icon_state = "1-8"
+	},
+/obj/machinery/atmospherics/pipe/cap/hidden/supply,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"Ut" = (
+/obj/effect/floor_decal/spline/plain{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Vt" = (
+/obj/machinery/floor_light/prebuilt,
+/obj/item/flashlight/glowstick/blue,
+/turf/simulated/floor/plating,
+/area/template_noop)
+"Xg" = (
+/obj/structure/bed/chair/sofa/black/right{
+	dir = 4
+	},
+/obj/random/contraband,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 5
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Xi" = (
+/obj/structure/table/marble,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"Xn" = (
+/obj/machinery/media/jukebox,
+/obj/machinery/light_construct{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"Xw" = (
+/obj/random/junk,
+/turf/simulated/floor/lino,
+/area/template_noop)
+"XF" = (
+/obj/item/flashlight/glowstick/red,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 4
+	},
+/obj/machinery/atmospherics/pipe/simple/hidden/supply{
+	dir = 4
+	},
+/obj/structure/railing,
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"YN" = (
+/obj/machinery/light,
+/turf/simulated/floor/wood,
+/area/template_noop)
+"Zv" = (
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"ZB" = (
+/obj/structure/table/glass,
+/obj/structure/sign/poster/custom{
+	pixel_y = -32;
+	poster_decl = /decl/poster/bay_27
+	},
+/obj/random/drinkbottle,
+/obj/item/reagent_containers/food/drinks/drinkingglass/shotglass{
+	pixel_x = 11
+	},
+/turf/simulated/floor/tiled/dark,
+/area/template_noop)
+"ZW" = (
+/obj/machinery/floor_light/prebuilt,
+/turf/simulated/floor/plating,
+/area/template_noop)
+
+(1,1,1) = {"
+QN
+QN
+dm
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+DV
+"}
+(2,1,1) = {"
+QN
+bI
+MQ
+MG
+qG
+BD
+Sj
+aF
+Xg
+QN
+QN
+"}
+(3,1,1) = {"
+QN
+qP
+Bj
+TQ
+Xi
+JK
+eQ
+Zv
+Kk
+qb
+QN
+"}
+(4,1,1) = {"
+QN
+GJ
+TQ
+TQ
+Pn
+JK
+eQ
+Ut
+Zv
+ZB
+QN
+"}
+(5,1,1) = {"
+QN
+Uk
+Xw
+TQ
+Qf
+JK
+nt
+dm
+Zv
+Rm
+QN
+"}
+(6,1,1) = {"
+QN
+hu
+Cb
+bv
+Qf
+JK
+nt
+dm
+Zv
+su
+QN
+"}
+(7,1,1) = {"
+QN
+BS
+GM
+Dj
+Dj
+Zv
+eQ
+sf
+Zv
+bB
+QN
+"}
+(8,1,1) = {"
+pj
+Ul
+yf
+eF
+fd
+Ot
+AP
+Zv
+Zv
+Rm
+QN
+"}
+(9,1,1) = {"
+QN
+Xn
+Dj
+Dj
+IN
+Zv
+eQ
+JC
+JC
+IG
+QN
+"}
+(10,1,1) = {"
+QN
+Vt
+ZW
+ZW
+ZW
+PO
+XF
+Qv
+od
+zf
+QN
+"}
+(11,1,1) = {"
+QN
+ZW
+ZW
+ZW
+MI
+PO
+hS
+xf
+HN
+HN
+QN
+"}
+(12,1,1) = {"
+QN
+ZW
+ZW
+ZW
+ZW
+PO
+hS
+vL
+HN
+YN
+QN
+"}
+(13,1,1) = {"
+QN
+ZW
+ZW
+ZW
+ZW
+PO
+hS
+HY
+HN
+HN
+QN
+"}
+(14,1,1) = {"
+QN
+ZW
+ZW
+ZW
+ZW
+lq
+hS
+xS
+FE
+ca
+QN
+"}
+(15,1,1) = {"
+QN
+QN
+sx
+Ru
+jD
+jD
+mE
+vV
+JT
+QN
+QN
+"}
+(16,1,1) = {"
+DV
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+QN
+DV
+"}

@@ -161,16 +161,14 @@
 
 	if(istype(target, /turf/simulated))
 		var/turf/simulated/modeled_location = target
-		
-		if(modeled_location.special_temperature)//First do special interactions then the usuall stuff
 
-			var/delta_temp = modeled_location.special_temperature - air.temperature//2200C - 20C = 2180K
-			//assuming aluminium with thermal conductivity 235 W * K / m, Copper (400), Silver (430), steel (50), gold (320)
-			var/heat_gain = 23500 * 100 * delta_temp
-			air.add_thermal_energy(heat_gain)
-			if(network)
-				network.update = 1
-		
+		if (modeled_location.special_temperature)
+			air.temperature += thermal_conductivity * (modeled_location.special_temperature - air.temperature)
+			if (air.temperature < TCMB)
+				air.temperature = TCMB
+			if (network)
+				network.update = TRUE
+
 		if(modeled_location.blocks_air)
 
 			if((modeled_location.heat_capacity>0) && (partial_heat_capacity>0))

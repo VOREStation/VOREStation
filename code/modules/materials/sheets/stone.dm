@@ -23,3 +23,10 @@
 	pickup_sound = 'sound/items/pickup/boots.ogg'
 	pass_color = TRUE
 	apply_colour = TRUE
+
+/obj/item/stack/material/concrete
+	name = "concrete brick"
+	icon_state = "brick"
+	default_type = "concrete"
+	no_variants = FALSE
+	apply_colour = 1

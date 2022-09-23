@@ -5896,6 +5896,15 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/groundbase/security/lobby)
+"mU" = (
+/obj/item/weapon/storage/box/nifsofts_mining,
+/obj/structure/table/reinforced,
+/obj/machinery/atmospherics/unary/vent_pump/on{
+	dir = 1
+	},
+/obj/item/device/personal_shield_generator/belt/mining/loaded,
+/turf/simulated/floor/tiled,
+/area/groundbase/cargo/mining)
 "mV" = (
 /obj/machinery/vending/loadout/gadget,
 /turf/simulated/floor/tiled,
@@ -6002,6 +6011,18 @@
 /obj/machinery/hologram/holopad,
 /turf/simulated/floor/carpet/oracarpet,
 /area/groundbase/engineering/ce)
+"nj" = (
+/obj/structure/table/rack{
+	dir = 8;
+	layer = 2.6
+	},
+/obj/item/weapon/tank/jetpack/carbondioxide,
+/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
+	dir = 8
+	},
+/obj/item/device/personal_shield_generator/security/loaded,
+/turf/simulated/floor/tiled/dark,
+/area/groundbase/security/equipment)
 "nk" = (
 /obj/effect/step_trigger/teleporter/to_mining{
 	pixel_y = -32
@@ -15896,14 +15917,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/groundbase/engineering/atmos)
-"LE" = (
-/obj/item/weapon/storage/box/nifsofts_mining,
-/obj/structure/table/reinforced,
-/obj/machinery/atmospherics/unary/vent_pump/on{
-	dir = 1
-	},
-/turf/simulated/floor/tiled,
-/area/groundbase/cargo/mining)
 "LG" = (
 /obj/machinery/computer/power_monitor,
 /obj/machinery/atmospherics/pipe/simple/hidden/supply,
@@ -21281,17 +21294,6 @@
 	outdoors = 0
 	},
 /area/maintenance/groundbase/level1/nwtunnel)
-"Zb" = (
-/obj/structure/table/rack{
-	dir = 8;
-	layer = 2.6
-	},
-/obj/item/weapon/tank/jetpack/carbondioxide,
-/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers{
-	dir = 8
-	},
-/turf/simulated/floor/tiled/dark,
-/area/groundbase/security/equipment)
 "Zc" = (
 /obj/structure/cable/yellow{
 	icon_state = "4-8"
@@ -25008,7 +25010,7 @@ gQ
 hx
 eF
 UV
-Zb
+nj
 hC
 nA
 CC
@@ -33160,7 +33162,7 @@ fo
 Qh
 sQ
 VI
-LE
+mU
 xo
 Ny
 OB

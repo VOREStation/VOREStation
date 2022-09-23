@@ -2971,6 +2971,25 @@
 /obj/machinery/door/firedoor/glass,
 /turf/simulated/floor/plating,
 /area/quartermaster/belterdock)
+"aeI" = (
+/obj/structure/table/steel,
+/obj/item/stack/flag/yellow{
+	pixel_x = 4
+	},
+/obj/item/stack/flag/red,
+/obj/item/stack/flag/green{
+	pixel_x = -4
+	},
+/obj/item/weapon/storage/box/nifsofts_mining,
+/obj/effect/floor_decal/borderfloor,
+/obj/effect/floor_decal/corner/brown/border,
+/obj/structure/sign/poster,
+/obj/item/device/radio/intercom{
+	pixel_y = -24
+	},
+/obj/item/device/personal_shield_generator/belt/mining/loaded,
+/turf/simulated/floor/tiled,
+/area/quartermaster/belterdock/gear)
 "aeK" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -13583,7 +13602,7 @@
 	frequency = 1443;
 	level = 3;
 	name = "Distribution and Waste Monitor";
-	sensors = list("dist_main_meter"="Surface - Distribution Loop","scrub_main_meter"="Surface - Scrubbers Loop","mair_main_meter"="Surface - Mixed Air Tank","dist_aux_meter"="Station - Distribution Loop","scrub_aux_meter"="Station - Scrubbers Loop","mair_aux_meter"="Station - Mixed Air Tank","mair_mining_meter"="Mining Outpost - Mixed Air Tank")
+	sensors = list("dist_main_meter" = "Surface - Distribution Loop", "scrub_main_meter" = "Surface - Scrubbers Loop", "mair_main_meter" = "Surface - Mixed Air Tank", "dist_aux_meter" = "Station - Distribution Loop", "scrub_aux_meter" = "Station - Scrubbers Loop", "mair_aux_meter" = "Station - Mixed Air Tank", "mair_mining_meter" = "Mining Outpost - Mixed Air Tank")
 	},
 /turf/simulated/floor/tiled,
 /area/engineering/engineering_monitoring)
@@ -36918,24 +36937,6 @@
 	},
 /turf/simulated/floor/tiled,
 /area/quartermaster/belterdock/refinery)
-"xBE" = (
-/obj/structure/table/steel,
-/obj/item/stack/flag/yellow{
-	pixel_x = 4
-	},
-/obj/item/stack/flag/red,
-/obj/item/stack/flag/green{
-	pixel_x = -4
-	},
-/obj/item/weapon/storage/box/nifsofts_mining,
-/obj/effect/floor_decal/borderfloor,
-/obj/effect/floor_decal/corner/brown/border,
-/obj/structure/sign/poster,
-/obj/item/device/radio/intercom{
-	pixel_y = -24
-	},
-/turf/simulated/floor/tiled,
-/area/quartermaster/belterdock/gear)
 "xBF" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
@@ -48448,7 +48449,7 @@ duh
 meW
 meW
 bud
-xBE
+aeI
 xyO
 aac
 aac

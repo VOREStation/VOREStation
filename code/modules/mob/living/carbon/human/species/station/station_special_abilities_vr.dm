@@ -1245,6 +1245,7 @@
 	eyeblur = 0
 	check_armour = "bullet" //Not really needed, but whatever.
 	can_miss = FALSE //Let's not miss our tongue!
+	fire_sound = 'sound/effects/slime_squish.ogg'
 	hitsound = 'sound/vore/sunesound/pred/schlorp.ogg'
 	hitsound_wall = 'sound/vore/sunesound/pred/schlorp.ogg'
 	excavation_amount = 0

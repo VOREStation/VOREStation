@@ -49,7 +49,6 @@
 	icon_state = "rc_food"
 	refill_type = list(/obj/machinery/vending/snack,
 					   /obj/machinery/vending/fitness,
-					   /obj/machinery/vending/hotfood,
 					   /obj/machinery/vending/weeb,
 					   /obj/machinery/vending/sol,
 					   /obj/machinery/vending/snix,
@@ -103,9 +102,6 @@
 
 /obj/item/weapon/refill_cartridge/autoname/food/fitness
 	refill_type = /obj/machinery/vending/fitness
-
-/obj/item/weapon/refill_cartridge/autoname/food/hotfood
-	refill_type = /obj/machinery/vending/hotfood
 
 /obj/item/weapon/refill_cartridge/autoname/food/weeb
 	refill_type = /obj/machinery/vending/weeb

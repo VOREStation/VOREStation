@@ -3,7 +3,7 @@ import { useBackend } from '../backend';
 import { Box, Button, LabeledList, NoticeBox, Section } from '../components';
 import { NtosWindow } from '../layouts';
 
-export const NtosNetDos = (props, context) => {
+export const NtosNetDos = () => {
   return (
     <NtosWindow width={400} height={250} theme="syndicate">
       <NtosWindow.Content>

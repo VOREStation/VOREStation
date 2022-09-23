@@ -75,6 +75,19 @@
 	containername = "Shotgun crate"
 	access = access_armory
 /* VOREStation edit -- This is a bad idea. -- So is this.
+	
+/datum/supply_pack/munitions/shotgunsemi
+	name = "Weapons - Semi-Automatic Shotgun crate"
+	contains = list(
+			/obj/item/ammo_magazine/ammo_box/b12g,
+			/obj/item/ammo_magazine/ammo_box/b12g/pellet,
+			/obj/item/weapon/gun/projectile/shotgun/semi = 2
+			)
+	cost = 100
+	containertype = /obj/structure/closet/crate/secure/weapon
+	containername = "Semi-Auto Shotgun crate"
+	access = access_armory
+
 /datum/supply_pack/munitions/erifle
 	name = "Weapons - Energy marksman"
 	contains = list(/obj/item/weapon/gun/energy/sniperrifle = 2)

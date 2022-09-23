@@ -7,21 +7,21 @@
 /**
  * Limits a number to the range between 'min' and 'max'.
  */
-export const clamp = (value, min, max) => {
+export const clamp = (value: number, min: number, max: number) => {
   return value < min ? min : value > max ? max : value;
 };
 
 /**
  * Limits a number between 0 and 1.
  */
-export const clamp01 = (value) => {
+export const clamp01 = (value: number) => {
   return value < 0 ? 0 : value > 1 ? 1 : value;
 };
 
 /**
  * Scales a number to fit into the range between min and max.
  */
-export const scale = (value, min, max) => {
+export const scale = (value: number, min: number, max: number) => {
   return (value - min) / (max - min);
 };
 
@@ -34,7 +34,7 @@ export const scale = (value, min, max) => {
  * @param  {number} precision
  * @return {number}
  */
-export const round = (value, precision) => {
+export const round = (value: number, precision: number): number => {
   if (!value || isNaN(value)) {
     return value;
   }
@@ -59,7 +59,7 @@ export const round = (value, precision) => {
 /**
  * Returns a string representing a number in fixed point notation.
  */
-export const toFixed = (value, fractionDigits = 0) => {
+export const toFixed = (value: number, fractionDigits = 0) => {
   return Number(value).toFixed(Math.max(fractionDigits, 0));
 };
 
@@ -68,7 +68,7 @@ export const toFixed = (value, fractionDigits = 0) => {
  *
  * Range is an array of two numbers, for example: [0, 15].
  */
-export const inRange = (value, range) => {
+export const inRange = (value: number, range: number[]) => {
   return range && value >= range[0] && value <= range[1];
 };
 
@@ -78,7 +78,7 @@ export const inRange = (value, range) => {
  *
  * Range is an array of two numbers, for example: [0, 15].
  */
-export const keyOfMatchingRange = (value, ranges) => {
+export const keyOfMatchingRange = (value: number, ranges) => {
   for (let rangeName of Object.keys(ranges)) {
     const range = ranges[rangeName];
     if (inRange(value, range)) {
@@ -90,7 +90,7 @@ export const keyOfMatchingRange = (value, ranges) => {
 /**
  * Get number of digits following the decimal point in a number
  */
-export const numberOfDecimalDigits = (value) => {
+export const numberOfDecimalDigits = (value: number): number => {
   if (Math.floor(value) !== value) {
     return value.toString().split('.')[1].length || 0;
   }

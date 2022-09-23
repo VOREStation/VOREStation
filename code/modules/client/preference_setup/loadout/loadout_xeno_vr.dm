@@ -86,6 +86,23 @@
 	//whitelisted = SPECIES_TAJ
 	sort_category = "Xenowear"
 
+/datum/gear/mask/altevian_breath
+	display_name = "spacer tuned mask (Altevian)"
+	path = /obj/item/clothing/mask/altevian_breath
+	sort_category = "Xenowear"
+
+/datum/gear/uniform/altevian_outfit
+	description = "A uniform commonly seen from altevians during their work. The material on this uniform seems to be made of durable thread that can handle the stress of most matters of labor."
+	display_name = "altevian duty jumpsuit selection (Altevian)"
+	sort_category = "Xenowear"
+
+/datum/gear/uniform/altevian_outfit/New()
+	..()
+	var/list/pants = list()
+	for(var/obj/item/clothing/under/altevian/uniform_type as anything in typesof(/obj/item/clothing/under/altevian))
+		pants[initial(uniform_type.name)] = uniform_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
+
 // Taur stuff
 /datum/gear/suit/taur/drake_cloak
 	display_name = "drake cloak (Drake-taur)"

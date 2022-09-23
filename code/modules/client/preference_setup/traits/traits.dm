@@ -7,6 +7,9 @@ var/list/trait_categories = list() // The categories available for the trait men
 	//create a list of trait datums
 	for(var/trait_type in typesof(/datum/trait) - list(/datum/trait, /datum/trait/modifier))
 		var/datum/trait/T = new trait_type
+		if(!T.is_available())
+			qdel(T)
+			continue
 
 		if(!T.name)
 			error("Trait Menu - Missing name: [T.type]")
@@ -172,6 +175,9 @@ var/list/trait_categories = list() // The categories available for the trait men
 		result = english_list(conflicts)
 
 	return result
+
+/datum/trait/proc/is_available()
+	return TRUE
 
 // Similar to above, but uses the above two procs, in one place.
 // Returns TRUE is everything is well.

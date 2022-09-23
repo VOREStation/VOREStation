@@ -11262,6 +11262,7 @@
 	},
 /obj/item/clothing/shoes/magboots,
 /obj/item/clothing/shoes/magboots,
+/obj/item/device/personal_shield_generator/security/loaded,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/security/evastorage)
 "arK" = (
