@@ -17,7 +17,7 @@
 	name = "personal shield generator"
 	desc = "A personal shield generator."
 	icon = 'icons/obj/items_vr.dmi'
-	icon_state = "shield_pack"
+	icon_state = "shieldpack_basic"
 	item_state = "defibunit" //Placeholder
 	slot_flags = SLOT_BACK
 	force = 5
