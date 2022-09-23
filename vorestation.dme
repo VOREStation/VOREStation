@@ -2215,7 +2215,6 @@
 #include "code\modules\events\electrical_storm.dm"
 #include "code\modules\events\event.dm"
 #include "code\modules\events\event_container.dm"
-#include "code\modules\events\event_container_vr.dm"
 #include "code\modules\events\event_dynamic.dm"
 #include "code\modules\events\event_manager.dm"
 #include "code\modules\events\gravity.dm"
