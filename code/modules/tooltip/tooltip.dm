@@ -42,6 +42,8 @@ Notes:
 /datum/tooltip/New(client/C)
 	if (C)
 		owner = C
+		var/datum/asset/A = get_asset_datum(/datum/asset/simple/jquery)
+		A.send(owner)
 		owner << browse(file2text('code/modules/tooltip/tooltip.html'), "window=[control]")
 	..()
 
@@ -120,5 +122,3 @@ Notes:
 	if(istype(user))
 		if(user.client && user.client.tooltips)
 			user.client.tooltips.hide()
-
-
