@@ -84,7 +84,7 @@
 	icon_state = "brick"
 
 /turf/simulated/wall/concrete/Initialize(mapload)
-	. = ..(mapload, "concrete","concrete") //3strong
+	. = ..(mapload, "concrete") //3strong
 
 /turf/simulated/wall/r_concrete
 	desc = "A sturdy wall made of concrete and reinforced with plasteel rebar"
