@@ -90,22 +90,22 @@
 /datum/uplink_item/item/medical/toxins
 	name = "Anti-toxins medical kit"
 	item_cost = 5
-	path = /obj/item/storage/firstaid/toxin
+	path = /obj/item/weapon/storage/firstaid/toxin
 
 /datum/uplink_item/item/medical/o2
 	name = "oxygen deprivation medical kit"
 	item_cost = 5
-	path = /obj/item/storage/firstaid/o2
+	path = /obj/item/weapon/storage/firstaid/o2
 
 /datum/uplink_item/item/medical/fire
 	name = "fire medical kit"
 	item_cost = 5
-	path = /obj/item/storage/firstaid/fire
+	path = /obj/item/weapon/storage/firstaid/fire
 
 /datum/uplink_item/item/medical/adv
 	name = "advanced medical kit"
 	item_cost = 10
-	path = /obj/item/storage/firstaid/adv
+	path = /obj/item/weapon/storage/firstaid/adv
 
 /datum/uplink_item/item/medical/combat
 	name = "Combat medical kit"
