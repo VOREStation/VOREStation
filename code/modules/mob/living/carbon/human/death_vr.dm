@@ -25,7 +25,7 @@
 	//Technically allows metagaming by allowing buddies to turn on digestion for like 2 seconds
 	//  to finish off critically wounded friends to avoid resleeving sickness, but like
 	//  *kill those people* ok?
-	if(B.digest_mode == DM_DIGEST)
+	if(B.digest_mode == DM_DIGEST || B.digest_mode == DM_SELECT)
 		H.mind?.vore_death = TRUE
 
 	//Hooks need to return true otherwise they're considered having failed
