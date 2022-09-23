@@ -2509,3 +2509,19 @@ Departamental Swimsuits, for general use
 	desc = "Cerise's hard-won belt from her glory days. Her skill might have waned since then, but her renown lives on."
 	icon_state = "champion"
 	item_state = null // i swear to god this works - hatterhat
+
+	icon_override = 'icons/vore/custom_onmob_vr.dmi'
+//Sudate: Shea Corbett
+/obj/item/clothing/under/fluff/greek_dress
+    name = "mytilenean dress"
+    desc = "It's a breezy, colorful two-part dress woven from linen, with the top consisting of white linen, and the skirt of rougher, sturdy fabric. It's adorned with a yellow belt and embroidered stripes in the hem, and blue highlights at the sleeves. More notably, however, it exposes the wearer's chest entirely."
+
+    icon = 'icons/vore/custom_clothes_vr.dmi'
+    icon_state = "greek_dress"
+    worn_state = "greek_dress"
+    rolled_sleeves = 0
+    rolled_down = 0
+
+    icon_override = 'icons/vore/custom_clothes_vr.dmi'
+    item_state = "greek_dress"
+    body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
