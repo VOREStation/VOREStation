@@ -610,5 +610,5 @@ var/list/flooring_types
 	desc = "A flat area of concrete flooring."
 	icon = 'icons/turf/concrete.dmi'
 	icon_base = "concrete"
-	is_plating = TRUE
+	is_plating = FALSE //VOREStation edit. It's a lot cooler if it's actual tile.
 	plating_type = /decl/flooring/concrete
