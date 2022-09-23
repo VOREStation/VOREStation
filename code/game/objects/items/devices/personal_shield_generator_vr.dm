@@ -17,7 +17,7 @@
 	name = "personal shield generator"
 	desc = "A personal shield generator."
 	icon = 'icons/obj/items_vr.dmi'
-	icon_state = "shield_pack"
+	icon_state = "shieldpack_basic"
 	item_state = "defibunit" //Placeholder
 	slot_flags = SLOT_BACK
 	force = 5
@@ -460,8 +460,8 @@
 /obj/item/device/personal_shield_generator/belt
 	name = "personal shield generator"
 	desc = "A personal shield generator."
-	icon_state = "shield_back_active"
-	item_state = "shield_pack"
+	icon_state = "shieldpack_basic"
+	item_state = "defibunit"
 	w_class = ITEMSIZE_LARGE //No putting these in backpacks!
 	slot_flags = SLOT_BELT
 	has_weapon = 0 //No gun with the belt!

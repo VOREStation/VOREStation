@@ -42,7 +42,7 @@
 		"dirt9" = 1
 	)
 	flooring_override = pickweight(possibledirts)
-	return ..()	
+	return ..()
 
 
 /turf/simulated/floor/outdoors/newdirt_nograss
@@ -62,7 +62,7 @@
 		"dirt9" = 1
 	)
 	flooring_override = pickweight(possibledirts)
-	return ..()	
+	return ..()
 
 /turf/simulated/floor/outdoors/sidewalk
 	name = "sidewalk"
@@ -116,10 +116,10 @@
 		"[initial(icon_state)]7" = 2,
 		"[initial(icon_state)]8" = 2,
 		"[initial(icon_state)]9" = 2,
-		"[initial(icon_state)]10" = 2		
+		"[initial(icon_state)]10" = 2
 	)
 	flooring_override = pickweight(possibledirts)
-	return ..()	
+	return ..()
 
 /turf/simulated/floor/outdoors/sidewalk/side
 	icon_state = "side-walk"
@@ -141,3 +141,18 @@
 	build_type = /obj/item/stack/tile/floor/sidewalk/slab
 
 /obj/item/stack/tile/floor/sidewalk/slab
+
+/obj/item/stack/tile/floor/concrete //Proper concrete tile.
+	name = "concrete tile"
+	singular_name = "floor tile"
+	desc = "A concrete tile fit for covering a section of floor."
+	icon_state = "tile"
+	force = 6.0
+	matter = list(DEFAULT_WALL_MATERIAL = SHEET_MATERIAL_AMOUNT / 4)
+	throwforce = 15.0
+	throw_speed = 5
+	throw_range = 20
+	no_variants = TRUE
+
+/decl/flooring/concrete
+	build_type = /obj/item/stack/tile/floor/concrete
