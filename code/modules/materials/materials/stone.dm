@@ -39,7 +39,7 @@
 	icon_colour = "#9e9c99"
 	weight = 20
 	hardness = 30
-	integrity = 100 
+	integrity = 100
 	stack_type = /obj/item/stack/material/flint
 	supply_conversion_value = 2
 	sheet_singular_name = "piece"
@@ -62,6 +62,13 @@
 	var/image/texture
 
 /datum/material/stone/concrete/generate_recipes()
+	recipes += list(
+		new /datum/stack_recipe_list("Concrete Pathing",list(
+			new /datum/stack_recipe("concrete sidewalk", /obj/item/stack/tile/floor/sidewalk, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("concrete sidewalk (side)", /obj/item/stack/tile/floor/sidewalk/side, 1, 4, 20, recycle_material = "[name]"),
+			new /datum/stack_recipe("concrete sidewalk (slab)", /obj/item/stack/tile/floor/sidewalk/slab, 1, 4, 20, recycle_material = "[name]")
+		)),
+		)
 	..()
 
 /datum/material/stone/concrete/New()
