@@ -261,6 +261,16 @@
 /obj/item/weapon/reagent_containers/glass/beaker/sulphuric
 	prefill = list("sacid" = 60)
 
+/obj/item/weapon/reagent_containers/glass/beaker/stopperedbottle
+	name = "stoppered bottle"
+	desc = "A stoppered bottle for keeping beverages fresh."
+	icon_state = "stopperedbottle"
+	center_of_mass = list("x" = 16,"y" = 13)
+	volume = 120
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list(5,10,15,25,30,60,120)
+	flags = OPENCONTAINER
+
 /obj/item/weapon/reagent_containers/glass/bucket
 	desc = "It's a bucket."
 	name = "bucket"
