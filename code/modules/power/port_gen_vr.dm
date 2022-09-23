@@ -316,7 +316,7 @@
 
 /obj/machinery/power/rtg/reg/unbuckle_mob(mob/living/buckled_mob, force = FALSE)
 	. = ..()
-	buckled_mob.pixel_y = initial(buckled_mob.pixel_y)
+	buckled_mob.pixel_y = buckled_mob.default_pixel_y
 
 /obj/machinery/power/rtg/reg/RefreshParts()
 	var/n = 0
