@@ -611,4 +611,5 @@ var/list/flooring_types
 	icon = 'icons/turf/concrete.dmi'
 	icon_base = "concrete"
 	is_plating = FALSE //VOREStation edit. It's a lot cooler if it's actual tile.
+	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR
 	plating_type = /decl/flooring/concrete
