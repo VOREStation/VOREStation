@@ -167,13 +167,15 @@
 	vis_contents -= hover_overlays_cache[hovering_choice]
 	hovering_choice = choice
 
+	if(!choice)
+		return
+
 	var/obj/effect/overlay/zone_sel/overlay_object = hover_overlays_cache[choice]
 	if(!overlay_object)
 		overlay_object = new
 		overlay_object.icon_state = "[choice]"
 		hover_overlays_cache[choice] = overlay_object
 	vis_contents += overlay_object
-
 
 /obj/effect/overlay/zone_sel
 	icon = 'icons/mob/zone_sel.dmi'
@@ -240,7 +242,7 @@
 		update_icon()
 
 /obj/screen/zone_sel/update_icon()
-	cut_overlay(selecting_appearance)
+	cut_overlays()
 	selecting_appearance = mutable_appearance('icons/mob/zone_sel.dmi', "[selecting]")
 	add_overlay(selecting_appearance)
 
