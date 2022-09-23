@@ -44,3 +44,32 @@
 	icon_state = "altevian-pants-cargo"
 	worn_state = "altevian-pants-cargo"
 	starting_accessories = list(/obj/item/clothing/accessory/jacket/altevian/cargo)
+
+/obj/item/clothing/under/altevian
+	name = "Altevian Duty Jumpsuit"
+	desc = "A uniform commonly seen from altevians during their work. The material on this uniform seems to be made of durable thread that can handle the stress of most matters of labor."
+	icon = 'icons/inventory/uniform/item_vr.dmi'
+	icon_override = 'icons/inventory/uniform/mob_vr.dmi'
+	icon_state = "altevian-specialist"
+	worn_state = "altevian-specialist"
+	species_restricted = list(SPECIES_ALTEVIAN)
+
+/obj/item/clothing/under/altevian/sci
+	name = "Altevian Science Duty Jumpsuit"
+	icon_state = "altevian-specialist-sci"
+	worn_state = "altevian-specialist-sci"
+
+/obj/item/clothing/under/altevian/med
+	name = "Altevian Medical Duty Jumpsuit"
+	icon_state = "altevian-specialist-med"
+	worn_state = "altevian-specialist-med"
+
+/obj/item/clothing/under/altevian/sec
+	name = "Altevian Security Duty Jumpsuit"
+	icon_state = "altevian-specialist-sec"
+	worn_state = "altevian-specialist-sec"
+
+/obj/item/clothing/under/altevian/eng
+	name = "Altevian Engineering Duty Jumpsuit"
+	icon_state = "altevian-specialist-eng"
+	worn_state = "altevian-specialist-eng"
