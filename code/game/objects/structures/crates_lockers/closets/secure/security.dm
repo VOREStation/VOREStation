@@ -60,7 +60,7 @@
 		/obj/item/clothing/under/suit_jacket/teal/skirt,
 		/obj/item/clothing/glasses/sunglasses,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/hop,
-		/obj/item/clothing/head/caphat/hop/beret/,
+		/obj/item/clothing/head/caphat/hop/beret,
 		/obj/item/clothing/head/caphat/hop/beret/white)
 
 
