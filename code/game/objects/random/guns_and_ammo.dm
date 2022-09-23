@@ -98,6 +98,7 @@
 				prob(2);/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 				prob(4);/obj/item/weapon/gun/projectile/shotgun/pump/rifle,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
+				prob(2);/obj/item/weapon/gun/projectile/shotgun/semi,
 				prob(2);/obj/item/weapon/gun/projectile/silenced)
 
 /obj/random/projectile/sec
@@ -119,7 +120,8 @@
 	return pick(prob(4);/obj/item/weapon/gun/projectile/shotgun/doublebarrel,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn,
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump,
-				prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat)
+				prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+				prob(1);/obj/item/weapon/gun/projectile/shotgun/semi)
 
 /obj/random/handgun
 	name = "Random Handgun"
@@ -493,6 +495,10 @@
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/shotgun/pump/combat,
+				/obj/item/ammo_magazine/ammo_box/b12g
+			),
+			prob(1);list(
+				/obj/item/weapon/gun/projectile/shotgun/semi,
 				/obj/item/ammo_magazine/ammo_box/b12g
 			)
 		)
