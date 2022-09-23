@@ -773,7 +773,7 @@
 /obj/item/weapon/reagent_containers/food/snacks/donkpocket/ascended/Initialize()
 	. = ..()
 	reagents.add_reagent("uranium", 3)
-	reagents.add_reagent("pyrotoxin", 3)
+	reagents.add_reagent("thermite_v", 3)
 
 // Altevian Foobs
 
