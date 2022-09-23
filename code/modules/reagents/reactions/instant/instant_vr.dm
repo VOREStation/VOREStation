@@ -181,6 +181,13 @@
 	catalysts = list("phoron" = 5)
 	result_amount = 3
 
+/decl/chemical_reaction/instant/prussian_blue
+	name = "Prussian Blue"
+	id = "prussian_blue"
+	result = "prussian_blue"
+	required_reagents = list("carbon" = 3, "iron" = 1, "nitrogen" = 3)
+	result_amount = 7
+
 ///////////////////////////////////////////////////////////////////////////////////
 /// Reagent colonies.
 /decl/chemical_reaction/instant/meatcolony

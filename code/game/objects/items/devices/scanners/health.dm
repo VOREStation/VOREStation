@@ -105,17 +105,35 @@
 	if(M.radiation)
 		if(advscan >= 2 && showadvscan == 1)
 			var/severity = ""
-			if(M.radiation >= 75)
+			if(M.radiation >= 1500)
+				severity = "Lethal"
+			else if(M.radiation >= 600)
 				severity = "Critical"
-			else if(M.radiation >= 50)
+			else if(M.radiation >= 400)
 				severity = "Severe"
-			else if(M.radiation >= 25)
+			else if(M.radiation >= 300)
 				severity = "Moderate"
-			else if(M.radiation >= 1)
+			else if(M.radiation >= 100)
 				severity = "Low"
-			dat += "<span class='warning'>[severity] levels of radiation detected. [(severity == "Critical") ? " Immediate treatment advised." : ""]</span><br>"
+			dat += "<span class='warning'>[severity] levels of acute radiation sickness detected. [round(M.radiation/50)]Gy. [(severity == "Critical" || severity == "Lethal") ? " Immediate treatment advised." : ""]</span><br>"
 		else
-			dat += "<span class='warning'>Radiation detected.</span><br>"
+			dat += "<span class='warning'>Acute radiation sickness detected.</span><br>"
+	if(M.accumulated_rads)
+		if(advscan >= 2 && showadvscan == 1)
+			var/severity = ""
+			if(M.accumulated_rads >= 1500)
+				severity = "Critical"
+			else if(M.accumulated_rads >= 600)
+				severity = "Severe"
+			else if(M.accumulated_rads >= 400)
+				severity = "Moderate"
+			else if(M.accumulated_rads >= 300)
+				severity = "Mild"
+			else if(M.accumulated_rads >= 100)
+				severity = "Low"
+			dat += "<span class='warning'>[severity] levels of chronic radiation sickness detected. [round(M.accumulated_rads/50)]Gy.</span><br>"
+		else
+			dat += "<span class='warning'>Chronic radiation sickness detected.</span><br>"
 	if(iscarbon(M))
 		var/mob/living/carbon/C = M
 		if(C.reagents.total_volume)
