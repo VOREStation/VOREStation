@@ -248,8 +248,8 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 		weight_message_visible = TRUE
 	if(isnull(nutrition_messages))
 		nutrition_messages = list(
-							"They are starving! You can hear their stomach snarling from across the room!" = 1,
-							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach." = 2,
+							"They are starving! You can hear their stomach snarling from across the room!",
+							"They are extremely hungry. A deep growl occasionally rumbles from their empty stomach.",
 							"",
 							"They have a stuffed belly, bloated fat and round from eating too much.",
 							"They have a rotund, thick gut. It bulges from their body obscenely, close to sagging under its own weight.",
@@ -258,6 +258,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 							"Their stomach is firmly packed with digesting slop. They must have eaten at least a few times worth their body weight! It looks hard for them to stand, and their gut jiggles when they move.",
 							"They are so absolutely stuffed that you aren't sure how it's possible for them to move. They can't seem to swell any bigger. The surface of their belly looks sorely strained!",
 							"They are utterly filled to the point where it's hard to even imagine them moving, much less comprehend it when they do. Their gut is swollen to monumental sizes and amount of food they consumed must be insane.")
+	else if(nutrition_messages.len < 10)
+		while(nutrition_messages.len < 10)
+			nutrition_messages.Add("")
 	if(isnull(weight_messages))
 		weight_messages = list(
 							"They are terribly lithe and frail!",
@@ -270,6 +273,9 @@ V::::::V           V::::::VO:::::::OOO:::::::ORR:::::R     R:::::REE::::::EEEEEE
 							"They have a very fat frame with a bulging potbelly, squishy rolls of pudge, very wide hips, and plump set of jiggling thighs.",
 							"They are incredibly obese. Their massive potbelly sags over their waistline while their fat ass would probably require two chairs to sit down comfortably!",
 							"They are so morbidly obese, you wonder how they can even stand, let alone waddle around the station. They can't get any fatter without being immobilized.")
+	else if(weight_messages.len < 10)
+		while(weight_messages.len < 10)
+			weight_messages.Add("")
 
 	return TRUE
 
