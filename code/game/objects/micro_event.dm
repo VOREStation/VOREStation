@@ -53,3 +53,48 @@
 /obj/structure/portal_event/resize/preset_grow_twohundred
 	shrinking = FALSE
 	size_limit = 2
+
+///// TIMER DOOR /////
+
+/obj/structure/timer_door
+	name = "door"
+	desc = "It's a door with no apparent control mechanism! It opens on a timer!"
+	icon = 'icons/obj/doors/Dooralien.dmi'
+	icon_state = "door_locked"
+	opacity = TRUE
+	density = TRUE
+	anchored = TRUE
+
+	var/start_time
+	var/time_til_open = 5 MINUTES
+
+/obj/structure/timer_door/examine(mob/user, infix, suffix)
+	. = ..()
+
+	var/ourtime = (((start_time + time_til_open) - world.time) * 0.1)
+
+	. += "<span class ='notice'>It will open in [ourtime] seconds!</span>"
+
+/obj/structure/timer_door/Initialize()
+	START_PROCESSING(SSobj, src)
+
+	start_time = world.time
+
+/obj/structure/timer_door/Destroy()
+	STOP_PROCESSING(SSobj, src)
+	visible_message("<span class = 'danger'>\The [src] opens up!</span>")
+	playsound(src, 'sound/effects/bang.ogg', 75, 1)
+	return ..()
+
+/obj/structure/timer_door/process()
+	if(start_time + time_til_open < world.time)
+		qdel(src)
+
+/obj/structure/timer_door/ten
+	time_til_open = 10 MINUTES
+
+/obj/structure/timer_door/fifteen
+	time_til_open = 15 MINUTES
+
+/obj/structure/timer_door/twenty
+	time_til_open = 20 MINUTES
