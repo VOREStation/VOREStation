@@ -83,12 +83,17 @@
 	material = MAT_CONCRETE
 	icon_state = "brick"
 
+/turf/simulated/wall/concrete/Initialize(mapload)
+	. = ..(mapload, "concrete","concrete") //3strong
 
 /turf/simulated/wall/r_concrete
 	desc = "A sturdy wall made of concrete and reinforced with plasteel rebar"
 	material = MAT_CONCRETE
 	reinf_material = MAT_PLASTEELREBAR
 	icon_state = "rbrick"
+
+/turf/simulated/wall/r_concrete/Initialize(mapload)
+	. = ..(mapload, "concrete","plasteel rebar") //3strong
 
 // Kind of wondering if this is going to bite me in the butt.
 /turf/simulated/wall/skipjack/Initialize(mapload)
@@ -356,7 +361,7 @@
 
 /turf/simulated/wall/eris/can_join_with_low_wall(var/obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall/eris)
-	
+
 /turf/simulated/wall/eris/special_wall_connections(list/dirs, list/inrange)
 	..()
 	for(var/direction in cardinal)
