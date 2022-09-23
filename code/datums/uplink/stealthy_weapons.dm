@@ -11,7 +11,7 @@
 
 /datum/uplink_item/item/stealthy_weapons/concealed_cane
 	name = "Concealed Cane Sword"
-	item_cost = 10
+	item_cost = 40
 	path = /obj/item/weapon/cane/concealed
 
 /datum/uplink_item/item/stealthy_weapons/detomatix
