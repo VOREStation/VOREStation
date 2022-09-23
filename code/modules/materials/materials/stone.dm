@@ -48,3 +48,26 @@
 /datum/material/stone/flint/generate_recipes()
 	return
 //VOREStation Addition End
+
+/datum/material/stone/concrete
+	name = MAT_CONCRETE
+	stack_type = /obj/item/stack/material/concrete
+	icon_base = "brick"
+	icon_colour = COLOR_GRAY
+	integrity = 150
+	melting_point = 1550
+	protectiveness = 10
+	weight = 27
+	hardness = 60
+	var/image/texture
+
+/datum/material/stone/concrete/generate_recipes()
+	..()
+
+/datum/material/stone/concrete/New()
+	. = ..()
+	texture = image('icons/turf/wall_texture.dmi', "concrete")
+	texture.blend_mode = BLEND_MULTIPLY
+
+/datum/material/stone/concrete/get_wall_texture()
+	return texture

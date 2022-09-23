@@ -12,7 +12,7 @@
 /turf/simulated/mineral/ignore_mapgen,
 /area/submap/Rockb1)
 "e" = (
-/turf/simulated/wall/r_wall,
+/turf/simulated/wall/r_concrete,
 /area/submap/Rockb1)
 "f" = (
 /obj/structure/table/woodentable,

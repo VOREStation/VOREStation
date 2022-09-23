@@ -24,8 +24,17 @@
 		new /datum/stack_recipe("dark floor tile", /obj/item/stack/tile/floor/dark, 1, 4, 20, recycle_material = "[name]"),
 		new /datum/stack_recipe("roller bed", /obj/item/roller, 5, time = 30, on_floor = 1, recycle_material = "[name]"),
 		new /datum/stack_recipe("whetstone", /obj/item/weapon/whetstone, 2, time = 10, recycle_material = "[name]"),
+		new /datum/stack_recipe("plasteel rebar", /obj/item/stack/material/plasteel/rebar, 1, time = 5, recycle_material = "[name]"),
 		new /datum/stack_recipe_list("reinforced low walls",list(
 			new /datum/stack_recipe("reinforced low wall (bay style)", /obj/structure/low_wall/bay/reinforced, 3, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", recycle_material = "[name]"),
 			new /datum/stack_recipe("reinforced low wall (eris style)", /obj/structure/low_wall/eris/reinforced, 3, one_per_turf = 1, on_floor = 1, supplied_material = "[name]", recycle_material = "[name]")
 		)),
 	)
+
+/datum/material/plasteel/rebar //to give a different reinforced overlay
+	name = MAT_PLASTEELREBAR
+	icon_reinf = "reinf_metal"
+	icon_colour = "#6A6A6A"
+	stack_type = /obj/item/stack/material/plasteel/rebar
+	sheet_singular_name = "rod"
+	sheet_plural_name = "rods"
