@@ -79,17 +79,12 @@
 	. = ..(mapload, "resin",null,"resin")
 
 /turf/simulated/wall/concrete
-	desc = "A wall made out of concrete bricks"
-	material = MAT_CONCRETE
 	icon_state = "brick"
 
 /turf/simulated/wall/concrete/Initialize(mapload)
 	. = ..(mapload, "concrete") //3strong
 
 /turf/simulated/wall/r_concrete
-	desc = "A sturdy wall made of concrete and reinforced with plasteel rebar"
-	material = MAT_CONCRETE
-	reinf_material = MAT_PLASTEELREBAR
 	icon_state = "rbrick"
 
 /turf/simulated/wall/r_concrete/Initialize(mapload)
