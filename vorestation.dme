@@ -1081,6 +1081,7 @@
 #include "code\game\objects\explosion_recursive.dm"
 #include "code\game\objects\items.dm"
 #include "code\game\objects\items_vr.dm"
+#include "code\game\objects\micro_event.dm"
 #include "code\game\objects\micro_structures.dm"
 #include "code\game\objects\mob_spawner_vr.dm"
 #include "code\game\objects\objs.dm"
