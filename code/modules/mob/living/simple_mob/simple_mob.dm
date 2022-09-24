@@ -38,6 +38,7 @@
 	var/image/modifier_overlay = null // Holds overlays from modifiers.
 	var/image/eye_layer = null		// Holds the eye overlay.
 	var/has_eye_glow = FALSE		// If true, adds an overlay over the lighting plane for [icon_state]-eyes.
+	var/custom_eye_color = null
 	attack_icon = 'icons/effects/effects.dmi' //Just the default, played like the weapon attack anim
 	attack_icon_state = "slash" //Just the default
 
