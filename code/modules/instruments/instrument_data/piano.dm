@@ -1,7 +1,7 @@
 /datum/instrument/piano
 	name = "Generic piano"
 	category = "Piano"
-	abstract_type = /datum/instrument/piano
+	instrument_type = /datum/instrument/piano
 
 /datum/instrument/piano/fluid_piano
 	name = "FluidR3 Grand Piano"

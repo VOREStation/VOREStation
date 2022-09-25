@@ -1,7 +1,7 @@
 /datum/instrument/guitar
 	name = "Generic guitar-like instrument"
 	category = "Guitar"
-	abstract_type = /datum/instrument/guitar
+	instrument_type = /datum/instrument/guitar
 
 /datum/instrument/guitar/steel_crisis
 	name = "Crisis Steel String Guitar"
