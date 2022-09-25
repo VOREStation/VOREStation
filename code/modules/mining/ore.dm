@@ -174,7 +174,7 @@
 /obj/item/ore_chunk
 	name = "ore chunk"
 	desc = "A conglomerate of ore."
-	icon = 'icons/obj/xenoarchaeology.dmi'
+	icon = 'icons/obj/mining_ore_vr.dmi'
 	icon_state = "strange"
 	randpixel = 8
 	w_class = ITEMSIZE_SMALL

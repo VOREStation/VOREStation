@@ -45,6 +45,52 @@
 					var/ore_amount = BOX.stored_ore[ore]
 					ore_chunk.stored_ore[ore] += ore_amount
 					BOX.stored_ore[ore] = 0
+
+					//Icon code here. Going from most to least common.
+					if(ore == "sand")
+						ore_chunk.icon_state = "ore_glass"
+					else if(ore == "carbon")
+						ore_chunk.icon_state = "ore_coal"
+					else if(ore == "hematite")
+						ore_chunk.icon_state = "ore_iron"
+					else if(ore == "phoron")
+						ore_chunk.icon_state = "ore_phoron"
+					else if(ore == "silver")
+						ore_chunk.icon_state = "ore_silver"
+					else if(ore == "gold")
+						ore_chunk.icon_state = "ore_gold"
+					else if(ore == "uranium")
+						ore_chunk.icon_state = "ore_uranium"
+					else if(ore == "diamond")
+						ore_chunk.icon_state = "ore_diamond"
+					else if(ore == "platinum")
+						ore_chunk.icon_state = "ore_platinum"
+					else if(ore == "marble")
+						ore_chunk.icon_state = "ore_marble"
+					else if(ore == "lead")
+						ore_chunk.icon_state = "ore_lead"
+					else if(ore == "rutile")
+						ore_chunk.icon_state = "ore_rutile"
+					else if(ore == "quartz")
+						ore_chunk.icon_state = "ore_quartz"
+					else if(ore == "mhydrogen")
+						ore_chunk.icon_state = "ore_hydrogen"
+					else if(ore == "verdantium")
+						ore_chunk.icon_state = "ore_verdantium"
+					else if(ore == "raw copper")
+						ore_chunk.icon_state = "ore_copper"
+					else if(ore == "raw tin")
+						ore_chunk.icon_state = "ore_tin"
+					else if(ore == "void opal")
+						ore_chunk.icon_state = "ore_void_opal"
+					else if(ore == "raw bauxite")
+						ore_chunk.icon_state = "ore_bauxite"
+					else if(ore == "painite")
+						ore_chunk.icon_state = "ore_painite"
+					else
+						ore_chunk.icon_state = "boulder[rand(1,4)]"
+
+
 					if (i>=3) //Let's make it staggered so it looks like a lot is happening.
 						return
 		if (locate(/obj/item, input.loc))
