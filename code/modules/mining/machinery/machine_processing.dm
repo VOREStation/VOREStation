@@ -243,6 +243,16 @@
 				points += (ore_values[ore]*points_mult*ore_amount) 					// Give Points! VOREStation Edit - or give lots of points! or less points! or no points!
 				OB.stored_ore[ore] = 0 												// Set the value of the ore in the box to 0.
 
+
+	for(var/obj/item/ore_chunk/ore_chunk in input.loc) //Special ore chunk item. For conveyor belt. Completely unneeded but keeps asthetics.
+		for(var/ore in ore_chunk.stored_ore)
+			if(ore_chunk.stored_ore[ore] > 0)
+				var/ore_amount = ore_chunk.stored_ore[ore]
+				ores_stored[ore] += ore_amount
+				points += (ore_values[ore]*points_mult*ore_amount)
+				ore_chunk.stored_ore[ore] = 0
+			qdel(ore_chunk)
+
 	if(!active)
 		return
 

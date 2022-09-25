@@ -39,12 +39,14 @@
 		if (locate(/obj/structure/ore_box, input.loc))
 			var/obj/structure/ore_box/BOX = locate(/obj/structure/ore_box, input.loc)
 			var/i = 0
-			for (var/obj/item/weapon/ore/O in BOX.contents)
-				BOX.contents -= O
-				O.loc = output.loc
-				i++
-				if (i>=10)
-					return
+			for (var/ore in BOX.stored_ore)
+				if(BOX.stored_ore[ore] > 0)
+					var/obj/item/ore_chunk/ore_chunk = new /obj/item/ore_chunk(src.output.loc)
+					var/ore_amount = BOX.stored_ore[ore]
+					ore_chunk.stored_ore[ore] += ore_amount
+					BOX.stored_ore[ore] = 0
+					if (i>=3) //Let's make it staggered so it looks like a lot is happening.
+						return
 		if (locate(/obj/item, input.loc))
 			var/obj/item/O
 			var/i
