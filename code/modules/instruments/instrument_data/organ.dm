@@ -1,7 +1,7 @@
 /datum/instrument/organ
 	name = "Generic organ"
 	category = "Organ"
-	abstract_type = /datum/instrument/organ
+	instrument_type = /datum/instrument/organ
 
 /datum/instrument/organ/crisis_church
 	name = "Crisis Church Organ"

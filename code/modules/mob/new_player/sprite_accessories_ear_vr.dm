@@ -860,3 +860,12 @@
 	extra_overlay = "altevian-inner"
 	do_colouration = 1
 	color_blend_mode = ICON_MULTIPLY
+	
+/datum/sprite_accessory/ears/wilddog
+	name = "Wild Dog Ears"
+	desc = ""
+	icon = 'icons/mob/vore/ears_vr.dmi'
+	icon_state = "wild_dog"
+	do_colouration = 1
+	color_blend_mode = ICON_MULTIPLY
+	extra_overlay = "wild_doginner"

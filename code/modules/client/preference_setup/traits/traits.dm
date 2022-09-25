@@ -5,7 +5,9 @@ var/list/trait_categories = list() // The categories available for the trait men
 /hook/startup/proc/populate_trait_list()
 
 	//create a list of trait datums
-	for(var/trait_type in typesof(/datum/trait) - list(/datum/trait, /datum/trait/modifier))
+	for(var/trait_type as anything in subtypesof(/datum/trait))
+		if (is_abstract(trait_type))
+			continue
 		var/datum/trait/T = new trait_type
 		if(!T.is_available())
 			qdel(T)
@@ -144,6 +146,7 @@ var/list/trait_categories = list() // The categories available for the trait men
 
 
 /datum/trait
+	abstract_type = /datum/trait
 	var/name = null							// Name to show on UI
 	var/desc = null							// Description of what it does, also shown on UI.
 	var/list/mutually_exclusive = list()	// List of trait types which cannot be taken alongside this trait.
