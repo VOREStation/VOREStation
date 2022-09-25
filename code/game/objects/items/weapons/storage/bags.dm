@@ -180,7 +180,7 @@
 	if(!silent) //Let's do a single check and then do more instead of a bunch at once.
 		if(success && !failure && !max_pickup_reached) //Picked stuff up, did not reach capacity, did not reach max_pickup.
 			to_chat(user, "<span class='notice'>You put everything in [src].</span>")
-		else if(success && failure)) //Picked stuff up to capacity.
+		else if(success && failure) //Picked stuff up to capacity.
 			to_chat(user, "<span class='notice'>You fill the [src].</span>")
 		else if(success && max_pickup_reached) //Picked stuff up to the max_pickup
 			to_chat(user, "<span class='notice'>You fill the [src] with as much as you can grab in one go.</span>")
@@ -194,7 +194,7 @@
 				OB.stored_ore[ore] += ore_amount	// Add the ore to the box
 				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
 				current_capacity = 0				// Set the amount of ore in the satchel to 0.
-	one_go_pickup = 0
+	current_pickup = 0
 
 /obj/item/weapon/storage/bag/ore/equipped(mob/user)
 	..()
