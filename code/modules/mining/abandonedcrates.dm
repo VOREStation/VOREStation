@@ -217,10 +217,3 @@
 				to_chat(user, "<span class='notice'>Last code attempt, [previousattempt], had [bulls] correct digits at correct positions and [cows] correct digits at incorrect positions.</span>")
 			return
 	..()
-
-/obj/structure/closet/crate/secure/loot/damage(var/damage)
-	if(contents.len)
-		visible_message("<font color='red'><b>[src] makes a grinding noise as its contents are destroyed by the deca-lock safety!</b></font>")
-		for(var/obj/O in src.contents)
-			qdel(O)
-	..()

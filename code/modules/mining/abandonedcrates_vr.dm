@@ -1,2 +1,2 @@
 /obj/structure/closet/crate/secure/loot
-	tamper_proof = 1
+	tamper_proof = 2
