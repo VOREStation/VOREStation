@@ -19,6 +19,29 @@
 	var/obj/item/device/radio/intercom/faultreporter
 	var/drill_range = 5
 	var/offset = 2
+	var/current_capacity = 0
+
+	var/list/stored_ore = list(
+		"sand" = 0,
+		"hematite" = 0,
+		"carbon" = 0,
+		"raw copper" = 0,
+		"raw tin" = 0,
+		"void opal" = 0,
+		"painite" = 0,
+		"quartz" = 0,
+		"raw bauxite" = 0,
+		"phoron" = 0,
+		"silver" = 0,
+		"gold" = 0,
+		"marble" = 0,
+		"uranium" = 0,
+		"diamond" = 0,
+		"platinum" = 0,
+		"lead" = 0,
+		"mhydrogen" = 0,
+		"verdantium" = 0,
+		"rutile" = 0)
 
 	var/list/ore_types = list(
 		"hematite" = /obj/item/weapon/ore/iron,
@@ -27,9 +50,9 @@
 		"silver" = /obj/item/weapon/ore/silver,
 		"diamond" = /obj/item/weapon/ore/diamond,
 		"phoron" = /obj/item/weapon/ore/phoron,
-		"osmium" = /obj/item/weapon/ore/osmium,
-		"hydrogen" = /obj/item/weapon/ore/hydrogen,
-		"silicates" = /obj/item/weapon/ore/glass,
+		"platinum" = /obj/item/weapon/ore/osmium,
+		"mhydrogen" = /obj/item/weapon/ore/hydrogen,
+		"sand" = /obj/item/weapon/ore/glass,
 		"carbon" = /obj/item/weapon/ore/coal,
 	//	"copper" = /obj/item/weapon/ore/copper,
 	//	"tin" = /obj/item/weapon/ore/tin,
@@ -62,12 +85,30 @@
 	var/need_update_field = 0
 	var/need_player_check = 0
 
+
+/obj/machinery/mining/drill/examine(mob/user) //Let's inform people about stuff. Let people KNOW how it works.
+	. = ..()
+	if(Adjacent(user))
+		if(cell)
+			. += "The drill's cell is [round(cell.percent() )]% charged."
+			if(charge_use) //Prevention of dividing by 0 errors.
+				. += "The drill reads that it can mine for [round((cell.charge/charge_use)/60)] more minutes before the cell depletes."
+		else
+			. += "The drill has no cell installed."
+		if(drill_range)
+			. += "The drill will mine in a range of [drill_range] tiles."
+		if(harvest_speed)
+			. += "The drill can mine [harvest_speed] [(harvest_speed == 1)? "ore" : "ores"] a second!"
+		if(exotic_drilling)
+			. += "The drill is upgraded and is capable of mining [(exotic_drilling == 1)? "moderately further" : "as deep as possible"]!"
+		if(capacity && current_capacity)
+			. += "The drill currently has [current_capacity] capacity taken up and can fit [capacity - current_capacity] more ore."
+
 /obj/machinery/mining/drill/Initialize()
 	. = ..()
 	if(ispath(cell))
 		cell = new cell(src)
 	default_apply_parts()
-	cell = default_use_hicell()
 	faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
 
 /obj/machinery/mining/drill/Destroy()
@@ -104,7 +145,11 @@
 		return
 
 	//Drill through the flooring, if any.
-	if(istype(get_turf(src), /turf/simulated))
+	if(istype(get_turf(src), /turf/simulated/mineral))
+		var/turf/simulated/mineral/M = get_turf(src)
+		M.GetDrilled()
+
+	else if(istype(get_turf(src), /turf/simulated))
 		var/turf/simulated/T = get_turf(src)
 		T.ex_act(2.0)
 
@@ -128,7 +173,7 @@
 
 		for(var/metal in ore_types)
 
-			if(contents.len >= capacity)
+			if(current_capacity >= capacity)
 				system_error("Insufficient storage space.")
 				active = 0
 				need_player_check = 1
@@ -154,8 +199,8 @@
 					harvesting.resources[metal] = 0
 
 				for(var/i=1, i <= create_ore, i++)
-					var/oretype = ore_types[metal]
-					new oretype(src)
+					stored_ore[metal]++	// Adds the ore to the drill.
+					current_capacity++	// Adds the ore to the drill's capacity.
 
 		if(!found_resource)	// If a drill can't see an advanced material, it will destroy it while going through.
 			harvesting.has_resources = 0
@@ -348,8 +393,12 @@
 
 	var/obj/structure/ore_box/B = locate() in orange(1)
 	if(B)
-		for(var/obj/item/weapon/ore/O in contents)
-			O.loc = B
+		for(var/ore in stored_ore)
+			if(stored_ore[ore] > 0)
+				var/ore_amount = stored_ore[ore]	// How many ores does the satchel have?
+				B.stored_ore[ore] += ore_amount 	// Add the ore to the machine.
+				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
+				current_capacity = 0				// Set the amount of ore in the drill to 0.
 		to_chat(usr, "<span class='notice'>You unload the drill's storage cache into the ore box.</span>")
 	else
 		to_chat(usr, "<span class='notice'>You must move an ore box up to the drill before you can unload it.</span>")
@@ -365,7 +414,7 @@
 
 /obj/machinery/mining/brace/examine(mob/user)
 	. = ..()
-	if(brace_tier > 2)
+	if(brace_tier >= 3)
 		. += SPAN_NOTICE("The internals of the brace look resilient enough to support a drill by itself.")
 
 /obj/machinery/mining/brace/Initialize()
