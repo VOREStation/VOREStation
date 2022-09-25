@@ -163,6 +163,16 @@
 		return FALSE
 	return (hovering || is_incorporeal())
 
+/mob/living/simple_mob/can_ztravel()
+	if(incapacitated())
+		return FALSE
+
+	if(hovering || is_incorporeal())
+		return TRUE
+
+	if(Process_Spacemove())
+		return TRUE
+
 /mob/living/carbon/human/can_ztravel()
 	if(incapacitated())
 		return FALSE
@@ -171,7 +181,7 @@
 		return TRUE
 
 	if(flying) //VOREStation Edit. Allows movement up/down with wings.
-		return 1 //VOREStation Edit
+		return TRUE //VOREStation Edit
 
 	if(Process_Spacemove())
 		return TRUE
