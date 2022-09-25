@@ -17,8 +17,10 @@
 	if(busy)
 		return FALSE
 
-	visible_message(alert)
-	log_and_message_admins(adminalert)
+	if(alert)
+		visible_message(alert)
+	if(adminalert)
+		log_and_message_admins(adminalert)
 	busy = TRUE
 	var/datum/ghost_query/Q = new ghost_query_type()
 	var/list/winner = Q.query()
