@@ -108,9 +108,7 @@
 	if(ispath(cell))
 		cell = new cell(src)
 	default_apply_parts()
-	cell = default_use_hicell()
 	faultreporter = new /obj/item/device/radio/intercom{channels=list("Supply")}(null)
-	RefreshParts() //This is required to get the cell to register.
 
 /obj/machinery/mining/drill/Destroy()
 	qdel_null(faultreporter)
@@ -200,7 +198,7 @@
 					harvesting.resources[metal] = 0
 
 				for(var/i=1, i <= create_ore, i++)
-					stored_ore[metal]++ //Bugged line.
+					stored_ore[metal]++
 
 		if(!found_resource)	// If a drill can't see an advanced material, it will destroy it while going through.
 			harvesting.has_resources = 0
