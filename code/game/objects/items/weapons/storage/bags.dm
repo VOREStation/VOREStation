@@ -112,7 +112,6 @@
 		"silver" = 0,
 		"gold" = 0,
 		"marble" = 0,
-		"rutile" = 0,
 		"uranium" = 0,
 		"diamond" = 0,
 		"platinum" = 0,
