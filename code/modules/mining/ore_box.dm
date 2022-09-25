@@ -29,8 +29,6 @@
 		"verdantium" = 0,
 		"rutile" = 0)
 
-	var/list/contained_resources = list() //A list of the ore inside. This is done to reduce lag.
-
 
 /obj/structure/ore_box/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/weapon/ore))
@@ -47,6 +45,7 @@
 				var/ore_amount = S.stored_ore[ore]	// How many ores does the satchel have?
 				stored_ore[ore] += ore_amount 		// Add the ore to the machine.
 				S.stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
+				S.current_capacity = 0				// Set the amount of ore in the satchel  to 0.
 		to_chat(user, "<span class='notice'>You empty the satchel into the box.</span>")
 
 	return

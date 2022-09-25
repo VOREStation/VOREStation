@@ -98,6 +98,8 @@
 	max_storage_space = ITEMSIZE_COST_NORMAL * 25
 	max_w_class = ITEMSIZE_NORMAL
 	can_hold = list(/obj/item/weapon/ore)
+	var/current_capacity = 0
+	var/max_pickup = 100 //How much ore can be picked up in one go. There to prevent someone from walking on a turf with 10000 ore and making the server cry.
 	var/list/stored_ore = list(
 		"sand" = 0,
 		"hematite" = 0,
@@ -125,12 +127,17 @@
 	name = "mining satchel of holding"
 	desc = "Like a mining satchel, but when you put your hand in, you're pretty sure you can feel time itself."
 	icon_state = "satchel_bspace"
-	max_storage_space = ITEMSIZE_COST_NORMAL * 75 // 3x
+	max_storage_space = ITEMSIZE_COST_NORMAL * 15000 // This should never, ever, ever be reached.
 
 /obj/item/weapon/storage/bag/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if(current_capacity >= max_storage_space)
+		to_chat(user, "<span class='notice'>\the [src] is too full to possibly fit anything else inside of it.</span>")
+		return
+
 	if (istype(W, /obj/item/weapon/ore))
 		var/obj/item/weapon/ore/ore = W
 		stored_ore[ore.material]++
+		current_capacity++
 		user.remove_from_mob(W)
 		qdel(ore)
 
@@ -155,23 +162,39 @@
 /obj/item/weapon/storage/bag/ore/gather_all(turf/T as turf, mob/user as mob, var/silent = 0)
 	var/success = 0
 	var/failure = 0
+	var/current_pickup = 0
+	var/max_pickup_reached = 0
 	for(var/obj/item/weapon/ore/O in T) //Only ever grabs ores. Doesn't do any extraneous checks, as all ore is the same size. Tons of checks means it causes hanging for up to three seconds.
-		//if(contents.len >= max_storage_space) //TODO: Find a good way of having it hold a maximum amount of ore.
-		//	failure = 1
-		//	break
+		if(current_capacity >= max_storage_space)
+			failure = 1
+			break
+		if(current_pickup >= max_pickup)
+			max_pickup_reached = 1
+			break
 		var/obj/item/weapon/ore/ore = O
 		stored_ore[ore.material]++
+		current_capacity++
+		current_pickup++
 		qdel(ore)
 		success = 1
-	if(success && !failure && !silent)
-		to_chat(user, "<span class='notice'>You put everything in [src].</span>")
-	//else if(success && (!silent || (silent && contents.len >= max_storage_space))) //TODO: Find a good way of having it hold a maximum amount of ore.
-	//	to_chat(user, "<span class='notice'>You fill the [src].</span>")
-	else if(!silent)
-		to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
-	if(istype(user.pulling, /obj/structure/ore_box)) //Bit of a crappy way to do this, as it doubles spam for the user, but it works.
+	if(!silent) //Let's do a single check and then do more instead of a bunch at once.
+		if(success && !failure && !max_pickup_reached) //Picked stuff up, did not reach capacity, did not reach max_pickup.
+			to_chat(user, "<span class='notice'>You put everything in [src].</span>")
+		else if(success && failure)) //Picked stuff up to capacity.
+			to_chat(user, "<span class='notice'>You fill the [src].</span>")
+		else if(success && max_pickup_reached) //Picked stuff up to the max_pickup
+			to_chat(user, "<span class='notice'>You fill the [src] with as much as you can grab in one go.</span>")
+		else //Failed. The bag is full.
+			to_chat(user, "<span class='notice'>You fail to pick anything up with \the [src].</span>")
+	if(istype(user.pulling, /obj/structure/ore_box)) //Bit of a crappy way to do this, as it doubles spam for the user, but it works. //Then let me fix it. ~CL.
 		var/obj/structure/ore_box/OB = user.pulling
-		OB.attackby(src, user)
+		for(var/ore in stored_ore)
+			if(stored_ore[ore] > 0)
+				var/ore_amount = stored_ore[ore]	// How many ores does the satchel have?
+				OB.stored_ore[ore] += ore_amount	// Add the ore to the box
+				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
+				current_capacity = 0				// Set the amount of ore in the satchel to 0.
+	one_go_pickup = 0
 
 /obj/item/weapon/storage/bag/ore/equipped(mob/user)
 	..()

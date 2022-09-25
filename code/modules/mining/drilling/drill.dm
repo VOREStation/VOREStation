@@ -19,6 +19,7 @@
 	var/obj/item/device/radio/intercom/faultreporter
 	var/drill_range = 5
 	var/offset = 2
+	var/current_capacity = 0
 
 	var/list/stored_ore = list(
 		"sand" = 0,
@@ -100,8 +101,8 @@
 			. += "The drill can mine [harvest_speed] [(harvest_speed == 1)? "ore" : "ores"] a second!"
 		if(exotic_drilling)
 			. += "The drill is upgraded and is capable of mining [(exotic_drilling == 1)? "moderately further" : "as deep as possible"]!"
-		if(capacity && contents.len) //TODO: Replace contents with a list that calculates current value.
-			. += "The drill currently has [contents.len] capacity taken up and can fit [capacity - contents.len] more ore."
+		if(capacity && current_capacity) //TODO: Replace contents with a list that calculates current value.
+			. += "The drill currently has [current_capacity] capacity taken up and can fit [capacity - current_capacity] more ore."
 
 /obj/machinery/mining/drill/Initialize()
 	. = ..()
@@ -172,7 +173,7 @@
 
 		for(var/metal in ore_types)
 
-			if(contents.len >= capacity)
+			if(current_capacity >= capacity)
 				system_error("Insufficient storage space.")
 				active = 0
 				need_player_check = 1
@@ -198,7 +199,8 @@
 					harvesting.resources[metal] = 0
 
 				for(var/i=1, i <= create_ore, i++)
-					stored_ore[metal]++
+					stored_ore[metal]++	// Adds the ore to the drill.
+					current_capacity++	// Adds the ore to the drill's capacity.
 
 		if(!found_resource)	// If a drill can't see an advanced material, it will destroy it while going through.
 			harvesting.has_resources = 0
@@ -396,6 +398,7 @@
 				var/ore_amount = stored_ore[ore]	// How many ores does the satchel have?
 				B.stored_ore[ore] += ore_amount 	// Add the ore to the machine.
 				stored_ore[ore] = 0 				// Set the value of the ore in the satchel to 0.
+				current_capacity = 0				// Set the amount of ore in the drill to 0.
 		to_chat(usr, "<span class='notice'>You unload the drill's storage cache into the ore box.</span>")
 	else
 		to_chat(usr, "<span class='notice'>You must move an ore box up to the drill before you can unload it.</span>")
