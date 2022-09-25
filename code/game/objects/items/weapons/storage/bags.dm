@@ -127,6 +127,13 @@
 	icon_state = "satchel_bspace"
 	max_storage_space = ITEMSIZE_COST_NORMAL * 75 // 3x
 
+/obj/item/weapon/storage/bag/ore/attackby(obj/item/weapon/W as obj, mob/user as mob)
+	if (istype(W, /obj/item/weapon/ore))
+		var/obj/item/weapon/ore/ore = W
+		stored_ore[ore.material]++
+		user.remove_from_mob(W)
+		qdel(ore)
+
 /obj/item/weapon/storage/bag/ore/remove_from_storage(obj/item/W as obj, atom/new_location)
 	if(!istype(W)) return 0
 

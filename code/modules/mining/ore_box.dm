@@ -36,6 +36,7 @@
 	if (istype(W, /obj/item/weapon/ore))
 		var/obj/item/weapon/ore/ore = W
 		stored_ore[ore.material]++
+		user.remove_from_mob(W)
 		qdel(ore)
 
 	else if (istype(W, /obj/item/weapon/storage/bag/ore))
