@@ -1,7 +1,7 @@
 /datum/instrument/brass
 	name = "Generic brass instrument"
 	category = "Brass"
-	abstract_type = /datum/instrument/brass
+	instrument_type = /datum/instrument/brass
 
 /datum/instrument/brass/crisis_section
 	name = "Crisis Brass Section"

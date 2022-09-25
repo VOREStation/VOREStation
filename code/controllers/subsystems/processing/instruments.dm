@@ -34,7 +34,7 @@ PROCESSING_SUBSYSTEM_DEF(instruments)
 
 /datum/controller/subsystem/processing/instruments/proc/initialize_instrument_data()
 	for(var/datum/instrument/I as anything in subtypesof(/datum/instrument))
-		if(initial(I.abstract_type) == I)
+		if(initial(I.instrument_type) == I)
 			continue
 		I = new I
 		I.Initialize()
