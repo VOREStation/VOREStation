@@ -101,7 +101,7 @@
 			. += "The drill can mine [harvest_speed] [(harvest_speed == 1)? "ore" : "ores"] a second!"
 		if(exotic_drilling)
 			. += "The drill is upgraded and is capable of mining [(exotic_drilling == 1)? "moderately further" : "as deep as possible"]!"
-		if(capacity && current_capacity) //TODO: Replace contents with a list that calculates current value.
+		if(capacity && current_capacity)
 			. += "The drill currently has [current_capacity] capacity taken up and can fit [capacity - current_capacity] more ore."
 
 /obj/machinery/mining/drill/Initialize()
