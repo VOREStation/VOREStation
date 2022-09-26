@@ -7,7 +7,7 @@ Once pip is installed, you will need to run two commands from your terminal or c
 1. 'pip install PyYaml'
 2. 'pip install beautifulsoup4'
 
-Once all this is done, you should just be able to run ss13_genchangelog.py and sit back.
+Once all this is done, you should just be able to run makeChangelog.bat and sit back.
 
 If you get errors running it, two things are possible.
 1. You installed something wrong.

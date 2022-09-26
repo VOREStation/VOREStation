@@ -136,7 +136,7 @@ for fileName in glob.glob(os.path.join(args.ymlDir, "*.yml")):
     print(' Reading {}...'.format(fileName))
     cl = {}
     with open(fileName, 'r') as f:
-        cl = yaml.load(f)
+        cl = yaml.load(f, Loader=yaml.Loader)
         f.close()
     if today not in all_changelog_entries:
         all_changelog_entries[today] = {}

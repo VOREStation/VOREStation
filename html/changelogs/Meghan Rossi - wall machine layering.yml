@@ -1,4 +1,0 @@
-author: Meghan-Rossi
-delete-after: True
-changes: 
-  - bugfix: "If you place wall-mounted machines such as status displays on a window, they will no longer be hidden underneath the window."
