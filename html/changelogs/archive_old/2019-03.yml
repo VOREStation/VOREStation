@@ -1,0 +1,20 @@
+2019-03-04:
+  Anewbe:
+  - bugfix: Vedahq is now properly locked behind a whitelist.
+  - tweak: Headgibbing is now determined by config
+  - tweak: Promethean regeneration has been toned down. It will no longer provide
+      healing if the Promethean is wet, too hungry, too hot, or too cold.
+  - tweak: Prometheans are no longer shock resistant. It should now be more possible
+      to catch them alive.
+  - tweak: Promethean body temperature is now the default room temperature. They also
+      hit cold_level_2 at a higher temperature.
+  Atermonera:
+  - bugfix: Rigsuits have been resupplied following a mass-recall after a number of
+      suits were reported to have defective pressure-sealant mechanisms. The new sealant
+      mechanisms have been thoroughly tested and should be less prone to failure.
+  Mechoid:
+  - tweak: Tweaked Respiro- Cordra- Gastiro- and Hepanephro- Daxons to be more effective
+      with dealing with the side-effects of damaged organs.
+  kartagrafi:
+  - rscadd: 'Adds several clothing items to loadout such as: Nock masks, cowls and
+      robes.'

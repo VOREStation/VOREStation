@@ -434,13 +434,17 @@
 	set name = "Changelog"
 	set category = "OOC"
 	src << link("https://wiki.vore-station.net/Changelog")
+	return
 
-	/*
+	//src << browse('html/changelog.html', "window=changes;size=675x650")
+	if(!GLOB.changelog_tgui)
+		GLOB.changelog_tgui = new /datum/changelog()
+
+	GLOB.changelog_tgui.tgui_interact(usr)
 	if(prefs.lastchangelog != changelog_hash)
 		prefs.lastchangelog = changelog_hash
 		SScharacter_setup.queue_preferences_save(prefs)
 		winset(src, "rpane.changelog", "background-color=none;font-style=;")
-	*/
 
 /mob/verb/observe()
 	set name = "Observe"

@@ -1,0 +1,87 @@
+2016-09-01:
+  Alberyk:
+  - rscadd: Added more horns and horns related facial options for Unathi.
+  Anewbe:
+  - tweak: Hyperzine metabolizes twice as quickly.
+  - rscadd: Changeling space suits now have magboots.
+  - rscadd: Armblade now has suicide_act text.
+  Techhead:
+  - rscadd: Medical splints can now also be applied to hands and feet (in addition
+      to arms and legs).
+  - rscadd: For those that miss the old functionality, ghetto splints have been added.
+      These can be crafted with a roll of tape and a metal rod and can only splint
+      arms and legs.
+  Yosh:
+  - rscadd: The secure briefcase is now available in the loadout for anyone who wishes
+      to use it.
+  - bugfix: Leaving a space area and entering a non-space area will no longer leave
+      your sprite floating.
+  - rscadd: Ponchos can now be attached to your uniform as an accessory. In addition
+      they can also be attached to suits!
+  - bugfix: Changeling regenerative stasis will now properly regrow limbs.
+  - bugfix: Changeling regenerative stasis will no longer runtime and refuse to work
+      when you have a missing limb.
+  - tweak: The shuttle during revolution will no longer take forever and a day to
+      arrive and such.
+2016-09-02:
+  Yosh:
+  - rscadd: DNA Lockable guns have been finished. Any gun can be made into a DNA Lockable
+      gun by inserting a DNA Chip Lock. These are not currently available, and are
+      adminspawn only. Please refer to your nearest staffmember/developer to begin
+      discussion for future implementations of this feature.
+  - rscadd: A new hairstyle has been added named poofy2.
+  Yoshax:
+  - tweak: Autotraitor now needs 0 players to start in secret.
+  - tweak: Diona are now slightly faster!
+2016-09-03:
+  Yosh:
+  - tweak: Projectile flash rounds will now do the same as a flash when it hits the
+      target. As such, it will blind, confuse and blur the eyes of thw target. Pistol
+      and machine gun rounds last the same length as a flash, shotgun rounds last
+      longer.
+  - tweak: Changeling recursive enhancement is now a toggleable passive ability, instead
+      of a one-time use active ability.
+  - rscadd: You can now vomit by using the vomit emote.
+  Yoshax:
+  - bugfix: Changeling armor and space armor can now be cast off regardless of your
+      stored chemicals.
+2016-09-16:
+  Anewbe:
+  - tweak: Explosive implants should no longer gib the target if the setting is Localized
+      Limb.
+  - rscadd: Lasercannon has 4 shots and fires slightly faster.
+  - tweak: Lasercannon shots are slightly weaker to compensate for increased sustain.
+  - tweak: Changes Unathi sprites slightly.
+  - tweak: The advanced egun, laser carbine, and lasercannon now take up a bit more
+      space in bags.
+  - tweak: Prosthetic limbs and extremities no longer increase body temperature.
+  - tweak: Ninja and Technomancer now require 5 players to start in either secret
+      or voted.
+  - tweak: Split skirts into 'skirts', which are just a skirt, and 'skirt outfits',
+      which cover the upper body. Check your loadouts, they should remain otherwise
+      unchanged.
+  - rscdel: Splints are no longer reusable.
+  - tweak: Water is now more effective at dousing burning people.
+  - rscdel: Ninjas now vanish in a cloud of smoke, rather than exploding.
+  Chinsky:
+  - rscadd: Added a hawaii shirt to loadout accessories. Can be attached to clothing
+      like suit jackets etc. Can also be found in mixed wardrobes.
+  Yoshax:
+  - tweak: People bleed faster and more.
+  - bugfix: Splints are once again reusable and have been improved behind the scenes.
+  - bugfix: Removing splints will now correctly give you the splint used to splint
+      the organ.
+2016-09-19:
+  Anewbe:
+  - rscadd: Blood Drain now heals internal damage, including broken bones and internal
+      bleeding.
+  - rscadd: Adds the Command Secretary job.
+  - rscadd: CE hardsuit now has proper magboots and insulated gauntlets.
+  - bugfix: Powersinks should actually explode again, after a while.
+  MagmaRam:
+  - rscadd: Lasers and energy projectiles in general now glow in the dark.
+  - tweak: Robotic and prosthetic limbs can now be used in creation of simple robots,
+      rather than just the robotic (lawed-chasis) limbs.
+  Zuhayr:
+  - rscadd: Added /vg/ direct-action ventcrawling. You will now crawl through the
+      actual pipe network, a step at a time. Have fun.

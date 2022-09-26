@@ -1,0 +1,70 @@
+2017-01-03:
+  Anewbe:
+  - bugfix: Farmbots should be buildable again.
+  - rscadd: FBPs with vital (head/torso/groin) damage will now show up on the crew
+      monitor as being damaged.
+  - bugfix: Flashes should now properly affect accuracy in hand-to-hand.
+  - bugfix: Taj should no longer be poisoned by any sort of coffee. Looks like we
+      missed a spot last time.
+  - rscadd: Recording tapes can now hold 30 minutes of chat.
+  - rscadd: Tape recorders and their tapes now fit in security and detective belts.
+  - rscadd: Lasers can now ignite thermite on walls.
+  - bugfix: Device cells now fit in wall rechargers.
+2017-01-12:
+  Anewbe:
+  - rscadd: Ported over a bunch of hairstyles and underclothes from Baystation.
+  - tweak: Nurse spiders inject eggs less frequently.
+  - rscadd: Nurse spiders give a warning to the victim when they implant eggs.
+  Neerti:
+  - rscadd: Hand-held flashes and flash rounds will now stun upon repeated applications,
+      similar to stun batons.
+2017-01-23:
+  Anewbe:
+  - rscadd: Can now just click ones boots to draw a holstered knife.
+  - rscadd: More boots can hold knives now.
+  - rscadd: Added an action button for breath masks, making it easier to toggle them.
+  - rscadd: Space Carp have a chance of sticking around after their event completes.
+  - tweak: Robotic limbs will no longer show up on the health scanners.
+  - rscadd: Medics and Security can open firedoors. Do so at your own risk.
+  - rscadd: Chaplain hoodie now has pockets and an actual hood.
+  - tweak: Winter coat hoods have the same armor values as their coats.
+  - rscadd: Characters will now spawn in at a random level of hunger.
+  - rscadd: Assisted and Prosthetic organs now have sprites.
+  - rscadd: Surgical tools will not attack while on help intent, this should prevent
+      people getting accidentally stabbed in surgery.
+  - rscadd: Tajaran now process reagents slightly faster.
+  - rscdel: Taj are now allergic to coffee again, per loremaster request.
+  - tweak: Taj now get drunk faster.
+  - tweak: Hyperzine is now more toxic to Taj.
+  - rscadd: Readded the Vox for admin/antag use and testing. They breathe Phoron now,
+      rather than Nitrogen.
+  - bugfix: The Xenotaser should work properly.
+  FTangSteve:
+  - wip: RootSpeak is now split into a local and a global variant. For now the global
+      acts as a hivemind.
+  Hubblenaut:
+  - tweak: Can now click on turfs with trash bags and similar to quick-gather everything
+      on it. No longer pixelhunting for cigarettes and bullets.
+  - bugfix: Buckets and other reagent holders will no longer simply be put into the
+      janitorial cart's trash bag.
+  PsiOmegaDelta:
+  - tweak: The round start and auto-antag spawners can now check if players have played
+      long enough to be eligable for selection.
+  Techhead:
+  - rscadd: 'Added a new random event: Shipping Error - A random crate is mistakenly
+      shipped to the station.'
+2017-01-28:
+  Anewbe:
+  - rscadd: Added Medical and Meson aviators.
+  - rscadd: Medical and Meson aviators are now in the loadout, department locked.
+  - rscadd: Meson Scanners have been added to the loadout, department locked.
+  - rscadd: Medical hardsuit has a toggleable sprint.
+  - bugfix: Carbon and Hematite should show up in asteroid walls.
+  - rscadd: Readded the random crates from mining.
+  - rscadd: Digging through an artifact sometimes doesn't destroy the artifact.
+  - bugfix: Space and cracked sand should no longer stop mining drills.
+  - rscadd: Diona can regenerate organs and limbs.
+  PsiOmegaDelta:
+  - rscadd: Resetting a character slot now requires confirmation.
+  Zuhayr:
+  - rscadd: Added a reset slot button to chargen.

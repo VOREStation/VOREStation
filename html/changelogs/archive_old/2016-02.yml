@@ -1,0 +1,51 @@
+2016-02-11:
+  Datraen:
+  - rscadd: Moderators can now see and use AOOC.
+  - bugfix: Other synthetics given EAL.
+  - bugfix: Trays now drop items when placed on table, dropped.
+  - bugfix: Objects can now be yanked out of synthetics.
+  - tweak: Respawn time moved down from 30 minutes to 15 minutes.
+  - rscadd: Telecrystal item added for trading telecrystals between traitors and mercenaries.
+  - rscadd: Telecrystal item now has tech values.
+  EmperorJon:
+  - tweak: Traitor synths can no longer be locked down from the robotics console.
+      Attempting to lock them down (or release the lockdown) notifies the synth of
+      the attempt and updates the console's UI as normal.
+  Neerti:
+  - rscadd: Suit cooling units can now be attached to voidsuits.  Note that coolers
+      and air tanks are mutually exclusive.
+  - bugfix: EMP no longer hits twice on humans.
+  - tweak: EMP drains powercells using the cell's current charge, and not the cell's
+      maximum potential charge, to ensure two blasts do not completely disable a synthetic.
+  - tweak: EMP hitting a prosthetic limb or organ will now do less damage.
+  - tweak: EMP hitting a cyborg will no longer outright stun them.  Instead, they
+      gain the 'confused' status for a few moments, making movement difficult.  In
+      addition, their HUD gets staticy, and their modules are forced to be retracted.
+  - rscadd: Stasis bags will protect the occupant from the outside enviroment's atmosphere.
+  - rscadd: Stasis bags can be hit with a health analyzer to analyze the occupant.
+  Zuhayr:
+  - rscadd: Drones can now pull a variety of things (such as scrubbers). This came
+      with a pulling refactor so please report any strangeness with pulling in general.
+  - rscadd: Drones (and any mob that can be picked up) can be bashed against airlocks
+      and such to use their internal access, so long as the person using them does
+      not have an ID card equipped.
+  - rscadd: Added foam weapons to cargo for LARP shenanigans.
+  - rscadd: Added the ability to equip grenades to the mask slot, and to prime them
+      by clicking someone with harm intent targeting the mouth.
+  - rscadd: Removed the species restrictions on transplanted internal organs. Have
+      fun.
+  - rscadd: Added 'full body' prosthetic options to character generation.
+  - rscadd: Removed IPC. No tears were shed.
+  - rscadd: 'RE: borgs, Renamed ''robot'' type to ''drone'' and ''android'' type to
+      ''robot'' for clarity with new ''android'' human mobs.'
+  - rscadd: Rejuvenate will now reapply robolimb/autopsy data.
+  - rscadd: Lots of backend work relating to the above. If you're a coder go look
+      at the PR or ask Zuhayr for details.
+  - rscdel: Removed brute and burn resist from robolimbs, removed sever vulnerability
+      from robolimbs.
+  - rscadd: Added a config option for visible human death messages.
+  - rscadd: pAIs and small mobs can now bump open doors.
+  - rscadd: Added functionality for two-handed guns; these guns will give an accuracy
+      penalty if fired without an empty offhand.
+  - rscadd: Unified two-handed melee weapons with the above; while the offhand is
+      empty, the weapon will count as wielded.

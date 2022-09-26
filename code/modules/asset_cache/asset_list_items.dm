@@ -124,6 +124,7 @@
 		"no_image32.png" = 'html/images/no_image32.png',
 	)
 
+/*
 /datum/asset/simple/changelog
 	assets = list(
 		"88x31.png" = 'html/88x31.png',
@@ -145,6 +146,7 @@
 		"changelog.js" = 'html/changelog.js',
 		"changelog.html" = 'html/changelog.html'
 	)
+*/
 
 // /datum/asset/group/goonchat
 // 	children = list(

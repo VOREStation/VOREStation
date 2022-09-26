@@ -1,0 +1,27 @@
+2018-06-08:
+  Anewbe:
+  - tweak: Merc mobs in PoIs no longer drop gear. This is to help us balance the PoIs
+      that contain them, and by extension every other PoI.
+  - tweak: Merc mobs have been shuffled around in their PoIs. At some point, this
+      may actually be randomized, but for now, expect slightly different placements.
+  - rscadd: Adds a laser rifle and ion rifle version of the Merc mob, for variety.
+  - tweak: PoI turrets are lethal again, and will likely shoot crawlers.
+  - rscadd: Certain mobs, namely robots and mercs, now have some amount of armor.
+  - rscadd: Ranged mercs will now knife people when cornered, rather than punch them
+      really hard.
+  Mechoid:
+  - rscadd: Added some background things for Events.
+  - bugfix: Ion rifles hit the correct 3x3 instead of 5x5
+  - rscadd: Seed Storage Vendors are now hackable. Can choose from various lists of
+      concerning plants.
+2018-06-21:
+  Anewbe:
+  - rscadd: Added a biomass reagent, made from protein, sugar, and phoron.
+  - tweak: Cloners and bioprinters now use the biomass reagent. Both can be refilled
+      or have their capacity increased by replacing the bottles they spawn with.
+  - experiment: Mapped in a bioprinter, for further testing.
+  - rscadd: Adds the ability to make robolimb brands more or less vulnerable to brute
+      or burn.
+  - rscdel: Makes VeyMed limbs more vulnerable to brute and burn.
+  Mechoid:
+  - rscadd: Allow AIs to create and take control of mindless drones from fabricators.

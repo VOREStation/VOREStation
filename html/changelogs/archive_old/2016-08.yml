@@ -1,0 +1,172 @@
+2016-08-05:
+  Anewbe:
+  - rscadd: Changeling Self-Respiration is now a toggle. By default they breathe normally,
+      but if they use the power they no longer require oxygen, or experience the effects
+      of inhaled gasses.
+  - tweak: Heat based damage has been increased. This includes fire.
+  Hubblenaut:
+  - rscadd: Windoor assemblies can now be named with a pen.
+  - rscadd: Windoor and airlock assemblies now show their custom name during construction
+      phase.
+  - tweak: Windoors can now be made out of two sheets of glass or reinforced glass,
+      for normal and secure windoors respectively.
+  - tweak: Windoors now automatically close after construction.
+  - tweak: Adjusts the algorism for how windoors and windows are placed on construction
+      (when there are already windows co on the same turf).
+  - bugfix: Windoors will now drop exactly the materials they were made of.
+  - bugfix: Prying a broken circuit out of a windoor will no longer cause duplicates
+      to drop.
+  - bugfix: Airlocks no longer spark after spawn and several other icon update issues
+      were fixed.
+  - bugfix: Fixes reinforced walls not being constructable with one sheet left in
+      stack.
+  - bugfix: Windows that were busted out of their frame by force are now correctly
+      rotatable.
+  - bugfix: Lots of spellchecking and code cleanup in windoor and airlock code.
+  - rscdel: Killed innocent kittens.
+  Sin4:
+  - bugfix: Advanced Body Scanners are now deconstructable
+  - bugfix: You can now add coolant to the Radiocarbon Spectrometers
+  - tweak: Frame code revamped and cleaned up.
+  - rscadd: R&D server circuitboards can be swapped between core and robotics types
+      using a screwdriver.
+  Yoshax:
+  - bugfix: Wounds will now once again bleed.
+  - bugfix: Xeno loadout items will now properly be reloaded into a slot when the
+      server restarts.
+  - rscadd: A new item has been added to the uplink. Package bombs. These come in
+      two variants, small and big, which cost 20 TC and 40 TC respectively. These
+      come in a box with an explosive, a disguised detonator and a screwdriver. The
+      use the detonator you muse apply the screwdriver to configure it into detonator
+      mode. This must be done when it is closed.
+2016-08-07:
+  HarpyEagle:
+  - rscadd: Severe enough burn damage now causes one-time blood loss due to blistering
+      and body fluid cook-off.
+  Sin4:
+  - bugfix: Fixed ERT icon not showing up properly for sechuds.
+  - tweak: Fixed instances of the game mode's config_tag being displayed instead of
+      the game mode name.
+  Yoshax:
+  - rscadd: Attacking yourself, or anyone else with a stack of five or more telecrystals
+      will teleport the attacked person to a random, safe (not in space) location
+      within 14 metres.
+  - tweak: All telecrystals ammounts have been multiplied by 10. This means the base
+      amount is now 120, and an emag for example costs 30, vs the previous 12 and
+      3, respectively.
+  - tweak: You can once again use telecrystals on an emag to add more uses to it.
+      You get 1 use per every 2 telecrystals.
+  - tweak: Instead of only being able to remove 1 telecrystal from your uplink, you
+      can now remove 1, 5, 10, 25, 50.
+2016-08-08:
+  Kelenius:
+  - rscadd: Xenoarcheology code has been partially redone.
+  - tweak: Pick set will now sort the picks inside it.
+  - tweak: Removed useless random numbers from GPS coordinates in various places.
+      I'm sure we have not lost the arcane knowledge of rounding 500 years into the
+      future.
+  - tweak: Picks renamed to show their excavation depths.
+  - tweak: Suspension generator's power use lowered.
+  - tweak: Suspension generator's different field types removed. By the way, remember
+      that they can suspend any item and even mobs.
+  - tweak: Archeology belts and pick sets can now hold small pickaxes. Pick sets still
+      only have 7 slots. Brushes fit on your ears.
+  - tweak: Empty rock drop rate reduced.
+  - tweak: Empty rock renamed from 'rock' to 'small rock' so you can tell if you are
+      clicking on a turf or an item when hovering over it.
+  - tweak: Empty boulder spawn rate reduced.
+  - tweak: Tape measuring is a bit faster.
+  - tweak: Scanner now shows the lowest and the highest depth of the find (highest
+      is depth + clearance) for easier calculations. Ideally, you need to hit exactly
+      the lowest spot. Less ideally, hit anywhere between higest and lowest. Hit below
+      lowest and you have a chance to break the find.
+  - tweak: You can now use a brush to clear strange rocks. Welder uses less fuel for
+      that than before.
+  - tweak: Anomaly analyser's report made a bit easier to read.
+  - tweak: Anomaly locater will now also locate normal finds.
+  - bugfix: Gas masks will now correctly spawn as archeological finds.
+  - bugfix: Digsites will now properly contain several (4-12) turfs in a 5x5 radius.
+      Be careful when digging near your finds.
+  - bugfix: Suspension generator will now correctly turn off (qdel issue).
+  - bugfix: Archeology overlays won't disappear when the icon is updated (e.g. when
+      mining next to it).
+  - bugfix: Archeology overlays won't overlap each other and will properly disappear
+      when you mine out a find.
+  - bugfix: Some spawning oddities were fixed.
+  - bugfix: Checks for whether you get a strange rock or a clean item were fixed (previously
+      it always gave you clean item where it should have been rolling a random number).
+  - bugfix: Can no longer get rid of any item by putting it into evidence bag and
+      bag into core sampler.
+  - bugfix: Can no longer irreversibly fold pick set into cardboard.
+  - bugfix: CO2 generator effect now has a type.
+  - bugfix: Phoron generator effect will now always generate phoron, not sometimes
+      phoron and sometimes oxygen.
+  Sin4:
+  - tweak: Scheduler ported from Baystation's port of Paradise's scheduler.
+  Yoshax:
+  - tweak: Some items such as commonly found tools are now slightly more effective
+      when wielded as weapons. This change has been made because many of them were
+      too low, and low because of mostly holdovers from other servers where things
+      such as grey tide are big concerns.
+2016-08-13:
+  Yoshax:
+  - bugfix: The ERT camera monitor on the shuttle will now connect to the right network.
+  - bugfix: The 'choose sprite' verb as a ghost will no longer prematurely clear you
+      sprite and will now return your sprite to what it was previous when you press
+      'no'. However, it will not allow you to get back the sprite of your actual character
+      because those are horrible snowflakes.
+  - bugfix: The Atmos Substation is now a proper substation with a breaker box and
+      all!
+  - bugfix: Diona Nymphs now get a popup window on evolution to allow them to input
+      a name.
+  - bugfix: Changeling revive will now close any surgical incisions.
+2016-08-15:
+  Anewbe:
+  - tweak: Changed some words to match current Tajaran lore.
+  Hubblenaut:
+  - rscadd: Adds a verb for toggling whether to show specific pieces of underwear.
+  - tweak: Changes medical belt sprite. Mostly white now so they go nicely with all
+      medical uniforms.
+  Yoshax:
+  - bugfix: Dirt accumulation on tiles will now work again.
+  - bugfix: The change appearance window provided to antagoniss such as mercenaries,
+      heisters or suchlike (including traders!) will now properly allow people to
+      select species they are whitelisted for.
+2016-08-29:
+  Haswell:
+  - rscadd: Modules installed within a hardsuit will now be listed when examining
+      the hardsuit control module while being held or worn, if the maintenance panel
+      is open.
+  Hubblenaut:
+  - bugfix: Bottles will now actually sell for their set prices.
+  - tweak: Chief Medical Officer and Medical Doctors now spawn with a health analyzer
+      instead of a penlight.
+  Sin4:
+  - bugfix: Camera Console swaps to active camera upon clicking on.
+  - bugfix: Hugs gender correctly.
+  - bugfix: Prometheans gender correctly and have a gender identity.
+  - bugfix: Meatspike no longer takes you prisoner upon placing something on it.
+  - rscadd: Lighting someone on fire now tells the admins.
+  - bugfix: Wiping something down with a damp rag no longer wets the floor.
+  - bugfix: Captains gloves now appear when put on.
+  - bugfix: Fixes Station Administrator Spawn point and access/restrictions.
+  - tweak: Renamed items from captain to station administrator.
+  Yoshax:
+  - bugfix: IDs can now actually be put onto your ears.
+  - bugfix: Lungs will now once again rupture when you are in an area where you cannot
+      breathe. This has a relatively small chance to happen.
+2016-08-30:
+  Anewbe:
+  - tweak: Arm and leg guards are now slightly less slowing.
+  - tweak: Mining RIG is now faster
+  - tweak: Tweaks security voidsuit armor values.
+  - rscadd: Hardsuits (RIGs) now have an inbuilt suit cooling system, toggled via
+      HUD button. This only works when the hardsuit is fully deployed, and drains
+      charge from its power cell.
+  Neerti:
+  - rscadd: Emitters can be examined to see if they are damaged.  They can also be
+      repaired by applying metal sheets to them.
+  - tweak: Emitters now only explode on death if they are on a powered wire with significant
+      power flowing through it.
+  - bugfix: Emitters don't explode in one hit, or by tasers or non-damaging projectiles
+      anymore.

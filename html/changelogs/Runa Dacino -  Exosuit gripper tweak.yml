@@ -1,5 +1,0 @@
-author: RunaDacino
-delete-after: True
-changes: 
-  - rscadd: "Enabled research borgs equipped with 'exosuit gripper' to be able to replace internal exosuit parts like actuators, to upgrade or to repair"
-

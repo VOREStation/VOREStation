@@ -1,0 +1,181 @@
+2018-02-07:
+  Anewbe:
+  - tweak: Lessens the bomb, bio, and rad protection on the Explorer Suit.
+  - tweak: Replaces the Hunting Rifle cabinets with a Phase Pistol cabinet. Same general
+      purpose, shoot animals, kill animals. Shoot people, get laughed at.
+  - tweak: Gloves are generally less protective from shocks.
+  - tweak: Budget Insulated Gloves will almost always be better than any other non-insulated
+      glove.
+  - tweak: Hyposprays and autoinjectors now have a delay on use when the target is
+      conscious and not in Help Intent.
+  - bugfix: You need a parachute to survive atmospheric reentry. Closets, mechs, and
+      other impromptu parachutes will not longer prevent splatting.
+  Atermonera:
+  - tweak: ID computer can set command secretary and IAA access
+  - tweak: Command secretary has keycard auth. access
+  Cerebulon:
+  - rscadd: Added toggleable 'Open' sign to bar hallway so you can tell if it's open
+      without walking inside.
+  Mechoid:
+  - rscadd: Adds material girders.
+  - tweak: Girder decon time is now partially dependant on material. Stronger girders
+      take slightly longer.
+  - tweak: Wall girders are now under the integrity-based construction listing. Material-Name
+      Wall Girder.
+  - rscadd: Explosive-resistant girders in walls have a chance to survive as an unanchored
+      girder, if their wall is destroyed.
+  - rscadd: Radioactive girders affect the completed wall's radioactivity.
+  SunnyDaff:
+  - rscadd: Added new food items.
+  - rscadd: Added Onions.
+  - tweak: Changed Apple and Lemon Sprite
+2018-02-10:
+  Atermonera:
+  - tweak: Ethylredoxrazine actively removes alcohol from the stomach and bloodstream
+  - tweak: GPS units won't report the exact location of other GPS units, just range
+      and approximate direction
+  - tweak: POI gps units won't give any information about the POI, merely its location
+  - rscadd: Adds EMP mines.
+  Cerebulon:
+  - rscadd: Adds antibiotic resistance chance to viruses, capped at 90% without admin
+      edits.
+  - rscadd: Adds adminspawned non-transmittable viruses
+  - rscadd: Adds several new disease symptoms
+  - tweak: Vomit is now a disease vector
+  - tweak: Viruses have a lower chance of curing themselves without medical intervention
+  - bugfix: Virus food no longer infinitely generates in incubator beakers
+  - bugfix: Xenomorphs and supernatural begins can no longer catch the flu
+  Hubblenaut:
+  - tweak: If a cycling airlock is already near the target pressure, pressing the
+      buttons will toggle the doors instead of making it reenter the cycle process.
+  Leshana and mustafakalash:
+  - rscadd: A new 'planetary' mode for airlocks which makes them purge the chamber
+      contents to the exterior atmosphere before filling with clean air, and vice
+      versa.
+  MistyLuminescence:
+  - tweak: Mines are now very, /very/ dangerous to step on (so don't do that). You
+      can disarm them with a multitool and wirecutters - ping is good, beep is bad
+      - or by shooting or exploding them from a distance. Be careful!
+  Woodrat:
+  - rscadd: Shaft Miner, Search & Rescue, Explorer can now select webbing vests and
+      pouches from the loadout.
+  - bugfix: Allow utility uniforms to roll up their sleeves.
+  - rscadd: Shuttle upgraded with enviroment sensors and shuttle doors that can be
+      detected from the shuttle console.
+  - rscadd: secure gun cabinets in the hangar control rooms. Locked to armory, explorer,
+      and pilot access.
+  - maptweak: Redesign of medical surgery rooms, replacement of the closets with wall
+      closets.
+  - bugfix: Multiple map bugfixes including distro and scrubber lines to deck 3.
+2018-02-17:
+  Anewbe:
+  - rscadd: Added a random mine spawner, for use in PoIs. Replaces mines in PoIs with
+      the random spawner.
+  - rscadd: Mines now give a visible message when they go off.
+  - tweak: Land mines on the ground can no longer be told apart from one another,
+      to prevent gaming the system.
+  - bugfix: Hovering mobs (viscerators, drones, Poly, carp) no longer set off land
+      mines.
+  - tweak: Arming a land mine now takes concentration. If you move, it will boom.
+  - tweak: RINGS AND CERTAIN GLOVES INCREASE PUNCHING DAMAGE.
+  - tweak: BRASS KNUCKLES HAVE BEEN TURNED INTO GLOVES AND REBALANCED. THEY DO LESS
+      DAMAGE PER HIT BECAUSE IT'S HARD TO DISARM A PAIR OF GLOVES.
+  - rscadd: Cyborg Chargers now decrease radiation on FBPs.
+  - tweak: Falling one floor now does a lot less damage, on average.
+  - bugfix: Falling one floor in a Mech no longer hurts the occupant.
+  PrismaticGynoid:
+  - rscadd: A lot more machines can now be moved with a wrench, mostly kitchen, hydroponics,
+      and virology machines.
+  - tweak: Changed department ponchos to be open to any job, just like department
+      jackets.
+  Schnayy:
+  - rscadd: Adds bouquets. Can be ordered via 'gift crate' in cargo.
+  - rscadd: Adds fake bouquets for the cheap. Can currently be won from arcade machines.
+  - rscadd: Adds chocolate heart-shaped boxes. Can be ordered via 'gift crate' in
+      cargo.
+  - rscadd: Adds gift cards with four cover variations. Function like paper. Can be
+      ordered via 'gift crate' in cargo.
+  battlefieldCommander:
+  - rscadd: Added packed snow brick material. Craft it using snow piles.
+  - recadd: Added snow girders and igloo walls. Craft them using snow bricks.
+  - rscadd: Added various snowmen. Craft them using snow piles. Punch 'em to destroy.
+2018-02-21:
+  Anewbe:
+  - rscadd: Headsets for jobs that spend a lot of time planetside can now function
+      as local radios when comms are down.
+  - rscadd: Most headsets now have on-mob sprites.
+  - rscadd: Added a Planetside Gun Permit item, specifying permission to possess a
+      firearm on the planet's surface. Explorers should spawn with these by default,
+      and a further two can be found in their gun locker.
+  - rscadd: Prometheans now react to water. Being soaked will stop their regen and
+      deal minor toxin damage. Drinking or being injected with water will deal slightly
+      more toxin damage.
+  - bugfix: Suit Coolers now properly cool FBPs in slightly burning rooms. If it gets
+      too hot for your suit, you're still dead.
+  Leshana:
+  - rscadd: Makes electrochromatic glass buildable and programmable in game.  Use
+      cable and multitool.
+  Woodrat:
+  - rscadd: Additions of 6 new POIs for the cave area.
+2018-02-22:
+  Anewbe:
+  - rscadd: Added Warden and HoS helmets.
+  - tweak: Clothing items must be click+dragged to be unequipped. A lot of them already
+      had this, but the system is now standardized.
+  - tweak: Accessories now apply slowdown to what they're attached to.
+  - tweak: Certain items, notably Technomancer spells, no longer show up when you
+      examine the mob wearing them.
+  - tweak: Flashbangs confuse, instead of stunning.
+  Atermonera:
+  - tweak: GPS units are generally more useful, providing both coordinate locations
+      and, so long as you're on the same Z level, direction with x-y component distances,
+      to 1m accuracy
+  - rscadd: Added a halogen counter tool, functions as the PDA function.
+  - tweak: Analyzers can now analyze gas containers, in addition to providing atmosphere
+      readouts, as the PDA gas scanner function.
+  - rscadd: Added umbrellas.
+  battlefieldCommander:
+  - rscadd: Added fireplaces which operate similarly to bonfires.
+  - bugfix: Fixed an oversight that allowed for an in-between state in bonfires where
+      the fire would mysteriously go out after adding wood.
+  - rscadd: Added blue sifwood floor tiles.
+  - bugfix: Fixed blue carpet, now known as teal carpet
+  - rscadd: Added the ability to dig up tree stumps with a shovel.
+2018-02-25:
+  Anewbe:
+  - tweak: Splinted bodyparts act broken 30% of the time.
+  - tweak: Splinted legs still slow you down like broken ones.
+  Leshana:
+  - rscadd: Added a client preference setting for wether Hotkeys Mode should be enabled
+      or disabled by default.
+  - bugfix: CTRL+NUMPAD8 while playing a robot won't runtime anymore.
+  - tweak: Grounding rods act intuitively, only having an expanded lighting catch
+      area when anchored.
+  Nerezza:
+  - bugfix: Fixes not being able to install the different carpet colors. Finally.
+  - bugfix: Removes certain unusable duplicate stacks of tiles from the code.
+  Schnayy:
+  - rscadd: Added Gilthari Luxury Champagne. Drink responsibly.
+  - rscadd: Added a singular AlliCo Baubles and Confectionaries vending machine in
+      the locker rooms. Dispenses a variety of gifts.
+  - rscdel: Removed hot drinks vendor from locker room.
+2018-02-28:
+  Atermonera:
+  - rscadd: Adds umbrellas to the loadout, for 3 points. Colorable!
+  Nerezza:
+  - bugfix: Using tape (police/medical/engineering) on a hazard shutter now tapes
+      the hazard shutter instead of trying to open the hazard shutter.
+  - rscadd: Added /tg/-style floor tile swapping. Equip crowbar/screwdriver in offhand
+      and click the floor tiles you want to directly swap with a stack of new floor
+      tiles (like teal carpet).
+  Woodrat:
+  - maptweak: Heavy rework of the wilderness, minor adjustments to mining and outpost
+      z-levels. To get to the wilderness you now have to travel through the mine z-level
+      to do so, follow the green flagged path. Through the mine.
+  - tweak: Shuttles can now land at a site near the enterance to the wilderness. Removal
+      of the mine shuttle landing pad to move to the wilderness.
+  - rscadd: New addition of warning sign, thanks to Schnayy.
+  battlefieldCommander:
+  - rscadd: Added craftable joints. Dry something (ideally ambrosia) on the drying
+      rack and apply it to a rolling paper to create a joint you can smoke.
+  - rscadd: Added a box of rolling papers to the cigarette vending machine.

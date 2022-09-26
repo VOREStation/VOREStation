@@ -1,0 +1,103 @@
+2016-06-07:
+  Datraen:
+  - rscadd: Adds a trait tool for Xenobio2. It was supposed to be in the initial implementation,
+      but fell through the cracks, sorry!
+  - bugfix: Fixed the xenobio smartfridge not displaying it's starting core amount.
+  - bugfix: Fixed an inverted check with slimes.
+  EmperorJon:
+  - tweak: Increased loadout points from 10 back to 15. We've added so many things
+      like lunchboxes and communicators that everyone just takes by default, so a
+      few more points will be nice.
+  JerTheAce:
+  - rscadd: Adds a variety of new guns. Some of these guns and and their ammunition
+      are purchasable through antag uplink, cargo, or can be spawned during Renegade
+      or Heist modes.
+  - rscadd: Adds ammunition clips for reloading magazines and some guns (such as bolt-actions).
+  - rscadd: All magazines and ammunitions can now be produced with the autolathe.
+  - maptweak: New bullpup SMG is available in armory area on CentCom level.
+  - tweak: Revolvers now use 6 shots. Finally.
+  - tweak: Most guns that didn't use magazines before for some reason (such as the
+      Uzi) now use magazines.
+  - tweak: All casings now update icons if they have been spent.
+  - tweak: Corrects Pulse Rifle charge cost consistency.
+  - tweak: Corrects and improves a number of icons for guns, including a couple of
+      energy guns, and adds fallback icons so they do not turn invisible when held
+      or strapped to your back.
+  - tweak: Made the icons for some guns look differently depending on what magazine
+      is loaded into them.
+  - tweak: Made antag uplink menu for guns and ammo more informative.
+  - tweak: Machinegun magazines no longer fit in pockets.
+  - spellcheck: Made names and descriptions for all projectile guns and ammo consistent
+      while removing grammar and spelling errors.
+  - bugfix: Autolathe no longer exploitable for ammo by repeatedly recycling empty
+      magazines.
+  - bugfix: Guns now check a list of compatible magazines.
+  - bugfix: Ranged mobs no longer drop usable .357 casings.
+  - soundadd: Added a variety of new gun sound effects, and swapped out the old default
+      gun sound.
+2016-06-08:
+  Yoshax:
+  - maptweak: There is now more soap on the map. The chef also gets a dropper.
+  - tweak: Changes in gravity now stun for much longer.
+  - tweak: Bullets now have a better chance of penetrating objects such as filing
+      cabinets, consoles, fax machines, etc. This applies to all bullets.
+  - maptweak: The research outpost toxins department now has reinforced phoron windows.
+  - bugfix: Spears now do their correct damage instead of doing around half.
+2016-06-14:
+  Arokha:
+  - rscadd: Adds video-calls on communicators for existing calls
+  - rscadd: Adds a 'decline' to incoming communicator calls
+  - rscadd: New wallets that let you color them how you want
+  - bugfix: Fixes communicators being able to hear speech
+  - bugfix: Fixes deadcalls to communicators
+  - bugfix: Fixed dropping head/foot/glove items on limb loss
+  - bugfix: Suit coolers inside mecha now work
+  - bugfix: Fixed printing '1' to world over and over
+  - bugfix: Made mech tracking beacon constructable again
+  - tweak: Change how emotes and LOOC propogate to nearby people
+  - tweak: Rewrote how get_mobs_and_objs_in_view_fast works
+  - tweak: Can now see through the red external airlock doors
+  Datraen:
+  - tweak: Adds a chance for slimes to get mutation toxin for creation of prometheans
+      (40%).
+  - bugfix: Simple animals outside of the hostile subtype won't follow you as a zombie.
+  - bugfix: Xeno hostility is more apparent now.
+  - bugfix: Slime cores can no longer create twice as many slimes through an exploit.
+  GinjaNinja32:
+  - rscadd: Rewrote drinking glasses. There are now eight types of glass, and drink
+      appearance is based on color and the type of glass you put it in.
+  - rscadd: There are now 'glass extras' you can add to drinks. Straws, drink sticks,
+      and fruit slices (yes, all of them) all work. You can add up to two extras per
+      glass. Add extras by clicking the glass with the extra, remove by clicking the
+      glass with an empty hand while it's in your other hand.
+  - rscadd: Adding 'fizzy' things (soda water, cola, etc) or ice to a drink will make
+      it be fizzy or have ice floating in it.
+  Yoshax:
+  - tweak: Everything produced in Robotics is now 25% cheaper to produce.
+2016-06-15:
+  Yoshax:
+  - tweak: The categories for items in the cargo ordering console have been reworked.
+      Items shoulw now be in more sensible categories. If you cannot find something,
+      try the sensible category.
+2016-06-21:
+  HarpyEagle:
+  - bugfix: Fixes disarm-attack dislocation chances being so low that you were very
+      likely to break the targeted limb before it would dislocate.
+  - bugfix: It is now possible to disarm-attack with stunbatons like with other melee
+      weapons. Note that this means that using a stunbaton on disarm intent will hurt
+      people.
+  - rscadd: Trying to move while being grabbed will now automatically resist.
+  - tweak: Small mobs are no longer able to pin larger mobs.
+  - tweak: Resisting a smaller mob's grab is more likely to be successful.
+  - bugfix: Fixed being able to climb onto a larger mob while restrained, weakened,
+      unconscious, or dead.
+  JerTheAce:
+  - rscadd: CentCom Fax, Admin Prayer, and CentCom emergency messages now prompt admins
+      with a pleasing sound effect.
+  - tweak: Fax machines now sound like fax machines and not polaroid cameras.
+2016-06-27:
+  Sin4:
+  - rscadd: Added NanoUI for Advanced Body Scanners, Arcade, Atmospherics Control
+      Computer, Chemmaster, Cloning Console, Fax Machines, Guestpass Console, Holodeck
+      Computer, Laptop Vendors, Operating Computer, and Photocopiers.
+  - bugfix: Fixes chemmaster not putting pills in pill bottles.

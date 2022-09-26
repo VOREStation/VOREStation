@@ -29,9 +29,7 @@ validPrefixes = {
 	"fixes": 'bugfix',
 	"bugfix": 'bugfix',
     "wip": 'wip',
-    "tweak": 'tweak',
-	"tweaks": 'tweak',
-	"rsctweak": 'tweak',
+    "qol": 'qol',
     "soundadd": 'soundadd',
     "sounddel": 'sounddel',
     "add": 'rscadd',
@@ -51,7 +49,13 @@ validPrefixes = {
 	"spellcheck": 'spellcheck',
     "experimental": 'experiment',
 	"experiments": 'experiment',
-	"experiment": 'experiment'
+	"experiment": 'experiment',
+    "balance": 'balance',
+    "code_imp": 'code_imp',
+    "refactor": 'refactor',
+    "config": 'config',
+    "admin": 'admin',
+    "server": 'server',
 }
 
 incltag = False

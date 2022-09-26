@@ -1,0 +1,29 @@
+2018-08-01:
+  KasparoVv:
+  - rscadd: You can now change the order of your body markings at character creation.
+      Shift markings up or down layers at will to design the character you've always
+      wanted, more easily than ever before.
+  Mechoid:
+  - rscadd: Added the Gigaphone. Currently unused.
+  Mewchild:
+  - rscadd: Ports several AI core sprites from ages and places past
+  PrismaticGynoid:
+  - rscadd: Adds four types of colorblindness to the traits in the setup menu.
+  - tweak: pAIs can now be picked up while unfolded, and can display more than 9 emotions.
+2018-08-08:
+  Atermonera:
+  - rscadd: The supply controller has been refactored and shifted to nanoUI.
+  - rscadd: The ordering and control consoles are now generally upgraded in terms
+      of information and options.
+  Mechoid:
+  - rsctweak: Hallucinations are no longer only Pun Pun.
+  Neerti:
+  - soundadd: Adds new ambience sounds for various areas, especially on the surface
+      of Sif.
+  - sounddel: Removes low and high-pitched droning from available ambience. Consider
+      trying ambience again if you had turned it off to avoid those.
+2018-08-28:
+  Mechoid:
+  - rscadd: Mechs now have multiple equipment slot types, and more slots in total
+      for greater customization.
+  - rscadd: A large number of Mech weapon modules and their jury rigged versions.

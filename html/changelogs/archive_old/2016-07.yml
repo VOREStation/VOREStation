@@ -1,0 +1,161 @@
+2016-07-01:
+  Aztectornado:
+  - tweak: Clicking a stack of sheets (Metal, phoron...) in your other hand now asks
+      how many you want to split off the stack, courtesy of Baycode
+  Datraen:
+  - rscadd: Antagonistic factions can now be set and viewed on the uplink. Visibilities
+      can be set for these as well, to help identify sympathizers/potential aids,
+      or to hide the information from those outside of your faction.
+  Yosh:
+  - tweaks: Increases max records and book length to ridiculous levels.
+  Yoshax:
+  - tweak: The PTR Sniper is now more accurate when scoped, but less accurate when
+      unscoped. In addition it now has more recoil.
+  - tweak: The Laser Cannon no longer holds multiple shots. It holds charge for one
+      shot at a time. This is because the beams it fires now do 90 damage with 100
+      armor penetration. Furthermore, it is now considerably more accurate. Lastly,
+      to counteract it only holding one shot at a time, it now autorecharges, which
+      takes 60 seconds.
+  Zuhayr:
+  - rscadd: Ports/adapted several kitchen machines from Apollo Station.
+2016-07-08:
+  EmperorJon:
+  - rscadd: Adds admin functionality to call a trader ship event with the Beruang
+      in the same manner as ERT dispatches.
+  - rscadd: Adds a Trader 'antagonist' as they use the antagonist framework. Not considered
+      an actual antagonist, like the ERT.
+  - maptweak: Alters Beruang base to provide some clothing for Traders plus a locked-down
+      area for admins to spawn cargo.
+  - maptweak: Alters Beruang access to a new Trader-ID-only access requirement.
+  Neerti:
+  - maptweak: Restructred the AI core massively, and the upload slightly.
+  - rscadd: Adds a new material type, called Durasteel, which is made from plasteel
+      and diamonds.  It's incredibly tough and also reflective.  The inner walls of
+      the AI core contain this new material to protect it.
+  - rscadd: New turret subtype just for the AI core, that is more durable, has a chance
+      to shrug off EMP, and fires xray lasers.  They even turn green.
+  - tweak: Turrets now wait to go back down in their covers upon losing sight of a
+      target.
+  - tweak: Emitters now have health, and can be damaged by projectiles.  They will
+      explode on death.
+  - tweak: Critical APCs (the type found in the engine and AI core) are now more resistant
+      to EMP.  Equipment and Enviroment stays on during an EMP, and less of the cell
+      is drained.
+  Sin4:
+  - rscadd: Added benches.
+  - rscadd: Added floor lamps.
+  - rscadd: Added water-cooler cup dispenser.
+  Yoshax:
+  - rscadd: Adds recipes for four new non-alcoholic cocktails. Shirley Temples, Roy
+      Rogers, Arnold Palmers and Collins Mixes.
+  - rscadd: Adds five new Tajaran hairstyles ported from Aurora.
+2016-07-10:
+  Anewbe:
+  - bugfix: Changelings will no longer remain stunned or suchlike when attempting
+      to regenerate.
+  Cirra/:
+  - rscadd: Added a chemistry gripper for Crisis borgs.
+  GinjaNinja32:
+  - rscadd: Adds 3x & 4x upscaling options for players with very large monitors.
+  HarpyEagle:
+  - tweak: Runtime can now become friends with anyone, regardless of their initial
+      job.
+  Neerti:
+  - rscadd: Mining can now be done with explosives.  The effectiveness depends on
+      the spot chosen to explode, so using an ore scanner is advised.
+  PsiOmegaDelta:
+  - rscadd: MedHUD overlays now have more stages, both for 'normal' and critical stages
+      of injury, for improved quick-diagnosis.
+  Redstryker:
+  - bugfix: Communicators will no longer show up on camera networks by default.
+  - rscadd: Adds a selection of flannels to the loadout. These can have their sleeves
+      rolled up, their buttons buttoned up, be tucked in and any combination of those.
+  Techhead:
+  - rscadd: 'New Random Event: Solar Storms. Similar to a radiation storm, but anywhere
+      inside the station is safe. Also boosts solar panel output significantly for
+      the duration.'
+  Yoshax:
+  - rscadd: Ports an Advanced Who verb that allows normal players to see what players
+      are in game, and which aren't.
+  Zuhayr:
+  - tweak: Modifies the health HUD element to display limb damage individually.  It
+      will reflect your species, prosthetics, loss of limbs, as well as being on fire.
+2016-07-13:
+  Anewbe:
+  - rscdel: Removed detonating borgs via Robotics Console
+  Yoshax:
+  - tweak: Emagging a cargo supply console will now properly hack it and will also
+      remove the access requirement.
+  - bugfix: Languages selected during character setup will once again be properly
+      added to mobs.
+  xDarkSapphire:
+  - rscadd: 'Adds a new hairstyle: Spiky Ponytail.'
+2016-07-22:
+  Anewbe:
+  - rscdel: Removes assault carbine from uplink.
+  - tweak: Speeds up the toxin reagents
+  EmperorJon:
+  - bugfix: Having between 20 and 100 nutrition and over 45 toxin damage will no longer
+      cause you to gag ad-infinitum and die. It now respects vomit time restraints.
+  - tweak: Gagging now occurs only when the mob has no nutrition at all. It no longer
+      causes three toxin damage, only weakens as before.
+  - tweak: Vomiting and/or gagging from toxins now occurs regardless of nutrition,
+      not only 20+.
+  Neerti:
+  - rscadd: Adds ability for ghosts to send and receive text messages via communicator.
+  Yoshax:
+  - tweak: Drop pod contents have been adjusted. In general, you will get something
+      more useful and the less useful contents have been made more interesting. There
+      is a total of 12 drop pod content lists and 7/12 are  useful, 4/12 are useless,
+      1/12 is potentially useful.
+  - tweak: Stun Revolvers will no longer be able to spawn from random energy weapon
+      spawns. In addition, some of the other random item spawns have new items and
+      adjusted probablities.
+  - rscdel: Tajaran are no longer negatively affected by coffee.
+  - tweak: Bucklecuffing as it has been known for the longest time is no longer a
+      thing. When you resist when cuffed and buckled to something, you will now resist
+      out of the handcuffs first, allowing you to simply unbuckle yourself once done.
+2016-07-25:
+  PsiOmegaDelta:
+  - bugfix: Robot upgrades produced in robotics to be applied to Cyborgs can now once
+      again actually be applied.
+  Rymdmannen:
+  - rscadd: Added department specific rubber stamps for cargo and warden.
+  - maptweak: Replaced 'small rubber stamp' with corresponding new ones in cargo area
+      and warden's office.
+  - spellcheck: Renamed ''quartermaster's stamp'' to ''quartermaster's rubber stamp''.
+  Superbee29:
+  - rscadd: Ghosts can now see the power in a cable when examining it.
+  Yoshax:
+  - tweak: Flashes no longer provide an instant stun. Flashes now confuse and blind
+      the affected person for five seconds and in addition makes their eyes blurry
+      for ten seconds.
+  - tweak: The empty box supply crate has been replaced with a shipping crate. Which
+      contains what you need to send stuff places!
+  - maptweak: The chef now gets a destination tagger and packaging paper to send people
+      food.
+  - bugfix: Drinking glasses now have a material cost in the autolathe.
+  - tweak: When emagged security bots such as the Securitron and ED-209 will now move
+      and pursue faster.
+  - bufix: Securty bots such as mentioned above will now be properly emagged.
+  - tweak: The cost of items in the antag uplink have been tweaked. Some are cheaper,
+      some are more expensive. In addition, you can now buy singular grenades isntead
+      of boxes. Buying a box has a discount over the singular.
+  - bugfix: Repairing burn damage on FBPs will now once again properly work.
+  - bugfix: Undislocating limbs will now once again properly work.
+  - rscadd: The phoron assembly crate in cargo has been renamed to a Phoron research
+      crate and now contains more supplies including tank transfer valves.
+  - tweak: The cooldown between discount offers in the antag uplink is now 10 minutes
+      versus the previous 15 minutes.
+  - tweak: The ordering of the items in the autolathe will now be somewhat diferrent
+      due to a code overhaul. It is now in alphabetic order.
+  - tweak: Security robots such as the Securitron or ED-209 are now more hardy and
+      can take more damage before dying.
+  - tweak: The silenced pistol no longer has any recoil and can be fired faster with
+      less delay in between shots.
+2016-07-31:
+  Anewbe:
+  - rscadd: Sprays now respect shields.
+  Yoshax:
+  - bugfix: Certain items such as pills and suchlike will once again be usable on
+      someone who is on a surgical table/table.

@@ -1,4 +1,0 @@
-author: Mechoid
-delete-after: True
-changes: 
-  - rscadd: "Added system for exosuit over-encumbrance. Combat mechs and Ripleys have higher than default."

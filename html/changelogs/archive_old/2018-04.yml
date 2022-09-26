@@ -1,0 +1,67 @@
+2018-04-01:
+  Anewbe:
+  - tweak: Medical Doctors and EMTs spawn with white medkits.
+  Cameron653:
+  - rscadd: Adds a xenoarch excavation tool, craftable in R&D. Allows depth selection
+      of 1-30
+  - rscadd: Adds a xenoarch multitool, craftable in R&D. Has xenoarch counter, measure
+      tool, and depth scanner all in one.
+  Heroman3003:
+  - bugfix: Attaching exosuit equipment with a gripper correctly removes it from the
+      gripper.
+  - bugfix: Engineering gripper can no longer duplicate frame parts.
+  MistyLuminescence:
+  - tweak: Wallets can now hold a wider variety of objects.
+  Woodrat:
+  - rscadd: Added two 44 cal revolvers.
+  - rscadd: Added 44 cal speedloader for revolvers.
+  - rscadd: Added 44 cal rubber rounds.
+  - bugfix: Fixed the icon_state for 'structure/plushie/carp' and the random first
+      aid kit spawner.
+  - rscadd: Added a random chance tool spawn for power tools (most of the time it
+      should still just be regular tools).
+  - tweak: Adjusted the spawn rate of medkits, combat medkits should be more rare.
+  - tweak: Cash split into its own loot item.
+  - tweak: Plushies split into large and small plushies.
+  - rscadd: All the extra plushie spawns added to the random plushie spawn.
+  - tweak: Eightball and conch shell added to toy spawns.
+  - rscadd: Added spawn points for the large plushies, cash, and the power tools to
+      the station.
+  battlefieldCommander:
+  - rscadd: Added permanent markers, an alternative to crayons.
+  - tweak: The chemistry recipe for paint now uses marker ink instead of crayon dust.
+  - rscdel: Removed crayon boxes from the map. They can still be ordered from cargo
+      in case you need a snack.
+2018-04-19:
+  Anewbe:
+  - rscdel: AOOC is no longer available to traitors, renegades, and thugs.
+  Woodrat:
+  - bugfix: Flashers in brig cells should work now, extra floor flash in communal
+      brig to deal with crims.
+  - bugfix: Improper access, SMES rooms.
+  - bugfix: Trader start point is no longer dark.
+  - rscadd: Medical Vendor Plus has more advanced burn and trauma kits.
+  - tweak: Cell 1 and 2 in the brig can now be accessed by detectives.
+  - tweak: Additional r-walls next to the engine room to help with rads.
+  - tweak: Floor decals in a couple areas.
+  - tweak: RD office now has its telescreen back.
+  lorwp:
+  - bugfix: Pilot headsets can now fallback to shortwave radio
+2018-04-28:
+  Anewbe:
+  - tweak: Communicator visibility (the thing that lets people see your communicator
+      when you're a ghost) is now saved to character slots, rather than globally.
+  - tweak: Jobs that are set to Never on your preferences are hidden by default on
+      the Late Join selection menu. There is a button to reveal them.
+  Arokha:
+  - bugfix: Nerve reattaching surgery now works correctly. (Hemostat on limb)
+  - bugfix: Limbs dropped by people have appropriate flags.
+  Atermonera:
+  - tweak: Human examine code has received a major refactor. If you encounter unusual
+      behaviour that seems wrong, please report it.
+  Cerebulon:
+  - bugfix: Pumpkins are no longer green ovals. They now grow on actual vines.
+  schnayy:
+  - bugfix: Space carp plushies now load sprites and are all selectable from loadout.
+  - tweak: Adds several newer plushies to the gift vendor as well as adjusting cost
+      of gift vendor's contents.

@@ -1,0 +1,96 @@
+2019-12-16:
+  Atermonera:
+  - tweak: Ghosts can join as drones after only 5 minutes have passed, down from 10.
+  Mechoid:
+  - rscadd: Multiple new organs added. Humans and Skrell received spleens, all species
+      expected to have a stomach and intestine organ have them.
+  - tweak: Augment 'slots' organized.
+  - rscadd: Multiple augments added, currently only available in the Traitor / Mercenary
+      uplinks as easy-to-install implants.
+  - rscadd: Anesthetic / Oxygen pumps added. A mobile stabilizer has been added. All
+      three are available in Cargo.
+  - rscadd: Medical MRE rations added to Cargo.
+  - tweak: Roundstart implants now become invisible until being handled.
+  - rscadd: Neural implant added to loadout, makes the brain of the user count as
+      an assisted organ. Does not affect MMIs or their subtypes.
+  - rscadd: Bioprinters now unlock more organs upon being upgraded, once they pass
+      the anomalous tier, they unlock quite probably illegal organs.
+  - rscadd: Three medical exosuit components have been added. Crisis and Hazmat response
+      drones, and a mounted advanced medical analyzer.
+  - tweak: Medical analyzers now detect on-skin reagents.
+  - rscadd: Multiple new chemicals added, two used for upgrading bandage kits.
+  - rscadd: Brute-based medical stacks can be upgraded.
+  - rscadd: Crude brute kits can be made with cloth.
+  - tweak: Stacks can now pass their colors onto objects produced by them. (Colored
+      cloth, painted wood, etcetera.)
+  - rscadd: Two combined surgical tools added, for opening / closing ribcages and
+      skulls, and removing organs respectively.
+  - rscadd: Two dud implants added to the loadout. They do literally nothing but hurt
+      you if you're EMP'd.
+  - experiment: The larynx now controls the ability to speak. Damage to it will stop
+      you from being able to speak anything but non-verbal languages.
+  - tweak: Damage to the brain can now affect the pulse.
+  - tweak: Only the critical blood level causes toxin damage, meaning individuals
+      who die of standard oxygen loss from bloodloss can possibly be saved, but exsanguinated
+      persons are unlikely.
+  - tweak: Bioaugment.dm is now just augment.dm
+  - tweak: Robotic hearts do not have a pulse.
+  - tweak: Brain damage can now cause loss of breath.
+  - tweak: Paracetamol is now the precursor to tramadol.
+  - rscadd: Calcium is now in the chemical vendor.
+  Nalarac:
+  - bugfix: ED-209 and ED-CLN now properly accept names given with a pen.
+  - tweak: Removed maintenance access from ED-CLN to prevent maintenance wandering.
+  - tweak: Enables all channels on captain's and HoP's headset by default.
+  - bugfix: Power cells and device cells both properly show as empty when printed
+      from the protolathe and mech fabricator.
+  - tweak: Items with cells printed from the protolathe now start empty (e.g. phoron
+      pistol).
+  Novacat:
+  - rscadd: Adds a teshari plush.
+  PrismaticGynoid:
+  - tweak: You can now choose what type of graffiti or rune to draw when using crayons/markers.
+  TheFurryFeline:
+  - tweak: Tweaks desk lamps to output twice as much light as before to compensate
+      for a refactor.
+  - imageadd: Changes mouse plushie sprite to be cuter and not break the hearts of
+      rodent lovers. :3 Seriously, the change is from a dead mouse duplicate to one
+      of a brown mouse resting in place.
+  - imageadd: Add a new sprite for the orange jumpsuit.
+  - tweak: Refactors prison jumpsuits into its own thing, change a few files and dmis.
+  - bugfix: Fixes strange rocks size. Normal -> Small like it used to be before a
+      refactor.
+  Woodrat:
+  - maptweak: Rework of the civilian wing, merging the kitchen and the bar into one
+      area.
+  - maptweak: Minor movement of the mining vendor.
+  - maptweak: Adjustment of the kitchen and bar.
+  - bugfix: Area in the coffee shop.
+  - bugfix: Missing Ducky in the codelab.
+  - bugfix: Fix missing scrubber in engineering.
+  - bugfix: Shutter added to Kitchen door.
+  - maptweak: Pressure Regulators at atmospheric cutoffs start unregulated at roundstart.
+  - tweak: Set Modular Computers layer to 2.9 to bring them inline with regular computer
+      layering.
+  - tweak: Pump to distro set to 301 kpa to help offset issues with cutoff valves.
+  - rscadd: One phase pistol to each explorer locker.
+  - rscadd: One holster to each explorer locker.
+  - rscdel: Removed the old size modifier traits for mobs.
+  - rscadd: Port and tweak of the size modifiers from World Server for mobs.
+2019-12-31:
+  Atermonera:
+  - bugfix: Radiation has been made more potent and is no longer defeated by a thin
+      sheet of lead.
+  Cerebulon:
+  - rscadd: Added decaf coffee to the coffee shop.
+  - rscadd: Added 6 types of bagel
+  - maptweak: Modified the coffee shop to have extra counter space and a microwave
+      for bagels.
+  - tweak: Removed chef lock on kitchen cabinet.
+  - spellcheck: Removed reference to outdated skrell lore from naewa cube box.
+  TheFurryFeline:
+  - tweak: Changes light replacers to allow you to automatically transfer used bulbs
+      into the item and get a new one every 4 bulbs replaced. Additionally, this allows
+      you to both use the replacer on a box of bulbs to get the bulbs added as well
+      as clicking the item with a box of bulbs to put them inside it.
+  - rscadd: Spray bottles can now be printed in the Autolathe.

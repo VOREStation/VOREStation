@@ -1,0 +1,95 @@
+2016-11-13:
+  Anewbe:
+  - rscadd: Adds a list to prevent certain jobs from being certain roundstart antags,
+      rather than outright preventing them.
+  - bugfix: Surplus crates won't make more surplus crates.
+  - tweak: Random buys from uplinks will no longer buy anything out of the Badassery
+      tab.
+  - bugfix: Loincloth now has an on-mob sprite.
+  - rscadd: Ported Bay's tape recorders (which actually work).
+  Broseph Stylin:
+  - rscadd: Added HUD aviators to the loadout. They're restricted to security, and
+      can toggle between HUD and flash protection modes, but won't offer both at once.
+  MagmaRam:
+  - rscadd: Holsters can be concealed by some suit-slot items, others conceal all
+      accessories.
+  - bugfix: Fixed certain suit-slot items not hiding jumpsuits properly.
+  RedStryker:
+  - rscadd: Adds a Guy Fawkes mask.
+  Yoshax:
+  - rscadd: Clipboards can now be made out of wood.
+2016-11-17:
+  Anewbe:
+  - tweak: Slowdown in armor sets moved to chest and legs, rather than arms and legs.
+  - rscadd: Bullets and lasers will now show up on Autopsy Reports.
+  - bugfix: Fixed all ERT calls being silent, regardless of selected option.
+  - rscadd: Flashlights can now fit in rechargers.
+  - rscadd: 'Added flashlights, maglights, and the secHUD sunglasses (Sec only) to
+      the loadout. '
+  TheGreyWolf:
+  - rscadd: Added Sign language, which can be selected from character setup.
+2016-11-18:
+  Anewbe:
+  - rscadd: Added .45 and tommygun AP ammo to the uplink.
+  - tweak: CPR can be performed on corpses, doesn't actually help them.
+  Datraen:
+  - tweak: Makes cameras faster, removing a large chunk of bloat relating to taking
+      pictures. Specifically for taking pictures of angry cheetos.
+  MagmaRam:
+  - bugfix: Slimes will now properly process chems that have zero effect on them (that
+      is, they'll get rid of them instead of clogging up their metabolism forever).
+  Nerezza:
+  - rscadd: Added Lemon Juice to soda dispensers across the station. Reagent cartridge
+      refills can be ordered via cargo.
+  - rscadd: Added Lemon Juice and Milk Cartons to the bar's Booze-o-Mat. You can now
+      order milkshakes and not get shot (maybe).
+  Yoshax:
+  - experiment: Being unable to breathe and having oxyloss will now cause brain damage
+      that scales with the amount of oxyloss you have. Without oxygen, the brain takes
+      damage and will EVENTUALLY die (but you would most likely die of actual oxyloss
+      before that point.)
+2016-11-20:
+  Datraen:
+  - tweak: Global announcer now has access to engineering channel.
+  - tweak: Supermatter now uses the global announcer.
+  Nerezza:
+  - bugfix: Digital FBP/Cyborg brains no longer drop brains.
+  - rscadd: Digital FBP/Cyborg brains are tagged with their designation now.
+  - bugfix: All cyborgs can now unbuckle people from beds/chairs. Just attack the
+      structure with no module selected.
+  - rscadd: Added the current station date to the Status tab. Ported from Baystation.
+  Yoshax:
+  - rscadd: Adds the ability for Hydroponics Trays to enter cryogenic stasis. You
+      can do this by using a multitool on one. Wheh in stasis the plant will be frozen
+      in time, it will neither grow nor die. Now you can have a life!
+2016-11-21:
+  Anewbe:
+  - tweak: Drawing blood with a syringe now takes a moment.
+  - rscadd: Communicators no longer have a loadout cost.
+  - rscdel: Having more than 50 tox will now cause liver damage, rather than 60.
+  - rscadd: Adds Stimm, a homemade hyperzine made of sugar and welding fuel.
+  - rscdel: Hyperzine is now toxic.
+  Nerezza:
+  - tweak: Space suits now hide jumpsuits, so excessively bulky jumpsuits no longer
+      peek through.
+  - bugfix: Teshari wearing webbing now have the correct sprite overlay. More accessories
+      need sprites, however.
+  - wip: Teshari sprites no longer show the majority of suit accessories, anyone who
+      wants to pitch in to fix this are invited to do so!
+  - rscadd: Windoors can now be disassembled. Apply crowbar when open.
+  - rscadd: Engiborgs and drons can name door and windoor assemblines now. Click an
+      adjacent assembly with no modules active.
+  - bugfix: Windoors now know how to name themselves. In addition, unnamed windoors
+      now spawn with their default name instead of null.
+  RedStryker:
+  - rscadd: Added a colorable hairflower to the loadout.
+  - rscadd: Added a taqiyah to the loadout that can be colored with the color datum.
+  - tweak: Fixed the sprite for the red Security Hat backwards sprite so that the
+      'N' on it is no longer backwards.
+  Yoshax:
+  - tweak: All robots now get crowbars, flashes and fire extinguishers.
+  - tweak: IV Drips are no longer dense, meaning they can be walked through like chairs.
+  - tweak: Robots can now use the toggle lock verb on crates and lockers.
+  - rscadd: There is now an experimental welding tool, it regenerates its fuel on
+      its own! One is given to the Chief Engineer, produced in Research, or found
+      in Syndicate toolboxes.

@@ -1,0 +1,16 @@
+2017-02-24:
+  Anewbe:
+  - rscadd: Fake command reports now make the paper show up.
+  - bugfix: Mining cameras should work now.
+  MagmaRam:
+  - tweak: There is now a short delay before being able to fire when using hostage-taking
+      mode, and a short delay between shots. This should make hostage mode useful
+      for taking hostages and ambushes, rather than as an aimbot in actual firefights.
+  - bugfix: Sandwiches at max size can be eaten with a fork.
+  Yosh:
+  - rscadd: Some vending machines now log the items they've vended and had stocked,
+      storing the name of the user, the time and the item. These can be found by using
+      the new verb for vending machines, or from the right click menu.
+  Zuhayr:
+  - rscadd: Adminhelps now have a TAKE button that allow an admin to claim it, and
+      inform the adminhelper that someone is on the case.

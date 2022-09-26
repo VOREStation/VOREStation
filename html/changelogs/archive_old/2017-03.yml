@@ -1,0 +1,70 @@
+2017-03-22:
+  Anewbe:
+  - tweak: Oxyloss now shows up as cyan in scanners.
+  Arokha:
+  - tweak: Having less than 30% blood (as a result of literally having that little
+      blood, or a broken heart) causes 75 oxyloss per tick rather than 300 toxins
+      and instant death, to allow for heart transplants.
+  - bugfix: Infections now spread and process properly between external organs.
+  - rscadd: Infections now have appropriate symptoms that indicate to a player that
+      they have one.
+  - rscadd: Infections are now diagnosable more accurately in a medscanner, or visually
+      for high level infections or dead limbs.
+  Atermonera:
+  - bugfix: EAL, Sign language, and emotes will no longer use autohiss
+  - rscadd: Surgeon Borgs now have a proper medical hud module
+2017-03-28:
+  Anewbe:
+  - spellcheck: Disregard the last changelog on the spelling of HI, the correct spelling
+      is Hephaestus. My bad.
+  - rscadd: Added a changelog editing system that should cause fewer conflicts and
+      more accurate timestamps.
+  - rscadd: Added Myelamine, a blood clotting chemical. This is available to antags,
+      and can be ordered from cargo or mixed.
+  - rscadd: Added Osteodaxon, a bone fixing medicine. This is available to antags,
+      and can be mixed.
+  - rscadd: Added Carthatoline, a stronger anti-toxin.
+  - rscadd: Added Spidertoxin, which comes from spiders (duh), and is used in making
+      Myelamine.
+  - rscadd: Death Alarms can now be ordered from cargo.
+  - rscdel: Dexalin Plus is half as strong (still pretty strong, though).
+  - rscadd: Ninja, Merc, and ERT-M Hardsuits can now inject myelamine.
+  - tweak: Inaprovaline now decreases the effects of bloodloss, and lessens brain
+      damage taken from OxyLoss.
+  - tweak: Prosthetic organs now take randomised damage when emp'd, this should roughly
+      average out to the old values.
+  - tweak: The effects of heart damage have been tweaked, should be slightly easier
+      to survive now.
+  - tweak: Some of the stronger chems have side effects, like confusion or blurry
+      vision. These should be fairly minor, and we may be tweaking them in the future.
+  - tweak: The suiciding var now wears off, making it possible to save suicide victims
+      if quick action is taken.
+  - tweak: Death Alarms now announce on General comms again.
+  - rscadd: Borgs can climb tables.
+  - tweak: Skrell can now be up to 130 years old.
+  - tweak: Skrell are more vulnerable to flashes, due to their large eyes.
+  - tweak: Tajaran no longer have appendicies.
+  - tweak: Tajaran are more vulnerable to flashes.
+  - tweak: Unathi have less brute resist, but some burn resist.
+  - tweak: Unathi gender is now unclear to non-Unathi.
+2017-03-30:
+  Anewbe:
+  - tweak: Italics in chat are now trigged with | , rather than / .
+  - rscadd: Energy weapons, flashlights, stunbatons, and welders can now be moved
+      from hand to hand by click+dragging.
+  - rscadd: Flashlights can now be placed in wall rechargers.
+  - rscadd: Adds jumper cables, that act a bit like a defib for FBPs.
+  - bugfix: Bicaridine and Myelamine should now properly repair internal bleeding.
+  - rscadd: Overdoses are now more dangerous.
+  - rscadd: Chloral Hydrate overdoses are now even more dangerous.
+  Arokha:
+  - rscadd: Adds body markings and tattoos.
+  MagmaRam:
+  - bugfix: Borgs and assorted robits can now use grinders in chemistry and the kitchen.
+2017-03-31:
+  Anewbe:
+  - rscadd: Added a number of crates to cargo.
+  - rscadd: Added the electric welder as a hidden autolathe recipe.
+  - rscadd: Added a few colored (in sprite, not in color) flashlights, to the loadout.
+      Sprites c/o Schnayy.
+  - rscadd: Maps in a pair of jumper cable kits. Use these to revive FBPs.
