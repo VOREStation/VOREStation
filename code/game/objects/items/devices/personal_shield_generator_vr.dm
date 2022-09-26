@@ -29,6 +29,7 @@
 	action_button_name = "Toggle Shield"
 	var/obj/item/weapon/gun/energy/gun/generator/active_weapon
 	var/obj/item/weapon/cell/device/bcell = null
+	var/upgraded = 0 										// If the PSG has been upgraded by some method or not. Only used for the mining belt ATM.
 
 
 	var/generator_hit_cost = 100							// Power used when a special effect (such as a bullet being blocked) is performed! Could also be expanded to other things.
@@ -78,6 +79,8 @@
 /obj/item/device/personal_shield_generator/examine(mob/user)
 	. = ..()
 	if(Adjacent(user))
+		if(upgraded)
+			. += "The unit appears to be upgraded."
 		if(bcell)
 			. += "The internal cell is [round(bcell.percent() )]% charged."
 		else
@@ -509,6 +512,7 @@
 			to_chat(user, "<span class='warning'>This shield generator is already upgraded!</span>")
 			return
 		modifier_type = /datum/modifier/shield_projection/mining/strong
+		upgraded = 1
 		to_chat(user, "<span class='notice'>You upgrade the [src] with the [W]!</span>")
 		user.drop_from_inventory(W)
 		qdel(W)
