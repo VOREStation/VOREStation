@@ -504,10 +504,10 @@
 	w_class = ITEMSIZE_SMALL
 
 /obj/item/device/personal_shield_generator/belt/mining/attackby(obj/item/weapon/W, mob/user, params)
-	if(modifier_type == /datum/modifier/shield_projection/mining/strong)
-		to_chat(user, "<span class='warning'>This shield generator is already upgraded!</span>")
-		return
 	if(istype(W, /obj/item/borg/upgrade/shield_upgrade))
+		if(modifier_type == /datum/modifier/shield_projection/mining/strong)
+			to_chat(user, "<span class='warning'>This shield generator is already upgraded!</span>")
+			return
 		modifier_type = /datum/modifier/shield_projection/mining/strong
 		to_chat(user, "<span class='notice'>You upgrade the [src] with the [W]!</span>")
 		user.drop_from_inventory(W)
