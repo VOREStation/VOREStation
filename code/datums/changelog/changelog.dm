@@ -10,7 +10,7 @@
 		ui = new(user, src, "Changelog")
 		ui.open()
 
-/datum/changelog/tgui_act(action, list/params, datum/tgui/ui, datum/ui_state/state)
+/datum/changelog/tgui_act(action, list/params, datum/tgui/ui, datum/tgui_state/state)
 	. = ..()
 	if(.)
 		return

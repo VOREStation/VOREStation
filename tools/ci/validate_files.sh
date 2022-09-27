@@ -47,7 +47,7 @@ if [ $retVal -ne 0 ]; then
 fi
 
 #Checking for a change to html/changelogs/example.yml
-md5sum -c - <<< "88490b460c26947f5ec1ab1bb9fa9f17 *html/changelogs/example.yml"
+md5sum -c - <<< "0c56937110d88f750a32d9075ddaab8b *html/changelogs/example.yml"
 retVal=$?
 if [ $retVal -ne 0 ]; then
   echo -e "${RED}Do not modify the example.yml changelog file.${NC}"
