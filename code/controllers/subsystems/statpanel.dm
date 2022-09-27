@@ -10,22 +10,25 @@ SUBSYSTEM_DEF(statpanels)
 
 /datum/controller/subsystem/statpanels/fire(resumed = FALSE)
 	if (!resumed)
-		var/datum/map_config/cached = SSmapping.next_map_config
-		var/round_time = world.time - SSticker.round_start_time
+		//var/datum/map_config/cached = SSmapping.next_map_config
+		var/round_time = world.time - SSticker.pregame_timeleft
 		var/list/global_data = list(
-			"Map: [SSmapping.config?.map_name || "Loading..."]",
-			cached ? "Next Map: [cached.map_name]" : null,
-			"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
+			//"Map: [SSmapping.config?.map_name || "Loading..."]",
+			"Map: [using_map.name]",
+			//cached ? "Next Map: [cached.map_name]" : null,
+			"Next Map: -- Not Available -- ",
+			//"Round ID: [GLOB.round_id ? GLOB.round_id : "NULL"]",
+			"Round ID: -- Not Available -- ",
 			"Server Time: [time2text(world.timeofday, "YYYY-MM-DD hh:mm:ss")]",
 			"Round Time: [round_time > MIDNIGHT_ROLLOVER ? "[round(round_time/MIDNIGHT_ROLLOVER)]:[worldtime2stationtime()]" : worldtime2stationtime()]",
 			"Station Time: [stationtime2text()]",
 			"Time Dilation: [round(SStime_track.time_dilation_current,1)]% AVG:([round(SStime_track.time_dilation_avg_fast,1)]%, [round(SStime_track.time_dilation_avg,1)]%, [round(SStime_track.time_dilation_avg_slow,1)]%)"
 		)
 
-		if(SSshuttle.emergency)
-			var/ETA = SSshuttle.emergency.getModeStr()
+		if(emergency_shuttle.evac)
+			var/ETA = emergency_shuttle.get_status_panel_eta()
 			if(ETA)
-				global_data += "[ETA] [SSshuttle.emergency.getTimerStr()]"
+				global_data += "[ETA]"
 		encoded_global_data = url_encode(json_encode(global_data))
 
 		var/list/mc_data = list(
@@ -42,7 +45,7 @@ SUBSYSTEM_DEF(statpanels)
 		for(var/ss in Master.subsystems)
 			var/datum/controller/subsystem/sub_system = ss
 			mc_data[++mc_data.len] = list("\[[sub_system.state_letter()]][sub_system.name]", sub_system.stat_entry(), "\ref[sub_system]")
-		mc_data[++mc_data.len] = list("Camera Net", "Cameras: [GLOB.cameranet.cameras.len] | Chunks: [GLOB.cameranet.chunks.len]", "\ref[GLOB.cameranet]")
+		mc_data[++mc_data.len] = list("Camera Net", "Cameras: [global.cameranet.cameras.len] | Chunks: [global.cameranet.chunks.len]", "\ref[global.cameranet]")
 		mc_data_encoded = url_encode(json_encode(mc_data))
 		src.currentrun = GLOB.clients.Copy()
 
@@ -50,15 +53,16 @@ SUBSYSTEM_DEF(statpanels)
 	while(length(currentrun))
 		var/client/target = currentrun[length(currentrun)]
 		currentrun.len--
-		var/ping_str = url_encode("Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)")
+		//var/ping_str = url_encode("Ping: [round(target.lastping, 1)]ms (Average: [round(target.avgping, 1)]ms)")
+		var/ping_str = url_encode("Ping: -- Not Available --")
 		var/other_str = url_encode(json_encode(target.mob.get_status_tab_items()))
 		target << output("[encoded_global_data];[ping_str];[other_str]", "statbrowser:update")
 		if(!target.holder)
 			target << output("", "statbrowser:remove_admin_tabs")
 		else
 			var/turf/eye_turf = get_turf(target.eye)
-			var/coord_entry = url_encode(COORD(eye_turf))
-			target << output("[mc_data_encoded];[coord_entry];[url_encode(target.holder.href_token)]", "statbrowser:update_mc")
+			//var/coord_entry = url_encode(COORD(eye_turf))
+			//target << output("[mc_data_encoded];[coord_entry];[url_encode(target.holder.href_token)]", "statbrowser:update_mc")
 			var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry()
 			target << output("[url_encode(json_encode(ahelp_tickets))];", "statbrowser:update_tickets")
 			if(!length(GLOB.sdql2_queries))
@@ -66,11 +70,12 @@ SUBSYSTEM_DEF(statpanels)
 			else
 				var/list/sqdl2A = list()
 				sqdl2A[++sqdl2A.len] = list("", "Access Global SDQL2 List", REF(GLOB.sdql2_vv_statobj))
-				var/list/sqdl2B = list()
-				for(var/i in GLOB.sdql2_queries)
-					var/datum/sdql2_query/Q = i
-					sqdl2B = Q.generate_stat()
-				sqdl2A += sqdl2B
+				// TODO: Fix
+				//var/list/sqdl2B = list()
+				//for(var/i in GLOB.sdql2_queries)
+				//	var/datum/sdql2_query/Q = i
+				//	sqdl2B = Q.generate_stat()
+				//sqdl2A += sqdl2B
 				target << output(url_encode(json_encode(sqdl2A)), "statbrowser:update_sqdl2")
 		var/list/proc_holders = target.mob.get_proc_holders()
 		target.spell_tabs.Cut()
@@ -102,8 +107,9 @@ SUBSYSTEM_DEF(statpanels)
 						continue
 					if(turf_content in overrides)
 						continue
-					if(turf_content.IsObscured())
-						continue
+					// TODO: Fix?
+					//if(turf_content.IsObscured())
+						//continue
 					if(length(turfitems) < 30) // only create images for the first 30 items on the turf, for performance reasons
 						if(!(REF(turf_content) in cached_images))
 							target << browse_rsc(getFlatIcon(turf_content, no_anim = TRUE), "[REF(turf_content)].png")

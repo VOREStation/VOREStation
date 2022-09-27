@@ -671,6 +671,7 @@
 	for(var/mob/M in viewers())
 		M.see(message)
 
+/*
 /mob/Stat()
 	..()
 	. = (is_client_active(10 MINUTES))
@@ -749,7 +750,18 @@
 						if(A.plane > plane)
 							continue
 						stat(A)
+*/
 
+/// Adds this list to the output to the stat browser
+/mob/proc/get_status_tab_items()
+	. = list()
+
+/// Gets all relevant proc holders for the browser statpenl
+/mob/proc/get_proc_holders()
+	. = list()
+	//if(mind)
+		//. += get_spells_for_statpanel(mind.spell_list)
+	//. += get_spells_for_statpanel(mob_spell_list)
 
 // facing verbs
 /mob/proc/canface()

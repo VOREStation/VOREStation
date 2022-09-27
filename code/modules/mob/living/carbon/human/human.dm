@@ -64,22 +64,24 @@
 	return ..()
 
 /mob/living/carbon/human/Stat()
-	..()
-	if(statpanel("Status"))
-		stat("Intent:", "[a_intent]")
-		stat("Move Mode:", "[m_intent]")
-		if(emergency_shuttle)
-			var/eta_status = emergency_shuttle.get_status_panel_eta()
-			if(eta_status)
-				stat(null, eta_status)
+	. = ..()
+	. += "Intent: [a_intent]"
+	. += "Move Mode: [m_intent]"
+	if(emergency_shuttle)
+		var/eta_status = emergency_shuttle.get_status_panel_eta()
+		if(eta_status)
+			. += "[eta_status]"
 
 		if (internal)
 			if (!internal.air_contents)
 				qdel(internal)
 			else
-				stat("Internal Atmosphere Info", internal.name)
-				stat("Tank Pressure", internal.air_contents.return_pressure())
-				stat("Distribution Pressure", internal.distribute_pressure)
+				. += "Internal Atmosphere Info"
+				. += "[internal.name]"
+				. += "Tank Pressure"
+				. += "[internal.air_contents.return_pressure()]"
+				. += "Distribution Pressure"
+				. += "[internal.distribute_pressure]"
 
 		var/obj/item/organ/internal/xenos/plasmavessel/P = internal_organs_by_name[O_PLASMA] //Xenomorphs. Mech.
 		if(P)
@@ -90,13 +92,16 @@
 			var/obj/item/weapon/rig/suit = back
 			var/cell_status = "ERROR"
 			if(suit.cell) cell_status = "[suit.cell.charge]/[suit.cell.maxcharge]"
-			stat(null, "Suit charge: [cell_status]")
+			. += "Suit charge: [cell_status]"
 
 		if(mind)
 			if(mind.changeling)
-				stat("Chemical Storage", mind.changeling.chem_charges)
-				stat("Genetic Damage Time", mind.changeling.geneticdamage)
-				stat("Re-Adaptations", "[mind.changeling.readapts]/[mind.changeling.max_readapts]")
+				. += "Chemical Storage"
+				. += "[mind.changeling.chem_charges]"
+				. += "Genetic Damage Time"
+				. += "[mind.changeling.geneticdamage]"
+				. += "Re-Adaptations"
+				. += "[mind.changeling.readapts]/[mind.changeling.max_readapts]"
 	if(species)
 		species.Stat(src)
 
