@@ -1983,6 +1983,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/dateformat@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "@types/dateformat@npm:5.0.0"
+  checksum: fee3fff637675fd55b59fff6a0507a120ae212a0c7ba823c00a45473da617a7d466e6d7d40d2b4b88af9df3f4be3ed80a51e222ea346c7738de688aa2c6747f1
+  languageName: node
+  linkType: hard
+
 "@types/eslint-scope@npm:^3.7.3":
   version: 3.7.3
   resolution: "@types/eslint-scope@npm:3.7.3"
@@ -2058,6 +2065,13 @@ __metadata:
     jest-matcher-utils: ^27.0.0
     pretty-format: ^27.0.0
   checksum: 7e11c6826aa429ad990dc262e4e4b54aa36573287fddf15773e4137f07d11d3105f0dd9f1baff73252160a057df23f5529bb83b1bf83cd3f45f9460a5ca5c22e
+  languageName: node
+  linkType: hard
+
+"@types/js-yaml@npm:^4.0.5":
+  version: 4.0.5
+  resolution: "@types/js-yaml@npm:4.0.5"
+  checksum: 7dcac8c50fec31643cc9d6444b5503239a861414cdfaa7ae9a38bc22597c4d850c4b8cec3d82d73b3fbca408348ce223b0408d598b32e094470dfffc6d486b4d
   languageName: node
   linkType: hard
 

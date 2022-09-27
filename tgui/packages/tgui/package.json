@@ -15,5 +15,9 @@
     "marked": "^4.0.16",
     "tgui-dev-server": "workspace:*",
     "tgui-polyfill": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/dateformat": "^5.0.0",
+    "@types/js-yaml": "^4.0.5"
   }
 }
