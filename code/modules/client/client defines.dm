@@ -36,6 +36,8 @@
 		////////////////
 		//ADMIN THINGS//
 		////////////////
+	/// hides the byond verb panel as we use our own custom version
+	show_verb_panel = FALSE
 	///Contains admin info. Null if client is not an admin.
 	var/datum/admins/holder = null
 	var/datum/admins/deadmin_holder = null

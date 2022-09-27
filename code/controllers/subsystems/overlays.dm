@@ -32,9 +32,9 @@ SUBSYSTEM_DEF(overlays)
 	fire(FALSE, TRUE)
 	..()
 
-/datum/controller/subsystem/overlays/stat_entry()
-	..("Queued Atoms: [queue.len], Cache Size: [cache_size]")
-
+/datum/controller/subsystem/overlays/stat_entry(msg)
+	msg = "Queued Atoms: [queue.len], Cache Size: [cache_size]"
+	return ..()
 
 /datum/controller/subsystem/overlays/fire(resumed, no_mc_tick)
 	var/count = 1
@@ -230,12 +230,24 @@ SUBSYSTEM_DEF(overlays)
 		if (!special && I.plane > 0)
 			continue
 		including += I
+<<<<<<< HEAD
 	if (!priority)
 		return including
 	for (var/image/I as anything in other.priority_overlays)
 		if (!special && I.plane > 0)
 			continue
 		including += I
+=======
+
+	if(!priority)
+		return including
+
+	for(var/image/I as anything in other.priority_overlays)
+		if(!special && I.plane > 0)
+			continue
+		including += I
+
+>>>>>>> e43f590558 (Initial Commit for Collab)
 	return including
 
 /image/proc/add_overlay(x)

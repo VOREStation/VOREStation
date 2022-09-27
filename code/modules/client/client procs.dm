@@ -230,6 +230,9 @@
 		add_admin_verbs()
 		admin_memo_show()
 
+	// Initialize tgui panel
+	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+
 	// Forcibly enable hardware-accelerated graphics, as we need them for the lighting overlays.
 	// (but turn them off first, since sometimes BYOND doesn't turn them on properly otherwise)
 	spawn(5) // And wait a half-second, since it sounds like you can do this too fast.
@@ -594,3 +597,21 @@
 	else
 		winset(usr, "input", "is-visible=false")
 */
+
+/// compiles a full list of verbs and sends it to the browser
+/client/proc/init_verbs()
+	if(IsAdminAdvancedProcCall())
+		return
+	var/list/verblist = list()
+	verb_tabs.Cut()
+	for(var/thing in (verbs + mob?.verbs))
+		var/procpath/verb_to_init = thing
+		if(!verb_to_init)
+			continue
+		if(verb_to_init.hidden)
+			continue
+		if(!istext(verb_to_init.category))
+			continue
+		verb_tabs |= verb_to_init.category
+		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
+	src << output("[url_encode(json_encode(verb_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
