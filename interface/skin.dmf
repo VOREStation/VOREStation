@@ -1324,6 +1324,7 @@ window "rpane"
 		anchor2 = 100,100
 		background-color = none
 		saved-params = "splitter"
+		left = "statwindow"
 		right = "outputwindow"
 		is-vert = false
 	elem "patreon"
@@ -1568,3 +1569,21 @@ window "text_editor"
 		border = line
 		saved-params = ""
 		multi-line = true
+
+window "statwindow"
+	elem "statwindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = -1,-1
+		anchor2 = -1,-1
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "statbrowser"
+		type = BROWSER
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-visible = false
+		saved-params = ""

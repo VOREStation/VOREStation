@@ -43,14 +43,14 @@
 	)
 /mob/living/simple_mob/slime/promethean/Initialize(mapload, null)
 	//verbs -= /mob/living/proc/ventcrawl
-	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_blobform
-	verbs += /mob/living/proc/set_size
-	verbs += /mob/living/proc/hide
-	verbs += /mob/living/simple_mob/proc/animal_nom
-	verbs += /mob/living/proc/shred_limb
-	verbs += /mob/living/simple_mob/slime/promethean/proc/toggle_expand
-	verbs += /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour
-	verbs += /mob/living/simple_mob/slime/promethean/proc/toggle_shine
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_blobform)
+	add_verb(src, /mob/living/proc/set_size)
+	add_verb(src, /mob/living/proc/hide)
+	add_verb(src, /mob/living/simple_mob/proc/animal_nom)
+	add_verb(src, /mob/living/proc/shred_limb)
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/toggle_expand)
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/prommie_select_colour)
+	add_verb(src, /mob/living/simple_mob/slime/promethean/proc/toggle_shine)
 	update_mood()
 	if(rad_glow)
 		rad_glow = CLAMP(rad_glow,0,250)
