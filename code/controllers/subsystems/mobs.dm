@@ -20,7 +20,7 @@ SUBSYSTEM_DEF(mobs)
 	var/list/process_z = list()
 
 /datum/controller/subsystem/mobs/stat_entry(msg)
-	msg = ("P: [global.mob_list.len] | S: [slept_mobs]")
+	msg = "P: [global.mob_list.len] | S: [slept_mobs]"
 	return ..()
 
 /datum/controller/subsystem/mobs/fire(resumed = 0)

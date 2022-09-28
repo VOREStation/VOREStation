@@ -172,4 +172,4 @@ SUBSYSTEM_DEF(mapping)
 /datum/controller/subsystem/mapping/stat_entry(msg)
 	if (!Debug2)
 		return // Only show up in stat panel if debugging is enabled.
-	. = ..()
+	return ..()

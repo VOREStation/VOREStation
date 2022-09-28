@@ -22,8 +22,9 @@ SUBSYSTEM_DEF(plants)
 	var/list/processing = list()
 	var/list/currentrun = list()
 
-/datum/controller/subsystem/plants/stat_entry()
-	..("P:[processing.len]|S:[seeds.len]")
+/datum/controller/subsystem/plants/stat_entry(msg)
+	msg = "P:[processing.len]|S:[seeds.len]"
+	return ..()
 
 /datum/controller/subsystem/plants/Initialize(timeofday)
 	setup()
@@ -126,7 +127,7 @@ SUBSYSTEM_DEF(plants)
 
 	// Caching
 	var/list/currentrun = src.currentrun
-	
+
 	while(currentrun.len)
 		var/obj/effect/plant/P = currentrun[currentrun.len]
 		--currentrun.len

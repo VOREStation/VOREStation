@@ -543,28 +543,29 @@ var/global/datum/controller/subsystem/ticker/ticker
 
 	return 1
 
-/datum/controller/subsystem/ticker/stat_entry()
+/datum/controller/subsystem/ticker/stat_entry(msg)
 	switch(current_state)
 		if(GAME_STATE_INIT)
 			..()
 		if(GAME_STATE_PREGAME) // RUNLEVEL_LOBBY
-			..("START [round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]")
+			msg = "START [round_progressing ? "[round(pregame_timeleft)]s" : "(PAUSED)"]"
 		if(GAME_STATE_SETTING_UP) // RUNLEVEL_SETUP
-			..("SETUP")
+			msg = "SETUP"
 		if(GAME_STATE_PLAYING) // RUNLEVEL_GAME
-			..("GAME")
+			msg = "GAME"
 		if(GAME_STATE_FINISHED) // RUNLEVEL_POSTGAME
 			switch(end_game_state)
 				if(END_GAME_MODE_FINISHED)
-					..("MODE OVER, WAITING")
+					msg = "MODE OVER, WAITING"
 				if(END_GAME_READY_TO_END)
-					..("ENDGAME PROCESSING")
+					msg = "ENDGAME PROCESSING"
 				if(END_GAME_ENDING)
-					..("END IN [round(restart_timeleft/10)]s")
+					msg = "END IN [round(restart_timeleft/10)]s"
 				if(END_GAME_DELAYED)
-					..("END PAUSED")
+					msg = "END PAUSED"
 				else
-					..("ENDGAME ERROR:[end_game_state]")
+					msg = "ENDGAME ERROR:[end_game_state]"
+	return ..()
 
 /datum/controller/subsystem/ticker/Recover()
 	flags |= SS_NO_INIT // Don't initialize again

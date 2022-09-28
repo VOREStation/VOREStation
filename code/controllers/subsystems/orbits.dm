@@ -7,9 +7,9 @@ SUBSYSTEM_DEF(orbit)
 	var/list/currentrun = list()
 	var/list/processing = list()
 
-/datum/controller/subsystem/orbit/stat_entry()
-	..("P:[processing.len]")
-
+/datum/controller/subsystem/orbit/stat_entry(msg)
+	msg = "P:[processing.len]"
+	return ..()
 
 /datum/controller/subsystem/orbit/fire(resumed = 0)
 	if (!resumed)
@@ -40,5 +40,3 @@ SUBSYSTEM_DEF(orbit)
 			O.Check(targetloc)
 		if (MC_TICK_CHECK)
 			return
-
-

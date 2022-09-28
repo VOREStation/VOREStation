@@ -54,8 +54,9 @@ SUBSYSTEM_DEF(radiation)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/radiation/stat_entry()
-	..("S:[sources.len], RC:[resistance_cache.len]")
+/datum/controller/subsystem/radiation/stat_entry(msg)
+	msg = "S:[sources.len], RC:[resistance_cache.len]"
+	return ..()
 
 // Ray trace from all active radiation sources to T and return the strongest effect.
 /datum/controller/subsystem/radiation/proc/get_rads_at_turf(var/turf/T)

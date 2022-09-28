@@ -27,7 +27,7 @@ SUBSYSTEM_DEF(xenoarch)
 /datum/controller/subsystem/xenoarch/stat_entry(msg)
 	if (!Debug2)
 		return // Only show up in stat panel if debugging is enabled.
-	. = ..()
+	return ..()
 
 /datum/controller/subsystem/xenoarch/proc/SetupXenoarch()
 	for(var/turf/simulated/mineral/M in world)
