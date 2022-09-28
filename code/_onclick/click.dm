@@ -290,7 +290,7 @@
 		listed_turf = null
 	else
 		listed_turf = T
-		client.statpanel = "Turf"
+		client.stat_panel.send_message("create_listedturf", "Turf - [T.name]")
 
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)

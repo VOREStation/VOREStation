@@ -32,7 +32,7 @@ GLOBAL_REAL(GLOB, /datum/controller/global_vars)
 
 	return ..()
 
-/datum/controller/global_vars/stat_entry()
+/datum/controller/global_vars/stat_entry(msg)
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Initializing...", src)
 

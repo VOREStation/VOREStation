@@ -116,10 +116,13 @@
 	// Runechat messages
 	var/list/seen_messages
 
+	/// our current tab
+	var/stat_tab
+
+	/// list of all tabs
+	var/list/panel_tabs = list()
 	/// list of tabs containing spells and abilities
 	var/list/spell_tabs = list()
-	/// list of tabs containing verbs
-	var/list/verb_tabs = list()
 	//Hide top bars
 	var/fullscreen = FALSE
 	//Hide status bar

@@ -28,7 +28,7 @@
 	if (constructed) // player-constructed railings
 		anchored = FALSE
 	if(climbable)
-		add_verb(src, /obj/structure/proc/climb_on)
+		verbs += /obj/structure/proc/climb_on
 
 /obj/structure/railing/Initialize()
 	. = ..()

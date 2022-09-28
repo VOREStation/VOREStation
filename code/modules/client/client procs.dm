@@ -114,6 +114,9 @@
 		return
 	//VOREStation Add End
 
+	if(href_list["reload_statbrowser"])
+		stat_panel.reinitialize()
+
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
 		WRITE_LOG(href_logfile, "[src] (usr:[usr])</small> || [hsrc ? "[hsrc] " : ""][href]")
@@ -178,6 +181,10 @@
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
 
+	// Instantiate stat panel
+	stat_panel = new(src, "statbrowser")
+	stat_panel.subscribe(src, .proc/on_stat_panel_message)
+
 	// Instantiate tgui panel
 	tgui_panel = new(src, "browseroutput")
 
@@ -211,7 +218,12 @@
 		prefs.selecting_slots = FALSE
 
 	// Initialize stat panel
-	src << browse(file('html/statbrowser.html'), "window=statbrowser")
+	stat_panel.initialize(
+		inline_html = file2text('html/statbrowser.html'),
+		inline_js = file2text('html/statbrowser.js'),
+		inline_css = file2text('html/statbrowser.css'),
+	)
+	addtimer(CALLBACK(src, PROC_REF(check_panel_loaded)), 30 SECONDS)
 
 	// Initialize tgui panel
 	tgui_panel.initialize()
@@ -603,7 +615,7 @@
 	if(IsAdminAdvancedProcCall())
 		return
 	var/list/verblist = list()
-	verb_tabs.Cut()
+	panel_tabs.Cut()
 	for(var/thing in (verbs + mob?.verbs))
 		var/procpath/verb_to_init = thing
 		if(!verb_to_init)
@@ -612,6 +624,28 @@
 			continue
 		if(!istext(verb_to_init.category))
 			continue
-		verb_tabs |= verb_to_init.category
+		panel_tabs |= verb_to_init.category
 		verblist[++verblist.len] = list(verb_to_init.category, verb_to_init.name)
-	src << output("[url_encode(json_encode(verb_tabs))];[url_encode(json_encode(verblist))]", "statbrowser:init_verbs")
+	src.stat_panel.send_message("init_verbs", list(panel_tabs = panel_tabs, verblist = verblist))
+
+/client/proc/check_panel_loaded()
+	if(stat_panel.is_ready())
+		return
+	to_chat(src, "<span class='danger'>Statpanel failed to load, click <a href='?src=[REF(src)];reload_statbrowser=1'>here</a> to reload the panel</span>")
+
+/**
+ * Handles incoming messages from the stat-panel TGUI.
+ */
+/client/proc/on_stat_panel_message(type, payload)
+	switch(type)
+		if("Update-Verbs")
+			init_verbs()
+		if("Remove-Tabs")
+			panel_tabs -= payload["tab"]
+		if("Send-Tabs")
+			panel_tabs |= payload["tab"]
+		if("Reset-Tabs")
+			panel_tabs = list()
+		if("Set-Tab")
+			stat_tab = payload["tab"]
+			SSstatpanels.immediate_send_stat_data(src)
