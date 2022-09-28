@@ -32,7 +32,7 @@
 
 
 /client/proc/admin_ghost()
-	set category = "Admin"
+	set category = "Admin.Game"
 	set name = "Aghost"
 	if(!holder)	return
 
@@ -83,7 +83,7 @@
 
 /client/proc/invisimin()
 	set name = "Invisimin"
-	set category = "Admin"
+	set category = "Admin.Game"
 	set desc = "Toggles ghost-like invisibility (Don't abuse this)"
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
@@ -145,7 +145,7 @@
 
 /client/proc/game_panel()
 	set name = "Game Panel"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		holder.Game()
 	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -256,7 +256,7 @@
 #undef AUTOBANTIME
 
 /client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
-	set category = "Special Verbs"
+	set category = "Special Verbs.Fun"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
@@ -339,7 +339,7 @@
 	log_and_message_admins("has given [key_name(L)] the modifer [new_modifier_type], with a duration of [duration ? "[duration / 600] minutes" : "forever"].")
 
 /client/proc/make_sound(var/obj/O in world) // -- TLE
-	set category = "Special Verbs"
+	set category = "Special Verbs.Events"
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
 	if(O)
@@ -354,13 +354,13 @@
 
 /client/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode Self"
-	set category = "Special Verbs"
+	set category = "Special Verbs.Events"
 	if(src.mob)
 		togglebuildmode(src.mob)
 	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/object_talk(var/msg as text) // -- TLE
-	set category = "Special Verbs"
+	set category = "Special Verbs.Events"
 	set name = "oSay"
 	set desc = "Display a message to everyone who can hear the target"
 	if(mob.control_object)
@@ -414,7 +414,7 @@
 
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
-	set category = "Admin"
+	set category = "Admin.Game"
 	if(holder)
 		src.holder.output_ai_laws()
 
@@ -450,7 +450,7 @@
 /client/proc/change_security_level()
 	set name = "Set security level"
 	set desc = "Sets the station security level"
-	set category = "Admin"
+	set category = "Admin.Events"
 
 	if(!check_rights(R_ADMIN|R_EVENT))	return
 	var/sec_level = tgui_input_list(usr, "It's currently code [get_security_level()].", "Select Security Level", (list("green","yellow","violet","orange","blue","red","delta")-get_security_level()))
