@@ -129,37 +129,6 @@ SUBSYSTEM_DEF(statpanels)
 /datum/controller/subsystem/statpanels/proc/set_tickets_tab(client/target)
 	var/list/ahelp_tickets = GLOB.ahelp_tickets.stat_entry()
 	target.stat_panel.send_message("update_tickets", ahelp_tickets)
-	/*
-	var/datum/interview_manager/m = GLOB.interviews
-
-	// get open interview count
-	var/dc = 0
-	for (var/ckey in m.open_interviews)
-		var/datum/interview/current_interview = m.open_interviews[ckey]
-		if (current_interview && !current_interview.owner)
-			dc++
-	var/stat_string = "([m.open_interviews.len - dc] online / [dc] disconnected)"
-
-	// Prepare each queued interview
-	var/list/queued = list()
-	for (var/datum/interview/queued_interview in m.interview_queue)
-		queued += list(list(
-			"ref" = REF(queued_interview),
-			"status" = "\[[queued_interview.pos_in_queue]\]: [queued_interview.owner_ckey][!queued_interview.owner ? " (DC)": ""] \[INT-[queued_interview.id]\]"
-		))
-
-	*/
-	//var/list/queued = list() // -- REMOVE IF ABOVE IS FIXED --
-	//var/list/data = list(
-	//	"status" = list(
-	//		"Active:" = GLOB.ahelp_tickets.active_tickets,
-	//		"Resolved:" = GLOB.ahelp_tickets.resolved_tickets,
-	//		"Closed:" = GLOB.ahelp_tickets.closed_tickets),
-	//	"interviews" = queued
-	//)
-
-	// Push update
-	//target.stat_panel.send_message("update_interviews", data)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
 	var/list/sdql2A = list()
