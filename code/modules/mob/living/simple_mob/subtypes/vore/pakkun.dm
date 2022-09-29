@@ -54,6 +54,11 @@
 
 /mob/living/simple_mob/vore/pakkun/Life()
 	. = ..()
+	if(client)
+		return
+	if(!ai_holder)
+		return
+
 	if(autorest_cooldown)
 		autorest_cooldown --
 	else if(prob(5) && ai_holder.stance == STANCE_IDLE)
