@@ -149,17 +149,17 @@ SUBSYSTEM_DEF(statpanels)
 		))
 
 	*/
-	var/list/queued = list() // -- REMOVE IF ABOVE IS FIXED --
-	var/list/data = list(
-		"status" = list(
-			"Active:" = "-- Not Available --",
-			"Queued:" = "-- Not Available --",
-			"Closed:" = "-- Not Available --"),
-		"interviews" = queued
-	)
+	//var/list/queued = list() // -- REMOVE IF ABOVE IS FIXED --
+	//var/list/data = list(
+	//	"status" = list(
+	//		"Active:" = GLOB.ahelp_tickets.active_tickets,
+	//		"Resolved:" = GLOB.ahelp_tickets.resolved_tickets,
+	//		"Closed:" = GLOB.ahelp_tickets.closed_tickets),
+	//	"interviews" = queued
+	//)
 
 	// Push update
-	target.stat_panel.send_message("update_interviews", data)
+	//target.stat_panel.send_message("update_interviews", data)
 
 /datum/controller/subsystem/statpanels/proc/set_SDQL2_tab(client/target)
 	var/list/sdql2A = list()
