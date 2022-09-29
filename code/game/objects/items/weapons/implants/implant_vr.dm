@@ -133,3 +133,76 @@
 	..()
 	update()
 	return
+
+
+//////////////////////////////
+//	Compliance Implant
+//////////////////////////////
+/obj/item/weapon/implanter/compliance
+	name = "compliance implant"
+	desc = "Implant which allows for implanting 'laws' or 'commands' in the host. Has a minature keyboard for typing laws into."
+	description_info = {"An implant that allows for a 'law' or 'command' to be uploaded in the implanted host.
+In un-modified organics, this is performed through manipulation of the nervous system and release of chemicals to ensure continued compliance.
+In synthetics or modified organics, this implant uploads a virus to any compatable hardware.
+Due to the small chemical capacity of the implant, the life of the implant is relatively small, wearing off within 24 hours or sooner.
+Obviously lethal commands such as telling the subject to kill themselves or harm others will result in the command being disregarded."}
+
+	description_fluff = "Due to the illegality of these types of implants, they are often made in clandestine facilities with a complete lack of quality control \
+	and as such, may malfunction or simply not work whatsoever. After loyalty implants were outlawed in many civilized areas of space, an abundance of readily \
+	available implanters and implants became available for purchase on the black market, with some deciding to modify them. Now, they are often used by illegal \
+	entities to perform espionage and in some parts of space are used off the books for interrogation. Most of the makers of these modified implants have put in \
+	safeties to prevent lethal or actively harmful commands from being input to lessen the severity of the crime if they are caught. This one has a golden stamp \
+	with the shape of a star on it, the letters 'KE' in black text on it."
+
+/obj/item/weapon/implanter/compliance/New()
+	src.imp = new /obj/item/weapon/implant/compliance( src )
+	..()
+	update()
+	return
+
+/obj/item/weapon/implanter/compliance/attack_self(mob/user)
+	if(istype(imp,/obj/item/weapon/implant/compliance))
+		var/obj/item/weapon/implant/compliance/implant = imp
+		var/newlaws = tgui_input_text(user, "Please Input Laws", "Compliance Laws", "", multiline = TRUE, prevent_enter = TRUE)
+		newlaws = sanitize(newlaws,2048)
+		if(newlaws)
+			to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
+			implant.laws = newlaws //Organic
+	else //No using other implants.
+		to_chat(user,"A red warning pops up on the implanter's micro-screen: 'INVALID IMPLANT DETECTED.'</span>")
+
+
+/obj/item/weapon/implant/compliance
+	name = "compliance implant"
+	desc = "Implant which allows for forcing obedience in the host."
+	icon_state = "implant_evil"
+	var/active = TRUE
+	var/laws = "CHANGE BEFORE IMPLANTATION"
+	var/nif_payload = /datum/nifsoft/compliance
+
+/obj/item/weapon/implant/compliance/get_data()
+	var/dat = {"
+<b>Implant Specifications:</b><BR>
+<b>Name:</b>Compliance Implant<BR>
+<b>Life:</b>24 Hours<BR>
+<HR>
+<b>Function:</b> Forces a subject to follow a set of laws.<BR>
+<HR>
+<b>Set Laws:</b>[laws]"}
+	return dat
+
+/obj/item/weapon/implant/compliance/post_implant(mob/source, mob/living/user = usr)
+	if(!ishuman(source)) //No compliance implanting non-humans.
+		return
+
+	var/mob/living/carbon/human/target = source
+	if(!target.nif || target.nif.stat != NIF_WORKING) //No nif or their NIF is broken.
+		to_chat(target, "<span class='notice'>You suddenly feel compelled to follow the following commands: [laws]</span>")
+		to_chat(target, "<span class='notice'>((OOC NOTE: Obviously lethal commands or commands that harm others should be disregarded.))</span>")
+		to_chat(target, "<span class='notice'>((OOC NOTE: Your new commands can be checked at any time by using the 'notes' command in chat. Additionally, if you did not agree to this, you are not compelled to follow the implant.))</span>")
+		target.add_memory(laws)
+		return
+	else //You got a nif...Upload time.
+		new nif_payload(target.nif,laws)
+		to_chat(target, "<span class='notice'>((OOC NOTE: Obviously lethal commands or commands that harm others should be disregarded.))</span>")
+		to_chat(target, "<span class='notice'>((OOC NOTE: If you did not agree to this, you are not compelled to follow the laws.))</span>")
