@@ -252,7 +252,7 @@
 			if(BUILDMODE_BASIC)
 
 				return 1
-			if(BUILDMODE_ADVANCED) //BUILDMODE-ADVANCED-DEBUGGING-COMMENT
+			if(BUILDMODE_ADVANCED)
 				objholder = get_path_from_partial_text()
 
 			if(BUILDMODE_EDIT)
@@ -373,7 +373,7 @@
 				easter_egg.color = "#a418c7"
 
 
-		if(BUILDMODE_ADVANCED) //BUILDMODE-ADVANCED-DEBUGGING-COMMENT
+		if(BUILDMODE_ADVANCED)
 			if(pa.Find("left") && !pa.Find("ctrl"))
 				if(ispath(holder.buildmode.objholder,/turf))
 					var/turf/T = get_turf(object)
@@ -638,7 +638,7 @@
 			to_chat(user, span("notice", "Band-selected [i] mobs."))
 			return
 
-/obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path) //BUILDMODE-ADVANCED-DEBUGGING-COMMENT
+/obj/effect/bmode/buildmode/proc/get_path_from_partial_text(default_path)
 	var/desired_path = tgui_input_text(usr, "Enter full or partial typepath.","Typepath","[default_path]")
 
 	if(!desired_path)	//VOREStation Add - If you don't give it anything it builds a list of every possible thing in the game and crashes your client.
