@@ -198,11 +198,11 @@ Obviously lethal commands such as telling the subject to kill themselves or harm
 	var/mob/living/carbon/human/target = source
 	if(!target.nif || target.nif.stat != NIF_WORKING) //No nif or their NIF is broken.
 		to_chat(target, "<span class='notice'>You suddenly feel compelled to follow the following commands: [laws]</span>")
-		to_chat(target, "<span class='notice'>((OOC NOTE: Obviously lethal commands or commands that harm others should be disregarded.))</span>")
+		to_chat(target, "<span class='notice'>((OOC NOTE: Obviously suicidal commands should be disregarded. The implant doesn't stop your self preservation.))</span>")
 		to_chat(target, "<span class='notice'>((OOC NOTE: Your new commands can be checked at any time by using the 'notes' command in chat. Additionally, if you did not agree to this, you are not compelled to follow the implant.))</span>")
 		target.add_memory(laws)
 		return
 	else //You got a nif...Upload time.
 		new nif_payload(target.nif,laws)
-		to_chat(target, "<span class='notice'>((OOC NOTE: Obviously lethal commands or commands that harm others should be disregarded.))</span>")
+		to_chat(target, "<span class='notice'>((OOC NOTE: Obviously suicidal commands should be disregarded. The implant doesn't stop your self preservation.))</span>")
 		to_chat(target, "<span class='notice'>((OOC NOTE: If you did not agree to this, you are not compelled to follow the laws.))</span>")
