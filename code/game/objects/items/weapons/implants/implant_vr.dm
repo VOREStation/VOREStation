@@ -144,8 +144,7 @@
 	description_info = {"An implant that allows for a 'law' or 'command' to be uploaded in the implanted host.
 In un-modified organics, this is performed through manipulation of the nervous system and release of chemicals to ensure continued compliance.
 In synthetics or modified organics, this implant uploads a virus to any compatable hardware.
-Due to the small chemical capacity of the implant, the life of the implant is relatively small, wearing off within 24 hours or sooner.
-Obviously lethal commands such as telling the subject to kill themselves or harm others will result in the command being disregarded."}
+Due to the small chemical capacity of the implant, the life of the implant is relatively small, wearing off within 24 hours or sooner."}
 
 	description_fluff = "Due to the illegality of these types of implants, they are often made in clandestine facilities with a complete lack of quality control \
 	and as such, may malfunction or simply not work whatsoever. After loyalty implants were outlawed in many civilized areas of space, an abundance of readily \
