@@ -47,7 +47,7 @@
 		to_chat(user, "<span class='warning'>[comp] is already in a shuttle.</span>")
 		return
 	// Count turfs in the area
-	var/list/turfs = get_area_turfs(my_area)
+	var/list/turfs = get_current_area_turfs(my_area)
 	if(turfs.len > max_area_turfs)
 		to_chat(user, "<span class='warning'>The new shuttle area is too large.</span>")
 		return
