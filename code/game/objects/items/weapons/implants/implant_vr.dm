@@ -169,7 +169,7 @@ Obviously lethal commands such as telling the subject to kill themselves or harm
 			to_chat(user,"You set the laws to: <br><span class='notice'>[newlaws]</span>")
 			implant.laws = newlaws //Organic
 	else //No using other implants.
-		to_chat(user,"A red warning pops up on the implanter's micro-screen: 'INVALID IMPLANT DETECTED.'</span>")
+		to_chat(user,"<span class='notice'>A red warning pops up on the implanter's micro-screen: 'INVALID IMPLANT DETECTED.'</span>")
 
 
 /obj/item/weapon/implant/compliance
