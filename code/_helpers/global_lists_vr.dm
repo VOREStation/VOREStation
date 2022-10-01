@@ -826,3 +826,66 @@ var/global/list/xenobio_rainbow_extracts = list(
 										/obj/item/slime_extract/emerald = 3,
 										/obj/item/slime_extract/light_pink = 1,
 										/obj/item/slime_extract/rainbow = 1)
+
+
+// BLUEPRINT STUFF BELOW HERE
+// typecacheof(list) and list() are two completely separate things, don't break!
+
+// WHATEVER YOU DO, DO NOT LEAVE THE LAST THING IN THE LIST BELOW HAVE A COMMA OR EVERYTHING EVER WILL BREAK
+// ENSURE THE LAST AREA OR TURF LISTED IS SIMPLY "/area/clownhideout" AND NOT "/area/clownhideout," OR YOU WILL IMMEDIATELY DIE
+
+var/global/list/BUILDABLE_AREA_TYPES = list(
+	/area/space,
+	/area/mine,
+	//TETHER STUFF BELOW THIS
+	/area/tether/surfacebase/outside,
+	//GROUNDBASE STUFF BELOW THIS
+	/area/groundbase/unexplored/outdoors,
+	/area/maintenance/groundbase/level1,
+	/area/submap/groundbase/wilderness,
+	/area/groundbase/mining
+)
+
+var/static/list/blacklisted_areas = typecacheof(list(
+	/area/space,
+	/area/mine,
+	//TETHER STUFF BELOW THIS
+	/area/tether/surfacebase/outside,
+	//GROUNDBASE STUFF BELOW THIS
+	/area/groundbase/unexplored/outdoors,
+	/area/maintenance/groundbase/level1,
+	/area/submap/groundbase/wilderness,
+	/area/groundbase/mining
+	))
+
+var/global/list/SPECIALS = list(
+	/turf/space,
+	/area/shuttle,
+	/area/admin,
+	/area/arrival,
+	/area/centcom,
+	/area/asteroid,
+	/area/tdome,
+	/area/syndicate_station,
+	/area/wizard_station,
+	/area/prison,
+	/area/holodeck,
+	/area/turbolift
+	// /area/derelict //commented out, all hail derelict-rebuilders!
+)
+
+var/global/list/area_or_turf_fail_types = typecacheof(list(
+	/turf/space,
+	/area/shuttle,
+	/area/admin,
+	/area/arrival,
+	/area/centcom,
+	/area/asteroid,
+	/area/tdome,
+	/area/syndicate_station,
+	/area/wizard_station,
+	/area/prison,
+	/area/holodeck,
+	/turf/simulated/wall/elevator,
+	/area/turbolift
+	))

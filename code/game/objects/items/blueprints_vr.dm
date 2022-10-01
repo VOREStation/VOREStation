@@ -64,36 +64,6 @@
 	var/list/areaColor_turfs = list()
 	var/legend = 0 //If viewing wires or not.
 
-	//Allows you to build new areas in these areas easily.
-	var/static/list/BUILDABLE_AREA_TYPES = list(
-		/area/space,
-		/area/mine,
-		//TETHER STUFF BELOW THIS
-		/area/tether/surfacebase/outside,
-		//GROUNDBASE STUFF BELOW THIS
-		/area/groundbase/unexplored/outdoors,
-		/area/maintenance/groundbase/level1,
-		/area/submap/groundbase/wilderness,
-		/area/groundbase/mining
-	)
-	//Forbids you from doing anything to these areas.
-	var/static/list/SPECIALS = list(
-		/turf/space,
-		/area/shuttle,
-		/area/admin,
-		/area/arrival,
-		/area/centcom,
-		/area/asteroid,
-		/area/tdome,
-		/area/syndicate_station,
-		/area/wizard_station,
-		/area/prison,
-		/area/holodeck,
-		/area/turbolift
-		// /area/derelict //commented out, all hail derelict-rebuilders!
-	)
-
-
 
 /obj/item/areaeditor/attack_self(mob/user) //Convert this to TGUI sometime to disallow browser exploits.
 	add_fingerprint(user)
@@ -378,34 +348,7 @@
 	// WHATEVER YOU DO, DO NOT LEAVE THE LAST THING IN THE LIST BELOW HAVE A COMMA OR EVERYTHING EVER WILL BREAK
 	// AND ENGINEERS ALL OVER THE WORLD WILL HARMBATON YOU
 	// ENSURE THE LAST AREA OR TURF LISTED IS SIMPLY "/area/clownhideout" AND NOT "/area/clownhideout," OR YOU WILL IMMEDIATELY DIE
-	var/static/list/area_or_turf_fail_types = typecacheof(list(
-		/turf/space,
-		/area/shuttle,
-		/area/admin,
-		/area/arrival,
-		/area/centcom,
-		/area/asteroid,
-		/area/tdome,
-		/area/syndicate_station,
-		/area/wizard_station,
-		/area/prison,
-		/area/holodeck,
-		/turf/simulated/wall/elevator,
-		/area/turbolift
-		))
-
 	// Ignore these areas and dont let people expand them. They can expand into them though
-	var/static/list/blacklisted_areas = typecacheof(list(
-		/area/space,
-		/area/mine,
-		//TETHER STUFF BELOW THIS
-		/area/tether/surfacebase/outside,
-		//GROUNDBASE STUFF BELOW THIS
-		/area/groundbase/unexplored/outdoors,
-		/area/maintenance/groundbase/level1,
-		/area/submap/groundbase/wilderness,
-		/area/groundbase/mining
-		))
 
 	var/list/turfs = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
 	if(!turfs)
@@ -468,35 +411,6 @@
 // In essence, it does a few things: Ensure no blacklisted areas are nearby, get the nearby areas (to allow merging), and allow you to make a whole near area.
 /obj/item/areaeditor/proc/create_area_whole(mob/creator) //Gets the entire enclosed space and makes a new area out of it. Can overwrite old areas.
 
-	//TODO: Convert this and the one in create_area to a global list.
-	var/static/list/area_or_turf_fail_types = typecacheof(list(
-		/turf/space,
-		/area/shuttle,
-		/area/admin,
-		/area/arrival,
-		/area/centcom,
-		/area/asteroid,
-		/area/tdome,
-		/area/syndicate_station,
-		/area/wizard_station,
-		/area/prison,
-		/area/holodeck,
-		/turf/simulated/wall/elevator,
-		/area/turbolift
-		))
-
-	var/static/list/blacklisted_areas = typecacheof(list(
-		/area/space,
-		/area/mine,
-		//TETHER STUFF BELOW THIS
-		/area/tether/surfacebase/outside,
-		//GROUNDBASE STUFF BELOW THIS
-		/area/groundbase/unexplored/outdoors,
-		/area/maintenance/groundbase/level1,
-		/area/submap/groundbase/wilderness,
-		/area/groundbase/mining
-		))
-
 	var/res = detect_room_ex(get_turf(creator), can_create_areas_into, area_or_turf_fail_types)
 	if(!res)
 		to_chat(creator, span_warning("There is an area forbidden from being edited here! Use the fine-tune area creator! (3x3)"))
@@ -541,12 +455,18 @@
 			continue // No expanding powerless rooms etc
 		areas[place.name] = place
 
-	var/area_choice = tgui_input_list(creator, "Choose an area to merge into the area you are currently standing on OR make a new area..", "Area Expansion", areas)
+	//They can select an area they want to turn their current area into.
+	var/area_choice = tgui_input_list(creator, "What area do you want to turn the area YOU ARE CURRENTLY STANDING IN to? Or do you want to make a new area?", "Area Expansion", areas)
 	if(isnull(area_choice)) //They pressed cancel.
 		to_chat(creator, "<span class='warning'>No changes made.</span>")
 		return
 
 	area_choice = areas[area_choice]
+
+	var/confirm = tgui_alert(creator, "Are you sure you want to turn [oldA.name] into [area_choice]?", "READ CAREFULLY", list("No", "Yes"))
+	if(confirm == "No")
+		to_chat(creator, "<span class='warning'>No changes made.</span>")
+		return
 
 	if(!isarea(area_choice)) //They chose "New Area"
 		str = tgui_input_text(creator, "New area name", "Blueprint Editing", max_length = MAX_NAME_LEN)
@@ -564,7 +484,7 @@
 		newA.setup(str)
 		newA.has_gravity = oldA.has_gravity
 	else
-		newA = area_choice
+		newA = area_choice //They selected to turn the area they're standing on into the selected area.
 
 	if(str) //New area, new name.
 		newA.setup(str)
@@ -586,10 +506,10 @@
 		ChangeArea(T, A)
 
 
-/obj/item/areaeditor/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE, list/forbiddenAreas)
+/obj/item/areaeditor/proc/detect_room_ex(var/turf/first, var/allowedAreas = AREA_SPACE, var/list/forbiddenAreas = list(), var/visual)
 	if(!istype(first))
 		return ROOM_ERR_LOLWAT
-	if(forbiddenAreas[first.loc.type] || forbiddenAreas[first.type]) //Is the area of the starting turf a banned area? Is the turf a banned area?
+	if(!visual && forbiddenAreas[first.loc.type] || forbiddenAreas[first.type]) //Is the area of the starting turf a banned area? Is the turf a banned area?
 		return ROOM_ERR_FORBIDDEN
 	var/list/turf/found = new
 	var/list/turf/pending = list(first)
@@ -602,7 +522,7 @@
 			var/turf/NT = get_step(T,dir)
 			if (!isturf(NT) || (NT in found) || (NT in pending))
 				continue
-			if(forbiddenAreas[NT.loc.type])
+			if(!visual && forbiddenAreas[NT.loc.type])
 				return ROOM_ERR_FORBIDDEN
 			// We ask ZAS to determine if its airtight.  Thats what matters anyway right?
 			if(air_master.air_blocked(T, NT))
@@ -641,7 +561,7 @@
 
 	// If standing somewhere we can expand from, use expand perms, otherwise create
 	var/canOverwrite = (get_area_type() & can_expand_areas_in) ? can_expand_areas_into : can_create_areas_into
-	var/res = detect_room_ex(get_turf(usr), canOverwrite)
+	var/res = detect_room_ex(get_turf(usr), canOverwrite, visual = 1)
 	if(!istype(res, /list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
