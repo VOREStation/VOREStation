@@ -189,6 +189,7 @@
 	var/atom/movable/throw_atom = null
 	var/list/selected_mobs = list()
 	var/copied_faction = null
+	var/warned = 0
 
 /obj/effect/bmode/buildholder/Destroy()
 	qdel(builddir)
@@ -219,7 +220,7 @@
 	screen_loc = "NORTH,WEST+2"
 	var/varholder = "name"
 	var/valueholder = "derp"
-	var/objholder = /obj/structure/closet
+	var/objholder = null
 	var/objsay = 1
 
 	var/wall_holder = /turf/simulated/wall
@@ -252,7 +253,7 @@
 
 				return 1
 			if(BUILDMODE_ADVANCED)
-				objholder = get_path_from_partial_text(/obj/structure/closet)
+				objholder = get_path_from_partial_text()
 
 			if(BUILDMODE_EDIT)
 				var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "viruses", "cuffed", "ka", "last_eaten", "urine")
@@ -330,7 +331,13 @@
 					return
 				else if(istype(object,/turf/simulated/floor))
 					var/turf/T = object
-					T.ChangeTurf(/turf/space)
+					if(!holder.warned)
+						var/warning = alert("Are you -sure- you want to delete this turf and make it the base turf for this Z level?", "GRIEF ALERT", "No", "Yes")
+						if(warning == "Yes")
+							holder.warned = 1
+						else
+							return
+					T.ChangeTurf(get_base_turf_by_area(T)) //Defaults to Z if area does not have a special base turf.
 					return
 				else if(istype(object,/turf/simulated/wall/r_wall))
 					var/turf/T = object
@@ -646,9 +653,13 @@
 	if(matches.len==1)
 		result = matches[1]
 	else
+<<<<<<< HEAD
 		result = tgui_input_list(usr, "Select an atom type", "Spawn Atom", matches, strict_modern = TRUE)
 		if(!objholder)
 			result = default_path
+=======
+		result = input("Select an atom type", "Spawn Atom", matches[1]) as null|anything in matches
+>>>>>>> 502a3783e54... Merge pull request #8719 from Cerebulon/buildmodeimprovements
 	return result
 
 /obj/effect/bmode/buildmode/proc/make_rectangle(var/turf/A, var/turf/B, var/turf/wall_type, var/turf/floor_type)
