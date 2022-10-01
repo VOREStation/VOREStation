@@ -5,7 +5,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
-		/obj/item/blueprints,
+		/obj/item/areaeditor/blueprints,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
 		/obj/item/clothing/under/rank/chief_engineer,

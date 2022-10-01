@@ -43,7 +43,7 @@ var/global/list/item_vore_blacklist = list(
 		/obj/item/weapon/gun,
 		/obj/item/weapon/pinpointer,
 		/obj/item/clothing/shoes/magboots,
-		/obj/item/blueprints,
+		/obj/item/areaeditor/blueprints,
 		/obj/item/clothing/head/helmet/space,
 		/obj/item/weapon/disk/nuclear,
 		/obj/item/clothing/suit/storage/hooded/wintercoat/roiz)
