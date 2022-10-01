@@ -344,12 +344,6 @@
 		return found_turfs
 
 /proc/create_area(mob/creator)
-	// Passed into the above proc as list/break_if_found
-	// WHATEVER YOU DO, DO NOT LEAVE THE LAST THING IN THE LIST BELOW HAVE A COMMA OR EVERYTHING EVER WILL BREAK
-	// AND ENGINEERS ALL OVER THE WORLD WILL HARMBATON YOU
-	// ENSURE THE LAST AREA OR TURF LISTED IS SIMPLY "/area/clownhideout" AND NOT "/area/clownhideout," OR YOU WILL IMMEDIATELY DIE
-	// Ignore these areas and dont let people expand them. They can expand into them though
-
 	var/list/turfs = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
 	if(!turfs)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
