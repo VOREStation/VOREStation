@@ -128,7 +128,7 @@
 			to_chat(usr, "<span class='notice'>***********************************************************<br>\
 							Left Mouse Button on turf              = Select as point A<br>\
 							Right Mouse Button on turf             = Select as point B<br>\
-							Right Mouse Button on buildmode button = Change floor/wall type<br>\
+							Right Mouse Button on buildmode button = Change floor/wall type/area name<br>\
 							***********************************************************</span>")
 
 		if(BUILDMODE_LADDER)
@@ -226,6 +226,8 @@
 	var/floor_holder = /turf/simulated/floor/plating
 	var/turf/coordA = null
 	var/turf/coordB = null
+	var/area_enabled = 0
+	var/area_name = "New Area"
 
 	var/new_light_color = "#FFFFFF"
 	var/new_light_range = 3
@@ -275,6 +277,18 @@
 						master.buildmode.valueholder = tgui_input_list(usr,"Enter variable value:", "Value", world)
 
 			if(BUILDMODE_ROOM)
+				var/area_choice = tgui_alert(usr, "Would you like to generate a new area as well?","Room Builder", list("No", "Yes"))
+				switch(area_choice)
+					if("No")
+						area_enabled = 0
+					if("Yes")
+						area_enabled = 1
+						area_name = tgui_input_text(usr, "New area name", "Room Buildmode", max_length = MAX_NAME_LEN)
+						if(isnull(area_name))
+							to_chat(usr, "<span class='notice'>You must enter a non-null name.</span>")
+							area_enabled = 0
+							return
+						area_name = sanitize(area_name,MAX_NAME_LEN)
 				var/choice = tgui_alert(usr, "Would you like to change the floor or wall holders?","Room Builder", list("Floor", "Wall"))
 				switch(choice)
 					if("Floor")
@@ -411,13 +425,19 @@
 				to_chat(user, "<span class='notice'>Defined [object] ([object.type]) as point B.</span>")
 
 			if(holder.buildmode.coordA && holder.buildmode.coordB)
+				if(isnull(holder.buildmode.area_name))
+					to_chat(user, "<span class='notice'>ERROR: Insert area name before use.</span>")
+					holder.buildmode.coordA = null
+					holder.buildmode.coordB = null
+					return
 				to_chat(user, "<span class='notice'>A and B set, creating rectangle.</span>")
 				holder.buildmode.make_rectangle(
 					holder.buildmode.coordA,
 					holder.buildmode.coordB,
 					holder.buildmode.wall_holder,
-					holder.buildmode.floor_holder
-					)
+					holder.buildmode.floor_holder,
+					holder.buildmode.area_enabled,
+					holder.buildmode.area_name)
 				holder.buildmode.coordA = null
 				holder.buildmode.coordB = null
 
@@ -651,7 +671,7 @@
 			result = default_path
 	return result
 
-/obj/effect/bmode/buildmode/proc/make_rectangle(var/turf/A, var/turf/B, var/turf/wall_type, var/turf/floor_type)
+/obj/effect/bmode/buildmode/proc/make_rectangle(var/turf/A, var/turf/B, var/turf/wall_type, var/turf/floor_type, var/area_enabled, var/area_name)
 	if(!A || !B) // No coords
 		return
 	if(A.z != B.z) // Not same z-level
@@ -685,6 +705,10 @@
 	var/high_bound_x = lower_left_corner.x + abs(width)
 	var/high_bound_y = lower_left_corner.y + abs(height)
 
+	var/origin_x = lower_left_corner.x + round((abs(width)/2))
+	var/origin_y = lower_left_corner.y + round((abs(height)/2))
+	var/turf/origin
+
 	for(var/i = low_bound_x, i <= high_bound_x, i++)
 		for(var/j = low_bound_y, j <= high_bound_y, j++)
 			var/turf/T = locate(i, j, z_level)
@@ -693,11 +717,92 @@
 					T.ChangeTurf(wall_type)
 				else
 					new wall_type(T)
+
 			else
+				if(T.x == origin_x && T.y == origin_y) //Get the middle of the square.
+					origin = T
 				if(isturf(floor_type))
 					T.ChangeTurf(floor_type)
 				else
 					new floor_type(T)
+	log_debug("area_enabled is set to [area_enabled]")
+	if(area_enabled) //Let's try not to make a new area unless you got walls and a floor.
+		create_buildmode_area(area_name, origin) //Generates a new area.
+
+/proc/create_buildmode_area(var/area_name, var/turf/origin)
+	var/turfs = detect_room_buildmode(origin)
+
+	var/area/newA
+	var/area/oldA = get_area(origin)
+	var/str = area_name
+	str = sanitize(str,MAX_NAME_LEN)
+	if(!str || !length(str)) //cancel
+		return
+	newA = new /area/buildmode
+	newA.dynamic_lighting = FALSE // Without this it's pitch black if you build anywhere but space.
+	newA.luminosity = TRUE // Without this it's pitch black if you build anywhere but space.
+	newA.setup(str)
+	newA.has_gravity = oldA.has_gravity
+
+	for(var/i in 1 to length(turfs)) //Fix lighting. Praise the lord.
+		var/turf/thing = turfs[i]
+		newA.contents += thing
+		thing.change_area(oldA, newA)
+
+	set_area_machinery(newA, newA.name, oldA.name)// Change the name and area defines of all the machinery to the correct area.
+	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
+	return TRUE
+
+/proc/detect_room_buildmode(var/turf/first, var/allowedAreas = AREA_SPACE)
+	if(!istype(first))
+		return
+	var/list/turf/found = new
+	var/list/turf/pending = list(first)
+	while(pending.len)
+		var/turf/T = pending[1]
+		pending -= T
+		for (var/dir in cardinal)
+			var/turf/NT = get_step(T,dir)
+			if (!isturf(NT) || (NT in found) || (NT in pending))
+				continue
+			// We ask ZAS to determine if its airtight.  Thats what matters anyway right?
+			if(air_master.air_blocked(T, NT))
+				// Okay thats the edge of the room
+				if(get_area_type_buildmode(NT.loc) == AREA_SPACE && air_master.air_blocked(NT, NT))
+					found += NT // So we include walls/doors not already in any area
+				continue
+			if (istype(NT, /turf/space))
+				return //omg hull breach we all going to die here
+			if (istype(NT, /turf/simulated/shuttle))
+				return // Unsure why this, but was in old code. Trusting for now.
+			if (NT.loc != first.loc && !(get_area_type_buildmode(NT.loc) & allowedAreas))
+				// Edge of a protected area.  Lets stop here...
+				continue
+			if (!istype(NT, /turf/simulated))
+				// Great, unsimulated... eh, just stop searching here
+				continue
+			// Okay, NT looks promising, lets continue the search there!
+			pending += NT
+		found += T
+	// end while
+	return found
+
+/proc/get_area_type_buildmode(area/A)
+	if(A.outdoors)
+		return AREA_SPACE
+
+	for (var/type in BUILDABLE_AREA_TYPES)
+		if ( istype(A,type) )
+			return AREA_SPACE
+
+	for (var/type in SPECIALS)
+		if ( istype(A,type) )
+			return AREA_SPECIAL
+	return AREA_STATION
+
+/area/buildmode
+	dynamic_lighting = FALSE
+	luminosity = FALSE
 
 #undef BUILDMODE_BASIC
 #undef BUILDMODE_ADVANCED

@@ -332,6 +332,10 @@
 			if(break_if_found[checkT.type] || break_if_found[checkT.loc.type])
 				return FALSE
 
+			//The below checks to make sure air can pass between the two turfs. If not, it can't be added to the area.
+			//This means walls can not be added to an area. The turf must first be added and then the wall.
+			//COMMENT THIS OUT IF YOU WANT THE BLUEPRINTS TO ADD WALLS TO AN AREA.
+
 			//BEGIN ESOTERIC BULLSHIT
 			//log_debug("Origin: [origin.c_airblock(checkT)] SourceT: [sourceT.c_airblock(checkT)] 0=NB 1=AB 2=ZB, 3=B")
 			if(origin.c_airblock(checkT)) //If everything breaks and it doesn't want to work, turn on the above debug and check this line. C.L. 0 = not blocked.
