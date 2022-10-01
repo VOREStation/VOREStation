@@ -393,9 +393,10 @@
 	else
 		newA = area_choice
 
-	for(var/i in 1 to length(turfs))
+	for(var/i in 1 to length(turfs)) //Fix lighting. Praise the lord.
 		var/turf/thing = turfs[i]
 		newA.contents += thing
+		thing.change_area(oldA, newA)
 
 
 	set_area_machinery(newA, newA.name, oldA.name)// Change the name and area defines of all the machinery to the correct area.
@@ -490,6 +491,12 @@
 		newA.setup(str)
 	else
 		newA.setup(newA.name)
+
+	for(var/i in 1 to length(turfs)) //Fix lighting. Praise the lord.
+		var/turf/thing = turfs[i]
+		newA.contents += thing
+		thing.change_area(oldA, newA)
+
 	move_turfs_to_area(turfs, newA)
 	newA.has_gravity = oldA.has_gravity
 	set_area_machinery(newA, newA.name, oldA.name)
