@@ -101,20 +101,20 @@ const SelectionSection = (props, context) => {
 
 const LayerSection = (props, context) => {
   const { act, data } = useBackend(context);
-  const { category: rootCategoryIndex, piping_layer } = data;
+  const { category: rootCategoryIndex, piping_layer, pipe_layers } = data;
   const previews = data.preview_rows.flatMap((row) => row.previews);
   return (
     <Section fill width={7.5}>
       {rootCategoryIndex === 0 && (
         <Stack vertical mb={1}>
-          {[1, 2, 3, 4, 5].map((layer) => (
+          {Object.keys(pipe_layers).map((layer) => (
             <Stack.Item my={0} key={layer}>
               <Button.Checkbox
-                checked={layer === piping_layer}
-                content={'Layer ' + layer}
+                checked={pipe_layers[layer] === piping_layer}
+                content={layer}
                 onClick={() =>
                   act('piping_layer', {
-                    piping_layer: layer,
+                    piping_layer: pipe_layers[layer],
                   })
                 }
               />
