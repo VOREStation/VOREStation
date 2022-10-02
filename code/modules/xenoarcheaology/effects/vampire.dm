@@ -24,7 +24,7 @@
 		var/obj/effect/decal/cleanable/blood/splatter/animated/B = new(M.loc)
 		B.basecolor = M.species.get_blood_colour(M)
 		B.color = M.species.get_blood_colour(M)
-		B.target_turf = pick(range(1, get_turf(holder)))
+		B.target_turf = pick(RANGE_TURFS(1, holder))
 		B.blood_DNA = list()
 		B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
 		M.vessel.remove_reagent("blood",rand(10,30))

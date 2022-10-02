@@ -41,7 +41,7 @@
 
 /obj/machinery/telecomms/tgui_data(mob/user)
 	var/list/data = list()
-	
+
 	data["temp"] = temp
 	data["on"] = on
 
@@ -81,7 +81,7 @@
 				"index" = i,
 			)))
 		data["linked"] = linked
-		
+
 		var/list/filter = list()
 		for(var/x in freq_listening)
 			filter.Add(list(list(
@@ -213,7 +213,7 @@
 /obj/machinery/telecomms/bus/Options_Act(action, params)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("change_freq")
 			. = TRUE
@@ -267,7 +267,7 @@
 /obj/machinery/telecomms/receiver/Options_Act(action, params)
 	if(..())
 		return TRUE
-	
+
 	switch(action)
 		if("range")
 			var/new_range = params["range"]
@@ -296,6 +296,7 @@
 
 		if("network")
 			var/newnet = tgui_input_text(usr, "Specify the new network for this machine. This will break all current links.", src, network)
+			newnet = sanitize(newnet,15)
 			if(newnet && canAccess(usr))
 
 				if(length(newnet) > 15)

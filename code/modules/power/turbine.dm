@@ -124,7 +124,8 @@
 	if(default_deconstruction_crowbar(user, W))
 		return
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", name, comp_id)
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", name, comp_id, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			comp_id = new_ident
 		return
@@ -337,7 +338,8 @@
 
 /obj/machinery/computer/turbine_computer/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", name, id)
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", name, id, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id = new_ident
 		return

@@ -643,6 +643,20 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			for(var/turf/T in N) turfs += T
 	return turfs
 
+
+//Takes: An instance of the area.
+//Returns: A list of all turfs in that area.
+//Side note: I don't know why this was never a thing. Did everyone just ignore the Blueprint item?! - C.L.
+/proc/get_current_area_turfs(var/area/checked_area)
+	if(!checked_area)
+		return null
+
+	var/list/turfs = new/list()
+	for(var/turf/counted_turfs in checked_area.contents) //Cheap. Efficient. Lovely.
+		turfs += counted_turfs
+	return turfs
+
+
 //Takes: Area type as text string or as typepath OR an instance of the area.
 //Returns: A list of all atoms	(objs, turfs, mobs) in areas of that type of that type in the world.
 /proc/get_area_all_atoms(var/areatype)
@@ -657,6 +671,18 @@ Turf and target are seperate in case you want to teleport some distance from a t
 		if(istype(N, areatype))
 			for(var/atom/A in N)
 				atoms += A
+	return atoms
+
+
+//Takes: Area as an instance of the area.
+//Returns: A list of all atoms	(objs, turfs, mobs) in the selected area.
+/proc/get_current_area_atoms(var/area/checked_area)
+	if(!checked_area)
+		return null
+
+	var/list/atoms = new/list()
+	for(var/atom/A in checked_area.contents)
+		atoms += A
 	return atoms
 
 /datum/coords //Simple datum for storing coordinates.
