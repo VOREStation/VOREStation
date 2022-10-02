@@ -581,7 +581,7 @@ shadekin_snoot
 	name = "Belly Spiral"
 	icon_state = "bellyspiral"
 	color_blend_mode = ICON_MULTIPLY
-	body_parts = list(BP_TORSO)
+	body_parts = list(BP_TORSO,BP_GROIN)
 
 /datum/sprite_accessory/marking/vr/fluffy_cuffs
 	name = "Wrist Fluff"
