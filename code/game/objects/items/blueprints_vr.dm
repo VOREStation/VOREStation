@@ -10,6 +10,10 @@
 
 // Banning areas: Go to global_lists_vr, jump to the BUILDABLE_AREA_TYPES and read the comments left there.
 
+
+
+
+// These areas are defined here so they can be blacklisted in global_lists_vr
 /area/tether/elevator
 
 	name = "Tether Elevator"
@@ -31,6 +35,27 @@
 
 /area/submap/groundbase/wilderness
 	name = "Groundbase Wilderness"
+
+/area/offmap/aerostat/surface
+	name = "Aerostat Surface"
+
+/area/tether_away/beach
+	name = "\improper Away Mission - Virgo 4 Beach"
+
+/area/tether_away/cave
+	name = "Tether Away Cave"
+
+/area/offmap/aerostat/surface
+
+	name = "Aerostat Surface"
+
+/area/submap/virgo2
+	name = "Submap Area"
+
+/area/submap/casino_event
+	name = "\improper Space Casino"
+
+
 
 //TG blueprints.
 #define AREA_ERRNONE 0
