@@ -463,6 +463,7 @@
 		to_chat(creator, span_warning("The room you're in is too big. It is [length(turfs) >= BP_MAX_ROOM_SIZE *2 ? "more than 100" : ((length(turfs) / BP_MAX_ROOM_SIZE)-1)*100]% larger than allowed."))
 		return
 	var/list/areas = list("New Area" = /area)
+	var/annoy_admins = 0
 
 	for(var/i in 1 to length(turfs))
 		var/area/place = get_area(turfs[i])
@@ -492,6 +493,7 @@
 			if(A.name == str)
 				to_chat(creator, "<span class='warning'>An area in the world alreay has this name.</span>")
 				return
+		annoy_admins = 1 //They just made a new area entirely.
 		newA = new area_choice
 		newA.setup(str)
 		newA.has_gravity = oldA.has_gravity
@@ -507,6 +509,9 @@
 	set_area_machinery(newA, newA.name, oldA.name)// Change the name and area defines of all the machinery to the correct area.
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
+	if(annoy_admins)
+		message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A HREF='?_src_=holder;adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 	if(AO && istype(AO,/obj/item/areaeditor))
 		if(AO.uses_charges)
 			AO.charges -= 1
@@ -625,6 +630,8 @@
 	set_area_machinery(newA, newA.name, oldA.name)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
+	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A HREF='?_src_=holder;adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
 	charges -= 5
 
 	spawn(5)
@@ -900,6 +907,9 @@
 	set_area_machinery(newA, newA.name, oldA.name)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
+	message_admins("[key_name(creator, creator.client)] just made a new area called [newA.name] ](<A HREF='?_src_=holder;adminmoreinfo=\ref[creator]'>?</A>) at ([creator.x],[creator.y],[creator.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[creator.x];Y=[creator.y];Z=[creator.z]'>JMP</a>)",0,1)
+	log_game("[key_name(creator, creator.client)] just made a new area called [newA.name]")
+
 	return
 
 
