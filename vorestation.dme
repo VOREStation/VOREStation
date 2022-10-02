@@ -1159,7 +1159,7 @@
 #include "code\game\objects\items\antag_spawners.dm"
 #include "code\game\objects\items\apc_frame.dm"
 #include "code\game\objects\items\bells.dm"
-#include "code\game\objects\items\blueprints.dm"
+#include "code\game\objects\items\blueprints_vr.dm"
 #include "code\game\objects\items\bodybag.dm"
 #include "code\game\objects\items\contraband.dm"
 #include "code\game\objects\items\contraband_vr.dm"

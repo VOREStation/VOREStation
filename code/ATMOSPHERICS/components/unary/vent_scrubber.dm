@@ -43,6 +43,12 @@
 		assign_uid()
 		id_tag = num2text(uid)
 
+/obj/machinery/atmospherics/unary/vent_scrubber/proc/update_area()
+	initial_loc = get_area(loc)
+	area_uid = "\ref[initial_loc]"
+	assign_uid()
+	id_tag = num2text(uid)
+
 /obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	unregister_radio(src, frequency)
 	if(initial_loc)
