@@ -47,7 +47,11 @@
 	in_use = FALSE
 	preserve_item = 1
 	var/uses_charges = 0 					// If the area editor has limited uses.
-	var/charges = 0							// The amount of uses the area editor has.
+	var/initial_charges = 10
+	var/charges = 10						// The amount of uses the area editor has.
+	var/station_master = 1					// If the areaeditor can add charges to others.
+	var/wire_schematics = 0					// If the areaeditor can see wires.
+	var/can_override = 0						// If you want the areaeditor to override the 'Don't make a new area where one already exists' logic. Only given to CE blueprints.
 
 	var/can_create_areas_in = AREA_SPACE	// Must be standing in space to create
 	var/can_create_areas_into = AREA_SPACE	// New areas will only overwrite space area turfs.
@@ -64,8 +68,38 @@
 	var/list/areaColor_turfs = list()
 	var/legend = 0 //If viewing wires or not.
 
+/obj/item/areaeditor/examine(mob/user)
+	. =..()
+	if(uses_charges && !isnull(charges))
+		. += "There appears to be enough space for a total of [charges] more changes!"
+		if(!charges)
+			. += "There seems to be no more room for any more edits!"
 
-/obj/item/areaeditor/attack_self(mob/user) //Convert this to TGUI sometime to disallow browser exploits.
+/obj/item/areaeditor/attackby(obj/item/W, mob/user, params)
+	if(uses_charges && (charges < initial_charges) && istype(W, /obj/item/areaeditor)) //Do we have a reason to add charges? And is it something that COULD add charges?
+		var/missing_charges = initial_charges-charges
+		var/obj/item/areaeditor/blueprint = W
+		if(blueprint.station_master) //Master can refill.
+			charges = initial_charges
+			to_chat(user, span_notice("You add some more writing material to the [src] with the [blueprint]!"))
+			return
+		else if(blueprint.uses_charges && blueprint.charges) //Getting from another with limited charges.
+			var/to_add = tgui_input_number(user, "How many charges do you want to add to the [src]?", "[blueprint]", missing_charges)
+			if(!isnull(to_add) && blueprint.charges >= to_add)
+				to_chat(user, span_notice("You add some more writing material to the [src] with the [blueprint]!"))
+				blueprint.charges -= to_add
+				charges += to_add
+				return
+
+			else
+				to_chat(user, span_notice("You decide not to add any more material to the [src]"))
+				return
+		else if(!blueprint.uses_charges || !blueprint.charges) // The item it's being hit by doesn't use charges OR doesn't have any charges.
+			to_chat(user, span_warning("You can't add find any suitable material to add from the [blueprint]!"))
+	else
+		..()
+
+/obj/item/areaeditor/attack_self(mob/user) //Convert this to TGUI some time.
 	add_fingerprint(user)
 	. = "<BODY><HTML><head><title>[src]</title></head> \
 				<h2>[station_name()] [src.name]</h2>"
@@ -75,9 +109,15 @@
 		if(AREA_SPECIAL)
 			. += "<p>This place is not noted on the [src.name].</p>"
 			return //If we're in a special area, no modifying.
-	. += "<p><a href='?src=[REF(src)];create_area=1'>Create or modify an existing area (3x3 space)</a></p>"
-	. += "<p><a href='?src=[REF(src)];create_area_whole=1'>Create new area or merge two areas. (Whole Room)</a></p>"
-	. += "There is a note on the corner of the [src.name]: Use 3x3 for fine-tuning and including walls into your area!"
+	if(!uses_charges || (uses_charges && charges)) //No charges OR it has charges available.
+		. += "<p><a href='?src=[REF(src)];create_area=1'>Create or modify an existing area (3x3 space) (1 Charge)</a></p>"
+		. += "<p><a href='?src=[REF(src)];create_area_whole=1'>Create new area or merge two areas. (Whole Room.) (5 Charges)</a></p>"
+		. += "There is a note on the corner of the [src.name]: Use 3x3 for fine-tuning and including walls into your area!"
+	if(uses_charges)
+		if(!charges) //We're out!
+			. += "Your [src.name] has been completely filled! You would need to get some extra blueprint paper from the CE's blueprints to expand further!"
+		else
+			. += "Your [src.name] seems like it has enough room for [charges] more edits!"
 
 
 /obj/item/areaeditor/Topic(href, href_list)
@@ -93,13 +133,13 @@
 			to_chat(usr, span_warning("You cannot edit restricted areas."))
 			return
 		in_use = TRUE
-		create_area(usr)
+		create_area(usr, src)
 		in_use = FALSE
 	if(href_list["create_area_whole"])
 		if(in_use)
 			return
 		in_use = TRUE
-		var/area/A = create_area_whole(usr)
+		var/area/A = create_area_whole(usr, src)
 		if(A && (A.flags & BLUE_SHIELDED))
 			to_chat(usr, span_warning("You cannot edit restricted areas."))
 			in_use = FALSE
@@ -107,12 +147,82 @@
 		in_use = FALSE
 	updateUsrDialog()
 
+
+
+
+//Station Wire Tool.
+/obj/item/wire_reader //Not really a blueprint, but it's included here as such.
+	name = "wire schematics"
+	desc = "A blueprint detailing the various internal wiring of machinery around the station."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "blueprints"
+	attack_verb = list("attacked", "bapped", "hit")
+	preserve_item = 1
+	var/legend = 1
+
+/obj/item/wire_reader/attack_self(mob/user) //Convert this to TGUI some time.
+	add_fingerprint(user)
+	. = "<BODY><HTML><head><title>[src]</title></head> \
+				<h2>[station_name()] [src.name]</h2>"
+	if(legend == TRUE)
+		. += view_station_wire_devices(user);
+	else
+		//legend is a wireset
+		. += "<a href='?src=[REF(src)];view_legend=1'><< Back</a>"
+		. += view_station_wire_set(user, legend)
+
+	var/datum/browser/popup = new(user, "blueprints", "[src]", 700, 500)
+	popup.set_content(.)
+	popup.open()
+	onclose(user, "blueprints")
+
+/obj/item/wire_reader/Topic(href, href_list)
+	if(..())
+		return
+	if(href_list["view_wireset"])
+		legend = href_list["view_wireset"];
+	if(href_list["view_legend"])
+		legend = TRUE
+	attack_self(usr)
+
+/obj/item/wire_reader/proc/view_station_wire_devices(mob/user)
+	var/message = "<br>You examine the wire legend.<br>"
+	for(var/wireset in GLOB.wire_color_directory)
+		//if(istype(wireset,/datum/wires/grid_checker))//Uncomment this in if you want the grid checker minigame to not be revealed here.
+		//	continue
+		message += "<br><a href='?src=[REF(src)];view_wireset=[wireset]'>[GLOB.wire_name_directory[wireset]]</a>"
+	message += "</p>"
+	return message
+
+/obj/item/wire_reader/proc/view_station_wire_set(mob/user, wireset)
+	//for some reason you can't use wireset directly as a derefencer so this is the next best :/
+	for(var/device in GLOB.wire_color_directory)
+		if("[device]" == wireset) //I know... don't change it...
+			var/message = "<p><b>[GLOB.wire_name_directory[device]]:</b>"
+			for(var/Col in GLOB.wire_color_directory[device])
+				var/wire_name = GLOB.wire_color_directory[device][Col]
+				if(!findtext(wire_name, WIRE_DUD_PREFIX)) //don't show duds
+					message += "<p><span style='color: [Col]'>[Col]</span>: [wire_name]</p>"
+			message += "</p>"
+			return message
+	return ""
+
 //Station blueprints!!!
 /obj/item/areaeditor/blueprints
 	name = "station blueprints"
 	desc = "Blueprints of the station. There is a \"Classified\" stamp and several coffee stains on it."
-	var/list/image/showing = list()
-	var/client/viewing
+	//var/list/image/showing = list()	//For viewing pipes. Unused.
+	//var/client/viewing 	//For viewing pipes. Unused.
+	can_override = 1 //In case there is a reason for building in a non-blacklisted, non-buildable area.
+
+/obj/item/areaeditor/blueprints/engineers
+	name = "writing blueprints"
+	desc = "A piece of paper that allows for expansion of the station and creaiton of new areas. There is a \"For Official Use Only\" stamp on it. NOT to be mistaken with the staion blueprints."
+	station_master = 0
+	uses_charges = 1
+	can_override = 0
+
+
 
 
 /obj/item/areaeditor/blueprints/Destroy()
@@ -126,13 +236,9 @@
 	if(!legend)
 		if(get_area_type() == AREA_STATION)
 			. += "<p>According to \the [src], you are now in <b>\"[html_encode(A.name)]\"</b>.</p>"
-			. += "<p><a href='?src=[REF(src)];edit_area=1'>Change area name</a></p>"
-		. += "<p><a href='?src=[REF(src)];view_legend=1'>View wire colour legend</a></p>"
-		//if(!viewing)
-		//	. += "<p><a href='?src=[REF(src)];view_blueprints=1'>View structural data</a></p>"
-		//else
-		//	. += "<p><a href='?src=[REF(src)];refresh=1'>Refresh structural data</a></p>"
-		//	. += "<p><a href='?src=[REF(src)];hide_blueprints=1'>Hide structural data</a></p>"
+			. += "<p><a href='?src=[REF(src)];edit_area=1'>Change area name</a></p>" //You can change the name without charges.
+		if(wire_schematics)
+			. += "<p><a href='?src=[REF(src)];view_legend=1'>View wire colour legend</a></p>"
 	else
 		if(legend == TRUE)
 			. += "<a href='?src=[REF(src)];exit_legend=1'><< Back</a>"
@@ -161,19 +267,12 @@
 	if(href_list["exit_legend"])
 		legend = FALSE;
 	if(href_list["view_legend"])
-		legend = TRUE;
+		if(wire_schematics) //No href hacks allow for you, my friend!
+			legend = TRUE;
 	if(href_list["view_wireset"])
-		legend = href_list["view_wireset"];
-	/*
-	if(href_list["view_blueprints"])
-		set_viewer(usr, span_notice("You flip the blueprints over to view the complex information diagram."))
-	if(href_list["hide_blueprints"])
-		clear_viewer(usr,span_notice("You flip the blueprints over to view the simple information diagram."))
-	if(href_list["refresh"])
-		clear_viewer(usr)
-		set_viewer(usr)
-	*/
-	attack_self(usr) //this is not the proper way, but neither of the old update procs work! it's too ancient and I'm tired shush.
+		if(wire_schematics) //No href hacks allow for you, my friend!
+			legend = href_list["view_wireset"];
+	attack_self(usr)
 
 
 //Code for viewing pipes or whatnot. Think t-ray scanner.
@@ -350,7 +449,12 @@
 			found_turfs += origin //If this isn't done, it just adds the 8 tiles around the user.
 		return found_turfs
 
-/proc/create_area(mob/creator)
+/proc/create_area(mob/creator, var/obj/item/areaeditor/AO)
+	if(AO && istype(AO,/obj/item/areaeditor))
+		if(AO.uses_charges && AO.charges < 1)
+			to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
+			return
+
 	var/list/turfs = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2)
 	if(!turfs)
 		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
@@ -403,6 +507,9 @@
 	set_area_machinery(newA, newA.name, oldA.name)// Change the name and area defines of all the machinery to the correct area.
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
+	if(AO && istype(AO,/obj/item/areaeditor))
+		if(AO.uses_charges)
+			AO.charges -= 1
 	return TRUE
 
 
@@ -411,7 +518,10 @@
 // OLD CODE. DON'T TOUCH OR 100 RABID SQUIRRELS WILL DEVOUR YOU.
 // I say old code, but it truly isn't. It's a bastardization of the new create_area code and the old create_area code.
 // In essence, it does a few things: Ensure no blacklisted areas are nearby, get the nearby areas (to allow merging), and allow you to make a whole near area.
-/obj/item/areaeditor/proc/create_area_whole(mob/creator) //Gets the entire enclosed space and makes a new area out of it. Can overwrite old areas.
+/obj/item/areaeditor/proc/create_area_whole(mob/creator, var/override = 0) //Gets the entire enclosed space and makes a new area out of it. Can overwrite old areas.
+	if(uses_charges && charges < 5)
+		to_chat(creator, span_warning("You need more paper before you can even think of editing this area!"))
+		return
 
 	var/res = detect_room_ex(get_turf(creator), can_create_areas_into, area_or_turf_fail_types)
 	if(!res)
@@ -438,6 +548,7 @@
 	var/area/newA								//The new area
 	var/area/oldA = get_area(get_turf(creator))	//The old area (area currently standing in)
 	var/str										//What the new area is named.
+	var/can_make_new_area = 1					//If they can make a new area here or not.
 
 	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), area_or_turf_fail_types, BP_MAX_ROOM_SIZE*2) //Get the nearby areas.
 
@@ -453,6 +564,8 @@
 		if(blacklisted_areas[place.type])
 			if(!creator.lastarea != place) //Stops them from merging a blacklisted area to make it larger. Allows them to merge a blacklisted area into an allowed area. (Expansion!)
 				continue
+		if(!BUILDABLE_AREA_TYPES[place.type]) //TODOTODOTODO
+			can_make_new_area = 0
 		if(!place.requires_power || (place.flags & BLUE_SHIELDED))
 			continue // No expanding powerless rooms etc
 		areas[place.name] = place
@@ -465,12 +578,11 @@
 
 	area_choice = areas[area_choice]
 
-	var/confirm = tgui_alert(creator, "Are you sure you want to turn [oldA.name] into [area_choice]?", "READ CAREFULLY", list("No", "Yes"))
-	if(confirm == "No")
-		to_chat(creator, "<span class='warning'>No changes made.</span>")
-		return
 
 	if(!isarea(area_choice)) //They chose "New Area"
+		if(!can_make_new_area && !can_override)
+			to_chat(creator, "<span class='warning'>Making a new area here would be meaningless. Renaming it would be a better option.</span>")
+			return
 		str = tgui_input_text(creator, "New area name", "Blueprint Editing", max_length = MAX_NAME_LEN)
 		str = sanitize(str,MAX_NAME_LEN)
 		if(!str || !length(str)) //cancel
@@ -482,10 +594,20 @@
 			if(A.name == str)
 				to_chat(creator, "<span class='warning'>An area in the world alreay has this name.</span>")
 				return
+
+		var/confirm = tgui_alert(creator, "Are you sure you want to change [oldA.name] into a new area named [str]?", "READ CAREFULLY", list("No", "Yes"))
+		if(confirm == "No")
+			to_chat(creator, "<span class='warning'>No changes made.</span>")
+			return
+
 		newA = new area_choice
 		newA.setup(str)
 		newA.has_gravity = oldA.has_gravity
 	else
+		var/confirm = tgui_alert(creator, "Are you sure you want to change [oldA.name] into [area_choice]?", "READ CAREFULLY", list("No", "Yes"))
+		if(confirm == "No")
+			to_chat(creator, "<span class='warning'>No changes made.</span>")
+			return
 		newA = area_choice //They selected to turn the area they're standing on into the selected area.
 
 	if(str) //New area, new name.
@@ -503,7 +625,7 @@
 	set_area_machinery(newA, newA.name, oldA.name)
 	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
 	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
-
+	charges -= 5
 
 	spawn(5)
 		interact()
