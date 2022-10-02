@@ -216,9 +216,6 @@
 
 	var/get_rig_stats = 0 //Moved from computer.dm
 
-	var/typing
-	var/obj/effect/decal/typing_indicator
-
 	var/low_priority = FALSE //Skip processing life() if there's just no players on this Z-level
 
 	var/default_pixel_x = 0 //For offsetting mobs
@@ -230,7 +227,10 @@
 	var/registered_z
 
 	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+<<<<<<< HEAD
 
 	var/list/progressbars = null //VOREStation Edit
 
 	var/datum/focus //What receives our keyboard inputs. src by default // VOREStation Add - Key Handling
+=======
+>>>>>>> b087dd00f61... Merge pull request #8722 from Spookerton/spkrtn/sys/sstyping
