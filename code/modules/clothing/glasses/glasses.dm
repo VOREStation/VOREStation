@@ -448,6 +448,11 @@ BLIND     // can't see anything
 	icon_state = "sunSecHud"
 	enables_planes = list(VIS_CH_ID,VIS_CH_WANTED,VIS_CH_IMPTRACK,VIS_CH_IMPLOYAL,VIS_CH_IMPCHEM)
 
+/obj/item/clothing/glasses/sunglasses/sechud/prescription
+	name = "prescription HUD sunglasses"
+	desc = "Sunglasses with a HUD and modified prescription lenses."
+	prescription = 6
+
 /obj/item/clothing/glasses/sunglasses/sechud/tactical
 	name = "tactical HUD"
 	desc = "Flash-resistant goggles with inbuilt combat and security information."

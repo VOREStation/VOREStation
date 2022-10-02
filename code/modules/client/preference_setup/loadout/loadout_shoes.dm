@@ -26,9 +26,10 @@
 	path = /obj/item/clothing/shoes/sneakersred
 
 /datum/gear/shoes/jackboots
-	display_name = "jackboots"
+	display_name = "jackboots selection"
 	path = /obj/item/clothing/shoes/boots/jackboots
 
+<<<<<<< HEAD
 /datum/gear/shoes/kneeboots
 	display_name = "jackboots, knee-length"
 	path = /obj/item/clothing/shoes/boots/jackboots/knee
@@ -36,6 +37,15 @@
 /datum/gear/shoes/thighboots
 	display_name = "jackboots. thigh-length"
 	path = /obj/item/clothing/shoes/boots/jackboots/thigh
+=======
+/datum/gear/shoes/jackboots/New()
+	..()
+	var/list/jacks = list()
+	for(var/jack in typesof(/obj/item/clothing/shoes/boots/jackboots))
+		var/obj/item/clothing/shoes/boots/jackboots/jack_type = jack
+		jacks[initial(jack_type.name)] = jack_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jacks))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/shoes/workboots
 	display_name = "workboots"
@@ -45,17 +55,25 @@
 	display_name = "toe-less workboots"
 	path = /obj/item/clothing/shoes/boots/workboots/toeless
 
-/datum/gear/shoes/black
-	display_name = "shoes, black"
+/datum/gear/shoes/colored
+	display_name = "shoes, colored selection"
 	path = /obj/item/clothing/shoes/black
 
-/datum/gear/shoes/blue
-	display_name = "shoes, blue"
-	path = /obj/item/clothing/shoes/blue
+/datum/gear/shoes/colored/New()
+	..()
+	var/shoetype = list()
+	shoetype["shoes, black"] = /obj/item/clothing/shoes/black
+	shoetype["shoes, blue"] = /obj/item/clothing/shoes/blue
+	shoetype["shoes, brown"] = /obj/item/clothing/shoes/brown
+	shoetype["shoes, green"] = /obj/item/clothing/shoes/green
+	shoetype["shoes, orange"] = /obj/item/clothing/shoes/orange
+	shoetype["shoes, purple"] = /obj/item/clothing/shoes/purple
+	shoetype["shoes, rainbow"] = /obj/item/clothing/shoes/rainbow
+	shoetype["shoes, red"] = /obj/item/clothing/shoes/red
+	shoetype["shoes, white"] = /obj/item/clothing/shoes/white
+	shoetype["shoes, yellow"] = /obj/item/clothing/shoes/yellow
 
-/datum/gear/shoes/brown
-	display_name = "shoes, brown"
-	path = /obj/item/clothing/shoes/brown
+	gear_tweaks += new/datum/gear_tweak/path(shoetype)
 
 /datum/gear/shoes/lacey
 	display_name = "shoes, oxford selection"
@@ -69,6 +87,7 @@
         laces[initial(lace_type.name)] = lace_type
     gear_tweaks += new/datum/gear_tweak/path(sortAssoc(laces))
 
+<<<<<<< HEAD
 /datum/gear/shoes/green
 	display_name = "shoes, green"
 	path = /obj/item/clothing/shoes/green
@@ -100,6 +119,11 @@
 /datum/gear/shoes/hitops/
 	display_name = "high-top selection"
 	path = /obj/item/clothing/shoes/hitops/
+=======
+/datum/gear/shoes/hitops
+	display_name = "shoes, high-top selection"
+	path = /obj/item/clothing/shoes/hitops
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/shoes/hitops/New()
     ..()
@@ -134,7 +158,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/flats
-	display_name = "flats"
+	display_name = "shoes, flats (colorable)"
 	path = /obj/item/clothing/shoes/flats/white/color
 
 /datum/gear/shoes/flats/New()
@@ -142,6 +166,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/cowboy
+<<<<<<< HEAD
 	display_name = "cowboy boots"
 	path = /obj/item/clothing/shoes/boots/cowboy
 
@@ -168,6 +193,18 @@
 /datum/gear/shoes/cowboy/snakeskin
 	display_name = "cowboy boots, snake skin"
 	path = /obj/item/clothing/shoes/boots/cowboy/snakeskin
+=======
+	display_name = "boots, cowboy selection"
+	path = /obj/item/clothing/shoes/boots/cowboy
+
+/datum/gear/shoes/cowboy/New()
+	..()
+	var/list/cowboys = list()
+	for(var/cowboy in typesof(/obj/item/clothing/shoes/boots/cowboy))
+		var/obj/item/clothing/shoes/boots/cowboy/cowboy_type = cowboy
+		cowboys[initial(cowboy_type.name)] = cowboy_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cowboys))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/shoes/cowboy/lizard
 	display_name = "cowboy boots, lizard skin"
@@ -208,9 +245,10 @@
 	path = /obj/item/clothing/shoes/slippers
 
 /datum/gear/shoes/boots/winter
-	display_name = "winter boots"
+	display_name = "boots, winter selection"
 	path = /obj/item/clothing/shoes/boots/winter
 
+<<<<<<< HEAD
 /datum/gear/shoes/boots/winter/security
 	display_name = "security winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/security
@@ -249,6 +287,23 @@
 	display_name = "hydroponics winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/hydro
 
+=======
+/datum/gear/shoes/boots/winter/New()
+	..()
+	var/boottype = list()
+	boottype["winter boots, atmospherics"] = /obj/item/clothing/shoes/boots/winter/atmos
+	boottype["winter boots, brown"] = /obj/item/clothing/shoes/boots/winter
+	boottype["winter boots, engineering"] = /obj/item/clothing/shoes/boots/winter/engineering
+	boottype["winter boots, hydroponics"] = /obj/item/clothing/shoes/boots/winter/hydro
+	boottype["winter boots, management"] = /obj/item/clothing/shoes/boots/winter/command
+	boottype["winter boots, medical"] = /obj/item/clothing/shoes/boots/winter/medical
+	boottype["winter boots, mining"] = /obj/item/clothing/shoes/boots/winter/mining
+	boottype["winter boots, science"] = /obj/item/clothing/shoes/boots/winter/science
+	boottype["winter boots, security"] = /obj/item/clothing/shoes/boots/winter/security
+	boottype["winter boots, supply"] = /obj/item/clothing/shoes/boots/winter/supply
+
+	gear_tweaks += new/datum/gear_tweak/path(boottype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 /datum/gear/shoes/circuitry
 	display_name = "boots, circuitry (empty)"
 	path = /obj/item/clothing/shoes/circuitry

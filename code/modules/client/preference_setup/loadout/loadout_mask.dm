@@ -1,38 +1,54 @@
 // Mask
 /datum/gear/mask
-	display_name = "bandana, blue"
-	path = /obj/item/clothing/mask/bandana/blue
+	display_name = "mask, sterile"
+	path = /obj/item/clothing/mask/surgical
 	slot = slot_wear_mask
 	sort_category = "Masks and Facewear"
 
-/datum/gear/mask/gold
-	display_name = "bandana, gold"
-	path = /obj/item/clothing/mask/bandana/gold
+/datum/gear/mask/bandanas
+	display_name = "face bandana selection"
+	path = /obj/item/clothing/mask/bandana/blue
 
-/datum/gear/mask/green
-	display_name = "bandana, green 2"
-	path = /obj/item/clothing/mask/bandana/green
-
-/datum/gear/mask/red
-	display_name = "bandana, red"
-	path = /obj/item/clothing/mask/bandana/red
-
+<<<<<<< HEAD
 /datum/gear/mask/sterile
 	display_name = "sterile mask"
 	path = /obj/item/clothing/mask/surgical
 	cost = 2
+=======
+/datum/gear/mask/bandanas/New()
+	..()
+	var/list/bandanas = list()
+	for(var/bandana in typesof(/obj/item/clothing/mask/bandana))
+		var/obj/item/clothing/mask/bandana/bandana_type = bandana
+		bandanas[initial(bandana_type.name)] = bandana_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(bandanas))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/mask/sterile/white
 	display_name = "white sterile mask"
 	path = /obj/item/clothing/mask/surgical/white
 	cost = 2
 
+<<<<<<< HEAD
 /datum/gear/mask/sterile/white/dust
 	display_name = "dust mask"
 	path = /obj/item/clothing/mask/surgical/dust
 
 /datum/gear/mask/sterile/white/cloth
 	display_name = "cloth face mask"
+=======
+/datum/gear/mask/gasmasks/New()
+	..()
+	var/masks = list()
+	masks["gas mask"] = /obj/item/clothing/mask/gas
+	masks["clear gas mask"] = /obj/item/clothing/mask/gas/clear
+	masks["plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor
+	masks["gold plague doctor mask"] = /obj/item/clothing/mask/gas/plaguedoctor/gold
+	gear_tweaks += new/datum/gear_tweak/path(masks)
+
+/datum/gear/mask/cloth
+	display_name = "mask, cloth (colorable)"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/mask/surgical/cloth
 
 /datum/gear/mask/plaguedoctor

@@ -31,9 +31,10 @@
 	path = /obj/item/clothing/suit/jacket/puffer/vest
 
 /datum/gear/suit/bomber
-	display_name = "bomber jacket"
+	display_name = "jacket, bomber selection"
 	path = /obj/item/clothing/suit/storage/toggle/bomber
 
+<<<<<<< HEAD
 /datum/gear/suit/bomber_alt
 	display_name = "bomber jacket, alt"
 	path = /obj/item/clothing/suit/storage/bomber/alt
@@ -41,42 +42,42 @@
 /datum/gear/suit/bomber_retro
 	display_name = "bomber jacket, retro"
 	path = /obj/item/clothing/suit/storage/toggle/bomber/retro
+=======
+/datum/gear/suit/bomber/New()
+	..()
+	var/bombertype = list()
+	bombertype["bomber jacket"] = /obj/item/clothing/suit/storage/toggle/bomber
+	bombertype["bomber jacket, alternate"] = /obj/item/clothing/suit/storage/bomber/alt
+	bombertype["bomber jacket, retro"] = /obj/item/clothing/suit/storage/toggle/bomber/retro
+	gear_tweaks += new/datum/gear_tweak/path(bombertype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/leather_jacket
-	display_name = "leather jacket, black"
+	display_name = "jacket, leather selection"
 	path = /obj/item/clothing/suit/storage/toggle/leather_jacket
 
-/datum/gear/suit/leather_jacket_sleeveless
-	display_name = "leather vest, black"
+/datum/gear/suit/leather_jacket/New()
+	..()
+	var/ljtype = list()
+	ljtype["leather jacket, black"] = /obj/item/clothing/suit/storage/toggle/leather_jacket
+	ljtype["leather jacket, alternate black"] = /obj/item/clothing/suit/storage/leather_jacket_alt
+	ljtype["leather jacket, corporate black"] = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen
+	ljtype["leather jacket, brown"] = /obj/item/clothing/suit/storage/toggle/brown_jacket
+	ljtype["leather jacket, corporate brown"] = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
+	gear_tweaks += new/datum/gear_tweak/path(ljtype)
+
+/datum/gear/suit/leather_vest
+	display_name = "jacket, leather vest selection"
 	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
 
-/datum/gear/suit/leather_jacket_alt
-	display_name = "leather jacket 2, black"
-	path = /obj/item/clothing/suit/storage/leather_jacket_alt
-
-/datum/gear/suit/leather_jacket_nt
-	display_name = "leather jacket, corporate, black"
-	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen
-
-/datum/gear/suit/leather_jacket_nt/sleeveless
-	display_name = "leather vest, corporate, black"
-	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen/sleeveless
-
-/datum/gear/suit/brown_jacket
-	display_name = "leather jacket, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket
-
-/datum/gear/suit/brown_jacket_sleeveless
-	display_name = "leather vest, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless
-
-/datum/gear/suit/brown_jacket_nt
-	display_name = "leather jacket, corporate, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
-
-/datum/gear/suit/brown_jacket_nt/sleeveless
-	display_name = "leather vest, corporate, brown"
-	path = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless
+/datum/gear/suit/leather_vest/New()
+	..()
+	var/lvtype = list()
+	lvtype["leather vest, black"] = /obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
+	lvtype["leather vest, corporate black"] = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen/sleeveless
+	lvtype["leather vest, brown"] = /obj/item/clothing/suit/storage/toggle/brown_jacket/sleeveless
+	lvtype["leather vest, corporate brown"] = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen/sleeveless
+	gear_tweaks += new/datum/gear_tweak/path(lvtype)
 
 /datum/gear/suit/mil
 	display_name = "military jacket selection"
@@ -94,16 +95,23 @@
 	display_name = "grey jacket"
 	path = /obj/item/clothing/suit/storage/greyjacket
 
-/datum/gear/suit/brown_trenchcoat
-	display_name = "trenchcoat, brown"
+/datum/gear/suit/trenchcoat
+	display_name = "trenchcoat selection"
 	path = /obj/item/clothing/suit/storage/trench
 
-/datum/gear/suit/grey_trenchcoat
-	display_name = "trenchcoat, grey"
-	path = /obj/item/clothing/suit/storage/trench/grey
+/datum/gear/suit/trenchcoat/New()
+	..()
+	var/coattype = list()
+	coattype["trenchcoat, brown"] = /obj/item/clothing/suit/storage/trench
+	coattype["trenchcoat, grey"] = /obj/item/clothing/suit/storage/trench/grey
+	gear_tweaks += new/datum/gear_tweak/path(coattype)
 
 /datum/gear/suit/duster
+<<<<<<< HEAD
 	display_name = "cowboy duster, colorable"
+=======
+	display_name = "cowboy duster (colorable)"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/suit/storage/duster
 
 /datum/gear/suit/duster/New()
@@ -137,6 +145,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hoodies))
 
 /datum/gear/suit/labcoat
+<<<<<<< HEAD
 	display_name = "labcoat selection, public"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
 
@@ -172,6 +181,25 @@
 	display_name = "labcoat, EMT"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
 	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+=======
+	display_name = "labcoat, colored selection"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat
+	cost = 2
+
+/datum/gear/suit/labcoat/New()
+	..()
+	var/labcoattype = list()
+	labcoattype["labcoat, white"] = /obj/item/clothing/suit/storage/toggle/labcoat
+	labcoattype["labcoat, blue"] = /obj/item/clothing/suit/storage/toggle/labcoat/blue
+	labcoattype["labcoat, blue-edged"] = /obj/item/clothing/suit/storage/toggle/labcoat/blue_edge
+	labcoattype["labcoat, green"] = /obj/item/clothing/suit/storage/toggle/labcoat/green
+	labcoattype["labcoat, orange"] = /obj/item/clothing/suit/storage/toggle/labcoat/orange
+	labcoattype["labcoat, pink"] = /obj/item/clothing/suit/storage/toggle/labcoat/pink
+	labcoattype["labcoat, purple"] = /obj/item/clothing/suit/storage/toggle/labcoat/purple
+	labcoattype["labcoat, red"] = /obj/item/clothing/suit/storage/toggle/labcoat/red
+	labcoattype["labcoat, yellow"] = /obj/item/clothing/suit/storage/toggle/labcoat/yellow
+	gear_tweaks += new/datum/gear_tweak/path(labcoattype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/labcoat_rd
 	display_name = "labcoat, research director"
@@ -222,11 +250,12 @@
 /datum/gear/suit/poncho/New()
 	..()
 	var/list/ponchos = list()
-	for(var/poncho_style in (typesof(/obj/item/clothing/accessory/poncho) - typesof(/obj/item/clothing/accessory/poncho/roles)))
+	for(var/poncho_style in (typesof(/obj/item/clothing/accessory/poncho) - typesof(/obj/item/clothing/accessory/poncho/roles/cloak)))
 		var/obj/item/clothing/accessory/poncho/poncho = poncho_style
 		ponchos[initial(poncho.name)] = poncho
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ponchos))
 
+<<<<<<< HEAD
 /datum/gear/suit/roles/poncho
 	display_name = "poncho selection, departments"
 	path = /obj/item/clothing/accessory/poncho/roles/cargo
@@ -306,6 +335,22 @@
 
 /datum/gear/suit/cloak_custom //A colorable cloak
 	display_name = "cloak, colorable"
+=======
+/datum/gear/suit/roles/poncho/cloak
+	display_name = "cloak, departmental selection"
+	path = /obj/item/clothing/accessory/poncho/roles/cloak/cargo
+
+/datum/gear/suit/roles/poncho/cloak/New()
+	..()
+	var/list/cloaks = list()
+	for(var/cloak_style in (typesof(/obj/item/clothing/accessory/poncho/roles/cloak)))
+		var/obj/item/clothing/accessory/poncho/roles/cloak/cloak = cloak_style
+		cloaks[initial(cloak.name)] = cloak
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
+
+/datum/gear/suit/roles/poncho/cloak/custom //A colorable cloak
+	display_name = "cloak (colorable)"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom
 	cost = 1
 
@@ -318,6 +363,7 @@
 	path = /obj/item/clothing/suit/unathi/robe
 	cost = 1
 
+<<<<<<< HEAD
 /datum/gear/suit/lawyer_jackets
 	display_name = "suit jacket selection"
 	path = /obj/item/clothing/suit/storage/toggle/internalaffairs
@@ -330,18 +376,36 @@
 		"Purple suit jacket" = /obj/item/clothing/suit/storage/toggle/lawyer/purpjacket
 	)
 	gear_tweaks += new/datum/gear_tweak/path(jackets)
+=======
+/datum/gear/suit/suit_jackets
+	display_name = "suit jacket selection"
+	path = /obj/item/clothing/suit/storage/toggle/internalaffairs
+
+/datum/gear/suit/suit_jackets/New()
+	..()
+	var/jackettype = list()
+	jackettype["suit jacket, black"] = /obj/item/clothing/suit/storage/toggle/internalaffairs
+	jackettype["suit jacket, blue"] = /obj/item/clothing/suit/storage/toggle/lawyer/bluejacket
+	jackettype["suit jacket, purple"] = /obj/item/clothing/suit/storage/toggle/lawyer/purpjacket
+	gear_tweaks += new/datum/gear_tweak/path(jackettype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/suspenders
 	display_name = "suspenders"
 	path = /obj/item/clothing/suit/suspenders
 
 /datum/gear/suit/forensics
+<<<<<<< HEAD
 	display_name = "forensics uniform selection (Detective)"
+=======
+	display_name = "jacket, forensics selection (Detective)"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/suit/storage/forensics/red/long
 	allowed_roles = list("Detective")
 
 /datum/gear/suit/forensics/New()
 	..()
+<<<<<<< HEAD
 	var/list/uniforms = list(
 		"Red, long uniform" = /obj/item/clothing/suit/storage/forensics/red/long,
 		"Blue, long uniform" = /obj/item/clothing/suit/storage/forensics/blue/long,
@@ -361,10 +425,20 @@
 	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
 
 // winter coats go here
+=======
+	var/jackettype = list()
+	jackettype["forensics jacket, red long"] = /obj/item/clothing/suit/storage/forensics/red/long
+	jackettype["forensics jacket, red short"] = /obj/item/clothing/suit/storage/forensics/red
+	jackettype["forensics jacket, blue long"] = /obj/item/clothing/suit/storage/forensics/blue/long
+	jackettype["forensics jacket, blue short"] = /obj/item/clothing/suit/storage/forensics/blue
+	gear_tweaks += new/datum/gear_tweak/path(jackettype)
+
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 /datum/gear/suit/wintercoat
-	display_name = "winter coat"
+	display_name = "winter coat selection"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat
 
+<<<<<<< HEAD
 /datum/gear/suit/wintercoat/captain
 	display_name = "winter coat, site manager"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/captain
@@ -496,6 +570,15 @@
 	display_name = "winter coat, cosmic"
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat/cosmic
 // winter coats end here
+=======
+/datum/gear/suit/wintercoat/New()
+	..()
+	var/list/wintercoats = list()
+	for(var/wintercoat_style in (typesof(/obj/item/clothing/suit/storage/hooded/wintercoat)))
+		var/obj/item/clothing/suit/storage/hooded/wintercoat/wintercoat = wintercoat_style
+		wintercoats[initial(wintercoat.name)] = wintercoat
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(wintercoats))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/varsity
 	display_name = "varsity jacket selection"
@@ -522,11 +605,16 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(tracks))
 
 /datum/gear/suit/flannel
+<<<<<<< HEAD
 	display_name = "flannel jacket selection"
+=======
+	display_name = "flannel selection"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/suit/storage/flannel
 
 /datum/gear/suit/flannel/New()
 	..()
+<<<<<<< HEAD
 	var/list/flannel = list(
 		"Grey flannel" = /obj/item/clothing/suit/storage/flannel,
 		"Red flannel" = /obj/item/clothing/suit/storage/flannel/red,
@@ -534,29 +622,46 @@
 		"Brown flannel" = /obj/item/clothing/suit/storage/flannel/brown
 	)
 	gear_tweaks += new/datum/gear_tweak/path(flannel)
+=======
+	var/list/flannels = list()
+	for(var/flannel_style in typesof(/obj/item/clothing/suit/storage/flannel))
+		var/obj/item/clothing/suit/storage/flannel/flannel = flannel_style
+		flannels[initial(flannel.name)] = flannel
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(flannels))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/denim_jacket
-	display_name = "denim jacket"
+	display_name = "jacket, denim selection"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket
 
-/datum/gear/suit/denim_jacket/corporate
-	display_name = "denim jacket, corporate"
-	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen
+/datum/gear/suit/denim_jacket/New()
+	..()
+	var/list/denim_jackets = list()
+	for(var/denim_jacket_style in typesof(/obj/item/clothing/suit/storage/toggle/denim_jacket))
+		var/obj/item/clothing/suit/storage/toggle/denim_jacket/denim_jacket = denim_jacket_style
+		denim_jackets[initial(denim_jacket.name)] = denim_jacket
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(denim_jackets))
 
-/datum/gear/suit/denim_vest
-	display_name = "denim vest"
-	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/sleeveless
-
-/datum/gear/suit/denim_vest/corporate
-	display_name = "denim vest, corporate"
-	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless
-
+<<<<<<< HEAD
 /datum/gear/suit/miscellaneous/dep_jacket
 	display_name = "department jacket selection"
+=======
+/datum/gear/suit/miscellaneous/kimono
+	display_name = "kimono"
+	path = /obj/item/clothing/suit/kimono
+
+/datum/gear/suit/miscellaneous/kimono/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/miscellaneous/dep_jacket
+	display_name = "jacket, departmental selection"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
 
 /datum/gear/suit/miscellaneous/dep_jacket/New()
 	..()
+<<<<<<< HEAD
 	var/list/jacket = list(
 		"Security department jacket" = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket,
 		"Engineering department jacket" = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket,
@@ -565,9 +670,18 @@
 		"Medical department jacket" = /obj/item/clothing/suit/storage/toggle/med_dep_jacket
 	)
 	gear_tweaks += new/datum/gear_tweak/path(jacket)
+=======
+	var/jackettype = list()
+	jackettype["department jacket, engineering"] = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket
+	jackettype["department jacket, medical"] = /obj/item/clothing/suit/storage/toggle/med_dep_jacket
+	jackettype["department jacket, security"] = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
+	jackettype["department jacket, science"] = /obj/item/clothing/suit/storage/toggle/sci_dep_jacket
+	jackettype["department jacket, supply"] = /obj/item/clothing/suit/storage/toggle/supply_dep_jacket
+	gear_tweaks += new/datum/gear_tweak/path(jackettype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/miscellaneous/light_jacket
-	display_name = "light jacket selection"
+	display_name = "jacket, light selection"
 	path = /obj/item/clothing/suit/storage/toggle/light_jacket
 
 /datum/gear/suit/miscellaneous/light_jacket/New()
@@ -586,6 +700,7 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+<<<<<<< HEAD
 /datum/gear/suit/snowsuit
 	display_name = "snowsuit"
 	path = /obj/item/clothing/suit/storage/snowsuit
@@ -619,6 +734,24 @@
 	display_name = "snowsuit, supply"
 	path = /obj/item/clothing/suit/storage/snowsuit/cargo
 	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
+=======
+/datum/gear/suit/miscellaneous/kamishimo
+	display_name = "kamishimo"
+	path = /obj/item/clothing/suit/kamishimo
+
+/datum/gear/suit/insulted
+	display_name = "insulted jacket selection"
+	path = /obj/item/clothing/suit/storage/insulated
+	cost = 2
+
+/datum/gear/suit/insulated/New()
+	..()
+	var/list/insulated_jackets = list()
+	for(var/insulated_jacket_style in typesof(/obj/item/clothing/suit/storage/insulated))
+		var/obj/item/clothing/suit/storage/insulated/insulated_jacket = insulated_jacket_style
+		insulated_jackets[initial(insulated_jacket.name)] = insulated_jacket
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(insulated_jackets))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/miscellaneous/cardigan
 	display_name = "cardigan, colorable"

@@ -9,8 +9,14 @@
 
 /datum/gear/utility/implant/tracking
 	display_name = "implant, tracking"
+<<<<<<< HEAD
 	path = /obj/item/weapon/implant/tracking/weak
 	cost = 0 //VOREStation Edit. Changed cost to 0
+=======
+	description = "An implanted chip allowing authorities to pinpoint the location of an individual at all times. Primarily given as a condition of a criminal sentence."
+	path = /obj/item/implant/tracking/weak
+	cost = 10
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/utility/implant/generic
 	display_name = "implant, generic, primary"

@@ -93,7 +93,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/smock
-	display_name = "smock selection (Teshari)"
+	display_name = "Teshari smock selection"
 	path = /obj/item/clothing/under/teshari/smock
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -107,7 +107,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(smocks))
 
 /datum/gear/uniform/undercoat
-	display_name = "undercoat selection (Teshari)"
+	display_name = "Teshari undercoat selection"
 	path = /obj/item/clothing/under/teshari/undercoat/standard
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -121,7 +121,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(undercoats))
 
 /datum/gear/suit/cloak
-	display_name = "cloak selection (Teshari)"
+	display_name = "Teshari cloak selection"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/standard
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -166,6 +166,7 @@
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
 
+<<<<<<< HEAD
 /datum/gear/uniform/dept/undercoat/cap
 	display_name = "site manager undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/cap
@@ -270,11 +271,26 @@
 	display_name = "internal affairs undercoat (Teshari)"
 	path = /obj/item/clothing/under/teshari/undercoat/jobs/iaa
 	allowed_roles = list("Internal Affairs Agent")
+=======
+/datum/gear/uniform/dept/undercoat
+	display_name = "Teshari undercoat selection"
+	path = /obj/item/clothing/under/teshari/undercoat/jobs/hop
+
+/datum/gear/uniform/dept/undercoat/New()
+	..()
+	var/list/teshundercoats = list()
+	for(var/teshundercoat_style in typesof(/obj/item/clothing/under/teshari/undercoat/jobs))
+		var/obj/item/clothing/under/teshari/undercoat/jobs/teshundercoat = teshundercoat_style
+		teshundercoats[initial(teshundercoat.name)] = teshundercoat
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(teshundercoats))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/suit/dept/cloak
+	display_name = "Teshari cloak selection, jobs"
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
 
+<<<<<<< HEAD
 /datum/gear/suit/dept/cloak/cap
 	display_name = "site manager cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/jobs
@@ -515,9 +531,18 @@
 		var/obj/item/clothing/suit/storage/teshari/beltcloak/jobs/cloak_type = cloak
 		cloaks[initial(cloak_type.name)] = cloak_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
+=======
+/datum/gear/suit/dept/cloak/New()
+	..()
+	var/list/teshcloaks = list()
+	for(var/teshcloak_style in typesof(/obj/item/clothing/suit/storage/teshari/cloak/jobs, /obj/item/clothing/suit/storage/teshari/beltcloak/jobs))
+		var/obj/item/clothing/suit/storage/teshari/cloak/jobs/teshcloak = teshcloak_style
+		teshcloaks[initial(teshcloak.name)] = teshcloak
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(teshcloaks))
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/uniform/smockcolor
-	display_name = "smock, recolorable (Teshari)"
+	display_name = "Teshari smock (colorable)"
 	path = /obj/item/clothing/under/teshari/smock/white
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -527,7 +552,11 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/beltcloak
+<<<<<<< HEAD
 	display_name = "belted cloak selection (Teshari)"
+=======
+	display_name = "Teshari cloak selection, belted"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/standard
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -541,7 +570,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
 
 /datum/gear/suit/beltcloak_color
-	display_name = "belted cloak, recolorable (Teshari)"
+	display_name = "Teshari cloak, belted (colorable)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/standard/white_grey
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -550,6 +579,7 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+<<<<<<< HEAD
 /datum/gear/suit/dept/beltcloak/wrdn
 	display_name = "warden belted cloak (Teshari)"
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/wrdn
@@ -565,8 +595,10 @@
 	path = /obj/item/clothing/suit/storage/teshari/beltcloak/jobs/command
 	allowed_roles = list("Site Manager","Head of Personnel","Head of Security","Chief Engineer","Chief Medical Officer","Research Director")
 
+=======
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 /datum/gear/suit/cloak_hood
-	display_name = "hooded cloak selection (Teshari)"
+	display_name = "Teshari cloak selection, hooded"
 	path = /obj/item/clothing/suit/storage/hooded/teshari/standard
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -580,7 +612,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
 
 /datum/gear/uniform/worksuit
-	display_name = "worksuit selection (Teshari)"
+	display_name = "Teshari worksuit selection"
 	path = /obj/item/clothing/under/teshari/undercoat/standard/worksuit
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -594,7 +626,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(worksuits))
 
 /datum/gear/uniform/undercoatcolor
-	display_name = "undercoat, recolorable (Teshari)"
+	display_name = "Teshari undercoat (colorable)"
 	path = /obj/item/clothing/under/teshari/undercoat/standard/white_grey
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -604,7 +636,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/cloakcolor
-	display_name = "cloak, recolorable (Teshari)"
+	display_name = "Teshari cloak (colorable)"
 	path = /obj/item/clothing/suit/storage/teshari/cloak/standard/white_grey
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -614,7 +646,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/labcoat_tesh
-	display_name = "labcoat, colorable (Teshari)"
+	display_name = "Teshari labcoat (colorable)"
 	path = /obj/item/clothing/suit/storage/toggle/labcoat/teshari
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -624,7 +656,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/teshcoat
-	display_name = "small black coat, recolorable stripes (Teshari)"
+	display_name = "Teshari smallcoat, (colorable stripes)"
 	path = /obj/item/clothing/suit/storage/toggle/tesharicoat
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -634,7 +666,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/suit/teshcoatwhite
-	display_name = "smallcoat, recolorable (Teshari)"
+	display_name = "Teshari smallcoat (colorable)"
 	path = /obj/item/clothing/suit/storage/toggle/tesharicoatwhite
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -644,7 +676,7 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/accessory/teshneckscarf
-	display_name = "neckscarf, recolorable (Teshari)"
+	display_name = "Teshari neckscarf, (colorable)"
 	path = /obj/item/clothing/accessory/scarf/teshari/neckscarf
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -653,6 +685,7 @@
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+<<<<<<< HEAD
 /datum/gear/shoes/toelessjack
 	display_name = "toe-less jackboots"
 	path = /obj/item/clothing/shoes/boots/jackboots/toeless
@@ -665,8 +698,10 @@
 	display_name = "toe-less jackboots, thigh-length"
 	path = /obj/item/clothing/shoes/boots/jackboots/toeless/thigh
 
+=======
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 /datum/gear/eyes/aerogelgoggles
-	display_name = "airtight orange goggles (Teshari)"
+	display_name = "Teshari airtight orange goggles"
 	path = /obj/item/clothing/glasses/aerogelgoggles
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"

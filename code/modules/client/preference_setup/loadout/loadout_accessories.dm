@@ -1,9 +1,9 @@
 /datum/gear/accessory
-	display_name = "accessory"
+	display_name = "locket"
 	slot = slot_tie
 	sort_category = "Accessories"
 	type_category = /datum/gear/accessory
-	path = /obj/item/clothing/accessory
+	path = /obj/item/clothing/accessory/locket
 	cost = 1
 
 /datum/gear/accessory/armband
@@ -18,7 +18,7 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(armbands))
 
 /datum/gear/accessory/armband/colored
-	display_name = "armband"
+	display_name = "armband (colorable)"
 	path = /obj/item/clothing/accessory/armband/med/color
 
 /datum/gear/accessory/armband/colored/New()
@@ -36,9 +36,14 @@
 
 
 /datum/gear/accessory/wallet/womens
+<<<<<<< HEAD
 	display_name = "wallet, womens"
 	path = /obj/item/weapon/storage/wallet/womens
 	cost = 0 //VOREStation Edit
+=======
+	display_name = "wallet, women's (colorable)"
+	path = /obj/item/storage/wallet/womens
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/accessory/wallet/womens/New()
 	..()
@@ -144,14 +149,15 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jackets))
 
 /datum/gear/accessory/suitvest
-	display_name = "suit vest"
+	display_name = "suit vest, black"
 	path = /obj/item/clothing/accessory/vest
 
-/datum/gear/accessory/brown_vest
-	display_name = "webbing, brown"
+/datum/gear/accessory/webbing_vest
+	display_name = "webbing vest selection (Engineering, Security, Medical)"
 	path = /obj/item/clothing/accessory/storage/brown_vest
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
 
+<<<<<<< HEAD
 /datum/gear/accessory/black_vest
 	display_name = "webbing, black"
 	path = /obj/item/clothing/accessory/storage/black_vest
@@ -164,9 +170,23 @@
 
 /datum/gear/accessory/brown_drop_pouches
 	display_name = "drop pouches, brown"
+=======
+/datum/gear/accessory/webbing_vest/New()
+	..()
+	var/webbingtype = list()
+	webbingtype["webbing, brown"] = /obj/item/clothing/accessory/storage/brown_vest
+	webbingtype["webbing, black"] = /obj/item/clothing/accessory/storage/black_vest
+	webbingtype["webbing, white"] = /obj/item/clothing/accessory/storage/white_vest
+	webbingtype["webbing, simple"] = /obj/item/clothing/accessory/storage/webbing
+	gear_tweaks += new/datum/gear_tweak/path(webbingtype)
+
+/datum/gear/accessory/drop_pouches
+	display_name = "drop pouches selection (Engineering, Security, Medical)"
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 	path = /obj/item/clothing/accessory/storage/brown_drop_pouches
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
 
+<<<<<<< HEAD
 /datum/gear/accessory/black_drop_pouches
 	display_name = "drop pouches, black"
 	path = /obj/item/clothing/accessory/storage/black_drop_pouches
@@ -176,6 +196,15 @@
 	display_name = "drop pouches, white"
 	path = /obj/item/clothing/accessory/storage/white_drop_pouches
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
+=======
+/datum/gear/accessory/drop_pouches/New()
+	..()
+	var/pouchtype = list()
+	pouchtype["drop pouches, brown"] = /obj/item/clothing/accessory/storage/brown_drop_pouches
+	pouchtype["drop pouches, black"] = /obj/item/clothing/accessory/storage/black_drop_pouches
+	pouchtype["drop pouches, white"] = /obj/item/clothing/accessory/storage/white_drop_pouches
+	gear_tweaks += new/datum/gear_tweak/path(pouchtype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/accessory/fannypack
 	display_name = "fannypack selection"
@@ -188,12 +217,6 @@
 	for(var/obj/item/weapon/storage/belt/fannypack/fanny_type as anything in typesof(/obj/item/weapon/storage/belt/fannypack))
 		fannys[initial(fanny_type.name)] = fanny_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(fannys))
-
-/datum/gear/accessory/webbing
-	display_name = "webbing, simple"
-	path = /obj/item/clothing/accessory/storage/webbing
-	cost = 2
-
 /datum/gear/accessory/chaps
 	display_name = "chaps, brown"
 	path = /obj/item/clothing/accessory/chaps
@@ -202,6 +225,21 @@
 	display_name = "chaps, black"
 	path = /obj/item/clothing/accessory/chaps/black
 
+<<<<<<< HEAD
+=======
+/datum/gear/accessory/hawaii
+	display_name = "hawaii shirt"
+	path = /obj/item/clothing/accessory/hawaii
+
+/datum/gear/accessory/hawaii/New()
+	..()
+	var/list/shirts = list()
+	shirts["blue hawaii shirt"] = /obj/item/clothing/accessory/hawaii
+	shirts["red hawaii shirt"] = /obj/item/clothing/accessory/hawaii/red
+	shirts["random colored hawaii shirt"] = /obj/item/clothing/accessory/hawaii/random
+	gear_tweaks += new/datum/gear_tweak/path(shirts)
+
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 /datum/gear/accessory/sweater
 	display_name = "sweater selection"
 	path = /obj/item/clothing/accessory/sweater
@@ -241,20 +279,39 @@
 	bracelettype["bracelet, glass"] = /obj/item/clothing/accessory/bracelet/material/glass
 	bracelettype["bracelet, wood"] = /obj/item/clothing/accessory/bracelet/material/wood
 	bracelettype["bracelet, plastic"] = /obj/item/clothing/accessory/bracelet/material/plastic
+<<<<<<< HEAD
 	gear_tweaks += new/datum/gear_tweak/path(bracelettype)
 
 /datum/gear/accessory/bracelet/friendship
 	display_name = "friendship bracelet"
 	path = /obj/item/clothing/accessory/bracelet/friendship
+=======
+	bracelettype["bracelet, copper"] = /obj/item/clothing/accessory/bracelet/material/copper
+	bracelettype["bracelet, bronze"] = /obj/item/clothing/accessory/bracelet/material/bronze
+	bracelettype["bracelet, friendship"] = /obj/item/clothing/accessory/bracelet/friendship
+	gear_tweaks += new/datum/gear_tweak/path(bracelettype)
+
+/datum/gear/accessory/bracelet/slap
+	display_name = "bracelet, slap (colorable)"
+	path = /obj/item/clothing/accessory/bracelet/slap
+
+/datum/gear/accessory/bracelet/slap/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/bracelet/beaded
+	display_name = "bracelet, beaded (colorable)"
+	path = /obj/item/clothing/accessory/bracelet/beaded
+
+/datum/gear/accessory/bracelet/beaded/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/accessory/stethoscope
 	display_name = "stethoscope"
 	path = /obj/item/clothing/accessory/stethoscope
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic", "Search and Rescue")
-
-/datum/gear/accessory/locket
-	display_name = "locket"
-	path = /obj/item/clothing/accessory/locket
 
 /datum/gear/accessory/halfcape
 	display_name = "half cape"
@@ -343,9 +400,65 @@
 	allowed_roles = list("Internal affairs agent")
 
 /datum/gear/accessory/pressbadge
-	display_name = "corporate press pass"
+	display_name = "press pass, corporate"
 	path = /obj/item/clothing/accessory/badge/press
 
+<<<<<<< HEAD
 /datum/gear/accessory/pressbadge
 	display_name = "freelance press pass"
 	path = /obj/item/clothing/accessory/badge/press/independent
+=======
+/datum/gear/accessory/pressbadgefreelance
+	display_name = "press pass, freelance"
+	path = /obj/item/clothing/accessory/badge/press/independent
+
+/datum/gear/accessory/legbrace
+	display_name = "leg braces"
+	path = /obj/item/clothing/accessory/legbrace
+
+/datum/gear/accessory/neckerchief
+	display_name = "neckerchief, color select"
+	path = /obj/item/clothing/accessory/neckerchief
+
+/datum/gear/accessory/necklace
+	display_name = "necklace selection"
+	description = "Choose from a number of neclkaces."
+	path = /obj/item/clothing/accessory/necklace
+	cost = 1
+
+/datum/gear/accessory/necklace/New()
+	..()
+	var/necklacetype = list()
+	necklacetype["necklace, steel"] = /obj/item/clothing/accessory/necklace/steel
+	necklacetype["necklace, iron"] = /obj/item/clothing/accessory/necklace/iron
+	necklacetype["necklace, silver"] = /obj/item/clothing/accessory/necklace/silver
+	necklacetype["necklace, gold"] = /obj/item/clothing/accessory/necklace/gold
+	necklacetype["necklace, platinum"] = /obj/item/clothing/accessory/necklace/platinum
+	necklacetype["necklace, glass"] = /obj/item/clothing/accessory/necklace/glass
+	necklacetype["necklace, wood"] = /obj/item/clothing/accessory/necklace/wood
+	necklacetype["necklace, sivian wood"] = /obj/item/clothing/accessory/necklace/sifwood
+	necklacetype["necklace, plastic"] = /obj/item/clothing/accessory/necklace/plastic
+	necklacetype["necklace, copper"] = /obj/item/clothing/accessory/necklace/copper
+	necklacetype["necklace, bronze"] = /obj/item/clothing/accessory/necklace/bronze
+	gear_tweaks += new/datum/gear_tweak/path(necklacetype)
+
+/datum/gear/accessory/neckerchief/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/accessory/watch
+	display_name = "watch selection"
+	description = "Choose from a number of wristwatches."
+	path = /obj/item/clothing/accessory/watch
+	cost = 1
+
+/datum/gear/accessory/watch/New()
+	..()
+	var/watchtype = list()
+	watchtype["watch"] = /obj/item/clothing/accessory/watch
+	watchtype["watch, silver"] = /obj/item/clothing/accessory/watch/silver
+	watchtype["watch, gold"] = /obj/item/clothing/accessory/watch/gold
+	watchtype["watch, holographic"] = /obj/item/clothing/accessory/watch/holo
+	watchtype["watch, leather"] = /obj/item/clothing/accessory/watch/leather
+	gear_tweaks += new/datum/gear_tweak/path(watchtype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)

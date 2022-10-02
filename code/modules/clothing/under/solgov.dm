@@ -43,7 +43,7 @@
 //Utility
 //These are just colored
 /obj/item/clothing/under/utility
-	name = "utility uniform"
+	name = "black utility uniform"
 	desc = "A comfortable turtleneck and black utility trousers."
 	icon_state = "blackutility"
 	worn_state = "blackutility"
@@ -52,13 +52,13 @@
 	siemens_coefficient = 0.9
 
 /obj/item/clothing/under/utility/blue
-	name = "utility uniform"
+	name = "blue utility uniform"
 	desc = "A comfortable blue utility jumpsuit."
 	icon_state = "navyutility"
 	worn_state = "navyutility"
 
 /obj/item/clothing/under/utility/grey
-	name = "utility uniform"
+	name = "grey utility uniform"
 	desc = "A comfortable grey utility jumpsuit."
 	icon_state = "greyutility"
 	worn_state = "greyutility"

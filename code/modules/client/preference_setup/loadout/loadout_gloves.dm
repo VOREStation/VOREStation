@@ -6,6 +6,7 @@
 	slot = slot_gloves
 	sort_category = "Gloves and Handwear"
 
+<<<<<<< HEAD
 /datum/gear/gloves/blue
 	display_name = "gloves, blue"
 	path = /obj/item/clothing/gloves/blue
@@ -25,6 +26,28 @@
 /datum/gear/gloves/grey
 	display_name = "gloves, grey"
 	path = /obj/item/clothing/gloves/grey
+=======
+/datum/gear/gloves/color
+	display_name = "gloves, colored selection"
+	path = /obj/item/clothing/gloves/black
+	cost = 1
+
+/datum/gear/gloves/color/New()
+	..()
+	var/glovetype = list()
+	glovetype["gloves, black"] = /obj/item/clothing/gloves/black
+	glovetype["gloves, blue"] = path = /obj/item/clothing/gloves/blue
+	glovetype["gloves, brown"] = /obj/item/clothing/gloves/brown
+	glovetype["gloves, light-brown"] = /obj/item/clothing/gloves/light_brown
+	glovetype["gloves, green"] = /obj/item/clothing/gloves/green
+	glovetype["gloves, grey"] = /obj/item/clothing/gloves/grey
+	glovetype["gloves, orange"] = /obj/item/clothing/gloves/orange
+	glovetype["gloves, purple"] = /obj/item/clothing/gloves/purple
+	glovetype["gloves, rainbow"] = /obj/item/clothing/gloves/rainbow
+	glovetype["gloves, red"] = /obj/item/clothing/gloves/red
+	glovetype["gloves, white"] = /obj/item/clothing/gloves/white
+	gear_tweaks += new/datum/gear_tweak/path(glovetype)
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 
 /datum/gear/gloves/latex
 	display_name = "gloves, latex"
@@ -35,6 +58,7 @@
 	display_name = "gloves, nitrile"
 	path = /obj/item/clothing/gloves/sterile/nitrile
 	cost = 2
+<<<<<<< HEAD
 
 /datum/gear/gloves/orange
 	display_name = "gloves, orange"
@@ -56,6 +80,8 @@
 	display_name = "gloves, white"
 	path = /obj/item/clothing/gloves/white
 
+=======
+>>>>>>> 3748572e9e7... Consolidates Loadout Lists (#8714)
 /datum/gear/gloves/evening
 	display_name = "evening gloves"
 	path = /obj/item/clothing/gloves/evening
