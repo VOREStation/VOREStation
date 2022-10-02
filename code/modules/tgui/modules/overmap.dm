@@ -307,7 +307,8 @@
 		/* HELM */
 		if("add")
 			var/datum/computer_file/data/waypoint/R = new()
-			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]")
+			var/sec_name = tgui_input_text(usr, "Input navigation entry name", "New navigation entry", "Sector #[known_sectors.len]", MAX_NAME_LEN)
+			sec_name = sanitize(sec_name,MAX_NAME_LEN)
 			if(!sec_name)
 				sec_name = "Sector #[known_sectors.len]"
 			R.fields["name"] = sec_name
@@ -383,7 +384,7 @@
 			else
 				autopilot = !autopilot
 			. = TRUE
-		
+
 		if("apilot_lock")
 			autopilot_disabled = !autopilot_disabled
 			autopilot = FALSE

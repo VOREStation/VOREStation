@@ -46,7 +46,7 @@
 		for(var/c in SelectedServer.log_entries)
 			i++
 			var/datum/comm_log_entry/C = c
-			
+
 			// This is necessary to prevent leaking information to the clientside
 			var/static/list/acceptable_params = list("uspeech", "intelligible", "message", "name", "race", "job", "timecode")
 			var/list/parameters = list()
@@ -74,7 +74,7 @@
 	if(!ui)
 		ui = new(user, src, "TelecommsLogBrowser", name)
 		ui.open()
-	
+
 /obj/machinery/computer/telecomms/server/tgui_act(action, params)
 	if(..())
 		return TRUE
@@ -128,7 +128,8 @@
 			. = TRUE
 
 		if("network")
-			var/newnet = tgui_input_text(usr, "Which network do you want to view?", "Comm Monitor", network)
+			var/newnet = tgui_input_text(usr, "Which network do you want to view?", "Comm Monitor", network, 15)
+			newnet = sanitize(newnet,15)
 
 			if(newnet && ((usr in range(1, src) || issilicon(usr))))
 				if(length(newnet) > 15)
@@ -139,7 +140,7 @@
 				set_temp("NEW NETWORK TAG SET IN ADDRESS \[[network]\]", "good")
 
 			. = TRUE
-		
+
 		if("cleartemp")
 			temp = null
 			. = TRUE

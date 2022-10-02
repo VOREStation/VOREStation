@@ -53,7 +53,8 @@ GLOBAL_LIST_EMPTY(gyrotrons)
 
 /obj/machinery/power/emitter/gyrotron/attackby(var/obj/item/W, var/mob/user)
 	if(istype(W, /obj/item/device/multitool))
-		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron", id_tag)
+		var/new_ident = tgui_input_text(usr, "Enter a new ident tag.", "Gyrotron", id_tag, MAX_NAME_LEN)
+		new_ident = sanitize(new_ident,MAX_NAME_LEN)
 		if(new_ident && user.Adjacent(src))
 			id_tag = new_ident
 		return

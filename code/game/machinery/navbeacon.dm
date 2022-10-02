@@ -150,7 +150,7 @@ Transponder Codes:<UL>"}
 			usr.set_machine(src)
 
 			if(href_list["locedit"])
-				var/newloc = sanitize(tgui_input_text(usr, "Enter New Location", "Navigation Beacon", location))
+				var/newloc = sanitize(tgui_input_text(usr, "Enter New Location", "Navigation Beacon", location, MAX_NAME_LEN))
 				if(newloc)
 					location = newloc
 					updateDialog()
@@ -158,12 +158,14 @@ Transponder Codes:<UL>"}
 			else if(href_list["edit"])
 				var/codekey = href_list["code"]
 
-				var/newkey = tgui_input_text(usr, "Enter Transponder Code Key", "Navigation Beacon", codekey)
+				var/newkey = tgui_input_text(usr, "Enter Transponder Code Key", "Navigation Beacon", codekey, MAX_NAME_LEN)
+				newkey = sanitize(newkey,MAX_NAME_LEN)
 				if(!newkey)
 					return
 
 				var/codeval = codes[codekey]
-				var/newval = tgui_input_text(usr, "Enter Transponder Code Value", "Navigation Beacon", codeval)
+				var/newval = tgui_input_text(usr, "Enter Transponder Code Value", "Navigation Beacon", codeval, MAX_NAME_LEN)
+				newval = sanitize(newval,MAX_NAME_LEN)
 				if(!newval)
 					newval = codekey
 					return
@@ -180,11 +182,13 @@ Transponder Codes:<UL>"}
 
 			else if(href_list["add"])
 
-				var/newkey = tgui_input_text(usr, "Enter New Transponder Code Key", "Navigation Beacon")
+				var/newkey = tgui_input_text(usr, "Enter New Transponder Code Key", "Navigation Beacon", null, MAX_NAME_LEN)
+				newkey = sanitize(newkey,MAX_NAME_LEN)
 				if(!newkey)
 					return
 
-				var/newval = tgui_input_text(usr, "Enter New Transponder Code Value", "Navigation Beacon")
+				var/newval = tgui_input_text(usr, "Enter New Transponder Code Value", "Navigation Beacon", null, MAX_NAME_LEN)
+				newval = sanitize(newval,MAX_NAME_LEN)
 				if(!newval)
 					newval = "1"
 					return

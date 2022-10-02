@@ -94,9 +94,9 @@
 
 	if(!target) return
 
-	text = tgui_input_text(usr, "What would you like to say?", "Speak to creature", null, null)
+	text = tgui_input_text(usr, "What would you like to say?", "Speak to creature", null, MAX_MESSAGE_LEN)
 
-	text = sanitize(text)
+	text = sanitize(text, MAX_MESSAGE_LEN)
 
 	if(!text) return
 
@@ -217,7 +217,7 @@
 
 		if(isSynthetic())
 			output += "Current Battery Charge: [nutrition]\n"
-			
+
 			var/toxDam = getToxLoss()
 			if(toxDam)
 				output += "System Instability: <span class='warning'>[toxDam > 25 ? "Severe" : "Moderate"]</span>. Seek charging station for cleanup.\n"
