@@ -850,13 +850,14 @@ var/global/list/BUILDABLE_AREA_TYPES = list(
 	/area/mine,
 //	/area/surface/outside, 	//SC
 //	/area/surface/cave,		//SC
-	//TETHER STUFF BELOW THIS
 	/area/tether/surfacebase/outside,
-	//GROUNDBASE STUFF BELOW THIS
 	/area/groundbase/unexplored/outdoors,
 	/area/maintenance/groundbase/level1,
 	/area/submap/groundbase/wilderness,
-	/area/groundbase/mining
+	/area/groundbase/mining,
+	/area/offmap/aerostat/surface,
+	/area/tether_away/beach,
+	/area/tether_away/cave,
 )
 
 var/static/list/blacklisted_areas = typecacheof(list(
@@ -870,7 +871,10 @@ var/static/list/blacklisted_areas = typecacheof(list(
 	/area/groundbase/unexplored/outdoors,
 	/area/maintenance/groundbase/level1,
 	/area/submap/groundbase/wilderness,
-	/area/groundbase/mining
+	/area/groundbase/mining,
+	/area/offmap/aerostat/surface,
+	/area/tether_away/beach,
+	/area/tether_away/cave
 	))
 
 var/global/list/SPECIALS = list(
@@ -885,7 +889,12 @@ var/global/list/SPECIALS = list(
 	/area/wizard_station,
 	/area/prison,
 	/area/holodeck,
-	/area/turbolift
+	/area/turbolift,
+	/area/tether/elevator,
+	/turf/unsimulated/wall/planetary,
+	/area/submap/virgo2,
+	/area/submap/event,
+	/area/submap/casino_event
 	// /area/derelict //commented out, all hail derelict-rebuilders!
 )
 
@@ -902,5 +911,10 @@ var/global/list/area_or_turf_fail_types = typecacheof(list(
 	/area/prison,
 	/area/holodeck,
 	/turf/simulated/wall/elevator,
-	/area/turbolift
+	/area/turbolift,
+	/area/tether/elevator,
+	/turf/unsimulated/wall/planetary,
+	/area/submap/virgo2,
+	/area/submap/event,
+	/area/submap/casino_event
 	))

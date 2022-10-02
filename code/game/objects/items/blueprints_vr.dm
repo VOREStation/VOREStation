@@ -8,12 +8,11 @@
 
 // Now that I've scared away half the people looking at this file, here's the relevant info:
 
-// Banning areas: Go to /obj/item/areaeditor/proc/get_area_type and /proc/create_area and add the /area to: (area_or_turf_fail_types)
-// That will bar people from doing ANYTHING to those areas. No creating inside of them. No merging into them. Etc.
+// Banning areas: Go to global_lists_vr, jump to the BUILDABLE_AREA_TYPES and read the comments left there.
 
-// Disallow creation but allow merge/expansion: Go to the same two above again.
-// Add the /area to 'blacklisted_areas' in /proc/create_area
+/area/tether/elevator
 
+	name = "Tether Elevator"
 
 /area/tether/surfacebase/outside
 	name = "Outside - Surface"
