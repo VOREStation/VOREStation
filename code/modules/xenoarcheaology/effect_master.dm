@@ -286,58 +286,84 @@
 
 
 /datum/component/artifact_master/proc/on_attackby()
-	var/obj/item/weapon/W = args[2]
-	for(var/datum/artifact_effect/my_effect in my_effects)
+	//The reagents used to be a very small list of only certain reagent IDs previously.
+	//Now, we use modifiable lists that allows /types/ of reagents to be used. Nifty, right?
+	//The downside is it makes the code more complex.
+	//The upside is that now if you dump toxin/really_bad_deadly_stuff it'll activate it just like reagent/toxin will.
+	//This also took a stupid amount of time to get functional. Works better than ever now, though!
+	var/list/water_reagents = list(/datum/reagent/hydrogen, /datum/reagent/water)
+	var/list/acid_reagents = list(/datum/reagent/acid, /datum/reagent/diethylamine)
+	var/list/volatile_reagents = list(/datum/reagent/toxin/phoron,/datum/reagent/toxin/hydrophoron, /datum/reagent/thermite)
+	var/list/toxic_reagents = list(/datum/reagent/toxin)
 
-		if (istype(W, /obj/item/weapon/reagent_containers))
-			if(W.reagents.has_reagent("hydrogen", 1) || W.reagents.has_reagent("water", 1))
+	var/obj/item/weapon/W = args[2]
+
+	for(var/datum/artifact_effect/my_effect in my_effects)
+		if(my_effect.trigger == TRIGGER_WATER || my_effect.trigger == TRIGGER_ACID || my_effect.trigger == TRIGGER_VOLATILE || my_effect.trigger == TRIGGER_TOXIN) //Does it take reagents to activate?
+			if(istype(W, /obj/item/weapon/reagent_containers))
+				var/obj/item/weapon/reagent_containers/RC = W //A container is being used!
 				if(my_effect.trigger == TRIGGER_WATER)
-					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent("sacid", 1) || W.reagents.has_reagent("pacid", 1) || W.reagents.has_reagent("diethylamine", 1))
-				if(my_effect.trigger == TRIGGER_ACID)
-					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent("phoron", 1) || W.reagents.has_reagent("thermite", 1))
-				if(my_effect.trigger == TRIGGER_VOLATILE)
-					my_effect.ToggleActivate()
-			else if(W.reagents.has_reagent("toxin", 1) || W.reagents.has_reagent("cyanide", 1) || W.reagents.has_reagent("amatoxin", 1) || W.reagents.has_reagent("neurotoxin", 1))
-				if(my_effect.trigger == TRIGGER_TOXIN)
-					my_effect.ToggleActivate()
-		else if(istype(W,/obj/item/weapon/melee/baton) && W:status ||\
+					for(var/datum/reagent/R in RC.reagents.reagent_list) //What chems are in the beaker?
+						var/T = R.type
+						if(is_path_in_list(T,water_reagents)) //Check the reagent and activate!
+							my_effect.ToggleActivate()
+				else if(my_effect.trigger == TRIGGER_ACID)
+					for(var/datum/reagent/R in RC.reagents.reagent_list)
+						var/T = R.type
+						if(is_path_in_list(T,acid_reagents))
+							my_effect.ToggleActivate()
+				else if(my_effect.trigger == TRIGGER_VOLATILE)
+					for(var/datum/reagent/R in RC.reagents.reagent_list)
+						var/T = R.type
+						if(is_path_in_list(T,volatile_reagents))
+							my_effect.ToggleActivate()
+				else if(my_effect.trigger == TRIGGER_TOXIN)
+					for(var/datum/reagent/R in RC.reagents.reagent_list)
+						var/T = R.type
+						if(is_path_in_list(T,toxic_reagents))
+							my_effect.ToggleActivate()
+
+		else if (my_effect.trigger == TRIGGER_ENERGY)
+			if(istype(W,/obj/item/weapon/melee/baton) && W:status ||\
 				istype(W,/obj/item/weapon/melee/energy) ||\
 				istype(W,/obj/item/weapon/melee/cultblade) ||\
 				istype(W,/obj/item/weapon/card/emag) ||\
 				istype(W,/obj/item/device/multitool))
-			if (my_effect.trigger == TRIGGER_ENERGY)
 				my_effect.ToggleActivate()
 
-		else if (istype(W,/obj/item/weapon/flame) && W:lit ||\
+		else if(my_effect.trigger == TRIGGER_HEAT)
+			if (istype(W,/obj/item/weapon/flame) && W:lit ||\
 				istype(W,/obj/item/weapon/weldingtool) && W:welding)
-			if(my_effect.trigger == TRIGGER_HEAT)
 				my_effect.ToggleActivate()
-		else
-			if (my_effect.trigger == TRIGGER_FORCE && W.force >= 10)
+		else //Only one other thing it can be - Force!
+			if (W.force >= 10)
 				my_effect.ToggleActivate()
 
 /datum/component/artifact_master/proc/on_reagent()
-	var/datum/reagent/Touching = args[2]
+	//A strange bug here is that, when a reagent is splashed on an artifact, it calls this proc twice.
+	//Why? I have no clue. I only accidentally stumbled upon it during debugging!
+	//I left one of the debug logs commented out so others can confirm this.
+	var/datum/reagent/touching = args[2]
+	var/T = touching.type //What type of reagent is being splashed on it?
 
-	var/list/water = list("hydrogen", "water")
-	var/list/acid = list("sacid", "pacid", "diethylamine")
-	var/list/volatile = list("phoron","thermite")
-	var/list/toxic = list("toxin","cyanide","amatoxin","neurotoxin")
+	var/list/water_reagents = list(/datum/reagent/hydrogen, /datum/reagent/water)
+	var/list/acid_reagents = list(/datum/reagent/acid, /datum/reagent/diethylamine)
+	var/list/volatile_reagents = list(/datum/reagent/toxin/phoron,/datum/reagent/toxin/hydrophoron, /datum/reagent/thermite)
+	var/list/toxic_reagents = list(/datum/reagent/toxin)
 
 	for(var/datum/artifact_effect/my_effect in my_effects)
-		if(Touching.id in water)
-			if(my_effect.trigger == TRIGGER_WATER)
+		if(my_effect.trigger == TRIGGER_WATER)
+			//log_debug("ON REAGENT T in path = [is_path_in_list(T,water_reagents)]!")
+			if(is_path_in_list(T,water_reagents))
 				my_effect.ToggleActivate()
-		else if(Touching.id in acid)
-			if(my_effect.trigger == TRIGGER_ACID)
+		else if(my_effect.trigger == TRIGGER_ACID)
+			if(is_path_in_list(T,acid_reagents))
 				my_effect.ToggleActivate()
-		else if(Touching.id in volatile)
-			if(my_effect.trigger == TRIGGER_VOLATILE)
+		else if(my_effect.trigger == TRIGGER_VOLATILE)
+			if(is_path_in_list(T,volatile_reagents))
 				my_effect.ToggleActivate()
-		else if(Touching.id in toxic)
-			if(my_effect.trigger == TRIGGER_TOXIN)
+		else if(my_effect.trigger == TRIGGER_TOXIN)
+			if(is_path_in_list(T,toxic_reagents))
 				my_effect.ToggleActivate()
 
 /datum/component/artifact_master/proc/on_moved()
