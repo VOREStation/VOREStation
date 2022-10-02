@@ -725,7 +725,6 @@
 					T.ChangeTurf(floor_type)
 				else
 					new floor_type(T)
-	log_debug("area_enabled is set to [area_enabled]")
 	if(area_enabled) //Let's try not to make a new area unless you got walls and a floor.
 		create_buildmode_area(area_name, origin) //Generates a new area.
 

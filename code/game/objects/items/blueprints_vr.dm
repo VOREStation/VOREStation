@@ -631,7 +631,7 @@
 		interact()
 	return
 
-/obj/item/areaeditor/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
+/proc/move_turfs_to_area(var/list/turf/turfs, var/area/A)
 	for(var/T in turfs)
 		ChangeArea(T, A)
 
@@ -740,6 +740,167 @@
 		for(var/image/i in usr.client.images)
 			if(i.icon_state == "blueprints")
 				usr.client.images.Remove(i)
+
+
+
+
+
+
+
+
+
+
+
+//GLOBAL VERB FOR PAPER TO ENABLE ANYONE TO MAKE AN AREA IN BUILDABLE AREAS.
+//THIS IS 70 TILES. ANYTHING LARGER SHOULD USE ACTUAL BLUEPRINTS.
+
+/obj/item/weapon/paper
+	var/created_area = 0
+	var/area_cooldown = 0
+
+/obj/item/weapon/paper/verb/create_area()
+	set name = "Create Area"
+	set category = "Object"
+	set src in usr
+
+	if(created_area)
+		to_chat(usr, "<span class='warning'>This paper has already been used to create an area.</span>")
+		return
+
+	if(usr.stat || world.time < area_cooldown)
+		to_chat(usr, "<span class='warning'>You recently used this paper to try to create an area. Wait one minute before using it again.</span>")
+		return
+
+	area_cooldown = world.time + 600 //Anti spam.
+
+	create_new_area(usr)
+	add_fingerprint(usr)
+	return
+
+proc/get_new_area_type(area/A) //1 = can build in. 0 = can not build in.
+	if (!A)
+		A = get_area(usr)
+	if(A.outdoors) //ALWAYS able to build outdoors. This means if it's missed in BUILDABLE_AREA_TYPES it's fine.
+		return 1
+
+	for (var/type in BUILDABLE_AREA_TYPES) //This works well.
+		if ( istype(A,type) )
+			return 1
+
+	for (var/type in SPECIALS)
+		if ( istype(A,type) )
+			return 0
+	return 0 //If it's not a buildable area, don't let them build in it.
+
+
+/proc/detect_new_area(var/turf/first, var/user) //Heavily simplified version for creating an area yourself.
+	if(!istype(first)) //Not on a turf.
+		to_chat(usr, "<span class='warning'You can not create a room here.</span>")
+		return
+	if(get_new_area_type(first.loc) == 1) //Are they in an area they can build? I tried to do this BUILDABLE_AREA_TYPES[first.loc.type] but it refused.
+		var/list/turf/found = new
+		var/list/turf/pending = list(first)
+		while(pending.len)
+			if (found.len+pending.len > 70)
+				return 1 //TOOLARGE
+			var/turf/T = pending[1]
+			pending -= T
+			for (var/dir in cardinal)
+				var/turf/NT = get_step(T,dir)
+				if (!isturf(NT) || (NT in found) || (NT in pending))
+					continue
+				if(!get_new_area_type(NT.loc) == 1) //The contains somewhere that is NOT a buildable area.
+					return 3 //NOT A BUILDABLE AREA
+
+				if(air_master.air_blocked(T, NT)) //Is the room airtight?
+					// Okay thats the edge of the room
+					if(get_new_area_type(NT.loc) == 1 && air_master.air_blocked(NT, NT))
+						found += NT // So we include walls/doors not already in any area
+					continue
+				if (istype(NT, /turf/space))
+					return 2 //SPACE
+				if (istype(NT, /turf/simulated/shuttle))
+					return 2 //SPACE
+				if (NT.loc != first.loc && !(get_new_area_type(NT.loc) & 1))
+					// Edge of a protected area.  Lets stop here...
+					continue
+				if (!istype(NT, /turf/simulated))
+					// Great, unsimulated... eh, just stop searching here
+					continue
+				// Okay, NT looks promising, lets continue the search there!
+				pending += NT
+			found += T
+		// end while
+		return found
+	else
+		return 3
+
+/proc/create_new_area(mob/creator) //Heavily simplified version of the blueprint version.
+	var/res = detect_new_area(get_turf(creator), creator)
+	if(!res)
+		to_chat(creator, span_warning("Something went wrong."))
+		return
+
+	if(!istype(res,/list))
+		switch(res)
+			if(1)
+				to_chat(creator, "<span class='warning'>The new area too large! You can only have an area that is up to 70 tiles.</span>")
+				return
+			if(2)
+				to_chat(creator, "<span class='warning'>The new area must be completely airtight and not be part of a shuttle!</span>")
+				return
+			if(3)
+				to_chat(creator, "<span class='warning'>There is an area not permitted to be built in somewhere in the room!</span>")
+				return
+			else
+				to_chat(creator, "<span class='warning'>Error! Please notify administration!</span>")
+				return
+	var/list/turf/turfs = res
+
+	var/area/newA								//The new area
+	var/area/oldA = get_area(get_turf(creator))	//The old area (area currently standing in)
+	var/str										//What the new area is named.
+
+	var/list/nearby_turfs_to_check = detect_room(get_turf(creator), area_or_turf_fail_types, 70) //Get the nearby areas.
+
+	if(!nearby_turfs_to_check)
+		to_chat(creator, span_warning("The new area must have a floor and not a part of a shuttle."))
+		return
+	if(length(turfs) > 70) //Sanity
+		to_chat(creator, span_warning("The room you're in is too big. It can only be 70 tiles in size, excluding walls."))
+		return
+
+	//They can select an area they want to turn their current area into.
+	str = sanitizeSafe(tgui_input_text(usr, "What would you like to name the area?", "Area Name", null, MAX_NAME_LEN), MAX_NAME_LEN)
+	if(isnull(str)) //They pressed cancel.
+		to_chat(creator, "<span class='warning'>No new area made. Cancelling.</span>")
+		return
+	if(!str || !length(str)) //sanity
+		to_chat(creator, "<span class='warning'>No new area made. Cancelling.</span>")
+		return
+	if(length(str) > MAX_NAME_LEN)
+		to_chat(creator, "<span class='warning'>Name too long.</span>")
+		return
+	for(var/area/A in world) //Check to make sure we're not making a duplicate name. Sanity.
+		if(A.name == str)
+			to_chat(creator, "<span class='warning'>An area in the world alreay has this name.</span>")
+			return
+	newA = new /area
+	newA.setup(str)
+	newA.has_gravity = oldA.has_gravity
+	newA.setup(str)
+
+	for(var/i in 1 to length(turfs)) //Fix lighting. Praise the lord.
+		var/turf/thing = turfs[i]
+		newA.contents += thing
+		thing.change_area(oldA, newA)
+
+	move_turfs_to_area(turfs, newA)
+	newA.has_gravity = oldA.has_gravity
+	set_area_machinery(newA, newA.name, oldA.name)
+	oldA.power_check() //Simply makes the area turn the power off if you nicked an APC from it.
+	to_chat(creator, span_notice("You have created a new area, named [newA.name]. It is now weather proof, and constructing an APC will allow it to be powered."))
+	return
 
 
 #undef BP_MAX_ROOM_SIZE
