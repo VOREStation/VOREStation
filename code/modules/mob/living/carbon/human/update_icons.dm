@@ -305,10 +305,13 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 			if(part.transparent) //VOREStation Edit. For better slime limbs. Avoids using solid var due to limb dropping.
 				icon_key += "_t" //VOREStation Edit.
 
+<<<<<<< HEAD
 			if(istype(tail_style, /datum/sprite_accessory/tail/taur))
 				if(tail_style.clip_mask) //VOREStation Edit.
 					icon_key += tail_style.clip_mask_state
 
+=======
+>>>>>>> f32c8de8cd8... Merge pull request #8712 from Cerebulon/notaur
 	icon_key = "[icon_key][husk ? 1 : 0][fat ? 1 : 0][hulk ? 1 : 0][skeleton ? 1 : 0]"
 	var/icon/base_icon
 	if(human_icon_cache[icon_key])
@@ -320,6 +323,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 		var/icon/Cutter = null
 
+<<<<<<< HEAD
 		if(istype(tail_style, /datum/sprite_accessory/tail/taur))	// Tail icon 'cookie cutters' are filled in where icons are preserved. We need to invert that.
 			if(tail_style.clip_mask) //VOREStation Edit.
 				Cutter = new(icon = tail_style.icon, icon_state = tail_style.clip_mask_state)
@@ -331,6 +335,8 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 
 				Cutter.Blend("#000000", ICON_MULTIPLY)	// Black again.
 
+=======
+>>>>>>> f32c8de8cd8... Merge pull request #8712 from Cerebulon/notaur
 		for(var/obj/item/organ/external/part in organs)
 			if(isnull(part) || part.is_stump() || part.is_hidden_by_tail()) //VOREStation Edit allowing tails to prevent bodyparts rendering, granting more spriter freedom for taur/digitigrade stuff.
 				continue
@@ -668,8 +674,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	//Build a uniform sprite
 	var/icon/c_mask = tail_style?.clip_mask
 	if(c_mask)
-		var/obj/item/clothing/suit/S = wear_suit
-		if((wear_suit?.flags_inv & HIDETAIL) || (istype(S) && S.taurized)) // Reasons to not mask: 1. If you're wearing a suit that hides the tail or if you're wearing a taurized suit.
+		if((wear_suit?.flags_inv & HIDETAIL)) // Reason to not mask: You're wearing a suit that hides the tail
 			c_mask = null
 	overlays_standing[UNIFORM_LAYER] = w_uniform.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_w_uniform_str, default_icon = uniform_sprite, default_layer = UNIFORM_LAYER, clip_mask = c_mask)
 	apply_layer(UNIFORM_LAYER)
@@ -851,11 +856,14 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		suit_sprite = INV_SUIT_DEF_ICON
 
 	var/icon/c_mask = null
+<<<<<<< HEAD
 	var/tail_is_rendered = (overlays_standing[TAIL_UPPER_LAYER] || overlays_standing[TAIL_UPPER_LAYER_ALT] || overlays_standing[TAIL_LOWER_LAYER])
 	var/valid_clip_mask = tail_style?.clip_mask
 
 	if(tail_is_rendered && valid_clip_mask && !(istype(suit) && suit.taurized)) //Clip the lower half of the suit off using the tail's clip mask for taurs since taur bodies aren't hidden.
 		c_mask = valid_clip_mask
+=======
+>>>>>>> f32c8de8cd8... Merge pull request #8712 from Cerebulon/notaur
 	overlays_standing[SUIT_LAYER] = wear_suit.make_worn_icon(body_type = species.get_bodytype(src), slot_name = slot_wear_suit_str, default_icon = suit_sprite, default_layer = SUIT_LAYER, clip_mask = c_mask)
 
 	apply_layer(SUIT_LAYER)
@@ -1263,10 +1271,15 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		return image(tail_s)
 
 	//If you have a custom tail selected
+<<<<<<< HEAD
 	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
 		var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = (tail_style.can_loaf && resting) ? "[tail_style.icon_state]_loaf" : (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)) // VOREStation Edit: Taur Loafing
 		if(tail_style.can_loaf && !is_shifted)
 			pixel_y = (resting) ? -tail_style.loaf_offset : 0 //move player down, then taur up, to fit the overlays correctly // VOREStation Edit: Taur Loafing
+=======
+	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL))
+		var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)
+>>>>>>> f32c8de8cd8... Merge pull request #8712 from Cerebulon/notaur
 		if(tail_style.do_colouration)
 			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
 		if(tail_style.extra_overlay)
@@ -1293,6 +1306,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 				tail_s.Blend(overlay, ICON_OVERLAY)
 				qdel(overlay)
 
+<<<<<<< HEAD
 		var/image/working = image(tail_s)
 		if(tail_style.em_block)
 			working.overlays += em_block_image_generic(working) // Leaving this as overlays +=
@@ -1308,6 +1322,9 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 		else if(islongtail(tail_style))
 			working.pixel_x = -16
 		return working
+=======
+		return image(tail_s)
+>>>>>>> f32c8de8cd8... Merge pull request #8712 from Cerebulon/notaur
 	return null
 
 // TODO - Move this to where it should go ~Leshana

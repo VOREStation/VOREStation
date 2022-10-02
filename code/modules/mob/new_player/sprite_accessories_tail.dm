@@ -20,7 +20,7 @@
 	var/ani_state // State when wagging/animated
 	var/extra_overlay_w // Wagging state for extra overlay
 	var/extra_overlay2_w // Tertiary wagging.
-	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing taur/digitigrade stuff.
+	var/list/hide_body_parts = list() //Uses organ tag defines. Bodyparts in this list do not have their icons rendered, allowing for more spriter freedom when doing digitigrade stuff.
 	var/icon/clip_mask_icon = null //Icon file used for clip mask.
 	var/clip_mask_state = null //Icon state to generate clip mask. Clip mask is used to 'clip' off the lower part of clothing such as jumpsuits & full suits.
 	var/icon/clip_mask = null //Instantiated clip mask of given icon and state

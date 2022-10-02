@@ -61,7 +61,10 @@
 //#define isturf(D)		istype(D, /turf)	//Built in
 #define isopenspace(A)	istype(A, /turf/simulated/open)
 #define isspace(A)		istype(A, /turf/space)
+<<<<<<< HEAD
 #define ismineralturf(A) istype(A, /turf/simulated/mineral)
 
 #define istaurtail(A)	istype(A, /datum/sprite_accessory/tail/taur)
 #define islongtail(A)	istype(A, /datum/sprite_accessory/tail/longtail)
+=======
+>>>>>>> f32c8de8cd8... Merge pull request #8712 from Cerebulon/notaur
