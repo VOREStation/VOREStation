@@ -777,7 +777,7 @@
 	add_fingerprint(usr)
 	return
 
-proc/get_new_area_type(area/A) //1 = can build in. 0 = can not build in.
+/proc/get_new_area_type(area/A) //1 = can build in. 0 = can not build in.
 	if (!A)
 		A = get_area(usr)
 	if(A.outdoors) //ALWAYS able to build outdoors. This means if it's missed in BUILDABLE_AREA_TYPES it's fine.
