@@ -185,7 +185,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/mend
-	surgery_name = "Mend Bones"
+	surgery_name = "Mend Ribs"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonegel = 100
 	)

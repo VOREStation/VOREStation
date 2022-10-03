@@ -145,6 +145,9 @@
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		to_chat(user, "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>")
 		return 1
+	var/obj/surface = M.get_surgery_surface(user)
+	if(!surface || !surface.surgery_odds) 	// If the surface has a chance of 0% surgery odds (ground), don't even bother trying to do surgery.
+		return 0 							// This is meant to prevent the 'glass shard mouth 60 damage click' exploit. Also saves CPU by doing it here!
 
 	var/list/datum/surgery_step/available_surgeries = list()
 	for(var/datum/surgery_step/S in surgery_steps)
@@ -198,9 +201,8 @@
 	if(!prob(selected_surgery.tool_quality(src)))
 		success = FALSE
 
-	// Bad or no surface may mean failure as well.
-	var/obj/surface = M.get_surgery_surface(user)
-	if(!surface || !prob(surface.surgery_odds))
+	// Bad surface may mean failure as well.
+	if(!prob(surface.surgery_odds))
 		success = FALSE
 
 	// Not staying still fails you too.

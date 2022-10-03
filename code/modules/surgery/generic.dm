@@ -101,9 +101,6 @@
 
 /datum/surgery_step/generic/cut_with_laser/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
-	user.visible_message("<span class='notice'>[user] has made a bloodless incision on [target]'s [affected.name] with \the [tool].</span>", \
-	"<span class='notice'>You have made a bloodless incision on [target]'s [affected.name] with \the [tool].</span>",)
-	//Could be cleaner ...
 	affected.open = 1
 
 	affected.createwound(CUT, 1)
@@ -116,6 +113,13 @@
 		clamp_chance = 95
 	if(clamp_chance)
 		affected.organ_clamp()
+		user.visible_message("<span class='notice'>[user] has made a bloodless incision on [target]'s [affected.name] with \the [tool].</span>", \
+		"<span class='notice'>You have made a bloodless incision on [target]'s [affected.name] with \the [tool].</span>",)
+	else
+		user.visible_message("<span class='notice'>[user] has made an incision on [target]'s [affected.name] with \the [tool], but blood is still escaping from the wound.</span>", \
+		"<span class='notice'>You have made an incision on [target]'s [affected.name] with \the [tool], but blood is still coming from the wound..</span>",)
+		//Could be cleaner ...
+
 	spread_germs_to_organ(affected, user)
 
 /datum/surgery_step/generic/cut_with_laser/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
