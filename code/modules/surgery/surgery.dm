@@ -221,7 +221,6 @@
 		var/mob/living/carbon/human/H = M
 		H.update_surgery()
 	return	1	  												//don't want to do weapony things after surgery
-	return 0
 
 /proc/sort_surgeries()
 	var/gap = surgery_steps.len
