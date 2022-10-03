@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face
+	surgery_name = "Facial Surgery"
 	priority = 2
 	req_open = 0
 	can_infect = 0
@@ -23,6 +24,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/cut_face
+	surgery_name = "Cut Face"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/scalpel = 100,		\
 	/obj/item/weapon/material/knife = 75,	\
@@ -57,6 +59,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face/mend_vocal
+	surgery_name = "Mend Vocal Cords"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100, 	\
 	/obj/item/stack/cable_coil = 75, 	\
@@ -89,6 +92,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face/fix_face
+	surgery_name = "Fix Face"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100, 	\
 		/obj/item/weapon/material/kitchen/utensil/fork = 75
@@ -123,6 +127,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/face/cauterize
+	surgery_name = "Cauterize Face"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/cautery = 100,			\
 	/obj/item/clothing/mask/smokable/cigarette = 75,	\

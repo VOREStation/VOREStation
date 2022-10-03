@@ -445,6 +445,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/rip_organ
+	surgery_name = "Rip Organ"
 
 	allowed_tools = list(
 	/obj/item/weapon/surgical/scalpel/ripper = 100

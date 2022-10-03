@@ -5,6 +5,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/cavity
+	surgery_name = "Cavity"
 	priority = 1
 
 /datum/surgery_step/cavity/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -46,6 +47,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/cavity/make_space
+	surgery_name = "Create Cavity"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/surgicaldrill = 100,	\
 		/obj/item/weapon/pen = 75,	\
@@ -78,6 +80,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/cavity/close_space
+	surgery_name = "Close Cavity"
 	priority = 2
 	allowed_tools = list(
 		/obj/item/weapon/surgical/cautery = 100,			\
@@ -112,6 +115,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/cavity/place_item
+	surgery_name = "Implant Object"
 	priority = 0
 	allowed_tools = list(/obj/item = 100)
 
@@ -175,6 +179,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/cavity/implant_removal
+	surgery_name = "Remove Implant"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/hemostat = 100,	\
 		/obj/item/weapon/material/kitchen/utensil/fork = 20

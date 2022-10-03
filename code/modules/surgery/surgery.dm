@@ -27,7 +27,10 @@
 	// How much blood this step can get on surgeon. 1 - hands, 2 - full body.
 	var/blood_level = 0
 	// What the surgery will be called in the rare event of multiple surgery steps being shown to the user.
-	var/surgery_name
+	var/surgery_name = "CONTACT A DEVELOPER TO NAME THIS STEP."
+	// If the surgery stops you from being able to perform another surgery.
+	var/list/excludes_steps = list()
+
 
 //returns how well tool is suited for this step
 /datum/surgery_step/proc/tool_quality(obj/item/tool)
@@ -136,13 +139,14 @@
 	if(!istype(M))
 		return 0
 	if (user.a_intent == I_HURT)	//check for Hippocratic Oath
+		//Insert intentional hurt medical code here.
 		return 0
 	var/zone = user.zone_sel.selecting
 	if(zone in M.op_stage.in_progress) //Can't operate on someone repeatedly.
 		to_chat(user, "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>")
 		return 1
 
-	var/list/available_surgeries = list()
+	var/list/datum/surgery_step/available_surgeries = list()
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(src))
@@ -150,26 +154,41 @@
 			if(step_is_valid && S.is_valid_target(M))
 				if(step_is_valid == SURGERY_FAILURE)
 					continue
-				available_surgeries += S //Add the surgery to a list of 'We can perform this step'
+				available_surgeries[S.surgery_name] = S //Adds the surgery name to the list and sets it equal to S. (Ex: "Cauterize" = surgery_step/cauterize)
 			continue
 
 	if(!available_surgeries.len) //No available surgeries. Failure.
 		return 0
+
+	// Having trouble with an ASSOSCIATED LIST? or REMOVING SOMETHING FROM AN ASSOCIATED LIST? Look here for a quick guide, developed out of frustration.
+	// Note: This is an ultra edge case. Like, what is being done here is horrible and is so rare this should never happen again in the code.
+	// This block of code caused hours of suffering.
+
+	for(var/surgical_check_name in available_surgeries) 												// Get the name from available_surgeries. available_surgeries = list("NAME" = DATUM)
+		var/datum/surgery_step/surgical_check = available_surgeries[surgical_check_name] 				// We then get the datum.
+		if(isnull(surgical_check)) 																		// This is here so it doesn't try to keep searching if the thing we're about to check has been deleted.
+			continue
+		if(surgical_check.excludes_steps.len)															// We check for it's 'excluded_steps' list and see if it has anything in it.
+			for(var/removal_candidate_name in available_surgeries) 										// We then look in available_surgeries once again, grabbing the name.
+				var/datum/surgery_step/removal_candidate = available_surgeries[removal_candidate_name] 	// We then get the datum while searching.
+				if(is_path_in_list(removal_candidate.type, surgical_check.excludes_steps))				// We then check the datum and see if it's a path in the list that we want to remove.
+					available_surgeries -= removal_candidate_name										// We then, finally, remove the surgery step.
+																										// All of this just to make it so you are forced to do bloodless surgery with a laser scalpel.
 
 	if(M == user)	// Once we determine if we can actually do a step at all, give a slight delay to self-surgery to confirm attempts.
 		to_chat(user, "<span class='critical'>You focus on attempting to perform surgery upon yourself.</span>")
 		if(!do_after(user, 3 SECONDS, M))
 			return 0
 
-
 	var/datum/surgery_step/selected_surgery
 	if(available_surgeries.len > 1) //More than one possible? Ask them which one.
-		selected_surgery = tgui_input_list(user, "Select which surgery step you wish to perform", "Surgery Select", available_surgeries)
+		selected_surgery = tgui_input_list(user, "Select which surgery step you wish to perform", "Surgery Select", available_surgeries) //Shows the name in the list.
 	else
 		selected_surgery = pick(available_surgeries)
 
 	if(isnull(selected_surgery)) //They clicked 'cancel'
 		return 1
+	selected_surgery = available_surgeries[selected_surgery] //Sets the name they selected to be the datum.
 
 	M.op_stage.in_progress += zone
 	selected_surgery.begin_step(user, M, zone, src)		//start on it

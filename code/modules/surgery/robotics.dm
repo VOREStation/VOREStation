@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/
+	surgery_name = "Robotic Surgery"
 	can_infect = 0
 
 /datum/surgery_step/robotics/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -29,6 +30,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/unscrew_hatch
+	surgery_name = "Unscrew Hatch"
 	allowed_tools = list(
 		/obj/item/weapon/coin = 50,
 		/obj/item/weapon/material/knife = 50
@@ -68,6 +70,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/open_hatch
+	surgery_name = "Open Hatch"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
@@ -105,6 +108,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/close_hatch
+	surgery_name = "Close Hatch"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
@@ -143,6 +147,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/repair_brute
+	surgery_name = "Repair Brute"
 	allowed_tools = list(
 		/obj/item/weapon/weldingtool = 100,
 		/obj/item/weapon/pickaxe/plasmacutter = 50
@@ -184,6 +189,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/repair_burn
+	surgery_name = "Repair Burn"
 	allowed_tools = list(
 		/obj/item/stack/cable_coil = 100
 	)
@@ -232,6 +238,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
+	surgery_name = "Fix Internal Components"
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
 	/obj/item/weapon/surgical/bonegel = 30, 		\
@@ -302,7 +309,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/detatch_organ_robotic
-
+	surgery_name = "Remove Organ"
 	allowed_tools = list(
 	/obj/item/device/multitool = 100
 	)
@@ -355,6 +362,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/attach_organ_robotic
+	surgery_name = "Attach Organ"
 	allowed_procs = list(IS_SCREWDRIVER = 100)
 
 	min_duration = 100
@@ -404,6 +412,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/install_mmi
+	surgery_name = "Install MMI"
 	allowed_tools = list(
 	/obj/item/device/mmi = 100
 	)
@@ -488,6 +497,7 @@
  */
 
 /datum/surgery_step/robotics/install_nymph
+	surgery_name = "Install Nymph"
 	allowed_tools = list(
 	/obj/item/weapon/holder/diona = 100
 	)

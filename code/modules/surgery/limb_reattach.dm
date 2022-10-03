@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/
+	surgery_name = "Limb"
 	priority = 3 // Must be higher than /datum/surgery_step/internal
 	req_open = 0
 	can_infect = 0
@@ -22,6 +23,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/attach
+	surgery_name = "Attach Limb"
 	allowed_tools = list(/obj/item/organ/external = 100)
 
 	min_duration = 50
@@ -81,6 +83,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/connect
+	surgery_name = "Connect Limb"
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100,	\
 	/obj/item/stack/cable_coil = 75, 	\
@@ -120,6 +123,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/limb/mechanize
+	surgery_name = "Mechanize Limb"
 	allowed_tools = list(/obj/item/robot_parts = 100)
 
 	min_duration = 80

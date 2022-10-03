@@ -3,6 +3,7 @@
 //						LIMB REPAIR SURGERY						//
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/repairflesh/
+	surgery_name = "Repair Flesh"
 	priority = 1
 	can_infect = 1
 	blood_level = 1
@@ -36,6 +37,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/repairflesh/scan_injury
+	surgery_name = "Scan Injury"
 	allowed_tools = list(
 	/obj/item/weapon/autopsy_scanner = 100,
 	/obj/item/device/analyzer = 10
@@ -86,6 +88,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/repairflesh/repair_burns
+	surgery_name = "Repair Burns"
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/ointment = 100,
 	/obj/item/stack/medical/ointment = 50,
@@ -152,6 +155,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/repairflesh/repair_brute
+	surgery_name = "Repair Brute"
 	allowed_tools = list(
 	/obj/item/stack/medical/advanced/bruise_pack = 100,
 	/obj/item/stack/medical/bruise_pack = 50,

@@ -29,6 +29,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/cut_open
+	surgery_name = "Create Incision"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/scalpel = 100,		\
 		/obj/item/weapon/material/knife = 75,	\
@@ -73,16 +74,18 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/cut_with_laser
+	surgery_name = "Create Bloodless Incision"
 	allowed_tools = list(
-		/obj/item/weapon/surgical/scalpel/laser3 = 95, \
-		/obj/item/weapon/surgical/scalpel/laser2 = 85, \
-		/obj/item/weapon/surgical/scalpel/laser1 = 75, \
+		/obj/item/weapon/surgical/scalpel/laser3 = 100, \
+		/obj/item/weapon/surgical/scalpel/laser2 = 100, \
+		/obj/item/weapon/surgical/scalpel/laser1 = 100, \
 		/obj/item/weapon/melee/energy/sword = 5
 	)
 	priority = 2
 	req_open = 0
 	min_duration = 90
 	max_duration = 110
+	excludes_steps = list(/datum/surgery_step/generic/cut_open)
 
 /datum/surgery_step/generic/cut_with_laser/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
@@ -104,7 +107,15 @@
 	affected.open = 1
 
 	affected.createwound(CUT, 1)
-	affected.organ_clamp()
+	var/clamp_chance = 0 //I hate this. Make all laser scalpels a /laser subtype and give them a clamp_chance var???
+	if(istype(tool,/obj/item/weapon/surgical/scalpel/laser1))
+		clamp_chance = 75
+	if(istype(tool,/obj/item/weapon/surgical/scalpel/laser2))
+		clamp_chance = 85
+	if(istype(tool,/obj/item/weapon/surgical/scalpel/laser3))
+		clamp_chance = 95
+	if(clamp_chance)
+		affected.organ_clamp()
 	spread_germs_to_organ(affected, user)
 
 /datum/surgery_step/generic/cut_with_laser/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -119,6 +130,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/incision_manager
+	surgery_name = "Create Prepared Incision"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/scalpel/manager = 100
 	)
@@ -127,6 +139,7 @@
 	req_open = 0
 	min_duration = 80
 	max_duration = 120
+	excludes_steps = list(/datum/surgery_step/generic/cut_open)
 
 /datum/surgery_step/generic/incision_manager/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if(..())
@@ -165,6 +178,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/clamp_bleeders
+	surgery_name = "Clamp Bleeders"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/hemostat = 100,	\
 		/obj/item/stack/cable_coil = 75, 	\
@@ -204,6 +218,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/retract_skin
+	surgery_name = "Retract Skin"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,	\
 		/obj/item/weapon/material/kitchen/utensil/fork = 50
@@ -264,6 +279,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/cauterize
+	surgery_name = "Cauterize Incision"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/cautery = 100,			\
 		/obj/item/clothing/mask/smokable/cigarette = 75,	\
@@ -305,6 +321,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/generic/amputate
+	surgery_name = "Amputate Limb"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw = 100, \
 		/obj/item/weapon/material/knife/machete/hatchet = 75
