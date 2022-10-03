@@ -1,19 +1,20 @@
+/* eslint react/no-danger: "off" */
 import { useBackend } from '../backend';
 import { Box, Button, LabeledList, Section } from '../components';
 import { Window } from '../layouts';
 
-enum State {
-  'open' = 'Open',
-  'resolved' = 'Resolved',
-  'closed' = 'Closed',
-  'unknown' = 'Unknown',
-}
+const State = {
+  'open': 'Open',
+  'resolved': 'Resolved',
+  'closed': 'Closed',
+  'unknown': 'Unknown',
+};
 
 type Data = {
   id: number;
   title: string;
   name: string;
-  state: State;
+  state: string;
   opened_at: number;
   closed_at: number;
   opened_at_date: string;
