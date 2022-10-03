@@ -471,7 +471,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		log_admin(msg)
 	TicketPanel()	//we have to be here to do this
 
-/datum/admin_help/tgui_fallback()
+/datum/admin_help/tgui_fallback(payload)
+	if(..())
+		return
+
 	TicketPanelLegacy()
 
 /datum/admin_help/tgui_interact(mob/user, datum/tgui/ui)
