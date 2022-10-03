@@ -203,49 +203,54 @@
 /datum/surgery_step/cavity/implant_removal/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/chest/affected = target.get_organ(target_zone)
 
-	var/find_prob = 0
-
 	if (affected.implants.len)
 
-		var/obj/item/obj = pick(affected.implants)
+		var/obj/item/obj = tgui_input_list(user, "Which embedded item do you wish to remove?", "Surgery Select", affected.implants)
+		if(isnull(obj)) //They clicked cancel.
+			user.visible_message("<span class='notice'>[user] takes \the [tool] out of [target]'s [affected.name].</span>", \
+			"<span class='notice'>You take \the [tool] out of the incision on [target]'s [affected.name].</span>" )
+			return
+		if(!do_mob(user, target, 1)) //They moved away
+			to_chat(user, "<span class='warning'>You must remain close to and keep focused on your patient to conduct surgery.</span>")
+			user.visible_message("<span class='notice'>[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!</span>", \
+			"<span class='notice'>You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!</span>" )
+			return
 
 		if(istype(obj,/obj/item/weapon/implant))
 			var/obj/item/weapon/implant/imp = obj
-			if (imp.islegal())
-				find_prob +=60
-			else
-				find_prob +=40
+			if (!imp.islegal()) //ILLEGAL IMPLANT ALERT!!!!!!!!!!
+				user.visible_message("<span class='notice'>[user] seems to be intently working on something within [target]'s [affected.name] with \the [tool]!</span>", \
+				"<span class='notice'>You intently begin to take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!</span>" )
+				if(!do_after(user, min_duration, target))
+					user.visible_message("<span class='notice'>[user] fails to remove anything from [target]'s [affected.name] with \the [tool]!</span>", \
+					"<span class='notice'>You fail to remove the [obj] from [target]'s [affected.name]s with \the [tool]!</span>" )
+					return
+
+
+		user.visible_message("<span class='notice'>[user] takes something out of the incision on [target]'s [affected.name] with \the [tool]!</span>", \
+		"<span class='notice'>You take [obj] out of the incision on [target]'s [affected.name]s with \the [tool]!</span>" )
+		affected.implants -= obj
+		if(!target.has_embedded_objects())
+			target.clear_alert("embeddedobject")
+
+		BITSET(target.hud_updateflag, IMPLOYAL_HUD)
+
+		//Handle possessive brain borers.
+		if(istype(obj,/mob/living/simple_mob/animal/borer))
+			var/mob/living/simple_mob/animal/borer/worm = obj
+			if(worm.controlling)
+				target.release_control()
+			worm.detatch()
+			worm.leave_host()
 		else
-			find_prob +=50
-
-		if (prob(find_prob))
-			user.visible_message("<span class='notice'>[user] takes something out of incision on [target]'s [affected.name] with \the [tool]!</span>", \
-			"<span class='notice'>You take [obj] out of incision on [target]'s [affected.name]s with \the [tool]!</span>" )
-			affected.implants -= obj
-			if(!target.has_embedded_objects())
-				target.clear_alert("embeddedobject")
-
-			BITSET(target.hud_updateflag, IMPLOYAL_HUD)
-
-			//Handle possessive brain borers.
-			if(istype(obj,/mob/living/simple_mob/animal/borer))
-				var/mob/living/simple_mob/animal/borer/worm = obj
-				if(worm.controlling)
-					target.release_control()
-				worm.detatch()
-				worm.leave_host()
-			else
-				obj.loc = get_turf(target)
-				obj.add_blood(target)
-				obj.update_icon()
-				if(istype(obj,/obj/item/weapon/implant))
-					var/obj/item/weapon/implant/imp = obj
-					imp.imp_in = null
-					imp.implanted = 0
-				else if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
-		else
-			user.visible_message("<span class='notice'>[user] removes \the [tool] from [target]'s [affected.name].</span>", \
-			"<span class='notice'>There's something inside [target]'s [affected.name], but you just missed it this time.</span>" )
+			obj.loc = get_turf(target)
+			obj.add_blood(target)
+			obj.update_icon()
+			if(istype(obj,/obj/item/weapon/implant))
+				var/obj/item/weapon/implant/imp = obj
+				imp.imp_in = null
+				imp.implanted = 0
+			else if(istype(tool,/obj/item/device/nif)){var/obj/item/device/nif/N = tool;N.unimplant(target)} //VOREStation Add - NIF support
 	else
 		user.visible_message("<span class='notice'>[user] could not find anything inside [target]'s [affected.name], and pulls \the [tool] out.</span>", \
 		"<span class='notice'>You could not find anything inside [target]'s [affected.name].</span>" )

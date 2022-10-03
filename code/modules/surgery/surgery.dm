@@ -24,8 +24,10 @@
 
 	// evil infection stuff that will make everyone hate me
 	var/can_infect = 0
-	//How much blood this step can get on surgeon. 1 - hands, 2 - full body.
+	// How much blood this step can get on surgeon. 1 - hands, 2 - full body.
 	var/blood_level = 0
+	// What the surgery will be called in the rare event of multiple surgery steps being shown to the user.
+	var/surgery_name
 
 //returns how well tool is suited for this step
 /datum/surgery_step/proc/tool_quality(obj/item/tool)
@@ -140,50 +142,66 @@
 		to_chat(user, "<span class='warning'>You can't operate on this area while surgery is already in progress.</span>")
 		return 1
 
+	var/list/available_surgeries = list()
 	for(var/datum/surgery_step/S in surgery_steps)
 		//check if tool is right or close enough and if this step is possible
 		if(S.tool_quality(src))
 			var/step_is_valid = S.can_use(user, M, zone, src)
 			if(step_is_valid && S.is_valid_target(M))
+				if(step_is_valid == SURGERY_FAILURE)
+					continue
+				available_surgeries += S //Add the surgery to a list of 'We can perform this step'
+			continue
 
-				if(M == user)	// Once we determine if we can actually do a step at all, give a slight delay to self-surgery to confirm attempts.
-					to_chat(user, "<span class='critical'>You focus on attempting to perform surgery upon yourself.</span>")
+	if(!available_surgeries.len) //No available surgeries. Failure.
+		return 0
 
-					if(!do_after(user, 3 SECONDS, M))
-						return 0
+	if(M == user)	// Once we determine if we can actually do a step at all, give a slight delay to self-surgery to confirm attempts.
+		to_chat(user, "<span class='critical'>You focus on attempting to perform surgery upon yourself.</span>")
+		if(!do_after(user, 3 SECONDS, M))
+			return 0
 
-				if(step_is_valid == SURGERY_FAILURE) // This is a failure that already has a message for failing.
-					return 1
-				M.op_stage.in_progress += zone
-				S.begin_step(user, M, zone, src)		//start on it
-				var/success = TRUE
 
-				// Bad tools make it less likely to succeed.
-				if(!prob(S.tool_quality(src)))
-					success = FALSE
+	var/datum/surgery_step/selected_surgery
+	if(available_surgeries.len > 1) //More than one possible? Ask them which one.
+		selected_surgery = tgui_input_list(user, "Select which surgery step you wish to perform", "Surgery Select", available_surgeries)
+	else
+		selected_surgery = pick(available_surgeries)
 
-				// Bad or no surface may mean failure as well.
-				var/obj/surface = M.get_surgery_surface(user)
-				if(!surface || !prob(surface.surgery_odds))
-					success = FALSE
+	if(isnull(selected_surgery)) //They clicked 'cancel'
+		return 1
 
-				// Not staying still fails you too.
-				if(success)
-					var/calc_duration = rand(S.min_duration, S.max_duration)
-					if(!do_mob(user, M, calc_duration * toolspeed, zone, exclusive = TRUE))
-						success = FALSE
-						to_chat(user, "<span class='warning'>You must remain close to and keep focused on your patient to conduct surgery.</span>")
+	M.op_stage.in_progress += zone
+	selected_surgery.begin_step(user, M, zone, src)		//start on it
+	var/success = TRUE
 
-				if(success)
-					S.end_step(user, M, zone, src)
-				else
-					S.fail_step(user, M, zone, src)
+	// Bad tools make it less likely to succeed.
+	if(!prob(selected_surgery.tool_quality(src)))
+		success = FALSE
 
-				M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
-				if (ishuman(M))
-					var/mob/living/carbon/human/H = M
-					H.update_surgery()
-				return	1	  												//don't want to do weapony things after surgery
+	// Bad or no surface may mean failure as well.
+	var/obj/surface = M.get_surgery_surface(user)
+	if(!surface || !prob(surface.surgery_odds))
+		success = FALSE
+
+	// Not staying still fails you too.
+	if(success)
+		var/calc_duration = rand(selected_surgery.min_duration, selected_surgery.max_duration)
+		if(!do_mob(user, M, calc_duration * toolspeed, zone, exclusive = TRUE))
+			success = FALSE
+			to_chat(user, "<span class='warning'>You must remain close to and keep focused on your patient to conduct surgery.</span>")
+
+	if(success)
+		selected_surgery.end_step(user, M, zone, src)
+	else
+		selected_surgery.fail_step(user, M, zone, src)
+		user.setClickCooldown(DEFAULT_ATTACK_COOLDOWN) //Gets rid of instakill mechanics.
+
+	M.op_stage.in_progress -= zone 									// Clear the in-progress flag.
+	if (ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.update_surgery()
+	return	1	  												//don't want to do weapony things after surgery
 	return 0
 
 /proc/sort_surgeries()

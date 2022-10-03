@@ -105,6 +105,81 @@
 		if(I && I.damage > 0)
 			I.take_damage(dam_amt,0)
 
+
+
+
+
+
+//Robo internal organ fix. For when an organic has robotic limbs.
+/datum/surgery_step/fix_organic_organ_robotic //For artificial organs
+	allowed_tools = list(
+	/obj/item/stack/nanopaste = 100,
+	/obj/item/stack/cable_coil = 75,
+	/obj/item/weapon/tool/wrench = 50,
+	/obj/item/weapon/storage/toolbox = 10 	//Percussive Maintenance
+	)
+
+	min_duration = 70
+	max_duration = 90
+
+/datum/surgery_step/fix_organic_organ_robotic/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!affected) return
+	var/is_organ_damaged = 0
+	for(var/obj/item/organ/I in affected.internal_organs)
+		if(I.damage > 0 && (I.robotic >= ORGAN_ROBOT))
+			is_organ_damaged = 1
+			break
+	return affected.open != 3 && is_organ_damaged //Robots have their own code.
+
+/datum/surgery_step/fix_organic_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	for(var/obj/item/organ/I in affected.internal_organs)
+		if(I && I.damage > 0)
+			if(I.robotic >= ORGAN_ROBOT)
+				user.visible_message("[user] starts mending the damage to [target]'s [I.name]'s mechanisms.", \
+				"You start mending the damage to [target]'s [I.name]'s mechanisms." )
+
+	target.custom_pain("The pain in your [affected.name] is living hell!",1)
+	..()
+
+/datum/surgery_step/fix_organic_organ_robotic/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	for(var/obj/item/organ/I in affected.internal_organs)
+		if(I && I.damage > 0)
+			if(I.robotic >= ORGAN_ROBOT)
+				user.visible_message("<span class='notice'>[user] repairs [target]'s [I.name] with [tool].</span>", \
+				"<span class='notice'>You repair [target]'s [I.name] with [tool].</span>" )
+				I.damage = 0
+				if(I.organ_tag == O_EYES)
+					target.sdisabilities &= ~BLIND
+
+/datum/surgery_step/fix_organic_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	if (!hasorgans(target))
+		return
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+
+	user.visible_message("<span class='warning'>[user]'s hand slips, gumming up the mechanisms inside of [target]'s [affected.name] with \the [tool]!</span>", \
+	"<span class='warning'>Your hand slips, gumming up the mechanisms inside of [target]'s [affected.name] with \the [tool]!</span>")
+
+	target.adjustBruteLoss(5)
+
+	for(var/obj/item/organ/I in affected.internal_organs)
+		if(I)
+			I.take_damage(rand(3,5),0)
+
+
+//Robo limb fix end
+
+
 ///////////////////////////////////////////////////////////////
 // Organ Detaching Surgery
 ///////////////////////////////////////////////////////////////
