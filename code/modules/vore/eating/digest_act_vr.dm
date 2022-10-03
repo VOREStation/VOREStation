@@ -82,7 +82,7 @@
 	return FALSE
 /obj/item/weapon/pinpointer/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
-/obj/item/blueprints/digest_act(var/atom/movable/item_storage = null)
+/obj/item/areaeditor/blueprints/digest_act(var/atom/movable/item_storage = null)
 	return FALSE
 /obj/item/weapon/disk/nuclear/digest_act(var/atom/movable/item_storage = null)
 	return FALSE

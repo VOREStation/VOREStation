@@ -10,6 +10,7 @@
 #define DEBUG
 // END_PREFERENCES
 // BEGIN_INCLUDE
+#include "code\__spaceman_dmm.dm"
 #include "code\_away_mission_tests.dm"
 #include "code\_macros.dm"
 #include "code\_macros_vr.dm"
@@ -84,7 +85,6 @@
 #include "code\__defines\shields.dm"
 #include "code\__defines\shuttle.dm"
 #include "code\__defines\sound.dm"
-#include "code\__defines\spaceman_dmm.dm"
 #include "code\__defines\span_vr.dm"
 #include "code\__defines\species_languages.dm"
 #include "code\__defines\species_languages_vr.dm"
@@ -1159,7 +1159,7 @@
 #include "code\game\objects\items\antag_spawners.dm"
 #include "code\game\objects\items\apc_frame.dm"
 #include "code\game\objects\items\bells.dm"
-#include "code\game\objects\items\blueprints.dm"
+#include "code\game\objects\items\blueprints_vr.dm"
 #include "code\game\objects\items\bodybag.dm"
 #include "code\game\objects\items\contraband.dm"
 #include "code\game\objects\items\contraband_vr.dm"
@@ -4166,6 +4166,7 @@
 #include "maps\southern_cross\loadout\loadout_suit.dm"
 #include "maps\southern_cross\loadout\loadout_uniform.dm"
 #include "maps\southern_cross\loadout\loadout_vr.dm"
+#include "maps\stellar_delight\stellar_delight.dm"
 #include "maps\submaps\_helpers.dm"
 #include "maps\submaps\_readme.dm"
 #include "maps\submaps\engine_submaps\engine.dm"
@@ -4175,6 +4176,5 @@
 #include "maps\submaps\space_submaps\debrisfield\debrisfield.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness.dm"
 #include "maps\submaps\surface_submaps\wilderness\wilderness_areas.dm"
-#include "maps\tether\tether.dm"
 #include "maps\~map_system\maps.dm"
 // END_INCLUDE

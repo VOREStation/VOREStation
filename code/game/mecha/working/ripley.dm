@@ -38,7 +38,8 @@
 		if(ore_box)
 			for(var/obj/item/weapon/ore/ore in range(1, src))
 				if(ore.Adjacent(src) && ((get_dir(src, ore) & dir) || ore.loc == loc)) //we can reach it and it's in front of us? grab it!
-					ore.forceMove(ore_box)
+					ore_box.stored_ore[ore.material]++
+					qdel(ore)
 
 /obj/mecha/working/ripley/Destroy()
 	for(var/atom/movable/A in src.cargo)

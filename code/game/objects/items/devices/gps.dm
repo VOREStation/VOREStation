@@ -137,7 +137,7 @@ var/list/GPS_list = list()
 	if(emped)
 		to_chat(user, "It's busted!")
 		return
-	
+
 	toggle_tracking()
 	if(tracking)
 		to_chat(user, "[src] is no longer tracking, or visible to other GPS devices.")
@@ -194,7 +194,7 @@ var/list/GPS_list = list()
 	dat["curr_z"] = curr.z
 	dat["curr_z_name"] = strip_improper(using_map.get_zlevel_name(curr.z))
 	dat["z_level_detection"] = using_map.get_map_levels(curr.z, long_range)
-	
+
 	var/list/gps_list = list()
 	for(var/obj/item/device/gps/G in GPS_list - src)
 
@@ -250,7 +250,7 @@ var/list/GPS_list = list()
 				dat += "<tr>"
 				var/gps_ref = "\ref[gps["ref"]]"
 				dat += "<td>[gps["gps_tag"]]</td><td>[gps["area_name"]]</td>"
-				
+
 				if(istype(gps_data["ref"], /obj/item/device/gps/internal/poi))
 					dat += "<td>[gps["local"] ? "[gps["direction"]] Dist: [round(gps["distance"], 10)]m" : "[gps["z_name"]]"]</td>"
 				else
@@ -323,7 +323,7 @@ var/list/GPS_list = list()
 				. = TRUE
 
 	if(href_list["tag"])
-		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag)
+		var/a = tgui_input_text(usr, "Please enter desired tag.", name, gps_tag, 10)
 		a = uppertext(copytext(sanitize(a), 1, 11))
 		if(in_range(src, usr))
 			gps_tag = a
