@@ -250,13 +250,14 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/internal/remove_organ
+	surgery_name = "Remove Organ"
 
 	allowed_tools = list(
 	/obj/item/weapon/surgical/hemostat = 100,	\
 	/obj/item/weapon/material/kitchen/utensil/fork = 20
 	)
 
-	allowed_procs = list(IS_WIRECUTTER = 75)
+	allowed_procs = list(IS_WIRECUTTER = 100) //FBP code also uses this, so let's be nice. Roboticists won't know to use hemostats.
 
 	min_duration = 60
 	max_duration = 80
@@ -268,8 +269,19 @@
 	if(!istype(tool))
 		return 0
 
-	target.op_stage.current_organ = null
+	var/list/removable_organs = list()
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/internal/I = target.internal_organs_by_name[organ]
+		if(istype(I) && (I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
+			removable_organs |= organ
 
+	if(!removable_organs.len)
+		return 0
+
+	return ..()
+
+/datum/surgery_step/internal/remove_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	var/list/removable_organs = list()
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/internal/I = target.internal_organs_by_name[organ]
@@ -277,28 +289,32 @@
 			removable_organs |= organ
 
 	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to remove?", "Organ Choice", removable_organs)
-	if(!organ_to_remove)
-		return 0
+	if(!organ_to_remove) //They chose cancel!
+		to_chat(user, "<span class='notice'>You decide against preparing any organs for removal.</span>")
+		user.visible_message("[user] starts pulling \the [tool] from [target]'s [affected]", \
+		"You start pulling \the [tool] from [target]'s [affected].")
 
 	target.op_stage.current_organ = organ_to_remove
-	return ..()
 
-/datum/surgery_step/internal/remove_organ/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts removing [target]'s [target.op_stage.current_organ] with \the [tool].", \
 	"You start removing [target]'s [target.op_stage.current_organ] with \the [tool].")
 	target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
 	..()
 
 /datum/surgery_step/internal/remove_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
-	user.visible_message("<span class='notice'>[user] has removed [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
-	"<span class='notice'>You have removed [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
+	var/obj/item/organ/external/affected = target.get_organ(target_zone)
+	if(!target.op_stage.current_organ) //They chose to remove their tool instead.
+	user.visible_message("<span class='notice'>[user] has removed \the [tool] from [target]'s [affected].</span>", \
+	"<span class='notice'>You have removed \the [tool] from [target]'s [affected].</span>")
 
 	// Extract the organ!
 	if(target.op_stage.current_organ)
+		user.visible_message("<span class='notice'>[user] has removed [target]'s [target.op_stage.current_organ] with \the [tool].</span>", \
+		"<span class='notice'>You have removed [target]'s [target.op_stage.current_organ] with \the [tool].</span>")
 		var/obj/item/organ/O = target.internal_organs_by_name[target.op_stage.current_organ]
 		if(O && istype(O))
 			O.removed(user)
-		target.op_stage.current_organ = null
+	target.op_stage.current_organ = null
 
 /datum/surgery_step/internal/remove_organ/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)

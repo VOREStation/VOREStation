@@ -207,7 +207,6 @@
 		user.visible_message("[user] starts ripping [target]'s [target.op_stage.current_organ] out with \the [tool].", \
 		"You start ripping [target]'s [target.op_stage.current_organ] out with \the [tool].")
 		target.custom_pain("Someone's ripping out your [target.op_stage.current_organ]!", 100)
-		target.op_stage.current_organ = organ_to_remove
 	..()
 
 /datum/surgery_step/generic/ripper/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
