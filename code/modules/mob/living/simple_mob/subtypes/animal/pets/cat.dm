@@ -60,7 +60,7 @@ var/list/_cat_default_emotes = list(
 	return ..()
 
 /mob/living/simple_mob/animal/passive/cat/get_available_emotes()
-	return global._cat_default_emotes
+	return global._cat_default_emotes.Copy()
 
 /mob/living/simple_mob/animal/passive/cat/handle_special()
 	if(!stat && prob(2)) // spooky

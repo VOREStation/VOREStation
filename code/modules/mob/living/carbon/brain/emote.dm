@@ -14,4 +14,4 @@ var/list/_brain_default_emotes = list(
 	return (istype(container, /obj/item/device/mmi) && ..())
 
 /mob/living/carbon/brain/get_available_emotes()
-	return global._brain_default_emotes
+	return global._brain_default_emotes.Copy()
