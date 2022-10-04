@@ -143,3 +143,11 @@ Talon winter coat
 		hoodies[initial(hoodie.name)] = hoodie
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hoodies))
 	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/cyberpunk_recolorable
+	display_name = "cyberpunk jacket (recolorable)"
+	path = /obj/item/clothing/suit/cyberpunk/recolorable
+	cost = 2 //It's got armor, yo.
+
+/datum/gear/suit/cyberpunk_recolorable/New()
+	gear_tweaks += gear_tweak_free_color_choice
