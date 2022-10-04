@@ -78,6 +78,8 @@
 			if(!(I.robotic >= ORGAN_ROBOT))
 				user.visible_message("<span class='notice'>[user] treats damage to [target]'s [I.name] with [tool_name].</span>", \
 				"<span class='notice'>You treat damage to [target]'s [I.name] with [tool_name].</span>" )
+				if(I.organ_tag == O_BRAIN && I.status == ORGAN_DEAD && target.can_defib == 0) //Let people know they still got more work to get the brain back into working order.
+					to_chat(user, "<span class='warning'>You fix their [I] but the neurological structure is still heavily damaged and in need of repair.</span>")
 				I.damage = 0
 				I.status = 0
 				if(I.organ_tag == O_EYES)

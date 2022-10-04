@@ -22,7 +22,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/saw
-	surgery_name = "Cut Ribs"
+	surgery_name = "Cut Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw = 100, \
 		/obj/item/weapon/material/knife/machete/hatchet = 75
