@@ -304,8 +304,8 @@
 /datum/surgery_step/internal/remove_organ/end_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	var/obj/item/organ/external/affected = target.get_organ(target_zone)
 	if(!target.op_stage.current_organ) //They chose to remove their tool instead.
-	user.visible_message("<span class='notice'>[user] has removed \the [tool] from [target]'s [affected].</span>", \
-	"<span class='notice'>You have removed \the [tool] from [target]'s [affected].</span>")
+		user.visible_message("<span class='notice'>[user] has removed \the [tool] from [target]'s [affected].</span>", \
+		"<span class='notice'>You have removed \the [tool] from [target]'s [affected].</span>")
 
 	// Extract the organ!
 	if(target.op_stage.current_organ)
