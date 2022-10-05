@@ -227,6 +227,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 
 /datum/digest_mode/selective //unselectable, "smart" digestion mode for mobs only
 	id = DM_SELECT
+	noise_chance = 50
 
 /datum/digest_mode/selective/process_mob(obj/belly/B, mob/living/L)
 	var/datum/digest_mode/tempmode = GLOB.digest_modes[DM_HOLD]			// Default to Hold in case of big oof fallback
@@ -261,3 +262,37 @@ GLOBAL_LIST_INIT(digest_modes, list())
 					else
 						tempmode = GLOB.digest_modes[DM_DRAIN]			// Otherwise drain.
 	return tempmode.process_mob(B, L)
+
+/datum/digest_mode/selective/proc/get_selective_mode(obj/belly/B, mob/living/L)
+	var/tempmode = DM_HOLD			// Default to Hold in case of big oof fallback
+	//if not absorbed, see if they're food
+	switch(L.selective_preference)										// First, we respect prey prefs
+		if(DM_DIGEST)
+			if(L.digestable)
+				tempmode = DM_DIGEST					// They want to be digested and can be, Digest
+			else
+				tempmode = DM_DRAIN					// They want to be digested but can't be! Drain.
+		if(DM_ABSORB)
+			if(L.absorbable)
+				tempmode = DM_ABSORB					// They want to be absorbed and can be. Absorb.
+			else
+				tempmode = DM_DRAIN					// They want to be absorbed but can't be! Drain.
+		if(DM_DRAIN)
+			tempmode = DM_DRAIN						// They want to be drained. Drain.
+		if(DM_DEFAULT)
+			switch(B.selective_preference)								// They don't actually care? Time for our own preference.
+				if(DM_DIGEST)
+					if(L.digestable)
+						tempmode = DM_DIGEST			// We prefer digestion and they're digestible? Digest
+					else if(L.absorbable)
+						tempmode = DM_ABSORB			// If not digestible, are they absorbable? Then absorb.
+					else
+						tempmode = DM_DRAIN			// Otherwise drain.
+				if(DM_ABSORB)
+					if(L.absorbable)
+						tempmode = DM_ABSORB			// We prefer absorption and they're absorbable? Absorb.
+					else if(L.digestable)
+						tempmode = DM_DIGEST			// If not absorbable, are they digestible? Then digest.
+					else
+						tempmode = DM_DRAIN			// Otherwise drain.
+	return tempmode
