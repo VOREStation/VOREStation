@@ -249,6 +249,7 @@
 	if(!check_rights(R_DEBUG))	return
 	src << browse(replacetext(SSatoms.InitLog(), "\n", "<br>"), "window=initlog")
 
+/*
 /client/proc/cmd_display_overlay_log()
 	set category = "Debug"
 	set name = "Display overlay Log"
@@ -256,7 +257,7 @@
 
 	if(!check_rights(R_DEBUG))	return
 	render_stats(SSoverlays.stats, src)
-
+*/
 // Render stats list for round-end statistics.
 /proc/render_stats(list/stats, user, sort = /proc/cmp_generic_stat_item_time)
 	sortTim(stats, sort, TRUE)

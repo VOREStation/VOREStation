@@ -263,7 +263,7 @@
 		if("menu")
 			menu = params["menu"]
 			temp = ""
-		
+
 		if("href_conversion")
 			PrefHrefMiddleware(params, usr)
 
@@ -281,8 +281,8 @@
 
 	mannequin.delete_inventory(TRUE)
 	update_preview_mob(mannequin)
-	COMPILE_OVERLAYS(mannequin)
-	
+	mannequin.ImmediateOverlayUpdate()
+
 	var/mutable_appearance/MA = new(mannequin)
 	south_preview.appearance = MA
 	south_preview.dir = SOUTH
