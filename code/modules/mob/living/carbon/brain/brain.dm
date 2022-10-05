@@ -43,7 +43,6 @@
 	return canmove
 
 /mob/living/carbon/brain/isSynthetic()
-<<<<<<< HEAD
 	return istype(loc, /obj/item/device/mmi)
 
 /mob/living/carbon/brain/runechat_holder(datum/chatmessage/CM)
@@ -99,6 +98,3 @@
 		to_chat(src,"<span class='warning'>No backup record could be found, sorry.</span>")
 
 // VS edit ends
-=======
-	return istype(loc, /obj/item/mmi)
->>>>>>> b087dd00f61... Merge pull request #8722 from Spookerton/spkrtn/sys/sstyping
