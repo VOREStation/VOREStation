@@ -30,7 +30,7 @@ SUBSYSTEM_DEF(overlays)
 
 /datum/controller/subsystem/overlays/Initialize(timeofday)
 	fire(FALSE, TRUE)
-
+	..()
 
 /datum/controller/subsystem/overlays/stat_entry()
 	..("Queued Atoms: [queue.len], Cache Size: [cache_size]")
