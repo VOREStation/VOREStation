@@ -227,10 +227,7 @@
 	var/registered_z
 
 	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
-<<<<<<< HEAD
 
 	var/list/progressbars = null //VOREStation Edit
 
 	var/datum/focus //What receives our keyboard inputs. src by default // VOREStation Add - Key Handling
-=======
->>>>>>> b087dd00f61... Merge pull request #8722 from Spookerton/spkrtn/sys/sstyping
