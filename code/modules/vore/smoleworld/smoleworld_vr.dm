@@ -17,7 +17,9 @@
 /turf/simulated/floor/smole/Entered(atom/A)
 	if(isliving(A))
 		var/mob/living/L = A
-		if(L.hovering) // Flying things shouldn't make footprints.
+		if(L.hovering || L.flying) // Flying things shouldn't make footprints.
+			if(L.flying)
+				L.adjust_nutrition(-0.5)
 			return ..()
 		if(L.get_effective_size(FALSE) <= RESIZE_NORMAL)
 			return ..()

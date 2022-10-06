@@ -127,7 +127,9 @@
 /mob/living/proc/check_submerged()
 	if(buckled)
 		return 0
-	if(hovering)
+	if(hovering || flying)
+		if(flying)
+			adjust_nutrition(-0.5)
 		return 0
 	if(locate(/obj/structure/catwalk) in loc)
 		return 0
