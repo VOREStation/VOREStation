@@ -123,7 +123,13 @@
 
 /obj/item/clothing/under/teshari/undercoat
 	name = "Undercoat"
+<<<<<<< HEAD
 	desc =  "A Teshari traditional garb, with a modern twist! Made of micro and nanofibres to make it light and billowy, perfect for going fast and stylishly!"
+=======
+	desc =  "Teshari traditional garb, with a modern twist! Made of nanofibres to make it light and billowy, perfect for going fast and stylishly!"
+	icon = 'icons/mob/species/teshari/teshari_uniform.dmi'
+	icon_override = 'icons/mob/species/teshari/teshari_uniform.dmi'
+>>>>>>> 4eba36f3a86... Merge pull request #8730 from Cerebulon/teshdirectionals
 	icon_state = "tesh_uniform_bo"
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO
 
@@ -221,106 +227,111 @@
 
 //Job Undercoats
 /obj/item/clothing/under/teshari/undercoat/jobs/cap
+<<<<<<< HEAD
 	name = "site manager undercoat"
 	desc = "A traditional Teshari garb made for the Site Manager"
+=======
+	name = "facility director undercoat"
+	desc = "Traditional-style Teshari garb made for a Facility Director"
+>>>>>>> 4eba36f3a86... Merge pull request #8730 from Cerebulon/teshdirectionals
 	icon_state = "tesh_uniform_cap"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/hop
 	name = "head of personnel undercoat"
-	desc = "A traditional Teshari garb made for the Head of Personnel"
+	desc = "Traditional-style Teshari garb made for a Head of Personnel"
 	icon_state = "tesh_uniform_hop"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/ce
-	name = "cheif engineer undercoat"
-	desc = "A traditional Teshari garb made for the Chief Engineer"
+	name = "chief engineer undercoat"
+	desc = "Traditional-style Teshari garb made for a Chief Engineer"
 	icon_state = "tesh_uniform_ce"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/hos
 	name = "head of security undercoat"
-	desc = "A traditional Teshari garb made for the Head of Security"
+	desc = "Traditional-style Teshari garb made for a Head of Security"
 	icon_state = "tesh_uniform_hos"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/rd
 	name = "research director undercoat"
-	desc = "A traditional Teshari garb made for the Research Director"
+	desc = "Traditional-style Teshari garb made for a Research Director"
 	icon_state = "tesh_uniform_rd"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/engineer
 	name = "engineering undercoat"
-	desc = "A traditional Teshari garb made for the Engineering department"
+	desc = "Traditional-style Teshari garb made for the Engineering department"
 	icon_state = "tesh_uniform_engie"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/atmos
 	name = "atmospherics undercoat"
-	desc = "A traditional Teshari garb made for the Atmospheric Technician"
+	desc = "Traditional-style Teshari garb made for an Atmospheric Technician"
 	icon_state = "tesh_uniform_atmos"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/cmo
 	name = "chief medical officer undercoat"
-	desc = "A traditional Teshari garb made for the Cheif Medical Officer"
+	desc = "Traditional-style Teshari garb made for a Chief Medical Officer"
 	icon_state = "tesh_uniform_cmo"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/qm
 	name = "quartermaster undercoat"
-	desc = "A traditional Teshari garb made for the Quartermaster"
+	desc = "Traditional-style Teshari garb made for a Quartermaster"
 	icon_state = "tesh_uniform_qm"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/cargo
 	name = "cargo undercoat"
-	desc = "A traditional Teshari garb made for the Cargo department"
+	desc = "Traditional-style Teshari garb made for the Cargo department"
 	icon_state = "tesh_uniform_car"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/mining
 	name = "mining undercoat"
-	desc = "A traditional Teshari garb made for Mining"
+	desc = "Traditional-style Teshari garb made for Mining"
 	icon_state = "tesh_uniform_mine"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/medical
 	name = "medical undercoat"
-	desc = "A traditional Teshari garb made for the Medical department"
+	desc = "Traditional-style Teshari garb made for the Medical department"
 	icon_state = "tesh_uniform_doc"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/chemistry
 	name = "chemist undercoat"
-	desc = "A traditional Teshari garb made for the Chemist"
+	desc = "Traditional-style Teshari garb made for a Chemist"
 	icon_state = "tesh_uniform_chem"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/viro
 	name = "virologist undercoat"
-	desc = "A traditional Teshari garb made for the Virologist"
+	desc = "Traditional-style Teshari garb made for a Virologist"
 	icon_state = "tesh_uniform_viro"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/psych
 	name = "psychiatrist undercoat"
-	desc = "A traditional Teshari garb made for the Psychiatrist"
+	desc = "Traditional-style Teshari garb made for a Psychiatrist"
 	icon_state = "tesh_uniform_psych"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/para
 	name = "paramedic undercoat"
-	desc = "A traditional Teshari garb made for the Paramedic"
+	desc = "Traditional-style Teshari garb made for a Paramedic"
 	icon_state = "tesh_uniform_para"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/sci
 	name = "scientist undercoat"
-	desc = "A traditional Teshari garb made for the Science department"
+	desc = "Traditional-style Teshari garb made for the Science department"
 	icon_state = "tesh_uniform_sci"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/robo
 	name = "roboticist undercoat"
-	desc = "A traditional Teshari garb made for the Roboticist"
+	desc = "Traditional-style Teshari garb made for the Roboticist"
 	icon_state = "tesh_uniform_robo"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/sec
 	name = "security undercoat"
-	desc = "A traditional Teshari garb made for the Security department"
+	desc = "Traditional-style Teshari garb made for the Security department"
 	icon_state = "tesh_uniform_sec"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/service
 	name = "service undercoat"
-	desc = "A traditional Teshari garb made for the Service department"
+	desc = "Traditional-style Teshari garb made for the Service department"
 	icon_state = "tesh_uniform_serv"
 
 /obj/item/clothing/under/teshari/undercoat/jobs/iaa
 	name = "internal affairs undercoat"
-	desc = "A traditional Teshari garb made for the Internal Affairs Agent"
+	desc = "Traditional-style Teshari garb made for an Internal Affairs Agent"
 	icon_state = "tesh_uniform_iaa"
