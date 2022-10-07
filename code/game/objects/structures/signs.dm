@@ -8,22 +8,12 @@
 	w_class = ITEMSIZE_NORMAL
 
 /obj/structure/sign/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			qdel(src)
-			return
-		if(2.0)
-			qdel(src)
-			return
-		if(3.0)
-			qdel(src)
-			return
-		else
-	return
+	qdel(src)
 
-/obj/structure/sign/attackby(obj/item/tool as obj, mob/user as mob)	//deconstruction
+/obj/structure/sign/attackby(obj/item/tool, mob/user)	//deconstruction
 	if(tool.is_screwdriver() && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
 		playsound(src, tool.usesound, 50, 1)
+<<<<<<< HEAD
 		to_chat(user, "You unfasten the sign with your [tool].")
 		var/obj/item/sign/S = new(src.loc)
 		S.name = name
@@ -33,7 +23,21 @@
 		//S.icon = I.Scale(24, 24)
 		S.sign_state = icon_state
 		qdel(src)
+=======
+		unfasten(user)
+>>>>>>> a5961218774... Merge pull request #8721 from Cerebulon/flags
 	else ..()
+
+/obj/structure/sign/proc/unfasten(mob/user)
+	user.visible_message(SPAN_NOTICE("\The [user] unfastens \the [src]."), SPAN_NOTICE("You unfasten \the [src]."))
+	var/obj/item/sign/S = new(src.loc)
+	S.name = name
+	S.desc = desc
+	S.icon_state = icon_state
+	S.sign_state = icon_state
+	S.original_type = type
+	qdel(src)
+
 
 /obj/item/sign
 	name = "sign"
@@ -1463,3 +1467,475 @@
 
 /obj/structure/sign/bigname/seg_7
 	icon_state = "cyno_7"
+<<<<<<< HEAD
+=======
+
+/obj/structure/sign/clock
+	name = "wall clock"
+	desc = "A basic wall clock, synced to the current system time."
+	icon_state = "clock"
+
+/obj/structure/sign/clock/examine(mob/user)
+	. = ..()
+	. += "The clock shows that the time is [stationtime2text()]."
+
+/obj/structure/sign/calendar
+	name = "calendar"
+	desc = "It's an old-school, NanoTrasen branded wall calendar. Sure, it might be obsolete with modern technology, but it's still hard to imagine an office without one."
+	icon_state = "calendar"
+
+/obj/structure/sign/calendar/examine(mob/user)
+	. = ..()
+	. += "The calendar shows that the date is [stationdate2text()]."
+	if (Holiday.len)
+		. += "Today is <strong><span class='green'>[english_list(Holiday)]</span></strong>."
+
+/obj/structure/sign/explosive
+	name = "\improper HIGH EXPLOSIVES sign"
+	desc = "A warning sign which reads 'HIGH EXPLOSIVES'."
+	icon_state = "explosives"
+
+/obj/structure/sign/chemdiamond
+	name = "\improper HAZARDOUS CHEMICALS sign"
+	desc = "A sign that warns of potentially hazardous chemicals nearby, indicating health risk, flash point, and reactivity."
+	icon_state = "chemdiamond"
+
+//Here be Flags
+
+//Flag item
+/obj/item/flag
+	name = "boxed flag"
+	desc = "A flag neatly folded into a wooden container."
+	icon = 'icons/obj/flags.dmi'
+	icon_state = "flag_boxed"
+	var/flag_path = "flag"
+	var/flag_size = 0
+
+//Flag on wall
+/obj/structure/sign/flag
+	name = "blank flag"
+	desc = "Nothing to see here."
+	icon = 'icons/obj/flags.dmi'
+	icon_state = "flag"
+	var/icon/ripped_outline = icon('icons/obj/flags.dmi', "ripped")
+	var/obj/structure/sign/flag/linked_flag //For double flags
+	var/obj/item/flag/flagtype //For returning your flag
+	var/ripped = FALSE //If we've been torn down
+
+/obj/structure/sign/flag/blank
+	name = "blank banner"
+	desc = "A blank white flag."
+	icon_state = "flag"
+	flagtype = /obj/item/flag
+
+/obj/item/flag/afterattack(var/atom/A, var/mob/user, var/adjacent, var/clickparams)
+	if (!adjacent)
+		return
+
+	if((!iswall(A) && !istype(A, /obj/structure/window)) || !isturf(user.loc))
+		to_chat(user, SPAN_WARNING("You can't place this here!"))
+		return
+
+	var/placement_dir = get_dir(user, A)
+	if (!(placement_dir in cardinal))
+		to_chat(user, SPAN_WARNING("You must stand directly in front of the location you wish to place that on."))
+		return
+
+	var/obj/structure/sign/flag/P = new(user.loc)
+
+	switch(placement_dir)
+		if(NORTH)
+			P.pixel_y = 32
+		if(SOUTH)
+			P.pixel_y = -32
+		if(EAST)
+			P.pixel_x = 32
+		if(WEST)
+			P.pixel_x = -32
+
+	P.dir = placement_dir
+	if(flag_size)
+		P.icon_state = "[flag_path]_l"
+		var/obj/structure/sign/flag/P2 = new(user.loc)
+		P.linked_flag = P2
+		P2.linked_flag = P
+		P2.icon_state = "[flag_path]_r"
+		P2.dir = P.dir
+		switch(P2.dir)
+			if(NORTH)
+				P2.pixel_y = P.pixel_y
+				P2.pixel_x = 32
+			if(SOUTH)
+				P2.pixel_y = P.pixel_y
+				P2.pixel_x = 32
+			if(EAST)
+				P2.pixel_x = P.pixel_x
+				P2.pixel_y = -32
+			if(WEST)
+				P2.pixel_x = P.pixel_x
+				P2.pixel_y = 32
+		P2.name = name
+		P2.desc = desc
+		P2.description_info = description_info
+		P2.description_fluff = description_fluff
+		P2.flagtype = type
+	else
+		P.icon_state = "[flag_path]"
+	P.name = name
+	P.desc = desc
+	P.description_info = description_info
+	P.description_fluff = description_fluff
+	P.flagtype = type
+	qdel(src)
+
+/obj/structure/sign/flag/Destroy()
+	if(linked_flag?.linked_flag == src) //Catches other instances where one half might be destroyed, say by a broken wall, to avoid runtimes.
+		linked_flag.linked_flag = null //linked_flag
+	. = ..()
+
+/obj/structure/sign/flag/ex_act(severity)
+	switch(severity)
+		if(1)
+			qdel(src)
+		if(2)
+			if(prob(50))
+				qdel(src)
+			else
+				rip()
+		if(3)
+			rip()
+
+/obj/structure/sign/flag/unfasten(mob/user)
+	if(!ripped)
+		user.visible_message(SPAN_NOTICE("\The [user] unfastens \the [src] and folds it back up."), SPAN_NOTICE("You unfasten \the [src] and fold it back up."))
+		var/obj/item/flag/F = new flagtype(get_turf(user))
+		user.put_in_hands(F)
+	else
+		user.visible_message(SPAN_NOTICE("\The [user] unfastens the tattered remnants of \the [src]."), SPAN_NOTICE("You unfasten the tattered remains of \the [src]."))
+	if(linked_flag)
+		qdel(linked_flag) //otherwise you're going to get weird duping nonsense
+	qdel(src)
+
+/obj/structure/sign/flag/attack_hand(mob/user)
+	if(alert("Do you want to rip \the [src] from its place?","You think...","Yes","No") == "Yes")
+		if(!Adjacent(user)) //Cannot bring up dialogue and walk away
+			return FALSE
+		visible_message(SPAN_WARNING("\The [user] rips \the [src] in a single, decisive motion!" ))
+		playsound(src.loc, 'sound/items/poster_ripped.ogg', 100, 1)
+		add_fingerprint(user)
+		rip()
+
+/obj/structure/sign/flag/proc/rip(var/rip_linked = TRUE)
+	var/icon/I = new('icons/obj/flags.dmi', icon_state)
+	var/icon/mask = new('icons/obj/flags.dmi', "ripped")
+	I.AddAlphaMask(mask)
+	icon = I
+	name = "ripped flag"
+	desc = "You can't make out anything from the flag's original print. It's ruined."
+	ripped = TRUE
+	if(linked_flag && rip_linked)
+		linked_flag.rip(FALSE) //Prevents an infinite ripping loop
+
+/obj/structure/sign/flag/attackby(obj/item/W, mob/user)
+	..()
+	if(istype(W, /obj/item/flame/lighter) || istype(W, /obj/item/weldingtool))
+		visible_message(SPAN_WARNING("\The [user] starts to burn \the [src] down!"))
+		if(!do_after(user, 2 SECONDS))
+			return FALSE
+		visible_message(SPAN_WARNING("\The [user] burns \the [src] down!"))
+		playsound(src.loc, 'sound/items/cigs_lighters/cig_light.ogg', 100, 1)
+		new /obj/effect/decal/cleanable/ash(src.loc)
+		if(linked_flag)
+			qdel(linked_flag)
+		qdel(src)
+		return TRUE
+
+/obj/structure/sign/flag/blank/left
+	icon_state = "flag_l"
+
+/obj/structure/sign/flag/blank/right
+	icon_state = "flag_r"
+
+//SolGov
+/obj/structure/sign/flag/sol
+	name = "Solar Confederate Government flag"
+	desc = "The bright blue flag of the Solar Confederate Government."
+	icon_state = "solgov"
+	flagtype = /obj/item/flag/sol
+
+/obj/structure/sign/flag/sol/left
+	icon_state = "solgov_l"
+
+/obj/structure/sign/flag/sol/right
+	icon_state = "solgov_r"
+
+/obj/item/flag/sol
+	name = "Solar Confederate Government flag"
+	desc = "The bright blue flag of the Solar Confederate Government."
+	flag_path = "solgov"
+
+/obj/item/flag/sol/l
+	name = "large Solar Confederate Government flag"
+	flag_size = 1
+
+//NanoTrasen
+/obj/structure/sign/flag/nt
+	name = "NanoTrasen corporate flag"
+	desc = "A flag portraying the logo of the NanoTrasen corporation."
+	icon_state = "nanotrasen"
+	flagtype = /obj/item/flag/nt
+
+/obj/structure/sign/flag/nt/left
+	icon_state = "nanotrasen_l"
+
+/obj/structure/sign/flag/nt/right
+	icon_state = "nanotrasen_r"
+
+/obj/item/flag/nt
+	name = "NanoTrasen corporate flag"
+	desc = "A flag portraying the logo of the NanoTrasen corporation."
+	flag_path = "nanotrasen"
+
+/obj/item/flag/nt/l
+	name = "large NanoTrasen corporate flag"
+	flag_size = 1
+
+//Vir
+/obj/structure/sign/flag/vir
+	name = "Vir Governmental Authority flag"
+	desc = "The two-tone flag of the Vir Governmental Authority."
+	description_fluff = "Commonly referred to as VirGov, the Vir Governmental Authority was formed in 2412 as a unified system government following \
+	a half century of war between the Sif Planetary Government - or SifGov - and corporate interests in Kara orbit, in order to qualify for full membership \
+	in the Solar Confederate Government. Following the Karan Wars it would be almost a century before Trans-Stellar Corporations were allowed their typical \
+	freedom to operate unobstructed in the Vir system."
+	icon_state = "vir"
+	flagtype = /obj/item/flag/vir
+
+/obj/structure/sign/flag/vir/left
+	icon_state = "vir_l"
+
+/obj/structure/sign/flag/vir/right
+	icon_state = "vir_r"
+
+/obj/item/flag/vir
+	name = "Vir Governmental Authority flag"
+	desc = "The two-tone flag of the Vir Governmental Authority."
+	description_fluff = "Commonly referred to as VirGov, the Vir Governmental Authority was formed in 2412 as a unified system government following \
+	a half century of war between the Sif Planetary Government - or SifGov - and corporate interests in Kara orbit, in order to qualify for full membership \
+	in the Solar Confederate Government. Following the Karan Wars it would be almost a century before Trans-Stellar Corporations were allowed their typical \
+	freedom to operate unobstructed in the Vir system."
+	flag_path = "vir"
+
+/obj/item/flag/vir/l
+	name = "large Vir Governmental Authority flag"
+	flag_size = 1
+
+//Almach Association
+
+/obj/structure/sign/flag/almach_a
+	name = "Almach Association flag"
+	desc = "The black and grey flag of the now-defunct Almach Association."
+	description_fluff = "The Almach Association was a short lived (February 2562 - April 2564) governmental entity formed as an alliance of disparate radical mercurial \
+	states in an effort to secede from the Solar Confederate Government. Though the Association were defeated, and ultimately annexed by the Skrellian Far Kingdoms, \
+	the Association flag remains a popular symbol with mercurials and secessionists alike. To some, the Almach Association is seen as the first step towards the SCG's \
+	\"inevitable\" dissolution."
+	icon_state = "almach_a"
+	flagtype = /obj/item/flag/almach_a
+
+/obj/structure/sign/flag/almach_a/left
+	icon_state = "almach_a_l"
+
+/obj/structure/sign/flag/almach_a/right
+	icon_state = "almach_a_r"
+
+/obj/item/flag/almach_a
+	name = "Almach Association flag"
+	desc = "The black and grey flag of the now-defunct Almach Association."
+	description_fluff = "The Almach Association was a short lived (February 2562 - April 2564) governmental entity formed as an alliance of disparate radical mercurial \
+	states in an effort to secede from the Solar Confederate Government. Though the Association were defeated, and ultimately annexed by the Skrellian Far Kingdoms, \
+	the Association flag remains a popular symbol with mercurials and secessionists alike. To some, the Almach Association is seen as the first step towards the SCG's \
+	\"inevitable\" dissolution."
+	flag_path = "almach_a"
+
+/obj/item/flag/almach_a/l
+	name = "large Almach Association flag"
+	flag_size = 1
+
+//Almach Protectorate
+/obj/structure/sign/flag/almach_p
+	name = "Almach Protectorate flag"
+	desc = "The purple flag of the Almach Protectorate."
+	description_fluff = "The Almach Protectorate was formed from the territory of the Almach Association as a condition of the 2564 Treaty of Whythe. \
+	Intended to be closely overseen by the Skrellian Far Kingdom, the Skathari Incursion left the Protectorate functionally independent in many regards, \
+	leading to the proliferation of previously restricted genetic modification technology into SolGov territory. However, the Protectorate was also left \
+	without meaningful military support, and has suffered sorely in the years since as the Relan-led government has struggled to remilitarize."
+	icon_state = "almach_p"
+	flagtype = /obj/item/flag/almach_p
+
+/obj/structure/sign/flag/almach_p/left
+	icon_state = "almach_p_l"
+
+/obj/structure/sign/flag/almach_p/right
+	icon_state = "almach_p_r"
+
+/obj/item/flag/almach_p
+	name = "Almach Protectorate flag"
+	desc = "The purple flag of the Almach Protectorate."
+	description_fluff = "The Almach Protectorate was formed from the territory of the Almach Association as a condition of the 2564 Treaty of Whythe. \
+	Intended to be closely overseen by the Skrellian Far Kingdom, the Skathari Incursion left the Protectorate functionally independent in many regards, \
+	leading to the proliferation of previously restricted genetic modification technology into SolGov territory. However, the Protectorate was also left \
+	without meaningful military support, and has suffered sorely in the years since as the Relan-led government has struggled to remilitarize."
+	flag_path = "almach_p"
+
+/obj/item/flag/almach_p/l
+	name = "large Almach Protectorate flag"
+	flag_size = 1
+
+//Vystholm
+/obj/structure/sign/flag/vystholm
+	name = "Vystholm flag"
+	desc = "The black and gold flag of Vystholm."
+	description_fluff = "Vystholm is a faction of xenophobic humans who constructed an ark ship, the VHS Rodnakya, in response to the abolition of the hostile \
+	First Contact Policy in the early 24th century. Thought to have long departed known space, the Vystholm returned to within range of human territory in response \
+	to the Skathari Incursion and has since undertaken a campaign of raiding, terrorism and espionage against established governments, particularly the Tajaran \
+	Pearlshield Coalition."
+	icon_state = "vystholm"
+	flagtype = /obj/item/flag/vystholm
+
+/obj/structure/sign/flag/vystholm/left
+	icon_state = "vystholm_l"
+
+/obj/structure/sign/flag/vystholm/right
+	icon_state = "vystholm_r"
+
+/obj/item/flag/vystholm
+	name = "Vystholm flag"
+	desc = "The black and gold flag of Vystholm."
+	description_fluff = "Vystholm is a faction of xenophobic humans who constructed an ark ship, the VHS Rodnakya, in response to the abolition of the hostile \
+	First Contact Policy in the early 24th century. Thought to have long departed known space, the Vystholm returned to within range of human territory in response \
+	to the Skathari Incursion and has since undertaken a campaign of raiding, terrorism and espionage against established governments, particularly the Tajaran \
+	Pearlshield Coalition."
+	flag_path = "vystholm"
+
+/obj/item/flag/vystholm/l
+	name = "large Vystholm flag"
+	flag_size = 1
+
+//Five Arrows
+/obj/structure/sign/flag/fivearrows
+	name = "Five Arrows flag"
+	desc = "The red flag of the Five Arrows."
+	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to percieved \
+	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
+	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
+	icon_state = "fivearrows"
+	flagtype = /obj/item/flag/fivearrows
+
+/obj/structure/sign/flag/fivearrows/left
+	icon_state = "fivearrows_l"
+
+/obj/structure/sign/flag/fivearrows/right
+	icon_state = "fivearrows_r"
+
+/obj/item/flag/fivearrows
+	name = "Five Arrows flag"
+	desc = "The red flag of the Five Arrows."
+	description_fluff = "The Five Arrows is an independent government entity that seceded from the Solar Confederate Government in 2570, in response to percieved \
+	failures in aiding the Sagittarius Heights during the Skathari Incursion. The success of the government in achieving effective local defense and prosperity has \
+	since attracted the membership of Kauq'xum, a remote Skrellian colony. \The Five Arrows formed the model for SolGov's own semi-autonomous \"Regional Blocs\"."
+	flag_path = "fivearrows"
+
+/obj/item/flag/fivearrows/l
+	name = "large Five Arrows flag"
+	flag_size = 1
+
+//Pirates
+/obj/structure/sign/flag/pirate
+	name = "pirate flag"
+	desc = "Shiver me timbers, hoist the black!"
+	icon_state = "pirate"
+	flagtype = /obj/item/flag/pirate
+
+/obj/structure/sign/flag/pirate/left
+	icon_state = "pirate_l"
+
+/obj/structure/sign/flag/pirate/right
+	icon_state = "pirate_r"
+
+/obj/item/flag/pirate
+	name = "pirate flag"
+	desc = "Shiver me timbers, hoist the black!"
+	flag_path = "pirate"
+
+
+/obj/item/flag/pirate/l
+	name = "large pirate flag"
+	flag_size = 1
+
+//Catpirate
+/obj/structure/sign/flag/catpirate
+	name = "Tajaran pirate flag"
+	desc = "Shiver me whiskers, hoist the black!"
+	icon_state = "catpirate"
+	flagtype = /obj/item/flag/catpirate
+
+/obj/structure/sign/flag/catpirate/left
+	icon_state = "catpirate_l"
+
+/obj/structure/sign/flag/catpirate/right
+	icon_state = "catpirate_r"
+
+/obj/item/flag/catpirate
+	name = "Tajaran pirate flag"
+	desc = "Shiver me whiskers, hoist the black!"
+	flag_path = "catpirate"
+
+/obj/item/flag/catpirate/l
+	name = "large Tajaran pirate flag"
+	flag_size = 1
+
+//Political Parties
+/obj/structure/sign/flag/icarus
+	name = "Icarus Front flag"
+	desc = "The flag of the right-populist Icarus Front political party."
+	icon_state = "icarus"
+	flagtype = /obj/item/flag/icarus
+
+/obj/item/flag/icarus
+	name = "Icarus Front flag"
+	desc = "The flag of the right-populist Icarus Front political party."
+	flag_path = "icarus"
+
+/obj/structure/sign/flag/shadowcoalition
+	name = "Shadow Coalition flag"
+	desc = "The flag of the neoliberal Shadow Coalition political party."
+	icon_state = "shadowcoalition"
+	flagtype = /obj/item/flag/shadowcoalition
+
+/obj/item/flag/shadowcoalition
+	name = "Shadow Coalition flag"
+	desc = "The flag of the neoliberal Shadow Coalition political party."
+	flag_path = "shadowcoalition"
+
+/obj/structure/sign/flag/seo
+	name = "Sol Economic Organization flag"
+	desc = "The flag of the protectionist Sol Economic Organization political party."
+	icon_state = "seo"
+	flagtype = /obj/item/flag/seo
+
+/obj/item/flag/seo
+	name = "Sol Economic Organization flag"
+	desc = "The flag of the protectionist Sol Economic Organization political party."
+	flag_path = "seo"
+
+/obj/structure/sign/flag/gap
+	name = "Galactic Autonomy Party flag"
+	desc = "The flag of the libertarian Galactic Autonomy Party political party."
+	icon_state = "gap"
+	flagtype = /obj/item/flag/seo
+
+/obj/item/flag/gap
+	name = "Galactic Autonomy Party flag"
+	desc = "The flag of the libertarian Galactic Autonomy Party political party."
+	flag_path = "gap"
+>>>>>>> a5961218774... Merge pull request #8721 from Cerebulon/flags
