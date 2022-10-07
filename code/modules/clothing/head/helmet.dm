@@ -71,11 +71,17 @@
 /obj/item/clothing/head/helmet/riot/attack_self(mob/user as mob)
 	if(src.icon_state == initial(icon_state))
 		src.icon_state = "[icon_state]up"
-		to_chat(user, "You raise the visor on the riot helmet.")
+		to_chat(user, "You raise the visor on the [src].")
 	else
 		src.icon_state = initial(icon_state)
-		to_chat(user, "You lower the visor on the riot helmet.")
+		to_chat(user, "You lower the visor on the [src].")
 	update_clothing_icon()	//so our mob-overlays update
+
+/obj/item/clothing/head/helmet/riot/sifcop
+	name = "\improper SifGuard police helmet"
+	desc = "A visored helmet printed with the livery of the SifGuard Police Division."
+	icon_state = "sifcop_helmet"
+	armor = list(melee = 40, bullet = 30, laser = 30, energy = 10, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/head/helmet/laserproof
 	name = "ablative helmet"
@@ -136,6 +142,44 @@
 	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
 	siemens_coefficient = 0.5
 
+/obj/item/clothing/head/helmet/heavy
+	name = "heavy combat helmet"
+	desc = "A heavily armoured helmet with built-in faceplate, built to withstand the rigours of modern combat."
+	description_fluff = "Though a darling of Proxima Centuari Risk Control operatives, this type of high-grade enclosed combat helmet has two key drawbacks: 1. A somewhat limited field of view, which is often compensated for with cybernetics, and 2. It costs more than most mercenaries make in a year."
+	icon_state = "heavy_combat"
+	armor = list(melee = 70, bullet = 80, laser = 60, energy = 25, bomb = 40, bio = 0, rad = 0)
+	siemens_coefficient = 0.5
+
+/obj/item/clothing/head/helmet/heavy/knight
+	desc = "An enclosed, heavily armoured ablative helmet modeled after a medieval greathelm."
+	description_fluff = "The early 23rd century saw a surge in popularity for faux-medieval combat fashions, which was soon abandoned due to practical concerns and a growing desire for unified corporate security brand identities."
+	flags_inv = HIDEEARS|HIDEEYES|BLOCKHEADHAIR
+	icon_state = "knight_grey"
+	armor = list(melee = 80, bullet = 50, laser = 40, energy = 20, bomb = 30, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/newkyoto
+	name = "\improper New Kyotan combat helmet"
+	desc = "An armoured helmet. Pride of New Kyoto lawmen, dread of foreign spies."
+	description_fluff = "Authentic examples of New Kyotan security gear are rare due to the independent nation's strict export restrictions. Fortunately, ubiquitous replicas are often equally effective."
+	icon_state = "nkyoto"
+	armor = list(melee = 50, bullet = 50, laser = 50, energy = 25, bomb = 20, bio = 0, rad = 0)
+	siemens_coefficient = 0.5
+
+/obj/item/clothing/head/helmet/tank
+	name = "black tanker cap"
+	desc = "A padded skullcup for those prone to bumping their heads against hard surfaces."
+	icon_state = "tank"
+	color = "#5f5f5f"
+	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
+
+/obj/item/clothing/head/helmet/tank/olive
+	name = "olive tanker cap"
+	color = "#727c58"
+
+/obj/item/clothing/head/helmet/tank/tan
+	name = "tan tanker cap"
+	color = "#ae9f79"
+
 /obj/item/clothing/head/helmet/alien
 	name = "alien helmet"
 	desc = "It's quite larger than your head, but it might still protect it."
@@ -175,7 +219,6 @@
 		SPECIES_TAJ = 'icons/inventory/head/mob_tajaran.dmi',
 		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi',
 		)
-
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 40, bio = 0, rad = 0)
 	flags_inv = HIDEEARS|BLOCKHAIR
 	siemens_coefficient = 0.7
@@ -224,3 +267,4 @@
 	name = "emergency response team medical helmet"
 	desc = "A set of armor worn by medical members of the NanoTrasen Emergency Response Team. Has red and white highlights."
 	icon_state = "erthelmet_med"
+

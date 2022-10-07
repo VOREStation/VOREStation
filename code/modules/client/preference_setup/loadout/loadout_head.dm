@@ -434,6 +434,37 @@
 	display_name = "golden plague doctor's hat"
 	path = /obj/item/clothing/head/plaguedoctorhat/gold
 
+<<<<<<< HEAD
 /datum/gear/head/wheat
 	display_name = "straw hat"
 	path = /obj/item/clothing/head/wheat
+=======
+/datum/gear/head/nonla
+	display_name = "non la"
+	path = /obj/item/clothing/head/nonla
+
+/datum/gear/head/buckethat
+	display_name = "hat, bucket"
+	path = /obj/item/clothing/head/buckethat
+
+/datum/gear/head/buckethat/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/head/redcoat
+	display_name = "hat, tricorne"
+	path =/obj/item/clothing/head/redcoat
+
+/datum/gear/head/tanker
+	display_name = "tanker cap selection"
+	path = /obj/item/clothing/head/hardhat
+	cost = 2
+
+/datum/gear/head/tanker/New()
+	..()
+	var/list/tankercaps = list()
+	for(var/tankercap in typesof(/obj/item/clothing/head/helmet/tank))
+		var/obj/item/clothing/head/helmet/tank/cap_type = tankercap
+		tankercaps[initial(cap_type.name)] = cap_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(tankercaps))
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2

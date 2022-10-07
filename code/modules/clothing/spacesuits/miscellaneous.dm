@@ -102,3 +102,17 @@
 	icon_state = "syndicate-orange"
 	desc = "A thin, ungainly softsuit colored in blaze orange for rescuers to easily locate, looks pretty fragile."
 	slowdown = 2
+
+//civilian recreational spacesuit
+
+/obj/item/clothing/head/helmet/space/sports
+	name = "performance sports space helmet"
+	icon_state = "sports_void"
+	desc = "A sleek space helmet for the civilian extra-vehicular extreme sports market. Please replace after any impact!"
+
+/obj/item/clothing/suit/space/sports
+	name = "performance sports spacesuit"
+	desc = "A high-dexterity spacesuit for the civilian extra-vehicular extreme sports market, for when zero-g sports in controlled environments are just too tame."
+	description_fluff = "Ward-Takahashi zero-gravity performance sportswear does not require an EVA certification to purchase, though user manuals do list it as 'recommended' on condition of a 2550 lawsuit."
+	icon_state = "sports_void"
+	slowdown = 0

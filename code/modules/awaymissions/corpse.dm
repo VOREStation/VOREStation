@@ -357,6 +357,17 @@
 	corpseid = 1
 	corpseidjob = "Sif Defense Force Patrolman"
 
+/obj/effect/landmark/corpse/sifcop
+	name = "SGPD Officer"
+	corpseuniform = /obj/item/clothing/under/sifcop
+	corpsebelt = /obj/item/storage/belt/security/tactical
+	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
+	corpsehelmet = /obj/item/clothing/head/helmet/riot/sifcop
+	corpsegloves = /obj/item/clothing/gloves/duty
+	corpseshoes = /obj/item/clothing/shoes/boots/jackboots
+	corpseid = 1
+	corpseidjob = "SifGuard Police Division Officer"
+
 /obj/effect/landmark/corpse/hedberg
 	name = "Hedberg-Hammarstrom Mercenary"
 	corpseuniform = /obj/item/clothing/under/solgov/utility/sifguard
@@ -372,7 +383,7 @@
 	name = "Hedberg-Hammarstrom Mercenary"
 	corpsebelt = /obj/item/weapon/storage/belt/security/tactical
 	corpseglasses = /obj/item/clothing/glasses/sunglasses/sechud
-	corpsehelmet = /obj/item/clothing/head/helmet/flexitac
+	corpsehelmet = /obj/item/clothing/head/helmet/space/void/hedberg
 	corpsegloves = /obj/item/clothing/gloves/combat
 	corpseshoes = /obj/item/clothing/shoes/boots/tactical
 	corpseid = 1

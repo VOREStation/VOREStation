@@ -993,6 +993,7 @@
 	icon_state = "coffeecup_spawner"
 
 /obj/random/mug/item_to_spawn()
+<<<<<<< HEAD
 	return pick(/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug,
 			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/sol,
 			/obj/item/weapon/reagent_containers/food/drinks/glass2/coffeemug/fleet,
@@ -1037,3 +1038,75 @@
 				/obj/item/weapon/storage/box/donkpockets/honk,
 				/obj/item/weapon/storage/box/donkpockets/gondola,
 				/obj/item/weapon/storage/box/donkpockets/berry)
+=======
+	return pick(/obj/item/reagent_containers/food/drinks/glass2/coffeemug,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/sol,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/fleet,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/fivearrows,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/psc,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/alma,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/almp,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/nt,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/metal/wulf,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/gilthari,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/zeng,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/wt,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/aether,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/bishop,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/oculum,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/one,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/puni,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/heart,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/pawn,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/diona,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/britcup,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/tourist,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/flame,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/blue,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/black,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/green,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/green/dark,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/rainbow,
+				/obj/item/reagent_containers/food/drinks/glass2/coffeemug/metal)
+
+/obj/random/helmet
+	name = "Random Armour Helmet"
+	desc = "This is a random helmet that protects your head."
+
+/obj/random/helmet/item_to_spawn()
+	return pick(prob(5);/obj/item/clothing/head/helmet/space/void/boarding_ops/mk2,
+			prob(5);/obj/item/clothing/head/helmet/space/void/boarding_ops,
+			prob(20);/obj/item/clothing/head/helmet/riot/sifcop,
+			prob(20);/obj/item/clothing/head/helmet,
+			prob(10);/obj/item/clothing/head/helmet/bulletproof,
+			prob(10);/obj/item/clothing/head/helmet/flexitac,
+			prob(15);/obj/item/clothing/head/helmet/solgov,
+			prob(15);/obj/item/clothing/head/helmet/pcrc,
+			prob(10);/obj/item/clothing/head/helmet/space/void/scg,
+			prob(10);/obj/item/clothing/head/helmet/tac,
+			prob(10);/obj/item/clothing/head/helmet/merc,
+			prob(15);/obj/item/clothing/head/helmet/riot,
+			prob(10);/obj/item/clothing/head/helmet/space/void/grayson,
+			prob(10);/obj/item/clothing/head/helmet/space/void/hedberg,
+			prob(10);/obj/item/clothing/head/helmet/heavy,
+			prob(10);/obj/item/clothing/head/helmet/heavy/knight,
+			prob(5);/obj/item/clothing/head/helmet/newkyoto,
+			prob(5);/obj/item/clothing/head/helmet/space/void/scg/heavy
+			)
+
+/obj/random/helmet/highend
+	desc = "This is a random actually good helmet that protects your head."
+
+/obj/random/helmet/highend/item_to_spawn()
+	return pick(
+			prob(10);/obj/item/clothing/head/helmet/bulletproof,
+			prob(10);/obj/item/clothing/head/helmet/space/void/scg,
+			prob(10);/obj/item/clothing/head/helmet/merc,
+			prob(10);/obj/item/clothing/head/helmet/space/void/grayson,
+			prob(10);/obj/item/clothing/head/helmet/space/void/hedberg,
+			prob(10);/obj/item/clothing/head/helmet/heavy,
+			prob(10);/obj/item/clothing/head/helmet/heavy/knight,
+			prob(5);/obj/item/clothing/head/helmet/newkyoto,
+			prob(5);/obj/item/clothing/head/helmet/space/void/scg/heavy
+			)
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2

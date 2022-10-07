@@ -92,6 +92,26 @@
 			prob(5);list(
 				/obj/item/clothing/suit/space/void/pilot,
 				/obj/item/clothing/head/helmet/space/void/pilot
+			),
+			prob(2);list(
+				/obj/item/clothing/suit/space/void/boarding_ops,
+				/obj/item/clothing/head/helmet/space/void/boarding_ops
+			),
+			prob(2);list(
+				/obj/item/clothing/suit/space/void/boarding_ops,
+				/obj/item/clothing/head/helmet/space/void/boarding_ops/mk2
+			),
+			prob(2);list(
+				/obj/item/clothing/suit/space/void/scg,
+				/obj/item/clothing/head/helmet/space/void/scg
+			),
+			prob(2);list(
+				/obj/item/clothing/suit/space/void/scg,
+				/obj/item/clothing/head/helmet/space/void/scg/heavy
+			),
+			prob(1);list(
+				/obj/item/clothing/suit/space/void/pearlshield,
+				/obj/item/clothing/head/helmet/space/void/pearlshield
 			)
 		)
 
@@ -110,6 +130,10 @@
 			prob(1);list(
 				/obj/item/clothing/suit/space/void/mining/alt,
 				/obj/item/clothing/head/helmet/space/void/mining/alt
+			),
+			prob(1);list(
+				/obj/item/clothing/suit/space/void/mining/alt,
+				/obj/item/clothing/head/helmet/space/void/grayson
 			)
 		)
 
@@ -257,6 +281,7 @@
 	icon_state = "generic"
 
 /obj/random/rigsuit/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(4);/obj/item/weapon/rig/light/hacker,
 				prob(5);/obj/item/weapon/rig/industrial,
 				prob(5);/obj/item/weapon/rig/eva,
@@ -267,3 +292,11 @@
 /obj/random/rigsuit/chancetofail
 	spawn_nothing_percentage = 50
 //VOREStation Add End
+=======
+	return pick(prob(4);/obj/item/rig/light/hacker,
+				prob(5);/obj/item/rig/industrial,
+				prob(5);/obj/item/rig/eva,
+				prob(4);/obj/item/rig/light/stealth,
+				prob(3);/obj/item/rig/hazard,
+				prob(1);/obj/item/rig/merc/empty)
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2

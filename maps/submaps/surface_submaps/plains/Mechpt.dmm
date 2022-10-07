@@ -16,45 +16,78 @@
 "e" = (
 /obj/structure/railing,
 /obj/structure/table/woodentable,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/chips,
+=======
+/obj/item/reagent_containers/food/snacks/chips,
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 /turf/template_noop,
 /area/submap/Mechpt)
 "f" = (
 /obj/structure/railing,
 /obj/structure/table/woodentable,
+<<<<<<< HEAD
 /obj/item/weapon/cell/high,
 /obj/item/weapon/cell/high,
+=======
+/obj/item/cell/high,
+/obj/item/cell/high,
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 /turf/template_noop,
 /area/submap/Mechpt)
 "g" = (
 /obj/structure/railing,
 /obj/structure/table/woodentable,
+<<<<<<< HEAD
+=======
+/obj/random/helmet,
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 /turf/template_noop,
 /area/submap/Mechpt)
 "h" = (
 /obj/structure/railing,
 /obj/structure/table/woodentable,
+<<<<<<< HEAD
 /obj/item/weapon/spacecash/c10,
 /obj/item/weapon/spacecash/c10,
+=======
+/obj/item/spacecash/c10,
+/obj/item/spacecash/c10,
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 /turf/template_noop,
 /area/submap/Mechpt)
 "i" = (
 /obj/structure/railing{
+<<<<<<< HEAD
 	dir = 4
+=======
+	dir = 4;
+	icon_state = "railing0"
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 	},
 /turf/template_noop,
 /area/submap/Mechpt)
 "j" = (
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Mechpt)
 "k" = (
 /obj/structure/railing{
 	dir = 8
+=======
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"k" = (
+/obj/structure/railing{
+	dir = 8;
+	icon_state = "railing0"
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 	},
 /turf/template_noop,
 /area/submap/Mechpt)
 "l" = (
 /obj/item/stack/rods,
+<<<<<<< HEAD
 /turf/simulated/floor/outdoors/dirt/virgo3b,
 /area/submap/Mechpt)
 "m" = (
@@ -80,12 +113,45 @@
 "r" = (
 /obj/structure/railing{
 	dir = 1
+=======
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"m" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"n" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"o" = (
+/obj/effect/decal/mecha_wreckage/ripley/deathripley,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"p" = (
+/obj/effect/decal/mecha_wreckage/ripley/firefighter,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"q" = (
+/obj/item/stack/cable_coil,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"r" = (
+/obj/structure/railing{
+	dir = 1;
+	icon_state = "railing0"
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 	},
 /turf/template_noop,
 /area/submap/Mechpt)
 "s" = (
 /obj/structure/railing{
+<<<<<<< HEAD
 	dir = 1
+=======
+	dir = 1;
+	icon_state = "railing0"
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 	},
 /obj/structure/table/woodentable,
 /obj/structure/reagent_dispensers/beerkeg,
@@ -93,29 +159,85 @@
 /area/submap/Mechpt)
 "t" = (
 /obj/structure/railing{
+<<<<<<< HEAD
 	dir = 1
 	},
 /obj/structure/table/woodentable,
 /obj/item/weapon/spacecash/c50,
+=======
+	dir = 1;
+	icon_state = "railing0"
+	},
+/obj/structure/table/woodentable,
+/obj/item/spacecash/c50,
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 /turf/template_noop,
 /area/submap/Mechpt)
 "u" = (
 /obj/structure/railing{
+<<<<<<< HEAD
 	dir = 1
 	},
 /obj/structure/table/woodentable,
 /obj/item/weapon/cell/high,
 /obj/item/weapon/cell/device/weapon,
+=======
+	dir = 1;
+	icon_state = "railing0"
+	},
+/obj/structure/table/woodentable,
+/obj/item/cell/high,
+/obj/item/cell/device/weapon,
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 /turf/template_noop,
 /area/submap/Mechpt)
 "v" = (
 /obj/structure/railing{
+<<<<<<< HEAD
 	dir = 1
 	},
 /obj/structure/table/woodentable,
 /obj/item/weapon/reagent_containers/food/drinks/bottle/small/beer,
 /turf/template_noop,
 /area/submap/Mechpt)
+=======
+	dir = 1;
+	icon_state = "railing0"
+	},
+/obj/structure/table/woodentable,
+/obj/item/reagent_containers/food/drinks/bottle/small/beer,
+/turf/template_noop,
+/area/submap/Mechpt)
+"x" = (
+/obj/effect/decal/cleanable/blood/oil,
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Mechpt)
+"D" = (
+/obj/random/tank/anom,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+"H" = (
+/obj/structure/railing,
+/obj/structure/table/woodentable,
+/obj/random/tool,
+/turf/template_noop,
+/area/submap/Mechpt)
+"Q" = (
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Mechpt)
+"R" = (
+/obj/random/tool/anom,
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Mechpt)
+"T" = (
+/obj/effect/decal/cleanable/blood/oil/streak,
+/turf/simulated/floor/outdoors/newdirt,
+/area/submap/Mechpt)
+"Z" = (
+/obj/random/tool,
+/turf/simulated/floor/outdoors/dirt,
+/area/submap/Mechpt)
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 
 (1,1,1) = {"
 a
@@ -148,7 +270,11 @@ b
 b
 b
 b
+<<<<<<< HEAD
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 b
 b
 b
@@ -170,8 +296,13 @@ i
 i
 i
 i
+<<<<<<< HEAD
 j
 j
+=======
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 i
 i
 i
@@ -190,10 +321,17 @@ b
 d
 j
 j
+<<<<<<< HEAD
 j
 j
 j
 j
+=======
+Q
+Q
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -213,8 +351,13 @@ d
 j
 j
 j
+<<<<<<< HEAD
 j
 j
+=======
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -264,7 +407,11 @@ j
 j
 j
 j
+<<<<<<< HEAD
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -276,6 +423,10 @@ a
 b
 b
 d
+<<<<<<< HEAD
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -285,8 +436,12 @@ j
 j
 j
 j
+<<<<<<< HEAD
 j
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -298,17 +453,29 @@ a
 b
 b
 d
+<<<<<<< HEAD
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 m
 j
 j
+<<<<<<< HEAD
 j
 j
 j
 j
 j
+=======
+Q
+j
+j
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -320,17 +487,29 @@ a
 b
 b
 d
+<<<<<<< HEAD
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
+j
+j
+j
+j
+j
+<<<<<<< HEAD
 j
 j
 j
 j
 j
 j
+=======
+Q
 j
 j
-j
-j
-j
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -342,6 +521,7 @@ a
 b
 c
 d
+<<<<<<< HEAD
 j
 j
 j
@@ -353,6 +533,19 @@ j
 m
 j
 j
+=======
+Q
+Q
+j
+j
+j
+R
+Q
+j
+m
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -370,11 +563,19 @@ j
 j
 o
 j
+<<<<<<< HEAD
 j
 j
 j
 j
 j
+=======
+Q
+j
+j
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -390,13 +591,22 @@ j
 j
 j
 j
+<<<<<<< HEAD
+=======
+D
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
 j
+<<<<<<< HEAD
 j
 j
 j
+=======
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 s
 b
 b
@@ -410,7 +620,11 @@ b
 f
 j
 j
+<<<<<<< HEAD
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -429,11 +643,19 @@ a
 a
 b
 b
+<<<<<<< HEAD
 g
 j
 j
 j
 j
+=======
+H
+j
+j
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 p
@@ -455,7 +677,11 @@ h
 j
 j
 j
+<<<<<<< HEAD
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -521,7 +747,11 @@ d
 j
 j
 j
+<<<<<<< HEAD
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 m
@@ -542,9 +772,15 @@ b
 d
 j
 j
+<<<<<<< HEAD
 m
 j
 j
+=======
+x
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -564,15 +800,24 @@ b
 d
 j
 j
+<<<<<<< HEAD
+=======
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
 j
 j
 j
+<<<<<<< HEAD
 j
 j
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -587,14 +832,23 @@ d
 j
 j
 j
+<<<<<<< HEAD
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
 j
 j
+<<<<<<< HEAD
 j
 j
 j
+=======
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -609,14 +863,23 @@ d
 j
 j
 j
+<<<<<<< HEAD
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
 j
 j
+<<<<<<< HEAD
 j
 j
 j
+=======
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 r
 b
 b
@@ -630,10 +893,17 @@ b
 d
 j
 j
+<<<<<<< HEAD
 n
 j
 j
 j
+=======
+T
+j
+j
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -652,6 +922,7 @@ b
 d
 j
 j
+<<<<<<< HEAD
 j
 j
 j
@@ -660,6 +931,16 @@ j
 j
 j
 j
+=======
+Q
+Q
+Q
+Q
+j
+j
+j
+Z
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 r
 b
@@ -676,8 +957,13 @@ j
 j
 j
 j
+<<<<<<< HEAD
 j
 j
+=======
+Q
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j
@@ -699,7 +985,11 @@ j
 j
 j
 j
+<<<<<<< HEAD
 j
+=======
+Q
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 j
 j
 j

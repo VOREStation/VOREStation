@@ -3448,12 +3448,23 @@
 	dir = 10
 	},
 /obj/structure/closet/crate/freezer/rations,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
 /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle,
+=======
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/reagent_containers/food/drinks/cans/waterbottle,
+/obj/item/clothing/suit/space/sports,
+/obj/item/clothing/head/helmet/space/sports,
+>>>>>>> e212411b012... Merge pull request #8705 from Cerebulon/teamfortress2
 /turf/simulated/floor/tiled,
 /area/tcommsat/cynosure/lounge)
 "Ju" = (

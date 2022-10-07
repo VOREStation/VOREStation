@@ -265,6 +265,11 @@
 	desc = "An Sif Defense Force beret carrying insignia of the Anti-Piracy taskforce. For personnel that are more inclined towards style than safety."
 	icon_state = "beret_black_patrol"
 
+/obj/item/clothing/head/beret/solgov/sifguard/sifcop
+	name = "\improper SifGuard Police Division beret"
+	desc = "An Sif Defense Force beret carrying insignia of the civilian law enforcement division (SGPD). Standard issue."
+	icon_state = "beret_sifcop"
+
 /*
  * Fleet (Berets)
  */
@@ -325,22 +330,22 @@
 /obj/item/clothing/head/ushanka/solgov
 	name = "\improper SifGuard fur hat"
 	desc = "An Sif Defense Force synthfur-lined hat for operating in cold environments."
-	icon_state = "sifguardushankadown"
+	icon_state = "sifguardushanka"
 
 /obj/item/clothing/head/ushanka/solgov/fleet
 	name = "fleet fur hat"
 	desc = "An SCG Fleet synthfur-lined hat for operating in cold environments."
-	icon_state = "flushankadown"
+	icon_state = "flushanka"
 
 /obj/item/clothing/head/ushanka/solgov/marine
 	name = "marine fur hat"
 	desc = "An SCG Marine synthfur-lined hat for operating in cold environments."
-	icon_state = "mar1ushankadown"
+	icon_state = "mar1ushanka"
 
 /obj/item/clothing/head/ushanka/solgov/marine/green
 	name = "green marine fur hat"
 	desc = "An SCG Marine synthfur-lined hat for operating in cold environments."
-	icon_state = "mar2ushankadown"
+	icon_state = "mar2ushanka"
 
 /*
  * Almachi

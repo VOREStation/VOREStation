@@ -97,10 +97,10 @@
 	icon_state = "pwig"
 
 /obj/item/clothing/head/redcoat
-	name = "redcoat's hat"
+	name = "tricorne hat"
 	icon_state = "redcoat"
 	item_state_slots = list(slot_r_hand_str = "pirate", slot_l_hand_str = "pirate")
-	desc = "<i>'I guess it's a redhead.'</i>"
+	desc = "Stand and deliver!"
 	body_parts_covered = 0
 
 /obj/item/clothing/head/mailman
@@ -372,6 +372,21 @@
 	icon_state = "blackngoldheaddress"
 	flags_inv = HIDEEYES
 	body_parts_covered = HEAD|EYES
+
+/obj/item/clothing/head/nonla
+	name = "non la"
+	desc = "A conical straw hat, used by those in tropical climates to protect the head from sweltering suns and heavy rains."
+	icon_state = "nonla"
+	item_state = "nonla"
+
+/obj/item/clothing/head/buckethat
+	name = "bucket hat"
+	desc = "A hat with an all-around visor. Only slightly better than wearing an actual bucket."
+	icon_state = "buckethat"
+	icon_state = "buckethat"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi'
+		)
 
 //Corporate Berets
 
