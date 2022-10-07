@@ -41,6 +41,12 @@
 	icon_state = "wood_broken3"
 	},
 /area/ninja_dojo/dojo)
+"abN" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/escape/centcom)
 "abS" = (
 /obj/machinery/light/small{
 	dir = 8
@@ -227,7 +233,8 @@
 /obj/machinery/computer/station_alert{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "alR" = (
 /obj/effect/floor_decal/corner/green/full{
@@ -501,6 +508,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "ayf" = (
@@ -863,7 +871,8 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "aVZ" = (
-/turf/simulated/shuttle/wall/dark,
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/syndicate_elite/mothership)
 "aWS" = (
 /obj/structure/sink{
@@ -1044,9 +1053,7 @@
 /obj/machinery/computer/shuttle_control/arrivals{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/arrival/pre_game)
 "biP" = (
 /obj/structure/undies_wardrobe,
@@ -1149,6 +1156,9 @@
 /obj/machinery/optable,
 /turf/simulated/shuttle/floor/white,
 /area/skipjack_station/start)
+"boo" = (
+/turf/simulated/wall/tgmc/whitewall,
+/area/shuttle/escape/centcom)
 "bos" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -1356,7 +1366,8 @@
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "bBh" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4,
@@ -1411,7 +1422,7 @@
 "bCv" = (
 /obj/machinery/atmospherics/portables_connector,
 /obj/machinery/portable_atmospherics/canister/oxygen/prechilled,
-/turf/simulated/shuttle/floor/voidcraft/light,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/escape/centcom)
 "bCA" = (
 /obj/structure/table/bench/padded,
@@ -1494,10 +1505,23 @@
 	icon_state = "carpet"
 	},
 /area/ninja_dojo/dojo)
+"bHM" = (
+/obj/effect/floor_decal/emblem/nt1,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "monotile"
+	},
+/area/centcom/main_hall)
 "bIu" = (
 /obj/structure/frame/computer,
 /turf/simulated/shuttle/floor/darkred,
 /area/skipjack_station/start)
+"bIF" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/syndicate_elite/mothership)
 "bIL" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 6
@@ -1509,7 +1533,9 @@
 /area/centcom/bar)
 "bIS" = (
 /obj/effect/shuttle_landmark/cynosure/arrivals_offsite,
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/arrival/pre_game)
 "bJF" = (
 /obj/machinery/door/airlock,
@@ -1544,7 +1570,8 @@
 	landmark_tag = "syndie_elite_start";
 	name = "Merc Elite Dock"
 	},
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "bLG" = (
 /obj/structure/sink{
@@ -1590,7 +1617,9 @@
 "bQz" = (
 /obj/structure/table/standard,
 /obj/random/plushie,
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "bQE" = (
 /obj/structure/table/rack,
@@ -1681,7 +1710,9 @@
 /obj/machinery/light{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/obj/effect/floor_decal/milspec/color/silver/half,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "bXp" = (
 /obj/structure/flora/grass/brown,
@@ -1727,7 +1758,9 @@
 /area/prison/solitary)
 "bYp" = (
 /obj/structure/table/standard,
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "bYU" = (
 /obj/machinery/door/airlock/external{
@@ -1760,9 +1793,10 @@
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
 "caf" = (
-/obj/structure/shuttle/window,
-/obj/structure/grille,
-/turf/simulated/shuttle/plating,
+/turf/simulated/wall/tgmc/window/white,
+/area/shuttle/arrival/pre_game)
+"cbu" = (
+/turf/simulated/wall/tgmc/window/white/reinf,
 /area/shuttle/arrival/pre_game)
 "cbv" = (
 /obj/structure/closet/crate/freezer,
@@ -1863,8 +1897,14 @@
 	},
 /area/centcom/main_hall)
 "chh" = (
-/obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor/red,
+/obj/effect/floor_decal/milspec/color/red,
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/effect/floor_decal/milspec/color/black/half{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/escape/centcom)
 "chC" = (
 /obj/effect/floor_decal/corner/blue/diagonal{
@@ -1894,6 +1934,16 @@
 	icon_state = "techfloor_gray"
 	},
 /area/centcom/specops)
+"ciY" = (
+/obj/structure/bed/chair{
+	dir = 1
+	},
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/transport1/centcom)
 "cky" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -1920,7 +1970,8 @@
 /area/centcom/specops)
 "clN" = (
 /obj/effect/shuttle_landmark/cynosure/escape/offsite,
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "clW" = (
 /turf/simulated/shuttle/plating,
@@ -1965,7 +2016,8 @@
 	landmark_tag = "centcom_shuttle_start";
 	name = "Transit Shuttle Bay"
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "cnx" = (
 /obj/structure/table/standard,
@@ -2041,6 +2093,12 @@
 	icon_state = "dark"
 	},
 /area/syndicate_station)
+"csU" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 6
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/supply)
 "csV" = (
 /obj/structure/table/rack,
 /obj/item/weapon/gun/energy/gun,
@@ -2107,6 +2165,12 @@
 	icon_state = "lino"
 	},
 /area/tdome)
+"cwb" = (
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/supply)
 "cwx" = (
 /obj/structure/kitchenspike,
 /turf/unsimulated/floor{
@@ -2222,8 +2286,14 @@
 /area/wizard_station)
 "cDm" = (
 /obj/structure/table/standard,
+<<<<<<< HEAD
 /obj/item/weapon/book/codex/corp_regs,
 /turf/simulated/shuttle/floor/white,
+=======
+/obj/item/book/codex/corp_regs,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/arrival/pre_game)
 "cDr" = (
 /obj/structure/target_stake,
@@ -2305,7 +2375,7 @@
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
 "cLf" = (
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	frequency = 1380;
 	icon_state = "door_locked";
 	id_tag = "supply_shuttle_hatch";
@@ -2414,6 +2484,11 @@
 	icon_state = "steel"
 	},
 /area/centcom/bar)
+"cSk" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "cSr" = (
 /obj/machinery/door/blast/regular{
 	id = "crescent_thunderdome";
@@ -2647,6 +2722,7 @@
 /area/skipjack_station)
 "djl" = (
 /obj/machinery/computer/security,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "dju" = (
@@ -3011,7 +3087,8 @@
 /obj/effect/landmark{
 	name = "Syndicate-Commando-Bomb"
 	},
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "dFX" = (
 /obj/machinery/vending/cigarette{
@@ -3333,8 +3410,18 @@
 /turf/simulated/shuttle/wall/dark/no_join,
 /area/shuttle/arrival/pre_game)
 "dZT" = (
+<<<<<<< HEAD
 /obj/machinery/light,
 /turf/simulated/shuttle/floor,
+=======
+/obj/machinery/light/no_nightshift,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half,
+/obj/effect/floor_decal/steeldecal/steel_decals_central5{
+	pixel_y = -2
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/arrival/pre_game)
 "ebh" = (
 /obj/machinery/shower{
@@ -3459,10 +3546,11 @@
 	name = "Emergency NanoMed";
 	pixel_x = -28
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "efr" = (
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/transport1/centcom)
 "egd" = (
 /obj/effect/step_trigger/teleporter/landmark{
@@ -3477,7 +3565,7 @@
 	pixel_y = -25;
 	tag_door = "centcom_shuttle_hatch"
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/transport1/centcom)
 "ehm" = (
 /turf/unsimulated/floor{
@@ -3521,6 +3609,7 @@
 	pixel_y = 32
 	},
 /obj/structure/bed/chair,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "enr" = (
@@ -3712,6 +3801,16 @@
 	icon_state = "dark"
 	},
 /area/centcom/security)
+"euU" = (
+/obj/machinery/light{
+	dir = 4
+	},
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/supply)
 "euX" = (
 /obj/machinery/sleeper{
 	dir = 8
@@ -3739,7 +3838,8 @@
 	name = "Side Hull Door";
 	opacity = 0
 	},
-/turf/simulated/shuttle/floor/skipjack,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "evi" = (
 /obj/structure/table/rack,
@@ -3948,6 +4048,12 @@
 	icon_state = "dark"
 	},
 /area/centcom/security)
+"eIF" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "eJH" = (
 /obj/machinery/door/airlock,
 /turf/simulated/shuttle/floor/black,
@@ -3991,7 +4097,7 @@
 /obj/machinery/sleeper{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "eMX" = (
 /obj/machinery/door/airlock/multi_tile/metal,
@@ -4093,8 +4199,17 @@
 	},
 /area/centcom/security)
 "eUF" = (
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
+"eUO" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/stripe,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/transport1/centcom)
 "eVe" = (
 /obj/machinery/door/airlock/glass_security{
 	name = "Security Processing";
@@ -4106,7 +4221,7 @@
 	},
 /area/centcom/security)
 "eVJ" = (
-/turf/simulated/shuttle/wall/hard_corner,
+/turf/simulated/wall/thull,
 /area/shuttle/escape/centcom)
 "eVU" = (
 /obj/structure/bed/chair/holochair,
@@ -4216,6 +4331,7 @@
 	network = list("NETWORK_ERT");
 	pixel_y = 26
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "faA" = (
@@ -4393,8 +4509,14 @@
 /obj/structure/table/standard,
 /obj/random/maintenance/clean,
 /obj/random/maintenance/clean,
+<<<<<<< HEAD
 /obj/machinery/light,
 /turf/simulated/shuttle/floor/white,
+=======
+/obj/machinery/light/no_nightshift,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/arrival/pre_game)
 "fjB" = (
 /obj/effect/floor_decal/borderfloorblack/corner{
@@ -4624,6 +4746,8 @@
 	name = "Employees Only";
 	secured_wires = 1
 	},
+/obj/effect/floor_decal/milspec/color/red,
+/obj/effect/floor_decal/milspec/color/white,
 /turf/simulated/shuttle/floor,
 /area/shuttle/arrival/pre_game)
 "fvA" = (
@@ -4662,6 +4786,7 @@
 /area/centcom/bar)
 "fyR" = (
 /obj/structure/dispenser,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "fzP" = (
@@ -4774,11 +4899,12 @@
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "fED" = (
 /obj/machinery/ai_status_display,
-/turf/simulated/shuttle/wall,
+/turf/simulated/wall/thull,
 /area/shuttle/arrival/pre_game)
 "fEH" = (
 /obj/item/robot_parts/l_leg,
@@ -4809,7 +4935,7 @@
 	},
 /area/skipjack_station)
 "fFy" = (
-/turf/simulated/shuttle/wall/voidcraft/red,
+/turf/simulated/wall/tgmc/redstripe_r,
 /area/syndicate_station/start)
 "fGf" = (
 /turf/simulated/mineral,
@@ -4995,13 +5121,15 @@
 	req_one_access = list(150);
 	tag_door = "merc_elite_shuttle_hatch"
 	},
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "fSe" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "fSY" = (
 /obj/machinery/light/small{
@@ -5041,8 +5169,12 @@
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
 "fUA" = (
-/obj/machinery/door/unpowered/shuttle,
-/turf/simulated/shuttle/floor,
+/obj/machinery/door/airlock/hatch{
+	name = "Cockpit";
+	req_access = list(109)
+	},
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "fUC" = (
 /obj/effect/floor_decal/corner/yellow{
@@ -5331,6 +5463,7 @@
 /obj/machinery/computer/communications{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "gkV" = (
@@ -5382,10 +5515,17 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_thunderdomecourt)
-"gno" = (
-/turf/simulated/shuttle/wall/dark{
-	join_group = "shuttle_ert"
+"gnm" = (
+/obj/machinery/door/airlock/external/white{
+	icon_state = "door_locked";
+	locked = 1;
+	name = "Shuttle Hatch"
 	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/escape/centcom)
+"gno" = (
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/carry,
 /area/shuttle/response_ship/start)
 "gnL" = (
 /obj/item/weapon/grenade/chem_grenade/cleaner,
@@ -5473,6 +5613,11 @@
 /obj/effect/floor_decal/corner/green/full,
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_basketball)
+"gsq" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "gtC" = (
 /obj/item/toy/chess/bishop_white,
 /turf/simulated/floor/holofloor/wmarble,
@@ -5481,6 +5626,7 @@
 /obj/item/device/radio/intercom/specops{
 	pixel_y = -21
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "gvl" = (
@@ -5554,9 +5700,6 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/syndicate_station/start)
-"gzS" = (
-/turf/simulated/shuttle/wall,
-/area/shuttle/supply)
 "gAO" = (
 /obj/machinery/door/airlock/centcom{
 	name = "Courthouse"
@@ -5626,6 +5769,12 @@
 	},
 /turf/space/transit/west,
 /area/space)
+"gEs" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/escape/centcom)
 "gEw" = (
 /obj/effect/floor_decal/borderfloorblack{
 	dir = 4
@@ -5711,6 +5860,13 @@
 	},
 /turf/simulated/shuttle/floor/white,
 /area/centcom/evac)
+"gJt" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/corner{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "gJJ" = (
 /obj/item/mecha_parts/mecha_equipment/tool/extinguisher,
 /obj/item/mecha_parts/mecha_equipment/tool/rcd,
@@ -5815,11 +5971,13 @@
 	},
 /area/centcom/bar)
 "gOt" = (
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	icon_state = "door_locked";
-	locked = 1
+	locked = 1;
+	name = "Shuttle Hatch"
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/escape/centcom)
 "gPb" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -5860,7 +6018,8 @@
 	name = "Escape Shuttle Cell";
 	req_access = list(1)
 	},
-/turf/simulated/shuttle/floor/red,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/escape/centcom)
 "gSi" = (
 /obj/machinery/door/airlock/silver{
@@ -6083,7 +6242,8 @@
 /area/centcom/terminal)
 "hht" = (
 /obj/structure/bed/chair,
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "hhv" = (
 /obj/structure/table/standard,
@@ -6282,6 +6442,13 @@
 	name = "Shuttle Bay Blast Door"
 	},
 /area/centcom/command)
+"hsE" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/corner{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "huf" = (
 /obj/effect/floor_decal/corner/green{
 	dir = 10
@@ -6339,9 +6506,15 @@
 	icon_state = "steel"
 	},
 /area/centcom/main_hall)
+"hxV" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/supply)
 "hyg" = (
 /obj/machinery/iv_drip,
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "hyN" = (
 /obj/effect/floor_decal/carpet{
@@ -6444,7 +6617,11 @@
 	req_one_access = list(13);
 	tag_door = "escape_shuttle_hatch"
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "hFy" = (
 /obj/machinery/door/airlock/external{
@@ -6685,7 +6862,7 @@
 	dir = 5
 	},
 /obj/structure/bed/roller,
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "hRs" = (
 /obj/machinery/recharge_station,
@@ -6795,7 +6972,8 @@
 	id = "syndicate_elite";
 	name = "Hull Door Control"
 	},
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "hUB" = (
 /obj/machinery/computer/pod{
@@ -6867,8 +7045,17 @@
 /obj/item/device/multitool,
 /obj/item/weapon/reagent_containers/spray/cleaner,
 /obj/structure/table/reinforced,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
+"hYQ" = (
+/obj/structure/bed/chair,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/transport1/centcom)
 "hZm" = (
 /obj/machinery/door/blast/regular{
 	id = "thunderdomegen";
@@ -6889,7 +7076,8 @@
 /obj/machinery/computer/shuttle_control/multi/mercenary_elite{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/darkred,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/syndicate_elite/mothership)
 "ian" = (
 /turf/simulated/floor/holofloor/beach/water,
@@ -6991,6 +7179,7 @@
 "ihn" = (
 /obj/item/weapon/storage/toolbox/mechanical,
 /obj/structure/table/reinforced,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "iiz" = (
@@ -7017,6 +7206,7 @@
 /area/centcom/evac)
 "ijP" = (
 /obj/structure/bookcase,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "iki" = (
@@ -7066,6 +7256,7 @@
 /area/skipjack_station)
 "ilY" = (
 /obj/structure/table/reinforced,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "imr" = (
@@ -7085,6 +7276,12 @@
 	icon_state = "steel"
 	},
 /area/centcom/terminal)
+"imU" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "inZ" = (
 /obj/structure/table/reinforced,
 /obj/item/weapon/tray{
@@ -7119,7 +7316,9 @@
 /obj/machinery/light{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/obj/effect/floor_decal/milspec/color/silver/half,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "irR" = (
 /obj/machinery/door/airlock{
@@ -7195,6 +7394,7 @@
 "ivf" = (
 /obj/structure/table/reinforced,
 /obj/machinery/librarycomp,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "ivA" = (
@@ -7254,7 +7454,12 @@
 /area/skipjack_station)
 "iyN" = (
 /obj/structure/bed/padded,
+<<<<<<< HEAD
 /obj/item/weapon/bedsheet/hos,
+=======
+/obj/item/bedsheet/hos,
+/obj/effect/floor_decal/milspec/color/red,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "iyY" = (
@@ -7262,6 +7467,7 @@
 /obj/machinery/recharger{
 	pixel_y = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "izK" = (
@@ -7317,6 +7523,7 @@
 /obj/item/stack/material/steel{
 	amount = 50
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "iBJ" = (
@@ -7402,6 +7609,7 @@
 	hacked = 1;
 	name = "Thunderdome Autolathe"
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "iHa" = (
@@ -7531,6 +7739,10 @@
 	icon_state = "dark"
 	},
 /area/centcom/command)
+"iNK" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "iNR" = (
 /obj/item/robot_parts/robot_suit,
 /obj/item/robot_parts/r_leg,
@@ -7539,8 +7751,19 @@
 /area/skipjack_station/start)
 "iOk" = (
 /obj/structure/reagent_dispensers/watertank,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
+"iOl" = (
+/obj/effect/floor_decal/milspec/color/red,
+/obj/structure/bed/chair/shuttle{
+	dir = 8
+	},
+/obj/effect/floor_decal/milspec/color/black/half{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/escape/centcom)
 "iOt" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced,
@@ -7650,7 +7873,8 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/yellow,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "iSO" = (
 /obj/structure/table/standard,
@@ -7671,7 +7895,7 @@
 	},
 /area/centcom/medical)
 "iSX" = (
-/turf/simulated/shuttle/wall/dark/hard_corner,
+/turf/simulated/wall/pshull,
 /area/shuttle/syndicate_elite/mothership)
 "iTB" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -7818,6 +8042,11 @@
 	icon_state = "dark"
 	},
 /area/centcom/command)
+"jbe" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "jbx" = (
 /obj/machinery/door/window/holowindoor{
 	dir = 1
@@ -7860,6 +8089,7 @@
 	},
 /area/centcom/main_hall)
 "jcp" = (
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "jcx" = (
@@ -7873,6 +8103,7 @@
 /area/skipjack_station)
 "jcy" = (
 /obj/machinery/computer/communications,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "jcL" = (
@@ -7997,6 +8228,7 @@
 /obj/structure/bed/chair/comfy/black{
 	dir = 1
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "jqg" = (
@@ -8140,6 +8372,11 @@
 	icon_state = "techfloor_gray"
 	},
 /area/centcom/specops)
+"jyo" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/emblem/nt3,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "jyq" = (
 /obj/machinery/vending/security,
 /turf/unsimulated/floor{
@@ -8174,9 +8411,9 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
+/obj/effect/floor_decal/milspec/color/red,
+/obj/effect/floor_decal/milspec/color/white/half,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/arrival/pre_game)
 "jAm" = (
 /obj/item/weapon/reagent_containers/food/condiment/small/saltshaker{
@@ -8347,6 +8584,7 @@
 /area/syndicate_station/start)
 "jHN" = (
 /obj/machinery/recharge_station,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "jHW" = (
@@ -8582,11 +8820,17 @@
 	icon_state = "freezerfloor"
 	},
 /area/centcom/bar)
+"jVJ" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/supply)
 "jVR" = (
 /obj/machinery/sleep_console{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "jWI" = (
 /obj/machinery/door/blast/regular{
@@ -8727,6 +8971,7 @@
 	name = "Escape Shuttle Cockpit";
 	req_access = list(19)
 	},
+/obj/effect/floor_decal/milspec/color/blue,
 /turf/simulated/shuttle/floor,
 /area/shuttle/escape/centcom)
 "kgI" = (
@@ -8782,7 +9027,11 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/arrival/pre_game)
 "kiG" = (
 /obj/machinery/door/airlock/centcom{
@@ -8986,7 +9235,9 @@
 	},
 /area/centcom/terminal)
 "kpG" = (
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "kqh" = (
 /obj/machinery/atmospherics/unary/vent_pump/high_volume{
@@ -9061,7 +9312,7 @@
 	},
 /area/centcom/medical)
 "kuN" = (
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	frequency = 1380;
 	icon_state = "door_locked";
 	id_tag = "escape_shuttle_hatch";
@@ -9069,7 +9320,8 @@
 	name = "Shuttle Hatch";
 	req_access = list(13)
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/escape/centcom)
 "kuU" = (
 /obj/effect/floor_decal/borderfloorblack{
@@ -9308,7 +9560,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
 	},
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "kEj" = (
 /obj/machinery/newscaster{
@@ -9646,6 +9898,7 @@
 /area/holodeck/source_boxingcourt)
 "kTT" = (
 /obj/machinery/light,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "kTU" = (
@@ -9657,19 +9910,27 @@
 /obj/random/multiple/voidsuit,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"kUk" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/escape/centcom)
 "kUC" = (
 /obj/structure/bed/chair,
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "kUD" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/machinery/light,
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "kVF" = (
 /obj/structure/table/reinforced,
@@ -9901,6 +10162,10 @@
 /obj/machinery/microwave,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
+"llb" = (
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/shuttle/wall/dark,
+/area/shuttle/administration/centcom)
 "llZ" = (
 /obj/structure/closet/emcloset,
 /obj/effect/floor_decal/borderfloor{
@@ -9979,6 +10244,13 @@
 	icon_state = "asteroid"
 	},
 /area/skipjack_station)
+"lpv" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "lpK" = (
 /obj/effect/forcefield{
 	desc = "You can't get in. Heh.";
@@ -9991,7 +10263,7 @@
 	},
 /area/tdome)
 "lqf" = (
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	frequency = 1380;
 	icon_state = "door_locked";
 	id_tag = "arrivals_shuttle_hatch";
@@ -9999,7 +10271,9 @@
 	name = "Shuttle Hatch";
 	req_access = list(13)
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/arrival/pre_game)
 "lse" = (
 /obj/structure/closet/crate/nanotrasen,
@@ -10008,7 +10282,11 @@
 	pixel_x = 2;
 	pixel_y = 3
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "lsS" = (
 /obj/structure/table/rack,
@@ -10040,9 +10318,8 @@
 	req_one_access = list(13);
 	tag_door = "arrivals_shuttle_hatch"
 	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/arrival/pre_game)
 "lvQ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -10105,6 +10382,7 @@
 "lAt" = (
 /obj/structure/table/reinforced,
 /obj/machinery/microwave,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "lAu" = (
@@ -10233,7 +10511,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/transport1/centcom)
 "lIc" = (
 /obj/structure/bed/chair{
@@ -10250,6 +10528,7 @@
 /area/wizard_station)
 "lIS" = (
 /obj/machinery/robotic_fabricator,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "lJk" = (
@@ -10278,6 +10557,7 @@
 /area/syndicate_station/start)
 "lKk" = (
 /obj/structure/closet/crate/nanotrasen,
+<<<<<<< HEAD
 /obj/item/weapon/storage/mre/random,
 /obj/item/weapon/storage/mre/random,
 /obj/item/weapon/storage/mre/random,
@@ -10285,6 +10565,19 @@
 /obj/item/weapon/storage/mre/random,
 /obj/item/weapon/storage/mre/random,
 /turf/simulated/shuttle/floor,
+=======
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/item/storage/mre/random,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/escape/centcom)
 "lKy" = (
 /obj/structure/window/reinforced{
@@ -10516,7 +10809,11 @@
 	dir = 4;
 	id = "QMLoad"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/supply)
 "lUp" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -10542,8 +10839,23 @@
 /obj/machinery/light{
 	dir = 1
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
+"mac" = (
+/obj/machinery/door/airlock/external/white{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "supply_shuttle_hatch";
+	locked = 1;
+	name = "Shuttle Hatch";
+	req_access = list(13)
+	},
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating,
+/area/shuttle/supply)
 "maT" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4,
 /obj/effect/floor_decal/steeldecal/steel_decals4{
@@ -10712,6 +11024,9 @@
 	icon_state = "steel"
 	},
 /area/centcom/main_hall)
+"mhh" = (
+/turf/simulated/wall/tgmc/window/white/reinf,
+/area/shuttle/escape/centcom)
 "mhv" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/simulated/floor/holofloor/desert,
@@ -10794,6 +11109,10 @@
 	icon_state = "freezerfloor"
 	},
 /area/ninja_dojo/dojo)
+"mmm" = (
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/supply)
 "moq" = (
 /obj/machinery/computer/communications{
 	dir = 4
@@ -10832,7 +11151,13 @@
 	},
 /area/syndicate_station)
 "mpn" = (
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/stripe,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/supply)
 "mpv" = (
 /obj/item/toy/chess/bishop_black,
@@ -10902,7 +11227,8 @@
 /obj/machinery/computer/communications{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "mtX" = (
 /obj/item/weapon/bedsheet/clown,
@@ -10945,6 +11271,7 @@
 /obj/machinery/computer/scan_consolenew{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "mwS" = (
@@ -11028,7 +11355,12 @@
 	dir = 1
 	},
 /obj/structure/table/standard,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/glass/beaker/large,
+=======
+/obj/item/reagent_containers/glass/beaker/large,
+/obj/effect/floor_decal/milspec/color/red,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "mBj" = (
@@ -11147,12 +11479,17 @@
 	dir = 4;
 	id = "QMLoad2"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/supply)
 "mHX" = (
 /obj/machinery/vending/cigarette{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "mIb" = (
@@ -11164,6 +11501,7 @@
 "mIs" = (
 /obj/structure/table/standard,
 /obj/machinery/chemical_dispenser/ert,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "mJH" = (
@@ -11216,12 +11554,19 @@
 /area/skipjack_station/start)
 "mLY" = (
 /obj/machinery/dna_scannernew,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "mMT" = (
 /obj/structure/table/standard,
+<<<<<<< HEAD
 /obj/item/weapon/book/codex/lore/vir,
 /turf/simulated/shuttle/floor/white,
+=======
+/obj/item/book/codex/lore/vir,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/arrival/pre_game)
 "mMW" = (
 /obj/effect/floor_decal/borderfloorwhite,
@@ -11314,11 +11659,12 @@
 /obj/machinery/chem_master{
 	dir = 8
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "mRa" = (
 /obj/machinery/light,
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/transport1/centcom)
 "mRL" = (
 /turf/simulated/shuttle/wall/dark,
@@ -11404,6 +11750,9 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"mXy" = (
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/escape/centcom)
 "mXA" = (
 /obj/structure/toilet{
 	dir = 8
@@ -11442,7 +11791,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell{
 	layer = 3.3
 	},
-/turf/simulated/shuttle/floor/voidcraft/light,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/escape/centcom)
 "nac" = (
 /obj/machinery/atmospherics/pipe/simple/visible{
@@ -11590,10 +11939,15 @@
 /obj/structure/bed/chair{
 	dir = 4
 	},
+<<<<<<< HEAD
 /obj/machinery/light{
 	dir = 8
 	},
 /turf/simulated/shuttle/floor/darkred,
+=======
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/dark,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/syndicate_elite/mothership)
 "ngK" = (
 /obj/structure/holostool{
@@ -11676,8 +12030,12 @@
 /obj/machinery/computer/shuttle_control/multi/centcom{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/transport1/centcom)
+"nks" = (
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/supply)
 "nkO" = (
 /obj/structure/lattice,
 /obj/structure/window/reinforced{
@@ -11685,6 +12043,18 @@
 	},
 /turf/space,
 /area/space)
+"nmf" = (
+/obj/effect/floor_decal/milspec/hatchmarks,
+/obj/machinery/door/airlock/external/white{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "escape_shuttle_hatch";
+	locked = 1;
+	name = "Shuttle Hatch";
+	req_access = list(13)
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/escape/centcom)
 "nmu" = (
 /obj/effect/floor_decal/carpet,
 /obj/effect/floor_decal/carpet{
@@ -11710,7 +12080,15 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 1
+	},
+/obj/effect/floor_decal/steeldecal/steel_decals_central5{
+	dir = 1;
+	pixel_y = 2
+	},
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/arrival/pre_game)
 "noE" = (
 /obj/item/robot_parts/head,
@@ -11719,11 +12097,21 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"npa" = (
+/obj/structure/shuttle/window,
+/obj/structure/grille,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/plating.dmi';
+	icon_state = "plating";
+	name = "plating"
+	},
+/area/shuttle/transport1/centcom)
 "npO" = (
 /obj/machinery/computer/security{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "nqn" = (
 /obj/structure/mopbucket,
@@ -11754,6 +12142,7 @@
 /obj/machinery/vending/boozeomat{
 	pixel_y = -32
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "nrP" = (
@@ -11777,6 +12166,12 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"nst" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 10
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/escape/centcom)
 "nsD" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
@@ -11806,6 +12201,10 @@
 	icon_state = "steel"
 	},
 /area/centcom/main_hall)
+"nvU" = (
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/supply)
 "nxT" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 4
@@ -11831,7 +12230,8 @@
 	},
 /area/centcom/bar)
 "nzU" = (
-/turf/simulated/shuttle/floor/red,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/escape/centcom)
 "nAf" = (
 /obj/machinery/door/airlock/centcom{
@@ -12145,6 +12545,13 @@
 	icon_state = "wood"
 	},
 /area/skipjack_station)
+"nWp" = (
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/supply)
 "nXg" = (
 /turf/unsimulated/wall{
 	desc = "That looks like it doesn't open easily.";
@@ -12225,6 +12632,7 @@
 /area/shuttle/merchant/home)
 "nZP" = (
 /obj/machinery/clonepod,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "oat" = (
@@ -12284,13 +12692,19 @@
 /area/centcom/specops)
 "oci" = (
 /obj/structure/table/standard,
+<<<<<<< HEAD
 /obj/item/weapon/storage/firstaid/surgery,
+=======
+/obj/item/storage/firstaid/surgery,
+/obj/effect/floor_decal/milspec/color/red,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "ocL" = (
 /obj/machinery/vending/medical{
 	dir = 8
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "odB" = (
@@ -12364,6 +12778,10 @@
 	name = "plating"
 	},
 /area/syndicate_station)
+"ohO" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/transport1/centcom)
 "oil" = (
 /obj/machinery/portable_atmospherics/canister/oxygen,
 /turf/unsimulated/floor{
@@ -12406,6 +12824,7 @@
 /obj/item/weapon/stool{
 	dir = 8
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "olO" = (
@@ -12425,6 +12844,7 @@
 /obj/machinery/computer/cloning{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "omv" = (
@@ -12512,6 +12932,12 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"ooC" = (
+/obj/structure/hull_corner{
+	dir = 4
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/response_ship/start)
 "opn" = (
 /obj/structure/table/steel_reinforced,
 /obj/item/clothing/under/cheongsam,
@@ -12574,6 +13000,7 @@
 /area/shuttle/large_escape_pod1/transit)
 "orI" = (
 /obj/machinery/optable,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "orQ" = (
@@ -12661,6 +13088,7 @@
 	},
 /area/ninja_dojo/dojo)
 "owZ" = (
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "oxc" = (
@@ -12679,7 +13107,13 @@
 /obj/machinery/light{
 	dir = 8
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/stripe,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/supply)
 "oyt" = (
 /obj/machinery/shower{
@@ -12728,8 +13162,16 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/ninja_dojo/start)
+"oCl" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/techfloor{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "oCy" = (
 /obj/structure/reagent_dispensers/fueltank,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "oCJ" = (
@@ -12756,6 +13198,7 @@
 /area/ninja_dojo/dojo)
 "oGt" = (
 /obj/structure/bed/chair,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "oHh" = (
@@ -12771,6 +13214,7 @@
 /obj/machinery/vending/snack{
 	dir = 1
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "oJj" = (
@@ -12838,6 +13282,12 @@
 	},
 /turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/administration/centcom)
+"oLZ" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "oNc" = (
 /obj/structure/table/standard,
 /obj/item/weapon/reagent_containers/food/snacks/chips,
@@ -13184,7 +13634,7 @@
 	},
 /area/centcom/main_hall)
 "pia" = (
-/turf/simulated/shuttle/wall/no_join,
+/turf/simulated/wall/tgmc/whitewall,
 /area/shuttle/arrival/pre_game)
 "piF" = (
 /turf/unsimulated/floor{
@@ -13287,6 +13737,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "pnf" = (
@@ -13314,7 +13765,8 @@
 	},
 /area/centcom/living)
 "pol" = (
-/turf/simulated/shuttle/wall,
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/carry,
 /area/shuttle/arrival/pre_game)
 "poo" = (
 /obj/structure/grille,
@@ -13361,6 +13813,12 @@
 "prV" = (
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_emptycourt)
+"psb" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "pte" = (
 /obj/item/weapon/stool/padded,
 /turf/unsimulated/floor{
@@ -13729,6 +14187,7 @@
 	name = "Forward Docking Hatch";
 	req_access = list(13)
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "pJO" = (
@@ -13787,7 +14246,13 @@
 	},
 /area/centcom/terminal)
 "pNU" = (
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
+"pNX" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/emblem/nt2,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/arrival/pre_game)
 "pOm" = (
 /obj/structure/lattice,
@@ -13949,6 +14414,7 @@
 	landmark_tag = "response_ship_start";
 	name = "ERT Shuttle Bay"
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "pWl" = (
@@ -14098,6 +14564,7 @@
 /obj/structure/window/reinforced{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "qhU" = (
@@ -14376,7 +14843,8 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 10
 	},
-/turf/simulated/shuttle/floor/yellow,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "qxC" = (
 /obj/item/weapon/storage/box/syndie_kit/spy,
@@ -14389,6 +14857,7 @@
 /obj/machinery/computer/shuttle_control/multi/response{
 	dir = 4
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "qzf" = (
@@ -14411,6 +14880,7 @@
 /obj/structure/bed/chair{
 	dir = 8
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "qzF" = (
@@ -14437,12 +14907,14 @@
 	},
 /area/ninja_dojo/dojo)
 "qzL" = (
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	icon_state = "door_locked";
 	locked = 1;
 	name = "Shuttle Hatch"
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/arrival/pre_game)
 "qAv" = (
 /obj/structure/window/reinforced{
@@ -14469,6 +14941,11 @@
 /obj/item/clothing/suit/space/void/wizard,
 /turf/simulated/shuttle/floor/black,
 /area/shuttle/merchant/home)
+"qCQ" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/emblem/nt2,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "qDH" = (
 /turf/unsimulated/wall,
 /area/centcom/living)
@@ -14594,7 +15071,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 4
 	},
-/turf/simulated/shuttle/wall/voidcraft/red,
+/turf/simulated/wall/tgmc/redstripe_r,
 /area/syndicate_station/start)
 "qIo" = (
 /turf/unsimulated/floor{
@@ -14657,6 +15134,12 @@
 	icon_state = "freezerfloor"
 	},
 /area/skipjack_station)
+"qLD" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 9
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "qLH" = (
 /obj/structure/table/wooden_reinforced,
 /obj/machinery/recharger,
@@ -14665,6 +15148,9 @@
 	icon_state = "wood"
 	},
 /area/ninja_dojo/dojo)
+"qMP" = (
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "qOh" = (
 /obj/effect/floor_decal/carpet{
 	dir = 4
@@ -14766,6 +15252,11 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"qSh" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/emblem/nt3,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "qSo" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 9
@@ -14853,7 +15344,8 @@
 	},
 /area/centcom/specops)
 "qWz" = (
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "qWM" = (
 /obj/effect/floor_decal/spline/plain{
@@ -14866,7 +15358,9 @@
 /area/centcom/main_hall)
 "qXg" = (
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/obj/effect/floor_decal/milspec/color/silver/half,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "qXp" = (
 /obj/effect/floor_decal/borderfloor/corner,
@@ -15374,6 +15868,9 @@
 	},
 /turf/unsimulated/beach/sand,
 /area/beach)
+"rvl" = (
+/turf/simulated/wall/tgmc/redstripe,
+/area/syndicate_station/start)
 "rvC" = (
 /obj/item/stack/material/glass{
 	amount = 50
@@ -15608,7 +16105,8 @@
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "rBz" = (
 /obj/structure/shuttle/engine/propulsion{
@@ -15624,7 +16122,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 10
 	},
-/turf/simulated/shuttle/wall/voidcraft/red,
+/turf/simulated/wall/tgmc/redstripe_r,
 /area/syndicate_station/start)
 "rDr" = (
 /obj/structure/table/rack,
@@ -16059,6 +16557,12 @@
 	icon_state = "steel"
 	},
 /area/centcom/living)
+"rZT" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/escape/centcom)
 "sar" = (
 /obj/machinery/door/airlock/hatch{
 	req_access = list(150)
@@ -16130,9 +16634,19 @@
 /area/centcom/bar)
 "sdu" = (
 /obj/structure/closet/emcloset,
+<<<<<<< HEAD
 /obj/item/weapon/extinguisher,
 /obj/item/weapon/tool/crowbar,
 /turf/simulated/shuttle/floor,
+=======
+/obj/item/extinguisher,
+/obj/item/tool/crowbar,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 10
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/escape/centcom)
 "sdE" = (
 /obj/structure/table/reinforced,
@@ -16245,6 +16759,12 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"siY" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "sko" = (
 /obj/machinery/door/blast/regular{
 	id = "spawnred";
@@ -16427,6 +16947,16 @@
 	},
 /turf/simulated/floor/holofloor/tiled,
 /area/holodeck/source_emptycourt)
+"svf" = (
+/obj/machinery/light{
+	dir = 8
+	},
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/supply)
 "svl" = (
 /obj/machinery/telecomms/hub/preset/cynosure/centcomm,
 /turf/unsimulated/floor{
@@ -16451,7 +16981,7 @@
 	dir = 4;
 	id = "QMLoad"
 	},
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	frequency = 1380;
 	icon_state = "door_locked";
 	id_tag = "supply_shuttle_hatch";
@@ -16567,6 +17097,13 @@
 	},
 /turf/simulated/sky/moving/north,
 /area/space)
+"sGO" = (
+/obj/effect/floor_decal/emblem/nt3,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "monotile"
+	},
+/area/centcom/main_hall)
 "sHe" = (
 /obj/structure/grille,
 /obj/structure/window/reinforced{
@@ -16639,7 +17176,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 5
 	},
-/turf/simulated/shuttle/wall/voidcraft/red,
+/turf/simulated/wall/tgmc/redstripe_r,
 /area/syndicate_station/start)
 "sJO" = (
 /obj/structure/table/bench/wooden,
@@ -16932,7 +17469,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 9
 	},
-/turf/simulated/shuttle/wall/voidcraft/red,
+/turf/simulated/wall/tgmc/redstripe_r,
 /area/syndicate_station/start)
 "sUW" = (
 /obj/effect/floor_decal/carpet{
@@ -17036,7 +17573,11 @@
 /area/wizard_station)
 "tbG" = (
 /obj/machinery/hologram/holopad,
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "tck" = (
 /turf/simulated/shuttle/wall/voidcraft/blue,
@@ -17155,7 +17696,11 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/arrival/pre_game)
 "thr" = (
 /obj/machinery/door/airlock/multi_tile/glass{
@@ -17170,7 +17715,8 @@
 	name = "Station Intercom (General)";
 	pixel_x = -21
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "tim" = (
 /obj/structure/table/steel,
@@ -17224,12 +17770,17 @@
 	},
 /area/skipjack_station)
 "tnL" = (
+<<<<<<< HEAD
 /turf/simulated/shuttle/wall/dark/hard_corner,
+=======
+/turf/simulated/wall/rshull,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/response_ship/start)
 "tos" = (
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "tpm" = (
@@ -17244,6 +17795,7 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/response_ship/start)
 "tqq" = (
@@ -17257,9 +17809,7 @@
 	desc = "A plushie of a small fuzzy rodent.";
 	name = "Doorstop"
 	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/arrival/pre_game)
 "tra" = (
 /obj/machinery/telecomms/relay/preset/centcom,
@@ -17397,16 +17947,23 @@
 /area/shuttle/merchant/home)
 "twM" = (
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "txz" = (
 /obj/structure/bed/chair{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
+/obj/effect/floor_decal/milspec/color/red,
+/obj/effect/floor_decal/milspec/color/white/half,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/arrival/pre_game)
+"txG" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/emblem/nt1,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "tze" = (
 /obj/machinery/atmospherics/pipe/simple/visible,
 /obj/machinery/meter,
@@ -17455,6 +18012,12 @@
 	icon_state = "steel"
 	},
 /area/centcom/command)
+"tCz" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 6
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/arrival/pre_game)
 "tDh" = (
 /obj/structure/frame/computer,
 /obj/machinery/light{
@@ -17493,7 +18056,7 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "tEA" = (
 /obj/structure/bed/chair/comfy/black{
@@ -17528,6 +18091,12 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/dark,
 /area/syndicate_station/start)
+"tGA" = (
+/obj/structure/hull_corner/long_vert{
+	dir = 5
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/supply)
 "tHT" = (
 /obj/machinery/camera/network/thunder{
 	c_tag = "Thunderdome Arena";
@@ -17559,6 +18128,15 @@
 	icon_state = "dark"
 	},
 /area/centcom/main_hall)
+"tII" = (
+/obj/machinery/door/airlock/glass_command{
+	name = "Escape Shuttle Cockpit";
+	req_access = list(19)
+	},
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/shuttle/floor,
+/area/shuttle/escape/centcom)
 "tJi" = (
 /obj/machinery/door/airlock/external{
 	frequency = 1380;
@@ -17656,7 +18234,7 @@
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/ninja_dojo/start)
 "tQa" = (
-/turf/simulated/shuttle/wall/hard_corner,
+/turf/simulated/wall/thull,
 /area/shuttle/arrival/pre_game)
 "tQt" = (
 /turf/space/transit/east,
@@ -17748,12 +18326,21 @@
 /obj/item/weapon/storage/firstaid/adv{
 	pixel_x = -2
 	},
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/blood/empty,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /obj/item/weapon/reagent_containers/blood/OMinus,
 /turf/simulated/shuttle/floor/white,
+=======
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/obj/item/reagent_containers/blood/OMinus,
+/turf/simulated/floor/tiled/milspec/sterile,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/escape/centcom)
 "tTz" = (
 /obj/structure/table/steel_reinforced,
@@ -17881,6 +18468,12 @@
 /obj/item/weapon/reagent_containers/blood/empty,
 /turf/simulated/shuttle/floor/white,
 /area/centcom/evac)
+"tXU" = (
+/obj/structure/hull_corner{
+	dir = 1
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/syndicate_elite/mothership)
 "tXW" = (
 /obj/structure/flora/ausbushes/brflowers,
 /turf/simulated/floor/holofloor/grass,
@@ -17913,6 +18506,12 @@
 	},
 /turf/simulated/floor/holofloor/carpet,
 /area/holodeck/source_meetinghall)
+"tZS" = (
+/obj/structure/hull_corner{
+	dir = 8
+	},
+/turf/simulated/shuttle/plating/airless/carry,
+/area/shuttle/syndicate_elite/mothership)
 "uak" = (
 /obj/structure/table/standard,
 /obj/item/device/defib_kit/loaded,
@@ -17920,7 +18519,7 @@
 /obj/item/weapon/reagent_containers/glass/beaker/cryoxadone{
 	pixel_x = -4
 	},
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "uav" = (
 /obj/structure/bed/chair/holochair{
@@ -17947,7 +18546,8 @@
 /area/syndicate_station/start)
 "ubf" = (
 /obj/structure/bed/chair,
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "ubh" = (
 /obj/effect/floor_decal/sign/small_8,
@@ -17989,7 +18589,7 @@
 /turf/simulated/shuttle/wall/dark/no_join,
 /area/shuttle/arrival/pre_game)
 "ucM" = (
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	frequency = 1380;
 	icon_state = "door_locked";
 	id_tag = "centcom_shuttle_hatch";
@@ -17997,7 +18597,7 @@
 	name = "Shuttle Hatch";
 	req_access = list(13)
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "udk" = (
 /obj/machinery/door/airlock{
@@ -18077,7 +18677,7 @@
 /area/syndicate_station/start)
 "ukN" = (
 /obj/structure/sign/warning/secure_area,
-/turf/simulated/shuttle/wall,
+/turf/simulated/wall/thull,
 /area/shuttle/arrival/pre_game)
 "ulh" = (
 /obj/structure/table/reinforced,
@@ -18099,6 +18699,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"umC" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "unp" = (
 /obj/structure/table/reinforced,
 /obj/item/bodybag/cryobag{
@@ -18120,7 +18727,7 @@
 /turf/simulated/shuttle/floor/black,
 /area/centcom/evac)
 "uoL" = (
-/turf/simulated/shuttle/wall,
+/turf/simulated/wall/tgmc/whitewall,
 /area/shuttle/transport1/centcom)
 "uqp" = (
 /obj/structure/table/rack,
@@ -18356,7 +18963,8 @@
 /obj/effect/landmark{
 	name = "JoinLate"
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "uAX" = (
 /obj/machinery/the_singularitygen,
@@ -18445,6 +19053,7 @@
 /area/holodeck/source_meetinghall)
 "uFD" = (
 /obj/machinery/computer/shuttle_control/multi/administration,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "uGg" = (
@@ -18586,6 +19195,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/main_hall)
+"uNG" = (
+/obj/effect/floor_decal/emblem/nt2,
+/turf/unsimulated/floor{
+	icon = 'icons/turf/flooring/tiles.dmi';
+	icon_state = "monotile"
+	},
+/area/centcom/main_hall)
 "uOH" = (
 /obj/structure/table/steel_reinforced,
 /obj/machinery/newscaster{
@@ -18712,7 +19328,8 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/red,
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec,
 /area/shuttle/escape/centcom)
 "uTz" = (
 /obj/structure/bed/chair/comfy/red{
@@ -18761,7 +19378,8 @@
 	name = "Station Intercom (General)";
 	pixel_x = 21
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/arrival/pre_game)
 "uWu" = (
 /obj/effect/floor_decal/industrial/warning/corner{
@@ -18822,6 +19440,12 @@
 	},
 /turf/simulated/shuttle/floor/voidcraft/light,
 /area/syndicate_station/start)
+"vbp" = (
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 8
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/supply)
 "vbt" = (
 /obj/effect/floor_decal/steeldecal/steel_decals4{
 	dir = 6
@@ -18841,9 +19465,8 @@
 /turf/simulated/shuttle/plating,
 /area/shuttle/large_escape_pod1/centcom)
 "vfj" = (
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/arrival/pre_game)
 "vft" = (
 /turf/simulated/floor/holofloor/tiled,
@@ -18904,6 +19527,7 @@
 /obj/machinery/light{
 	dir = 8
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "vjy" = (
@@ -19009,7 +19633,13 @@
 /obj/machinery/light{
 	dir = 4
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/stripe,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/supply)
 "vpD" = (
 /obj/structure/table/bench/padded,
@@ -19022,7 +19652,11 @@
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/arrival/pre_game)
 "vqL" = (
 /obj/structure/table/reinforced,
@@ -19206,10 +19840,12 @@
 /obj/machinery/light{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor{
-	icon_state = "floor_red"
-	},
+/obj/effect/floor_decal/milspec/color/red,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/arrival/pre_game)
+"vBy" = (
+/turf/simulated/floor/tiled/milspec,
+/area/shuttle/supply)
 "vBH" = (
 /obj/effect/step_trigger/thrower{
 	affect_ghosts = 1;
@@ -19421,6 +20057,11 @@
 	icon_state = "steel"
 	},
 /area/centcom/terminal)
+"vPn" = (
+/obj/effect/floor_decal/milspec/color/red,
+/obj/effect/floor_decal/milspec/color/white/half,
+/turf/simulated/floor/tiled/milspec/raised,
+/area/shuttle/arrival/pre_game)
 "vPo" = (
 /obj/machinery/vending/medical{
 	dir = 8
@@ -19567,7 +20208,7 @@
 /obj/machinery/atmospherics/pipe/simple/visible{
 	dir = 6
 	},
-/turf/simulated/shuttle/wall/voidcraft/red,
+/turf/simulated/wall/tgmc/redstripe_r,
 /area/syndicate_station/start)
 "vUO" = (
 /obj/machinery/door/blast/regular{
@@ -19597,6 +20238,12 @@
 	name = "plating"
 	},
 /area/skipjack_station)
+"vWP" = (
+/obj/structure/hull_corner/long_horiz{
+	dir = 10
+	},
+/turf/simulated/shuttle/plating/carry,
+/area/shuttle/supply)
 "vWV" = (
 /obj/structure/window/reinforced{
 	dir = 8
@@ -19722,7 +20369,7 @@
 	},
 /area/skipjack_station)
 "wdP" = (
-/turf/simulated/shuttle/wall/hard_corner,
+/turf/simulated/wall/thull,
 /area/shuttle/supply)
 "wdS" = (
 /obj/effect/floor_decal/borderfloorblack/corner,
@@ -20218,7 +20865,12 @@
 	tag_door = "supply_shuttle_hatch"
 	},
 /obj/effect/shuttle_landmark/cynosure/supply_offsite,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/supply)
 "wGX" = (
 /obj/structure/window/reinforced,
@@ -20310,7 +20962,7 @@
 	dir = 4;
 	id = "QMLoad2"
 	},
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	frequency = 1380;
 	icon_state = "door_locked";
 	id_tag = "supply_shuttle_hatch";
@@ -20496,6 +21148,7 @@
 /obj/item/stack/material/glass{
 	amount = 50
 	},
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "wQR" = (
@@ -20533,9 +21186,7 @@
 /turf/simulated/floor/tiled/white,
 /area/centcom/bar)
 "wTz" = (
-/obj/structure/grille,
-/obj/structure/shuttle/window,
-/turf/simulated/shuttle/plating,
+/turf/simulated/wall/tgmc/window/white/reinf,
 /area/shuttle/transport1/centcom)
 "wUu" = (
 /obj/effect/floor_decal/corner/red{
@@ -20579,7 +21230,8 @@
 /obj/machinery/computer/crew{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/escape/centcom)
 "wXy" = (
 /obj/structure/table/glass,
@@ -20651,7 +21303,8 @@
 /obj/structure/bed/chair{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "xbf" = (
 /obj/machinery/embedded_controller/radio/simple_docking_controller{
@@ -20779,7 +21432,8 @@
 	},
 /area/centcom/specops)
 "xeL" = (
-/turf/simulated/shuttle/wall,
+/obj/structure/hull_corner,
+/turf/simulated/shuttle/plating/airless/carry,
 /area/shuttle/escape/centcom)
 "xeP" = (
 /obj/machinery/computer/teleporter,
@@ -20830,7 +21484,7 @@
 /turf/simulated/floor/holofloor/grass,
 /area/holodeck/source_picnicarea)
 "xiF" = (
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "xiN" = (
 /obj/structure/table/standard,
@@ -20967,8 +21621,14 @@
 /obj/machinery/computer/shuttle_control/emergency{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/machinery/light,
 /turf/simulated/shuttle/floor,
+=======
+/obj/machinery/light/no_nightshift,
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/dark,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/escape/centcom)
 "xpp" = (
 /obj/structure/closet/cabinet,
@@ -21019,6 +21679,7 @@
 /area/centcom/specops)
 "xsa" = (
 /obj/structure/table/standard,
+/obj/effect/floor_decal/milspec/color/red,
 /turf/simulated/shuttle/floor/red,
 /area/shuttle/administration/centcom)
 "xsq" = (
@@ -21203,11 +21864,21 @@
 	icon_state = "white"
 	},
 /area/centcom/medical)
+"xCV" = (
+/obj/structure/closet/emcloset,
+/obj/item/extinguisher,
+/obj/item/tool/crowbar,
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/milspec/color/white/half{
+	dir = 6
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/escape/centcom)
 "xDI" = (
 /obj/structure/bed/chair{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor,
+/turf/simulated/floor/tiled/milspec/raised,
 /area/shuttle/transport1/centcom)
 "xEn" = (
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola,
@@ -21254,7 +21925,8 @@
 /obj/effect/floor_decal/industrial/warning{
 	dir = 9
 	},
-/turf/simulated/shuttle/floor/yellow,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "xGh" = (
 /obj/effect/landmark{
@@ -21404,7 +22076,7 @@
 /area/centcom/security)
 "xNP" = (
 /obj/machinery/status_display,
-/turf/simulated/shuttle/wall,
+/turf/simulated/wall/thull,
 /area/shuttle/arrival/pre_game)
 "xNV" = (
 /obj/machinery/sleeper{
@@ -21513,7 +22185,8 @@
 /area/centcom/security)
 "xUd" = (
 /obj/effect/floor_decal/industrial/warning,
-/turf/simulated/shuttle/floor/yellow,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec/dark,
 /area/shuttle/transport1/centcom)
 "xUk" = (
 /obj/structure/bed/chair{
@@ -21617,6 +22290,11 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"xYI" = (
+/obj/effect/floor_decal/milspec/color/blue,
+/obj/effect/floor_decal/emblem/nt1,
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "yae" = (
 /obj/structure/flora/ausbushes/fullgrass,
 /obj/effect/floor_decal/spline/fancy/wood{
@@ -21813,7 +22491,7 @@
 	name = "Escape Shuttle Infirmary";
 	req_access = list(5)
 	},
-/turf/simulated/shuttle/floor/white,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/escape/centcom)
 "ymb" = (
 /obj/machinery/embedded_controller/radio/airlock/docking_port{
@@ -29345,19 +30023,19 @@ pWO
 pWO
 pWO
 pWO
-pol
+tCz
 tQa
 lqf
 lqf
 pia
-caf
-caf
+cbu
+cbu
 pia
 lqf
 lqf
-pol
-pol
-pol
+tQa
+qMP
+oLZ
 pWO
 pWO
 pWO
@@ -29601,17 +30279,17 @@ pWO
 pWO
 pWO
 pol
-pol
-pol
+tQa
+tQa
 thM
 bIS
-pNU
+cSk
 rBk
 bAY
 bAY
 rBk
-pNU
-pNU
+cSk
+cSk
 thM
 mZd
 ucH
@@ -29857,7 +30535,7 @@ pWO
 pWO
 pWO
 pol
-pol
+tQa
 biG
 xNP
 bQz
@@ -29871,8 +30549,8 @@ pNU
 pNU
 qWz
 qWz
-pol
-pol
+tQa
+eIF
 pWO
 pWO
 pWO
@@ -30113,20 +30791,20 @@ pWO
 pWO
 pWO
 pWO
-pol
+tQa
 luW
 txz
 ukN
 kiC
-pNU
-pNU
+xYI
+jbe
 fDX
 fDX
 fDX
 fDX
+lpv
 pNU
-pNU
-pNU
+jbe
 mMT
 dYA
 ucH
@@ -30370,12 +31048,12 @@ pWO
 pWO
 pWO
 pWO
-pol
+tQa
 vBc
-vfj
+vPn
 fuj
 tgY
-pNU
+pNX
 dZT
 caf
 caf
@@ -30383,7 +31061,7 @@ caf
 caf
 nol
 pNU
-pNU
+jbe
 fju
 dYA
 ucH
@@ -30627,20 +31305,20 @@ pWO
 pWO
 pWO
 pWO
-pol
+tQa
 vfj
 jzs
-pol
+tQa
 vqj
-pNU
-pNU
+qSh
+jbe
 bAY
 bAY
 bAY
 bAY
+lpv
 pNU
-pNU
-pNU
+jbe
 cDm
 dYA
 ucH
@@ -30719,16 +31397,16 @@ puk
 puk
 iIp
 eWj
-gzS
-gzS
-gzS
-gzS
-gzS
-gzS
-gzS
-gzS
-gzS
-gzS
+mmm
+wdP
+wdP
+wdP
+wdP
+wdP
+wdP
+wdP
+nks
+tGA
 eWj
 iIp
 puk
@@ -30884,8 +31562,8 @@ pWO
 pWO
 pWO
 pWO
-pol
-pol
+siY
+tQa
 tqq
 fED
 bYp
@@ -30899,8 +31577,8 @@ pNU
 pNU
 qWz
 qWz
-pol
-pol
+tQa
+psb
 pWO
 pWO
 pWO
@@ -30975,17 +31653,17 @@ puk
 puk
 puk
 iIp
-gzS
+csU
 wdP
 oys
+vBy
+nWp
+nvU
 mpn
-mpn
-mpn
-mpn
-mpn
-oys
+vBy
+svf
 wdP
-gzS
+wdP
 cKc
 iIp
 puk
@@ -31142,18 +31820,18 @@ pWO
 pWO
 pWO
 pWO
-pol
-pol
-pol
+siY
+tQa
+tQa
 uWn
-pNU
-pNU
+cSk
+cSk
 uAI
 fDX
 fDX
 uAI
-pNU
-pNU
+cSk
+cSk
 uWn
 awS
 ucH
@@ -31232,16 +31910,16 @@ puk
 puk
 puk
 iIp
-gzS
+nks
 nOU
 mpn
+vbp
+nWp
+nvU
 mpn
-mpn
-mpn
-mpn
-mpn
-mpn
-mpn
+cwb
+nWp
+nvU
 uiD
 jhi
 iIp
@@ -31401,19 +32079,19 @@ pWO
 pWO
 pWO
 pWO
-pol
+imU
 tQa
 qzL
 qzL
 pia
-caf
-caf
+cbu
+cbu
 pia
 qzL
 qzL
-pol
-pol
-pol
+tQa
+qMP
+qLD
 pWO
 pWO
 pWO
@@ -31489,16 +32167,16 @@ puk
 puk
 puk
 iIp
-gzS
+wdP
 nOU
 mpn
 mHV
-mpn
-mpn
+nWp
+nvU
 mpn
 lTU
-mpn
-mpn
+nWp
+nvU
 uiD
 jhi
 iIp
@@ -31746,16 +32424,16 @@ puk
 puk
 puk
 iIp
-gzS
+vWP
 nOU
 mpn
 mHV
-mpn
-mpn
+nWp
+nvU
 mpn
 lTU
-mpn
-mpn
+nWp
+nvU
 uiD
 jhi
 iIp
@@ -32003,17 +32681,17 @@ puk
 puk
 puk
 iIp
-gzS
+nks
 wdP
 vpq
 mHV
-mpn
+nWp
 wGI
 mpn
 lTU
-vpq
+euU
 wdP
-gzS
+wdP
 oyi
 iIp
 puk
@@ -32261,16 +32939,16 @@ puk
 puk
 iIp
 eWj
-gzS
-gzS
+hxV
+wdP
 wHH
-cLf
-gzS
+mac
+wdP
 cLf
 swE
-gzS
-gzS
-gzS
+wdP
+nks
+jVJ
 eWj
 iIp
 puk
@@ -34889,7 +35567,7 @@ kEo
 fsx
 qqa
 xmN
-piF
+bHM
 kBU
 quw
 xdw
@@ -35146,7 +35824,7 @@ mTz
 sxL
 flk
 gBA
-piF
+uNG
 gBA
 gSq
 quS
@@ -35403,7 +36081,7 @@ vhz
 pjv
 opI
 uWu
-piF
+sGO
 kBU
 quw
 xdw
@@ -35676,22 +36354,22 @@ puk
 puk
 puk
 puk
-xeL
-xeL
-xeL
-xeL
-xeL
+mXy
+abN
+eVJ
+eVJ
+eVJ
 eVJ
 gOt
 gOt
+boo
+mhh
+mhh
+boo
+gnm
+gnm
 eVJ
-dqf
-yfe
 eVJ
-gOt
-gOt
-eVJ
-xeL
 puk
 puk
 puk
@@ -35945,13 +36623,13 @@ qXg
 qXg
 bXb
 qXg
-kpG
-kpG
+umC
+iNK
 sdu
 eVJ
 omB
-xeL
-xeL
+eVJ
+kUk
 puk
 puk
 puk
@@ -36196,20 +36874,20 @@ uTx
 nzU
 nzU
 gRE
-kpG
-kpG
+iNK
+iNK
 qXg
 qXg
 qXg
 qXg
-kpG
-kpG
-kpG
+umC
+iNK
+gsq
 kgy
-kpG
-kpG
+iNK
+gsq
 eVJ
-xeL
+kUk
 puk
 puk
 puk
@@ -36447,23 +37125,23 @@ puk
 puk
 puk
 xeL
-xeL
-xeL
-chh
-chh
-chh
+eVJ
+eVJ
+iOl
+iOl
+iOl
 omB
-kpG
-kpG
-kpG
-kpG
-kpG
-kpG
-kpG
-kpG
+gJt
+iNK
+iNK
+iNK
+iNK
+iNK
+iNK
+iNK
 lKk
 omB
-kpG
+iNK
 twM
 npO
 pyX
@@ -36705,22 +37383,22 @@ puk
 puk
 rBz
 uwu
-xeL
-xeL
-xeL
-xeL
-xeL
-kpG
-kpG
-qXg
-qXg
-qXg
-qXg
-kpG
-kpG
 eVJ
 eVJ
-kpG
+eVJ
+eVJ
+eVJ
+umC
+iNK
+qXg
+qXg
+qXg
+qXg
+umC
+txG
+eVJ
+eVJ
+oCl
 twM
 ale
 tEZ
@@ -36967,18 +37645,18 @@ hQJ
 hyg
 uak
 pyX
-kpG
-kpG
+umC
+iNK
 dqf
 gQs
 gQs
 yfe
 tbG
-kpG
+qCQ
 omB
 xdd
-kpG
-kpG
+oCl
+gsq
 xoE
 tEZ
 puk
@@ -37224,14 +37902,14 @@ kEg
 xiF
 tTj
 pGP
-kpG
-kpG
+umC
+iNK
 qXg
 qXg
 qXg
 qXg
-kpG
-kpG
+umC
+jyo
 eVJ
 eVJ
 hEt
@@ -37474,24 +38152,24 @@ nxV
 puk
 puk
 puk
-xeL
-xeL
+gEs
+eVJ
 eVJ
 tDS
 xiF
 xiF
 ylo
-kpG
-kpG
-kpG
-kpG
-kpG
-kpG
-kpG
-kpG
+hsE
+iNK
+iNK
+iNK
+iNK
+iNK
+iNK
+iNK
 lse
 omB
-kpG
+iNK
 twM
 wXr
 pGP
@@ -37738,20 +38416,20 @@ jVR
 xiF
 jVR
 pyX
-kpG
-kpG
+iNK
+iNK
 qXg
 qXg
 qXg
 qXg
-kpG
-kpG
-kpG
-kgy
-kpG
-kpG
+umC
+iNK
+gsq
+tII
+iNK
+gsq
 eVJ
-xeL
+rZT
 puk
 puk
 puk
@@ -38001,13 +38679,13 @@ qXg
 qXg
 irx
 qXg
-kpG
+umC
 clN
-sdu
+xCV
 eVJ
 omB
-xeL
-xeL
+eVJ
+rZT
 puk
 puk
 puk
@@ -38246,22 +38924,22 @@ oVn
 oVn
 oVn
 oVn
-xeL
-xeL
-xeL
-xeL
-xeL
+mXy
+nst
 eVJ
+eVJ
+eVJ
+eVJ
+kuN
+nmf
+boo
+mhh
+mhh
+boo
 kuN
 kuN
 eVJ
-dqf
-yfe
 eVJ
-kuN
-kuN
-eVJ
-xeL
 iJr
 bYU
 nxV
@@ -38439,7 +39117,7 @@ tui
 lAt
 mHX
 nrd
-tui
+llb
 tui
 kNX
 kNX
@@ -38929,9 +39607,9 @@ pUv
 pUv
 pbT
 crr
-gno
+tnL
 pHS
-gno
+tnL
 crr
 wer
 puk
@@ -39189,7 +39867,7 @@ gno
 tnL
 pVs
 tnL
-gno
+ooC
 wer
 puk
 puk
@@ -39442,11 +40120,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 eeY
 owZ
 tos
-gno
+tnL
 wer
 puk
 puk
@@ -39699,11 +40377,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 elO
 owZ
 owZ
-gno
+tnL
 wer
 puk
 puk
@@ -39956,11 +40634,11 @@ ewB
 cmj
 cmj
 pbT
-gno
+tnL
 oGt
 owZ
 owZ
-gno
+tnL
 wer
 puk
 puk
@@ -40213,11 +40891,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 owZ
 owZ
 tqp
-gno
+tnL
 wer
 puk
 puk
@@ -40470,11 +41148,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 owZ
 owZ
 tqp
-gno
+tnL
 wer
 puk
 puk
@@ -40727,11 +41405,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 owZ
 qhu
 pmh
-gno
+tnL
 wer
 puk
 puk
@@ -40984,11 +41662,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 owZ
 qyu
 gkx
-gno
+tnL
 wer
 puk
 puk
@@ -41241,11 +41919,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 eZr
 qzA
 guR
-gno
+tnL
 wer
 puk
 puk
@@ -41498,11 +42176,11 @@ ewB
 pUv
 pUv
 pbT
-gno
+tnL
 qAv
 qAv
 qAv
-gno
+tnL
 wer
 puk
 puk
@@ -46720,7 +47398,7 @@ puk
 vlH
 uoL
 ubf
-efr
+ohO
 wZT
 uoL
 nXg
@@ -46977,7 +47655,7 @@ puk
 vlH
 wTz
 ubf
-efr
+ohO
 wZT
 wTz
 nXg
@@ -47234,7 +47912,7 @@ puk
 vlH
 wTz
 kUC
-efr
+ohO
 kUD
 wTz
 nXg
@@ -47490,9 +48168,9 @@ puk
 puk
 vlH
 wTz
-ubf
-efr
-wZT
+hYQ
+ohO
+ciY
 wTz
 nXg
 puk
@@ -47748,7 +48426,7 @@ puk
 vlH
 uoL
 qxg
-efr
+eUO
 xGf
 uoL
 nXg
@@ -48005,7 +48683,7 @@ puk
 vlH
 uoL
 xUd
-efr
+eUO
 iRL
 uoL
 nXg
@@ -49290,7 +49968,7 @@ puk
 vlH
 bbv
 uoL
-wTz
+npa
 uoL
 bbv
 nXg
@@ -77078,7 +77756,7 @@ sZr
 ukC
 fFy
 kut
-fFy
+rvl
 vMJ
 wbS
 wvu
@@ -77335,7 +78013,7 @@ kut
 kut
 fFy
 kut
-fFy
+rvl
 vMJ
 wjT
 wGm
@@ -77592,8 +78270,8 @@ vjy
 fFy
 fFy
 kut
-fFy
-fFy
+rvl
+rvl
 wkQ
 wIp
 iPG
@@ -85018,14 +85696,14 @@ pqM
 rsU
 aVZ
 iSX
-aVZ
+iSX
 evg
 evg
-aVZ
-aVZ
-aVZ
-aVZ
-aVZ
+iSX
+iSX
+iSX
+iSX
+bIF
 puk
 puk
 fGf
@@ -85283,7 +85961,7 @@ nfO
 hht
 hUy
 iSX
-aVZ
+iSX
 puk
 fGf
 fGf
@@ -85797,7 +86475,7 @@ fgd
 hht
 iai
 iSX
-aVZ
+iSX
 puk
 fGf
 fGf
@@ -86044,16 +86722,16 @@ pcu
 pcu
 pqM
 rsU
-aVZ
+tZS
 iSX
-aVZ
-aVZ
-aVZ
-aVZ
-aVZ
-aVZ
-aVZ
-aVZ
+iSX
+iSX
+iSX
+iSX
+iSX
+iSX
+iSX
+tXU
 puk
 puk
 fGf

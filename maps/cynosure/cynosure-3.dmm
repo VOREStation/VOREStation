@@ -206,7 +206,10 @@
 	dir = 1
 	},
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "ahD" = (
 /turf/simulated/open,
@@ -564,7 +567,10 @@
 	pixel_y = 21
 	},
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "ase" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -1230,7 +1236,10 @@
 	pixel_y = 32
 	},
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "aRl" = (
 /obj/machinery/door/airlock/hatch{
@@ -1434,7 +1443,8 @@
 /obj/machinery/atmospherics/portables_connector{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "bdv" = (
 /obj/structure/cable/green{
@@ -6287,7 +6297,7 @@
 /turf/simulated/open,
 /area/surface/station/engineering/reactor_monitoring)
 "efC" = (
-/turf/simulated/shuttle/wall,
+/turf/simulated/wall/thull,
 /area/shuttle/large_escape_pod2/station)
 "ehf" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on,
@@ -7925,7 +7935,8 @@
 /obj/machinery/sleeper{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "foD" = (
 /obj/machinery/door/firedoor/glass,
@@ -9715,7 +9726,8 @@
 	dir = 4
 	},
 /obj/machinery/atmospherics/pipe/simple/visible,
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "guA" = (
 /obj/item/device/radio/intercom{
@@ -12415,7 +12427,8 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "hYs" = (
 /obj/structure/closet/secure_closet/paramedic,
@@ -14191,7 +14204,8 @@
 /obj/item/roller{
 	pixel_y = 16
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "iVC" = (
 /obj/machinery/door/firedoor/border_only,
@@ -14464,7 +14478,10 @@
 	layer = 4;
 	pixel_y = 32
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "jen" = (
 /obj/structure/disposalpipe/segment,
@@ -18194,7 +18211,10 @@
 /obj/machinery/atmospherics/unary/cryo_cell{
 	layer = 3.3
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "lHE" = (
 /turf/simulated/wall/r_wall,
@@ -20651,7 +20671,8 @@
 /obj/machinery/sleep_console{
 	dir = 4
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "nsX" = (
 /obj/structure/table/reinforced,
@@ -21445,7 +21466,10 @@
 /area/surface/station/engineering/engi_restroom)
 "nXr" = (
 /obj/structure/bed/chair/shuttle,
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "nXI" = (
 /obj/structure/filingcabinet/filingcabinet,
@@ -22474,7 +22498,15 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/engineering/hallway/sndaccess)
 "oHb" = (
-/turf/simulated/shuttle/wall/hard_corner,
+/obj/machinery/door/airlock/external/white{
+	frequency = 1380;
+	icon_state = "door_locked";
+	id_tag = "large_escape_pod_2_hatch";
+	locked = 1;
+	name = "Large Escape Pod Hatch";
+	req_access = list(13)
+	},
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "oHK" = (
 /obj/effect/floor_decal/borderfloorwhite{
@@ -23583,7 +23615,13 @@
 	pixel_y = -26;
 	tag_door = "large_escape_pod_2_hatch"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/obj/effect/shuttle_landmark/cynosure/large_escape_pod2/station,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/sterile,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/large_escape_pod2/station)
 "pwG" = (
 /obj/structure/lattice,
@@ -24900,7 +24938,8 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 1
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec_sterile/green/half,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "qlK" = (
 /obj/structure/table/standard,
@@ -27891,7 +27930,8 @@
 /obj/structure/bed/chair/shuttle{
 	dir = 8
 	},
-/turf/simulated/shuttle/floor/white,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "suH" = (
 /obj/structure/disposalpipe/segment{
@@ -28054,15 +28094,16 @@
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/primary/secondfloor/east)
 "szd" = (
-/obj/machinery/door/airlock/external{
+/obj/machinery/door/airlock/external/white{
 	frequency = 1380;
 	icon_state = "door_locked";
 	id_tag = "large_escape_pod_2_hatch";
 	locked = 1;
-	name = "Large Escape Pod Hatch 2";
+	name = "Large Escape Pod Hatch";
 	req_access = list(13)
 	},
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "szp" = (
 /obj/structure/cable/green{
@@ -31227,7 +31268,8 @@
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/security/warden)
 "uxm" = (
-/turf/simulated/shuttle/floor,
+/obj/effect/floor_decal/milspec/color/blue,
+/turf/simulated/floor/tiled/milspec/sterile,
 /area/shuttle/large_escape_pod2/station)
 "uxn" = (
 /obj/effect/floor_decal/borderfloor,
@@ -34046,11 +34088,7 @@
 /turf/simulated/floor/plating,
 /area/surface/station/rnd/research)
 "wss" = (
-/turf/simulated/shuttle/wall/no_join{
-	base_state = "orange";
-	icon = 'icons/turf/shuttle_orange.dmi';
-	icon_state = "orange"
-	},
+/turf/simulated/wall/dshull,
 /area/shuttle/large_escape_pod2/station)
 "wsI" = (
 /obj/machinery/atmospherics/pipe/manifold/hidden,
@@ -35644,6 +35682,7 @@
 /obj/item/weapon/storage/firstaid/adv{
 	pixel_x = -2
 	},
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/blood/empty,
 /obj/item/weapon/reagent_containers/blood/empty,
 /obj/item/weapon/reagent_containers/blood/empty,
@@ -35651,6 +35690,16 @@
 /obj/item/weapon/reagent_containers/blood/empty,
 /obj/machinery/light,
 /turf/simulated/shuttle/floor/white,
+=======
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/empty,
+/obj/item/reagent_containers/blood/empty,
+/obj/machinery/light/no_nightshift,
+/obj/effect/floor_decal/milspec_sterile/green/half,
+/turf/simulated/floor/tiled/milspec/sterile,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/shuttle/large_escape_pod2/station)
 "xmF" = (
 /obj/structure/bed/chair/comfy/purp{
@@ -63070,9 +63119,9 @@ ddU
 sBb
 bFA
 efC
-oHb
+efC
 suE
-oHb
+efC
 efC
 tKs
 kRo
@@ -64358,7 +64407,7 @@ efC
 fom
 uxm
 pwt
-szd
+oHb
 cRp
 kRo
 sBb

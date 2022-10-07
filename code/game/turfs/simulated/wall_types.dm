@@ -287,6 +287,10 @@
 /obj/structure/hull_corner
 	name = "hull corner"
 	plane = OBJ_PLANE - 1
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 	icon = 'icons/turf/wall_masks.dmi'
 	icon_state = "hull_corner"
 
@@ -344,6 +348,7 @@
 /obj/structure/hull_corner/long_horiz/get_dirs_to_test()
 	return list(dir, turn(dir,90), turn(dir,-90))
 
+<<<<<<< HEAD
 
 
 // Eris walls
@@ -434,6 +439,10 @@
 /turf/simulated/wall/tgmc
 	icon = 'icons/turf/wall_masks_tgmc.dmi'
 	wall_masks = 'icons/turf/wall_masks_tgmc.dmi' // not really a MASK per-se, I guess
+=======
+/turf/simulated/wall/tgmc
+	icon = 'icons/turf/wall_masks_tgmc.dmi'
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 	icon_state = "metal0"
 
 	var/list/blend_objects = list(/obj/machinery/door)
@@ -499,12 +508,15 @@
 						dirs |= direction
 						continue main_direction_loop
 
+<<<<<<< HEAD
 			for(var/obj/structure/low_wall/WF in W)
 				if(can_join_with_low_wall(WF))
 					dirs |= direction
 					blend_log += "Blending with [WF] at [get_dir(src, WF)] because can join with that low wall"
 					continue main_direction_loop
 
+=======
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 			// Needs to be our type of wall to blend from this point
 			if(!istype(W))
 				continue
@@ -517,9 +529,12 @@
 
 	wall_connections = dirs
 
+<<<<<<< HEAD
 /turf/simulated/wall/tgmc/can_join_with_low_wall(var/obj/structure/low_wall/WF)
 	return istype(WF, /obj/structure/low_wall)
 
+=======
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/wall/tgmc/rwall
 	icon_state = "rwall0"
 	wall_base_state = "rwall"
@@ -633,8 +648,13 @@
 #define WINDOW_GLASS 0x1
 #define WINDOW_RGLASS 0x2
 /turf/simulated/wall/tgmc/window
+<<<<<<< HEAD
 	icon = 'icons/turf/wall_masks_tgmc_win.dmi'
 	wall_masks = 'icons/turf/wall_masks_tgmc_win.dmi' // not really a MASK per-se, I guess
+=======
+	name = "window"
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi'
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 	icon_state = "metal_window0"
 	wall_base_state = "metal_window"
 	wall_blend_category = "metal"

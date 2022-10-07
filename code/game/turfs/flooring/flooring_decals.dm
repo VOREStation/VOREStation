@@ -1249,3 +1249,90 @@ var/list/floor_decals = list()
 	name = "floor arrows"
 	icon_state = "arrows"
 
+/obj/effect/floor_decal/emblem/nt1
+	icon_state = "nt1"
+/obj/effect/floor_decal/emblem/nt2
+	icon_state = "nt2"
+/obj/effect/floor_decal/emblem/nt3
+	icon_state = "nt3"
+
+/obj/effect/floor_decal/milspec/stripe
+	icon_state = "ms_plating_striped"
+/obj/effect/floor_decal/milspec/hatchmarks
+	icon_state = "ms_test_floor4"
+/obj/effect/floor_decal/milspec/box
+	icon_state = "ms_test_floor5"
+/obj/effect/floor_decal/milspec/cargo
+	icon_state = "ms_cargo"
+/obj/effect/floor_decal/milspec/cargo_arrow
+	icon_state = "ms_cargo_arrow"
+/obj/effect/floor_decal/milspec/monotile
+	icon_state = "ms_mono"
+
+/obj/effect/floor_decal/milspec/color/blue
+	icon_state = "ms_bluefull"
+/obj/effect/floor_decal/milspec/color/blue/corner
+	icon_state = "ms_bluecorner"
+/obj/effect/floor_decal/milspec/color/blue/half
+	icon_state = "ms_blue"
+/obj/effect/floor_decal/milspec/color/red
+	icon_state = "ms_redfull"
+/obj/effect/floor_decal/milspec/color/red/corner
+	icon_state = "ms_redcorner"
+/obj/effect/floor_decal/milspec/color/red/half
+	icon_state = "ms_red"
+/obj/effect/floor_decal/milspec/color/purple
+	icon_state = "ms_purplefull"
+/obj/effect/floor_decal/milspec/color/purple/corner
+	icon_state = "ms_purplecorner"
+/obj/effect/floor_decal/milspec/color/purple/half
+	icon_state = "ms_purple"
+/obj/effect/floor_decal/milspec/color/emerald
+	icon_state = "ms_emeraldfull"
+/obj/effect/floor_decal/milspec/color/emerald/corner
+	icon_state = "ms_emeraldcorner"
+/obj/effect/floor_decal/milspec/color/emerald/half
+	icon_state = "ms_emerald"
+/obj/effect/floor_decal/milspec/color/orange
+	icon_state = "ms_orangefull"
+/obj/effect/floor_decal/milspec/color/orange/corner
+	icon_state = "ms_orangecorner"
+/obj/effect/floor_decal/milspec/color/orange/half
+	icon_state = "ms_orange"
+/obj/effect/floor_decal/milspec/color/green
+	icon_state = "ms_greenfull"
+/obj/effect/floor_decal/milspec/color/green/corner
+	icon_state = "ms_greencorner"
+/obj/effect/floor_decal/milspec/color/green/half
+	icon_state = "ms_green"
+/obj/effect/floor_decal/milspec/color/black
+	icon_state = "ms_blackfull"
+/obj/effect/floor_decal/milspec/color/black/corner
+	icon_state = "ms_blackcorner"
+/obj/effect/floor_decal/milspec/color/black/half
+	icon_state = "ms_black"
+/obj/effect/floor_decal/milspec/color/silver
+	icon_state = "ms_silverfull"
+/obj/effect/floor_decal/milspec/color/silver/corner
+	icon_state = "ms_silvercorner"
+/obj/effect/floor_decal/milspec/color/silver/half
+	icon_state = "ms_silver"
+/obj/effect/floor_decal/milspec/color/white
+	icon_state = "ms_whitefull"
+/obj/effect/floor_decal/milspec/color/white/corner
+	icon_state = "ms_whitecorner"
+/obj/effect/floor_decal/milspec/color/white/half
+	icon_state = "ms_white"
+
+/obj/effect/floor_decal/milspec_sterile/purple
+	icon_state = "mss_purple"
+/obj/effect/floor_decal/milspec_sterile/purple/corner
+	icon_state = "mss_purple_corner"
+/obj/effect/floor_decal/milspec_sterile/purple/half
+	icon_state = "mss_purple_side"
+/obj/effect/floor_decal/milspec_sterile/green
+	icon_state = "mss_green"
+/obj/effect/floor_decal/milspec_sterile/green/corner
+	icon_state = "mss_green_corner"
+/obj/effect/floor_decal/milspec_sterile/green/half
+	icon_state = "mss_green_side"

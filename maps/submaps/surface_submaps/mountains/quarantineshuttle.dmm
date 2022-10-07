@@ -67,9 +67,13 @@
 	icon_state = "tape_door_0";
 	layer = 3.4
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "al" = (
 /obj/structure/sign/biohazard{
@@ -83,12 +87,17 @@
 	},
 /obj/effect/decal/cleanable/vomit,
 /obj/effect/decal/remains/human,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "an" = (
 /obj/machinery/door/airlock{
 	name = "Restroom"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -98,11 +107,21 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"ao" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "ap" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -112,27 +131,56 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aq" = (
+/obj/structure/bed/chair,
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "ar" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/remains/human,
 /obj/item/clothing/suit/space/emergency,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "as" = (
 /obj/machinery/vending/snack{
 	contraband = null;
+<<<<<<< HEAD
 	products = list(/obj/item/weapon/reagent_containers/food/snacks/candy = 0, /obj/item/weapon/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/weapon/reagent_containers/food/snacks/chips = 0, /obj/item/weapon/reagent_containers/food/snacks/sosjerky = 0, /obj/item/weapon/reagent_containers/food/snacks/no_raisin = 0, /obj/item/weapon/reagent_containers/food/snacks/packaged/spacetwinkie = 0, /obj/item/weapon/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/weapon/reagent_containers/food/snacks/tastybread = 0, /obj/item/weapon/reagent_containers/food/snacks/skrellsnacks = 0)
 	},
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+	products = list(/obj/item/reagent_containers/food/snacks/candy = 0, /obj/item/reagent_containers/food/drinks/dry_ramen = 0, /obj/item/reagent_containers/food/snacks/chips = 0, /obj/item/reagent_containers/food/snacks/sosjerky = 0, /obj/item/reagent_containers/food/snacks/no_raisin = 0, /obj/item/reagent_containers/food/snacks/packaged/spacetwinkie = 0, /obj/item/reagent_containers/food/snacks/cheesiehonkers = 0, /obj/item/reagent_containers/food/snacks/tastybread = 0, /obj/item/reagent_containers/food/snacks/skrellsnacks = 0)
+	},
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "at" = (
 /obj/machinery/vending/cola{
 	contraband = null;
+<<<<<<< HEAD
 	products = list(/obj/item/weapon/reagent_containers/food/drinks/cans/cola = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_mountain_wind = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/starkist = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/space_up = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/grape_juice = 0, /obj/item/weapon/reagent_containers/food/drinks/cans/gingerale = 0)
 	},
 /turf/simulated/shuttle/floor{
@@ -150,10 +198,29 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+	products = list(/obj/item/reagent_containers/food/drinks/cans/cola = 0, /obj/item/reagent_containers/food/drinks/cans/space_mountain_wind = 0, /obj/item/reagent_containers/food/drinks/cans/dr_gibb = 0, /obj/item/reagent_containers/food/drinks/cans/starkist = 0, /obj/item/reagent_containers/food/drinks/cans/waterbottle = 0, /obj/item/reagent_containers/food/drinks/cans/space_up = 0, /obj/item/reagent_containers/food/drinks/cans/iced_tea = 0, /obj/item/reagent_containers/food/drinks/cans/grape_juice = 0, /obj/item/reagent_containers/food/drinks/cans/gingerale = 0)
+	},
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"au" = (
+/obj/structure/closet/crate/secure/loot,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"av" = (
+/obj/item/pickaxe/drill,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aw" = (
 /obj/item/clothing/mask/breath,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -208,6 +275,53 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"ax" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"ay" = (
+/obj/effect/decal/remains/xeno,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"az" = (
+/obj/item/trash/syndi_cakes,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aA" = (
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aB" = (
+/obj/item/trash/cigbutt,
+/obj/item/tank/emergency/oxygen,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aC" = (
+/obj/item/material/knife/tacknife/boot,
+/obj/item/clothing/mask/breath,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aD" = (
+/obj/effect/decal/remains/human,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aE" = (
+/obj/item/trash/sosjerky,
+/obj/item/storage/box/donut/empty,
+/obj/item/reagent_containers/food/drinks/sillycup,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aF" = (
 /obj/structure/grille,
@@ -223,9 +337,14 @@
 /area/submap/cave/qShuttle)
 "aG" = (
 /obj/machinery/door/airlock/glass,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aH" = (
 /obj/structure/grille,
@@ -246,13 +365,19 @@
 /area/submap/cave/qShuttle)
 "aJ" = (
 /obj/machinery/computer,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aK" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
 /obj/effect/decal/cleanable/vomit,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -260,10 +385,20 @@
 "aL" = (
 /obj/structure/prop/blackbox/quarantined_shuttle,
 /turf/simulated/shuttle/floor,
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aL" = (
+/obj/structure/prop/blackbox/quarantined_shuttle,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aM" = (
 /obj/item/trash/cheesie,
 /obj/effect/decal/remains/human,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -273,15 +408,29 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aN" = (
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aO" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aP" = (
 /obj/structure/bed/chair{
@@ -289,22 +438,35 @@
 	},
 /obj/effect/decal/remains/human,
 /obj/item/clothing/mask/breath,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aQ" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aR" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -320,6 +482,23 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aS" = (
+/obj/effect/decal/cleanable/vomit,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aT" = (
+/obj/item/clothing/head/helmet/space/emergency,
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aU" = (
 /obj/machinery/door/airlock/engineering{
@@ -332,6 +511,7 @@
 	},
 /area/submap/cave/qShuttle)
 "aV" = (
+<<<<<<< HEAD
 /obj/item/weapon/virusdish/random,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
@@ -348,6 +528,24 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/item/virusdish/random,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aW" = (
+/obj/item/material/shard,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"aX" = (
+/obj/item/paicard,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "aY" = (
 /obj/machinery/door/blast/regular{
@@ -364,7 +562,11 @@
 /area/submap/cave/qShuttle)
 "aZ" = (
 /obj/effect/decal/remains/human,
+<<<<<<< HEAD
 /obj/item/clothing/under/mbill{
+=======
+/obj/item/clothing/under/corp/mbill{
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation. This looks at least a few decades out of date.";
 	name = "\improper old Major Bill's uniform"
 	},
@@ -372,6 +574,7 @@
 	desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date.";
 	name = "old shipping cap"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
 /area/submap/cave/qShuttle)
 "ba" = (
@@ -379,12 +582,22 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"ba" = (
+/obj/item/trash/cigbutt,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bb" = (
 /obj/machinery/door/airlock/command{
 	icon_state = "door_locked";
 	locked = 1
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -395,15 +608,29 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bc" = (
+/obj/item/tank/emergency/oxygen/engi,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bd" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "be" = (
 /obj/structure/grille,
@@ -440,20 +667,34 @@
 /area/submap/cave/qShuttle)
 "bh" = (
 /obj/item/clothing/suit/space/emergency,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bi" = (
 /obj/item/trash/candy,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bj" = (
 /obj/structure/table/rack,
 /obj/structure/loot_pile/maint/boxfort,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -464,6 +705,19 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/box,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bk" = (
+/obj/structure/table/rack,
+/obj/item/shovel,
+/obj/random/contraband,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/box,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bl" = (
 /obj/structure/closet/crate/secure/science{
@@ -472,26 +726,42 @@
 	name = "Virus Samples - FRAGILE";
 	opened = 1
 	},
+<<<<<<< HEAD
 /obj/item/weapon/virusdish/random,
 /obj/item/weapon/virusdish/random,
 /obj/item/weapon/virusdish/random,
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
+/obj/item/virusdish/random,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bm" = (
 /obj/structure/bed/chair/comfy/brown{
 	dir = 8
 	},
 /obj/effect/decal/remains/human,
+<<<<<<< HEAD
 /obj/item/clothing/under/mbill{
 	desc = "A uniform belonging to Major Bill's Transportation, a shipping megacorporation. This looks at least a few decades out of date.";
 	name = "\improper old Major Bill's uniform"
+=======
+/obj/item/clothing/under/corp/mbill_flight{
+	desc = "A flight suit belonging to Major Bill's Transportation, a shipping megacorporation. This looks at least a few decades out of date.";
+	name = "\improper old Major Bill's flight suit"
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 	},
 /obj/item/clothing/head/soft/mbill{
 	desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date.";
 	name = "old shipping cap"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -506,10 +776,26 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bn" = (
+/obj/structure/table/standard,
+/obj/item/taperecorder,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bo" = (
+/obj/item/tool/crowbar/red,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bp" = (
 /obj/item/trash/chips,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -519,13 +805,30 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bq" = (
+/obj/structure/bed/chair,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "br" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bs" = (
 /obj/structure/bed/chair,
@@ -535,20 +838,37 @@
 	desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date.";
 	name = "old shipping cap"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bt" = (
 /obj/structure/bed/chair,
 /obj/effect/decal/remains/human,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bu" = (
 /obj/effect/decal/remains/xeno,
 /obj/effect/decal/cleanable/dirt,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -578,11 +898,42 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/stripe{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bv" = (
+/obj/item/material/shard{
+	icon_state = "medium"
+	},
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bw" = (
+/obj/effect/decal/remains/mouse,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bx" = (
+/obj/random/maintenance,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"by" = (
+/obj/item/coin/silver,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bz" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/suit/space/emergency,
 /obj/item/clothing/head/helmet/space/emergency,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
@@ -598,20 +949,44 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bA" = (
+/obj/effect/decal/cleanable/generic,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bB" = (
+/obj/item/tank/emergency/oxygen/engi,
+/obj/effect/floor_decal/milspec/color/orange,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bC" = (
 /obj/item/trash/sosjerky,
 /obj/effect/decal/remains/human,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bD" = (
 /obj/effect/decal/remains/human,
 /obj/item/clothing/mask/breath,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bE" = (
 /obj/structure/grille,
@@ -644,12 +1019,17 @@
 /area/submap/cave/qShuttle)
 "bH" = (
 /obj/machinery/recharge_station,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor,
+=======
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bI" = (
 /obj/machinery/door/airlock{
 	name = "Charge Station"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -661,33 +1041,61 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bJ" = (
+/obj/item/trash/tastybread,
+/obj/item/material/butterfly/boxcutter,
+/obj/effect/decal/cleanable/dirt,
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bK" = (
 /obj/effect/decal/cleanable/vomit,
 /obj/effect/decal/cleanable/mucus/mapped,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bL" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
 /obj/effect/decal/remains/xeno,
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bM" = (
 /obj/structure/bed/chair{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/item/weapon/card/id/external{
+=======
+/obj/item/card/id/external{
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 	desc = "An identification card of some sort. Looks like this one was issued by the Vir Independent Mining Corp.";
 	name = "VIMC identification card";
 	rank = "Miner";
 	registered_name = "Nadia Chu"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -698,6 +1106,17 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/obj/effect/floor_decal/milspec/color/purple/half,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bN" = (
+/obj/structure/table/rack,
+/obj/item/storage/toolbox/emergency,
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bO" = (
 /obj/structure/table/rack,
@@ -705,6 +1124,7 @@
 	desc = "It's a ballcap bearing the colors of Major Bill's Shipping. This one looks at least a few decades out of date.";
 	name = "old shipping cap"
 	},
+<<<<<<< HEAD
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_white"
 	},
@@ -726,6 +1146,34 @@
 /turf/simulated/shuttle/floor{
 	icon_state = "floor_yellow"
 	},
+=======
+/obj/effect/floor_decal/milspec/color/silver,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bP" = (
+/obj/structure/ore_box,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bQ" = (
+/obj/item/poster,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"bR" = (
+/obj/structure/loot_pile/maint/technical,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 1
+	},
+/turf/simulated/floor/tiled/milspec,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "bS" = (
 /obj/structure/sign/biohazard,
@@ -774,8 +1222,14 @@
 /turf/simulated/wall/iron,
 /area/submap/cave/qShuttle)
 "ca" = (
+<<<<<<< HEAD
 /obj/structure/sign/warning,
 /turf/simulated/wall/iron,
+=======
+/obj/structure/table/steel,
+/obj/random/tool/power,
+/turf/simulated/mineral/floor/ignore_mapgen,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /area/submap/cave/qShuttle)
 "cb" = (
 /obj/item/bodybag,
@@ -783,7 +1237,11 @@
 /area/submap/cave/qShuttle)
 "cc" = (
 /obj/structure/table/steel,
+<<<<<<< HEAD
 /obj/item/weapon/storage/box/bodybags,
+=======
+/obj/item/storage/box/bodybags,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cd" = (
@@ -797,7 +1255,11 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cf" = (
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/syringe/antiviral,
+=======
+/obj/item/reagent_containers/syringe/antiviral,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cg" = (
@@ -810,12 +1272,20 @@
 /area/submap/cave/qShuttle)
 "ci" = (
 /obj/structure/table/steel,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/syringe/antiviral,
+=======
+/obj/item/reagent_containers/syringe/antiviral,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cj" = (
 /obj/structure/table/steel,
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/spray/cleaner{
+=======
+/obj/item/reagent_containers/spray/cleaner{
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 	desc = "Someone has crossed out the 'Space' from Space Cleaner and written in Chemistry. Scrawled on the back is, 'Okay, whoever filled this with polytrinic acid, it was only funny the first time. It was hard enough replacing the CMO's first cat!'";
 	name = "Chemistry Cleaner"
 	},
@@ -823,7 +1293,11 @@
 /area/submap/cave/qShuttle)
 "ck" = (
 /obj/structure/table/steel,
+<<<<<<< HEAD
 /obj/item/weapon/tool/crowbar/power,
+=======
+/obj/item/tool/crowbar/power,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cl" = (
@@ -833,13 +1307,53 @@
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cm" = (
+<<<<<<< HEAD
 /obj/item/weapon/weldingtool/largetank,
+=======
+/obj/item/weldingtool/largetank,
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
 "cn" = (
 /obj/structure/closet/crate/medical,
 /turf/simulated/mineral/floor/ignore_mapgen,
 /area/submap/cave/qShuttle)
+<<<<<<< HEAD
+=======
+"co" = (
+/obj/structure/sign/biohazard,
+/turf/simulated/wall/iron,
+/area/submap/cave/qShuttle)
+"gE" = (
+/obj/item/virusdish/random,
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"qP" = (
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/cargo_arrow{
+	dir = 4
+	},
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"xR" = (
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/hatchmarks,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"NN" = (
+/obj/machinery/door/airlock/glass,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+"Zg" = (
+/obj/effect/floor_decal/milspec/color/orange,
+/obj/effect/floor_decal/milspec/box,
+/turf/simulated/floor/tiled/milspec,
+/area/submap/cave/qShuttle)
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 
 (1,1,1) = {"
 aa
@@ -1024,7 +1538,11 @@ ae
 bW
 ab
 ch
+<<<<<<< HEAD
 ch
+=======
+ca
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 aa
 aa
 aa
@@ -1211,7 +1729,11 @@ ad
 ad
 ab
 bW
+<<<<<<< HEAD
 ca
+=======
+co
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 cm
 ab
 aa
@@ -1339,9 +1861,15 @@ ad
 av
 aG
 aA
+<<<<<<< HEAD
 aA
 aA
 aG
+=======
+Zg
+aA
+NN
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 bQ
 ad
 ab
@@ -1393,8 +1921,13 @@ ad
 ad
 ad
 aX
+<<<<<<< HEAD
 aA
 aV
+=======
+qP
+gE
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 ad
 ad
 ad
@@ -1419,7 +1952,11 @@ ag
 ad
 ag
 aI
+<<<<<<< HEAD
 aA
+=======
+xR
+>>>>>>> 5928b9675b5... Merge pull request #8718 from Cerebulon/shuttleremodel
 bl
 bx
 ad
