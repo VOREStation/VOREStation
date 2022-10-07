@@ -114,6 +114,10 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 	rolled_sleeves = 0
 
+/obj/item/clothing/under/rank/medical/utility
+	name = "medical utility jumpsuit"
+	desc = "A hard-wearing version of the standard medical uniform, made with the same bioresistant lining. Designed for long term medical postings."
+	icon_state = "medical_util"
 /obj/item/clothing/under/rank/medical/turtleneck
 	name = "medical turtleneck"
 	desc = "It's a stylish turtleneck made of bioresistant fiber. Look good, save lives- what more could you want?"

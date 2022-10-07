@@ -56,11 +56,17 @@
 	icon_state = "cargojf"
 
 /obj/item/clothing/under/rank/chaplain
-	desc = "It's a black jumpsuit, often worn by religious folk."
+	desc = "It's a black jumpsuit, often worn by guidance staff."
 	name = "chaplain's jumpsuit"
 	icon_state = "chaplain"
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 	rolled_sleeves = 0
+
+/obj/item/clothing/under/rank/chaplain/alt
+	name = "chaplain's striped jumpsuit"
+	icon_state = "chaplain_alt"
+	rolled_sleeves = -1
+	index = 1
 
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
@@ -128,15 +134,18 @@
 	icon_state = "janitor_alt"
 
 /obj/item/clothing/under/lawyer
+	name = "baby blue suit"
 	desc = "Slick threads."
-	name = "lawyer suit"
+	icon_state = "ress_suit"
+	item_state_slots = list(slot_r_hand_str = "lightblue", slot_l_hand_str = "lightblue")
 
 /obj/item/clothing/under/lawyer/black
-	name = "black lawyer suit"
+	name = "tacky black lawyer suit"
 	icon_state = "lawyer_black"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
 /obj/item/clothing/under/lawyer/black/skirt
-	name = "black lawyer skirt"
+	name = "tacky black lawyer skirt"
 	icon_state = "lawyer_black_skirt"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
@@ -145,21 +154,43 @@
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
+<<<<<<< HEAD
+=======
+/obj/item/clothing/under/lawyer/modern
+	name = "black modern suit"
+	icon_state = "modern_suit_m"
+	index = 1
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
+
+/obj/item/clothing/under/lawyer/modern/skirt
+	name = "black modern skirt"
+	icon_state = "modern_suit_f"
+	index = 1
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
+
+/obj/item/clothing/under/lawyer/trimskirt
+	name = "blue-trim skirt"
+	icon_state = "trim_skirtsuit"
+	index = 1
+	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
+>>>>>>> d565a3d1f60... Merge pull request #8706 from Cerebulon/jumpsuitsCM
 /obj/item/clothing/under/lawyer/red
-	name = "red lawyer suit"
+	name = "tacky red suit"
 	icon_state = "lawyer_red"
+	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 
 /obj/item/clothing/under/lawyer/red/skirt
-	name = "red lawyer skirt"
+	name = "tacky red skirt"
 	icon_state = "lawyer_red_skirt"
 	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 
 /obj/item/clothing/under/lawyer/blue
-	name = "blue lawyer suit"
+	name = "tacky blue suit"
 	icon_state = "lawyer_blue"
+	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 
 /obj/item/clothing/under/lawyer/blue/skirt
-	name = "blue lawyer skirt"
+	name = "tacky blue skirt"
 	icon_state = "lawyer_blue_skirt"
 	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
 
@@ -167,12 +198,13 @@
 	name = "blue suit"
 	desc = "A classy suit."
 	icon_state = "bluesuit"
-	item_state_slots = list(slot_r_hand_str = "lawyer_blue", slot_l_hand_str = "lawyer_blue")
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 	starting_accessories = list(/obj/item/clothing/accessory/tie/red)
 
 /obj/item/clothing/under/lawyer/bluesuit/skirt
 	name = "blue skirt suit"
 	icon_state = "bluesuit_skirt"
+	item_state_slots = list(slot_r_hand_str = "blue", slot_l_hand_str = "blue")
 
 /obj/item/clothing/under/lawyer/purpsuit
 	name = "purple suit"
@@ -182,6 +214,7 @@
 /obj/item/clothing/under/lawyer/purpsuit/skirt
 	name = "purple skirt suit"
 	icon_state = "lawyer_purp_skirt"
+	item_state_slots = list(slot_r_hand_str = "purple", slot_l_hand_str = "purple")
 
 /obj/item/clothing/under/lawyer/oldman
 	name = "Old Man's Suit"
@@ -189,17 +222,63 @@
 	icon_state = "oldman"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
 
+/obj/item/clothing/under/lawyer/librarian
+	name = "sensible suit"
+	desc = "It's very... sensible."
+	icon_state = "red_suit"
+	item_state_slots = list(slot_r_hand_str = "red", slot_l_hand_str = "red")
+
+/obj/item/clothing/under/lawyer/retro_tan
+	name = "retro tan suit"
+	desc = "Just one more thing."
+	icon_state = "liaison_regular"
+	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
+	index = 1
+
+/obj/item/clothing/under/lawyer/retro_white
+	name = "retro white suit"
+	desc = "Snappy!"
+	icon_state = "liaison_formal"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+	index = 1
+
+/obj/item/clothing/under/lawyer/retro_waistcoat
+	name = "retro waistcoat"
+	desc = "The spectre of CEOs past."
+	icon_state = "manager_uniform"
+	index = 1
+
+/obj/item/clothing/under/lawyer/retro_suspenders
+	name = "retro suspenders"
+	desc = "The spectre of CEOs past."
+	icon_state = "liaison_suspenders"
+	index = 1
+
+/obj/item/clothing/under/lawyer/retro_clerk
+	name = "retro clerk's suit"
+	desc = "The spectre of toadies past."
+	icon_state = "trainee_uniform"
+	index = 1
+
+/obj/item/clothing/under/lawyer/powersuit_black
+	name = "black and gold powersuit"
+	desc = "Resonates corporate energy."
+	icon_state = "director_uniform"
+	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
+	index = 1
+
+/obj/item/clothing/under/lawyer/powersuit_grey
+	name = "grey powersuit"
+	desc = "Resonates corporate energy."
+	icon_state = "stowaway_uniform"
+	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
+	index = 1
+
 /obj/item/clothing/under/oldwoman
 	name = "Old Woman's Attire"
 	desc = "A typical outfit for the older woman, a lovely cardigan and comfortable skirt."
 	icon_state = "oldwoman"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")
-
-/obj/item/clothing/under/librarian
-	name = "sensible suit"
-	desc = "It's very... sensible."
-	icon_state = "red_suit"
-	item_state_slots = list(slot_r_hand_str = "lawyer_red", slot_l_hand_str = "lawyer_red")
 
 /obj/item/clothing/under/mime
 	name = "mime's outfit"
