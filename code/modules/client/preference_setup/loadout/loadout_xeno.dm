@@ -162,6 +162,7 @@
 		cohesionsuits[initial(cohesion_type.name)] = cohesion_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cohesionsuits))
 
+<<<<<<< HEAD
 /datum/gear/uniform/dept
 	whitelisted = SPECIES_TESHARI
 	sort_category = "Xenowear"
@@ -296,6 +297,28 @@
 	allowed_roles = list("Head of Security")
 
 /datum/gear/suit/dept/cloak/hos/New()
+=======
+/datum/gear/uniform/teshundercoat
+	display_name = "Teshari undercoat selection"
+	path = /obj/item/clothing/under/teshari/undercoat/jobs/hop
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
+/datum/gear/uniform/teshundercoat/New()
+	..()
+	var/list/teshundercoats = list()
+	for(var/teshundercoat_style in typesof(/obj/item/clothing/under/teshari/undercoat/jobs))
+		var/obj/item/clothing/under/teshari/undercoat/jobs/teshundercoat = teshundercoat_style
+		teshundercoats[initial(teshundercoat.name)] = teshundercoat
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(teshundercoats))
+
+/datum/gear/suit/teshcloak
+	display_name = "Teshari cloak selection, jobs"
+	whitelisted = SPECIES_TESHARI
+	sort_category = "Xenowear"
+
+/datum/gear/suit/teshcloak/New()
+>>>>>>> 6e7ca956632... Merge pull request #8728 from Cerebulon/blazerbutton
 	..()
 	var/list/cloaks = list()
 	for(var/cloak in typesof(/obj/item/clothing/suit/storage/teshari/cloak/jobs/hos,/obj/item/clothing/suit/storage/teshari/beltcloak/jobs/hos))
