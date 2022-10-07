@@ -29,9 +29,9 @@
 
 /obj/item/weapon/soap
 	name = "soap"
-	desc = "A cheap bar of soap. Doesn't smell."
+	desc = "A cheap bar of soap. Smells of lye."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/soap.dmi'
 	icon_state = "soap"
 	flags = NOCONDUCT
 	w_class = ITEMSIZE_SMALL
@@ -40,13 +40,19 @@
 	throw_speed = 4
 	throw_range = 20
 
+<<<<<<< HEAD
 /obj/item/weapon/soap/nanotrasen
 	desc = "A NanoTrasen-brand bar of soap. Smells of phoron."
+=======
+/obj/item/soap/nanotrasen
+	desc = "A NanoTrasen-brand bar of soap. Smells of phoron, a years-old marketing gimmick."
+>>>>>>> a4b3804617d... Merge pull request #8726 from Cerebulon/sope
 	icon_state = "soapnt"
 
 /obj/item/weapon/soap/deluxe
 	icon_state = "soapdeluxe"
 
+<<<<<<< HEAD
 /obj/item/weapon/soap/deluxe/New()
 	desc = "A deluxe Waffle Co. brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
 	..()
@@ -56,6 +62,93 @@
 	icon_state = "soapsyndie"
 
 /obj/item/weapon/bikehorn
+=======
+/obj/item/soap/deluxe/Initialize()
+	desc = "A deluxe NanoLux brand bar of soap. Smells of [pick("lavender", "vanilla", "strawberry", "chocolate" ,"space")]."
+	. = ..()
+
+/obj/item/soap/syndie
+	desc = "An dubious bar of soap. Smells of lyes."
+	icon_state = "soapsyndie"
+
+/obj/item/soap/space_soap
+	desc = "Smells like hot metal and walnuts."
+	icon_state = "space_soap"
+
+/obj/item/soap/water_soap
+	desc = "Smells like chlorine."
+	icon_state = "water_soap"
+
+/obj/item/soap/fire_soap
+	desc = "Smells like a campfire."
+	icon_state = "fire_soap"
+
+/obj/item/soap/rainbow_soap
+	desc = "Smells sickly sweet."
+	icon_state = "rainbow_soap"
+
+/obj/item/soap/diamond_soap
+	desc = "Smells like saffron and vanilla."
+	icon_state = "diamond_soap"
+
+/obj/item/soap/uranium_soap
+	desc = "Smells not great... Not terrible."
+	icon_state = "uranium_soap"
+
+/obj/item/soap/silver_soap
+	desc = "Smells like birch and amaranth."
+	icon_state = "silver_soap"
+
+/obj/item/soap/brown_soap
+	desc = "Smells like cinnamon and cognac."
+	icon_state = "brown_soap"
+
+/obj/item/soap/white_soap
+	desc = "Smells like nutmeg and oats."
+	icon_state = "white_soap"
+
+/obj/item/soap/grey_soap
+	desc = "Smells like bergamot and lilies."
+	icon_state = "grey_soap"
+
+/obj/item/soap/pink_soap
+	desc = "Smells like bubblegum."
+	icon_state = "pink_soap"
+
+/obj/item/soap/purple_soap
+	desc = "Smells like lavender."
+	icon_state = "purple_soap"
+
+/obj/item/soap/blue_soap
+	desc = "Smells like cardamom."
+	icon_state = "blue_soap"
+
+/obj/item/soap/cyan_soap
+	desc = "Smells like bluebells and peaches."
+	icon_state = "cyan_soap"
+
+/obj/item/soap/green_soap
+	desc = "Smells like a freshly mowed lawn."
+	icon_state = "green_soap"
+
+/obj/item/soap/yellow_soap
+	desc = "Smells like citron and ginger."
+	icon_state = "yellow_soap"
+
+/obj/item/soap/orange_soap
+	desc = "Smells like oranges and dark chocolate."
+	icon_state = "orange_soap"
+
+/obj/item/soap/red_soap
+	desc = "Smells like cherries."
+	icon_state = "red_soap"
+
+/obj/item/soap/golden_soap
+	desc = "Smells like honey."
+	icon_state = "golden_soap"
+
+/obj/item/bikehorn
+>>>>>>> a4b3804617d... Merge pull request #8726 from Cerebulon/sope
 	name = "bike horn"
 	desc = "A horn off of a bicycle."
 	icon = 'icons/obj/items.dmi'
@@ -396,7 +489,11 @@
 			continue
 		remove_from_storage(B, T)
 
+<<<<<<< HEAD
 /obj/item/weapon/stock_parts
+=======
+/obj/item/stock_parts
+>>>>>>> a4b3804617d... Merge pull request #8726 from Cerebulon/sope
 	name = "stock part"
 	desc = "What?"
 	gender = PLURAL
