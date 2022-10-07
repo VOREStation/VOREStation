@@ -1,5 +1,10 @@
 /obj/item/weapon/grenade/empgrenade
 	name = "emp grenade"
+<<<<<<< HEAD
+=======
+	pickup_sound = 'sound/items/pickup/device.ogg'
+	drop_sound = 'sound/items/drop/device.ogg'
+>>>>>>> a4a3e49e2ca... Merge pull request #8708 from Cerebulon/miscsprites2022
 	icon_state = "emp"
 	item_state = "empgrenade"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 3)
@@ -18,6 +23,7 @@
 	name = "low yield emp grenade"
 	desc = "A weaker variant of the EMP grenade"
 	icon_state = "lyemp"
+	item_state = "lyemp"
 	origin_tech = list(TECH_MATERIAL = 2, TECH_MAGNET = 3)
 	emp_heavy = 1
 	emp_med = 2

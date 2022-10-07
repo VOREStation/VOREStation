@@ -1,7 +1,6 @@
 /obj/item/weapon/grenade/chem_grenade
 	name = "grenade casing"
 	icon_state = "chemg"
-	item_state = "grenade"
 	desc = "A hand made chemical grenade."
 	w_class = ITEMSIZE_SMALL
 	force = 2.0
@@ -196,7 +195,12 @@
 	name = "large chem grenade"
 	desc = "An oversized grenade that affects a larger area."
 	icon_state = "large_grenade"
+<<<<<<< HEAD
 	allowed_containers = list(/obj/item/weapon/reagent_containers/glass)
+=======
+	item_state = "largechemg"
+	allowed_containers = list(/obj/item/reagent_containers/glass)
+>>>>>>> a4a3e49e2ca... Merge pull request #8708 from Cerebulon/miscsprites2022
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
 	affected_area = 4
 
@@ -314,3 +318,7 @@
 
 	beakers += B1
 	beakers += B2
+<<<<<<< HEAD
+=======
+	icon_state = initial(icon_state) +"_locked"
+>>>>>>> a4a3e49e2ca... Merge pull request #8708 from Cerebulon/miscsprites2022

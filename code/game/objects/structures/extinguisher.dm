@@ -2,7 +2,11 @@
 	name = "extinguisher cabinet"
 	desc = "A small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/closet.dmi'
+<<<<<<< HEAD
 	icon_state = "extinguisher" // map preview sprite
+=======
+	icon_state = "fire_cabinet"
+>>>>>>> a4a3e49e2ca... Merge pull request #8708 from Cerebulon/miscsprites2022
 	layer = ABOVE_WINDOW_LAYER
 	anchored = TRUE
 	density = FALSE
@@ -16,8 +20,12 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -27 : 27)
 		pixel_y = (dir & 3)? (dir ==1 ? -27 : 27) : 0
 	else
+<<<<<<< HEAD
 		has_extinguisher = new/obj/item/weapon/extinguisher(src)
 
+=======
+		has_extinguisher = new/obj/item/extinguisher(src)
+>>>>>>> a4a3e49e2ca... Merge pull request #8708 from Cerebulon/miscsprites2022
 	update_icon()
 
 /obj/structure/extinguisher_cabinet/attackby(obj/item/O, mob/user)
@@ -76,6 +84,7 @@
 	update_icon()
 
 /obj/structure/extinguisher_cabinet/update_icon()
+<<<<<<< HEAD
 	var/suffix = "empty"
 	if(has_extinguisher)
 		if(istype(has_extinguisher, /obj/item/weapon/extinguisher/mini))
@@ -92,3 +101,15 @@
 	desc = "A classic small wall mounted cabinet designed to hold a fire extinguisher."
 	icon = 'icons/obj/closet.dmi'
 	icon_state = "oldextinguisher" // map preview sprite
+=======
+	cut_overlays()
+	if(has_extinguisher)
+		if(istype(has_extinguisher, /obj/item/extinguisher/mini))
+			add_overlay("extinguisher_mini")
+		else
+			add_overlay("extinguisher_full")
+	if(opened)
+		add_overlay("fire_cabinet_door_open")
+	else
+		add_overlay("fire_cabinet_door_closed")
+>>>>>>> a4a3e49e2ca... Merge pull request #8708 from Cerebulon/miscsprites2022
