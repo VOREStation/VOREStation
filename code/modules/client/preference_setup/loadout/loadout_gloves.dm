@@ -57,7 +57,11 @@
 	path = /obj/item/clothing/gloves/white
 
 /datum/gear/gloves/evening
+<<<<<<< HEAD
 	display_name = "evening gloves"
+=======
+	display_name = "gloves, evening (colorable)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/gloves/evening
 
 /datum/gear/gloves/evening/New()
@@ -75,7 +79,11 @@
 	allowed_roles = list("Detective")
 
 /datum/gear/gloves/fingerless
+<<<<<<< HEAD
 	display_name = "fingerless gloves"
+=======
+	display_name = "gloves, fingerless (colorable)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/gloves/fingerless
 
 /datum/gear/gloves/ring

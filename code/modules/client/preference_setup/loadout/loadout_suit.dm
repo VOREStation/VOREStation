@@ -142,6 +142,7 @@
 
 /datum/gear/suit/labcoat/New()
 	..()
+<<<<<<< HEAD
 	var/list/labcoats = list(
 	"White labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat,
 	"Blue-edge labcoat" = /obj/item/clothing/suit/storage/toggle/labcoat/blue_edge,
@@ -184,6 +185,36 @@
 
 /datum/gear/suit/roles/surgical_apron
 	display_name = "surgical apron"
+=======
+	var/labcoattype = list()
+	labcoattype["labcoat, white"] = /obj/item/clothing/suit/storage/toggle/labcoat
+	labcoattype["labcoat, blue"] = /obj/item/clothing/suit/storage/toggle/labcoat/blue
+	labcoattype["labcoat, blue-edged"] = /obj/item/clothing/suit/storage/toggle/labcoat/blue_edge
+	labcoattype["labcoat, green"] = /obj/item/clothing/suit/storage/toggle/labcoat/green
+	labcoattype["labcoat, orange"] = /obj/item/clothing/suit/storage/toggle/labcoat/orange
+	labcoattype["labcoat, pink"] = /obj/item/clothing/suit/storage/toggle/labcoat/pink
+	labcoattype["labcoat, purple"] = /obj/item/clothing/suit/storage/toggle/labcoat/purple
+	labcoattype["labcoat, red"] = /obj/item/clothing/suit/storage/toggle/labcoat/red
+	labcoattype["labcoat, yellow"] = /obj/item/clothing/suit/storage/toggle/labcoat/yellow
+	gear_tweaks += new/datum/gear_tweak/path(labcoattype)
+
+/datum/gear/suit/labcoat_rd
+	display_name = "labcoat, research director (RD)"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/rd
+	allowed_roles = list("Research Director")
+
+/datum/gear/suit/labcoat_emt
+	display_name = "labcoat, EMT (Medical)"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/emt
+	allowed_roles = list("Medical Doctor","Chief Medical Officer","Chemist","Paramedic","Geneticist", "Psychiatrist")
+
+/datum/gear/suit/plague_coat
+	display_name = "plague doctor's coat"
+	path = /obj/item/clothing/suit/storage/toggle/labcoat/plaguedoctor
+
+/datum/gear/suit/surgical_apron
+	display_name = "apron, surgical"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/suit/surgicalapron
 	allowed_roles = list("Medical Doctor","Chief Medical Officer")
 
@@ -227,6 +258,7 @@
 		ponchos[initial(poncho.name)] = poncho
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ponchos))
 
+<<<<<<< HEAD
 /datum/gear/suit/roles/poncho
 	display_name = "poncho selection, departments"
 	path = /obj/item/clothing/accessory/poncho/roles/cargo
@@ -245,9 +277,14 @@
 
 /datum/gear/suit/roles/cloak
 	display_name = "cloak selection, departments"
+=======
+/datum/gear/suit/cloak
+	display_name = "cloak, departmental selection"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cargo
 	cost = 1
 
+<<<<<<< HEAD
 /datum/gear/suit/roles/cloak/New()
 	..()
 	var/list/cloaks = list(
@@ -306,6 +343,18 @@
 
 /datum/gear/suit/cloak_custom //A colorable cloak
 	display_name = "cloak, colorable"
+=======
+/datum/gear/suit/cloak/New()
+	..()
+	var/list/cloaks = list()
+	for(var/cloak_style in (typesof(/obj/item/clothing/accessory/poncho/roles/cloak)))
+		var/obj/item/clothing/accessory/poncho/roles/cloak/cloak = cloak_style
+		cloaks[initial(cloak.name)] = cloak
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cloaks))
+
+/datum/gear/suit/cloak_custom //A colorable cloak
+	display_name = "cloak (colorable)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/custom
 	cost = 1
 
@@ -543,6 +592,7 @@
 	display_name = "denim jacket, corporate"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen
 
+<<<<<<< HEAD
 /datum/gear/suit/denim_vest
 	display_name = "denim vest"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/sleeveless
@@ -553,9 +603,21 @@
 
 /datum/gear/suit/miscellaneous/dep_jacket
 	display_name = "department jacket selection"
+=======
+/datum/gear/suit/kimono
+	display_name = "kimono"
+	path = /obj/item/clothing/suit/kimono
+
+/datum/gear/suit/kimono/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/suit/dep_jacket
+	display_name = "jacket, departmental selection"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
 
-/datum/gear/suit/miscellaneous/dep_jacket/New()
+/datum/gear/suit/dep_jacket/New()
 	..()
 	var/list/jacket = list(
 		"Security department jacket" = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket,
@@ -566,11 +628,16 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(jacket)
 
+<<<<<<< HEAD
 /datum/gear/suit/miscellaneous/light_jacket
 	display_name = "light jacket selection"
+=======
+/datum/gear/suit/light_jacket
+	display_name = "jacket, light selection"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/suit/storage/toggle/light_jacket
 
-/datum/gear/suit/miscellaneous/light_jacket/New()
+/datum/gear/suit/light_jacket/New()
 	..()
 	var/list/jacket = list(
 		"grey light jacket" = /obj/item/clothing/suit/storage/toggle/light_jacket,
@@ -578,14 +645,20 @@
 	)
 	gear_tweaks += new/datum/gear_tweak/path(jacket)
 
+<<<<<<< HEAD
 /datum/gear/suit/miscellaneous/peacoat
 	display_name = "peacoat, colorable"
+=======
+/datum/gear/suit/peacoat
+	display_name = "peacoat (colorable)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/suit/storage/toggle/peacoat
 
-/datum/gear/suit/miscellaneous/peacoat/New()
+/datum/gear/suit/peacoat/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
+<<<<<<< HEAD
 /datum/gear/suit/snowsuit
 	display_name = "snowsuit"
 	path = /obj/item/clothing/suit/storage/snowsuit
@@ -594,6 +667,16 @@
 	display_name = "snowsuit, command"
 	path = /obj/item/clothing/suit/storage/snowsuit/command
 	allowed_roles = list("Site Manager","Research Director","Head of Personnel","Head of Security","Chief Engineer","Command Secretary")
+=======
+/datum/gear/suit/kamishimo
+	display_name = "kamishimo"
+	path = /obj/item/clothing/suit/kamishimo
+
+/datum/gear/suit/insulated
+	display_name = "jacket, insulated selection"
+	path = /obj/item/clothing/suit/storage/insulated
+	cost = 2
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 
 /datum/gear/suit/snowsuit/security
 	display_name = "snowsuit, security"
@@ -620,11 +703,16 @@
 	path = /obj/item/clothing/suit/storage/snowsuit/cargo
 	allowed_roles = list("Quartermaster","Shaft Miner","Cargo Technician","Head of Personnel")
 
+<<<<<<< HEAD
 /datum/gear/suit/miscellaneous/cardigan
 	display_name = "cardigan, colorable"
+=======
+/datum/gear/suit/cardigan
+	display_name = "cardigan (colorable)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/suit/storage/toggle/cardigan
 
-/datum/gear/suit/miscellaneous/cardigan/New()
+/datum/gear/suit/cardigan/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 

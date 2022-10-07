@@ -51,7 +51,7 @@
 	display_name = "Glasses, 3D"
 	path = /obj/item/clothing/glasses/threedglasses
 
-/datum/gear/eyes/glasses/monocle
+/datum/gear/eyes/monocle
 	display_name = "monocle"
 	path = /obj/item/clothing/glasses/monocle
 
@@ -123,6 +123,7 @@
 	display_name = "Prescription Optical Material Scanners (Mining)"
 	path = /obj/item/clothing/glasses/material/prescription
 
+<<<<<<< HEAD
 /datum/gear/eyes/meson/aviator
 	display_name = "Optical Meson Aviators, (Engineering, Science, Mining)"
 	path = /obj/item/clothing/glasses/meson/aviator
@@ -137,6 +138,14 @@
 
 /datum/gear/eyes/glasses/fakeaviator
 	display_name = "Sunglasses, stylish aviators"
+=======
+/datum/gear/eyes/fakesun
+	display_name = "sunglasses, stylish"
+	path = /obj/item/clothing/glasses/fakesunglasses
+
+/datum/gear/eyes/fakeaviator
+	display_name = "sunglasses, stylish aviators"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/glasses/fakesunglasses/aviator
 
 /datum/gear/eyes/sun

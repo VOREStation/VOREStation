@@ -110,7 +110,7 @@
     gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hitops))
 
 /datum/gear/shoes/flipflops
-	display_name = "flip flops"
+	display_name = "flip flops (colorable)"
 	path = /obj/item/clothing/shoes/flipflop
 
 /datum/gear/shoes/flipflops/New()
@@ -118,7 +118,11 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/athletic
+<<<<<<< HEAD
 	display_name = "athletic shoes"
+=======
+	display_name = "shoes, athletic (colorable)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/shoes/athletic
 
 /datum/gear/shoes/athletic/New()
@@ -126,7 +130,11 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/shoes/skater
+<<<<<<< HEAD
 	display_name = "skater shoes"
+=======
+	display_name = "shoes, skater (colorable)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/shoes/skater
 
 /datum/gear/shoes/skater/New()
@@ -196,7 +204,7 @@
 	path = 	/obj/item/clothing/shoes/dress/white
 
 /datum/gear/shoes/heels
-	display_name = "high heels"
+	display_name = "high heels (colorable)"
 	path = /obj/item/clothing/shoes/heels
 
 /datum/gear/shoes/heels/New()
@@ -207,6 +215,7 @@
 	display_name = "bunny slippers"
 	path = /obj/item/clothing/shoes/slippers
 
+<<<<<<< HEAD
 /datum/gear/shoes/boots/winter
 	display_name = "winter boots"
 	path = /obj/item/clothing/shoes/boots/winter
@@ -249,6 +258,27 @@
 	display_name = "hydroponics winter boots"
 	path = /obj/item/clothing/shoes/boots/winter/hydro
 
+=======
+/datum/gear/shoes/winter_boots
+	display_name = "boots, winter selection"
+	path = /obj/item/clothing/shoes/boots/winter
+
+/datum/gear/shoes/winter_boots/New()
+	..()
+	var/boottype = list()
+	boottype["winter boots, atmospherics"] = /obj/item/clothing/shoes/boots/winter/atmos
+	boottype["winter boots, brown"] = /obj/item/clothing/shoes/boots/winter
+	boottype["winter boots, engineering"] = /obj/item/clothing/shoes/boots/winter/engineering
+	boottype["winter boots, hydroponics"] = /obj/item/clothing/shoes/boots/winter/hydro
+	boottype["winter boots, management"] = /obj/item/clothing/shoes/boots/winter/command
+	boottype["winter boots, medical"] = /obj/item/clothing/shoes/boots/winter/medical
+	boottype["winter boots, mining"] = /obj/item/clothing/shoes/boots/winter/mining
+	boottype["winter boots, science"] = /obj/item/clothing/shoes/boots/winter/science
+	boottype["winter boots, security"] = /obj/item/clothing/shoes/boots/winter/security
+	boottype["winter boots, supply"] = /obj/item/clothing/shoes/boots/winter/supply
+
+	gear_tweaks += new/datum/gear_tweak/path(boottype)
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 /datum/gear/shoes/circuitry
 	display_name = "boots, circuitry (empty)"
 	path = /obj/item/clothing/shoes/circuitry

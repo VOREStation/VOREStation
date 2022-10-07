@@ -152,6 +152,7 @@
 	path = /obj/item/clothing/accessory/storage/brown_vest
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
 
+<<<<<<< HEAD
 /datum/gear/accessory/black_vest
 	display_name = "webbing, black"
 	path = /obj/item/clothing/accessory/storage/black_vest
@@ -164,6 +165,22 @@
 
 /datum/gear/accessory/brown_drop_pouches
 	display_name = "drop pouches, brown"
+=======
+/datum/gear/accessory/webbing_vest/New()
+	..()
+	var/webbingtype = list()
+	webbingtype["webbing, brown"] = /obj/item/clothing/accessory/storage/brown_vest
+	webbingtype["webbing, black"] = /obj/item/clothing/accessory/storage/black_vest
+	webbingtype["webbing, white"] = /obj/item/clothing/accessory/storage/white_vest
+	gear_tweaks += new/datum/gear_tweak/path(webbingtype)
+
+/datum/gear/accessory/webbing_simple
+	display_name = "webbing, simple"
+	path = /obj/item/clothing/accessory/storage/webbing
+
+/datum/gear/accessory/drop_pouches
+	display_name = "drop pouches selection (Engineering, Security, Medical)"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/accessory/storage/brown_drop_pouches
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
 

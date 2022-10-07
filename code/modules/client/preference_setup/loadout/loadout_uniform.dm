@@ -161,6 +161,7 @@
 	path = /obj/item/clothing/under/rank/cargo/skirt
 	allowed_roles = list("Quartermaster")
 
+<<<<<<< HEAD
 /datum/gear/uniform/job_skirt/warden
 	display_name = "skirt, warden"
 	path = /obj/item/clothing/under/rank/warden/skirt
@@ -178,6 +179,10 @@
 
 /datum/gear/uniform/job_turtle/science
 	display_name = "turtleneck, science"
+=======
+/datum/gear/uniform/job_turtle
+	display_name = "turtleneck, departmental selection"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/under/rank/scientist/turtleneck
 	allowed_roles = list("Research Director", "Scientist", "Roboticist", "Xenobiologist")
 
@@ -216,22 +221,22 @@
 	path = /obj/item/clothing/under/rank/cargotech/jeans/female
 	allowed_roles = list("Quartermaster","Cargo Technician")
 
-/datum/gear/uniform/suit/lawyer
+/datum/gear/uniform/suit_lawyer
 	display_name = "suit, one-piece selection"
 	path = /obj/item/clothing/under/lawyer
 
-/datum/gear/uniform/suit/lawyer/New()
+/datum/gear/uniform/suit_lawyer/New()
 	..()
 	var/list/lsuits = list()
 	for(var/obj/item/clothing/suit/lsuit_type as anything in typesof(/obj/item/clothing/under/lawyer))
 		lsuits[initial(lsuit_type.name)] = lsuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(lsuits))
 
-/datum/gear/uniform/suit/suit_jacket
+/datum/gear/uniform/suit_jacket
 	display_name = "suit, modular selection"
 	path = /obj/item/clothing/under/suit_jacket
 
-/datum/gear/uniform/suit/suit_jacket/New()
+/datum/gear/uniform/suit_jacket/New()
 	..()
 	var/list/msuits = list()
 	for(var/msuit in typesof(/obj/item/clothing/under/suit_jacket))
@@ -241,6 +246,7 @@
 		msuits[initial(msuit_type.name)] = msuit_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(msuits))
 
+<<<<<<< HEAD
 /datum/gear/uniform/suit/amish  //amish
 	display_name = "suit, amish"
 	path = /obj/item/clothing/under/sl_suit
@@ -260,18 +266,24 @@
 /datum/gear/uniform/suit/whiteskirt
 	display_name = "suit, white skirt"
 	path = /obj/item/clothing/under/scratch/skirt
+=======
+/datum/gear/uniform/detectiveblack
+	display_name = "suit, detective black (Detective)"
+	path = /obj/item/clothing/under/det/black_alt
+	allowed_roles = list("Detective")
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 
-/datum/gear/uniform/suit/detectiveskirt
+/datum/gear/uniform/detectiveskirt
 	display_name = "suit, detective skirt (Detective)"
 	path = /obj/item/clothing/under/det/skirt
 	allowed_roles = list("Detective")
 
-/datum/gear/uniform/suit/iaskirt
+/datum/gear/uniform/iaskirt
 	display_name = "suit, Internal Affairs skirt (Internal Affairs)"
 	path = /obj/item/clothing/under/rank/internalaffairs/skirt
 	allowed_roles = list("Internal Affairs Agent")
 
-/datum/gear/uniform/suit/bartenderskirt
+/datum/gear/uniform/bartenderskirt
 	display_name = "suit, bartender skirt (Bartender)"
 	path = /obj/item/clothing/under/rank/bartender/skirt
 	allowed_roles = list("Bartender")
@@ -318,6 +330,7 @@
 	path = /obj/item/clothing/under/rank/security/corp
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
+<<<<<<< HEAD
 /datum/gear/uniform/corpwarsuit
 	display_name = "uniform, corporate (Warden)"
 	path = /obj/item/clothing/under/rank/warden/corp
@@ -328,6 +341,44 @@
 	path = /obj/item/clothing/under/rank/head_of_security/corp
 	allowed_roles = list("Head of Security")
 
+=======
+/datum/gear/uniform/uniform_security/New()
+	..()
+	var/secunitype = list()
+	secunitype["officer uniform, corporate"] = /obj/item/clothing/under/rank/security/corp
+	secunitype["officer uniform, navy"] = /obj/item/clothing/under/rank/security/navyblue
+	secunitype["officer uniform, hedberg-hammarstrom"] = /obj/item/clothing/under/hedberg
+	secunitype["officer uniform, red skirt"] = /obj/item/clothing/under/rank/security/skirt
+	secunitype["detective uniform, corporate"] = /obj/item/clothing/under/det/corporate
+	gear_tweaks += new/datum/gear_tweak/path(secunitype)
+
+/datum/gear/uniform/uniform_warden
+	display_name = "uniform, warden selection"
+	path = /obj/item/clothing/under/rank/warden/corp
+	allowed_roles = list("Head of Security","Warden")
+
+/datum/gear/uniform/uniform_warden/New()
+	..()
+	var/warunitype = list()
+	warunitype["warden uniform, corporate"] = /obj/item/clothing/under/rank/warden/corp
+	warunitype["warden uniform, navy"] = /obj/item/clothing/under/rank/warden/navyblue
+	warunitype["warden uniform, red skirt"] = /obj/item/clothing/under/rank/warden/skirt
+	gear_tweaks += new/datum/gear_tweak/path(warunitype)
+
+/datum/gear/uniform/uniform_hos
+	display_name = "uniform, head of security selection"
+	path = /obj/item/clothing/under/rank/security/corp
+	allowed_roles = list("Head of Security")
+
+/datum/gear/uniform/uniform_hos/New()
+	..()
+	var/hosunitype = list()
+	hosunitype["HoS uniform, corporate"] = /obj/item/clothing/under/rank/head_of_security/corp
+	hosunitype["HoS uniform, navy"] = /obj/item/clothing/under/rank/head_of_security/navyblue
+	hosunitype["HoS Uniform, red skirt"] = /obj/item/clothing/under/rank/head_of_security/skirt
+	gear_tweaks += new/datum/gear_tweak/path(hosunitype)
+
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 /datum/gear/uniform/uniform_hop
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
@@ -542,7 +593,11 @@
 	path = /obj/item/clothing/under/dress/revealingdress
 
 /datum/gear/uniform/rippedpunk
+<<<<<<< HEAD
 	display_name = "ripped punk jeans"
+=======
+	display_name = "outfit, ripped punk"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/under/rippedpunk
 
 /datum/gear/uniform/gothic

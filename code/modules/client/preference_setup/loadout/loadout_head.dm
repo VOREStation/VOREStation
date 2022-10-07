@@ -71,6 +71,7 @@
 	display_name = "cap, blue station"
 	path = /obj/item/clothing/head/mailman
 
+<<<<<<< HEAD
 /datum/gear/head/cap/flat
 	display_name = "cap, brown-flat"
 	path = /obj/item/clothing/head/flatcap
@@ -89,10 +90,18 @@
 	path = /obj/item/clothing/head/soft/grey
 
 /datum/gear/head/cap/med
+=======
+/datum/gear/head/cap_flat
+	display_name = "cap, flat brown"
+	path = /obj/item/clothing/head/flatcap
+
+/datum/gear/head/cap_med
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	display_name = "cap, medical (Medical)"
 	path = /obj/item/clothing/head/soft/med
 	allowed_roles = list("Chief Medical Officer","Medical Doctor","Chemist","Psychiatrist","Paramedic","Search and Rescue")
 
+<<<<<<< HEAD
 /datum/gear/head/cap/orange
 	display_name = "cap, orange"
 	path = /obj/item/clothing/head/soft/orange
@@ -119,10 +128,13 @@
 	path = /obj/item/clothing/head/soft/yellow
 
 /datum/gear/head/cap/white
+=======
+/datum/gear/head/cap_colorable
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	display_name = "cap (colorable)"
 	path = /obj/item/clothing/head/soft/mime
 
-/datum/gear/head/cap/white/New()
+/datum/gear/head/cap_colorable/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
 
@@ -367,11 +379,16 @@
 	display_name = "welding, engie (engineering/robotics)"
 	path = /obj/item/clothing/head/welding/engie
 
+<<<<<<< HEAD
 /datum/gear/head/beret/solgov
 	display_name = "beret government, selection"
+=======
+/datum/gear/head/beret_gov
+	display_name = "beret, government selection"
+>>>>>>> 327a7127d3c... Merge pull request #8731 from Cerebulon/insulted
 	path = /obj/item/clothing/head/beret/solgov
 
-/datum/gear/head/beret/solgov/New()
+/datum/gear/head/beret_gov/New()
 	..()
 	var/list/sols = list()
 	for(var/sol_style in typesof(/obj/item/clothing/head/beret/solgov))
