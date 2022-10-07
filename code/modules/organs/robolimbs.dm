@@ -468,7 +468,30 @@ var/const/standard_monitor_styles = "blank=ipc_blank;\
 	parts = list(BP_L_ARM, BP_R_ARM, BP_L_HAND, BP_R_HAND, BP_L_LEG, BP_R_LEG, BP_L_FOOT, BP_R_FOOT)
 	modular_bodyparts = MODULAR_BODYPART_PROSTHETIC
 
+<<<<<<< HEAD
 /obj/item/weapon/disk/limb
+=======
+/datum/robolimb/wooden/teshari
+	company = "Morgan Trading Co - Teshari"
+	icon = 'icons/mob/human_races/cyberlimbs/prosthesis/wooden_teshari.dmi'
+	species_cannot_use = list(SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
+	species_alternates = list(SPECIES_HUMAN = "Morgan Trading Co")
+	suggested_species = SPECIES_TESHARI
+
+/datum/robolimb/wooden/sif
+	company = "Morgan Trading Co - Sif wood"
+	desc = "A simplistic, metal-banded, wood-panelled prosthetic. This one is covered in Sivian wood!"
+	icon = 'icons/mob/human_races/cyberlimbs/prosthesis/wooden_sif.dmi'
+
+/datum/robolimb/wooden/sif/teshari
+	company = "Morgan Trading Co - Sif wood - Teshari"
+	icon = 'icons/mob/human_races/cyberlimbs/prosthesis/wooden_sif_teshari.dmi'
+	species_cannot_use = list(SPECIES_UNATHI, SPECIES_PROMETHEAN, SPECIES_DIONA, SPECIES_HUMAN, SPECIES_VOX, SPECIES_HUMAN_VATBORN, SPECIES_TAJ, SPECIES_SKRELL, SPECIES_ZADDAT)
+	species_alternates = list(SPECIES_HUMAN = "Morgan Trading Co")
+	suggested_species = SPECIES_TESHARI
+
+/obj/item/disk/limb
+>>>>>>> df3ecd3a45f... Merge pull request #8713 from Greenjoe12345/woodlimb
 	name = "Limb Blueprints"
 	desc = "A disk containing the blueprints for prosthetics."
 	icon = 'icons/obj/discs_vr.dmi' //VOREStation Edit
