@@ -33,7 +33,6 @@
 	icon_state = "shirt_long_female_s"
 	has_color = TRUE
 
-
 /datum/category_item/underwear/undershirt/fishnet_simple
 	name = "Fishnet shirt"
 	icon_state = "fishnet_simple"
@@ -58,6 +57,11 @@
 	icon_state = "tanktop_alt_fem_vneck"
 	has_color = TRUE
 
+/datum/category_item/underwear/undershirt/tank_cropped
+	name = "Tank top, feminine, cropped"
+	icon_state = "tanktop_cropped"
+	has_color = TRUE
+
 /datum/category_item/underwear/undershirt/tank_cropped_vneck
 	name = "Tank top, feminine, cropped & v-neck"
 	icon_state = "tanktop_cropped_vneck"
@@ -78,6 +82,10 @@
 /datum/category_item/underwear/undershirt/tank_top_stripes
 	name = "Tank top, striped"
 	icon_state = "tank_stripes_s"
+
+/datum/category_item/underwear/undershirt/tank_top_stripes_alt
+	name = "Tank top, striped alt"
+	icon_state = "tank_stripes_alt_s"
 
 /datum/category_item/underwear/undershirt/tank_top_sun
 	name = "Tank top, sun"
@@ -135,6 +143,14 @@
 	name = "Sport shirt, blue"
 	icon_state = "blueshirtsport_s"
 
+/datum/category_item/underwear/undershirt/jersey_blue
+	name = "Sports jersey, blue"
+	icon_state = "jersey_blue"
+
+/datum/category_item/underwear/undershirt/jersey_red
+	name = "Sports jersey, red"
+	icon_state = "jersey_red"
+
 /datum/category_item/underwear/undershirt/shirt_tiedye
 	name = "Shirt, tiedye"
 	icon_state = "shirt_tiedye_s"
@@ -142,6 +158,27 @@
 /datum/category_item/underwear/undershirt/shirt_blue_striped
 	name = "Shirt, blue stripes"
 	icon_state = "shirt_stripes_s"
+
+/datum/category_item/underwear/undershirt/shirt_band
+	name = "Shirt, band"
+	icon_state = "band"
+
+
+/datum/category_item/underwear/undershirt/shirt_question
+	name = "Shirt, question mark"
+	icon_state = "shirt_question"
+
+/datum/category_item/underwear/undershirt/shirt_peace
+	name = "Shirt, peace"
+	icon_state = "peace"
+
+/datum/category_item/underwear/undershirt/shirt_alien
+	name = "Shirt, little grey man"
+	icon_state = "shirt_alien"
+
+/datum/category_item/underwear/undershirt/shirt_skull
+	name = "Shirt, red with skull"
+	icon_state = "shirt_skull"
 
 /datum/category_item/underwear/undershirt/bowling
 	name = "Bowling Shirt, Red"

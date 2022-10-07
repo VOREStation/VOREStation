@@ -37,9 +37,24 @@
 	name = "Lacy bra, alt, stripe"
 	icon_state = "lacy_bra_alt_stripe"
 
+/datum/category_item/underwear/top/bralette
+	name = "Bralette"
+	icon_state = "Bralette"
+	has_color = TRUE
+
 /datum/category_item/underwear/top/halterneck_bra
 	name = "Halterneck bra"
 	icon_state = "halterneck_bra"
+	has_color = TRUE
+
+/datum/category_item/underwear/top/straplessbra
+	name = "Strapless bra"
+	icon_state = "strapless_bra"
+	has_color = TRUE
+
+/datum/category_item/underwear/top/tubebra
+	name = "Tube Bra"
+	icon_state = "tube_bra"
 	has_color = TRUE
 
 /datum/category_item/underwear/top/tubetop
