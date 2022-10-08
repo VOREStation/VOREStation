@@ -131,6 +131,11 @@
 	desc = "Smells like cherries."
 	icon_state = "red_soap"
 
+/obj/item/weapon/soap/golden_soap
+	desc = "Smells like honey."
+	icon_state = "golden_soap"
+
+
 /obj/item/weapon/bikehorn
 	name = "bike horn"
 	desc = "A horn off of a bicycle."
