@@ -154,8 +154,6 @@
 	icon_state = "black_suit_fem"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
 
-<<<<<<< HEAD
-=======
 /obj/item/clothing/under/lawyer/modern
 	name = "black modern suit"
 	icon_state = "modern_suit_m"
@@ -173,7 +171,7 @@
 	icon_state = "trim_skirtsuit"
 	index = 1
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
->>>>>>> d565a3d1f60... Merge pull request #8706 from Cerebulon/jumpsuitsCM
+
 /obj/item/clothing/under/lawyer/red
 	name = "tacky red suit"
 	icon_state = "lawyer_red"
