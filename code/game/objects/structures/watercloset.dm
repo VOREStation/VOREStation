@@ -151,11 +151,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-<<<<<<< HEAD
-	desc = "The HS-451. Installed in the 2250s by the Hygiene Division."
-=======
 	desc = "The HS-451. Graciously provided by the Hygiene Division."
->>>>>>> 1b45aa70ba2... Merge pull request #8729 from Cerebulon/stopshowering
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = FALSE
@@ -215,11 +211,7 @@
 			add_fingerprint(user)
 
 /obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
-<<<<<<< HEAD
 	cut_overlays()					//once it's been on for a while, in addition to handling the water overlay.
-=======
-	cut_overlays()							//once it's been on for a while, in addition to handling the water overlay.
->>>>>>> 1b45aa70ba2... Merge pull request #8729 from Cerebulon/stopshowering
 	if(mymist)
 		qdel(mymist)
 		mymist = null
