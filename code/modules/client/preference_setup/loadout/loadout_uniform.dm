@@ -661,7 +661,6 @@
 	display_name = "countess dress"
 	path = /obj/item/clothing/under/dress/countess
 
-<<<<<<< HEAD
 /datum/gear/uniform/verglasdress
 	display_name = "verglas dress"
 	path = /obj/item/clothing/under/dress/verglasdress
