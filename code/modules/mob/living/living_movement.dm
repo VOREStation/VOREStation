@@ -1,5 +1,3 @@
-
-
 /mob/CanPass(atom/movable/mover, turf/target)
 	if(ismob(mover))
 		var/mob/moving_mob = mover
