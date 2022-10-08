@@ -355,7 +355,6 @@
 /obj/structure/catwalk/CheckFall(var/atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
 
-
 /obj/structure/lattice/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(target.z >= z)
 		return TRUE // We don't block sideways or upward movement.
