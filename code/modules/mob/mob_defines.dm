@@ -230,11 +230,7 @@
 	var/registered_z
 
 	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
-<<<<<<< HEAD
 
 	var/list/progressbars = null //VOREStation Edit
 
-	var/datum/focus //What receives our keyboard inputs. src by default // VOREStation Add - Key Handling
-=======
 	var/datum/focus //What receives our keyboard inputs. src by default
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
