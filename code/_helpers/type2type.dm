@@ -98,14 +98,6 @@
 	if(!direction)
 		return ""
 	var/list/dirs = list()
-<<<<<<< HEAD
-	if(direction & NORTH) dirs += "NORTH"
-	if(direction & SOUTH) dirs += "SOUTH"
-	if(direction & EAST) dirs += "EAST"
-	if(direction & WEST) dirs += "WEST"
-	if(direction & UP) dirs += "UP"
-	if(direction & DOWN) dirs += "DOWN"
-=======
 	if(direction & NORTH)
 		dirs += "NORTH"
 	if(direction & SOUTH)
@@ -118,7 +110,6 @@
 		dirs += "UP"
 	if(direction & DOWN)
 		dirs += "DOWN"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	return dirs.Join(" ")
 
 // Converts an angle (degrees) into an ss13 direction
