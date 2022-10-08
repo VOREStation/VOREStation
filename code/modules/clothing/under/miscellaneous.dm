@@ -1488,7 +1488,6 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 10) // Equivalent to engineer's jumpsuit.
 	rolled_sleeves = 0
 
-<<<<<<< HEAD
 //christmas stuff
 /obj/item/clothing/under/christmas/red
 	name = "red christmas suit"
@@ -1509,7 +1508,7 @@
 	name = "green crop-top christmas suit"
 	desc = "A simple green christmas suit that doesn't quite looks like Mrs Claus'. Smells minty!"
 	icon_state = "christmascroppedgreen"
-=======
+
 /obj/item/clothing/under/sifcop
 	name = "\improper SifGuard Police Division uniform"
 	desc = "A sturdy law enforcement uniform typical of Vir's civilian law enforcement officers."
@@ -1635,4 +1634,3 @@
 
 /obj/item/clothing/under/ranger/yellow
 	unicolor = "yellow"
->>>>>>> d565a3d1f60... Merge pull request #8706 from Cerebulon/jumpsuitsCM
