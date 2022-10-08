@@ -336,7 +336,7 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Traumahound" = "traumavale",
-					"Drake" = "draketrauma".
+					"Drake" = "draketrauma",
 					"Borgi" = "borgi-trauma"
 					)
 
