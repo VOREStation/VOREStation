@@ -80,11 +80,14 @@
 	// Runechat messages
 	var/list/seen_messages
 
+<<<<<<< HEAD
 	//Hide top bars
 	var/fullscreen = FALSE
 	//Hide status bar
 	var/show_status_bar = TRUE
 
+=======
+>>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 		///////////
 		// INPUT //
 		///////////
@@ -112,4 +115,8 @@
 	/// Movement dir of the most recently pressed movement key.  Used in cardinal-only movement mode.
 	var/last_move_dir_pressed = NONE
 
+<<<<<<< HEAD
 	#endif
+=======
+	#endif
+>>>>>>> c463104999a... Ports Diagonal Movement (#8199)

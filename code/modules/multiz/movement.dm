@@ -355,6 +355,17 @@
 /obj/structure/catwalk/CheckFall(var/atom/movable/falling_atom)
 	return falling_atom.fall_impact(src)
 
+/atom/movable/proc/can_fall_to(turf/landing)
+	// Check if there is anything in our turf we are standing on to prevent falling.
+	for(var/obj/O in loc)
+		if(!O.CanFallThru(src, landing))
+			return FALSE
+	// See if something in turf below prevents us from falling into it.
+	for(var/atom/A in landing)
+		if(!A.CanPass(src, src.loc, 1, 0))
+			return FALSE
+	return TRUE
+
 /obj/structure/lattice/CanFallThru(atom/movable/mover as mob|obj, turf/target as turf)
 	if(target.z >= z)
 		return TRUE // We don't block sideways or upward movement.

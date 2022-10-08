@@ -4,11 +4,14 @@
 // THE TRADITIONAL STYLE FROM /TG (modified)
 
 /atom/movable/keyLoop(client/user)
+<<<<<<< HEAD
 	// Bail out if the user is holding the "face direction" key (Maybe?)
 	// TODO - I think this breaks non-hotkeys WASD movement, so maybe adopt the /tg solution)
 	if(user.mod_keys_held & CTRL_KEY)
 		return
 
+=======
+>>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	var/must_call_move = FALSE
 	var/movement_dir = MOVEMENT_KEYS_TO_DIR(user.move_keys_held)
 	if(user.next_move_dir_add)

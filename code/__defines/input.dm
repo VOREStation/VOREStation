@@ -10,7 +10,11 @@
 // Combine the held WASD and arrow keys together (OR) into byond N/S/E/W dir
 #define MOVEMENT_KEYS_TO_DIR(MK) ((((MK)>>4)|(MK))&(ALL_CARDINALS))
 
+<<<<<<< HEAD
 // Bitflags for pressed modifier keys.  
+=======
+// Bitflags for pressed modifier keys.
+>>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 // Values chosen specifically to not conflict with dir bitfield, in case we want to smoosh them together.
 #define CTRL_KEY    (1<<8)
 #define SHIFT_KEY   (1<<9)
@@ -18,4 +22,8 @@
 
 // Uncomment to get a lot of debug logging for movement keys.
 // #define DEBUG_INPUT(A) to_world_log(A)
+<<<<<<< HEAD
 #define DEBUG_INPUT(A)
+=======
+#define DEBUG_INPUT(A)
+>>>>>>> c463104999a... Ports Diagonal Movement (#8199)
