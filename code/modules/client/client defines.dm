@@ -84,6 +84,7 @@
 	var/fullscreen = FALSE
 	//Hide status bar
 	var/show_status_bar = TRUE
+
 		///////////
 		// INPUT //
 		///////////
