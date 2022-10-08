@@ -313,13 +313,7 @@
 	icon_state = "soap"
 
 /obj/random/soap/item_to_spawn()
-	return pick(prob(3);/obj/item/weapon/soap,
-				prob(2);/obj/item/weapon/soap/nanotrasen,
-				prob(2);/obj/item/weapon/soap/deluxe,
-				prob(1);/obj/item/weapon/soap/syndie)
-
-=======
-	return pick(/obj/item/soap,
+	return pick(/obj/item/weapon/soap,
 				/obj/item/weapon/soap/nanotrasen,
 				/obj/item/weapon/soap/deluxe,
 				/obj/item/weapon/soap/syndie,
