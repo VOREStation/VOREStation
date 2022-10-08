@@ -13,19 +13,7 @@
 /obj/structure/sign/attackby(obj/item/tool, mob/user)	//deconstruction
 	if(tool.is_screwdriver() && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
 		playsound(src, tool.usesound, 50, 1)
-<<<<<<< HEAD
-		to_chat(user, "You unfasten the sign with your [tool].")
-		var/obj/item/sign/S = new(src.loc)
-		S.name = name
-		S.desc = desc
-		S.icon_state = icon_state
-		//var/icon/I = icon('icons/obj/decals.dmi', icon_state)
-		//S.icon = I.Scale(24, 24)
-		S.sign_state = icon_state
-		qdel(src)
-=======
 		unfasten(user)
->>>>>>> a5961218774... Merge pull request #8721 from Cerebulon/flags
 	else ..()
 
 /obj/structure/sign/proc/unfasten(mob/user)
@@ -45,12 +33,14 @@
 	icon = 'icons/obj/decals.dmi'
 	w_class = ITEMSIZE_NORMAL		//big
 	var/sign_state = ""
+	var/original_type
 
 /obj/item/sign/attackby(obj/item/tool as obj, mob/user as mob)	//construction
 	if(tool.is_screwdriver() && isturf(user.loc))
 		var/direction = tgui_input_list(usr, "In which direction?", "Select direction.", list("North", "East", "South", "West", "Cancel"))
 		if(direction == "Cancel") return
-		var/obj/structure/sign/S = new(user.loc)
+		var/target_type = original_type || /obj/structure/sign
+		var/obj/structure/sign/S = new target_type(user.loc)
 		switch(direction)
 			if("North")
 				S.pixel_y = 32
@@ -128,12 +118,17 @@
 	desc = "A warning sign which reads 'NO SMOKING'."
 	icon_state = "nosmoking2"
 
+/obj/structure/sign/nosmoking_2/burnt
+	name = "\improper NO SMOKING"
+	desc = "A warning sign which reads 'NO SMOKING'. It looks like someone didn't follow its advice..."
+	icon_state = "nosmoking2_burnt"
+
 /obj/structure/sign/warning
 	name = "\improper WARNING"
 	icon_state = "securearea"
 
-/obj/structure/sign/warning/New()
-	..()
+/obj/structure/sign/warning/Initialize()
+	. = ..()
 	desc = "A warning sign which reads '[name]'."
 
 /obj/structure/sign/warning/airlock
@@ -189,8 +184,8 @@
 	name = "\improper LETHAL TURRETS"
 	icon_state = "turrets"
 
-/obj/structure/sign/warning/lethal_turrets/New()
-	..()
+/obj/structure/sign/warning/lethal_turrets/Initialize()
+	. = ..()
 	desc += " Enter at own risk!."
 
 /obj/structure/sign/warning/mail_delivery
@@ -341,8 +336,8 @@
 //disabled this proc, it serves no purpose except to overwrite the description that already exists. may have been intended for making your own signs?
 //seems to defeat the point of having a generic directional sign that mappers could edit and use in POIs? left it here in case something breaks.
 /*
-/obj/structure/sign/directions/New()
-	..()
+/obj/structure/sign/directions/Initialize()
+	. = ..()
 	desc = "A direction sign, pointing out the way to \the [src]."
 */
 
@@ -423,7 +418,7 @@
 /obj/structure/sign/levels/security
 	name = "\improper Security Department"
 	desc = "A level sign, stating the level to find the Security Department on."
-	icon_state = "direction_sec"
+	icon_state = "level_sec"
 
 /obj/structure/sign/directions/security/armory
 	name = "\improper Armory"
@@ -433,7 +428,7 @@
 /obj/structure/sign/levels/security/armory
 	name = "\improper Armory"
 	desc = "A level sign, stating the level to find the Armory on."
-	icon_state = "direction_armory"
+	icon_state = "level_armory"
 
 /obj/structure/sign/directions/security/brig
 	name = "\improper Brig"
@@ -515,12 +510,12 @@
 /obj/structure/sign/directions/science/toxins
 	name = "\improper Toxins Lab"
 	desc = "A direction sign, pointing out the way to the Toxins Lab."
-	icon_state = "direction_sci"
+	icon_state = "direction_toxins"
 
 /obj/structure/sign/levels/science/toxins
 	name = "\improper Toxins Lab"
 	desc = "A level sign, stating the level to find the Toxins Lab on."
-	icon_state = "level_sci"
+	icon_state = "level_toxins"
 
 /obj/structure/sign/directions/science/robotics
 	name = "\improper Robotics Workshop"
@@ -586,12 +581,12 @@
 /obj/structure/sign/directions/medical/chemlab
 	name = "\improper Chemistry Lab"
 	desc = "A direction sign, pointing out the way to the Chemistry Lab."
-	icon_state = "direction_med"
+	icon_state = "direction_chemlab"
 
 /obj/structure/sign/levels/medical/chemlab
 	name = "\improper Chemistry Lab"
 	desc = "A level sign, stating the level to find the Chemistry Lab on."
-	icon_state = "level_med"
+	icon_state = "level_chemlab"
 
 /obj/structure/sign/directions/medical/surgery
 	name = "\improper Surgery"
@@ -1363,7 +1358,7 @@
 	icon_state = "level-b-large"
 
 /obj/structure/sign/level/ground
-	name = "\improper Basement Level"
+	name = "\improper Ground Level"
 	icon_state = "level-g"
 
 /obj/structure/sign/level/ground/large
@@ -1467,8 +1462,6 @@
 
 /obj/structure/sign/bigname/seg_7
 	icon_state = "cyno_7"
-<<<<<<< HEAD
-=======
 
 /obj/structure/sign/clock
 	name = "wall clock"
@@ -1638,7 +1631,7 @@
 
 /obj/structure/sign/flag/attackby(obj/item/W, mob/user)
 	..()
-	if(istype(W, /obj/item/flame/lighter) || istype(W, /obj/item/weldingtool))
+	if(istype(W, /obj/item/weapon/flame/lighter) || istype(W, /obj/item/weapon/weldingtool))
 		visible_message(SPAN_WARNING("\The [user] starts to burn \the [src] down!"))
 		if(!do_after(user, 2 SECONDS))
 			return FALSE
@@ -1938,4 +1931,3 @@
 	name = "Galactic Autonomy Party flag"
 	desc = "The flag of the libertarian Galactic Autonomy Party political party."
 	flag_path = "gap"
->>>>>>> a5961218774... Merge pull request #8721 from Cerebulon/flags
