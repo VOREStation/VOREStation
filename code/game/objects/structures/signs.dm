@@ -13,19 +13,7 @@
 /obj/structure/sign/attackby(obj/item/tool, mob/user)	//deconstruction
 	if(tool.is_screwdriver() && !istype(src, /obj/structure/sign/scenery) && !istype(src, /obj/structure/sign/double))
 		playsound(src, tool.usesound, 50, 1)
-<<<<<<< HEAD
-		to_chat(user, "You unfasten the sign with your [tool].")
-		var/obj/item/sign/S = new(src.loc)
-		S.name = name
-		S.desc = desc
-		S.icon_state = icon_state
-		//var/icon/I = icon('icons/obj/decals.dmi', icon_state)
-		//S.icon = I.Scale(24, 24)
-		S.sign_state = icon_state
-		qdel(src)
-=======
 		unfasten(user)
->>>>>>> a5961218774... Merge pull request #8721 from Cerebulon/flags
 	else ..()
 
 /obj/structure/sign/proc/unfasten(mob/user)
@@ -1467,8 +1455,6 @@
 
 /obj/structure/sign/bigname/seg_7
 	icon_state = "cyno_7"
-<<<<<<< HEAD
-=======
 
 /obj/structure/sign/clock
 	name = "wall clock"
@@ -1938,4 +1924,3 @@
 	name = "Galactic Autonomy Party flag"
 	desc = "The flag of the libertarian Galactic Autonomy Party political party."
 	flag_path = "gap"
->>>>>>> a5961218774... Merge pull request #8721 from Cerebulon/flags
