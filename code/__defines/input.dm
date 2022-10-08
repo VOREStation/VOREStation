@@ -18,8 +18,4 @@
 
 // Uncomment to get a lot of debug logging for movement keys.
 // #define DEBUG_INPUT(A) to_world_log(A)
-<<<<<<< HEAD
 #define DEBUG_INPUT(A)
-=======
-#define DEBUG_INPUT(A)
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
