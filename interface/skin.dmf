@@ -84,7 +84,6 @@ macro "borghotkeymode"
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
 	elem 
-<<<<<<< HEAD
 		name = "CTRL+SHIFT+SOUTH"
 		command = "shiftsouth"
 	elem 
@@ -93,13 +92,6 @@ macro "borghotkeymode"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-=======
-		name = "South"
-		command = "KeyDown South"
-	elem
-		name = "South+UP"
-		command = "KeyUp South"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -134,12 +126,9 @@ macro "borghotkeymode"
 		name = "5"
 		command = ".me"
 	elem 
-<<<<<<< HEAD
 		name = "6"
 		command = ".Subtle"
 	elem 
-=======
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 		name = "A"
 		command = "KeyDown A"
 	elem
@@ -187,12 +176,9 @@ macro "borghotkeymode"
 	elem
 		name = "S+UP"
 		command = "KeyUp S"
-<<<<<<< HEAD
-=======
 	elem 
 		name = "CTRL+S+REP"
 		command = ".movedown"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "T"
 		command = ".say"
@@ -285,11 +271,7 @@ macro "macro"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
-<<<<<<< HEAD
-	elem
-=======
 	elem 
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 		name = "Shift"
 		command = "KeyDown Shift"
 	elem
@@ -374,19 +356,11 @@ macro "macro"
 		name = "CTRL+SHIFT+SOUTH"
 		command = "shiftsouth"
 	elem 
-<<<<<<< HEAD
 		name = "CTRL+SHIFT+WEST"
 		command = "shiftwest"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-=======
-		name = "South"
-		command = "KeyDown South"
-	elem
-		name = "South+UP"
-		command = "KeyUp South"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -521,11 +495,7 @@ macro "hotkeymode"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
-<<<<<<< HEAD
-	elem
-=======
 	elem 
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 		name = "Shift"
 		command = "KeyDown Shift"
 	elem
@@ -603,7 +573,6 @@ macro "hotkeymode"
 	elem
 		name = "South+UP"
 		command = "KeyUp South"
-<<<<<<< HEAD
 	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
@@ -616,8 +585,6 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-=======
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -652,7 +619,6 @@ macro "hotkeymode"
 		name = "5"
 		command = ".me"
 	elem 
-<<<<<<< HEAD
 		name = "6"
 		command = ".Subtle"
 	elem 
@@ -661,22 +627,9 @@ macro "hotkeymode"
 	elem
 		name = "A+UP"
 		command = "KeyUp A"
-=======
-		name = "A"
-		command = "KeyDown A"
-	elem
-		name = "A+UP"
-		command = "KeyUp A"
 	elem 
 		name = "CTRL+A+REP"
 		command = ".moveleft"
-	elem 
-		name = "D"
-		command = "KeyDown D"
-	elem
-		name = "D+UP"
-		command = "KeyUp D"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "D"
 		command = "KeyDown D"
@@ -731,12 +684,9 @@ macro "hotkeymode"
 	elem
 		name = "S+UP"
 		command = "KeyUp S"
-<<<<<<< HEAD
-=======
 	elem 
 		name = "CTRL+S+REP"
 		command = ".movedown"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "T"
 		command = ".say"
@@ -746,12 +696,9 @@ macro "hotkeymode"
 	elem
 		name = "W+UP"
 		command = "KeyUp W"
-<<<<<<< HEAD
-=======
 	elem 
 		name = "CTRL+W+REP"
 		command = ".moveup"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "X"
 		command = ".northeast"
@@ -916,7 +863,6 @@ macro "borgmacro"
 	elem
 		name = "South+UP"
 		command = "KeyUp South"
-<<<<<<< HEAD
 	elem
 		name = "CTRL+SHIFT+NORTH"
 		command = "shiftnorth"
@@ -929,8 +875,6 @@ macro "borgmacro"
 	elem 
 		name = "CTRL+SHIFT+EAST"
 		command = "shifteast"
-=======
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "INSERT"
 		command = "a-intent right"
@@ -979,15 +923,12 @@ macro "borgmacro"
 	elem
 		name = "CTRL+S+UP"
 		command = "KeyUp S"
-<<<<<<< HEAD
-=======
 	elem 
 		name = "CTRL+W"
 		command = "KeyDown W"
 	elem
 		name = "CTRL+W+UP"
 		command = "KeyUp W"
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	elem 
 		name = "CTRL+W"
 		command = "KeyDown W"
