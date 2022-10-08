@@ -305,4 +305,4 @@ Talon jumpsuit
 	for(var/jumpsuit_style in typesof(/obj/item/clothing/under/color/fjumpsuit))
 		var/obj/item/clothing/under/color/fjumpsuit/jumpsuit = jumpsuit_style
 		jumpsuits[initial(jumpsuit.name)] = jumpsuit
-	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpsuits)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpsuits))
