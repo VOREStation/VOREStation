@@ -87,3 +87,7 @@
 	req_tech = list(TECH_MATERIAL = 7, TECH_BLUESPACE = 5, TECH_MAGNET = 6, TECH_PHORON = 3, TECH_ARCANE = 1, TECH_PRECURSOR = 2)
 	build_path = /obj/random/janusmodule
 	sort_string = "ZBBAA"
+
+/datum/design/item/precursor/janusmodule/Fabricate(var/newloc, var/fabricator)
+	var/type_to_spawn = pick(subtypesof(/obj/item/weapon/circuitboard/mecha/imperion))
+	return new type_to_spawn(newloc)
