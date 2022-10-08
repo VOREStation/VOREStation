@@ -66,7 +66,6 @@
 	name = "chaplain's striped jumpsuit"
 	icon_state = "chaplain_alt"
 	rolled_sleeves = -1
-	index = 1
 
 /obj/item/clothing/under/rank/chef
 	desc = "It's an apron which is given only to the most <b>hardcore</b> chefs in space."
@@ -157,19 +156,16 @@
 /obj/item/clothing/under/lawyer/modern
 	name = "black modern suit"
 	icon_state = "modern_suit_m"
-	index = 1
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 
 /obj/item/clothing/under/lawyer/modern/skirt
 	name = "black modern skirt"
 	icon_state = "modern_suit_f"
-	index = 1
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 
 /obj/item/clothing/under/lawyer/trimskirt
 	name = "blue-trim skirt"
 	icon_state = "trim_skirtsuit"
-	index = 1
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 
 /obj/item/clothing/under/lawyer/red
@@ -231,46 +227,39 @@
 	desc = "Just one more thing."
 	icon_state = "liaison_regular"
 	item_state_slots = list(slot_r_hand_str = "lightbrown", slot_l_hand_str = "lightbrown")
-	index = 1
 
 /obj/item/clothing/under/lawyer/retro_white
 	name = "retro white suit"
 	desc = "Snappy!"
 	icon_state = "liaison_formal"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
-	index = 1
 
 /obj/item/clothing/under/lawyer/retro_waistcoat
 	name = "retro waistcoat"
 	desc = "The spectre of CEOs past."
 	icon_state = "manager_uniform"
-	index = 1
 
 /obj/item/clothing/under/lawyer/retro_suspenders
 	name = "retro suspenders"
 	desc = "The spectre of CEOs past."
 	icon_state = "liaison_suspenders"
-	index = 1
 
 /obj/item/clothing/under/lawyer/retro_clerk
 	name = "retro clerk's suit"
 	desc = "The spectre of toadies past."
 	icon_state = "trainee_uniform"
-	index = 1
 
 /obj/item/clothing/under/lawyer/powersuit_black
 	name = "black and gold powersuit"
 	desc = "Resonates corporate energy."
 	icon_state = "director_uniform"
 	item_state_slots = list(slot_r_hand_str = "lawyer_black", slot_l_hand_str = "lawyer_black")
-	index = 1
 
 /obj/item/clothing/under/lawyer/powersuit_grey
 	name = "grey powersuit"
 	desc = "Resonates corporate energy."
 	icon_state = "stowaway_uniform"
 	item_state_slots = list(slot_r_hand_str = "white", slot_l_hand_str = "white")
-	index = 1
 
 /obj/item/clothing/under/oldwoman
 	name = "Old Woman's Attire"
