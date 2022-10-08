@@ -16,7 +16,6 @@
 	worn_state = "blackf"
 	rolled_sleeves = -1
 	rolled_down = -1
-	index = 1
 
 /obj/item/clothing/under/color/blackjumpskirt
 	name = "black jumpskirt"
@@ -25,7 +24,6 @@
 	item_state_slots = list(slot_r_hand_str = "black", slot_l_hand_str = "black")
 	rolled_sleeves = -1
 	rolled_down = -1
-	index = 1
 
 /obj/item/clothing/under/color/blue
 	name = "blue jumpsuit"
