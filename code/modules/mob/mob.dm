@@ -40,12 +40,8 @@
 	else
 		living_mob_list += src
 	lastarea = get_area(src)
-<<<<<<< HEAD
 	set_focus(src) // VOREStation Add - Key Handling
 	hook_vr("mob_new",list(src)) //VOREStation Code
-=======
-	set_focus(src) // Key Handling
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	update_transform() // Some mobs may start bigger or smaller than normal.
 	return ..()
 
@@ -1274,8 +1270,6 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/proc/grab_ghost(force)
 	if(mind)
 		return mind.grab_ghost(force = force)
-<<<<<<< HEAD
-=======
 
 /mob/proc/get_sound_volume_multiplier()
 	return !ear_deaf
@@ -1284,4 +1278,3 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 	var/datum/reagents/R = new /datum/reagents(amount)
 	. = holder.trans_to_holder(R, amount, multiplier, copy)
 	R.touch_mob(src)
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
