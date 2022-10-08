@@ -22,11 +22,7 @@ var/global/list/MOVE_KEY_MAPPINGS = list(
 
 	// Map text sent by skin.dmf to our numeric codes. (This can be optimized away once we update skin.dmf)
 	var/movekey = MOVE_KEY_MAPPINGS[movekeyName]
-<<<<<<< HEAD
-	
-=======
 
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
 	// Validate input.  Must be one (and only one) of the key codes)
 	if(isnull(movekey) || (movekey & ~0xFFF) || (movekey & (movekey - 1)))
 		log_debug("Client [ckey] sent an illegal movement key down: [movekeyName] ([movekey])")
