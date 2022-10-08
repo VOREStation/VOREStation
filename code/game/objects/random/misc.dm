@@ -313,7 +313,6 @@
 	icon_state = "soap"
 
 /obj/random/soap/item_to_spawn()
-<<<<<<< HEAD
 	return pick(prob(3);/obj/item/weapon/soap,
 				prob(2);/obj/item/weapon/soap/nanotrasen,
 				prob(2);/obj/item/weapon/soap/deluxe,
@@ -321,30 +320,29 @@
 
 =======
 	return pick(/obj/item/soap,
-				/obj/item/soap/nanotrasen,
-				/obj/item/soap/deluxe,
-				/obj/item/soap/syndie,
-				/obj/item/soap/space_soap,
-				/obj/item/soap/space_soap,
-				/obj/item/soap/water_soap,
-				/obj/item/soap/fire_soap,
-				/obj/item/soap/rainbow_soap,
-				/obj/item/soap/diamond_soap,
-				/obj/item/soap/uranium_soap,
-				/obj/item/soap/silver_soap,
-				/obj/item/soap/brown_soap,
-				/obj/item/soap/white_soap,
-				/obj/item/soap/grey_soap,
-				/obj/item/soap/pink_soap,
-				/obj/item/soap/purple_soap,
-				/obj/item/soap/blue_soap,
-				/obj/item/soap/cyan_soap,
-				/obj/item/soap/green_soap,
-				/obj/item/soap/yellow_soap,
-				/obj/item/soap/orange_soap,
-				/obj/item/soap/red_soap,
-				/obj/item/soap/golden_soap)
->>>>>>> a4b3804617d... Merge pull request #8726 from Cerebulon/sope
+				/obj/item/weapon/soap/nanotrasen,
+				/obj/item/weapon/soap/deluxe,
+				/obj/item/weapon/soap/syndie,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/water_soap,
+				/obj/item/weapon/soap/fire_soap,
+				/obj/item/weapon/soap/rainbow_soap,
+				/obj/item/weapon/soap/diamond_soap,
+				/obj/item/weapon/soap/uranium_soap,
+				/obj/item/weapon/soap/silver_soap,
+				/obj/item/weapon/soap/brown_soap,
+				/obj/item/weapon/soap/white_soap,
+				/obj/item/weapon/soap/grey_soap,
+				/obj/item/weapon/soap/pink_soap,
+				/obj/item/weapon/soap/purple_soap,
+				/obj/item/weapon/soap/blue_soap,
+				/obj/item/weapon/soap/cyan_soap,
+				/obj/item/weapon/soap/green_soap,
+				/obj/item/weapon/soap/yellow_soap,
+				/obj/item/weapon/soap/orange_soap,
+				/obj/item/weapon/soap/red_soap,
+				/obj/item/weapon/soap/golden_soap)
 
 /obj/random/drinkbottle
 	name = "random drink"
