@@ -440,7 +440,7 @@
 	name = "pink feminine jumpsuit"
 	icon_state = "pink"
 	worn_state = "pinkf"
-/obj/item/clothing/under/color/fjumpsuit/purplef //NEEDS EAST SPRITE.
+/obj/item/clothing/under/color/fjumpsuit/purplef
 	name = "purple feminine jumpsuit"
 	icon_state = "purple"
 	worn_state = "purplef"
