@@ -956,7 +956,6 @@
 	name = "cyberpunk split-side ensemble"
 	desc = "Cyberpunk styled split-side pants and matching top. Just in time for the dystopian future."
 	icon_state = "hart_jumpsuit"
-	index = 1
 
 /obj/item/clothing/under/blackngold
 	name = "black and gold gown"
@@ -1535,14 +1534,12 @@
 	name = "retro outsdoorwear"
 	desc = "A puffer vest over utility pants, for when you're really rustic and want everybody to know it."
 	icon_state = "liaison_outing"
-	index = 1
 
 /obj/item/clothing/under/hightrousers
 	name = "high-waisted trousers"
 	desc = "A waistline this high is just made for ripping bodices, swashing buckles, or - just occasionally - sucking blood."
 	icon_state = "gayvampire"
 	worn_state = "gayvampire"
-	index = 1
 
 /obj/item/clothing/under/rank/psych/turtleneck/sweater
 	desc = "A warm looking sweater and a pair of dark blue slacks."
