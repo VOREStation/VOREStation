@@ -10,8 +10,4 @@ SUBSYSTEM_DEF(input)
 	var/list/clients = GLOB.clients // Let's sing the list cache song
 	for(var/i in 1 to clients.len)
 		var/client/C = clients[i]
-<<<<<<< HEAD
 		C?.keyLoop()
-=======
-		C?.keyLoop()
->>>>>>> c463104999a... Ports Diagonal Movement (#8199)
