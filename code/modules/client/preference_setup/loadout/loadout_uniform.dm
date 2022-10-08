@@ -54,11 +54,6 @@
 		jumpclothes[initial(jumps.name)] = jumps
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpclothes))
 
-<<<<<<< HEAD
-/datum/gear/uniform/qipao_colorable
-	display_name = "qipao, colorable"
-	path = /obj/item/clothing/under/qipao_colorable
-=======
 /datum/gear/uniform/colorable_jumpsuit
 	display_name = "jumpsuit, colorable"
 	path = /obj/item/clothing/under/colorable
@@ -70,7 +65,10 @@
 /datum/gear/uniform/qipao
 	display_name = "qipao"
 	path = /obj/item/clothing/under/qipao
->>>>>>> d565a3d1f60... Merge pull request #8706 from Cerebulon/jumpsuitsCM
+
+/datum/gear/uniform/qipao_colorable
+	display_name = "qipao, colorable"
+	path = /obj/item/clothing/under/qipao_colorable
 
 /datum/gear/uniform/qipao_colorable/New()
 	..()
@@ -817,7 +815,7 @@
 	display_name = "outfit, kaleidoscope (Science)"
 	path = 	/obj/item/clothing/under/corp/kaleidoscope
 	allowed_roles = list("Research Director","Scientist","Xenobiologist")
-=======
+
 /datum/gear/uniform/vampire
 	display_name = "pants, high-waisted trousers"
 	path = /obj/item/clothing/under/hightrousers
@@ -826,4 +824,3 @@
 	display_name = "jumpsuit, chaplain striped"
 	path = /obj/item/clothing/under/rank/chaplain/alt
 	allowed_roles = list("Chaplain")
->>>>>>> d565a3d1f60... Merge pull request #8706 from Cerebulon/jumpsuitsCM
