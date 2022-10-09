@@ -131,7 +131,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 	if(L.stat == DEAD)
 		return null // Can't heal the dead with healbelly
 	var/mob/living/carbon/human/H = L
-	if(B.owner.nutrition > 90 && H.isSynthetic())
+	if((B.owner.nutrition > 90 || istype(B.owner, /mob/living/silicon/pai)) && H.isSynthetic()) //PAIs can't get any supplemental nutrition.
 		for(var/obj/item/organ/external/E in H.organs) //Needed for healing prosthetics
 			var/obj/item/organ/external/O = E
 			if(O.brute_dam > 0 || O.burn_dam > 0) //Making sure healing continues until fixed.
@@ -142,7 +142,7 @@ GLOBAL_LIST_INIT(digest_modes, list())
 				L.adjustOxyLoss(-2)
 				L.adjustCloneLoss(-1)
 				B.owner.adjust_nutrition(-1)  // Normal cost per old functionality
-	if(B.owner.nutrition > 90 && (L.health < L.maxHealth) && !H.isSynthetic())
+	if((B.owner.nutrition > 90 || istype(B.owner, /mob/living/silicon/pai)) && (L.health < L.maxHealth) && !H.isSynthetic())
 		L.adjustBruteLoss(-2.5)
 		L.adjustFireLoss(-2.5)
 		L.adjustToxLoss(-5)
