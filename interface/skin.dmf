@@ -625,9 +625,6 @@ macro "hotkeymode"
 		name = "A+UP"
 		command = "KeyUp A"
 	elem 
-		name = "CTRL+A+REP"
-		command = ".moveleft"
-	elem 
 		name = "D"
 		command = "KeyDown D"
 	elem
