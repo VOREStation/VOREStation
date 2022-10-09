@@ -179,7 +179,7 @@
 	icon_state = "ace_knee"
 
 /datum/category_item/underwear/socks/trans_knee
-	name = "Trans Pride Thigh Socks"
+	name = "Trans Pride Knee Socks"
 	icon_state = "trans_knee"
 
 /datum/category_item/underwear/socks/trans_thigh
