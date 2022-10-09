@@ -177,9 +177,6 @@ macro "borghotkeymode"
 		name = "S+UP"
 		command = "KeyUp S"
 	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
-	elem 
 		name = "T"
 		command = ".say"
 	elem "w_key"
@@ -685,9 +682,6 @@ macro "hotkeymode"
 		name = "S+UP"
 		command = "KeyUp S"
 	elem 
-		name = "CTRL+S+REP"
-		command = ".movedown"
-	elem 
 		name = "T"
 		command = ".say"
 	elem "w_key"
@@ -696,9 +690,6 @@ macro "hotkeymode"
 	elem
 		name = "W+UP"
 		command = "KeyUp W"
-	elem 
-		name = "CTRL+W+REP"
-		command = ".moveup"
 	elem 
 		name = "X"
 		command = ".northeast"
@@ -923,12 +914,6 @@ macro "borgmacro"
 	elem
 		name = "CTRL+S+UP"
 		command = "KeyUp S"
-	elem 
-		name = "CTRL+W"
-		command = "KeyDown W"
-	elem
-		name = "CTRL+W+UP"
-		command = "KeyUp W"
 	elem 
 		name = "CTRL+W"
 		command = "KeyDown W"
