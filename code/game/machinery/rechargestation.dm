@@ -93,8 +93,7 @@
 			P.nutrition = min(P.nutrition+10, 400)
 			cell.use(7000/450*10)
 	//VOREStation Add End
-		
-		//do stuff
+
 	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 
