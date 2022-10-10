@@ -292,3 +292,17 @@ Talon jumpsuit
 	for(var/obj/item/clothing/under/pants/altevian/pants_type as anything in typesof(/obj/item/clothing/under/pants/altevian))
 		pants[initial(pants_type.name)] = pants_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
+
+
+//Feminine Colored Jumpsuits.
+/datum/gear/suit/f_jumpsuit_alt
+	display_name = "Colored Feminine Jumpsuit"
+	path = /obj/item/clothing/under/color/fjumpsuit
+
+/datum/gear/uniform/f_jumpsuit_alt/New()
+	..()
+	var/list/jumpsuits = list()
+	for(var/jumpsuit_style in typesof(/obj/item/clothing/under/color/fjumpsuit))
+		var/obj/item/clothing/under/color/fjumpsuit/jumpsuit = jumpsuit_style
+		jumpsuits[initial(jumpsuit.name)] = jumpsuit
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpsuits))
