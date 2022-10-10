@@ -188,7 +188,7 @@
 
 /datum/nifsoft/malware/activate()
 	if((. = ..()))
-		to_chat(nif.human,"<span class='danger'>Runtime error in 15_misc.dm, line 189.</span>")
+		to_chat(nif.human,"<span class='danger'>Runtime error in 15_misc.dm, line 191.</span>")
 
 /datum/nifsoft/malware/install()
 	if((. = ..()))
