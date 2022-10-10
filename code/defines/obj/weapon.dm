@@ -29,9 +29,9 @@
 
 /obj/item/weapon/soap
 	name = "soap"
-	desc = "A cheap bar of soap. Doesn't smell."
+	desc = "A cheap bar of soap. Smells of lye."
 	gender = PLURAL
-	icon = 'icons/obj/items.dmi'
+	icon = 'icons/obj/soap.dmi'
 	icon_state = "soap"
 	flags = NOCONDUCT
 	w_class = ITEMSIZE_SMALL
@@ -41,7 +41,7 @@
 	throw_range = 20
 
 /obj/item/weapon/soap/nanotrasen
-	desc = "A NanoTrasen-brand bar of soap. Smells of phoron."
+	desc = "A NanoTrasen-brand bar of soap. Smells of phoron, a years-old marketing gimmick."
 	icon_state = "soapnt"
 
 /obj/item/weapon/soap/deluxe
@@ -54,6 +54,87 @@
 /obj/item/weapon/soap/syndie
 	desc = "An untrustworthy bar of soap. Smells of fear."
 	icon_state = "soapsyndie"
+
+/obj/item/weapon/soap/syndie
+	desc = "An dubious bar of soap. Smells of lyes."
+	icon_state = "soapsyndie"
+
+/obj/item/weapon/soap/space_soap
+	desc = "Smells like hot metal and walnuts."
+	icon_state = "space_soap"
+
+/obj/item/weapon/soap/water_soap
+	desc = "Smells like chlorine."
+	icon_state = "water_soap"
+
+/obj/item/weapon/soap/fire_soap
+	desc = "Smells like a campfire."
+	icon_state = "fire_soap"
+
+/obj/item/weapon/soap/rainbow_soap
+	desc = "Smells sickly sweet."
+	icon_state = "rainbow_soap"
+
+/obj/item/weapon/soap/diamond_soap
+	desc = "Smells like saffron and vanilla."
+	icon_state = "diamond_soap"
+
+/obj/item/weapon/soap/uranium_soap
+	desc = "Smells not great... Not terrible."
+	icon_state = "uranium_soap"
+
+/obj/item/weapon/soap/silver_soap
+	desc = "Smells like birch and amaranth."
+	icon_state = "silver_soap"
+
+/obj/item/weapon/soap/brown_soap
+	desc = "Smells like cinnamon and cognac."
+	icon_state = "brown_soap"
+
+/obj/item/weapon/soap/white_soap
+	desc = "Smells like nutmeg and oats."
+	icon_state = "white_soap"
+
+/obj/item/weapon/soap/grey_soap
+	desc = "Smells like bergamot and lilies."
+	icon_state = "grey_soap"
+
+/obj/item/weapon/soap/pink_soap
+	desc = "Smells like bubblegum."
+	icon_state = "pink_soap"
+
+/obj/item/weapon/soap/purple_soap
+	desc = "Smells like lavender."
+	icon_state = "purple_soap"
+
+/obj/item/weapon/soap/blue_soap
+	desc = "Smells like cardamom."
+	icon_state = "blue_soap"
+
+/obj/item/weapon/soap/cyan_soap
+	desc = "Smells like bluebells and peaches."
+	icon_state = "cyan_soap"
+
+/obj/item/weapon/soap/green_soap
+	desc = "Smells like a freshly mowed lawn."
+	icon_state = "green_soap"
+
+/obj/item/weapon/soap/yellow_soap
+	desc = "Smells like citron and ginger."
+	icon_state = "yellow_soap"
+
+/obj/item/weapon/soap/orange_soap
+	desc = "Smells like oranges and dark chocolate."
+	icon_state = "orange_soap"
+
+/obj/item/weapon/soap/red_soap
+	desc = "Smells like cherries."
+	icon_state = "red_soap"
+
+/obj/item/weapon/soap/golden_soap
+	desc = "Smells like honey."
+	icon_state = "golden_soap"
+
 
 /obj/item/weapon/bikehorn
 	name = "bike horn"
@@ -395,6 +476,7 @@
 		if(B.rped_rating() > lowest_rating)
 			continue
 		remove_from_storage(B, T)
+
 
 /obj/item/weapon/stock_parts
 	name = "stock part"
