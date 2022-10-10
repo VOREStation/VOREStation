@@ -71,7 +71,7 @@
 //Processes the occupant, drawing from the internal power cell if needed.
 /obj/machinery/recharge_station/proc/process_occupant()
 	if(isrobot(occupant))
-		var/mob/living/silicon/robot/R = occupant
+		var/mob/living/silicon/robot/R = occupant  //VOREStation Edit
 		if(R.module)
 			R.module.respawn_consumable(R, charging_power * CELLRATE / 250) //consumables are magical, apparently
 		if(R.cell && !R.cell.fully_charged())
@@ -84,6 +84,17 @@
 			R.adjustBruteLoss(-weld_rate)
 		if(wire_rate && R.getFireLoss() && cell.checked_use(wire_power_use * wire_rate * CELLRATE))
 			R.adjustFireLoss(-wire_rate)
+	
+	//VOREStation Add Start
+	else if(ispAI(occupant))
+		var/mob/living/silicon/pai/P = occupant
+			
+		if(P.nutrition < 400)
+			P.nutrition = min(P.nutrition+10, 400)
+			cell.use(7000/450*10)
+	//VOREStation Add End
+		
+		//do stuff
 	else if(ishuman(occupant))
 		var/mob/living/carbon/human/H = occupant
 
@@ -258,6 +269,21 @@
 		occupant = R
 		update_icon()
 		return 1
+		
+	//VOREStation Add Start
+	else if(istype(L, /mob/living/silicon/pai))
+		var/mob/living/silicon/pai/P = L
+
+		if(P.incapacitated())
+			return
+
+		add_fingerprint(P)
+		P.reset_view(src)
+		P.forceMove(src)
+		occupant = P
+		update_icon()
+		return 1
+	//VOREStation Add End
 
 	else if(istype(L,  /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = L
