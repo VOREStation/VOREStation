@@ -268,7 +268,7 @@ macro "macro"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
-	elem
+	elem 
 		name = "Shift"
 		command = "KeyDown Shift"
 	elem
@@ -492,7 +492,7 @@ macro "hotkeymode"
 	elem 
 		name = "TAB"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
-	elem
+	elem 
 		name = "Shift"
 		command = "KeyDown Shift"
 	elem
