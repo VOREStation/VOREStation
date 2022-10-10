@@ -226,6 +226,14 @@
 		/obj/item/clothing/head/fluff/nikki,
 		/obj/item/clothing/under/skirt/outfit/fluff/nikki,
 		/obj/item/clothing/shoes/fluff/nikki)
+		
+// DefiintelyNotARock:Aku Zoles
+/obj/item/weapon/storage/secure/briefcase/dealer
+	name = "Aku's Dealer briefcase"
+	desc = "A slick black briefcase with a digital lock."
+	starts_with = list(
+		/obj/item/weapon/spacecasinocash/c1000 = 3,
+		/obj/item/weapon/storage/dicecup/loaded = 3)
 
 /*
 Swimsuits, for general use, to avoid arriving to work with your swimsuit.

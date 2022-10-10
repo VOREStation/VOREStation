@@ -261,11 +261,11 @@ GLOBAL_LIST_EMPTY(all_turbines)
 
 	src.set_dir(turn(src.dir, 90))
 
-/obj/machinery/power/generator/power_spike()
-//	if(!effective_gen >= max_power / 2 && powernet) // Don't make a spike if we're not making a whole lot of power.
-//		return
+/obj/machinery/power/generator/power_spike(var/announce_prob = 30)
+	if(!(effective_gen >= max_power / 2 && powernet)) // Don't make a spike if we're not making a whole lot of power.
+		return
 
-	var/list/powernet_union = powernet.nodes
+	var/list/powernet_union = powernet.nodes.Copy()
 	for(var/obj/machinery/power/terminal/T in powernet.nodes)
 		if(T.master && istype(T.master, /obj/machinery/power/smes))
 			var/obj/machinery/power/smes/S = T.master
@@ -273,7 +273,7 @@ GLOBAL_LIST_EMPTY(all_turbines)
 
 	var/found_grid_checker = FALSE
 	for(var/obj/machinery/power/grid_checker/G in powernet_union)
-		G.power_failure(prob(30)) // If we found a grid checker, then all is well.
+		G.power_failure(announce_prob) // If we found a grid checker, then all is well.
 		found_grid_checker = TRUE
 	if(!found_grid_checker) // Otherwise lets break some stuff.
 		spawn(1)

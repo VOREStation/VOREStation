@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/
+	surgery_name = "Robotic Surgery"
 	can_infect = 0
 
 /datum/surgery_step/robotics/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
@@ -29,6 +30,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/unscrew_hatch
+	surgery_name = "Unscrew Hatch"
 	allowed_tools = list(
 		/obj/item/weapon/coin = 50,
 		/obj/item/weapon/material/knife = 50
@@ -68,6 +70,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/open_hatch
+	surgery_name = "Open Hatch"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
@@ -105,6 +108,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/close_hatch
+	surgery_name = "Close Hatch"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
 		/obj/item/weapon/material/kitchen/utensil = 50
@@ -143,6 +147,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/repair_brute
+	surgery_name = "Repair Robotic Brute"
 	allowed_tools = list(
 		/obj/item/weapon/weldingtool = 100,
 		/obj/item/weapon/pickaxe/plasmacutter = 50
@@ -184,6 +189,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/repair_burn
+	surgery_name = "Repair Robotic Burn"
 	allowed_tools = list(
 		/obj/item/stack/cable_coil = 100
 	)
@@ -232,6 +238,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/fix_organ_robotic //For artificial organs
+	surgery_name = "Fix Robotic Organ"
 	allowed_tools = list(
 	/obj/item/stack/nanopaste = 100,		\
 	/obj/item/weapon/surgical/bonegel = 30, 		\
@@ -302,7 +309,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/detatch_organ_robotic
-
+	surgery_name = "Detach Robotic Organ"
 	allowed_tools = list(
 	/obj/item/device/multitool = 100
 	)
@@ -317,23 +324,31 @@
 	if(affected.open < 3)
 		return 0
 
-	target.op_stage.current_organ = null
+	var/list/attached_organs = list() //Let's see if we have any organs able to be detached!
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/I = target.internal_organs_by_name[organ]
+		if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
+			attached_organs |= organ
 
-	var/list/attached_organs = list()
+	if(!attached_organs.len) //No organs able to be detached!
+		return 0
+
+	return ..()
+
+/datum/surgery_step/robotics/detatch_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+	var/list/attached_organs = list() //Which organs can we detach?
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/I = target.internal_organs_by_name[organ]
 		if(I && !(I.status & ORGAN_CUT_AWAY) && I.parent_organ == target_zone)
 			attached_organs |= organ
 
 	var/organ_to_remove = tgui_input_list(user, "Which organ do you want to prepare for removal?", "Organ Choice", attached_organs)
-	if(!organ_to_remove)
-		return 0
 
+	if(!organ_to_remove) //They chose cancel!
+		to_chat(user, "<span class='notice'>You decide against preparing any organs for removal.</span>")
+		return
 	target.op_stage.current_organ = organ_to_remove
 
-	return ..() && organ_to_remove
-
-/datum/surgery_step/robotics/detatch_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("[user] starts to decouple [target]'s [target.op_stage.current_organ] with \the [tool].", \
 	"You start to decouple [target]'s [target.op_stage.current_organ] with \the [tool]." )
 	..()
@@ -345,6 +360,7 @@
 	var/obj/item/organ/internal/I = target.internal_organs_by_name[target.op_stage.current_organ]
 	if(I && istype(I))
 		I.status |= ORGAN_CUT_AWAY
+	target.op_stage.current_organ = null
 
 /datum/surgery_step/robotics/detatch_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips, disconnecting \the [tool].</span>", \
@@ -355,6 +371,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/attach_organ_robotic
+	surgery_name = "Attach Robotic Organ"
 	allowed_procs = list(IS_SCREWDRIVER = 100)
 
 	min_duration = 100
@@ -367,22 +384,33 @@
 	if(affected.open < 3)
 		return 0
 
-	target.op_stage.current_organ = null
-
-	var/list/removable_organs = list()
+	var/list/attachable_organs = list()
 	for(var/organ in target.internal_organs_by_name)
 		var/obj/item/organ/I = target.internal_organs_by_name[organ]
 		if(I && (I.status & ORGAN_CUT_AWAY) && (I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
-			removable_organs |= organ
+			attachable_organs |= organ
 
-	var/organ_to_replace = tgui_input_list(user, "Which organ do you want to reattach?", "Organ Choice", removable_organs)
-	if(!organ_to_replace)
+	if(!attachable_organs.len)
 		return 0
 
-	target.op_stage.current_organ = organ_to_replace
 	return ..()
 
 /datum/surgery_step/robotics/attach_organ_robotic/begin_step(mob/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
+
+	var/list/attachable_organs = list()
+	for(var/organ in target.internal_organs_by_name)
+		var/obj/item/organ/I = target.internal_organs_by_name[organ]
+		if(I && (I.status & ORGAN_CUT_AWAY) && (I.robotic >= ORGAN_ROBOT) && I.parent_organ == target_zone)
+			attachable_organs |= organ
+
+	var/organ_to_replace = tgui_input_list(user, "Which organ do you want to reattach?", "Organ Choice", attachable_organs)
+	if(!organ_to_replace) //They chose cancel!
+		to_chat(user, "<span class='notice'>You decide against reattaching any organs.</span>")
+		return
+
+
+	target.op_stage.current_organ = organ_to_replace
+
 	user.visible_message("[user] begins reattaching [target]'s [target.op_stage.current_organ] with \the [tool].", \
 	"You start reattaching [target]'s [target.op_stage.current_organ] with \the [tool].")
 	..()
@@ -394,6 +422,7 @@
 	var/obj/item/organ/I = target.internal_organs_by_name[target.op_stage.current_organ]
 	if(I && istype(I))
 		I.status &= ~ORGAN_CUT_AWAY
+	target.op_stage.current_organ = null
 
 /datum/surgery_step/robotics/attach_organ_robotic/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips, disconnecting \the [tool].</span>", \
@@ -404,6 +433,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/robotics/install_mmi
+	surgery_name = "Install MMI"
 	allowed_tools = list(
 	/obj/item/device/mmi = 100
 	)
@@ -475,9 +505,11 @@
 			if(clean_name)
 				var/okay = tgui_alert(target,"New name will be '[clean_name]', ok?", "Confirmation",list("Cancel","Ok"))
 				if(okay == "Ok")
-					target.name = new_name
-					target.real_name = target.name
-					return
+					new_name = clean_name
+
+		new_name = sanitizeName(new_name, allow_numbers = TRUE)
+		target.name = new_name
+		target.real_name = target.name
 
 /datum/surgery_step/robotics/install_mmi/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	user.visible_message("<span class='warning'>[user]'s hand slips.</span>", \
@@ -488,6 +520,7 @@
  */
 
 /datum/surgery_step/robotics/install_nymph
+	surgery_name = "Install Nymph"
 	allowed_tools = list(
 	/obj/item/weapon/holder/diona = 100
 	)

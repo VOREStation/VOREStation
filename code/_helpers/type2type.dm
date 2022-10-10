@@ -98,12 +98,18 @@
 	if(!direction)
 		return ""
 	var/list/dirs = list()
-	if(direction & NORTH) dirs += "NORTH"
-	if(direction & SOUTH) dirs += "SOUTH"
-	if(direction & EAST) dirs += "EAST"
-	if(direction & WEST) dirs += "WEST"
-	if(direction & UP) dirs += "UP"
-	if(direction & DOWN) dirs += "DOWN"
+	if(direction & NORTH)
+		dirs += "NORTH"
+	if(direction & SOUTH)
+		dirs += "SOUTH"
+	if(direction & EAST)
+		dirs += "EAST"
+	if(direction & WEST)
+		dirs += "WEST"
+	if(direction & UP)
+		dirs += "UP"
+	if(direction & DOWN)
+		dirs += "DOWN"
 	return dirs.Join(" ")
 
 // Converts an angle (degrees) into an ss13 direction

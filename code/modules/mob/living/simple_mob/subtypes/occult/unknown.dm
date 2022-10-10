@@ -260,7 +260,7 @@
 	vision_range = 10
 	closest_distance = 4
 
-/datum/ai_holder/simple_mob/ranged/bossmob_glitch/pre_special_attack(atom/A)
+/datum/ai_holder/simple_mob/ranged/aggressive/bossmob_glitch/pre_special_attack(atom/A)
 	var/mob/living/simple_mob/glitch_boss/GB
 	if(istype(holder, /mob/living/simple_mob/glitch_boss))
 		GB = holder

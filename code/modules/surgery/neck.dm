@@ -4,6 +4,7 @@
 //////////////////////////////////////////////////////////////////////
 
 /datum/surgery_step/brainstem
+	surgery_name = "Brainstem"
 	priority = 2
 	req_open = 1
 	can_infect = 1
@@ -23,6 +24,7 @@
 /////////////////////////////
 
 /datum/surgery_step/brainstem/mend_vessels
+	surgery_name = "Mend Vessels"
 	priority = 1
 	allowed_tools = list(
 		/obj/item/weapon/surgical/FixOVein = 100,
@@ -57,6 +59,7 @@
 /////////////////////////////
 
 /datum/surgery_step/brainstem/drill_vertebrae
+	surgery_name = "Drill Vertebrae"
 	priority = 3 //Do this instead of expanding the skull cavity
 	allowed_tools = list(
 		/obj/item/weapon/surgical/surgicaldrill = 100,
@@ -100,6 +103,7 @@
 /////////////////////////////
 
 /datum/surgery_step/brainstem/clean_chips
+	surgery_name = "Remove Bone Chips"
 	priority = 3 //Do this instead of picking around for implants.
 	allowed_tools = list(
 		/obj/item/weapon/surgical/hemostat = 100,
@@ -139,6 +143,7 @@
 /////////////////////////////
 
 /datum/surgery_step/brainstem/mend_cord
+	surgery_name = "Mend Spinal Cord"
 	priority = 1 //Do this after IB.
 	allowed_tools = list(
 		/obj/item/weapon/surgical/FixOVein = 100,
@@ -179,6 +184,7 @@
 /////////////////////////////
 
 /datum/surgery_step/brainstem/mend_vertebrae
+	surgery_name = "Mend Vertebrae"
 	priority = 3 //Do this instead of fixing bones.
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonegel = 100,
@@ -217,6 +223,7 @@
 /////////////////////////////
 
 /datum/surgery_step/brainstem/realign_tissue
+	surgery_name = "Realign Tissue"
 	priority = 3 //Do this instead of searching for objects in the skull.
 	allowed_tools = list(
 		/obj/item/weapon/surgical/hemostat = 100,

@@ -53,8 +53,7 @@
 	name = "[src.registered_name]'s ID Card ([src.assignment])"
 
 /obj/item/weapon/card/id/proc/set_id_photo(var/mob/M)
-	COMPILE_OVERLAYS(M)
-	SSoverlays.queue -= M
+	M.ImmediateOverlayUpdate()
 	var/icon/F = getFlatIcon(M, defdir = SOUTH, no_anim = TRUE)
 	front = "'data:image/png;base64,[icon2base64(F)]'"
 

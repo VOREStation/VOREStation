@@ -91,7 +91,7 @@
 	return "synthetic"
 
 /mob/living/simple_mob/protean_blob/get_available_emotes()
-	return global._robot_default_emotes
+	return global._robot_default_emotes.Copy()
 
 /mob/living/simple_mob/protean_blob/init_vore()
 	return //Don't make a random belly, don't waste your time

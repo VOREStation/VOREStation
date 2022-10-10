@@ -128,12 +128,8 @@
 						to_chat(M, "<span class='notice'>[formatted_message]</span>")
 				else
 					if (digest_mode == DM_SELECT)
-						if (M.digestable)
-							EL = emote_lists[DM_DIGEST]
-						else if (M.absorbable)
-							EL = emote_lists[DM_ABSORB]
-						else
-							EL = emote_lists[DM_HOLD]
+						var/datum/digest_mode/selective/DM_S = GLOB.digest_modes[DM_SELECT]
+						EL = emote_lists[DM_S.get_selective_mode(src, M)]
 					else if(digest_mode == DM_DIGEST && !M.digestable)
 						EL = emote_lists[DM_HOLD]					// Use Hold's emote list if we're indigestible
 

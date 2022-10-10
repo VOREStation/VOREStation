@@ -233,4 +233,4 @@
 
 	var/list/progressbars = null //VOREStation Edit
 
-	var/datum/focus //What receives our keyboard inputs. src by default // VOREStation Add - Key Handling
+	var/datum/focus //What receives our keyboard inputs. src by default

@@ -336,7 +336,8 @@
 	can_be_pushed = 0
 	sprites = list(
 					"Traumahound" = "traumavale",
-					"Drake" = "draketrauma"
+					"Drake" = "draketrauma",
+					"Borgi" = "borgi-trauma"
 					)
 
 /obj/item/weapon/robot_module/robot/medical/trauma/New(var/mob/living/silicon/robot/R)

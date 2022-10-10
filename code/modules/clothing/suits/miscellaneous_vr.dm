@@ -140,3 +140,10 @@
 	default_worn_icon = 'icons/inventory/suit/mob_vr.dmi'
 	icon_state = "cyberpunk"
 	armor = list("melee" = 10, "bullet" = 20, "laser" = 10, "energy" = 0, "bomb" = 0, "bio" = 0, "rad" = 0)
+
+// Cyberpunk recolorable vest
+/obj/item/clothing/suit/cyberpunk/recolorable
+	name = "cyberpunk vest"
+	desc = "A high tech looking vest. It's made out of tough materials, and can protect fairly well against bullets. Wake the fuck up, Samurai."
+
+	icon_state = "cyberpunk_recolor"

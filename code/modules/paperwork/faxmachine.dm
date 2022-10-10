@@ -110,7 +110,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 
 	if(!authenticated)
 		return
-	
+
 	switch(action)
 		if("send")
 			if(copyitem)
@@ -132,7 +132,11 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	return TRUE
 
 /obj/machinery/photocopier/faxmachine/attackby(obj/item/O as obj, mob/user as mob)
-	if(O.is_multitool() && panel_open)
+	if(istype(O, /obj/item/weapon/card/id) && !scan)
+		user.drop_from_inventory(O)
+		O.forceMove(src)
+		scan = O
+	else if(O.is_multitool() && panel_open)
 		var/input = sanitize(tgui_input_text(usr, "What Department ID would you like to give this fax machine?", "Multitool-Fax Machine Interface", department))
 		if(!input)
 			to_chat(usr, "No input found. Please hang up and try your call again.")
@@ -253,7 +257,7 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 	var/faxid = export_fax(sent)
 	message_chat_admins(sender, faxname, sent, faxid, font_colour)
 	// VoreStation Edit End
-	
+
 	// Webhooks don't parse the HTML on the paper, so we gotta strip them out so it's still readable.
 	var/summary = make_summary(sent)
 	summary = paper_html_to_plaintext(summary)
@@ -273,4 +277,3 @@ var/list/adminfaxes = list()	//cache for faxes that have been sent to admins
 			"body" = summary
 		)
 	)
-	

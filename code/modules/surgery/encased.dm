@@ -3,6 +3,7 @@
 //				GENERIC	RIBCAGE SURGERY							//
 //////////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased
+	surgery_name = "Open Encased"
 	priority = 2
 	can_infect = 1
 	blood_level = 1
@@ -21,6 +22,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/saw
+	surgery_name = "Cut Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw = 100, \
 		/obj/item/weapon/material/knife/machete/hatchet = 75
@@ -70,6 +72,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/retract
+	surgery_name = "Retract Ribs Open"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100
 	)
@@ -123,6 +126,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/close
+	surgery_name = "Retract Ribs Closed"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
 	)
@@ -181,6 +185,7 @@
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/mend
+	surgery_name = "Mend Ribs"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonegel = 100
 	)
@@ -222,6 +227,7 @@
 // Saw/Retractor/Gel Combi-open and close.
 ///////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased/advancedsaw_open
+	surgery_name = "Advanced Cut Ribs"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw/manager = 100
 	)
@@ -230,6 +236,7 @@
 
 	min_duration = 60
 	max_duration = 90
+	excludes_steps = list(/datum/surgery_step/open_encased/saw)
 
 /datum/surgery_step/open_encased/advancedsaw_open/can_use(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool)
 	if (!hasorgans(target))
@@ -271,6 +278,7 @@
 
 
 /datum/surgery_step/open_encased/advancedsaw_mend
+	surgery_name = "Advanced Mend Ribs"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw/manager = 100
 	)
