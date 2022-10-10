@@ -338,18 +338,7 @@ var/global/list/PDA_Manifest = list()
 		var/datum/job/J = SSjob.get_job(H.mind.assigned_role)
 		hidden = J?.offmap_spawn
 
-		/* Note: Due to cached_character_icon, a number of emergent properties occur due to the initialization
-		* order of readied-up vs latejoiners. Namely, latejoiners will get a uniform in their datacore picture, but readied-up will
-		* not. This is due to the fact that SSticker calls data_core.manifest_inject() inside of ticker/proc/create_characters(),
-		* but does not equip them until ticker/proc/equip_characters(), which is called later. So, this proc is literally called before
-		* they ever get their equipment, and so it can't get a picture of them in their equipment.
-		* Latejoiners do not have this problem, because /mob/new_player/proc/AttemptLateSpawn calls EquipRank() before it calls
-		* this proc, which means that they're already clothed by the time they get their picture taken here.
-		* The COMPILE_OVERLAYS() here is just to bypass SSoverlays taking for-fucking-ever to update the mob, since we're about to
-		* take a picture of them, we want all the overlays.
-		*/
-		COMPILE_OVERLAYS(H)
-		SSoverlays.queue -= H
+		H.ImmediateOverlayUpdate()
 
 		var/id = generate_record_id()
 		//General Record
