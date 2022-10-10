@@ -311,7 +311,7 @@
 	return
 
 /mob/living/simple_mob/slime/promethean/get_available_emotes()
-	var/list/fulllist = _slime_default_emotes
+	var/list/fulllist = global._slime_default_emotes.Copy()
 	fulllist += default_emotes
 	return fulllist
 /mob/living/carbon/human

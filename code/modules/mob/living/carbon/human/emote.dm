@@ -305,12 +305,12 @@ var/list/_simple_mob_default_emotes = list(
 	//VOREStation Add End
 
 /mob/living/carbon/human/get_available_emotes()
-	. = global._human_default_emotes
+	. = global._human_default_emotes.Copy()
 	if(length(species?.default_emotes))
 		. |= species.default_emotes
 
 /mob/living/simple_mob/get_available_emotes()
-	. = global._simple_mob_default_emotes
+	. = global._simple_mob_default_emotes.Copy()
 
 /mob/living/carbon/human/verb/pose()
 	set name = "Set Pose"
