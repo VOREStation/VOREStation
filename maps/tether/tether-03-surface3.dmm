@@ -39908,7 +39908,7 @@
 /turf/simulated/floor/tiled,
 /area/rnd/outpost/xenobiology/outpost_hallway)
 "hKp" = (
-/obj/machinery/vending/foodasian,
+/obj/random/vendorall,
 /turf/simulated/floor/tiled,
 /area/tether/surfacebase/cafeteria)
 "hLd" = (
