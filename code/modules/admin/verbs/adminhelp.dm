@@ -191,7 +191,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 				"color" = COLOR_WEBHOOK_POOR
 			)
 		)
-		
+
 	GLOB.ahelp_tickets.active_tickets += src
 
 /datum/admin_help/Destroy()
@@ -428,6 +428,9 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //Show the ticket panel
 /datum/admin_help/proc/TicketPanel()
+	tgui_interact(usr.client.mob)
+
+/datum/admin_help/proc/TicketPanelLegacy()
 	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
 	var/ref_src = "\ref[src]"
 	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
@@ -467,6 +470,65 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		message_admins(msg)
 		log_admin(msg)
 	TicketPanel()	//we have to be here to do this
+
+/datum/admin_help/tgui_fallback(payload)
+	if(..())
+		return
+
+	TicketPanelLegacy()
+
+/datum/admin_help/tgui_interact(mob/user, datum/tgui/ui)
+	ui = SStgui.try_update_ui(user, src, ui)
+	if(!ui)
+		ui = new(user, src, "AdminTicketPanel", "Ticket #[id] - [LinkedReplyName("\ref[src]")]")
+		ui.open()
+
+/datum/admin_help/tgui_state(mob/user)
+	return GLOB.tgui_admin_state
+
+/datum/admin_help/tgui_data(mob/user)
+	var/list/data = list()
+
+	data["id"] = id
+
+	var/ref_src = "\ref[src]"
+	data["title"] = name
+	data["name"] = LinkedReplyName(ref_src)
+
+	switch(state)
+		if(AHELP_ACTIVE)
+			data["state"] = "open"
+		if(AHELP_RESOLVED)
+			data["state"] = "resolved"
+		if(AHELP_CLOSED)
+			data["state"] = "closed"
+		else
+			data["state"] = "unknown"
+
+	data["opened_at"] = (world.time - opened_at)
+	data["closed_at"] = (world.time - closed_at)
+	data["opened_at_date"] = gameTimestamp(wtime = opened_at)
+	data["closed_at_date"] = gameTimestamp(wtime = closed_at)
+
+	data["actions"] = FullMonty(ref_src)
+
+	data["log"] = _interactions
+
+	return data
+
+/datum/admin_help/tgui_act(action, params)
+	if(..())
+		return
+	switch(action)
+		if("retitle")
+			Retitle()
+			. = TRUE
+		if("reopen")
+			Reopen()
+			. = TRUE
+		if("legacy")
+			TicketPanelLegacy()
+			. = TRUE
 
 //Forwarded action from admin/Topic
 /datum/admin_help/proc/Action(action)
