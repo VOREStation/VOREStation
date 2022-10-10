@@ -1640,7 +1640,7 @@
 			them to rebuild, regrow, and replenish almost any lost asset or resource nearly instantly. It leads to many of the Kitsuhana \
 			'members' treating everything with frivolity and lends them a care-free demeanor."
 	history = "Originally a heavy industrial equipment and space mining company. During a forced evacuation of their homeworld, \
-			they were they only organization with enough ship capacity to relocate any significant portion of the population, starting with \
+			they were the only organization with enough ship capacity to relocate any significant portion of the population, starting with \
 			their own employees. After the resulting slowship travel to nearby starsystems, most of the population decided to keep the moniker \
 			of the company name. Over the years, Kitsuhana developed into a post-scarcity anarchy where virtually nothing has consequences and \
 			Kitsuhana 'members' can live their lives as they see fit, often in isolation."
