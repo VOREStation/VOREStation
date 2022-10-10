@@ -71,7 +71,7 @@
 //Processes the occupant, drawing from the internal power cell if needed.
 /obj/machinery/recharge_station/proc/process_occupant()
 	if(isrobot(occupant))
-		var/mob/living/silicon/robot/R = occupant  //VOREStation Edit
+		var/mob/living/silicon/robot/R = occupant
 		if(R.module)
 			R.module.respawn_consumable(R, charging_power * CELLRATE / 250) //consumables are magical, apparently
 		if(R.cell && !R.cell.fully_charged())
