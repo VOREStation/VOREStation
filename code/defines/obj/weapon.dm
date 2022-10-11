@@ -39,6 +39,12 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+	var/randomize = TRUE
+	var/square_chance = 10
+	
+/obj/item/weapon/soap/Initialize()
+	if(randomize && prob(square_chance))
+		icon_state = "[icon_state]-alt"
 
 /obj/item/weapon/soap/nanotrasen
 	desc = "A NanoTrasen-brand bar of soap. Smells of phoron, a years-old marketing gimmick."
@@ -55,134 +61,81 @@
 	desc = "An untrustworthy bar of soap. Smells of fear."
 	icon_state = "soapsyndie"
 
-/obj/item/weapon/soap/randomized
-	desc = "Smells like raw, unshaped potential."
-	var/randomstate = "default"
+/obj/item/weapon/soap/space_soap
+	desc = "Smells like hot metal and walnuts."
+	icon_state = "space_soap"
 
-/obj/item/weapon/soap/randomized/Initialize()
-	randomstate = pick(50;"default",50;"space",50;"water",50;"fire",50;"rainbow",50;"diamond",50;"uranium",50;"silver",50;"brown",50;"white",50;"grey",50;"pink",50;"purple",50;"blue",50;"cyan",50;"green",50;"yellow",50;"orange",50;"red",50;"golden",5;"default-alt",5;"space-alt",5;"water-alt",5;"fire-alt",5;"rainbow-alt",5;"diamond-alt",5;"uranium-alt",5;"silver-alt",5;"brown-alt",5;"white-alt",5;"grey-alt",5;"pink-alt",5;"purple-alt",5;"blue-alt",5;"cyan-alt",5;"green-alt",5;"yellow-alt",5;"orange-alt",5;"red-alt",5;"golden-alt")
-	switch(randomstate)
-		if("default")
-			desc = "A cheap bar of soap. Smells of lye."
-			icon_state = "soap"
-		if("space")
-			desc = "Smells like hot metal and walnuts."
-			icon_state = "space_soap"
-		if("water")
-			desc = "Smells like chlorine."
-			icon_state = "water_soap"
-		if("fire")
-			desc = "Smells like a campfire."
-			icon_state = "fire_soap"
-		if("rainbow")
-			desc = "Smells sickly sweet."
-			icon_state = "rainbow_soap"
-		if("diamond")
-			desc = "Smells like saffron and vanilla."
-			icon_state = "diamond_soap"
-		if("uranium")
-			desc = "Smells not great... Not terrible."
-			icon_state = "uranium_soap"
-		if("silver")
-			desc = "Smells like birch and amaranth."
-			icon_state = "silver_soap"
-		if("brown")
-			desc = "Smells like cinnamon and cognac."
-			icon_state = "brown_soap"
-		if("white")
-			desc = "Smells like nutmeg and oats."
-			icon_state = "white_soap"
-		if("grey")
-			desc = "Smells like bergamot and lilies."
-			icon_state = "grey_soap"
-		if("pink")
-			desc = "Smells like bubblegum."
-			icon_state = "pink_soap"
-		if("purple")
-			desc = "Smells like lavender."
-			icon_state = "purple_soap"
-		if("blue")
-			desc = "Smells like cardamom."
-			icon_state = "blue_soap"
-		if("cyan")
-			desc = "Smells like bluebells and peaches."
-			icon_state = "cyan_soap"
-		if("green")
-			desc = "Smells like a freshly mowed lawn."
-			icon_state = "green_soap"
-		if("yellow")
-			desc = "Smells like citron and ginger."
-			icon_state = "yellow_soap"
-		if("orange")
-			desc = "Smells like oranges and dark chocolate."
-			icon_state = "orange_soap"
-		if("red")
-			desc = "Smells like cherries."
-			icon_state = "red_soap"
-		if("golden")
-			desc = "Smells like honey."
-			icon_state = "golden_soap"
-		if("default-alt")
-			desc = "A cheap bar of soap. Smells of lye."
-			icon_state = "soap"
-		if("space-alt")
-			desc = "Smells like hot metal and walnuts."
-			icon_state = "space_soap-alt"
-		if("water-alt")
-			desc = "Smells like chlorine."
-			icon_state = "water_soap-alt"
-		if("fire-alt")
-			desc = "Smells like a campfire."
-			icon_state = "fire_soap-alt"
-		if("rainbow-alt")
-			desc = "Smells sickly sweet."
-			icon_state = "rainbow_soap-alt"
-		if("diamond-alt")
-			desc = "Smells like saffron and vanilla."
-			icon_state = "diamond_soap-alt"
-		if("uranium-alt")
-			desc = "Smells not great... Not terrible."
-			icon_state = "uranium_soap-alt"
-		if("silver-alt")
-			desc = "Smells like birch and amaranth."
-			icon_state = "silver_soap-alt"
-		if("brown-alt")
-			desc = "Smells like cinnamon and cognac."
-			icon_state = "brown_soap-alt"
-		if("white-alt")
-			desc = "Smells like nutmeg and oats."
-			icon_state = "white_soap-alt"
-		if("grey-alt")
-			desc = "Smells like bergamot and lilies."
-			icon_state = "grey_soap-alt"
-		if("pink-alt")
-			desc = "Smells like bubblegum."
-			icon_state = "pink_soap-alt"
-		if("purple-alt")
-			desc = "Smells like lavender."
-			icon_state = "purple_soap-alt"
-		if("blue-alt")
-			desc = "Smells like cardamom."
-			icon_state = "blue_soap-alt"
-		if("cyan-alt")
-			desc = "Smells like bluebells and peaches."
-			icon_state = "cyan_soap-alt"
-		if("green-alt")
-			desc = "Smells like a freshly mowed lawn."
-			icon_state = "green_soap-alt"
-		if("yellow-alt")
-			desc = "Smells like citron and ginger."
-			icon_state = "yellow_soap-alt"
-		if("orange-alt")
-			desc = "Smells like oranges and dark chocolate."
-			icon_state = "orange_soap-alt"
-		if("red-alt")
-			desc = "Smells like cherries."
-			icon_state = "red_soap-alt"
-		if("golden-alt")
-			desc = "Smells like honey."
-			icon_state = "golden_soap-alt"
-	. = ..()
+/obj/item/weapon/soap/water_soap
+	desc = "Smells like chlorine."
+	icon_state = "water_soap"
+
+/obj/item/weapon/soap/fire_soap
+	desc = "Smells like a campfire."
+	icon_state = "fire_soap"
+
+/obj/item/weapon/soap/rainbow_soap
+	desc = "Smells sickly sweet."
+	icon_state = "rainbow_soap"
+
+/obj/item/weapon/soap/diamond_soap
+	desc = "Smells like saffron and vanilla."
+	icon_state = "diamond_soap"
+
+/obj/item/weapon/soap/uranium_soap
+	desc = "Smells not great... Not terrible."
+	icon_state = "uranium_soap"
+
+/obj/item/weapon/soap/silver_soap
+	desc = "Smells like birch and amaranth."
+	icon_state = "silver_soap"
+
+/obj/item/weapon/soap/brown_soap
+	desc = "Smells like cinnamon and cognac."
+	icon_state = "brown_soap"
+
+/obj/item/weapon/soap/white_soap
+	desc = "Smells like nutmeg and oats."
+	icon_state = "white_soap"
+
+/obj/item/weapon/soap/grey_soap
+	desc = "Smells like bergamot and lilies."
+	icon_state = "grey_soap"
+
+/obj/item/weapon/soap/pink_soap
+	desc = "Smells like bubblegum."
+	icon_state = "pink_soap"
+
+/obj/item/weapon/soap/purple_soap
+	desc = "Smells like lavender."
+	icon_state = "purple_soap"
+
+/obj/item/weapon/soap/blue_soap
+	desc = "Smells like cardamom."
+	icon_state = "blue_soap"
+
+/obj/item/weapon/soap/cyan_soap
+	desc = "Smells like bluebells and peaches."
+	icon_state = "cyan_soap"
+
+/obj/item/weapon/soap/green_soap
+	desc = "Smells like a freshly mowed lawn."
+	icon_state = "green_soap"
+
+/obj/item/weapon/soap/yellow_soap
+	desc = "Smells like citron and ginger."
+	icon_state = "yellow_soap"
+
+/obj/item/weapon/soap/orange_soap
+	desc = "Smells like oranges and dark chocolate."
+	icon_state = "orange_soap"
+
+/obj/item/weapon/soap/red_soap
+	desc = "Smells like cherries."
+	icon_state = "red_soap"
+
+/obj/item/weapon/soap/golden_soap
+	desc = "Smells like honey."
+	icon_state = "golden_soap"
 
 /obj/item/weapon/bikehorn
 	name = "bike horn"
