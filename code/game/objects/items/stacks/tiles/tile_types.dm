@@ -190,6 +190,12 @@
 	icon_state = "techtile_grid"
 	no_variants = FALSE
 
+/obj/item/stack/tile/floor/techmaint
+	name = "maint techfloor tile"
+	singular_name = "maint techfloor tile"
+	icon_state = "techtile_maint"
+	no_variants = FALSE
+
 /obj/item/stack/tile/floor/steel_dirty
 	name = "steel floor tile"
 	singular_name = "steel floor tile"
