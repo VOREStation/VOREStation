@@ -13,6 +13,7 @@
 	icon_state = "gun_energy"
 
 /obj/random/energy/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(3);/obj/item/weapon/gun/energy/laser,
 				prob(3);/obj/item/weapon/gun/energy/laser/sleek,
 				prob(4);/obj/item/weapon/gun/energy/gun,
@@ -31,6 +32,29 @@
 				prob(3);/obj/item/weapon/gun/energy/stunrevolver,
 				prob(2);/obj/item/weapon/gun/energy/stunrevolver/vintage,
 				prob(3);/obj/item/weapon/gun/energy/gun/compact)
+=======
+	return pick(prob(3);/obj/item/gun/energy/laser,
+				prob(3);/obj/item/gun/energy/laser/sleek,
+				prob(4);/obj/item/gun/energy/gun,
+				prob(3);/obj/item/gun/energy/gun/burst,
+				prob(1);/obj/item/gun/energy/gun/nuclear,
+				prob(2);/obj/item/gun/energy/retro,
+				prob(2);/obj/item/gun/energy/lasercannon,
+				prob(3);/obj/item/gun/energy/xray,
+				prob(1);/obj/item/gun/energy/sniperrifle,
+				prob(1);/obj/item/gun/energy/plasmastun,
+				prob(2);/obj/item/gun/energy/ionrifle,
+				prob(2);/obj/item/gun/energy/ionrifle/pistol,
+				prob(3);/obj/item/gun/energy/toxgun,
+				prob(1);/obj/item/gun/energy/taser,
+				prob(1);/obj/item/gun/energy/taser/disabler,
+				prob(2);/obj/item/gun/energy/crossbow/largecrossbow,
+				prob(3);/obj/item/gun/energy/stunrevolver,
+				prob(2);/obj/item/gun/energy/stunrevolver/vintage,
+				prob(3);/obj/item/gun/energy/gun/compact,
+				prob(2);/obj/item/gun/energy/gun/pocket
+				)
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 
 /obj/random/energy/highend
 	name = "Random Energy Weapon"
@@ -38,6 +62,7 @@
 	icon_state = "gun_energy_2"
 
 /obj/random/energy/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(3);/obj/item/weapon/gun/energy/laser,
 				prob(3);/obj/item/weapon/gun/energy/laser/sleek,
 				prob(4);/obj/item/weapon/gun/energy/gun,
@@ -49,6 +74,22 @@
 				prob(1);/obj/item/weapon/gun/energy/sniperrifle,
 				prob(2);/obj/item/weapon/gun/energy/crossbow/largecrossbow,
 				prob(3);/obj/item/weapon/gun/energy/gun/compact)
+=======
+	return pick(prob(3);/obj/item/gun/energy/laser,
+				prob(3);/obj/item/gun/energy/laser/sleek,
+				prob(4);/obj/item/gun/energy/gun,
+				prob(3);/obj/item/gun/energy/gun/burst,
+				prob(1);/obj/item/gun/energy/gun/nuclear,
+				prob(2);/obj/item/gun/energy/retro,
+				prob(2);/obj/item/gun/energy/lasercannon,
+				prob(3);/obj/item/gun/energy/xray,
+				prob(1);/obj/item/gun/energy/sniperrifle,
+				prob(2);/obj/item/gun/energy/crossbow/largecrossbow,
+				prob(3);/obj/item/gun/energy/gun/compact,
+				prob(2);/obj/item/gun/energy/gun/pocket,
+				prob(1);/obj/item/gun/energy/monorifle,
+				prob(1);/obj/item/gun/energy/lasershotgun)
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 
 /obj/random/energy/sec
 	name = "Random Security Energy Weapon"
@@ -65,6 +106,7 @@
 	icon_state = "gun"
 
 /obj/random/projectile/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(3);/obj/item/weapon/gun/projectile/automatic/wt550,
 				prob(3);/obj/item/weapon/gun/projectile/automatic/mini_uzi,
 				prob(3);/obj/item/weapon/gun/projectile/automatic/tommygun,
@@ -100,6 +142,50 @@
 				prob(3);/obj/item/weapon/gun/projectile/shotgun/pump/rifle/lever,
 				prob(2);/obj/item/weapon/gun/projectile/shotgun/semi,
 				prob(2);/obj/item/weapon/gun/projectile/silenced)
+=======
+	return pick(prob(3);/obj/item/gun/projectile/automatic/wt550,
+				prob(3);/obj/item/gun/projectile/automatic/mini_uzi,
+				prob(3);/obj/item/gun/projectile/automatic/tommygun,
+				prob(2);/obj/item/gun/projectile/automatic/c20r,
+				prob(2);/obj/item/gun/projectile/automatic/sts35,
+				prob(2);/obj/item/gun/projectile/automatic/z8,
+				prob(2);/obj/item/gun/projectile/automatic/combatsmg,
+				prob(2);/obj/item/gun/projectile/automatic/pearlshield,
+				prob(2);/obj/item/gun/projectile/automatic/p90,
+				prob(4);/obj/item/gun/projectile/colt,
+				prob(2);/obj/item/gun/projectile/deagle,
+				prob(1);/obj/item/gun/projectile/deagle/camo,
+				prob(1);/obj/item/gun/projectile/deagle/gold,
+				prob(3);/obj/item/gun/projectile/derringer,
+				prob(1);/obj/item/gun/projectile/heavysniper,
+				prob(4);/obj/item/gun/projectile/luger,
+				prob(3);/obj/item/gun/projectile/luger/brown,
+				prob(4);/obj/item/gun/projectile/sec,
+				prob(3);/obj/item/gun/projectile/sec/wood,
+				prob(4);/obj/item/gun/projectile/p92x,
+				prob(3);/obj/item/gun/projectile/p92x/brown,
+				prob(2);/obj/item/gun/projectile/pistol,
+				prob(2);/obj/item/gun/projectile/pistol/alt,
+				prob(5);/obj/item/gun/projectile/pirate,
+				prob(2);/obj/item/gun/projectile/revolver,
+				prob(4);/obj/item/gun/projectile/revolver/deckard,
+				prob(4);/obj/item/gun/projectile/revolver/detective,
+				prob(2);/obj/item/gun/projectile/revolver/judge,
+				prob(3);/obj/item/gun/projectile/revolver/lemat,
+				prob(2);/obj/item/gun/projectile/revolver/mateba,
+				prob(2);/obj/item/gun/projectile/revolver/webley,
+				prob(2);/obj/item/gun/projectile/revolver/webley/large,
+				prob(4);/obj/item/gun/projectile/shotgun/doublebarrel,
+				prob(3);/obj/item/gun/projectile/shotgun/doublebarrel/sawn,
+				prob(3);/obj/item/gun/projectile/shotgun/pump,
+				prob(2);/obj/item/gun/projectile/shotgun/pump/combat,
+				prob(4);/obj/item/gun/projectile/shotgun/pump/rifle,
+				prob(1);/obj/item/gun/projectile/shotgun/pump/rifle/antique,
+				prob(3);/obj/item/gun/projectile/shotgun/pump/rifle/lever,
+				prob(3);/obj/item/gun/projectile/shotgun/pump/rifle/lever/brushgun,
+				prob(2);/obj/item/gun/projectile/shotgun/semi,
+				prob(2);/obj/item/gun/projectile/silenced)
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 
 /obj/random/projectile/sec
 	name = "Random Security Projectile Weapon"
@@ -123,13 +209,23 @@
 				prob(1);/obj/item/weapon/gun/projectile/shotgun/pump/combat,
 				prob(1);/obj/item/weapon/gun/projectile/shotgun/semi)
 
+/obj/random/sidearm
+	name = "Random Sidearm"
+	desc = "This is a random one-handed sidearm of any type."
+	icon_state = "gun"
+
+/obj/random/sidearm/item_to_spawn()
+	return pick(prob(5);/obj/random/handgun,
+				prob(5);/obj/random/revolver,
+				prob(5);/obj/random/energy_pistol)
+
 /obj/random/handgun
-	name = "Random Handgun"
-	desc = "This is a random sidearm."
-	icon = 'icons/obj/gun.dmi'
+	name = "Random Pistol"
+	desc = "This is a random semi-auto sidearm."
 	icon_state = "gun"
 
 /obj/random/handgun/item_to_spawn()
+<<<<<<< HEAD
 	return pick(prob(4);/obj/item/weapon/gun/projectile/sec,
 				prob(4);/obj/item/weapon/gun/projectile/p92x,
 				prob(3);/obj/item/weapon/gun/projectile/sec/wood,
@@ -140,6 +236,46 @@
 				prob(2);/obj/item/weapon/gun/projectile/pistol,
 				prob(1);/obj/item/weapon/gun/energy/retro,
 				prob(1);/obj/item/weapon/gun/projectile/luger/brown)
+=======
+	return pick(prob(4);/obj/item/gun/projectile/sec,
+				prob(4);/obj/item/gun/projectile/p92x,
+				prob(3);/obj/item/gun/projectile/sec/wood,
+				prob(3);/obj/item/gun/projectile/p92x/brown,
+				prob(3);/obj/item/gun/projectile/colt,
+				prob(2);/obj/item/gun/projectile/luger,
+				prob(2);/obj/item/gun/projectile/pistol,
+				prob(2);/obj/item/gun/projectile/pistol/alt,
+				prob(2);/obj/item/gun/projectile/luger/brown,
+				prob(1);/obj/item/gun/projectile/compact_45)
+
+/obj/random/energy_pistol
+	name = "Random Energy Pistol"
+	desc = "This is a random energy sidearm."
+	icon_state = "gun_energy"
+/obj/random/energy_pistol/item_to_spawn()
+	return pick(prob(2);/obj/item/gun/energy/gun,
+				prob(1);/obj/item/gun/energy/retro,
+				prob(1);/obj/item/gun/energy/gun/compact,
+				prob(1);/obj/item/gun/energy/gun/pocket)
+
+/obj/random/revolver
+	name = "Random Revolver"
+	desc = "This is a random revolver."
+	icon_state = "gun"
+
+/obj/random/revolver/item_to_spawn()
+	return pick(prob(4);/obj/item/gun/projectile/revolver,
+				prob(4);/obj/item/gun/projectile/revolver/mateba,
+				prob(3);/obj/item/gun/projectile/revolver/detective,
+				prob(3);/obj/item/gun/projectile/revolver/detective45,
+				prob(3);/obj/item/gun/projectile/revolver/deckard,
+				prob(2);/obj/item/gun/projectile/revolver/judge,
+				prob(2);/obj/item/gun/projectile/revolver/lemat,
+				prob(2);/obj/item/gun/projectile/revolver/webley,
+				prob(1);/obj/item/gun/projectile/revolver/webley/auto,
+				prob(1);/obj/item/gun/projectile/revolver/webley/magnetic,
+				prob(1);/obj/item/gun/projectile/revolver/webley/large)
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 
 /obj/random/handgun/sec
 	name = "Random Security Handgun"
@@ -239,7 +375,6 @@
 /obj/random/projectile/random
 	name = "Random Projectile Weapon"
 	desc = "This is a random projectile weapon."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "gun_2"
 
 /obj/random/projectile/random/item_to_spawn()
@@ -283,6 +418,11 @@
 				/obj/item/weapon/gun/projectile/automatic/combatsmg,
 				/obj/item/ammo_magazine/m9mmt,
 				/obj/item/ammo_magazine/m9mmt
+			),
+			prob(2);list(
+				/obj/item/gun/projectile/automatic/pearlshield,
+				/obj/item/ammo_magazine/m9mmt,
+				/obj/item/ammo_magazine/m9mmt
 			)
 		)
 
@@ -290,8 +430,6 @@
 	name = "random rifle projectile gun"
 	desc = "Loot for PoIs."
 	icon_state = "gun_rifle"
-
-//Concerns about the bullpup, but currently seems to be only a slightly stronger z8. But we shall see.
 
 /obj/random/multiple/gun/projectile/rifle/item_to_spawn()
 	return pick(
@@ -365,9 +503,15 @@
 				/obj/item/ammo_magazine/m44
 			),
 			prob(1);list(
+<<<<<<< HEAD
 				/obj/item/weapon/gun/projectile/deagle/camo,
 				/obj/item/ammo_magazine/m44,
 				/obj/item/ammo_magazine/m44
+=======
+				/obj/item/gun/projectile/compact_45,
+				/obj/item/ammo_magazine/m45/compact,
+				/obj/item/ammo_magazine/m45/compact
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 			),
 			prob(1);list(
 				/obj/item/weapon/gun/projectile/deagle/gold,
@@ -462,9 +606,20 @@
 				/obj/item/ammo_magazine/s44
 			),
 			prob(1);list(
+<<<<<<< HEAD
 				/obj/item/weapon/gun/projectile/revolver/consul,
 				/obj/item/ammo_magazine/s44/rubber,
 				/obj/item/ammo_magazine/s44/rubber
+=======
+				/obj/item/gun/projectile/revolver/webley/auto,
+				/obj/item/ammo_magazine/s44,
+				/obj/item/ammo_magazine/s44
+			),
+			prob(1);list(
+				/obj/item/gun/projectile/revolver/webley/magnetic,
+				/obj/item/ammo_magazine/s44,
+				/obj/item/ammo_magazine/s44
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 			)
 		)
 

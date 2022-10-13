@@ -105,6 +105,9 @@
 	damage = 60
 	hud_state = "pistol_heavy"
 
+/obj/item/projectile/bullet/pistol/strong/ap
+	armor_penetration = 15
+
 /obj/item/projectile/bullet/pistol/rubber/strong // "Rubber" bullets for high power pistols.
 	fire_sound = 'sound/weapons/gunshot3.ogg' // Rubber shots have less powder, but these still have more punch than normal rubber shot.
 	damage = 10

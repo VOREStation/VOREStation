@@ -137,8 +137,13 @@
 /datum/uplink_item/item/visible_weapons/combatshotgun
 	name = "Combat Shotgun"
 	item_cost = 75
+<<<<<<< HEAD
 	path = /obj/item/weapon/gun/projectile/shotgun/pump/combat
 	
+=======
+	path = /obj/item/gun/projectile/shotgun/pump/combat
+
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 /datum/uplink_item/item/visible_weapons/semishotgun
 	name = "Semi-Automatic Shotgun"
 	item_cost = 100
@@ -153,6 +158,11 @@
 	name = "Compact Energy Gun"
 	item_cost = 30
 	path = /obj/item/weapon/gun/energy/gun/compact
+
+/datum/uplink_item/item/visible_weapons/compact_45
+	name = "Compact .45 pistol"
+	item_cost = 40
+	path = /obj/item/gun/projectile/compact_45
 
 /datum/uplink_item/item/visible_weapons/lasercannon
 	name = "Laser Cannon"

@@ -179,7 +179,19 @@
 	name = "ammunition box (.45 haywire)"
 	ammo_type = /obj/item/ammo_casing/a45/emp
 
+<<<<<<< HEAD
 // Uzi
+=======
+/obj/item/ammo_magazine/m45/bb
+	name = "magazine (.45 BB)"
+	ammo_type = /obj/item/ammo_casing/a45/bb
+
+/obj/item/ammo_magazine/m45/compact
+	name = "compact pistol magazine (.45)"
+	matter = list(MAT_STEEL = 375) //metal costs are very roughly based around 1 .45 casing = 75 metal
+	max_ammo = 5
+
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 /obj/item/ammo_magazine/m45uzi
 	name = "stick magazine (.45)"
 	icon_state = "uzi45"
@@ -865,3 +877,18 @@
 
 /obj/item/ammo_magazine/m75/empty
 	initial_ammo = 0
+<<<<<<< HEAD
+=======
+
+///////// Misc. /////////
+
+/obj/item/ammo_magazine/caps
+	name = "speedloader (caps)"
+	icon_state = "T38"
+	caliber = "caps"
+	color = "#FF0000"
+	ammo_type = /obj/item/ammo_casing/cap
+	matter = list(MAT_STEEL = 600)
+	max_ammo = 7
+	multiple_sprites = 1
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22

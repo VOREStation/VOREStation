@@ -41,8 +41,16 @@
 	chamber_offset = 0
 	return ..()
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/revolver/stainless
 	icon_state = "revolver_stainless"
+=======
+/obj/item/gun/projectile/revolver/mateba
+	name = "mateba"
+	desc = "This unique looking handgun is named after an Italian company famous for the original manufacture of these revolvers, and pasta kneading machines. Uses .357 rounds." // Yes I'm serious. -Spades
+	icon_state = "mateba"
+
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 
 /*
  * Detective Revolver
@@ -74,16 +82,34 @@
 		to_chat(M, "You name the gun [input]. Say hello to your new friend.")
 		return 1
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/revolver/detective45
+=======
+/obj/item/gun/projectile/revolver/gold
+	name = "trophy revolver"
+	desc = "A prestigious engraved version of the MarsTech R1 Snubnose, mass-produced for presentation to long-serving law enforcement personnel upon retirement. Uses .38-Special rounds."
+	icon_state = "detective_gold"
+	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 4)
+	caliber = ".38"
+	ammo_type = /obj/item/ammo_casing/a38
+
+/obj/item/gun/projectile/revolver/detective45
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	name = ".45 revolver"
 	desc = "A basic revolver, popular among some law enforcement agencies for its simple, long-lasting construction, modified for .45 rounds and a seven-shot cylinder."
 	icon_state = "detective"
 	caliber = ".45"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
 	ammo_type = /obj/item/ammo_casing/a45/rubber
+<<<<<<< HEAD
 	max_shells = 6
 
 /obj/item/weapon/gun/projectile/revolver/detective45/verb/rename_gun()
+=======
+	max_shells = 7
+
+/obj/item/gun/projectile/revolver/detective45/verb/rename_gun()
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	set name = "Name Gun"
 	set category = "Object"
 	set desc = "Rename your gun. If you're the Detective."
@@ -110,6 +136,7 @@
 	var/mob/M = usr
 	var/list/options = list()
 	options["MarsTech R1 Snubnose"] = "detective"
+<<<<<<< HEAD
 	options["MarsTech R1 Snubnose (Blued)"] = "detective_blued"
 	options["MarsTech R1 Snubnose (Stainless)"] = "detective_stainless"
 	options["MarsTech R1 Snubnose (Gold)"] = "detective_stainless"
@@ -119,6 +146,19 @@
 	options["Jindal Duke"] = "detective_fitz"
 	options["H-H M1895"] = "nagant"
 	var/choice = tgui_input_list(M,"Choose your sprite!","Resprite Gun", options)
+=======
+	options["MarsTech Frontiersman Classic"] = "detective_peacemaker"
+	options["MarsTech Frontiersman Shadow"] = "detective_peacemaker_dark"
+	options["MarsTech Panther"] = "detective_panther"
+	options["ProTek Cowboy"] = "GP100"
+	options["Jindal Duke"] = "lombardi_police"
+	options["Jindal Viscount Snub"] = "detective_black"
+	options["H-H Sindri"] = "webley"
+	options["H-H Brokkr"] = "nagant"
+	options["Lombardi Buzzard"] = "detective_buzzard"
+	options["Lombardi Constable Deluxe 2502"] = "detective_constable"
+	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		to_chat(M, "Your gun is now sprited as [choice]. Say hello to your new friend.")
@@ -193,10 +233,26 @@
 		flick("deckard-reload",src)
 	..()
 
+<<<<<<< HEAD
 /*
  * Judge
  */
 /obj/item/weapon/gun/projectile/revolver/judge
+=======
+/obj/item/gun/projectile/revolver/capgun
+	name = "cap gun"
+	desc = "Looks almost like the real thing! Ages 8 and up."
+	icon_state = "detective_fitz"
+	item_state = "detective_fitz"
+	caliber = "caps"
+	origin_tech = list(TECH_COMBAT = 1, TECH_MATERIAL = 1)
+	handle_casings = CYCLE_CASINGS
+	max_shells = 7
+	ammo_type = /obj/item/ammo_casing/cap
+	projectile_type = /obj/item/projectile/bullet/pistol/strong
+
+/obj/item/gun/projectile/revolver/judge
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	name = "\"The Judge\""
 	desc = "A revolving hand-shotgun by Jindal Arms that packs the power of a 12 guage in the palm of your hand (if you don't break your wrist). Uses 12g rounds."
 	description_fluff = "While wholly owned by Hephaestus Industries, the Jindal Arms brand does not appear \
@@ -213,6 +269,7 @@
 	projectile_type = /obj/item/projectile/bullet/shotgun
 	// ToDo: Remove accuracy debuf in exchange for slightly injuring your hand every time you fire it.
 
+<<<<<<< HEAD
 /*
  * Mako
  */
@@ -227,6 +284,15 @@
 	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely \
 	unremarkable one way or another as weapons and used very standard firing mechanisms - the Mako was a notable \
 	exception, and original examples are much sought after."
+=======
+/obj/item/gun/projectile/revolver/lemat
+	name = "Mako revolver"
+	desc = "The Bishamonten P100 Mako is a 9 shot revolver with a secondary firing barrel loading shotgun shells. For when you really need something dead. A rare yet deadly collector's item. Uses .38-Special and 12g rounds depending on the barrel."
+	description_fluff = "The Bishamonten Company operated from roughly 2150-2280 - the height of the first extrasolar colonisation boom - before filing for bankruptcy and selling off its assets to various companies that would go on to become today’s TSCs. \
+	Focused on sleek ‘futurist’ designs which have largely fallen out of fashion but remain popular with collectors and people hoping to make some quick thalers from replica weapons. \
+	Bishamonten weapons tended to be form over function - despite their flashy looks, most were completely unremarkable one way or another as weapons and used very standard firing mechanisms - \
+	the Mako was a notable exception, and original examples are much sought after."
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	icon_state = "combatrevolver"
 	item_state = "revolver"
 	origin_tech = list(TECH_COMBAT = 2, TECH_MATERIAL = 2)
@@ -314,11 +380,15 @@
 	else
 		. += "It has a secondary barrel that is empty."
 
+<<<<<<< HEAD
 
 /*
  * Webley (Bay Port)
  */
 /obj/item/weapon/gun/projectile/revolver/webley
+=======
+/obj/item/gun/projectile/revolver/webley
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	name = "patrol revolver"
 	desc = "A rugged top break revolver commonly issued to planetary law enforcement offices. Uses .44 magnum rounds."
 	description_fluff = "The Heberg-Hammarstrom Althing is a simple, head-wearing revolver made with an anti-corrosive alloy. \
@@ -331,6 +401,7 @@
 	handle_casings = CYCLE_CASINGS
 	ammo_type = /obj/item/ammo_casing/a44
 
+<<<<<<< HEAD
 /*
  * Webley (Eris Port)
  */
@@ -345,11 +416,43 @@
 	ammo_type = /obj/item/ammo_casing/a44/rubber
 
 /obj/item/weapon/gun/projectile/revolver/consul/proc/update_charge()
+=======
+/obj/item/gun/projectile/revolver/webley/auto
+	name = "autorevolver"
+	icon_state = "mosley"
+	desc = "A shiny Fosbery Autococker automatic revolver, with black accents. Marketed as the 'Revolver for the Modern Era'. Uses .44 magnum rounds."
+	description_fluff = null
+	fire_delay = 5.7 //Autorevolver. Also synced with the animation
+	fire_anim = "mosley_fire"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 2)
+
+/obj/item/gun/projectile/revolver/webley/large
+	name = "heavy revolver"
+	desc = "A high-capacity magnum revolver, polished to a mirror shine. Uses .44 magnum rounds."
+	description_fluff = "The Hedberg-Hammarstrom Wyrm was designed as a SifGuard sidearm, but the prototype was rejected in favour of the lighter Althing. \
+	Introduced to the consumer market by popular demand a few years later, the Wyrm has been a hit with collectors ever since."
+	icon_state = "revolver_stainless"
+	max_shells = 8
+
+/obj/item/gun/projectile/revolver/webley/magnetic
+	name = "Auditor revolver"
+	desc = "A high-powered revolver with a electromagnetically assisted firing mechanism for enhanced armor-piercing capability using standard ammunition. Uses .44 magnum rounds."
+	description_fluff = "The Lawson Arms LAM-2 Auditor is an experimental hybrid design using an electronic firing mechanism to propel standard ballistic ammunition at absurd velocities. \
+	Though prohibitively expensive to both obtain and maintain, the Auditor is a favourite with those particular gunmen with near unlimited budgets."
+	icon_state = "inspector"
+	projectile_type = /obj/item/projectile/bullet/pistol/strong/ap
+	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_MAGNET = 2)
+
+/obj/item/gun/projectile/revolver/webley/magnetic/update_icon()
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	cut_overlays()
 	if(loaded.len==0)
 		add_overlay("inspector_off")
 	else
 		add_overlay("inspector_on")
+<<<<<<< HEAD
 
 /obj/item/weapon/gun/projectile/revolver/consul/update_icon()
 	update_charge()
+=======
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22

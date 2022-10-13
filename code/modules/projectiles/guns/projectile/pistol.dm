@@ -58,6 +58,7 @@
 
 	var/mob/M = usr
 	var/list/options = list()
+<<<<<<< HEAD
 	options["MarsTech P11 Spur (Bubba'd)"] = "mod_colt"
 	options["MarsTech P11 Spur (Blued)"] = "blued_colt"
 	options["MarsTech P11 Spur (Gold)"] = "gold_colt"
@@ -66,6 +67,18 @@
 	options["MarsTech P11 Spur (Green)"] = "green_colt"
 	options["MarsTech P11 Spur (Blue)"] = "blue_colt"
 	var/choice = tgui_input_list(M,"Choose your sprite!","Resprite Gun", options)
+=======
+	options["NT Mk. 58"] = "secguncomp"
+	options["NT Mk. 58 Custom"] = "secgundark"
+	options["MarsTech P11 Spur"] = "colt"
+	options["MarsTech P59 Massif"] = "civil"
+	options["ProTek YC9"] = "usp"
+	options["ProTek Minx"] = "VP78"
+	options["Jindal T15 Chooha"] = "p08"
+	options["Jindal KP-45W"] = "p08b"
+	options["PCA-11 Tenzu"] = "enforcer_black"
+	var/choice = input(M,"Choose your sprite!","Resprite Gun") in options
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	if(src && choice && !M.stat && in_range(M,src))
 		icon_state = options[choice]
 		unique_reskin = options[choice]
@@ -256,6 +269,7 @@
 		return
 	..()
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/pistol/update_icon()
 	if(ammo_magazine)
 		if(silenced)
@@ -283,6 +297,27 @@
 	magazine_type = /obj/item/ammo_magazine/m9mm
 	allowed_magazines = list(/obj/item/ammo_magazine/m9mm)
 	projectile_type = /obj/item/projectile/bullet/pistol
+=======
+/obj/item/gun/projectile/pistol/update_icon()
+	..()
+	if(silenced)
+		if(ammo_magazine)
+			icon_state = "[initial(icon_state)]-silencer"
+		else
+			icon_state = "[initial(icon_state)]-silencer-e"
+	else
+		if(ammo_magazine)
+			icon_state = "[initial(icon_state)]"
+		else
+			icon_state = "[initial(icon_state)]-e"
+
+/obj/item/gun/projectile/pistol/alt
+	name = "compact government pistol"
+	desc = "The Jindal PF. A compact, easily concealable gun, though it's only compatible with compact magazines. Uses 9mm rounds."
+	description_fluff = "The Jindal Arms PF was the company's first entry into the compact pistols market, and has served as the standard issue firearm \
+	of Tau Ceti government security forces since their consolidation in 2332."
+	icon_state = "compact"
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 
 /obj/item/weapon/gun/projectile/aps/attack_hand(mob/living/user as mob)
 	if(user.get_inactive_hand() == src)
@@ -441,6 +476,7 @@
 /obj/item/weapon/gun/projectile/p92x/large/preban
 	magazine_type = /obj/item/ammo_magazine/m9mm/large/preban // Spawns with big magazines that are legal.
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/p92x/large/preban/hp
 	magazine_type = /obj/item/ammo_magazine/m9mm/large/preban/hp // Spawns with legal hollow-point mag
 
@@ -606,3 +642,31 @@
 	var/ratio = ammo_magazine.stored_ammo.len * 100 / ammo_magazine.max_ammo
 	ratio = round(ratio, 33)
 	add_overlay("lamia_[ratio]")
+=======
+/obj/item/gun/projectile/p92x/large
+	magazine_type = /obj/item/ammo_magazine/m9mm/large // Spawns with illegal magazines.
+
+/obj/item/gun/projectile/compact_45
+	name = "compact .45 pistol"
+	desc = "A compact and easily concealable gun with surprising firepower, though it's only compatible with compact magazines. Uses .45 rounds."
+	description_fluff = "The MarsTech Ecureuil is the company's most popular compact .45 model. Perhaps best known as the official service pistol of the Free Relan Federation, despite a notoriously low magazine capacity."
+	icon_state = "ecureuil"
+	item_state = null
+	w_class = ITEMSIZE_SMALL
+	magazine_type = /obj/item/ammo_magazine/m45/compact
+	allowed_magazines = list(/obj/item/ammo_magazine/m45/compact)
+	projectile_type = /obj/item/projectile/bullet/pistol/medium
+	caliber = ".45"
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3)
+	load_method = MAGAZINE
+
+/obj/item/gun/projectile/compact_45/update_icon()
+	..()
+	if(ammo_magazine)
+		icon_state = "[initial(icon_state)]"
+	else
+		icon_state = "[initial(icon_state)]-e"
+
+/obj/item/gun/projectile/compact_45/tactical
+	icon_state = "tac_ecureuil"
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22

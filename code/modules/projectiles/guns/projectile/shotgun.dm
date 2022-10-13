@@ -98,7 +98,7 @@
  */
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel
 	name = "double-barreled shotgun"
-	desc = "A truely classic weapon. No need to change what works. Uses 12g rounds."
+	desc = "A truly classic weapon. No need to change what works. Uses 12g rounds."
 	icon_state = "dshotgun"
 	item_state = "dshotgun"
 	//SPEEDLOADER because rapid unloading.
@@ -112,6 +112,7 @@
 	caliber = "12g"
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 1)
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
+	var/sawn_off = FALSE
 
 	var/unique_reskin
 	var/sawn_off = FALSE
@@ -128,6 +129,7 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/flare
 	name = "signal shotgun"
 	desc = "A double-barreled shotgun meant to fire signal flash shells. Uses 12g rounds."
+	icon_state = "dshotgun_g"
 	ammo_type = /obj/item/ammo_casing/a12g/flash
 
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/unload_ammo(user, allow_dump)
@@ -186,6 +188,7 @@
 			user.hud_used.update_ammo_hud(user, src) // TGMC Ammo HUD Port
 			burst = burstsetting
 			return
+<<<<<<< HEAD
 		if(do_after(user, 30)) // SHIT IS STEALTHY EYYYYY
 			if(sawn_off)
 				return
@@ -193,6 +196,12 @@
 				icon_state = "[unique_reskin]_sawn"
 			else
 				icon_state = "dshotgun_sawn"
+=======
+		if(do_after(user, 30))	//SHIT IS STEALTHY EYYYYY
+			if(sawn_off)
+				return
+			icon_state = "[initial(icon_state)]-sawn"
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 			item_state = "sawnshotgun"
 			w_class = ITEMSIZE_NORMAL
 			force = 5
@@ -211,7 +220,11 @@
 /obj/item/weapon/gun/projectile/shotgun/doublebarrel/sawn
 	name = "sawn-off shotgun"
 	desc = "Omar's coming!" // I'm not gonna add "Uses 12g rounds." to this one. I'll just let this reference go undisturbed.
+<<<<<<< HEAD
 	icon_state = "dshotgun_sawn"
+=======
+	icon_state = "dshotgun-sawn"
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	item_state = "sawnshotgun"
 	slot_flags = SLOT_BELT|SLOT_HOLSTER
 	ammo_type = /obj/item/ammo_casing/a12g/pellet
@@ -233,4 +246,7 @@
 	load_method = SINGLE_CASING
 	max_shells = 5
 	ammo_type = /obj/item/ammo_casing/a12g/beanbag
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22

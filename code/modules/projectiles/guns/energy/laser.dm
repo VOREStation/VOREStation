@@ -167,7 +167,7 @@
 	flux in a nuclear reactor core. This incredible technology may help YOU achieve high excitation rates with small laser volumes!"
 	icon_state = "lasercannon"
 	item_state = null
-	wielded_item_state = "mhdhowitzer-wielded" //Placeholder
+	wielded_item_state = "laser" //Placeholder
 	origin_tech = list(TECH_COMBAT = 4, TECH_MATERIAL = 3, TECH_POWER = 3)
 	slot_flags = SLOT_BELT|SLOT_BACK
 	projectile_type = /obj/item/projectile/beam/heavylaser/cannon
@@ -237,6 +237,7 @@
 
 	toggle_scope(2.0)
 
+<<<<<<< HEAD
 /*
  * Laser Scattergun (proof of concept)
  */
@@ -317,6 +318,12 @@
 	desc = "An old model laser rifle with a nice wood finish. This weapon was only designed to fire once before requiring a recharge."
 	description_fluff = "Modeled after ancient hunting rifles designs, this rifle was dubbed the 'Rainy Day Special' by some, due to its use as the \
 	choice \"fight-stopper\" of barkeeps. One shot is all it takes... so they say."
+=======
+/obj/item/gun/energy/monorifle
+	name = "antique mono-rifle"
+	desc = "An old laser rifle. This one can only fire once before requiring recharging."
+	description_fluff = "Modeled after ancient hunting rifles, this rifle was dubbed the 'Rainy Day Special' by some, due to its use as some barmens' fight-stopper of choice. One shot is all it takes, or so they say."
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	icon_state = "mono"
 	item_state = "shotgun"
 	origin_tech = list(TECH_COMBAT = 6, TECH_MATERIAL = 4, TECH_POWER = 3)
@@ -352,4 +359,54 @@
 	charge_cost = 1200
 	force = 12
 	accuracy = 0
+<<<<<<< HEAD
 	scoped_accuracy = 20
+=======
+	scoped_accuracy = 20
+
+////////Laser Tag////////////////////
+
+/obj/item/gun/energy/lasertag
+	name = "laser tag gun"
+	item_state = "laser"
+	desc = "Standard issue weapon of the Imperial Guard"
+	origin_tech = list(TECH_COMBAT = 1, TECH_MAGNET = 2)
+	matter = list(MAT_STEEL = 2000)
+	projectile_type = /obj/item/projectile/beam/lasertag/blue
+	cell_type = /obj/item/cell/device/weapon/recharge
+	battery_lock = 1
+	var/required_vest
+
+/obj/item/gun/energy/lasertag/special_check(var/mob/living/carbon/human/M)
+	if(ishuman(M))
+		if(!istype(M.wear_suit, required_vest))
+			to_chat(M, "<span class='warning'>You need to be wearing your laser tag vest!</span>")
+			return 0
+	return ..()
+
+/obj/item/gun/energy/lasertag/blue
+	icon_state = "bluetag"
+	item_state = "bluetag"
+	projectile_type = /obj/item/projectile/beam/lasertag/blue
+	required_vest = /obj/item/clothing/suit/bluetag
+
+/obj/item/gun/energy/lasertag/red
+	icon_state = "redtag"
+	item_state = "redtag"
+	projectile_type = /obj/item/projectile/beam/lasertag/red
+	required_vest = /obj/item/clothing/suit/redtag
+
+/obj/item/gun/energy/lasertag/omni
+	projectile_type = /obj/item/projectile/beam/lasertag/omni
+
+// Laser scattergun, proof of concept.
+
+/obj/item/gun/energy/lasershotgun
+	name = "laser scattergun"
+	icon = 'icons/obj/energygun.dmi'
+	icon_state = "scatter"
+	item_state = null
+	desc = "A strange Almachi weapon, utilizing a refracting prism to turn a single laser blast into a diverging cluster."
+	origin_tech = list(TECH_COMBAT = 3, TECH_MAGNET = 1, TECH_MATERIAL = 4)
+	projectile_type = /obj/item/projectile/scatter/laser
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22

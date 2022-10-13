@@ -43,7 +43,11 @@
 	name = "xeno taser gun"
 	desc = "Straight out of NT's testing laboratories, this small gun is used to subdue non-humanoid xeno life forms. \
 	While marketed towards handling slimes, it may be useful for other creatures."
+<<<<<<< HEAD
 	icon_state = "taserblue"
+=======
+	icon_state = "taserblueold"
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	fire_sound = 'sound/weapons/taser2.ogg'
 	charge_cost = 120 // Twice as many shots.
 	projectile_type = /obj/item/projectile/beam/stun/xeno

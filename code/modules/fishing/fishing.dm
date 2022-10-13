@@ -191,7 +191,7 @@ GLOBAL_LIST_INIT(generic_fishing_chance_list, list(FISHING_RARE = 5, FISHING_UNC
 	/obj/random/tool/powermaint = 5,
 	/obj/random/unidentified_medicine/combat_medicine = 1,
 	/obj/random/tool/alien = 1,
-	/obj/random/handgun = 1,
+	/obj/random/sidearm = 1,
 	/mob/living/simple_mob/animal/sif/hooligan_crab = 1
 	))
 

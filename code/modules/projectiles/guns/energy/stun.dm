@@ -27,10 +27,21 @@
 	charge_cost = 400
 	recharge_time = 7 //Time it takes for shots to recharge (in ticks)
 
+<<<<<<< HEAD
 /*
  * Disabler
  */
 /obj/item/weapon/gun/energy/taser/disabler
+=======
+/obj/item/gun/energy/taser/disabler
+	name = "disabler"
+	desc = "The RayZar S500 Disabler is a high-powered derivative of the same Mk30 taser design used by NanoTrasen security, and is capable of overloading prosthetic energy cells. It's use is heavily regulated due to potential for long-term effects on the body."
+	icon_state = "disabler"
+	projectile_type = /obj/item/projectile/beam/stun/disabler
+	charge_cost = 480
+
+/obj/item/gun/energy/taser/mounted/cyborg/swarm
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	name = "disabler"
 	desc = "The NT Mk4 T-DL is a small gun used for non-lethal takedowns. Produced by NT, it's an archaic device which attacks the target's \
 	nervous-system and is actually a heavily modified version of the NT Mk30 NL. It's use is heavily regulated due to its effects on the body."
@@ -208,5 +219,10 @@
 	within their ranks. Hard to argue with the boss with 12000 volts shooting through you."
 	icon_state = "snubstunrevolver"
 	item_state = "stunrevolver"
+<<<<<<< HEAD
 	w_class = ITEMSIZE_SMALL //small pistol is small
 	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+=======
+	w_class = ITEMSIZE_SMALL
+	origin_tech = list(TECH_COMBAT = 3, TECH_MATERIAL = 3, TECH_POWER = 2)
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22

@@ -24,10 +24,26 @@
 	action_sound = 'sound/weapons/riflebolt.ogg'
 	pump_animation = "boltaction-cycling"
 
+<<<<<<< HEAD
 /*
  * Practice Rifle
  */
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/practice // For target practice
+=======
+//////Antique Variant//////
+/obj/item/gun/projectile/shotgun/pump/rifle/antique
+	name = "antique bolt-action rifle"
+	desc = "A cheaply produced rifle dating from at least the late 21st century, if not before. Hand loaded. Uses 7.62mm rounds."
+	description_fluff = "These faux-wood plastic unbranded bolt-action rifles were mass produced in the millions to equip early Icarus Front supporters during staged revolutions in the 2090s,\
+	though the design had circulated on the internet for at least fifty years prior. Surviving examples are relatively common, but generally unreliable as weapons due to their advanced age."
+	icon_state = "surplus"
+	item_state = "boltaction_c"
+	load_method = SINGLE_CASING
+	max_shells = 7
+
+////////Practice Rifle////////
+/obj/item/gun/projectile/shotgun/pump/rifle/practice // For target practice
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
 	name = "practice bolt-action rifle"
 	icon_state = "boltaction_practice"
 	desc = "A bolt-action rifle with a lightweight synthetic wood stock, designed for competitive shooting. \
@@ -144,7 +160,33 @@
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/ui_action_click()
 	scope()
 
+<<<<<<< HEAD
 /obj/item/weapon/gun/projectile/shotgun/pump/rifle/verb/scope()
 	set category = "Object"
 	set name = "Use Scope"
 	set popup_menu = 1
+=======
+////////Vintage Lever Action Rifle////////
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/vintage
+	name = "vintage repeater"
+	desc = "An iconic manually operated lever action rifle, offering adequate stopping power due to it's still powerful cartridge while at the same time having a rather respectable firing rate due to it's mechanism. It is very probable this is a replica instead of a museum piece, but rifles of this pattern still see usage as colonist guns in some far off regions. Uses 7.62mm rounds."
+	description_fluff = null
+	item_state = "levercarbine"
+	icon_state = "levercarbine"
+	pump_animation = "levercarbine-cycling"
+
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/brushgun
+	name = "brush gun"
+	desc = "The Hedberg-Hammarstrom Myrkvidhr is a high-caliber lever-action hunting rifle designed specifically for tackling the hardy and often armoured wildlife of Sif."
+	icon_state = "brushgun"
+	pump_animation = "brushgun-cycling"
+	max_shells = 8
+	ammo_type = /obj/item/ammo_casing/a44/rifle
+	caliber = ".44"
+
+/obj/item/gun/projectile/shotgun/pump/rifle/lever/brushgun/Initialize()
+	if(prob(50))
+		icon_state = "trailgun"
+		pump_animation = "trailgun_cycling"
+	. = ..()
+>>>>>>> 1e279b9cdc7... Merge pull request #8745 from Cerebulon/gunspritesoct22
