@@ -67,27 +67,47 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
+<<<<<<< HEAD
 		/obj/item/weapon/tank/oxygen/red,
 		/obj/item/weapon/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
+=======
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
+		/obj/item/clothing/head/hardhat/firefighter)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 
 /obj/structure/closet/firecloset/full
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
+<<<<<<< HEAD
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/oxygen/red,
 		/obj/item/weapon/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
+=======
+		/obj/item/flashlight,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
+		/obj/item/clothing/head/hardhat/firefighter)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 
 /obj/structure/closet/firecloset/full/double
 	starts_with = list(
 		/obj/item/clothing/suit/fire = 2,
 		/obj/item/clothing/mask/gas = 2,
+<<<<<<< HEAD
 		/obj/item/device/flashlight = 2,
 		/obj/item/weapon/tank/oxygen/red = 2,
 		/obj/item/weapon/extinguisher = 2,
 		/obj/item/clothing/head/hardhat/red = 2)
+=======
+		/obj/item/flashlight = 2,
+		/obj/item/tank/oxygen/red = 2,
+		/obj/item/extinguisher = 2,
+		/obj/item/clothing/head/hardhat/firefighter = 2)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 
 /obj/structure/closet/firecloset/full/atmos
 	name = "atmos fire-safety closet"
@@ -205,12 +225,19 @@
 	store_mobs = 0
 
 	starts_with = list(
-		/obj/item/clothing/suit/fire/firefighter,
+		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
+<<<<<<< HEAD
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/oxygen/red,
 		/obj/item/weapon/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
+=======
+		/obj/item/flashlight,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
+		/obj/item/clothing/head/hardhat/firefighter)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 
 /*
  * First Aid

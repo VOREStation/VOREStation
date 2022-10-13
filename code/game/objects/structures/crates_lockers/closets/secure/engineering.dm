@@ -20,12 +20,22 @@
 		/obj/item/device/radio/headset/heads/ce/alt,
 		/obj/item/weapon/storage/toolbox/mechanical,
 		/obj/item/clothing/suit/storage/hazardvest,
+<<<<<<< HEAD
 		///obj/item/clothing/mask/gas,	//VOREStation Removal: Locker bloat, grr. The fancy one below functions as a mask & helmet combined.
 		/obj/item/clothing/head/hardhat/firefighter/chief, //VOREStation Add: replaces the bog-standard gas mask
 		///obj/item/device/multitool,	//VOREStation Removal: The belt they get, both standard and the fancy one, both come with one already, why stick another in here too?
 		/obj/item/weapon/storage/belt/utility/chief/full,
 		/obj/item/device/flash,
 		/obj/item/device/t_scanner/upgraded,
+=======
+		/obj/item/clothing/head/hardhat/firefighter/chief,
+		/obj/item/clothing/suit/fire/atmos,
+		/obj/item/clothing/mask/gas,
+		/obj/item/multitool,
+		/obj/item/storage/belt/utility/chief/full,
+		/obj/item/flash,
+		/obj/item/t_scanner/upgraded,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 		/obj/item/taperoll/engineering,
 		///obj/item/clothing/suit/storage/hooded/wintercoat/engineering,	//VOREStation Removal: Locker bloat, grr. They can grab from the engi-clothes vendor if they want the standard one.
 		/obj/item/clothing/suit/storage/hooded/wintercoat/engineering/ce,
@@ -120,6 +130,7 @@
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
+<<<<<<< HEAD
 		/obj/item/clothing/suit/fire/heavy,
 		/obj/item/clothing/head/hardhat/firefighter/atmos,
 		/obj/item/device/flashlight,
@@ -128,6 +139,16 @@
 		/obj/item/device/radio/headset/headset_eng,
 		/obj/item/device/radio/headset/headset_eng/alt,
 		/obj/item/clothing/suit/storage/hazardvest/atmos,	//VOREStation edit. Eng locker gets regular haz-vest, atmos gets the themed one of their own
+=======
+		/obj/item/clothing/suit/fire/atmos,
+		/obj/item/clothing/head/hardhat/firefighter,
+		/obj/item/flashlight,
+		/obj/item/extinguisher,
+		/obj/item/clamp,
+		/obj/item/radio/headset/headset_eng,
+		/obj/item/radio/headset/headset_eng/alt,
+		/obj/item/clothing/suit/storage/hazardvest,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 		/obj/item/clothing/mask/gas,
 		/obj/item/weapon/cartridge/atmos,
 		/obj/item/taperoll/atmos,

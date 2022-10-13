@@ -78,9 +78,16 @@
 	name = OUTFIT_COSTUME("Firefighter")
 	uniform = /obj/item/clothing/under/pants
 	shoes = /obj/item/clothing/shoes/boots/workboots
+<<<<<<< HEAD
 	head = /obj/item/clothing/head/hardhat/firefighter
 	gloves = /obj/item/clothing/gloves/black
 	suit = /obj/item/clothing/suit/fire/firefighter
+=======
+	head = /obj/item/clothing/head/hardhat/red/firefighter
+	gloves = /obj/item/clothing/gloves/black
+	suit = /obj/item/clothing/suit/fire
+	mask = /obj/item/clothing/mask/gas
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 
 /decl/hierarchy/outfit/costume/highlander
 	name = OUTFIT_COSTUME("Highlander")
@@ -127,4 +134,8 @@
 	shoes = /obj/item/clothing/shoes/brown
 	head = /obj/item/clothing/head/marine
 	suit = /obj/item/clothing/suit/marine
+<<<<<<< HEAD
 	r_hand = /obj/item/weapon/gun/projectile/revolver/toy/sawnoff
+=======
+	r_hand = /obj/item/gun/projectile/revolver/toy/sawnoff
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear

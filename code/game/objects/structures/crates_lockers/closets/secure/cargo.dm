@@ -41,7 +41,12 @@
 		/obj/item/device/radio/headset/headset_qm/alt, //VOREStation Edit,
 		/obj/item/clothing/gloves/black,
 		/obj/item/clothing/gloves/fingerless,
+<<<<<<< HEAD
 		/obj/item/weapon/tank/emergency/oxygen,
+=======
+		/obj/item/clothing/suit/fire,
+		/obj/item/tank/emergency/oxygen,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
 		/obj/item/clothing/head/soft,

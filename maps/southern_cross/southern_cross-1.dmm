@@ -44149,8 +44149,13 @@
 /obj/structure/table/rack{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/weapon/tank/oxygen,
+=======
+/obj/item/clothing/suit/fire,
+/obj/item/tank/oxygen,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 /obj/item/clothing/mask/gas,
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,
@@ -58448,8 +58453,13 @@
 /obj/structure/table/rack{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/weapon/tank/oxygen,
+=======
+/obj/item/clothing/suit/fire,
+/obj/item/tank/oxygen,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 /obj/item/clothing/mask/gas,
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,
@@ -65655,8 +65665,13 @@
 /obj/structure/table/rack{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/weapon/tank/oxygen,
+=======
+/obj/item/clothing/suit/fire,
+/obj/item/tank/oxygen,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 /obj/item/clothing/mask/gas,
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,
@@ -70188,8 +70203,13 @@
 /obj/structure/table/rack{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/weapon/tank/oxygen,
+=======
+/obj/item/clothing/suit/fire,
+/obj/item/tank/oxygen,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 /obj/item/clothing/mask/gas,
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,
@@ -93813,8 +93833,13 @@
 /obj/structure/table/rack{
 	dir = 1
 	},
+<<<<<<< HEAD
 /obj/item/clothing/suit/fire/firefighter,
 /obj/item/weapon/tank/oxygen,
+=======
+/obj/item/clothing/suit/fire,
+/obj/item/tank/oxygen,
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 /obj/item/clothing/mask/gas,
 /obj/item/weapon/extinguisher,
 /obj/item/clothing/head/hardhat/red,

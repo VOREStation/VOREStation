@@ -500,8 +500,13 @@
 "ajF" = (/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/effect/landmark{name = "lightsout"},/turf/simulated/floor/carpet,/area/library)
 "ajG" = (/obj/structure/bed/chair/comfy/green{dir = 8},/turf/simulated/floor/carpet,/area/library)
 "ajH" = (/obj/machinery/space_heater,/turf/simulated/floor,/area/storage/emergency_storage/emergency4)
+<<<<<<< HEAD
 "ajI" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire/firefighter,/obj/item/weapon/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/weapon/extinguisher,/obj/item/clothing/head/hardhat/red,/obj/item/clothing/glasses/meson,/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency4)
 "ajJ" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/weapon/tank/oxygen,/obj/item/weapon/tank/oxygen,/obj/item/clothing/mask/breath,/obj/item/clothing/mask/breath,/obj/item/device/flashlight,/obj/item/device/flashlight,/obj/item/weapon/storage/box/lights/mixed,/obj/item/weapon/extinguisher,/obj/machinery/alarm{dir = 8; pixel_x = 25; pixel_y = 0},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency4)
+=======
+"ajI" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire,/obj/item/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/extinguisher,/obj/item/clothing/head/hardhat/firefighter,/obj/item/clothing/glasses/meson,/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency4)
+"ajJ" = (/obj/structure/table/rack{dir = 8; layer = 2.9},/obj/item/tank/oxygen,/obj/item/tank/oxygen,/obj/item/clothing/mask/breath,/obj/item/clothing/mask/breath,/obj/item/flashlight,/obj/item/flashlight,/obj/item/storage/box/lights/mixed,/obj/item/extinguisher,/obj/machinery/alarm{dir = 8; pixel_x = 25; pixel_y = 0},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency4)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 "ajK" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/hallway/secondary/civilian_hallway_fore)
 "ajL" = (/obj/structure/disposalpipe/segment,/obj/structure/extinguisher_cabinet{pixel_x = 25; pixel_y = 0},/turf/simulated/floor/tiled,/area/hallway/secondary/civilian_hallway_fore)
 "ajM" = (/obj/machinery/camera/network/civilian{c_tag = "CIV - Chapel Port"; dir = 4},/turf/simulated/floor/tiled/dark,/area/chapel/main)
@@ -6142,7 +6147,11 @@
 "cof" = (/obj/structure/table/standard,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/random/tech_supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/structure/disposalpipe/segment,/obj/machinery/cell_charger,/turf/simulated/floor/tiled,/area/storage/primary)
 "cog" = (/obj/machinery/vending/tool,/turf/simulated/floor/tiled,/area/storage/primary)
 "coh" = (/obj/machinery/floodlight,/turf/simulated/floor,/area/storage/emergency_storage/emergency6)
+<<<<<<< HEAD
 "coi" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire/firefighter,/obj/item/weapon/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/weapon/extinguisher,/obj/item/clothing/head/hardhat/red,/obj/item/clothing/glasses/meson,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency6)
+=======
+"coi" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire,/obj/item/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/extinguisher,/obj/item/clothing/head/hardhat/firefighter,/obj/item/clothing/glasses/meson,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency6)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 "coj" = (/obj/machinery/portable_atmospherics/powered/pump/filled,/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency6)
 "cok" = (/obj/structure/closet/wardrobe/grey,/obj/item/weapon/storage/backpack,/obj/item/weapon/storage/backpack,/obj/random/maintenance/cargo,/obj/random/maintenance/cargo,/obj/random/maintenance/cargo,/turf/simulated/floor/plating,/area/maintenance/cargo)
 "col" = (/obj/structure/table/rack,/obj/item/bodybag/cryobag,/obj/effect/floor_decal/corner/paleblue/full{dir = 8},/obj/item/weapon/storage/toolbox/emergency,/obj/item/weapon/storage/firstaid/regular,/obj/random/medical/lite,/turf/simulated/floor/tiled/white,/area/medical/first_aid_station)
@@ -8037,7 +8046,11 @@
 "cYC" = (/obj/machinery/portable_atmospherics/canister/air/airlock,/obj/effect/floor_decal/industrial/outline/yellow,/obj/machinery/atmospherics/portables_connector{dir = 4},/turf/simulated/floor/plating,/area/maintenance/arrivals)
 "cYD" = (/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/obj/machinery/atmospherics/pipe/manifold/hidden{dir = 4; icon_state = "map"},/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor,/area/maintenance/arrivals)
 "cYE" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced,/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/hallway/secondary/entry/starboard)
+<<<<<<< HEAD
 "cYF" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire/firefighter,/obj/item/weapon/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/weapon/extinguisher,/obj/item/clothing/head/hardhat/red,/obj/item/clothing/glasses/meson,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency5)
+=======
+"cYF" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire,/obj/item/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/extinguisher,/obj/item/clothing/head/hardhat/firefighter,/obj/item/clothing/glasses/meson,/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency5)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 "cYG" = (/obj/machinery/portable_atmospherics/powered/pump/filled,/turf/simulated/floor/plating,/area/storage/emergency_storage/emergency5)
 "cYH" = (/obj/structure/bed/chair{dir = 4},/obj/effect/floor_decal/corner/white{dir = 8},/obj/effect/floor_decal/corner/blue/diagonal,/turf/simulated/floor/tiled,/area/crew_quarters/visitor_dining)
 "cYI" = (/obj/structure/table/standard,/obj/effect/floor_decal/corner/white{dir = 8},/obj/effect/floor_decal/corner/blue,/turf/simulated/floor/tiled,/area/crew_quarters/visitor_dining)
@@ -8473,7 +8486,11 @@
 "dgW" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/firedoor/border_only,/turf/simulated/floor/plating,/area/engineering/engine_eva)
 "dgX" = (/obj/machinery/door/airlock/glass_engineeringatmos{name = "Engineering EVA Storage"; req_one_access = list(11,24)},/obj/machinery/door/firedoor/glass,/obj/structure/cable/green{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/engineering/engine_eva)
 "dgY" = (/obj/machinery/door/airlock/glass_engineeringatmos{name = "Engineering EVA Storage"; req_one_access = list(11,24)},/obj/machinery/door/firedoor/glass,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/obj/machinery/atmospherics/pipe/simple/hidden/supply,/turf/simulated/floor/tiled,/area/engineering/engine_eva)
+<<<<<<< HEAD
 "dgZ" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire/firefighter,/obj/item/weapon/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/weapon/extinguisher,/obj/item/clothing/head/hardhat/red,/obj/item/clothing/glasses/meson,/obj/random/maintenance/engineering,/obj/random/maintenance/clean,/turf/simulated/floor/plating,/area/maintenance/engineering)
+=======
+"dgZ" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire,/obj/item/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/extinguisher,/obj/item/clothing/head/hardhat/firefighter,/obj/item/clothing/glasses/meson,/obj/random/maintenance/engineering,/obj/random/maintenance/clean,/turf/simulated/floor/plating,/area/maintenance/engineering)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 "dha" = (/turf/simulated/floor/plating,/area/maintenance/engineering)
 "dhb" = (/obj/item/device/t_scanner,/obj/structure/table/steel,/obj/machinery/alarm{dir = 8; icon_state = "alarm0"; pixel_x = 24},/turf/simulated/floor/plating,/area/maintenance/engineering)
 "dhc" = (/obj/machinery/light/small{dir = 8},/obj/effect/floor_decal/industrial/warning{dir = 10},/turf/simulated/floor,/area/hallway/secondary/escape/dock_escape_pod_hallway_port)
@@ -9196,7 +9213,11 @@
 "duR" = (/obj/machinery/atmospherics/portables_connector,/obj/effect/floor_decal/industrial/outline/yellow,/obj/machinery/portable_atmospherics/canister/air/airlock,/turf/simulated/floor/tiled,/area/engineering/aft_hallway)
 "duS" = (/obj/machinery/computer/shuttle_control/engineering{name = "engineering elevator control console"},/turf/simulated/floor/tiled,/area/engineering/aft_hallway)
 "duT" = (/obj/structure/cable{d1 = 1; d2 = 2; icon_state = "1-2"},/turf/simulated/floor/tiled,/area/engineering/aft_hallway)
+<<<<<<< HEAD
 "duU" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire/firefighter,/obj/item/weapon/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/weapon/extinguisher,/obj/item/clothing/head/hardhat/red,/obj/item/clothing/glasses/meson,/obj/effect/floor_decal/industrial/warning/corner,/turf/simulated/floor/tiled,/area/engineering/aft_hallway)
+=======
+"duU" = (/obj/structure/table/rack{dir = 1},/obj/item/clothing/suit/fire,/obj/item/tank/oxygen,/obj/item/clothing/mask/gas,/obj/item/extinguisher,/obj/item/clothing/head/hardhat/firefighter,/obj/item/clothing/glasses/meson,/obj/effect/floor_decal/industrial/warning/corner,/turf/simulated/floor/tiled,/area/engineering/aft_hallway)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 "duV" = (/obj/machinery/power/apc{dir = 1; name = "north bump"; pixel_x = 0; pixel_y = 24},/obj/structure/cable/green{d2 = 2; icon_state = "0-2"},/turf/simulated/floor/tiled,/area/engineering/aft_hallway)
 "duW" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor/tiled,/area/engineering/aft_hallway)
 "duX" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply,/obj/machinery/atmospherics/pipe/simple/hidden/scrubbers,/turf/simulated/floor/tiled,/area/engineering/aft_hallway)

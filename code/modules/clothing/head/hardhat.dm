@@ -68,6 +68,7 @@
 		SPECIES_UNATHI = 'icons/inventory/head/mob_unathi.dmi'
 		)
 
+<<<<<<< HEAD
 /obj/item/clothing/head/hardhat/firefighter/atmos
 	name = "atmospheric firefighter helmet"
 	desc = "An atmospheric firefighter's helmet, includes a face mask specially designed for firefighting. It's airtight and has a port for internals."
@@ -121,3 +122,44 @@
 /obj/item/clothing/head/hardhat/ranger/yellow
 	hatcolor = "yellow"
 */
+=======
+/obj/item/clothing/head/hardhat/dblue
+	name = "blue hard hat"
+	icon_state = "hardhat0_dblue"
+
+/obj/item/clothing/head/hardhat/red/firefighter
+	name = "atmospheric firefighter helmet"
+	desc = "An atmospheric firefighter's helmet, able to keep the user protected from heat and fire in normal atmospheric conditions."
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE + 15000
+	min_pressure_protection = 0.5 * ONE_ATMOSPHERE
+	max_pressure_protection = 20 * ONE_ATMOSPHERE
+	icon_state = "atmos_fire"
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi'
+		)
+
+/obj/item/clothing/head/hardhat/firefighter
+	name = "firefighter helmet"
+	desc = "A complete, face covering helmet specially designed for firefighting. It is airtight and has a port for internals."
+	icon_state = "helmet_firefighter"
+	item_flags = THICKMATERIAL | AIRTIGHT
+	permeability_coefficient = 0
+	flags_inv = HIDEMASK|HIDEEARS|HIDEEYES|HIDEFACE|BLOCKHAIR
+	max_heat_protection_temperature = FIRE_HELMET_MAX_HEAT_PROTECTION_TEMPERATURE + 15000
+	min_pressure_protection = 0.5 * ONE_ATMOSPHERE
+	max_pressure_protection = 20 * ONE_ATMOSPHERE
+	body_parts_covered = HEAD|FACE|EYES
+	cold_protection = HEAD
+	min_cold_protection_temperature = SPACE_HELMET_MIN_COLD_PROTECTION_TEMPERATURE
+	flash_protection = FLASH_PROTECTION_MODERATE
+	sprite_sheets = list(
+		SPECIES_TAJARAN = 'icons/mob/species/tajaran/helmet.dmi',
+		SPECIES_UNATHI = 'icons/mob/species/unathi/helmet.dmi'
+		)
+
+/obj/item/clothing/head/hardhat/firefighter/chief
+	name = "chief firefighter helmet"
+	desc = "A complete, face covering helmet specially designed for firefighting. This one is in the colors of the Chief Engineer. It is airtight and has a port for internals."
+	icon_state = "helmet_firefighter_ce"
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear

@@ -13,13 +13,22 @@
 	name = "emergency firesuit"
 	desc = "A suit that protects against fire and heat."
 	icon_state = "firesuit"
+<<<<<<< HEAD
 	item_state_slots = list(slot_r_hand_str = "black_suit", slot_l_hand_str = "black_suit")
+=======
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 	w_class = ITEMSIZE_LARGE//bulky item
 	gas_transfer_coefficient = 0.90
 	permeability_coefficient = 0.50
+	siemens_coefficient = 0.5
 	body_parts_covered = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+<<<<<<< HEAD
 	allowed = list(/obj/item/device/flashlight,/obj/item/weapon/tank/emergency/oxygen,/obj/item/weapon/extinguisher)
 	slowdown = 1.0
+=======
+	allowed = list(/obj/item/flashlight,/obj/item/tank/emergency/oxygen,/obj/item/extinguisher)
+	slowdown = 0.8 //Slightly better than a voidsuit
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 	flags_inv = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL|HIDETIE|HIDEHOLSTER
 	item_flags = 0
 	heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
@@ -28,6 +37,7 @@
 	min_pressure_protection = 0.2 * ONE_ATMOSPHERE
 	max_pressure_protection = 20  * ONE_ATMOSPHERE
 
+<<<<<<< HEAD
 /obj/item/clothing/suit/fire/firefighter
 	name = "firesuit"
 	icon_state = "firesuit2"
@@ -39,6 +49,15 @@
 	icon_state = "atmos_firesuit"
 	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE+10000
 	slowdown = 1.5
+=======
+/obj/item/clothing/suit/fire/atmos
+	name = "atmospheric technician firesuit"
+	desc = "A suit that protects against fire and heat, this one is designed for atmospheric technicians."
+	siemens_coefficient = 0.35
+	max_heat_protection_temperature = FIRESUIT_MAX_HEAT_PROTECTION_TEMPERATURE + 15000
+	icon_state = "atmos_firesuit"
+	item_state = "atmos_firesuit"
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 
 /*
  * Bomb protection

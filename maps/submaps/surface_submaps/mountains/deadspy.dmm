@@ -1,4 +1,4 @@
-"a" = (/obj/effect/decal/remains/xeno,/obj/item/clothing/mask/gas,/obj/item/clothing/suit/fire/firefighter,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
+"a" = (/obj/effect/decal/remains/xeno,/obj/item/clothing/mask/gas,/obj/item/clothing/suit/fire/atmos,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "b" = (/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "c" = (/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/obj/effect/decal/cleanable/molten_item,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)
 "d" = (/obj/item/weapon/flamethrower,/obj/effect/decal/cleanable/liquid_fuel/flamethrower_fuel,/turf/simulated/mineral/floor/ignore_mapgen,/area/submap/deadspy)

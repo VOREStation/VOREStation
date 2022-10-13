@@ -83,8 +83,14 @@
 //Water
 /obj/structure/reagent_dispensers/watertank
 	name = "water tank"
+<<<<<<< HEAD
 	desc = "A water tank."
 	icon_state = "water"
+=======
+	desc = "A watertank."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "watertank"
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 	amount_per_transfer_from_this = 10
 
 /obj/structure/reagent_dispensers/watertank/Initialize()
@@ -465,6 +471,33 @@
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "nuclearbomb0"
 
+<<<<<<< HEAD
+=======
+/obj/structure/reagent_dispensers/virusfood
+	name = "Virus Food Dispenser"
+	desc = "A dispenser of virus food. Yum."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "virusfoodtank"
+	amount_per_transfer_from_this = 10
+	anchored = 1
+
+/obj/structure/reagent_dispensers/virusfood/Initialize()
+	. = ..()
+	reagents.add_reagent("virusfood", 1000)
+
+/obj/structure/reagent_dispensers/acid
+	name = "Sulphuric Acid Dispenser"
+	desc = "A dispenser of acid for industrial processes."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "acidtank"
+	amount_per_transfer_from_this = 10
+	anchored = 1
+
+/obj/structure/reagent_dispensers/acid/Initialize()
+	. = ..()
+	reagents.add_reagent("sacid", 1000)
+
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 //Cooking oil refill tank
 /obj/structure/reagent_dispensers/cookingoil
 	name = "cooking oil tank"
@@ -488,3 +521,17 @@
 	reagents.splash_area(get_turf(src), 3)
 	visible_message(span("danger", "The [src] bursts open, spreading oil all over the area."))
 	qdel(src)
+<<<<<<< HEAD
+=======
+
+/obj/structure/reagent_dispensers/he3
+	name = "fueltank"
+	desc = "A fueltank."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "weldtank"
+	amount_per_transfer_from_this = 10
+
+/obj/structure/reagent_dispenser/he3/Initialize()
+	..()
+	reagents.add_reagent("helium3",1000)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear

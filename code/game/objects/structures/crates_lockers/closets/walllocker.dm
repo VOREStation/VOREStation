@@ -169,10 +169,17 @@
 	starts_with = list(
 		/obj/item/clothing/suit/fire,
 		/obj/item/clothing/mask/gas,
+<<<<<<< HEAD
 		/obj/item/device/flashlight,
 		/obj/item/weapon/tank/oxygen/red,
 		/obj/item/weapon/extinguisher,
 		/obj/item/clothing/head/hardhat/red)
+=======
+		/obj/item/flashlight,
+		/obj/item/tank/oxygen/red,
+		/obj/item/extinguisher,
+		/obj/item/clothing/head/hardhat/firefighter)
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
 
 /obj/structure/closet/walllocker_double/hydrant/north
 	pixel_y = 32
@@ -189,6 +196,7 @@
 /obj/structure/closet/walllocker_double/hydrant/east
 	pixel_x = 32
 	dir = EAST
+<<<<<<< HEAD
 
 /obj/structure/closet/walllocker_double/survival
 	desc = "A wall mounted storage cabinet. It contains a small amount of emergency supplies for wilderness survival, but they probably won't last very long."
@@ -230,3 +238,5 @@
 /obj/structure/closet/walllocker_double/survival/east
 	pixel_x = 32
 	dir = EAST
+=======
+>>>>>>> 5d6034a3cbc... Merge pull request #8739 from Cerebulon/firefighting-gear
