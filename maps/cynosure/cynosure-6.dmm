@@ -959,6 +959,14 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"bcL" = (
+/obj/structure/shuttle/falsewall_no_join,
+/obj/structure/shuttle/falsewall_no_join{
+	icon = 'icons/turf/wall_masks_tgmc.dmi';
+	icon_state = "white1"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/escape/centcom)
 "bcT" = (
 /obj/machinery/sleep_console,
 /turf/unsimulated/floor{
@@ -1149,6 +1157,16 @@
 /obj/machinery/optable,
 /turf/simulated/shuttle/floor/white,
 /area/skipjack_station/start)
+<<<<<<< HEAD
+=======
+"boo" = (
+/obj/structure/shuttle/falsewall_no_join{
+	icon = 'icons/turf/wall_masks_tgmc.dmi';
+	icon_state = "white2"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/escape/centcom)
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 "bos" = (
 /obj/effect/floor_decal/techfloor{
 	dir = 10
@@ -1760,9 +1778,24 @@
 /turf/simulated/floor/holofloor/bmarble,
 /area/holodeck/source_chess)
 "caf" = (
+<<<<<<< HEAD
 /obj/structure/shuttle/window,
 /obj/structure/grille,
 /turf/simulated/shuttle/plating,
+=======
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_window2"
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
+"cbu" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_rwindow2"
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 /area/shuttle/arrival/pre_game)
 "cbv" = (
 /obj/structure/closet/crate/freezer,
@@ -2699,6 +2732,13 @@
 	icon_state = "steel"
 	},
 /area/shuttle/trade)
+"dmu" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_window1"
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "dmM" = (
 /obj/structure/table/rack,
 /obj/item/clothing/under/color/green,
@@ -4887,6 +4927,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/main_hall)
+"fJP" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_rwindow1"
+	},
+/turf/simulated/wall/tgmc/window/white/reinf,
+/area/shuttle/escape/centcom)
 "fKy" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 1
@@ -7642,6 +7689,13 @@
 /obj/random/energy,
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"iQX" = (
+/obj/structure/shuttle/falsewall_no_join{
+	icon = 'icons/turf/wall_masks_tgmc.dmi';
+	icon_state = "white1"
+	},
+/turf/simulated/wall/tgmc/whitewall,
+/area/shuttle/escape/centcom)
 "iRf" = (
 /obj/machinery/floodlight,
 /turf/simulated/shuttle/plating,
@@ -7928,6 +7982,13 @@
 	icon_state = "dark"
 	},
 /area/wizard_station)
+"jfW" = (
+/obj/structure/shuttle/falsewall_no_join{
+	icon = 'icons/turf/wall_masks_tgmc.dmi';
+	icon_state = "white1"
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "jgo" = (
 /obj/item/weapon/ore,
 /turf/unsimulated/floor{
@@ -10712,6 +10773,16 @@
 	icon_state = "steel"
 	},
 /area/centcom/main_hall)
+<<<<<<< HEAD
+=======
+"mhh" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_rwindow2"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/escape/centcom)
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 "mhv" = (
 /obj/structure/flora/ausbushes/sparsegrass,
 /turf/simulated/floor/holofloor/desert,
@@ -11291,6 +11362,13 @@
 /obj/structure/window/reinforced/full,
 /turf/simulated/shuttle/plating,
 /area/shuttle/merchant/home)
+"mPt" = (
+/obj/structure/shuttle/falsewall_no_join{
+	icon = 'icons/turf/wall_masks_tgmc.dmi';
+	icon_state = "white2"
+	},
+/turf/simulated/wall/tgmc/whitewall,
+/area/shuttle/escape/centcom)
 "mQd" = (
 /obj/structure/table/marble,
 /obj/effect/floor_decal/corner/white/diagonal,
@@ -13184,7 +13262,15 @@
 	},
 /area/centcom/main_hall)
 "pia" = (
+<<<<<<< HEAD
 /turf/simulated/shuttle/wall/no_join,
+=======
+/obj/structure/shuttle/falsewall_no_join{
+	icon = 'icons/turf/wall_masks_tgmc.dmi';
+	icon_state = "white2"
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 /area/shuttle/arrival/pre_game)
 "piF" = (
 /turf/unsimulated/floor{
@@ -16161,6 +16247,13 @@
 	name = "plating"
 	},
 /area/wizard_station)
+"seQ" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_rwindow1"
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "sfb" = (
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola,
 /obj/item/weapon/reagent_containers/food/drinks/cans/cola,
@@ -17647,6 +17740,13 @@
 /obj/effect/floor_decal/sign/small_f,
 /turf/simulated/floor/holofloor/wood,
 /area/holodeck/source_chess)
+"tPd" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_rwindow2"
+	},
+/turf/simulated/wall/tgmc/window/white/reinf,
+/area/shuttle/escape/centcom)
 "tPB" = (
 /obj/effect/floor_decal/industrial/warning/corner{
 	dir = 4
@@ -18462,6 +18562,19 @@
 	},
 /turf/simulated/shuttle/plating,
 /area/skipjack_station/start)
+"uGT" = (
+/obj/structure/bed/chair/shuttle{
+	dir = 4
+	},
+/obj/effect/landmark{
+	name = "JoinLate"
+	},
+/obj/structure/closet/walllocker/emerglocker{
+	pixel_x = -32
+	},
+/obj/effect/floor_decal/milspec/color/white,
+/turf/simulated/floor/tiled/milspec/sterile,
+/area/shuttle/arrival/pre_game)
 "uHS" = (
 /obj/structure/bed/chair/comfy/red{
 	dir = 4
@@ -19606,6 +19719,13 @@
 	icon_state = "dark"
 	},
 /area/centcom/specops)
+"vXp" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_rwindow1"
+	},
+/turf/simulated/floor/plating,
+/area/shuttle/escape/centcom)
 "vYZ" = (
 /obj/effect/floor_decal/borderfloorwhite{
 	dir = 8
@@ -20812,6 +20932,13 @@
 /obj/structure/window/reinforced,
 /turf/simulated/shuttle/floor/white,
 /area/centcom/evac)
+"xib" = (
+/obj/structure/shuttle/falsewall_no_join/window{
+	icon = 'icons/turf/wall_masks_tgmc_win.dmi';
+	icon_state = "white_window3"
+	},
+/turf/simulated/floor/tiled/milspec/dark,
+/area/shuttle/arrival/pre_game)
 "xid" = (
 /obj/machinery/dna_scannernew,
 /obj/effect/floor_decal/borderfloorwhite{
@@ -29350,9 +29477,15 @@ tQa
 lqf
 lqf
 pia
+<<<<<<< HEAD
 caf
 caf
 pia
+=======
+cbu
+seQ
+jfW
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 lqf
 lqf
 pol
@@ -29609,9 +29742,15 @@ pNU
 rBk
 bAY
 bAY
+<<<<<<< HEAD
 rBk
 pNU
 pNU
+=======
+uGT
+cSk
+cSk
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 thM
 mZd
 ucH
@@ -30378,9 +30517,9 @@ tgY
 pNU
 dZT
 caf
-caf
-caf
-caf
+xib
+xib
+dmu
 nol
 pNU
 pNU
@@ -31406,9 +31545,15 @@ tQa
 qzL
 qzL
 pia
+<<<<<<< HEAD
 caf
 caf
 pia
+=======
+cbu
+seQ
+jfW
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 qzL
 qzL
 pol
@@ -35690,6 +35835,16 @@ yfe
 eVJ
 gOt
 gOt
+<<<<<<< HEAD
+=======
+boo
+mhh
+vXp
+bcL
+gnm
+gnm
+eVJ
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 eVJ
 xeL
 puk
@@ -38259,6 +38414,15 @@ dqf
 yfe
 eVJ
 kuN
+<<<<<<< HEAD
+=======
+nmf
+mPt
+tPd
+fJP
+iQX
+kuN
+>>>>>>> f94039b3311... Merge pull request #8742 from Cerebulon/shuttle_walls
 kuN
 eVJ
 xeL

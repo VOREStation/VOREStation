@@ -79,3 +79,18 @@
 /obj/structure/shuttle/engine/router
 	name = "router"
 	icon_state = "router"
+
+/obj/structure/shuttle/falsewall_no_join //For faking the appearance of joinable walls when joinable walls won't behave correctly on specific shuttle tiles.
+	name = "shuttle wall"
+	icon = 'icons/turf/shuttle_white.dmi'
+	icon_state = "light" //Should be switched out as needed
+	layer = TURF_LAYER
+	density = 1
+	anchored = 1
+	can_atmos_pass = ATMOS_PASS_NO
+
+/obj/structure/shuttle/falsewall_no_join/window
+	name = "shuttle window"
+	icon = 'icons/obj/podwindows.dmi'
+	icon_state = "0_0"
+	opacity = 0
