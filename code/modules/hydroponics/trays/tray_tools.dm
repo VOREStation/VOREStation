@@ -4,12 +4,22 @@
 	name = "plant clippers"
 	desc = "A tool used to take samples from plants."
 
+<<<<<<< HEAD
 /obj/item/weapon/tool/wirecutters/clippers/trimmers
     name = "hedgetrimmers"
     desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
     icon_state = "hedget"
     item_state = "hedget"
     force = 7 //One point extra than standard wire cutters.
+=======
+/obj/item/tool/wirecutters/clippers/trimmers
+	name = "hedgetrimmers"
+	desc = "An old pair of trimmers with a pretty dull blade. You would probably have a hard time cutting anything but plants with it."
+	icon_state = "hedget"
+	item_state = "hedget"
+	random_color = FALSE
+	force = 7 //One point extra than standard wire cutters.
+>>>>>>> 39cebe388e1... Merge pull request #8741 from Cerebulon/sprite_tweaks_oct
 
 /obj/item/device/analyzer/plant_analyzer
 	name = "plant analyzer"
