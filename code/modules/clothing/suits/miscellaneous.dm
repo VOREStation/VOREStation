@@ -411,7 +411,7 @@
 
 /obj/item/clothing/suit/storage/greyjacket
 	name = "grey jacket"
-	desc = "A fancy twead grey jacket."
+	desc = "A fancy tweed grey jacket."
 	icon_state = "gentlecoat"
 	item_state_slots = list(slot_r_hand_str = "leather_jacket", slot_l_hand_str = "leather_jacket")
 	flags_inv = HIDEHOLSTER
@@ -868,7 +868,7 @@
 //Flannels
 
 /obj/item/clothing/suit/storage/flannel
-	name = "Flannel shirt"
+	name = "grey flannel shirt"
 	desc = "A comfy, grey flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel"
 	item_state_slots = list(slot_r_hand_str = "black_labcoat", slot_l_hand_str = "black_labcoat")
@@ -940,16 +940,19 @@
 	update_clothing_icon()
 
 /obj/item/clothing/suit/storage/flannel/red
+	name = "red flannel shirt"
 	desc = "A comfy, red flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel_red"
 	item_state_slots = list(slot_r_hand_str = "red_labcoat", slot_l_hand_str = "red_labcoat")
 
 /obj/item/clothing/suit/storage/flannel/aqua
+	name = "aqua flannel shirt"
 	desc = "A comfy, aqua flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel_aqua"
 	item_state_slots = list(slot_r_hand_str = "blue_labcoat", slot_l_hand_str = "blue_labcoat")
 
 /obj/item/clothing/suit/storage/flannel/brown
+	name = "brown flannel shirt"
 	desc = "A comfy, brown flannel shirt.  Unleash your inner hipster."
 	icon_state = "flannel_brown"
 	item_state_slots = list(slot_r_hand_str = "johnny", slot_l_hand_str = "johnny")

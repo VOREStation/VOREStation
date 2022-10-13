@@ -12,6 +12,7 @@
 /datum/gear/uniform/cheongsam
 	description = "Various color variations of an old earth dress style. They are pretty close fitting around the waist."
 	display_name = "cheongsam selection"
+	path = /obj/item/clothing/under/cheongsam
 
 /datum/gear/uniform/cheongsam/New()
 	..()
@@ -23,6 +24,7 @@
 /datum/gear/uniform/croptop
 	description = "Light shirts which shows the midsection of the wearer."
 	display_name = "croptop selection"
+	path = /obj/item/clothing/under/croptop
 
 /datum/gear/uniform/croptop/New()
 	..()
@@ -36,15 +38,20 @@
 	path = /obj/item/clothing/under/kilt
 
 /datum/gear/uniform/cuttop
-	display_name = "cut top, grey"
+	display_name = "cut top selection"
+	description = "Loose, low-cut shirts with matching shorts."
 	path = /obj/item/clothing/under/cuttop
 
-/datum/gear/uniform/cuttop/red
-	display_name = "cut top, red"
-	path = /obj/item/clothing/under/cuttop/red
+/datum/gear/uniform/cuttop/New()
+	..()
+	var/cuttoptype = list()
+	cuttoptype["cut top, grey"] = /obj/item/clothing/under/cuttop
+	cuttoptype["cut top, red"] = /obj/item/clothing/under/cuttop/red
+	gear_tweaks += new/datum/gear_tweak/path(cuttoptype)
 
 /datum/gear/uniform/jumpsuit
 	display_name = "jumpclothes selection"
+	description = "Basic solid-colour durable jumpsuits."
 	path = /obj/item/clothing/under/color/grey
 
 /datum/gear/uniform/jumpsuit/New()
@@ -54,9 +61,24 @@
 		jumpclothes[initial(jumps.name)] = jumps
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(jumpclothes))
 
+<<<<<<< HEAD
 /datum/gear/uniform/qipao_colorable
 	display_name = "qipao, colorable"
 	path = /obj/item/clothing/under/qipao_colorable
+=======
+/datum/gear/uniform/colorable_jumpsuit
+	display_name = "jumpsuit, colorable"
+	description = "A durable jumpsuit, in any colour."
+	path = /obj/item/clothing/under/colorable
+
+/datum/gear/uniform/colorable_jumpsuit/New()
+	..()
+	gear_tweaks += gear_tweak_free_color_choice
+
+/datum/gear/uniform/qipao
+	display_name = "qipao"
+	path = /obj/item/clothing/under/qipao
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 
 /datum/gear/uniform/qipao_colorable/New()
 	..()
@@ -71,7 +93,12 @@
 	gear_tweaks += gear_tweak_free_color_choice
 
 /datum/gear/uniform/skirt
+<<<<<<< HEAD
 	display_name = "skirt selection"
+=======
+	display_name = "skirt, selection"
+	description = "Skirts to cover your lower body, in various styles."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/under/skirt
 
 /datum/gear/uniform/skirt/New()
@@ -85,7 +112,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(skirts))
 
 /datum/gear/uniform/pants
+<<<<<<< HEAD
 	display_name = "pants selection"
+=======
+	display_name = "pants, selection"
+	description = "A variety of pants, jeans, chaps, and other long-legged lower body apparel."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/under/pants/white
 
 /datum/gear/uniform/pants/New()
@@ -96,7 +128,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
 
 /datum/gear/uniform/shorts
+<<<<<<< HEAD
 	display_name = "shorts selection"
+=======
+	display_name = "shorts, selection"
+	description = "A variety of shorts, jorts, and other short-legged lower body apparel."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/under/shorts/jeans
 
 /datum/gear/uniform/shorts/New()
@@ -156,6 +193,7 @@
 	path = /obj/item/clothing/under/rank/cargotech/skirt
 	allowed_roles = list("Quartermaster","Cargo Technician")
 
+<<<<<<< HEAD
 /datum/gear/uniform/job_skirt/qm
 	display_name = "skirt, QM"
 	path = /obj/item/clothing/under/rank/cargo/skirt
@@ -178,6 +216,27 @@
 
 /datum/gear/uniform/job_turtle/science
 	display_name = "turtleneck, science"
+=======
+/datum/gear/uniform/job_skirt/New()
+	..()
+	var/skirttype = list()
+	skirttype["skirt, chief engineer"] = /obj/item/clothing/under/rank/chief_engineer/skirt
+	skirttype["skirt, atmospheric technician"] = /obj/item/clothing/under/rank/atmospheric_technician/skirt
+	skirttype["skirt, engineer"] = /obj/item/clothing/under/rank/engineer/skirt
+	skirttype["skirt, roboticist"] = /obj/item/clothing/under/rank/roboticist/skirt
+	skirttype["skirt, CMO"] = /obj/item/clothing/under/rank/chief_medical_officer/skirt
+	skirttype["skirt, chemist"] = /obj/item/clothing/under/rank/chemist/skirt
+	skirttype["skirt, virologist"] = /obj/item/clothing/under/rank/virologist/skirt
+	skirttype["skirt, medical"] = /obj/item/clothing/under/rank/medical/skirt
+	skirttype["skirt, scientist"] = /obj/item/clothing/under/rank/scientist/skirt
+	skirttype["skirt, cargo"] = /obj/item/clothing/under/rank/cargotech/skirt
+	skirttype["skirt, quartermaster"] = /obj/item/clothing/under/rank/cargotech/skirt
+	gear_tweaks += new/datum/gear_tweak/path(skirttype)
+
+/datum/gear/uniform/job_turtle
+	display_name = "turtleneck, departmental selection"
+	description = "High-necked sweaters in a variety of departmental colours."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/under/rank/scientist/turtleneck
 	allowed_roles = list("Research Director", "Scientist", "Roboticist", "Xenobiologist")
 
@@ -218,6 +277,7 @@
 
 /datum/gear/uniform/suit/lawyer
 	display_name = "suit, one-piece selection"
+	description = "A selection of suits without removable jackets."
 	path = /obj/item/clothing/under/lawyer
 
 /datum/gear/uniform/suit/lawyer/New()
@@ -229,6 +289,7 @@
 
 /datum/gear/uniform/suit/suit_jacket
 	display_name = "suit, modular selection"
+	description = "A selection of suits with removable jackets, waistcoats, etc."
 	path = /obj/item/clothing/under/suit_jacket
 
 /datum/gear/uniform/suit/suit_jacket/New()
@@ -278,6 +339,7 @@
 
 /datum/gear/uniform/scrub
 	display_name = "scrubs selection"
+	description = "Medical gear made of a special fiber that provides minor protection against biohazards."
 	path = /obj/item/clothing/under/rank/medical/scrubs
 
 /datum/gear/uniform/scrub/New()
@@ -308,6 +370,7 @@
 	path = /obj/item/clothing/under/dress/dress_cap
 	allowed_roles = list("Site Manager")
 
+<<<<<<< HEAD
 /datum/gear/uniform/corpdetsuit
 	display_name = "uniform, corporate (Detective)"
 	path = /obj/item/clothing/under/det/corporate
@@ -315,9 +378,15 @@
 
 /datum/gear/uniform/corpsecsuit
 	display_name = "uniform, corporate (Security)"
+=======
+/datum/gear/uniform/uniform_security
+	display_name = "uniform, security selection"
+	description = "A selection of standard uniforms for security officers and detectives."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/under/rank/security/corp
 	allowed_roles = list("Security Officer","Head of Security","Warden")
 
+<<<<<<< HEAD
 /datum/gear/uniform/corpwarsuit
 	display_name = "uniform, corporate (Warden)"
 	path = /obj/item/clothing/under/rank/warden/corp
@@ -326,11 +395,47 @@
 /datum/gear/uniform/corphossuit
 	display_name = "uniform, corporate (Head of Security)"
 	path = /obj/item/clothing/under/rank/head_of_security/corp
+=======
+/datum/gear/uniform/uniform_security/New()
+	..()
+	var/secunitype = list()
+	secunitype["officer uniform, corporate"] = /obj/item/clothing/under/rank/security/corp
+	secunitype["officer uniform, navy"] = /obj/item/clothing/under/rank/security/navyblue
+	secunitype["officer uniform, hedberg-hammarstrom"] = /obj/item/clothing/under/hedberg
+	secunitype["officer uniform, red skirt"] = /obj/item/clothing/under/rank/security/skirt
+	secunitype["detective uniform, corporate"] = /obj/item/clothing/under/det/corporate
+	gear_tweaks += new/datum/gear_tweak/path(secunitype)
+
+/datum/gear/uniform/uniform_warden
+	display_name = "uniform, warden selection"
+	description = "A selection of standard uniforms for security wardens."
+	path = /obj/item/clothing/under/rank/warden/corp
+	allowed_roles = list("Head of Security","Warden")
+
+/datum/gear/uniform/uniform_warden/New()
+	..()
+	var/warunitype = list()
+	warunitype["warden uniform, corporate"] = /obj/item/clothing/under/rank/warden/corp
+	warunitype["warden uniform, navy"] = /obj/item/clothing/under/rank/warden/navyblue
+	warunitype["warden uniform, red skirt"] = /obj/item/clothing/under/rank/warden/skirt
+	gear_tweaks += new/datum/gear_tweak/path(warunitype)
+
+/datum/gear/uniform/uniform_hos
+	display_name = "uniform, head of security selection"
+	description = "A selection of standard uniforms for heads of security."
+	path = /obj/item/clothing/under/rank/security/corp
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	allowed_roles = list("Head of Security")
 
 /datum/gear/uniform/uniform_hop
+<<<<<<< HEAD
 	display_name = "uniform, HoP's dress"
 	path = /obj/item/clothing/under/dress/dress_hop
+=======
+	display_name = "uniform, head of personnel selection"
+	description = "A selection of formal uniforms for the Head of Personnel."
+	path = /obj/item/clothing/under/rank/security/corp
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	allowed_roles = list("Head of Personnel")
 
 /datum/gear/uniform/uniform_hr
@@ -399,7 +504,12 @@
 	path = /obj/item/clothing/under/dress/redeveninggown
 
 /datum/gear/uniform/dresses/maid
+<<<<<<< HEAD
 	display_name = "maid uniform selection"
+=======
+	display_name = "uniform, maid selection"
+	description = "A variety of maid uniform styles."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/under/dress/maid
 
 /datum/gear/uniform/dresses/maid/New()
@@ -410,7 +520,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(maids))
 
 /datum/gear/uniform/utility
+<<<<<<< HEAD
 	display_name = "utility, black"
+=======
+	display_name = "jumpsuit, utility selection"
+	description = "A selection of especially hard-wearing jumpclothes for heavy duties."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/under/utility
 
 /datum/gear/uniform/utility/blue
@@ -425,6 +540,26 @@
 	display_name = "sweater, grey"
 	path = /obj/item/clothing/under/rank/psych/turtleneck/sweater
 
+<<<<<<< HEAD
+=======
+/datum/gear/uniform/sweaterretro
+	display_name = "sweater, retro"
+	path = /obj/item/clothing/under/retrosweater
+
+/datum/gear/uniform/brandsuit
+	display_name = "jumpsuit/uniform, corporate selection"
+	description = "Liveried durable jumpclothes and other Trans-Stellar corporate uniforms."
+	path = /obj/item/clothing/under/corp/aether
+
+/datum/gear/uniform/brandsuit/New()
+	..()
+	var/list/brandsuits = list()
+	for(var/brandsuit in typesof(/obj/item/clothing/under/corp, /obj/item/clothing/under/hedbergtech) - /obj/item/clothing/under/corp)
+		var/obj/item/clothing/under/corp/brandsuit_type = brandsuit
+		brandsuits[initial(brandsuit_type.name)] = brandsuit_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(brandsuits))
+
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 /datum/gear/uniform/frontier
 	display_name = "outfit, frontier"
 	path = 	/obj/item/clothing/under/frontier
@@ -478,11 +613,11 @@
 	path = /obj/item/clothing/under/dress/sari/green
 
 /datum/gear/uniform/wrappedcoat
-	display_name = "modern wrapped coat"
+	display_name = "outfit, modern wrapped coat"
 	path = /obj/item/clothing/under/moderncoat
 
 /datum/gear/uniform/ascetic
-	display_name = "plain ascetic garb"
+	display_name = "outfit, plain ascetic garb"
 	path = /obj/item/clothing/under/ascetic
 
 /datum/gear/uniform/pleated
@@ -526,7 +661,7 @@
 	path = /obj/item/clothing/under/dress/littleblackdress
 
 /datum/gear/uniform/pinktutu
-	display_name = "pink tutu"
+	display_name = "skirt, pink tutu"
 	path = /obj/item/clothing/under/dress/pinktutu
 
 /datum/gear/uniform/festivedress
@@ -569,6 +704,13 @@
 	display_name = "cyberpunk strapped harness"
 	path = /obj/item/clothing/under/cyberpunkharness
 
+<<<<<<< HEAD
+=======
+/datum/gear/uniform/cyberpunkpants
+	display_name = "outfit, cyberpunk split-side ensemble"
+	path = /obj/item/clothing/under/cyberpunkpants
+
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 /datum/gear/uniform/whitegown
 	display_name = "white gown"
 	path = /obj/item/clothing/under/wedding/whitegown

@@ -31,7 +31,12 @@
 	path = /obj/item/clothing/suit/jacket/puffer/vest
 
 /datum/gear/suit/bomber
+<<<<<<< HEAD
 	display_name = "bomber jacket"
+=======
+	display_name = "jacket, bomber selection"
+	description = "A selection of jackets styled on early aviation gear."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/bomber
 
 /datum/gear/suit/bomber_alt
@@ -43,11 +48,31 @@
 	path = /obj/item/clothing/suit/storage/toggle/bomber/retro
 
 /datum/gear/suit/leather_jacket
+<<<<<<< HEAD
 	display_name = "leather jacket, black"
 	path = /obj/item/clothing/suit/storage/toggle/leather_jacket
 
 /datum/gear/suit/leather_jacket_sleeveless
 	display_name = "leather vest, black"
+=======
+	display_name = "jacket, leather selection"
+	description = "A selection of leather jackets in various styles."
+	path = /obj/item/clothing/suit/storage/toggle/leather_jacket
+
+/datum/gear/suit/leather_jacket/New()
+	..()
+	var/ljtype = list()
+	ljtype["leather jacket, black"] = /obj/item/clothing/suit/storage/toggle/leather_jacket
+	ljtype["leather jacket, alternate black"] = /obj/item/clothing/suit/storage/leather_jacket_alt
+	ljtype["leather jacket, corporate black"] = /obj/item/clothing/suit/storage/toggle/leather_jacket/nanotrasen
+	ljtype["leather jacket, brown"] = /obj/item/clothing/suit/storage/toggle/brown_jacket
+	ljtype["leather jacket, corporate brown"] = /obj/item/clothing/suit/storage/toggle/brown_jacket/nanotrasen
+	gear_tweaks += new/datum/gear_tweak/path(ljtype)
+
+/datum/gear/suit/leather_vest
+	display_name = "jacket, leather vest selection"
+	description = "A selection of sleeveless leather jackets in various styles."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/leather_jacket/sleeveless
 
 /datum/gear/suit/leather_jacket_alt
@@ -80,6 +105,7 @@
 
 /datum/gear/suit/mil
 	display_name = "military jacket selection"
+	description = "A selection of jackets resembling vintage military gear."
 	path = /obj/item/clothing/suit/storage/miljacket
 
 /datum/gear/suit/mil/New()
@@ -94,8 +120,14 @@
 	display_name = "grey jacket"
 	path = /obj/item/clothing/suit/storage/greyjacket
 
+<<<<<<< HEAD
 /datum/gear/suit/brown_trenchcoat
 	display_name = "trenchcoat, brown"
+=======
+/datum/gear/suit/trenchcoat
+	display_name = "trenchcoat selection"
+	description = "A selection of long raincoats."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/trench
 
 /datum/gear/suit/grey_trenchcoat
@@ -126,6 +158,7 @@
 
 /datum/gear/suit/hoodie
 	display_name = "hoodie selection"
+	description = "A selection of hooded sweatshirts."
 	path = /obj/item/clothing/suit/storage/toggle/hoodie
 
 /datum/gear/suit/hoodie/New()
@@ -137,7 +170,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(hoodies))
 
 /datum/gear/suit/labcoat
+<<<<<<< HEAD
 	display_name = "labcoat selection, public"
+=======
+	display_name = "labcoat, colored selection"
+	description = "A selection of labcoats in standard, and non-standard colours."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/labcoat
 
 /datum/gear/suit/labcoat/New()
@@ -216,6 +254,7 @@
 
 /datum/gear/suit/poncho
 	display_name = "poncho selection"
+	description = "A selection of ponchos in basic and departmental colours."
 	path = /obj/item/clothing/accessory/poncho
 	cost = 1
 
@@ -227,6 +266,7 @@
 		ponchos[initial(poncho.name)] = poncho
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(ponchos))
 
+<<<<<<< HEAD
 /datum/gear/suit/roles/poncho
 	display_name = "poncho selection, departments"
 	path = /obj/item/clothing/accessory/poncho/roles/cargo
@@ -245,10 +285,19 @@
 
 /datum/gear/suit/roles/cloak
 	display_name = "cloak selection, departments"
+=======
+/datum/gear/suit/cloak_department
+	display_name = "cloak, departmental selection"
+	description = "A selection of cloaks in departmental colours."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/accessory/poncho/roles/cloak/cargo
 	cost = 1
 
+<<<<<<< HEAD
 /datum/gear/suit/roles/cloak/New()
+=======
+/datum/gear/suit/cloak_department/New()
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	..()
 	var/list/cloaks = list(
 		"Cargo cloak" = /obj/item/clothing/accessory/poncho/roles/cloak/cargo,
@@ -318,8 +367,14 @@
 	path = /obj/item/clothing/suit/unathi/robe
 	cost = 1
 
+<<<<<<< HEAD
 /datum/gear/suit/lawyer_jackets
 	display_name = "suit jacket selection"
+=======
+/datum/gear/suit/suit_jackets
+	display_name = "jacket, suit selection"
+	description = "A selection of stylish suit jackets."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/internalaffairs
 
 /datum/gear/suit/lawyer_jackets/New()
@@ -336,7 +391,12 @@
 	path = /obj/item/clothing/suit/suspenders
 
 /datum/gear/suit/forensics
+<<<<<<< HEAD
 	display_name = "forensics uniform selection (Detective)"
+=======
+	display_name = "jacket, forensics selection (Detective)"
+	description = "A selection of windbreakers in security colours."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/forensics/red/long
 	allowed_roles = list("Detective")
 
@@ -362,7 +422,12 @@
 
 // winter coats go here
 /datum/gear/suit/wintercoat
+<<<<<<< HEAD
 	display_name = "winter coat"
+=======
+	display_name = "winter coat selection"
+	description = "A selection of heavy winter coats to keep you toasty in extreme weather."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/hooded/wintercoat
 
 /datum/gear/suit/wintercoat/captain
@@ -498,7 +563,12 @@
 // winter coats end here
 
 /datum/gear/suit/varsity
+<<<<<<< HEAD
 	display_name = "varsity jacket selection"
+=======
+	display_name = "jacket, varsity selection"
+	description = "A selection of two-tone cotton jackets."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/varsity
 
 /datum/gear/suit/varsity/New()
@@ -510,7 +580,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(varsities))
 
 /datum/gear/suit/track
+<<<<<<< HEAD
 	display_name = "track jacket selection"
+=======
+	display_name = "jacket, track selection"
+	description = "A selection of lightweight sports jackets."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/track
 
 /datum/gear/suit/track/New()
@@ -522,7 +597,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(tracks))
 
 /datum/gear/suit/flannel
+<<<<<<< HEAD
 	display_name = "flannel jacket selection"
+=======
+	display_name = "flannel selection"
+	description = "A selection of comfortable plaid shirts."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/flannel
 
 /datum/gear/suit/flannel/New()
@@ -536,7 +616,12 @@
 	gear_tweaks += new/datum/gear_tweak/path(flannel)
 
 /datum/gear/suit/denim_jacket
+<<<<<<< HEAD
 	display_name = "denim jacket"
+=======
+	display_name = "jacket, denim selection"
+	description = "A selection of denim jackets in a variety of styles."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket
 
 /datum/gear/suit/denim_jacket/corporate
@@ -547,16 +632,23 @@
 	display_name = "denim vest"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/sleeveless
 
+<<<<<<< HEAD
 /datum/gear/suit/denim_vest/corporate
 	display_name = "denim vest, corporate"
 	path = /obj/item/clothing/suit/storage/toggle/denim_jacket/nanotrasen/sleeveless
 
 /datum/gear/suit/miscellaneous/dep_jacket
 	display_name = "department jacket selection"
+=======
+/datum/gear/suit/dep_jacket
+	display_name = "jacket, departmental selection"
+	description = "A selection of light jackets in departmental colours."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
 
 /datum/gear/suit/miscellaneous/dep_jacket/New()
 	..()
+<<<<<<< HEAD
 	var/list/jacket = list(
 		"Security department jacket" = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket,
 		"Engineering department jacket" = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket,
@@ -568,6 +660,19 @@
 
 /datum/gear/suit/miscellaneous/light_jacket
 	display_name = "light jacket selection"
+=======
+	var/jackettype = list()
+	jackettype["department jacket, engineering"] = /obj/item/clothing/suit/storage/toggle/engi_dep_jacket
+	jackettype["department jacket, medical"] = /obj/item/clothing/suit/storage/toggle/med_dep_jacket
+	jackettype["department jacket, security"] = /obj/item/clothing/suit/storage/toggle/sec_dep_jacket
+	jackettype["department jacket, science"] = /obj/item/clothing/suit/storage/toggle/sci_dep_jacket
+	jackettype["department jacket, supply"] = /obj/item/clothing/suit/storage/toggle/supply_dep_jacket
+	gear_tweaks += new/datum/gear_tweak/path(jackettype)
+
+/datum/gear/suit/light_jacket
+	display_name = "jacket, light selection"
+	description = "A selection of lightweight outdoor jackets."
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 	path = /obj/item/clothing/suit/storage/toggle/light_jacket
 
 /datum/gear/suit/miscellaneous/light_jacket/New()
@@ -624,6 +729,7 @@
 	display_name = "cardigan, colorable"
 	path = /obj/item/clothing/suit/storage/toggle/cardigan
 
+<<<<<<< HEAD
 /datum/gear/suit/miscellaneous/cardigan/New()
 	..()
 	gear_tweaks += gear_tweak_free_color_choice
@@ -636,6 +742,13 @@
 /datum/gear/suit/miscellaneous/kimono
 	display_name = "traditional kimono, colorable"
 	path = /obj/item/clothing/suit/kimono
+=======
+/datum/gear/suit/insulated
+	display_name = "jacket, insulated selection"
+	description = "A selection of jackets made to keep you nice and toasty on cold winter days. Or at least alive."
+	path = /obj/item/clothing/suit/storage/insulated
+	cost = 2
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 
 /datum/gear/suit/miscellaneous/kimono/New()
 	..()

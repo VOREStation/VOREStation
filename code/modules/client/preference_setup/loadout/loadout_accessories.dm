@@ -157,10 +157,17 @@
 	path = /obj/item/clothing/accessory/storage/black_vest
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
 
+<<<<<<< HEAD
 /datum/gear/accessory/white_vest
 	display_name = "webbing, white"
 	path = /obj/item/clothing/accessory/storage/white_vest
 	allowed_roles = list("Engineer","Atmospheric Technician","Chief Engineer","Security Officer","Detective","Head of Security","Warden","Paramedic","Chief Medical Officer","Medical Doctor", "Search and Rescue")
+=======
+/datum/gear/accessory/webbing_simple
+	display_name = "webbing, simple"
+	path = /obj/item/clothing/accessory/storage/webbing
+	cost = 2
+>>>>>>> 2cf7377206a... Merge pull request #8738 from Cerebulon/flan
 
 /datum/gear/accessory/brown_drop_pouches
 	display_name = "drop pouches, brown"
