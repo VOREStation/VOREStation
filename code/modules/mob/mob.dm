@@ -84,7 +84,16 @@
 			exclude_mobs |= src
 		else
 			exclude_mobs = list(src)
+<<<<<<< HEAD
 		src.show_message(self_message, 1, blind_message, 2)
+=======
+		show_message(self_message, 1, blind_message, 2)
+		if (runemessage)
+			create_chat_message(src, "[runemessage]", FALSE, list("emote"), audible = FALSE)
+	// Transfer messages about what we are doing to upstairs
+	if(shadow)
+		shadow.visible_message(message, self_message, blind_message, exclude_mobs, range)
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)
 	if(isnull(runemessage))
 		runemessage = -1
 	. = ..(message, blind_message, exclude_mobs, range, runemessage) // Really not ideal that atom/visible_message has different arg numbering :(
@@ -1270,3 +1279,23 @@ GLOBAL_LIST_EMPTY_TYPED(living_players_by_zlevel, /list)
 /mob/proc/grab_ghost(force)
 	if(mind)
 		return mind.grab_ghost(force = force)
+<<<<<<< HEAD
+=======
+
+/mob/proc/get_sound_volume_multiplier()
+	return !ear_deaf
+
+/mob/proc/handle_reagent_transfer(var/datum/reagents/holder, var/amount = 1, var/chem_type = CHEM_BLOOD, var/multiplier = 1, var/copy = 0)
+	var/datum/reagents/R = new /datum/reagents(amount)
+	. = holder.trans_to_holder(R, amount, multiplier, copy)
+	R.touch_mob(src)
+
+
+/// Check the mob's dexterity var against a required level from MOB_DEXTERITY_*, optionally sending a message with optional target specificity.
+/mob/proc/check_dexterity(required_level, atom/target, silent)
+	if (dexterity < required_level)
+		if (!silent)
+			to_chat(src, SPAN_WARNING("You aren't dextrous enough to [target ? "use \the [target]" : "do that"]."))
+		return FALSE
+	return TRUE
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)

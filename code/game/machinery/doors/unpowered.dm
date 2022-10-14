@@ -2,6 +2,8 @@
 	autoclose = 0
 	var/locked = 0
 
+	required_dexterity = MOB_DEXTERITY_NONE
+
 /obj/machinery/door/unpowered/Bumped(atom/AM)
 	if(src.locked)
 		return

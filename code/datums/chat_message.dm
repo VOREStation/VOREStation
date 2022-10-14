@@ -17,6 +17,8 @@
 #define CHAT_RUNE_EMOTE				0x1
 #define CHAT_RUNE_RADIO				0x2
 
+#define CHAT_MESSAGE_DEFAULT_ACTION "<span style='font-size: 1.5em'>👁</span>"
+
 /**
   * # Chat Message Overlay
   *

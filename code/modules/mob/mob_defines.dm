@@ -230,7 +230,14 @@
 	var/registered_z
 
 	var/in_enclosed_vehicle = 0	//For mechs and fighters ambiance. Can be used in other cases.
+<<<<<<< HEAD
 
 	var/list/progressbars = null //VOREStation Edit
 
 	var/datum/focus //What receives our keyboard inputs. src by default
+=======
+	var/datum/focus //What receives our keyboard inputs. src by default
+
+	/// One of MOB_DEXTERITY_*, permitting various levels of machine and item interaction.
+	var/dexterity = MOB_DEXTERITY_NONE
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)

@@ -119,11 +119,20 @@ Class Procs:
 
 	var/speed_process = FALSE			//If false, SSmachines. If true, SSfastprocess.
 
+<<<<<<< HEAD
 	blocks_emissive = EMISSIVE_BLOCK_GENERIC
 
 /obj/machinery/New(l, d=0)
 	..()
 	if(isnum(d))
+=======
+	required_dexterity = MOB_DEXTERITY_TOUCHSCREENS
+
+
+/obj/machinery/Initialize(var/ml, d=0)
+	. = ..()
+	if(d)
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)
 		set_dir(d)
 	if(ispath(circuit))
 		circuit = new circuit(src)
@@ -250,14 +259,19 @@ Class Procs:
 	else
 		return attack_hand(user)
 
+
 /obj/machinery/attack_hand(mob/user as mob)
 
 	if(inoperable(MAINT))
 		return 1
 	if(user.lying || user.stat)
 		return 1
+<<<<<<< HEAD
 	if(!user.IsAdvancedToolUser())  //Vorestation edit
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+=======
+	if (!user.check_dexterity(required_dexterity, src))
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)
 		return 1
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user

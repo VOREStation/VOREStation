@@ -426,6 +426,8 @@
 	active_power_usage = 6
 	power_channel = ENVIRON
 
+	required_dexterity = MOB_DEXTERITY_SIMPLE_MACHINES
+
 /obj/machinery/readybutton/attack_ai(mob/user as mob)
 	to_chat(user, "The station AI is not to interact with these devices!")
 	return

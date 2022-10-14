@@ -21,6 +21,10 @@
 
 	var/show_examine = TRUE	// Does this pop up on a mob when the mob is examined?
 
+	/// One of MOB_DEXTERITY_* - the dexterity level required to use this object, if any.
+	var/required_dexterity = MOB_DEXTERITY_NONE
+
+
 /obj/Destroy()
 	STOP_PROCESSING(SSobj, src)
 

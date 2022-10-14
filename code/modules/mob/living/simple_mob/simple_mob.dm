@@ -102,6 +102,7 @@
 	var/list/attacktext = list("attacked") // "You are [attacktext] by the mob!"
 	var/list/friendly = list("nuzzles") // "The mob [friendly] the person."
 	var/attack_sound = null				// Sound to play when I attack
+	var/scratch_sound //! Sound to play when I scratch at a door
 	var/melee_miss_chance = 0			// percent chance to miss a melee attack.
 	var/attack_armor_type = "melee"		// What armor does this check?
 	var/attack_armor_pen = 0			// How much armor pen this attack has.

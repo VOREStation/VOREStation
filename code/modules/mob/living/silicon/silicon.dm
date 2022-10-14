@@ -29,7 +29,13 @@
 
 	var/hudmode = null
 
+<<<<<<< HEAD
 /mob/living/silicon/New()
+=======
+	dexterity = MOB_DEXTERITY_FULL
+
+/mob/living/silicon/Initialize()
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)
 	silicon_mob_list |= src
 	..()
 	add_language(LANGUAGE_GALCOM)

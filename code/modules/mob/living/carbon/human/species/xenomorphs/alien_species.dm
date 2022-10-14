@@ -80,6 +80,9 @@
 		BP_R_FOOT = list("path" = /obj/item/organ/external/foot/right/unseverable/xeno)
 		)
 
+	dexterity = MOB_DEXTERITY_NONE
+
+
 /datum/species/xenos/get_bodytype()
 	return SPECIES_XENO
 

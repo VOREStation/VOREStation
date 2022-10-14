@@ -6,10 +6,16 @@
 
 	anchored = 1
 	density = 1
+<<<<<<< HEAD
 	use_power = USE_POWER_OFF
 
 	var/chargesa = 1
 	var/insistinga = 0
+=======
+	required_dexterity = MOB_DEXTERITY_SIMPLE_MACHINES
+	var/charges = 1
+	var/insisting = 0
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)
 
 /obj/machinery/wish_granter/attack_hand(var/mob/living/carbon/human/user as mob)
 	usr.set_machine(src)
@@ -30,6 +36,7 @@
 		insistinga++
 
 	else
+<<<<<<< HEAD
 		chargesa--
 		insistinga = 0
 		var/wish = tgui_input_list(usr, "You want...","Wish", list("Power","Wealth","Immortality","To Kill","Peace"))
@@ -67,3 +74,44 @@
 					F.health = -10
 					F.set_stat(DEAD)
 					F.icon_state = "faithless_dead"
+=======
+		var/message = "You speak. [pick("I want the station to disappear","Humanity is corrupt, mankind must be destroyed","I want to be rich", "I want to rule the world","I want immortality.")]. The Wish Granter answers."
+		to_chat(user, message)
+		to_chat(user, "Your head pounds for a moment, before your vision clears.  You are the avatar of the Wish Granter, and your power is LIMITLESS!  And it's all yours.  You need to make sure no one can take it from you.  No one can know, first.")
+
+		charges--
+		insisting = 0
+
+		if(!(HULK in user.mutations))
+			user.mutations.Add(HULK)
+
+		if(!(LASER in user.mutations))
+			user.mutations.Add(LASER)
+
+		if(!(XRAY in user.mutations))
+			user.mutations.Add(XRAY)
+			user.sight |= (SEE_MOBS|SEE_OBJS|SEE_TURFS)
+			user.see_in_dark = 8
+			user.see_invisible = SEE_INVISIBLE_LEVEL_TWO
+
+		if(!(COLD_RESISTANCE in user.mutations))
+			user.mutations.Add(COLD_RESISTANCE)
+
+		if(!(TK in user.mutations))
+			user.mutations.Add(TK)
+
+		if(!(HEAL in user.mutations))
+			user.mutations.Add(HEAL)
+
+		user.update_mutations()
+		user.mind.special_role = "Avatar of the Wish Granter"
+
+		var/datum/objective/silence/silence = new
+		silence.owner = user.mind
+		user.mind.objectives += silence
+
+		show_objectives(user.mind)
+		to_chat(user, "You have a very bad feeling about this.")
+
+	return
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)

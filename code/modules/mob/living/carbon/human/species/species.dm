@@ -279,6 +279,9 @@
 
 	var/sort_hint = SPECIES_SORT_NORMAL
 
+	/// One of MOB_DEXTERITY_* - the dexterity level of this species for using objects.
+	var/dexterity = MOB_DEXTERITY_FULL
+
 /datum/species/proc/update_attack_types()
 	unarmed_attacks = list()
 	for(var/u_type in unarmed_types)

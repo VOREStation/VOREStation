@@ -39,19 +39,34 @@
 	dir = EAST
 	var/width = 1
 
+	required_dexterity = MOB_DEXTERITY_SIMPLE_MACHINES
+
 	// turf animation
 	var/atom/movable/overlay/c_animation = null
 
-/obj/machinery/door/attack_generic(var/mob/user, var/damage)
+/obj/machinery/door/attack_generic(mob/user, damage)
 	if(isanimal(user))
 		var/mob/living/simple_mob/S = user
 		if(damage >= STRUCTURE_MIN_DAMAGE_THRESHOLD)
 			visible_message("<span class='danger'>\The [user] smashes into [src]!</span>")
 			playsound(src, S.attack_sound, 75, 1)
 			take_damage(damage)
+<<<<<<< HEAD
 		else
 			visible_message("<b>\The [user]</b> bonks \the [src] harmlessly.")
 	user.do_attack_animation(src)
+=======
+		else if(user.a_intent == I_HELP)
+			if (S.scratch_sound)
+				playsound(src, S.scratch_sound, 75, TRUE)
+			user.visible_message(SPAN_NOTICE("\The [user] scratches at the bottom of \the [src]."))
+		else
+			visible_message(SPAN_NOTICE("\The [user] bonks \the [src] harmlessly."))
+		user.do_attack_animation(src)
+		user.setClickCooldown(user.get_attack_speed())
+		return
+	..()
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)
 
 /obj/machinery/door/New()
 	. = ..()

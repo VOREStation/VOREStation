@@ -1134,8 +1134,12 @@
 
 	//icon_state = lowertext(species.name) //Necessary?
 
+<<<<<<< HEAD
 	//VOREStation Edit start: swap places of those two procs
 	species.handle_post_spawn(src)
+=======
+	dexterity = species.dexterity
+>>>>>>> 9a1b8322bdc... trained drakes can collect/drop items and use buttons, fire alarms, and levers (#8734)
 
 	species.create_organs(src)
 	//VOREStation Edit end: swap places of those two procs
