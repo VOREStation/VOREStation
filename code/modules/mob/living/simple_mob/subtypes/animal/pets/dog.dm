@@ -65,14 +65,15 @@
 	return
 
 
+<<<<<<< HEAD
 
 
 /obj/item/weapon/reagent_containers/food/snacks/meat/corgi
+=======
+/obj/item/reagent_containers/food/snacks/meat/corgi
+>>>>>>> f2e7412cafe... Merge pull request #8720 from Cerebulon/catsndogs
 	name = "corgi meat"
 	desc = "Tastes like... well, you know..."
-
-
-
 
 /datum/say_list/dog
 	speak = list("YAP", "Woof!", "Bark!", "AUUUUUU")
@@ -117,6 +118,9 @@
 	real_name = "Ian"	//Intended to hold the name without altering it.
 	gender = MALE
 	desc = "It's a corgi."
+	icon_state = "ian"
+	icon_living = "ian"
+	icon_dead = "ian_dead"
 	var/turns_since_scan = 0
 	var/obj/movement_target
 	makes_dirt = FALSE	//VOREStation edit: no more dirt
@@ -277,6 +281,28 @@
 	icon_state = "brittany"
 	icon_living = "brittany"
 	icon_dead = "brittany_dead"
+
+/mob/living/simple_mob/animal/passive/dog/german
+	name = "german shepherd"
+	real_name = "german shepherd"
+	desc = "It's a german shepherd."
+	icon_state = "german"
+	icon_living = "german"
+	icon_dead = "german_dead"
+
+/mob/living/simple_mob/animal/passive/dog/german/columbo
+	desc = "It's a german shepherd. This one is wearing a security vest."
+	icon_state = "columbo"
+	icon_living = "columbo"
+	icon_dead = "columbo_dead"
+
+/mob/living/simple_mob/animal/passive/dog/pug
+	name = "pug"
+	real_name = "pug"
+	desc = "It's a pug."
+	icon_state = "pug"
+	icon_living = "pug"
+	icon_dead = "pug_dead"
 
 /decl/mob_organ_names/corgi
 	hit_zones = list("head", "body", "left foreleg", "right foreleg", "left hind leg", "right hind leg", "tail", "heart") //You monster.

@@ -34,6 +34,9 @@ var/list/_cat_default_emotes = list(
 	icon = 'icons/mob/pets.dmi'
 	icon_state = "cat2"
 	item_state = "cat2"
+	icon_living = "cat2"
+	icon_dead = "cat2_dead"
+	icon_rest = "cat2_rest"
 
 	movement_cooldown = 0.5 SECONDS
 
@@ -135,6 +138,9 @@ var/list/_cat_default_emotes = list(
 	gender = FEMALE
 	icon_state = "cat"
 	item_state = "cat"
+	icon_living = "cat"
+	icon_dead = "cat_dead"
+	icon_rest = "cat_rest"
 	named = TRUE
 	holder_type = /obj/item/weapon/holder/cat/runtime
 	makes_dirt = 0 //Vorestation Edit
@@ -144,6 +150,9 @@ var/list/_cat_default_emotes = list(
 	desc = "D'aaawwww!"
 	icon_state = "kitten"
 	item_state = "kitten"
+	icon_living = "kitten"
+	icon_dead = "kitten_dead"
+	icon_rest = "kitten_rest"
 	gender = NEUTER
 	holder_type = /obj/item/weapon/holder/cat/kitten //VOREStation Edit
 
@@ -156,12 +165,17 @@ var/list/_cat_default_emotes = list(
 	icon_state = "cat3"
 	item_state = "cat3"
 
+/obj/item/holder/cat/penny
+
 /mob/living/simple_mob/animal/passive/cat/bones
 	name = "Bones"
 	desc = "That's Bones the cat. He's a laid back, black cat. Meow."
 	gender = MALE
 	icon_state = "cat3"
 	item_state = "cat3"
+	icon_living = "cat3"
+	icon_dead = "cat3_dead"
+	icon_rest = "cat3_rest"
 	named = TRUE
 	holder_type = /obj/item/weapon/holder/cat/fluff/bones
 
@@ -245,6 +259,27 @@ var/list/_cat_default_emotes = list(
 	max_n2 = 0					// N2 max
 	unsuitable_atoms_damage = 2	// This damage is taken when atmos doesn't fit all the requirements above
 
+/mob/living/simple_mob/animal/passive/cat/penny
+	name = "Penny"
+	desc = "An important cat, straight from Central Command."
+	named = TRUE
+	icon_state = "penny"
+	item_state = "penny"
+	icon_living = "penny"
+	icon_dead = "penny_dead"
+	icon_rest = "penny_rest"
+
+/mob/living/simple_mob/animal/passive/cat/crusher
+	name = "Crusher"
+	desc = "A cream coloured, young, and cuddly cat, with a small tag on her collar that says \"Dr. Crusher\". She never lets an opportunity pass to receive some pets or prey on some unsuspecting mice."
+	named = TRUE
+	gender = FEMALE
+	icon_state = "crusher"
+	icon_state = "crusher"
+	icon_living = "crusher"
+	icon_dead = "crusher_dead"
+	icon_rest = "crusher_rest"
+
 /datum/say_list/cat
 	speak = list("Meow!","Esp!","Purr!","HSSSSS")
 	emote_hear = list("meows","mews")
@@ -281,5 +316,9 @@ var/list/_cat_default_emotes = list(
 	new /obj/item/stack/material/cardboard(catturf) //if i fits i sits
 	qdel(src)
 
+<<<<<<< HEAD
 /obj/item/weapon/cat_box/black
+=======
+/obj/item/cat_box/black
+>>>>>>> f2e7412cafe... Merge pull request #8720 from Cerebulon/catsndogs
 	cattype = /mob/living/simple_mob/animal/passive/cat/black
