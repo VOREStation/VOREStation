@@ -169,11 +169,12 @@
 	var/pressure_difference
 
 	// First get the absolute pressure difference.
-	if(pressure < species.safe_pressure) // We are in an underpressure.
-		pressure_difference = species.safe_pressure - pressure
+	var/species_safe_pressure = species.get_safe_pressure(src)
+	if(pressure < species_safe_pressure) // We are in an underpressure.
+		pressure_difference = species_safe_pressure - pressure
 
 	else //We are in an overpressure or standard atmosphere.
-		pressure_difference = pressure - species.safe_pressure
+		pressure_difference = pressure - species_safe_pressure
 
 	if(pressure_difference < 5) // If the difference is small, don't bother calculating the fraction.
 		pressure_difference = 0
@@ -186,10 +187,10 @@
 	// The difference is always positive to avoid extra calculations.
 	// Apply the relative difference on a standard atmosphere to get the final result.
 	// The return value will be the adjusted_pressure of the human that is the basis of pressure warnings and damage.
-	if(pressure < species.safe_pressure)
-		return species.safe_pressure - pressure_difference
+	if(pressure < species_safe_pressure)
+		return species_safe_pressure - pressure_difference
 	else
-		return species.safe_pressure + pressure_difference
+		return species_safe_pressure + pressure_difference
 
 /mob/living/carbon/human/handle_disabilities()
 	..()
@@ -733,6 +734,19 @@
 	else
 		failed_last_breath = 0
 		adjustOxyLoss(-5)
+<<<<<<< HEAD
+=======
+
+	if(!does_not_breathe && client) // If we breathe, and have an active client, check if we have synthetic lungs.
+		var/obj/item/organ/internal/lungs/L = internal_organs_by_name[O_LUNGS]
+		var/turf = get_turf(src)
+		var/mob/living/carbon/human/M = src
+		if(L.robotic < ORGAN_ROBOT && is_below_sound_pressure(turf) && M.internal) // Only non-synthetic lungs, please, and only play these while the pressure is below that which we can hear sounds normally AND we're on internals.
+			if(!failed_inhale && (world.time >= (last_breath_sound + 7 SECONDS))) // Were we able to inhale successfully? Play inhale.
+				var/exhale = failed_exhale // Pass through if we passed exhale or not
+				play_inhale(M, exhale)
+				last_breath_sound = world.time
+>>>>>>> 0243357f277... Merge pull request #8710 from MistakeNot4892/vox
 
 
 	// Hot air hurts :(
@@ -799,6 +813,29 @@
 
 	breath.update_values()
 	return 1
+<<<<<<< HEAD
+=======
+
+/mob/living/carbon/human/proc/play_inhale(var/mob/living/M, var/exhale)
+	var/suit_inhale_sound
+	if(species.suit_inhale_sound)
+		suit_inhale_sound = species.suit_inhale_sound
+	else // Failsafe
+		suit_inhale_sound = 'sound/effects/mob_effects/suit_breathe_in.ogg'
+
+	playsound_local(get_turf(src), suit_inhale_sound, 100, pressure_affected = FALSE, volume_channel = VOLUME_CHANNEL_AMBIENCE)
+	if(!exhale) // Did we fail exhale? If no, play it after inhale finishes.
+		addtimer(CALLBACK(src, .proc/play_exhale, M), 5 SECONDS)
+
+/mob/living/carbon/human/proc/play_exhale(var/mob/living/M)
+	var/suit_exhale_sound
+	if(species.suit_exhale_sound)
+		suit_exhale_sound = species.suit_exhale_sound
+	else // Failsafe
+		suit_exhale_sound = 'sound/effects/mob_effects/suit_breathe_out.ogg'
+
+	playsound_local(get_turf(src), suit_exhale_sound, 100, pressure_affected = FALSE, volume_channel = VOLUME_CHANNEL_AMBIENCE)
+>>>>>>> 0243357f277... Merge pull request #8710 from MistakeNot4892/vox
 
 /mob/living/carbon/human/proc/handle_allergens()
 	if(chem_effects[CE_ALLERGEN])
@@ -866,7 +903,7 @@
 		else
 			loc_temp = environment.temperature
 
-		if(adjusted_pressure < species.warning_high_pressure && adjusted_pressure > species.warning_low_pressure && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
+		if(adjusted_pressure < species.get_warning_high_pressure(src) && adjusted_pressure > species.get_warning_low_pressure(src) && abs(loc_temp - bodytemperature) < 20 && bodytemperature < species.heat_level_1 && bodytemperature > species.cold_level_1)
 			clear_alert("pressure")
 			return // Temperatures are within normal ranges, fuck all this processing. ~Ccomp
 
@@ -935,17 +972,23 @@
 	if(status_flags & GODMODE)
 		return 1	//godmode
 
+<<<<<<< HEAD
 	if(adjusted_pressure >= species.hazard_high_pressure)
 		var/pressure_damage = min( ( (adjusted_pressure / species.hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
 		if(stat==DEAD)
 			pressure_damage = pressure_damage/2
+=======
+	var/species_hazard_high_pressure = species.get_hazard_high_pressure(src)
+	if(adjusted_pressure >= species_hazard_high_pressure)
+		var/pressure_damage = min( ( (adjusted_pressure / species_hazard_high_pressure) -1 )*PRESSURE_DAMAGE_COEFFICIENT , MAX_HIGH_PRESSURE_DAMAGE)
+>>>>>>> 0243357f277... Merge pull request #8710 from MistakeNot4892/vox
 		take_overall_damage(brute=pressure_damage, used_weapon = "High Pressure")
 		throw_alert("pressure", /obj/screen/alert/highpressure, 2)
-	else if(adjusted_pressure >= species.warning_high_pressure)
+	else if(adjusted_pressure >= species.get_warning_high_pressure(src))
 		throw_alert("pressure", /obj/screen/alert/highpressure, 1)
-	else if(adjusted_pressure >= species.warning_low_pressure)
+	else if(adjusted_pressure >= species.get_warning_low_pressure(src))
 		clear_alert("pressure")
-	else if(adjusted_pressure >= species.hazard_low_pressure)
+	else if(adjusted_pressure >= species.get_hazard_low_pressure(src))
 		throw_alert("pressure", /obj/screen/alert/lowpressure, 1)
 	else
 		if( !(COLD_RESISTANCE in mutations))
@@ -957,7 +1000,7 @@
 			if(getOxyLoss() < 55) 		// 12 OxyLoss per 4 ticks when wearing internals;    unconsciousness in 16 ticks, roughly half a minute
 				var/pressure_dam = 3	// 16 OxyLoss per 4 ticks when no internals present; unconsciousness in 13 ticks, roughly twenty seconds
 										// (Extra 1 oxyloss from failed breath)
-										// Being in higher pressure decreases the damage taken, down to a minimum of (species.hazard_low_pressure / ONE_ATMOSPHERE) at species.hazard_low_pressure
+										// Being in higher pressure decreases the damage taken, down to a minimum of (species.get_hazard_low_pressure(src) / ONE_ATMOSPHERE) at species.get_hazard_low_pressure(src)
 				pressure_dam *= (ONE_ATMOSPHERE - adjusted_pressure) / ONE_ATMOSPHERE
 
 				if(wear_suit && wear_suit.min_pressure_protection && head && head.min_pressure_protection)

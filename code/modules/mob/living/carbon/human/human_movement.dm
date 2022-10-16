@@ -7,8 +7,7 @@
 	if (istype(loc, /turf/space))
 		return ..() - 1
 
-	if(species.slowdown)
-		. += species.slowdown
+	. += species.get_slowdown(src)
 
 	if(force_max_speed)
 		return ..() + HUMAN_LOWEST_SLOWDOWN
@@ -304,5 +303,10 @@
 
 /mob/living/carbon/human/set_dir(var/new_dir)
 	. = ..()
+<<<<<<< HEAD
 	if(. && (species.tail || tail_style))
 		update_tail_showing()
+=======
+	if(. && species.tail)
+		update_tail_showing()
+>>>>>>> 0243357f277... Merge pull request #8710 from MistakeNot4892/vox

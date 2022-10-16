@@ -117,3 +117,21 @@
 
 /datum/species/proc/get_vision_flags(var/mob/living/carbon/human/H)
 	return vision_flags
+
+/datum/species/proc/get_hazard_high_pressure(var/mob/living/carbon/human/H)
+	return hazard_high_pressure
+
+/datum/species/proc/get_warning_high_pressure(var/mob/living/carbon/human/H)
+	return warning_high_pressure
+
+/datum/species/proc/get_warning_low_pressure(var/mob/living/carbon/human/H)
+	return warning_low_pressure
+
+/datum/species/proc/get_hazard_low_pressure(var/mob/living/carbon/human/H)
+	return hazard_low_pressure
+
+/datum/species/proc/get_safe_pressure(var/mob/living/carbon/human/H)
+	return safe_pressure
+
+/datum/species/proc/get_slowdown(var/mob/living/carbon/human/H)
+	return slowdown

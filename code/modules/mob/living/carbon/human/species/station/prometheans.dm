@@ -234,7 +234,7 @@ var/datum/species/shapeshifter/promethean/prometheans
 		var/datum/gas_mixture/environment = T.return_air()
 		var/pressure = environment.return_pressure()
 		var/affecting_pressure = H.calculate_affecting_pressure(pressure)
-		if(affecting_pressure <= hazard_low_pressure) // Dangerous low pressure stops the regeneration of physical wounds. Body is focusing on keeping them intact rather than sealing.
+		if(affecting_pressure <= get_hazard_low_pressure(H)) // Dangerous low pressure stops the regeneration of physical wounds. Body is focusing on keeping them intact rather than sealing.
 			regen_brute = FALSE
 			regen_burn = FALSE
 
