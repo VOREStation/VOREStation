@@ -1266,7 +1266,7 @@ var/global/list/damage_icon_parts = list() //see UpdateDamageIcon()
 	if(tail_style && !(wear_suit && wear_suit.flags_inv & HIDETAIL && !istaurtail(tail_style)) && !tail_hidden)
 		var/icon/tail_s = new/icon("icon" = tail_style.icon, "icon_state" = (tail_style.can_loaf && resting) ? "[tail_style.icon_state]_loaf" : (wagging && tail_style.ani_state ? tail_style.ani_state : tail_style.icon_state)) // VOREStation Edit: Taur Loafing
 		if(tail_style.can_loaf && !is_shifted)
-			pixel_y = (resting) ? -tail_style.loaf_offset : 0 //move player down, then taur up, to fit the overlays correctly // VOREStation Edit: Taur Loafing
+			pixel_y = (resting) ? -tail_style.loaf_offset*size_multiplier : default_pixel_y //move player down, then taur up, to fit the overlays correctly // VOREStation Edit: Taur Loafing
 		if(tail_style.do_colouration)
 			tail_s.Blend(rgb(src.r_tail, src.g_tail, src.b_tail), tail_style.color_blend_mode)
 		if(tail_style.extra_overlay)
