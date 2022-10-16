@@ -140,7 +140,7 @@
 
 /decl/emote/audible/bug_buzz
 	key = "bbuzz"
-	emote_message_3p = "buzzes its wings."
+	emote_message_3p = "buzzes USER_THEIR wings."
 	emote_sound = 'sound/voice/BugBuzz.ogg'
 
 /decl/emote/audible/bug_chitter
