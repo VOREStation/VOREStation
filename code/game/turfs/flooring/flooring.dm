@@ -407,6 +407,7 @@ var/list/flooring_types
 
 /decl/flooring/tiling/new_tile/techmaint
 	icon_base = "techmaint"
+	build_type = /obj/item/stack/tile/floor/techmaint
 
 /decl/flooring/tiling/new_tile/monofloor
 	icon_base = "monofloor"
