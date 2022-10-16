@@ -91,6 +91,7 @@
 
 	return
 
+<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/pill/attackby(obj/item/weapon/W as obj, mob/user as mob)
 	if(is_sharp(W))
 		var/obj/item/weapon/reagent_containers/powder/J = new /obj/item/weapon/reagent_containers/powder(src.loc)
@@ -112,6 +113,18 @@
 		J.get_appearance()
 		qdel(src)
 
+=======
+/obj/item/reagent_containers/pill/attackby(obj/item/item, mob/living/user)
+	if (is_sharp(item) || istype(item, /obj/item/card))
+		user.visible_message(
+			SPAN_ITALIC("\The [user] cuts up \a [src] with \a [item]."),
+			SPAN_ITALIC("You cut up \the [src] with \the [item].")
+		)
+		playsound(loc, 'sound/effects/chop.ogg', 50, 1)
+		new /obj/item/reagent_containers/powder (loc, reagents)
+		qdel(src)
+		return TRUE
+>>>>>>> ad48e1cbb51... Merge pull request #8753 from Spookerton/spkrtn/fix/assorted-221015
 	return ..()
 
 ////////////////////////////////////////////////////////////////////////////////

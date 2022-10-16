@@ -137,14 +137,18 @@
 	var/stasis_level = 3 //Every 'this' life ticks are applied to the mob (when life_ticks%stasis_level == 1)
 	var/obj/item/weapon/reagent_containers/syringe/syringe
 
-/obj/structure/closet/body_bag/cryobag/Initialize()
-	tank = new tank_type(null) //It's in nullspace to prevent ejection when the bag is opened.
-	..()
 
 /obj/structure/closet/body_bag/cryobag/Destroy()
 	QDEL_NULL(syringe)
 	QDEL_NULL(tank)
 	return ..()
+
+
+/obj/structure/closet/body_bag/cryobag/Initialize()
+	. = ..()
+	if (ispath(tank_type, /obj/item/tank))
+		tank = new tank_type // no loc to prevent tank being dropped when opened
+
 
 /obj/structure/closet/body_bag/cryobag/attack_hand(mob/living/user)
 	if(used)

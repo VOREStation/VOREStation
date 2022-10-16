@@ -276,6 +276,7 @@ SUBSYSTEM_DEF(garbage)
 	name = "[mytype]"
 
 
+<<<<<<< HEAD
 /// Should be treated as a replacement for the 'del' keyword.
 ///
 /// Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
@@ -291,37 +292,75 @@ SUBSYSTEM_DEF(garbage)
 
 	if(isnull(D.gc_destroyed))
 		if (SEND_SIGNAL(D, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
+=======
+// Should be treated as a replacement for the 'del' keyword.
+// Datums passed to this will be given a chance to clean up references to allow the GC to collect them.
+/proc/qdel(datum/thing, force)
+	if (!thing)
+		return
+	if (!istype(thing))
+		crash_with("qdel() can only handle /datum (sub)types, was passed: [log_info_line(thing)]")
+		del(thing)
+		return
+	var/datum/qdel_item/qdel_item = SSgarbage.items[thing.type]
+	if (!qdel_item)
+		qdel_item = new (thing.type)
+		SSgarbage.items[thing.type] = qdel_item
+	qdel_item.qdels++
+	if (isnull(thing.gc_destroyed))
+		if (SEND_SIGNAL(thing, COMSIG_PARENT_PREQDELETED, force)) // Give the components a chance to prevent their parent from being deleted
+>>>>>>> ad48e1cbb51... Merge pull request #8753 from Spookerton/spkrtn/fix/assorted-221015
 			return
-		D.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
+		thing.gc_destroyed = GC_CURRENTLY_BEING_QDELETED
 		var/start_time = world.time
 		var/start_tick = world.tick_usage
+<<<<<<< HEAD
 		SEND_SIGNAL(D, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
 		var/hint = D.Destroy(arglist(args.Copy(2))) // Let our friend know they're about to get fucked up.
 		if(world.time != start_time)
 			I.slept_destroy++
+=======
+		SEND_SIGNAL(thing, COMSIG_PARENT_QDELETING, force) // Let the (remaining) components know about the result of Destroy
+		var/hint = thing.Destroy(force) // Let our friend know they're about to get fucked up.
+		if (world.time != start_time)
+			qdel_item.slept_destroy++
+>>>>>>> ad48e1cbb51... Merge pull request #8753 from Spookerton/spkrtn/fix/assorted-221015
 		else
-			I.destroy_time += TICK_USAGE_TO_MS(start_tick)
-		if(!D)
+			qdel_item.destroy_time += TICK_USAGE_TO_MS(start_tick)
+		if (!thing)
 			return
+<<<<<<< HEAD
 		switch(hint)
 			if (QDEL_HINT_QUEUE) //qdel should queue the object for deletion.
 				SSgarbage.Queue(D)
+=======
+		switch (hint)
+			if (QDEL_HINT_QUEUE)		//qdel should queue the object for deletion.
+				SSgarbage.PreQueue(thing)
+>>>>>>> ad48e1cbb51... Merge pull request #8753 from Spookerton/spkrtn/fix/assorted-221015
 			if (QDEL_HINT_IWILLGC)
-				D.gc_destroyed = world.time
+				thing.gc_destroyed = world.time
 				return
 			if (QDEL_HINT_LETMELIVE) //qdel should let the object live after calling destory.
 				if(!force)
-					D.gc_destroyed = null //clear the gc variable (important!)
+					thing.gc_destroyed = null //clear the gc variable (important!)
 					return
 				// Returning LETMELIVE after being told to force destroy
 				// indicates the objects Destroy() does not respect force
+<<<<<<< HEAD
 				#ifdef TESTING
 				if(!I.no_respect_force)
 					testing("WARNING: [D.type] has been force deleted, but is \
+=======
+#ifdef TESTING
+				if(!qdel_item.no_respect_force)
+					crash_with("[thing.type] has been force deleted, but is \
+>>>>>>> ad48e1cbb51... Merge pull request #8753 from Spookerton/spkrtn/fix/assorted-221015
 						returning an immortal QDEL_HINT, indicating it does \
 						not respect the force flag for qdel(). It has been \
 						placed in the queue, further instances of this type \
 						will also be queued.")
+<<<<<<< HEAD
 				#endif
 				I.no_respect_force++
 
@@ -347,3 +386,141 @@ SUBSYSTEM_DEF(garbage)
 				SSgarbage.Queue(D)
 	else if(D.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
 		CRASH("[D.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
+=======
+#endif
+				qdel_item.no_respect_force++
+				SSgarbage.PreQueue(thing)
+			if (QDEL_HINT_HARDDEL)		//qdel should assume this object won't gc, and queue a hard delete using a hard reference to save time from the locate()
+				SSgarbage.HardQueue(thing)
+			if (QDEL_HINT_HARDDEL_NOW)	//qdel should assume this object won't gc, and hard del it post haste.
+				SSgarbage.HardDelete(thing)
+			if (QDEL_HINT_FINDREFERENCE)//qdel will, if TESTING is enabled, display all references to this object, then queue the object for deletion.
+				SSgarbage.PreQueue(thing)
+				#ifdef TESTING
+				thing.find_references()
+				#endif
+			else
+				#ifdef TESTING
+				if (!qdel_item.no_hint)
+					crash_with("[thing.type] is not returning a qdel hint. It is being placed in the queue. Further instances of this type will also be queued.")
+				#endif
+				qdel_item.no_hint++
+				SSgarbage.PreQueue(thing)
+	else if (thing.gc_destroyed == GC_CURRENTLY_BEING_QDELETED)
+		CRASH("[thing.type] destroy proc was called multiple times, likely due to a qdel loop in the Destroy logic")
+
+
+#ifdef TESTING
+
+/datum/verb/find_refs()
+	set category = "Debug"
+	set name = "Find References"
+	set background = 1
+	set src in world
+
+	find_references(FALSE)
+
+/datum/proc/find_references(skip_alert)
+	running_find_references = type
+	if(usr && usr.client)
+		if(usr.client.running_find_references)
+			testing("CANCELLED search for references to a [usr.client.running_find_references].")
+			usr.client.running_find_references = null
+			running_find_references = null
+			//restart the garbage collector
+			SSgarbage.can_fire = 1
+			SSgarbage.next_fire = world.time + world.tick_lag
+			return
+
+		if(!skip_alert)
+			if(alert("Running this will lock everything up for about 5 minutes.  Would you like to begin the search?", "Find References", "Yes", "No") == "No")
+				running_find_references = null
+				return
+
+	//this keeps the garbage collector from failing to collect objects being searched for in here
+	SSgarbage.can_fire = 0
+
+	if(usr && usr.client)
+		usr.client.running_find_references = type
+
+	testing("Beginning search for references to a [type].")
+	last_find_references = world.time
+
+	// DoSearchVar(GLOB) // If we ever implement GLOB this would be the place.
+	for(var/datum/thing in world) //atoms (don't beleive it's lies)
+		DoSearchVar(thing, "World -> [thing]")
+
+	for (var/datum/thing) //datums
+		DoSearchVar(thing, "World -> [thing]")
+
+	for (var/client/thing) //clients
+		DoSearchVar(thing, "World -> [thing]")
+
+	testing("Completed search for references to a [type].")
+	if(usr && usr.client)
+		usr.client.running_find_references = null
+	running_find_references = null
+
+	//restart the garbage collector
+	SSgarbage.can_fire = 1
+	SSgarbage.next_fire = world.time + world.tick_lag
+
+/datum/verb/qdel_then_find_references()
+	set category = "Debug"
+	set name = "qdel() then Find References"
+	set background = 1
+	set src in world
+
+	qdel(src)
+	if(!running_find_references)
+		find_references(TRUE)
+
+/datum/proc/DoSearchVar(X, Xname, recursive_limit = 64)
+	if(usr && usr.client && !usr.client.running_find_references)
+		return
+	if (!recursive_limit)
+		return
+
+	if(istype(X, /datum))
+		var/datum/D = X
+		if(D.last_find_references == last_find_references)
+			return
+
+		D.last_find_references = last_find_references
+		var/list/L = D.vars
+
+		for(var/varname in L)
+			if (varname == "vars")
+				continue
+			var/variable = L[varname]
+
+			if(variable == src)
+				testing("Found [src.type] \ref[src] in [D.type]'s [varname] var. [Xname]")
+
+			else if(islist(variable))
+				DoSearchVar(variable, "[Xname] -> list", recursive_limit-1)
+
+	else if(islist(X))
+		var/normal = IS_NORMAL_LIST(X)
+		for(var/I in X)
+			if (I == src)
+				testing("Found [src.type] \ref[src] in list [Xname].")
+
+			else if (I && !isnum(I) && normal && X[I] == src)
+				testing("Found [src.type] \ref[src] in list [Xname]\[[I]\]")
+
+			else if (islist(I))
+				DoSearchVar(I, "[Xname] -> list", recursive_limit-1)
+
+#ifndef FIND_REF_NO_CHECK_TICK
+	CHECK_TICK
+#endif
+
+#endif
+
+
+/image/Destroy()
+	..()
+	loc = null
+	return QDEL_HINT_QUEUE
+>>>>>>> ad48e1cbb51... Merge pull request #8753 from Spookerton/spkrtn/fix/assorted-221015

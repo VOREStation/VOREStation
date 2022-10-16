@@ -724,6 +724,24 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.h_style = new_h_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
+	else if (href_list["hair_style_left"])
+		var/list/valid_hairstyles = pref.get_valid_hairstyles()
+		var/index = valid_hairstyles.Find(href_list["hair_style_left"])
+		if (!index || index == 1)
+			pref.h_style = valid_hairstyles[length(valid_hairstyles)]
+		else
+			pref.h_style = valid_hairstyles[index - 1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
+	else if (href_list["hair_style_right"])
+		var/list/valid_hairstyles = pref.get_valid_hairstyles()
+		var/index = valid_hairstyles.Find(href_list["hair_style_right"])
+		if (!index || index == length(valid_hairstyles))
+			pref.h_style = valid_hairstyles[1]
+		else
+			pref.h_style = valid_hairstyles[index + 1]
+		return TOPIC_REFRESH_UPDATE_PREVIEW
+
 	else if(href_list["grad_style"])
 		var/list/valid_gradients = GLOB.hair_gradients
 
@@ -732,26 +750,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.grad_style = new_grad_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["hair_style_left"])
-		var/H = href_list["hair_style_left"]
-		var/list/valid_hairstyles = pref.get_valid_hairstyles()
-		var/start = valid_hairstyles.Find(H)
-
-		if(start != 1) //If we're not the beginning of the list, become the previous element.
-			pref.h_style = valid_hairstyles[start-1]
-		else //But if we ARE, become the final element.
-			pref.h_style = valid_hairstyles[valid_hairstyles.len]
+	else if (href_list["grad_style_left"])
+		var/list/valid_hair_gradients = GLOB.hair_gradients
+		var/index = valid_hair_gradients.Find(href_list["grad_style_left"])
+		if (!index || index == 1)
+			pref.grad_style = valid_hair_gradients[length(valid_hair_gradients)]
+		else
+			pref.grad_style = valid_hair_gradients[index - 1]
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["hair_style_right"])
-		var/H = href_list["hair_style_right"]
-		var/list/valid_hairstyles = pref.get_valid_hairstyles()
-		var/start = valid_hairstyles.Find(H)
-
-		if(start != valid_hairstyles.len) //If we're not the end of the list, become the next element.
-			pref.h_style = valid_hairstyles[start+1]
-		else //But if we ARE, become the first element.
-			pref.h_style = valid_hairstyles[1]
+	else if (href_list["grad_style_right"])
+		var/list/valid_hair_gradients = GLOB.hair_gradients
+		var/index = valid_hair_gradients.Find(href_list["grad_style_right"])
+		if (!index || index == length(valid_hair_gradients))
+			pref.grad_style = valid_hair_gradients[1]
+		else
+			pref.grad_style = valid_hair_gradients[index + 1]
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["facial_color"])
@@ -800,26 +814,22 @@ var/global/list/valid_bloodtypes = list("A+", "A-", "B+", "B-", "AB+", "AB-", "O
 			pref.f_style = new_f_style
 			return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["facial_style_left"])
-		var/F = href_list["facial_style_left"]
+	else if (href_list["facial_style_left"])
 		var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
-		var/start = valid_facialhairstyles.Find(F)
-
-		if(start != 1) //If we're not the beginning of the list, become the previous element.
-			pref.f_style = valid_facialhairstyles[start-1]
-		else //But if we ARE, become the final element.
-			pref.f_style = valid_facialhairstyles[valid_facialhairstyles.len]
+		var/index = valid_facialhairstyles.Find(href_list["facial_style_left"])
+		if (!index || index == 1)
+			pref.f_style = valid_facialhairstyles[length(valid_facialhairstyles)]
+		else
+			pref.f_style = valid_facialhairstyles[index - 1]
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
-	else if(href_list["facial_style_right"])
-		var/F = href_list["facial_style_right"]
+	else if (href_list["facial_style_right"])
 		var/list/valid_facialhairstyles = pref.get_valid_facialhairstyles()
-		var/start = valid_facialhairstyles.Find(F)
-
-		if(start != valid_facialhairstyles.len) //If we're not the end of the list, become the next element.
-			pref.f_style = valid_facialhairstyles[start+1]
-		else //But if we ARE, become the first element.
+		var/index = valid_facialhairstyles.Find(href_list["facial_style_right"])
+		if (!index || index == length(valid_facialhairstyles))
 			pref.f_style = valid_facialhairstyles[1]
+		else
+			pref.f_style = valid_facialhairstyles[index + 1]
 		return TOPIC_REFRESH_UPDATE_PREVIEW
 
 	else if(href_list["marking_style"])

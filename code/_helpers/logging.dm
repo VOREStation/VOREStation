@@ -272,6 +272,7 @@
 /proc/key_name_admin(var/whom, var/include_name = 1)
 	return key_name(whom, 1, include_name)
 
+<<<<<<< HEAD
 // Helper procs for building detailed log lines
 //
 // These procs must not fail under ANY CIRCUMSTANCES!
@@ -302,9 +303,52 @@
 	if(!istype(d))
 		return json_encode(d)
 	return d.log_info_line()
+=======
+>>>>>>> ad48e1cbb51... Merge pull request #8753 from Spookerton/spkrtn/fix/assorted-221015
 
 /mob/proc/simple_info_line()
 	return "[key_name(src)] ([x],[y],[z])"
 
+
 /client/proc/simple_info_line()
 	return "[key_name(src)] ([mob.x],[mob.y],[mob.z])"
+
+
+/proc/log_info_line(datum/thing)
+	if (isnull(thing))
+		return "*null*"
+	if (islist(thing))
+		var/list/result = list()
+		var/list/thing_list =  thing
+		for (var/key in thing_list)
+			var/value = isnum(key) ? null : thing[key]
+			result += "[log_info_line(key)][value ? " - [log_info_line(value)]" : ""]"
+		return "\[[jointext(result, ", ")]\]"
+	if (!istype(thing))
+		return json_encode(thing)
+	return thing.get_log_info_line()
+
+
+/datum/proc/get_log_info_line()
+	return "[src] ([type])"
+
+
+/weakref/get_log_info_line()
+	return "[ref_name] ([ref_type]) ([ref]) (WEAKREF)"
+
+
+/area/get_log_info_line()
+	return "[..()] ([isnum(z) ? "[x],[y],[z]" : "0,0,0"])"
+
+
+/turf/get_log_info_line()
+	return "[..()] ([x],[y],[z]) ([loc ? loc.type : "NULL"])"
+
+
+/atom/movable/get_log_info_line()
+	var/turf/turf = get_turf(src)
+	return "[..()] ([turf ? turf : "NULL"]) ([turf ? "[turf.x],[turf.y],[turf.z]" : "0,0,0"]) ([turf ? turf.type : "NULL"])"
+
+
+/mob/get_log_info_line()
+	return ckey ? "[..()] ([ckey])" : ..()
