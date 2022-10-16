@@ -34,3 +34,22 @@
 	desc = "A cozy winter hood attached to a heavy winter jacket."
 	icon_override = 'icons/inventory/head/mob_vr.dmi'
 	icon_state = "winterhood_talon"
+
+//Food costumes
+// Hotdog suit hood
+/obj/item/clothing/head/hood_vr/hotdog_hood
+	name = "Hotdog suit hood"
+	desc = "The hood of a hotdog suit, attached to said hotdog suit." //Honestly i just don't know how to force the costume to hide hats.
+	icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "hotdog_hood"
+	flags_inv = HIDEEARS|BLOCKHAIR
+
+// Turnip suit hood
+/obj/item/clothing/head/hood_vr/turnip_hood
+	name = "Turnip suit hood"
+	desc = "The hood of a hotdog suit, attached to said hotdog suit. Most cooks cut this part off and throw it in the garbage"
+	icon = 'icons/inventory/head/mob_vr.dmi'
+	icon_override = 'icons/inventory/head/mob_vr.dmi'
+	icon_state = "turnip_hood"
+	flags_inv = HIDEEARS|BLOCKHAIR
