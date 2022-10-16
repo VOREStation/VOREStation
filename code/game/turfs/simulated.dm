@@ -18,6 +18,8 @@
 	var/dirt = 0
 	var/special_temperature //Used for turf HE-Pipe interaction
 
+	var/icon_edge = 'icons/turf/outdoors_edge.dmi'	//VOREStation Addition - Allows for alternative edge icon files
+
 // This is not great.
 /turf/simulated/proc/wet_floor(var/wet_val = 1)
 	if(wet > 2)	//Can't mop up ice

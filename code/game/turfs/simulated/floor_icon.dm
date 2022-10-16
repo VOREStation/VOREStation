@@ -23,6 +23,11 @@ var/image/no_ceiling_image = null
 			icon_state = flooring_override
 		else
 			icon_state = flooring.icon_base
+									//VOREStation Addition Start
+			if(flooring.do_season)
+				if(!season)
+					do_season()
+				icon_state = "[icon_state]-[season]"	//VOREStation Addition End
 			if(flooring.has_base_range)
 				icon_state = "[icon_state][rand(0,flooring.has_base_range)]"
 				flooring_override = icon_state
@@ -107,11 +112,11 @@ var/image/no_ceiling_image = null
 		// Has to have it's own edge_blending_priority
 		// Has to have a higher priority than us
 		// Their icon_state is not our icon_state
-		// They don't forbid_turf_edge			
+		// They don't forbid_turf_edge
 		if(istype(T) && T.edge_blending_priority && edge_blending_priority < T.edge_blending_priority && icon_state != T.icon_state && !T.forbid_turf_edge())
 			var/cache_key = "[T.get_edge_icon_state()]-[checkdir]" // Usually [icon_state]-[dirnum]
 			if(!turf_edge_cache[cache_key])
-				var/image/I = image(icon = 'icons/turf/outdoors_edge.dmi', icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir, layer = ABOVE_TURF_LAYER) // Icon should be abstracted out
+				var/image/I = image(icon = T.icon_edge, icon_state = "[T.get_edge_icon_state()]-edge", dir = checkdir, layer = ABOVE_TURF_LAYER) // VOREStation Edit - icon_edge
 				I.plane = TURF_PLANE
 				turf_edge_cache[cache_key] = I
 			add_overlay(turf_edge_cache[cache_key])

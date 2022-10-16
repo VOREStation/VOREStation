@@ -115,6 +115,8 @@ var/list/flooring_types
 	var/list/movable_atom_whitelist = list()
 	var/list/movable_atom_blacklist = list()
 
+	var/do_season = FALSE	//VOREStation Addition
+
 /decl/flooring/proc/get_plating_type(var/turf/T)
 	return plating_type
 
@@ -614,3 +616,9 @@ var/list/flooring_types
 	can_paint = 1		//VOREStation edit. Let's allow for some fun.
 	can_engrave = 1		//VOREStation edit. Fun.
 	flags = TURF_ACID_IMMUNE | TURF_CAN_BREAK | TURF_REMOVE_CROWBAR
+
+///// Season Time! ///// VOREStation Addition Start
+/decl/flooring/grass/seasonal_grass
+	icon = 'icons/seasonal/turf.dmi'
+	do_season = TRUE
+	has_base_range = 3
