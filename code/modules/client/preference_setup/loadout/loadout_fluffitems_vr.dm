@@ -529,6 +529,13 @@
 	ckeywhitelist = list("jacobdragon")
 	character_name = list("Earthen Breath")
 
+/datum/gear/fluff/jademanique_freyr_mask
+	path = /obj/item/clothing/mask/fluff/freyr_mask
+	display_name = "Freyr's Mask"
+	slot = slot_head
+	ckeywhitelist = list("jademanique")
+	character_name = list("Freyr")
+
 /datum/gear/fluff/cirra_box
 	path = /obj/item/weapon/storage/box/fluff/cirra
 	display_name = "Cirra's Box"
