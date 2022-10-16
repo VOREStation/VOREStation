@@ -507,7 +507,6 @@
 /obj/random/projectile/scrapped_gun
 	name = "broken gun spawner"
 	desc = "Spawns a random broken gun, or rarely a fully functional one."
-	icon = 'icons/obj/gun.dmi'
 	icon_state = "gun_scrap"
 
 /obj/random/projectile/scrapped_gun/item_to_spawn()

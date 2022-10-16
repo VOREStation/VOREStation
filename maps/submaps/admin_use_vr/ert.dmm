@@ -2494,7 +2494,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/barracks)
 "nl" = (
@@ -4610,12 +4610,12 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/effect/catwalk_plated,
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 8;
 	icon_state = "2-8"
 	},
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/engineering)
 "yX" = (
@@ -4723,12 +4723,12 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 4
 	},
-/obj/effect/catwalk_plated,
 /obj/structure/cable/yellow{
 	d1 = 2;
 	d2 = 4;
 	icon_state = "2-4"
 	},
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/hallways)
 "zB" = (
@@ -6832,7 +6832,7 @@
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/ammo_magazine/ammo_box/b12g,
-/obj/item/weapon/storage/box/empshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/emp,
 /obj/item/ammo_magazine/ammo_box/b12g/flash,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
@@ -6983,7 +6983,7 @@
 /obj/item/ammo_magazine/ammo_box/b12g/pellet,
 /obj/item/ammo_magazine/ammo_box/b12g,
 /obj/item/ammo_magazine/ammo_box/b12g,
-/obj/item/weapon/storage/box/empshells/large,
+/obj/item/ammo_magazine/ammo_box/b12g/emp,
 /obj/item/ammo_magazine/ammo_box/b12g/flash,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
 /obj/item/ammo_magazine/ammo_box/b12g/beanbag,
@@ -7205,7 +7205,6 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 8
 	},
-/obj/effect/catwalk_plated/dark,
 /obj/structure/cable/yellow{
 	d1 = 1;
 	d2 = 4;
@@ -7221,6 +7220,7 @@
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/catwalk_plated/techfloor,
 /turf/simulated/floor/plating,
 /area/ship/ert/engine)
 "NI" = (
@@ -7457,7 +7457,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/bridge)
 "OA" = (
@@ -7497,7 +7497,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/bridge)
 "OF" = (
@@ -7784,7 +7784,7 @@
 	},
 /obj/machinery/atmospherics/pipe/manifold/hidden/supply,
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers,
-/obj/effect/catwalk_plated,
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/eng_storage)
 "PG" = (
@@ -8108,12 +8108,12 @@
 "Sp" = (
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/scrubbers,
 /obj/machinery/atmospherics/pipe/manifold4w/hidden/supply,
-/obj/effect/catwalk_plated,
 /obj/structure/cable/yellow{
 	d1 = 4;
 	d2 = 8;
 	icon_state = "4-8"
 	},
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/med)
 "Sr" = (
@@ -8884,10 +8884,10 @@
 /obj/machinery/atmospherics/pipe/manifold/hidden/scrubbers{
 	dir = 1
 	},
-/obj/effect/catwalk_plated,
 /obj/effect/landmark{
 	name = "Commando"
 	},
+/obj/effect/catwalk_plated/techmaint,
 /turf/simulated/floor/plating,
 /area/ship/ert/barracks)
 "WZ" = (

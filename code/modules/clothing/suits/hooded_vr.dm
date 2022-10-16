@@ -79,6 +79,31 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	hoodtype = /obj/item/clothing/head/hood/winter/talon
 
+// Food costumes
+/obj/item/clothing/suit/storage/hooded/foodcostume	//Separate type of costume that does not cover arms and legs. Similar to a cheap mascot costume. <Guy>
+	body_parts_covered = UPPER_TORSO|LOWER_TORSO
+	flags_inv = HIDETIE|HIDEHOLSTER
+	cold_protection = UPPER_TORSO|LOWER_TORSO
+	action_button_name = "Toggle Hood"
+
+/obj/item/clothing/suit/storage/hooded/foodcostume/hotdog	//Belly filler uniform :^).
+	name = "hotdog costume"
+	desc = "A giant hotdog costume, comes with authentic artificial hotdog scent."
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "hotdog"
+	item_state_slots = list(slot_r_hand_str = "hotdog", slot_l_hand_str = "hotdog")
+	hoodtype = /obj/item/clothing/head/hood_vr/hotdog_hood
+
+/obj/item/clothing/suit/storage/hooded/foodcostume/turnip	//Honey wake up, new vorny jail uniform just dropped.
+	name = "turnip costume"
+	desc = "A giant turnip costume, extra padding helps the wearer stand in the same spot for hours."
+	icon = 'icons/inventory/suit/item_vr.dmi'
+	icon_override = 'icons/inventory/suit/mob_vr.dmi'
+	icon_state = "turnip"
+	item_state_slots = list(slot_r_hand_str = "turnip", slot_l_hand_str = "turnip")
+	hoodtype = /obj/item/clothing/head/hood_vr/turnip_hood
+
 //Functional hoodie
 
 /obj/item/clothing/suit/storage/hooded/hoodie

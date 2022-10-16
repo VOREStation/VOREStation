@@ -106,8 +106,6 @@
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(affected.burn_stage < 1 || !(affected.burn_dam))
 			return 0
-		if(affected.burn_dam < affected.brute_dam)
-			return 0
 		return 1
 	return 0
 
@@ -172,8 +170,6 @@
 	if(..())
 		var/obj/item/organ/external/affected = target.get_organ(target_zone)
 		if(affected.brute_stage < 1 || !(affected.brute_dam))
-			return 0
-		if(affected.brute_dam < affected.burn_dam)
 			return 0
 		return 1
 	return 0

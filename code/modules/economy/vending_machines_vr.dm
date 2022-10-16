@@ -1431,7 +1431,9 @@
 					/obj/item/clothing/gloves/combat/knight_costume = 3,
 					/obj/item/clothing/gloves/combat/knight_costume/brown = 3,
 					/obj/item/clothing/shoes/knight_costume = 3,
-					/obj/item/clothing/shoes/knight_costume/black = 3)
+					/obj/item/clothing/shoes/knight_costume/black = 3,
+					/obj/item/clothing/suit/storage/hooded/foodcostume/hotdog = 3,
+					/obj/item/clothing/suit/storage/hooded/foodcostume/turnip = 3)
 	prices = list(/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/storage/hooded/costume/carp = 200,
 					/obj/item/clothing/suit/chickensuit = 200,
@@ -1496,7 +1498,9 @@
 					/obj/item/clothing/gloves/combat/knight_costume = 200,
 					/obj/item/clothing/gloves/combat/knight_costume/brown = 200,
 					/obj/item/clothing/shoes/knight_costume = 200,
-					/obj/item/clothing/shoes/knight_costume/black = 200)
+					/obj/item/clothing/shoes/knight_costume/black = 200,
+					/obj/item/clothing/suit/storage/hooded/foodcostume/hotdog = 200,
+					/obj/item/clothing/suit/storage/hooded/foodcostume/turnip = 200)
 	premium = list(/obj/item/clothing/suit/imperium_monk = 3,
 					/obj/item/clothing/suit/barding/agatha = 2,
 					/obj/item/clothing/suit/barding/alt_agatha = 2,

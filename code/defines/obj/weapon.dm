@@ -39,6 +39,12 @@
 	throwforce = 0
 	throw_speed = 4
 	throw_range = 20
+	var/randomize = TRUE
+	var/square_chance = 10
+	
+/obj/item/weapon/soap/Initialize()
+	if(randomize && prob(square_chance))
+		icon_state = "[icon_state]-alt"
 
 /obj/item/weapon/soap/nanotrasen
 	desc = "A NanoTrasen-brand bar of soap. Smells of phoron, a years-old marketing gimmick."
@@ -53,10 +59,6 @@
 
 /obj/item/weapon/soap/syndie
 	desc = "An untrustworthy bar of soap. Smells of fear."
-	icon_state = "soapsyndie"
-
-/obj/item/weapon/soap/syndie
-	desc = "An dubious bar of soap. Smells of lyes."
 	icon_state = "soapsyndie"
 
 /obj/item/weapon/soap/space_soap
@@ -134,7 +136,6 @@
 /obj/item/weapon/soap/golden_soap
 	desc = "Smells like honey."
 	icon_state = "golden_soap"
-
 
 /obj/item/weapon/bikehorn
 	name = "bike horn"

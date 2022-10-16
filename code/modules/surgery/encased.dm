@@ -68,11 +68,11 @@
 	affected.fracture()
 
 ///////////////////////////////////////////////////////////////
-// Rib Opening Surgery
+// Bone Opening Surgery
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/retract
-	surgery_name = "Retract Ribs Open"
+	surgery_name = "Retract Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100
 	)
@@ -122,11 +122,11 @@
 	affected.fracture()
 
 ///////////////////////////////////////////////////////////////
-// Rib Closing Surgery
+// Retracted Bone Closing Surgery
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/close
-	surgery_name = "Retract Ribs Closed"
+	surgery_name = "Close Retracted Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/retractor = 100,
 	)
@@ -181,11 +181,11 @@
 		target.rupture_lung()*/
 
 ///////////////////////////////////////////////////////////////
-// Rib Mending Surgery
+// Retracted Bone Mending Surgery
 ///////////////////////////////////////////////////////////////
 
 /datum/surgery_step/open_encased/mend
-	surgery_name = "Mend Ribs"
+	surgery_name = "Mend Retracted Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/bonegel = 100
 	)
@@ -227,7 +227,7 @@
 // Saw/Retractor/Gel Combi-open and close.
 ///////////////////////////////////////////////////////////////
 /datum/surgery_step/open_encased/advancedsaw_open
-	surgery_name = "Advanced Cut Ribs"
+	surgery_name = "Advanced Cut Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw/manager = 100
 	)
@@ -278,7 +278,7 @@
 
 
 /datum/surgery_step/open_encased/advancedsaw_mend
-	surgery_name = "Advanced Mend Ribs"
+	surgery_name = "Advanced Mend Retracted Bone"
 	allowed_tools = list(
 		/obj/item/weapon/surgical/circular_saw/manager = 100
 	)

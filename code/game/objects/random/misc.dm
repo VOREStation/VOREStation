@@ -245,6 +245,7 @@
 	desc = "Hot Stuff."
 	icon_state = "sus"
 	spawn_nothing_percentage = 50
+
 /obj/random/contraband/item_to_spawn()
 	return pick(prob(6);/obj/item/weapon/storage/pill_bottle/paracetamol, //VOREStation Edit,
 				prob(4);/obj/item/weapon/storage/pill_bottle/happy,
@@ -307,16 +308,45 @@
 				prob(5);/obj/item/weapon/spacecash/c1000)
 
 /obj/random/soap
-	name = "Random Soap"
-	desc = "This is a random bar of soap."
-	icon = 'icons/obj/items.dmi'
-	icon_state = "soap"
+	name = "Random Soap (All)"
+	desc = "This is a random bar of soap. Includes special types."
+	icon = 'icons/obj/soap.dmi'
+	icon_state = "rainbow_soap"
 
 /obj/random/soap/item_to_spawn()
 	return pick(/obj/item/weapon/soap,
 				/obj/item/weapon/soap/nanotrasen,
 				/obj/item/weapon/soap/deluxe,
 				/obj/item/weapon/soap/syndie,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/space_soap,
+				/obj/item/weapon/soap/water_soap,
+				/obj/item/weapon/soap/fire_soap,
+				/obj/item/weapon/soap/rainbow_soap,
+				/obj/item/weapon/soap/diamond_soap,
+				/obj/item/weapon/soap/uranium_soap,
+				/obj/item/weapon/soap/silver_soap,
+				/obj/item/weapon/soap/brown_soap,
+				/obj/item/weapon/soap/white_soap,
+				/obj/item/weapon/soap/grey_soap,
+				/obj/item/weapon/soap/pink_soap,
+				/obj/item/weapon/soap/purple_soap,
+				/obj/item/weapon/soap/blue_soap,
+				/obj/item/weapon/soap/cyan_soap,
+				/obj/item/weapon/soap/green_soap,
+				/obj/item/weapon/soap/yellow_soap,
+				/obj/item/weapon/soap/orange_soap,
+				/obj/item/weapon/soap/red_soap,
+				/obj/item/weapon/soap/golden_soap)
+
+/obj/random/soap_common
+	name = "Random Soap (Common)"
+	desc = "This is a random bar of soap. Only has the basic types; no NT, deluxe, or syndisoap."
+	icon = 'icons/obj/soap.dmi'
+	icon_state = "rainbow_soap"
+
+/obj/random/soap_common/item_to_spawn()
+	return pick(/obj/item/weapon/soap,
 				/obj/item/weapon/soap/space_soap,
 				/obj/item/weapon/soap/space_soap,
 				/obj/item/weapon/soap/water_soap,
