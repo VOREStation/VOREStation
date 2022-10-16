@@ -426,13 +426,13 @@
 // As this is only done at runtime, we have to create all the vending machines in existence and force them
 // to register their products when this asset initializes.
 /datum/asset/spritesheet/vending/proc/populate_vending_products()
-	SSatoms.map_loader_begin()
+	SSatoms.BeginMapLoad()
 	for(var/path in subtypesof(/obj/machinery/vending))
 		var/obj/machinery/vending/x = new path(null)
-		// force an inventory build; with map_loader_begin active, init isn't called
+		// force an inventory build; with BeginMapLoad active, init isn't called
 		x.build_inventory()
 		qdel(x)
-	SSatoms.map_loader_stop()
+	SSatoms.FinishMapLoad()
 
 // /datum/asset/simple/genetics
 // 	assets = list(
