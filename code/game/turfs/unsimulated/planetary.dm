@@ -30,6 +30,13 @@
 	if(new_temperature == temperature)
 		return
 	temperature = new_temperature
+
+	// Atmospheric pressure is *mostly* invariant to weather, so cancel out standard P~=T
+	oxygen = initial(oxygen) * initial(temperature) / new_temperature
+	nitrogen = initial(nitrogen) * initial(temperature) / new_temperature
+	carbon_dioxide = initial(carbon_dioxide) * initial(temperature) / new_temperature
+	phoron = initial(phoron) * initial(temperature) / new_temperature
+
 	// Force ZAS to reconsider our connections because our temperature has changed
 	if(connections)
 		connections.erase_all()
@@ -67,4 +74,3 @@
 	oxygen = MOLES_O2STANDARD
 	nitrogen = MOLES_N2STANDARD
 	temperature = 310.92 // About 37.7C / 100F
-
