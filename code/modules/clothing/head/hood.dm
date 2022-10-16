@@ -164,6 +164,7 @@
 	desc = "A starry winter hood."
 	icon_state = "winterhood_cosmic"
 
+<<<<<<< HEAD
 /obj/item/clothing/head/hood/winter/christmasred
 	name = "red christmas winter hood"
 	desc = "A red festive winter hood."
@@ -173,6 +174,37 @@
 	name = "green christmas winter hood"
 	desc = "A green festive winter hood."
 	icon_state = "winterhood_christmasg"
+=======
+/obj/item/clothing/head/hood/winter/parka_red
+	name = "red parka hood"
+	desc = "A red fur-lined hood."
+	icon_state = "redpark_hood"
+
+/obj/item/clothing/head/hood/winter/parka_green
+	name = "green parka hood"
+	desc = "A green fur-lined hood."
+	icon_state = "greenpark_hood"
+
+/obj/item/clothing/head/hood/winter/parka_blue
+	name = "blue parka hood"
+	desc = "A blue fur-lined hood."
+	icon_state = "bluepark_hood"
+
+/obj/item/clothing/head/hood/winter/parka_yellow
+	name = "yellow parka hood"
+	desc = "A yellow fur-lined hood."
+	icon_state = "yellowpark_hood"
+
+/obj/item/clothing/head/hood/winter/parka_purple
+	name = "purple parka hood"
+	desc = "A purple fur-lined hood."
+	icon_state = "purplepark_hood"
+
+/obj/item/clothing/head/hood/winter/parka_vintage
+	name = "vintage parka hood"
+	desc = "An old-fashioned fur-lined hood."
+	icon_state = "vintagepark_hood"
+>>>>>>> cc46fb0d38d... Merge pull request #8740 from Cerebulon/parkas
 
 // Explorer gear
 /obj/item/clothing/head/hood/explorer

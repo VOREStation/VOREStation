@@ -359,6 +359,45 @@
 	icon_state = "coatchristmasg"
 	hoodtype = /obj/item/clothing/head/hood/winter/christmasgreen
 
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka
+	name = "red parka"
+	desc = "A heavy fur-lined jacket designed to keep you extra warm in sub-zero conditions."
+	icon_state = "redpark"
+	item_state_slots = list(slot_r_hand_str = "coatwinter", slot_l_hand_str = "coatwinter")
+	hoodtype = /obj/item/clothing/head/hood/winter/parka_red
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/green
+	name = "green parka"
+	icon_state = "greenpark"
+	hoodtype = /obj/item/clothing/head/hood/winter/parka_green
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/blue
+	name = "blue parka"
+	icon_state = "bluepark"
+	hoodtype = /obj/item/clothing/head/hood/winter/parka_blue
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/yellow
+	name = "yellow parka"
+	icon_state = "yellowpark"
+	hoodtype = /obj/item/clothing/head/hood/winter/parka_yellow
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/purple
+	name = "purple parka"
+	icon_state = "purplepark"
+	hoodtype = /obj/item/clothing/head/hood/winter/parka_purple
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/nanotrasen
+	name = "corporate blue parka"
+	desc = "A NanoTrasen branded fur-lined jacket made to keep you nice and toasty on cold winter days. Or at least alive"
+	icon_state = "corppark"
+	hoodtype = /obj/item/clothing/head/hood/winter/parka_blue //No point having a unique hood when it's just blue anyway!
+
+/obj/item/clothing/suit/storage/hooded/wintercoat/parka/vintage
+	name = "vintage parka"
+	desc = "An old-fashioned fur-lined jacket made to keep you nice and toasty on cold winter days. Or at least alive."
+	icon_state = "vintagepark"
+	hoodtype = /obj/item/clothing/head/hood/winter/parka_vintage
+
 // winter coats end here
 
 /obj/item/clothing/suit/storage/hooded/explorer
