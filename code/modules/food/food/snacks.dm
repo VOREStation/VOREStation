@@ -2140,7 +2140,7 @@
 	. = ..()
 	reagents.add_reagent("protein", 3)
 
-/obj/item/reagent_containers/food/snacks/clubsandwich
+/obj/item/weapon/reagent_containers/food/snacks/clubsandwich
 	name = "Club Sandwich"
 	desc = "Tastes like the good feelings when you're part of a clique."
 	icon_state = "clubsandwich"
