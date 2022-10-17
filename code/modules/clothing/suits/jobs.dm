@@ -181,6 +181,26 @@
 	/obj/item/weapon/tool/crowbar, /obj/item/weapon/tool/screwdriver, /obj/item/weapon/weldingtool, /obj/item/weapon/tool/wirecutters, /obj/item/weapon/tool/wrench, /obj/item/weapon/tank/emergency/oxygen,
 	/obj/item/clothing/mask/gas, /obj/item/taperoll/engineering, /obj/item/taperoll/atmos, /obj/item/device/analyzer, /obj/item/weapon/extinguisher/mini) //VOREStation edit. Few more tools that can be put on vests
 	body_parts_covered = UPPER_TORSO
+	var/open = 0	//0 is closed, 1 is open, -1 means it won't be able to toggle
+
+/obj/item/clothing/suit/storage/hazardvest/verb/Toggle()
+	set name = "Toggle Hazard Vest"
+	set category = "Object"
+	set src in usr
+	if(!usr.canmove || usr.stat || usr.restrained())
+		return 0
+	if(open == 1)
+		open = 0
+		icon_state = initial(icon_state)
+		to_chat(usr, "You fasten up the [src]].")
+	else if(open == 0)
+		open = 1
+		icon_state = "[icon_state]_open"
+		to_chat(usr, "You unfasten the [src]].")
+	else
+		to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
+		return
+	update_clothing_icon()
 
 /obj/item/clothing/suit/storage/hazardvest/blue
 	name = "blue hazard vest"
@@ -194,7 +214,11 @@
 
 /obj/item/clothing/suit/storage/hazardvest/white
 	name = "white hazard vest"
+<<<<<<< HEAD
 	desc = "A high-visibility vest used in work zones. This one bears the symbol of a disaster relief team!"
+=======
+	desc = "A high-visibility vest used in work zones. This one is white!"
+>>>>>>> 3e092d401e5... Merge pull request #8743 from Cerebulon/new_basics_engineering
 	icon_state = "hazard_w"
 
 //Lawyer
@@ -258,6 +282,7 @@
 	icon_state = "suspenders"
 	blood_overlay_type = "armor" //it's the less thing that I can put here
 	body_parts_covered = 0
+<<<<<<< HEAD
 
 /obj/item/clothing/suit/suspenders/blue
 	name = "blue suspenders"
@@ -266,3 +291,5 @@
 /obj/item/clothing/suit/suspenders/grey
 	name = "grey suspenders"
 	icon_state = "suspenders_grey"
+=======
+>>>>>>> 3e092d401e5... Merge pull request #8743 from Cerebulon/new_basics_engineering

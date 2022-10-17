@@ -1,5 +1,15 @@
 //Alphabetical order of civilian jobs.
 
+/obj/item/clothing/under/rank/assistant
+	name = "assistant's uniform"
+	desc = "A NanoTrasen-branded jumpsuit in fetching ocean grey."
+	icon_state = "assistant"
+
+/obj/item/clothing/under/rank/assistant/engineer
+	name = "technical assistant's uniform"
+	desc = "A NanoTrasen-branded jumpsuit in fetching ocean grey with engineering yellow accents."
+	icon_state = "assistant_eng"
+
 /obj/item/clothing/under/rank/bartender
 	desc = "It looks like it could use some more flair."
 	name = "bartender's uniform"

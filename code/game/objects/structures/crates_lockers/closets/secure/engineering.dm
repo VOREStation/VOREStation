@@ -5,10 +5,17 @@
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
+<<<<<<< HEAD
 		/obj/item/areaeditor/blueprints,
 		/obj/item/wire_reader,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
 		///obj/item/clamp,	//VOREStation Removal: without leaks those are pointless,
+=======
+		/obj/item/clothing/accessory/storage/overalls/chief,
+		/obj/item/blueprints,
+		/obj/item/clamp,
+		/obj/item/clamp,
+>>>>>>> 3e092d401e5... Merge pull request #8743 from Cerebulon/new_basics_engineering
 		/obj/item/clothing/under/rank/chief_engineer,
 		/obj/item/clothing/under/rank/chief_engineer/skirt,
 		/obj/item/clothing/head/hardhat/white,
@@ -87,9 +94,16 @@
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
+<<<<<<< HEAD
 		/obj/item/weapon/storage/toolbox/mechanical,
 		/obj/item/device/radio/headset/headset_eng,
 		/obj/item/device/radio/headset/headset_eng/alt,
+=======
+		/obj/item/clothing/accessory/storage/overalls/engineer,
+		/obj/item/storage/toolbox/mechanical,
+		/obj/item/radio/headset/headset_eng,
+		/obj/item/radio/headset/headset_eng/alt,
+>>>>>>> 3e092d401e5... Merge pull request #8743 from Cerebulon/new_basics_engineering
 		/obj/item/clothing/suit/storage/hazardvest,
 		/obj/item/clothing/mask/gas,
 		/obj/item/clothing/glasses/meson,
@@ -114,12 +128,13 @@
 
 
 /obj/structure/closet/secure_closet/atmos_personal
-	name = "technician's locker"
+	name = "atmospheric technician's locker"
 	req_access = list(access_atmospherics)
 	closet_appearance = /decl/closet_appearance/secure_closet/engineering/atmos
 
 	starts_with = list(
 		/obj/item/clothing/accessory/storage/brown_vest,
+<<<<<<< HEAD
 		/obj/item/clothing/suit/fire/heavy,
 		/obj/item/clothing/head/hardhat/firefighter/atmos,
 		/obj/item/device/flashlight,
@@ -128,6 +143,16 @@
 		/obj/item/device/radio/headset/headset_eng,
 		/obj/item/device/radio/headset/headset_eng/alt,
 		/obj/item/clothing/suit/storage/hazardvest/atmos,	//VOREStation edit. Eng locker gets regular haz-vest, atmos gets the themed one of their own
+=======
+		/obj/item/clothing/accessory/storage/overalls/engineer,
+		/obj/item/clothing/head/hardhat/firefighter,		/obj/item/clothing/head/hardhat/dblue,
+		/obj/item/flashlight,
+		/obj/item/extinguisher,
+		/obj/item/clamp,
+		/obj/item/radio/headset/headset_eng,
+		/obj/item/radio/headset/headset_eng/alt,
+		/obj/item/clothing/suit/storage/hazardvest,
+>>>>>>> 3e092d401e5... Merge pull request #8743 from Cerebulon/new_basics_engineering
 		/obj/item/clothing/mask/gas,
 		/obj/item/weapon/cartridge/atmos,
 		/obj/item/taperoll/atmos,

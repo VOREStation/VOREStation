@@ -34,6 +34,7 @@
 	title = "Technical Assistant"
 	title_blurb = "A Technical Assistant attempts to provide whatever the Engineering department needs. They are not proper Engineers, and are \
 					often in training to become an Engineer. A Technical Assistant has no real authority."
+	title_outfit = /decl/hierarchy/outfit/job/assistant/engineering
 
 /datum/alt_title/med_intern
 	title = "Medical Intern"

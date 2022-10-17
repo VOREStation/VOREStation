@@ -1,6 +1,12 @@
 /decl/hierarchy/outfit/job/assistant
+<<<<<<< HEAD
 	name = OUTFIT_JOB_NAME(USELESS_JOB) //VOREStation Edit - Visitor not Assistant
 	id_type = /obj/item/weapon/card/id/generic	//VOREStation Edit
+=======
+	name = OUTFIT_JOB_NAME("Assistant")
+	uniform = /obj/item/clothing/under/rank/assistant
+	id_type = /obj/item/card/id/assistant
+>>>>>>> 3e092d401e5... Merge pull request #8743 from Cerebulon/new_basics_engineering
 
 /decl/hierarchy/outfit/job/assistant/visitor
 	name = OUTFIT_JOB_NAME("Visitor")
@@ -17,6 +23,11 @@
 	name = OUTFIT_JOB_NAME("Resident")
 	id_pda_assignment = "Resident"
 	uniform = /obj/item/clothing/under/color/white
+
+/decl/hierarchy/outfit/job/assistant/engineering
+	name = OUTFIT_JOB_NAME("Technical Assistant")
+	id_pda_assignment = "Technical Assistant"
+	uniform = /obj/item/clothing/under/rank/assistant/engineer
 
 /decl/hierarchy/outfit/job/service
 	l_ear = /obj/item/device/radio/headset/headset_service

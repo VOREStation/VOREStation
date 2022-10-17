@@ -101,5 +101,24 @@
 	/obj/item/weapon/material/knife,\
 	/obj/item/weapon/material/knife/plastic)
 
+<<<<<<< HEAD
 	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife(hold)
 	new /obj/item/weapon/material/knife/machete/hatchet/unathiknife(hold)
+=======
+	new /obj/item/material/knife/machete/hatchet/unathiknife(hold)
+	new /obj/item/material/knife/machete/hatchet/unathiknife(hold)
+
+/obj/item/clothing/accessory/storage/overalls
+	name = "overalls"
+	desc = "Heavy-duty overalls for use on the work site, with plenty of convenient pockets to boot."
+	icon_state = "mining_overalls"
+
+/obj/item/clothing/accessory/storage/overalls/engineer
+	name = "engineer's overalls"
+	icon_state = "engineering_overalls"
+
+/obj/item/clothing/accessory/storage/overalls/chief
+	name = "chief engineer's overalls"
+	desc = "Heavy duty overalls, bleached white to signify a \"Chief Engineer.\" Keeping them clean until the end of shift is a challenge unto itself."
+	icon_state = "ce_overalls"
+>>>>>>> 3e092d401e5... Merge pull request #8743 from Cerebulon/new_basics_engineering
