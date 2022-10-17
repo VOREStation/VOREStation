@@ -1880,53 +1880,9 @@
 	nutriment_desc = list("salt" = 1, "chips" = 3)
 	bitesize = 3
 
-<<<<<<< HEAD
 /obj/item/weapon/reagent_containers/food/snacks/fishandchips/Initialize()
-=======
-/obj/item/reagent_containers/food/snacks/fishandchips/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
-
-/obj/item/reagent_containers/food/snacks/sandwich
-	name = "Sandwich"
-	desc = "A grand creation of meat, cheese, bread, and several leaves of lettuce! Arthur Dent would be proud."
-	icon_state = "sandwich"
-	trash = /obj/item/trash/plate
-	filling_color = "#D9BE29"
-	center_of_mass = list("x"=16, "y"=4)
-	nutriment_amt = 3
-	nutriment_desc = list("bread" = 3, "cheese" = 3)
-	bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/sandwich/Initialize()
-	. = ..()
-	reagents.add_reagent("protein", 3)
-
-/obj/item/reagent_containers/food/snacks/clubsandwich
-	name = "Club Sandwich"
-	desc = "Tastes like the good feelings when you're part of a clique."
-	icon_state = "clubsandwich"
-	trash = "obj/item/trash/plate"
-	nutriment_amt = 3
-	nutriment_desc = list("a galactic economy coming together in pursuit of mundane foods" = 3)
-	bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/toastedsandwich
-	name = "Toasted Sandwich"
-	desc = "Now if you only had a pepper bar."
-	icon_state = "toastedsandwich"
-	trash = /obj/item/trash/plate
-	filling_color = "#D9BE29"
-	center_of_mass = list("x"=16, "y"=4)
-	nutriment_amt = 3
-	nutriment_desc = list("toasted bread" = 3, "cheese" = 3)
-	bitesize = 2
-
-/obj/item/reagent_containers/food/snacks/toastedsandwich/Initialize()
->>>>>>> 053c5ef5544... Merge pull request #8760 from Doctress/clubsanga
-	. = ..()
-	reagents.add_reagent("protein", 3)
-
 
 /obj/item/weapon/reagent_containers/food/snacks/rofflewaffles
 	name = "Roffle Waffles"
@@ -2183,6 +2139,15 @@
 /obj/item/weapon/reagent_containers/food/snacks/sandwich/Initialize()
 	. = ..()
 	reagents.add_reagent("protein", 3)
+
+/obj/item/reagent_containers/food/snacks/clubsandwich
+	name = "Club Sandwich"
+	desc = "Tastes like the good feelings when you're part of a clique."
+	icon_state = "clubsandwich"
+	trash = "obj/item/trash/plate"
+	nutriment_amt = 3
+	nutriment_desc = list("a galactic economy coming together in pursuit of mundane foods" = 3)
+	bitesize = 2
 
 /obj/item/weapon/reagent_containers/food/snacks/toastedsandwich
 	name = "Toasted Sandwich"
