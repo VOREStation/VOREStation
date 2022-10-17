@@ -236,6 +236,17 @@ I said no!
 	)
 	result = /obj/item/weapon/reagent_containers/food/snacks/jellysandwich/peanutbutter
 
+/datum/recipe/clubsandwich
+	reagents = list("mayo" = 5)
+	items = list(
+		/obj/item/reagent_containers/food/snacks/slice/bread,
+		/obj/item/reagent_containers/food/snacks/slice/bread,
+		/obj/item/reagent_containers/food/snacks/meat/chicken,
+		/obj/item/reagent_containers/food/snacks/bacon,
+		/obj/item/reagent_containers/food/snacks/cheesewedge
+	)
+	fruit = list("tomato" = 1, "lettuce" = 1)
+	result = /obj/item/reagent_containers/food/snacks/clubsandwich
 
 /datum/recipe/tomatosoup
 	fruit = list("tomato" = 2)
