@@ -1965,6 +1965,66 @@ shaved
 	name = "Teshari Fluffy Mohawk"
 	icon_state = "teshari_fluffymohawk"
 
+/datum/sprite_accessory/hair/teshari/sleek
+	name = "Teshari Sleek"
+	icon_state = "teshari_sleek"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/thepeel
+	name = "Teshari 'The Peel'"
+	icon_state = "teshari_peel"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/sweptup
+	name = "Teshari Swept Up"
+	icon_state = "teshari_sweep"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/aerodynamic
+	name = "Teshari Aerodynamic"
+	icon_state = "teshari_aerodynamic"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/tallmohawk
+	name = "Teshari Tall Mohawk"
+	icon_state = "teshari_tallmohawk"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/cowlick
+	name = "Teshari Cow-lick"
+	icon_state = "teshari_cowlick"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/spikyalt
+	name = "Teshari Spiky alt"
+	icon_state = "teshari_spiky2"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/soap
+	name = "Teshari Soap"
+	icon_state = "teshari_soap"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/crowned
+	name = "Teshari Crowned"
+	icon_state = "teshari_crowned"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/crest
+	name = "Teshari Crest"
+	icon_state = "teshari_crest"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/ponytail
+	name = "Teshari Feather Ponytail"
+	icon_state = "teshari_ponytail"
+	color_blend_mode = ICON_ADD
+
+/datum/sprite_accessory/hair/teshari/bun
+	name = "Teshari Feather Bun"
+	icon_state = "teshari_bun"
+	color_blend_mode = ICON_ADD
+
 // Vox things
 /datum/sprite_accessory/hair/vox
 	name = "Long Vox braid"
