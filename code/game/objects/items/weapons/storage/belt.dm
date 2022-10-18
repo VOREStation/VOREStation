@@ -117,7 +117,7 @@
 	icon_state = "utilitybelt_ce"
 	item_state = "utility_ce"
 	storage_slots = 8	//If they get better everything-else, why not the belt too?
-		can_hold = list(
+	can_hold = list(
 		/obj/item/weapon/rcd,	//They've given one from the get-go, it's hard to imagine they wouldn't be given something that can store it neater than a bag
 		/obj/item/weapon/tool/crowbar,
 		/obj/item/weapon/tool/screwdriver,
