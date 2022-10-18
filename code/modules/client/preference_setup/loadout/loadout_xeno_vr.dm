@@ -94,6 +94,7 @@
 /datum/gear/uniform/altevian_outfit
 	description = "A uniform commonly seen from altevians during their work. The material on this uniform seems to be made of durable thread that can handle the stress of most matters of labor."
 	display_name = "altevian duty jumpsuit selection (Altevian)"
+	whitelisted = SPECIES_ALTEVIAN
 	sort_category = "Xenowear"
 
 /datum/gear/uniform/altevian_outfit/New()
@@ -102,6 +103,24 @@
 	for(var/obj/item/clothing/under/altevian/uniform_type as anything in typesof(/obj/item/clothing/under/altevian))
 		pants[initial(uniform_type.name)] = uniform_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(pants))
+
+/datum/gear/accessory/altevian_aquila
+	description = "An emblem commonly seen worn by the altevians for their work operations."
+	display_name = "royal altevian navy emblem selection"
+	whitelisted = SPECIES_ALTEVIAN
+	sort_category = "Xenowear"
+
+/datum/gear/accessory/altevian_aquila/New()
+	..()
+	var/list/badges = list(
+						"gold emblem" = /obj/item/clothing/accessory/altevian_badge/aquila,
+						"silver emblem" = /obj/item/clothing/accessory/altevian_badge/aquila/silver,
+						"bronze emblem" = /obj/item/clothing/accessory/altevian_badge/aquila/bronze,
+						"black emblem" = /obj/item/clothing/accessory/altevian_badge/aquila/black,
+						"blue emblem" = /obj/item/clothing/accessory/altevian_badge/aquila/exotic,
+						"purple emblem" = /obj/item/clothing/accessory/altevian_badge/aquila/phoron,
+						"red emblem" = /obj/item/clothing/accessory/altevian_badge/aquila/hydrogen)
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(badges))
 
 // Taur stuff
 /datum/gear/suit/taur/drake_cloak
