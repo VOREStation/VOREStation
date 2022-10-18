@@ -170,7 +170,11 @@ If it gains pressure too slowly, it may leak or just rupture instead of explodin
 					continue
 
 				//Spread the fire.
+<<<<<<< HEAD
 				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(src, enemy_tile) && enemy_tile.CanPass(src, my_tile))
+=======
+				if(prob( 50 + 50 * (firelevel/vsc.fire_firelevel_multiplier) ) && my_tile.CanPass(src, enemy_tile, 0,0) && enemy_tile.CanPass(src, my_tile, 0,0))
+>>>>>>> d152c43be00... Merge pull request #8765 from Verkister/patch-98
 					enemy_tile.create_fire(firelevel)
 
 			else
