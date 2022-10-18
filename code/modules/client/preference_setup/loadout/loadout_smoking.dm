@@ -51,3 +51,19 @@
 	for(var/obj/item/weapon/storage/fancy/cigarettes/cigarette_brand as anything in (typesof(/obj/item/weapon/storage/fancy/cigarettes) - typesof(/obj/item/weapon/storage/fancy/cigarettes/killthroat)))
 		cigarettes[initial(cigarette_brand.name)] = cigarette_brand
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(cigarettes))
+<<<<<<< HEAD
+=======
+
+/datum/gear/ecig
+	display_name = "electronic cigarette"
+	path = /obj/item/clothing/mask/smokable/ecig/util
+
+/datum/gear/ecig_simple
+	display_name = "electronic cigarette, simple"
+	path = /obj/item/clothing/mask/smokable/ecig/simple
+
+/datum/gear/ecig_deluxe
+	display_name = "electronic cigarette, deluxe"
+	path = /obj/item/clothing/mask/smokable/ecig/deluxe
+	cost = 2
+>>>>>>> 650ee099421... Merge pull request #8763 from Cerebulon/cighands
