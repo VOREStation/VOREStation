@@ -95,13 +95,21 @@
 /obj/item/weapon/storage/secure/attack_self(mob/user as mob)
 	tgui_interact(user)
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/secure/tgui_interact(mob/user, datum/tgui/ui = null)
+=======
+/obj/item/storage/secure/tgui_interact(mob/user, datum/tgui/ui = null)
+>>>>>>> 5b18b888ca6... Merge pull request #8761 from Cerebulon/briefcases
 	ui = SStgui.try_update_ui(user, src, ui)
 	if(!ui)
 		ui = new(user, src, "SecureSafe", name)
 		ui.open()
 
+<<<<<<< HEAD
 /obj/item/weapon/storage/secure/tgui_data(mob/user)
+=======
+/obj/item/storage/secure/tgui_data(mob/user)
+>>>>>>> 5b18b888ca6... Merge pull request #8761 from Cerebulon/briefcases
 	var/list/data = list()
 	data["locked"] = locked
 	data["code"] = code
@@ -159,7 +167,6 @@
 	name = "secure briefcase"
 	icon = 'icons/obj/storage.dmi'
 	icon_state = "secure"
-	item_state_slots = list(slot_r_hand_str = "case", slot_l_hand_str = "case")
 	desc = "A large briefcase with a digital locking system."
 	force = 8.0
 	throw_speed = 1

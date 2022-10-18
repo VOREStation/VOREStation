@@ -1,8 +1,25 @@
 // "Useful" items - I'm guessing things that might be used at work?
 /datum/gear/utility
+<<<<<<< HEAD
 	display_name = "briefcase"
 	path = /obj/item/weapon/storage/briefcase
+=======
+	display_name = "camera"
+	path = /obj/item/camera
+>>>>>>> 5b18b888ca6... Merge pull request #8761 from Cerebulon/briefcases
 	sort_category = "Utility"
+
+/datum/gear/utility/briefcase
+	display_name = "briefcase selection"
+	path = /obj/item/storage/briefcase
+
+/datum/gear/utility/briefcase/New()
+	..()
+	var/list/briefcases = list()
+	for(var/briefcase in typesof(/obj/item/storage/briefcase/standard))
+		var/obj/item/briefcase_type = briefcase
+		briefcases[initial(briefcase_type.name)] = briefcase_type
+	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(briefcases))
 
 /datum/gear/utility/clipboard
 	display_name = "clipboard"
@@ -25,10 +42,13 @@
 		communicators[initial(communicator_type.name)] = communicator_type
 	gear_tweaks += new/datum/gear_tweak/path(sortAssoc(communicators))
 
+<<<<<<< HEAD
 /datum/gear/utility/camera
 	display_name = "camera"
 	path = /obj/item/device/camera
 
+=======
+>>>>>>> 5b18b888ca6... Merge pull request #8761 from Cerebulon/briefcases
 /datum/gear/utility/codex
 	display_name = "the traveler's guide to vir"
 	path = /obj/item/weapon/book/codex //VOREStation Edit

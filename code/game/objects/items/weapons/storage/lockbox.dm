@@ -90,7 +90,12 @@
 
 /obj/item/weapon/storage/lockbox/medal
 	name = "lockbox of medals"
-	desc = "A lockbox filled with commemorative medals, it has the NanoTrasen logo stamped on it."
+	desc = "A tasteful wooden lockbox filled with commemorative medals."
+	icon_state = "medalbox+l"
+	icon_locked = "medalbox+l"
+	icon_closed = "medalbox"
+	icon_broken = "medalbox+b"
+	item_state_slots = list(slot_r_hand_str = "briefcase", slot_l_hand_str = "briefcase")
 	req_access = list(access_heads)
 	storage_slots = 7
 	starts_with = list(
