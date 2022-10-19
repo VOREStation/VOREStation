@@ -188,10 +188,10 @@
 /* //VOREStation AI Temporary Removal
 /mob/living/simple_mob/animal/passive/cat/fluff/EatTarget()
 	var/mob/living/TM = target_mob
-	prey_excludes += TM //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
+	LAZYSET(prey_excludes, TM, world.time) //so they won't immediately re-eat someone who struggles out (or gets newspapered out) as soon as they're ate
 	spawn(3600) // but if they hang around and get comfortable, they might get ate again
 		if(src && TM)
-			prey_excludes -= TM
+			LAZYREMOVE(prey_excludes, TM)
 	..() // will_eat check is carried out before EatTarget is called, so prey on the prey_excludes list isn't a problem.
 */
 
