@@ -305,4 +305,8 @@
 /mob/living/carbon/human/set_dir(var/new_dir)
 	. = ..()
 	if(. && (species.tail || tail_style))
+<<<<<<< HEAD
 		update_tail_showing()
+=======
+		update_tail_showing()
+>>>>>>> 52c1b1ca0d9... Merge pull request #8769 from Cerebulon/tail_north
