@@ -61,7 +61,7 @@
 
 	if(autorest_cooldown)
 		autorest_cooldown --
-	else if(prob(5) && ai_holder.stance == STANCE_IDLE)
+	else if(prob(5) && (resting || ai_holder.stance == STANCE_IDLE))
 		autorest_cooldown = rand(50,200)
 		lay_down()
 
@@ -126,7 +126,7 @@
 		return FALSE
 
 /mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
-	if(pred && !extra_posessive)
+	if(pred && !extra_posessive && !(target in prey_excludes))
 		prey_excludes += target
 		addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(target)), 5 MINUTES)
 	if(ai_holder)
@@ -184,6 +184,8 @@
 	icon_living = "snappy"
 	icon_state = "snappy"
 	icon_rest = "snappy-rest"
+	digestable = 0 // pet mob, do not eat
+	devourable = 0
 
 	ai_holder_type = /datum/ai_holder/simple_mob/ranged/pakkun/snappy
 	vore_default_mode = DM_HOLD
@@ -210,6 +212,11 @@
 		to_chat(M, "<span class='notice'>\The [src] gets a mischievous glint in her eye!!</span>")
 		petters += M //YOU HAVE OFFERED YOURSELF TO THE LIZARD
 	return ..()
+
+/mob/living/simple_mob/vore/pakkun/snapdragon/snappy/lay_down()
+	if(LAZYLEN(petters) && prob(50) && !resting) //50% chance she'll forgive a random person when she takes a nap
+		petters -= pick(petters)
+	..()
 
 /mob/living/simple_mob/vore/pakkun/snapdragon/snappy/init_vore()
 	..()
