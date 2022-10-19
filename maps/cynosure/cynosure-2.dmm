@@ -1777,6 +1777,15 @@
 	},
 /turf/simulated/floor/tiled,
 /area/surface/station/hallway/secondary/groundfloor/civilian)
+<<<<<<< HEAD
+=======
+"aUH" = (
+/obj/structure/simple_door/sifwood,
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "aUJ" = (
 /obj/effect/floor_decal/industrial/warning,
 /turf/simulated/floor/tiled,
@@ -8947,6 +8956,17 @@
 	},
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/hallway/primary/groundfloor/south)
+<<<<<<< HEAD
+=======
+"ejl" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "ekq" = (
 /obj/structure/table/wooden_reinforced,
 /obj/item/device/taperecorder,
@@ -13300,6 +13320,16 @@
 /obj/structure/closet/secure_closet/security/cynosure,
 /turf/simulated/floor/tiled/techmaint,
 /area/surface/station/security/lockerroom)
+<<<<<<< HEAD
+=======
+"gdi" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/storage/firstaid/regular,
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "gdn" = (
 /obj/machinery/door/firedoor/border_only,
 /obj/structure/grille,
@@ -19987,6 +20017,15 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/engineering/reactor_waste)
+<<<<<<< HEAD
+=======
+"jvV" = (
+/obj/structure/table/sifwoodentable,
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "jwg" = (
 /obj/effect/floor_decal/industrial/warning{
 	dir = 8
@@ -20010,6 +20049,14 @@
 /obj/machinery/door/firedoor/border_only,
 /turf/simulated/floor/tiled,
 /area/surface/station/engineering/hallway)
+<<<<<<< HEAD
+=======
+"jwy" = (
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "jwF" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -20662,6 +20709,17 @@
 /obj/item/clothing/gloves/sterile/latex,
 /turf/simulated/floor/tiled/neutral,
 /area/surface/station/rnd/xenobiology)
+<<<<<<< HEAD
+=======
+"jNe" = (
+/obj/structure/bed/chair/wood{
+	dir = 4
+	},
+/turf/simulated/floor/wood/sif/broken{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "jNq" = (
 /obj/structure/cable/green{
 	d1 = 2;
@@ -25963,6 +26021,17 @@
 	},
 /turf/simulated/floor/tiled/dark,
 /area/surface/station/security/interrogation)
+<<<<<<< HEAD
+=======
+"lZX" = (
+/obj/structure/bed/chair/wood{
+	dir = 8
+	},
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "mab" = (
 /obj/item/device/radio/intercom{
 	dir = 8;
@@ -28915,6 +28984,21 @@
 /obj/item/weapon/material/kitchen/rollingpin,
 /turf/simulated/floor/tiled/eris/cafe,
 /area/surface/station/crew_quarters/kitchen)
+<<<<<<< HEAD
+=======
+"nmT" = (
+/obj/machinery/power/apc/high{
+	dir = 1
+	},
+/obj/structure/cable{
+	d2 = 8;
+	icon_state = "0-8"
+	},
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "nnd" = (
 /obj/effect/floor_decal/spline/plain{
 	dir = 8
@@ -36721,6 +36805,16 @@
 	dir = 1
 	},
 /area/surface/station/security/lobby)
+<<<<<<< HEAD
+=======
+"qBI" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/material/knife/tacknife/survival,
+/turf/simulated/floor/wood/sif/broken{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "qBQ" = (
 /obj/effect/floor_decal/steeldecal/steel_decals9{
 	dir = 8
@@ -36837,6 +36931,17 @@
 	},
 /turf/simulated/floor/tiled/white,
 /area/surface/station/medical/ward)
+<<<<<<< HEAD
+=======
+"qDR" = (
+/obj/machinery/light{
+	dir = 1
+	},
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "qEr" = (
 /obj/machinery/atmospherics/unary/vent_scrubber/on{
 	dir = 4
@@ -44944,6 +45049,20 @@
 "uvl" = (
 /turf/simulated/wall,
 /area/surface/station/medical/surgery_storage)
+<<<<<<< HEAD
+=======
+"uvA" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/melee/umbrella/random,
+/obj/item/melee/umbrella/random,
+/obj/machinery/light{
+	dir = 4
+	},
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "uvB" = (
 /obj/structure/cable{
 	d1 = 1;
@@ -47479,6 +47598,20 @@
 	},
 /turf/simulated/floor/plating,
 /area/surface/station/maintenance/atmos)
+<<<<<<< HEAD
+=======
+"vBG" = (
+/obj/machinery/power/port_gen/pacman,
+/obj/structure/cable{
+	d2 = 4;
+	icon_state = "0-4"
+	},
+/obj/fiftyspawner/phoron,
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "vBN" = (
 /obj/machinery/atmospherics/pipe/simple/heat_exchanging{
 	dir = 10
@@ -49103,6 +49236,16 @@
 	},
 /turf/simulated/floor/tiled/steel_grid,
 /area/surface/station/hallway/primary/groundfloor/south)
+<<<<<<< HEAD
+=======
+"wtI" = (
+/obj/structure/table/sifwoodentable,
+/obj/item/melee/umbrella/random,
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "wtQ" = (
 /obj/structure/cable/green{
 	d1 = 1;
@@ -51773,6 +51916,15 @@
 /obj/item/weapon/storage/pill_bottle/spaceacillin,
 /turf/simulated/floor/wood,
 /area/surface/station/crew_quarters/cafeteria)
+<<<<<<< HEAD
+=======
+"xFI" = (
+/obj/structure/bed,
+/turf/simulated/floor/wood/sif{
+	outdoors = 0
+	},
+/area/surface/outpost/checkpoint)
+>>>>>>> a3164dc2e66... Merge pull request #8770 from Cerebulon/roofing
 "xGi" = (
 /turf/simulated/wall,
 /area/surface/station/maintenance/substation/security/gnd)
