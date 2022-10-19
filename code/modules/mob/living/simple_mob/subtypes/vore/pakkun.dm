@@ -109,7 +109,7 @@
 			continue
 	if(istype(holder, /mob/living/simple_mob))
 		var/mob/living/simple_mob/SM = holder
-		our_targets -= SM.prey_excludes
+		our_targets -= SM.prey_excludes // Lazylist, but subtracting a null from the list seems fine.
 	return our_targets
 
 /datum/ai_holder/simple_mob/ranged/pakkun/can_attack(atom/movable/the_target, var/vision_required = TRUE)
@@ -120,14 +120,14 @@
 			return FALSE
 		if(istype(holder, /mob/living/simple_mob))
 			var/mob/living/simple_mob/SM = holder
-			if(L in SM.prey_excludes)
+			if(LAZYFIND(SM.prey_excludes, L))
 				return FALSE
 	else
 		return FALSE
 
 /mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
-	if(pred && !extra_posessive && !(target in prey_excludes))
-		prey_excludes += target
+	if(pred && !extra_posessive && !LAZYFIND(SM.prey_excludes, L))
+		LAZYSET(prey_excludes, target, world.time)
 		addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(target)), 5 MINUTES)
 	if(ai_holder)
 		ai_holder.remove_target()
@@ -151,8 +151,8 @@
         user.visible_message("<span class='info'>[user] swats [src] with [O]!</span>")
         release_vore_contents()
         for(var/mob/living/L in living_mobs(0))
-            if(!(L in prey_excludes))
-                prey_excludes += L
+            if(!(LAZYFIND(prey_excludes, L)))
+                LAZYSET(prey_excludes, L, world.time)
                 addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(L)), 5 MINUTES)
     else
         ..()
