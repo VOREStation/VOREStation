@@ -126,7 +126,7 @@
 		return FALSE
 
 /mob/living/simple_mob/vore/pakkun/on_throw_vore_special(var/pred, var/mob/living/target)
-	if(pred && !extra_posessive && !LAZYFIND(SM.prey_excludes, L))
+	if(pred && !extra_posessive && !LAZYFIND(prey_excludes, target))
 		LAZYSET(prey_excludes, target, world.time)
 		addtimer(CALLBACK(src, .proc/removeMobFromPreyExcludes, weakref(target)), 5 MINUTES)
 	if(ai_holder)
