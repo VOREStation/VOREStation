@@ -1541,7 +1541,7 @@
 
 /obj/structure/disposaloutlet/Destroy()
 	var/obj/structure/disposalpipe/trunk/trunk = locate() in loc
-	if(trunk)
+	if(trunk && trunk.linked == src)
 		trunk.linked = null
 	return ..()
 
