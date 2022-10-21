@@ -22,6 +22,10 @@
 		else
 			CRASH("Invalid can_atmos_pass = [can_atmos_pass] on [src] ([type])")
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4cc54b8295c... Merge pull request #8766 from Spookerton/spkrtn/fix/canpass2
 /turf/CanZASPass(turf/T, is_zone)
 	if(T.blocks_air || src.blocks_air)
 		return FALSE

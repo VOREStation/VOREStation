@@ -170,15 +170,20 @@
 			sleep(2)
 			O.update_transform()
 
-/turf/CanPass(atom/movable/mover, turf/target)
-	if(!target)
-		return FALSE
 
-	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
+/turf/CanPass(atom/movable/movable, turf/target)
+	if (!target)
+		return FALSE
+	if (ismovable(movable)) // turf/Enter carries out complex tests
 		return !density
+<<<<<<< HEAD
 
 	stack_trace("Non movable passed to turf CanPass : [mover]")
+=======
+	crash_with("turf/CanPass invalid movable: [movable ? "[movable]" : "(null)"]")
+>>>>>>> 4cc54b8295c... Merge pull request #8766 from Spookerton/spkrtn/fix/canpass2
 	return FALSE
+
 
 //There's a lot of QDELETED() calls here if someone can figure out how to optimize this but not runtime when something gets deleted by a Bump/CanPass/Cross call, lemme know or go ahead and fix this mess - kevinz000
 /turf/Enter(atom/movable/mover, atom/oldloc)
